@@ -48,5 +48,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/diagnose-batch64-oom-root-cause.md"
 }

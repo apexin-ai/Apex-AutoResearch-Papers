@@ -970,5 +970,6 @@
       ],
       "message_count": 22
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/analyze-gemma2-hires-bf16-2bitonly.md"
 }

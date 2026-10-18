@@ -60,5 +60,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/eval-openvla-crossmodel-pruning.md"
 }

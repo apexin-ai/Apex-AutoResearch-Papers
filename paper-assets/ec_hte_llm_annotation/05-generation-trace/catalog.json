@@ -29,6 +29,7 @@
       "preview": "[PROJECT BOOTSTRAP] 项目: ec_hte_llm_annotation | Loop #1 | 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDEA_BRIEF.md **立刻 Read `workspace://projects/ec_hte_llm_annotation/docs/IDEA_BRIEF.md`**。 这份文档是 Idea 阶段立项时自动生成的正式交接，包含 Core Problem / Opportunit",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-20260522-182928.md",
       "path": "sessions/38/38d6a52cbda91ea33582.json"
     },
     {
@@ -46,6 +47,7 @@
       "preview": "[PROJECT BOOTSTRAP] 项目: ec_hte_llm_annotation | Loop #1 | 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDEA_BRIEF.md **立刻 Read `workspace://projects/ec_hte_llm_annotation/docs/IDEA_BRIEF.md`**。 这份文档是 Idea 阶段立项时自动生成的正式交接，包含 Core Problem / Opportunit",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260521-095856.md",
       "path": "sessions/28/281d0679bf9043ea74fc.json"
     },
     {
@@ -63,6 +65,7 @@
       "preview": "[Director 指令] ## MVP 实现任务：EC-HTE 合成模拟 ### 背景 验证核心假设：当 LLM effect-modifier 误分类率跨子群异质 + 真实 CATE 跨子群异质时，全局校正失效甚至加偏，分层校正（EC-HTE）有效。 ### 执行环境 - 服务器：`local-cpu`（localhost，无 GPU，CPU-only） - 项目路径：`/home/ubuntu/ec_hte_llm_annotation` - 需要安装依赖：`pip i",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/coordination-coordination-20260525-192901.md",
       "path": "sessions/1d/1d2cd4b3f46880b20a29.json"
     },
     {
@@ -80,6 +83,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-mvp-simulation-v3.md",
       "path": "sessions/a0/a08e8b3e2ca8e36a283a.json"
     },
     {
@@ -97,6 +101,7 @@
       "preview": "[Round 1 审稿请求]: ## R1 审稿任务：方法正确性 + 实验质量 **论文**: \"When Debiasing Backfires: Error-Corrected Heterogeneous Treatment Effect Estimation with LLM Annotations\" **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotatio",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-1-coordination.md",
       "path": "sessions/3c/3cf164abc479c500844b.json"
     },
     {
@@ -114,6 +119,7 @@
       "preview": "[Round 1 审稿请求]: ## R2 审稿任务：新颖性 + 相关工作 + 写作 **论文**: \"When Debiasing Backfires: Error-Corrected Heterogeneous Treatment Effect Estimation with LLM Annotations\" **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annota",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-2-coordination.md",
       "path": "sessions/6b/6b801186fff420c7215b.json"
     },
     {
@@ -131,6 +137,7 @@
       "preview": "[Reviewer 1 审稿意见]: ## Reviewer 1 — Round 1 审稿报告 **审稿焦点**: 方法技术正确性 + 实验设计与结果质量 --- ## 总体评分 **Overall**: 3.5 / 5 (Borderline Conference) **Director 1-6 Scale**: 4 (Weak Accept) **Confidence**: 4 / 5 **一句话总结**: 问题动机好、实验覆盖全，但理论核心（Proposition 1）",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination.md",
       "path": "sessions/fb/fb462ae0cd5c4c630c34.json"
     },
     {
@@ -148,6 +155,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-ashwin-dataset.md",
       "path": "sessions/30/30e8924a7a88542644c8.json"
     },
     {
@@ -165,6 +173,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-exp-007-skeleton.md",
       "path": "sessions/e2/e28c328c662ad37380d9.json"
     },
     {
@@ -182,6 +191,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-tweeteval-data.md",
       "path": "sessions/59/59adeca225d13ec884aa.json"
     },
     {
@@ -199,6 +209,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-exp-007-double-correction-fix.md",
       "path": "sessions/c4/c4addc6058cef39e5f12.json"
     },
     {
@@ -216,6 +227,7 @@
       "preview": "[Director 指令] [Full Draft 前置准备] EMNLP 2026 Long Paper，DDL May 25 via ARR。8 pages + unlimited refs。 **Core claims**（3 条）： 1. Bias Mechanism Discovery：global correction worsens subgroup CATE bias by 2-3x (median), up to 20x extreme。Exact iden",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-agent-coordination.md",
       "path": "sessions/d2/d20c7768aae7b421bb36.json"
     },
     {
@@ -233,6 +245,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-acl-latex-template.md",
       "path": "sessions/0c/0c4cf2b5d2ee182faba9.json"
     },
     {
@@ -250,6 +263,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-theory.md",
       "path": "sessions/96/9619106160ef7cd44715.json"
     },
     {
@@ -267,6 +281,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-method.md",
       "path": "sessions/53/536f680fde711eaeb715.json"
     },
     {
@@ -284,6 +299,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-introduction.md",
       "path": "sessions/58/580bc4d5c2dcdc34559c.json"
     },
     {
@@ -301,6 +317,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-related-work.md",
       "path": "sessions/8a/8a1dbeebb17397239332.json"
     },
     {
@@ -318,6 +335,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/figure-fig3-budget.md",
       "path": "sessions/74/74439bbb5aa5e1667f8b.json"
     },
     {
@@ -335,6 +353,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/figure-fig2-heatmap.md",
       "path": "sessions/8f/8f3212202ce2dc87df19.json"
     },
     {
@@ -352,6 +371,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-abstract.md",
       "path": "sessions/ba/ba8f121ac6c7a4233cf0.json"
     },
     {
@@ -369,6 +389,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-conclusion.md",
       "path": "sessions/dd/dd1e490c09e175bfce08.json"
     },
     {
@@ -386,6 +407,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-limitations.md",
       "path": "sessions/3d/3dcf69796d36747c738e.json"
     },
     {
@@ -403,6 +425,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 分配，全部实验 CPU + API 完成。不要尝试分配或使用任何 GPU。 - exp-004 使用 GPT-4.1 API via `http://47.94.22.126/v1`（代理），不是本地模型。不要把它当 GPU 实验处理。 - AUC 数值已锁定：subgroup=0.83",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260522-182934.md",
       "path": "sessions/42/42aa1dc837fa4db420fc.json"
     },
     {
@@ -420,6 +443,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/viz-applicability-frontier.md",
       "path": "sessions/c0/c0f577d3e414a5ca5e29.json"
     },
     {
@@ -437,6 +461,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-exp-016-semi-real-better-cm.md",
       "path": "sessions/6a/6af22db39196e5b66ca6.json"
     },
     {
@@ -454,6 +479,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-diagnostic-revision-auc.md",
       "path": "sessions/1f/1ffd8d35bd9a38d182bc.json"
     },
     {
@@ -471,6 +497,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-kappa-sweep.md",
       "path": "sessions/ea/ea294a25de35b0eadbff.json"
     },
     {
@@ -488,6 +515,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-loocv-auc.md",
       "path": "sessions/73/734d169e5e78df15f817.json"
     },
     {
@@ -505,6 +533,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-gpu-progress-check.md",
       "path": "sessions/6a/6a3640c18cd7fa6ee01a.json"
     },
     {
@@ -522,6 +551,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-c1-integration-template.md",
       "path": "sessions/91/9106a1f3526106f46e5f.json"
     },
     {
@@ -539,6 +569,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-llama-semisynthetic-rmse.md",
       "path": "sessions/3e/3e90c9037e7784e35ee3.json"
     },
     {
@@ -556,6 +587,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-llama-budget-sweep-k4.md",
       "path": "sessions/ce/ce2a460bb1ce426cd230.json"
     },
     {
@@ -573,6 +605,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-llama-budget-sweep-k2.md",
       "path": "sessions/b9/b94f6907fa5529877b07.json"
     },
     {
@@ -590,6 +623,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-qwen-budget-sweep.md",
       "path": "sessions/b4/b437bfa988d9aca935ed.json"
     },
     {
@@ -607,6 +641,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-gemma-budget-sweep.md",
       "path": "sessions/73/734d825291497b895f24.json"
     },
     {
@@ -624,6 +659,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-mistral-budget-sweep.md",
       "path": "sessions/49/492f5e6fb32a76705258.json"
     },
     {
@@ -641,6 +677,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-hetero-tau-dgp.md",
       "path": "sessions/86/86d3058c374cb3379325.json"
     },
     {
@@ -658,6 +695,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-page-limit-fix.md",
       "path": "sessions/6b/6b1497be76988feae91b.json"
     },
     {
@@ -675,6 +713,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-causalforest-k2-extract.md",
       "path": "sessions/e0/e049f3527304ccd37bbc.json"
     },
     {
@@ -692,6 +731,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-exp-w4-bootstrap-se.md",
       "path": "sessions/2d/2dd5b5d13fe5c191f598.json"
     },
     {
@@ -709,6 +749,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-exp-024-realcm-bias-identity.md",
       "path": "sessions/cd/cd9c112bfa379f7ce1fa.json"
     },
     {
@@ -726,6 +767,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-exp-026-low-budget-hb-v2.md",
       "path": "sessions/9d/9d03658a21abe22c4a61.json"
     },
     {
@@ -743,6 +785,7 @@
       "preview": "[HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目 GPU 已全部释放（已三次请 Manager 回收），不要再分配 GPU 给实验 - autodl-rtx6000 服务器正在被 Manager 转移给其他项目，不要在该服务器上启动任何任务 - Appendix 已有 26 个 \\section，\\Alph 计数器上限 26。**新增 appendix 内容必须用",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-20260525-032205.md",
       "path": "sessions/cc/cc982f77fb2a72d2b4bd.json"
     },
     {
@@ -760,6 +803,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目是纯 CPU 实验（DIM/CausalForest simulation），不涉及 GPU 训练。无 GPU 设备白名单约束。 - 论文 DDL = **2026-05-25**（距今 3 天），EMNLP 2026 ARR，8 页主文硬限制。 - exp-024 diagnostic AUC 在",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260523-202307.md",
       "path": "sessions/fa/fa5c4e50cc1b8cc00d5c.json"
     },
     {
@@ -777,6 +821,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-asymmetric-diagnostic.md",
       "path": "sessions/f6/f65aca11c7763b9acd47.json"
     },
     {
@@ -794,6 +839,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-adaptive-shrinkage.md",
       "path": "sessions/a6/a6b67ba253fe64ff40bc.json"
     },
     {
@@ -811,6 +857,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-p0a-fl-table1.md",
       "path": "sessions/ac/acdd54fac1b46d018cac.json"
     },
     {
@@ -828,6 +875,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-p0b-kappa-analysis.md",
       "path": "sessions/16/16ae975069bc19835297.json"
     },
     {
@@ -845,6 +893,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-anon-repo-check.md",
       "path": "sessions/82/823ab0483206155f57af.json"
     },
     {
@@ -862,6 +911,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-bias-anatomy-heatmap.md",
       "path": "sessions/64/6448218dfe0d4fd70cd3.json"
     },
     {
@@ -879,6 +929,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-debiasing-hurts-summary.md",
       "path": "sessions/96/96137223c0215d303c80.json"
     },
     {
@@ -896,6 +947,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-sign-reversal-fix-tau003.md",
       "path": "sessions/0b/0be14cac0ea266094651.json"
     },
     {
@@ -913,6 +965,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-sf7-timing-benchmark.md",
       "path": "sessions/3d/3db7cbed8c73d5a5640d.json"
     },
     {
@@ -930,6 +983,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-exp-d-hatespeech-upgrade.md",
       "path": "sessions/32/32d2f8b262f22d476807.json"
     },
     {
@@ -947,6 +1001,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-exp-a-civilcomments.md",
       "path": "sessions/c6/c66ae941f02221885b30.json"
     },
     {
@@ -964,6 +1019,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-data-integrity-audit-v2.md",
       "path": "sessions/5e/5ea166e1822707a40231.json"
     },
     {
@@ -981,6 +1037,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 训练，全部实验在 local-cpu 上跑 Python 模拟（N=5000, MC=100），无 GPU 设备号约束 - 论文主文 **8 页硬限制**（EMNLP 2026 ARR），Limitations/Ethics 不计入但 Limitations 用户规则要求\"一小段，3 个",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260525-032222.md",
       "path": "sessions/02/0229485d97fd814d0be7.json"
     },
     {
@@ -998,6 +1055,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-paper-fixes-mf1-mf2-sf.md",
       "path": "sessions/8f/8fe69475621b028aacac.json"
     },
     {
@@ -1015,6 +1073,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-ddl-final-edits.md",
       "path": "sessions/0b/0b6cde4a39868bbd027a.json"
     },
     {
@@ -1032,6 +1091,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-demo-subgroup-codebase-discovery.md",
       "path": "sessions/c6/c618ffa6361aba7c7f28.json"
     },
     {
@@ -1049,6 +1109,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/audit-numbers-traceability.md",
       "path": "sessions/3c/3c443bec65629cc0895a.json"
     },
     {
@@ -1066,6 +1127,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-ucb-demographic-subgroup-analysis.md",
       "path": "sessions/38/384a21ed808585ce35dd.json"
     },
     {
@@ -1083,6 +1145,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/audit-anonymization-check.md",
       "path": "sessions/52/52803e65ce523798d276.json"
     },
     {
@@ -1100,6 +1163,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/ops-anonymous-repo-push-test.md",
       "path": "sessions/97/9715bb472af26555b342.json"
     },
     {
@@ -1117,6 +1181,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/ops-submission-checklist.md",
       "path": "sessions/eb/eb244651a7ab9b1388a7.json"
     },
     {
@@ -1134,6 +1199,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-exp-041.md",
       "path": "sessions/54/548ff950361a54fd9485.json"
     },
     {
@@ -1151,6 +1217,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-exp041-appendix-update.md",
       "path": "sessions/e8/e8cc169554d94ad06509.json"
     },
     {
@@ -1168,6 +1235,7 @@
       "preview": "[HANDOFF] 你是 Director，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 实验——纯统计模拟 + 论文写作项目，所有实验在本地 CPU 完成 - 论文 EMNLP 2026 ARR 投稿，主文严格 8 页限制（Limitations/References 不计入）。每次修改后必须编译验证页数 - 统一配色方案已锁定：Naive=#95A5A6, Global=#2C5F8A, ",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-copy-2.md",
       "path": "sessions/03/038565ae84c0b989dba9.json"
     },
     {
@@ -1185,6 +1253,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #5。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目是纯理论+模拟实验，**无 GPU 训练**。服务器仅用于 MC 模拟（CPU-bound）和论文编译 - **etaiwi2025comparative (arXiv:2506.18501)** 引用已验证真实存在，但论文中数字从 \"GPT-4 at ~85%\" 已修正为 \"~80%\"。如有人再动",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination.md",
       "path": "sessions/bb/bb66c64e4b0dcdf08107.json"
     },
     {
@@ -1202,6 +1271,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-fl-comparison-data-conflict.md",
       "path": "sessions/c6/c69139d2f3d2fdb34580.json"
     },
     {
@@ -1219,6 +1289,7 @@
       "preview": "[飞书用户 曹晓玉 (ou_533f5b3d594a23d3fe94ba4e0a7a33b1)]: 你好",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/coordination-coordination.md",
       "path": "sessions/b9/b9c0e41594cd51ca67c4.json"
     },
     {
@@ -1236,6 +1307,7 @@
       "preview": "[飞书用户 曹晓玉 (ou_533f5b3d594a23d3fe94ba4e0a7a33b1)]: 你觉得当前最新版论文的引言写的好吗，引言行文思路如下： 第一段（Hook）：用一个具体场景开门——\"用 GPT-4 标注仇恨言论，做完标准混淆矩阵校正后，分析结论说政策对年轻用户增加了仇恨言论，但真实效应是保护性的。\" 然后一句钉死：\"This sign reversal is not an edge case.\" 用因果结论被翻转的戏剧性吸引注意力。 第二段（背景 + 标准做",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/feishu-dm-oc-aee0678a90180f01bb3468239c131e46-briefer.md",
       "path": "sessions/64/64b1999a6f74e6ec94fc.json"
     },
     {
@@ -1253,6 +1325,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-mvp-simulation.md",
       "path": "sessions/d3/d307ba6e95a195a0db41.json"
     },
     {
@@ -1270,6 +1343,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-mvp-simulation-v2.md",
       "path": "sessions/e6/e6fe7354c2a565a38ee0.json"
     },
     {
@@ -1287,6 +1361,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-mvp-simulation-v3.md",
       "path": "sessions/cc/cc9d064dce435268af40.json"
     },
     {
@@ -1304,6 +1379,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested implementing a Hierarchical B",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-001.md",
       "path": "sessions/37/37634ec1cc136c461dcd.json"
     },
     {
@@ -1321,6 +1397,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-002.md",
       "path": "sessions/ee/ee7c6b6b73d975e59d13.json"
     },
     {
@@ -1338,6 +1415,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/run-exp-002.md",
       "path": "sessions/54/5461ecfb67afc1a8cb7d.json"
     },
     {
@@ -1355,6 +1433,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/run-exp-001.md",
       "path": "sessions/32/32d2df2c7960f6b7cc00.json"
     },
     {
@@ -1372,6 +1451,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-ashwin-dataset.md",
       "path": "sessions/a8/a82bef6efa205bf71a22.json"
     },
     {
@@ -1389,6 +1469,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-007-skeleton.md",
       "path": "sessions/b6/b676186890d02bc669e5.json"
     },
     {
@@ -1406,6 +1487,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-001-regularize.md",
       "path": "sessions/7f/7fc592ad5cbbf744b47d.json"
     },
     {
@@ -1423,6 +1505,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/run-exp-007-baseline.md",
       "path": "sessions/6c/6c25febbe7a363669d5a.json"
     },
     {
@@ -1440,6 +1523,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-tweeteval-data.md",
       "path": "sessions/80/80758fd4b2d42786b208.json"
     },
     {
@@ -1457,6 +1541,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-001-mcmc-fix.md",
       "path": "sessions/3f/3f69d32cc224e3849a18.json"
     },
     {
@@ -1474,6 +1559,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-007-refactor.md",
       "path": "sessions/86/8659ebaeb2d033988a9e.json"
     },
     {
@@ -1491,6 +1577,7 @@
       "preview": "Explore the project at /home/ubuntu/ec_hte_llm_annotation. I need to understand: 1. Overall file structure (all Python files, results directory) 2. Any existing MVP code with core functions (oracle, naive, global_corrected, stratified_mle, ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-003-phase-a.md",
       "path": "sessions/75/7508e566b6fc7c3fa7a9.json"
     },
     {
@@ -1508,6 +1595,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-001-hyperprior.md",
       "path": "sessions/34/347737dea5241391ca63.json"
     },
     {
@@ -1525,6 +1613,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-007-ppci-fix.md",
       "path": "sessions/ce/ceea2611ac84fc5f0e1a.json"
     },
     {
@@ -1542,6 +1631,7 @@
       "preview": "In /home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py, find the function `invert_mixing_safe`. Show me its full definition and also the definition of `invert_mixing` if it exists. I need to understand the signature and behavior of bo",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-001-hyperprior-v2.md",
       "path": "sessions/bd/bd983b8e4c61ae6e51d3.json"
     },
     {
@@ -1559,6 +1649,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-003-mixing-fix.md",
       "path": "sessions/06/06ed6c814d57f484e760.json"
     },
     {
@@ -1576,6 +1667,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-007-double-correction-fix.md",
       "path": "sessions/34/348ee7bea83836f5b4a0.json"
     },
     {
@@ -1593,6 +1685,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/run-exp-007-full.md",
       "path": "sessions/fb/fbb039ad3d8a1e3a5ea9.json"
     },
     {
@@ -1610,6 +1703,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/run-exp-001-hyperprior.md",
       "path": "sessions/c2/c25a4807cd42fe5cf1c0.json"
     },
     {
@@ -1627,6 +1721,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-exp-004-data-exploration.md",
       "path": "sessions/c8/c8c01e6786047e6b3e53.json"
     },
     {
@@ -1644,6 +1739,7 @@
       "preview": "In the project /home/ubuntu/ec_hte_llm_annotation, I need to find where DGP (data generating process) parameters are defined for the simulation experiments. Specifically: 1. For exp-001 (synthetic DGP): Find where regimes like \"extreme\", \"m",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-005-diagnostic.md",
       "path": "sessions/02/0281bd28dc5bcb5c1ed5.json"
     },
     {
@@ -1661,6 +1757,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested integrating an HB (Hierarchic",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-003-hb-integration.md",
       "path": "sessions/ae/ae446622900bb6636a86.json"
     },
     {
@@ -1678,6 +1775,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-006-budget-sweep.md",
       "path": "sessions/ab/ab93ceb7a38b10a7efc7.json"
     },
     {
@@ -1695,6 +1793,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-api-key-alternatives.md",
       "path": "sessions/cd/cdfa09544160a79d33f8.json"
     },
     {
@@ -1712,6 +1811,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-literature-map-expansion.md",
       "path": "sessions/dc/dc945aef7f5ce990985c.json"
     },
     {
@@ -1729,6 +1829,7 @@
       "preview": "In /home/ubuntu/ec_hte_llm_annotation, find the exp-001 experiment file(s) and locate these helper functions: 1. `build_mixing_matrix` 2. `invert_mixing_safe` 3. `compute_confusion_matrix` (or similar) 4. Any DGP / `generate_data` function ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-011-causal-forest.md",
       "path": "sessions/bf/bfa1b31957963094f5ec.json"
     },
     {
@@ -1746,6 +1847,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-pilot-llm-annotation.md",
       "path": "sessions/2e/2e158c8dd7e2900bc4d9.json"
     },
     {
@@ -1763,6 +1865,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-003-hb-rerun.md",
       "path": "sessions/e2/e29d00cfc1d60741164d.json"
     },
     {
@@ -1780,6 +1883,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gemini-pilot-script.md",
       "path": "sessions/97/97c2fbaa787ad28427bb.json"
     },
     {
@@ -1797,6 +1901,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-acl-latex-template.md",
       "path": "sessions/20/20fca50d13a8aa7888c7.json"
     },
     {
@@ -1814,6 +1919,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-experiments.md",
       "path": "sessions/42/423bb4235fd5b7b87be3.json"
     },
     {
@@ -1831,6 +1937,7 @@
       "preview": "Search in /home/ubuntu/ec_hte_llm_annotation/exp003_tweeteval.py for the HB Gibbs sampler implementation. Look for keywords: gibbs, dirichlet, hb, hierarchical, partial_pooling, confusion matrix estimation. Read the full implementation of a",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-007-hb-backfill.md",
       "path": "sessions/5a/5a8652a5a45457cb8bda.json"
     },
     {
@@ -1848,6 +1955,7 @@
       "preview": "Find any main.tex, preamble.tex, or .sty files in or near /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/ that might define theorem/proposition environments. Also check parent directories. Quick sear",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-theory.md",
       "path": "sessions/fd/fd152f1d937fdc71da27.json"
     },
     {
@@ -1865,6 +1973,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gemini-pilot-run.md",
       "path": "sessions/a4/a4a712dde16ca6e63bf7.json"
     },
     {
@@ -1882,6 +1991,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-007-hb-rerun.md",
       "path": "sessions/f7/f707df996be6e1749ef4.json"
     },
     {
@@ -1899,6 +2009,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-pilot-gpt41-run.md",
       "path": "sessions/b5/b5de5e723ab4a9981723.json"
     },
     {
@@ -1916,6 +2027,7 @@
       "preview": "Find all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/ and list them. Then read theory.tex and experiments.tex (or whatever the experiment section file is called) to extract: (1) a",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-method.md",
       "path": "sessions/bd/bd9f424b0882acd4dba5.json"
     },
     {
@@ -1933,6 +2045,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-introduction.md",
       "path": "sessions/64/640e79935e57f7519c35.json"
     },
     {
@@ -1950,6 +2063,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-related-work.md",
       "path": "sessions/ab/aba9542ea7b7db569794.json"
     },
     {
@@ -1967,6 +2081,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/figure-fig2-heatmap.md",
       "path": "sessions/d4/d4490dc242bc6f74d760.json"
     },
     {
@@ -1984,6 +2099,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/figure-fig3-budget.md",
       "path": "sessions/b5/b5c14c7fd761efead5d2.json"
     },
     {
@@ -2001,6 +2117,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-abstract.md",
       "path": "sessions/e2/e2429a6b89d2dbaf6b5b.json"
     },
     {
@@ -2018,6 +2135,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-conclusion.md",
       "path": "sessions/9a/9a5f2177e7757494676a.json"
     },
     {
@@ -2035,6 +2153,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-limitations.md",
       "path": "sessions/97/97e9df0f801a943dc2a1.json"
     },
     {
@@ -2052,6 +2171,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-013-boundary.md",
       "path": "sessions/5c/5c1c778b946ae356306d.json"
     },
     {
@@ -2069,6 +2189,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-exp-004-data-design.md",
       "path": "sessions/1e/1e05f76fd3e67908f4f3.json"
     },
     {
@@ -2086,6 +2207,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-014-asymmetric.md",
       "path": "sessions/1c/1c6fe3d0d282a65ad22c.json"
     },
     {
@@ -2103,6 +2225,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-004-hate-speech.md",
       "path": "sessions/2d/2d9fe12f16d84137811e.json"
     },
     {
@@ -2120,6 +2243,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-008-multi-llm.md",
       "path": "sessions/e4/e43d1a23b2d4c9e5464d.json"
     },
     {
@@ -2137,6 +2261,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-004-hate-speech-v2.md",
       "path": "sessions/46/46dc65cd6e46f3a85868.json"
     },
     {
@@ -2154,6 +2279,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-010-misspecified.md",
       "path": "sessions/08/088a397e16e0d91f87e9.json"
     },
     {
@@ -2171,6 +2297,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-mc-se-analysis.md",
       "path": "sessions/20/205ccc7813298bc11339.json"
     },
     {
@@ -2188,6 +2315,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-008-local-inference-scripts.md",
       "path": "sessions/e4/e465234bc321501236ba.json"
     },
     {
@@ -2205,6 +2333,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-015-semi-real-cm.md",
       "path": "sessions/cb/cbd71ce75f304041f0e5.json"
     },
     {
@@ -2222,6 +2351,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/viz-applicability-frontier.md",
       "path": "sessions/90/900b978e63e34952e7df.json"
     },
     {
@@ -2239,6 +2369,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-016-semi-real-better-cm.md",
       "path": "sessions/50/509f8c1dc279d5377152.json"
     },
     {
@@ -2256,6 +2387,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-017-rlearner.md",
       "path": "sessions/dc/dc497c701d137ee608e9.json"
     },
     {
@@ -2273,6 +2405,7 @@
       "preview": "Find and read the correction logic in exp-003 files under /home/ubuntu/ec_hte_llm_annotation/. Look for files matching exp003* and read the relevant correction/bias-correction code. Report the full file paths and the key correction logic (g",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-018-multiplicative-dgp.md",
       "path": "sessions/d0/d04b48a0da2714de37b2.json"
     },
     {
@@ -2290,6 +2423,7 @@
       "preview": "Search the codebase at /home/ubuntu/ec_hte_llm_annotation for the confusion matrix parameters, DGP specs, and configurations used in exp-015 and exp-016. Look for: 1. Files that define the CM (confusion matrix) for exp015 - it's GPT-4.1 rea",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp015-016-failure-deep-dive.md",
       "path": "sessions/ee/ee76fc163958f57b6ec0.json"
     },
     {
@@ -2307,6 +2441,7 @@
       "preview": "In the repo /home/ubuntu/ec_hte_llm_annotation, I need to find the experimental configuration that defines misclassification rates (pi_s) per subgroup for experiments exp-001, exp-003, and exp-013. Search for: 1. Config files or Python scri",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-diagnostic-revision-auc.md",
       "path": "sessions/51/51a0e857e3ea6514080c.json"
     },
     {
@@ -2324,6 +2459,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-019-pz1-sweep.md",
       "path": "sessions/de/defd0e1f6ff88f0ab5e3.json"
     },
     {
@@ -2341,6 +2477,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-balanced-z-scripts.md",
       "path": "sessions/9d/9d349f0934e032192437.json"
     },
     {
@@ -2358,6 +2495,7 @@
       "preview": "In the project at /home/ubuntu/ec_hte_llm_annotation/, I need to find how the κ (kappa) condition number guard is implemented. This is a singularity guard for confusion matrices where condition number > κ triggers a fallback. Search for: 1.",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-kappa-sweep.md",
       "path": "sessions/34/34cb6eb1ca508b790e4e.json"
     },
     {
@@ -2375,6 +2513,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-roc-figure-update.md",
       "path": "sessions/8f/8f5df05b9978859c1115.json"
     },
     {
@@ -2392,6 +2531,7 @@
       "preview": "Search the project at /home/ubuntu/ec_hte_llm_annotation for any files related to LOO-CV AUC calculation. Specifically: 1. Grep for \"LOO\", \"leave_one_out\", \"LeaveOneOut\", \"cross_val\", \"0.83\" across all Python files 2. Find files matching pa",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-loocv-auc.md",
       "path": "sessions/38/38191abe5e6e00cd2b38.json"
     },
     {
@@ -2409,6 +2549,7 @@
       "preview": "Find the resources.yaml file used by the agent-ml-research MCP server. Search in common locations: home directory, project directory, any .agent or .config directories. Look for files named resources.yaml or similar config files that define",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-balanced-z-4gpu-annotation.md",
       "path": "sessions/8b/8b03f9b7ade620320d03.json"
     },
     {
@@ -2426,6 +2567,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-check-gpu-status.md",
       "path": "sessions/81/816f43eb56312adf0713.json"
     },
     {
@@ -2443,6 +2585,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-seeds-100-supplement.md",
       "path": "sessions/dc/dcb2bebbf148727bd88a.json"
     },
     {
@@ -2460,6 +2603,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-balanced-z-modelscope.md",
       "path": "sessions/17/17d14964302256c8243d.json"
     },
     {
@@ -2477,6 +2621,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gpu-progress-check.md",
       "path": "sessions/c8/c890283686065edd547a.json"
     },
     {
@@ -2494,6 +2639,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user wants to execute a complex multi-step p",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gpu-serial-download-annotate.md",
       "path": "sessions/8c/8c13ae2e27aa87398ddd.json"
     },
     {
@@ -2511,6 +2657,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-c1-integration-template.md",
       "path": "sessions/fc/fc0eb224e2e67ae62b9a.json"
     },
     {
@@ -2528,6 +2675,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gpu-download-check.md",
       "path": "sessions/90/90a2085b987c09bdf603.json"
     },
     {
@@ -2545,6 +2693,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gamma-sensitivity-rd2m5.md",
       "path": "sessions/e1/e1048bdcfea8f311e16a.json"
     },
     {
@@ -2562,6 +2711,7 @@
       "preview": "Find the resources.yaml file that configures SSH server connections for the agent-ml-research system. Look in /home/ubuntu/.agent-ml-research-idea_gen_0520/ and /home/ubuntu/agent-ml-research/ directories. Also check ~/.ssh/config for any a",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gpu-speed-fix.md",
       "path": "sessions/7b/7b9707c4d92231b8d260.json"
     },
     {
@@ -2579,6 +2729,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user wants to continue a 4-model LLM annotat",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gpu-continue-annotation.md",
       "path": "sessions/d2/d2590ea2023a40ccd73d.json"
     },
     {
@@ -2596,6 +2747,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama-echte-analysis.md",
       "path": "sessions/e4/e4b9fa5ee583e39c9859.json"
     },
     {
@@ -2613,6 +2765,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama-semisynthetic-rmse.md",
       "path": "sessions/fe/fe0e251062312712b816.json"
     },
     {
@@ -2630,6 +2783,7 @@
       "preview": "Find any file under /home/ubuntu/ec_hte_llm_annotation that contains a MAP-EB or empirical Bayes implementation for confusion matrix estimation. Look for files matching \"gamma_sensitivity\" or \"map_eb\" or \"empirical_bayes\" patterns. Also gre",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama-budget-sweep-k4.md",
       "path": "sessions/1f/1f8d119575b377fd3a35.json"
     },
     {
@@ -2647,6 +2801,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama-budget-sweep-k2.md",
       "path": "sessions/35/356d2eb5ec684b8a39a5.json"
     },
     {
@@ -2664,6 +2819,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gpu-results-check.md",
       "path": "sessions/8a/8ac5fe121022e1e48929.json"
     },
     {
@@ -2681,6 +2837,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-download-all-annotations.md",
       "path": "sessions/2f/2fac1d95be564040686e.json"
     },
     {
@@ -2698,6 +2855,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-qwen-budget-sweep.md",
       "path": "sessions/0c/0c65978fdb251d031af2.json"
     },
     {
@@ -2715,6 +2873,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gemma-budget-sweep.md",
       "path": "sessions/2f/2f34d984c7d35d0e7a80.json"
     },
     {
@@ -2732,6 +2891,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-mistral-budget-sweep.md",
       "path": "sessions/c6/c63de9fbfc2a18415614.json"
     },
     {
@@ -2749,6 +2909,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hetero-tau-dgp.md",
       "path": "sessions/d5/d5843e3e6f21704cdcd1.json"
     },
     {
@@ -2766,6 +2927,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-qwen-hetero-tau.md",
       "path": "sessions/87/87348a40d3dff397d163.json"
     },
     {
@@ -2783,6 +2945,7 @@
       "preview": "Search the codebase at /home/ubuntu/ec_hte_llm_annotation for source data files that contain Table 1 results with |Bias|, RMSE, and Coverage numbers for the main paper. The paper's Table 1 reports: - K=2, n=250, extreme: Naive(bias=0.058, r",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-number-consistency-check.md",
       "path": "sessions/4a/4a488ded1bd10e7506ca.json"
     },
     {
@@ -2800,6 +2963,7 @@
       "preview": "Find the Qwen hetero_tau_analysis.md and Llama hetero_tau_analysis.md files used in the cross-model comparison. Look in: 1. /home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/qwen_hetero_tau_analysis.md 2. /home/ubuntu/ec_hte_llm_ann",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gemma-hetero-tau.md",
       "path": "sessions/4e/4ea2323ce951c6836cee.json"
     },
     {
@@ -2817,6 +2981,7 @@
       "preview": "Find the Llama exp-023 hetero_tau_analysis.md file referenced in the project. Look in /home/ubuntu/ec_hte_llm_annotation/artifacts/ for files matching *hetero_tau_analysis* or in directories like exp-023, exp023, etc. Report the full path a",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-mistral-hetero-tau.md",
       "path": "sessions/6f/6f043ebf5e1c3119c73e.json"
     },
     {
@@ -2834,6 +2999,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-page-limit-fix.md",
       "path": "sessions/57/57427e926dc44bcc75a3.json"
     },
     {
@@ -2851,6 +3017,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-verify-page-limit.md",
       "path": "sessions/26/26391a35ad08171d69c0.json"
     },
     {
@@ -2868,6 +3035,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-arr-submission-checklist.md",
       "path": "sessions/0e/0e5c03421ff1168f8c2f.json"
     },
     {
@@ -2885,6 +3053,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-m3-limitations-patch.md",
       "path": "sessions/ff/ffffe961827aca20ed46.json"
     },
     {
@@ -2902,6 +3071,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-arr-checklist-v2.md",
       "path": "sessions/aa/aae7b1cedf7dc7720af1.json"
     },
     {
@@ -2919,6 +3089,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-final-fixes.md",
       "path": "sessions/aa/aa920e6fc5983eee10ba.json"
     },
     {
@@ -2936,6 +3107,7 @@
       "preview": "Explore the project at /home/ubuntu/ec_hte_llm_annotation. I need to understand: 1. Overall directory structure (ls -la top level, key subdirectories) 2. Where the EC-HTE core implementation is (confusion matrix estimation, bias correction ",
       "reported_errors": 3,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-ppi-dsl-baseline.md",
       "path": "sessions/d2/d274e5ec7ca37d54ff15.json"
     },
     {
@@ -2953,6 +3125,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-causalforest-k2-extract.md",
       "path": "sessions/3c/3cd241c1a23703a6cb9c.json"
     },
     {
@@ -2970,6 +3143,7 @@
       "preview": "Explore the project at /home/ubuntu/ec_hte_llm_annotation. I need to understand: 1. Top-level directory structure (ls -la) 2. What's in scripts/, src/, configs/ directories 3. Find experiments related to \"exp-008\" (6-model TweetEval annotat",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/worker-executions/research-second-dataset-validation.md",
       "path": "sessions/8d/8dffeb4753bd213f5d98.json"
     },
     {
@@ -2987,6 +3161,7 @@
       "preview": "Explore the project at /home/ubuntu/ec_hte_llm_annotation to understand: 1. Overall directory structure (top-level files and folders) 2. The core EC-HTE implementation (confusion matrix estimation, bias correction, hierarchical Bayesian par",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-ppi-dsl-baseline-v2.md",
       "path": "sessions/30/30f6347fce839458cf36.json"
     },
     {
@@ -3004,6 +3179,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested **Task A: Second NLP Dataset ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-second-dataset-v2.md",
       "path": "sessions/4a/4a7cad479aff54e14d9f.json"
     },
     {
@@ -3021,6 +3197,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-ppi-dsl-full-data.md",
       "path": "sessions/b7/b724f7ea70b8811261ec.json"
     },
     {
@@ -3038,6 +3215,7 @@
       "preview": "In the directory /home/ubuntu/ec_hte_llm_annotation, search for files related to \"exp006\" or \"exp-006\" or crossover analysis. I need to find what K=2 extreme misclassification rates were used (likely π values like 0.05 and 0.25). Search bro",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/worker-executions/code-ppi-dsl-k2.md",
       "path": "sessions/b5/b5ba9a426a6a1e5fd4fc.json"
     },
     {
@@ -3055,6 +3233,7 @@
       "preview": "I need to do a thorough anonymization check on a LaTeX paper for double-blind review. The paper is at `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/`. Do ALL of the following checks across ALL .tex",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-arr-final-check.md",
       "path": "sessions/56/568fd81be327a22f5030.json"
     },
     {
@@ -3072,6 +3251,7 @@
       "preview": "In the project at /home/ubuntu/ec_hte_llm_annotation and /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation, search for any script, markdown, or analysis file that computes or explains the \"84.6%\" statistic. This s",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-verify-520-configs.md",
       "path": "sessions/e2/e277ba69a5d15b81ecf2.json"
     },
     {
@@ -3089,6 +3269,7 @@
       "preview": "I need to understand the structure of the EC-HTE project at `/home/ubuntu/ec_hte_llm_annotation`. Specifically I need to find: 1. The core EC-HTE implementation: confusion matrix estimation, bias correction, SE calculation (delta method / a",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-w4-bootstrap-se.md",
       "path": "sessions/ad/adff6c5ad02e704d3a78.json"
     },
     {
@@ -3106,6 +3287,7 @@
       "preview": "I need to understand the codebase at /home/ubuntu/ec_hte_llm_annotation for an experiment. Please find: 1. The overall directory structure (top-level files and folders) 2. Any existing experiment scripts (exp-001, exp-002, exp_w*.py pattern",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-w8-a5-violation.md",
       "path": "sessions/6f/6fc32f6f22ecc1829188.json"
     },
     {
@@ -3123,6 +3305,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-mf2-cf-bootstrap-se.md",
       "path": "sessions/8f/8f7f185ad4a2598c7350.json"
     },
     {
@@ -3140,6 +3323,7 @@
       "preview": "I need to find all data files related to LLM confusion matrices and per-subgroup FPR/FNR rates in the project at /home/ubuntu/ec_hte_llm_annotation/. Search for: 1. `results/exp023_confusion_matrices.json` 2. Any files in `artifacts/c1_mult",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-024-realcm-bias-identity.md",
       "path": "sessions/81/81bbad7fcac4ebffbc2a.json"
     },
     {
@@ -3157,6 +3341,7 @@
       "preview": "Search for GPT-4.1 TweetEval confusion matrix data and any per-subgroup CM profiles. Look in: 1. results/ directory for anything related to gpt-4.1 or gpt4.1 2. artifacts/ directory for anything related to gpt-4.1 3. Any exp024 files 4. Any",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-025-positive-scenario.md",
       "path": "sessions/64/644169f347a016365c21.json"
     },
     {
@@ -3174,6 +3359,7 @@
       "preview": "Your tool call was malformed and could not be parsed. Please retry.",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-026-low-budget-hb.md",
       "path": "sessions/2e/2e2bdc48b5497bda6ed3.json"
     },
     {
@@ -3191,6 +3377,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-026-low-budget-hb-v2.md",
       "path": "sessions/dd/ddd8a6d922b9f125a997.json"
     },
     {
@@ -3208,6 +3395,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-027-cf-oracle-coverage.md",
       "path": "sessions/5c/5c8101335bdca302488b.json"
     },
     {
@@ -3225,6 +3413,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-027b-cf-oracle-k2.md",
       "path": "sessions/dd/dd62da217bbd8a871d82.json"
     },
     {
@@ -3242,6 +3431,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-027c-cf-oracle-mf2dgp.md",
       "path": "sessions/99/9946a1710ed362b01b04.json"
     },
     {
@@ -3259,6 +3449,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-028-asymmetric-diagnostic-auc.md",
       "path": "sessions/9e/9e1655b68cfdf180516e.json"
     },
     {
@@ -3276,6 +3467,7 @@
       "preview": "In the project at /home/ubuntu/ec_hte_llm_annotation, I need to find and read the following files to understand existing code patterns: 1. `exp_mf2_cf_bootstrap_se.py` - has DIM estimator implementation 2. `exp027b_cf_oracle_k2.py` - has DI",
       "reported_errors": 1,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-029-a1-sensitivity.md",
       "path": "sessions/b3/b32d089f5567a018d823.json"
     },
     {
@@ -3293,6 +3485,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-asymmetric-diagnostic.md",
       "path": "sessions/ae/ae4ecd45a23975dfec97.json"
     },
     {
@@ -3310,6 +3503,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested \"Task B: 真实 LLM 误差验证实验\" - an ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-real-llm-cm-validation.md",
       "path": "sessions/0b/0bc7fd5f6e26bd2d9308.json"
     },
     {
@@ -3327,6 +3521,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-adaptive-shrinkage.md",
       "path": "sessions/c7/c7aa75e2a241291fae6e.json"
     },
     {
@@ -3344,6 +3539,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-task-d-auc-attribution-fix.md",
       "path": "sessions/be/bee4d2a9f0083cd372de.json"
     },
     {
@@ -3361,6 +3557,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested replacing the original Hierar",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-task-e-centered-eb-upgrade.md",
       "path": "sessions/56/56e2bb9de378c7a44da7.json"
     },
     {
@@ -3378,6 +3575,7 @@
       "preview": "I need to understand the structure of an EC-HTE project for adaptive routing analysis. Please: 1. List all CSV files in `/home/ubuntu/ec_hte_llm_annotation/results/` — show filenames and sizes 2. Read the first 5 lines of these key files to",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-task-f-adaptive-routing.md",
       "path": "sessions/31/31531d23810aa898fa8b.json"
     },
     {
@@ -3395,6 +3593,7 @@
       "preview": "Explore the project at /home/ubuntu/ec_hte_llm_annotation/ to understand its structure. I need: 1. List all Python files in the root and subdirectories 2. Find any existing bootstrap experiment scripts (especially exp_bootstrap_se_v2.py or ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-task-g-bootstrap-small-n.md",
       "path": "sessions/24/246d8896bf9cf9045202.json"
     },
     {
@@ -3412,6 +3611,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-task-h-writing-fixes.md",
       "path": "sessions/6d/6de590c5d558c52a98ad.json"
     },
     {
@@ -3429,6 +3629,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-data-audit.md",
       "path": "sessions/5c/5c6bc0039d2b73e8410d.json"
     },
     {
@@ -3446,6 +3647,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-data-integrity-fix.md",
       "path": "sessions/79/79e197da29a82e7dad54.json"
     },
     {
@@ -3463,6 +3665,7 @@
       "preview": "Explore the directory /home/ubuntu/ec_hte_llm_annotation/ thoroughly. I need: 1. All .py files (root and scripts/ directory) 2. All .sh files 3. The data/ directory structure (especially .parquet files) 4. Any .api_key, .env, .bak files 5. ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-anonymous-repo-push.md",
       "path": "sessions/79/79359cca4de07e0c1883.json"
     },
     {
@@ -3480,6 +3683,7 @@
       "preview": "I need to find: 1. The simulation/DGP code that was used to generate `/home/ubuntu/ec_hte_llm_annotation/results/exp_centered_eb_table1_dim.csv` - this contains the Monte Carlo simulation for Table 1 with K=2 extreme configuration (DIM_K2_e",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-p0a-fl-table1.md",
       "path": "sessions/97/97a109fdf38467b3b16f.json"
     },
     {
@@ -3497,6 +3701,7 @@
       "preview": "I'm looking for Monte Carlo simulation results that have per-(delta_misclass, delta_cate) configuration performance data with multiple methods (naive, global_corrected, hb_ec_hte or similar). The project is at /home/ubuntu/ec_hte_llm_annota",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-p0b-kappa-analysis.md",
       "path": "sessions/17/17e75e39541ef18e6d6a.json"
     },
     {
@@ -3514,6 +3719,7 @@
       "preview": "Find the Python script that generates `/home/ubuntu/ec_hte_llm_annotation/results/exp_realcm_bias_identity.csv`. Look for files matching patterns like `exp_realcm*`, `exp*real*`, or any Python files that reference `exp_realcm_bias_identity`",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-sign-reversal-analysis.md",
       "path": "sessions/9c/9cae674803c0a4a04206.json"
     },
     {
@@ -3531,6 +3737,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-cross-llm-heatmap.md",
       "path": "sessions/48/48c9de6f80ebaa282381.json"
     },
     {
@@ -3548,6 +3755,7 @@
       "preview": "In /home/ubuntu/ec_hte_llm_annotation/, find the code that generates: 1. results/exp002_bias_bound.csv - what does `analytic_bias` column represent? Is it naive estimator bias or global correction bias? 2. results/exp002_debiasing_hurts.csv",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-debiasing-hurts-summary.md",
       "path": "sessions/7b/7bad7d469f5029d6cec8.json"
     },
     {
@@ -3565,6 +3773,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-bias-anatomy-heatmap.md",
       "path": "sessions/b5/b5fc53c2b27873b5cacb.json"
     },
     {
@@ -3582,6 +3791,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-anon-repo-check.md",
       "path": "sessions/12/12119722a4a3aa7ae27f.json"
     },
     {
@@ -3599,6 +3809,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-sign-reversal-fix-tau003.md",
       "path": "sessions/a9/a9c1a921da5590bb04d2.json"
     },
     {
@@ -3616,6 +3827,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-task-j-reversal-sweep.md",
       "path": "sessions/7f/7fc7c4bd4078084cd905.json"
     },
     {
@@ -3633,6 +3845,7 @@
       "preview": "[Image: original 2380x977, displayed at 2000x821. Multiply coordinates by 1.19 to map to original image.]",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-task-g-k8-scalability.md",
       "path": "sessions/d1/d154ff9d9cb78841e412.json"
     },
     {
@@ -3650,6 +3863,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-task-h-treatment-dep-misclass.md",
       "path": "sessions/d5/d5f6598e0bbb40a03df1.json"
     },
     {
@@ -3667,6 +3881,7 @@
       "preview": "I need to understand the structure of the EC-HTE project at /home/ubuntu/ec_hte_llm_annotation/. Please: 1. Read `exp_centered_eb_table1.py` fully - understand the DIM estimation + HB Dirichlet estimation flow, especially the `DIM_K4_extrem",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-sf7-timing-benchmark.md",
       "path": "sessions/22/22e0bf93f5d78bb8a02c.json"
     },
     {
@@ -3684,6 +3899,7 @@
       "preview": "Search the repository at /home/ubuntu/ec_hte_llm_annotation/ for all files related to hate speech, CivilComments, or civilcomments. Look in: 1. results/ directory 2. artifacts/ directory (also check /home/ubuntu/.agent-ml-research-idea_gen_",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-d-hatespeech-upgrade.md",
       "path": "sessions/23/234c4861cc5c7d87d398.json"
     },
     {
@@ -3701,6 +3917,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-a-civilcomments.md",
       "path": "sessions/44/44d1b84a1fc8fd445401.json"
     },
     {
@@ -3718,6 +3935,7 @@
       "preview": "Explore the project at /home/ubuntu/ec_hte_llm_annotation/. I need to understand: 1. Overall directory structure (key files, directories) 2. Any existing analysis scripts, especially related to TweetEval, LLM annotation, or EC-HTE 3. Any ex",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-b-stance-detection.md",
       "path": "sessions/e4/e4db83a8ed38e4a6755b.json"
     },
     {
@@ -3735,6 +3953,7 @@
       "preview": "Read all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/ and extract every numerical value mentioned. The files are: main.tex, abstract.tex, introduction.tex, method.tex, theory.tex, ex",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-data-integrity-audit.md",
       "path": "sessions/a0/a02bc46433c6390b9636.json"
     },
     {
@@ -3752,6 +3971,7 @@
       "preview": "I need to audit Table 1 in a paper against its data source. Do the following: 1. Read `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex` and extract the full Table 1 (tab:main_results).",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-data-integrity-audit-v2.md",
       "path": "sessions/d1/d122260ae88e44da04b5.json"
     },
     {
@@ -3769,6 +3989,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-paper-fixes-mf1-mf2-sf.md",
       "path": "sessions/46/46d4dead483736f18808.json"
     },
     {
@@ -3786,6 +4007,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-appendix-stance-tex.md",
       "path": "sessions/82/82f836eb9fa1f80fef64.json"
     },
     {
@@ -3803,6 +4025,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-rebuttal-talking-points.md",
       "path": "sessions/78/781080fe9f5b17f30f26.json"
     },
     {
@@ -3820,6 +4043,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-r19-paper-fixes.md",
       "path": "sessions/04/04fe3f6e2fcdcfbded2e.json"
     },
     {
@@ -3837,6 +4061,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-ddl-final-edits.md",
       "path": "sessions/06/06871c95856c668ddbb4.json"
     },
     {
@@ -3854,6 +4079,7 @@
       "preview": "I need to explore parquet data columns on a remote server. Run these ssh_read_only commands on server \"local-cpu\" to check the columns in the exp004 hate speech data files: 1. `python3 -c \"import pandas as pd; df=pd.read_parquet('/home/ubun",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-demo-subgroup-codebase-discovery.md",
       "path": "sessions/ef/efdc01b130de6976c6bb.json"
     },
     {
@@ -3871,6 +4097,7 @@
       "preview": "I need you to extract key metrics from a registry JSON file for a number audit of a paper. The file is at: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-projects-ec-hte-llm-annotation/c1f80a8b-6c5e-4a",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-numbers-traceability.md",
       "path": "sessions/fe/fe55843beab2d4c89c64.json"
     },
     {
@@ -3888,6 +4115,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-ucb-demographic-subgroup-analysis.md",
       "path": "sessions/c6/c6e2f910b3375c3b4b90.json"
     },
     {
@@ -3905,6 +4133,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-appendix-forward-refs-and-tables.md",
       "path": "sessions/c6/c6056587b45acc7ac4cb.json"
     },
     {
@@ -3922,6 +4151,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-rebuttal-talking-points.md",
       "path": "sessions/9b/9b437527d427d95afa7c.json"
     },
     {
@@ -3939,6 +4169,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-gitignore-fix.md",
       "path": "sessions/cd/cdcada336a164ce30530.json"
     },
     {
@@ -3956,6 +4187,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-anonymization-check.md",
       "path": "sessions/25/259496c31ff9a4c3132a.json"
     },
     {
@@ -3973,6 +4205,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-anonymous-repo-push-test.md",
       "path": "sessions/88/88f38c3752a67b3850e1.json"
     },
     {
@@ -3990,6 +4223,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-submission-checklist.md",
       "path": "sessions/4c/4cfde82bdd12bdcf1dc5.json"
     },
     {
@@ -4007,6 +4241,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-negative-experiment-framing.md",
       "path": "sessions/fa/fab7ffae411e0d4e8b7d.json"
     },
     {
@@ -4024,6 +4259,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-rebuttal-polish.md",
       "path": "sessions/00/00756aef3c6ef0adb18f.json"
     },
     {
@@ -4041,6 +4277,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-r20-fixes-full.md",
       "path": "sessions/83/83c23b1d23cefca975c7.json"
     },
     {
@@ -4058,6 +4295,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-lalonde-dataset-screening.md",
       "path": "sessions/9a/9a93c211bf7507effd0b.json"
     },
     {
@@ -4075,6 +4313,7 @@
       "preview": "I need to find the experiment code for exp-014 (asymmetric CM experiment) and exp-005 (diagnostic AUC experiment) in the project at /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/. Check these locations: 1. art",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-041.md",
       "path": "sessions/ec/ecd3611e8367393cc5d0.json"
     },
     {
@@ -4092,6 +4331,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-exp041-appendix-update.md",
       "path": "sessions/ba/baf0ea7b20b2be644861.json"
     },
     {
@@ -4109,6 +4349,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-lalonde-hangartner-step1.md",
       "path": "sessions/0f/0f2ef331bb4af88b8ffb.json"
     },
     {
@@ -4126,6 +4367,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-s5-s7-citations.md",
       "path": "sessions/61/6124ced68312e6fad29f.json"
     },
     {
@@ -4143,6 +4385,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-agnews-cm-literature.md",
       "path": "sessions/49/49a5111674ea02a3feac.json"
     },
     {
@@ -4160,6 +4403,7 @@
       "preview": "I need to thoroughly explore a semi-synthetic experiment pipeline codebase at `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/`. Search for: 1. Python files containing \"semi_synthetic\", \"semisynthetic\", \"dgp\", ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-semisynthetic-pipeline-explore.md",
       "path": "sessions/ea/ea98338821cb9ec6a0ca.json"
     },
     {
@@ -4177,6 +4421,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-agnews-mc-simulation.md",
       "path": "sessions/f8/f8bde9eff280c229f89b.json"
     },
     {
@@ -4194,6 +4439,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-agnews-mc-v2.md",
       "path": "sessions/80/800c8eaaf0c20a728964.json"
     },
     {
@@ -4211,6 +4457,7 @@
       "preview": "Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/ for Python files related to diagnostic AUC calculation. Search for these patterns: 1. \"auc\" or \"AUC\" in Python files 2. \"diagnostic\" or \"scre",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-asymmetric-auc-improvement.md",
       "path": "sessions/03/03fc81c417ebb6c9ac97.json"
     },
     {
@@ -4228,6 +4475,7 @@
       "preview": "Find and read the full content of the table `tab:fl_comparison` in the file `docs/paper/appendix.tex` under `/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/`. I need: 1. The complete table with all data rows an",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-fl-comparison-data-conflict.md",
       "path": "sessions/cd/cd000546ad6b3c722fa1.json"
     },
     {
@@ -4245,6 +4493,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fig-method-overview-paperbanana.md",
       "path": "sessions/1b/1b7c86f4fff01a13d065.json"
     },
     {
@@ -4262,6 +4511,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fig-combined-overview-paperbanana.md",
       "path": "sessions/5c/5c78cca7fbc4a451f984.json"
     },
     {
@@ -4279,6 +4529,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fig-combined-overview-v2.md",
       "path": "sessions/86/863c8db611630a946ad2.json"
     },
     {
@@ -4296,6 +4547,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fig-combined-overview-v3.md",
       "path": "sessions/99/99d1020885047cd33d63.json"
     },
     {
@@ -4313,6 +4565,7 @@
       "preview": "You are verifying academic paper citations for correctness. For each entry below, do the following: 1. Use WebSearch to search for the paper title (in quotes for exact match) to confirm it exists 2. Verify: author names, year, title, venue,",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-ref-audit-worker-a.md",
       "path": "sessions/bf/bfae3767adef819c5c6d.json"
     },
     {
@@ -4330,6 +4583,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-ref-audit-worker-b.md",
       "path": "sessions/df/dfbc5c9ed4f53660ee89.json"
     },
     {
@@ -4347,6 +4601,7 @@
       "preview": "Search all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/ for citation commands. Find all occurrences of \\cite, \\citet, \\citep, etc. in the tex files. Show the full line with context (",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-ref-audit-worker-c.md",
       "path": "sessions/7e/7ee6d18f2fb2f62e5c2f.json"
     },
     {
@@ -4364,6 +4619,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-diagnostic-revision-auc.md",
       "path": "sessions/34/3474866aa2e6ca21f009.json"
     },
     {
@@ -4381,6 +4637,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp015-016-failure-deep-dive.md",
       "path": "sessions/5b/5b55161f1ae6fae38c0f.json"
     },
     {
@@ -4398,6 +4655,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-ppi-dsl-full-data.md",
       "path": "sessions/da/da1cf1838adad94ec8f6.json"
     },
     {
@@ -4415,6 +4673,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-anonymization-check.md",
       "path": "sessions/83/83dfa9f6913fce14d3d6.json"
     },
     {
@@ -4432,6 +4691,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-negative-experiment-framing.md",
       "path": "sessions/5e/5e2c5bf6008a1a696a83.json"
     },
     {
@@ -4449,6 +4709,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-numbers-traceability.md",
       "path": "sessions/16/160161b6eb8575fb7a46.json"
     },
     {
@@ -4466,6 +4727,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-acl-latex-template.md",
       "path": "sessions/3d/3d5f5c403c78e9e69c4c.json"
     },
     {
@@ -4483,6 +4745,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-agnews-mc-simulation.md",
       "path": "sessions/64/6476f84ac82b1749318d.json"
     },
     {
@@ -4500,6 +4763,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-agnews-mc-v2.md",
       "path": "sessions/33/339f0c41c046f59e7334.json"
     },
     {
@@ -4517,6 +4781,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-anon-repo-check.md",
       "path": "sessions/87/87c2d02d9172831dce3b.json"
     },
     {
@@ -4534,6 +4799,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-anonymous-repo-push.md",
       "path": "sessions/b3/b3869b91db3c66751fab.json"
     },
     {
@@ -4551,6 +4817,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-appendix-stance-tex.md",
       "path": "sessions/fa/fa2045d8c95e71ad92b2.json"
     },
     {
@@ -4568,6 +4835,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-arr-checklist-v2.md",
       "path": "sessions/4e/4eace7f42ba4b1113ef8.json"
     },
     {
@@ -4585,6 +4853,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-arr-final-check.md",
       "path": "sessions/e2/e2c0eae5505fd0612678.json"
     },
     {
@@ -4602,6 +4871,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-arr-submission-checklist.md",
       "path": "sessions/a4/a4949c2b6c5777afe1d1.json"
     },
     {
@@ -4619,6 +4889,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-asymmetric-auc-improvement.md",
       "path": "sessions/ab/ab62d1da00cd9a4c2cfe.json"
     },
     {
@@ -4636,6 +4907,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-balanced-z-scripts.md",
       "path": "sessions/ed/ed6d97a71ff440793ff4.json"
     },
     {
@@ -4653,6 +4925,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-bias-anatomy-heatmap.md",
       "path": "sessions/1c/1c17046b7ee36abedbd0.json"
     },
     {
@@ -4670,6 +4943,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-c1-integration-template.md",
       "path": "sessions/cc/cc23a73cf379cdeedf1f.json"
     },
     {
@@ -4687,6 +4961,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-cross-llm-heatmap.md",
       "path": "sessions/2d/2d2c6000cb4f108cb4a6.json"
     },
     {
@@ -4704,6 +4979,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-data-integrity-fix.md",
       "path": "sessions/fd/fde880d38e16217d14fd.json"
     },
     {
@@ -4721,6 +4997,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-ddl-final-edits.md",
       "path": "sessions/8b/8b29e2df98cd5c27ea0e.json"
     },
     {
@@ -4738,6 +5015,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-debiasing-hurts-summary.md",
       "path": "sessions/6e/6ee77aed9032902d4338.json"
     },
     {
@@ -4755,6 +5033,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-download-all-annotations.md",
       "path": "sessions/8b/8b66d117b43eaab7369e.json"
     },
     {
@@ -4772,6 +5051,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-001-hyperprior-v2.md",
       "path": "sessions/53/53b24effba2d050e0554.json"
     },
     {
@@ -4789,6 +5069,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-001-hyperprior.md",
       "path": "sessions/76/761214a5330b08426397.json"
     },
     {
@@ -4806,6 +5087,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-001-mcmc-fix.md",
       "path": "sessions/c4/c4b92399c64bb3436274.json"
     },
     {
@@ -4823,6 +5105,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-001-regularize.md",
       "path": "sessions/e9/e962f2ea82f0a9d1c855.json"
     },
     {
@@ -4840,6 +5123,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-001.md",
       "path": "sessions/01/01af7cbe3ff08b030f63.json"
     },
     {
@@ -4857,6 +5141,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-002.md",
       "path": "sessions/a9/a9724e556b3e71e4061e.json"
     },
     {
@@ -4874,6 +5159,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-003-hb-rerun.md",
       "path": "sessions/a4/a4c6848b6ddc03000e6a.json"
     },
     {
@@ -4891,6 +5177,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-003-mixing-fix.md",
       "path": "sessions/9e/9ed6fc9d06e9693543ff.json"
     },
     {
@@ -4908,6 +5195,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-003-phase-a.md",
       "path": "sessions/3f/3f3ae52fee5e4a705e11.json"
     },
     {
@@ -4925,6 +5213,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-004-hate-speech-v2.md",
       "path": "sessions/ee/ee1008650a88ad07441e.json"
     },
     {
@@ -4942,6 +5231,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-005-diagnostic.md",
       "path": "sessions/90/9083c31bc5ade02a713c.json"
     },
     {
@@ -4959,6 +5249,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-006-budget-sweep.md",
       "path": "sessions/be/bea7456b500e0926f134.json"
     },
     {
@@ -4976,6 +5267,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-007-double-correction-fix.md",
       "path": "sessions/78/7869c5700166d7bd6be9.json"
     },
     {
@@ -4993,6 +5285,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-007-hb-backfill.md",
       "path": "sessions/3e/3e4ff3839ccb98b4f5bd.json"
     },
     {
@@ -5010,6 +5303,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-007-hb-rerun.md",
       "path": "sessions/fd/fdecb79efb024b8a5747.json"
     },
     {
@@ -5027,6 +5321,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-007-ppci-fix.md",
       "path": "sessions/4b/4bfde0f8c59fbaa109da.json"
     },
     {
@@ -5044,6 +5339,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-007-refactor.md",
       "path": "sessions/3b/3b4840d18a46fa7e9965.json"
     },
     {
@@ -5061,6 +5357,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-007-skeleton.md",
       "path": "sessions/57/5791d202684af80d6293.json"
     },
     {
@@ -5078,6 +5375,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-008-local-inference-scripts.md",
       "path": "sessions/e6/e68179e4cc439a10e113.json"
     },
     {
@@ -5095,6 +5393,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-008-multi-llm.md",
       "path": "sessions/d3/d3ed82cb1f797962dd89.json"
     },
     {
@@ -5112,6 +5411,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-010-misspecified.md",
       "path": "sessions/fe/febc09600cbdd5c5b914.json"
     },
     {
@@ -5129,6 +5429,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-011-causal-forest.md",
       "path": "sessions/5e/5e0323edb123ba387afd.json"
     },
     {
@@ -5146,6 +5447,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-013-boundary.md",
       "path": "sessions/5c/5c3788d329af68ccade7.json"
     },
     {
@@ -5163,6 +5465,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-014-asymmetric.md",
       "path": "sessions/37/370c865f5a3e23efb88e.json"
     },
     {
@@ -5180,6 +5483,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-015-semi-real-cm.md",
       "path": "sessions/bf/bf2604c673ea76fe35d4.json"
     },
     {
@@ -5197,6 +5501,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-016-semi-real-better-cm.md",
       "path": "sessions/a7/a726d4ef2cbe29c8218a.json"
     },
     {
@@ -5214,6 +5519,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-017-rlearner.md",
       "path": "sessions/b6/b675b7e06f448865f50d.json"
     },
     {
@@ -5231,6 +5537,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-018-multiplicative-dgp.md",
       "path": "sessions/c2/c2818cb67ab4a20d518d.json"
     },
     {
@@ -5248,6 +5555,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-019-pz1-sweep.md",
       "path": "sessions/fd/fdb465b12874641959dd.json"
     },
     {
@@ -5265,6 +5573,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-024-realcm-bias-identity.md",
       "path": "sessions/ad/ad0b0c7b63f58baca946.json"
     },
     {
@@ -5282,6 +5591,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-025-positive-scenario.md",
       "path": "sessions/70/70216af82d78198859fa.json"
     },
     {
@@ -5299,6 +5609,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-026-low-budget-hb-v2.md",
       "path": "sessions/17/17eb8fa31cc1654d9aaa.json"
     },
     {
@@ -5316,6 +5627,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-026-low-budget-hb.md",
       "path": "sessions/66/6606cbc52fd43940d902.json"
     },
     {
@@ -5333,6 +5645,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-027-cf-oracle-coverage.md",
       "path": "sessions/19/19e49ee56fe5a5d96ad0.json"
     },
     {
@@ -5350,6 +5663,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-027b-cf-oracle-k2.md",
       "path": "sessions/f7/f7f8368bd142fc9fb042.json"
     },
     {
@@ -5367,6 +5681,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-027c-cf-oracle-mf2dgp.md",
       "path": "sessions/41/4173926c920d44b46673.json"
     },
     {
@@ -5384,6 +5699,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-028-asymmetric-diagnostic-auc.md",
       "path": "sessions/1e/1e1e69407193c84b97e3.json"
     },
     {
@@ -5401,6 +5717,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-029-a1-sensitivity.md",
       "path": "sessions/bd/bd5f1a283035831f210d.json"
     },
     {
@@ -5418,6 +5735,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-041.md",
       "path": "sessions/38/380ff7ed468d3d581f96.json"
     },
     {
@@ -5435,6 +5753,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-a-civilcomments.md",
       "path": "sessions/98/98e31a57c0fddde363eb.json"
     },
     {
@@ -5452,6 +5771,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-b-stance-detection.md",
       "path": "sessions/dc/dc12f9a73ab2a619ef95.json"
     },
     {
@@ -5469,6 +5789,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-d-hatespeech-upgrade.md",
       "path": "sessions/08/08fb912d1e444cdda800.json"
     },
     {
@@ -5486,6 +5807,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-mf2-cf-bootstrap-se.md",
       "path": "sessions/a2/a2f3d4cbbbc30f7651f2.json"
     },
     {
@@ -5503,6 +5825,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-w4-bootstrap-se.md",
       "path": "sessions/95/95e77480abfb04f06841.json"
     },
     {
@@ -5520,6 +5843,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-w8-a5-violation.md",
       "path": "sessions/16/162e96d6232f8dd56be5.json"
     },
     {
@@ -5537,6 +5861,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fig-combined-overview-paperbanana.md",
       "path": "sessions/44/44a26439c1d307c858fd.json"
     },
     {
@@ -5554,6 +5879,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fig-combined-overview-v2.md",
       "path": "sessions/ea/eafd3ceaebf4cdab4363.json"
     },
     {
@@ -5571,6 +5897,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fig-combined-overview-v3.md",
       "path": "sessions/1d/1dda215f45bb3c00adc9.json"
     },
     {
@@ -5588,6 +5915,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fig-method-overview-paperbanana.md",
       "path": "sessions/34/34dc662252d258db6ff3.json"
     },
     {
@@ -5605,6 +5933,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-final-fixes.md",
       "path": "sessions/13/13d1278be3c85595d6d3.json"
     },
     {
@@ -5622,6 +5951,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gamma-sensitivity-rd2m5.md",
       "path": "sessions/5c/5ca51316c694cd78f941.json"
     },
     {
@@ -5639,6 +5969,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gemini-pilot-script.md",
       "path": "sessions/f7/f7520f8793ca72f8f43e.json"
     },
     {
@@ -5656,6 +5987,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gemma-budget-sweep.md",
       "path": "sessions/dc/dc1ee9cab5c3cdc8b517.json"
     },
     {
@@ -5673,6 +6005,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gemma-hetero-tau.md",
       "path": "sessions/c0/c0228a4b4926bbac14a4.json"
     },
     {
@@ -5690,6 +6023,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gpu-download-check.md",
       "path": "sessions/51/51962eaafd6e05d4adc5.json"
     },
     {
@@ -5707,6 +6041,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gpu-progress-check.md",
       "path": "sessions/5a/5a1bd0742939cf3be127.json"
     },
     {
@@ -5724,6 +6059,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gpu-results-check.md",
       "path": "sessions/59/59c37db79365d4592a32.json"
     },
     {
@@ -5741,6 +6077,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gpu-speed-fix.md",
       "path": "sessions/07/0720f0c60056e760a60b.json"
     },
     {
@@ -5758,6 +6095,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-hetero-tau-dgp.md",
       "path": "sessions/41/414d805e66317dbb72bd.json"
     },
     {
@@ -5775,6 +6113,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-kappa-sweep.md",
       "path": "sessions/ac/ac25390d00cb640d1c34.json"
     },
     {
@@ -5792,6 +6131,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama-budget-sweep-k2.md",
       "path": "sessions/95/9535866f12dcf02f7602.json"
     },
     {
@@ -5809,6 +6149,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama-budget-sweep-k4.md",
       "path": "sessions/9c/9c6b4cef827091087dbb.json"
     },
     {
@@ -5826,6 +6167,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama-echte-analysis.md",
       "path": "sessions/c5/c50f9b5127e293d855dc.json"
     },
     {
@@ -5843,6 +6185,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama-semisynthetic-rmse.md",
       "path": "sessions/34/34b4daf726f24c0a3c6e.json"
     },
     {
@@ -5860,6 +6203,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-loocv-auc.md",
       "path": "sessions/8a/8aa363ce2c5c6fcdd192.json"
     },
     {
@@ -5877,6 +6221,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-m3-limitations-patch.md",
       "path": "sessions/7c/7c381f6f2a0427e122c0.json"
     },
     {
@@ -5894,6 +6239,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-mc-se-analysis.md",
       "path": "sessions/ad/adc71445056ff89c4b29.json"
     },
     {
@@ -5911,6 +6257,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-mistral-budget-sweep.md",
       "path": "sessions/5e/5e505887699c4cc2c917.json"
     },
     {
@@ -5928,6 +6275,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-mistral-hetero-tau.md",
       "path": "sessions/60/604bdcdb1e726d856e6a.json"
     },
     {
@@ -5945,6 +6293,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-mvp-simulation.md",
       "path": "sessions/b7/b7b22232cfd1bbece7db.json"
     },
     {
@@ -5962,6 +6311,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-mvp-simulation-v2.md",
       "path": "sessions/cb/cbd5de26b5072efb2982.json"
     },
     {
@@ -5979,6 +6329,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-mvp-simulation-v3.md",
       "path": "sessions/64/6472e7e78a4b005d2d81.json"
     },
     {
@@ -5996,6 +6347,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-number-consistency-check.md",
       "path": "sessions/26/26bb2d38d4f898c6f0db.json"
     },
     {
@@ -6013,6 +6365,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-p0a-fl-table1.md",
       "path": "sessions/ad/ad2953286bbbca4bd2fc.json"
     },
     {
@@ -6030,6 +6383,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-page-limit-fix.md",
       "path": "sessions/57/57becfbd300e4a50b273.json"
     },
     {
@@ -6047,6 +6401,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-paper-fixes-mf1-mf2-sf.md",
       "path": "sessions/6f/6fe7d2fd1aaf8c8ca20f.json"
     },
     {
@@ -6064,6 +6419,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-pilot-gpt41-run.md",
       "path": "sessions/96/96ef174bcced6b405c0b.json"
     },
     {
@@ -6081,6 +6437,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-pilot-llm-annotation.md",
       "path": "sessions/82/825b055997e0633557e0.json"
     },
     {
@@ -6098,6 +6455,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-ppi-dsl-k2.md",
       "path": "sessions/35/35a3e526e44a1d32dab9.json"
     },
     {
@@ -6115,6 +6473,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-qwen-budget-sweep.md",
       "path": "sessions/ad/ad423ce46a58f4a15570.json"
     },
     {
@@ -6132,6 +6491,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-qwen-hetero-tau.md",
       "path": "sessions/fc/fc994adb0b5d87705449.json"
     },
     {
@@ -6149,6 +6509,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-r19-paper-fixes.md",
       "path": "sessions/9b/9bf311745143876f741e.json"
     },
     {
@@ -6166,6 +6527,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-rebuttal-talking-points.md",
       "path": "sessions/d3/d30440cb9860dbfbbd17.json"
     },
     {
@@ -6183,6 +6545,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-roc-figure-update.md",
       "path": "sessions/d5/d51f10533566dd119f4d.json"
     },
     {
@@ -6200,6 +6563,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-seeds-100-supplement.md",
       "path": "sessions/be/be50212e9b26191105d8.json"
     },
     {
@@ -6217,6 +6581,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-sf7-timing-benchmark.md",
       "path": "sessions/25/259af6ee212c40f125c3.json"
     },
     {
@@ -6234,6 +6599,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-sign-reversal-analysis.md",
       "path": "sessions/e5/e589c0a3cd7ca9701987.json"
     },
     {
@@ -6251,6 +6617,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-sign-reversal-fix-tau003.md",
       "path": "sessions/64/642968739b04e27fae85.json"
     },
     {
@@ -6268,6 +6635,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-task-d-auc-attribution-fix.md",
       "path": "sessions/c1/c1a8f4cac0f919ab1994.json"
     },
     {
@@ -6285,6 +6653,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-task-e-centered-eb-upgrade.md",
       "path": "sessions/de/de56c725a23c9a219a80.json"
     },
     {
@@ -6302,6 +6671,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-task-g-k8-scalability.md",
       "path": "sessions/65/6536472354226ba3ad0e.json"
     },
     {
@@ -6319,6 +6689,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-task-h-treatment-dep-misclass.md",
       "path": "sessions/33/33176af718c6ddbbdc0e.json"
     },
     {
@@ -6336,6 +6707,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-task-h-writing-fixes.md",
       "path": "sessions/33/33a08dbe5b8df6066096.json"
     },
     {
@@ -6353,6 +6725,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-task-j-reversal-sweep.md",
       "path": "sessions/90/90fd61d7632290efebd4.json"
     },
     {
@@ -6370,6 +6743,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-verify-520-configs.md",
       "path": "sessions/48/48b6da57f5028aacac35.json"
     },
     {
@@ -6387,6 +6761,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-verify-page-limit.md",
       "path": "sessions/61/61c0f40a76312ebb3cd2.json"
     },
     {
@@ -6404,6 +6779,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/figure-fig2-heatmap.md",
       "path": "sessions/36/36705f943e09449184eb.json"
     },
     {
@@ -6421,6 +6797,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/figure-fig3-budget.md",
       "path": "sessions/1d/1d07db756d7e288a4a44.json"
     },
     {
@@ -6438,6 +6815,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-anonymous-repo-push-test.md",
       "path": "sessions/5d/5d3649c63dc0cf5b2fab.json"
     },
     {
@@ -6455,6 +6833,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-gitignore-fix.md",
       "path": "sessions/07/078a593b819845ea64ec.json"
     },
     {
@@ -6472,6 +6851,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-submission-checklist.md",
       "path": "sessions/bf/bfa0654ed40434ebebe4.json"
     },
     {
@@ -6489,6 +6869,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-appendix-forward-refs-and-tables.md",
       "path": "sessions/5e/5efea3d6c4bb28aa31d1.json"
     },
     {
@@ -6506,6 +6887,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-exp041-appendix-update.md",
       "path": "sessions/4f/4fd91d2b749c7c2ceefe.json"
     },
     {
@@ -6523,6 +6905,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-r20-fixes-full.md",
       "path": "sessions/e4/e43260576ae5a1b9ae39.json"
     },
     {
@@ -6540,6 +6923,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-rebuttal-polish.md",
       "path": "sessions/7b/7b2ce0a2e922ef5915fc.json"
     },
     {
@@ -6557,6 +6941,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-rebuttal-talking-points.md",
       "path": "sessions/99/99da1ed9cc8e61e85fde.json"
     },
     {
@@ -6574,6 +6959,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-s5-s7-citations.md",
       "path": "sessions/30/30d9dbabd859cd8a2c65.json"
     },
     {
@@ -6591,6 +6977,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-abstract.md",
       "path": "sessions/c4/c4a0d09559b7e3408aba.json"
     },
     {
@@ -6608,6 +6995,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-conclusion.md",
       "path": "sessions/42/4256c8a2d73cdc011937.json"
     },
     {
@@ -6625,6 +7013,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-experiments.md",
       "path": "sessions/9d/9dd4134a07420576f4c8.json"
     },
     {
@@ -6642,6 +7031,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-introduction.md",
       "path": "sessions/1e/1e1c6d12c205ef13524e.json"
     },
     {
@@ -6659,6 +7049,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-limitations.md",
       "path": "sessions/df/df421e429712bb00e679.json"
     },
     {
@@ -6676,6 +7067,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-method.md",
       "path": "sessions/38/38e9ec2aacf2a5ea3c88.json"
     },
     {
@@ -6693,6 +7085,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-related-work.md",
       "path": "sessions/48/4819370f249b4eee5204.json"
     },
     {
@@ -6710,6 +7103,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-theory.md",
       "path": "sessions/05/05fc53608a61698b1718.json"
     },
     {
@@ -6727,6 +7121,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-adaptive-shrinkage.md",
       "path": "sessions/88/889a871e69c581af9996.json"
     },
     {
@@ -6744,6 +7139,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-agnews-cm-literature.md",
       "path": "sessions/bc/bcf332d1ce5f78989f36.json"
     },
     {
@@ -6761,6 +7157,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-api-key-alternatives.md",
       "path": "sessions/07/07c741f922ac0a54554b.json"
     },
     {
@@ -6778,6 +7175,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-ashwin-dataset.md",
       "path": "sessions/01/0160fd3a7c742623ebc0.json"
     },
     {
@@ -6795,6 +7193,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-asymmetric-diagnostic.md",
       "path": "sessions/93/93430791c96084d513f0.json"
     },
     {
@@ -6812,6 +7211,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-causalforest-k2-extract.md",
       "path": "sessions/88/88e09eef60508be9cf5e.json"
     },
     {
@@ -6829,6 +7229,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-data-audit.md",
       "path": "sessions/60/60552715d3598d878a95.json"
     },
     {
@@ -6846,6 +7247,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-data-integrity-audit-v2.md",
       "path": "sessions/88/88e9e3f26c66913e3337.json"
     },
     {
@@ -6863,6 +7265,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-data-integrity-audit.md",
       "path": "sessions/fd/fdfc93c282fba1579470.json"
     },
     {
@@ -6880,6 +7283,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-demo-subgroup-codebase-discovery.md",
       "path": "sessions/38/38dc0f502273d9f6c98e.json"
     },
     {
@@ -6897,6 +7301,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-exp-004-data-design.md",
       "path": "sessions/fa/fa3ee57ff2d32e1d2149.json"
     },
     {
@@ -6914,6 +7319,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-exp-004-data-exploration.md",
       "path": "sessions/93/93f467574ff2c48d677b.json"
     },
     {
@@ -6931,6 +7337,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-fl-comparison-data-conflict.md",
       "path": "sessions/d0/d04e15b965bcef1fa169.json"
     },
     {
@@ -6948,6 +7355,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-lalonde-dataset-screening.md",
       "path": "sessions/d9/d900baf5eaffd299533c.json"
     },
     {
@@ -6965,6 +7373,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-lalonde-hangartner-step1.md",
       "path": "sessions/b8/b8dce55b1ead88500752.json"
     },
     {
@@ -6982,6 +7391,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-literature-map-expansion.md",
       "path": "sessions/ef/efaedc7006dbe9970e16.json"
     },
     {
@@ -6999,6 +7409,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-p0b-kappa-analysis.md",
       "path": "sessions/f3/f362c180e5b78dbed87a.json"
     },
     {
@@ -7016,6 +7427,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-ppi-dsl-baseline-v2.md",
       "path": "sessions/c5/c524e82620e1aa0473fa.json"
     },
     {
@@ -7033,6 +7445,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-ppi-dsl-baseline.md",
       "path": "sessions/51/51faae5171a4741536db.json"
     },
     {
@@ -7050,6 +7463,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-real-llm-cm-validation.md",
       "path": "sessions/d9/d94a562724dd592d4236.json"
     },
     {
@@ -7067,6 +7481,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-ref-audit-worker-a.md",
       "path": "sessions/0e/0e9a12902bd086f2399f.json"
     },
     {
@@ -7084,6 +7499,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-ref-audit-worker-b.md",
       "path": "sessions/86/8619c759c5a51b7e3644.json"
     },
     {
@@ -7101,6 +7517,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-ref-audit-worker-c.md",
       "path": "sessions/54/5496dd02a1363c88287c.json"
     },
     {
@@ -7118,6 +7535,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-second-dataset-v2.md",
       "path": "sessions/52/52cc85d81a80afa3299c.json"
     },
     {
@@ -7135,6 +7553,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-second-dataset-validation.md",
       "path": "sessions/29/29e4727eb643d24de61f.json"
     },
     {
@@ -7152,6 +7571,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-semisynthetic-pipeline-explore.md",
       "path": "sessions/d6/d6f2eeff0f8aea70c02e.json"
     },
     {
@@ -7169,6 +7589,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-task-f-adaptive-routing.md",
       "path": "sessions/0f/0fa59029b354af3ab689.json"
     },
     {
@@ -7186,6 +7607,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-task-g-bootstrap-small-n.md",
       "path": "sessions/0d/0da80940fc9114695a2a.json"
     },
     {
@@ -7203,6 +7625,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-tweeteval-data.md",
       "path": "sessions/3a/3a19f6e313a933ca3c3a.json"
     },
     {
@@ -7220,6 +7643,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-ucb-demographic-subgroup-analysis.md",
       "path": "sessions/eb/ebdd7bd87dee8fcac891.json"
     },
     {
@@ -7237,6 +7661,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/run-exp-001-hyperprior.md",
       "path": "sessions/fc/fcd9bc4e854c26a0d6ce.json"
     },
     {
@@ -7254,6 +7679,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/run-exp-001.md",
       "path": "sessions/23/2324625e3a48aa29780b.json"
     },
     {
@@ -7271,6 +7697,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/run-exp-002.md",
       "path": "sessions/87/876eaceff50a072018fd.json"
     },
     {
@@ -7288,6 +7715,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/run-exp-007-baseline.md",
       "path": "sessions/09/09a627b1f387be7d90f2.json"
     },
     {
@@ -7305,6 +7733,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/run-exp-007-full.md",
       "path": "sessions/41/41c8471698bde5da1bb0.json"
     },
     {
@@ -7322,6 +7751,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/viz-applicability-frontier.md",
       "path": "sessions/3a/3ae7aa5d652b66da945d.json"
     },
     {
@@ -7339,6 +7769,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-1.md",
       "path": "sessions/d4/d431ad318fb2142c6c18.json"
     },
     {
@@ -7356,6 +7787,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-1-copy-2.md",
       "path": "sessions/a5/a53ed43c8bea5e8d0a6e.json"
     },
     {
@@ -7373,6 +7805,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-2.md",
       "path": "sessions/7e/7ee68eaf2b7e05b39113.json"
     },
     {
@@ -7390,6 +7823,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-3.md",
       "path": "sessions/09/09de5e68d822ea034810.json"
     }
   ]

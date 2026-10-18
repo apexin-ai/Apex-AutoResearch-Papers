@@ -1,0 +1,3511 @@
+# ssh sdgd maven minilm prep
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 119
+- **Recorded user turns:** 0
+- **Tool calls:** 59
+- **Original source:** `logs/chats/worker_ssh_sdgd-maven-minilm-prep_20260515T105359.jsonl`
+- **Structured JSON:** [`0a422eaf281e8879d7ed.json`](../../sessions/0a/0a422eaf281e8879d7ed.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+119 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T11:03:42.282907+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T11:03:42.283243+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T11:03:42.283411+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/ | grep -i maven",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls -la /root/schema-dag-extraction/artifacts/ | grep -i maven",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T11:03:42.283558+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T11:03:42.283685+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/schema-dag-extraction/src/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T11:03:42.283806+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/data/maven/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/schema-dag-extraction/data/maven/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T11:03:42.283965+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalyze_fewrel_results.py\\nanalyze_maven_results.py\\nanalyze_results.py\\nbuild_re_prompt.py\\ncompute_bcs.py\\ncompute_maven_scs.py\\ncompute_type_embeddings.py\\ndiagnose_eval.py\\nembedding_ablation_fewnerd.py\\nevaluate.py\\nfew_nerd_utils.py\\nfewrel_utils.py\\nmaven_utils.py\\npairwise_confusion_analysis.py\\nper_type_analysis.py\\npreprocess_fewrel.py\\npreprocess_maven.py\\nreeval_text_match.py\\nrun_experiment.py\\nrun_extraction.py\\nrun_fewrel_formal.py\\nrun_fewrel_pilot.py\\nrun_sdgd_experiment.py\\nrun_sdgd_full.sh\\nsdgd\\nsdgd_decompose_cpu.py\\nsdgd_extract_gpu.py\\nselect_type_batches.py\\ntext_match_reeval.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T11:03:42.284088+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/schema-dag-extraction/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T11:03:42.284209+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DataFormat.md\\nLICENSE\\nREADME.md\\nbaselines\\ndocid2topic.json\\nevaluate.py\\ntest.jsonl\\ntrain.jsonl\\nvalid.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T11:03:42.284327+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"compute_e5_embeddings.py\\ncompute_maven_qwen3_embeddings.py\\nrun_exp008.sh\\nrun_exp012_llama.sh\\nsubmit_exp012.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T11:03:42.284451+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts/ -name \"*maven*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/artifacts/ -name \"*maven*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T11:03:42.284579+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/maven_type_embeddings_qwen3.pt\\n/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/eval_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/eval_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp2.json\\n/root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T11:03:42.284697+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/src/compute_type_embeddings.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/src/compute_type_embeddings.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T11:03:42.284889+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Compute type embeddings using a causal LM (e.g. Qwen3).\\n\\nInput: Type definitions JSON, pretrained model\\nOutput: {type_name: embedding_tensor} saved as .pt\\nDependencies: torch, transformers\\n\\\"\\\"\\\"\\nimport argparse\\nimport logging\\nfrom pathlib import Path\\n\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef compute_embeddings(\\n    model_path: str,\\n    type_definitions: dict,\\n    device: str = \\\"cuda:0\\\",\\n    batch_size: int = 8,\\n) -> dict:\\n    \\\"\\\"\\\"Compute mean-pooled last-layer hidden states for each type.\\n\\n    Args:\\n        model_path: Path to pretrained causal LM.\\n        type_definitions: {type_name: definition_text}.\\n        device: Torch device string.\\n        batch_size: Number of types to process at once.\\n\\n    Returns:\\n        Dict mapping type_name -> embedding tensor (1D, hidden_dim).\\n    \\\"\\\"\\\"\\n    logger.info(\\\"Loading model from %s\\\", model_path)\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path,\\n        torch_dtype=torch.bfloat16,\\n        device_map=device,\\n        trust_remote_code=True,\\n    )\\n    model.eval()\\n\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    type_names = list(type_definitions.keys())\\n    type_texts = [\\n        f\\\"Entity type: {name}. Definition: {defn}.\\\"\\n        for name, defn in type_definitions.items()\\n    ]\\n\\n    embeddings = {}\\n    for i in range(0, len(type_texts), batch_size):\\n        batch_names = type_names[i : i + batch_size]\\n        batch_texts = type_texts[i : i + batch_size]\\n\\n        inputs = tokenizer(\\n            batch_texts, return_tensors=\\\"pt\\\", padding=True, truncation=True, max_length=512\\n        
+…[truncated 2180 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T11:03:42.285059+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/src/run_sdgd_full.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/src/run_sdgd_full.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T11:03:42.285209+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\nsource /root/miniconda3/etc/profile.d/conda.sh\\nconda activate base\\ncd /root/schema-dag-extraction\\n\\nDATASET=${1:-fewnerd}\\nSIM_MATRIX=${2:-artifacts/sim_matrix.pt}\\nTYPES_FILE=${3:-configs/few_nerd_types.json}\\nMODEL_PATH=${4:-/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/}\\nOUTPUT_DIR=${5:-artifacts/exp008}\\nMAX_SAMPLES=${6:-1000}\\nTASK=${7:-ner}\\n\\nmkdir -p ${OUTPUT_DIR}\\n\\necho \\\"===== [$(date)] Stage 1: CPU Decomposition (all modes) =====\\\"\\nfor MODE in sdgd_zero single_pass random_batch per_type; do\\n  echo \\\"  Decomposing: ${MODE}\\\"\\n  python3 src/sdgd_decompose_cpu.py \\\\\\n    --mode ${MODE} \\\\\\n    --types_file ${TYPES_FILE} \\\\\\n    --sim_matrix_path ${SIM_MATRIX} \\\\\\n    --output ${OUTPUT_DIR}/decomposition_${MODE}.json\\ndone\\n\\necho \\\"===== [$(date)] Stage 2: GPU Extraction (one vLLM load, all modes) =====\\\"\\npython3 src/sdgd_extract_gpu.py \\\\\\n  --decompositions \\\\\\n    ${OUTPUT_DIR}/decomposition_sdgd_zero.json \\\\\\n    ${OUTPUT_DIR}/decomposition_single_pass.json \\\\\\n    ${OUTPUT_DIR}/decomposition_random_batch.json \\\\\\n    ${OUTPUT_DIR}/decomposition_per_type.json \\\\\\n  --model_path ${MODEL_PATH} \\\\\\n  --types_file ${TYPES_FILE} \\\\\\n  --dataset ${DATASET} \\\\\\n  --prompt_version v2 \\\\\\n  --max_samples ${MAX_SAMPLES} \\\\\\n  --output_dir ${OUTPUT_DIR} \\\\\\n  --max_model_len 4096 \\\\\\n  --task ${TASK}\\n\\necho \\\"===== [$(date)] ALL DONE =====\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T11:03:42.285344+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/src/sdgd_decompose_cpu.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/src/sdgd_decompose_cpu.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T11:03:42.285499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"SDGD Stage 1: CPU-only decomposition. No vLLM, no CUDA.\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument('--mode', required=True,\\n                        choices=['sdgd_zero', 'single_pass', 'per_type', 'random_batch'])\\n    parser.add_argument('--types_file', required=True)\\n    parser.add_argument('--sim_matrix_path', default=None)\\n    parser.add_argument('--k', type=float, default=1.0)\\n    parser.add_argument('--seed', type=int, default=42)\\n    parser.add_argument('--output', required=True)\\n    args = parser.parse_args()\\n\\n    with open(args.types_file) as f:\\n        type_defs = json.load(f)\\n    all_types = sorted(type_defs.keys())\\n\\n    if args.mode == 'single_pass':\\n        batches = [all_types]\\n        meta = {'tau': None, 'k': None, 'graph_stats': None}\\n\\n    elif args.mode == 'per_type':\\n        batches = [[t] for t in all_types]\\n        meta = {'tau': None, 'k': None, 'graph_stats': None}\\n\\n    else:\\n        if not args.sim_matrix_path:\\n            parser.error(f'{args.mode} requires --sim_matrix_path')\\n\\n        sys.path.insert(0, str(Path(__file__).resolve().parent))\\n        from sdgd.similarity import load_sim_matrix, adaptive_threshold\\n        from sdgd.graph import build_threshold_graph, color_graph, group_by_color, get_graph_stats\\n\\n        sim_matrix, type_names = load_sim_matrix(args.sim_matrix_path)\\n        tau = adaptive_threshold(sim_matrix, k=args.k)\\n        G = build_threshold_graph(sim_matrix, tau, type_names)\\n        coloring = color_graph(G)\\n        sdgd_batches = group_by_color(coloring)\\n        stats = get_graph_stats(G, sdgd_batches)\\n\\n        if args.mode == 'sdgd_zero':\\n            batches = [sdgd_batches[cid] for cid in sorted(sdgd_batches.keys())]\\n          
+…[truncated 1373 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T11:03:42.285670+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T11:03:42.285792+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T11:03:42.285951+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check existing MAVEN MiniLM assets and understand sim_matrix format', 'status': 'in_progress', 'activeForm': 'Checking existing MAVEN MiniLM assets and sim_matrix format'}, {'content': 'Generate MAVEN MiniLM similarity matrix (168×168)', 'status': 'pending', 'activeForm': 'Generating MAVEN MiniLM similarity matrix'}, {'content': 'Create scripts/run_sdgd_maven_minilm.sh launch script', 'status': 'pending', 'activeForm': 'Creating SDGD MAVEN MiniLM launch script'}, {'content': 'Dry-run CPU decompose stage and verify output', 'status': 'pending', 'activeForm': 'Running CPU decompose dry-run'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check existing MAVEN MiniLM assets and understand sim_matrix format', 'status': 'in_progress', 'activeForm': 'Checking existing MAVEN MiniLM assets and sim_matrix format'}, {'content': 'Generate MAVEN MiniLM similarity matrix (168×168)', 'status': 'pending', 'activeForm': 'Generating MAVEN MiniLM similarity matrix'}, {'content': 'Create scripts/run_sdgd_maven_minilm.sh launch script', 'status': 'pending', 'activeForm': 'Creating SDGD MAVEN MiniLM launch script'}, {'content': 'Dry-run CPU decompose stage and verify output', 'status': 'pending', 'activeForm': 'Running CPU decompose dry-run'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T11:03:42.286094+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T11:03:42.286213+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/configs/ -name \"*maven*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/configs/ -name \"*maven*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T11:03:42.286332+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/configs/maven_event_types.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T11:03:42.287932+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/src/sdgd/similarity.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/src/sdgd/similarity.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T11:03:42.288213+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Confusability matrix computation and adaptive thresholding.\\n\\nInput: Type embeddings (.pt dict {name: tensor}) or precomputed sim_matrix (.pt)\\nOutput: Cosine similarity matrix, adaptive threshold value\\nDependencies: torch\\n\\\"\\\"\\\"\\nimport logging\\nfrom typing import List, Optional, Tuple\\n\\nimport torch\\nimport torch.nn.functional as F\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef load_type_embeddings(path: str) -> Tuple[torch.Tensor, List[str]]:\\n    \\\"\\\"\\\"Load type embeddings from .pt file.\\n\\n    Returns:\\n        (embeddings [N, D], type_names sorted alphabetically)\\n    \\\"\\\"\\\"\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    if isinstance(data, dict) and (\\\"sim_matrix\\\" in data or \\\"similarity_matrix\\\" in data):\\n        raise ValueError(f\\\"{path} is a sim_matrix file, not embeddings. Use load_sim_matrix().\\\")\\n    type_names = sorted(data.keys())\\n    embeddings = torch.stack([data[name] for name in type_names]).float()\\n    logger.info(\\\"Loaded embeddings: %d types, dim=%d\\\", len(type_names), embeddings.shape[1])\\n    return embeddings, type_names\\n\\n\\ndef load_sim_matrix(path: str) -> Tuple[torch.Tensor, List[str]]:\\n    \\\"\\\"\\\"Load precomputed similarity matrix from .pt file.\\n\\n    Returns:\\n        (sim_matrix [N, N], type_names)\\n    \\\"\\\"\\\"\\n    data = torch.load(path, map_location=\\\"cpu\\\", weights_only=True)\\n    if isinstance(data, dict):\\n        if \\\"sim_matrix\\\" in data:\\n            matrix = data[\\\"sim_matrix\\\"]\\n        elif \\\"similarity_matrix\\\" in data:\\n            matrix = data[\\\"similarity_matrix\\\"]\\n        else:\\n            raise ValueError(f\\\"Unknown keys in matrix file: {list(data.keys())}\\\")\\n        type_names = data.get(\\\"type_names\\\", [f\\\"type_{i}\\\" for i in range(matrix.shape[0])])\\n        return matrix, type_n
+…[truncated 1926 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T11:03:42.288387+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -50 /root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "head -50 /root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T11:03:42.288553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"layer2_per_type\\\": {\\n    \\\"minilm\\\": {\\n      \\\"n_types\\\": 149,\\n      \\\"spearman_rho\\\": 0.2075,\\n      \\\"spearman_p\\\": 0.011107,\\n      \\\"pearson_r\\\": 0.1696,\\n      \\\"pearson_p\\\": 0.03861,\\n      \\\"partial_r_controlling_logfreq\\\": 0.1327,\\n      \\\"partial_p_controlling_logfreq\\\": 0.106699,\\n      \\\"f1_stats\\\": {\\n        \\\"mean\\\": 0.183,\\n        \\\"std\\\": 0.1895,\\n        \\\"median\\\": 0.1274\\n      },\\n      \\\"bcs_stats\\\": {\\n        \\\"mean\\\": 0.217,\\n        \\\"std\\\": 0.0502,\\n        \\\"min\\\": 0.0641,\\n        \\\"max\\\": 0.3133\\n      },\\n      \\\"quartile\\\": {\\n        \\\"low_bcs_mean_f1\\\": 0.1426,\\n        \\\"high_bcs_mean_f1\\\": 0.2378,\\n        \\\"delta\\\": -0.0952,\\n        \\\"low_n\\\": 38,\\n        \\\"high_n\\\": 38\\n      }\\n    },\\n    \\\"qwen3\\\": {\\n      \\\"n_types\\\": 149,\\n      \\\"spearman_rho\\\": 0.1837,\\n      \\\"spearman_p\\\": 0.024911,\\n      \\\"pearson_r\\\": 0.1753,\\n      \\\"pearson_p\\\": 0.032443,\\n      \\\"partial_r_controlling_logfreq\\\": 0.189,\\n      \\\"partial_p_controlling_logfreq\\\": 0.020991,\\n      \\\"f1_stats\\\": {\\n        \\\"mean\\\": 0.183,\\n        \\\"std\\\": 0.1895,\\n        \\\"median\\\": 0.1274\\n      },\\n      \\\"bcs_stats\\\": {\\n        \\\"mean\\\": 0.701,\\n        \\\"std\\\": 0.0646,\\n        \\\"min\\\": 0.2257,\\n        \\\"max\\\": 0.7857\\n      },\\n      \\\"quartile\\\": {\\n        \\\"low_bcs_mean_f1\\\": 0.1364,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T11:03:42.288700+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import sentence_transformers; print(sentence_transformers.__version__)\" 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "python3 -c \"import sentence_transformers; print(sentence_transformers.__version__)\" 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T11:03:42.288932+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T11:03:42.289082+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -30 /root/schema-dag-extraction/configs/maven_event_types.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "head -30 /root/schema-dag-extraction/configs/maven_event_types.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T11:03:42.289243+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"Achieve\\\": \\\"Achieve\\\",\\n  \\\"Action\\\": \\\"Action\\\",\\n  \\\"Adducing\\\": \\\"Adducing\\\",\\n  \\\"Agree_or_refuse_to_act\\\": \\\"Agree or refuse to act\\\",\\n  \\\"Aiming\\\": \\\"Aiming\\\",\\n  \\\"Arranging\\\": \\\"Arranging\\\",\\n  \\\"Arrest\\\": \\\"Arrest\\\",\\n  \\\"Arriving\\\": \\\"Arriving\\\",\\n  \\\"Assistance\\\": \\\"Assistance\\\",\\n  \\\"Attack\\\": \\\"Attack\\\",\\n  \\\"Award\\\": \\\"Award\\\",\\n  \\\"Bearing_arms\\\": \\\"Bearing arms\\\",\\n  \\\"Becoming\\\": \\\"Becoming\\\",\\n  \\\"Becoming_a_member\\\": \\\"Becoming a member\\\",\\n  \\\"Being_in_operation\\\": \\\"Being in operation\\\",\\n  \\\"Besieging\\\": \\\"Besieging\\\",\\n  \\\"Bodily_harm\\\": \\\"Bodily harm\\\",\\n  \\\"Body_movement\\\": \\\"Body movement\\\",\\n  \\\"Breathing\\\": \\\"Breathing\\\",\\n  \\\"Bringing\\\": \\\"Bringing\\\",\\n  \\\"Building\\\": \\\"Building\\\",\\n  \\\"Carry_goods\\\": \\\"Carry goods\\\",\\n  \\\"Catastrophe\\\": \\\"Catastrophe\\\",\\n  \\\"Causation\\\": \\\"Causation\\\",\\n  \\\"Cause_change_of_position_on_a_scale\\\": \\\"Cause change of position on a scale\\\",\\n  \\\"Cause_change_of_strength\\\": \\\"Cause change of strength\\\",\\n  \\\"Cause_to_amalgamate\\\": \\\"Cause to amalgamate\\\",\\n  \\\"Cause_to_be_included\\\": \\\"Cause to be included\\\",\\n  \\\"Cause_to_make_progress\\\": \\\"Cause to make progress\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T11:03:42.289382+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "wc -l /root/schema-dag-extraction/configs/maven_event_types.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "wc -l /root/schema-dag-extraction/configs/maven_event_types.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T11:03:42.289505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"169 /root/schema-dag-extraction/configs/maven_event_types.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T11:03:42.289622+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import sentence_transformers; print(sentence_transformers.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "python3 -c \"import sentence_transformers; print(sentence_transformers.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T11:03:42.289737+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T11:03:42.289871+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import torch; d=torch.load('/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt', map_location='cpu', weights_only=True); print(type(d), list(d.keys()) if isinstance(d, dict) else d.shape)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "python3 -c \"import torch; d=torch.load('/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt', map_location='cpu', weights_only=True); print(type(d), list(d.keys()) if isinstance(d, dict) else d.shape)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T11:03:42.290000+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T11:03:42.290132+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import sentence_transformers; print(sentence_transformers.__version__)\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import sentence_transformers; print(sentence_transformers.__version__)\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T11:03:42.290268+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport torch\nd = torch.load('/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt', map_location='cpu', weights_only=True)\nprint(type(d), list(d.keys()) if isinstance(d, dict) else d.shape)\nif isinstance(d, dict):\n    for k, v in d.items():\n        if isinstance(v, torch.Tensor):\n            print(f'  {k}: shape={v.shape}, dtype={v.dtype}')\n        elif isinstance(v, list):\n            print(f'  {k}: list len={len(v)}, first={v[:3]}')\n        else:\n            print(f'  {k}: {type(v).__name__}={v}')\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport torch\nd = torch.load('/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt', map_location='cpu', weights_only=True)\nprint(type(d), list(d.keys()) if isinstance(d, dict) else d.shape)\nif isinstance(d, dict):\n    for k, v in d.items():\n        if isinstance(v, torch.Tensor):\n            print(f'  {k}: shape={v.shape}, dtype={v.dtype}')\n        elif isinstance(v, list):\n            print(f'  {k}: list len={len(v)}, first={v[:3]}')\n        else:\n            print(f'  {k}: {type(v).__name__}={v}')\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T11:03:42.290392+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/schema-dag-extraction/configs/maven_event_types.json') as f:\n    d = json.load(f)\nprint(f'Total types: {len(d)}')\nprint('First 5:', list(d.keys())[:5])\nprint('Last 5:', list(d.keys())[-5:])\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/schema-dag-extraction/configs/maven_event_types.json') as f:\n    d = json.load(f)\nprint(f'Total types: {len(d)}')\nprint('First 5:', list(d.keys())[:5])\nprint('Last 5:', list(d.keys())[-5:])\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T11:03:42.290510+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5.4.1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 28.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T11:03:42.290626+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"&lt;class 'dict'> ['similarity_matrix', 'type_names']\\n  similarity_matrix: shape=torch.Size([168, 168]), dtype=torch.float32\\n  type_names: list len=168, first=['Achieve', 'Action', 'Adducing']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.2}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T11:03:42.290739+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total types: 168\\nFirst 5: ['Achieve', 'Action', 'Adducing', 'Agree_or_refuse_to_act', 'Aiming']\\nLast 5: ['Violence', 'Vocalizations', 'Warning', 'Wearing', 'Writing']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T11:03:42.290913+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check existing MAVEN MiniLM assets and understand sim_matrix format', 'status': 'completed', 'activeForm': 'Checking existing MAVEN MiniLM assets and sim_matrix format'}, {'content': 'Generate MAVEN MiniLM similarity matrix (168×168)', 'status': 'in_progress', 'activeForm': 'Generating MAVEN MiniLM similarity matrix'}, {'content': 'Create scripts/run_sdgd_maven_minilm.sh launch script', 'status': 'pending', 'activeForm': 'Creating SDGD MAVEN MiniLM launch script'}, {'content': 'Dry-run CPU decompose stage and verify output', 'status': 'pending', 'activeForm': 'Running CPU decompose dry-run'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check existing MAVEN MiniLM assets and understand sim_matrix format', 'status': 'completed', 'activeForm': 'Checking existing MAVEN MiniLM assets and sim_matrix format'}, {'content': 'Generate MAVEN MiniLM similarity matrix (168×168)', 'status': 'in_progress', 'activeForm': 'Generating MAVEN MiniLM similarity matrix'}, {'content': 'Create scripts/run_sdgd_maven_minilm.sh launch script', 'status': 'pending', 'activeForm': 'Creating SDGD MAVEN MiniLM launch script'}, {'content': 'Dry-run CPU decompose stage and verify output', 'status': 'pending', 'activeForm': 'Running CPU decompose dry-run'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T11:03:42.291075+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T11:03:42.291211+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -60 /root/schema-dag-extraction/src/sdgd_extract_gpu.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "head -60 /root/schema-dag-extraction/src/sdgd_extract_gpu.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T11:03:42.291358+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"SDGD Stage 2: GPU extraction. Loads vLLM FIRST to avoid fork deadlock.\\n\\nUsage:\\n    python3 sdgd_extract_gpu.py \\\\\\n        --decompositions decomp_a.json decomp_b.json \\\\\\n        --model_path /path/to/model \\\\\\n        --types_file configs/few_nerd_types.json \\\\\\n        --output_dir artifacts/exp008\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument('--decompositions', nargs='+', required=True,\\n                        help='One or more decomposition JSONs from Stage 1')\\n    parser.add_argument('--model_path', required=True)\\n    parser.add_argument('--types_file', required=True)\\n    parser.add_argument('--dataset', default='fewnerd',\\n                        choices=['fewnerd', 'maven', 'fewrel'])\\n    parser.add_argument('--data_path', default=None)\\n    parser.add_argument('--prompt_version', default='v2', choices=['v1', 'v2'])\\n    parser.add_argument('--max_samples', type=int, default=None)\\n    parser.add_argument('--output_dir', required=True)\\n    parser.add_argument('--max_model_len', type=int, default=4096)\\n    parser.add_argument('--task', default='ner', choices=['ner', 'event', 're'])\\n    args = parser.parse_args()\\n\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    # ========== vLLM MUST be initialized FIRST ==========\\n    from vllm import LLM, SamplingParams\\n    from vllm.sampling_params import StructuredOutputsParams\\n\\n    print(f\\\"[gpu] Loading vLLM model from {args.model_path} ...\\\")\\n    t_load = time.time()\\n    llm = LLM(\\n        model=args.model_path,\\n        dtype=\\\"bfloat16\\\",\\n        gpu_memory_utilization=0.95,\\n        enforce_eager=True,\\n        max_model_len=args.max_model_len,\\n        trust_remote_code=True,\\n        disable_log_stats=True,\\n    )\\n  
+…[truncated 527 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T11:03:42.291515+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"data_path\\|maven\\|dataset\" /root/schema-dag-extraction/src/sdgd_extract_gpu.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep -n \"data_path\\|maven\\|dataset\" /root/schema-dag-extraction/src/sdgd_extract_gpu.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T11:03:42.291636+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T11:03:42.291757+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"data_path\" /root/schema-dag-extraction/src/sdgd_extract_gpu.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep -n \"data_path\" /root/schema-dag-extraction/src/sdgd_extract_gpu.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T11:03:42.291899+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"26:    parser.add_argument('--data_path', default=None)\\n93:        data_dir = (str(Path(args.data_path).parent)\\n94:                    if args.data_path\\n100:        data_path = (args.data_path\\n102:        samples = load_maven(data_path=data_path, max_samples=args.max_samples)\\n105:        data_path = (args.data_path\\n107:        samples = load_fewrel(data_path=data_path, max_samples=args.max_samples)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T11:03:42.292023+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"maven\" /root/schema-dag-extraction/src/sdgd_extract_gpu.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep -n \"maven\" /root/schema-dag-extraction/src/sdgd_extract_gpu.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T11:03:42.292144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"25:                        choices=['fewnerd', 'maven', 'fewrel'])\\n98:    elif args.dataset == \\\"maven\\\":\\n99:        from maven_utils import load_maven\\n101:                     or \\\"/root/schema-dag-extraction/data/maven_parquet/valid.parquet\\\")\\n102:        samples = load_maven(data_path=data_path, max_samples=args.max_samples)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T11:03:42.292277+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/data/maven_parquet/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/schema-dag-extraction/data/maven_parquet/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T11:03:42.292395+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"valid.parquet\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T11:03:42.292532+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\nimport torch\nfrom sentence_transformers import SentenceTransformer\nimport torch.nn.functional as F\n\nwith open(\"/root/schema-dag-extraction/configs/maven_event_types.json\") as f:\n    type_defs = json.load(f)\n\ntype_keys = sorted(type_defs.keys())\ntype_display_names = [type_defs[k] for k in type_keys]\nprint(f\"Types: {len(type_keys)}\")\n\nmodel = SentenceTransformer(\"sentence-transformers/all-MiniLM-L6-v2\")\nembeddings_np = model.encode(type_display_names, show_progress_bar=False)\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\nprint(f\"Embeddings shape: {embeddings_tensor.shape}\")\n\n# Cosine similarity matrix\nnormed = F.normalize(embeddings_tensor, dim=1)\nsim_matrix = normed @ normed.T\nprint(f\"Sim matrix shape: {sim_matrix.shape}\")\nprint(f\"Sim stats - mean: {sim_matrix[torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)].mean():.4f}, \"\n      f\"std: {sim_matrix[torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)].std():.4f}\")\n\n# Save embeddings as dict {type_name: tensor} matching Qwen3 format\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\ntorch.save(emb_dict, \"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\")\nprint(\"Saved embeddings\")\n\n# Save sim matrix matching Qwen3 format\nsim_data = {\n    \"similarity_matrix\": sim_matrix,\n    \"type_names\": type_keys,\n}\ntorch.save(sim_data, \"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\")\nprint(\"Saved sim matrix\")\n\n# Quick validation\nloaded = torch.load(\"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\", map_location=\"cpu\", weights_only=True)\nprint(f\"Validation: keys={list(loaded.keys())}, shape={loaded['similarity_matrix'].shape}, n_types={len(loaded['type_names'])}\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\nimport torch\nfrom sentence_transformers import SentenceTransformer\nimport torch.nn.functional as F\n\nwith open(\"/root/schema-dag-extraction/configs/maven_event_types.json\") as f:\n    type_defs = json.load(f)\n\ntype_keys = sorted(type_defs.keys())\ntype_display_names = [type_defs[k] for k in type_keys]\nprint(f\"Types: {len(type_keys)}\")\n\nmodel = SentenceTransformer(\"sentence-transformers/all-MiniLM-L6-v2\")\nembeddings_np = model.encode(type_display_names, show_progress_bar=False)\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\nprint(f\"Embeddings shape: {embeddings_tensor.shape}\")\n\n# Cosine similarity matrix\nnormed = F.normalize(embeddings_tensor, dim=1)\nsim_matrix = normed @ normed.T\nprint(f\"Sim matrix shape: {sim_matrix.shape}\")\nprint(f\"Sim stats - mean: {sim_matrix[torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)].mean():.4f}, \"\n      f\"std: {sim_matrix[torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)].std():.4f}\")\n\n# Save embeddings as dict {type_name: tensor} matching Qwen3 format\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\ntorch.save(emb_dict, \"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\")\nprint(\"Saved embeddings\")\n\n# Save sim matrix matching Qwen3 format\nsim_data = {\n    \"similarity_matrix\": sim_matrix,\n    \"type_names\": type_keys,\n}\ntorch.save(sim_data, \"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\")\nprint(\"Saved sim matrix\")\n\n# Quick validation\nloaded = torch.load(\"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\", map_location=\"cpu\", weights_only=True)\nprint(f\"Validation: keys={list(loaded.keys())}, shape={loaded['similarity_matrix'].shape}, n_types={len(loaded['type_names'])}\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T11:03:42.292704+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << \\\\'PYEOF\\\\'\\\\nimport json\\\\nimport torch\\\\nfrom sentence_transformers import SentenceTransformer\\\\nimport torch.nn.functional as F\\\\n\\\\nwith open(\\\"/root/schema-dag-extraction/configs/maven_event_types.json\\\") as f:\\\\n    type_defs = json.load(f)\\\\n\\\\ntype_keys = sorted(type_defs.keys())\\\\ntype_display_names = [type_defs[k] for k in type_keys]\\\\nprint(f\\\"Types: {len(type_keys)}\\\")\\\\n\\\\nmodel = SentenceTransformer(\\\"sentence-transformers/all-MiniLM-L6-v2\\\")\\\\nembeddings_np = model.encode(type_display_names, show_progress_bar=False)\\\\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\\\\nprint(f\\\"Embeddings shape: {embeddings_tensor.shape}\\\")\\\\n\\\\n# Cosine similarity matrix\\\\nnormed = F.normalize(embeddings_tensor, dim=1)\\\\nsim_matrix = normed @ normed.T\\\\nprint(f\\\"Sim matrix shape: {sim_matrix.shape}\\\")\\\\nprint(f\\\"Sim stats - mean: {sim_matrix[torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)].mean():.4f}, \\\"\\\\n      f\\\"std: {sim_matrix[torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)].std():.4f}\\\")\\\\n\\\\n# Save embeddings as dict {type_name: tensor} matching Qwen3 format\\\\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\\\\ntorch.save(emb_dict, \\\"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\\\")\\\\nprint(\\\"Saved embeddings\\\")\\\\n\\\\n# Save sim matrix matching Qwen3 format\\\\nsim_data = {\\\\n    \\\"similarity_matrix\\\": sim_matrix,\\\\n    \\\"type_names\\\": type_keys,\\\\n}\\\\ntorch.save(sim_data, \\\"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\\\")\\\\nprint(\\\"Saved sim matrix\\\")\\\\n\\\\n# Quick validation\\\\nloaded = torch.load(\\\"/root/s
+…[truncated 366 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T11:03:42.292924+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/scripts/compute_maven_minilm.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute MiniLM embeddings and cosine similarity matrix for MAVEN event types.\"\"\"\nimport json\nimport torch\nimport torch.nn.functional as F\nfrom sentence_transformers import SentenceTransformer\n\nTYPES_FILE = \"/root/schema-dag-extraction/configs/maven_event_types.json\"\nEMB_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\"\nSIM_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\"\n\nwith open(TYPES_FILE) as f:\n    type_defs = json.load(f)\n\ntype_keys = sorted(type_defs.keys())\ntype_display_names = [type_defs[k] for k in type_keys]\nprint(f\"Types: {len(type_keys)}\")\n\nmodel = SentenceTransformer(\"sentence-transformers/all-MiniLM-L6-v2\")\nembeddings_np = model.encode(type_display_names, show_progress_bar=True)\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\nprint(f\"Embeddings shape: {embeddings_tensor.shape}\")\n\nnormed = F.normalize(embeddings_tensor, dim=1)\nsim_matrix = normed @ normed.T\nprint(f\"Sim matrix shape: {sim_matrix.shape}\")\n\nmask = torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)\nupper = sim_matrix[mask]\nprint(f\"Sim stats - mean: {upper.mean():.4f}, std: {upper.std():.4f}, min: {upper.min():.4f}, max: {upper.max():.4f}\")\n\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\ntorch.save(emb_dict, EMB_OUT)\nprint(f\"Saved embeddings to {EMB_OUT}\")\n\nsim_data = {\"similarity_matrix\": sim_matrix, \"type_names\": type_keys}\ntorch.save(sim_data, SIM_OUT)\nprint(f\"Saved sim matrix to {SIM_OUT}\")\n\nloaded = torch.load(SIM_OUT, map_location=\"cpu\", weights_only=True)\nprint(f\"Validation: keys={list(loaded.keys())}, shape={loaded['similarity_matrix'].shape}, n_types={len(loaded['type_names'])}\")\nprint(\"DONE\")\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat > /root/schema-dag-extraction/scripts/compute_maven_minilm.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute MiniLM embeddings and cosine similarity matrix for MAVEN event types.\"\"\"\nimport json\nimport torch\nimport torch.nn.functional as F\nfrom sentence_transformers import SentenceTransformer\n\nTYPES_FILE = \"/root/schema-dag-extraction/configs/maven_event_types.json\"\nEMB_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\"\nSIM_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\"\n\nwith open(TYPES_FILE) as f:\n    type_defs = json.load(f)\n\ntype_keys = sorted(type_defs.keys())\ntype_display_names = [type_defs[k] for k in type_keys]\nprint(f\"Types: {len(type_keys)}\")\n\nmodel = SentenceTransformer(\"sentence-transformers/all-MiniLM-L6-v2\")\nembeddings_np = model.encode(type_display_names, show_progress_bar=True)\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\nprint(f\"Embeddings shape: {embeddings_tensor.shape}\")\n\nnormed = F.normalize(embeddings_tensor, dim=1)\nsim_matrix = normed @ normed.T\nprint(f\"Sim matrix shape: {sim_matrix.shape}\")\n\nmask = torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)\nupper = sim_matrix[mask]\nprint(f\"Sim stats - mean: {upper.mean():.4f}, std: {upper.std():.4f}, min: {upper.min():.4f}, max: {upper.max():.4f}\")\n\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\ntorch.save(emb_dict, EMB_OUT)\nprint(f\"Saved embeddings to {EMB_OUT}\")\n\nsim_data = {\"similarity_matrix\": sim_matrix, \"type_names\": type_keys}\ntorch.save(sim_data, SIM_OUT)\nprint(f\"Saved sim matrix to {SIM_OUT}\")\n\nloaded = torch.load(SIM_OUT, map_location=\"cpu\", weights_only=True)\nprint(f\"Validation: keys={list(loaded.keys())}, shape={loaded['similarity_matrix'].shape}, n_types={len(loaded['type_names'])}\")\nprint(\"DONE\")\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T11:03:42.293080+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T11:03:42.293202+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && nohup python3 scripts/compute_maven_minilm.py > /tmp/compute_minilm.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && nohup python3 scripts/compute_maven_minilm.py > /tmp/compute_minilm.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T11:03:42.293326+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && nohup python3 scripts/compute_maven_minilm.py > /tmp/compute_minilm.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=258025\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T11:03:42.293473+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/scripts/run_exp008.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/scripts/run_exp008.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T11:03:42.293607+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\nsource /root/miniconda3/etc/profile.d/conda.sh\\nconda activate base\\ncd /root/schema-dag-extraction\\n\\nCOMMON=\\\"--dataset fewnerd --prompt_version v2 --types_file configs/few_nerd_types.json --sim_matrix_path artifacts/sim_matrix.pt --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 --max_model_len 4096 --output_dir artifacts/exp008\\\"\\n\\necho \\\"===== [$(date)] Starting exp-008: SDGD-zero =====\\\"\\npython3 src/run_sdgd_experiment.py --mode sdgd_zero $COMMON\\necho \\\"===== [$(date)] SDGD-zero done =====\\\"\\n\\necho \\\"===== [$(date)] Starting exp-008: single_pass =====\\\"\\npython3 src/run_sdgd_experiment.py --mode single_pass $COMMON\\necho \\\"===== [$(date)] single_pass done =====\\\"\\n\\necho \\\"===== [$(date)] Starting exp-008: random_batch =====\\\"\\npython3 src/run_sdgd_experiment.py --mode random_batch $COMMON\\necho \\\"===== [$(date)] random_batch done =====\\\"\\n\\necho \\\"===== [$(date)] Starting exp-008: per_type =====\\\"\\npython3 src/run_sdgd_experiment.py --mode per_type $COMMON\\necho \\\"===== [$(date)] per_type done =====\\\"\\n\\necho \\\"===== [$(date)] All exp-008 modes completed =====\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T11:03:42.293754+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /tmp/compute_minilm.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /tmp/compute_minilm.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T11:03:42.293902+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f06b1aba8a0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: 33f744b0-033b-4730-9e03-adbf612dee5b)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json\\nRetrying in 1s [Retry 1/5].\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T11:03:42.294058+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "kill 258025 2>/dev/null; echo \"killed\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "kill 258025 2>/dev/null; echo \"killed\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T11:03:42.294184+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T11:03:42.294300+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && nohup python3 scripts/compute_maven_minilm.py > /tmp/compute_minilm.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && nohup python3 scripts/compute_maven_minilm.py > /tmp/compute_minilm.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T11:03:42.294441+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && nohup python3 scripts/compute_maven_minilm.py > /tmp/compute_minilm.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\n设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\nPID=258305\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T11:03:42.294590+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/scripts/run_sdgd_maven_minilm.sh << 'SHEOF'\n#!/bin/bash\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\ncd /root/schema-dag-extraction\n\nDATASET=maven\nSIM_MATRIX=artifacts/maven_minilm_sim_matrix.pt\nTYPES_FILE=configs/maven_event_types.json\nMODEL_PATH=/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\nOUTPUT_DIR=artifacts/exp_maven_minilm\nMAX_SAMPLES=1000\nTASK=event\n\nmkdir -p ${OUTPUT_DIR}\n\necho \"===== [$(date)] Stage 1: CPU Decomposition (all modes) =====\"\nfor MODE in sdgd_zero single_pass random_batch per_type; do\n  echo \"  Decomposing: ${MODE}\"\n  python3 src/sdgd_decompose_cpu.py \\\n    --mode ${MODE} \\\n    --types_file ${TYPES_FILE} \\\n    --sim_matrix_path ${SIM_MATRIX} \\\n    --output ${OUTPUT_DIR}/decomposition_${MODE}.json\ndone\n\necho \"===== [$(date)] Stage 2: GPU Extraction (one vLLM load, all modes) =====\"\npython3 src/sdgd_extract_gpu.py \\\n  --decompositions \\\n    ${OUTPUT_DIR}/decomposition_sdgd_zero.json \\\n    ${OUTPUT_DIR}/decomposition_single_pass.json \\\n    ${OUTPUT_DIR}/decomposition_random_batch.json \\\n    ${OUTPUT_DIR}/decomposition_per_type.json \\\n  --model_path ${MODEL_PATH} \\\n  --types_file ${TYPES_FILE} \\\n  --dataset ${DATASET} \\\n  --prompt_version v2 \\\n  --max_samples ${MAX_SAMPLES} \\\n  --output_dir ${OUTPUT_DIR} \\\n  --max_model_len 4096 \\\n  --task ${TASK}\n\necho \"===== [$(date)] ALL DONE =====\"\nSHEOF\nchmod +x /root/schema-dag-extraction/scripts/run_sdgd_maven_minilm.sh\necho \"Script created\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat > /root/schema-dag-extraction/scripts/run_sdgd_maven_minilm.sh << 'SHEOF'\n#!/bin/bash\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\ncd /root/schema-dag-extraction\n\nDATASET=maven\nSIM_MATRIX=artifacts/maven_minilm_sim_matrix.pt\nTYPES_FILE=configs/maven_event_types.json\nMODEL_PATH=/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\nOUTPUT_DIR=artifacts/exp_maven_minilm\nMAX_SAMPLES=1000\nTASK=event\n\nmkdir -p ${OUTPUT_DIR}\n\necho \"===== [$(date)] Stage 1: CPU Decomposition (all modes) =====\"\nfor MODE in sdgd_zero single_pass random_batch per_type; do\n  echo \"  Decomposing: ${MODE}\"\n  python3 src/sdgd_decompose_cpu.py \\\n    --mode ${MODE} \\\n    --types_file ${TYPES_FILE} \\\n    --sim_matrix_path ${SIM_MATRIX} \\\n    --output ${OUTPUT_DIR}/decomposition_${MODE}.json\ndone\n\necho \"===== [$(date)] Stage 2: GPU Extraction (one vLLM load, all modes) =====\"\npython3 src/sdgd_extract_gpu.py \\\n  --decompositions \\\n    ${OUTPUT_DIR}/decomposition_sdgd_zero.json \\\n    ${OUTPUT_DIR}/decomposition_single_pass.json \\\n    ${OUTPUT_DIR}/decomposition_random_batch.json \\\n    ${OUTPUT_DIR}/decomposition_per_type.json \\\n  --model_path ${MODEL_PATH} \\\n  --types_file ${TYPES_FILE} \\\n  --dataset ${DATASET} \\\n  --prompt_version v2 \\\n  --max_samples ${MAX_SAMPLES} \\\n  --output_dir ${OUTPUT_DIR} \\\n  --max_model_len 4096 \\\n  --task ${TASK}\n\necho \"===== [$(date)] ALL DONE =====\"\nSHEOF\nchmod +x /root/schema-dag-extraction/scripts/run_sdgd_maven_minilm.sh\necho \"Script created\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T11:03:42.294724+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script created\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-15T11:03:42.294864+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check existing MAVEN MiniLM assets and understand sim_matrix format', 'status': 'completed', 'activeForm': 'Checking existing MAVEN MiniLM assets and sim_matrix format'}, {'content': 'Generate MAVEN MiniLM similarity matrix (168×168)', 'status': 'in_progress', 'activeForm': 'Generating MAVEN MiniLM similarity matrix'}, {'content': 'Create scripts/run_sdgd_maven_minilm.sh launch script', 'status': 'completed', 'activeForm': 'Creating SDGD MAVEN MiniLM launch script'}, {'content': 'Dry-run CPU decompose stage and verify output', 'status': 'pending', 'activeForm': 'Running CPU decompose dry-run'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check existing MAVEN MiniLM assets and understand sim_matrix format', 'status': 'completed', 'activeForm': 'Checking existing MAVEN MiniLM assets and sim_matrix format'}, {'content': 'Generate MAVEN MiniLM similarity matrix (168×168)', 'status': 'in_progress', 'activeForm': 'Generating MAVEN MiniLM similarity matrix'}, {'content': 'Create scripts/run_sdgd_maven_minilm.sh launch script', 'status': 'completed', 'activeForm': 'Creating SDGD MAVEN MiniLM launch script'}, {'content': 'Dry-run CPU decompose stage and verify output', 'status': 'pending', 'activeForm': 'Running CPU decompose dry-run'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T11:03:42.295030+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-15T11:03:42.295168+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /tmp/compute_minilm.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /tmp/compute_minilm.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T11:03:42.295336+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Types: 168\\nTraceback (most recent call last):\\n  File \\\"/root/schema-dag-extraction/scripts/compute_maven_minilm.py\\\", line 19, in &lt;module>\\n    model = SentenceTransformer(\\\"sentence-transformers/all-MiniLM-L6-v2\\\")\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/util/decorators.py\\\", line 41, in wrapper\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/sentence_transformer/model.py\\\", line 183, in __init__\\n    super().__init__(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/base/model.py\\\", line 198, in __init__\\n    modules, self.module_kwargs = self._load_modules(\\n                                  ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/base/model.py\\\", line 974, in _load_modules\\n    return self._load_config_modules(model_name_or_path, **load_kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/base/model.py\\\", line 1165, in _load_config_modules\\n    module = module_class.load(\\n             ^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/base/modules/transformer.py\\\", line 1708, in load\\n    return cls(model_name_or_path=model_name_or_path, **init_kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/util/decorators.py\\\", line 87, in wrapper\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/base/modules/transf
+…[truncated 3186 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-15T11:03:42.295495+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root -name \"all-MiniLM*\" -type d 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root -name \"all-MiniLM*\" -type d 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T11:03:42.295617+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-15T11:03:42.295740+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/autodl-tmp -name \"*MiniLM*\" -type d 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/autodl-tmp -name \"*MiniLM*\" -type d 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T11:03:42.295875+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-15T11:03:42.295997+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root -name \"*MiniLM*\" -type d 2>/dev/null | head -10",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root -name \"*MiniLM*\" -type d 2>/dev/null | head -10",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T11:03:42.296119+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/.locks/models--sentence-transformers--all-MiniLM-L6-v2\\n/root/autodl-tmp/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2\\n/root/autodl-tmp/.hf_cache/.locks/models--sentence-transformers--all-MiniLM-L6-v2\\n/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2\\n/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2\\n/root/.cache/huggingface/hub/.locks/models--sentence-transformers--all-MiniLM-L6-v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-15T11:03:42.296285+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/scripts/compute_maven_minilm.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute MiniLM embeddings and cosine similarity matrix for MAVEN event types.\"\"\"\nimport os\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\nos.environ[\"HF_HUB_DISABLE_XET\"] = \"1\"\n\nimport json\nimport torch\nimport torch.nn.functional as F\nfrom sentence_transformers import SentenceTransformer\n\nTYPES_FILE = \"/root/schema-dag-extraction/configs/maven_event_types.json\"\nEMB_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\"\nSIM_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\"\n\nwith open(TYPES_FILE) as f:\n    type_defs = json.load(f)\n\ntype_keys = sorted(type_defs.keys())\ntype_display_names = [type_defs[k] for k in type_keys]\nprint(f\"Types: {len(type_keys)}\")\n\nmodel = SentenceTransformer(\"sentence-transformers/all-MiniLM-L6-v2\")\nembeddings_np = model.encode(type_display_names, show_progress_bar=True)\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\nprint(f\"Embeddings shape: {embeddings_tensor.shape}\")\n\nnormed = F.normalize(embeddings_tensor, dim=1)\nsim_matrix = normed @ normed.T\nprint(f\"Sim matrix shape: {sim_matrix.shape}\")\n\nmask = torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)\nupper = sim_matrix[mask]\nprint(f\"Sim stats - mean: {upper.mean():.4f}, std: {upper.std():.4f}, min: {upper.min():.4f}, max: {upper.max():.4f}\")\n\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\ntorch.save(emb_dict, EMB_OUT)\nprint(f\"Saved embeddings to {EMB_OUT}\")\n\nsim_data = {\"similarity_matrix\": sim_matrix, \"type_names\": type_keys}\ntorch.save(sim_data, SIM_OUT)\nprint(f\"Saved sim matrix to {SIM_OUT}\")\n\nloaded = torch.load(SIM_OUT, map_location=\"cpu\", weights_only=True)\nprint(f\"Validation: keys={list(loaded.keys())}, shape={loaded['similarity_matrix'].shape}, n_types={len(loaded['type_names'])}\")\nprint(\"DONE\")\nPYEOF\necho \"Script updated\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat > /root/schema-dag-extraction/scripts/compute_maven_minilm.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute MiniLM embeddings and cosine similarity matrix for MAVEN event types.\"\"\"\nimport os\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\nos.environ[\"HF_HUB_DISABLE_XET\"] = \"1\"\n\nimport json\nimport torch\nimport torch.nn.functional as F\nfrom sentence_transformers import SentenceTransformer\n\nTYPES_FILE = \"/root/schema-dag-extraction/configs/maven_event_types.json\"\nEMB_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\"\nSIM_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\"\n\nwith open(TYPES_FILE) as f:\n    type_defs = json.load(f)\n\ntype_keys = sorted(type_defs.keys())\ntype_display_names = [type_defs[k] for k in type_keys]\nprint(f\"Types: {len(type_keys)}\")\n\nmodel = SentenceTransformer(\"sentence-transformers/all-MiniLM-L6-v2\")\nembeddings_np = model.encode(type_display_names, show_progress_bar=True)\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\nprint(f\"Embeddings shape: {embeddings_tensor.shape}\")\n\nnormed = F.normalize(embeddings_tensor, dim=1)\nsim_matrix = normed @ normed.T\nprint(f\"Sim matrix shape: {sim_matrix.shape}\")\n\nmask = torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)\nupper = sim_matrix[mask]\nprint(f\"Sim stats - mean: {upper.mean():.4f}, std: {upper.std():.4f}, min: {upper.min():.4f}, max: {upper.max():.4f}\")\n\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\ntorch.save(emb_dict, EMB_OUT)\nprint(f\"Saved embeddings to {EMB_OUT}\")\n\nsim_data = {\"similarity_matrix\": sim_matrix, \"type_names\": type_keys}\ntorch.save(sim_data, SIM_OUT)\nprint(f\"Saved sim matrix to {SIM_OUT}\")\n\nloaded = torch.load(SIM_OUT, map_location=\"cpu\", weights_only=True)\nprint(f\"Validation: keys={list(loaded.keys())}, shape={loaded['similarity_matrix'].shape}, n_types={len(loaded['type_names'])}\")\nprint(\"DONE\")\nPYEOF\necho \"Script updated\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-15T11:03:42.296431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script updated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-15T11:03:42.296548+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 scripts/compute_maven_minilm.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 scripts/compute_maven_minilm.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-15T11:03:42.296700+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"Types: 168\\n\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"/root/schema-dag-extraction/scripts/compute_maven_minilm.py\\\", line 24, in &lt;module>\\n    model = SentenceTransformer(\\\"sentence-transformers/all-MiniLM-L6-v2\\\")\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/util/decorators.py\\\", line 41, in wrapper\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/sentence_transformer/model.py\\\", line 183, in __init__\\n    super().__init__(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/base/model.py\\\", line 198, in __init__\\n    modules, self.module_kwargs = self._load_modules(\\n                                  ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/base/model.py\\\", line 974, in _load_modules\\n    return self._load_config_modules(model_name_or_path, **load_kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/base/model.py\\\", line 1165, in _load_config_modules\\n    module = module_class.load(\\n             ^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/base/modules/transformer.py\\\", line 1708, in load\\n    return cls(model_name_or_path=model_name_or_path, **init_kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/util/decorators.py\\\", line 87, in wrapper\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/
+…[truncated 1314 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-15T11:03:42.296890+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T11:03:42.297031+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-15T11:03:42.297149+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T11:03:42.297271+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nconfig.json\\nconfig_sentence_transformers.json\\nmodules.json\\nsentence_bert_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-15T11:03:42.297399+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/ 2>/dev/null || echo \"NOT FOUND\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/ 2>/dev/null || echo \"NOT FOUND\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-15T11:03:42.297527+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-15T11:03:42.297642+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls -la /root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-15T11:03:42.297768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 3 root root 4096 May 15 13:12 .\\ndrwxr-xr-x 3 root root   62 May 15 13:10 ..\\ndrwxr-xr-x 2 root root   33 May 15 13:12 1_Pooling\\nlrwxrwxrwx 1 root root   52 May 15 13:10 README.md -> ../../blobs/58d4a9a45664eb9e12de9549c548c09b6134c17f\\nlrwxrwxrwx 1 root root   52 May 15 13:10 config.json -> ../../blobs/72b987fd805cfa2b58c4c8c952b274a11bfd5a00\\nlrwxrwxrwx 1 root root   52 May 15 13:10 config_sentence_transformers.json -> ../../blobs/fd1b291129c607e5d49799f87cb219b27f98acdf\\nlrwxrwxrwx 1 root root   76 May 15 13:12 model.safetensors -> ../../blobs/53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db\\nlrwxrwxrwx 1 root root   52 May 15 13:10 modules.json -> ../../blobs/952a9b81c0bfd99800fabf352f69c7ccd46c5e43\\nlrwxrwxrwx 1 root root   52 May 15 13:10 sentence_bert_config.json -> ../../blobs/59d594003bf59880a884c574bf88ef7555bb0202\\nlrwxrwxrwx 1 root root   52 May 15 13:12 special_tokens_map.json -> ../../blobs/e7b0375001f109a6b8873d756ad4f7bbb15fbaa5\\nlrwxrwxrwx 1 root root   52 May 15 13:12 tokenizer.json -> ../../blobs/cb202bfe2e3c98645018a6d12f182a434c9d3e02\\nlrwxrwxrwx 1 root root   52 May 15 13:12 tokenizer_config.json -> ../../blobs/c79f2b6a0cea6f4b564fed1938984bace9d30ff0\\nlrwxrwxrwx 1 root root   52 May 15 13:12 vocab.txt -> ../../blobs/fb140275c155a9c7c5a3b3e0e77a9e839594a938\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-15T11:03:42.297957+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/scripts/compute_maven_minilm.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute MiniLM embeddings and cosine similarity matrix for MAVEN event types.\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\nos.environ[\"HF_HUB_DISABLE_XET\"] = \"1\"\n\nimport json\nimport torch\nimport torch.nn.functional as F\nfrom sentence_transformers import SentenceTransformer\n\nTYPES_FILE = \"/root/schema-dag-extraction/configs/maven_event_types.json\"\nEMB_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\"\nSIM_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\"\n\nwith open(TYPES_FILE) as f:\n    type_defs = json.load(f)\n\ntype_keys = sorted(type_defs.keys())\ntype_display_names = [type_defs[k] for k in type_keys]\nprint(f\"Types: {len(type_keys)}\")\n\nmodel = SentenceTransformer(\"sentence-transformers/all-MiniLM-L6-v2\")\nembeddings_np = model.encode(type_display_names, show_progress_bar=True)\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\nprint(f\"Embeddings shape: {embeddings_tensor.shape}\")\n\nnormed = F.normalize(embeddings_tensor, dim=1)\nsim_matrix = normed @ normed.T\nprint(f\"Sim matrix shape: {sim_matrix.shape}\")\n\nmask = torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)\nupper = sim_matrix[mask]\nprint(f\"Sim stats - mean: {upper.mean():.4f}, std: {upper.std():.4f}, min: {upper.min():.4f}, max: {upper.max():.4f}\")\n\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\ntorch.save(emb_dict, EMB_OUT)\nprint(f\"Saved embeddings to {EMB_OUT}\")\n\nsim_data = {\"similarity_matrix\": sim_matrix, \"type_names\": type_keys}\ntorch.save(sim_data, SIM_OUT)\nprint(f\"Saved sim matrix to {SIM_OUT}\")\n\nloaded = torch.load(SIM_OUT, map_location=\"cpu\", weights_only=True)\nprint(f\"Validation: keys={list(loaded.keys())}, shape={loaded['similarity_matrix'].shape}, n_types={len(loaded['type_names'])}\")\nprint(\"DONE\")\nPYEOF\necho \"Updated\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat > /root/schema-dag-extraction/scripts/compute_maven_minilm.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute MiniLM embeddings and cosine similarity matrix for MAVEN event types.\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\nos.environ[\"HF_HUB_DISABLE_XET\"] = \"1\"\n\nimport json\nimport torch\nimport torch.nn.functional as F\nfrom sentence_transformers import SentenceTransformer\n\nTYPES_FILE = \"/root/schema-dag-extraction/configs/maven_event_types.json\"\nEMB_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\"\nSIM_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\"\n\nwith open(TYPES_FILE) as f:\n    type_defs = json.load(f)\n\ntype_keys = sorted(type_defs.keys())\ntype_display_names = [type_defs[k] for k in type_keys]\nprint(f\"Types: {len(type_keys)}\")\n\nmodel = SentenceTransformer(\"sentence-transformers/all-MiniLM-L6-v2\")\nembeddings_np = model.encode(type_display_names, show_progress_bar=True)\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\nprint(f\"Embeddings shape: {embeddings_tensor.shape}\")\n\nnormed = F.normalize(embeddings_tensor, dim=1)\nsim_matrix = normed @ normed.T\nprint(f\"Sim matrix shape: {sim_matrix.shape}\")\n\nmask = torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)\nupper = sim_matrix[mask]\nprint(f\"Sim stats - mean: {upper.mean():.4f}, std: {upper.std():.4f}, min: {upper.min():.4f}, max: {upper.max():.4f}\")\n\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\ntorch.save(emb_dict, EMB_OUT)\nprint(f\"Saved embeddings to {EMB_OUT}\")\n\nsim_data = {\"similarity_matrix\": sim_matrix, \"type_names\": type_keys}\ntorch.save(sim_data, SIM_OUT)\nprint(f\"Saved sim matrix to {SIM_OUT}\")\n\nloaded = torch.load(SIM_OUT, map_location=\"cpu\", weights_only=True)\nprint(f\"Validation: keys={list(loaded.keys())}, shape={loaded['similarity_matrix'].shape}, n_types={len(loaded['type_names'])}\")\nprint(\"DONE\")\nPYEOF\necho \"Updated\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-15T11:03:42.298103+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Updated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-15T11:03:42.298220+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 scripts/compute_maven_minilm.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 scripts/compute_maven_minilm.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-15T11:03:42.298382+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"Types: 168\\n\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 479, in cached_files\\n    hf_hub_download(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 114, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1014, in hf_hub_download\\n    return _hf_hub_download_to_cache_dir(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1121, in _hf_hub_download_to_cache_dir\\n    _raise_on_head_call_error(head_call_error, force_download, local_files_only)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1653, in _raise_on_head_call_error\\n    raise LocalEntryNotFoundError(\\nhuggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \\\"/root/schema-dag-extraction/scripts/compute_maven_minilm.py\\\", line 25, in &lt;module>\\n    model = SentenceTransformer(\\\"sentence-transformers/all-MiniLM-L6-v2\\\")\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/util/decorators.py\\\", line 41, in wrapper\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/sentence_transformers/sentence_transformer/model.py\\\", line 183, in __init__\\n    super
+…[truncated 3261 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-15T11:03:42.298555+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/autodl-tmp/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/ | head -20",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls -la /root/autodl-tmp/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/ | head -20",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-15T11:03:42.298692+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root  62 May 15 13:12 .\\ndrwxr-xr-x 6 root root  85 May 15 13:12 ..\\n-rw-r--r-- 1 root root 350 May 15 13:12 c79f2b6a0cea6f4b564fed1938984bace9d30ff0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-15T11:03:42.298831+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/blobs/ 2>/dev/null | head -20",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls -la /root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/blobs/ 2>/dev/null | head -20",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-15T11:03:42.298990+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 89468\\ndrwxr-xr-x 2 root root     4096 May 15 13:12 .\\ndrwxr-xr-x 6 root root       85 May 15 13:12 ..\\n-rw-r--r-- 1 root root 90868376 May 15 13:12 53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db\\n-rw-r--r-- 1 root root    10454 May 15 13:10 58d4a9a45664eb9e12de9549c548c09b6134c17f\\n-rw-r--r-- 1 root root       53 May 15 13:10 59d594003bf59880a884c574bf88ef7555bb0202\\n-rw-r--r-- 1 root root      612 May 15 13:10 72b987fd805cfa2b58c4c8c952b274a11bfd5a00\\n-rw-r--r-- 1 root root      349 May 15 13:10 952a9b81c0bfd99800fabf352f69c7ccd46c5e43\\n-rw-r--r-- 1 root root      350 May 15 13:12 c79f2b6a0cea6f4b564fed1938984bace9d30ff0\\n-rw-r--r-- 1 root root   466247 May 15 13:12 cb202bfe2e3c98645018a6d12f182a434c9d3e02\\n-rw-r--r-- 1 root root      190 May 15 13:12 d1514c3162bbe87b343f565fadc62e6c06f04f03\\n-rw-r--r-- 1 root root      112 May 15 13:12 e7b0375001f109a6b8873d756ad4f7bbb15fbaa5\\n-rw-r--r-- 1 root root   231508 May 15 13:12 fb140275c155a9c7c5a3b3e0e77a9e839594a938\\n-rw-r--r-- 1 root root      116 May 15 13:10 fd1b291129c607e5d49799f87cb219b27f98acdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-15T11:03:42.299157+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-15T11:03:42.299290+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1_Pooling\\nREADME.md\\nconfig.json\\nconfig_sentence_transformers.json\\nmodel.safetensors\\nmodules.json\\nsentence_bert_config.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\nvocab.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-15T11:03:42.299419+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/scripts/compute_maven_minilm.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute MiniLM embeddings and cosine similarity matrix for MAVEN event types.\"\"\"\nimport os\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\nos.environ[\"HF_HUB_DISABLE_XET\"] = \"1\"\n\nimport json\nimport torch\nimport torch.nn.functional as F\nfrom sentence_transformers import SentenceTransformer\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\"\nTYPES_FILE = \"/root/schema-dag-extraction/configs/maven_event_types.json\"\nEMB_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\"\nSIM_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\"\n\nwith open(TYPES_FILE) as f:\n    type_defs = json.load(f)\n\ntype_keys = sorted(type_defs.keys())\ntype_display_names = [type_defs[k] for k in type_keys]\nprint(f\"Types: {len(type_keys)}\")\n\nmodel = SentenceTransformer(MODEL_PATH)\nembeddings_np = model.encode(type_display_names, show_progress_bar=False)\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\nprint(f\"Embeddings shape: {embeddings_tensor.shape}\")\n\nnormed = F.normalize(embeddings_tensor, dim=1)\nsim_matrix = normed @ normed.T\nprint(f\"Sim matrix shape: {sim_matrix.shape}\")\n\nmask = torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)\nupper = sim_matrix[mask]\nprint(f\"Sim stats - mean: {upper.mean():.4f}, std: {upper.std():.4f}, min: {upper.min():.4f}, max: {upper.max():.4f}\")\n\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\ntorch.save(emb_dict, EMB_OUT)\nprint(f\"Saved embeddings to {EMB_OUT}\")\n\nsim_data = {\"similarity_matrix\": sim_matrix, \"type_names\": type_keys}\ntorch.save(sim_data, SIM_OUT)\nprint(f\"Saved sim matrix to {SIM_OUT}\")\n\nloaded = torch.load(SIM_OUT, map_location=\"cpu\", weights_only=True)\nprint(f\"Validation: keys={list(loaded.keys())}, shape={loaded['similarity_matrix'].shape}, n_types={len(loaded['type_names'])}\")\nprint(\"DONE\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 scripts/compute_maven_minilm.py",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat > /root/schema-dag-extraction/scripts/compute_maven_minilm.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Compute MiniLM embeddings and cosine similarity matrix for MAVEN event types.\"\"\"\nimport os\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\nos.environ[\"HF_HUB_DISABLE_XET\"] = \"1\"\n\nimport json\nimport torch\nimport torch.nn.functional as F\nfrom sentence_transformers import SentenceTransformer\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\"\nTYPES_FILE = \"/root/schema-dag-extraction/configs/maven_event_types.json\"\nEMB_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\"\nSIM_OUT = \"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\"\n\nwith open(TYPES_FILE) as f:\n    type_defs = json.load(f)\n\ntype_keys = sorted(type_defs.keys())\ntype_display_names = [type_defs[k] for k in type_keys]\nprint(f\"Types: {len(type_keys)}\")\n\nmodel = SentenceTransformer(MODEL_PATH)\nembeddings_np = model.encode(type_display_names, show_progress_bar=False)\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\nprint(f\"Embeddings shape: {embeddings_tensor.shape}\")\n\nnormed = F.normalize(embeddings_tensor, dim=1)\nsim_matrix = normed @ normed.T\nprint(f\"Sim matrix shape: {sim_matrix.shape}\")\n\nmask = torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)\nupper = sim_matrix[mask]\nprint(f\"Sim stats - mean: {upper.mean():.4f}, std: {upper.std():.4f}, min: {upper.min():.4f}, max: {upper.max():.4f}\")\n\nemb_dict = {name: embeddings_tensor[i] for i, name in enumerate(type_keys)}\ntorch.save(emb_dict, EMB_OUT)\nprint(f\"Saved embeddings to {EMB_OUT}\")\n\nsim_data = {\"similarity_matrix\": sim_matrix, \"type_names\": type_keys}\ntorch.save(sim_data, SIM_OUT)\nprint(f\"Saved sim matrix to {SIM_OUT}\")\n\nloaded = torch.load(SIM_OUT, map_location=\"cpu\", weights_only=True)\nprint(f\"Validation: keys={list(loaded.keys())}, shape={loaded['similarity_matrix'].shape}, n_types={len(loaded['type_names'])}\")\nprint(\"DONE\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 scripts/compute_maven_minilm.py",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-15T11:03:42.299602+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cat > /root/schema-dag-extraction/scripts/compute_maven_minilm.py << \\\\'PYEOF\\\\'\\\\n#!/usr/bin/env python3\\\\n\\\"\\\"\\\"Compute MiniLM embeddings and cosine similarity matrix for MAVEN event types.\\\"\\\"\\\"\\\\nimport os\\\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\\\nos.environ[\\\"HF_HUB_DISABLE_XET\\\"] = \\\"1\\\"\\\\n\\\\nimport json\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom sentence_transformers import SentenceTransformer\\\\n\\\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\"\\\\nTYPES_FILE = \\\"/root/schema-dag-extraction/configs/maven_event_types.json\\\"\\\\nEMB_OUT = \\\"/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\\\"\\\\nSIM_OUT = \\\"/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\\\"\\\\n\\\\nwith open(TYPES_FILE) as f:\\\\n    type_defs = json.load(f)\\\\n\\\\ntype_keys = sorted(type_defs.keys())\\\\ntype_display_names = [type_defs[k] for k in type_keys]\\\\nprint(f\\\"Types: {len(type_keys)}\\\")\\\\n\\\\nmodel = SentenceTransformer(MODEL_PATH)\\\\nembeddings_np = model.encode(type_display_names, show_progress_bar=False)\\\\nembeddings_tensor = torch.tensor(embeddings_np, dtype=torch.float32)\\\\nprint(f\\\"Embeddings shape: {embeddings_tensor.shape}\\\")\\\\n\\\\nnormed = F.normalize(embeddings_tensor, dim=1)\\\\nsim_matrix = normed @ normed.T\\\\nprint(f\\\"Sim matrix shape: {sim_matrix.shape}\\\")\\\\n\\\\nmask = torch.triu(torch.ones_like(sim_matrix, dtype=torch.bool), diagonal=1)\\\\nupper = sim_matrix[mask]\\\\nprint(f\\\"Sim stats - mean: {upper.mean():.4f}, std: {upper.std():.4f}, min: {upper.min():.4f}, max: {upper.max():.4f}\\\")\\\\n\\\\nemb_dict = {name: embeddings_tensor[i] for i, name in enu
+…[truncated 1236 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-15T11:03:42.299771+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check existing MAVEN MiniLM assets and understand sim_matrix format', 'status': 'completed', 'activeForm': 'Checking existing MAVEN MiniLM assets and sim_matrix format'}, {'content': 'Generate MAVEN MiniLM similarity matrix (168×168)', 'status': 'completed', 'activeForm': 'Generating MAVEN MiniLM similarity matrix'}, {'content': 'Create scripts/run_sdgd_maven_minilm.sh launch script', 'status': 'completed', 'activeForm': 'Creating SDGD MAVEN MiniLM launch script'}, {'content': 'Dry-run CPU decompose stage and verify output', 'status': 'in_progress', 'activeForm': 'Running CPU decompose dry-run'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check existing MAVEN MiniLM assets and understand sim_matrix format', 'status': 'completed', 'activeForm': 'Checking existing MAVEN MiniLM assets and sim_matrix format'}, {'content': 'Generate MAVEN MiniLM similarity matrix (168×168)', 'status': 'completed', 'activeForm': 'Generating MAVEN MiniLM similarity matrix'}, {'content': 'Create scripts/run_sdgd_maven_minilm.sh launch script', 'status': 'completed', 'activeForm': 'Creating SDGD MAVEN MiniLM launch script'}, {'content': 'Dry-run CPU decompose stage and verify output', 'status': 'in_progress', 'activeForm': 'Running CPU decompose dry-run'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-15T11:03:42.299945+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-15T11:03:42.300091+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && mkdir -p artifacts/exp_maven_minilm && python3 src/sdgd_decompose_cpu.py --mode sdgd_zero --types_file configs/maven_event_types.json --sim_matrix_path artifacts/maven_minilm_sim_matrix.pt --output artifacts/exp_maven_minilm/decomposition_sdgd_zero.json",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && mkdir -p artifacts/exp_maven_minilm && python3 src/sdgd_decompose_cpu.py --mode sdgd_zero --types_file configs/maven_event_types.json --sim_matrix_path artifacts/maven_minilm_sim_matrix.pt --output artifacts/exp_maven_minilm/decomposition_sdgd_zero.json",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-15T11:03:42.300220+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[decompose] mode=sdgd_zero batches=18 sizes=[39, 16, 20, 12, 12, 10, 10, 6, 8, 8, 6, 4, 6, 5, 2, 2, 1, 1]\\n  tau=0.3191 k=1.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-15T11:03:42.300340+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 src/sdgd_decompose_cpu.py --mode single_pass --types_file configs/maven_event_types.json --output artifacts/exp_maven_minilm/decomposition_single_pass.json && python3 src/sdgd_decompose_cpu.py --mode per_type --types_file configs/maven_event_types.json --output artifacts/exp_maven_minilm/decomposition_per_type.json && python3 src/sdgd_decompose_cpu.py --mode random_batch --types_file configs/maven_event_types.json --sim_matrix_path artifacts/maven_minilm_sim_matrix.pt --output artifacts/exp_maven_minilm/decomposition_random_batch.json",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 src/sdgd_decompose_cpu.py --mode single_pass --types_file configs/maven_event_types.json --output artifacts/exp_maven_minilm/decomposition_single_pass.json && python3 src/sdgd_decompose_cpu.py --mode per_type --types_file configs/maven_event_types.json --output artifacts/exp_maven_minilm/decomposition_per_type.json && python3 src/sdgd_decompose_cpu.py --mode random_batch --types_file configs/maven_event_types.json --sim_matrix_path artifacts/maven_minilm_sim_matrix.pt --output artifacts/exp_maven_minilm/decomposition_random_batch.json",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-15T11:03:42.300469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[decompose] mode=single_pass batches=1 sizes=[168]\\n[decompose] mode=per_type batches=168 sizes=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]\\n[decompose] mode=random_batch batches=18 sizes=[10, 10, 10, 10, 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]\\n  tau=0.3191 k=1.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-15T11:03:42.300603+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -40 /root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_sdgd_zero.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "head -40 /root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_sdgd_zero.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-15T11:03:42.300742+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"sdgd_zero\\\",\\n  \\\"n_batches\\\": 18,\\n  \\\"batch_sizes\\\": [\\n    39,\\n    16,\\n    20,\\n    12,\\n    12,\\n    10,\\n    10,\\n    6,\\n    8,\\n    8,\\n    6,\\n    4,\\n    6,\\n    5,\\n    2,\\n    2,\\n    1,\\n    1\\n  ],\\n  \\\"batches\\\": [\\n    [\\n      \\\"Action\\\",\\n      \\\"Bearing_arms\\\",\\n      \\\"Becoming\\\",\\n      \\\"Carry_goods\\\",\\n      \\\"Cause_change_of_strength\\\",\\n      \\\"Cause_to_amalgamate\\\",\\n      \\\"Cause_to_be_included\\\",\\n      \\\"Change_sentiment\\\",\\n      \\\"Change_tool\\\",\\n      \\\"Connect\\\",\\n      \\\"Cost\\\",\\n      \\\"Create_artwork\\\",\\n      \\\"Dispersal\\\",\\n      \\\"Earnings_and_losses\\\",\\n      \\\"Education_teaching\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-15T11:03:42.302637+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/exp_maven_minilm/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls -la /root/schema-dag-extraction/artifacts/exp_maven_minilm/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-15T11:03:42.302870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 32\\ndrwxr-xr-x 2 root root  174 May 15 19:03 .\\ndrwxr-xr-x 9 root root 4096 May 15 19:02 ..\\n-rw-r--r-- 1 root root 6853 May 15 19:03 decomposition_per_type.json\\n-rw-r--r-- 1 root root 4412 May 15 19:03 decomposition_random_batch.json\\n-rw-r--r-- 1 root root 4373 May 15 19:03 decomposition_sdgd_zero.json\\n-rw-r--r-- 1 root root 3683 May 15 19:03 decomposition_single_pass.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-15T11:03:42.303025+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check existing MAVEN MiniLM assets and understand sim_matrix format', 'status': 'completed', 'activeForm': 'Checking existing MAVEN MiniLM assets and sim_matrix format'}, {'content': 'Generate MAVEN MiniLM similarity matrix (168×168)', 'status': 'completed', 'activeForm': 'Generating MAVEN MiniLM similarity matrix'}, {'content': 'Create scripts/run_sdgd_maven_minilm.sh launch script', 'status': 'completed', 'activeForm': 'Creating SDGD MAVEN MiniLM launch script'}, {'content': 'Dry-run CPU decompose stage and verify output', 'status': 'completed', 'activeForm': 'Running CPU decompose dry-run'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check existing MAVEN MiniLM assets and understand sim_matrix format', 'status': 'completed', 'activeForm': 'Checking existing MAVEN MiniLM assets and sim_matrix format'}, {'content': 'Generate MAVEN MiniLM similarity matrix (168×168)', 'status': 'completed', 'activeForm': 'Generating MAVEN MiniLM similarity matrix'}, {'content': 'Create scripts/run_sdgd_maven_minilm.sh launch script', 'status': 'completed', 'activeForm': 'Creating SDGD MAVEN MiniLM launch script'}, {'content': 'Dry-run CPU decompose stage and verify output', 'status': 'completed', 'activeForm': 'Running CPU decompose dry-run'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-15T11:03:42.303181+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 119 · 2026-05-15T11:03:42.303454+00:00_
+
+全部完成。产出清单：
+
+| 产出 | 状态 |
+|------|------|
+| `artifacts/maven_minilm_embeddings.pt` | [168, 384] dict |
+| `artifacts/maven_minilm_sim_matrix.pt` | [168, 168] dict, mean=0.2161, std=0.1030 |
+| `scripts/run_sdgd_maven_minilm.sh` | 两阶段脚本，4 modes |
+| `scripts/compute_maven_minilm.py` | MiniLM 计算脚本（已用） |
+| CPU decompose dry-run | 4 modes 全部通过 |
+
+**SDGD-zero decomposition 结果**：168 types → 18 batches，tau=0.3191（mean+1std），最大 batch 39 types，最小 1 type。
+
+**启动 GPU 阶段**（等 exp-008 跑完后）：
+```bash
+bash scripts/run_sdgd_maven_minilm.sh
+```
+或者只跑 Stage 2（decomposition 已生成）：
+```bash
+cd /root/schema-dag-extraction
+python3 src/sdgd_extract_gpu.py \
+  --decompositions artifacts/exp_maven_minilm/decomposition_*.json \
+  --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ \
+  --types_file configs/maven_event_types.json \
+  --dataset maven --task event --prompt_version v2 \
+  --max_samples 1000 --output_dir artifacts/exp_maven_minilm \
+  --max_model_len 4096
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_sdgd-maven-minilm-prep_20260515T105359"
+}
+```
+
+</details>
+
+---

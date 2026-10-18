@@ -622,5 +622,6 @@
       ],
       "message_count": 13
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/infra-verify-gpu-warmup.md"
 }

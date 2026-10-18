@@ -1,0 +1,751 @@
+# audit cqa1 deploy
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/chats/worker_audit_cqa1_deploy_20260527T104755.jsonl`
+- **Structured JSON:** [`217195b76a73eca6cc01.json`](../../sessions/21/217195b76a73eca6cc01.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+25 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-27T10:49:36.104450+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-27T10:49:36.104919+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-27T10:49:36.105216+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-27T10:49:36.105446+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ps aux | grep -E \"eval_(openvla|pi05)\" | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "ps aux | grep -E \"eval_(openvla|pi05)\" | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-27T10:49:36.105772+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 15 %, 10756 MiB, 97887 MiB\\n1, 0 %, 1 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-27T10:49:36.105932+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-27T10:49:36.106100+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-27T10:49:36.106268+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T10:49:36.106398+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['exp_id', 'status', 'hypothesis', 'spec']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['exp_id', 'status', 'hypothesis', 'spec']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T10:49:36.106661+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_random_k085_long_seed42_strict_w27\": {\"status\": \"RUNNING\", \"hypothesis\": \"π0.5 Random k=0.85 Long strict 独立复制 — 验证反单调性 D255（k=0.75=63%→k=0.85=45%→k=0.9=32%）。westd-27271 独立服务器排除环境因素\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"westd-27271\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 42}}, \"eval_pi05_l2norm_k09_long_seed42_strict_cqa1\": {\"status\": \"RUNNING\", \"hypothesis\": \"π0.5 L2norm k=0.9 Long strict — lenient=81.0%，补全 L2norm strict 曲线。D256 确认 k=0.95 strict 偏差仅 -0.8pp，k=0.9 预期偏差类似\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 42}}, \"eval_pi05_random_k05_long_seed42_strict_w41_v2\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"pid\": 356612, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"submitted_at\": \"2026-05-27T09:17:56.982Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"hypothesis\"
+…[truncated 7319 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-27T10:49:36.106867+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-27T10:49:36.107008+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 61 %, 10214 MiB, 24564 MiB\\n1, 33 %, 10170 MiB, 24564 MiB\\n2, 57 %, 10434 MiB, 24564 MiB\\n3, 13 %, 10511 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T10:49:36.107238+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "ps aux | grep -E \"eval_(openvla|pi05)\" | grep -v grep | awk '{print $2, $11, $NF}'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "ps aux | grep -E \"eval_(openvla|pi05)\" | grep -v grep | awk '{print $2, $11, $NF}'",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T10:49:36.107417+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"93521 bash logs/eval_pi05_l2norm_k085_long_seed42_strict.log\\n93525 python 0\\n93526 tee logs/eval_pi05_l2norm_k085_long_seed42_strict.log\\n109152 bash ~/runs/importance_margin_vla_compress/eval_pi05_random_k07_long_seed42_strict_v2.log\\n109156 python 0\\n109157 tee /root/runs/importance_margin_vla_compress/eval_pi05_random_k07_long_seed42_strict_v2.log\\n118726 bash 2>&1\\n118730 timeout 0\\\"\\n118731 python 0\\n200108 bash eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log\\n200112 python 0\\n200113 tee eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log\\n895663 tmux /tmp/random_k095_goal.log'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T10:49:36.107551+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tmux ls 2>/dev/null || echo \"NO_TMUX_SESSIONS\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "tmux ls 2>/dev/null || echo \"NO_TMUX_SESSIONS\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-27T10:49:36.107690+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_pi05_l2norm_k085_strict: 1 windows (created Wed May 27 15:53:07 2026)\\neval_pi05_random_k05_long_seed42_strict: 1 windows (created Wed May 27 16:33:04 2026)\\neval_pi05_random_k07_v2: 1 windows (created Wed May 27 16:20:34 2026)\\npi05_l2n_k09: 1 windows (created Wed May 27 18:26:56 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-27T10:49:36.107854+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "echo \"=== GPU0: Random k=0.7 v2 ===\" && tail -5 /root/runs/importance_margin_vla_compress/eval_pi05_random_k07_long_seed42_strict_v2.log 2>/dev/null && echo \"=== GPU1: Random k=0.5 ===\" && tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_long_seed42_strict.log 2>/dev/null && echo \"=== GPU2: L2norm k=0.85 ===\" && tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_long_seed42_strict.log 2>/dev/null && echo \"=== GPU3: L2norm k=0.9 ===\" && tail -5 /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "echo \"=== GPU0: Random k=0.7 v2 ===\" && tail -5 /root/runs/importance_margin_vla_compress/eval_pi05_random_k07_long_seed42_strict_v2.log 2>/dev/null && echo \"=== GPU1: Random k=0.5 ===\" && tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_long_seed42_strict.log 2>/dev/null && echo \"=== GPU2: L2norm k=0.85 ===\" && tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_long_seed42_strict.log 2>/dev/null && echo \"=== GPU3: L2norm k=0.9 ===\" && tail -5 /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-27T10:49:36.107998+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'echo \\\"=== GPU0: Random k=0.7 v2 ===\\\" && tail -5 /root/runs/importance_margin_vla_compress/eval_pi05_random_k07_long_seed42_strict_v2.log 2>/dev/null && echo \\\"=== GPU1: Random k=0.5 ===\\\" && tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_long_seed42_strict.log 2>/dev/null && echo \\\"=== GPU2: L2norm k=0.85 ===\\\" && tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_long_seed42_strict.log 2>/dev/null && echo \\\"=== GPU3: L2norm k=0.9 ===\\\" && tail -5 /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log 2>/dev/null'\\n\\nExit code: 1\\n\\nStdout:\\n\\n=== GPU0: Random k=0.7 v2 ===\\n2026-05-27 18:36:17,835   T5 [pick up the book and place it in the bac] ep=20: 7/20=35%\\n2026-05-27 18:40:22,431   T5 [pick up the book and place it in the bac] ep=30: 13/30=43%\\n2026-05-27 18:44:46,385   T5 [pick up the book and place it in the bac] ep=40: 18/40=45%\\n2026-05-27 18:48:45,990   T5 [pick up the book and place it in the bac] ep=50: 24/50=48%\\n2026-05-27 18:48:45,990 Task 5: SR=48.0% | Total: 210/300=70.0% | Time: 145.2min\\n=== GPU1: Random k=0.5 ===\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-27T10:49:36.108175+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "find /root -name \"*random_k05*strict*.log\" -o -name \"*random_k0.5*strict*.log\" 2>/dev/null | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "find /root -name \"*random_k05*strict*.log\" -o -name \"*random_k0.5*strict*.log\" 2>/dev/null | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T10:49:36.108321+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_long_seed42_strict.log 2>/dev/null; echo \"---\"; tail -5 /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_long_seed42_strict.log 2>/dev/null; echo \"---\"; tail -5 /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed42_strict_cqa1.log 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T10:49:36.108461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-27T10:49:36.108678+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-27 18:32:57,731   T6 [put the white mug on the plate and put t] ep=50: 4/50=8%\\n2026-05-27 18:32:57,732 Task 6: SR=8.0% | Total: 273/350=78.0% | Time: 157.0min\\n2026-05-27 18:37:45,644   T7 [put both the alphabet soup and the cream] ep=10: 6/10=60%\\n2026-05-27 18:41:33,198   T7 [put both the alphabet soup and the cream] ep=20: 15/20=75%\\n2026-05-27 18:45:39,008   T7 [put both the alphabet soup and the cream] ep=30: 23/30=77%\\n---\\n[PRUNE-DIAG] l2norm: n_keep=230/256, first_indices=[2, 5, 6, 7, 8]\\n2026-05-27 18:33:40,888   T0 [put both the alphabet soup and the tomat] ep=10: 9/10=90%\\n2026-05-27 18:38:03,931   T0 [put both the alphabet soup and the tomat] ep=20: 18/20=90%\\n2026-05-27 18:41:48,972   T0 [put both the alphabet soup and the tomat] ep=30: 28/30=93%\\n2026-05-27 18:46:06,001   T0 [put both the alphabet soup and the tomat] ep=40: 38/40=95%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-27T10:49:36.108812+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T10:49:36.108942+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-27 18:32:12,546   T4 [put the white mug on the left plate and ] ep=20: 16/20=80%\\n2026-05-27 18:37:08,281   T4 [put the white mug on the left plate and ] ep=30: 23/30=77%\\n2026-05-27 18:41:51,314   T4 [put the white mug on the left plate and ] ep=40: 31/40=78%\\n2026-05-27 18:46:37,487   T4 [put the white mug on the left plate and ] ep=50: 37/50=74%\\n2026-05-27 18:46:37,488 Task 4: SR=74.0% | Total: 163/250=65.2% | Time: 130.6min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_cqa1_deploy_20260527T104755",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-27T10:49:36.109125+00:00_
+
+## cqa1 审计结果
+
+| GPU | 实验 | PID | 进度 | 预计剩余 |
+|-----|------|-----|------|----------|
+| 0 | π0.5 Random k=0.7 strict v2 | 109152 | T5 done, 210/300=70.0%, 145min | ~2h |
+| 1 | π0.5 Random k=0.5 strict | 118726 | T4 done, 163/250=65.2%, 131min | ~2.5h |
+| 2 | π0.5 L2norm k=0.85 strict | 93525 | T7 进行中 (ep30), 273/350=78.0%, 157min | ~1.5h |
+| 3 | π0.5 L2norm k=0.9 strict | 200112 | T0 ep40, 38/40=95%, 刚启动 | ~4-5h |
+
+**结论：全部 4 GPU 在跑，无空闲 GPU。**
+
+- GPU1 (Random k=0.5) 未完成，部署条件不满足
+- GPU3 (L2norm k=0.9) 成功启动并在运行，部署条件不满足
+
+**最早释放：GPU2 ~1.5h 后（约 UTC 20:15）**。GPU2 释放后可部署 L2norm k=0.75 strict；GPU0/GPU1 之后释放可部署 L2norm k=0.7 strict。
+
+需要我设置定时轮询，GPU 释放后立即部署吗？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_audit_cqa1_deploy_20260527T104755"
+}
+```
+
+</details>
+
+---

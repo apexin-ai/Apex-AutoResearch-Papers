@@ -1,0 +1,1258 @@
+# cron hook mvp imm v8b twostage 20260516T151447 100896
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 38
+- **Recorded user turns:** 2
+- **Tool calls:** 17
+- **Original source:** `logs/chats/archive/cron_hook_mvp_imm_v8b_twostage_20260516T151447_100896.jsonl`
+- **Structured JSON:** [`5d2794a706b032ea9c2d.json`](../../sessions/5d/5d2794a706b032ea9c2d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+36 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T11:09:05.993768+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #6。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-27271 的 cuda:0 和 cuda:1，不可用其他设备
+- 服务器环境激活必须用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不存在 .venv
+- 网络操作前必须 `source /etc/network_turbo`，否则 HF/pypi 全部超时
+- HF 下载必须设 `HF_HOME=/root/autodl-tmp/.hf_cache` + `HF_HUB_DISABLE_XET=1` + SSL 证书变量
+- WANDB_MODE=offline（当前无在线 wandb）
+- submit_training_job 命令必须自带完整环境激活链（conda + network_turbo + 环境变量）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-27271，2× RTX PRO 6000 96GB
+- 工作目录：`/root/autodl-tmp/importance_margin_vla_compress`
+- Python：`/root/miniconda3/bin/python`（conda base 环境）
+- 模型：`lerobot/smolvla_base`（HF cache at `/root/autodl-tmp/.hf_cache`）
+- 数据集：`lerobot/aloha_sim_insertion_scripted_image`（20K samples）
+- Checkpoints：`/root/autodl-tmp/importance_margin_vla_compress/checkpoints/`
+  - baseline_v5: `checkpoints/baseline_v5/` (成功 baseline)
+  - imm_anchor_v8: `checkpoints/imm_anchor_v8/` (G3=1.344x, negative)
+  - imm_two_stage: `checkpoints/imm_two_stage/` (v8b_twostage 的输出，状态未知)
+- wandb offline run: `/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260516_122925-2t4p795u/`
+- 活跃进程：无（两张 GPU 均空闲）
+- Worker 在跑：`worker_diagnose_mvp_imm_v8b_twostage_20260516T070648`（SSH 查日志诊断中）
+
+### 3. 📊 当前状态
+刚收到 cron 回调：`mvp_imm_v8b_twostage` 进程异常退出（"process dead 5× with no sentinel/W&B"）。已派诊断 Worker 查日志，尚未返回。已向 Director 汇报失败现象 + GPU 空闲状态。
+
+Registry 状态：
+- 全部 17 个实验均 DONE（无 RUNNING/PREPARING）
+- `imm_two_stage_v9` 标记 killed（被 v8b_twostage 替代）
+- 最后一个成功实验：`mvp_baseline_v5`
+- 三个 negative：v7.2 (G3=3.19x), v8 (G3=1.344x), v8.1 (G3=2.53x)
+
+等待中：
+- 诊断 Worker 回调 → 确认失败根因
+- Director 对下一步方向的决策
+
+### 4. 📋 待办
+- 诊断 Worker 返回 → 判断失败类型：
+  - 如果是代码 bug / OOM / Stage transition 错误 → 修复后在 cuda:1 重跑 two-stage
+  - 如果训练完成但无 sentinel → 检查是否有可用 checkpoint，直接跑 eval
+  - 如果方法论失败（训练 diverge / loss 爆炸）→ 向 Director 提交 fallback 方向决策
+- two-stage 确认失败（方法论）→ 启动 fallback 梯队第一项：mask ratio annealing (keep=0.9→0.5，基于 v8 checkpoint)
+- 任何实验重跑/新跑 → 两张 GPU 必须都安排任务（cuda:0 跑 fallback 准备，cuda:1 跑修复后的 two-stage 或另一个 fallback）
+
+### 5. 🎯 战略上下文
+**核心问题**：IMM 训练导致 backbone co-adaptation，G3 (deploy loss ratio) 始终 >1.10。
+
+**决策链**：
+- D029: v8 bypass 7.12x 确认 co-adaptation 是 backbone 内化 sparse token 偏好（非梯度泄漏）
+- D033: 降低 λ 不解决 G3（反而恶化，因为 ACIS 质量差）
+- D032: two-stage 是解耦 co-adaptation 的最后尝试（冻结 backbone 训 ACIS → 冻结 ACIS 训 LoRA）
+- v8 (G3=1.344x) 是目前最接近目标的结果，gradient isolation 有效但不够
+
+**易错点**：
+- v8b_twostage 可能实际跑完了（~10K seconds = 足够 30K steps at 4.3 steps/sec），但因为 WANDB_MODE=offline 没有 sentinel → 检查 checkpoint 目录是否有最终权重
+- 不要混淆 "进程退出 = 训练失败"，可能是正常完成但缺少 done marker
+- Fallback 方向决策权在 Director，Agent 不能自行 pivot
+- 两张 GPU 空闲 = 失职，诊断完后必须立即安排任务
+
+## 项目硬约束 (memory.md 节选)
+
+## 环境信息
+- 服务器: westd-27271, 2× RTX PRO 6000 96GB
+- conda: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+- 项目路径: /root/autodl-tmp/importance_margin_vla_compress
+- Eval results: /root/autodl-tmp/importance_margin_vla_compress/eval_results/
+- AutoDL 网络: source /etc/network_turbo（HF 操作前必须执行）
+- WANDB: export WANDB_MODE=offline（避免 login 错误）
+
+## 可查的历史
+前 9 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T11:09:20.540468+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T11:09:20.591005+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T11:09:24.257536+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T11:09:24.659765+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T11:09:24.660590+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"baseline_v6_alpha16\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T08:40:58.566Z\", \"updated_at\": \"2026-05-16T11:04:21.593Z\", \"hypothesis\": \"降低 LoRA alpha (64→16, scale 2.0→0.5) 避免 flow matching velocity field mode collapse，恢复 sample_actions() diversity\", \"conclusion\": \"negative\", \"metrics\": {\"mode_collapse_test\": {\"verdict\": \"FAIL\", \"cross_obs_std\": 0.096329, \"noise_diversity_std\": 0.007352, \"pretrained_noise_std\": null, \"checkpoint\": \"checkpoints/baseline_v6_alpha16/step_029999/checkpoint.pt\", \"threshold_fail\": 0.01, \"threshold_pass\": 0.05, \"comparison_alpha64\": \"alpha64 std=0.006, alpha16 std=0.007 — no meaningful improvement\"}}, \"notes\": \"Mode collapse 未修复。alpha=16 (scale=0.5) noise diversity std=0.007352 < 0.01 阈值，与 alpha=64 的 std=0.006 几乎无改善。Cross-obs std=0.096 尚可（不同 obs 产生不同 action），但 same-obs noise diversity 极低，说明 ODE 仍然 collapse 到固定点。问题根源不在 LoRA scale 大小，可能在 flow matching + LoRA 的根本兼容性上。未执行 success rate 评估（mode collapse 导致 0% success rate 是确定的）。\"}, \"mvp_imm_v8c_annealing\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T07:07:51.506Z\", \"updated_at\": \"2026-05-16T10:59:18.563Z\", \"hypothesis\": \"Mask ratio annealing (k_ratio 0.9→0.5 线性退火) + gradient isolation (λ=0.5)。渐进引入 pruning 避免 backbone co-adaptation with sudden sparse input，目标 G3-deploy ≤ 1.10\", \"conclusion\": \"negative\", \"metrics\": {\"G1_margin_ratio\": 108.15, \"G2_preservation_diff\": 60.92, \"G3_deploy\": 2.04, \"G4_LED\": 0.1046, \"action_loss_acis_prune\": null, \"action_loss_baseline\": null, \"final_train_loss\": 0.0492, \"final_action_loss\": 0.0023, \"final_margin_loss\": 0.0938}}, \"eval_sim_success_rate\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T08:37:18.063Z\", \"updated_at\": \"2026-05-16T08:37:18.063Z\", \"notes\": \"诊断结论：LoRA fine-tuning (alpha=64, rank=32, scale=2.0) 导致 flow matching ODE 推理 mode collapse。预训练 action std=0.104 → LoRA模型 std=0.00
+…[truncated 13547 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 403
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T11:09:25.112306+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T11:09:25.112660+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T11:09:25.112853+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T11:09:25.163369+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- eval_sim_success_rate（准备中）\\n- imm_two_stage_v9（准备中）\\n\\n## 近期结论\\n- **baseline_v6_alpha16** (negative): 降低 LoRA alpha (64→16, scale 2.0→0.5) 避免 flow matching velocity field mode collapse，恢复 sample_actions() diversity\\n- **mvp_imm_v8c_annealing** (negative): Mask ratio annealing (k_ratio 0.9→0.5 线性退火) + gradient isolation (λ=0.5)。渐进引入 pruning 避免 backbone co-adaptation with sudden sparse input，目标 G3-deploy ≤ 1.10\\n- **mvp_imm_v8b_twostage** (success): Two-stage training: 冻结 baseline_v5 backbone (含 LoRA)，Stage1 (10K) 只训 ACIS selector，Stage2 (20K) 解冻 LoRA 微调。消除 co-adaptation，目标 G3 ≤ 1.10 ← 基于 mvp_imm_anchor_v8\\n  [sim_success_rate](/api/workspace-files/projects/importance_margin_vla_compress/artifacts/mvp_imm_v8b_twostage/data/eval_sim.py)\\n\\n## 趋势\\n成功 2 / 负向 5 / 失败 10 / 共 18\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-27271: 无 GPU 信息\\n\\n## 告警\\n- mvp_baseline: 训练失败 — unknown\\n- mvp_imm_anchor: 训练失败 — unknown\\n- mvp_baseline_v2: 训练失败 — unknown\\n- mvp_imm_anchor_v2: 训练失败 — unknown\\n- mvp_baseline_v3: 训练失败 — unknown\\n- mvp_imm_anchor_v4: 训练失败 — unknown\\n- mvp_baseline_v4: 已被终止 — unknown\\n- mvp_imm_anchor_v5: 训练失败 — unknown\\n- mvp_imm_anchor_v6: 训练失败 — unknown\\n- mvp_imm_anchor_v7: 训练失败 — unknown\\n- mvp_imm_anchor_v7_1: 训练失败 — unknown\\n\", \"total_chars\": 1310, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T11:09:25.163829+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/ROADMAP.md\", \"content\": \"# importance_margin_vla_compress — Research Dashboard\\n\\n> 最后更新: 2026-05-16 10:34 UTC | 更新原因: Dream 完成 + framing 修正 (D036)\\n\\n## 核心方向\\nImportance Margin Maximization (IMM)：compression-agnostic 训练策略，最大化 VLA visual token importance margin Δ_k，使任何 token compression 方法在扰动下保持选择稳定。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（MVP 已通过 2026-05-16） + 审稿进行中\\n- **基础设施**: westd-27271, 2× RTX PRO 6000 96GB\\n- **MVP 结果**: G1=93.23x ✅ | G2=+56pp ✅ | G3=0.87x ✅ | G4=0.135 ✅\\n- **Dream 结果**: dream_20260516T075046 完成，best 4/10 / median 5/10 / worst 5/10\\n  - 结构性问题：Claim 1 需降级为 design criterion，bibliography 严重不足（7→25+ refs），CAGE 需显式对比\\n  - 最强贡献共识：compression-agnostic plugin + two-stage training ablation\\n  - paper_framing.md 已更新（D036）\\n- **RUNNING**: v8c_annealing (cuda:0) + baseline_v6_alpha16 (cuda:1)\\n- **关键阻塞**: success rate 需 LoRA mode collapse 修复（alpha=64→16）\\n\\n## 近期任务\\n- [ ] 检查 v8c_annealing + baseline_v6_alpha16 训练进度（Agent 已派）\\n- [ ] baseline_v6_alpha16 完成 → sample_actions std 验证 → 50 episode success rate\\n- [ ] v8c_annealing 完成 → 500-batch eval → 与 v8b 对比（plan_010）\\n- [ ] success rate baseline 验证通过 → alpha=16 重训 IMM two-stage → success rate 对比\\n- [ ] 准备 plan_001 success rate eval 脚本（Agent 已派）\\n- [ ] 准备 plan_005 bound verification 代码\\n- [ ] 向 Manager 申请加卡（P0 ~242 GPU-hrs，2 卡不够）\\n\\n## GPU 预算\\nwestd-27271: 2× RTX PRO 6000 96GB\\n- **cuda:0**: v8c_annealing 运行中\\n- **cuda:1**: baseline_v6_alpha16 运行中\\n- **P0 实验总预算**: ~242 GPU-hrs（含 3-seed 重复）\\n- **P1 实验总预算**: ~58 GPU-hrs\\n- **需要加卡**：CoRL DDL 前需至少 4 张卡并行\\n\\n## 投稿时间线\\n| Venue | Deadline | 距今 | 可行性 |\\n|-------|----------|------|--------|\\n| CoRL 2026 | May 29 paper | 13 天 | 极紧，需 4+ 卡 + success rate 修复成功 |\\n| AAAI 2027 | ~Aug 2026 | ~3 月 | 充裕 |\\n| ICLR 2027 | ~Oct 2026 | ~5 月 | 全面扩展 |\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要
+…[truncated 1338 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T11:10:00.430767+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T11:10:00.481400+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T11:10:05.507360+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T11:10:05.908885+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T11:10:05.909384+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T11:10:05.960124+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\", \"content\": \"# Memory — importance_margin_vla_compress\\n\\n## 关键教训\\n\\n### 🎯 MVP PASS: Two-stage 训练是解法 (2026-05-16, v8b_twostage)\\n**首个通过全部 MVP gate 的实验。**\\n- G1=93.23x, G2=+56.01pp, G3-deploy=0.8679 (**优于** baseline 13%), G4=0.1354\\n- ACIS+Prune(50%) action_loss = 0.003538 < baseline 0.004063\\n- 核心洞察：完全解耦 ACIS 和 backbone 训练后，ACIS pruning 不损害性能反而提升（正则化效应）\\n- 方案：Stage1 (0-10K) freeze backbone+LoRA 只训 ACIS (λ=1.0) → Stage2 (10K-30K) freeze ACIS 只训 LoRA\\n- 为什么 work：joint training 的根因是 backbone 和 ACIS 互相 co-adapt；two-stage 让 ACIS 先学 importance scoring（backbone 固定），再让 LoRA 适配固定的 ACIS routing pattern\\n\\n### ⚠️ LoRA + Flow Matching ODE = Mode Collapse (2026-05-16, sim eval)\\n**LoRA fine-tuning 破坏 flow matching 的 velocity field 全局结构，导致推理 mode collapse。**\\n- 预训练 action std=0.104, LoRA 模型 std=0.006（17x 衰减）\\n- 预训练 image sensitivity=0.149, LoRA 模型=0.024（6x 衰减，几乎忽略图像）\\n- 机制：LoRA (alpha=64, rank=32, scale=2.0) 在 flow field 中引入退化不动点，ODE solver 从纯 noise 出发所有轨迹收敛到同一常数 action\\n- forward() 不受影响（因 GT action 混入 noise），所以 offline action_loss 正常\\n- sample_actions() 完全失效 → closed-loop rollout 0% success\\n- **影响**：offline metrics (G1-G4) 仍然有效用于方法对比；success rate 需修复 LoRA 训练才能评估\\n- 候选修复：降低 alpha (64→16-32) / 加 generation loss / 减训练步数 / merge+full FT\\n\\n### λ sensitivity 在 gradient isolation 下反直觉 (2026-05-16, v8.1 negative)\\nv8 (λ=0.5, gradient isolation): G3-deploy = 1.344x\\nv8.1 (λ=0.2, gradient isolation): G3-deploy = 2.53x ← 降低 λ 恶化 G3\\n机理：低 λ=0.2 → ACIS 收敛慢 → 训练早期 routing 信号不稳定 → backbone 学到劣质表征且无法恢复。\\n\\n### AutoDL submit 命令必须含 network_turbo + WANDB_MODE (2026-05-16)\\n完整环境前缀：`source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/e
+…[truncated 1881 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T11:10:22.198112+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T11:10:22.198853+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/sessions/agent_a95c4df4.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T11:10:26.417394+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T11:10:26.518366+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T11:10:29.884328+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/resource*",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/resource*",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T11:10:29.985175+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T11:10:35.814267+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__load_project_config",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__load_project_config",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T11:10:35.814730+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T11:10:42.995802+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "importance_margin_vla_compress",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "importance_margin_vla_compress",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T11:10:42.996159+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"importance_margin_vla_compress\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"servers\": [\"westd-27271\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T11:11:16.055164+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 0 | Worker 池 0 (GPU 0 / CPU 0)\n\n## 状态汇报 (Loop #6 启动)\n\n### 实验完结总结\n\n| 实验 | 结论 | 核心指标 |\n|------|------|----------|\n| mvp_imm_v8b_twostage | ✅ SUCCESS | G3=0.87x (ALL GATES PASS) |\n| mvp_imm_v8c_annealing | ❌ NEGATIVE | G3=2.04x (single-stage annealing 无效) |\n| baseline_v6_alpha16 | ❌ NEGATIVE | mode collapse std=0.007 (vs 0.006 at alpha=64，无改善) |\n\n### 关键阻塞：LoRA Mode Collapse\n\n所有模型（含 baseline_v5）sim success rate = 0%。机制已确认：LoRA (alpha=64, rank=32, scale=2.0) 破坏 flow matching velocity field 全局结构，ODE 推理从纯 noise 出发所有轨迹收敛到同一固定点。\n\n**已排除**：降低 alpha (64→16) — 无效，std 从 0.006 → 0.007（阈值需 >0.05）\n\n**待尝试修复候选**（需 Director 决策优先级）：\n1. **减训练步数** — 30K 可能过度拟合，试 5K/10K/15K 早停（最快验证，~1h/run）\n2. **Merge LoRA → full FT** — 将 LoRA 权重 merge 进 base model，之后用极小 lr full FT，避免低秩约束导致 mode collapse\n3. **加 generation loss** — 训练时加 diffusion/flow matching consistency regularization，防止 velocity field 退化\n4. **DoRA / 其他 LoRA 变体** — DoRA 分离方向和幅度，可能避免 scale 过大问题\n5. **ODE→SDE 采样** — 推理时注入随机性（不改训练，仅改 inference）\n\n### 建议\n\n方案 1（减步数）和方案 5（SDE 采样）可立即并行在 cuda:0 / cuda:1 上验证，无需改训练代码。方案 1 直接用 baseline_v5 的中间 checkpoint (step 5K/10K 已有) 做 sim eval。方案 5 只改 inference pipeline。\n\n**请决策**：\n- (A) 优先跑哪些修复候选？\n- (B) 是否暂停 IMM 相关新实验，全力修复 mode collapse？\n- (C) CoRL DDL (May 29, 13天) 是否仍为目标？若是，需加卡并行。",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 0 | Worker 池 0 (GPU 0 / CPU 0)\n\n## 状态汇报 (Loop #6 启动)\n\n### 实验完结总结\n\n| 实验 | 结论 | 核心指标 |\n|------|------|----------|\n| mvp_imm_v8b_twostage | ✅ SUCCESS | G3=0.87x (ALL GATES PASS) |\n| mvp_imm_v8c_annealing | ❌ NEGATIVE | G3=2.04x (single-stage annealing 无效) |\n| baseline_v6_alpha16 | ❌ NEGATIVE | mode collapse std=0.007 (vs 0.006 at alpha=64，无改善) |\n\n### 关键阻塞：LoRA Mode Collapse\n\n所有模型（含 baseline_v5）sim success rate = 0%。机制已确认：LoRA (alpha=64, rank=32, scale=2.0) 破坏 flow matching velocity field 全局结构，ODE 推理从纯 noise 出发所有轨迹收敛到同一固定点。\n\n**已排除**：降低 alpha (64→16) — 无效，std 从 0.006 → 0.007（阈值需 >0.05）\n\n**待尝试修复候选**（需 Director 决策优先级）：\n1. **减训练步数** — 30K 可能过度拟合，试 5K/10K/15K 早停（最快验证，~1h/run）\n2. **Merge LoRA → full FT** — 将 LoRA 权重 merge 进 base model，之后用极小 lr full FT，避免低秩约束导致 mode collapse\n3. **加 generation loss** — 训练时加 diffusion/flow matching consistency regularization，防止 velocity field 退化\n4. **DoRA / 其他 LoRA 变体** — DoRA 分离方向和幅度，可能避免 scale 过大问题\n5. **ODE→SDE 采样** — 推理时注入随机性（不改训练，仅改 inference）\n\n### 建议\n\n方案 1（减步数）和方案 5（SDE 采样）可立即并行在 cuda:0 / cuda:1 上验证，无需改训练代码。方案 1 直接用 baseline_v5 的中间 checkpoint (step 5K/10K 已有) 做 sim eval。方案 5 只改 inference pipeline。\n\n**请决策**：\n- (A) 优先跑哪些修复候选？\n- (B) 是否暂停 IMM 相关新实验，全力修复 mode collapse？\n- (C) CoRL DDL (May 29, 13天) 是否仍为目标？若是，需加卡并行。",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T11:11:19.870746+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3815
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T11:11:53.895969+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T11:11:53.946616+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T11:12:18.247096+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "research:lora-mode-collapse-fix",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务：文献调研 — LoRA + Flow Matching/Diffusion Mode Collapse 修复方案\n\n### 背景\n我们在 SmolVLA (vision-language-action model) 上用 LoRA (rank=32, alpha=64, scale=2.0) fine-tune，训练 30K steps。Offline action loss 收敛良好，但 inference 时 sample_actions() 出现 mode collapse：\n- 预训练模型 action std = 0.104\n- LoRA 模型 action std = 0.006（17x 衰减）\n- 所有轨迹从不同 noise 出发收敛到同一固定点，忽略输入图像\n- 降低 alpha (64→16) 无效（std 0.006→0.007）\n\n模型用 flow matching ODE 生成 action sequences（类似 diffusion policy 但用 ODE 而非 SDE）。forward() 正常因为混入 GT action 作为 noise level，但 pure inference（从 N(0,1) 开始 ODE 积分）失败。\n\n### 调研目标\n搜索以下方向的论文和代码实现：\n\n1. **LoRA + Diffusion/Flow Matching 已知问题**：是否有论文报告过 LoRA fine-tune diffusion model 导致 mode collapse？如何解决？\n2. **Diffusion Policy fine-tuning 最佳实践**：Diffusion Policy / Flow Matching Policy 在 robotics 领域 fine-tune 时的推荐配置（特别是 LoRA vs full FT）\n3. **Flow Matching velocity field 退化修复**：velocity field consistency loss / regularization 方法\n4. **ODE→SDE 推理**：diffusion model 推理时加 stochasticity 是否能缓解 mode collapse（论文 + 实现）\n5. **LoRA 替代方案**：DoRA / LoRA+ / VeRA 等变体是否对 generative model 更友好\n6. **Early stopping / 训练步数与 mode collapse 关系**：是否有论文研究 over-training 导致 diffusion mode collapse\n\n### 产出要求\n写一份简洁报告（markdown），每个方向 3-5 行：\n- 最相关的 1-2 篇论文（标题 + arXiv ID + 核心结论）\n- 推荐的实验方案（参数/代码修改建议）\n- 预期效果和风险\n\n保存到项目 artifacts 目录：`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/research_lora_mode_collapse_fix.md`",
+  "tool_groups": "['knowledge']",
+  "tools": "['WebSearch', 'WebFetch']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:lora-mode-collapse-fix",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务：文献调研 — LoRA + Flow Matching/Diffusion Mode Collapse 修复方案\n\n### 背景\n我们在 SmolVLA (vision-language-action model) 上用 LoRA (rank=32, alpha=64, scale=2.0) fine-tune，训练 30K steps。Offline action loss 收敛良好，但 inference 时 sample_actions() 出现 mode collapse：\n- 预训练模型 action std = 0.104\n- LoRA 模型 action std = 0.006（17x 衰减）\n- 所有轨迹从不同 noise 出发收敛到同一固定点，忽略输入图像\n- 降低 alpha (64→16) 无效（std 0.006→0.007）\n\n模型用 flow matching ODE 生成 action sequences（类似 diffusion policy 但用 ODE 而非 SDE）。forward() 正常因为混入 GT action 作为 noise level，但 pure inference（从 N(0,1) 开始 ODE 积分）失败。\n\n### 调研目标\n搜索以下方向的论文和代码实现：\n\n1. **LoRA + Diffusion/Flow Matching 已知问题**：是否有论文报告过 LoRA fine-tune diffusion model 导致 mode collapse？如何解决？\n2. **Diffusion Policy fine-tuning 最佳实践**：Diffusion Policy / Flow Matching Policy 在 robotics 领域 fine-tune 时的推荐配置（特别是 LoRA vs full FT）\n3. **Flow Matching velocity field 退化修复**：velocity field consistency loss / regularization 方法\n4. **ODE→SDE 推理**：diffusion model 推理时加 stochasticity 是否能缓解 mode collapse（论文 + 实现）\n5. **LoRA 替代方案**：DoRA / LoRA+ / VeRA 等变体是否对 generative model 更友好\n6. **Early stopping / 训练步数与 mode collapse 关系**：是否有论文研究 over-training 导致 diffusion mode collapse\n\n### 产出要求\n写一份简洁报告（markdown），每个方向 3-5 行：\n- 最相关的 1-2 篇论文（标题 + arXiv ID + 核心结论）\n- 推荐的实验方案（参数/代码修改建议）\n- 预期效果和风险\n\n保存到项目 artifacts 目录：`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/research_lora_mode_collapse_fix.md`",
+    "tool_groups": "['knowledge']",
+    "tools": "['WebSearch', 'WebFetch']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T11:12:38.235059+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_lora-mode-collapse-fix_20260516T111218\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_research_lora-mode-collapse-fix_20260516T111218.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_lora-mode-collapse-fix_20260516T111218 started. Use get_worker_status('worker_research_lora-mode-collapse-fix_20260516T111218') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 19987
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T11:12:38.386222+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:checkpoint-diversity-test",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务：检测 baseline_v5 中间 checkpoint 的 action diversity\n\n### 背景\n我们的 LoRA fine-tune 模型（30K steps）出现 mode collapse：sample_actions() 产生的 action std=0.006（vs 预训练 0.104）。我们有 baseline_v5 的中间 checkpoint（step 5K, 10K），需要检查 mode collapse 是在哪个训练阶段开始的。如果早期 checkpoint 没有 collapse，那么 early stopping 就是可行的修复方案。\n\n### 环境\n- 服务器：westd-27271\n- 环境激活：`source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline`\n- 项目路径：`/root/autodl-tmp/importance_margin_vla_compress`\n- Python：`/root/miniconda3/bin/python`\n- Checkpoints:\n  - baseline_v5 final: `checkpoints/baseline_v5/step_029999/checkpoint.pt`\n  - baseline_v5 step 10K: `checkpoints/baseline_v5/step_010000/checkpoint.pt`（可能存在）\n  - baseline_v5 step 5K: `checkpoints/baseline_v5/step_005000/checkpoint.pt`（可能存在）\n\n### 任务步骤\n\n1. SSH 连接 westd-27271，检查 checkpoint 目录结构：\n   ```\n   ls -la /root/autodl-tmp/importance_margin_vla_compress/checkpoints/baseline_v5/\n   ```\n   确认有哪些中间 checkpoint。\n\n2. 检查项目中是否已有 action diversity 测试脚本（之前用过的 eval_sim.py 或类似脚本中 mode collapse test 部分）：\n   ```\n   grep -r \"mode_collapse\\|action_std\\|noise_diversity\" /root/autodl-tmp/importance_margin_vla_compress/*.py /root/autodl-tmp/importance_margin_vla_compress/scripts/\n   ```\n\n3. 对每个可用的中间 checkpoint，运行 action diversity 测试：\n   - 加载 checkpoint\n   - 用 sample_actions() 从 10 个不同的 noise samples 生成 action\n   - 计算 action std across noise samples（same observation）\n   - 对比 pretrained model 的 std\n\n   如果没有现成脚本，写一个简单的测试脚本 `scripts/test_action_diversity.py`，包含：\n   - 加载模型 + checkpoint\n   - 固定一个 observation batch\n   - 多次 sample_actions（不同 noise seed）\n   - 报告 std\n\n4. 汇总结果：哪个 step 开始出现 mode collapse？是逐步退化还是突然跳变？\n\n### 产出\n- 在服务器上保存测试结果到 `/root/autodl-tmp/importance_margin_vla_compress/eval_results/action_diversity_by_step.json`\n- 汇总报告写入 worker output（哪些 step 的 std 是多少，是否有 early stopping 可行的证据）\n\n### 注意\n- 只用 1 张 GPU（默认 cuda:0）\n- 如果中间 checkpoint 不存在，报告\"无中间 checkpoint\"并建议重训 baseline 并保存更多 checkpoint\n- 测试脚本参考项目中已有的模型加载和 eval 代码",
+  "tool_groups": "['ssh', 'knowledge']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:checkpoint-diversity-test",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务：检测 baseline_v5 中间 checkpoint 的 action diversity\n\n### 背景\n我们的 LoRA fine-tune 模型（30K steps）出现 mode collapse：sample_actions() 产生的 action std=0.006（vs 预训练 0.104）。我们有 baseline_v5 的中间 checkpoint（step 5K, 10K），需要检查 mode collapse 是在哪个训练阶段开始的。如果早期 checkpoint 没有 collapse，那么 early stopping 就是可行的修复方案。\n\n### 环境\n- 服务器：westd-27271\n- 环境激活：`source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export WANDB_MODE=offline`\n- 项目路径：`/root/autodl-tmp/importance_margin_vla_compress`\n- Python：`/root/miniconda3/bin/python`\n- Checkpoints:\n  - baseline_v5 final: `checkpoints/baseline_v5/step_029999/checkpoint.pt`\n  - baseline_v5 step 10K: `checkpoints/baseline_v5/step_010000/checkpoint.pt`（可能存在）\n  - baseline_v5 step 5K: `checkpoints/baseline_v5/step_005000/checkpoint.pt`（可能存在）\n\n### 任务步骤\n\n1. SSH 连接 westd-27271，检查 checkpoint 目录结构：\n   ```\n   ls -la /root/autodl-tmp/importance_margin_vla_compress/checkpoints/baseline_v5/\n   ```\n   确认有哪些中间 checkpoint。\n\n2. 检查项目中是否已有 action diversity 测试脚本（之前用过的 eval_sim.py 或类似脚本中 mode collapse test 部分）：\n   ```\n   grep -r \"mode_collapse\\|action_std\\|noise_diversity\" /root/autodl-tmp/importance_margin_vla_compress/*.py /root/autodl-tmp/importance_margin_vla_compress/scripts/\n   ```\n\n3. 对每个可用的中间 checkpoint，运行 action diversity 测试：\n   - 加载 checkpoint\n   - 用 sample_actions() 从 10 个不同的 noise samples 生成 action\n   - 计算 action std across noise samples（same observation）\n   - 对比 pretrained model 的 std\n\n   如果没有现成脚本，写一个简单的测试脚本 `scripts/test_action_diversity.py`，包含：\n   - 加载模型 + checkpoint\n   - 固定一个 observation batch\n   - 多次 sample_actions（不同 noise seed）\n   - 报告 std\n\n4. 汇总结果：哪个 step 开始出现 mode collapse？是逐步退化还是突然跳变？\n\n### 产出\n- 在服务器上保存测试结果到 `/root/autodl-tmp/importance_margin_vla_compress/eval_results/action_diversity_by_step.json`\n- 汇总报告写入 worker output（哪些 step 的 std 是多少，是否有 early stopping 可行的证据）\n\n### 注意\n- 只用 1 张 GPU（默认 cuda:0）\n- 如果中间 checkpoint 不存在，报告\"无中间 checkpoint\"并建议重训 baseline 并保存更多 checkpoint\n- 测试脚本参考项目中已有的模型加载和 eval 代码",
+    "tool_groups": "['ssh', 'knowledge']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T11:12:40.650570+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_checkpoint-diversity-test_20260516T111238\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_analysis_checkpoint-diversity-test_20260516T111238.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_checkpoint-diversity-test_20260516T111238 started. Use get_worker_status('worker_analysis_checkpoint-diversity-test_20260516T111238') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2264
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-16T11:12:51.226061+00:00_
+
+两个 Worker 已派发：
+1. **文献调研** (`worker_research_lora-mode-collapse-fix`) — 搜索 LoRA + diffusion/flow matching mode collapse 修复方案
+2. **Checkpoint diversity 测试** (`worker_analysis_checkpoint-diversity-test`) — SSH 检查 baseline_v5 中间 checkpoint 的 action diversity，判断 early stopping 是否可行
+
+当前等待：
+- Director 决策（修复方向优先级 + CoRL 是否仍为目标）
+- 两个 Worker 回调
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_imm_v8b_twostage"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 37 · 2026-05-16T15:13:56.906218+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_imm_v8b_twostage",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-16T15:14:47.097566+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-27271 的 cuda:0 和 cuda:1，不可用其他设备
+- 环境激活必须用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不存在 .venv
+- 网络操作前必须 `source /etc/network_turbo`，否则 HF/pypi 全部超时
+- HF 下载必须设 `HF_HOME=/root/autodl-tmp/.hf_cache` + `HF_HUB_DISABLE_XET=1` + SSL 证书变量
+- WANDB_MODE=offline（无在线 wandb）
+- submit_training_job 命令必须自带完整环境激活链（conda + network_turbo + 环境变量）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-27271，2× RTX PRO 6000 96GB
+- 工作目录：`/root/autodl-tmp/importance_margin_vla_compress`
+- Python：`/root/miniconda3/bin/python`（conda base 环境）
+- 模型：`lerobot/smolvla_base`（HF cache at `/root/autodl-tmp/.hf_cache`）
+- 数据集：`lerobot/aloha_sim_insertion_scripted_image`（20K samples）
+- Checkpoints：
+  - baseline_v5: `checkpoints/baseline_v5/step_029999/checkpoint.pt`（唯一成功 baseline）
+  - imm_two_stage (MVP PASS): `checkpoints/imm_two_stage/final/checkpoint.pt`
+  - v8c annealing: `checkpoints/imm_anchor_v8c_annealing/`
+- wandb offline run: `/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260516_122925-2t4p795u/`
+- 活跃进程：无（两张 GPU 均空闲，无 tmux session，无 cron）
+
+### 3. 📊 当前状态
+刚完成 Loop #6 session-start 初始化。已向 Director 汇报全局状态 + mode collapse 修复方案候选列表，等待方向决策。
+
+Registry：全部 20 个实验 DONE，无 RUNNING/PREPARING。
+
+等待中：
+- Worker `worker_research_lora-mode-collapse-fix_20260516T111218`（文献调研：LoRA + flow matching mode collapse 修复方案）
+- Worker `worker_analysis_checkpoint-diversity-test_20260516T111238`（SSH 检查 baseline_v5 中间 checkpoint 的 action diversity，判断 early stopping 可行性）
+- Director 决策：mode collapse 修复优先级 + CoRL DDL 是否仍为目标
+
+### 4. 📋 待办
+- 文献调研 Worker 返回 → 整合报告到 memory.md，提取最可行方案补充给 Director
+- Checkpoint diversity Worker 返回 → 若早期 checkpoint (5K/10K) 无 collapse → 立即提议 Director 用 early stopping baseline 做 success rate eval
+- 若早期 checkpoint 也 collapse → early stopping 路线关闭，聚焦 merge+full FT 或 generation loss
+- Director 决策返回 → 立即在 cuda:0 + cuda:1 并行启动对应修复实验（两卡必须同时跑）
+- 若 Director 确认 CoRL DDL 不可行 → 切换到 AAAI 节奏，可做更彻底的 full FT 实验
+
+### 5. 🎯 战略上下文
+**核心矛盾**：v8b_twostage MVP 全 gate PASS（G3=0.87x），但 LoRA mode collapse 导致 sim success rate = 0%。Offline metrics 有效但模型不能 closed-loop 执行。
+
+**决策链**：
+- D034: two-stage 解决 co-adaptation（G3 从 1.344x → 0.87x）
+- D035: LoRA mode collapse 确认（alpha=64, scale=2.0 破坏 flow matching velocity field）
+- D037: v8c annealing NEGATIVE（G3=2.04x），确认 single-stage 无法解决
+- D038: alpha=16 未修复 mode collapse（std 0.006→0.007，需 >0.05）
+
+**易错点**：
+- 不要混淆"进程退出 = 训练失败"——v8b_twostage 进程退出是正常完成，已确认 success
+- baseline_v5 本身也 0% success rate（mode collapse 是 LoRA 训练通病，不是 IMM 特有）
+- baseline_mean_reward=0.16（非零）暗示模型有部分能力，可能是 max_episode_steps=300 vs 训练数据 400 步的 bug
+- mode collapse 修复方向决策权在 Director，Agent 不能自行 pivot
+- 两张 GPU 空闲 = L1 违规，Director 决策到手后必须秒级派活
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_imm_v8b_twostage"
+}
+```
+
+</details>
+
+---

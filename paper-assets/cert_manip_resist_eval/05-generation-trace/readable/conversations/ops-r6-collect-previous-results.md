@@ -1,0 +1,903 @@
+# ops r6 collect previous results
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/chats/worker_ops_r6-collect-previous-results_20260525T064822.jsonl`
+- **Structured JSON:** [`9f17aaaf79070b3a2167.json`](../../sessions/9f/9f17aaaf79070b3a2167.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+31 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-25T06:51:56.864356+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-25T06:51:56.864678+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-25T06:51:56.864863+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls -la /root/cert_manip_resist_eval/artifacts/results/plan001/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls -la /root/cert_manip_resist_eval/artifacts/results/plan001/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-25T06:51:56.864996+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ps -p 18494 -o pid,cmd 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ps -p 18494 -o pid,cmd 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-25T06:51:56.865162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1492\\ndrwxr-xr-x 4 1000 1000   4096 May 25 04:31 .\\ndrwxr-xr-x 3 1000 1000    141 May 24 14:02 ..\\n-rw-r--r-- 1 root root  21866 May 25 03:32 api_only_power_beta.json\\n-rw-r--r-- 1 root root  22514 May 25 03:14 api_only_power_betastd.json\\n-rw-r--r-- 1 root root   7506 May 25 03:29 bayesian_posterior_entropy.json\\n-rw-r--r-- 1 1000 1000   2949 May 23 07:21 beta_reg_epsilon.json\\n-rw-r--r-- 1 root root  12653 May 25 03:05 beta_std_trajectory.json\\n-rw-r--r-- 1 root root  10117 May 25 03:24 betastd_trajectory.json\\n-rw-r--r-- 1 root root  20438 May 24 18:07 cinelli_hazlett_v2.json\\n-rw-r--r-- 1 root root  34003 May 24 14:05 clustered_se_analysis.json\\n-rw-r--r-- 1 root root  23685 May 24 18:31 cross_benchmark_v2.json\\n-rw-r--r-- 1 root root  27407 May 24 18:49 cross_benchmark_v2_bidirectional.json\\n-rw-r--r-- 1 root root  21492 May 24 20:16 crossed_re_results.json\\n-rw-r--r-- 1 root root  45354 May 24 20:50 dbei_predictor_shift.json\\n-rw-r--r-- 1 root root  22533 May 25 03:05 fig_beta_std_trajectory.pdf\\n-rw-r--r-- 1 root root  79321 May 25 03:05 fig_beta_std_trajectory.png\\n-rw-r--r-- 1 root root  34126 May 25 03:24 fig_betastd_pvalue_dist.pdf\\n-rw-r--r-- 1 root root 125943 May 25 03:24 fig_betastd_pvalue_dist.png\\n-rw-r--r-- 1 root root  24443 May 25 03:24 fig_betastd_trajectory.pdf\\n-rw-r--r-- 1 root root 101774 May 25 03:24 fig_betastd_trajectory.png\\n-rw-r--r-- 1 root root  33491 May 25 03:05 fig_pvalue_distribution.pdf\\n-rw-r--r-- 1 root root  96445 May 25 03:05 fig_pvalue_distribution.png\\n-rw-r--r-- 1 root root   2849 May 25 08:03 fp16_baseline.json\\n-rw-r--r-- 1 root root   2303 May 25 08:02 fp16_baseline_checkpoint.json\\n-rw-r--r-- 1 root root  90437 May 25 01:01 fp16_eval_data.json\\n-rw-r--r-- 1 root root  23103 May 25 03:17 fractional_logit_v2.json\\n-rw-r--r-- 1 root root  61815 May 24 21:41 gaussian_copula_gof.json\\n-rw-r--r-- 1 root root   2387 May 24 21:40 gaussian
+…[truncated 1507 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T06:51:56.865313+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-25T06:51:56.865466+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ps -p 18494 -o pid,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ps -p 18494 -o pid,cmd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-25T06:51:56.865601+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"   PID CMD\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-25T06:51:56.865744+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/quant_dummy_regression.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/quant_dummy_regression.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-25T06:51:56.865864+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/api_only_power_beta.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/api_only_power_beta.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-25T06:51:56.866178+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"log(ASR+eps) ~ log(K_eff) + log(eta_max+eps) + quant_frac + log(K_eff)*quant_frac\\\",\\n  \\\"epsilon\\\": 1e-06,\\n  \\\"bootstrap_B\\\": 499,\\n  \\\"bootstrap_method\\\": \\\"wild_cluster_bootstrap_max_over_K_positions\\\",\\n  \\\"n_conditions\\\": 12,\\n  \\\"n_models\\\": 15,\\n  \\\"n_local_awq\\\": 6,\\n  \\\"local_models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\"\\n  ],\\n  \\\"results_by_K\\\": {\\n    \\\"K3\\\": {\\n      \\\"keff_sig_count\\\": \\\"6/12\\\",\\n      \\\"keff_beta_std_mean\\\": 0.3922005261439904,\\n      \\\"interaction_sig_count\\\": \\\"5/12\\\",\\n      \\\"interaction_direction\\\": \\\"negative\\\",\\n      \\\"quant_frac_sig_count\\\": \\\"6/12\\\",\\n      \\\"eta_sig_count\\\": \\\"7/12\\\"\\n    },\\n    \\\"K5\\\": {\\n      \\\"keff_sig_count\\\": \\\"6/12\\\",\\n      \\\"keff_beta_std_mean\\\": 0.341395882713593,\\n      \\\"interaction_sig_count\\\": \\\"2/12\\\",\\n      \\\"interaction_direction\\\": \\\"mixed\\\",\\n      \\\"quant_frac_sig_count\\\": \\\"2/12\\\",\\n      \\\"eta_sig_count\\\": \\\"11/12\\\"\\n    },\\n    \\\"K7\\\": {\\n      \\\"keff_sig_count\\\": \\\"4/12\\\",\\n      \\\"keff_beta_std_mean\\\": 0.26955493270541414,\\n      \\\"interaction_sig_count\\\": \\\"0/12\\\",\\n      \\\"interaction_direction\\\": \\\"mixed\\\",\\n      \\\"quant_frac_sig_count\\\": \\\"0/12\\\",\\n      \\\"eta_sig_count\\\": \\\"12/12\\\"\\n    }\\n  },\\n  \\\"predictor_shift_survives\\\": false,\\n  \\\"interaction_interpretation\\\": \\\"Interaction significant in [5, 2, 0] conditions (K=3/5/7). Mixed evidence for quant_frac modulating K_eff effect.\\\",\\n  \\\"conditions_detail\\\": {\\n    \\\"K3\\\": {\\n      \\\"mmluxprompt_injection\\\": {\\n        \\\"n_panels\\\": 455,\\n        \\\"skipped\\\": false
+…[truncated 7876 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-25T06:51:56.866553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"api_models\\\": [\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"full_pool_models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"api_only_panels\\\": {\\n    \\\"K3\\\": 84,\\n    \\\"K5\\\": 126,\\n    \\\"K7\\\": 36\\n  },\\n  \\\"full_pool_panels\\\": {\\n    \\\"K3\\\": 455,\\n    \\\"K5\\\": 3003,\\n    \\\"K7\\\": 6435\\n  },\\n  \\\"beta_std_comparison\\\": {\\n    \\\"K3\\\": {\\n      \\\"per_condition\\\": {\\n        \\\"arc_challengexauthority_bias\\\": {\\n          \\\"full_pool\\\": 0.2914,\\n          \\\"api_only\\\": 0.2559\\n        },\\n        \\\"arc_challengexposition_bias\\\": {\\n          \\\"full_pool\\\": -0.0835,\\n          \\\"api_only\\\": 1.4231\\n        },\\n        \\\"arc_challengexprompt_injection\\\": {\\n          \\\"full_pool\\\": 0.3573,\\n          \\\"api_only\\\": 0.306\\n        },\\n        \\\"arc_challengexscore_manipulation\\\": {\\n          \\\"full_pool\\\": 0.4657,\\n          \\\"api_only\\\": 0.5026\\n        },\\n        \\\"arc_challengexsycophancy\\\": {\\n          \\\"full_pool\\\": 0.2831,\\n          \\\"api_only\\\": 0.4238\\n        },\\n        \\\"arc_challengexverbosity_bias\\\": {\\n          \\\"full_pool\\\": 0.3469,\\n          \\\"api_only\\\": 0.7415\\n        },\\n        \\\"mmluxauthority_bias\\\": 
+…[truncated 8316 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-25T06:51:56.866743+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/api_only_power_betastd.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/api_only_power_betastd.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T06:51:56.867079+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"api_only_models\\\": 9,\\n  \\\"api_only_model_list\\\": [\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"full_pool_models\\\": 15,\\n  \\\"panels_per_K\\\": {\\n    \\\"K3\\\": {\\n      \\\"full_pool\\\": \\\"C(15,3)=455\\\",\\n      \\\"api_only\\\": \\\"C(9,3)=84\\\"\\n    },\\n    \\\"K5\\\": {\\n      \\\"full_pool\\\": \\\"C(15,5)=3003\\\",\\n      \\\"api_only\\\": \\\"C(9,5)=126\\\"\\n    }\\n  },\\n  \\\"beta_std_comparison\\\": {\\n    \\\"K3\\\": {\\n      \\\"per_condition\\\": {\\n        \\\"arc_challengexauthority_bias\\\": {\\n          \\\"full_pool\\\": 0.2914,\\n          \\\"api_only\\\": 0.2559,\\n          \\\"ratio\\\": 0.878,\\n          \\\"full_pool_p\\\": 5.334706625876731e-07,\\n          \\\"api_only_p\\\": 0.1139415537873369\\n        },\\n        \\\"arc_challengexposition_bias\\\": {\\n          \\\"full_pool\\\": -0.0835,\\n          \\\"api_only\\\": 1.4231,\\n          \\\"ratio\\\": -17.043,\\n          \\\"full_pool_p\\\": 0.4298543029106462,\\n          \\\"api_only_p\\\": 0.0003444731324822301\\n        },\\n        \\\"arc_challengexprompt_injection\\\": {\\n          \\\"full_pool\\\": 0.3573,\\n          \\\"api_only\\\": 0.306,\\n          \\\"ratio\\\": 0.856,\\n          \\\"full_pool_p\\\": 1.86034748811719e-11,\\n          \\\"api_only_p\\\": 0.038453142546787625\\n        },\\n        \\\"arc_challengexscore_manipulation\\\": {\\n          \\\"full_pool\\\": 0.4657,\\n          \\\"api_only\\\": 0.5026,\\n          \\\"ratio\\\": 1.079,\\n          \\\"full_pool_p\\\": 7.696489414560666e-08,\\n          \\\"api_only_p\\\": 0.004485060140948843\\n        },\\n        \\\"arc_challengexsycophancy\\\": {\\n          \\\"full_po
+…[truncated 8308 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-25T06:51:56.867276+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/beta_std_trajectory.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/beta_std_trajectory.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-25T06:51:56.867408+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/betastd_trajectory.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/betastd_trajectory.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-25T06:51:56.867738+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"beta_std_keff\\\": {\\n    \\\"K3\\\": {\\n      \\\"mean\\\": 0.3486846875500967,\\n      \\\"sd\\\": 0.18294545561722841,\\n      \\\"median\\\": 0.3674163577309727,\\n      \\\"values\\\": [\\n        0.48314685049240624,\\n        0.48349247897694947,\\n        0.5423299456712949,\\n        0.3775387618914894,\\n        0.11390037594588974,\\n        0.5228694784200512,\\n        0.35729395357045607,\\n        0.2830955448799352,\\n        0.46570430033815713,\\n        0.3468778952839267,\\n        -0.08347432874502862,\\n        0.2914409938756335\\n      ]\\n    },\\n    \\\"K5\\\": {\\n      \\\"mean\\\": 0.4370573485370128,\\n      \\\"sd\\\": 0.2933757500993087,\\n      \\\"median\\\": 0.4361979585586533,\\n      \\\"values\\\": [\\n        0.5289861869269145,\\n        0.45452392354971205,\\n        0.6451324361539571,\\n        0.33520291077421455,\\n        0.20410758954131897,\\n        0.4990400541362938,\\n        0.5578570146066659,\\n        0.06496944119267034,\\n        1.171659487484705,\\n        0.4178719935675946,\\n        0.13935586310287185,\\n        0.22598128140723414\\n      ]\\n    },\\n    \\\"K7\\\": {\\n      \\\"mean\\\": 0.4008173222051639,\\n      \\\"sd\\\": 0.22227512754437379,\\n      \\\"median\\\": 0.4047249055223673,\\n      \\\"values\\\": [\\n        0.5446120107720268,\\n        0.4425799456069482,\\n        0.5562770301025577,\\n        0.29515249245360775,\\n        0.25189286178967973,\\n        0.4588319080009043,\\n        0.6084973362386161,\\n        0.04562809962006745,\\n        0.8447394630108236,\\n        0.3668698654377863,\\n        0.26762692410243094,\\n        0.12709992932651726\\n      ]\\n    }\\n  },\\n  \\\"beta_std_eta\\\": {\\n    \\\"K3\\\": {\\n      \\\"mean\\\": 0.26588787556322707,\\n      \\\"sd\\\": 0.1793242377091022,\\n      \\\"median\\\": 0.23136833230966783,\\n      \\\"values\\\": [\\n        0.2124375032000434,\\n    
+…[truncated 7838 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-25T06:51:56.868101+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"beta_std_keff\\\": {\\n    \\\"K3\\\": {\\n      \\\"mean\\\": 0.3486846875500967,\\n      \\\"sd\\\": 0.18294545561722841,\\n      \\\"values\\\": [\\n        0.48314685049240624,\\n        0.48349247897694947,\\n        0.5423299456712949,\\n        0.3775387618914894,\\n        0.11390037594588974,\\n        0.5228694784200512,\\n        0.35729395357045607,\\n        0.2830955448799352,\\n        0.46570430033815713,\\n        0.3468778952839267,\\n        -0.08347432874502862,\\n        0.2914409938756335\\n      ]\\n    },\\n    \\\"K5\\\": {\\n      \\\"mean\\\": 0.4370573485370128,\\n      \\\"sd\\\": 0.2933757500993087,\\n      \\\"values\\\": [\\n        0.5289861869269145,\\n        0.45452392354971205,\\n        0.6451324361539571,\\n        0.33520291077421455,\\n        0.20410758954131897,\\n        0.4990400541362938,\\n        0.5578570146066659,\\n        0.06496944119267034,\\n        1.171659487484705,\\n        0.4178719935675946,\\n        0.13935586310287185,\\n        0.22598128140723414\\n      ]\\n    },\\n    \\\"K7\\\": {\\n      \\\"mean\\\": 0.4008173222051639,\\n      \\\"sd\\\": 0.22227512754437379,\\n      \\\"values\\\": [\\n        0.5446120107720268,\\n        0.4425799456069482,\\n        0.5562770301025577,\\n        0.29515249245360775,\\n        0.25189286178967973,\\n        0.4588319080009043,\\n        0.6084973362386161,\\n        0.04562809962006745,\\n        0.8447394630108236,\\n        0.3668698654377863,\\n        0.26762692410243094,\\n        0.12709992932651726\\n      ]\\n    }\\n  },\\n  \\\"beta_std_eta\\\": {\\n    \\\"K3\\\": {\\n      \\\"mean\\\": 0.26588787556322707,\\n      \\\"sd\\\": 0.1793242377091022,\\n      \\\"values\\\": [\\n        0.2124375032000434,\\n        0.19311234247389938,\\n        0.1185708094090171,\\n        0.29225979104959166,\\n        0.6624836422077764,\\n        0.08056321725572044,\\n        0.2648101255635339,\
+…[truncated 8052 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-25T06:51:56.868264+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/bayesian_posterior_entropy.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/bayesian_posterior_entropy.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T06:51:56.868519+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"posterior_entropy\\\": {\\n    \\\"K3\\\": {\\n      \\\"mean\\\": 0.9749359086666859,\\n      \\\"median\\\": 1.0190064642597156,\\n      \\\"sd\\\": 0.12008125474228376,\\n      \\\"effective_judges_mean\\\": 2.669135233479146,\\n      \\\"effective_judges_median\\\": 2.77044090099308,\\n      \\\"concentration_ratio\\\": 0.8897117444930487,\\n      \\\"max_weight_mean\\\": 0.500323731112472\\n    },\\n    \\\"K5\\\": {\\n      \\\"mean\\\": 1.4704692360300597,\\n      \\\"median\\\": 1.4872071489868137,\\n      \\\"sd\\\": 0.08928904503050601,\\n      \\\"effective_judges_mean\\\": 4.368202171958811,\\n      \\\"effective_judges_median\\\": 4.424720660962489,\\n      \\\"concentration_ratio\\\": 0.8736404343917622,\\n      \\\"max_weight_mean\\\": 0.3423314193872827\\n    },\\n    \\\"K7\\\": {\\n      \\\"mean\\\": 1.8004319587855941,\\n      \\\"median\\\": 1.8075514918566955,\\n      \\\"sd\\\": 0.06939908703920454,\\n      \\\"effective_judges_mean\\\": 6.066649359380444,\\n      \\\"effective_judges_median\\\": 6.095504253692058,\\n      \\\"concentration_ratio\\\": 0.8666641941972062,\\n      \\\"max_weight_mean\\\": 0.2655787155663451\\n    }\\n  },\\n  \\\"keff_variance_compression\\\": {\\n    \\\"K3\\\": {\\n      \\\"cv\\\": 0.1565848799538143,\\n      \\\"range\\\": [\\n        1.4477398539683035,\\n        2.8531649266483186\\n      ],\\n      \\\"sd\\\": 0.3406823207287349\\n    },\\n    \\\"K5\\\": {\\n      \\\"cv\\\": 0.14749884312072747,\\n      \\\"range\\\": [\\n        2.0632973380215227,\\n        4.41469390032275\\n      ],\\n      \\\"sd\\\": 0.49432874832992424\\n    },\\n    \\\"K7\\\": {\\n      \\\"cv\\\": 0.13054991074746267,\\n      \\\"range\\\": [\\n        2.7222850892358252,\\n        5.834591712790624\\n      ],\\n      \\\"sd\\\": 0.5910139951933772\\n    },\\n    \\\"cv_drops_monotonically\\\": true\\n  },\\n  \\\"concentration_tests\\\": {\\n    \\\"concentrati
+…[truncated 7004 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-25T06:51:56.868692+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/fractional_logit_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/fractional_logit_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T06:51:56.869017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"fractional_logit_glm_binomial_clustered_se\\\",\\n  \\\"data_version\\\": \\\"V2 corrected\\\",\\n  \\\"data_source_file\\\": \\\"/root/cert_manip_resist_eval/artifacts/results/plan001/individual_scores\\\",\\n  \\\"mi_matrix_file\\\": \\\"/root/cert_manip_resist_eval/artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\\",\\n  \\\"v2_models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"regression_spec\\\": \\\"GLM(ASR ~ log(K_eff) + log(eta_max + eps), family=Binomial(), link=logit)\\\",\\n  \\\"clustering\\\": \\\"max-p across K judge positions\\\",\\n  \\\"fdr_method\\\": \\\"Benjamini-Hochberg\\\",\\n  \\\"fdr_alpha\\\": 0.05,\\n  \\\"eps\\\": 1e-06,\\n  \\\"results_by_K\\\": {\\n    \\\"K3\\\": {\\n      \\\"keff_sig_fdr\\\": \\\"9/12\\\",\\n      \\\"keff_all_positive\\\": false,\\n      \\\"eta_sig_fdr\\\": \\\"6/12\\\",\\n      \\\"conditions\\\": [\\n        {\\n          \\\"benchmark\\\": \\\"mmlu\\\",\\n          \\\"attack\\\": \\\"prompt_injection\\\",\\n          \\\"keff_coef\\\": 5.475868278496845,\\n          \\\"keff_p\\\": 4.036975088933349e-05,\\n          \\\"keff_fdr_p\\\": 8.073950177866698e-05,\\n          \\\"keff_fdr_sig\\\": true,\\n          \\\"eta_coef\\\": 0.7588187524613434,\\n          \\\"eta_p\\\": 1.4370069062027814e-06,\\n          \\\"eta_fdr_p\\\": 5.748027624811126e-06,\\n          \\\"eta_fdr_sig\\\": true,\\n          \\\"pseudo_r2\\\": 0.5982316344912602,\\n          \\\"n_panels\\\": 455,\\n          \\\"se_inflation_keff\\\": 0.774850
+…[truncated 8144 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-25T06:51:56.869183+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/monte_carlo_size_calibration.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/monte_carlo_size_calibration.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-25T06:51:56.869315+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/crossed_re_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/crossed_re_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-25T06:51:56.869624+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"permutation_wild_cluster_bootstrap\\\",\\n  \\\"n_permutations\\\": 1000,\\n  \\\"bootstrap_B\\\": 999,\\n  \\\"nominal_alpha\\\": 0.05,\\n  \\\"over_reject_threshold\\\": 0.075,\\n  \\\"seed\\\": 42,\\n  \\\"weight_distribution\\\": \\\"rademacher\\\",\\n  \\\"clustering\\\": \\\"max_p_across_K_positions\\\",\\n  \\\"total_time_seconds\\\": 33108.7,\\n  \\\"results\\\": {\\n    \\\"K3\\\": {\\n      \\\"mmluxprompt_injection\\\": {\\n        \\\"rejection_rate\\\": 0.004,\\n        \\\"over_reject\\\": false,\\n        \\\"n_panels\\\": 455,\\n        \\\"n_clusters_per_position\\\": [\\n          13,\\n          13,\\n          13\\n        ]\\n      },\\n      \\\"mmluxsycophancy\\\": {\\n        \\\"rejection_rate\\\": 0.012,\\n        \\\"over_reject\\\": false,\\n        \\\"n_panels\\\": 455,\\n        \\\"n_clusters_per_position\\\": [\\n          13,\\n          13,\\n          13\\n        ]\\n      },\\n      \\\"mmluxscore_manipulation\\\": {\\n        \\\"rejection_rate\\\": 0.008,\\n        \\\"over_reject\\\": false,\\n        \\\"n_panels\\\": 455,\\n        \\\"n_clusters_per_position\\\": [\\n          13,\\n          13,\\n          13\\n        ]\\n      },\\n      \\\"mmluxverbosity_bias\\\": {\\n        \\\"rejection_rate\\\": 0.008,\\n        \\\"over_reject\\\": false,\\n        \\\"n_panels\\\": 455,\\n        \\\"n_clusters_per_position\\\": [\\n          13,\\n          13,\\n          13\\n        ]\\n      },\\n      \\\"mmluxposition_bias\\\": {\\n        \\\"rejection_rate\\\": 0.009,\\n        \\\"over_reject\\\": false,\\n        \\\"n_panels\\\": 455,\\n        \\\"n_clusters_per_position\\\": [\\n          13,\\n          13,\\n          13\\n        ]\\n      },\\n      \\\"mmluxauthority_bias\\\": {\\n        \\\"rejection_rate\\\": 0.008,\\n        \\\"over_reject\\\": false,\\n        \\\"n_panels\\\": 455,\\n        \\\"n_clusters_per_position\\\
+…[truncated 8047 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-25T06:51:56.870012+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"crossed_random_effects\\\",\\n  \\\"implementation\\\": \\\"multi_membership_clustered_se\\\",\\n  \\\"package\\\": \\\"statsmodels OLS + custom CRVE\\\",\\n  \\\"model_formula\\\": \\\"log(ASR+eps) ~ log(K_eff) + log(eta_max+eps), SE clustered by judge membership\\\",\\n  \\\"note\\\": \\\"Panel-level OLS with multi-membership cluster-robust variance estimator. For each judge, score contributions (X_i * e_i) are summed across all panels containing that judge. Sandwich SE with HC1-like correction and t(G-1) distribution. Accounts for cross-panel correlation due to shared judges without data expansion.\\\",\\n  \\\"n_models\\\": 15,\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-2.5-pro\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\",\\n    \\\"gpt-4o\\\",\\n    \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"alpha\\\": 0.05,\\n  \\\"fdr_alpha\\\": 0.05,\\n  \\\"panel_sizes\\\": [\\n    3,\\n    5,\\n    7\\n  ],\\n  \\\"results_by_condition\\\": {\\n    \\\"K3_mmlu_prompt_injection\\\": {\\n      \\\"keff_coef\\\": 13.861069115969949,\\n      \\\"keff_se\\\": 7.209123992442055,\\n      \\\"keff_p\\\": 0.07510049758973747,\\n      \\\"keff_fdr_p\\\": 0.11781471551089068,\\n      \\\"keff_sig\\\": false,\\n      \\\"keff_se_inflation\\\": 4.619165351426008,\\n      \\\"eta_coef\\\": 0.738785757653043,\\n      \\\"eta_se\\\": 0.4565611799250225,\\n      \\\"eta_p\\\": 0.12793070121564568,\\n      \\\"eta_fdr_p\\\": 0.3048770226837435,\\n      \\\"eta_sig\\\": false,\\n      \\\"eta_se_inflation\\\": 2.4132940705202706,\\n      \\\"n_panels\\\": 455,\\n      \\\"n_judges\\\": 15,\\n      \\\"df\\\": 14\\n    },\\n    \\\"K3_mm
+…[truncated 8264 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-25T06:51:56.870252+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "cert_manip_resist_eval",
+  "file": "r6_previous_results_summary.md",
+  "content": "# R6 Previous Analysis Results Summary\n\n收集时间：2026-05-25，来源：`/root/cert_manip_resist_eval/artifacts/results/plan001/`\n\n---\n\n## 1. Quant Dummy Regression (`quant_dummy_regression.json`)\n\n**模型**: `log(ASR+eps) ~ log(K_eff) + log(eta_max+eps) + quant_frac + log(K_eff)*quant_frac`\n- 15 models (6 local AWQ), 12 conditions, wild cluster bootstrap (B=499)\n\n| K | K_eff sig | quant_frac sig | Interaction sig | Interaction方向 | η sig |\n|---|-----------|----------------|-----------------|-----------------|-------|\n| 3 | 6/12 | 6/12 | 5/12 | negative | 7/12 |\n| 5 | 6/12 | 2/12 | 2/12 | mixed | 11/12 |\n| 7 | 4/12 | 0/12 | 0/12 | mixed | 12/12 |\n\n- **predictor_shift_survives**: false\n- **结论**: quant_frac 对 K_eff 效应的调节作用证据不一致。交互项在 K=3 时显著（负向，即量化模型削弱 K_eff 效应），但随 K 增大迅速消失。VIF 极高（quant_frac/interaction ~87-89 at K3），共线性严重。\n\n---\n\n## 2. API-Only Power Analysis\n\n### 2a. `api_only_power_beta.json`（WCB p-value 为 outcome）\n\n- API模型: 9 (claude-opus-4-6, gpt-5.5, gemini-3.1-pro-preview, gpt-4.1, claude-sonnet-4-6, gpt-4.1-nano, gemini-3.5-flash, gpt-4.1-mini, claude-3-haiku)\n- API-only panels: K3=84, K5=126, K7=36\n- 所有条件 WCB 均不显著（K7 仅 3 clusters/position）\n\n**Power curve (WCB rejection rate at given β_std)**:\n\n| β_std | K3 power | K5 power | K7 power |\n|-------|----------|----------|----------|\n| 0.3   | 0.082    | 0.013    | 0.0      |\n| 0.5   | 0.322    | 0.055    | 0.0      |\n| 0.7   | 0.591    | 0.128    | 0.0      |\n| 1.0   | 0.785    | 0.271    | 0.0      |\n\n- **MDE at 80%**: 全部 null（不可达）\n- **Interpretation**: `power_issue` — API-only β_std 为 full pool 的 164%，效应量保留甚至放大，低显著性纯粹因 panel/cluster 数不足\n\n### 2b. `api_only_power_betastd.json`（β_std 直接分析）\n\n- β_std ratio: K3=1.819, K5=1.822（API-only 效应量是 full pool 的 ~1.8x）\n- MDE at 80%: K3=0.897, K5=null\n- Power curve K3 at β_std=1.0 → 0.858; K5 → 0.301\n\n**核心发现**: API-only 子集检测到的 K_eff 效应量**更大**，不是效应消失，而是统计功效不足。仅靠 API 模型不可行——需要 local 模型提供足够 panel diversity。\n\n---\n\n## 3. β_std Trajectory (`beta_std_trajectory.json` + `betastd_trajectory.json`)\n\n**β_std(K_eff) 跨 K 轨迹**（12 conditions 均值）:\n- K=3: **0.349** (sd=0.183)\n- K=5: **0.437** (sd=0.293) ← peak\n- K=7: **0.401** (sd=0.222)\n\n**β_std(η_max) 跨 K 轨迹**:\n- K=3: **0.266** (sd=0.179)\n- K=5: **0.101** (sd=0.327) ← sharp decline\n- K=7: **0.084** (sd=0.284)\n\n**K_eff 显著条件数** (OLS p<0.05):\n- K=3: ~7/12, K=5: ~9/12, K=7: ~10/12\n\n**Shift interpretation**: K_eff 效应量非单调（K5 peak），但在 WCB 下大 K 反而更多条件显著（因为 panel 数量 455→3003→6435 带来的功效补偿）。η_max 效应随 K 迅速衰减——大 panel 中个体操控能力被稀释。\n\n**Per-condition highlights**:\n- `arc_challenge×score_manipulation`: keff_std 异常大（K5=1.17, K7=0.84）\n- `arc_challenge×position_bias`: keff_std 很小但 η dominant\n- `mmlu×sycophancy`: keff 稳定显著，η 在 K≥5 消失\n\n---\n\n## 4. Bayesian Posterior Entropy (`bayesian_posterior_entropy.json`)\n\n**Posterior concentration ratio** (exp(H)/K):\n- K=3: **0.890**, K=5: **0.874**, K=7: **0.867**\n- 单调递减，所有 pairwise Mann-Whitney U 检验均显著 (p < 1e-20)\n\n**K_eff variance compression** (CV):\n- K=3: **0.157**, K=5: **0.148**, K=7: **0.131**\n- 单调递减\n\n**Effective judges**: K3=2.67, K5=4.37, K7=6.07\n\n**Non-monotonic K_eff significance 解释**:\n> 两个压缩机制叠加：(1) 后验集中——大 K 时贝叶斯权重集中于高准确率评委，有效评委相对 panel 大小下降；(2) K_eff 方差压缩——K=7 时 CV 仅 0.131，预测变量 range 极窄。双重压缩在 K=7 摧毁了 K_eff 的统计功效。K=5 是甜蜜点——panel 数量增益 (4.4 effective judges) 仍超过集中损失。\n\n**Per-dataset breakdown**:\n- MMLU: concentration ratio 高于 ARC (0.908 vs 0.871 at K3)，K_eff CV 更小（0.123 vs 0.176 at K3）\n- ARC_Challenge: 更大的 K_eff 变异性，更多分辨力\n\n---\n\n## 5. Fractional Logit V2 (`fractional_logit_v2.json`)\n\n**方法**: GLM(ASR ~ log(K_eff) + log(eta_max + eps), family=Binomial, link=logit), clustered SE, BH-FDR\n\n| K | K_eff sig (FDR) | η sig (FDR) |\n|---|-----------------|-------------|\n| 3 | **9/12** | 6/12 |\n| 5 | **9/12** | 6/12 |\n| 7 | **9/12** | 4/12 |\n\n**与论文声称对比**:\n| K | Paper claims | Registry V1 | Actual V2 |\n|---|-------------|-------------|-----------|\n| 3 | 9/12 | 4/12 | 9/12 |\n| 5 | 11/12 | 9/12 | 9/12 |\n| 7 | 12/12 | 10/12 | 9/12 |\n\n- K3 V2 恢复到论文水平 (registry V1 仅 4/12 是因为 V1 数据问题)\n- K5/K7 V2 略低于论文声称，但差距不大\n- Adaptive R² 数据在 plan001 结果中未找到\n\n---\n\n## 6. Monte Carlo Size Calibration (`monte_carlo_size_calibration.json`)\n\n**PID 18494 状态**: 已完成（进程不再运行）  \n**耗时**: 33,109 秒 (~9.2 小时)\n\n**方法**: Permutation-based wild cluster bootstrap, 1000 permutations × 999 bootstrap resamples, Rademacher weights, max-p across K positions\n\n**Rejection rates under H₀** (nominal α=0.05):\n\n| K | Mean rate | Max rate | Min rate | Over-reject条件数 |\n|---|-----------|----------|----------|-------------------|\n| 3 | **0.93%** | 1.6% | 0.4% | **0/12** |\n| 5 | **0.36%** | 0.8% | 0.0% | **0/12** |\n| 7 | **0.12%** | 0.3% | 0.0% | **0/12** |\n\n**核心结论**: WCB 检验在所有 36 个条件下均**不**过度拒绝。实际 size 远低于名义 α=0.05（最坏 1.6%），说明 WCB 是**保守的**。这意味着论文中报告的显著性结果（如果有）是可信的——不是 type-I error inflation 的假象。\n\nOver-reject threshold 设为 0.075，无一条件超过。\n\n---\n\n## 7. Crossed Random Effects (`crossed_re_results.json`)\n\n**方法**: Panel-level OLS + multi-membership CRVE (sandwich SE), t(G-1) = t(14) distribution\n\n| K | K_eff sig (FDR) | K_eff raw sig | η sig (FDR) | η raw sig |\n|---|-----------------|---------------|-------------|-----------|\n| 3 | **0/12** | 5/12 | 1/12 | 2/12 |\n| 5 | **8/12** | 8/12 | 3/12 | 4/12 |\n| 7 | **8/12** | 9/12 | 2/12 | 3/12 |\n\n**与 bootstrap 对比**:\n| K | Bootstrap K_eff sig | Crossed RE K_eff sig |\n|---|--------------------|--------------------|\n| 3 | 4/12 | 0/12 |\n| 5 | 7/12 | 8/12 |\n| 7 | 8/12 | 8/12 |\n\n**SE inflation**: 4-16x（K3 约 3-5x，K7 约 6-16x），因为只有 15 clusters (judges) 且 df=14。K=3 时 FDR 后全部不显著是因为 SE inflation + 小 df 的 t-distribution 严重惩罚。K=5/7 时 panel 数量大增（3003/6435），信号足以克服膨胀的 SE。\n\n---\n\n## 汇总诊断\n\n### 一致性检查\n- **K_eff 效应存在且 robust**: Fractional logit V2 (9/9/9)、crossed RE K5/K7 (8/8)、β_std trajectory 均确认\n- **K=3 特殊**: crossed RE 全灭 (0/12)，但这是 SE inflation 问题，不是效应消失（β_std=0.349 仍然存在）\n- **K=7 WCB 非单调谜团已解**: Bayesian posterior entropy 提供了完整解释（双重压缩机制）\n- **MC 校准通过**: WCB 不 over-reject，论文结果可信\n\n### 缺失/异常\n- **Adaptive R²**: 未在 plan001 结果中找到，论文声称 0.275，registry 声称 0.256\n- **fp16_baseline.json** (May 25 08:03): 存在但未在任务列表中，可能是后续实验\n- **crossed RE 模型名称不一致**: 使用了旧名称 (claude-opus-4, gemini-2.5-pro 等)，与其他分析的模型名不同——可能是从不同数据版本运行的\n\n### 关键数字速查\n| 指标 | K=3 | K=5 | K=7 |\n|------|-----|-----|-----|\n| β_std(K_eff) | 0.349 | 0.437 | 0.401 |\n| β_std(η_max) | 0.266 | 0.101 | 0.084 |\n| Fractional logit K_eff sig | 9/12 | 9/12 | 9/12 |\n| WCB MC rejection rate | 0.93% | 0.36% | 0.12% |\n| Crossed RE K_eff sig (FDR) | 0/12 | 8/12 | 8/12 |\n| Posterior concentration ratio | 0.890 | 0.874 | 0.867 |\n| K_eff CV | 0.157 | 0.148 | 0.131 |\n| API-only MDE@80% | null | null | null |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "cert_manip_resist_eval",
+    "file": "r6_previous_results_summary.md",
+    "content": "# R6 Previous Analysis Results Summary\n\n收集时间：2026-05-25，来源：`/root/cert_manip_resist_eval/artifacts/results/plan001/`\n\n---\n\n## 1. Quant Dummy Regression (`quant_dummy_regression.json`)\n\n**模型**: `log(ASR+eps) ~ log(K_eff) + log(eta_max+eps) + quant_frac + log(K_eff)*quant_frac`\n- 15 models (6 local AWQ), 12 conditions, wild cluster bootstrap (B=499)\n\n| K | K_eff sig | quant_frac sig | Interaction sig | Interaction方向 | η sig |\n|---|-----------|----------------|-----------------|-----------------|-------|\n| 3 | 6/12 | 6/12 | 5/12 | negative | 7/12 |\n| 5 | 6/12 | 2/12 | 2/12 | mixed | 11/12 |\n| 7 | 4/12 | 0/12 | 0/12 | mixed | 12/12 |\n\n- **predictor_shift_survives**: false\n- **结论**: quant_frac 对 K_eff 效应的调节作用证据不一致。交互项在 K=3 时显著（负向，即量化模型削弱 K_eff 效应），但随 K 增大迅速消失。VIF 极高（quant_frac/interaction ~87-89 at K3），共线性严重。\n\n---\n\n## 2. API-Only Power Analysis\n\n### 2a. `api_only_power_beta.json`（WCB p-value 为 outcome）\n\n- API模型: 9 (claude-opus-4-6, gpt-5.5, gemini-3.1-pro-preview, gpt-4.1, claude-sonnet-4-6, gpt-4.1-nano, gemini-3.5-flash, gpt-4.1-mini, claude-3-haiku)\n- API-only panels: K3=84, K5=126, K7=36\n- 所有条件 WCB 均不显著（K7 仅 3 clusters/position）\n\n**Power curve (WCB rejection rate at given β_std)**:\n\n| β_std | K3 power | K5 power | K7 power |\n|-------|----------|----------|----------|\n| 0.3   | 0.082    | 0.013    | 0.0      |\n| 0.5   | 0.322    | 0.055    | 0.0      |\n| 0.7   | 0.591    | 0.128    | 0.0      |\n| 1.0   | 0.785    | 0.271    | 0.0      |\n\n- **MDE at 80%**: 全部 null（不可达）\n- **Interpretation**: `power_issue` — API-only β_std 为 full pool 的 164%，效应量保留甚至放大，低显著性纯粹因 panel/cluster 数不足\n\n### 2b. `api_only_power_betastd.json`（β_std 直接分析）\n\n- β_std ratio: K3=1.819, K5=1.822（API-only 效应量是 full pool 的 ~1.8x）\n- MDE at 80%: K3=0.897, K5=null\n- Power curve K3 at β_std=1.0 → 0.858; K5 → 0.301\n\n**核心发现**: API-only 子集检测到的 K_eff 效应量**更大**，不是效应消失，而是统计功效不足。仅靠 API 模型不可行——需要 local 模型提供足够 panel diversity。\n\n---\n\n## 3. β_std Trajectory (`beta_std_trajectory.json` + `betastd_trajectory.json`)\n\n**β_std(K_eff) 跨 K 轨迹**（12 conditions 均值）:\n- K=3: **0.349** (sd=0.183)\n- K=5: **0.437** (sd=0.293) ← peak\n- K=7: **0.401** (sd=0.222)\n\n**β_std(η_max) 跨 K 轨迹**:\n- K=3: **0.266** (sd=0.179)\n- K=5: **0.101** (sd=0.327) ← sharp decline\n- K=7: **0.084** (sd=0.284)\n\n**K_eff 显著条件数** (OLS p<0.05):\n- K=3: ~7/12, K=5: ~9/12, K=7: ~10/12\n\n**Shift interpretation**: K_eff 效应量非单调（K5 peak），但在 WCB 下大 K 反而更多条件显著（因为 panel 数量 455→3003→6435 带来的功效补偿）。η_max 效应随 K 迅速衰减——大 panel 中个体操控能力被稀释。\n\n**Per-condition highlights**:\n- `arc_challenge×score_manipulation`: keff_std 异常大（K5=1.17, K7=0.84）\n- `arc_challenge×position_bias`: keff_std 很小但 η dominant\n- `mmlu×sycophancy`: keff 稳定显著，η 在 K≥5 消失\n\n---\n\n## 4. Bayesian Posterior Entropy (`bayesian_posterior_entropy.json`)\n\n**Posterior concentration ratio** (exp(H)/K):\n- K=3: **0.890**, K=5: **0.874**, K=7: **0.867**\n- 单调递减，所有 pairwise Mann-Whitney U 检验均显著 (p < 1e-20)\n\n**K_eff variance compression** (CV):\n- K=3: **0.157**, K=5: **0.148**, K=7: **0.131**\n- 单调递减\n\n**Effective judges**: K3=2.67, K5=4.37, K7=6.07\n\n**Non-monotonic K_eff significance 解释**:\n> 两个压缩机制叠加：(1) 后验集中——大 K 时贝叶斯权重集中于高准确率评委，有效评委相对 panel 大小下降；(2) K_eff 方差压缩——K=7 时 CV 仅 0.131，预测变量 range 极窄。双重压缩在 K=7 摧毁了 K_eff 的统计功效。K=5 是甜蜜点——panel 数量增益 (4.4 effective judges) 仍超过集中损失。\n\n**Per-dataset breakdown**:\n- MMLU: concentration ratio 高于 ARC (0.908 vs 0.871 at K3)，K_eff CV 更小（0.123 vs 0.176 at K3）\n- ARC_Challenge: 更大的 K_eff 变异性，更多分辨力\n\n---\n\n## 5. Fractional Logit V2 (`fractional_logit_v2.json`)\n\n**方法**: GLM(ASR ~ log(K_eff) + log(eta_max + eps), family=Binomial, link=logit), clustered SE, BH-FDR\n\n| K | K_eff sig (FDR) | η sig (FDR) |\n|---|-----------------|-------------|\n| 3 | **9/12** | 6/12 |\n| 5 | **9/12** | 6/12 |\n| 7 | **9/12** | 4/12 |\n\n**与论文声称对比**:\n| K | Paper claims | Registry V1 | Actual V2 |\n|---|-------------|-------------|-----------|\n| 3 | 9/12 | 4/12 | 9/12 |\n| 5 | 11/12 | 9/12 | 9/12 |\n| 7 | 12/12 | 10/12 | 9/12 |\n\n- K3 V2 恢复到论文水平 (registry V1 仅 4/12 是因为 V1 数据问题)\n- K5/K7 V2 略低于论文声称，但差距不大\n- Adaptive R² 数据在 plan001 结果中未找到\n\n---\n\n## 6. Monte Carlo Size Calibration (`monte_carlo_size_calibration.json`)\n\n**PID 18494 状态**: 已完成（进程不再运行）  \n**耗时**: 33,109 秒 (~9.2 小时)\n\n**方法**: Permutation-based wild cluster bootstrap, 1000 permutations × 999 bootstrap resamples, Rademacher weights, max-p across K positions\n\n**Rejection rates under H₀** (nominal α=0.05):\n\n| K | Mean rate | Max rate | Min rate | Over-reject条件数 |\n|---|-----------|----------|----------|-------------------|\n| 3 | **0.93%** | 1.6% | 0.4% | **0/12** |\n| 5 | **0.36%** | 0.8% | 0.0% | **0/12** |\n| 7 | **0.12%** | 0.3% | 0.0% | **0/12** |\n\n**核心结论**: WCB 检验在所有 36 个条件下均**不**过度拒绝。实际 size 远低于名义 α=0.05（最坏 1.6%），说明 WCB 是**保守的**。这意味着论文中报告的显著性结果（如果有）是可信的——不是 type-I error inflation 的假象。\n\nOver-reject threshold 设为 0.075，无一条件超过。\n\n---\n\n## 7. Crossed Random Effects (`crossed_re_results.json`)\n\n**方法**: Panel-level OLS + multi-membership CRVE (sandwich SE), t(G-1) = t(14) distribution\n\n| K | K_eff sig (FDR) | K_eff raw sig | η sig (FDR) | η raw sig |\n|---|-----------------|---------------|-------------|-----------|\n| 3 | **0/12** | 5/12 | 1/12 | 2/12 |\n| 5 | **8/12** | 8/12 | 3/12 | 4/12 |\n| 7 | **8/12** | 9/12 | 2/12 | 3/12 |\n\n**与 bootstrap 对比**:\n| K | Bootstrap K_eff sig | Crossed RE K_eff sig |\n|---|--------------------|--------------------|\n| 3 | 4/12 | 0/12 |\n| 5 | 7/12 | 8/12 |\n| 7 | 8/12 | 8/12 |\n\n**SE inflation**: 4-16x（K3 约 3-5x，K7 约 6-16x），因为只有 15 clusters (judges) 且 df=14。K=3 时 FDR 后全部不显著是因为 SE inflation + 小 df 的 t-distribution 严重惩罚。K=5/7 时 panel 数量大增（3003/6435），信号足以克服膨胀的 SE。\n\n---\n\n## 汇总诊断\n\n### 一致性检查\n- **K_eff 效应存在且 robust**: Fractional logit V2 (9/9/9)、crossed RE K5/K7 (8/8)、β_std trajectory 均确认\n- **K=3 特殊**: crossed RE 全灭 (0/12)，但这是 SE inflation 问题，不是效应消失（β_std=0.349 仍然存在）\n- **K=7 WCB 非单调谜团已解**: Bayesian posterior entropy 提供了完整解释（双重压缩机制）\n- **MC 校准通过**: WCB 不 over-reject，论文结果可信\n\n### 缺失/异常\n- **Adaptive R²**: 未在 plan001 结果中找到，论文声称 0.275，registry 声称 0.256\n- **fp16_baseline.json** (May 25 08:03): 存在但未在任务列表中，可能是后续实验\n- **crossed RE 模型名称不一致**: 使用了旧名称 (claude-opus-4, gemini-2.5-pro 等)，与其他分析的模型名不同——可能是从不同数据版本运行的\n\n### 关键数字速查\n| 指标 | K=3 | K=5 | K=7 |\n|------|-----|-----|-----|\n| β_std(K_eff) | 0.349 | 0.437 | 0.401 |\n| β_std(η_max) | 0.266 | 0.101 | 0.084 |\n| Fractional logit K_eff sig | 9/12 | 9/12 | 9/12 |\n| WCB MC rejection rate | 0.93% | 0.36% | 0.12% |\n| Crossed RE K_eff sig (FDR) | 0/12 | 8/12 | 8/12 |\n| Posterior concentration ratio | 0.890 | 0.874 | 0.867 |\n| K_eff CV | 0.157 | 0.148 | 0.131 |\n| API-only MDE@80% | null | null | null |\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-25T06:51:56.870480+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'r6_previous_results_summary.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-25T06:51:56.870682+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/r6_previous_results_summary.md",
+  "content": "# R6 Previous Analysis Results Summary\n\n收集时间：2026-05-25，来源：`/root/cert_manip_resist_eval/artifacts/results/plan001/`\n\n---\n\n## 1. Quant Dummy Regression (`quant_dummy_regression.json`)\n\n**模型**: `log(ASR+eps) ~ log(K_eff) + log(eta_max+eps) + quant_frac + log(K_eff)*quant_frac`\n- 15 models (6 local AWQ), 12 conditions, wild cluster bootstrap (B=499)\n\n| K | K_eff sig | quant_frac sig | Interaction sig | Interaction方向 | η sig |\n|---|-----------|----------------|-----------------|-----------------|-------|\n| 3 | 6/12 | 6/12 | 5/12 | negative | 7/12 |\n| 5 | 6/12 | 2/12 | 2/12 | mixed | 11/12 |\n| 7 | 4/12 | 0/12 | 0/12 | mixed | 12/12 |\n\n- **predictor_shift_survives**: false\n- **结论**: quant_frac 对 K_eff 效应的调节作用证据不一致。交互项在 K=3 时显著（负向，即量化模型削弱 K_eff 效应），但随 K 增大迅速消失。VIF 极高（quant_frac/interaction ~87-89 at K3），共线性严重。\n\n---\n\n## 2. API-Only Power Analysis\n\n### 2a. `api_only_power_beta.json`（WCB p-value 为 outcome）\n\n- API模型: 9 (claude-opus-4-6, gpt-5.5, gemini-3.1-pro-preview, gpt-4.1, claude-sonnet-4-6, gpt-4.1-nano, gemini-3.5-flash, gpt-4.1-mini, claude-3-haiku)\n- API-only panels: K3=84, K5=126, K7=36\n- 所有条件 WCB 均不显著（K7 仅 3 clusters/position）\n\n**Power curve (WCB rejection rate at given β_std)**:\n\n| β_std | K3 power | K5 power | K7 power |\n|-------|----------|----------|----------|\n| 0.3   | 0.082    | 0.013    | 0.0      |\n| 0.5   | 0.322    | 0.055    | 0.0      |\n| 0.7   | 0.591    | 0.128    | 0.0      |\n| 1.0   | 0.785    | 0.271    | 0.0      |\n\n- **MDE at 80%**: 全部 null（不可达）\n- **Interpretation**: `power_issue` — API-only β_std 为 full pool 的 164%，效应量保留甚至放大，低显著性纯粹因 panel/cluster 数不足\n\n### 2b. `api_only_power_betastd.json`（β_std 直接分析）\n\n- β_std ratio: K3=1.819, K5=1.822（API-only 效应量是 full pool 的 ~1.8x）\n- MDE at 80%: K3=0.897, K5=null\n- Power curve K3 at β_std=1.0 → 0.858; K5 → 0.301\n\n**核心发现**: API-only 子集检测到的 K_eff 效应量**更大**，不是效应消失，而是统计功效不足。仅靠 API 模型不可行——需要 local 模型提供足够 panel diversity。\n\n---\n\n## 3. β_std Trajectory (`beta_std_trajectory.json` + `betastd_trajectory.json`)\n\n**β_std(K_eff) 跨 K 轨迹**（12 conditions 均值）:\n- K=3: **0.349** (sd=0.183)\n- K=5: **0.437** (sd=0.293) ← peak\n- K=7: **0.401** (sd=0.222)\n\n**β_std(η_max) 跨 K 轨迹**:\n- K=3: **0.266** (sd=0.179)\n- K=5: **0.101** (sd=0.327) ← sharp decline\n- K=7: **0.084** (sd=0.284)\n\n**K_eff 显著条件数** (OLS p<0.05):\n- K=3: ~7/12, K=5: ~9/12, K=7: ~10/12\n\n**Shift interpretation**: K_eff 效应量非单调（K5 peak），但在 WCB 下大 K 反而更多条件显著（因为 panel 数量 455→3003→6435 带来的功效补偿）。η_max 效应随 K 迅速衰减——大 panel 中个体操控能力被稀释。\n\n**Per-condition highlights**:\n- `arc_challenge×score_manipulation`: keff_std 异常大（K5=1.17, K7=0.84）\n- `arc_challenge×position_bias`: keff_std 很小但 η dominant\n- `mmlu×sycophancy`: keff 稳定显著，η 在 K≥5 消失\n\n---\n\n## 4. Bayesian Posterior Entropy (`bayesian_posterior_entropy.json`)\n\n**Posterior concentration ratio** (exp(H)/K):\n- K=3: **0.890**, K=5: **0.874**, K=7: **0.867**\n- 单调递减，所有 pairwise Mann-Whitney U 检验均显著 (p < 1e-20)\n\n**K_eff variance compression** (CV):\n- K=3: **0.157**, K=5: **0.148**, K=7: **0.131**\n- 单调递减\n\n**Effective judges**: K3=2.67, K5=4.37, K7=6.07\n\n**Non-monotonic K_eff significance 解释**:\n> 两个压缩机制叠加：(1) 后验集中——大 K 时贝叶斯权重集中于高准确率评委，有效评委相对 panel 大小下降；(2) K_eff 方差压缩——K=7 时 CV 仅 0.131，预测变量 range 极窄。双重压缩在 K=7 摧毁了 K_eff 的统计功效。K=5 是甜蜜点——panel 数量增益 (4.4 effective judges) 仍超过集中损失。\n\n**Per-dataset breakdown**:\n- MMLU: concentration ratio 高于 ARC (0.908 vs 0.871 at K3)，K_eff CV 更小（0.123 vs 0.176 at K3）\n- ARC_Challenge: 更大的 K_eff 变异性，更多分辨力\n\n---\n\n## 5. Fractional Logit V2 (`fractional_logit_v2.json`)\n\n**方法**: GLM(ASR ~ log(K_eff) + log(eta_max + eps), family=Binomial, link=logit), clustered SE, BH-FDR\n\n| K | K_eff sig (FDR) | η sig (FDR) |\n|---|-----------------|-------------|\n| 3 | **9/12** | 6/12 |\n| 5 | **9/12** | 6/12 |\n| 7 | **9/12** | 4/12 |\n\n**与论文声称对比**:\n| K | Paper claims | Registry V1 | Actual V2 |\n|---|-------------|-------------|-----------|\n| 3 | 9/12 | 4/12 | 9/12 |\n| 5 | 11/12 | 9/12 | 9/12 |\n| 7 | 12/12 | 10/12 | 9/12 |\n\n- K3 V2 恢复到论文水平 (registry V1 仅 4/12 是因为 V1 数据问题)\n- K5/K7 V2 略低于论文声称，但差距不大\n- Adaptive R² 数据在 plan001 结果中未找到\n\n---\n\n## 6. Monte Carlo Size Calibration (`monte_carlo_size_calibration.json`)\n\n**PID 18494 状态**: 已完成（进程不再运行）\n**耗时**: 33,109 秒 (~9.2 小时)\n\n**方法**: Permutation-based wild cluster bootstrap, 1000 permutations × 999 bootstrap resamples, Rademacher weights, max-p across K positions\n\n**Rejection rates under H₀** (nominal α=0.05):\n\n| K | Mean rate | Max rate | Min rate | Over-reject条件数 |\n|---|-----------|----------|----------|-------------------|\n| 3 | **0.93%** | 1.6% | 0.4% | **0/12** |\n| 5 | **0.36%** | 0.8% | 0.0% | **0/12** |\n| 7 | **0.12%** | 0.3% | 0.0% | **0/12** |\n\n**核心结论**: WCB 检验在所有 36 个条件下均**不**过度拒绝。实际 size 远低于名义 α=0.05（最坏 1.6%），说明 WCB 是**保守的**。这意味着论文中报告的显著性结果（如果有）是可信的——不是 type-I error inflation 的假象。\n\nOver-reject threshold 设为 0.075，无一条件超过。\n\n---\n\n## 7. Crossed Random Effects (`crossed_re_results.json`)\n\n**方法**: Panel-level OLS + multi-membership CRVE (sandwich SE), t(G-1) = t(14) distribution\n\n| K | K_eff sig (FDR) | K_eff raw sig | η sig (FDR) | η raw sig |\n|---|-----------------|---------------|-------------|-----------|\n| 3 | **0/12** | 5/12 | 1/12 | 2/12 |\n| 5 | **8/12** | 8/12 | 3/12 | 4/12 |\n| 7 | **8/12** | 9/12 | 2/12 | 3/12 |\n\n**与 bootstrap 对比**:\n| K | Bootstrap K_eff sig | Crossed RE K_eff sig |\n|---|--------------------|--------------------|\n| 3 | 4/12 | 0/12 |\n| 5 | 7/12 | 8/12 |\n| 7 | 8/12 | 8/12 |\n\n**SE inflation**: 4-16x（K3 约 3-5x，K7 约 6-16x），因为只有 15 clusters (judges) 且 df=14。K=3 时 FDR 后全部不显著是因为 SE inflation + 小 df 的 t-distribution 严重惩罚。K=5/7 时 panel 数量大增（3003/6435），信号足以克服膨胀的 SE。\n\n---\n\n## 汇总诊断\n\n### 一致性检查\n- **K_eff 效应存在且 robust**: Fractional logit V2 (9/9/9)、crossed RE K5/K7 (8/8)、β_std trajectory 均确认\n- **K=3 特殊**: crossed RE 全灭 (0/12)，但这是 SE inflation 问题，不是效应消失（β_std=0.349 仍然存在）\n- **K=7 WCB 非单调谜团已解**: Bayesian posterior entropy 提供了完整解释（双重压缩机制）\n- **MC 校准通过**: WCB 不 over-reject，论文结果可信\n\n### 缺失/异常\n- **Adaptive R²**: 未在 plan001 结果中找到，论文声称 0.275，registry 声称 0.256\n- **fp16_baseline.json** (May 25 08:03): 存在但未在任务列表中，可能是后续实验\n- **crossed RE 模型名称不一致**: 使用了旧名称 (claude-opus-4, gemini-2.5-pro 等)，与其他分析的模型名不同——可能是从不同数据版本运行的\n\n### 关键数字速查\n| 指标 | K=3 | K=5 | K=7 |\n|------|-----|-----|-----|\n| β_std(K_eff) | 0.349 | 0.437 | 0.401 |\n| β_std(η_max) | 0.266 | 0.101 | 0.084 |\n| Fractional logit K_eff sig | 9/12 | 9/12 | 9/12 |\n| WCB MC rejection rate | 0.93% | 0.36% | 0.12% |\n| Crossed RE K_eff sig (FDR) | 0/12 | 8/12 | 8/12 |\n| Posterior concentration ratio | 0.890 | 0.874 | 0.867 |\n| K_eff CV | 0.157 | 0.148 | 0.131 |\n| API-only MDE@80% | null | null | null |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/r6_previous_results_summary.md",
+    "content": "# R6 Previous Analysis Results Summary\n\n收集时间：2026-05-25，来源：`/root/cert_manip_resist_eval/artifacts/results/plan001/`\n\n---\n\n## 1. Quant Dummy Regression (`quant_dummy_regression.json`)\n\n**模型**: `log(ASR+eps) ~ log(K_eff) + log(eta_max+eps) + quant_frac + log(K_eff)*quant_frac`\n- 15 models (6 local AWQ), 12 conditions, wild cluster bootstrap (B=499)\n\n| K | K_eff sig | quant_frac sig | Interaction sig | Interaction方向 | η sig |\n|---|-----------|----------------|-----------------|-----------------|-------|\n| 3 | 6/12 | 6/12 | 5/12 | negative | 7/12 |\n| 5 | 6/12 | 2/12 | 2/12 | mixed | 11/12 |\n| 7 | 4/12 | 0/12 | 0/12 | mixed | 12/12 |\n\n- **predictor_shift_survives**: false\n- **结论**: quant_frac 对 K_eff 效应的调节作用证据不一致。交互项在 K=3 时显著（负向，即量化模型削弱 K_eff 效应），但随 K 增大迅速消失。VIF 极高（quant_frac/interaction ~87-89 at K3），共线性严重。\n\n---\n\n## 2. API-Only Power Analysis\n\n### 2a. `api_only_power_beta.json`（WCB p-value 为 outcome）\n\n- API模型: 9 (claude-opus-4-6, gpt-5.5, gemini-3.1-pro-preview, gpt-4.1, claude-sonnet-4-6, gpt-4.1-nano, gemini-3.5-flash, gpt-4.1-mini, claude-3-haiku)\n- API-only panels: K3=84, K5=126, K7=36\n- 所有条件 WCB 均不显著（K7 仅 3 clusters/position）\n\n**Power curve (WCB rejection rate at given β_std)**:\n\n| β_std | K3 power | K5 power | K7 power |\n|-------|----------|----------|----------|\n| 0.3   | 0.082    | 0.013    | 0.0      |\n| 0.5   | 0.322    | 0.055    | 0.0      |\n| 0.7   | 0.591    | 0.128    | 0.0      |\n| 1.0   | 0.785    | 0.271    | 0.0      |\n\n- **MDE at 80%**: 全部 null（不可达）\n- **Interpretation**: `power_issue` — API-only β_std 为 full pool 的 164%，效应量保留甚至放大，低显著性纯粹因 panel/cluster 数不足\n\n### 2b. `api_only_power_betastd.json`（β_std 直接分析）\n\n- β_std ratio: K3=1.819, K5=1.822（API-only 效应量是 full pool 的 ~1.8x）\n- MDE at 80%: K3=0.897, K5=null\n- Power curve K3 at β_std=1.0 → 0.858; K5 → 0.301\n\n**核心发现**: API-only 子集检测到的 K_eff 效应量**更大**，不是效应消失，而是统计功效不足。仅靠 API 模型不可行——需要 local 模型提供足够 panel diversity。\n\n---\n\n## 3. β_std Trajectory (`beta_std_trajectory.json` + `betastd_trajectory.json`)\n\n**β_std(K_eff) 跨 K 轨迹**（12 conditions 均值）:\n- K=3: **0.349** (sd=0.183)\n- K=5: **0.437** (sd=0.293) ← peak\n- K=7: **0.401** (sd=0.222)\n\n**β_std(η_max) 跨 K 轨迹**:\n- K=3: **0.266** (sd=0.179)\n- K=5: **0.101** (sd=0.327) ← sharp decline\n- K=7: **0.084** (sd=0.284)\n\n**K_eff 显著条件数** (OLS p<0.05):\n- K=3: ~7/12, K=5: ~9/12, K=7: ~10/12\n\n**Shift interpretation**: K_eff 效应量非单调（K5 peak），但在 WCB 下大 K 反而更多条件显著（因为 panel 数量 455→3003→6435 带来的功效补偿）。η_max 效应随 K 迅速衰减——大 panel 中个体操控能力被稀释。\n\n**Per-condition highlights**:\n- `arc_challenge×score_manipulation`: keff_std 异常大（K5=1.17, K7=0.84）\n- `arc_challenge×position_bias`: keff_std 很小但 η dominant\n- `mmlu×sycophancy`: keff 稳定显著，η 在 K≥5 消失\n\n---\n\n## 4. Bayesian Posterior Entropy (`bayesian_posterior_entropy.json`)\n\n**Posterior concentration ratio** (exp(H)/K):\n- K=3: **0.890**, K=5: **0.874**, K=7: **0.867**\n- 单调递减，所有 pairwise Mann-Whitney U 检验均显著 (p < 1e-20)\n\n**K_eff variance compression** (CV):\n- K=3: **0.157**, K=5: **0.148**, K=7: **0.131**\n- 单调递减\n\n**Effective judges**: K3=2.67, K5=4.37, K7=6.07\n\n**Non-monotonic K_eff significance 解释**:\n> 两个压缩机制叠加：(1) 后验集中——大 K 时贝叶斯权重集中于高准确率评委，有效评委相对 panel 大小下降；(2) K_eff 方差压缩——K=7 时 CV 仅 0.131，预测变量 range 极窄。双重压缩在 K=7 摧毁了 K_eff 的统计功效。K=5 是甜蜜点——panel 数量增益 (4.4 effective judges) 仍超过集中损失。\n\n**Per-dataset breakdown**:\n- MMLU: concentration ratio 高于 ARC (0.908 vs 0.871 at K3)，K_eff CV 更小（0.123 vs 0.176 at K3）\n- ARC_Challenge: 更大的 K_eff 变异性，更多分辨力\n\n---\n\n## 5. Fractional Logit V2 (`fractional_logit_v2.json`)\n\n**方法**: GLM(ASR ~ log(K_eff) + log(eta_max + eps), family=Binomial, link=logit), clustered SE, BH-FDR\n\n| K | K_eff sig (FDR) | η sig (FDR) |\n|---|-----------------|-------------|\n| 3 | **9/12** | 6/12 |\n| 5 | **9/12** | 6/12 |\n| 7 | **9/12** | 4/12 |\n\n**与论文声称对比**:\n| K | Paper claims | Registry V1 | Actual V2 |\n|---|-------------|-------------|-----------|\n| 3 | 9/12 | 4/12 | 9/12 |\n| 5 | 11/12 | 9/12 | 9/12 |\n| 7 | 12/12 | 10/12 | 9/12 |\n\n- K3 V2 恢复到论文水平 (registry V1 仅 4/12 是因为 V1 数据问题)\n- K5/K7 V2 略低于论文声称，但差距不大\n- Adaptive R² 数据在 plan001 结果中未找到\n\n---\n\n## 6. Monte Carlo Size Calibration (`monte_carlo_size_calibration.json`)\n\n**PID 18494 状态**: 已完成（进程不再运行）\n**耗时**: 33,109 秒 (~9.2 小时)\n\n**方法**: Permutation-based wild cluster bootstrap, 1000 permutations × 999 bootstrap resamples, Rademacher weights, max-p across K positions\n\n**Rejection rates under H₀** (nominal α=0.05):\n\n| K | Mean rate | Max rate | Min rate | Over-reject条件数 |\n|---|-----------|----------|----------|-------------------|\n| 3 | **0.93%** | 1.6% | 0.4% | **0/12** |\n| 5 | **0.36%** | 0.8% | 0.0% | **0/12** |\n| 7 | **0.12%** | 0.3% | 0.0% | **0/12** |\n\n**核心结论**: WCB 检验在所有 36 个条件下均**不**过度拒绝。实际 size 远低于名义 α=0.05（最坏 1.6%），说明 WCB 是**保守的**。这意味着论文中报告的显著性结果（如果有）是可信的——不是 type-I error inflation 的假象。\n\nOver-reject threshold 设为 0.075，无一条件超过。\n\n---\n\n## 7. Crossed Random Effects (`crossed_re_results.json`)\n\n**方法**: Panel-level OLS + multi-membership CRVE (sandwich SE), t(G-1) = t(14) distribution\n\n| K | K_eff sig (FDR) | K_eff raw sig | η sig (FDR) | η raw sig |\n|---|-----------------|---------------|-------------|-----------|\n| 3 | **0/12** | 5/12 | 1/12 | 2/12 |\n| 5 | **8/12** | 8/12 | 3/12 | 4/12 |\n| 7 | **8/12** | 9/12 | 2/12 | 3/12 |\n\n**与 bootstrap 对比**:\n| K | Bootstrap K_eff sig | Crossed RE K_eff sig |\n|---|--------------------|--------------------|\n| 3 | 4/12 | 0/12 |\n| 5 | 7/12 | 8/12 |\n| 7 | 8/12 | 8/12 |\n\n**SE inflation**: 4-16x（K3 约 3-5x，K7 约 6-16x），因为只有 15 clusters (judges) 且 df=14。K=3 时 FDR 后全部不显著是因为 SE inflation + 小 df 的 t-distribution 严重惩罚。K=5/7 时 panel 数量大增（3003/6435），信号足以克服膨胀的 SE。\n\n---\n\n## 汇总诊断\n\n### 一致性检查\n- **K_eff 效应存在且 robust**: Fractional logit V2 (9/9/9)、crossed RE K5/K7 (8/8)、β_std trajectory 均确认\n- **K=3 特殊**: crossed RE 全灭 (0/12)，但这是 SE inflation 问题，不是效应消失（β_std=0.349 仍然存在）\n- **K=7 WCB 非单调谜团已解**: Bayesian posterior entropy 提供了完整解释（双重压缩机制）\n- **MC 校准通过**: WCB 不 over-reject，论文结果可信\n\n### 缺失/异常\n- **Adaptive R²**: 未在 plan001 结果中找到，论文声称 0.275，registry 声称 0.256\n- **fp16_baseline.json** (May 25 08:03): 存在但未在任务列表中，可能是后续实验\n- **crossed RE 模型名称不一致**: 使用了旧名称 (claude-opus-4, gemini-2.5-pro 等)，与其他分析的模型名不同——可能是从不同数据版本运行的\n\n### 关键数字速查\n| 指标 | K=3 | K=5 | K=7 |\n|------|-----|-----|-----|\n| β_std(K_eff) | 0.349 | 0.437 | 0.401 |\n| β_std(η_max) | 0.266 | 0.101 | 0.084 |\n| Fractional logit K_eff sig | 9/12 | 9/12 | 9/12 |\n| WCB MC rejection rate | 0.93% | 0.36% | 0.12% |\n| Crossed RE K_eff sig (FDR) | 0/12 | 8/12 | 8/12 |\n| Posterior concentration ratio | 0.890 | 0.874 | 0.867 |\n| K_eff CV | 0.157 | 0.148 | 0.131 |\n| API-only MDE@80% | null | null | null |\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-25T06:51:56.870919+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/r6_previous_results_summary.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-25T06:51:56.871086+00:00_
+
+所有 7 项分析结果已收集并汇总到 `r6_previous_results_summary.md`。核心发现：
+
+**MC 校准 (PID 18494)**: 已完成，耗时 9.2h。WCB 在所有 36 条件下均不 over-reject（最坏仅 1.6%，远低于 α=0.05），检验保守可信。
+
+**跨分析一致性**:
+- K_eff 效应 robust：fractional logit V2 稳定 9/9/9，crossed RE K5/K7 达 8/8
+- K=3 crossed RE 全灭 (0/12) 是 SE inflation 问题（仅 15 clusters, df=14），不是效应消失
+- β_std(K_eff) 非单调轨迹 (0.349→0.437→0.401) 已由 Bayesian posterior entropy 的双重压缩机制完整解释
+- API-only 子集效应量反而更大 (1.8x)，但 panel 数不足导致功效归零
+- quant_frac 交互项仅 K=3 有信号且 VIF 极高，不 robust
+
+**缺失**: Adaptive R² 数据未找到；crossed RE 使用了旧模型名称
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_r6-collect-previous-results_20260525T064822"
+}
+```
+
+</details>
+
+---

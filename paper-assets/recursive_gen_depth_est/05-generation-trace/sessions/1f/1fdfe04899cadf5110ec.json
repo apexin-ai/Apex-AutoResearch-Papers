@@ -52,5 +52,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup.md"
 }

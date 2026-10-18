@@ -1,0 +1,1256 @@
+# code temp07 pilot pythia 001
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_code_temp07_pilot_pythia_001_20260515T163617.jsonl`
+- **Structured JSON:** [`c6c97812805ba6c696e2.json`](../../sessions/c6/c6c97812805ba6c696e2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T16:38:14.746341+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T16:38:14.746688+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T16:38:14.746904+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T16:38:14.747087+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T16:38:14.747218+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est -maxdepth 1 -name \"run_*\" -o -name \"*.sh\" -o -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est -maxdepth 1 -name \"run_*\" -o -name \"*.sh\" -o -name \"*.py\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T16:38:14.747341+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T16:38:14.747472+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"artifacts\\nbaselines\\ncheckpoints\\ndata\\nfigures\\nlogs\\nresults\\nresults_filtered\\nrun_9cell_battery.py\\nrun_diveye_fix.py\\nscripts\\nsrc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.87}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T16:38:14.747602+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"depth_0.jsonl\\ndepth_0_features.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\nfeatures_3class.jsonl\\nfeatures_all.jsonl\\nfeatures_d4d5.jsonl\\nfeatures_depth_4.jsonl\\nfeatures_depth_5.jsonl\\nfeatures_filtered.jsonl\\ngpt2xl\\ngpt2xl_temp09\\ngpt2xl_topk50\\nolmo\\nolmo_temp09\\nolmo_topk50\\npythia_temp07\\npythia_temp09\\npythia_topk50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T16:38:14.747724+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/run_9cell_battery.py\\n/root/autodl-tmp/recursive_gen_depth_est/run_diveye_fix.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T16:38:14.748077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"temp07_pilot_pythia_001\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T16:36:12.195Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\"}, \"zeroshot_llm_500_001\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-15T15:46:50.066Z\", \"updated_at\": \"2026-05-15T15:51:24.547Z\", \"hypothesis\": \"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\"}, \"n2_roberta_finetune_001\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:12:32.982Z\", \"updated_at\": \"2026-05-15T13:28:39.437Z\", \"hypothesis\": \"N2 reviewer concern: end-to-end RoBERTa-base finetune baseline vs RF on hand-crafted features (78.2%). 与 DeBERTa 形成双 backbone 对比，排除模型选择偏差。\", \"notes\": \"5-fold CV 完成 (retry_count=2)。RoBERTa-base 4-class acc=59.5% ± 3.2%，远低于 RF 78.2% (-18.7pp)。Feature overlap: Spearman ρ=-0.456 (p=0.050)，与 DeBERTa (ρ=-0.484) 一致，top-5 overlap=0。跨架构确认 transformer 表征偏向表面特征，perplexity 分布统计量是盲区。var_ppl R²=-4215.8（极端负值）。\", \"conclusion\": \"success\", \"metrics\": {\"accuracy_mean\": 0.5948, \"accuracy_std\": 0.0324, \"per_class_f1\": {\"d0\": 0.958, \"d1\": 0.4161, \"d2\": 0.2611, \"d3\": 0.6472}, \"per_class_precision\": {\"d0\": 0.9983, \"d1\": 0.7178, \"d2\": 0.2956, \"d3\": 0.4958}, \"per_class_recall\": {\"d0\": 0.9208, \"d1\": 0.293, \"d2\": 0.2338, \"d3\": 0.9314}, \"pairwise_auc\": {\"d0v1\": 0.9886, \"d1v2\": 0.7522, \"d2v3\": 0.7349}, \"fold_accuracies\": [0.6022, 0.5595, 0.5623, 0.6018, 0.648], \"vs_rf_baseline\": \"-18.7pp (59.5% vs 78.2%)\", \"vs_deberta\": \"+1.2pp acc, +0.019 d1v2_auc, -0.020 d2v3_auc\", \"elapsed_seconds\": 1942.5}}, \"n2_deberta_finetune_001\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:12:06.5
+…[truncated 14287 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T16:38:14.748296+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T16:38:14.748432+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est/scripts -name \"*temp07*\" -o -name \"*temp*07*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est/scripts -name \"*temp07*\" -o -name \"*temp*07*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T16:38:14.748555+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ps aux --no-headers -o pid,etime,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ps aux --no-headers -o pid,etime,cmd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T16:38:14.748685+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 5620\\ndrwxr-xr-x  2 root root     160 May 16 00:12 .\\ndrwxr-xr-x 11 root root    4096 May 15 23:56 ..\\n-rw-r--r--  1 root root 1106846 May 15 23:56 depth_0.jsonl\\n-rw-r--r--  1 root root  873489 May 16 00:00 depth_1.jsonl\\n-rw-r--r--  1 root root  871333 May 16 00:04 depth_2.jsonl\\n-rw-r--r--  1 root root  940308 May 16 00:08 depth_3.jsonl\\n-rw-r--r--  1 root root  942734 May 16 00:11 depth_4.jsonl\\n-rw-r--r--  1 root root 1000504 May 16 00:15 depth_5.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T16:38:14.748814+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "filters": "{'exp_id': 'temp07_pilot_pythia_001'}",
+  "fields": "['*']",
+  "limit": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "filters": "{'exp_id': 'temp07_pilot_pythia_001'}",
+    "fields": "['*']",
+    "limit": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T16:38:14.748964+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_pythia_temp07.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T16:38:14.749089+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T16:38:14.749205+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1973}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T16:38:14.749355+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ps aux"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ps aux"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T16:38:14.749507+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est/logs -name \"*temp07*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est/logs -name \"*temp07*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T16:38:14.749655+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  2412 ?        Ss   May14   0:00 bash /init/boot/boot.sh\\nroot        893  1.7  0.0 724384 21780 ?        Sl   May14  36:51 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        910  0.0  0.0  15444  8324 ?        S    May14   0:01 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        912  0.0  0.0 3574328 76560 ?       Sl   May14   0:51 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        914  0.0  0.0 191560 104124 ?       S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        916  0.2  0.0 6822096 103584 ?      Sl   May14   5:33 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        917  0.0  0.0 3904316 18988 ?       Sl   May14   1:53 proxy -c /init/proxy/proxy.ini\\nroot        918  0.0  0.0 3609900 19516 ?       Sl   May14   0:36 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1012  0.0  0.0 28341068 9724 ?       Sl   May14   1:50 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_ob18jr7g/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_ob18jr7g/startup_error\\nroot     177362  0.0  0.0  16692 10120 ?        Ss   May15   0:02 sshd: root@notty\\nroot     177363  0.0  0.0  16808 10248 ?        Ss   May15   0:03 sshd: root@notty\\nroot     268914  0.1  0.0  16692 10452 ?        Ss   00:36   0:00 sshd: root@notty\\nroot     268943  0.1  0.0  16692 10596 ?        Ss   00:36   0:00 sshd: root@notty\\nroot     268974  0.0  0.0   7064  1664 ?        Rs   00:37   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\":
+…[truncated 51 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T16:38:14.749805+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_pythia_temp07.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_pythia_temp07.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T16:38:14.749954+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_temp07.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T16:38:14.750151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# τ=0.7 temperature pilot — Pythia-1.4B, recursive generation d0→d5, 500 samples/depth\\n# Compares with τ=0.9 Pythia results (d1v2 AUC=0.8327 RF) to check if AUC inversion occurs\\n\\nset -e\\n\\nif [ -n \\\"${AML_EXP_ID:-}\\\" ]; then\\n    _aml_exit_handler() { local ec=$?; mkdir -p /tmp/agent-ml-exit; printf \\\"%s|%s\\\\n\\\" \\\"$ec\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > \\\"/tmp/agent-ml-exit/${AML_EXP_ID}.exit\\\"; }\\n    trap _aml_exit_handler EXIT\\nfi\\n\\nPROJECT_DIR=\\\"/root/autodl-tmp/recursive_gen_depth_est\\\"\\ncd $PROJECT_DIR\\n\\nsource /etc/network_turbo 2>/dev/null || true\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport HF_HUB_DISABLE_XET=1\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\nexport CUDA_VISIBLE_DEVICES=0\\n\\nif [ -f /root/miniconda3/etc/profile.d/conda.sh ]; then\\n    source /root/miniconda3/etc/profile.d/conda.sh\\n    conda activate base\\nfi\\n\\nMODEL_PATH=\\\"/root/autodl-tmp/models/pythia-1.4b\\\"\\nTARGET_MODULES=\\\"query_key_value\\\"\\nDATA_DIR=\\\"data/pythia_temp07\\\"\\nCKPT_DIR=\\\"checkpoints/pythia_temp07\\\"\\nRESULTS_DIR=\\\"results/temp07_pilot\\\"\\nNUM_SAMPLES=500\\n\\nmkdir -p \\\"$DATA_DIR\\\" \\\"$CKPT_DIR\\\" \\\"$RESULTS_DIR\\\" logs\\n\\nLOG_FILE=\\\"logs/pipeline_pythia_temp07.log\\\"\\nexec > >(tee -a \\\"$LOG_FILE\\\") 2>&1\\n\\necho \\\"=== Pipeline: Pythia-1.4B temp_only t=0.7 pilot ($NUM_SAMPLES samples/depth, d0-d5) ===\\\"\\necho \\\"=== Started at $(date) ===\\\"\\n\\n# Step 0: Subsample depth_0 from original seed data\\necho \\\"[$(date)] === Step 0: Subsample depth-0 ($NUM_SAMPLES from 5000) ===\\\"\\npython3 -c \\\"\\nimport json, random\\nrandom.seed(42)\\nwith open('data/depth_0.jsonl') as f:\\n    lines = f.readlines()\\nselected = random.sample(lines, $NUM_SAMPLES)\\nwith open('$DATA_DIR/depth_0.jsonl', 'w') as f:\\n    f.writelines(
+…[truncated 3304 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T16:38:14.750339+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -80 /root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_temp07.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -80 /root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_temp07.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T16:38:14.750464+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T16:38:14.750582+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/depth_*.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/depth_*.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T16:38:14.750730+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    depth0_vs_depth4: 1.0\\n    depth0_vs_depth5: 1.0\\n    depth1_vs_depth2: 0.8031\\n    depth1_vs_depth3: 0.9335\\n    depth1_vs_depth4: 0.9533\\n    depth1_vs_depth5: 0.9575\\n    depth2_vs_depth3: 0.608\\n    depth2_vs_depth4: 0.8189\\n    depth2_vs_depth5: 0.8688\\n    depth3_vs_depth4: 0.6525\\n    depth3_vs_depth5: 0.7304\\n    depth4_vs_depth5: 0.5652\\n\\n--- Random Forest ---\\n  Accuracy: 0.5733 (95% CI: [0.5333, 0.6150])\\n    depth0_vs_depth1: 0.9981\\n    depth0_vs_depth2: 1.0\\n    depth0_vs_depth3: 1.0\\n    depth0_vs_depth4: 0.9999\\n    depth0_vs_depth5: 1.0\\n    depth1_vs_depth2: 0.8378\\n    depth1_vs_depth3: 0.9211\\n    depth1_vs_depth4: 0.9259\\n    depth1_vs_depth5: 0.9764\\n    depth2_vs_depth3: 0.635\\n    depth2_vs_depth4: 0.8396\\n    depth2_vs_depth5: 0.902\\n    depth3_vs_depth4: 0.5997\\n    depth3_vs_depth5: 0.7553\\n    depth4_vs_depth5: 0.6025\\n\\n  Feature importance (top 10):\\n    p90_ppl: 0.1111\\n    var_surprisal: 0.1007\\n    mean_surprisal: 0.0872\\n    mean_ppl: 0.0741\\n    p75_ppl: 0.0696\\n    bigram_entropy: 0.0618\\n    trigram_entropy: 0.0611\\n    p50_ppl: 0.0489\\n    rep_4gram: 0.0441\\n    entropy_of_surprisal: 0.0412\\n\\nSaved report to results/temp07_pilot/classification_report.txt\\n  Saved confusion matrix to results/temp07_pilot/confusion_matrix.png\\nSaved pairwise AUC to results/temp07_pilot/pairwise_auc.json\\nSaved feature importance to results/temp07_pilot/feature_importance.json\\n\\n========================================\\n=== MVP RESULT ===\\n4-class accuracy: 57.3% (chance: 16.7%)\\ndepth-1 vs depth-2 AUC: 0.8378\\nPASS/FAIL: PASS\\n========================================\\n[Sat May 16 00:16:12 CST 2026] === Generate results.json ===\\n\\n============================================================\\n  TEMP07 PILOT RESULTS\\n============================================================\\n  d1v2 AUC (RF):  0.8378  (temp09 baseline: 0.8327)\
+…[truncated 764 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T16:38:14.750898+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 2136\\ndrwxr-xr-x  2 root root    4096 May 16 00:16 .\\ndrwxr-xr-x 23 root root    4096 May 15 23:56 ..\\n-rw-r--r--  1 root root    2413 May 16 00:16 classification_report.txt\\n-rw-r--r--  1 root root  125423 May 16 00:16 confusion_matrix.png\\n-rw-r--r--  1 root root     724 May 16 00:16 feature_importance.json\\n-rw-r--r--  1 root root 2034737 May 16 00:16 features.jsonl\\n-rw-r--r--  1 root root     994 May 16 00:16 pairwise_auc.json\\n-rw-r--r--  1 root root    1482 May 16 00:16 results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T16:38:14.751039+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    500 /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/depth_0.jsonl\\n    500 /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/depth_1.jsonl\\n    500 /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/depth_2.jsonl\\n    500 /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/depth_3.jsonl\\n    500 /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/depth_4.jsonl\\n    500 /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/depth_5.jsonl\\n   3000 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T16:38:14.751202+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T16:38:14.751325+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/pairwise_auc.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/pairwise_auc.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T16:38:14.751444+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/classification_report.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/classification_report.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T16:38:14.751602+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"temp07_pilot\\\",\\n  \\\"model\\\": \\\"pythia-1.4b\\\",\\n  \\\"temperature\\\": 0.7,\\n  \\\"decoding_strategy\\\": \\\"temp_only\\\",\\n  \\\"samples_per_depth\\\": 500,\\n  \\\"depths\\\": [\\n    0,\\n    1,\\n    2,\\n    3,\\n    4,\\n    5\\n  ],\\n  \\\"key_metric\\\": {\\n    \\\"d1v2_auc_rf\\\": 0.8378,\\n    \\\"d1v2_auc_lr\\\": 0.8031,\\n    \\\"d1v2_auc_best\\\": 0.8378\\n  },\\n  \\\"comparison_temp09\\\": {\\n    \\\"d1v2_auc_rf\\\": 0.8327,\\n    \\\"d1v2_auc_lr\\\": 0.7833\\n  },\\n  \\\"all_pairwise_auc\\\": {\\n    \\\"logistic_regression\\\": {\\n      \\\"depth0_vs_depth1\\\": 0.9954,\\n      \\\"depth0_vs_depth2\\\": 1.0,\\n      \\\"depth0_vs_depth3\\\": 1.0,\\n      \\\"depth0_vs_depth4\\\": 1.0,\\n      \\\"depth0_vs_depth5\\\": 1.0,\\n      \\\"depth1_vs_depth2\\\": 0.8031,\\n      \\\"depth1_vs_depth3\\\": 0.9335,\\n      \\\"depth1_vs_depth4\\\": 0.9533,\\n      \\\"depth1_vs_depth5\\\": 0.9575,\\n      \\\"depth2_vs_depth3\\\": 0.608,\\n      \\\"depth2_vs_depth4\\\": 0.8189,\\n      \\\"depth2_vs_depth5\\\": 0.8688,\\n      \\\"depth3_vs_depth4\\\": 0.6525,\\n      \\\"depth3_vs_depth5\\\": 0.7304,\\n      \\\"depth4_vs_depth5\\\": 0.5652\\n    },\\n    \\\"random_forest\\\": {\\n      \\\"depth0_vs_depth1\\\": 0.9981,\\n      \\\"depth0_vs_depth2\\\": 1.0,\\n      \\\"depth0_vs_depth3\\\": 1.0,\\n      \\\"depth0_vs_depth4\\\": 0.9999,\\n      \\\"depth0_vs_depth5\\\": 1.0,\\n      \\\"depth1_vs_depth2\\\": 0.8378,\\n      \\\"depth1_vs_depth3\\\": 0.9211,\\n      \\\"depth1_vs_depth4\\\": 0.9259,\\n      \\\"depth1_vs_depth5\\\": 0.9764,\\n      \\\"depth2_vs_depth3\\\": 0.635,\\n      \\\"depth2_vs_depth4\\\": 0.8396,\\n      \\\"depth2_vs_depth5\\\": 0.902,\\n      \\\"depth3_vs_depth4\\\": 0.5997,\\n      \\\"depth3_vs_depth5\\\": 0.7553,\\n      \\\"depth4_vs_depth5\\\": 0.6025\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error
+…[truncated 54 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T16:38:14.751775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"logistic_regression\\\": {\\n    \\\"depth0_vs_depth1\\\": 0.9954,\\n    \\\"depth0_vs_depth2\\\": 1.0,\\n    \\\"depth0_vs_depth3\\\": 1.0,\\n    \\\"depth0_vs_depth4\\\": 1.0,\\n    \\\"depth0_vs_depth5\\\": 1.0,\\n    \\\"depth1_vs_depth2\\\": 0.8031,\\n    \\\"depth1_vs_depth3\\\": 0.9335,\\n    \\\"depth1_vs_depth4\\\": 0.9533,\\n    \\\"depth1_vs_depth5\\\": 0.9575,\\n    \\\"depth2_vs_depth3\\\": 0.608,\\n    \\\"depth2_vs_depth4\\\": 0.8189,\\n    \\\"depth2_vs_depth5\\\": 0.8688,\\n    \\\"depth3_vs_depth4\\\": 0.6525,\\n    \\\"depth3_vs_depth5\\\": 0.7304,\\n    \\\"depth4_vs_depth5\\\": 0.5652\\n  },\\n  \\\"random_forest\\\": {\\n    \\\"depth0_vs_depth1\\\": 0.9981,\\n    \\\"depth0_vs_depth2\\\": 1.0,\\n    \\\"depth0_vs_depth3\\\": 1.0,\\n    \\\"depth0_vs_depth4\\\": 0.9999,\\n    \\\"depth0_vs_depth5\\\": 1.0,\\n    \\\"depth1_vs_depth2\\\": 0.8378,\\n    \\\"depth1_vs_depth3\\\": 0.9211,\\n    \\\"depth1_vs_depth4\\\": 0.9259,\\n    \\\"depth1_vs_depth5\\\": 0.9764,\\n    \\\"depth2_vs_depth3\\\": 0.635,\\n    \\\"depth2_vs_depth4\\\": 0.8396,\\n    \\\"depth2_vs_depth5\\\": 0.902,\\n    \\\"depth3_vs_depth4\\\": 0.5997,\\n    \\\"depth3_vs_depth5\\\": 0.7553,\\n    \\\"depth4_vs_depth5\\\": 0.6025\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T16:38:14.751954+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Random Baseline ===\\nAccuracy: 0.1750\\n              precision    recall  f1-score   support\\n\\n     depth-0       0.20      0.22      0.21       100\\n     depth-1       0.20      0.19      0.19       100\\n     depth-2       0.17      0.16      0.17       100\\n     depth-3       0.16      0.18      0.17       100\\n     depth-4       0.16      0.15      0.15       100\\n     depth-5       0.16      0.15      0.15       100\\n\\n    accuracy                           0.17       600\\n   macro avg       0.17      0.18      0.17       600\\nweighted avg       0.17      0.17      0.17       600\\n\\n\\n=== Majority Baseline (always depth-0) ===\\nAccuracy: 0.1667\\n              precision    recall  f1-score   support\\n\\n     depth-0       0.17      1.00      0.29       100\\n     depth-1       0.00      0.00      0.00       100\\n     depth-2       0.00      0.00      0.00       100\\n     depth-3       0.00      0.00      0.00       100\\n     depth-4       0.00      0.00      0.00       100\\n     depth-5       0.00      0.00      0.00       100\\n\\n    accuracy                           0.17       600\\n   macro avg       0.03      0.17      0.05       600\\nweighted avg       0.03      0.17      0.05       600\\n\\n\\n=== Logistic Regression ===\\nAccuracy: 0.5467 (95% CI: [0.5100, 0.5867])\\n              precision    recall  f1-score   support\\n\\n     depth-0       1.00      1.00      1.00       100\\n     depth-1       0.75      0.82      0.78       100\\n     depth-2       0.43      0.53      0.48       100\\n     depth-3       0.28      0.17      0.21       100\\n     depth-4       0.30      0.20      0.24       100\\n     depth-5       0.40      0.56      0.46       100\\n\\n    accuracy                           0.55       600\\n   macro avg       0.53      0.55      0.53       600\\nweighted avg       0.53      0.55      0.53       600\\n\\n\\n=== Random Forest ===\\nAccuracy: 0.5733 (9
+…[truncated 697 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T16:38:14.752162+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "temp07_pilot_pythia_001",
+  "field": "metrics",
+  "value": "{'samples_per_depth': 500, 'depths': 6, 'six_class_rf_accuracy': 0.5733, 'six_class_rf_ci95': [0.5333, 0.615], 'six_class_lr_accuracy': 0.5467, 'pairwise_auc_rf': {'d0v1': 0.9981, 'd1v2': 0.8378, 'd2v3': 0.635, 'd3v4': 0.5997, 'd4v5': 0.6025}, 'pairwise_auc_lr': {'d0v1': 0.9954, 'd1v2': 0.8031, 'd2v3': 0.608, 'd3v4': 0.6525, 'd4v5': 0.5652}, 'vs_temp09_d1v2_rf': '0.8378 vs 0.8327 (+0.005)', 'vs_temp09_d1v2_lr': '0.8031 vs 0.7833 (+0.020)', 'd1v2_inversion': False, 'top_features': ['p90_ppl', 'var_surprisal', 'mean_surprisal', 'mean_ppl', 'p75_ppl']}",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "temp07_pilot_pythia_001",
+    "field": "metrics",
+    "value": "{'samples_per_depth': 500, 'depths': 6, 'six_class_rf_accuracy': 0.5733, 'six_class_rf_ci95': [0.5333, 0.615], 'six_class_lr_accuracy': 0.5467, 'pairwise_auc_rf': {'d0v1': 0.9981, 'd1v2': 0.8378, 'd2v3': 0.635, 'd3v4': 0.5997, 'd4v5': 0.6025}, 'pairwise_auc_lr': {'d0v1': 0.9954, 'd1v2': 0.8031, 'd2v3': 0.608, 'd3v4': 0.6525, 'd4v5': 0.5652}, 'vs_temp09_d1v2_rf': '0.8378 vs 0.8327 (+0.005)', 'vs_temp09_d1v2_lr': '0.8031 vs 0.7833 (+0.020)', 'd1v2_inversion': False, 'top_features': ['p90_ppl', 'var_surprisal', 'mean_surprisal', 'mean_ppl', 'p75_ppl']}",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T16:38:14.752362+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"temp07_pilot_pythia_001\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T16:37:54.654Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T15:50:42.735Z\"}, \"spec\": {\"command\": \"python src/temp07_pilot.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"N/A\", \"data_path\": \"data/pythia_temp07/depth_{0..5}.jsonl\", \"data_count\": 3000, \"model_name\": \"Pythia-1.4B\", \"seed\": 42, \"hyperparams\": {\"temperature\": 0.7, \"top_p\": 1, \"samples_per_depth\": 500, \"depths\": 6}, \"log_path\": \"results/temp07_pilot/\", \"checkpoint_path\": \"results/temp07_pilot/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"samples_per_depth\": 500, \"depths\": 6, \"six_class_rf_accuracy\": 0.5733, \"six_class_rf_ci95\": [0.5333, 0.615], \"six_class_lr_accuracy\": 0.5467, \"pairwise_auc_rf\": {\"d0v1\": 0.9981, \"d1v2\": 0.8378, \"d2v3\": 0.635, \"d3v4\": 0.5997, \"d4v5\": 0.6025}, \"pairwise_auc_lr\": {\"d0v1\": 0.9954, \"d1v2\": 0.8031, \"d2v3\": 0.608, \"d3v4\": 0.6525, \"d4v5\": 0.5652}, \"vs_temp09_d1v2_rf\": \"0.8378 vs 0.8327 (+0.005)\", \"vs_temp09_d1v2_lr\": \"0.8031 vs 0.7833 (+0.020)\", \"d1v2_inversion\": false, \"top_features\": [\"p90_ppl\", \"var_surprisal\", \"mean_surprisal\", \"mean_ppl\", \"p75_ppl\"]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3788}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T16:38:14.752520+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "temp07_pilot_pythia_001",
+  "field": "notes",
+  "value": "Pipeline 完成 (d0-d5, 500 samples/depth)。**d1v2 inversion 未出现**: d1v2 AUC RF=0.8378 (vs temp09 0.8327), LR=0.8031 (vs temp09 0.7833)。τ=0.7 within-strategy separability 与 τ=0.9 几乎相同。注意：cross-strategy LOO 中的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是跨策略泛化问题，非 within-strategy 问题。τ=0.7 的 within-strategy 结果正常，说明 temperature 均匀缩放 logit 不影响组内深度可分性。EDD 估计: d2v3=0.635<0.75 → EDD≈2 (6-class setting, 500 samples)。Feature importance 与 temp09 一致: perplexity 分布统计量主导 (p90_ppl, var_surprisal, mean_surprisal)。",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "temp07_pilot_pythia_001",
+    "field": "notes",
+    "value": "Pipeline 完成 (d0-d5, 500 samples/depth)。**d1v2 inversion 未出现**: d1v2 AUC RF=0.8378 (vs temp09 0.8327), LR=0.8031 (vs temp09 0.7833)。τ=0.7 within-strategy separability 与 τ=0.9 几乎相同。注意：cross-strategy LOO 中的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是跨策略泛化问题，非 within-strategy 问题。τ=0.7 的 within-strategy 结果正常，说明 temperature 均匀缩放 logit 不影响组内深度可分性。EDD 估计: d2v3=0.635<0.75 → EDD≈2 (6-class setting, 500 samples)。Feature importance 与 temp09 一致: perplexity 分布统计量主导 (p90_ppl, var_surprisal, mean_surprisal)。",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T16:38:14.752655+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "temp07_pilot_pythia_001",
+  "field": "status",
+  "value": "DONE",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "temp07_pilot_pythia_001",
+    "field": "status",
+    "value": "DONE",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T16:38:14.752818+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"temp07_pilot_pythia_001\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T16:38:04.354Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T15:50:42.735Z\"}, \"spec\": {\"command\": \"python src/temp07_pilot.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"N/A\", \"data_path\": \"data/pythia_temp07/depth_{0..5}.jsonl\", \"data_count\": 3000, \"model_name\": \"Pythia-1.4B\", \"seed\": 42, \"hyperparams\": {\"temperature\": 0.7, \"top_p\": 1, \"samples_per_depth\": 500, \"depths\": 6}, \"log_path\": \"results/temp07_pilot/\", \"checkpoint_path\": \"results/temp07_pilot/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"samples_per_depth\": 500, \"depths\": 6, \"six_class_rf_accuracy\": 0.5733, \"six_class_rf_ci95\": [0.5333, 0.615], \"six_class_lr_accuracy\": 0.5467, \"pairwise_auc_rf\": {\"d0v1\": 0.9981, \"d1v2\": 0.8378, \"d2v3\": 0.635, \"d3v4\": 0.5997, \"d4v5\": 0.6025}, \"pairwise_auc_lr\": {\"d0v1\": 0.9954, \"d1v2\": 0.8031, \"d2v3\": 0.608, \"d3v4\": 0.6525, \"d4v5\": 0.5652}, \"vs_temp09_d1v2_rf\": \"0.8378 vs 0.8327 (+0.005)\", \"vs_temp09_d1v2_lr\": \"0.8031 vs 0.7833 (+0.020)\", \"d1v2_inversion\": false, \"top_features\": [\"p90_ppl\", \"var_surprisal\", \"mean_surprisal\", \"mean_ppl\", \"p75_ppl\"]}, \"notes\": \"Pipeline 完成 (d0-d5, 500 samples/depth)。**d1v2 inversion 未出现**: d1v2 AUC RF=0.8378 (vs temp09 0.8327), LR=0.8031 (vs temp09 0.7833)。τ=0.7 within-strategy separability 与 τ=0.9 几乎相同。注意：cross-strategy LOO 中的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是跨策略泛化问题，非 with
+…[truncated 305 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T16:38:14.753060+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"temp07_pilot_pythia_001\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T16:38:04.729Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T15:50:42.735Z\"}, \"spec\": {\"command\": \"python src/temp07_pilot.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"N/A\", \"data_path\": \"data/pythia_temp07/depth_{0..5}.jsonl\", \"data_count\": 3000, \"model_name\": \"Pythia-1.4B\", \"seed\": 42, \"hyperparams\": {\"temperature\": 0.7, \"top_p\": 1, \"samples_per_depth\": 500, \"depths\": 6}, \"log_path\": \"results/temp07_pilot/\", \"checkpoint_path\": \"results/temp07_pilot/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"samples_per_depth\": 500, \"depths\": 6, \"six_class_rf_accuracy\": 0.5733, \"six_class_rf_ci95\": [0.5333, 0.615], \"six_class_lr_accuracy\": 0.5467, \"pairwise_auc_rf\": {\"d0v1\": 0.9981, \"d1v2\": 0.8378, \"d2v3\": 0.635, \"d3v4\": 0.5997, \"d4v5\": 0.6025}, \"pairwise_auc_lr\": {\"d0v1\": 0.9954, \"d1v2\": 0.8031, \"d2v3\": 0.608, \"d3v4\": 0.6525, \"d4v5\": 0.5652}, \"vs_temp09_d1v2_rf\": \"0.8378 vs 0.8327 (+0.005)\", \"vs_temp09_d1v2_lr\": \"0.8031 vs 0.7833 (+0.020)\", \"d1v2_inversion\": false, \"top_features\": [\"p90_ppl\", \"var_surprisal\", \"mean_surprisal\", \"mean_ppl\", \"p75_ppl\"]}, \"notes\": \"Pipeline 完成 (d0-d5, 500 samples/depth)。**d1v2 inversion 未出现**: d1v2 AUC RF=0.8378 (vs temp09 0.8327), LR=0.8031 (vs temp09 0.7833)。τ=0.7 within-strategy separability 与 τ=0.9 几乎相同。注意：cross-strategy LOO 中的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是跨策略泛化问题，非 within-
+…[truncated 401 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-15T16:38:14.753255+00:00_
+
+Registry 已更新为 DONE。
+
+## 结果总结
+
+**temp07_pilot_pythia_001** — 已完成 ✅
+
+| 指标 | τ=0.7 | τ=0.9 baseline |
+|------|-------|----------------|
+| d1v2 AUC (RF) | **0.8378** | 0.8327 |
+| d1v2 AUC (LR) | **0.8031** | 0.7833 |
+| 6-class RF acc | 57.3% | — |
+
+**核心发现：d1v2 inversion 在 τ=0.7 within-strategy 评估中未出现。** τ=0.7 的 d1v2 AUC 与 τ=0.9 几乎一致（RF +0.005, LR +0.020），说明 temperature 均匀缩放 logit 不影响组内深度可分性。
+
+Cross-strategy LOO 中观察到的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是**跨策略泛化**问题——temperature 策略的 d1 特征分布与 nucleus/topk50 的 d2 重叠，导致跨策略分类器系统性高估深度。这不是 τ=0.7 特有的，而是 temperature 解码策略的固有属性。
+
+产出文件：`results/temp07_pilot/` (features.jsonl, pairwise_auc.json, results.json, confusion_matrix.png, classification_report.txt)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_temp07_pilot_pythia_001_20260515T163617"
+}
+```
+
+</details>
+
+---

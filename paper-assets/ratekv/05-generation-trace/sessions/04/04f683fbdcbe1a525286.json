@@ -277,5 +277,6 @@
       ],
       "message_count": 5
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/gpu-gemma2-hires-bf16-2bitonly.md"
 }

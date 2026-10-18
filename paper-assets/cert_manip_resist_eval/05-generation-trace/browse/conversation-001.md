@@ -1,143 +1,143 @@
 # Conversation logs
 
-[Back to trace guide](../README.md)
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
 
-| Source record | Events | User turns | JSON |
-|---|---:|---:|---|
-| `logs/chats/archive/feishu_group_oc_511319d9c17dfa45ec974a0123143d46_director_20260522T181812_387921.jsonl` (occurrence 1) | 1583 | 241 | [Open](../sessions/76/767d21afb6ce083dd9b4.json) |
-| `logs/chats/archive/feishu_group_oc_551817662c2d314a3713be79c074d906_reviewer_20260522T181818_648954.jsonl` (occurrence 1) | 1410 | 131 | [Open](../sessions/07/079d73c89bdcff9a0da6.json) |
-| `logs/chats/archive/feishu_group_oc_551817662c2d314a3713be79c074d906_20260525T193319_076933.jsonl` (occurrence 1) | 6129 | 589 | [Open](../sessions/91/91814f07bf499fa701cc.json) |
-| `logs/chats/worker_infra_env-detect_20260521T170808.jsonl` (occurrence 1) | 7 | 0 | [Open](../sessions/fb/fb3e05c48bfe39848e59.json) |
-| `logs/chats/worker_code_mvp-framework_20260521T170853.jsonl` (occurrence 1) | 87 | 0 | [Open](../sessions/30/30f607c26dc02ba3a4f0.json) |
-| `logs/chats/worker_infra_model-download-check_20260521T172914.jsonl` (occurrence 1) | 9 | 0 | [Open](../sessions/93/93bdb87f54578671ed71.json) |
-| `logs/chats/worker_infra_dl-qwen72b_20260521T182458.jsonl` (occurrence 1) | 21 | 0 | [Open](../sessions/7e/7e0bf4adc5402148cba6.json) |
-| `logs/chats/worker_infra_download-monitor_20260521T184450.jsonl` (occurrence 1) | 61 | 0 | [Open](../sessions/40/40f22c372f9dc866eb25.json) |
-| `logs/chats/worker_research_theory-t3-peg_20260521T194226.jsonl` (occurrence 1) | 65 | 0 | [Open](../sessions/60/60a95efacae88c5a6235.json) |
-| `logs/chats/worker_research_theory-t1-sdpi_20260521T194207.jsonl` (occurrence 1) | 9 | 0 | [Open](../sessions/40/4079ab794cc88ea510b9.json) |
-| `logs/chats/worker_infra_sync-keff_20260521T200247.jsonl` (occurrence 1) | 9 | 0 | [Open](../sessions/f8/f83310d88f825646b2b3.json) |
-| `logs/chats/worker_infra_dl-mistral-resume_20260521T202809.jsonl` (occurrence 1) | 65 | 0 | [Open](../sessions/21/21a964fba996d3d76b0f.json) |
-| `logs/chats/worker_infra_dl-qwen72b-resume_20260521T202818.jsonl` (occurrence 1) | 175 | 0 | [Open](../sessions/a6/a681dea404bf2b79bc49.json) |
-| `logs/chats/worker_infra_dl-llama70b-resume_20260521T202803.jsonl` (occurrence 1) | 303 | 0 | [Open](../sessions/67/6769496319da09983492.json) |
-| `logs/chats/worker_infra_qwen72b-verify_20260521T212121.jsonl` (occurrence 1) | 107 | 0 | [Open](../sessions/5b/5bad9c5c616e7592bbdb.json) |
-| `logs/chats/worker_code_update-step3-step4-dual-keff_20260521T220444.jsonl` (occurrence 1) | 25 | 0 | [Open](../sessions/38/385c0a0178bd6453e6ad.json) |
-| `logs/chats/worker_analysis_copula-gof_20260521T224845.jsonl` (occurrence 1) | 7 | 0 | [Open](../sessions/24/24ae2e9c1ec0611005d3.json) |
-| `logs/chats/worker_exp_step2v3-regression_20260522T011536.jsonl` (occurrence 1) | 65 | 0 | [Open](../sessions/61/61778aa54d96ab291f3d.json) |
-| `logs/chats/cron_hook_mvp-step2v3-retry.jsonl` (occurrence 1) | 58 | 2 | [Open](../sessions/8d/8d6d3158762c13852ba2.json) |
-| `logs/chats/cron_hook_mvp-step2v3-retry2.jsonl` (occurrence 1) | 16 | 1 | [Open](../sessions/0a/0ac4f2436e0496c1765d.json) |
-| `logs/chats/worker_infra_api-model-probe_20260522T033428.jsonl` (occurrence 1) | 27 | 0 | [Open](../sessions/01/01fc48a668ceeaa16149.json) |
-| `logs/chats/worker_exp_taxonomy-broad-spectrum_20260522T033416.jsonl` (occurrence 1) | 57 | 0 | [Open](../sessions/98/986c1b7cfe13db36b081.json) |
-| `logs/chats/worker_code_plan001-parallel-v2_20260522T094736.jsonl` (occurrence 1) | 49 | 0 | [Open](../sessions/a2/a2502eae24b2c6a4a8be.json) |
-| `logs/chats/worker_research_plan003-theorem1-proof_20260522T111238.jsonl` (occurrence 1) | 33 | 0 | [Open](../sessions/a1/a1024472eb4d7db371d2.json) |
-| `logs/chats/worker_infra_step1-quick-check_20260522T113854.jsonl` (occurrence 1) | 13 | 0 | [Open](../sessions/dc/dc49aa95b05e6e0fe082.json) |
-| `logs/chats/worker_infra_step1-status-check_20260522T122657.jsonl` (occurrence 1) | 29 | 0 | [Open](../sessions/75/75619b36c64209ce7eae.json) |
-| `logs/chats/worker_infra_step1-cleanup_20260522T124310.jsonl` (occurrence 1) | 23 | 0 | [Open](../sessions/ec/ecbeec012b9181e5ba18.json) |
-| `logs/chats/worker_exp_step1-scoring-restart_20260522T130523.jsonl` (occurrence 1) | 63 | 0 | [Open](../sessions/1d/1da8220445ba198fa9fb.json) |
-| `logs/chats/worker_exp_step1-autoscale-scoring_20260522T132636.jsonl` (occurrence 1) | 55 | 0 | [Open](../sessions/b5/b549911fbab4a0e575f4.json) |
-| `logs/chats/worker_infra_kill-seetacloud-scoring_20260522T134617.jsonl` (occurrence 1) | 5 | 0 | [Open](../sessions/ae/aec8f0f709f8946d9098.json) |
-| `logs/chats/feishu_group_oc_551817662c2d314a3713be79c074d906_paper_agent.jsonl` (occurrence 1) | 8069 | 315 | [Open](../sessions/fa/fae68c02acff753fbd23.json) |
-| `logs/chats/worker_paper_research_20260522T150026.jsonl` (occurrence 1) | 21 | 0 | [Open](../sessions/6d/6dc0529df5a88b910813.json) |
-| `logs/chats/worker_exp_7model-preview-pipeline_20260522T150246.jsonl` (occurrence 1) | 67 | 0 | [Open](../sessions/09/090e26dfb59c9b4a595f.json) |
-| `logs/chats/worker_paper_writing_related_work_20260522T150758.jsonl` (occurrence 1) | 31 | 0 | [Open](../sessions/72/72520d52763ad7316081.json) |
-| `logs/chats/worker_paper_writing_threat_model_20260522T151212.jsonl` (occurrence 1) | 7 | 0 | [Open](../sessions/5c/5caa2069e8735b032188.json) |
-| `logs/chats/worker_code_error-filter-and-pipeline-check_20260522T161449.jsonl` (occurrence 1) | 83 | 0 | [Open](../sessions/0c/0c83c591896da2187a82.json) |
-| `logs/chats/worker_code_step3-mi-filter-and-sensitivity_20260522T163508.jsonl` (occurrence 1) | 33 | 0 | [Open](../sessions/8c/8c8f1a698eadf4455fa8.json) |
-| `logs/chats/worker_analysis_residualized-keff-15model_20260522T171634.jsonl` (occurrence 1) | 31 | 0 | [Open](../sessions/d4/d4eb997be2b1ed7e13d5.json) |
-| `logs/chats/worker_paper_writing_introduction_v4_20260522T174330.jsonl` (occurrence 1) | 17 | 0 | [Open](../sessions/f4/f42326950f4bd52266ff.json) |
-| `logs/chats/worker_analysis_15model-family-copula_20260522T175131.jsonl` (occurrence 1) | 45 | 0 | [Open](../sessions/e2/e20417b2236829a503ca.json) |
-| `logs/chats/archive/feishu_group_oc_511319d9c17dfa45ec974a0123143d46_director_20260525T060233_857354.jsonl` (occurrence 1) | 3980 | 527 | [Open](../sessions/ef/efd6077d69911be9e9c1.json) |
-| `logs/chats/archive/feishu_group_oc_551817662c2d314a3713be79c074d906_reviewer_20260523T195106_872403.jsonl` (occurrence 1) | 2646 | 167 | [Open](../sessions/30/30da8433e18b0de768e9.json) |
-| `logs/chats/worker_paper_writing_methodology_v4b_20260522T182359.jsonl` (occurrence 1) | 23 | 0 | [Open](../sessions/66/661577a37583bf65224c.json) |
-| `logs/chats/worker_research_attack-prompt-templates_20260522T190027.jsonl` (occurrence 1) | 13 | 0 | [Open](../sessions/e8/e82fbaff237703f58d1d.json) |
-| `logs/chats/worker_paper_writing_20260522T185827.jsonl` (occurrence 1) | 21 | 0 | [Open](../sessions/a7/a7bc0ed73502f42cde8b.json) |
-| `logs/chats/worker_analysis_gam-tier-indicator_20260522T190014.jsonl` (occurrence 1) | 121 | 0 | [Open](../sessions/4d/4dfc6612168cc521bbb7.json) |
-| `logs/chats/worker_analysis_clustered-se-mixed-effects_20260522T185951.jsonl` (occurrence 1) | 51 | 0 | [Open](../sessions/b6/b6621af39bb9df51b591.json) |
-| `logs/chats/worker_paper_writing_rw_20260522T192259.jsonl` (occurrence 1) | 19 | 0 | [Open](../sessions/8a/8a610520475562364612.json) |
-| `logs/chats/worker_paper_writing_analysis_20260522T192641.jsonl` (occurrence 1) | 31 | 0 | [Open](../sessions/10/100dac0e1d97b75e9cd8.json) |
-| `logs/chats/worker_paper_writing_conclusion_20260522T193714.jsonl` (occurrence 1) | 21 | 0 | [Open](../sessions/63/631f48a094ec6de5ef88.json) |
-| `logs/chats/worker_paper_writing_abstract_20260522T195705.jsonl` (occurrence 1) | 19 | 0 | [Open](../sessions/ac/acddacbaa9d376e1a91c.json) |
-| `logs/chats/worker_paper_writing_results_v5_20260522T202417.jsonl` (occurrence 1) | 9 | 0 | [Open](../sessions/56/569295b2166ecc4856c3.json) |
-| `logs/chats/worker_paper_appendix-attacks_20260522T221224.jsonl` (occurrence 1) | 13 | 0 | [Open](../sessions/df/df76e49ed46154b31907.json) |
-| `logs/chats/feishu_group_oc_8afaeea93cf69f72a8cefdfe533b3c23_reviewer_1.jsonl` (occurrence 1) | 782 | 20 | [Open](../sessions/3e/3e4b6636b940842a1ded.json) |
-| `logs/chats/feishu_group_oc_8afaeea93cf69f72a8cefdfe533b3c23_reviewer_2.jsonl` (occurrence 1) | 760 | 20 | [Open](../sessions/b4/b4b7cc0933581491d1b1.json) |
-| `logs/chats/feishu_group_oc_8afaeea93cf69f72a8cefdfe533b3c23_director.jsonl` (occurrence 1) | 932 | 70 | [Open](../sessions/de/de0abc42dffe26b225c6.json) |
-| `logs/chats/worker_analysis_power-cr2-cr3_20260522T231641.jsonl` (occurrence 1) | 73 | 0 | [Open](../sessions/98/9877b708ea9e6e5709c7.json) |
-| `logs/chats/worker_analysis_beta-reg-epsilon_20260522T231659.jsonl` (occurrence 1) | 57 | 0 | [Open](../sessions/1e/1eb2e983f4c8eabbca8a.json) |
-| `logs/chats/worker_paper_writing_related_work_expansion_20260522T232439.jsonl` (occurrence 1) | 21 | 0 | [Open](../sessions/18/18420b35c6605fb82ef3.json) |
-| `logs/chats/worker_analysis_vif-partial-corr_20260522T233637.jsonl` (occurrence 1) | 21 | 0 | [Open](../sessions/f1/f103e3a7ab457b5c3bc0.json) |
-| `logs/chats/worker_analysis_vif-partial-corr_20260522T235642.jsonl` (occurrence 1) | 35 | 0 | [Open](../sessions/61/61fd9b25658170cccfa2.json) |
-| `logs/chats/worker_analysis_k5-k7-panels_20260523T001931.jsonl` (occurrence 1) | 95 | 0 | [Open](../sessions/c5/c5b7bfaf90e9d2e55c62.json) |
-| `logs/chats/worker_analysis_k7-wild-bootstrap_20260523T010244.jsonl` (occurrence 1) | 221 | 0 | [Open](../sessions/b5/b57782efb652ec7df2ac.json) |
-| `logs/chats/worker_paper_writing_introduction_reframe_20260523T011835.jsonl` (occurrence 1) | 13 | 0 | [Open](../sessions/79/793ddd6d54e74580a82f.json) |
-| `logs/chats/worker_analysis_partial-knowledge-clustered-se_20260523T012338.jsonl` (occurrence 1) | 33 | 0 | [Open](../sessions/cf/cf2883052ff8c2b8ffc0.json) |
-| `logs/chats/worker_analysis_k5-gam_20260523T012252.jsonl` (occurrence 1) | 59 | 0 | [Open](../sessions/4a/4a36e77ae799224b16ab.json) |
-| `logs/chats/worker_paper_framework-figure-fix_20260523T012315.jsonl` (occurrence 1) | 83 | 0 | [Open](../sessions/3c/3c51b392fada6a868d80.json) |
-| `logs/chats/worker_paper_writing_results_reframe_20260523T013739.jsonl` (occurrence 1) | 19 | 0 | [Open](../sessions/5d/5d5d061fbed4540d8b53.json) |
-| `logs/chats/worker_check_westd-connection_20260523T030940.jsonl` (occurrence 1) | 9 | 0 | [Open](../sessions/ad/adab4c9c2c13ea94bbc0.json) |
-| `logs/chats/worker_analysis_k5-panel-selection_20260523T030919.jsonl` (occurrence 1) | 45 | 0 | [Open](../sessions/e1/e19b265e2b2bc6a5ea1d.json) |
-| `logs/chats/worker_analysis_k5-aggregation_20260523T030937.jsonl` (occurrence 1) | 119 | 0 | [Open](../sessions/76/7600de0ef0a8d021be2c.json) |
-| `logs/chats/worker_analysis_k5-panel-selection-bootstrap_20260523T061740.jsonl` (occurrence 1) | 45 | 0 | [Open](../sessions/bd/bd092e2ee52d9185985a.json) |
-| `logs/chats/worker_analysis_k5-aggregation-bootstrap_20260523T061722.jsonl` (occurrence 1) | 285 | 0 | [Open](../sessions/2e/2e006d8627534bc998bd.json) |
-| `logs/chats/worker_analysis_k4-wild-bootstrap_20260523T063715.jsonl` (occurrence 1) | 43 | 0 | [Open](../sessions/d4/d4a653e6b122da9e78b8.json) |
-| `logs/chats/worker_analysis_attacked-keff_20260523T070444.jsonl` (occurrence 1) | 69 | 0 | [Open](../sessions/e6/e671fe9102ef91d5e749.json) |
-| `logs/chats/worker_analysis_api-only-subset_20260523T070411.jsonl` (occurrence 1) | 51 | 0 | [Open](../sessions/6c/6c5c838b3c2e5c75e85b.json) |
-| `logs/chats/worker_analysis_k5-rf-contrast_20260523T070356.jsonl` (occurrence 1) | 67 | 0 | [Open](../sessions/1b/1b24be1947923574a802.json) |
-| `logs/chats/worker_analysis_theorem1-violation_20260523T071732.jsonl` (occurrence 1) | 45 | 0 | [Open](../sessions/5c/5cf63f86956e15e8f961.json) |
-| `logs/chats/worker_analysis_controlled-regression_20260523T071753.jsonl` (occurrence 1) | 57 | 0 | [Open](../sessions/02/02d95a383202b74d3746.json) |
-| `logs/chats/worker_analysis_temperature-cost-estimate_20260523T080404.jsonl` (occurrence 1) | 17 | 0 | [Open](../sessions/0b/0b254cec6a986e563bdd.json) |
-| `logs/chats/worker_analysis_cinelli-hazlett-sensitivity_20260523T080322.jsonl` (occurrence 1) | 87 | 0 | [Open](../sessions/38/38efac6ada21227a94be.json) |
-| `logs/chats/worker_check_iv-exclusion-restriction_20260523T082512.jsonl` (occurrence 1) | 17 | 0 | [Open](../sessions/24/24a241e14d58b6ca3cc1.json) |
-| `logs/chats/worker_audit_capability-matched-c3_20260523T103549.jsonl` (occurrence 1) | 59 | 0 | [Open](../sessions/7d/7d3ec5eeb99f15b21eea.json) |
-| `logs/chats/worker_analysis_pool-a-cinelli-hazlett_20260523T120953.jsonl` (occurrence 1) | 49 | 0 | [Open](../sessions/71/716d4d771b08f6a8d556.json) |
-| `logs/chats/worker_research_bib-verify-shi2024_20260523T123030.jsonl` (occurrence 1) | 11 | 0 | [Open](../sessions/14/143020bd0ed88457e72e.json) |
-| `logs/chats/worker_analysis_keff-stability-stochdom_20260523T123019.jsonl` (occurrence 1) | 37 | 0 | [Open](../sessions/a0/a0e3bca6f30da557d91c.json) |
-| `logs/chats/worker_analysis_epsilon-sensitivity-mde_20260523T122958.jsonl` (occurrence 1) | 233 | 0 | [Open](../sessions/b7/b7fb2b8705fa9daa3f08.json) |
-| `logs/chats/worker_figure_regime-transition_20260523T132327.jsonl` (occurrence 1) | 9 | 0 | [Open](../sessions/91/9160b772ec76aebcbad2.json) |
-| `logs/chats/worker_analysis_k5-epsilon-sensitivity_20260523T140549.jsonl` (occurrence 1) | 55 | 0 | [Open](../sessions/06/068cf6353d80f300a216.json) |
-| `logs/chats/worker_infra_westd-13176-connectivity_20260523T163523.jsonl` (occurrence 1) | 7 | 0 | [Open](../sessions/7c/7cc2534d699506cfa4f3.json) |
-| `logs/chats/worker_analysis_gam-bootstrap-ci-k5_20260523T165749.jsonl` (occurrence 1) | 81 | 0 | [Open](../sessions/af/af1a74ec56dd9430fe62.json) |
-| `logs/chats/worker_analysis_aggregation-bootstrap_20260523T171836.jsonl` (occurrence 1) | 139 | 0 | [Open](../sessions/fa/fa0d227b08ca45e302fa.json) |
-| `logs/chats/worker_fix_table1-k3-ols-corrected_20260523T175018.jsonl` (occurrence 1) | 47 | 0 | [Open](../sessions/2d/2d09436de4da07e5d76b.json) |
-| `logs/chats/worker_fix_regime-transition-bootstrap-corrected_20260523T175031.jsonl` (occurrence 1) | 203 | 0 | [Open](../sessions/81/816e4cbcc80ec033805a.json) |
-| `logs/chats/worker_analysis_random-fault-contrast-v2_20260523T182424.jsonl` (occurrence 1) | 181 | 0 | [Open](../sessions/a9/a96201e44edfd3a45e69.json) |
-| `logs/chats/worker_paper_figure_fig_regime_transition_20260523T194555.jsonl` (occurrence 1) | 21 | 0 | [Open](../sessions/5f/5f2fb70b42b0f87e0199.json) |
-| `logs/chats/archive/feishu_group_oc_551817662c2d314a3713be79c074d906_reviewer_20260525T060245_151805.jsonl` (occurrence 1) | 1587 | 98 | [Open](../sessions/9a/9a77ff95cf1cb094d79b.json) |
-| `logs/chats/worker_paper_writing_analysis_r5_revision_20260524T041619.jsonl` (occurrence 1) | 11 | 0 | [Open](../sessions/48/4867deac8490ec72cfec.json) |
-| `logs/chats/worker_paper_writing_intro_abstract_r5_revision_20260524T042710.jsonl` (occurrence 1) | 25 | 0 | [Open](../sessions/9c/9ca540bf6c8ffe8d5c7a.json) |
-| `logs/chats/worker_paper_writing_related_work_r5_revision_20260524T044714.jsonl` (occurrence 1) | 11 | 0 | [Open](../sessions/44/447e083ea0071e8bd9d2.json) |
-| `logs/chats/worker_audit_k5-aggregation-v2-check_20260524T045111.jsonl` (occurrence 1) | 33 | 0 | [Open](../sessions/1f/1fb94a87c8f530f3418b.json) |
-| `logs/chats/worker_ops_deprecate-regime-transition_20260524T073727.jsonl` (occurrence 1) | 11 | 0 | [Open](../sessions/e3/e3d048ddae0e8dd6d3a9.json) |
-| `logs/chats/worker_figure_regime-transition-redraw_20260524T073722.jsonl` (occurrence 1) | 31 | 0 | [Open](../sessions/bb/bb11ec2ff227ab2b5657.json) |
-| `logs/chats/worker_analysis_k7-aggregation-bootstrap-v2_20260524T080423.jsonl` (occurrence 1) | 67 | 0 | [Open](../sessions/e5/e55076dfc710df51c197.json) |
-| `logs/chats/worker_analysis_plan006-judge-asr-concentration_20260524T093812.jsonl` (occurrence 1) | 51 | 0 | [Open](../sessions/dc/dc98393d694ce0ce28d2.json) |
-| `logs/chats/worker_analysis_plan006-cinelli-hazlett-v2_20260524T100043.jsonl` (occurrence 1) | 77 | 0 | [Open](../sessions/c6/c6bfaba598e00ad2a76a.json) |
-| `logs/chats/worker_analysis_r4-a3-mi-plugin-vs-closedform_20260524T110501.jsonl` (occurrence 1) | 53 | 0 | [Open](../sessions/10/10c663e37c6a854891c6.json) |
-| `logs/chats/worker_paper_figure_dominance_heatmap_20260524T180637.jsonl` (occurrence 1) | 39 | 0 | [Open](../sessions/a0/a0a167f71f0ec66b7a09.json) |
-| `logs/chats/worker_paper_writing_abstract_intro_rewrite_20260524T181332.jsonl` (occurrence 1) | 25 | 0 | [Open](../sessions/3a/3a9e5033f22b1ed3541f.json) |
-| `logs/chats/worker_experiment_fp16-baseline-v3-bugfix_20260524T182108.jsonl` (occurrence 1) | 173 | 0 | [Open](../sessions/22/22de1fefba5e757a1116.json) |
-| `logs/chats/worker_ops_fp16-hotfix-deploy_20260524T184110.jsonl` (occurrence 1) | 37 | 0 | [Open](../sessions/99/99f655913bf60d5a9127.json) |
-| `logs/chats/worker_ops_kill-buggy-fp16_20260524T190047.jsonl` (occurrence 1) | 7 | 0 | [Open](../sessions/d9/d9324076b3c425aa6214.json) |
-| `logs/chats/worker_analysis_api-only-power-betastd_20260524T190307.jsonl` (occurrence 1) | 119 | 0 | [Open](../sessions/5c/5c0500ee573c1a9fc210.json) |
-| `logs/chats/worker_analysis_fractional-logit-v2-audit_20260524T190248.jsonl` (occurrence 1) | 203 | 0 | [Open](../sessions/71/718e40df8d295c861e41.json) |
-| `logs/chats/worker_analysis_betastd-trajectory_20260524T192235.jsonl` (occurrence 1) | 25 | 0 | [Open](../sessions/91/91216dac941f8ae14c46.json) |
-| `logs/chats/worker_analysis_bayesian-posterior-entropy_20260524T192252.jsonl` (occurrence 1) | 147 | 0 | [Open](../sessions/c7/c7c2385da353a944f702.json) |
-| `logs/chats/archive/feishu_group_oc_511319d9c17dfa45ec974a0123143d46_director_20260525T193309_232171.jsonl` (occurrence 1) | 1570 | 164 | [Open](../sessions/09/09b887fcdbf852fd1ef9.json) |
-| `logs/chats/feishu_group_oc_551817662c2d314a3713be79c074d906_reviewer.jsonl` (occurrence 1) | 1012 | 77 | [Open](../sessions/8d/8d1550e0f608275be23a.json) |
-| `logs/chats/worker_ops_fp16-status-check_20260525T060342.jsonl` (occurrence 1) | 19 | 0 | [Open](../sessions/ac/accd85b28e3d0cc2a2b1.json) |
-| `logs/chats/worker_ops_mc-result-collect_20260525T062344.jsonl` (occurrence 1) | 13 | 0 | [Open](../sessions/e1/e1a1bf030de007577ec3.json) |
-| `logs/chats/worker_ops_r6-collect-previous-results_20260525T064822.jsonl` (occurrence 1) | 31 | 0 | [Open](../sessions/9f/9f17aaaf79070b3a2167.json) |
-| `logs/chats/worker_ops_r6-data-audit_20260525T064840.jsonl` (occurrence 1) | 125 | 0 | [Open](../sessions/5b/5b99861c714426aa7914.json) |
-| `logs/chats/worker_analysis_r6-1a-kappa-diversity_20260525T064751.jsonl` (occurrence 1) | 137 | 0 | [Open](../sessions/c9/c9f75ed74d8f0c64e178.json) |
-| `logs/chats/worker_analysis_r6-2c-eta-under-kappa_20260525T072558.jsonl` (occurrence 1) | 15 | 0 | [Open](../sessions/8b/8b12c6cdd5c27d8c9d74.json) |
-| `logs/chats/worker_ops_r6-1b-collect-synthetic_20260525T074547.jsonl` (occurrence 1) | 15 | 0 | [Open](../sessions/b1/b19caac4964c8c6c5951.json) |
-| `logs/chats/worker_analysis_r6-2a-meta-pooling_20260525T074614.jsonl` (occurrence 1) | 115 | 0 | [Open](../sessions/c1/c1674a48f2a001071f02.json) |
-| `logs/chats/worker_ops_fp16-restart-8b-awq_20260525T105636.jsonl` (occurrence 1) | 21 | 0 | [Open](../sessions/69/698e5be17c41c9dd2091.json) |
-| `logs/chats/worker_ops_fig1-aspect-ratio_20260525T123154.jsonl` (occurrence 1) | 61 | 0 | [Open](../sessions/a6/a6fa863bf194f65ed29a.json) |
-| `logs/chats/worker_ops_fp16-redownload-shards_20260525T125347.jsonl` (occurrence 1) | 9 | 0 | [Open](../sessions/45/4578ed8bde6716d2c931.json) |
-| `logs/chats/worker_paper_research_ref_expansion_20260525T142836.jsonl` (occurrence 1) | 59 | 0 | [Open](../sessions/7e/7eb0d711fb5c3f6b66c2.json) |
-| `logs/chats/worker_ops_fig-radar-chart_20260525T142321.jsonl` (occurrence 1) | 143 | 0 | [Open](../sessions/da/dab5ed61544f1d5fb4f0.json) |
-| `logs/chats/worker_ops_fig-mi-heatmap_20260525T144449.jsonl` (occurrence 1) | 89 | 0 | [Open](../sessions/17/172938617ddec57fb5a8.json) |
-| `logs/chats/worker_ops_fig-sensitivity-contour_20260525T151931.jsonl` (occurrence 1) | 61 | 0 | [Open](../sessions/b2/b2a1b84d3c54520567e5.json) |
-| `logs/chats/worker_ops_fig-per-model-asr_20260525T154002.jsonl` (occurrence 1) | 93 | 0 | [Open](../sessions/da/daf7bed6b1cc9b4a69a1.json) |
-| `logs/chats/worker_ops_fig-p3-composition-scatter_20260525T153949.jsonl` (occurrence 1) | 105 | 0 | [Open](../sessions/35/355766583cb7b31a3ce3.json) |
-| `logs/chats/feishu_group_oc_511319d9c17dfa45ec974a0123143d46_director.jsonl` (occurrence 1) | 1996 | 157 | [Open](../sessions/8d/8d35aa762cb2e6779510.json) |
-| `logs/chats/feishu_group_oc_551817662c2d314a3713be79c074d906.jsonl` (occurrence 1) | 3609 | 92 | [Open](../sessions/06/06226af79f3f1aa69247.json) |
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/chats/archive/feishu_group_oc_511319d9c17dfa45ec974a0123143d46_director_20260522T181812_387921.jsonl` (occurrence 1) | 1,583 | 241 | [Read transcript](../readable/conversations/director-coordination-20260522-181812.md) | [Open JSON](../sessions/76/767d21afb6ce083dd9b4.json) |
+| `logs/chats/archive/feishu_group_oc_551817662c2d314a3713be79c074d906_reviewer_20260522T181818_648954.jsonl` (occurrence 1) | 1,410 | 131 | [Read transcript](../readable/conversations/reviewer-coordination-20260522-181818.md) | [Open JSON](../sessions/07/079d73c89bdcff9a0da6.json) |
+| `logs/chats/archive/feishu_group_oc_551817662c2d314a3713be79c074d906_20260525T193319_076933.jsonl` (occurrence 1) | 6,129 | 589 | [Read transcript](../readable/conversations/coordination-coordination-20260525-193319.md) | [Open JSON](../sessions/91/91814f07bf499fa701cc.json) |
+| `logs/chats/worker_infra_env-detect_20260521T170808.jsonl` (occurrence 1) | 7 | 0 | [Read transcript](../readable/conversations/infra-env-detect.md) | [Open JSON](../sessions/fb/fb3e05c48bfe39848e59.json) |
+| `logs/chats/worker_code_mvp-framework_20260521T170853.jsonl` (occurrence 1) | 87 | 0 | [Read transcript](../readable/conversations/code-mvp-framework.md) | [Open JSON](../sessions/30/30f607c26dc02ba3a4f0.json) |
+| `logs/chats/worker_infra_model-download-check_20260521T172914.jsonl` (occurrence 1) | 9 | 0 | [Read transcript](../readable/conversations/infra-model-download-check.md) | [Open JSON](../sessions/93/93bdb87f54578671ed71.json) |
+| `logs/chats/worker_infra_dl-qwen72b_20260521T182458.jsonl` (occurrence 1) | 21 | 0 | [Read transcript](../readable/conversations/infra-dl-qwen72b.md) | [Open JSON](../sessions/7e/7e0bf4adc5402148cba6.json) |
+| `logs/chats/worker_infra_download-monitor_20260521T184450.jsonl` (occurrence 1) | 61 | 0 | [Read transcript](../readable/conversations/infra-download-monitor.md) | [Open JSON](../sessions/40/40f22c372f9dc866eb25.json) |
+| `logs/chats/worker_research_theory-t3-peg_20260521T194226.jsonl` (occurrence 1) | 65 | 0 | [Read transcript](../readable/conversations/research-theory-t3-peg.md) | [Open JSON](../sessions/60/60a95efacae88c5a6235.json) |
+| `logs/chats/worker_research_theory-t1-sdpi_20260521T194207.jsonl` (occurrence 1) | 9 | 0 | [Read transcript](../readable/conversations/research-theory-t1-sdpi.md) | [Open JSON](../sessions/40/4079ab794cc88ea510b9.json) |
+| `logs/chats/worker_infra_sync-keff_20260521T200247.jsonl` (occurrence 1) | 9 | 0 | [Read transcript](../readable/conversations/infra-sync-keff.md) | [Open JSON](../sessions/f8/f83310d88f825646b2b3.json) |
+| `logs/chats/worker_infra_dl-mistral-resume_20260521T202809.jsonl` (occurrence 1) | 65 | 0 | [Read transcript](../readable/conversations/infra-dl-mistral-resume.md) | [Open JSON](../sessions/21/21a964fba996d3d76b0f.json) |
+| `logs/chats/worker_infra_dl-qwen72b-resume_20260521T202818.jsonl` (occurrence 1) | 175 | 0 | [Read transcript](../readable/conversations/infra-dl-qwen72b-resume.md) | [Open JSON](../sessions/a6/a681dea404bf2b79bc49.json) |
+| `logs/chats/worker_infra_dl-llama70b-resume_20260521T202803.jsonl` (occurrence 1) | 303 | 0 | [Read transcript](../readable/conversations/infra-dl-llama70b-resume.md) | [Open JSON](../sessions/67/6769496319da09983492.json) |
+| `logs/chats/worker_infra_qwen72b-verify_20260521T212121.jsonl` (occurrence 1) | 107 | 0 | [Read transcript](../readable/conversations/infra-qwen72b-verify.md) | [Open JSON](../sessions/5b/5bad9c5c616e7592bbdb.json) |
+| `logs/chats/worker_code_update-step3-step4-dual-keff_20260521T220444.jsonl` (occurrence 1) | 25 | 0 | [Read transcript](../readable/conversations/code-update-step3-step4-dual-keff.md) | [Open JSON](../sessions/38/385c0a0178bd6453e6ad.json) |
+| `logs/chats/worker_analysis_copula-gof_20260521T224845.jsonl` (occurrence 1) | 7 | 0 | [Read transcript](../readable/conversations/analysis-copula-gof.md) | [Open JSON](../sessions/24/24ae2e9c1ec0611005d3.json) |
+| `logs/chats/worker_exp_step2v3-regression_20260522T011536.jsonl` (occurrence 1) | 65 | 0 | [Read transcript](../readable/conversations/exp-step2v3-regression.md) | [Open JSON](../sessions/61/61778aa54d96ab291f3d.json) |
+| `logs/chats/cron_hook_mvp-step2v3-retry.jsonl` (occurrence 1) | 58 | 2 | [Read transcript](../readable/conversations/cron-hook-mvp-step2v3-retry.md) | [Open JSON](../sessions/8d/8d6d3158762c13852ba2.json) |
+| `logs/chats/cron_hook_mvp-step2v3-retry2.jsonl` (occurrence 1) | 16 | 1 | [Read transcript](../readable/conversations/cron-hook-mvp-step2v3-retry2.md) | [Open JSON](../sessions/0a/0ac4f2436e0496c1765d.json) |
+| `logs/chats/worker_infra_api-model-probe_20260522T033428.jsonl` (occurrence 1) | 27 | 0 | [Read transcript](../readable/conversations/infra-api-model-probe.md) | [Open JSON](../sessions/01/01fc48a668ceeaa16149.json) |
+| `logs/chats/worker_exp_taxonomy-broad-spectrum_20260522T033416.jsonl` (occurrence 1) | 57 | 0 | [Read transcript](../readable/conversations/exp-taxonomy-broad-spectrum.md) | [Open JSON](../sessions/98/986c1b7cfe13db36b081.json) |
+| `logs/chats/worker_code_plan001-parallel-v2_20260522T094736.jsonl` (occurrence 1) | 49 | 0 | [Read transcript](../readable/conversations/code-plan001-parallel-v2.md) | [Open JSON](../sessions/a2/a2502eae24b2c6a4a8be.json) |
+| `logs/chats/worker_research_plan003-theorem1-proof_20260522T111238.jsonl` (occurrence 1) | 33 | 0 | [Read transcript](../readable/conversations/research-plan003-theorem1-proof.md) | [Open JSON](../sessions/a1/a1024472eb4d7db371d2.json) |
+| `logs/chats/worker_infra_step1-quick-check_20260522T113854.jsonl` (occurrence 1) | 13 | 0 | [Read transcript](../readable/conversations/infra-step1-quick-check.md) | [Open JSON](../sessions/dc/dc49aa95b05e6e0fe082.json) |
+| `logs/chats/worker_infra_step1-status-check_20260522T122657.jsonl` (occurrence 1) | 29 | 0 | [Read transcript](../readable/conversations/infra-step1-status-check.md) | [Open JSON](../sessions/75/75619b36c64209ce7eae.json) |
+| `logs/chats/worker_infra_step1-cleanup_20260522T124310.jsonl` (occurrence 1) | 23 | 0 | [Read transcript](../readable/conversations/infra-step1-cleanup.md) | [Open JSON](../sessions/ec/ecbeec012b9181e5ba18.json) |
+| `logs/chats/worker_exp_step1-scoring-restart_20260522T130523.jsonl` (occurrence 1) | 63 | 0 | [Read transcript](../readable/conversations/exp-step1-scoring-restart.md) | [Open JSON](../sessions/1d/1da8220445ba198fa9fb.json) |
+| `logs/chats/worker_exp_step1-autoscale-scoring_20260522T132636.jsonl` (occurrence 1) | 55 | 0 | [Read transcript](../readable/conversations/exp-step1-autoscale-scoring.md) | [Open JSON](../sessions/b5/b549911fbab4a0e575f4.json) |
+| `logs/chats/worker_infra_kill-seetacloud-scoring_20260522T134617.jsonl` (occurrence 1) | 5 | 0 | [Read transcript](../readable/conversations/infra-kill-seetacloud-scoring.md) | [Open JSON](../sessions/ae/aec8f0f709f8946d9098.json) |
+| `logs/chats/feishu_group_oc_551817662c2d314a3713be79c074d906_paper_agent.jsonl` (occurrence 1) | 8,069 | 315 | [Read transcript](../readable/conversations/paper-agent-coordination.md) | [Open JSON](../sessions/fa/fae68c02acff753fbd23.json) |
+| `logs/chats/worker_paper_research_20260522T150026.jsonl` (occurrence 1) | 21 | 0 | [Read transcript](../readable/conversations/paper-research.md) | [Open JSON](../sessions/6d/6dc0529df5a88b910813.json) |
+| `logs/chats/worker_exp_7model-preview-pipeline_20260522T150246.jsonl` (occurrence 1) | 67 | 0 | [Read transcript](../readable/conversations/exp-7model-preview-pipeline.md) | [Open JSON](../sessions/09/090e26dfb59c9b4a595f.json) |
+| `logs/chats/worker_paper_writing_related_work_20260522T150758.jsonl` (occurrence 1) | 31 | 0 | [Read transcript](../readable/conversations/paper-writing-related-work.md) | [Open JSON](../sessions/72/72520d52763ad7316081.json) |
+| `logs/chats/worker_paper_writing_threat_model_20260522T151212.jsonl` (occurrence 1) | 7 | 0 | [Read transcript](../readable/conversations/paper-writing-threat-model.md) | [Open JSON](../sessions/5c/5caa2069e8735b032188.json) |
+| `logs/chats/worker_code_error-filter-and-pipeline-check_20260522T161449.jsonl` (occurrence 1) | 83 | 0 | [Read transcript](../readable/conversations/code-error-filter-and-pipeline-check.md) | [Open JSON](../sessions/0c/0c83c591896da2187a82.json) |
+| `logs/chats/worker_code_step3-mi-filter-and-sensitivity_20260522T163508.jsonl` (occurrence 1) | 33 | 0 | [Read transcript](../readable/conversations/code-step3-mi-filter-and-sensitivity.md) | [Open JSON](../sessions/8c/8c8f1a698eadf4455fa8.json) |
+| `logs/chats/worker_analysis_residualized-keff-15model_20260522T171634.jsonl` (occurrence 1) | 31 | 0 | [Read transcript](../readable/conversations/analysis-residualized-keff-15model.md) | [Open JSON](../sessions/d4/d4eb997be2b1ed7e13d5.json) |
+| `logs/chats/worker_paper_writing_introduction_v4_20260522T174330.jsonl` (occurrence 1) | 17 | 0 | [Read transcript](../readable/conversations/paper-writing-introduction-v4.md) | [Open JSON](../sessions/f4/f42326950f4bd52266ff.json) |
+| `logs/chats/worker_analysis_15model-family-copula_20260522T175131.jsonl` (occurrence 1) | 45 | 0 | [Read transcript](../readable/conversations/analysis-15model-family-copula.md) | [Open JSON](../sessions/e2/e20417b2236829a503ca.json) |
+| `logs/chats/archive/feishu_group_oc_511319d9c17dfa45ec974a0123143d46_director_20260525T060233_857354.jsonl` (occurrence 1) | 3,980 | 527 | [Read transcript](../readable/conversations/director-coordination-20260525-060233.md) | [Open JSON](../sessions/ef/efd6077d69911be9e9c1.json) |
+| `logs/chats/archive/feishu_group_oc_551817662c2d314a3713be79c074d906_reviewer_20260523T195106_872403.jsonl` (occurrence 1) | 2,646 | 167 | [Read transcript](../readable/conversations/reviewer-coordination-20260523-195106.md) | [Open JSON](../sessions/30/30da8433e18b0de768e9.json) |
+| `logs/chats/worker_paper_writing_methodology_v4b_20260522T182359.jsonl` (occurrence 1) | 23 | 0 | [Read transcript](../readable/conversations/paper-writing-methodology-v4b.md) | [Open JSON](../sessions/66/661577a37583bf65224c.json) |
+| `logs/chats/worker_research_attack-prompt-templates_20260522T190027.jsonl` (occurrence 1) | 13 | 0 | [Read transcript](../readable/conversations/research-attack-prompt-templates.md) | [Open JSON](../sessions/e8/e82fbaff237703f58d1d.json) |
+| `logs/chats/worker_paper_writing_20260522T185827.jsonl` (occurrence 1) | 21 | 0 | [Read transcript](../readable/conversations/paper-writing.md) | [Open JSON](../sessions/a7/a7bc0ed73502f42cde8b.json) |
+| `logs/chats/worker_analysis_gam-tier-indicator_20260522T190014.jsonl` (occurrence 1) | 121 | 0 | [Read transcript](../readable/conversations/analysis-gam-tier-indicator.md) | [Open JSON](../sessions/4d/4dfc6612168cc521bbb7.json) |
+| `logs/chats/worker_analysis_clustered-se-mixed-effects_20260522T185951.jsonl` (occurrence 1) | 51 | 0 | [Read transcript](../readable/conversations/analysis-clustered-se-mixed-effects.md) | [Open JSON](../sessions/b6/b6621af39bb9df51b591.json) |
+| `logs/chats/worker_paper_writing_rw_20260522T192259.jsonl` (occurrence 1) | 19 | 0 | [Read transcript](../readable/conversations/paper-writing-rw.md) | [Open JSON](../sessions/8a/8a610520475562364612.json) |
+| `logs/chats/worker_paper_writing_analysis_20260522T192641.jsonl` (occurrence 1) | 31 | 0 | [Read transcript](../readable/conversations/paper-writing-analysis.md) | [Open JSON](../sessions/10/100dac0e1d97b75e9cd8.json) |
+| `logs/chats/worker_paper_writing_conclusion_20260522T193714.jsonl` (occurrence 1) | 21 | 0 | [Read transcript](../readable/conversations/paper-writing-conclusion.md) | [Open JSON](../sessions/63/631f48a094ec6de5ef88.json) |
+| `logs/chats/worker_paper_writing_abstract_20260522T195705.jsonl` (occurrence 1) | 19 | 0 | [Read transcript](../readable/conversations/paper-writing-abstract.md) | [Open JSON](../sessions/ac/acddacbaa9d376e1a91c.json) |
+| `logs/chats/worker_paper_writing_results_v5_20260522T202417.jsonl` (occurrence 1) | 9 | 0 | [Read transcript](../readable/conversations/paper-writing-results-v5.md) | [Open JSON](../sessions/56/569295b2166ecc4856c3.json) |
+| `logs/chats/worker_paper_appendix-attacks_20260522T221224.jsonl` (occurrence 1) | 13 | 0 | [Read transcript](../readable/conversations/paper-appendix-attacks.md) | [Open JSON](../sessions/df/df76e49ed46154b31907.json) |
+| `logs/chats/feishu_group_oc_8afaeea93cf69f72a8cefdfe533b3c23_reviewer_1.jsonl` (occurrence 1) | 782 | 20 | [Read transcript](../readable/conversations/reviewer-1-coordination.md) | [Open JSON](../sessions/3e/3e4b6636b940842a1ded.json) |
+| `logs/chats/feishu_group_oc_8afaeea93cf69f72a8cefdfe533b3c23_reviewer_2.jsonl` (occurrence 1) | 760 | 20 | [Read transcript](../readable/conversations/reviewer-2-coordination.md) | [Open JSON](../sessions/b4/b4b7cc0933581491d1b1.json) |
+| `logs/chats/feishu_group_oc_8afaeea93cf69f72a8cefdfe533b3c23_director.jsonl` (occurrence 1) | 932 | 70 | [Read transcript](../readable/conversations/director-coordination-copy-2.md) | [Open JSON](../sessions/de/de0abc42dffe26b225c6.json) |
+| `logs/chats/worker_analysis_power-cr2-cr3_20260522T231641.jsonl` (occurrence 1) | 73 | 0 | [Read transcript](../readable/conversations/analysis-power-cr2-cr3.md) | [Open JSON](../sessions/98/9877b708ea9e6e5709c7.json) |
+| `logs/chats/worker_analysis_beta-reg-epsilon_20260522T231659.jsonl` (occurrence 1) | 57 | 0 | [Read transcript](../readable/conversations/analysis-beta-reg-epsilon.md) | [Open JSON](../sessions/1e/1eb2e983f4c8eabbca8a.json) |
+| `logs/chats/worker_paper_writing_related_work_expansion_20260522T232439.jsonl` (occurrence 1) | 21 | 0 | [Read transcript](../readable/conversations/paper-writing-related-work-expansion.md) | [Open JSON](../sessions/18/18420b35c6605fb82ef3.json) |
+| `logs/chats/worker_analysis_vif-partial-corr_20260522T233637.jsonl` (occurrence 1) | 21 | 0 | [Read transcript](../readable/conversations/analysis-vif-partial-corr-copy-2.md) | [Open JSON](../sessions/f1/f103e3a7ab457b5c3bc0.json) |
+| `logs/chats/worker_analysis_vif-partial-corr_20260522T235642.jsonl` (occurrence 1) | 35 | 0 | [Read transcript](../readable/conversations/analysis-vif-partial-corr.md) | [Open JSON](../sessions/61/61fd9b25658170cccfa2.json) |
+| `logs/chats/worker_analysis_k5-k7-panels_20260523T001931.jsonl` (occurrence 1) | 95 | 0 | [Read transcript](../readable/conversations/analysis-k5-k7-panels.md) | [Open JSON](../sessions/c5/c5b7bfaf90e9d2e55c62.json) |
+| `logs/chats/worker_analysis_k7-wild-bootstrap_20260523T010244.jsonl` (occurrence 1) | 221 | 0 | [Read transcript](../readable/conversations/analysis-k7-wild-bootstrap.md) | [Open JSON](../sessions/b5/b57782efb652ec7df2ac.json) |
+| `logs/chats/worker_paper_writing_introduction_reframe_20260523T011835.jsonl` (occurrence 1) | 13 | 0 | [Read transcript](../readable/conversations/paper-writing-introduction-reframe.md) | [Open JSON](../sessions/79/793ddd6d54e74580a82f.json) |
+| `logs/chats/worker_analysis_partial-knowledge-clustered-se_20260523T012338.jsonl` (occurrence 1) | 33 | 0 | [Read transcript](../readable/conversations/analysis-partial-knowledge-clustered-se.md) | [Open JSON](../sessions/cf/cf2883052ff8c2b8ffc0.json) |
+| `logs/chats/worker_analysis_k5-gam_20260523T012252.jsonl` (occurrence 1) | 59 | 0 | [Read transcript](../readable/conversations/analysis-k5-gam.md) | [Open JSON](../sessions/4a/4a36e77ae799224b16ab.json) |
+| `logs/chats/worker_paper_framework-figure-fix_20260523T012315.jsonl` (occurrence 1) | 83 | 0 | [Read transcript](../readable/conversations/paper-framework-figure-fix.md) | [Open JSON](../sessions/3c/3c51b392fada6a868d80.json) |
+| `logs/chats/worker_paper_writing_results_reframe_20260523T013739.jsonl` (occurrence 1) | 19 | 0 | [Read transcript](../readable/conversations/paper-writing-results-reframe.md) | [Open JSON](../sessions/5d/5d5d061fbed4540d8b53.json) |
+| `logs/chats/worker_check_westd-connection_20260523T030940.jsonl` (occurrence 1) | 9 | 0 | [Read transcript](../readable/conversations/check-westd-connection.md) | [Open JSON](../sessions/ad/adab4c9c2c13ea94bbc0.json) |
+| `logs/chats/worker_analysis_k5-panel-selection_20260523T030919.jsonl` (occurrence 1) | 45 | 0 | [Read transcript](../readable/conversations/analysis-k5-panel-selection.md) | [Open JSON](../sessions/e1/e19b265e2b2bc6a5ea1d.json) |
+| `logs/chats/worker_analysis_k5-aggregation_20260523T030937.jsonl` (occurrence 1) | 119 | 0 | [Read transcript](../readable/conversations/analysis-k5-aggregation.md) | [Open JSON](../sessions/76/7600de0ef0a8d021be2c.json) |
+| `logs/chats/worker_analysis_k5-panel-selection-bootstrap_20260523T061740.jsonl` (occurrence 1) | 45 | 0 | [Read transcript](../readable/conversations/analysis-k5-panel-selection-bootstrap.md) | [Open JSON](../sessions/bd/bd092e2ee52d9185985a.json) |
+| `logs/chats/worker_analysis_k5-aggregation-bootstrap_20260523T061722.jsonl` (occurrence 1) | 285 | 0 | [Read transcript](../readable/conversations/analysis-k5-aggregation-bootstrap.md) | [Open JSON](../sessions/2e/2e006d8627534bc998bd.json) |
+| `logs/chats/worker_analysis_k4-wild-bootstrap_20260523T063715.jsonl` (occurrence 1) | 43 | 0 | [Read transcript](../readable/conversations/analysis-k4-wild-bootstrap.md) | [Open JSON](../sessions/d4/d4a653e6b122da9e78b8.json) |
+| `logs/chats/worker_analysis_attacked-keff_20260523T070444.jsonl` (occurrence 1) | 69 | 0 | [Read transcript](../readable/conversations/analysis-attacked-keff.md) | [Open JSON](../sessions/e6/e671fe9102ef91d5e749.json) |
+| `logs/chats/worker_analysis_api-only-subset_20260523T070411.jsonl` (occurrence 1) | 51 | 0 | [Read transcript](../readable/conversations/analysis-api-only-subset.md) | [Open JSON](../sessions/6c/6c5c838b3c2e5c75e85b.json) |
+| `logs/chats/worker_analysis_k5-rf-contrast_20260523T070356.jsonl` (occurrence 1) | 67 | 0 | [Read transcript](../readable/conversations/analysis-k5-rf-contrast.md) | [Open JSON](../sessions/1b/1b24be1947923574a802.json) |
+| `logs/chats/worker_analysis_theorem1-violation_20260523T071732.jsonl` (occurrence 1) | 45 | 0 | [Read transcript](../readable/conversations/analysis-theorem1-violation.md) | [Open JSON](../sessions/5c/5cf63f86956e15e8f961.json) |
+| `logs/chats/worker_analysis_controlled-regression_20260523T071753.jsonl` (occurrence 1) | 57 | 0 | [Read transcript](../readable/conversations/analysis-controlled-regression.md) | [Open JSON](../sessions/02/02d95a383202b74d3746.json) |
+| `logs/chats/worker_analysis_temperature-cost-estimate_20260523T080404.jsonl` (occurrence 1) | 17 | 0 | [Read transcript](../readable/conversations/analysis-temperature-cost-estimate.md) | [Open JSON](../sessions/0b/0b254cec6a986e563bdd.json) |
+| `logs/chats/worker_analysis_cinelli-hazlett-sensitivity_20260523T080322.jsonl` (occurrence 1) | 87 | 0 | [Read transcript](../readable/conversations/analysis-cinelli-hazlett-sensitivity.md) | [Open JSON](../sessions/38/38efac6ada21227a94be.json) |
+| `logs/chats/worker_check_iv-exclusion-restriction_20260523T082512.jsonl` (occurrence 1) | 17 | 0 | [Read transcript](../readable/conversations/check-iv-exclusion-restriction.md) | [Open JSON](../sessions/24/24a241e14d58b6ca3cc1.json) |
+| `logs/chats/worker_audit_capability-matched-c3_20260523T103549.jsonl` (occurrence 1) | 59 | 0 | [Read transcript](../readable/conversations/audit-capability-matched-c3.md) | [Open JSON](../sessions/7d/7d3ec5eeb99f15b21eea.json) |
+| `logs/chats/worker_analysis_pool-a-cinelli-hazlett_20260523T120953.jsonl` (occurrence 1) | 49 | 0 | [Read transcript](../readable/conversations/analysis-pool-a-cinelli-hazlett.md) | [Open JSON](../sessions/71/716d4d771b08f6a8d556.json) |
+| `logs/chats/worker_research_bib-verify-shi2024_20260523T123030.jsonl` (occurrence 1) | 11 | 0 | [Read transcript](../readable/conversations/research-bib-verify-shi2024.md) | [Open JSON](../sessions/14/143020bd0ed88457e72e.json) |
+| `logs/chats/worker_analysis_keff-stability-stochdom_20260523T123019.jsonl` (occurrence 1) | 37 | 0 | [Read transcript](../readable/conversations/analysis-keff-stability-stochdom.md) | [Open JSON](../sessions/a0/a0e3bca6f30da557d91c.json) |
+| `logs/chats/worker_analysis_epsilon-sensitivity-mde_20260523T122958.jsonl` (occurrence 1) | 233 | 0 | [Read transcript](../readable/conversations/analysis-epsilon-sensitivity-mde.md) | [Open JSON](../sessions/b7/b7fb2b8705fa9daa3f08.json) |
+| `logs/chats/worker_figure_regime-transition_20260523T132327.jsonl` (occurrence 1) | 9 | 0 | [Read transcript](../readable/conversations/figure-regime-transition.md) | [Open JSON](../sessions/91/9160b772ec76aebcbad2.json) |
+| `logs/chats/worker_analysis_k5-epsilon-sensitivity_20260523T140549.jsonl` (occurrence 1) | 55 | 0 | [Read transcript](../readable/conversations/analysis-k5-epsilon-sensitivity.md) | [Open JSON](../sessions/06/068cf6353d80f300a216.json) |
+| `logs/chats/worker_infra_westd-13176-connectivity_20260523T163523.jsonl` (occurrence 1) | 7 | 0 | [Read transcript](../readable/conversations/infra-westd-13176-connectivity.md) | [Open JSON](../sessions/7c/7cc2534d699506cfa4f3.json) |
+| `logs/chats/worker_analysis_gam-bootstrap-ci-k5_20260523T165749.jsonl` (occurrence 1) | 81 | 0 | [Read transcript](../readable/conversations/analysis-gam-bootstrap-ci-k5.md) | [Open JSON](../sessions/af/af1a74ec56dd9430fe62.json) |
+| `logs/chats/worker_analysis_aggregation-bootstrap_20260523T171836.jsonl` (occurrence 1) | 139 | 0 | [Read transcript](../readable/conversations/analysis-aggregation-bootstrap.md) | [Open JSON](../sessions/fa/fa0d227b08ca45e302fa.json) |
+| `logs/chats/worker_fix_table1-k3-ols-corrected_20260523T175018.jsonl` (occurrence 1) | 47 | 0 | [Read transcript](../readable/conversations/fix-table1-k3-ols-corrected.md) | [Open JSON](../sessions/2d/2d09436de4da07e5d76b.json) |
+| `logs/chats/worker_fix_regime-transition-bootstrap-corrected_20260523T175031.jsonl` (occurrence 1) | 203 | 0 | [Read transcript](../readable/conversations/fix-regime-transition-bootstrap-corrected.md) | [Open JSON](../sessions/81/816e4cbcc80ec033805a.json) |
+| `logs/chats/worker_analysis_random-fault-contrast-v2_20260523T182424.jsonl` (occurrence 1) | 181 | 0 | [Read transcript](../readable/conversations/analysis-random-fault-contrast-v2.md) | [Open JSON](../sessions/a9/a96201e44edfd3a45e69.json) |
+| `logs/chats/worker_paper_figure_fig_regime_transition_20260523T194555.jsonl` (occurrence 1) | 21 | 0 | [Read transcript](../readable/conversations/paper-figure-fig-regime-transition.md) | [Open JSON](../sessions/5f/5f2fb70b42b0f87e0199.json) |
+| `logs/chats/archive/feishu_group_oc_551817662c2d314a3713be79c074d906_reviewer_20260525T060245_151805.jsonl` (occurrence 1) | 1,587 | 98 | [Read transcript](../readable/conversations/reviewer-coordination-20260525-060245.md) | [Open JSON](../sessions/9a/9a77ff95cf1cb094d79b.json) |
+| `logs/chats/worker_paper_writing_analysis_r5_revision_20260524T041619.jsonl` (occurrence 1) | 11 | 0 | [Read transcript](../readable/conversations/paper-writing-analysis-r5-revision.md) | [Open JSON](../sessions/48/4867deac8490ec72cfec.json) |
+| `logs/chats/worker_paper_writing_intro_abstract_r5_revision_20260524T042710.jsonl` (occurrence 1) | 25 | 0 | [Read transcript](../readable/conversations/paper-writing-intro-abstract-r5-revision.md) | [Open JSON](../sessions/9c/9ca540bf6c8ffe8d5c7a.json) |
+| `logs/chats/worker_paper_writing_related_work_r5_revision_20260524T044714.jsonl` (occurrence 1) | 11 | 0 | [Read transcript](../readable/conversations/paper-writing-related-work-r5-revision.md) | [Open JSON](../sessions/44/447e083ea0071e8bd9d2.json) |
+| `logs/chats/worker_audit_k5-aggregation-v2-check_20260524T045111.jsonl` (occurrence 1) | 33 | 0 | [Read transcript](../readable/conversations/audit-k5-aggregation-v2-check.md) | [Open JSON](../sessions/1f/1fb94a87c8f530f3418b.json) |
+| `logs/chats/worker_ops_deprecate-regime-transition_20260524T073727.jsonl` (occurrence 1) | 11 | 0 | [Read transcript](../readable/conversations/ops-deprecate-regime-transition.md) | [Open JSON](../sessions/e3/e3d048ddae0e8dd6d3a9.json) |
+| `logs/chats/worker_figure_regime-transition-redraw_20260524T073722.jsonl` (occurrence 1) | 31 | 0 | [Read transcript](../readable/conversations/figure-regime-transition-redraw.md) | [Open JSON](../sessions/bb/bb11ec2ff227ab2b5657.json) |
+| `logs/chats/worker_analysis_k7-aggregation-bootstrap-v2_20260524T080423.jsonl` (occurrence 1) | 67 | 0 | [Read transcript](../readable/conversations/analysis-k7-aggregation-bootstrap-v2.md) | [Open JSON](../sessions/e5/e55076dfc710df51c197.json) |
+| `logs/chats/worker_analysis_plan006-judge-asr-concentration_20260524T093812.jsonl` (occurrence 1) | 51 | 0 | [Read transcript](../readable/conversations/analysis-plan006-judge-asr-concentration.md) | [Open JSON](../sessions/dc/dc98393d694ce0ce28d2.json) |
+| `logs/chats/worker_analysis_plan006-cinelli-hazlett-v2_20260524T100043.jsonl` (occurrence 1) | 77 | 0 | [Read transcript](../readable/conversations/analysis-plan006-cinelli-hazlett-v2.md) | [Open JSON](../sessions/c6/c6bfaba598e00ad2a76a.json) |
+| `logs/chats/worker_analysis_r4-a3-mi-plugin-vs-closedform_20260524T110501.jsonl` (occurrence 1) | 53 | 0 | [Read transcript](../readable/conversations/analysis-r4-a3-mi-plugin-vs-closedform.md) | [Open JSON](../sessions/10/10c663e37c6a854891c6.json) |
+| `logs/chats/worker_paper_figure_dominance_heatmap_20260524T180637.jsonl` (occurrence 1) | 39 | 0 | [Read transcript](../readable/conversations/paper-figure-dominance-heatmap.md) | [Open JSON](../sessions/a0/a0a167f71f0ec66b7a09.json) |
+| `logs/chats/worker_paper_writing_abstract_intro_rewrite_20260524T181332.jsonl` (occurrence 1) | 25 | 0 | [Read transcript](../readable/conversations/paper-writing-abstract-intro-rewrite.md) | [Open JSON](../sessions/3a/3a9e5033f22b1ed3541f.json) |
+| `logs/chats/worker_experiment_fp16-baseline-v3-bugfix_20260524T182108.jsonl` (occurrence 1) | 173 | 0 | [Read transcript](../readable/conversations/experiment-fp16-baseline-v3-bugfix.md) | [Open JSON](../sessions/22/22de1fefba5e757a1116.json) |
+| `logs/chats/worker_ops_fp16-hotfix-deploy_20260524T184110.jsonl` (occurrence 1) | 37 | 0 | [Read transcript](../readable/conversations/ops-fp16-hotfix-deploy.md) | [Open JSON](../sessions/99/99f655913bf60d5a9127.json) |
+| `logs/chats/worker_ops_kill-buggy-fp16_20260524T190047.jsonl` (occurrence 1) | 7 | 0 | [Read transcript](../readable/conversations/ops-kill-buggy-fp16.md) | [Open JSON](../sessions/d9/d9324076b3c425aa6214.json) |
+| `logs/chats/worker_analysis_api-only-power-betastd_20260524T190307.jsonl` (occurrence 1) | 119 | 0 | [Read transcript](../readable/conversations/analysis-api-only-power-betastd.md) | [Open JSON](../sessions/5c/5c0500ee573c1a9fc210.json) |
+| `logs/chats/worker_analysis_fractional-logit-v2-audit_20260524T190248.jsonl` (occurrence 1) | 203 | 0 | [Read transcript](../readable/conversations/analysis-fractional-logit-v2-audit.md) | [Open JSON](../sessions/71/718e40df8d295c861e41.json) |
+| `logs/chats/worker_analysis_betastd-trajectory_20260524T192235.jsonl` (occurrence 1) | 25 | 0 | [Read transcript](../readable/conversations/analysis-betastd-trajectory.md) | [Open JSON](../sessions/91/91216dac941f8ae14c46.json) |
+| `logs/chats/worker_analysis_bayesian-posterior-entropy_20260524T192252.jsonl` (occurrence 1) | 147 | 0 | [Read transcript](../readable/conversations/analysis-bayesian-posterior-entropy.md) | [Open JSON](../sessions/c7/c7c2385da353a944f702.json) |
+| `logs/chats/archive/feishu_group_oc_511319d9c17dfa45ec974a0123143d46_director_20260525T193309_232171.jsonl` (occurrence 1) | 1,570 | 164 | [Read transcript](../readable/conversations/director-coordination-20260525-193309.md) | [Open JSON](../sessions/09/09b887fcdbf852fd1ef9.json) |
+| `logs/chats/feishu_group_oc_551817662c2d314a3713be79c074d906_reviewer.jsonl` (occurrence 1) | 1,012 | 77 | [Read transcript](../readable/conversations/reviewer-coordination.md) | [Open JSON](../sessions/8d/8d1550e0f608275be23a.json) |
+| `logs/chats/worker_ops_fp16-status-check_20260525T060342.jsonl` (occurrence 1) | 19 | 0 | [Read transcript](../readable/conversations/ops-fp16-status-check.md) | [Open JSON](../sessions/ac/accd85b28e3d0cc2a2b1.json) |
+| `logs/chats/worker_ops_mc-result-collect_20260525T062344.jsonl` (occurrence 1) | 13 | 0 | [Read transcript](../readable/conversations/ops-mc-result-collect.md) | [Open JSON](../sessions/e1/e1a1bf030de007577ec3.json) |
+| `logs/chats/worker_ops_r6-collect-previous-results_20260525T064822.jsonl` (occurrence 1) | 31 | 0 | [Read transcript](../readable/conversations/ops-r6-collect-previous-results.md) | [Open JSON](../sessions/9f/9f17aaaf79070b3a2167.json) |
+| `logs/chats/worker_ops_r6-data-audit_20260525T064840.jsonl` (occurrence 1) | 125 | 0 | [Read transcript](../readable/conversations/ops-r6-data-audit.md) | [Open JSON](../sessions/5b/5b99861c714426aa7914.json) |
+| `logs/chats/worker_analysis_r6-1a-kappa-diversity_20260525T064751.jsonl` (occurrence 1) | 137 | 0 | [Read transcript](../readable/conversations/analysis-r6-1a-kappa-diversity.md) | [Open JSON](../sessions/c9/c9f75ed74d8f0c64e178.json) |
+| `logs/chats/worker_analysis_r6-2c-eta-under-kappa_20260525T072558.jsonl` (occurrence 1) | 15 | 0 | [Read transcript](../readable/conversations/analysis-r6-2c-eta-under-kappa.md) | [Open JSON](../sessions/8b/8b12c6cdd5c27d8c9d74.json) |
+| `logs/chats/worker_ops_r6-1b-collect-synthetic_20260525T074547.jsonl` (occurrence 1) | 15 | 0 | [Read transcript](../readable/conversations/ops-r6-1b-collect-synthetic.md) | [Open JSON](../sessions/b1/b19caac4964c8c6c5951.json) |
+| `logs/chats/worker_analysis_r6-2a-meta-pooling_20260525T074614.jsonl` (occurrence 1) | 115 | 0 | [Read transcript](../readable/conversations/analysis-r6-2a-meta-pooling.md) | [Open JSON](../sessions/c1/c1674a48f2a001071f02.json) |
+| `logs/chats/worker_ops_fp16-restart-8b-awq_20260525T105636.jsonl` (occurrence 1) | 21 | 0 | [Read transcript](../readable/conversations/ops-fp16-restart-8b-awq.md) | [Open JSON](../sessions/69/698e5be17c41c9dd2091.json) |
+| `logs/chats/worker_ops_fig1-aspect-ratio_20260525T123154.jsonl` (occurrence 1) | 61 | 0 | [Read transcript](../readable/conversations/ops-fig1-aspect-ratio.md) | [Open JSON](../sessions/a6/a6fa863bf194f65ed29a.json) |
+| `logs/chats/worker_ops_fp16-redownload-shards_20260525T125347.jsonl` (occurrence 1) | 9 | 0 | [Read transcript](../readable/conversations/ops-fp16-redownload-shards.md) | [Open JSON](../sessions/45/4578ed8bde6716d2c931.json) |
+| `logs/chats/worker_paper_research_ref_expansion_20260525T142836.jsonl` (occurrence 1) | 59 | 0 | [Read transcript](../readable/conversations/paper-research-ref-expansion.md) | [Open JSON](../sessions/7e/7eb0d711fb5c3f6b66c2.json) |
+| `logs/chats/worker_ops_fig-radar-chart_20260525T142321.jsonl` (occurrence 1) | 143 | 0 | [Read transcript](../readable/conversations/ops-fig-radar-chart.md) | [Open JSON](../sessions/da/dab5ed61544f1d5fb4f0.json) |
+| `logs/chats/worker_ops_fig-mi-heatmap_20260525T144449.jsonl` (occurrence 1) | 89 | 0 | [Read transcript](../readable/conversations/ops-fig-mi-heatmap.md) | [Open JSON](../sessions/17/172938617ddec57fb5a8.json) |
+| `logs/chats/worker_ops_fig-sensitivity-contour_20260525T151931.jsonl` (occurrence 1) | 61 | 0 | [Read transcript](../readable/conversations/ops-fig-sensitivity-contour.md) | [Open JSON](../sessions/b2/b2a1b84d3c54520567e5.json) |
+| `logs/chats/worker_ops_fig-per-model-asr_20260525T154002.jsonl` (occurrence 1) | 93 | 0 | [Read transcript](../readable/conversations/ops-fig-per-model-asr.md) | [Open JSON](../sessions/da/daf7bed6b1cc9b4a69a1.json) |
+| `logs/chats/worker_ops_fig-p3-composition-scatter_20260525T153949.jsonl` (occurrence 1) | 105 | 0 | [Read transcript](../readable/conversations/ops-fig-p3-composition-scatter.md) | [Open JSON](../sessions/35/355766583cb7b31a3ce3.json) |
+| `logs/chats/feishu_group_oc_511319d9c17dfa45ec974a0123143d46_director.jsonl` (occurrence 1) | 1,996 | 157 | [Read transcript](../readable/conversations/director-coordination.md) | [Open JSON](../sessions/8d/8d35aa762cb2e6779510.json) |
+| `logs/chats/feishu_group_oc_551817662c2d314a3713be79c074d906.jsonl` (occurrence 1) | 3,609 | 92 | [Read transcript](../readable/conversations/coordination-coordination.md) | [Open JSON](../sessions/06/06226af79f3f1aa69247.json) |

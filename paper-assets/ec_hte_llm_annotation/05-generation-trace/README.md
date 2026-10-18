@@ -2,9 +2,9 @@
 
 **When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects**
 
-[Open the visual browser](../../../traces/index.html?project=ec_hte_llm_annotation) · [Offline preview](../../../traces/demo.html?project=ec_hte_llm_annotation) · [JSON catalogue](catalog.json) · [Source archive index](trace-index.csv)
+[Open the visual browser](../../../traces/index.html?project=ec_hte_llm_annotation) · [Offline preview](../../../traces/demo.html?project=ec_hte_llm_annotation) · [Readable Markdown](readable/README.md) · [JSON catalogue](catalog.json) · [Source archive index](trace-index.csv)
 
-On GitHub, use the tables below to open readable session JSON directly. To use the interactive browser, clone the repository and run `python3 scripts/serve_traces.py --open` from its root, or open `traces/demo.html` for an offline preview.
+For a quick review on GitHub, start with the readable Markdown pages. Each page shows the recorded user instructions, assistant replies, tool calls, and tool results in order. The JSON links remain available for complete machine-readable inspection. To use the interactive browser, clone the repository and run `python3 scripts/serve_traces.py --open` from its root, or open `traces/demo.html` for an offline preview.
 
 ## What is included
 
@@ -19,9 +19,11 @@ On GitHub, use the tables below to open readable session JSON directly. To use t
 
 A user-role entry may come from another agent or the system. It is not a human-authorship label. Worker tool results wrapped in user envelopes are labelled `tool_result` and do not start a new turn. Records before any user message remain a separate unbounded sequence. Parallel source logs are never interleaved.
 
-Source text retains its recorded language. JSON is a deterministic normalized view of the already sanitized archive; it does not translate or summarize the research process. Every session includes archive member, occurrence, SHA-256, and source-line provenance. Large rounds use linked JSON chunks; no message text is shortened in the export.
+Source text retains its recorded language. Markdown is a reading layer over the same sanitized source; it does not translate or summarize the research process. JSON is the complete normalized export and retains archive member, occurrence, SHA-256, and source-line provenance. Large rounds use linked JSON chunks; no message text is shortened in either export.
 
-## Browse all source records
+## Human-readable trace pages
+
+The Markdown pages are grouped by source kind. Their filenames describe the recorded task or coordination stream; hash-sharded JSON folders are used only as a storage detail.
 
 - **Conversation logs** (72): [Page 1](browse/conversation-001.md)
 - **Worker execution logs** (183): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md)

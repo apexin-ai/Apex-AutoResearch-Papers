@@ -64,5 +64,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/code-qwen14b-inference-test.md"
 }

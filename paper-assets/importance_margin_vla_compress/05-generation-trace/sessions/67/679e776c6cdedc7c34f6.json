@@ -1537,5 +1537,6 @@
       ],
       "message_count": 75
     }
-  ]
+  ],
+  "readable_path": "readable/conversations/fix-cqa1-gpu-mapping-and-deploy.md"
 }

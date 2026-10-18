@@ -1,0 +1,36 @@
+# writing patch cross scale llama3
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_writing_patch_cross_scale_llama3_20260516T101415_result.json`
+- **Structured JSON:** [`6910fae3293fb5e93dca.json`](../../sessions/69/6910fae3293fb5e93dca.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+§4.6 修改完成。总结：
+
+**已完成的修改**:
+1. 删除 `% TODO: Add Llama-3-8B results when available`
+2. Table 7 重构为 models-as-rows，加入 Llama-3.1-8B（acc=70.2%, EDD=4, d0v1=0.949）
+3. Table 8 增加 Llama-3.1-8B AUC 行（单调递减：0.949→0.877→0.771→0.716→0.618）
+4. Finding (1) 更新为双模型结果
+5. Finding (2) 区分两模型 EDD：Qwen >5（U-shape 保持 all pairs >T），Llama-3 = 4（monotonic decay 使 d4v5 跌破 T）
+6. Finding (3) 从 "Non-monotonic" 重写为 "Divergent trajectories"：Llama-3 monotonic = 符合小模型 pattern，Qwen U-shape = model-specific
+7. Caveats 更新：承认两个数据点不足以做 strong generalization
+
+**数据一致性修正**：任务描述中 Llama-3 EDD 标为 >5，但 d4v5=0.618 < T=0.70，实际 EDD_{T=0.70} = 4。已修正为 4，文本解释了原因（monotonic decay 导致末对跌破阈值）。这反而让 narrative 更有趣——Qwen 的 EDD >5 恰恰是因为 U-shape 把后面的 AUC 抬回 >0.70。
+
+---

@@ -1,0 +1,963 @@
+# cron hook eval xvla random k05 object seed44
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/cron_hook_eval_xvla_random_k05_object_seed44.jsonl`
+- **Structured JSON:** [`fcd6f1c2414ff4cdbd43.json`](../../sessions/fc/fcd6f1c2414ff4cdbd43.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+30 recorded events
+
+### User
+
+_source line 1 · 2026-05-22T01:50:57.909578+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #12。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-27271 cuda:0-1, cqa1-33015 cuda:0-3, westd-41074 cuda:0-3, westd-38929 cuda:0-3（共 14 张）
+- westd-27271 当前 SSH 不通（report.md 显示连接失败），不要往上提交新实验，等恢复
+- cqa1-33015 上 pi05 eval 必须显式设 `HF_HOME=/root/autodl-tmp/.hf_cache` + `HF_HUB_OFFLINE=1`，否则环境不匹配（v1 系列全因此失败）
+- CoRL 2026：Abstract 5月26日，Paper 5月29日——**只剩 4/7 天**
+- submit_training_job 的 command 必须 `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd ... && python ..."`，不能裸 python
+
+### 2. 🖥️ 基础设施快照
+- **westd-41074**：4×GPU，工作目录 `/root/autodl-tmp/importance_margin_vla_compress`，Python `/root/miniconda3/bin/python`（conda base），磁盘 812G/879G 可用
+- **westd-38929**：4×GPU，同上路径，磁盘 645G/879G 可用
+- **cqa1-33015**：4×GPU，同上路径，HF cache `/root/autodl-tmp/.hf_cache`
+- **westd-27271**：2×GPU，**当前不可达**（SSH 连接失败）
+- 模型路径：π0.5 → `/root/autodl-tmp/pi05_libero_finetuned`，OpenVLA → `/root/autodl-tmp/openvla-libero-object`，OpenVLA-OFT → `/root/autodl-tmp/openvla-oft-libero-object` + `libero-goal`
+- 活跃 cron：`train_openvla_sc_m96_seed42`（pid 68539, westd-41074:cuda:2）、`train_openvla_sc_m64_seed42_v6`（pid 59671, westd-41074:cuda:3）
+
+### 3. 📊 当前状态
+**刚完成的 reconcile 发现 2 个实验刚结束需要分析：**
+- `eval_pi05_random_k0925_object_seed43` → ANALYZING（EXIT_CODE=0，westd-38929:cuda:2）—— cliff 入口双种子验证，seed42=27.6%
+- `eval_pi05_random_k085_spatial_seed42` → ANALYZING（EXIT_CODE=0，westd-38929:cuda:3）—— random cliff 跨 task 验证
+
+**还有 1 个已 ANALYZING 未处理：**
+- `eval_pi05_l2norm_k0925_object_seed42` → SR=99.2%（success），与 random k=0.925 的 27.6% 形成 71.6pp 差距
+
+**RUNNING（5 个）：**
+| exp_id | server:gpu | 类型 |
+|--------|-----------|------|
+| train_openvla_sc_m96_seed42_v3 | westd-41074:cuda:2 | VTC M96 训练 |
+| train_openvla_sc_m64_seed42_v6 | westd-41074:cuda:3 | VTC M64 训练 |
+| eval_pi05_random_k03_object_seed43_v2 | cqa1-33015:cuda:2 | seed 验证 |
+| eval_pi05_random_k085_object_seed43_v2 | cqa1-33015:cuda:0 | cliff boundary 验证 |
+| eval_pi05_l2norm_k085_spatial_seed42 | westd-38929:cuda:0 | L2norm 跨 task |
+
+**严重问题：14 张 GPU 只有 5 张在跑，12 张空闲 = 失职。** report.md 也标红了这一点。PREPARING 队列有 31 个实验等待提交。
+
+### 4. 📋 待办（条件触发式）
+- **立即**：spawn Worker 提取 `eval_pi05_random_k0925_object_seed43` 和 `eval_pi05_random_k085_spatial_seed42` 的结果 → update_registry → 汇报 Director
+- **立即**：`eval_pi05_l2norm_k0925_object_seed42` 已有 metrics（99.2%）但仍 ANALYZING → 更新为 DONE(success) → 与 random 0.925 的 27.6% 一起汇报
+- **立即**：从 PREPARING 队列中挑选实验填满空闲 GPU（westd-41074:0,1; westd-38929:1,2,3; cqa1-33015:1,3），优先 P0/P1 任务
+- cqa1-33015 两个 eval 完成回调 → 提取结果 + 填 cqa1 空闲卡
+- VTC M96/M64 训练完成 → spawn Worker 跑 eval sweep（Object + Spatial baseline）
+- westd-27271 恢复连通 → 恢复 OpenVLA L2norm k=0.3 rerun 等实验
+
+### 5. 🎯 战略上下文
+- **核心发现**：D139 CV Scaling Law——connector 的 importance CV 预测 token 可压缩性。π0.5(CV=0.055) L2norm>>random；OpenVLA(CV=0.215) L2norm≈random；X-VLA(CV=0.151) 居中
+- **D152**：π0.5 random pruning cliff 是 task-specific（Object 有 cliff，Spatial 可能没有）——正在验证中
+- **决策链关键节点**：D139(CV scaling law) → D140(k=0.3 preference reversal) → D145(V-shape confirmed) → D149(monotonicity violation) → D150(fixed-mask negates temporal inconsistency) → D151(k=0.925 L2norm=98.9% vs random=27.6%) → D152(cliff is task-specific)
+- **易错点**：
+  - westd-27271 不通但 report.md 仍列着它的实验——不要试图往上提交
+  - cqa1-33015 环境和 westd 不同（需要显式 CUDA_VISIBLE_DEVICES + HF_HOME），不能直接复制 westd 的命令
+  - PREPARING 实验里有很多是古早的（plan_005、mvp 系列等），已经不再相关，只提交与当前 P0/P1 scaling law 数据收集相关的
+  - Paper Agent 写作与实验并行推进，Step 2 figures 已开始，fig_degradation_curve.pdf 已生成
+
+## 项目硬约束 (memory.md 节选)
+
+## 失败模式记录
+
+- [2026-05-21] **π0.5 自定义 eval 脚本 bug**: `eval_pi05_pruning_libero.py` 的 `patched_embed_image` 函数导致 0% SR，而官方 eval 脚本在同一 checkpoint 上 ~100% SR。→ 新模型接入时，必须先用官方 eval 脚本验证 checkpoint 可用性，确认后再写自定义 pruning eval 脚本。不要假设自定义 patch 正确。
+
+- [2026-05-21] **OpenVLA eval 4 实验批量失败 (westd-38929)**:
+  - **失败实验**: eval_openvla_l2norm_k05_object_seed42 (PID 568225), eval_openvla_random_k03_object_seed42 (PID 568905), eval_openvla_l2norm_k07_object_seed42 (PID 569611), eval_openvla_l2norm_k03_object_seed42 (PID 570309)
+  - **根因**: **AutoDL 容器 GPU 缩配**。主机有 9 块 NVIDIA RTX PRO 6000 Blackwell (各 97GB)，但容器当前只挂载了 `/dev/nvidia2` 一块 GPU。4 个实验分别在 CUDA_VISIBLE_DEVICES=0/1/2/3 启动，运行 ~1h43m 后 GPU 设备被平台回收，进程收到 SIGKILL 无任何 traceback。
+  - **证据**:
+    - `nvidia-smi -L` 只显示 1 块 GPU (Device Minor 2)，而 `/proc/driver/nvidia/gpus/` 显示主机有 9 块
+    - 4 个日志文件在 14:45-14:49 间依次停止写入（3 分钟跨度，非瞬时），末尾均为正常进度输出无 error
+    - 各实验完成了 Task 1-3，在 Task 4/10 中被杀（~30% 完成度）
+    - 系统 RAM 充足（1TB 中仅用 46GB），排除 CPU OOM
+    - 无 tmux session，进程通过 nohup 方式运行
+  - **修复建议**:
+    1. 在 AutoDL 控制台恢复实例到 4 GPU 配置（或至少确认 GPU 分配稳定）
+    2. 重新启动 4 个实验，建议使用 tmux 以防 SSH 断连
+    3. 如果无法恢复多 GPU，可在单 GPU 上顺序运行（每个实验约 5.5h，共 ~22h）
+    4. 启动命令参考（单 GPU 顺序）:
+       ```bash
+       tmux new -s openvla_eval
+       source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+       cd /root/autodl-tmp/importance_margin_vla_compress
+       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k05_seed42.log 2>&1
+       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_random_k03_seed42.log 2>&1
+       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.7 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k07_seed42.log 2>&1
+       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k03_seed42.log 2>&1
+       ```
+
+---
+
+## 可查的历史
+前 32 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-22T01:51:09.340008+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-22T01:51:09.491260+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "ToolSearch",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T01:51:13.291456+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T01:51:13.746881+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-22T01:51:14.309358+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T01:51:14.310014+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k085_spatial_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T01:35:08.345Z\", \"updated_at\": \"2026-05-22T01:42:31.232Z\", \"failure_reason\": \"never properly submitted — no spec/pid/command. Cron false positive. Will retry.\", \"conclusion\": \"failed\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T01:35:15.417166+00:00\"}]}, \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"westd-38929\", \"data_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"data_count\": 500, \"model_name\": \"pi05\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\", \"pid\": 227008, \"gpu\": \"cuda:0\"}, \"hypothesis\": \"π0.5 L2norm k=0.85 Spatial seed42: Object 上 L2norm 无 cliff (k=0.9=98.2%, k=0.85 应同样高)。Spatial baseline=97.2%。验证 L2norm cliff-free 属性跨 task 一致性（D152）。\", \"parent\": \"eval_pi05_l2norm_k09_spatial_seed42\"}, \"eval_pi05_random_k03_object_seed43_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:32:50.404Z\", \"updated_at\": \"2026-05-21T23:34:44.720Z\", \"hypothesis\": \"π0.5 random k=0.3 Object seed43 v2: seed 验证 (v1 failed due to cqa1 env mismatch). seed42=36.4%。确认 random k=0.3 的 SR 在 seed 间可重复。\", \"parent\": \"eval_pi05_random_k03_object_seed43\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.3 --suite libero_object --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"data_count\": 500, \"model_name\": \"pi05\", \"seed\": 43, \"checkpo
+…[truncated 3177 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1018
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-22T01:51:14.762453+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T01:51:15.064264+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T01:51:15.166414+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k0925_object_seed42\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:04:09.094Z\", \"updated_at\": \"2026-05-22T00:07:06.120Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Object seed42: 与 random k=0.925 配对。L2norm k=0.9=98.2%（near baseline）。如果 L2norm k=0.925 仍 >90% 而 random k=0.925 崩→证明 cliff 是 random-specific，L2norm 保持 monotonic degradation。n_keep=237/256。\", \"parent\": \"eval_pi05_l2norm_k09_object_seed42_v2\", \"spec\": {\"checkpoint_path\": \"N/A-eval\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k0925_object_seed42.log\", \"results_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.93_libero_object_seed42.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T00:04:27.512Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T00:04:35.419712+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 99.2, \"per_task\": {\"T0_alphabet_soup\": 98, \"T1_cream_cheese\": 98, \"T2_salad_dressing\": 96, \"T3_bbq_sauce\": 100, \"T4_ketchup\": 100, \"T5_tomato_sauce\": 100, \"T6_butter\": 100, \"T7_milk\": 100, \"T8_chocolate_pudding\": 100, \"T9_orange_juice\": 100}, \"n_episodes\": 500, \"successes\": 496}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9754}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1419
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T01:51:22.257852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"train_openvla_sc_m96_seed42\", \"success\": true, \"actions\": [\"Job still running (pid=68539)\"]}, {\"exp_id\": \"train_openvla_sc_m64_seed42_v6\", \"success\": true, \"actions\": [\"Job still running (pid=59671)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k095_spatial_seed42\", \"success\": true, \"actions\": [\"Skipped (created 25s ago < interval 120s)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 7948
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T01:51:22.258836+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-22T01:49:17Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 346 个实验 — ANALYZING 1, DONE 309, PREPARING 31, RUNNING 5\\n**DONE 分布**: failed 53, killed 22, negative 31, success 203\\n\\n### GPU 占用\\n- **分配**: 14 张 — westd-27271:cuda:0, westd-27271:cuda:1, cqa1-33015:cuda:0, cqa1-33015:cuda:1, cqa1-33015:cuda:2, cqa1-33015:cuda:3, westd-41074:cuda:0, westd-41074:cuda:1, westd-41074:cuda:2, westd-41074:cuda:3, westd-38929:cuda:0, westd-38929:cuda:1, westd-38929:cuda:2, westd-38929:cuda:3\\n- **实际运行**: 2 张 — westd-41074:cuda:2(train_openvla_sc_m96_seed42_v3), westd-38929:cuda:0(eval_pi05_l2norm_k085_spatial_seed42)\\n- **空闲（分配了没跑）**: westd-27271:cuda:0, westd-27271:cuda:1, cqa1-33015:cuda:0, cqa1-33015:cuda:1, cqa1-33015:cuda:2, cqa1-33015:cuda:3, westd-41074:cuda:0, westd-41074:cuda:1, westd-41074:cuda:3, westd-38929:cuda:1, westd-38929:cuda:2, westd-38929:cuda:3\\n\\n### 💾 磁盘余量\\n- **westd-27271**: ❌ 连接失败\\n- **cqa1-33015**: ❌ 连接失败\\n- **westd-41074**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 812G/879G 可用（已用 3%）\\n- **westd-38929**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/usr/bin/nvidia-smi`: 645G/879G 可用（已用 23%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `train_openvla_sc_m96_seed42_v3` | westd-41074 | cuda:2 | 68539 | `—` |\\n| `train_openvla_sc_m64_seed42_v6` | westd-41074 | ? | 59671 | `—` |\\n| `eval_pi05_random_k085_object_seed43_v2` | cqa1-33015 | ? | 805698 | `/root/autodl-tmp/logs/eval_pi05_random_k085_seed43_v2.log` |\\n| `eval_pi05_random_k03_object_seed43_v2` | cqa1-33015 | ? | 806010 | `/root/autodl-tmp/logs/eval_pi
+…[truncated 7877 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 7496
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T01:51:22.259542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/ROADMAP.md\", \"content\": \"# importance_margin_vla_compress — Research Dashboard\\n\\n> 最后更新: 2026-05-22 01:50 UTC | 更新原因: Reconcile GPU state after Agent 16h idle + 2 servers down; add cross-suite data tables\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA vision token compressibility 的 connector-determined 分析 + Predict-then-Compress 框架。7 模型 × 3 connector families。\\n\\n**D139 CONFIRMED: CV Scaling Law validated across 3 models.**\\n| Model | CV | L2norm k=0.5 | Random k=0.5 | Δ |\\n|-------|-----|-------------|-------------|-----|\\n| π0.5 | 0.055 | 33.4% | **69.4%** | **+36.0pp** |\\n| X-VLA | 0.151 | 43.4% (3-seed) | 70.3% (3-seed) | +26.9pp |\\n| OpenVLA | 0.215 | 39.2% | 35.8% | -3.4pp |\\n\\n**D151: Cliff is random-specific** — π0.5 k=0.925 L2norm=99.2% vs Random=27.6% (71pp gap)\\n**D152: Cliff is task-specific** — Random k=0.85 Object=5.0% vs Spatial≈54.6%(k=0.9)\\n\\n## 当前阶段\\n🔬 Research (π0.5 Spatial cross-suite 数据收集) + ✍️ Paper Agent writing + 📝 Review Round 5 pending\\n\\n## GPU 状态\\n**8 GPU active / 6 GPU down (2 servers SSH unreachable)**\\n\\n| 服务器 | GPU | 实验 | 状态 |\\n|--------|-----|------|------|\\n| westd-41074 | 0 | **π0.5 random k=0.95 Spatial** | 待部署（指令已下发） |\\n| westd-41074 | 1 | **π0.5 random k=0.7 Spatial** | 待部署（指令已下发） |\\n| westd-41074 | 2 | VTC M96 train | 运行中 |\\n| westd-41074 | 3 | VTC M64v6 train (31%, ETA 5/24) | 运行中 |\\n| westd-38929 | 0 | **π0.5 L2norm k=0.5 Spatial** | 待部署（指令已下发） |\\n| westd-38929 | 1 | π0.5 L2norm k=0.95 Spatial | 刚部署 |\\n| westd-38929 | 2 | π0.5 random k=0.925 seed43 | 运行中（待确认） |\\n| westd-38929 | 3 | 待确认 | 状态未知 |\\n| westd-27271 | 0-1 | — | ⛔ SSH 不可达 |\\n| cqa1-33015 | 0-3 | — | ⛔ SSH 不可达 |\\n\\n## π0.5 Cross-Suite 数据表（论文 Table 核心）\\n\\n### LIBERO-Object (完成)\\n| k | Random | L2norm | Gap |\\n|---|--------|--------|-----|\\n| 0.95 | 71.1% | 98.2% | +27.1pp |\\n| 0.925 
+…[truncated 3455 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 7195
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T01:51:51.557532+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T01:51:52.567410+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k0925_object_seed42\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:04:09.094Z\", \"updated_at\": \"2026-05-22T00:07:06.120Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Object seed42: 与 random k=0.925 配对。L2norm k=0.9=98.2%（near baseline）。如果 L2norm k=0.925 仍 >90% 而 random k=0.925 崩→证明 cliff 是 random-specific，L2norm 保持 monotonic degradation。n_keep=237/256。\", \"parent\": \"eval_pi05_l2norm_k09_object_seed42_v2\", \"spec\": {\"checkpoint_path\": \"N/A-eval\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k0925_object_seed42.log\", \"results_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.93_libero_object_seed42.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T00:04:27.512Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T00:04:35.419712+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 99.2, \"per_task\": {\"T0_alphabet_soup\": 98, \"T1_cream_cheese\": 98, \"T2_salad_dressing\": 96, \"T3_bbq_sauce\": 100, \"T4_ketchup\": 100, \"T5_tomato_sauce\": 100, \"T6_butter\": 100, \"T7_milk\": 100, \"T8_chocolate_pudding\": 100, \"T9_orange_juice\": 100}, \"n_episodes\": 500, \"successes\": 496}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.859}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1009
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-22T01:51:52.721294+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'PREPARING'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['exp_id', 'hypothesis', 'parent', 'spec', 'plan_id']",
+  "limit": "40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'PREPARING'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['exp_id', 'hypothesis', 'parent', 'spec', 'plan_id']",
+    "limit": "40"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T01:51:54.281496+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_random_k085_spatial_seed42\": {\"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\\\"\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:3\"], \"pid\": \"48588\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_spatial_seed42.log\", \"submitted_at\": \"2026-05-21T23:58:08.176Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"eval_pi05_random_k0925_object_seed43\": {\"hypothesis\": \"π0.5 random k=0.925 Object seed43: cliff 入口点双种子验证。seed42=27.6%。如果 seed43 也 <40%→确认 cliff 起点在 [0.925, 0.95]，为论文 figure 提供 error bar。\", \"parent\": \"eval_pi05_random_k0925_object_seed42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.925 --suite libero_object --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:2\"], \"pid\": \"68029\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k0925_object_seed43.log\", \"submitted_at\": \"2026-05-22T00:07:20.338Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"eval_pi05_random_k09_spatial_seed42\": {\"hypothesis\": \"π0.5 random k=0.9 Spatial seed42: Object 上 k=0.9=10.8%（V-dip cliff）。如果 Spatial 也 ~10% → cliff 是 model-intrinsic，跨 task 普遍现象；如果 ~90% → cliff 是 Object-specific。Spatial baseline=97.2%。\", \"parent\": \"eval_pi05_random_k07_spatial_seed42\", \"spec\": {\"command\": \"bash -c \\\"source /root/minico
+…[truncated 18953 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1560
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-22T01:52:41.212542+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__load_project_config",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__load_project_config",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T01:52:41.263209+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-22T01:52:49.827283+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k0925_object_seed42",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_l2norm_k0925_object_seed42",
+    "field": "status",
+    "value": "DONE",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T01:52:50.281245+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "importance_margin_vla_compress",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "importance_margin_vla_compress",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T01:52:56.070029+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k0925_object_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:04:09.094Z\", \"updated_at\": \"2026-05-22T01:52:52.551Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Object seed42: 与 random k=0.925 配对。L2norm k=0.9=98.2%（near baseline）。如果 L2norm k=0.925 仍 >90% 而 random k=0.925 崩→证明 cliff 是 random-specific，L2norm 保持 monotonic degradation。n_keep=237/256。\", \"parent\": \"eval_pi05_l2norm_k09_object_seed42_v2\", \"spec\": {\"checkpoint_path\": \"N/A-eval\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k0925_object_seed42.log\", \"results_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.93_libero_object_seed42.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T00:04:27.512Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T00:04:35.419712+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 99.2, \"per_task\": {\"T0_alphabet_soup\": 98, \"T1_cream_cheese\": 98, \"T2_salad_dressing\": 96, \"T3_bbq_sauce\": 100, \"T4_ketchup\": 100, \"T5_tomato_sauce\": 100, \"T6_butter\": 100, \"T7_milk\": 100, \"T8_chocolate_pudding\": 100, \"T9_orange_juice\": 100}, \"n_episodes\": 500, \"successes\": 496}, \"completed_at\": \"2026-05-22T01:52:52.551Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.1948}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 6242
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T01:52:56.120687+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"importance_margin_vla_compress\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"servers\": [\"westd-27271\", {\"account\": \"root\", \"server\": \"cqa1-33015\"}, {\"account\": \"root\", \"server\": \"westd-41074\"}, {\"account\": \"root\", \"server\": \"westd-38929\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 5839
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-22T01:53:58.835212+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "check:westd-38929-status",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务：检查 westd-38929 上的实验状态并提取结果\n\n### 目标\n检查 westd-38929 上所有相关实验进程的存活状态，提取已完成实验的结果。\n\n### 服务器信息\n- 服务器：westd-38929\n- 项目路径：/root/autodl-tmp/importance_margin_vla_compress\n- Python：/root/miniconda3/bin/python（conda base 环境）\n\n### 步骤 1：检查进程和 GPU 状态\n用 ssh_read_only 执行：\n```bash\n# GPU 状态\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n\n# 检查以下 PID 是否存活\nfor pid in 227008 48588 68029 9126 48423 999560 466583 465264 450294; do\n  ps -p $pid -o pid,etime,args --no-headers 2>/dev/null || echo \"PID $pid: DEAD\"\ndone\n\n# 检查 tmux sessions\ntmux ls 2>/dev/null || echo \"NO_TMUX\"\n\n# 检查所有 python 进程\nps aux | grep -E \"eval_pi05|eval_openvla|eval_oft\" | grep -v grep\n```\n\n### 步骤 2：提取已完成实验的结果\n以下实验可能已完成，检查它们的日志和结果文件：\n\n**P0 优先级（Spatial cross-suite）：**\n1. `eval_pi05_random_k085_spatial_seed42` (PID 48588, cuda:3)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_random_k085_spatial_seed42.log\n   - 结果: eval_results/ 目录下匹配 *random*k0.85*spatial* 的 JSON\n   \n2. `eval_pi05_random_k0925_object_seed43` (PID 68029, cuda:2)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_random_k0925_object_seed43.log\n   - 结果: eval_results/ 目录下匹配 *random*k0.925*seed43* 或 *k0.93*seed43* 的 JSON\n\n3. `eval_pi05_random_k09_spatial_seed42` (PID 9126, cuda:1)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_random_k09_spatial_seed42.log\n   - 注意: 这个实验在 ROADMAP 中已经有结果 54.6%，确认一下\n\n4. `eval_pi05_l2norm_k09_spatial_seed42` (PID 48423, cuda:0)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_spatial_seed42.log\n   - 注意: ROADMAP 显示已有结果 95.0%，确认一下\n\n**其他实验：**\n5. `eval_pi05_l2norm_k085_spatial_seed42` (PID 227008, cuda:0) — 这个是 RUNNING 状态\n6. `eval_openvla_l2norm_k05_object_seed42_v4` (PID 999560, cuda:0)\n7. `eval_oft_baseline_goal_seed42` (PID 466583, cuda:3)\n8. `eval_oft_object_std_v3` (PID 465264, cuda:2)\n\n### 步骤 3：提取结果\n对于已完成（PID 不存在）的实验：\n```bash\n# 查看日志最后 30 行获取 SR\ntail -30 ~/runs/importance_margin_vla_compress/&lt;log_file>\n\n# 查看结果 JSON\nls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/ | grep -E \"random|l2norm|oft\"\ncat /root/autodl-tmp/importance_margin_vla_compress/eval_results/&lt;matching_file>.json\n```\n\n### 输出格式\n请汇总每个实验的状态：\n```\nexp_id | PID状态 | GPU | SR(%) | 完成时间 | 备注\n```\n\n如果发现 SR 数据，提取 overall_success_rate 和 per_task 详情。\n",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "check:westd-38929-status",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务：检查 westd-38929 上的实验状态并提取结果\n\n### 目标\n检查 westd-38929 上所有相关实验进程的存活状态，提取已完成实验的结果。\n\n### 服务器信息\n- 服务器：westd-38929\n- 项目路径：/root/autodl-tmp/importance_margin_vla_compress\n- Python：/root/miniconda3/bin/python（conda base 环境）\n\n### 步骤 1：检查进程和 GPU 状态\n用 ssh_read_only 执行：\n```bash\n# GPU 状态\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n\n# 检查以下 PID 是否存活\nfor pid in 227008 48588 68029 9126 48423 999560 466583 465264 450294; do\n  ps -p $pid -o pid,etime,args --no-headers 2>/dev/null || echo \"PID $pid: DEAD\"\ndone\n\n# 检查 tmux sessions\ntmux ls 2>/dev/null || echo \"NO_TMUX\"\n\n# 检查所有 python 进程\nps aux | grep -E \"eval_pi05|eval_openvla|eval_oft\" | grep -v grep\n```\n\n### 步骤 2：提取已完成实验的结果\n以下实验可能已完成，检查它们的日志和结果文件：\n\n**P0 优先级（Spatial cross-suite）：**\n1. `eval_pi05_random_k085_spatial_seed42` (PID 48588, cuda:3)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_random_k085_spatial_seed42.log\n   - 结果: eval_results/ 目录下匹配 *random*k0.85*spatial* 的 JSON\n   \n2. `eval_pi05_random_k0925_object_seed43` (PID 68029, cuda:2)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_random_k0925_object_seed43.log\n   - 结果: eval_results/ 目录下匹配 *random*k0.925*seed43* 或 *k0.93*seed43* 的 JSON\n\n3. `eval_pi05_random_k09_spatial_seed42` (PID 9126, cuda:1)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_random_k09_spatial_seed42.log\n   - 注意: 这个实验在 ROADMAP 中已经有结果 54.6%，确认一下\n\n4. `eval_pi05_l2norm_k09_spatial_seed42` (PID 48423, cuda:0)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_spatial_seed42.log\n   - 注意: ROADMAP 显示已有结果 95.0%，确认一下\n\n**其他实验：**\n5. `eval_pi05_l2norm_k085_spatial_seed42` (PID 227008, cuda:0) — 这个是 RUNNING 状态\n6. `eval_openvla_l2norm_k05_object_seed42_v4` (PID 999560, cuda:0)\n7. `eval_oft_baseline_goal_seed42` (PID 466583, cuda:3)\n8. `eval_oft_object_std_v3` (PID 465264, cuda:2)\n\n### 步骤 3：提取结果\n对于已完成（PID 不存在）的实验：\n```bash\n# 查看日志最后 30 行获取 SR\ntail -30 ~/runs/importance_margin_vla_compress/&lt;log_file>\n\n# 查看结果 JSON\nls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/ | grep -E \"random|l2norm|oft\"\ncat /root/autodl-tmp/importance_margin_vla_compress/eval_results/&lt;matching_file>.json\n```\n\n### 输出格式\n请汇总每个实验的状态：\n```\nexp_id | PID状态 | GPU | SR(%) | 完成时间 | 备注\n```\n\n如果发现 SR 数据，提取 overall_success_rate 和 per_task 详情。\n",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T01:54:14.562233+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_westd-38929-status_20260522T015359\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_check_westd-38929-status_20260522T015359.log\", \"setup_data\": {}, \"message\": \"Worker worker_check_westd-38929-status_20260522T015359 started. Use get_worker_status('worker_check_westd-38929-status_20260522T015359') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 15727
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-22T01:54:15.014606+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "check:westd-41074-status",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务：检查 westd-41074 上的实验状态并提取结果\n\n### 目标\n检查 westd-41074 上所有相关实验进程的存活状态，提取已完成实验的结果。\n\n### 服务器信息\n- 服务器：westd-41074\n- 项目路径：/root/autodl-tmp/importance_margin_vla_compress\n- Python：/root/miniconda3/bin/python（conda base 环境）\n\n### 步骤 1：检查进程和 GPU 状态\n用 ssh_read_only 执行：\n```bash\n# GPU 状态\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n\n# 检查以下 PID 是否存活\nfor pid in 68539 59671 816380 816297 736865 711846 709434 46032 43102; do\n  ps -p $pid -o pid,etime,args --no-headers 2>/dev/null || echo \"PID $pid: DEAD\"\ndone\n\n# 检查 tmux sessions\ntmux ls 2>/dev/null || echo \"NO_TMUX\"\n\n# 检查所有 python 进程（eval 和 train）\nps aux | grep -E \"eval_pi05|train_openvla|eval_openvla|roboflamingo\" | grep -v grep\n```\n\n### 步骤 2：确认训练进程状态\n重点关注两个 RUNNING 训练：\n1. `train_openvla_sc_m96_seed42_v3` (PID 68539, cuda:2) — 检查训练步数/进度\n2. `train_openvla_sc_m64_seed42_v6` (PID 59671, cuda:3) — 检查训练步数/进度\n\n如果它们还在跑：\n```bash\n# 检查最新日志\ntail -20 /root/autodl-tmp/importance_margin_vla_compress/checkpoints/openvla_sc_m96_seed42/training.log 2>/dev/null\ntail -20 /root/autodl-tmp/importance_margin_vla_compress/checkpoints/openvla_sc_m64_seed42/training.log 2>/dev/null\n# 或者\nls -lt /root/autodl-tmp/importance_margin_vla_compress/checkpoints/openvla_sc_*/\n```\n\n### 步骤 3：检查已提交但状态未更新的实验\n以下实验处于 PREPARING 但有 PID（可能已完成）：\n\n1. `eval_pi05_l2norm_k095_object_seed42` (PID 816380, cuda:1)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_object_seed42.log\n   - 结果 JSON: eval_results/ 下匹配 *l2norm*k0.95*object* 的文件\n\n2. `eval_pi05_l2norm_k085_object_seed42_v3` (PID 816297, cuda:0)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_object_seed42_v3.log\n   - 结果 JSON: eval_results/ 下匹配 *l2norm*k0.85*object* 的文件\n\n3. `eval_openvla_sc_m64_50k_seed42` (PID 736865, cuda:1) — VTC M64 50k checkpoint eval\n   - 日志: ~/runs/importance_margin_vla_compress/eval_openvla_sc_m64_50k_seed42.log\n\n**注意**: 已知 report.md 显示 eval_pi05_l2norm_k085_object_seed42_v4 和 eval_pi05_l2norm_k095_object_seed42_v2 最近成功完成（~01:40 UTC），检查这些是否也有结果。\n\n### 步骤 4：提取结果\n对于已完成的实验，提取 SR：\n```bash\ntail -30 ~/runs/importance_margin_vla_compress/&lt;log_file>\nls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/ | sort -k6,7\n# 读取最近的 JSON 结果\n```\n\n### 输出格式\n```\nexp_id | PID状态 | GPU | SR(%) | 完成时间 | 备注\n```\n\n同时报告 cuda:0 和 cuda:1 是否空闲可用。\n",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "check:westd-41074-status",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务：检查 westd-41074 上的实验状态并提取结果\n\n### 目标\n检查 westd-41074 上所有相关实验进程的存活状态，提取已完成实验的结果。\n\n### 服务器信息\n- 服务器：westd-41074\n- 项目路径：/root/autodl-tmp/importance_margin_vla_compress\n- Python：/root/miniconda3/bin/python（conda base 环境）\n\n### 步骤 1：检查进程和 GPU 状态\n用 ssh_read_only 执行：\n```bash\n# GPU 状态\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n\n# 检查以下 PID 是否存活\nfor pid in 68539 59671 816380 816297 736865 711846 709434 46032 43102; do\n  ps -p $pid -o pid,etime,args --no-headers 2>/dev/null || echo \"PID $pid: DEAD\"\ndone\n\n# 检查 tmux sessions\ntmux ls 2>/dev/null || echo \"NO_TMUX\"\n\n# 检查所有 python 进程（eval 和 train）\nps aux | grep -E \"eval_pi05|train_openvla|eval_openvla|roboflamingo\" | grep -v grep\n```\n\n### 步骤 2：确认训练进程状态\n重点关注两个 RUNNING 训练：\n1. `train_openvla_sc_m96_seed42_v3` (PID 68539, cuda:2) — 检查训练步数/进度\n2. `train_openvla_sc_m64_seed42_v6` (PID 59671, cuda:3) — 检查训练步数/进度\n\n如果它们还在跑：\n```bash\n# 检查最新日志\ntail -20 /root/autodl-tmp/importance_margin_vla_compress/checkpoints/openvla_sc_m96_seed42/training.log 2>/dev/null\ntail -20 /root/autodl-tmp/importance_margin_vla_compress/checkpoints/openvla_sc_m64_seed42/training.log 2>/dev/null\n# 或者\nls -lt /root/autodl-tmp/importance_margin_vla_compress/checkpoints/openvla_sc_*/\n```\n\n### 步骤 3：检查已提交但状态未更新的实验\n以下实验处于 PREPARING 但有 PID（可能已完成）：\n\n1. `eval_pi05_l2norm_k095_object_seed42` (PID 816380, cuda:1)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_object_seed42.log\n   - 结果 JSON: eval_results/ 下匹配 *l2norm*k0.95*object* 的文件\n\n2. `eval_pi05_l2norm_k085_object_seed42_v3` (PID 816297, cuda:0)\n   - 日志: ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_object_seed42_v3.log\n   - 结果 JSON: eval_results/ 下匹配 *l2norm*k0.85*object* 的文件\n\n3. `eval_openvla_sc_m64_50k_seed42` (PID 736865, cuda:1) — VTC M64 50k checkpoint eval\n   - 日志: ~/runs/importance_margin_vla_compress/eval_openvla_sc_m64_50k_seed42.log\n\n**注意**: 已知 report.md 显示 eval_pi05_l2norm_k085_object_seed42_v4 和 eval_pi05_l2norm_k095_object_seed42_v2 最近成功完成（~01:40 UTC），检查这些是否也有结果。\n\n### 步骤 4：提取结果\n对于已完成的实验，提取 SR：\n```bash\ntail -30 ~/runs/importance_margin_vla_compress/&lt;log_file>\nls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/ | sort -k6,7\n# 读取最近的 JSON 结果\n```\n\n### 输出格式\n```\nexp_id | PID状态 | GPU | SR(%) | 完成时间 | 备注\n```\n\n同时报告 cuda:0 和 cuda:1 是否空闲可用。\n",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T01:54:26.364449+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_westd-41074-status_20260522T015415\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_check_westd-41074-status_20260522T015415.log\", \"setup_data\": {}, \"message\": \"Worker worker_check_westd-41074-status_20260522T015415 started. Use get_worker_status('worker_check_westd-41074-status_20260522T015415') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 11349
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-22T01:54:26.565924+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "check:cqa1-33015-status",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务：检查 cqa1-33015 连通性和实验状态\n\n### 目标\nreport.md 显示 cqa1-33015 SSH 连接失败。先测试连通性，如果可达则检查 3 个实验的状态。\n\n### 服务器信息\n- 服务器：cqa1-33015\n- 项目路径：/root/autodl-tmp/importance_margin_vla_compress\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- **重要**：cqa1-33015 需要显式设置 HF_HOME=/root/autodl-tmp/.hf_cache\n\n### 步骤 1：测试连通性\n用 ssh_read_only 执行简单命令：\n```bash\necho \"SSH_OK\" && hostname && date\n```\n\n如果连接失败，记录错误信息，报告\"cqa1-33015 仍不可达\"并结束。\n\n### 步骤 2（仅当 SSH 可达时）：检查实验状态\n```bash\n# GPU 状态\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n\n# 检查 PID\nfor pid in 805698 806010 822218; do\n  ps -p $pid -o pid,etime,args --no-headers 2>/dev/null || echo \"PID $pid: DEAD\"\ndone\n\n# tmux sessions\ntmux ls 2>/dev/null || echo \"NO_TMUX\"\n\n# python 进程\nps aux | grep -E \"eval_pi05\" | grep -v grep\n```\n\n要检查的实验：\n1. `eval_pi05_random_k085_object_seed43_v2` (PID 805698, cuda:0) — RUNNING\n2. `eval_pi05_random_k03_object_seed43_v2` (PID 806010, cuda:2) — RUNNING  \n3. `eval_pi05_l2norm_k07_object_seed43_v3` (PID 822218, cuda:3) — PREPARING\n\n### 步骤 3：提取已完成实验结果\n对于 PID 已死的实验：\n```bash\ntail -30 /root/autodl-tmp/logs/&lt;log_file>\nls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/ | grep -E \"seed43|k0.7\"\n```\n\n注意日志路径可能在：\n- /root/autodl-tmp/logs/\n- ~/runs/importance_margin_vla_compress/\n- /root/autodl-tmp/importance_margin_vla_compress/logs/\n\n### 输出\n报告每个实验的 PID 状态、SR（如已完成）、以及 cuda:1 和 cuda:3 是否空闲。\n",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "check:cqa1-33015-status",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务：检查 cqa1-33015 连通性和实验状态\n\n### 目标\nreport.md 显示 cqa1-33015 SSH 连接失败。先测试连通性，如果可达则检查 3 个实验的状态。\n\n### 服务器信息\n- 服务器：cqa1-33015\n- 项目路径：/root/autodl-tmp/importance_margin_vla_compress\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- **重要**：cqa1-33015 需要显式设置 HF_HOME=/root/autodl-tmp/.hf_cache\n\n### 步骤 1：测试连通性\n用 ssh_read_only 执行简单命令：\n```bash\necho \"SSH_OK\" && hostname && date\n```\n\n如果连接失败，记录错误信息，报告\"cqa1-33015 仍不可达\"并结束。\n\n### 步骤 2（仅当 SSH 可达时）：检查实验状态\n```bash\n# GPU 状态\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n\n# 检查 PID\nfor pid in 805698 806010 822218; do\n  ps -p $pid -o pid,etime,args --no-headers 2>/dev/null || echo \"PID $pid: DEAD\"\ndone\n\n# tmux sessions\ntmux ls 2>/dev/null || echo \"NO_TMUX\"\n\n# python 进程\nps aux | grep -E \"eval_pi05\" | grep -v grep\n```\n\n要检查的实验：\n1. `eval_pi05_random_k085_object_seed43_v2` (PID 805698, cuda:0) — RUNNING\n2. `eval_pi05_random_k03_object_seed43_v2` (PID 806010, cuda:2) — RUNNING  \n3. `eval_pi05_l2norm_k07_object_seed43_v3` (PID 822218, cuda:3) — PREPARING\n\n### 步骤 3：提取已完成实验结果\n对于 PID 已死的实验：\n```bash\ntail -30 /root/autodl-tmp/logs/&lt;log_file>\nls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/ | grep -E \"seed43|k0.7\"\n```\n\n注意日志路径可能在：\n- /root/autodl-tmp/logs/\n- ~/runs/importance_margin_vla_compress/\n- /root/autodl-tmp/importance_margin_vla_compress/logs/\n\n### 输出\n报告每个实验的 PID 状态、SR（如已完成）、以及 cuda:1 和 cuda:3 是否空闲。\n",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T02:08:28.121790+00:00_
+
+MCP error -32000: Connection closed
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 841555
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-22T02:08:29.179835+00:00_
+
+`eval_pi05_l2norm_k0925_object_seed42` → DONE(success, 99.2%)。
+
+现在派 3 个 Worker 并行检查服务器状态和提取结果。PREPARING 队列中有大量实验已有 PID 但状态未更新——需要确认哪些已完成、哪些还在跑、哪些 GPU 空闲。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_xvla_random_k05_object_seed44"
+}
+```
+
+</details>
+
+---

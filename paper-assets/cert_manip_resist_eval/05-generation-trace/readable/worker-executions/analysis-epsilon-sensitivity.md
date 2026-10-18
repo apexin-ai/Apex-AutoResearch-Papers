@@ -1,0 +1,1707 @@
+# analysis epsilon sensitivity
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_analysis_epsilon-sensitivity_20260522T032625.log`
+- **Structured JSON:** [`dc59a71666c76d0c33e4.json`](../../sessions/dc/dc59a71666c76d0c33e4.json)
+
+## Before a recorded user message
+
+36 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2206e90e-37f8-4a4b-b332-4b7512a2fc85",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779437400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2ae95b76-82b1-4c86-a7af-c9db44370775",
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the results file structure on the server to understand the data format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "f502f0b4-8c94-4409-a784-23e3f8ee8735",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019uXqgsqb6GgxD4b7n3YN1W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12918,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12918
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014Vji47xokWsKJXepDVfV9c`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "9bd14412-ca34-488c-9892-f0249d79f80b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019uXqgsqb6GgxD4b7n3YN1W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12918,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12918
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T03:26:37.872Z_
+
+<details><summary>↩ Tool result · `toolu_014Vji47xokWsKJXepDVfV9c`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "cc29a654-d935-4e56-84b0-8db4ada5816c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V4DrnShJAmN2wUdbUDNaiJ`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "python3 -c \"\nimport json\nwith open('/root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json') as f:\n    d = json.load(f)\nfor k in d:\n    v = d[k]\n    if isinstance(v, dict):\n        subkeys = list(v.keys())[:10]\n        print(f'{k}: dict keys={subkeys}')\n        for sk in subkeys[:3]:\n            sv = v[sk]\n            if isinstance(sv, dict):\n                print(f'  {sk}: dict keys={list(sv.keys())[:10]}')\n            elif isinstance(sv, list):\n                print(f'  {sk}: list len={len(sv)}, first={sv[0] if sv else None}')\n            else:\n                print(f'  {sk}: {type(sv).__name__} = {sv}')\n    elif isinstance(v, list):\n        print(f'{k}: list len={len(v)}, first={v[0] if v else None}')\n    else:\n        print(f'{k}: {type(v).__name__} = {v}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "be1da79e-b58d-4895-b01a-8cf7a466bf70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T88K8AkaTtRewcLcP4sdvz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 459,
+      "cache_read_input_tokens": 24759,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 459
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T03:26:46.103Z_
+
+<details><summary>↩ Tool result · `toolu_01V4DrnShJAmN2wUdbUDNaiJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "2241b0aa-51e1-48b7-bf14-a7b37488728e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FqQD3k4svd94Q1zvJEHaFz`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -200 /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "bd84ea94-b88c-4812-95b9-6d5ca48c9f59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rb2GyuHLNCasJT74oSfZFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 473,
+      "cache_read_input_tokens": 25218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 473
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T03:26:52.787Z_
+
+<details><summary>↩ Tool result · `toolu_01FqQD3k4svd94Q1zvJEHaFz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"individual_asr\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.09292035398230089,\\n        \\\"llama3.1-70b\\\": 0.4098360655737705,\\n        \\\"mistral-large\\\": 0.29914529914529914,\\n        \\\"qwen2.5-32b\\\": 0.14537444933920704,\\n        \\\"qwen2.5-14b\\\": 0.2235294117647059,\\n        \\\"llama3.1-8b\\\": 0.7341040462427746\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.07079646017699115,\\n        \\\"llama3.1-70b\\\": 0.06967213114754098,\\n        \\\"mistral-large\\\": 0.1111111111111111,\\n        \\\"qwen2.5-32b\\\": 0.08370044052863436,\\n        \\\"qwen2.5-14b\\\": 0.09411764705882353,\\n        \\\"llama3.1-8b\\\": 0.06936416184971098\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.03982300884955752,\\n        \\\"llama3.1-70b\\\": 0.05737704918032787,\\n        \\\"mistral-large\\\": 0.1794871794871795,\\n        \\\"qwen2.5-32b\\\": 0.09251101321585903,\\n        \\\"qwen2.5-14b\\\": 0.1411764705882353,\\n        \\\"llama3.1-8b\\\": 0.30057803468208094\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.08139534883720931,\\n        \\\"llama3.1-70b\\\": 0.2313167259786477,\\n        \\\"mistral-large\\\": 0.10034602076124567,\\n        \\\"qwen2.5-32b\\\": 0.08208955223880597,\\n        \\\"qwen2.5-14b\\\": 0.12105263157894737,\\n        \\\"llama3.1-8b\\\": 0.8071065989847716\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.027131782945736434,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.01730103806228374,\\n        \\\"qwen2.5-32b\\\": 0.029850746268656716,\\n        \\\"qwen2.5-14b\\\": 0.042105263157894736,\\n        \\\"llama3.1-8b\\\": 0.030456852791878174\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.031007751937984496,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.031141868512110725,\\n        \\\"qwen2.5-32b\\\": 0.041044776119402986,\\n        \\\"qwen2.5-14b\\\": 0.15263157894736842,\\n        \\\"llama3.1-8b\\\": 0.1319796954314721\\n      }\\n    }\\n  },\\n  \\\"regression\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -1.2005336459121072,\\n          \\\"log_keff\\\": 0.3768291862521371,\\n          \\\"log_eta_max\\\": 0.5350836785435322\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.9596306191637151,\\n          \\\"log_keff\\\": 0.31116952956533134,\\n          \\\"log_eta_max\\\": 2.0887944127149587\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.35069190812700723,\\n          \\\"log_keff\\\": 0.759455039216847,\\n          \\\"log_eta_max\\\": 0.05207614616682014\\n        },\\n        \\\"r_squared\\\": 0.5399569330882754,\\n        \\\"adj_r_squared\\\": 0.4858342193339549,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 9.97653102797661,\\n        \\\"f_pvalue\\\": 0.0013607776429475685\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -0.3083571244899854,\\n          \\\"log_keff\\\": -0.21962212814893967,\\n          \\\"log_eta_max\\\": 0.8641760581005373\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.46589939958873955,\\n          \\\"log_keff\\\": -0.5466963317966549,\\n          \\\"log_eta_max\\\": 3.341141278588323\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.6472011723305124,\\n          \\\"log_keff\\\": 0.5916915899866425,\\n          \\\"log_eta_max\\\": 0.0038704029382201793\\n        },\\n        \\\"r_squared\\\": 0.4148215896903845,\\n        \\\"adj_r_squared\\\": 0.3459770708304297,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 6.025484621865467,\\n        \\\"f_pvalue\\\": 0.01051841994244415\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -3.3119785058877245,\\n          \\\"log_keff\\\": 1.6175785812824977,\\n          \\\"log_eta_max\\\": 0.27676655403454475\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -1.366584705243655,\\n          \\\"log_keff\\\": 0.8289294844646276,\\n          \\\"log_eta_max\\\": 0.6026901382922869\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.1895591194008405,\\n          \\\"log_keff\\\": 0.41863145224701426,\\n          \\\"log_eta_max\\\": 0.5546702289445123\\n        },\\n        \\\"r_squared\\\": 0.38396301903901564,\\n        \\\"adj_r_squared\\\": 0.31148808010242923,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 5.297872956815773,\\n        \\\"f_pvalue\\\": 0.016280122279736423\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -2.254408322194568,\\n          \\\"log_keff\\\": 0.823994238941832,\\n          \\\"log_eta_max\\\": 0.293956976885268\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -3.1011389612468765,\\n          \\\"log_keff\\\": 1.01367883097609,\\n          \\\"log_eta_max\\\": 2.6119512656844486\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.0064886837419176596,\\n          \\\"log_keff\\\": 0.3249469687222083,\\n          \\\"log_eta_max\\\": 0.018223719693570294\\n        },\\n        \\\"r_squared\\\": 0.7340183245382527,\\n        \\\"adj_r_squared\\\": 0.7027263627192235,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 23.45708871764906,\\n        \\\"f_pvalue\\\": 1.2919318283625531e-05\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": 5.286700050895583,\\n          \\\"log_keff\\\": -2.8519555434675383,\\n          \\\"log_eta_max\\\": 2.181714260237919\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": 2.6038246108678145,\\n          \\\"log_keff\\\": -3.4586617136107423,\\n          \\\"log_eta_max\\\": 4.0103044970068575\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.01853285137674673,\\n          \\\"log_keff\\\": 0.003001251626732861,\\n          \\\"log_eta_max\\\": 0.0009067356034740004\\n        },\\n        \\\"r_squared\\\": 0.5791906001386127,\\n        \\\"adj_r_squared\\\": 0.529683611919626,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 11.699168561348344,\\n        \\\"f_pvalue\\\": 0.0006378611843110098\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -3.2635487071625695,\\n          \\\"log_keff\\\": 1.3674955318661985,\\n          \\\"log_eta_max\\\": 0.5367750848333965\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -2.5799492988853405,\\n          \\\"log_keff\\\": 1.2442377293278282,\\n          \\\"log_eta_max\\\": 2.339722346042711\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.0194701984659331,\\n          \\\"log_keff\\\": 0.23029466916275743,\\n          \\\"log_eta_max\\\": 0.03175874926870907\\n        },\\n        \\\"r_squared\\\": 0.5798030815289497,\\n        \\\"adj_r_squared\\\": 0.5303681499441202,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 11.72861098298514,\\n        \\\"f_pvalue\\\": 0.0006300127474868427\\n      }\\n    }\\n  },\\n  \\\"control_group_4model\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": [\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "c80dc6e6-e0ca-425b-bae3-ab123281aefa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"individual_asr\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.09292035398230089,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.4098360655737705,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.29914529914529914,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.14537444933920704,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.2235294117647059,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.7341040462427746\\\\n      },\\\\n      \\\\\\\"sycophancy\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.07079646017699115,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.06967213114754098,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.1111111111111111,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.08370044052863436,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.09411764705882353,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.06936416184971098\\\\n      },\\\\n      \\\\\\\"score_manipulation\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.03982300884955752,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.05737704918032787,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.1794871794871795,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.09251101321585903,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.1411764705882353,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.30057803468208094\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.08139534883720931,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.2313167259786477,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.10034602076124567,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.08208955223880597,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.12105263157894737,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.8071065989847716\\\\n      },\\\\n      \\\\\\\"sycophancy\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.027131782945736434,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.014234875444839857,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.01730103806228374,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.029850746268656716,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.042105263157894736,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.030456852791878174\\\\n      },\\\\n      \\\\\\\"score_manipulation\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.031007751937984496,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.014234875444839857,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.031141868512110725,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.041044776119402986,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.15263157894736842,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.1319796954314721\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"regression\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -1.2005336459121072,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.3768291862521371,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.5350836785435322\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -0.9596306191637151,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.31116952956533134,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 2.0887944127149587\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.35069190812700723,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.759455039216847,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.05207614616682014\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.5399569330882754,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.4858342193339549,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 9.97653102797661,\\\\n        \\\\\\\"f_pvalue\\\\\\\": 0.0013607776429475685\\\\n      },\\\\n      \\\\\\\"sycophancy\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -0.3083571244899854,\\\\n          \\\\\\\"log_keff\\\\\\\": -0.21962212814893967,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.8641760581005373\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -0.46589939958873955,\\\\n          \\\\\\\"log_keff\\\\\\\": -0.5466963317966549,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 3.341141278588323\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.6472011723305124,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.5916915899866425,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.0038704029382201793\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.4148215896903845,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.3459770708304297,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 6.025484621865467,\\\\n        \\\\\\\"f_pvalue\\\\\\\": 0.01051841994244415\\\\n      },\\\\n      \\\\\\\"score_manipulation\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -3.3119785058877245,\\\\n          \\\\\\\"log_keff\\\\\\\": 1.6175785812824977,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.27676655403454475\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -1.366584705243655,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.8289294844646276,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.6026901382922869\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.1895591194008405,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.41863145224701426,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.5546702289445123\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.38396301903901564,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.31148808010242923,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 5.297872956815773,\\\\n        \\\\\\\"f_pvalue\\\\\\\": 0.016280122279736423\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -2.254408322194568,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.823994238941832,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.293956976885268\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -3.1011389612468765,\\\\n          \\\\\\\"log_keff\\\\\\\": 1.01367883097609,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 2.6119512656844486\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.0064886837419176596,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.3249469687222083,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.018223719693570294\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.7340183245382527,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.7027263627192235,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 23.45708871764906,\\\\n        \\\\\\\"f_pvalue\\\\\\\": 1.2919318283625531e-05\\\\n      },\\\\n      \\\\\\\"sycophancy\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 5.286700050895583,\\\\n          \\\\\\\"log_keff\\\\\\\": -2.8519555434675383,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 2.181714260237919\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 2.6038246108678145,\\\\n          \\\\\\\"log_keff\\\\\\\": -3.4586617136107423,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 4.0103044970068575\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.01853285137674673,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.003001251626732861,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.0009067356034740004\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.5791906001386127,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.529683611919626,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 11.699168561348344,\\\\n        \\\\\\\"f_pvalue\\\\\\\": 0.0006378611843110098\\\\n      },\\\\n      \\\\\\\"score_manipulation\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -3.2635487071625695,\\\\n          \\\\\\\"log_keff\\\\\\\": 1.3674955318661985,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.5367750848333965\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -2.5799492988853405,\\\\n          \\\\\\\"log_keff\\\\\\\": 1.2442377293278282,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 2.339722346042711\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.0194701984659331,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.23029466916275743,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.03175874926870907\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.5798030815289497,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.5303681499441202,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 11.72861098298514,\\\\n        \\\\\\\"f_pvalue\\\\\\\": 0.0006300127474868427\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"control_group_4model\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"individual_asr\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.09292035398230089,\\n        \\\"llama3.1-70b\\\": 0.4098360655737705,\\n        \\\"mistral-large\\\": 0.29914529914529914,\\n        \\\"qwen2.5-32b\\\": 0.14537444933920704,\\n        \\\"qwen2.5-14b\\\": 0.2235294117647059,\\n        \\\"llama3.1-8b\\\": 0.7341040462427746\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.07079646017699115,\\n        \\\"llama3.1-70b\\\": 0.06967213114754098,\\n        \\\"mistral-large\\\": 0.1111111111111111,\\n        \\\"qwen2.5-32b\\\": 0.08370044052863436,\\n        \\\"qwen2.5-14b\\\": 0.09411764705882353,\\n        \\\"llama3.1-8b\\\": 0.06936416184971098\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.03982300884955752,\\n        \\\"llama3.1-70b\\\": 0.05737704918032787,\\n        \\\"mistral-large\\\": 0.1794871794871795,\\n        \\\"qwen2.5-32b\\\": 0.09251101321585903,\\n        \\\"qwen2.5-14b\\\": 0.1411764705882353,\\n        \\\"llama3.1-8b\\\": 0.30057803468208094\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.08139534883720931,\\n        \\\"llama3.1-70b\\\": 0.2313167259786477,\\n        \\\"mistral-large\\\": 0.10034602076124567,\\n        \\\"qwen2.5-32b\\\": 0.08208955223880597,\\n        \\\"qwen2.5-14b\\\": 0.12105263157894737,\\n        \\\"llama3.1-8b\\\": 0.8071065989847716\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.027131782945736434,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.01730103806228374,\\n        \\\"qwen2.5-32b\\\": 0.029850746268656716,\\n        \\\"qwen2.5-14b\\\": 0.042105263157894736,\\n        \\\"llama3.1-8b\\\": 0.030456852791878174\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.031007751937984496,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.031141868512110725,\\n        \\\"qwen2.5-32b\\\": 0.041044776119402986,\\n        \\\"qwen2.5-14b\\\": 0.15263157894736842,\\n        \\\"llama3.1-8b\\\": 0.1319796954314721\\n      }\\n    }\\n  },\\n  \\\"regression\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -1.2005336459121072,\\n          \\\"log_keff\\\": 0.3768291862521371,\\n          \\\"log_eta_max\\\": 0.5350836785435322\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.9596306191637151,\\n          \\\"log_keff\\\": 0.31116952956533134,\\n          \\\"log_eta_max\\\": 2.0887944127149587\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.35069190812700723,\\n          \\\"log_keff\\\": 0.759455039216847,\\n          \\\"log_eta_max\\\": 0.05207614616682014\\n        },\\n        \\\"r_squared\\\": 0.5399569330882754,\\n        \\\"adj_r_squared\\\": 0.4858342193339549,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 9.97653102797661,\\n        \\\"f_pvalue\\\": 0.0013607776429475685\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -0.3083571244899854,\\n          \\\"log_keff\\\": -0.21962212814893967,\\n          \\\"log_eta_max\\\": 0.8641760581005373\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.46589939958873955,\\n          \\\"log_keff\\\": -0.5466963317966549,\\n          \\\"log_eta_max\\\": 3.341141278588323\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.6472011723305124,\\n          \\\"log_keff\\\": 0.5916915899866425,\\n          \\\"log_eta_max\\\": 0.0038704029382201793\\n        },\\n        \\\"r_squared\\\": 0.4148215896903845,\\n        \\\"adj_r_squared\\\": 0.3459770708304297,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 6.025484621865467,\\n        \\\"f_pvalue\\\": 0.01051841994244415\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -3.3119785058877245,\\n          \\\"log_keff\\\": 1.6175785812824977,\\n          \\\"log_eta_max\\\": 0.27676655403454475\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -1.366584705243655,\\n          \\\"log_keff\\\": 0.8289294844646276,\\n          \\\"log_eta_max\\\": 0.6026901382922869\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.1895591194008405,\\n          \\\"log_keff\\\": 0.41863145224701426,\\n          \\\"log_eta_max\\\": 0.5546702289445123\\n        },\\n        \\\"r_squared\\\": 0.38396301903901564,\\n        \\\"adj_r_squared\\\": 0.31148808010242923,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 5.297872956815773,\\n        \\\"f_pvalue\\\": 0.016280122279736423\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -2.254408322194568,\\n          \\\"log_keff\\\": 0.823994238941832,\\n          \\\"log_eta_max\\\": 0.293956976885268\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -3.1011389612468765,\\n          \\\"log_keff\\\": 1.01367883097609,\\n          \\\"log_eta_max\\\": 2.6119512656844486\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.0064886837419176596,\\n          \\\"log_keff\\\": 0.3249469687222083,\\n          \\\"log_eta_max\\\": 0.018223719693570294\\n        },\\n        \\\"r_squared\\\": 0.7340183245382527,\\n        \\\"adj_r_squared\\\": 0.7027263627192235,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 23.45708871764906,\\n        \\\"f_pvalue\\\": 1.2919318283625531e-05\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": 5.286700050895583,\\n          \\\"log_keff\\\": -2.8519555434675383,\\n          \\\"log_eta_max\\\": 2.181714260237919\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": 2.6038246108678145,\\n          \\\"log_keff\\\": -3.4586617136107423,\\n          \\\"log_eta_max\\\": 4.0103044970068575\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.01853285137674673,\\n          \\\"log_keff\\\": 0.003001251626732861,\\n          \\\"log_eta_max\\\": 0.0009067356034740004\\n        },\\n        \\\"r_squared\\\": 0.5791906001386127,\\n        \\\"adj_r_squared\\\": 0.529683611919626,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 11.699168561348344,\\n        \\\"f_pvalue\\\": 0.0006378611843110098\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -3.2635487071625695,\\n          \\\"log_keff\\\": 1.3674955318661985,\\n          \\\"log_eta_max\\\": 0.5367750848333965\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -2.5799492988853405,\\n          \\\"log_keff\\\": 1.2442377293278282,\\n          \\\"log_eta_max\\\": 2.339722346042711\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.0194701984659331,\\n          \\\"log_keff\\\": 0.23029466916275743,\\n          \\\"log_eta_max\\\": 0.03175874926870907\\n        },\\n        \\\"r_squared\\\": 0.5798030815289497,\\n        \\\"adj_r_squared\\\": 0.5303681499441202,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 11.72861098298514,\\n        \\\"f_pvalue\\\": 0.0006300127474868427\\n      }\\n    }\\n  },\\n  \\\"control_group_4model\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": [\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to see the rest of the file to understand the panel structure. Let me check the control_group_4model section which likely contains the panel-level data I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "aa8ad9fc-3e1b-4dc8-9990-825f764d2142",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VEgnmfEe7vZcTpSGLq4JYR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3652,
+      "cache_read_input_tokens": 25691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3652
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+Let me see the panel-level data structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "dd226908-4753-408d-9466-71942c2e4092",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VEgnmfEe7vZcTpSGLq4JYR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3652,
+      "cache_read_input_tokens": 25691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3652
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018cdCsn7dcKoYAdRaaQm6hV`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "tail -n +200 /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json | head -300"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "bd019d5c-f045-4d07-b7fc-7a37251a4031",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VEgnmfEe7vZcTpSGLq4JYR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3652,
+      "cache_read_input_tokens": 25691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3652
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T03:27:01.806Z_
+
+<details><summary>↩ Tool result · `toolu_018cdCsn7dcKoYAdRaaQm6hV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "a3946014-5284-48e1-949f-78b1daf09f09",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KpPWLN4rW1EBqQr83pwav5`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "wc -l /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "2b5a0290-9768-48c0-b17b-37fab3de236b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVvfxYdVpT4WgLB3LMVoMA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 287,
+      "cache_read_input_tokens": 29343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 287
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T03:27:05.678Z_
+
+<details><summary>↩ Tool result · `toolu_01KpPWLN4rW1EBqQr83pwav5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1180 /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "c657b096-8448-4439-b737-b428562a7f2f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1180 /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1180 /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DUoVho8xfkyprWLgPysVD8`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -400 /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "69c5151f-ada9-4cd6-9977-cac7fa479548",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015pdPoTArWTaao4gpwRZVxw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 236,
+      "cache_read_input_tokens": 29630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 236
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T03:27:11.924Z_
+
+<details><summary>↩ Tool result · `toolu_01DUoVho8xfkyprWLgPysVD8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"individual_asr\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.09292035398230089,\\n        \\\"llama3.1-70b\\\": 0.4098360655737705,\\n        \\\"mistral-large\\\": 0.29914529914529914,\\n        \\\"qwen2.5-32b\\\": 0.14537444933920704,\\n        \\\"qwen2.5-14b\\\": 0.2235294117647059,\\n        \\\"llama3.1-8b\\\": 0.7341040462427746\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.07079646017699115,\\n        \\\"llama3.1-70b\\\": 0.06967213114754098,\\n        \\\"mistral-large\\\": 0.1111111111111111,\\n        \\\"qwen2.5-32b\\\": 0.08370044052863436,\\n        \\\"qwen2.5-14b\\\": 0.09411764705882353,\\n        \\\"llama3.1-8b\\\": 0.06936416184971098\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.03982300884955752,\\n        \\\"llama3.1-70b\\\": 0.05737704918032787,\\n        \\\"mistral-large\\\": 0.1794871794871795,\\n        \\\"qwen2.5-32b\\\": 0.09251101321585903,\\n        \\\"qwen2.5-14b\\\": 0.1411764705882353,\\n        \\\"llama3.1-8b\\\": 0.30057803468208094\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.08139534883720931,\\n        \\\"llama3.1-70b\\\": 0.2313167259786477,\\n        \\\"mistral-large\\\": 0.10034602076124567,\\n        \\\"qwen2.5-32b\\\": 0.08208955223880597,\\n        \\\"qwen2.5-14b\\\": 0.12105263157894737,\\n        \\\"llama3.1-8b\\\": 0.8071065989847716\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.027131782945736434,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.01730103806228374,\\n        \\\"qwen2.5-32b\\\": 0.029850746268656716,\\n        \\\"qwen2.5-14b\\\": 0.042105263157894736,\\n        \\\"llama3.1-8b\\\": 0.030456852791878174\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.031007751937984496,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.031141868512110725,\\n        \\\"qwen2.5-32b\\\": 0.041044776119402986,\\n        \\\"qwen2.5-14b\\\": 0.15263157894736842,\\n        \\\"llama3.1-8b\\\": 0.1319796954314721\\n      }\\n    }\\n  },\\n  \\\"regression\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -1.2005336459121072,\\n          \\\"log_keff\\\": 0.3768291862521371,\\n          \\\"log_eta_max\\\": 0.5350836785435322\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.9596306191637151,\\n          \\\"log_keff\\\": 0.31116952956533134,\\n          \\\"log_eta_max\\\": 2.0887944127149587\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.35069190812700723,\\n          \\\"log_keff\\\": 0.759455039216847,\\n          \\\"log_eta_max\\\": 0.05207614616682014\\n        },\\n        \\\"r_squared\\\": 0.5399569330882754,\\n        \\\"adj_r_squared\\\": 0.4858342193339549,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 9.97653102797661,\\n        \\\"f_pvalue\\\": 0.0013607776429475685\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -0.3083571244899854,\\n          \\\"log_keff\\\": -0.21962212814893967,\\n          \\\"log_eta_max\\\": 0.8641760581005373\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.46589939958873955,\\n          \\\"log_keff\\\": -0.5466963317966549,\\n          \\\"log_eta_max\\\": 3.341141278588323\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.6472011723305124,\\n          \\\"log_keff\\\": 0.5916915899866425,\\n          \\\"log_eta_max\\\": 0.0038704029382201793\\n        },\\n        \\\"r_squared\\\": 0.4148215896903845,\\n        \\\"adj_r_squared\\\": 0.3459770708304297,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 6.025484621865467,\\n        \\\"f_pvalue\\\": 0.01051841994244415\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -3.3119785058877245,\\n          \\\"log_keff\\\": 1.6175785812824977,\\n          \\\"log_eta_max\\\": 0.27676655403454475\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -1.366584705243655,\\n          \\\"log_keff\\\": 0.8289294844646276,\\n          \\\"log_eta_max\\\": 0.6026901382922869\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.1895591194008405,\\n          \\\"log_keff\\\": 0.41863145224701426,\\n          \\\"log_eta_max\\\": 0.5546702289445123\\n        },\\n        \\\"r_squared\\\": 0.38396301903901564,\\n        \\\"adj_r_squared\\\": 0.31148808010242923,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 5.297872956815773,\\n        \\\"f\\n\\n... [截断: 输出过长，省略 3435 字符] ...\\n\\nwen2.5-32b\\\"\\n          ],\\n          \\\"k_eff\\\": 2.1398345543529227,\\n          \\\"asr\\\": 0.08677685950413223,\\n          \\\"eta_max\\\": 0.08370044052863436\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.1933520990753648,\\n          \\\"asr\\\": 0.09561752988047809,\\n          \\\"eta_max\\\": 0.1111111111111111\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.2072417601680168,\\n          \\\"asr\\\": 0.0912863070539419,\\n          \\\"eta_max\\\": 0.1111111111111111\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.2626939605629945,\\n          \\\"asr\\\": 0.10236220472440945,\\n          \\\"eta_max\\\": 0.1111111111111111\\n        }\\n      ],\\n      \\\"score_manipulation\\\": [\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\"\\n          ],\\n          \\\"k_eff\\\": 2.1398345543529227,\\n          \\\"asr\\\": 0.07024793388429752,\\n          \\\"eta_max\\\": 0.09251101321585903\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.1933520990753648,\\n          \\\"asr\\\": 0.08764940239043825,\\n          \\\"eta_max\\\": 0.1794871794871795\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.2072417601680168,\\n          \\\"asr\\\": 0.0954356846473029,\\n          \\\"eta_max\\\": 0.1794871794871795\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.2626939605629945,\\n          \\\"asr\\\": 0.1062992125984252,\\n          \\\"eta_max\\\": 0.1794871794871795\\n        }\\n      ]\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"prompt_injection\\\": [\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8351782971283566,\\n          \\\"asr\\\": 0.10714285714285714,\\n          \\\"eta_max\\\": 0.2313167259786477\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8632596974999294,\\n          \\\"asr\\\": 0.11846689895470383,\\n          \\\"eta_max\\\": 0.2313167259786477\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8428267137239054,\\n          \\\"asr\\\": 0.0706713780918728,\\n          \\\"eta_max\\\": 0.10034602076124567\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 1.7771697757037952,\\n          \\\"asr\\\": 0.11267605633802817,\\n          \\\"eta_max\\\": 0.2313167259786477\\n        }\\n      ],\\n      \\\"sycophancy\\\": [\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8351782971283566,\\n          \\\"asr\\\": 0.017857142857142856,\\n          \\\"eta_max\\\": 0.029850746268656716\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8632596974999294,\\n          \\\"asr\\\": 0.010452961672473868,\\n          \\\"eta_max\\\": 0.027131782945736434\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8428267137239054,\\n          \\\"asr\\\": 0.024734982332155476,\\n          \\\"eta_max\\\": 0.029850746268656716\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "fca3f1d5-2526-4b64-98a0-897bc51cf625",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"individual_asr\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.09292035398230089,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.4098360655737705,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.29914529914529914,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.14537444933920704,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.2235294117647059,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.7341040462427746\\\\n      },\\\\n      \\\\\\\"sycophancy\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.07079646017699115,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.06967213114754098,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.1111111111111111,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.08370044052863436,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.09411764705882353,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.06936416184971098\\\\n      },\\\\n      \\\\\\\"score_manipulation\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.03982300884955752,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.05737704918032787,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.1794871794871795,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.09251101321585903,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.1411764705882353,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.30057803468208094\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.08139534883720931,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.2313167259786477,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.10034602076124567,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.08208955223880597,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.12105263157894737,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.8071065989847716\\\\n      },\\\\n      \\\\\\\"sycophancy\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.027131782945736434,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.014234875444839857,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.01730103806228374,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.029850746268656716,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.042105263157894736,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.030456852791878174\\\\n      },\\\\n      \\\\\\\"score_manipulation\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.031007751937984496,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.014234875444839857,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.031141868512110725,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.041044776119402986,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.15263157894736842,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.1319796954314721\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"regression\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -1.2005336459121072,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.3768291862521371,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.5350836785435322\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -0.9596306191637151,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.31116952956533134,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 2.0887944127149587\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.35069190812700723,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.759455039216847,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.05207614616682014\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.5399569330882754,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.4858342193339549,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 9.97653102797661,\\\\n        \\\\\\\"f_pvalue\\\\\\\": 0.0013607776429475685\\\\n      },\\\\n      \\\\\\\"sycophancy\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -0.3083571244899854,\\\\n          \\\\\\\"log_keff\\\\\\\": -0.21962212814893967,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.8641760581005373\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -0.46589939958873955,\\\\n          \\\\\\\"log_keff\\\\\\\": -0.5466963317966549,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 3.341141278588323\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.6472011723305124,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.5916915899866425,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.0038704029382201793\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.4148215896903845,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.3459770708304297,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 6.025484621865467,\\\\n        \\\\\\\"f_pvalue\\\\\\\": 0.01051841994244415\\\\n      },\\\\n      \\\\\\\"score_manipulation\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -3.3119785058877245,\\\\n          \\\\\\\"log_keff\\\\\\\": 1.6175785812824977,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.27676655403454475\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -1.366584705243655,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.8289294844646276,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.6026901382922869\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.1895591194008405,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.41863145224701426,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.5546702289445123\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.38396301903901564,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.31148808010242923,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 5.297872956815773,\\\\n        \\\\\\\"f\\\\n\\\\n... [截断: 输出过长，省略 3435 字符] ...\\\\n\\\\nwen2.5-32b\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 2.1398345543529227,\\\\n          \\\\\\\"asr\\\\\\\": 0.08677685950413223,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.08370044052863436\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 2.1933520990753648,\\\\n          \\\\\\\"asr\\\\\\\": 0.09561752988047809,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.1111111111111111\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 2.2072417601680168,\\\\n          \\\\\\\"asr\\\\\\\": 0.0912863070539419,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.1111111111111111\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 2.2626939605629945,\\\\n          \\\\\\\"asr\\\\\\\": 0.10236220472440945,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.1111111111111111\\\\n        }\\\\n      ],\\\\n      \\\\\\\"score_manipulation\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 2.1398345543529227,\\\\n          \\\\\\\"asr\\\\\\\": 0.07024793388429752,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.09251101321585903\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 2.1933520990753648,\\\\n          \\\\\\\"asr\\\\\\\": 0.08764940239043825,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.1794871794871795\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 2.2072417601680168,\\\\n          \\\\\\\"asr\\\\\\\": 0.0954356846473029,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.1794871794871795\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 2.2626939605629945,\\\\n          \\\\\\\"asr\\\\\\\": 0.1062992125984252,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.1794871794871795\\\\n        }\\\\n      ]\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 1.8351782971283566,\\\\n          \\\\\\\"asr\\\\\\\": 0.10714285714285714,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.2313167259786477\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 1.8632596974999294,\\\\n          \\\\\\\"asr\\\\\\\": 0.11846689895470383,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.2313167259786477\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 1.8428267137239054,\\\\n          \\\\\\\"asr\\\\\\\": 0.0706713780918728,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.10034602076124567\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 1.7771697757037952,\\\\n          \\\\\\\"asr\\\\\\\": 0.11267605633802817,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.2313167259786477\\\\n        }\\\\n      ],\\\\n      \\\\\\\"sycophancy\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 1.8351782971283566,\\\\n          \\\\\\\"asr\\\\\\\": 0.017857142857142856,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.029850746268656716\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 1.8632596974999294,\\\\n          \\\\\\\"asr\\\\\\\": 0.010452961672473868,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.027131782945736434\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\",\\\\n            \\\\\\\"mistral-large\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"k_eff\\\\\\\": 1.8428267137239054,\\\\n          \\\\\\\"asr\\\\\\\": 0.024734982332155476,\\\\n          \\\\\\\"eta_max\\\\\\\": 0.029850746268656716\\\\n        },\\\\n        {\\\\n          \\\\\\\"panel_ids\\\\\\\": [\\\\n            \\\\\\\"llama3.1-70b\\\\\\\",\\\\n            \\\\\\\"qwen2.5-32b\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"individual_asr\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.09292035398230089,\\n        \\\"llama3.1-70b\\\": 0.4098360655737705,\\n        \\\"mistral-large\\\": 0.29914529914529914,\\n        \\\"qwen2.5-32b\\\": 0.14537444933920704,\\n        \\\"qwen2.5-14b\\\": 0.2235294117647059,\\n        \\\"llama3.1-8b\\\": 0.7341040462427746\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.07079646017699115,\\n        \\\"llama3.1-70b\\\": 0.06967213114754098,\\n        \\\"mistral-large\\\": 0.1111111111111111,\\n        \\\"qwen2.5-32b\\\": 0.08370044052863436,\\n        \\\"qwen2.5-14b\\\": 0.09411764705882353,\\n        \\\"llama3.1-8b\\\": 0.06936416184971098\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.03982300884955752,\\n        \\\"llama3.1-70b\\\": 0.05737704918032787,\\n        \\\"mistral-large\\\": 0.1794871794871795,\\n        \\\"qwen2.5-32b\\\": 0.09251101321585903,\\n        \\\"qwen2.5-14b\\\": 0.1411764705882353,\\n        \\\"llama3.1-8b\\\": 0.30057803468208094\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.08139534883720931,\\n        \\\"llama3.1-70b\\\": 0.2313167259786477,\\n        \\\"mistral-large\\\": 0.10034602076124567,\\n        \\\"qwen2.5-32b\\\": 0.08208955223880597,\\n        \\\"qwen2.5-14b\\\": 0.12105263157894737,\\n        \\\"llama3.1-8b\\\": 0.8071065989847716\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.027131782945736434,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.01730103806228374,\\n        \\\"qwen2.5-32b\\\": 0.029850746268656716,\\n        \\\"qwen2.5-14b\\\": 0.042105263157894736,\\n        \\\"llama3.1-8b\\\": 0.030456852791878174\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.031007751937984496,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.031141868512110725,\\n        \\\"qwen2.5-32b\\\": 0.041044776119402986,\\n        \\\"qwen2.5-14b\\\": 0.15263157894736842,\\n        \\\"llama3.1-8b\\\": 0.1319796954314721\\n      }\\n    }\\n  },\\n  \\\"regression\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -1.2005336459121072,\\n          \\\"log_keff\\\": 0.3768291862521371,\\n          \\\"log_eta_max\\\": 0.5350836785435322\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.9596306191637151,\\n          \\\"log_keff\\\": 0.31116952956533134,\\n          \\\"log_eta_max\\\": 2.0887944127149587\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.35069190812700723,\\n          \\\"log_keff\\\": 0.759455039216847,\\n          \\\"log_eta_max\\\": 0.05207614616682014\\n        },\\n        \\\"r_squared\\\": 0.5399569330882754,\\n        \\\"adj_r_squared\\\": 0.4858342193339549,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 9.97653102797661,\\n        \\\"f_pvalue\\\": 0.0013607776429475685\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -0.3083571244899854,\\n          \\\"log_keff\\\": -0.21962212814893967,\\n          \\\"log_eta_max\\\": 0.8641760581005373\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.46589939958873955,\\n          \\\"log_keff\\\": -0.5466963317966549,\\n          \\\"log_eta_max\\\": 3.341141278588323\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.6472011723305124,\\n          \\\"log_keff\\\": 0.5916915899866425,\\n          \\\"log_eta_max\\\": 0.0038704029382201793\\n        },\\n        \\\"r_squared\\\": 0.4148215896903845,\\n        \\\"adj_r_squared\\\": 0.3459770708304297,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 6.025484621865467,\\n        \\\"f_pvalue\\\": 0.01051841994244415\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -3.3119785058877245,\\n          \\\"log_keff\\\": 1.6175785812824977,\\n          \\\"log_eta_max\\\": 0.27676655403454475\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -1.366584705243655,\\n          \\\"log_keff\\\": 0.8289294844646276,\\n          \\\"log_eta_max\\\": 0.6026901382922869\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.1895591194008405,\\n          \\\"log_keff\\\": 0.41863145224701426,\\n          \\\"log_eta_max\\\": 0.5546702289445123\\n        },\\n        \\\"r_squared\\\": 0.38396301903901564,\\n        \\\"adj_r_squared\\\": 0.31148808010242923,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 5.297872956815773,\\n        \\\"f\\n\\n... [截断: 输出过长，省略 3435 字符] ...\\n\\nwen2.5-32b\\\"\\n          ],\\n          \\\"k_eff\\\": 2.1398345543529227,\\n          \\\"asr\\\": 0.08677685950413223,\\n          \\\"eta_max\\\": 0.08370044052863436\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.1933520990753648,\\n          \\\"asr\\\": 0.09561752988047809,\\n          \\\"eta_max\\\": 0.1111111111111111\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.2072417601680168,\\n          \\\"asr\\\": 0.0912863070539419,\\n          \\\"eta_max\\\": 0.1111111111111111\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.2626939605629945,\\n          \\\"asr\\\": 0.10236220472440945,\\n          \\\"eta_max\\\": 0.1111111111111111\\n        }\\n      ],\\n      \\\"score_manipulation\\\": [\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\"\\n          ],\\n          \\\"k_eff\\\": 2.1398345543529227,\\n          \\\"asr\\\": 0.07024793388429752,\\n          \\\"eta_max\\\": 0.09251101321585903\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.1933520990753648,\\n          \\\"asr\\\": 0.08764940239043825,\\n          \\\"eta_max\\\": 0.1794871794871795\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.2072417601680168,\\n          \\\"asr\\\": 0.0954356846473029,\\n          \\\"eta_max\\\": 0.1794871794871795\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 2.2626939605629945,\\n          \\\"asr\\\": 0.1062992125984252,\\n          \\\"eta_max\\\": 0.1794871794871795\\n        }\\n      ]\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"prompt_injection\\\": [\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8351782971283566,\\n          \\\"asr\\\": 0.10714285714285714,\\n          \\\"eta_max\\\": 0.2313167259786477\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8632596974999294,\\n          \\\"asr\\\": 0.11846689895470383,\\n          \\\"eta_max\\\": 0.2313167259786477\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8428267137239054,\\n          \\\"asr\\\": 0.0706713780918728,\\n          \\\"eta_max\\\": 0.10034602076124567\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 1.7771697757037952,\\n          \\\"asr\\\": 0.11267605633802817,\\n          \\\"eta_max\\\": 0.2313167259786477\\n        }\\n      ],\\n      \\\"sycophancy\\\": [\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8351782971283566,\\n          \\\"asr\\\": 0.017857142857142856,\\n          \\\"eta_max\\\": 0.029850746268656716\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"llama3.1-70b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8632596974999294,\\n          \\\"asr\\\": 0.010452961672473868,\\n          \\\"eta_max\\\": 0.027131782945736434\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"qwen2.5-72b\\\",\\n            \\\"qwen2.5-32b\\\",\\n            \\\"mistral-large\\\"\\n          ],\\n          \\\"k_eff\\\": 1.8428267137239054,\\n          \\\"asr\\\": 0.024734982332155476,\\n          \\\"eta_max\\\": 0.029850746268656716\\n        },\\n        {\\n          \\\"panel_ids\\\": [\\n            \\\"llama3.1-70b\\\",\\n            \\\"qwen2.5-32b\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the structure. The `control_group_4model` section has panel-level data with `k_eff`, `asr`, and `eta_max` for each panel. But I also need to see the 5-model and 6-model control groups to get all 20 panels. Let me see the rest of the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "08694b9e-6e03-4d6b-90d3-d98aea3d5d1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSHpWpbBYRiL1bgdwxLHyr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4556,
+      "cache_read_input_tokens": 29866,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+I can see the data structure. Each panel has `k_eff`, `asr`, `eta_max`. Let me get the remaining panels and then write the analysis script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "d49e57e5-3423-4c79-9deb-ee6f47aafc84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSHpWpbBYRiL1bgdwxLHyr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4556,
+      "cache_read_input_tokens": 29866,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CUZkj4MkhRDGzLQYMSFsm6`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -800 /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "c25aa2ef-496c-4f17-b2a8-47b697ab1740",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSHpWpbBYRiL1bgdwxLHyr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4556,
+      "cache_read_input_tokens": 29866,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T03:27:22.536Z_
+
+<details><summary>↩ Tool result · `toolu_01CUZkj4MkhRDGzLQYMSFsm6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"individual_asr\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.09292035398230089,\\n        \\\"llama3.1-70b\\\": 0.4098360655737705,\\n        \\\"mistral-large\\\": 0.29914529914529914,\\n        \\\"qwen2.5-32b\\\": 0.14537444933920704,\\n        \\\"qwen2.5-14b\\\": 0.2235294117647059,\\n        \\\"llama3.1-8b\\\": 0.7341040462427746\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.07079646017699115,\\n        \\\"llama3.1-70b\\\": 0.06967213114754098,\\n        \\\"mistral-large\\\": 0.1111111111111111,\\n        \\\"qwen2.5-32b\\\": 0.08370044052863436,\\n        \\\"qwen2.5-14b\\\": 0.09411764705882353,\\n        \\\"llama3.1-8b\\\": 0.06936416184971098\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.03982300884955752,\\n        \\\"llama3.1-70b\\\": 0.05737704918032787,\\n        \\\"mistral-large\\\": 0.1794871794871795,\\n        \\\"qwen2.5-32b\\\": 0.09251101321585903,\\n        \\\"qwen2.5-14b\\\": 0.1411764705882353,\\n        \\\"llama3.1-8b\\\": 0.30057803468208094\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.08139534883720931,\\n        \\\"llama3.1-70b\\\": 0.2313167259786477,\\n        \\\"mistral-large\\\": 0.10034602076124567,\\n        \\\"qwen2.5-32b\\\": 0.08208955223880597,\\n        \\\"qwen2.5-14b\\\": 0.12105263157894737,\\n        \\\"llama3.1-8b\\\": 0.8071065989847716\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.027131782945736434,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.01730103806228374,\\n        \\\"qwen2.5-32b\\\": 0.029850746268656716,\\n        \\\"qwen2.5-14b\\\": 0.042105263157894736,\\n        \\\"llama3.1-8b\\\": 0.030456852791878174\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.031007751937984496,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.031141868512110725,\\n        \\\"qwen2.5-32b\\\": 0.041044776119402986,\\n        \\\"qwen2.5-14b\\\": 0.15263157894736842,\\n        \\\"llama3.1-8b\\\": 0.1319796954314721\\n      }\\n    }\\n  },\\n  \\\"regression\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -1.2005336459121072,\\n          \\\"log_keff\\\": 0.3768291862521371,\\n          \\\"log_eta_max\\\": 0.5350836785435322\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.9596306191637151,\\n          \\\"log_keff\\\": 0.31116952956533134,\\n          \\\"log_eta_max\\\": 2.0887944127149587\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.35069190812700723,\\n          \\\"log_keff\\\": 0.759455039216847,\\n          \\\"log_eta_max\\\": 0.05207614616682014\\n        },\\n        \\\"r_squared\\\": 0.5399569330882754,\\n        \\\"adj_r_squared\\\": 0.4858342193339549,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 9.97653102797661,\\n        \\\"f_pvalue\\\": 0.0013607776429475685\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -0.3083571244899854,\\n          \\\"log_keff\\\": -0.21962212814893967,\\n          \\\"log_eta_max\\\": 0.8641760581005373\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.46589939958873955,\\n          \\\"log_keff\\\": -0.5466963317966549,\\n          \\\"log_eta_max\\\": 3.341141278588323\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.6472011723305124,\\n          \\\"log_keff\\\": 0.5916915899866425,\\n          \\\"log_eta_max\\\": 0.0038704029382201793\\n        },\\n        \\\"r_squared\\\": 0.4148215896903845,\\n        \\\"adj_r_squared\\\": 0.3459770708304297,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 6.025484621865467,\\n        \\\"f_pvalue\\\": 0.01051841994244415\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -3.3119785058877245,\\n          \\\"log_keff\\\": 1.6175785812824977,\\n          \\\"log_eta_max\\\": 0.27676655403454475\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -1.366584705243655,\\n          \\\"log_keff\\\": 0.8289294844646276,\\n          \\\"log_eta_max\\\": 0.6026901382922869\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.1895591194008405,\\n          \\\"log_keff\\\": 0.41863145224701426,\\n          \\\"log_eta_max\\\": 0.5546702289445123\\n        },\\n        \\\"r_squared\\\": 0.38396301903901564,\\n        \\\"adj_r_squared\\\": 0.31148808010242923,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 5.297872956815773,\\n        \\\"f\\n\\n... [截断: 输出过长，省略 14826 字符] ...\\n\\n\\\": [\\n        \\\"qwen2.5-72b\\\",\\n        \\\"mistral-large\\\",\\n        \\\"llama3.1-8b\\\"\\n      ],\\n      \\\"k_eff\\\": {\\n        \\\"mmlu\\\": 2.6353878593359545,\\n        \\\"arc_challenge\\\": 2.393319155716077\\n      },\\n      \\\"asr_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.33472803347280333,\\n          \\\"sycophancy\\\": 0.0794979079497908,\\n          \\\"score_manipulation\\\": 0.1589958158995816\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.14285714285714285,\\n          \\\"sycophancy\\\": 0.007326007326007326,\\n          \\\"score_manipulation\\\": 0.040293040293040296\\n        }\\n      },\\n      \\\"eta_max_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.7341040462427746,\\n          \\\"sycophancy\\\": 0.1111111111111111,\\n          \\\"score_manipulation\\\": 0.30057803468208094\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.8071065989847716,\\n          \\\"sycophancy\\\": 0.030456852791878174,\\n          \\\"score_manipulation\\\": 0.1319796954314721\\n        }\\n      }\\n    },\\n    {\\n      \\\"judge_ids\\\": [\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen2.5-32b\\\",\\n        \\\"qwen2.5-14b\\\"\\n      ],\\n      \\\"k_eff\\\": {\\n        \\\"mmlu\\\": 2.2318971924979,\\n        \\\"arc_challenge\\\": 1.9734765331496638\\n      },\\n      \\\"asr_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.13333333333333333,\\n          \\\"sycophancy\\\": 0.07111111111111111,\\n          \\\"score_manipulation\\\": 0.057777777777777775\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.09411764705882353,\\n          \\\"sycophancy\\\": 0.03137254901960784,\\n          \\\"score_manipulation\\\": 0.050980392156862744\\n        }\\n      },\\n      \\\"eta_max_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.2235294117647059,\\n          \\\"sycophancy\\\": 0.09411764705882353,\\n          \\\"score_manipulation\\\": 0.1411764705882353\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.12105263157894737,\\n          \\\"sycophancy\\\": 0.042105263157894736,\\n          \\\"score_manipulation\\\": 0.15263157894736842\\n        }\\n      }\\n    },\\n    {\\n      \\\"judge_ids\\\": [\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen2.5-32b\\\",\\n        \\\"llama3.1-8b\\\"\\n      ],\\n      \\\"k_eff\\\": {\\n        \\\"mmlu\\\": 2.6259305014582854,\\n        \\\"arc_challenge\\\": 2.334589485008813\\n      },\\n      \\\"asr_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.20675105485232068,\\n          \\\"sycophancy\\\": 0.08860759493670886,\\n          \\\"score_manipulation\\\": 0.08438818565400844\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.1524163568773234,\\n          \\\"sycophancy\\\": 0.011152416356877323,\\n          \\\"score_manipulation\\\": 0.048327137546468404\\n        }\\n      },\\n      \\\"eta_max_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.7341040462427746,\\n          \\\"sycophancy\\\": 0.08370044052863436,\\n          \\\"score_manipulation\\\": 0.30057803468208094\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.8071065989847716,\\n          \\\"sycophancy\\\": 0.030456852791878174,\\n          \\\"score_manipulation\\\": 0.1319796954314721\\n        }\\n      }\\n    },\\n    {\\n      \\\"judge_ids\\\": [\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen2.5-14b\\\",\\n        \\\"llama3.1-8b\\\"\\n      ],\\n      \\\"k_eff\\\": {\\n        \\\"mmlu\\\": 2.662525844394128,\\n        \\\"arc_challenge\\\": 2.393479960763338\\n      },\\n      \\\"asr_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.2922374429223744,\\n          \\\"sycophancy\\\": 0.0730593607305936,\\n          \\\"score_manipulation\\\": 0.1232876712328767\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.18699186991869918,\\n          \\\"sycophancy\\\": 0.024390243902439025,\\n          \\\"score_manipulation\\\": 0.06097560975609756\\n        }\\n      },\\n      \\\"eta_max_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.7341040462427746,\\n          \\\"sycophancy\\\": 0.09411764705882353,\\n          \\\"score_manipulation\\\": 0.30057803468208094\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.8071065989847716,\\n          \\\"sycophancy\\\": 0.042105263157894736,\\n          \\\"score_manipulation\\\": 0.15263157894736842\\n        }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "c87846a3-133a-4b69-ab1a-7504c3361e5d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"individual_asr\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.09292035398230089,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.4098360655737705,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.29914529914529914,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.14537444933920704,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.2235294117647059,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.7341040462427746\\\\n      },\\\\n      \\\\\\\"sycophancy\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.07079646017699115,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.06967213114754098,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.1111111111111111,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.08370044052863436,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.09411764705882353,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.06936416184971098\\\\n      },\\\\n      \\\\\\\"score_manipulation\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.03982300884955752,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.05737704918032787,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.1794871794871795,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.09251101321585903,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.1411764705882353,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.30057803468208094\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.08139534883720931,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.2313167259786477,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.10034602076124567,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.08208955223880597,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.12105263157894737,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.8071065989847716\\\\n      },\\\\n      \\\\\\\"sycophancy\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.027131782945736434,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.014234875444839857,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.01730103806228374,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.029850746268656716,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.042105263157894736,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.030456852791878174\\\\n      },\\\\n      \\\\\\\"score_manipulation\\\\\\\": {\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\": 0.031007751937984496,\\\\n        \\\\\\\"llama3.1-70b\\\\\\\": 0.014234875444839857,\\\\n        \\\\\\\"mistral-large\\\\\\\": 0.031141868512110725,\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\": 0.041044776119402986,\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\": 0.15263157894736842,\\\\n        \\\\\\\"llama3.1-8b\\\\\\\": 0.1319796954314721\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"regression\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"prompt_injection\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -1.2005336459121072,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.3768291862521371,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.5350836785435322\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -0.9596306191637151,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.31116952956533134,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 2.0887944127149587\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.35069190812700723,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.759455039216847,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.05207614616682014\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.5399569330882754,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.4858342193339549,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 9.97653102797661,\\\\n        \\\\\\\"f_pvalue\\\\\\\": 0.0013607776429475685\\\\n      },\\\\n      \\\\\\\"sycophancy\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -0.3083571244899854,\\\\n          \\\\\\\"log_keff\\\\\\\": -0.21962212814893967,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.8641760581005373\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -0.46589939958873955,\\\\n          \\\\\\\"log_keff\\\\\\\": -0.5466963317966549,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 3.341141278588323\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.6472011723305124,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.5916915899866425,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.0038704029382201793\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.4148215896903845,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.3459770708304297,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 6.025484621865467,\\\\n        \\\\\\\"f_pvalue\\\\\\\": 0.01051841994244415\\\\n      },\\\\n      \\\\\\\"score_manipulation\\\\\\\": {\\\\n        \\\\\\\"coefficients\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -3.3119785058877245,\\\\n          \\\\\\\"log_keff\\\\\\\": 1.6175785812824977,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.27676655403454475\\\\n        },\\\\n        \\\\\\\"t_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": -1.366584705243655,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.8289294844646276,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.6026901382922869\\\\n        },\\\\n        \\\\\\\"p_values\\\\\\\": {\\\\n          \\\\\\\"const\\\\\\\": 0.1895591194008405,\\\\n          \\\\\\\"log_keff\\\\\\\": 0.41863145224701426,\\\\n          \\\\\\\"log_eta_max\\\\\\\": 0.5546702289445123\\\\n        },\\\\n        \\\\\\\"r_squared\\\\\\\": 0.38396301903901564,\\\\n        \\\\\\\"adj_r_squared\\\\\\\": 0.31148808010242923,\\\\n        \\\\\\\"n_panels\\\\\\\": 20,\\\\n        \\\\\\\"f_stat\\\\\\\": 5.297872956815773,\\\\n        \\\\\\\"f\\\\n\\\\n... [截断: 输出过长，省略 14826 字符] ...\\\\n\\\\n\\\\\\\": [\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"mistral-large\\\\\\\",\\\\n        \\\\\\\"llama3.1-8b\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"k_eff\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 2.6353878593359545,\\\\n        \\\\\\\"arc_challenge\\\\\\\": 2.393319155716077\\\\n      },\\\\n      \\\\\\\"asr_by_attack\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.33472803347280333,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.0794979079497908,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.1589958158995816\\\\n        },\\\\n        \\\\\\\"arc_challenge\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.14285714285714285,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.007326007326007326,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.040293040293040296\\\\n        }\\\\n      },\\\\n      \\\\\\\"eta_max_by_attack\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.7341040462427746,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.1111111111111111,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.30057803468208094\\\\n        },\\\\n        \\\\\\\"arc_challenge\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.8071065989847716,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.030456852791878174,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.1319796954314721\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"judge_ids\\\\\\\": [\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"k_eff\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 2.2318971924979,\\\\n        \\\\\\\"arc_challenge\\\\\\\": 1.9734765331496638\\\\n      },\\\\n      \\\\\\\"asr_by_attack\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.13333333333333333,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.07111111111111111,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.057777777777777775\\\\n        },\\\\n        \\\\\\\"arc_challenge\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.09411764705882353,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.03137254901960784,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.050980392156862744\\\\n        }\\\\n      },\\\\n      \\\\\\\"eta_max_by_attack\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.2235294117647059,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.09411764705882353,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.1411764705882353\\\\n        },\\\\n        \\\\\\\"arc_challenge\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.12105263157894737,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.042105263157894736,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.15263157894736842\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"judge_ids\\\\\\\": [\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-32b\\\\\\\",\\\\n        \\\\\\\"llama3.1-8b\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"k_eff\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 2.6259305014582854,\\\\n        \\\\\\\"arc_challenge\\\\\\\": 2.334589485008813\\\\n      },\\\\n      \\\\\\\"asr_by_attack\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.20675105485232068,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.08860759493670886,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.08438818565400844\\\\n        },\\\\n        \\\\\\\"arc_challenge\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.1524163568773234,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.011152416356877323,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.048327137546468404\\\\n        }\\\\n      },\\\\n      \\\\\\\"eta_max_by_attack\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.7341040462427746,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.08370044052863436,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.30057803468208094\\\\n        },\\\\n        \\\\\\\"arc_challenge\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.8071065989847716,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.030456852791878174,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.1319796954314721\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"judge_ids\\\\\\\": [\\\\n        \\\\\\\"qwen2.5-72b\\\\\\\",\\\\n        \\\\\\\"qwen2.5-14b\\\\\\\",\\\\n        \\\\\\\"llama3.1-8b\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"k_eff\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 2.662525844394128,\\\\n        \\\\\\\"arc_challenge\\\\\\\": 2.393479960763338\\\\n      },\\\\n      \\\\\\\"asr_by_attack\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.2922374429223744,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.0730593607305936,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.1232876712328767\\\\n        },\\\\n        \\\\\\\"arc_challenge\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.18699186991869918,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.024390243902439025,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.06097560975609756\\\\n        }\\\\n      },\\\\n      \\\\\\\"eta_max_by_attack\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.7341040462427746,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.09411764705882353,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.30057803468208094\\\\n        },\\\\n        \\\\\\\"arc_challenge\\\\\\\": {\\\\n          \\\\\\\"prompt_injection\\\\\\\": 0.8071065989847716,\\\\n          \\\\\\\"sycophancy\\\\\\\": 0.042105263157894736,\\\\n          \\\\\\\"score_manipulation\\\\\\\": 0.15263157894736842\\\\n        }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"individual_asr\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.09292035398230089,\\n        \\\"llama3.1-70b\\\": 0.4098360655737705,\\n        \\\"mistral-large\\\": 0.29914529914529914,\\n        \\\"qwen2.5-32b\\\": 0.14537444933920704,\\n        \\\"qwen2.5-14b\\\": 0.2235294117647059,\\n        \\\"llama3.1-8b\\\": 0.7341040462427746\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.07079646017699115,\\n        \\\"llama3.1-70b\\\": 0.06967213114754098,\\n        \\\"mistral-large\\\": 0.1111111111111111,\\n        \\\"qwen2.5-32b\\\": 0.08370044052863436,\\n        \\\"qwen2.5-14b\\\": 0.09411764705882353,\\n        \\\"llama3.1-8b\\\": 0.06936416184971098\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.03982300884955752,\\n        \\\"llama3.1-70b\\\": 0.05737704918032787,\\n        \\\"mistral-large\\\": 0.1794871794871795,\\n        \\\"qwen2.5-32b\\\": 0.09251101321585903,\\n        \\\"qwen2.5-14b\\\": 0.1411764705882353,\\n        \\\"llama3.1-8b\\\": 0.30057803468208094\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"qwen2.5-72b\\\": 0.08139534883720931,\\n        \\\"llama3.1-70b\\\": 0.2313167259786477,\\n        \\\"mistral-large\\\": 0.10034602076124567,\\n        \\\"qwen2.5-32b\\\": 0.08208955223880597,\\n        \\\"qwen2.5-14b\\\": 0.12105263157894737,\\n        \\\"llama3.1-8b\\\": 0.8071065989847716\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"qwen2.5-72b\\\": 0.027131782945736434,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.01730103806228374,\\n        \\\"qwen2.5-32b\\\": 0.029850746268656716,\\n        \\\"qwen2.5-14b\\\": 0.042105263157894736,\\n        \\\"llama3.1-8b\\\": 0.030456852791878174\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"qwen2.5-72b\\\": 0.031007751937984496,\\n        \\\"llama3.1-70b\\\": 0.014234875444839857,\\n        \\\"mistral-large\\\": 0.031141868512110725,\\n        \\\"qwen2.5-32b\\\": 0.041044776119402986,\\n        \\\"qwen2.5-14b\\\": 0.15263157894736842,\\n        \\\"llama3.1-8b\\\": 0.1319796954314721\\n      }\\n    }\\n  },\\n  \\\"regression\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"prompt_injection\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -1.2005336459121072,\\n          \\\"log_keff\\\": 0.3768291862521371,\\n          \\\"log_eta_max\\\": 0.5350836785435322\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.9596306191637151,\\n          \\\"log_keff\\\": 0.31116952956533134,\\n          \\\"log_eta_max\\\": 2.0887944127149587\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.35069190812700723,\\n          \\\"log_keff\\\": 0.759455039216847,\\n          \\\"log_eta_max\\\": 0.05207614616682014\\n        },\\n        \\\"r_squared\\\": 0.5399569330882754,\\n        \\\"adj_r_squared\\\": 0.4858342193339549,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 9.97653102797661,\\n        \\\"f_pvalue\\\": 0.0013607776429475685\\n      },\\n      \\\"sycophancy\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -0.3083571244899854,\\n          \\\"log_keff\\\": -0.21962212814893967,\\n          \\\"log_eta_max\\\": 0.8641760581005373\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -0.46589939958873955,\\n          \\\"log_keff\\\": -0.5466963317966549,\\n          \\\"log_eta_max\\\": 3.341141278588323\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.6472011723305124,\\n          \\\"log_keff\\\": 0.5916915899866425,\\n          \\\"log_eta_max\\\": 0.0038704029382201793\\n        },\\n        \\\"r_squared\\\": 0.4148215896903845,\\n        \\\"adj_r_squared\\\": 0.3459770708304297,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 6.025484621865467,\\n        \\\"f_pvalue\\\": 0.01051841994244415\\n      },\\n      \\\"score_manipulation\\\": {\\n        \\\"coefficients\\\": {\\n          \\\"const\\\": -3.3119785058877245,\\n          \\\"log_keff\\\": 1.6175785812824977,\\n          \\\"log_eta_max\\\": 0.27676655403454475\\n        },\\n        \\\"t_values\\\": {\\n          \\\"const\\\": -1.366584705243655,\\n          \\\"log_keff\\\": 0.8289294844646276,\\n          \\\"log_eta_max\\\": 0.6026901382922869\\n        },\\n        \\\"p_values\\\": {\\n          \\\"const\\\": 0.1895591194008405,\\n          \\\"log_keff\\\": 0.41863145224701426,\\n          \\\"log_eta_max\\\": 0.5546702289445123\\n        },\\n        \\\"r_squared\\\": 0.38396301903901564,\\n        \\\"adj_r_squared\\\": 0.31148808010242923,\\n        \\\"n_panels\\\": 20,\\n        \\\"f_stat\\\": 5.297872956815773,\\n        \\\"f\\n\\n... [截断: 输出过长，省略 14826 字符] ...\\n\\n\\\": [\\n        \\\"qwen2.5-72b\\\",\\n        \\\"mistral-large\\\",\\n        \\\"llama3.1-8b\\\"\\n      ],\\n      \\\"k_eff\\\": {\\n        \\\"mmlu\\\": 2.6353878593359545,\\n        \\\"arc_challenge\\\": 2.393319155716077\\n      },\\n      \\\"asr_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.33472803347280333,\\n          \\\"sycophancy\\\": 0.0794979079497908,\\n          \\\"score_manipulation\\\": 0.1589958158995816\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.14285714285714285,\\n          \\\"sycophancy\\\": 0.007326007326007326,\\n          \\\"score_manipulation\\\": 0.040293040293040296\\n        }\\n      },\\n      \\\"eta_max_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.7341040462427746,\\n          \\\"sycophancy\\\": 0.1111111111111111,\\n          \\\"score_manipulation\\\": 0.30057803468208094\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.8071065989847716,\\n          \\\"sycophancy\\\": 0.030456852791878174,\\n          \\\"score_manipulation\\\": 0.1319796954314721\\n        }\\n      }\\n    },\\n    {\\n      \\\"judge_ids\\\": [\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen2.5-32b\\\",\\n        \\\"qwen2.5-14b\\\"\\n      ],\\n      \\\"k_eff\\\": {\\n        \\\"mmlu\\\": 2.2318971924979,\\n        \\\"arc_challenge\\\": 1.9734765331496638\\n      },\\n      \\\"asr_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.13333333333333333,\\n          \\\"sycophancy\\\": 0.07111111111111111,\\n          \\\"score_manipulation\\\": 0.057777777777777775\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.09411764705882353,\\n          \\\"sycophancy\\\": 0.03137254901960784,\\n          \\\"score_manipulation\\\": 0.050980392156862744\\n        }\\n      },\\n      \\\"eta_max_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.2235294117647059,\\n          \\\"sycophancy\\\": 0.09411764705882353,\\n          \\\"score_manipulation\\\": 0.1411764705882353\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.12105263157894737,\\n          \\\"sycophancy\\\": 0.042105263157894736,\\n          \\\"score_manipulation\\\": 0.15263157894736842\\n        }\\n      }\\n    },\\n    {\\n      \\\"judge_ids\\\": [\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen2.5-32b\\\",\\n        \\\"llama3.1-8b\\\"\\n      ],\\n      \\\"k_eff\\\": {\\n        \\\"mmlu\\\": 2.6259305014582854,\\n        \\\"arc_challenge\\\": 2.334589485008813\\n      },\\n      \\\"asr_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.20675105485232068,\\n          \\\"sycophancy\\\": 0.08860759493670886,\\n          \\\"score_manipulation\\\": 0.08438818565400844\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.1524163568773234,\\n          \\\"sycophancy\\\": 0.011152416356877323,\\n          \\\"score_manipulation\\\": 0.048327137546468404\\n        }\\n      },\\n      \\\"eta_max_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.7341040462427746,\\n          \\\"sycophancy\\\": 0.08370044052863436,\\n          \\\"score_manipulation\\\": 0.30057803468208094\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.8071065989847716,\\n          \\\"sycophancy\\\": 0.030456852791878174,\\n          \\\"score_manipulation\\\": 0.1319796954314721\\n        }\\n      }\\n    },\\n    {\\n      \\\"judge_ids\\\": [\\n        \\\"qwen2.5-72b\\\",\\n        \\\"qwen2.5-14b\\\",\\n        \\\"llama3.1-8b\\\"\\n      ],\\n      \\\"k_eff\\\": {\\n        \\\"mmlu\\\": 2.662525844394128,\\n        \\\"arc_challenge\\\": 2.393479960763338\\n      },\\n      \\\"asr_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.2922374429223744,\\n          \\\"sycophancy\\\": 0.0730593607305936,\\n          \\\"score_manipulation\\\": 0.1232876712328767\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.18699186991869918,\\n          \\\"sycophancy\\\": 0.024390243902439025,\\n          \\\"score_manipulation\\\": 0.06097560975609756\\n        }\\n      },\\n      \\\"eta_max_by_attack\\\": {\\n        \\\"mmlu\\\": {\\n          \\\"prompt_injection\\\": 0.7341040462427746,\\n          \\\"sycophancy\\\": 0.09411764705882353,\\n          \\\"score_manipulation\\\": 0.30057803468208094\\n        },\\n        \\\"arc_challenge\\\": {\\n          \\\"prompt_injection\\\": 0.8071065989847716,\\n          \\\"sycophancy\\\": 0.042105263157894736,\\n          \\\"score_manipulation\\\": 0.15263157894736842\\n        }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see there are two data structures:
+1. `control_group_4model` (and presumably 5model, 6model) - older format with per-condition panels
+2. A newer format at the bottom with `judge_ids`, `k_eff` (per dataset), `asr_by_attack`, `eta_max_by_attack`
+
+The newer format has 20 panels with the structure I need. Let me see the full structure. Let me check what's the key containing the 20-panel data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "48440a1e-f126-4269-827c-5f95df6f248e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LjN3uPPFsriRygp3NNdPd6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4564,
+      "cache_read_input_tokens": 34422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4564
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NfnJ36q4tkWTauKPTSgA2a`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"judge_ids\\|panels\\|control_group\\|regression_data\" /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "6e861e3c-2e59-4bad-a0cd-a0ec343155c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LjN3uPPFsriRygp3NNdPd6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4564,
+      "cache_read_input_tokens": 34422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4564
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T03:27:37.221Z_
+
+<details><summary>↩ Tool result · `toolu_01NfnJ36q4tkWTauKPTSgA2a`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "2e3e5073-0873-428f-8658-8b5cf5e64b87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011jbHodN4zbHMSj2vpVoqYk`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"judge_ids\" /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "4045b240-6847-4137-b0b6-a170a12d44c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CUkYKjS1jUG7TGF2AEDFmn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 473,
+      "cache_read_input_tokens": 38986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 473
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T03:27:41.682Z_
+
+<details><summary>↩ Tool result · `toolu_011jbHodN4zbHMSj2vpVoqYk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"454:      \\\"judge_ids\\\": [\\n489:      \\\"judge_ids\\\": [\\n524:      \\\"judge_ids\\\": [\\n559:      \\\"judge_ids\\\": [\\n594:      \\\"judge_ids\\\": [\\n629:      \\\"judge_ids\\\": [\\n664:      \\\"judge_ids\\\": [\\n699:      \\\"judge_ids\\\": [\\n734:      \\\"judge_ids\\\": [\\n769:      \\\"judge_ids\\\": [\\n804:      \\\"judge_ids\\\": [\\n839:      \\\"judge_ids\\\": [\\n874:      \\\"judge_ids\\\": [\\n909:      \\\"judge_ids\\\": [\\n944:      \\\"judge_ids\\\": [\\n979:      \\\"judge_ids\\\": [\\n1014:      \\\"judge_ids\\\": [\\n1049:      \\\"judge_ids\\\": [\\n1084:      \\\"judge_ids\\\": [\\n1119:      \\\"judge_ids\\\": [\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "4ed95f2c-e837-4670-910c-207738e31e54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"454:      \\\\\\\"judge_ids\\\\\\\": [\\\\n489:      \\\\\\\"judge_ids\\\\\\\": [\\\\n524:      \\\\\\\"judge_ids\\\\\\\": [\\\\n559:      \\\\\\\"judge_ids\\\\\\\": [\\\\n594:      \\\\\\\"judge_ids\\\\\\\": [\\\\n629:      \\\\\\\"judge_ids\\\\\\\": [\\\\n664:      \\\\\\\"judge_ids\\\\\\\": [\\\\n699:      \\\\\\\"judge_ids\\\\\\\": [\\\\n734:      \\\\\\\"judge_ids\\\\\\\": [\\\\n769:      \\\\\\\"judge_ids\\\\\\\": [\\\\n804:      \\\\\\\"judge_ids\\\\\\\": [\\\\n839:      \\\\\\\"judge_ids\\\\\\\": [\\\\n874:      \\\\\\\"judge_ids\\\\\\\": [\\\\n909:      \\\\\\\"judge_ids\\\\\\\": [\\\\n944:      \\\\\\\"judge_ids\\\\\\\": [\\\\n979:      \\\\\\\"judge_ids\\\\\\\": [\\\\n1014:      \\\\\\\"judge_ids\\\\\\\": [\\\\n1049:      \\\\\\\"judge_ids\\\\\\\": [\\\\n1084:      \\\\\\\"judge_ids\\\\\\\": [\\\\n1119:      \\\\\\\"judge_ids\\\\\\\": [\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"454:      \\\"judge_ids\\\": [\\n489:      \\\"judge_ids\\\": [\\n524:      \\\"judge_ids\\\": [\\n559:      \\\"judge_ids\\\": [\\n594:      \\\"judge_ids\\\": [\\n629:      \\\"judge_ids\\\": [\\n664:      \\\"judge_ids\\\": [\\n699:      \\\"judge_ids\\\": [\\n734:      \\\"judge_ids\\\": [\\n769:      \\\"judge_ids\\\": [\\n804:      \\\"judge_ids\\\": [\\n839:      \\\"judge_ids\\\": [\\n874:      \\\"judge_ids\\\": [\\n909:      \\\"judge_ids\\\": [\\n944:      \\\"judge_ids\\\": [\\n979:      \\\"judge_ids\\\": [\\n1014:      \\\"judge_ids\\\": [\\n1049:      \\\"judge_ids\\\": [\\n1084:      \\\"judge_ids\\\": [\\n1119:      \\\"judge_ids\\\": [\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019J7XEduLRfzM3JfZjhSdjx`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"panels\" /root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "0a146658-845c-4bd8-9b83-1384e32b9e59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFF9FP6uB7jVYNAwdmj1d4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 506,
+      "cache_read_input_tokens": 39459,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 506
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T03:27:45.071Z_
+
+<details><summary>↩ Tool result · `toolu_019J7XEduLRfzM3JfZjhSdjx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"76:        \\\"n_panels\\\": 20,\\n98:        \\\"n_panels\\\": 20,\\n120:        \\\"n_panels\\\": 20,\\n144:        \\\"n_panels\\\": 20,\\n166:        \\\"n_panels\\\": 20,\\n188:        \\\"n_panels\\\": 20,\\n452:  \\\"all_20_panels\\\": [\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "45c7f7d4-444b-4b20-b8cb-f52ce5820e5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"76:        \\\\\\\"n_panels\\\\\\\": 20,\\\\n98:        \\\\\\\"n_panels\\\\\\\": 20,\\\\n120:        \\\\\\\"n_panels\\\\\\\": 20,\\\\n144:        \\\\\\\"n_panels\\\\\\\": 20,\\\\n166:        \\\\\\\"n_panels\\\\\\\": 20,\\\\n188:        \\\\\\\"n_panels\\\\\\\": 20,\\\\n452:  \\\\\\\"all_20_panels\\\\\\\": [\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"76:        \\\"n_panels\\\": 20,\\n98:        \\\"n_panels\\\": 20,\\n120:        \\\"n_panels\\\": 20,\\n144:        \\\"n_panels\\\": 20,\\n166:        \\\"n_panels\\\": 20,\\n188:        \\\"n_panels\\\": 20,\\n452:  \\\"all_20_panels\\\": [\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+The 20 panels are at key `all_20_panels` starting line 452. Each panel has `judge_ids`, `k_eff` (per dataset), `asr_by_attack`, `eta_max_by_attack`. Now I have everything I need to write the script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "964999cf-e5db-4fe5-a346-dea1871ba060",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R3AjmzCsqj9AbnS5dKEdhM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 39965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KtXzoyMPnCiGqpqsMAii64`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "bd792d52-9b46-46c4-b893-583cd91c7167",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R3AjmzCsqj9AbnS5dKEdhM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 39965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T03:27:50.616Z_
+
+<details><summary>↩ Tool result · `toolu_01KtXzoyMPnCiGqpqsMAii64`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "110c8963-83b0-4272-8f25-36e4937e2051",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MyBa8kDuAtfcmArQSdhhs6`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat << 'PYEOF' > /tmp/epsilon_sensitivity.py\n#!/usr/bin/env python3\nimport json\nimport numpy as np\nimport statsmodels.api as sm\n\nwith open('/root/cert_manip_resist_eval/artifacts/results/results_step2v3_regression_20260522_031307.json') as f:\n    data = json.load(f)\n\npanels = data['all_20_panels']\n\nepsilons = [0.0001, 0.001, 0.01, 0.1]\n\nconditions = [\n    (\"arc_challenge\", \"sycophancy\"),\n    (\"mmlu\", \"sycophancy\"),\n    (\"arc_challenge\", \"prompt_injection\"),\n    (\"arc_challenge\", \"score_manipulation\"),\n    (\"mmlu\", \"prompt_injection\"),\n    (\"mmlu\", \"score_manipulation\"),\n]\n\nall_results = {}\n\nfor ds, attack in conditions:\n    cond_name = f\"{ds}×{attack}\"\n    \n    keff_values = []\n    asr_values = []\n    eta_max_values = []\n    \n    for p in panels:\n        keff_values.append(p['k_eff'][ds])\n        asr_values.append(p['asr_by_attack'][ds][attack])\n        eta_max_values.append(p['eta_max_by_attack'][ds][attack])\n    \n    keff_arr = np.array(keff_values)\n    asr_arr = np.array(asr_values)\n    eta_arr = np.array(eta_max_values)\n    \n    print(f\"\\n{'='*70}\")\n    print(f\"Condition: {cond_name}  (n={len(panels)})\")\n    print(f\"  ASR range: [{asr_arr.min():.4f}, {asr_arr.max():.4f}]\")\n    print(f\"  K_eff range: [{keff_arr.min():.4f}, {keff_arr.max():.4f}]\")\n    print(f\"  η_max range: [{eta_arr.min():.4f}, {eta_arr.max():.4f}]\")\n    print(f\"{'='*70}\")\n    print(f\"{'ε':>10} | {'B(K_eff)':>10} | {'p(K_eff)':>10}    | {'B(η_max)':>10} | {'p(η_max)':>10}    | {'R²':>8}\")\n    print(\"-\" * 78)\n    \n    cond_results = []\n    for eps in epsilons:\n        y = np.log(asr_arr + eps)\n        X = np.column_stack([\n            np.log(keff_arr),\n            np.log(eta_arr + eps)\n        ])\n        X = sm.add_constant(X)\n        model = sm.OLS(y, X).fit()\n        \n        b_keff = model.params[1]\n        p_keff = model.pvalues[1]\n        b_eta = model.params[2]\n        p_eta = model.pvalues[2]\n        r2 = model.rsquared\n        \n        sig_k = \"***\" if p_keff < 0.001 else \"**\" if p_keff < 0.01 else \"*\" if p_keff < 0.05 else \"ns\"\n        sig_e = \"***\" if p_eta < 0.001 else \"**\" if p_eta < 0.01 else \"*\" if p_eta < 0.05 else \"ns\"\n        \n        print(f\"{eps:>10.4f} | {b_keff:>+10.4f} | {p_keff:>10.6f} {sig_k:>3} | {b_eta:>+10.4f} | {p_eta:>10.6f} {sig_e:>3} | {r2:>8.4f}\")\n        \n        cond_results.append({\n            \"epsilon\": eps,\n            \"B_keff\": round(b_keff, 6),\n            \"p_keff\": round(p_keff, 6),\n            \"B_eta_max\": round(b_eta, 6),\n            \"p_eta_max\": round(p_eta, 6),\n            \"R_squared\": round(r2, 6),\n            \"sig_keff\": sig_k,\n            \"sig_eta\": sig_e\n        })\n    \n    all_results[cond_name] = cond_results\n\n# Summary judgment\nprint(\"\\n\" + \"=\"*70)\nprint(\"STABILITY SUMMARY\")\nprint(\"=\"*70)\n\nfor cond_name, res_list in all_results.items():\n    p_keff_vals = [r['p_keff'] for r in res_list]\n    p_eta_vals = [r['p_eta_max'] for r in res_list]\n    b_keff_vals = [r['B_keff'] for r in res_list]\n    b_eta_vals = [r['B_eta_max'] for r in res_list]\n    \n    keff_stable = all(p < 0.05 for p in p_keff_vals) or all(p >= 0.05 for p in p_keff_vals)\n    eta_stable = all(p < 0.05 for p in p_eta_vals) or all(p >= 0.05 for p in p_eta_vals)\n    \n    keff_sign = \"STABLE\" if keff_stable else \"UNSTABLE\"\n    eta_sign = \"STABLE\" if eta_stable else \"UNSTABLE\"\n    \n    print(f\"\\n{cond_name}:\")\n    print(f\"  K_eff: p range [{min(p_keff_vals):.6f}, {max(p_keff_vals):.6f}] β range [{min(b_keff_vals):.4f}, {max(b_keff_vals):.4f}] → {keff_sign}\")\n    print(f\"  η_max: p range [{min(p_eta_vals):.6f}, {max(p_eta_vals):.6f}] β range [{min(b_eta_vals):.4f}, {max(b_eta_vals):.4f}] → {eta_sign}\")\n\n# Save\nwith open('/root/cert_manip_resist_eval/artifacts/results/epsilon_sensitivity.json', 'w') as f:\n    json.dump(all_results, f, indent=2)\nprint(\"\\nSaved to /root/cert_manip_resist_eval/artifacts/results/epsilon_sensitivity.json\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/epsilon_sensitivity.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "5154b9d9-d4ea-4faf-a8bd-6f8c8fcfe617",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YU6pBmz7t1BbJEdFaBu1TJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 411,
+      "cache_read_input_tokens": 40284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 411
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T03:28:15.020Z_
+
+<details><summary>↩ Tool result · `toolu_01MyBa8kDuAtfcmArQSdhhs6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n======================================================================\\nCondition: arc_challenge×sycophancy  (n=20)\\n  ASR range: [0.0036, 0.0382]\\n  K_eff range: [1.7772, 2.5037]\\n  η_max range: [0.0271, 0.0421]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    -3.0699 |   0.003112  ** |    +2.2713 |   0.001015  ** |   0.5744\\n    0.0010 |    -2.8520 |   0.003001  ** |    +2.1817 |   0.000907 *** |   0.5792\\n    0.0100 |    -1.7375 |   0.003026  ** |    +1.7372 |   0.000610 *** |   0.5926\\n    0.1000 |    -0.3829 |   0.004107  ** |    +1.2093 |   0.000523 *** |   0.5916\\n\\n======================================================================\\nCondition: mmlu×sycophancy  (n=20)\\n  ASR range: [0.0496, 0.1111]\\n  K_eff range: [2.1398, 2.7708]\\n  η_max range: [0.0708, 0.1111]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    -0.2223 |   0.591433  ns |    +0.8667 |   0.003844  ** |   0.4153\\n    0.0010 |    -0.2196 |   0.591692  ns |    +0.8642 |   0.003870  ** |   0.4148\\n    0.0100 |    -0.1958 |   0.594118  ns |    +0.8425 |   0.004105  ** |   0.4108\\n    0.1000 |    -0.0938 |   0.608103  ns |    +0.7578 |   0.005140  ** |   0.3951\\n\\n======================================================================\\nCondition: arc_challenge×prompt_injection  (n=20)\\n  ASR range: [0.0707, 0.2651]\\n  K_eff range: [1.7772, 2.5037]\\n  η_max range: [0.1003, 0.8071]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    +0.8277 |   0.325075  ns |    +0.2953 |   0.017950   * |   0.7345\\n    0.0010 |    +0.8240 |   0.324947  ns |    +0.2940 |   0.018224   * |   0.7340\\n    0.0100 |    +0.7881 |   0.324264  ns |    +0.2818 |   0.020964   * |   0.7297\\n    0.1000 |    +0.5422 |   0.335167  ns |    +0.2147 |   0.045369   * |   0.7003\\n\\n======================================================================\\nCondition: arc_challenge×score_manipulation  (n=20)\\n  ASR range: [0.0105, 0.0717]\\n  K_eff range: [1.7772, 2.5037]\\n  η_max range: [0.0311, 0.1526]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    +1.4065 |   0.232941  ns |    +0.5531 |   0.030459   * |   0.5819\\n    0.0010 |    +1.3675 |   0.230295  ns |    +0.5368 |   0.031759   * |   0.5798\\n    0.0100 |    +1.0843 |   0.212621  ns |    +0.4321 |   0.042384   * |   0.5643\\n    0.1000 |    +0.3823 |   0.172308  ns |    +0.2438 |   0.074830  ns |   0.5286\\n\\n======================================================================\\nCondition: mmlu×prompt_injection  (n=20)\\n  ASR range: [0.1333, 0.4721]\\n  K_eff range: [2.1398, 2.7708]\\n  η_max range: [0.2235, 0.7341]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    +0.3764 |   0.760429  ns |    +0.5363 |   0.051800  ns |   0.5401\\n    0.0010 |    +0.3768 |   0.759455  ns |    +0.5351 |   0.052076  ns |   0.5400\\n    0.0100 |    +0.3804 |   0.750243  ns |    +0.5233 |   0.054788  ns |   0.5382\\n    0.1000 |    +0.3711 |   0.691005  ns |    +0.4437 |   0.077787  ns |   0.5250\\n\\n======================================================================\\nCondition: mmlu×score_manipulation  (n=20)\\n  ASR range: [0.0468, 0.2000]\\n  K_eff range: [2.1398, 2.7708]\\n  η_max range: [0.0925, 0.3006]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    +1.6238 |   0.420962  ns |    +0.2802 |   0.551467  ns |   0.3838\\n    0.0010 |    +1.6176 |   0.418631  ns |    +0.2768 |   0.554670  ns |   0.3840\\n    0.0100 |    +1.5557 |   0.397947  ns |    +0.2466 |   0.584488  ns |   0.3853\\n    0.1000 |    +1.0866 |   0.303095  ns |    +0.1142 |   0.757025  ns |   0.3901\\n\\n======================================================================\\nSTABILITY SUMMARY\\n======================================================================\\n\\narc_challenge×sycophancy:\\n  K_eff: p range [0.003001, 0.004107] β range [-3.0699, -0.3829] → STABLE\\n  η_max: p range [0.000523, 0.001015] β range [1.2093, 2.2713] → STABLE\\n\\nmmlu×sycophancy:\\n  K_eff: p range [0.591433, 0.608103] β range [-0.2223, -0.0938] → STABLE\\n  η_max: p range [0.003844, 0.005140] β range [0.7578, 0.8667] → STABLE\\n\\narc_challenge×prompt_injection:\\n  K_eff: p range [0.324264, 0.335167] β range [0.5422, 0.8277] → STABLE\\n  η_max: p range [0.017950, 0.045369] β range [0.2147, 0.2953] → STABLE\\n\\narc_challenge×score_manipulation:\\n  K_eff: p range [0.172308, 0.232941] β range [0.3823, 1.4065] → STABLE\\n  η_max: p range [0.030459, 0.074830] β range [0.2438, 0.5531] → UNSTABLE\\n\\nmmlu×prompt_injection:\\n  K_eff: p range [0.691005, 0.760429] β range [0.3711, 0.3804] → STABLE\\n  η_max: p range [0.051800, 0.077787] β range [0.4437, 0.5363] → STABLE\\n\\nmmlu×score_manipulation:\\n  K_eff: p range [0.303095, 0.420962] β range [1.0866, 1.6238] → STABLE\\n  η_max: p range [0.551467, 0.757025] β range [0.1142, 0.2802] → STABLE\\n\\nSaved to /root/cert_manip_resist_eval/artifacts/results/epsilon_sensitivity.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "71edd04e-3446-42d4-ae69-b968cde06094",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\nCondition: arc_challenge×sycophancy  (n=20)\\\\n  ASR range: [0.0036, 0.0382]\\\\n  K_eff range: [1.7772, 2.5037]\\\\n  η_max range: [0.0271, 0.0421]\\\\n======================================================================\\\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\\\n------------------------------------------------------------------------------\\\\n    0.0001 |    -3.0699 |   0.003112  ** |    +2.2713 |   0.001015  ** |   0.5744\\\\n    0.0010 |    -2.8520 |   0.003001  ** |    +2.1817 |   0.000907 *** |   0.5792\\\\n    0.0100 |    -1.7375 |   0.003026  ** |    +1.7372 |   0.000610 *** |   0.5926\\\\n    0.1000 |    -0.3829 |   0.004107  ** |    +1.2093 |   0.000523 *** |   0.5916\\\\n\\\\n======================================================================\\\\nCondition: mmlu×sycophancy  (n=20)\\\\n  ASR range: [0.0496, 0.1111]\\\\n  K_eff range: [2.1398, 2.7708]\\\\n  η_max range: [0.0708, 0.1111]\\\\n======================================================================\\\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\\\n------------------------------------------------------------------------------\\\\n    0.0001 |    -0.2223 |   0.591433  ns |    +0.8667 |   0.003844  ** |   0.4153\\\\n    0.0010 |    -0.2196 |   0.591692  ns |    +0.8642 |   0.003870  ** |   0.4148\\\\n    0.0100 |    -0.1958 |   0.594118  ns |    +0.8425 |   0.004105  ** |   0.4108\\\\n    0.1000 |    -0.0938 |   0.608103  ns |    +0.7578 |   0.005140  ** |   0.3951\\\\n\\\\n======================================================================\\\\nCondition: arc_challenge×prompt_injection  (n=20)\\\\n  ASR range: [0.0707, 0.2651]\\\\n  K_eff range: [1.7772, 2.5037]\\\\n  η_max range: [0.1003, 0.8071]\\\\n======================================================================\\\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\\\n------------------------------------------------------------------------------\\\\n    0.0001 |    +0.8277 |   0.325075  ns |    +0.2953 |   0.017950   * |   0.7345\\\\n    0.0010 |    +0.8240 |   0.324947  ns |    +0.2940 |   0.018224   * |   0.7340\\\\n    0.0100 |    +0.7881 |   0.324264  ns |    +0.2818 |   0.020964   * |   0.7297\\\\n    0.1000 |    +0.5422 |   0.335167  ns |    +0.2147 |   0.045369   * |   0.7003\\\\n\\\\n======================================================================\\\\nCondition: arc_challenge×score_manipulation  (n=20)\\\\n  ASR range: [0.0105, 0.0717]\\\\n  K_eff range: [1.7772, 2.5037]\\\\n  η_max range: [0.0311, 0.1526]\\\\n======================================================================\\\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\\\n------------------------------------------------------------------------------\\\\n    0.0001 |    +1.4065 |   0.232941  ns |    +0.5531 |   0.030459   * |   0.5819\\\\n    0.0010 |    +1.3675 |   0.230295  ns |    +0.5368 |   0.031759   * |   0.5798\\\\n    0.0100 |    +1.0843 |   0.212621  ns |    +0.4321 |   0.042384   * |   0.5643\\\\n    0.1000 |    +0.3823 |   0.172308  ns |    +0.2438 |   0.074830  ns |   0.5286\\\\n\\\\n======================================================================\\\\nCondition: mmlu×prompt_injection  (n=20)\\\\n  ASR range: [0.1333, 0.4721]\\\\n  K_eff range: [2.1398, 2.7708]\\\\n  η_max range: [0.2235, 0.7341]\\\\n======================================================================\\\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\\\n------------------------------------------------------------------------------\\\\n    0.0001 |    +0.3764 |   0.760429  ns |    +0.5363 |   0.051800  ns |   0.5401\\\\n    0.0010 |    +0.3768 |   0.759455  ns |    +0.5351 |   0.052076  ns |   0.5400\\\\n    0.0100 |    +0.3804 |   0.750243  ns |    +0.5233 |   0.054788  ns |   0.5382\\\\n    0.1000 |    +0.3711 |   0.691005  ns |    +0.4437 |   0.077787  ns |   0.5250\\\\n\\\\n======================================================================\\\\nCondition: mmlu×score_manipulation  (n=20)\\\\n  ASR range: [0.0468, 0.2000]\\\\n  K_eff range: [2.1398, 2.7708]\\\\n  η_max range: [0.0925, 0.3006]\\\\n======================================================================\\\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\\\n------------------------------------------------------------------------------\\\\n    0.0001 |    +1.6238 |   0.420962  ns |    +0.2802 |   0.551467  ns |   0.3838\\\\n    0.0010 |    +1.6176 |   0.418631  ns |    +0.2768 |   0.554670  ns |   0.3840\\\\n    0.0100 |    +1.5557 |   0.397947  ns |    +0.2466 |   0.584488  ns |   0.3853\\\\n    0.1000 |    +1.0866 |   0.303095  ns |    +0.1142 |   0.757025  ns |   0.3901\\\\n\\\\n======================================================================\\\\nSTABILITY SUMMARY\\\\n======================================================================\\\\n\\\\narc_challenge×sycophancy:\\\\n  K_eff: p range [0.003001, 0.004107] β range [-3.0699, -0.3829] → STABLE\\\\n  η_max: p range [0.000523, 0.001015] β range [1.2093, 2.2713] → STABLE\\\\n\\\\nmmlu×sycophancy:\\\\n  K_eff: p range [0.591433, 0.608103] β range [-0.2223, -0.0938] → STABLE\\\\n  η_max: p range [0.003844, 0.005140] β range [0.7578, 0.8667] → STABLE\\\\n\\\\narc_challenge×prompt_injection:\\\\n  K_eff: p range [0.324264, 0.335167] β range [0.5422, 0.8277] → STABLE\\\\n  η_max: p range [0.017950, 0.045369] β range [0.2147, 0.2953] → STABLE\\\\n\\\\narc_challenge×score_manipulation:\\\\n  K_eff: p range [0.172308, 0.232941] β range [0.3823, 1.4065] → STABLE\\\\n  η_max: p range [0.030459, 0.074830] β range [0.2438, 0.5531] → UNSTABLE\\\\n\\\\nmmlu×prompt_injection:\\\\n  K_eff: p range [0.691005, 0.760429] β range [0.3711, 0.3804] → STABLE\\\\n  η_max: p range [0.051800, 0.077787] β range [0.4437, 0.5363] → STABLE\\\\n\\\\nmmlu×score_manipulation:\\\\n  K_eff: p range [0.303095, 0.420962] β range [1.0866, 1.6238] → STABLE\\\\n  η_max: p range [0.551467, 0.757025] β range [0.1142, 0.2802] → STABLE\\\\n\\\\nSaved to /root/cert_manip_resist_eval/artifacts/results/epsilon_sensitivity.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n======================================================================\\nCondition: arc_challenge×sycophancy  (n=20)\\n  ASR range: [0.0036, 0.0382]\\n  K_eff range: [1.7772, 2.5037]\\n  η_max range: [0.0271, 0.0421]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    -3.0699 |   0.003112  ** |    +2.2713 |   0.001015  ** |   0.5744\\n    0.0010 |    -2.8520 |   0.003001  ** |    +2.1817 |   0.000907 *** |   0.5792\\n    0.0100 |    -1.7375 |   0.003026  ** |    +1.7372 |   0.000610 *** |   0.5926\\n    0.1000 |    -0.3829 |   0.004107  ** |    +1.2093 |   0.000523 *** |   0.5916\\n\\n======================================================================\\nCondition: mmlu×sycophancy  (n=20)\\n  ASR range: [0.0496, 0.1111]\\n  K_eff range: [2.1398, 2.7708]\\n  η_max range: [0.0708, 0.1111]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    -0.2223 |   0.591433  ns |    +0.8667 |   0.003844  ** |   0.4153\\n    0.0010 |    -0.2196 |   0.591692  ns |    +0.8642 |   0.003870  ** |   0.4148\\n    0.0100 |    -0.1958 |   0.594118  ns |    +0.8425 |   0.004105  ** |   0.4108\\n    0.1000 |    -0.0938 |   0.608103  ns |    +0.7578 |   0.005140  ** |   0.3951\\n\\n======================================================================\\nCondition: arc_challenge×prompt_injection  (n=20)\\n  ASR range: [0.0707, 0.2651]\\n  K_eff range: [1.7772, 2.5037]\\n  η_max range: [0.1003, 0.8071]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    +0.8277 |   0.325075  ns |    +0.2953 |   0.017950   * |   0.7345\\n    0.0010 |    +0.8240 |   0.324947  ns |    +0.2940 |   0.018224   * |   0.7340\\n    0.0100 |    +0.7881 |   0.324264  ns |    +0.2818 |   0.020964   * |   0.7297\\n    0.1000 |    +0.5422 |   0.335167  ns |    +0.2147 |   0.045369   * |   0.7003\\n\\n======================================================================\\nCondition: arc_challenge×score_manipulation  (n=20)\\n  ASR range: [0.0105, 0.0717]\\n  K_eff range: [1.7772, 2.5037]\\n  η_max range: [0.0311, 0.1526]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    +1.4065 |   0.232941  ns |    +0.5531 |   0.030459   * |   0.5819\\n    0.0010 |    +1.3675 |   0.230295  ns |    +0.5368 |   0.031759   * |   0.5798\\n    0.0100 |    +1.0843 |   0.212621  ns |    +0.4321 |   0.042384   * |   0.5643\\n    0.1000 |    +0.3823 |   0.172308  ns |    +0.2438 |   0.074830  ns |   0.5286\\n\\n======================================================================\\nCondition: mmlu×prompt_injection  (n=20)\\n  ASR range: [0.1333, 0.4721]\\n  K_eff range: [2.1398, 2.7708]\\n  η_max range: [0.2235, 0.7341]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    +0.3764 |   0.760429  ns |    +0.5363 |   0.051800  ns |   0.5401\\n    0.0010 |    +0.3768 |   0.759455  ns |    +0.5351 |   0.052076  ns |   0.5400\\n    0.0100 |    +0.3804 |   0.750243  ns |    +0.5233 |   0.054788  ns |   0.5382\\n    0.1000 |    +0.3711 |   0.691005  ns |    +0.4437 |   0.077787  ns |   0.5250\\n\\n======================================================================\\nCondition: mmlu×score_manipulation  (n=20)\\n  ASR range: [0.0468, 0.2000]\\n  K_eff range: [2.1398, 2.7708]\\n  η_max range: [0.0925, 0.3006]\\n======================================================================\\n         ε |   B(K_eff) |   p(K_eff)    |   B(η_max) |   p(η_max)    |       R²\\n------------------------------------------------------------------------------\\n    0.0001 |    +1.6238 |   0.420962  ns |    +0.2802 |   0.551467  ns |   0.3838\\n    0.0010 |    +1.6176 |   0.418631  ns |    +0.2768 |   0.554670  ns |   0.3840\\n    0.0100 |    +1.5557 |   0.397947  ns |    +0.2466 |   0.584488  ns |   0.3853\\n    0.1000 |    +1.0866 |   0.303095  ns |    +0.1142 |   0.757025  ns |   0.3901\\n\\n======================================================================\\nSTABILITY SUMMARY\\n======================================================================\\n\\narc_challenge×sycophancy:\\n  K_eff: p range [0.003001, 0.004107] β range [-3.0699, -0.3829] → STABLE\\n  η_max: p range [0.000523, 0.001015] β range [1.2093, 2.2713] → STABLE\\n\\nmmlu×sycophancy:\\n  K_eff: p range [0.591433, 0.608103] β range [-0.2223, -0.0938] → STABLE\\n  η_max: p range [0.003844, 0.005140] β range [0.7578, 0.8667] → STABLE\\n\\narc_challenge×prompt_injection:\\n  K_eff: p range [0.324264, 0.335167] β range [0.5422, 0.8277] → STABLE\\n  η_max: p range [0.017950, 0.045369] β range [0.2147, 0.2953] → STABLE\\n\\narc_challenge×score_manipulation:\\n  K_eff: p range [0.172308, 0.232941] β range [0.3823, 1.4065] → STABLE\\n  η_max: p range [0.030459, 0.074830] β range [0.2438, 0.5531] → UNSTABLE\\n\\nmmlu×prompt_injection:\\n  K_eff: p range [0.691005, 0.760429] β range [0.3711, 0.3804] → STABLE\\n  η_max: p range [0.051800, 0.077787] β range [0.4437, 0.5363] → STABLE\\n\\nmmlu×score_manipulation:\\n  K_eff: p range [0.303095, 0.420962] β range [1.0866, 1.6238] → STABLE\\n  η_max: p range [0.551467, 0.757025] β range [0.1142, 0.2802] → STABLE\\n\\nSaved to /root/cert_manip_resist_eval/artifacts/results/epsilon_sensitivity.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+结果清晰，核心结论：
+
+**arc_challenge×sycophancy（关键条件）：K_eff p=0.003 完全稳定。**
+
+| ε | p(K_eff) | p(η_max) |
+|---|----------|----------|
+| 0.0001 | 0.0031 ** | 0.0010 ** |
+| 0.001 | 0.0030 ** | 0.0009 *** |
+| 0.01 | 0.0030 ** | 0.0006 *** |
+| 0.1 | 0.0041 ** | 0.0005 *** |
+
+- **K_eff**: p 在 [0.003, 0.004] 范围，4 个 ε 全部 p<0.01，**不是 ε 伪影**
+- **η_max**: p 在 [0.0005, 0.001]，更稳定
+- β 幅度随 ε 变化（log 变换的正常缩放效应），但显著性方向一致
+
+**唯一不稳定的条件**：arc_challenge×score_manipulation 的 η_max，在 ε=0.1 时 p 从 0.03 漂移到 0.075 跨过 0.05 阈值。其余 11/12 个 predictor×condition 组合全部稳定。
+
+结果已保存到 `epsilon_sensitivity.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "uuid": "dafb35ce-24e1-4608-b5bb-f213ea3f305c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UsRQj3GwDQwb12pCMww6Vo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4378,
+      "cache_read_input_tokens": 40695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4378
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 36_
+
+结果清晰，核心结论：
+
+**arc_challenge×sycophancy（关键条件）：K_eff p=0.003 完全稳定。**
+
+| ε | p(K_eff) | p(η_max) |
+|---|----------|----------|
+| 0.0001 | 0.0031 ** | 0.0010 ** |
+| 0.001 | 0.0030 ** | 0.0009 *** |
+| 0.01 | 0.0030 ** | 0.0006 *** |
+| 0.1 | 0.0041 ** | 0.0005 *** |
+
+- **K_eff**: p 在 [0.003, 0.004] 范围，4 个 ε 全部 p<0.01，**不是 ε 伪影**
+- **η_max**: p 在 [0.0005, 0.001]，更稳定
+- β 幅度随 ε 变化（log 变换的正常缩放效应），但显著性方向一致
+
+**唯一不稳定的条件**：arc_challenge×score_manipulation 的 η_max，在 ε=0.1 时 p 从 0.03 漂移到 0.075 跨过 0.05 阈值。其余 11/12 个 predictor×condition 组合全部稳定。
+
+结果已保存到 `epsilon_sensitivity.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 113709,
+  "duration_api_ms": 109637,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "c154b8ee-57be-4893-9f6a-fdd1ff307662",
+  "total_cost_usd": 0.5202904999999999,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 33232,
+    "cache_read_input_tokens": 410159,
+    "output_tokens": 4206,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33232,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 397,
+        "cache_read_input_tokens": 40695,
+        "cache_creation_input_tokens": 4378,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4378
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2191,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002266,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 4206,
+      "cacheReadInputTokens": 410159,
+      "cacheCreationInputTokens": 33232,
+      "webSearchRequests": 0,
+      "costUSD": 0.5180244999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b22d97af-1594-455a-ae07-7532c276aa0c"
+}
+```
+
+</details>
+
+---

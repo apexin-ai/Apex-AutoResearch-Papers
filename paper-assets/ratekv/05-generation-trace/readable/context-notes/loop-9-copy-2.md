@@ -1,0 +1,71 @@
+# reviewer / loop_9.md
+
+**When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_9.md`
+- **Structured JSON:** [`13e7dbcaf2ddba5cde86.json`](../../sessions/13/13e7dbcaf2ddba5cde86.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 9
+reason: max_wall_time
+updated: '2026-05-15T14:31:37+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 服务器 westd-37397 有 2 块 GPU（cuda:0, cuda:1），无 constraints.yaml，无跨项目冲突，但 registry spec 中的 gpu_ids 必须与脚本实际使用的 device 一致（Pythia 脚本硬编码 cuda:0 但 spec 写 cuda:1，已被我标 warning）
+- Yi-1.5-9B max_position_embeddings=4096，rope_scaling=null，**禁止用于 >4K context 实验**（已被我 CRITICAL，Director 已接受，registry 标 negative）
+- 论文声明 "All results use high-resolution profiling (64 seq × 2048 tok)"——所有 concentration / t1/t5 数值必须来自 hires 数据，不能用标准 profiling 的残留值
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-37397(root)，工作目录 /root/ratekv
+- Python：/root/miniconda3/bin/python（conda base 环境）
+- 模型路径：/root/autodl-tmp/models/（Qwen, Llama, Mistral）; /root/autodl-tmp/.hf_cache/（Yi, Pythia, datasets）
+- HF_HOME=/root/autodl-tmp/.hf_cache，多数脚本设 OFFLINE=1
+- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/
+- 论文：projects/ratekv/docs/paper/*.tex
+- 截至 handoff 时两块 GPU 均空闲（0 MiB / 0%），无活跃进程
+
+### 3. 📊 当前状态
+本轮审查完成了以下实验核实：
+- **pythia14b_constrained_pipeline** (DONE/success): Flat 模型 constrained≈uniform 确认。数据一致。GPU spec 不一致已标 warning。
+- **qwen7b_8k_context_eval** (DONE/success): Spread 模型 8K 下 MCKP 优势放大到 97.7%。Uniform 灾难性退化 77.75 PPL。
+- **llama_8k_spotcheck** (DONE/success): Spike 模型 8K 下 MCKP≈uniform，与 Qwen 对照成立。
+- **yi15_8k_spotcheck** (DONE/negative): context window 溢出，结果不入论文。
+- **qwen7b_8k_spotcheck** 重复条目已 killed 关闭。
+
+**关键论文修正已验证通过**：
+- Yi L4H3 "34% of total delta" → "64%" ✅
+- Llama concentration 0.34→0.57, t1/t5 0.71→0.85（全部 6 处）✅
+- paper_provenance C122/C158 同步更新 ✅
+
+Registry 中无 RUNNING 实验。Report.md 显示 2 个 RUNNING（qwen7b_8k_spotcheck, qwen7b_8k_context_eval）可能是 report 未刷新。
+
+### 4. 📋 待办
+- Mistral hires bf16 2bitonly v3 标为"准备中"→ 完成后审查其 concentration / t1/t5 是否与论文 Table 3 的 0.22/0.18 一致
+- Qwen-14B constrained pipeline ΔPPL 数据（Table 3 标 "---"）→ 数据到位后审查是否补入论文
+- 8K context length 结果如入论文 → 审查是否充分讨论 profile 跨 context 泛化性 + compounding 机制
+- run_llama_8k_spotcheck.py L175 硬编码 t1_over_t5=0.71 未修正（低优先级，不影响论文）
+
+### 5. 🎯 战略上下文
+- 核心 story：per-head KV cache 量化异质性决定非均匀分配是否有效。Spread（Qwen）有效，Spike（Yi/Llama）和 Flat（Mistral/Gemma/Pythia）无效。Decision rule 靠 (concentration, t1/t5) 二维判定。
+- 论文覆盖 7 个模型（Qwen-7B/14B, Yi-1.5, Llama, Mistral, Gemma-2, Pythia），只有 Qwen-7B 是正面结果，其余为"诊断正确预测无效"的负面确认。
+- **最容易判断错的事**：Llama concentration=0.57 看似 Spread（≥0.50），但 t1/t5=0.85 使其为 Spike。下一个审查者不要看到 conc≥0.50 就判定为 Spread——必须同时检查 t1/t5。
+- **容易踩的坑**：远程服务器文件和本地 workspace 可能存在同名但不同版本的文件（论文在本地，代码/profiles 在远程）。审查 "未修改" 类结论前必须双边核对（L1 红线 #5）。
+
+
+---

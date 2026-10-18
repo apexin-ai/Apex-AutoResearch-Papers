@@ -1,0 +1,1471 @@
+# analysis eval official smolvla prune k05 v2
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_analysis_eval_official_smolvla_prune_k05_v2_20260518T141029.log`
+- **Structured JSON:** [`e7cffef9561136f650f5.json`](../../sessions/e7/e7cffef9561136f650f5.json)
+
+## Before a recorded user message
+
+29 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__compare_wandb_runs",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__fetch_wandb_metrics",
+    "mcp__agent-ml-research__fetch_wandb_run_history",
+    "mcp__agent-ml-research__get_best_wandb_run",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__list_wandb_runs",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3abfd13e-011e-4881-937c-f10a25f7c080",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779122400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ce9b274f-3bc6-4162-b967-2db68b2b0647",
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the log file from the server to extract the experiment results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "ea5c3ed7-206e-46f7-a33a-e2d909127f02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H1PfRknwJUfMczFQpPMNJA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12892,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12892
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MejAybAScMS6svqV1e5mJA`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__read_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "bca7075f-f594-4adf-b698-903bf242cf07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H1PfRknwJUfMczFQpPMNJA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12892,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12892
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T14:10:40.643Z_
+
+<details><summary>↩ Tool result · `toolu_01MejAybAScMS6svqV1e5mJA`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "d088b484-a1de-4967-948b-e8bb9bba571b",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 31
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the log file and check the parent experiment's metrics in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "4714d14a-f4d2-4137-b1f9-3a4966b7bbc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XPbJ1EDdBn4wW3yaV1tv7i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 24733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1619
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013L4Zzvkym49guCfnEZraRK`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -100 ~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "2cf303b2-b8a2-4203-a227-9c1e85c3b4cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XPbJ1EDdBn4wW3yaV1tv7i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 24733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1619
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015r4cQfEHbyn1DXqAk6Z9R9`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "eval_official_smolvla_baseline"
+  },
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "9eb1ced1-7a46-43b2-8b57-fc707c9c1832",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XPbJ1EDdBn4wW3yaV1tv7i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1619,
+      "cache_read_input_tokens": 24733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1619
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T14:10:50.855Z_
+
+<details><summary>↩ Tool result · `toolu_013L4Zzvkym49guCfnEZraRK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-18 22:01:48 [INFO]   Ep 22/50 | FAIL | steps=280\\n2026-05-18 22:01:53 [INFO]   Ep 23/50 | FAIL | steps=280\\n2026-05-18 22:01:58 [INFO]   Ep 24/50 | FAIL | steps=280\\n2026-05-18 22:02:03 [INFO]   Ep 25/50 | FAIL | steps=280\\n2026-05-18 22:02:08 [INFO]   Ep 26/50 | FAIL | steps=280\\n2026-05-18 22:02:14 [INFO]   Ep 27/50 | FAIL | steps=280\\n2026-05-18 22:02:19 [INFO]   Ep 28/50 | FAIL | steps=280\\n2026-05-18 22:02:24 [INFO]   Ep 29/50 | FAIL | steps=280\\n2026-05-18 22:02:30 [INFO]   Ep 30/50 | FAIL | steps=280\\n2026-05-18 22:02:35 [INFO]   Ep 31/50 | FAIL | steps=280\\n2026-05-18 22:02:41 [INFO]   Ep 32/50 | FAIL | steps=280\\n2026-05-18 22:02:46 [INFO]   Ep 33/50 | FAIL | steps=280\\n2026-05-18 22:02:51 [INFO]   Ep 34/50 | FAIL | steps=280\\n2026-05-18 22:02:56 [INFO]   Ep 35/50 | FAIL | steps=280\\n2026-05-18 22:03:01 [INFO]   Ep 36/50 | FAIL | steps=280\\n2026-05-18 22:03:07 [INFO]   Ep 37/50 | FAIL | steps=280\\n2026-05-18 22:03:12 [INFO]   Ep 38/50 | FAIL | steps=280\\n2026-05-18 22:03:17 [INFO]   Ep 39/50 | FAIL | steps=280\\n2026-05-18 22:03:23 [INFO]   Ep 40/50 | FAIL | steps=280\\n2026-05-18 22:03:28 [INFO]   Ep 41/50 | FAIL | steps=280\\n2026-05-18 22:03:33 [INFO]   Ep 42/50 | FAIL | steps=280\\n2026-05-18 22:03:38 [INFO]   Ep 43/50 | FAIL | steps=280\\n2026-05-18 22:03:44 [INFO]   Ep 44/50 | FAIL | steps=280\\n2026-05-18 22:03:49 [INFO]   Ep 45/50 | FAIL | steps=280\\n2026-05-18 22:03:54 [INFO]   Ep 46/50 | FAIL | steps=280\\n2026-05-18 22:04:00 [INFO]   Ep 47/50 | FAIL | steps=280\\n2026-05-18 22:04:05 [INFO]   Ep 48/50 | FAIL | steps=280\\n2026-05-18 22:04:10 [INFO]   Ep 49/50 | FAIL | steps=280\\n2026-05-18 22:04:15 [INFO]   Ep 50/50 | FAIL | steps=280\\n2026-05-18 22:04:15 [INFO]   Task 8 SR: 0/50 (0.0%)\\n2026-05-18 22:04:15 [INFO] --- Task 9: pick up the orange juice and place it in the basket ---\\n2026-05-18 22:04:22 [INFO]   Ep 1/50 | FAIL | steps=280\\n2026-05-18 22:04:27 [INFO]   Ep 2/50 | FAIL | steps=280\\n2026-05-18 22:04:32 [INFO]   Ep 3/50 | FAIL | steps=280\\n2026-05-18 22:04:37 [INFO]   Ep 4/50 | FAIL | steps=280\\n2026-05-18 22:04:42 [INFO]   Ep 5/50 | FAIL | steps=280\\n2026-05-18 22:04:47 [INFO]   Ep 6/50 | FAIL | steps=280\\n2026-05-18 22:04:52 [INFO]   Ep 7/50 | FAIL | steps=280\\n2026-05-18 22:04:58 [INFO]   Ep 8/50 | FAIL | steps=280\\n2026-05-18 22:05:03 [INFO]   Ep 9/50 | FAIL | steps=280\\n2026-05-18 22:05:08 [INFO]   Ep 10/50 | FAIL | steps=280\\n2026-05-18 22:05:14 [INFO]   Ep 11/50 | FAIL | steps=280\\n2026-05-18 22:05:19 [INFO]   Ep 12/50 | FAIL | steps=280\\n2026-05-18 22:05:24 [INFO]   Ep 13/50 | FAIL | steps=280\\n2026-05-18 22:05:29 [INFO]   Ep 14/50 | FAIL | steps=280\\n2026-05-18 22:05:34 [INFO]   Ep 15/50 | FAIL | steps=280\\n2026-05-18 22:05:39 [INFO]   Ep 16/50 | FAIL | steps=280\\n2026-05-18 22:05:44 [INFO]   Ep 17/50 | FAIL | steps=280\\n2026-05-18 22:05:50 [INFO]   Ep 18/50 | FAIL | steps=280\\n2026-05-18 22:05:55 [INFO]   Ep 19/50 | FAIL | steps=280\\n2026-05-18 22:06:00 [INFO]   Ep 20/50 | FAIL | steps=280\\n2026-05-18 22:06:05 [INFO]   Ep 21/50 | FAIL | steps=280\\n2026-05-18 22:06:10 [INFO]   Ep 22/50 | FAIL | steps=280\\n2026-05-18 22:06:15 [INFO]   Ep 23/50 | FAIL | steps=280\\n2026-05-18 22:06:21 [INFO]   Ep 24/50 | FAIL | steps=280\\n2026-05-18 22:06:26 [INFO]   Ep 25/50 | FAIL | steps=280\\n2026-05-18 22:06:31 [INFO]   Ep 26/50 | FAIL | steps=280\\n2026-05-18 22:06:36 [INFO]   Ep 27/50 | FAIL | steps=280\\n2026-05-18 22:06:42 [INFO]   Ep 28/50 | FAIL | steps=280\\n2026-05-18 22:06:47 [INFO]   Ep 29/50 | FAIL | steps=280\\n2026-05-18 22:06:52 [INFO]   Ep 30/50 | FAIL | steps=280\\n2026-05-18 22:06:57 [INFO]   Ep 31/50 | FAIL | steps=280\\n2026-05-18 22:07:02 [INFO]   Ep 32/50 | FAIL | steps=280\\n2026-05-18 22:07:07 [INFO]   Ep 33/50 | FAIL | steps=280\\n2026-05-18 22:07:13 [INFO]   Ep 34/50 | FAIL | steps=280\\n2026-05-18 22:07:18 [INFO]   Ep 35/50 | FAIL | steps=280\\n2026-05-18 22:07:24 [INFO]   Ep 36/50 | FAIL | steps=280\\n2026-05-18 22:07:29 [INFO]   Ep 37/50 | FAIL | steps=280\\n2026-05-18 22:07:35 [INFO]   Ep 38/50 | FAIL | steps=280\\n2026-05-18 22:07:40 [INFO]   Ep 39/50 | FAIL | steps=280\\n2026-05-18 22:07:45 [INFO]   Ep 40/50 | FAIL | steps=280\\n2026-05-18 22:07:51 [INFO]   Ep 41/50 | FAIL | steps=280\\n2026-05-18 22:07:56 [INFO]   Ep 42/50 | FAIL | steps=280\\n2026-05-18 22:08:02 [INFO]   Ep 43/50 | FAIL | steps=280\\n2026-05-18 22:08:07 [INFO]   Ep 44/50 | FAIL | steps=280\\n2026-05-18 22:08:12 [INFO]   Ep 45/50 | FAIL | steps=280\\n2026-05-18 22:08:18 [INFO]   Ep 46/50 | FAIL | steps=280\\n2026-05-18 22:08:23 [INFO]   Ep 47/50 | FAIL | steps=280\\n2026-05-18 22:08:28 [INFO]   Ep 48/50 | FAIL | steps=280\\n2026-05-18 22:08:34 [INFO]   Ep 49/50 | FAIL | steps=280\\n2026-05-18 22:08:39 [INFO]   Ep 50/50 | FAIL | steps=280\\n2026-05-18 22:08:39 [INFO]   Task 9 SR: 0/50 (0.0%)\\n2026-05-18 22:08:39 [INFO] ============================================================\\n2026-05-18 22:08:39 [INFO] SUITE: libero_object | MODE: random_prune\\n2026-05-18 22:08:39 [INFO] PRUNING: true_removal | k_ratio: 0.50\\n2026-05-18 22:08:39 [INFO] Overall SR: 0/500 (0.0%)\\n2026-05-18 22:08:39 [INFO] 95% Wilson CI: [0.0%, 0.8%]\\n2026-05-18 22:08:39 [INFO]   Task 0: 0% (0/50) -- pick up the alphabet soup and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 1: 0% (0/50) -- pick up the cream cheese and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 2: 0% (0/50) -- pick up the salad dressing and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 3: 0% (0/50) -- pick up the bbq sauce and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 4: 0% (0/50) -- pick up the ketchup and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 5: 0% (0/50) -- pick up the tomato sauce and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 6: 0% (0/50) -- pick up the butter and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 7: 0% (0/50) -- pick up the milk and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 8: 0% (0/50) -- pick up the chocolate pudding and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 9: 0% (0/50) -- pick up the orange juice and place it in the basket\\n2026-05-18 22:08:39 [INFO] ============================================================\\n2026-05-18 22:08:39 [INFO] Results saved to eval_results/official_libero_object_random_prune_k05.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "f908154d-3593-44fe-8b10-21cfcd9d7ef5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 22:01:48 [INFO]   Ep 22/50 | FAIL | steps=280\\\\n2026-05-18 22:01:53 [INFO]   Ep 23/50 | FAIL | steps=280\\\\n2026-05-18 22:01:58 [INFO]   Ep 24/50 | FAIL | steps=280\\\\n2026-05-18 22:02:03 [INFO]   Ep 25/50 | FAIL | steps=280\\\\n2026-05-18 22:02:08 [INFO]   Ep 26/50 | FAIL | steps=280\\\\n2026-05-18 22:02:14 [INFO]   Ep 27/50 | FAIL | steps=280\\\\n2026-05-18 22:02:19 [INFO]   Ep 28/50 | FAIL | steps=280\\\\n2026-05-18 22:02:24 [INFO]   Ep 29/50 | FAIL | steps=280\\\\n2026-05-18 22:02:30 [INFO]   Ep 30/50 | FAIL | steps=280\\\\n2026-05-18 22:02:35 [INFO]   Ep 31/50 | FAIL | steps=280\\\\n2026-05-18 22:02:41 [INFO]   Ep 32/50 | FAIL | steps=280\\\\n2026-05-18 22:02:46 [INFO]   Ep 33/50 | FAIL | steps=280\\\\n2026-05-18 22:02:51 [INFO]   Ep 34/50 | FAIL | steps=280\\\\n2026-05-18 22:02:56 [INFO]   Ep 35/50 | FAIL | steps=280\\\\n2026-05-18 22:03:01 [INFO]   Ep 36/50 | FAIL | steps=280\\\\n2026-05-18 22:03:07 [INFO]   Ep 37/50 | FAIL | steps=280\\\\n2026-05-18 22:03:12 [INFO]   Ep 38/50 | FAIL | steps=280\\\\n2026-05-18 22:03:17 [INFO]   Ep 39/50 | FAIL | steps=280\\\\n2026-05-18 22:03:23 [INFO]   Ep 40/50 | FAIL | steps=280\\\\n2026-05-18 22:03:28 [INFO]   Ep 41/50 | FAIL | steps=280\\\\n2026-05-18 22:03:33 [INFO]   Ep 42/50 | FAIL | steps=280\\\\n2026-05-18 22:03:38 [INFO]   Ep 43/50 | FAIL | steps=280\\\\n2026-05-18 22:03:44 [INFO]   Ep 44/50 | FAIL | steps=280\\\\n2026-05-18 22:03:49 [INFO]   Ep 45/50 | FAIL | steps=280\\\\n2026-05-18 22:03:54 [INFO]   Ep 46/50 | FAIL | steps=280\\\\n2026-05-18 22:04:00 [INFO]   Ep 47/50 | FAIL | steps=280\\\\n2026-05-18 22:04:05 [INFO]   Ep 48/50 | FAIL | steps=280\\\\n2026-05-18 22:04:10 [INFO]   Ep 49/50 | FAIL | steps=280\\\\n2026-05-18 22:04:15 [INFO]   Ep 50/50 | FAIL | steps=280\\\\n2026-05-18 22:04:15 [INFO]   Task 8 SR: 0/50 (0.0%)\\\\n2026-05-18 22:04:15 [INFO] --- Task 9: pick up the orange juice and place it in the basket ---\\\\n2026-05-18 22:04:22 [INFO]   Ep 1/50 | FAIL | steps=280\\\\n2026-05-18 22:04:27 [INFO]   Ep 2/50 | FAIL | steps=280\\\\n2026-05-18 22:04:32 [INFO]   Ep 3/50 | FAIL | steps=280\\\\n2026-05-18 22:04:37 [INFO]   Ep 4/50 | FAIL | steps=280\\\\n2026-05-18 22:04:42 [INFO]   Ep 5/50 | FAIL | steps=280\\\\n2026-05-18 22:04:47 [INFO]   Ep 6/50 | FAIL | steps=280\\\\n2026-05-18 22:04:52 [INFO]   Ep 7/50 | FAIL | steps=280\\\\n2026-05-18 22:04:58 [INFO]   Ep 8/50 | FAIL | steps=280\\\\n2026-05-18 22:05:03 [INFO]   Ep 9/50 | FAIL | steps=280\\\\n2026-05-18 22:05:08 [INFO]   Ep 10/50 | FAIL | steps=280\\\\n2026-05-18 22:05:14 [INFO]   Ep 11/50 | FAIL | steps=280\\\\n2026-05-18 22:05:19 [INFO]   Ep 12/50 | FAIL | steps=280\\\\n2026-05-18 22:05:24 [INFO]   Ep 13/50 | FAIL | steps=280\\\\n2026-05-18 22:05:29 [INFO]   Ep 14/50 | FAIL | steps=280\\\\n2026-05-18 22:05:34 [INFO]   Ep 15/50 | FAIL | steps=280\\\\n2026-05-18 22:05:39 [INFO]   Ep 16/50 | FAIL | steps=280\\\\n2026-05-18 22:05:44 [INFO]   Ep 17/50 | FAIL | steps=280\\\\n2026-05-18 22:05:50 [INFO]   Ep 18/50 | FAIL | steps=280\\\\n2026-05-18 22:05:55 [INFO]   Ep 19/50 | FAIL | steps=280\\\\n2026-05-18 22:06:00 [INFO]   Ep 20/50 | FAIL | steps=280\\\\n2026-05-18 22:06:05 [INFO]   Ep 21/50 | FAIL | steps=280\\\\n2026-05-18 22:06:10 [INFO]   Ep 22/50 | FAIL | steps=280\\\\n2026-05-18 22:06:15 [INFO]   Ep 23/50 | FAIL | steps=280\\\\n2026-05-18 22:06:21 [INFO]   Ep 24/50 | FAIL | steps=280\\\\n2026-05-18 22:06:26 [INFO]   Ep 25/50 | FAIL | steps=280\\\\n2026-05-18 22:06:31 [INFO]   Ep 26/50 | FAIL | steps=280\\\\n2026-05-18 22:06:36 [INFO]   Ep 27/50 | FAIL | steps=280\\\\n2026-05-18 22:06:42 [INFO]   Ep 28/50 | FAIL | steps=280\\\\n2026-05-18 22:06:47 [INFO]   Ep 29/50 | FAIL | steps=280\\\\n2026-05-18 22:06:52 [INFO]   Ep 30/50 | FAIL | steps=280\\\\n2026-05-18 22:06:57 [INFO]   Ep 31/50 | FAIL | steps=280\\\\n2026-05-18 22:07:02 [INFO]   Ep 32/50 | FAIL | steps=280\\\\n2026-05-18 22:07:07 [INFO]   Ep 33/50 | FAIL | steps=280\\\\n2026-05-18 22:07:13 [INFO]   Ep 34/50 | FAIL | steps=280\\\\n2026-05-18 22:07:18 [INFO]   Ep 35/50 | FAIL | steps=280\\\\n2026-05-18 22:07:24 [INFO]   Ep 36/50 | FAIL | steps=280\\\\n2026-05-18 22:07:29 [INFO]   Ep 37/50 | FAIL | steps=280\\\\n2026-05-18 22:07:35 [INFO]   Ep 38/50 | FAIL | steps=280\\\\n2026-05-18 22:07:40 [INFO]   Ep 39/50 | FAIL | steps=280\\\\n2026-05-18 22:07:45 [INFO]   Ep 40/50 | FAIL | steps=280\\\\n2026-05-18 22:07:51 [INFO]   Ep 41/50 | FAIL | steps=280\\\\n2026-05-18 22:07:56 [INFO]   Ep 42/50 | FAIL | steps=280\\\\n2026-05-18 22:08:02 [INFO]   Ep 43/50 | FAIL | steps=280\\\\n2026-05-18 22:08:07 [INFO]   Ep 44/50 | FAIL | steps=280\\\\n2026-05-18 22:08:12 [INFO]   Ep 45/50 | FAIL | steps=280\\\\n2026-05-18 22:08:18 [INFO]   Ep 46/50 | FAIL | steps=280\\\\n2026-05-18 22:08:23 [INFO]   Ep 47/50 | FAIL | steps=280\\\\n2026-05-18 22:08:28 [INFO]   Ep 48/50 | FAIL | steps=280\\\\n2026-05-18 22:08:34 [INFO]   Ep 49/50 | FAIL | steps=280\\\\n2026-05-18 22:08:39 [INFO]   Ep 50/50 | FAIL | steps=280\\\\n2026-05-18 22:08:39 [INFO]   Task 9 SR: 0/50 (0.0%)\\\\n2026-05-18 22:08:39 [INFO] ============================================================\\\\n2026-05-18 22:08:39 [INFO] SUITE: libero_object | MODE: random_prune\\\\n2026-05-18 22:08:39 [INFO] PRUNING: true_removal | k_ratio: 0.50\\\\n2026-05-18 22:08:39 [INFO] Overall SR: 0/500 (0.0%)\\\\n2026-05-18 22:08:39 [INFO] 95% Wilson CI: [0.0%, 0.8%]\\\\n2026-05-18 22:08:39 [INFO]   Task 0: 0% (0/50) -- pick up the alphabet soup and place it in the basket\\\\n2026-05-18 22:08:39 [INFO]   Task 1: 0% (0/50) -- pick up the cream cheese and place it in the basket\\\\n2026-05-18 22:08:39 [INFO]   Task 2: 0% (0/50) -- pick up the salad dressing and place it in the basket\\\\n2026-05-18 22:08:39 [INFO]   Task 3: 0% (0/50) -- pick up the bbq sauce and place it in the basket\\\\n2026-05-18 22:08:39 [INFO]   Task 4: 0% (0/50) -- pick up the ketchup and place it in the basket\\\\n2026-05-18 22:08:39 [INFO]   Task 5: 0% (0/50) -- pick up the tomato sauce and place it in the basket\\\\n2026-05-18 22:08:39 [INFO]   Task 6: 0% (0/50) -- pick up the butter and place it in the basket\\\\n2026-05-18 22:08:39 [INFO]   Task 7: 0% (0/50) -- pick up the milk and place it in the basket\\\\n2026-05-18 22:08:39 [INFO]   Task 8: 0% (0/50) -- pick up the chocolate pudding and place it in the basket\\\\n2026-05-18 22:08:39 [INFO]   Task 9: 0% (0/50) -- pick up the orange juice and place it in the basket\\\\n2026-05-18 22:08:39 [INFO] ============================================================\\\\n2026-05-18 22:08:39 [INFO] Results saved to eval_results/official_libero_object_random_prune_k05.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-18 22:01:48 [INFO]   Ep 22/50 | FAIL | steps=280\\n2026-05-18 22:01:53 [INFO]   Ep 23/50 | FAIL | steps=280\\n2026-05-18 22:01:58 [INFO]   Ep 24/50 | FAIL | steps=280\\n2026-05-18 22:02:03 [INFO]   Ep 25/50 | FAIL | steps=280\\n2026-05-18 22:02:08 [INFO]   Ep 26/50 | FAIL | steps=280\\n2026-05-18 22:02:14 [INFO]   Ep 27/50 | FAIL | steps=280\\n2026-05-18 22:02:19 [INFO]   Ep 28/50 | FAIL | steps=280\\n2026-05-18 22:02:24 [INFO]   Ep 29/50 | FAIL | steps=280\\n2026-05-18 22:02:30 [INFO]   Ep 30/50 | FAIL | steps=280\\n2026-05-18 22:02:35 [INFO]   Ep 31/50 | FAIL | steps=280\\n2026-05-18 22:02:41 [INFO]   Ep 32/50 | FAIL | steps=280\\n2026-05-18 22:02:46 [INFO]   Ep 33/50 | FAIL | steps=280\\n2026-05-18 22:02:51 [INFO]   Ep 34/50 | FAIL | steps=280\\n2026-05-18 22:02:56 [INFO]   Ep 35/50 | FAIL | steps=280\\n2026-05-18 22:03:01 [INFO]   Ep 36/50 | FAIL | steps=280\\n2026-05-18 22:03:07 [INFO]   Ep 37/50 | FAIL | steps=280\\n2026-05-18 22:03:12 [INFO]   Ep 38/50 | FAIL | steps=280\\n2026-05-18 22:03:17 [INFO]   Ep 39/50 | FAIL | steps=280\\n2026-05-18 22:03:23 [INFO]   Ep 40/50 | FAIL | steps=280\\n2026-05-18 22:03:28 [INFO]   Ep 41/50 | FAIL | steps=280\\n2026-05-18 22:03:33 [INFO]   Ep 42/50 | FAIL | steps=280\\n2026-05-18 22:03:38 [INFO]   Ep 43/50 | FAIL | steps=280\\n2026-05-18 22:03:44 [INFO]   Ep 44/50 | FAIL | steps=280\\n2026-05-18 22:03:49 [INFO]   Ep 45/50 | FAIL | steps=280\\n2026-05-18 22:03:54 [INFO]   Ep 46/50 | FAIL | steps=280\\n2026-05-18 22:04:00 [INFO]   Ep 47/50 | FAIL | steps=280\\n2026-05-18 22:04:05 [INFO]   Ep 48/50 | FAIL | steps=280\\n2026-05-18 22:04:10 [INFO]   Ep 49/50 | FAIL | steps=280\\n2026-05-18 22:04:15 [INFO]   Ep 50/50 | FAIL | steps=280\\n2026-05-18 22:04:15 [INFO]   Task 8 SR: 0/50 (0.0%)\\n2026-05-18 22:04:15 [INFO] --- Task 9: pick up the orange juice and place it in the basket ---\\n2026-05-18 22:04:22 [INFO]   Ep 1/50 | FAIL | steps=280\\n2026-05-18 22:04:27 [INFO]   Ep 2/50 | FAIL | steps=280\\n2026-05-18 22:04:32 [INFO]   Ep 3/50 | FAIL | steps=280\\n2026-05-18 22:04:37 [INFO]   Ep 4/50 | FAIL | steps=280\\n2026-05-18 22:04:42 [INFO]   Ep 5/50 | FAIL | steps=280\\n2026-05-18 22:04:47 [INFO]   Ep 6/50 | FAIL | steps=280\\n2026-05-18 22:04:52 [INFO]   Ep 7/50 | FAIL | steps=280\\n2026-05-18 22:04:58 [INFO]   Ep 8/50 | FAIL | steps=280\\n2026-05-18 22:05:03 [INFO]   Ep 9/50 | FAIL | steps=280\\n2026-05-18 22:05:08 [INFO]   Ep 10/50 | FAIL | steps=280\\n2026-05-18 22:05:14 [INFO]   Ep 11/50 | FAIL | steps=280\\n2026-05-18 22:05:19 [INFO]   Ep 12/50 | FAIL | steps=280\\n2026-05-18 22:05:24 [INFO]   Ep 13/50 | FAIL | steps=280\\n2026-05-18 22:05:29 [INFO]   Ep 14/50 | FAIL | steps=280\\n2026-05-18 22:05:34 [INFO]   Ep 15/50 | FAIL | steps=280\\n2026-05-18 22:05:39 [INFO]   Ep 16/50 | FAIL | steps=280\\n2026-05-18 22:05:44 [INFO]   Ep 17/50 | FAIL | steps=280\\n2026-05-18 22:05:50 [INFO]   Ep 18/50 | FAIL | steps=280\\n2026-05-18 22:05:55 [INFO]   Ep 19/50 | FAIL | steps=280\\n2026-05-18 22:06:00 [INFO]   Ep 20/50 | FAIL | steps=280\\n2026-05-18 22:06:05 [INFO]   Ep 21/50 | FAIL | steps=280\\n2026-05-18 22:06:10 [INFO]   Ep 22/50 | FAIL | steps=280\\n2026-05-18 22:06:15 [INFO]   Ep 23/50 | FAIL | steps=280\\n2026-05-18 22:06:21 [INFO]   Ep 24/50 | FAIL | steps=280\\n2026-05-18 22:06:26 [INFO]   Ep 25/50 | FAIL | steps=280\\n2026-05-18 22:06:31 [INFO]   Ep 26/50 | FAIL | steps=280\\n2026-05-18 22:06:36 [INFO]   Ep 27/50 | FAIL | steps=280\\n2026-05-18 22:06:42 [INFO]   Ep 28/50 | FAIL | steps=280\\n2026-05-18 22:06:47 [INFO]   Ep 29/50 | FAIL | steps=280\\n2026-05-18 22:06:52 [INFO]   Ep 30/50 | FAIL | steps=280\\n2026-05-18 22:06:57 [INFO]   Ep 31/50 | FAIL | steps=280\\n2026-05-18 22:07:02 [INFO]   Ep 32/50 | FAIL | steps=280\\n2026-05-18 22:07:07 [INFO]   Ep 33/50 | FAIL | steps=280\\n2026-05-18 22:07:13 [INFO]   Ep 34/50 | FAIL | steps=280\\n2026-05-18 22:07:18 [INFO]   Ep 35/50 | FAIL | steps=280\\n2026-05-18 22:07:24 [INFO]   Ep 36/50 | FAIL | steps=280\\n2026-05-18 22:07:29 [INFO]   Ep 37/50 | FAIL | steps=280\\n2026-05-18 22:07:35 [INFO]   Ep 38/50 | FAIL | steps=280\\n2026-05-18 22:07:40 [INFO]   Ep 39/50 | FAIL | steps=280\\n2026-05-18 22:07:45 [INFO]   Ep 40/50 | FAIL | steps=280\\n2026-05-18 22:07:51 [INFO]   Ep 41/50 | FAIL | steps=280\\n2026-05-18 22:07:56 [INFO]   Ep 42/50 | FAIL | steps=280\\n2026-05-18 22:08:02 [INFO]   Ep 43/50 | FAIL | steps=280\\n2026-05-18 22:08:07 [INFO]   Ep 44/50 | FAIL | steps=280\\n2026-05-18 22:08:12 [INFO]   Ep 45/50 | FAIL | steps=280\\n2026-05-18 22:08:18 [INFO]   Ep 46/50 | FAIL | steps=280\\n2026-05-18 22:08:23 [INFO]   Ep 47/50 | FAIL | steps=280\\n2026-05-18 22:08:28 [INFO]   Ep 48/50 | FAIL | steps=280\\n2026-05-18 22:08:34 [INFO]   Ep 49/50 | FAIL | steps=280\\n2026-05-18 22:08:39 [INFO]   Ep 50/50 | FAIL | steps=280\\n2026-05-18 22:08:39 [INFO]   Task 9 SR: 0/50 (0.0%)\\n2026-05-18 22:08:39 [INFO] ============================================================\\n2026-05-18 22:08:39 [INFO] SUITE: libero_object | MODE: random_prune\\n2026-05-18 22:08:39 [INFO] PRUNING: true_removal | k_ratio: 0.50\\n2026-05-18 22:08:39 [INFO] Overall SR: 0/500 (0.0%)\\n2026-05-18 22:08:39 [INFO] 95% Wilson CI: [0.0%, 0.8%]\\n2026-05-18 22:08:39 [INFO]   Task 0: 0% (0/50) -- pick up the alphabet soup and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 1: 0% (0/50) -- pick up the cream cheese and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 2: 0% (0/50) -- pick up the salad dressing and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 3: 0% (0/50) -- pick up the bbq sauce and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 4: 0% (0/50) -- pick up the ketchup and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 5: 0% (0/50) -- pick up the tomato sauce and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 6: 0% (0/50) -- pick up the butter and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 7: 0% (0/50) -- pick up the milk and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 8: 0% (0/50) -- pick up the chocolate pudding and place it in the basket\\n2026-05-18 22:08:39 [INFO]   Task 9: 0% (0/50) -- pick up the orange juice and place it in the basket\\n2026-05-18 22:08:39 [INFO] ============================================================\\n2026-05-18 22:08:39 [INFO] Results saved to eval_results/official_libero_object_random_prune_k05.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T14:10:51.162Z_
+
+<details><summary>↩ Tool result · `toolu_015r4cQfEHbyn1DXqAk6Z9R9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.294}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "c23dfd19-2281-404b-9712-7e971f571413",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.294}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.294}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log shows clear results: 0/500 overall success rate (0.0%) across all 10 tasks. Let me also check the parent experiment registry entry - it returned 0 results, so let me try without the filter.
+
+Let me also check the log beginning for any additional info, and read the registry for the parent experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "b3936f49-311c-44ed-b859-f43a9bf05263",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr4ghTzmjn4MzHxq7GVzGP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3849,
+      "cache_read_input_tokens": 26352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3849
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+结果清晰：Overall SR = 0/500 (0.0%)，所有 10 个 task 均为 0%。现在更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "7818c050-dae5-4163-a08a-34999e70ff5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr4ghTzmjn4MzHxq7GVzGP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3849,
+      "cache_read_input_tokens": 26352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3849
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01PF3g2om8hLtrqggKBJ9CKY`</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "96b91a2c-6937-4ab8-9500-e487d9e780e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr4ghTzmjn4MzHxq7GVzGP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3849,
+      "cache_read_input_tokens": 26352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3849
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T14:10:58.290Z_
+
+<details><summary>↩ Tool result · `toolu_01PF3g2om8hLtrqggKBJ9CKY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_official_smolvla_prune_k05_v2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:09:23.084Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}}, \"eval_official_smolvla_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:43:13.148Z\", \"updated_at\": \"2026-05-18T13:58:17.855Z\", \"spec\": {\"command\": \"python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --mode baseline --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:0\"], \"pid\": \"117439\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_baseline.log\", \"submitted_at\": \"2026-05-18T13:17:58.352Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": \"cuda:0\", \"data_path\": \"LIBERO-Object\", \"data_count\": 500, \"model_name\": \"SmolVLA official checkpoint (HuggingFace)\", \"seed\": 42, \"checkpoint_source\": \"smolvla_libero_official\", \"eval_data\": \"LIBERO-Object 10 tasks x 50 episodes\", \"wall_clock_seconds\": 2419.5, \"gpu_hours\": 0.67}, \"hypothesis\": \"Official SmolVLA LIBERO checkpoint unpruned baseline on LIBERO-Object. Establishes baseline SR for official checkpoint to compare against pruning experiments. If ~44.8% (similar to our fine-tuned), confirms consistent baseline. If different, indicates training-specific effects.\", \"parent\": \"eval_smolvla_random_prune_k095\", \"reproduce\": {\"finished_at\": \"2026-05-18T13:56:17.750Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T13:56:28.169877+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 59.2, \"wilson_ci_95\": [54.8, 63.4], \"total_episodes\": 500, \"total_successes\": 296, \"per_task_sr\": {\"task_0_alphabet_soup\": 64, \"task_1_cream_cheese\": 40, \"task_2_salad_dressing\": 44, \"task_3_bbq_sauce\": 38, \"task_4_ketchup\": 60, \"task_5_tomato_sauce\": 46, \"task_6_butter\": 78, \"task_7_milk\": 52, \"task_8_chocolate_pudding\": 90, \"task_9_orange_juice\": 80}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_baseline.log\", \"checkpoint_path\": \"N/A (eval-only)\", \"completed_at\": \"2026-05-18T13:58:17.855Z\"}, \"eval_acis_k05_supplement_200eps\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:44:59.461Z\", \"updated_at\": \"2026-05-18T13:45:28.445Z\", \"hypothesis\": \"Supplement 200 episodes (tasks 6-9, 50 eps each) for ACIS k=0.5 zero_mask pruning condition on libero_object. Original eval_stage1only_object_v2_fixed only completed 300/500 episodes (tasks 0-5). Expected 0% SR consistent with tasks 0-5, bringing total to 500 episodes for statistical alignment with other conditions.\", \"parent\": \"eval_stage1only_object_v2_fixed\", \"spec\": {\"command\": \"python eval_success_rate_libero.py --checkpoint checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt --config configs/libero_imm_twostage_fullft.yaml --suite libero_object --mode acis_prune --num_episodes 50 --gpu 0 --seed 42 --task_ids 6,7,8,9 --output eval_results/eval_acis_k05_supplement_200eps.json\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:1\"], \"pid\": \"146089\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_acis_k05_supplement_200eps.log\", \"submitted_at\": \"2026-05-18T13:45:09.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 200, \"model_name\": \"SmolVLA+ACIS_stage1only_k05\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt\", \"eval_data\": \"libero_object tasks 6-9 x 50 episodes\", \"checkpoint_path\": \"N/A (eval only)\"}}, \"eval_smolvla_random_prune_k095\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:16:53.132Z\", \"updated_at\": \"2026-05-18T13:20:17.960Z\", \"hypothesis\": \"Random pruning at k=0.95 (removing only 7/128 tokens) will still cause complete failure (0% SR), demonstrating extreme cliff-edge sensitivity where even minimal random token removal destroys VLA action generation\", \"parent\": \"eval_smolvla_random_prune\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u eval_random_prune_smolvla.py --k_ratio 0.95 --episodes_per_task 50 --output_name smolvla_random_prune_k095.json --seed 42\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:1\"], \"pid\": \"92881\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log\", \"submitted_at\": \"2026-05-18T12:17:00Z\", \"submitted_via\": \"tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"SmolVLA full_ft (baseline)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/libero_full_ft/step_099999/checkpoint.pt\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"checkpoints/libero_full_ft/step_099999/checkpoint.pt\", \"wall_clock_seconds\": 3798.0, \"gpu_hours\": 1.05}, \"metrics\": {\"overall_SR\": 0, \"wilson_ci_95\": [0, 0.0076], \"total_episodes\": 500, \"total_successes\": 0, \"tokens_kept\": 121, \"tokens_removed\": 7, \"k_ratio\": 0.95, \"per_task_SR\": {\"T0_alphabet_soup\": 0, \"T1_cream_cheese\": 0, \"T2_salad_dressing\": 0, \"T3_bbq_sauce\": 0, \"T4_ketchup\": 0, \"T5_tomato_sauce\": 0, \"T6_butter\": 0, \"T7_milk\": 0, \"T8_chocolate_pudding\": 0, \"T9_orange_juice\": 0}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_random_prune_k095.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T13:20:17.960Z\"}, \"eval_official_smolvla_pruning\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:43:31.516Z\", \"updated_at\": \"2026-05-18T12:57:46.413Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with random pruning k=0.5 should also show 0% SR cliff-edge, confirming the phenomenon is not specific to our fine-tuning setup but inherent to the pixel-shuffle architecture.\", \"parent\": \"eval_smolvla_random_prune_k095\", \"spec\": {\"command\": \"python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --mode baseline/random_prune --k_ratio 0.5\", \"server\": \"westd-27271\", \"data_path\": \"LIBERO libero_object (sim)\", \"data_count\": 500, \"model_name\": \"SmolVLA-500M-official-LIBERO\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object 10 tasks x 50 episodes\"}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-18T12:57:46.413Z\"}, \"debug_obs_official\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:54:22.856Z\", \"updated_at\": \"2026-05-18T12:54:22.856Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python debug_obs.py\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:0\"], \"pid\": \"86969\", \"log_path\": \"~/runs/importance_margin_vla_compress/debug_obs_official.log\", \"submitted_at\": \"2026-05-18T12:54:22.640Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"eval_official_smolvla_prune_k05\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:43:17.221Z\", \"updated_at\": \"2026-05-18T12:51:19.435Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --mode random_prune --k_ratio 0.5 --pruning_method true_removal --output eval_results/official_libero_object_random_prune_k05.json --seed 42\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"79867\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05.log\", \"submitted_at\": \"2026-05-18T12:51:19.230Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"train_baseline_control_100k\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:25:07.235Z\", \"updated_at\": \"2026-05-18T12:39:31.964Z\", \"hypothesis\": \"If Smart Compress's 15pp gain over baseline (59.8% vs 44.8%) comes from cross-attention re-encoding rather than extra training, then continuing baseline training for another 100K steps (expert-only, no compressor) should NOT close the gap. If baseline+100K reaches ~60%, the gain was from training; if it stays near 44.8%, cross-attention architecture is the cause.\", \"parent\": \"eval_smart_compress_m128\", \"spec\": {\"command\": \"python train_baseline_control.py --config configs/baseline_control.yaml --wandb_project smart-compress-vla --wandb_run baseline_control_fresh_lr\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:0\", \"pid\": \"100236\", \"log_path\": \"~/runs/importance_margin_vla_compress/train_baseline_control_100k.log\", \"submitted_at\": \"2026-05-18T12:25:14.994Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (same as full_ft baseline)\", \"data_count\": \"same as full_ft baseline\", \"model_name\": \"SmolVLA (from step 99999 checkpoint)\", \"seed\": \"default\", \"checkpoint_source\": \"checkpoints/libero_full_ft/step_099999/checkpoint.pt\", \"eval_data\": \"N/A (training experiment, not eval)\", \"trainable_params\": \"99.9M (action expert + projections only)\", \"wall_clock_seconds\": 504.9, \"gpu_hours\": 0.14}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-18T12:33:39.888Z\", \"notes\": \"wandb.init() failed — no WANDB_API_KEY on cqa1-33015. Restarted as train_baseline_control_100k_v2 with WANDB_MODE=offline.\"}, \"train_baseline_control_100k_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:37:08.905Z\", \"updated_at\": \"2026-05-18T12:39:23.860Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python train_baseline_control.py --config configs/baseline_control.yaml --wandb_project smart-compress-vla --wandb_run baseline_control_fresh_lr_v2\\\"\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:0\"], \"pid\": \"109885\", \"log_path\": \"~/runs/importance_margin_vla_compress/train_baseline_control_100k_v2.log\", \"submitted_at\": \"2026-05-18T12:37:08.670Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (same as full_ft baseline)\", \"data_count\": \"same as full_ft baseline\", \"model_name\": \"SmolVLA (from step 99999 checkpoint, fresh lr)\", \"seed\": \"default\", \"checkpoint_source\": \"checkpoints/libero_full_ft/step_099999/checkpoint.pt\", \"eval_data\": \"N/A (training experiment, not eval)\"}, \"hypothesis\": \"If Smart Compress's 15pp gain over baseline (59.8% vs 44.8%) comes from cross-attention re-encoding rather than extra training, then continuing baseline training for another 100K steps (expert-only, no compressor, fresh lr schedule) should NOT close the gap. If baseline+100K reaches ~60%, the gain was from training; if it stays near 44.8%, cross-attention architecture is the cause.\", \"parent\": \"eval_smart_compress_m128\"}, \"train_smart_compress_m96_seed43\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:38:32.719Z\", \"updated_at\": \"2026-05-18T12:39:04.270Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline CUDA_VISIBLE_DEVICES=2 python -u train_smart_compress.py --config configs/smart_compress_m96_seed43.yaml --wandb_run smart_compress_m96_seed43 --seed 43 --gpu 0\\\"\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:2\"], \"pid\": \"111876\", \"log_path\": \"~/runs/importance_margin_vla_compress/train_smart_compress_m96_seed43.log\", \"submitted_at\": \"2026-05-18T12:38:32.454Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 43, \"model_name\": \"smolvla_base + VisionTokenCompressor(M=96)\", \"data_path\": \"HuggingFaceVLA/libero\", \"data_count\": 0, \"checkpoint_source\": \"smolvla_base (from scratch)\", \"eval_data\": \"HuggingFaceVLA/libero\"}, \"hypothesis\": \"Repeat of Smart Compress M=96 training with seed=43. If SR is similar to seed=42 (52.6%), confirms the non-monotonic M-curve is robust. If SR differs significantly, indicates high variance at M=96 compression level.\", \"parent\": \"train_smart_compress_m96\"}, \"eval_smart_compress_m128\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:08:14.626Z\", \"updated_at\": \"2026-05-18T11:20:33.418Z\", \"hypothesis\": \"Cross-attention pooling with M=128 queries (no compression, passthrough control) on LIBERO-Object. If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression bottleneck provides the benefit. Critical control experiment for paper framing.\", \"parent\": \"train_smart_compress_m128_resume\", \"spec\": {\"command\": \"eval_smart_compress_libero.py --n_queries 128\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:0\"], \"pid\": \"18074\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smart_compress_m128.log\", \"submitted_at\": \"2026-05-18T10:08:26.674Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"smart_compress_m128\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/smart_compress_m128/checkpoint.pt\", \"eval_data\": \"libero_object\", \"wall_clock_seconds\": 4326.7, \"gpu_hours\": 1.2}, \"conclusion\": \"success\", \"metrics\": {\"libero_object_sr\": 0.598, \"libero_object_sr_ci95\": [0.554, 0.64], \"total_episodes\": 500, \"total_successes\": 299, \"per_task_sr\": {\"alphabet_soup\": 0.62, \"cream_cheese\": 0.58, \"salad_dressing\": 0.54, \"bbq_sauce\": 0.34, \"ketchup\": 0.62, \"tomato_sauce\": 0.5, \"butter\": 0.82, \"milk\": 0.56, \"chocolate_pudding\": 0.82, \"orange_juice\": 0.58}}, \"checkpoint_path\": \"N/A (eval only)\", \"completed_at\": \"2026-05-18T11:20:33.418Z\"}, \"eval_openvla_pruning_k03_restart\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T05:29:54.046Z\", \"updated_at\": \"2026-05-18T10:23:22.693Z\", \"hypothesis\": \"Restart of eval_openvla_pruning_k03 after server reboot. OpenVLA k=0.3 random pruning (keep 30% = 76 tokens). Completing degradation curve.\", \"parent\": \"eval_openvla_pruning_k03\", \"spec\": {\"command\": \"python -u /tmp/eval_openvla_libero_gpu1.py --mode random_prune --k_ratio 0.3 --suite libero_object --num_episodes 50 --seed 7\", \"server\": \"westd-27271\", \"data_path\": \"/root/autodl-tmp/openvla-libero-object\", \"data_count\": 500, \"model_name\": \"openvla-libero-object\", \"seed\": 7, \"checkpoint_source\": \"/root/autodl-tmp/openvla-libero-object\", \"eval_data\": \"libero_object\"}, \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.206, \"total_successes\": 103, \"total_episodes\": 500, \"wilson_ci_95\": [0.173, 0.244], \"elapsed_minutes\": 288.6, \"per_task_sr\": {\"alphabet_soup\": 0.14, \"cream_cheese\": 0, \"salad_dressing\": 0.64, \"bbq_sauce\": 0.3, \"ketchup\": 0.3, \"tomato_sauce\": 0.08, \"butter\": 0, \"milk\": 0.08, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.42}}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_restart.log\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_object.json\", \"completed_at\": \"2026-05-18T10:23:22.693Z\"}, \"train_smart_compress_m128_resume\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T05:27:32.368Z\", \"updated_at\": \"2026-05-18T10:09:18.982Z\", \"hypothesis\": \"Resume of train_smart_compress_m128 from step 32,000 checkpoint. Cross-attention pooling with M=128 queries (no compression, passthrough control). If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression provides the benefit.\", \"parent\": \"train_smart_compress_m128\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m128/checkpoint.pt\", \"log_path\": \"~/runs/importance_margin_vla_compress/train_smart_compress_m128_resume.log\", \"wandb_offline_run\": \"/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260518_132800-x610qzvt\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T10:06:16.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:06:20.885052+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.05412, \"eval_action_loss\": 0.05743, \"train_grad_norm\": 0.92663, \"total_steps\": 99999, \"resumed_from_step\": 32001}}, \"smolvla_entropy_perlayer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T07:01:32.515Z\", \"updated_at\": \"2026-05-18T07:19:52.802Z\", \"hypothesis\": \"SmolVLA per-layer attention entropy will be uniformly high (~0.98) across all 16 layers, in contrast to OpenVLA's progressive sharpening (0.98→0.48). This flat profile would confirm that pixel-shuffle creates uniform token dependence at every depth.\", \"spec\": {\"command\": \"python measure_smolvla_entropy_perlayer.py\", \"server\": \"cqa1-33015\", \"data_path\": \"HuggingFaceVLA/libero (cached)\", \"data_count\": 256, \"model_name\": \"smolvla_base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/lerobot/smolvla_base\", \"eval_data\": \"LIBERO mixed tasks\", \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_entropy_perlayer.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T07:03:49.995Z\", \"metrics\": {\"overall_entropy_ratio\": 0.9521, \"overall_entropy_std\": 0.02, \"n_images\": 260, \"n_tasks\": 10, \"n_layers\": 16, \"entropy_range\": [0.9311, 0.9826], \"entropy_range_width\": 0.05, \"per_layer\": {\"L0\": 0.9826, \"L1\": 0.9561, \"L2\": 0.9597, \"L3\": 0.9434, \"L4\": 0.9408, \"L5\": 0.9406, \"L6\": 0.9474, \"L7\": 0.9628, \"L8\": 0.9614, \"L9\": 0.9572, \"L10\": 0.9455, \"L11\": 0.951, \"L12\": 0.9485, \"L13\": 0.9311, \"L14\": 0.9482, \"L15\": 0.9566}, \"dataset\": \"LIBERO-Object (task 20-29)\", \"note\": \"Fixed: previous run sampled task 0-8 (LIBERO-90), not LIBERO-Object. Difference: 0.952 vs 0.944, conclusion unchanged.\", \"openvla_comparison\": {\"overall\": 0.639, \"range_width\": 0.5}}}, \"inference_latency_comparison\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:59:04.973Z\", \"updated_at\": \"2026-05-18T07:01:05.146Z\", \"hypothesis\": \"Smart Compress with M=32 (75% fewer vision tokens) will show measurable inference speedup over baseline 128 tokens, quantifying the practical benefit of learned compression.\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 python measure_inference_latency.py\", \"server\": \"cqa1-33015\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"smolvla_base + SmartCompressWrapper\", \"seed\": 42}, \"metrics\": {\"baseline_128_mean_ms\": 164.33, \"m32_mean_ms\": 154.78, \"m64_mean_ms\": 156.16, \"speedup_m32\": 1.0617, \"speedup_m64\": 1.0523, \"baseline_params\": 450046176, \"compressor_m32_params\": 22179840}, \"conclusion\": \"success\", \"log_path\": \"logs/inference_latency_comparison.log\", \"checkpoint_path\": \"eval_results/inference_latency_comparison.json\", \"completed_at\": \"2026-05-18T07:01:05.147Z\"}, \"eval_openvla_pruning_k03\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:01:28.122Z\", \"updated_at\": \"2026-05-18T06:15:16.402Z\", \"hypothesis\": \"OpenVLA (7B) with k=0.3 random pruning (keep 30% = 76 tokens) on LIBERO-Object will show severe but non-zero degradation, completing the 4-point degradation curve (k=1.0 74% → k=0.7 ? → k=0.5 37.4% → k=0.3 ?). Expected SR significantly below k=0.5 but possibly above 0% due to OpenVLA architecture tolerance.\", \"parent\": \"eval_openvla_pruning_k05\", \"spec\": {\"command\": \"python -u /tmp/eval_openvla_libero_gpu1.py --mode random_prune --k_ratio 0.3 --suite libero_object --num_episodes 50 --seed 7\", \"server\": \"westd-27271\", \"gpu\": \"cuda:1\", \"pid\": 768729, \"data_path\": \"LIBERO-Object (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"OpenVLA (7B)\", \"seed\": 7, \"checkpoint_source\": \"openvla-libero-object\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_object.log\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T06:15:16.402Z\"}, \"openvla_entropy_real\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T05:35:28.266Z\", \"updated_at\": \"2026-05-18T05:39:26.750Z\", \"hypothesis\": \"Measure OpenVLA attention entropy on real LIBERO-Object images (250 frames, 10 tasks) to replace previous measurement on 20 random images. Expected similar directional finding (entropy << 1.0) but more defensible to reviewers.\", \"spec\": {\"command\": \"MUJOCO_GL=egl HF_HOME=/root/autodl-tmp/.hf_cache CUDA_VISIBLE_DEVICES=0 python measure_openvla_entropy_real.py\", \"server\": \"westd-27271\", \"data_path\": \"LIBERO-Object simulation (10 tasks, 250 rendered frames)\", \"data_count\": 250, \"model_name\": \"OpenVLA-7B-libero-object\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"overall_entropy_ratio\": 0.6393, \"overall_entropy_std\": 0.1334, \"overall_vision_attn_frac\": 0.1211, \"n_images\": 250, \"n_tasks\": 10, \"min_entropy_layer\": {\"layer\": 29, \"ratio\": 0.4774}, \"max_entropy_layer\": {\"layer\": 0, \"ratio\": 0.979}, \"shallow_layers_0_1\": [0.979, 0.952], \"deep_layers_27_30\": [0.542, 0.53, 0.477, 0.524], \"previous_random_N20\": 0.617, \"smolvla_reference\": 0.98}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_entropy_real.log\", \"checkpoint_path\": \"N/A (analysis only)\", \"completed_at\": \"2026-05-18T05:39:26.750Z\"}, \"train_smart_compress_m128\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:57:30.022Z\", \"updated_at\": \"2026-05-18T05:24:55.028Z\", \"hypothesis\": \"Cross-attention pooling with M=128 queries attending to 128 source tokens (no compression, passthrough control). If SR is similar to M=32/M=64 (61.6%), the improvement over baseline comes from cross-attention architecture itself, not compression. If SR is higher, compression may be slightly hurting. If SR is lower or equal to baseline (44.8%), compression itself provides the benefit.\", \"parent\": \"eval_smart_compress_m32\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python train_smart_compress.py --config configs/smart_compress_m128.yaml --wandb_run smart_compress_m128\\\"\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:0\", \"pid\": 685989, \"log_path\": \"~/runs/importance_margin_vla_compress/train_smart_compress_m128.log\", \"submitted_at\": \"2026-05-18T02:57:46.749Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO dataset\", \"data_count\": 100000, \"model_name\": \"SmolVLA-SmartCompress-M128\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/libero_full_ft/step_099999/checkpoint.pt\", \"eval_data\": \"N/A (training)\", \"failure_reason\": \"Server rebooted at ~13:22 UTC, training interrupted at step 32500/100000 (32.5%). Last checkpoint at step 32000.\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m128/checkpoint.pt\", \"last_step\": 32500, \"last_loss\": 0.0476, \"wall_clock_seconds\": 8828.3, \"gpu_hours\": 2.45}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-18T05:24:55.028Z\"}, \"eval_smart_compress_m96\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T04:10:41.873Z\", \"updated_at\": \"2026-05-18T05:10:12.875Z\", \"hypothesis\": \"Cross-attention pooling compression (128→96 tokens, 25% reduction) is the mildest compression. Expected to retain near-full SR, establishing the upper bound of the compression-performance curve alongside M=32 (61.6%) and M=64 (61.6%).\", \"parent\": \"train_smart_compress_m96\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m96/checkpoint.pt --n_queries 96 --num_episodes 50 --suite libero_object --seed 42\\\"\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:1\", \"pid\": 689457, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smart_compress_m96.log\", \"submitted_at\": \"2026-05-18T04:10:59.380Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"SmolVLA-SmartCompress-M96\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/smart_compress_m96/checkpoint.pt\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"checkpoints/smart_compress_m96/checkpoint.pt\", \"wall_clock_seconds\": 3525.9, \"gpu_hours\": 0.98}, \"reproduce\": {\"finished_at\": \"2026-05-18T05:08:01.938Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T05:08:08.217286+00:00\"}]}, \"metrics\": {\"overall_sr\": 52.6, \"total_episodes\": 500, \"total_successes\": 263, \"wilson_ci_95\": [48.2, 56.9], \"per_task_sr\": {\"task_0_alphabet_soup\": 40, \"task_1_cream_cheese\": 52, \"task_2_salad_dressing\": 56, \"task_3_bbq_sauce\": 40, \"task_4_ketchup\": 26, \"task_5_tomato_sauce\": 50, \"task_6_butter\": 72, \"task_7_milk\": 62, \"task_8_chocolate_pudding\": 86, \"task_9_orange_juice\": 42}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T05:09:45.271Z\"}, \"eval_smart_compress_m16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T04:10:44.382Z\", \"updated_at\": \"2026-05-18T05:10:04.657Z\", \"hypothesis\": \"Cross-attention pooling compression (128→16 tokens, 87.5% compression) is the most extreme reduction. Expected to show degradation vs M=32/M=64, establishing the lower bound of the compression curve and testing where soft compression begins to fail.\", \"parent\": \"smart_compress_m16\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m16/checkpoint.pt --n_queries 16 --num_episodes 50 --suite libero_object --seed 42\\\"\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:2\", \"pid\": 689536, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smart_compress_m16.log\", \"submitted_at\": \"2026-05-18T04:11:00.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"SmolVLA-SmartCompress-M16\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/smart_compress_m16/checkpoint.pt\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"checkpoints/smart_compress_m16/checkpoint.pt\", \"wall_clock_seconds\": 3525.9, \"gpu_hours\": 0.98}, \"reproduce\": {\"finished_at\": \"2026-05-18T05:08:08.647Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T05:08:13.758917+00:00\"}]}, \"metrics\": {\"overall_sr\": 55.8, \"overall_sr_ci95\": [51.4, 60.1], \"total_episodes\": 500, \"total_successes\": 279, \"per_task_sr\": {\"task_0_alphabet_soup\": 56, \"task_1_cream_cheese\": 44, \"task_2_salad_dressing\": 72, \"task_3_bbq_sauce\": 56, \"task_4_ketchup\": 62, \"task_5_tomato_sauce\": 40, \"task_6_butter\": 78, \"task_7_milk\": 54, \"task_8_chocolate_pudding\": 76, \"task_9_orange_juice\": 20}, \"runtime_minutes\": 55}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T05:09:46.379Z\"}}, \"count\": 20, \"total\": 94, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3721}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "d5a2df8e-1878-45a7-8358-4ce7b79ce1a8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_official_smolvla_prune_k05_v2\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T13:24:02.097Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:09:23.084Z\\\", \\\"hypothesis\\\": \\\"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\\\", \\\"parent\\\": \\\"eval_official_smolvla_baseline\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"136801\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T13:24:15.257Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"smolvla_libero_official\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object (10 tasks x 50 episodes)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T14:09:22.717Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T14:09:27.250914+00:00\\\"}]}}, \\\"eval_official_smolvla_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T12:43:13.148Z\\\", \\\"updated_at\\\": \\\"2026-05-18T13:58:17.855Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --mode baseline --seed 42\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"117439\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_baseline.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T13:17:58.352Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"SmolVLA official checkpoint (HuggingFace)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"smolvla_libero_official\\\", \\\"eval_data\\\": \\\"LIBERO-Object 10 tasks x 50 episodes\\\", \\\"wall_clock_seconds\\\": 2419.5, \\\"gpu_hours\\\": 0.67}, \\\"hypothesis\\\": \\\"Official SmolVLA LIBERO checkpoint unpruned baseline on LIBERO-Object. Establishes baseline SR for official checkpoint to compare against pruning experiments. If ~44.8% (similar to our fine-tuned), confirms consistent baseline. If different, indicates training-specific effects.\\\", \\\"parent\\\": \\\"eval_smolvla_random_prune_k095\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T13:56:17.750Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T13:56:28.169877+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 59.2, \\\"wilson_ci_95\\\": [54.8, 63.4], \\\"total_episodes\\\": 500, \\\"total_successes\\\": 296, \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup\\\": 64, \\\"task_1_cream_cheese\\\": 40, \\\"task_2_salad_dressing\\\": 44, \\\"task_3_bbq_sauce\\\": 38, \\\"task_4_ketchup\\\": 60, \\\"task_5_tomato_sauce\\\": 46, \\\"task_6_butter\\\": 78, \\\"task_7_milk\\\": 52, \\\"task_8_chocolate_pudding\\\": 90, \\\"task_9_orange_juice\\\": 80}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_baseline.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval-only)\\\", \\\"completed_at\\\": \\\"2026-05-18T13:58:17.855Z\\\"}, \\\"eval_acis_k05_supplement_200eps\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T13:44:59.461Z\\\", \\\"updated_at\\\": \\\"2026-05-18T13:45:28.445Z\\\", \\\"hypothesis\\\": \\\"Supplement 200 episodes (tasks 6-9, 50 eps each) for ACIS k=0.5 zero_mask pruning condition on libero_object. Original eval_stage1only_object_v2_fixed only completed 300/500 episodes (tasks 0-5). Expected 0% SR consistent with tasks 0-5, bringing total to 500 episodes for statistical alignment with other conditions.\\\", \\\"parent\\\": \\\"eval_stage1only_object_v2_fixed\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_success_rate_libero.py --checkpoint checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt --config configs/libero_imm_twostage_fullft.yaml --suite libero_object --mode acis_prune --num_episodes 50 --gpu 0 --seed 42 --task_ids 6,7,8,9 --output eval_results/eval_acis_k05_supplement_200eps.json\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"146089\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_acis_k05_supplement_200eps.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T13:45:09.381Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"SmolVLA+ACIS_stage1only_k05\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt\\\", \\\"eval_data\\\": \\\"libero_object tasks 6-9 x 50 episodes\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}, \\\"eval_smolvla_random_prune_k095\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T12:16:53.132Z\\\", \\\"updated_at\\\": \\\"2026-05-18T13:20:17.960Z\\\", \\\"hypothesis\\\": \\\"Random pruning at k=0.95 (removing only 7/128 tokens) will still cause complete failure (0% SR), demonstrating extreme cliff-edge sensitivity where even minimal random token removal destroys VLA action generation\\\", \\\"parent\\\": \\\"eval_smolvla_random_prune\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -u eval_random_prune_smolvla.py --k_ratio 0.95 --episodes_per_task 50 --output_name smolvla_random_prune_k095.json --seed 42\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"92881\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T12:17:00Z\\\", \\\"submitted_via\\\": \\\"tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"SmolVLA full_ft (baseline)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/libero_full_ft/step_099999/checkpoint.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_path\\\": \\\"checkpoints/libero_full_ft/step_099999/checkpoint.pt\\\", \\\"wall_clock_seconds\\\": 3798.0, \\\"gpu_hours\\\": 1.05}, \\\"metrics\\\": {\\\"overall_SR\\\": 0, \\\"wilson_ci_95\\\": [0, 0.0076], \\\"total_episodes\\\": 500, \\\"total_successes\\\": 0, \\\"tokens_kept\\\": 121, \\\"tokens_removed\\\": 7, \\\"k_ratio\\\": 0.95, \\\"per_task_SR\\\": {\\\"T0_alphabet_soup\\\": 0, \\\"T1_cream_cheese\\\": 0, \\\"T2_salad_dressing\\\": 0, \\\"T3_bbq_sauce\\\": 0, \\\"T4_ketchup\\\": 0, \\\"T5_tomato_sauce\\\": 0, \\\"T6_butter\\\": 0, \\\"T7_milk\\\": 0, \\\"T8_chocolate_pudding\\\": 0, \\\"T9_orange_juice\\\": 0}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_random_prune_k095.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T13:20:17.960Z\\\"}, \\\"eval_official_smolvla_pruning\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T12:43:31.516Z\\\", \\\"updated_at\\\": \\\"2026-05-18T12:57:46.413Z\\\", \\\"hypothesis\\\": \\\"Official SmolVLA LIBERO checkpoint with random pruning k=0.5 should also show 0% SR cliff-edge, confirming the phenomenon is not specific to our fine-tuning setup but inherent to the pixel-shuffle architecture.\\\", \\\"parent\\\": \\\"eval_smolvla_random_prune_k095\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --mode baseline/random_prune --k_ratio 0.5\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"data_path\\\": \\\"LIBERO libero_object (sim)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"SmolVLA-500M-official-LIBERO\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object 10 tasks x 50 episodes\\\"}, \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-18T12:57:46.413Z\\\"}, \\\"debug_obs_official\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T12:54:22.856Z\\\", \\\"updated_at\\\": \\\"2026-05-18T12:54:22.856Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python debug_obs.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"86969\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/debug_obs_official.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T12:54:22.640Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval_official_smolvla_prune_k05\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T12:43:17.221Z\\\", \\\"updated_at\\\": \\\"2026-05-18T12:51:19.435Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --mode random_prune --k_ratio 0.5 --pruning_method true_removal --output eval_results/official_libero_object_random_prune_k05.json --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"79867\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T12:51:19.230Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"train_baseline_control_100k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T12:25:07.235Z\\\", \\\"updated_at\\\": \\\"2026-05-18T12:39:31.964Z\\\", \\\"hypothesis\\\": \\\"If Smart Compress's 15pp gain over baseline (59.8% vs 44.8%) comes from cross-attention re-encoding rather than extra training, then continuing baseline training for another 100K steps (expert-only, no compressor) should NOT close the gap. If baseline+100K reaches ~60%, the gain was from training; if it stays near 44.8%, cross-attention architecture is the cause.\\\", \\\"parent\\\": \\\"eval_smart_compress_m128\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train_baseline_control.py --config configs/baseline_control.yaml --wandb_project smart-compress-vla --wandb_run baseline_control_fresh_lr\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"100236\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/train_baseline_control_100k.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T12:25:14.994Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (same as full_ft baseline)\\\", \\\"data_count\\\": \\\"same as full_ft baseline\\\", \\\"model_name\\\": \\\"SmolVLA (from step 99999 checkpoint)\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_source\\\": \\\"checkpoints/libero_full_ft/step_099999/checkpoint.pt\\\", \\\"eval_data\\\": \\\"N/A (training experiment, not eval)\\\", \\\"trainable_params\\\": \\\"99.9M (action expert + projections only)\\\", \\\"wall_clock_seconds\\\": 504.9, \\\"gpu_hours\\\": 0.14}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-18T12:33:39.888Z\\\", \\\"notes\\\": \\\"wandb.init() failed — no WANDB_API_KEY on cqa1-33015. Restarted as train_baseline_control_100k_v2 with WANDB_MODE=offline.\\\"}, \\\"train_baseline_control_100k_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T12:37:08.905Z\\\", \\\"updated_at\\\": \\\"2026-05-18T12:39:23.860Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python train_baseline_control.py --config configs/baseline_control.yaml --wandb_project smart-compress-vla --wandb_run baseline_control_fresh_lr_v2\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"109885\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/train_baseline_control_100k_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T12:37:08.670Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (same as full_ft baseline)\\\", \\\"data_count\\\": \\\"same as full_ft baseline\\\", \\\"model_name\\\": \\\"SmolVLA (from step 99999 checkpoint, fresh lr)\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_source\\\": \\\"checkpoints/libero_full_ft/step_099999/checkpoint.pt\\\", \\\"eval_data\\\": \\\"N/A (training experiment, not eval)\\\"}, \\\"hypothesis\\\": \\\"If Smart Compress's 15pp gain over baseline (59.8% vs 44.8%) comes from cross-attention re-encoding rather than extra training, then continuing baseline training for another 100K steps (expert-only, no compressor, fresh lr schedule) should NOT close the gap. If baseline+100K reaches ~60%, the gain was from training; if it stays near 44.8%, cross-attention architecture is the cause.\\\", \\\"parent\\\": \\\"eval_smart_compress_m128\\\"}, \\\"train_smart_compress_m96_seed43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T12:38:32.719Z\\\", \\\"updated_at\\\": \\\"2026-05-18T12:39:04.270Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline CUDA_VISIBLE_DEVICES=2 python -u train_smart_compress.py --config configs/smart_compress_m96_seed43.yaml --wandb_run smart_compress_m96_seed43 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"111876\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/train_smart_compress_m96_seed43.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T12:38:32.454Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"seed\\\": 43, \\\"model_name\\\": \\\"smolvla_base + VisionTokenCompressor(M=96)\\\", \\\"data_path\\\": \\\"HuggingFaceVLA/libero\\\", \\\"data_count\\\": 0, \\\"checkpoint_source\\\": \\\"smolvla_base (from scratch)\\\", \\\"eval_data\\\": \\\"HuggingFaceVLA/libero\\\"}, \\\"hypothesis\\\": \\\"Repeat of Smart Compress M=96 training with seed=43. If SR is similar to seed=42 (52.6%), confirms the non-monotonic M-curve is robust. If SR differs significantly, indicates high variance at M=96 compression level.\\\", \\\"parent\\\": \\\"train_smart_compress_m96\\\"}, \\\"eval_smart_compress_m128\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T10:08:14.626Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:20:33.418Z\\\", \\\"hypothesis\\\": \\\"Cross-attention pooling with M=128 queries (no compression, passthrough control) on LIBERO-Object. If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression bottleneck provides the benefit. Critical control experiment for paper framing.\\\", \\\"parent\\\": \\\"train_smart_compress_m128_resume\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_smart_compress_libero.py --n_queries 128\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"18074\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_smart_compress_m128.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T10:08:26.674Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"smart_compress_m128\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/smart_compress_m128/checkpoint.pt\\\", \\\"eval_data\\\": \\\"libero_object\\\", \\\"wall_clock_seconds\\\": 4326.7, \\\"gpu_hours\\\": 1.2}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"libero_object_sr\\\": 0.598, \\\"libero_object_sr_ci95\\\": [0.554, 0.64], \\\"total_episodes\\\": 500, \\\"total_successes\\\": 299, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0.62, \\\"cream_cheese\\\": 0.58, \\\"salad_dressing\\\": 0.54, \\\"bbq_sauce\\\": 0.34, \\\"ketchup\\\": 0.62, \\\"tomato_sauce\\\": 0.5, \\\"butter\\\": 0.82, \\\"milk\\\": 0.56, \\\"chocolate_pudding\\\": 0.82, \\\"orange_juice\\\": 0.58}}, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"completed_at\\\": \\\"2026-05-18T11:20:33.418Z\\\"}, \\\"eval_openvla_pruning_k03_restart\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T05:29:54.046Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:23:22.693Z\\\", \\\"hypothesis\\\": \\\"Restart of eval_openvla_pruning_k03 after server reboot. OpenVLA k=0.3 random pruning (keep 30% = 76 tokens). Completing degradation curve.\\\", \\\"parent\\\": \\\"eval_openvla_pruning_k03\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u /tmp/eval_openvla_libero_gpu1.py --mode random_prune --k_ratio 0.3 --suite libero_object --num_episodes 50 --seed 7\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/openvla-libero-object\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-libero-object\\\", \\\"seed\\\": 7, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/openvla-libero-object\\\", \\\"eval_data\\\": \\\"libero_object\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.206, \\\"total_successes\\\": 103, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [0.173, 0.244], \\\"elapsed_minutes\\\": 288.6, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0.14, \\\"cream_cheese\\\": 0, \\\"salad_dressing\\\": 0.64, \\\"bbq_sauce\\\": 0.3, \\\"ketchup\\\": 0.3, \\\"tomato_sauce\\\": 0.08, \\\"butter\\\": 0, \\\"milk\\\": 0.08, \\\"chocolate_pudding\\\": 0.1, \\\"orange_juice\\\": 0.42}}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_restart.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_object.json\\\", \\\"completed_at\\\": \\\"2026-05-18T10:23:22.693Z\\\"}, \\\"train_smart_compress_m128_resume\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T05:27:32.368Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:09:18.982Z\\\", \\\"hypothesis\\\": \\\"Resume of train_smart_compress_m128 from step 32,000 checkpoint. Cross-attention pooling with M=128 queries (no compression, passthrough control). If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression provides the benefit.\\\", \\\"parent\\\": \\\"train_smart_compress_m128\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m128/checkpoint.pt\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/train_smart_compress_m128_resume.log\\\", \\\"wandb_offline_run\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260518_132800-x610qzvt\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:06:16.992Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:06:20.885052+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_action_loss\\\": 0.05412, \\\"eval_action_loss\\\": 0.05743, \\\"train_grad_norm\\\": 0.92663, \\\"total_steps\\\": 99999, \\\"resumed_from_step\\\": 32001}}, \\\"smolvla_entropy_perlayer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T07:01:32.515Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:19:52.802Z\\\", \\\"hypothesis\\\": \\\"SmolVLA per-layer attention entropy will be uniformly high (~0.98) across all 16 layers, in contrast to OpenVLA's progressive sharpening (0.98→0.48). This flat profile would confirm that pixel-shuffle creates uniform token dependence at every depth.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python measure_smolvla_entropy_perlayer.py\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"HuggingFaceVLA/libero (cached)\\\", \\\"data_count\\\": 256, \\\"model_name\\\": \\\"smolvla_base\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/lerobot/smolvla_base\\\", \\\"eval_data\\\": \\\"LIBERO mixed tasks\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_entropy_perlayer.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T07:03:49.995Z\\\", \\\"metrics\\\": {\\\"overall_entropy_ratio\\\": 0.9521, \\\"overall_entropy_std\\\": 0.02, \\\"n_images\\\": 260, \\\"n_tasks\\\": 10, \\\"n_layers\\\": 16, \\\"entropy_range\\\": [0.9311, 0.9826], \\\"entropy_range_width\\\": 0.05, \\\"per_layer\\\": {\\\"L0\\\": 0.9826, \\\"L1\\\": 0.9561, \\\"L2\\\": 0.9597, \\\"L3\\\": 0.9434, \\\"L4\\\": 0.9408, \\\"L5\\\": 0.9406, \\\"L6\\\": 0.9474, \\\"L7\\\": 0.9628, \\\"L8\\\": 0.9614, \\\"L9\\\": 0.9572, \\\"L10\\\": 0.9455, \\\"L11\\\": 0.951, \\\"L12\\\": 0.9485, \\\"L13\\\": 0.9311, \\\"L14\\\": 0.9482, \\\"L15\\\": 0.9566}, \\\"dataset\\\": \\\"LIBERO-Object (task 20-29)\\\", \\\"note\\\": \\\"Fixed: previous run sampled task 0-8 (LIBERO-90), not LIBERO-Object. Difference: 0.952 vs 0.944, conclusion unchanged.\\\", \\\"openvla_comparison\\\": {\\\"overall\\\": 0.639, \\\"range_width\\\": 0.5}}}, \\\"inference_latency_comparison\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:59:04.973Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:01:05.146Z\\\", \\\"hypothesis\\\": \\\"Smart Compress with M=32 (75% fewer vision tokens) will show measurable inference speedup over baseline 128 tokens, quantifying the practical benefit of learned compression.\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 python measure_inference_latency.py\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"smolvla_base + SmartCompressWrapper\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"baseline_128_mean_ms\\\": 164.33, \\\"m32_mean_ms\\\": 154.78, \\\"m64_mean_ms\\\": 156.16, \\\"speedup_m32\\\": 1.0617, \\\"speedup_m64\\\": 1.0523, \\\"baseline_params\\\": 450046176, \\\"compressor_m32_params\\\": 22179840}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"logs/inference_latency_comparison.log\\\", \\\"checkpoint_path\\\": \\\"eval_results/inference_latency_comparison.json\\\", \\\"completed_at\\\": \\\"2026-05-18T07:01:05.147Z\\\"}, \\\"eval_openvla_pruning_k03\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T01:01:28.122Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:15:16.402Z\\\", \\\"hypothesis\\\": \\\"OpenVLA (7B) with k=0.3 random pruning (keep 30% = 76 tokens) on LIBERO-Object will show severe but non-zero degradation, completing the 4-point degradation curve (k=1.0 74% → k=0.7 ? → k=0.5 37.4% → k=0.3 ?). Expected SR significantly below k=0.5 but possibly above 0% due to OpenVLA architecture tolerance.\\\", \\\"parent\\\": \\\"eval_openvla_pruning_k05\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u /tmp/eval_openvla_libero_gpu1.py --mode random_prune --k_ratio 0.3 --suite libero_object --num_episodes 50 --seed 7\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 768729, \\\"data_path\\\": \\\"LIBERO-Object (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"OpenVLA (7B)\\\", \\\"seed\\\": 7, \\\"checkpoint_source\\\": \\\"openvla-libero-object\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_object.log\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-18T06:15:16.402Z\\\"}, \\\"openvla_entropy_real\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T05:35:28.266Z\\\", \\\"updated_at\\\": \\\"2026-05-18T05:39:26.750Z\\\", \\\"hypothesis\\\": \\\"Measure OpenVLA attention entropy on real LIBERO-Object images (250 frames, 10 tasks) to replace previous measurement on 20 random images. Expected similar directional finding (entropy << 1.0) but more defensible to reviewers.\\\", \\\"spec\\\": {\\\"command\\\": \\\"MUJOCO_GL=egl HF_HOME=/root/autodl-tmp/.hf_cache CUDA_VISIBLE_DEVICES=0 python measure_openvla_entropy_real.py\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"data_path\\\": \\\"LIBERO-Object simulation (10 tasks, 250 rendered frames)\\\", \\\"data_count\\\": 250, \\\"model_name\\\": \\\"OpenVLA-7B-libero-object\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_entropy_ratio\\\": 0.6393, \\\"overall_entropy_std\\\": 0.1334, \\\"overall_vision_attn_frac\\\": 0.1211, \\\"n_images\\\": 250, \\\"n_tasks\\\": 10, \\\"min_entropy_layer\\\": {\\\"layer\\\": 29, \\\"ratio\\\": 0.4774}, \\\"max_entropy_layer\\\": {\\\"layer\\\": 0, \\\"ratio\\\": 0.979}, \\\"shallow_layers_0_1\\\": [0.979, 0.952], \\\"deep_layers_27_30\\\": [0.542, 0.53, 0.477, 0.524], \\\"previous_random_N20\\\": 0.617, \\\"smolvla_reference\\\": 0.98}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_entropy_real.log\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"completed_at\\\": \\\"2026-05-18T05:39:26.750Z\\\"}, \\\"train_smart_compress_m128\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T02:57:30.022Z\\\", \\\"updated_at\\\": \\\"2026-05-18T05:24:55.028Z\\\", \\\"hypothesis\\\": \\\"Cross-attention pooling with M=128 queries attending to 128 source tokens (no compression, passthrough control). If SR is similar to M=32/M=64 (61.6%), the improvement over baseline comes from cross-attention architecture itself, not compression. If SR is higher, compression may be slightly hurting. If SR is lower or equal to baseline (44.8%), compression itself provides the benefit.\\\", \\\"parent\\\": \\\"eval_smart_compress_m32\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python train_smart_compress.py --config configs/smart_compress_m128.yaml --wandb_run smart_compress_m128\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 685989, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/train_smart_compress_m128.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T02:57:46.749Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO dataset\\\", \\\"data_count\\\": 100000, \\\"model_name\\\": \\\"SmolVLA-SmartCompress-M128\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/libero_full_ft/step_099999/checkpoint.pt\\\", \\\"eval_data\\\": \\\"N/A (training)\\\", \\\"failure_reason\\\": \\\"Server rebooted at ~13:22 UTC, training interrupted at step 32500/100000 (32.5%). Last checkpoint at step 32000.\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m128/checkpoint.pt\\\", \\\"last_step\\\": 32500, \\\"last_loss\\\": 0.0476, \\\"wall_clock_seconds\\\": 8828.3, \\\"gpu_hours\\\": 2.45}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-18T05:24:55.028Z\\\"}, \\\"eval_smart_compress_m96\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T04:10:41.873Z\\\", \\\"updated_at\\\": \\\"2026-05-18T05:10:12.875Z\\\", \\\"hypothesis\\\": \\\"Cross-attention pooling compression (128→96 tokens, 25% reduction) is the mildest compression. Expected to retain near-full SR, establishing the upper bound of the compression-performance curve alongside M=32 (61.6%) and M=64 (61.6%).\\\", \\\"parent\\\": \\\"train_smart_compress_m96\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m96/checkpoint.pt --n_queries 96 --num_episodes 50 --suite libero_object --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 689457, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_smart_compress_m96.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T04:10:59.380Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"SmolVLA-SmartCompress-M96\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/smart_compress_m96/checkpoint.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_path\\\": \\\"checkpoints/smart_compress_m96/checkpoint.pt\\\", \\\"wall_clock_seconds\\\": 3525.9, \\\"gpu_hours\\\": 0.98}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T05:08:01.938Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T05:08:08.217286+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 52.6, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 263, \\\"wilson_ci_95\\\": [48.2, 56.9], \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup\\\": 40, \\\"task_1_cream_cheese\\\": 52, \\\"task_2_salad_dressing\\\": 56, \\\"task_3_bbq_sauce\\\": 40, \\\"task_4_ketchup\\\": 26, \\\"task_5_tomato_sauce\\\": 50, \\\"task_6_butter\\\": 72, \\\"task_7_milk\\\": 62, \\\"task_8_chocolate_pudding\\\": 86, \\\"task_9_orange_juice\\\": 42}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T05:09:45.271Z\\\"}, \\\"eval_smart_compress_m16\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T04:10:44.382Z\\\", \\\"updated_at\\\": \\\"2026-05-18T05:10:04.657Z\\\", \\\"hypothesis\\\": \\\"Cross-attention pooling compression (128→16 tokens, 87.5% compression) is the most extreme reduction. Expected to show degradation vs M=32/M=64, establishing the lower bound of the compression curve and testing where soft compression begins to fail.\\\", \\\"parent\\\": \\\"smart_compress_m16\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m16/checkpoint.pt --n_queries 16 --num_episodes 50 --suite libero_object --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 689536, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_smart_compress_m16.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T04:11:00.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"SmolVLA-SmartCompress-M16\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/smart_compress_m16/checkpoint.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"checkpoint_path\\\": \\\"checkpoints/smart_compress_m16/checkpoint.pt\\\", \\\"wall_clock_seconds\\\": 3525.9, \\\"gpu_hours\\\": 0.98}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T05:08:08.647Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T05:08:13.758917+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 55.8, \\\"overall_sr_ci95\\\": [51.4, 60.1], \\\"total_episodes\\\": 500, \\\"total_successes\\\": 279, \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup\\\": 56, \\\"task_1_cream_cheese\\\": 44, \\\"task_2_salad_dressing\\\": 72, \\\"task_3_bbq_sauce\\\": 56, \\\"task_4_ketchup\\\": 62, \\\"task_5_tomato_sauce\\\": 40, \\\"task_6_butter\\\": 78, \\\"task_7_milk\\\": 54, \\\"task_8_chocolate_pudding\\\": 76, \\\"task_9_orange_juice\\\": 20}, \\\"runtime_minutes\\\": 55}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T05:09:46.379Z\\\"}}, \\\"count\\\": 20, \\\"total\\\": 94, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3721}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_official_smolvla_prune_k05_v2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:09:23.084Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}}, \"eval_official_smolvla_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:43:13.148Z\", \"updated_at\": \"2026-05-18T13:58:17.855Z\", \"spec\": {\"command\": \"python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --mode baseline --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:0\"], \"pid\": \"117439\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_baseline.log\", \"submitted_at\": \"2026-05-18T13:17:58.352Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": \"cuda:0\", \"data_path\": \"LIBERO-Object\", \"data_count\": 500, \"model_name\": \"SmolVLA official checkpoint (HuggingFace)\", \"seed\": 42, \"checkpoint_source\": \"smolvla_libero_official\", \"eval_data\": \"LIBERO-Object 10 tasks x 50 episodes\", \"wall_clock_seconds\": 2419.5, \"gpu_hours\": 0.67}, \"hypothesis\": \"Official SmolVLA LIBERO checkpoint unpruned baseline on LIBERO-Object. Establishes baseline SR for official checkpoint to compare against pruning experiments. If ~44.8% (similar to our fine-tuned), confirms consistent baseline. If different, indicates training-specific effects.\", \"parent\": \"eval_smolvla_random_prune_k095\", \"reproduce\": {\"finished_at\": \"2026-05-18T13:56:17.750Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T13:56:28.169877+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 59.2, \"wilson_ci_95\": [54.8, 63.4], \"total_episodes\": 500, \"total_successes\": 296, \"per_task_sr\": {\"task_0_alphabet_soup\": 64, \"task_1_cream_cheese\": 40, \"task_2_salad_dressing\": 44, \"task_3_bbq_sauce\": 38, \"task_4_ketchup\": 60, \"task_5_tomato_sauce\": 46, \"task_6_butter\": 78, \"task_7_milk\": 52, \"task_8_chocolate_pudding\": 90, \"task_9_orange_juice\": 80}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_baseline.log\", \"checkpoint_path\": \"N/A (eval-only)\", \"completed_at\": \"2026-05-18T13:58:17.855Z\"}, \"eval_acis_k05_supplement_200eps\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:44:59.461Z\", \"updated_at\": \"2026-05-18T13:45:28.445Z\", \"hypothesis\": \"Supplement 200 episodes (tasks 6-9, 50 eps each) for ACIS k=0.5 zero_mask pruning condition on libero_object. Original eval_stage1only_object_v2_fixed only completed 300/500 episodes (tasks 0-5). Expected 0% SR consistent with tasks 0-5, bringing total to 500 episodes for statistical alignment with other conditions.\", \"parent\": \"eval_stage1only_object_v2_fixed\", \"spec\": {\"command\": \"python eval_success_rate_libero.py --checkpoint checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt --config configs/libero_imm_twostage_fullft.yaml --suite libero_object --mode acis_prune --num_episodes 50 --gpu 0 --seed 42 --task_ids 6,7,8,9 --output eval_results/eval_acis_k05_supplement_200eps.json\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:1\"], \"pid\": \"146089\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_acis_k05_supplement_200eps.log\", \"submitted_at\": \"2026-05-18T13:45:09.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 200, \"model_name\": \"SmolVLA+ACIS_stage1only_k05\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt\", \"eval_data\": \"libero_object tasks 6-9 x 50 episodes\", \"checkpoint_path\": \"N/A (eval only)\"}}, \"eval_smolvla_random_prune_k095\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:16:53.132Z\", \"updated_at\": \"2026-05-18T13:20:17.960Z\", \"hypothesis\": \"Random pruning at k=0.95 (removing only 7/128 tokens) will still cause complete failure (0% SR), demonstrating extreme cliff-edge sensitivity where even minimal random token removal destroys VLA action generation\", \"parent\": \"eval_smolvla_random_prune\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u eval_random_prune_smolvla.py --k_ratio 0.95 --episodes_per_task 50 --output_name smolvla_random_prune_k095.json --seed 42\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:1\"], \"pid\": \"92881\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log\", \"submitted_at\": \"2026-05-18T12:17:00Z\", \"submitted_via\": \"tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"SmolVLA full_ft (baseline)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/libero_full_ft/step_099999/checkpoint.pt\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"checkpoints/libero_full_ft/step_099999/checkpoint.pt\", \"wall_clock_seconds\": 3798.0, \"gpu_hours\": 1.05}, \"metrics\": {\"overall_SR\": 0, \"wilson_ci_95\": [0, 0.0076], \"total_episodes\": 500, \"total_successes\": 0, \"tokens_kept\": 121, \"tokens_removed\": 7, \"k_ratio\": 0.95, \"per_task_SR\": {\"T0_alphabet_soup\": 0, \"T1_cream_cheese\": 0, \"T2_salad_dressing\": 0, \"T3_bbq_sauce\": 0, \"T4_ketchup\": 0, \"T5_tomato_sauce\": 0, \"T6_butter\": 0, \"T7_milk\": 0, \"T8_chocolate_pudding\": 0, \"T9_orange_juice\": 0}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_random_prune_k095.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T13:20:17.960Z\"}, \"eval_official_smolvla_pruning\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:43:31.516Z\", \"updated_at\": \"2026-05-18T12:57:46.413Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with random pruning k=0.5 should also show 0% SR cliff-edge, confirming the phenomenon is not specific to our fine-tuning setup but inherent to the pixel-shuffle architecture.\", \"parent\": \"eval_smolvla_random_prune_k095\", \"spec\": {\"command\": \"python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --mode baseline/random_prune --k_ratio 0.5\", \"server\": \"westd-27271\", \"data_path\": \"LIBERO libero_object (sim)\", \"data_count\": 500, \"model_name\": \"SmolVLA-500M-official-LIBERO\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object 10 tasks x 50 episodes\"}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-18T12:57:46.413Z\"}, \"debug_obs_official\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:54:22.856Z\", \"updated_at\": \"2026-05-18T12:54:22.856Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python debug_obs.py\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:0\"], \"pid\": \"86969\", \"log_path\": \"~/runs/importance_margin_vla_compress/debug_obs_official.log\", \"submitted_at\": \"2026-05-18T12:54:22.640Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"eval_official_smolvla_prune_k05\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:43:17.221Z\", \"updated_at\": \"2026-05-18T12:51:19.435Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/autodl-tmp/importance_margin_vla_compress && MUJOCO_GL=egl PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --mode random_prune --k_ratio 0.5 --pruning_method true_removal --output eval_results/official_libero_object_random_prune_k05.json --seed 42\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"79867\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05.log\", \"submitted_at\": \"2026-05-18T12:51:19.230Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"train_baseline_control_100k\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:25:07.235Z\", \"updated_at\": \"2026-05-18T12:39:31.964Z\", \"hypothesis\": \"If Smart Compress's 15pp gain over baseline (59.8% vs 44.8%) comes from cross-attention re-encoding rather than extra training, then continuing baseline training for another 100K steps (expert-only, no compressor) should NOT close the gap. If baseline+100K reaches ~60%, the gain was from training; if it stays near 44.8%, cross-attention architecture is the cause.\", \"parent\": \"eval_smart_compress_m128\", \"spec\": {\"command\": \"python train_baseline_control.py --config configs/baseline_control.yaml --wandb_project smart-compress-vla --wandb_run baseline_control_fresh_lr\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:0\", \"pid\": \"100236\", \"log_path\": \"~/runs/importance_margin_vla_compress/train_baseline_control_100k.log\", \"submitted_at\": \"2026-05-18T12:25:14.994Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (same as full_ft baseline)\", \"data_count\": \"same as full_ft baseline\", \"model_name\": \"SmolVLA (from step 99999 checkpoint)\", \"seed\": \"default\", \"checkpoint_source\": \"checkpoints/libero_full_ft/step_099999/checkpoint.pt\", \"eval_data\": \"N/A (training experiment, not eval)\", \"trainable_params\": \"99.9M (action expert + projections only)\", \"wall_clock_seconds\": 504.9, \"gpu_hours\": 0.14}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-18T12:33:39.888Z\", \"notes\": \"wandb.init() failed — no WANDB_API_KEY on cqa1-33015. Restarted as train_baseline_control_100k_v2 with WANDB_MODE=offline.\"}, \"train_baseline_control_100k_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:37:08.905Z\", \"updated_at\": \"2026-05-18T12:39:23.860Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python train_baseline_control.py --config configs/baseline_control.yaml --wandb_project smart-compress-vla --wandb_run baseline_control_fresh_lr_v2\\\"\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:0\"], \"pid\": \"109885\", \"log_path\": \"~/runs/importance_margin_vla_compress/train_baseline_control_100k_v2.log\", \"submitted_at\": \"2026-05-18T12:37:08.670Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (same as full_ft baseline)\", \"data_count\": \"same as full_ft baseline\", \"model_name\": \"SmolVLA (from step 99999 checkpoint, fresh lr)\", \"seed\": \"default\", \"checkpoint_source\": \"checkpoints/libero_full_ft/step_099999/checkpoint.pt\", \"eval_data\": \"N/A (training experiment, not eval)\"}, \"hypothesis\": \"If Smart Compress's 15pp gain over baseline (59.8% vs 44.8%) comes from cross-attention re-encoding rather than extra training, then continuing baseline training for another 100K steps (expert-only, no compressor, fresh lr schedule) should NOT close the gap. If baseline+100K reaches ~60%, the gain was from training; if it stays near 44.8%, cross-attention architecture is the cause.\", \"parent\": \"eval_smart_compress_m128\"}, \"train_smart_compress_m96_seed43\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T12:38:32.719Z\", \"updated_at\": \"2026-05-18T12:39:04.270Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline CUDA_VISIBLE_DEVICES=2 python -u train_smart_compress.py --config configs/smart_compress_m96_seed43.yaml --wandb_run smart_compress_m96_seed43 --seed 43 --gpu 0\\\"\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:2\"], \"pid\": \"111876\", \"log_path\": \"~/runs/importance_margin_vla_compress/train_smart_compress_m96_seed43.log\", \"submitted_at\": \"2026-05-18T12:38:32.454Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 43, \"model_name\": \"smolvla_base + VisionTokenCompressor(M=96)\", \"data_path\": \"HuggingFaceVLA/libero\", \"data_count\": 0, \"checkpoint_source\": \"smolvla_base (from scratch)\", \"eval_data\": \"HuggingFaceVLA/libero\"}, \"hypothesis\": \"Repeat of Smart Compress M=96 training with seed=43. If SR is similar to seed=42 (52.6%), confirms the non-monotonic M-curve is robust. If SR differs significantly, indicates high variance at M=96 compression level.\", \"parent\": \"train_smart_compress_m96\"}, \"eval_smart_compress_m128\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:08:14.626Z\", \"updated_at\": \"2026-05-18T11:20:33.418Z\", \"hypothesis\": \"Cross-attention pooling with M=128 queries (no compression, passthrough control) on LIBERO-Object. If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression bottleneck provides the benefit. Critical control experiment for paper framing.\", \"parent\": \"train_smart_compress_m128_resume\", \"spec\": {\"command\": \"eval_smart_compress_libero.py --n_queries 128\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:0\"], \"pid\": \"18074\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smart_compress_m128.log\", \"submitted_at\": \"2026-05-18T10:08:26.674Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"smart_compress_m128\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/smart_compress_m128/checkpoint.pt\", \"eval_data\": \"libero_object\", \"wall_clock_seconds\": 4326.7, \"gpu_hours\": 1.2}, \"conclusion\": \"success\", \"metrics\": {\"libero_object_sr\": 0.598, \"libero_object_sr_ci95\": [0.554, 0.64], \"total_episodes\": 500, \"total_successes\": 299, \"per_task_sr\": {\"alphabet_soup\": 0.62, \"cream_cheese\": 0.58, \"salad_dressing\": 0.54, \"bbq_sauce\": 0.34, \"ketchup\": 0.62, \"tomato_sauce\": 0.5, \"butter\": 0.82, \"milk\": 0.56, \"chocolate_pudding\": 0.82, \"orange_juice\": 0.58}}, \"checkpoint_path\": \"N/A (eval only)\", \"completed_at\": \"2026-05-18T11:20:33.418Z\"}, \"eval_openvla_pruning_k03_restart\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T05:29:54.046Z\", \"updated_at\": \"2026-05-18T10:23:22.693Z\", \"hypothesis\": \"Restart of eval_openvla_pruning_k03 after server reboot. OpenVLA k=0.3 random pruning (keep 30% = 76 tokens). Completing degradation curve.\", \"parent\": \"eval_openvla_pruning_k03\", \"spec\": {\"command\": \"python -u /tmp/eval_openvla_libero_gpu1.py --mode random_prune --k_ratio 0.3 --suite libero_object --num_episodes 50 --seed 7\", \"server\": \"westd-27271\", \"data_path\": \"/root/autodl-tmp/openvla-libero-object\", \"data_count\": 500, \"model_name\": \"openvla-libero-object\", \"seed\": 7, \"checkpoint_source\": \"/root/autodl-tmp/openvla-libero-object\", \"eval_data\": \"libero_object\"}, \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.206, \"total_successes\": 103, \"total_episodes\": 500, \"wilson_ci_95\": [0.173, 0.244], \"elapsed_minutes\": 288.6, \"per_task_sr\": {\"alphabet_soup\": 0.14, \"cream_cheese\": 0, \"salad_dressing\": 0.64, \"bbq_sauce\": 0.3, \"ketchup\": 0.3, \"tomato_sauce\": 0.08, \"butter\": 0, \"milk\": 0.08, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.42}}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_restart.log\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_object.json\", \"completed_at\": \"2026-05-18T10:23:22.693Z\"}, \"train_smart_compress_m128_resume\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T05:27:32.368Z\", \"updated_at\": \"2026-05-18T10:09:18.982Z\", \"hypothesis\": \"Resume of train_smart_compress_m128 from step 32,000 checkpoint. Cross-attention pooling with M=128 queries (no compression, passthrough control). If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression provides the benefit.\", \"parent\": \"train_smart_compress_m128\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m128/checkpoint.pt\", \"log_path\": \"~/runs/importance_margin_vla_compress/train_smart_compress_m128_resume.log\", \"wandb_offline_run\": \"/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260518_132800-x610qzvt\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T10:06:16.992Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:06:20.885052+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.05412, \"eval_action_loss\": 0.05743, \"train_grad_norm\": 0.92663, \"total_steps\": 99999, \"resumed_from_step\": 32001}}, \"smolvla_entropy_perlayer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T07:01:32.515Z\", \"updated_at\": \"2026-05-18T07:19:52.802Z\", \"hypothesis\": \"SmolVLA per-layer attention entropy will be uniformly high (~0.98) across all 16 layers, in contrast to OpenVLA's progressive sharpening (0.98→0.48). This flat profile would confirm that pixel-shuffle creates uniform token dependence at every depth.\", \"spec\": {\"command\": \"python measure_smolvla_entropy_perlayer.py\", \"server\": \"cqa1-33015\", \"data_path\": \"HuggingFaceVLA/libero (cached)\", \"data_count\": 256, \"model_name\": \"smolvla_base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/lerobot/smolvla_base\", \"eval_data\": \"LIBERO mixed tasks\", \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_entropy_perlayer.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T07:03:49.995Z\", \"metrics\": {\"overall_entropy_ratio\": 0.9521, \"overall_entropy_std\": 0.02, \"n_images\": 260, \"n_tasks\": 10, \"n_layers\": 16, \"entropy_range\": [0.9311, 0.9826], \"entropy_range_width\": 0.05, \"per_layer\": {\"L0\": 0.9826, \"L1\": 0.9561, \"L2\": 0.9597, \"L3\": 0.9434, \"L4\": 0.9408, \"L5\": 0.9406, \"L6\": 0.9474, \"L7\": 0.9628, \"L8\": 0.9614, \"L9\": 0.9572, \"L10\": 0.9455, \"L11\": 0.951, \"L12\": 0.9485, \"L13\": 0.9311, \"L14\": 0.9482, \"L15\": 0.9566}, \"dataset\": \"LIBERO-Object (task 20-29)\", \"note\": \"Fixed: previous run sampled task 0-8 (LIBERO-90), not LIBERO-Object. Difference: 0.952 vs 0.944, conclusion unchanged.\", \"openvla_comparison\": {\"overall\": 0.639, \"range_width\": 0.5}}}, \"inference_latency_comparison\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:59:04.973Z\", \"updated_at\": \"2026-05-18T07:01:05.146Z\", \"hypothesis\": \"Smart Compress with M=32 (75% fewer vision tokens) will show measurable inference speedup over baseline 128 tokens, quantifying the practical benefit of learned compression.\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 python measure_inference_latency.py\", \"server\": \"cqa1-33015\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"smolvla_base + SmartCompressWrapper\", \"seed\": 42}, \"metrics\": {\"baseline_128_mean_ms\": 164.33, \"m32_mean_ms\": 154.78, \"m64_mean_ms\": 156.16, \"speedup_m32\": 1.0617, \"speedup_m64\": 1.0523, \"baseline_params\": 450046176, \"compressor_m32_params\": 22179840}, \"conclusion\": \"success\", \"log_path\": \"logs/inference_latency_comparison.log\", \"checkpoint_path\": \"eval_results/inference_latency_comparison.json\", \"completed_at\": \"2026-05-18T07:01:05.147Z\"}, \"eval_openvla_pruning_k03\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:01:28.122Z\", \"updated_at\": \"2026-05-18T06:15:16.402Z\", \"hypothesis\": \"OpenVLA (7B) with k=0.3 random pruning (keep 30% = 76 tokens) on LIBERO-Object will show severe but non-zero degradation, completing the 4-point degradation curve (k=1.0 74% → k=0.7 ? → k=0.5 37.4% → k=0.3 ?). Expected SR significantly below k=0.5 but possibly above 0% due to OpenVLA architecture tolerance.\", \"parent\": \"eval_openvla_pruning_k05\", \"spec\": {\"command\": \"python -u /tmp/eval_openvla_libero_gpu1.py --mode random_prune --k_ratio 0.3 --suite libero_object --num_episodes 50 --seed 7\", \"server\": \"westd-27271\", \"gpu\": \"cuda:1\", \"pid\": 768729, \"data_path\": \"LIBERO-Object (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"OpenVLA (7B)\", \"seed\": 7, \"checkpoint_source\": \"openvla-libero-object\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_object.log\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T06:15:16.402Z\"}, \"openvla_entropy_real\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T05:35:28.266Z\", \"updated_at\": \"2026-05-18T05:39:26.750Z\", \"hypothesis\": \"Measure OpenVLA attention entropy on real LIBERO-Object images (250 frames, 10 tasks) to replace previous measurement on 20 random images. Expected similar directional finding (entropy << 1.0) but more defensible to reviewers.\", \"spec\": {\"command\": \"MUJOCO_GL=egl HF_HOME=/root/autodl-tmp/.hf_cache CUDA_VISIBLE_DEVICES=0 python measure_openvla_entropy_real.py\", \"server\": \"westd-27271\", \"data_path\": \"LIBERO-Object simulation (10 tasks, 250 rendered frames)\", \"data_count\": 250, \"model_name\": \"OpenVLA-7B-libero-object\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"overall_entropy_ratio\": 0.6393, \"overall_entropy_std\": 0.1334, \"overall_vision_attn_frac\": 0.1211, \"n_images\": 250, \"n_tasks\": 10, \"min_entropy_layer\": {\"layer\": 29, \"ratio\": 0.4774}, \"max_entropy_layer\": {\"layer\": 0, \"ratio\": 0.979}, \"shallow_layers_0_1\": [0.979, 0.952], \"deep_layers_27_30\": [0.542, 0.53, 0.477, 0.524], \"previous_random_N20\": 0.617, \"smolvla_reference\": 0.98}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_entropy_real.log\", \"checkpoint_path\": \"N/A (analysis only)\", \"completed_at\": \"2026-05-18T05:39:26.750Z\"}, \"train_smart_compress_m128\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:57:30.022Z\", \"updated_at\": \"2026-05-18T05:24:55.028Z\", \"hypothesis\": \"Cross-attention pooling with M=128 queries attending to 128 source tokens (no compression, passthrough control). If SR is similar to M=32/M=64 (61.6%), the improvement over baseline comes from cross-attention architecture itself, not compression. If SR is higher, compression may be slightly hurting. If SR is lower or equal to baseline (44.8%), compression itself provides the benefit.\", \"parent\": \"eval_smart_compress_m32\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 WANDB_MODE=offline python train_smart_compress.py --config configs/smart_compress_m128.yaml --wandb_run smart_compress_m128\\\"\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:0\", \"pid\": 685989, \"log_path\": \"~/runs/importance_margin_vla_compress/train_smart_compress_m128.log\", \"submitted_at\": \"2026-05-18T02:57:46.749Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO dataset\", \"data_count\": 100000, \"model_name\": \"SmolVLA-SmartCompress-M128\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/libero_full_ft/step_099999/checkpoint.pt\", \"eval_data\": \"N/A (training)\", \"failure_reason\": \"Server rebooted at ~13:22 UTC, training interrupted at step 32500/100000 (32.5%). Last checkpoint at step 32000.\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m128/checkpoint.pt\", \"last_step\": 32500, \"last_loss\": 0.0476, \"wall_clock_seconds\": 8828.3, \"gpu_hours\": 2.45}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-18T05:24:55.028Z\"}, \"eval_smart_compress_m96\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T04:10:41.873Z\", \"updated_at\": \"2026-05-18T05:10:12.875Z\", \"hypothesis\": \"Cross-attention pooling compression (128→96 tokens, 25% reduction) is the mildest compression. Expected to retain near-full SR, establishing the upper bound of the compression-performance curve alongside M=32 (61.6%) and M=64 (61.6%).\", \"parent\": \"train_smart_compress_m96\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m96/checkpoint.pt --n_queries 96 --num_episodes 50 --suite libero_object --seed 42\\\"\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:1\", \"pid\": 689457, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smart_compress_m96.log\", \"submitted_at\": \"2026-05-18T04:10:59.380Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"SmolVLA-SmartCompress-M96\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/smart_compress_m96/checkpoint.pt\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"checkpoints/smart_compress_m96/checkpoint.pt\", \"wall_clock_seconds\": 3525.9, \"gpu_hours\": 0.98}, \"reproduce\": {\"finished_at\": \"2026-05-18T05:08:01.938Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T05:08:08.217286+00:00\"}]}, \"metrics\": {\"overall_sr\": 52.6, \"total_episodes\": 500, \"total_successes\": 263, \"wilson_ci_95\": [48.2, 56.9], \"per_task_sr\": {\"task_0_alphabet_soup\": 40, \"task_1_cream_cheese\": 52, \"task_2_salad_dressing\": 56, \"task_3_bbq_sauce\": 40, \"task_4_ketchup\": 26, \"task_5_tomato_sauce\": 50, \"task_6_butter\": 72, \"task_7_milk\": 62, \"task_8_chocolate_pudding\": 86, \"task_9_orange_juice\": 42}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T05:09:45.271Z\"}, \"eval_smart_compress_m16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T04:10:44.382Z\", \"updated_at\": \"2026-05-18T05:10:04.657Z\", \"hypothesis\": \"Cross-attention pooling compression (128→16 tokens, 87.5% compression) is the most extreme reduction. Expected to show degradation vs M=32/M=64, establishing the lower bound of the compression curve and testing where soft compression begins to fail.\", \"parent\": \"smart_compress_m16\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && HF_HOME=/root/autodl-tmp/.hf_cache python eval_smart_compress_libero.py --checkpoint_path checkpoints/smart_compress_m16/checkpoint.pt --n_queries 16 --num_episodes 50 --suite libero_object --seed 42\\\"\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:2\", \"pid\": 689536, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smart_compress_m16.log\", \"submitted_at\": \"2026-05-18T04:11:00.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"SmolVLA-SmartCompress-M16\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/smart_compress_m16/checkpoint.pt\", \"eval_data\": \"LIBERO-Object\", \"checkpoint_path\": \"checkpoints/smart_compress_m16/checkpoint.pt\", \"wall_clock_seconds\": 3525.9, \"gpu_hours\": 0.98}, \"reproduce\": {\"finished_at\": \"2026-05-18T05:08:08.647Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T05:08:13.758917+00:00\"}]}, \"metrics\": {\"overall_sr\": 55.8, \"overall_sr_ci95\": [51.4, 60.1], \"total_episodes\": 500, \"total_successes\": 279, \"per_task_sr\": {\"task_0_alphabet_soup\": 56, \"task_1_cream_cheese\": 44, \"task_2_salad_dressing\": 72, \"task_3_bbq_sauce\": 56, \"task_4_ketchup\": 62, \"task_5_tomato_sauce\": 40, \"task_6_butter\": 78, \"task_7_milk\": 54, \"task_8_chocolate_pudding\": 76, \"task_9_orange_juice\": 20}, \"runtime_minutes\": 55}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T05:09:46.379Z\"}}, \"count\": 20, \"total\": 94, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3721}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have all the data I need. Let me now update the registry with the results.
+
+Key findings:
+- eval_official_smolvla_prune_k05_v2: Overall SR = 0/500 (0.0%), 95% Wilson CI [0.0%, 0.8%]
+- Parent (eval_official_smolvla_baseline): Overall SR = 59.2% (296/500), 95% CI [54.8%, 63.4%]
+
+The hypothesis is confirmed: 0% SR with k=0.5 random pruning on the official checkpoint, matching the cliff-edge behavior seen with our fine-tuned model. This confirms the cliff-edge is inherent to the pixel-shuffle architecture, not fine-tuning-specific.
+
+
+Now I'm recording the metrics, marking the hypothesis as confirmed, and updating the registry with the completion status and relevant paths.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "8d976b87-f041-43e2-b9f3-98a9b12ca7c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DEEYUjZnRSfMrWb4rvjF3p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Parent baseline: 59.2% SR. Pruned: 0.0% SR. Hypothesis confirmed. Updating registry now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "81acf013-d793-44dd-bb41-fc018f7b8714",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DEEYUjZnRSfMrWb4rvjF3p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MJXZmHKrF3seWRMoc86GLp`</summary>
+
+```json
+{
+  "exp_id": "eval_official_smolvla_prune_k05_v2",
+  "field": "metrics",
+  "value": {
+    "success_rate": 0,
+    "total_successes": 0,
+    "total_episodes": 500,
+    "wilson_ci_95": [
+      0,
+      0.8
+    ],
+    "k_ratio": 0.5,
+    "pruning_method": "true_removal",
+    "mode": "random_prune",
+    "per_task_sr": {
+      "task_0_alphabet_soup": 0,
+      "task_1_cream_cheese": 0,
+      "task_2_salad_dressing": 0,
+      "task_3_bbq_sauce": 0,
+      "task_4_ketchup": 0,
+      "task_5_tomato_sauce": 0,
+      "task_6_butter": 0,
+      "task_7_milk": 0,
+      "task_8_chocolate_pudding": 0,
+      "task_9_orange_juice": 0
+    }
+  },
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "5d55fc88-a205-41c8-abac-add9f1256e84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DEEYUjZnRSfMrWb4rvjF3p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T14:11:11.076Z_
+
+<details><summary>↩ Tool result · `toolu_01MJXZmHKrF3seWRMoc86GLp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_official_smolvla_prune_k05_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:10.868Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}, \"metrics\": {\"success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"wilson_ci_95\": [0, 0.8], \"k_ratio\": 0.5, \"pruning_method\": \"true_removal\", \"mode\": \"random_prune\", \"per_task_sr\": {\"task_0_alphabet_soup\": 0, \"task_1_cream_cheese\": 0, \"task_2_salad_dressing\": 0, \"task_3_bbq_sauce\": 0, \"task_4_ketchup\": 0, \"task_5_tomato_sauce\": 0, \"task_6_butter\": 0, \"task_7_milk\": 0, \"task_8_chocolate_pudding\": 0, \"task_9_orange_juice\": 0}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4357}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "8c2f3c01-12d2-4bc9-8808-7096f8ac4fa3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_official_smolvla_prune_k05_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T13:24:02.097Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:11:10.868Z\\\", \\\"hypothesis\\\": \\\"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\\\", \\\"parent\\\": \\\"eval_official_smolvla_baseline\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"136801\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T13:24:15.257Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"smolvla_libero_official\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object (10 tasks x 50 episodes)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T14:09:22.717Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T14:09:27.250914+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0, \\\"total_successes\\\": 0, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [0, 0.8], \\\"k_ratio\\\": 0.5, \\\"pruning_method\\\": \\\"true_removal\\\", \\\"mode\\\": \\\"random_prune\\\", \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup\\\": 0, \\\"task_1_cream_cheese\\\": 0, \\\"task_2_salad_dressing\\\": 0, \\\"task_3_bbq_sauce\\\": 0, \\\"task_4_ketchup\\\": 0, \\\"task_5_tomato_sauce\\\": 0, \\\"task_6_butter\\\": 0, \\\"task_7_milk\\\": 0, \\\"task_8_chocolate_pudding\\\": 0, \\\"task_9_orange_juice\\\": 0}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4357}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_official_smolvla_prune_k05_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:10.868Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}, \"metrics\": {\"success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"wilson_ci_95\": [0, 0.8], \"k_ratio\": 0.5, \"pruning_method\": \"true_removal\", \"mode\": \"random_prune\", \"per_task_sr\": {\"task_0_alphabet_soup\": 0, \"task_1_cream_cheese\": 0, \"task_2_salad_dressing\": 0, \"task_3_bbq_sauce\": 0, \"task_4_ketchup\": 0, \"task_5_tomato_sauce\": 0, \"task_6_butter\": 0, \"task_7_milk\": 0, \"task_8_chocolate_pudding\": 0, \"task_9_orange_juice\": 0}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4357}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KSX5spPpQXoLVkA3N4vkkp`</summary>
+
+```json
+{
+  "exp_id": "eval_official_smolvla_prune_k05_v2",
+  "field": "log_path",
+  "value": "~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "7e6517df-9a95-424d-89b3-055e3e5987fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DEEYUjZnRSfMrWb4rvjF3p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T14:11:12.558Z_
+
+<details><summary>↩ Tool result · `toolu_01KSX5spPpQXoLVkA3N4vkkp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_official_smolvla_prune_k05_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:12.358Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}, \"metrics\": {\"success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"wilson_ci_95\": [0, 0.8], \"k_ratio\": 0.5, \"pruning_method\": \"true_removal\", \"mode\": \"random_prune\", \"per_task_sr\": {\"task_0_alphabet_soup\": 0, \"task_1_cream_cheese\": 0, \"task_2_salad_dressing\": 0, \"task_3_bbq_sauce\": 0, \"task_4_ketchup\": 0, \"task_5_tomato_sauce\": 0, \"task_6_butter\": 0, \"task_7_milk\": 0, \"task_8_chocolate_pudding\": 0, \"task_9_orange_juice\": 0}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4897}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "73dae0bf-6d6d-452b-b706-9c3a770090ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_official_smolvla_prune_k05_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T13:24:02.097Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:11:12.358Z\\\", \\\"hypothesis\\\": \\\"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\\\", \\\"parent\\\": \\\"eval_official_smolvla_baseline\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"136801\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T13:24:15.257Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"smolvla_libero_official\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object (10 tasks x 50 episodes)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T14:09:22.717Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T14:09:27.250914+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0, \\\"total_successes\\\": 0, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [0, 0.8], \\\"k_ratio\\\": 0.5, \\\"pruning_method\\\": \\\"true_removal\\\", \\\"mode\\\": \\\"random_prune\\\", \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup\\\": 0, \\\"task_1_cream_cheese\\\": 0, \\\"task_2_salad_dressing\\\": 0, \\\"task_3_bbq_sauce\\\": 0, \\\"task_4_ketchup\\\": 0, \\\"task_5_tomato_sauce\\\": 0, \\\"task_6_butter\\\": 0, \\\"task_7_milk\\\": 0, \\\"task_8_chocolate_pudding\\\": 0, \\\"task_9_orange_juice\\\": 0}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4897}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_official_smolvla_prune_k05_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:12.358Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}, \"metrics\": {\"success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"wilson_ci_95\": [0, 0.8], \"k_ratio\": 0.5, \"pruning_method\": \"true_removal\", \"mode\": \"random_prune\", \"per_task_sr\": {\"task_0_alphabet_soup\": 0, \"task_1_cream_cheese\": 0, \"task_2_salad_dressing\": 0, \"task_3_bbq_sauce\": 0, \"task_4_ketchup\": 0, \"task_5_tomato_sauce\": 0, \"task_6_butter\": 0, \"task_7_milk\": 0, \"task_8_chocolate_pudding\": 0, \"task_9_orange_juice\": 0}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4897}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01NMd3WZzDYKQFfy31maAwk4`</summary>
+
+```json
+{
+  "exp_id": "eval_official_smolvla_prune_k05_v2",
+  "field": "checkpoint_path",
+  "value": "N/A (eval only)",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "91d7396b-f468-4fde-9caa-92d98b5baee2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DEEYUjZnRSfMrWb4rvjF3p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T14:11:13.147Z_
+
+<details><summary>↩ Tool result · `toolu_01NMd3WZzDYKQFfy31maAwk4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_official_smolvla_prune_k05_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:12.943Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}, \"metrics\": {\"success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"wilson_ci_95\": [0, 0.8], \"k_ratio\": 0.5, \"pruning_method\": \"true_removal\", \"mode\": \"random_prune\", \"per_task_sr\": {\"task_0_alphabet_soup\": 0, \"task_1_cream_cheese\": 0, \"task_2_salad_dressing\": 0, \"task_3_bbq_sauce\": 0, \"task_4_ketchup\": 0, \"task_5_tomato_sauce\": 0, \"task_6_butter\": 0, \"task_7_milk\": 0, \"task_8_chocolate_pudding\": 0, \"task_9_orange_juice\": 0}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"checkpoint_path\": \"N/A (eval only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4672}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "42f52b94-7b04-4263-abb5-adac2617a783",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_official_smolvla_prune_k05_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T13:24:02.097Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:11:12.943Z\\\", \\\"hypothesis\\\": \\\"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\\\", \\\"parent\\\": \\\"eval_official_smolvla_baseline\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"136801\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T13:24:15.257Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"smolvla_libero_official\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object (10 tasks x 50 episodes)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T14:09:22.717Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T14:09:27.250914+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0, \\\"total_successes\\\": 0, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [0, 0.8], \\\"k_ratio\\\": 0.5, \\\"pruning_method\\\": \\\"true_removal\\\", \\\"mode\\\": \\\"random_prune\\\", \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup\\\": 0, \\\"task_1_cream_cheese\\\": 0, \\\"task_2_salad_dressing\\\": 0, \\\"task_3_bbq_sauce\\\": 0, \\\"task_4_ketchup\\\": 0, \\\"task_5_tomato_sauce\\\": 0, \\\"task_6_butter\\\": 0, \\\"task_7_milk\\\": 0, \\\"task_8_chocolate_pudding\\\": 0, \\\"task_9_orange_juice\\\": 0}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4672}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_official_smolvla_prune_k05_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:12.943Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}, \"metrics\": {\"success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"wilson_ci_95\": [0, 0.8], \"k_ratio\": 0.5, \"pruning_method\": \"true_removal\", \"mode\": \"random_prune\", \"per_task_sr\": {\"task_0_alphabet_soup\": 0, \"task_1_cream_cheese\": 0, \"task_2_salad_dressing\": 0, \"task_3_bbq_sauce\": 0, \"task_4_ketchup\": 0, \"task_5_tomato_sauce\": 0, \"task_6_butter\": 0, \"task_7_milk\": 0, \"task_8_chocolate_pudding\": 0, \"task_9_orange_juice\": 0}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"checkpoint_path\": \"N/A (eval only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4672}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01YThsUy8dyHvzqMnaX8FV9h`</summary>
+
+```json
+{
+  "exp_id": "eval_official_smolvla_prune_k05_v2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "40c9065c-1d43-4655-8767-1e3404dc2913",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KQvMyx26TvVM9fbQzfpJHP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3594,
+      "cache_read_input_tokens": 42512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3594
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T14:11:17.296Z_
+
+<details><summary>↩ Tool result · `toolu_01YThsUy8dyHvzqMnaX8FV9h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_official_smolvla_prune_k05_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:17.104Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}, \"metrics\": {\"success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"wilson_ci_95\": [0, 0.8], \"k_ratio\": 0.5, \"pruning_method\": \"true_removal\", \"mode\": \"random_prune\", \"per_task_sr\": {\"task_0_alphabet_soup\": 0, \"task_1_cream_cheese\": 0, \"task_2_salad_dressing\": 0, \"task_3_bbq_sauce\": 0, \"task_4_ketchup\": 0, \"task_5_tomato_sauce\": 0, \"task_6_butter\": 0, \"task_7_milk\": 0, \"task_8_chocolate_pudding\": 0, \"task_9_orange_juice\": 0}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"checkpoint_path\": \"N/A (eval only)\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4389}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "74b32762-4947-42d0-b6e1-7ab83f91c1af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_official_smolvla_prune_k05_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T13:24:02.097Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:11:17.104Z\\\", \\\"hypothesis\\\": \\\"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\\\", \\\"parent\\\": \\\"eval_official_smolvla_baseline\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"136801\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T13:24:15.257Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"smolvla_libero_official\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object (10 tasks x 50 episodes)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T14:09:22.717Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T14:09:27.250914+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0, \\\"total_successes\\\": 0, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [0, 0.8], \\\"k_ratio\\\": 0.5, \\\"pruning_method\\\": \\\"true_removal\\\", \\\"mode\\\": \\\"random_prune\\\", \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup\\\": 0, \\\"task_1_cream_cheese\\\": 0, \\\"task_2_salad_dressing\\\": 0, \\\"task_3_bbq_sauce\\\": 0, \\\"task_4_ketchup\\\": 0, \\\"task_5_tomato_sauce\\\": 0, \\\"task_6_butter\\\": 0, \\\"task_7_milk\\\": 0, \\\"task_8_chocolate_pudding\\\": 0, \\\"task_9_orange_juice\\\": 0}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4389}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_official_smolvla_prune_k05_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:17.104Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}, \"metrics\": {\"success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"wilson_ci_95\": [0, 0.8], \"k_ratio\": 0.5, \"pruning_method\": \"true_removal\", \"mode\": \"random_prune\", \"per_task_sr\": {\"task_0_alphabet_soup\": 0, \"task_1_cream_cheese\": 0, \"task_2_salad_dressing\": 0, \"task_3_bbq_sauce\": 0, \"task_4_ketchup\": 0, \"task_5_tomato_sauce\": 0, \"task_6_butter\": 0, \"task_7_milk\": 0, \"task_8_chocolate_pudding\": 0, \"task_9_orange_juice\": 0}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"checkpoint_path\": \"N/A (eval only)\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4389}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01ReQqyMHqFEPnoQEFwSLfza`</summary>
+
+```json
+{
+  "exp_id": "eval_official_smolvla_prune_k05_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "399eedf8-b4a2-4b99-9480-78882da91926",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013U8hEJYz2sn5nqC72tdUNL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1151,
+      "cache_read_input_tokens": 46106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1151
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T14:11:21.735Z_
+
+<details><summary>↩ Tool result · `toolu_01ReQqyMHqFEPnoQEFwSLfza`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_official_smolvla_prune_k05_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:21.198Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\", \"wall_clock_seconds\": 2825.9, \"gpu_hours\": 0.78}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}, \"metrics\": {\"success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"wilson_ci_95\": [0, 0.8], \"k_ratio\": 0.5, \"pruning_method\": \"true_removal\", \"mode\": \"random_prune\", \"per_task_sr\": {\"task_0_alphabet_soup\": 0, \"task_1_cream_cheese\": 0, \"task_2_salad_dressing\": 0, \"task_3_bbq_sauce\": 0, \"task_4_ketchup\": 0, \"task_5_tomato_sauce\": 0, \"task_6_butter\": 0, \"task_7_milk\": 0, \"task_8_chocolate_pudding\": 0, \"task_9_orange_juice\": 0}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"checkpoint_path\": \"N/A (eval only)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T14:11:21.198Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.775}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "9a6e20e0-1a40-4d0d-9158-1b5b3b8849ee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_official_smolvla_prune_k05_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T13:24:02.097Z\\\", \\\"updated_at\\\": \\\"2026-05-18T14:11:21.198Z\\\", \\\"hypothesis\\\": \\\"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\\\", \\\"parent\\\": \\\"eval_official_smolvla_baseline\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"136801\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T13:24:15.257Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"smolvla_libero_official\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object (10 tasks x 50 episodes)\\\", \\\"wall_clock_seconds\\\": 2825.9, \\\"gpu_hours\\\": 0.78}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T14:09:22.717Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T14:09:27.250914+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0, \\\"total_successes\\\": 0, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [0, 0.8], \\\"k_ratio\\\": 0.5, \\\"pruning_method\\\": \\\"true_removal\\\", \\\"mode\\\": \\\"random_prune\\\", \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup\\\": 0, \\\"task_1_cream_cheese\\\": 0, \\\"task_2_salad_dressing\\\": 0, \\\"task_3_bbq_sauce\\\": 0, \\\"task_4_ketchup\\\": 0, \\\"task_5_tomato_sauce\\\": 0, \\\"task_6_butter\\\": 0, \\\"task_7_milk\\\": 0, \\\"task_8_chocolate_pudding\\\": 0, \\\"task_9_orange_juice\\\": 0}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T14:11:21.198Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.775}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_official_smolvla_prune_k05_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:21.198Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode random_prune --k_ratio 0.5 --num_episodes 50 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"136801\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"submitted_at\": \"2026-05-18T13:24:15.257Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object (10 tasks x 50 episodes)\", \"wall_clock_seconds\": 2825.9, \"gpu_hours\": 0.78}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:09:22.717Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:09:27.250914+00:00\"}]}, \"metrics\": {\"success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"wilson_ci_95\": [0, 0.8], \"k_ratio\": 0.5, \"pruning_method\": \"true_removal\", \"mode\": \"random_prune\", \"per_task_sr\": {\"task_0_alphabet_soup\": 0, \"task_1_cream_cheese\": 0, \"task_2_salad_dressing\": 0, \"task_3_bbq_sauce\": 0, \"task_4_ketchup\": 0, \"task_5_tomato_sauce\": 0, \"task_6_butter\": 0, \"task_7_milk\": 0, \"task_8_chocolate_pudding\": 0, \"task_9_orange_juice\": 0}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\", \"checkpoint_path\": \"N/A (eval only)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T14:11:21.198Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.775}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Registry 已更新。
+
+## 实验总结
+
+**实验**: `eval_official_smolvla_prune_k05_v2` — Official SmolVLA checkpoint + k=0.5 random pruning
+
+**结果**: **0/500 (0.0% SR)**，95% Wilson CI [0.0%, 0.8%]。10 个 task 全部 0%。所有 episode 均 timeout（280 steps）。
+
+**与 parent 对比**:
+| 条件 | SR | 95% CI |
+|---|---|---|
+| Official baseline (无剪枝) | **59.2%** (296/500) | [54.8%, 63.4%] |
+| Official + k=0.5 random prune | **0.0%** (0/500) | [0.0%, 0.8%] |
+
+**Conclusion: success** — Hypothesis 验证通过。Official SmolVLA checkpoint 在 k=0.5 random pruning 下同样完全失效（0% SR），与我们 fine-tuned model 的行为一致。这确认了 **cliff-edge 是 pixel-shuffle 架构固有的**，而非 fine-tuning 引入的。即使 official checkpoint baseline 更高（59.2% vs 我们的 44.8%），剪枝后同样断崖式归零，说明 pixel-shuffle 产生的 vision token 之间存在强结构耦合，任何随机移除都会破坏空间编码的完整性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "uuid": "5d676bac-fba4-465f-b7b4-0a16d419e38a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012JnygFn1Hkk9w9MRdBtPct",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1129,
+      "cache_read_input_tokens": 47257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1129
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 29_
+
+Registry 已更新。
+
+## 实验总结
+
+**实验**: `eval_official_smolvla_prune_k05_v2` — Official SmolVLA checkpoint + k=0.5 random pruning
+
+**结果**: **0/500 (0.0% SR)**，95% Wilson CI [0.0%, 0.8%]。10 个 task 全部 0%。所有 episode 均 timeout（280 steps）。
+
+**与 parent 对比**:
+| 条件 | SR | 95% CI |
+|---|---|---|
+| Official baseline (无剪枝) | **59.2%** (296/500) | [54.8%, 63.4%] |
+| Official + k=0.5 random prune | **0.0%** (0/500) | [0.0%, 0.8%] |
+
+**Conclusion: success** — Hypothesis 验证通过。Official SmolVLA checkpoint 在 k=0.5 random pruning 下同样完全失效（0% SR），与我们 fine-tuned model 的行为一致。这确认了 **cliff-edge 是 pixel-shuffle 架构固有的**，而非 fine-tuning 引入的。即使 official checkpoint baseline 更高（59.2% vs 我们的 44.8%），剪枝后同样断崖式归零，说明 pixel-shuffle 产生的 vision token 之间存在强结构耦合，任何随机移除都会破坏空间编码的完整性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 56808,
+  "duration_api_ms": 49963,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "bee2d1f1-8a7b-4530-8240-e53cbc640588",
+  "total_cost_usd": 0.40000525,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 36545,
+    "cache_read_input_tokens": 229002,
+    "output_tokens": 2224,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36545,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 401,
+        "cache_read_input_tokens": 47257,
+        "cache_creation_input_tokens": 1129,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1129
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1348,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001443,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 2224,
+      "cacheReadInputTokens": 229002,
+      "cacheCreationInputTokens": 36545,
+      "webSearchRequests": 0,
+      "costUSD": 0.39856225,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "978ddb59-c9dc-49d4-ab1e-a72d261e562b"
+}
+```
+
+</details>
+
+---

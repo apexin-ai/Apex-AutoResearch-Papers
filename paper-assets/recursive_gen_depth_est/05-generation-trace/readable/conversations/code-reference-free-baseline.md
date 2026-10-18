@@ -1,0 +1,1452 @@
+# code reference free baseline
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_code_reference_free_baseline_20260517T045516.jsonl`
+- **Structured JSON:** [`71e6f984bba213c45a39.json`](../../sessions/71/71e6f984bba213c45a39.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T04:58:38.527340+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__submit_training_job",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__submit_training_job",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T04:58:38.527723+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T04:58:38.527931+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'feat_ablation_v1'}",
+  "project": "recursive_gen_depth_est",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'feat_ablation_v1'}",
+    "project": "recursive_gen_depth_est",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T04:58:38.528088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.728}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T04:58:38.528218+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && ls data/ && echo \"---\" && head -1 data/features_all.jsonl 2>/dev/null || echo \"no features_all.jsonl\" && echo \"---\" && ls data/depth_*.jsonl 2>/dev/null || echo \"no depth files\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est && ls data/ && echo \"---\" && head -1 data/features_all.jsonl 2>/dev/null || echo \"no features_all.jsonl\" && echo \"---\" && ls data/depth_*.jsonl 2>/dev/null || echo \"no depth files\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T04:58:38.528377+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross_model_chain\\ncuration_poc\\ndepth_0.jsonl\\ndepth_0_features.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\ndomain_extension\\nfeatures_3class.jsonl\\nfeatures_all.jsonl\\nfeatures_d4d5.jsonl\\nfeatures_depth_4.jsonl\\nfeatures_depth_5.jsonl\\nfeatures_filtered.jsonl\\ngpt2xl\\ngpt2xl_temp09\\ngpt2xl_topk50\\nllama3_8b_nucleus\\nllama3_base_nucleus\\nolmo\\nolmo_temp09\\nolmo_topk50\\npythia_temp05\\npythia_temp07\\npythia_temp09\\npythia_temp11\\npythia_topk50\\nqwen7b_nucleus\\nredpajama_en_head.json.gz\\nreverse_chain\\nwikitext103_test.txt\\nwild_data\\n---\\n{\\\"depth\\\": 0, \\\"sample_id\\\": 0, \\\"mean_ppl\\\": 1607.154718291221, \\\"var_ppl\\\": 158779688.72304317, \\\"skewness_ppl\\\": 10.406051089379453, \\\"kurtosis_ppl\\\": 114.01617768762445, \\\"p10_ppl\\\": 1.0253935757537525, \\\"p25_ppl\\\": 1.4685526791140988, \\\"p50_ppl\\\": 4.352294272371119, \\\"p75_ppl\\\": 39.40245503911115, \\\"p90_ppl\\\": 369.16657551683574, \\\"mean_surprisal\\\": 2.372938156607645, \\\"var_surprisal\\\": 6.239684146274182, \\\"entropy_of_surprisal\\\": 3.1822611603270903, \\\"type_token_ratio\\\": 0.570281124497992, \\\"hapax_ratio\\\": 0.7922535211267606, \\\"bigram_entropy\\\": 6.013228236535451, \\\"trigram_entropy\\\": 6.165336778855558, \\\"rep_2gram\\\": 0.11066398390342047, \\\"rep_3gram\\\": 0.028225806451612878, \\\"rep_4gram\\\": 0.014141414141414121}\\n---\\ndata/depth_0.jsonl\\ndata/depth_0_features.jsonl\\ndata/depth_1.jsonl\\ndata/depth_2.jsonl\\ndata/depth_3.jsonl\\ndata/depth_4.jsonl\\ndata/depth_5.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T04:58:38.528549+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && python3 -c \"\nimport json\nwith open('data/features_all.jsonl') as f:\n    first = json.loads(f.readline())\nprint('All keys:', sorted(first.keys()))\nprint('Num features:', len([k for k in first.keys() if k not in ('depth','sample_id')]))\n\" && echo \"---\" && wc -l data/features_all.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est && python3 -c \"\nimport json\nwith open('data/features_all.jsonl') as f:\n    first = json.loads(f.readline())\nprint('All keys:', sorted(first.keys()))\nprint('Num features:', len([k for k in first.keys() if k not in ('depth','sample_id')]))\n\" && echo \"---\" && wc -l data/features_all.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T04:58:38.528684+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"All keys: ['bigram_entropy', 'depth', 'entropy_of_surprisal', 'hapax_ratio', 'kurtosis_ppl', 'mean_ppl', 'mean_surprisal', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'rep_2gram', 'rep_3gram', 'rep_4gram', 'sample_id', 'skewness_ppl', 'trigram_entropy', 'type_token_ratio', 'var_ppl', 'var_surprisal']\\nNum features: 19\\n---\\n20000 data/features_all.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T04:58:38.528836+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && python3 -c \"\nimport json\nfrom collections import Counter\ndepths = []\nwith open('data/features_all.jsonl') as f:\n    for line in f:\n        depths.append(json.loads(line)['depth'])\nprint('Depth distribution:', sorted(Counter(depths).items()))\nprint('Num classes:', len(set(depths)))\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est && python3 -c \"\nimport json\nfrom collections import Counter\ndepths = []\nwith open('data/features_all.jsonl') as f:\n    for line in f:\n        depths.append(json.loads(line)['depth'])\nprint('Depth distribution:', sorted(Counter(depths).items()))\nprint('Num classes:', len(set(depths)))\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T04:58:38.528991+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Depth distribution: [(0, 5000), (1, 5000), (2, 5000), (3, 5000)]\\nNum classes: 4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T04:58:38.529146+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && mkdir -p results/reference_free_baseline && cat > scripts/reference_free_baseline.py << 'EOF'\nimport json\nimport numpy as np\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, recall_score, roc_auc_score\nfrom sklearn.preprocessing import label_binarize\n\nREF_DEPENDENT = [\n    'mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl',\n    'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl',\n    'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal'\n]\n\nREF_FREE = [\n    'type_token_ratio', 'hapax_ratio',\n    'bigram_entropy', 'trigram_entropy',\n    'rep_2gram', 'rep_3gram', 'rep_4gram'\n]\n\n# Load data\ndata = []\nwith open('data/features_all.jsonl') as f:\n    for line in f:\n        data.append(json.loads(line))\n\nX_ref_free = np.array([[d[feat] for feat in REF_FREE] for d in data])\nX_all = np.array([[d[feat] for feat in REF_FREE + REF_DEPENDENT] for d in data])\ny = np.array([d['depth'] for d in data])\n\n# 5-fold CV for reference-free\nskf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\naccs_rf = []\nall_preds_rf = []\nall_true_rf = []\nall_proba_rf = []\n\nfor train_idx, test_idx in skf.split(X_ref_free, y):\n    clf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\n    clf.fit(X_ref_free[train_idx], y[train_idx])\n    preds = clf.predict(X_ref_free[test_idx])\n    proba = clf.predict_proba(X_ref_free[test_idx])\n    accs_rf.append(accuracy_score(y[test_idx], preds))\n    all_preds_rf.extend(preds)\n    all_true_rf.extend(y[test_idx])\n    all_proba_rf.extend(proba)\n\n# 5-fold CV for full 19 features (comparison)\naccs_full = []\nfor train_idx, test_idx in skf.split(X_all, y):\n    clf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\n    clf.fit(X_all[train_idx], y[train_idx])\n    preds = clf.predict(X_all[test_idx])\n    accs_full.append(accuracy_score(y[test_idx], preds))\n\n# Metrics\nmean_acc = np.mean(accs_rf)\nstd_acc = np.std(accs_rf)\nci_lo = mean_acc - 1.96 * std_acc / np.sqrt(5)\nci_hi = mean_acc + 1.96 * std_acc / np.sqrt(5)\n\nall_true_rf = np.array(all_true_rf)\nall_preds_rf = np.array(all_preds_rf)\nall_proba_rf = np.array(all_proba_rf)\n\n# Per-class recall\nper_class_recall = {}\nfor c in sorted(set(y)):\n    mask = all_true_rf == c\n    per_class_recall[f\"depth_{c}\"] = float((all_preds_rf[mask] == c).mean())\n\n# d1 vs d2 AUC\nmask_d1d2 = (all_true_rf == 1) | (all_true_rf == 2)\ny_d1d2 = (all_true_rf[mask_d1d2] == 2).astype(int)\nproba_d1d2 = all_proba_rf[mask_d1d2][:, 2] / (all_proba_rf[mask_d1d2][:, 1] + all_proba_rf[mask_d1d2][:, 2] + 1e-10)\nd1v2_auc = roc_auc_score(y_d1d2, proba_d1d2)\n\nfull_acc = np.mean(accs_full)\n\nsummary = {\n    \"n_features_total\": 19,\n    \"n_features_ref_free\": len(REF_FREE),\n    \"ref_free_features\": REF_FREE,\n    \"removed_features\": REF_DEPENDENT,\n    \"4class_acc\": round(mean_acc, 4),\n    \"ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n    \"fold_accs\": [round(a, 4) for a in accs_rf],\n    \"d1v2_auc\": round(d1v2_auc, 4),\n    \"per_class_recall\": {k: round(v, 4) for k, v in per_class_recall.items()},\n    \"vs_full_19_acc\": round(full_acc, 4),\n    \"delta_pp\": round((mean_acc - full_acc) * 100, 2)\n}\n\nwith open('results/reference_free_baseline/summary.json', 'w') as f:\n    json.dump(summary, f, indent=2)\n\nprint(json.dumps(summary, indent=2))\nEOF\npython3 scripts/reference_free_baseline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est && mkdir -p results/reference_free_baseline && cat > scripts/reference_free_baseline.py << 'EOF'\nimport json\nimport numpy as np\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, recall_score, roc_auc_score\nfrom sklearn.preprocessing import label_binarize\n\nREF_DEPENDENT = [\n    'mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl',\n    'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl',\n    'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal'\n]\n\nREF_FREE = [\n    'type_token_ratio', 'hapax_ratio',\n    'bigram_entropy', 'trigram_entropy',\n    'rep_2gram', 'rep_3gram', 'rep_4gram'\n]\n\n# Load data\ndata = []\nwith open('data/features_all.jsonl') as f:\n    for line in f:\n        data.append(json.loads(line))\n\nX_ref_free = np.array([[d[feat] for feat in REF_FREE] for d in data])\nX_all = np.array([[d[feat] for feat in REF_FREE + REF_DEPENDENT] for d in data])\ny = np.array([d['depth'] for d in data])\n\n# 5-fold CV for reference-free\nskf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\naccs_rf = []\nall_preds_rf = []\nall_true_rf = []\nall_proba_rf = []\n\nfor train_idx, test_idx in skf.split(X_ref_free, y):\n    clf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\n    clf.fit(X_ref_free[train_idx], y[train_idx])\n    preds = clf.predict(X_ref_free[test_idx])\n    proba = clf.predict_proba(X_ref_free[test_idx])\n    accs_rf.append(accuracy_score(y[test_idx], preds))\n    all_preds_rf.extend(preds)\n    all_true_rf.extend(y[test_idx])\n    all_proba_rf.extend(proba)\n\n# 5-fold CV for full 19 features (comparison)\naccs_full = []\nfor train_idx, test_idx in skf.split(X_all, y):\n    clf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\n    clf.fit(X_all[train_idx], y[train_idx])\n    preds = clf.predict(X_all[test_idx])\n    accs_full.append(accuracy_score(y[test_idx], preds))\n\n# Metrics\nmean_acc = np.mean(accs_rf)\nstd_acc = np.std(accs_rf)\nci_lo = mean_acc - 1.96 * std_acc / np.sqrt(5)\nci_hi = mean_acc + 1.96 * std_acc / np.sqrt(5)\n\nall_true_rf = np.array(all_true_rf)\nall_preds_rf = np.array(all_preds_rf)\nall_proba_rf = np.array(all_proba_rf)\n\n# Per-class recall\nper_class_recall = {}\nfor c in sorted(set(y)):\n    mask = all_true_rf == c\n    per_class_recall[f\"depth_{c}\"] = float((all_preds_rf[mask] == c).mean())\n\n# d1 vs d2 AUC\nmask_d1d2 = (all_true_rf == 1) | (all_true_rf == 2)\ny_d1d2 = (all_true_rf[mask_d1d2] == 2).astype(int)\nproba_d1d2 = all_proba_rf[mask_d1d2][:, 2] / (all_proba_rf[mask_d1d2][:, 1] + all_proba_rf[mask_d1d2][:, 2] + 1e-10)\nd1v2_auc = roc_auc_score(y_d1d2, proba_d1d2)\n\nfull_acc = np.mean(accs_full)\n\nsummary = {\n    \"n_features_total\": 19,\n    \"n_features_ref_free\": len(REF_FREE),\n    \"ref_free_features\": REF_FREE,\n    \"removed_features\": REF_DEPENDENT,\n    \"4class_acc\": round(mean_acc, 4),\n    \"ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n    \"fold_accs\": [round(a, 4) for a in accs_rf],\n    \"d1v2_auc\": round(d1v2_auc, 4),\n    \"per_class_recall\": {k: round(v, 4) for k, v in per_class_recall.items()},\n    \"vs_full_19_acc\": round(full_acc, 4),\n    \"delta_pp\": round((mean_acc - full_acc) * 100, 2)\n}\n\nwith open('results/reference_free_baseline/summary.json', 'w') as f:\n    json.dump(summary, f, indent=2)\n\nprint(json.dumps(summary, indent=2))\nEOF\npython3 scripts/reference_free_baseline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T04:58:38.529361+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && mkdir -p results/reference_free_baseline && cat > scripts/reference_free_baseline.py << \\\\'EOF\\\\'\\\\nimport json\\\\nimport numpy as np\\\\nfrom sklearn.ensemble import RandomForestClassifier\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom sklearn.metrics import accuracy_score, recall_score, roc_auc_score\\\\nfrom sklearn.preprocessing import label_binarize\\\\n\\\\nREF_DEPENDENT = [\\\\n    \\\\'mean_ppl\\\\', \\\\'var_ppl\\\\', \\\\'skewness_ppl\\\\', \\\\'kurtosis_ppl\\\\',\\\\n    \\\\'p10_ppl\\\\', \\\\'p25_ppl\\\\', \\\\'p50_ppl\\\\', \\\\'p75_ppl\\\\', \\\\'p90_ppl\\\\',\\\\n    \\\\'mean_surprisal\\\\', \\\\'var_surprisal\\\\', \\\\'entropy_of_surprisal\\\\'\\\\n]\\\\n\\\\nREF_FREE = [\\\\n    \\\\'type_token_ratio\\\\', \\\\'hapax_ratio\\\\',\\\\n    \\\\'bigram_entropy\\\\', \\\\'trigram_entropy\\\\',\\\\n    \\\\'rep_2gram\\\\', \\\\'rep_3gram\\\\', \\\\'rep_4gram\\\\'\\\\n]\\\\n\\\\n# Load data\\\\ndata = []\\\\nwith open(\\\\'data/features_all.jsonl\\\\') as f:\\\\n    for line in f:\\\\n        data.append(json.loads(line))\\\\n\\\\nX_ref_free = np.array([[d[feat] for feat in REF_FREE] for d in data])\\\\nX_all = np.array([[d[feat] for feat in REF_FREE + REF_DEPENDENT] for d in data])\\\\ny = np.array([d[\\\\'depth\\\\'] for d in data])\\\\n\\\\n# 5-fold CV for reference-free\\\\nskf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\\\\naccs_rf = []\\\\nall_preds_rf = []\\\\nall_true_rf = []\\\\nall_proba_rf = []\\\\n\\\\nfor train_idx, test_idx in skf.split(X_ref_free, y):\\\\n    clf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\\\\n    clf.fit(X_ref_free[train_idx], y[train_idx])\\\\n    preds = clf.predict(X_ref_free[test_idx])\\\\n    proba = clf.predict_proba(X_ref_free[test_idx])\\\\n    accs_rf.append(accuracy_score(y[test_idx], pre
+…[truncated 2529 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T04:58:38.529539+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/reference_free_baseline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/reference_free_baseline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T04:58:38.529694+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_features_total\\\": 19,\\n  \\\"n_features_ref_free\\\": 7,\\n  \\\"ref_free_features\\\": [\\n    \\\"type_token_ratio\\\",\\n    \\\"hapax_ratio\\\",\\n    \\\"bigram_entropy\\\",\\n    \\\"trigram_entropy\\\",\\n    \\\"rep_2gram\\\",\\n    \\\"rep_3gram\\\",\\n    \\\"rep_4gram\\\"\\n  ],\\n  \\\"removed_features\\\": [\\n    \\\"mean_ppl\\\",\\n    \\\"var_ppl\\\",\\n    \\\"skewness_ppl\\\",\\n    \\\"kurtosis_ppl\\\",\\n    \\\"p10_ppl\\\",\\n    \\\"p25_ppl\\\",\\n    \\\"p50_ppl\\\",\\n    \\\"p75_ppl\\\",\\n    \\\"p90_ppl\\\",\\n    \\\"mean_surprisal\\\",\\n    \\\"var_surprisal\\\",\\n    \\\"entropy_of_surprisal\\\"\\n  ],\\n  \\\"4class_acc\\\": 0.5368,\\n  \\\"ci_95\\\": [\\n    0.5336,\\n    0.5401\\n  ],\\n  \\\"fold_accs\\\": [\\n    0.5327,\\n    0.5323,\\n    0.5387,\\n    0.5385,\\n    0.542\\n  ],\\n  \\\"d1v2_auc\\\": 0.6252,\\n  \\\"per_class_recall\\\": {\\n    \\\"depth_0\\\": 0.8572,\\n    \\\"depth_1\\\": 0.397,\\n    \\\"depth_2\\\": 0.3176,\\n    \\\"depth_3\\\": 0.5756\\n  },\\n  \\\"vs_full_19_acc\\\": 0.7877,\\n  \\\"delta_pp\\\": -25.09\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T04:58:38.529864+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T04:58:38.530016+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T04:58:38.530134+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "reference_free_baseline_001",
+  "field": "hypothesis",
+  "value": "Depth signal is partially accessible without reference model: reference-free token statistics (TTR, repetition, entropy, sentence length) achieve >60% 4-class accuracy (>2.5x chance)",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "reference_free_baseline_001",
+    "field": "hypothesis",
+    "value": "Depth signal is partially accessible without reference model: reference-free token statistics (TTR, repetition, entropy, sentence length) achieve >60% 4-class accuracy (>2.5x chance)",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T04:58:38.530285+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"reference_free_baseline_001\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:57:02.574Z\", \"updated_at\": \"2026-05-17T04:57:02.574Z\", \"hypothesis\": \"Depth signal is partially accessible without reference model: reference-free token statistics (TTR, repetition, entropy, sentence length) achieve >60% 4-class accuracy (>2.5x chance)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.532}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T04:58:38.530434+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "reference_free_baseline_001",
+  "field": "parent",
+  "value": "feat_ablation_v1",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "reference_free_baseline_001",
+    "field": "parent",
+    "value": "feat_ablation_v1",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T04:58:38.530563+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"reference_free_baseline_001\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:57:02.574Z\", \"updated_at\": \"2026-05-17T04:57:03.194Z\", \"hypothesis\": \"Depth signal is partially accessible without reference model: reference-free token statistics (TTR, repetition, entropy, sentence length) achieve >60% 4-class accuracy (>2.5x chance)\", \"parent\": \"feat_ablation_v1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5618}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T04:58:38.530685+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "reference_free_baseline_001",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "recursive_gen_depth_est",
+  "spec": "{'command': 'python3 scripts/reference_free_baseline.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "reference_free_baseline_001",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "recursive_gen_depth_est",
+    "spec": "{'command': 'python3 scripts/reference_free_baseline.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T04:58:38.530818+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.3072}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T04:58:38.531012+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "reference_free_baseline_001",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "reference_free_baseline_001",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T04:58:38.531189+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"reference_free_baseline_001\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:57:02.574Z\", \"updated_at\": \"2026-05-17T04:57:12.788Z\", \"hypothesis\": \"Depth signal is partially accessible without reference model: reference-free token statistics (TTR, repetition, entropy, sentence length) achieve >60% 4-class accuracy (>2.5x chance)\", \"parent\": \"feat_ablation_v1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1108}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T04:58:38.531326+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "reference_free_baseline_001",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "recursive_gen_depth_est",
+  "spec": "{'command': 'python3 scripts/reference_free_baseline.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "reference_free_baseline_001",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "recursive_gen_depth_est",
+    "spec": "{'command': 'python3 scripts/reference_free_baseline.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T04:58:38.531456+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.3389}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T04:58:38.531590+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "reference_free_baseline_001",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "recursive_gen_depth_est",
+  "spec": "{'command': 'python3 scripts/reference_free_baseline.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42, 'checkpoint_source': 'N/A (feature ablation, no model checkpoint)', 'eval_data': 'data/features_all.jsonl'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "reference_free_baseline_001",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "recursive_gen_depth_est",
+    "spec": "{'command': 'python3 scripts/reference_free_baseline.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42, 'checkpoint_source': 'N/A (feature ablation, no model checkpoint)', 'eval_data': 'data/features_all.jsonl'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T04:58:38.531734+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"reference_free_baseline_001\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:57:02.574Z\", \"updated_at\": \"2026-05-17T04:57:24.591Z\", \"hypothesis\": \"Depth signal is partially accessible without reference model: reference-free token statistics (TTR, repetition, entropy, sentence length) achieve >60% 4-class accuracy (>2.5x chance)\", \"parent\": \"feat_ablation_v1\", \"spec\": {\"command\": \"python3 scripts/reference_free_baseline.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"RandomForest(n=200)\", \"seed\": 42, \"checkpoint_source\": \"N/A (feature ablation, no model checkpoint)\", \"eval_data\": \"data/features_all.jsonl\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1108}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T04:58:38.531894+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "reference_free_baseline_001",
+  "field": "conclusion",
+  "value": "NEGATIVE: 7 reference-free features achieve 53.68% 4-class accuracy (2.15x chance), below the 60% hypothesis threshold. Depth signal is detectable but PPL/surprisal features account for ~25pp of accuracy (full=78.77%). Depth 0 well-separated (recall=85.7%) but d1/d2 confusion is high (recall 39.7%/31.8%). d1v2 AUC=0.625.",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "reference_free_baseline_001",
+    "field": "conclusion",
+    "value": "NEGATIVE: 7 reference-free features achieve 53.68% 4-class accuracy (2.15x chance), below the 60% hypothesis threshold. Depth signal is detectable but PPL/surprisal features account for ~25pp of accuracy (full=78.77%). Depth 0 well-separated (recall=85.7%) but d1/d2 confusion is high (recall 39.7%/31.8%). d1v2 AUC=0.625.",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T04:58:38.532075+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'NEGATIVE: 7 reference-free features achieve 53.68% 4-class accuracy (2.15x chance), below the 60% hypothesis threshold. Depth signal is detectable but PPL/surprisal features account for ~25pp of accuracy (full=78.77%). Depth 0 well-separated (recall=85.7%) but d1/d2 confusion is high (recall 39.7%/31.8%). d1v2 AUC=0.625.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.3233}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T04:58:38.532214+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "reference_free_baseline_001",
+  "field": "metrics",
+  "value": "{'4class_acc': 0.5368, 'ci_95': [0.5336, 0.5401], 'd1v2_auc': 0.6252, 'full_19_acc': 0.7877, 'delta_pp': -25.09, 'recall_d0': 0.8572, 'recall_d1': 0.397, 'recall_d2': 0.3176, 'recall_d3': 0.5756}",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "reference_free_baseline_001",
+    "field": "metrics",
+    "value": "{'4class_acc': 0.5368, 'ci_95': [0.5336, 0.5401], 'd1v2_auc': 0.6252, 'full_19_acc': 0.7877, 'delta_pp': -25.09, 'recall_d0': 0.8572, 'recall_d1': 0.397, 'recall_d2': 0.3176, 'recall_d3': 0.5756}",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T04:58:38.532372+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"reference_free_baseline_001\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:57:02.574Z\", \"updated_at\": \"2026-05-17T04:57:36.833Z\", \"hypothesis\": \"Depth signal is partially accessible without reference model: reference-free token statistics (TTR, repetition, entropy, sentence length) achieve >60% 4-class accuracy (>2.5x chance)\", \"parent\": \"feat_ablation_v1\", \"spec\": {\"command\": \"python3 scripts/reference_free_baseline.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"RandomForest(n=200)\", \"seed\": 42, \"checkpoint_source\": \"N/A (feature ablation, no model checkpoint)\", \"eval_data\": \"data/features_all.jsonl\"}, \"metrics\": {\"4class_acc\": 0.5368, \"ci_95\": [0.5336, 0.5401], \"d1v2_auc\": 0.6252, \"full_19_acc\": 0.7877, \"delta_pp\": -25.09, \"recall_d0\": 0.8572, \"recall_d1\": 0.397, \"recall_d2\": 0.3176, \"recall_d3\": 0.5756}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4815}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T04:58:38.532501+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "reference_free_baseline_001",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "reference_free_baseline_001",
+    "field": "conclusion",
+    "value": "negative",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T04:58:38.532637+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"reference_free_baseline_001\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:57:02.574Z\", \"updated_at\": \"2026-05-17T04:57:40.918Z\", \"hypothesis\": \"Depth signal is partially accessible without reference model: reference-free token statistics (TTR, repetition, entropy, sentence length) achieve >60% 4-class accuracy (>2.5x chance)\", \"parent\": \"feat_ablation_v1\", \"spec\": {\"command\": \"python3 scripts/reference_free_baseline.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"RandomForest(n=200)\", \"seed\": 42, \"checkpoint_source\": \"N/A (feature ablation, no model checkpoint)\", \"eval_data\": \"data/features_all.jsonl\"}, \"metrics\": {\"4class_acc\": 0.5368, \"ci_95\": [0.5336, 0.5401], \"d1v2_auc\": 0.6252, \"full_19_acc\": 0.7877, \"delta_pp\": -25.09, \"recall_d0\": 0.8572, \"recall_d1\": 0.397, \"recall_d2\": 0.3176, \"recall_d3\": 0.5756}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4961}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T04:58:38.532776+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "reference_free_baseline_001",
+  "field": "status",
+  "value": "DONE",
+  "project": "recursive_gen_depth_est",
+  "spec": "{'command': 'python3 scripts/reference_free_baseline.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42, 'checkpoint_source': 'N/A (feature ablation, no model checkpoint)', 'eval_data': 'data/features_all.jsonl', 'checkpoint_path': 'N/A', 'log_path': 'results/reference_free_baseline/summary.json'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "reference_free_baseline_001",
+    "field": "status",
+    "value": "DONE",
+    "project": "recursive_gen_depth_est",
+    "spec": "{'command': 'python3 scripts/reference_free_baseline.py', 'server': 'gpu-6000pro-2', 'data_path': 'data/features_all.jsonl', 'data_count': 20000, 'model_name': 'RandomForest(n=200)', 'seed': 42, 'checkpoint_source': 'N/A (feature ablation, no model checkpoint)', 'eval_data': 'data/features_all.jsonl', 'checkpoint_path': 'N/A', 'log_path': 'results/reference_free_baseline/summary.json'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T04:58:38.533002+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"reference_free_baseline_001\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:57:02.574Z\", \"updated_at\": \"2026-05-17T04:57:46.995Z\", \"hypothesis\": \"Depth signal is partially accessible without reference model: reference-free token statistics (TTR, repetition, entropy, sentence length) achieve >60% 4-class accuracy (>2.5x chance)\", \"parent\": \"feat_ablation_v1\", \"spec\": {\"command\": \"python3 scripts/reference_free_baseline.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"RandomForest(n=200)\", \"seed\": 42, \"checkpoint_source\": \"N/A (feature ablation, no model checkpoint)\", \"eval_data\": \"data/features_all.jsonl\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/reference_free_baseline/summary.json\"}, \"metrics\": {\"4class_acc\": 0.5368, \"ci_95\": [0.5336, 0.5401], \"d1v2_auc\": 0.6252, \"full_19_acc\": 0.7877, \"delta_pp\": -25.09, \"recall_d0\": 0.8572, \"recall_d1\": 0.397, \"recall_d2\": 0.3176, \"recall_d3\": 0.5756}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-17T04:57:46.995Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1169}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T04:58:38.533195+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "reference_free_baseline_summary",
+  "type": "report",
+  "description": "Reference-free baseline results: 7 features (TTR, hapax, ngram entropy, repetition) achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative: below 60% threshold.",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "reference_free_baseline_001",
+  "content": "{\"n_features_total\": 19, \"n_features_ref_free\": 7, \"ref_free_features\": [\"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\", \"rep_2gram\", \"rep_3gram\", \"rep_4gram\"], \"removed_features\": [\"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\", \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\", \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"], \"4class_acc\": 0.5368, \"ci_95\": [0.5336, 0.5401], \"fold_accs\": [0.5327, 0.5323, 0.5387, 0.5385, 0.542], \"d1v2_auc\": 0.6252, \"per_class_recall\": {\"depth_0\": 0.8572, \"depth_1\": 0.397, \"depth_2\": 0.3176, \"depth_3\": 0.5756}, \"vs_full_19_acc\": 0.7877, \"delta_pp\": -25.09}",
+  "content_filename": "summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "reference_free_baseline_summary",
+    "type": "report",
+    "description": "Reference-free baseline results: 7 features (TTR, hapax, ngram entropy, repetition) achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative: below 60% threshold.",
+    "project": "recursive_gen_depth_est",
+    "exp_id": "reference_free_baseline_001",
+    "content": "{\"n_features_total\": 19, \"n_features_ref_free\": 7, \"ref_free_features\": [\"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\", \"rep_2gram\", \"rep_3gram\", \"rep_4gram\"], \"removed_features\": [\"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\", \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\", \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"], \"4class_acc\": 0.5368, \"ci_95\": [0.5336, 0.5401], \"fold_accs\": [0.5327, 0.5323, 0.5387, 0.5385, 0.542], \"d1v2_auc\": 0.6252, \"per_class_recall\": {\"depth_0\": 0.8572, \"depth_1\": 0.397, \"depth_2\": 0.3176, \"depth_3\": 0.5756}, \"vs_full_19_acc\": 0.7877, \"delta_pp\": -25.09}",
+    "content_filename": "summary.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T04:58:38.533341+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'n_features_total': 19, ...877, 'delta_pp': -25.09}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T04:58:38.533470+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "reference_free_baseline_summary",
+  "type": "report",
+  "description": "Reference-free baseline results: 7 features (TTR, hapax, ngram entropy, repetition) achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative: below 60% threshold.",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "reference_free_baseline_001",
+  "content": "{\"n_features_total\": 19, \"n_features_ref_free\": 7, \"ref_free_features\": [\"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\", \"rep_2gram\", \"rep_3gram\", \"rep_4gram\"], \"removed_features\": [\"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\", \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\", \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"], \"4class_acc\": 0.5368, \"ci_95\": [0.5336, 0.5401], \"fold_accs\": [0.5327, 0.5323, 0.5387, 0.5385, 0.542], \"d1v2_auc\": 0.6252, \"per_class_recall\": {\"depth_0\": 0.8572, \"depth_1\": 0.397, \"depth_2\": 0.3176, \"depth_3\": 0.5756}, \"vs_full_19_acc\": 0.7877, \"delta_pp\": -25.09}",
+  "content_filename": "summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "reference_free_baseline_summary",
+    "type": "report",
+    "description": "Reference-free baseline results: 7 features (TTR, hapax, ngram entropy, repetition) achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative: below 60% threshold.",
+    "project": "recursive_gen_depth_est",
+    "exp_id": "reference_free_baseline_001",
+    "content": "{\"n_features_total\": 19, \"n_features_ref_free\": 7, \"ref_free_features\": [\"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\", \"rep_2gram\", \"rep_3gram\", \"rep_4gram\"], \"removed_features\": [\"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\", \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\", \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"], \"4class_acc\": 0.5368, \"ci_95\": [0.5336, 0.5401], \"fold_accs\": [0.5327, 0.5323, 0.5387, 0.5385, 0.542], \"d1v2_auc\": 0.6252, \"per_class_recall\": {\"depth_0\": 0.8572, \"depth_1\": 0.397, \"depth_2\": 0.3176, \"depth_3\": 0.5756}, \"vs_full_19_acc\": 0.7877, \"delta_pp\": -25.09}",
+    "content_filename": "summary.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T04:58:38.533597+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'n_features_total': 19, ...877, 'delta_pp': -25.09}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T04:58:38.533715+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "reference_free_baseline_summary",
+  "type": "report",
+  "description": "Reference-free baseline results: 7 features (TTR, hapax, ngram entropy, repetition) achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative: below 60% threshold.",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "reference_free_baseline_001",
+  "source_path": "/root/autodl-tmp/recursive_gen_depth_est/results/reference_free_baseline/summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "reference_free_baseline_summary",
+    "type": "report",
+    "description": "Reference-free baseline results: 7 features (TTR, hapax, ngram entropy, repetition) achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative: below 60% threshold.",
+    "project": "recursive_gen_depth_est",
+    "exp_id": "reference_free_baseline_001",
+    "source_path": "/root/autodl-tmp/recursive_gen_depth_est/results/reference_free_baseline/summary.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T04:58:38.533838+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/reference_free_baseline/summary.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T04:58:38.534001+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "reference_free_baseline_summary",
+  "type": "report",
+  "description": "Reference-free baseline results: 7 features (TTR, hapax, ngram entropy, repetition) achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative: below 60% threshold.",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "reference_free_baseline_001",
+  "content": "{\"n_features_total\": 19, \"n_features_ref_free\": 7, \"ref_free_features\": [\"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\", \"rep_2gram\", \"rep_3gram\", \"rep_4gram\"], \"removed_features\": [\"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\", \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\", \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"], \"4class_acc\": 0.5368, \"ci_95\": [0.5336, 0.5401], \"fold_accs\": [0.5327, 0.5323, 0.5387, 0.5385, 0.542], \"d1v2_auc\": 0.6252, \"per_class_recall\": {\"depth_0\": 0.8572, \"depth_1\": 0.397, \"depth_2\": 0.3176, \"depth_3\": 0.5756}, \"vs_full_19_acc\": 0.7877, \"delta_pp\": -25.09}",
+  "content_filename": "summary.json",
+  "tags": "['reference-free', 'ablation', 'baseline']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "reference_free_baseline_summary",
+    "type": "report",
+    "description": "Reference-free baseline results: 7 features (TTR, hapax, ngram entropy, repetition) achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative: below 60% threshold.",
+    "project": "recursive_gen_depth_est",
+    "exp_id": "reference_free_baseline_001",
+    "content": "{\"n_features_total\": 19, \"n_features_ref_free\": 7, \"ref_free_features\": [\"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\", \"rep_2gram\", \"rep_3gram\", \"rep_4gram\"], \"removed_features\": [\"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\", \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\", \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"], \"4class_acc\": 0.5368, \"ci_95\": [0.5336, 0.5401], \"fold_accs\": [0.5327, 0.5323, 0.5387, 0.5385, 0.542], \"d1v2_auc\": 0.6252, \"per_class_recall\": {\"depth_0\": 0.8572, \"depth_1\": 0.397, \"depth_2\": 0.3176, \"depth_3\": 0.5756}, \"vs_full_19_acc\": 0.7877, \"delta_pp\": -25.09}",
+    "content_filename": "summary.json",
+    "tags": "['reference-free', 'ablation', 'baseline']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T04:58:38.534141+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'n_features_total': 19, ...877, 'delta_pp': -25.09}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T04:58:38.534293+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "reference_free_baseline_summary",
+  "type": "report",
+  "description": "Reference-free baseline results: 7 features achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative.",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "reference_free_baseline_001",
+  "content": "4class_acc: 0.5368 (CI: 0.5336-0.5401)\\nfull_19_acc: 0.7877\\ndelta: -25.09pp\\nd1v2_auc: 0.6252\\n\\nRef-free features (7): type_token_ratio, hapax_ratio, bigram_entropy, trigram_entropy, rep_2gram, rep_3gram, rep_4gram\\nRemoved (12): mean_ppl, var_ppl, skewness_ppl, kurtosis_ppl, p10_ppl, p25_ppl, p50_ppl, p75_ppl, p90_ppl, mean_surprisal, var_surprisal, entropy_of_surprisal\\n\\nPer-class recall: d0=0.857, d1=0.397, d2=0.318, d3=0.576\\n\\nConclusion: Hypothesis NEGATIVE. 53.68% < 60% threshold. Reference model features account for ~25pp accuracy. Depth 0 separable without ref model but d1/d2 distinction requires PPL features.",
+  "content_filename": "summary.txt",
+  "tags": "['reference-free', 'ablation', 'baseline']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "reference_free_baseline_summary",
+    "type": "report",
+    "description": "Reference-free baseline results: 7 features achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative.",
+    "project": "recursive_gen_depth_est",
+    "exp_id": "reference_free_baseline_001",
+    "content": "4class_acc: 0.5368 (CI: 0.5336-0.5401)\\nfull_19_acc: 0.7877\\ndelta: -25.09pp\\nd1v2_auc: 0.6252\\n\\nRef-free features (7): type_token_ratio, hapax_ratio, bigram_entropy, trigram_entropy, rep_2gram, rep_3gram, rep_4gram\\nRemoved (12): mean_ppl, var_ppl, skewness_ppl, kurtosis_ppl, p10_ppl, p25_ppl, p50_ppl, p75_ppl, p90_ppl, mean_surprisal, var_surprisal, entropy_of_surprisal\\n\\nPer-class recall: d0=0.857, d1=0.397, d2=0.318, d3=0.576\\n\\nConclusion: Hypothesis NEGATIVE. 53.68% < 60% threshold. Reference model features account for ~25pp accuracy. Depth 0 separable without ref model but d1/d2 distinction requires PPL features.",
+    "content_filename": "summary.txt",
+    "tags": "['reference-free', 'ablation', 'baseline']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T04:58:38.534441+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_00e248\", \"name\": \"reference_free_baseline_summary\", \"type\": \"report\", \"description\": \"Reference-free baseline results: 7 features achieve 53.68% 4-class acc (vs 78.77% full). Hypothesis negative.\", \"path\": \"projects/recursive_gen_depth_est/artifacts/reference_free_baseline_001/report/summary.txt\", \"url\": null, \"project\": \"recursive_gen_depth_est\", \"exp_id\": \"reference_free_baseline_001\", \"skill\": \"\", \"created_at\": \"2026-05-17T04:58:28.583780+00:00\", \"tags\": [\"reference-free\", \"ablation\", \"baseline\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reference_free_baseline_20260517T045516",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-17T04:58:38.534602+00:00_
+
+实验完成，结果已注册。
+
+## 结果摘要
+
+| 指标 | Reference-Free (7 feat) | Full (19 feat) |
+|------|------------------------|----------------|
+| 4-class Acc | **53.68%** [53.36, 54.01] | 78.77% |
+| Delta | **-25.09 pp** | — |
+| d1v2 AUC | 0.625 | — |
+
+**Per-class recall:** d0=85.7%, d1=39.7%, d2=31.8%, d3=57.6%
+
+**结论: NEGATIVE.** 53.68% 虽然 >2× chance (25%)，但未达到 60% 假设阈值。PPL/surprisal 特征贡献约 25pp accuracy。Token-level 统计能区分 depth 0（人类原文 vs 机器生成），但 d1/d2 中间深度的区分严重依赖 reference model 特征。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_reference_free_baseline_20260517T045516"
+}
+```
+
+</details>
+
+---

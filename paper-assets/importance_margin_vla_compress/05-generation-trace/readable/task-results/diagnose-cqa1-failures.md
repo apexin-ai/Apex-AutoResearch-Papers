@@ -1,0 +1,65 @@
+# diagnose cqa1 failures
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diagnose_cqa1_failures_20260521T092844_result.json`
+- **Structured JSON:** [`86e74286f9758d6faf67.json`](../../sessions/86/86e74286f9758d6faf67.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 诊断报告
+
+### 结论：两个实验均已正常完成，不是真正的失败
+
+监控系统误报。两个实验都跑完了全部 500 episodes 并正常退出，只是没有写 sentinel 文件或上报 W&B，导致监控判定为 "process dead"。
+
+---
+
+### 实验 1: eval_xvla_random_k05_object_seed44
+- **状态**: 正常完成 (17:17:05)
+- **结果**: Overall SR = **69.2%** (346/500), 95% Wilson CI: [65.0%, 73.1%]
+- **耗时**: 77.8 min
+- **结果文件**: `eval_results/xvla_prune_k0.5_libero_object.json` (已确认内容正确, seed=44, mode=random)
+
+### 实验 2: eval_xvla_l2norm_k05_object_seed42
+- **状态**: 正常完成 (17:09:17)
+- **结果**: Overall SR = **43.4%** (217/500), 95% Wilson CI: [39.1%, 47.8%]
+- **耗时**: 101.7 min
+- **结果文件问题**: 写入了 `xvla_prune_k0.5_libero_object.json`，随后被 random_k05_seed44 (17:17) **覆盖**。l2norm 的 JSON 结果已丢失，但完整数据可从日志恢复。
+
+### eval_xvla_l2norm_k03_object_seed42
+- **状态**: 仍在运行 (PID 707317, GPU 2, 4521MiB)
+- **进度**: Task 5 Ep 38/50，当前 task 全部 FAIL（0% SR），整体进度约 ~56%
+
+### 服务器状态
+| 项目 | 状态 |
+|------|------|
+| GPU | 4× RTX 4090 D 正常，仅 GPU 2 在用 |
+| 磁盘 | /root/autodl-tmp/ 75GB 可用 (71% used) |
+| OOM | 无法读取 dmesg（权限限制），但从日志和进程状态看无 OOM 迹象 |
+
+### 根因
+**不是失败，是监控误报。** eval 脚本不写 sentinel 文件也不上报 W&B，进程正常退出后监控检测不到存活信号，错误判定为 dead。
+
+### 数据丢失风险
+eval 脚本的输出文件名不包含 mode 和 seed（都写到 `xvla_prune_k{ratio}_{suite}.json`），多个实验并发时最后完成的会覆盖之前的。l2norm_k05_seed42 的结果已被覆盖，需要从日志重建或修复命名逻辑。
+
+### 是否需要重跑
+- **random_k05_seed44**: 不需要，结果已保存
+- **l2norm_k05_seed42**: 不需要重跑，日志里有完整逐 task 数据，可脚本提取重建 JSON
+- **l2norm_k03_seed42**: 仍在跑，不要中断
+
+---

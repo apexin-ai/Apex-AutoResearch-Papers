@@ -1,0 +1,766 @@
+# analyze eval pi05 attention k05 goal seed42
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_analyze_eval_pi05_attention_k05_goal_seed42_20260523T210642.log`
+- **Structured JSON:** [`d02637d9fa8797865595.json`](../../sessions/d0/d02637d9fa8797865595.json)
+
+## Before a recorded user message
+
+14 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__compare_wandb_runs",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__fetch_wandb_metrics",
+    "mcp__agent-ml-research__fetch_wandb_run_history",
+    "mcp__agent-ml-research__get_best_wandb_run",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__list_wandb_runs",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e17b4cfd-0809-44dd-90bb-0c22dba80dcf",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779973200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.74,
+    "isUsingOverage": false
+  },
+  "uuid": "fe5400b0-f5b3-4a9e-94a6-a4ed9726f585",
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the log file from the server and check for eval results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "uuid": "f4607e6f-dc25-46e1-be44-7a60d48e3133",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TFw6YL2ji8ixL4BwJQvQqS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11829,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11829
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01D97g21iwHX1PqeVqJzzXxb`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "uuid": "a4c60fe1-f139-49f1-9ffb-7b59e1c98b92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TFw6YL2ji8ixL4BwJQvQqS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11829,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11829
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T21:06:52.636Z_
+
+<details><summary>↩ Tool result · `toolu_01D97g21iwHX1PqeVqJzzXxb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "uuid": "13606caf-786a-496f-8fb6-41cb3387dc6e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 28
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Po8BT33WX2sjdLEJ8hScHt`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat ~/runs/importance_margin_vla_compress/eval_pi05_attention_k05_goal_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "uuid": "a9fca897-6557-40ce-9c12-319e46125f08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Athp5bBNVp9Ab1iUZMfDzj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 456,
+      "cache_read_input_tokens": 23670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 456
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017t5KgkHgErpQwzWS8mGx4D`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results/ -name \"*attention*k05*goal*\" -o -name \"*attention*k0.5*goal*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "uuid": "b6f3d38d-6b79-418c-be67-797aae317271",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Athp5bBNVp9Ab1iUZMfDzj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 456,
+      "cache_read_input_tokens": 23670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 456
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T21:06:59.217Z_
+
+<details><summary>↩ Tool result · `toolu_01Po8BT33WX2sjdLEJ8hScHt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 03:37:42,929 Config: suite=libero_goal, prune=attention, keep=0.5, eps=50, gpu=0\\n2026-05-24 03:37:42,930 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-24 03:39:20,927 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-24 03:39:25,039 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-24 03:39:25,040 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-24 03:39:27,010 Patched embed_image\\n2026-05-24 03:39:27,017 Model: 4143.4M params\\n2026-05-24 03:39:27,017 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-24 03:39:27,017 Pruning: attention, keep 128/256 tokens/image (384 total, 2-layer probe)\\n2026-05-24 03:39:27,796 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-24 03:39:27,817 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-24 03:39:27,817 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-24 03:39:27,817 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 03:39:27,871 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 03:39:28,288 Suite: libero_goal, 10 tasks, max_steps=300\\n[PRUNE-DIAG] attention: n_keep=128/256, score_range=[0.000002, 0.003630], first_indices=[1, 2, 3, 4, 5]\\n2026-05-24 03:41:54,667   T0 [open the middle drawer of the cabinet] ep=10: 4/10=40%\\n2026-05-24 03:43:46,004   T0 [open the middle drawer of the cabinet] ep=20: 12/20=60%\\n2026-05-24 03:45:54,534   T0 [open the middle drawer of the cabinet] ep=30: 19/30=63%\\n2026-05-24 03:47:23,382   T0 [open the middle drawer of the cabinet] ep=40: 29/40=72%\\n2026-05-24 03:49:05,203   T0 [open the middle drawer of the cabinet] ep=50: 38/50=76%\\n2026-05-24 03:49:05,203 Task 0: SR=76.0% | Total: 38/50=76.0% | Time: 9.6min\\n2026-05-24 03:51:07,143   T1 [put the bowl on the stove] ep=10: 5/10=50%\\n2026-05-24 03:53:10,139   T1 [put the bowl on the stove] ep=20: 10/20=50%\\n2026-05-24 03:55:26,624   T1 [put the bowl on the stove] ep=30: 14/30=47%\\n2026-05-24 03:58:05,978   T1 [put the bowl on the stove] ep=40: 16/40=40%\\n2026-05-24 04:00:23,342   T1 [put the bowl on the stove] ep=50: 20/50=40%\\n2026-05-24 04:00:23,342 Task 1: SR=40.0% | Total: 58/100=58.0% | Time: 20.9min\\n2026-05-24 04:02:27,997   T2 [put the wine bottle on top of the cabine] ep=10: 6/10=60%\\n2026-05-24 04:04:20,178   T2 [put the wine bottle on top of the cabine] ep=20: 14/20=70%\\n2026-05-24 04:05:52,818   T2 [put the wine bottle on top of the cabine] ep=30: 23/30=77%\\n2026-05-24 04:07:23,926   T2 [put the wine bottle on top of the cabine] ep=40: 32/40=80%\\n2026-05-24 04:09:24,068   T2 [put the wine bottle on top of the cabine] ep=50: 38/50=76%\\n2026-05-24 04:09:24,068 Task 2: SR=76.0% | Total: 96/150=64.0% | Time: 29.9min\\n2026-05-24 04:11:44,508   T3 [open the top drawer and put the bowl ins] ep=10: 7/10=70%\\n2026-05-24 04:13:52,775   T3 [open the top drawer and put the bowl ins] ep=20: 16/20=80%\\n2026-05-24 04:16:15,114   T3 [open the top drawer and put the bowl ins] ep=30: 23/30=77%\\n2026-05-24 04:18:53,533   T3 [open the top drawer and put the bowl ins] ep=40: 27/40=68%\\n2026-05-24 04:21:13,872   T3 [open the top drawer and put the bowl ins] ep=50: 34/50=68%\\n2026-05-24 04:21:13,873 Task 3: SR=68.0% | Total: 130/200=65.0% | Time: 41.8min\\n2026-05-24 04:22:33,876   T4 [put the bowl on top of the cabinet] ep=10: 9/10=90%\\n2026-05-24 04:23:44,660   T4 [put the bowl on top of the cabinet] ep=20: 19/20=95%\\n2026-05-24 04:25:04,484   T4 [put the bowl on top of the cabinet] ep=30: 28/30=93%\\n2026-05-24 04:26:24,760   T4 [put the bowl on top of the cabinet] ep=40: 37/40=92%\\n2026-05-24 04:27:34,994   T4 [put the bowl on top of the cabinet] ep=50: 47/50=94%\\n2026-05-24 04:27:34,994 Task 4: SR=94.0% | Total: 177/250=70.8% | Time: 48.1min\\n2026-05-24 04:30:04,191   T5 [push the plate to the front of the stove] ep=10: 5/10=50%\\n2026-05-24 04:31:59,279   T5 [push the plate to the front of the stove] ep=20: 13/20=65%\\n2026-05-24 04:33:43,093   T5 [push the plate to the front of the stove] ep=30: 20/30=67%\\n2026-05-24 04:35:14,538   T5 [push the plate to the front of the stove] ep=40: 28/40=70%\\n2026-05-24 04:36:55,348   T5 [push the plate to the front of the stove] ep=50: 35/50=70%\\n2026-05-24 04:36:55,349 Task 5: SR=70.0% | Total: 212/300=70.7% | Time: 57.5min\\n2026-05-24 04:38:28,053   T6 [put the cream cheese in the bowl] ep=10: 7/10=70%\\n2026-05-24 04:40:26,957   T6 [put the cream cheese in the bowl] ep=20: 10/20=50%\\n2026-05-24 04:41:55,517   T6 [put the cream cheese in the bowl] ep=30: 16/30=53%\\n2026-05-24 04:43:40,571   T6 [put the cream cheese in the bowl] ep=40: 21/40=52%\\n2026-05-24 04:45:20,221   T6 [put the cream cheese in the bowl] ep=50: 27/50=54%\\n2026-05-24 04:45:20,221 Task 6: SR=54.0% | Total: 239/350=68.3% | Time: 65.9min\\n2026-05-24 04:46:06,651   T7 [turn on the stove] ep=10: 10/10=100%\\n2026-05-24 04:46:50,645   T7 [turn on the stove] ep=20: 20/20=100%\\n2026-05-24 04:47:34,976   T7 [turn on the stove] ep=30: 30/30=100%\\n2026-05-24 04:48:18,417   T7 [turn on the stove] ep=40: 40/40=100%\\n2026-05-24 04:49:04,392   T7 [turn on the stove] ep=50: 50/50=100%\\n2026-05-24 04:49:04,392 Task 7: SR=100.0% | Total: 289/400=72.2% | Time: 69.6min\\n2026-05-24 04:50:09,507   T8 [put the bowl on the plate] ep=10: 8/10=80%\\n2026-05-24 04:51:04,403   T8 [put the bowl on the plate] ep=20: 17/20=85%\\n2026-05-24 04:51:55,688   T8 [put the bowl on the plate] ep=30: 27/30=90%\\n2026-05-24 04:52:49,962   T8 [put the bowl on the plate] ep=40: 36/40=90%\\n2026-05-24 04:54:03,687   T8 [put the bowl on the plate] ep=50: 43/50=86%\\n2026-05-24 04:54:03,688 Task 8: SR=86.0% | Total: 332/450=73.8% | Time: 74.6min\\n2026-05-24 04:56:18,773   T9 [put the wine bottle on the rack] ep=10: 3/10=30%\\n2026-05-24 04:58:12,931   T9 [put the wine bottle on the rack] ep=20: 8/20=40%\\n2026-05-24 05:00:12,617   T9 [put the wine bottle on the rack] ep=30: 12/30=40%\\n2026-05-24 05:02:20,712   T9 [put the wine bottle on the rack] ep=40: 15/40=38%\\n2026-05-24 05:04:19,949   T9 [put the wine bottle on the rack] ep=50: 19/50=38%\\n2026-05-24 05:04:19,949 Task 9: SR=38.0% | Total: 351/500=70.2% | Time: 84.9min\\n2026-05-24 05:04:20,171 \\n============================================================\\n2026-05-24 05:04:20,171 RESULT: libero_goal prune=attention keep=0.5 SR=70.2%\\n2026-05-24 05:04:20,171 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed42.json\\n2026-05-24 05:04:20,171 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "uuid": "b32c4220-f0d7-4f2b-a584-b892abdd9222",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 03:37:42,929 Config: suite=libero_goal, prune=attention, keep=0.5, eps=50, gpu=0\\\\n2026-05-24 03:37:42,930 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n2026-05-24 03:39:20,927 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-24 03:39:25,039 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-24 03:39:25,040 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-24 03:39:27,010 Patched embed_image\\\\n2026-05-24 03:39:27,017 Model: 4143.4M params\\\\n2026-05-24 03:39:27,017 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-24 03:39:27,017 Pruning: attention, keep 128/256 tokens/image (384 total, 2-layer probe)\\\\n2026-05-24 03:39:27,796 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n2026-05-24 03:39:27,817 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n2026-05-24 03:39:27,817 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-24 03:39:27,817 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-24 03:39:27,871 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-24 03:39:28,288 Suite: libero_goal, 10 tasks, max_steps=300\\\\n[PRUNE-DIAG] attention: n_keep=128/256, score_range=[0.000002, 0.003630], first_indices=[1, 2, 3, 4, 5]\\\\n2026-05-24 03:41:54,667   T0 [open the middle drawer of the cabinet] ep=10: 4/10=40%\\\\n2026-05-24 03:43:46,004   T0 [open the middle drawer of the cabinet] ep=20: 12/20=60%\\\\n2026-05-24 03:45:54,534   T0 [open the middle drawer of the cabinet] ep=30: 19/30=63%\\\\n2026-05-24 03:47:23,382   T0 [open the middle drawer of the cabinet] ep=40: 29/40=72%\\\\n2026-05-24 03:49:05,203   T0 [open the middle drawer of the cabinet] ep=50: 38/50=76%\\\\n2026-05-24 03:49:05,203 Task 0: SR=76.0% | Total: 38/50=76.0% | Time: 9.6min\\\\n2026-05-24 03:51:07,143   T1 [put the bowl on the stove] ep=10: 5/10=50%\\\\n2026-05-24 03:53:10,139   T1 [put the bowl on the stove] ep=20: 10/20=50%\\\\n2026-05-24 03:55:26,624   T1 [put the bowl on the stove] ep=30: 14/30=47%\\\\n2026-05-24 03:58:05,978   T1 [put the bowl on the stove] ep=40: 16/40=40%\\\\n2026-05-24 04:00:23,342   T1 [put the bowl on the stove] ep=50: 20/50=40%\\\\n2026-05-24 04:00:23,342 Task 1: SR=40.0% | Total: 58/100=58.0% | Time: 20.9min\\\\n2026-05-24 04:02:27,997   T2 [put the wine bottle on top of the cabine] ep=10: 6/10=60%\\\\n2026-05-24 04:04:20,178   T2 [put the wine bottle on top of the cabine] ep=20: 14/20=70%\\\\n2026-05-24 04:05:52,818   T2 [put the wine bottle on top of the cabine] ep=30: 23/30=77%\\\\n2026-05-24 04:07:23,926   T2 [put the wine bottle on top of the cabine] ep=40: 32/40=80%\\\\n2026-05-24 04:09:24,068   T2 [put the wine bottle on top of the cabine] ep=50: 38/50=76%\\\\n2026-05-24 04:09:24,068 Task 2: SR=76.0% | Total: 96/150=64.0% | Time: 29.9min\\\\n2026-05-24 04:11:44,508   T3 [open the top drawer and put the bowl ins] ep=10: 7/10=70%\\\\n2026-05-24 04:13:52,775   T3 [open the top drawer and put the bowl ins] ep=20: 16/20=80%\\\\n2026-05-24 04:16:15,114   T3 [open the top drawer and put the bowl ins] ep=30: 23/30=77%\\\\n2026-05-24 04:18:53,533   T3 [open the top drawer and put the bowl ins] ep=40: 27/40=68%\\\\n2026-05-24 04:21:13,872   T3 [open the top drawer and put the bowl ins] ep=50: 34/50=68%\\\\n2026-05-24 04:21:13,873 Task 3: SR=68.0% | Total: 130/200=65.0% | Time: 41.8min\\\\n2026-05-24 04:22:33,876   T4 [put the bowl on top of the cabinet] ep=10: 9/10=90%\\\\n2026-05-24 04:23:44,660   T4 [put the bowl on top of the cabinet] ep=20: 19/20=95%\\\\n2026-05-24 04:25:04,484   T4 [put the bowl on top of the cabinet] ep=30: 28/30=93%\\\\n2026-05-24 04:26:24,760   T4 [put the bowl on top of the cabinet] ep=40: 37/40=92%\\\\n2026-05-24 04:27:34,994   T4 [put the bowl on top of the cabinet] ep=50: 47/50=94%\\\\n2026-05-24 04:27:34,994 Task 4: SR=94.0% | Total: 177/250=70.8% | Time: 48.1min\\\\n2026-05-24 04:30:04,191   T5 [push the plate to the front of the stove] ep=10: 5/10=50%\\\\n2026-05-24 04:31:59,279   T5 [push the plate to the front of the stove] ep=20: 13/20=65%\\\\n2026-05-24 04:33:43,093   T5 [push the plate to the front of the stove] ep=30: 20/30=67%\\\\n2026-05-24 04:35:14,538   T5 [push the plate to the front of the stove] ep=40: 28/40=70%\\\\n2026-05-24 04:36:55,348   T5 [push the plate to the front of the stove] ep=50: 35/50=70%\\\\n2026-05-24 04:36:55,349 Task 5: SR=70.0% | Total: 212/300=70.7% | Time: 57.5min\\\\n2026-05-24 04:38:28,053   T6 [put the cream cheese in the bowl] ep=10: 7/10=70%\\\\n2026-05-24 04:40:26,957   T6 [put the cream cheese in the bowl] ep=20: 10/20=50%\\\\n2026-05-24 04:41:55,517   T6 [put the cream cheese in the bowl] ep=30: 16/30=53%\\\\n2026-05-24 04:43:40,571   T6 [put the cream cheese in the bowl] ep=40: 21/40=52%\\\\n2026-05-24 04:45:20,221   T6 [put the cream cheese in the bowl] ep=50: 27/50=54%\\\\n2026-05-24 04:45:20,221 Task 6: SR=54.0% | Total: 239/350=68.3% | Time: 65.9min\\\\n2026-05-24 04:46:06,651   T7 [turn on the stove] ep=10: 10/10=100%\\\\n2026-05-24 04:46:50,645   T7 [turn on the stove] ep=20: 20/20=100%\\\\n2026-05-24 04:47:34,976   T7 [turn on the stove] ep=30: 30/30=100%\\\\n2026-05-24 04:48:18,417   T7 [turn on the stove] ep=40: 40/40=100%\\\\n2026-05-24 04:49:04,392   T7 [turn on the stove] ep=50: 50/50=100%\\\\n2026-05-24 04:49:04,392 Task 7: SR=100.0% | Total: 289/400=72.2% | Time: 69.6min\\\\n2026-05-24 04:50:09,507   T8 [put the bowl on the plate] ep=10: 8/10=80%\\\\n2026-05-24 04:51:04,403   T8 [put the bowl on the plate] ep=20: 17/20=85%\\\\n2026-05-24 04:51:55,688   T8 [put the bowl on the plate] ep=30: 27/30=90%\\\\n2026-05-24 04:52:49,962   T8 [put the bowl on the plate] ep=40: 36/40=90%\\\\n2026-05-24 04:54:03,687   T8 [put the bowl on the plate] ep=50: 43/50=86%\\\\n2026-05-24 04:54:03,688 Task 8: SR=86.0% | Total: 332/450=73.8% | Time: 74.6min\\\\n2026-05-24 04:56:18,773   T9 [put the wine bottle on the rack] ep=10: 3/10=30%\\\\n2026-05-24 04:58:12,931   T9 [put the wine bottle on the rack] ep=20: 8/20=40%\\\\n2026-05-24 05:00:12,617   T9 [put the wine bottle on the rack] ep=30: 12/30=40%\\\\n2026-05-24 05:02:20,712   T9 [put the wine bottle on the rack] ep=40: 15/40=38%\\\\n2026-05-24 05:04:19,949   T9 [put the wine bottle on the rack] ep=50: 19/50=38%\\\\n2026-05-24 05:04:19,949 Task 9: SR=38.0% | Total: 351/500=70.2% | Time: 84.9min\\\\n2026-05-24 05:04:20,171 \\\\n============================================================\\\\n2026-05-24 05:04:20,171 RESULT: libero_goal prune=attention keep=0.5 SR=70.2%\\\\n2026-05-24 05:04:20,171 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed42.json\\\\n2026-05-24 05:04:20,171 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 03:37:42,929 Config: suite=libero_goal, prune=attention, keep=0.5, eps=50, gpu=0\\n2026-05-24 03:37:42,930 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-24 03:39:20,927 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-24 03:39:25,039 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-24 03:39:25,040 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-24 03:39:27,010 Patched embed_image\\n2026-05-24 03:39:27,017 Model: 4143.4M params\\n2026-05-24 03:39:27,017 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-24 03:39:27,017 Pruning: attention, keep 128/256 tokens/image (384 total, 2-layer probe)\\n2026-05-24 03:39:27,796 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-24 03:39:27,817 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-24 03:39:27,817 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-24 03:39:27,817 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 03:39:27,871 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 03:39:28,288 Suite: libero_goal, 10 tasks, max_steps=300\\n[PRUNE-DIAG] attention: n_keep=128/256, score_range=[0.000002, 0.003630], first_indices=[1, 2, 3, 4, 5]\\n2026-05-24 03:41:54,667   T0 [open the middle drawer of the cabinet] ep=10: 4/10=40%\\n2026-05-24 03:43:46,004   T0 [open the middle drawer of the cabinet] ep=20: 12/20=60%\\n2026-05-24 03:45:54,534   T0 [open the middle drawer of the cabinet] ep=30: 19/30=63%\\n2026-05-24 03:47:23,382   T0 [open the middle drawer of the cabinet] ep=40: 29/40=72%\\n2026-05-24 03:49:05,203   T0 [open the middle drawer of the cabinet] ep=50: 38/50=76%\\n2026-05-24 03:49:05,203 Task 0: SR=76.0% | Total: 38/50=76.0% | Time: 9.6min\\n2026-05-24 03:51:07,143   T1 [put the bowl on the stove] ep=10: 5/10=50%\\n2026-05-24 03:53:10,139   T1 [put the bowl on the stove] ep=20: 10/20=50%\\n2026-05-24 03:55:26,624   T1 [put the bowl on the stove] ep=30: 14/30=47%\\n2026-05-24 03:58:05,978   T1 [put the bowl on the stove] ep=40: 16/40=40%\\n2026-05-24 04:00:23,342   T1 [put the bowl on the stove] ep=50: 20/50=40%\\n2026-05-24 04:00:23,342 Task 1: SR=40.0% | Total: 58/100=58.0% | Time: 20.9min\\n2026-05-24 04:02:27,997   T2 [put the wine bottle on top of the cabine] ep=10: 6/10=60%\\n2026-05-24 04:04:20,178   T2 [put the wine bottle on top of the cabine] ep=20: 14/20=70%\\n2026-05-24 04:05:52,818   T2 [put the wine bottle on top of the cabine] ep=30: 23/30=77%\\n2026-05-24 04:07:23,926   T2 [put the wine bottle on top of the cabine] ep=40: 32/40=80%\\n2026-05-24 04:09:24,068   T2 [put the wine bottle on top of the cabine] ep=50: 38/50=76%\\n2026-05-24 04:09:24,068 Task 2: SR=76.0% | Total: 96/150=64.0% | Time: 29.9min\\n2026-05-24 04:11:44,508   T3 [open the top drawer and put the bowl ins] ep=10: 7/10=70%\\n2026-05-24 04:13:52,775   T3 [open the top drawer and put the bowl ins] ep=20: 16/20=80%\\n2026-05-24 04:16:15,114   T3 [open the top drawer and put the bowl ins] ep=30: 23/30=77%\\n2026-05-24 04:18:53,533   T3 [open the top drawer and put the bowl ins] ep=40: 27/40=68%\\n2026-05-24 04:21:13,872   T3 [open the top drawer and put the bowl ins] ep=50: 34/50=68%\\n2026-05-24 04:21:13,873 Task 3: SR=68.0% | Total: 130/200=65.0% | Time: 41.8min\\n2026-05-24 04:22:33,876   T4 [put the bowl on top of the cabinet] ep=10: 9/10=90%\\n2026-05-24 04:23:44,660   T4 [put the bowl on top of the cabinet] ep=20: 19/20=95%\\n2026-05-24 04:25:04,484   T4 [put the bowl on top of the cabinet] ep=30: 28/30=93%\\n2026-05-24 04:26:24,760   T4 [put the bowl on top of the cabinet] ep=40: 37/40=92%\\n2026-05-24 04:27:34,994   T4 [put the bowl on top of the cabinet] ep=50: 47/50=94%\\n2026-05-24 04:27:34,994 Task 4: SR=94.0% | Total: 177/250=70.8% | Time: 48.1min\\n2026-05-24 04:30:04,191   T5 [push the plate to the front of the stove] ep=10: 5/10=50%\\n2026-05-24 04:31:59,279   T5 [push the plate to the front of the stove] ep=20: 13/20=65%\\n2026-05-24 04:33:43,093   T5 [push the plate to the front of the stove] ep=30: 20/30=67%\\n2026-05-24 04:35:14,538   T5 [push the plate to the front of the stove] ep=40: 28/40=70%\\n2026-05-24 04:36:55,348   T5 [push the plate to the front of the stove] ep=50: 35/50=70%\\n2026-05-24 04:36:55,349 Task 5: SR=70.0% | Total: 212/300=70.7% | Time: 57.5min\\n2026-05-24 04:38:28,053   T6 [put the cream cheese in the bowl] ep=10: 7/10=70%\\n2026-05-24 04:40:26,957   T6 [put the cream cheese in the bowl] ep=20: 10/20=50%\\n2026-05-24 04:41:55,517   T6 [put the cream cheese in the bowl] ep=30: 16/30=53%\\n2026-05-24 04:43:40,571   T6 [put the cream cheese in the bowl] ep=40: 21/40=52%\\n2026-05-24 04:45:20,221   T6 [put the cream cheese in the bowl] ep=50: 27/50=54%\\n2026-05-24 04:45:20,221 Task 6: SR=54.0% | Total: 239/350=68.3% | Time: 65.9min\\n2026-05-24 04:46:06,651   T7 [turn on the stove] ep=10: 10/10=100%\\n2026-05-24 04:46:50,645   T7 [turn on the stove] ep=20: 20/20=100%\\n2026-05-24 04:47:34,976   T7 [turn on the stove] ep=30: 30/30=100%\\n2026-05-24 04:48:18,417   T7 [turn on the stove] ep=40: 40/40=100%\\n2026-05-24 04:49:04,392   T7 [turn on the stove] ep=50: 50/50=100%\\n2026-05-24 04:49:04,392 Task 7: SR=100.0% | Total: 289/400=72.2% | Time: 69.6min\\n2026-05-24 04:50:09,507   T8 [put the bowl on the plate] ep=10: 8/10=80%\\n2026-05-24 04:51:04,403   T8 [put the bowl on the plate] ep=20: 17/20=85%\\n2026-05-24 04:51:55,688   T8 [put the bowl on the plate] ep=30: 27/30=90%\\n2026-05-24 04:52:49,962   T8 [put the bowl on the plate] ep=40: 36/40=90%\\n2026-05-24 04:54:03,687   T8 [put the bowl on the plate] ep=50: 43/50=86%\\n2026-05-24 04:54:03,688 Task 8: SR=86.0% | Total: 332/450=73.8% | Time: 74.6min\\n2026-05-24 04:56:18,773   T9 [put the wine bottle on the rack] ep=10: 3/10=30%\\n2026-05-24 04:58:12,931   T9 [put the wine bottle on the rack] ep=20: 8/20=40%\\n2026-05-24 05:00:12,617   T9 [put the wine bottle on the rack] ep=30: 12/30=40%\\n2026-05-24 05:02:20,712   T9 [put the wine bottle on the rack] ep=40: 15/40=38%\\n2026-05-24 05:04:19,949   T9 [put the wine bottle on the rack] ep=50: 19/50=38%\\n2026-05-24 05:04:19,949 Task 9: SR=38.0% | Total: 351/500=70.2% | Time: 84.9min\\n2026-05-24 05:04:20,171 \\n============================================================\\n2026-05-24 05:04:20,171 RESULT: libero_goal prune=attention keep=0.5 SR=70.2%\\n2026-05-24 05:04:20,171 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed42.json\\n2026-05-24 05:04:20,171 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T21:06:59.731Z_
+
+<details><summary>↩ Tool result · `toolu_017t5KgkHgErpQwzWS8mGx4D`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "uuid": "7abb0e0c-6f7e-4418-a48c-0f074aecdda5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed42.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wax7e3uu89nASMJKd6r5yb`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "uuid": "b1b1b907-df75-424a-b2ca-397193059792",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KoyRwx6HtjYS7e311v4WLa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4038,
+      "cache_read_input_tokens": 24126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4038
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T21:07:02.804Z_
+
+<details><summary>↩ Tool result · `toolu_01Wax7e3uu89nASMJKd6r5yb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"pi05\\\",\\n    \\\"ckpt\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\",\\n    \\\"suite\\\": \\\"libero_goal\\\",\\n    \\\"prune_mode\\\": \\\"attention\\\",\\n    \\\"keep_ratio\\\": 0.5,\\n    \\\"n_eps_per_task\\\": 50,\\n    \\\"seed\\\": 42,\\n    \\\"fixed_mask\\\": false,\\n    \\\"vision_tokens_per_image\\\": 256,\\n    \\\"total_vision_tokens\\\": 768,\\n    \\\"n_keep_per_image\\\": 256\\n  },\\n  \\\"per_task\\\": {\\n    \\\"open the middle drawer of the cabinet\\\": {\\n      \\\"id\\\": 0,\\n      \\\"sr\\\": 0.76,\\n      \\\"n\\\": 38\\n    },\\n    \\\"put the bowl on the stove\\\": {\\n      \\\"id\\\": 1,\\n      \\\"sr\\\": 0.4,\\n      \\\"n\\\": 20\\n    },\\n    \\\"put the wine bottle on top of the cabinet\\\": {\\n      \\\"id\\\": 2,\\n      \\\"sr\\\": 0.76,\\n      \\\"n\\\": 38\\n    },\\n    \\\"open the top drawer and put the bowl inside\\\": {\\n      \\\"id\\\": 3,\\n      \\\"sr\\\": 0.68,\\n      \\\"n\\\": 34\\n    },\\n    \\\"put the bowl on top of the cabinet\\\": {\\n      \\\"id\\\": 4,\\n      \\\"sr\\\": 0.94,\\n      \\\"n\\\": 47\\n    },\\n    \\\"push the plate to the front of the stove\\\": {\\n      \\\"id\\\": 5,\\n      \\\"sr\\\": 0.7,\\n      \\\"n\\\": 35\\n    },\\n    \\\"put the cream cheese in the bowl\\\": {\\n      \\\"id\\\": 6,\\n      \\\"sr\\\": 0.54,\\n      \\\"n\\\": 27\\n    },\\n    \\\"turn on the stove\\\": {\\n      \\\"id\\\": 7,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"put the bowl on the plate\\\": {\\n      \\\"id\\\": 8,\\n      \\\"sr\\\": 0.86,\\n      \\\"n\\\": 43\\n    },\\n    \\\"put the wine bottle on the rack\\\": {\\n      \\\"id\\\": 9,\\n      \\\"sr\\\": 0.38,\\n      \\\"n\\\": 19\\n    }\\n  },\\n  \\\"overall_sr\\\": 0.702,\\n  \\\"total_successes\\\": 351,\\n  \\\"total_episodes\\\": 500,\\n  \\\"elapsed_min\\\": 84.86469341119131\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "uuid": "083f5acc-4f2e-4055-a20a-a3c9a691425a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"pi05\\\\\\\",\\\\n    \\\\\\\"ckpt\\\\\\\": \\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\",\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_goal\\\\\\\",\\\\n    \\\\\\\"prune_mode\\\\\\\": \\\\\\\"attention\\\\\\\",\\\\n    \\\\\\\"keep_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"n_eps_per_task\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"fixed_mask\\\\\\\": false,\\\\n    \\\\\\\"vision_tokens_per_image\\\\\\\": 256,\\\\n    \\\\\\\"total_vision_tokens\\\\\\\": 768,\\\\n    \\\\\\\"n_keep_per_image\\\\\\\": 256\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"open the middle drawer of the cabinet\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 0,\\\\n      \\\\\\\"sr\\\\\\\": 0.76,\\\\n      \\\\\\\"n\\\\\\\": 38\\\\n    },\\\\n    \\\\\\\"put the bowl on the stove\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 1,\\\\n      \\\\\\\"sr\\\\\\\": 0.4,\\\\n      \\\\\\\"n\\\\\\\": 20\\\\n    },\\\\n    \\\\\\\"put the wine bottle on top of the cabinet\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 2,\\\\n      \\\\\\\"sr\\\\\\\": 0.76,\\\\n      \\\\\\\"n\\\\\\\": 38\\\\n    },\\\\n    \\\\\\\"open the top drawer and put the bowl inside\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 3,\\\\n      \\\\\\\"sr\\\\\\\": 0.68,\\\\n      \\\\\\\"n\\\\\\\": 34\\\\n    },\\\\n    \\\\\\\"put the bowl on top of the cabinet\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 4,\\\\n      \\\\\\\"sr\\\\\\\": 0.94,\\\\n      \\\\\\\"n\\\\\\\": 47\\\\n    },\\\\n    \\\\\\\"push the plate to the front of the stove\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 5,\\\\n      \\\\\\\"sr\\\\\\\": 0.7,\\\\n      \\\\\\\"n\\\\\\\": 35\\\\n    },\\\\n    \\\\\\\"put the cream cheese in the bowl\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 6,\\\\n      \\\\\\\"sr\\\\\\\": 0.54,\\\\n      \\\\\\\"n\\\\\\\": 27\\\\n    },\\\\n    \\\\\\\"turn on the stove\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 7,\\\\n      \\\\\\\"sr\\\\\\\": 1.0,\\\\n      \\\\\\\"n\\\\\\\": 50\\\\n    },\\\\n    \\\\\\\"put the bowl on the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 8,\\\\n      \\\\\\\"sr\\\\\\\": 0.86,\\\\n      \\\\\\\"n\\\\\\\": 43\\\\n    },\\\\n    \\\\\\\"put the wine bottle on the rack\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 9,\\\\n      \\\\\\\"sr\\\\\\\": 0.38,\\\\n      \\\\\\\"n\\\\\\\": 19\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_sr\\\\\\\": 0.702,\\\\n  \\\\\\\"total_successes\\\\\\\": 351,\\\\n  \\\\\\\"total_episodes\\\\\\\": 500,\\\\n  \\\\\\\"elapsed_min\\\\\\\": 84.86469341119131\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"pi05\\\",\\n    \\\"ckpt\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\",\\n    \\\"suite\\\": \\\"libero_goal\\\",\\n    \\\"prune_mode\\\": \\\"attention\\\",\\n    \\\"keep_ratio\\\": 0.5,\\n    \\\"n_eps_per_task\\\": 50,\\n    \\\"seed\\\": 42,\\n    \\\"fixed_mask\\\": false,\\n    \\\"vision_tokens_per_image\\\": 256,\\n    \\\"total_vision_tokens\\\": 768,\\n    \\\"n_keep_per_image\\\": 256\\n  },\\n  \\\"per_task\\\": {\\n    \\\"open the middle drawer of the cabinet\\\": {\\n      \\\"id\\\": 0,\\n      \\\"sr\\\": 0.76,\\n      \\\"n\\\": 38\\n    },\\n    \\\"put the bowl on the stove\\\": {\\n      \\\"id\\\": 1,\\n      \\\"sr\\\": 0.4,\\n      \\\"n\\\": 20\\n    },\\n    \\\"put the wine bottle on top of the cabinet\\\": {\\n      \\\"id\\\": 2,\\n      \\\"sr\\\": 0.76,\\n      \\\"n\\\": 38\\n    },\\n    \\\"open the top drawer and put the bowl inside\\\": {\\n      \\\"id\\\": 3,\\n      \\\"sr\\\": 0.68,\\n      \\\"n\\\": 34\\n    },\\n    \\\"put the bowl on top of the cabinet\\\": {\\n      \\\"id\\\": 4,\\n      \\\"sr\\\": 0.94,\\n      \\\"n\\\": 47\\n    },\\n    \\\"push the plate to the front of the stove\\\": {\\n      \\\"id\\\": 5,\\n      \\\"sr\\\": 0.7,\\n      \\\"n\\\": 35\\n    },\\n    \\\"put the cream cheese in the bowl\\\": {\\n      \\\"id\\\": 6,\\n      \\\"sr\\\": 0.54,\\n      \\\"n\\\": 27\\n    },\\n    \\\"turn on the stove\\\": {\\n      \\\"id\\\": 7,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"put the bowl on the plate\\\": {\\n      \\\"id\\\": 8,\\n      \\\"sr\\\": 0.86,\\n      \\\"n\\\": 43\\n    },\\n    \\\"put the wine bottle on the rack\\\": {\\n      \\\"id\\\": 9,\\n      \\\"sr\\\": 0.38,\\n      \\\"n\\\": 19\\n    }\\n  },\\n  \\\"overall_sr\\\": 0.702,\\n  \\\"total_successes\\\": 351,\\n  \\\"total_episodes\\\": 500,\\n  \\\"elapsed_min\\\": 84.86469341119131\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+## 结果：π0.5 Attention k=0.5 Goal seed42
+
+### 总体
+
+| 指标 | 值 |
+|---|---|
+| **Overall SR** | **70.2%** |
+| Total successes | 351 / 500 |
+| Total episodes | 500 (50 × 10 tasks) |
+| 耗时 | 84.9 min |
+| 错误/异常 | 无（EXIT_CODE=0） |
+
+### 每个 Task
+
+| Task | SR |
+|---|---|
+| T0: open the middle drawer of the cabinet | 76% |
+| T1: put the bowl on the stove | 40% |
+| T2: put the wine bottle on top of the cabinet | 76% |
+| T3: open the top drawer and put the bowl inside | 68% |
+| T4: put the bowl on top of the cabinet | **94%** |
+| T5: push the plate to the front of the stove | 70% |
+| T6: put the cream cheese in the bowl | 54% |
+| T7: turn on the stove | **100%** |
+| T8: put the bowl on the plate | 86% |
+| T9: put the wine bottle on the rack | 38% |
+
+### 与 Random Goal k=0.5 (73.6%) 对比
+
+**Attention 70.2% < Random 73.6%，差 3.4pp。Attention 在 π0.5 Goal 上确实不如 Random pruning。**
+
+这与 π0.5 Object 的 pattern 一致（attention k=0.7 → 0.6% cliff），进一步确认 **attention scores 在 π0.5 上是 anti-informative**——用 attention 选 token 比随机选更差。
+
+结合 X-VLA 的结果（attention Goal k=0.5 = 98.2%），2×2 crossover 叙事成立：
+- X-VLA: attention 有效（98.2%），random 差
+- π0.5: attention 反向（70.2%），random 更好（73.6%）
+
+JSON 结果已保存在服务器：`/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed42.json`。日志中无 W&B run ID。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "uuid": "c8106fde-95ff-4ea1-8055-bb4854afc31e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gmtax1p3qq1gVqfxuwWyeF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1143,
+      "cache_read_input_tokens": 28164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1143
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 14_
+
+## 结果：π0.5 Attention k=0.5 Goal seed42
+
+### 总体
+
+| 指标 | 值 |
+|---|---|
+| **Overall SR** | **70.2%** |
+| Total successes | 351 / 500 |
+| Total episodes | 500 (50 × 10 tasks) |
+| 耗时 | 84.9 min |
+| 错误/异常 | 无（EXIT_CODE=0） |
+
+### 每个 Task
+
+| Task | SR |
+|---|---|
+| T0: open the middle drawer of the cabinet | 76% |
+| T1: put the bowl on the stove | 40% |
+| T2: put the wine bottle on top of the cabinet | 76% |
+| T3: open the top drawer and put the bowl inside | 68% |
+| T4: put the bowl on top of the cabinet | **94%** |
+| T5: push the plate to the front of the stove | 70% |
+| T6: put the cream cheese in the bowl | 54% |
+| T7: turn on the stove | **100%** |
+| T8: put the bowl on the plate | 86% |
+| T9: put the wine bottle on the rack | 38% |
+
+### 与 Random Goal k=0.5 (73.6%) 对比
+
+**Attention 70.2% < Random 73.6%，差 3.4pp。Attention 在 π0.5 Goal 上确实不如 Random pruning。**
+
+这与 π0.5 Object 的 pattern 一致（attention k=0.7 → 0.6% cliff），进一步确认 **attention scores 在 π0.5 上是 anti-informative**——用 attention 选 token 比随机选更差。
+
+结合 X-VLA 的结果（attention Goal k=0.5 = 98.2%），2×2 crossover 叙事成立：
+- X-VLA: attention 有效（98.2%），random 差
+- π0.5: attention 反向（70.2%），random 更好（73.6%）
+
+JSON 结果已保存在服务器：`/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed42.json`。日志中无 W&B run ID。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 29090,
+  "duration_api_ms": 28222,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "6a16c613-71df-4d25-83a9-1728b54c3eca",
+  "total_cost_usd": 0.18315299999999998,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 17466,
+    "cache_read_input_tokens": 87801,
+    "output_tokens": 1139,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17466,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 616,
+        "cache_read_input_tokens": 28164,
+        "cache_creation_input_tokens": 1143,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1143
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1475,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001575,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 1139,
+      "cacheReadInputTokens": 87801,
+      "cacheCreationInputTokens": 17466,
+      "webSearchRequests": 0,
+      "costUSD": 0.181578,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "72cdb9ba-1427-47c9-ac6e-ad1c93981574"
+}
+```
+
+</details>
+
+---

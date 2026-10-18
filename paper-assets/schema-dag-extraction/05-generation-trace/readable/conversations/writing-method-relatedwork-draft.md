@@ -1,0 +1,792 @@
+# writing method relatedwork draft
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/chats/worker_writing_method-relatedwork-draft_20260515T035316.jsonl`
+- **Structured JSON:** [`cd626f0dd264d03a91a3.json`](../../sessions/cd/cd626f0dd264d03a91a3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+25 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T03:56:29.376477+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T03:56:29.376940+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T03:56:29.377150+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T03:56:29.377356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md\", \"content\": \"# Paper Framing — schema-dag-extraction\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 cycle)\\n- Commitment deadline: August 2, 2026\\n- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)\\n- Deadline: ARR May 25, 2026 (10 days from today)\\n\\n## Core Claims (3 conditions)\\n\\n1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. Evidence required: within-count correlation r(metric, BCS) significant after controlling for count, replicated on >=2 datasets and >=2 models.\\n\\n2. **Multi-Channel Degradation**: Count and confusability degrade extraction through orthogonal channels -- count causes entity omission (recall decline), while confusability causes type confusion (precision decline via mislabeling). Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.\\n\\n3. **SDGD Effectiveness**: Confusability-aware schema decomposition (SDGD) -- partitioning types into low-confusability batches via graph coloring on the SCS-thresholded confusability graph -- yields significant F1 gains over single-pass and heuristic decomposition on complex schemas (>=30 types). Evidence required: SDGD > single-pass, SDGD > random batching (same k), SDGD >= per-type splitting (with lower latency).\\n\\n## Story Spine\\n\\n- **Problem**: Training-free LLM IE degrades severely on complex schemas (20-60 F1 gap vs supervised). All existing decomposition approaches (per-type splitting, similarity-based partitioning, fixed k-step pipelines) operate on unvalidated assumptions about WHAT makes schemas complex for LLMs.\\n\\n- **Existing approaches & their gaps**: UniNER splits per-type (gains 3.3 F1 but loses cross-ty
+…[truncated 3985 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T03:56:29.377520+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "literature_map.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "file": "literature_map.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T03:56:29.377789+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/literature_map.yaml\", \"content\": \"# Literature Map for schema-dag-extraction\\n# Updated: 2026-05-15\\n# Paper: Multi-channel Degradation Model + SDGD Framework for Training-free LLM IE\\n\\n# =============================================================================\\n# DIRECT COMPETITORS — schema decomposition for LLM-based IE\\n# =============================================================================\\n\\n- id: llm-pee-2025\\n  title: \\\"Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction\\\"\\n  year: 2025\\n  venue: arXiv\\n  url: https://arxiv.org/abs/2503.02628\\n  role: direct-competitor\\n  relevance_note: >\\n    Similarity-based type recall + type-partitioning prompting for massive event types.\\n    Divides candidate types into partitions to reduce prompt length.\\n    +5.4% event detection, +6.1% argument extraction, +12.9% F1 over mainstream LLMs zero-shot.\\n    KEY DIFF: partitions by similarity-based recall, NOT confusability-aware.\\n    Our DAG decomposition is confusability-driven, not just similarity-driven.\\n\\n- id: parse-2025\\n  title: \\\"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction\\\"\\n  authors: [Anubhav Shrimal, Aryan Jain, Soumyajit Chowdhury, Promod Yenigalla]\\n  year: 2025\\n  venue: EMNLP 2025 Industry\\n  url: https://arxiv.org/abs/2510.08623\\n  role: direct-competitor\\n  relevance_note: >\\n    ARCHITECT autonomously rewrites JSON schemas for LLM consumption.\\n    SCOPE uses reflection-based extraction with guardrails. +64.7% on SWDE.\\n    Treats schema optimization as black-box LLM rewriting, not principled decomposition.\\n    Does NOT model type confusability explicitly.\\n\\n- id: dee-2024\\n  title: \\\"Decompose, Enrich, and Extract! Schema-aware Event Extraction using LLMs\\\"\\n  year: 2024\\
+…[truncated 13062 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T03:56:29.377986+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/sdgd_design_doc.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/sdgd_design_doc.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T03:56:29.378243+00:00_
+
+1	# SDGD Framework — Algorithm Design & Code Skeleton
+2	
+3	## 1. Algorithm Flow
+4	
+5	### Input
+6	- `types: Dict[str, str]` — type name → description (e.g., `configs/few_nerd_types.json`, 66 entries)
+7	- `embeddings: Tensor[N, D]` — type embeddings from Qwen3-32B mean-pool (N=66, D=5120), loaded from `artifacts/type_embeddings.pt`
+8	- `τ: float` — confusability threshold (from Contribution A: θ* where degradation becomes significant)
+9	- `model: LLM` — vLLM engine (Qwen3-32B-FP8)
+10	- `samples: List[Dict]` — test samples with `text` field
+11	- `confusion_matrix: Optional[Tensor[N, N]]` — empirical confusion counts from calibration (SDGD-cal only)
+12	
+13	### Output
+14	- `predictions: List[Dict]` — merged predictions across all batches, format: `[{"sample_id": int, "predictions": [{"text": str, "type": str}]}]`
+15	
+16	### Pseudocode
+17	
+18	```
+19	function SDGD(types, embeddings, τ, model, samples, confusion_matrix=None):
+20	    # Step 1: Pairwise confusability matrix
+21	    if confusion_matrix is not None:                      # SDGD-cal
+22	        C = normalize_confusion(confusion_matrix)         # symmetric, [0,1]
+23	    else:                                                 # SDGD-zero
+24	        C = cosine_similarity(embeddings, embeddings)     # [N, N]
+25	
+26	    # Step 2: Thresholded adjacency graph
+27	    A = (C > τ) & ~eye(N)                                # binary adjacency
+28	    G = Graph(nodes=types.keys(), edges=A.nonzero())
+29	
+30	    # Step 3: Greedy graph coloring → type batches
+31	    coloring = greedy_color(G, strategy="largest_first")  # {type: color_id}
+32	    batches = group_by_color(coloring)                    # {color_id: [type_names]}
+33	
+34	    # Step 4: Per-batch extraction
+35	    all_predictions = []
+36	    for batch_id, batch_types in batches.items():
+37	        prompts = [build_prompt(s["text"], types, batch_types) for s in samples]
+38	        schema = build_json_schema(batch_types)
+39	        outputs = model.generate(prompts, guided_decodi
+…[truncated 16186 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T03:56:29.378431+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+  "description": "Check if paper_drafts directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+    "description": "Check if paper_drafts directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T03:56:29.378558+00:00_
+
+DIR_NOT_FOUND
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T03:56:29.378676+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts",
+  "description": "Create paper_drafts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts",
+    "description": "Create paper_drafts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T03:56:29.378792+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T03:56:29.378962+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/method_framework.md",
+  "content": "# Section 3: Method\n\n## 3.1 Problem Formulation\n\n### Schema Complexity in Training-Free LLM IE\n\nWe consider training-free information extraction where an LLM $\\mathcal{M}$ extracts typed mentions from input text $x$ given a schema $\\mathcal{S} = \\{(t_i, d_i)\\}_{i=1}^{N}$, where $t_i$ is a type name and $d_i$ its natural language description. The LLM receives $\\mathcal{S}$ (or a subset) in its prompt and produces structured predictions $\\hat{Y} = \\{(m_j, t_j)\\}$, each a mention span $m_j$ paired with a type $t_j \\in \\mathcal{S}$.\n\n**Type count** $N = |\\mathcal{S}|$ is the number of types presented simultaneously. Prior work implicitly treats $N$ as the sole driver of schema complexity.\n\n**Pairwise type confusability.** We define the *Schema Confusability Score* (SCS) between types $t_i$ and $t_j$ as:\n\n$$\\text{SCS}(t_i, t_j) = \\text{cosine}(\\mathbf{e}_i, \\mathbf{e}_j)$$\n\nwhere $\\mathbf{e}_i \\in \\mathbb{R}^D$ is the mean-pooled hidden state of $\\mathcal{M}$ when encoding type $t_i$'s definition. SCS captures the degree to which two types occupy overlapping regions in the model's representation space.\n\n**Batch Confusability Score (BCS).** For a batch $B \\subseteq \\mathcal{S}$, we define:\n\n$$\\text{BCS}(B) = \\max_{t_i, t_j \\in B, \\, i \\neq j} \\text{SCS}(t_i, t_j)$$\n\nBCS measures the worst-case confusability within a batch --- the pair of types most likely to be confused by the model when co-presented.\n\n**Schema complexity** is thus characterized by two independent factors: the *count* $N$ and the *confusability structure* of $\\mathcal{S}$, as captured by the pairwise SCS matrix $\\mathbf{C} \\in [0,1]^{N \\times N}$.\n\n\n## 3.2 Controlled Experiment Design\n\nTo disentangle the effects of type count and type confusability on extraction quality, we design a controlled experimental protocol with two complementary analyses.\n\n### Count Curve Analysis\n\nWe construct type subsets of increasing size $n \\in \\{5, 10, 15, \\ldots, N\\}$ by sampling from $\\mathcal{S}$, extract on fixed evaluation samples, and measure micro-F1, precision, and recall as functions of $n$. Multiple random draws per count level reduce sampling variance. This establishes the *marginal* effect of count on extraction performance.\n\n### Within-Count BCS Correlation\n\nAt each count level $n$, multiple batches with the same number of types but *different* confusability profiles are constructed. We compute:\n\n$$r = \\text{Pearson}(\\text{BCS}(B_1), \\ldots, \\text{BCS}(B_m); \\; F_1(B_1), \\ldots, F_1(B_m)) \\quad \\text{at fixed } n$$\n\nA significant negative correlation at fixed $n$ demonstrates that confusability predicts quality degradation *beyond* what count alone explains. We further compute partial correlations $r(\\text{F1}, \\text{BCS} \\mid n)$ pooled across all count levels to quantify confusability's independent contribution.\n\n### Multi-Channel Degradation Model\n\nThe controlled analysis reveals two orthogonal degradation channels:\n\n- **Channel 1 (Count $\\to$ Recall decline):** Increasing $N$ causes the model to *omit* entities. Manifests as monotonic recall degradation, consistent with attention capacity limits.\n- **Channel 2 (Confusability $\\to$ Precision decline):** Co-presenting confusable types causes *type confusion* --- entities are detected but assigned the wrong type. Manifests as precision degradation correlated with BCS.\n\nError taxonomy analysis confirms the two channels produce distinct error types: *omission errors* (false negatives from capacity limits) vs. *type confusion errors* (correct span, wrong type).\n\n\n## 3.3 SDGD Framework\n\nBased on the multi-channel degradation model, we propose **Schema-Decomposed Graph-Driven (SDGD) extraction**, a framework that partitions the schema into low-confusability batches to neutralize Channel 2 degradation.\n\n### Algorithm Overview\n\n**Input:** Type schema $\\mathcal{S} = \\{(t_i, d_i)\\}_{i=1}^N$; type embeddings $\\mathbf{E} \\in \\mathbb{R}^{N \\times D}$; confusability threshold $\\tau$; LLM $\\mathcal{M}$; evaluation samples $\\mathcal{X}$. Optionally: empirical confusion matrix $\\mathbf{C}_{\\text{emp}}$ (for SDGD-cal).\n\n**Output:** Merged predictions $\\hat{Y}$ over all types.\n\n**Step 1 --- Confusability matrix computation.** Compute pairwise confusability $\\mathbf{C} \\in [0,1]^{N \\times N}$. In the zero-shot variant (SDGD-zero), $\\mathbf{C}_{ij} = \\text{cosine}(\\mathbf{e}_i, \\mathbf{e}_j)$. In the calibrated variant (SDGD-cal), $\\mathbf{C}$ is derived from an empirical confusion matrix obtained on a small calibration set (\\S3.4).\n\n**Step 2 --- Thresholded confusability graph.** Construct undirected graph $G = (V, E)$ where $V = \\mathcal{S}$ and edge $(t_i, t_j) \\in E$ iff $\\mathbf{C}_{ij} > \\tau$ and $i \\neq j$. Two types are adjacent iff they are \"too confusable\" to co-exist in a single batch.\n\n**Step 3 --- Greedy graph coloring.** Compute a proper vertex coloring of $G$ using greedy coloring with the \\texttt{largest\\_first} strategy. The coloring assigns each type to a color (batch) such that no two adjacent (highly confusable) types share a batch. The number of colors $k$ equals the chromatic number approximation.\n\n**Step 4 --- Per-batch extraction.** For each color group $B_c$ ($c = 1, \\ldots, k$), construct a prompt containing only the type definitions in $B_c$, and extract mentions from all samples $\\mathcal{X}$ using $\\mathcal{M}$ with constrained decoding (JSON schema restricting outputs to types in $B_c$).\n\n**Step 5 --- Cross-batch merge.** Since graph coloring guarantees non-overlapping type sets across batches, predictions are merged by simple union. For each sample, the final prediction set is the concatenation of predictions from all $k$ batches.\n\n### LaTeX Pseudocode\n\n```latex\n\\begin{algorithm}[t]\n\\caption{SDGD: Schema-Decomposed Graph-Driven Extraction}\n\\label{alg:sdgd}\n\\begin{algorithmic}[1]\n\\REQUIRE Schema $\\mathcal{S} = \\{(t_i, d_i)\\}_{i=1}^N$, embeddings $\\mathbf{E} \\in \\mathbb{R}^{N \\times D}$, threshold $\\tau$, LLM $\\mathcal{M}$, samples $\\mathcal{X}$\n\\ENSURE Predictions $\\hat{Y}$\n\n\\STATE \\textbf{// Step 1: Confusability matrix}\n\\STATE $\\mathbf{C}_{ij} \\leftarrow \\text{cosine}(\\mathbf{e}_i, \\mathbf{e}_j)$ for all $i, j \\in [N]$\n\\COMMENT{SDGD-zero; SDGD-cal uses empirical confusion}\n\n\\STATE \\textbf{// Step 2: Thresholded confusability graph}\n\\STATE $V \\leftarrow \\mathcal{S}$\n\\STATE $E \\leftarrow \\{(t_i, t_j) \\mid \\mathbf{C}_{ij} > \\tau,\\ i \\neq j\\}$\n\\STATE $G \\leftarrow (V, E)$\n\n\\STATE \\textbf{// Step 3: Graph coloring}\n\\STATE $\\phi \\leftarrow \\textsc{GreedyColor}(G, \\text{largest\\_first})$\n\\COMMENT{$\\phi: V \\to \\{1, \\ldots, k\\}$}\n\\STATE $\\{B_1, \\ldots, B_k\\} \\leftarrow \\textsc{GroupByColor}(\\phi)$\n\n\\STATE \\textbf{// Step 4: Per-batch extraction}\n\\STATE $\\hat{Y} \\leftarrow \\emptyset$\n\\FOR{$c = 1$ \\TO $k$}\n    \\STATE $\\hat{Y}_c \\leftarrow \\mathcal{M}.\\text{extract}(\\mathcal{X}, B_c)$\n    \\COMMENT{Constrained to types in $B_c$}\n    \\STATE $\\hat{Y} \\leftarrow \\hat{Y} \\cup \\hat{Y}_c$\n    \\COMMENT{Union merge}\n\\ENDFOR\n\n\\RETURN $\\hat{Y}$\n\\end{algorithmic}\n\\end{algorithm}\n```\n\n### Threshold Selection\n\nThe threshold $\\tau$ controls graph density and hence the number of batches $k$. We adopt an **adaptive threshold** strategy that is schema-agnostic:\n\n$$\\tau = \\mu(\\mathbf{C}_{\\text{upper}}) + k_\\sigma \\cdot \\sigma(\\mathbf{C}_{\\text{upper}})$$\n\nwhere $\\mathbf{C}_{\\text{upper}}$ denotes the upper-triangular entries of $\\mathbf{C}$ (excluding the diagonal), $\\mu$ and $\\sigma$ are the mean and standard deviation, and $k_\\sigma$ is the sole hyperparameter. The adaptive threshold adjusts to the embedding distribution of each schema, avoiding reliance on dataset-specific tuning. We set $k_\\sigma = 1.0$ by default and conduct ablations over $k_\\sigma \\in \\{0.5, 1.0, 1.5, 2.0\\}$.\n\nFor analysis purposes, we also report an **oracle threshold** derived from the BCS--quality degradation curve on the development set. The oracle serves as an upper bound and is clearly distinguished from the adaptive method in all results.\n\n### Complexity\n\nGraph coloring on $N$ types is $O(N^2)$ with greedy heuristics. For the schemas in our experiments ($N \\leq 168$), decomposition completes in milliseconds. The dominant cost is LLM inference: SDGD requires $k \\times |\\mathcal{X}|$ generation calls, compared to $1 \\times |\\mathcal{X}|$ for single-pass and $N \\times |\\mathcal{X}|$ for per-type splitting. With $k \\approx 8\\text{--}12$, SDGD achieves $5\\text{--}8\\times$ fewer calls than per-type splitting.\n\n\n## 3.4 SDGD-zero and SDGD-cal Variants\n\nWe instantiate two variants of the SDGD framework, differing in how the confusability matrix $\\mathbf{C}$ is obtained:\n\n### SDGD-zero (Zero-Shot)\n\nThe confusability matrix is computed from type embeddings alone, with no labeled data. We encode each type definition $d_i$ through $\\mathcal{M}$ and extract the mean-pooled last hidden state $\\mathbf{e}_i \\in \\mathbb{R}^D$. Pairwise cosine similarity serves as the confusability proxy:\n\n$$\\mathbf{C}_{ij}^{\\text{zero}} = \\text{cosine}(\\mathbf{e}_i, \\mathbf{e}_j)$$\n\n**Advantages:** Fully zero-shot; no labeled data required; embeddings are precomputed once per schema. Suitable for rapid deployment on new schemas.\n\n**Limitation:** Embedding similarity is a *proxy* for confusability. Two types may be semantically similar yet easily distinguished in context (e.g., \\textit{person-artist} and \\textit{person-actor} share embedding space but have distinct contextual cues).\n\n### SDGD-cal (Calibrated)\n\nThe confusability matrix is derived from empirical extraction errors on a small calibration set of $m$ labeled examples per type:\n\n1. Run single-pass extraction with all $N$ types on the calibration set.\n2. Construct a raw confusion matrix $\\mathbf{C}_{\\text{raw}} \\in \\mathbb{R}^{N \\times N}$, where $\\mathbf{C}_{\\text{raw}}[i,j]$ counts gold type-$i$ entities predicted as type-$j$.\n3. Symmetrize: $\\mathbf{C}_{\\text{sym}} = (\\mathbf{C}_{\\text{raw}} + \\mathbf{C}_{\\text{raw}}^\\top) / 2$.\n4. Normalize: $\\mathbf{C}_{ij}^{\\text{cal}} = \\mathbf{C}_{\\text{sym}}[i,j] / \\sum_j \\mathbf{C}_{\\text{sym}}[i,j]$.\n\n**Advantages:** Measures *actual* model confusion rather than semantic proximity. Captures model-specific and context-dependent confusability patterns.\n\n**Cost:** Requires $m$ labeled examples per type for calibration ($m = 5\\text{--}10$ in our experiments). Total calibration cost: one extraction pass over the calibration set.\n\n### Comparison\n\n| | SDGD-zero | SDGD-cal |\n|---|---|---|\n| Data requirement | None | $m$ labeled examples/type |\n| Confusability signal | Semantic proximity | Empirical model errors |\n| Schema adaptability | Instant | Requires calibration pass |\n| Expected quality | Good (proxy) | Best (ground-truth confusion) |\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/method_framework.md",
+    "content": "# Section 3: Method\n\n## 3.1 Problem Formulation\n\n### Schema Complexity in Training-Free LLM IE\n\nWe consider training-free information extraction where an LLM $\\mathcal{M}$ extracts typed mentions from input text $x$ given a schema $\\mathcal{S} = \\{(t_i, d_i)\\}_{i=1}^{N}$, where $t_i$ is a type name and $d_i$ its natural language description. The LLM receives $\\mathcal{S}$ (or a subset) in its prompt and produces structured predictions $\\hat{Y} = \\{(m_j, t_j)\\}$, each a mention span $m_j$ paired with a type $t_j \\in \\mathcal{S}$.\n\n**Type count** $N = |\\mathcal{S}|$ is the number of types presented simultaneously. Prior work implicitly treats $N$ as the sole driver of schema complexity.\n\n**Pairwise type confusability.** We define the *Schema Confusability Score* (SCS) between types $t_i$ and $t_j$ as:\n\n$$\\text{SCS}(t_i, t_j) = \\text{cosine}(\\mathbf{e}_i, \\mathbf{e}_j)$$\n\nwhere $\\mathbf{e}_i \\in \\mathbb{R}^D$ is the mean-pooled hidden state of $\\mathcal{M}$ when encoding type $t_i$'s definition. SCS captures the degree to which two types occupy overlapping regions in the model's representation space.\n\n**Batch Confusability Score (BCS).** For a batch $B \\subseteq \\mathcal{S}$, we define:\n\n$$\\text{BCS}(B) = \\max_{t_i, t_j \\in B, \\, i \\neq j} \\text{SCS}(t_i, t_j)$$\n\nBCS measures the worst-case confusability within a batch --- the pair of types most likely to be confused by the model when co-presented.\n\n**Schema complexity** is thus characterized by two independent factors: the *count* $N$ and the *confusability structure* of $\\mathcal{S}$, as captured by the pairwise SCS matrix $\\mathbf{C} \\in [0,1]^{N \\times N}$.\n\n\n## 3.2 Controlled Experiment Design\n\nTo disentangle the effects of type count and type confusability on extraction quality, we design a controlled experimental protocol with two complementary analyses.\n\n### Count Curve Analysis\n\nWe construct type subsets of increasing size $n \\in \\{5, 10, 15, \\ldots, N\\}$ by sampling from $\\mathcal{S}$, extract on fixed evaluation samples, and measure micro-F1, precision, and recall as functions of $n$. Multiple random draws per count level reduce sampling variance. This establishes the *marginal* effect of count on extraction performance.\n\n### Within-Count BCS Correlation\n\nAt each count level $n$, multiple batches with the same number of types but *different* confusability profiles are constructed. We compute:\n\n$$r = \\text{Pearson}(\\text{BCS}(B_1), \\ldots, \\text{BCS}(B_m); \\; F_1(B_1), \\ldots, F_1(B_m)) \\quad \\text{at fixed } n$$\n\nA significant negative correlation at fixed $n$ demonstrates that confusability predicts quality degradation *beyond* what count alone explains. We further compute partial correlations $r(\\text{F1}, \\text{BCS} \\mid n)$ pooled across all count levels to quantify confusability's independent contribution.\n\n### Multi-Channel Degradation Model\n\nThe controlled analysis reveals two orthogonal degradation channels:\n\n- **Channel 1 (Count $\\to$ Recall decline):** Increasing $N$ causes the model to *omit* entities. Manifests as monotonic recall degradation, consistent with attention capacity limits.\n- **Channel 2 (Confusability $\\to$ Precision decline):** Co-presenting confusable types causes *type confusion* --- entities are detected but assigned the wrong type. Manifests as precision degradation correlated with BCS.\n\nError taxonomy analysis confirms the two channels produce distinct error types: *omission errors* (false negatives from capacity limits) vs. *type confusion errors* (correct span, wrong type).\n\n\n## 3.3 SDGD Framework\n\nBased on the multi-channel degradation model, we propose **Schema-Decomposed Graph-Driven (SDGD) extraction**, a framework that partitions the schema into low-confusability batches to neutralize Channel 2 degradation.\n\n### Algorithm Overview\n\n**Input:** Type schema $\\mathcal{S} = \\{(t_i, d_i)\\}_{i=1}^N$; type embeddings $\\mathbf{E} \\in \\mathbb{R}^{N \\times D}$; confusability threshold $\\tau$; LLM $\\mathcal{M}$; evaluation samples $\\mathcal{X}$. Optionally: empirical confusion matrix $\\mathbf{C}_{\\text{emp}}$ (for SDGD-cal).\n\n**Output:** Merged predictions $\\hat{Y}$ over all types.\n\n**Step 1 --- Confusability matrix computation.** Compute pairwise confusability $\\mathbf{C} \\in [0,1]^{N \\times N}$. In the zero-shot variant (SDGD-zero), $\\mathbf{C}_{ij} = \\text{cosine}(\\mathbf{e}_i, \\mathbf{e}_j)$. In the calibrated variant (SDGD-cal), $\\mathbf{C}$ is derived from an empirical confusion matrix obtained on a small calibration set (\\S3.4).\n\n**Step 2 --- Thresholded confusability graph.** Construct undirected graph $G = (V, E)$ where $V = \\mathcal{S}$ and edge $(t_i, t_j) \\in E$ iff $\\mathbf{C}_{ij} > \\tau$ and $i \\neq j$. Two types are adjacent iff they are \"too confusable\" to co-exist in a single batch.\n\n**Step 3 --- Greedy graph coloring.** Compute a proper vertex coloring of $G$ using greedy coloring with the \\texttt{largest\\_first} strategy. The coloring assigns each type to a color (batch) such that no two adjacent (highly confusable) types share a batch. The number of colors $k$ equals the chromatic number approximation.\n\n**Step 4 --- Per-batch extraction.** For each color group $B_c$ ($c = 1, \\ldots, k$), construct a prompt containing only the type definitions in $B_c$, and extract mentions from all samples $\\mathcal{X}$ using $\\mathcal{M}$ with constrained decoding (JSON schema restricting outputs to types in $B_c$).\n\n**Step 5 --- Cross-batch merge.** Since graph coloring guarantees non-overlapping type sets across batches, predictions are merged by simple union. For each sample, the final prediction set is the concatenation of predictions from all $k$ batches.\n\n### LaTeX Pseudocode\n\n```latex\n\\begin{algorithm}[t]\n\\caption{SDGD: Schema-Decomposed Graph-Driven Extraction}\n\\label{alg:sdgd}\n\\begin{algorithmic}[1]\n\\REQUIRE Schema $\\mathcal{S} = \\{(t_i, d_i)\\}_{i=1}^N$, embeddings $\\mathbf{E} \\in \\mathbb{R}^{N \\times D}$, threshold $\\tau$, LLM $\\mathcal{M}$, samples $\\mathcal{X}$\n\\ENSURE Predictions $\\hat{Y}$\n\n\\STATE \\textbf{// Step 1: Confusability matrix}\n\\STATE $\\mathbf{C}_{ij} \\leftarrow \\text{cosine}(\\mathbf{e}_i, \\mathbf{e}_j)$ for all $i, j \\in [N]$\n\\COMMENT{SDGD-zero; SDGD-cal uses empirical confusion}\n\n\\STATE \\textbf{// Step 2: Thresholded confusability graph}\n\\STATE $V \\leftarrow \\mathcal{S}$\n\\STATE $E \\leftarrow \\{(t_i, t_j) \\mid \\mathbf{C}_{ij} > \\tau,\\ i \\neq j\\}$\n\\STATE $G \\leftarrow (V, E)$\n\n\\STATE \\textbf{// Step 3: Graph coloring}\n\\STATE $\\phi \\leftarrow \\textsc{GreedyColor}(G, \\text{largest\\_first})$\n\\COMMENT{$\\phi: V \\to \\{1, \\ldots, k\\}$}\n\\STATE $\\{B_1, \\ldots, B_k\\} \\leftarrow \\textsc{GroupByColor}(\\phi)$\n\n\\STATE \\textbf{// Step 4: Per-batch extraction}\n\\STATE $\\hat{Y} \\leftarrow \\emptyset$\n\\FOR{$c = 1$ \\TO $k$}\n    \\STATE $\\hat{Y}_c \\leftarrow \\mathcal{M}.\\text{extract}(\\mathcal{X}, B_c)$\n    \\COMMENT{Constrained to types in $B_c$}\n    \\STATE $\\hat{Y} \\leftarrow \\hat{Y} \\cup \\hat{Y}_c$\n    \\COMMENT{Union merge}\n\\ENDFOR\n\n\\RETURN $\\hat{Y}$\n\\end{algorithmic}\n\\end{algorithm}\n```\n\n### Threshold Selection\n\nThe threshold $\\tau$ controls graph density and hence the number of batches $k$. We adopt an **adaptive threshold** strategy that is schema-agnostic:\n\n$$\\tau = \\mu(\\mathbf{C}_{\\text{upper}}) + k_\\sigma \\cdot \\sigma(\\mathbf{C}_{\\text{upper}})$$\n\nwhere $\\mathbf{C}_{\\text{upper}}$ denotes the upper-triangular entries of $\\mathbf{C}$ (excluding the diagonal), $\\mu$ and $\\sigma$ are the mean and standard deviation, and $k_\\sigma$ is the sole hyperparameter. The adaptive threshold adjusts to the embedding distribution of each schema, avoiding reliance on dataset-specific tuning. We set $k_\\sigma = 1.0$ by default and conduct ablations over $k_\\sigma \\in \\{0.5, 1.0, 1.5, 2.0\\}$.\n\nFor analysis purposes, we also report an **oracle threshold** derived from the BCS--quality degradation curve on the development set. The oracle serves as an upper bound and is clearly distinguished from the adaptive method in all results.\n\n### Complexity\n\nGraph coloring on $N$ types is $O(N^2)$ with greedy heuristics. For the schemas in our experiments ($N \\leq 168$), decomposition completes in milliseconds. The dominant cost is LLM inference: SDGD requires $k \\times |\\mathcal{X}|$ generation calls, compared to $1 \\times |\\mathcal{X}|$ for single-pass and $N \\times |\\mathcal{X}|$ for per-type splitting. With $k \\approx 8\\text{--}12$, SDGD achieves $5\\text{--}8\\times$ fewer calls than per-type splitting.\n\n\n## 3.4 SDGD-zero and SDGD-cal Variants\n\nWe instantiate two variants of the SDGD framework, differing in how the confusability matrix $\\mathbf{C}$ is obtained:\n\n### SDGD-zero (Zero-Shot)\n\nThe confusability matrix is computed from type embeddings alone, with no labeled data. We encode each type definition $d_i$ through $\\mathcal{M}$ and extract the mean-pooled last hidden state $\\mathbf{e}_i \\in \\mathbb{R}^D$. Pairwise cosine similarity serves as the confusability proxy:\n\n$$\\mathbf{C}_{ij}^{\\text{zero}} = \\text{cosine}(\\mathbf{e}_i, \\mathbf{e}_j)$$\n\n**Advantages:** Fully zero-shot; no labeled data required; embeddings are precomputed once per schema. Suitable for rapid deployment on new schemas.\n\n**Limitation:** Embedding similarity is a *proxy* for confusability. Two types may be semantically similar yet easily distinguished in context (e.g., \\textit{person-artist} and \\textit{person-actor} share embedding space but have distinct contextual cues).\n\n### SDGD-cal (Calibrated)\n\nThe confusability matrix is derived from empirical extraction errors on a small calibration set of $m$ labeled examples per type:\n\n1. Run single-pass extraction with all $N$ types on the calibration set.\n2. Construct a raw confusion matrix $\\mathbf{C}_{\\text{raw}} \\in \\mathbb{R}^{N \\times N}$, where $\\mathbf{C}_{\\text{raw}}[i,j]$ counts gold type-$i$ entities predicted as type-$j$.\n3. Symmetrize: $\\mathbf{C}_{\\text{sym}} = (\\mathbf{C}_{\\text{raw}} + \\mathbf{C}_{\\text{raw}}^\\top) / 2$.\n4. Normalize: $\\mathbf{C}_{ij}^{\\text{cal}} = \\mathbf{C}_{\\text{sym}}[i,j] / \\sum_j \\mathbf{C}_{\\text{sym}}[i,j]$.\n\n**Advantages:** Measures *actual* model confusion rather than semantic proximity. Captures model-specific and context-dependent confusability patterns.\n\n**Cost:** Requires $m$ labeled examples per type for calibration ($m = 5\\text{--}10$ in our experiments). Total calibration cost: one extraction pass over the calibration set.\n\n### Comparison\n\n| | SDGD-zero | SDGD-cal |\n|---|---|---|\n| Data requirement | None | $m$ labeled examples/type |\n| Confusability signal | Semantic proximity | Empirical model errors |\n| Schema adaptability | Instant | Requires calibration pass |\n| Expected quality | Good (proxy) | Best (ground-truth confusion) |\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T03:56:29.379208+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/method_framework.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T03:56:29.379350+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/related_work_draft.md",
+  "content": "# Section 2: Related Work\n\n## 2.1 Schema Decomposition for Information Extraction\n\nHandling large type schemas has emerged as a key challenge for LLM-based IE. Several strategies have been proposed to reduce schema complexity at inference time.\n\n**Per-type and fixed decomposition.** UniversalNER \\cite{uniner-2024} distills ChatGPT into a compact model by targeting one entity type per extraction call, reporting +7 F1 over ChatGPT on 43 datasets. While effective, per-type splitting sacrifices cross-type context and incurs $O(N)$ inference cost, with no principled criterion for when decomposition is necessary. KGGen \\cite{kggen-2025} employs a two-stage pipeline --- entity extraction followed by relation extraction --- which decomposes at the *task* level rather than within the type schema. Similarly, DEE \\cite{dee-2024} separates event detection from argument extraction with dynamic schema-aware retrieval, but does not address intra-task type partitioning.\n\n**Similarity-based partitioning.** LLM-PEE \\cite{llm-pee-2025} partitions massive event type schemas via similarity-based recall, assigning types to groups that reduce prompt length. This achieves +5.4\\% event detection F1 over zero-shot baselines. However, LLM-PEE uses type similarity as an implicit proxy without empirically validating that similarity drives extraction errors --- the partition criterion optimizes for coverage, not confusability reduction.\n\n**Schema rewriting and tool-based approaches.** PARSE \\cite{parse-2025} uses an LLM to autonomously rewrite JSON schemas for better LLM consumption (+64.7\\% on SWDE), treating schema optimization as a black-box process without modeling type interactions. SPT \\cite{spt-2025} reframes schemas as parameterized tools for LLM tool-calling, offering a novel interface but not addressing why certain type configurations degrade extraction. DLISC \\cite{dlisc-2025} introduces dual-LoRA with incremental schema caching for on-device efficiency, orthogonal to our focus on type confusability.\n\n**Our distinction.** Unlike all prior decomposition methods, SDGD is grounded in an empirically validated degradation model: we first demonstrate that type confusability independently predicts extraction failure (controlling for count), then operationalize this finding into a graph-coloring-based decomposition that *provably* separates highly confusable types. No prior work explicitly isolates confusability from count as a degradation factor, nor optimizes decomposition to minimize it.\n\n\n## 2.2 Confusability-Aware Approaches in NLP\n\nThe notion that semantically similar labels cause classification errors has appeared across NLP, though not in the context of training-free LLM IE schema design.\n\n**Label confusion in training.** IEPile \\cite{iepile-2024} constructs hard negative schemas --- semantically proximate type sets --- during *training* to improve a model's type discrimination ability. This confirms that confusable schemas are harder, but the intervention is at training time. Our work addresses *inference-time* confusability for training-free systems where model weights are frozen. The Familiarity metric \\cite{familiarity-2025} quantifies label shift between synthetic training data and evaluation sets, revealing that zero-shot NER scores are overestimated when training labels overlap with evaluation labels. This measures *evaluation bias* from label similarity, not extraction-time confusion --- but supports our premise that type similarity is a meaningful confound.\n\n**Multi-agent debate for type resolution.** CROSSAGENTIE \\cite{crossagentie-2025} deploys cross-type debate within multi-agent systems to resolve entity-label conflicts: when an entity is assigned conflicting types by different agents, intra-group debate adjudicates. This *reactively* addresses type confusion after it occurs. CMAS-NER \\cite{cmas-ner-2025} similarly uses cooperative multi-agent collective intelligence to overcome context correlation and indiscriminate demonstration problems in zero-shot NER. Our approach is *proactive*: we prevent type confusion by ensuring highly confusable types never co-occur in a single extraction call. The two strategies are complementary --- SDGD decomposition could serve as a pre-processing stage for multi-agent systems.\n\n**Positional and attention effects.** Liu et al. \\cite{lost-in-middle-2024} demonstrate that LLMs degrade when relevant information appears in the middle of long contexts, exhibiting U-shaped attention patterns. While not IE-specific, this provides additional motivation for schema decomposition: shorter prompts with fewer types reduce the risk of attention-related information loss. To our knowledge, no prior work has connected positional attention biases to IE schema prompt design.\n\n\n## 2.3 LLM-Based Information Extraction\n\nTraining-free LLM IE has progressed rapidly, establishing both the opportunity and the challenge that motivate our work.\n\n**Instruction-tuned IE models.** GoLLIE \\cite{gollie-2024} demonstrates that code-style schema definitions with annotation guideline following enable strong zero-shot IE from a Code-LLaMA backbone. Code4UIE \\cite{code4uie-2024} extends this to retrieval-augmented code generation for universal IE. KnowCoder \\cite{knowcoder-2024} encodes schema knowledge via code structures into LLMs. These models internalize schema understanding through fine-tuning, sidestepping inference-time schema complexity. However, they require task-specific training, limiting deployment flexibility.\n\n**Zero-shot extraction methods.** Self-improving NER \\cite{self-improve-ner-2024} generates synthetic examples via LLM self-prompting, while ReasoningNER \\cite{reasoning-ner-2025} applies chain-of-thought reasoning to achieve +12.3 F1 over GPT-4 in zero-shot settings. ZeroNER \\cite{zeroner-2025} leverages entity type descriptions to produce LLM supervision for a BERT student model (+16\\% F1 over LLMs on hard zero-shot). These methods improve extraction within a fixed schema presentation, but do not address how schema *structure* --- the composition and similarity of co-presented types --- affects quality.\n\n**Compact and efficient models.** GLiNER \\cite{gliner-2024} achieves competitive zero-shot NER with a bidirectional encoder via parallel entity extraction, and GLiNER2 \\cite{gliner2-2025} extends this to multi-task IE. NuNER \\cite{nuner-2024} uses contrastive pre-training on LLM-annotated data for strong few-shot performance. These non-LLM alternatives avoid schema complexity issues by design (parallel per-type extraction), but sacrifice the generality and zero-shot flexibility of LLM-based approaches.\n\n**Surveys.** Xu et al. \\cite{llm4ie-survey-2024} provide a comprehensive survey of LLM-based generative IE, covering prompting strategies, fine-tuning paradigms, and benchmarks. Our work contributes to the prompting strategy dimension by showing that *what types are co-presented* matters as much as *how they are presented*.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/related_work_draft.md",
+    "content": "# Section 2: Related Work\n\n## 2.1 Schema Decomposition for Information Extraction\n\nHandling large type schemas has emerged as a key challenge for LLM-based IE. Several strategies have been proposed to reduce schema complexity at inference time.\n\n**Per-type and fixed decomposition.** UniversalNER \\cite{uniner-2024} distills ChatGPT into a compact model by targeting one entity type per extraction call, reporting +7 F1 over ChatGPT on 43 datasets. While effective, per-type splitting sacrifices cross-type context and incurs $O(N)$ inference cost, with no principled criterion for when decomposition is necessary. KGGen \\cite{kggen-2025} employs a two-stage pipeline --- entity extraction followed by relation extraction --- which decomposes at the *task* level rather than within the type schema. Similarly, DEE \\cite{dee-2024} separates event detection from argument extraction with dynamic schema-aware retrieval, but does not address intra-task type partitioning.\n\n**Similarity-based partitioning.** LLM-PEE \\cite{llm-pee-2025} partitions massive event type schemas via similarity-based recall, assigning types to groups that reduce prompt length. This achieves +5.4\\% event detection F1 over zero-shot baselines. However, LLM-PEE uses type similarity as an implicit proxy without empirically validating that similarity drives extraction errors --- the partition criterion optimizes for coverage, not confusability reduction.\n\n**Schema rewriting and tool-based approaches.** PARSE \\cite{parse-2025} uses an LLM to autonomously rewrite JSON schemas for better LLM consumption (+64.7\\% on SWDE), treating schema optimization as a black-box process without modeling type interactions. SPT \\cite{spt-2025} reframes schemas as parameterized tools for LLM tool-calling, offering a novel interface but not addressing why certain type configurations degrade extraction. DLISC \\cite{dlisc-2025} introduces dual-LoRA with incremental schema caching for on-device efficiency, orthogonal to our focus on type confusability.\n\n**Our distinction.** Unlike all prior decomposition methods, SDGD is grounded in an empirically validated degradation model: we first demonstrate that type confusability independently predicts extraction failure (controlling for count), then operationalize this finding into a graph-coloring-based decomposition that *provably* separates highly confusable types. No prior work explicitly isolates confusability from count as a degradation factor, nor optimizes decomposition to minimize it.\n\n\n## 2.2 Confusability-Aware Approaches in NLP\n\nThe notion that semantically similar labels cause classification errors has appeared across NLP, though not in the context of training-free LLM IE schema design.\n\n**Label confusion in training.** IEPile \\cite{iepile-2024} constructs hard negative schemas --- semantically proximate type sets --- during *training* to improve a model's type discrimination ability. This confirms that confusable schemas are harder, but the intervention is at training time. Our work addresses *inference-time* confusability for training-free systems where model weights are frozen. The Familiarity metric \\cite{familiarity-2025} quantifies label shift between synthetic training data and evaluation sets, revealing that zero-shot NER scores are overestimated when training labels overlap with evaluation labels. This measures *evaluation bias* from label similarity, not extraction-time confusion --- but supports our premise that type similarity is a meaningful confound.\n\n**Multi-agent debate for type resolution.** CROSSAGENTIE \\cite{crossagentie-2025} deploys cross-type debate within multi-agent systems to resolve entity-label conflicts: when an entity is assigned conflicting types by different agents, intra-group debate adjudicates. This *reactively* addresses type confusion after it occurs. CMAS-NER \\cite{cmas-ner-2025} similarly uses cooperative multi-agent collective intelligence to overcome context correlation and indiscriminate demonstration problems in zero-shot NER. Our approach is *proactive*: we prevent type confusion by ensuring highly confusable types never co-occur in a single extraction call. The two strategies are complementary --- SDGD decomposition could serve as a pre-processing stage for multi-agent systems.\n\n**Positional and attention effects.** Liu et al. \\cite{lost-in-middle-2024} demonstrate that LLMs degrade when relevant information appears in the middle of long contexts, exhibiting U-shaped attention patterns. While not IE-specific, this provides additional motivation for schema decomposition: shorter prompts with fewer types reduce the risk of attention-related information loss. To our knowledge, no prior work has connected positional attention biases to IE schema prompt design.\n\n\n## 2.3 LLM-Based Information Extraction\n\nTraining-free LLM IE has progressed rapidly, establishing both the opportunity and the challenge that motivate our work.\n\n**Instruction-tuned IE models.** GoLLIE \\cite{gollie-2024} demonstrates that code-style schema definitions with annotation guideline following enable strong zero-shot IE from a Code-LLaMA backbone. Code4UIE \\cite{code4uie-2024} extends this to retrieval-augmented code generation for universal IE. KnowCoder \\cite{knowcoder-2024} encodes schema knowledge via code structures into LLMs. These models internalize schema understanding through fine-tuning, sidestepping inference-time schema complexity. However, they require task-specific training, limiting deployment flexibility.\n\n**Zero-shot extraction methods.** Self-improving NER \\cite{self-improve-ner-2024} generates synthetic examples via LLM self-prompting, while ReasoningNER \\cite{reasoning-ner-2025} applies chain-of-thought reasoning to achieve +12.3 F1 over GPT-4 in zero-shot settings. ZeroNER \\cite{zeroner-2025} leverages entity type descriptions to produce LLM supervision for a BERT student model (+16\\% F1 over LLMs on hard zero-shot). These methods improve extraction within a fixed schema presentation, but do not address how schema *structure* --- the composition and similarity of co-presented types --- affects quality.\n\n**Compact and efficient models.** GLiNER \\cite{gliner-2024} achieves competitive zero-shot NER with a bidirectional encoder via parallel entity extraction, and GLiNER2 \\cite{gliner2-2025} extends this to multi-task IE. NuNER \\cite{nuner-2024} uses contrastive pre-training on LLM-annotated data for strong few-shot performance. These non-LLM alternatives avoid schema complexity issues by design (parallel per-type extraction), but sacrifice the generality and zero-shot flexibility of LLM-based approaches.\n\n**Surveys.** Xu et al. \\cite{llm4ie-survey-2024} provide a comprehensive survey of LLM-based generative IE, covering prompting strategies, fine-tuning paradigms, and benchmarks. Our work contributes to the prompting strategy dimension by showing that *what types are co-presented* matters as much as *how they are presented*.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T03:56:29.379543+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/related_work_draft.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T03:56:29.379668+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/maven_description.md",
+  "content": "# MAVEN Dataset Description\n\n*(For inclusion in Section 4: Experimental Setup, dataset description subsection)*\n\n**MAVEN** \\cite{wang-etal-2020-maven} is a large-scale event detection benchmark constructed from 4,480 English Wikipedia documents. It defines 168 event types organized in a hierarchical taxonomy derived from FrameNet, with 118,732 annotated event mention instances. The type space is substantially larger than prior event detection datasets (e.g., ACE05 with 33 types) and exhibits pronounced sibling-type confusability: Wang et al. report that 14.6--19.8\\% of inter-annotator disagreements involve sibling types in the hierarchy (Table 7 of the original paper), confirming that structurally adjacent event types are inherently difficult to distinguish even for human annotators. We select MAVEN for cross-task validation for three reasons: (1) it provides a *different IE task* (event detection vs. NER), testing whether confusability-aware decomposition generalizes beyond entity extraction; (2) its 168-type schema is 2.5$\\times$ larger than Few-NERD's 66 fine-grained types, stress-testing SDGD on a more complex schema; and (3) independently documented confusability evidence (sibling confusion rates) enables external validation of our Schema Confusability Score against human judgment.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/maven_description.md",
+    "content": "# MAVEN Dataset Description\n\n*(For inclusion in Section 4: Experimental Setup, dataset description subsection)*\n\n**MAVEN** \\cite{wang-etal-2020-maven} is a large-scale event detection benchmark constructed from 4,480 English Wikipedia documents. It defines 168 event types organized in a hierarchical taxonomy derived from FrameNet, with 118,732 annotated event mention instances. The type space is substantially larger than prior event detection datasets (e.g., ACE05 with 33 types) and exhibits pronounced sibling-type confusability: Wang et al. report that 14.6--19.8\\% of inter-annotator disagreements involve sibling types in the hierarchy (Table 7 of the original paper), confirming that structurally adjacent event types are inherently difficult to distinguish even for human annotators. We select MAVEN for cross-task validation for three reasons: (1) it provides a *different IE task* (event detection vs. NER), testing whether confusability-aware decomposition generalizes beyond entity extraction; (2) its 168-type schema is 2.5$\\times$ larger than Few-NERD's 66 fine-grained types, stress-testing SDGD on a more complex schema; and (3) independently documented confusability evidence (sibling confusion rates) enables external validation of our Schema Confusability Score against human judgment.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T03:56:29.379799+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/maven_description.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T03:56:29.379960+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "Method Section Framework",
+  "type": "paper",
+  "description": "Paper Section 3 (Method) draft: Problem Formulation, Controlled Experiment Design, SDGD Framework with LaTeX pseudocode, SDGD-zero vs SDGD-cal variants, adaptive threshold strategy",
+  "project": "schema-dag-extraction",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/method_framework.md",
+  "tags": "['paper', 'method', 'EMNLP2026']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "Method Section Framework",
+    "type": "paper",
+    "description": "Paper Section 3 (Method) draft: Problem Formulation, Controlled Experiment Design, SDGD Framework with LaTeX pseudocode, SDGD-zero vs SDGD-cal variants, adaptive threshold strategy",
+    "project": "schema-dag-extraction",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/method_framework.md",
+    "tags": "['paper', 'method', 'EMNLP2026']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T03:56:29.380102+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_bf91f7\", \"name\": \"Method Section Framework\", \"type\": \"paper\", \"description\": \"Paper Section 3 (Method) draft: Problem Formulation, Controlled Experiment Design, SDGD Framework with LaTeX pseudocode, SDGD-zero vs SDGD-cal variants, adaptive threshold strategy\", \"path\": \"projects/schema-dag-extraction/artifacts/_project/paper/method_framework.md\", \"url\": null, \"project\": \"schema-dag-extraction\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T03:56:04.372109+00:00\", \"tags\": [\"paper\", \"method\", \"EMNLP2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T03:56:29.380236+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "Related Work Draft",
+  "type": "paper",
+  "description": "Paper Section 2 (Related Work) draft: Schema Decomposition for IE, Confusability-Aware NLP, LLM-Based IE — covers 25 papers across 3 dimensions",
+  "project": "schema-dag-extraction",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/related_work_draft.md",
+  "tags": "['paper', 'related-work', 'EMNLP2026']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "Related Work Draft",
+    "type": "paper",
+    "description": "Paper Section 2 (Related Work) draft: Schema Decomposition for IE, Confusability-Aware NLP, LLM-Based IE — covers 25 papers across 3 dimensions",
+    "project": "schema-dag-extraction",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/related_work_draft.md",
+    "tags": "['paper', 'related-work', 'EMNLP2026']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T03:56:29.380382+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_4f948b\", \"name\": \"Related Work Draft\", \"type\": \"paper\", \"description\": \"Paper Section 2 (Related Work) draft: Schema Decomposition for IE, Confusability-Aware NLP, LLM-Based IE — covers 25 papers across 3 dimensions\", \"path\": \"projects/schema-dag-extraction/artifacts/_project/paper/related_work_draft.md\", \"url\": null, \"project\": \"schema-dag-extraction\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T03:56:06.727328+00:00\", \"tags\": [\"paper\", \"related-work\", \"EMNLP2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T03:56:29.380512+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "MAVEN Dataset Description",
+  "type": "paper",
+  "description": "MAVEN dataset description paragraph (~150 words) for Experimental Setup section: 168 event types, 4480 docs, sibling confusion evidence, cross-task validation rationale",
+  "project": "schema-dag-extraction",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/maven_description.md",
+  "tags": "['paper', 'dataset', 'MAVEN', 'EMNLP2026']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "MAVEN Dataset Description",
+    "type": "paper",
+    "description": "MAVEN dataset description paragraph (~150 words) for Experimental Setup section: 168 event types, 4480 docs, sibling confusion evidence, cross-task validation rationale",
+    "project": "schema-dag-extraction",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper_drafts/maven_description.md",
+    "tags": "['paper', 'dataset', 'MAVEN', 'EMNLP2026']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T03:56:29.380651+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_b7191f\", \"name\": \"MAVEN Dataset Description\", \"type\": \"paper\", \"description\": \"MAVEN dataset description paragraph (~150 words) for Experimental Setup section: 168 event types, 4480 docs, sibling confusion evidence, cross-task validation rationale\", \"path\": \"projects/schema-dag-extraction/artifacts/_project/paper/maven_description.md\", \"url\": null, \"project\": \"schema-dag-extraction\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T03:56:09.350124+00:00\", \"tags\": [\"paper\", \"dataset\", \"MAVEN\", \"EMNLP2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-15T03:56:29.380831+00:00_
+
+三个文件已完成并注册：
+
+**`method_framework.md`** — Section 3 完整框架：
+- 3.1 Problem Formulation: 定义 SCS、BCS、schema complexity 双因子模型
+- 3.2 Controlled Experiment Design: count curve + within-count BCS correlation + multi-channel degradation模型（count→recall, confusability→precision）
+- 3.3 SDGD Framework: 5 步算法描述 + `\begin{algorithm}` 格式伪代码 + adaptive threshold（$\tau = \mu + k_\sigma \cdot \sigma$）+ oracle baseline 区分 + 复杂度分析
+- 3.4 SDGD-zero vs SDGD-cal: 两个变体的数据需求、信号来源、校准流程、对比表
+
+**`related_work_draft.md`** — Section 2 三维度组织：
+- 2.1 Schema Decomposition for IE: UniNER, LLM-PEE, PARSE, KGGen, DEE, SPT, DLISC（7篇），明确 SDGD 与每个方法的区别
+- 2.2 Confusability-Aware NLP: IEPile（训练时 vs 推理时）、Familiarity（评估偏差 vs 提取混淆）、CROSSAGENTIE/CMAS（reactive debate vs proactive decomposition）、Lost-in-the-Middle
+- 2.3 LLM-Based IE: GoLLIE, Code4UIE, KnowCoder, Self-improving NER, ReasoningNER, ZeroNER, GLiNER/GLiNER2, NuNER, survey
+
+**`maven_description.md`** — 1 段约 150 words：168 types、FrameNet hierarchy、4480 docs、118K mentions、sibling confusion 14.6-19.8%、三个选择理由（cross-task, larger schema, external confusability evidence）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_writing_method-relatedwork-draft_20260515T035316"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,2153 @@
+# exp llama 8k spotcheck
+
+**When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/chats/worker_exp_llama_8k_spotcheck_20260515T133243.jsonl`
+- **Structured JSON:** [`b61e3f27086edd638ea9.json`](../../sessions/b6/b61e3f27086edd638ea9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+73 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T13:37:03.173464+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T13:37:03.173811+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T13:37:03.174000+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/run_qwen7b_8k_spotcheck.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat /root/ratekv/run_qwen7b_8k_spotcheck.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T13:37:03.174292+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Qwen2.5-7B 8K long-context PPL spot-check: BF16 / uniform-4bit / constrained MCKP.\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport json\\nimport time\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\n\\n\\ndef main():\\n    device = \\\"cuda:1\\\"\\n    model_name = \\\"/root/autodl-tmp/models/Qwen/Qwen2___5-7B\\\"\\n    profiles_path = \\\"hires_profiles.json\\\"\\n    output_path = \\\"artifacts/qwen7b_8k_spotcheck_results.json\\\"\\n    budget = 0.25\\n    max_2bit = 8\\n    seq_len = 8192\\n    t0 = time.time()\\n\\n    config = AutoConfig.from_pretrained(model_name)\\n    num_layers = config.num_hidden_layers\\n    num_kv_heads = config.num_key_value_heads\\n    num_q_heads = config.num_attention_heads\\n    gqa_ratio = num_q_heads // num_kv_heads\\n    total_kv_heads = num_layers * num_kv_heads\\n    print(f\\\"Qwen2.5-7B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\\\")\\n    print(f\\\"8K context spot-check (stride={seq_len})\\\")\\n\\n    # Load profiling data (reuse existing, no re-profiling)\\n    print(f\\\"\\\\nLoading profiles from {profiles_path}...\\\")\\n    with open(profiles_path) as f:\\n        raw = json.load(f)\\n    profiles_raw = raw[\\\"profiles\\\"] if \\\"profiles\\\" in raw else raw\\n    print(f\\\"Loaded: {len(profiles_raw)} layers, {len(profiles_raw['0'])} heads/layer\\\")\\n\\n    profiles = enforce_monotonicity(profiles_raw)\\n\\n    # Constrained MCKP\\n    print(f\\\"\\\\nRunning constrained MCKP (max_2bit={max_2bit}, budget={budget})...\\\")\\n    mck
+…[truncated 5873 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T13:37:03.174455+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -r \"model_name\\|model_path\\|Llama\\|llama\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep -r \"model_name\\|model_path\\|Llama\\|llama\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T13:37:03.174587+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T13:37:03.174762+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls /root/ratekv/llama_profiling_results.json /root/ratekv/llama_hires_bf16_2bitonly_profiles.json 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "ls /root/ratekv/llama_profiling_results.json /root/ratekv/llama_hires_bf16_2bitonly_profiles.json 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T13:37:03.174898+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T13:37:03.175018+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls /root/autodl-tmp/models/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "ls /root/autodl-tmp/models/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T13:37:03.175138+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T13:37:03.175269+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -r \"model_name\\|model_path\\|Llama\\|llama\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep -r \"model_name\\|model_path\\|Llama\\|llama\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T13:37:03.175400+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T13:37:03.175519+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls /root/ratekv/llama_profiling_results.json /root/ratekv/llama_hires_bf16_2bitonly_profiles.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "ls /root/ratekv/llama_profiling_results.json /root/ratekv/llama_hires_bf16_2bitonly_profiles.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T13:37:03.175659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/llama_hires_bf16_2bitonly_profiles.json\\n/root/ratekv/llama_profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T13:37:03.175828+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls /root/autodl-tmp/models/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "ls /root/autodl-tmp/models/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T13:37:03.175952+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LLM-Research\\nMistral-7B-v0.3\\nQwen\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T13:37:03.176075+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "find /root/ratekv -name \"*llama*profil*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "find /root/ratekv -name \"*llama*profil*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T13:37:03.176194+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/llama_profiling_results.json\\n/root/ratekv/llama_hires_bf16_2bitonly_profiles.json\\n/root/ratekv/llama_c4_hires_bf16_2bitonly_profiles.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T13:37:03.176308+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep \"model_name\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep \"model_name\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T13:37:03.176424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        \\\"model_name\\\": \\\"Llama-3.1-8B\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T13:37:03.176535+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls /root/autodl-tmp/models/LLM-Research/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "ls /root/autodl-tmp/models/LLM-Research/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T13:37:03.176663+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Meta-Llama-3.1-8B\\nMeta-Llama-3___1-8B\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T13:37:03.176784+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "head -5 /root/ratekv/llama_hires_bf16_2bitonly_profiles.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "head -5 /root/ratekv/llama_hires_bf16_2bitonly_profiles.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T13:37:03.176903+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"0\\\": {\\n    \\\"0\\\": {\\n      \\\"quantization\\\": {\\n        \\\"2\\\": 0.3263305703191586\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T13:37:03.177047+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls /root/ratekv/artifacts/llama*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "ls /root/ratekv/artifacts/llama*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T13:37:03.177171+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/ratekv/artifacts/llama*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T13:37:03.177287+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -r \"profiles_path\\|max_2bit\\|budget\\|k=\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep -r \"profiles_path\\|max_2bit\\|budget\\|k=\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T13:37:03.177400+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T13:37:03.177510+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep \"profiles_path\\|max_2bit\\|budget\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep \"profiles_path\\|max_2bit\\|budget\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T13:37:03.177620+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T13:37:03.177800+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "find /root/ratekv/artifacts -name \"*llama*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "find /root/ratekv/artifacts -name \"*llama*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T13:37:03.177926+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/artifacts/w3_downstream_llama_results.json\\n/root/ratekv/artifacts/kivi_llama31_8b_r128.json\\n/root/ratekv/artifacts/kivi_llama31_8b_r0.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T13:37:03.178040+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep \"profiles_path\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep \"profiles_path\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T13:37:03.178153+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T13:37:03.178264+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep \"max_2bit\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep \"max_2bit\" /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T13:37:03.178382+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/artifacts/w3_downstream_llama_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat /root/ratekv/artifacts/w3_downstream_llama_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T13:37:03.178498+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T13:37:03.178631+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"Llama-3.1-8B\\\",\\n  \\\"tasks\\\": [\\n    \\\"arc_easy\\\",\\n    \\\"arc_challenge\\\",\\n    \\\"hellaswag\\\",\\n    \\\"winogrande\\\",\\n    \\\"piqa\\\"\\n  ],\\n  \\\"num_fewshot\\\": 0,\\n  \\\"baseline\\\": {\\n    \\\"arc_challenge\\\": 0.5188,\\n    \\\"arc_easy\\\": 0.8228,\\n    \\\"hellaswag\\\": 0.6073,\\n    \\\"piqa\\\": 0.7922,\\n    \\\"winogrande\\\": 0.7388\\n  },\\n  \\\"uniform_4bit\\\": {\\n    \\\"arc_challenge\\\": 0.5256,\\n    \\\"arc_easy\\\": 0.8173,\\n    \\\"hellaswag\\\": 0.6026,\\n    \\\"piqa\\\": 0.7867,\\n    \\\"winogrande\\\": 0.7253\\n  },\\n  \\\"constrained_mckp\\\": {\\n    \\\"arc_challenge\\\": 0.4991,\\n    \\\"arc_easy\\\": 0.8039,\\n    \\\"hellaswag\\\": 0.6012,\\n    \\\"piqa\\\": 0.7802,\\n    \\\"winogrande\\\": 0.7238\\n  },\\n  \\\"elapsed_seconds\\\": 1446.4\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T13:37:03.178791+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat /root/ratekv/run_llama_hires_bf16_2bitonly.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T13:37:03.179038+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Llama-3.1-8B hires bf16 profiling — 2-bit only concentration measurement.\\n64 samples x 2048 tokens, bfloat16 precision, only 2-bit quantization deltas.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport time\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\nfrom eval_ppl import patch_attention, restore_attention\\n\\n\\ndef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\\n    with open(path) as f:\\n        samples = json.load(f)\\n    all_ids = []\\n    for s in samples:\\n        tokens = tokenizer.encode(s[\\\"text\\\"], add_special_tokens=False)\\n        if len(tokens) >= seq_len:\\n            all_ids.append(tokens[:seq_len])\\n        if len(all_ids) >= num_samples:\\n            break\\n    if not all_ids:\\n        raise RuntimeError(f\\\"No calibration seqs with >= {seq_len} tokens\\\")\\n    return torch.tensor(all_ids, dtype=torch.long, device=device)\\n\\n\\ndef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\\n    total_loss = 0.0\\n    total_tokens = 0\\n    n = input_ids.shape[0]\\n    with torch.no_grad():\\n        for start in range(0, n, batch_size):\\n            end = min(start + batch_size, n)\\n            batch = input_ids[start:end]\\n            outputs = model(\\n                batch, use_cache=False,\\n                cache_position=torch.arange(seq_len, device=device)\\n            )\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\n            shift_labels = batch[:, 1:].contiguous()\\n            loss = F.cross_entropy(\\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\\n                shift_labels.view(-1),\\n                reduction=\\\"sum\\\"\\n      
+…[truncated 7154 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T13:37:03.179221+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "find /root/ratekv/artifacts -name \"*llama*constrained*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "find /root/ratekv/artifacts -name \"*llama*constrained*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T13:37:03.179360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T13:37:03.179481+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "find /root/ratekv -name \"llama*results*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "find /root/ratekv -name \"llama*results*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T13:37:03.179609+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/llama_results.json\\n/root/ratekv/llama_profiling_results.json\\n/root/ratekv/llama_hires_results.json\\n/root/ratekv/llama_aggressive_results.json\\n/root/ratekv/llama_k_ablation_results.json\\n/root/ratekv/llama_c4_cross_dataset_results.json\\n/root/ratekv/llama_hires_bf16_2bitonly_results.json\\n/root/ratekv/llama_hires_constrained_results.json\\n/root/ratekv/llama_c4_hires_crossdataset_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T13:37:03.179747+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/llama_hires_constrained_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat /root/ratekv/llama_hires_constrained_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T13:37:03.180138+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B\\\",\\n  \\\"model_name\\\": \\\"Llama-3.1-8B\\\",\\n  \\\"precision\\\": \\\"merged_hires_bf16_2bit_plus_standard_4bit_8bit\\\",\\n  \\\"architecture\\\": {\\n    \\\"num_layers\\\": 32,\\n    \\\"num_kv_heads\\\": 8,\\n    \\\"num_attention_heads\\\": 32,\\n    \\\"head_dim\\\": 128,\\n    \\\"hidden_size\\\": 4096,\\n    \\\"gqa_ratio\\\": 4,\\n    \\\"total_kv_heads\\\": 256\\n  },\\n  \\\"profiling_sources\\\": {\\n    \\\"2bit\\\": \\\"llama_hires_bf16_2bitonly_profiles.json (bf16, 64seq x 2048tok)\\\",\\n    \\\"4bit_8bit\\\": \\\"llama_profiling_results.json (standard)\\\"\\n  },\\n  \\\"constraint\\\": {\\n    \\\"max_2bit\\\": 2,\\n    \\\"budget\\\": 0.25,\\n    \\\"l0_exclude_2bit\\\": true\\n  },\\n  \\\"baseline_wikitext2_ppl\\\": 8.0922,\\n  \\\"mckp_wikitext2_ppl\\\": 8.5042,\\n  \\\"uniform4bit_wikitext2_ppl\\\": 8.4701,\\n  \\\"mckp_improvement_over_uniform\\\": -0.0341,\\n  \\\"mckp_improvement_pct\\\": -9.01,\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"bit_distribution\\\": {\\n    \\\"4\\\": 253,\\n    \\\"8\\\": 1,\\n    \\\"2\\\": 2\\n  },\\n  \\\"heads_2bit\\\": [\\n    \\\"26,0\\\",\\n    \\\"31,7\\\"\\n  ],\\n  \\\"heads_8bit\\\": [\\n    \\\"12,3\\\"\\n  ],\\n  \\\"mckp_total_distortion\\\": 0.7015066684338045,\\n  \\\"mckp_actual_memory_ratio\\\": 0.25,\\n  \\\"allocation\\\": {\\n    \\\"0,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,0\\\": [\\n      \\\"
+…[truncated 9652 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T13:37:03.180321+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/run_llama_hires_constrained.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat /root/ratekv/run_llama_hires_constrained.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T13:37:03.180599+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Llama-3.1-8B Constrained MCKP + WikiText-2 eval using merged hires profiling data.\\nMerges hires bf16 2-bit deltas (64seq x 2048tok) with standard 4-bit/8-bit deltas.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport json\\nimport time\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\n\\n\\ndef main():\\n    device = \\\"cuda:0\\\"\\n    model_name = \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B\\\"\\n    hires_2bit_path = \\\"llama_hires_bf16_2bitonly_profiles.json\\\"\\n    standard_path = \\\"llama_profiling_results.json\\\"\\n    output_path = \\\"llama_hires_constrained_results.json\\\"\\n    budget = 0.25\\n    max_2bit = 2\\n    t0 = time.time()\\n\\n    config = AutoConfig.from_pretrained(model_name)\\n    num_layers = config.num_hidden_layers\\n    num_kv_heads = config.num_key_value_heads\\n    num_q_heads = config.num_attention_heads\\n    gqa_ratio = num_q_heads // num_kv_heads\\n    total_kv_heads = num_layers * num_kv_heads\\n    print(f\\\"Llama-3.1-8B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\\\")\\n\\n    # Load hires bf16 2-bit deltas\\n    print(f\\\"\\\\nLoading hires 2-bit profiles from {hires_2bit_path}...\\\")\\n    with open(hires_2bit_path) as f:\\n        hires_data = json.load(f)\\n    print(f\\\"Hires: {len(hires_data)} layers, {len(hires_data['0'])} heads/layer\\\")\\n\\n    # Load standard profiling (has 2, 4, 8 bit deltas; uses 'profiles' wrapper)\\n    print(f\\\"Loading standard profiles from {standard_path}...\\\")\\n    with open(standard_path) as f:\\n        std_raw = json.load(f)\\n    
+…[truncated 7320 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T13:37:03.180811+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T13:37:03.180944+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T13:37:03.181133+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_llama_8k_spotcheck.py",
+  "content": "\"\"\"Llama-3.1-8B 8K long-context PPL spot-check: BF16 / uniform-4bit / constrained MCKP.\nSpike model (conc=0.34, t1/t5=0.71) contrast to Qwen-7B Spread 8K results.\nExpected: minimal MCKP vs uniform gap at 8K, consistent with Spike classification.\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport json\nimport time\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\n\n\ndef main():\n    device = \"cuda:0\"\n    model_name = \"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B\"\n    hires_2bit_path = \"llama_hires_bf16_2bitonly_profiles.json\"\n    standard_path = \"llama_profiling_results.json\"\n    output_path = \"artifacts/llama_8k_spotcheck_results.json\"\n    budget = 0.25\n    max_2bit = 2\n    seq_len = 8192\n    t0 = time.time()\n\n    config = AutoConfig.from_pretrained(model_name)\n    num_layers = config.num_hidden_layers\n    num_kv_heads = config.num_key_value_heads\n    num_q_heads = config.num_attention_heads\n    gqa_ratio = num_q_heads // num_kv_heads\n    total_kv_heads = num_layers * num_kv_heads\n    print(f\"Llama-3.1-8B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\")\n    print(f\"8K context spot-check (stride={seq_len})\")\n\n    # Load hires bf16 2-bit deltas\n    print(f\"\\nLoading hires 2-bit profiles from {hires_2bit_path}...\")\n    with open(hires_2bit_path) as f:\n        hires_data = json.load(f)\n    print(f\"Hires: {len(hires_data)} layers, {len(hires_data['0'])} heads/layer\")\n\n    # Load standard profiling (has 2, 4, 8 bit deltas)\n    print(f\"Loading standard profiles from {standard_path}...\")\n    with open(standard_path) as f:\n        std_raw = json.load(f)\n    std_data = std_raw[\"profiles\"] if \"profiles\" in std_raw else std_raw\n    print(f\"Standard: {len(std_data)} layers, {len(std_data['0'])} heads/layer\")\n\n    # Merge: hires 2-bit + standard 4-bit and 8-bit\n    print(\"\\nMerging profiles (hires 2-bit + standard 4-bit/8-bit)...\")\n    merged = {}\n    for l_str in sorted(hires_data.keys(), key=int):\n        merged[l_str] = {}\n        for h_str in sorted(hires_data[l_str].keys(), key=int):\n            d2_hires = hires_data[l_str][h_str][\"quantization\"][\"2\"]\n            d4_std = std_data[l_str][h_str][\"quantization\"][\"4\"]\n            d8_std = std_data[l_str][h_str][\"quantization\"][\"8\"]\n            merged[l_str][h_str] = {\"quantization\": {\"2\": d2_hires, \"4\": d4_std, \"8\": d8_std}}\n\n    profiles = enforce_monotonicity(merged)\n\n    # Constrained MCKP\n    print(f\"\\nRunning constrained MCKP (max_2bit={max_2bit}, budget={budget})...\")\n    mckp_result = solve_mckp_constrained(\n        profiles, budget, mode=\"quant_only\",\n        max_2bit=max_2bit, l0_exclude_2bit=True)\n\n    bit_counts = {}\n    heads_2bit = []\n    heads_8bit = []\n    for key, (atype, param) in mckp_result[\"allocation\"].items():\n        b = int(param) if atype == \"quant\" else 16\n        bit_counts[b] = bit_counts.get(b, 0) + 1\n        if b == 2:\n            heads_2bit.append(key)\n        elif b == 8:\n            heads_8bit.append(key)\n    print(f\"Bit distribution: {bit_counts}\")\n    print(f\"Total distortion: {mckp_result['total_distortion']:.6f}\")\n\n    # Uniform 4-bit allocation\n    uniform_result = uniform_quantization_baseline(profiles, bits=4)\n\n    # Load model\n    print(f\"\\nLoading model in bf16 to {device}...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_name, torch_dtype=torch.bfloat16, attn_implementation=\"eager\"\n    )\n    model = model.to(device)\n    model.eval()\n    mem_gb = torch.cuda.memory_allocated(device) / 1e9\n    print(f\"Model loaded. GPU mem: {mem_gb:.1f}GB\")\n\n    # BF16 baseline @ 8K\n    print(f\"\\nEvaluating bf16 baseline on WikiText-2 (stride={seq_len})...\")\n    baseline_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    print(f\"BF16 8K PPL: {baseline_ppl:.4f}\")\n\n    # MCKP @ 8K\n    print(f\"\\nEvaluating constrained MCKP on WikiText-2 (stride={seq_len})...\")\n    orig_fwds = patch_attention(model, mckp_result[\"allocation\"])\n    mckp_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    restore_attention(model, orig_fwds)\n    print(f\"MCKP 8K PPL: {mckp_ppl:.4f}\")\n\n    # Uniform 4-bit @ 8K\n    print(f\"\\nEvaluating uniform 4-bit on WikiText-2 (stride={seq_len})...\")\n    orig_fwds = patch_attention(model, uniform_result[\"allocation\"])\n    uniform_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    restore_attention(model, orig_fwds)\n    print(f\"Uniform 4-bit 8K PPL: {uniform_ppl:.4f}\")\n\n    delta = uniform_ppl - mckp_ppl\n    pct_improvement = delta / (uniform_ppl - baseline_ppl) * 100 if uniform_ppl != baseline_ppl else 0\n\n    # Concentration analysis\n    all_deltas_2bit = []\n    for l_str in sorted(merged.keys(), key=int):\n        for h_str in sorted(merged[l_str].keys(), key=int):\n            d2 = merged[l_str][h_str][\"quantization\"][\"2\"]\n            all_deltas_2bit.append(d2)\n    sorted_d2 = sorted(all_deltas_2bit, reverse=True)\n    n_top5 = max(1, int(len(sorted_d2) * 0.05))\n    total_sum = sum(all_deltas_2bit)\n    top5_sum = sum(sorted_d2[:n_top5])\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\n\n    total_time = time.time() - t0\n\n    results = {\n        \"model\": \"meta-llama/Llama-3.1-8B\",\n        \"model_name\": \"Llama-3.1-8B\",\n        \"experiment\": \"8K_context_spotcheck\",\n        \"seq_len\": seq_len,\n        \"architecture\": {\n            \"num_layers\": num_layers,\n            \"num_kv_heads\": num_kv_heads,\n            \"num_attention_heads\": num_q_heads,\n            \"head_dim\": config.hidden_size // num_q_heads,\n            \"hidden_size\": config.hidden_size,\n            \"gqa_ratio\": gqa_ratio,\n            \"total_kv_heads\": total_kv_heads,\n        },\n        \"profiling_sources\": {\n            \"2bit\": f\"{hires_2bit_path} (bf16, 64seq x 2048tok)\",\n            \"4bit_8bit\": f\"{standard_path} (standard)\",\n        },\n        \"constraint\": {\"max_2bit\": max_2bit, \"budget\": budget, \"l0_exclude_2bit\": True},\n        \"results_8k\": {\n            \"baseline_ppl\": round(baseline_ppl, 4),\n            \"mckp_ppl\": round(mckp_ppl, 4),\n            \"uniform4bit_ppl\": round(uniform_ppl, 4),\n            \"mckp_improvement_over_uniform\": round(delta, 4),\n            \"mckp_improvement_pct\": round(pct_improvement, 2),\n        },\n        \"results_2k_reference\": {\n            \"baseline_ppl\": 8.0922,\n            \"mckp_ppl\": 8.5042,\n            \"uniform4bit_ppl\": 8.4701,\n            \"mckp_improvement_over_uniform\": -0.0341,\n            \"mckp_improvement_pct\": -9.01,\n        },\n        \"bit_distribution\": bit_counts,\n        \"heads_2bit\": heads_2bit,\n        \"heads_8bit\": heads_8bit,\n        \"mckp_total_distortion\": mckp_result[\"total_distortion\"],\n        \"mckp_actual_memory_ratio\": mckp_result[\"actual_memory_ratio\"],\n        \"analysis\": {\n            \"top5_concentration\": round(top5_concentration, 4),\n            \"concentration_class\": \"spike\",\n            \"concentration_value\": 0.5749,\n            \"t1_over_t5\": 0.71,\n        },\n        \"timing\": {\"total_seconds\": round(total_time, 1)},\n    }\n\n    os.makedirs(os.path.dirname(output_path), exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\n{'=' * 60}\")\n    print(f\"RESULTS — Llama-3.1-8B 8K Context Spot-Check (Spike)\")\n    print(f\"{'=' * 60}\")\n    print(f\"{'Method':<30} {'8K PPL':>10} {'2K PPL':>10}\")\n    print(\"-\" * 60)\n    print(f\"{'Baseline (bf16)':<30} {baseline_ppl:>10.4f} {'8.0922':>10}\")\n    print(f\"{'Constrained MCKP (k=2)':<30} {mckp_ppl:>10.4f} {'8.5042':>10}\")\n    print(f\"{'Uniform 4-bit':<30} {uniform_ppl:>10.4f} {'8.4701':>10}\")\n    print(f\"\\nMCKP improvement over uniform: {delta:+.4f} ({pct_improvement:+.1f}%)\")\n    print(f\"Top-5% concentration: {top5_concentration:.4f}\")\n    print(f\"2-bit heads: {heads_2bit}\")\n    print(f\"8-bit heads: {heads_8bit}\")\n    print(f\"Total time: {total_time / 60:.1f}min\")\n    print(f\"Saved to {output_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_llama_8k_spotcheck.py",
+    "content": "\"\"\"Llama-3.1-8B 8K long-context PPL spot-check: BF16 / uniform-4bit / constrained MCKP.\nSpike model (conc=0.34, t1/t5=0.71) contrast to Qwen-7B Spread 8K results.\nExpected: minimal MCKP vs uniform gap at 8K, consistent with Spike classification.\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport json\nimport time\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\n\n\ndef main():\n    device = \"cuda:0\"\n    model_name = \"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B\"\n    hires_2bit_path = \"llama_hires_bf16_2bitonly_profiles.json\"\n    standard_path = \"llama_profiling_results.json\"\n    output_path = \"artifacts/llama_8k_spotcheck_results.json\"\n    budget = 0.25\n    max_2bit = 2\n    seq_len = 8192\n    t0 = time.time()\n\n    config = AutoConfig.from_pretrained(model_name)\n    num_layers = config.num_hidden_layers\n    num_kv_heads = config.num_key_value_heads\n    num_q_heads = config.num_attention_heads\n    gqa_ratio = num_q_heads // num_kv_heads\n    total_kv_heads = num_layers * num_kv_heads\n    print(f\"Llama-3.1-8B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\")\n    print(f\"8K context spot-check (stride={seq_len})\")\n\n    # Load hires bf16 2-bit deltas\n    print(f\"\\nLoading hires 2-bit profiles from {hires_2bit_path}...\")\n    with open(hires_2bit_path) as f:\n        hires_data = json.load(f)\n    print(f\"Hires: {len(hires_data)} layers, {len(hires_data['0'])} heads/layer\")\n\n    # Load standard profiling (has 2, 4, 8 bit deltas)\n    print(f\"Loading standard profiles from {standard_path}...\")\n    with open(standard_path) as f:\n        std_raw = json.load(f)\n    std_data = std_raw[\"profiles\"] if \"profiles\" in std_raw else std_raw\n    print(f\"Standard: {len(std_data)} layers, {len(std_data['0'])} heads/layer\")\n\n    # Merge: hires 2-bit + standard 4-bit and 8-bit\n    print(\"\\nMerging profiles (hires 2-bit + standard 4-bit/8-bit)...\")\n    merged = {}\n    for l_str in sorted(hires_data.keys(), key=int):\n        merged[l_str] = {}\n        for h_str in sorted(hires_data[l_str].keys(), key=int):\n            d2_hires = hires_data[l_str][h_str][\"quantization\"][\"2\"]\n            d4_std = std_data[l_str][h_str][\"quantization\"][\"4\"]\n            d8_std = std_data[l_str][h_str][\"quantization\"][\"8\"]\n            merged[l_str][h_str] = {\"quantization\": {\"2\": d2_hires, \"4\": d4_std, \"8\": d8_std}}\n\n    profiles = enforce_monotonicity(merged)\n\n    # Constrained MCKP\n    print(f\"\\nRunning constrained MCKP (max_2bit={max_2bit}, budget={budget})...\")\n    mckp_result = solve_mckp_constrained(\n        profiles, budget, mode=\"quant_only\",\n        max_2bit=max_2bit, l0_exclude_2bit=True)\n\n    bit_counts = {}\n    heads_2bit = []\n    heads_8bit = []\n    for key, (atype, param) in mckp_result[\"allocation\"].items():\n        b = int(param) if atype == \"quant\" else 16\n        bit_counts[b] = bit_counts.get(b, 0) + 1\n        if b == 2:\n            heads_2bit.append(key)\n        elif b == 8:\n            heads_8bit.append(key)\n    print(f\"Bit distribution: {bit_counts}\")\n    print(f\"Total distortion: {mckp_result['total_distortion']:.6f}\")\n\n    # Uniform 4-bit allocation\n    uniform_result = uniform_quantization_baseline(profiles, bits=4)\n\n    # Load model\n    print(f\"\\nLoading model in bf16 to {device}...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_name, torch_dtype=torch.bfloat16, attn_implementation=\"eager\"\n    )\n    model = model.to(device)\n    model.eval()\n    mem_gb = torch.cuda.memory_allocated(device) / 1e9\n    print(f\"Model loaded. GPU mem: {mem_gb:.1f}GB\")\n\n    # BF16 baseline @ 8K\n    print(f\"\\nEvaluating bf16 baseline on WikiText-2 (stride={seq_len})...\")\n    baseline_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    print(f\"BF16 8K PPL: {baseline_ppl:.4f}\")\n\n    # MCKP @ 8K\n    print(f\"\\nEvaluating constrained MCKP on WikiText-2 (stride={seq_len})...\")\n    orig_fwds = patch_attention(model, mckp_result[\"allocation\"])\n    mckp_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    restore_attention(model, orig_fwds)\n    print(f\"MCKP 8K PPL: {mckp_ppl:.4f}\")\n\n    # Uniform 4-bit @ 8K\n    print(f\"\\nEvaluating uniform 4-bit on WikiText-2 (stride={seq_len})...\")\n    orig_fwds = patch_attention(model, uniform_result[\"allocation\"])\n    uniform_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    restore_attention(model, orig_fwds)\n    print(f\"Uniform 4-bit 8K PPL: {uniform_ppl:.4f}\")\n\n    delta = uniform_ppl - mckp_ppl\n    pct_improvement = delta / (uniform_ppl - baseline_ppl) * 100 if uniform_ppl != baseline_ppl else 0\n\n    # Concentration analysis\n    all_deltas_2bit = []\n    for l_str in sorted(merged.keys(), key=int):\n        for h_str in sorted(merged[l_str].keys(), key=int):\n            d2 = merged[l_str][h_str][\"quantization\"][\"2\"]\n            all_deltas_2bit.append(d2)\n    sorted_d2 = sorted(all_deltas_2bit, reverse=True)\n    n_top5 = max(1, int(len(sorted_d2) * 0.05))\n    total_sum = sum(all_deltas_2bit)\n    top5_sum = sum(sorted_d2[:n_top5])\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\n\n    total_time = time.time() - t0\n\n    results = {\n        \"model\": \"meta-llama/Llama-3.1-8B\",\n        \"model_name\": \"Llama-3.1-8B\",\n        \"experiment\": \"8K_context_spotcheck\",\n        \"seq_len\": seq_len,\n        \"architecture\": {\n            \"num_layers\": num_layers,\n            \"num_kv_heads\": num_kv_heads,\n            \"num_attention_heads\": num_q_heads,\n            \"head_dim\": config.hidden_size // num_q_heads,\n            \"hidden_size\": config.hidden_size,\n            \"gqa_ratio\": gqa_ratio,\n            \"total_kv_heads\": total_kv_heads,\n        },\n        \"profiling_sources\": {\n            \"2bit\": f\"{hires_2bit_path} (bf16, 64seq x 2048tok)\",\n            \"4bit_8bit\": f\"{standard_path} (standard)\",\n        },\n        \"constraint\": {\"max_2bit\": max_2bit, \"budget\": budget, \"l0_exclude_2bit\": True},\n        \"results_8k\": {\n            \"baseline_ppl\": round(baseline_ppl, 4),\n            \"mckp_ppl\": round(mckp_ppl, 4),\n            \"uniform4bit_ppl\": round(uniform_ppl, 4),\n            \"mckp_improvement_over_uniform\": round(delta, 4),\n            \"mckp_improvement_pct\": round(pct_improvement, 2),\n        },\n        \"results_2k_reference\": {\n            \"baseline_ppl\": 8.0922,\n            \"mckp_ppl\": 8.5042,\n            \"uniform4bit_ppl\": 8.4701,\n            \"mckp_improvement_over_uniform\": -0.0341,\n            \"mckp_improvement_pct\": -9.01,\n        },\n        \"bit_distribution\": bit_counts,\n        \"heads_2bit\": heads_2bit,\n        \"heads_8bit\": heads_8bit,\n        \"mckp_total_distortion\": mckp_result[\"total_distortion\"],\n        \"mckp_actual_memory_ratio\": mckp_result[\"actual_memory_ratio\"],\n        \"analysis\": {\n            \"top5_concentration\": round(top5_concentration, 4),\n            \"concentration_class\": \"spike\",\n            \"concentration_value\": 0.5749,\n            \"t1_over_t5\": 0.71,\n        },\n        \"timing\": {\"total_seconds\": round(total_time, 1)},\n    }\n\n    os.makedirs(os.path.dirname(output_path), exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\n{'=' * 60}\")\n    print(f\"RESULTS — Llama-3.1-8B 8K Context Spot-Check (Spike)\")\n    print(f\"{'=' * 60}\")\n    print(f\"{'Method':<30} {'8K PPL':>10} {'2K PPL':>10}\")\n    print(\"-\" * 60)\n    print(f\"{'Baseline (bf16)':<30} {baseline_ppl:>10.4f} {'8.0922':>10}\")\n    print(f\"{'Constrained MCKP (k=2)':<30} {mckp_ppl:>10.4f} {'8.5042':>10}\")\n    print(f\"{'Uniform 4-bit':<30} {uniform_ppl:>10.4f} {'8.4701':>10}\")\n    print(f\"\\nMCKP improvement over uniform: {delta:+.4f} ({pct_improvement:+.1f}%)\")\n    print(f\"Top-5% concentration: {top5_concentration:.4f}\")\n    print(f\"2-bit heads: {heads_2bit}\")\n    print(f\"8-bit heads: {heads_8bit}\")\n    print(f\"Total time: {total_time / 60:.1f}min\")\n    print(f\"Saved to {output_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T13:37:03.181394+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_llama_8k_spotcheck.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T13:37:03.181586+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat > /root/ratekv/run_llama_8k_spotcheck.py << 'SCRIPT_EOF'\n\"\"\"Llama-3.1-8B 8K long-context PPL spot-check: BF16 / uniform-4bit / constrained MCKP.\nSpike model (conc=0.34, t1/t5=0.71) contrast to Qwen-7B Spread 8K results.\nExpected: minimal MCKP vs uniform gap at 8K, consistent with Spike classification.\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport json\nimport time\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\n\n\ndef main():\n    device = \"cuda:0\"\n    model_name = \"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B\"\n    hires_2bit_path = \"llama_hires_bf16_2bitonly_profiles.json\"\n    standard_path = \"llama_profiling_results.json\"\n    output_path = \"artifacts/llama_8k_spotcheck_results.json\"\n    budget = 0.25\n    max_2bit = 2\n    seq_len = 8192\n    t0 = time.time()\n\n    config = AutoConfig.from_pretrained(model_name)\n    num_layers = config.num_hidden_layers\n    num_kv_heads = config.num_key_value_heads\n    num_q_heads = config.num_attention_heads\n    gqa_ratio = num_q_heads // num_kv_heads\n    total_kv_heads = num_layers * num_kv_heads\n    print(f\"Llama-3.1-8B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\")\n    print(f\"8K context spot-check (stride={seq_len})\")\n\n    # Load hires bf16 2-bit deltas\n    print(f\"\\nLoading hires 2-bit profiles from {hires_2bit_path}...\")\n    with open(hires_2bit_path) as f:\n        hires_data = json.load(f)\n    print(f\"Hires: {len(hires_data)} layers, {len(hires_data['0'])} heads/layer\")\n\n    # Load standard profiling (has 2, 4, 8 bit deltas)\n    print(f\"Loading standard profiles from {standard_path}...\")\n    with open(standard_path) as f:\n        std_raw = json.load(f)\n    std_data = std_raw[\"profiles\"] if \"profiles\" in std_raw else std_raw\n    print(f\"Standard: {len(std_data)} layers, {len(std_data['0'])} heads/layer\")\n\n    # Merge: hires 2-bit + standard 4-bit and 8-bit\n    print(\"\\nMerging profiles (hires 2-bit + standard 4-bit/8-bit)...\")\n    merged = {}\n    for l_str in sorted(hires_data.keys(), key=int):\n        merged[l_str] = {}\n        for h_str in sorted(hires_data[l_str].keys(), key=int):\n            d2_hires = hires_data[l_str][h_str][\"quantization\"][\"2\"]\n            d4_std = std_data[l_str][h_str][\"quantization\"][\"4\"]\n            d8_std = std_data[l_str][h_str][\"quantization\"][\"8\"]\n            merged[l_str][h_str] = {\"quantization\": {\"2\": d2_hires, \"4\": d4_std, \"8\": d8_std}}\n\n    profiles = enforce_monotonicity(merged)\n\n    # Constrained MCKP\n    print(f\"\\nRunning constrained MCKP (max_2bit={max_2bit}, budget={budget})...\")\n    mckp_result = solve_mckp_constrained(\n        profiles, budget, mode=\"quant_only\",\n        max_2bit=max_2bit, l0_exclude_2bit=True)\n\n    bit_counts = {}\n    heads_2bit = []\n    heads_8bit = []\n    for key, (atype, param) in mckp_result[\"allocation\"].items():\n        b = int(param) if atype == \"quant\" else 16\n        bit_counts[b] = bit_counts.get(b, 0) + 1\n        if b == 2:\n            heads_2bit.append(key)\n        elif b == 8:\n            heads_8bit.append(key)\n    print(f\"Bit distribution: {bit_counts}\")\n    print(f\"Total distortion: {mckp_result['total_distortion']:.6f}\")\n\n    # Uniform 4-bit allocation\n    uniform_result = uniform_quantization_baseline(profiles, bits=4)\n\n    # Load model\n    print(f\"\\nLoading model in bf16 to {device}...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_name, torch_dtype=torch.bfloat16, attn_implementation=\"eager\"\n    )\n    model = model.to(device)\n    model.eval()\n    mem_gb = torch.cuda.memory_allocated(device) / 1e9\n    print(f\"Model loaded. GPU mem: {mem_gb:.1f}GB\")\n\n    # BF16 baseline @ 8K\n    print(f\"\\nEvaluating bf16 baseline on WikiText-2 (stride={seq_len})...\")\n    baseline_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    print(f\"BF16 8K PPL: {baseline_ppl:.4f}\")\n\n    # MCKP @ 8K\n    print(f\"\\nEvaluating constrained MCKP on WikiText-2 (stride={seq_len})...\")\n    orig_fwds = patch_attention(model, mckp_result[\"allocation\"])\n    mckp_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    restore_attention(model, orig_fwds)\n    print(f\"MCKP 8K PPL: {mckp_ppl:.4f}\")\n\n    # Uniform 4-bit @ 8K\n    print(f\"\\nEvaluating uniform 4-bit on WikiText-2 (stride={seq_len})...\")\n    orig_fwds = patch_attention(model, uniform_result[\"allocation\"])\n    uniform_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    restore_attention(model, orig_fwds)\n    print(f\"Uniform 4-bit 8K PPL: {uniform_ppl:.4f}\")\n\n    delta = uniform_ppl - mckp_ppl\n    pct_improvement = delta / (uniform_ppl - baseline_ppl) * 100 if uniform_ppl != baseline_ppl else 0\n\n    # Concentration analysis\n    all_deltas_2bit = []\n    for l_str in sorted(merged.keys(), key=int):\n        for h_str in sorted(merged[l_str].keys(), key=int):\n            d2 = merged[l_str][h_str][\"quantization\"][\"2\"]\n            all_deltas_2bit.append(d2)\n    sorted_d2 = sorted(all_deltas_2bit, reverse=True)\n    n_top5 = max(1, int(len(sorted_d2) * 0.05))\n    total_sum = sum(all_deltas_2bit)\n    top5_sum = sum(sorted_d2[:n_top5])\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\n\n    total_time = time.time() - t0\n\n    results = {\n        \"model\": \"meta-llama/Llama-3.1-8B\",\n        \"model_name\": \"Llama-3.1-8B\",\n        \"experiment\": \"8K_context_spotcheck\",\n        \"seq_len\": seq_len,\n        \"architecture\": {\n            \"num_layers\": num_layers,\n            \"num_kv_heads\": num_kv_heads,\n            \"num_attention_heads\": num_q_heads,\n            \"head_dim\": config.hidden_size // num_q_heads,\n            \"hidden_size\": config.hidden_size,\n            \"gqa_ratio\": gqa_ratio,\n            \"total_kv_heads\": total_kv_heads,\n        },\n        \"profiling_sources\": {\n            \"2bit\": f\"{hires_2bit_path} (bf16, 64seq x 2048tok)\",\n            \"4bit_8bit\": f\"{standard_path} (standard)\",\n        },\n        \"constraint\": {\"max_2bit\": max_2bit, \"budget\": budget, \"l0_exclude_2bit\": True},\n        \"results_8k\": {\n            \"baseline_ppl\": round(baseline_ppl, 4),\n            \"mckp_ppl\": round(mckp_ppl, 4),\n            \"uniform4bit_ppl\": round(uniform_ppl, 4),\n            \"mckp_improvement_over_uniform\": round(delta, 4),\n            \"mckp_improvement_pct\": round(pct_improvement, 2),\n        },\n        \"results_2k_reference\": {\n            \"baseline_ppl\": 8.0922,\n            \"mckp_ppl\": 8.5042,\n            \"uniform4bit_ppl\": 8.4701,\n            \"mckp_improvement_over_uniform\": -0.0341,\n            \"mckp_improvement_pct\": -9.01,\n        },\n        \"bit_distribution\": bit_counts,\n        \"heads_2bit\": heads_2bit,\n        \"heads_8bit\": heads_8bit,\n        \"mckp_total_distortion\": mckp_result[\"total_distortion\"],\n        \"mckp_actual_memory_ratio\": mckp_result[\"actual_memory_ratio\"],\n        \"analysis\": {\n            \"top5_concentration\": round(top5_concentration, 4),\n            \"concentration_class\": \"spike\",\n            \"concentration_value\": 0.5749,\n            \"t1_over_t5\": 0.71,\n        },\n        \"timing\": {\"total_seconds\": round(total_time, 1)},\n    }\n\n    os.makedirs(os.path.dirname(output_path), exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\n{'=' * 60}\")\n    print(f\"RESULTS — Llama-3.1-8B 8K Context Spot-Check (Spike)\")\n    print(f\"{'=' * 60}\")\n    print(f\"{'Method':<30} {'8K PPL':>10} {'2K PPL':>10}\")\n    print(\"-\" * 60)\n    print(f\"{'Baseline (bf16)':<30} {baseline_ppl:>10.4f} {'8.0922':>10}\")\n    print(f\"{'Constrained MCKP (k=2)':<30} {mckp_ppl:>10.4f} {'8.5042':>10}\")\n    print(f\"{'Uniform 4-bit':<30} {uniform_ppl:>10.4f} {'8.4701':>10}\")\n    print(f\"\\nMCKP improvement over uniform: {delta:+.4f} ({pct_improvement:+.1f}%)\")\n    print(f\"Top-5% concentration: {top5_concentration:.4f}\")\n    print(f\"2-bit heads: {heads_2bit}\")\n    print(f\"8-bit heads: {heads_8bit}\")\n    print(f\"Total time: {total_time / 60:.1f}min\")\n    print(f\"Saved to {output_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat > /root/ratekv/run_llama_8k_spotcheck.py << 'SCRIPT_EOF'\n\"\"\"Llama-3.1-8B 8K long-context PPL spot-check: BF16 / uniform-4bit / constrained MCKP.\nSpike model (conc=0.34, t1/t5=0.71) contrast to Qwen-7B Spread 8K results.\nExpected: minimal MCKP vs uniform gap at 8K, consistent with Spike classification.\n\"\"\"\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_DATASETS_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport json\nimport time\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\n\n\ndef main():\n    device = \"cuda:0\"\n    model_name = \"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B\"\n    hires_2bit_path = \"llama_hires_bf16_2bitonly_profiles.json\"\n    standard_path = \"llama_profiling_results.json\"\n    output_path = \"artifacts/llama_8k_spotcheck_results.json\"\n    budget = 0.25\n    max_2bit = 2\n    seq_len = 8192\n    t0 = time.time()\n\n    config = AutoConfig.from_pretrained(model_name)\n    num_layers = config.num_hidden_layers\n    num_kv_heads = config.num_key_value_heads\n    num_q_heads = config.num_attention_heads\n    gqa_ratio = num_q_heads // num_kv_heads\n    total_kv_heads = num_layers * num_kv_heads\n    print(f\"Llama-3.1-8B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\")\n    print(f\"8K context spot-check (stride={seq_len})\")\n\n    # Load hires bf16 2-bit deltas\n    print(f\"\\nLoading hires 2-bit profiles from {hires_2bit_path}...\")\n    with open(hires_2bit_path) as f:\n        hires_data = json.load(f)\n    print(f\"Hires: {len(hires_data)} layers, {len(hires_data['0'])} heads/layer\")\n\n    # Load standard profiling (has 2, 4, 8 bit deltas)\n    print(f\"Loading standard profiles from {standard_path}...\")\n    with open(standard_path) as f:\n        std_raw = json.load(f)\n    std_data = std_raw[\"profiles\"] if \"profiles\" in std_raw else std_raw\n    print(f\"Standard: {len(std_data)} layers, {len(std_data['0'])} heads/layer\")\n\n    # Merge: hires 2-bit + standard 4-bit and 8-bit\n    print(\"\\nMerging profiles (hires 2-bit + standard 4-bit/8-bit)...\")\n    merged = {}\n    for l_str in sorted(hires_data.keys(), key=int):\n        merged[l_str] = {}\n        for h_str in sorted(hires_data[l_str].keys(), key=int):\n            d2_hires = hires_data[l_str][h_str][\"quantization\"][\"2\"]\n            d4_std = std_data[l_str][h_str][\"quantization\"][\"4\"]\n            d8_std = std_data[l_str][h_str][\"quantization\"][\"8\"]\n            merged[l_str][h_str] = {\"quantization\": {\"2\": d2_hires, \"4\": d4_std, \"8\": d8_std}}\n\n    profiles = enforce_monotonicity(merged)\n\n    # Constrained MCKP\n    print(f\"\\nRunning constrained MCKP (max_2bit={max_2bit}, budget={budget})...\")\n    mckp_result = solve_mckp_constrained(\n        profiles, budget, mode=\"quant_only\",\n        max_2bit=max_2bit, l0_exclude_2bit=True)\n\n    bit_counts = {}\n    heads_2bit = []\n    heads_8bit = []\n    for key, (atype, param) in mckp_result[\"allocation\"].items():\n        b = int(param) if atype == \"quant\" else 16\n        bit_counts[b] = bit_counts.get(b, 0) + 1\n        if b == 2:\n            heads_2bit.append(key)\n        elif b == 8:\n            heads_8bit.append(key)\n    print(f\"Bit distribution: {bit_counts}\")\n    print(f\"Total distortion: {mckp_result['total_distortion']:.6f}\")\n\n    # Uniform 4-bit allocation\n    uniform_result = uniform_quantization_baseline(profiles, bits=4)\n\n    # Load model\n    print(f\"\\nLoading model in bf16 to {device}...\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_name, torch_dtype=torch.bfloat16, attn_implementation=\"eager\"\n    )\n    model = model.to(device)\n    model.eval()\n    mem_gb = torch.cuda.memory_allocated(device) / 1e9\n    print(f\"Model loaded. GPU mem: {mem_gb:.1f}GB\")\n\n    # BF16 baseline @ 8K\n    print(f\"\\nEvaluating bf16 baseline on WikiText-2 (stride={seq_len})...\")\n    baseline_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    print(f\"BF16 8K PPL: {baseline_ppl:.4f}\")\n\n    # MCKP @ 8K\n    print(f\"\\nEvaluating constrained MCKP on WikiText-2 (stride={seq_len})...\")\n    orig_fwds = patch_attention(model, mckp_result[\"allocation\"])\n    mckp_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    restore_attention(model, orig_fwds)\n    print(f\"MCKP 8K PPL: {mckp_ppl:.4f}\")\n\n    # Uniform 4-bit @ 8K\n    print(f\"\\nEvaluating uniform 4-bit on WikiText-2 (stride={seq_len})...\")\n    orig_fwds = patch_attention(model, uniform_result[\"allocation\"])\n    uniform_ppl = evaluate_perplexity(model, tokenizer, device, stride=seq_len)\n    restore_attention(model, orig_fwds)\n    print(f\"Uniform 4-bit 8K PPL: {uniform_ppl:.4f}\")\n\n    delta = uniform_ppl - mckp_ppl\n    pct_improvement = delta / (uniform_ppl - baseline_ppl) * 100 if uniform_ppl != baseline_ppl else 0\n\n    # Concentration analysis\n    all_deltas_2bit = []\n    for l_str in sorted(merged.keys(), key=int):\n        for h_str in sorted(merged[l_str].keys(), key=int):\n            d2 = merged[l_str][h_str][\"quantization\"][\"2\"]\n            all_deltas_2bit.append(d2)\n    sorted_d2 = sorted(all_deltas_2bit, reverse=True)\n    n_top5 = max(1, int(len(sorted_d2) * 0.05))\n    total_sum = sum(all_deltas_2bit)\n    top5_sum = sum(sorted_d2[:n_top5])\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\n\n    total_time = time.time() - t0\n\n    results = {\n        \"model\": \"meta-llama/Llama-3.1-8B\",\n        \"model_name\": \"Llama-3.1-8B\",\n        \"experiment\": \"8K_context_spotcheck\",\n        \"seq_len\": seq_len,\n        \"architecture\": {\n            \"num_layers\": num_layers,\n            \"num_kv_heads\": num_kv_heads,\n            \"num_attention_heads\": num_q_heads,\n            \"head_dim\": config.hidden_size // num_q_heads,\n            \"hidden_size\": config.hidden_size,\n            \"gqa_ratio\": gqa_ratio,\n            \"total_kv_heads\": total_kv_heads,\n        },\n        \"profiling_sources\": {\n            \"2bit\": f\"{hires_2bit_path} (bf16, 64seq x 2048tok)\",\n            \"4bit_8bit\": f\"{standard_path} (standard)\",\n        },\n        \"constraint\": {\"max_2bit\": max_2bit, \"budget\": budget, \"l0_exclude_2bit\": True},\n        \"results_8k\": {\n            \"baseline_ppl\": round(baseline_ppl, 4),\n            \"mckp_ppl\": round(mckp_ppl, 4),\n            \"uniform4bit_ppl\": round(uniform_ppl, 4),\n            \"mckp_improvement_over_uniform\": round(delta, 4),\n            \"mckp_improvement_pct\": round(pct_improvement, 2),\n        },\n        \"results_2k_reference\": {\n            \"baseline_ppl\": 8.0922,\n            \"mckp_ppl\": 8.5042,\n            \"uniform4bit_ppl\": 8.4701,\n            \"mckp_improvement_over_uniform\": -0.0341,\n            \"mckp_improvement_pct\": -9.01,\n        },\n        \"bit_distribution\": bit_counts,\n        \"heads_2bit\": heads_2bit,\n        \"heads_8bit\": heads_8bit,\n        \"mckp_total_distortion\": mckp_result[\"total_distortion\"],\n        \"mckp_actual_memory_ratio\": mckp_result[\"actual_memory_ratio\"],\n        \"analysis\": {\n            \"top5_concentration\": round(top5_concentration, 4),\n            \"concentration_class\": \"spike\",\n            \"concentration_value\": 0.5749,\n            \"t1_over_t5\": 0.71,\n        },\n        \"timing\": {\"total_seconds\": round(total_time, 1)},\n    }\n\n    os.makedirs(os.path.dirname(output_path), exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\n{'=' * 60}\")\n    print(f\"RESULTS — Llama-3.1-8B 8K Context Spot-Check (Spike)\")\n    print(f\"{'=' * 60}\")\n    print(f\"{'Method':<30} {'8K PPL':>10} {'2K PPL':>10}\")\n    print(\"-\" * 60)\n    print(f\"{'Baseline (bf16)':<30} {baseline_ppl:>10.4f} {'8.0922':>10}\")\n    print(f\"{'Constrained MCKP (k=2)':<30} {mckp_ppl:>10.4f} {'8.5042':>10}\")\n    print(f\"{'Uniform 4-bit':<30} {uniform_ppl:>10.4f} {'8.4701':>10}\")\n    print(f\"\\nMCKP improvement over uniform: {delta:+.4f} ({pct_improvement:+.1f}%)\")\n    print(f\"Top-5% concentration: {top5_concentration:.4f}\")\n    print(f\"2-bit heads: {heads_2bit}\")\n    print(f\"8-bit heads: {heads_8bit}\")\n    print(f\"Total time: {total_time / 60:.1f}min\")\n    print(f\"Saved to {output_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T13:37:03.181829+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T13:37:03.181964+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "llama_8k_spotcheck",
+  "field": "status",
+  "value": "PREPARING",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "llama_8k_spotcheck",
+    "field": "status",
+    "value": "PREPARING",
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T13:37:03.182091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"llama_8k_spotcheck\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T13:36:11.364Z\", \"updated_at\": \"2026-05-15T13:36:11.364Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6695}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T13:37:03.182208+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "llama_8k_spotcheck",
+  "field": "hypothesis",
+  "value": "Llama-3.1-8B (Spike, conc=0.34, t1/t5=0.71, native 128K context) should show minimal MCKP vs uniform gap at 8K, contrasting Qwen-7B Spread 97.7% improvement",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "llama_8k_spotcheck",
+    "field": "hypothesis",
+    "value": "Llama-3.1-8B (Spike, conc=0.34, t1/t5=0.71, native 128K context) should show minimal MCKP vs uniform gap at 8K, contrasting Qwen-7B Spread 97.7% improvement",
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T13:37:03.182332+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"llama_8k_spotcheck\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T13:36:11.364Z\", \"updated_at\": \"2026-05-15T13:36:21.158Z\", \"hypothesis\": \"Llama-3.1-8B (Spike, conc=0.34, t1/t5=0.71, native 128K context) should show minimal MCKP vs uniform gap at 8K, contrasting Qwen-7B Spread 97.7% improvement\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3365}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T13:37:03.182503+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "submit training job",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "submit training job",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T13:37:03.182700+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T13:37:03.182858+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && tmux new-session -d -s llama_8k_spotcheck \"python run_llama_8k_spotcheck.py 2>&1 | tee /root/ratekv/logs/llama_8k_spotcheck.log\" && echo \"LAUNCHED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && tmux new-session -d -s llama_8k_spotcheck \"python run_llama_8k_spotcheck.py 2>&1 | tee /root/ratekv/logs/llama_8k_spotcheck.log\" && echo \"LAUNCHED\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T13:37:03.182987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LAUNCHED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T13:37:03.183103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "tail -20 /root/ratekv/logs/llama_8k_spotcheck.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "tail -20 /root/ratekv/logs/llama_8k_spotcheck.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T13:37:03.183226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T13:37:03.183342+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "llama_8k_spotcheck",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "ratekv",
+  "spec": "{'command': 'python run_llama_8k_spotcheck.py', 'server': 'westd-37397', 'data_path': 'WikiText-2', 'data_count': 0, 'model_name': 'Llama-3.1-8B', 'seed': 0}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "llama_8k_spotcheck",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "ratekv",
+    "spec": "{'command': 'python run_llama_8k_spotcheck.py', 'server': 'westd-37397', 'data_path': 'WikiText-2', 'data_count': 0, 'model_name': 'Llama-3.1-8B', 'seed': 0}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T13:37:03.183502+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1932}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T13:37:03.183624+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "llama_8k_spotcheck",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "llama_8k_spotcheck",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T13:37:03.183789+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"llama_8k_spotcheck\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T13:36:11.364Z\", \"updated_at\": \"2026-05-15T13:36:42.275Z\", \"hypothesis\": \"Llama-3.1-8B (Spike, conc=0.34, t1/t5=0.71, native 128K context) should show minimal MCKP vs uniform gap at 8K, contrasting Qwen-7B Spread 97.7% improvement\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6691}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T13:37:03.183911+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "llama_8k_spotcheck",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "ratekv",
+  "spec": "{'command': 'python run_llama_8k_spotcheck.py', 'server': 'westd-37397', 'data_path': 'WikiText-2', 'data_count': 0, 'model_name': 'Llama-3.1-8B', 'seed': 0}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "llama_8k_spotcheck",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "ratekv",
+    "spec": "{'command': 'python run_llama_8k_spotcheck.py', 'server': 'westd-37397', 'data_path': 'WikiText-2', 'data_count': 0, 'model_name': 'Llama-3.1-8B', 'seed': 0}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T13:37:03.184045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"llama_8k_spotcheck\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T13:36:11.364Z\", \"updated_at\": \"2026-05-15T13:36:47.329Z\", \"hypothesis\": \"Llama-3.1-8B (Spike, conc=0.34, t1/t5=0.71, native 128K context) should show minimal MCKP vs uniform gap at 8K, contrasting Qwen-7B Spread 97.7% improvement\", \"spec\": {\"command\": \"python run_llama_8k_spotcheck.py\", \"server\": \"westd-37397\", \"data_path\": \"WikiText-2\", \"data_count\": 0, \"model_name\": \"Llama-3.1-8B\", \"seed\": 0}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6635}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T13:37:03.184175+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "tail -20 /root/ratekv/logs/llama_8k_spotcheck.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "tail -20 /root/ratekv/logs/llama_8k_spotcheck.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T13:37:03.184320+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\nLlama-3.1-8B: 32L x 8KV, GQA 4:1, 256 total heads\\n8K context spot-check (stride=8192)\\n\\nLoading hires 2-bit profiles from llama_hires_bf16_2bitonly_profiles.json...\\nHires: 32 layers, 8 heads/layer\\nLoading standard profiles from llama_profiling_results.json...\\nStandard: 32 layers, 8 heads/layer\\n\\nMerging profiles (hires 2-bit + standard 4-bit/8-bit)...\\n\\nRunning constrained MCKP (max_2bit=2, budget=0.25)...\\nBit distribution: {4: 253, 8: 1, 2: 2}\\nTotal distortion: 0.701507\\n\\nLoading model in bf16 to cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 236.38it/s]\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\nToken indices sequence length is longer than the specified maximum sequence length for this model (288937 > 131072). Running this sequence through the model will result in indexing errors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-15T13:37:03.184491+00:00_
+
+实验已启动并运行中。
+
+**状态**：
+- 脚本 `run_llama_8k_spotcheck.py` 已部署到 westd-37397
+- tmux session `llama_8k_spotcheck` 在 cuda:0 上运行
+- Profiles 已加载并合并（hires 2-bit + standard 4/8-bit）
+- MCKP 求解完成：bit distribution {4: 253, 8: 1, 2: 2}（与 2K 结果一致）
+- 模型已加载，WikiText-2 8K eval 进行中
+- Registry: `llama_8k_spotcheck` → RUNNING
+
+**配置**：
+- 模型：Llama-3.1-8B（`/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B`）
+- k=2, budget=0.25, seq_len=8192, stride=8192
+- 2K 参考：baseline=8.0922, MCKP=8.5042, uniform=8.4701（MCKP 改进 -9.01%，Spike 特征）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_exp_llama_8k_spotcheck_20260515T133243"
+}
+```
+
+</details>
+
+---

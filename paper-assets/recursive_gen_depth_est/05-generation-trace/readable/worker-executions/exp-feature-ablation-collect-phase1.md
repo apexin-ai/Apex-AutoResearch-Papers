@@ -1,0 +1,5186 @@
+# exp feature ablation collect phase1
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 108
+- **Recorded user turns:** 0
+- **Tool calls:** 41
+- **Original source:** `logs/workers/worker_exp_feature_ablation_collect_phase1_20260515T185659.log`
+- **Structured JSON:** [`394a5d6cc6aa587f722d.json`](../../sessions/39/394a5d6cc6aa587f722d.json)
+
+## Before a recorded user message
+
+108 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e225d1b3-b9e5-4bb0-b65e-78bc36e7d18f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778885400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e139af3f-3047-4d30-a104-63892de0ef91",
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by connecting to the server to find and collect the Phase 1 results from the feature ablation experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "5389ab15-71ea-471f-b306-e5fe1bf02ef4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrGQTe54cBwWnQqcrRf9Aw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11903,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11903
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+收集 Feature Ablation Phase 1 结果。先连接服务器查找文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "bb861599-3a5e-4514-8a77-19f300d4b3a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrGQTe54cBwWnQqcrRf9Aw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11903,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11903
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Jg3U391RHu3FCDWh4qk5XH`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "243adbb8-4fe9-42f6-9c29-1e7ad20f74d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrGQTe54cBwWnQqcrRf9Aw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11903,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11903
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T18:57:12.871Z_
+
+<details><summary>↩ Tool result · `toolu_01Jg3U391RHu3FCDWh4qk5XH`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "93fa9741-838a-430c-b73b-07302a1b03bb",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for files and check the registry in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "512f8de8-5a18-4031-980c-2a7c31e4a284",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NggQdsbAMB7qgeS3Q811Yy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2105,
+      "cache_read_input_tokens": 23744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2105
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015MrPxEqVLu5j7SakdawERi`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/recursive_gen_depth_est/ /root/autodl-tmp/recursive_gen_depth_est/ /tmp/ -name \"*ablation*\" -o -name \"*topk*\" -o -name \"*category*\" -o -name \"*forward_selection*\" -o -name \"*feature_importance*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "3e404733-4294-4ded-bf5b-60a244fd3db6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NggQdsbAMB7qgeS3Q811Yy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2105,
+      "cache_read_input_tokens": 23744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2105
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T18:57:17.536Z_
+
+<details><summary>↩ Tool result · `toolu_015MrPxEqVLu5j7SakdawERi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "223129c7-e01e-4290-81e3-3c5f1918c6f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PsEK214faWrKLHerCfkXLi`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/recursive_gen_depth_est/results/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "3befdca2-b308-44e8-9f3d-bcc5d1accaa7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NggQdsbAMB7qgeS3Q811Yy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2105,
+      "cache_read_input_tokens": 23744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2105
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T18:57:18.438Z_
+
+<details><summary>↩ Tool result · `toolu_01PsEK214faWrKLHerCfkXLi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "ba021530-45dc-43ce-a8d9-9b979299ac3b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KAyCZV4Mzr49BzEiWKK1vW`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -30 /tmp/feature_ablation.log 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "8d6e959c-ecad-4716-884e-18eedfa116f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NggQdsbAMB7qgeS3Q811Yy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2105,
+      "cache_read_input_tokens": 23744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2105
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T18:57:18.887Z_
+
+<details><summary>↩ Tool result · `toolu_01KAyCZV4Mzr49BzEiWKK1vW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "ae3a83df-cb0e-42cb-b6c1-f32e70f67855",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Q9VtgVHqVKGNHQc48SgYGZ`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "filters": {
+    "exp_id": "feat_ablation_v1"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "e20677d4-f70e-4b96-8e3f-ff4abfdee58d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NggQdsbAMB7qgeS3Q811Yy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2105,
+      "cache_read_input_tokens": 23744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2105
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T18:57:19.818Z_
+
+<details><summary>↩ Tool result · `toolu_01Q9VtgVHqVKGNHQc48SgYGZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2726}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "91034528-2f05-4d23-8928-4e7cd0ae556f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2726}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2726}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` redirect is being blocked by the shell metacharacter filter. Let me retry without the redirect. Also the registry doesn't have a `feat_ablation_v1` entry - let me check what's in the registry and find the files without redirects.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "a59a0ef8-6ad1-47fc-b768-e40bdcc2102d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZJSnvs2kyawmAtW8dUQKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 25849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+Shell metacharacters被拦截了，重新用不带重定向的命令查找。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "2f740ee6-7c99-4e5e-9337-3b24932f641b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZJSnvs2kyawmAtW8dUQKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 25849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014TZ9XYRDhf74FGAY5XA9gV`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/recursive_gen_depth_est/ -name \"*ablation*\" -o -name \"*topk*\" -o -name \"*category*\" -o -name \"*forward_selection*\" -o -name \"*feature_importance*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "ad20889b-957d-4401-9748-6bf0baa58b38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZJSnvs2kyawmAtW8dUQKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 25849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MS4asRNSWQ6RwYoHGXULJv`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /tmp/ -name \"*ablation*\" -o -name \"*topk*\" -o -name \"*category*\" -o -name \"*forward_selection*\" -o -name \"*feature_importance*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "1ee533dc-a8ad-4235-8c78-109285aff1be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZJSnvs2kyawmAtW8dUQKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 25849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T18:57:27.284Z_
+
+<details><summary>↩ Tool result · `toolu_014TZ9XYRDhf74FGAY5XA9gV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/recursive_gen_depth_est/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "87e8cb37-35cd-4417-a0b4-414f7213c9c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/recursive_gen_depth_est/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/recursive_gen_depth_est/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KwJG8Wo9mK1UJgnKZp3V8V`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est/ -name \"*ablation*\" -o -name \"*topk*\" -o -name \"*category*\" -o -name \"*forward_selection*\" -o -name \"*feature_importance*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "e10022b7-ee8b-4144-8279-f949171d1882",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZJSnvs2kyawmAtW8dUQKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 25849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013cBSwFcbpwPVvDhoCDdhgb`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/recursive_gen_depth_est/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "e7227e46-f8f9-4524-bf37-904a6b43b14a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZJSnvs2kyawmAtW8dUQKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 25849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T18:57:28.160Z_
+
+<details><summary>↩ Tool result · `toolu_01MS4asRNSWQ6RwYoHGXULJv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/eval_olmo_topk50.log\\n/tmp/atlas_v2_data/pythia_topk50\\n/tmp/atlas_v2_data/olmo_topk50\\n/tmp/eval_filtered_topk50.log\\n/tmp/eval_filtered_pythia_topk50.log\\n/tmp/feature_ablation_v2.log\\n/tmp/eval_gpt2xl_topk50.log\\n/tmp/eval_gpt2xl_topk50_v2.log\\n/tmp/eval_gpt2xl_topk50_filtered.log\\n/tmp/logo_ablation.log\\n/tmp/extract_filtered_topk50.log\\n/tmp/extract_filtered_topk50_v2.log\\n/tmp/feature_ablation.log\\n/tmp/agent-ml-exit/pythia_topk50_001.exit\\n/tmp/agent-ml-exit/olmo_topk50_001.exit\\n/tmp/agent-ml-exit/gpt2xl_topk50_001.exit\\n/tmp/agent-ml-exit/granularity_ablation_rf_001.exit\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "8d6c1716-63c8-4918-91e7-2776ed627386",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/tmp/eval_olmo_topk50.log\\\\n/tmp/atlas_v2_data/pythia_topk50\\\\n/tmp/atlas_v2_data/olmo_topk50\\\\n/tmp/eval_filtered_topk50.log\\\\n/tmp/eval_filtered_pythia_topk50.log\\\\n/tmp/feature_ablation_v2.log\\\\n/tmp/eval_gpt2xl_topk50.log\\\\n/tmp/eval_gpt2xl_topk50_v2.log\\\\n/tmp/eval_gpt2xl_topk50_filtered.log\\\\n/tmp/logo_ablation.log\\\\n/tmp/extract_filtered_topk50.log\\\\n/tmp/extract_filtered_topk50_v2.log\\\\n/tmp/feature_ablation.log\\\\n/tmp/agent-ml-exit/pythia_topk50_001.exit\\\\n/tmp/agent-ml-exit/olmo_topk50_001.exit\\\\n/tmp/agent-ml-exit/gpt2xl_topk50_001.exit\\\\n/tmp/agent-ml-exit/granularity_ablation_rf_001.exit\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/tmp/eval_olmo_topk50.log\\n/tmp/atlas_v2_data/pythia_topk50\\n/tmp/atlas_v2_data/olmo_topk50\\n/tmp/eval_filtered_topk50.log\\n/tmp/eval_filtered_pythia_topk50.log\\n/tmp/feature_ablation_v2.log\\n/tmp/eval_gpt2xl_topk50.log\\n/tmp/eval_gpt2xl_topk50_v2.log\\n/tmp/eval_gpt2xl_topk50_filtered.log\\n/tmp/logo_ablation.log\\n/tmp/extract_filtered_topk50.log\\n/tmp/extract_filtered_topk50_v2.log\\n/tmp/feature_ablation.log\\n/tmp/agent-ml-exit/pythia_topk50_001.exit\\n/tmp/agent-ml-exit/olmo_topk50_001.exit\\n/tmp/agent-ml-exit/gpt2xl_topk50_001.exit\\n/tmp/agent-ml-exit/granularity_ablation_rf_001.exit\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kgug72ZUzaKvGDrZZw1BoS`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -30 /tmp/feature_ablation.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "49ba61c1-d2c3-44d0-ac5e-77c6438ee7c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZJSnvs2kyawmAtW8dUQKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 25849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01P2gehctd9w8fLaFZkCajZN`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "limit": 10,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "a15d3f37-c333-47e5-a432-12a50b94bcfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZJSnvs2kyawmAtW8dUQKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 25849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 936
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T18:57:29.058Z_
+
+<details><summary>↩ Tool result · `toolu_01KwJG8Wo9mK1UJgnKZp3V8V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/data/pythia_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_topk50.done\\n/root/autodl-tmp/recursive_gen_depth_est/logs/eval_pythia_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_olmo_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/eval_olmo_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/eval_gpt2xl_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_pythia_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_olmo_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_gpt2xl_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_eval_pythia_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_eval_olmo_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_eval_gpt2xl_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/feature_ablation.py\\n/root/autodl-tmp/recursive_gen_depth_est/checkpoints/pythia_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/checkpoints/olmo_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/three_class_feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/three_class_feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_depth_extension/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_depth_extension/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/granularity_ablation\\n/root/autodl-tmp/recursive_gen_depth_est/results/granularity_ablation/granularity_ablation_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/topk_ablation.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/category_ablation.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/top_k_ablation.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/per_category_ablation.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/forward_selection.json\\n/root/autodl-tmp/recursive_gen_depth_est/results_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/src/granularity_ablation.py\\n/root/autodl-tmp/recursive_gen_depth_est/src/feature_ablation_9cell.py\\n/root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas_v2/feature_importance_9cell.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "8cbd21b1-d87e-4915-9e1b-8d56d1e4906c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/pythia_topk50\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo_topk50\\\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50\\\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_topk50.log\\\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_topk50.done\\\\n/root/autodl-tmp/recursive_gen_depth_est/logs/eval_pythia_topk50.log\\\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\\\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_olmo_topk50.log\\\\n/root/autodl-tmp/recursive_gen_depth_est/logs/eval_olmo_topk50.log\\\\n/root/autodl-tmp/recursive_gen_depth_est/logs/eval_gpt2xl_topk50.log\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_pythia_topk50.sh\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_olmo_topk50.sh\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_gpt2xl_topk50.sh\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_eval_pythia_topk50.sh\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_eval_olmo_topk50.sh\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_eval_gpt2xl_topk50.sh\\\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/feature_ablation.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/checkpoints/pythia_topk50\\\\n/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50\\\\n/root/autodl-tmp/recursive_gen_depth_est/checkpoints/olmo_topk50\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/three_class_feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/three_class_feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_depth_extension/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_depth_extension/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/granularity_ablation\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/granularity_ablation/granularity_ablation_results.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/topk_ablation.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/category_ablation.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/top_k_ablation.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/per_category_ablation.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/forward_selection.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/granularity_ablation.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/src/feature_ablation_9cell.py\\\\n/root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas_v2/feature_importance_9cell.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/data/pythia_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_topk50.done\\n/root/autodl-tmp/recursive_gen_depth_est/logs/eval_pythia_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_olmo_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/eval_olmo_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/eval_gpt2xl_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_pythia_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_olmo_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_pipeline_gpt2xl_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_eval_pythia_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_eval_olmo_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/run_eval_gpt2xl_topk50.sh\\n/root/autodl-tmp/recursive_gen_depth_est/scripts/feature_ablation.py\\n/root/autodl-tmp/recursive_gen_depth_est/checkpoints/pythia_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/checkpoints/olmo_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/three_class_feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/three_class_feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_depth_extension/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_depth_extension/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/granularity_ablation\\n/root/autodl-tmp/recursive_gen_depth_est/results/granularity_ablation/granularity_ablation_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/temp07_pilot/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/topk_ablation.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/category_ablation.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/top_k_ablation.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/per_category_ablation.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/forward_selection.json\\n/root/autodl-tmp/recursive_gen_depth_est/results_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/src/granularity_ablation.py\\n/root/autodl-tmp/recursive_gen_depth_est/src/feature_ablation_9cell.py\\n/root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas_v2/feature_importance_9cell.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T18:57:29.955Z_
+
+<details><summary>↩ Tool result · `toolu_013cBSwFcbpwPVvDhoCDdhgb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/recursive_gen_depth_est/results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "1411ae03-37ee-4d7a-b886-8b74cf9aa808",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/recursive_gen_depth_est/results/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/recursive_gen_depth_est/results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T18:57:30.844Z_
+
+<details><summary>↩ Tool result · `toolu_01Kgug72ZUzaKvGDrZZw1BoS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 56 leaked semlock objects to clean up at shutdown\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 6 leaked folder objects to clean up at shutdown\\n  warnings.warn(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "336a0d38-4a93-4d48-9be1-8d747cc91125",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 56 leaked semlock objects to clean up at shutdown\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 6 leaked folder objects to clean up at shutdown\\\\n  warnings.warn(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 56 leaked semlock objects to clean up at shutdown\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/joblib/externals/loky/backend/resource_tracker.py:359: UserWarning: resource_tracker: There appear to be 6 leaked folder objects to clean up at shutdown\\n  warnings.warn(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T18:57:31.048Z_
+
+<details><summary>↩ Tool result · `toolu_01P2gehctd9w8fLaFZkCajZN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"feature_ablation_9cell\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:40:33.974Z\", \"updated_at\": \"2026-05-15T18:40:33.974Z\", \"conclusion\": \"failed\"}, \"zeroshot_llm_500_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:50.066Z\", \"updated_at\": \"2026-05-15T18:02:53.031Z\", \"hypothesis\": \"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T15:50:43.319Z\"}, \"spec\": {\"command\": \"python src/zeroshot_llm_500.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"N/A\", \"data_path\": \"data/depth_{0,1,2,3}.jsonl\", \"data_count\": 500, \"model_name\": \"DeepSeek (zero-shot)\", \"seed\": 42, \"log_path\": \"results/zeroshot_llm_500/\", \"checkpoint_path\": \"results/zeroshot_llm_500/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.362, \"accuracy_ci95\": [0.32, 0.404], \"ci_width_pp\": 8.4, \"mae\": 1.028, \"per_class_f1\": {\"d0\": 0.55, \"d1\": 0.18, \"d2\": 0.27, \"d3\": 0.18}, \"per_class_recall\": {\"d0\": 0.952, \"d1\": 0.128, \"d2\": 0.248, \"d3\": 0.12}, \"vs_rf_baseline\": \"36.2% vs 78.2% (-42.0pp)\", \"vs_200_sample\": \"36.2% vs 40.0% (consistent, within CI)\", \"n_samples\": 500, \"n_errors\": 0}, \"notes\": \"500-sample zero-shot LLM baseline. Acc=36.2% [32.0%, 40.4%]，CI 从 ~13.6pp 缩至 8.4pp。与 200-sample (40.0%) 一致。LLM 几乎只能识别 d0 (recall 95.2%)，d1-d3 collapse (recall 12-25%)。RF 优势 42pp 无可争议。\", \"completed_at\": \"2026-05-15T18:02:53.031Z\"}, \"feat_ablation_v1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:11:38.111Z\", \"updated_at\": \"2026-05-15T17:11:42.908Z\", \"spec\": {\"command\": \"python scripts/feature_ablation.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"9 cell feature files (JSONL)\", \"data_count\": 20000, \"model_name\": \"RF (n_estimators=100)\", \"seed\": 42, \"description\": \"Feature ablation study for R3-N2 reviewer: top-k ablation, per-category ablation, forward selection, VIF, correlation matrix across 9 cells\"}}, \"temp07_pilot_pythia_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T16:38:04.729Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T15:50:42.735Z\"}, \"spec\": {\"command\": \"python src/temp07_pilot.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"N/A\", \"data_path\": \"data/pythia_temp07/depth_{0..5}.jsonl\", \"data_count\": 3000, \"model_name\": \"Pythia-1.4B\", \"seed\": 42, \"hyperparams\": {\"temperature\": 0.7, \"top_p\": 1, \"samples_per_depth\": 500, \"depths\": 6}, \"log_path\": \"results/temp07_pilot/\", \"checkpoint_path\": \"results/temp07_pilot/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"samples_per_depth\": 500, \"depths\": 6, \"six_class_rf_accuracy\": 0.5733, \"six_class_rf_ci95\": [0.5333, 0.615], \"six_class_lr_accuracy\": 0.5467, \"pairwise_auc_rf\": {\"d0v1\": 0.9981, \"d1v2\": 0.8378, \"d2v3\": 0.635, \"d3v4\": 0.5997, \"d4v5\": 0.6025}, \"pairwise_auc_lr\": {\"d0v1\": 0.9954, \"d1v2\": 0.8031, \"d2v3\": 0.608, \"d3v4\": 0.6525, \"d4v5\": 0.5652}, \"vs_temp09_d1v2_rf\": \"0.8378 vs 0.8327 (+0.005)\", \"vs_temp09_d1v2_lr\": \"0.8031 vs 0.7833 (+0.020)\", \"d1v2_inversion\": false, \"top_features\": [\"p90_ppl\", \"var_surprisal\", \"mean_surprisal\", \"mean_ppl\", \"p75_ppl\"]}, \"notes\": \"Pipeline 完成 (d0-d5, 500 samples/depth)。**d1v2 inversion 未出现**: d1v2 AUC RF=0.8378 (vs temp09 0.8327), LR=0.8031 (vs temp09 0.7833)。τ=0.7 within-strategy separability 与 τ=0.9 几乎相同。注意：cross-strategy LOO 中的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是跨策略泛化问题，非 within-strategy 问题。τ=0.7 的 within-strategy 结果正常，说明 temperature 均匀缩放 logit 不影响组内深度可分性。EDD 估计: d2v3=0.635<0.75 → EDD≈2 (6-class setting, 500 samples)。Feature importance 与 temp09 一致: perplexity 分布统计量主导 (p90_ppl, var_surprisal, mean_surprisal)。\", \"completed_at\": \"2026-05-15T16:38:04.729Z\"}, \"n2_roberta_finetune_001\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-15T12:12:32.982Z\", \"updated_at\": \"2026-05-15T13:28:39.437Z\", \"hypothesis\": \"N2 reviewer concern: end-to-end RoBERTa-base finetune baseline vs RF on hand-crafted features (78.2%). 与 DeBERTa 形成双 backbone 对比，排除模型选择偏差。\", \"reproduce\": {\"finished_at\": \"2026-05-15T13:22:44.070Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-15T12:22:48.111Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:22:52.671747+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:39:17.852149+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:22:46.068321+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Retry 2: 模型文件损坏 (pytorch_model.bin corrupted)，kill pid=235755，重新下载模型后从 Fold 1 全部重跑。前一次 retry (pid=235755) Fold 1 val_acc 达 0.578 但模型文件有问题需确保完整性。\"}}, \"notes\": \"5-fold CV 完成 (retry_count=2)。RoBERTa-base 4-class acc=59.5% ± 3.2%，远低于 RF 78.2% (-18.7pp)。Feature overlap: Spearman ρ=-0.456 (p=0.050)，与 DeBERTa (ρ=-0.484) 一致，top-5 overlap=0。跨架构确认 transformer 表征偏向表面特征，perplexity 分布统计量是盲区。var_ppl R²=-4215.8（极端负值）。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/roberta-base --output_dir results/n2_roberta_finetune --gpu 0\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"243827\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl\", \"data_count\": 20000, \"model_name\": \"RoBERTa-base\", \"seed\": 42, \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"lr\": \"2e-5\", \"max_len\": 512, \"cv_folds\": 5, \"warmup_ratio\": 0.1}, \"log_path\": \"~/runs/recursive_gen_depth_est/n2_roberta_finetune_001.log\"}, \"conclusion\": \"success\", \"metrics\": {\"accuracy_mean\": 0.5948, \"accuracy_std\": 0.0324, \"per_class_f1\": {\"d0\": 0.958, \"d1\": 0.4161, \"d2\": 0.2611, \"d3\": 0.6472}, \"per_class_precision\": {\"d0\": 0.9983, \"d1\": 0.7178, \"d2\": 0.2956, \"d3\": 0.4958}, \"per_class_recall\": {\"d0\": 0.9208, \"d1\": 0.293, \"d2\": 0.2338, \"d3\": 0.9314}, \"pairwise_auc\": {\"d0v1\": 0.9886, \"d1v2\": 0.7522, \"d2v3\": 0.7349}, \"fold_accuracies\": [0.6022, 0.5595, 0.5623, 0.6018, 0.648], \"vs_rf_baseline\": \"-18.7pp (59.5% vs 78.2%)\", \"vs_deberta\": \"+1.2pp acc, +0.019 d1v2_auc, -0.020 d2v3_auc\", \"elapsed_seconds\": 1942.5}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/n2_roberta_finetune/\", \"log_path\": \"~/runs/recursive_gen_depth_est/n2_roberta_finetune_001.log\"}, \"n2_deberta_finetune_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:06.592Z\", \"updated_at\": \"2026-05-15T13:20:47.219Z\", \"spec\": {\"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42, \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"lr\": \"2e-5\", \"max_len\": 512, \"cv_folds\": 5}, \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/deberta-v3-base --output_dir results/n2_deberta_finetune --gpu 0\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"231448\", \"log_path\": \"~/runs/recursive_gen_depth_est/n2_deberta_finetune_001.log\", \"checkpoint_path\": \"results/n2_deberta_finetune/fold_predictions.npz\", \"results_path\": \"results/n2_deberta_finetune/results.json\"}, \"hypothesis\": \"N2 reviewer concern: end-to-end DeBERTa-v3-base finetune baseline vs RF on hand-crafted features (78.2%). 若 DeBERTa acc < RF，证明手工特征确有独立贡献；若 ≥ RF，需重新定位 narrative。\", \"reproduce\": {\"finished_at\": \"2026-05-15T13:14:31.043Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T13:14:32.924Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:14:34.546594+00:00\"}]}, \"metrics\": {\"accuracy_mean\": 0.5831, \"accuracy_std\": 0.0467, \"per_class_f1\": {\"d0\": 0.947, \"d1\": 0.378, \"d2\": 0.247, \"d3\": 0.656}, \"pairwise_auc\": {\"d0v1\": 0.981, \"d1v2\": 0.733, \"d2v3\": 0.755}, \"vs_rf_baseline\": \"58.3% vs 78.2% (-19.9pp)\", \"elapsed_seconds\": 3727}, \"notes\": \"5-fold CV 完成。DeBERTa-v3-base 4-class acc=58.3% ± 4.7%，远低于 RF 78.2% (-19.9pp)。Feature overlap analysis: Spearman ρ=-0.484 (p=0.036)，DeBERTa 和 RF 关注的特征几乎完全相反。DeBERTa 擅长编码表面特征 (TTR R²=0.85, rep_2gram R²=0.82)，而 RF 依赖的 perplexity 分布统计量 (var_surprisal, p90_ppl) 在 DeBERTa 表征中 R² 为负。Top-5 overlap=0。\"}, \"cross_strategy_loo_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:12:49.407Z\", \"updated_at\": \"2026-05-15T12:29:21.290Z\", \"spec\": {\"description\": \"Cross-strategy LOO: per-model, train on 2 strategies test on 3rd. RF classifier.\", \"server\": \"gpu-6000pro-2\", \"model_name\": \"RandomForest (CPU)\", \"seed\": 42, \"data_path\": \"9-cell features\", \"data_count\": 180000, \"command\": \"python src/cross_strategy_loo.py\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/cross_strategy_loo.json\"}, \"hypothesis\": \"Cross-strategy LOO (plan_007): 深度信号跨策略可迁移——同模型内，用 2 种解码策略训练的 RF 可泛化到第 3 种，4-class acc 均值 59.1% 远超 chance 25%。temp09 holdout 的 d1v2 AUC 反转 (GPT-2 XL: 0.13, OLMo: 0.25) 证明解码策略塑造不同的退化轨迹 (D014)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:13:08.512Z\", \"metrics\": {\"mean_4class_acc\": 0.5908, \"pythia_holdout_nucleus\": {\"acc\": 0.6935, \"d1v2_auc\": 0.6903, \"d2v3_auc\": 0.7626}, \"pythia_holdout_temp09\": {\"acc\": 0.6281, \"d1v2_auc\": 0.576, \"d2v3_auc\": 0.724}, \"pythia_holdout_topk50\": {\"acc\": 0.5151, \"d1v2_auc\": 0.6393, \"d2v3_auc\": 0.5801}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5993, \"d1v2_auc\": 0.7826, \"d2v3_auc\": 0.4985}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5609, \"d1v2_auc\": 0.1288, \"d2v3_auc\": 0.6366}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5364, \"d1v2_auc\": 0.8308, \"d2v3_auc\": 0.7222}, \"olmo_holdout_nucleus\": {\"acc\": 0.6538, \"d1v2_auc\": 0.7931, \"d2v3_auc\": 0.6076}, \"olmo_holdout_temp09\": {\"acc\": 0.5816, \"d1v2_auc\": 0.2529, \"d2v3_auc\": 0.7015}, \"olmo_holdout_topk50\": {\"acc\": 0.5488, \"d1v2_auc\": 0.8549, \"d2v3_auc\": 0.7107}, \"finding_temp09_d1v2_inversion\": \"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\"}, \"notes\": \"Cross-strategy LOO 9/9 > chance, mean 59.1%。temp09 d1v2 AUC 反转（GPT-2 XL: 0.13, OLMo: 0.25）已解释为 Covariate Shift：temperature=0.9 均匀缩放 logit 分布（非截断），模型递归时更快收敛到 attractor 分布，导致 temp09 depth N 的统计特征 ≈ nucleus/topk50 depth N+1。证据：(1) 混淆矩阵显示系统性深度高估（temp09 d1→d2/d3 52%+25%，d2→d3 96%）；(2) 组内 d1v2 AUC 正常（0.94/0.90/0.83）。详见 artifacts/temp09_d1v2_inversion_analysis.md。注：D021 已推翻 z-score 标准化后 AUC 恢复的 claim（LR cross-strategy 降级为 RF-only finding）。\"}, \"depth_extension_olmo_d4d5_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:34:26.348Z\", \"updated_at\": \"2026-05-15T12:11:17.988Z\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/recursive_gen_depth_est/scripts/resume_olmo_step5.sh'\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"213793\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_002.log\", \"submitted_at\": \"2026-05-15T10:34:26.157Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/\", \"data_count\": 30000, \"model_name\": \"OLMo-1B\", \"seed\": 42, \"checkpoint_source\": \"depth_extension_olmo_d4d5_001\", \"wall_clock_seconds\": 5809.0, \"gpu_hours\": 1.61}, \"notes\": \"OLMo depth extension Step 5-7 恢复执行（depth_extension_olmo_d4d5_001 因 CUDA device mismatch 在 Step 5 失败）。数据/checkpoint 复用 001 的产出。修复：--gpu 1→0（CUDA_VISIBLE_DEVICES=1 下逻辑设备为 cuda:0）。脚本：resume_olmo_step5.sh。预计 ~35 分钟。\", \"hypothesis\": \"OLMo-1B EDD 与 Pythia-1.4B 一致（EDD=4），验证 EDD 跨模型稳定性\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.968, \"d2v3_auc\": 0.843, \"d3v4_auc\": 0.765, \"d4v5_auc\": 0.684}, \"six_class_rf_accuracy\": 0.667, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL → EDD=4\"}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/\", \"completed_at\": \"2026-05-15T12:11:15.124Z\"}, \"depth_extension_gpt2xl_d4d5_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:32:10.348Z\", \"updated_at\": \"2026-05-15T12:11:15.829Z\", \"hypothesis\": \"GPT-2 XL depth extension: 从 d3 checkpoint 继续递归生成 d4/d5 各 5000 samples，binary pairwise RF 验证 EDD。GPT-2 XL 是 3×3 矩阵中信号最强的模型 (85.4%)，若 EDD≥4 则与 Pythia 结果 (EDD=4) 形成跨模型 EDD 一致性证据。\", \"parent\": \"cross_model_gpt2xl_001\", \"notes\": \"**代码准备完成 (2026-05-15)**\\n\\n## 文件路径\\n- **GPT-2 XL d3 checkpoint**: `checkpoints/gpt2xl/lora_depth_2/` (用于生成 d3；尚无 lora_depth_3，需先 finetune d3 数据)\\n- **d0-d3 数据**: `data/gpt2xl/depth_{0,1,2,3}.jsonl` (各 5000 samples)\\n- **d0-d3 特征**: `data/gpt2xl/features.jsonl` (20000 samples, evaluator=GPT-2 XL)\\n- **Pipeline 脚本**: `scripts/run_depth_extension_gpt2xl.sh`\\n- **模型路径**: `/root/autodl-tmp/models/gpt2-xl`\\n- **LoRA config**: r=16, alpha=32, dropout=0.05, target=c_attn,c_proj\\n\\n## Pipeline 步骤\\n1. finetune d3 → lora_depth_3 (如已存在则跳过)\\n2. generate d4 (5000 samples, nucleus p=0.95, seed=42)\\n3. finetune d4 → lora_depth_4\\n4. generate d5 (5000 samples)\\n5. extract_features d0-d5 (evaluator=GPT-2 XL, 6-class)\\n6. train_classifier (6-class RF/LR)\\n7. binary_pairwise_eval (d1v2, d2v3, d3v4, d4v5)\\n\\n## 预估运行时间\\n- finetune × 2: ~6 min\\n- generate × 2: ~116 min (58 min/轮)\\n- feature extraction: ~20 min\\n- eval: ~2 min\\n- **总计: ~2.5 小时**\\n\\n## Dry-run 验证结果\\n- 4 个脚本 --help 全部正常\\n- binary_pairwise_eval.py 已修改支持 --features_path/--output_dir\\n- 在 d0-d3 特征上测试通过: d1v2 AUC=0.9574, d2v3 AUC=0.887 (binary RF)\\n- bash -n 语法检查通过\\n\\n## 基线参考 (GPT-2 XL binary pairwise d0-d3)\\n- d1v2: 0.9574 [0.9499, 0.9648]\\n- d2v3: 0.8870 [0.8724, 0.9007]\\n- 高于 Pythia d1v2=0.925, d2v3=0.823，确认 GPT-2 XL 信号最强\\n\\n## 风险\\n- GPT-2 XL 1.5B 比 Pythia 1.4B 稍大，生成速度接近但内存略高，单卡 RTX 6000 Pro (48GB) 足够\\n- d4/d5 生成占用 GPU 0 约 2 小时，需确认不与其他实验冲突\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T06:45:51.627Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_gpt2xl.sh 2>&1 | tee logs/depth_extension_gpt2xl_d4d5.log\\\"\", \"finished_at\": \"2026-05-15T11:42:57.006Z\", \"training_hours\": 4.95}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_gpt2xl.sh 2>&1 | tee logs/depth_extension_gpt2xl_d4d5.log\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"194929\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_gpt2xl_d4d5_001.log\", \"submitted_at\": \"2026-05-15T09:12:53.290Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 10702.5, \"gpu_hours\": 2.97}, \"pid\": \"194929\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_gpt2xl_d4d5_001.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:42:59.168595+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.966, \"d2v3_auc\": 0.919, \"d3v4_auc\": 0.75, \"d4v5_auc\": 0.681}, \"six_class_rf_accuracy\": 0.679, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL → EDD=4\"}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_depth_extension/\", \"completed_at\": \"2026-05-15T12:11:15.829Z\"}, \"depth_extension_olmo_d4d5_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:23:04.007Z\", \"updated_at\": \"2026-05-15T10:30:31.681Z\", \"hypothesis\": \"OLMo-1B depth extension: 从 d3 checkpoint 继续递归生成 d4/d5 各 5000 samples，binary pairwise RF 验证 EDD。OLMo 是 3×3 矩阵中间模型 (78.8%)，若 EDD≥4 则与 Pythia (EDD=4) 形成跨模型 EDD 一致性证据，3 模型 EDD 完整对比。\", \"parent\": \"cross_model_olmo_002\", \"notes\": \"**失败诊断 (2026-05-15)**\\nRoot cause: extract_features.py 硬编码 device=cuda:1，但 submit_training_job 注入 CUDA_VISIBLE_DEVICES=1 后逻辑上只有 cuda:0 可见。torch.AcceleratorError: CUDA error: invalid device ordinal.\\nPipeline 进度: Step 1-4 全部完成（d4/d5 各 5000 samples 已生成），Step 5 feature extraction 崩溃。\\nError type: infrastructure (device ordinal mismatch)\\nFix: 修改 run_depth_extension_olmo.sh 中 extract_features / train_classifier / binary_pairwise 步骤的 device 参数为 cuda:0（或动态检测），从 Step 5 开始恢复执行。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T09:28:17.681Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo.sh\\\"\", \"finished_at\": \"2026-05-15T10:28:46.734Z\", \"training_hours\": 1.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo.sh\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"204956\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_001.log\", \"submitted_at\": \"2026-05-15T09:28:20.497Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3628.3, \"gpu_hours\": 1.01}, \"pid\": \"204956\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_001.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T10:28:48.828Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:28:50.545946+00:00\"}]}}}, \"count\": 10, \"total\": 50, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1912}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "7203cfb7-8ce4-4151-91b7-74cf15f64b18",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"feature_ablation_9cell\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:40:33.974Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:40:33.974Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"zeroshot_llm_500_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:46:50.066Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:02:53.031Z\\\", \\\"hypothesis\\\": \\\"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T15:50:43.319Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"python src/zeroshot_llm_500.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"N/A\\\", \\\"data_path\\\": \\\"data/depth_{0,1,2,3}.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"DeepSeek (zero-shot)\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"results/zeroshot_llm_500/\\\", \\\"checkpoint_path\\\": \\\"results/zeroshot_llm_500/results.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.362, \\\"accuracy_ci95\\\": [0.32, 0.404], \\\"ci_width_pp\\\": 8.4, \\\"mae\\\": 1.028, \\\"per_class_f1\\\": {\\\"d0\\\": 0.55, \\\"d1\\\": 0.18, \\\"d2\\\": 0.27, \\\"d3\\\": 0.18}, \\\"per_class_recall\\\": {\\\"d0\\\": 0.952, \\\"d1\\\": 0.128, \\\"d2\\\": 0.248, \\\"d3\\\": 0.12}, \\\"vs_rf_baseline\\\": \\\"36.2% vs 78.2% (-42.0pp)\\\", \\\"vs_200_sample\\\": \\\"36.2% vs 40.0% (consistent, within CI)\\\", \\\"n_samples\\\": 500, \\\"n_errors\\\": 0}, \\\"notes\\\": \\\"500-sample zero-shot LLM baseline. Acc=36.2% [32.0%, 40.4%]，CI 从 ~13.6pp 缩至 8.4pp。与 200-sample (40.0%) 一致。LLM 几乎只能识别 d0 (recall 95.2%)，d1-d3 collapse (recall 12-25%)。RF 优势 42pp 无可争议。\\\", \\\"completed_at\\\": \\\"2026-05-15T18:02:53.031Z\\\"}, \\\"feat_ablation_v1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:11:38.111Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:11:42.908Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/feature_ablation.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"data_path\\\": \\\"9 cell feature files (JSONL)\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"RF (n_estimators=100)\\\", \\\"seed\\\": 42, \\\"description\\\": \\\"Feature ablation study for R3-N2 reviewer: top-k ablation, per-category ablation, forward selection, VIF, correlation matrix across 9 cells\\\"}}, \\\"temp07_pilot_pythia_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:46:49.321Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:38:04.729Z\\\", \\\"hypothesis\\\": \\\"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T15:50:42.735Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"python src/temp07_pilot.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"N/A\\\", \\\"data_path\\\": \\\"data/pythia_temp07/depth_{0..5}.jsonl\\\", \\\"data_count\\\": 3000, \\\"model_name\\\": \\\"Pythia-1.4B\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"temperature\\\": 0.7, \\\"top_p\\\": 1, \\\"samples_per_depth\\\": 500, \\\"depths\\\": 6}, \\\"log_path\\\": \\\"results/temp07_pilot/\\\", \\\"checkpoint_path\\\": \\\"results/temp07_pilot/results.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"samples_per_depth\\\": 500, \\\"depths\\\": 6, \\\"six_class_rf_accuracy\\\": 0.5733, \\\"six_class_rf_ci95\\\": [0.5333, 0.615], \\\"six_class_lr_accuracy\\\": 0.5467, \\\"pairwise_auc_rf\\\": {\\\"d0v1\\\": 0.9981, \\\"d1v2\\\": 0.8378, \\\"d2v3\\\": 0.635, \\\"d3v4\\\": 0.5997, \\\"d4v5\\\": 0.6025}, \\\"pairwise_auc_lr\\\": {\\\"d0v1\\\": 0.9954, \\\"d1v2\\\": 0.8031, \\\"d2v3\\\": 0.608, \\\"d3v4\\\": 0.6525, \\\"d4v5\\\": 0.5652}, \\\"vs_temp09_d1v2_rf\\\": \\\"0.8378 vs 0.8327 (+0.005)\\\", \\\"vs_temp09_d1v2_lr\\\": \\\"0.8031 vs 0.7833 (+0.020)\\\", \\\"d1v2_inversion\\\": false, \\\"top_features\\\": [\\\"p90_ppl\\\", \\\"var_surprisal\\\", \\\"mean_surprisal\\\", \\\"mean_ppl\\\", \\\"p75_ppl\\\"]}, \\\"notes\\\": \\\"Pipeline 完成 (d0-d5, 500 samples/depth)。**d1v2 inversion 未出现**: d1v2 AUC RF=0.8378 (vs temp09 0.8327), LR=0.8031 (vs temp09 0.7833)。τ=0.7 within-strategy separability 与 τ=0.9 几乎相同。注意：cross-strategy LOO 中的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是跨策略泛化问题，非 within-strategy 问题。τ=0.7 的 within-strategy 结果正常，说明 temperature 均匀缩放 logit 不影响组内深度可分性。EDD 估计: d2v3=0.635<0.75 → EDD≈2 (6-class setting, 500 samples)。Feature importance 与 temp09 一致: perplexity 分布统计量主导 (p90_ppl, var_surprisal, mean_surprisal)。\\\", \\\"completed_at\\\": \\\"2026-05-15T16:38:04.729Z\\\"}, \\\"n2_roberta_finetune_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-15T12:12:32.982Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:28:39.437Z\\\", \\\"hypothesis\\\": \\\"N2 reviewer concern: end-to-end RoBERTa-base finetune baseline vs RF on hand-crafted features (78.2%). 与 DeBERTa 形成双 backbone 对比，排除模型选择偏差。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:22:44.070Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-15T12:22:48.111Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:22:52.671747+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:39:17.852149+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:22:46.068321+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"Retry 2: 模型文件损坏 (pytorch_model.bin corrupted)，kill pid=235755，重新下载模型后从 Fold 1 全部重跑。前一次 retry (pid=235755) Fold 1 val_acc 达 0.578 但模型文件有问题需确保完整性。\\\"}}, \\\"notes\\\": \\\"5-fold CV 完成 (retry_count=2)。RoBERTa-base 4-class acc=59.5% ± 3.2%，远低于 RF 78.2% (-18.7pp)。Feature overlap: Spearman ρ=-0.456 (p=0.050)，与 DeBERTa (ρ=-0.484) 一致，top-5 overlap=0。跨架构确认 transformer 表征偏向表面特征，perplexity 分布统计量是盲区。var_ppl R²=-4215.8（极端负值）。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/roberta-base --output_dir results/n2_roberta_finetune --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"243827\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"RoBERTa-base\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"epochs\\\": 3, \\\"batch_size\\\": 16, \\\"lr\\\": \\\"2e-5\\\", \\\"max_len\\\": 512, \\\"cv_folds\\\": 5, \\\"warmup_ratio\\\": 0.1}, \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/n2_roberta_finetune_001.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy_mean\\\": 0.5948, \\\"accuracy_std\\\": 0.0324, \\\"per_class_f1\\\": {\\\"d0\\\": 0.958, \\\"d1\\\": 0.4161, \\\"d2\\\": 0.2611, \\\"d3\\\": 0.6472}, \\\"per_class_precision\\\": {\\\"d0\\\": 0.9983, \\\"d1\\\": 0.7178, \\\"d2\\\": 0.2956, \\\"d3\\\": 0.4958}, \\\"per_class_recall\\\": {\\\"d0\\\": 0.9208, \\\"d1\\\": 0.293, \\\"d2\\\": 0.2338, \\\"d3\\\": 0.9314}, \\\"pairwise_auc\\\": {\\\"d0v1\\\": 0.9886, \\\"d1v2\\\": 0.7522, \\\"d2v3\\\": 0.7349}, \\\"fold_accuracies\\\": [0.6022, 0.5595, 0.5623, 0.6018, 0.648], \\\"vs_rf_baseline\\\": \\\"-18.7pp (59.5% vs 78.2%)\\\", \\\"vs_deberta\\\": \\\"+1.2pp acc, +0.019 d1v2_auc, -0.020 d2v3_auc\\\", \\\"elapsed_seconds\\\": 1942.5}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/n2_roberta_finetune/\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/n2_roberta_finetune_001.log\\\"}, \\\"n2_deberta_finetune_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:12:06.592Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:20:47.219Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"DeBERTa-v3-base\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"epochs\\\": 3, \\\"batch_size\\\": 16, \\\"lr\\\": \\\"2e-5\\\", \\\"max_len\\\": 512, \\\"cv_folds\\\": 5}, \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/deberta-v3-base --output_dir results/n2_deberta_finetune --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"231448\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/n2_deberta_finetune_001.log\\\", \\\"checkpoint_path\\\": \\\"results/n2_deberta_finetune/fold_predictions.npz\\\", \\\"results_path\\\": \\\"results/n2_deberta_finetune/results.json\\\"}, \\\"hypothesis\\\": \\\"N2 reviewer concern: end-to-end DeBERTa-v3-base finetune baseline vs RF on hand-crafted features (78.2%). 若 DeBERTa acc < RF，证明手工特征确有独立贡献；若 ≥ RF，需重新定位 narrative。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:14:31.043Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T13:14:32.924Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:14:34.546594+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy_mean\\\": 0.5831, \\\"accuracy_std\\\": 0.0467, \\\"per_class_f1\\\": {\\\"d0\\\": 0.947, \\\"d1\\\": 0.378, \\\"d2\\\": 0.247, \\\"d3\\\": 0.656}, \\\"pairwise_auc\\\": {\\\"d0v1\\\": 0.981, \\\"d1v2\\\": 0.733, \\\"d2v3\\\": 0.755}, \\\"vs_rf_baseline\\\": \\\"58.3% vs 78.2% (-19.9pp)\\\", \\\"elapsed_seconds\\\": 3727}, \\\"notes\\\": \\\"5-fold CV 完成。DeBERTa-v3-base 4-class acc=58.3% ± 4.7%，远低于 RF 78.2% (-19.9pp)。Feature overlap analysis: Spearman ρ=-0.484 (p=0.036)，DeBERTa 和 RF 关注的特征几乎完全相反。DeBERTa 擅长编码表面特征 (TTR R²=0.85, rep_2gram R²=0.82)，而 RF 依赖的 perplexity 分布统计量 (var_surprisal, p90_ppl) 在 DeBERTa 表征中 R² 为负。Top-5 overlap=0。\\\"}, \\\"cross_strategy_loo_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T04:12:49.407Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:29:21.290Z\\\", \\\"spec\\\": {\\\"description\\\": \\\"Cross-strategy LOO: per-model, train on 2 strategies test on 3rd. RF classifier.\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"model_name\\\": \\\"RandomForest (CPU)\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"9-cell features\\\", \\\"data_count\\\": 180000, \\\"command\\\": \\\"python src/cross_strategy_loo.py\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/cross_strategy_loo.json\\\"}, \\\"hypothesis\\\": \\\"Cross-strategy LOO (plan_007): 深度信号跨策略可迁移——同模型内，用 2 种解码策略训练的 RF 可泛化到第 3 种，4-class acc 均值 59.1% 远超 chance 25%。temp09 holdout 的 d1v2 AUC 反转 (GPT-2 XL: 0.13, OLMo: 0.25) 证明解码策略塑造不同的退化轨迹 (D014)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T04:13:08.512Z\\\", \\\"metrics\\\": {\\\"mean_4class_acc\\\": 0.5908, \\\"pythia_holdout_nucleus\\\": {\\\"acc\\\": 0.6935, \\\"d1v2_auc\\\": 0.6903, \\\"d2v3_auc\\\": 0.7626}, \\\"pythia_holdout_temp09\\\": {\\\"acc\\\": 0.6281, \\\"d1v2_auc\\\": 0.576, \\\"d2v3_auc\\\": 0.724}, \\\"pythia_holdout_topk50\\\": {\\\"acc\\\": 0.5151, \\\"d1v2_auc\\\": 0.6393, \\\"d2v3_auc\\\": 0.5801}, \\\"gpt2xl_holdout_nucleus\\\": {\\\"acc\\\": 0.5993, \\\"d1v2_auc\\\": 0.7826, \\\"d2v3_auc\\\": 0.4985}, \\\"gpt2xl_holdout_temp09\\\": {\\\"acc\\\": 0.5609, \\\"d1v2_auc\\\": 0.1288, \\\"d2v3_auc\\\": 0.6366}, \\\"gpt2xl_holdout_topk50\\\": {\\\"acc\\\": 0.5364, \\\"d1v2_auc\\\": 0.8308, \\\"d2v3_auc\\\": 0.7222}, \\\"olmo_holdout_nucleus\\\": {\\\"acc\\\": 0.6538, \\\"d1v2_auc\\\": 0.7931, \\\"d2v3_auc\\\": 0.6076}, \\\"olmo_holdout_temp09\\\": {\\\"acc\\\": 0.5816, \\\"d1v2_auc\\\": 0.2529, \\\"d2v3_auc\\\": 0.7015}, \\\"olmo_holdout_topk50\\\": {\\\"acc\\\": 0.5488, \\\"d1v2_auc\\\": 0.8549, \\\"d2v3_auc\\\": 0.7107}, \\\"finding_temp09_d1v2_inversion\\\": \\\"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\\\"}, \\\"notes\\\": \\\"Cross-strategy LOO 9/9 > chance, mean 59.1%。temp09 d1v2 AUC 反转（GPT-2 XL: 0.13, OLMo: 0.25）已解释为 Covariate Shift：temperature=0.9 均匀缩放 logit 分布（非截断），模型递归时更快收敛到 attractor 分布，导致 temp09 depth N 的统计特征 ≈ nucleus/topk50 depth N+1。证据：(1) 混淆矩阵显示系统性深度高估（temp09 d1→d2/d3 52%+25%，d2→d3 96%）；(2) 组内 d1v2 AUC 正常（0.94/0.90/0.83）。详见 artifacts/temp09_d1v2_inversion_analysis.md。注：D021 已推翻 z-score 标准化后 AUC 恢复的 claim（LR cross-strategy 降级为 RF-only finding）。\\\"}, \\\"depth_extension_olmo_d4d5_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:34:26.348Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:11:17.988Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/recursive_gen_depth_est/scripts/resume_olmo_step5.sh'\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"213793\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_002.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:34:26.157Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"OLMo-1B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"depth_extension_olmo_d4d5_001\\\", \\\"wall_clock_seconds\\\": 5809.0, \\\"gpu_hours\\\": 1.61}, \\\"notes\\\": \\\"OLMo depth extension Step 5-7 恢复执行（depth_extension_olmo_d4d5_001 因 CUDA device mismatch 在 Step 5 失败）。数据/checkpoint 复用 001 的产出。修复：--gpu 1→0（CUDA_VISIBLE_DEVICES=1 下逻辑设备为 cuda:0）。脚本：resume_olmo_step5.sh。预计 ~35 分钟。\\\", \\\"hypothesis\\\": \\\"OLMo-1B EDD 与 Pythia-1.4B 一致（EDD=4），验证 EDD 跨模型稳定性\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"binary_pairwise\\\": {\\\"d1v2_auc\\\": 0.968, \\\"d2v3_auc\\\": 0.843, \\\"d3v4_auc\\\": 0.765, \\\"d4v5_auc\\\": 0.684}, \\\"six_class_rf_accuracy\\\": 0.667, \\\"edd_at_075\\\": 4, \\\"edd_note\\\": \\\"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL → EDD=4\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/\\\", \\\"completed_at\\\": \\\"2026-05-15T12:11:15.124Z\\\"}, \\\"depth_extension_gpt2xl_d4d5_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:32:10.348Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:11:15.829Z\\\", \\\"hypothesis\\\": \\\"GPT-2 XL depth extension: 从 d3 checkpoint 继续递归生成 d4/d5 各 5000 samples，binary pairwise RF 验证 EDD。GPT-2 XL 是 3×3 矩阵中信号最强的模型 (85.4%)，若 EDD≥4 则与 Pythia 结果 (EDD=4) 形成跨模型 EDD 一致性证据。\\\", \\\"parent\\\": \\\"cross_model_gpt2xl_001\\\", \\\"notes\\\": \\\"**代码准备完成 (2026-05-15)**\\\\n\\\\n## 文件路径\\\\n- **GPT-2 XL d3 checkpoint**: `checkpoints/gpt2xl/lora_depth_2/` (用于生成 d3；尚无 lora_depth_3，需先 finetune d3 数据)\\\\n- **d0-d3 数据**: `data/gpt2xl/depth_{0,1,2,3}.jsonl` (各 5000 samples)\\\\n- **d0-d3 特征**: `data/gpt2xl/features.jsonl` (20000 samples, evaluator=GPT-2 XL)\\\\n- **Pipeline 脚本**: `scripts/run_depth_extension_gpt2xl.sh`\\\\n- **模型路径**: `/root/autodl-tmp/models/gpt2-xl`\\\\n- **LoRA config**: r=16, alpha=32, dropout=0.05, target=c_attn,c_proj\\\\n\\\\n## Pipeline 步骤\\\\n1. finetune d3 → lora_depth_3 (如已存在则跳过)\\\\n2. generate d4 (5000 samples, nucleus p=0.95, seed=42)\\\\n3. finetune d4 → lora_depth_4\\\\n4. generate d5 (5000 samples)\\\\n5. extract_features d0-d5 (evaluator=GPT-2 XL, 6-class)\\\\n6. train_classifier (6-class RF/LR)\\\\n7. binary_pairwise_eval (d1v2, d2v3, d3v4, d4v5)\\\\n\\\\n## 预估运行时间\\\\n- finetune × 2: ~6 min\\\\n- generate × 2: ~116 min (58 min/轮)\\\\n- feature extraction: ~20 min\\\\n- eval: ~2 min\\\\n- **总计: ~2.5 小时**\\\\n\\\\n## Dry-run 验证结果\\\\n- 4 个脚本 --help 全部正常\\\\n- binary_pairwise_eval.py 已修改支持 --features_path/--output_dir\\\\n- 在 d0-d3 特征上测试通过: d1v2 AUC=0.9574, d2v3 AUC=0.887 (binary RF)\\\\n- bash -n 语法检查通过\\\\n\\\\n## 基线参考 (GPT-2 XL binary pairwise d0-d3)\\\\n- d1v2: 0.9574 [0.9499, 0.9648]\\\\n- d2v3: 0.8870 [0.8724, 0.9007]\\\\n- 高于 Pythia d1v2=0.925, d2v3=0.823，确认 GPT-2 XL 信号最强\\\\n\\\\n## 风险\\\\n- GPT-2 XL 1.5B 比 Pythia 1.4B 稍大，生成速度接近但内存略高，单卡 RTX 6000 Pro (48GB) 足够\\\\n- d4/d5 生成占用 GPU 0 约 2 小时，需确认不与其他实验冲突\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T06:45:51.627Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_gpt2xl.sh 2>&1 | tee logs/depth_extension_gpt2xl_d4d5.log\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T11:42:57.006Z\\\", \\\"training_hours\\\": 4.95}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_gpt2xl.sh 2>&1 | tee logs/depth_extension_gpt2xl_d4d5.log\\\\\\\"\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"194929\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/depth_extension_gpt2xl_d4d5_001.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:12:53.290Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 10702.5, \\\"gpu_hours\\\": 2.97}, \\\"pid\\\": \\\"194929\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/depth_extension_gpt2xl_d4d5_001.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T11:42:59.168595+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"binary_pairwise\\\": {\\\"d1v2_auc\\\": 0.966, \\\"d2v3_auc\\\": 0.919, \\\"d3v4_auc\\\": 0.75, \\\"d4v5_auc\\\": 0.681}, \\\"six_class_rf_accuracy\\\": 0.679, \\\"edd_at_075\\\": 4, \\\"edd_note\\\": \\\"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL → EDD=4\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_depth_extension/\\\", \\\"completed_at\\\": \\\"2026-05-15T12:11:15.829Z\\\"}, \\\"depth_extension_olmo_d4d5_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:23:04.007Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:30:31.681Z\\\", \\\"hypothesis\\\": \\\"OLMo-1B depth extension: 从 d3 checkpoint 继续递归生成 d4/d5 各 5000 samples，binary pairwise RF 验证 EDD。OLMo 是 3×3 矩阵中间模型 (78.8%)，若 EDD≥4 则与 Pythia (EDD=4) 形成跨模型 EDD 一致性证据，3 模型 EDD 完整对比。\\\", \\\"parent\\\": \\\"cross_model_olmo_002\\\", \\\"notes\\\": \\\"**失败诊断 (2026-05-15)**\\\\nRoot cause: extract_features.py 硬编码 device=cuda:1，但 submit_training_job 注入 CUDA_VISIBLE_DEVICES=1 后逻辑上只有 cuda:0 可见。torch.AcceleratorError: CUDA error: invalid device ordinal.\\\\nPipeline 进度: Step 1-4 全部完成（d4/d5 各 5000 samples 已生成），Step 5 feature extraction 崩溃。\\\\nError type: infrastructure (device ordinal mismatch)\\\\nFix: 修改 run_depth_extension_olmo.sh 中 extract_features / train_classifier / binary_pairwise 步骤的 device 参数为 cuda:0（或动态检测），从 Step 5 开始恢复执行。\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T09:28:17.681Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo.sh\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T10:28:46.734Z\\\", \\\"training_hours\\\": 1.01}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo.sh\\\\\\\"\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"204956\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_001.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:28:20.497Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 3628.3, \\\"gpu_hours\\\": 1.01}, \\\"pid\\\": \\\"204956\\\", \\\"log_path\\\": \\\"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_001.log\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T10:28:48.828Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T10:28:50.545946+00:00\\\"}]}}}, \\\"count\\\": 10, \\\"total\\\": 50, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1912}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"feature_ablation_9cell\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:40:33.974Z\", \"updated_at\": \"2026-05-15T18:40:33.974Z\", \"conclusion\": \"failed\"}, \"zeroshot_llm_500_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:50.066Z\", \"updated_at\": \"2026-05-15T18:02:53.031Z\", \"hypothesis\": \"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T15:50:43.319Z\"}, \"spec\": {\"command\": \"python src/zeroshot_llm_500.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"N/A\", \"data_path\": \"data/depth_{0,1,2,3}.jsonl\", \"data_count\": 500, \"model_name\": \"DeepSeek (zero-shot)\", \"seed\": 42, \"log_path\": \"results/zeroshot_llm_500/\", \"checkpoint_path\": \"results/zeroshot_llm_500/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.362, \"accuracy_ci95\": [0.32, 0.404], \"ci_width_pp\": 8.4, \"mae\": 1.028, \"per_class_f1\": {\"d0\": 0.55, \"d1\": 0.18, \"d2\": 0.27, \"d3\": 0.18}, \"per_class_recall\": {\"d0\": 0.952, \"d1\": 0.128, \"d2\": 0.248, \"d3\": 0.12}, \"vs_rf_baseline\": \"36.2% vs 78.2% (-42.0pp)\", \"vs_200_sample\": \"36.2% vs 40.0% (consistent, within CI)\", \"n_samples\": 500, \"n_errors\": 0}, \"notes\": \"500-sample zero-shot LLM baseline. Acc=36.2% [32.0%, 40.4%]，CI 从 ~13.6pp 缩至 8.4pp。与 200-sample (40.0%) 一致。LLM 几乎只能识别 d0 (recall 95.2%)，d1-d3 collapse (recall 12-25%)。RF 优势 42pp 无可争议。\", \"completed_at\": \"2026-05-15T18:02:53.031Z\"}, \"feat_ablation_v1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:11:38.111Z\", \"updated_at\": \"2026-05-15T17:11:42.908Z\", \"spec\": {\"command\": \"python scripts/feature_ablation.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"9 cell feature files (JSONL)\", \"data_count\": 20000, \"model_name\": \"RF (n_estimators=100)\", \"seed\": 42, \"description\": \"Feature ablation study for R3-N2 reviewer: top-k ablation, per-category ablation, forward selection, VIF, correlation matrix across 9 cells\"}}, \"temp07_pilot_pythia_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T16:38:04.729Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T15:50:42.735Z\"}, \"spec\": {\"command\": \"python src/temp07_pilot.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"N/A\", \"data_path\": \"data/pythia_temp07/depth_{0..5}.jsonl\", \"data_count\": 3000, \"model_name\": \"Pythia-1.4B\", \"seed\": 42, \"hyperparams\": {\"temperature\": 0.7, \"top_p\": 1, \"samples_per_depth\": 500, \"depths\": 6}, \"log_path\": \"results/temp07_pilot/\", \"checkpoint_path\": \"results/temp07_pilot/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"samples_per_depth\": 500, \"depths\": 6, \"six_class_rf_accuracy\": 0.5733, \"six_class_rf_ci95\": [0.5333, 0.615], \"six_class_lr_accuracy\": 0.5467, \"pairwise_auc_rf\": {\"d0v1\": 0.9981, \"d1v2\": 0.8378, \"d2v3\": 0.635, \"d3v4\": 0.5997, \"d4v5\": 0.6025}, \"pairwise_auc_lr\": {\"d0v1\": 0.9954, \"d1v2\": 0.8031, \"d2v3\": 0.608, \"d3v4\": 0.6525, \"d4v5\": 0.5652}, \"vs_temp09_d1v2_rf\": \"0.8378 vs 0.8327 (+0.005)\", \"vs_temp09_d1v2_lr\": \"0.8031 vs 0.7833 (+0.020)\", \"d1v2_inversion\": false, \"top_features\": [\"p90_ppl\", \"var_surprisal\", \"mean_surprisal\", \"mean_ppl\", \"p75_ppl\"]}, \"notes\": \"Pipeline 完成 (d0-d5, 500 samples/depth)。**d1v2 inversion 未出现**: d1v2 AUC RF=0.8378 (vs temp09 0.8327), LR=0.8031 (vs temp09 0.7833)。τ=0.7 within-strategy separability 与 τ=0.9 几乎相同。注意：cross-strategy LOO 中的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是跨策略泛化问题，非 within-strategy 问题。τ=0.7 的 within-strategy 结果正常，说明 temperature 均匀缩放 logit 不影响组内深度可分性。EDD 估计: d2v3=0.635<0.75 → EDD≈2 (6-class setting, 500 samples)。Feature importance 与 temp09 一致: perplexity 分布统计量主导 (p90_ppl, var_surprisal, mean_surprisal)。\", \"completed_at\": \"2026-05-15T16:38:04.729Z\"}, \"n2_roberta_finetune_001\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-15T12:12:32.982Z\", \"updated_at\": \"2026-05-15T13:28:39.437Z\", \"hypothesis\": \"N2 reviewer concern: end-to-end RoBERTa-base finetune baseline vs RF on hand-crafted features (78.2%). 与 DeBERTa 形成双 backbone 对比，排除模型选择偏差。\", \"reproduce\": {\"finished_at\": \"2026-05-15T13:22:44.070Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-15T12:22:48.111Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:22:52.671747+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:39:17.852149+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:22:46.068321+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Retry 2: 模型文件损坏 (pytorch_model.bin corrupted)，kill pid=235755，重新下载模型后从 Fold 1 全部重跑。前一次 retry (pid=235755) Fold 1 val_acc 达 0.578 但模型文件有问题需确保完整性。\"}}, \"notes\": \"5-fold CV 完成 (retry_count=2)。RoBERTa-base 4-class acc=59.5% ± 3.2%，远低于 RF 78.2% (-18.7pp)。Feature overlap: Spearman ρ=-0.456 (p=0.050)，与 DeBERTa (ρ=-0.484) 一致，top-5 overlap=0。跨架构确认 transformer 表征偏向表面特征，perplexity 分布统计量是盲区。var_ppl R²=-4215.8（极端负值）。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/roberta-base --output_dir results/n2_roberta_finetune --gpu 0\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"243827\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl\", \"data_count\": 20000, \"model_name\": \"RoBERTa-base\", \"seed\": 42, \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"lr\": \"2e-5\", \"max_len\": 512, \"cv_folds\": 5, \"warmup_ratio\": 0.1}, \"log_path\": \"~/runs/recursive_gen_depth_est/n2_roberta_finetune_001.log\"}, \"conclusion\": \"success\", \"metrics\": {\"accuracy_mean\": 0.5948, \"accuracy_std\": 0.0324, \"per_class_f1\": {\"d0\": 0.958, \"d1\": 0.4161, \"d2\": 0.2611, \"d3\": 0.6472}, \"per_class_precision\": {\"d0\": 0.9983, \"d1\": 0.7178, \"d2\": 0.2956, \"d3\": 0.4958}, \"per_class_recall\": {\"d0\": 0.9208, \"d1\": 0.293, \"d2\": 0.2338, \"d3\": 0.9314}, \"pairwise_auc\": {\"d0v1\": 0.9886, \"d1v2\": 0.7522, \"d2v3\": 0.7349}, \"fold_accuracies\": [0.6022, 0.5595, 0.5623, 0.6018, 0.648], \"vs_rf_baseline\": \"-18.7pp (59.5% vs 78.2%)\", \"vs_deberta\": \"+1.2pp acc, +0.019 d1v2_auc, -0.020 d2v3_auc\", \"elapsed_seconds\": 1942.5}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/n2_roberta_finetune/\", \"log_path\": \"~/runs/recursive_gen_depth_est/n2_roberta_finetune_001.log\"}, \"n2_deberta_finetune_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:06.592Z\", \"updated_at\": \"2026-05-15T13:20:47.219Z\", \"spec\": {\"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42, \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"lr\": \"2e-5\", \"max_len\": 512, \"cv_folds\": 5}, \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/deberta-v3-base --output_dir results/n2_deberta_finetune --gpu 0\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"231448\", \"log_path\": \"~/runs/recursive_gen_depth_est/n2_deberta_finetune_001.log\", \"checkpoint_path\": \"results/n2_deberta_finetune/fold_predictions.npz\", \"results_path\": \"results/n2_deberta_finetune/results.json\"}, \"hypothesis\": \"N2 reviewer concern: end-to-end DeBERTa-v3-base finetune baseline vs RF on hand-crafted features (78.2%). 若 DeBERTa acc < RF，证明手工特征确有独立贡献；若 ≥ RF，需重新定位 narrative。\", \"reproduce\": {\"finished_at\": \"2026-05-15T13:14:31.043Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T13:14:32.924Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:14:34.546594+00:00\"}]}, \"metrics\": {\"accuracy_mean\": 0.5831, \"accuracy_std\": 0.0467, \"per_class_f1\": {\"d0\": 0.947, \"d1\": 0.378, \"d2\": 0.247, \"d3\": 0.656}, \"pairwise_auc\": {\"d0v1\": 0.981, \"d1v2\": 0.733, \"d2v3\": 0.755}, \"vs_rf_baseline\": \"58.3% vs 78.2% (-19.9pp)\", \"elapsed_seconds\": 3727}, \"notes\": \"5-fold CV 完成。DeBERTa-v3-base 4-class acc=58.3% ± 4.7%，远低于 RF 78.2% (-19.9pp)。Feature overlap analysis: Spearman ρ=-0.484 (p=0.036)，DeBERTa 和 RF 关注的特征几乎完全相反。DeBERTa 擅长编码表面特征 (TTR R²=0.85, rep_2gram R²=0.82)，而 RF 依赖的 perplexity 分布统计量 (var_surprisal, p90_ppl) 在 DeBERTa 表征中 R² 为负。Top-5 overlap=0。\"}, \"cross_strategy_loo_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:12:49.407Z\", \"updated_at\": \"2026-05-15T12:29:21.290Z\", \"spec\": {\"description\": \"Cross-strategy LOO: per-model, train on 2 strategies test on 3rd. RF classifier.\", \"server\": \"gpu-6000pro-2\", \"model_name\": \"RandomForest (CPU)\", \"seed\": 42, \"data_path\": \"9-cell features\", \"data_count\": 180000, \"command\": \"python src/cross_strategy_loo.py\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/cross_strategy_loo.json\"}, \"hypothesis\": \"Cross-strategy LOO (plan_007): 深度信号跨策略可迁移——同模型内，用 2 种解码策略训练的 RF 可泛化到第 3 种，4-class acc 均值 59.1% 远超 chance 25%。temp09 holdout 的 d1v2 AUC 反转 (GPT-2 XL: 0.13, OLMo: 0.25) 证明解码策略塑造不同的退化轨迹 (D014)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:13:08.512Z\", \"metrics\": {\"mean_4class_acc\": 0.5908, \"pythia_holdout_nucleus\": {\"acc\": 0.6935, \"d1v2_auc\": 0.6903, \"d2v3_auc\": 0.7626}, \"pythia_holdout_temp09\": {\"acc\": 0.6281, \"d1v2_auc\": 0.576, \"d2v3_auc\": 0.724}, \"pythia_holdout_topk50\": {\"acc\": 0.5151, \"d1v2_auc\": 0.6393, \"d2v3_auc\": 0.5801}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5993, \"d1v2_auc\": 0.7826, \"d2v3_auc\": 0.4985}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5609, \"d1v2_auc\": 0.1288, \"d2v3_auc\": 0.6366}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5364, \"d1v2_auc\": 0.8308, \"d2v3_auc\": 0.7222}, \"olmo_holdout_nucleus\": {\"acc\": 0.6538, \"d1v2_auc\": 0.7931, \"d2v3_auc\": 0.6076}, \"olmo_holdout_temp09\": {\"acc\": 0.5816, \"d1v2_auc\": 0.2529, \"d2v3_auc\": 0.7015}, \"olmo_holdout_topk50\": {\"acc\": 0.5488, \"d1v2_auc\": 0.8549, \"d2v3_auc\": 0.7107}, \"finding_temp09_d1v2_inversion\": \"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\"}, \"notes\": \"Cross-strategy LOO 9/9 > chance, mean 59.1%。temp09 d1v2 AUC 反转（GPT-2 XL: 0.13, OLMo: 0.25）已解释为 Covariate Shift：temperature=0.9 均匀缩放 logit 分布（非截断），模型递归时更快收敛到 attractor 分布，导致 temp09 depth N 的统计特征 ≈ nucleus/topk50 depth N+1。证据：(1) 混淆矩阵显示系统性深度高估（temp09 d1→d2/d3 52%+25%，d2→d3 96%）；(2) 组内 d1v2 AUC 正常（0.94/0.90/0.83）。详见 artifacts/temp09_d1v2_inversion_analysis.md。注：D021 已推翻 z-score 标准化后 AUC 恢复的 claim（LR cross-strategy 降级为 RF-only finding）。\"}, \"depth_extension_olmo_d4d5_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:34:26.348Z\", \"updated_at\": \"2026-05-15T12:11:17.988Z\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/recursive_gen_depth_est/scripts/resume_olmo_step5.sh'\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"213793\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_002.log\", \"submitted_at\": \"2026-05-15T10:34:26.157Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/\", \"data_count\": 30000, \"model_name\": \"OLMo-1B\", \"seed\": 42, \"checkpoint_source\": \"depth_extension_olmo_d4d5_001\", \"wall_clock_seconds\": 5809.0, \"gpu_hours\": 1.61}, \"notes\": \"OLMo depth extension Step 5-7 恢复执行（depth_extension_olmo_d4d5_001 因 CUDA device mismatch 在 Step 5 失败）。数据/checkpoint 复用 001 的产出。修复：--gpu 1→0（CUDA_VISIBLE_DEVICES=1 下逻辑设备为 cuda:0）。脚本：resume_olmo_step5.sh。预计 ~35 分钟。\", \"hypothesis\": \"OLMo-1B EDD 与 Pythia-1.4B 一致（EDD=4），验证 EDD 跨模型稳定性\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.968, \"d2v3_auc\": 0.843, \"d3v4_auc\": 0.765, \"d4v5_auc\": 0.684}, \"six_class_rf_accuracy\": 0.667, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL → EDD=4\"}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/\", \"completed_at\": \"2026-05-15T12:11:15.124Z\"}, \"depth_extension_gpt2xl_d4d5_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:32:10.348Z\", \"updated_at\": \"2026-05-15T12:11:15.829Z\", \"hypothesis\": \"GPT-2 XL depth extension: 从 d3 checkpoint 继续递归生成 d4/d5 各 5000 samples，binary pairwise RF 验证 EDD。GPT-2 XL 是 3×3 矩阵中信号最强的模型 (85.4%)，若 EDD≥4 则与 Pythia 结果 (EDD=4) 形成跨模型 EDD 一致性证据。\", \"parent\": \"cross_model_gpt2xl_001\", \"notes\": \"**代码准备完成 (2026-05-15)**\\n\\n## 文件路径\\n- **GPT-2 XL d3 checkpoint**: `checkpoints/gpt2xl/lora_depth_2/` (用于生成 d3；尚无 lora_depth_3，需先 finetune d3 数据)\\n- **d0-d3 数据**: `data/gpt2xl/depth_{0,1,2,3}.jsonl` (各 5000 samples)\\n- **d0-d3 特征**: `data/gpt2xl/features.jsonl` (20000 samples, evaluator=GPT-2 XL)\\n- **Pipeline 脚本**: `scripts/run_depth_extension_gpt2xl.sh`\\n- **模型路径**: `/root/autodl-tmp/models/gpt2-xl`\\n- **LoRA config**: r=16, alpha=32, dropout=0.05, target=c_attn,c_proj\\n\\n## Pipeline 步骤\\n1. finetune d3 → lora_depth_3 (如已存在则跳过)\\n2. generate d4 (5000 samples, nucleus p=0.95, seed=42)\\n3. finetune d4 → lora_depth_4\\n4. generate d5 (5000 samples)\\n5. extract_features d0-d5 (evaluator=GPT-2 XL, 6-class)\\n6. train_classifier (6-class RF/LR)\\n7. binary_pairwise_eval (d1v2, d2v3, d3v4, d4v5)\\n\\n## 预估运行时间\\n- finetune × 2: ~6 min\\n- generate × 2: ~116 min (58 min/轮)\\n- feature extraction: ~20 min\\n- eval: ~2 min\\n- **总计: ~2.5 小时**\\n\\n## Dry-run 验证结果\\n- 4 个脚本 --help 全部正常\\n- binary_pairwise_eval.py 已修改支持 --features_path/--output_dir\\n- 在 d0-d3 特征上测试通过: d1v2 AUC=0.9574, d2v3 AUC=0.887 (binary RF)\\n- bash -n 语法检查通过\\n\\n## 基线参考 (GPT-2 XL binary pairwise d0-d3)\\n- d1v2: 0.9574 [0.9499, 0.9648]\\n- d2v3: 0.8870 [0.8724, 0.9007]\\n- 高于 Pythia d1v2=0.925, d2v3=0.823，确认 GPT-2 XL 信号最强\\n\\n## 风险\\n- GPT-2 XL 1.5B 比 Pythia 1.4B 稍大，生成速度接近但内存略高，单卡 RTX 6000 Pro (48GB) 足够\\n- d4/d5 生成占用 GPU 0 约 2 小时，需确认不与其他实验冲突\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T06:45:51.627Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_gpt2xl.sh 2>&1 | tee logs/depth_extension_gpt2xl_d4d5.log\\\"\", \"finished_at\": \"2026-05-15T11:42:57.006Z\", \"training_hours\": 4.95}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_gpt2xl.sh 2>&1 | tee logs/depth_extension_gpt2xl_d4d5.log\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"194929\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_gpt2xl_d4d5_001.log\", \"submitted_at\": \"2026-05-15T09:12:53.290Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 10702.5, \"gpu_hours\": 2.97}, \"pid\": \"194929\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_gpt2xl_d4d5_001.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:42:59.168595+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.966, \"d2v3_auc\": 0.919, \"d3v4_auc\": 0.75, \"d4v5_auc\": 0.681}, \"six_class_rf_accuracy\": 0.679, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL → EDD=4\"}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_depth_extension/\", \"completed_at\": \"2026-05-15T12:11:15.829Z\"}, \"depth_extension_olmo_d4d5_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:23:04.007Z\", \"updated_at\": \"2026-05-15T10:30:31.681Z\", \"hypothesis\": \"OLMo-1B depth extension: 从 d3 checkpoint 继续递归生成 d4/d5 各 5000 samples，binary pairwise RF 验证 EDD。OLMo 是 3×3 矩阵中间模型 (78.8%)，若 EDD≥4 则与 Pythia (EDD=4) 形成跨模型 EDD 一致性证据，3 模型 EDD 完整对比。\", \"parent\": \"cross_model_olmo_002\", \"notes\": \"**失败诊断 (2026-05-15)**\\nRoot cause: extract_features.py 硬编码 device=cuda:1，但 submit_training_job 注入 CUDA_VISIBLE_DEVICES=1 后逻辑上只有 cuda:0 可见。torch.AcceleratorError: CUDA error: invalid device ordinal.\\nPipeline 进度: Step 1-4 全部完成（d4/d5 各 5000 samples 已生成），Step 5 feature extraction 崩溃。\\nError type: infrastructure (device ordinal mismatch)\\nFix: 修改 run_depth_extension_olmo.sh 中 extract_features / train_classifier / binary_pairwise 步骤的 device 参数为 cuda:0（或动态检测），从 Step 5 开始恢复执行。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T09:28:17.681Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo.sh\\\"\", \"finished_at\": \"2026-05-15T10:28:46.734Z\", \"training_hours\": 1.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo.sh\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"204956\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_001.log\", \"submitted_at\": \"2026-05-15T09:28:20.497Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3628.3, \"gpu_hours\": 1.01}, \"pid\": \"204956\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_001.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T10:28:48.828Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:28:50.545946+00:00\"}]}}}, \"count\": 10, \"total\": 50, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1912}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found the results. The feature ablation files are at `/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/`. Let me read all the result files now. Also need to check the ablation log and forward selection progress.
+
+Key files found:
+- `/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/topk_ablation.json`
+
+
+- `/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/category_ablation.json`
+- `/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/top_k_ablation.json`
+- `/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/per_category_ablation.json`
+- `/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/forward_selection.json`
+
+Now I need to read through these ablation results and check the log files to see what's been completed.
+
+The ablation log just shows sklearn warnings without useful progress information, so let me look at the v2 log instead. The registry shows `feat_ablation_v1` is still running and `feature_ablation_9cell` failed during preparation, so I'll load all the result files to see what data I have.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "d4b45825-5250-497d-98ff-01716011fd2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vPJjSoxRKaJKP5qLRsKrm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14629,
+      "cache_read_input_tokens": 26785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+找到结果目录 `/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/`。读取所有结果文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "88e283f5-f7da-4f74-8ba7-b9d9844264c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vPJjSoxRKaJKP5qLRsKrm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14629,
+      "cache_read_input_tokens": 26785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012rYLGRWHa7r33UmqAoC5gj`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/topk_ablation.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "b8f984ea-cf2c-4c07-a31e-99940f95a185",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vPJjSoxRKaJKP5qLRsKrm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14629,
+      "cache_read_input_tokens": 26785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WZPgSrgg5YgLK3zfuqNJTz`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/category_ablation.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "b95184ea-1148-46a4-a424-bf6b7382c5d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vPJjSoxRKaJKP5qLRsKrm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14629,
+      "cache_read_input_tokens": 26785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T18:57:42.695Z_
+
+<details><summary>↩ Tool result · `toolu_012rYLGRWHa7r33UmqAoC5gj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus095\\\": {\\n    \\\"1\\\": {\\n      \\\"acc_mean\\\": 0.6214,\\n      \\\"acc_std\\\": 0.00544,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\"\\n      ]\\n    },\\n    \\\"2\\\": {\\n      \\\"acc_mean\\\": 0.68965,\\n      \\\"acc_std\\\": 0.005892,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\"\\n      ]\\n    },\\n    \\\"3\\\": {\\n      \\\"acc_mean\\\": 0.7325,\\n      \\\"acc_std\\\": 0.001245,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\"\\n      ]\\n    },\\n    \\\"5\\\": {\\n      \\\"acc_mean\\\": 0.77035,\\n      \\\"acc_std\\\": 0.007346,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"var_ppl\\\"\\n      ]\\n    },\\n    \\\"10\\\": {\\n      \\\"acc_mean\\\": 0.78095,\\n      \\\"acc_std\\\": 0.005033,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"kurtosis_ppl\\\"\\n      ]\\n    },\\n    \\\"15\\\": {\\n      \\\"acc_mean\\\": 0.7836,\\n      \\\"acc_std\\\": 0.004409,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"p10_ppl\\\"\\n      ]\\n    },\\n    \\\"19\\\": {\\n      \\\"acc_mean\\\": 0.78775,\\n      \\\"acc_std\\\": 0.004672,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"type_token_ratio\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ]\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"1\\\": {\\n      \\\"acc_mean\\\": 0.6396,\\n      \\\"acc_std\\\": 0.00306,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\"\\n      ]\\n    },\\n    \\\"2\\\": {\\n      \\\"acc_mean\\\": 0.70025,\\n      \\\"acc_std\\\": 0.008159,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\"\\n      ]\\n    },\\n    \\\"3\\\": {\\n      \\\"acc_mean\\\": 0.72785,\\n      \\\"acc_std\\\": 0.002746,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\"\\n      ]\\n    },\\n    \\\"5\\\": {\\n      \\\"acc_mean\\\": 0.74935,\\n      \\\"acc_std\\\": 0.002922,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\"\\n      ]\\n    },\\n    \\\"10\\\": {\\n      \\\"acc_mean\\\": 0.76505,\\n      \\\"acc_std\\\": 0.006737,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"var_ppl\\\"\\n      ]\\n    },\\n    \\\"15\\\": {\\n      \\\"acc_mean\\\": 0.76635,\\n      \\\"acc_std\\\": 0.007274,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"var_ppl\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"skewness_ppl\\\"\\n      ]\\n    },\\n    \\\"19\\\": {\\n      \\\"acc_mean\\\": 0.7673,\\n      \\\"acc_std\\\": 0.006425,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"var_ppl\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"type_token_ratio\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"kurtosis_ppl\\\"\\n      ]\\n    }\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"1\\\": {\\n      \\\"acc_mean\\\": 0.56255,\\n      \\\"acc_std\\\": 0.003447,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\"\\n  \\n\\n... [截断: 输出过长，省略 9382 字符] ...\\n\\nppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"rep_2gram\\\"\\n      ]\\n    }\\n  },\\n  \\\"olmo_temp09\\\": {\\n    \\\"1\\\": {\\n      \\\"acc_mean\\\": 0.6571,\\n      \\\"acc_std\\\": 0.009122,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\"\\n      ]\\n    },\\n    \\\"2\\\": {\\n      \\\"acc_mean\\\": 0.76915,\\n      \\\"acc_std\\\": 0.007843,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\"\\n      ]\\n    },\\n    \\\"3\\\": {\\n      \\\"acc_mean\\\": 0.78605,\\n      \\\"acc_std\\\": 0.007341,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\"\\n      ]\\n    },\\n    \\\"5\\\": {\\n      \\\"acc_mean\\\": 0.8113,\\n      \\\"acc_std\\\": 0.006726,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\"\\n      ]\\n    },\\n    \\\"10\\\": {\\n      \\\"acc_mean\\\": 0.8217,\\n      \\\"acc_std\\\": 0.005202,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"type_token_ratio\\\",\\n        \\\"rep_4gram\\\"\\n      ]\\n    },\\n    \\\"15\\\": {\\n      \\\"acc_mean\\\": 0.8213,\\n      \\\"acc_std\\\": 0.006884,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"type_token_ratio\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"trigram_entropy\\\"\\n      ]\\n    },\\n    \\\"19\\\": {\\n      \\\"acc_mean\\\": 0.8208,\\n      \\\"acc_std\\\": 0.004915,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"type_token_ratio\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"hapax_ratio\\\"\\n      ]\\n    }\\n  },\\n  \\\"olmo_topk50\\\": {\\n    \\\"1\\\": {\\n      \\\"acc_mean\\\": 0.55965,\\n      \\\"acc_std\\\": 0.008186,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\"\\n      ]\\n    },\\n    \\\"2\\\": {\\n      \\\"acc_mean\\\": 0.67845,\\n      \\\"acc_std\\\": 0.00738,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\"\\n      ]\\n    },\\n    \\\"3\\\": {\\n      \\\"acc_mean\\\": 0.6982,\\n      \\\"acc_std\\\": 0.003562,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\"\\n      ]\\n    },\\n    \\\"5\\\": {\\n      \\\"acc_mean\\\": 0.7334,\\n      \\\"acc_std\\\": 0.008243,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\"\\n      ]\\n    },\\n    \\\"10\\\": {\\n      \\\"acc_mean\\\": 0.7434,\\n      \\\"acc_std\\\": 0.00926,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\"\\n      ]\\n    },\\n    \\\"15\\\": {\\n      \\\"acc_mean\\\": 0.746,\\n      \\\"acc_std\\\": 0.008594,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ]\\n    },\\n    \\\"19\\\": {\\n      \\\"acc_mean\\\": 0.74705,\\n      \\\"acc_std\\\": 0.009355,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"type_token_ratio\\\"\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "74642e97-14cc-4bed-a050-662696d64d92",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_nucleus095\\\\\\\": {\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.6214,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.00544,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.68965,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.005892,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"3\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7325,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.001245,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"5\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.77035,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.007346,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"10\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.78095,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.005033,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"15\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7836,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004409,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"19\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.78775,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004672,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\",\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia_temp09\\\\\\\": {\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.6396,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.00306,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.70025,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.008159,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"3\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.72785,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.002746,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"5\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.74935,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.002922,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"10\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.76505,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006737,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"15\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.76635,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.007274,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"19\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7673,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006425,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\",\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\"\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia_topk50\\\\\\\": {\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.56255,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.003447,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\"\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 9382 字符] ...\\\\n\\\\nppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"rep_2gram\\\\\\\"\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"olmo_temp09\\\\\\\": {\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.6571,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.009122,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.76915,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.007843,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"3\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.78605,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.007341,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"5\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.8113,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006726,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"10\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.8217,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.005202,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"15\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.8213,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006884,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"19\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.8208,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004915,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\"\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"olmo_topk50\\\\\\\": {\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.55965,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.008186,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.67845,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.00738,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"3\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.6982,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.003562,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"5\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7334,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.008243,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"10\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7434,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.00926,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"15\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.746,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.008594,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"19\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.74705,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.009355,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\",\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"type_token_ratio\\\\\\\"\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus095\\\": {\\n    \\\"1\\\": {\\n      \\\"acc_mean\\\": 0.6214,\\n      \\\"acc_std\\\": 0.00544,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\"\\n      ]\\n    },\\n    \\\"2\\\": {\\n      \\\"acc_mean\\\": 0.68965,\\n      \\\"acc_std\\\": 0.005892,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\"\\n      ]\\n    },\\n    \\\"3\\\": {\\n      \\\"acc_mean\\\": 0.7325,\\n      \\\"acc_std\\\": 0.001245,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\"\\n      ]\\n    },\\n    \\\"5\\\": {\\n      \\\"acc_mean\\\": 0.77035,\\n      \\\"acc_std\\\": 0.007346,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"var_ppl\\\"\\n      ]\\n    },\\n    \\\"10\\\": {\\n      \\\"acc_mean\\\": 0.78095,\\n      \\\"acc_std\\\": 0.005033,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"kurtosis_ppl\\\"\\n      ]\\n    },\\n    \\\"15\\\": {\\n      \\\"acc_mean\\\": 0.7836,\\n      \\\"acc_std\\\": 0.004409,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"p10_ppl\\\"\\n      ]\\n    },\\n    \\\"19\\\": {\\n      \\\"acc_mean\\\": 0.78775,\\n      \\\"acc_std\\\": 0.004672,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"type_token_ratio\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ]\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"1\\\": {\\n      \\\"acc_mean\\\": 0.6396,\\n      \\\"acc_std\\\": 0.00306,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\"\\n      ]\\n    },\\n    \\\"2\\\": {\\n      \\\"acc_mean\\\": 0.70025,\\n      \\\"acc_std\\\": 0.008159,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\"\\n      ]\\n    },\\n    \\\"3\\\": {\\n      \\\"acc_mean\\\": 0.72785,\\n      \\\"acc_std\\\": 0.002746,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\"\\n      ]\\n    },\\n    \\\"5\\\": {\\n      \\\"acc_mean\\\": 0.74935,\\n      \\\"acc_std\\\": 0.002922,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\"\\n      ]\\n    },\\n    \\\"10\\\": {\\n      \\\"acc_mean\\\": 0.76505,\\n      \\\"acc_std\\\": 0.006737,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"var_ppl\\\"\\n      ]\\n    },\\n    \\\"15\\\": {\\n      \\\"acc_mean\\\": 0.76635,\\n      \\\"acc_std\\\": 0.007274,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"var_ppl\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"skewness_ppl\\\"\\n      ]\\n    },\\n    \\\"19\\\": {\\n      \\\"acc_mean\\\": 0.7673,\\n      \\\"acc_std\\\": 0.006425,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"var_ppl\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"type_token_ratio\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"kurtosis_ppl\\\"\\n      ]\\n    }\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"1\\\": {\\n      \\\"acc_mean\\\": 0.56255,\\n      \\\"acc_std\\\": 0.003447,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\"\\n  \\n\\n... [截断: 输出过长，省略 9382 字符] ...\\n\\nppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"rep_2gram\\\"\\n      ]\\n    }\\n  },\\n  \\\"olmo_temp09\\\": {\\n    \\\"1\\\": {\\n      \\\"acc_mean\\\": 0.6571,\\n      \\\"acc_std\\\": 0.009122,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\"\\n      ]\\n    },\\n    \\\"2\\\": {\\n      \\\"acc_mean\\\": 0.76915,\\n      \\\"acc_std\\\": 0.007843,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\"\\n      ]\\n    },\\n    \\\"3\\\": {\\n      \\\"acc_mean\\\": 0.78605,\\n      \\\"acc_std\\\": 0.007341,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\"\\n      ]\\n    },\\n    \\\"5\\\": {\\n      \\\"acc_mean\\\": 0.8113,\\n      \\\"acc_std\\\": 0.006726,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\"\\n      ]\\n    },\\n    \\\"10\\\": {\\n      \\\"acc_mean\\\": 0.8217,\\n      \\\"acc_std\\\": 0.005202,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"type_token_ratio\\\",\\n        \\\"rep_4gram\\\"\\n      ]\\n    },\\n    \\\"15\\\": {\\n      \\\"acc_mean\\\": 0.8213,\\n      \\\"acc_std\\\": 0.006884,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"type_token_ratio\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"trigram_entropy\\\"\\n      ]\\n    },\\n    \\\"19\\\": {\\n      \\\"acc_mean\\\": 0.8208,\\n      \\\"acc_std\\\": 0.004915,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"type_token_ratio\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"hapax_ratio\\\"\\n      ]\\n    }\\n  },\\n  \\\"olmo_topk50\\\": {\\n    \\\"1\\\": {\\n      \\\"acc_mean\\\": 0.55965,\\n      \\\"acc_std\\\": 0.008186,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\"\\n      ]\\n    },\\n    \\\"2\\\": {\\n      \\\"acc_mean\\\": 0.67845,\\n      \\\"acc_std\\\": 0.00738,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\"\\n      ]\\n    },\\n    \\\"3\\\": {\\n      \\\"acc_mean\\\": 0.6982,\\n      \\\"acc_std\\\": 0.003562,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\"\\n      ]\\n    },\\n    \\\"5\\\": {\\n      \\\"acc_mean\\\": 0.7334,\\n      \\\"acc_std\\\": 0.008243,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\"\\n      ]\\n    },\\n    \\\"10\\\": {\\n      \\\"acc_mean\\\": 0.7434,\\n      \\\"acc_std\\\": 0.00926,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\"\\n      ]\\n    },\\n    \\\"15\\\": {\\n      \\\"acc_mean\\\": 0.746,\\n      \\\"acc_std\\\": 0.008594,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ]\\n    },\\n    \\\"19\\\": {\\n      \\\"acc_mean\\\": 0.74705,\\n      \\\"acc_std\\\": 0.009355,\\n      \\\"features\\\": [\\n        \\\"var_surprisal\\\",\\n        \\\"p90_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"mean_ppl\\\",\\n        \\\"mean_surprisal\\\",\\n        \\\"hapax_ratio\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"rep_4gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"entropy_of_surprisal\\\",\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\",\\n        \\\"rep_2gram\\\",\\n        \\\"type_token_ratio\\\"\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UTU3LuroSZQYjx85FbmwbS`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/top_k_ablation.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "29343253-3f09-4c00-9ca8-cebcd690dc24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vPJjSoxRKaJKP5qLRsKrm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14629,
+      "cache_read_input_tokens": 26785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T18:57:43.579Z_
+
+<details><summary>↩ Tool result · `toolu_01WZPgSrgg5YgLK3zfuqNJTz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus095\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.76965,\\n      \\\"acc_std\\\": 0.004395,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.7472,\\n      \\\"acc_std\\\": 0.005769,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.47375,\\n      \\\"acc_std\\\": 0.006321,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.433,\\n      \\\"acc_std\\\": 0.004642,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.45365,\\n      \\\"acc_std\\\": 0.009451,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.7427,\\n      \\\"acc_std\\\": 0.003444,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.7329,\\n      \\\"acc_std\\\": 0.005456,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.48375,\\n      \\\"acc_std\\\": 0.007326,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.44825,\\n      \\\"acc_std\\\": 0.004053,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.4706,\\n      \\\"acc_std\\\": 0.006371,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.66165,\\n      \\\"acc_std\\\": 0.009531,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.6472,\\n      \\\"acc_std\\\": 0.00656,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.41515,\\n      \\\"acc_std\\\": 0.007677,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.3729,\\n      \\\"acc_std\\\": 0.006746,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.3866,\\n      \\\"acc_std\\\": 0.009119,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"gpt2xl_nucleus095\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.8231,\\n      \\\"acc_std\\\": 0.006507,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.7943,\\n      \\\"acc_std\\\": 0.001771,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.44385,\\n      \\\"acc_std\\\": 0.010301,\\n      \\\"feat\\n\\n... [截断: 输出过长，省略 2067 字符] ...\\n\\nprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.39725,\\n      \\\"acc_std\\\": 0.003801,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.3021,\\n      \\\"acc_std\\\": 0.004203,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.36135,\\n      \\\"acc_std\\\": 0.00815,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"olmo_nucleus095\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.777,\\n      \\\"acc_std\\\": 0.004147,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.73125,\\n      \\\"acc_std\\\": 0.006283,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.52055,\\n      \\\"acc_std\\\": 0.004575,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.4354,\\n      \\\"acc_std\\\": 0.005198,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.4948,\\n      \\\"acc_std\\\": 0.007914,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"olmo_temp09\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.8133,\\n      \\\"acc_std\\\": 0.007447,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.7865,\\n      \\\"acc_std\\\": 0.006209,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.5302,\\n      \\\"acc_std\\\": 0.008601,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.46965,\\n      \\\"acc_std\\\": 0.007072,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.5151,\\n      \\\"acc_std\\\": 0.004088,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"olmo_topk50\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.7337,\\n      \\\"acc_std\\\": 0.004371,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.70555,\\n      \\\"acc_std\\\": 0.00375,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.42815,\\n      \\\"acc_std\\\": 0.006617,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.3269,\\n      \\\"acc_std\\\": 0.008128,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.39715,\\n      \\\"acc_std\\\": 0.007816,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "45ae0a91-daf4-485d-811a-f29ef74aeec2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_nucleus095\\\\\\\": {\\\\n    \\\\\\\"perplexity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.76965,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004395,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 9\\\\n    },\\\\n    \\\\\\\"surprisal\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7472,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.005769,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"lexical_diversity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.47375,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006321,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"ngram_entropy\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.433,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004642,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"repetition\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.45365,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.009451,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia_temp09\\\\\\\": {\\\\n    \\\\\\\"perplexity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7427,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.003444,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 9\\\\n    },\\\\n    \\\\\\\"surprisal\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7329,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.005456,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"lexical_diversity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.48375,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.007326,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"ngram_entropy\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.44825,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004053,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"repetition\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.4706,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006371,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia_topk50\\\\\\\": {\\\\n    \\\\\\\"perplexity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.66165,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.009531,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 9\\\\n    },\\\\n    \\\\\\\"surprisal\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.6472,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.00656,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"lexical_diversity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.41515,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.007677,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"ngram_entropy\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.3729,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006746,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"repetition\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.3866,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.009119,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    }\\\\n  },\\\\n  \\\\\\\"gpt2xl_nucleus095\\\\\\\": {\\\\n    \\\\\\\"perplexity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.8231,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006507,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 9\\\\n    },\\\\n    \\\\\\\"surprisal\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7943,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.001771,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"lexical_diversity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.44385,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.010301,\\\\n      \\\\\\\"feat\\\\n\\\\n... [截断: 输出过长，省略 2067 字符] ...\\\\n\\\\nprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"lexical_diversity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.39725,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.003801,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"ngram_entropy\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.3021,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004203,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"repetition\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.36135,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.00815,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    }\\\\n  },\\\\n  \\\\\\\"olmo_nucleus095\\\\\\\": {\\\\n    \\\\\\\"perplexity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.777,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004147,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 9\\\\n    },\\\\n    \\\\\\\"surprisal\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.73125,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006283,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"lexical_diversity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.52055,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004575,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"ngram_entropy\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.4354,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.005198,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"repetition\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.4948,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.007914,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    }\\\\n  },\\\\n  \\\\\\\"olmo_temp09\\\\\\\": {\\\\n    \\\\\\\"perplexity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.8133,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.007447,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 9\\\\n    },\\\\n    \\\\\\\"surprisal\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7865,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006209,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"lexical_diversity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.5302,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.008601,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"ngram_entropy\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.46965,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.007072,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"repetition\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.5151,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004088,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    }\\\\n  },\\\\n  \\\\\\\"olmo_topk50\\\\\\\": {\\\\n    \\\\\\\"perplexity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.7337,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.004371,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"p90_ppl\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 9\\\\n    },\\\\n    \\\\\\\"surprisal\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.70555,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.00375,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"lexical_diversity\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.42815,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.006617,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"hapax_ratio\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"ngram_entropy\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.3269,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.008128,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        \\\\\\\"trigram_entropy\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"repetition\\\\\\\": {\\\\n      \\\\\\\"acc_mean\\\\\\\": 0.39715,\\\\n      \\\\\\\"acc_std\\\\\\\": 0.007816,\\\\n      \\\\\\\"features\\\\\\\": [\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"rep_4gram\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus095\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.76965,\\n      \\\"acc_std\\\": 0.004395,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.7472,\\n      \\\"acc_std\\\": 0.005769,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.47375,\\n      \\\"acc_std\\\": 0.006321,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.433,\\n      \\\"acc_std\\\": 0.004642,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.45365,\\n      \\\"acc_std\\\": 0.009451,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.7427,\\n      \\\"acc_std\\\": 0.003444,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.7329,\\n      \\\"acc_std\\\": 0.005456,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.48375,\\n      \\\"acc_std\\\": 0.007326,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.44825,\\n      \\\"acc_std\\\": 0.004053,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.4706,\\n      \\\"acc_std\\\": 0.006371,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.66165,\\n      \\\"acc_std\\\": 0.009531,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.6472,\\n      \\\"acc_std\\\": 0.00656,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.41515,\\n      \\\"acc_std\\\": 0.007677,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.3729,\\n      \\\"acc_std\\\": 0.006746,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.3866,\\n      \\\"acc_std\\\": 0.009119,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"gpt2xl_nucleus095\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.8231,\\n      \\\"acc_std\\\": 0.006507,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.7943,\\n      \\\"acc_std\\\": 0.001771,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.44385,\\n      \\\"acc_std\\\": 0.010301,\\n      \\\"feat\\n\\n... [截断: 输出过长，省略 2067 字符] ...\\n\\nprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.39725,\\n      \\\"acc_std\\\": 0.003801,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.3021,\\n      \\\"acc_std\\\": 0.004203,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.36135,\\n      \\\"acc_std\\\": 0.00815,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"olmo_nucleus095\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.777,\\n      \\\"acc_std\\\": 0.004147,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.73125,\\n      \\\"acc_std\\\": 0.006283,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.52055,\\n      \\\"acc_std\\\": 0.004575,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.4354,\\n      \\\"acc_std\\\": 0.005198,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.4948,\\n      \\\"acc_std\\\": 0.007914,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"olmo_temp09\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.8133,\\n      \\\"acc_std\\\": 0.007447,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.7865,\\n      \\\"acc_std\\\": 0.006209,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.5302,\\n      \\\"acc_std\\\": 0.008601,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.46965,\\n      \\\"acc_std\\\": 0.007072,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.5151,\\n      \\\"acc_std\\\": 0.004088,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"olmo_topk50\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"acc_mean\\\": 0.7337,\\n      \\\"acc_std\\\": 0.004371,\\n      \\\"features\\\": [\\n        \\\"mean_ppl\\\",\\n        \\\"var_ppl\\\",\\n        \\\"skewness_ppl\\\",\\n        \\\"kurtosis_ppl\\\",\\n        \\\"p10_ppl\\\",\\n        \\\"p25_ppl\\\",\\n        \\\"p50_ppl\\\",\\n        \\\"p75_ppl\\\",\\n        \\\"p90_ppl\\\"\\n      ],\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"acc_mean\\\": 0.70555,\\n      \\\"acc_std\\\": 0.00375,\\n      \\\"features\\\": [\\n        \\\"mean_surprisal\\\",\\n        \\\"var_surprisal\\\",\\n        \\\"entropy_of_surprisal\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"acc_mean\\\": 0.42815,\\n      \\\"acc_std\\\": 0.006617,\\n      \\\"features\\\": [\\n        \\\"type_token_ratio\\\",\\n        \\\"hapax_ratio\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"acc_mean\\\": 0.3269,\\n      \\\"acc_std\\\": 0.008128,\\n      \\\"features\\\": [\\n        \\\"bigram_entropy\\\",\\n        \\\"trigram_entropy\\\"\\n      ],\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"acc_mean\\\": 0.39715,\\n      \\\"acc_std\\\": 0.007816,\\n      \\\"features\\\": [\\n        \\\"rep_2gram\\\",\\n        \\\"rep_3gram\\\",\\n        \\\"rep_4gram\\\"\\n      ],\\n      \\\"n_features\\\": 3\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VbCwGmPWbabztaLhXk4YKr`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/per_category_ablation.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "bf0c3559-bfb4-4d64-837f-0043fea53e71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vPJjSoxRKaJKP5qLRsKrm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14629,
+      "cache_read_input_tokens": 26785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T18:57:44.602Z_
+
+<details><summary>↩ Tool result · `toolu_01UTU3LuroSZQYjx85FbmwbS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"feature_ranking\\\": [\\n      [\\n        \\\"var_surprisal\\\",\\n        0.36168000000000006\\n      ],\\n      [\\n        \\\"p90_ppl\\\",\\n        0.11731000000000005\\n      ],\\n      [\\n        \\\"p50_ppl\\\",\\n        0.033765000000000045\\n      ],\\n      [\\n        \\\"p75_ppl\\\",\\n        0.020365000000000043\\n      ],\\n      [\\n        \\\"skewness_ppl\\\",\\n        0.014655000000000074\\n      ],\\n      [\\n        \\\"var_ppl\\\",\\n        0.010585000000000056\\n      ],\\n      [\\n        \\\"mean_ppl\\\",\\n        0.009480000000000066\\n      ],\\n      [\\n        \\\"kurtosis_ppl\\\",\\n        0.006345000000000056\\n      ],\\n      [\\n        \\\"mean_surprisal\\\",\\n        0.005130000000000046\\n      ],\\n      [\\n        \\\"p10_ppl\\\",\\n        0.0051100000000000815\\n      ],\\n      [\\n        \\\"entropy_of_surprisal\\\",\\n        0.004220000000000057\\n      ],\\n      [\\n        \\\"p25_ppl\\\",\\n        0.004045000000000043\\n      ],\\n      [\\n        \\\"type_token_ratio\\\",\\n        0.0027300000000000323\\n      ],\\n      [\\n        \\\"trigram_entropy\\\",\\n        0.002700000000000058\\n      ],\\n      [\\n        \\\"hapax_ratio\\\",\\n        0.002395000000000058\\n      ],\\n      [\\n        \\\"rep_4gram\\\",\\n        0.00217500000000006\\n      ],\\n      [\\n        \\\"bigram_entropy\\\",\\n        0.0014700000000000602\\n      ],\\n      [\\n        \\\"rep_2gram\\\",\\n        0.0012850000000000806\\n      ],\\n      [\\n        \\\"rep_3gram\\\",\\n        0.0006850000000000356\\n      ]\\n    ],\\n    \\\"top_k\\\": {\\n      \\\"1\\\": {\\n        \\\"accuracy_mean\\\": 0.6215,\\n        \\\"accuracy_std\\\": 0.0056,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\"\\n        ]\\n      },\\n      \\\"2\\\": {\\n        \\\"accuracy_mean\\\": 0.69,\\n        \\\"accuracy_std\\\": 0.0062,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"3\\\": {\\n        \\\"accuracy_mean\\\": 0.7328,\\n        \\\"accuracy_std\\\": 0.001,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"p50_ppl\\\"\\n        ]\\n      },\\n      \\\"5\\\": {\\n        \\\"accuracy_mean\\\": 0.7649,\\n        \\\"accuracy_std\\\": 0.0038,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"skewness_ppl\\\"\\n        ]\\n      },\\n      \\\"10\\\": {\\n        \\\"accuracy_mean\\\": 0.7731,\\n        \\\"accuracy_std\\\": 0.0056,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\"\\n        ]\\n      },\\n      \\\"15\\\": {\\n        \\\"accuracy_mean\\\": 0.7847,\\n        \\\"accuracy_std\\\": 0.0039,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"19\\\": {\\n        \\\"accuracy_mean\\\": 0.7849,\\n        \\\"accuracy_std\\\": 0.0048,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\"\\n        ]\\n      }\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"feature_ranking\\\": [\\n      [\\n        \\\"var_surprisal\\\",\\n        0.40828499999999995\\n      ],\\n      [\\n        \\\"p90_ppl\\\",\\n        0.07982500000000006\\n      ],\\n      [\\n        \\\"p50_ppl\\\",\\n        0.036000000000000046\\n      ],\\n      [\\n        \\\"p75_ppl\\\",\\n        0.028430000000000056\\n      ],\\n      [\\n        \\\"mean_ppl\\\",\\n        0.009905000000000042\\n      ],\\n      [\\n        \\\"entropy_of_surprisal\\\",\\n        0.006720000000000048\\n    \\n\\n... [截断: 输出过长，省略 6179 字符] ...\\n\\n       \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"var_ppl\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"rep_3gram\\\"\\n        ]\\n      }\\n    }\\n  },\\n  \\\"olmo_nucleus\\\": {\\n    \\\"feature_ranking\\\": [\\n      [\\n        \\\"p90_ppl\\\",\\n        0.28465000000000007\\n      ],\\n      [\\n        \\\"var_surprisal\\\",\\n        0.18065000000000003\\n      ],\\n      [\\n        \\\"p75_ppl\\\",\\n        0.13747000000000004\\n      ],\\n      [\\n        \\\"p50_ppl\\\",\\n        0.0142\\n      ],\\n      [\\n        \\\"type_token_ratio\\\",\\n        0.010334999999999993\\n      ],\\n      [\\n        \\\"p25_ppl\\\",\\n        0.010075000000000011\\n      ],\\n      [\\n        \\\"mean_ppl\\\",\\n        0.009760000000000013\\n      ],\\n      [\\n        \\\"hapax_ratio\\\",\\n        0.008750000000000013\\n      ],\\n      [\\n        \\\"mean_surprisal\\\",\\n        0.007620000000000004\\n      ],\\n      [\\n        \\\"p10_ppl\\\",\\n        0.004805000000000004\\n      ],\\n      [\\n        \\\"var_ppl\\\",\\n        0.004510000000000014\\n      ],\\n      [\\n        \\\"rep_4gram\\\",\\n        0.0029650000000000175\\n      ],\\n      [\\n        \\\"entropy_of_surprisal\\\",\\n        0.0029000000000000024\\n      ],\\n      [\\n        \\\"skewness_ppl\\\",\\n        0.001945000000000008\\n      ],\\n      [\\n        \\\"bigram_entropy\\\",\\n        0.0018550000000000177\\n      ],\\n      [\\n        \\\"kurtosis_ppl\\\",\\n        0.0015800000000000258\\n      ],\\n      [\\n        \\\"rep_3gram\\\",\\n        0.0012499999999999844\\n      ],\\n      [\\n        \\\"rep_2gram\\\",\\n        0.0011699999999999823\\n      ],\\n      [\\n        \\\"trigram_entropy\\\",\\n        0.000570000000000026\\n      ]\\n    ],\\n    \\\"top_k\\\": {\\n      \\\"1\\\": {\\n        \\\"accuracy_mean\\\": 0.6354,\\n        \\\"accuracy_std\\\": 0.0047,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"2\\\": {\\n        \\\"accuracy_mean\\\": 0.7152,\\n        \\\"accuracy_std\\\": 0.0054,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\"\\n        ]\\n      },\\n      \\\"3\\\": {\\n        \\\"accuracy_mean\\\": 0.7456,\\n        \\\"accuracy_std\\\": 0.0036,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"p75_ppl\\\"\\n        ]\\n      },\\n      \\\"5\\\": {\\n        \\\"accuracy_mean\\\": 0.7703,\\n        \\\"accuracy_std\\\": 0.006,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\"\\n        ]\\n      },\\n      \\\"10\\\": {\\n        \\\"accuracy_mean\\\": 0.783,\\n        \\\"accuracy_std\\\": 0.0055,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\"\\n        ]\\n      },\\n      \\\"15\\\": {\\n        \\\"accuracy_mean\\\": 0.7867,\\n        \\\"accuracy_std\\\": 0.0067,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"bigram_entropy\\\"\\n        ]\\n      },\\n      \\\"19\\\": {\\n        \\\"accuracy_mean\\\": 0.7903,\\n        \\\"accuracy_std\\\": 0.0027,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "f9c0a564-8548-4f44-aa32-ae2319d77f49",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_nucleus\\\\\\\": {\\\\n    \\\\\\\"feature_ranking\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        0.36168000000000006\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        0.11731000000000005\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        0.033765000000000045\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        0.020365000000000043\\\\n      ],\\\\n      [\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        0.014655000000000074\\\\n      ],\\\\n      [\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        0.010585000000000056\\\\n      ],\\\\n      [\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        0.009480000000000066\\\\n      ],\\\\n      [\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        0.006345000000000056\\\\n      ],\\\\n      [\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        0.005130000000000046\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        0.0051100000000000815\\\\n      ],\\\\n      [\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n        0.004220000000000057\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        0.004045000000000043\\\\n      ],\\\\n      [\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        0.0027300000000000323\\\\n      ],\\\\n      [\\\\n        \\\\\\\"trigram_entropy\\\\\\\",\\\\n        0.002700000000000058\\\\n      ],\\\\n      [\\\\n        \\\\\\\"hapax_ratio\\\\\\\",\\\\n        0.002395000000000058\\\\n      ],\\\\n      [\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        0.00217500000000006\\\\n      ],\\\\n      [\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        0.0014700000000000602\\\\n      ],\\\\n      [\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        0.0012850000000000806\\\\n      ],\\\\n      [\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        0.0006850000000000356\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"top_k\\\\\\\": {\\\\n      \\\\\\\"1\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.6215,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0056,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"2\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.69,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0062,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"3\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7328,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.001,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"5\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7649,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0038,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"10\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7731,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0056,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"15\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7847,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0039,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"19\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7849,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0048,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\"\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia_temp09\\\\\\\": {\\\\n    \\\\\\\"feature_ranking\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        0.40828499999999995\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        0.07982500000000006\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        0.036000000000000046\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        0.028430000000000056\\\\n      ],\\\\n      [\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        0.009905000000000042\\\\n      ],\\\\n      [\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n        0.006720000000000048\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 6179 字符] ...\\\\n\\\\n       \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\"\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"olmo_nucleus\\\\\\\": {\\\\n    \\\\\\\"feature_ranking\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"p90_ppl\\\\\\\",\\\\n        0.28465000000000007\\\\n      ],\\\\n      [\\\\n        \\\\\\\"var_surprisal\\\\\\\",\\\\n        0.18065000000000003\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p75_ppl\\\\\\\",\\\\n        0.13747000000000004\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p50_ppl\\\\\\\",\\\\n        0.0142\\\\n      ],\\\\n      [\\\\n        \\\\\\\"type_token_ratio\\\\\\\",\\\\n        0.010334999999999993\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p25_ppl\\\\\\\",\\\\n        0.010075000000000011\\\\n      ],\\\\n      [\\\\n        \\\\\\\"mean_ppl\\\\\\\",\\\\n        0.009760000000000013\\\\n      ],\\\\n      [\\\\n        \\\\\\\"hapax_ratio\\\\\\\",\\\\n        0.008750000000000013\\\\n      ],\\\\n      [\\\\n        \\\\\\\"mean_surprisal\\\\\\\",\\\\n        0.007620000000000004\\\\n      ],\\\\n      [\\\\n        \\\\\\\"p10_ppl\\\\\\\",\\\\n        0.004805000000000004\\\\n      ],\\\\n      [\\\\n        \\\\\\\"var_ppl\\\\\\\",\\\\n        0.004510000000000014\\\\n      ],\\\\n      [\\\\n        \\\\\\\"rep_4gram\\\\\\\",\\\\n        0.0029650000000000175\\\\n      ],\\\\n      [\\\\n        \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n        0.0029000000000000024\\\\n      ],\\\\n      [\\\\n        \\\\\\\"skewness_ppl\\\\\\\",\\\\n        0.001945000000000008\\\\n      ],\\\\n      [\\\\n        \\\\\\\"bigram_entropy\\\\\\\",\\\\n        0.0018550000000000177\\\\n      ],\\\\n      [\\\\n        \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n        0.0015800000000000258\\\\n      ],\\\\n      [\\\\n        \\\\\\\"rep_3gram\\\\\\\",\\\\n        0.0012499999999999844\\\\n      ],\\\\n      [\\\\n        \\\\\\\"rep_2gram\\\\\\\",\\\\n        0.0011699999999999823\\\\n      ],\\\\n      [\\\\n        \\\\\\\"trigram_entropy\\\\\\\",\\\\n        0.000570000000000026\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"top_k\\\\\\\": {\\\\n      \\\\\\\"1\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.6354,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0047,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"2\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7152,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0054,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"3\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7456,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0036,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"5\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7703,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.006,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"10\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.783,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0055,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"15\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7867,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0067,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"19\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7903,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0027,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\"\\\\n        ]\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"feature_ranking\\\": [\\n      [\\n        \\\"var_surprisal\\\",\\n        0.36168000000000006\\n      ],\\n      [\\n        \\\"p90_ppl\\\",\\n        0.11731000000000005\\n      ],\\n      [\\n        \\\"p50_ppl\\\",\\n        0.033765000000000045\\n      ],\\n      [\\n        \\\"p75_ppl\\\",\\n        0.020365000000000043\\n      ],\\n      [\\n        \\\"skewness_ppl\\\",\\n        0.014655000000000074\\n      ],\\n      [\\n        \\\"var_ppl\\\",\\n        0.010585000000000056\\n      ],\\n      [\\n        \\\"mean_ppl\\\",\\n        0.009480000000000066\\n      ],\\n      [\\n        \\\"kurtosis_ppl\\\",\\n        0.006345000000000056\\n      ],\\n      [\\n        \\\"mean_surprisal\\\",\\n        0.005130000000000046\\n      ],\\n      [\\n        \\\"p10_ppl\\\",\\n        0.0051100000000000815\\n      ],\\n      [\\n        \\\"entropy_of_surprisal\\\",\\n        0.004220000000000057\\n      ],\\n      [\\n        \\\"p25_ppl\\\",\\n        0.004045000000000043\\n      ],\\n      [\\n        \\\"type_token_ratio\\\",\\n        0.0027300000000000323\\n      ],\\n      [\\n        \\\"trigram_entropy\\\",\\n        0.002700000000000058\\n      ],\\n      [\\n        \\\"hapax_ratio\\\",\\n        0.002395000000000058\\n      ],\\n      [\\n        \\\"rep_4gram\\\",\\n        0.00217500000000006\\n      ],\\n      [\\n        \\\"bigram_entropy\\\",\\n        0.0014700000000000602\\n      ],\\n      [\\n        \\\"rep_2gram\\\",\\n        0.0012850000000000806\\n      ],\\n      [\\n        \\\"rep_3gram\\\",\\n        0.0006850000000000356\\n      ]\\n    ],\\n    \\\"top_k\\\": {\\n      \\\"1\\\": {\\n        \\\"accuracy_mean\\\": 0.6215,\\n        \\\"accuracy_std\\\": 0.0056,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\"\\n        ]\\n      },\\n      \\\"2\\\": {\\n        \\\"accuracy_mean\\\": 0.69,\\n        \\\"accuracy_std\\\": 0.0062,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"3\\\": {\\n        \\\"accuracy_mean\\\": 0.7328,\\n        \\\"accuracy_std\\\": 0.001,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"p50_ppl\\\"\\n        ]\\n      },\\n      \\\"5\\\": {\\n        \\\"accuracy_mean\\\": 0.7649,\\n        \\\"accuracy_std\\\": 0.0038,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"skewness_ppl\\\"\\n        ]\\n      },\\n      \\\"10\\\": {\\n        \\\"accuracy_mean\\\": 0.7731,\\n        \\\"accuracy_std\\\": 0.0056,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\"\\n        ]\\n      },\\n      \\\"15\\\": {\\n        \\\"accuracy_mean\\\": 0.7847,\\n        \\\"accuracy_std\\\": 0.0039,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"19\\\": {\\n        \\\"accuracy_mean\\\": 0.7849,\\n        \\\"accuracy_std\\\": 0.0048,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\"\\n        ]\\n      }\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"feature_ranking\\\": [\\n      [\\n        \\\"var_surprisal\\\",\\n        0.40828499999999995\\n      ],\\n      [\\n        \\\"p90_ppl\\\",\\n        0.07982500000000006\\n      ],\\n      [\\n        \\\"p50_ppl\\\",\\n        0.036000000000000046\\n      ],\\n      [\\n        \\\"p75_ppl\\\",\\n        0.028430000000000056\\n      ],\\n      [\\n        \\\"mean_ppl\\\",\\n        0.009905000000000042\\n      ],\\n      [\\n        \\\"entropy_of_surprisal\\\",\\n        0.006720000000000048\\n    \\n\\n... [截断: 输出过长，省略 6179 字符] ...\\n\\n       \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"var_ppl\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"rep_3gram\\\"\\n        ]\\n      }\\n    }\\n  },\\n  \\\"olmo_nucleus\\\": {\\n    \\\"feature_ranking\\\": [\\n      [\\n        \\\"p90_ppl\\\",\\n        0.28465000000000007\\n      ],\\n      [\\n        \\\"var_surprisal\\\",\\n        0.18065000000000003\\n      ],\\n      [\\n        \\\"p75_ppl\\\",\\n        0.13747000000000004\\n      ],\\n      [\\n        \\\"p50_ppl\\\",\\n        0.0142\\n      ],\\n      [\\n        \\\"type_token_ratio\\\",\\n        0.010334999999999993\\n      ],\\n      [\\n        \\\"p25_ppl\\\",\\n        0.010075000000000011\\n      ],\\n      [\\n        \\\"mean_ppl\\\",\\n        0.009760000000000013\\n      ],\\n      [\\n        \\\"hapax_ratio\\\",\\n        0.008750000000000013\\n      ],\\n      [\\n        \\\"mean_surprisal\\\",\\n        0.007620000000000004\\n      ],\\n      [\\n        \\\"p10_ppl\\\",\\n        0.004805000000000004\\n      ],\\n      [\\n        \\\"var_ppl\\\",\\n        0.004510000000000014\\n      ],\\n      [\\n        \\\"rep_4gram\\\",\\n        0.0029650000000000175\\n      ],\\n      [\\n        \\\"entropy_of_surprisal\\\",\\n        0.0029000000000000024\\n      ],\\n      [\\n        \\\"skewness_ppl\\\",\\n        0.001945000000000008\\n      ],\\n      [\\n        \\\"bigram_entropy\\\",\\n        0.0018550000000000177\\n      ],\\n      [\\n        \\\"kurtosis_ppl\\\",\\n        0.0015800000000000258\\n      ],\\n      [\\n        \\\"rep_3gram\\\",\\n        0.0012499999999999844\\n      ],\\n      [\\n        \\\"rep_2gram\\\",\\n        0.0011699999999999823\\n      ],\\n      [\\n        \\\"trigram_entropy\\\",\\n        0.000570000000000026\\n      ]\\n    ],\\n    \\\"top_k\\\": {\\n      \\\"1\\\": {\\n        \\\"accuracy_mean\\\": 0.6354,\\n        \\\"accuracy_std\\\": 0.0047,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"2\\\": {\\n        \\\"accuracy_mean\\\": 0.7152,\\n        \\\"accuracy_std\\\": 0.0054,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\"\\n        ]\\n      },\\n      \\\"3\\\": {\\n        \\\"accuracy_mean\\\": 0.7456,\\n        \\\"accuracy_std\\\": 0.0036,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"p75_ppl\\\"\\n        ]\\n      },\\n      \\\"5\\\": {\\n        \\\"accuracy_mean\\\": 0.7703,\\n        \\\"accuracy_std\\\": 0.006,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\"\\n        ]\\n      },\\n      \\\"10\\\": {\\n        \\\"accuracy_mean\\\": 0.783,\\n        \\\"accuracy_std\\\": 0.0055,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\"\\n        ]\\n      },\\n      \\\"15\\\": {\\n        \\\"accuracy_mean\\\": 0.7867,\\n        \\\"accuracy_std\\\": 0.0067,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"bigram_entropy\\\"\\n        ]\\n      },\\n      \\\"19\\\": {\\n        \\\"accuracy_mean\\\": 0.7903,\\n        \\\"accuracy_std\\\": 0.0027,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019SJMf8J7bzWpVi9iiyyNNK`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/forward_selection.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "3f41880f-b999-49a9-a4e1-5b009c97e5a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vPJjSoxRKaJKP5qLRsKrm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14629,
+      "cache_read_input_tokens": 26785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EXZE3KLwLWspuEEptRXpUe`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -30 /tmp/feature_ablation_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "76668b6b-7f54-460d-b6a6-296fd31d3daa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vPJjSoxRKaJKP5qLRsKrm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14629,
+      "cache_read_input_tokens": 26785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T18:57:45.851Z_
+
+<details><summary>↩ Tool result · `toolu_01VbCwGmPWbabztaLhXk4YKr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"single_category\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.7694,\\n        \\\"accuracy_std\\\": 0.0029,\\n        \\\"n_features\\\": 9,\\n        \\\"features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.7476,\\n        \\\"accuracy_std\\\": 0.0062,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.4711,\\n        \\\"accuracy_std\\\": 0.0074,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.4299,\\n        \\\"accuracy_std\\\": 0.0029,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.4519,\\n        \\\"accuracy_std\\\": 0.0105,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    },\\n    \\\"leave_one_out\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.7606,\\n        \\\"accuracy_std\\\": 0.0059,\\n        \\\"n_features_kept\\\": 10,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.7804,\\n        \\\"accuracy_std\\\": 0.0043,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.7834,\\n        \\\"accuracy_std\\\": 0.0055,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.7834,\\n        \\\"accuracy_std\\\": 0.0053,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.7839,\\n        \\\"accuracy_std\\\": 0.0053,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"single_category\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.7432,\\n        \\\"accuracy_std\\\": 0.0019,\\n        \\\"n_features\\\": 9,\\n        \\\"features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.7326,\\n        \\\"accuracy_std\\\": 0.0052,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.4816,\\n        \\\"accuracy_std\\\": 0.0086,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.4471,\\n        \\\"accuracy_std\\\": 0.0041,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.4711,\\n        \\\"accuracy_std\\\": 0.0033,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    },\\n    \\\"leave_one_out\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.7525,\\n        \\\"accuracy_std\\\": 0\\n\\n... [截断: 输出过长，省略 2449 字符] ...\\n\\nrep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    },\\n    \\\"leave_one_out\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.6707,\\n        \\\"accuracy_std\\\": 0.0071,\\n        \\\"n_features_kept\\\": 10,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.6769,\\n        \\\"accuracy_std\\\": 0.0036,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.6854,\\n        \\\"accuracy_std\\\": 0.0056,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.682,\\n        \\\"accuracy_std\\\": 0.0054,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.6834,\\n        \\\"accuracy_std\\\": 0.0095,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    }\\n  },\\n  \\\"olmo_nucleus\\\": {\\n    \\\"single_category\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.774,\\n        \\\"accuracy_std\\\": 0.0023,\\n        \\\"n_features\\\": 9,\\n        \\\"features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.7281,\\n        \\\"accuracy_std\\\": 0.0063,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.5196,\\n        \\\"accuracy_std\\\": 0.0052,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.4361,\\n        \\\"accuracy_std\\\": 0.0054,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.4936,\\n        \\\"accuracy_std\\\": 0.0085,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    },\\n    \\\"leave_one_out\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.7447,\\n        \\\"accuracy_std\\\": 0.0034,\\n        \\\"n_features_kept\\\": 10,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.786,\\n        \\\"accuracy_std\\\": 0.0057,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.7871,\\n        \\\"accuracy_std\\\": 0.0034,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.7878,\\n        \\\"accuracy_std\\\": 0.0046,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.7864,\\n        \\\"accuracy_std\\\": 0.0066,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "3787386b-12cf-444f-b82f-ba22a771c155",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_nucleus\\\\\\\": {\\\\n    \\\\\\\"single_category\\\\\\\": {\\\\n      \\\\\\\"perplexity\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7694,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0029,\\\\n        \\\\\\\"n_features\\\\\\\": 9,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"surprisal\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7476,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0062,\\\\n        \\\\\\\"n_features\\\\\\\": 3,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"lexical\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.4711,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0074,\\\\n        \\\\\\\"n_features\\\\\\\": 2,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"ngram_entropy\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.4299,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0029,\\\\n        \\\\\\\"n_features\\\\\\\": 2,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"repetition\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.4519,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0105,\\\\n        \\\\\\\"n_features\\\\\\\": 3,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\"\\\\n        ]\\\\n      }\\\\n    },\\\\n    \\\\\\\"leave_one_out\\\\\\\": {\\\\n      \\\\\\\"perplexity\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7606,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0059,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 10,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"surprisal\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7804,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0043,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 16,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"lexical\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7834,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0055,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 17,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"ngram_entropy\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7834,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0053,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 17,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"repetition\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7839,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0053,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 16,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\"\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia_temp09\\\\\\\": {\\\\n    \\\\\\\"single_category\\\\\\\": {\\\\n      \\\\\\\"perplexity\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7432,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0019,\\\\n        \\\\\\\"n_features\\\\\\\": 9,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"surprisal\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7326,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0052,\\\\n        \\\\\\\"n_features\\\\\\\": 3,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"lexical\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.4816,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0086,\\\\n        \\\\\\\"n_features\\\\\\\": 2,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"ngram_entropy\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.4471,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0041,\\\\n        \\\\\\\"n_features\\\\\\\": 2,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"repetition\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.4711,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0033,\\\\n        \\\\\\\"n_features\\\\\\\": 3,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\"\\\\n        ]\\\\n      }\\\\n    },\\\\n    \\\\\\\"leave_one_out\\\\\\\": {\\\\n      \\\\\\\"perplexity\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7525,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0\\\\n\\\\n... [截断: 输出过长，省略 2449 字符] ...\\\\n\\\\nrep_3gram\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\"\\\\n        ]\\\\n      }\\\\n    },\\\\n    \\\\\\\"leave_one_out\\\\\\\": {\\\\n      \\\\\\\"perplexity\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.6707,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0071,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 10,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"surprisal\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.6769,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0036,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 16,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"lexical\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.6854,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0056,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 17,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"ngram_entropy\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.682,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0054,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 17,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"repetition\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.6834,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0095,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 16,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\"\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"olmo_nucleus\\\\\\\": {\\\\n    \\\\\\\"single_category\\\\\\\": {\\\\n      \\\\\\\"perplexity\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.774,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0023,\\\\n        \\\\\\\"n_features\\\\\\\": 9,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"surprisal\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7281,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0063,\\\\n        \\\\\\\"n_features\\\\\\\": 3,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"lexical\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.5196,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0052,\\\\n        \\\\\\\"n_features\\\\\\\": 2,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"ngram_entropy\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.4361,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0054,\\\\n        \\\\\\\"n_features\\\\\\\": 2,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"repetition\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.4936,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0085,\\\\n        \\\\\\\"n_features\\\\\\\": 3,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\"\\\\n        ]\\\\n      }\\\\n    },\\\\n    \\\\\\\"leave_one_out\\\\\\\": {\\\\n      \\\\\\\"perplexity\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7447,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0034,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 10,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"surprisal\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.786,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0057,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 16,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"lexical\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7871,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0034,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 17,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"ngram_entropy\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7878,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0046,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 17,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"repetition\\\\\\\": {\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7864,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0066,\\\\n        \\\\\\\"n_features_kept\\\\\\\": 16,\\\\n        \\\\\\\"dropped_features\\\\\\\": [\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\"\\\\n        ]\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"single_category\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.7694,\\n        \\\"accuracy_std\\\": 0.0029,\\n        \\\"n_features\\\": 9,\\n        \\\"features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.7476,\\n        \\\"accuracy_std\\\": 0.0062,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.4711,\\n        \\\"accuracy_std\\\": 0.0074,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.4299,\\n        \\\"accuracy_std\\\": 0.0029,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.4519,\\n        \\\"accuracy_std\\\": 0.0105,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    },\\n    \\\"leave_one_out\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.7606,\\n        \\\"accuracy_std\\\": 0.0059,\\n        \\\"n_features_kept\\\": 10,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.7804,\\n        \\\"accuracy_std\\\": 0.0043,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.7834,\\n        \\\"accuracy_std\\\": 0.0055,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.7834,\\n        \\\"accuracy_std\\\": 0.0053,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.7839,\\n        \\\"accuracy_std\\\": 0.0053,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"single_category\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.7432,\\n        \\\"accuracy_std\\\": 0.0019,\\n        \\\"n_features\\\": 9,\\n        \\\"features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.7326,\\n        \\\"accuracy_std\\\": 0.0052,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.4816,\\n        \\\"accuracy_std\\\": 0.0086,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.4471,\\n        \\\"accuracy_std\\\": 0.0041,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.4711,\\n        \\\"accuracy_std\\\": 0.0033,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    },\\n    \\\"leave_one_out\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.7525,\\n        \\\"accuracy_std\\\": 0\\n\\n... [截断: 输出过长，省略 2449 字符] ...\\n\\nrep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    },\\n    \\\"leave_one_out\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.6707,\\n        \\\"accuracy_std\\\": 0.0071,\\n        \\\"n_features_kept\\\": 10,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.6769,\\n        \\\"accuracy_std\\\": 0.0036,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.6854,\\n        \\\"accuracy_std\\\": 0.0056,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.682,\\n        \\\"accuracy_std\\\": 0.0054,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.6834,\\n        \\\"accuracy_std\\\": 0.0095,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    }\\n  },\\n  \\\"olmo_nucleus\\\": {\\n    \\\"single_category\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.774,\\n        \\\"accuracy_std\\\": 0.0023,\\n        \\\"n_features\\\": 9,\\n        \\\"features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.7281,\\n        \\\"accuracy_std\\\": 0.0063,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.5196,\\n        \\\"accuracy_std\\\": 0.0052,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.4361,\\n        \\\"accuracy_std\\\": 0.0054,\\n        \\\"n_features\\\": 2,\\n        \\\"features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.4936,\\n        \\\"accuracy_std\\\": 0.0085,\\n        \\\"n_features\\\": 3,\\n        \\\"features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    },\\n    \\\"leave_one_out\\\": {\\n      \\\"perplexity\\\": {\\n        \\\"accuracy_mean\\\": 0.7447,\\n        \\\"accuracy_std\\\": 0.0034,\\n        \\\"n_features_kept\\\": 10,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_ppl\\\",\\n          \\\"var_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      \\\"surprisal\\\": {\\n        \\\"accuracy_mean\\\": 0.786,\\n        \\\"accuracy_std\\\": 0.0057,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"mean_surprisal\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      \\\"lexical\\\": {\\n        \\\"accuracy_mean\\\": 0.7871,\\n        \\\"accuracy_std\\\": 0.0034,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"type_token_ratio\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      \\\"ngram_entropy\\\": {\\n        \\\"accuracy_mean\\\": 0.7878,\\n        \\\"accuracy_std\\\": 0.0046,\\n        \\\"n_features_kept\\\": 17,\\n        \\\"dropped_features\\\": [\\n          \\\"bigram_entropy\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      \\\"repetition\\\": {\\n        \\\"accuracy_mean\\\": 0.7864,\\n        \\\"accuracy_std\\\": 0.0066,\\n        \\\"n_features_kept\\\": 16,\\n        \\\"dropped_features\\\": [\\n          \\\"rep_2gram\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0174erZNQxbZants9UjGigX5`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "897539f4-2f8c-44bf-960f-2a4bdeaf010a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vPJjSoxRKaJKP5qLRsKrm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14629,
+      "cache_read_input_tokens": 26785,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14629
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T18:57:47.008Z_
+
+<details><summary>↩ Tool result · `toolu_019SJMf8J7bzWpVi9iiyyNNK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"path\\\": [\\n      {\\n        \\\"step\\\": 1,\\n        \\\"added_feature\\\": \\\"var_surprisal\\\",\\n        \\\"accuracy_mean\\\": 0.6215,\\n        \\\"accuracy_std\\\": 0.0056,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 2,\\n        \\\"added_feature\\\": \\\"mean_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7176,\\n        \\\"accuracy_std\\\": 0.006,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 3,\\n        \\\"added_feature\\\": \\\"p75_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.757,\\n        \\\"accuracy_std\\\": 0.0039,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 4,\\n        \\\"added_feature\\\": \\\"rep_2gram\\\",\\n        \\\"accuracy_mean\\\": 0.7665,\\n        \\\"accuracy_std\\\": 0.0047,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 5,\\n        \\\"added_feature\\\": \\\"skewness_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7733,\\n        \\\"accuracy_std\\\": 0.003,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 6,\\n        \\\"added_feature\\\": \\\"type_token_ratio\\\",\\n        \\\"accuracy_mean\\\": 0.7772,\\n        \\\"accuracy_std\\\": 0.0041,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 7,\\n        \\\"added_feature\\\": \\\"trigram_entropy\\\",\\n        \\\"accuracy_mean\\\": 0.781,\\n        \\\"accuracy_std\\\": 0.0053,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 8,\\n        \\\"added_feature\\\": \\\"rep_4gram\\\",\\n        \\\"accuracy_mean\\\": 0.7823,\\n        \\\"accuracy_std\\\": 0.006,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 9,\\n        \\\"added_feature\\\": \\\"p90_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7839,\\n        \\\"accuracy_std\\\": 0.0055,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 10,\\n        \\\"added_feature\\\": \\\"mean_surprisal\\\",\\n        \\\"accuracy_mean\\\": 0.7861,\\n        \\\"accuracy_std\\\": 0.0064,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"mean_surprisal\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 11,\\n        \\\"added_feature\\\": \\\"hapax_ratio\\\",\\n        \\\"accuracy_mean\\\": 0.7858,\\n        \\\"accuracy_std\\\": 0.0031,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 12,\\n        \\\"added_feature\\\": \\\"p50_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7873,\\n        \\\"accuracy_std\\\": 0.0044,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"p50\\n\\n... [截断: 输出过长，省略 24053 字符] ...\\n\\n \\\"step\\\": 13,\\n        \\\"added_feature\\\": \\\"skewness_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7901,\\n        \\\"accuracy_std\\\": 0.0047,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 14,\\n        \\\"added_feature\\\": \\\"hapax_ratio\\\",\\n        \\\"accuracy_mean\\\": 0.7891,\\n        \\\"accuracy_std\\\": 0.0048,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 15,\\n        \\\"added_feature\\\": \\\"entropy_of_surprisal\\\",\\n        \\\"accuracy_mean\\\": 0.7895,\\n        \\\"accuracy_std\\\": 0.005,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 16,\\n        \\\"added_feature\\\": \\\"rep_2gram\\\",\\n        \\\"accuracy_mean\\\": 0.7917,\\n        \\\"accuracy_std\\\": 0.0049,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"rep_2gram\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 17,\\n        \\\"added_feature\\\": \\\"p10_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7913,\\n        \\\"accuracy_std\\\": 0.0033,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"p10_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 18,\\n        \\\"added_feature\\\": \\\"rep_3gram\\\",\\n        \\\"accuracy_mean\\\": 0.7899,\\n        \\\"accuracy_std\\\": 0.0038,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"rep_3gram\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 19,\\n        \\\"added_feature\\\": \\\"mean_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.789,\\n        \\\"accuracy_std\\\": 0.0052,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"mean_ppl\\\"\\n        ]\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "d972a49f-aa86-490b-ab21-3ffb71a0c1d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_nucleus\\\\\\\": {\\\\n    \\\\\\\"path\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 1,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"var_surprisal\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.6215,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0056,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 2,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7176,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.006,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 3,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"p75_ppl\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.757,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0039,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 4,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7665,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0047,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 5,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7733,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.003,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 6,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"type_token_ratio\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7772,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0041,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 7,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"trigram_entropy\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.781,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0053,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 8,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"rep_4gram\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7823,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.006,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 9,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"p90_ppl\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7839,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0055,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 10,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"mean_surprisal\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7861,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0064,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 11,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"hapax_ratio\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7858,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0031,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 12,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"p50_ppl\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7873,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0044,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"p50\\\\n\\\\n... [截断: 输出过长，省略 24053 字符] ...\\\\n\\\\n \\\\\\\"step\\\\\\\": 13,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"skewness_ppl\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7901,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0047,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 14,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"hapax_ratio\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7891,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0048,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 15,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7895,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.005,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 16,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"rep_2gram\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7917,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0049,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 17,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"p10_ppl\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7913,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0033,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 18,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"rep_3gram\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.7899,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0038,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\"\\\\n        ]\\\\n      },\\\\n      {\\\\n        \\\\\\\"step\\\\\\\": 19,\\\\n        \\\\\\\"added_feature\\\\\\\": \\\\\\\"mean_ppl\\\\\\\",\\\\n        \\\\\\\"accuracy_mean\\\\\\\": 0.789,\\\\n        \\\\\\\"accuracy_std\\\\\\\": 0.0052,\\\\n        \\\\\\\"features\\\\\\\": [\\\\n          \\\\\\\"p90_ppl\\\\\\\",\\\\n          \\\\\\\"p75_ppl\\\\\\\",\\\\n          \\\\\\\"mean_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_4gram\\\\\\\",\\\\n          \\\\\\\"var_ppl\\\\\\\",\\\\n          \\\\\\\"var_surprisal\\\\\\\",\\\\n          \\\\\\\"bigram_entropy\\\\\\\",\\\\n          \\\\\\\"p50_ppl\\\\\\\",\\\\n          \\\\\\\"type_token_ratio\\\\\\\",\\\\n          \\\\\\\"trigram_entropy\\\\\\\",\\\\n          \\\\\\\"p25_ppl\\\\\\\",\\\\n          \\\\\\\"kurtosis_ppl\\\\\\\",\\\\n          \\\\\\\"skewness_ppl\\\\\\\",\\\\n          \\\\\\\"hapax_ratio\\\\\\\",\\\\n          \\\\\\\"entropy_of_surprisal\\\\\\\",\\\\n          \\\\\\\"rep_2gram\\\\\\\",\\\\n          \\\\\\\"p10_ppl\\\\\\\",\\\\n          \\\\\\\"rep_3gram\\\\\\\",\\\\n          \\\\\\\"mean_ppl\\\\\\\"\\\\n        ]\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"path\\\": [\\n      {\\n        \\\"step\\\": 1,\\n        \\\"added_feature\\\": \\\"var_surprisal\\\",\\n        \\\"accuracy_mean\\\": 0.6215,\\n        \\\"accuracy_std\\\": 0.0056,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 2,\\n        \\\"added_feature\\\": \\\"mean_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7176,\\n        \\\"accuracy_std\\\": 0.006,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 3,\\n        \\\"added_feature\\\": \\\"p75_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.757,\\n        \\\"accuracy_std\\\": 0.0039,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 4,\\n        \\\"added_feature\\\": \\\"rep_2gram\\\",\\n        \\\"accuracy_mean\\\": 0.7665,\\n        \\\"accuracy_std\\\": 0.0047,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 5,\\n        \\\"added_feature\\\": \\\"skewness_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7733,\\n        \\\"accuracy_std\\\": 0.003,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 6,\\n        \\\"added_feature\\\": \\\"type_token_ratio\\\",\\n        \\\"accuracy_mean\\\": 0.7772,\\n        \\\"accuracy_std\\\": 0.0041,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 7,\\n        \\\"added_feature\\\": \\\"trigram_entropy\\\",\\n        \\\"accuracy_mean\\\": 0.781,\\n        \\\"accuracy_std\\\": 0.0053,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 8,\\n        \\\"added_feature\\\": \\\"rep_4gram\\\",\\n        \\\"accuracy_mean\\\": 0.7823,\\n        \\\"accuracy_std\\\": 0.006,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"rep_4gram\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 9,\\n        \\\"added_feature\\\": \\\"p90_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7839,\\n        \\\"accuracy_std\\\": 0.0055,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"p90_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 10,\\n        \\\"added_feature\\\": \\\"mean_surprisal\\\",\\n        \\\"accuracy_mean\\\": 0.7861,\\n        \\\"accuracy_std\\\": 0.0064,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"mean_surprisal\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 11,\\n        \\\"added_feature\\\": \\\"hapax_ratio\\\",\\n        \\\"accuracy_mean\\\": 0.7858,\\n        \\\"accuracy_std\\\": 0.0031,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 12,\\n        \\\"added_feature\\\": \\\"p50_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7873,\\n        \\\"accuracy_std\\\": 0.0044,\\n        \\\"features\\\": [\\n          \\\"var_surprisal\\\",\\n          \\\"mean_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"p90_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"p50\\n\\n... [截断: 输出过长，省略 24053 字符] ...\\n\\n \\\"step\\\": 13,\\n        \\\"added_feature\\\": \\\"skewness_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7901,\\n        \\\"accuracy_std\\\": 0.0047,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 14,\\n        \\\"added_feature\\\": \\\"hapax_ratio\\\",\\n        \\\"accuracy_mean\\\": 0.7891,\\n        \\\"accuracy_std\\\": 0.0048,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 15,\\n        \\\"added_feature\\\": \\\"entropy_of_surprisal\\\",\\n        \\\"accuracy_mean\\\": 0.7895,\\n        \\\"accuracy_std\\\": 0.005,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 16,\\n        \\\"added_feature\\\": \\\"rep_2gram\\\",\\n        \\\"accuracy_mean\\\": 0.7917,\\n        \\\"accuracy_std\\\": 0.0049,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"rep_2gram\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 17,\\n        \\\"added_feature\\\": \\\"p10_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.7913,\\n        \\\"accuracy_std\\\": 0.0033,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"p10_ppl\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 18,\\n        \\\"added_feature\\\": \\\"rep_3gram\\\",\\n        \\\"accuracy_mean\\\": 0.7899,\\n        \\\"accuracy_std\\\": 0.0038,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"rep_3gram\\\"\\n        ]\\n      },\\n      {\\n        \\\"step\\\": 19,\\n        \\\"added_feature\\\": \\\"mean_ppl\\\",\\n        \\\"accuracy_mean\\\": 0.789,\\n        \\\"accuracy_std\\\": 0.0052,\\n        \\\"features\\\": [\\n          \\\"p90_ppl\\\",\\n          \\\"p75_ppl\\\",\\n          \\\"mean_surprisal\\\",\\n          \\\"rep_4gram\\\",\\n          \\\"var_ppl\\\",\\n          \\\"var_surprisal\\\",\\n          \\\"bigram_entropy\\\",\\n          \\\"p50_ppl\\\",\\n          \\\"type_token_ratio\\\",\\n          \\\"trigram_entropy\\\",\\n          \\\"p25_ppl\\\",\\n          \\\"kurtosis_ppl\\\",\\n          \\\"skewness_ppl\\\",\\n          \\\"hapax_ratio\\\",\\n          \\\"entropy_of_surprisal\\\",\\n          \\\"rep_2gram\\\",\\n          \\\"p10_ppl\\\",\\n          \\\"rep_3gram\\\",\\n          \\\"mean_ppl\\\"\\n        ]\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T18:57:47.912Z_
+
+<details><summary>↩ Tool result · `toolu_01EXZE3KLwLWspuEEptRXpUe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  Cell: olmo_temp09\\n  Path: /root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/features.jsonl\\n============================================================\\n  Loaded: 20000 samples, 19 features\\n  Depths: {np.int64(0): np.int64(5000), np.int64(1): np.int64(5000), np.int64(2): np.int64(5000), np.int64(3): np.int64(5000)}\\n  [top-k] olmo_temp09: computing permutation importance...\\n    top- 1: 0.6572 +/- 0.0091\\n    top- 2: 0.7685 +/- 0.0079\\n    top- 3: 0.7853 +/- 0.0078\\n    top- 5: 0.8037 +/- 0.0047\\n    top-10: 0.8176 +/- 0.0050\\n    top-15: 0.8202 +/- 0.0049\\n    top-19: 0.8195 +/- 0.0070\\n  [category] olmo_temp09\\n    perplexity only (9): 0.8117 +/- 0.0053\\n    surprisal only (3): 0.7852 +/- 0.0068\\n    lexical only (2): 0.5278 +/- 0.0068\\n    ngram_entropy only (2): 0.4690 +/- 0.0049\\n    repetition only (3): 0.5156 +/- 0.0047\\n    w/o perplexity (10 feats): 0.7918 +/- 0.0046\\n    w/o surprisal (16 feats): 0.8145 +/- 0.0082\\n    w/o lexical (17 feats): 0.8181 +/- 0.0063\\n    w/o ngram_entropy (17 feats): 0.8202 +/- 0.0064\\n    w/o repetition (16 feats): 0.8172 +/- 0.0034\\n  [forward] olmo_temp09\\n    step  1: +p90_ppl                   -> 0.7195 +/- 0.0076\\n    step  2: +p25_ppl                   -> 0.7756 +/- 0.0051\\n    step  3: +mean_ppl                  -> 0.7933 +/- 0.0042\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "e423b18f-24e6-4e3d-9799-35a1a5df2f01",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  Cell: olmo_temp09\\\\n  Path: /root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/features.jsonl\\\\n============================================================\\\\n  Loaded: 20000 samples, 19 features\\\\n  Depths: {np.int64(0): np.int64(5000), np.int64(1): np.int64(5000), np.int64(2): np.int64(5000), np.int64(3): np.int64(5000)}\\\\n  [top-k] olmo_temp09: computing permutation importance...\\\\n    top- 1: 0.6572 +/- 0.0091\\\\n    top- 2: 0.7685 +/- 0.0079\\\\n    top- 3: 0.7853 +/- 0.0078\\\\n    top- 5: 0.8037 +/- 0.0047\\\\n    top-10: 0.8176 +/- 0.0050\\\\n    top-15: 0.8202 +/- 0.0049\\\\n    top-19: 0.8195 +/- 0.0070\\\\n  [category] olmo_temp09\\\\n    perplexity only (9): 0.8117 +/- 0.0053\\\\n    surprisal only (3): 0.7852 +/- 0.0068\\\\n    lexical only (2): 0.5278 +/- 0.0068\\\\n    ngram_entropy only (2): 0.4690 +/- 0.0049\\\\n    repetition only (3): 0.5156 +/- 0.0047\\\\n    w/o perplexity (10 feats): 0.7918 +/- 0.0046\\\\n    w/o surprisal (16 feats): 0.8145 +/- 0.0082\\\\n    w/o lexical (17 feats): 0.8181 +/- 0.0063\\\\n    w/o ngram_entropy (17 feats): 0.8202 +/- 0.0064\\\\n    w/o repetition (16 feats): 0.8172 +/- 0.0034\\\\n  [forward] olmo_temp09\\\\n    step  1: +p90_ppl                   -> 0.7195 +/- 0.0076\\\\n    step  2: +p25_ppl                   -> 0.7756 +/- 0.0051\\\\n    step  3: +mean_ppl                  -> 0.7933 +/- 0.0042\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  Cell: olmo_temp09\\n  Path: /root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/features.jsonl\\n============================================================\\n  Loaded: 20000 samples, 19 features\\n  Depths: {np.int64(0): np.int64(5000), np.int64(1): np.int64(5000), np.int64(2): np.int64(5000), np.int64(3): np.int64(5000)}\\n  [top-k] olmo_temp09: computing permutation importance...\\n    top- 1: 0.6572 +/- 0.0091\\n    top- 2: 0.7685 +/- 0.0079\\n    top- 3: 0.7853 +/- 0.0078\\n    top- 5: 0.8037 +/- 0.0047\\n    top-10: 0.8176 +/- 0.0050\\n    top-15: 0.8202 +/- 0.0049\\n    top-19: 0.8195 +/- 0.0070\\n  [category] olmo_temp09\\n    perplexity only (9): 0.8117 +/- 0.0053\\n    surprisal only (3): 0.7852 +/- 0.0068\\n    lexical only (2): 0.5278 +/- 0.0068\\n    ngram_entropy only (2): 0.4690 +/- 0.0049\\n    repetition only (3): 0.5156 +/- 0.0047\\n    w/o perplexity (10 feats): 0.7918 +/- 0.0046\\n    w/o surprisal (16 feats): 0.8145 +/- 0.0082\\n    w/o lexical (17 feats): 0.8181 +/- 0.0063\\n    w/o ngram_entropy (17 feats): 0.8202 +/- 0.0064\\n    w/o repetition (16 feats): 0.8172 +/- 0.0034\\n  [forward] olmo_temp09\\n    step  1: +p90_ppl                   -> 0.7195 +/- 0.0076\\n    step  2: +p25_ppl                   -> 0.7756 +/- 0.0051\\n    step  3: +mean_ppl                  -> 0.7933 +/- 0.0042\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T18:57:49.154Z_
+
+<details><summary>↩ Tool result · `toolu_0174erZNQxbZants9UjGigX5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 420\\ndrwxr-xr-x  2 root root   4096 May 16 02:09 .\\ndrwxr-xr-x 27 root root   4096 May 16 01:10 ..\\n-rw-r--r--  1 root root  10067 May 16 01:28 category_ablation.json\\n-rw-r--r--  1 root root  54655 May 16 02:53 correlation_matrix.json\\n-rw-r--r--  1 root root  32053 May 16 02:53 forward_selection.json\\n-rw-r--r--  1 root root  33675 May 16 01:45 leave_one_group_out.json\\n-rw-r--r--  1 root root   8009 May 16 01:40 pca_effective_dims.json\\n-rw-r--r--  1 root root  32940 May 16 01:40 pca_scree_plot.pdf\\n-rw-r--r--  1 root root 182866 May 16 01:40 pca_scree_plot.png\\n-rw-r--r--  1 root root  10449 May 16 02:53 per_category_ablation.json\\n-rw-r--r--  1 root root  14179 May 16 02:53 top_k_ablation.json\\n-rw-r--r--  1 root root  17382 May 16 01:25 topk_ablation.json\\n-rw-r--r--  1 root root   2387 May 16 02:53 vif.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "2d8e49eb-8044-4086-bee2-0e17509843ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 420\\\\ndrwxr-xr-x  2 root root   4096 May 16 02:09 .\\\\ndrwxr-xr-x 27 root root   4096 May 16 01:10 ..\\\\n-rw-r--r--  1 root root  10067 May 16 01:28 category_ablation.json\\\\n-rw-r--r--  1 root root  54655 May 16 02:53 correlation_matrix.json\\\\n-rw-r--r--  1 root root  32053 May 16 02:53 forward_selection.json\\\\n-rw-r--r--  1 root root  33675 May 16 01:45 leave_one_group_out.json\\\\n-rw-r--r--  1 root root   8009 May 16 01:40 pca_effective_dims.json\\\\n-rw-r--r--  1 root root  32940 May 16 01:40 pca_scree_plot.pdf\\\\n-rw-r--r--  1 root root 182866 May 16 01:40 pca_scree_plot.png\\\\n-rw-r--r--  1 root root  10449 May 16 02:53 per_category_ablation.json\\\\n-rw-r--r--  1 root root  14179 May 16 02:53 top_k_ablation.json\\\\n-rw-r--r--  1 root root  17382 May 16 01:25 topk_ablation.json\\\\n-rw-r--r--  1 root root   2387 May 16 02:53 vif.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 420\\ndrwxr-xr-x  2 root root   4096 May 16 02:09 .\\ndrwxr-xr-x 27 root root   4096 May 16 01:10 ..\\n-rw-r--r--  1 root root  10067 May 16 01:28 category_ablation.json\\n-rw-r--r--  1 root root  54655 May 16 02:53 correlation_matrix.json\\n-rw-r--r--  1 root root  32053 May 16 02:53 forward_selection.json\\n-rw-r--r--  1 root root  33675 May 16 01:45 leave_one_group_out.json\\n-rw-r--r--  1 root root   8009 May 16 01:40 pca_effective_dims.json\\n-rw-r--r--  1 root root  32940 May 16 01:40 pca_scree_plot.pdf\\n-rw-r--r--  1 root root 182866 May 16 01:40 pca_scree_plot.png\\n-rw-r--r--  1 root root  10449 May 16 02:53 per_category_ablation.json\\n-rw-r--r--  1 root root  14179 May 16 02:53 top_k_ablation.json\\n-rw-r--r--  1 root root  17382 May 16 01:25 topk_ablation.json\\n-rw-r--r--  1 root root   2387 May 16 02:53 vif.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have a lot of data. Let me also get the truncated parts and additional files. Let me read:
+1. The remaining category ablation data for gpt2xl cells (truncated)
+2. The VIF file
+3. The PCA effective dims
+4. The leave_one_group_out file
+5. The correlation_matrix summary
+
+Actually wait - the forward_selection.json is complete (32053 bytes, all 9 cells are in there since olmo_nucleus appears at the end). Let me check what was truncated in the category_ablation file and get the remaining data I need.
+
+
+Now I'm realizing there are actually two different top-k ablation files with different timestamps and methodologies - one based on forward selection ranking from the earlier run, and a newer one using permutation importance-based feature ranking.  I need to pull the remaining truncated sections from both versions to get the complete picture, along with the category ablation data that's split across the older and newer file formats.
+
+Let me write a script to systematically extract the key metrics from these JSON files on the server so I can compile everything into a coherent summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "0b129e9e-e393-49cc-bee3-6920dfc8f0e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dp834ZXT8TXHvPT8fLJpLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26098,
+      "cache_read_input_tokens": 41414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+数据很丰富，还有几个额外文件要读。用 Python 在服务器上提取关键摘要避免截断。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "fda42c64-d5e2-4fce-84bc-60f2ba33f47d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dp834ZXT8TXHvPT8fLJpLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26098,
+      "cache_read_input_tokens": 41414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F6kN89Qq6JCbJSgZQ2dy2h`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/vif.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "a67bafff-9e05-41e5-9c26-7b19b4ba1448",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dp834ZXT8TXHvPT8fLJpLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26098,
+      "cache_read_input_tokens": 41414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014ndUuwBwLx4TFYpXPa6hCV`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_effective_dims.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "1035576c-86c5-4149-95bf-6237ac8bda35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dp834ZXT8TXHvPT8fLJpLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26098,
+      "cache_read_input_tokens": 41414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T18:58:11.187Z_
+
+<details><summary>↩ Tool result · `toolu_01F6kN89Qq6JCbJSgZQ2dy2h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"vif\\\": {\\n      \\\"mean_ppl\\\": 6.29,\\n      \\\"var_ppl\\\": 6.24,\\n      \\\"skewness_ppl\\\": 50.18,\\n      \\\"kurtosis_ppl\\\": 47.33,\\n      \\\"p10_ppl\\\": 3.95,\\n      \\\"p25_ppl\\\": 12.17,\\n      \\\"p50_ppl\\\": 17.09,\\n      \\\"p75_ppl\\\": 13.53,\\n      \\\"p90_ppl\\\": 8.94,\\n      \\\"mean_surprisal\\\": 114.4,\\n      \\\"var_surprisal\\\": 45.0,\\n      \\\"entropy_of_surprisal\\\": 16.74,\\n      \\\"type_token_ratio\\\": 29.96,\\n      \\\"hapax_ratio\\\": 3.67,\\n      \\\"bigram_entropy\\\": 313.96,\\n      \\\"trigram_entropy\\\": 284.94,\\n      \\\"rep_2gram\\\": 347.78,\\n      \\\"rep_3gram\\\": 526.28,\\n      \\\"rep_4gram\\\": 176.76\\n    },\\n    \\\"high_vif_count\\\": 14\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"vif\\\": {\\n      \\\"mean_ppl\\\": 10.26,\\n      \\\"var_ppl\\\": 10.2,\\n      \\\"skewness_ppl\\\": 58.42,\\n      \\\"kurtosis_ppl\\\": 55.83,\\n      \\\"p10_ppl\\\": 4.29,\\n      \\\"p25_ppl\\\": 13.21,\\n      \\\"p50_ppl\\\": 16.57,\\n      \\\"p75_ppl\\\": 13.23,\\n      \\\"p90_ppl\\\": 9.06,\\n      \\\"mean_surprisal\\\": 126.7,\\n      \\\"var_surprisal\\\": 49.37,\\n      \\\"entropy_of_surprisal\\\": 17.05,\\n      \\\"type_token_ratio\\\": 32.14,\\n      \\\"hapax_ratio\\\": 3.68,\\n      \\\"bigram_entropy\\\": 329.12,\\n      \\\"trigram_entropy\\\": 298.42,\\n      \\\"rep_2gram\\\": 376.21,\\n      \\\"rep_3gram\\\": 565.58,\\n      \\\"rep_4gram\\\": 200.31\\n    },\\n    \\\"high_vif_count\\\": 16\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"vif\\\": {\\n      \\\"mean_ppl\\\": 14.44,\\n      \\\"var_ppl\\\": 14.4,\\n      \\\"skewness_ppl\\\": 56.16,\\n      \\\"kurtosis_ppl\\\": 53.5,\\n      \\\"p10_ppl\\\": 3.24,\\n      \\\"p25_ppl\\\": 10.61,\\n      \\\"p50_ppl\\\": 8.86,\\n      \\\"p75_ppl\\\": 10.31,\\n      \\\"p90_ppl\\\": 7.32,\\n      \\\"mean_surprisal\\\": 79.38,\\n      \\\"var_surprisal\\\": 27.57,\\n      \\\"entropy_of_surprisal\\\": 18.7,\\n      \\\"type_token_ratio\\\": 21.48,\\n      \\\"hapax_ratio\\\": 4.38,\\n      \\\"bigram_entropy\\\": 345.5,\\n      \\\"trigram_entropy\\\": 320.13,\\n      \\\"rep_2gram\\\": 210.14,\\n      \\\"rep_3gram\\\": 257.0,\\n      \\\"rep_4gram\\\": 92.26\\n    },\\n    \\\"high_vif_count\\\": 15\\n  },\\n  \\\"olmo_nucleus\\\": {\\n    \\\"vif\\\": {\\n      \\\"mean_ppl\\\": 13.81,\\n      \\\"var_ppl\\\": 13.77,\\n      \\\"skewness_ppl\\\": 100.13,\\n      \\\"kurtosis_ppl\\\": 97.68,\\n      \\\"p10_ppl\\\": 4.18,\\n      \\\"p25_ppl\\\": 12.82,\\n      \\\"p50_ppl\\\": 18.79,\\n      \\\"p75_ppl\\\": 11.6,\\n      \\\"p90_ppl\\\": 7.86,\\n      \\\"mean_surprisal\\\": 94.91,\\n      \\\"var_surprisal\\\": 36.88,\\n      \\\"entropy_of_surprisal\\\": 11.64,\\n      \\\"type_token_ratio\\\": 35.49,\\n      \\\"hapax_ratio\\\": 5.08,\\n      \\\"bigram_entropy\\\": 312.26,\\n      \\\"trigram_entropy\\\": 278.13,\\n      \\\"rep_2gram\\\": 375.64,\\n      \\\"rep_3gram\\\": 638.52,\\n      \\\"rep_4gram\\\": 253.23\\n    },\\n    \\\"high_vif_count\\\": 16\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "59c6fa98-d380-43cb-8069-52092e6faf75",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_nucleus\\\\\\\": {\\\\n    \\\\\\\"vif\\\\\\\": {\\\\n      \\\\\\\"mean_ppl\\\\\\\": 6.29,\\\\n      \\\\\\\"var_ppl\\\\\\\": 6.24,\\\\n      \\\\\\\"skewness_ppl\\\\\\\": 50.18,\\\\n      \\\\\\\"kurtosis_ppl\\\\\\\": 47.33,\\\\n      \\\\\\\"p10_ppl\\\\\\\": 3.95,\\\\n      \\\\\\\"p25_ppl\\\\\\\": 12.17,\\\\n      \\\\\\\"p50_ppl\\\\\\\": 17.09,\\\\n      \\\\\\\"p75_ppl\\\\\\\": 13.53,\\\\n      \\\\\\\"p90_ppl\\\\\\\": 8.94,\\\\n      \\\\\\\"mean_surprisal\\\\\\\": 114.4,\\\\n      \\\\\\\"var_surprisal\\\\\\\": 45.0,\\\\n      \\\\\\\"entropy_of_surprisal\\\\\\\": 16.74,\\\\n      \\\\\\\"type_token_ratio\\\\\\\": 29.96,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 3.67,\\\\n      \\\\\\\"bigram_entropy\\\\\\\": 313.96,\\\\n      \\\\\\\"trigram_entropy\\\\\\\": 284.94,\\\\n      \\\\\\\"rep_2gram\\\\\\\": 347.78,\\\\n      \\\\\\\"rep_3gram\\\\\\\": 526.28,\\\\n      \\\\\\\"rep_4gram\\\\\\\": 176.76\\\\n    },\\\\n    \\\\\\\"high_vif_count\\\\\\\": 14\\\\n  },\\\\n  \\\\\\\"pythia_temp09\\\\\\\": {\\\\n    \\\\\\\"vif\\\\\\\": {\\\\n      \\\\\\\"mean_ppl\\\\\\\": 10.26,\\\\n      \\\\\\\"var_ppl\\\\\\\": 10.2,\\\\n      \\\\\\\"skewness_ppl\\\\\\\": 58.42,\\\\n      \\\\\\\"kurtosis_ppl\\\\\\\": 55.83,\\\\n      \\\\\\\"p10_ppl\\\\\\\": 4.29,\\\\n      \\\\\\\"p25_ppl\\\\\\\": 13.21,\\\\n      \\\\\\\"p50_ppl\\\\\\\": 16.57,\\\\n      \\\\\\\"p75_ppl\\\\\\\": 13.23,\\\\n      \\\\\\\"p90_ppl\\\\\\\": 9.06,\\\\n      \\\\\\\"mean_surprisal\\\\\\\": 126.7,\\\\n      \\\\\\\"var_surprisal\\\\\\\": 49.37,\\\\n      \\\\\\\"entropy_of_surprisal\\\\\\\": 17.05,\\\\n      \\\\\\\"type_token_ratio\\\\\\\": 32.14,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 3.68,\\\\n      \\\\\\\"bigram_entropy\\\\\\\": 329.12,\\\\n      \\\\\\\"trigram_entropy\\\\\\\": 298.42,\\\\n      \\\\\\\"rep_2gram\\\\\\\": 376.21,\\\\n      \\\\\\\"rep_3gram\\\\\\\": 565.58,\\\\n      \\\\\\\"rep_4gram\\\\\\\": 200.31\\\\n    },\\\\n    \\\\\\\"high_vif_count\\\\\\\": 16\\\\n  },\\\\n  \\\\\\\"pythia_topk50\\\\\\\": {\\\\n    \\\\\\\"vif\\\\\\\": {\\\\n      \\\\\\\"mean_ppl\\\\\\\": 14.44,\\\\n      \\\\\\\"var_ppl\\\\\\\": 14.4,\\\\n      \\\\\\\"skewness_ppl\\\\\\\": 56.16,\\\\n      \\\\\\\"kurtosis_ppl\\\\\\\": 53.5,\\\\n      \\\\\\\"p10_ppl\\\\\\\": 3.24,\\\\n      \\\\\\\"p25_ppl\\\\\\\": 10.61,\\\\n      \\\\\\\"p50_ppl\\\\\\\": 8.86,\\\\n      \\\\\\\"p75_ppl\\\\\\\": 10.31,\\\\n      \\\\\\\"p90_ppl\\\\\\\": 7.32,\\\\n      \\\\\\\"mean_surprisal\\\\\\\": 79.38,\\\\n      \\\\\\\"var_surprisal\\\\\\\": 27.57,\\\\n      \\\\\\\"entropy_of_surprisal\\\\\\\": 18.7,\\\\n      \\\\\\\"type_token_ratio\\\\\\\": 21.48,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 4.38,\\\\n      \\\\\\\"bigram_entropy\\\\\\\": 345.5,\\\\n      \\\\\\\"trigram_entropy\\\\\\\": 320.13,\\\\n      \\\\\\\"rep_2gram\\\\\\\": 210.14,\\\\n      \\\\\\\"rep_3gram\\\\\\\": 257.0,\\\\n      \\\\\\\"rep_4gram\\\\\\\": 92.26\\\\n    },\\\\n    \\\\\\\"high_vif_count\\\\\\\": 15\\\\n  },\\\\n  \\\\\\\"olmo_nucleus\\\\\\\": {\\\\n    \\\\\\\"vif\\\\\\\": {\\\\n      \\\\\\\"mean_ppl\\\\\\\": 13.81,\\\\n      \\\\\\\"var_ppl\\\\\\\": 13.77,\\\\n      \\\\\\\"skewness_ppl\\\\\\\": 100.13,\\\\n      \\\\\\\"kurtosis_ppl\\\\\\\": 97.68,\\\\n      \\\\\\\"p10_ppl\\\\\\\": 4.18,\\\\n      \\\\\\\"p25_ppl\\\\\\\": 12.82,\\\\n      \\\\\\\"p50_ppl\\\\\\\": 18.79,\\\\n      \\\\\\\"p75_ppl\\\\\\\": 11.6,\\\\n      \\\\\\\"p90_ppl\\\\\\\": 7.86,\\\\n      \\\\\\\"mean_surprisal\\\\\\\": 94.91,\\\\n      \\\\\\\"var_surprisal\\\\\\\": 36.88,\\\\n      \\\\\\\"entropy_of_surprisal\\\\\\\": 11.64,\\\\n      \\\\\\\"type_token_ratio\\\\\\\": 35.49,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 5.08,\\\\n      \\\\\\\"bigram_entropy\\\\\\\": 312.26,\\\\n      \\\\\\\"trigram_entropy\\\\\\\": 278.13,\\\\n      \\\\\\\"rep_2gram\\\\\\\": 375.64,\\\\n      \\\\\\\"rep_3gram\\\\\\\": 638.52,\\\\n      \\\\\\\"rep_4gram\\\\\\\": 253.23\\\\n    },\\\\n    \\\\\\\"high_vif_count\\\\\\\": 16\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"vif\\\": {\\n      \\\"mean_ppl\\\": 6.29,\\n      \\\"var_ppl\\\": 6.24,\\n      \\\"skewness_ppl\\\": 50.18,\\n      \\\"kurtosis_ppl\\\": 47.33,\\n      \\\"p10_ppl\\\": 3.95,\\n      \\\"p25_ppl\\\": 12.17,\\n      \\\"p50_ppl\\\": 17.09,\\n      \\\"p75_ppl\\\": 13.53,\\n      \\\"p90_ppl\\\": 8.94,\\n      \\\"mean_surprisal\\\": 114.4,\\n      \\\"var_surprisal\\\": 45.0,\\n      \\\"entropy_of_surprisal\\\": 16.74,\\n      \\\"type_token_ratio\\\": 29.96,\\n      \\\"hapax_ratio\\\": 3.67,\\n      \\\"bigram_entropy\\\": 313.96,\\n      \\\"trigram_entropy\\\": 284.94,\\n      \\\"rep_2gram\\\": 347.78,\\n      \\\"rep_3gram\\\": 526.28,\\n      \\\"rep_4gram\\\": 176.76\\n    },\\n    \\\"high_vif_count\\\": 14\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"vif\\\": {\\n      \\\"mean_ppl\\\": 10.26,\\n      \\\"var_ppl\\\": 10.2,\\n      \\\"skewness_ppl\\\": 58.42,\\n      \\\"kurtosis_ppl\\\": 55.83,\\n      \\\"p10_ppl\\\": 4.29,\\n      \\\"p25_ppl\\\": 13.21,\\n      \\\"p50_ppl\\\": 16.57,\\n      \\\"p75_ppl\\\": 13.23,\\n      \\\"p90_ppl\\\": 9.06,\\n      \\\"mean_surprisal\\\": 126.7,\\n      \\\"var_surprisal\\\": 49.37,\\n      \\\"entropy_of_surprisal\\\": 17.05,\\n      \\\"type_token_ratio\\\": 32.14,\\n      \\\"hapax_ratio\\\": 3.68,\\n      \\\"bigram_entropy\\\": 329.12,\\n      \\\"trigram_entropy\\\": 298.42,\\n      \\\"rep_2gram\\\": 376.21,\\n      \\\"rep_3gram\\\": 565.58,\\n      \\\"rep_4gram\\\": 200.31\\n    },\\n    \\\"high_vif_count\\\": 16\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"vif\\\": {\\n      \\\"mean_ppl\\\": 14.44,\\n      \\\"var_ppl\\\": 14.4,\\n      \\\"skewness_ppl\\\": 56.16,\\n      \\\"kurtosis_ppl\\\": 53.5,\\n      \\\"p10_ppl\\\": 3.24,\\n      \\\"p25_ppl\\\": 10.61,\\n      \\\"p50_ppl\\\": 8.86,\\n      \\\"p75_ppl\\\": 10.31,\\n      \\\"p90_ppl\\\": 7.32,\\n      \\\"mean_surprisal\\\": 79.38,\\n      \\\"var_surprisal\\\": 27.57,\\n      \\\"entropy_of_surprisal\\\": 18.7,\\n      \\\"type_token_ratio\\\": 21.48,\\n      \\\"hapax_ratio\\\": 4.38,\\n      \\\"bigram_entropy\\\": 345.5,\\n      \\\"trigram_entropy\\\": 320.13,\\n      \\\"rep_2gram\\\": 210.14,\\n      \\\"rep_3gram\\\": 257.0,\\n      \\\"rep_4gram\\\": 92.26\\n    },\\n    \\\"high_vif_count\\\": 15\\n  },\\n  \\\"olmo_nucleus\\\": {\\n    \\\"vif\\\": {\\n      \\\"mean_ppl\\\": 13.81,\\n      \\\"var_ppl\\\": 13.77,\\n      \\\"skewness_ppl\\\": 100.13,\\n      \\\"kurtosis_ppl\\\": 97.68,\\n      \\\"p10_ppl\\\": 4.18,\\n      \\\"p25_ppl\\\": 12.82,\\n      \\\"p50_ppl\\\": 18.79,\\n      \\\"p75_ppl\\\": 11.6,\\n      \\\"p90_ppl\\\": 7.86,\\n      \\\"mean_surprisal\\\": 94.91,\\n      \\\"var_surprisal\\\": 36.88,\\n      \\\"entropy_of_surprisal\\\": 11.64,\\n      \\\"type_token_ratio\\\": 35.49,\\n      \\\"hapax_ratio\\\": 5.08,\\n      \\\"bigram_entropy\\\": 312.26,\\n      \\\"trigram_entropy\\\": 278.13,\\n      \\\"rep_2gram\\\": 375.64,\\n      \\\"rep_3gram\\\": 638.52,\\n      \\\"rep_4gram\\\": 253.23\\n    },\\n    \\\"high_vif_count\\\": 16\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T18:58:12.079Z_
+
+<details><summary>↩ Tool result · `toolu_014ndUuwBwLx4TFYpXPa6hCV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus095\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 6,\\n    \\\"n_95pct\\\": 8,\\n    \\\"n_99pct\\\": 12,\\n    \\\"explained_variance_ratio\\\": [\\n      0.47066,\\n      0.127172,\\n      0.093783,\\n      0.089447,\\n      0.070447,\\n      0.061213,\\n      0.026226,\\n      0.014563,\\n      0.014508,\\n      0.013337,\\n      0.007177,\\n      0.004467,\\n      0.003288,\\n      0.002018,\\n      0.0007,\\n      0.000551,\\n      0.000297,\\n      9.4e-05,\\n      5.1e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.47066,\\n      0.597832,\\n      0.691616,\\n      0.781063,\\n      0.85151,\\n      0.912723,\\n      0.93895,\\n      0.953512,\\n      0.96802,\\n      0.981357,\\n      0.988534,\\n      0.993001,\\n      0.996289,\\n      0.998307,\\n      0.999007,\\n      0.999558,\\n      0.999855,\\n      0.999949,\\n      1.0\\n    ]\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 6,\\n    \\\"n_95pct\\\": 8,\\n    \\\"n_99pct\\\": 12,\\n    \\\"explained_variance_ratio\\\": [\\n      0.480089,\\n      0.126476,\\n      0.093153,\\n      0.089806,\\n      0.068816,\\n      0.058457,\\n      0.023879,\\n      0.014396,\\n      0.01381,\\n      0.013191,\\n      0.006971,\\n      0.004205,\\n      0.003162,\\n      0.002067,\\n      0.000649,\\n      0.00047,\\n      0.000269,\\n      8.3e-05,\\n      4.9e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.480089,\\n      0.606566,\\n      0.699719,\\n      0.789525,\\n      0.858341,\\n      0.916798,\\n      0.940677,\\n      0.955073,\\n      0.968884,\\n      0.982075,\\n      0.989046,\\n      0.993252,\\n      0.996414,\\n      0.998481,\\n      0.99913,\\n      0.999599,\\n      0.999868,\\n      0.999951,\\n      1.0\\n    ]\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 7,\\n    \\\"n_95pct\\\": 9,\\n    \\\"n_99pct\\\": 12,\\n    \\\"explained_variance_ratio\\\": [\\n      0.419606,\\n      0.139028,\\n      0.103257,\\n      0.082577,\\n      0.07267,\\n      0.065326,\\n      0.032228,\\n      0.030108,\\n      0.017477,\\n      0.014817,\\n      0.007255,\\n      0.006031,\\n      0.004054,\\n      0.003426,\\n      0.001029,\\n      0.00049,\\n      0.000407,\\n      0.000151,\\n      6.3e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.419606,\\n      0.558634,\\n      0.661891,\\n      0.744468,\\n      0.817138,\\n      0.882464,\\n      0.914692,\\n      0.944801,\\n      0.962277,\\n      0.977094,\\n      0.984349,\\n      0.99038,\\n      0.994434,\\n      0.99786,\\n      0.998889,\\n      0.99938,\\n      0.999786,\\n      0.999937,\\n      1.0\\n    ]\\n  },\\n  \\\"gpt2xl_nucleus095\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 7,\\n    \\\"n_95pct\\\": 9,\\n    \\\"n_99pct\\\": 12,\\n    \\\"explained_variance_ratio\\\": [\\n      0.453987,\\n      0.118634,\\n      0.107189,\\n      0.094855,\\n      0.065394,\\n      0.041444,\\n      0.038722,\\n      0.026648,\\n      0.016435,\\n      0.011253,\\n      0.009657,\\n      0.00631,\\n      0.004872,\\n      0.002488,\\n      0.000887,\\n      0.000677,\\n      0.000303,\\n      0.000163,\\n      8.1e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.453987,\\n      0.572621,\\n      0.67981,\\n      0.774665,\\n      0.840059,\\n      0.881503,\\n      0.920225,\\n      0.946873,\\n      0.963308,\\n      0.974561,\\n      0.984218,\\n      0.990529,\\n      0.9954,\\n      0.997889,\\n      0.998775,\\n      0.999452,\\n      0.999755,\\n      0.999919,\\n      1.0\\n    ]\\n  },\\n  \\\"gpt2xl_temp09\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 7,\\n    \\\"n_95pct\\\": 8,\\n    \\\"n_99pct\\\": 13,\\n    \\\"explained_variance_ratio\\\": [\\n      0.43755,\\n      0.159343,\\n      0.108515,\\n      0.075494,\\n      0.05451,\\n      0.049807,\\n      0.039048,\\n      0.027711,\\n      0.01351,\\n      0.010041,\\n      0.007819,\\n      0.00663,\\n      0.004981,\\n      0.002775,\\n      0.00096,\\n      0.000771,\\n      0.000325,\\n      0.000132,\\n      7.8e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.43755,\\n      0.596893,\\n      0.705408,\\n      0.780902,\\n      0.835412,\\n      0.885219,\\n      0.924267,\\n      0.951978,\\n      0.965488,\\n      0.975529,\\n      0.983348,\\n      0.989978,\\n      0.994959,\\n      0.997734,\\n      0.998694,\\n      0.999465,\\n      0.99979,\\n      0.999922,\\n      1.0\\n    ]\\n  },\\n  \\\"gpt2xl_topk50\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 7,\\n    \\\"n_95pct\\\": 9,\\n    \\\"n_99pct\\\": 13,\\n    \\\"explaine\\n\\n... [截断: 输出过长，省略 9 字符] ...\\n\\ne_ratio\\\": [\\n      0.384137,\\n      0.167774,\\n      0.116833,\\n      0.091747,\\n      0.056313,\\n      0.05042,\\n      0.043993,\\n      0.02978,\\n      0.016123,\\n      0.012298,\\n      0.009562,\\n      0.007561,\\n      0.006678,\\n      0.00361,\\n      0.001314,\\n      0.00115,\\n      0.000355,\\n      0.000214,\\n      0.000137\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.384137,\\n      0.551911,\\n      0.668745,\\n      0.760492,\\n      0.816805,\\n      0.867224,\\n      0.911217,\\n      0.940997,\\n      0.95712,\\n      0.969417,\\n      0.978979,\\n      0.986541,\\n      0.993219,\\n      0.996829,\\n      0.998143,\\n      0.999293,\\n      0.999649,\\n      0.999863,\\n      1.0\\n    ]\\n  },\\n  \\\"olmo_nucleus095\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 6,\\n    \\\"n_95pct\\\": 7,\\n    \\\"n_99pct\\\": 12,\\n    \\\"explained_variance_ratio\\\": [\\n      0.513793,\\n      0.118832,\\n      0.112792,\\n      0.078543,\\n      0.058159,\\n      0.044331,\\n      0.027537,\\n      0.014297,\\n      0.00955,\\n      0.007218,\\n      0.004368,\\n      0.003588,\\n      0.003451,\\n      0.002191,\\n      0.000604,\\n      0.000359,\\n      0.000263,\\n      7.7e-05,\\n      4.8e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.513793,\\n      0.632625,\\n      0.745417,\\n      0.82396,\\n      0.882119,\\n      0.92645,\\n      0.953987,\\n      0.968284,\\n      0.977834,\\n      0.985052,\\n      0.98942,\\n      0.993008,\\n      0.996459,\\n      0.998649,\\n      0.999253,\\n      0.999613,\\n      0.999875,\\n      0.999952,\\n      1.0\\n    ]\\n  },\\n  \\\"olmo_temp09\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 6,\\n    \\\"n_95pct\\\": 7,\\n    \\\"n_99pct\\\": 11,\\n    \\\"explained_variance_ratio\\\": [\\n      0.535542,\\n      0.123691,\\n      0.103332,\\n      0.074535,\\n      0.055214,\\n      0.047074,\\n      0.022642,\\n      0.010024,\\n      0.008221,\\n      0.007124,\\n      0.003641,\\n      0.003097,\\n      0.002876,\\n      0.001813,\\n      0.000529,\\n      0.000289,\\n      0.000252,\\n      6.5e-05,\\n      3.9e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.535542,\\n      0.659233,\\n      0.762565,\\n      0.8371,\\n      0.892314,\\n      0.939388,\\n      0.96203,\\n      0.972054,\\n      0.980274,\\n      0.987399,\\n      0.99104,\\n      0.994137,\\n      0.997013,\\n      0.998826,\\n      0.999355,\\n      0.999644,\\n      0.999896,\\n      0.999961,\\n      1.0\\n    ]\\n  },\\n  \\\"olmo_topk50\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 6,\\n    \\\"n_95pct\\\": 8,\\n    \\\"n_99pct\\\": 13,\\n    \\\"explained_variance_ratio\\\": [\\n      0.416664,\\n      0.167808,\\n      0.129097,\\n      0.096052,\\n      0.05385,\\n      0.048367,\\n      0.029039,\\n      0.016962,\\n      0.010042,\\n      0.008242,\\n      0.007489,\\n      0.006127,\\n      0.004513,\\n      0.002898,\\n      0.001626,\\n      0.000565,\\n      0.000284,\\n      0.000248,\\n      0.000125\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.416664,\\n      0.584473,\\n      0.71357,\\n      0.809621,\\n      0.863472,\\n      0.911839,\\n      0.940877,\\n      0.957839,\\n      0.967881,\\n      0.976123,\\n      0.983612,\\n      0.989739,\\n      0.994253,\\n      0.997151,\\n      0.998777,\\n      0.999342,\\n      0.999627,\\n      0.999875,\\n      1.0\\n    ]\\n  },\\n  \\\"merged_all\\\": {\\n    \\\"n_samples\\\": 180000,\\n    \\\"n_90pct\\\": 7,\\n    \\\"n_95pct\\\": 9,\\n    \\\"n_99pct\\\": 13,\\n    \\\"explained_variance_ratio\\\": [\\n      0.443752,\\n      0.126652,\\n      0.101536,\\n      0.081328,\\n      0.05401,\\n      0.051056,\\n      0.04641,\\n      0.033226,\\n      0.020306,\\n      0.012695,\\n      0.011637,\\n      0.007177,\\n      0.005079,\\n      0.002896,\\n      0.000901,\\n      0.000772,\\n      0.0004,\\n      0.000105,\\n      6.4e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.443752,\\n      0.570404,\\n      0.67194,\\n      0.753268,\\n      0.807278,\\n      0.858334,\\n      0.904744,\\n      0.93797,\\n      0.958275,\\n      0.97097,\\n      0.982607,\\n      0.989784,\\n      0.994863,\\n      0.997759,\\n      0.99866,\\n      0.999432,\\n      0.999831,\\n      0.999936,\\n      1.0\\n    ]\\n  },\\n  \\\"summary\\\": {\\n    \\\"n_90pct\\\": {\\n      \\\"mean\\\": 6.4,\\n      \\\"min\\\": 6,\\n      \\\"max\\\": 7\\n    },\\n    \\\"n_95pct\\\": {\\n      \\\"mean\\\": 8.1,\\n      \\\"min\\\": 7,\\n      \\\"max\\\": 9\\n    },\\n    \\\"n_99pct\\\": {\\n      \\\"mean\\\": 12.2,\\n      \\\"min\\\": 11,\\n      \\\"max\\\": 13\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "0a0b8ca0-1612-48bc-b057-f4a595005205",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_nucleus095\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 20000,\\\\n    \\\\\\\"n_90pct\\\\\\\": 6,\\\\n    \\\\\\\"n_95pct\\\\\\\": 8,\\\\n    \\\\\\\"n_99pct\\\\\\\": 12,\\\\n    \\\\\\\"explained_variance_ratio\\\\\\\": [\\\\n      0.47066,\\\\n      0.127172,\\\\n      0.093783,\\\\n      0.089447,\\\\n      0.070447,\\\\n      0.061213,\\\\n      0.026226,\\\\n      0.014563,\\\\n      0.014508,\\\\n      0.013337,\\\\n      0.007177,\\\\n      0.004467,\\\\n      0.003288,\\\\n      0.002018,\\\\n      0.0007,\\\\n      0.000551,\\\\n      0.000297,\\\\n      9.4e-05,\\\\n      5.1e-05\\\\n    ],\\\\n    \\\\\\\"cumulative_variance\\\\\\\": [\\\\n      0.47066,\\\\n      0.597832,\\\\n      0.691616,\\\\n      0.781063,\\\\n      0.85151,\\\\n      0.912723,\\\\n      0.93895,\\\\n      0.953512,\\\\n      0.96802,\\\\n      0.981357,\\\\n      0.988534,\\\\n      0.993001,\\\\n      0.996289,\\\\n      0.998307,\\\\n      0.999007,\\\\n      0.999558,\\\\n      0.999855,\\\\n      0.999949,\\\\n      1.0\\\\n    ]\\\\n  },\\\\n  \\\\\\\"pythia_temp09\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 20000,\\\\n    \\\\\\\"n_90pct\\\\\\\": 6,\\\\n    \\\\\\\"n_95pct\\\\\\\": 8,\\\\n    \\\\\\\"n_99pct\\\\\\\": 12,\\\\n    \\\\\\\"explained_variance_ratio\\\\\\\": [\\\\n      0.480089,\\\\n      0.126476,\\\\n      0.093153,\\\\n      0.089806,\\\\n      0.068816,\\\\n      0.058457,\\\\n      0.023879,\\\\n      0.014396,\\\\n      0.01381,\\\\n      0.013191,\\\\n      0.006971,\\\\n      0.004205,\\\\n      0.003162,\\\\n      0.002067,\\\\n      0.000649,\\\\n      0.00047,\\\\n      0.000269,\\\\n      8.3e-05,\\\\n      4.9e-05\\\\n    ],\\\\n    \\\\\\\"cumulative_variance\\\\\\\": [\\\\n      0.480089,\\\\n      0.606566,\\\\n      0.699719,\\\\n      0.789525,\\\\n      0.858341,\\\\n      0.916798,\\\\n      0.940677,\\\\n      0.955073,\\\\n      0.968884,\\\\n      0.982075,\\\\n      0.989046,\\\\n      0.993252,\\\\n      0.996414,\\\\n      0.998481,\\\\n      0.99913,\\\\n      0.999599,\\\\n      0.999868,\\\\n      0.999951,\\\\n      1.0\\\\n    ]\\\\n  },\\\\n  \\\\\\\"pythia_topk50\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 20000,\\\\n    \\\\\\\"n_90pct\\\\\\\": 7,\\\\n    \\\\\\\"n_95pct\\\\\\\": 9,\\\\n    \\\\\\\"n_99pct\\\\\\\": 12,\\\\n    \\\\\\\"explained_variance_ratio\\\\\\\": [\\\\n      0.419606,\\\\n      0.139028,\\\\n      0.103257,\\\\n      0.082577,\\\\n      0.07267,\\\\n      0.065326,\\\\n      0.032228,\\\\n      0.030108,\\\\n      0.017477,\\\\n      0.014817,\\\\n      0.007255,\\\\n      0.006031,\\\\n      0.004054,\\\\n      0.003426,\\\\n      0.001029,\\\\n      0.00049,\\\\n      0.000407,\\\\n      0.000151,\\\\n      6.3e-05\\\\n    ],\\\\n    \\\\\\\"cumulative_variance\\\\\\\": [\\\\n      0.419606,\\\\n      0.558634,\\\\n      0.661891,\\\\n      0.744468,\\\\n      0.817138,\\\\n      0.882464,\\\\n      0.914692,\\\\n      0.944801,\\\\n      0.962277,\\\\n      0.977094,\\\\n      0.984349,\\\\n      0.99038,\\\\n      0.994434,\\\\n      0.99786,\\\\n      0.998889,\\\\n      0.99938,\\\\n      0.999786,\\\\n      0.999937,\\\\n      1.0\\\\n    ]\\\\n  },\\\\n  \\\\\\\"gpt2xl_nucleus095\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 20000,\\\\n    \\\\\\\"n_90pct\\\\\\\": 7,\\\\n    \\\\\\\"n_95pct\\\\\\\": 9,\\\\n    \\\\\\\"n_99pct\\\\\\\": 12,\\\\n    \\\\\\\"explained_variance_ratio\\\\\\\": [\\\\n      0.453987,\\\\n      0.118634,\\\\n      0.107189,\\\\n      0.094855,\\\\n      0.065394,\\\\n      0.041444,\\\\n      0.038722,\\\\n      0.026648,\\\\n      0.016435,\\\\n      0.011253,\\\\n      0.009657,\\\\n      0.00631,\\\\n      0.004872,\\\\n      0.002488,\\\\n      0.000887,\\\\n      0.000677,\\\\n      0.000303,\\\\n      0.000163,\\\\n      8.1e-05\\\\n    ],\\\\n    \\\\\\\"cumulative_variance\\\\\\\": [\\\\n      0.453987,\\\\n      0.572621,\\\\n      0.67981,\\\\n      0.774665,\\\\n      0.840059,\\\\n      0.881503,\\\\n      0.920225,\\\\n      0.946873,\\\\n      0.963308,\\\\n      0.974561,\\\\n      0.984218,\\\\n      0.990529,\\\\n      0.9954,\\\\n      0.997889,\\\\n      0.998775,\\\\n      0.999452,\\\\n      0.999755,\\\\n      0.999919,\\\\n      1.0\\\\n    ]\\\\n  },\\\\n  \\\\\\\"gpt2xl_temp09\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 20000,\\\\n    \\\\\\\"n_90pct\\\\\\\": 7,\\\\n    \\\\\\\"n_95pct\\\\\\\": 8,\\\\n    \\\\\\\"n_99pct\\\\\\\": 13,\\\\n    \\\\\\\"explained_variance_ratio\\\\\\\": [\\\\n      0.43755,\\\\n      0.159343,\\\\n      0.108515,\\\\n      0.075494,\\\\n      0.05451,\\\\n      0.049807,\\\\n      0.039048,\\\\n      0.027711,\\\\n      0.01351,\\\\n      0.010041,\\\\n      0.007819,\\\\n      0.00663,\\\\n      0.004981,\\\\n      0.002775,\\\\n      0.00096,\\\\n      0.000771,\\\\n      0.000325,\\\\n      0.000132,\\\\n      7.8e-05\\\\n    ],\\\\n    \\\\\\\"cumulative_variance\\\\\\\": [\\\\n      0.43755,\\\\n      0.596893,\\\\n      0.705408,\\\\n      0.780902,\\\\n      0.835412,\\\\n      0.885219,\\\\n      0.924267,\\\\n      0.951978,\\\\n      0.965488,\\\\n      0.975529,\\\\n      0.983348,\\\\n      0.989978,\\\\n      0.994959,\\\\n      0.997734,\\\\n      0.998694,\\\\n      0.999465,\\\\n      0.99979,\\\\n      0.999922,\\\\n      1.0\\\\n    ]\\\\n  },\\\\n  \\\\\\\"gpt2xl_topk50\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 20000,\\\\n    \\\\\\\"n_90pct\\\\\\\": 7,\\\\n    \\\\\\\"n_95pct\\\\\\\": 9,\\\\n    \\\\\\\"n_99pct\\\\\\\": 13,\\\\n    \\\\\\\"explaine\\\\n\\\\n... [截断: 输出过长，省略 9 字符] ...\\\\n\\\\ne_ratio\\\\\\\": [\\\\n      0.384137,\\\\n      0.167774,\\\\n      0.116833,\\\\n      0.091747,\\\\n      0.056313,\\\\n      0.05042,\\\\n      0.043993,\\\\n      0.02978,\\\\n      0.016123,\\\\n      0.012298,\\\\n      0.009562,\\\\n      0.007561,\\\\n      0.006678,\\\\n      0.00361,\\\\n      0.001314,\\\\n      0.00115,\\\\n      0.000355,\\\\n      0.000214,\\\\n      0.000137\\\\n    ],\\\\n    \\\\\\\"cumulative_variance\\\\\\\": [\\\\n      0.384137,\\\\n      0.551911,\\\\n      0.668745,\\\\n      0.760492,\\\\n      0.816805,\\\\n      0.867224,\\\\n      0.911217,\\\\n      0.940997,\\\\n      0.95712,\\\\n      0.969417,\\\\n      0.978979,\\\\n      0.986541,\\\\n      0.993219,\\\\n      0.996829,\\\\n      0.998143,\\\\n      0.999293,\\\\n      0.999649,\\\\n      0.999863,\\\\n      1.0\\\\n    ]\\\\n  },\\\\n  \\\\\\\"olmo_nucleus095\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 20000,\\\\n    \\\\\\\"n_90pct\\\\\\\": 6,\\\\n    \\\\\\\"n_95pct\\\\\\\": 7,\\\\n    \\\\\\\"n_99pct\\\\\\\": 12,\\\\n    \\\\\\\"explained_variance_ratio\\\\\\\": [\\\\n      0.513793,\\\\n      0.118832,\\\\n      0.112792,\\\\n      0.078543,\\\\n      0.058159,\\\\n      0.044331,\\\\n      0.027537,\\\\n      0.014297,\\\\n      0.00955,\\\\n      0.007218,\\\\n      0.004368,\\\\n      0.003588,\\\\n      0.003451,\\\\n      0.002191,\\\\n      0.000604,\\\\n      0.000359,\\\\n      0.000263,\\\\n      7.7e-05,\\\\n      4.8e-05\\\\n    ],\\\\n    \\\\\\\"cumulative_variance\\\\\\\": [\\\\n      0.513793,\\\\n      0.632625,\\\\n      0.745417,\\\\n      0.82396,\\\\n      0.882119,\\\\n      0.92645,\\\\n      0.953987,\\\\n      0.968284,\\\\n      0.977834,\\\\n      0.985052,\\\\n      0.98942,\\\\n      0.993008,\\\\n      0.996459,\\\\n      0.998649,\\\\n      0.999253,\\\\n      0.999613,\\\\n      0.999875,\\\\n      0.999952,\\\\n      1.0\\\\n    ]\\\\n  },\\\\n  \\\\\\\"olmo_temp09\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 20000,\\\\n    \\\\\\\"n_90pct\\\\\\\": 6,\\\\n    \\\\\\\"n_95pct\\\\\\\": 7,\\\\n    \\\\\\\"n_99pct\\\\\\\": 11,\\\\n    \\\\\\\"explained_variance_ratio\\\\\\\": [\\\\n      0.535542,\\\\n      0.123691,\\\\n      0.103332,\\\\n      0.074535,\\\\n      0.055214,\\\\n      0.047074,\\\\n      0.022642,\\\\n      0.010024,\\\\n      0.008221,\\\\n      0.007124,\\\\n      0.003641,\\\\n      0.003097,\\\\n      0.002876,\\\\n      0.001813,\\\\n      0.000529,\\\\n      0.000289,\\\\n      0.000252,\\\\n      6.5e-05,\\\\n      3.9e-05\\\\n    ],\\\\n    \\\\\\\"cumulative_variance\\\\\\\": [\\\\n      0.535542,\\\\n      0.659233,\\\\n      0.762565,\\\\n      0.8371,\\\\n      0.892314,\\\\n      0.939388,\\\\n      0.96203,\\\\n      0.972054,\\\\n      0.980274,\\\\n      0.987399,\\\\n      0.99104,\\\\n      0.994137,\\\\n      0.997013,\\\\n      0.998826,\\\\n      0.999355,\\\\n      0.999644,\\\\n      0.999896,\\\\n      0.999961,\\\\n      1.0\\\\n    ]\\\\n  },\\\\n  \\\\\\\"olmo_topk50\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 20000,\\\\n    \\\\\\\"n_90pct\\\\\\\": 6,\\\\n    \\\\\\\"n_95pct\\\\\\\": 8,\\\\n    \\\\\\\"n_99pct\\\\\\\": 13,\\\\n    \\\\\\\"explained_variance_ratio\\\\\\\": [\\\\n      0.416664,\\\\n      0.167808,\\\\n      0.129097,\\\\n      0.096052,\\\\n      0.05385,\\\\n      0.048367,\\\\n      0.029039,\\\\n      0.016962,\\\\n      0.010042,\\\\n      0.008242,\\\\n      0.007489,\\\\n      0.006127,\\\\n      0.004513,\\\\n      0.002898,\\\\n      0.001626,\\\\n      0.000565,\\\\n      0.000284,\\\\n      0.000248,\\\\n      0.000125\\\\n    ],\\\\n    \\\\\\\"cumulative_variance\\\\\\\": [\\\\n      0.416664,\\\\n      0.584473,\\\\n      0.71357,\\\\n      0.809621,\\\\n      0.863472,\\\\n      0.911839,\\\\n      0.940877,\\\\n      0.957839,\\\\n      0.967881,\\\\n      0.976123,\\\\n      0.983612,\\\\n      0.989739,\\\\n      0.994253,\\\\n      0.997151,\\\\n      0.998777,\\\\n      0.999342,\\\\n      0.999627,\\\\n      0.999875,\\\\n      1.0\\\\n    ]\\\\n  },\\\\n  \\\\\\\"merged_all\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 180000,\\\\n    \\\\\\\"n_90pct\\\\\\\": 7,\\\\n    \\\\\\\"n_95pct\\\\\\\": 9,\\\\n    \\\\\\\"n_99pct\\\\\\\": 13,\\\\n    \\\\\\\"explained_variance_ratio\\\\\\\": [\\\\n      0.443752,\\\\n      0.126652,\\\\n      0.101536,\\\\n      0.081328,\\\\n      0.05401,\\\\n      0.051056,\\\\n      0.04641,\\\\n      0.033226,\\\\n      0.020306,\\\\n      0.012695,\\\\n      0.011637,\\\\n      0.007177,\\\\n      0.005079,\\\\n      0.002896,\\\\n      0.000901,\\\\n      0.000772,\\\\n      0.0004,\\\\n      0.000105,\\\\n      6.4e-05\\\\n    ],\\\\n    \\\\\\\"cumulative_variance\\\\\\\": [\\\\n      0.443752,\\\\n      0.570404,\\\\n      0.67194,\\\\n      0.753268,\\\\n      0.807278,\\\\n      0.858334,\\\\n      0.904744,\\\\n      0.93797,\\\\n      0.958275,\\\\n      0.97097,\\\\n      0.982607,\\\\n      0.989784,\\\\n      0.994863,\\\\n      0.997759,\\\\n      0.99866,\\\\n      0.999432,\\\\n      0.999831,\\\\n      0.999936,\\\\n      1.0\\\\n    ]\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_90pct\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 6.4,\\\\n      \\\\\\\"min\\\\\\\": 6,\\\\n      \\\\\\\"max\\\\\\\": 7\\\\n    },\\\\n    \\\\\\\"n_95pct\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 8.1,\\\\n      \\\\\\\"min\\\\\\\": 7,\\\\n      \\\\\\\"max\\\\\\\": 9\\\\n    },\\\\n    \\\\\\\"n_99pct\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 12.2,\\\\n      \\\\\\\"min\\\\\\\": 11,\\\\n      \\\\\\\"max\\\\\\\": 13\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus095\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 6,\\n    \\\"n_95pct\\\": 8,\\n    \\\"n_99pct\\\": 12,\\n    \\\"explained_variance_ratio\\\": [\\n      0.47066,\\n      0.127172,\\n      0.093783,\\n      0.089447,\\n      0.070447,\\n      0.061213,\\n      0.026226,\\n      0.014563,\\n      0.014508,\\n      0.013337,\\n      0.007177,\\n      0.004467,\\n      0.003288,\\n      0.002018,\\n      0.0007,\\n      0.000551,\\n      0.000297,\\n      9.4e-05,\\n      5.1e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.47066,\\n      0.597832,\\n      0.691616,\\n      0.781063,\\n      0.85151,\\n      0.912723,\\n      0.93895,\\n      0.953512,\\n      0.96802,\\n      0.981357,\\n      0.988534,\\n      0.993001,\\n      0.996289,\\n      0.998307,\\n      0.999007,\\n      0.999558,\\n      0.999855,\\n      0.999949,\\n      1.0\\n    ]\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 6,\\n    \\\"n_95pct\\\": 8,\\n    \\\"n_99pct\\\": 12,\\n    \\\"explained_variance_ratio\\\": [\\n      0.480089,\\n      0.126476,\\n      0.093153,\\n      0.089806,\\n      0.068816,\\n      0.058457,\\n      0.023879,\\n      0.014396,\\n      0.01381,\\n      0.013191,\\n      0.006971,\\n      0.004205,\\n      0.003162,\\n      0.002067,\\n      0.000649,\\n      0.00047,\\n      0.000269,\\n      8.3e-05,\\n      4.9e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.480089,\\n      0.606566,\\n      0.699719,\\n      0.789525,\\n      0.858341,\\n      0.916798,\\n      0.940677,\\n      0.955073,\\n      0.968884,\\n      0.982075,\\n      0.989046,\\n      0.993252,\\n      0.996414,\\n      0.998481,\\n      0.99913,\\n      0.999599,\\n      0.999868,\\n      0.999951,\\n      1.0\\n    ]\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 7,\\n    \\\"n_95pct\\\": 9,\\n    \\\"n_99pct\\\": 12,\\n    \\\"explained_variance_ratio\\\": [\\n      0.419606,\\n      0.139028,\\n      0.103257,\\n      0.082577,\\n      0.07267,\\n      0.065326,\\n      0.032228,\\n      0.030108,\\n      0.017477,\\n      0.014817,\\n      0.007255,\\n      0.006031,\\n      0.004054,\\n      0.003426,\\n      0.001029,\\n      0.00049,\\n      0.000407,\\n      0.000151,\\n      6.3e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.419606,\\n      0.558634,\\n      0.661891,\\n      0.744468,\\n      0.817138,\\n      0.882464,\\n      0.914692,\\n      0.944801,\\n      0.962277,\\n      0.977094,\\n      0.984349,\\n      0.99038,\\n      0.994434,\\n      0.99786,\\n      0.998889,\\n      0.99938,\\n      0.999786,\\n      0.999937,\\n      1.0\\n    ]\\n  },\\n  \\\"gpt2xl_nucleus095\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 7,\\n    \\\"n_95pct\\\": 9,\\n    \\\"n_99pct\\\": 12,\\n    \\\"explained_variance_ratio\\\": [\\n      0.453987,\\n      0.118634,\\n      0.107189,\\n      0.094855,\\n      0.065394,\\n      0.041444,\\n      0.038722,\\n      0.026648,\\n      0.016435,\\n      0.011253,\\n      0.009657,\\n      0.00631,\\n      0.004872,\\n      0.002488,\\n      0.000887,\\n      0.000677,\\n      0.000303,\\n      0.000163,\\n      8.1e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.453987,\\n      0.572621,\\n      0.67981,\\n      0.774665,\\n      0.840059,\\n      0.881503,\\n      0.920225,\\n      0.946873,\\n      0.963308,\\n      0.974561,\\n      0.984218,\\n      0.990529,\\n      0.9954,\\n      0.997889,\\n      0.998775,\\n      0.999452,\\n      0.999755,\\n      0.999919,\\n      1.0\\n    ]\\n  },\\n  \\\"gpt2xl_temp09\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 7,\\n    \\\"n_95pct\\\": 8,\\n    \\\"n_99pct\\\": 13,\\n    \\\"explained_variance_ratio\\\": [\\n      0.43755,\\n      0.159343,\\n      0.108515,\\n      0.075494,\\n      0.05451,\\n      0.049807,\\n      0.039048,\\n      0.027711,\\n      0.01351,\\n      0.010041,\\n      0.007819,\\n      0.00663,\\n      0.004981,\\n      0.002775,\\n      0.00096,\\n      0.000771,\\n      0.000325,\\n      0.000132,\\n      7.8e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.43755,\\n      0.596893,\\n      0.705408,\\n      0.780902,\\n      0.835412,\\n      0.885219,\\n      0.924267,\\n      0.951978,\\n      0.965488,\\n      0.975529,\\n      0.983348,\\n      0.989978,\\n      0.994959,\\n      0.997734,\\n      0.998694,\\n      0.999465,\\n      0.99979,\\n      0.999922,\\n      1.0\\n    ]\\n  },\\n  \\\"gpt2xl_topk50\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 7,\\n    \\\"n_95pct\\\": 9,\\n    \\\"n_99pct\\\": 13,\\n    \\\"explaine\\n\\n... [截断: 输出过长，省略 9 字符] ...\\n\\ne_ratio\\\": [\\n      0.384137,\\n      0.167774,\\n      0.116833,\\n      0.091747,\\n      0.056313,\\n      0.05042,\\n      0.043993,\\n      0.02978,\\n      0.016123,\\n      0.012298,\\n      0.009562,\\n      0.007561,\\n      0.006678,\\n      0.00361,\\n      0.001314,\\n      0.00115,\\n      0.000355,\\n      0.000214,\\n      0.000137\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.384137,\\n      0.551911,\\n      0.668745,\\n      0.760492,\\n      0.816805,\\n      0.867224,\\n      0.911217,\\n      0.940997,\\n      0.95712,\\n      0.969417,\\n      0.978979,\\n      0.986541,\\n      0.993219,\\n      0.996829,\\n      0.998143,\\n      0.999293,\\n      0.999649,\\n      0.999863,\\n      1.0\\n    ]\\n  },\\n  \\\"olmo_nucleus095\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 6,\\n    \\\"n_95pct\\\": 7,\\n    \\\"n_99pct\\\": 12,\\n    \\\"explained_variance_ratio\\\": [\\n      0.513793,\\n      0.118832,\\n      0.112792,\\n      0.078543,\\n      0.058159,\\n      0.044331,\\n      0.027537,\\n      0.014297,\\n      0.00955,\\n      0.007218,\\n      0.004368,\\n      0.003588,\\n      0.003451,\\n      0.002191,\\n      0.000604,\\n      0.000359,\\n      0.000263,\\n      7.7e-05,\\n      4.8e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.513793,\\n      0.632625,\\n      0.745417,\\n      0.82396,\\n      0.882119,\\n      0.92645,\\n      0.953987,\\n      0.968284,\\n      0.977834,\\n      0.985052,\\n      0.98942,\\n      0.993008,\\n      0.996459,\\n      0.998649,\\n      0.999253,\\n      0.999613,\\n      0.999875,\\n      0.999952,\\n      1.0\\n    ]\\n  },\\n  \\\"olmo_temp09\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 6,\\n    \\\"n_95pct\\\": 7,\\n    \\\"n_99pct\\\": 11,\\n    \\\"explained_variance_ratio\\\": [\\n      0.535542,\\n      0.123691,\\n      0.103332,\\n      0.074535,\\n      0.055214,\\n      0.047074,\\n      0.022642,\\n      0.010024,\\n      0.008221,\\n      0.007124,\\n      0.003641,\\n      0.003097,\\n      0.002876,\\n      0.001813,\\n      0.000529,\\n      0.000289,\\n      0.000252,\\n      6.5e-05,\\n      3.9e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.535542,\\n      0.659233,\\n      0.762565,\\n      0.8371,\\n      0.892314,\\n      0.939388,\\n      0.96203,\\n      0.972054,\\n      0.980274,\\n      0.987399,\\n      0.99104,\\n      0.994137,\\n      0.997013,\\n      0.998826,\\n      0.999355,\\n      0.999644,\\n      0.999896,\\n      0.999961,\\n      1.0\\n    ]\\n  },\\n  \\\"olmo_topk50\\\": {\\n    \\\"n_samples\\\": 20000,\\n    \\\"n_90pct\\\": 6,\\n    \\\"n_95pct\\\": 8,\\n    \\\"n_99pct\\\": 13,\\n    \\\"explained_variance_ratio\\\": [\\n      0.416664,\\n      0.167808,\\n      0.129097,\\n      0.096052,\\n      0.05385,\\n      0.048367,\\n      0.029039,\\n      0.016962,\\n      0.010042,\\n      0.008242,\\n      0.007489,\\n      0.006127,\\n      0.004513,\\n      0.002898,\\n      0.001626,\\n      0.000565,\\n      0.000284,\\n      0.000248,\\n      0.000125\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.416664,\\n      0.584473,\\n      0.71357,\\n      0.809621,\\n      0.863472,\\n      0.911839,\\n      0.940877,\\n      0.957839,\\n      0.967881,\\n      0.976123,\\n      0.983612,\\n      0.989739,\\n      0.994253,\\n      0.997151,\\n      0.998777,\\n      0.999342,\\n      0.999627,\\n      0.999875,\\n      1.0\\n    ]\\n  },\\n  \\\"merged_all\\\": {\\n    \\\"n_samples\\\": 180000,\\n    \\\"n_90pct\\\": 7,\\n    \\\"n_95pct\\\": 9,\\n    \\\"n_99pct\\\": 13,\\n    \\\"explained_variance_ratio\\\": [\\n      0.443752,\\n      0.126652,\\n      0.101536,\\n      0.081328,\\n      0.05401,\\n      0.051056,\\n      0.04641,\\n      0.033226,\\n      0.020306,\\n      0.012695,\\n      0.011637,\\n      0.007177,\\n      0.005079,\\n      0.002896,\\n      0.000901,\\n      0.000772,\\n      0.0004,\\n      0.000105,\\n      6.4e-05\\n    ],\\n    \\\"cumulative_variance\\\": [\\n      0.443752,\\n      0.570404,\\n      0.67194,\\n      0.753268,\\n      0.807278,\\n      0.858334,\\n      0.904744,\\n      0.93797,\\n      0.958275,\\n      0.97097,\\n      0.982607,\\n      0.989784,\\n      0.994863,\\n      0.997759,\\n      0.99866,\\n      0.999432,\\n      0.999831,\\n      0.999936,\\n      1.0\\n    ]\\n  },\\n  \\\"summary\\\": {\\n    \\\"n_90pct\\\": {\\n      \\\"mean\\\": 6.4,\\n      \\\"min\\\": 6,\\n      \\\"max\\\": 7\\n    },\\n    \\\"n_95pct\\\": {\\n      \\\"mean\\\": 8.1,\\n      \\\"min\\\": 7,\\n      \\\"max\\\": 9\\n    },\\n    \\\"n_99pct\\\": {\\n      \\\"mean\\\": 12.2,\\n      \\\"min\\\": 11,\\n      \\\"max\\\": 13\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wd9TSkAGmuuD1W8hPpWaK2`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/top_k_ablation.json') as f:\n    d = json.load(f)\nfor cell, v in d.items():\n    ranks = [(name, round(gain,4)) for name, gain in v['feature_ranking'][:5]]\n    topk_accs = {k: round(v2['accuracy_mean'],4) for k,v2 in v['top_k'].items()}\n    print(f'{cell}: top5_rank={ranks}, topk_acc={topk_accs}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "149fb4e2-4989-44fc-9eda-7767d076532e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dp834ZXT8TXHvPT8fLJpLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26098,
+      "cache_read_input_tokens": 41414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T18:58:13.626Z_
+
+<details><summary>↩ Tool result · `toolu_01Wd9TSkAGmuuD1W8hPpWaK2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "8ee01a2a-8ff7-4964-873e-0c9d91607b37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GWSLRGHjnoEYx9baNvHD4b`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/per_category_ablation.json') as f:\n    d = json.load(f)\nfor cell, v in d.items():\n    sc = {cat: round(v2['accuracy_mean'],4) for cat, v2 in v['single_category'].items()}\n    loo = {cat: round(v2['accuracy_mean'],4) for cat, v2 in v['leave_one_out'].items()}\n    print(f'{cell}: single={sc}, loo={loo}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "d4ede2c9-8c43-4026-a80c-e57444b6645e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dp834ZXT8TXHvPT8fLJpLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26098,
+      "cache_read_input_tokens": 41414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T18:58:15.615Z_
+
+<details><summary>↩ Tool result · `toolu_01GWSLRGHjnoEYx9baNvHD4b`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "cca04cf9-386b-4419-9545-16b200d8387c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QQLzgrS3o8sBdNWwPJbGbH`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/forward_selection.json') as f:\n    d = json.load(f)\nfor cell, v in d.items():\n    steps = v['path']\n    top3 = [(s['added_feature'], round(s['accuracy_mean'],4)) for s in steps[:3]]\n    plateau = steps[-1]['accuracy_mean']\n    plateau_k = steps[-1]['step']\n    print(f'{cell}: top3={top3}, plateau_acc={round(plateau,4)} at step {plateau_k}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "63accba7-d5bf-46dc-9d37-5e9ed9606f49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dp834ZXT8TXHvPT8fLJpLp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26098,
+      "cache_read_input_tokens": 41414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 26098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T18:58:17.977Z_
+
+<details><summary>↩ Tool result · `toolu_01QQLzgrS3o8sBdNWwPJbGbH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "85db1acb-93f3-43d8-bfcc-df079c4349df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `python3 -c` with `open(` is blocked for read-only. Let me use `ssh_execute` instead to run those Python scripts, or better yet, I already have most of the data. Let me use `ssh_execute` to get the summaries.
+
+Actually, wait - I have most of the data already. Let me look at what I have and compile it.
+
+From `topk_ablation.json` (forward selection top-k), I have all 9 cells partial data. Let me extract the key info from what I already read. Actually that was the FORWARD selection file.
+
+
+There are two separate top-k ablation files - one using forward selection order and another using permutation importance ranking, both evaluating the same k values. I have complete data from the forward selection file for two models, but truncated results for the others. I also have full category ablation data for those same two models.
+
+For the permutation importance version, I have complete results for one model with feature rankings included, while the other is partial. The forward selection file has full data for two models and a partial view of a third. I'm going to use SSH to pull the summary files directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "738d88fc-a495-40bd-aee1-9daa236d4a05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7Wm396aJEbH7k9YvFu6cD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8443,
+      "cache_read_input_tokens": 67512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8443
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+需要用 ssh_execute 跑 Python 提取摘要。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "0317d98c-6bf7-4c0d-86ae-6c05bc705f7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7Wm396aJEbH7k9YvFu6cD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8443,
+      "cache_read_input_tokens": 67512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8443
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DEHxcHd6jhHhiGiW9xTgNu`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation && python3 -c \"\nimport json\n\n# top_k_ablation: permutation importance + top-k accuracy\nwith open('top_k_ablation.json') as f:\n    d = json.load(f)\nprint('=== TOP-K ABLATION (permutation importance) ===')\nfor cell, v in d.items():\n    ranks = [(name, round(gain,4)) for name, gain in v['feature_ranking'][:5]]\n    topk_accs = {k: round(v2['accuracy_mean'],4) for k,v2 in v['top_k'].items()}\n    print(f'{cell}: top5={ranks}')\n    print(f'  topk_acc={topk_accs}')\n\nprint()\nprint('=== PER-CATEGORY ABLATION ===')\nwith open('per_category_ablation.json') as f:\n    d = json.load(f)\nfor cell, v in d.items():\n    sc = {cat: round(v2['accuracy_mean'],4) for cat, v2 in v['single_category'].items()}\n    loo = {cat: round(v2['accuracy_mean'],4) for cat, v2 in v['leave_one_out'].items()}\n    print(f'{cell}: single={sc}')\n    print(f'  loo={loo}')\n\nprint()\nprint('=== FORWARD SELECTION (top3 + plateau) ===')\nwith open('forward_selection.json') as f:\n    d = json.load(f)\nfor cell, v in d.items():\n    steps = v['path']\n    top5 = [(s['added_feature'], round(s['accuracy_mean'],4)) for s in steps[:5]]\n    plateau = max(s['accuracy_mean'] for s in steps)\n    plateau_k = [s for s in steps if s['accuracy_mean'] == plateau][0]['step']\n    full = steps[-1]['accuracy_mean']\n    print(f'{cell}: top5={top5}')\n    print(f'  plateau={round(plateau,4)} at k={plateau_k}, full(19)={round(full,4)}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "c473fa1a-ca17-4805-a6eb-1872bda14c67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7Wm396aJEbH7k9YvFu6cD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8443,
+      "cache_read_input_tokens": 67512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8443
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T18:58:40.413Z_
+
+<details><summary>↩ Tool result · `toolu_01DEHxcHd6jhHhiGiW9xTgNu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation && python3 -c \\\"\\\\nimport json\\\\n\\\\n# top_k_ablation: permutation importance + top-k accuracy\\\\nwith open(\\\\'top_k_ablation.json\\\\') as f:\\\\n    d = json.load(f)\\\\nprint(\\\\'=== TOP-K ABLATION (permutation importance) ===\\\\')\\\\nfor cell, v in d.items():\\\\n    ranks = [(name, round(gain,4)) for name, gain in v[\\\\'feature_ranking\\\\'][:5]]\\\\n    topk_accs = {k: round(v2[\\\\'accuracy_mean\\\\'],4) for k,v2 in v[\\\\'top_k\\\\'].items()}\\\\n    print(f\\\\'{cell}: top5={ranks}\\\\')\\\\n    print(f\\\\'  topk_acc={topk_accs}\\\\')\\\\n\\\\nprint()\\\\nprint(\\\\'=== PER-CATEGORY ABLATION ===\\\\')\\\\nwith open(\\\\'per_category_ablation.json\\\\') as f:\\\\n    d = json.load(f)\\\\nfor cell, v in d.items():\\\\n    sc = {cat: round(v2[\\\\'accuracy_mean\\\\'],4) for cat, v2 in v[\\\\'single_category\\\\'].items()}\\\\n    loo = {cat: round(v2[\\\\'accuracy_mean\\\\'],4) for cat, v2 in v[\\\\'leave_one_out\\\\'].items()}\\\\n    print(f\\\\'{cell}: single={sc}\\\\')\\\\n    print(f\\\\'  loo={loo}\\\\')\\\\n\\\\nprint()\\\\nprint(\\\\'=== FORWARD SELECTION (top3 + plateau) ===\\\\')\\\\nwith open(\\\\'forward_selection.json\\\\') as f:\\\\n    d = json.load(f)\\\\nfor cell, v in d.items():\\\\n    steps = v[\\\\'path\\\\']\\\\n    top5 = [(s[\\\\'added_feature\\\\'], round(s[\\\\'accuracy_mean\\\\'],4)) for s in steps[:5]]\\\\n    plateau = max(s[\\\\'accuracy_mean\\\\'] for s in steps)\\\\n    plateau_k = [s for s in steps if s[\\\\'accuracy_mean\\\\'] == plateau][0][\\\\'step\\\\']\\\\n    full = steps[-1][\\\\'accuracy_mean\\\\']\\\\n    print(f\\\\'{cell}: top5={top5}\\\\')\\\\n    print(f\\\\'  plateau={round(plateau,4)} at k={plateau_k}, full(19)={round(full,4)}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "634fe36d-43c4-4cb0-b58e-3144b386ae30",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\n\\\\\\\\n# top_k_ablation: permutation importance + top-k accuracy\\\\\\\\nwith open(\\\\\\\\'top_k_ablation.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\nprint(\\\\\\\\'=== TOP-K ABLATION (permutation importance) ===\\\\\\\\')\\\\\\\\nfor cell, v in d.items():\\\\\\\\n    ranks = [(name, round(gain,4)) for name, gain in v[\\\\\\\\'feature_ranking\\\\\\\\'][:5]]\\\\\\\\n    topk_accs = {k: round(v2[\\\\\\\\'accuracy_mean\\\\\\\\'],4) for k,v2 in v[\\\\\\\\'top_k\\\\\\\\'].items()}\\\\\\\\n    print(f\\\\\\\\'{cell}: top5={ranks}\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'  topk_acc={topk_accs}\\\\\\\\')\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'=== PER-CATEGORY ABLATION ===\\\\\\\\')\\\\\\\\nwith open(\\\\\\\\'per_category_ablation.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\nfor cell, v in d.items():\\\\\\\\n    sc = {cat: round(v2[\\\\\\\\'accuracy_mean\\\\\\\\'],4) for cat, v2 in v[\\\\\\\\'single_category\\\\\\\\'].items()}\\\\\\\\n    loo = {cat: round(v2[\\\\\\\\'accuracy_mean\\\\\\\\'],4) for cat, v2 in v[\\\\\\\\'leave_one_out\\\\\\\\'].items()}\\\\\\\\n    print(f\\\\\\\\'{cell}: single={sc}\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'  loo={loo}\\\\\\\\')\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'=== FORWARD SELECTION (top3 + plateau) ===\\\\\\\\')\\\\\\\\nwith open(\\\\\\\\'forward_selection.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\nfor cell, v in d.items():\\\\\\\\n    steps = v[\\\\\\\\'path\\\\\\\\']\\\\\\\\n    top5 = [(s[\\\\\\\\'added_feature\\\\\\\\'], round(s[\\\\\\\\'accuracy_mean\\\\\\\\'],4)) for s in steps[:5]]\\\\\\\\n    plateau = max(s[\\\\\\\\'accuracy_mean\\\\\\\\'] for s in steps)\\\\\\\\n    plateau_k = [s for s in steps if s[\\\\\\\\'accuracy_mean\\\\\\\\'] == plateau][0][\\\\\\\\'step\\\\\\\\']\\\\\\\\n    full = steps[-1][\\\\\\\\'accuracy_mean\\\\\\\\']\\\\\\\\n    print(f\\\\\\\\'{cell}: top5={top5}\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'  plateau={round(plateau,4)} at k={plateau_k}, full(19)={round(full,4)}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation && python3 -c \\\"\\\\nimport json\\\\n\\\\n# top_k_ablation: permutation importance + top-k accuracy\\\\nwith open(\\\\'top_k_ablation.json\\\\') as f:\\\\n    d = json.load(f)\\\\nprint(\\\\'=== TOP-K ABLATION (permutation importance) ===\\\\')\\\\nfor cell, v in d.items():\\\\n    ranks = [(name, round(gain,4)) for name, gain in v[\\\\'feature_ranking\\\\'][:5]]\\\\n    topk_accs = {k: round(v2[\\\\'accuracy_mean\\\\'],4) for k,v2 in v[\\\\'top_k\\\\'].items()}\\\\n    print(f\\\\'{cell}: top5={ranks}\\\\')\\\\n    print(f\\\\'  topk_acc={topk_accs}\\\\')\\\\n\\\\nprint()\\\\nprint(\\\\'=== PER-CATEGORY ABLATION ===\\\\')\\\\nwith open(\\\\'per_category_ablation.json\\\\') as f:\\\\n    d = json.load(f)\\\\nfor cell, v in d.items():\\\\n    sc = {cat: round(v2[\\\\'accuracy_mean\\\\'],4) for cat, v2 in v[\\\\'single_category\\\\'].items()}\\\\n    loo = {cat: round(v2[\\\\'accuracy_mean\\\\'],4) for cat, v2 in v[\\\\'leave_one_out\\\\'].items()}\\\\n    print(f\\\\'{cell}: single={sc}\\\\')\\\\n    print(f\\\\'  loo={loo}\\\\')\\\\n\\\\nprint()\\\\nprint(\\\\'=== FORWARD SELECTION (top3 + plateau) ===\\\\')\\\\nwith open(\\\\'forward_selection.json\\\\') as f:\\\\n    d = json.load(f)\\\\nfor cell, v in d.items():\\\\n    steps = v[\\\\'path\\\\']\\\\n    top5 = [(s[\\\\'added_feature\\\\'], round(s[\\\\'accuracy_mean\\\\'],4)) for s in steps[:5]]\\\\n    plateau = max(s[\\\\'accuracy_mean\\\\'] for s in steps)\\\\n    plateau_k = [s for s in steps if s[\\\\'accuracy_mean\\\\'] == plateau][0][\\\\'step\\\\']\\\\n    full = steps[-1][\\\\'accuracy_mean\\\\']\\\\n    print(f\\\\'{cell}: top5={top5}\\\\')\\\\n    print(f\\\\'  plateau={round(plateau,4)} at k={plateau_k}, full(19)={round(full,4)}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Python not found in ssh_execute context. Need to source conda first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "e2c37dd1-d065-48c6-8f28-bfc9958794fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015anTUcnaa4Ct57W1TjbgoX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1965,
+      "cache_read_input_tokens": 75955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BWsARnsmbqdLMkkJyGDgPj`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation && python3 -c \"\nimport json\n\nprint('=== TOP-K ABLATION (permutation importance) ===')\nwith open('top_k_ablation.json') as f:\n    d = json.load(f)\nfor cell, v in d.items():\n    ranks = [(name, round(gain,4)) for name, gain in v['feature_ranking'][:5]]\n    topk_accs = {k: round(v2['accuracy_mean'],4) for k,v2 in v['top_k'].items()}\n    print(f'{cell}: top5={ranks}')\n    print(f'  topk_acc={topk_accs}')\n\nprint()\nprint('=== PER-CATEGORY ABLATION ===')\nwith open('per_category_ablation.json') as f:\n    d = json.load(f)\nfor cell, v in d.items():\n    sc = {cat: round(v2['accuracy_mean'],4) for cat, v2 in v['single_category'].items()}\n    loo = {cat: round(v2['accuracy_mean'],4) for cat, v2 in v['leave_one_out'].items()}\n    print(f'{cell}: single={sc}')\n    print(f'  loo={loo}')\n\nprint()\nprint('=== FORWARD SELECTION (top3 + plateau) ===')\nwith open('forward_selection.json') as f:\n    d = json.load(f)\nfor cell, v in d.items():\n    steps = v['path']\n    top5 = [(s['added_feature'], round(s['accuracy_mean'],4)) for s in steps[:5]]\n    plateau = max(s['accuracy_mean'] for s in steps)\n    plateau_k = [s for s in steps if s['accuracy_mean'] == plateau][0]['step']\n    full = steps[-1]['accuracy_mean']\n    print(f'{cell}: top5={top5}')\n    print(f'  plateau={round(plateau,4)} at k={plateau_k}, full(19)={round(full,4)}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "34027c73-113c-47ab-bec3-7828bef34876",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015anTUcnaa4Ct57W1TjbgoX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1965,
+      "cache_read_input_tokens": 75955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T18:58:49.368Z_
+
+<details><summary>↩ Tool result · `toolu_01BWsARnsmbqdLMkkJyGDgPj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== TOP-K ABLATION (permutation importance) ===\\npythia_nucleus: top5=[('var_surprisal', 0.3617), ('p90_ppl', 0.1173), ('p50_ppl', 0.0338), ('p75_ppl', 0.0204), ('skewness_ppl', 0.0147)]\\n  topk_acc={'1': 0.6215, '2': 0.69, '3': 0.7328, '5': 0.7649, '10': 0.7731, '15': 0.7847, '19': 0.7849}\\npythia_temp09: top5=[('var_surprisal', 0.4083), ('p90_ppl', 0.0798), ('p50_ppl', 0.036), ('p75_ppl', 0.0284), ('mean_ppl', 0.0099)]\\n  topk_acc={'1': 0.6396, '2': 0.701, '3': 0.7288, '5': 0.7492, '10': 0.7527, '15': 0.7651, '19': 0.7657}\\npythia_topk50: top5=[('var_surprisal', 0.3894), ('p90_ppl', 0.1142), ('p75_ppl', 0.0208), ('p25_ppl', 0.0199), ('p50_ppl', 0.015)]\\n  topk_acc={'1': 0.5626, '2': 0.6209, '3': 0.6457, '5': 0.6609, '10': 0.6832, '15': 0.6857, '19': 0.6876}\\nolmo_nucleus: top5=[('p90_ppl', 0.2847), ('var_surprisal', 0.1807), ('p75_ppl', 0.1375), ('p50_ppl', 0.0142), ('type_token_ratio', 0.0103)]\\n  topk_acc={'1': 0.6354, '2': 0.7152, '3': 0.7456, '5': 0.7703, '10': 0.783, '15': 0.7867, '19': 0.7903}\\n\\n=== PER-CATEGORY ABLATION ===\\npythia_nucleus: single={'perplexity': 0.7694, 'surprisal': 0.7476, 'lexical': 0.4711, 'ngram_entropy': 0.4299, 'repetition': 0.4519}\\n  loo={'perplexity': 0.7606, 'surprisal': 0.7804, 'lexical': 0.7834, 'ngram_entropy': 0.7834, 'repetition': 0.7839}\\npythia_temp09: single={'perplexity': 0.7432, 'surprisal': 0.7326, 'lexical': 0.4816, 'ngram_entropy': 0.4471, 'repetition': 0.4711}\\n  loo={'perplexity': 0.7525, 'surprisal': 0.7563, 'lexical': 0.768, 'ngram_entropy': 0.7659, 'repetition': 0.7627}\\npythia_topk50: single={'perplexity': 0.6607, 'surprisal': 0.6464, 'lexical': 0.4148, 'ngram_entropy': 0.3731, 'repetition': 0.383}\\n  loo={'perplexity': 0.6707, 'surprisal': 0.6769, 'lexical': 0.6854, 'ngram_entropy': 0.682, 'repetition': 0.6834}\\nolmo_nucleus: single={'perplexity': 0.774, 'surprisal': 0.7281, 'lexical': 0.5196, 'ngram_entropy': 0.4361, 'repetition': 0.4936}\\n  loo={'perplexity': 0.7447, 'surprisal': 0.786, 'lexical': 0.7871, 'ngram_entropy': 0.7878, 'repetition': 0.7864}\\n\\n=== FORWARD SELECTION (top3 + plateau) ===\\npythia_nucleus: top5=[('var_surprisal', 0.6215), ('mean_ppl', 0.7176), ('p75_ppl', 0.757), ('rep_2gram', 0.7665), ('skewness_ppl', 0.7733)]\\n  plateau=0.7884 at k=14, full(19)=0.7844\\npythia_temp09: top5=[('var_surprisal', 0.6396), ('mean_surprisal', 0.7111), ('var_ppl', 0.7353), ('trigram_entropy', 0.7497), ('type_token_ratio', 0.7556)]\\n  plateau=0.7692 at k=16, full(19)=0.7655\\npythia_topk50: top5=[('var_surprisal', 0.5626), ('p75_ppl', 0.6292), ('mean_ppl', 0.6576), ('trigram_entropy', 0.6684), ('rep_4gram', 0.6764)]\\n  plateau=0.6901 at k=15, full(19)=0.6848\\nolmo_nucleus: top5=[('p90_ppl', 0.6354), ('p75_ppl', 0.7196), ('mean_surprisal', 0.7537), ('rep_4gram', 0.7631), ('var_ppl', 0.7737)]\\n  plateau=0.7917 at k=16, full(19)=0.789\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "467dbda7-ce37-43d9-8006-fbfde8f8fdf5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== TOP-K ABLATION (permutation importance) ===\\\\npythia_nucleus: top5=[('var_surprisal', 0.3617), ('p90_ppl', 0.1173), ('p50_ppl', 0.0338), ('p75_ppl', 0.0204), ('skewness_ppl', 0.0147)]\\\\n  topk_acc={'1': 0.6215, '2': 0.69, '3': 0.7328, '5': 0.7649, '10': 0.7731, '15': 0.7847, '19': 0.7849}\\\\npythia_temp09: top5=[('var_surprisal', 0.4083), ('p90_ppl', 0.0798), ('p50_ppl', 0.036), ('p75_ppl', 0.0284), ('mean_ppl', 0.0099)]\\\\n  topk_acc={'1': 0.6396, '2': 0.701, '3': 0.7288, '5': 0.7492, '10': 0.7527, '15': 0.7651, '19': 0.7657}\\\\npythia_topk50: top5=[('var_surprisal', 0.3894), ('p90_ppl', 0.1142), ('p75_ppl', 0.0208), ('p25_ppl', 0.0199), ('p50_ppl', 0.015)]\\\\n  topk_acc={'1': 0.5626, '2': 0.6209, '3': 0.6457, '5': 0.6609, '10': 0.6832, '15': 0.6857, '19': 0.6876}\\\\nolmo_nucleus: top5=[('p90_ppl', 0.2847), ('var_surprisal', 0.1807), ('p75_ppl', 0.1375), ('p50_ppl', 0.0142), ('type_token_ratio', 0.0103)]\\\\n  topk_acc={'1': 0.6354, '2': 0.7152, '3': 0.7456, '5': 0.7703, '10': 0.783, '15': 0.7867, '19': 0.7903}\\\\n\\\\n=== PER-CATEGORY ABLATION ===\\\\npythia_nucleus: single={'perplexity': 0.7694, 'surprisal': 0.7476, 'lexical': 0.4711, 'ngram_entropy': 0.4299, 'repetition': 0.4519}\\\\n  loo={'perplexity': 0.7606, 'surprisal': 0.7804, 'lexical': 0.7834, 'ngram_entropy': 0.7834, 'repetition': 0.7839}\\\\npythia_temp09: single={'perplexity': 0.7432, 'surprisal': 0.7326, 'lexical': 0.4816, 'ngram_entropy': 0.4471, 'repetition': 0.4711}\\\\n  loo={'perplexity': 0.7525, 'surprisal': 0.7563, 'lexical': 0.768, 'ngram_entropy': 0.7659, 'repetition': 0.7627}\\\\npythia_topk50: single={'perplexity': 0.6607, 'surprisal': 0.6464, 'lexical': 0.4148, 'ngram_entropy': 0.3731, 'repetition': 0.383}\\\\n  loo={'perplexity': 0.6707, 'surprisal': 0.6769, 'lexical': 0.6854, 'ngram_entropy': 0.682, 'repetition': 0.6834}\\\\nolmo_nucleus: single={'perplexity': 0.774, 'surprisal': 0.7281, 'lexical': 0.5196, 'ngram_entropy': 0.4361, 'repetition': 0.4936}\\\\n  loo={'perplexity': 0.7447, 'surprisal': 0.786, 'lexical': 0.7871, 'ngram_entropy': 0.7878, 'repetition': 0.7864}\\\\n\\\\n=== FORWARD SELECTION (top3 + plateau) ===\\\\npythia_nucleus: top5=[('var_surprisal', 0.6215), ('mean_ppl', 0.7176), ('p75_ppl', 0.757), ('rep_2gram', 0.7665), ('skewness_ppl', 0.7733)]\\\\n  plateau=0.7884 at k=14, full(19)=0.7844\\\\npythia_temp09: top5=[('var_surprisal', 0.6396), ('mean_surprisal', 0.7111), ('var_ppl', 0.7353), ('trigram_entropy', 0.7497), ('type_token_ratio', 0.7556)]\\\\n  plateau=0.7692 at k=16, full(19)=0.7655\\\\npythia_topk50: top5=[('var_surprisal', 0.5626), ('p75_ppl', 0.6292), ('mean_ppl', 0.6576), ('trigram_entropy', 0.6684), ('rep_4gram', 0.6764)]\\\\n  plateau=0.6901 at k=15, full(19)=0.6848\\\\nolmo_nucleus: top5=[('p90_ppl', 0.6354), ('p75_ppl', 0.7196), ('mean_surprisal', 0.7537), ('rep_4gram', 0.7631), ('var_ppl', 0.7737)]\\\\n  plateau=0.7917 at k=16, full(19)=0.789\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== TOP-K ABLATION (permutation importance) ===\\npythia_nucleus: top5=[('var_surprisal', 0.3617), ('p90_ppl', 0.1173), ('p50_ppl', 0.0338), ('p75_ppl', 0.0204), ('skewness_ppl', 0.0147)]\\n  topk_acc={'1': 0.6215, '2': 0.69, '3': 0.7328, '5': 0.7649, '10': 0.7731, '15': 0.7847, '19': 0.7849}\\npythia_temp09: top5=[('var_surprisal', 0.4083), ('p90_ppl', 0.0798), ('p50_ppl', 0.036), ('p75_ppl', 0.0284), ('mean_ppl', 0.0099)]\\n  topk_acc={'1': 0.6396, '2': 0.701, '3': 0.7288, '5': 0.7492, '10': 0.7527, '15': 0.7651, '19': 0.7657}\\npythia_topk50: top5=[('var_surprisal', 0.3894), ('p90_ppl', 0.1142), ('p75_ppl', 0.0208), ('p25_ppl', 0.0199), ('p50_ppl', 0.015)]\\n  topk_acc={'1': 0.5626, '2': 0.6209, '3': 0.6457, '5': 0.6609, '10': 0.6832, '15': 0.6857, '19': 0.6876}\\nolmo_nucleus: top5=[('p90_ppl', 0.2847), ('var_surprisal', 0.1807), ('p75_ppl', 0.1375), ('p50_ppl', 0.0142), ('type_token_ratio', 0.0103)]\\n  topk_acc={'1': 0.6354, '2': 0.7152, '3': 0.7456, '5': 0.7703, '10': 0.783, '15': 0.7867, '19': 0.7903}\\n\\n=== PER-CATEGORY ABLATION ===\\npythia_nucleus: single={'perplexity': 0.7694, 'surprisal': 0.7476, 'lexical': 0.4711, 'ngram_entropy': 0.4299, 'repetition': 0.4519}\\n  loo={'perplexity': 0.7606, 'surprisal': 0.7804, 'lexical': 0.7834, 'ngram_entropy': 0.7834, 'repetition': 0.7839}\\npythia_temp09: single={'perplexity': 0.7432, 'surprisal': 0.7326, 'lexical': 0.4816, 'ngram_entropy': 0.4471, 'repetition': 0.4711}\\n  loo={'perplexity': 0.7525, 'surprisal': 0.7563, 'lexical': 0.768, 'ngram_entropy': 0.7659, 'repetition': 0.7627}\\npythia_topk50: single={'perplexity': 0.6607, 'surprisal': 0.6464, 'lexical': 0.4148, 'ngram_entropy': 0.3731, 'repetition': 0.383}\\n  loo={'perplexity': 0.6707, 'surprisal': 0.6769, 'lexical': 0.6854, 'ngram_entropy': 0.682, 'repetition': 0.6834}\\nolmo_nucleus: single={'perplexity': 0.774, 'surprisal': 0.7281, 'lexical': 0.5196, 'ngram_entropy': 0.4361, 'repetition': 0.4936}\\n  loo={'perplexity': 0.7447, 'surprisal': 0.786, 'lexical': 0.7871, 'ngram_entropy': 0.7878, 'repetition': 0.7864}\\n\\n=== FORWARD SELECTION (top3 + plateau) ===\\npythia_nucleus: top5=[('var_surprisal', 0.6215), ('mean_ppl', 0.7176), ('p75_ppl', 0.757), ('rep_2gram', 0.7665), ('skewness_ppl', 0.7733)]\\n  plateau=0.7884 at k=14, full(19)=0.7844\\npythia_temp09: top5=[('var_surprisal', 0.6396), ('mean_surprisal', 0.7111), ('var_ppl', 0.7353), ('trigram_entropy', 0.7497), ('type_token_ratio', 0.7556)]\\n  plateau=0.7692 at k=16, full(19)=0.7655\\npythia_topk50: top5=[('var_surprisal', 0.5626), ('p75_ppl', 0.6292), ('mean_ppl', 0.6576), ('trigram_entropy', 0.6684), ('rep_4gram', 0.6764)]\\n  plateau=0.6901 at k=15, full(19)=0.6848\\nolmo_nucleus: top5=[('p90_ppl', 0.6354), ('p75_ppl', 0.7196), ('mean_surprisal', 0.7537), ('rep_4gram', 0.7631), ('var_ppl', 0.7737)]\\n  plateau=0.7917 at k=16, full(19)=0.789\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I notice that the results only show 4 cells: pythia_nucleus, pythia_temp09, pythia_topk50, and olmo_nucleus. But I was expecting 9 cells. Let me check what cells are in each file and also check the other files (category_ablation.json and topk_ablation.json which have different formats).
+
+Wait, looking at the original `category_ablation.json` and `topk_ablation.json`, they had 9 cells (pythia_nucleus095, pythia_temp09, pythia_topk50, gpt2xl_nucleus095, gpt2xl_temp09, gpt2xl_topk50, olmo_nucleus095, olmo_temp09, olmo_topk50).
+ 
+The newer files like top_k_ablation.json and per_category_ablation.json only have 4 cells, which suggests they're from a v2 run that's still incomplete. Looking at the file timestamps and sizes, I can see that topk_ablation.json and category_ablation.json are the original Phase 1 files with all 9 cells, while the newer versions have fewer entries. So the v2 run is still in progress on the olmo_temp09 cell, having completed only 4 out of 9 cells compared to the v1 run which finished all 9. Looking at the log output, I can see it's currently computing permutation importance for that cell with some initial results showing. I see that Phase 1 is actually complete with all 9 cells, so I should pull the full data from the original files rather than relying on the incomplete v2 log. I have most of the data already from my earlier reads of topk_ablation.json and category_ablation.json, though some parts got truncated—I need to retrieve the missing gpt2xl and olmo sections to have the complete picture.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "534fad07-0e52-4968-94ff-89dab7462a7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011E5aoEyXFoyQUkveyYepnC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2287,
+      "cache_read_input_tokens": 77920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+原来 v2 文件只跑了 4 cells。需要用原始 Phase 1 文件（全 9 cells）来提取摘要。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "9e869f69-e3a2-4fbd-a4f5-331ba57453e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011E5aoEyXFoyQUkveyYepnC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2287,
+      "cache_read_input_tokens": 77920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NFxKRfMvjSyDXYd6WDtEzQ`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation && python3 -c \"\nimport json\n\nprint('=== TOPK ABLATION (Phase 1, all 9 cells) ===')\nwith open('topk_ablation.json') as f:\n    d = json.load(f)\nprint(f'Cells: {list(d.keys())}')\nfor cell, v in d.items():\n    # extract k=1,3,5,10,19 accuracy\n    accs = {}\n    for k in ['1','3','5','10','19']:\n        if k in v:\n            accs[k] = round(v[k]['acc_mean'],4)\n    top1_feat = v['1']['features'][0] if '1' in v else 'N/A'\n    top3_feat = v['3']['features'] if '3' in v else []\n    print(f'{cell}: k1={accs.get(\\\"1\\\",\\\"?\\\")}, k3={accs.get(\\\"3\\\",\\\"?\\\")}, k5={accs.get(\\\"5\\\",\\\"?\\\")}, k10={accs.get(\\\"10\\\",\\\"?\\\")}, k19={accs.get(\\\"19\\\",\\\"?\\\")} | top1={top1_feat}, top3={top3_feat}')\n\nprint()\nprint('=== CATEGORY ABLATION (Phase 1, all 9 cells) ===')\nwith open('category_ablation.json') as f:\n    d = json.load(f)\nprint(f'Cells: {list(d.keys())}')\nfor cell, v in d.items():\n    cats = {cat: round(v2['acc_mean'],4) for cat, v2 in v.items()}\n    print(f'{cell}: {cats}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "1314df6e-919d-4f46-a7ec-05e5b701e6e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011E5aoEyXFoyQUkveyYepnC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2287,
+      "cache_read_input_tokens": 77920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T18:59:22.287Z_
+
+<details><summary>↩ Tool result · `toolu_01NFxKRfMvjSyDXYd6WDtEzQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== TOPK ABLATION (Phase 1, all 9 cells) ===\\nCells: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50']\\npythia_nucleus095: k1=0.6214, k3=0.7325, k5=0.7703, k10=0.781, k19=0.7877 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p50_ppl']\\npythia_temp09: k1=0.6396, k3=0.7278, k5=0.7493, k10=0.7651, k19=0.7673 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p50_ppl']\\npythia_topk50: k1=0.5625, k3=0.6485, k5=0.6653, k10=0.6862, k19=0.6884 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\ngpt2xl_nucleus095: k1=0.6443, k3=0.7999, k5=0.8272, k10=0.838, k19=0.8416 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\ngpt2xl_temp09: k1=0.8029, k3=0.8345, k5=0.8494, k10=0.8575, k19=0.8603 | top1=p90_ppl, top3=['p90_ppl', 'var_surprisal', 'p75_ppl']\\ngpt2xl_topk50: k1=0.6936, k3=0.7124, k5=0.7378, k10=0.7575, k19=0.7589 | top1=p90_ppl, top3=['p90_ppl', 'p75_ppl', 'var_surprisal']\\nolmo_nucleus095: k1=0.6369, k3=0.7472, k5=0.7663, k10=0.7904, k19=0.7902 | top1=p90_ppl, top3=['p90_ppl', 'var_surprisal', 'p75_ppl']\\nolmo_temp09: k1=0.6571, k3=0.7861, k5=0.8113, k10=0.8217, k19=0.8208 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\nolmo_topk50: k1=0.5596, k3=0.6982, k5=0.7334, k10=0.7434, k19=0.747 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\n\\n=== CATEGORY ABLATION (Phase 1, all 9 cells) ===\\nCells: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50']\\npythia_nucleus095: {'perplexity': 0.7696, 'surprisal': 0.7472, 'lexical_diversity': 0.4738, 'ngram_entropy': 0.433, 'repetition': 0.4536}\\npythia_temp09: {'perplexity': 0.7427, 'surprisal': 0.7329, 'lexical_diversity': 0.4838, 'ngram_entropy': 0.4482, 'repetition': 0.4706}\\npythia_topk50: {'perplexity': 0.6616, 'surprisal': 0.6472, 'lexical_diversity': 0.4152, 'ngram_entropy': 0.3729, 'repetition': 0.3866}\\ngpt2xl_nucleus095: {'perplexity': 0.8231, 'surprisal': 0.7943, 'lexical_diversity': 0.4439, 'ngram_entropy': 0.3696, 'repetition': 0.4195}\\ngpt2xl_temp09: {'perplexity': 0.8458, 'surprisal': 0.8, 'lexical_diversity': 0.4636, 'ngram_entropy': 0.3993, 'repetition': 0.4374}\\ngpt2xl_topk50: {'perplexity': 0.7345, 'surprisal': 0.6546, 'lexical_diversity': 0.3972, 'ngram_entropy': 0.3021, 'repetition': 0.3614}\\nolmo_nucleus095: {'perplexity': 0.777, 'surprisal': 0.7312, 'lexical_diversity': 0.5205, 'ngram_entropy': 0.4354, 'repetition': 0.4948}\\nolmo_temp09: {'perplexity': 0.8133, 'surprisal': 0.7865, 'lexical_diversity': 0.5302, 'ngram_entropy': 0.4697, 'repetition': 0.5151}\\nolmo_topk50: {'perplexity': 0.7337, 'surprisal': 0.7056, 'lexical_diversity': 0.4281, 'ngram_entropy': 0.3269, 'repetition': 0.3972}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "7694a967-13f1-475b-a2d6-9e0b4503a005",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== TOPK ABLATION (Phase 1, all 9 cells) ===\\\\nCells: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50']\\\\npythia_nucleus095: k1=0.6214, k3=0.7325, k5=0.7703, k10=0.781, k19=0.7877 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p50_ppl']\\\\npythia_temp09: k1=0.6396, k3=0.7278, k5=0.7493, k10=0.7651, k19=0.7673 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p50_ppl']\\\\npythia_topk50: k1=0.5625, k3=0.6485, k5=0.6653, k10=0.6862, k19=0.6884 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\\\ngpt2xl_nucleus095: k1=0.6443, k3=0.7999, k5=0.8272, k10=0.838, k19=0.8416 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\\\ngpt2xl_temp09: k1=0.8029, k3=0.8345, k5=0.8494, k10=0.8575, k19=0.8603 | top1=p90_ppl, top3=['p90_ppl', 'var_surprisal', 'p75_ppl']\\\\ngpt2xl_topk50: k1=0.6936, k3=0.7124, k5=0.7378, k10=0.7575, k19=0.7589 | top1=p90_ppl, top3=['p90_ppl', 'p75_ppl', 'var_surprisal']\\\\nolmo_nucleus095: k1=0.6369, k3=0.7472, k5=0.7663, k10=0.7904, k19=0.7902 | top1=p90_ppl, top3=['p90_ppl', 'var_surprisal', 'p75_ppl']\\\\nolmo_temp09: k1=0.6571, k3=0.7861, k5=0.8113, k10=0.8217, k19=0.8208 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\\\nolmo_topk50: k1=0.5596, k3=0.6982, k5=0.7334, k10=0.7434, k19=0.747 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\\\n\\\\n=== CATEGORY ABLATION (Phase 1, all 9 cells) ===\\\\nCells: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50']\\\\npythia_nucleus095: {'perplexity': 0.7696, 'surprisal': 0.7472, 'lexical_diversity': 0.4738, 'ngram_entropy': 0.433, 'repetition': 0.4536}\\\\npythia_temp09: {'perplexity': 0.7427, 'surprisal': 0.7329, 'lexical_diversity': 0.4838, 'ngram_entropy': 0.4482, 'repetition': 0.4706}\\\\npythia_topk50: {'perplexity': 0.6616, 'surprisal': 0.6472, 'lexical_diversity': 0.4152, 'ngram_entropy': 0.3729, 'repetition': 0.3866}\\\\ngpt2xl_nucleus095: {'perplexity': 0.8231, 'surprisal': 0.7943, 'lexical_diversity': 0.4439, 'ngram_entropy': 0.3696, 'repetition': 0.4195}\\\\ngpt2xl_temp09: {'perplexity': 0.8458, 'surprisal': 0.8, 'lexical_diversity': 0.4636, 'ngram_entropy': 0.3993, 'repetition': 0.4374}\\\\ngpt2xl_topk50: {'perplexity': 0.7345, 'surprisal': 0.6546, 'lexical_diversity': 0.3972, 'ngram_entropy': 0.3021, 'repetition': 0.3614}\\\\nolmo_nucleus095: {'perplexity': 0.777, 'surprisal': 0.7312, 'lexical_diversity': 0.5205, 'ngram_entropy': 0.4354, 'repetition': 0.4948}\\\\nolmo_temp09: {'perplexity': 0.8133, 'surprisal': 0.7865, 'lexical_diversity': 0.5302, 'ngram_entropy': 0.4697, 'repetition': 0.5151}\\\\nolmo_topk50: {'perplexity': 0.7337, 'surprisal': 0.7056, 'lexical_diversity': 0.4281, 'ngram_entropy': 0.3269, 'repetition': 0.3972}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== TOPK ABLATION (Phase 1, all 9 cells) ===\\nCells: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50']\\npythia_nucleus095: k1=0.6214, k3=0.7325, k5=0.7703, k10=0.781, k19=0.7877 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p50_ppl']\\npythia_temp09: k1=0.6396, k3=0.7278, k5=0.7493, k10=0.7651, k19=0.7673 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p50_ppl']\\npythia_topk50: k1=0.5625, k3=0.6485, k5=0.6653, k10=0.6862, k19=0.6884 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\ngpt2xl_nucleus095: k1=0.6443, k3=0.7999, k5=0.8272, k10=0.838, k19=0.8416 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\ngpt2xl_temp09: k1=0.8029, k3=0.8345, k5=0.8494, k10=0.8575, k19=0.8603 | top1=p90_ppl, top3=['p90_ppl', 'var_surprisal', 'p75_ppl']\\ngpt2xl_topk50: k1=0.6936, k3=0.7124, k5=0.7378, k10=0.7575, k19=0.7589 | top1=p90_ppl, top3=['p90_ppl', 'p75_ppl', 'var_surprisal']\\nolmo_nucleus095: k1=0.6369, k3=0.7472, k5=0.7663, k10=0.7904, k19=0.7902 | top1=p90_ppl, top3=['p90_ppl', 'var_surprisal', 'p75_ppl']\\nolmo_temp09: k1=0.6571, k3=0.7861, k5=0.8113, k10=0.8217, k19=0.8208 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\nolmo_topk50: k1=0.5596, k3=0.6982, k5=0.7334, k10=0.7434, k19=0.747 | top1=var_surprisal, top3=['var_surprisal', 'p90_ppl', 'p75_ppl']\\n\\n=== CATEGORY ABLATION (Phase 1, all 9 cells) ===\\nCells: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50']\\npythia_nucleus095: {'perplexity': 0.7696, 'surprisal': 0.7472, 'lexical_diversity': 0.4738, 'ngram_entropy': 0.433, 'repetition': 0.4536}\\npythia_temp09: {'perplexity': 0.7427, 'surprisal': 0.7329, 'lexical_diversity': 0.4838, 'ngram_entropy': 0.4482, 'repetition': 0.4706}\\npythia_topk50: {'perplexity': 0.6616, 'surprisal': 0.6472, 'lexical_diversity': 0.4152, 'ngram_entropy': 0.3729, 'repetition': 0.3866}\\ngpt2xl_nucleus095: {'perplexity': 0.8231, 'surprisal': 0.7943, 'lexical_diversity': 0.4439, 'ngram_entropy': 0.3696, 'repetition': 0.4195}\\ngpt2xl_temp09: {'perplexity': 0.8458, 'surprisal': 0.8, 'lexical_diversity': 0.4636, 'ngram_entropy': 0.3993, 'repetition': 0.4374}\\ngpt2xl_topk50: {'perplexity': 0.7345, 'surprisal': 0.6546, 'lexical_diversity': 0.3972, 'ngram_entropy': 0.3021, 'repetition': 0.3614}\\nolmo_nucleus095: {'perplexity': 0.777, 'surprisal': 0.7312, 'lexical_diversity': 0.5205, 'ngram_entropy': 0.4354, 'repetition': 0.4948}\\nolmo_temp09: {'perplexity': 0.8133, 'surprisal': 0.7865, 'lexical_diversity': 0.5302, 'ngram_entropy': 0.4697, 'repetition': 0.5151}\\nolmo_topk50: {'perplexity': 0.7337, 'surprisal': 0.7056, 'lexical_diversity': 0.4281, 'ngram_entropy': 0.3269, 'repetition': 0.3972}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SusSfaZZiwMumbaT6FhZy8`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n# Check forward selection for completed cells\nwith open('/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/forward_selection.json') as f:\n    d = json.load(f)\nprint(f'Forward selection cells completed: {list(d.keys())} ({len(d)}/9)')\nfor cell in d:\n    print(f'  {cell}: {len(d[cell][\\\"path\\\"])} steps')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "9d32f91b-841f-47cb-84fb-a28938d237f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011E5aoEyXFoyQUkveyYepnC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2287,
+      "cache_read_input_tokens": 77920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T18:59:24.274Z_
+
+<details><summary>↩ Tool result · `toolu_01SusSfaZZiwMumbaT6FhZy8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Forward selection cells completed: ['pythia_nucleus', 'pythia_temp09', 'pythia_topk50', 'olmo_nucleus'] (4/9)\\n  pythia_nucleus: 19 steps\\n  pythia_temp09: 19 steps\\n  pythia_topk50: 19 steps\\n  olmo_nucleus: 19 steps\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "5161620a-da4a-4a55-a553-f11cbe3e858a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Forward selection cells completed: ['pythia_nucleus', 'pythia_temp09', 'pythia_topk50', 'olmo_nucleus'] (4/9)\\\\n  pythia_nucleus: 19 steps\\\\n  pythia_temp09: 19 steps\\\\n  pythia_topk50: 19 steps\\\\n  olmo_nucleus: 19 steps\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Forward selection cells completed: ['pythia_nucleus', 'pythia_temp09', 'pythia_topk50', 'olmo_nucleus'] (4/9)\\n  pythia_nucleus: 19 steps\\n  pythia_temp09: 19 steps\\n  pythia_topk50: 19 steps\\n  olmo_nucleus: 19 steps\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Sq8N9K5BvEru1vPQ34sWtU`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n# Check leave_one_group_out\nwith open('/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json') as f:\n    d = json.load(f)\nprint(f'LOGO cells: {list(d.keys())} ({len(d)} cells)')\nfor cell in d:\n    print(f'  {cell}: categories={list(d[cell].keys())}')\n    for cat, v in d[cell].items():\n        print(f'    {cat}: acc={round(v[\\\"accuracy_mean\\\"],4)} +/- {round(v[\\\"accuracy_std\\\"],4)}, n_feats_kept={v.get(\\\"n_features_kept\\\",\\\"?\\\")}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "1989a499-3d11-4950-a95d-1ebe54344e5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011E5aoEyXFoyQUkveyYepnC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2287,
+      "cache_read_input_tokens": 77920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T18:59:27.100Z_
+
+<details><summary>↩ Tool result · `toolu_01Sq8N9K5BvEru1vPQ34sWtU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json\\\\n# Check leave_one_group_out\\\\nwith open(\\\\'/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\\\\') as f:\\\\n    d = json.load(f)\\\\nprint(f\\\\'LOGO cells: {list(d.keys())} ({len(d)} cells)\\\\')\\\\nfor cell in d:\\\\n    print(f\\\\'  {cell}: categories={list(d[cell].keys())}\\\\')\\\\n    for cat, v in d[cell].items():\\\\n        print(f\\\\'    {cat}: acc={round(v[\\\\\\\\\\\"accuracy_mean\\\\\\\\\\\"],4)} +/- {round(v[\\\\\\\\\\\"accuracy_std\\\\\\\\\\\"],4)}, n_feats_kept={v.get(\\\\\\\\\\\"n_features_kept\\\\\\\\\\\",\\\\\\\\\\\"?\\\\\\\\\\\")}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nLOGO cells: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50', 'summary'] (10 cells)\\n  pythia_nucleus095: categories=['full_19', 'perplexity', 'surprisal', 'lexical_diversity', 'ngram_entropy', 'repetition']\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 10, in &lt;module>\\nKeyError: 'accuracy_mean'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "d06a79fd-7bdb-470d-a506-0f18b9af5a67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\n# Check leave_one_group_out\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\nprint(f\\\\\\\\'LOGO cells: {list(d.keys())} ({len(d)} cells)\\\\\\\\')\\\\\\\\nfor cell in d:\\\\\\\\n    print(f\\\\\\\\'  {cell}: categories={list(d[cell].keys())}\\\\\\\\')\\\\\\\\n    for cat, v in d[cell].items():\\\\\\\\n        print(f\\\\\\\\'    {cat}: acc={round(v[\\\\\\\\\\\\\\\\\\\\\\\"accuracy_mean\\\\\\\\\\\\\\\\\\\\\\\"],4)} +/- {round(v[\\\\\\\\\\\\\\\\\\\\\\\"accuracy_std\\\\\\\\\\\\\\\\\\\\\\\"],4)}, n_feats_kept={v.get(\\\\\\\\\\\\\\\\\\\\\\\"n_features_kept\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"?\\\\\\\\\\\\\\\\\\\\\\\")}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nLOGO cells: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50', 'summary'] (10 cells)\\\\n  pythia_nucleus095: categories=['full_19', 'perplexity', 'surprisal', 'lexical_diversity', 'ngram_entropy', 'repetition']\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"&lt;string>\\\\\\\", line 10, in &lt;module>\\\\nKeyError: 'accuracy_mean'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json\\\\n# Check leave_one_group_out\\\\nwith open(\\\\'/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\\\\') as f:\\\\n    d = json.load(f)\\\\nprint(f\\\\'LOGO cells: {list(d.keys())} ({len(d)} cells)\\\\')\\\\nfor cell in d:\\\\n    print(f\\\\'  {cell}: categories={list(d[cell].keys())}\\\\')\\\\n    for cat, v in d[cell].items():\\\\n        print(f\\\\'    {cat}: acc={round(v[\\\\\\\\\\\"accuracy_mean\\\\\\\\\\\"],4)} +/- {round(v[\\\\\\\\\\\"accuracy_std\\\\\\\\\\\"],4)}, n_feats_kept={v.get(\\\\\\\\\\\"n_features_kept\\\\\\\\\\\",\\\\\\\\\\\"?\\\\\\\\\\\")}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nLOGO cells: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50', 'summary'] (10 cells)\\n  pythia_nucleus095: categories=['full_19', 'perplexity', 'surprisal', 'lexical_diversity', 'ngram_entropy', 'repetition']\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 10, in &lt;module>\\nKeyError: 'accuracy_mean'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The leave_one_group_out.json has a different structure. Let me check the actual keys. Also, I now have all the key data for Phase 1. Let me also get the LOGO data properly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "3fdfcad3-697b-46fc-81e3-47467a8ecc56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011caFCYX2dMzXz62L66cXPb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4926,
+      "cache_read_input_tokens": 80207,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RJy2U6FuaBpYhqwBwDcPyG`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json') as f:\n    d = json.load(f)\n# Check structure of first cell\ncell0 = list(d.keys())[0]\nprint(f'Keys: {list(d.keys())}')\nprint(f'Structure of {cell0}:')\nfor cat, v in d[cell0].items():\n    print(f'  {cat}: {list(v.keys()) if isinstance(v, dict) else type(v)}')\n    if isinstance(v, dict):\n        for k2, v2 in v.items():\n            print(f'    {k2}={v2}')\n        break\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "05591f53-f115-41bd-b27c-7aacc1fdf0b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011caFCYX2dMzXz62L66cXPb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4926,
+      "cache_read_input_tokens": 80207,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4926
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T18:59:36.554Z_
+
+<details><summary>↩ Tool result · `toolu_01RJy2U6FuaBpYhqwBwDcPyG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Keys: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50', 'summary']\\nStructure of pythia_nucleus095:\\n  full_19: ['acc_mean', 'acc_std']\\n    acc_mean=0.78685\\n    acc_std=0.00633\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "accd69e0-9484-4aae-b7c9-176852c4ef12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50', 'summary']\\\\nStructure of pythia_nucleus095:\\\\n  full_19: ['acc_mean', 'acc_std']\\\\n    acc_mean=0.78685\\\\n    acc_std=0.00633\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Keys: ['pythia_nucleus095', 'pythia_temp09', 'pythia_topk50', 'gpt2xl_nucleus095', 'gpt2xl_temp09', 'gpt2xl_topk50', 'olmo_nucleus095', 'olmo_temp09', 'olmo_topk50', 'summary']\\nStructure of pythia_nucleus095:\\n  full_19: ['acc_mean', 'acc_std']\\n    acc_mean=0.78685\\n    acc_std=0.00633\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018dsrvidsk6hJMPJ3XGt2Es`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json') as f:\n    d = json.load(f)\nfor cell in d:\n    if cell == 'summary':\n        print(f'summary: {json.dumps(d[cell])}')\n        continue\n    vals = {cat: round(d[cell][cat]['acc_mean'],4) for cat in d[cell]}\n    print(f'{cell}: {vals}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "2b7b1f90-8716-4554-9319-0a4487bb3fd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W2JYkc8XLogPLhYBN4wfxJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 575,
+      "cache_read_input_tokens": 85133,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 575
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T18:59:41.696Z_
+
+<details><summary>↩ Tool result · `toolu_018dsrvidsk6hJMPJ3XGt2Es`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\\\\') as f:\\\\n    d = json.load(f)\\\\nfor cell in d:\\\\n    if cell == \\\\'summary\\\\':\\\\n        print(f\\\\'summary: {json.dumps(d[cell])}\\\\')\\\\n        continue\\\\n    vals = {cat: round(d[cell][cat][\\\\'acc_mean\\\\'],4) for cat in d[cell]}\\\\n    print(f\\\\'{cell}: {vals}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 9, in &lt;module>\\nKeyError: 'acc_mean'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "723c54c3-084f-4395-b338-1482f7eda9f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\nfor cell in d:\\\\\\\\n    if cell == \\\\\\\\'summary\\\\\\\\':\\\\\\\\n        print(f\\\\\\\\'summary: {json.dumps(d[cell])}\\\\\\\\')\\\\\\\\n        continue\\\\\\\\n    vals = {cat: round(d[cell][cat][\\\\\\\\'acc_mean\\\\\\\\'],4) for cat in d[cell]}\\\\\\\\n    print(f\\\\\\\\'{cell}: {vals}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"&lt;string>\\\\\\\", line 9, in &lt;module>\\\\nKeyError: 'acc_mean'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\\\\') as f:\\\\n    d = json.load(f)\\\\nfor cell in d:\\\\n    if cell == \\\\'summary\\\\':\\\\n        print(f\\\\'summary: {json.dumps(d[cell])}\\\\')\\\\n        continue\\\\n    vals = {cat: round(d[cell][cat][\\\\'acc_mean\\\\'],4) for cat in d[cell]}\\\\n    print(f\\\\'{cell}: {vals}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 9, in &lt;module>\\nKeyError: 'acc_mean'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SEoLyFE4JcybDfGR2KNKXN`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json') as f:\n    d = json.load(f)\n# Print full structure of first cell\ncell0 = 'pythia_nucleus095'\nfor cat, v in d[cell0].items():\n    print(f'{cat}: {v}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "ae16099b-a3a4-4814-b4e3-8878f6946666",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FTmBfHBR8xsq3jMdHCgFqG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 594,
+      "cache_read_input_tokens": 85708,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 594
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T18:59:47.192Z_
+
+<details><summary>↩ Tool result · `toolu_01SEoLyFE4JcybDfGR2KNKXN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"full_19: {'acc_mean': 0.78685, 'acc_std': 0.00633}\\nperplexity: {'acc_without': 0.76045, 'acc_std': 0.006104, 'delta_vs_full': -0.0264, 'features_removed': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl'], 'n_features_removed': 9, 'features_remaining': ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 10}\\nsurprisal: {'acc_without': 0.7829, 'acc_std': 0.004928, 'delta_vs_full': -0.00395, 'features_removed': ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal'], 'n_features_removed': 3, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 16}\\nlexical_diversity: {'acc_without': 0.78555, 'acc_std': 0.005591, 'delta_vs_full': -0.0013, 'features_removed': ['type_token_ratio', 'hapax_ratio'], 'n_features_removed': 2, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'bigram_entropy', 'trigram_entropy', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 17}\\nngram_entropy: {'acc_without': 0.78315, 'acc_std': 0.00619, 'delta_vs_full': -0.0037, 'features_removed': ['bigram_entropy', 'trigram_entropy'], 'n_features_removed': 2, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'type_token_ratio', 'hapax_ratio', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 17}\\nrepetition: {'acc_without': 0.78385, 'acc_std': 0.004795, 'delta_vs_full': -0.003, 'features_removed': ['rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_removed': 3, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy'], 'n_features_remaining': 16}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "0524fa40-8836-49e6-addb-df582b1c65a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"full_19: {'acc_mean': 0.78685, 'acc_std': 0.00633}\\\\nperplexity: {'acc_without': 0.76045, 'acc_std': 0.006104, 'delta_vs_full': -0.0264, 'features_removed': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl'], 'n_features_removed': 9, 'features_remaining': ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 10}\\\\nsurprisal: {'acc_without': 0.7829, 'acc_std': 0.004928, 'delta_vs_full': -0.00395, 'features_removed': ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal'], 'n_features_removed': 3, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 16}\\\\nlexical_diversity: {'acc_without': 0.78555, 'acc_std': 0.005591, 'delta_vs_full': -0.0013, 'features_removed': ['type_token_ratio', 'hapax_ratio'], 'n_features_removed': 2, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'bigram_entropy', 'trigram_entropy', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 17}\\\\nngram_entropy: {'acc_without': 0.78315, 'acc_std': 0.00619, 'delta_vs_full': -0.0037, 'features_removed': ['bigram_entropy', 'trigram_entropy'], 'n_features_removed': 2, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'type_token_ratio', 'hapax_ratio', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 17}\\\\nrepetition: {'acc_without': 0.78385, 'acc_std': 0.004795, 'delta_vs_full': -0.003, 'features_removed': ['rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_removed': 3, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy'], 'n_features_remaining': 16}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"full_19: {'acc_mean': 0.78685, 'acc_std': 0.00633}\\nperplexity: {'acc_without': 0.76045, 'acc_std': 0.006104, 'delta_vs_full': -0.0264, 'features_removed': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl'], 'n_features_removed': 9, 'features_remaining': ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 10}\\nsurprisal: {'acc_without': 0.7829, 'acc_std': 0.004928, 'delta_vs_full': -0.00395, 'features_removed': ['mean_surprisal', 'var_surprisal', 'entropy_of_surprisal'], 'n_features_removed': 3, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 16}\\nlexical_diversity: {'acc_without': 0.78555, 'acc_std': 0.005591, 'delta_vs_full': -0.0013, 'features_removed': ['type_token_ratio', 'hapax_ratio'], 'n_features_removed': 2, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'bigram_entropy', 'trigram_entropy', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 17}\\nngram_entropy: {'acc_without': 0.78315, 'acc_std': 0.00619, 'delta_vs_full': -0.0037, 'features_removed': ['bigram_entropy', 'trigram_entropy'], 'n_features_removed': 2, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'type_token_ratio', 'hapax_ratio', 'rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_remaining': 17}\\nrepetition: {'acc_without': 0.78385, 'acc_std': 0.004795, 'delta_vs_full': -0.003, 'features_removed': ['rep_2gram', 'rep_3gram', 'rep_4gram'], 'n_features_removed': 3, 'features_remaining': ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal', 'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy'], 'n_features_remaining': 16}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the structure. Let me get the LOGO results for all 9 cells and the summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "118c3c65-2ee9-4ebe-a5e0-2029d4d1a298",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KcvMdrtvQ36T1rLP2BoX9C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1537,
+      "cache_read_input_tokens": 86302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1537
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016JdsRxUpQAf2j9gYBTDi67`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json') as f:\n    d = json.load(f)\n\nprint('=== LEAVE-ONE-GROUP-OUT (delta vs full) ===')\nfor cell in d:\n    if cell == 'summary':\n        continue\n    full = round(d[cell]['full_19']['acc_mean'],4)\n    deltas = {}\n    for cat in ['perplexity','surprisal','lexical_diversity','ngram_entropy','repetition']:\n        deltas[cat] = round(d[cell][cat]['delta_vs_full'],4)\n    print(f'{cell}: full={full}, drop_ppl={deltas[\\\"perplexity\\\"]}, drop_surp={deltas[\\\"surprisal\\\"]}, drop_lex={deltas[\\\"lexical_diversity\\\"]}, drop_ngram={deltas[\\\"ngram_entropy\\\"]}, drop_rep={deltas[\\\"repetition\\\"]}')\n\nprint()\nprint('summary:', json.dumps(d.get('summary',{}), indent=2))\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "6ab70dc6-2e03-4b50-9782-a44296d72bc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KcvMdrtvQ36T1rLP2BoX9C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1537,
+      "cache_read_input_tokens": 86302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1537
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-15T18:59:54.151Z_
+
+<details><summary>↩ Tool result · `toolu_016JdsRxUpQAf2j9gYBTDi67`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== LEAVE-ONE-GROUP-OUT (delta vs full) ===\\npythia_nucleus095: full=0.7869, drop_ppl=-0.0264, drop_surp=-0.004, drop_lex=-0.0013, drop_ngram=-0.0037, drop_rep=-0.003\\npythia_temp09: full=0.7678, drop_ppl=-0.0133, drop_surp=-0.0101, drop_lex=-0.0005, drop_ngram=-0.0001, drop_rep=-0.006\\npythia_topk50: full=0.6884, drop_ppl=-0.0164, drop_surp=-0.0073, drop_lex=-0.0026, drop_ngram=-0.0019, drop_rep=-0.0029\\ngpt2xl_nucleus095: full=0.8415, drop_ppl=-0.0267, drop_surp=-0.0053, drop_lex=-0.0008, drop_ngram=-0.0003, drop_rep=-0.0004\\ngpt2xl_temp09: full=0.8583, drop_ppl=-0.0487, drop_surp=-0.0065, drop_lex=0.0003, drop_ngram=-0.0004, drop_rep=-0.0019\\ngpt2xl_topk50: full=0.7604, drop_ppl=-0.0806, drop_surp=-0.005, drop_lex=-0.001, drop_ngram=-0.0006, drop_rep=-0.0046\\nolmo_nucleus095: full=0.7884, drop_ppl=-0.0423, drop_surp=0.0, drop_lex=0.0007, drop_ngram=0.0014, drop_rep=-0.0005\\nolmo_temp09: full=0.8225, drop_ppl=-0.0316, drop_surp=-0.0064, drop_lex=-0.0031, drop_ngram=-0.0009, drop_rep=-0.0024\\nolmo_topk50: full=0.744, drop_ppl=-0.0314, drop_surp=-0.0039, drop_lex=-0.0011, drop_ngram=0.0008, drop_rep=0.0021\\n\\nsummary: {\\n  \\\"per_group\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"mean_delta\\\": -0.035272,\\n      \\\"std_delta\\\": 0.01917,\\n      \\\"min_delta\\\": -0.08065,\\n      \\\"max_delta\\\": -0.0133,\\n      \\\"mean_acc_without\\\": 0.748967,\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"mean_delta\\\": -0.005383,\\n      \\\"std_delta\\\": 0.002632,\\n      \\\"min_delta\\\": -0.01015,\\n      \\\"max_delta\\\": 0.0,\\n      \\\"mean_acc_without\\\": 0.778856,\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"mean_delta\\\": -0.001033,\\n      \\\"std_delta\\\": 0.001159,\\n      \\\"min_delta\\\": -0.0031,\\n      \\\"max_delta\\\": 0.0007,\\n      \\\"mean_acc_without\\\": 0.783206,\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"mean_delta\\\": -0.000644,\\n      \\\"std_delta\\\": 0.001404,\\n      \\\"min_delta\\\": -0.0037,\\n      \\\"max_delta\\\": 0.00145,\\n      \\\"mean_acc_without\\\": 0.783594,\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"mean_delta\\\": -0.002189,\\n      \\\"std_delta\\\": 0.002237,\\n      \\\"min_delta\\\": -0.00595,\\n      \\\"max_delta\\\": 0.00205,\\n      \\\"mean_acc_without\\\": 0.78205,\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"most_impactful_group\\\": \\\"perplexity\\\",\\n  \\\"least_impactful_group\\\": \\\"ngram_entropy\\\",\\n  \\\"ranking_by_impact\\\": [\\n    {\\n      \\\"group\\\": \\\"perplexity\\\",\\n      \\\"mean_delta\\\": -0.035272,\\n      \\\"n_features\\\": 9\\n    },\\n    {\\n      \\\"group\\\": \\\"surprisal\\\",\\n      \\\"mean_delta\\\": -0.005383,\\n      \\\"n_features\\\": 3\\n    },\\n    {\\n      \\\"group\\\": \\\"repetition\\\",\\n      \\\"mean_delta\\\": -0.002189,\\n      \\\"n_features\\\": 3\\n    },\\n    {\\n      \\\"group\\\": \\\"lexical_diversity\\\",\\n      \\\"mean_delta\\\": -0.001033,\\n      \\\"n_features\\\": 2\\n    },\\n    {\\n      \\\"group\\\": \\\"ngram_entropy\\\",\\n      \\\"mean_delta\\\": -0.000644,\\n      \\\"n_features\\\": 2\\n    }\\n  ],\\n  \\\"full_19_mean_acc\\\": 0.784239\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "c360f02e-0504-4bb5-9d4f-6ef446668261",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== LEAVE-ONE-GROUP-OUT (delta vs full) ===\\\\npythia_nucleus095: full=0.7869, drop_ppl=-0.0264, drop_surp=-0.004, drop_lex=-0.0013, drop_ngram=-0.0037, drop_rep=-0.003\\\\npythia_temp09: full=0.7678, drop_ppl=-0.0133, drop_surp=-0.0101, drop_lex=-0.0005, drop_ngram=-0.0001, drop_rep=-0.006\\\\npythia_topk50: full=0.6884, drop_ppl=-0.0164, drop_surp=-0.0073, drop_lex=-0.0026, drop_ngram=-0.0019, drop_rep=-0.0029\\\\ngpt2xl_nucleus095: full=0.8415, drop_ppl=-0.0267, drop_surp=-0.0053, drop_lex=-0.0008, drop_ngram=-0.0003, drop_rep=-0.0004\\\\ngpt2xl_temp09: full=0.8583, drop_ppl=-0.0487, drop_surp=-0.0065, drop_lex=0.0003, drop_ngram=-0.0004, drop_rep=-0.0019\\\\ngpt2xl_topk50: full=0.7604, drop_ppl=-0.0806, drop_surp=-0.005, drop_lex=-0.001, drop_ngram=-0.0006, drop_rep=-0.0046\\\\nolmo_nucleus095: full=0.7884, drop_ppl=-0.0423, drop_surp=0.0, drop_lex=0.0007, drop_ngram=0.0014, drop_rep=-0.0005\\\\nolmo_temp09: full=0.8225, drop_ppl=-0.0316, drop_surp=-0.0064, drop_lex=-0.0031, drop_ngram=-0.0009, drop_rep=-0.0024\\\\nolmo_topk50: full=0.744, drop_ppl=-0.0314, drop_surp=-0.0039, drop_lex=-0.0011, drop_ngram=0.0008, drop_rep=0.0021\\\\n\\\\nsummary: {\\\\n  \\\\\\\"per_group\\\\\\\": {\\\\n    \\\\\\\"perplexity\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.035272,\\\\n      \\\\\\\"std_delta\\\\\\\": 0.01917,\\\\n      \\\\\\\"min_delta\\\\\\\": -0.08065,\\\\n      \\\\\\\"max_delta\\\\\\\": -0.0133,\\\\n      \\\\\\\"mean_acc_without\\\\\\\": 0.748967,\\\\n      \\\\\\\"n_features\\\\\\\": 9\\\\n    },\\\\n    \\\\\\\"surprisal\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.005383,\\\\n      \\\\\\\"std_delta\\\\\\\": 0.002632,\\\\n      \\\\\\\"min_delta\\\\\\\": -0.01015,\\\\n      \\\\\\\"max_delta\\\\\\\": 0.0,\\\\n      \\\\\\\"mean_acc_without\\\\\\\": 0.778856,\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"lexical_diversity\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.001033,\\\\n      \\\\\\\"std_delta\\\\\\\": 0.001159,\\\\n      \\\\\\\"min_delta\\\\\\\": -0.0031,\\\\n      \\\\\\\"max_delta\\\\\\\": 0.0007,\\\\n      \\\\\\\"mean_acc_without\\\\\\\": 0.783206,\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"ngram_entropy\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.000644,\\\\n      \\\\\\\"std_delta\\\\\\\": 0.001404,\\\\n      \\\\\\\"min_delta\\\\\\\": -0.0037,\\\\n      \\\\\\\"max_delta\\\\\\\": 0.00145,\\\\n      \\\\\\\"mean_acc_without\\\\\\\": 0.783594,\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"repetition\\\\\\\": {\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.002189,\\\\n      \\\\\\\"std_delta\\\\\\\": 0.002237,\\\\n      \\\\\\\"min_delta\\\\\\\": -0.00595,\\\\n      \\\\\\\"max_delta\\\\\\\": 0.00205,\\\\n      \\\\\\\"mean_acc_without\\\\\\\": 0.78205,\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    }\\\\n  },\\\\n  \\\\\\\"most_impactful_group\\\\\\\": \\\\\\\"perplexity\\\\\\\",\\\\n  \\\\\\\"least_impactful_group\\\\\\\": \\\\\\\"ngram_entropy\\\\\\\",\\\\n  \\\\\\\"ranking_by_impact\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"perplexity\\\\\\\",\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.035272,\\\\n      \\\\\\\"n_features\\\\\\\": 9\\\\n    },\\\\n    {\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"surprisal\\\\\\\",\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.005383,\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    {\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"repetition\\\\\\\",\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.002189,\\\\n      \\\\\\\"n_features\\\\\\\": 3\\\\n    },\\\\n    {\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"lexical_diversity\\\\\\\",\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.001033,\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    },\\\\n    {\\\\n      \\\\\\\"group\\\\\\\": \\\\\\\"ngram_entropy\\\\\\\",\\\\n      \\\\\\\"mean_delta\\\\\\\": -0.000644,\\\\n      \\\\\\\"n_features\\\\\\\": 2\\\\n    }\\\\n  ],\\\\n  \\\\\\\"full_19_mean_acc\\\\\\\": 0.784239\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== LEAVE-ONE-GROUP-OUT (delta vs full) ===\\npythia_nucleus095: full=0.7869, drop_ppl=-0.0264, drop_surp=-0.004, drop_lex=-0.0013, drop_ngram=-0.0037, drop_rep=-0.003\\npythia_temp09: full=0.7678, drop_ppl=-0.0133, drop_surp=-0.0101, drop_lex=-0.0005, drop_ngram=-0.0001, drop_rep=-0.006\\npythia_topk50: full=0.6884, drop_ppl=-0.0164, drop_surp=-0.0073, drop_lex=-0.0026, drop_ngram=-0.0019, drop_rep=-0.0029\\ngpt2xl_nucleus095: full=0.8415, drop_ppl=-0.0267, drop_surp=-0.0053, drop_lex=-0.0008, drop_ngram=-0.0003, drop_rep=-0.0004\\ngpt2xl_temp09: full=0.8583, drop_ppl=-0.0487, drop_surp=-0.0065, drop_lex=0.0003, drop_ngram=-0.0004, drop_rep=-0.0019\\ngpt2xl_topk50: full=0.7604, drop_ppl=-0.0806, drop_surp=-0.005, drop_lex=-0.001, drop_ngram=-0.0006, drop_rep=-0.0046\\nolmo_nucleus095: full=0.7884, drop_ppl=-0.0423, drop_surp=0.0, drop_lex=0.0007, drop_ngram=0.0014, drop_rep=-0.0005\\nolmo_temp09: full=0.8225, drop_ppl=-0.0316, drop_surp=-0.0064, drop_lex=-0.0031, drop_ngram=-0.0009, drop_rep=-0.0024\\nolmo_topk50: full=0.744, drop_ppl=-0.0314, drop_surp=-0.0039, drop_lex=-0.0011, drop_ngram=0.0008, drop_rep=0.0021\\n\\nsummary: {\\n  \\\"per_group\\\": {\\n    \\\"perplexity\\\": {\\n      \\\"mean_delta\\\": -0.035272,\\n      \\\"std_delta\\\": 0.01917,\\n      \\\"min_delta\\\": -0.08065,\\n      \\\"max_delta\\\": -0.0133,\\n      \\\"mean_acc_without\\\": 0.748967,\\n      \\\"n_features\\\": 9\\n    },\\n    \\\"surprisal\\\": {\\n      \\\"mean_delta\\\": -0.005383,\\n      \\\"std_delta\\\": 0.002632,\\n      \\\"min_delta\\\": -0.01015,\\n      \\\"max_delta\\\": 0.0,\\n      \\\"mean_acc_without\\\": 0.778856,\\n      \\\"n_features\\\": 3\\n    },\\n    \\\"lexical_diversity\\\": {\\n      \\\"mean_delta\\\": -0.001033,\\n      \\\"std_delta\\\": 0.001159,\\n      \\\"min_delta\\\": -0.0031,\\n      \\\"max_delta\\\": 0.0007,\\n      \\\"mean_acc_without\\\": 0.783206,\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"ngram_entropy\\\": {\\n      \\\"mean_delta\\\": -0.000644,\\n      \\\"std_delta\\\": 0.001404,\\n      \\\"min_delta\\\": -0.0037,\\n      \\\"max_delta\\\": 0.00145,\\n      \\\"mean_acc_without\\\": 0.783594,\\n      \\\"n_features\\\": 2\\n    },\\n    \\\"repetition\\\": {\\n      \\\"mean_delta\\\": -0.002189,\\n      \\\"std_delta\\\": 0.002237,\\n      \\\"min_delta\\\": -0.00595,\\n      \\\"max_delta\\\": 0.00205,\\n      \\\"mean_acc_without\\\": 0.78205,\\n      \\\"n_features\\\": 3\\n    }\\n  },\\n  \\\"most_impactful_group\\\": \\\"perplexity\\\",\\n  \\\"least_impactful_group\\\": \\\"ngram_entropy\\\",\\n  \\\"ranking_by_impact\\\": [\\n    {\\n      \\\"group\\\": \\\"perplexity\\\",\\n      \\\"mean_delta\\\": -0.035272,\\n      \\\"n_features\\\": 9\\n    },\\n    {\\n      \\\"group\\\": \\\"surprisal\\\",\\n      \\\"mean_delta\\\": -0.005383,\\n      \\\"n_features\\\": 3\\n    },\\n    {\\n      \\\"group\\\": \\\"repetition\\\",\\n      \\\"mean_delta\\\": -0.002189,\\n      \\\"n_features\\\": 3\\n    },\\n    {\\n      \\\"group\\\": \\\"lexical_diversity\\\",\\n      \\\"mean_delta\\\": -0.001033,\\n      \\\"n_features\\\": 2\\n    },\\n    {\\n      \\\"group\\\": \\\"ngram_entropy\\\",\\n      \\\"mean_delta\\\": -0.000644,\\n      \\\"n_features\\\": 2\\n    }\\n  ],\\n  \\\"full_19_mean_acc\\\": 0.784239\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have all the data. Let me now register the artifacts and compile the summary.
+
+Let me register the Phase 1 result files as artifacts, and then write the summary. I also need to update the registry notes.
+
+Let me compile the summary now.
+
+Key findings:
+
+### Top-K Ablation (9 cells)
+| Cell | k=1 | k=3 | k=5 | k=10 | k=19(all) | Top-1 Feature |
+
+
+|------|-----|-----|-----|------|-----------|---------------|
+| pythia_nucleus095 | 62.1% | 73.3% | 77.0% | 78.1% | 78.8% | var_surprisal |
+| pythia_temp09 | 64.0% | 72.8% | 74.9% | 76.5% | 76.7% | var_surprisal |
+| pythia_topk50 | 56.3% | 64.9% | 66.5% | 68.6% | 68.8% | var_surprisal |
+| gpt2xl_nucleus095 | 64.4% | 80.0% | ... | ... | ... | ... |
+
+Generating markdown table... Looking at the performance breakdown, var_surprisal dominates as the top feature across most configurations, appearing in 6 out of 9 cells, while p90_ppl shows up in the remaining 3. The key insight is that just the top 3 features—primarily var_surprisal and p90_ppl plus either p50_ppl or p75_ppl—capture about 93% of the full model's accuracy, and expanding to 5 features gets us to roughly 96%. Now I'm examining how individual feature categories contribute when tested in isolation, starting with the perplexity metrics.
+
+Generating performance table... Generating the feature importance table...
+
+The perplexity and surprisal features are doing most of the heavy lifting—just three of them capture 93% of the model's accuracy. When I run forward selection on the completed cells, both var_surprisal and p90_ppl emerge as the strongest starting features, getting to around 62-64% accuracy before adding perplexity quantiles, then plateauing around 14-16 features. PCA shows I can compress the 19 features down to about 6-7 components to retain 90% of the variance, though there's serious multicollinearity issues with 14-16 features exceeding VIF thresholds of 10.
+
+Looking at the specific features driving this—unigram entropy, bigram entropy, n-gram repetition patterns, and mean surprisal all show strong VIF values—it's clear why random forests handle this redundancy so well while still achieving nearly the same performance with minimal feature subsets. The consistency across all three models and strategies points to perplexity distribution statistics being the real signal, which explains why transformer models like DeBERTa and RoBERTa can't match random forest performance since they don't have access to these perplexity-based features.
+
+Now I'm registering these findings and updating the artifact registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "d3779e91-a922-43c7-80c2-2a5dc6b217b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X58AReMxSVejb3rhMNxMXW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2126,
+      "cache_read_input_tokens": 87839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2126
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+数据收集完毕。注册 artifacts 并更新 registry notes。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "d6dcaad5-2c58-43b2-a52f-8b9856f035cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X58AReMxSVejb3rhMNxMXW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2126,
+      "cache_read_input_tokens": 87839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2126
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Ks8RQ6UtHVZjkYJt7EeHJr`</summary>
+
+```json
+{
+  "name": "feature_ablation_phase1_topk",
+  "type": "data",
+  "description": "Top-k ablation results across 9 cells: forward-selection ordered feature subsets (k=1,2,3,5,10,15,19) with accuracy",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "feat_ablation_v1",
+  "source_path": "/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/topk_ablation.json",
+  "tags": [
+    "feature_ablation",
+    "phase1",
+    "R3-N3"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "d0a6b33d-023a-4362-b29f-c68083755859",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X58AReMxSVejb3rhMNxMXW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2126,
+      "cache_read_input_tokens": 87839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2126
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-15T19:00:35.039Z_
+
+<details><summary>↩ Tool result · `toolu_01Ks8RQ6UtHVZjkYJt7EeHJr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/topk_ablation.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "d0dee0d5-c4da-4cbd-b5df-eb9ae2a91d98",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/topk_ablation.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/topk_ablation.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01BuhTQz9JiRTGytx4gH2hnd`</summary>
+
+```json
+{
+  "name": "feature_ablation_phase1_category",
+  "type": "data",
+  "description": "Category ablation: single-category accuracy for perplexity/surprisal/lexical/ngram_entropy/repetition across 9 cells",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "feat_ablation_v1",
+  "source_path": "/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/category_ablation.json",
+  "tags": [
+    "feature_ablation",
+    "phase1",
+    "R3-N3"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "d7d45bdd-1e29-4c8c-87c2-296337a102f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X58AReMxSVejb3rhMNxMXW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2126,
+      "cache_read_input_tokens": 87839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2126
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-15T19:00:36.874Z_
+
+<details><summary>↩ Tool result · `toolu_01BuhTQz9JiRTGytx4gH2hnd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/category_ablation.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "7e941da3-33ad-4f0b-b137-fe47ad027a74",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/category_ablation.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/category_ablation.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01YKRTcGYPJVNoP438BE2D8q`</summary>
+
+```json
+{
+  "name": "feature_ablation_phase1_logo",
+  "type": "data",
+  "description": "Leave-one-group-out ablation: accuracy drop when removing each feature category, 9 cells + summary",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "feat_ablation_v1",
+  "source_path": "/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json",
+  "tags": [
+    "feature_ablation",
+    "phase1",
+    "R3-N3"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "8602dba4-19ad-49e6-b28a-93a984ebecc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X58AReMxSVejb3rhMNxMXW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2126,
+      "cache_read_input_tokens": 87839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2126
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-15T19:00:39.245Z_
+
+<details><summary>↩ Tool result · `toolu_01YKRTcGYPJVNoP438BE2D8q`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "7a0c62f5-bc4d-42ea-91fe-ecb618deadd9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/leave_one_group_out.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01MuWC9eMJbfkPgjgKg2oyMN`</summary>
+
+```json
+{
+  "name": "feature_ablation_pca",
+  "type": "data",
+  "description": "PCA effective dimensionality and scree plot data: 90% variance at 6-7 components across 9 cells",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "feat_ablation_v1",
+  "source_path": "/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_effective_dims.json",
+  "tags": [
+    "feature_ablation",
+    "pca",
+    "R3-N3"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "f556edae-b06b-427e-b8a8-a8623c5115c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X58AReMxSVejb3rhMNxMXW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2126,
+      "cache_read_input_tokens": 87839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2126
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-15T19:00:41.130Z_
+
+<details><summary>↩ Tool result · `toolu_01MuWC9eMJbfkPgjgKg2oyMN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_effective_dims.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "0b8ae194-1990-4332-a436-332fcbbf6cf9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_effective_dims.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/pca_effective_dims.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01FU3bAjmy819wuu9ianaAnU`</summary>
+
+```json
+{
+  "name": "feature_ablation_vif",
+  "type": "data",
+  "description": "VIF analysis: 14-16/19 features with VIF>10, high multicollinearity across 4 cells",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "feat_ablation_v1",
+  "source_path": "/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/vif.json",
+  "tags": [
+    "feature_ablation",
+    "vif",
+    "R3-N3"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "2916cc38-2125-446d-b438-4d46a2af2643",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X58AReMxSVejb3rhMNxMXW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2126,
+      "cache_read_input_tokens": 87839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2126
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-15T19:00:43.118Z_
+
+<details><summary>↩ Tool result · `toolu_01FU3bAjmy819wuu9ianaAnU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/vif.json\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "276d74cd-b7be-4777-8ea4-94bddf52cdb3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/vif.json\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/vif.json\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The source_path is on the remote server, not local. I need to use `content` instead of `source_path` for remote files, or use a different approach. Let me register with content (a summary JSON) instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "45e9142c-4472-48c9-b0d2-b014211eddb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mrx9bFegL8X3bFQqGXR4PR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3602,
+      "cache_read_input_tokens": 89965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+远程路径不能直接用 source_path。用 content 注册摘要。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "be18f232-226c-4ca7-a273-51792fd32571",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mrx9bFegL8X3bFQqGXR4PR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3602,
+      "cache_read_input_tokens": 89965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01DibGhGHLsDKayhkywbtLzT`</summary>
+
+```json
+{
+  "name": "feature_ablation_phase1_summary",
+  "type": "data",
+  "description": "Feature ablation Phase 1 complete summary: top-k, category, LOGO, PCA, VIF across 9 cells. Server path: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "feat_ablation_v1",
+  "content_filename": "feature_ablation_phase1_summary.json",
+  "tags": [
+    "feature_ablation",
+    "phase1",
+    "R3-N3"
+  ],
+  "content": "{\n  \"phase1_status\": \"COMPLETE (9/9 cells)\",\n  \"phase2_status\": \"IN PROGRESS (forward selection: 4/9 cells done, v2 running)\",\n  \"server_results_dir\": \"/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/\",\n  \"files\": {\n    \"topk_ablation.json\": \"9 cells, forward-selection ordered top-k (k=1..19)\",\n    \"category_ablation.json\": \"9 cells, single-category accuracy\",\n    \"leave_one_group_out.json\": \"9 cells, LOGO delta vs full\",\n    \"pca_effective_dims.json\": \"9 cells + merged, PCA scree\",\n    \"vif.json\": \"4 cells, VIF per feature\",\n    \"top_k_ablation.json\": \"4 cells (v2), permutation importance ranking + top-k\",\n    \"per_category_ablation.json\": \"4 cells (v2), single_category + leave_one_out\",\n    \"forward_selection.json\": \"4 cells (v2), greedy forward selection paths\",\n    \"correlation_matrix.json\": \"feature correlation matrix\",\n    \"pca_scree_plot.png\": \"PCA scree plot visualization\"\n  },\n  \"topk_ablation_9cells\": {\n    \"pythia_nucleus095\": {\"k1\": 0.6214, \"k3\": 0.7325, \"k5\": 0.7703, \"k10\": 0.781, \"k19\": 0.7877, \"top1\": \"var_surprisal\"},\n    \"pythia_temp09\": {\"k1\": 0.6396, \"k3\": 0.7278, \"k5\": 0.7493, \"k10\": 0.7651, \"k19\": 0.7673, \"top1\": \"var_surprisal\"},\n    \"pythia_topk50\": {\"k1\": 0.5625, \"k3\": 0.6485, \"k5\": 0.6653, \"k10\": 0.6862, \"k19\": 0.6884, \"top1\": \"var_surprisal\"},\n    \"gpt2xl_nucleus095\": {\"k1\": 0.6443, \"k3\": 0.7999, \"k5\": 0.8272, \"k10\": 0.838, \"k19\": 0.8416, \"top1\": \"var_surprisal\"},\n    \"gpt2xl_temp09\": {\"k1\": 0.8029, \"k3\": 0.8345, \"k5\": 0.8494, \"k10\": 0.8575, \"k19\": 0.8603, \"top1\": \"p90_ppl\"},\n    \"gpt2xl_topk50\": {\"k1\": 0.6936, \"k3\": 0.7124, \"k5\": 0.7378, \"k10\": 0.7575, \"k19\": 0.7589, \"top1\": \"p90_ppl\"},\n    \"olmo_nucleus095\": {\"k1\": 0.6369, \"k3\": 0.7472, \"k5\": 0.7663, \"k10\": 0.7904, \"k19\": 0.7902, \"top1\": \"p90_ppl\"},\n    \"olmo_temp09\": {\"k1\": 0.6571, \"k3\": 0.7861, \"k5\": 0.8113, \"k10\": 0.8217, \"k19\": 0.8208, \"top1\": \"var_surprisal\"},\n    \"olmo_topk50\": {\"k1\": 0.5596, \"k3\": 0.6982, \"k5\": 0.7334, \"k10\": 0.7434, \"k19\": 0.747, \"top1\": \"var_surprisal\"}\n  },\n  \"category_ablation_9cells\": {\n    \"pythia_nucleus095\": {\"perplexity\": 0.7696, \"surprisal\": 0.7472, \"lexical\": 0.4738, \"ngram_ent\": 0.433, \"repetition\": 0.4536},\n    \"pythia_temp09\": {\"perplexity\": 0.7427, \"surprisal\": 0.7329, \"lexical\": 0.4838, \"ngram_ent\": 0.4482, \"repetition\": 0.4706},\n    \"pythia_topk50\": {\"perplexity\": 0.6616, \"surprisal\": 0.6472, \"lexical\": 0.4152, \"ngram_ent\": 0.3729, \"repetition\": 0.3866},\n    \"gpt2xl_nucleus095\": {\"perplexity\": 0.8231, \"surprisal\": 0.7943, \"lexical\": 0.4439, \"ngram_ent\": 0.3696, \"repetition\": 0.4195},\n    \"gpt2xl_temp09\": {\"perplexity\": 0.8458, \"surprisal\": 0.8, \"lexical\": 0.4636, \"ngram_ent\": 0.3993, \"repetition\": 0.4374},\n    \"gpt2xl_topk50\": {\"perplexity\": 0.7345, \"surprisal\": 0.6546, \"lexical\": 0.3972, \"ngram_ent\": 0.3021, \"repetition\": 0.3614},\n    \"olmo_nucleus095\": {\"perplexity\": 0.777, \"surprisal\": 0.7312, \"lexical\": 0.5205, \"ngram_ent\": 0.4354, \"repetition\": 0.4948},\n    \"olmo_temp09\": {\"perplexity\": 0.8133, \"surprisal\": 0.7865, \"lexical\": 0.5302, \"ngram_ent\": 0.4697, \"repetition\": 0.5151},\n    \"olmo_topk50\": {\"perplexity\": 0.7337, \"surprisal\": 0.7056, \"lexical\": 0.4281, \"ngram_ent\": 0.3269, \"repetition\": 0.3972}\n  },\n  \"logo_summary\": {\n    \"perplexity\": {\"mean_delta\": -0.0353, \"rank\": 1},\n    \"surprisal\": {\"mean_delta\": -0.0054, \"rank\": 2},\n    \"repetition\": {\"mean_delta\": -0.0022, \"rank\": 3},\n    \"lexical\": {\"mean_delta\": -0.001, \"rank\": 4},\n    \"ngram_entropy\": {\"mean_delta\": -0.0006, \"rank\": 5}\n  },\n  \"pca_summary\": {\"n_90pct_mean\": 6.4, \"n_95pct_mean\": 8.1, \"n_99pct_mean\": 12.2},\n  \"vif_summary\": \"14-16/19 features with VIF>10, worst: rep_3gram(526-638), bigram_entropy(312-345)\"\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "49bc65df-06a4-459f-a325-86c7ea38dcf7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mrx9bFegL8X3bFQqGXR4PR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3602,
+      "cache_read_input_tokens": 89965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-15T19:01:12.084Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01DibGhGHLsDKayhkywbtLzT`</summary>
+
+```text
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'phase1_status': 'COMPLE...igram_entropy(312-345)'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "138ae147-fcdc-41ab-a78e-38821fa238e4",
+  "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'phase1_status': 'COMPLE...igram_entropy(312-345)'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01GVfchq7UEtKCsZyxeDPKk5`</summary>
+
+```json
+{
+  "name": "feature_ablation_phase1_summary",
+  "type": "data",
+  "description": "Feature ablation Phase 1 complete summary: top-k, category, LOGO, PCA, VIF across 9 cells. Server path: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "feat_ablation_v1",
+  "content_filename": "feature_ablation_phase1_summary.json",
+  "tags": [
+    "feature_ablation",
+    "phase1",
+    "R3-N3"
+  ],
+  "content": "{\"phase1_status\":\"COMPLETE (9/9 cells)\",\"phase2_status\":\"IN PROGRESS (forward selection v2: 4/9 cells done)\",\"server_results_dir\":\"/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/\",\"topk_ablation_9cells\":{\"pythia_nucleus095\":{\"k1\":0.6214,\"k3\":0.7325,\"k5\":0.7703,\"k10\":0.781,\"k19\":0.7877,\"top1\":\"var_surprisal\"},\"pythia_temp09\":{\"k1\":0.6396,\"k3\":0.7278,\"k5\":0.7493,\"k10\":0.7651,\"k19\":0.7673,\"top1\":\"var_surprisal\"},\"pythia_topk50\":{\"k1\":0.5625,\"k3\":0.6485,\"k5\":0.6653,\"k10\":0.6862,\"k19\":0.6884,\"top1\":\"var_surprisal\"},\"gpt2xl_nucleus095\":{\"k1\":0.6443,\"k3\":0.7999,\"k5\":0.8272,\"k10\":0.838,\"k19\":0.8416,\"top1\":\"var_surprisal\"},\"gpt2xl_temp09\":{\"k1\":0.8029,\"k3\":0.8345,\"k5\":0.8494,\"k10\":0.8575,\"k19\":0.8603,\"top1\":\"p90_ppl\"},\"gpt2xl_topk50\":{\"k1\":0.6936,\"k3\":0.7124,\"k5\":0.7378,\"k10\":0.7575,\"k19\":0.7589,\"top1\":\"p90_ppl\"},\"olmo_nucleus095\":{\"k1\":0.6369,\"k3\":0.7472,\"k5\":0.7663,\"k10\":0.7904,\"k19\":0.7902,\"top1\":\"p90_ppl\"},\"olmo_temp09\":{\"k1\":0.6571,\"k3\":0.7861,\"k5\":0.8113,\"k10\":0.8217,\"k19\":0.8208,\"top1\":\"var_surprisal\"},\"olmo_topk50\":{\"k1\":0.5596,\"k3\":0.6982,\"k5\":0.7334,\"k10\":0.7434,\"k19\":0.747,\"top1\":\"var_surprisal\"}},\"logo_summary\":{\"perplexity\":{\"mean_delta\":-0.0353},\"surprisal\":{\"mean_delta\":-0.0054},\"repetition\":{\"mean_delta\":-0.0022},\"lexical\":{\"mean_delta\":-0.001},\"ngram_entropy\":{\"mean_delta\":-0.0006}},\"pca_summary\":{\"n_90pct_mean\":6.4,\"n_95pct_mean\":8.1}}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "091bd6b7-350c-4418-a3e1-c496072b0b48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0128iqLZ9EdDXpBakSPmUsod",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2290,
+      "cache_read_input_tokens": 93567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2290
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-15T19:01:21.935Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01GVfchq7UEtKCsZyxeDPKk5`</summary>
+
+```text
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'phase1_status': 'COMPLE...4, 'n_95pct_mean': 8.1}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "45332d47-4bda-4a78-80f3-3e701b16a344",
+  "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'phase1_status': 'COMPLE...4, 'n_95pct_mean': 8.1}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01YQwN1pbutdcivM2w7sEi1d`</summary>
+
+```json
+{
+  "name": "feature_ablation_phase1_summary",
+  "type": "data",
+  "description": "Feature ablation Phase 1 complete summary: top-k, category, LOGO, PCA, VIF across 9 cells",
+  "project": "recursive_gen_depth_est",
+  "exp_id": "feat_ablation_v1",
+  "content_filename": "feature_ablation_phase1_summary.md",
+  "tags": [
+    "feature_ablation",
+    "phase1",
+    "R3-N3"
+  ],
+  "content": "Phase 1 COMPLETE (9/9 cells). Server: /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/. Files: topk_ablation.json, category_ablation.json, leave_one_group_out.json, pca_effective_dims.json, vif.json, pca_scree_plot.png. Phase 2 (forward selection v2) IN PROGRESS: 4/9 cells done."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "c6a42952-b6ab-4cdf-a5c0-3314c79c6873",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ck4Zp6tUk2Ct7Wa5Tqrp1x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1221,
+      "cache_read_input_tokens": 95857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1221
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-15T19:01:28.088Z_
+
+<details><summary>↩ Tool result · `toolu_01YQwN1pbutdcivM2w7sEi1d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_6a93cd\", \"name\": \"feature_ablation_phase1_summary\", \"type\": \"data\", \"description\": \"Feature ablation Phase 1 complete summary: top-k, category, LOGO, PCA, VIF across 9 cells\", \"path\": \"projects/recursive_gen_depth_est/artifacts/feat_ablation_v1/data/feature_ablation_phase1_summary.md\", \"url\": null, \"project\": \"recursive_gen_depth_est\", \"exp_id\": \"feat_ablation_v1\", \"skill\": \"\", \"created_at\": \"2026-05-15T19:01:27.948669+00:00\", \"tags\": [\"feature_ablation\", \"phase1\", \"R3-N3\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "77936628-6678-4528-9c56-b553266cf5e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_6a93cd\\\", \\\"name\\\": \\\"feature_ablation_phase1_summary\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Feature ablation Phase 1 complete summary: top-k, category, LOGO, PCA, VIF across 9 cells\\\", \\\"path\\\": \\\"projects/recursive_gen_depth_est/artifacts/feat_ablation_v1/data/feature_ablation_phase1_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"recursive_gen_depth_est\\\", \\\"exp_id\\\": \\\"feat_ablation_v1\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T19:01:27.948669+00:00\\\", \\\"tags\\\": [\\\"feature_ablation\\\", \\\"phase1\\\", \\\"R3-N3\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_6a93cd\", \"name\": \"feature_ablation_phase1_summary\", \"type\": \"data\", \"description\": \"Feature ablation Phase 1 complete summary: top-k, category, LOGO, PCA, VIF across 9 cells\", \"path\": \"projects/recursive_gen_depth_est/artifacts/feat_ablation_v1/data/feature_ablation_phase1_summary.md\", \"url\": null, \"project\": \"recursive_gen_depth_est\", \"exp_id\": \"feat_ablation_v1\", \"skill\": \"\", \"created_at\": \"2026-05-15T19:01:27.948669+00:00\", \"tags\": [\"feature_ablation\", \"phase1\", \"R3-N3\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104_
+
+更新 registry notes 记录 Phase 1 完成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "b6758598-e85d-4237-bdda-559f1d207270",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M76Q85nScmvAVzh3rkUge9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 97078,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BWDmSWXV3y9j9Ft4k9ZxBx`</summary>
+
+```json
+{
+  "exp_id": "feat_ablation_v1",
+  "field": "notes",
+  "value": "Phase 1 COMPLETE (9/9 cells): topk_ablation, category_ablation, LOGO, PCA, VIF. Phase 2 IN PROGRESS: forward selection v2 (4/9 cells done, olmo_temp09 running). Key findings: (1) var_surprisal is top-1 in 6/9 cells, p90_ppl in 3/9; (2) top-3 features reach 93% of full accuracy; (3) perplexity category alone captures 92-99% of full acc; (4) LOGO: removing perplexity costs -3.5pp mean, all other categories <-0.6pp; (5) PCA effective dim 6-7 from 19 features; (6) VIF: 14-16/19 features with VIF>10. Results at /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "4646bfb0-5eca-4296-8934-393c973b9b09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M76Q85nScmvAVzh3rkUge9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 97078,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-15T19:01:36.350Z_
+
+<details><summary>↩ Tool result · `toolu_01BWDmSWXV3y9j9Ft4k9ZxBx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"feat_ablation_v1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:11:38.111Z\", \"updated_at\": \"2026-05-15T19:01:36.156Z\", \"spec\": {\"command\": \"python3 src/feature_ablation_9cell.py\", \"server\": \"gpu-6000pro-2\", \"model_name\": \"RF (n_estimators=200)\"}, \"notes\": \"Phase 1 COMPLETE (9/9 cells): topk_ablation, category_ablation, LOGO, PCA, VIF. Phase 2 IN PROGRESS: forward selection v2 (4/9 cells done, olmo_temp09 running). Key findings: (1) var_surprisal is top-1 in 6/9 cells, p90_ppl in 3/9; (2) top-3 features reach 93% of full accuracy; (3) perplexity category alone captures 92-99% of full acc; (4) LOGO: removing perplexity costs -3.5pp mean, all other categories <-0.6pp; (5) PCA effective dim 6-7 from 19 features; (6) VIF: 14-16/19 features with VIF>10. Results at /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4059}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "56498863-554b-4fef-ba91-0d97aa8a2540",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"feat_ablation_v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:11:38.111Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:01:36.156Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 src/feature_ablation_9cell.py\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"model_name\\\": \\\"RF (n_estimators=200)\\\"}, \\\"notes\\\": \\\"Phase 1 COMPLETE (9/9 cells): topk_ablation, category_ablation, LOGO, PCA, VIF. Phase 2 IN PROGRESS: forward selection v2 (4/9 cells done, olmo_temp09 running). Key findings: (1) var_surprisal is top-1 in 6/9 cells, p90_ppl in 3/9; (2) top-3 features reach 93% of full accuracy; (3) perplexity category alone captures 92-99% of full acc; (4) LOGO: removing perplexity costs -3.5pp mean, all other categories <-0.6pp; (5) PCA effective dim 6-7 from 19 features; (6) VIF: 14-16/19 features with VIF>10. Results at /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4059}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"feat_ablation_v1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:11:38.111Z\", \"updated_at\": \"2026-05-15T19:01:36.156Z\", \"spec\": {\"command\": \"python3 src/feature_ablation_9cell.py\", \"server\": \"gpu-6000pro-2\", \"model_name\": \"RF (n_estimators=200)\"}, \"notes\": \"Phase 1 COMPLETE (9/9 cells): topk_ablation, category_ablation, LOGO, PCA, VIF. Phase 2 IN PROGRESS: forward selection v2 (4/9 cells done, olmo_temp09 running). Key findings: (1) var_surprisal is top-1 in 6/9 cells, p90_ppl in 3/9; (2) top-3 features reach 93% of full accuracy; (3) perplexity category alone captures 92-99% of full acc; (4) LOGO: removing perplexity costs -3.5pp mean, all other categories <-0.6pp; (5) PCA effective dim 6-7 from 19 features; (6) VIF: 14-16/19 features with VIF>10. Results at /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4059}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 107_
+
+---
+
+## Feature Ablation Phase 1 结果汇总
+
+### 1. Top-K Ablation（9/9 cells 完成）
+
+| Cell | k=1 | k=3 | k=5 | k=10 | k=19(all) | Top-1 |
+|------|-----|-----|-----|------|-----------|-------|
+| pythia_nucleus | 62.1% | 73.3% | 77.0% | 78.1% | 78.8% | var_surprisal |
+| pythia_temp09 | 64.0% | 72.8% | 74.9% | 76.5% | 76.7% | var_surprisal |
+| pythia_topk50 | 56.3% | 64.9% | 66.5% | 68.6% | 68.8% | var_surprisal |
+| gpt2xl_nucleus | 64.4% | 80.0% | 82.7% | 83.8% | 84.2% | var_surprisal |
+| **gpt2xl_temp09** | **80.3%** | **83.5%** | **84.9%** | **85.8%** | **86.0%** | **p90_ppl** |
+| gpt2xl_topk50 | 69.4% | 71.2% | 73.8% | 75.8% | 75.9% | p90_ppl |
+| olmo_nucleus | 63.7% | 74.7% | 76.6% | 79.0% | 79.0% | p90_ppl |
+| olmo_temp09 | 65.7% | 78.6% | 81.1% | 82.2% | 82.1% | var_surprisal |
+| olmo_topk50 | 56.0% | 69.8% | 73.3% | 74.3% | 74.7% | var_surprisal |
+
+**跨 cell 一致性**：
+- **var_surprisal + p90_ppl 是所有 9 cells 的 top-2**（var_surprisal 在 6/9 cells 排 #1，p90_ppl 在 3/9 排 #1）
+- Top-3 恒为 perplexity/surprisal 分布统计量（+ p50_ppl 或 p75_ppl）
+- **k=3 达到全特征 93% 精度**（平均），k=5 达到 96%
+
+### 2. Category Ablation（单类别精度，chance = 25%）
+
+| Cell | Perplexity(9) | Surprisal(3) | Lexical(2) | N-gram Ent(2) | Repetition(3) |
+|------|:---:|:---:|:---:|:---:|:---:|
+| pythia_nucleus | 77.0% | 74.7% | 47.4% | 43.3% | 45.4% |
+| pythia_temp09 | 74.3% | 73.3% | 48.4% | 44.8% | 47.1% |
+| pythia_topk50 | 66.2% | 64.7% | 41.5% | 37.3% | 38.7% |
+| gpt2xl_nucleus | 82.3% | 79.4% | 44.4% | 37.0% | 42.0% |
+| gpt2xl_temp09 | 84.6% | 80.0% | 46.4% | 39.9% | 43.7% |
+| gpt2xl_topk50 | 73.5% | 65.5% | 39.7% | 30.2% | 36.1% |
+| olmo_nucleus | 77.7% | 73.1% | 52.1% | 43.5% | 49.5% |
+| olmo_temp09 | 81.3% | 78.7% | 53.0% | 47.0% | 51.5% |
+| olmo_topk50 | 73.4% | 70.6% | 42.8% | 32.7% | 39.7% |
+
+**Perplexity #1 (9/9), Surprisal #2 (9/9)**。Perplexity 单独达到全模型 92-99% 精度。Lexical/ngram_entropy/repetition 贡献有限（近 chance 到 53%）。
+
+### 3. Leave-One-Group-Out（去掉一类后精度下降）
+
+| Category | Mean Δ (pp) | Worst Cell Δ | Rank |
+|----------|:-----------:|:------------:|:----:|
+| **Perplexity** | **-3.53** | -8.07 (gpt2xl_topk50) | **#1** |
+| Surprisal | -0.54 | -1.01 (pythia_temp09) | #2 |
+| Repetition | -0.22 | -0.60 (pythia_temp09) | #3 |
+| Lexical | -0.10 | -0.31 (olmo_temp09) | #4 |
+| N-gram Entropy | -0.06 | -0.37 (pythia_nucleus) | #5 |
+
+Perplexity 的影响是第二名的 **6.5 倍**。去掉 lexical/ngram_entropy/repetition 基本无影响 (<0.3pp)。
+
+### 4. PCA 有效维度
+
+| 指标 | Mean | Range |
+|------|:----:|:-----:|
+| 90% variance | 6.4 components | 6-7 |
+| 95% variance | 8.1 components | 7-9 |
+| 99% variance | 12.2 components | 11-13 |
+
+19 个特征的有效维度约 6-7，高度冗余。
+
+### 5. VIF（多重共线性）
+
+14-16/19 个特征 VIF > 10。极端高值：rep_3gram (526-638), bigram_entropy (312-345), rep_2gram (210-376), trigram_entropy (279-320), mean_surprisal (79-127)。RF 对共线性 robust，但这也解释了为什么小特征子集表现接近全集。
+
+### 6. Forward Selection 进度（Phase 2）
+
+v2 已完成 **4/9 cells**（pythia_nucleus, pythia_temp09, pythia_topk50, olmo_nucleus），olmo_temp09 正在运行。剩余 5 cells 预计还需 60-90 分钟。
+
+已完成的 4 cells 一致模式：var_surprisal 或 p90_ppl 为 step 1（单特征 56-64%），step 2-3 加入 perplexity 分位数快速爬升，plateau 在 k=14-16。
+
+### R3-N3 (Feature Importance) 支撑
+
+这些结果为 R3-N3 提供完整证据链：
+
+1. **Perplexity 分布统计量是主导信号** — 3 个特征捕获 93% 精度，perplexity 类单独接近全集精度
+2. **跨 cell 完全一致** — var_surprisal + p90_ppl 在 3 个模型 × 3 个策略的全部 9 cells 中均为 top-2
+3. **特征冗余高** — PCA 有效维度 ~6-7，VIF 普遍 >10，但 RF 能 robust 处理
+4. **解释 RF > Transformer** — DeBERTa/RoBERTa 表征中 var_surprisal (R²=-4216) 和 p90_ppl 几乎不可编码，这正是最重要的特征，解释了 transformer 比 RF 低 ~20pp
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "uuid": "acc797ae-aebe-4b89-9ddd-08982dfc475d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011bZJaLogC3MJHk4d2r9VAy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 795,
+      "cache_read_input_tokens": 97747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 795
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 108_
+
+---
+
+## Feature Ablation Phase 1 结果汇总
+
+### 1. Top-K Ablation（9/9 cells 完成）
+
+| Cell | k=1 | k=3 | k=5 | k=10 | k=19(all) | Top-1 |
+|------|-----|-----|-----|------|-----------|-------|
+| pythia_nucleus | 62.1% | 73.3% | 77.0% | 78.1% | 78.8% | var_surprisal |
+| pythia_temp09 | 64.0% | 72.8% | 74.9% | 76.5% | 76.7% | var_surprisal |
+| pythia_topk50 | 56.3% | 64.9% | 66.5% | 68.6% | 68.8% | var_surprisal |
+| gpt2xl_nucleus | 64.4% | 80.0% | 82.7% | 83.8% | 84.2% | var_surprisal |
+| **gpt2xl_temp09** | **80.3%** | **83.5%** | **84.9%** | **85.8%** | **86.0%** | **p90_ppl** |
+| gpt2xl_topk50 | 69.4% | 71.2% | 73.8% | 75.8% | 75.9% | p90_ppl |
+| olmo_nucleus | 63.7% | 74.7% | 76.6% | 79.0% | 79.0% | p90_ppl |
+| olmo_temp09 | 65.7% | 78.6% | 81.1% | 82.2% | 82.1% | var_surprisal |
+| olmo_topk50 | 56.0% | 69.8% | 73.3% | 74.3% | 74.7% | var_surprisal |
+
+**跨 cell 一致性**：
+- **var_surprisal + p90_ppl 是所有 9 cells 的 top-2**（var_surprisal 在 6/9 cells 排 #1，p90_ppl 在 3/9 排 #1）
+- Top-3 恒为 perplexity/surprisal 分布统计量（+ p50_ppl 或 p75_ppl）
+- **k=3 达到全特征 93% 精度**（平均），k=5 达到 96%
+
+### 2. Category Ablation（单类别精度，chance = 25%）
+
+| Cell | Perplexity(9) | Surprisal(3) | Lexical(2) | N-gram Ent(2) | Repetition(3) |
+|------|:---:|:---:|:---:|:---:|:---:|
+| pythia_nucleus | 77.0% | 74.7% | 47.4% | 43.3% | 45.4% |
+| pythia_temp09 | 74.3% | 73.3% | 48.4% | 44.8% | 47.1% |
+| pythia_topk50 | 66.2% | 64.7% | 41.5% | 37.3% | 38.7% |
+| gpt2xl_nucleus | 82.3% | 79.4% | 44.4% | 37.0% | 42.0% |
+| gpt2xl_temp09 | 84.6% | 80.0% | 46.4% | 39.9% | 43.7% |
+| gpt2xl_topk50 | 73.5% | 65.5% | 39.7% | 30.2% | 36.1% |
+| olmo_nucleus | 77.7% | 73.1% | 52.1% | 43.5% | 49.5% |
+| olmo_temp09 | 81.3% | 78.7% | 53.0% | 47.0% | 51.5% |
+| olmo_topk50 | 73.4% | 70.6% | 42.8% | 32.7% | 39.7% |
+
+**Perplexity #1 (9/9), Surprisal #2 (9/9)**。Perplexity 单独达到全模型 92-99% 精度。Lexical/ngram_entropy/repetition 贡献有限（近 chance 到 53%）。
+
+### 3. Leave-One-Group-Out（去掉一类后精度下降）
+
+| Category | Mean Δ (pp) | Worst Cell Δ | Rank |
+|----------|:-----------:|:------------:|:----:|
+| **Perplexity** | **-3.53** | -8.07 (gpt2xl_topk50) | **#1** |
+| Surprisal | -0.54 | -1.01 (pythia_temp09) | #2 |
+| Repetition | -0.22 | -0.60 (pythia_temp09) | #3 |
+| Lexical | -0.10 | -0.31 (olmo_temp09) | #4 |
+| N-gram Entropy | -0.06 | -0.37 (pythia_nucleus) | #5 |
+
+Perplexity 的影响是第二名的 **6.5 倍**。去掉 lexical/ngram_entropy/repetition 基本无影响 (<0.3pp)。
+
+### 4. PCA 有效维度
+
+| 指标 | Mean | Range |
+|------|:----:|:-----:|
+| 90% variance | 6.4 components | 6-7 |
+| 95% variance | 8.1 components | 7-9 |
+| 99% variance | 12.2 components | 11-13 |
+
+19 个特征的有效维度约 6-7，高度冗余。
+
+### 5. VIF（多重共线性）
+
+14-16/19 个特征 VIF > 10。极端高值：rep_3gram (526-638), bigram_entropy (312-345), rep_2gram (210-376), trigram_entropy (279-320), mean_surprisal (79-127)。RF 对共线性 robust，但这也解释了为什么小特征子集表现接近全集。
+
+### 6. Forward Selection 进度（Phase 2）
+
+v2 已完成 **4/9 cells**（pythia_nucleus, pythia_temp09, pythia_topk50, olmo_nucleus），olmo_temp09 正在运行。剩余 5 cells 预计还需 60-90 分钟。
+
+已完成的 4 cells 一致模式：var_surprisal 或 p90_ppl 为 step 1（单特征 56-64%），step 2-3 加入 perplexity 分位数快速爬升，plateau 在 k=14-16。
+
+### R3-N3 (Feature Importance) 支撑
+
+这些结果为 R3-N3 提供完整证据链：
+
+1. **Perplexity 分布统计量是主导信号** — 3 个特征捕获 93% 精度，perplexity 类单独接近全集精度
+2. **跨 cell 完全一致** — var_surprisal + p90_ppl 在 3 个模型 × 3 个策略的全部 9 cells 中均为 top-2
+3. **特征冗余高** — PCA 有效维度 ~6-7，VIF 普遍 >10，但 RF 能 robust 处理
+4. **解释 RF > Transformer** — DeBERTa/RoBERTa 表征中 var_surprisal (R²=-4216) 和 p90_ppl 几乎不可编码，这正是最重要的特征，解释了 transformer 比 RF 低 ~20pp
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 307212,
+  "duration_api_ms": 294372,
+  "num_turns": 42,
+  "stop_reason": "end_turn",
+  "session_id": "61ac4f74-331c-4d5b-96b5-f5134b491d7e",
+  "total_cost_usd": 1.63766075,
+  "usage": {
+    "input_tokens": 22,
+    "cache_creation_input_tokens": 86701,
+    "cache_read_input_tokens": 1250423,
+    "output_tokens": 18746,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 86701,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2111,
+        "cache_read_input_tokens": 97747,
+        "cache_creation_input_tokens": 795,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 795
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1718,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001808,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 22,
+      "outputTokens": 18746,
+      "cacheReadInputTokens": 1250423,
+      "cacheCreationInputTokens": 86701,
+      "webSearchRequests": 0,
+      "costUSD": 1.63585275,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "5f966591-db09-4762-a1e4-aec771f97f4b"
+}
+```
+
+</details>
+
+---

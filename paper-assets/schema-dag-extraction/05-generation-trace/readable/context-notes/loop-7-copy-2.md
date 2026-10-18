@@ -1,0 +1,80 @@
+# agent / loop_7.md
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_7.md`
+- **Structured JSON:** [`431b09682c25f2e619c3.json`](../../sessions/43/431b09682c25f2e619c3.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 7
+reason: idle_timeout
+updated: '2026-05-16T05:07:36+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 服务器只有 `cqa1-38874`，1× RTX PRO 6000 Blackwell (98GB)，`cuda:0`。config 里无 gpu_ids 白名单，但 ROADMAP 明确只有 cuda:0
+- BCS 定义已统一为 **MEAN pairwise SCS**（D038/D039）。论文全文、代码、artifacts 已同步。**禁止再用 MAX 定义**，除了 Appendix sensitivity analysis
+- C001 表述约束：count_40 子集来自 80-type pool 采样，论文必须写 "40-rel subsets sampled from the 80-relation pool"
+- Claim 3 (SDGD) 已正式放弃（D019），只作为 negative result + future work 讨论
+- ARR May 25 提交，距今 **9 天**，所有工作必须服务于这个 deadline
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: cqa1-38874, account=root, 工作目录 `/root/schema-dag-extraction`
+- **Python**: conda 环境（aml-train 镜像），`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型**: Qwen3-32B-FP8 at `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`；LLaMA-3.1-8B-Instruct 也在同一 cache 目录
+- **活跃进程**: 无。所有实验已完成，无 cron（reconcile 返回 0）
+- **Worker 池**: 全部 done/cancelled。`worker_code_exp_docred_phase2` 刚完成（05:04 UTC）
+- **飞书 chat_id**: `oc_04544c3b7bc497e1d098ba47fb56a6c2`（运维群）；Director 群 `oc_51326259fe46fbae9da26b81cf03f1f8`
+
+### 3. 📊 当前状态
+**刚完成**：DocRED Phase 2 全部三阶段（count curve + BCS-controlled + bootstrap CI）成功。结果：count=16 BCS gap 23.3pp，count=32 gap 17.6pp，回归斜率显著。这是第 4 个任务（NER/RE/ED/DocRE）验证 Claim 1+2。
+
+**Registry 状态**：
+- 39 实验总计：20 success / 5 negative / 10 failed / 3 killed / 1 无结论
+- 2 个 PREPARING：`bcs_max_to_mean_fix`（conclusion 已标 success，实际是 D038 修复任务，可视为完成）；`exp_confusability_batch_composition`（exp-018，代码已写好，等 GPU）
+- 0 RUNNING / 0 ALLOCATED / 0 PENDING
+
+**等待中**：
+- 无活跃 Worker / Cron / Director 决策
+- GPU 空闲，无实验在跑
+
+### 4. 📋 待办（条件触发式）
+- **DocRED Phase 2 结果已就绪** → 派 Worker 将 DocRED 数据集成到论文（Section 5 Results + Table/Figure 更新）
+- **GPU 空闲 + exp-018 代码已写好** → 向 Director 申请批准 exp_confusability_batch_composition（batch composition 实验，FewRel 80-rel，practical contribution）
+- **收到 OpenAI API key** → 启动 exp-017 GPT-4o-mini FewRel replication（Track B，第 3 模型族）
+- **DocRED 集成 + exp-018 完成** → 论文 Review round → Final submission
+- **bcs_max_to_mean_fix** → 可清理为 DONE，它只是 D038 的 registry 占位
+
+### 5. 🎯 战略上下文
+**核心结论链**：
+- D019: 放弃 SDGD，转为 2-claim 论文
+- D032: Channel 2 跨模型复现成功（Qwen3 + LLaMA），升级 claim
+- D037: Round 2 审稿全部修复完成（5C+12W）
+- D038/D039: BCS 定义统一为 MEAN，论文+代码全同步
+- DocRED Phase 2 success: 第 4 个任务验证，跨任务证据链完整
+
+**易错点**：
+- `bcs_max_to_mean_fix` 状态是 PREPARING 但 conclusion=success，是个 D038 遗留异常态，别当成未完成实验
+- 80-pool-16sub 的 BCS 范围窄 [0.458, 0.684]，效应弱于独立 16-rel pool——这是预期行为（BCS 范围压缩），用回归斜率比较而非四分位 Δ
+- MAVEN per-type BCS 正相关是 centrality artifact（已 residualized 确认），pairwise 仍有效
+- 论文 Table 3 用**极端批次**方法（非四分位），D035 决策
+- exp-017 (GPT-4o-mini) 需要 OpenAI API key，尚未获得，用 `request_secret` 申请
+- 距 ARR May 25 仅 9 天，优先级：论文集成 DocRED > exp-018 batch composition > exp-017 GPT-4o-mini > review round > submit
+
+
+---

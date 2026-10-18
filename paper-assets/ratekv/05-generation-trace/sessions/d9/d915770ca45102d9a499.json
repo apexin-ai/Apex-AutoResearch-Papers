@@ -740,5 +740,6 @@
       ],
       "message_count": 16
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/fix-kill-mistral-v3.md"
 }

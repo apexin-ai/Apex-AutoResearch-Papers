@@ -1,0 +1,1911 @@
+# cron hook eval openvla random k09 goal seed43 20260527T052527 156370
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 58
+- **Recorded user turns:** 2
+- **Tool calls:** 27
+- **Original source:** `logs/chats/archive/cron_hook_eval_openvla_random_k09_goal_seed43_20260527T052527_156370.jsonl`
+- **Structured JSON:** [`58212dcfd635bbf2cd9b.json`](../../sessions/58/58212dcfd635bbf2cd9b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+56 recorded events
+
+### User
+
+_source line 1 · 2026-05-26T13:13:51.981492+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #14。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-27271(cuda:0,1), cqa1-33015(cuda:0,1,2,3), westd-41074(cuda:0,1,2,3), westd-38929(cuda:0,1,2,3)，共 14 张
+- westd-27271 只有 2 卡（cuda:0, cuda:1），不要尝试 cuda:2/3
+- OpenVLA 实验用 `eval_openvla_l2norm_libero.py`（不论什么 pruning mode），π0.5 用 `eval_pi05_pruning_libero.py`
+- Goal suite seed42 出现 Random > baseline 异常（79.6% vs 74.8%），这是核心待验证现象，不要轻易标记为 bug
+- CoRL 2026 Paper deadline: May 29，Abstract deadline: May 26（今天）
+
+### 2. 🖥️ 基础设施快照
+- **westd-27271**: 工作目录 `/root/autodl-tmp/importance_margin_vla_compress/`，aml-train 镜像，conda base (`/root/miniconda3/bin/python`)，2×GPU
+- **westd-38929**: 同上，4×GPU，当前跑 4 个 OpenVLA k=0.7/k=0.85 Long 重跑实验
+- **westd-41074**: 同上，4×GPU，跑 OpenVLA k=0.5 Object + zeromask ablation + profiling + π0.5 attn k=0.925
+- **cqa1-33015**: 同上，4×GPU，跑 π0.5 zeromask 实验
+- 模型路径：OpenVLA finetuned 模型在各服务器 `/root/autodl-tmp/openvla-7b-finetuned-libero-{suite}/`
+- π0.5 模型：`/root/autodl-tmp/pi05_libero_finetuned/`（cqa1/westd-41074）
+- HF cache: `/root/autodl-tmp/.hf_cache`
+
+### 3. 📊 当前状态
+**刚做完**：收到 `eval_openvla_random_k09_goal_seed43` 完成回调（ANALYZING），已派 Worker `worker_analyze_eval_openvla_random_k09_goal_seed43_20260525T211121` 去 westd-27271 读日志分析结果。**Worker 尚未回调**。
+
+**RUNNING 实验（13 个）**：
+- westd-38929: attn/l2norm/random k=0.7 Long + l2norm k=0.85 Long（4 个，cliff zone 重跑）
+- westd-41074: random/l2norm k=0.5 Object + zeromask random/l2norm k=0.9 Object + profiling latency + π0.5 attn k=0.925 Long（6 个）
+- westd-27271: baseline Goal seed43（1 个，cuda:0）
+- cqa1-33015: π0.5 zeromask random/l2norm k=0.9 Object（2 个）
+
+**空闲 GPU**：westd-27271:cuda:1（刚完成的实验释放），cqa1-33015:cuda:1, cqa1-33015:cuda:3
+
+**等待中**：
+- Worker 回调：分析 eval_openvla_random_k09_goal_seed43 结果
+- PENDING 审批：eval_pi05_l2norm_k0925_long_seed42
+
+### 4. 📋 待办
+- Worker 分析回调到达 → 读取 metrics，更新 registry 到 DONE，与 seed42(79.6%) 对比，汇报 Director（seed43 是否也 > baseline 确认 regularization effect）
+- eval_openvla_baseline_goal_seed43 完成 → 分析 seed43 baseline vs seed42 baseline(74.8%)，建立 cross-seed 参考线
+- westd-27271:cuda:1 空闲 → 部署下一个实验（优先从 ROADMAP 部署计划选）
+- cqa1-33015:cuda:1/cuda:3 空闲 → 需要部署实验，当前是失职状态
+- westd-38929 四个 Long 重跑完成 → 分析 cliff zone 数据，更新论文表格
+- westd-41074 zeromask 完成 → 分析 hard-prune vs zero-mask 对比
+- profiling_pi05_latency 完成 → 整合延迟数据到论文
+
+### 5. 🎯 战略上下文
+- **核心论点**：VLA vision token compressibility 取决于 scoring method × connector × task 三维交互，不存在 universal best method
+- **Crossover table 16/16 已完成**（OpenVLA k=0.9 四 suite × 三 method + baseline），π0.5 k=0.9 Long 三向也完成
+- **关键发现**：π0.5 Linear connector 上 L2norm(81%) >> Attention(63.8%) >> Random(32%)，49pp span；OpenVLA MLP connector 上差异小得多
+- **Goal suite 异常**：Random k=0.9 seed42 = 79.6% 超 baseline 74.8%，当前 seed43 正在验证是否可复现——如果确认，说明 random pruning 在 Goal 上有 regularization effect，这是论文的一个有趣发现点
+- **当前阶段**：补充实验（k=0.5/0.7 细粒度 + zeromask ablation + profiling latency）+ 论文级联更新
+- **易错点**：不要混淆 OpenVLA 和 π0.5 的评估脚本；不要在 cqa1 上跑 OpenVLA 实验（模型可能不全）；3 张卡空闲是失职，需立即部署
+
+## 项目硬约束 (memory.md 节选)
+
+## 9. 服务器模型部署清单 (2026-05-26)
+
+**教训 [2026-05-26]**：westd-41074 上多次部署 OpenVLA Long 实验失败（eval_openvla_attn_k085_long, eval_openvla_random_k085_long, eval_openvla_attn_k09_goal_seed43），根因是该服务器缺少对应 suite 的 finetuned 模型。eval 脚本不传 `--model_path` 时默认加载 Object 模型，不报错但产出垃圾结果。
+
+**各服务器已确认可用的 OpenVLA 模型**：
+| 服务器 | Object | Goal | Spatial | Long (libero_10) |
+|--------|--------|------|---------|-------------------|
+| westd-41074 | ✅ openvla-7b-finetuned-libero-object | ❓ | ❓ | ✅ 已 rsync（2026-05-26） |
+| westd-38929 | ✅ models/openvla-libero-object | ❓ | ❓ | ✅ models/openvla-7b-finetuned-libero-10 |
+| westd-27271 | ✅ | ✅ openvla-7b-finetuned-libero-goal | ❓ | ❓ |
+| cqa1-33015 | ✅ | ✅ openvla-libero-goal | ❓ | ❓ |
+
+**注意**：westd-38929 模型在 `/root/autodl-tmp/models/` 子目录下（有 models/ 前缀），其他服务器直接在 `/root/autodl-tmp/` 下。
+
+**部署 OpenVLA 实验前必须**：
+1. `ls` 验证目标服务器模型实际路径
+2. 显式传 `--model_path` 和 `--unnorm_key`
+3. 不要依赖脚本默认路径——默认会静默加载 Object 模型
+
+## 可查的历史
+前 43 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-26T13:14:01.308452+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-26T13:14:01.359073+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-26T13:14:04.190346+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-26T13:14:05.094214+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-26T13:14:05.596834+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'PENDING'}",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'PENDING'}",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-26T13:14:05.597269+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-26T13:14:05.899815+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-26T13:14:08.765072+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_openvla_attn_k085_goal_seed42_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-26T08:52:15.807Z\", \"updated_at\": \"2026-05-26T13:13:58.044Z\", \"hypothesis\": \"OpenVLA Attention k=0.85 Goal v3 — 论文关键缺口。Goal Attn 仅有 k=0.9=73.2%，k=0.85 是 cliff curve 唯一中间点。之前 v1/v2 失败可能因模型路径问题，本次显式传 --model_path\", \"conclusion\": \"success\"}, \"eval_openvla_l2norm_k085_goal_seed42\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-26T09:35:56.430Z\", \"updated_at\": \"2026-05-26T13:13:52.484Z\", \"hypothesis\": \"OpenVLA L2norm k=0.85 Goal seed42 — Goal L2norm cliff curve 中间点。L2norm k=0.9 Goal=75.2%。k=0.85 填补 cliff curve\", \"parent\": \"eval_openvla_l2norm_k09_goal_seed42\", \"conclusion\": \"success\"}, \"eval_pi05_attention_k085_long_seed42_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-26T12:03:20.348Z\", \"updated_at\": \"2026-05-26T12:03:57.794Z\", \"hypothesis\": \"π0.5 Attention k=0.85 Long seed42 — Attn Long cliff curve 中间点。Attn k=0.9=63.8%, k=0.75=51.8%。k=0.85 填补两者之间数据缺口（v1 进程静默死亡，v2 改用绝对路径 python 重试）\", \"parent\": \"eval_pi05_attention_k09_long_seed42\"}, \"eval_openvla_random_k07_goal_seed42_v4\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-26T11:14:28.379Z\", \"updated_at\": \"2026-05-26T11:15:54.803Z\", \"hypothesis\": \"Random pruning at k=0.7 on Goal suite tests the random baseline cliff behavior at moderate compression, expected to show significant SR drop compared to k=0.85 random baseline, establishing the random cliff curve steepness for Goal\"}, \"eval_openvla_attn_k085_long_seed42_v5\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-26T11:15:12.578Z\", \"updated_at\": \"2026-05-26T11:15:51.696Z\", \"hypothesis\": \"Attention-based pruning at k=0.85 on Long suite will show whether attention scoring preserves task-critical tokens for long-horizon manipulation, establishing the Attn cliff curve point between k=0.9 (known) and k=0.75 (TBD)\"}, \"eval_pi05_atte
+…[truncated 3318 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 4574
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T13:14:14.088268+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.3076}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 8994
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T13:14:17.100145+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.9555}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 11503
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-26T13:14:50.769449+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"eval_openvla_random_k05_long_seed42_v2\", \"success\": true, \"actions\": [\"Job still running (pid=279274)\"]}, {\"exp_id\": \"eval_openvla_random_k085_long_seed42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=415537)\"]}, {\"exp_id\": \"eval_openvla_l2norm_k095_object_seed42\", \"success\": true, \"actions\": [\"Skipped — pending escalation retry\"]}, {\"exp_id\": \"eval_openvla_l2norm_k085_object_seed42\", \"success\": true, \"actions\": [\"Job still running (pid=eval_k085_obj)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 45172
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-26T13:14:50.770120+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/ROADMAP.md\", \"content\": \"# importance_margin_vla_compress — Research Dashboard\\n\\n> 最后更新: 2026-05-26 09:24 UTC | 更新原因: 纠正 GPU 表（Reviewer CRITICAL：6/14 条目错误）+ 2 实验崩溃 + M129 tmux 教训\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA vision token compressibility: **scoring method × connector × task 三维交互**。5+ 模型 × 4 LIBERO suites。\\n\\n## 当前阶段\\n✅ **Crossover table 16/16 完成**\\n✅ **Position encoding sensitivity 确认 (D237)** — L2norm 单调 + Random V-shape + zeromask 证据链\\n📝 **Paper Agent**: D237 叙事升级完成 + k=0.7 交叉点 Limitations 补丁完成 (Provenance v179)\\n⚠️ **M129**: 2 实验因非 tmux 部署崩溃，2 实验同样脆弱（已通知 Agent）\\n⚠️ **Agent queue depth=7**，紧急 tmux 修复指令已插入队首\\n\\n## Deadlines\\n- **CoRL 2026 Abstract**: May 26 (TODAY) — 已定稿待用户提交\\n- **CoRL 2026 Paper**: May 29 (3 days)\\n\\n## Position Encoding Sensitivity (D236+D237)\\nπ0.5 Long: L2norm 完美单调 (87→39%), Random V-shape (63→32→66→30%)\\nk=0.9 importance margin = **+48pp** | zeromask (D234) = 98% 保留 position\\nPaper Agent 已完成叙事升级 + Limitations 补丁\\n\\n## 核心数据完整\\n### OpenVLA (MLP) k=0.9 Crossover — 16/16 ✅\\n| Suite | Baseline | Attn | L2norm | Random |\\n|-------|----------|------|--------|--------|\\n| Object | 74.0% | 61.4% | **70.6%** | 62.8% |\\n| Goal | 74.8% | 73.2% | 74.8% | 79.6%⚠️ |\\n| Spatial | 80.0% | **80.4%** | 75.0% | **79.8%** |\\n| Long | 52.8% | 44.0% | 43.6% | 46.8% |\\n\\n### 新增 cliff curve 数据点\\n- OpenVLA L2norm k=0.7 Object = **49.8%** (curve: 70.6→49.8→39.2)\\n- OpenVLA Attn k=0.85 Object = **55%** (curve: 61.4→55→k0.7 重跑中)\\n- OpenVLA Attn k=0.7 Long = **24.0%** (steep cliff: 44→24)\\n- π0.5 Attn k=0.75 Long = **51.8%**\\n- π0.5 Random k=0.75 Long = **62.4%**\\n- π0.5 k=0.5 Long rerun (partial): Random=56%, L2norm=50.2% — 方法确实不同\\n\\n## GPU 实际状态 (14 张) — Reviewer 实地审计\\n⚠️ cqa1: transformers 5.5.3，仅跑 π0.5 | ⚠️ tee 部署脆弱(M129)\\n\\n| 服务器 | GPU 0 | GPU 1 | GPU 2 | GPU 3 |\\n
+…[truncated 2841 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 44870
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-26T13:15:17.712321+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-26T13:15:19.468734+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md\", \"content\": \"# Handover — 2026-05-26\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_pi05_l2norm_k075_long_seed42 | π0.5 L2norm k=0.75 Long seed42 — cliff curve k=0.75 三方法对比。L2norm k=0.9=81%, k=0.5 在跑。重跑：之前因缺 offline flags 崩溃 | — | — | — |\\n\\n## 待处理\\n- eval_openvla_l2norm_k075_object_seed42（准备中）\\n- eval_openvla_attn_k07_goal_seed42（准备中）\\n- …另有 92 项\\n\\n## 近期结论\\n- **eval_openvla_l2norm_k095_object_seed42** (success): OpenVLA L2norm k=0.95 Object seed42 — near-baseline L2norm 数据。fig_method_gap 和 tab_main_results 需要 k=0.95 数据计算 method gap。OpenVLA baseline Object=74%，L2norm k=0.9=70.6%。k=0.95 是 safe zone 参考点 ← 基于 eval_openvla_l2norm_k09_object_seed42\\n\\n## 趋势\\n成功 442 / 负向 105 / 失败 99 / 共 711\\noverall_sr: 70.6 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-33015: 无 GPU 信息\\nwestd-27271: 无 GPU 信息\\nwestd-38929: 无 GPU 信息\\nwestd-41074: 无 GPU 信息\\n\\n## 告警\\n- eval_acis_k05_supplement_200eps: 训练失败 — unknown\\n- eval_e5_xvla_attn_last_goal_k03: 已被终止 — unknown\\n- eval_e5_xvla_attn_mean_goal_k03: 已被终止 — unknown\\n- eval_k07_bypass_v2: 训练失败 — unknown\\n- eval_official_smolvla_prune_k05_spatial: 训练失败 — unknown\\n- eval_official_smolvla_pruning: 训练失败 — unknown\\n- eval_oft_baseline_k10: 训练失败 — unknown\\n- eval_oft_baseline_object_seed42: 已被终止 — unknown\\n- eval_oft_baseline_object_seed42_v2: 训练失败 — unknown\\n- eval_openvla_attn_k05_goal_seed42: 训练失败 — unknown\\n- eval_openvla_attn_k05_object_seed42: 训练失败 — unknown\\n- eval_openvla_attn_k05_object_seed42_v2: 训练失败 — unknown\\n- eval_openvla_attn_k085_goal_seed42: 训练失败 — unknown\\n- eval_openvla_attn_k085_goal_seed42_v2: 已被终止 — unknown\\n- eval_openvla_attn_k085_long_seed42: 训练失败 — unknown\\n- eval_openvla_attn_k085_long_seed42_v2: 已被终止 — unkn
+…[truncated 5871 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1756
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-26T13:15:19.620362+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__get_worker_status",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__get_worker_status",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-26T13:15:19.620829+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-26T13:15:32.722943+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "importance_margin_vla_compress",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "importance_margin_vla_compress",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-26T13:15:33.326852+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-26T13:15:34.105201+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['status', 'conclusion', 'metrics', 'spec']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['status', 'conclusion', 'metrics', 'spec']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-26T13:15:36.814737+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_openvla_attn_k085_goal_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:52:15.807Z\", \"updated_at\": \"2026-05-26T13:15:26.196Z\", \"hypothesis\": \"OpenVLA Attention k=0.85 Goal v3 — 论文关键缺口。Goal Attn 仅有 k=0.9=73.2%，k=0.85 是 cliff curve 唯一中间点。之前 v1/v2 失败可能因模型路径问题，本次显式传 --model_path\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 74.6, \"per_task\": {\"T1_open_drawer\": 52, \"T2_bowl_stove\": 88, \"T3_wine_cabinet\": 76, \"T4_drawer_bowl\": 44, \"T5_bowl_cabinet\": 98, \"T6_plate_stove\": 84, \"T7_cream_bowl\": 74, \"T8_stove_on\": 94, \"T9_bowl_plate\": 78, \"T10_wine_rack\": 58}}}, \"eval_openvla_l2norm_k095_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T07:52:39.419Z\", \"updated_at\": \"2026-05-26T13:15:09.330Z\", \"hypothesis\": \"OpenVLA L2norm k=0.95 Object seed42 — near-baseline L2norm 数据。fig_method_gap 和 tab_main_results 需要 k=0.95 数据计算 method gap。OpenVLA baseline Object=74%，L2norm k=0.9=70.6%。k=0.95 是 safe zone 参考点\", \"parent\": \"eval_openvla_l2norm_k09_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 70.6, \"per_task\": {\"T1_alphabet_soup\": 48, \"T2_cream_cheese\": 52, \"T3_salad_dressing\": 82, \"T4_bbq_sauce\": 60, \"T5_ketchup\": 88, \"T6_tomato_sauce\": 66, \"T7_butter\": 54, \"T8_milk\": 84, \"T9_chocolate_pudding\": 86, \"T10_orange_juice\": 86}}}, \"eval_openvla_l2norm_k085_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T09:35:56.430Z\", \"updated_at\": \"2026-05-26T13:15:01.242Z\", \"hypothesis\": \"OpenVLA L2norm k=0.85 Goal seed42 — Goal L2norm cliff curve 中间点。L2norm k=0.9 Goal=75.2%。k=0.85 填补 cliff curve\", \"parent\": \"eval_openvla_l2norm_k09_goal_seed42\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 75.4, \"per_task\": {\"T1_open_drawer\": 66, \"T2_bowl_stove\": 96, \"T3_wine_cabinet\": 74, \"T4_drawer_bowl\": 30, \"T5_bowl_cabinet\": 96, \"T6_plate_stove\": 
+…[truncated 3102 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 4091
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-26T13:15:37.065971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_diagnose_eval_openvla_l2norm_k095_object_seed42_20260526T131516\", \"task_type\": \"diagnose:eval_openvla_l2norm_k095_object_seed42\", \"project\": \"importance_margin_vla_compress\", \"status\": \"running\", \"started_at\": \"2026-05-26T13:15:16.285372+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_diagnose_eval_openvla_l2norm_k085_goal_seed42_20260526T131523\", \"task_type\": \"diagnose:eval_openvla_l2norm_k085_goal_seed42\", \"project\": \"importance_margin_vla_compress\", \"status\": \"running\", \"started_at\": \"2026-05-26T13:15:23.563873+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 3739
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-26T13:15:42.558830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k075_long_seed42\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=0 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"cqa1-33015\", \"gpu\": 0, \"pid\": 212672, \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi0.5\", \"seed\": 42, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k075_long_seed42.log\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\"}, \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 73.4, \"per_task\": {\"T0_soup_tomato\": 96, \"T1_cream_butter\": 94, \"T2_stove_moka\": 82, \"T3_bowl_drawer\": 70, \"T4_mug_plate\": 68, \"T5_book_back\": 84, \"T6_mug_plate_tomato\": 52, \"T7_soup_cream\": 76, \"T8_moka_pots\": 28, \"T9_mug_microwave\": 84}}}, \"eval_pi05_attention_k085_long_seed42_v2\": {\"status\": \"RUNNING\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:3\", \"pid\": 337364, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attention_k085_long_seed42_v2.log\", \"submitted_at\": \"2026-05-26T12:03:18.408Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_path\": \"N/A (eval only)\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_dat
+…[truncated 7621 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 8453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-26T13:17:10.368636+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k075_long_seed42",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_l2norm_k075_long_seed42",
+    "field": "status",
+    "value": "DONE",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-26T13:17:11.437629+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "importance_margin_vla_compress",
+  "limit": "5",
+  "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "importance_margin_vla_compress",
+    "limit": "5",
+    "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-26T13:17:12.455845+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-26T13:17:26.678874+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k075_long_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-25T21:32:38.728Z\", \"updated_at\": \"2026-05-26T13:17:15.731Z\", \"hypothesis\": \"π0.5 L2norm k=0.75 Long seed42 — cliff curve k=0.75 三方法对比。L2norm k=0.9=81%, k=0.5 在跑。重跑：之前因缺 offline flags 崩溃\", \"parent\": \"eval_pi05_l2norm_k0925_long_seed42_v2\", \"completed_at\": \"2026-05-25T21:47:57.949Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=0 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"cqa1-33015\", \"gpu\": 0, \"pid\": 212672, \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi0.5\", \"seed\": 42, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k075_long_seed42.log\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"checkpoint_path\": \"N/A (eval only)\"}, \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 73.4, \"per_task\": {\"T0_soup_tomato\": 96, \"T1_cream_butter\": 94, \"T2_stove_moka\": 82, \"T3_bowl_drawer\": 70, \"T4_mug_plate\": 68, \"T5_book_back\": 84, \"T6_mug_plate_tomato\": 52, \"T7_soup_cream\": 76, \"T8_moka_pots\": 28, \"T9_mug_microwave\": 84}}}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 16.2128}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 16310
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-26T13:17:31.717625+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k075_long_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-26T13:17:15.731Z\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 73.4, \"per_task\": {\"T0_soup_tomato\": 96, \"T1_cream_butter\": 94, \"T2_stove_moka\": 82, \"T3_bowl_drawer\": 70, \"T4_mug_plate\": 68, \"T5_book_back\": 84, \"T6_mug_plate_tomato\": 52, \"T7_soup_cream\": 76, \"T8_moka_pots\": 28, \"T9_mug_microwave\": 84}}}, \"eval_pi05_random_k085_long_seed42\": {\"conclusion\": \"negative\", \"metrics\": {\"overall_SR\": 0.444, \"total_episodes\": 500, \"total_successes\": 222}, \"status\": \"DONE\", \"updated_at\": \"2026-05-26T13:16:06.381Z\"}, \"eval_openvla_attn_k085_goal_seed42_v3\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-26T13:15:26.196Z\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 74.6, \"per_task\": {\"T1_open_drawer\": 52, \"T2_bowl_stove\": 88, \"T3_wine_cabinet\": 76, \"T4_drawer_bowl\": 44, \"T5_bowl_cabinet\": 98, \"T6_plate_stove\": 84, \"T7_cream_bowl\": 74, \"T8_stove_on\": 94, \"T9_bowl_plate\": 78, \"T10_wine_rack\": 58}}}, \"eval_openvla_l2norm_k095_object_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-26T13:15:09.330Z\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 70.6, \"per_task\": {\"T1_alphabet_soup\": 48, \"T2_cream_cheese\": 52, \"T3_salad_dressing\": 82, \"T4_bbq_sauce\": 60, \"T5_ketchup\": 88, \"T6_tomato_sauce\": 66, \"T7_butter\": 54, \"T8_milk\": 84, \"T9_chocolate_pudding\": 86, \"T10_orange_juice\": 86}}}, \"eval_openvla_l2norm_k085_goal_seed42\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-26T13:15:01.242Z\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 75.4, \"per_task\": {\"T1_open_drawer\": 66, \"T2_bowl_stove\": 96, \"T3_wine_cabinet\": 74, \"T4_drawer_bowl\": 30, \"T5_bowl_cabinet\": 96, \"T6_plate_stove\": 78, \"T7_cream_bowl\": 74, \"T8_stove_on\": 94, \"T9_bowl_plate\": 84, \"T10_wine_rack
+…[truncated 125 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 20279
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-26T13:17:31.718118+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 19262
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-26T13:18:09.634388+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/skills/resource-saturation.skill.md",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/skills/resource-saturation.skill.md",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-26T13:18:09.735453+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/sessions/agent_6d9a799a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-26T13:18:12.658004+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-26T13:18:12.859752+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "Glob",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-26T13:18:15.371146+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-26T13:18:15.522682+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-26T13:18:17.933320+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+  "limit": "60"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+    "limit": "60"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-26T13:18:18.084637+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "Read",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-26T13:18:55.579556+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_training_job",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__submit_training_job",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-26T13:18:55.630332+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-26T13:20:19.991415+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "deploy:eval_openvla_attn_k07_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务\n在 westd-27271 的 cuda:0 上部署 OpenVLA Attention k=0.7 Goal seed42 实验。\n\n## 步骤\n1. SSH 到 westd-27271，验证模型路径存在：`ls -d /root/autodl-tmp/openvla-7b-finetuned-libero-goal`\n2. 验证脚本存在：`ls /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py`\n3. 验证 cuda:0 空闲：`nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader`\n4. 用 update_registry 创建实验：\n   - exp_id: eval_openvla_attn_k07_goal_seed42\n   - status: PREPARING\n   - hypothesis: \"OpenVLA Attention k=0.7 Goal seed42 — Goal Attn cliff curve k=0.7 数据点。Attn k=0.85 Goal=74.6%≈baseline(74.8%)，k=0.9=73.2%。k=0.7 测试 30% 压缩下 Goal Attn 是否仍保持 baseline 水平\"\n   - parent: eval_openvla_attn_k085_goal_seed42_v3\n5. 用 submit_training_job 提交：\n   - server: westd-27271\n   - gpu_ids: [\"cuda:0\"]\n   - exp_id: eval_openvla_attn_k07_goal_seed42\n   - command: `bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl /root/miniconda3/bin/python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.7 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal\"`\n   - project: importance_margin_vla_compress\n6. 用 update_registry 更新 spec（command, server, data_path=libero_goal, data_count=500, model_name=openvla-7b-finetuned-libero-goal, seed=42, checkpoint_source=/root/autodl-tmp/openvla-7b-finetuned-libero-goal, eval_data=libero_goal, checkpoint_path=N/A (eval only)）\n\n## 环境\n- conda base: /root/miniconda3/bin/python\n- 工作目录: /root/autodl-tmp/importance_margin_vla_compress/\n- OpenVLA eval 脚本: eval_openvla_l2norm_libero.py（用于所有 pruning mode）\n- **必须显式传 --model_path 和 --unnorm_key**\n\n## 出错处理\n- 如果 cuda:0 被占用，报告具体是什么进程，不要强制部署\n- 如果模型路径不存在，报告并终止\n",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "deploy:eval_openvla_attn_k07_goal_seed42",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务\n在 westd-27271 的 cuda:0 上部署 OpenVLA Attention k=0.7 Goal seed42 实验。\n\n## 步骤\n1. SSH 到 westd-27271，验证模型路径存在：`ls -d /root/autodl-tmp/openvla-7b-finetuned-libero-goal`\n2. 验证脚本存在：`ls /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py`\n3. 验证 cuda:0 空闲：`nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader`\n4. 用 update_registry 创建实验：\n   - exp_id: eval_openvla_attn_k07_goal_seed42\n   - status: PREPARING\n   - hypothesis: \"OpenVLA Attention k=0.7 Goal seed42 — Goal Attn cliff curve k=0.7 数据点。Attn k=0.85 Goal=74.6%≈baseline(74.8%)，k=0.9=73.2%。k=0.7 测试 30% 压缩下 Goal Attn 是否仍保持 baseline 水平\"\n   - parent: eval_openvla_attn_k085_goal_seed42_v3\n5. 用 submit_training_job 提交：\n   - server: westd-27271\n   - gpu_ids: [\"cuda:0\"]\n   - exp_id: eval_openvla_attn_k07_goal_seed42\n   - command: `bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl /root/miniconda3/bin/python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.7 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal\"`\n   - project: importance_margin_vla_compress\n6. 用 update_registry 更新 spec（command, server, data_path=libero_goal, data_count=500, model_name=openvla-7b-finetuned-libero-goal, seed=42, checkpoint_source=/root/autodl-tmp/openvla-7b-finetuned-libero-goal, eval_data=libero_goal, checkpoint_path=N/A (eval only)）\n\n## 环境\n- conda base: /root/miniconda3/bin/python\n- 工作目录: /root/autodl-tmp/importance_margin_vla_compress/\n- OpenVLA eval 脚本: eval_openvla_l2norm_libero.py（用于所有 pruning mode）\n- **必须显式传 --model_path 和 --unnorm_key**\n\n## 出错处理\n- 如果 cuda:0 被占用，报告具体是什么进程，不要强制部署\n- 如果模型路径不存在，报告并终止\n",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-26T13:20:30.916753+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_deploy_eval_openvla_attn_k07_goal_seed42_20260526T132022\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_deploy_eval_openvla_attn_k07_goal_seed42_20260526T132022.log\", \"setup_data\": {}, \"message\": \"Worker worker_deploy_eval_openvla_attn_k07_goal_seed42_20260526T132022 started. Use get_worker_status('worker_deploy_eval_openvla_attn_k07_goal_seed42_20260526T132022') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 10925
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-26T13:20:31.470399+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "deploy:eval_openvla_l2norm_k07_goal_seed42",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务\n在 westd-38929 的 cuda:2 上部署 OpenVLA L2norm k=0.7 Goal seed42 实验。\n\n## 步骤\n1. SSH 到 westd-38929，验证模型路径存在：`ls -d /root/autodl-tmp/models/openvla-7b-finetuned-libero-goal`（注意 westd-38929 模型在 models/ 子目录下）\n2. 验证脚本存在：`ls /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py`\n3. 验证 cuda:2 空闲：`nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader`\n4. 用 update_registry 创建实验：\n   - exp_id: eval_openvla_l2norm_k07_goal_seed42\n   - status: PREPARING\n   - hypothesis: \"OpenVLA L2norm k=0.7 Goal seed42 — Goal L2norm cliff curve k=0.7 数据点。L2norm k=0.85 Goal=75.4%(>baseline 74.8%), k=0.9=74.8%。k=0.7 测试 30% 压缩下 L2norm 在 Goal 上能否保持\"\n   - parent: eval_openvla_l2norm_k085_goal_seed42\n5. 用 submit_training_job 提交：\n   - server: westd-38929\n   - gpu_ids: [\"cuda:2\"]\n   - exp_id: eval_openvla_l2norm_k07_goal_seed42\n   - command: `bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl /root/miniconda3/bin/python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.7 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal\"`\n   - project: importance_margin_vla_compress\n6. 用 update_registry 更新 spec（command, server, data_path=libero_goal, data_count=500, model_name=openvla-7b-finetuned-libero-goal, seed=42, checkpoint_source=/root/autodl-tmp/models/openvla-7b-finetuned-libero-goal, eval_data=libero_goal, checkpoint_path=N/A (eval only)）\n\n## 环境\n- conda base: /root/miniconda3/bin/python\n- 工作目录: /root/autodl-tmp/importance_margin_vla_compress/\n- ⚠️ westd-38929 的模型路径有 models/ 前缀\n- ⚠️ 如果 Goal 模型不存在（ls 找不到），改为部署 L2norm k=0.5 Long 实验：\n  - exp_id: eval_openvla_l2norm_k05_long_seed42_v2\n  - model_path: /root/autodl-tmp/models/openvla-7b-finetuned-libero-10\n  - --mode l2norm_prune --k_ratio 0.5 --suite libero_10 --unnorm_key libero_10\n  - hypothesis: \"OpenVLA L2norm k=0.5 Long seed42 — extreme pruning cliff curve 端点\"\n\n## 出错处理\n- cuda:2 被占用 → 报告进程信息，不强制部署\n- 模型路径不存在 → 用 fallback Long 实验\n",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "deploy:eval_openvla_l2norm_k07_goal_seed42",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务\n在 westd-38929 的 cuda:2 上部署 OpenVLA L2norm k=0.7 Goal seed42 实验。\n\n## 步骤\n1. SSH 到 westd-38929，验证模型路径存在：`ls -d /root/autodl-tmp/models/openvla-7b-finetuned-libero-goal`（注意 westd-38929 模型在 models/ 子目录下）\n2. 验证脚本存在：`ls /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py`\n3. 验证 cuda:2 空闲：`nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader`\n4. 用 update_registry 创建实验：\n   - exp_id: eval_openvla_l2norm_k07_goal_seed42\n   - status: PREPARING\n   - hypothesis: \"OpenVLA L2norm k=0.7 Goal seed42 — Goal L2norm cliff curve k=0.7 数据点。L2norm k=0.85 Goal=75.4%(>baseline 74.8%), k=0.9=74.8%。k=0.7 测试 30% 压缩下 L2norm 在 Goal 上能否保持\"\n   - parent: eval_openvla_l2norm_k085_goal_seed42\n5. 用 submit_training_job 提交：\n   - server: westd-38929\n   - gpu_ids: [\"cuda:2\"]\n   - exp_id: eval_openvla_l2norm_k07_goal_seed42\n   - command: `bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl /root/miniconda3/bin/python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.7 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal\"`\n   - project: importance_margin_vla_compress\n6. 用 update_registry 更新 spec（command, server, data_path=libero_goal, data_count=500, model_name=openvla-7b-finetuned-libero-goal, seed=42, checkpoint_source=/root/autodl-tmp/models/openvla-7b-finetuned-libero-goal, eval_data=libero_goal, checkpoint_path=N/A (eval only)）\n\n## 环境\n- conda base: /root/miniconda3/bin/python\n- 工作目录: /root/autodl-tmp/importance_margin_vla_compress/\n- ⚠️ westd-38929 的模型路径有 models/ 前缀\n- ⚠️ 如果 Goal 模型不存在（ls 找不到），改为部署 L2norm k=0.5 Long 实验：\n  - exp_id: eval_openvla_l2norm_k05_long_seed42_v2\n  - model_path: /root/autodl-tmp/models/openvla-7b-finetuned-libero-10\n  - --mode l2norm_prune --k_ratio 0.5 --suite libero_10 --unnorm_key libero_10\n  - hypothesis: \"OpenVLA L2norm k=0.5 Long seed42 — extreme pruning cliff curve 端点\"\n\n## 出错处理\n- cuda:2 被占用 → 报告进程信息，不强制部署\n- 模型路径不存在 → 用 fallback Long 实验\n",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-26T13:20:41.007804+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_deploy_eval_openvla_l2norm_k07_goal_seed42_20260526T132032\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_deploy_eval_openvla_l2norm_k07_goal_seed42_20260526T132032.log\", \"setup_data\": {}, \"message\": \"Worker worker_deploy_eval_openvla_l2norm_k07_goal_seed42_20260526T132032 started. Use get_worker_status('worker_deploy_eval_openvla_l2norm_k07_goal_seed42_20260526T132032') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 9537
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-26T13:20:41.462049+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "deploy:eval_openvla_random_k085_object_seed42",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务\n在 westd-41074 的 cuda:3 上部署 OpenVLA Random k=0.85 Object seed42 实验。\n\n## 步骤\n1. SSH 到 westd-41074，验证模型路径存在：`ls -d /root/autodl-tmp/openvla-7b-finetuned-libero-object`\n   - 如果上面不存在，试 `ls -d /root/autodl-tmp/openvla-libero-object`（该服务器可能用短名称）\n2. 验证脚本存在：`ls /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py`\n3. 验证 cuda:3 空闲：`nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader`\n4. 用 update_registry 创建实验：\n   - exp_id: eval_openvla_random_k085_object_seed42\n   - status: PREPARING\n   - hypothesis: \"OpenVLA Random k=0.85 Object seed42 — Object k=0.85 三方法对比最后一格。Attn k=0.85 Object=55%, L2norm k=0.85 Object 在跑。Random k=0.85 完成三方法对比，测试 MLP connector 对 random pruning 的 cliff 行为\"\n   - parent: eval_openvla_random_k09_object_seed42\n5. 用 submit_training_job 提交：\n   - server: westd-41074\n   - gpu_ids: [\"cuda:3\"]\n   - exp_id: eval_openvla_random_k085_object_seed42\n   - command: `bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl /root/miniconda3/bin/python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.85 --suite libero_object --num_episodes 50 --seed 42 --model_path <验证后的实际路径> --unnorm_key libero_object\"`\n   - project: importance_margin_vla_compress\n   - ⚠️ 用你在步骤 1 验证的实际模型路径替换 command 中的 model_path\n6. 用 update_registry 更新 spec（command, server, data_path=libero_object, data_count=500, model_name=openvla-libero-object, seed=42, checkpoint_source=<实际路径>, eval_data=libero_object, checkpoint_path=N/A (eval only)）\n\n## 环境\n- conda base: /root/miniconda3/bin/python\n- 工作目录: /root/autodl-tmp/importance_margin_vla_compress/\n\n## 出错处理\n- cuda:3 被占用 → 报告进程信息\n- 模型路径不存在 → 报告并终止\n",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "deploy:eval_openvla_random_k085_object_seed42",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务\n在 westd-41074 的 cuda:3 上部署 OpenVLA Random k=0.85 Object seed42 实验。\n\n## 步骤\n1. SSH 到 westd-41074，验证模型路径存在：`ls -d /root/autodl-tmp/openvla-7b-finetuned-libero-object`\n   - 如果上面不存在，试 `ls -d /root/autodl-tmp/openvla-libero-object`（该服务器可能用短名称）\n2. 验证脚本存在：`ls /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py`\n3. 验证 cuda:3 空闲：`nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader`\n4. 用 update_registry 创建实验：\n   - exp_id: eval_openvla_random_k085_object_seed42\n   - status: PREPARING\n   - hypothesis: \"OpenVLA Random k=0.85 Object seed42 — Object k=0.85 三方法对比最后一格。Attn k=0.85 Object=55%, L2norm k=0.85 Object 在跑。Random k=0.85 完成三方法对比，测试 MLP connector 对 random pruning 的 cliff 行为\"\n   - parent: eval_openvla_random_k09_object_seed42\n5. 用 submit_training_job 提交：\n   - server: westd-41074\n   - gpu_ids: [\"cuda:3\"]\n   - exp_id: eval_openvla_random_k085_object_seed42\n   - command: `bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl /root/miniconda3/bin/python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.85 --suite libero_object --num_episodes 50 --seed 42 --model_path <验证后的实际路径> --unnorm_key libero_object\"`\n   - project: importance_margin_vla_compress\n   - ⚠️ 用你在步骤 1 验证的实际模型路径替换 command 中的 model_path\n6. 用 update_registry 更新 spec（command, server, data_path=libero_object, data_count=500, model_name=openvla-libero-object, seed=42, checkpoint_source=<实际路径>, eval_data=libero_object, checkpoint_path=N/A (eval only)）\n\n## 环境\n- conda base: /root/miniconda3/bin/python\n- 工作目录: /root/autodl-tmp/importance_margin_vla_compress/\n\n## 出错处理\n- cuda:3 被占用 → 报告进程信息\n- 模型路径不存在 → 报告并终止\n",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-26T13:20:54.050854+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_deploy_eval_openvla_random_k085_object_seed42_20260526T132041\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_deploy_eval_openvla_random_k085_object_seed42_20260526T132041.log\", \"setup_data\": {}, \"message\": \"Worker worker_deploy_eval_openvla_random_k085_object_seed42_20260526T132041 started. Use get_worker_status('worker_deploy_eval_openvla_random_k085_object_seed42_20260526T132041') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 12588
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-26T13:20:55.060050+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "deploy:eval_pi05_l2norm_k085_long_seed42_v3",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务\n在 cqa1-33015 的 cuda:0 上部署 π0.5 L2norm k=0.85 Long seed42 实验。\n\n## 背景\nπ0.5 L2norm Long 单调曲线当前数据：k=0.95≈87%, k=0.9=81%, k=0.75=73.4%(刚完成), k=0.5=50.2%, k=0.3=39%。\nk=0.85 是 k=0.9(81%) 和 k=0.75(73.4%) 之间的关键缺口。之前的 v1/v2 因缺少 offline flags 等问题失败。\n\n## 步骤\n1. SSH 到 cqa1-33015，验证：\n   - 脚本存在：`ls /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py`\n   - 模型存在：`ls -d /root/autodl-tmp/pi05_libero_finetuned`\n   - cuda:0 空闲：`nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader`\n2. 用 update_registry 创建实验：\n   - exp_id: eval_pi05_l2norm_k085_long_seed42_v3\n   - status: PREPARING\n   - hypothesis: \"π0.5 L2norm k=0.85 Long seed42 — L2norm Long 单调曲线 k=0.85 数据点。k=0.9=81%, k=0.75=73.4%。预期在两者之间，验证单调性延续。v1/v2 因环境问题失败，v3 使用正确 offline flags\"\n   - parent: eval_pi05_l2norm_k075_long_seed42\n3. 用 submit_training_job 提交：\n   - server: cqa1-33015\n   - gpu_ids: [\"cuda:0\"]\n   - exp_id: eval_pi05_l2norm_k085_long_seed42_v3\n   - command: `bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\"`\n   - project: importance_margin_vla_compress\n4. 用 update_registry 更新 spec（command, server, data_path=libero_10, data_count=50, model_name=pi0.5, seed=42, checkpoint_source=/root/autodl-tmp/pi05_libero_finetuned, eval_data=libero_10, checkpoint_path=N/A (eval only)）\n\n## 环境\n- cqa1-33015 用 conda base: /root/miniconda3/bin/python\n- ⚠️ **必须** 加 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache（之前版本因缺这些失败）\n- ⚠️ π0.5 用 eval_pi05_pruning_libero.py（不是 eval_openvla_l2norm_libero.py）\n- ⚠️ π0.5 参数是 --prune_mode/--keep_ratio/--n_episodes（不是 --mode/--k_ratio/--num_episodes）\n\n## 出错处理\n- cuda:0 被占用 → 报告进程信息\n- 脚本/模型不存在 → 报告并终止\n",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "deploy:eval_pi05_l2norm_k085_long_seed42_v3",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务\n在 cqa1-33015 的 cuda:0 上部署 π0.5 L2norm k=0.85 Long seed42 实验。\n\n## 背景\nπ0.5 L2norm Long 单调曲线当前数据：k=0.95≈87%, k=0.9=81%, k=0.75=73.4%(刚完成), k=0.5=50.2%, k=0.3=39%。\nk=0.85 是 k=0.9(81%) 和 k=0.75(73.4%) 之间的关键缺口。之前的 v1/v2 因缺少 offline flags 等问题失败。\n\n## 步骤\n1. SSH 到 cqa1-33015，验证：\n   - 脚本存在：`ls /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py`\n   - 模型存在：`ls -d /root/autodl-tmp/pi05_libero_finetuned`\n   - cuda:0 空闲：`nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader`\n2. 用 update_registry 创建实验：\n   - exp_id: eval_pi05_l2norm_k085_long_seed42_v3\n   - status: PREPARING\n   - hypothesis: \"π0.5 L2norm k=0.85 Long seed42 — L2norm Long 单调曲线 k=0.85 数据点。k=0.9=81%, k=0.75=73.4%。预期在两者之间，验证单调性延续。v1/v2 因环境问题失败，v3 使用正确 offline flags\"\n   - parent: eval_pi05_l2norm_k075_long_seed42\n3. 用 submit_training_job 提交：\n   - server: cqa1-33015\n   - gpu_ids: [\"cuda:0\"]\n   - exp_id: eval_pi05_l2norm_k085_long_seed42_v3\n   - command: `bash -c \"cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\"`\n   - project: importance_margin_vla_compress\n4. 用 update_registry 更新 spec（command, server, data_path=libero_10, data_count=50, model_name=pi0.5, seed=42, checkpoint_source=/root/autodl-tmp/pi05_libero_finetuned, eval_data=libero_10, checkpoint_path=N/A (eval only)）\n\n## 环境\n- cqa1-33015 用 conda base: /root/miniconda3/bin/python\n- ⚠️ **必须** 加 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache（之前版本因缺这些失败）\n- ⚠️ π0.5 用 eval_pi05_pruning_libero.py（不是 eval_openvla_l2norm_libero.py）\n- ⚠️ π0.5 参数是 --prune_mode/--keep_ratio/--n_episodes（不是 --mode/--k_ratio/--num_episodes）\n\n## 出错处理\n- cuda:0 被占用 → 报告进程信息\n- 脚本/模型不存在 → 报告并终止\n",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-26T13:21:13.875346+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_deploy_eval_pi05_l2norm_k085_long_seed42_v3_20260526T132055\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_deploy_eval_pi05_l2norm_k085_long_seed42_v3_20260526T132055.log\", \"setup_data\": {}, \"message\": \"Worker worker_deploy_eval_pi05_l2norm_k085_long_seed42_v3_20260526T132055 started. Use get_worker_status('worker_deploy_eval_pi05_l2norm_k085_long_seed42_v3_20260526T132055') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 18815
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-26T13:21:14.176686+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 14/14 分配 | 实际在跑 10/14（4 刚完成，4 新实验正在部署） | Worker 6 (GPU 4 / CPU 2)\n\n## 4 个实验完成，关键发现\n\n### 1. OpenVLA Attn k=0.85 Goal = 74.6% ✅\n- baseline=74.8%, Attn k=0.9=73.2%\n- Δ(baseline)=-0.2pp — 15% pruning 几乎无损\n- Goal Attn cliff curve: 73.2%(k=0.9) → 74.6%(k=0.85) — 反直觉地 k=0.85 优于 k=0.9，说明 Goal 对 Attn pruning 极其稳健\n\n### 2. OpenVLA L2norm k=0.85 Goal = 75.4% ✅\n- baseline=74.8%, L2norm k=0.9=74.8%\n- Δ(baseline)=+0.6pp — 超过 baseline！\n- Goal 对两种 structured scoring 都高度免疫\n\n### 3. OpenVLA L2norm k=0.95 Object = 70.6% ⚠️\n- baseline=74%, L2norm k=0.9=70.6%\n- **k=0.95 = k=0.9 = 70.6%，完全相同**\n- 关键发现：L2norm 在 MLP connector Object 上的 method gap (-3.4pp) 是**恒定的**，不随 pruning ratio 缩小\n- 即使只去掉 5% token，损失与去掉 10% 一样 → method gap 是 scoring 偏差的固有属性，不是量的问题\n\n### 4. π0.5 L2norm k=0.75 Long = 73.4% ✅\n- k=0.9=81% → k=0.75=73.4% (Δ=-7.6pp)\n- 单调曲线完美延续：87→81→73.4→50.2→39%\n- Linear connector L2norm 全程单调 = position encoding 假设的强证据\n\n## 论文价值分析\n- **L2norm k=0.95=k=0.9 Object 发现**可以加强 \"method gap is intrinsic\" claim：gap 不是 pruning 量导致的，是 scoring method × connector 交互的固有性质\n- **Goal 双方法免疫** (Attn k=0.85≈baseline, L2norm k=0.85>baseline) 强化 \"task complexity determines compressibility\" claim\n\n## 已部署 4 个新实验（填空闲 GPU）\n| GPU | 实验 | 目的 |\n|-----|------|------|\n| westd-27271:cuda:0 | Attn k=0.7 Goal | Goal Attn cliff curve 30% 压缩点 |\n| westd-38929:cuda:2 | L2norm k=0.7 Goal | Goal L2norm cliff curve 30% 压缩点 |\n| westd-41074:cuda:3 | Random k=0.85 Object | Object k=0.85 三方法对比最后一格 |\n| cqa1-33015:cuda:0 | π0.5 L2norm k=0.85 Long | 单调曲线 k=0.85 缺口(81%→?→73.4%) |\n\n## 仍在跑的 10 个实验\nwestd-38929(3): Random k=0.85 Goal, Random k=0.5 Long, Attn k=0.85 Long\nwestd-41074(3): Random k=0.85 Long, L2norm k=0.85 Object, Attn k=0.7 Object\nwestd-27271(1): Random k=0.7 Goal\ncqa1-33015(3): π0.5 Attn k=0.75 Long, Attn k=0.5 Long, Attn k=0.85 Long",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 14/14 分配 | 实际在跑 10/14（4 刚完成，4 新实验正在部署） | Worker 6 (GPU 4 / CPU 2)\n\n## 4 个实验完成，关键发现\n\n### 1. OpenVLA Attn k=0.85 Goal = 74.6% ✅\n- baseline=74.8%, Attn k=0.9=73.2%\n- Δ(baseline)=-0.2pp — 15% pruning 几乎无损\n- Goal Attn cliff curve: 73.2%(k=0.9) → 74.6%(k=0.85) — 反直觉地 k=0.85 优于 k=0.9，说明 Goal 对 Attn pruning 极其稳健\n\n### 2. OpenVLA L2norm k=0.85 Goal = 75.4% ✅\n- baseline=74.8%, L2norm k=0.9=74.8%\n- Δ(baseline)=+0.6pp — 超过 baseline！\n- Goal 对两种 structured scoring 都高度免疫\n\n### 3. OpenVLA L2norm k=0.95 Object = 70.6% ⚠️\n- baseline=74%, L2norm k=0.9=70.6%\n- **k=0.95 = k=0.9 = 70.6%，完全相同**\n- 关键发现：L2norm 在 MLP connector Object 上的 method gap (-3.4pp) 是**恒定的**，不随 pruning ratio 缩小\n- 即使只去掉 5% token，损失与去掉 10% 一样 → method gap 是 scoring 偏差的固有属性，不是量的问题\n\n### 4. π0.5 L2norm k=0.75 Long = 73.4% ✅\n- k=0.9=81% → k=0.75=73.4% (Δ=-7.6pp)\n- 单调曲线完美延续：87→81→73.4→50.2→39%\n- Linear connector L2norm 全程单调 = position encoding 假设的强证据\n\n## 论文价值分析\n- **L2norm k=0.95=k=0.9 Object 发现**可以加强 \"method gap is intrinsic\" claim：gap 不是 pruning 量导致的，是 scoring method × connector 交互的固有性质\n- **Goal 双方法免疫** (Attn k=0.85≈baseline, L2norm k=0.85>baseline) 强化 \"task complexity determines compressibility\" claim\n\n## 已部署 4 个新实验（填空闲 GPU）\n| GPU | 实验 | 目的 |\n|-----|------|------|\n| westd-27271:cuda:0 | Attn k=0.7 Goal | Goal Attn cliff curve 30% 压缩点 |\n| westd-38929:cuda:2 | L2norm k=0.7 Goal | Goal L2norm cliff curve 30% 压缩点 |\n| westd-41074:cuda:3 | Random k=0.85 Object | Object k=0.85 三方法对比最后一格 |\n| cqa1-33015:cuda:0 | π0.5 L2norm k=0.85 Long | 单调曲线 k=0.85 缺口(81%→?→73.4%) |\n\n## 仍在跑的 10 个实验\nwestd-38929(3): Random k=0.85 Goal, Random k=0.5 Long, Attn k=0.85 Long\nwestd-41074(3): Random k=0.85 Long, L2norm k=0.85 Object, Attn k=0.7 Object\nwestd-27271(1): Random k=0.7 Goal\ncqa1-33015(3): π0.5 Attn k=0.75 Long, Attn k=0.5 Long, Attn k=0.85 Long",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-26T13:21:15.586501+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1409
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-26T13:21:21.514789+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-26T13:21:21.567613+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "ToolSearch",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-26T13:21:26.410675+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "memory.md",
+  "max_chars": "15000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "memory.md",
+    "max_chars": "15000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-26T13:21:26.613130+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\", \"content\": \"# SimplerEnv 可行性调研报告\\n\\n## 1. SimplerEnv 概述\\n\\n**仓库**: [simpler-env/SimplerEnv](https://github.com/simpler-env/SimplerEnv) (CoRL 2024, ICLR 2025)\\n\\n**核心**：基于 SAPIEN + ManiSkill2 的仿真评估框架，用于评估真实世界机器人操控策略在仿真环境中的表现。\\n\\n### 支持的 Tasks（9 个预设环境）\\n\\n**Google Robot（控制频率 3Hz）**：\\n- Pick Coke Can / Pick Random Object / Move Near\\n- Open/Close Drawer / Place in Closed Drawer\\n\\n**WidowX Bridge（控制频率 5Hz）**：\\n- Spoon on Towel / Carrot on Plate / Stack Cube / Eggplant in Basket\\n\\n### 支持的 VLA 模型\\n- RT-1 / RT-1-X（原生支持）\\n- Octo（原生支持）\\n- **OpenVLA**（通过 [DelinQu fork](https://github.com/DelinQu/SimplerEnv-OpenVLA) 集成）\\n- **π0 / π0-FAST**（通过 openpi/lerobot 集成，已有社区支持）\\n- π0.5：**存在已知问题**（[openpi#799](https://github.com/Physical-Intelligence/openpi/issues/799)），SimplerEnv 上性能不稳定\\n\\n### 评估方式\\n- **Visual Matching**：将真实图像叠加到仿真背景\\n- **Variant Aggregation**：多种环境变体（背景、光照、干扰物）取平均\\n\\n### 版本\\n- **ManiSkill2（主分支）**：CPU 仿真，9 个 tasks，成熟稳定\\n- **ManiSkill3 分支**：GPU 加速 10-15x，但只移植了 4 个 Bridge tasks\\n\\n## 2. 与 LIBERO 的互补性\\n\\n| 维度 | LIBERO | SimplerEnv |\\n|------|--------|------------|\\n| 定位 | 终身学习/知识迁移 | 仿真复现真实策略 |\\n| Tasks | 130 个，分 4 个 suite | 9 个预设，多变体 |\\n| 机器人 | Franka Panda (tabletop) | Google Robot + WidowX |\\n| 观测 | 多相机 (agentview + wrist) | 单相机 (obs_camera) |\\n| 动作空间 | 7-DoF (delta pos + gripper) | world_vector + rot_axangle + gripper |\\n| 评估指标 | 成功率 (per-task, per-suite) | 成功率 (visual matching / variant agg) |\\n| GPU 需求 | 渲染用 EGL | 需 RTX GPU（ray-tracing） |\\n\\n**互补性**：LIBERO 测试 long-horizon + 多任务泛化，SimplerEnv 测试 sim-to-real 保真度。论文中两个 benchmark 同时报告可以展示方法的全面性。\\n\\n## 3. 竞品分析（Token Pruning for VLA）\\n\\n| 方法 | 发表 | SimplerEnv | LIBERO | 核心思路 |\\n|------|------|-----------|--------|---------|\\n| **SP-VLA** | arXiv 2506.12723 | ✅ 2.4x加速+6%提升 | ✅ 1.5x无损加速 | 动作感知调度 + 时空token pruning |\\n
+…[truncated 8411 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-26T13:23:03.417005+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "memory.md",
+  "content": "# SimplerEnv 可行性调研报告\n\n## 1. SimplerEnv 概述\n\n**仓库**: [simpler-env/SimplerEnv](https://github.com/simpler-env/SimplerEnv) (CoRL 2024, ICLR 2025)\n\n**核心**：基于 SAPIEN + ManiSkill2 的仿真评估框架，用于评估真实世界机器人操控策略在仿真环境中的表现。\n\n### 支持的 Tasks（9 个预设环境）\n\n**Google Robot（控制频率 3Hz）**：\n- Pick Coke Can / Pick Random Object / Move Near\n- Open/Close Drawer / Place in Closed Drawer\n\n**WidowX Bridge（控制频率 5Hz）**：\n- Spoon on Towel / Carrot on Plate / Stack Cube / Eggplant in Basket\n\n### 支持的 VLA 模型\n- RT-1 / RT-1-X（原生支持）\n- Octo（原生支持）\n- **OpenVLA**（通过 [DelinQu fork](https://github.com/DelinQu/SimplerEnv-OpenVLA) 集成）\n- **π0 / π0-FAST**（通过 openpi/lerobot 集成，已有社区支持）\n- π0.5：**存在已知问题**（[openpi#799](https://github.com/Physical-Intelligence/openpi/issues/799)），SimplerEnv 上性能不稳定\n\n### 评估方式\n- **Visual Matching**：将真实图像叠加到仿真背景\n- **Variant Aggregation**：多种环境变体（背景、光照、干扰物）取平均\n\n### 版本\n- **ManiSkill2（主分支）**：CPU 仿真，9 个 tasks，成熟稳定\n- **ManiSkill3 分支**：GPU 加速 10-15x，但只移植了 4 个 Bridge tasks\n\n## 2. 与 LIBERO 的互补性\n\n| 维度 | LIBERO | SimplerEnv |\n|------|--------|------------|\n| 定位 | 终身学习/知识迁移 | 仿真复现真实策略 |\n| Tasks | 130 个，分 4 个 suite | 9 个预设，多变体 |\n| 机器人 | Franka Panda (tabletop) | Google Robot + WidowX |\n| 观测 | 多相机 (agentview + wrist) | 单相机 (obs_camera) |\n| 动作空间 | 7-DoF (delta pos + gripper) | world_vector + rot_axangle + gripper |\n| 评估指标 | 成功率 (per-task, per-suite) | 成功率 (visual matching / variant agg) |\n| GPU 需求 | 渲染用 EGL | 需 RTX GPU（ray-tracing） |\n\n**互补性**：LIBERO 测试 long-horizon + 多任务泛化，SimplerEnv 测试 sim-to-real 保真度。论文中两个 benchmark 同时报告可以展示方法的全面性。\n\n## 3. 竞品分析（Token Pruning for VLA）\n\n| 方法 | 发表 | SimplerEnv | LIBERO | 核心思路 |\n|------|------|-----------|--------|---------|\n| **SP-VLA** | arXiv 2506.12723 | ✅ 2.4x加速+6%提升 | ✅ 1.5x无损加速 | 动作感知调度 + 时空token pruning |\n| **DTP** | arXiv 2601.16065 | ✅ SIMPLER benchmark | ❓ | 去除task无关区域的干扰token |\n| **Compressor-VLA** | arXiv 2511.18950 | ❌ | ✅ 59% FLOPs↓ | 指令引导的视觉token压缩（cross-attn） |\n| **LightVLA** | arXiv 2509.12594 | ✅ | ✅ | 可微分token pruning |\n| **EfficientVLA** | OpenReview | ✅ | ❓ | Training-free 加速+压缩 |\n| **Ours** | - | ❌ 放弃 | ✅ | Importance margin + smart compress |\n\n**关键发现**: SP-VLA 是最直接的竞品。\n\n## 4. Pruning 适配方案\n\n**关键洞察：pruning hook 与环境无关，只需替换 env loop。**\n\n- **OpenVLA 适配（2-3h）**：创建 `OpenVLAPruningPolicy` 实现 SimplerEnv 接口，复用现有 hook 代码\n- **π0.5 适配（4-6h）**：需解决多相机→单相机映射，且存在已知稳定性问题\n- **建议**：先做 OpenVLA\n\n## 5. 安装与渲染状态（westd-27271）\n\n### 服务器配置\n- **GPU**: 2x NVIDIA RTX PRO 6000 Blackwell (94GB each)\n- **CUDA**: 12.8 | **Driver**: 580.95.05 | **PyTorch**: 2.11.0+cu128\n- **SimplerEnv 路径**: `/root/autodl-tmp/SimplerEnv/`\n\n### SAPIEN 2 vs 3 兼容性（2026-05-25 验证）\n\n**SAPIEN 2.2.2（ManiSkill2 主分支要求）**：\n- ❌ `camera.take_picture()` 在 RTX PRO 6000 Blackwell + driver 580 上 segfault\n- 原因：SAPIEN 2.2.2 编译的 Vulkan pipeline 与新驱动不兼容\n- 尝试过 `VK_ICD_FILENAMES`、`LD_PRELOAD libvulkan`、不同分辨率、`offscreen_only=True`，均 segfault\n- **结论：SAPIEN 2.x 在此 GPU/驱动组合上不可用**\n\n**SAPIEN 3.0.3（ManiSkill3 使用）**：\n- ✅ 渲染完全正常，端到端测试通过\n- 环境变量：`VK_ICD_FILENAMES=/etc/vulkan/icd.d/nvidia_icd.json NVIDIA_DRIVER_CAPABILITIES=all`\n\n### 渲染测试结果（2026-05-25 通过）\n\n**使用 ManiSkill3 分支**（`git checkout maniskill3`）+ `mani-skill==3.0.1` + `sapien==3.0.3`（conda base, Python 3.12）\n\n4 个 WidowX Bridge 环境全部通过：\n- ✅ `PutCarrotOnPlateInScene-v1` — rgb=(1,480,640,3) uint8\n- ✅ `PutSpoonOnTableClothInScene-v1` — rgb=(1,480,640,3) uint8\n- ✅ `StackGreenCubeOnYellowCubeBakedTexInScene-v1` — rgb=(1,480,640,3) uint8\n- ✅ `PutEggplantInBasketScene-v1` — rgb=(1,480,640,3) uint8\n\n**obs 结构**：`obs['sensor_data']['3rd_view_camera']['rgb']` (torch.uint8) + `['segmentation']` (torch.int16)\n**obs_mode**: 必须用 `'rgb+segmentation'`（不支持 `'rgbd'`）\n\n**限制**：ManiSkill3 只移植了 4 个 Bridge 环境，无 Google Robot 环境（GraspSingleOpenedCokeCanInScene 等未注册）。\n\n## 6. SimplerEnv 结论 (D209, 2026-05-24)\n\n**已放弃。** OpenVLA-7B + ManiSkill3 Bridge baseline = 0% SR（全 4 tasks × 50 eps = 0/200 成功）。L2norm k=0.9 同样 0%。\n\n**原因分析**：\n- Baseline 本身 0%，问题不在 pruning，在于 OpenVLA-7B + ManiSkill3 集成\n- transformers 版本不匹配（expected 4.40.1 但实际 5.5.4）\n- action 接口 / unnormalization 可能不兼容 ManiSkill3\n- 修复成本不可接受（CoRL 距 deadline 5 天）\n\n**结论**：论文 benchmark = LIBERO + MetaWorld，不含 SimplerEnv。\n\n## 7. 关键决策记录\n\n### [2026-05-24] OpenVLA 转 SimplerEnv 路线\nDirector 决策：不在 westd-38929 修 LIBERO OpenVLA Goal 脚本（模型不在 + 脚本要改），OpenVLA 的新数据直接从 SimplerEnv 来。\n\n### [2026-05-24] MetaWorld 部署规范\nMetaWorld 实验必须统一走 `submit_training_job`，禁止 `ssh_execute` 直接部署（绕过碰撞检测导致 GPU3 冲突事件）。\n\n### [2026-05-24] MetaWorld baseline\nSmolVLA (0.45B, Linear connector) MetaWorld 5 tasks baseline = 26.4% overall SR。早期信号：L2norm k=0.5 reach-v3 (4%) 比 Random k=0.5 (20%) 更差，初步支持 Linear connector scale-invariance hypothesis。\n\n### [2026-05-24] cqa1-33015 需要 conda activate\ncqa1 服务器上 python 不在 PATH 中，提交命令必须用 `bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\"` 包装。\n\n### SmolVLA MetaWorld Sweep 失败诊断 (2026-05-24)\n- **根因**: 监控系统误报（false positive）。两个 sweep 实验实际已全部成功完成，产出了全部 8 个结果文件。监控报 \"process dead 5× with no sentinel/W&B\" 是因为 cron entry 中没有配置 `log_path`，且自动发现机制未找到 `/tmp/random_sweep.log` 和 `/tmp/l2norm_sweep.log`。\n- **证据**: \n  - 脚本 `/tmp/run_random_sweep.sh` 和 `/tmp/run_l2norm_sweep.sh` 均存在且内容正确\n  - 日志末尾有 `ALL_RANDOM_DONE` 和 `ALL_L2NORM_DONE` sentinel\n  - 全部 8 个结果 JSON 均已写入 `/root/autodl-tmp/importance_margin_vla_compress/results/`\n  - GPU 正常，无 OOM\n- **完整结果** (50 episodes/task, 5 tasks, Overall SR)：\n\n| Method | k=0.5 | k=0.85 | k=0.9 | k=0.95 | Baseline (k=1.0) |\n|--------|-------|--------|-------|--------|-----------|\n| Random | 9.6% | 4.4% | 5.6% | 6.4% | 26.4% (25ep) |\n| L2Norm | 0.8% | 2.4% | 10.0% | 7.2% | 26.4% (25ep) |\n\n- **观察**: \n  - 所有 pruned 版本远低于 baseline (26.4%)，token pruning 对 SmolVLA + MetaWorld 伤害极大\n  - Random: k=0.5 (9.6%) 反而优于 k=0.95 (6.4%)，非单调，可能因 random pruning 引入的随机性\n  - L2Norm: k=0.9 (10.0%) 是最佳点，但仍仅为 baseline 的 38%\n  - drawer-open 是最鲁棒的 task（L2Norm k=0.95: 30%），其余 tasks 几乎归零\n- **修复建议**: 提交 sweep 任务时配置 `log_path` 指向持久化路径（非 /tmp），或在脚本中输出 W&B sentinel，使监控能正确追踪。\n\n## 8. π0.5 L2norm vs Random Cliff Zone 分析 (2026-05-25)\n\n**核心发现：π0.5 Object suite 上 L2norm 与 Random 存在 crossover，约在 k≈0.75。**\n\nL2norm 在高 k（0.85-0.95）完全无损（98-99% vs baseline 98.2%），cliff 在 k=0.85→0.7 之间（42pp 断崖跌落至 56%）。Random 在高 k 极度不稳定（k=0.85 约 0-6%），但低 k 时（0.5-0.7）反而比 L2norm 更稳（68-74% vs 33-56%）。\n\n**解释**：Random 均匀采样保留了 token 多样性，低 k 时多样性比 importance 更重要。L2norm 集中保留高 norm token，高 k 时保全了关键信息，但低 k 时丢弃的 token 里可能含不可替代的空间/语义信息，导致崩溃比 Random 更彻底。\n\n**论文意义**：这个 crossover 是 importance margin 概念的直接证据——scoring method 的优劣取决于 keep ratio，不存在全局最优 scoring method。\n\n## 9. 服务器模型部署清单 (2026-05-26)\n\n**教训 [2026-05-26]**：westd-41074 上多次部署 OpenVLA Long 实验失败（eval_openvla_attn_k085_long, eval_openvla_random_k085_long, eval_openvla_attn_k09_goal_seed43），根因是该服务器缺少对应 suite 的 finetuned 模型。eval 脚本不传 `--model_path` 时默认加载 Object 模型，不报错但产出垃圾结果。\n\n**各服务器已确认可用的 OpenVLA 模型**：\n| 服务器 | Object | Goal | Spatial | Long (libero_10) |\n|--------|--------|------|---------|-------------------|\n| westd-41074 | ✅ openvla-7b-finetuned-libero-object | ❓ | ❓ | ✅ 已 rsync（2026-05-26） |\n| westd-38929 | ✅ models/openvla-libero-object | ✅ models/openvla-7b-finetuned-libero-goal (2026-05-26 确认，random_k085_goal 运行 3h+) | ❓ | ✅ models/openvla-7b-finetuned-libero-10 |\n| westd-27271 | ✅ | ✅ openvla-7b-finetuned-libero-goal | ❓ | ❓ |\n| cqa1-33015 | ✅ | ✅ openvla-libero-goal | ❓ | ❓ |\n\n**注意**：westd-38929 模型在 `/root/autodl-tmp/models/` 子目录下（有 models/ 前缀），其他服务器直接在 `/root/autodl-tmp/` 下。\n\n**部署 OpenVLA 实验前必须**：\n1. `ls` 验证目标服务器模型实际路径\n2. 显式传 `--model_path` 和 `--unnorm_key`\n3. 不要依赖脚本默认路径——默认会静默加载 Object 模型\n\n## 10. OpenVLA Long Cliff Curve — Scoring 方法退化速度差异 (2026-05-26)\n\n**核心发现：MLP connector (OpenVLA) Long suite 上，L2norm 退化速度快于 Random。**\n\n| k | Baseline | L2norm | Random | Attn |\n|---|----------|--------|--------|------|\n| 1.0 | 52.8% | — | — | — |\n| 0.9 | — | 43.6% (-9.2pp) | 46.8% (-6.0pp) | 44.0% (-8.8pp) |\n| 0.85 | — | 38.8% (-14.0pp) | — | — |\n| 0.7 | — | 31.2% (-21.6pp) | 38.8% (-14.0pp) | 🏃 running |\n\nk=0.9 时三方法差距仅 ~3pp；到 k=0.7 时 L2norm 比 Random 差 7.6pp。L2norm 每降 0.1k 损失 ~6pp，Random 仅 ~4pp。\n\n**与 π0.5 对比**：π0.5 (Linear) Long k=0.9 L2norm=81% >> Random=32%，49pp 领先。同样的 L2norm scoring 在 MLP connector 上无优势还有害，在 Linear connector 上压倒性领先。\n\n**论文意义**：直接支持 \"connector × scoring 交互\" claim——scoring method 的效果不仅取决于 task，更取决于 connector 架构。MLP connector 的非线性变换破坏了 L2 norm 作为重要性指标的有效性。\n\n## 11. 操作规则沉淀 (2026-05-26)\n\n### M121: Kill 进程前必须验证日志时间\n判断进程 stuck 前必须用 `stat -c %Y &lt;log_file>` 检查日志最后修改时间，>30min 无更新才能 kill。Long suite 日志间隔 10-20min 是正常的。GPU 利用率 0% 不能单独作为 kill 依据。\n\n### M122: 非 Object 套件必须显式传模型参数\n所有非 Object 套件的 OpenVLA 实验必须显式传 `--model_path` 和 `--unnorm_key`：\n- Goal: `--model_path .../openvla-*-libero-goal --unnorm_key libero_goal`\n- Spatial: `--model_path .../openvla-libero-spatial --unnorm_key libero_spatial`\n- Long: `--model_path .../openvla-7b-finetuned-libero-10 --unnorm_key libero_10`\n\n### M123: 部署前必须 ls 验证模型路径\n每台服务器的模型目录结构不同（如 westd-38929 有 models/ 前缀）。部署前必须先 `ls` 确认实际路径，不要假设。\n\n### M124: 禁止 kill 运行中实验腾位置\n有空闲 GPU 时禁止 kill 运行中的实验来腾位置。只在进程确认 stuck（M121 规则）时才 kill。\n\n## 12. π0.5 Random Long Cliff Curve 非单调异常 (2026-05-26)\n\n**现象**：π0.5 Random pruning on Long (libero_10) 的 cliff curve 非单调：\n\n| k | SR | seed | 备注 |\n|---|-----|------|------|\n| 0.95 | 61.2-63.2% | s42, s42_postfix | 正常 |\n| 0.9 | 32-35.6% | s42_postfix, s43_postfix | 骤降 ~31pp |\n| 0.75 | 62.4% | s42_v2 | 回升 ~30pp |\n| 0.5 | 50.2% | s42 | |\n\nk=0.95→k=0.9 骤降 31pp 后 k=0.75 回升 30pp，物理上不合理（保留更少 token 不应给出更好结果）。\n\n**可疑点**：\n1. k=0.9 在两个 seed 上可复现（32%, 35.6%），但与 k=0.95 的 63% 存在异常 cliff\n2. k=0.5 的 Random 和 L2norm 完全相同（50.2%, 251/500），高度可疑——已部署 v3/v4 重跑\n3. k=0.75 hypothesis 文本错误引用了 \"Random k=0.9=63.8%\"（实为 Attention 的数据），说明实验设置者对 baseline 数据有误认知\n\n**诊断方案**：部署 L2norm k=0.75 Long 和等待 Attention k=0.75 Long 结果作为交叉验证。如果其他方法 k=0.75 也 ~60%，说明 k=0.9 postfix 系列可能有系统性脚本/环境问题。\n\n**论文影响**：π0.5 Random Long cliff 数据暂不可用于定稿图表，待验证。\n\n## 13. L2norm Method Gap 是恒定的，不随 Pruning Ratio 缩小 (2026-05-26)\n\n**发现**：OpenVLA L2norm k=0.95 Object = 70.6% = L2norm k=0.9 Object = 70.6%，完全相同。\n\nbaseline Object = 74%，即 method gap = -3.4pp，无论去掉 5% 还是 10% token，损失完全一样。\n\n**解释**：L2norm scoring 在 MLP connector 上的偏差是系统性的——它总是\"错误\"地排序某些关键 token，使得即使只去极少量 token，最先被去掉的恰好包含关键信息。这不是量的问题（prune 多少），是质的问题（scoring 偏差是固有的）。\n\n**论文意义**：method gap 不是 pruning ratio 的函数——是 scoring method × connector 交互的**固有属性**。可以加强 \"intrinsic method gap\" claim，与 Goal 上双方法免疫（Attn k=0.85≈baseline, L2norm k=0.85>baseline）形成鲜明对比：同一方法在不同 task 上表现完全不同。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "memory.md",
+    "content": "# SimplerEnv 可行性调研报告\n\n## 1. SimplerEnv 概述\n\n**仓库**: [simpler-env/SimplerEnv](https://github.com/simpler-env/SimplerEnv) (CoRL 2024, ICLR 2025)\n\n**核心**：基于 SAPIEN + ManiSkill2 的仿真评估框架，用于评估真实世界机器人操控策略在仿真环境中的表现。\n\n### 支持的 Tasks（9 个预设环境）\n\n**Google Robot（控制频率 3Hz）**：\n- Pick Coke Can / Pick Random Object / Move Near\n- Open/Close Drawer / Place in Closed Drawer\n\n**WidowX Bridge（控制频率 5Hz）**：\n- Spoon on Towel / Carrot on Plate / Stack Cube / Eggplant in Basket\n\n### 支持的 VLA 模型\n- RT-1 / RT-1-X（原生支持）\n- Octo（原生支持）\n- **OpenVLA**（通过 [DelinQu fork](https://github.com/DelinQu/SimplerEnv-OpenVLA) 集成）\n- **π0 / π0-FAST**（通过 openpi/lerobot 集成，已有社区支持）\n- π0.5：**存在已知问题**（[openpi#799](https://github.com/Physical-Intelligence/openpi/issues/799)），SimplerEnv 上性能不稳定\n\n### 评估方式\n- **Visual Matching**：将真实图像叠加到仿真背景\n- **Variant Aggregation**：多种环境变体（背景、光照、干扰物）取平均\n\n### 版本\n- **ManiSkill2（主分支）**：CPU 仿真，9 个 tasks，成熟稳定\n- **ManiSkill3 分支**：GPU 加速 10-15x，但只移植了 4 个 Bridge tasks\n\n## 2. 与 LIBERO 的互补性\n\n| 维度 | LIBERO | SimplerEnv |\n|------|--------|------------|\n| 定位 | 终身学习/知识迁移 | 仿真复现真实策略 |\n| Tasks | 130 个，分 4 个 suite | 9 个预设，多变体 |\n| 机器人 | Franka Panda (tabletop) | Google Robot + WidowX |\n| 观测 | 多相机 (agentview + wrist) | 单相机 (obs_camera) |\n| 动作空间 | 7-DoF (delta pos + gripper) | world_vector + rot_axangle + gripper |\n| 评估指标 | 成功率 (per-task, per-suite) | 成功率 (visual matching / variant agg) |\n| GPU 需求 | 渲染用 EGL | 需 RTX GPU（ray-tracing） |\n\n**互补性**：LIBERO 测试 long-horizon + 多任务泛化，SimplerEnv 测试 sim-to-real 保真度。论文中两个 benchmark 同时报告可以展示方法的全面性。\n\n## 3. 竞品分析（Token Pruning for VLA）\n\n| 方法 | 发表 | SimplerEnv | LIBERO | 核心思路 |\n|------|------|-----------|--------|---------|\n| **SP-VLA** | arXiv 2506.12723 | ✅ 2.4x加速+6%提升 | ✅ 1.5x无损加速 | 动作感知调度 + 时空token pruning |\n| **DTP** | arXiv 2601.16065 | ✅ SIMPLER benchmark | ❓ | 去除task无关区域的干扰token |\n| **Compressor-VLA** | arXiv 2511.18950 | ❌ | ✅ 59% FLOPs↓ | 指令引导的视觉token压缩（cross-attn） |\n| **LightVLA** | arXiv 2509.12594 | ✅ | ✅ | 可微分token pruning |\n| **EfficientVLA** | OpenReview | ✅ | ❓ | Training-free 加速+压缩 |\n| **Ours** | - | ❌ 放弃 | ✅ | Importance margin + smart compress |\n\n**关键发现**: SP-VLA 是最直接的竞品。\n\n## 4. Pruning 适配方案\n\n**关键洞察：pruning hook 与环境无关，只需替换 env loop。**\n\n- **OpenVLA 适配（2-3h）**：创建 `OpenVLAPruningPolicy` 实现 SimplerEnv 接口，复用现有 hook 代码\n- **π0.5 适配（4-6h）**：需解决多相机→单相机映射，且存在已知稳定性问题\n- **建议**：先做 OpenVLA\n\n## 5. 安装与渲染状态（westd-27271）\n\n### 服务器配置\n- **GPU**: 2x NVIDIA RTX PRO 6000 Blackwell (94GB each)\n- **CUDA**: 12.8 | **Driver**: 580.95.05 | **PyTorch**: 2.11.0+cu128\n- **SimplerEnv 路径**: `/root/autodl-tmp/SimplerEnv/`\n\n### SAPIEN 2 vs 3 兼容性（2026-05-25 验证）\n\n**SAPIEN 2.2.2（ManiSkill2 主分支要求）**：\n- ❌ `camera.take_picture()` 在 RTX PRO 6000 Blackwell + driver 580 上 segfault\n- 原因：SAPIEN 2.2.2 编译的 Vulkan pipeline 与新驱动不兼容\n- 尝试过 `VK_ICD_FILENAMES`、`LD_PRELOAD libvulkan`、不同分辨率、`offscreen_only=True`，均 segfault\n- **结论：SAPIEN 2.x 在此 GPU/驱动组合上不可用**\n\n**SAPIEN 3.0.3（ManiSkill3 使用）**：\n- ✅ 渲染完全正常，端到端测试通过\n- 环境变量：`VK_ICD_FILENAMES=/etc/vulkan/icd.d/nvidia_icd.json NVIDIA_DRIVER_CAPABILITIES=all`\n\n### 渲染测试结果（2026-05-25 通过）\n\n**使用 ManiSkill3 分支**（`git checkout maniskill3`）+ `mani-skill==3.0.1` + `sapien==3.0.3`（conda base, Python 3.12）\n\n4 个 WidowX Bridge 环境全部通过：\n- ✅ `PutCarrotOnPlateInScene-v1` — rgb=(1,480,640,3) uint8\n- ✅ `PutSpoonOnTableClothInScene-v1` — rgb=(1,480,640,3) uint8\n- ✅ `StackGreenCubeOnYellowCubeBakedTexInScene-v1` — rgb=(1,480,640,3) uint8\n- ✅ `PutEggplantInBasketScene-v1` — rgb=(1,480,640,3) uint8\n\n**obs 结构**：`obs['sensor_data']['3rd_view_camera']['rgb']` (torch.uint8) + `['segmentation']` (torch.int16)\n**obs_mode**: 必须用 `'rgb+segmentation'`（不支持 `'rgbd'`）\n\n**限制**：ManiSkill3 只移植了 4 个 Bridge 环境，无 Google Robot 环境（GraspSingleOpenedCokeCanInScene 等未注册）。\n\n## 6. SimplerEnv 结论 (D209, 2026-05-24)\n\n**已放弃。** OpenVLA-7B + ManiSkill3 Bridge baseline = 0% SR（全 4 tasks × 50 eps = 0/200 成功）。L2norm k=0.9 同样 0%。\n\n**原因分析**：\n- Baseline 本身 0%，问题不在 pruning，在于 OpenVLA-7B + ManiSkill3 集成\n- transformers 版本不匹配（expected 4.40.1 但实际 5.5.4）\n- action 接口 / unnormalization 可能不兼容 ManiSkill3\n- 修复成本不可接受（CoRL 距 deadline 5 天）\n\n**结论**：论文 benchmark = LIBERO + MetaWorld，不含 SimplerEnv。\n\n## 7. 关键决策记录\n\n### [2026-05-24] OpenVLA 转 SimplerEnv 路线\nDirector 决策：不在 westd-38929 修 LIBERO OpenVLA Goal 脚本（模型不在 + 脚本要改），OpenVLA 的新数据直接从 SimplerEnv 来。\n\n### [2026-05-24] MetaWorld 部署规范\nMetaWorld 实验必须统一走 `submit_training_job`，禁止 `ssh_execute` 直接部署（绕过碰撞检测导致 GPU3 冲突事件）。\n\n### [2026-05-24] MetaWorld baseline\nSmolVLA (0.45B, Linear connector) MetaWorld 5 tasks baseline = 26.4% overall SR。早期信号：L2norm k=0.5 reach-v3 (4%) 比 Random k=0.5 (20%) 更差，初步支持 Linear connector scale-invariance hypothesis。\n\n### [2026-05-24] cqa1-33015 需要 conda activate\ncqa1 服务器上 python 不在 PATH 中，提交命令必须用 `bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\\\"` 包装。\n\n### SmolVLA MetaWorld Sweep 失败诊断 (2026-05-24)\n- **根因**: 监控系统误报（false positive）。两个 sweep 实验实际已全部成功完成，产出了全部 8 个结果文件。监控报 \"process dead 5× with no sentinel/W&B\" 是因为 cron entry 中没有配置 `log_path`，且自动发现机制未找到 `/tmp/random_sweep.log` 和 `/tmp/l2norm_sweep.log`。\n- **证据**: \n  - 脚本 `/tmp/run_random_sweep.sh` 和 `/tmp/run_l2norm_sweep.sh` 均存在且内容正确\n  - 日志末尾有 `ALL_RANDOM_DONE` 和 `ALL_L2NORM_DONE` sentinel\n  - 全部 8 个结果 JSON 均已写入 `/root/autodl-tmp/importance_margin_vla_compress/results/`\n  - GPU 正常，无 OOM\n- **完整结果** (50 episodes/task, 5 tasks, Overall SR)：\n\n| Method | k=0.5 | k=0.85 | k=0.9 | k=0.95 | Baseline (k=1.0) |\n|--------|-------|--------|-------|--------|-----------|\n| Random | 9.6% | 4.4% | 5.6% | 6.4% | 26.4% (25ep) |\n| L2Norm | 0.8% | 2.4% | 10.0% | 7.2% | 26.4% (25ep) |\n\n- **观察**: \n  - 所有 pruned 版本远低于 baseline (26.4%)，token pruning 对 SmolVLA + MetaWorld 伤害极大\n  - Random: k=0.5 (9.6%) 反而优于 k=0.95 (6.4%)，非单调，可能因 random pruning 引入的随机性\n  - L2Norm: k=0.9 (10.0%) 是最佳点，但仍仅为 baseline 的 38%\n  - drawer-open 是最鲁棒的 task（L2Norm k=0.95: 30%），其余 tasks 几乎归零\n- **修复建议**: 提交 sweep 任务时配置 `log_path` 指向持久化路径（非 /tmp），或在脚本中输出 W&B sentinel，使监控能正确追踪。\n\n## 8. π0.5 L2norm vs Random Cliff Zone 分析 (2026-05-25)\n\n**核心发现：π0.5 Object suite 上 L2norm 与 Random 存在 crossover，约在 k≈0.75。**\n\nL2norm 在高 k（0.85-0.95）完全无损（98-99% vs baseline 98.2%），cliff 在 k=0.85→0.7 之间（42pp 断崖跌落至 56%）。Random 在高 k 极度不稳定（k=0.85 约 0-6%），但低 k 时（0.5-0.7）反而比 L2norm 更稳（68-74% vs 33-56%）。\n\n**解释**：Random 均匀采样保留了 token 多样性，低 k 时多样性比 importance 更重要。L2norm 集中保留高 norm token，高 k 时保全了关键信息，但低 k 时丢弃的 token 里可能含不可替代的空间/语义信息，导致崩溃比 Random 更彻底。\n\n**论文意义**：这个 crossover 是 importance margin 概念的直接证据——scoring method 的优劣取决于 keep ratio，不存在全局最优 scoring method。\n\n## 9. 服务器模型部署清单 (2026-05-26)\n\n**教训 [2026-05-26]**：westd-41074 上多次部署 OpenVLA Long 实验失败（eval_openvla_attn_k085_long, eval_openvla_random_k085_long, eval_openvla_attn_k09_goal_seed43），根因是该服务器缺少对应 suite 的 finetuned 模型。eval 脚本不传 `--model_path` 时默认加载 Object 模型，不报错但产出垃圾结果。\n\n**各服务器已确认可用的 OpenVLA 模型**：\n| 服务器 | Object | Goal | Spatial | Long (libero_10) |\n|--------|--------|------|---------|-------------------|\n| westd-41074 | ✅ openvla-7b-finetuned-libero-object | ❓ | ❓ | ✅ 已 rsync（2026-05-26） |\n| westd-38929 | ✅ models/openvla-libero-object | ✅ models/openvla-7b-finetuned-libero-goal (2026-05-26 确认，random_k085_goal 运行 3h+) | ❓ | ✅ models/openvla-7b-finetuned-libero-10 |\n| westd-27271 | ✅ | ✅ openvla-7b-finetuned-libero-goal | ❓ | ❓ |\n| cqa1-33015 | ✅ | ✅ openvla-libero-goal | ❓ | ❓ |\n\n**注意**：westd-38929 模型在 `/root/autodl-tmp/models/` 子目录下（有 models/ 前缀），其他服务器直接在 `/root/autodl-tmp/` 下。\n\n**部署 OpenVLA 实验前必须**：\n1. `ls` 验证目标服务器模型实际路径\n2. 显式传 `--model_path` 和 `--unnorm_key`\n3. 不要依赖脚本默认路径——默认会静默加载 Object 模型\n\n## 10. OpenVLA Long Cliff Curve — Scoring 方法退化速度差异 (2026-05-26)\n\n**核心发现：MLP connector (OpenVLA) Long suite 上，L2norm 退化速度快于 Random。**\n\n| k | Baseline | L2norm | Random | Attn |\n|---|----------|--------|--------|------|\n| 1.0 | 52.8% | — | — | — |\n| 0.9 | — | 43.6% (-9.2pp) | 46.8% (-6.0pp) | 44.0% (-8.8pp) |\n| 0.85 | — | 38.8% (-14.0pp) | — | — |\n| 0.7 | — | 31.2% (-21.6pp) | 38.8% (-14.0pp) | 🏃 running |\n\nk=0.9 时三方法差距仅 ~3pp；到 k=0.7 时 L2norm 比 Random 差 7.6pp。L2norm 每降 0.1k 损失 ~6pp，Random 仅 ~4pp。\n\n**与 π0.5 对比**：π0.5 (Linear) Long k=0.9 L2norm=81% >> Random=32%，49pp 领先。同样的 L2norm scoring 在 MLP connector 上无优势还有害，在 Linear connector 上压倒性领先。\n\n**论文意义**：直接支持 \"connector × scoring 交互\" claim——scoring method 的效果不仅取决于 task，更取决于 connector 架构。MLP connector 的非线性变换破坏了 L2 norm 作为重要性指标的有效性。\n\n## 11. 操作规则沉淀 (2026-05-26)\n\n### M121: Kill 进程前必须验证日志时间\n判断进程 stuck 前必须用 `stat -c %Y &lt;log_file>` 检查日志最后修改时间，>30min 无更新才能 kill。Long suite 日志间隔 10-20min 是正常的。GPU 利用率 0% 不能单独作为 kill 依据。\n\n### M122: 非 Object 套件必须显式传模型参数\n所有非 Object 套件的 OpenVLA 实验必须显式传 `--model_path` 和 `--unnorm_key`：\n- Goal: `--model_path .../openvla-*-libero-goal --unnorm_key libero_goal`\n- Spatial: `--model_path .../openvla-libero-spatial --unnorm_key libero_spatial`\n- Long: `--model_path .../openvla-7b-finetuned-libero-10 --unnorm_key libero_10`\n\n### M123: 部署前必须 ls 验证模型路径\n每台服务器的模型目录结构不同（如 westd-38929 有 models/ 前缀）。部署前必须先 `ls` 确认实际路径，不要假设。\n\n### M124: 禁止 kill 运行中实验腾位置\n有空闲 GPU 时禁止 kill 运行中的实验来腾位置。只在进程确认 stuck（M121 规则）时才 kill。\n\n## 12. π0.5 Random Long Cliff Curve 非单调异常 (2026-05-26)\n\n**现象**：π0.5 Random pruning on Long (libero_10) 的 cliff curve 非单调：\n\n| k | SR | seed | 备注 |\n|---|-----|------|------|\n| 0.95 | 61.2-63.2% | s42, s42_postfix | 正常 |\n| 0.9 | 32-35.6% | s42_postfix, s43_postfix | 骤降 ~31pp |\n| 0.75 | 62.4% | s42_v2 | 回升 ~30pp |\n| 0.5 | 50.2% | s42 | |\n\nk=0.95→k=0.9 骤降 31pp 后 k=0.75 回升 30pp，物理上不合理（保留更少 token 不应给出更好结果）。\n\n**可疑点**：\n1. k=0.9 在两个 seed 上可复现（32%, 35.6%），但与 k=0.95 的 63% 存在异常 cliff\n2. k=0.5 的 Random 和 L2norm 完全相同（50.2%, 251/500），高度可疑——已部署 v3/v4 重跑\n3. k=0.75 hypothesis 文本错误引用了 \"Random k=0.9=63.8%\"（实为 Attention 的数据），说明实验设置者对 baseline 数据有误认知\n\n**诊断方案**：部署 L2norm k=0.75 Long 和等待 Attention k=0.75 Long 结果作为交叉验证。如果其他方法 k=0.75 也 ~60%，说明 k=0.9 postfix 系列可能有系统性脚本/环境问题。\n\n**论文影响**：π0.5 Random Long cliff 数据暂不可用于定稿图表，待验证。\n\n## 13. L2norm Method Gap 是恒定的，不随 Pruning Ratio 缩小 (2026-05-26)\n\n**发现**：OpenVLA L2norm k=0.95 Object = 70.6% = L2norm k=0.9 Object = 70.6%，完全相同。\n\nbaseline Object = 74%，即 method gap = -3.4pp，无论去掉 5% 还是 10% token，损失完全一样。\n\n**解释**：L2norm scoring 在 MLP connector 上的偏差是系统性的——它总是\"错误\"地排序某些关键 token，使得即使只去极少量 token，最先被去掉的恰好包含关键信息。这不是量的问题（prune 多少），是质的问题（scoring 偏差是固有的）。\n\n**论文意义**：method gap 不是 pruning ratio 的函数——是 scoring method × connector 交互的**固有属性**。可以加强 \"intrinsic method gap\" claim，与 Goal 上双方法免疫（Attn k=0.85≈baseline, L2norm k=0.85>baseline）形成鲜明对比：同一方法在不同 task 上表现完全不同。\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-26T13:23:03.417772+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-26T13:23:12.481609+00:00_
+
+Session 初始化完成。
+
+**状态总结**：
+- 14 GPU 全部占满：10 个实验继续运行，4 个新实验正在部署
+- 6 个 Worker 活跃（4 部署 + 2 诊断）
+- 4 个新结果已分析并汇报 Director：
+  - Goal Attn k=0.85=74.6%（≈baseline，极其稳健）
+  - Goal L2norm k=0.85=75.4%（超baseline，免疫）
+  - Object L2norm k=0.95=70.6%=k=0.9（恒定 method gap 发现）
+  - π0.5 L2norm k=0.75 Long=73.4%（单调曲线延续）
+- memory.md 已更新：新增 §13 恒定 method gap 发现 + 更新 §9 服务器模型表（确认 westd-38929 有 Goal 模型）
+
+等待 Worker 部署回调和运行中实验完成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 57 · 2026-05-27T05:24:30.402090+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-27T05:25:27.154673+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-27271(cuda:0,1), cqa1-33015(cuda:0,1,2,3), westd-41074(cuda:0,1,2,3), westd-38929(cuda:0,1,2,3)，共 14 张
+- westd-27271 只有 2 卡（cuda:0, cuda:1），不要尝试 cuda:2/3
+- OpenVLA 实验用 `eval_openvla_l2norm_libero.py`（不论什么 pruning mode），π0.5 用 `eval_pi05_pruning_libero.py`
+- cqa1-33015 只跑 π0.5（transformers 5.5.3 兼容性限制）
+- 非 Object 套件 OpenVLA 必须显式传 `--model_path` 和 `--unnorm_key`，否则默认加载 Object 模型产出垃圾结果
+- CoRL 2026 Paper deadline: May 29（2 天后）
+
+### 2. 🖥️ 基础设施快照
+- **westd-27271**: 工作目录 `/root/autodl-tmp/importance_margin_vla_compress/`，conda base `/root/miniconda3/bin/python`，2×GPU。模型：Object ✅, Goal ✅ (`openvla-7b-finetuned-libero-goal`)
+- **westd-38929**: 同上，4×GPU。模型在 `/root/autodl-tmp/models/` 子目录（有 models/ 前缀）。Object ✅, Goal ✅ (`models/openvla-7b-finetuned-libero-goal`, 2026-05-26 确认), Long ✅ (`models/openvla-7b-finetuned-libero-10`)
+- **westd-41074**: 同上，4×GPU。模型：Object ✅ (`openvla-7b-finetuned-libero-object` 或 `openvla-libero-object`), Long ✅ (已 rsync)
+- **cqa1-33015**: 同上，4×GPU。π0.5 模型：`/root/autodl-tmp/pi05_libero_finetuned/`，HF cache: `/root/autodl-tmp/.hf_cache`
+- π0.5 命令必须加 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache`
+
+### 3. 📊 当前状态
+**刚做完**：
+- 4 个实验完成并处理：Attn k=0.85 Goal=74.6%, L2norm k=0.85 Goal=75.4%, L2norm k=0.95 Object=70.6%, π0.5 L2norm k=0.75 Long=73.4%
+- 已向 Director 汇报含分析（L2norm k=0.95=k=0.9 Object 恒定 method gap 发现）
+- memory.md 已更新（新增 §13 恒定 method gap + 更新 §9 服务器模型表）
+
+**4 个部署 Worker 刚 spawn（尚未回调）**：
+1. `worker_deploy_eval_openvla_attn_k07_goal_seed42_20260526T132022` → westd-27271:cuda:0
+2. `worker_deploy_eval_openvla_l2norm_k07_goal_seed42_20260526T132032` → westd-38929:cuda:2
+3. `worker_deploy_eval_openvla_random_k085_object_seed42_20260526T132041` → westd-41074:cuda:3
+4. `worker_deploy_eval_pi05_l2norm_k085_long_seed42_v3_20260526T132055` → cqa1-33015:cuda:0
+
+**2 个诊断 Worker 也在跑（上一轮 spawn 的）**：
+- `worker_diagnose_eval_openvla_l2norm_k095_object_seed42_20260526T131516`
+- `worker_diagnose_eval_openvla_l2norm_k085_goal_seed42_20260526T131523`
+
+**RUNNING 实验（10 个，4 个新实验待部署 Worker 确认）**：
+- westd-38929: Random k=0.85 Goal (cuda:0), Random k=0.5 Long (cuda:1), Attn k=0.85 Long v5 (cuda:3)
+- westd-41074: Random k=0.85 Long v3 (cuda:0), L2norm k=0.85 Object (cuda:1), Attn k=0.7 Object v2 (cuda:2)
+- westd-27271: Random k=0.7 Goal v4 (cuda:1)
+- cqa1-33015: π0.5 Attn k=0.75 Long v2 (cuda:1), Attn k=0.5 Long v2 (cuda:2), Attn k=0.85 Long v2 (cuda:3)
+
+### 4. 📋 待办
+- 6 个 Worker 回调到达 → 读取结果，更新 registry，有 metrics 的处理为 DONE
+- 部署 Worker 回调 → 确认 4 个新实验是否成功启动，失败的立即重试或换实验
+- 任何实验完成 cron 回调 → 按 on-experiment-done 流程处理（分析 + registry + 汇报 Director）
+- westd-38929 Random k=0.85 Goal 完成 → 与 Attn(74.6%) + L2norm(75.4%) 对比，完成 Goal k=0.85 三方法对比
+- Goal k=0.7 两实验完成 → 三方法 k=0.7 对比（Random k=0.7 也在跑），测试 Goal method-indifference 在 30% 压缩下是否成立
+- π0.5 L2norm k=0.85 Long 完成 → 填充单调曲线 81%→?→73.4%，验证单调性
+- 所有 cliff curve 数据就绪 → 需整合到论文表格和图表，May 29 deadline
+
+### 5. 🎯 战略上下文
+- **核心论点**：VLA vision token compressibility 取决于 scoring method × connector × task 三维交互，不存在 universal best method
+- **Crossover table 16/16 完成**（OpenVLA k=0.9 四 suite × 三 method + baseline），当前在补充 cliff curve 数据（k=0.5/0.7/0.85/0.95 各点）
+- **关键发现链**：(1) π0.5 Linear connector L2norm >> Random 49pp; (2) OpenVLA MLP connector L2norm ≤ Random; (3) L2norm k=0.95=k=0.9 Object 恒定 gap → method gap 是固有属性; (4) Goal suite 双方法免疫（Attn/L2norm k=0.85 ≈ baseline）
+- **Goal Random k=0.9 seed42=79.6% > baseline 74.8% 异常**仍是核心待验证现象（regularization effect?），seed43 验证在之前 loop 完成但 Worker 分析结果未回调
+- **易错点**：不要混淆 OpenVLA 和 π0.5 的 eval 脚本和参数命名（--mode vs --prune_mode, --k_ratio vs --keep_ratio, --num_episodes vs --n_episodes）；不要在 cqa1 跑 OpenVLA；westd-38929 模型路径有 models/ 前缀
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_openvla_random_k09_goal_seed43"
+}
+```
+
+</details>
+
+---

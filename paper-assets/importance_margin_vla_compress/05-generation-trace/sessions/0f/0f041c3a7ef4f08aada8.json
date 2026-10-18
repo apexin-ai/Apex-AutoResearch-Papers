@@ -41,5 +41,6 @@
       ],
       "message_count": 1
     }
-  ]
+  ],
+  "readable_path": "readable/task-results/fix-westd-41074-tokenizer-redeploy.md"
 }

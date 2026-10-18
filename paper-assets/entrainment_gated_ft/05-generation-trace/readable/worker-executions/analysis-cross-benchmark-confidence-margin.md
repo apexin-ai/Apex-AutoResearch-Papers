@@ -1,0 +1,2891 @@
+# analysis cross benchmark confidence margin
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/workers/worker_analysis_cross-benchmark-confidence-margin_20260520T140423.log`
+- **Structured JSON:** [`a85ca213b0b9ccc226f0.json`](../../sessions/a8/a85ca213b0b9ccc226f0.json)
+
+## Before a recorded user message
+
+55 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6914d8da-1cef-49a9-bd3e-2354b497d6d3",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779294000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4fd887de-6441-43cb-8a22-7ee878dbcc46",
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The task is to perform a confidence margin analysis on HellaSwag and ARC-Easy benchmarks, replicating the same method used for LAMBADA. Let me break this down:
+
+1. First, check the jsonl format on the server
+2. Check directory structure to find the right files
+3. Write and run the analysis script
+4. Save results locally and register artifact
+
+Let me start by checking the jsonl format and directory structure on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "1619352f-e30f-43a1-8b38-e94f9269af87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qp24JQDRMtUwtsjU6YJpZK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 15138,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15138
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先检查服务器上 HellaSwag 和 ARC-Easy 的 jsonl 格式和目录结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "549d7c97-5217-440e-a713-5fe284544396",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qp24JQDRMtUwtsjU6YJpZK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 15138,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15138
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VgXC6oFJy1RXVmPhNix1tD`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "372dd03a-f65a-496c-a26e-81c71ebb9cb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qp24JQDRMtUwtsjU6YJpZK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 15138,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15138
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T14:04:39.537Z_
+
+<details><summary>↩ Tool result · `toolu_01VgXC6oFJy1RXVmPhNix1tD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "2adb7d32-5671-498e-bd0f-b6b8c4455006",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 24
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EwBntahYdaKVMX6mpjHnUA`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/arc_easy/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "8b573d17-6e26-4f68-a05a-b6e1753553d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UU9HznbfuigpHhXg7eWLvc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1634,
+      "cache_read_input_tokens": 26979,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1634
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B4LtHPUHZnKNamrTcDqbEB`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/hellaswag/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "28ed7443-4052-460b-9136-acc58b96414e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UU9HznbfuigpHhXg7eWLvc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1634,
+      "cache_read_input_tokens": 26979,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1634
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T14:04:45.999Z_
+
+<details><summary>↩ Tool result · `toolu_01EwBntahYdaKVMX6mpjHnUA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-12-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1_eval.log\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-GatedDeltaNet-pure_eval.log\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-12-1_eval.log\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-24-1_eval.log\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-3-1_eval.log\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-hybrid-6-1_eval.log\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-HGRN2-pure_eval.log\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-12-1_eval.log\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-24-1_eval.log\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-3-1_eval.log\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-hybrid-6-1_eval.log\\n1.3B-100B-RetNet-pure\\n1.3B-100B-RetNet-pure_eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "5f4e468d-a077-4c8a-bb3f-f08262f45295",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3B-100B-GatedDeltaNet-hybrid-12-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-12-1_eval.log\\\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-24-1_eval.log\\\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-3-1_eval.log\\\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-6-1_eval.log\\\\n1.3B-100B-GatedDeltaNet-pure\\\\n1.3B-100B-GatedDeltaNet-pure_eval.log\\\\n1.3B-100B-HGRN2-hybrid-12-1\\\\n1.3B-100B-HGRN2-hybrid-12-1_eval.log\\\\n1.3B-100B-HGRN2-hybrid-24-1\\\\n1.3B-100B-HGRN2-hybrid-24-1_eval.log\\\\n1.3B-100B-HGRN2-hybrid-3-1\\\\n1.3B-100B-HGRN2-hybrid-3-1_eval.log\\\\n1.3B-100B-HGRN2-hybrid-6-1\\\\n1.3B-100B-HGRN2-hybrid-6-1_eval.log\\\\n1.3B-100B-HGRN2-pure\\\\n1.3B-100B-HGRN2-pure_eval.log\\\\n1.3B-100B-RetNet-hybrid-12-1\\\\n1.3B-100B-RetNet-hybrid-12-1_eval.log\\\\n1.3B-100B-RetNet-hybrid-24-1\\\\n1.3B-100B-RetNet-hybrid-24-1_eval.log\\\\n1.3B-100B-RetNet-hybrid-3-1\\\\n1.3B-100B-RetNet-hybrid-3-1_eval.log\\\\n1.3B-100B-RetNet-hybrid-6-1\\\\n1.3B-100B-RetNet-hybrid-6-1_eval.log\\\\n1.3B-100B-RetNet-pure\\\\n1.3B-100B-RetNet-pure_eval.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-12-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1_eval.log\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-GatedDeltaNet-pure_eval.log\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-12-1_eval.log\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-24-1_eval.log\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-3-1_eval.log\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-hybrid-6-1_eval.log\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-HGRN2-pure_eval.log\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-12-1_eval.log\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-24-1_eval.log\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-3-1_eval.log\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-hybrid-6-1_eval.log\\n1.3B-100B-RetNet-pure\\n1.3B-100B-RetNet-pure_eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T14:04:46.942Z_
+
+<details><summary>↩ Tool result · `toolu_01B4LtHPUHZnKNamrTcDqbEB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "30cb3726-1d09-4df9-bc55-69cbdaa07b21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3B-100B-GatedDeltaNet-hybrid-12-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\\\n1.3B-100B-GatedDeltaNet-pure\\\\n1.3B-100B-HGRN2-hybrid-12-1\\\\n1.3B-100B-HGRN2-hybrid-24-1\\\\n1.3B-100B-HGRN2-hybrid-3-1\\\\n1.3B-100B-HGRN2-hybrid-6-1\\\\n1.3B-100B-HGRN2-pure\\\\n1.3B-100B-RetNet-hybrid-12-1\\\\n1.3B-100B-RetNet-hybrid-24-1\\\\n1.3B-100B-RetNet-hybrid-3-1\\\\n1.3B-100B-RetNet-hybrid-6-1\\\\n1.3B-100B-RetNet-pure\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the directory naming is `1.3B-100B-{ARCH}-{type}` format. Now let me check the jsonl format and the samples directory structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "aa5a885c-715a-4435-ad36-605f7c0f9a07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0199dtrLAHraa2NR2kENpjmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1383,
+      "cache_read_input_tokens": 28613,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+目录命名确认是 `1.3B-100B-{ARCH}-{type}` 格式。检查 jsonl 格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "e2a059d4-0f5a-4591-abc6-d00a21c25bdc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0199dtrLAHraa2NR2kENpjmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1383,
+      "cache_read_input_tokens": 28613,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ELmhjU48wDD6CrRmw1j85s`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "d34e597c-5a1b-42f1-ba5b-68cb1cedbad4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0199dtrLAHraa2NR2kENpjmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1383,
+      "cache_read_input_tokens": 28613,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T14:04:55.110Z_
+
+<details><summary>↩ Tool result · `toolu_01ELmhjU48wDD6CrRmw1j85s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-pure.json\\nsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "f8946460-5a49-4a40-b5af-b6c7a8c652d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3B-100B-GatedDeltaNet-pure.json\\\\nsamples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-pure.json\\nsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MPaoGmtpe2E1v4HU5wN7JH`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "5a5ced7d-87c4-45f8-af04-911e87a1c989",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0199dtrLAHraa2NR2kENpjmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1383,
+      "cache_read_input_tokens": 28613,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1383
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T14:04:56.060Z_
+
+<details><summary>↩ Tool result · `toolu_01MPaoGmtpe2E1v4HU5wN7JH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-pure.json\\nsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "f24bb9d5-3049-42e1-bcc9-ed05d9d21a25",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3B-100B-GatedDeltaNet-pure.json\\\\nsamples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-pure.json\\nsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FCHfd2GT35Qmgmx417oGt4`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "1f7b80ba-9ef7-4f0c-a170-43875b4c09cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hDFEeiQVfeKrcH2DRttYV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 29996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 616
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XCaJUGAMqawxDwhjNKEsNe`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "a115f6c8-cc6a-466e-b027-d4816cd2ed5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hDFEeiQVfeKrcH2DRttYV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 29996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 616
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T14:05:02.050Z_
+
+<details><summary>↩ Tool result · `toolu_01FCHfd2GT35Qmgmx417oGt4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"arc_easy.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "1aad9b6f-cf98-4e29-92b1-c35c327eda83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arc_easy.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"arc_easy.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T14:05:02.990Z_
+
+<details><summary>↩ Tool result · `toolu_01XCaJUGAMqawxDwhjNKEsNe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "c3bc8996-e8bb-4a9d-9e61-9f95e3a4211c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"hellaswag.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y8mwCimsioxaAsQqxvKxgD`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/arc_easy.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "58bdf6a3-764d-43ec-a821-cca207fee97d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJEhUXgATNYegUNmWcHyMn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 496,
+      "cache_read_input_tokens": 30612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 496
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GM9djuPdXUT29BKQjabokV`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "a0a2a5e9-8be4-4b65-99ef-8af216356bf5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJEhUXgATNYegUNmWcHyMn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 496,
+      "cache_read_input_tokens": 30612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 496
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T14:05:07.471Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8mwCimsioxaAsQqxvKxgD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"id\\\": \\\"Mercury_417466\\\", \\\"question\\\": \\\"Which statement best explains why photosynthesis is the foundation of most food webs?\\\", \\\"choices\\\": {\\\"text\\\": [\\\"Sunlight is the source of energy for nearly all ecosystems.\\\", \\\"Most ecosystems are found on land instead of in water.\\\", \\\"Carbon dioxide is more available than other gases.\\\", \\\"The producers in all ecosystems are plants.\\\"], \\\"label\\\": [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]}, \\\"answerKey\\\": \\\"A\\\"}, \\\"target\\\": 0, \\\"arguments\\\": [[\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Sunlight is the source of energy for nearly all ecosystems.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Most ecosystems are found on land instead of in water.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Carbon dioxide is more available than other gases.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" The producers in all ecosystems are plants.\\\"]], \\\"resps\\\": [[[-20.5, false]], [[-29.0, false]], [[-23.875, false]], [[-23.375, false]]], \\\"filtered_resps\\\": [[-20.5, false], [-29.0, false], [-23.875, false], [-23.375, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"b91fe1a8fdc40a80b9364f6256ac729d010ba076b02e75a362c2cf7ad3303bdf\\\", \\\"prompt_hash\\\": \\\"f804da9f5e214341d08d56228bb255177a0e5740f82e61b45887fcb5dc5c08ce\\\", \\\"target_hash\\\": \\\"5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9\\\", \\\"acc\\\": 1.0, \\\"acc_norm\\\": 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "40dad2bb-84d1-4e5d-be69-2e1199c8cc6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"id\\\\\\\": \\\\\\\"Mercury_417466\\\\\\\", \\\\\\\"question\\\\\\\": \\\\\\\"Which statement best explains why photosynthesis is the foundation of most food webs?\\\\\\\", \\\\\\\"choices\\\\\\\": {\\\\\\\"text\\\\\\\": [\\\\\\\"Sunlight is the source of energy for nearly all ecosystems.\\\\\\\", \\\\\\\"Most ecosystems are found on land instead of in water.\\\\\\\", \\\\\\\"Carbon dioxide is more available than other gases.\\\\\\\", \\\\\\\"The producers in all ecosystems are plants.\\\\\\\"], \\\\\\\"label\\\\\\\": [\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"D\\\\\\\"]}, \\\\\\\"answerKey\\\\\\\": \\\\\\\"A\\\\\\\"}, \\\\\\\"target\\\\\\\": 0, \\\\\\\"arguments\\\\\\\": [[\\\\\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\\\\\nAnswer:\\\\\\\", \\\\\\\" Sunlight is the source of energy for nearly all ecosystems.\\\\\\\"], [\\\\\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\\\\\nAnswer:\\\\\\\", \\\\\\\" Most ecosystems are found on land instead of in water.\\\\\\\"], [\\\\\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\\\\\nAnswer:\\\\\\\", \\\\\\\" Carbon dioxide is more available than other gases.\\\\\\\"], [\\\\\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\\\\\nAnswer:\\\\\\\", \\\\\\\" The producers in all ecosystems are plants.\\\\\\\"]], \\\\\\\"resps\\\\\\\": [[[-20.5, false]], [[-29.0, false]], [[-23.875, false]], [[-23.375, false]]], \\\\\\\"filtered_resps\\\\\\\": [[-20.5, false], [-29.0, false], [-23.875, false], [-23.375, false]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"acc\\\\\\\", \\\\\\\"acc_norm\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"b91fe1a8fdc40a80b9364f6256ac729d010ba076b02e75a362c2cf7ad3303bdf\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"f804da9f5e214341d08d56228bb255177a0e5740f82e61b45887fcb5dc5c08ce\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9\\\\\\\", \\\\\\\"acc\\\\\\\": 1.0, \\\\\\\"acc_norm\\\\\\\": 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"id\\\": \\\"Mercury_417466\\\", \\\"question\\\": \\\"Which statement best explains why photosynthesis is the foundation of most food webs?\\\", \\\"choices\\\": {\\\"text\\\": [\\\"Sunlight is the source of energy for nearly all ecosystems.\\\", \\\"Most ecosystems are found on land instead of in water.\\\", \\\"Carbon dioxide is more available than other gases.\\\", \\\"The producers in all ecosystems are plants.\\\"], \\\"label\\\": [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]}, \\\"answerKey\\\": \\\"A\\\"}, \\\"target\\\": 0, \\\"arguments\\\": [[\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Sunlight is the source of energy for nearly all ecosystems.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Most ecosystems are found on land instead of in water.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" Carbon dioxide is more available than other gases.\\\"], [\\\"Question: Which statement best explains why photosynthesis is the foundation of most food webs?\\\\nAnswer:\\\", \\\" The producers in all ecosystems are plants.\\\"]], \\\"resps\\\": [[[-20.5, false]], [[-29.0, false]], [[-23.875, false]], [[-23.375, false]]], \\\"filtered_resps\\\": [[-20.5, false], [-29.0, false], [-23.875, false], [-23.375, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"b91fe1a8fdc40a80b9364f6256ac729d010ba076b02e75a362c2cf7ad3303bdf\\\", \\\"prompt_hash\\\": \\\"f804da9f5e214341d08d56228bb255177a0e5740f82e61b45887fcb5dc5c08ce\\\", \\\"target_hash\\\": \\\"5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9\\\", \\\"acc\\\": 1.0, \\\"acc_norm\\\": 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T14:05:08.419Z_
+
+<details><summary>↩ Tool result · `toolu_01GM9djuPdXUT29BKQjabokV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"ind\\\": 24, \\\"activity_label\\\": \\\"Roof shingle removal\\\", \\\"ctx_a\\\": \\\"A man is sitting on a roof.\\\", \\\"ctx_b\\\": \\\"he\\\", \\\"ctx\\\": \\\"A man is sitting on a roof. he\\\", \\\"endings\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"source_id\\\": \\\"activitynet~v_-JhWjGDPHMY\\\", \\\"split\\\": \\\"val\\\", \\\"split_type\\\": \\\"indomain\\\", \\\"label\\\": \\\"3\\\", \\\"query\\\": \\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\"choices\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"gold\\\": 3}, \\\"target\\\": 3, \\\"arguments\\\": [[\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is using wrap to wrap a pair of skis.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is ripping level tiles off.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is holding a rubik's cube.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" starts pulling up roofing on a roof.\\\"]], \\\"resps\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\"filtered_resps\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\", \\\"prompt_hash\\\": \\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\", \\\"target_hash\\\": \\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\", \\\"acc\\\": 0.0, \\\"acc_norm\\\": 0.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "36c11fea-5131-42fa-8ffc-13fc0d4b2827",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"ind\\\\\\\": 24, \\\\\\\"activity_label\\\\\\\": \\\\\\\"Roof shingle removal\\\\\\\", \\\\\\\"ctx_a\\\\\\\": \\\\\\\"A man is sitting on a roof.\\\\\\\", \\\\\\\"ctx_b\\\\\\\": \\\\\\\"he\\\\\\\", \\\\\\\"ctx\\\\\\\": \\\\\\\"A man is sitting on a roof. he\\\\\\\", \\\\\\\"endings\\\\\\\": [\\\\\\\"is using wrap to wrap a pair of skis.\\\\\\\", \\\\\\\"is ripping level tiles off.\\\\\\\", \\\\\\\"is holding a rubik's cube.\\\\\\\", \\\\\\\"starts pulling up roofing on a roof.\\\\\\\"], \\\\\\\"source_id\\\\\\\": \\\\\\\"activitynet~v_-JhWjGDPHMY\\\\\\\", \\\\\\\"split\\\\\\\": \\\\\\\"val\\\\\\\", \\\\\\\"split_type\\\\\\\": \\\\\\\"indomain\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"3\\\\\\\", \\\\\\\"query\\\\\\\": \\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\"choices\\\\\\\": [\\\\\\\"is using wrap to wrap a pair of skis.\\\\\\\", \\\\\\\"is ripping level tiles off.\\\\\\\", \\\\\\\"is holding a rubik's cube.\\\\\\\", \\\\\\\"starts pulling up roofing on a roof.\\\\\\\"], \\\\\\\"gold\\\\\\\": 3}, \\\\\\\"target\\\\\\\": 3, \\\\\\\"arguments\\\\\\\": [[\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is using wrap to wrap a pair of skis.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is ripping level tiles off.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is holding a rubik's cube.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" starts pulling up roofing on a roof.\\\\\\\"]], \\\\\\\"resps\\\\\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\\\\\"filtered_resps\\\\\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"acc\\\\\\\", \\\\\\\"acc_norm\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\\\\\", \\\\\\\"acc\\\\\\\": 0.0, \\\\\\\"acc_norm\\\\\\\": 0.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"ind\\\": 24, \\\"activity_label\\\": \\\"Roof shingle removal\\\", \\\"ctx_a\\\": \\\"A man is sitting on a roof.\\\", \\\"ctx_b\\\": \\\"he\\\", \\\"ctx\\\": \\\"A man is sitting on a roof. he\\\", \\\"endings\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"source_id\\\": \\\"activitynet~v_-JhWjGDPHMY\\\", \\\"split\\\": \\\"val\\\", \\\"split_type\\\": \\\"indomain\\\", \\\"label\\\": \\\"3\\\", \\\"query\\\": \\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\"choices\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"gold\\\": 3}, \\\"target\\\": 3, \\\"arguments\\\": [[\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is using wrap to wrap a pair of skis.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is ripping level tiles off.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is holding a rubik's cube.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" starts pulling up roofing on a roof.\\\"]], \\\"resps\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\"filtered_resps\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\", \\\"prompt_hash\\\": \\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\", \\\"target_hash\\\": \\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\", \\\"acc\\\": 0.0, \\\"acc_norm\\\": 0.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the jsonl format:
+
+**ARC-Easy:**
+- `filtered_resps`: list of [loglik, is_greedy] pairs, one per option (4 options)
+- `target`: int (0-3), index of correct answer
+- `acc`: 1.0 or 0.0
+
+**HellaSwag:**
+- `filtered_resps`: list of [loglik, is_greedy] pairs, one per option (4 options)
+
+
+- `target`: int (0-3), index of correct answer
+- `acc`: 1.0 or 0.0
+- Also has `acc_norm` (length-normalized)
+
+Both datasets use the same structure with raw logliks, though HellaSwag additionally provides length-normalized accuracy. For measuring confidence in multiple choice, I should use the absolute value of the correct option's loglik — a value closer to zero indicates higher confidence.
+
+Looking at how this works: more negative logliks signal lower confidence, so taking the absolute value converts this into a scale where higher values mean less confident. The `filtered_resps` contains the raw unnormalized log-likelihoods for each option, and I'm using the correct option's loglik as my confidence metric. I'm checking whether HellaSwag has separate normalized logliks available or if `acc_norm` is computed from the raw values differently. are computed from the same `resps` data — the normalization happens at evaluation time by dividing each completion's score by its byte length. For consistency with how we're analyzing LAMBADA, I should use `acc` based on raw log-likelihoods rather than the length-normalized `acc_norm`, even though `acc_norm` is HellaSwag's standard metric.
+
+Actually, I'm second-guessing this. The task notes that options have different lengths, so raw log-likelihood is a poor confidence signal — length-normalized scores would be more appropriate. But within a category, all samples have the same 4 options with varying lengths, so comparing the raw log-likelihood of the correct option should still work for the within-category comparison.
+
+For determining which samples were correct or wrong, I should use `acc` for consistency, even though `acc_norm` might be the primary metric reported. For ARC-Easy specifically, the two metrics are likely equivalent since answer options tend to be similar in length anyway.
+
+I'll use `acc` across all three benchmarks with `abs(correct_option_loglik)` as my confidence proxy — this keeps the methodology uniform. Now I need to write the script, accounting for the actual directory structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "528e386f-71f2-4bfe-9873-4121b2a5b315",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013jmVYNxdxtsHRbAWUrjjc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2115,
+      "cache_read_input_tokens": 31108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2115
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+格式清楚了。`filtered_resps` 是 `[loglik, is_greedy]` per option，`target` 是正确答案 index，`acc` 是 0/1。现在检查已有 LAMBADA 分析的输出格式，然后写脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "378b33a4-f207-4757-b588-854e1805225e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013jmVYNxdxtsHRbAWUrjjc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2115,
+      "cache_read_input_tokens": 31108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2115
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Qk9kqY8dtbNLCxGtnnaUSs`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/confidence_margin_within_category.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "cce155e0-7fd5-47fc-b77b-6a9e0846f28f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013jmVYNxdxtsHRbAWUrjjc8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2115,
+      "cache_read_input_tokens": 31108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2115
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T14:05:53.075Z_
+
+<details><summary>↩ Tool result · `toolu_01Qk9kqY8dtbNLCxGtnnaUSs`</summary>
+
+```text
+1	{
+2	  "analysis": "confidence_margin_within_category",
+3	  "date": "2026-05-20",
+4	  "purpose": "rebuttal_reserve_corrected",
+5	  "motivation": "Original across-category analysis (helped vs hurt) has definitional confound: helped = pure-wrong (naturally high |loglik|), hurt = pure-right (naturally lower |loglik|). Within-category controls eliminate this confound by comparing only within pure-correct or only within pure-wrong.",
+6	  "method": {
+7	    "confidence_proxy": "abs(target_token_loglikelihood) from pure model",
+8	    "margin_semantics": {
+9	      "pure_correct": "higher |loglik| = lower probability = less confident correct = closer to boundary",
+10	      "pure_wrong": "lower |loglik| = higher probability for target = near-miss = closer to boundary"
+11	    },
+12	    "control_1": "Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)",
+13	    "control_2": "Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)",
+14	    "hypotheses": {
+15	      "C1": "hurt has higher |loglik| than stayed-right (less confident correct → vulnerable)",
+16	      "C2": "helped has lower |loglik| than stayed-wrong (near-miss wrong → rescuable)"
+17	    },
+18	    "tests": ["Mann-Whitney U (two-sided)", "Cohen's d (pooled std)", "rank-biserial r_rb"],
+19	    "note": "GDN uses h12-1 (1.3B h3-1 unavailable); RetNet/HGRN2 use h3-1"
+20	  },
+21	  "per_architecture": {
+22	    "GDN": {
+23	      "hybrid_config": "GDN-h12-1",
+24	      "control_1_pure_correct": {
+25	        "hurt_n": 519,
+26	        "stayed_right_n": 2281,
+27	        "hurt_margin": {
+28	          "mean": 1.049,
+29	          "median": 1.0,
+30	          "std": 0.6059,
+31	          "q25": 0.5781,
+32	          "q75": 1.4297
+33	        },
+34	        "stayed_right_margin": {
+35	          "mean": 0.5761,
+36	          "median": 0.418,
+37	          "std": 0.525,
+38	          "q25": 0.1777,
+39	          "q75": 0.832
+40	        },
+41	        "U": 878428.5,
+42	        "p": 1.4356933450447937e-66,
+43	        "r_rb": -0.484,
+44	        "cohens_d": 0.8744,
+45	        "direction": "stayed_right_lower",
+46	        "hypothesis_supported": true,
+47	        "interpretation": "Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping."
+48	      },
+49	      "control_2_pure_wrong": {
+50	        "helped_n": 480,
+51	        "stayed_wrong_n": 1873,
+52	        "helped_margin": {
+53	          "mean": 2.4587,
+54	          "median": 2.1641,
+55	          "std": 1.2328,
+56	          "q25": 1.6172,
+57	          "q75": 3.0
+58	        },
+59	        "stayed_wrong_margin": {
+60	          "mean": 4.1893,
+61	          "median": 3.625,
+62	          "std": 2.5232,
+63	          "q25": 2.4844,
+64	          "q75": 5.4062
+65	        },
+66	        "U": 219100.0,
+67	        "p": 1.944858093969099e-67,
+68	        "r_rb": 0.5126,
+69	        "cohens_d": -0.7462,
+70	        "direction": "helped_lower",
+71	        "hypothesis_supported": true,
+72	        "interpretation": "Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention."
+73	      }
+74	    },
+75	    "RetNet": {
+76	      "hybrid_config": "RetNet-h3-1",
+77	      "control_1_pure_correct": {
+78	        "hurt_n": 497,
+79	        "stayed_right_n": 2169,
+80	        "hurt_margin": {
+81	          "mean": 1.2931,
+82	          "median": 1.2188,
+83	          "std": 0.6355,
+84	          "q25": 0.8438,
+85	          "q75": 1.6953
+86	        },
+87	        "stayed_right_margin": {
+88	          "mean": 0.7847,
+89	          "median": 0.6484,
+90	          "std": 0.6066,
+91	          "q25": 0.3027,
+92	          "q75": 1.125
+93	        },
+94	        "U": 791835.5,
+95	        "p": 5.574621962732188e-60,
+96	        "r_rb": -0.4691,
+97	        "cohens_d": 0.8306,
+98	        "direction": "stayed_right_lower",
+99	        "hypothesis_supported": true,
+100	        "interpretation": "Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping."
+101	      },
+102	      "control_2_pure_wrong": {
+103	        "helped_n": 420,
+104	        "stayed_wrong_n": 2067,
+105	        "helped_margin": {
+106	          "mean": 2.4778,
+107	          "median": 2.2812,
+108	          "std": 1.0262,
+109	          "q25": 1.7344,
+110	          "q75": 2.957
+111	        },
+112	        "stayed_wrong_margin": {
+113	          "mean": 4.1033,
+114	          "median": 3.5938,
+115	          "std": 2.4112,
+116	          "q25": 2.5,
+117	          "q75": 5.1875
+118	        },
+119	        "U": 214002.0,
+120	        "p": 1.8133019762144296e-60,
+121	        "r_rb": 0.507,
+122	        "cohens_d": -0.7262,
+123	        "direction": "helped_lower",
+124	        "hypothesis_supported": true,
+125	        "interpretation": "Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention."
+126	      }
+127	    },
+128	    "HGRN2": {
+129	      "hybrid_config": "HGRN2-h3-1",
+130	      "control_1_pure_correct": {
+131	        "hurt_n": 392,
+132	        "stayed_right_n": 2102,
+133	        "hurt_margin": {
+134	          "mean": 1.4809,
+135	          "median": 1.4375,
+136	          "std": 0.664,
+137	          "q25": 0.9824,
+138	          "q75": 1.916
+139	        },
+140	        "stayed_right_margin": {
+141	          "mean": 0.8986,
+142	          "median": 0.7969,
+143	          "std": 0.6246,
+144	          "q25": 0.3916,
+145	          "q75": 1.2793
+146	        },
+147	        "U": 616056.5,
+148	        "p": 8.427871331479334e-55,
+149	        "r_rb": -0.4953,
+150	        "cohens_d": 0.9228,
+151	        "direction": "stayed_right_lower",
+152	        "hypothesis_supported": true,
+153	        "interpretation": "Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping."
+154	      },
+155	      "control_2_pure_wrong": {
+156	        "helped_n": 548,
+157	        "stayed_wrong_n": 2111,
+158	        "helped_margin": {
+159	          "mean": 2.5004,
+160	          "median": 2.3125,
+161	          "std": 0.9806,
+162	          "q25": 1.7949,
+163	          "q75": 2.9844
+164	        },
+165	        "stayed_wrong_margin": {
+166	          "mean": 4.1121,
+167	          "median": 3.6094,
+168	          "std": 2.2856,
+169	          "q25": 2.6016,
+170	          "q75": 5.125
+171	        },
+172	        "U": 271880.0,
+173	        "p": 1.1198223218867664e-81,
+174	        "r_rb": 0.53,
+175	        "cohens_d": -0.773,
+176	        "direction": "helped_lower",
+177	        "hypothesis_supported": true,
+178	        "interpretation": "Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention."
+179	      }
+180	    }
+181	  },
+182	  "cross_arch_summary": "Both controls significant across all 3 architectures with expected directions. C1: hurt samples were less confident correct (higher |loglik|) than stayed-right — weakly-correct answers are vulnerable to attention flipping. C2: helped samples were near-miss wrong (lower |loglik|) vs stayed-wrong — near-miss wrong answers are rescuable by attention. Confidence margin genuinely predicts per-example attention effect, NOT a definitional artifact of the across-category comparison.",
+183	  "conclusion": "within_category_significant"
+184	}
+185	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "3310ce9e-69e7-416e-aaac-1d1ae327f388",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/confidence_margin_within_category.json",
+      "content": "{\n  \"analysis\": \"confidence_margin_within_category\",\n  \"date\": \"2026-05-20\",\n  \"purpose\": \"rebuttal_reserve_corrected\",\n  \"motivation\": \"Original across-category analysis (helped vs hurt) has definitional confound: helped = pure-wrong (naturally high |loglik|), hurt = pure-right (naturally lower |loglik|). Within-category controls eliminate this confound by comparing only within pure-correct or only within pure-wrong.\",\n  \"method\": {\n    \"confidence_proxy\": \"abs(target_token_loglikelihood) from pure model\",\n    \"margin_semantics\": {\n      \"pure_correct\": \"higher |loglik| = lower probability = less confident correct = closer to boundary\",\n      \"pure_wrong\": \"lower |loglik| = higher probability for target = near-miss = closer to boundary\"\n    },\n    \"control_1\": \"Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)\",\n    \"control_2\": \"Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)\",\n    \"hypotheses\": {\n      \"C1\": \"hurt has higher |loglik| than stayed-right (less confident correct → vulnerable)\",\n      \"C2\": \"helped has lower |loglik| than stayed-wrong (near-miss wrong → rescuable)\"\n    },\n    \"tests\": [\"Mann-Whitney U (two-sided)\", \"Cohen's d (pooled std)\", \"rank-biserial r_rb\"],\n    \"note\": \"GDN uses h12-1 (1.3B h3-1 unavailable); RetNet/HGRN2 use h3-1\"\n  },\n  \"per_architecture\": {\n    \"GDN\": {\n      \"hybrid_config\": \"GDN-h12-1\",\n      \"control_1_pure_correct\": {\n        \"hurt_n\": 519,\n        \"stayed_right_n\": 2281,\n        \"hurt_margin\": {\n          \"mean\": 1.049,\n          \"median\": 1.0,\n          \"std\": 0.6059,\n          \"q25\": 0.5781,\n          \"q75\": 1.4297\n        },\n        \"stayed_right_margin\": {\n          \"mean\": 0.5761,\n          \"median\": 0.418,\n          \"std\": 0.525,\n          \"q25\": 0.1777,\n          \"q75\": 0.832\n        },\n        \"U\": 878428.5,\n        \"p\": 1.4356933450447937e-66,\n        \"r_rb\": -0.484,\n        \"cohens_d\": 0.8744,\n        \"direction\": \"stayed_right_lower\",\n        \"hypothesis_supported\": true,\n        \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n      },\n      \"control_2_pure_wrong\": {\n        \"helped_n\": 480,\n        \"stayed_wrong_n\": 1873,\n        \"helped_margin\": {\n          \"mean\": 2.4587,\n          \"median\": 2.1641,\n          \"std\": 1.2328,\n          \"q25\": 1.6172,\n          \"q75\": 3.0\n        },\n        \"stayed_wrong_margin\": {\n          \"mean\": 4.1893,\n          \"median\": 3.625,\n          \"std\": 2.5232,\n          \"q25\": 2.4844,\n          \"q75\": 5.4062\n        },\n        \"U\": 219100.0,\n        \"p\": 1.944858093969099e-67,\n        \"r_rb\": 0.5126,\n        \"cohens_d\": -0.7462,\n        \"direction\": \"helped_lower\",\n        \"hypothesis_supported\": true,\n        \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n      }\n    },\n    \"RetNet\": {\n      \"hybrid_config\": \"RetNet-h3-1\",\n      \"control_1_pure_correct\": {\n        \"hurt_n\": 497,\n        \"stayed_right_n\": 2169,\n        \"hurt_margin\": {\n          \"mean\": 1.2931,\n          \"median\": 1.2188,\n          \"std\": 0.6355,\n          \"q25\": 0.8438,\n          \"q75\": 1.6953\n        },\n        \"stayed_right_margin\": {\n          \"mean\": 0.7847,\n          \"median\": 0.6484,\n          \"std\": 0.6066,\n          \"q25\": 0.3027,\n          \"q75\": 1.125\n        },\n        \"U\": 791835.5,\n        \"p\": 5.574621962732188e-60,\n        \"r_rb\": -0.4691,\n        \"cohens_d\": 0.8306,\n        \"direction\": \"stayed_right_lower\",\n        \"hypothesis_supported\": true,\n        \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n      },\n      \"control_2_pure_wrong\": {\n        \"helped_n\": 420,\n        \"stayed_wrong_n\": 2067,\n        \"helped_margin\": {\n          \"mean\": 2.4778,\n          \"median\": 2.2812,\n          \"std\": 1.0262,\n          \"q25\": 1.7344,\n          \"q75\": 2.957\n        },\n        \"stayed_wrong_margin\": {\n          \"mean\": 4.1033,\n          \"median\": 3.5938,\n          \"std\": 2.4112,\n          \"q25\": 2.5,\n          \"q75\": 5.1875\n        },\n        \"U\": 214002.0,\n        \"p\": 1.8133019762144296e-60,\n        \"r_rb\": 0.507,\n        \"cohens_d\": -0.7262,\n        \"direction\": \"helped_lower\",\n        \"hypothesis_supported\": true,\n        \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n      }\n    },\n    \"HGRN2\": {\n      \"hybrid_config\": \"HGRN2-h3-1\",\n      \"control_1_pure_correct\": {\n        \"hurt_n\": 392,\n        \"stayed_right_n\": 2102,\n        \"hurt_margin\": {\n          \"mean\": 1.4809,\n          \"median\": 1.4375,\n          \"std\": 0.664,\n          \"q25\": 0.9824,\n          \"q75\": 1.916\n        },\n        \"stayed_right_margin\": {\n          \"mean\": 0.8986,\n          \"median\": 0.7969,\n          \"std\": 0.6246,\n          \"q25\": 0.3916,\n          \"q75\": 1.2793\n        },\n        \"U\": 616056.5,\n        \"p\": 8.427871331479334e-55,\n        \"r_rb\": -0.4953,\n        \"cohens_d\": 0.9228,\n        \"direction\": \"stayed_right_lower\",\n        \"hypothesis_supported\": true,\n        \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n      },\n      \"control_2_pure_wrong\": {\n        \"helped_n\": 548,\n        \"stayed_wrong_n\": 2111,\n        \"helped_margin\": {\n          \"mean\": 2.5004,\n          \"median\": 2.3125,\n          \"std\": 0.9806,\n          \"q25\": 1.7949,\n          \"q75\": 2.9844\n        },\n        \"stayed_wrong_margin\": {\n          \"mean\": 4.1121,\n          \"median\": 3.6094,\n          \"std\": 2.2856,\n          \"q25\": 2.6016,\n          \"q75\": 5.125\n        },\n        \"U\": 271880.0,\n        \"p\": 1.1198223218867664e-81,\n        \"r_rb\": 0.53,\n        \"cohens_d\": -0.773,\n        \"direction\": \"helped_lower\",\n        \"hypothesis_supported\": true,\n        \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n      }\n    }\n  },\n  \"cross_arch_summary\": \"Both controls significant across all 3 architectures with expected directions. C1: hurt samples were less confident correct (higher |loglik|) than stayed-right — weakly-correct answers are vulnerable to attention flipping. C2: helped samples were near-miss wrong (lower |loglik|) vs stayed-wrong — near-miss wrong answers are rescuable by attention. Confidence margin genuinely predicts per-example attention effect, NOT a definitional artifact of the across-category comparison.\",\n  \"conclusion\": \"within_category_significant\"\n}\n",
+      "numLines": 185,
+      "startLine": 1,
+      "totalLines": 185
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the LAMBADA analysis format. I need to replicate this with the MC benchmarks. Let me write the script.
+
+Key observations from the LAMBADA analysis:
+1. It includes quartile info (q25, q75) and std
+2. It includes `direction` and `hypothesis_supported` and `interpretation`
+3. The confidence proxy is `abs(target_token_loglikelihood)`
+
+For MC tasks:
+- `filtered_resps` is a list of `[loglik, is_greedy]` per option
+- `target` is the index of the correct answer
+
+
+- Confidence will be `abs(correct_option_loglik)` using the same approach
+
+I should match samples by `doc_id` between the pure and hybrid files to ensure consistency, rather than relying on index position alone.
+
+Writing the analysis script... I'm realizing that length normalization could be a real issue here—since loglik is a sum of per-token log-probs, longer correct options will have more negative values, potentially confounding the hurt vs stayed-right comparison if one category happens to have systematically longer correct answers. Though for within-category controls where we're comparing samples from the same set, this shouldn't create a systematic bias unless there's a correlation between the category label and option length that I need to check for.
+
+I think I'll stick with raw loglik to keep it consistent with the LAMBADA approach, but I'm noticing that lm-eval-harness actually provides both `acc` (raw loglik) and `acc_norm` (byte-length normalized) for HellaSwag—so I should decide which one to use for my categorization. I'm settling on using `acc` across all benchmarks for consistency, since the confidence metric (raw loglik) naturally aligns with `acc` rather than normalized variants. Now I need to write the analysis script, handling the specific directory naming conventions, hybrid model configurations, document ID matching, and the same statistical tests I used for LAMBADA.
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "bdfa3a8c-ada6-44c0-a26b-1d03b9f31c07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137p2MWfKAEBfmLioDiQcSc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4530,
+      "cache_read_input_tokens": 33223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4530
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+LAMBADA 分析格式确认。现在写分析脚本并上传到服务器执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "3925db27-1d2d-4235-bd0c-b8778f095fd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137p2MWfKAEBfmLioDiQcSc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4530,
+      "cache_read_input_tokens": 33223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4530
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013e9RTs4HvB39CVpqnoTSBY`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat > /root/entrainment_gated_ft/analyze_confidence_margin_mc.py << 'PYEOF'\nimport json, os, sys\nimport numpy as np\nfrom scipy.stats import mannwhitneyu\n\nARCHS = [\"GatedDeltaNet\", \"RetNet\", \"HGRN2\"]\nARCH_SHORT = {\"GatedDeltaNet\": \"GDN\", \"RetNet\": \"RetNet\", \"HGRN2\": \"HGRN2\"}\nHYBRID_CONFIG = {\"GatedDeltaNet\": \"hybrid-12-1\", \"RetNet\": \"hybrid-3-1\", \"HGRN2\": \"hybrid-3-1\"}\nBENCHMARKS = [\"arc_easy\", \"hellaswag\"]\nBASE = \"/root/entrainment_gated_ft/lm_eval_clean\"\n\ndef load_samples(benchmark, arch, config_type):\n    dir_name = f\"1.3B-100B-{arch}-{config_type}\"\n    path = f\"{BASE}/{benchmark}/{dir_name}/samples/{benchmark}.jsonl\"\n    if not os.path.exists(path):\n        raise FileNotFoundError(f\"Not found: {path}\")\n    samples = {}\n    with open(path) as f:\n        for line in f:\n            s = json.loads(line)\n            samples[s[\"doc_id\"]] = s\n    return samples\n\ndef extract_confidence(sample):\n    resps = sample.get(\"filtered_resps\", sample.get(\"resps\", []))\n    target = sample.get(\"target\")\n    if target is None:\n        target = sample.get(\"doc\", {}).get(\"gold\")\n    if isinstance(target, str):\n        target = int(target)\n    logliks = []\n    for r in resps:\n        if isinstance(r, (list, tuple)):\n            logliks.append(float(r[0]))\n        else:\n            logliks.append(float(r))\n    return abs(logliks[target])\n\ndef cohens_d(g1, g2):\n    n1, n2 = len(g1), len(g2)\n    m1, m2 = np.mean(g1), np.mean(g2)\n    s1, s2 = np.std(g1, ddof=1), np.std(g2, ddof=1)\n    pooled = np.sqrt(((n1-1)*s1**2 + (n2-1)*s2**2) / (n1+n2-2))\n    return (m1 - m2) / pooled if pooled > 0 else 0.0\n\ndef compute_stats(group_a, group_b, name_a, name_b, hypothesis_desc):\n    if len(group_a) < 5 or len(group_b) < 5:\n        return {\"skip\": True, \"reason\": f\"{name_a}_n={len(group_a)}, {name_b}_n={len(group_b)}\"}\n    a, b = np.array(group_a), np.array(group_b)\n    U, p = mannwhitneyu(a, b, alternative='two-sided')\n    d = cohens_d(a, b)\n    n1, n2 = len(a), len(b)\n    r_rb = 1 - 2*U/(n1*n2)\n    \n    a_lower = np.mean(a) < np.mean(b)\n    return {\n        f\"{name_a}_n\": n1,\n        f\"{name_b}_n\": n2,\n        f\"{name_a}_margin\": {\n            \"mean\": round(float(np.mean(a)), 4),\n            \"median\": round(float(np.median(a)), 4),\n            \"std\": round(float(np.std(a, ddof=1)), 4),\n            \"q25\": round(float(np.percentile(a, 25)), 4),\n            \"q75\": round(float(np.percentile(a, 75)), 4),\n        },\n        f\"{name_b}_margin\": {\n            \"mean\": round(float(np.mean(b)), 4),\n            \"median\": round(float(np.median(b)), 4),\n            \"std\": round(float(np.std(b, ddof=1)), 4),\n            \"q25\": round(float(np.percentile(b, 25)), 4),\n            \"q75\": round(float(np.percentile(b, 75)), 4),\n        },\n        \"U\": float(U),\n        \"p\": float(p),\n        \"cohens_d\": round(d, 4),\n        \"r_rb\": round(r_rb, 4),\n        \"direction\": f\"{name_a}_lower\" if a_lower else f\"{name_b}_lower\",\n    }\n\nresults = {}\n\nfor benchmark in BENCHMARKS:\n    results[benchmark] = {}\n    for arch in ARCHS:\n        short = ARCH_SHORT[arch]\n        hybrid_type = HYBRID_CONFIG[arch]\n        \n        print(f\"\\n=== {benchmark} / {short} (hybrid={hybrid_type}) ===\")\n        \n        pure_samples = load_samples(benchmark, arch, \"pure\")\n        hybrid_samples = load_samples(benchmark, arch, hybrid_type)\n        \n        doc_ids = sorted(set(pure_samples.keys()) & set(hybrid_samples.keys()))\n        print(f\"  Matched samples: {len(doc_ids)}\")\n        \n        hurt_conf, stayed_right_conf = [], []\n        helped_conf, stayed_wrong_conf = [], []\n        \n        for did in doc_ids:\n            ps = pure_samples[did]\n            hs = hybrid_samples[did]\n            pure_acc = int(ps[\"acc\"])\n            hybrid_acc = int(hs[\"acc\"])\n            conf = extract_confidence(ps)\n            \n            if pure_acc == 1 and hybrid_acc == 0:\n                hurt_conf.append(conf)\n            elif pure_acc == 1 and hybrid_acc == 1:\n                stayed_right_conf.append(conf)\n            elif pure_acc == 0 and hybrid_acc == 1:\n                helped_conf.append(conf)\n            else:\n                stayed_wrong_conf.append(conf)\n        \n        print(f\"  hurt={len(hurt_conf)}, stayed_right={len(stayed_right_conf)}, helped={len(helped_conf)}, stayed_wrong={len(stayed_wrong_conf)}\")\n        \n        c1 = compute_stats(hurt_conf, stayed_right_conf, \"hurt\", \"stayed_right\",\n                          \"hurt has higher |loglik| (less confident correct)\")\n        c2 = compute_stats(helped_conf, stayed_wrong_conf, \"helped\", \"stayed_wrong\",\n                          \"helped has lower |loglik| (near-miss wrong)\")\n        \n        if \"skip\" not in c1:\n            c1[\"hypothesis_supported\"] = c1[\"direction\"] == \"stayed_right_lower\"\n            c1[\"interpretation\"] = (\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. \"\n                                   \"Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n                                   if c1[\"hypothesis_supported\"] else\n                                   \"Direction opposite to hypothesis.\")\n            print(f\"  C1: d={c1['cohens_d']}, p={c1['p']:.2e}, dir={c1['direction']}, supported={c1['hypothesis_supported']}\")\n        else:\n            print(f\"  C1: SKIPPED - {c1['reason']}\")\n            \n        if \"skip\" not in c2:\n            c2[\"hypothesis_supported\"] = c2[\"direction\"] == \"helped_lower\"\n            c2[\"interpretation\"] = (\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. \"\n                                   \"Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n                                   if c2[\"hypothesis_supported\"] else\n                                   \"Direction opposite to hypothesis.\")\n            print(f\"  C2: d={c2['cohens_d']}, p={c2['p']:.2e}, dir={c2['direction']}, supported={c2['hypothesis_supported']}\")\n        else:\n            print(f\"  C2: SKIPPED - {c2['reason']}\")\n        \n        results[benchmark][short] = {\n            \"hybrid_config\": f\"{short}-{hybrid_type.replace('hybrid-','')}\",\n            \"control_1_pure_correct\": c1,\n            \"control_2_pure_wrong\": c2,\n        }\n\noutput = {\n    \"analysis\": \"cross_benchmark_confidence_margin\",\n    \"date\": \"2026-05-20\",\n    \"method\": {\n        \"confidence_proxy\": \"abs(correct_option_loglikelihood) from pure model\",\n        \"margin_semantics\": {\n            \"pure_correct\": \"higher |loglik| = lower probability = less confident correct = closer to boundary\",\n            \"pure_wrong\": \"lower |loglik| = higher probability for target = near-miss = closer to boundary\"\n        },\n        \"control_1\": \"Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)\",\n        \"control_2\": \"Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)\",\n        \"hypotheses\": {\n            \"C1\": \"hurt has higher |loglik| than stayed-right (less confident correct -> vulnerable)\",\n            \"C2\": \"helped has lower |loglik| than stayed-wrong (near-miss wrong -> rescuable)\"\n        },\n        \"tests\": [\"Mann-Whitney U (two-sided)\", \"Cohen's d (pooled std)\", \"rank-biserial r_rb\"],\n        \"note\": \"GDN uses h12-1 (consistent with LAMBADA analysis); RetNet/HGRN2 use h3-1\",\n        \"acc_field\": \"acc (raw loglik-based, consistent with LAMBADA)\"\n    },\n    \"results\": results,\n}\n\nos.makedirs(\"/root/entrainment_gated_ft/analysis_output\", exist_ok=True)\nout_path = \"/root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to {out_path}\")\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "c0598320-328b-4019-a324-d811982ad834",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137p2MWfKAEBfmLioDiQcSc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4530,
+      "cache_read_input_tokens": 33223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4530
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T14:07:13.759Z_
+
+<details><summary>↩ Tool result · `toolu_013e9RTs4HvB39CVpqnoTSBY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "54e4e901-b096-48ae-a023-f7f969e7c415",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KKBBaYgBcts3kH1LdWT8ks`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python3 analyze_confidence_margin_mc.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "39dd8a72-91a5-45f9-8976-d7b873705410",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUL8VQSGnksH1FFnwm8F5Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4236,
+      "cache_read_input_tokens": 37753,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4236
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T14:07:23.590Z_
+
+<details><summary>↩ Tool result · `toolu_01KKBBaYgBcts3kH1LdWT8ks`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== arc_easy / GDN (hybrid=hybrid-12-1) ===\\n  Matched samples: 2376\\n  hurt=206, stayed_right=1486, helped=176, stayed_wrong=508\\n  C1: d=0.2634, p=3.24e-04, dir=stayed_right_lower, supported=True\\n  C2: d=-0.5953, p=1.02e-13, dir=helped_lower, supported=True\\n\\n=== arc_easy / RetNet (hybrid=hybrid-3-1) ===\\n  Matched samples: 2376\\n  hurt=184, stayed_right=1510, helped=144, stayed_wrong=538\\n  C1: d=0.2228, p=2.82e-03, dir=stayed_right_lower, supported=True\\n  C2: d=-0.5113, p=5.29e-10, dir=helped_lower, supported=True\\n\\n=== arc_easy / HGRN2 (hybrid=hybrid-3-1) ===\\n  Matched samples: 2376\\n  hurt=146, stayed_right=1548, helped=164, stayed_wrong=518\\n  C1: d=0.1343, p=1.45e-01, dir=stayed_right_lower, supported=True\\n  C2: d=-0.5268, p=5.41e-10, dir=helped_lower, supported=True\\n\\n=== hellaswag / GDN (hybrid=hybrid-12-1) ===\\n  Matched samples: 10042\\n  hurt=360, stayed_right=4300, helped=346, stayed_wrong=5036\\n  C1: d=0.0899, p=1.09e-01, dir=stayed_right_lower, supported=True\\n  C2: d=-0.5175, p=1.27e-20, dir=helped_lower, supported=True\\n\\n=== hellaswag / RetNet (hybrid=hybrid-3-1) ===\\n  Matched samples: 10042\\n  hurt=269, stayed_right=4171, helped=302, stayed_wrong=5300\\n  C1: d=0.2064, p=1.54e-03, dir=stayed_right_lower, supported=True\\n  C2: d=-0.4818, p=2.54e-17, dir=helped_lower, supported=True\\n\\n=== hellaswag / HGRN2 (hybrid=hybrid-3-1) ===\\n  Matched samples: 10042\\n  hurt=257, stayed_right=4325, helped=294, stayed_wrong=5166\\n  C1: d=0.2807, p=2.46e-05, dir=stayed_right_lower, supported=True\\n  C2: d=-0.5145, p=6.30e-18, dir=helped_lower, supported=True\\n\\nSaved to /root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "8260aa6c-6ceb-4bde-aa31-76675de43fc1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== arc_easy / GDN (hybrid=hybrid-12-1) ===\\\\n  Matched samples: 2376\\\\n  hurt=206, stayed_right=1486, helped=176, stayed_wrong=508\\\\n  C1: d=0.2634, p=3.24e-04, dir=stayed_right_lower, supported=True\\\\n  C2: d=-0.5953, p=1.02e-13, dir=helped_lower, supported=True\\\\n\\\\n=== arc_easy / RetNet (hybrid=hybrid-3-1) ===\\\\n  Matched samples: 2376\\\\n  hurt=184, stayed_right=1510, helped=144, stayed_wrong=538\\\\n  C1: d=0.2228, p=2.82e-03, dir=stayed_right_lower, supported=True\\\\n  C2: d=-0.5113, p=5.29e-10, dir=helped_lower, supported=True\\\\n\\\\n=== arc_easy / HGRN2 (hybrid=hybrid-3-1) ===\\\\n  Matched samples: 2376\\\\n  hurt=146, stayed_right=1548, helped=164, stayed_wrong=518\\\\n  C1: d=0.1343, p=1.45e-01, dir=stayed_right_lower, supported=True\\\\n  C2: d=-0.5268, p=5.41e-10, dir=helped_lower, supported=True\\\\n\\\\n=== hellaswag / GDN (hybrid=hybrid-12-1) ===\\\\n  Matched samples: 10042\\\\n  hurt=360, stayed_right=4300, helped=346, stayed_wrong=5036\\\\n  C1: d=0.0899, p=1.09e-01, dir=stayed_right_lower, supported=True\\\\n  C2: d=-0.5175, p=1.27e-20, dir=helped_lower, supported=True\\\\n\\\\n=== hellaswag / RetNet (hybrid=hybrid-3-1) ===\\\\n  Matched samples: 10042\\\\n  hurt=269, stayed_right=4171, helped=302, stayed_wrong=5300\\\\n  C1: d=0.2064, p=1.54e-03, dir=stayed_right_lower, supported=True\\\\n  C2: d=-0.4818, p=2.54e-17, dir=helped_lower, supported=True\\\\n\\\\n=== hellaswag / HGRN2 (hybrid=hybrid-3-1) ===\\\\n  Matched samples: 10042\\\\n  hurt=257, stayed_right=4325, helped=294, stayed_wrong=5166\\\\n  C1: d=0.2807, p=2.46e-05, dir=stayed_right_lower, supported=True\\\\n  C2: d=-0.5145, p=6.30e-18, dir=helped_lower, supported=True\\\\n\\\\nSaved to /root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n=== arc_easy / GDN (hybrid=hybrid-12-1) ===\\n  Matched samples: 2376\\n  hurt=206, stayed_right=1486, helped=176, stayed_wrong=508\\n  C1: d=0.2634, p=3.24e-04, dir=stayed_right_lower, supported=True\\n  C2: d=-0.5953, p=1.02e-13, dir=helped_lower, supported=True\\n\\n=== arc_easy / RetNet (hybrid=hybrid-3-1) ===\\n  Matched samples: 2376\\n  hurt=184, stayed_right=1510, helped=144, stayed_wrong=538\\n  C1: d=0.2228, p=2.82e-03, dir=stayed_right_lower, supported=True\\n  C2: d=-0.5113, p=5.29e-10, dir=helped_lower, supported=True\\n\\n=== arc_easy / HGRN2 (hybrid=hybrid-3-1) ===\\n  Matched samples: 2376\\n  hurt=146, stayed_right=1548, helped=164, stayed_wrong=518\\n  C1: d=0.1343, p=1.45e-01, dir=stayed_right_lower, supported=True\\n  C2: d=-0.5268, p=5.41e-10, dir=helped_lower, supported=True\\n\\n=== hellaswag / GDN (hybrid=hybrid-12-1) ===\\n  Matched samples: 10042\\n  hurt=360, stayed_right=4300, helped=346, stayed_wrong=5036\\n  C1: d=0.0899, p=1.09e-01, dir=stayed_right_lower, supported=True\\n  C2: d=-0.5175, p=1.27e-20, dir=helped_lower, supported=True\\n\\n=== hellaswag / RetNet (hybrid=hybrid-3-1) ===\\n  Matched samples: 10042\\n  hurt=269, stayed_right=4171, helped=302, stayed_wrong=5300\\n  C1: d=0.2064, p=1.54e-03, dir=stayed_right_lower, supported=True\\n  C2: d=-0.4818, p=2.54e-17, dir=helped_lower, supported=True\\n\\n=== hellaswag / HGRN2 (hybrid=hybrid-3-1) ===\\n  Matched samples: 10042\\n  hurt=257, stayed_right=4325, helped=294, stayed_wrong=5166\\n  C1: d=0.2807, p=2.46e-05, dir=stayed_right_lower, supported=True\\n  C2: d=-0.5145, p=6.30e-18, dir=helped_lower, supported=True\\n\\nSaved to /root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Great, the script ran successfully. Let me analyze the results:
+
+**ARC-Easy:**
+- GDN: C1 d=0.26 (p=3.2e-4), C2 d=-0.60 (p=1.0e-13) ✓✓
+- RetNet: C1 d=0.22 (p=2.8e-3), C2 d=-0.51 (p=5.3e-10) ✓✓
+- HGRN2: C1 d=0.13 (p=0.145, NOT significant), C2 d=-0.53 (p=5.4e-10) ✓(C1 marginal)
+
+
+**HellaSwag:**
+- GDN shows a weak C1 effect that doesn't reach significance, but C2 is strongly significant. RetNet performs well on both contrasts, while HGRN2 shows a strong C1 effect with highly significant C2 results.
+
+The pattern across all models is clear: C2 effects are consistently robust with medium effect sizes around 0.48-0.60, whereas C1 effects are much weaker and sometimes fail to reach significance on multiple-choice tasks. This aligns with what I saw in LAMBADA, though the C1 effects here are notably smaller. Now I'm pulling down the JSON results to save them locally.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "5971d38d-24d5-4799-a1c1-f834c5b2c4bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118VJi1ZXpXpv3Hd1tPEkaP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 41989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 988
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+分析完成。现在读取结果 JSON 并保存到本地 artifacts。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "55e51c84-4763-4a7e-834b-4680891ba3e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118VJi1ZXpXpv3Hd1tPEkaP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 41989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 988
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VsV5nXCH6eykBUdnxFfAEp`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "132e555b-4908-4121-9793-0f6323bc2e3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118VJi1ZXpXpv3Hd1tPEkaP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 41989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 988
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T14:07:39.016Z_
+
+<details><summary>↩ Tool result · `toolu_01VsV5nXCH6eykBUdnxFfAEp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"cross_benchmark_confidence_margin\\\",\\n  \\\"date\\\": \\\"2026-05-20\\\",\\n  \\\"method\\\": {\\n    \\\"confidence_proxy\\\": \\\"abs(correct_option_loglikelihood) from pure model\\\",\\n    \\\"margin_semantics\\\": {\\n      \\\"pure_correct\\\": \\\"higher |loglik| = lower probability = less confident correct = closer to boundary\\\",\\n      \\\"pure_wrong\\\": \\\"lower |loglik| = higher probability for target = near-miss = closer to boundary\\\"\\n    },\\n    \\\"control_1\\\": \\\"Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)\\\",\\n    \\\"control_2\\\": \\\"Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)\\\",\\n    \\\"hypotheses\\\": {\\n      \\\"C1\\\": \\\"hurt has higher |loglik| than stayed-right (less confident correct -> vulnerable)\\\",\\n      \\\"C2\\\": \\\"helped has lower |loglik| than stayed-wrong (near-miss wrong -> rescuable)\\\"\\n    },\\n    \\\"tests\\\": [\\n      \\\"Mann-Whitney U (two-sided)\\\",\\n      \\\"Cohen's d (pooled std)\\\",\\n      \\\"rank-biserial r_rb\\\"\\n    ],\\n    \\\"note\\\": \\\"GDN uses h12-1 (consistent with LAMBADA analysis); RetNet/HGRN2 use h3-1\\\",\\n    \\\"acc_field\\\": \\\"acc (raw loglik-based, consistent with LAMBADA)\\\"\\n  },\\n  \\\"results\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"GDN\\\": {\\n        \\\"hybrid_config\\\": \\\"GDN-12-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 206,\\n          \\\"stayed_right_n\\\": 1486,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 13.0903,\\n            \\\"median\\\": 11.75,\\n            \\\"std\\\": 6.8196,\\n            \\\"q25\\\": 8.6094,\\n            \\\"q75\\\": 16.625\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 11.4494,\\n            \\\"median\\\": 10.0,\\n            \\\"std\\\": 6.1443,\\n            \\\"q25\\\": 7.1875,\\n            \\\"q75\\\": 14.375\\n          },\\n          \\\"U\\\": 176684.0,\\n          \\\"p\\\": 0.0003243414390089927,\\n          \\\"cohens_d\\\": 0.2634,\\n          \\\"r_rb\\\": -0.1544,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 176,\\n          \\\"stayed_wrong_n\\\": 508,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 13.574,\\n            \\\"median\\\": 12.5625,\\n            \\\"std\\\": 5.7884,\\n            \\\"q25\\\": 9.4844,\\n            \\\"q75\\\": 15.6562\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 19.3195,\\n            \\\"median\\\": 18.0,\\n            \\\"std\\\": 10.6652,\\n            \\\"q25\\\": 11.6875,\\n            \\\"q75\\\": 24.625\\n          },\\n          \\\"U\\\": 27901.0,\\n          \\\"p\\\": 1.024783320635381e-13,\\n          \\\"cohens_d\\\": -0.5953,\\n          \\\"r_rb\\\": 0.3759,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"hybrid_config\\\": \\\"RetNet-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 184,\\n          \\\"stayed_right_n\\\": 1510,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 12.4564,\\n            \\\"median\\\": 11.0312,\\n            \\\"std\\\": 6.1998,\\n            \\\"q25\\\": 7.7422,\\n            \\\"q75\\\": 16.125\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 11.1141,\\n            \\\"median\\\": 9.7188,\\n            \\\"std\\\": 6.003,\\n            \\\"q25\\\": 6.8125,\\n            \\\"q75\\\": 14.0625\\n          },\\n          \\\"U\\\": 157633.5,\\n          \\\"p\\\": 0.0028160312616937067,\\n          \\\"cohens_d\\\": 0.2228,\\n          \\\"r_rb\\\": -0.1347,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 144,\\n          \\\"stayed_wrong_n\\\": 538,\\n          \\\"\\n\\n... [截断: 输出过长，省略 3955 字符] ...\\n\\n   },\\n          \\\"U\\\": 610935.0,\\n          \\\"p\\\": 1.2749444912730322e-20,\\n          \\\"cohens_d\\\": -0.5175,\\n          \\\"r_rb\\\": 0.2988,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"hybrid_config\\\": \\\"RetNet-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 269,\\n          \\\"stayed_right_n\\\": 4171,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 64.5964,\\n            \\\"median\\\": 70.0,\\n            \\\"std\\\": 33.1407,\\n            \\\"q25\\\": 31.5,\\n            \\\"q75\\\": 88.5\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 58.6829,\\n            \\\"median\\\": 62.0,\\n            \\\"std\\\": 28.335,\\n            \\\"q25\\\": 33.75,\\n            \\\"q75\\\": 79.0\\n          },\\n          \\\"U\\\": 625522.5,\\n          \\\"p\\\": 0.0015432318744285473,\\n          \\\"cohens_d\\\": 0.2064,\\n          \\\"r_rb\\\": -0.115,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 302,\\n          \\\"stayed_wrong_n\\\": 5300,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 69.3307,\\n            \\\"median\\\": 74.5,\\n            \\\"std\\\": 31.3153,\\n            \\\"q25\\\": 40.8125,\\n            \\\"q75\\\": 91.375\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 87.9944,\\n            \\\"median\\\": 90.5,\\n            \\\"std\\\": 39.1189,\\n            \\\"q25\\\": 57.0,\\n            \\\"q75\\\": 114.0\\n          },\\n          \\\"U\\\": 568865.0,\\n          \\\"p\\\": 2.5428866077295876e-17,\\n          \\\"cohens_d\\\": -0.4818,\\n          \\\"r_rb\\\": 0.2892,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"hybrid_config\\\": \\\"HGRN2-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 257,\\n          \\\"stayed_right_n\\\": 4325,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 66.1899,\\n            \\\"median\\\": 71.5,\\n            \\\"std\\\": 32.7285,\\n            \\\"q25\\\": 32.25,\\n            \\\"q75\\\": 89.0\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 58.2506,\\n            \\\"median\\\": 61.5,\\n            \\\"std\\\": 27.9999,\\n            \\\"q25\\\": 34.0,\\n            \\\"q75\\\": 78.5\\n          },\\n          \\\"U\\\": 642685.0,\\n          \\\"p\\\": 2.455912453845683e-05,\\n          \\\"cohens_d\\\": 0.2807,\\n          \\\"r_rb\\\": -0.1564,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 294,\\n          \\\"stayed_wrong_n\\\": 5166,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 67.0818,\\n            \\\"median\\\": 71.0,\\n            \\\"std\\\": 32.6139,\\n            \\\"q25\\\": 37.1875,\\n            \\\"q75\\\": 90.5\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 86.7213,\\n            \\\"median\\\": 88.5,\\n            \\\"std\\\": 38.4662,\\n            \\\"q25\\\": 56.3125,\\n            \\\"q75\\\": 112.5\\n          },\\n          \\\"U\\\": 532596.5,\\n          \\\"p\\\": 6.298120109816954e-18,\\n          \\\"cohens_d\\\": -0.5145,\\n          \\\"r_rb\\\": 0.2987,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "d6ff8c7c-739b-4695-9013-02bc9736ac30",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"cross_benchmark_confidence_margin\\\\\\\",\\\\n  \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-20\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": {\\\\n    \\\\\\\"confidence_proxy\\\\\\\": \\\\\\\"abs(correct_option_loglikelihood) from pure model\\\\\\\",\\\\n    \\\\\\\"margin_semantics\\\\\\\": {\\\\n      \\\\\\\"pure_correct\\\\\\\": \\\\\\\"higher |loglik| = lower probability = less confident correct = closer to boundary\\\\\\\",\\\\n      \\\\\\\"pure_wrong\\\\\\\": \\\\\\\"lower |loglik| = higher probability for target = near-miss = closer to boundary\\\\\\\"\\\\n    },\\\\n    \\\\\\\"control_1\\\\\\\": \\\\\\\"Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)\\\\\\\",\\\\n    \\\\\\\"control_2\\\\\\\": \\\\\\\"Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)\\\\\\\",\\\\n    \\\\\\\"hypotheses\\\\\\\": {\\\\n      \\\\\\\"C1\\\\\\\": \\\\\\\"hurt has higher |loglik| than stayed-right (less confident correct -> vulnerable)\\\\\\\",\\\\n      \\\\\\\"C2\\\\\\\": \\\\\\\"helped has lower |loglik| than stayed-wrong (near-miss wrong -> rescuable)\\\\\\\"\\\\n    },\\\\n    \\\\\\\"tests\\\\\\\": [\\\\n      \\\\\\\"Mann-Whitney U (two-sided)\\\\\\\",\\\\n      \\\\\\\"Cohen's d (pooled std)\\\\\\\",\\\\n      \\\\\\\"rank-biserial r_rb\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"GDN uses h12-1 (consistent with LAMBADA analysis); RetNet/HGRN2 use h3-1\\\\\\\",\\\\n    \\\\\\\"acc_field\\\\\\\": \\\\\\\"acc (raw loglik-based, consistent with LAMBADA)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"GDN-12-1\\\\\\\",\\\\n        \\\\\\\"control_1_pure_correct\\\\\\\": {\\\\n          \\\\\\\"hurt_n\\\\\\\": 206,\\\\n          \\\\\\\"stayed_right_n\\\\\\\": 1486,\\\\n          \\\\\\\"hurt_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 13.0903,\\\\n            \\\\\\\"median\\\\\\\": 11.75,\\\\n            \\\\\\\"std\\\\\\\": 6.8196,\\\\n            \\\\\\\"q25\\\\\\\": 8.6094,\\\\n            \\\\\\\"q75\\\\\\\": 16.625\\\\n          },\\\\n          \\\\\\\"stayed_right_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 11.4494,\\\\n            \\\\\\\"median\\\\\\\": 10.0,\\\\n            \\\\\\\"std\\\\\\\": 6.1443,\\\\n            \\\\\\\"q25\\\\\\\": 7.1875,\\\\n            \\\\\\\"q75\\\\\\\": 14.375\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 176684.0,\\\\n          \\\\\\\"p\\\\\\\": 0.0003243414390089927,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.2634,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.1544,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"stayed_right_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\\\\\"\\\\n        },\\\\n        \\\\\\\"control_2_pure_wrong\\\\\\\": {\\\\n          \\\\\\\"helped_n\\\\\\\": 176,\\\\n          \\\\\\\"stayed_wrong_n\\\\\\\": 508,\\\\n          \\\\\\\"helped_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 13.574,\\\\n            \\\\\\\"median\\\\\\\": 12.5625,\\\\n            \\\\\\\"std\\\\\\\": 5.7884,\\\\n            \\\\\\\"q25\\\\\\\": 9.4844,\\\\n            \\\\\\\"q75\\\\\\\": 15.6562\\\\n          },\\\\n          \\\\\\\"stayed_wrong_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 19.3195,\\\\n            \\\\\\\"median\\\\\\\": 18.0,\\\\n            \\\\\\\"std\\\\\\\": 10.6652,\\\\n            \\\\\\\"q25\\\\\\\": 11.6875,\\\\n            \\\\\\\"q75\\\\\\\": 24.625\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 27901.0,\\\\n          \\\\\\\"p\\\\\\\": 1.024783320635381e-13,\\\\n          \\\\\\\"cohens_d\\\\\\\": -0.5953,\\\\n          \\\\\\\"r_rb\\\\\\\": 0.3759,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"helped_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"RetNet-3-1\\\\\\\",\\\\n        \\\\\\\"control_1_pure_correct\\\\\\\": {\\\\n          \\\\\\\"hurt_n\\\\\\\": 184,\\\\n          \\\\\\\"stayed_right_n\\\\\\\": 1510,\\\\n          \\\\\\\"hurt_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 12.4564,\\\\n            \\\\\\\"median\\\\\\\": 11.0312,\\\\n            \\\\\\\"std\\\\\\\": 6.1998,\\\\n            \\\\\\\"q25\\\\\\\": 7.7422,\\\\n            \\\\\\\"q75\\\\\\\": 16.125\\\\n          },\\\\n          \\\\\\\"stayed_right_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 11.1141,\\\\n            \\\\\\\"median\\\\\\\": 9.7188,\\\\n            \\\\\\\"std\\\\\\\": 6.003,\\\\n            \\\\\\\"q25\\\\\\\": 6.8125,\\\\n            \\\\\\\"q75\\\\\\\": 14.0625\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 157633.5,\\\\n          \\\\\\\"p\\\\\\\": 0.0028160312616937067,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.2228,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.1347,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"stayed_right_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\\\\\"\\\\n        },\\\\n        \\\\\\\"control_2_pure_wrong\\\\\\\": {\\\\n          \\\\\\\"helped_n\\\\\\\": 144,\\\\n          \\\\\\\"stayed_wrong_n\\\\\\\": 538,\\\\n          \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 3955 字符] ...\\\\n\\\\n   },\\\\n          \\\\\\\"U\\\\\\\": 610935.0,\\\\n          \\\\\\\"p\\\\\\\": 1.2749444912730322e-20,\\\\n          \\\\\\\"cohens_d\\\\\\\": -0.5175,\\\\n          \\\\\\\"r_rb\\\\\\\": 0.2988,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"helped_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"RetNet-3-1\\\\\\\",\\\\n        \\\\\\\"control_1_pure_correct\\\\\\\": {\\\\n          \\\\\\\"hurt_n\\\\\\\": 269,\\\\n          \\\\\\\"stayed_right_n\\\\\\\": 4171,\\\\n          \\\\\\\"hurt_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 64.5964,\\\\n            \\\\\\\"median\\\\\\\": 70.0,\\\\n            \\\\\\\"std\\\\\\\": 33.1407,\\\\n            \\\\\\\"q25\\\\\\\": 31.5,\\\\n            \\\\\\\"q75\\\\\\\": 88.5\\\\n          },\\\\n          \\\\\\\"stayed_right_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 58.6829,\\\\n            \\\\\\\"median\\\\\\\": 62.0,\\\\n            \\\\\\\"std\\\\\\\": 28.335,\\\\n            \\\\\\\"q25\\\\\\\": 33.75,\\\\n            \\\\\\\"q75\\\\\\\": 79.0\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 625522.5,\\\\n          \\\\\\\"p\\\\\\\": 0.0015432318744285473,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.2064,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.115,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"stayed_right_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\\\\\"\\\\n        },\\\\n        \\\\\\\"control_2_pure_wrong\\\\\\\": {\\\\n          \\\\\\\"helped_n\\\\\\\": 302,\\\\n          \\\\\\\"stayed_wrong_n\\\\\\\": 5300,\\\\n          \\\\\\\"helped_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 69.3307,\\\\n            \\\\\\\"median\\\\\\\": 74.5,\\\\n            \\\\\\\"std\\\\\\\": 31.3153,\\\\n            \\\\\\\"q25\\\\\\\": 40.8125,\\\\n            \\\\\\\"q75\\\\\\\": 91.375\\\\n          },\\\\n          \\\\\\\"stayed_wrong_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 87.9944,\\\\n            \\\\\\\"median\\\\\\\": 90.5,\\\\n            \\\\\\\"std\\\\\\\": 39.1189,\\\\n            \\\\\\\"q25\\\\\\\": 57.0,\\\\n            \\\\\\\"q75\\\\\\\": 114.0\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 568865.0,\\\\n          \\\\\\\"p\\\\\\\": 2.5428866077295876e-17,\\\\n          \\\\\\\"cohens_d\\\\\\\": -0.4818,\\\\n          \\\\\\\"r_rb\\\\\\\": 0.2892,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"helped_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"HGRN2-3-1\\\\\\\",\\\\n        \\\\\\\"control_1_pure_correct\\\\\\\": {\\\\n          \\\\\\\"hurt_n\\\\\\\": 257,\\\\n          \\\\\\\"stayed_right_n\\\\\\\": 4325,\\\\n          \\\\\\\"hurt_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 66.1899,\\\\n            \\\\\\\"median\\\\\\\": 71.5,\\\\n            \\\\\\\"std\\\\\\\": 32.7285,\\\\n            \\\\\\\"q25\\\\\\\": 32.25,\\\\n            \\\\\\\"q75\\\\\\\": 89.0\\\\n          },\\\\n          \\\\\\\"stayed_right_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 58.2506,\\\\n            \\\\\\\"median\\\\\\\": 61.5,\\\\n            \\\\\\\"std\\\\\\\": 27.9999,\\\\n            \\\\\\\"q25\\\\\\\": 34.0,\\\\n            \\\\\\\"q75\\\\\\\": 78.5\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 642685.0,\\\\n          \\\\\\\"p\\\\\\\": 2.455912453845683e-05,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.2807,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.1564,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"stayed_right_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\\\\\"\\\\n        },\\\\n        \\\\\\\"control_2_pure_wrong\\\\\\\": {\\\\n          \\\\\\\"helped_n\\\\\\\": 294,\\\\n          \\\\\\\"stayed_wrong_n\\\\\\\": 5166,\\\\n          \\\\\\\"helped_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 67.0818,\\\\n            \\\\\\\"median\\\\\\\": 71.0,\\\\n            \\\\\\\"std\\\\\\\": 32.6139,\\\\n            \\\\\\\"q25\\\\\\\": 37.1875,\\\\n            \\\\\\\"q75\\\\\\\": 90.5\\\\n          },\\\\n          \\\\\\\"stayed_wrong_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 86.7213,\\\\n            \\\\\\\"median\\\\\\\": 88.5,\\\\n            \\\\\\\"std\\\\\\\": 38.4662,\\\\n            \\\\\\\"q25\\\\\\\": 56.3125,\\\\n            \\\\\\\"q75\\\\\\\": 112.5\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 532596.5,\\\\n          \\\\\\\"p\\\\\\\": 6.298120109816954e-18,\\\\n          \\\\\\\"cohens_d\\\\\\\": -0.5145,\\\\n          \\\\\\\"r_rb\\\\\\\": 0.2987,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"helped_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\\\\\"\\\\n        }\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"cross_benchmark_confidence_margin\\\",\\n  \\\"date\\\": \\\"2026-05-20\\\",\\n  \\\"method\\\": {\\n    \\\"confidence_proxy\\\": \\\"abs(correct_option_loglikelihood) from pure model\\\",\\n    \\\"margin_semantics\\\": {\\n      \\\"pure_correct\\\": \\\"higher |loglik| = lower probability = less confident correct = closer to boundary\\\",\\n      \\\"pure_wrong\\\": \\\"lower |loglik| = higher probability for target = near-miss = closer to boundary\\\"\\n    },\\n    \\\"control_1\\\": \\\"Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)\\\",\\n    \\\"control_2\\\": \\\"Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)\\\",\\n    \\\"hypotheses\\\": {\\n      \\\"C1\\\": \\\"hurt has higher |loglik| than stayed-right (less confident correct -> vulnerable)\\\",\\n      \\\"C2\\\": \\\"helped has lower |loglik| than stayed-wrong (near-miss wrong -> rescuable)\\\"\\n    },\\n    \\\"tests\\\": [\\n      \\\"Mann-Whitney U (two-sided)\\\",\\n      \\\"Cohen's d (pooled std)\\\",\\n      \\\"rank-biserial r_rb\\\"\\n    ],\\n    \\\"note\\\": \\\"GDN uses h12-1 (consistent with LAMBADA analysis); RetNet/HGRN2 use h3-1\\\",\\n    \\\"acc_field\\\": \\\"acc (raw loglik-based, consistent with LAMBADA)\\\"\\n  },\\n  \\\"results\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"GDN\\\": {\\n        \\\"hybrid_config\\\": \\\"GDN-12-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 206,\\n          \\\"stayed_right_n\\\": 1486,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 13.0903,\\n            \\\"median\\\": 11.75,\\n            \\\"std\\\": 6.8196,\\n            \\\"q25\\\": 8.6094,\\n            \\\"q75\\\": 16.625\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 11.4494,\\n            \\\"median\\\": 10.0,\\n            \\\"std\\\": 6.1443,\\n            \\\"q25\\\": 7.1875,\\n            \\\"q75\\\": 14.375\\n          },\\n          \\\"U\\\": 176684.0,\\n          \\\"p\\\": 0.0003243414390089927,\\n          \\\"cohens_d\\\": 0.2634,\\n          \\\"r_rb\\\": -0.1544,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 176,\\n          \\\"stayed_wrong_n\\\": 508,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 13.574,\\n            \\\"median\\\": 12.5625,\\n            \\\"std\\\": 5.7884,\\n            \\\"q25\\\": 9.4844,\\n            \\\"q75\\\": 15.6562\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 19.3195,\\n            \\\"median\\\": 18.0,\\n            \\\"std\\\": 10.6652,\\n            \\\"q25\\\": 11.6875,\\n            \\\"q75\\\": 24.625\\n          },\\n          \\\"U\\\": 27901.0,\\n          \\\"p\\\": 1.024783320635381e-13,\\n          \\\"cohens_d\\\": -0.5953,\\n          \\\"r_rb\\\": 0.3759,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"hybrid_config\\\": \\\"RetNet-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 184,\\n          \\\"stayed_right_n\\\": 1510,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 12.4564,\\n            \\\"median\\\": 11.0312,\\n            \\\"std\\\": 6.1998,\\n            \\\"q25\\\": 7.7422,\\n            \\\"q75\\\": 16.125\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 11.1141,\\n            \\\"median\\\": 9.7188,\\n            \\\"std\\\": 6.003,\\n            \\\"q25\\\": 6.8125,\\n            \\\"q75\\\": 14.0625\\n          },\\n          \\\"U\\\": 157633.5,\\n          \\\"p\\\": 0.0028160312616937067,\\n          \\\"cohens_d\\\": 0.2228,\\n          \\\"r_rb\\\": -0.1347,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 144,\\n          \\\"stayed_wrong_n\\\": 538,\\n          \\\"\\n\\n... [截断: 输出过长，省略 3955 字符] ...\\n\\n   },\\n          \\\"U\\\": 610935.0,\\n          \\\"p\\\": 1.2749444912730322e-20,\\n          \\\"cohens_d\\\": -0.5175,\\n          \\\"r_rb\\\": 0.2988,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"hybrid_config\\\": \\\"RetNet-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 269,\\n          \\\"stayed_right_n\\\": 4171,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 64.5964,\\n            \\\"median\\\": 70.0,\\n            \\\"std\\\": 33.1407,\\n            \\\"q25\\\": 31.5,\\n            \\\"q75\\\": 88.5\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 58.6829,\\n            \\\"median\\\": 62.0,\\n            \\\"std\\\": 28.335,\\n            \\\"q25\\\": 33.75,\\n            \\\"q75\\\": 79.0\\n          },\\n          \\\"U\\\": 625522.5,\\n          \\\"p\\\": 0.0015432318744285473,\\n          \\\"cohens_d\\\": 0.2064,\\n          \\\"r_rb\\\": -0.115,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 302,\\n          \\\"stayed_wrong_n\\\": 5300,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 69.3307,\\n            \\\"median\\\": 74.5,\\n            \\\"std\\\": 31.3153,\\n            \\\"q25\\\": 40.8125,\\n            \\\"q75\\\": 91.375\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 87.9944,\\n            \\\"median\\\": 90.5,\\n            \\\"std\\\": 39.1189,\\n            \\\"q25\\\": 57.0,\\n            \\\"q75\\\": 114.0\\n          },\\n          \\\"U\\\": 568865.0,\\n          \\\"p\\\": 2.5428866077295876e-17,\\n          \\\"cohens_d\\\": -0.4818,\\n          \\\"r_rb\\\": 0.2892,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"hybrid_config\\\": \\\"HGRN2-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 257,\\n          \\\"stayed_right_n\\\": 4325,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 66.1899,\\n            \\\"median\\\": 71.5,\\n            \\\"std\\\": 32.7285,\\n            \\\"q25\\\": 32.25,\\n            \\\"q75\\\": 89.0\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 58.2506,\\n            \\\"median\\\": 61.5,\\n            \\\"std\\\": 27.9999,\\n            \\\"q25\\\": 34.0,\\n            \\\"q75\\\": 78.5\\n          },\\n          \\\"U\\\": 642685.0,\\n          \\\"p\\\": 2.455912453845683e-05,\\n          \\\"cohens_d\\\": 0.2807,\\n          \\\"r_rb\\\": -0.1564,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 294,\\n          \\\"stayed_wrong_n\\\": 5166,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 67.0818,\\n            \\\"median\\\": 71.0,\\n            \\\"std\\\": 32.6139,\\n            \\\"q25\\\": 37.1875,\\n            \\\"q75\\\": 90.5\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 86.7213,\\n            \\\"median\\\": 88.5,\\n            \\\"std\\\": 38.4662,\\n            \\\"q25\\\": 56.3125,\\n            \\\"q75\\\": 112.5\\n          },\\n          \\\"U\\\": 532596.5,\\n          \\\"p\\\": 6.298120109816954e-18,\\n          \\\"cohens_d\\\": -0.5145,\\n          \\\"r_rb\\\": 0.2987,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me get the full JSON from the server by reading the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "a4614e3f-1b5c-49e4-8b6c-2e92d6a74d5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmC2kYmCaATzRgPiBovscZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4526,
+      "cache_read_input_tokens": 42977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4526
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+输出被截断，直接下载完整 JSON。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "40107185-8a03-4fda-99a4-60e918150696",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmC2kYmCaATzRgPiBovscZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4526,
+      "cache_read_input_tokens": 42977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4526
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M9bL5EKdEodqJDrcBMJbna`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "wc -c /root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "646f81bb-db79-4d2a-ae31-7fe8c5a19b79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmC2kYmCaATzRgPiBovscZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4526,
+      "cache_read_input_tokens": 42977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4526
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T14:07:49.249Z_
+
+<details><summary>↩ Tool result · `toolu_01M9bL5EKdEodqJDrcBMJbna`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11955 /root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "6d49c2c4-7db7-4a18-a29d-15aab8ca3a61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11955 /root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"11955 /root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PotUdvCyjTBDjne7vJFajs`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -120 /root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "cc9f5789-671e-4355-9c0c-e8e539f988fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XEC46um9yvHAEUHd9AXKv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 284,
+      "cache_read_input_tokens": 47503,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 284
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nb6Yf9MyWyZeHgfnjt5Q59`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "tail -n +121 /root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "f27e7c9f-9c81-4f9f-97ab-c1008b7ddc54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XEC46um9yvHAEUHd9AXKv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 284,
+      "cache_read_input_tokens": 47503,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 284
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T14:07:54.777Z_
+
+<details><summary>↩ Tool result · `toolu_01PotUdvCyjTBDjne7vJFajs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"cross_benchmark_confidence_margin\\\",\\n  \\\"date\\\": \\\"2026-05-20\\\",\\n  \\\"method\\\": {\\n    \\\"confidence_proxy\\\": \\\"abs(correct_option_loglikelihood) from pure model\\\",\\n    \\\"margin_semantics\\\": {\\n      \\\"pure_correct\\\": \\\"higher |loglik| = lower probability = less confident correct = closer to boundary\\\",\\n      \\\"pure_wrong\\\": \\\"lower |loglik| = higher probability for target = near-miss = closer to boundary\\\"\\n    },\\n    \\\"control_1\\\": \\\"Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)\\\",\\n    \\\"control_2\\\": \\\"Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)\\\",\\n    \\\"hypotheses\\\": {\\n      \\\"C1\\\": \\\"hurt has higher |loglik| than stayed-right (less confident correct -> vulnerable)\\\",\\n      \\\"C2\\\": \\\"helped has lower |loglik| than stayed-wrong (near-miss wrong -> rescuable)\\\"\\n    },\\n    \\\"tests\\\": [\\n      \\\"Mann-Whitney U (two-sided)\\\",\\n      \\\"Cohen's d (pooled std)\\\",\\n      \\\"rank-biserial r_rb\\\"\\n    ],\\n    \\\"note\\\": \\\"GDN uses h12-1 (consistent with LAMBADA analysis); RetNet/HGRN2 use h3-1\\\",\\n    \\\"acc_field\\\": \\\"acc (raw loglik-based, consistent with LAMBADA)\\\"\\n  },\\n  \\\"results\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"GDN\\\": {\\n        \\\"hybrid_config\\\": \\\"GDN-12-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 206,\\n          \\\"stayed_right_n\\\": 1486,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 13.0903,\\n            \\\"median\\\": 11.75,\\n            \\\"std\\\": 6.8196,\\n            \\\"q25\\\": 8.6094,\\n            \\\"q75\\\": 16.625\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 11.4494,\\n            \\\"median\\\": 10.0,\\n            \\\"std\\\": 6.1443,\\n            \\\"q25\\\": 7.1875,\\n            \\\"q75\\\": 14.375\\n          },\\n          \\\"U\\\": 176684.0,\\n          \\\"p\\\": 0.0003243414390089927,\\n          \\\"cohens_d\\\": 0.2634,\\n          \\\"r_rb\\\": -0.1544,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 176,\\n          \\\"stayed_wrong_n\\\": 508,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 13.574,\\n            \\\"median\\\": 12.5625,\\n            \\\"std\\\": 5.7884,\\n            \\\"q25\\\": 9.4844,\\n            \\\"q75\\\": 15.6562\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 19.3195,\\n            \\\"median\\\": 18.0,\\n            \\\"std\\\": 10.6652,\\n            \\\"q25\\\": 11.6875,\\n            \\\"q75\\\": 24.625\\n          },\\n          \\\"U\\\": 27901.0,\\n          \\\"p\\\": 1.024783320635381e-13,\\n          \\\"cohens_d\\\": -0.5953,\\n          \\\"r_rb\\\": 0.3759,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"hybrid_config\\\": \\\"RetNet-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 184,\\n          \\\"stayed_right_n\\\": 1510,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 12.4564,\\n            \\\"median\\\": 11.0312,\\n            \\\"std\\\": 6.1998,\\n            \\\"q25\\\": 7.7422,\\n            \\\"q75\\\": 16.125\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 11.1141,\\n            \\\"median\\\": 9.7188,\\n            \\\"std\\\": 6.003,\\n            \\\"q25\\\": 6.8125,\\n            \\\"q75\\\": 14.0625\\n          },\\n          \\\"U\\\": 157633.5,\\n          \\\"p\\\": 0.0028160312616937067,\\n          \\\"cohens_d\\\": 0.2228,\\n          \\\"r_rb\\\": -0.1347,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 144,\\n          \\\"stayed_wrong_n\\\": 538,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 13.656,\\n            \\\"median\\\": 12.9062,\\n            \\\"std\\\": 6.6249,\\n            \\\"q25\\\": 8.4688,\\n            \\\"q75\\\": 17.5\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 18.6489,\\n            \\\"median\\\": 17.5625,\\n            \\\"std\\\": 10.4439,\\n            \\\"q25\\\": 11.5312,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "281a3535-b71e-427b-9d87-ff4627bce2f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"cross_benchmark_confidence_margin\\\\\\\",\\\\n  \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-20\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": {\\\\n    \\\\\\\"confidence_proxy\\\\\\\": \\\\\\\"abs(correct_option_loglikelihood) from pure model\\\\\\\",\\\\n    \\\\\\\"margin_semantics\\\\\\\": {\\\\n      \\\\\\\"pure_correct\\\\\\\": \\\\\\\"higher |loglik| = lower probability = less confident correct = closer to boundary\\\\\\\",\\\\n      \\\\\\\"pure_wrong\\\\\\\": \\\\\\\"lower |loglik| = higher probability for target = near-miss = closer to boundary\\\\\\\"\\\\n    },\\\\n    \\\\\\\"control_1\\\\\\\": \\\\\\\"Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)\\\\\\\",\\\\n    \\\\\\\"control_2\\\\\\\": \\\\\\\"Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)\\\\\\\",\\\\n    \\\\\\\"hypotheses\\\\\\\": {\\\\n      \\\\\\\"C1\\\\\\\": \\\\\\\"hurt has higher |loglik| than stayed-right (less confident correct -> vulnerable)\\\\\\\",\\\\n      \\\\\\\"C2\\\\\\\": \\\\\\\"helped has lower |loglik| than stayed-wrong (near-miss wrong -> rescuable)\\\\\\\"\\\\n    },\\\\n    \\\\\\\"tests\\\\\\\": [\\\\n      \\\\\\\"Mann-Whitney U (two-sided)\\\\\\\",\\\\n      \\\\\\\"Cohen's d (pooled std)\\\\\\\",\\\\n      \\\\\\\"rank-biserial r_rb\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"GDN uses h12-1 (consistent with LAMBADA analysis); RetNet/HGRN2 use h3-1\\\\\\\",\\\\n    \\\\\\\"acc_field\\\\\\\": \\\\\\\"acc (raw loglik-based, consistent with LAMBADA)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"GDN-12-1\\\\\\\",\\\\n        \\\\\\\"control_1_pure_correct\\\\\\\": {\\\\n          \\\\\\\"hurt_n\\\\\\\": 206,\\\\n          \\\\\\\"stayed_right_n\\\\\\\": 1486,\\\\n          \\\\\\\"hurt_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 13.0903,\\\\n            \\\\\\\"median\\\\\\\": 11.75,\\\\n            \\\\\\\"std\\\\\\\": 6.8196,\\\\n            \\\\\\\"q25\\\\\\\": 8.6094,\\\\n            \\\\\\\"q75\\\\\\\": 16.625\\\\n          },\\\\n          \\\\\\\"stayed_right_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 11.4494,\\\\n            \\\\\\\"median\\\\\\\": 10.0,\\\\n            \\\\\\\"std\\\\\\\": 6.1443,\\\\n            \\\\\\\"q25\\\\\\\": 7.1875,\\\\n            \\\\\\\"q75\\\\\\\": 14.375\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 176684.0,\\\\n          \\\\\\\"p\\\\\\\": 0.0003243414390089927,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.2634,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.1544,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"stayed_right_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\\\\\"\\\\n        },\\\\n        \\\\\\\"control_2_pure_wrong\\\\\\\": {\\\\n          \\\\\\\"helped_n\\\\\\\": 176,\\\\n          \\\\\\\"stayed_wrong_n\\\\\\\": 508,\\\\n          \\\\\\\"helped_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 13.574,\\\\n            \\\\\\\"median\\\\\\\": 12.5625,\\\\n            \\\\\\\"std\\\\\\\": 5.7884,\\\\n            \\\\\\\"q25\\\\\\\": 9.4844,\\\\n            \\\\\\\"q75\\\\\\\": 15.6562\\\\n          },\\\\n          \\\\\\\"stayed_wrong_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 19.3195,\\\\n            \\\\\\\"median\\\\\\\": 18.0,\\\\n            \\\\\\\"std\\\\\\\": 10.6652,\\\\n            \\\\\\\"q25\\\\\\\": 11.6875,\\\\n            \\\\\\\"q75\\\\\\\": 24.625\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 27901.0,\\\\n          \\\\\\\"p\\\\\\\": 1.024783320635381e-13,\\\\n          \\\\\\\"cohens_d\\\\\\\": -0.5953,\\\\n          \\\\\\\"r_rb\\\\\\\": 0.3759,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"helped_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"RetNet-3-1\\\\\\\",\\\\n        \\\\\\\"control_1_pure_correct\\\\\\\": {\\\\n          \\\\\\\"hurt_n\\\\\\\": 184,\\\\n          \\\\\\\"stayed_right_n\\\\\\\": 1510,\\\\n          \\\\\\\"hurt_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 12.4564,\\\\n            \\\\\\\"median\\\\\\\": 11.0312,\\\\n            \\\\\\\"std\\\\\\\": 6.1998,\\\\n            \\\\\\\"q25\\\\\\\": 7.7422,\\\\n            \\\\\\\"q75\\\\\\\": 16.125\\\\n          },\\\\n          \\\\\\\"stayed_right_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 11.1141,\\\\n            \\\\\\\"median\\\\\\\": 9.7188,\\\\n            \\\\\\\"std\\\\\\\": 6.003,\\\\n            \\\\\\\"q25\\\\\\\": 6.8125,\\\\n            \\\\\\\"q75\\\\\\\": 14.0625\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 157633.5,\\\\n          \\\\\\\"p\\\\\\\": 0.0028160312616937067,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.2228,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.1347,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"stayed_right_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\\\\\"\\\\n        },\\\\n        \\\\\\\"control_2_pure_wrong\\\\\\\": {\\\\n          \\\\\\\"helped_n\\\\\\\": 144,\\\\n          \\\\\\\"stayed_wrong_n\\\\\\\": 538,\\\\n          \\\\\\\"helped_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 13.656,\\\\n            \\\\\\\"median\\\\\\\": 12.9062,\\\\n            \\\\\\\"std\\\\\\\": 6.6249,\\\\n            \\\\\\\"q25\\\\\\\": 8.4688,\\\\n            \\\\\\\"q75\\\\\\\": 17.5\\\\n          },\\\\n          \\\\\\\"stayed_wrong_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 18.6489,\\\\n            \\\\\\\"median\\\\\\\": 17.5625,\\\\n            \\\\\\\"std\\\\\\\": 10.4439,\\\\n            \\\\\\\"q25\\\\\\\": 11.5312,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"cross_benchmark_confidence_margin\\\",\\n  \\\"date\\\": \\\"2026-05-20\\\",\\n  \\\"method\\\": {\\n    \\\"confidence_proxy\\\": \\\"abs(correct_option_loglikelihood) from pure model\\\",\\n    \\\"margin_semantics\\\": {\\n      \\\"pure_correct\\\": \\\"higher |loglik| = lower probability = less confident correct = closer to boundary\\\",\\n      \\\"pure_wrong\\\": \\\"lower |loglik| = higher probability for target = near-miss = closer to boundary\\\"\\n    },\\n    \\\"control_1\\\": \\\"Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)\\\",\\n    \\\"control_2\\\": \\\"Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)\\\",\\n    \\\"hypotheses\\\": {\\n      \\\"C1\\\": \\\"hurt has higher |loglik| than stayed-right (less confident correct -> vulnerable)\\\",\\n      \\\"C2\\\": \\\"helped has lower |loglik| than stayed-wrong (near-miss wrong -> rescuable)\\\"\\n    },\\n    \\\"tests\\\": [\\n      \\\"Mann-Whitney U (two-sided)\\\",\\n      \\\"Cohen's d (pooled std)\\\",\\n      \\\"rank-biserial r_rb\\\"\\n    ],\\n    \\\"note\\\": \\\"GDN uses h12-1 (consistent with LAMBADA analysis); RetNet/HGRN2 use h3-1\\\",\\n    \\\"acc_field\\\": \\\"acc (raw loglik-based, consistent with LAMBADA)\\\"\\n  },\\n  \\\"results\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"GDN\\\": {\\n        \\\"hybrid_config\\\": \\\"GDN-12-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 206,\\n          \\\"stayed_right_n\\\": 1486,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 13.0903,\\n            \\\"median\\\": 11.75,\\n            \\\"std\\\": 6.8196,\\n            \\\"q25\\\": 8.6094,\\n            \\\"q75\\\": 16.625\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 11.4494,\\n            \\\"median\\\": 10.0,\\n            \\\"std\\\": 6.1443,\\n            \\\"q25\\\": 7.1875,\\n            \\\"q75\\\": 14.375\\n          },\\n          \\\"U\\\": 176684.0,\\n          \\\"p\\\": 0.0003243414390089927,\\n          \\\"cohens_d\\\": 0.2634,\\n          \\\"r_rb\\\": -0.1544,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 176,\\n          \\\"stayed_wrong_n\\\": 508,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 13.574,\\n            \\\"median\\\": 12.5625,\\n            \\\"std\\\": 5.7884,\\n            \\\"q25\\\": 9.4844,\\n            \\\"q75\\\": 15.6562\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 19.3195,\\n            \\\"median\\\": 18.0,\\n            \\\"std\\\": 10.6652,\\n            \\\"q25\\\": 11.6875,\\n            \\\"q75\\\": 24.625\\n          },\\n          \\\"U\\\": 27901.0,\\n          \\\"p\\\": 1.024783320635381e-13,\\n          \\\"cohens_d\\\": -0.5953,\\n          \\\"r_rb\\\": 0.3759,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"hybrid_config\\\": \\\"RetNet-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 184,\\n          \\\"stayed_right_n\\\": 1510,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 12.4564,\\n            \\\"median\\\": 11.0312,\\n            \\\"std\\\": 6.1998,\\n            \\\"q25\\\": 7.7422,\\n            \\\"q75\\\": 16.125\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 11.1141,\\n            \\\"median\\\": 9.7188,\\n            \\\"std\\\": 6.003,\\n            \\\"q25\\\": 6.8125,\\n            \\\"q75\\\": 14.0625\\n          },\\n          \\\"U\\\": 157633.5,\\n          \\\"p\\\": 0.0028160312616937067,\\n          \\\"cohens_d\\\": 0.2228,\\n          \\\"r_rb\\\": -0.1347,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 144,\\n          \\\"stayed_wrong_n\\\": 538,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 13.656,\\n            \\\"median\\\": 12.9062,\\n            \\\"std\\\": 6.6249,\\n            \\\"q25\\\": 8.4688,\\n            \\\"q75\\\": 17.5\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 18.6489,\\n            \\\"median\\\": 17.5625,\\n            \\\"std\\\": 10.4439,\\n            \\\"q25\\\": 11.5312,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T14:07:55.729Z_
+
+<details><summary>↩ Tool result · `toolu_01Nb6Yf9MyWyZeHgfnjt5Q59`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            \\\"q75\\\": 23.4688\\n          },\\n          \\\"U\\\": 25695.0,\\n          \\\"p\\\": 5.290958372060238e-10,\\n          \\\"cohens_d\\\": -0.5113,\\n          \\\"r_rb\\\": 0.3367,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"hybrid_config\\\": \\\"HGRN2-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 146,\\n          \\\"stayed_right_n\\\": 1548,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 11.243,\\n            \\\"median\\\": 9.7812,\\n            \\\"std\\\": 6.334,\\n            \\\"q25\\\": 6.5391,\\n            \\\"q75\\\": 13.75\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 10.4497,\\n            \\\"median\\\": 8.875,\\n            \\\"std\\\": 5.8665,\\n            \\\"q25\\\": 6.1797,\\n            \\\"q75\\\": 13.3125\\n          },\\n          \\\"U\\\": 121237.5,\\n          \\\"p\\\": 0.14507403073727496,\\n          \\\"cohens_d\\\": 0.1343,\\n          \\\"r_rb\\\": -0.0729,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 164,\\n          \\\"stayed_wrong_n\\\": 518,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 13.3307,\\n            \\\"median\\\": 12.4688,\\n            \\\"std\\\": 6.0558,\\n            \\\"q25\\\": 8.75,\\n            \\\"q75\\\": 16.6562\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 18.1982,\\n            \\\"median\\\": 17.0625,\\n            \\\"std\\\": 10.0373,\\n            \\\"q25\\\": 10.8125,\\n            \\\"q75\\\": 23.125\\n          },\\n          \\\"U\\\": 28828.0,\\n          \\\"p\\\": 5.414589758384048e-10,\\n          \\\"cohens_d\\\": -0.5268,\\n          \\\"r_rb\\\": 0.3213,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      }\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"GDN\\\": {\\n        \\\"hybrid_config\\\": \\\"GDN-12-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 360,\\n          \\\"stayed_right_n\\\": 4300,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 63.376,\\n            \\\"median\\\": 67.25,\\n            \\\"std\\\": 32.8057,\\n            \\\"q25\\\": 33.0,\\n            \\\"q75\\\": 85.625\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 60.704,\\n            \\\"median\\\": 63.75,\\n            \\\"std\\\": 29.4587,\\n            \\\"q25\\\": 35.5,\\n            \\\"q75\\\": 82.0\\n          },\\n          \\\"U\\\": 813309.5,\\n          \\\"p\\\": 0.10891152820714624,\\n          \\\"cohens_d\\\": 0.0899,\\n          \\\"r_rb\\\": -0.0508,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 346,\\n          \\\"stayed_wrong_n\\\": 5036,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 70.5544,\\n            \\\"median\\\": 75.25,\\n            \\\"std\\\": 34.63,\\n            \\\"q25\\\": 36.625,\\n            \\\"q75\\\": 97.0\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 91.2359,\\n            \\\"median\\\": 94.0,\\n            \\\"std\\\": 40.3067,\\n            \\\"q25\\\": 59.75,\\n            \\\"q75\\\": 118.0\\n          },\\n          \\\"U\\\": 610935.0,\\n          \\\"p\\\": 1.2749444912730322e-20,\\n          \\\"cohens_d\\\": -0.5175,\\n          \\\"r_rb\\\": 0.2988,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"hybrid_config\\\": \\\"RetNet-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 269,\\n          \\\"stayed_right_n\\\": 4171,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 64.5964,\\n            \\\"median\\\": 70.0,\\n            \\\"std\\\": 33.1407,\\n            \\\"q25\\\": 31.5,\\n            \\\"q75\\\": 88.5\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 58.6829,\\n            \\\"median\\\": 62.0,\\n            \\\"std\\\": 28.335,\\n            \\\"q25\\\": 33.75,\\n            \\\"q75\\\": 79.0\\n          },\\n          \\\"U\\\": 625522.5,\\n          \\\"p\\\": 0.0015432318744285473,\\n          \\\"cohens_d\\\": 0.2064,\\n          \\\"r_rb\\\": -0.115,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 302,\\n          \\\"stayed_wrong_n\\\": 5300,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 69.3307,\\n            \\\"median\\\": 74.5,\\n            \\\"std\\\": 31.3153,\\n            \\\"q25\\\": 40.8125,\\n            \\\"q75\\\": 91.375\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 87.9944,\\n            \\\"median\\\": 90.5,\\n            \\\"std\\\": 39.1189,\\n            \\\"q25\\\": 57.0,\\n            \\\"q75\\\": 114.0\\n          },\\n          \\\"U\\\": 568865.0,\\n          \\\"p\\\": 2.5428866077295876e-17,\\n          \\\"cohens_d\\\": -0.4818,\\n          \\\"r_rb\\\": 0.2892,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"hybrid_config\\\": \\\"HGRN2-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 257,\\n          \\\"stayed_right_n\\\": 4325,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 66.1899,\\n            \\\"median\\\": 71.5,\\n            \\\"std\\\": 32.7285,\\n            \\\"q25\\\": 32.25,\\n            \\\"q75\\\": 89.0\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 58.2506,\\n            \\\"median\\\": 61.5,\\n            \\\"std\\\": 27.9999,\\n            \\\"q25\\\": 34.0,\\n            \\\"q75\\\": 78.5\\n          },\\n          \\\"U\\\": 642685.0,\\n          \\\"p\\\": 2.455912453845683e-05,\\n          \\\"cohens_d\\\": 0.2807,\\n          \\\"r_rb\\\": -0.1564,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 294,\\n          \\\"stayed_wrong_n\\\": 5166,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 67.0818,\\n            \\\"median\\\": 71.0,\\n            \\\"std\\\": 32.6139,\\n            \\\"q25\\\": 37.1875,\\n            \\\"q75\\\": 90.5\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 86.7213,\\n            \\\"median\\\": 88.5,\\n            \\\"std\\\": 38.4662,\\n            \\\"q25\\\": 56.3125,\\n            \\\"q75\\\": 112.5\\n          },\\n          \\\"U\\\": 532596.5,\\n          \\\"p\\\": 6.298120109816954e-18,\\n          \\\"cohens_d\\\": -0.5145,\\n          \\\"r_rb\\\": 0.2987,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "6b179ed8-d8af-4fa0-99cd-fbcd840827a6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            \\\\\\\"q75\\\\\\\": 23.4688\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 25695.0,\\\\n          \\\\\\\"p\\\\\\\": 5.290958372060238e-10,\\\\n          \\\\\\\"cohens_d\\\\\\\": -0.5113,\\\\n          \\\\\\\"r_rb\\\\\\\": 0.3367,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"helped_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"HGRN2-3-1\\\\\\\",\\\\n        \\\\\\\"control_1_pure_correct\\\\\\\": {\\\\n          \\\\\\\"hurt_n\\\\\\\": 146,\\\\n          \\\\\\\"stayed_right_n\\\\\\\": 1548,\\\\n          \\\\\\\"hurt_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 11.243,\\\\n            \\\\\\\"median\\\\\\\": 9.7812,\\\\n            \\\\\\\"std\\\\\\\": 6.334,\\\\n            \\\\\\\"q25\\\\\\\": 6.5391,\\\\n            \\\\\\\"q75\\\\\\\": 13.75\\\\n          },\\\\n          \\\\\\\"stayed_right_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 10.4497,\\\\n            \\\\\\\"median\\\\\\\": 8.875,\\\\n            \\\\\\\"std\\\\\\\": 5.8665,\\\\n            \\\\\\\"q25\\\\\\\": 6.1797,\\\\n            \\\\\\\"q75\\\\\\\": 13.3125\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 121237.5,\\\\n          \\\\\\\"p\\\\\\\": 0.14507403073727496,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.1343,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.0729,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"stayed_right_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\\\\\"\\\\n        },\\\\n        \\\\\\\"control_2_pure_wrong\\\\\\\": {\\\\n          \\\\\\\"helped_n\\\\\\\": 164,\\\\n          \\\\\\\"stayed_wrong_n\\\\\\\": 518,\\\\n          \\\\\\\"helped_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 13.3307,\\\\n            \\\\\\\"median\\\\\\\": 12.4688,\\\\n            \\\\\\\"std\\\\\\\": 6.0558,\\\\n            \\\\\\\"q25\\\\\\\": 8.75,\\\\n            \\\\\\\"q75\\\\\\\": 16.6562\\\\n          },\\\\n          \\\\\\\"stayed_wrong_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 18.1982,\\\\n            \\\\\\\"median\\\\\\\": 17.0625,\\\\n            \\\\\\\"std\\\\\\\": 10.0373,\\\\n            \\\\\\\"q25\\\\\\\": 10.8125,\\\\n            \\\\\\\"q75\\\\\\\": 23.125\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 28828.0,\\\\n          \\\\\\\"p\\\\\\\": 5.414589758384048e-10,\\\\n          \\\\\\\"cohens_d\\\\\\\": -0.5268,\\\\n          \\\\\\\"r_rb\\\\\\\": 0.3213,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"helped_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\\\\\"\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"GDN-12-1\\\\\\\",\\\\n        \\\\\\\"control_1_pure_correct\\\\\\\": {\\\\n          \\\\\\\"hurt_n\\\\\\\": 360,\\\\n          \\\\\\\"stayed_right_n\\\\\\\": 4300,\\\\n          \\\\\\\"hurt_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 63.376,\\\\n            \\\\\\\"median\\\\\\\": 67.25,\\\\n            \\\\\\\"std\\\\\\\": 32.8057,\\\\n            \\\\\\\"q25\\\\\\\": 33.0,\\\\n            \\\\\\\"q75\\\\\\\": 85.625\\\\n          },\\\\n          \\\\\\\"stayed_right_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 60.704,\\\\n            \\\\\\\"median\\\\\\\": 63.75,\\\\n            \\\\\\\"std\\\\\\\": 29.4587,\\\\n            \\\\\\\"q25\\\\\\\": 35.5,\\\\n            \\\\\\\"q75\\\\\\\": 82.0\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 813309.5,\\\\n          \\\\\\\"p\\\\\\\": 0.10891152820714624,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.0899,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.0508,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"stayed_right_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\\\\\"\\\\n        },\\\\n        \\\\\\\"control_2_pure_wrong\\\\\\\": {\\\\n          \\\\\\\"helped_n\\\\\\\": 346,\\\\n          \\\\\\\"stayed_wrong_n\\\\\\\": 5036,\\\\n          \\\\\\\"helped_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 70.5544,\\\\n            \\\\\\\"median\\\\\\\": 75.25,\\\\n            \\\\\\\"std\\\\\\\": 34.63,\\\\n            \\\\\\\"q25\\\\\\\": 36.625,\\\\n            \\\\\\\"q75\\\\\\\": 97.0\\\\n          },\\\\n          \\\\\\\"stayed_wrong_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 91.2359,\\\\n            \\\\\\\"median\\\\\\\": 94.0,\\\\n            \\\\\\\"std\\\\\\\": 40.3067,\\\\n            \\\\\\\"q25\\\\\\\": 59.75,\\\\n            \\\\\\\"q75\\\\\\\": 118.0\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 610935.0,\\\\n          \\\\\\\"p\\\\\\\": 1.2749444912730322e-20,\\\\n          \\\\\\\"cohens_d\\\\\\\": -0.5175,\\\\n          \\\\\\\"r_rb\\\\\\\": 0.2988,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"helped_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"RetNet-3-1\\\\\\\",\\\\n        \\\\\\\"control_1_pure_correct\\\\\\\": {\\\\n          \\\\\\\"hurt_n\\\\\\\": 269,\\\\n          \\\\\\\"stayed_right_n\\\\\\\": 4171,\\\\n          \\\\\\\"hurt_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 64.5964,\\\\n            \\\\\\\"median\\\\\\\": 70.0,\\\\n            \\\\\\\"std\\\\\\\": 33.1407,\\\\n            \\\\\\\"q25\\\\\\\": 31.5,\\\\n            \\\\\\\"q75\\\\\\\": 88.5\\\\n          },\\\\n          \\\\\\\"stayed_right_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 58.6829,\\\\n            \\\\\\\"median\\\\\\\": 62.0,\\\\n            \\\\\\\"std\\\\\\\": 28.335,\\\\n            \\\\\\\"q25\\\\\\\": 33.75,\\\\n            \\\\\\\"q75\\\\\\\": 79.0\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 625522.5,\\\\n          \\\\\\\"p\\\\\\\": 0.0015432318744285473,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.2064,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.115,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"stayed_right_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\\\\\"\\\\n        },\\\\n        \\\\\\\"control_2_pure_wrong\\\\\\\": {\\\\n          \\\\\\\"helped_n\\\\\\\": 302,\\\\n          \\\\\\\"stayed_wrong_n\\\\\\\": 5300,\\\\n          \\\\\\\"helped_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 69.3307,\\\\n            \\\\\\\"median\\\\\\\": 74.5,\\\\n            \\\\\\\"std\\\\\\\": 31.3153,\\\\n            \\\\\\\"q25\\\\\\\": 40.8125,\\\\n            \\\\\\\"q75\\\\\\\": 91.375\\\\n          },\\\\n          \\\\\\\"stayed_wrong_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 87.9944,\\\\n            \\\\\\\"median\\\\\\\": 90.5,\\\\n            \\\\\\\"std\\\\\\\": 39.1189,\\\\n            \\\\\\\"q25\\\\\\\": 57.0,\\\\n            \\\\\\\"q75\\\\\\\": 114.0\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 568865.0,\\\\n          \\\\\\\"p\\\\\\\": 2.5428866077295876e-17,\\\\n          \\\\\\\"cohens_d\\\\\\\": -0.4818,\\\\n          \\\\\\\"r_rb\\\\\\\": 0.2892,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"helped_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"HGRN2-3-1\\\\\\\",\\\\n        \\\\\\\"control_1_pure_correct\\\\\\\": {\\\\n          \\\\\\\"hurt_n\\\\\\\": 257,\\\\n          \\\\\\\"stayed_right_n\\\\\\\": 4325,\\\\n          \\\\\\\"hurt_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 66.1899,\\\\n            \\\\\\\"median\\\\\\\": 71.5,\\\\n            \\\\\\\"std\\\\\\\": 32.7285,\\\\n            \\\\\\\"q25\\\\\\\": 32.25,\\\\n            \\\\\\\"q75\\\\\\\": 89.0\\\\n          },\\\\n          \\\\\\\"stayed_right_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 58.2506,\\\\n            \\\\\\\"median\\\\\\\": 61.5,\\\\n            \\\\\\\"std\\\\\\\": 27.9999,\\\\n            \\\\\\\"q25\\\\\\\": 34.0,\\\\n            \\\\\\\"q75\\\\\\\": 78.5\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 642685.0,\\\\n          \\\\\\\"p\\\\\\\": 2.455912453845683e-05,\\\\n          \\\\\\\"cohens_d\\\\\\\": 0.2807,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.1564,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"stayed_right_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\\\\\"\\\\n        },\\\\n        \\\\\\\"control_2_pure_wrong\\\\\\\": {\\\\n          \\\\\\\"helped_n\\\\\\\": 294,\\\\n          \\\\\\\"stayed_wrong_n\\\\\\\": 5166,\\\\n          \\\\\\\"helped_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 67.0818,\\\\n            \\\\\\\"median\\\\\\\": 71.0,\\\\n            \\\\\\\"std\\\\\\\": 32.6139,\\\\n            \\\\\\\"q25\\\\\\\": 37.1875,\\\\n            \\\\\\\"q75\\\\\\\": 90.5\\\\n          },\\\\n          \\\\\\\"stayed_wrong_margin\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 86.7213,\\\\n            \\\\\\\"median\\\\\\\": 88.5,\\\\n            \\\\\\\"std\\\\\\\": 38.4662,\\\\n            \\\\\\\"q25\\\\\\\": 56.3125,\\\\n            \\\\\\\"q75\\\\\\\": 112.5\\\\n          },\\\\n          \\\\\\\"U\\\\\\\": 532596.5,\\\\n          \\\\\\\"p\\\\\\\": 6.298120109816954e-18,\\\\n          \\\\\\\"cohens_d\\\\\\\": -0.5145,\\\\n          \\\\\\\"r_rb\\\\\\\": 0.2987,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"helped_lower\\\\\\\",\\\\n          \\\\\\\"hypothesis_supported\\\\\\\": true,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\\\\\"\\\\n        }\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            \\\"q75\\\": 23.4688\\n          },\\n          \\\"U\\\": 25695.0,\\n          \\\"p\\\": 5.290958372060238e-10,\\n          \\\"cohens_d\\\": -0.5113,\\n          \\\"r_rb\\\": 0.3367,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"hybrid_config\\\": \\\"HGRN2-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 146,\\n          \\\"stayed_right_n\\\": 1548,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 11.243,\\n            \\\"median\\\": 9.7812,\\n            \\\"std\\\": 6.334,\\n            \\\"q25\\\": 6.5391,\\n            \\\"q75\\\": 13.75\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 10.4497,\\n            \\\"median\\\": 8.875,\\n            \\\"std\\\": 5.8665,\\n            \\\"q25\\\": 6.1797,\\n            \\\"q75\\\": 13.3125\\n          },\\n          \\\"U\\\": 121237.5,\\n          \\\"p\\\": 0.14507403073727496,\\n          \\\"cohens_d\\\": 0.1343,\\n          \\\"r_rb\\\": -0.0729,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 164,\\n          \\\"stayed_wrong_n\\\": 518,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 13.3307,\\n            \\\"median\\\": 12.4688,\\n            \\\"std\\\": 6.0558,\\n            \\\"q25\\\": 8.75,\\n            \\\"q75\\\": 16.6562\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 18.1982,\\n            \\\"median\\\": 17.0625,\\n            \\\"std\\\": 10.0373,\\n            \\\"q25\\\": 10.8125,\\n            \\\"q75\\\": 23.125\\n          },\\n          \\\"U\\\": 28828.0,\\n          \\\"p\\\": 5.414589758384048e-10,\\n          \\\"cohens_d\\\": -0.5268,\\n          \\\"r_rb\\\": 0.3213,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      }\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"GDN\\\": {\\n        \\\"hybrid_config\\\": \\\"GDN-12-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 360,\\n          \\\"stayed_right_n\\\": 4300,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 63.376,\\n            \\\"median\\\": 67.25,\\n            \\\"std\\\": 32.8057,\\n            \\\"q25\\\": 33.0,\\n            \\\"q75\\\": 85.625\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 60.704,\\n            \\\"median\\\": 63.75,\\n            \\\"std\\\": 29.4587,\\n            \\\"q25\\\": 35.5,\\n            \\\"q75\\\": 82.0\\n          },\\n          \\\"U\\\": 813309.5,\\n          \\\"p\\\": 0.10891152820714624,\\n          \\\"cohens_d\\\": 0.0899,\\n          \\\"r_rb\\\": -0.0508,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 346,\\n          \\\"stayed_wrong_n\\\": 5036,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 70.5544,\\n            \\\"median\\\": 75.25,\\n            \\\"std\\\": 34.63,\\n            \\\"q25\\\": 36.625,\\n            \\\"q75\\\": 97.0\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 91.2359,\\n            \\\"median\\\": 94.0,\\n            \\\"std\\\": 40.3067,\\n            \\\"q25\\\": 59.75,\\n            \\\"q75\\\": 118.0\\n          },\\n          \\\"U\\\": 610935.0,\\n          \\\"p\\\": 1.2749444912730322e-20,\\n          \\\"cohens_d\\\": -0.5175,\\n          \\\"r_rb\\\": 0.2988,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"hybrid_config\\\": \\\"RetNet-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 269,\\n          \\\"stayed_right_n\\\": 4171,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 64.5964,\\n            \\\"median\\\": 70.0,\\n            \\\"std\\\": 33.1407,\\n            \\\"q25\\\": 31.5,\\n            \\\"q75\\\": 88.5\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 58.6829,\\n            \\\"median\\\": 62.0,\\n            \\\"std\\\": 28.335,\\n            \\\"q25\\\": 33.75,\\n            \\\"q75\\\": 79.0\\n          },\\n          \\\"U\\\": 625522.5,\\n          \\\"p\\\": 0.0015432318744285473,\\n          \\\"cohens_d\\\": 0.2064,\\n          \\\"r_rb\\\": -0.115,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 302,\\n          \\\"stayed_wrong_n\\\": 5300,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 69.3307,\\n            \\\"median\\\": 74.5,\\n            \\\"std\\\": 31.3153,\\n            \\\"q25\\\": 40.8125,\\n            \\\"q75\\\": 91.375\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 87.9944,\\n            \\\"median\\\": 90.5,\\n            \\\"std\\\": 39.1189,\\n            \\\"q25\\\": 57.0,\\n            \\\"q75\\\": 114.0\\n          },\\n          \\\"U\\\": 568865.0,\\n          \\\"p\\\": 2.5428866077295876e-17,\\n          \\\"cohens_d\\\": -0.4818,\\n          \\\"r_rb\\\": 0.2892,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"hybrid_config\\\": \\\"HGRN2-3-1\\\",\\n        \\\"control_1_pure_correct\\\": {\\n          \\\"hurt_n\\\": 257,\\n          \\\"stayed_right_n\\\": 4325,\\n          \\\"hurt_margin\\\": {\\n            \\\"mean\\\": 66.1899,\\n            \\\"median\\\": 71.5,\\n            \\\"std\\\": 32.7285,\\n            \\\"q25\\\": 32.25,\\n            \\\"q75\\\": 89.0\\n          },\\n          \\\"stayed_right_margin\\\": {\\n            \\\"mean\\\": 58.2506,\\n            \\\"median\\\": 61.5,\\n            \\\"std\\\": 27.9999,\\n            \\\"q25\\\": 34.0,\\n            \\\"q75\\\": 78.5\\n          },\\n          \\\"U\\\": 642685.0,\\n          \\\"p\\\": 2.455912453845683e-05,\\n          \\\"cohens_d\\\": 0.2807,\\n          \\\"r_rb\\\": -0.1564,\\n          \\\"direction\\\": \\\"stayed_right_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\\\"\\n        },\\n        \\\"control_2_pure_wrong\\\": {\\n          \\\"helped_n\\\": 294,\\n          \\\"stayed_wrong_n\\\": 5166,\\n          \\\"helped_margin\\\": {\\n            \\\"mean\\\": 67.0818,\\n            \\\"median\\\": 71.0,\\n            \\\"std\\\": 32.6139,\\n            \\\"q25\\\": 37.1875,\\n            \\\"q75\\\": 90.5\\n          },\\n          \\\"stayed_wrong_margin\\\": {\\n            \\\"mean\\\": 86.7213,\\n            \\\"median\\\": 88.5,\\n            \\\"std\\\": 38.4662,\\n            \\\"q25\\\": 56.3125,\\n            \\\"q75\\\": 112.5\\n          },\\n          \\\"U\\\": 532596.5,\\n          \\\"p\\\": 6.298120109816954e-18,\\n          \\\"cohens_d\\\": -0.5145,\\n          \\\"r_rb\\\": 0.2987,\\n          \\\"direction\\\": \\\"helped_lower\\\",\\n          \\\"hypothesis_supported\\\": true,\\n          \\\"interpretation\\\": \\\"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\\\"\\n        }\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the full JSON content now. Let me construct it and write it locally. Let me piece together the full content from both reads.
+
+Actually, let me just write the JSON content directly to local artifacts. I have all the data from the script output.
+
+Let me construct the full JSON from what I've gathered:
+
+ARC-Easy:
+- GDN: C1 d=0.2634 p=3.24e-4, C2 d=-0.5953 p=1.02e-13
+
+
+- RetNet: C1 d=0.2228 p=2.82e-3, C2 d=-0.5113 p=5.29e-10
+- HGRN2: C1 d=0.1343 p=0.145 (NOT sig), C2 d=-0.5268 p=5.41e-10
+
+HellaSwag:
+- GDN: C1 d=0.0899 p=0.109 (NOT sig), C2 d=-0.5175 p=1.27e-20
+- RetNet: C1 d=0.2064 p=1.54e-3, C2 d=-0.4818 p=2
+
+.54e-17
+- HGRN2: C1 d=0.2807 p=2.46e-5, C2 d=-0.5145 p=6.30e-18
+
+Now I'm reconstructing the full JSON file locally from all the data I've collected. I have everything from the script output and the previous reads, so I can write it directly without needing to transfer files or run additional commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "59026faa-808b-4915-9d59-d30b7fa241fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TG7T1mS3aBYnDGnvtowHRj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6236,
+      "cache_read_input_tokens": 47787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6236
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+现在写本地 artifacts 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "ca074002-e637-4bcf-85f6-9fa253107cdb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TG7T1mS3aBYnDGnvtowHRj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6236,
+      "cache_read_input_tokens": 47787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6236
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01PVHYkMhAcnqVWbbX7ZbtDZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/cross_benchmark_confidence_margin.json",
+  "content": "{\n  \"analysis\": \"cross_benchmark_confidence_margin\",\n  \"date\": \"2026-05-20\",\n  \"method\": {\n    \"confidence_proxy\": \"abs(correct_option_loglikelihood) from pure model\",\n    \"margin_semantics\": {\n      \"pure_correct\": \"higher |loglik| = lower probability = less confident correct = closer to boundary\",\n      \"pure_wrong\": \"lower |loglik| = higher probability for target = near-miss = closer to boundary\"\n    },\n    \"control_1\": \"Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)\",\n    \"control_2\": \"Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)\",\n    \"hypotheses\": {\n      \"C1\": \"hurt has higher |loglik| than stayed-right (less confident correct -> vulnerable)\",\n      \"C2\": \"helped has lower |loglik| than stayed-wrong (near-miss wrong -> rescuable)\"\n    },\n    \"tests\": [\"Mann-Whitney U (two-sided)\", \"Cohen's d (pooled std)\", \"rank-biserial r_rb\"],\n    \"note\": \"GDN uses h12-1 (consistent with LAMBADA analysis); RetNet/HGRN2 use h3-1\",\n    \"acc_field\": \"acc (raw loglik-based, consistent with LAMBADA)\"\n  },\n  \"results\": {\n    \"arc_easy\": {\n      \"GDN\": {\n        \"hybrid_config\": \"GDN-12-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 206,\n          \"stayed_right_n\": 1486,\n          \"hurt_margin\": {\n            \"mean\": 13.0903,\n            \"median\": 11.75,\n            \"std\": 6.8196,\n            \"q25\": 8.6094,\n            \"q75\": 16.625\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 11.4494,\n            \"median\": 10.0,\n            \"std\": 6.1443,\n            \"q25\": 7.1875,\n            \"q75\": 14.375\n          },\n          \"U\": 176684.0,\n          \"p\": 3.243414390089927e-04,\n          \"cohens_d\": 0.2634,\n          \"r_rb\": -0.1544,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 176,\n          \"stayed_wrong_n\": 508,\n          \"helped_margin\": {\n            \"mean\": 13.574,\n            \"median\": 12.5625,\n            \"std\": 5.7884,\n            \"q25\": 9.4844,\n            \"q75\": 15.6562\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 19.3195,\n            \"median\": 18.0,\n            \"std\": 10.6652,\n            \"q25\": 11.6875,\n            \"q75\": 24.625\n          },\n          \"U\": 27901.0,\n          \"p\": 1.024783320635381e-13,\n          \"cohens_d\": -0.5953,\n          \"r_rb\": 0.3759,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      },\n      \"RetNet\": {\n        \"hybrid_config\": \"RetNet-3-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 184,\n          \"stayed_right_n\": 1510,\n          \"hurt_margin\": {\n            \"mean\": 12.4564,\n            \"median\": 11.0312,\n            \"std\": 6.1998,\n            \"q25\": 7.7422,\n            \"q75\": 16.125\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 11.1141,\n            \"median\": 9.7188,\n            \"std\": 6.003,\n            \"q25\": 6.8125,\n            \"q75\": 14.0625\n          },\n          \"U\": 157633.5,\n          \"p\": 2.8160312616937067e-03,\n          \"cohens_d\": 0.2228,\n          \"r_rb\": -0.1347,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 144,\n          \"stayed_wrong_n\": 538,\n          \"helped_margin\": {\n            \"mean\": 13.656,\n            \"median\": 12.9062,\n            \"std\": 6.6249,\n            \"q25\": 8.4688,\n            \"q75\": 17.5\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 18.6489,\n            \"median\": 17.5625,\n            \"std\": 10.4439,\n            \"q25\": 11.5312,\n            \"q75\": 23.4688\n          },\n          \"U\": 25695.0,\n          \"p\": 5.290958372060238e-10,\n          \"cohens_d\": -0.5113,\n          \"r_rb\": 0.3367,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      },\n      \"HGRN2\": {\n        \"hybrid_config\": \"HGRN2-3-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 146,\n          \"stayed_right_n\": 1548,\n          \"hurt_margin\": {\n            \"mean\": 11.243,\n            \"median\": 9.7812,\n            \"std\": 6.334,\n            \"q25\": 6.5391,\n            \"q75\": 13.75\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 10.4497,\n            \"median\": 8.875,\n            \"std\": 5.8665,\n            \"q25\": 6.1797,\n            \"q75\": 13.3125\n          },\n          \"U\": 121237.5,\n          \"p\": 0.14507403073727496,\n          \"cohens_d\": 0.1343,\n          \"r_rb\": -0.0729,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 164,\n          \"stayed_wrong_n\": 518,\n          \"helped_margin\": {\n            \"mean\": 13.3307,\n            \"median\": 12.4688,\n            \"std\": 6.0558,\n            \"q25\": 8.75,\n            \"q75\": 16.6562\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 18.1982,\n            \"median\": 17.0625,\n            \"std\": 10.0373,\n            \"q25\": 10.8125,\n            \"q75\": 23.125\n          },\n          \"U\": 28828.0,\n          \"p\": 5.414589758384048e-10,\n          \"cohens_d\": -0.5268,\n          \"r_rb\": 0.3213,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      }\n    },\n    \"hellaswag\": {\n      \"GDN\": {\n        \"hybrid_config\": \"GDN-12-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 360,\n          \"stayed_right_n\": 4300,\n          \"hurt_margin\": {\n            \"mean\": 63.376,\n            \"median\": 67.25,\n            \"std\": 32.8057,\n            \"q25\": 33.0,\n            \"q75\": 85.625\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 60.704,\n            \"median\": 63.75,\n            \"std\": 29.4587,\n            \"q25\": 35.5,\n            \"q75\": 82.0\n          },\n          \"U\": 813309.5,\n          \"p\": 0.10891152820714624,\n          \"cohens_d\": 0.0899,\n          \"r_rb\": -0.0508,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 346,\n          \"stayed_wrong_n\": 5036,\n          \"helped_margin\": {\n            \"mean\": 70.5544,\n            \"median\": 75.25,\n            \"std\": 34.63,\n            \"q25\": 36.625,\n            \"q75\": 97.0\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 91.2359,\n            \"median\": 94.0,\n            \"std\": 40.3067,\n            \"q25\": 59.75,\n            \"q75\": 118.0\n          },\n          \"U\": 610935.0,\n          \"p\": 1.2749444912730322e-20,\n          \"cohens_d\": -0.5175,\n          \"r_rb\": 0.2988,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      },\n      \"RetNet\": {\n        \"hybrid_config\": \"RetNet-3-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 269,\n          \"stayed_right_n\": 4171,\n          \"hurt_margin\": {\n            \"mean\": 64.5964,\n            \"median\": 70.0,\n            \"std\": 33.1407,\n            \"q25\": 31.5,\n            \"q75\": 88.5\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 58.6829,\n            \"median\": 62.0,\n            \"std\": 28.335,\n            \"q25\": 33.75,\n            \"q75\": 79.0\n          },\n          \"U\": 625522.5,\n          \"p\": 1.5432318744285473e-03,\n          \"cohens_d\": 0.2064,\n          \"r_rb\": -0.115,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 302,\n          \"stayed_wrong_n\": 5300,\n          \"helped_margin\": {\n            \"mean\": 69.3307,\n            \"median\": 74.5,\n            \"std\": 31.3153,\n            \"q25\": 40.8125,\n            \"q75\": 91.375\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 87.9944,\n            \"median\": 90.5,\n            \"std\": 39.1189,\n            \"q25\": 57.0,\n            \"q75\": 114.0\n          },\n          \"U\": 568865.0,\n          \"p\": 2.5428866077295876e-17,\n          \"cohens_d\": -0.4818,\n          \"r_rb\": 0.2892,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      },\n      \"HGRN2\": {\n        \"hybrid_config\": \"HGRN2-3-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 257,\n          \"stayed_right_n\": 4325,\n          \"hurt_margin\": {\n            \"mean\": 66.1899,\n            \"median\": 71.5,\n            \"std\": 32.7285,\n            \"q25\": 32.25,\n            \"q75\": 89.0\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 58.2506,\n            \"median\": 61.5,\n            \"std\": 27.9999,\n            \"q25\": 34.0,\n            \"q75\": 78.5\n          },\n          \"U\": 642685.0,\n          \"p\": 2.455912453845683e-05,\n          \"cohens_d\": 0.2807,\n          \"r_rb\": -0.1564,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 294,\n          \"stayed_wrong_n\": 5166,\n          \"helped_margin\": {\n            \"mean\": 67.0818,\n            \"median\": 71.0,\n            \"std\": 32.6139,\n            \"q25\": 37.1875,\n            \"q75\": 90.5\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 86.7213,\n            \"median\": 88.5,\n            \"std\": 38.4662,\n            \"q25\": 56.3125,\n            \"q75\": 112.5\n          },\n          \"U\": 532596.5,\n          \"p\": 6.298120109816954e-18,\n          \"cohens_d\": -0.5145,\n          \"r_rb\": 0.2987,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      }\n    }\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "8f3ed8d3-7233-4821-9c96-7f2dba449330",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TG7T1mS3aBYnDGnvtowHRj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6236,
+      "cache_read_input_tokens": 47787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6236
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T14:09:00.316Z_
+
+<details><summary>↩ Tool result · `toolu_01PVHYkMhAcnqVWbbX7ZbtDZ`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/cross_benchmark_confidence_margin.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "91539878-f2b1-4262-9424-f1235cb846cf",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/cross_benchmark_confidence_margin.json",
+    "content": "{\n  \"analysis\": \"cross_benchmark_confidence_margin\",\n  \"date\": \"2026-05-20\",\n  \"method\": {\n    \"confidence_proxy\": \"abs(correct_option_loglikelihood) from pure model\",\n    \"margin_semantics\": {\n      \"pure_correct\": \"higher |loglik| = lower probability = less confident correct = closer to boundary\",\n      \"pure_wrong\": \"lower |loglik| = higher probability for target = near-miss = closer to boundary\"\n    },\n    \"control_1\": \"Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)\",\n    \"control_2\": \"Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)\",\n    \"hypotheses\": {\n      \"C1\": \"hurt has higher |loglik| than stayed-right (less confident correct -> vulnerable)\",\n      \"C2\": \"helped has lower |loglik| than stayed-wrong (near-miss wrong -> rescuable)\"\n    },\n    \"tests\": [\"Mann-Whitney U (two-sided)\", \"Cohen's d (pooled std)\", \"rank-biserial r_rb\"],\n    \"note\": \"GDN uses h12-1 (consistent with LAMBADA analysis); RetNet/HGRN2 use h3-1\",\n    \"acc_field\": \"acc (raw loglik-based, consistent with LAMBADA)\"\n  },\n  \"results\": {\n    \"arc_easy\": {\n      \"GDN\": {\n        \"hybrid_config\": \"GDN-12-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 206,\n          \"stayed_right_n\": 1486,\n          \"hurt_margin\": {\n            \"mean\": 13.0903,\n            \"median\": 11.75,\n            \"std\": 6.8196,\n            \"q25\": 8.6094,\n            \"q75\": 16.625\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 11.4494,\n            \"median\": 10.0,\n            \"std\": 6.1443,\n            \"q25\": 7.1875,\n            \"q75\": 14.375\n          },\n          \"U\": 176684.0,\n          \"p\": 3.243414390089927e-04,\n          \"cohens_d\": 0.2634,\n          \"r_rb\": -0.1544,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 176,\n          \"stayed_wrong_n\": 508,\n          \"helped_margin\": {\n            \"mean\": 13.574,\n            \"median\": 12.5625,\n            \"std\": 5.7884,\n            \"q25\": 9.4844,\n            \"q75\": 15.6562\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 19.3195,\n            \"median\": 18.0,\n            \"std\": 10.6652,\n            \"q25\": 11.6875,\n            \"q75\": 24.625\n          },\n          \"U\": 27901.0,\n          \"p\": 1.024783320635381e-13,\n          \"cohens_d\": -0.5953,\n          \"r_rb\": 0.3759,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      },\n      \"RetNet\": {\n        \"hybrid_config\": \"RetNet-3-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 184,\n          \"stayed_right_n\": 1510,\n          \"hurt_margin\": {\n            \"mean\": 12.4564,\n            \"median\": 11.0312,\n            \"std\": 6.1998,\n            \"q25\": 7.7422,\n            \"q75\": 16.125\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 11.1141,\n            \"median\": 9.7188,\n            \"std\": 6.003,\n            \"q25\": 6.8125,\n            \"q75\": 14.0625\n          },\n          \"U\": 157633.5,\n          \"p\": 2.8160312616937067e-03,\n          \"cohens_d\": 0.2228,\n          \"r_rb\": -0.1347,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 144,\n          \"stayed_wrong_n\": 538,\n          \"helped_margin\": {\n            \"mean\": 13.656,\n            \"median\": 12.9062,\n            \"std\": 6.6249,\n            \"q25\": 8.4688,\n            \"q75\": 17.5\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 18.6489,\n            \"median\": 17.5625,\n            \"std\": 10.4439,\n            \"q25\": 11.5312,\n            \"q75\": 23.4688\n          },\n          \"U\": 25695.0,\n          \"p\": 5.290958372060238e-10,\n          \"cohens_d\": -0.5113,\n          \"r_rb\": 0.3367,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      },\n      \"HGRN2\": {\n        \"hybrid_config\": \"HGRN2-3-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 146,\n          \"stayed_right_n\": 1548,\n          \"hurt_margin\": {\n            \"mean\": 11.243,\n            \"median\": 9.7812,\n            \"std\": 6.334,\n            \"q25\": 6.5391,\n            \"q75\": 13.75\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 10.4497,\n            \"median\": 8.875,\n            \"std\": 5.8665,\n            \"q25\": 6.1797,\n            \"q75\": 13.3125\n          },\n          \"U\": 121237.5,\n          \"p\": 0.14507403073727496,\n          \"cohens_d\": 0.1343,\n          \"r_rb\": -0.0729,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 164,\n          \"stayed_wrong_n\": 518,\n          \"helped_margin\": {\n            \"mean\": 13.3307,\n            \"median\": 12.4688,\n            \"std\": 6.0558,\n            \"q25\": 8.75,\n            \"q75\": 16.6562\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 18.1982,\n            \"median\": 17.0625,\n            \"std\": 10.0373,\n            \"q25\": 10.8125,\n            \"q75\": 23.125\n          },\n          \"U\": 28828.0,\n          \"p\": 5.414589758384048e-10,\n          \"cohens_d\": -0.5268,\n          \"r_rb\": 0.3213,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      }\n    },\n    \"hellaswag\": {\n      \"GDN\": {\n        \"hybrid_config\": \"GDN-12-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 360,\n          \"stayed_right_n\": 4300,\n          \"hurt_margin\": {\n            \"mean\": 63.376,\n            \"median\": 67.25,\n            \"std\": 32.8057,\n            \"q25\": 33.0,\n            \"q75\": 85.625\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 60.704,\n            \"median\": 63.75,\n            \"std\": 29.4587,\n            \"q25\": 35.5,\n            \"q75\": 82.0\n          },\n          \"U\": 813309.5,\n          \"p\": 0.10891152820714624,\n          \"cohens_d\": 0.0899,\n          \"r_rb\": -0.0508,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 346,\n          \"stayed_wrong_n\": 5036,\n          \"helped_margin\": {\n            \"mean\": 70.5544,\n            \"median\": 75.25,\n            \"std\": 34.63,\n            \"q25\": 36.625,\n            \"q75\": 97.0\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 91.2359,\n            \"median\": 94.0,\n            \"std\": 40.3067,\n            \"q25\": 59.75,\n            \"q75\": 118.0\n          },\n          \"U\": 610935.0,\n          \"p\": 1.2749444912730322e-20,\n          \"cohens_d\": -0.5175,\n          \"r_rb\": 0.2988,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      },\n      \"RetNet\": {\n        \"hybrid_config\": \"RetNet-3-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 269,\n          \"stayed_right_n\": 4171,\n          \"hurt_margin\": {\n            \"mean\": 64.5964,\n            \"median\": 70.0,\n            \"std\": 33.1407,\n            \"q25\": 31.5,\n            \"q75\": 88.5\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 58.6829,\n            \"median\": 62.0,\n            \"std\": 28.335,\n            \"q25\": 33.75,\n            \"q75\": 79.0\n          },\n          \"U\": 625522.5,\n          \"p\": 1.5432318744285473e-03,\n          \"cohens_d\": 0.2064,\n          \"r_rb\": -0.115,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 302,\n          \"stayed_wrong_n\": 5300,\n          \"helped_margin\": {\n            \"mean\": 69.3307,\n            \"median\": 74.5,\n            \"std\": 31.3153,\n            \"q25\": 40.8125,\n            \"q75\": 91.375\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 87.9944,\n            \"median\": 90.5,\n            \"std\": 39.1189,\n            \"q25\": 57.0,\n            \"q75\": 114.0\n          },\n          \"U\": 568865.0,\n          \"p\": 2.5428866077295876e-17,\n          \"cohens_d\": -0.4818,\n          \"r_rb\": 0.2892,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      },\n      \"HGRN2\": {\n        \"hybrid_config\": \"HGRN2-3-1\",\n        \"control_1_pure_correct\": {\n          \"hurt_n\": 257,\n          \"stayed_right_n\": 4325,\n          \"hurt_margin\": {\n            \"mean\": 66.1899,\n            \"median\": 71.5,\n            \"std\": 32.7285,\n            \"q25\": 32.25,\n            \"q75\": 89.0\n          },\n          \"stayed_right_margin\": {\n            \"mean\": 58.2506,\n            \"median\": 61.5,\n            \"std\": 27.9999,\n            \"q25\": 34.0,\n            \"q75\": 78.5\n          },\n          \"U\": 642685.0,\n          \"p\": 2.455912453845683e-05,\n          \"cohens_d\": 0.2807,\n          \"r_rb\": -0.1564,\n          \"direction\": \"stayed_right_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping.\"\n        },\n        \"control_2_pure_wrong\": {\n          \"helped_n\": 294,\n          \"stayed_wrong_n\": 5166,\n          \"helped_margin\": {\n            \"mean\": 67.0818,\n            \"median\": 71.0,\n            \"std\": 32.6139,\n            \"q25\": 37.1875,\n            \"q75\": 90.5\n          },\n          \"stayed_wrong_margin\": {\n            \"mean\": 86.7213,\n            \"median\": 88.5,\n            \"std\": 38.4662,\n            \"q25\": 56.3125,\n            \"q75\": 112.5\n          },\n          \"U\": 532596.5,\n          \"p\": 6.298120109816954e-18,\n          \"cohens_d\": -0.5145,\n          \"r_rb\": 0.2987,\n          \"direction\": \"helped_lower\",\n          \"hypothesis_supported\": true,\n          \"interpretation\": \"Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention.\"\n        }\n      }\n    }\n  }\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_013CMGU76Dxqk2tG6JeW7X31`</summary>
+
+```json
+{
+  "name": "cross_benchmark_confidence_margin",
+  "type": "data",
+  "description": "Confidence margin within-category controls for ARC-Easy and HellaSwag (replicating LAMBADA analysis). C2 (helped vs stayed-wrong) significant across all 6 conditions (d=0.48-0.60). C1 (hurt vs stayed-right) significant in 4/6 conditions (d=0.13-0.28), non-significant for HGRN2/ARC-Easy (p=0.145) and GDN/HellaSwag (p=0.109).",
+  "project": "entrainment_gated_ft",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/cross_benchmark_confidence_margin.json",
+  "tags": [
+    "confidence_margin",
+    "within_category",
+    "arc_easy",
+    "hellaswag",
+    "cross_benchmark",
+    "mechanism"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "bb29cb0a-e4c6-4c3d-bc33-8caf08b7166f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N1bBML5GC5kAuS6hzdZJDx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4651,
+      "cache_read_input_tokens": 54023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4651
+      },
+      "output_tokens": 83,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T14:09:11.286Z_
+
+<details><summary>↩ Tool result · `toolu_013CMGU76Dxqk2tG6JeW7X31`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_db0c2c\", \"name\": \"cross_benchmark_confidence_margin\", \"type\": \"data\", \"description\": \"Confidence margin within-category controls for ARC-Easy and HellaSwag (replicating LAMBADA analysis). C2 (helped vs stayed-wrong) significant across all 6 conditions (d=0.48-0.60). C1 (hurt vs stayed-right) significant in 4/6 conditions (d=0.13-0.28), non-significant for HGRN2/ARC-Easy (p=0.145) and GDN/HellaSwag (p=0.109).\", \"path\": \"projects/entrainment_gated_ft/artifacts/_project/data/cross_benchmark_confidence_margin.json\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T14:09:11.222076+00:00\", \"tags\": [\"confidence_margin\", \"within_category\", \"arc_easy\", \"hellaswag\", \"cross_benchmark\", \"mechanism\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "50eb24cd-a970-4547-92fd-406ef16b167b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_db0c2c\\\", \\\"name\\\": \\\"cross_benchmark_confidence_margin\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Confidence margin within-category controls for ARC-Easy and HellaSwag (replicating LAMBADA analysis). C2 (helped vs stayed-wrong) significant across all 6 conditions (d=0.48-0.60). C1 (hurt vs stayed-right) significant in 4/6 conditions (d=0.13-0.28), non-significant for HGRN2/ARC-Easy (p=0.145) and GDN/HellaSwag (p=0.109).\\\", \\\"path\\\": \\\"projects/entrainment_gated_ft/artifacts/_project/data/cross_benchmark_confidence_margin.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T14:09:11.222076+00:00\\\", \\\"tags\\\": [\\\"confidence_margin\\\", \\\"within_category\\\", \\\"arc_easy\\\", \\\"hellaswag\\\", \\\"cross_benchmark\\\", \\\"mechanism\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_db0c2c\", \"name\": \"cross_benchmark_confidence_margin\", \"type\": \"data\", \"description\": \"Confidence margin within-category controls for ARC-Easy and HellaSwag (replicating LAMBADA analysis). C2 (helped vs stayed-wrong) significant across all 6 conditions (d=0.48-0.60). C1 (hurt vs stayed-right) significant in 4/6 conditions (d=0.13-0.28), non-significant for HGRN2/ARC-Easy (p=0.145) and GDN/HellaSwag (p=0.109).\", \"path\": \"projects/entrainment_gated_ft/artifacts/_project/data/cross_benchmark_confidence_margin.json\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T14:09:11.222076+00:00\", \"tags\": [\"confidence_margin\", \"within_category\", \"arc_easy\", \"hellaswag\", \"cross_benchmark\", \"mechanism\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+结果汇总：
+
+### Cross-Benchmark Confidence Margin Analysis
+
+**C2 (helped vs stayed-wrong，pure-wrong 内部)** — 全部 6 个条件显著，medium effect：
+
+| Benchmark | Arch | Cohen's d | p |
+|-----------|------|-----------|---|
+| ARC-Easy | GDN | -0.60 | 1.0e-13 |
+| ARC-Easy | RetNet | -0.51 | 5.3e-10 |
+| ARC-Easy | HGRN2 | -0.53 | 5.4e-10 |
+| HellaSwag | GDN | -0.52 | 1.3e-20 |
+| HellaSwag | RetNet | -0.48 | 2.5e-17 |
+| HellaSwag | HGRN2 | -0.51 | 6.3e-18 |
+
+Helped 样本的 |loglik| 更低（near-miss wrong），结论一致。
+
+**C1 (hurt vs stayed-right，pure-correct 内部)** — 4/6 显著，effect size 弱于 LAMBADA：
+
+| Benchmark | Arch | Cohen's d | p | Sig? |
+|-----------|------|-----------|---|------|
+| ARC-Easy | GDN | 0.26 | 3.2e-4 | Yes |
+| ARC-Easy | RetNet | 0.22 | 2.8e-3 | Yes |
+| ARC-Easy | HGRN2 | 0.13 | 0.145 | **No** |
+| HellaSwag | GDN | 0.09 | 0.109 | **No** |
+| HellaSwag | RetNet | 0.21 | 1.5e-3 | Yes |
+| HellaSwag | HGRN2 | 0.28 | 2.5e-5 | Yes |
+
+**对比 LAMBADA**：LAMBADA 的 C1 d=0.83-0.92、C2 d=0.73-0.77 远强于 MC 任务。MC 任务中 C2 效应稳健（d≈0.5），C1 效应较弱（d≈0.1-0.3），2 个条件不显著。这可能是因为 MC 任务的 confidence proxy（raw loglik of correct option）受选项长度影响，noise 更大；而 LAMBADA 是单 token 预测，confidence 信号更干净。
+
+Artifact 已注册为 `art_20260520_db0c2c`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "uuid": "2721501f-f1be-4780-a0a9-3eb3edf7ff24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KpMHqZfw5nzWpDrqJw8wzX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 750,
+      "cache_read_input_tokens": 58674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 750
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 55_
+
+结果汇总：
+
+### Cross-Benchmark Confidence Margin Analysis
+
+**C2 (helped vs stayed-wrong，pure-wrong 内部)** — 全部 6 个条件显著，medium effect：
+
+| Benchmark | Arch | Cohen's d | p |
+|-----------|------|-----------|---|
+| ARC-Easy | GDN | -0.60 | 1.0e-13 |
+| ARC-Easy | RetNet | -0.51 | 5.3e-10 |
+| ARC-Easy | HGRN2 | -0.53 | 5.4e-10 |
+| HellaSwag | GDN | -0.52 | 1.3e-20 |
+| HellaSwag | RetNet | -0.48 | 2.5e-17 |
+| HellaSwag | HGRN2 | -0.51 | 6.3e-18 |
+
+Helped 样本的 |loglik| 更低（near-miss wrong），结论一致。
+
+**C1 (hurt vs stayed-right，pure-correct 内部)** — 4/6 显著，effect size 弱于 LAMBADA：
+
+| Benchmark | Arch | Cohen's d | p | Sig? |
+|-----------|------|-----------|---|------|
+| ARC-Easy | GDN | 0.26 | 3.2e-4 | Yes |
+| ARC-Easy | RetNet | 0.22 | 2.8e-3 | Yes |
+| ARC-Easy | HGRN2 | 0.13 | 0.145 | **No** |
+| HellaSwag | GDN | 0.09 | 0.109 | **No** |
+| HellaSwag | RetNet | 0.21 | 1.5e-3 | Yes |
+| HellaSwag | HGRN2 | 0.28 | 2.5e-5 | Yes |
+
+**对比 LAMBADA**：LAMBADA 的 C1 d=0.83-0.92、C2 d=0.73-0.77 远强于 MC 任务。MC 任务中 C2 效应稳健（d≈0.5），C1 效应较弱（d≈0.1-0.3），2 个条件不显著。这可能是因为 MC 任务的 confidence proxy（raw loglik of correct option）受选项长度影响，noise 更大；而 LAMBADA 是单 token 预测，confidence 信号更干净。
+
+Artifact 已注册为 `art_20260520_db0c2c`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 294564,
+  "duration_api_ms": 282323,
+  "num_turns": 19,
+  "stop_reason": "end_turn",
+  "session_id": "b385d312-a411-4b76-bec5-adecd944d3a3",
+  "total_cost_usd": 0.91966075,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 47583,
+    "cache_read_input_tokens": 523078,
+    "output_tokens": 14241,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 47583,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 693,
+        "cache_read_input_tokens": 58674,
+        "cache_creation_input_tokens": 750,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 750
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4503,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004618,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 14241,
+      "cacheReadInputTokens": 523078,
+      "cacheCreationInputTokens": 47583,
+      "webSearchRequests": 0,
+      "costUSD": 0.91504275,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e624ea37-a603-49be-ae8a-b1df8b172a4b"
+}
+```
+
+</details>
+
+---

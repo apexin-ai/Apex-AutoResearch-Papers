@@ -1,0 +1,1589 @@
+# code imm core modules
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_code_imm-core-modules_20260515T111402.log`
+- **Structured JSON:** [`b0379c53e556df3cb008.json`](../../sessions/b0/b0379c53e556df3cb008.json)
+
+## Before a recorded user message
+
+35 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9894031f-30bc-4a30-9a57-92405f87156c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778861400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e4d115a6-655c-4a96-bc6e-96e03e03fb8e",
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll implement the IMM core modules. Let me start by creating the directory and reading any existing project context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "3f53fc4e-d2c8-45fd-ae92-40d8fd6b188f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01564i82o853g4TMY8ETE5F6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13129,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13129
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NqQrGDqGGoJYQMDut4ZAYS`</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm",
+  "description": "Create IMM module directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "61599cc6-cf03-448a-8a51-22cf85bb9236",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01564i82o853g4TMY8ETE5F6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13129,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13129
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T11:14:11.933Z_
+
+<details><summary>↩ Tool result · `toolu_01NqQrGDqGGoJYQMDut4ZAYS`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "a0a9cf59-a5e5-4619-9c22-58b8ebb86bcf",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+Now I'll implement all five modules in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "f28fce32-575b-45d7-9ef1-c9291ffe5b27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HQZB8MiF9HptuF2gTqskCm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 156,
+      "cache_read_input_tokens": 24970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 156
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01RjscKeBz5hDmQPzJfuUzrS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/soft_topk.py",
+  "content": "\"\"\"Differentiable Top-K selection for importance-based token compression.\n\nTwo methods:\n  - 'sigmoid': Temperature-scaled sigmoid mask around a soft threshold (simple, reliable).\n  - 'sinkhorn': Optimal-transport-inspired soft top-k via Sinkhorn iterations (theoretically tighter).\n\nInputs:  (B, N) importance scores, integer k.\nOutputs: (B, N) soft mask, s_{(k)}, s_{(k+1)} — all differentiable.\nDepends: torch.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport torch\nimport torch.nn as nn\nfrom torch import Tensor\nfrom typing import Tuple\n\n\nclass SoftTopK(nn.Module):\n    def __init__(self, temperature: float = 1.0, method: str = \"sigmoid\"):\n        super().__init__()\n        self.temperature = temperature\n        assert method in (\"sigmoid\", \"sinkhorn\"), f\"Unknown method: {method}\"\n        self.method = method\n        self._sinkhorn_iters = 20\n\n    def forward(self, scores: Tensor, k: int) -> Tuple[Tensor, Tensor, Tensor]:\n        \"\"\"\n        Args:\n            scores: (B, N) importance scores.\n            k: number of tokens to retain.\n        Returns:\n            mask:       (B, N) soft selection mask in [0, 1].\n            s_k:        (B,)   differentiable k-th largest score.\n            s_k_plus_1: (B,)   differentiable (k+1)-th largest score.\n        \"\"\"\n        if self.method == \"sigmoid\":\n            return self._sigmoid_forward(scores, k)\n        return self._sinkhorn_forward(scores, k)\n\n    # ------------------------------------------------------------------\n    # Method A: Temperature-based sigmoid\n    # ------------------------------------------------------------------\n    def _sigmoid_forward(self, scores: Tensor, k: int) -> Tuple[Tensor, Tensor, Tensor]:\n        B, N = scores.shape\n        assert 0 < k < N, f\"k={k} must be in (0, {N})\"\n\n        sorted_scores, _ = torch.sort(scores, dim=-1, descending=True)\n        s_k = sorted_scores[:, k - 1]          # (B,)\n        s_k_plus_1 = sorted_scores[:, k]       # (B,)\n\n        # Soft threshold: midpoint between s_{(k)} and s_{(k+1)}\n        threshold = 0.5 * (s_k + s_k_plus_1)   # (B,)\n\n        tau = self.temperature + 1e-8\n        mask = torch.sigmoid((scores - threshold.unsqueeze(-1)) / tau)  # (B, N)\n\n        return mask, s_k, s_k_plus_1\n\n    # ------------------------------------------------------------------\n    # Method B: Sinkhorn-based optimal transport\n    # ------------------------------------------------------------------\n    def _sinkhorn_forward(self, scores: Tensor, k: int) -> Tuple[Tensor, Tensor, Tensor]:\n        B, N = scores.shape\n        assert 0 < k < N\n\n        # Extract s_k, s_{k+1} the same way (needed for margin loss)\n        sorted_scores, _ = torch.sort(scores, dim=-1, descending=True)\n        s_k = sorted_scores[:, k - 1]\n        s_k_plus_1 = sorted_scores[:, k]\n\n        # OT formulation: row marginals = [k, N-k], col marginals = 1 each\n        # Cost matrix C: higher score -> lower cost to be \"selected\"\n        tau = self.temperature + 1e-8\n        log_alpha = scores / tau  # (B, N) — log-potential for selection\n\n        # Sinkhorn in log-space for numerical stability\n        # We solve for a (B, N) assignment where sum = k\n        # Using a simplified 1D Sinkhorn: iteratively project onto simplex with sum=k\n        log_mask = log_alpha.clone()\n        for _ in range(self._sinkhorn_iters):\n            # Normalize so that sum of exp(log_mask) = k\n            log_sum = torch.logsumexp(log_mask, dim=-1, keepdim=True)\n            log_mask = log_mask - log_sum + torch.log(torch.tensor(k, dtype=scores.dtype, device=scores.device))\n            # Clamp individual entries to [0, 1] in probability space\n            log_mask = log_mask - torch.nn.functional.softplus(log_mask)  # ≈ min(log_mask, 0)\n\n        mask = torch.exp(log_mask).clamp(0.0, 1.0)\n\n        return mask, s_k, s_k_plus_1\n\n\nif __name__ == \"__main__\":\n    torch.manual_seed(42)\n    B, N, k = 4, 64, 16\n    scores = torch.randn(B, N, requires_grad=True)\n\n    for method in (\"sigmoid\", \"sinkhorn\"):\n        topk = SoftTopK(temperature=0.5, method=method)\n        mask, s_k, s_k1 = topk(scores, k)\n        loss = mask.sum()\n        loss.backward()\n        print(f\"[{method}] mask: {mask.shape}, sum~={mask.sum(-1).tolist()}, \"\n              f\"s_k={s_k.tolist()}, grad OK={scores.grad is not None}\")\n        scores.grad = None\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "be8e5c07-e1cc-4ff8-911f-6d1f6488f640",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HQZB8MiF9HptuF2gTqskCm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 156,
+      "cache_read_input_tokens": 24970,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 156
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T11:14:36.901Z_
+
+<details><summary>↩ Tool result · `toolu_01RjscKeBz5hDmQPzJfuUzrS`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/soft_topk.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "a1591d97-bca8-44ce-b18a-d2cbc273f582",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/soft_topk.py",
+    "content": "\"\"\"Differentiable Top-K selection for importance-based token compression.\n\nTwo methods:\n  - 'sigmoid': Temperature-scaled sigmoid mask around a soft threshold (simple, reliable).\n  - 'sinkhorn': Optimal-transport-inspired soft top-k via Sinkhorn iterations (theoretically tighter).\n\nInputs:  (B, N) importance scores, integer k.\nOutputs: (B, N) soft mask, s_{(k)}, s_{(k+1)} — all differentiable.\nDepends: torch.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport torch\nimport torch.nn as nn\nfrom torch import Tensor\nfrom typing import Tuple\n\n\nclass SoftTopK(nn.Module):\n    def __init__(self, temperature: float = 1.0, method: str = \"sigmoid\"):\n        super().__init__()\n        self.temperature = temperature\n        assert method in (\"sigmoid\", \"sinkhorn\"), f\"Unknown method: {method}\"\n        self.method = method\n        self._sinkhorn_iters = 20\n\n    def forward(self, scores: Tensor, k: int) -> Tuple[Tensor, Tensor, Tensor]:\n        \"\"\"\n        Args:\n            scores: (B, N) importance scores.\n            k: number of tokens to retain.\n        Returns:\n            mask:       (B, N) soft selection mask in [0, 1].\n            s_k:        (B,)   differentiable k-th largest score.\n            s_k_plus_1: (B,)   differentiable (k+1)-th largest score.\n        \"\"\"\n        if self.method == \"sigmoid\":\n            return self._sigmoid_forward(scores, k)\n        return self._sinkhorn_forward(scores, k)\n\n    # ------------------------------------------------------------------\n    # Method A: Temperature-based sigmoid\n    # ------------------------------------------------------------------\n    def _sigmoid_forward(self, scores: Tensor, k: int) -> Tuple[Tensor, Tensor, Tensor]:\n        B, N = scores.shape\n        assert 0 < k < N, f\"k={k} must be in (0, {N})\"\n\n        sorted_scores, _ = torch.sort(scores, dim=-1, descending=True)\n        s_k = sorted_scores[:, k - 1]          # (B,)\n        s_k_plus_1 = sorted_scores[:, k]       # (B,)\n\n        # Soft threshold: midpoint between s_{(k)} and s_{(k+1)}\n        threshold = 0.5 * (s_k + s_k_plus_1)   # (B,)\n\n        tau = self.temperature + 1e-8\n        mask = torch.sigmoid((scores - threshold.unsqueeze(-1)) / tau)  # (B, N)\n\n        return mask, s_k, s_k_plus_1\n\n    # ------------------------------------------------------------------\n    # Method B: Sinkhorn-based optimal transport\n    # ------------------------------------------------------------------\n    def _sinkhorn_forward(self, scores: Tensor, k: int) -> Tuple[Tensor, Tensor, Tensor]:\n        B, N = scores.shape\n        assert 0 < k < N\n\n        # Extract s_k, s_{k+1} the same way (needed for margin loss)\n        sorted_scores, _ = torch.sort(scores, dim=-1, descending=True)\n        s_k = sorted_scores[:, k - 1]\n        s_k_plus_1 = sorted_scores[:, k]\n\n        # OT formulation: row marginals = [k, N-k], col marginals = 1 each\n        # Cost matrix C: higher score -> lower cost to be \"selected\"\n        tau = self.temperature + 1e-8\n        log_alpha = scores / tau  # (B, N) — log-potential for selection\n\n        # Sinkhorn in log-space for numerical stability\n        # We solve for a (B, N) assignment where sum = k\n        # Using a simplified 1D Sinkhorn: iteratively project onto simplex with sum=k\n        log_mask = log_alpha.clone()\n        for _ in range(self._sinkhorn_iters):\n            # Normalize so that sum of exp(log_mask) = k\n            log_sum = torch.logsumexp(log_mask, dim=-1, keepdim=True)\n            log_mask = log_mask - log_sum + torch.log(torch.tensor(k, dtype=scores.dtype, device=scores.device))\n            # Clamp individual entries to [0, 1] in probability space\n            log_mask = log_mask - torch.nn.functional.softplus(log_mask)  # ≈ min(log_mask, 0)\n\n        mask = torch.exp(log_mask).clamp(0.0, 1.0)\n\n        return mask, s_k, s_k_plus_1\n\n\nif __name__ == \"__main__\":\n    torch.manual_seed(42)\n    B, N, k = 4, 64, 16\n    scores = torch.randn(B, N, requires_grad=True)\n\n    for method in (\"sigmoid\", \"sinkhorn\"):\n        topk = SoftTopK(temperature=0.5, method=method)\n        mask, s_k, s_k1 = topk(scores, k)\n        loss = mask.sum()\n        loss.backward()\n        print(f\"[{method}] mask: {mask.shape}, sum~={mask.sum(-1).tolist()}, \"\n              f\"s_k={s_k.tolist()}, grad OK={scores.grad is not None}\")\n        scores.grad = None\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Write · `toolu_019FUoW7Tgjq16pvVKENsHQR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/losses.py",
+  "content": "\"\"\"Importance Margin Maximization losses.\n\nMarginMaximizationLoss: hinge loss  max(0, delta - (s_{(k)} - s_{(k+1)})).\nIMMTotalLoss:           L_action + lambda * L_margin  with linear lambda warmup.\n\nInputs:  (B, N) importance scores, integer k.\nDepends: soft_topk.SoftTopK.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport torch\nimport torch.nn as nn\nfrom torch import Tensor\nfrom typing import Dict, Tuple\n\nfrom .soft_topk import SoftTopK\n\n\nclass MarginMaximizationLoss(nn.Module):\n    \"\"\"Hinge loss: L_margin = mean(max(0, delta - (s_{(k)} - s_{(k+1)}))).\"\"\"\n\n    def __init__(self, delta: float = 1.0, temperature: float = 1.0, method: str = \"sigmoid\"):\n        super().__init__()\n        self.delta = delta\n        self.soft_topk = SoftTopK(temperature=temperature, method=method)\n\n    def forward(self, importance_scores: Tensor, k: int) -> Tuple[Tensor, Dict[str, Tensor]]:\n        \"\"\"\n        Args:\n            importance_scores: (B, N) per-token importance scores.\n            k: number of tokens to retain.\n        Returns:\n            loss: scalar hinge loss.\n            info: dict with margin, s_k, s_k_plus_1, mask for logging.\n        \"\"\"\n        mask, s_k, s_k_plus_1 = self.soft_topk(importance_scores, k)\n\n        margin = s_k - s_k_plus_1  # (B,)\n        hinge = torch.clamp(self.delta - margin, min=0.0)  # (B,)\n        loss = hinge.mean()\n\n        info = {\n            \"margin\": margin.detach(),\n            \"s_k\": s_k.detach(),\n            \"s_k_plus_1\": s_k_plus_1.detach(),\n            \"hinge\": hinge.detach(),\n            \"mask\": mask.detach(),\n        }\n        return loss, info\n\n\nclass IMMTotalLoss(nn.Module):\n    \"\"\"L_total = L_action + lambda * L_margin, with linear lambda warmup.\"\"\"\n\n    def __init__(\n        self,\n        lambda_margin: float = 0.1,\n        delta: float = 1.0,\n        warmup_steps: int = 1000,\n        temperature: float = 1.0,\n        method: str = \"sigmoid\",\n    ):\n        super().__init__()\n        self.lambda_margin = lambda_margin\n        self.warmup_steps = warmup_steps\n        self.margin_loss = MarginMaximizationLoss(delta=delta, temperature=temperature, method=method)\n\n    def _get_lambda(self, step: int) -> float:\n        if self.warmup_steps <= 0:\n            return self.lambda_margin\n        return self.lambda_margin * min(1.0, step / self.warmup_steps)\n\n    def forward(\n        self, action_loss: Tensor, importance_scores: Tensor, k: int, step: int\n    ) -> Tuple[Tensor, Dict[str, Tensor]]:\n        \"\"\"\n        Args:\n            action_loss: scalar task loss (e.g. action prediction).\n            importance_scores: (B, N).\n            k: retention count.\n            step: current training step (for warmup).\n        Returns:\n            total_loss: scalar.\n            info: dict with all sub-losses and diagnostics.\n        \"\"\"\n        lam = self._get_lambda(step)\n        margin_loss, margin_info = self.margin_loss(importance_scores, k)\n        total = action_loss + lam * margin_loss\n\n        info = {\n            **margin_info,\n            \"action_loss\": action_loss.detach(),\n            \"margin_loss\": margin_loss.detach(),\n            \"total_loss\": total.detach(),\n            \"lambda\": torch.tensor(lam),\n        }\n        return total, info\n\n\nif __name__ == \"__main__\":\n    torch.manual_seed(42)\n    B, N, k = 4, 64, 16\n    scores = torch.randn(B, N, requires_grad=True)\n    action_loss = torch.tensor(1.5, requires_grad=True)\n\n    mmr = MarginMaximizationLoss(delta=0.5, temperature=0.5)\n    loss, info = mmr(scores, k)\n    loss.backward()\n    print(f\"MMR: loss={loss.item():.4f}, margin_mean={info['margin'].mean().item():.4f}, \"\n          f\"grad OK={scores.grad is not None}\")\n    scores.grad = None\n\n    total_loss_fn = IMMTotalLoss(lambda_margin=0.1, delta=0.5, warmup_steps=100, temperature=0.5)\n    total, tinfo = total_loss_fn(action_loss, scores, k, step=50)\n    total.backward()\n    print(f\"Total: loss={total.item():.4f}, lambda={tinfo['lambda'].item():.4f}, \"\n          f\"grad OK={scores.grad is not None}\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "9a5a40ad-42bb-466b-9643-77ca2ede5006",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TXiF9tsAMYz24wr2fR5daL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1552,
+      "cache_read_input_tokens": 25126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1552
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T11:14:57.865Z_
+
+<details><summary>↩ Tool result · `toolu_019FUoW7Tgjq16pvVKENsHQR`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/losses.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "e37804aa-28d4-49fc-8a9f-a5e426d92a8c",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/losses.py",
+    "content": "\"\"\"Importance Margin Maximization losses.\n\nMarginMaximizationLoss: hinge loss  max(0, delta - (s_{(k)} - s_{(k+1)})).\nIMMTotalLoss:           L_action + lambda * L_margin  with linear lambda warmup.\n\nInputs:  (B, N) importance scores, integer k.\nDepends: soft_topk.SoftTopK.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport torch\nimport torch.nn as nn\nfrom torch import Tensor\nfrom typing import Dict, Tuple\n\nfrom .soft_topk import SoftTopK\n\n\nclass MarginMaximizationLoss(nn.Module):\n    \"\"\"Hinge loss: L_margin = mean(max(0, delta - (s_{(k)} - s_{(k+1)}))).\"\"\"\n\n    def __init__(self, delta: float = 1.0, temperature: float = 1.0, method: str = \"sigmoid\"):\n        super().__init__()\n        self.delta = delta\n        self.soft_topk = SoftTopK(temperature=temperature, method=method)\n\n    def forward(self, importance_scores: Tensor, k: int) -> Tuple[Tensor, Dict[str, Tensor]]:\n        \"\"\"\n        Args:\n            importance_scores: (B, N) per-token importance scores.\n            k: number of tokens to retain.\n        Returns:\n            loss: scalar hinge loss.\n            info: dict with margin, s_k, s_k_plus_1, mask for logging.\n        \"\"\"\n        mask, s_k, s_k_plus_1 = self.soft_topk(importance_scores, k)\n\n        margin = s_k - s_k_plus_1  # (B,)\n        hinge = torch.clamp(self.delta - margin, min=0.0)  # (B,)\n        loss = hinge.mean()\n\n        info = {\n            \"margin\": margin.detach(),\n            \"s_k\": s_k.detach(),\n            \"s_k_plus_1\": s_k_plus_1.detach(),\n            \"hinge\": hinge.detach(),\n            \"mask\": mask.detach(),\n        }\n        return loss, info\n\n\nclass IMMTotalLoss(nn.Module):\n    \"\"\"L_total = L_action + lambda * L_margin, with linear lambda warmup.\"\"\"\n\n    def __init__(\n        self,\n        lambda_margin: float = 0.1,\n        delta: float = 1.0,\n        warmup_steps: int = 1000,\n        temperature: float = 1.0,\n        method: str = \"sigmoid\",\n    ):\n        super().__init__()\n        self.lambda_margin = lambda_margin\n        self.warmup_steps = warmup_steps\n        self.margin_loss = MarginMaximizationLoss(delta=delta, temperature=temperature, method=method)\n\n    def _get_lambda(self, step: int) -> float:\n        if self.warmup_steps <= 0:\n            return self.lambda_margin\n        return self.lambda_margin * min(1.0, step / self.warmup_steps)\n\n    def forward(\n        self, action_loss: Tensor, importance_scores: Tensor, k: int, step: int\n    ) -> Tuple[Tensor, Dict[str, Tensor]]:\n        \"\"\"\n        Args:\n            action_loss: scalar task loss (e.g. action prediction).\n            importance_scores: (B, N).\n            k: retention count.\n            step: current training step (for warmup).\n        Returns:\n            total_loss: scalar.\n            info: dict with all sub-losses and diagnostics.\n        \"\"\"\n        lam = self._get_lambda(step)\n        margin_loss, margin_info = self.margin_loss(importance_scores, k)\n        total = action_loss + lam * margin_loss\n\n        info = {\n            **margin_info,\n            \"action_loss\": action_loss.detach(),\n            \"margin_loss\": margin_loss.detach(),\n            \"total_loss\": total.detach(),\n            \"lambda\": torch.tensor(lam),\n        }\n        return total, info\n\n\nif __name__ == \"__main__\":\n    torch.manual_seed(42)\n    B, N, k = 4, 64, 16\n    scores = torch.randn(B, N, requires_grad=True)\n    action_loss = torch.tensor(1.5, requires_grad=True)\n\n    mmr = MarginMaximizationLoss(delta=0.5, temperature=0.5)\n    loss, info = mmr(scores, k)\n    loss.backward()\n    print(f\"MMR: loss={loss.item():.4f}, margin_mean={info['margin'].mean().item():.4f}, \"\n          f\"grad OK={scores.grad is not None}\")\n    scores.grad = None\n\n    total_loss_fn = IMMTotalLoss(lambda_margin=0.1, delta=0.5, warmup_steps=100, temperature=0.5)\n    total, tinfo = total_loss_fn(action_loss, scores, k, step=50)\n    total.backward()\n    print(f\"Total: loss={total.item():.4f}, lambda={tinfo['lambda'].item():.4f}, \"\n          f\"grad OK={scores.grad is not None}\")\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Y8U8UCq8mYHyTuzqYS1S6D`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/token_selection.py",
+  "content": "\"\"\"Margin-aware token selection: soft masking (train) / hard prune+merge (inference).\n\nTraining: applies soft sigmoid mask to visual tokens (fully differentiable).\nInference: three-partition — preserve (top-k), prune (bottom), merge (borderline) —\n           borderline tokens are weighted-averaged into their nearest preserved token.\n\nInputs:  (B, N) scores, (B, N, D) visual tokens, integer k.\nDepends: soft_topk.SoftTopK.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom torch import Tensor\nfrom typing import Dict, Tuple, Optional\n\nfrom .soft_topk import SoftTopK\n\n\nclass MarginAwareTokenSelector(nn.Module):\n    def __init__(self, temperature: float = 1.0, merge_weight_temp: float = 0.5):\n        super().__init__()\n        self.soft_topk = SoftTopK(temperature=temperature, method=\"sigmoid\")\n        self.merge_weight_temp = merge_weight_temp\n\n    def forward(\n        self,\n        importance_scores: Tensor,\n        visual_tokens: Tensor,\n        k: int,\n        training: bool = True,\n    ) -> Tuple[Tensor, Tensor, Dict[str, Tensor]]:\n        \"\"\"\n        Args:\n            importance_scores: (B, N) per-token scores.\n            visual_tokens:     (B, N, D) visual token embeddings.\n            k: number of tokens to retain.\n            training: soft mask (True) or hard prune/merge (False).\n        Returns:\n            selected_tokens: (B, N, D) soft-masked  or  (B, K', D) hard-selected.\n            selection_mask:  (B, N) soft or binary mask.\n            info: dict with diagnostic stats.\n        \"\"\"\n        if training:\n            return self._soft_forward(importance_scores, visual_tokens, k)\n        return self._hard_forward(importance_scores, visual_tokens, k)\n\n    # ------------------------------------------------------------------\n    def _soft_forward(\n        self, scores: Tensor, tokens: Tensor, k: int\n    ) -> Tuple[Tensor, Tensor, Dict[str, Tensor]]:\n        mask, s_k, s_k1 = self.soft_topk(scores, k)\n        selected = tokens * mask.unsqueeze(-1)  # (B, N, D)\n        info = {\n            \"mode\": torch.tensor(0),  # 0 = soft\n            \"mask_sum\": mask.sum(-1).detach(),\n            \"margin\": (s_k - s_k1).detach(),\n        }\n        return selected, mask, info\n\n    # ------------------------------------------------------------------\n    def _hard_forward(\n        self, scores: Tensor, tokens: Tensor, k: int\n    ) -> Tuple[Tensor, Tensor, Dict[str, Tensor]]:\n        B, N, D = tokens.shape\n\n        sorted_scores, sorted_idx = torch.sort(scores, dim=-1, descending=True)\n        s_k = sorted_scores[:, k - 1]      # (B,)\n        # Conservative lower boundary: halfway between k-th and 2k-th (or last)\n        merge_boundary = min(2 * k, N)\n        s_boundary = sorted_scores[:, merge_boundary - 1]  # (B,)\n\n        # Three partitions per sample\n        preserve_mask = scores >= s_k.unsqueeze(-1)                     # (B, N)\n        prune_mask = scores < s_boundary.unsqueeze(-1)                   # (B, N)\n        borderline_mask = ~preserve_mask & ~prune_mask                   # (B, N)\n\n        # Gather preserved tokens\n        preserve_idx = sorted_idx[:, :k]                                 # (B, k)\n        preserved_tokens = torch.gather(tokens, 1, preserve_idx.unsqueeze(-1).expand(-1, -1, D))\n\n        # Merge borderline tokens into nearest preserved token\n        merged_tokens = self._merge_borderline_tokens(\n            tokens, scores, preserved_tokens, preserve_idx, borderline_mask\n        )\n\n        binary_mask = preserve_mask.float()\n        info = {\n            \"mode\": torch.tensor(1),  # 1 = hard\n            \"num_preserved\": preserve_mask.sum(-1).float().detach(),\n            \"num_pruned\": prune_mask.sum(-1).float().detach(),\n            \"num_merged\": borderline_mask.sum(-1).float().detach(),\n        }\n        return merged_tokens, binary_mask, info\n\n    # ------------------------------------------------------------------\n    def _merge_borderline_tokens(\n        self,\n        tokens: Tensor,\n        scores: Tensor,\n        preserved_tokens: Tensor,\n        preserve_idx: Tensor,\n        borderline_mask: Tensor,\n    ) -> Tensor:\n        \"\"\"Weighted-merge each borderline token into cosine-nearest preserved token.\"\"\"\n        B, N, D = tokens.shape\n        K = preserved_tokens.shape[1]\n\n        num_borderline = borderline_mask.sum(-1)  # (B,)\n        if num_borderline.sum() == 0:\n            return preserved_tokens\n\n        # Cosine similarity: borderline -> preserved\n        preserved_norm = F.normalize(preserved_tokens, dim=-1)  # (B, K, D)\n        tokens_norm = F.normalize(tokens, dim=-1)               # (B, N, D)\n\n        # Similarity of all tokens to preserved tokens: (B, N, K)\n        sim = torch.bmm(tokens_norm, preserved_norm.transpose(1, 2))\n\n        # For each borderline token, find best preserved match\n        best_match = sim.argmax(dim=-1)  # (B, N) — index into K\n\n        # Importance-based merge weights\n        preserve_scores = torch.gather(scores, 1, preserve_idx)  # (B, K)\n\n        merged = preserved_tokens.clone()\n        for b in range(B):\n            border_idx = borderline_mask[b].nonzero(as_tuple=True)[0]\n            if border_idx.numel() == 0:\n                continue\n            for idx in border_idx:\n                target = best_match[b, idx].item()\n                w_border = torch.sigmoid(scores[b, idx] / (self.merge_weight_temp + 1e-8))\n                w_orig = torch.sigmoid(preserve_scores[b, target] / (self.merge_weight_temp + 1e-8))\n                total_w = w_orig + w_border + 1e-8\n                merged[b, target] = (w_orig / total_w) * merged[b, target] + (w_border / total_w) * tokens[b, idx]\n\n        return merged\n\n\nif __name__ == \"__main__\":\n    torch.manual_seed(42)\n    B, N, D, k = 2, 32, 64, 8\n    scores = torch.randn(B, N, requires_grad=True)\n    tokens = torch.randn(B, N, D)\n\n    selector = MarginAwareTokenSelector(temperature=0.5)\n\n    # Training mode\n    sel_train, mask_train, info_train = selector(scores, tokens, k, training=True)\n    sel_train.sum().backward()\n    print(f\"[train] shape={sel_train.shape}, mask_sum={info_train['mask_sum']}, \"\n          f\"grad OK={scores.grad is not None}\")\n    scores.grad = None\n\n    # Inference mode\n    with torch.no_grad():\n        sel_inf, mask_inf, info_inf = selector(scores, tokens, k, training=False)\n    print(f\"[infer] shape={sel_inf.shape}, preserved={info_inf['num_preserved']}, \"\n          f\"pruned={info_inf['num_pruned']}, merged={info_inf['num_merged']}\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "1a03bc6c-affd-42f1-87e1-e961e56b56f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PJmjFyiprretz1x9qBU2i8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1489,
+      "cache_read_input_tokens": 26678,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1489
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T11:15:32.090Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8U8UCq8mYHyTuzqYS1S6D`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/token_selection.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "00585983-88d7-49f0-ab4a-b35976b3df56",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/token_selection.py",
+    "content": "\"\"\"Margin-aware token selection: soft masking (train) / hard prune+merge (inference).\n\nTraining: applies soft sigmoid mask to visual tokens (fully differentiable).\nInference: three-partition — preserve (top-k), prune (bottom), merge (borderline) —\n           borderline tokens are weighted-averaged into their nearest preserved token.\n\nInputs:  (B, N) scores, (B, N, D) visual tokens, integer k.\nDepends: soft_topk.SoftTopK.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom torch import Tensor\nfrom typing import Dict, Tuple, Optional\n\nfrom .soft_topk import SoftTopK\n\n\nclass MarginAwareTokenSelector(nn.Module):\n    def __init__(self, temperature: float = 1.0, merge_weight_temp: float = 0.5):\n        super().__init__()\n        self.soft_topk = SoftTopK(temperature=temperature, method=\"sigmoid\")\n        self.merge_weight_temp = merge_weight_temp\n\n    def forward(\n        self,\n        importance_scores: Tensor,\n        visual_tokens: Tensor,\n        k: int,\n        training: bool = True,\n    ) -> Tuple[Tensor, Tensor, Dict[str, Tensor]]:\n        \"\"\"\n        Args:\n            importance_scores: (B, N) per-token scores.\n            visual_tokens:     (B, N, D) visual token embeddings.\n            k: number of tokens to retain.\n            training: soft mask (True) or hard prune/merge (False).\n        Returns:\n            selected_tokens: (B, N, D) soft-masked  or  (B, K', D) hard-selected.\n            selection_mask:  (B, N) soft or binary mask.\n            info: dict with diagnostic stats.\n        \"\"\"\n        if training:\n            return self._soft_forward(importance_scores, visual_tokens, k)\n        return self._hard_forward(importance_scores, visual_tokens, k)\n\n    # ------------------------------------------------------------------\n    def _soft_forward(\n        self, scores: Tensor, tokens: Tensor, k: int\n    ) -> Tuple[Tensor, Tensor, Dict[str, Tensor]]:\n        mask, s_k, s_k1 = self.soft_topk(scores, k)\n        selected = tokens * mask.unsqueeze(-1)  # (B, N, D)\n        info = {\n            \"mode\": torch.tensor(0),  # 0 = soft\n            \"mask_sum\": mask.sum(-1).detach(),\n            \"margin\": (s_k - s_k1).detach(),\n        }\n        return selected, mask, info\n\n    # ------------------------------------------------------------------\n    def _hard_forward(\n        self, scores: Tensor, tokens: Tensor, k: int\n    ) -> Tuple[Tensor, Tensor, Dict[str, Tensor]]:\n        B, N, D = tokens.shape\n\n        sorted_scores, sorted_idx = torch.sort(scores, dim=-1, descending=True)\n        s_k = sorted_scores[:, k - 1]      # (B,)\n        # Conservative lower boundary: halfway between k-th and 2k-th (or last)\n        merge_boundary = min(2 * k, N)\n        s_boundary = sorted_scores[:, merge_boundary - 1]  # (B,)\n\n        # Three partitions per sample\n        preserve_mask = scores >= s_k.unsqueeze(-1)                     # (B, N)\n        prune_mask = scores < s_boundary.unsqueeze(-1)                   # (B, N)\n        borderline_mask = ~preserve_mask & ~prune_mask                   # (B, N)\n\n        # Gather preserved tokens\n        preserve_idx = sorted_idx[:, :k]                                 # (B, k)\n        preserved_tokens = torch.gather(tokens, 1, preserve_idx.unsqueeze(-1).expand(-1, -1, D))\n\n        # Merge borderline tokens into nearest preserved token\n        merged_tokens = self._merge_borderline_tokens(\n            tokens, scores, preserved_tokens, preserve_idx, borderline_mask\n        )\n\n        binary_mask = preserve_mask.float()\n        info = {\n            \"mode\": torch.tensor(1),  # 1 = hard\n            \"num_preserved\": preserve_mask.sum(-1).float().detach(),\n            \"num_pruned\": prune_mask.sum(-1).float().detach(),\n            \"num_merged\": borderline_mask.sum(-1).float().detach(),\n        }\n        return merged_tokens, binary_mask, info\n\n    # ------------------------------------------------------------------\n    def _merge_borderline_tokens(\n        self,\n        tokens: Tensor,\n        scores: Tensor,\n        preserved_tokens: Tensor,\n        preserve_idx: Tensor,\n        borderline_mask: Tensor,\n    ) -> Tensor:\n        \"\"\"Weighted-merge each borderline token into cosine-nearest preserved token.\"\"\"\n        B, N, D = tokens.shape\n        K = preserved_tokens.shape[1]\n\n        num_borderline = borderline_mask.sum(-1)  # (B,)\n        if num_borderline.sum() == 0:\n            return preserved_tokens\n\n        # Cosine similarity: borderline -> preserved\n        preserved_norm = F.normalize(preserved_tokens, dim=-1)  # (B, K, D)\n        tokens_norm = F.normalize(tokens, dim=-1)               # (B, N, D)\n\n        # Similarity of all tokens to preserved tokens: (B, N, K)\n        sim = torch.bmm(tokens_norm, preserved_norm.transpose(1, 2))\n\n        # For each borderline token, find best preserved match\n        best_match = sim.argmax(dim=-1)  # (B, N) — index into K\n\n        # Importance-based merge weights\n        preserve_scores = torch.gather(scores, 1, preserve_idx)  # (B, K)\n\n        merged = preserved_tokens.clone()\n        for b in range(B):\n            border_idx = borderline_mask[b].nonzero(as_tuple=True)[0]\n            if border_idx.numel() == 0:\n                continue\n            for idx in border_idx:\n                target = best_match[b, idx].item()\n                w_border = torch.sigmoid(scores[b, idx] / (self.merge_weight_temp + 1e-8))\n                w_orig = torch.sigmoid(preserve_scores[b, target] / (self.merge_weight_temp + 1e-8))\n                total_w = w_orig + w_border + 1e-8\n                merged[b, target] = (w_orig / total_w) * merged[b, target] + (w_border / total_w) * tokens[b, idx]\n\n        return merged\n\n\nif __name__ == \"__main__\":\n    torch.manual_seed(42)\n    B, N, D, k = 2, 32, 64, 8\n    scores = torch.randn(B, N, requires_grad=True)\n    tokens = torch.randn(B, N, D)\n\n    selector = MarginAwareTokenSelector(temperature=0.5)\n\n    # Training mode\n    sel_train, mask_train, info_train = selector(scores, tokens, k, training=True)\n    sel_train.sum().backward()\n    print(f\"[train] shape={sel_train.shape}, mask_sum={info_train['mask_sum']}, \"\n          f\"grad OK={scores.grad is not None}\")\n    scores.grad = None\n\n    # Inference mode\n    with torch.no_grad():\n        sel_inf, mask_inf, info_inf = selector(scores, tokens, k, training=False)\n    print(f\"[infer] shape={sel_inf.shape}, preserved={info_inf['num_preserved']}, \"\n          f\"pruned={info_inf['num_pruned']}, merged={info_inf['num_merged']}\")\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01XZeoJsMo6RsRyQEwntzySP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/metrics.py",
+  "content": "\"\"\"Evaluation metrics for importance-margin token compression.\n\ncompute_margin:           gap between k-th and (k+1)-th largest scores.\ntopk_preservation_rate:   Jaccard overlap of top-k sets under perturbation.\nkendall_tau_distance:     rank correlation of top-k ordering under perturbation.\ncertified_bound:          probabilistic upper bound on top-k set change.\nmargin_statistics:        summary stats of margins across a batch.\n\nAll functions are pure (no nn.Module state), operate on detached tensors.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport torch\nfrom torch import Tensor\nfrom typing import Dict\n\n\ndef compute_margin(scores: Tensor, k: int) -> Tensor:\n    \"\"\"Delta_k = s_{(k)} - s_{(k+1)}.\n\n    Args:\n        scores: (B, N) importance scores.\n        k: retention count, must satisfy 0 < k < N.\n    Returns:\n        (B,) margin values.\n    \"\"\"\n    sorted_scores, _ = torch.sort(scores, dim=-1, descending=True)\n    return sorted_scores[:, k - 1] - sorted_scores[:, k]\n\n\ndef topk_preservation_rate(scores_clean: Tensor, scores_perturbed: Tensor, k: int) -> Tensor:\n    \"\"\"Jaccard similarity |A ∩ B| / |A ∪ B| of top-k index sets.\n\n    Args:\n        scores_clean:     (B, N).\n        scores_perturbed: (B, N).\n        k: retention count.\n    Returns:\n        (B,) Jaccard similarities in [0, 1].\n    \"\"\"\n    _, idx_clean = torch.topk(scores_clean, k, dim=-1)\n    _, idx_pert = torch.topk(scores_perturbed, k, dim=-1)\n\n    B, N = scores_clean.shape\n    mask_clean = torch.zeros(B, N, device=scores_clean.device)\n    mask_pert = torch.zeros(B, N, device=scores_clean.device)\n    mask_clean.scatter_(1, idx_clean, 1.0)\n    mask_pert.scatter_(1, idx_pert, 1.0)\n\n    intersection = (mask_clean * mask_pert).sum(-1)\n    union = (mask_clean + mask_pert).clamp(max=1.0).sum(-1)\n    return intersection / union.clamp(min=1.0)\n\n\ndef kendall_tau_distance(scores_clean: Tensor, scores_perturbed: Tensor, k: int) -> Tensor:\n    \"\"\"Kendall tau-b correlation of top-k rankings.\n\n    Only considers the union of top-k indices from both sets.\n    Returns values in [-1, 1]; +1 = identical ranking.\n\n    Args:\n        scores_clean:     (B, N).\n        scores_perturbed: (B, N).\n        k: retention count.\n    Returns:\n        (B,) correlation values.\n    \"\"\"\n    B, N = scores_clean.shape\n    _, idx_clean = torch.topk(scores_clean, k, dim=-1)\n    _, idx_pert = torch.topk(scores_perturbed, k, dim=-1)\n\n    # Union of top-k indices\n    mask_union = torch.zeros(B, N, device=scores_clean.device)\n    mask_union.scatter_(1, idx_clean, 1.0)\n    mask_union.scatter_(1, idx_pert, 1.0)\n\n    taus = []\n    for b in range(B):\n        union_idx = mask_union[b].nonzero(as_tuple=True)[0]\n        n_union = union_idx.numel()\n        if n_union < 2:\n            taus.append(torch.tensor(1.0, device=scores_clean.device))\n            continue\n\n        r1 = scores_clean[b, union_idx]\n        r2 = scores_perturbed[b, union_idx]\n\n        # Pairwise concordance\n        diff1 = r1.unsqueeze(0) - r1.unsqueeze(1)  # (n, n)\n        diff2 = r2.unsqueeze(0) - r2.unsqueeze(1)\n        sign_prod = torch.sign(diff1) * torch.sign(diff2)\n\n        # Upper triangle only\n        n_pairs = n_union * (n_union - 1) // 2\n        tau = sign_prod.triu(diagonal=1).sum() / max(n_pairs, 1)\n        taus.append(tau)\n\n    return torch.stack(taus)\n\n\ndef certified_bound(margin: Tensor, lipschitz_const: float, epsilon: float, k: int) -> Tensor:\n    \"\"\"Upper bound on probability of top-k set change: P <= k * eps * L / Delta_k.\n\n    Args:\n        margin:         (B,) Delta_k values (must be > 0 for meaningful bound).\n        lipschitz_const: Lipschitz constant L of the scoring function.\n        epsilon:        perturbation budget (L_inf or L_2 radius).\n        k:              retention count.\n    Returns:\n        (B,) upper bound probabilities, clamped to [0, 1].\n    \"\"\"\n    bound = k * epsilon * lipschitz_const / margin.clamp(min=1e-8)\n    return bound.clamp(0.0, 1.0)\n\n\ndef margin_statistics(scores: Tensor, k: int) -> Dict[str, Tensor]:\n    \"\"\"Summary statistics of Delta_k across a batch.\n\n    Args:\n        scores: (B, N).\n        k: retention count.\n    Returns:\n        dict with median, mean, std, min, max of margins.\n    \"\"\"\n    m = compute_margin(scores, k)\n    return {\n        \"median\": m.median(),\n        \"mean\": m.mean(),\n        \"std\": m.std(),\n        \"min\": m.min(),\n        \"max\": m.max(),\n    }\n\n\nif __name__ == \"__main__\":\n    torch.manual_seed(42)\n    B, N, k = 4, 64, 16\n    scores = torch.randn(B, N)\n    scores_noisy = scores + 0.1 * torch.randn_like(scores)\n\n    m = compute_margin(scores, k)\n    print(f\"Margin: {m}\")\n\n    pr = topk_preservation_rate(scores, scores_noisy, k)\n    print(f\"Preservation rate: {pr}\")\n\n    kt = kendall_tau_distance(scores, scores_noisy, k)\n    print(f\"Kendall tau: {kt}\")\n\n    cb = certified_bound(m, lipschitz_const=1.0, epsilon=0.01, k=k)\n    print(f\"Certified bound: {cb}\")\n\n    stats = margin_statistics(scores, k)\n    print(f\"Stats: { {k: v.item() for k, v in stats.items()} }\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "e24fc9c7-2a48-4b76-ac84-9c6a1b526ec8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M5PiyKnZvpd4cMz5s5uh1e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 28167,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2153
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T11:15:59.538Z_
+
+<details><summary>↩ Tool result · `toolu_01XZeoJsMo6RsRyQEwntzySP`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/metrics.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "2a46255c-e3c9-4ead-9263-2ab5028d3e17",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/metrics.py",
+    "content": "\"\"\"Evaluation metrics for importance-margin token compression.\n\ncompute_margin:           gap between k-th and (k+1)-th largest scores.\ntopk_preservation_rate:   Jaccard overlap of top-k sets under perturbation.\nkendall_tau_distance:     rank correlation of top-k ordering under perturbation.\ncertified_bound:          probabilistic upper bound on top-k set change.\nmargin_statistics:        summary stats of margins across a batch.\n\nAll functions are pure (no nn.Module state), operate on detached tensors.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport torch\nfrom torch import Tensor\nfrom typing import Dict\n\n\ndef compute_margin(scores: Tensor, k: int) -> Tensor:\n    \"\"\"Delta_k = s_{(k)} - s_{(k+1)}.\n\n    Args:\n        scores: (B, N) importance scores.\n        k: retention count, must satisfy 0 < k < N.\n    Returns:\n        (B,) margin values.\n    \"\"\"\n    sorted_scores, _ = torch.sort(scores, dim=-1, descending=True)\n    return sorted_scores[:, k - 1] - sorted_scores[:, k]\n\n\ndef topk_preservation_rate(scores_clean: Tensor, scores_perturbed: Tensor, k: int) -> Tensor:\n    \"\"\"Jaccard similarity |A ∩ B| / |A ∪ B| of top-k index sets.\n\n    Args:\n        scores_clean:     (B, N).\n        scores_perturbed: (B, N).\n        k: retention count.\n    Returns:\n        (B,) Jaccard similarities in [0, 1].\n    \"\"\"\n    _, idx_clean = torch.topk(scores_clean, k, dim=-1)\n    _, idx_pert = torch.topk(scores_perturbed, k, dim=-1)\n\n    B, N = scores_clean.shape\n    mask_clean = torch.zeros(B, N, device=scores_clean.device)\n    mask_pert = torch.zeros(B, N, device=scores_clean.device)\n    mask_clean.scatter_(1, idx_clean, 1.0)\n    mask_pert.scatter_(1, idx_pert, 1.0)\n\n    intersection = (mask_clean * mask_pert).sum(-1)\n    union = (mask_clean + mask_pert).clamp(max=1.0).sum(-1)\n    return intersection / union.clamp(min=1.0)\n\n\ndef kendall_tau_distance(scores_clean: Tensor, scores_perturbed: Tensor, k: int) -> Tensor:\n    \"\"\"Kendall tau-b correlation of top-k rankings.\n\n    Only considers the union of top-k indices from both sets.\n    Returns values in [-1, 1]; +1 = identical ranking.\n\n    Args:\n        scores_clean:     (B, N).\n        scores_perturbed: (B, N).\n        k: retention count.\n    Returns:\n        (B,) correlation values.\n    \"\"\"\n    B, N = scores_clean.shape\n    _, idx_clean = torch.topk(scores_clean, k, dim=-1)\n    _, idx_pert = torch.topk(scores_perturbed, k, dim=-1)\n\n    # Union of top-k indices\n    mask_union = torch.zeros(B, N, device=scores_clean.device)\n    mask_union.scatter_(1, idx_clean, 1.0)\n    mask_union.scatter_(1, idx_pert, 1.0)\n\n    taus = []\n    for b in range(B):\n        union_idx = mask_union[b].nonzero(as_tuple=True)[0]\n        n_union = union_idx.numel()\n        if n_union < 2:\n            taus.append(torch.tensor(1.0, device=scores_clean.device))\n            continue\n\n        r1 = scores_clean[b, union_idx]\n        r2 = scores_perturbed[b, union_idx]\n\n        # Pairwise concordance\n        diff1 = r1.unsqueeze(0) - r1.unsqueeze(1)  # (n, n)\n        diff2 = r2.unsqueeze(0) - r2.unsqueeze(1)\n        sign_prod = torch.sign(diff1) * torch.sign(diff2)\n\n        # Upper triangle only\n        n_pairs = n_union * (n_union - 1) // 2\n        tau = sign_prod.triu(diagonal=1).sum() / max(n_pairs, 1)\n        taus.append(tau)\n\n    return torch.stack(taus)\n\n\ndef certified_bound(margin: Tensor, lipschitz_const: float, epsilon: float, k: int) -> Tensor:\n    \"\"\"Upper bound on probability of top-k set change: P <= k * eps * L / Delta_k.\n\n    Args:\n        margin:         (B,) Delta_k values (must be > 0 for meaningful bound).\n        lipschitz_const: Lipschitz constant L of the scoring function.\n        epsilon:        perturbation budget (L_inf or L_2 radius).\n        k:              retention count.\n    Returns:\n        (B,) upper bound probabilities, clamped to [0, 1].\n    \"\"\"\n    bound = k * epsilon * lipschitz_const / margin.clamp(min=1e-8)\n    return bound.clamp(0.0, 1.0)\n\n\ndef margin_statistics(scores: Tensor, k: int) -> Dict[str, Tensor]:\n    \"\"\"Summary statistics of Delta_k across a batch.\n\n    Args:\n        scores: (B, N).\n        k: retention count.\n    Returns:\n        dict with median, mean, std, min, max of margins.\n    \"\"\"\n    m = compute_margin(scores, k)\n    return {\n        \"median\": m.median(),\n        \"mean\": m.mean(),\n        \"std\": m.std(),\n        \"min\": m.min(),\n        \"max\": m.max(),\n    }\n\n\nif __name__ == \"__main__\":\n    torch.manual_seed(42)\n    B, N, k = 4, 64, 16\n    scores = torch.randn(B, N)\n    scores_noisy = scores + 0.1 * torch.randn_like(scores)\n\n    m = compute_margin(scores, k)\n    print(f\"Margin: {m}\")\n\n    pr = topk_preservation_rate(scores, scores_noisy, k)\n    print(f\"Preservation rate: {pr}\")\n\n    kt = kendall_tau_distance(scores, scores_noisy, k)\n    print(f\"Kendall tau: {kt}\")\n\n    cb = certified_bound(m, lipschitz_const=1.0, epsilon=0.01, k=k)\n    print(f\"Certified bound: {cb}\")\n\n    stats = margin_statistics(scores, k)\n    print(f\"Stats: { {k: v.item() for k, v in stats.items()} }\")\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Write · `toolu_016XJYAwraW8eM9f27NUENrh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/__init__.py",
+  "content": "\"\"\"IMM — Importance Margin Maximization for VLA visual token compression.\"\"\"\n\nfrom .soft_topk import SoftTopK\nfrom .losses import MarginMaximizationLoss, IMMTotalLoss\nfrom .token_selection import MarginAwareTokenSelector\nfrom .metrics import (\n    compute_margin,\n    topk_preservation_rate,\n    kendall_tau_distance,\n    certified_bound,\n    margin_statistics,\n)\n\n__all__ = [\n    \"SoftTopK\",\n    \"MarginMaximizationLoss\",\n    \"IMMTotalLoss\",\n    \"MarginAwareTokenSelector\",\n    \"compute_margin\",\n    \"topk_preservation_rate\",\n    \"kendall_tau_distance\",\n    \"certified_bound\",\n    \"margin_statistics\",\n]\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "b375d5dd-159d-4009-abee-98b3eadd155f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xvg2qmu1xTnuXnjUP9zvTo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1915,
+      "cache_read_input_tokens": 30320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1915
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T11:16:05.179Z_
+
+<details><summary>↩ Tool result · `toolu_016XJYAwraW8eM9f27NUENrh`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/__init__.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "860f2571-23e5-4740-af44-d4b57cf27f3d",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/imm/__init__.py",
+    "content": "\"\"\"IMM — Importance Margin Maximization for VLA visual token compression.\"\"\"\n\nfrom .soft_topk import SoftTopK\nfrom .losses import MarginMaximizationLoss, IMMTotalLoss\nfrom .token_selection import MarginAwareTokenSelector\nfrom .metrics import (\n    compute_margin,\n    topk_preservation_rate,\n    kendall_tau_distance,\n    certified_bound,\n    margin_statistics,\n)\n\n__all__ = [\n    \"SoftTopK\",\n    \"MarginMaximizationLoss\",\n    \"IMMTotalLoss\",\n    \"MarginAwareTokenSelector\",\n    \"compute_margin\",\n    \"topk_preservation_rate\",\n    \"kendall_tau_distance\",\n    \"certified_bound\",\n    \"margin_statistics\",\n]\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+All files written. Running the verification script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "e1f34d63-a144-4ac8-bf16-d1d80f215f54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014SCR67uYuXajFzpGAaGpiW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 364,
+      "cache_read_input_tokens": 32235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 364
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Bq5CZkRBuQwBXf2z4EN1BG`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts && python -c \"\nimport torch\nimport sys\nsys.path.insert(0, '.')\nfrom imm.losses import MarginMaximizationLoss, IMMTotalLoss\nfrom imm.soft_topk import SoftTopK\nfrom imm.token_selection import MarginAwareTokenSelector\nfrom imm.metrics import compute_margin, topk_preservation_rate, certified_bound\n\nB, N, D = 2, 64, 256\nscores = torch.randn(B, N, requires_grad=True)\ntokens = torch.randn(B, N, D)\nk = 32\n\n# Test soft top-k\ntopk = SoftTopK(temperature=0.5)\nmask, s_k, s_k_plus1 = topk(scores, k)\nprint(f'SoftTopK: mask shape={mask.shape}, s_k={s_k}, margin={s_k - s_k_plus1}')\n\n# Test MMR loss\nmmr = MarginMaximizationLoss(delta=0.5)\nloss, info = mmr(scores, k)\nloss.backward()\nprint(f'MMR loss={loss.item():.4f}, margin={info[\\\"margin\\\"].mean().item():.4f}, grad exists={scores.grad is not None}')\n\nscores.grad = None\n\n# Test token selection (training mode)\nselector = MarginAwareTokenSelector()\nselected, sel_mask, sel_info = selector(scores, tokens, k, training=True)\nprint(f'Selector (train): selected shape={selected.shape}')\n\n# Test metrics\nm = compute_margin(scores.detach(), k)\nprint(f'Margin: {m}')\n\nscores_noisy = scores.detach() + 0.1 * torch.randn_like(scores)\npr = topk_preservation_rate(scores.detach(), scores_noisy, k)\nprint(f'Preservation rate: {pr}')\n\ncb = certified_bound(m, lipschitz_const=1.0, epsilon=0.01, k=k)\nprint(f'Certified bound: {cb}')\n\nprint('\\nAll modules OK!')\n\"\n",
+  "description": "Run IMM verification script",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "4c100645-08aa-4dd9-a67e-4248a2adbece",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014SCR67uYuXajFzpGAaGpiW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 364,
+      "cache_read_input_tokens": 32235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 364
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T11:16:17.183Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Bq5CZkRBuQwBXf2z4EN1BG`</summary>
+
+```text
+Exit code 127
+/bin/bash: line 1: python: command not found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "90ffd7f6-75d6-459e-80f5-93e8a739596e",
+  "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HeqQmfY8npfMBDvToz51QA`</summary>
+
+```json
+{
+  "command": "which python3 && python3 --version",
+  "description": "Check python3 availability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "bd21f53a-925b-4f0d-bf87-4c085a9c983d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GTxxNwgPMqgvyK3bFMK7fH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 803,
+      "cache_read_input_tokens": 32599,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 803
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T11:16:24.029Z_
+
+<details><summary>↩ Tool result · `toolu_01HeqQmfY8npfMBDvToz51QA`</summary>
+
+```text
+/usr/bin/python3
+Python 3.14.4
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "36c032bc-cc8c-4b6f-878b-93da2c66509d",
+  "tool_use_result": {
+    "stdout": "/usr/bin/python3\nPython 3.14.4",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011ybNBMRrqPV6iQfkioftko`</summary>
+
+```json
+{
+  "command": "python3 -c \"import torch; print(torch.__version__)\" 2>&1",
+  "description": "Check if torch is installed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "b61a4367-0379-4ed7-b471-8d280ae7cdaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xg2GbKXCfqsPYrjrrxZ7JE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 33402,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 108
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T11:16:26.800Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_011ybNBMRrqPV6iQfkioftko`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 1, in &lt;module>
+    import torch; print(torch.__version__)
+    ^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'torch'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "67d759b5-a9b5-4928-92ed-8a7487151c78",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 1, in &lt;module>\n    import torch; print(torch.__version__)\n    ^^^^^^^^^^^^\nModuleNotFoundError: No module named 'torch'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GDUGWEVXNamSXNm1oyS4Pi`</summary>
+
+```json
+{
+  "command": "pip3 install torch --index-url https://download.pytorch.org/whl/cpu 2>&1 | tail -5",
+  "description": "Install CPU-only PyTorch for local verification",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "5b796aa4-42af-4acb-8257-08a8483eb885",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jqr43MQCNp89LBWH5ihvYu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 171,
+      "cache_read_input_tokens": 33510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 171
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T11:16:31.089Z_
+
+<details><summary>↩ Tool result · `toolu_01GDUGWEVXNamSXNm1oyS4Pi`</summary>
+
+```text
+    See /usr/share/doc/python3.14/README.venv for more information.
+
+note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+hint: See PEP 668 for the detailed specification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "db3673a2-37f6-42c7-867f-06b020deb0e8",
+  "tool_use_result": {
+    "stdout": "    See /usr/share/doc/python3.14/README.venv for more information.\n\nnote: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+PEP 668 — need a venv.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "23c81b66-e8b2-4df2-ab4e-0fd58953a484",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMFKp7LLnZwbK23XMErDFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 33681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011xW2HbWCbcYYhuDLrdAVcQ`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts && python3 -m venv .venv && source .venv/bin/activate && pip install torch --index-url https://download.pytorch.org/whl/cpu 2>&1 | tail -3",
+  "description": "Create venv and install CPU torch",
+  "timeout": 180000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "aaf9ece5-be43-4c76-aee2-53387969131a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMFKp7LLnZwbK23XMErDFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 33681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 29_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "blq85d19c",
+  "tool_use_id": "toolu_011xW2HbWCbcYYhuDLrdAVcQ",
+  "description": "Create venv and install CPU torch",
+  "task_type": "local_bash",
+  "uuid": "25af504f-50f2-4b2e-8292-71503722d6ed",
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d"
+}
+```
+
+---
+
+### System
+
+_source line 30_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "blq85d19c",
+  "tool_use_id": "toolu_011xW2HbWCbcYYhuDLrdAVcQ",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Create venv and install CPU torch",
+  "uuid": "060d7695-c4a7-49f1-bd21-6896291cf20d",
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T11:17:15.840Z_
+
+<details><summary>↩ Tool result · `toolu_011xW2HbWCbcYYhuDLrdAVcQ`</summary>
+
+```text
+Installing collected packages: mpmath, typing-extensions, sympy, setuptools, networkx, MarkupSafe, fsspec, filelock, jinja2, torch
+
+Successfully installed MarkupSafe-3.0.3 filelock-3.29.0 fsspec-2026.4.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 setuptools-70.2.0 sympy-1.14.0 torch-2.12.0+cpu typing-extensions-4.15.0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "339e2444-79f8-4fe9-a167-5a055703d54e",
+  "tool_use_result": {
+    "stdout": "Installing collected packages: mpmath, typing-extensions, sympy, setuptools, networkx, MarkupSafe, fsspec, filelock, jinja2, torch\n\nSuccessfully installed MarkupSafe-3.0.3 filelock-3.29.0 fsspec-2026.4.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 setuptools-70.2.0 sympy-1.14.0 torch-2.12.0+cpu typing-extensions-4.15.0",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EB4PJH3fBpWv3TMDN6ho3G`</summary>
+
+```json
+{
+  "command": "source .venv/bin/activate && python -c \"\nimport torch\nimport sys\nsys.path.insert(0, '.')\nfrom imm.losses import MarginMaximizationLoss, IMMTotalLoss\nfrom imm.soft_topk import SoftTopK\nfrom imm.token_selection import MarginAwareTokenSelector\nfrom imm.metrics import compute_margin, topk_preservation_rate, certified_bound\n\nB, N, D = 2, 64, 256\nscores = torch.randn(B, N, requires_grad=True)\ntokens = torch.randn(B, N, D)\nk = 32\n\n# Test soft top-k\ntopk = SoftTopK(temperature=0.5)\nmask, s_k, s_k_plus1 = topk(scores, k)\nprint(f'SoftTopK: mask shape={mask.shape}, s_k={s_k}, margin={s_k - s_k_plus1}')\n\n# Test MMR loss\nmmr = MarginMaximizationLoss(delta=0.5)\nloss, info = mmr(scores, k)\nloss.backward()\nprint(f'MMR loss={loss.item():.4f}, margin={info[\\\"margin\\\"].mean().item():.4f}, grad exists={scores.grad is not None}')\n\nscores.grad = None\n\n# Test token selection (training mode)\nselector = MarginAwareTokenSelector()\nselected, sel_mask, sel_info = selector(scores, tokens, k, training=True)\nprint(f'Selector (train): selected shape={selected.shape}')\n\n# Test metrics\nm = compute_margin(scores.detach(), k)\nprint(f'Margin: {m}')\n\nscores_noisy = scores.detach() + 0.1 * torch.randn_like(scores)\npr = topk_preservation_rate(scores.detach(), scores_noisy, k)\nprint(f'Preservation rate: {pr}')\n\ncb = certified_bound(m, lipschitz_const=1.0, epsilon=0.01, k=k)\nprint(f'Certified bound: {cb}')\n\nprint('\\nAll modules OK!')\n\"\n",
+  "description": "Run full IMM verification",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "644a1ff3-cbe6-411c-9761-54ba2a45cf29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjZ1sANPCNjeRpmkVtU2Rg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 336,
+      "cache_read_input_tokens": 33900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 336
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T11:17:30.337Z_
+
+<details><summary>↩ Tool result · `toolu_01EB4PJH3fBpWv3TMDN6ho3G`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/.venv/lib/python3.14/site-packages/torch/_subclasses/functional_tensor.py:362: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+SoftTopK: mask shape=torch.Size([2, 64]), s_k=tensor([-0.0463, -0.2215], grad_fn=&lt;SelectBackward0>), margin=tensor([0.0176, 0.0251], grad_fn=&lt;SubBackward0>)
+MMR loss=0.4786, margin=0.0214, grad exists=True
+Selector (train): selected shape=torch.Size([2, 64, 256])
+Margin: tensor([0.0176, 0.0251])
+Preservation rate: tensor([0.8824, 0.9394])
+Certified bound: tensor([1., 1.])
+
+All modules OK!
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "3406c2a0-457f-485b-baca-5801d5d24d47",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/.venv/lib/python3.14/site-packages/torch/_subclasses/functional_tensor.py:362: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)\n  cpu = _conversion_method_template(device=torch.device(\"cpu\"))\nSoftTopK: mask shape=torch.Size([2, 64]), s_k=tensor([-0.0463, -0.2215], grad_fn=&lt;SelectBackward0>), margin=tensor([0.0176, 0.0251], grad_fn=&lt;SubBackward0>)\nMMR loss=0.4786, margin=0.0214, grad exists=True\nSelector (train): selected shape=torch.Size([2, 64, 256])\nMargin: tensor([0.0176, 0.0251])\nPreservation rate: tensor([0.8824, 0.9394])\nCertified bound: tensor([1., 1.])\n\nAll modules OK!",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+全部模块验证通过，梯度正常流通。
+
+实现的 5 个文件：
+
+| 文件 | 内容 |
+|------|------|
+| `soft_topk.py` | `SoftTopK` — sigmoid 和 sinkhorn 两种可微 top-k 方案 |
+| `losses.py` | `MarginMaximizationLoss` (hinge loss) + `IMMTotalLoss` (含 λ warmup) |
+| `token_selection.py` | `MarginAwareTokenSelector` — 训练时 soft mask，推理时 preserve/prune/merge 三分区 |
+| `metrics.py` | `compute_margin`, `topk_preservation_rate`, `kendall_tau_distance`, `certified_bound`, `margin_statistics` |
+| `__init__.py` | 统一导出 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "uuid": "8654eec6-3184-4b4d-818f-f65d1f3ea4e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014kAZHEXgdV9MQ1LFpXi6wx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 34236,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 925
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 35_
+
+全部模块验证通过，梯度正常流通。
+
+实现的 5 个文件：
+
+| 文件 | 内容 |
+|------|------|
+| `soft_topk.py` | `SoftTopK` — sigmoid 和 sinkhorn 两种可微 top-k 方案 |
+| `losses.py` | `MarginMaximizationLoss` (hinge loss) + `IMMTotalLoss` (含 λ warmup) |
+| `token_selection.py` | `MarginAwareTokenSelector` — 训练时 soft mask，推理时 preserve/prune/merge 三分区 |
+| `metrics.py` | `compute_margin`, `topk_preservation_rate`, `kendall_tau_distance`, `certified_bound`, `margin_statistics` |
+| `__init__.py` | 统一导出 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 207566,
+  "duration_api_ms": 165375,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "3febe9d8-7f8f-4de6-9453-ad0b9059e14d",
+  "total_cost_usd": 0.5730185,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 23320,
+    "cache_read_input_tokens": 380665,
+    "output_tokens": 9352,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23320,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 228,
+        "cache_read_input_tokens": 34236,
+        "cache_creation_input_tokens": 925,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 925
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2971,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003061,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 9352,
+      "cacheReadInputTokens": 380665,
+      "cacheCreationInputTokens": 23320,
+      "webSearchRequests": 0,
+      "costUSD": 0.5699575,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fe5c1817-3514-4f1d-985e-8124af643806"
+}
+```
+
+</details>
+
+---

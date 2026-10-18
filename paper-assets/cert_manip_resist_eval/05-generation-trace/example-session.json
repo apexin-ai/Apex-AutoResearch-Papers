@@ -12,6 +12,7 @@
     "bytes": 677295,
     "sha256": "84805dc7751dd0834e2f9f83ee7659f7c8f4dfa6c8094e4914a7a2697d42f826"
   },
+  "readable_path": "readable/conversations/reviewer-1-coordination.md",
   "paper_title": "The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation",
   "preview_selection": {
     "round": 1,

@@ -500,5 +500,6 @@
       ],
       "message_count": 10
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/fix-kill-gpu0-stale-pid.md"
 }

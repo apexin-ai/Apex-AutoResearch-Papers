@@ -1,0 +1,2496 @@
+# cron hook exp003a prompt v2 rerun
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 83
+- **Recorded user turns:** 2
+- **Tool calls:** 40
+- **Original source:** `logs/chats/cron_hook_exp003a_prompt_v2_rerun.jsonl`
+- **Structured JSON:** [`918aa921ef67c6b98dca.json`](../../sessions/91/918aa921ef67c6b98dca.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+39 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T02:44:54.491666+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: exp003a_prompt_v2_rerun
+- project: schema-dag-extraction
+- server: cqa1-38874
+- log_path: ~/runs/schema-dag-extraction/exp003a_prompt_v2_rerun.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T02:45:05.491248+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T02:45:05.542031+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T02:45:08.354344+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T02:45:08.808086+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T02:45:08.808976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp003a_prompt_v2_rerun\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T02:44:53.625Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"208752\", \"log_path\": \"~/runs/schema-dag-extraction/exp003a_prompt_v2_rerun.log\", \"submitted_at\": \"2026-05-15T02:44:30.493Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 23.1, \"gpu_hours\": 0.01}, \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"pid\": \"208752\", \"log_path\": \"~/runs/schema-dag-extraction/exp003a_prompt_v2_rerun.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T02:44:53.103Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"
+…[truncated 5133 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T02:45:09.311695+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T02:45:09.312080+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T02:45:09.764119+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T02:44:53Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 3 个实验 — ANALYZING 2, DONE 1\\n**DONE 分布**: failed 1\\n\\n### GPU 占用\\n- **分配**: 1 张 — cqa1-38874:cuda:0\\n- **空闲（分配了没跑）**: cqa1-38874:cuda:0\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp003a_prompt_v2_rerun` [failed] — 2026-05-15T02:44:53 — EXIT_CODE=2 (shell misuse / syntax)\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp003a_prompt_v2_rerun`: EXIT_CODE=2 (shell misuse / syntax)\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp002_confusability_controlled | — | — | — | — |\\n| exp001_count_baseline | — | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp003a_prompt_v2_rerun** (failed): —\\n\\n## 趋势\\n成功 0 / 负向 0 / 失败 1 / 共 1\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-38874: 无 GPU 信息\\n\\n## 告警\\n- exp003a_prompt_v2_rerun: 训练失败 — unknown\\n\", \"total_chars\": 993, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T02:45:09.764472+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T02:45:10.217121+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\", \"content\": \"# schema-dag-extraction — Research Dashboard\\n\\n> 最后更新: 2026-05-14 23:37 UTC | 更新原因: 同步 ROADMAP 至实际进度：Exp1 完成 + 方法调整 D003/D004 + Exp2 运行中\\n\\n## 核心方向\\n验证 type confusability（而非仅 type count）是否独立驱动 training-free LLM IE 的 schema-induced degradation，并据此构建 confusability-aware schema decomposition（SDGD）框架。详见 IDEA_BRIEF.md。\\n\\n## 当前阶段\\n**MVP 验证** — Exp 1 完成（关键发现：recall↓ + WrongType↑ 支持假设，F1 因 over-prediction 反转）。Exp 2 运行中（7/54 batches，ETA ~2.9h）。分析代码已就绪，prompt v2 已准备。\\n\\n## MVP 验证方案（v3，基于 D003/D004 调整）\\n\\n**GPU**: 1× RTX PRO 6000 Blackwell (98GB), cqa1-38874 cuda:0\\n**模型**: Qwen3-32B-FP8\\n**数据**: Few-NERD (66 fine-grained types, 1000 test samples, 64 active types)\\n\\n**Exp 1 — Count Curve + Solo Baseline** ✅ 完成\\n- 关键发现：Recall 单调下降 0.72→0.42（符合预期），Precision 单调上升 0.11→0.52（over-prediction 减少）\\n- WrongType 错误 0→2434（type confusion 随 count 线性增长）— 直接支持 confusability 假设\\n- F1 曲线反转（precision 主导）是 over-prediction confound，非 confusability 缺失\\n\\n**Exp 2 — Confusability Effect（核心假设检验）** 🔄 运行中 (7/54)\\n- count=6/12 各 25 random + 1 low-BCS + 1 high-BCS batch\\n- **主指标 (D004)**: within-count |r(recall, BCS)| ≥ 0.3, p < 0.05\\n- 次要: within-count r(F1, BCS), confusion_rate(high-BCS) vs confusion_rate(low-BCS)\\n- 评估方式: text matching（char offset 不可靠，exact F1 ≈ 0）\\n\\n## 近期任务\\n- [x] 环境搭建 + 模型下载 + 数据准备\\n- [x] 代码修复（5 个 Reviewer fixes）\\n- [x] Exp 1 完成 + text-match 重评估 + FP 分解分析\\n- [x] B 方案 1（E5 vs Qwen3 BCS 对比 → Qwen3 保留）\\n- [x] 分析代码更新（within-count r, recall 主指标, confusion rate）\\n- [x] Prompt v2 准备（去 offset + 抑制 over-prediction）\\n- [ ] Exp 2 完成 → text.find() 重评估 → within-count 分析\\n- [ ] Go/no-go 决策\\n- [ ] 如 pass: prompt v2 重跑 exp1+exp2 得到干净数据（~3h GPU）\\n\\n## GPU 预算\\n- 服务器: cqa1-38874, 1× RTX PRO 6000 Blackwell (98GB), cuda:0\\n- MVP 已用: ~5h（Exp 1 ~3.5h + Exp 2 进行中）\\n- 剩余 MVP: prompt v2 重跑 ~3h（如需要）\\n- 
+…[truncated 708 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T02:45:10.268085+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "schema-dag-extraction",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "schema-dag-extraction",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T02:45:10.369063+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"schema-dag-extraction\", \"section\": \"execution\", \"config\": {\"execution\": {\"project_path\": \"/root/schema-dag-extraction\", \"servers\": [{\"account\": \"root\", \"server\": \"cqa1-38874\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T02:45:10.369410+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T02:45:10.419931+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T02:45:26.343090+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T02:45:26.344137+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T02:45:26.394849+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_fb4a4a77.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T02:45:26.395295+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_fb4a4a77.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T02:45:29.761338+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T02:45:29.811969+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T02:45:33.728955+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T02:45:33.779549+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T02:45:36.591085+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T02:45:36.794044+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Glob",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T02:45:39.453938+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T02:45:39.505117+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T02:45:48.799509+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T02:45:49.453412+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md\", \"content\": \"# Memory — schema-dag-extraction\\n\\n## Exp2 最终结果 + Pairwise 分析 (2026-05-15 02:41, CLEAN DATA)\\n**三层证据**（全部基于 text_match reeval 干净数据）：\\n1. **Batch-level F1 vs BCS**: count_12 r=0.501 p=0.008 (PASS), partial r=0.303 p=0.026 (PASS)\\n2. **Batch-level confusion rate**: extreme batches high/low = 10-28x; random batches = 1.7-2.4x\\n3. **Type-pair level**: BCS-confusion Pearson r=0.156 (p=4.6e-12, n=1953); 非零 pairs Spearman ρ=0.254 (p=1.1e-6)\\n\\n**Recall vs BCS 不显著** (partial r=0.252, p=0.066)——理论解释：confusability 的机制是\\\"找到但标错类型\\\"（precision 通道），不是\\\"漏掉实体\\\"（recall 通道）。\\n\\n**Top confused pairs**: person-other ↔ person-{politician/actor/athlete/artist} (BCS 0.89-0.93)，同 coarse category 内 fine-grained subtypes 互相混淆。\\n\\n**关键教训**：text_match 修正对 within-count correlation 几乎无影响（relaxed match 已容忍 offset 偏差）。但数据来源必须标注清楚，避免 Director 质疑。\\n\\n## D005 Narrative: Multi-channel Degradation (方案 A)\\n- Count → recall decline（exp1: 0.72→0.42 单调下降）\\n- Confusability → type confusion / precision decline（exp2: F1 correlation + pairwise evidence）\\n- 两者正交，SDGD 需同时处理 count 和 within-group BCS\\n\\n## 代码状态 (2026-05-15)\\n- prompt v2 就绪（text-only + empty-list instruction），exp003a PENDING 等审批\\n- `src/reeval_text_match.py`：通用重评估脚本\\n- `src/analyze_results.py`：within-count Pearson r + recall-only + confusion rate + 可视化\\n- `src/pairwise_confusion_analysis.py`：pairwise BCS-confusion 相关分析\\n\\n## Evaluation 根因 (2026-05-14)\\nQwen3-32B-FP8 96.5% char offset 编造。Over-prediction 在低 count 时严重（count=1 pred/gold=6.8:1）。\\n\\n## Embedding Model Choice (2026-05-14)\\nQwen3-32B mean-pooled (5120 dim) 优于 E5-large-v2。Exp2 用 Qwen3 BCS。\\n\\n## Environment (2026-05-14)\\n- cqa1-38874: RTX PRO 6000 Blackwell 98GB, CUDA 13.1\\n- conda base: Python 3.12.3, vLLM 0.20.2, torch 2.10.0+cu128\\n- Qwen3-32B-FP8 at /root/autodl-tmp/.hf_cache/qwen3-32b-
+…[truncated 160 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 653
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T02:45:49.503993+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__send_progress",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__send_progress",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T02:45:49.556101+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "ToolSearch",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T02:45:58.793628+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "log_path": "/root/runs/schema-dag-extraction/exp003a_prompt_v2_rerun.log",
+  "n": "80",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "log_path": "/root/runs/schema-dag-extraction/exp003a_prompt_v2_rerun.log",
+    "n": "80",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T02:46:00.049511+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"python3: can't open file '/root/schema-dag-extraction/run_experiment.py': [Errno 2] No such file or directory\", \"EXIT_CODE=2\"], \"line_count\": 2, \"log_path\": \"/root/runs/schema-dag-extraction/exp003a_prompt_v2_rerun.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1255
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T02:46:12.312571+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp003a_prompt_v2_rerun",
+  "field": "notes",
+  "value": "失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp003a_prompt_v2_rerun",
+    "field": "notes",
+    "value": "失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复",
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T02:46:12.766074+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T02:46:12.307Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"208752\", \"log_path\": \"~/runs/schema-dag-extraction/exp003a_prompt_v2_rerun.log\", \"submitted_at\": \"2026-05-15T02:44:30.493Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 23.1, \"gpu_hours\": 0.01}, \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"pid\": \"208752\", \"log_path\": \"~/runs/schema-dag-extraction/exp003a_prompt_v2_rerun.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T02:44:53.103Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_fa
+…[truncated 308 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T02:46:27.038395+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "diagnose:exp003a_prompt_v2_rerun",
+  "project": "schema-dag-extraction",
+  "task_prompt": "SSH 到服务器 cqa1-38874（account: root），诊断并修复实验 exp003a_prompt_v2_rerun 的失败原因。\n\n## 背景\n实验命令尝试执行 `cd /root/schema-dag-extraction && python3 run_experiment.py`，但 `run_experiment.py` 在 `/root/schema-dag-extraction/` 下不存在（Errno 2: No such file or directory），导致 EXIT_CODE=2。\n\n实验命令全文：\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\"\n```\n\n## 执行步骤\n\n1. **检查服务器文件结构**：\n   - `ls -la /root/schema-dag-extraction/` 看项目目录下有哪些文件\n   - `find /root/schema-dag-extraction/ -name \"*.py\" -type f` 找到所有 Python 文件\n   - 特别关注：入口脚本可能叫 `run_experiment.py` 但在子目录里，或者叫别的名字（如 `main.py`、`train.py`、`src/run_experiment.py`）\n\n2. **确认入口脚本**：\n   - 找到正确的入口脚本后，检查它是否支持 `--mode exp1 --prompt_version v2 --eval_mode text_match --model_path ... --max_samples 1000` 这些参数\n   - `python3 &lt;script> --help` 验证参数\n\n3. **检查代码是否需要同步**：\n   - `cd /root/schema-dag-extraction && git log --oneline -3` 看最近提交\n   - `git status` 看是否有未提交的变更\n   - 如果入口文件完全不存在，可能是代码没有 push/pull\n\n4. **修复方案**：\n   - 如果是 git 没同步：`git pull origin main`（或对应分支）\n   - 如果是路径不对：记录正确路径\n\n5. **验证修复**：\n   - 确认入口脚本存在且可执行\n   - dry-run：`python3 &lt;correct_script> --help` 或 `python3 &lt;correct_script> --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 --dry_run`（如果支持）\n\n## 输出\n最后输出一行 JSON：\n{\"root_cause\":\"<具体原因>\",\"correct_entry_point\":\"<正确的脚本路径>\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"fix_applied\":true/false,\"ready_to_resubmit\":true/false,\"resubmit_command\":\"<修正后的完整命令>\"}",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:exp003a_prompt_v2_rerun",
+    "project": "schema-dag-extraction",
+    "task_prompt": "SSH 到服务器 cqa1-38874（account: root），诊断并修复实验 exp003a_prompt_v2_rerun 的失败原因。\n\n## 背景\n实验命令尝试执行 `cd /root/schema-dag-extraction && python3 run_experiment.py`，但 `run_experiment.py` 在 `/root/schema-dag-extraction/` 下不存在（Errno 2: No such file or directory），导致 EXIT_CODE=2。\n\n实验命令全文：\n```\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\"\n```\n\n## 执行步骤\n\n1. **检查服务器文件结构**：\n   - `ls -la /root/schema-dag-extraction/` 看项目目录下有哪些文件\n   - `find /root/schema-dag-extraction/ -name \"*.py\" -type f` 找到所有 Python 文件\n   - 特别关注：入口脚本可能叫 `run_experiment.py` 但在子目录里，或者叫别的名字（如 `main.py`、`train.py`、`src/run_experiment.py`）\n\n2. **确认入口脚本**：\n   - 找到正确的入口脚本后，检查它是否支持 `--mode exp1 --prompt_version v2 --eval_mode text_match --model_path ... --max_samples 1000` 这些参数\n   - `python3 &lt;script> --help` 验证参数\n\n3. **检查代码是否需要同步**：\n   - `cd /root/schema-dag-extraction && git log --oneline -3` 看最近提交\n   - `git status` 看是否有未提交的变更\n   - 如果入口文件完全不存在，可能是代码没有 push/pull\n\n4. **修复方案**：\n   - 如果是 git 没同步：`git pull origin main`（或对应分支）\n   - 如果是路径不对：记录正确路径\n\n5. **验证修复**：\n   - 确认入口脚本存在且可执行\n   - dry-run：`python3 &lt;correct_script> --help` 或 `python3 &lt;correct_script> --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 --dry_run`（如果支持）\n\n## 输出\n最后输出一行 JSON：\n{\"root_cause\":\"<具体原因>\",\"correct_entry_point\":\"<正确的脚本路径>\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"fix_applied\":true/false,\"ready_to_resubmit\":true/false,\"resubmit_command\":\"<修正后的完整命令>\"}",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T02:46:28.447253+00:00_
+
+called mcp__agent-ml-research__feishu_send_result_card
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__feishu_send_result_card</summary>
+
+```json
+{
+  "exp_id": "exp003a_prompt_v2_rerun",
+  "conclusion": "failed",
+  "key_metrics": "{}",
+  "baseline_comparison": "失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2）。EXIT_CODE=2, 运行仅 23 秒。已派 Worker 诊断服务器文件结构并修复。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "tool_args": {
+    "exp_id": "exp003a_prompt_v2_rerun",
+    "conclusion": "failed",
+    "key_metrics": "{}",
+    "baseline_comparison": "失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2）。EXIT_CODE=2, 运行仅 23 秒。已派 Worker 诊断服务器文件结构并修复。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T02:46:29.701732+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_exp003a_prompt_v2_rerun_20260515T024627\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_diagnose_exp003a_prompt_v2_rerun_20260515T024627.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_exp003a_prompt_v2_rerun_20260515T024627 started. Use get_worker_status('worker_diagnose_exp003a_prompt_v2_rerun_20260515T024627') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2663
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-15T03:04:54.782798+00:00_
+
+根因明确：`/root/schema-dag-extraction/run_experiment.py` 不存在（Errno 2）。Infrastructure 错误——文件缺失或路径不对。
+
+派 Worker 诊断并修复，同时更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp003a_prompt_v2_rerun"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+44 recorded events
+
+### User
+
+_source line 40 · 2026-05-15T05:04:25.804854+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp003a_prompt_v2_rerun
+- project: schema-dag-extraction
+- server: cqa1-38874
+- log_path: /root/schema-dag-extraction/logs/exp3a.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T05:04:37.443995+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T05:04:37.544739+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T05:04:40.760446+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T05:04:41.212672+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T05:04:41.213531+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp003a_prompt_v2_rerun\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:04:24.882Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/dat
+…[truncated 5228 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T05:04:41.766231+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T05:04:41.766575+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T05:04:41.766739+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T05:04:41.817375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T05:04:24Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 3 个实验 — ANALYZING 3\\n\\n### GPU 占用\\n- **分配**: 1 张 — cqa1-38874:cuda:0\\n- **空闲（分配了没跑）**: cqa1-38874:cuda:0\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n_（无）_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp003a_prompt_v2_rerun | — | — | — | — |\\n| exp001_count_baseline | — | — | — | — |\\n| exp002_confusability_controlled | — | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n（无）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-38874: 无 GPU 信息\\n\\n## 告警\\n（无）\\n\", \"total_chars\": 721, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T05:04:41.817833+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\", \"content\": \"# schema-dag-extraction — Research Dashboard\\n\\n> 最后更新: 2026-05-15 02:49 UTC | 更新原因: Post-MVP kickoff: research phase entry, framing + plan written, Dream launched\\n\\n## 核心方向\\n验证 type confusability 独立于 type count 驱动 training-free LLM IE 质量下降，发现 multi-channel degradation model（count→recall, confusability→type confusion），并据此构建 SDGD 框架。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Research 阶段** — MVP 已通过（D005）。paper_framing.md + experiment_plan.yaml 已写好。Dream 模拟运行中（dream_20260515T024826, review_mode=full）。等待 Dream 回调后批准 P0 实验。\\n\\n## MVP 结论摘要\\n- Claim 1 (confusability independence): partial r=0.303 (p=0.026), count_12 r=0.501 (p=0.008)\\n- Claim 2 (multi-channel): recall 0.72→0.42 (count channel) + WrongType 0→2434 (confusability channel)\\n- Pairwise BCS-confusion: Spearman ρ=0.254, p=1.1e-6 (n=1953 type pairs)\\n- Confusion rate: high-BCS extreme batches 10-28x vs low-BCS\\n\\n## 近期任务\\n- [x] MVP 验证通过 (D005)\\n- [x] 写 paper_framing.md (3 Core Claims + Story Spine)\\n- [x] 写 experiment_plan.yaml (15 experiments, P0=23h, P1=20h)\\n- [ ] Dream 模拟完成 → 分析审稿反馈 → 调整 framing/plan\\n- [ ] 修复 exp3a (prompt v2 rerun, syntax error) → 重跑\\n- [ ] 批准 P0 实验启动（等 Dream 回调）\\n- [ ] ACE05 数据准备 + confusability study (exp-004)\\n- [ ] SDGD 框架实现 (exp-008)\\n- [ ] 多模型验证 (exp-012)\\n\\n## GPU 预算\\n- 服务器: cqa1-38874, 1× RTX PRO 6000 Blackwell (98GB), cuda:0\\n- MVP 已用: ~6h\\n- Research P0 预估: ~23h\\n- Research P1 预估: ~20h\\n- 总计: ~49h（10 天内 ~5h/day，可行）\\n\\n## 实验计划概览（详见 experiment_plan.yaml）\\n- **P0** (6 experiments, 23h): exp-003a, exp-004 (ACE05), exp-008 (SDGD-zero/FewNERD), exp-009 (SDGD-zero/ACE05), exp-012 (multi-model), exp-013 (random batching ablation)\\n- **P1** (9 experiments, 20h): exp-005 (DocRED), exp-006 (interaction), exp-007 (error taxonomy), exp-010/011 (SDGD-cal), exp-014 (per-type ablation), exp-015 (SCS validati
+…[truncated 809 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T05:05:19.278520+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "file": "paper_framing.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T05:05:20.734961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md\", \"content\": \"# Paper Framing — schema-dag-extraction\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25 cycle)\\n- Commitment deadline: August 2, 2026\\n- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)\\n- Deadline: ARR May 25, 2026 (10 days from today)\\n\\n## Core Claims (3 conditions)\\n\\n1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. Evidence required: within-count correlation r(metric, BCS) significant after controlling for count, replicated on >=2 datasets and >=2 models.\\n\\n2. **Multi-Channel Degradation**: Count and confusability degrade extraction through orthogonal channels -- count causes entity omission (recall decline), while confusability causes type confusion (precision decline via mislabeling). Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.\\n\\n3. **SDGD Effectiveness**: Confusability-aware schema decomposition (SDGD) -- partitioning types into low-confusability batches via graph coloring on the SCS-thresholded confusability graph -- yields significant F1 gains over single-pass and heuristic decomposition on complex schemas (>=30 types). Evidence required: SDGD > single-pass, SDGD > random batching (same k), SDGD >= per-type splitting (with lower latency).\\n\\n## Story Spine\\n\\n- **Problem**: Training-free LLM IE degrades severely on complex schemas (20-60 F1 gap vs supervised). All existing decomposition approaches (per-type splitting, similarity-based partitioning, fixed k-step pipelines) operate on unvalidated assumptions about WHAT makes schemas complex for LLMs.\\n\\n- **Existing approaches & their gaps**: UniNER splits per-type (gains 3.3 F1 but loses cross-ty
+…[truncated 3985 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1456
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T05:05:20.835799+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__register_artifact",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__register_artifact",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T05:05:20.886446+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T05:06:03.471360+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:exp003a_logs",
+  "project": "schema-dag-extraction",
+  "task_prompt": "## 任务：分析 exp003a_prompt_v2_rerun 实验结果\n\n### 背景\n实验 exp003a_prompt_v2_rerun 在服务器 cqa1-38874 上运行，CRON 报告进程正常退出。但 registry 中有历史失败记录（EXIT_CODE=2, run_experiment.py 找不到）。实验经历了一次 retry，第二次运行在 05:04 UTC 完成。\n\n### 实验信息\n- 服务器: cqa1-38874\n- 日志路径: /root/schema-dag-extraction/logs/exp3a.log\n- 命令: `python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000` 然后 `--mode exp2`\n- Hypothesis: Prompt v2 rerun - 验证改进的 prompt 是否提升 NER 质量\n- 模型: Qwen3-32B-FP8\n- 数据: Few-NERD test.parquet, 1000 samples\n\n### 你的任务\n1. SSH 到 cqa1-38874，读取日志 /root/schema-dag-extraction/logs/exp3a.log（tail 最后 200 行，看运行是否成功）\n2. 检查退出状态——是否真的成功完成了两个实验（exp1 和 exp2 mode）\n3. 查找结果文件：\n   - `ls -la /root/schema-dag-extraction/results/` 或类似目录\n   - 查找包含 \"v2\" 或 \"exp3\" 的 JSON 结果文件\n4. 如果找到结果文件，读取关键 metrics（F1, precision, recall）\n5. 与之前的实验对比（exp001 用的是 v1 prompt）:\n   - exp001 text_match metrics: count_1 F1=0.184, count_44 F1=0.473, count_64 F1=0.463\n   - 重点看 prompt v2 是否改善了 precision（之前 over-prediction 严重）和 recall\n\n### 产出\n用 update_registry 更新 exp003a_prompt_v2_rerun:\n- 如果成功: 设 conclusion=success 或 negative（根据结果判断），设 metrics（关键指标），设 log_path\n- 如果失败: 设 conclusion=failed，记录 failure_reason\n\n最终写一段简洁的分析总结（200字以内），说明实验结果和与 exp001 的对比。",
+  "tool_groups": "['ssh', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:exp003a_logs",
+    "project": "schema-dag-extraction",
+    "task_prompt": "## 任务：分析 exp003a_prompt_v2_rerun 实验结果\n\n### 背景\n实验 exp003a_prompt_v2_rerun 在服务器 cqa1-38874 上运行，CRON 报告进程正常退出。但 registry 中有历史失败记录（EXIT_CODE=2, run_experiment.py 找不到）。实验经历了一次 retry，第二次运行在 05:04 UTC 完成。\n\n### 实验信息\n- 服务器: cqa1-38874\n- 日志路径: /root/schema-dag-extraction/logs/exp3a.log\n- 命令: `python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000` 然后 `--mode exp2`\n- Hypothesis: Prompt v2 rerun - 验证改进的 prompt 是否提升 NER 质量\n- 模型: Qwen3-32B-FP8\n- 数据: Few-NERD test.parquet, 1000 samples\n\n### 你的任务\n1. SSH 到 cqa1-38874，读取日志 /root/schema-dag-extraction/logs/exp3a.log（tail 最后 200 行，看运行是否成功）\n2. 检查退出状态——是否真的成功完成了两个实验（exp1 和 exp2 mode）\n3. 查找结果文件：\n   - `ls -la /root/schema-dag-extraction/results/` 或类似目录\n   - 查找包含 \"v2\" 或 \"exp3\" 的 JSON 结果文件\n4. 如果找到结果文件，读取关键 metrics（F1, precision, recall）\n5. 与之前的实验对比（exp001 用的是 v1 prompt）:\n   - exp001 text_match metrics: count_1 F1=0.184, count_44 F1=0.473, count_64 F1=0.463\n   - 重点看 prompt v2 是否改善了 precision（之前 over-prediction 严重）和 recall\n\n### 产出\n用 update_registry 更新 exp003a_prompt_v2_rerun:\n- 如果成功: 设 conclusion=success 或 negative（根据结果判断），设 metrics（关键指标），设 log_path\n- 如果失败: 设 conclusion=failed，记录 failure_reason\n\n最终写一段简洁的分析总结（200字以内），说明实验结果和与 exp001 的对比。",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T05:06:04.626636+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp001_count_baseline",
+  "field": "checkpoint_path",
+  "value": "N/A (inference experiment)",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp001_count_baseline",
+    "field": "checkpoint_path",
+    "value": "N/A (inference experiment)",
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T05:06:05.329729+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp002_confusability_controlled",
+  "field": "checkpoint_path",
+  "value": "N/A (inference experiment)",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp002_confusability_controlled",
+    "field": "checkpoint_path",
+    "value": "N/A (inference experiment)",
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T05:06:06.837107+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp003a_logs_20260515T050603\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_exp003a_logs_20260515T050603.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp003a_logs_20260515T050603 started. Use get_worker_status('worker_analysis_exp003a_logs_20260515T050603') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3365
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T05:06:06.837694+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp001_count_baseline\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:13:40.180Z\", \"updated_at\": \"2026-05-15T05:06:06.113Z\", \"spec\": {\"hypothesis\": \"F1 随 type count 增加而下降（复现已知现象，验证 setup 正确性）\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"design\": \"count=[1,2,6,12,22,44,66]，每档 5 random samples，count=1 = solo baseline\", \"command\": \"nohup python3 run_experiment.py --mode exp1 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 188307, \"vllm_version\": \"0.20.2\", \"max_model_len\": 4096, \"gpu_memory_utilization\": 0.95}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log\", \"metrics\": {\"diagnosis\": \"char offset 96.5% fabricated by model\", \"text_match_reeval\": {\"count_1\": {\"f1\": 0.184, \"precision\": 0.105, \"recall\": 0.72, \"pred_gold_ratio\": 6.85}, \"count_2\": {\"f1\": 0.123, \"precision\": 0.068, \"recall\": 0.698, \"pred_gold_ratio\": 10.33}, \"count_6\": {\"f1\": 0.155, \"precision\": 0.088, \"recall\": 0.62, \"pred_gold_ratio\": 7.02}, \"count_12\": {\"f1\": 0.246, \"precision\": 0.16, \"recall\": 0.539, \"pred_gold_ratio\": 3.38}, \"count_22\": {\"f1\": 0.322, \"precision\": 0.232, \"recall\": 0.527, \"pred_gold_ratio\": 2.27}, \"count_44\": {\"f1\": 0.473, \"precision\": 0.414, \"recall\": 0.551, \"pred_gold_ratio\": 1.33}, \"count_64\": {\"f1\": 0.463, \"precision\": 0.52, \"recall\": 0.418, \"pred_gold_ratio\": 0.8}}, \"key_finding\": \"recall monotonically decreases (0.72→0.42), precision monotonically increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at count_44\", \"wrong_type_trend\": \"type confusion increases with count: 0→2434, supports confusab
+…[truncated 464 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2211
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T05:06:06.840326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp002_confusability_controlled\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:13:42.626Z\", \"updated_at\": \"2026-05-15T05:06:06.154Z\", \"spec\": {\"hypothesis\": \"固定 type count 时，高 BCS batch 的 recall 显著低于低 BCS batch（confusability 独立驱动质量下降）\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"design\": \"count=6,12 × 25 random + 1 low-BCS + 1 high-BCS = 54 batches\", \"pass_criteria\": {\"primary\": \"within-count |r(recall, BCS)| >= 0.3, p < 0.05\", \"secondary\": \"within-count |r(F1, BCS)|\", \"mechanistic\": \"confusion_rate(high-BCS pairs) > confusion_rate(low-BCS pairs)\"}, \"command\": \"nohup python3 run_experiment.py --mode exp2 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 197321}, \"log_path\": \"/root/schema-dag-extraction/logs/exp2.log\", \"metrics\": {\"data_source\": \"exp2_reeval_results.json (text_match, CLEAN)\", \"primary_recall_vs_bcs\": {\"count_6\": {\"r\": 0.2754, \"p\": 0.1644, \"n\": 27, \"verdict\": \"FAIL\"}, \"count_12\": {\"r\": 0.2219, \"p\": 0.266, \"n\": 27, \"verdict\": \"FAIL\"}, \"partial\": {\"r\": 0.2522, \"p\": 0.0658, \"n\": 54, \"verdict\": \"FAIL\"}}, \"secondary_f1_vs_bcs\": {\"count_6\": {\"r\": 0.1754, \"p\": 0.3814, \"n\": 27, \"verdict\": \"FAIL\"}, \"count_12\": {\"r\": 0.5012, \"p\": 0.0077, \"n\": 27, \"verdict\": \"PASS\"}, \"partial\": {\"r\": 0.3025, \"p\": 0.0262, \"n\": 54, \"verdict\": \"PASS\"}}, \"mechanistic_confusion_rate\": {\"random_batches\": {\"count_6_high\": 0.0157, \"count_6_low\": 0.0088, \"ratio_6\": 1.7, \"count_12_high\": 0.0304, \"count_12_low\": 0.0131, \"ratio_12\": 2.4}, \"extreme_batches\": {\"count_6_high\": 0.0728, \"count_6_low\": 0.0014, \"ratio_6\": 27.5, \"
+…[truncated 888 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1510
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T05:06:06.840725+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T05:06:06.893024+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_fb4a4a77.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T05:06:14.936280+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T05:06:14.987603+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_fb4a4a77.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T05:06:26.953764+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T05:06:27.205145+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Glob",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T05:06:29.618287+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T05:06:29.769322+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T05:06:34.791265+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T05:06:34.792001+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T05:06:34.792280+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T05:06:34.893122+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-38874\", \"gpu_id\": \"cuda:0\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"cqa1-38874\", \"gpu_id\": \"cuda:0\", \"idle_min\": null}], \"running_experiments\": [], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 0, \"cpu_tasks\": 1, \"details\": [{\"worker_id\": \"worker_analysis_exp003a_logs_20260515T050603\", \"task\": \"analysis:exp003a_logs\"}]}, \"summary\": \"分配 1 张, 实际跑 0 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-15T05:06:46.391820+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp001_count_baseline",
+  "field": "status",
+  "value": "DONE",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp001_count_baseline",
+    "field": "status",
+    "value": "DONE",
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T05:06:46.844389+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp001_count_baseline\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:13:40.180Z\", \"updated_at\": \"2026-05-15T05:06:46.365Z\", \"spec\": {\"hypothesis\": \"F1 随 type count 增加而下降（复现已知现象，验证 setup 正确性）\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"design\": \"count=[1,2,6,12,22,44,66]，每档 5 random samples，count=1 = solo baseline\", \"command\": \"nohup python3 run_experiment.py --mode exp1 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 188307, \"vllm_version\": \"0.20.2\", \"max_model_len\": 4096, \"gpu_memory_utilization\": 0.95}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log\", \"metrics\": {\"diagnosis\": \"char offset 96.5% fabricated by model\", \"text_match_reeval\": {\"count_1\": {\"f1\": 0.184, \"precision\": 0.105, \"recall\": 0.72, \"pred_gold_ratio\": 6.85}, \"count_2\": {\"f1\": 0.123, \"precision\": 0.068, \"recall\": 0.698, \"pred_gold_ratio\": 10.33}, \"count_6\": {\"f1\": 0.155, \"precision\": 0.088, \"recall\": 0.62, \"pred_gold_ratio\": 7.02}, \"count_12\": {\"f1\": 0.246, \"precision\": 0.16, \"recall\": 0.539, \"pred_gold_ratio\": 3.38}, \"count_22\": {\"f1\": 0.322, \"precision\": 0.232, \"recall\": 0.527, \"pred_gold_ratio\": 2.27}, \"count_44\": {\"f1\": 0.473, \"precision\": 0.414, \"recall\": 0.551, \"pred_gold_ratio\": 1.33}, \"count_64\": {\"f1\": 0.463, \"precision\": 0.52, \"recall\": 0.418, \"pred_gold_ratio\": 0.8}}, \"key_finding\": \"recall monotonically decreases (0.72→0.42), precision monotonically increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at count_44\", \"wrong_type_trend\": \"type confusion increases with count: 0→2434, supports confusability
+…[truncated 558 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-15T05:06:47.499278+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp002_confusability_controlled",
+  "field": "status",
+  "value": "DONE",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp002_confusability_controlled",
+    "field": "status",
+    "value": "DONE",
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-15T05:06:47.549882+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T05:06:47.651350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp002_confusability_controlled\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:13:42.626Z\", \"updated_at\": \"2026-05-15T05:06:47.486Z\", \"spec\": {\"hypothesis\": \"固定 type count 时，高 BCS batch 的 recall 显著低于低 BCS batch（confusability 独立驱动质量下降）\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"design\": \"count=6,12 × 25 random + 1 low-BCS + 1 high-BCS = 54 batches\", \"pass_criteria\": {\"primary\": \"within-count |r(recall, BCS)| >= 0.3, p < 0.05\", \"secondary\": \"within-count |r(F1, BCS)|\", \"mechanistic\": \"confusion_rate(high-BCS pairs) > confusion_rate(low-BCS pairs)\"}, \"command\": \"nohup python3 run_experiment.py --mode exp2 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 197321}, \"log_path\": \"/root/schema-dag-extraction/logs/exp2.log\", \"metrics\": {\"data_source\": \"exp2_reeval_results.json (text_match, CLEAN)\", \"primary_recall_vs_bcs\": {\"count_6\": {\"r\": 0.2754, \"p\": 0.1644, \"n\": 27, \"verdict\": \"FAIL\"}, \"count_12\": {\"r\": 0.2219, \"p\": 0.266, \"n\": 27, \"verdict\": \"FAIL\"}, \"partial\": {\"r\": 0.2522, \"p\": 0.0658, \"n\": 54, \"verdict\": \"FAIL\"}}, \"secondary_f1_vs_bcs\": {\"count_6\": {\"r\": 0.1754, \"p\": 0.3814, \"n\": 27, \"verdict\": \"FAIL\"}, \"count_12\": {\"r\": 0.5012, \"p\": 0.0077, \"n\": 27, \"verdict\": \"PASS\"}, \"partial\": {\"r\": 0.3025, \"p\": 0.0262, \"n\": 54, \"verdict\": \"PASS\"}}, \"mechanistic_confusion_rate\": {\"random_batches\": {\"count_6_high\": 0.0157, \"count_6_low\": 0.0088, \"ratio_6\": 1.7, \"count_12_high\": 0.0304, \"count_12_low\": 0.0131, \"ratio_12\": 2.4}, \"extreme_batches\": {\"count_6_high\": 0.0728, \"count_6_low\": 0.0014, \"ratio_6\": 27.5, \"count
+…[truncated 982 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T05:06:47.652006+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"exp-001\", \"claim\": [1, 2], \"description\": \"Count curve baseline: recall/precision/F1 across type counts [1,2,6,12,22,44,66] on Few-NERD with Qwen3-32B-FP8\", \"priority\": \"P0\", \"gpu_budget_hours\": 3.5, \"deps\": [], \"registry_id\": \"exp001_count_baseline\", \"status_note\": \"DONE. Recall 0.72->0.42 monotonic. WrongType 0->2434. Over-prediction at low counts.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"diagnosis\": \"char offset 96.5% fabricated by model\", \"text_match_reeval\": {\"count_1\": {\"f1\": 0.184, \"precision\": 0.105, \"recall\": 0.72, \"pred_gold_ratio\": 6.85}, \"count_2\": {\"f1\": 0.123, \"precision\": 0.068, \"recall\": 0.698, \"pred_gold_ratio\": 10.33}, \"count_6\": {\"f1\": 0.155, \"precision\": 0.088, \"recall\": 0.62, \"pred_gold_ratio\": 7.02}, \"count_12\": {\"f1\": 0.246, \"precision\": 0.16, \"recall\": 0.539, \"pred_gold_ratio\": 3.38}, \"count_22\": {\"f1\": 0.322, \"precision\": 0.232, \"recall\": 0.527, \"pred_gold_ratio\": 2.27}, \"count_44\": {\"f1\": 0.473, \"precision\": 0.414, \"recall\": 0.551, \"pred_gold_ratio\": 1.33}, \"count_64\": {\"f1\": 0.463, \"precision\": 0.52, \"recall\": 0.418, \"pred_gold_ratio\": 0.8}}, \"key_finding\": \"recall monotonically decreases (0.72→0.42), precision monotonically increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at count_44\", \"wrong_type_trend\": \"type confusion increases with count: 0→2434, supports confusability hypothesis\", \"spurious_dominant\": \"spurious FPs (text in source but not entity) dominate at low count, not hallucination\", \"conclusion_text_match\": \"F1 curve inversion caused by over-prediction confound, NOT absence of confusability effect. Recall curve + type confusion pattern support hypothesis.\"}}, {\"id\": \"exp-002\", \"claim\": [1, 2], \"description\": \"Confusability controlled: within-count r(metric, BCS) at count=6/12, 25 rand
+…[truncated 6318 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-15T05:07:19.242606+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T05:07:19.745070+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md\", \"content\": \"# Memory — schema-dag-extraction\\n\\n## Exp2 最终结果 + Pairwise 分析 (2026-05-15 02:41, CLEAN DATA)\\n**三层证据**（全部基于 text_match reeval 干净数据）：\\n1. **Batch-level F1 vs BCS**: count_12 r=0.501 p=0.008 (PASS), partial r=0.303 p=0.026 (PASS)\\n2. **Batch-level confusion rate**: extreme batches high/low = 10-28x; random batches = 1.7-2.4x\\n3. **Type-pair level**: BCS-confusion Pearson r=0.156 (p=4.6e-12, n=1953); 非零 pairs Spearman ρ=0.254 (p=1.1e-6)\\n\\n**Recall vs BCS 不显著** (partial r=0.252, p=0.066)——理论解释：confusability 的机制是\\\"找到但标错类型\\\"（precision 通道），不是\\\"漏掉实体\\\"（recall 通道）。F1 是更合适的 BCS-quality 指标。\\n\\n## D005 Narrative: Multi-channel Degradation (方案 A)\\n- Count → recall decline（exp1: 0.72→0.42 单调下降）\\n- Confusability → type confusion / precision decline（exp2: F1 correlation + pairwise evidence）\\n- 两者正交\\n\\n## D007: FewRel RE Pilot 策略 (2026-05-15)\\n- 先做低成本 pilot，不直接 commit\\n- RE confusability 机制可能不同（取决于 entity pair 语义角色，不仅是 label embedding）\\n- Pilot: 1h GPU 做 BCS 矩阵 + 5 batch extraction\\n- BCS-confusion 存在 → commit P0；不存在 → claim 缩窄为 \\\"span-level IE\\\"\\n- **FewRel 实际 80 relations（非 100）**：train 64 relations (44800 samples) + val 16 relations (11200 samples)\\n\\n## Multi-model 决策 (2026-05-15)\\n- **LLaMA-3.3-70B-Instruct-FP8** (nvidia/Llama-3.3-70B-Instruct-FP8)\\n- Phi-4 14B 排除（太小）\\n\\n## SDGD 设计决策 (2026-05-15)\\n- **阈值**: adaptive (mean + k·std)，k 唯一超参。Fixed τ 仅 oracle baseline。\\n- **消融**: k sweep {0.5, 1.0, 1.5, 2.0}\\n- **Multi-pass FP**: exp-008 必须 prompt v2 + 报告 merged pred_gold_ratio\\n\\n## P0 启动顺序 (exp003a 完成后)\\n1. exp003a 结果分析（reeval + analyze, 30min）\\n2. MAVEN type embeddings（GPU, 15min）\\n3. exp-004 MAVEN BCS study\\n4. FewRel pilot（穿插）\\n\\n## 数据集 (2026-05-15)\\n- **Few-NERD**: NER, 66 types, test 37648\\n- **MAVEN**: ED, 168 types, valid 8042 sentences / 18904 mentions。已下载+预处理\\n
+…[truncated 752 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-15T05:07:40.144111+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "research:maven_data_prep",
+  "project": "schema-dag-extraction",
+  "task_prompt": "## 任务：MAVEN Event Detection 数据集准备 + BCS 计算\n\n### 背景\n我们正在做 schema-dag-extraction 项目，研究 type confusability 对 training-free LLM IE 质量的影响。核心发现已在 Few-NERD NER 数据集上验证（exp001/exp002），现在需要跨任务复制到 Event Detection。\n\nMAVEN 数据集有 168 个 FrameNet-based 事件类型，层级结构中有已知的 sibling confusion rates (14.6-19.8%)，是验证 confusability hypothesis 的理想 testbed。\n\n### 服务器信息\n- 服务器: cqa1-38874\n- Python 环境: conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- 项目目录: /root/schema-dag-extraction/\n- HF_HOME: /root/autodl-tmp/.hf_cache\n- GPU: RTX PRO 6000 Blackwell 98GB (cuda:0)\n- 注意：这是 AutoDL 实例，pip install 前必须 `source /etc/network_turbo`\n\n### 你的任务\n\n#### 1. 调研 MAVEN 数据集\n- WebSearch 搜索 \"MAVEN event detection dataset\" 了解：\n  - 数据集来源和下载方式（HuggingFace 或 GitHub）\n  - 数据格式（JSON lines? 每条记录的结构？）\n  - 168 个事件类型的层级结构\n  - 标注格式（trigger word + event type）\n  \n#### 2. 下载并探索数据\n- SSH 到 cqa1-38874\n- 下载 MAVEN 数据集到 /root/autodl-tmp/data/maven/\n- 探索数据格式：样本数、字段、事件类型分布\n- 统计每个 event type 的频次\n\n#### 3. 计算事件类型之间的 BCS (Batch Confusability Score)\n- 参考项目中已有的 BCS 计算代码：检查 /root/schema-dag-extraction/src/ 目录下的相关文件\n- BCS 基于 type 名称的 embedding 相似度（SCS = Semantic Confusability Score）\n  - 用 sentence-transformers 计算各 event type 名称的 embedding\n  - 计算 pairwise cosine similarity → SCS matrix\n  - BCS(batch) = mean SCS of all type pairs in the batch\n- 将 SCS matrix 保存到 /root/schema-dag-extraction/data/maven_scs_matrix.json\n- 生成 MAVEN event types 清单保存到 /root/schema-dag-extraction/configs/maven_event_types.json\n\n#### 4. 验证 BCS 分布\n- 计算 MAVEN 168 types 的 SCS 统计量（mean, std, top-10 most confusable pairs）\n- 与 Few-NERD 的 SCS 分布做简单对比（如果能找到已有的 Few-NERD SCS 数据）\n- 输出一个简单报告\n\n### 产出\n完成后用 update_registry 创建 exp-004 数据准备记录（或更新 notes），并将关键统计信息写入 registry。",
+  "tool_groups": "['ssh', 'registry', 'knowledge']",
+  "tools": "['WebSearch']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:maven_data_prep",
+    "project": "schema-dag-extraction",
+    "task_prompt": "## 任务：MAVEN Event Detection 数据集准备 + BCS 计算\n\n### 背景\n我们正在做 schema-dag-extraction 项目，研究 type confusability 对 training-free LLM IE 质量的影响。核心发现已在 Few-NERD NER 数据集上验证（exp001/exp002），现在需要跨任务复制到 Event Detection。\n\nMAVEN 数据集有 168 个 FrameNet-based 事件类型，层级结构中有已知的 sibling confusion rates (14.6-19.8%)，是验证 confusability hypothesis 的理想 testbed。\n\n### 服务器信息\n- 服务器: cqa1-38874\n- Python 环境: conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- 项目目录: /root/schema-dag-extraction/\n- HF_HOME: /root/autodl-tmp/.hf_cache\n- GPU: RTX PRO 6000 Blackwell 98GB (cuda:0)\n- 注意：这是 AutoDL 实例，pip install 前必须 `source /etc/network_turbo`\n\n### 你的任务\n\n#### 1. 调研 MAVEN 数据集\n- WebSearch 搜索 \"MAVEN event detection dataset\" 了解：\n  - 数据集来源和下载方式（HuggingFace 或 GitHub）\n  - 数据格式（JSON lines? 每条记录的结构？）\n  - 168 个事件类型的层级结构\n  - 标注格式（trigger word + event type）\n  \n#### 2. 下载并探索数据\n- SSH 到 cqa1-38874\n- 下载 MAVEN 数据集到 /root/autodl-tmp/data/maven/\n- 探索数据格式：样本数、字段、事件类型分布\n- 统计每个 event type 的频次\n\n#### 3. 计算事件类型之间的 BCS (Batch Confusability Score)\n- 参考项目中已有的 BCS 计算代码：检查 /root/schema-dag-extraction/src/ 目录下的相关文件\n- BCS 基于 type 名称的 embedding 相似度（SCS = Semantic Confusability Score）\n  - 用 sentence-transformers 计算各 event type 名称的 embedding\n  - 计算 pairwise cosine similarity → SCS matrix\n  - BCS(batch) = mean SCS of all type pairs in the batch\n- 将 SCS matrix 保存到 /root/schema-dag-extraction/data/maven_scs_matrix.json\n- 生成 MAVEN event types 清单保存到 /root/schema-dag-extraction/configs/maven_event_types.json\n\n#### 4. 验证 BCS 分布\n- 计算 MAVEN 168 types 的 SCS 统计量（mean, std, top-10 most confusable pairs）\n- 与 Few-NERD 的 SCS 分布做简单对比（如果能找到已有的 Few-NERD SCS 数据）\n- 输出一个简单报告\n\n### 产出\n完成后用 update_registry 创建 exp-004 数据准备记录（或更新 notes），并将关键统计信息写入 registry。",
+    "tool_groups": "['ssh', 'registry', 'knowledge']",
+    "tools": "['WebSearch']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T05:07:42.358977+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_maven_data_prep_20260515T050740\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_research_maven_data_prep_20260515T050740.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_maven_data_prep_20260515T050740 started. Use get_worker_status('worker_research_maven_data_prep_20260515T050740') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp003a_prompt_v2_rerun",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2214
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-15T05:08:06.670272+00:00_
+
+当前状态：
+- **exp001/exp002**: 已推到 DONE（success）
+- **exp003a**: Worker `worker_analysis_exp003a_logs_20260515T050603` 正在 SSH 分析日志和结果
+- **MAVEN 数据准备**: Worker `worker_research_maven_data_prep_20260515T050740` 已启动（memory.md 显示 MAVEN 已下载+预处理，Worker 可直接验证并计算 SCS matrix）
+- **GPU**: cqa1-38874:cuda:0 空闲，等 exp003a 分析结果后决定下一步
+- **Worker 池**: 2 (GPU 0 / CPU 2)
+
+等待 exp003a 分析 Worker 回调后：汇报 Director + 决定是否启动 P0 实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp003a_prompt_v2_rerun"
+}
+```
+
+</details>
+
+---

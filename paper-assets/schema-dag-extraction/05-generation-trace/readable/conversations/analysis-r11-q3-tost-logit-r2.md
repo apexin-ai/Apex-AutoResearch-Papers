@@ -1,0 +1,604 @@
+# analysis r11 q3 tost logit r2
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/chats/worker_analysis_r11-q3-tost-logit-r2_20260517T100536.jsonl`
+- **Structured JSON:** [`cc4fb64e73827c8abde8.json`](../../sessions/cc/cc4fb64e73827c8abde8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+20 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T10:06:31.552484+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T10:06:31.552908+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T10:06:31.553203+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*factorial*\" -o -name \"*interaction*\" -o -name \"*bcs*\" | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction -name \"*factorial*\" -o -name \"*interaction*\" -o -name \"*bcs*\" | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T10:06:31.553412+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts -name \"*.json\" | sort | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/artifacts -name \"*.json\" | sort | head -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T10:06:31.553641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/compute_bcs.py\\n/root/schema-dag-extraction/src/__pycache__/compute_bcs.cpython-312.pyc\\n/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\n/root/schema-dag-extraction/src/compute_bcs.py.bak\\n/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt\\n/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\n/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_by_bcs.csv\\n/root/schema-dag-extraction/artifacts/exp006/interaction_analysis.json\\n/root/schema-dag-extraction/artifacts/exp006_interaction_2x2\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability/bcs_fix_results.json\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability/bcs_controlled_results.json\\n/root/schema-dag-extraction/artifacts/bcs_fix\\n/root/schema-dag-extraction/artifacts/bcs_fix/bcs_fix_results.json\\n/root/schema-dag-extraction/artifacts/fewrel_factorial_tost\\n/root/schema-dag-extraction/artifacts/paper/fig_q1_ner_partial_bcs.pdf\\n/root/schema-dag-extraction/artifacts/paper/fig_q1_ner_partial_bcs.png\\n/root/schema-dag-extraction/logs/fewrel_v2_bcs.log\\n/root/schema-dag-extraction/results/per_type_bcs_f1_scatter.png\\n/root/schema-dag-extraction/scripts/run_exp006_interaction.py\\n/root/schema-dag-extraction/scripts/gen_fig_bcs_scaling.py\\n/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\\n/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis_results.json\\n/root/schema-dag-extraction/scripts/bcs_fix_recompute.py\\n/root/schema-dag-extraction/scripts/run_bcs_controlled_llama70b.py\\n/root/schema-dag-extraction/scripts/q3_bcs_distribution.py\\n/root/schema-dag-extraction/figures/paper/fig_bcs_scaling.pdf\\n/root/schema-dag-extraction/figures/paper/fig_q3_bcs_distribution.pdf\\n/root/schema-dag-extraction
+…[truncated 149 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T10:06:31.553921+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/aggregation_simulation/results.json\\n/root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/bcs_fix/bcs_fix_results.json\\n/root/schema-dag-extraction/artifacts/bootstrap_ci.json\\n/root/schema-dag-extraction/artifacts/cross_embedding_sensitivity_results.json\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch/results.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123/batch_config.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123/eval_results.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/batch_config.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/eval_results.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456/batch_config.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456/eval_results.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123/batch_config.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123/eval_results.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123/sample_info.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/batch_config.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/eval_results.json\\n/root/schema-dag-extrac
+…[truncated 1134 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T10:06:31.554170+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/ && echo \"---\" && cat /root/schema-dag-extraction/artifacts/exp006/interaction_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls -la /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/ && echo \"---\" && cat /root/schema-dag-extraction/artifacts/exp006/interaction_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T10:06:31.554454+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x  2 root root   34 May 16 22:17 .\\ndrwxr-xr-x 45 root root 4096 May 17 17:20 ..\\n-rw-r--r--  1 root root 4150 May 16 22:21 results.json\\n---\\n{\\n  \\\"cell_means\\\": {\\n    \\\"low_count/low_bcs\\\": {\\n      \\\"mean_f1\\\": 0.324269743681032,\\n      \\\"std_f1\\\": 0.106100632533998,\\n      \\\"se_f1\\\": 0.03355196599919962,\\n      \\\"mean_precision\\\": 0.2924862060386707,\\n      \\\"mean_recall\\\": 0.38280040243285385,\\n      \\\"mean_bcs\\\": 0.8416652500629425,\\n      \\\"n_batches\\\": 10,\\n      \\\"f1_values\\\": [\\n        0.5270065623422514,\\n        0.4032697547683924,\\n        0.3,\\n        0.24242424242424243,\\n        0.41000000000000003,\\n        0.25629290617848965,\\n        0.38610038610038605,\\n        0.3553299492385787,\\n        0.17088607594936708,\\n        0.19138755980861244\\n      ]\\n    },\\n    \\\"low_count/high_bcs\\\": {\\n      \\\"mean_f1\\\": 0.31290537487628495,\\n      \\\"std_f1\\\": 0.09891749256389684,\\n      \\\"se_f1\\\": 0.031280457693468273,\\n      \\\"mean_precision\\\": 0.2752478570569108,\\n      \\\"mean_recall\\\": 0.4548885968536142,\\n      \\\"mean_bcs\\\": 0.9614807784557342,\\n      \\\"n_batches\\\": 10,\\n      \\\"f1_values\\\": [\\n        0.47434119278779474,\\n        0.2222222222222222,\\n        0.38532110091743116,\\n        0.26704545454545453,\\n        0.4359464627151052,\\n        0.40074211502782936,\\n        0.31382316313823166,\\n        0.17826086956521736,\\n        0.22321428571428573,\\n        0.22813688212927757\\n      ]\\n    },\\n    \\\"high_count/low_bcs\\\": {\\n      \\\"mean_f1\\\": 0.3247732575037294,\\n      \\\"std_f1\\\": 0.07034839770758267,\\n      \\\"se_f1\\\": 0.02224611664993291,\\n      \\\"mean_precision\\\": 0.3451262044635467,\\n      \\\"mean_recall\\\": 0.3208227245531742,\\n      \\\"mean_bcs\\\": 0.9076217114925385,\\n      \\\"n_batches\\\": 10,\\n      \\\"f
+…[truncated 2330 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T10:06:31.554683+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/batch_config.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(len(d.get('batches',d.get('batch_configs',[]))), 'batches'); print(json.dumps(list(d.keys()))); b=d.get('batches',d.get('batch_configs',[]))[0]; print(json.dumps(b, indent=2)[:800])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/batch_config.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(len(d.get('batches',d.get('batch_configs',[]))), 'batches'); print(json.dumps(list(d.keys()))); b=d.get('batches',d.get('batch_configs',[]))[0]; print(json.dumps(b, indent=2)[:800])\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T10:06:31.554897+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat /root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/batch_config.json | python3 -c \\\"import json,sys; d=json.load(sys.stdin); print(len(d.get(\\\\'batches\\\\',d.get(\\\\'batch_configs\\\\',[]))), \\\\'batches\\\\'); print(json.dumps(list(d.keys()))); b=d.get(\\\\'batches\\\\',d.get(\\\\'batch_configs\\\\',[]))[0]; print(json.dumps(b, indent=2)[:800])\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T10:06:31.555107+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "which python && python --version",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "which python && python --version",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T10:06:31.555300+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T10:06:31.555476+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python && python --version'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T10:06:31.555723+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis_1_factorial\\\": {\\n    \\\"design\\\": {\\n      \\\"description\\\": \\\"2x2 ANOVA: Count(8 vs 16) x BCS(low vs high), within 40-rel pool\\\",\\n      \\\"count_levels\\\": [\\n        8,\\n        16\\n      ],\\n      \\\"bcs_split\\\": \\\"within-count median\\\",\\n      \\\"bcs_median_count8\\\": 0.7094486355781555,\\n      \\\"bcs_median_count16\\\": 0.7871875762939453,\\n      \\\"n_per_cell\\\": {\\n        \\\"low_count_low_bcs\\\": 14,\\n        \\\"low_count_high_bcs\\\": 13,\\n        \\\"high_count_low_bcs\\\": 14,\\n        \\\"high_count_high_bcs\\\": 13\\n      },\\n      \\\"total_n\\\": 54\\n    },\\n    \\\"anova\\\": {\\n      \\\"count_F\\\": 10.975955385881212,\\n      \\\"count_p\\\": 0.0017208617891512777,\\n      \\\"count_eta2\\\": 0.17475056208543674,\\n      \\\"bcs_F\\\": 1.2355509122093238,\\n      \\\"bcs_p\\\": 0.2716466306155154,\\n      \\\"bcs_eta2\\\": 0.019671473580467606,\\n      \\\"interaction_F\\\": 0.5977645557279102,\\n      \\\"interaction_p\\\": 0.4430721167384057,\\n      \\\"interaction_eta2\\\": 0.009517138912807001,\\n      \\\"df_residual\\\": 50,\\n      \\\"mse\\\": 0.007996759100274725\\n    },\\n    \\\"tost\\\": {\\n      \\\"interaction_effect_pp\\\": -3.7660256410256303,\\n      \\\"ci_90\\\": [\\n        -11.929360202142446,\\n        4.397308920091185\\n      ],\\n      \\\"equivalence_margin_pp\\\": 3.0,\\n      \\\"p_lower\\\": 0.5621643308459352,\\n      \\\"p_upper\\\": 0.08548795461669123,\\n      \\\"p_tost\\\": 0.5621643308459352,\\n      \\\"conclusion\\\": \\\"inconclusive\\\"\\n    },\\n    \\\"cell_means\\\": {\\n      \\\"low_count_low_bcs\\\": 0.7991071428571429,\\n      \\\"low_count_high_bcs\\\": 0.7908653846153846,\\n      \\\"high_count_low_bcs\\\": 0.7366071428571429,\\n      \\\"high_count_high_bcs\\\": 0.6907051282051282\\n    }\\n  },\\n  \\\"analysis_2_regression\\\": {\\n    \\\"design\\\": {\\n      \\\"desc
+…[truncated 3178 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T10:06:31.555954+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*.py\" -path \"*conda*\" 2>/dev/null; ls /opt/conda/bin/python 2>/dev/null; ls /root/miniconda*/bin/python 2>/dev/null; ls /root/anaconda*/bin/python 2>/dev/null; find / -name \"python*\" -type f 2>/dev/null | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction -name \"*.py\" -path \"*conda*\" 2>/dev/null; ls /opt/conda/bin/python 2>/dev/null; ls /root/miniconda*/bin/python 2>/dev/null; ls /root/anaconda*/bin/python 2>/dev/null; find / -name \"python*\" -type f 2>/dev/null | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T10:06:31.556103+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/eval_results.json | head -100",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/eval_results.json | head -100",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T10:06:31.556245+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/opt/nvidia/nsight-compute/2025.1.1/host/target-linux-x64/python/bin/python\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/include/python3.12/cpython/pythonrun.h\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T10:06:31.556425+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_16_random_0\\\": {\\n    \\\"accuracy\\\": 0.7760416666666666,\\n    \\\"correct\\\": 149,\\n    \\\"total\\\": 192,\\n    \\\"bcs\\\": 0.566758626451095,\\n    \\\"count_key\\\": \\\"count_16\\\",\\n    \\\"num_types\\\": 16\\n  },\\n  \\\"count_16_random_1\\\": {\\n    \\\"accuracy\\\": 0.7916666666666666,\\n    \\\"correct\\\": 152,\\n    \\\"total\\\": 192,\\n    \\\"bcs\\\": 0.576975501080354,\\n    \\\"count_key\\\": \\\"count_16\\\",\\n    \\\"num_types\\\": 16\\n  },\\n  \\\"count_16_random_2\\\": {\\n    \\\"accuracy\\\": 0.609375,\\n    \\\"correct\\\": 117,\\n    \\\"total\\\": 192,\\n    \\\"bcs\\\": 0.5441169512768587,\\n    \\\"count_key\\\": \\\"count_16\\\",\\n    \\\"num_types\\\": 16\\n  },\\n  \\\"count_16_random_3\\\": {\\n    \\\"accuracy\\\": 0.6510416666666666,\\n    \\\"correct\\\": 125,\\n    \\\"total\\\": 192,\\n    \\\"bcs\\\": 0.5035830865303675,\\n    \\\"count_key\\\": \\\"count_16\\\",\\n    \\\"num_types\\\": 16\\n  },\\n  \\\"count_16_random_4\\\": {\\n    \\\"accuracy\\\": 0.6666666666666666,\\n    \\\"correct\\\": 128,\\n    \\\"total\\\": 192,\\n    \\\"bcs\\\": 0.5420986314614614,\\n    \\\"count_key\\\": \\\"count_16\\\",\\n    \\\"num_types\\\": 16\\n  },\\n  \\\"count_16_random_5\\\": {\\n    \\\"accuracy\\\": 0.828125,\\n    \\\"correct\\\": 159,\\n    \\\"total\\\": 192,\\n    \\\"bcs\\\": 0.5409017858405908,\\n    \\\"count_key\\\": \\\"count_16\\\",\\n    \\\"num_types\\\": 16\\n  },\\n  \\\"count_16_random_6\\\": {\\n    \\\"accuracy\\\": 0.8072916666666666,\\n    \\\"correct\\\": 155,\\n    \\\"total\\\": 192,\\n    \\\"bcs\\\": 0.5890040385226408,\\n    \\\"count_key\\\": \\\"count_16\\\",\\n    \\\"num_types\\\": 16\\n  },\\n  \\\"count_16_random_7\\\": {\\n    \\\"accuracy\\\": 0.609375,\\n    \\\"correct\\\": 117,\\n    \\\"total\\\": 192,\\n    \\\"bcs\\\": 0.548167168845733,\\n    \\\"count_key\\\": \\\"count_16\\\",\\n    \\\"num_types\\\": 1
+…[truncated 1184 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T10:06:31.556593+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "/root/miniconda3/bin/python -c \"\nimport json, glob\n\n# Load all three seeds\nall_batches = []\nfor seed_dir in ['d051_fewrel_n25_s42', 'd051_fewrel_n25_s123', 'd051_fewrel_n25_s456']:\n    path = f'/root/schema-dag-extraction/artifacts/{seed_dir}/eval_results.json'\n    with open(path) as f:\n        data = json.load(f)\n    for k, v in data.items():\n        all_batches.append(v)\n\nprint(f'Total batches: {len(all_batches)}')\ncounts = sorted(set(b['num_types'] for b in all_batches))\nprint(f'Count levels: {counts}')\nprint(f'Accuracy range: {min(b[\\\"accuracy\\\"] for b in all_batches):.3f} - {max(b[\\\"accuracy\\\"] for b in all_batches):.3f}')\nprint(f'BCS range: {min(b[\\\"bcs\\\"] for b in all_batches):.4f} - {max(b[\\\"bcs\\\"] for b in all_batches):.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "/root/miniconda3/bin/python -c \"\nimport json, glob\n\n# Load all three seeds\nall_batches = []\nfor seed_dir in ['d051_fewrel_n25_s42', 'd051_fewrel_n25_s123', 'd051_fewrel_n25_s456']:\n    path = f'/root/schema-dag-extraction/artifacts/{seed_dir}/eval_results.json'\n    with open(path) as f:\n        data = json.load(f)\n    for k, v in data.items():\n        all_batches.append(v)\n\nprint(f'Total batches: {len(all_batches)}')\ncounts = sorted(set(b['num_types'] for b in all_batches))\nprint(f'Count levels: {counts}')\nprint(f'Accuracy range: {min(b[\\\"accuracy\\\"] for b in all_batches):.3f} - {max(b[\\\"accuracy\\\"] for b in all_batches):.3f}')\nprint(f'BCS range: {min(b[\\\"bcs\\\"] for b in all_batches):.4f} - {max(b[\\\"bcs\\\"] for b in all_batches):.4f}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T10:06:31.556729+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total batches: 525\\nCount levels: [4, 8, 16, 32, 40, 64, 80]\\nAccuracy range: 0.477 - 1.000\\nBCS range: 0.4137 - 0.6757\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r11-q3-tost-logit-r2_20260517T100536",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---

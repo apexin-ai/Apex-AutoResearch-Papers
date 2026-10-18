@@ -1,0 +1,869 @@
+# probe cqa1 dead experiments
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/chats/worker_probe_cqa1-dead-experiments_20260521T225749.jsonl`
+- **Structured JSON:** [`6919455157a8709b39af.json`](../../sessions/69/6919455157a8709b39af.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+29 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T22:58:50.758840+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T22:58:50.759373+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T22:58:50.759636+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tmux list-sessions 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "tmux list-sessions 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T22:58:50.759855+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T22:58:50.760060+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*smolvla*l2norm*k09*\" -o -name \"*smart_compress_m32_official*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*smolvla*l2norm*k09*\" -o -name \"*smart_compress_m32_official*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T22:58:50.760295+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T22:58:50.760496+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T22:58:50.760714+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T22:58:50.760908+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/logs/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/logs/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T22:58:50.761110+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T22:58:50.761387+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T22:58:50.761609+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T22:58:50.761811+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T22:58:50.762008+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T22:58:50.762361+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 732\\ndrwxr-xr-x  3 root root  8192 May 22 05:07 .\\ndrwxr-xr-x 13 root root  4096 May 22 05:36 ..\\n-rw-r--r--  1 root root  1484 May 16 19:18 action_diversity_by_step.json\\n-rw-r--r--  1 root root  1389 May 18 22:08 eval_acis_k05_supplement_200eps.json\\n-rw-r--r--  1 root root  1377 May 19 00:11 eval_acis_k05_supplement_v2.json\\n-rw-r--r--  1 root root  2751 May 17 21:00 eval_acis_k07_trained_prune.json\\n-rw-r--r--  1 root root  2723 May 19 04:46 eval_baseline_control_100k_v2.json\\n-rw-r--r--  1 root root  2705 May 19 07:22 eval_baseline_control_prune_k05.json\\n-rw-r--r--  1 root root  4172 May 16 06:45 eval_baseline_v5_bypass_acis.json\\n-rw-r--r--  1 root root  4147 May 16 05:23 eval_baseline_v5_final.json\\n-rw-r--r--  1 root root  4171 May 16 12:04 eval_baseline_v5_fixed.json\\n-rw-r--r--  1 root root  4145 May 16 05:28 eval_baseline_v5_step10000.json\\n-rw-r--r--  1 root root  4148 May 16 05:25 eval_baseline_v5_step5000.json\\n-rw-r--r--  1 root root  2486 May 18 00:12 eval_geometric_prior_k09_dryrun.json\\n-rw-r--r--  1 root root   836 May 16 06:56 eval_imm_v7_2_bypass_acis.json\\n-rw-r--r--  1 root root  4504 May 16 07:03 eval_imm_v7_2_final.json\\n-rw-r--r--  1 root root  4485 May 16 05:55 eval_imm_v7_2_step010000.json\\n-rw-r--r--  1 root root  4478 May 16 05:58 eval_imm_v7_2_step020000.json\\n-rw-r--r--  1 root root  4468 May 16 04:52 eval_imm_v7_final.json\\n-rw-r--r--  1 root root  2407 May 16 14:18 eval_imm_v8_1_acis_prune.json\\n-rw-r--r--  1 root root   830 May 16 14:18 eval_imm_v8_1_bypass.json\\n-rw-r--r--  1 root root  4510 May 16 14:13 eval_imm_v8_1_standard.json\\n-rw-r--r--  1 root root   834 May 16 10:48 eval_imm_v8_bypass_final.json\\n-rw-r--r--  1 root root   834 May 16 11:58 eval_imm_v8_bypass_fixed.json\\n-rw-r--r--  1 root root  4500 May 16 10:31 eval_imm_v8_final.json\\n-rw-r--r--  1 root root  8724 May 16 10:49 eval_imm_v8_final_30k.json\\n-rw-r--r--  1 root root  4526
+…[truncated 6405 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T22:58:50.762674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3344\\ndrwxr-xr-x  2 root root   4096 May 22 05:53 .\\ndrwxr-xr-x 13 root root   4096 May 22 05:36 ..\\n-rw-r--r--  1 root root   2076 May 17 15:59 batch64_v2.log\\n-rw-r--r--  1 root root   7831 May 17 22:30 batch64_v2_resume.log\\n-rw-r--r--  1 root root   4430 May 18 00:48 dryrun_pi05.log\\n-rw-r--r--  1 root root   2113 May 18 00:54 dryrun_pi05_v2.log\\n-rw-r--r--  1 root root   6299 May 18 00:58 dryrun_pi05_v3.log\\n-rw-r--r--  1 root root  15092 May 19 00:11 eval_acis_k05_v2.log\\n-rw-r--r--  1 root root  10432 May 18 00:50 eval_geometric_prior_k05.log\\n-rw-r--r--  1 root root  12575 May 18 00:50 eval_geometric_prior_k07.log\\n-rw-r--r--  1 root root  11049 May 18 00:50 eval_geometric_prior_k09.log\\n-rw-r--r--  1 root root     40 May 20 22:33 eval_k03_seed43.log\\n-rw-r--r--  1 root root     40 May 20 22:33 eval_k03_seed44.log\\n-rw-r--r--  1 root root   2540 May 18 00:41 eval_pi05_baseline.log\\n-rw-r--r--  1 root root   4022 May 22 06:58 eval_pi05_l2norm_k085_object_seed42.log\\n-rw-r--r--  1 root root   3935 May 22 06:55 eval_pi05_random_k03_object_seed43.log\\n-rw-r--r--  1 root root 306949 May 20 15:56 eval_smart_compress_m128_seed43.log\\n-rw-r--r--  1 root root 307600 May 20 15:54 eval_smart_compress_m16_seed43.log\\n-rw-r--r--  1 root root 307321 May 20 17:15 eval_smart_compress_m16_seed44.log\\n-rw-r--r--  1 root root  34053 May 19 19:07 eval_smart_compress_m32_official.log\\n-rw-r--r--  1 root root  34192 May 19 19:01 eval_smart_compress_m32_seed44.log\\n-rw-r--r--  1 root root  34264 May 19 19:01 eval_smart_compress_m64_seed44.log\\n-rw-r--r--  1 root root  34090 May 19 19:02 eval_smart_compress_m96_seed44.log\\n-rw-r--r--  1 root root  35535 May 21 10:10 eval_xvla_baseline_long_seed42.log\\n-rw-r--r--  1 root root  34235 May 21 10:14 eval_xvla_goal_k05_seed42.log\\n-rw-r--r--  1 root root  34383 May 21 10:04 eval_xvla_goal_k09_seed42.log\\n-rw-r--r--  1 root root  34904 May 21 05:51 ev
+…[truncated 3189 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T22:58:50.763065+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_smart_compress_m32_official.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_smart_compress_m32_official.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T22:58:50.763399+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"suite\\\": \\\"libero_object\\\",\\n  \\\"n_queries\\\": 32,\\n  \\\"checkpoint\\\": \\\"checkpoints/smart_compress_m32_official/checkpoint.pt\\\",\\n  \\\"total_episodes\\\": 500,\\n  \\\"total_successes\\\": 267,\\n  \\\"overall_success_rate\\\": 0.534,\\n  \\\"wilson_ci_95\\\": [\\n    0.4902,\\n    0.5773\\n  ],\\n  \\\"num_episodes_per_task\\\": 50,\\n  \\\"max_steps\\\": 280,\\n  \\\"action_horizon\\\": 50,\\n  \\\"seed\\\": 42,\\n  \\\"per_task\\\": {\\n    \\\"0\\\": {\\n      \\\"task_id\\\": 0,\\n      \\\"task_description\\\": \\\"pick up the alphabet soup and place it in the basket\\\",\\n      \\\"success_count\\\": 32,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.64,\\n      \\\"mean_steps\\\": 186.6\\n    },\\n    \\\"1\\\": {\\n      \\\"task_id\\\": 1,\\n      \\\"task_description\\\": \\\"pick up the cream cheese and place it in the basket\\\",\\n      \\\"success_count\\\": 24,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.48,\\n      \\\"mean_steps\\\": 204.8\\n    },\\n    \\\"2\\\": {\\n      \\\"task_id\\\": 2,\\n      \\\"task_description\\\": \\\"pick up the salad dressing and place it in the basket\\\",\\n      \\\"success_count\\\": 28,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.56,\\n      \\\"mean_steps\\\": 188.2\\n    },\\n    \\\"3\\\": {\\n      \\\"task_id\\\": 3,\\n      \\\"task_description\\\": \\\"pick up the bbq sauce and place it in the basket\\\",\\n      \\\"success_count\\\": 23,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.46,\\n      \\\"mean_steps\\\": 208.2\\n    },\\n    \\\"4\\\": {\\n      \\\"task_id\\\": 4,\\n      \\\"task_description\\\": \\\"pick up the ketchup and place it in the basket\\\",\\n      \\\"success_count\\\": 23,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.46,\\n      \\\"mean_steps\\\": 215.2\\n    },\\n    \\\"5\\\":
+…[truncated 1546 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T22:58:50.763710+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tail -50 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m32_official.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "tail -50 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m32_official.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T22:58:50.763961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 19:03:23 [INFO]   Ep 18/50 | SUCCESS | steps=107\\n2026-05-19 19:03:30 [INFO]   Ep 19/50 | FAIL | steps=280\\n2026-05-19 19:03:36 [INFO]   Ep 20/50 | SUCCESS | steps=111\\n2026-05-19 19:03:43 [INFO]   Ep 21/50 | SUCCESS | steps=117\\n2026-05-19 19:03:51 [INFO]   Ep 22/50 | FAIL | steps=280\\n2026-05-19 19:03:57 [INFO]   Ep 23/50 | SUCCESS | steps=110\\n2026-05-19 19:04:05 [INFO]   Ep 24/50 | FAIL | steps=280\\n2026-05-19 19:04:10 [INFO]   Ep 25/50 | SUCCESS | steps=106\\n2026-05-19 19:04:18 [INFO]   Ep 26/50 | SUCCESS | steps=161\\n2026-05-19 19:04:24 [INFO]   Ep 27/50 | SUCCESS | steps=117\\n2026-05-19 19:04:31 [INFO]   Ep 28/50 | SUCCESS | steps=122\\n2026-05-19 19:04:38 [INFO]   Ep 29/50 | FAIL | steps=280\\n2026-05-19 19:04:46 [INFO]   Ep 30/50 | FAIL | steps=280\\n2026-05-19 19:04:54 [INFO]   Ep 31/50 | FAIL | steps=280\\n2026-05-19 19:05:02 [INFO]   Ep 32/50 | FAIL | steps=280\\n2026-05-19 19:05:09 [INFO]   Ep 33/50 | SUCCESS | steps=117\\n2026-05-19 19:05:16 [INFO]   Ep 34/50 | SUCCESS | steps=148\\n2026-05-19 19:05:22 [INFO]   Ep 35/50 | SUCCESS | steps=110\\n2026-05-19 19:05:30 [INFO]   Ep 36/50 | FAIL | steps=280\\n2026-05-19 19:05:37 [INFO]   Ep 37/50 | SUCCESS | steps=115\\n2026-05-19 19:05:43 [INFO]   Ep 38/50 | SUCCESS | steps=119\\n2026-05-19 19:05:51 [INFO]   Ep 39/50 | FAIL | steps=280\\n2026-05-19 19:05:57 [INFO]   Ep 40/50 | SUCCESS | steps=109\\n2026-05-19 19:06:03 [INFO]   Ep 41/50 | SUCCESS | steps=114\\n2026-05-19 19:06:10 [INFO]   Ep 42/50 | SUCCESS | steps=121\\n2026-05-19 19:06:18 [INFO]   Ep 43/50 | FAIL | steps=280\\n2026-05-19 19:06:24 [INFO]   Ep 44/50 | SUCCESS | steps=114\\n2026-05-19 19:06:31 [INFO]   Ep 45/50 | FAIL | steps=280\\n2026-05-19 19:06:39 [INFO]   Ep 46/50 | FAIL | steps=280\\n2026-05-19 19:06:47 [INFO]   Ep 47/50 | FAIL | steps=280\\n2026-05-19 19:06:55 [INFO]   Ep 48/50 | FAIL | steps=280\\n2026-05-19 19:07:02 [INFO]   Ep 49/50 | FAIL | steps=280\\n2026-
+…[truncated 1713 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T22:58:50.764198+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results -name \"*smolvla*l2*k0*9*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results -name \"*smolvla*l2*k0*9*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T22:58:50.764406+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k090_object_seed42.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k095_object_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T22:58:50.764665+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/logs -name \"*smolvla*l2*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress/logs -name \"*smolvla*l2*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T22:58:50.764865+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T22:58:50.765058+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*smolvla*l2norm*k09*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*smolvla*l2norm*k09*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T22:58:50.765276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k090_object_seed42.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k095_object_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T22:58:50.765517+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k090_object_seed42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k090_object_seed42.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T22:58:50.765823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"suite\\\": \\\"libero_object\\\",\\n  \\\"mode\\\": \\\"l2_norm\\\",\\n  \\\"pruning_method\\\": \\\"true_removal\\\",\\n  \\\"k_ratio\\\": 0.9,\\n  \\\"pretrained_dir\\\": \\\"/root/autodl-tmp/.hf_cache/hub/models--HuggingFaceVLA--smolvla_libero/snapshots/6721902bc4d61e50a3bfdb11dfb4cb626f05d102\\\",\\n  \\\"total_episodes\\\": 500,\\n  \\\"total_successes\\\": 0,\\n  \\\"overall_success_rate\\\": 0.0,\\n  \\\"wilson_ci_95\\\": [\\n    0.0,\\n    0.0076\\n  ],\\n  \\\"num_episodes_per_task\\\": 50,\\n  \\\"max_steps\\\": 280,\\n  \\\"action_horizon\\\": 50,\\n  \\\"seed\\\": 42,\\n  \\\"per_task\\\": {\\n    \\\"0\\\": {\\n      \\\"task_id\\\": 0,\\n      \\\"task_description\\\": \\\"pick up the alphabet soup and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"1\\\": {\\n      \\\"task_id\\\": 1,\\n      \\\"task_description\\\": \\\"pick up the cream cheese and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"2\\\": {\\n      \\\"task_id\\\": 2,\\n      \\\"task_description\\\": \\\"pick up the salad dressing and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"3\\\": {\\n      \\\"task_id\\\": 3,\\n      \\\"task_description\\\": \\\"pick up the bbq sauce and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"4\\\": {\\n      \\\"task_id\\\": 4,\\n      \\\"task_description\\\": \\\"pick up the ketchup and place it in the basket\\\",\\n      \\\"success_count\
+…[truncated 1675 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-21T22:58:50.766115+00:00_
+
+两个实验均已正常完成（非崩溃），结果如下：
+
+**实验 1: eval_smolvla_official_l2norm_k090_object_seed42**
+- 状态：**Completed**
+- SR = **0.0%** (0/500)
+- 所有 10 个 task 成功率均为 0%，mean_steps 全部 280（跑满上限）
+- L2-norm pruning k=0.9 在 SmolVLA official 上完全失效
+
+**实验 2: eval_smart_compress_m32_official**
+- 状态：**Completed**
+- SR = **53.4%** (267/500)，95% Wilson CI [49.0%, 57.7%]
+- 各 task SR: 64%, 48%, 56%, 46%, 46%, 28%, 78%, 42%, 66%, 60%
+- 结果已保存至 `eval_results/eval_smart_compress_m32_official.json`
+
+两个实验的 registry 状态应从 RUNNING 更新为 COMPLETED。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_probe_cqa1-dead-experiments_20260521T225749"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,677 @@
+# paper writing discussion
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/chats/worker_paper_writing_discussion_20260515T093754.jsonl`
+- **Structured JSON:** [`2aa19ab73d404f7a0612.json`](../../sessions/2a/2aa19ab73d404f7a0612.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+17 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T09:39:30.936966+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T09:39:30.937786+00:00_
+
+1	---
+2	name: latex-paper
+3	description: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。
+4	scope: global
+5	tags:
+6	- latex
+7	- paper-writing
+8	- academic
+9	- citation
+10	- submission
+11	version: 1
+12	roles:
+13	- agent
+14	- worker
+15	---
+16	
+17	# LaTeX 论文写作全流程
+18	
+19	ML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。
+20	
+21	---
+22	
+23	## 1. 工作模式
+24	
+25	开始前选择模式：
+26	
+27	| 模式 | 说明 | 适用 |
+28	|------|------|------|
+29	| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |
+30	| **Improve** | 改写已有章节，强化论证 | 修改稿 |
+31	| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |
+32	
+33	---
+34	
+35	## 2. Claim-Evidence 方法论
+36	
+37	**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**
+38	
+39	### 2.1 一句话贡献
+40	
+41	在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。
+42	
+43	### 2.2 Claim-Evidence Map
+44	
+45	为每个 contribution 建立 claim→evidence 映射表：
+46	
+47	| Contribution | Claim | Evidence | Table/Figure |
+48	|-------------|-------|----------|-------------|
+49	| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |
+50	| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |
+51	| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |
+52	
+53	**没有直接证据支撑的 claim 必须删除或降级为 discussion。**
+54	
+55	### 2.3 章节起草顺序
+56	
+57	```
+58	1. Introduction + Experiments（先确定 claim 和 evidence）
+59	2. Method（评估问题稳定后再写细节）
+60	3. Related Work
+61	4. Abstract + Title（核心 claim 定型后最后写）
+62	```
+63	
+64	### 2.4 Quality Gates
+65	
+66	投稿前必须通过：
+67	- [ ] 前两段出现显式 novelty 声明
+68	- [ ] 每个 contribution 有可验证的 evidence
+69	- [ ] Abstract / Intro / Conclusion 的 claim 一致
+70	- [ ] Limitations 真实且技术性诚实
+71	- [ ] 审稿人两分钟内能识别 delta
+72	
+73	---
+74	
+75	## 3. 引用防幻觉（CRITICAL）
+76	
+77	**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**
+78	
+79	### 3.1 黄金法则
+80	
+81	```
+82	IF 无法程序化获取引用:
+83	    → 标记 [CITATION NEEDED] 或 \cite{PLACEHOLDER_verify}
+84	    → 明确告知用户
+85	    → 绝不编造看似合理的引用
+86	```
+87	
+88	### 3.2 五步验证流程
+89	
+90	```
+91	1. SEARCH  → Semantic Scholar API 搜索关键词
+92	2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）
+93	3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）
+94	4. CHECK   → 确认
+…[truncated 7201 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T09:39:30.938194+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T09:39:30.938484+00:00_
+
+1	\section{Introduction}
+2	\label{sec:intro}
+3	
+4	The text on which large language models are trained increasingly contains their own outputs.
+5	As synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \cite{shumailov2024_nature,alemohammad2024_mad}.
+6	This model$\to$data$\to$model cycle is no longer hypothetical---it is already occurring in the wild---yet we lack the ability to determine how many recursive iterations a given text has undergone, a distinction that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \cite{dohmatob2024_tale_of_tails}.
+7	
+8	Existing tools address adjacent but distinct problems.
+9	Binary detectors such as Binoculars \cite{binoculars2024}, Fast-DetectGPT \cite{fast_detectgpt2024}, and DivEye \cite{diveye2026} classify text as human-written or machine-generated, collapsing all generation depths $d \geq 1$ into a single category.
+10	Watermarking schemes \cite{kirchenbauer2023_watermark} require proactive embedding and cannot be applied retroactively to existing corpora.
+11	The model collapse literature \cite{shumailov2024_nature,dohmatob2024_tale_of_tails} characterizes how recursive training degrades model quality but assumes the generation depth is known a priori---the very quantity we seek to estimate.
+12	\citet{drayson2025_detection_prevents_collapse} show that filtering synthetic data from training corpora can prevent collapse, yet their approach relies on binary detection and does not distinguish among recursive depths.
+13	EditLens \cite{editlens2026} estimates the extent of single-pass editing applied to a text but does not address multi-step recursive generation.
+14	No existing method estimates the ordinal recursive depth of a text passage from its 
+…[truncated 3515 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T09:39:30.938750+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T09:39:30.939101+00:00_
+
+1	\section{The Depth Degradation Atlas}
+2	\label{sec:atlas}
+3	
+4	We systematically characterize how recursive generation reshapes the statistical profile of text across a grid of 3 model families $\times$ 3 decoding strategies $\times$ 4 generation depths (d0--d3), yielding 9 experimental configurations each spanning 4 depths.
+5	For each cell we train a Random Forest (RF) classifier on the 19 statistical features defined in \S\ref{sec:method} and examine (i)~in-distribution depth classification accuracy, (ii)~which features carry depth signal, (iii)~how far into the recursion chain depth remains discriminable, and (iv)~how decoding strategy modulates the degradation trajectory.
+6	
+7	\subsection{In-Distribution Performance}
+8	\label{sec:atlas:indist}
+9	
+10	Table~\ref{tab:main_matrix} reports 4-class depth estimation accuracy under 5-fold cross-validation.
+11	All 9 cells exceed chance (25\%) by a wide margin, with accuracy ranging from 69.6\% to 85.4\%.
+12	Both model family and decoding strategy contribute comparably to accuracy variation, with consistent model ordering (GPT-2~XL $>$ OLMo $>$ Pythia) across all strategies.
+13	Among strategies, temperature sampling ($\tau{=}0.9$) yields the best accuracy in 2 of 3 model families, while top-$k$ ($k{=}50$) trails by 6--9 percentage points.
+14	
+15	\begin{table}[t]
+16	\centering
+17	\small
+18	\caption{In-distribution 4-class depth estimation accuracy (\%) across 3 model families $\times$ 3 decoding strategies. RF classifier with 19 statistical features, 5-fold CV. Chance = 25\%.}
+19	\label{tab:main_matrix}
+20	\begin{tabular}{lccc}
+21	\toprule
+22	Model & Nucleus & Temp & Top-$k$ \\
+23	 & $p{=}0.95$ & $\tau{=}0.9$ & $k{=}50$ \\
+24	\midrule
+25	Pythia-1.4B & 78.2 & 76.3 & 69.6 \\
+26	OLMo-1B & 78.8 & 82.0 & 74.2 \\
+27	GPT-2 XL & 83.3 & \textbf{85.4} & 76.6 \\
+28	\bottomrule
+29	\end{tabular}
+30	\end{table}
+31	
+32	Because the human-written seed text (d0) is often trivially separable from any machine-generated depth, we also evalua
+…[truncated 7872 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T09:39:30.939381+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T09:39:30.939698+00:00_
+
+1	\section{Generalization and Robustness}
+2	\label{sec:generalization}
+3	
+4	The atlas (\S\ref{sec:atlas}) established in-distribution accuracy of 69.6--85.4\%.
+5	We now test whether these results reflect genuine statistical regularities or artifacts of specific training conditions, evaluating four axes: classifier choice (\S\ref{sec:gen:baselines}), cross-model transfer (\S\ref{sec:gen:crossmodel}), cross-strategy transfer (\S\ref{sec:gen:crossstrategy}), and end-to-end learned representations (\S\ref{sec:gen:dcol}).
+6	
+7	\subsection{Baseline Comparison}
+8	\label{sec:gen:baselines}
+9	
+10	Table~\ref{tab:baselines} compares classification methods on the Pythia-1.4B nucleus setting.
+11	Three feature-based methods---Random Forest (RF), CORAL ordinal regression \cite{coral2020}, and DivEye \cite{diveye2026}---all operate on the same 19 statistical features and achieve near-identical accuracy (78.1--78.2\%).
+12	A cross-entropy MLP and logistic regression trail by $\sim$3 percentage points.
+13	Single-feature regression on mean perplexity performs at chance (25.1\%), confirming that depth estimation requires the multi-dimensional feature representation defined in \S\ref{sec:method}.
+14	
+15	\begin{table}[t]
+16	\centering
+17	\small
+18	\caption{Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL, and DivEye use the same 19 statistical features. Chance = 25\%.}
+19	\label{tab:baselines}
+20	\begin{tabular}{lc}
+21	\toprule
+22	Method & 4-class Acc (\%) \\
+23	\midrule
+24	RF (19 features) & \textbf{78.2} \\
+25	CORAL & 78.1 \\
+26	DivEye & 78.2 \\
+27	CE-MLP & 74.9 \\
+28	LR & 75.0 \\
+29	DeepSeek V3.2 (zero-shot) & 44.3 \\
+30	ppl-regression (single feature) & 25.1 \\
+31	\bottomrule
+32	\end{tabular}
+33	\end{table}
+34	
+35	The convergence of RF, CORAL, and DivEye indicates that the discriminative signal resides in the features, not the classifier.
+36	Across all 9 atlas cells, RF $\geq$ CORAL $>$ DivEye $>$ LR, with a maximum gap of $\sim$4 percentage points.
+37	A zero-sho
+…[truncated 6637 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T09:39:30.940015+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/",
+  "description": "List paper directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/",
+    "description": "List paper directory contents"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T09:39:30.940235+00:00_
+
+atlas.tex
+generalization.tex
+introduction.tex
+main.tex
+method.tex
+references.bib
+related_work.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T09:39:30.940472+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_discussion.tex",
+  "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\subsection{Implications}\n\\label{sec:discussion:implications}\n\n\\paragraph{Depth-graduated data curation.}\nBinary synthetic-data filters discard all machine-generated text indiscriminately, yet first-generation outputs may be benign or even beneficial for training \\cite{drayson2025_detection_prevents_collapse}.\nOur depth estimates offer a finer-grained alternative: predicted depth can serve as a continuous quality proxy for importance weighting in data curation pipelines such as DSIR \\cite{dsir2023} and QuRating \\cite{qurating2024}.\nRather than filtering at a binary threshold, a curation system could assign importance weights that decay with estimated depth \\cite{sugiyama2007_importance_weighting}, retaining shallow-generation text while down-weighting deeply recursive samples.\nWe note this as a conceptual contribution---empirical validation of depth-weighted curation remains future work.\n\n\\paragraph{Feature evolution tracks tail erosion.}\nThe feature importance analysis in \\S\\ref{sec:atlas:features} reveals a depth-dependent shift in which features carry discriminative power.\nAt shallow depths (d0 vs.\\ d1), \\textsc{var\\_surprisal} dominates, reflecting changes in second-order distributional structure---the variability of token surprisals decreases as the model's output distribution narrows.\nAt deeper recursions (d2 vs.\\ d3 and beyond), \\textsc{p90\\_ppl} and kurtosis assume greater importance, capturing changes in the shape of the distribution's tail.\nThis progression aligns with the tail erosion theory of \\citet{shumailov2024_nature}: early recursive generations preserve bulk distributional properties while eroding variability, and deeper generations progressively collapse the tail itself, consistent with the ``tale of tails'' analysis by \\citet{dohmatob2024_tale_of_tails}.\nThe feature importance shift thus provides an empirical counterpart to these theoretical predictions.\n\n\\paragraph{Cross-strategy deployment requires strategy identification.}\nThe temperature-induced d1/d2 AUC inversion (\\S\\ref{sec:gen:crossstrategy})---as low as 0.13 for GPT-2~XL and 0.25 for OLMo---has practical consequences.\nA depth estimation system deployed without knowledge of the target decoding strategy risks systematic reversal of depth predictions for temperature-sampled text.\nIn deployment, the strategy type must either be known a priori or inferred as a preprocessing step.\nStrategy-conditioned classifiers---where a first stage identifies the decoding strategy and a second stage applies the corresponding depth model---are a natural solution, though the feasibility of reliable strategy identification from text alone is itself an open question.\n\n\\subsection{Limitations}\n\\label{sec:discussion:limitations}\n\n\\paragraph{Controlled experimental setting.}\nAll experiments use a fixed seed corpus (Wikipedia), LoRA finetuning, and three model families at 1--1.5B parameter scale.\nThis controlled design isolates the effect of recursive depth but leaves open how well the approach transfers to mixed-domain seed text, instruction-tuned models, full finetuning, and larger model scales (7B+).\nThe gap between our controlled setting and the heterogeneous conditions of real-world recursive contamination remains uncharacterized.\n\n\\paragraph{Reference model circularity.}\nOur 19 statistical features are computed relative to a GPT-2 base (124M) reference model.\nIn the cross-model leave-one-out evaluation, the GPT-2~XL holdout shares partial architectural overlap with this reference---both belong to the GPT-2 family.\nHowever, GPT-2~XL holdout accuracy (67.6\\%) does not exceed that of the architecturally unrelated OLMo holdout (69.2\\%), suggesting that architectural overlap is not the primary driver of transfer performance.\nNonetheless, the choice of reference model introduces a potential confound that warrants investigation with non-GPT-2 reference models.\n\n\\paragraph{Feature fragility under domain shift.}\n\\citet{pudasaini2026_detection_fails} demonstrate that detection features degrade under domain shift, with classifiers trained on one text domain failing to generalize to others.\nOur ordinal depth features---derived from the same class of perplexity and entropy statistics---are likely susceptible to analogous fragility.\nA depth estimator trained on Wikipedia-seeded recursive text may not transfer to recursive generation seeded from news, code, or dialogue without domain-specific recalibration.\n\n\\paragraph{Non-monotonic early-depth dynamics.}\nOur EDD framework assumes that text quality degrades monotonically with recursive depth.\n\\citet{bakshi2026_collapse_improvement} present evidence that early recursive iterations can temporarily \\emph{improve} model quality before eventual collapse, implying that the depth--degradation relationship may be non-monotonic in the initial generations.\nIf feature trajectories reflect this non-monotonicity, the ordinal classification assumption---that depth classes are naturally ordered---may break down for shallow depths under certain conditions.\n\n\\paragraph{Curated synthetic pipelines.}\n\\citet{falahati2026_curated} show that carefully curated synthetic data does not necessarily trigger model collapse, challenging the assumption that recursive depth invariably produces distributional degradation.\nIn such curated pipelines, the statistical fingerprints we exploit may be absent or attenuated, rendering depth estimation infeasible.\nThe boundary conditions under which curation neutralizes depth signal remain unknown.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_discussion.tex",
+    "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\subsection{Implications}\n\\label{sec:discussion:implications}\n\n\\paragraph{Depth-graduated data curation.}\nBinary synthetic-data filters discard all machine-generated text indiscriminately, yet first-generation outputs may be benign or even beneficial for training \\cite{drayson2025_detection_prevents_collapse}.\nOur depth estimates offer a finer-grained alternative: predicted depth can serve as a continuous quality proxy for importance weighting in data curation pipelines such as DSIR \\cite{dsir2023} and QuRating \\cite{qurating2024}.\nRather than filtering at a binary threshold, a curation system could assign importance weights that decay with estimated depth \\cite{sugiyama2007_importance_weighting}, retaining shallow-generation text while down-weighting deeply recursive samples.\nWe note this as a conceptual contribution---empirical validation of depth-weighted curation remains future work.\n\n\\paragraph{Feature evolution tracks tail erosion.}\nThe feature importance analysis in \\S\\ref{sec:atlas:features} reveals a depth-dependent shift in which features carry discriminative power.\nAt shallow depths (d0 vs.\\ d1), \\textsc{var\\_surprisal} dominates, reflecting changes in second-order distributional structure---the variability of token surprisals decreases as the model's output distribution narrows.\nAt deeper recursions (d2 vs.\\ d3 and beyond), \\textsc{p90\\_ppl} and kurtosis assume greater importance, capturing changes in the shape of the distribution's tail.\nThis progression aligns with the tail erosion theory of \\citet{shumailov2024_nature}: early recursive generations preserve bulk distributional properties while eroding variability, and deeper generations progressively collapse the tail itself, consistent with the ``tale of tails'' analysis by \\citet{dohmatob2024_tale_of_tails}.\nThe feature importance shift thus provides an empirical counterpart to these theoretical predictions.\n\n\\paragraph{Cross-strategy deployment requires strategy identification.}\nThe temperature-induced d1/d2 AUC inversion (\\S\\ref{sec:gen:crossstrategy})---as low as 0.13 for GPT-2~XL and 0.25 for OLMo---has practical consequences.\nA depth estimation system deployed without knowledge of the target decoding strategy risks systematic reversal of depth predictions for temperature-sampled text.\nIn deployment, the strategy type must either be known a priori or inferred as a preprocessing step.\nStrategy-conditioned classifiers---where a first stage identifies the decoding strategy and a second stage applies the corresponding depth model---are a natural solution, though the feasibility of reliable strategy identification from text alone is itself an open question.\n\n\\subsection{Limitations}\n\\label{sec:discussion:limitations}\n\n\\paragraph{Controlled experimental setting.}\nAll experiments use a fixed seed corpus (Wikipedia), LoRA finetuning, and three model families at 1--1.5B parameter scale.\nThis controlled design isolates the effect of recursive depth but leaves open how well the approach transfers to mixed-domain seed text, instruction-tuned models, full finetuning, and larger model scales (7B+).\nThe gap between our controlled setting and the heterogeneous conditions of real-world recursive contamination remains uncharacterized.\n\n\\paragraph{Reference model circularity.}\nOur 19 statistical features are computed relative to a GPT-2 base (124M) reference model.\nIn the cross-model leave-one-out evaluation, the GPT-2~XL holdout shares partial architectural overlap with this reference---both belong to the GPT-2 family.\nHowever, GPT-2~XL holdout accuracy (67.6\\%) does not exceed that of the architecturally unrelated OLMo holdout (69.2\\%), suggesting that architectural overlap is not the primary driver of transfer performance.\nNonetheless, the choice of reference model introduces a potential confound that warrants investigation with non-GPT-2 reference models.\n\n\\paragraph{Feature fragility under domain shift.}\n\\citet{pudasaini2026_detection_fails} demonstrate that detection features degrade under domain shift, with classifiers trained on one text domain failing to generalize to others.\nOur ordinal depth features---derived from the same class of perplexity and entropy statistics---are likely susceptible to analogous fragility.\nA depth estimator trained on Wikipedia-seeded recursive text may not transfer to recursive generation seeded from news, code, or dialogue without domain-specific recalibration.\n\n\\paragraph{Non-monotonic early-depth dynamics.}\nOur EDD framework assumes that text quality degrades monotonically with recursive depth.\n\\citet{bakshi2026_collapse_improvement} present evidence that early recursive iterations can temporarily \\emph{improve} model quality before eventual collapse, implying that the depth--degradation relationship may be non-monotonic in the initial generations.\nIf feature trajectories reflect this non-monotonicity, the ordinal classification assumption---that depth classes are naturally ordered---may break down for shallow depths under certain conditions.\n\n\\paragraph{Curated synthetic pipelines.}\n\\citet{falahati2026_curated} show that carefully curated synthetic data does not necessarily trigger model collapse, challenging the assumption that recursive depth invariably produces distributional degradation.\nIn such curated pipelines, the statistical fingerprints we exploit may be absent or attenuated, rendering depth estimation infeasible.\nThe boundary conditions under which curation neutralizes depth signal remain unknown.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T09:39:30.940769+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_discussion.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T09:39:30.941021+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T09:39:30.941232+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T09:39:30.941452+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "section_discussion",
+  "type": "paper",
+  "description": "Discussion and Limitations section (§6) — implications of depth-graduated curation, feature evolution, cross-strategy deployment warning; limitations on controlled setting, reference model circularity, domain fragility, non-monotonic dynamics, and curated pipelines.",
+  "project": "recursive_gen_depth_est",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_discussion.tex",
+  "tags": "['paper', 'discussion', 'limitations', 'latex']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "section_discussion",
+    "type": "paper",
+    "description": "Discussion and Limitations section (§6) — implications of depth-graduated curation, feature evolution, cross-strategy deployment warning; limitations on controlled setting, reference model circularity, domain fragility, non-monotonic dynamics, and curated pipelines.",
+    "project": "recursive_gen_depth_est",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_discussion.tex",
+    "tags": "['paper', 'discussion', 'limitations', 'latex']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T09:39:30.941710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_c6af4b\", \"name\": \"section_discussion\", \"type\": \"paper\", \"description\": \"Discussion and Limitations section (§6) — implications of depth-graduated curation, feature evolution, cross-strategy deployment warning; limitations on controlled setting, reference model circularity, domain fragility, non-monotonic dynamics, and curated pipelines.\", \"path\": \"projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion.tex\", \"url\": null, \"project\": \"recursive_gen_depth_est\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T09:39:19.032548+00:00\", \"tags\": [\"paper\", \"discussion\", \"limitations\", \"latex\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_discussion_20260515T093754",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-15T09:39:30.942016+00:00_
+
+§6 已写入 `section_discussion.tex`，约 530 words。
+
+结构：
+- **§6.1 Implications** — 3 段：depth-graduated data curation（引 DSIR/QuRating/importance weighting，标注为概念性贡献）、feature evolution 与 tail erosion 理论对应、cross-strategy 部署需先识别策略类型（引 AUC 反转数据 0.13/0.25）
+- **§6.2 Limitations** — 5 段：controlled setting（固定 seed/LoRA/1-1.5B）、reference model circularity（GPT-2 XL 67.6% < OLMo 69.2% 说明 overlap 非主因）、feature domain fragility（引 Pudasaini 2026）、non-monotonic dynamics（引 Bakshi 2026）、curated pipelines（引 Falahati 2026）
+
+所有指定引用 key 和关键数字均已嵌入。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_writing_discussion_20260515T093754"
+}
+```
+
+</details>
+
+---

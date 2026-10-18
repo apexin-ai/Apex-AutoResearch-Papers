@@ -1,0 +1,2570 @@
+# cron hook eval pi05 attn k075 long seed43 strict w27 20260528T113210 365672
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 2
+- **Tool calls:** 39
+- **Original source:** `logs/chats/archive/cron_hook_eval_pi05_attn_k075_long_seed43_strict_w27_20260528T113210_365672.jsonl`
+- **Structured JSON:** [`e7a9ef89640121755b53.json`](../../sessions/e7/e7a9ef89640121755b53.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+55 recorded events
+
+### User
+
+_source line 1 · 2026-05-27T17:51:00.823291+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: eval_pi05_attn_k075_long_seed43_strict_w27
+- project: importance_margin_vla_compress
+- server: westd-27271
+- log_path: ~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_w27.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-27T17:51:14.952968+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-27T17:51:15.008625+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "ToolSearch",
+  "elapsed_ms": 55
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-27T17:51:18.439525+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-27T17:51:18.497192+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-27T17:51:19.068088+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-27T17:51:19.218932+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-27T17:51:21.964387+00:00_
+
+Error: result (520,173 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/93f28596-3a4e-4ab3-8305-4bfed4d69cef/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/93f28596-3a4e-4ab3-8305-4bfed4d69cef/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/93f28596-3a4e-4ab3-8305-4bfed4d69cef/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 3524
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-27T17:53:08.874017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 11, \"results\": [{\"exp_id\": \"eval_openvla_attn_k075_long_seed42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=ov_attn_k075_long)\"]}, {\"exp_id\": \"eval_openvla_random_k095_long_seed42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=ov_rnd_k095_long)\"]}, {\"exp_id\": \"eval_pi05_attn_k07_long_seed42_strict_cqa1\", \"success\": true, \"actions\": [\"Process gone, no sentinel, no W&B — escalating to agent (miss 2/5)\"]}, {\"exp_id\": \"eval_pi05_random_k09_long_seed43_strict_cqa1_v2\", \"success\": true, \"actions\": [\"Job still running (pid=330514)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\", \"success\": true, \"actions\": [\"Job still running (pid=386864)\"]}, {\"exp_id\": \"eval_pi05_random_k095_long_seed43_strict_w38\", \"success\": true, \"actions\": [\"Job still running (pid=390876)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k07_long_seed43_strict_w41\", \"success\": true, \"actions\": [\"Job still running (pid=821246)\"]}, {\"exp_id\": \"eval_pi05_random_k075_long_seed43_strict_w41\", \"success\": true, \"actions\": [\"Job still running (pid=840142)\"]}, {\"exp_id\": \"eval_pi05_random_k07_long_seed43_strict_w38\", \"success\": true, \"actions\": [\"Job still running (pid=433034)\"]}, {\"exp_id\": \"eval_pi05_attn_k09_long_seed43_strict_cqa1\", \"success\": true, \"actions\": [\"Job still running (pid=503245)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k05_long_seed43_strict_cqa1\", \"success\": true, \"actions\": [\"Job still running (pid=572418)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 110376
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T17:53:08.895176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-27T17:50:57Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 871 个实验 — DEPLOYED 7, DONE 757, PREPARING 95, QUEUED 1, RUNNING 11\\n**DONE 分布**: failed 108, killed 75, negative 104, success 470\\n\\n### GPU 占用\\n- **分配**: 14 张 — westd-27271:cuda:0, westd-27271:cuda:1, cqa1-33015:cuda:0, cqa1-33015:cuda:1, cqa1-33015:cuda:2, cqa1-33015:cuda:3, westd-41074:cuda:0, westd-41074:cuda:1, westd-41074:cuda:2, westd-41074:cuda:3, westd-38929:cuda:0, westd-38929:cuda:1, westd-38929:cuda:2, westd-38929:cuda:3\\n- **实际运行**: 10 张 — cqa1-33015:cuda:1(eval_pi05_attn_k07_long_seed42_strict_cqa1), cqa1-33015:cuda:1(eval_pi05_random_k09_long_seed43_strict_cqa1_v2), cqa1-33015:cuda:3(eval_pi05_l2norm_k09_long_seed43_strict_cqa1), westd-38929:cuda:3(eval_pi05_random_k095_long_seed43_strict_w38), westd-41074:cuda:3(eval_pi05_l2norm_k07_long_seed43_strict_w41), westd-41074:cuda:2(eval_pi05_random_k075_long_seed43_strict_w41), westd-38929:cuda:2(eval_pi05_random_k07_long_seed43_strict_w38), cqa1-33015:cuda:2(eval_pi05_attn_k09_long_seed43_strict_cqa1), westd-41074:cuda:1(eval_pi05_attn_k07_long_seed43_strict_w41), cqa1-33015:cuda:0(eval_pi05_l2norm_k05_long_seed43_strict_cqa1)\\n- **空闲（分配了没跑）**: westd-27271:cuda:0, westd-27271:cuda:1, westd-41074:cuda:0\\n\\n### 💾 磁盘余量\\n- **westd-27271**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/usr/bin/nvidia-smi`: 819G/879G 可用（已用 2%）\\n- **cqa1-33015**:\\n  - `/autodl-pub`: 673G/7.0T 可用（已用 91%） ⚠️\\n  - `/autodl-pub/data`: 1.5T/4.0T 可用（已用 65%）\\n  - `/usr/bin/nvidia-smi`: 818G/879G 可用（已用 2%）\\n- **westd-41074**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/usr/bin/nvidia-smi`: 812G/879G 可用（已用 3%）\\n
+…[truncated 10514 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 109827
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-27T17:53:08.998494+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/ROADMAP.md\", \"content\": \"# importance_margin_vla_compress — Research Dashboard\\n\\n> 最后更新: 2026-05-27 17:02 UTC | 更新原因: D277: k=0.85 error bar 闭合 (L2norm 78.1%±0.5, Random 45.6%±1.6), importance margin profile 补齐中段\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA vision token compressibility: **scoring method × connector × task 三维交互**。5+ 模型 × 4 LIBERO suites。\\n\\n## 当前阶段\\n✅ **π0.5 Cliff Curve 18/18 完成** (D275)\\n✅ **Crossover table 16/16 完成**\\n✅ **Abstract 已提交** (May 26)\\n📝 **Paper Agent**: Provenance 83/83\\n✅ **Narrative 定稿** (D276): systematic study + importance margin 作为 diagnostic metric\\n✅ **Importance margin inverted-U**: k=0.95(25.4pp) → k=0.9(45.4pp peak) → k=0.85(32.5pp) → k=0.5(≈0)\\n✅ **OV 方法排序翻转**: Attn>L2norm, CV 作 bridging argument (D267)\\n\\n## Deadlines\\n- **实验硬截止**: May 28 20:00 BJT (C002) — **~8h**\\n- **CoRL 2026 Paper**: May 29\\n\\n## π0.5 Long Cliff Curve (strict) — ✅ COMPLETE\\n| k | L2norm | Attn | Random |\\n|---|--------|------|--------|\\n| 0.95 | **86.0%±0.2** | **78.4%** | **60.6%** |\\n| 0.9 | **80.0%** | **64.0%** | **34.6%±0.4** 🔴valley |\\n| 0.85 | **78.1%±0.5** | **50.0%** | **45.6%±1.6** |\\n| 0.75 | **70.8%** | **49.8%** | **63.0%** |\\n| 0.7 | **63.2%** | **53.6%** | **66.0%** |\\n| 0.5 | **49.2%** | **52.0%** | **49.8%** |\\n\\n## OpenVLA Long Cliff Curve\\n| k | L2norm | Attn | Random | Baseline |\\n|---|--------|------|--------|----------|\\n| 0.95 | **42.6%** | **49.8%** | 🏃w38 GPU0 ~4h | 52.8% |\\n| 0.9 | 43.6% | 44.0% | 46.8% | — |\\n| 0.85 | 38.8% | 45.8% | 45.0% | — |\\n| 0.75 | **34.0%** | 🏃w38 GPU1 ~4h | 43.0% | — |\\n| 0.7 | 31.2% | 24.0% | 38.8% | — |\\n| 0.5 | 16.4% | 14.6% | 18.6% | — |\\n\\n**完成 16/18，运行中 2/18**\\n\\n## Seed43 Error Bar — Importance Margin Profile\\n| k | L2norm s42 | L2norm s43 | L2norm mean±Δ | Random s42 | Random s43 | Random mean±Δ | **Margi
+…[truncated 2760 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 109779
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-27T17:53:23.318092+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": "{'exp_id': 'eval_pi05_attn_k075_long_seed43_strict_w27'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "filters": "{'exp_id': 'eval_pi05_attn_k075_long_seed43_strict_w27'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T17:53:24.273504+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-27T17:53:24.875731+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": "{'exp_id': 'eval_pi05_attn_k085_long_seed43_strict_w27'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "filters": "{'exp_id': 'eval_pi05_attn_k085_long_seed43_strict_w27'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T17:53:25.885347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5478}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 2567
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-27T17:53:25.885817+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/sessions/agent_8df6116f.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Read",
+  "elapsed_ms": 1612
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T17:53:28.148420+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2465}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 3272
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-27T17:53:35.976265+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt 2>/dev/null | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid in exps:\n    if 'attn_k075' in eid and 'w27' in eid:\n        print(json.dumps({eid: exps[eid]}, indent=2))\n\" 2>/dev/null || echo \"File not found or parse error\"",
+  "description": "Search registry dump for attn_k075 w27 experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt 2>/dev/null | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid in exps:\n    if 'attn_k075' in eid and 'w27' in eid:\n        print(json.dumps({eid: exps[eid]}, indent=2))\n\" 2>/dev/null || echo \"File not found or parse error\"",
+    "description": "Search registry dump for attn_k075 w27 experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T17:53:36.428761+00:00_
+
+File not found or parse error
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T17:53:36.580625+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T17:53:36.681300+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-27T17:53:42.448498+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.claude-account-5 -name \"mcp-agent-ml-research-read_registry*\" -type f 2>/dev/null | head -5",
+  "description": "Find registry dump file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.claude-account-5 -name \"mcp-agent-ml-research-read_registry*\" -type f 2>/dev/null | head -5",
+    "description": "Find registry dump file"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-27T17:53:42.699945+00:00_
+
+/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/93f28596-3a4e-4ab3-8305-4bfed4d69cef/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt
+/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-2b9679f9/a3f0660b-04c8-482a-a83f-c0db5ccf5301/tool-results/mcp-agent-ml-research-read_registry-1779904097289.txt
+/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/d3b73419-ee3e-45b9-b6ab-b55f81c07a99/tool-results/mcp-agent-ml-research-read_registry-1779877364900.txt
+/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-f602bfe2/581ac7fa-e125-478b-9ff2-33b18667d65b/tool-results/mcp-agent-ml-research-read_registry-1779875138269.txt
+/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-7996dd7b/944147e6-37f8-4532-ab2c-d529fe8374be/tool-results/mcp-agent-ml-research-read_registry-1779877010456.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-27T17:53:42.700479+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/on-experiment-failed*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/on-experiment-failed*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-27T17:53:43.053390+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Glob",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-27T17:53:49.908456+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/93f28596-3a4e-4ab3-8305-4bfed4d69cef/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Search for the experiment\nfor eid in exps:\n    if 'attn_k075' in eid and 'w27' in eid:\n        print(json.dumps({eid: exps[eid]}, indent=2))\n    elif 'attn_k085' in eid and 'w27' in eid:\n        print(json.dumps({eid: exps[eid]}, indent=2))\n\"",
+  "description": "Search registry for failed w27 attn experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/93f28596-3a4e-4ab3-8305-4bfed4d69cef/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Search for the experiment\nfor eid in exps:\n    if 'attn_k075' in eid and 'w27' in eid:\n        print(json.dumps({eid: exps[eid]}, indent=2))\n    elif 'attn_k085' in eid and 'w27' in eid:\n        print(json.dumps({eid: exps[eid]}, indent=2))\n\"",
+    "description": "Search registry for failed w27 attn experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-27T17:53:50.076925+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-27T17:53:50.130221+00:00_
+
+{
+  "eval_pi05_attn_k075_long_seed43_strict_w27": {
+    "status": "DONE",
+    "created_at": "2026-05-27T17:42:28.133Z",
+    "updated_at": "2026-05-27T17:50:44.864Z",
+    "hypothesis": "\u03c00.5 Attn k=0.75 Long strict seed43 \u2014 seed42=52.4% \u7684 seed \u590d\u5236\uff0c\u9a8c\u8bc1 Attn cliff \u540e\u5e73\u53f0\u6bb5 error bar\uff08k=0.75 \u4e0e k=0.85 \u5747\u5728 ~50% \u5e73\u53f0\uff09",
+    "parent": "eval_pi05_attn_k075_long_seed42_strict_cqa1",
+    "conclusion": "failed"
+  }
+}
+{
+  "eval_pi05_attn_k085_long_seed43_strict_w27": {
+    "status": "DONE",
+    "created_at": "2026-05-27T17:42:24.765Z",
+    "updated_at": "2026-05-27T17:47:35.227Z",
+    "hypothesis": "\u03c00.5 Attn k=0.85 Long strict seed43 \u2014 seed42=50.0% \u7684 seed \u590d\u5236\uff0c\u9a8c\u8bc1 Attn cliff \u4e2d\u95f4\u6bb5 error bar\uff0c\u786e\u8ba4 step-function \u964d\u7ea7\u6a21\u5f0f\u53ef\u590d\u73b0",
+    "parent": "eval_pi05_attn_k085_long_seed42_strict",
+    "conclusion": "failed"
+  }
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "elapsed_ms": 221
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T17:53:50.181386+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Read",
+  "elapsed_ms": 104
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-27T17:54:02.541132+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-27T17:54:06.705930+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\", \"content\": \"# GPU Audit Report — 2026-05-27 15:35 UTC\\n\\n## cqa1-33015 (4× GPU)\\n\\n| GPU | Experiment | Progress | ETA (UTC) |\\n|-----|-----------|----------|-----------|\\n| 0 | eval_openvla_random_k095_goal_seed42_v2 | Task 10/10 Ep 10/50 | ~15:55 |\\n| 1 | eval_openvla_attn_k095_goal_seed42_v2 (cqa1 副本) | Task 4/10 | ~19:00 |\\n| 2 | eval_pi05_attn_k095_long_seed42_strict | Task 8/10 Ep 20/50 | ~17:15 |\\n| 3 | eval_openvla_attn_k05_goal_seed42_v3 | Task 7/10 Ep 20/50 | ~18:00 |\\n\\n**空闲 GPU: 无（GPU 0 约 20 min 内释放）**\\n\\n## westd-38929 (4× GPU)\\n\\n| GPU | Experiment | Progress | ETA (UTC) |\\n|-----|-----------|----------|-----------|\\n| 0 | eval_openvla_random_k095_long_seed42_v2 | Task 2/10 Ep 20/50 | ~23:30 |\\n| 1 | eval_openvla_l2norm_k095_long_seed42 | Task 6/10 Ep 40/50 | ~19:30 |\\n| 2 | eval_openvla_l2norm_k075_long_seed42_v2 | Task 5/10 Ep 10/50 | ~22:00 |\\n| 3 | eval_openvla_attn_k095_long_seed42 | Task 7/10 (刚开始) | ~19:30 |\\n\\n**空闲 GPU: 无（所有 GPU 满载）**\\n\\n## Registry 更新\\n\\n1. **eval_openvla_l2norm_k095_object_seed42** → DONE(failed)：进程消失，无 exit 文件，确认陈旧条目\\n2. **eval_openvla_attn_k07_long_seed42_v2** → 补充 per-task metrics：SR=24.0% (120/500)，T1=38%, T2=24%, T3=38%, T4=14%, T5=4%, T6=50%, T7=20%, T8=40%, T9=6%, T10=6%\\n3. **eval_openvla_random_k095_long_seed42_v2** → 从 PREPARING 更新至 RUNNING (westd-38929 cuda:0, pid=112587)\\n\\n## 已完成实验 Metrics\\n\\n| Experiment | SR | 状态 |\\n|-----------|-----|------|\\n| eval_openvla_attn_k07_long_seed42_v2 | 24.0% | DONE(negative) — 已完成于 May 26 |\\n\\n## 待部署（等 GPU 释放）\\n\\n| 优先级 | Experiment | 目标 GPU | 等待 |\\n|--------|-----------|---------|------|\\n| 1 | π0.5 Random k=0.7 Long strict | cqa1 GPU 0 | random k=0.95 Goal 完成（~20 min） |\\n| 2 | π0.5 Random k=0.5 Long strict | cqa1 GPU 2 | π0.5 attn k=0.95 strict 完成（~1.5 h） |\\n\\n## 注意事项\\n\\n- cqa
+…[truncated 1209 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4164
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-27T17:54:07.007076+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/93f28596-3a4e-4ab3-8305-4bfed4d69cef/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Get full details for both failed experiments\nfor eid in ['eval_pi05_attn_k075_long_seed43_strict_w27', 'eval_pi05_attn_k085_long_seed43_strict_w27']:\n    if eid in exps:\n        print(f'=== {eid} ===')\n        print(json.dumps(exps[eid], indent=2, ensure_ascii=False))\n        print()\n\n# Also check if there are successful attn experiments on w27 recently for comparison\nprint('=== Recent attn experiments on other servers (for comparison) ===')\nfor eid, exp in exps.items():\n    if 'attn' in eid and exp.get('conclusion') == 'success' and 'seed43' in eid and 'strict' in eid:\n        print(f'{eid}: status={exp[\\\"status\\\"]}, conclusion={exp.get(\\\"conclusion\\\")}')\n\"",
+  "description": "Get full registry details for failed experiments and compare with successful ones"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/93f28596-3a4e-4ab3-8305-4bfed4d69cef/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Get full details for both failed experiments\nfor eid in ['eval_pi05_attn_k075_long_seed43_strict_w27', 'eval_pi05_attn_k085_long_seed43_strict_w27']:\n    if eid in exps:\n        print(f'=== {eid} ===')\n        print(json.dumps(exps[eid], indent=2, ensure_ascii=False))\n        print()\n\n# Also check if there are successful attn experiments on w27 recently for comparison\nprint('=== Recent attn experiments on other servers (for comparison) ===')\nfor eid, exp in exps.items():\n    if 'attn' in eid and exp.get('conclusion') == 'success' and 'seed43' in eid and 'strict' in eid:\n        print(f'{eid}: status={exp[\\\"status\\\"]}, conclusion={exp.get(\\\"conclusion\\\")}')\n\"",
+    "description": "Get full registry details for failed experiments and compare with successful ones"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-27T17:54:07.107877+00:00_
+
+=== eval_pi05_attn_k075_long_seed43_strict_w27 ===
+{
+  "status": "DONE",
+  "created_at": "2026-05-27T17:42:28.133Z",
+  "updated_at": "2026-05-27T17:50:44.864Z",
+  "hypothesis": "π0.5 Attn k=0.75 Long strict seed43 — seed42=52.4% 的 seed 复制，验证 Attn cliff 后平台段 error bar（k=0.75 与 k=0.85 均在 ~50% 平台）",
+  "parent": "eval_pi05_attn_k075_long_seed42_strict_cqa1",
+  "conclusion": "failed"
+}
+
+=== eval_pi05_attn_k085_long_seed43_strict_w27 ===
+{
+  "status": "DONE",
+  "created_at": "2026-05-27T17:42:24.765Z",
+  "updated_at": "2026-05-27T17:47:35.227Z",
+  "hypothesis": "π0.5 Attn k=0.85 Long strict seed43 — seed42=50.0% 的 seed 复制，验证 Attn cliff 中间段 error bar，确认 step-function 降级模式可复现",
+  "parent": "eval_pi05_attn_k085_long_seed42_strict",
+  "conclusion": "failed"
+}
+
+=== Recent attn experiments on other servers (for comparison) ===
+eval_pi05_attn_k095_long_seed43_strict_w41: status=DONE, conclusion=success
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-27T17:54:21.684771+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-27T17:54:21.786272+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "ToolSearch",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-27T17:54:27.170047+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_w27.log",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-27271",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_w27.log",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-27T17:54:27.776288+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w27.log",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-27271",
+    "log_path": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w27.log",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-27T17:54:28.324320+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"usage: eval_pi05_pruning_libero.py [-h] [--model_path MODEL_PATH]\", \"                                   [--suite {libero_object,libero_spatial,libero_goal,libero_10}]\", \"                                   [--prune_mode {none,random,l2norm}]\", \"                                   [--keep_ratio KEEP_RATIO]\", \"                                   [--n_episodes N_EPISODES] [--gpu GPU]\", \"                                   [--seed SEED] [--replan_steps REPLAN_STEPS]\", \"                                   [--output_dir OUTPUT_DIR]\", \"eval_pi05_pruning_libero.py: error: argument --prune_mode: invalid choice: 'attention' (choose from 'none', 'random', 'l2norm')\", \"EXIT_CODE=2\"], \"line_count\": 9, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_w27.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1154
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-27T17:54:28.828792+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"usage: eval_pi05_pruning_libero.py [-h] [--model_path MODEL_PATH]\", \"                                   [--suite {libero_object,libero_spatial,libero_goal,libero_10}]\", \"                                   [--prune_mode {none,random,l2norm}]\", \"                                   [--keep_ratio KEEP_RATIO]\", \"                                   [--n_episodes N_EPISODES] [--gpu GPU]\", \"                                   [--seed SEED] [--replan_steps REPLAN_STEPS]\", \"                                   [--output_dir OUTPUT_DIR]\", \"eval_pi05_pruning_libero.py: error: argument --prune_mode: invalid choice: 'attention' (choose from 'none', 'random', 'l2norm')\", \"EXIT_CODE=2\"], \"line_count\": 9, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w27.log\", \"anomalies\": []}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1052
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-27T17:54:51.021916+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_attn_k075_long_seed43_strict_w27",
+  "field": "notes",
+  "value": "失败原因: w27 上 eval_pi05_pruning_libero.py 的 --prune_mode 不支持 'attention'（仅 none/random/l2norm）。代码未同步到 w27。同 eval_pi05_attn_k085_long_seed43_strict_w27。| 建议: 同步代码到 w27 后重跑",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_attn_k075_long_seed43_strict_w27",
+    "field": "notes",
+    "value": "失败原因: w27 上 eval_pi05_pruning_libero.py 的 --prune_mode 不支持 'attention'（仅 none/random/l2norm）。代码未同步到 w27。同 eval_pi05_attn_k085_long_seed43_strict_w27。| 建议: 同步代码到 w27 后重跑",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-27T17:54:52.578250+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_attn_k085_long_seed43_strict_w27",
+  "field": "notes",
+  "value": "失败原因: w27 上 eval_pi05_pruning_libero.py 的 --prune_mode 不支持 'attention'（仅 none/random/l2norm）。代码未同步到 w27。同 eval_pi05_attn_k075_long_seed43_strict_w27。| 建议: 同步代码到 w27 后重跑",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_attn_k085_long_seed43_strict_w27",
+    "field": "notes",
+    "value": "失败原因: w27 上 eval_pi05_pruning_libero.py 的 --prune_mode 不支持 'attention'（仅 none/random/l2norm）。代码未同步到 w27。同 eval_pi05_attn_k075_long_seed43_strict_w27。| 建议: 同步代码到 w27 后重跑",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-27T17:54:54.485236+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_attn_k075_long_seed43_strict_w27\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:42:28.133Z\", \"updated_at\": \"2026-05-27T17:54:53.032Z\", \"hypothesis\": \"π0.5 Attn k=0.75 Long strict seed43 — seed42=52.4% 的 seed 复制，验证 Attn cliff 后平台段 error bar（k=0.75 与 k=0.85 均在 ~50% 平台）\", \"parent\": \"eval_pi05_attn_k075_long_seed42_strict_cqa1\", \"server\": \"westd-27271\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"53139\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_w27.log\", \"submitted_at\": \"2026-05-27T17:46:59.814Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 225.1, \"gpu_hours\": 0.06}, \"reproduce\": {\"finished_at\": \"2026-05-27T17:50:24.325Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-27T17:50:44.864Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-27T17:51:00.392641+00:00\"}]}, \"notes\": \"失败原因: w27 上 eval_pi05_pruning_libero.py 的 --prune_mode 不支持 'attention'（仅 none/random/l2norm）。代码未同步到 w27。同 eval_pi05_attn_k085_long_seed43_strict_w27。| 建议: 同步代码到 w27 后重跑\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.4611}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 3463
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-27T17:54:58.107435+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_attn_k085_long_seed43_strict_w27\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:42:24.765Z\", \"updated_at\": \"2026-05-27T17:54:56.530Z\", \"hypothesis\": \"π0.5 Attn k=0.85 Long strict seed43 — seed42=50.0% 的 seed 复制，验证 Attn cliff 中间段 error bar，确认 step-function 降级模式可复现\", \"parent\": \"eval_pi05_attn_k085_long_seed42_strict\", \"server\": \"westd-27271\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:0\"], \"pid\": \"53044\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w27.log\", \"submitted_at\": \"2026-05-27T17:46:28.708Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 66.5, \"gpu_hours\": 0.02}, \"pid\": \"53044\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w27.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"finished_at\": \"2026-05-27T17:47:12.975Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-27T17:47:35.227Z\", \"extra\": {\"hook_events\": [{\"event\": 
+…[truncated 337 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 5529
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-27T17:55:14.605333+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "exp_id": "eval_pi05_attn_k07_long_seed42_strict_cqa1",
+  "project": "importance_margin_vla_compress",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "exp_id": "eval_pi05_attn_k07_long_seed42_strict_cqa1",
+    "project": "importance_margin_vla_compress",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-27T17:55:15.640890+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"2026-05-27 21:08:32,948 Preprocessor/postprocessor loaded\", \"[robosuite WARNING] No private macro file found! (macros.py:53)\", \"2026-05-27 21:08:32,986 No private macro file found!\", \"[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\", \"2026-05-27 21:08:32,986 It is recommended to use a private macro file\", \"[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\", \"2026-05-27 21:08:32,986 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\", \"2026-05-27 21:08:33,056 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\", \"[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\", \"2026-05-27 21:08:33,664 Suite: libero_10, 10 tasks, max_steps=520\", \"Local assets not found. Downloading from HuggingFace Hub...\", \"Assets already downloaded at /root/.cache/libero/assets\", \"[PRUNE-DIAG] attention: n_keep=179/256, score_range=[0.000002, 0.003847], first_indices=[0, 1, 2, 4, 5]\", \"2026-05-27 21:14:17,902   T0 [put both the alphabet soup and the tomat] ep=10: 6/10=60%\", \"2026-05-27 21:19:50,361   T0 [put both the alphabet soup and the tomat] ep=20: 14/20=70%\", \"2026-05-27 21:25:24,096   T0 [put both the alphabet soup and the tomat] ep=30: 20/30=67%\", \"2026-05-27 21:30:48,319   T0 [put both the alphabet soup and the tomat] ep=40: 29/40=72%\", \"2026-05-27 21:36:18,466   T0 [put both the alphabet soup and the tomat] ep=50: 36/50=72%\", \"2026-05-27 21:36:18,466 Task 0: SR=72.0% | Total: 36/50=72.0% | Time: 27.7min\", \"2026-05-27 21:41:41,431   T1 [put both the cream cheese box and the bu] ep=10: 7/10=70%\", \"2026-05-27 21:46:24,478   T1 [put both the cream cheese box and the bu] ep=20: 15/20=75%\", \"2026-05-27 21:51:33,953   T1 [put both the cream cheese box and the bu] ep=30: 22/30=73%\", \"2026-05-27 21:56:51
+…[truncated 5348 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1035
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-27T17:55:36.641410+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "fix:w27_attn_code_sync",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务：修复 westd-27271 上的 eval_pi05_pruning_libero.py 并重跑两个失败的 Attn 实验\n\n### 背景\nwestd-27271 上两个 Attn 实验连续失败（EXIT_CODE=2），原因是脚本 `eval_pi05_pruning_libero.py` 的 `--prune_mode` 参数不支持 `attention`（仅 none/random/l2norm）。其他服务器（w41、cqa1、w38）上同类 Attn 实验正常运行，说明 w27 代码未同步。\n\n### 失败实验\n1. `eval_pi05_attn_k085_long_seed43_strict_w27` — cuda:0, seed=43, k=0.85\n2. `eval_pi05_attn_k075_long_seed43_strict_w27` — cuda:1, seed=43, k=0.75\n\n### 步骤\n\n**Step 1: 对比代码版本**\n- SSH 到 westd-27271，检查 `/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py` 中 `--prune_mode` 的 argparse choices\n- SSH 到 westd-41074（该服务器 attn 实验正常运行），检查同一文件的 choices，确认包含 'attention'\n\n**Step 2: 同步代码到 w27**\n方案选择（按优先级）：\n- 如果 w27 有 git 仓库：`cd /root/autodl-tmp/importance_margin_vla_compress && git pull`\n- 如果没有 git：从 w41 上 scp 或直接修改 w27 上的文件，将 choices 加上 'attention'（参考 w41 的完整实现）\n\n**注意**：不能只加 argparse choice，还要确保 attention pruning 的实际逻辑代码也存在（attention scoring function 等）。对比 w41 和 w27 的完整文件差异。\n\n**Step 3: 验证**\n修复后在 w27 上执行 dry-run：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python eval_pi05_pruning_libero.py --prune_mode attention --help\n```\n或者用更短的验证：\n```bash\npython -c \"import argparse; exec(open('eval_pi05_pruning_libero.py').read().split('args = ')[0])\" \n```\n只要确认 `--prune_mode attention` 不再报参数错误即可。\n\n**Step 4: 重新提交实验**\n验证通过后，用 `submit_training_job` 重新提交两个实验：\n\n实验 1（cuda:0）：\n- exp_id: eval_pi05_attn_k085_long_seed43_strict_w27_v2\n- server: westd-27271\n- gpu_id: cuda:0\n- command: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"`\n\n实验 2（cuda:1）：\n- exp_id: eval_pi05_attn_k075_long_seed43_strict_w27_v2  \n- server: westd-27271\n- gpu_id: cuda:1\n- command: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"`\n\n提交前用 `update_registry` 创建新实验条目：\n- hypothesis: 与原实验相同\n- parent: 与原实验相同\n- 注明是 v2 重跑（代码同步修复后）\n\n**注意**：GPU 编号在命令中始终用 `--gpu 0`（框架自动映射物理 GPU）。\n\n### 环境信息\n- w27 环境：conda base，Python/PyTorch 在 /root/miniconda3/bin/\n- 项目路径：/root/autodl-tmp/importance_margin_vla_compress\n- HF_HOME: /root/autodl-tmp/.hf_cache",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "fix:w27_attn_code_sync",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务：修复 westd-27271 上的 eval_pi05_pruning_libero.py 并重跑两个失败的 Attn 实验\n\n### 背景\nwestd-27271 上两个 Attn 实验连续失败（EXIT_CODE=2），原因是脚本 `eval_pi05_pruning_libero.py` 的 `--prune_mode` 参数不支持 `attention`（仅 none/random/l2norm）。其他服务器（w41、cqa1、w38）上同类 Attn 实验正常运行，说明 w27 代码未同步。\n\n### 失败实验\n1. `eval_pi05_attn_k085_long_seed43_strict_w27` — cuda:0, seed=43, k=0.85\n2. `eval_pi05_attn_k075_long_seed43_strict_w27` — cuda:1, seed=43, k=0.75\n\n### 步骤\n\n**Step 1: 对比代码版本**\n- SSH 到 westd-27271，检查 `/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py` 中 `--prune_mode` 的 argparse choices\n- SSH 到 westd-41074（该服务器 attn 实验正常运行），检查同一文件的 choices，确认包含 'attention'\n\n**Step 2: 同步代码到 w27**\n方案选择（按优先级）：\n- 如果 w27 有 git 仓库：`cd /root/autodl-tmp/importance_margin_vla_compress && git pull`\n- 如果没有 git：从 w41 上 scp 或直接修改 w27 上的文件，将 choices 加上 'attention'（参考 w41 的完整实现）\n\n**注意**：不能只加 argparse choice，还要确保 attention pruning 的实际逻辑代码也存在（attention scoring function 等）。对比 w41 和 w27 的完整文件差异。\n\n**Step 3: 验证**\n修复后在 w27 上执行 dry-run：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python eval_pi05_pruning_libero.py --prune_mode attention --help\n```\n或者用更短的验证：\n```bash\npython -c \"import argparse; exec(open('eval_pi05_pruning_libero.py').read().split('args = ')[0])\" \n```\n只要确认 `--prune_mode attention` 不再报参数错误即可。\n\n**Step 4: 重新提交实验**\n验证通过后，用 `submit_training_job` 重新提交两个实验：\n\n实验 1（cuda:0）：\n- exp_id: eval_pi05_attn_k085_long_seed43_strict_w27_v2\n- server: westd-27271\n- gpu_id: cuda:0\n- command: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"`\n\n实验 2（cuda:1）：\n- exp_id: eval_pi05_attn_k075_long_seed43_strict_w27_v2  \n- server: westd-27271\n- gpu_id: cuda:1\n- command: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\"`\n\n提交前用 `update_registry` 创建新实验条目：\n- hypothesis: 与原实验相同\n- parent: 与原实验相同\n- 注明是 v2 重跑（代码同步修复后）\n\n**注意**：GPU 编号在命令中始终用 `--gpu 0`（框架自动映射物理 GPU）。\n\n### 环境信息\n- w27 环境：conda base，Python/PyTorch 在 /root/miniconda3/bin/\n- 项目路径：/root/autodl-tmp/importance_margin_vla_compress\n- HF_HOME: /root/autodl-tmp/.hf_cache",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-27T17:55:42.474217+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_fix_w27_attn_code_sync_20260527T175538\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_fix_w27_attn_code_sync_20260527T175538.log\", \"setup_data\": {}, \"message\": \"Worker worker_fix_w27_attn_code_sync_20260527T175538 started. Use get_worker_status('worker_fix_w27_attn_code_sync_20260527T175538') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 5832
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-27T17:56:02.141952+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": "{'exp_id': 'eval_pi05_attn_k07_long_seed42_strict_cqa1'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "filters": "{'exp_id': 'eval_pi05_attn_k07_long_seed42_strict_cqa1'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-27T17:56:07.897421+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.7115}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 5755
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-27T17:56:18.025154+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/93f28596-3a4e-4ab3-8305-4bfed4d69cef/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\neid = 'eval_pi05_attn_k07_long_seed42_strict_cqa1'\nif eid in exps:\n    print(json.dumps(exps[eid], indent=2, ensure_ascii=False))\nelse:\n    # fuzzy match\n    for k in exps:\n        if 'attn_k07' in k and 'seed42' in k and 'cqa1' in k:\n            print(f'Found: {k}')\n            print(json.dumps(exps[k], indent=2, ensure_ascii=False))\n\"",
+  "description": "Find cqa1 attn k07 experiment in registry dump"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/93f28596-3a4e-4ab3-8305-4bfed4d69cef/tool-results/mcp-agent-ml-research-read_registry-1779904281846.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\neid = 'eval_pi05_attn_k07_long_seed42_strict_cqa1'\nif eid in exps:\n    print(json.dumps(exps[eid], indent=2, ensure_ascii=False))\nelse:\n    # fuzzy match\n    for k in exps:\n        if 'attn_k07' in k and 'seed42' in k and 'cqa1' in k:\n            print(f'Found: {k}')\n            print(json.dumps(exps[k], indent=2, ensure_ascii=False))\n\"",
+    "description": "Find cqa1 attn k07 experiment in registry dump"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-27T17:56:18.282367+00:00_
+
+{
+  "status": "RUNNING",
+  "created_at": "2026-05-27T12:35:27.573Z",
+  "updated_at": "2026-05-27T14:06:22.830Z",
+  "hypothesis": "π0.5 attention pruning at k=0.7 on Long suite (strict metric) will show further degradation below k=0.75, helping define the cliff point in the attention pruning performance curve.",
+  "parent": "eval_pi05_attn_k075_long_seed42_strict_cqa1"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "elapsed_ms": 257
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-27T17:56:36.094025+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_attn_k07_long_seed42_strict_cqa1",
+  "field": "metrics",
+  "value": "{'sr': 54, 'per_task': {'T0': 72, 'T1': 70, 'T2': 70, 'T3': 36, 'T4': 46, 'T5': 26, 'T6': 80, 'T7': 56, 'T8': 8, 'T9': 76}, 'total_success': 270, 'total_episodes': 500}",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_attn_k07_long_seed42_strict_cqa1",
+    "field": "metrics",
+    "value": "{'sr': 54, 'per_task': {'T0': 72, 'T1': 70, 'T2': 70, 'T3': 36, 'T4': 46, 'T5': 26, 'T6': 80, 'T7': 56, 'T8': 8, 'T9': 76}, 'total_success': 270, 'total_episodes': 500}",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-27T17:56:41.010383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_attn_k07_long_seed42_strict_cqa1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:35:27.573Z\", \"updated_at\": \"2026-05-27T17:56:39.551Z\", \"hypothesis\": \"π0.5 attention pruning at k=0.7 on Long suite (strict metric) will show further degradation below k=0.75, helping define the cliff point in the attention pruning performance curve.\", \"parent\": \"eval_pi05_attn_k075_long_seed42_strict_cqa1\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:1\", \"pid\": \"328563\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_attn_k07_long_seed42_strict_cqa1.log\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\", \"checkpoint_path\": \"N/A (eval only)\"}, \"metrics\": {\"sr\": 54, \"per_task\": {\"T0\": 72, \"T1\": 70, \"T2\": 70, \"T3\": 36, \"T4\": 46, \"T5\": 26, \"T6\": 80, \"T7\": 56, \"T8\": 8, \"T9\": 76}, \"total_success\": 270, \"total_episodes\": 500}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.8607}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 4916
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-27T17:56:44.122977+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_attn_k07_long_seed42_strict_cqa1",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_attn_k07_long_seed42_strict_cqa1",
+    "field": "conclusion",
+    "value": "success",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-27T18:11:02.239736+00:00_
+
+日志确认完成：SR=54.0%，per-task: T0=72%, T1=70%, T2=70%, T3=36%, T4=46%, T5=26%, T6=80%, T7=56%, T8=8%, T9=76%。现在更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+26 recorded events
+
+### User
+
+_source line 56 · 2026-05-28T11:29:12.669050+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-28T11:29:27.323484+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": "7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "max_results": "7"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-28T11:29:27.374057+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-28T11:29:32.085387+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-28T11:29:32.085932+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-28T11:29:33.040804+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-28T11:29:33.522198+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-28T11:29:34.069876+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "importance_margin_vla_compress",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "importance_margin_vla_compress",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-28T11:29:34.180408+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-28T11:29:37.784213+00:00_
+
+Error: result (1,434,487 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/f4420cd4-cfbb-496d-aa26-9d8ae9210db3/tool-results/mcp-agent-ml-research-read_registry-1779967777562.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/f4420cd4-cfbb-496d-aa26-9d8ae9210db3/tool-results/mcp-agent-ml-research-read_registry-1779967777562.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/f4420cd4-cfbb-496d-aa26-9d8ae9210db3/tool-results/mcp-agent-ml-research-read_registry-1779967777562.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 5698
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-28T11:30:48.257045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 7, \"results\": [{\"exp_id\": \"eval_openvla_l2norm_k095_long_seed43_w27\", \"success\": true, \"actions\": [\"Job still running (pid=545112)\"]}, {\"exp_id\": \"eval_pi05_random_k095_long_seed46_strict_w41\", \"success\": true, \"actions\": [\"Job still running (pid=898746)\"]}, {\"exp_id\": \"eval_pi05_random_k05_long_seed46_strict_w41\", \"success\": true, \"actions\": [\"Job still running (pid=899098)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k07_long_seed46_strict_w41\", \"success\": true, \"actions\": [\"Job still running (pid=923767)\"]}, {\"exp_id\": \"eval_pi05_random_k085_long_seed47_w38\", \"success\": true, \"actions\": [\"Job still running (pid=589824)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k05_long_seed47_w38\", \"success\": true, \"actions\": [\"Job still running (pid=589899)\"]}, {\"exp_id\": \"eval_pi05_attn_k05_long_seed47_w38\", \"success\": true, \"actions\": [\"Job still running (pid=590036)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 76171
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-28T11:30:48.308638+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md\", \"content\": \"# Handover — 2026-05-28\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_pi05_attn_k05_long_seed47_w38 | π0.5 Attn k=0.5 Long seed47 — 6th seed bonus data，plateau 区确认。填充 w38 空闲 GPU，不在 CoRL deadline 内但可用于 revision | — | — | — |\\n\\n## 待处理\\n- eval_pi05_l2norm_k07_long_seed46_strict_w38_v2: π0.5 L2norm k=0.7 Long strict seed46 — v1 被 GPU OOM kill (w38:cuda:1 三进程共享)。重试部署到独占 GPU。5th seed for crossover point, 4-seed mean=63.5±1.57pp（准备中）\\n- eval_openvla_random_k095_goal_seed42_v3: OV Random k=0.95 Goal v3 retry on cqa1 — v2 cqa1 transformers 版本问题, v3 w41 模型文件缺失。cqa1 环境已修复，重新部署。Goal Random cliff curve 顶端数据点（准备中）\\n- …另有 94 项\\n\\n## 近期结论\\n- **eval_pi05_attn_k095_long_seed46_strict_w38** (success): Attention-based token pruning at k=0.95 on pi0.5 preserves task performance on LIBERO-Long because removing only 5% lowest-attention vision tokens eliminates redundant spatial information without losing action-critical features.\\n\\n## 趋势\\n成功 572 / 负向 110 / 失败 117 / 共 883\\nsuccess_rate: 75.2 ↓（近 3 次 success）\\ntotal_episodes: 500 →（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-33015: 无 GPU 信息\\nwestd-27271: 无 GPU 信息\\nwestd-38929: 无 GPU 信息\\nwestd-41074: 无 GPU 信息\\n\\n## 告警\\n- eval_acis_k05_supplement_200eps: 训练失败 — unknown\\n- eval_e5_xvla_attn_last_goal_k03: 已被终止 — unknown\\n- eval_e5_xvla_attn_mean_goal_k03: 已被终止 — unknown\\n- eval_k07_bypass_v2: 训练失败 — unknown\\n- eval_official_smolvla_prune_k05_spatial: 训练失败 — unknown\\n- eval_official_smolvla_pruning: 训练失败 — unknown\\n- eval_oft_baseline_k10: 训练失败 — unknown\\n- eval_oft_baseline_object_seed42: 已被终止 — unknown\\n- eval_oft_baseline_object_seed42_v2: 训练失败 — unknown\\n- eval_openvla_attn_k05_object_seed42_v2: 训练失败 — unknown\\n- eva
+…[truncated 6163 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 75267
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-28T11:30:48.361853+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/ROADMAP.md\", \"content\": \"# importance_margin_vla_compress — Research Dashboard\\n\\n> 最后更新: 2026-05-28 11:22 UTC | 更新原因: s46 15/18 (L2norm k=0.5=52.6%, Attn k=0.95=75.2% 收割), 3个seed47 bonus已部署w38, OV Goal v4 DONE\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA vision token compressibility: **scoring method × connector × task 三维交互**。5+ 模型 × 4 LIBERO suites。\\n\\n## 当前阶段\\n✅ **π0.5 Cliff Curve 18/18 完成**\\n✅ **OpenVLA Long Curve 18/18 完成** (D288)\\n✅ **Crossover table 16/16 完成**\\n✅ **Abstract 已提交** (May 26)\\n✅ **Narrative 定稿** (D276)\\n✅ **Importance Margin Inverted-U 6/6 全闭合** (D291) 🎯\\n✅ **Attn cliff+plateau 全 6 点闭合** (D290)\\n\\n## Deadlines\\n- **实验硬截止**: May 28 20:00 BJT (C002) — s44✅ s45✅ s46全面推进中\\n- **CoRL 2026 Paper**: May 29\\n\\n## Importance Margin Profile — ✅ COMPLETE (2-seed)\\n| k | L2norm mean±Δ | Random mean±Δ | **Margin** |\\n|---|--------------|--------------|-----------|\\n| 0.95 | **86.0%±0.2** | **60.7%±0.1** | **+25.3pp** |\\n| 0.9 | **80.6%±0.6** | **34.6%±0.4** | **+46.0pp** ⭐peak |\\n| 0.85 | **78.1%±0.5** | **45.6%±1.6** | **+32.5pp** |\\n| 0.75 | **72.0%±1.2** | **61.8%±1.2** | **+10.2pp** |\\n| 0.7 | **64.3%±1.1** | **65.2%±0.8** | **-0.9pp** 🔄crossover |\\n| 0.5 | **51.0%±1.8** | **50.6%±0.8** | **+0.4pp** ≈0 |\\n\\n## Attn Cliff+Plateau — ✅ COMPLETE (2-seed, 待修正)\\n| k | Mean±Δ | Zone | 备注 |\\n|---|--------|------|------|\\n| 0.95 | **77.8%±0.6** | cliff top | |\\n| 0.9 | **63.4%±0.6** | cliff | |\\n| 0.85 | **51.2%±1.2** | cliff→plateau | |\\n| 0.75 | **~50.9%±1.1** | plateau | ⚠️ 修正: seed43 用 cqa1=52.0% |\\n| 0.7 | **53.7%±0.1** | plateau | |\\n| 0.5 | **50.4%±1.6** | plateau | |\\n\\n## Third Seed (s44) — ✅ 全部完成\\n| 实验 | 状态 | 目的 |\\n|------|------|------|\\n| Random k=0.9 s44 | ✅ DONE | peak margin |\\n| L2norm k=0.9 s44 | ✅ DONE | peak margin |\\n| L2norm k=0.5 s44 | ✅ DONE | 收窄 ±1.8pp
+…[truncated 3497 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 74839
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-28T11:30:48.412527+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"importance_margin_vla_compress\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"servers\": [\"westd-27271\", {\"account\": \"root\", \"server\": \"cqa1-33015\"}, {\"account\": \"root\", \"server\": \"westd-41074\"}, {\"account\": \"root\", \"server\": \"westd-38929\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 74342
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-28T11:30:48.965905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 74785
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-28T11:30:59.226045+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/f4420cd4-cfbb-496d-aa26-9d8ae9210db3/tool-results/mcp-agent-ml-research-read_registry-1779967777562.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n# Get RUNNING and PREPARING experiments\nactive = [e for e in experiments if e.get('status') in ('RUNNING', 'PREPARING', 'ANALYZING')]\nfor e in active:\n    print(f\\\"exp_id: {e.get('exp_id')}\\\")\n    print(f\\\"  status: {e.get('status')}\\\")\n    print(f\\\"  hypothesis: {e.get('hypothesis','N/A')[:100]}\\\")\n    print(f\\\"  server: {e.get('server','N/A')}\\\")\n    print(f\\\"  gpu: {e.get('gpu','N/A')}\\\")\n    print(f\\\"  pid: {e.get('pid','N/A')}\\\")\n    print(f\\\"  metrics: {e.get('metrics','N/A')}\\\")\n    print()\n\" 2>&1 | head -200",
+  "description": "Extract RUNNING/PREPARING/ANALYZING experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress--claude-sessions-agent-8df6116f/f4420cd4-cfbb-496d-aa26-9d8ae9210db3/tool-results/mcp-agent-ml-research-read_registry-1779967777562.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n# Get RUNNING and PREPARING experiments\nactive = [e for e in experiments if e.get('status') in ('RUNNING', 'PREPARING', 'ANALYZING')]\nfor e in active:\n    print(f\\\"exp_id: {e.get('exp_id')}\\\")\n    print(f\\\"  status: {e.get('status')}\\\")\n    print(f\\\"  hypothesis: {e.get('hypothesis','N/A')[:100]}\\\")\n    print(f\\\"  server: {e.get('server','N/A')}\\\")\n    print(f\\\"  gpu: {e.get('gpu','N/A')}\\\")\n    print(f\\\"  pid: {e.get('pid','N/A')}\\\")\n    print(f\\\"  metrics: {e.get('metrics','N/A')}\\\")\n    print()\n\" 2>&1 | head -200",
+    "description": "Extract RUNNING/PREPARING/ANALYZING experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-28T11:30:59.885669+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-28T11:31:00.844271+00:00_
+
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    active = [e for e in experiments if e.get('status') in ('RUNNING', 'PREPARING', 'ANALYZING')]
+                                        ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "Bash",
+  "elapsed_ms": 1618
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-28T11:31:00.894945+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\", \"content\": \"# 机制洞察\\n\\n## Importance Margin Inverted-U 确认 (2026-05-27)\\n\\n**发现**: Importance margin (L2norm SR - Random SR) 在 keep ratio 上呈 inverted-U 曲线，峰值在 k=0.9。双 seed 验证：\\n- k=0.95: 25.3pp (86.0%±0.2 - 60.7%±0.1)\\n- k=0.9: **46.0pp** (80.6%±0.6 - 34.6%±0.4) ← peak\\n- k=0.85: 32.5pp (78.1%±0.5 - 45.6%±1.6)\\n\\n**Why inverted-U**: 高 k (0.95) 时压缩太轻，Random 也能保留足够信息，差距小。低 k (0.5) 时压缩太重，L2norm 也救不回来，三方法收敛到 ~50%。中间 k=0.9 是 \\\"sweet spot\\\"——Random 恰好破坏关键 token 引起系统性崩溃 (34.6%)，而 L2norm 的 importance-aware 选择仍能保护性能 (80.6%)，差距最大。\\n\\n**Paper 意义**: inverted-U 是论文核心 diagnostic metric，远比单点对比更有说服力。peak 位置 (k=0.9) 和 magnitude (46pp) 是 main claim 的数量支撑。\\n\\n## π0.5 Random Anti-monotonicity: strict vs lenient 反转\\n\\n**发现**: 在 k=0.9 dip point，strict SR (34.2%) 比 lenient (~32%) 高 2.2pp。这与所有其他 k 值的模式相反（strict 通常比 lenient 低 0.2-2.6pp）。\\n\\n**机制解释**: 其他 k 值下 strict < lenient 是因为边界案例（任务\\\"差不多\\\"完成但不满足严格标准）。但在 dip point，模型的功能**系统性崩溃**——不是\\\"差一点\\\"完成任务，而是完全无法执行。在这种基础性失败下，评估条件的宽松/严格差异不再有意义，slight variance 导致 strict 反而偶然偏高。\\n\\n**Paper 意义**: 这支持 anti-monotonicity 是 **architectural vulnerability**（Random pruning 在特定 keep ratio 下破坏了关键计算路径）而非评估噪声。\\n\\n## Strict 偏差规律 (D256/D257/D260/D261)\\n\\n已验证的 strict vs lenient 偏差：\\n- L2norm k=0.95: -0.8pp (87.0→86.2)\\n- L2norm k=0.85: -0.2pp (77.8→77.6)\\n- Random k=0.95: -2.6pp (63.2→60.6)\\n- Random k=0.5: -0.2pp (50.0→49.8)\\n- **Random k=0.9: +2.2pp (32→34.2) ← 反转**\\n\\n规律：高性能区偏差小(-0.2~-0.8pp)，中等性能区偏差中等(-2.6pp)，dip point 反转(+2.2pp)。\\n\\n## 服务器能力备忘\\n\\n- **cqa1-33015**: 支持 attention pruning mode（已验证）\\n- **westd-41074**: 支持 attention pruning mode（已验证）\\n- **westd-27271**: ⚠️ 代码未同步，仅支持 none/random/l2norm（Worker 正在修复）\\n- **westd-38929**: attention 支持未确认，待 w27 修复后一并验证\\n\", \"total_chars\": 1630, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1009
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-28T11:31:05.007311+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['exp_id', 'status', 'server', 'gpu', 'pid', 'hypothesis', 'metrics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['exp_id', 'status', 'server', 'gpu', 'pid', 'hypothesis', 'metrics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-28T11:31:05.460278+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'PREPARING'}",
+  "fields": "['exp_id', 'status', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'PREPARING'}",
+    "fields": "['exp_id', 'status', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-28T11:31:05.762874+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_attn_k095_long_seed46_strict_w38\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k05_long_seed46_strict_w41\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k095_long_seed46_strict_w41\": {\"status\": \"RUNNING\"}, \"eval_pi05_l2norm_k095_long_seed46_strict_w27\": {\"status\": \"RUNNING\"}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6868}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 755
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-28T11:31:06.367401+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k095_long_seed42_strict\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k085_long_seed42_strict\": {\"status\": \"PREPARING\", \"hypothesis\": \"π0.5 Random k=0.85 Long seed42 strict — 使用 strict success 条件 (if done: only) 重跑 Random k=0.85 Long。原始非 strict 结果为 44.4%，strict 条件下验证 SR 差异\"}, \"eval_pi05_random_k05_long_seed42\": {\"status\": \"PREPARING\", \"hypothesis\": \"π0.5 Random k=0.5 Long — extreme pruning 对比。Random k=0.3=24.2%，k=0.75 在 GPU0 跑。与 L2norm k=0.5 对比量化 extreme pruning 下的 importance margin\"}, \"eval_openvla_attn_k085_long_seed42_v3\": {\"status\": \"PREPARING\"}, \"eval_xvla_l2norm_k07_long_seed42\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k03_long_seed43_v2\": {\"status\": \"PREPARING\", \"hypothesis\": \"π0.5 Random k=0.3 Long seed43 v2: v1 在 westd-38929:3 exit_code=1 崩溃。seed42 正在跑。V-shape extreme 端 k=0.3 数据点。k=0.5=50.2%，k=0.3 预期更低或继续 V-shape 反弹。\"}, \"eval_xvla_random_k07_object_seed42_v2\": {\"status\": \"PREPARING\"}, \"eval_xvla_random_k085_object_seed43\": {\"status\": \"PREPARING\"}, \"eval_xvla_random_k085_object_seed42_v2\": {\"status\": \"PREPARING\"}, \"eval_xvla_prune_k085_seed43\": {\"status\": \"PREPARING\"}, \"eval_xvla_prune_k08_seed42\": {\"status\": \"PREPARING\"}, \"scp_k07_checkpoint\": {\"status\": \"PREPARING\"}, \"mvp_baseline_v2\": {\"status\": \"PREPARING\"}}, \"count\": 13, \"total\": 13, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6115}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 907
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-28T11:31:10.132754+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__poll_cron",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__poll_cron",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-28T11:31:10.233488+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-28T11:32:10.363985+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- **GPU 白名单**: cuda:0-3 on w27/cqa1/w41/w38。不得用白名单外 GPU。
+- **westd-27271 不支持 attention pruning mode**（代码未同步，仅支持 none/random/l2norm）。Attn 实验必须部署到 cqa1/w41/w38。
+- **数据修正规则（写 paper/收割数据时必须遵守）**:
+  - Attn k=0.75 seed43 → 统一用 cqa1=52.0%（不用 w27 数据）
+  - Random k=0.9 seed43 → 统一用 v2=35.0%（D292），不引用旧 32.4%
+  - OV Attn k=0.75 → 用 v3=34.2%
+  - Random k=0.85 s43 per-task 数据混入 → 用 server log 真值
+  - metrics 格式：最终统一转百分比
+- **实验硬截止**: May 28 20:00 BJT (C002)，截止前 30min 停止新部署
+- **CoRL 2026 Paper**: May 29 提交
+
+### 2. 🖥️ 基础设施快照
+- **服务器 & 工作目录**: 均为 `/root/autodl-tmp/importance_margin_vla_compress`
+  - westd-27271 (w27): conda env, `/root/miniconda3/bin/python`
+  - cqa1-33015 (cqa1): conda env, `/root/miniconda3/bin/python`
+  - westd-41074 (w41): conda env, `/root/miniconda3/bin/python`
+  - westd-38929 (w38): conda env, `/root/miniconda3/bin/python`
+- **活跃进程 (7 cron 监控)**:
+  - w27:cuda:0 — eval_openvla_l2norm_k095_long_seed43_w27 (PID 545112)
+  - w41:cuda:0 — eval_pi05_random_k095_long_seed46_strict_w41 (PID 898746)
+  - w41:cuda:1 — eval_pi05_random_k05_long_seed46_strict_w41 (PID 899098)
+  - w41:cuda:2 — eval_pi05_l2norm_k07_long_seed46_strict_w41 (PID 923767)
+  - w38:cuda:0 — eval_pi05_random_k085_long_seed47_w38 (PID 589824)
+  - w38:cuda:1 — eval_pi05_l2norm_k05_long_seed47_w38 (PID 589899)
+  - w38:cuda:2 — eval_pi05_attn_k05_long_seed47_w38 (PID 590036)
+- **空闲 GPU**: w27:cuda:1-3, cqa1:cuda:0-3, w41:cuda:3, w38:cuda:3
+- **0 个 Worker 在运行**
+
+### 3. 📊 当前状态
+项目处于 **CoRL deadline 冲刺阶段**，核心实验矩阵已基本闭合。
+
+**已完成**:
+- π0.5 Cliff Curve 18/18, OpenVLA Long Curve 18/18, Crossover table 16/16
+- Importance Margin Inverted-U 6/6 全闭合, Attn cliff+plateau 6/6 全闭合
+- s44 (3rd seed) 18/18, s45 (4th seed) 18/18 全部完成
+- Abstract 已提交 (May 26), Narrative 定稿 (D276)
+
+**正在跑**:
+- **s46 (5th seed)**: 15/18 完成，剩余 3 个在 w41（L2norm k=0.7, Random k=0.95, Random k=0.5），预计 ~13:30 UTC 完成
+- **s47 (6th seed bonus)**: 3 个在 w38（Random k=0.85, L2norm k=0.5, Attn k=0.5）
+- **OV**: eval_openvla_l2norm_k095_long_seed43 在 w27
+
+**等待**: 7 个 cron 回调（上述 RUNNING 实验完成时自动触发）。无 Worker 运行，无 Director 决策待回。
+
+### 4. 📋 待办（条件触发式）
+- s46 w41 三个 cron 回调到 → spawn worker 收割 metrics → 更新 ROADMAP s46 表 → s46 18/18 闭合后汇报 Director
+- s47 w38 三个 cron 回调到 → 收割 metrics → 更新 5-seed mean 表（bonus data）
+- OV w27 cron 回调到 → 收割 → 更新 OV curve
+- **19:30 BJT (11:30 UTC)** → 停止一切新部署，进入全面收割模式
+- **全部闭合后** → 数据整合（按 ⚠️ 注意事项逐条清理）→ Paper Agent 更新 figures → May 29 提交
+- eval_pi05_l2norm_k07_long_seed46_strict_w38_v2 (PREPARING) → 如 s46 L2norm k=0.7 在 w41 成功完成则无需重试
+
+### 5. 🎯 战略上下文
+**项目核心结论**: VLA vision token 具有 importance margin——L2norm scoring 在中等压缩率 (k=0.7-0.95) 下显著优于 Random pruning，margin 在 k=0.9 达到峰值 46pp (inverted-U curve)。Attention scoring 表现为 cliff+plateau 模式，与 L2norm 的 graceful degradation 形成对比。
+
+**关键决策链**: D276(narrative 定稿) → D288(OV Long 18/18) → D290(Attn cliff 闭合) → D291(inverted-U 闭合) → D301(error bar 标准: sample std n-1)
+
+**易错点**:
+- **不要把不同服务器的 Attn 结果直接对比**——w27 不支持 attention mode，如果数据来源是 w27 必须标注或替换为 cqa1 数据
+- **s46 的 3 个 RUNNING 可能超过 20:00 BJT 截止**——ROADMAP 已注明"超过截止但会继续跑"，不要因为超时就 kill
+- **13 个 PREPARING 实验大多是历史残留**（早期失败的 xvla/mvp/openvla 实验），不需要重新启动，专注于 s46/s47 收割
+- **error bar 标准已定 (D301)**: 统一用 sample std (n-1)，不要用 SEM 或其他方式
+- **metrics 格式不一致**: 部分实验用比例 (0.xx)，部分用百分比 (xx.x%)，最终收割必须统一转百分比
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_pi05_attn_k075_long_seed43_strict_w27"
+}
+```
+
+</details>
+
+---

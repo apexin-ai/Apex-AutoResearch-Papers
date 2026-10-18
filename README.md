@@ -17,7 +17,7 @@ Each paper directory has the same structure:
 - `02-contributions/`: agent roles and contribution records.
 - `03-code/`: project code, scripts, and environment files.
 - `04-experiments/`: datasets, configurations, result tables, and analysis artifacts.
-- `05-generation-trace/`: visual trace entry, readable session JSON, per-round messages, and the sanitized source archives.
+- `05-generation-trace/`: visual trace entry, GitHub-friendly Markdown transcripts, readable session JSON, per-round messages, and the sanitized source archives.
 - `06-validation/`: internal reviews and audit/verification artifacts.
 - `07-maintenance/`: roadmap, provenance, submission checklists, plans, and licenses.
 - `08-index/`: manifests and version indexes.
@@ -30,4 +30,4 @@ To use the complete interactive trace browser, clone the repository and run:
 python3 scripts/serve_traces.py --open
 ```
 
-The viewer runs locally without additional packages or API keys. On GitHub, each paper's `05-generation-trace/README.md` provides direct links to its session JSON. See the [format guide](traces/FORMAT.md) for source provenance, round boundaries, chunked records, and reference projects.
+The viewer runs locally without additional packages or API keys. On GitHub, each paper's `05-generation-trace/README.md` starts with human-readable Markdown transcripts; the JSON links beside them provide the complete structured records. See the [format guide](traces/FORMAT.md) for source provenance, round boundaries, chunked records, and reference projects.

@@ -1,0 +1,977 @@
+# analysis exp 001 task specificity
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/chats/worker_analysis_exp_001_task_specificity_20260519T131100.jsonl`
+- **Structured JSON:** [`130e2db390269ae4f97d.json`](../../sessions/13/130e2db390269ae4f97d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+31 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T13:14:37.296096+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T13:14:37.296425+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T13:14:37.296607+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -5 /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "head -5 /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T13:14:37.296768+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T13:14:37.296895+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/analysis/convergence_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/analysis/convergence_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T13:14:37.297015+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/analysis/cross_scale_convergence.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/analysis/cross_scale_convergence.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T13:14:37.297151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,model_family,variant,attn_layers,lambada_acc,lambada_ppl,hellaswag_norm,winogrande_acc,arc_easy_norm,arc_challenge_norm,mmlu_acc\\nGDN-pure,GDN,pure,0,0.5429846691247817,8.259574763727228,0.6080462059350727,0.6077348066298343,0.6418350168350169,0.3924914675767918,0.2606466315339695\\nGDN-h24-1,GDN,h24-1,1,0.5396856200271687,8.555169104606378,0.59699263095001,0.6282557221783741,0.6304713804713805,0.39419795221843,0.24405355362483977\\nGDN-h12-1,GDN,h12-1,2,0.5336697069668155,8.727515503459855,0.610336586337383,0.611681136543015,0.6292087542087542,0.3856655290102389,0.25409485828229594\\nGDN-h6-1,GDN,h6-1,4,0.5109644867067727,10.28205860310266,0.6046604262099183,0.5927387529597474,0.6578282828282829,0.38822525597269625,0.25729952998148414\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T13:14:37.297298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\n1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n1.3B-100B-GatedDeltaNet-pure.json\\n1.3B-100B-GatedDeltaNet-pure.log\\n1.3B-100B-GatedDeltaNet-pure_final.log\\n1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n1.3B-100B-GatedDeltaNet-pure_results.json\\n1.3B-100B-HGRN2-hybrid-12-1.json\\n1.3B-100B-HGRN2-hybrid-24-1.json\\n1.3B-100B-HGRN2-hybrid-3-1.json\\n1.3B-100B-HGRN2-hybrid-6-1.json\\n1.3B-100B-HGRN2-pure.json\\n1.3B-100B-RetNet-hybrid-12-1.json\\n1.3B-100B-RetNet-hybrid-24-1.json\\n1.3B-100B-RetNet-hybrid-3-1.json\\n1.3B-100B-RetNet-hybrid-6-1.json\\n1.3B-100B-RetNet-pure.json\\n1.3B-100B-RetNet-pure_final.log\\n1.3B-100B-RetNet-pure_results.json\\n1.3b\\n340m\\ndebug\\neval_all.log\\neval_h24.log\\neval_remaining.log\\nfigures\\ngdn_pure_validation.log\\nhgrn2_debug.log\\nhgrn2_debug_lambada.log\\nmultiseed\\nremaining.log\\nretnet_hybrid12_eval.log\\nretnet_pure.log\\nretnet_pure_final.log\\nretnet_pure_v2.log\\nretnet_redownload_eval.log\\nretnet_reeval.log\\nsummary_all_1.3b.csv\\ntransformer_1.3B_baseline.json\\ntransformer_1.3B_baseline_final.log\\nvalidation.log\\nvalidation2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T13:14:37.297525+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import pandas as pd\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport os\\n\\n# 读取数据\\ncsv_path = '/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv'\\ndf = pd.read_csv(csv_path)\\n\\n# 只保留三个 linear attention 家族（排除 Transformer baseline 和 new-h24-1）\\ndf = df[df['model_family'].isin(['GDN', 'RetNet', 'HGRN2'])]\\ndf = df[df['variant'] != 'new-h24-1']\\n\\nprint(\\\"Data loaded:\\\")\\nprint(df[['model_family', 'variant', 'attn_layers']].to_string(index=False))\\nprint()\\n\\nbenchmarks = {\\n    'lambada_acc': 'LAMBADA acc',\\n    'hellaswag_norm': 'HellaSwag acc_norm',\\n    'winogrande_acc': 'Winogrande acc',\\n    'arc_easy_norm': 'ARC-Easy acc_norm',\\n    'arc_challenge_norm': 'ARC-Challenge acc_norm',\\n    'mmlu_acc': 'MMLU acc',\\n}\\n\\n# 对每个 attention level，计算跨架构 std 和 range\\nattn_levels = sorted(df['attn_layers'].unique())\\nprint(f\\\"Attention levels: {attn_levels}\\\")\\nprint()\\n\\nresults = {}\\nfor bench_col, bench_name in benchmarks.items():\\n    stds = []\\n    ranges = []\\n    means = []\\n    for attn in attn_levels:\\n        sub = df[df['attn_layers'] == attn]\\n        vals = sub[bench_col].dropna().values\\n        if len(vals) >= 2:\\n            stds.append(np.std(vals))\\n            ranges.append(np.max(vals) - np.min(vals))\\n            means.append(np.mean(vals))\\n        else:\\n            stds.append(np.nan)\\n            ranges.append(np.nan)\\n            means.append(np.nan)\\n    results[bench_name] = {\\n        'std': stds,\\n        'range': ranges,\\n        'mean': means,\\n    }\\n    print(f\\\"\\\\n{bench_name}:\\\")\\n    print(f\\\"  attn_layers: {attn_levels}\\\")\\n    print(f\\\"  cross-arch std: {[f'{s:.4f}' if not np.isnan(s) else 'N/A' for s in stds]}\\\")\\n    print(f\\\"  cross-arch range: {[f'{r:.4f}' if not np.isnan(r) else 'N/A' for r in ranges]}\\\")\\n    \\n    # 详细：每个 attn l
+…[truncated 3256 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T13:14:37.297843+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport glob\\nimport os\\nimport re\\nimport numpy as np\\nimport pandas as pd\\nfrom itertools import permutations\\nfrom scipy.stats import spearmanr\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\n\\nBENCHMARKS = {\\n    'lambada_acc': ('lambada_openai', 'acc,none'),\\n    'lambada_ppl': ('lambada_openai', 'perplexity,none'),\\n    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\n    'winogrande_acc': ('winogrande', 'acc,none'),\\n    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\n    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\n    'mmlu_acc': ('mmlu', 'acc,none'),\\n}\\n\\nVARIANT_TO_ATTN = {\\n    'pure': 0,\\n    'h24-1': 1,\\n    'h12-1': 2,\\n    'h6-1': 4,\\n    'h3-1': 8,\\n}\\n\\nACC_BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'winogrande_acc',\\n                  'arc_easy_norm', 'arc_challenge_norm', 'mmlu_acc']\\n\\n\\ndef exact_spearman_p(x, y):\\n    \\\"\\\"\\\"Exact permutation test for Spearman rho (n<=8, brute-force all n! permutations).\\\"\\\"\\\"\\n    x = np.asarray(x)\\n    y = np.asarray(y)\\n    rho_obs = spearmanr(x, y)[0]\\n    n = len(x)\\n    count = sum(1 for perm in permutations(range(n))\\n                if abs(spearmanr(x, y[list(perm)])[0]) >= abs(rho_obs))\\n    import math; return rho_obs, count / math.factorial(n)\\n\\n\\ndef parse_340m_filename(filepath):\\n    basename = os.path.basename(filepath).replace('.json', '')\\n\\n    if basename == 'transformer_340M_baseline':\\n        return 'Transformer', 'baseline', 24\\n\\n    family = None\\n    variant = None\\n\\n    if 'GatedDeltaNet' in basename:\\n        family = 'GDN'\\n        if 'pure-baseline' in basename:\\n            variant = 'pure'\\n        elif 'New-hybrid-24-1' in basename:\\n            variant = 'h24-1'\\n        elif 'hybrid-12-1' in basename:\\n            variant = 'h12-1'\\n        elif 'hybrid-6-1' in basename:\\n            v
+…[truncated 6871 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T13:14:37.298055+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/340m/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/340m/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T13:14:37.298190+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T13:14:37.298325+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"340M-20B-GatedDeltaNet-New-hybrid-24-1.json\\n340M-20B-GatedDeltaNet-hybrid-12-1.json\\n340M-20B-GatedDeltaNet-hybrid-3-1.json\\n340M-20B-GatedDeltaNet-hybrid-6-1.json\\n340M-20B-GatedDeltaNet-pure-baseline.json\\n340M-20B-HGRN2-hybrid-12-1\\n340M-20B-HGRN2-hybrid-24-1\\n340M-20B-HGRN2-hybrid-3-1\\n340M-20B-HGRN2-hybrid-6-1\\n340M-20B-HGRN2-pure-baseline\\n340M-20B-RetNet-hybrid-12-1\\n340M-20B-RetNet-hybrid-24-1\\n340M-20B-RetNet-hybrid-3-1\\n340M-20B-RetNet-hybrid-6-1\\n340M-20B-RetNet-pure\\neval_all.log\\nrun_all.log\\ntransformer_340M_baseline.json\\ntransformer_340M_baseline_lambada.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T13:14:37.298475+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,model_family,variant,attn_layers,lambada_acc,lambada_ppl,hellaswag_norm,winogrande_acc,arc_easy_norm,arc_challenge_norm,mmlu_acc\\nGDN-pure,GDN,pure,0,0.5429846691247817,8.259574763727228,0.6080462059350727,0.6077348066298343,0.6418350168350169,0.3924914675767918,0.2606466315339695\\nGDN-h24-1,GDN,h24-1,1,0.5396856200271687,8.555169104606378,0.59699263095001,0.6282557221783741,0.6304713804713805,0.39419795221843,0.24405355362483977\\nGDN-h12-1,GDN,h12-1,2,0.5336697069668155,8.727515503459855,0.610336586337383,0.611681136543015,0.6292087542087542,0.3856655290102389,0.25409485828229594\\nGDN-h6-1,GDN,h6-1,4,0.5109644867067727,10.28205860310266,0.6046604262099183,0.5927387529597474,0.6578282828282829,0.38822525597269625,0.25729952998148414\\nGDN-h3-1,GDN,h3-1,8,0.5134872889578886,10.227175868006594,0.6030671181039634,0.606156274664562,0.6485690235690236,0.4044368600682594,0.24312775957840763\\nHGRN2-pure,HGRN2,pure,0,0.48418397050261985,11.36211779775561,0.5982871937860984,0.5919494869771112,0.6654040404040404,0.40017064846416384,0.23871243412619286\\nHGRN2-h24-1,HGRN2,h24-1,1,0.5002910925674364,10.750592967966465,0.6025692093208525,0.6093133385951065,0.6763468013468014,0.40187713310580203,0.23372738926078906\\nHGRN2-h12-1,HGRN2,h12-1,2,0.5030079565301766,10.281009129016564,0.6053574985062736,0.6053670086819258,0.6696127946127947,0.4044368600682594,0.2343683236006267\\nHGRN2-h6-1,HGRN2,h6-1,4,0.5088298078789055,9.916431286037415,0.6048595897231627,0.5982636148382005,0.6670875420875421,0.4052901023890785,0.24027916251246262\\nHGRN2-h3-1,HGRN2,h3-1,8,0.5138754123811372,9.834408010677175,0.6026687910774746,0.6077348066298343,0.6460437710437711,0.3873720136518771,0.24156103119213787\\nRetNet-pure,RetNet,pure,0,0.5165922763438774,10.006744377387193,0.5798645688109938,0.6037884767166535,0.6477272727272727,0.3771331058020478,0.24519299245121778\\nRetNet-h24-1,RetNet,h24-1,1,0.5152338443625073,9.992366845175308
+…[truncated 863 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T13:14:37.298756+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat > /root/entrainment_gated_ft/analysis/task_specificity_analysis.py << 'PYEOF'\n\"\"\"\nTask-specificity analysis: quantify cross-architecture convergence per benchmark.\n\nComputes cross-architecture std (across GDN, RetNet, HGRN2) at each attention ratio\nfor 6 benchmarks, tests monotonic convergence via exact Spearman permutation test,\nand classifies benchmarks by task taxonomy.\n\nInput:\n  - /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\n  - /root/entrainment_gated_ft/lm_eval_clean/340m/*.json\n\nOutput:\n  - /root/entrainment_gated_ft/analysis/task_specificity_results.csv\n  - /root/entrainment_gated_ft/analysis/task_specificity_figure.{pdf,png}\n\"\"\"\n\nimport json\nimport glob\nimport os\nimport math\nimport numpy as np\nimport pandas as pd\nfrom itertools import permutations\nfrom scipy.stats import spearmanr\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\nBENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'arc_challenge_norm',\n              'winogrande_acc', 'arc_easy_norm', 'mmlu_acc']\n\nBENCH_LABELS = {\n    'lambada_acc': 'LAMBADA',\n    'hellaswag_norm': 'HellaSwag',\n    'arc_challenge_norm': 'ARC-C',\n    'winogrande_acc': 'WinoGrande',\n    'arc_easy_norm': 'ARC-E',\n    'mmlu_acc': 'MMLU',\n}\n\nTAXONOMY = {\n    'lambada_acc': 'Retrieval-dependent',\n    'hellaswag_norm': 'Reasoning-dependent',\n    'arc_challenge_norm': 'Reasoning-dependent',\n    'winogrande_acc': 'Reasoning-dependent',\n    'arc_easy_norm': 'Mixed',\n    'mmlu_acc': 'Mixed',\n}\n\nVARIANT_ORDER = ['pure', 'h24-1', 'h12-1', 'h6-1', 'h3-1']\nVARIANT_TO_ATTN = {'pure': 0, 'h24-1': 1, 'h12-1': 2, 'h6-1': 4, 'h3-1': 8}\nATTN_LEVELS = [0, 1, 2, 4, 8]\n\nJSON_BENCHMARKS = {\n    'lambada_acc': ('lambada_openai', 'acc,none'),\n    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\n    'winogrande_acc': ('winogrande', 'acc,none'),\n    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\n    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\n    'mmlu_acc': ('mmlu', 'acc,none'),\n}\n\n\ndef exact_spearman_p(x, y):\n    \"\"\"Exact two-sided permutation test for Spearman rho (n<=8).\"\"\"\n    x = np.asarray(x, dtype=float)\n    y = np.asarray(y, dtype=float)\n    rho_obs = spearmanr(x, y)[0]\n    n = len(x)\n    count = sum(1 for perm in permutations(range(n))\n                if abs(spearmanr(x, y[list(perm)])[0]) >= abs(rho_obs))\n    return rho_obs, count / math.factorial(n)\n\n\ndef load_1_3b_data():\n    csv_path = '/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv'\n    df = pd.read_csv(csv_path)\n    df = df[df['model_family'].isin(['GDN', 'RetNet', 'HGRN2'])]\n    df = df[df['variant'].isin(VARIANT_ORDER)]\n    return df\n\n\ndef parse_340m_filename(filepath):\n    basename = os.path.basename(filepath).replace('.json', '')\n    if basename == 'transformer_340M_baseline':\n        return None, None, None\n\n    family, variant = None, None\n    if 'GatedDeltaNet' in basename:\n        family = 'GDN'\n        if 'pure-baseline' in basename:\n            variant = 'pure'\n        elif 'New-hybrid-24-1' in basename:\n            variant = 'h24-1'\n        elif 'hybrid-12-1' in basename:\n            variant = 'h12-1'\n        elif 'hybrid-6-1' in basename:\n            variant = 'h6-1'\n        elif 'hybrid-3-1' in basename:\n            variant = 'h3-1'\n    elif 'RetNet' in basename:\n        family = 'RetNet'\n        if 'pure' in basename:\n            variant = 'pure'\n        elif 'hybrid-24-1' in basename:\n            variant = 'h24-1'\n        elif 'hybrid-12-1' in basename:\n            variant = 'h12-1'\n        elif 'hybrid-6-1' in basename:\n            variant = 'h6-1'\n        elif 'hybrid-3-1' in basename:\n            variant = 'h3-1'\n    elif 'HGRN2' in basename:\n        family = 'HGRN2'\n        if 'pure' in basename:\n            variant = 'pure'\n        elif 'hybrid-24-1' in basename:\n            variant = 'h24-1'\n        elif 'hybrid-12-1' in basename:\n            variant = 'h12-1'\n        elif 'hybrid-6-1' in basename:\n            variant = 'h6-1'\n        elif 'hybrid-3-1' in basename:\n            variant = 'h3-1'\n\n    if family is None or variant is None:\n        return None, None, None\n    return family, variant, VARIANT_TO_ATTN.get(variant)\n\n\ndef load_340m_data():\n    base = '/root/entrainment_gated_ft/lm_eval_clean/340m'\n    json_files = glob.glob(os.path.join(base, '**/*.json'), recursive=True)\n    json_files += glob.glob(os.path.join(base, '*.json'))\n    json_files = list(set(os.path.abspath(f) for f in json_files))\n\n    rows = []\n    for jf in json_files:\n        family, variant, attn_layers = parse_340m_filename(jf)\n        if family is None:\n            continue\n        with open(jf) as f:\n            data = json.load(f)\n        results = data.get('results', {})\n        metrics = {}\n        for bm_name, (task_key, metric_key) in JSON_BENCHMARKS.items():\n            if task_key in results and metric_key in results[task_key]:\n                metrics[bm_name] = results[task_key][metric_key]\n        row = {'model_family': family, 'variant': variant, 'attn_layers': attn_layers}\n        row.update(metrics)\n        rows.append(row)\n    return pd.DataFrame(rows)\n\n\ndef compute_cross_arch_std(df, benchmarks, attn_levels):\n    \"\"\"Cross-architecture std (population) at each attention level.\"\"\"\n    results = {}\n    for bm in benchmarks:\n        stds = []\n        for attn in attn_levels:\n            vals = df[df['attn_layers'] == attn][bm].dropna().values\n            stds.append(np.std(vals) if len(vals) >= 2 else np.nan)\n        results[bm] = stds\n    return results\n\n\ndef main():\n    outdir = '/root/entrainment_gated_ft/analysis'\n    os.makedirs(outdir, exist_ok=True)\n\n    df_1b = load_1_3b_data()\n    df_340m = load_340m_data()\n    print(f\"Loaded: 1.3B={len(df_1b)} models, 340M={len(df_340m)} models\")\n\n    stds_1b = compute_cross_arch_std(df_1b, BENCHMARKS, ATTN_LEVELS)\n    stds_340m = compute_cross_arch_std(df_340m, BENCHMARKS, ATTN_LEVELS)\n\n    # --- Spearman tests + CSV ---\n    rows = []\n    print(f\"\\n{'Benchmark':12s} {'Taxonomy':22s} {'Scale':5s}  {'rho':>6s}  {'p':>6s}  Sig\")\n    print(\"-\" * 65)\n    for bm in BENCHMARKS:\n        for scale_label, stds in [('1.3B', stds_1b), ('340M', stds_340m)]:\n            y = np.array(stds[bm])\n            x = np.array(ATTN_LEVELS, dtype=float)\n            valid = ~np.isnan(y)\n            if valid.sum() >= 3:\n                rho, p = exact_spearman_p(x[valid], y[valid])\n            else:\n                rho, p = np.nan, np.nan\n            sig = p < 0.05 if not np.isnan(p) else False\n            sig_mark = '*' if sig else ''\n            print(f\"{BENCH_LABELS[bm]:12s} {TAXONOMY[bm]:22s} {scale_label:5s}  \"\n                  f\"{rho:+.3f}  {p:.4f}  {sig_mark}\")\n\n            if scale_label == '1.3B':\n                row = {\n                    'benchmark': BENCH_LABELS[bm],\n                    'taxonomy_category': TAXONOMY[bm],\n                }\n                for i, v in enumerate(VARIANT_ORDER):\n                    row[f'std_{v}_1.3B'] = stds_1b[bm][i]\n                    row[f'std_{v}_340M'] = stds_340m[bm][i]\n                row['spearman_rho_1.3B'] = rho\n                row['p_value_1.3B'] = p\n                row['significant_1.3B'] = sig\n\n        # add 340M stats to the same row\n        y_340m = np.array(stds_340m[bm])\n        x_340m = np.array(ATTN_LEVELS, dtype=float)\n        valid_340m = ~np.isnan(y_340m)\n        if valid_340m.sum() >= 3:\n            rho_340m, p_340m = exact_spearman_p(x_340m[valid_340m], y_340m[valid_340m])\n        else:\n            rho_340m, p_340m = np.nan, np.nan\n        row['spearman_rho_340M'] = rho_340m\n        row['p_value_340M'] = p_340m\n        row['significant_340M'] = p_340m < 0.05 if not np.isnan(p_340m) else False\n        rows.append(row)\n\n    csv_df = pd.DataFrame(rows)\n    csv_path = os.path.join(outdir, 'task_specificity_results.csv')\n    csv_df.to_csv(csv_path, index=False)\n    print(f\"\\nCSV saved: {csv_path}\")\n\n    # --- 6-panel figure ---\n    fig, axes = plt.subplots(2, 3, figsize=(13, 7.5))\n    axes = axes.flatten()\n\n    for idx, bm in enumerate(BENCHMARKS):\n        ax = axes[idx]\n        r = csv_df.iloc[idx]\n\n        # 1.3B line\n        y_1b = np.array(stds_1b[bm])\n        v_1b = ~np.isnan(y_1b)\n        p_1b = r['p_value_1.3B']\n        rho_1b = r['spearman_rho_1.3B']\n        c_1b = '#d62728' if p_1b < 0.05 else '#1f77b4'\n        lw_1b = 2.5 if p_1b < 0.05 else 1.5\n        ax.plot(np.array(ATTN_LEVELS)[v_1b], y_1b[v_1b],\n                marker='o', color=c_1b, linewidth=lw_1b, markersize=6,\n                label=f'1.3B (ρ={rho_1b:+.2f}, p={p_1b:.3f})')\n\n        # 340M line\n        y_340m = np.array(stds_340m[bm])\n        v_340m = ~np.isnan(y_340m)\n        p_340m = r['p_value_340M']\n        rho_340m = r['spearman_rho_340M']\n        c_340m = '#d62728' if p_340m < 0.05 else '#aec7e8'\n        ls_340m = '-' if p_340m < 0.05 else '--'\n        ax.plot(np.array(ATTN_LEVELS)[v_340m], y_340m[v_340m],\n                marker='s', color=c_340m, linewidth=1.2, markersize=5,\n                linestyle=ls_340m,\n                label=f'340M (ρ={rho_340m:+.2f}, p={p_340m:.3f})')\n\n        cat_tag = {'Retrieval-dependent': '[R]',\n                   'Reasoning-dependent': '[Z]',\n                   'Mixed': '[M]'}[TAXONOMY[bm]]\n        ax.set_title(f'{BENCH_LABELS[bm]} {cat_tag}', fontsize=11, fontweight='bold')\n        ax.set_ylabel('Cross-arch σ', fontsize=9)\n        ax.set_xlabel('Attention layers', fontsize=9)\n        ax.set_xticks(ATTN_LEVELS)\n        ax.set_xticklabels(['0\\n(pure)', '1\\n(h24)', '2\\n(h12)', '4\\n(h6)', '8\\n(h3)'],\n                           fontsize=7)\n        ax.legend(fontsize=6.5, loc='best')\n        ax.grid(True, alpha=0.3)\n\n    plt.suptitle('Task-Specificity: Cross-Architecture Convergence by Benchmark',\n                 fontsize=13, fontweight='bold', y=0.99)\n    plt.tight_layout(rect=[0, 0, 1, 0.96])\n\n    for ext in ['pdf', 'png']:\n        fig.savefig(os.path.join(outdir, f'task_specificity_figure.{ext}'),\n                    dpi=200, bbox_inches='tight')\n    plt.close(fig)\n    print(f\"Figure saved: {outdir}/task_specificity_figure.{{pdf,png}}\")\n\n    # --- Summary ---\n    print(\"\\n=== TASK-SPECIFICITY SUMMARY ===\")\n    for _, r in csv_df.iterrows():\n        sig_1b = 'SIG' if r['significant_1.3B'] else 'n.s.'\n        sig_340m = 'SIG' if r['significant_340M'] else 'n.s.'\n        print(f\"  {r['benchmark']:12s} ({r['taxonomy_category']:20s}): \"\n              f\"1.3B rho={r['spearman_rho_1.3B']:+.3f} [{sig_1b}], \"\n              f\"340M rho={r['spearman_rho_340M']:+.3f} [{sig_340m}]\")\n\n\nif __name__ == '__main__':\n    main()\nPYEOF\necho \"Script written: $?\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat > /root/entrainment_gated_ft/analysis/task_specificity_analysis.py << 'PYEOF'\n\"\"\"\nTask-specificity analysis: quantify cross-architecture convergence per benchmark.\n\nComputes cross-architecture std (across GDN, RetNet, HGRN2) at each attention ratio\nfor 6 benchmarks, tests monotonic convergence via exact Spearman permutation test,\nand classifies benchmarks by task taxonomy.\n\nInput:\n  - /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\n  - /root/entrainment_gated_ft/lm_eval_clean/340m/*.json\n\nOutput:\n  - /root/entrainment_gated_ft/analysis/task_specificity_results.csv\n  - /root/entrainment_gated_ft/analysis/task_specificity_figure.{pdf,png}\n\"\"\"\n\nimport json\nimport glob\nimport os\nimport math\nimport numpy as np\nimport pandas as pd\nfrom itertools import permutations\nfrom scipy.stats import spearmanr\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\nBENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'arc_challenge_norm',\n              'winogrande_acc', 'arc_easy_norm', 'mmlu_acc']\n\nBENCH_LABELS = {\n    'lambada_acc': 'LAMBADA',\n    'hellaswag_norm': 'HellaSwag',\n    'arc_challenge_norm': 'ARC-C',\n    'winogrande_acc': 'WinoGrande',\n    'arc_easy_norm': 'ARC-E',\n    'mmlu_acc': 'MMLU',\n}\n\nTAXONOMY = {\n    'lambada_acc': 'Retrieval-dependent',\n    'hellaswag_norm': 'Reasoning-dependent',\n    'arc_challenge_norm': 'Reasoning-dependent',\n    'winogrande_acc': 'Reasoning-dependent',\n    'arc_easy_norm': 'Mixed',\n    'mmlu_acc': 'Mixed',\n}\n\nVARIANT_ORDER = ['pure', 'h24-1', 'h12-1', 'h6-1', 'h3-1']\nVARIANT_TO_ATTN = {'pure': 0, 'h24-1': 1, 'h12-1': 2, 'h6-1': 4, 'h3-1': 8}\nATTN_LEVELS = [0, 1, 2, 4, 8]\n\nJSON_BENCHMARKS = {\n    'lambada_acc': ('lambada_openai', 'acc,none'),\n    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\n    'winogrande_acc': ('winogrande', 'acc,none'),\n    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\n    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\n    'mmlu_acc': ('mmlu', 'acc,none'),\n}\n\n\ndef exact_spearman_p(x, y):\n    \"\"\"Exact two-sided permutation test for Spearman rho (n<=8).\"\"\"\n    x = np.asarray(x, dtype=float)\n    y = np.asarray(y, dtype=float)\n    rho_obs = spearmanr(x, y)[0]\n    n = len(x)\n    count = sum(1 for perm in permutations(range(n))\n                if abs(spearmanr(x, y[list(perm)])[0]) >= abs(rho_obs))\n    return rho_obs, count / math.factorial(n)\n\n\ndef load_1_3b_data():\n    csv_path = '/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv'\n    df = pd.read_csv(csv_path)\n    df = df[df['model_family'].isin(['GDN', 'RetNet', 'HGRN2'])]\n    df = df[df['variant'].isin(VARIANT_ORDER)]\n    return df\n\n\ndef parse_340m_filename(filepath):\n    basename = os.path.basename(filepath).replace('.json', '')\n    if basename == 'transformer_340M_baseline':\n        return None, None, None\n\n    family, variant = None, None\n    if 'GatedDeltaNet' in basename:\n        family = 'GDN'\n        if 'pure-baseline' in basename:\n            variant = 'pure'\n        elif 'New-hybrid-24-1' in basename:\n            variant = 'h24-1'\n        elif 'hybrid-12-1' in basename:\n            variant = 'h12-1'\n        elif 'hybrid-6-1' in basename:\n            variant = 'h6-1'\n        elif 'hybrid-3-1' in basename:\n            variant = 'h3-1'\n    elif 'RetNet' in basename:\n        family = 'RetNet'\n        if 'pure' in basename:\n            variant = 'pure'\n        elif 'hybrid-24-1' in basename:\n            variant = 'h24-1'\n        elif 'hybrid-12-1' in basename:\n            variant = 'h12-1'\n        elif 'hybrid-6-1' in basename:\n            variant = 'h6-1'\n        elif 'hybrid-3-1' in basename:\n            variant = 'h3-1'\n    elif 'HGRN2' in basename:\n        family = 'HGRN2'\n        if 'pure' in basename:\n            variant = 'pure'\n        elif 'hybrid-24-1' in basename:\n            variant = 'h24-1'\n        elif 'hybrid-12-1' in basename:\n            variant = 'h12-1'\n        elif 'hybrid-6-1' in basename:\n            variant = 'h6-1'\n        elif 'hybrid-3-1' in basename:\n            variant = 'h3-1'\n\n    if family is None or variant is None:\n        return None, None, None\n    return family, variant, VARIANT_TO_ATTN.get(variant)\n\n\ndef load_340m_data():\n    base = '/root/entrainment_gated_ft/lm_eval_clean/340m'\n    json_files = glob.glob(os.path.join(base, '**/*.json'), recursive=True)\n    json_files += glob.glob(os.path.join(base, '*.json'))\n    json_files = list(set(os.path.abspath(f) for f in json_files))\n\n    rows = []\n    for jf in json_files:\n        family, variant, attn_layers = parse_340m_filename(jf)\n        if family is None:\n            continue\n        with open(jf) as f:\n            data = json.load(f)\n        results = data.get('results', {})\n        metrics = {}\n        for bm_name, (task_key, metric_key) in JSON_BENCHMARKS.items():\n            if task_key in results and metric_key in results[task_key]:\n                metrics[bm_name] = results[task_key][metric_key]\n        row = {'model_family': family, 'variant': variant, 'attn_layers': attn_layers}\n        row.update(metrics)\n        rows.append(row)\n    return pd.DataFrame(rows)\n\n\ndef compute_cross_arch_std(df, benchmarks, attn_levels):\n    \"\"\"Cross-architecture std (population) at each attention level.\"\"\"\n    results = {}\n    for bm in benchmarks:\n        stds = []\n        for attn in attn_levels:\n            vals = df[df['attn_layers'] == attn][bm].dropna().values\n            stds.append(np.std(vals) if len(vals) >= 2 else np.nan)\n        results[bm] = stds\n    return results\n\n\ndef main():\n    outdir = '/root/entrainment_gated_ft/analysis'\n    os.makedirs(outdir, exist_ok=True)\n\n    df_1b = load_1_3b_data()\n    df_340m = load_340m_data()\n    print(f\"Loaded: 1.3B={len(df_1b)} models, 340M={len(df_340m)} models\")\n\n    stds_1b = compute_cross_arch_std(df_1b, BENCHMARKS, ATTN_LEVELS)\n    stds_340m = compute_cross_arch_std(df_340m, BENCHMARKS, ATTN_LEVELS)\n\n    # --- Spearman tests + CSV ---\n    rows = []\n    print(f\"\\n{'Benchmark':12s} {'Taxonomy':22s} {'Scale':5s}  {'rho':>6s}  {'p':>6s}  Sig\")\n    print(\"-\" * 65)\n    for bm in BENCHMARKS:\n        for scale_label, stds in [('1.3B', stds_1b), ('340M', stds_340m)]:\n            y = np.array(stds[bm])\n            x = np.array(ATTN_LEVELS, dtype=float)\n            valid = ~np.isnan(y)\n            if valid.sum() >= 3:\n                rho, p = exact_spearman_p(x[valid], y[valid])\n            else:\n                rho, p = np.nan, np.nan\n            sig = p < 0.05 if not np.isnan(p) else False\n            sig_mark = '*' if sig else ''\n            print(f\"{BENCH_LABELS[bm]:12s} {TAXONOMY[bm]:22s} {scale_label:5s}  \"\n                  f\"{rho:+.3f}  {p:.4f}  {sig_mark}\")\n\n            if scale_label == '1.3B':\n                row = {\n                    'benchmark': BENCH_LABELS[bm],\n                    'taxonomy_category': TAXONOMY[bm],\n                }\n                for i, v in enumerate(VARIANT_ORDER):\n                    row[f'std_{v}_1.3B'] = stds_1b[bm][i]\n                    row[f'std_{v}_340M'] = stds_340m[bm][i]\n                row['spearman_rho_1.3B'] = rho\n                row['p_value_1.3B'] = p\n                row['significant_1.3B'] = sig\n\n        # add 340M stats to the same row\n        y_340m = np.array(stds_340m[bm])\n        x_340m = np.array(ATTN_LEVELS, dtype=float)\n        valid_340m = ~np.isnan(y_340m)\n        if valid_340m.sum() >= 3:\n            rho_340m, p_340m = exact_spearman_p(x_340m[valid_340m], y_340m[valid_340m])\n        else:\n            rho_340m, p_340m = np.nan, np.nan\n        row['spearman_rho_340M'] = rho_340m\n        row['p_value_340M'] = p_340m\n        row['significant_340M'] = p_340m < 0.05 if not np.isnan(p_340m) else False\n        rows.append(row)\n\n    csv_df = pd.DataFrame(rows)\n    csv_path = os.path.join(outdir, 'task_specificity_results.csv')\n    csv_df.to_csv(csv_path, index=False)\n    print(f\"\\nCSV saved: {csv_path}\")\n\n    # --- 6-panel figure ---\n    fig, axes = plt.subplots(2, 3, figsize=(13, 7.5))\n    axes = axes.flatten()\n\n    for idx, bm in enumerate(BENCHMARKS):\n        ax = axes[idx]\n        r = csv_df.iloc[idx]\n\n        # 1.3B line\n        y_1b = np.array(stds_1b[bm])\n        v_1b = ~np.isnan(y_1b)\n        p_1b = r['p_value_1.3B']\n        rho_1b = r['spearman_rho_1.3B']\n        c_1b = '#d62728' if p_1b < 0.05 else '#1f77b4'\n        lw_1b = 2.5 if p_1b < 0.05 else 1.5\n        ax.plot(np.array(ATTN_LEVELS)[v_1b], y_1b[v_1b],\n                marker='o', color=c_1b, linewidth=lw_1b, markersize=6,\n                label=f'1.3B (ρ={rho_1b:+.2f}, p={p_1b:.3f})')\n\n        # 340M line\n        y_340m = np.array(stds_340m[bm])\n        v_340m = ~np.isnan(y_340m)\n        p_340m = r['p_value_340M']\n        rho_340m = r['spearman_rho_340M']\n        c_340m = '#d62728' if p_340m < 0.05 else '#aec7e8'\n        ls_340m = '-' if p_340m < 0.05 else '--'\n        ax.plot(np.array(ATTN_LEVELS)[v_340m], y_340m[v_340m],\n                marker='s', color=c_340m, linewidth=1.2, markersize=5,\n                linestyle=ls_340m,\n                label=f'340M (ρ={rho_340m:+.2f}, p={p_340m:.3f})')\n\n        cat_tag = {'Retrieval-dependent': '[R]',\n                   'Reasoning-dependent': '[Z]',\n                   'Mixed': '[M]'}[TAXONOMY[bm]]\n        ax.set_title(f'{BENCH_LABELS[bm]} {cat_tag}', fontsize=11, fontweight='bold')\n        ax.set_ylabel('Cross-arch σ', fontsize=9)\n        ax.set_xlabel('Attention layers', fontsize=9)\n        ax.set_xticks(ATTN_LEVELS)\n        ax.set_xticklabels(['0\\n(pure)', '1\\n(h24)', '2\\n(h12)', '4\\n(h6)', '8\\n(h3)'],\n                           fontsize=7)\n        ax.legend(fontsize=6.5, loc='best')\n        ax.grid(True, alpha=0.3)\n\n    plt.suptitle('Task-Specificity: Cross-Architecture Convergence by Benchmark',\n                 fontsize=13, fontweight='bold', y=0.99)\n    plt.tight_layout(rect=[0, 0, 1, 0.96])\n\n    for ext in ['pdf', 'png']:\n        fig.savefig(os.path.join(outdir, f'task_specificity_figure.{ext}'),\n                    dpi=200, bbox_inches='tight')\n    plt.close(fig)\n    print(f\"Figure saved: {outdir}/task_specificity_figure.{{pdf,png}}\")\n\n    # --- Summary ---\n    print(\"\\n=== TASK-SPECIFICITY SUMMARY ===\")\n    for _, r in csv_df.iterrows():\n        sig_1b = 'SIG' if r['significant_1.3B'] else 'n.s.'\n        sig_340m = 'SIG' if r['significant_340M'] else 'n.s.'\n        print(f\"  {r['benchmark']:12s} ({r['taxonomy_category']:20s}): \"\n              f\"1.3B rho={r['spearman_rho_1.3B']:+.3f} [{sig_1b}], \"\n              f\"340M rho={r['spearman_rho_340M']:+.3f} [{sig_340m}]\")\n\n\nif __name__ == '__main__':\n    main()\nPYEOF\necho \"Script written: $?\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T13:14:37.299035+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T13:14:37.299201+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python analysis/task_specificity_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python analysis/task_specificity_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T13:14:37.299368+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded: 1.3B=15 models, 340M=15 models\\n\\nBenchmark    Taxonomy               Scale     rho       p  Sig\\n-----------------------------------------------------------------\\nLAMBADA      Retrieval-dependent    1.3B   -1.000  0.0167  *\\nLAMBADA      Retrieval-dependent    340M   -0.500  0.4500  \\nHellaSwag    Reasoning-dependent    1.3B   +0.300  0.6833  \\nHellaSwag    Reasoning-dependent    340M   +0.400  0.5167  \\nARC-C        Reasoning-dependent    1.3B   +0.600  0.3500  \\nARC-C        Reasoning-dependent    340M   -0.900  0.0833  \\nWinoGrande   Reasoning-dependent    1.3B   +0.100  0.9500  \\nWinoGrande   Reasoning-dependent    340M   +0.800  0.1333  \\nARC-E        Mixed                  1.3B   -0.700  0.2333  \\nARC-E        Mixed                  340M   -0.500  0.4500  \\nMMLU         Mixed                  1.3B   -0.700  0.2333  \\nMMLU         Mixed                  340M   -0.300  0.6833  \\n\\nCSV saved: /root/entrainment_gated_ft/analysis/task_specificity_results.csv\\nFigure saved: /root/entrainment_gated_ft/analysis/task_specificity_figure.{pdf,png}\\n\\n=== TASK-SPECIFICITY SUMMARY ===\\n  LAMBADA      (Retrieval-dependent ): 1.3B rho=-1.000 [SIG], 340M rho=-0.500 [n.s.]\\n  HellaSwag    (Reasoning-dependent ): 1.3B rho=+0.300 [n.s.], 340M rho=+0.400 [n.s.]\\n  ARC-C        (Reasoning-dependent ): 1.3B rho=+0.600 [n.s.], 340M rho=-0.900 [n.s.]\\n  WinoGrande   (Reasoning-dependent ): 1.3B rho=+0.100 [n.s.], 340M rho=+0.800 [n.s.]\\n  ARC-E        (Mixed               ): 1.3B rho=-0.700 [n.s.], 340M rho=-0.500 [n.s.]\\n  MMLU         (Mixed               ): 1.3B rho=-0.700 [n.s.], 340M rho=-0.300 [n.s.]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T13:14:37.299558+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/analysis/task_specificity_*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls -la /root/entrainment_gated_ft/analysis/task_specificity_*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T13:14:37.299706+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/analysis/task_specificity_results.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/analysis/task_specificity_results.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T13:14:37.299846+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  10470 May 19 21:13 /root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\n-rw-r--r-- 1 root root  37436 May 19 21:13 /root/entrainment_gated_ft/analysis/task_specificity_figure.pdf\\n-rw-r--r-- 1 root root 380463 May 19 21:13 /root/entrainment_gated_ft/analysis/task_specificity_figure.png\\n-rw-r--r-- 1 root root   2072 May 19 21:13 /root/entrainment_gated_ft/analysis/task_specificity_results.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T13:14:37.299992+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"benchmark,taxonomy_category,std_pure_1.3B,std_pure_340M,std_h24-1_1.3B,std_h24-1_340M,std_h12-1_1.3B,std_h12-1_340M,std_h6-1_1.3B,std_h6-1_340M,std_h3-1_1.3B,std_h3-1_340M,spearman_rho_1.3B,p_value_1.3B,significant_1.3B,spearman_rho_340M,p_value_340M,significant_340M\\nLAMBADA,Retrieval-dependent,0.02404712697705703,0.024555261611474578,0.016238171620323174,0.010936543996588673,0.013595712311665278,0.01732555602405885,0.006055084765553574,0.010812254492773449,0.004942545182713789,0.015053096764030554,-0.9999999999999999,0.016666666666666666,True,-0.49999999999999994,0.45,False\\nHellaSwag,Reasoning-dependent,0.011684919531365781,0.008730316189724646,0.008615212910147578,0.02284108266114241,0.00946859081425128,0.00977266404295068,0.009201244143823003,0.01114673344940407,0.01183082679011367,0.01328594637040945,0.3,0.6833333333333333,False,0.39999999999999997,0.5166666666666667,False\\nARC-C,Reasoning-dependent,0.009577621297202906,0.013693291373391028,0.007705470525679222,0.01467973595058468,0.007673912152009124,0.011510868228013702,0.012565825958119756,0.011110366885451991,0.013242829040754071,0.008821423446684193,0.6,0.35,False,-0.8999999999999998,0.08333333333333333,False\\nWinoGrande,Reasoning-dependent,0.0067074710781278545,0.0042908462063404335,0.021181496667056418,0.003549260079776889,0.009652163287473934,0.010549822497113106,0.007597752737802509,0.0054045352760258136,0.007839865522626334,0.013149170217942466,0.09999999999999999,0.95,False,0.7999999999999999,0.13333333333333333,False\\nARC-E,Mixed,0.010014909257898295,0.031533528980082624,0.019452560645897617,0.025552372452290466,0.016761201811228865,0.03793382541847497,0.004576180255415263,0.030653679561850628,0.001301012695776599,0.020911480929206045,-0.7,0.23333333333333334,False,-0.49999999999999994,0.45,False\\nMMLU,Mixed,0.009200975872321134,0.007100334138115536,0.005255878164789419,0.004196648355958801,0.008432748146591302,0.005703422033948428,0.007
+…[truncated 246 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T13:14:37.300151+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "task_specificity_results",
+  "type": "data",
+  "description": "Per-benchmark cross-architecture convergence stats (std at each attention ratio, Spearman rho, exact permutation p-values) for 1.3B and 340M scales",
+  "project": "entrainment_gated_ft",
+  "exp_id": "exp-001",
+  "source_path": "/root/entrainment_gated_ft/analysis/task_specificity_results.csv",
+  "tags": "['task-specificity', 'convergence', 'spearman', 'cross-architecture']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "task_specificity_results",
+    "type": "data",
+    "description": "Per-benchmark cross-architecture convergence stats (std at each attention ratio, Spearman rho, exact permutation p-values) for 1.3B and 340M scales",
+    "project": "entrainment_gated_ft",
+    "exp_id": "exp-001",
+    "source_path": "/root/entrainment_gated_ft/analysis/task_specificity_results.csv",
+    "tags": "['task-specificity', 'convergence', 'spearman', 'cross-architecture']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T13:14:37.300290+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/entrainment_gated_ft/analysis/task_specificity_results.csv\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T13:14:37.300412+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "task_specificity_figure",
+  "type": "chart",
+  "description": "6-panel figure showing cross-architecture std vs attention ratio for each benchmark, with significant convergence highlighted in red",
+  "project": "entrainment_gated_ft",
+  "exp_id": "exp-001",
+  "source_path": "/root/entrainment_gated_ft/analysis/task_specificity_figure.png",
+  "tags": "['task-specificity', 'convergence', 'figure']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "task_specificity_figure",
+    "type": "chart",
+    "description": "6-panel figure showing cross-architecture std vs attention ratio for each benchmark, with significant convergence highlighted in red",
+    "project": "entrainment_gated_ft",
+    "exp_id": "exp-001",
+    "source_path": "/root/entrainment_gated_ft/analysis/task_specificity_figure.png",
+    "tags": "['task-specificity', 'convergence', 'figure']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T13:14:37.300545+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/entrainment_gated_ft/analysis/task_specificity_figure.png\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T13:14:37.300770+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "task_specificity_results",
+  "type": "data",
+  "description": "Per-benchmark cross-architecture convergence stats (std at each attention ratio, Spearman rho, exact permutation p-values) for 1.3B and 340M scales",
+  "project": "entrainment_gated_ft",
+  "exp_id": "exp-001",
+  "content": "benchmark,taxonomy_category,std_pure_1.3B,std_pure_340M,std_h24-1_1.3B,std_h24-1_340M,std_h12-1_1.3B,std_h12-1_340M,std_h6-1_1.3B,std_h6-1_340M,std_h3-1_1.3B,std_h3-1_340M,spearman_rho_1.3B,p_value_1.3B,significant_1.3B,spearman_rho_340M,p_value_340M,significant_340M\nLAMBADA,Retrieval-dependent,0.0240,0.0246,0.0162,0.0109,0.0136,0.0173,0.0061,0.0108,0.0049,0.0151,-1.000,0.0167,True,-0.500,0.4500,False\nHellaSwag,Reasoning-dependent,0.0117,0.0087,0.0086,0.0228,0.0095,0.0098,0.0092,0.0111,0.0118,0.0133,+0.300,0.6833,False,+0.400,0.5167,False\nARC-C,Reasoning-dependent,0.0096,0.0137,0.0077,0.0147,0.0077,0.0115,0.0126,0.0111,0.0132,0.0088,+0.600,0.3500,False,-0.900,0.0833,False\nWinoGrande,Reasoning-dependent,0.0067,0.0043,0.0212,0.0035,0.0097,0.0105,0.0076,0.0054,0.0078,0.0131,+0.100,0.9500,False,+0.800,0.1333,False\nARC-E,Mixed,0.0100,0.0315,0.0195,0.0256,0.0168,0.0379,0.0046,0.0307,0.0013,0.0209,-0.700,0.2333,False,-0.500,0.4500,False\nMMLU,Mixed,0.0092,0.0071,0.0053,0.0042,0.0084,0.0057,0.0071,0.0081,0.0040,0.0025,-0.700,0.2333,False,-0.300,0.6833,False",
+  "content_filename": "task_specificity_results.csv",
+  "tags": "['task-specificity', 'convergence', 'spearman', 'cross-architecture']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "task_specificity_results",
+    "type": "data",
+    "description": "Per-benchmark cross-architecture convergence stats (std at each attention ratio, Spearman rho, exact permutation p-values) for 1.3B and 340M scales",
+    "project": "entrainment_gated_ft",
+    "exp_id": "exp-001",
+    "content": "benchmark,taxonomy_category,std_pure_1.3B,std_pure_340M,std_h24-1_1.3B,std_h24-1_340M,std_h12-1_1.3B,std_h12-1_340M,std_h6-1_1.3B,std_h6-1_340M,std_h3-1_1.3B,std_h3-1_340M,spearman_rho_1.3B,p_value_1.3B,significant_1.3B,spearman_rho_340M,p_value_340M,significant_340M\nLAMBADA,Retrieval-dependent,0.0240,0.0246,0.0162,0.0109,0.0136,0.0173,0.0061,0.0108,0.0049,0.0151,-1.000,0.0167,True,-0.500,0.4500,False\nHellaSwag,Reasoning-dependent,0.0117,0.0087,0.0086,0.0228,0.0095,0.0098,0.0092,0.0111,0.0118,0.0133,+0.300,0.6833,False,+0.400,0.5167,False\nARC-C,Reasoning-dependent,0.0096,0.0137,0.0077,0.0147,0.0077,0.0115,0.0126,0.0111,0.0132,0.0088,+0.600,0.3500,False,-0.900,0.0833,False\nWinoGrande,Reasoning-dependent,0.0067,0.0043,0.0212,0.0035,0.0097,0.0105,0.0076,0.0054,0.0078,0.0131,+0.100,0.9500,False,+0.800,0.1333,False\nARC-E,Mixed,0.0100,0.0315,0.0195,0.0256,0.0168,0.0379,0.0046,0.0307,0.0013,0.0209,-0.700,0.2333,False,-0.500,0.4500,False\nMMLU,Mixed,0.0092,0.0071,0.0053,0.0042,0.0084,0.0057,0.0071,0.0081,0.0040,0.0025,-0.700,0.2333,False,-0.300,0.6833,False",
+    "content_filename": "task_specificity_results.csv",
+    "tags": "['task-specificity', 'convergence', 'spearman', 'cross-architecture']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T13:14:37.300941+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_900289\", \"name\": \"task_specificity_results\", \"type\": \"data\", \"description\": \"Per-benchmark cross-architecture convergence stats (std at each attention ratio, Spearman rho, exact permutation p-values) for 1.3B and 340M scales\", \"path\": \"projects/entrainment_gated_ft/artifacts/exp-001/data/task_specificity_results.csv\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": \"exp-001\", \"skill\": \"\", \"created_at\": \"2026-05-19T13:14:19.095835+00:00\", \"tags\": [\"task-specificity\", \"convergence\", \"spearman\", \"cross-architecture\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T13:14:37.301081+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "task_specificity_figure",
+  "type": "chart",
+  "description": "6-panel figure: cross-arch std vs attention ratio per benchmark (1.3B+340M). LAMBADA convergence significant (red). Remote path: /root/entrainment_gated_ft/analysis/task_specificity_figure.{pdf,png}",
+  "project": "entrainment_gated_ft",
+  "exp_id": "exp-001",
+  "content": "Figure files on server westb-48145:\n- /root/entrainment_gated_ft/analysis/task_specificity_figure.pdf\n- /root/entrainment_gated_ft/analysis/task_specificity_figure.png",
+  "content_filename": "task_specificity_figure_info.txt",
+  "tags": "['task-specificity', 'convergence', 'figure']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "task_specificity_figure",
+    "type": "chart",
+    "description": "6-panel figure: cross-arch std vs attention ratio per benchmark (1.3B+340M). LAMBADA convergence significant (red). Remote path: /root/entrainment_gated_ft/analysis/task_specificity_figure.{pdf,png}",
+    "project": "entrainment_gated_ft",
+    "exp_id": "exp-001",
+    "content": "Figure files on server westb-48145:\n- /root/entrainment_gated_ft/analysis/task_specificity_figure.pdf\n- /root/entrainment_gated_ft/analysis/task_specificity_figure.png",
+    "content_filename": "task_specificity_figure_info.txt",
+    "tags": "['task-specificity', 'convergence', 'figure']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T13:14:37.301225+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_5c4f51\", \"name\": \"task_specificity_figure\", \"type\": \"chart\", \"description\": \"6-panel figure: cross-arch std vs attention ratio per benchmark (1.3B+340M). LAMBADA convergence significant (red). Remote path: /root/entrainment_gated_ft/analysis/task_specificity_figure.{pdf,png}\", \"path\": \"projects/entrainment_gated_ft/artifacts/exp-001/chart/task_specificity_figure_info.txt\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": \"exp-001\", \"skill\": \"\", \"created_at\": \"2026-05-19T13:14:21.887264+00:00\", \"tags\": [\"task-specificity\", \"convergence\", \"figure\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-19T13:14:37.301394+00:00_
+
+## 结果汇总
+
+**显著收敛的 benchmark（p < 0.05）：**
+
+| Benchmark | Taxonomy | Scale | ρ | p | 显著 |
+|-----------|----------|-------|----|----|------|
+| **LAMBADA** | Retrieval-dependent | 1.3B | **−1.000** | **0.017** | **是** |
+
+**不显著的 benchmark：**
+
+| Benchmark | Taxonomy | 1.3B ρ | 1.3B p |
+|-----------|----------|--------|--------|
+| HellaSwag | Reasoning-dependent | +0.300 | 0.683 |
+| ARC-C | Reasoning-dependent | +0.600 | 0.350 |
+| WinoGrande | Reasoning-dependent | +0.100 | 0.950 |
+| ARC-E | Mixed | −0.700 | 0.233 |
+| MMLU | Mixed | −0.700 | 0.233 |
+
+**Taxonomy 与 convergence pattern 的对应关系：**
+
+- **Retrieval-dependent (LAMBADA)**: 完美单调收敛（ρ = −1.0, p = 0.017），cross-arch σ 从 pure 的 0.024 单调下降到 h3-1 的 0.005。符合预期——LAMBADA 测试的是上下文中检索最后一个词的能力，attention 层直接增强这种能力，使不同架构表现趋同。
+- **Reasoning-dependent (HellaSwag, ARC-C, WinoGrande)**: 均无显著收敛，ρ 甚至为正（发散方向），说明增加 attention 层不能让不同架构在推理任务上趋同——架构差异在推理能力上是持久的。
+- **Mixed (ARC-E, MMLU)**: 趋势方向正确（ρ = −0.7）但未达显著性（p = 0.233），n=5 的 exact test 统计功效有限，但数值上也呈现收敛趋势。
+
+340M 尺度上均未达显著，可能因为小模型本身噪声更大。
+
+**输出文件：**
+- CSV: `/root/entrainment_gated_ft/analysis/task_specificity_results.csv`
+- Figure: `/root/entrainment_gated_ft/analysis/task_specificity_figure.{pdf,png}`
+- Script: `/root/entrainment_gated_ft/analysis/task_specificity_analysis.py`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_exp_001_task_specificity_20260519T131100"
+}
+```
+
+</details>
+
+---

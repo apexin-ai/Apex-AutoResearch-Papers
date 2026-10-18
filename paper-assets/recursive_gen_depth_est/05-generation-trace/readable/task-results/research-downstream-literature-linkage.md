@@ -1,0 +1,55 @@
+# research downstream literature linkage
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_research_downstream_literature_linkage_20260517T184955_result.json`
+- **Structured JSON:** [`c82b610ffd239032ff3b.json`](../../sessions/c8/c82b610ffd239032ff3b.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+搜索完成，综合结果如下。
+
+---
+
+## Discussion 段落（2-3 句）
+
+The counterintuitive finding that d1 text yields lower evaluation PPL than d0 (human) text echoes the self-distillation literature, where training on a model's own outputs acts as implicit regularization by smoothing the tail of the data distribution (Furlanello et al., 2018; Pareek & Sanghavi, 2024). First-generation synthetic text retains the core statistical structure of human text while removing rare, inconsistent patterns that contribute to higher training noise, a mechanism consistent with the tail erosion documented in model collapse theory (Shumailov et al., 2024; Dohmatob et al., 2024). However, this effect is limited: the monotonically decreasing train loss across depths (d0 2.558 > d1 1.920 > d2 1.286) confirms progressive information loss, and the PPL advantage of d1 likely reflects a narrow regime where noise reduction outweighs signal loss before deeper generations cross into substantive degradation.
+
+---
+
+## 最相关引用（5 篇）
+
+| # | Title | Venue/Year | 关键发现 | 在 literature_map 中？ |
+|---|-------|-----------|---------|---------------------|
+| 1 | **Born Again Neural Networks** (Furlanello et al.) | ICML 2018 | 用相同架构做 self-distillation，student 显著优于 teacher。机制：soft labels 提供隐式正则化，截断 tail noise | **否** |
+| 2 | **Understanding the Gains from Repeated Self-Distillation** (Pareek & Sanghavi) | NeurIPS 2024 | 理论证明 self-distillation 降低 test error；多步重复 distillation 的 bias-variance 分析 | **否** |
+| 3 | **Textbooks Are All You Need** (Gunasekar et al.) | arXiv 2023 | GPT-3.5 生成的 synthetic "textbook" 数据训练 Phi-1，1.3B 模型在 HumanEval 达 50.6%，远超同规模用 web data 训练的模型 | **否** |
+| 4 | **AI models collapse when trained on recursively generated data** (Shumailov et al.) | Nature 2024 | Early model collapse 阶段 overall performance 看似改善但 tail 信息丢失——直接解释 d1 PPL 优于 d0 的机制 | 已有 |
+| 5 | **A Tale of Tails** (Dohmatob et al.) | ICML 2024 | Tail narrowing (temperature scaling) vs tail cutting (top-p/k) 的不同退化模式；数学化描述分布收窄 | 已有 |
+
+**补充提及**：LIMA (Zhou et al., NeurIPS 2023) 证明 1000 条高质量数据 > 52K 条 Alpaca 数据用于 alignment，支持 "quality > quantity" 的 framing，但与 d1 > d0 机制不完全对应（LIMA 是人工 curate，不是 model-generated smoothing）。
+
+---
+
+## 需补入 literature_map.yaml 的论文
+
+1. **furlanello2018_born_again** — self-distillation 核心机制论文，直接解释 d1 regularization effect
+2. **pareek2024_self_distillation** — 理论支撑，NeurIPS 2024，证明 self-distillation 降低 test error
+3. **gunasekar2023_phi** — synthetic data outperforms web data 的最知名实证，Phi 系列开山论文
+
+这三篇建议加入 `cite_in: [discussion]`，角色为 background，服务于 downstream_benchmark_002 的 exploratory observation 叙事。
+
+---

@@ -1,0 +1,2120 @@
+# deploy openvla attn westd38929
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/chats/worker_deploy_openvla_attn_westd38929_20260524T184237.jsonl`
+- **Structured JSON:** [`4fe19842f6a1b6807066.json`](../../sessions/4f/4fe19842f6a1b6807066.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+71 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-24T18:46:45.763933+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-24T18:46:45.764375+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-24T18:46:45.764629+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-24T18:46:45.764787+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-24T18:46:45.764914+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T18:46:45.765049+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 15948 MiB, 9 %\\n1, 15980 MiB, 66 %\\n2, 10364 MiB, 24 %\\n3, 10694 MiB, 45 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-24T18:46:45.765208+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,process_name --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,process_name --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-24T18:46:45.765358+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"692475, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 15961 MiB, python\\n693434, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 15961 MiB, python\\n612461, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e, 10346 MiB, python\\n612707, GPU-acf987b3-a60e-876a-773b-3e72756138ce, 10675 MiB, python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-24T18:46:45.765482+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"eval_openvla*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"eval_openvla*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T18:46:45.765618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_acis_prune.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/__pycache__/eval_openvla_smart_compress.cpython-312.pyc\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_sc_m128_vtconly_20k_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k05_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k03_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k07_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k03_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k03_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k07_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_baseline_object_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k05_seed42_v4.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_liberoplus_smoke.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-24T18:46:45.765757+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls -d /root/autodl-tmp/openvla* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls -d /root/autodl-tmp/openvla* 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T18:46:45.765880+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-24T18:46:45.766037+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ps -p 692475,693434 -o pid,etime,cmd --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ps -p 692475,693434 -o pid,etime,cmd --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T18:46:45.766205+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"692475       17:53 python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json\\n693434       17:22 python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-24T18:46:45.766364+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T18:46:45.766525+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"WARNING: All log messages before absl::InitializeLog() is called are written to STDERR\\nI0000 00:00:1779647135.358706  692475 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\nI0000 00:00:1779647135.402542  692475 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\\nI0000 00:00:1779647136.696841  692475 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\n[*] Loading OpenVLA from: /root/autodl-tmp/openvla-libero-object\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.17it/s]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.85it/s]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.32it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.18it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.49it/s]\\n[*] Model loaded, GPU: 15.1 GB\\n[*] Vision tokens: 256, dim: 4096\\n[*] Attention pruning: k=0.9\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/l
+…[truncated 943 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-24T18:46:45.766677+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T18:46:45.766862+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"WARNING: All log messages before absl::InitializeLog() is called are written to STDERR\\nI0000 00:00:1779647165.995983  693434 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\nI0000 00:00:1779647166.029389  693434 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\\nI0000 00:00:1779647166.893479  693434 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\\n[*] Loading OpenVLA from: /root/autodl-tmp/openvla-libero-object\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.00it/s]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  5.21it/s]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.78it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  6.18it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.74it/s]\\n[*] Model loaded, GPU: 15.1 GB\\n[*] Vision tokens: 256, dim: 4096\\n[*] Attention pruning: k=0.85\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/
+…[truncated 945 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-24T18:46:45.767044+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls -d /root/autodl-tmp/openvla*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls -d /root/autodl-tmp/openvla*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T18:46:45.767244+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/openvla-libero-object\\n/root/autodl-tmp/openvla-oft-git\\n/root/autodl-tmp/openvla-oft-libero-goal\\n/root/autodl-tmp/openvla-oft-libero-object\\n/root/autodl-tmp/openvla-oft-libero-object-fresh\\n/root/autodl-tmp/openvla-oft-libero-spatial\\n/root/autodl-tmp/openvla-oft-official\\n/root/autodl-tmp/openvla-repo\\n/root/autodl-tmp/openvla_code\\n/root/autodl-tmp/openvla_deps\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-24T18:46:45.767401+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T18:46:45.767530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"25 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-24T18:46:45.767651+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T18:46:45.767772+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"25 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-24T18:46:45.767891+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "grep -c \"Task\\|task_sr\\|RESULT\\|Final\\|Average\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "grep -c \"Task\\|task_sr\\|RESULT\\|Final\\|Average\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T18:46:45.768016+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-24T18:46:45.768154+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "grep \"Task\\|RESULT\\|Final\\|Average\\|task_sr=.*50\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "grep \"Task\\|RESULT\\|Final\\|Average\\|task_sr=.*50\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T18:46:45.768293+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-24T18:46:45.768412+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "grep \"Task\\|RESULT\\|Final\\|Average\\|task_sr=.*50\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "grep \"Task\\|RESULT\\|Final\\|Average\\|task_sr=.*50\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T18:46:45.768547+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-24T18:46:45.768676+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "grep \"Task\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "grep \"Task\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T18:46:45.768795+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[Task 1/10] pick up the alphabet soup and place it in the basket\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-24T18:46:45.768909+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "grep \"Task\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "grep \"Task\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T18:46:45.769024+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[Task 1/10] pick up the alphabet soup and place it in the basket\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-24T18:46:45.769164+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "grep \"task_sr\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "grep \"task_sr\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-24T18:46:45.769294+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Ep 10/50 task_sr=7/10 (2.0 eps/min)\\n  Ep 20/50 task_sr=16/20 (2.1 eps/min)\\n  Ep 30/50 task_sr=22/30 (2.1 eps/min)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-24T18:46:45.769409+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "grep \"task_sr\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "grep \"task_sr\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T18:46:45.769523+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Ep 10/50 task_sr=8/10 (2.1 eps/min)\\n  Ep 20/50 task_sr=14/20 (2.0 eps/min)\\n  Ep 30/50 task_sr=18/30 (1.9 eps/min)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-24T18:46:45.769676+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-24T18:46:45.769794+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-24T18:46:45.769914+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-24T18:46:45.770031+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-24T18:46:45.770166+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results -name \"*attn*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results -name \"*attn*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T18:46:45.770316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_last_k0.5_libero_object.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_mean_k0.5_libero_object.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_rollout_k0.5_libero_object.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_last_k0.5_libero_10.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_mean_k0.5_libero_10.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_mean_k0.5_libero_goal.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_last_k0.5_libero_goal.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_rollout_k0.5_libero_goal.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_rollout_k0.7_libero_spatial.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_rollout_k0.5_libero_10.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_mean_k0.3_libero_object.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_rollout_k0.3_libero_object.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_mean_k0.3_libero_spatial.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_last_k0.3_libero_spatial.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_mean_k0.3_libero_goal.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attn_attention_last_k0.3_libero_goal.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-24T18:46:45.770473+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": "{'status': 'RUNNING'}",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "filters": "{'status': 'RUNNING'}",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T18:46:45.770649+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_openvla_simplerenv_l2norm_k09\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-24T18:12:07.118Z\", \"updated_at\": \"2026-05-24T18:13:35.350Z\", \"hypothesis\": \"L2-norm pruning at k=0.9 (removing 10% lowest-norm vision tokens) on OpenVLA-7B SimplerEnv Bridge tasks will show minimal performance degradation vs baseline, as the cliff zone for OpenVLA is expected near k=0.7-0.8. This tests whether 10% pruning is safely above the cliff.\"}, \"eval_openvla_simplerenv_baseline\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-24T18:12:04.095Z\", \"updated_at\": \"2026-05-24T18:13:27.401Z\", \"hypothesis\": \"OpenVLA-7B baseline (no pruning) on SimplerEnv ManiSkill3 Bridge tasks establishes the unpruned performance ceiling for comparison with vision token pruning methods. We expect moderate success rates consistent with published OpenVLA Bridge results.\"}, \"eval_pi05_l2norm_k05_long_seed43_postfix\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-24T17:02:04.975Z\", \"updated_at\": \"2026-05-24T17:11:20.088Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Long seed43 post-fix — dual-seed heavy pruning 验证。Object k=0.5: L2norm 75.2% vs Random 68.2%（+7pp）。seed42 k=0.5 Long 正在 RUNNING。验证 Long heavy pruning 下 L2norm margin 方向和跨 seed 一致性\"}, \"eval_pi05_l2norm_k095_long_seed43_postfix\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-24T17:02:02.311Z\", \"updated_at\": \"2026-05-24T17:11:12.762Z\", \"hypothesis\": \"π0.5 L2norm k=0.95 Long seed43 post-fix — dual-seed mild pruning 验证。seed42 L2norm k=0.95 Long=87.0% vs Random=63.2%（+23.8pp margin）。seed43 验证此优势跨 seed 稳定性\"}, \"eval_pi05_l2norm_k03_long_seed43_postfix_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-24T17:04:17.968Z\", \"updated_at\": \"2026-05-24T17:11:03.279Z\", \"hypothesis\": \"π0.5 L2norm k=0.3 Long seed43 post-fix v2 — dual-seed extreme pruning 验证。Random k=0.3 Long=29.6%。seed42 k=0.3 v2 正在 RUNNING。验证 L2norm 在极端 pruning 下
+…[truncated 1583 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-24T18:46:45.770830+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+  "field": "hypothesis",
+  "value": "OpenVLA attention pruning k=0.9 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 90% vision tokens 时的表现。预期与 L2norm k=0.9 对比，建立 crossover evidence（不同模型×不同 scoring method）。",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+    "field": "hypothesis",
+    "value": "OpenVLA attention pruning k=0.9 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 90% vision tokens 时的表现。预期与 L2norm k=0.9 对比，建立 crossover evidence（不同模型×不同 scoring method）。",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-24T18:46:45.770964+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k085_object_seed42",
+  "field": "hypothesis",
+  "value": "OpenVLA attention pruning k=0.85 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 85% vision tokens 时的表现。k=0.85 接近 cliff zone，预期能揭示 attention scoring 在更激进压缩下的鲁棒性。",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k085_object_seed42",
+    "field": "hypothesis",
+    "value": "OpenVLA attention pruning k=0.85 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 85% vision tokens 时的表现。k=0.85 接近 cliff zone，预期能揭示 attention scoring 在更激进压缩下的鲁棒性。",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-24T18:46:45.771103+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k09_object_seed42_v3\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:45:00.454Z\", \"updated_at\": \"2026-05-24T18:45:00.454Z\", \"hypothesis\": \"OpenVLA attention pruning k=0.9 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 90% vision tokens 时的表现。预期与 L2norm k=0.9 对比，建立 crossover evidence（不同模型×不同 scoring method）。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.5078}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-24T18:46:45.771264+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k085_object_seed42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:45:07.308Z\", \"updated_at\": \"2026-05-24T18:45:07.308Z\", \"hypothesis\": \"OpenVLA attention pruning k=0.85 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 85% vision tokens 时的表现。k=0.85 接近 cliff zone，预期能揭示 attention scoring 在更激进压缩下的鲁棒性。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.942}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-24T18:46:45.771400+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "importance_margin_vla_compress",
+    "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-24T18:46:45.771535+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k085_object_seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k085_object_seed42",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "importance_margin_vla_compress",
+    "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-24T18:46:45.771668+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 5.0283}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-24T18:46:45.771792+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.9173}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-24T18:46:45.771910+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+  "field": "status",
+  "value": "PENDING",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+    "field": "status",
+    "value": "PENDING",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-24T18:46:45.772026+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k085_object_seed42",
+  "field": "status",
+  "value": "PENDING",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k085_object_seed42",
+    "field": "status",
+    "value": "PENDING",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-24T18:46:45.772170+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k09_object_seed42_v3\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:45:00.454Z\", \"updated_at\": \"2026-05-24T18:45:29.183Z\", \"hypothesis\": \"OpenVLA attention pruning k=0.9 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 90% vision tokens 时的表现。预期与 L2norm k=0.9 对比，建立 crossover evidence（不同模型×不同 scoring method）。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.5231}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-24T18:46:45.772317+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k085_object_seed42\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:45:07.308Z\", \"updated_at\": \"2026-05-24T18:45:37.326Z\", \"hypothesis\": \"OpenVLA attention pruning k=0.85 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 85% vision tokens 时的表现。k=0.85 接近 cliff zone，预期能揭示 attention scoring 在更激进压缩下的鲁棒性。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.8798}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-24T18:46:45.772445+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "importance_margin_vla_compress",
+    "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-24T18:46:45.772610+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.5067}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-24T18:46:45.772739+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k085_object_seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k085_object_seed42",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "importance_margin_vla_compress",
+    "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-24T18:46:45.772872+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.4673}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-24T18:46:45.772990+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-24T18:46:45.773147+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k085_object_seed42",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k085_object_seed42",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-24T18:46:45.773383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k09_object_seed42_v3\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:45:00.454Z\", \"updated_at\": \"2026-05-24T18:45:57.185Z\", \"hypothesis\": \"OpenVLA attention pruning k=0.9 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 90% vision tokens 时的表现。预期与 L2norm k=0.9 对比，建立 crossover evidence（不同模型×不同 scoring method）。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.2981}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-24T18:46:45.773597+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k085_object_seed42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:45:07.308Z\", \"updated_at\": \"2026-05-24T18:46:06.118Z\", \"hypothesis\": \"OpenVLA attention pruning k=0.85 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 85% vision tokens 时的表现。k=0.85 接近 cliff zone，预期能揭示 attention scoring 在更激进压缩下的鲁棒性。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.7164}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-24T18:46:45.773790+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k09_object_seed42_v3",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "importance_margin_vla_compress",
+    "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-24T18:46:45.773989+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k085_object_seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_openvla_attn_k085_object_seed42",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "importance_margin_vla_compress",
+    "spec": "{'command': 'python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json', 'server': 'westd-38929', 'model_name': 'openvla-libero-object', 'seed': 42, 'data_path': 'libero_object', 'data_count': 500, 'checkpoint_source': '/root/autodl-tmp/openvla-libero-object'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-24T18:46:45.774246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k09_object_seed42_v3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:45:00.454Z\", \"updated_at\": \"2026-05-24T18:46:21.253Z\", \"hypothesis\": \"OpenVLA attention pruning k=0.9 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 90% vision tokens 时的表现。预期与 L2norm k=0.9 对比，建立 crossover evidence（不同模型×不同 scoring method）。\", \"spec\": {\"command\": \"python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_object_seed42.json\", \"server\": \"westd-38929\", \"model_name\": \"openvla-libero-object\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/openvla-libero-object\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.208}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-24T18:46:45.774491+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k085_object_seed42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:45:07.308Z\", \"updated_at\": \"2026-05-24T18:46:27.527Z\", \"hypothesis\": \"OpenVLA attention pruning k=0.85 on Object suite — 2×2 crossover table 数据点。验证 attention-based importance scoring 在 OpenVLA 上保留 85% vision tokens 时的表现。k=0.85 接近 cliff zone，预期能揭示 attention scoring 在更激进压缩下的鲁棒性。\", \"spec\": {\"command\": \"python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_object --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k085_object_seed42.json\", \"server\": \"westd-38929\", \"model_name\": \"openvla-libero-object\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"/root/autodl-tmp/openvla-libero-object\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.6673}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-24T18:46:45.774744+00:00_
+
+**不需要部署——两个实验已经在跑了。** 已补注册到 registry。
+
+## 汇报
+
+| 实验 | GPU | PID | 运行时间 | 命令 | 当前进度 |
+|------|-----|-----|---------|------|---------|
+| `eval_openvla_attn_k09_object_seed42_v3` | GPU0 | 692475 | ~18h | `--mode attention_prune --k_ratio 0.9 --suite libero_object` | Task 1/10, Ep 30/50 (日志缓冲，实际进度更远) |
+| `eval_openvla_attn_k085_object_seed42` | GPU1 | 693434 | ~17h | `--mode attention_prune --k_ratio 0.85 --suite libero_object` | Task 1/10, Ep 30/50 (日志缓冲，实际进度更远) |
+
+**关键细节：**
+- 脚本：`eval_openvla_l2norm_libero.py`，已支持 `attention_prune` mode
+- 模型：`/root/autodl-tmp/openvla-libero-object`
+- 输出将写入 `eval_results/openvla_attn_prune_k0{9,85}_object_seed42.json`
+- 日志文件各仅 25 行（Python stdout 缓冲），但 GPU 内存占用 ~16GB 且 utilization 正常，进程在正常运行
+- 按 ~2 eps/min × 500 episodes ≈ 4h 估算，可能已接近或完成。结果文件尚未生成，说明至少还在跑
+- GPU2/GPU3 的 π0.5 实验未动
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_deploy_openvla_attn_westd38929_20260524T184237"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,985 @@
+# monitor exp012 progress
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/chats/worker_monitor_exp012_progress_20260515T191405.jsonl`
+- **Structured JSON:** [`4fb5f3104fcdbf667ed1.json`](../../sessions/4f/4fb5f3104fcdbf667ed1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+33 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T19:16:10.016532+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T19:16:10.016922+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T19:16:10.017110+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ps -p 315801,316128 -o pid,etime,rss,cmd --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ps -p 315801,316128 -o pid,etime,rss,cmd --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T19:16:10.017248+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "tail -50 /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "tail -50 /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T19:16:10.017394+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"315801       35:55  3496 bash -c rm -f /tmp/agent-ml-exit/exp012_llama_8b_r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/schema-dag-extraction/exp012_llama_8b_r2.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp012_llama_8b_r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/schema-dag-extraction && export CUDA_VISIBLE_DEVICES=0 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && export FLASHINFER_DISABLE_VERSION_CHECK=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && bash scripts/run_exp012_llama8b_r2.sh\\\"'; } > ~/runs/schema-dag-extraction/exp012_llama_8b_r2.log 2>&1\\n316128       35:03 2280972 VLLM::EngineCore\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T19:16:10.017528+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "nvidia-smi --query-gpu=memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "nvidia-smi --query-gpu=memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T19:16:10.017758+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  },\\n  {\\n    \\\"text\\\": \\\"Europe\\\",\\n    \\\"type\\\": \\\"organization-media\\\\/news\\n2026-05-16 03:13:10,041 INFO   Batch count_2/random/2 done: 72.6s total, 1000 outputs\\n2026-05-16 03:13:10,041 INFO Running batch count_2/random/3 (2 types, BCS=0.5727) on 1000 samples\\n\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\rRendering prompts:   2%|▏         | 21/1000 [00:00<00:04, 205.33it/s]\\rRendering prompts:   4%|▍         | 42/1000 [00:00<00:04, 207.29it/s]\\rRendering prompts:   6%|▋         | 63/1000 [00:00<00:04, 206.88it/s]\\rRendering prompts:   8%|▊         | 84/1000 [00:00<00:04, 204.51it/s]\\rRendering prompts:  10%|█         | 105/1000 [00:00<00:04, 205.31it/s]\\rRendering prompts:  13%|█▎        | 126/1000 [00:00<00:04, 205.14it/s]\\rRendering prompts:  15%|█▍        | 147/1000 [00:00<00:04, 206.45it/s]\\rRendering prompts:  17%|█▋        | 168/1000 [00:00<00:04, 207.38it/s]\\rRendering prompts:  19%|█▉        | 189/1000 [00:00<00:03, 204.95it/s]\\rRendering prompts:  21%|���█        | 210/1000 [00:01<00:03, 205.09it/s]\\rRendering prompts:  23%|██▎       | 231/1000 [00:01<00:03, 202.49it/s]\\rRendering prompts:  25%|██▌       | 252/1000 [00:01<00:03, 202.37it/s]\\rRendering prompts:  27%|██▋       | 273/1000 [00:01<00:03, 204.44it/s]\\rRendering prompts:  29%|██▉       | 294/1000 [00:01<00:03, 205.56it/s]\\rRendering prompts:  32%|███▏      | 316/1000 [00:01<00:03, 207.48it/s]\\rRendering prompts:  34%|███▎      | 337/1000 [00:01<00:03, 206.49it/s]\\rRendering prompts:  36%|███▌      | 359/1000 [00:01<00:03, 208.07it/s]\\rRendering prompts:  38%|███▊      | 381/1000 [00:01<00:02, 208.92it/s]\\rRendering prompts:  40%|████      | 402/1000 [00:01<00:02, 208.46it/s]\\rRendering prompts:  42%|████▏     | 423/1000 [00:02<00:02, 206.68it/s]\\rRendering prompts:  44%|████▍     | 444/1000 [00:02<00:02, 206.03it/s]\\rRendering prompts:  47%|████▋     | 466/1000 [00:02<00:02, 
+…[truncated 6704 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T19:16:10.018089+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"84661 MiB, 97887 MiB, 71 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T19:16:10.018293+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -c \"Batch.*done\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep -c \"Batch.*done\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T19:16:10.018428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"68\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T19:16:10.018550+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep \"gen_tokens\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep \"gen_tokens\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T19:16:10.018671+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T19:16:10.018787+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/results/exp012_llama_8b_r2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls -la /root/schema-dag-extraction/results/exp012_llama_8b_r2/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T19:16:10.019117+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/schema-dag-extraction/results/exp012_llama_8b_r2/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T19:16:10.019281+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep \"Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep \"Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T19:16:10.019473+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 02:39:53,561 INFO Running batch count_1/random/0 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:40:16,453 INFO Running batch count_1/random/1 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:41:26,135 INFO Running batch count_1/random/2 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:41:39,123 INFO Running batch count_1/random/3 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:41:53,599 INFO Running batch count_1/random/4 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:43:04,687 INFO Running batch count_1/random/5 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:44:09,880 INFO Running batch count_1/random/6 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:44:20,517 INFO Running batch count_1/random/7 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:44:32,890 INFO Running batch count_1/random/8 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:44:51,829 INFO Running batch count_1/random/9 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:45:05,207 INFO Running batch count_1/random/10 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:45:17,655 INFO Running batch count_1/random/11 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:45:30,962 INFO Running batch count_1/random/12 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:45:43,560 INFO Running batch count_1/random/13 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:46:49,179 INFO Running batch count_1/random/14 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:47:03,189 INFO Running batch count_1/random/15 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:47:15,548 INFO Running batch count_1/random/16 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:47:22,722 INFO Running batch count_1/random/17 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:47:33,059 INFO Running batch count_1/random/18 (1 types, BCS=0.0000) on 1000 samples\\n2026-05-16 02:47:52,555 INFO Runnin
+…[truncated 5214 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T19:16:10.019659+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -c \"Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep -c \"Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T19:16:10.019786+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep \"Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log | grep -oP \"count_\\d+\" | sort -u",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep \"Running batch\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log | grep -oP \"count_\\d+\" | sort -u",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T19:16:10.019929+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -30 /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "head -30 /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T19:16:10.020051+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"70\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T19:16:10.020175+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T19:16:10.020291+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -c \"WARNING Failed to parse\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep -c \"WARNING Failed to parse\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T19:16:10.020450+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Dropped 115.1GB file cache\\n===== [Sat May 16 02:38:32 CST 2026] exp-012-r2 exp1: Count Baseline (llama-3.1-8b-instruct) =====\\n2026-05-16 02:38:43,256 INFO Loading Few-NERD test data...\\n2026-05-16 02:38:43,256 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\n2026-05-16 02:38:45,529 INFO Loaded 1000 samples from Few-NERD test split\\n2026-05-16 02:38:45,532 INFO Data loaded: 1000 samples, 64 active types\\n2026-05-16 02:38:45,532 INFO Loading embeddings from artifacts/type_embeddings.pt\\n2026-05-16 02:38:45,558 INFO Loading similarity matrix from artifacts/sim_matrix.pt\\n2026-05-16 02:38:45,562 INFO Active types (in both embeddings and data): 64\\n2026-05-16 02:38:45,832 INFO Saved batch config to artifacts/exp012/batch_config_fewnerd_exp1_llama-3.1-8b-instruct.json\\n2026-05-16 02:38:45,832 INFO Starting extraction...\\n2026-05-16 02:39:14,937 INFO Loading vLLM model from /root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct (prompt_version=v2)\\nINFO 05-16 02:39:15 [utils.py:233] non-default args: {'trust_remote_code': True, 'dtype': 'bfloat16', 'max_model_len': 4096, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'enforce_eager': True, 'model': '/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct'}\\nINFO 05-16 02:39:15 [model.py:555] Resolved architecture: LlamaForCausalLM\\nINFO 05-16 02:39:15 [model.py:1680] Using max model len 4096\\nINFO 05-16 02:39:15 [scheduler.py:239] Chunked prefill is enabled with max_num_batched_tokens=16384.\\nINFO 05-16 02:39:15 [vllm.py:840] Asynchronous scheduling is enabled.\\nWARNING 05-16 02:39:15 [vllm.py:896] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\nWARNING 05-16 02:39:15 [vllm.py:914] Inductor compilation was disabled by user settings, optimizations 
+…[truncated 4564 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T19:16:10.020589+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"47\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T19:16:10.020716+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp1_llama-3.1-8b-instruct.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp1_llama-3.1-8b-instruct.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T19:16:10.021103+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_1\\\": {\\n    \\\"random\\\": [\\n      {\\n        \\\"types\\\": [\\n          \\\"art-broadcastprogram\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"art-film\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"art-music\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"art-other\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"art-writtenart\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-airport\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-hospital\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-hotel\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-library\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-other\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-restaurant\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-sportsfacility\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-theater\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"event-attack/battle/war/militaryconflict\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"event-disaster\\\"\\n        ],\\n        \\\"bcs\\\": 0.0\\n      },\\n      {\\
+…[truncated 8471 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T19:16:10.021278+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep \"outputs\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep \"outputs\" /root/runs/schema-dag-extraction/exp012_llama_8b_r2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T19:16:10.021475+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=316128) INFO 05-16 02:39:21 [core.py:109] Initializing a V1 LLM engine (v0.20.2) with config: model='/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct', speculative_config=None, tokenizer='/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': &lt;CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_it
+…[truncated 6317 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T19:16:10.021670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -c \"bcs\" /root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp1_llama-3.1-8b-instruct.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep -c \"bcs\" /root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp1_llama-3.1-8b-instruct.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T19:16:10.021807+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"94\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T19:16:10.021950+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -c \"\\\"types\\\":\" /root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp1_llama-3.1-8b-instruct.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep -c \"\\\"types\\\":\" /root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp1_llama-3.1-8b-instruct.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T19:16:10.022072+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"94\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_exp012_progress_20260515T191405",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-15T19:16:10.022254+00:00_
+
+## exp012_llama_8b_r2 状态
+
+| 项目 | 状态 |
+|------|------|
+| **进程** | 存活，已运行 ~36 分钟 |
+| **PID 315801** | wrapper bash, 3.5 MB RSS |
+| **PID 316128** | VLLM::EngineCore, 2.2 GB RSS |
+| **GPU** | 84.7 / 97.9 GB (86%), 利用率 71% |
+| **进度** | **69 / 94 batches 完成 (~73%)** |
+| **当前阶段** | count_6/random/0 正在运行（已完成 count_1 全部 64 批 + count_2 全部 5 批） |
+| **每批输出** | 1000 outputs，模型生成正常的结构化 JSON（实体抽取结果） |
+| **JSON 解析失败** | 47 条 / ~69,000 总输出 (0.07%，可忽略) |
+| **gen_tokens** | 日志未记录此指标，但从输出内容看模型生成了完整的实体 JSON（非空输出），**不是之前 gen_tokens=2 的空输出问题** |
+| **结果目录** | 尚未创建，预计实验结束后写入 |
+| **预估剩余** | 剩 25 批，平均 ~0.5 min/批，**预计 ~13 分钟后完成** |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_monitor_exp012_progress_20260515T191405"
+}
+```
+
+</details>
+
+---

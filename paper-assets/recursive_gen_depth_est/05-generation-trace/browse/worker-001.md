@@ -1,156 +1,156 @@
 # Worker execution logs
 
-[Back to trace guide](../README.md)
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
 
-| Source record | Events | User turns | JSON |
-|---|---:|---:|---|
-| `logs/workers/worker_infra_env-setup_20260514T095535.log` (occurrence 1) | 671 | 0 | [Open](../sessions/1f/1fdfe04899cadf5110ec.json) |
-| `logs/workers/worker_data_seed-prep_20260514T095557.log` (occurrence 1) | 104 | 0 | [Open](../sessions/68/68185d48b00bcd9bf678.json) |
-| `logs/workers/worker_code_recursive-gen-chain_20260514T095847.log` (occurrence 1) | 61 | 0 | [Open](../sessions/88/88ccda148312f6ab5f3a.json) |
-| `logs/workers/worker_code_fix-scripts_20260514T100522.log` (occurrence 1) | 44 | 0 | [Open](../sessions/bb/bb20fb19babdf8640bfc.json) |
-| `logs/workers/worker_code_fix-and-launch-pipeline_20260514T100803.log` (occurrence 1) | 305 | 0 | [Open](../sessions/59/59426ebf2203323243ee.json) |
-| `logs/workers/worker_code_base-model-pipeline_20260514T102629.log` (occurrence 1) | 780 | 0 | [Open](../sessions/7c/7ce47ce1b12c2d15813e.json) |
-| `logs/workers/worker_check_status-urgent_20260514T105857.log` (occurrence 1) | 35 | 0 | [Open](../sessions/b9/b9083237587f32caf0fa.json) |
-| `logs/workers/worker_infra_base-model-download-v2_20260514T110255.log` (occurrence 1) | 50 | 0 | [Open](../sessions/5f/5f87901ca8ae31016927.json) |
-| `logs/workers/worker_code_feature-extraction_20260514T110330.log` (occurrence 1) | 17 | 0 | [Open](../sessions/ae/ae8422ac82740ba54d45.json) |
-| `logs/workers/worker_infra_kill-instruct-download-base-restart_20260514T110510.log` (occurrence 1) | 505 | 0 | [Open](../sessions/dd/dd04dfec0626b92c79a7.json) |
-| `logs/workers/worker_infra_kill-qwen-download-pythia_20260514T112659.log` (occurrence 1) | 378 | 1 | [Open](../sessions/00/00e47ac3e2534f4a8682.json) |
-| `logs/workers/worker_infra_restart-qwen-base-pipeline_20260514T114711.log` (occurrence 1) | 79 | 0 | [Open](../sessions/36/362a08ef85e1122d5601.json) |
-| `logs/workers/worker_code_feature-extraction-v2_20260514T114749.log` (occurrence 1) | 37 | 0 | [Open](../sessions/50/5047613fb93c27fab53b.json) |
-| `logs/workers/worker_infra_pythia-pipeline-launch_20260514T120805.log` (occurrence 1) | 78 | 0 | [Open](../sessions/4f/4f8f2661cfeec3b9b1f4.json) |
-| `logs/workers/worker_code_feature-extraction-pythia_20260514T120845.log` (occurrence 1) | 43 | 0 | [Open](../sessions/0e/0ec228d38846cbdbae93.json) |
-| `logs/workers/worker_infra_cuda1-parallel-tasks_20260514T125138.log` (occurrence 1) | 103 | 0 | [Open](../sessions/8d/8d26c93c96272f3af4d8.json) |
-| `logs/workers/worker_analysis_mvp_pipeline_pythia_002_20260514T135037.log` (occurrence 1) | 133 | 0 | [Open](../sessions/e5/e5d905b384b8f3285cac.json) |
-| `logs/workers/worker_analysis_mvp-evaluation-full_20260514T135351.log` (occurrence 1) | 150 | 0 | [Open](../sessions/eb/ebc662a0c5447508d3bb.json) |
-| `logs/workers/worker_infra_research-phase-prep_20260514T140739.log` (occurrence 1) | 789 | 0 | [Open](../sessions/60/60e5d8e5bc9ebd7a8a1a.json) |
-| `logs/workers/worker_analysis_reviewer-feedback-urgent_20260514T140859.log` (occurrence 1) | 35 | 0 | [Open](../sessions/ac/ac5282fc9435d61577af.json) |
-| `logs/workers/worker_infra_olmo-pipeline-launch_20260514T141126.log` (occurrence 1) | 524 | 0 | [Open](../sessions/4d/4de1301dd7895109e4ce.json) |
-| `logs/workers/worker_infra_gpt2xl-pipeline-launch_20260514T141146.log` (occurrence 1) | 661 | 0 | [Open](../sessions/fc/fc08cecad87d3f112cbf.json) |
-| `logs/workers/worker_analyze_cross_model_olmo_001_20260514T144427.log` (occurrence 1) | 86 | 0 | [Open](../sessions/c5/c5b17c3b5f5eb851767d.json) |
-| `logs/workers/worker_infra_pythia-variant-scripts-launch_20260514T145010.log` (occurrence 1) | 43 | 0 | [Open](../sessions/81/81b39fb016637520e6cf.json) |
-| `logs/workers/worker_infra_olmo-script-verify_20260514T145240.log` (occurrence 1) | 50 | 0 | [Open](../sessions/d8/d8f3da22e90b2ef29019.json) |
-| `logs/workers/worker_infra_kill-rogue-gpu-process_20260514T145519.log` (occurrence 1) | 48 | 0 | [Open](../sessions/3c/3c969bdde579b6af8312.json) |
-| `logs/workers/worker_code_dcol_training_prep_20260514T160308.log` (occurrence 1) | 219 | 0 | [Open](../sessions/5c/5cd13ad300706c59dc98.json) |
-| `logs/workers/worker_code_atlas_analysis_prep_20260514T160337.log` (occurrence 1) | 100 | 0 | [Open](../sessions/8a/8af593652889eff88428.json) |
-| `logs/workers/worker_ssh_check_gpu_status_20260514T160618.log` (occurrence 1) | 102 | 0 | [Open](../sessions/e1/e1e0316495ac316a8adf.json) |
-| `logs/workers/worker_ssh_d1d3_eval_mvp_20260514T160902.log` (occurrence 1) | 87 | 0 | [Open](../sessions/5f/5f9b8e1ff2af6b82d07d.json) |
-| `logs/workers/worker_code_dcol_feature_based_20260514T161727.log` (occurrence 1) | 77 | 0 | [Open](../sessions/56/563ace1631231fca2e03.json) |
-| `logs/workers/worker_ssh_download_deberta_v3_large_20260514T161918.log` (occurrence 1) | 296 | 0 | [Open](../sessions/a7/a75d0e98fe92b375d71c.json) |
-| `logs/workers/worker_code_baseline_battery_20260514T161949.log` (occurrence 1) | 107 | 0 | [Open](../sessions/fb/fbaeca603f759e8961ab.json) |
-| `logs/workers/worker_code_dcol_fix_leakage_20260514T162652.log` (occurrence 1) | 124 | 0 | [Open](../sessions/e7/e7e1a4ee68d91f8ccff0.json) |
-| `logs/workers/worker_analysis_pythia_temp09_001_20260514T163125.log` (occurrence 1) | 259 | 1 | [Open](../sessions/85/85a4b4288ed840c440af.json) |
-| `logs/workers/worker_submit_cross_model_olmo_002_20260514T163144.log` (occurrence 1) | 179 | 1 | [Open](../sessions/68/68565b3a076c7b5887c8.json) |
-| `logs/workers/worker_ssh_dcol_verify_fix_20260514T163519.log` (occurrence 1) | 59 | 0 | [Open](../sessions/f2/f2cdd3cea45b266e485c.json) |
-| `logs/workers/worker_code_baseline_rf_lr_unified_20260514T164446.log` (occurrence 1) | 88 | 0 | [Open](../sessions/fc/fc8f1e63f5c3e5137db3.json) |
-| `logs/workers/worker_monitor_training_progress_check_20260514T165444.log` (occurrence 1) | 61 | 0 | [Open](../sessions/14/142a66e09381b6beb6ff.json) |
-| `logs/workers/worker_code_dcol_training_prep_20260514T165507.log` (occurrence 1) | 23 | 0 | [Open](../sessions/cc/cc47c8d53ae9a9493009.json) |
-| `logs/workers/worker_diagnose_cross_model_olmo_002_20260514T170358.log` (occurrence 1) | 54 | 0 | [Open](../sessions/a6/a64b099cca76d2377c0a.json) |
-| `logs/workers/worker_ssh_olmo_rescue_20260514T170614.log` (occurrence 1) | 33 | 0 | [Open](../sessions/3f/3f2498572c971d74d13d.json) |
-| `logs/workers/worker_ssh_check_pipeline_strategy_20260514T171230.log` (occurrence 1) | 97 | 0 | [Open](../sessions/d0/d0370758fca7927df094.json) |
-| `logs/workers/worker_code_pipeline_scripts_3x3_20260514T171704.log` (occurrence 1) | 74 | 0 | [Open](../sessions/9c/9c35be2f9afb31972b7e.json) |
-| `logs/workers/worker_research_diveye_citation_check_20260514T171717.log` (occurrence 1) | 43 | 0 | [Open](../sessions/98/98227334524323c9ff02.json) |
-| `logs/workers/worker_code_fix_diveye_citation_20260514T171957.log` (occurrence 1) | 65 | 0 | [Open](../sessions/82/82c278e331c19e951044.json) |
-| `logs/workers/worker_code_fix_3x3_scripts_20260514T172405.log` (occurrence 1) | 70 | 0 | [Open](../sessions/57/57e5aedc158baecb7a4b.json) |
-| `logs/workers/worker_code_prep_remaining_scripts_20260514T174849.log` (occurrence 1) | 41 | 0 | [Open](../sessions/15/15183cf17e87eb15ab7d.json) |
-| `logs/workers/worker_ssh_check_olmo_002_completion_20260514T181102.log` (occurrence 1) | 196 | 0 | [Open](../sessions/e8/e8b250d6a39858d17cc7.json) |
-| `logs/workers/worker_analysis_cross_model_gpt2xl_001_20260514T182022.log` (occurrence 1) | 101 | 0 | [Open](../sessions/c1/c1a6df0e3c45298200c4.json) |
-| `logs/workers/worker_diagnose_cross_model_olmo_002_20260514T182106.log` (occurrence 1) | 24 | 0 | [Open](../sessions/1a/1af79233412938afcf80.json) |
-| `logs/workers/worker_analyze_cross_model_gpt2xl_001_20260514T182129.log` (occurrence 1) | 154 | 0 | [Open](../sessions/c3/c3159989e820d3625dbb.json) |
-| `logs/workers/worker_code_submit_pythia_topk50_20260514T182132.log` (occurrence 1) | 40 | 0 | [Open](../sessions/bf/bfea68e96e07438f9517.json) |
-| `logs/workers/worker_code_add_sentinel_to_scripts_20260514T182350.log` (occurrence 1) | 100 | 0 | [Open](../sessions/8d/8d2ccc9061ff9da05b04.json) |
-| `logs/workers/worker_code_debug_false_failure_20260514T182414.log` (occurrence 1) | 277 | 1 | [Open](../sessions/de/deaf71c7664fe3a1c3ed.json) |
-| `logs/workers/worker_code_submit_olmo_temp09_20260514T182428.log` (occurrence 1) | 30 | 0 | [Open](../sessions/09/093d0bf47f578a4ae8bc.json) |
-| `logs/workers/worker_code_olmo_nucleus_eval_20260514T182449.log` (occurrence 1) | 108 | 0 | [Open](../sessions/77/77c869cab217226ca320.json) |
-| `logs/workers/worker_ssh_gpt2xl_classification_20260514T182506.log` (occurrence 1) | 106 | 0 | [Open](../sessions/f8/f8eb8d2cab6d48c1cbaf.json) |
-| `logs/workers/worker_ssh_gpt2xl_results_and_submit_temp09_20260514T182600.log` (occurrence 1) | 91 | 0 | [Open](../sessions/ab/ab82c1e6d777dd6ce93c.json) |
-| `logs/workers/worker_eval_pythia_topk50_001_20260514T183056.log` (occurrence 1) | 79 | 0 | [Open](../sessions/38/38e959f04e9a1323c755.json) |
-| `logs/workers/worker_code_atlas_analysis_v1_20260514T183352.log` (occurrence 1) | 90 | 0 | [Open](../sessions/16/16ae7c267a3260c37cd0.json) |
-| `logs/workers/worker_code_dcol_train_script_20260514T183422.log` (occurrence 1) | 110 | 0 | [Open](../sessions/b6/b6e84286a79130ae6d5d.json) |
-| `logs/workers/worker_ssh_three_class_eval_persist_20260514T183740.log` (occurrence 1) | 75 | 0 | [Open](../sessions/0a/0a78bbdf91fc1e09785c.json) |
-| `logs/workers/worker_code_fix_eval_pythia_topk50_20260514T184732.log` (occurrence 1) | 76 | 0 | [Open](../sessions/0b/0bc4aee15afd346bcea8.json) |
-| `logs/workers/worker_code_baseline_battery_20260514T185551.log` (occurrence 1) | 291 | 1 | [Open](../sessions/e0/e0144a9fee71ebceb9d7.json) |
-| `logs/workers/worker_code_dcol_train_script_20260514T183422_retry1.log` (occurrence 1) | 327 | 1 | [Open](../sessions/ee/ee00a279adbd01761acb.json) |
-| `logs/workers/worker_ssh_download_deberta_and_prep_dcol_20260514T192826.log` (occurrence 1) | 49 | 0 | [Open](../sessions/dd/ddbfa10d0bd7268a2ed3.json) |
-| `logs/workers/worker_code_rename_dcol_deprecated_20260514T193215.log` (occurrence 1) | 27 | 0 | [Open](../sessions/14/141671b831d2b0057465.json) |
-| `logs/workers/worker_ssh_dcol_cleanup_and_verify_20260514T193350.log` (occurrence 1) | 55 | 0 | [Open](../sessions/f5/f5e67bfeeb52450ef165.json) |
-| `logs/workers/worker_code_dcol_readiness_check_20260514T193655.log` (occurrence 1) | 81 | 0 | [Open](../sessions/9d/9d763e9b72cabe368280.json) |
-| `logs/workers/worker_code_remaining_3x3_scripts_20260514T193717.log` (occurrence 1) | 35 | 0 | [Open](../sessions/27/27067bf4c8f5501d94e6.json) |
-| `logs/workers/worker_ssh_check_topk50_and_submit_dcol_20260514T193803.log` (occurrence 1) | 22 | 0 | [Open](../sessions/00/00755e4ea4e4dee8bb56.json) |
-| `logs/workers/worker_ssh_check_experiment_progress_20260514T194229.log` (occurrence 1) | 50 | 0 | [Open](../sessions/f7/f7bfffabfd983321f723.json) |
-| `logs/workers/worker_code_baseline_large_and_rename_20260514T195436.log` (occurrence 1) | 140 | 0 | [Open](../sessions/ef/ef22aa17854e9f8e94d1.json) |
-| `logs/workers/worker_research_diveye_citation_verify_20260514T195449.log` (occurrence 1) | 30 | 0 | [Open](../sessions/00/004e7643e217198ea81b.json) |
-| `logs/workers/worker_ssh_sync_and_dryrun_baselines_large_20260514T195519.log` (occurrence 1) | 114 | 0 | [Open](../sessions/e8/e802dfcf4b059abe2552.json) |
-| `logs/workers/worker_ssh_verify_dcol_readiness_20260514T200618.log` (occurrence 1) | 50 | 0 | [Open](../sessions/50/50ab95132b8ab8c2caf3.json) |
-| `logs/workers/worker_ssh_check_running_experiments_20260514T200924.log` (occurrence 1) | 50 | 0 | [Open](../sessions/69/69303df612cf4e475f95.json) |
-| `logs/workers/worker_code_remaining_baselines_20260514T201130.log` (occurrence 1) | 52 | 0 | [Open](../sessions/20/208005befb599c200477.json) |
-| `logs/workers/worker_check_training_progress_20240514_20260514T201533.log` (occurrence 1) | 19 | 0 | [Open](../sessions/24/2410e08e1af2dd3048e2.json) |
-| `logs/workers/worker_analysis_pythia_topk50_001_20260514T201559.log` (occurrence 1) | 409 | 0 | [Open](../sessions/b2/b24c86091cff2fca10e4.json) |
-| `logs/workers/worker_ssh_collect_pythia_topk50_results_20260514T201806.log` (occurrence 1) | 254 | 0 | [Open](../sessions/80/804a663c40185b19385d.json) |
-| `logs/workers/worker_research_decoding_strategy_signal_attenuation_20260514T203338.log` (occurrence 1) | 40 | 0 | [Open](../sessions/89/89a0ed2026322140d081.json) |
-| `logs/workers/worker_code_prepare_olmo_temp09_submission_20260514T203347.log` (occurrence 1) | 32 | 0 | [Open](../sessions/5f/5fb037e85b7d48a43038.json) |
-| `logs/workers/worker_code_prepare_olmo_temp09_experiment_20260514T203351.log` (occurrence 1) | 29 | 0 | [Open](../sessions/8e/8e2f114a557ab7512d96.json) |
-| `logs/workers/worker_knowledge_memory_signal_degradation_20260514T203401.log` (occurrence 1) | 14 | 0 | [Open](../sessions/8b/8bd0d50b85506444d2e7.json) |
-| `logs/workers/worker_ssh_verify_dcol_early_logs_20260514T203553.log` (occurrence 1) | 28 | 0 | [Open](../sessions/fb/fbcd0a6b1c96595947f5.json) |
-| `logs/workers/worker_analysis_gpt2xl_temp09_001_20260514T222101.log` (occurrence 1) | 79 | 0 | [Open](../sessions/79/79696000f79febd9c47e.json) |
-| `logs/workers/worker_code_olmo_temp09_001_20260514T222144.log` (occurrence 1) | 68 | 0 | [Open](../sessions/22/226dab3f26da36bb8678.json) |
-| `logs/workers/worker_ssh_collect_gpt2xl_temp09_results_20260514T222516.log` (occurrence 1) | 521 | 0 | [Open](../sessions/66/66502c251e02e6ec5e4c.json) |
-| `logs/workers/worker_ssh_sync_remaining_baselines_20260514T222541.log` (occurrence 1) | 48 | 0 | [Open](../sessions/59/59e1e32bfdbeec06daa9.json) |
-| `logs/workers/worker_code_prepare_last_two_3x3_cells_20260514T223033.log` (occurrence 1) | 40 | 0 | [Open](../sessions/0c/0c0520f47dc2b9699658.json) |
-| `logs/workers/worker_ssh_dcol_midtraining_check_20260514T223230.log` (occurrence 1) | 23 | 0 | [Open](../sessions/86/8685f2dfb20c8d59c311.json) |
-| `logs/workers/worker_analysis_feature_importance_stability_20260514T223439.log` (occurrence 1) | 44 | 0 | [Open](../sessions/c9/c94719e8a3e26b0da33f.json) |
-| `logs/workers/worker_code_fix_dcol_and_prepare_002_20260514T223632.log` (occurrence 1) | 59 | 0 | [Open](../sessions/10/10f8e3ed6d4f168d3aef.json) |
-| `logs/workers/worker_ssh_kill_zombie_and_cleanup_20260514T224136.log` (occurrence 1) | 39 | 0 | [Open](../sessions/09/098404dad76c9eb95d8b.json) |
-| `logs/workers/worker_diagnose_dcol_deberta_002_oom_20260514T224140.log` (occurrence 1) | 34 | 0 | [Open](../sessions/70/70d3b8804a49bf32df6f.json) |
-| `logs/workers/worker_analysis_gpt2xl_temp09_001_20260514T224201.log` (occurrence 1) | 58 | 0 | [Open](../sessions/cc/cc670fe685d1a29602b4.json) |
-| `logs/workers/worker_code_gpt2xl_topk50_001_20260514T224607.log` (occurrence 1) | 52 | 0 | [Open](../sessions/ab/ab2bb53a9f3f123e527e.json) |
-| `logs/workers/worker_code_olmo_topk50_001_prep_20260514T224618.log` (occurrence 1) | 72 | 0 | [Open](../sessions/af/af34c957953735d355a5.json) |
-| `logs/workers/worker_ssh_dcol_deberta_003_submit_20260514T224849.log` (occurrence 1) | 23 | 0 | [Open](../sessions/2e/2ec9de545bdeab0e136c.json) |
-| `logs/workers/worker_ssh_dcol_deberta_003_v3_submit_20260514T225052.log` (occurrence 1) | 18 | 0 | [Open](../sessions/a8/a8421240e2f07b208425.json) |
-| `logs/workers/worker_ssh_olmo_temp09_001_check_20260514T225434.log` (occurrence 1) | 83 | 0 | [Open](../sessions/1d/1d8c87e1d3faeb0411f1.json) |
-| `logs/workers/worker_ssh_olmo_topk50_001_submit_20260514T225926.log` (occurrence 1) | 26 | 0 | [Open](../sessions/29/29484b7808c5d7ed5af0.json) |
-| `logs/workers/worker_ssh_olmo_temp09_002_submit_20260514T230018.log` (occurrence 1) | 44 | 0 | [Open](../sessions/bf/bf0fa630b88600f280f5.json) |
-| `logs/workers/worker_code_baseline_battery_009_20260514T230042.log` (occurrence 1) | 187 | 1 | [Open](../sessions/d3/d3feb99d1f8fb95d1b89.json) |
-| `logs/workers/worker_code_olmo_temp09_002_resume_script_20260514T230046.log` (occurrence 1) | 28 | 0 | [Open](../sessions/d2/d2c4e13f7823f2704827.json) |
-| `logs/workers/worker_ssh_remove_dangerous_resume_script_20260514T230745.log` (occurrence 1) | 22 | 0 | [Open](../sessions/11/11d32bcb6421cb58659a.json) |
-| `logs/workers/worker_ssh_baseline_coral_diveye_fix_20260514T231457.log` (occurrence 1) | 93 | 0 | [Open](../sessions/f9/f95c00824ba1829527ee.json) |
-| `logs/workers/worker_analysis_olmo_temp09_001_20260514T235338.log` (occurrence 1) | 503 | 0 | [Open](../sessions/bf/bfbd990db89b28c00fcc.json) |
-| `logs/workers/worker_ssh_olmo_topk50_001_submit_20260515T001042.log` (occurrence 1) | 28 | 0 | [Open](../sessions/7a/7a484ffffc2b00278f75.json) |
-| `logs/workers/worker_code_zeroshot_baseline_prep_20260515T004650.log` (occurrence 1) | 50 | 0 | [Open](../sessions/be/beef7f9b3029c2994896.json) |
-| `logs/workers/worker_analysis_atlas_v2_prep_20260515T004953.log` (occurrence 1) | 131 | 0 | [Open](../sessions/56/56b400cca7c4301a7672.json) |
-| `logs/workers/worker_analysis_atlas_v2_prep_20260515T010628.log` (occurrence 1) | 115 | 0 | [Open](../sessions/c3/c3ff7a147c57e4d40ae1.json) |
-| `logs/workers/worker_analysis_olmo_topk50_001_20260515T014117.log` (occurrence 1) | 410 | 0 | [Open](../sessions/d5/d50ca19984fa85ea4d70.json) |
-| `logs/workers/worker_ssh_zeroshot_baseline_dryrun_20260515T015646.log` (occurrence 1) | 766 | 1 | [Open](../sessions/d8/d8e6c9ee082c62f97910.json) |
-| `logs/workers/worker_analysis_atlas_v2_update_20260515T020132.log` (occurrence 1) | 178 | 0 | [Open](../sessions/cd/cd7520f64077afc6490b.json) |
-| `logs/workers/worker_analysis_matrix_3x3_synthesis_20260515T020134.log` (occurrence 1) | 19 | 0 | [Open](../sessions/86/86e5848c658a5e2112e8.json) |
-| `logs/workers/worker_research_paper-research_20260515T020141.log` (occurrence 1) | 76 | 0 | [Open](../sessions/13/13b67c9e82d01bd39a6e.json) |
-| `logs/workers/worker_analysis_matrix_3x3_summary_20260515T020226.log` (occurrence 1) | 9 | 0 | [Open](../sessions/2f/2f3f737de96fa4a7aa29.json) |
-| `logs/workers/worker_research_decoding_strategy_literature_20260515T020238.log` (occurrence 1) | 46 | 0 | [Open](../sessions/84/84a8cec38191906d49b4.json) |
-| `logs/workers/worker_code_dcol_deberta_003_submit_20260515T020350.log` (occurrence 1) | 31 | 0 | [Open](../sessions/23/233ae32299af2dbccf95.json) |
-| `logs/workers/worker_diag_dcol_deberta_003_20260515T020544.log` (occurrence 1) | 31 | 0 | [Open](../sessions/f7/f7f81f9aeb9fd9a0cbc0.json) |
-| `logs/workers/worker_infra_gpu-status-check_20260515T020802.log` (occurrence 1) | 20 | 0 | [Open](../sessions/ee/ee13d511c034a48d325e.json) |
-| `logs/workers/worker_analysis_atlas-v2-prep_20260515T020901.log` (occurrence 1) | 98 | 0 | [Open](../sessions/96/96f343877b560febccd3.json) |
-| `logs/workers/worker_code_dcol_v4_fix_and_submit_20260515T021114.log` (occurrence 1) | 93 | 0 | [Open](../sessions/29/29aef0738dbe95b1647c.json) |
-| `logs/workers/worker_fix_matrix_analysis_warnings_20260515T021640.log` (occurrence 1) | 94 | 0 | [Open](../sessions/ec/ec91f382bbfbdabdd81b.json) |
-| `logs/workers/worker_analysis_gpt2xl_topk50_001_20260515T021757.log` (occurrence 1) | 55 | 0 | [Open](../sessions/af/afab5b78a5256eb1f11b.json) |
-| `logs/workers/worker_analysis_gpt2xl_topk50_001_20260515T022234.log` (occurrence 1) | 95 | 0 | [Open](../sessions/cc/cc8f518e1c90873dd93f.json) |
-| `logs/workers/worker_code_dcol_lora_refactor_and_submit_20260515T022303.log` (occurrence 1) | 51 | 0 | [Open](../sessions/29/292a221087c359fdded2.json) |
-| `logs/workers/worker_ssh_dcol_v4_lora_clean_restart_20260515T022544.log` (occurrence 1) | 262 | 1 | [Open](../sessions/d3/d31b531c54abd09c9c1c.json) |
-| `logs/workers/worker_ssh_gpt2xl_topk50_eval_20260515T022607.log` (occurrence 1) | 547 | 0 | [Open](../sessions/30/305119c6f78d567d740c.json) |
-| `logs/workers/worker_analysis_gpt2xl_topk50_001_20260515T023056.log` (occurrence 1) | 53 | 0 | [Open](../sessions/10/106d12f2ab9e29f5849f.json) |
-| `logs/workers/worker_code_dcol_deberta_004_20260515T023124.log` (occurrence 1) | 116 | 0 | [Open](../sessions/d1/d124ed1f029c42297f5a.json) |
-| `logs/workers/worker_ssh_bugfix_load_features_20260515T023831.log` (occurrence 1) | 337 | 0 | [Open](../sessions/37/37330913eb37d5f43098.json) |
-| `logs/workers/worker_ssh_zeroshot_cleanup_20260515T023844.log` (occurrence 1) | 45 | 0 | [Open](../sessions/05/0519f32e333c72989da5.json) |
-| `logs/workers/worker_analysis_gpt2xl_topk50_001_20260515T024241.log` (occurrence 1) | 70 | 0 | [Open](../sessions/34/3461f909db9bc41103f7.json) |
-| `logs/workers/worker_ssh_verify_gpu_and_dcol_20260515T024659.log` (occurrence 1) | 44 | 0 | [Open](../sessions/93/93e64160e41f6ae07b3b.json) |
-| `logs/workers/worker_analysis_atlas_v2_9cells_20260515T024722.log` (occurrence 1) | 71 | 0 | [Open](../sessions/de/de903c41b3f7a7dabdea.json) |
-| `logs/workers/worker_ssh_dcol_v5_verify_20260515T024845.log` (occurrence 1) | 63 | 0 | [Open](../sessions/03/03bd0064292b7d505824.json) |
-| `logs/workers/worker_ssh_gpt2xl_topk50_reextract_20260515T030647.log` (occurrence 1) | 815 | 1 | [Open](../sessions/c8/c81f9c610fdd7f00c5a5.json) |
-| `logs/workers/worker_ssh_cuda0_task_submit_20260515T030830.log` (occurrence 1) | 86 | 0 | [Open](../sessions/6f/6f812037d4309815e843.json) |
-| `logs/workers/worker_analysis_edd_threshold_sensitivity_20260515T032002.log` (occurrence 1) | 57 | 0 | [Open](../sessions/b7/b7c48bafe7afbb3779ba.json) |
-| `logs/workers/worker_ssh_gpu0_data_contamination_fix_20260515T032636.log` (occurrence 1) | 63 | 0 | [Open](../sessions/12/12ad54e53aa79b346cc0.json) |
-| `logs/workers/worker_ssh_dcol_v5_step400_check_20260515T032955.log` (occurrence 1) | 6 | 0 | [Open](../sessions/95/959284581d746fbcd64d.json) |
-| `logs/workers/worker_ssh_kill_dcol_v5_urgent_20260515T034609.log` (occurrence 1) | 27 | 0 | [Open](../sessions/ff/ffdcb492190fdf79be48.json) |
-| `logs/workers/worker_ssh_kill_dcol_v5_20260515T034635.log` (occurrence 1) | 20 | 0 | [Open](../sessions/db/dbad24e9747e5e70ea09.json) |
-| `logs/workers/worker_code_dcol_deberta_006_prep_20260515T034736.log` (occurrence 1) | 45 | 0 | [Open](../sessions/a6/a66182042365ac650cbb.json) |
-| `logs/workers/worker_ssh_batch_feature_extraction_restart_20260515T035255.log` (occurrence 1) | 41 | 0 | [Open](../sessions/3f/3f0ccf8524e785081351.json) |
-| `logs/workers/worker_analysis_cross_cell_baselines_20260515T035515.log` (occurrence 1) | 611 | 0 | [Open](../sessions/47/4709ea651f23777ad8dc.json) |
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/workers/worker_infra_env-setup_20260514T095535.log` (occurrence 1) | 671 | 0 | [Read transcript](../readable/worker-executions/infra-env-setup.md) | [Open JSON](../sessions/1f/1fdfe04899cadf5110ec.json) |
+| `logs/workers/worker_data_seed-prep_20260514T095557.log` (occurrence 1) | 104 | 0 | [Read transcript](../readable/worker-executions/data-seed-prep.md) | [Open JSON](../sessions/68/68185d48b00bcd9bf678.json) |
+| `logs/workers/worker_code_recursive-gen-chain_20260514T095847.log` (occurrence 1) | 61 | 0 | [Read transcript](../readable/worker-executions/code-recursive-gen-chain.md) | [Open JSON](../sessions/88/88ccda148312f6ab5f3a.json) |
+| `logs/workers/worker_code_fix-scripts_20260514T100522.log` (occurrence 1) | 44 | 0 | [Read transcript](../readable/worker-executions/code-fix-scripts.md) | [Open JSON](../sessions/bb/bb20fb19babdf8640bfc.json) |
+| `logs/workers/worker_code_fix-and-launch-pipeline_20260514T100803.log` (occurrence 1) | 305 | 0 | [Read transcript](../readable/worker-executions/code-fix-and-launch-pipeline.md) | [Open JSON](../sessions/59/59426ebf2203323243ee.json) |
+| `logs/workers/worker_code_base-model-pipeline_20260514T102629.log` (occurrence 1) | 780 | 0 | [Read transcript](../readable/worker-executions/code-base-model-pipeline.md) | [Open JSON](../sessions/7c/7ce47ce1b12c2d15813e.json) |
+| `logs/workers/worker_check_status-urgent_20260514T105857.log` (occurrence 1) | 35 | 0 | [Read transcript](../readable/worker-executions/check-status-urgent.md) | [Open JSON](../sessions/b9/b9083237587f32caf0fa.json) |
+| `logs/workers/worker_infra_base-model-download-v2_20260514T110255.log` (occurrence 1) | 50 | 0 | [Read transcript](../readable/worker-executions/infra-base-model-download-v2.md) | [Open JSON](../sessions/5f/5f87901ca8ae31016927.json) |
+| `logs/workers/worker_code_feature-extraction_20260514T110330.log` (occurrence 1) | 17 | 0 | [Read transcript](../readable/worker-executions/code-feature-extraction.md) | [Open JSON](../sessions/ae/ae8422ac82740ba54d45.json) |
+| `logs/workers/worker_infra_kill-instruct-download-base-restart_20260514T110510.log` (occurrence 1) | 505 | 0 | [Read transcript](../readable/worker-executions/infra-kill-instruct-download-base-restart.md) | [Open JSON](../sessions/dd/dd04dfec0626b92c79a7.json) |
+| `logs/workers/worker_infra_kill-qwen-download-pythia_20260514T112659.log` (occurrence 1) | 378 | 1 | [Read transcript](../readable/worker-executions/infra-kill-qwen-download-pythia.md) | [Open JSON](../sessions/00/00e47ac3e2534f4a8682.json) |
+| `logs/workers/worker_infra_restart-qwen-base-pipeline_20260514T114711.log` (occurrence 1) | 79 | 0 | [Read transcript](../readable/worker-executions/infra-restart-qwen-base-pipeline.md) | [Open JSON](../sessions/36/362a08ef85e1122d5601.json) |
+| `logs/workers/worker_code_feature-extraction-v2_20260514T114749.log` (occurrence 1) | 37 | 0 | [Read transcript](../readable/worker-executions/code-feature-extraction-v2.md) | [Open JSON](../sessions/50/5047613fb93c27fab53b.json) |
+| `logs/workers/worker_infra_pythia-pipeline-launch_20260514T120805.log` (occurrence 1) | 78 | 0 | [Read transcript](../readable/worker-executions/infra-pythia-pipeline-launch.md) | [Open JSON](../sessions/4f/4f8f2661cfeec3b9b1f4.json) |
+| `logs/workers/worker_code_feature-extraction-pythia_20260514T120845.log` (occurrence 1) | 43 | 0 | [Read transcript](../readable/worker-executions/code-feature-extraction-pythia.md) | [Open JSON](../sessions/0e/0ec228d38846cbdbae93.json) |
+| `logs/workers/worker_infra_cuda1-parallel-tasks_20260514T125138.log` (occurrence 1) | 103 | 0 | [Read transcript](../readable/worker-executions/infra-cuda1-parallel-tasks.md) | [Open JSON](../sessions/8d/8d26c93c96272f3af4d8.json) |
+| `logs/workers/worker_analysis_mvp_pipeline_pythia_002_20260514T135037.log` (occurrence 1) | 133 | 0 | [Read transcript](../readable/worker-executions/analysis-mvp-pipeline-pythia-002.md) | [Open JSON](../sessions/e5/e5d905b384b8f3285cac.json) |
+| `logs/workers/worker_analysis_mvp-evaluation-full_20260514T135351.log` (occurrence 1) | 150 | 0 | [Read transcript](../readable/worker-executions/analysis-mvp-evaluation-full.md) | [Open JSON](../sessions/eb/ebc662a0c5447508d3bb.json) |
+| `logs/workers/worker_infra_research-phase-prep_20260514T140739.log` (occurrence 1) | 789 | 0 | [Read transcript](../readable/worker-executions/infra-research-phase-prep.md) | [Open JSON](../sessions/60/60e5d8e5bc9ebd7a8a1a.json) |
+| `logs/workers/worker_analysis_reviewer-feedback-urgent_20260514T140859.log` (occurrence 1) | 35 | 0 | [Read transcript](../readable/worker-executions/analysis-reviewer-feedback-urgent.md) | [Open JSON](../sessions/ac/ac5282fc9435d61577af.json) |
+| `logs/workers/worker_infra_olmo-pipeline-launch_20260514T141126.log` (occurrence 1) | 524 | 0 | [Read transcript](../readable/worker-executions/infra-olmo-pipeline-launch.md) | [Open JSON](../sessions/4d/4de1301dd7895109e4ce.json) |
+| `logs/workers/worker_infra_gpt2xl-pipeline-launch_20260514T141146.log` (occurrence 1) | 661 | 0 | [Read transcript](../readable/worker-executions/infra-gpt2xl-pipeline-launch.md) | [Open JSON](../sessions/fc/fc08cecad87d3f112cbf.json) |
+| `logs/workers/worker_analyze_cross_model_olmo_001_20260514T144427.log` (occurrence 1) | 86 | 0 | [Read transcript](../readable/worker-executions/analyze-cross-model-olmo-001.md) | [Open JSON](../sessions/c5/c5b17c3b5f5eb851767d.json) |
+| `logs/workers/worker_infra_pythia-variant-scripts-launch_20260514T145010.log` (occurrence 1) | 43 | 0 | [Read transcript](../readable/worker-executions/infra-pythia-variant-scripts-launch.md) | [Open JSON](../sessions/81/81b39fb016637520e6cf.json) |
+| `logs/workers/worker_infra_olmo-script-verify_20260514T145240.log` (occurrence 1) | 50 | 0 | [Read transcript](../readable/worker-executions/infra-olmo-script-verify.md) | [Open JSON](../sessions/d8/d8f3da22e90b2ef29019.json) |
+| `logs/workers/worker_infra_kill-rogue-gpu-process_20260514T145519.log` (occurrence 1) | 48 | 0 | [Read transcript](../readable/worker-executions/infra-kill-rogue-gpu-process.md) | [Open JSON](../sessions/3c/3c969bdde579b6af8312.json) |
+| `logs/workers/worker_code_dcol_training_prep_20260514T160308.log` (occurrence 1) | 219 | 0 | [Read transcript](../readable/worker-executions/code-dcol-training-prep.md) | [Open JSON](../sessions/5c/5cd13ad300706c59dc98.json) |
+| `logs/workers/worker_code_atlas_analysis_prep_20260514T160337.log` (occurrence 1) | 100 | 0 | [Read transcript](../readable/worker-executions/code-atlas-analysis-prep.md) | [Open JSON](../sessions/8a/8af593652889eff88428.json) |
+| `logs/workers/worker_ssh_check_gpu_status_20260514T160618.log` (occurrence 1) | 102 | 0 | [Read transcript](../readable/worker-executions/ssh-check-gpu-status.md) | [Open JSON](../sessions/e1/e1e0316495ac316a8adf.json) |
+| `logs/workers/worker_ssh_d1d3_eval_mvp_20260514T160902.log` (occurrence 1) | 87 | 0 | [Read transcript](../readable/worker-executions/ssh-d1d3-eval-mvp.md) | [Open JSON](../sessions/5f/5f9b8e1ff2af6b82d07d.json) |
+| `logs/workers/worker_code_dcol_feature_based_20260514T161727.log` (occurrence 1) | 77 | 0 | [Read transcript](../readable/worker-executions/code-dcol-feature-based.md) | [Open JSON](../sessions/56/563ace1631231fca2e03.json) |
+| `logs/workers/worker_ssh_download_deberta_v3_large_20260514T161918.log` (occurrence 1) | 296 | 0 | [Read transcript](../readable/worker-executions/ssh-download-deberta-v3-large.md) | [Open JSON](../sessions/a7/a75d0e98fe92b375d71c.json) |
+| `logs/workers/worker_code_baseline_battery_20260514T161949.log` (occurrence 1) | 107 | 0 | [Read transcript](../readable/worker-executions/code-baseline-battery.md) | [Open JSON](../sessions/fb/fbaeca603f759e8961ab.json) |
+| `logs/workers/worker_code_dcol_fix_leakage_20260514T162652.log` (occurrence 1) | 124 | 0 | [Read transcript](../readable/worker-executions/code-dcol-fix-leakage.md) | [Open JSON](../sessions/e7/e7e1a4ee68d91f8ccff0.json) |
+| `logs/workers/worker_analysis_pythia_temp09_001_20260514T163125.log` (occurrence 1) | 259 | 1 | [Read transcript](../readable/worker-executions/analysis-pythia-temp09-001.md) | [Open JSON](../sessions/85/85a4b4288ed840c440af.json) |
+| `logs/workers/worker_submit_cross_model_olmo_002_20260514T163144.log` (occurrence 1) | 179 | 1 | [Read transcript](../readable/worker-executions/submit-cross-model-olmo-002.md) | [Open JSON](../sessions/68/68565b3a076c7b5887c8.json) |
+| `logs/workers/worker_ssh_dcol_verify_fix_20260514T163519.log` (occurrence 1) | 59 | 0 | [Read transcript](../readable/worker-executions/ssh-dcol-verify-fix.md) | [Open JSON](../sessions/f2/f2cdd3cea45b266e485c.json) |
+| `logs/workers/worker_code_baseline_rf_lr_unified_20260514T164446.log` (occurrence 1) | 88 | 0 | [Read transcript](../readable/worker-executions/code-baseline-rf-lr-unified.md) | [Open JSON](../sessions/fc/fc8f1e63f5c3e5137db3.json) |
+| `logs/workers/worker_monitor_training_progress_check_20260514T165444.log` (occurrence 1) | 61 | 0 | [Read transcript](../readable/worker-executions/monitor-training-progress-check.md) | [Open JSON](../sessions/14/142a66e09381b6beb6ff.json) |
+| `logs/workers/worker_code_dcol_training_prep_20260514T165507.log` (occurrence 1) | 23 | 0 | [Read transcript](../readable/worker-executions/code-dcol-training-prep-copy-2.md) | [Open JSON](../sessions/cc/cc47c8d53ae9a9493009.json) |
+| `logs/workers/worker_diagnose_cross_model_olmo_002_20260514T170358.log` (occurrence 1) | 54 | 0 | [Read transcript](../readable/worker-executions/diagnose-cross-model-olmo-002.md) | [Open JSON](../sessions/a6/a64b099cca76d2377c0a.json) |
+| `logs/workers/worker_ssh_olmo_rescue_20260514T170614.log` (occurrence 1) | 33 | 0 | [Read transcript](../readable/worker-executions/ssh-olmo-rescue.md) | [Open JSON](../sessions/3f/3f2498572c971d74d13d.json) |
+| `logs/workers/worker_ssh_check_pipeline_strategy_20260514T171230.log` (occurrence 1) | 97 | 0 | [Read transcript](../readable/worker-executions/ssh-check-pipeline-strategy.md) | [Open JSON](../sessions/d0/d0370758fca7927df094.json) |
+| `logs/workers/worker_code_pipeline_scripts_3x3_20260514T171704.log` (occurrence 1) | 74 | 0 | [Read transcript](../readable/worker-executions/code-pipeline-scripts-3x3.md) | [Open JSON](../sessions/9c/9c35be2f9afb31972b7e.json) |
+| `logs/workers/worker_research_diveye_citation_check_20260514T171717.log` (occurrence 1) | 43 | 0 | [Read transcript](../readable/worker-executions/research-diveye-citation-check.md) | [Open JSON](../sessions/98/98227334524323c9ff02.json) |
+| `logs/workers/worker_code_fix_diveye_citation_20260514T171957.log` (occurrence 1) | 65 | 0 | [Read transcript](../readable/worker-executions/code-fix-diveye-citation.md) | [Open JSON](../sessions/82/82c278e331c19e951044.json) |
+| `logs/workers/worker_code_fix_3x3_scripts_20260514T172405.log` (occurrence 1) | 70 | 0 | [Read transcript](../readable/worker-executions/code-fix-3x3-scripts.md) | [Open JSON](../sessions/57/57e5aedc158baecb7a4b.json) |
+| `logs/workers/worker_code_prep_remaining_scripts_20260514T174849.log` (occurrence 1) | 41 | 0 | [Read transcript](../readable/worker-executions/code-prep-remaining-scripts.md) | [Open JSON](../sessions/15/15183cf17e87eb15ab7d.json) |
+| `logs/workers/worker_ssh_check_olmo_002_completion_20260514T181102.log` (occurrence 1) | 196 | 0 | [Read transcript](../readable/worker-executions/ssh-check-olmo-002-completion.md) | [Open JSON](../sessions/e8/e8b250d6a39858d17cc7.json) |
+| `logs/workers/worker_analysis_cross_model_gpt2xl_001_20260514T182022.log` (occurrence 1) | 101 | 0 | [Read transcript](../readable/worker-executions/analysis-cross-model-gpt2xl-001.md) | [Open JSON](../sessions/c1/c1a6df0e3c45298200c4.json) |
+| `logs/workers/worker_diagnose_cross_model_olmo_002_20260514T182106.log` (occurrence 1) | 24 | 0 | [Read transcript](../readable/worker-executions/diagnose-cross-model-olmo-002-copy-2.md) | [Open JSON](../sessions/1a/1af79233412938afcf80.json) |
+| `logs/workers/worker_analyze_cross_model_gpt2xl_001_20260514T182129.log` (occurrence 1) | 154 | 0 | [Read transcript](../readable/worker-executions/analyze-cross-model-gpt2xl-001.md) | [Open JSON](../sessions/c3/c3159989e820d3625dbb.json) |
+| `logs/workers/worker_code_submit_pythia_topk50_20260514T182132.log` (occurrence 1) | 40 | 0 | [Read transcript](../readable/worker-executions/code-submit-pythia-topk50.md) | [Open JSON](../sessions/bf/bfea68e96e07438f9517.json) |
+| `logs/workers/worker_code_add_sentinel_to_scripts_20260514T182350.log` (occurrence 1) | 100 | 0 | [Read transcript](../readable/worker-executions/code-add-sentinel-to-scripts.md) | [Open JSON](../sessions/8d/8d2ccc9061ff9da05b04.json) |
+| `logs/workers/worker_code_debug_false_failure_20260514T182414.log` (occurrence 1) | 277 | 1 | [Read transcript](../readable/worker-executions/code-debug-false-failure.md) | [Open JSON](../sessions/de/deaf71c7664fe3a1c3ed.json) |
+| `logs/workers/worker_code_submit_olmo_temp09_20260514T182428.log` (occurrence 1) | 30 | 0 | [Read transcript](../readable/worker-executions/code-submit-olmo-temp09.md) | [Open JSON](../sessions/09/093d0bf47f578a4ae8bc.json) |
+| `logs/workers/worker_code_olmo_nucleus_eval_20260514T182449.log` (occurrence 1) | 108 | 0 | [Read transcript](../readable/worker-executions/code-olmo-nucleus-eval.md) | [Open JSON](../sessions/77/77c869cab217226ca320.json) |
+| `logs/workers/worker_ssh_gpt2xl_classification_20260514T182506.log` (occurrence 1) | 106 | 0 | [Read transcript](../readable/worker-executions/ssh-gpt2xl-classification.md) | [Open JSON](../sessions/f8/f8eb8d2cab6d48c1cbaf.json) |
+| `logs/workers/worker_ssh_gpt2xl_results_and_submit_temp09_20260514T182600.log` (occurrence 1) | 91 | 0 | [Read transcript](../readable/worker-executions/ssh-gpt2xl-results-and-submit-temp09.md) | [Open JSON](../sessions/ab/ab82c1e6d777dd6ce93c.json) |
+| `logs/workers/worker_eval_pythia_topk50_001_20260514T183056.log` (occurrence 1) | 79 | 0 | [Read transcript](../readable/worker-executions/eval-pythia-topk50-001.md) | [Open JSON](../sessions/38/38e959f04e9a1323c755.json) |
+| `logs/workers/worker_code_atlas_analysis_v1_20260514T183352.log` (occurrence 1) | 90 | 0 | [Read transcript](../readable/worker-executions/code-atlas-analysis-v1.md) | [Open JSON](../sessions/16/16ae7c267a3260c37cd0.json) |
+| `logs/workers/worker_code_dcol_train_script_20260514T183422.log` (occurrence 1) | 110 | 0 | [Read transcript](../readable/worker-executions/code-dcol-train-script.md) | [Open JSON](../sessions/b6/b6e84286a79130ae6d5d.json) |
+| `logs/workers/worker_ssh_three_class_eval_persist_20260514T183740.log` (occurrence 1) | 75 | 0 | [Read transcript](../readable/worker-executions/ssh-three-class-eval-persist.md) | [Open JSON](../sessions/0a/0a78bbdf91fc1e09785c.json) |
+| `logs/workers/worker_code_fix_eval_pythia_topk50_20260514T184732.log` (occurrence 1) | 76 | 0 | [Read transcript](../readable/worker-executions/code-fix-eval-pythia-topk50.md) | [Open JSON](../sessions/0b/0bc4aee15afd346bcea8.json) |
+| `logs/workers/worker_code_baseline_battery_20260514T185551.log` (occurrence 1) | 291 | 1 | [Read transcript](../readable/worker-executions/code-baseline-battery-copy-2.md) | [Open JSON](../sessions/e0/e0144a9fee71ebceb9d7.json) |
+| `logs/workers/worker_code_dcol_train_script_20260514T183422_retry1.log` (occurrence 1) | 327 | 1 | [Read transcript](../readable/worker-executions/code-dcol-train-script-20260514t183422-retry1.md) | [Open JSON](../sessions/ee/ee00a279adbd01761acb.json) |
+| `logs/workers/worker_ssh_download_deberta_and_prep_dcol_20260514T192826.log` (occurrence 1) | 49 | 0 | [Read transcript](../readable/worker-executions/ssh-download-deberta-and-prep-dcol.md) | [Open JSON](../sessions/dd/ddbfa10d0bd7268a2ed3.json) |
+| `logs/workers/worker_code_rename_dcol_deprecated_20260514T193215.log` (occurrence 1) | 27 | 0 | [Read transcript](../readable/worker-executions/code-rename-dcol-deprecated.md) | [Open JSON](../sessions/14/141671b831d2b0057465.json) |
+| `logs/workers/worker_ssh_dcol_cleanup_and_verify_20260514T193350.log` (occurrence 1) | 55 | 0 | [Read transcript](../readable/worker-executions/ssh-dcol-cleanup-and-verify.md) | [Open JSON](../sessions/f5/f5e67bfeeb52450ef165.json) |
+| `logs/workers/worker_code_dcol_readiness_check_20260514T193655.log` (occurrence 1) | 81 | 0 | [Read transcript](../readable/worker-executions/code-dcol-readiness-check.md) | [Open JSON](../sessions/9d/9d763e9b72cabe368280.json) |
+| `logs/workers/worker_code_remaining_3x3_scripts_20260514T193717.log` (occurrence 1) | 35 | 0 | [Read transcript](../readable/worker-executions/code-remaining-3x3-scripts.md) | [Open JSON](../sessions/27/27067bf4c8f5501d94e6.json) |
+| `logs/workers/worker_ssh_check_topk50_and_submit_dcol_20260514T193803.log` (occurrence 1) | 22 | 0 | [Read transcript](../readable/worker-executions/ssh-check-topk50-and-submit-dcol.md) | [Open JSON](../sessions/00/00755e4ea4e4dee8bb56.json) |
+| `logs/workers/worker_ssh_check_experiment_progress_20260514T194229.log` (occurrence 1) | 50 | 0 | [Read transcript](../readable/worker-executions/ssh-check-experiment-progress.md) | [Open JSON](../sessions/f7/f7bfffabfd983321f723.json) |
+| `logs/workers/worker_code_baseline_large_and_rename_20260514T195436.log` (occurrence 1) | 140 | 0 | [Read transcript](../readable/worker-executions/code-baseline-large-and-rename.md) | [Open JSON](../sessions/ef/ef22aa17854e9f8e94d1.json) |
+| `logs/workers/worker_research_diveye_citation_verify_20260514T195449.log` (occurrence 1) | 30 | 0 | [Read transcript](../readable/worker-executions/research-diveye-citation-verify.md) | [Open JSON](../sessions/00/004e7643e217198ea81b.json) |
+| `logs/workers/worker_ssh_sync_and_dryrun_baselines_large_20260514T195519.log` (occurrence 1) | 114 | 0 | [Read transcript](../readable/worker-executions/ssh-sync-and-dryrun-baselines-large.md) | [Open JSON](../sessions/e8/e802dfcf4b059abe2552.json) |
+| `logs/workers/worker_ssh_verify_dcol_readiness_20260514T200618.log` (occurrence 1) | 50 | 0 | [Read transcript](../readable/worker-executions/ssh-verify-dcol-readiness.md) | [Open JSON](../sessions/50/50ab95132b8ab8c2caf3.json) |
+| `logs/workers/worker_ssh_check_running_experiments_20260514T200924.log` (occurrence 1) | 50 | 0 | [Read transcript](../readable/worker-executions/ssh-check-running-experiments.md) | [Open JSON](../sessions/69/69303df612cf4e475f95.json) |
+| `logs/workers/worker_code_remaining_baselines_20260514T201130.log` (occurrence 1) | 52 | 0 | [Read transcript](../readable/worker-executions/code-remaining-baselines.md) | [Open JSON](../sessions/20/208005befb599c200477.json) |
+| `logs/workers/worker_check_training_progress_20240514_20260514T201533.log` (occurrence 1) | 19 | 0 | [Read transcript](../readable/worker-executions/check-training-progress-20240514.md) | [Open JSON](../sessions/24/2410e08e1af2dd3048e2.json) |
+| `logs/workers/worker_analysis_pythia_topk50_001_20260514T201559.log` (occurrence 1) | 409 | 0 | [Read transcript](../readable/worker-executions/analysis-pythia-topk50-001.md) | [Open JSON](../sessions/b2/b24c86091cff2fca10e4.json) |
+| `logs/workers/worker_ssh_collect_pythia_topk50_results_20260514T201806.log` (occurrence 1) | 254 | 0 | [Read transcript](../readable/worker-executions/ssh-collect-pythia-topk50-results.md) | [Open JSON](../sessions/80/804a663c40185b19385d.json) |
+| `logs/workers/worker_research_decoding_strategy_signal_attenuation_20260514T203338.log` (occurrence 1) | 40 | 0 | [Read transcript](../readable/worker-executions/research-decoding-strategy-signal-attenuation.md) | [Open JSON](../sessions/89/89a0ed2026322140d081.json) |
+| `logs/workers/worker_code_prepare_olmo_temp09_submission_20260514T203347.log` (occurrence 1) | 32 | 0 | [Read transcript](../readable/worker-executions/code-prepare-olmo-temp09-submission.md) | [Open JSON](../sessions/5f/5fb037e85b7d48a43038.json) |
+| `logs/workers/worker_code_prepare_olmo_temp09_experiment_20260514T203351.log` (occurrence 1) | 29 | 0 | [Read transcript](../readable/worker-executions/code-prepare-olmo-temp09-experiment.md) | [Open JSON](../sessions/8e/8e2f114a557ab7512d96.json) |
+| `logs/workers/worker_knowledge_memory_signal_degradation_20260514T203401.log` (occurrence 1) | 14 | 0 | [Read transcript](../readable/worker-executions/knowledge-memory-signal-degradation.md) | [Open JSON](../sessions/8b/8bd0d50b85506444d2e7.json) |
+| `logs/workers/worker_ssh_verify_dcol_early_logs_20260514T203553.log` (occurrence 1) | 28 | 0 | [Read transcript](../readable/worker-executions/ssh-verify-dcol-early-logs.md) | [Open JSON](../sessions/fb/fbcd0a6b1c96595947f5.json) |
+| `logs/workers/worker_analysis_gpt2xl_temp09_001_20260514T222101.log` (occurrence 1) | 79 | 0 | [Read transcript](../readable/worker-executions/analysis-gpt2xl-temp09-001-copy-2.md) | [Open JSON](../sessions/79/79696000f79febd9c47e.json) |
+| `logs/workers/worker_code_olmo_temp09_001_20260514T222144.log` (occurrence 1) | 68 | 0 | [Read transcript](../readable/worker-executions/code-olmo-temp09-001.md) | [Open JSON](../sessions/22/226dab3f26da36bb8678.json) |
+| `logs/workers/worker_ssh_collect_gpt2xl_temp09_results_20260514T222516.log` (occurrence 1) | 521 | 0 | [Read transcript](../readable/worker-executions/ssh-collect-gpt2xl-temp09-results.md) | [Open JSON](../sessions/66/66502c251e02e6ec5e4c.json) |
+| `logs/workers/worker_ssh_sync_remaining_baselines_20260514T222541.log` (occurrence 1) | 48 | 0 | [Read transcript](../readable/worker-executions/ssh-sync-remaining-baselines.md) | [Open JSON](../sessions/59/59e1e32bfdbeec06daa9.json) |
+| `logs/workers/worker_code_prepare_last_two_3x3_cells_20260514T223033.log` (occurrence 1) | 40 | 0 | [Read transcript](../readable/worker-executions/code-prepare-last-two-3x3-cells.md) | [Open JSON](../sessions/0c/0c0520f47dc2b9699658.json) |
+| `logs/workers/worker_ssh_dcol_midtraining_check_20260514T223230.log` (occurrence 1) | 23 | 0 | [Read transcript](../readable/worker-executions/ssh-dcol-midtraining-check.md) | [Open JSON](../sessions/86/8685f2dfb20c8d59c311.json) |
+| `logs/workers/worker_analysis_feature_importance_stability_20260514T223439.log` (occurrence 1) | 44 | 0 | [Read transcript](../readable/worker-executions/analysis-feature-importance-stability.md) | [Open JSON](../sessions/c9/c94719e8a3e26b0da33f.json) |
+| `logs/workers/worker_code_fix_dcol_and_prepare_002_20260514T223632.log` (occurrence 1) | 59 | 0 | [Read transcript](../readable/worker-executions/code-fix-dcol-and-prepare-002.md) | [Open JSON](../sessions/10/10f8e3ed6d4f168d3aef.json) |
+| `logs/workers/worker_ssh_kill_zombie_and_cleanup_20260514T224136.log` (occurrence 1) | 39 | 0 | [Read transcript](../readable/worker-executions/ssh-kill-zombie-and-cleanup.md) | [Open JSON](../sessions/09/098404dad76c9eb95d8b.json) |
+| `logs/workers/worker_diagnose_dcol_deberta_002_oom_20260514T224140.log` (occurrence 1) | 34 | 0 | [Read transcript](../readable/worker-executions/diagnose-dcol-deberta-002-oom.md) | [Open JSON](../sessions/70/70d3b8804a49bf32df6f.json) |
+| `logs/workers/worker_analysis_gpt2xl_temp09_001_20260514T224201.log` (occurrence 1) | 58 | 0 | [Read transcript](../readable/worker-executions/analysis-gpt2xl-temp09-001.md) | [Open JSON](../sessions/cc/cc670fe685d1a29602b4.json) |
+| `logs/workers/worker_code_gpt2xl_topk50_001_20260514T224607.log` (occurrence 1) | 52 | 0 | [Read transcript](../readable/worker-executions/code-gpt2xl-topk50-001.md) | [Open JSON](../sessions/ab/ab2bb53a9f3f123e527e.json) |
+| `logs/workers/worker_code_olmo_topk50_001_prep_20260514T224618.log` (occurrence 1) | 72 | 0 | [Read transcript](../readable/worker-executions/code-olmo-topk50-001-prep.md) | [Open JSON](../sessions/af/af34c957953735d355a5.json) |
+| `logs/workers/worker_ssh_dcol_deberta_003_submit_20260514T224849.log` (occurrence 1) | 23 | 0 | [Read transcript](../readable/worker-executions/ssh-dcol-deberta-003-submit.md) | [Open JSON](../sessions/2e/2ec9de545bdeab0e136c.json) |
+| `logs/workers/worker_ssh_dcol_deberta_003_v3_submit_20260514T225052.log` (occurrence 1) | 18 | 0 | [Read transcript](../readable/worker-executions/ssh-dcol-deberta-003-v3-submit.md) | [Open JSON](../sessions/a8/a8421240e2f07b208425.json) |
+| `logs/workers/worker_ssh_olmo_temp09_001_check_20260514T225434.log` (occurrence 1) | 83 | 0 | [Read transcript](../readable/worker-executions/ssh-olmo-temp09-001-check.md) | [Open JSON](../sessions/1d/1d8c87e1d3faeb0411f1.json) |
+| `logs/workers/worker_ssh_olmo_topk50_001_submit_20260514T225926.log` (occurrence 1) | 26 | 0 | [Read transcript](../readable/worker-executions/ssh-olmo-topk50-001-submit.md) | [Open JSON](../sessions/29/29484b7808c5d7ed5af0.json) |
+| `logs/workers/worker_ssh_olmo_temp09_002_submit_20260514T230018.log` (occurrence 1) | 44 | 0 | [Read transcript](../readable/worker-executions/ssh-olmo-temp09-002-submit.md) | [Open JSON](../sessions/bf/bf0fa630b88600f280f5.json) |
+| `logs/workers/worker_code_baseline_battery_009_20260514T230042.log` (occurrence 1) | 187 | 1 | [Read transcript](../readable/worker-executions/code-baseline-battery-009.md) | [Open JSON](../sessions/d3/d3feb99d1f8fb95d1b89.json) |
+| `logs/workers/worker_code_olmo_temp09_002_resume_script_20260514T230046.log` (occurrence 1) | 28 | 0 | [Read transcript](../readable/worker-executions/code-olmo-temp09-002-resume-script.md) | [Open JSON](../sessions/d2/d2c4e13f7823f2704827.json) |
+| `logs/workers/worker_ssh_remove_dangerous_resume_script_20260514T230745.log` (occurrence 1) | 22 | 0 | [Read transcript](../readable/worker-executions/ssh-remove-dangerous-resume-script.md) | [Open JSON](../sessions/11/11d32bcb6421cb58659a.json) |
+| `logs/workers/worker_ssh_baseline_coral_diveye_fix_20260514T231457.log` (occurrence 1) | 93 | 0 | [Read transcript](../readable/worker-executions/ssh-baseline-coral-diveye-fix.md) | [Open JSON](../sessions/f9/f95c00824ba1829527ee.json) |
+| `logs/workers/worker_analysis_olmo_temp09_001_20260514T235338.log` (occurrence 1) | 503 | 0 | [Read transcript](../readable/worker-executions/analysis-olmo-temp09-001.md) | [Open JSON](../sessions/bf/bfbd990db89b28c00fcc.json) |
+| `logs/workers/worker_ssh_olmo_topk50_001_submit_20260515T001042.log` (occurrence 1) | 28 | 0 | [Read transcript](../readable/worker-executions/ssh-olmo-topk50-001-submit-copy-2.md) | [Open JSON](../sessions/7a/7a484ffffc2b00278f75.json) |
+| `logs/workers/worker_code_zeroshot_baseline_prep_20260515T004650.log` (occurrence 1) | 50 | 0 | [Read transcript](../readable/worker-executions/code-zeroshot-baseline-prep.md) | [Open JSON](../sessions/be/beef7f9b3029c2994896.json) |
+| `logs/workers/worker_analysis_atlas_v2_prep_20260515T004953.log` (occurrence 1) | 131 | 0 | [Read transcript](../readable/worker-executions/analysis-atlas-v2-prep-copy-2.md) | [Open JSON](../sessions/56/56b400cca7c4301a7672.json) |
+| `logs/workers/worker_analysis_atlas_v2_prep_20260515T010628.log` (occurrence 1) | 115 | 0 | [Read transcript](../readable/worker-executions/analysis-atlas-v2-prep.md) | [Open JSON](../sessions/c3/c3ff7a147c57e4d40ae1.json) |
+| `logs/workers/worker_analysis_olmo_topk50_001_20260515T014117.log` (occurrence 1) | 410 | 0 | [Read transcript](../readable/worker-executions/analysis-olmo-topk50-001.md) | [Open JSON](../sessions/d5/d50ca19984fa85ea4d70.json) |
+| `logs/workers/worker_ssh_zeroshot_baseline_dryrun_20260515T015646.log` (occurrence 1) | 766 | 1 | [Read transcript](../readable/worker-executions/ssh-zeroshot-baseline-dryrun.md) | [Open JSON](../sessions/d8/d8e6c9ee082c62f97910.json) |
+| `logs/workers/worker_analysis_atlas_v2_update_20260515T020132.log` (occurrence 1) | 178 | 0 | [Read transcript](../readable/worker-executions/analysis-atlas-v2-update.md) | [Open JSON](../sessions/cd/cd7520f64077afc6490b.json) |
+| `logs/workers/worker_analysis_matrix_3x3_synthesis_20260515T020134.log` (occurrence 1) | 19 | 0 | [Read transcript](../readable/worker-executions/analysis-matrix-3x3-synthesis.md) | [Open JSON](../sessions/86/86e5848c658a5e2112e8.json) |
+| `logs/workers/worker_research_paper-research_20260515T020141.log` (occurrence 1) | 76 | 0 | [Read transcript](../readable/worker-executions/research-paper-research.md) | [Open JSON](../sessions/13/13b67c9e82d01bd39a6e.json) |
+| `logs/workers/worker_analysis_matrix_3x3_summary_20260515T020226.log` (occurrence 1) | 9 | 0 | [Read transcript](../readable/worker-executions/analysis-matrix-3x3-summary.md) | [Open JSON](../sessions/2f/2f3f737de96fa4a7aa29.json) |
+| `logs/workers/worker_research_decoding_strategy_literature_20260515T020238.log` (occurrence 1) | 46 | 0 | [Read transcript](../readable/worker-executions/research-decoding-strategy-literature.md) | [Open JSON](../sessions/84/84a8cec38191906d49b4.json) |
+| `logs/workers/worker_code_dcol_deberta_003_submit_20260515T020350.log` (occurrence 1) | 31 | 0 | [Read transcript](../readable/worker-executions/code-dcol-deberta-003-submit.md) | [Open JSON](../sessions/23/233ae32299af2dbccf95.json) |
+| `logs/workers/worker_diag_dcol_deberta_003_20260515T020544.log` (occurrence 1) | 31 | 0 | [Read transcript](../readable/worker-executions/diag-dcol-deberta-003.md) | [Open JSON](../sessions/f7/f7f81f9aeb9fd9a0cbc0.json) |
+| `logs/workers/worker_infra_gpu-status-check_20260515T020802.log` (occurrence 1) | 20 | 0 | [Read transcript](../readable/worker-executions/infra-gpu-status-check.md) | [Open JSON](../sessions/ee/ee13d511c034a48d325e.json) |
+| `logs/workers/worker_analysis_atlas-v2-prep_20260515T020901.log` (occurrence 1) | 98 | 0 | [Read transcript](../readable/worker-executions/analysis-atlas-v2-prep-copy-3.md) | [Open JSON](../sessions/96/96f343877b560febccd3.json) |
+| `logs/workers/worker_code_dcol_v4_fix_and_submit_20260515T021114.log` (occurrence 1) | 93 | 0 | [Read transcript](../readable/worker-executions/code-dcol-v4-fix-and-submit.md) | [Open JSON](../sessions/29/29aef0738dbe95b1647c.json) |
+| `logs/workers/worker_fix_matrix_analysis_warnings_20260515T021640.log` (occurrence 1) | 94 | 0 | [Read transcript](../readable/worker-executions/fix-matrix-analysis-warnings.md) | [Open JSON](../sessions/ec/ec91f382bbfbdabdd81b.json) |
+| `logs/workers/worker_analysis_gpt2xl_topk50_001_20260515T021757.log` (occurrence 1) | 55 | 0 | [Read transcript](../readable/worker-executions/analysis-gpt2xl-topk50-001-copy-4.md) | [Open JSON](../sessions/af/afab5b78a5256eb1f11b.json) |
+| `logs/workers/worker_analysis_gpt2xl_topk50_001_20260515T022234.log` (occurrence 1) | 95 | 0 | [Read transcript](../readable/worker-executions/analysis-gpt2xl-topk50-001.md) | [Open JSON](../sessions/cc/cc8f518e1c90873dd93f.json) |
+| `logs/workers/worker_code_dcol_lora_refactor_and_submit_20260515T022303.log` (occurrence 1) | 51 | 0 | [Read transcript](../readable/worker-executions/code-dcol-lora-refactor-and-submit.md) | [Open JSON](../sessions/29/292a221087c359fdded2.json) |
+| `logs/workers/worker_ssh_dcol_v4_lora_clean_restart_20260515T022544.log` (occurrence 1) | 262 | 1 | [Read transcript](../readable/worker-executions/ssh-dcol-v4-lora-clean-restart.md) | [Open JSON](../sessions/d3/d31b531c54abd09c9c1c.json) |
+| `logs/workers/worker_ssh_gpt2xl_topk50_eval_20260515T022607.log` (occurrence 1) | 547 | 0 | [Read transcript](../readable/worker-executions/ssh-gpt2xl-topk50-eval.md) | [Open JSON](../sessions/30/305119c6f78d567d740c.json) |
+| `logs/workers/worker_analysis_gpt2xl_topk50_001_20260515T023056.log` (occurrence 1) | 53 | 0 | [Read transcript](../readable/worker-executions/analysis-gpt2xl-topk50-001-copy-3.md) | [Open JSON](../sessions/10/106d12f2ab9e29f5849f.json) |
+| `logs/workers/worker_code_dcol_deberta_004_20260515T023124.log` (occurrence 1) | 116 | 0 | [Read transcript](../readable/worker-executions/code-dcol-deberta-004.md) | [Open JSON](../sessions/d1/d124ed1f029c42297f5a.json) |
+| `logs/workers/worker_ssh_bugfix_load_features_20260515T023831.log` (occurrence 1) | 337 | 0 | [Read transcript](../readable/worker-executions/ssh-bugfix-load-features.md) | [Open JSON](../sessions/37/37330913eb37d5f43098.json) |
+| `logs/workers/worker_ssh_zeroshot_cleanup_20260515T023844.log` (occurrence 1) | 45 | 0 | [Read transcript](../readable/worker-executions/ssh-zeroshot-cleanup.md) | [Open JSON](../sessions/05/0519f32e333c72989da5.json) |
+| `logs/workers/worker_analysis_gpt2xl_topk50_001_20260515T024241.log` (occurrence 1) | 70 | 0 | [Read transcript](../readable/worker-executions/analysis-gpt2xl-topk50-001-copy-2.md) | [Open JSON](../sessions/34/3461f909db9bc41103f7.json) |
+| `logs/workers/worker_ssh_verify_gpu_and_dcol_20260515T024659.log` (occurrence 1) | 44 | 0 | [Read transcript](../readable/worker-executions/ssh-verify-gpu-and-dcol.md) | [Open JSON](../sessions/93/93e64160e41f6ae07b3b.json) |
+| `logs/workers/worker_analysis_atlas_v2_9cells_20260515T024722.log` (occurrence 1) | 71 | 0 | [Read transcript](../readable/worker-executions/analysis-atlas-v2-9cells.md) | [Open JSON](../sessions/de/de903c41b3f7a7dabdea.json) |
+| `logs/workers/worker_ssh_dcol_v5_verify_20260515T024845.log` (occurrence 1) | 63 | 0 | [Read transcript](../readable/worker-executions/ssh-dcol-v5-verify.md) | [Open JSON](../sessions/03/03bd0064292b7d505824.json) |
+| `logs/workers/worker_ssh_gpt2xl_topk50_reextract_20260515T030647.log` (occurrence 1) | 815 | 1 | [Read transcript](../readable/worker-executions/ssh-gpt2xl-topk50-reextract.md) | [Open JSON](../sessions/c8/c81f9c610fdd7f00c5a5.json) |
+| `logs/workers/worker_ssh_cuda0_task_submit_20260515T030830.log` (occurrence 1) | 86 | 0 | [Read transcript](../readable/worker-executions/ssh-cuda0-task-submit.md) | [Open JSON](../sessions/6f/6f812037d4309815e843.json) |
+| `logs/workers/worker_analysis_edd_threshold_sensitivity_20260515T032002.log` (occurrence 1) | 57 | 0 | [Read transcript](../readable/worker-executions/analysis-edd-threshold-sensitivity.md) | [Open JSON](../sessions/b7/b7c48bafe7afbb3779ba.json) |
+| `logs/workers/worker_ssh_gpu0_data_contamination_fix_20260515T032636.log` (occurrence 1) | 63 | 0 | [Read transcript](../readable/worker-executions/ssh-gpu0-data-contamination-fix.md) | [Open JSON](../sessions/12/12ad54e53aa79b346cc0.json) |
+| `logs/workers/worker_ssh_dcol_v5_step400_check_20260515T032955.log` (occurrence 1) | 6 | 0 | [Read transcript](../readable/worker-executions/ssh-dcol-v5-step400-check.md) | [Open JSON](../sessions/95/959284581d746fbcd64d.json) |
+| `logs/workers/worker_ssh_kill_dcol_v5_urgent_20260515T034609.log` (occurrence 1) | 27 | 0 | [Read transcript](../readable/worker-executions/ssh-kill-dcol-v5-urgent.md) | [Open JSON](../sessions/ff/ffdcb492190fdf79be48.json) |
+| `logs/workers/worker_ssh_kill_dcol_v5_20260515T034635.log` (occurrence 1) | 20 | 0 | [Read transcript](../readable/worker-executions/ssh-kill-dcol-v5.md) | [Open JSON](../sessions/db/dbad24e9747e5e70ea09.json) |
+| `logs/workers/worker_code_dcol_deberta_006_prep_20260515T034736.log` (occurrence 1) | 45 | 0 | [Read transcript](../readable/worker-executions/code-dcol-deberta-006-prep.md) | [Open JSON](../sessions/a6/a66182042365ac650cbb.json) |
+| `logs/workers/worker_ssh_batch_feature_extraction_restart_20260515T035255.log` (occurrence 1) | 41 | 0 | [Read transcript](../readable/worker-executions/ssh-batch-feature-extraction-restart.md) | [Open JSON](../sessions/3f/3f0ccf8524e785081351.json) |
+| `logs/workers/worker_analysis_cross_cell_baselines_20260515T035515.log` (occurrence 1) | 611 | 0 | [Read transcript](../readable/worker-executions/analysis-cross-cell-baselines.md) | [Open JSON](../sessions/47/4709ea651f23777ad8dc.json) |

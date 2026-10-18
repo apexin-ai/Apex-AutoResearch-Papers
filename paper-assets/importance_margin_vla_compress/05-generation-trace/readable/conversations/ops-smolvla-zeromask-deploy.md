@@ -1,0 +1,1803 @@
+# ops smolvla zeromask deploy
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/chats/worker_ops_smolvla_zeromask_deploy_20260522T112240.jsonl`
+- **Structured JSON:** [`e8ac02925327c976e429.json`](../../sessions/e8/e8ac02925327c976e429.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+61 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T11:27:11.258060+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T11:27:11.258548+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T11:27:11.258792+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T11:27:11.259005+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "head -100 /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "head -100 /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-22T11:27:11.259246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 2430 MiB, 97887 MiB, 13 %\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 1 MiB, 97887 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T11:27:11.259581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate official SmolVLA-LIBERO checkpoint: unpruned baseline + random pruning.\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time as time_mod\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\n\\nimport numpy as np\\nimport torch\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n    \\\"libero_90\\\": 400,\\n}\\n\\n# --- Normalization helpers ---\\n\\ndef load_norm_stats(pretrained_dir, device):\\n    \\\"\\\"\\\"Load mean/std normalization stats from checkpoint.\\\"\\\"\\\"\\n    from safetensors.torch import load_file\\n    pre_path = Path(pretrained_dir) / \\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\"\\n    post_path = Path(pretrained_dir) / \\\"policy_postprocessor_step_1_unnormalizer_processor.safetensors\\\"\\n    pre = load_file(str(pre_path))\\n    post = load_file(str(post_path))\\n    eps = 1e-8\\n    return {\\n        \\\"state_mean\\\": pre[\\\"observation.state.mean\\\"].to(device),\\n        \\\"state_std\\\": pre[\\\"observation.state.std\\\"].to(device),\\n        \\\"action_mean\\\": post[\\\"action.mean\\\"].to(device),\\n        \\\"action_std\\\": post[\\\"action.std\\\"].to(device),\\n        \\\"eps\\\": eps,\\n    }\\n\\n\\ndef normalize_state(state_tensor, norm_stats):\\n    \\\"\\\"\\\"Normalize observation state: (x - mean) / (std + eps).\\\"\\\"
+…[truncated 2235 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T11:27:11.259919+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep -n \"pruning_method\\|zero_mask\\|true_removal\\|mode.*random\\|mode.*l2\\|def prune\\|def apply_prune\\|k_ratio\\|--mode\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep -n \"pruning_method\\|zero_mask\\|true_removal\\|mode.*random\\|mode.*l2\\|def prune\\|def apply_prune\\|k_ratio\\|--mode\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T11:27:11.260164+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T11:27:11.260378+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T11:27:11.260603+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"386 /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T11:27:11.260801+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep -n \"pruning_method\\|zero_mask\\|true_removal\\|def prune\\|def apply\\|k_ratio\\|--mode\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep -n \"pruning_method\\|zero_mask\\|true_removal\\|def prune\\|def apply\\|k_ratio\\|--mode\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T11:27:11.260990+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T11:27:11.261212+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep -n \"pruning_method\\|zero_mask\\|true_removal\\|k_ratio\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep -n \"pruning_method\\|zero_mask\\|true_removal\\|k_ratio\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T11:27:11.261415+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T11:27:11.261611+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep -n \"mode\\|def prune\\|def apply\\|def run\\|l2_norm\\|random\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep -n \"mode\\|def prune\\|def apply\\|def run\\|l2_norm\\|random\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T11:27:11.261803+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T11:27:11.262040+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "cat -n /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "cat -n /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T11:27:11.262591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"Evaluate official SmolVLA-LIBERO checkpoint: unpruned baseline + random pruning.\\\"\\\"\\\"\\n     2\\tfrom __future__ import annotations\\n     3\\t\\n     4\\timport argparse\\n     5\\timport json\\n     6\\timport logging\\n     7\\timport os\\n     8\\timport sys\\n     9\\timport time as time_mod\\n    10\\tfrom pathlib import Path\\n    11\\t\\n    12\\tos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\n    13\\tos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\n    14\\tos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\n    15\\t\\n    16\\timport numpy as np\\n    17\\timport torch\\n    18\\t\\n    19\\tsys.path.insert(0, str(Path(__file__).resolve().parent))\\n    20\\t\\n    21\\tlogging.basicConfig(\\n    22\\t    level=logging.INFO,\\n    23\\t    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    24\\t    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n    25\\t)\\n    26\\tlog = logging.getLogger(__name__)\\n    27\\t\\n    28\\tSUITE_MAX_STEPS = {\\n    29\\t    \\\"libero_spatial\\\": 280,\\n    30\\t    \\\"libero_object\\\": 280,\\n    31\\t    \\\"libero_goal\\\": 300,\\n    32\\t    \\\"libero_10\\\": 520,\\n    33\\t    \\\"libero_90\\\": 400,\\n    34\\t}\\n    35\\t\\n    36\\t# --- Normalization helpers ---\\n    37\\t\\n    38\\tdef load_norm_stats(pretrained_dir, device):\\n    39\\t    \\\"\\\"\\\"Load mean/std normalization stats from checkpoint.\\\"\\\"\\\"\\n    40\\t    from safetensors.torch import load_file\\n    41\\t    pre_path = Path(pretrained_dir) / \\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\"\\n    42\\t    post_path = Path(pretrained_dir) / \\\"policy_postprocessor_step_1_unnormalizer_processor.safetensors\\\"\\n    43\\t    pre = load_file(str(pre_path))\\n    44\\t    post = load_file(str(post_path))\\n    45\\t    eps = 1e-8\\n    46\\t    return {\\n    47\\t        \\\"state_mean\\\": pre[\\\"
+…[truncated 7553 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T11:27:11.262920+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "head -250 /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "head -250 /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T11:27:11.263407+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate official SmolVLA-LIBERO checkpoint: unpruned baseline + random pruning.\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time as time_mod\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\n\\nimport numpy as np\\nimport torch\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n    \\\"libero_90\\\": 400,\\n}\\n\\n# --- Normalization helpers ---\\n\\ndef load_norm_stats(pretrained_dir, device):\\n    \\\"\\\"\\\"Load mean/std normalization stats from checkpoint.\\\"\\\"\\\"\\n    from safetensors.torch import load_file\\n    pre_path = Path(pretrained_dir) / \\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\"\\n    post_path = Path(pretrained_dir) / \\\"policy_postprocessor_step_1_unnormalizer_processor.safetensors\\\"\\n    pre = load_file(str(pre_path))\\n    post = load_file(str(post_path))\\n    eps = 1e-8\\n    return {\\n        \\\"state_mean\\\": pre[\\\"observation.state.mean\\\"].to(device),\\n        \\\"state_std\\\": pre[\\\"observation.state.std\\\"].to(device),\\n        \\\"action_mean\\\": post[\\\"action.mean\\\"].to(device),\\n        \\\"action_std\\\": post[\\\"action.std\\\"].to(device),\\n        \\\"eps\\\": eps,\\n    }\\n\\n\\ndef normalize_state(state_tensor, norm_stats):\\n    \\\"\\\"\\\"Normalize observation state: (x - mean) / (std + eps).\\\"\\\"
+…[truncated 7193 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T11:27:11.263738+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -n +130 /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "tail -n +130 /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T11:27:11.264183+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    batch[\\\"observation.language.attention_mask\\\"] = encoded[\\\"attention_mask\\\"].bool().to(device)\\n    return batch\\n\\n\\n# --- Model helpers ---\\n\\ndef find_connector(model):\\n    for name, module in model.named_modules():\\n        if name.endswith(\\\".connector\\\") or \\\"multi_modal_projector\\\" in name:\\n            log.info(\\\"Found connector: %s (%s)\\\", name, type(module).__name__)\\n            return module\\n    return None\\n\\n\\ndef register_random_prune_hook(connector, k_ratio, method=\\\"true_removal\\\"):\\n    def hook_fn(module, input, output):\\n        tokens = output[0] if isinstance(output, tuple) else output\\n        if tokens.dim() != 3:\\n            return output\\n        B, N, D = tokens.shape\\n        k = max(1, int(N * k_ratio))\\n        # Same random selection across batch for consistency\\n        scores = torch.rand(1, N, device=tokens.device).expand(B, -1)\\n        _, topk_idx = torch.topk(scores, k, dim=-1)\\n\\n        if method == \\\"true_removal\\\":\\n            kept = torch.zeros(N, dtype=torch.bool, device=tokens.device)\\n            kept[topk_idx[0]] = True\\n            masked = tokens[:, kept, :]\\n        else:\\n            mask = torch.zeros(B, N, device=tokens.device)\\n            mask.scatter_(1, topk_idx, 1.0)\\n            masked = tokens * mask.unsqueeze(-1)\\n\\n        if isinstance(output, tuple):\\n            return (masked,) + output[1:]\\n        return masked\\n    return connector.register_forward_hook(hook_fn)\\n\\n\\n@torch.no_grad()\\ndef predict_actions(policy, batch):\\n    images, img_masks = policy.prepare_images(batch)\\n    state = policy.prepare_state(batch)\\n    lang_tokens = batch[\\\"observation.language.tokens\\\"]\\n    lang_masks = batch[\\\"observation.language.attention_mask\\\"]\\n    actions = policy.model.sample_actions(\\n        images, img_masks, lang_tokens, lang_masks, state\\n    )\\n    origin
+…[truncated 7009 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T11:27:11.264537+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ls /root/autodl-tmp/importance_margin_vla_compress/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "ls /root/autodl-tmp/importance_margin_vla_compress/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T11:27:11.264781+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_ft100k_spatial.log\\neval_l2norm_k03_object_seed42.log\\neval_mlp_adapter_control.log\\neval_openvla_baseline_spatial_seed42_v3.log\\neval_openvla_l2norm_k05_object_seed43.log\\neval_openvla_l2norm_k07_seed43.log\\neval_openvla_random_k05_object_seed42.log\\neval_openvla_random_k09_object_seed42.log\\neval_openvla_sc_m128_object_seed42.log\\neval_openvla_sc_m128_vtconly_20k_seed42.log\\neval_pi05_l2norm_k0925_object_seed43.log\\neval_pi05_l2norm_k0925_object_seed43_v2.log\\neval_pi05_l2norm_k095_goal_seed42.log\\neval_pi05_l2norm_k095_object_seed43_v2.log\\neval_stage1only_k07.log\\neval_stage1only_k09.log\\neval_v8_fixed.log\\nexpert_only_ft.log\\nimm_100k_eval_goal.log\\nimm_100k_eval_object.log\\nimm_100k_eval_spatial.log\\nimm_100k_object_eval.log\\nplan_005_formal_bound.log\\nsmart_compress_m128_seed44.log\\ntrain_m128_seed44.log\\ntrain_openvla_sc_m32_seed42.log\\ntrain_openvla_sc_m32_seed42_resume.log\\ntrain_smart_compress_m16_seed44.log\\nv8_1_eval.log\\nv8_1_train.log\\nv8b_eval.log\\nv8b_twostage_train.log\\nv8c_annealing_train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T11:27:11.265003+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ls /root/autodl-tmp/.hf_cache/hub/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "ls /root/autodl-tmp/.hf_cache/hub/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T11:27:11.265237+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"CACHEDIR.TAG\\nmodels--HuggingFaceVLA--smolvla_libero\\nmodels--google--paligemma-3b-pt-224\\nmodels--jadechoghari--libero-assets\\nmodels--lerobot--smolvla_base\\nversion.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T11:27:11.265461+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "find /root/autodl-tmp -maxdepth 3 -name \"config.json\" -path \"*smolvla*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "find /root/autodl-tmp -maxdepth 3 -name \"config.json\" -path \"*smolvla*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T11:27:11.265666+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T11:27:11.265915+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep -n \"register_random_prune_hook\\|args.mode\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep -n \"register_random_prune_hook\\|args.mode\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T11:27:11.266122+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T11:27:11.266351+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep -n \"register_random_prune_hook\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep -n \"register_random_prune_hook\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T11:27:11.266551+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"144:def register_random_prune_hook(connector, k_ratio, method=\\\"true_removal\\\"):\\n300:                        hook = register_random_prune_hook(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T11:27:11.266748+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep -n \"args.mode\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep -n \"args.mode\" /root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T11:27:11.266970+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"208:    suffix = f\\\"_{args.mode}_k{args.k_ratio}_{args.pruning_method}\\\" if args.mode != \\\"baseline\\\" else \\\"_baseline\\\"\\n212:             args.suite, device, args.mode, args.num_episodes, max_steps)\\n213:    if args.mode == \\\"random_prune\\\":\\n243:    if args.mode == \\\"random_prune\\\":\\n299:                    if args.mode == \\\"random_prune\\\":\\n350:    log.info(\\\"SUITE: %s | MODE: %s\\\", args.suite, args.mode)\\n351:    if args.mode == \\\"random_prune\\\":\\n363:        \\\"mode\\\": args.mode,\\n364:        \\\"pruning_method\\\": args.pruning_method if args.mode == \\\"random_prune\\\" else \\\"none\\\",\\n365:        \\\"k_ratio\\\": args.k_ratio if args.mode == \\\"random_prune\\\" else None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T11:27:11.267259+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T11:27:11.267474+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"387588, GPU-61b30677-7730-b313-f127-1daed87ddc80, 2415 MiB, python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T11:27:11.267699+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "cat /proc/387588/cmdline",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "cat /proc/387588/cmdline",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T11:27:11.267901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"python\\u0000/root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py\\u0000--pretrained_dir\\u0000/root/autodl-tmp/.hf_cache/smolvla_libero_official\\u0000--suite\\u0000libero_object\\u0000--num_episodes\\u000010\\u0000--gpu\\u00000\\u0000--mode\\u0000l2norm_prune\\u0000--pruning_method\\u0000zero_mask\\u0000--k_ratio\\u00000.9\\u0000--output\\u0000/root/autodl-tmp/importance_margin_vla_compress/eval_results/pruning_l2norm_replace_k09.json\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T11:27:11.268158+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T11:27:11.268370+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"426 /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T11:27:11.268573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep -n \"def parse_args\" /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep -n \"def parse_args\" /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T11:27:11.268773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"59:def parse_args():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T11:27:11.268955+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "head -100 /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "head -100 /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T11:27:11.269235+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate official SmolVLA-LIBERO: baseline + L2-norm pruning (remove / zero-mask).\\\"\\\"\\\"\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time as time_mod\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\n\\nimport numpy as np\\nimport torch\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n    \\\"libero_90\\\": 400,\\n}\\n\\n# --- Normalization helpers ---\\n\\ndef load_norm_stats(pretrained_dir, device):\\n    from safetensors.torch import load_file\\n    pre_path = Path(pretrained_dir) / \\\"policy_preprocessor_step_5_normalizer_processor.safetensors\\\"\\n    post_path = Path(pretrained_dir) / \\\"policy_postprocessor_step_1_unnormalizer_processor.safetensors\\\"\\n    pre = load_file(str(pre_path))\\n    post = load_file(str(post_path))\\n    return {\\n        \\\"state_mean\\\": pre[\\\"observation.state.mean\\\"].to(device),\\n        \\\"state_std\\\": pre[\\\"observation.state.std\\\"].to(device),\\n        \\\"action_mean\\\": post[\\\"action.mean\\\"].to(device),\\n        \\\"action_std\\\": post[\\\"action.std\\\"].to(device),\\n        \\\"eps\\\": 1e-8,\\n    }\\n\\ndef normalize_state(state_tensor, norm_stats):\\n    return (state_tensor - norm_stats[\\\"state_mean\\\"]) / (norm_stats[\\\"state_std\\\"] + norm_stats[\\\"eps\\\"])\\n\\ndef unnormalize_actions(actions, norm_stats):\\n    
+…[truncated 2144 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T11:27:11.269557+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep -n \"def register\" /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep -n \"def register\" /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T11:27:11.269775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"137:def register_l2norm_prune_hook(connector, k_ratio, method=\\\"true_removal\\\"):\\n175:def register_random_prune_hook(connector, k_ratio, method=\\\"true_removal\\\"):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T11:27:11.269986+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -n +137 /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "tail -n +137 /root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T11:27:11.270416+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def register_l2norm_prune_hook(connector, k_ratio, method=\\\"true_removal\\\"):\\n    call_count = [0]\\n    def hook_fn(module, input, output):\\n        tokens = output[0] if isinstance(output, tuple) else output\\n        if tokens.dim() != 3:\\n            return output\\n        B, N, D = tokens.shape\\n        k = max(1, int(N * k_ratio))\\n        if k >= N:\\n            return output\\n\\n        norms = torch.norm(tokens.float(), dim=-1)  # [B, N]\\n        _, topk_idx = torch.topk(norms, k, dim=-1)\\n        topk_idx_sorted = topk_idx.sort(dim=-1).values\\n\\n        if call_count[0] < 2:\\n            log.info(\\\"L2norm hook: N=%d, k=%d (keep %.1f%%), method=%s, \\\"\\n                     \\\"norm_range=[%.3f, %.3f], removed_norm_range=[%.3f, %.3f]\\\",\\n                     N, k, k_ratio * 100, method,\\n                     norms.min().item(), norms.max().item(),\\n                     norms.min().item(),\\n                     torch.topk(norms, N - k, dim=-1, largest=False).values.max().item())\\n        call_count[0] += 1\\n\\n        if method == \\\"true_removal\\\":\\n            pruned = torch.gather(tokens, 1, topk_idx_sorted.unsqueeze(-1).expand(-1, -1, D))\\n        else:\\n            mask = torch.zeros(B, N, dtype=torch.bool, device=tokens.device)\\n            mask.scatter_(1, topk_idx_sorted, True)\\n            pruned = tokens.clone()\\n            pruned[~mask] = 0\\n\\n        if isinstance(output, tuple):\\n            return (pruned,) + output[1:]\\n        return pruned\\n    return connector.register_forward_hook(hook_fn)\\n\\n\\ndef register_random_prune_hook(connector, k_ratio, method=\\\"true_removal\\\"):\\n    def hook_fn(module, input, output):\\n        tokens = output[0] if isinstance(output, tuple) else output\\n        if tokens.dim() != 3:\\n            return output\\n        B, N, D = tokens.shape\\n        k = max(1, int(N * k_ratio))\\n        if k >= N:\\n  
+…[truncated 6958 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T11:27:11.270747+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "mkdir -p /root/autodl-tmp/importance_margin_vla_compress/logs && cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 nohup python -u eval_smolvla_pruning_official.py \\\n  --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official \\\n  --mode random_prune --k_ratio 0.95 --pruning_method zero_mask \\\n  --suite libero_object --num_episodes 50 --seed 42 --gpu 0 \\\n  --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/zeromask_random_k095_obj_s42.json \\\n  > /root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_zeromask_random_k095.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "mkdir -p /root/autodl-tmp/importance_margin_vla_compress/logs && cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 nohup python -u eval_smolvla_pruning_official.py \\\n  --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official \\\n  --mode random_prune --k_ratio 0.95 --pruning_method zero_mask \\\n  --suite libero_object --num_episodes 50 --seed 42 --gpu 0 \\\n  --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/zeromask_random_k095_obj_s42.json \\\n  > /root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_zeromask_random_k095.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T11:27:11.270994+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'mkdir -p /root/autodl-tmp/importance_margin_vla_compress/logs && cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 nohup python -u eval_smolvla_pruning_official.py \\\\\\\\\\\\n  --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official \\\\\\\\\\\\n  --mode random_prune --k_ratio 0.95 --pruning_method zero_mask \\\\\\\\\\\\n  --suite libero_object --num_episodes 50 --seed 42 --gpu 0 \\\\\\\\\\\\n  --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/zeromask_random_k095_obj_s42.json \\\\\\\\\\\\n  > /root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_zeromask_random_k095.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=396726\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T11:27:11.271288+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 nohup python -u eval_smolvla_pruning_official.py \\\n  --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official \\\n  --mode l2norm_prune --k_ratio 0.95 --pruning_method zero_mask \\\n  --suite libero_object --num_episodes 50 --seed 42 --gpu 0 \\\n  --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/zeromask_l2norm_k095_obj_s42.json \\\n  > /root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_zeromask_l2norm_k095.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 nohup python -u eval_smolvla_pruning_official.py \\\n  --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official \\\n  --mode l2norm_prune --k_ratio 0.95 --pruning_method zero_mask \\\n  --suite libero_object --num_episodes 50 --seed 42 --gpu 0 \\\n  --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/zeromask_l2norm_k095_obj_s42.json \\\n  > /root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_zeromask_l2norm_k095.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T11:27:11.271502+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=398980\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.95}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T11:27:11.271701+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T11:27:11.271883+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 4680 MiB, 97887 MiB, 17 %\\n1, 2428 MiB, 97887 MiB, 29 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T11:27:11.272065+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T11:27:11.272275+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"387588, GPU-61b30677-7730-b313-f127-1daed87ddc80, 2411 MiB, python\\n396732, GPU-61b30677-7730-b313-f127-1daed87ddc80, 2409 MiB, python\\n398985, GPU-7c68aa5d-bf4f-da3f-ad3e-8c40fe36d745, 1918 MiB, python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-22T11:27:11.272528+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_zeromask_random_k095.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_zeromask_random_k095.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T11:27:11.272744+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 19:26:26 [INFO]   Ep 8/50 | FAIL | steps=280\\n2026-05-22 19:26:31 [INFO]   Ep 9/50 | FAIL | steps=280\\n2026-05-22 19:26:36 [INFO]   Ep 10/50 | FAIL | steps=280\\n2026-05-22 19:26:42 [INFO]   Ep 11/50 | FAIL | steps=280\\n2026-05-22 19:26:47 [INFO]   Ep 12/50 | FAIL | steps=280\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-22T11:27:11.272962+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_zeromask_l2norm_k095.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_zeromask_l2norm_k095.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T11:27:11.273192+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 19:26:49 [INFO] L2norm hook: N=64, k=60 (keep 95.0%), method=zero_mask, norm_range=[83.169, 298.723], removed_norm_range=[83.169, 93.265]\\n2026-05-22 19:26:50 [INFO] L2norm hook: N=64, k=60 (keep 95.0%), method=zero_mask, norm_range=[83.917, 305.796], removed_norm_range=[83.917, 93.656]\\n2026-05-22 19:26:50 [INFO] L2norm hook: N=64, k=60 (keep 95.0%), method=zero_mask, norm_range=[84.703, 295.634], removed_norm_range=[84.703, 88.209]\\n2026-05-22 19:26:51 [INFO] L2norm hook: N=64, k=60 (keep 95.0%), method=zero_mask, norm_range=[88.687, 300.221], removed_norm_range=[88.687, 92.893]\\n2026-05-22 19:26:51 [INFO] L2norm hook: N=64, k=60 (keep 95.0%), method=zero_mask, norm_range=[88.171, 262.712], removed_norm_range=[88.171, 90.185]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-22T11:27:11.273511+00:00_
+
+两个实验均已成功部署并正常运行。
+
+## 部署结果
+
+**服务器**: westd-27271 (2x RTX PRO 6000 Blackwell, 98GB each)
+
+| 实验 | GPU | PID | 日志 |
+|------|-----|-----|------|
+| zero_mask random k=0.95 | GPU 0 | 396732 | `logs/smolvla_zeromask_random_k095.log` |
+| zero_mask l2norm k=0.95 | GPU 1 | 398985 | `logs/smolvla_zeromask_l2norm_k095.log` |
+
+**脚本**: `eval_smolvla_pruning_official.py`（已有完整的 `random_prune` / `l2norm_prune` + `zero_mask` / `true_removal` 支持，**无需修改代码**）
+
+**结果输出**:
+- `eval_results/zeromask_random_k095_obj_s42.json`
+- `eval_results/zeromask_l2norm_k095_obj_s42.json`
+
+**早期信号**: random zero_mask 实验已跑到 Task 0 Ep 12/50，目前全部 FAIL（280 steps max）。l2norm 刚开始加载，hook 确认 N=64 → k=60（保留 95%，置零 4 tokens），norm range [83, 299]。
+
+**注意**: GPU 0 上还有一个先前的实验（PID 387588, l2norm k=0.9 10ep），VRAM 充裕无冲突。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_smolvla_zeromask_deploy_20260522T112240"
+}
+```
+
+</details>
+
+---

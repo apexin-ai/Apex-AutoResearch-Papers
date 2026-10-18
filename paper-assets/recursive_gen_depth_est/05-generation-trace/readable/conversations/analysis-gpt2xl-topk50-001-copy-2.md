@@ -1,0 +1,1598 @@
+# analysis gpt2xl topk50 001
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 0
+- **Tool calls:** 27
+- **Original source:** `logs/chats/worker_analysis_gpt2xl_topk50_001_20260515T024241.jsonl`
+- **Structured JSON:** [`3075e0799985087309df.json`](../../sessions/30/3075e0799985087309df.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+55 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T02:44:45.191405+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T02:44:45.191758+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T02:44:45.192005+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'gpt2xl_topk50_001'}",
+  "project": "recursive_gen_depth_est",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'gpt2xl_topk50_001'}",
+    "project": "recursive_gen_depth_est",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T02:44:45.192175+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1051}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T02:44:45.192305+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est/results -type f -name \"*topk*\" -o -type d -name \"*topk*\" -o -type d -name \"*gpt2xl*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est/results -type f -name \"*topk*\" -o -type d -name \"*topk*\" -o -type d -name \"*gpt2xl*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T02:44:45.192429+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T02:44:45.192556+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T02:44:45.192687+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 124\\ndrwxr-xr-x 12 root root  4096 May 15 10:24 .\\ndrwxr-xr-x 11 root root   188 May 15 06:26 ..\\ndrwxr-xr-x  2 root root    43 May 15 00:28 baselines\\ndrwxr-xr-x  2 root root    43 May 15 07:18 baselines_coral100\\n-rw-r--r--  1 root root  1981 May 14 21:59 classification_report.txt\\n-rw-r--r--  1 root root 81510 May 14 21:59 confusion_matrix.png\\n-rw-r--r--  1 root root   726 May 14 21:59 feature_importance.json\\ndrwxr-xr-x  2 root root  4096 May 15 02:39 gpt2xl\\ndrwxr-xr-x  4 root root  4096 May 15 06:42 gpt2xl_temp09\\ndrwxr-xr-x  5 root root  4096 May 15 10:42 gpt2xl_topk50\\ndrwxr-xr-x  2 root root  4096 May 15 02:40 olmo\\ndrwxr-xr-x  4 root root  4096 May 15 08:07 olmo_temp09\\ndrwxr-xr-x  4 root root  4096 May 15 09:53 olmo_topk50\\n-rw-r--r--  1 root root   442 May 14 21:59 pairwise_auc.json\\ndrwxr-xr-x  2 root root   143 May 15 00:39 pythia_temp09\\ndrwxr-xr-x  4 root root  4096 May 15 04:30 pythia_topk50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T02:44:45.192854+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -laR /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls -laR /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T02:44:45.193085+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/:\\ntotal 60616\\ndrwxr-xr-x  5 root root     4096 May 15 10:42 .\\ndrwxr-xr-x 12 root root     4096 May 15 10:24 ..\\n-rw-r--r--  1 root root     1981 May 15 10:40 classification_report.txt\\n-rw-r--r--  1 root root    85286 May 15 10:40 confusion_matrix.png\\n-rw-r--r--  1 root root 11911281 May 15 10:42 depth_1_filtered.jsonl\\n-rw-r--r--  1 root root 12030817 May 15 10:42 depth_2_filtered.jsonl\\n-rw-r--r--  1 root root 11867511 May 15 10:42 depth_3_filtered.jsonl\\n-rw-r--r--  1 root root      709 May 15 10:40 feature_importance.json\\n-rw-r--r--  1 root root 13733768 May 15 10:40 features.jsonl\\n-rw-r--r--  1 root root 10305958 May 15 10:40 features_3class.jsonl\\n-rw-r--r--  1 root root  1532026 May 15 10:43 features_filtered.jsonl\\ndrwxr-xr-x  2 root root      110 May 15 10:42 filtered_tmp\\n-rw-r--r--  1 root root      442 May 15 10:40 pairwise_auc.json\\ndrwxr-xr-x  2 root root     4096 May 15 10:40 three_class\\ndrwxr-xr-x  2 root root       10 May 15 10:24 three_class_filtered\\n\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/filtered_tmp:\\ntotal 4\\ndrwxr-xr-x 2 root root  110 May 15 10:42 .\\ndrwxr-xr-x 5 root root 4096 May 15 10:42 ..\\nlrwxrwxrwx 1 root root   73 May 15 10:42 depth_0.jsonl -> /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/depth_0.jsonl\\nlrwxrwxrwx 1 root root   85 May 15 10:42 depth_1.jsonl -> /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/depth_1_filtered.jsonl\\nlrwxrwxrwx 1 root root   85 May 15 10:42 depth_2.jsonl -> /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/depth_2_filtered.jsonl\\nlrwxrwxrwx 1 root root   85 May 15 10:42 depth_3.jsonl -> /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/depth_3_filtered.jsonl\\n\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class:\\ntotal 164\\ndrwxr-xr-x 2 root root  4
+…[truncated 941 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T02:44:45.193255+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/classification_report.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/classification_report.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T02:44:45.193379+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/pairwise_auc.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/pairwise_auc.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T02:44:45.193559+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Random Baseline ===\\nAccuracy: 0.2560\\n              precision    recall  f1-score   support\\n\\n     depth-0       0.24      0.25      0.25      1000\\n     depth-1       0.27      0.28      0.27      1000\\n     depth-2       0.24      0.23      0.24      1000\\n     depth-3       0.27      0.27      0.27      1000\\n\\n    accuracy                           0.26      4000\\n   macro avg       0.26      0.26      0.26      4000\\nweighted avg       0.26      0.26      0.26      4000\\n\\n\\n=== Majority Baseline (always depth-0) ===\\nAccuracy: 0.2500\\n              precision    recall  f1-score   support\\n\\n     depth-0       0.25      1.00      0.40      1000\\n     depth-1       0.00      0.00      0.00      1000\\n     depth-2       0.00      0.00      0.00      1000\\n     depth-3       0.00      0.00      0.00      1000\\n\\n    accuracy                           0.25      4000\\n   macro avg       0.06      0.25      0.10      4000\\nweighted avg       0.06      0.25      0.10      4000\\n\\n\\n=== Logistic Regression ===\\nAccuracy: 0.7130 (95% CI: [0.6990, 0.7270])\\n              precision    recall  f1-score   support\\n\\n     depth-0       0.97      0.96      0.96      1000\\n     depth-1       0.74      0.73      0.74      1000\\n     depth-2       0.50      0.41      0.45      1000\\n     depth-3       0.63      0.75      0.68      1000\\n\\n    accuracy                           0.71      4000\\n   macro avg       0.71      0.71      0.71      4000\\nweighted avg       0.71      0.71      0.71      4000\\n\\n\\n=== Random Forest ===\\nAccuracy: 0.7445 (95% CI: [0.7302, 0.7578])\\n              precision    recall  f1-score   support\\n\\n     depth-0       0.99      0.99      0.99      1000\\n     depth-1       0.80      0.80      0.80      1000\\n     depth-2       0.52      0.52      0.52      1000\\n     depth-3       0.67      0.67      0.67      1000\\n\\n    accuracy           
+…[truncated 248 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T02:44:45.193716+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/feature_importance.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/feature_importance.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T02:44:45.193852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"logistic_regression\\\": {\\n    \\\"depth0_vs_depth1\\\": 0.9727,\\n    \\\"depth0_vs_depth2\\\": 0.9839,\\n    \\\"depth0_vs_depth3\\\": 0.9988,\\n    \\\"depth1_vs_depth2\\\": 0.7813,\\n    \\\"depth1_vs_depth3\\\": 0.9469,\\n    \\\"depth2_vs_depth3\\\": 0.7282\\n  },\\n  \\\"random_forest\\\": {\\n    \\\"depth0_vs_depth1\\\": 0.9906,\\n    \\\"depth0_vs_depth2\\\": 0.9975,\\n    \\\"depth0_vs_depth3\\\": 0.9986,\\n    \\\"depth1_vs_depth2\\\": 0.8126,\\n    \\\"depth1_vs_depth3\\\": 0.9708,\\n    \\\"depth2_vs_depth3\\\": 0.7529\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T02:44:45.194070+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/classification_report.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/classification_report.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T02:44:45.194263+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"p90_ppl\\\": 0.24083928805821403,\\n  \\\"p75_ppl\\\": 0.1349067493439163,\\n  \\\"mean_surprisal\\\": 0.11031201910672951,\\n  \\\"var_surprisal\\\": 0.09644438837178206,\\n  \\\"p50_ppl\\\": 0.04408459592042379,\\n  \\\"p25_ppl\\\": 0.043895277102867905,\\n  \\\"type_token_ratio\\\": 0.0384656241842072,\\n  \\\"hapax_ratio\\\": 0.03832232449808396,\\n  \\\"entropy_of_surprisal\\\": 0.03786447868013133,\\n  \\\"p10_ppl\\\": 0.03384060979422275,\\n  \\\"skewness_ppl\\\": 0.02713819289834766,\\n  \\\"kurtosis_ppl\\\": 0.026659443143820717,\\n  \\\"rep_2gram\\\": 0.026306524374747505,\\n  \\\"bigram_entropy\\\": 0.02614598231907297,\\n  \\\"trigram_entropy\\\": 0.02592722419763486,\\n  \\\"rep_3gram\\\": 0.024982224065448613,\\n  \\\"rep_4gram\\\": 0.023862962551250227,\\n  \\\"mean_ppl\\\": 2.0913890987083026e-06,\\n  \\\"var_ppl\\\": 0.0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T02:44:45.194427+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Random Baseline ===\\nAccuracy: 0.3280\\n              precision    recall  f1-score   support\\n\\n     depth-1       0.35      0.36      0.35      1000\\n     depth-2       0.32      0.32      0.32      1000\\n     depth-3       0.32      0.31      0.31      1000\\n\\n    accuracy                           0.33      3000\\n   macro avg       0.33      0.33      0.33      3000\\nweighted avg       0.33      0.33      0.33      3000\\n\\n\\n=== Majority Baseline (always depth-1) ===\\nAccuracy: 0.3333\\n              precision    recall  f1-score   support\\n\\n     depth-1       0.33      1.00      0.50      1000\\n     depth-2       0.00      0.00      0.00      1000\\n     depth-3       0.00      0.00      0.00      1000\\n\\n    accuracy                           0.33      3000\\n   macro avg       0.11      0.33      0.17      3000\\nweighted avg       0.11      0.33      0.17      3000\\n\\n\\n=== Logistic Regression ===\\nAccuracy: 0.6507 (95% CI: [0.6337, 0.6673])\\n              precision    recall  f1-score   support\\n\\n     depth-1       0.79      0.76      0.78      1000\\n     depth-2       0.52      0.43      0.47      1000\\n     depth-3       0.63      0.76      0.69      1000\\n\\n    accuracy                           0.65      3000\\n   macro avg       0.65      0.65      0.65      3000\\nweighted avg       0.65      0.65      0.65      3000\\n\\n\\n=== Random Forest ===\\nAccuracy: 0.6947 (95% CI: [0.6770, 0.7107])\\n              precision    recall  f1-score   support\\n\\n     depth-1       0.83      0.83      0.83      1000\\n     depth-2       0.57      0.57      0.57      1000\\n     depth-3       0.68      0.69      0.68      1000\\n\\n    accuracy                           0.69      3000\\n   macro avg       0.69      0.69      0.69      3000\\nweighted avg       0.69      0.69      0.69      3000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"el
+…[truncated 25 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T02:44:45.194573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/pairwise_auc.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/pairwise_auc.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T02:44:45.194695+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/feature_importance.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/feature_importance.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T02:44:45.194828+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"logistic_regression\\\": {\\n    \\\"depth1_vs_depth2\\\": 0.7733,\\n    \\\"depth1_vs_depth3\\\": 0.9548,\\n    \\\"depth2_vs_depth3\\\": 0.7388\\n  },\\n  \\\"random_forest\\\": {\\n    \\\"depth1_vs_depth2\\\": 0.8392,\\n    \\\"depth1_vs_depth3\\\": 0.9726,\\n    \\\"depth2_vs_depth3\\\": 0.7596\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T02:44:45.195030+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"p90_ppl\\\": 0.17890726390187867,\\n  \\\"p75_ppl\\\": 0.12940845985684027,\\n  \\\"mean_surprisal\\\": 0.07275930031021625,\\n  \\\"var_surprisal\\\": 0.07272896133158631,\\n  \\\"p25_ppl\\\": 0.052714308889757755,\\n  \\\"p50_ppl\\\": 0.05190155898296382,\\n  \\\"p10_ppl\\\": 0.04449587327511022,\\n  \\\"hapax_ratio\\\": 0.04135396543439107,\\n  \\\"entropy_of_surprisal\\\": 0.04030374345153987,\\n  \\\"type_token_ratio\\\": 0.03861899176076511,\\n  \\\"skewness_ppl\\\": 0.03666676444060716,\\n  \\\"kurtosis_ppl\\\": 0.036344478606298664,\\n  \\\"bigram_entropy\\\": 0.03477413581887863,\\n  \\\"mean_ppl\\\": 0.03428134500926818,\\n  \\\"trigram_entropy\\\": 0.03401850142104503,\\n  \\\"rep_2gram\\\": 0.03176396328598489,\\n  \\\"rep_3gram\\\": 0.02980648736191674,\\n  \\\"rep_4gram\\\": 0.028873591993332785,\\n  \\\"var_ppl\\\": 0.010278304867618703\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T02:44:45.195183+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"*contamination*\" -path \"*gpt2xl_topk*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"*contamination*\" -path \"*gpt2xl_topk*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T02:44:45.195302+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/checkpoints/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/checkpoints/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T02:44:45.195466+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T02:44:45.195625+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est/logs -name \"*gpt2xl*topk*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est/logs -name \"*gpt2xl*topk*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T02:44:45.195762+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 22 root root 4096 May 15 10:41 .\\ndrwxr-xr-x 11 root root  188 May 15 06:26 ..\\ndrwxr-xr-x  2 root root   59 May 15 03:39 dcol\\ndrwxr-xr-x  2 root root  160 May 15 00:38 dcol_feature\\ndrwxr-xr-x  2 root root   10 May 15 10:41 dcol_lora\\ndrwxr-xr-x  2 root root   59 May 15 10:32 dcol_lora_dryrun\\ndrwxr-xr-x  2 root root   35 May 15 03:15 dcol_test\\ndrwxr-xr-x  2 root root   10 May 15 06:38 dcol_v2\\ndrwxr-xr-x  2 root root   10 May 15 10:04 dcol_v3\\ndrwxr-xr-x  2 root root   35 May 15 10:37 dcol_v4\\ndrwxr-xr-x  2 root root   59 May 15 10:18 dcol_v4_dryrun\\ndrwxr-xr-x  5 root root   82 May 15 01:07 gpt2xl\\ndrwxr-xr-x  5 root root   82 May 15 05:12 gpt2xl_temp09\\ndrwxr-xr-x  4 root root   82 May 15 09:00 gpt2xl_topk50\\ndrwxr-xr-x  3 root root  184 May 14 20:14 lora_depth_0\\ndrwxr-xr-x  3 root root  184 May 14 20:45 lora_depth_1\\ndrwxr-xr-x  3 root root  184 May 14 21:18 lora_depth_2\\ndrwxr-xr-x  5 root root   82 May 15 01:39 olmo\\ndrwxr-xr-x  5 root root   82 May 15 07:22 olmo_temp09\\ndrwxr-xr-x  4 root root   82 May 15 09:08 olmo_topk50\\ndrwxr-xr-x  5 root root   82 May 14 23:56 pythia_temp09\\ndrwxr-xr-x  5 root root   82 May 15 03:35 pythia_topk50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T02:44:45.195929+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /tmp -maxdepth 1 -name \"*gpt2xl*topk*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /tmp -maxdepth 1 -name \"*gpt2xl*topk*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T02:44:45.196083+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\\n/root/autodl-tmp/recursive_gen_depth_est/logs/eval_gpt2xl_topk50.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T02:44:45.196206+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/eval_gpt2xl_topk50.log\\n/tmp/eval_gpt2xl_topk50_v2.log\\n/tmp/eval_gpt2xl_topk50_filtered.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T02:44:45.196320+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T02:44:45.196434+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -50 /root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -50 /root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T02:44:45.196551+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  4 root root   82 May 15 09:00 .\\ndrwxr-xr-x 22 root root 4096 May 15 10:41 ..\\nlrwxrwxrwx  1 root root   72 May 15 06:47 lora_depth_0 -> /root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl/lora_depth_0\\ndrwxr-xr-x  3 root root  184 May 15 08:01 lora_depth_1\\ndrwxr-xr-x  3 root root  184 May 15 09:11 lora_depth_2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T02:44:45.196673+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -30 /tmp/eval_gpt2xl_topk50_filtered.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -30 /tmp/eval_gpt2xl_topk50_filtered.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T02:44:45.196830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{'loss': '1.756', 'grad_norm': '0.1289', 'learning_rate': '2.13e-06', 'epoch': '2.973'}\\n{'train_runtime': '686.1', 'train_samples_per_second': '21.86', 'train_steps_per_second': '1.369', 'train_loss': '1.755', 'epoch': '3'}\\nTraining complete. Final loss: 1.7554\\nLoRA adapter saved to checkpoints/gpt2xl_topk50/lora_depth_2\\n=== Step 5: Generate depth-3 (top-k k=50) ===\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\nLoading base model: /root/autodl-tmp/models/gpt2-xl\\n\\rLoading weights:   0%|          | 0/580 [00:00<?, ?it/s]\\rLoading weights:  11%|█         | 64/580 [00:00<00:00, 612.19it/s]\\rLoading weights:  22%|██▏       | 126/580 [00:00<00:01, 440.48it/s]\\rLoading weights:  30%|██▉       | 173/580 [00:00<00:01, 326.79it/s]\\rLoading weights:  36%|███▌      | 209/580 [00:00<00:01, 262.57it/s]\\rLoading weights:  41%|████      | 238/580 [00:00<00:01, 226.05it/s]\\rLoading weights:  45%|████▌     | 263/580 [00:00<00:01, 224.50it/s]\\rLoading weights:  50%|████▉     | 288/580 [00:01<00:01, 230.20it/s]\\rLoading weights:  54%|█████▍    | 312/580 [00:01<00:01, 229.60it/s]\\rLoading weights:  58%|█████▊    | 336/580 [00:01<00:01, 221.21it/s]\\rLoading weights:  64%|██████▎   | 369/580 [00:01<00:00, 218.79it/s]\\rLoading weights:  68%|██████▊   | 392/580 [00:01<00:00, 219.90it/s]\\rLoading weights:  72%|███████▏  | 417/580 [00:01<00:00, 227.49it/s]\\rLoading weights:  76%|███████▌  | 442/580 [00:01<00:00, 226.56it/s]\\rLoading weights:  80%|████████  | 466/580 [00:01<00:00, 226.95it/s]\\rLoading weights:  87%|████████▋ | 502/580 [00:01<00:00, 256.15it/s]\\rLoading weights:  91%|█████████ | 528/580 [00:02<00:00, 250.09it/s]\\rLoading weights:  97%|█████████▋| 562/580 [00:02<00:00, 236.61it/s]\\rLoading weights: 100%|██████████| 580/580 [00:02<00:00, 244.22it/s]\\nLoading LoRA adapter: checkpoints/gpt2xl_topk50/lora_depth_2\\nGenerating 5000 samples at depth 3\\n  Generated 160/5000\\n
+…[truncated 1179 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T02:44:45.198088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u00
+…[truncated 39031 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T02:44:45.198330+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"Final loss\" /root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep \"Final loss\" /root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T02:44:45.198474+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Training complete. Final loss: 1.9886\\nTraining complete. Final loss: 1.7554\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T02:44:45.198599+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep -E \"contamination|code_contam\" /root/autodl-tmp/recursive_gen_depth_est/logs/eval_gpt2xl_topk50.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep -E \"contamination|code_contam\" /root/autodl-tmp/recursive_gen_depth_est/logs/eval_gpt2xl_topk50.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T02:44:45.198766+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T02:44:45.199008+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/depth_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/depth_0.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T02:44:45.199181+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5000 /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/depth_0.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T02:44:45.199383+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "gpt2xl_topk50_001",
+  "field": "status",
+  "value": "DONE",
+  "project": "recursive_gen_depth_est",
+  "spec": "{'command': 'bash scripts/run_pipeline_topk.sh gpt2xl 50', 'server': 'gpu-6000pro-2', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/', 'data_count': 5000, 'model_name': 'gpt2-xl', 'seed': 42, 'decoding': 'top-k k=50'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "gpt2xl_topk50_001",
+    "field": "status",
+    "value": "DONE",
+    "project": "recursive_gen_depth_est",
+    "spec": "{'command': 'bash scripts/run_pipeline_topk.sh gpt2xl 50', 'server': 'gpu-6000pro-2', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/', 'data_count': 5000, 'model_name': 'gpt2-xl', 'seed': 42, 'decoding': 'top-k k=50'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T02:44:45.199544+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.5248}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T02:44:45.199666+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "gpt2xl_topk50_001",
+  "field": "conclusion",
+  "value": "success",
+  "project": "recursive_gen_depth_est",
+  "spec": "{'command': 'bash scripts/run_pipeline_topk.sh gpt2xl 50', 'server': 'gpu-6000pro-2', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/', 'data_count': 5000, 'model_name': 'gpt2-xl', 'seed': 42, 'decoding': 'top-k k=50'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "gpt2xl_topk50_001",
+    "field": "conclusion",
+    "value": "success",
+    "project": "recursive_gen_depth_est",
+    "spec": "{'command': 'bash scripts/run_pipeline_topk.sh gpt2xl 50', 'server': 'gpu-6000pro-2', 'data_path': '/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/', 'data_count': 5000, 'model_name': 'gpt2-xl', 'seed': 42, 'decoding': 'top-k k=50'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T02:44:45.199835+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gpt2xl_topk50_001\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:30:51.976Z\", \"updated_at\": \"2026-05-15T02:44:09.917Z\", \"hypothesis\": \"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"parent\": \"cross_model_gpt2xl_001\", \"plan_id\": \"plan_003c\", \"spec\": {\"command\": \"bash scripts/run_pipeline_topk.sh gpt2xl 50\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"211326\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\", \"submitted_at\": \"2026-05-14T22:47:20.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\", \"data_count\": 5000, \"model_name\": \"gpt2-xl\", \"model_path\": \"/root/autodl-tmp/models/gpt2-xl/\", \"seed\": 42, \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"c_attn\", \"c_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"decoding_strategy\": \"topk\", \"top_k\": 50}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\", \"checkpoint_source\": \"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\", \"eval_data\": \"data/depth_0.jsonl (seed) + generated depths 1-3\", \"decoding\": \"top-k k=50\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T02:16:55.268Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:16:56.661715+00:00\"}]}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6087}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T02:44:45.200026+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "gpt2xl_topk50_001",
+  "field": "status",
+  "value": "DONE",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "gpt2xl_topk50_001",
+    "field": "status",
+    "value": "DONE",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T02:44:45.200160+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition ANALYZING → DONE(success) without metrics. Set metrics first, or use conclusion=negative/failed.\", \"metadata\": {\"elapsed_seconds\": 0.3721}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T02:44:45.200298+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "gpt2xl_topk50_001",
+  "field": "metrics",
+  "value": "{'four_class': {'rf_accuracy': 0.7445, 'rf_accuracy_ci': [0.7302, 0.7578], 'lr_accuracy': 0.713, 'lr_accuracy_ci': [0.699, 0.727]}, 'pairwise_auc': {'lr': {'d0v1': 0.9727, 'd0v2': 0.9839, 'd0v3': 0.9988, 'd1v2': 0.7813, 'd1v3': 0.9469, 'd2v3': 0.7282}, 'rf': {'d0v1': 0.9906, 'd0v2': 0.9975, 'd0v3': 0.9986, 'd1v2': 0.8126, 'd1v3': 0.9708, 'd2v3': 0.7529}}, 'three_class': {'rf_accuracy': 0.6947, 'rf_accuracy_ci': [0.677, 0.7107], 'lr_accuracy': 0.6507, 'lr_accuracy_ci': [0.6337, 0.6673]}, 'three_class_auc': {'lr': {'d1v2': 0.7733, 'd1v3': 0.9548, 'd2v3': 0.7388}, 'rf': {'d1v2': 0.8392, 'd1v3': 0.9726, 'd2v3': 0.7596}}, 'feature_importance_top5': ['p90_ppl (0.241)', 'p75_ppl (0.135)', 'mean_surprisal (0.110)', 'var_surprisal (0.096)', 'p50_ppl (0.044)'], 'finetune_loss': {'depth_1': 1.9886, 'depth_2': 1.7554}, 'three_class_filtered': 'not_available'}",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "gpt2xl_topk50_001",
+    "field": "metrics",
+    "value": "{'four_class': {'rf_accuracy': 0.7445, 'rf_accuracy_ci': [0.7302, 0.7578], 'lr_accuracy': 0.713, 'lr_accuracy_ci': [0.699, 0.727]}, 'pairwise_auc': {'lr': {'d0v1': 0.9727, 'd0v2': 0.9839, 'd0v3': 0.9988, 'd1v2': 0.7813, 'd1v3': 0.9469, 'd2v3': 0.7282}, 'rf': {'d0v1': 0.9906, 'd0v2': 0.9975, 'd0v3': 0.9986, 'd1v2': 0.8126, 'd1v3': 0.9708, 'd2v3': 0.7529}}, 'three_class': {'rf_accuracy': 0.6947, 'rf_accuracy_ci': [0.677, 0.7107], 'lr_accuracy': 0.6507, 'lr_accuracy_ci': [0.6337, 0.6673]}, 'three_class_auc': {'lr': {'d1v2': 0.7733, 'd1v3': 0.9548, 'd2v3': 0.7388}, 'rf': {'d1v2': 0.8392, 'd1v3': 0.9726, 'd2v3': 0.7596}}, 'feature_importance_top5': ['p90_ppl (0.241)', 'p75_ppl (0.135)', 'mean_surprisal (0.110)', 'var_surprisal (0.096)', 'p50_ppl (0.044)'], 'finetune_loss': {'depth_1': 1.9886, 'depth_2': 1.7554}, 'three_class_filtered': 'not_available'}",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T02:44:45.200523+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gpt2xl_topk50_001\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:30:51.976Z\", \"updated_at\": \"2026-05-15T02:44:23.100Z\", \"hypothesis\": \"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"parent\": \"cross_model_gpt2xl_001\", \"plan_id\": \"plan_003c\", \"spec\": {\"command\": \"bash scripts/run_pipeline_topk.sh gpt2xl 50\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"211326\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\", \"submitted_at\": \"2026-05-14T22:47:20.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\", \"data_count\": 5000, \"model_name\": \"gpt2-xl\", \"model_path\": \"/root/autodl-tmp/models/gpt2-xl/\", \"seed\": 42, \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"c_attn\", \"c_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"decoding_strategy\": \"topk\", \"top_k\": 50}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\", \"checkpoint_source\": \"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\", \"eval_data\": \"data/depth_0.jsonl (seed) + generated depths 1-3\", \"decoding\": \"top-k k=50\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T02:16:55.268Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:16:56.661715+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.7445, \"rf_accuracy_ci\": [0.7302, 0.7578], \"lr_accuracy\": 0.713, \"lr_accuracy_ci\": [0.699, 0.727]}, \"pairwise_auc\": {\"lr\": {\"d0v1\": 0.9727, \"d
+…[truncated 825 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T02:44:45.200679+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "gpt2xl_topk50_001",
+  "field": "status",
+  "value": "DONE",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "gpt2xl_topk50_001",
+    "field": "status",
+    "value": "DONE",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T02:44:45.200962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gpt2xl_topk50_001\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:30:51.976Z\", \"updated_at\": \"2026-05-15T02:44:27.003Z\", \"hypothesis\": \"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"parent\": \"cross_model_gpt2xl_001\", \"plan_id\": \"plan_003c\", \"spec\": {\"command\": \"bash scripts/run_pipeline_topk.sh gpt2xl 50\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"211326\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\", \"submitted_at\": \"2026-05-14T22:47:20.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\", \"data_count\": 5000, \"model_name\": \"gpt2-xl\", \"model_path\": \"/root/autodl-tmp/models/gpt2-xl/\", \"seed\": 42, \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"c_attn\", \"c_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"decoding_strategy\": \"topk\", \"top_k\": 50}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\", \"checkpoint_source\": \"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\", \"eval_data\": \"data/depth_0.jsonl (seed) + generated depths 1-3\", \"decoding\": \"top-k k=50\", \"wall_clock_seconds\": 14226.7, \"gpu_hours\": 3.95}, \"reproduce\": {\"finished_at\": \"2026-05-15T02:16:55.268Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:16:56.661715+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.7445, \"rf_accuracy_ci\": [0.7302, 0.7578], \"lr_accuracy\": 0.713, \"lr_accuracy_ci\": [0.699, 0.727]}, 
+…[truncated 973 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T02:44:45.201176+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "gpt2xl_topk50_001",
+  "field": "notes",
+  "value": "## GPT-2 XL 解码策略对比 (4-class RF accuracy)\\n\\n| 策略 | 4-class RF | d1v2 AUC | 3-class RF |\\n|------|-----------|----------|------------|\\n| nucleus p=0.95 | 83.3% | 0.913 | — |\\n| temp=0.9 | 85.4% | 0.937 | — |\\n| **top-k k=50** | **74.45%** | **0.813** | **69.47%** |\\n| Δ vs nucleus | **-8.85pp** | **-0.100** | — |\\n| Δ vs temp09 | **-10.95pp** | **-0.124** | — |\\n\\n## 跨模型 top-k 影响对比\\n\\n| 模型 | nucleus → topk50 | Δ |\\n|------|-----------------|-----|\\n| Pythia-1.4B | 78.2% → 69.6% | -8.6pp |\\n| **GPT-2 XL** | **83.3% → 74.45%** | **-8.85pp** |\\n| OLMo-1B | 78.8% → 75.7% | -3.1pp |\\n\\nGPT-2 XL top-k 降幅(-8.85pp)与 Pythia(-8.6pp)高度一致，OLMo 降幅最小(-3.1pp)。Top-k 解码普遍降低深度分类精度，但仍远超随机基线(25%)，深度信号在 top-k 下依然可检测。\\n\\n注意: three_class_filtered 结果目录为空（contamination filtering 未完成），lora_depth_0 复用 nucleus baseline checkpoint。",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "gpt2xl_topk50_001",
+    "field": "notes",
+    "value": "## GPT-2 XL 解码策略对比 (4-class RF accuracy)\\n\\n| 策略 | 4-class RF | d1v2 AUC | 3-class RF |\\n|------|-----------|----------|------------|\\n| nucleus p=0.95 | 83.3% | 0.913 | — |\\n| temp=0.9 | 85.4% | 0.937 | — |\\n| **top-k k=50** | **74.45%** | **0.813** | **69.47%** |\\n| Δ vs nucleus | **-8.85pp** | **-0.100** | — |\\n| Δ vs temp09 | **-10.95pp** | **-0.124** | — |\\n\\n## 跨模型 top-k 影响对比\\n\\n| 模型 | nucleus → topk50 | Δ |\\n|------|-----------------|-----|\\n| Pythia-1.4B | 78.2% → 69.6% | -8.6pp |\\n| **GPT-2 XL** | **83.3% → 74.45%** | **-8.85pp** |\\n| OLMo-1B | 78.8% → 75.7% | -3.1pp |\\n\\nGPT-2 XL top-k 降幅(-8.85pp)与 Pythia(-8.6pp)高度一致，OLMo 降幅最小(-3.1pp)。Top-k 解码普遍降低深度分类精度，但仍远超随机基线(25%)，深度信号在 top-k 下依然可检测。\\n\\n注意: three_class_filtered 结果目录为空（contamination filtering 未完成），lora_depth_0 复用 nucleus baseline checkpoint。",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T02:44:45.201398+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gpt2xl_topk50_001\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:30:51.976Z\", \"updated_at\": \"2026-05-15T02:44:35.667Z\", \"hypothesis\": \"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"parent\": \"cross_model_gpt2xl_001\", \"plan_id\": \"plan_003c\", \"spec\": {\"command\": \"bash scripts/run_pipeline_topk.sh gpt2xl 50\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"211326\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\", \"submitted_at\": \"2026-05-14T22:47:20.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\", \"data_count\": 5000, \"model_name\": \"gpt2-xl\", \"model_path\": \"/root/autodl-tmp/models/gpt2-xl/\", \"seed\": 42, \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"c_attn\", \"c_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"decoding_strategy\": \"topk\", \"top_k\": 50}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\", \"checkpoint_source\": \"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\", \"eval_data\": \"data/depth_0.jsonl (seed) + generated depths 1-3\", \"decoding\": \"top-k k=50\", \"wall_clock_seconds\": 14226.7, \"gpu_hours\": 3.95}, \"reproduce\": {\"finished_at\": \"2026-05-15T02:16:55.268Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:16:56.661715+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.7445, \"rf_accuracy_ci\": [0.7302, 0.7578], \"lr_accuracy\": 0.713, \"lr_accuracy_ci\": [0.699, 0.727]}, 
+…[truncated 1813 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-15T02:44:45.201619+00:00_
+
+Registry 已更新为 DONE。分析总结：
+
+**GPT-2 XL top-k k=50**: 4-class RF **74.45%** (CI 73.0-75.8%), d1v2 AUC **0.813**, 3-class RF **69.47%**。
+
+与同模型对比：相比 nucleus baseline (83.3%) 下降 **-8.85pp**，相比 temp09 (85.4%) 下降 **-10.95pp**。d1v2 AUC 从 0.913/0.937 降至 0.813，中间深度区分力显著削弱。
+
+跨模型 top-k 影响：GPT-2 XL 降幅 (-8.85pp) 与 Pythia (-8.6pp) 几乎一致，OLMo 仅降 3.1pp。Top-k 截断对 GPT-2 XL 和 Pythia 的深度信号破坏程度相当，OLMo 更鲁棒。
+
+值得注意：尽管 top-k 是三种策略中最差的，74.45% 仍是随机基线 (25%) 的 ~3 倍，深度信号在 top-k 下依然存在且可检测。three_class_filtered 结果缺失，contamination filtering 未跑完。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_gpt2xl_topk50_001_20260515T024241"
+}
+```
+
+</details>
+
+---

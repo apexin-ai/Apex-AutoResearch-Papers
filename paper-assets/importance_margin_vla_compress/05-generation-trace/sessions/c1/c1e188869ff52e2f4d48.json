@@ -44,5 +44,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ops-fix-westd38929-race-condition-and-restart.md"
 }

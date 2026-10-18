@@ -1,0 +1,9828 @@
+# research maven dataset study
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 172
+- **Recorded user turns:** 21
+- **Tool calls:** 50
+- **Original source:** `logs/workers/worker_research_maven-dataset-study_20260515T030839.log`
+- **Structured JSON:** [`027c830d2fa3c5e2c1f3.json`](../../sessions/02/027c830d2fa3c5e2c1f3.json)
+
+## Before a recorded user message
+
+12 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "fba51f0e-a135-4796-a8c0-624453ae0607",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778817600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "447f4644-a865-4dd0-8dbc-99b48e9fd151",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to research the MAVEN dataset as a potential alternative to ACE05 for their paper. Let me break this down into parallel tasks:
+
+1. Search the web for MAVEN dataset information
+2. Check HuggingFace for the dataset
+3. Look at the project's existing code/artifacts for context on their pipeline
+
+Let me start by searching for MAVEN dataset information and checking what exists in the project.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "230a6bab-7c94-4f3b-b99d-dc4c3b2fe7b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KrkVxc1WoGyLgGrXMtHcy7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11605,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11605
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始调研 MAVEN 数据集。先并行搜索数据集信息和项目现有代码结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "09796e54-348b-41d5-a409-670aba92ed92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KrkVxc1WoGyLgGrXMtHcy7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11605,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11605
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RmyS4qJNwM6iEqCNDfk61P`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "e18fd396-d95e-4b96-b502-76d69196d9a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KrkVxc1WoGyLgGrXMtHcy7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11605,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11605
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T03:08:54.160Z_
+
+<details><summary>↩ Tool result · `toolu_01RmyS4qJNwM6iEqCNDfk61P`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "1ddf87b4-ea88-483a-a856-cd778c8f29e8",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "WebFetch",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NDp69kKVWPYDHuFSeAdq93`</summary>
+
+```json
+{
+  "query": "MAVEN dataset event detection 168 event types EMNLP 2020 HuggingFace"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "86ad8bc3-d2c2-49a6-a8af-36bb99ba5305",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKjPKmYGacZfGpXgn1pqTf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2451,
+      "cache_read_input_tokens": 23446,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2451
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NssX6S5FVMEANz3KeVwmK5`</summary>
+
+```json
+{
+  "query": "MAVEN dataset event types full list schema hierarchy structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "a83dfdb2-4f08-474f-857f-6f85518b971d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKjPKmYGacZfGpXgn1pqTf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2451,
+      "cache_read_input_tokens": 23446,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2451
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SeCXEbuiCNDZcy5DX5NRfw`</summary>
+
+```json
+{
+  "query": "MAVEN dataset HuggingFace download datasets.load_dataset"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "2706e3cd-1060-402a-bfd4-8413b59a50e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKjPKmYGacZfGpXgn1pqTf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2451,
+      "cache_read_input_tokens": 23446,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2451
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_012tVLzcq52fRWcz4zk9YThq`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Explore project structure",
+  "prompt": "Explore the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ to understand:\n1. What data processing pipeline exists (parquet format, type embedding computation)\n2. How Few-NERD is currently handled\n3. Any existing references to ACE05 or MAVEN\n4. The BCS/SDGD methodology code structure\n\nSearch broadly across the codebase. Report file paths, key functions, and data formats used."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "e5a3b8b7-c577-495c-9f53-ab8781811a66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKjPKmYGacZfGpXgn1pqTf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2451,
+      "cache_read_input_tokens": 23446,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2451
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 12_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Explore project structure",
+  "task_type": "local_agent",
+  "prompt": "Explore the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ to understand:\n1. What data processing pipeline exists (parquet format, type embedding computation)\n2. How Few-NERD is currently handled\n3. Any existing references to ACE05 or MAVEN\n4. The BCS/SDGD methodology code structure\n\nSearch broadly across the codebase. Report file paths, key functions, and data formats used.",
+  "uuid": "400f3c39-bd58-4a7a-b5d5-9e2f68c2a2e7",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+## Round 1
+
+128 recorded events
+
+### User
+
+_source line 13 · 2026-05-15T03:09:00.574Z_
+
+Explore the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ to understand:
+1. What data processing pipeline exists (parquet format, type embedding computation)
+2. How Few-NERD is currently handled
+3. Any existing references to ACE05 or MAVEN
+4. The BCS/SDGD methodology code structure
+
+Search broadly across the codebase. Report file paths, key functions, and data formats used.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "43011e76-9109-4854-b3b7-d715c39d4961"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 14_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_050…",
+  "usage": {
+    "total_tokens": 18483,
+    "tool_uses": 1,
+    "duration_ms": 2843
+  },
+  "last_tool_name": "Bash",
+  "uuid": "1f9892cd-828f-45a3-8e15-9f7cb96decea",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01SKNzWsMb9B8zvFcDkRXFay`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction -type f -name \"*.py\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "f86a292f-bb7c-4b79-8fb0-acc29aae1faa",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01Mjhxd5T1KfVuViJYL5viqz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 543,
+      "cache_read_input_tokens": 17929,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 543,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T03:09:03.601Z_
+
+<details><summary>↩ Tool result · `toolu_01SKNzWsMb9B8zvFcDkRXFay`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/text_match_reeval.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "343f5c67-7272-4f59-9998-23e80d416526"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T03:09:04.211Z_
+
+<details><summary>↩ Tool result · `toolu_01SeCXEbuiCNDZcy5DX5NRfw`</summary>
+
+````text
+Web search results for query: "MAVEN dataset HuggingFace download datasets.load_dataset"
+
+Links: [{"title":"GitHub - huggingface/datasets: 🤗 The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools","url":"https://github.com/huggingface/datasets"},{"title":"Load · Hugging Face","url":"https://huggingface.co/docs/datasets/loading"},{"title":"Load a dataset from the Hub · Hugging Face","url":"https://huggingface.co/docs/datasets/load_hub"},{"title":"Loading a Dataset — datasets 1.11.0 documentation","url":"https://huggingface.co/docs/datasets/v1.11.0/loading_datasets.html"},{"title":"Loading a Dataset — datasets 1.8.0 documentation","url":"https://huggingface.co/docs/datasets/v1.8.0/loading_datasets.html"},{"title":"Huggingface-cli to load_dataset - 🤗Datasets - Hugging Face Forums","url":"https://discuss.huggingface.co/t/huggingface-cli-to-load-dataset/71158"},{"title":"Loading a Dataset — datasets 1.2.1 documentation","url":"https://huggingface.co/docs/datasets/v1.2.1/loading_datasets.html"},{"title":"Loading methods · Hugging Face","url":"https://huggingface.co/docs/datasets/package_reference/loading_methods"},{"title":"Build and load","url":"https://huggingface.co/docs/datasets/about_dataset_load"},{"title":"Loading a Dataset — datasets 1.4.0 documentation","url":"https://huggingface.co/docs/datasets/v1.4.0/loading_datasets.html"}]
+
+Based on the search results, I found information about how to use `datasets.load_dataset()` with HuggingFace, but the results don't contain specific information about the MAVEN dataset. However, I can provide you with information about how to load datasets from HuggingFace:
+
+## Loading Datasets with HuggingFace
+
+The 🤗 Datasets library uses a single function, `datasets.load_dataset(dataset_name, **kwargs)`, that instantiates a dataset.
+
+The easiest way to get started is to discover an existing dataset on the Hugging Face Hub - a community-driven collection of datasets for tasks in NLP, computer vision, and audio - and use 🤗 Datasets to download and generate the dataset.
+
+To load a dataset from the Hub, you would use:
+
+```python
+from datasets import load_dataset
+dataset = load_dataset("dataset_name")
+```
+
+A split is a specific subset of a dataset like train and test. You can list a dataset's split names with the `get_dataset_split_names()` function.
+
+🤗 Datasets downloads the dataset files from the original URL, generates the dataset and caches it in an Arrow table on your drive. If you've downloaded the dataset before, then 🤗 Datasets will reload it from the cache to save you the trouble of downloading it again.
+
+For the specific MAVEN dataset, you would need to replace "dataset_name" with the actual identifier for the MAVEN dataset on the HuggingFace Hub (e.g., `load_dataset("maven")` if it's available under that name).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "f85ffffc-479a-4bf1-8a71-8e9974bc0320",
+  "tool_use_result": {
+    "query": "MAVEN dataset HuggingFace download datasets.load_dataset",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Gxr1kFZuS7PYRmoQYR39J1",
+        "content": [
+          {
+            "title": "GitHub - huggingface/datasets: 🤗 The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools",
+            "url": "https://github.com/huggingface/datasets"
+          },
+          {
+            "title": "Load · Hugging Face",
+            "url": "https://huggingface.co/docs/datasets/loading"
+          },
+          {
+            "title": "Load a dataset from the Hub · Hugging Face",
+            "url": "https://huggingface.co/docs/datasets/load_hub"
+          },
+          {
+            "title": "Loading a Dataset — datasets 1.11.0 documentation",
+            "url": "https://huggingface.co/docs/datasets/v1.11.0/loading_datasets.html"
+          },
+          {
+            "title": "Loading a Dataset — datasets 1.8.0 documentation",
+            "url": "https://huggingface.co/docs/datasets/v1.8.0/loading_datasets.html"
+          },
+          {
+            "title": "Huggingface-cli to load_dataset - 🤗Datasets - Hugging Face Forums",
+            "url": "https://discuss.huggingface.co/t/huggingface-cli-to-load-dataset/71158"
+          },
+          {
+            "title": "Loading a Dataset — datasets 1.2.1 documentation",
+            "url": "https://huggingface.co/docs/datasets/v1.2.1/loading_datasets.html"
+          },
+          {
+            "title": "Loading methods · Hugging Face",
+            "url": "https://huggingface.co/docs/datasets/package_reference/loading_methods"
+          },
+          {
+            "title": "Build and load",
+            "url": "https://huggingface.co/docs/datasets/about_dataset_load"
+          },
+          {
+            "title": "Loading a Dataset — datasets 1.4.0 documentation",
+            "url": "https://huggingface.co/docs/datasets/v1.4.0/loading_datasets.html"
+          }
+        ]
+      },
+      "Based on the search results, I found information about how to use `datasets.load_dataset()` with HuggingFace, but the results don't contain specific information about the MAVEN dataset. However, I can provide you with information about how to load datasets from HuggingFace:\n\n## Loading Datasets with HuggingFace\n\nThe 🤗 Datasets library uses a single function, `datasets.load_dataset(dataset_name, **kwargs)`, that instantiates a dataset.\n\nThe easiest way to get started is to discover an existing dataset on the Hugging Face Hub - a community-driven collection of datasets for tasks in NLP, computer vision, and audio - and use 🤗 Datasets to download and generate the dataset.\n\nTo load a dataset from the Hub, you would use:\n\n```python\nfrom datasets import load_dataset\ndataset = load_dataset(\"dataset_name\")\n```\n\nA split is a specific subset of a dataset like train and test. You can list a dataset's split names with the `get_dataset_split_names()` function.\n\n🤗 Datasets downloads the dataset files from the original URL, generates the dataset and caches it in an Arrow table on your drive. If you've downloaded the dataset before, then 🤗 Datasets will reload it from the cache to save you the trouble of downloading it again.\n\nFor the specific MAVEN dataset, you would need to replace \"dataset_name\" with the actual identifier for the MAVEN dataset on the HuggingFace Hub (e.g., `load_dataset(\"maven\")` if it's available under that name)."
+    ],
+    "durationSeconds": 6.421514404
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T03:09:04.239Z_
+
+<details><summary>↩ Tool result · `toolu_01NssX6S5FVMEANz3KeVwmK5`</summary>
+
+```text
+Web search results for query: "MAVEN dataset event types full list schema hierarchy structure"
+
+Links: [{"title":"MAVEN: A Massive General Domain Event Detection Dataset","url":"https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"},{"title":"Maven-Arg: Completing the Puzzle of All-in-One Event Understanding Dataset with Event Argument Annotation","url":"https://arxiv.org/html/2311.09105"},{"title":"[2311.09105] MAVEN-Arg: Completing the Puzzle of All-in-One Event Understanding Dataset with Event Argument Annotation","url":"https://arxiv.org/abs/2311.09105"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset | Request PDF","url":"https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology","url":"https://aclanthology.org/2020.emnlp-main.129/"},{"title":"MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction - ACL Anthology","url":"https://aclanthology.org/2022.emnlp-main.60/"},{"title":"[2211.07342] MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction","url":"https://arxiv.org/abs/2211.07342"},{"title":"GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub","url":"https://github.com/THU-KEG/MAVEN-dataset"},{"title":"Low Resource Event Extraction: A Survey - Computer Science","url":"https://www.cs.uoregon.edu/Reports/AREA-202210-Lai.pdf"},{"title":"[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset","url":"https://arxiv.org/abs/2004.13590"}]
+
+Based on the search results, here's what I found about the MAVEN dataset event types schema hierarchy:
+
+## Overview
+
+MAVEN contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types. More recent extensions include a comprehensive schema covering 162 event types and 612 argument roles in the MAVEN-Arg version.
+
+## Schema Structure
+
+The MAVEN dataset uses a hierarchical event type schema. This dataset offers a tree-like event schema structure rooted in the word sense hierarchy in FrameNet.
+
+The hierarchical structure is important for the dataset design: When designing subordinate types, the schema inherits and refines the argument roles of their superordinate types.
+
+## Development
+
+The schema was mostly developed using the frames in FrameNet, with manual refinement to create the final event type taxonomy.
+
+## Related Extensions
+
+The MAVEN family includes specialized datasets:
+- **MAVEN-ERE**: Contains 103,193 event coreference chains, 1,216,217 temporal relations, 57,992 causal relations, and 15,841 subevent relations
+- **MAVEN-Arg**: Adds event argument annotations with 162 event types and 612 argument roles
+
+For detailed information about the complete event type list and full schema hierarchy structure, you may want to access the original MAVEN paper directly from the GitHub repository or the EMNLP 2020 proceedings, as the search results reference diagrams and detailed tables that aren't fully reproduced in these excerpts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "8f8e8c5d-1f8d-4919-931d-4b175fcb4913",
+  "tool_use_result": {
+    "query": "MAVEN dataset event types full list schema hierarchy structure",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P8NsUTRg67vSXgNCdEnMqv",
+        "content": [
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+          },
+          {
+            "title": "Maven-Arg: Completing the Puzzle of All-in-One Event Understanding Dataset with Event Argument Annotation",
+            "url": "https://arxiv.org/html/2311.09105"
+          },
+          {
+            "title": "[2311.09105] MAVEN-Arg: Completing the Puzzle of All-in-One Event Understanding Dataset with Event Argument Annotation",
+            "url": "https://arxiv.org/abs/2311.09105"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset | Request PDF",
+            "url": "https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology",
+            "url": "https://aclanthology.org/2020.emnlp-main.129/"
+          },
+          {
+            "title": "MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction - ACL Anthology",
+            "url": "https://aclanthology.org/2022.emnlp-main.60/"
+          },
+          {
+            "title": "[2211.07342] MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction",
+            "url": "https://arxiv.org/abs/2211.07342"
+          },
+          {
+            "title": "GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub",
+            "url": "https://github.com/THU-KEG/MAVEN-dataset"
+          },
+          {
+            "title": "Low Resource Event Extraction: A Survey - Computer Science",
+            "url": "https://www.cs.uoregon.edu/Reports/AREA-202210-Lai.pdf"
+          },
+          {
+            "title": "[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://arxiv.org/abs/2004.13590"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the MAVEN dataset event types schema hierarchy:\n\n## Overview\n\nMAVEN contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types. More recent extensions include a comprehensive schema covering 162 event types and 612 argument roles in the MAVEN-Arg version.\n\n## Schema Structure\n\nThe MAVEN dataset uses a hierarchical event type schema. This dataset offers a tree-like event schema structure rooted in the word sense hierarchy in FrameNet.\n\nThe hierarchical structure is important for the dataset design: When designing subordinate types, the schema inherits and refines the argument roles of their superordinate types.\n\n## Development\n\nThe schema was mostly developed using the frames in FrameNet, with manual refinement to create the final event type taxonomy.\n\n## Related Extensions\n\nThe MAVEN family includes specialized datasets:\n- **MAVEN-ERE**: Contains 103,193 event coreference chains, 1,216,217 temporal relations, 57,992 causal relations, and 15,841 subevent relations\n- **MAVEN-Arg**: Adds event argument annotations with 162 event types and 612 argument roles\n\nFor detailed information about the complete event type list and full schema hierarchy structure, you may want to access the original MAVEN paper directly from the GitHub repository or the EMNLP 2020 proceedings, as the search results reference diagrams and detailed tables that aren't fully reproduced in these excerpts."
+    ],
+    "durationSeconds": 6.914119966
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 19_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running ls -la /home/ubuntu/.agent-ml-research-idea_gen_0…",
+  "usage": {
+    "total_tokens": 19505,
+    "tool_uses": 2,
+    "duration_ms": 4133
+  },
+  "last_tool_name": "Bash",
+  "uuid": "f2703d8d-3d18-4ef8-a737-88b562c41316",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017JFiKdbQtUkhpgzre9LGfY`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "470d3ed3-4a86-46be-8e08-fd90fd8d91a4",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01BVjsUAqjTorECbriyXmh5e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1018,
+      "cache_read_input_tokens": 18472,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1018,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T03:09:04.783Z_
+
+<details><summary>↩ Tool result · `toolu_017JFiKdbQtUkhpgzre9LGfY`</summary>
+
+```text
+total 104
+drwxr-xr-x 10 ubuntu ubuntu  4096 May 15 03:00 .
+drwxrwxr-x  6 ubuntu ubuntu  4096 May 14 16:07 ..
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 16:07 .claude
+-rw-r--r--  1 ubuntu ubuntu 12791 May 15 03:08 AGENTS.md
+-rw-r--r--  1 ubuntu ubuntu     0 May 14 16:10 ROADMAP.lock
+-rw-------  1 ubuntu ubuntu  2850 May 15 02:49 ROADMAP.md
+drwxr-xr-x  6 ubuntu ubuntu  4096 May 15 03:08 artifacts
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 15 02:55 checkpoints
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 16:41 configs
+-rw-r--r--  1 ubuntu ubuntu     0 May 14 16:10 decisions.lock
+-rw-------  1 ubuntu ubuntu  3670 May 15 02:34 decisions.yaml
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 16:07 docs
+-rwxr-xr-x  1 ubuntu ubuntu     0 May 15 02:48 dream_registry.lock
+-rw-------  1 ubuntu ubuntu   575 May 15 02:48 dream_registry.yaml
+-rw-r--r--  1 ubuntu ubuntu   573 May 15 02:48 dream_registry.yaml.bak
+-rw-r--r--  1 ubuntu ubuntu  4828 May 15 02:48 experiment_plan.yaml
+drwxr-xr-x  4 ubuntu ubuntu  4096 May 14 16:14 logs
+-rw-r--r--  1 ubuntu ubuntu  2905 May 15 03:09 memory.md
+-rw-r--r--  1 ubuntu ubuntu  5114 May 15 02:47 paper_framing.md
+-rw-r--r--  1 ubuntu ubuntu     0 May 14 16:13 registry.lock
+-rw-------  1 ubuntu ubuntu  7483 May 15 02:55 registry.yaml
+-rw-r--r--  1 ubuntu ubuntu  1820 May 15 03:00 report.md
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 23:24 src
+-rwxr-xr-x  1 ubuntu ubuntu     0 May 14 16:08 study_status.lock
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 15 02:51 task_context
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "40f70b0d-16fb-4f46-8455-6ef2271a3afb"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T03:09:04.828Z_
+
+<details><summary>↩ Tool result · `toolu_01NDp69kKVWPYDHuFSeAdq93`</summary>
+
+```text
+Web search results for query: "MAVEN dataset event detection 168 event types EMNLP 2020 HuggingFace"
+
+Links: [{"title":"MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology","url":"https://aclanthology.org/2020.emnlp-main.129/"},{"title":"MAVEN","url":"https://thukeg.gitee.io/maven/"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智","url":"https://bakser.github.io/publication/2020-11-17-MAVEN"},{"title":"GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub","url":"https://github.com/THU-KEG/MAVEN-dataset"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset","url":"https://aclanthology.org/2020.emnlp-main.129.pdf"},{"title":"[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset","url":"https://arxiv.org/abs/2004.13590"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset","url":"https://papertalk.org/papertalks/11458"},{"title":"KG-NLP-Papers/EMNLP/2020/EE/8. MAVEN_A Massive General Domain Event Detection Dataset.md at main · Clearailhc/KG-NLP-Papers","url":"https://github.com/Clearailhc/KG-NLP-Papers/blob/main/EMNLP/2020/EE/8.%20MAVEN_A%20Massive%20General%20Domain%20Event%20Detection%20Dataset.md"},{"title":"GitHub - ll0ruc/event-extraction-paper: Papers from top conferences and journals for event extraction in recent years · GitHub","url":"https://github.com/ll0ruc/event-extraction-paper"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset | Request PDF","url":"https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"}]
+
+I found comprehensive information about the MAVEN dataset. Here are the search results:
+
+## MAVEN Dataset Overview
+
+The MAVEN dataset contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types. This is a paper titled "MAVEN: A Massive General Domain Event Detection Dataset" published in the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP).
+
+## Key Characteristics
+
+MAVEN alleviates the data scarcity problem and covers much more general event types. Recent state-of-the-art ED models were reproduced and evaluated on MAVEN, with results showing that existing ED methods cannot achieve promising results on MAVEN as on smaller datasets, suggesting that ED in the real world remains a challenging task.
+
+## Authors and Availability
+
+The dataset was created by Xiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, and Jie Zhou in 2020. The source code and dataset can be obtained from https://github.com/THU-KEG/MAVEN-dataset.
+
+Regarding HuggingFace specifically, the search results mention that HuggingFace's Transformers library was used in the research, but the dataset may have a separate HuggingFace integration which would need to be verified through their platform directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "0cdd923c-ce99-477d-94d5-17bf86497a4d",
+  "tool_use_result": {
+    "query": "MAVEN dataset event detection 168 event types EMNLP 2020 HuggingFace",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01R3tLN7scLCg6TzLN7cHZCc",
+        "content": [
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology",
+            "url": "https://aclanthology.org/2020.emnlp-main.129/"
+          },
+          {
+            "title": "MAVEN",
+            "url": "https://thukeg.gitee.io/maven/"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智",
+            "url": "https://bakser.github.io/publication/2020-11-17-MAVEN"
+          },
+          {
+            "title": "GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub",
+            "url": "https://github.com/THU-KEG/MAVEN-dataset"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://aclanthology.org/2020.emnlp-main.129.pdf"
+          },
+          {
+            "title": "[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://arxiv.org/abs/2004.13590"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://papertalk.org/papertalks/11458"
+          },
+          {
+            "title": "KG-NLP-Papers/EMNLP/2020/EE/8. MAVEN_A Massive General Domain Event Detection Dataset.md at main · Clearailhc/KG-NLP-Papers",
+            "url": "https://github.com/Clearailhc/KG-NLP-Papers/blob/main/EMNLP/2020/EE/8.%20MAVEN_A%20Massive%20General%20Domain%20Event%20Detection%20Dataset.md"
+          },
+          {
+            "title": "GitHub - ll0ruc/event-extraction-paper: Papers from top conferences and journals for event extraction in recent years · GitHub",
+            "url": "https://github.com/ll0ruc/event-extraction-paper"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset | Request PDF",
+            "url": "https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"
+          }
+        ]
+      },
+      "I found comprehensive information about the MAVEN dataset. Here are the search results:\n\n## MAVEN Dataset Overview\n\nThe MAVEN dataset contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types. This is a paper titled \"MAVEN: A Massive General Domain Event Detection Dataset\" published in the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP).\n\n## Key Characteristics\n\nMAVEN alleviates the data scarcity problem and covers much more general event types. Recent state-of-the-art ED models were reproduced and evaluated on MAVEN, with results showing that existing ED methods cannot achieve promising results on MAVEN as on smaller datasets, suggesting that ED in the real world remains a challenging task.\n\n## Authors and Availability\n\nThe dataset was created by Xiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, and Jie Zhou in 2020. The source code and dataset can be obtained from https://github.com/THU-KEG/MAVEN-dataset.\n\nRegarding HuggingFace specifically, the search results mention that HuggingFace's Transformers library was used in the research, but the dataset may have a separate HuggingFace integration which would need to be verified through their platform directly."
+    ],
+    "durationSeconds": 7.980162165000001
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 23_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_050…",
+  "usage": {
+    "total_tokens": 20394,
+    "tool_uses": 3,
+    "duration_ms": 7148
+  },
+  "last_tool_name": "Bash",
+  "uuid": "eea2de74-3f15-4095-8aa3-e17051a8fd85",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UkpQy4diJnsDXeqwazy2qb`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction -type f \\( -name \"*.py\" -o -name \"*.yaml\" -o -name \"*.json\" -o -name \"*.md\" \\) | grep -v __pycache__"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "46c5f592-f082-4e6a-9494-f183ee439943",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_015oETA9QoMUE4vZc2VgWc1p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 828,
+      "cache_read_input_tokens": 19490,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 828,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T03:09:07.788Z_
+
+<details><summary>↩ Tool result · `toolu_01UkpQy4diJnsDXeqwazy2qb`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/dream_registry.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_env-setup-and-data_20260514T163452_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_alt-embeddings-bcs_20260514T194037_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_fix-pass-criteria_20260514T233645_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp1-diagnose-and-launch-exp2_20260514T230254_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_eval-diagnosis-b2_20260514T231026_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp2-analysis-prep_20260514T231253_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp3c-pairwise-confusion_20260515T023600_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_reeval-script-prep_20260515T005614_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp1-check-and-launch-exp2_20260514T215328_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp3a-diagnose-fix_20260515T024903_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_code_fix-reviewer-critical_20260514T163331_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_code_fix-few-nerd-loader_20260514T173444_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_prompt-v2-prep_20260514T231959_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp1-text-reeval_20260514T231942_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_code_mvp-pipeline_20260514T161549_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_fix-nameerror_20260514T234103_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_code-preflight_20260514T173030_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_fix-rerun-analysis_20260515T023655_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp2-progress-check_20260515T011705_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_code_sdgd-framework-design_20260515T025924_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_research_ace05-data-prep_20260515T025909_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp2-analysis-update_20260514T232020_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_rollback-and-run-all_20260514T184153_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp1-status-check_20260514T193750_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_diagnose_exp003a_prompt_v2_rerun_20260515T024627_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp2-log-check_20260515T022358_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp2-full-analysis_20260515T022540_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_env-setup_20260514T161431_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/agent.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/director.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/reviewer.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/registry.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/AGENTS.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc/CLAUDE.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/reviewer_efaaa6bc/AGENTS.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d/CLAUDE.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d/AGENTS.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_fb4a4a77/CLAUDE.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_fb4a4a77/AGENTS.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09/CLAUDE.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09/AGENTS.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/CLAUDE.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp001_count_baseline_PENDING_20260514T193801.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp001_count_baseline_QUEUED_20260514T193805.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_PREPARING_20260515T025445.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp002_confusability_controlled_ANALYZING_20260515T022502.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp002_confusability_controlled_ANALYZING_20260515T023516.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_QUEUED_20260515T025455.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp002_confusability_controlled_RUNNING_20260514T230830.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp001_count_baseline_RUNNING_20260514T193813.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_PENDING_20260515T023523.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp002_confusability_controlled_QUEUED_20260514T230810.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_QUEUED_20260515T024115.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp002_confusability_controlled_ALLOCATED_20260514T230814.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_RUNNING_20260515T024453.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp001_count_baseline_ANALYZING_20260514T230805.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_ALLOCATED_20260515T025458.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_ALLOCATED_20260515T024300.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp002_confusability_controlled_PENDING_20260514T230806.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp002_confusability_controlled_ANALYZING_20260515T023715.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp002_confusability_controlled_PREPARING_20260514T161342.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_RUNNING_20260515T024430.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp001_count_baseline_ALLOCATED_20260514T193808.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_DONE_20260515T024453.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_ALLOCATED_20260515T024356.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp001_count_baseline_PREPARING_20260514T161340.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/checkpoints/exp003a_prompt_v2_rerun_RUNNING_20260515T025505.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/text_match_reeval.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/bcs_comparison.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/sdgd_design_doc.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_data_prep_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/bcs_comparison.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs/ace05_entity_types.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/report/ace05_data_prep_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/sdgd_design_doc.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/decisions.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/configs/few_nerd_types.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/experiment_plan.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "6b45a693-1a41-4ae2-be59-2710a2d5f525"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 26_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading memory.md",
+  "usage": {
+    "total_tokens": 24643,
+    "tool_uses": 4,
+    "duration_ms": 8705
+  },
+  "last_tool_name": "Read",
+  "uuid": "5e4590f8-cdea-4720-807e-ed3b1a7e5c89",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019TYBcj1brUhZER9Bdxh5Yk`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "7b456147-eb91-47e1-8448-81fe0191b71f",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01STJgag7ms5VJ3HxjCYNQF8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 4241,
+      "cache_read_input_tokens": 20318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4241,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T03:09:09.297Z_
+
+<details><summary>↩ Tool result · `toolu_019TYBcj1brUhZER9Bdxh5Yk`</summary>
+
+```text
+1	# Memory — schema-dag-extraction
+2	
+3	## Exp2 最终结果 + Pairwise 分析 (2026-05-15 02:41, CLEAN DATA)
+4	**三层证据**（全部基于 text_match reeval 干净数据）：
+5	1. **Batch-level F1 vs BCS**: count_12 r=0.501 p=0.008 (PASS), partial r=0.303 p=0.026 (PASS)
+6	2. **Batch-level confusion rate**: extreme batches high/low = 10-28x; random batches = 1.7-2.4x
+7	3. **Type-pair level**: BCS-confusion Pearson r=0.156 (p=4.6e-12, n=1953); 非零 pairs Spearman ρ=0.254 (p=1.1e-6)
+8	
+9	**Recall vs BCS 不显著** (partial r=0.252, p=0.066)——理论解释：confusability 的机制是"找到但标错类型"（precision 通道），不是"漏掉实体"（recall 通道）。
+10	
+11	**Top confused pairs**: person-other ↔ person-{politician/actor/athlete/artist} (BCS 0.89-0.93)，同 coarse category 内 fine-grained subtypes 互相混淆。
+12	
+13	**关键教训**：text_match 修正对 within-count correlation 几乎无影响（relaxed match 已容忍 offset 偏差）。但数据来源必须标注清楚，避免 Director 质疑。
+14	
+15	## D005 Narrative: Multi-channel Degradation (方案 A)
+16	- Count → recall decline（exp1: 0.72→0.42 单调下降）
+17	- Confusability → type confusion / precision decline（exp2: F1 correlation + pairwise evidence）
+18	- 两者正交，SDGD 需同时处理 count 和 within-group BCS
+19	
+20	## SDGD 设计决策 (2026-05-15)
+21	- **阈值策略**: Primary = adaptive (mean + k·std)，k 是唯一超参。Fixed τ 从 Few-NERD 推导的值仅作 oracle baseline。原因：避免循环性——τ 从目标数据集推导又在该数据集评估，审稿人会打。
+22	- **跨域验证必须用 adaptive threshold**，不能用 Few-NERD 的固定值
+23	- **消融**: k sweep {0.5, 1.0, 1.5, 2.0}，不再做 τ sweep
+24	- **Multi-pass FP 风险**: SDGD 多 batch 独立提取可能放大 over-prediction（total FP = Σ batch FP）。exp-008 必须用 prompt v2（含 anti-hallucination instruction），且必须报告 merged pred_gold_ratio。
+25	
+26	## 代码状态 (2026-05-15)
+27	- prompt v2 就绪（text-only + empty-list instruction），exp003a RUNNING
+28	- `src/reeval_text_match.py`：通用重评估脚本
+29	- `src/analyze_results.py`：within-count Pearson r + recall-only + confusion rate + 可视化
+30	- `src/pairwise_confusion_analysis.py`：pairwise BCS-confusion 相关分析
+31	- SDGD 设计文档完成 (artifacts/sdgd_design_doc.md)，等 exp003a 后编码
+32	
+33	## Evaluation 根因 (2026-05-14)
+34	Qwen3-32B-FP8 96.5% char offset 编造。Over-prediction 在低 count 时严重（count=1 pred/gold=6.8:1）。
+35	
+36	## Embedding Model Choice (2026-05-14)
+37	Qwen3-32B mean-pooled (5120 dim) 优于 E5-large-v2。Exp2 用 Qwen3 BCS。
+38	
+39	## Environment (2026-05-14)
+40	- cqa1-38874: RTX PRO 6000 Blackwell 98GB, CUDA 13.1
+41	- conda base: Python 3.12.3, vLLM 0.20.2, torch 2.10.0+cu128
+42	- Qwen3-32B-FP8 at /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/
+43	- Few-NERD: 66 types (64 active), test 37648 条, max_samples=1000
+44	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "4b9ec47c-ebc3-4043-a28f-24138cfc0f50"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 29_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading docs/IDEA_BRIEF.md",
+  "usage": {
+    "total_tokens": 24647,
+    "tool_uses": 5,
+    "duration_ms": 8985
+  },
+  "last_tool_name": "Read",
+  "uuid": "80e50f8b-b0be-4e69-8e6e-a714d95382f7",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018aGfayYQTuVmeBZPvHyMd2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "04b36800-01ca-41e8-aca4-e04224e4e6ce",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01STJgag7ms5VJ3HxjCYNQF8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 4241,
+      "cache_read_input_tokens": 20318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4241,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 31_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading src/text_match_reeval.py",
+  "usage": {
+    "total_tokens": 24651,
+    "tool_uses": 6,
+    "duration_ms": 9198
+  },
+  "last_tool_name": "Read",
+  "uuid": "eba9e324-dd79-4af9-a12e-ee9d01fdad4b",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01358vSAeprk9VmSLhfavuPu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/text_match_reeval.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "8b37b014-f4a0-4f4f-8fbf-0dc95f8d1337",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01STJgag7ms5VJ3HxjCYNQF8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 4241,
+      "cache_read_input_tokens": 20318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4241,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T03:09:09.780Z_
+
+<details><summary>↩ Tool result · `toolu_01358vSAeprk9VmSLhfavuPu`</summary>
+
+```text
+1	# Text-match re-evaluation for exp1: ignores char offsets, matches by (text, type) pairs.
+2	import json
+3	import logging
+4	import sys
+5	from collections import defaultdict
+6	from pathlib import Path
+7	
+8	sys.path.insert(0, str(Path(__file__).parent))
+9	from few_nerd_utils import load_few_nerd
+10	
+11	logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+12	logger = logging.getLogger(__name__)
+13	
+14	PREDICTIONS_PATH = "/root/schema-dag-extraction/artifacts/predictions_exp1.json"
+15	OUTPUT_DIR = Path("/root/schema-dag-extraction/results")
+16	MAX_SAMPLES = 1000
+17	
+18	
+19	def text_match_eval(pred_entries, samples, batch_types):
+20	    """Compute text-match P/R/F1 for one batch.
+21	
+22	    Match logic: pred.text must exist in source text (substring check) AND
+23	    match a gold entity by (text, type). Each gold can match at most once.
+24	    """
+25	    total_tp = 0
+26	    total_pred = 0
+27	    total_gold = 0
+28	    per_type_tp = defaultdict(int)
+29	    per_type_pred = defaultdict(int)
+30	    per_type_gold = defaultdict(int)
+31	
+32	    by_sample = {}
+33	    for p in pred_entries:
+34	        by_sample.setdefault(p["sample_id"], []).append(p)
+35	
+36	    for sid, entries in by_sample.items():
+37	        if sid >= len(samples):
+38	            continue
+39	        source_text = samples[sid]["text"]
+40	        gold_entities = [e for e in samples[sid]["entities"] if e["type"] in batch_types]
+41	        total_gold += len(gold_entities)
+42	        for g in gold_entities:
+43	            per_type_gold[g["type"]] += 1
+44	
+45	        preds = entries[0].get("predictions", [])
+46	        preds = [p for p in preds if p.get("type") in batch_types]
+47	        total_pred += len(preds)
+48	        for p in preds:
+49	            per_type_pred[p["type"]] += 1
+50	
+51	        # Build gold index: list of (text, type, matched) for greedy matching
+52	        gold_available = [[g["text"], g["type"], False] for g in gold_entities]
+53	
+54	        for pred in preds:
+55	            pt = pred.get("text", "")
+56	            ptype = pred.get("type", "")
+57	            # Validate: pred text must exist in source
+58	            if pt not in source_text:
+59	                continue
+60	            # Greedy match to first available gold with same (text, type)
+61	            for g in gold_available:
+62	                if not g[2] and g[0] == pt and g[1] == ptype:
+63	                    g[2] = True
+64	                    total_tp += 1
+65	                    per_type_tp[ptype] += 1
+66	                    break
+67	
+68	    def prf(tp, npred, ngold):
+69	        p = tp / npred if npred > 0 else 0.0
+70	        r = tp / ngold if ngold > 0 else 0.0
+71	        f = 2 * p * r / (p + r) if (p + r) > 0 else 0.0
+72	        return {"precision": p, "recall": r, "f1": f, "tp": tp, "total_pred": npred, "total_gold": ngold}
+73	
+74	    all_types = set(list(per_type_pred.keys()) + list(per_type_gold.keys()))
+75	    per_type = {}
+76	    for t in sorted(all_types):
+77	        per_type[t] = prf(per_type_tp[t], per_type_pred[t], per_type_gold[t])
+78	
+79	    return prf(total_tp, total_pred, total_gold), per_type
+80	
+81	
+82	def main():
+83	    logger.info("Loading predictions...")
+84	    with open(PREDICTIONS_PATH) as f:
+85	        predictions = json.load(f)
+86	    logger.info("Loaded %d prediction entries", len(predictions))
+87	
+88	    logger.info("Loading Few-NERD test split (max_samples=%d)...", MAX_SAMPLES)
+89	    samples = load_few_nerd(split="test", max_samples=MAX_SAMPLES)
+90	    logger.info("Loaded %d samples", len(samples))
+91	
+92	    # Group by batch
+93	    batches = {}
+94	    for p in predictions:
+95	        bid = p["batch_id"]
+96	        if bid not in batches:
+97	            batches[bid] = {
+98	                "entries": [],
+99	                "batch_types": set(p["batch_types"]),
+100	                "batch_bcs": p.get("batch_bcs", 0.0),
+101	                "count_key": p.get("count_key", ""),
+102	            }
+103	        batches[bid]["entries"].append(p)
+104	
+105	    logger.info("Evaluating %d batches...", len(batches))
+106	
+107	    # Per-batch results
+108	    batch_results = {}
+109	    for bid, info in sorted(batches.items()):
+110	        metrics, per_type = text_match_eval(info["entries"], samples, info["batch_types"])
+111	        batch_results[bid] = {
+112	            "metrics": metrics,
+113	            "per_type": per_type,
+114	            "bcs": info["batch_bcs"],
+115	            "count_key": info["count_key"],
+116	            "num_types": len(info["batch_types"]),
+117	        }
+118	
+119	    # Per-count summary
+120	    count_groups = defaultdict(list)
+121	    for bid, res in batch_results.items():
+122	        count_groups[res["count_key"]].append(res)
+123	
+124	    summary = {}
+125	    for ck in sorted(count_groups.keys(), key=lambda x: int(x.split("_")[1])):
+126	        group = count_groups[ck]
+127	        n = len(group)
+128	        avg_f1 = sum(r["metrics"]["f1"] for r in group) / n
+129	        avg_p = sum(r["metrics"]["precision"] for r in group) / n
+130	        avg_r = sum(r["metrics"]["recall"] for r in group) / n
+131	        total_pred = sum(r["metrics"]["total_pred"] for r in group)
+132	        total_gold = sum(r["metrics"]["total_gold"] for r in group)
+133	        total_tp = sum(r["metrics"]["tp"] for r in group)
+134	        # Micro-averaged metrics across all batches in this count
+135	        micro_p = total_tp / total_pred if total_pred > 0 else 0.0
+136	        micro_r = total_tp / total_gold if total_gold > 0 else 0.0
+137	        micro_f1 = 2 * micro_p * micro_r / (micro_p + micro_r) if (micro_p + micro_r) > 0 else 0.0
+138	        summary[ck] = {
+139	            "num_batches": n,
+140	            "macro_precision": avg_p,
+141	            "macro_recall": avg_r,
+142	            "macro_f1": avg_f1,
+143	            "micro_precision": micro_p,
+144	            "micro_recall": micro_r,
+145	            "micro_f1": micro_f1,
+146	            "total_pred": total_pred,
+147	            "total_gold": total_gold,
+148	            "total_tp": total_tp,
+149	            "avg_pred_per_batch": total_pred / n,
+150	            "avg_gold_per_batch": total_gold / n,
+151	            "pred_gold_ratio": (total_pred / total_gold) if total_gold > 0 else float("inf"),
+152	        }
+153	
+154	    # Over-prediction analysis
+155	    overpred_analysis = {}
+156	    for ck, grp in sorted(count_groups.items(), key=lambda x: int(x[0].split("_")[1])):
+157	        # Aggregate per-type stats across batches in this count
+158	        type_agg = defaultdict(lambda: {"tp": 0, "pred": 0, "gold": 0})
+159	        for res in grp:
+160	            for t, tm in res["per_type"].items():
+161	                type_agg[t]["tp"] += tm["tp"]
+162	                type_agg[t]["pred"] += tm["total_pred"]
+163	                type_agg[t]["gold"] += tm["total_gold"]
+164	
+165	        type_breakdown = {}
+166	        for t in sorted(type_agg.keys()):
+167	            a = type_agg[t]
+168	            p = a["tp"] / a["pred"] if a["pred"] > 0 else 0.0
+169	            r = a["tp"] / a["gold"] if a["gold"] > 0 else 0.0
+170	            f = 2 * p * r / (p + r) if (p + r) > 0 else 0.0
+171	            type_breakdown[t] = {
+172	                "precision": round(p, 4),
+173	                "recall": round(r, 4),
+174	                "f1": round(f, 4),
+175	                "pred_count": a["pred"],
+176	                "gold_count": a["gold"],
+177	                "tp": a["tp"],
+178	                "pred_gold_ratio": round(a["pred"] / a["gold"], 2) if a["gold"] > 0 else None,
+179	                "excess_preds": a["pred"] - a["gold"],
+180	            }
+181	
+182	        # Top over-predicted types
+183	        sorted_by_excess = sorted(type_breakdown.items(), key=lambda x: x[1]["excess_preds"], reverse=True)
+184	        top_overpred = [(t, d) for t, d in sorted_by_excess[:10] if d["excess_preds"] > 0]
+185	
+186	        # FP categorization from raw predictions
+187	        hallucination_count = 0  # pred.text not in source
+188	        type_wrong_count = 0     # text in source & matches gold text but wrong type
+189	        spurious_count = 0       # text in source but no gold entity with that text at all
+190	
+191	        for bid, bres in batch_results.items():
+192	            if bres["count_key"] != ck:
+193	                continue
+194	            batch_types_set = set()
+195	            for p in batches[bid]["entries"]:
+196	                batch_types_set = set(p["batch_types"])
+197	                break
+198	
+199	            by_sample = {}
+200	            for p in batches[bid]["entries"]:
+201	                by_sample.setdefault(p["sample_id"], []).append(p)
+202	
+203	            for sid, entries in by_sample.items():
+204	                if sid >= len(samples):
+205	                    continue
+206	                source_text = samples[sid]["text"]
+207	                gold_entities = [e for e in samples[sid]["entities"] if e["type"] in batch_types_set]
+208	                gold_texts = {(g["text"], g["type"]) for g in gold_entities}
+209	                gold_texts_any_type = {g["text"] for g in gold_entities}
+210	
+211	                preds = entries[0].get("predictions", [])
+212	                preds = [p for p in preds if p.get("type") in batch_types_set]
+213	                for pred in preds:
+214	                    pt = pred.get("text", "")
+215	                    ptype = pred.get("type", "")
+216	                    if pt not in source_text:
+217	                        hallucination_count += 1
+218	                    elif (pt, ptype) not in gold_texts:
+219	                        if pt in gold_texts_any_type:
+220	                            type_wrong_count += 1
+221	                        else:
+222	                            spurious_count += 1
+223	
+224	        total_fp = hallucination_count + type_wrong_count + spurious_count
+225	        overpred_analysis[ck] = {
+226	            "fp_breakdown": {
+227	                "hallucinated_text": hallucination_count,
+228	                "wrong_type": type_wrong_count,
+229	                "spurious_entity": spurious_count,
+230	                "total_fp_approx": total_fp,
+231	            },
+232	            "avg_pred": summary[ck]["avg_pred_per_batch"],
+233	            "avg_gold": summary[ck]["avg_gold_per_batch"],
+234	            "pred_gold_ratio": summary[ck]["pred_gold_ratio"],
+235	            "type_breakdown": type_breakdown,
+236	            "top_overpredicted_types": {t: d for t, d in top_overpred},
+237	        }
+238	
+239	    # Save results
+240	    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+241	
+242	    with open(OUTPUT_DIR / "exp1_text_match_reeval.json", "w") as f:
+243	        json.dump(batch_results, f, indent=2)
+244	
+245	    with open(OUTPUT_DIR / "exp1_text_match_summary.json", "w") as f:
+246	        json.dump(summary, f, indent=2)
+247	
+248	    with open(OUTPUT_DIR / "exp1_overprediction_analysis.json", "w") as f:
+249	        json.dump(overpred_analysis, f, indent=2)
+250	
+251	    # Print summary table
+252	    print("\n" + "=" * 90)
+253	    print("Per-Count Text-Match F1 Summary (exp1)")
+254	    print("=" * 90)
+255	    print(f"{'Count':>8} {'Batches':>8} {'MicroP':>8} {'MicroR':>8} {'MicroF1':>8} {'MacroF1':>8} {'AvgPred':>8} {'AvgGold':>8} {'P/G':>6}")
+256	    print("-" * 90)
+257	    for ck in sorted(summary.keys(), key=lambda x: int(x.split("_")[1])):
+258	        s = summary[ck]
+259	        print(f"{ck:>8} {s['num_batches']:>8} {s['micro_precision']:>8.4f} {s['micro_recall']:>8.4f} "
+260	              f"{s['micro_f1']:>8.4f} {s['macro_f1']:>8.4f} {s['avg_pred_per_batch']:>8.1f} "
+261	              f"{s['avg_gold_per_batch']:>8.1f} {s['pred_gold_ratio']:>6.2f}")
+262	    print("=" * 90)
+263	
+264	    # Print top over-predicted types for count_1 vs count_64
+265	    for ck in ["count_1", "count_64"]:
+266	        if ck in overpred_analysis:
+267	            oa = overpred_analysis[ck]
+268	            print(f"\nTop over-predicted types ({ck}):")
+269	            top = sorted(oa["type_breakdown"].items(), key=lambda x: x[1]["excess_preds"], reverse=True)[:5]
+270	            for t, d in top:
+271	                print(f"  {t:30s} pred={d['pred_count']:>5d} gold={d['gold_count']:>5d} "
+272	                      f"ratio={d['pred_gold_ratio'] or 'N/A':>6} P={d['precision']:.3f} R={d['recall']:.3f} F1={d['f1']:.3f}")
+273	
+274	    # Print FP breakdown per count
+275	    print("\nFP Breakdown by Count:")
+276	    print(f"{'Count':>8} {'Halluc':>8} {'WrongType':>10} {'Spurious':>10} {'TotalFP':>8}")
+277	    print("-" * 50)
+278	    for ck in sorted(overpred_analysis.keys(), key=lambda x: int(x.split("_")[1])):
+279	        fb = overpred_analysis[ck]["fp_breakdown"]
+280	        print(f"{ck:>8} {fb['hallucinated_text']:>8} {fb['wrong_type']:>10} "
+281	              f"{fb['spurious_entity']:>10} {fb['total_fp_approx']:>8}")
+282	
+283	    logger.info("Results saved to %s", OUTPUT_DIR)
+284	
+285	
+286	if __name__ == "__main__":
+287	    main()
+288	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "6a142b1b-3128-491a-a0df-739464ce1287"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T03:09:09.848Z_
+
+<details><summary>↩ Tool result · `toolu_018aGfayYQTuVmeBZPvHyMd2`</summary>
+
+```text
+1	# Idea Brief: Does Type Confusability Drive Schema-Induced Degradation in LLM Information Extraction? An Empirical Study and Principled Decomposition Framework
+2	
+3	
+4	- **Idea ID**: `idea_007`
+5	- **Created**: 2026-05-14
+6	- **Approved**: 2026-05-14
+7	- **Source**: foreign:be-idea-gen-0509-6
+8	- **Level**: top-tier
+9	- **Target Venues**: EMNLP 2026 (ARR May 25, 2026 submission — 15 days from today; commitment deadline August 2, 2026; reviews due June 29; meta-reviews July 30; conference October 24-29, Budapest, Hungary). Feasible with dual-contribution framing: Contribution A (empirical study) is completable in 3 days and self-contained; Contribution B (SDGD) on 3 core benchmarks (ACE05, Few-NERD, DocRED) by day 12. MAVEN and SciERC for camera-ready., AACL-IJCNLP 2026 (same ARR May 25, 2026 submission; commitment deadline August 26, 2026; Hengqin, China November 6-10, 2026 — fallback if EMNLP reviews suggest Findings-level), ARR August 3, 2026 for EACL 2027 (commitment deadline October 11, 2026 — backup with full 3-month timeline for complete experiment suite including moderate-correlation analysis if May 25 is infeasible)
+10	
+11	## Seed Topic
+12	
+13	Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.
+14	
+15	Direction: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.
+16	
+17	Contribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.
+18	
+19	HARD CONSTRAINTS:
+20	1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.
+21	2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.
+22	3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.
+23	
+24	Look for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.
+25	
+26	Tag: direction=information_extraction, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].
+27	
+28	## Core Problem
+29	
+30	LLMs with constrained decoding now guarantee 100% structurally valid outputs, but complex extraction schemas still cause severe semantic quality degradation. Multiple converging lines of evidence establish this: The Format Tax (April 2026) shows prompt-level effects account for ~71% of format-induced degradation; UniNER (ICLR 2024) demonstrated per-type querying outperforms batch querying by 3.3 F1 on NER; Alon et al. (EMNLP 2025 Findings) show context length alone degrades performance by 13.9–85%; ExtractBench (Feb 2026) demonstrates 0% valid output on 369-field schemas; ScrapeGraphAI-100k (Feb 2026) identifies empirical breakpoints at schema depth >7 and key count >200; context rot research (Chroma 2025) shows semantically similar distractors cause worst degradation across all 18 frontier models. Training-free LLM IE currently lags discriminative models by 20-60 F1 points on complex benchmarks (e.g., ~35 vs. ~71 F1 on ACE05 RE). However, a critical question remains UNRESOLVED: is schema-induced degradation driven primarily by (a) type COUNT (sheer prompt complexity), (b) type CONFUSABILITY (semantic similarity between co-present types causing interference), or (c) their interaction? Prior work in supervised NER has shown entity ambiguity impacts performance — CyberNER (2025) demonstrates ~30% F1 improvement from harmonizing confusable labels, statistical dataset evaluation (Cambridge NLP Journal 2025) shows 6.42 F1 gap between high/low ambiguity datasets. But these findings address dataset construction and supervised learning, not the distinct setting of training-free LLM IE under complex prompting with constrained decoding. Without controlled evidence distinguishing count from confusability effects, all existing decomposition approaches — per-type splitting (UniNER), similarity-based partitioning (LLM-PEE), fixed k-step pipelines (ProUIE, KGGen) — lack empirical grounding for their decomposition criteria. The core unsolved problem is twofold: (1) establishing whether type confusability independently predicts extraction degradation in LLM-based IE (beyond count effects), and (2) if so, deriving a principled, confusability-minimizing decomposition that operationalizes this finding.
+31	
+32	## Opportunity / Why Now
+33	
+34	Six decomposition strategies exist, each with clear limitations and none providing empirically validated decomposition criteria:
+35	
+36	(1) **Per-type independent splitting** (UniNER, ICLR 2024): +3.3 F1 from individual querying, but treats types independently — no cross-type conditioning, no formal criterion for when splitting helps vs. wastes latency.
+37	
+38	(2) **Similarity-based type partitioning** (LLM-PEE, EMNLP 2025): ColBERT retrieval + confidence-based partitioning for massive event type inventories. Uses retrieval similarity as an implicit proxy for confusability but does not validate whether similarity actually predicts extraction interference.
+39	
+40	(3) **Fixed k-step pipelines** (KGGen NeurIPS 2025; ProUIE Apr 2026): coarse task-level decomposition (NER→RE→EE) with fixed granularity regardless of schema structure. Pass all upstream results without type-aware filtering.
+41	
+42	(4) **Schema as parameterized tools** (SPT, arXiv 2506.01276, June 2025): treats schemas as parameterized tools for LLM tool-calling, addressing schema SELECTION (choosing which schema to apply from a pool). Requires training (schema embedding). Addresses a different granularity: SPT selects among complete schemas, while SDGD decomposes WITHIN a single complex schema to minimize intra-batch interference.
+43	
+44	(5) **Text-centric anchor grounding** (AEVS, March 2026): discovers text-grounded anchors for KG triplet extraction. Bottom-up (what does the text contain?) rather than top-down (what does the schema permit?). Limited to flat KG triplets.
+45	
+46	(6) **Schema-guided multi-agent systems** (OneKE, WWW 2025; CROSSAGENTIE, ACL 2025 Findings; CMAS, WWW 2025): fixed agent architectures or debate-based consensus. No dependency-driven decomposition, no confusability analysis.
+47	
+48	(7) **Schema optimization** (PARSE, EMNLP 2025 Industry): optimizes schema representation (descriptions, field names) for LLM consumption via ARCHITECT, achieving up to 64.7% improvement on SWDE. Complementary to SDGD — PARSE optimizes HOW schemas are expressed; SDGD optimizes WHICH types are presented together.
+49	
+50	Additionally, DLISC (arXiv May 2025) uses LoRA-based schema identification to reduce per-step schema complexity on-device — trained approach with similar motivation but gradient-based.
+51	
+52	Critically, ACONIC (arXiv Oct 2025) demonstrates that formalizing task decomposition via constraint-satisfaction complexity (treewidth) yields 3.6-7.5pp gains over heuristic decomposition on Spider. This proves the value of principled decomposition criteria but does not address IE-specific schema structure.
+53	
+54	The key gap is EMPIRICAL: no controlled study has established whether type confusability (not just count) independently drives extraction degradation in training-free LLM IE. Without this evidence, all existing decomposition approaches operate on unvalidated assumptions about what makes schemas 'complex' for LLMs. A formal **confusability measure** that (a) is empirically validated as predictive of extraction quality degradation, (b) enables principled batch composition via graph partitioning, (c) can be estimated both from embeddings (zero-shot) and from empirical confusion matrices (few-shot calibrated), and (d) integrates with schema dependency structure for selective cross-layer grounding — would transform schema decomposition from ad-hoc heuristics to evidence-based methodology.
+55	
+56	## Landscape (SOTA & Limitations)
+57	
+58	**Decomposition approaches.** UniNER (ICLR 2024) established per-type querying improves NER by 3.3 F1 over batch querying. LLM-PEE (EMNLP 2025 Main) addresses massive-type event extraction (3,465 types) via ColBERT retrieval + confidence-based partitioning (60.2% TC F1 on EEMT). ProUIE (Apr 2026) achieves best fine-tuned UIE via progressive NER→RE→EE training (avg NER F1 79.44, SciERC RE F1 46.76). KGGen (NeurIPS 2025) decomposes KG extraction into entity→relation with clustering-based entity resolution.
+59	
+60	**Schema as tools.** SPT (arXiv 2506.01276, June 2025) treats predefined IE schemas as parameterized tools, using LLM tool-calling for schema retrieval + schema filling. Addresses schema SELECTION from a predefined pool (which schema to apply), achieving comparable performance to LoRA baselines with fewer trainable parameters. Complementary to SDGD: SPT selects among complete schemas; SDGD decomposes within a single complex schema. SPT requires training; SDGD is training-free.
+61	
+62	**Schema optimization.** PARSE (EMNLP 2025 Industry, arXiv 2510.08623) introduces ARCHITECT to autonomously optimize JSON schemas for LLM consumption, achieving up to 64.7% accuracy improvement on SWDE and 92% error reduction on retry. Addresses schema representation quality rather than schema delivery strategy. Complementary to SDGD: PARSE-optimized schemas could serve as input to SDGD's confusability-aware decomposition.
+63	
+64	**Schema complexity empirics.** ScrapeGraphAI-100k (arXiv 2602.15189, Feb 2026) provides 93,695 real-world LLM extraction events and identifies empirical breakpoints: extraction quality degrades sharply at schema depth >7 or key count >200. Stratified evaluation enables identification of specific complexity thresholds where systems fail. However, this measures structural complexity (depth, key count, cyclomatic complexity) without isolating semantic confusability between types.
+65	
+66	**Grounding approaches.** AEVS (MDPI Computers, March 2026) discovers text-grounded anchors for KG triplet extraction with near-zero hallucination (0.23-0.44% with Claude 4.5 Haiku, 0.828 Exact F1 on WebNLG). Entity type constraints in trained models — SH-ETRs (Expert Systems 2025, 74.39 F1 on DocRED), ETCGN (IJMLC 2024), Document-level RE with Entity Type Constraints (Neural Networks 2025) — embed type-compatibility filtering in learned parameters.
+67	
+68	**Multi-agent and pipeline systems.** OneKE (WWW 2025 Companion) uses Schema Agent + Extraction Agent + Reflection Agent for NER/RE/EE. CROSSAGENTIE (ACL 2025 Findings) assigns type-specific agents with debate-based consensus. CMAS (WWW 2025) uses cooperative multi-agent framework with type-related feature extraction for zero-shot NER.
+69	
+70	**Entity ambiguity and type confusion.** CyberNER (arXiv 2510.26499, 2025) demonstrates ~30% F1 improvement from harmonizing 50+ confusable cybersecurity entity labels into 21 coherent types. Statistical dataset evaluation (Cambridge NLP Journal, Jan 2025) quantifies 6.42 F1 gap between high/low entity ambiguity datasets. ESNERA (arXiv 2508.06877, 2025) combines empirical and semantic similarity for NER dataset merging. SAM-NER (arXiv 2605.03706, ACL Findings 2026) introduces semantic archetype mediation for zero-shot NER, addressing type confusion via intermediate archetype space. DEER (EMNLP 2025 Main) uses label-grounded statistics for ICL demonstration selection. APIE (arXiv 2508.10036, 2025) decomposes extraction difficulty into format-level and content-level confusion, achieving 18.3% relative gains. These works establish that type confusability degrades NER/IE in various contexts, but ALL operate in supervised or semi-supervised settings. No controlled study validates that type confusability — specifically co-presence of semantically similar types in the extraction prompt — independently degrades training-free LLM IE beyond what type count alone predicts.
+71	
+72	**Schema complexity reduction.** DLISC (arXiv May 2025) uses two LoRA modules (schema identification + extraction) with incremental schema caching for on-device LLMs — trained approach addressing the same motivation but requiring gradient updates.
+73	
+74	**Principled task decomposition.** ACONIC (arXiv Oct 2025) formalizes general LLM task decomposition via constraint-satisfaction treewidth, yielding 3.6-7.5pp gains on Spider. Demonstrates principled decomposition > heuristic approaches. SDGD provides the IE-domain-specific analogue.
+75	
+76	**Context degradation evidence.** Alon et al. (EMNLP 2025 Findings) demonstrate 13.9-85% degradation from context length alone. Context rot (Chroma 2025) shows semantically similar distractors cause worst degradation. ExtractBench (Feb 2026) shows catastrophic failure at 369 fields. The Format Tax (Apr 2026) shows prompt-level effects account for ~71% of format-induced degradation.
+77	
+78	**Deployment context for training-free IE.** mCODEGPT (Nature Communications Medicine, 2025) demonstrates zero-shot IE from clinical notes into structured mCODE format achieving 94-96% accuracy on cancer-specific entities — validating that training-free extraction has practical deployment value in domains where annotation expertise is scarce. FINRA's 2026 regulatory oversight report identifies 'Summarization and Information Extraction' as the top GenAI use case among member firms. Cross-lingual IE (GoLLIE-TF, 2025) shows training-free approaches remain critical for the ~50 languages where annotated IE corpora don't exist.
+79	
+80	**Absolute performance context.** Training-free zero-shot LLM methods achieve ~35 F1 on ACE05 RE (vs. ~71 supervised ITER), ~18 F1 on Re-DocRED (vs. ~81 supervised DREEAM), ~14 F1 on ACE05 EE (vs. ~72 supervised). SDGD targets meaningful gains within the training-free regime where absolute performance matters for specific deployment scenarios.
+81	
+82	No prior work provides a controlled empirical study isolating type confusability from type count effects in LLM-based IE, nor combines a validated confusability measure with principled batch composition and selective cross-layer grounding for training-free extraction.
+83	
+84	## Proposed Approach
+85	
+86	We propose a dual-contribution paper: (A) **The Schema Confusability Study** — the first controlled empirical investigation establishing whether type confusability independently predicts extraction degradation in training-free LLM IE (analogous to 'Lost in the Middle' establishing positional degradation); and (B) **Confusability-Aware Schema Decomposition (SDGD)** — a principled framework that operationalizes these findings into a practical extraction pipeline.
+87	
+88	## CONTRIBUTION A: Schema Confusability Study (Primary Empirical Contribution)
+89	
+90	This study answers the question: *Does type confusability — not just type count — drive extraction degradation in LLM-based IE?* While prior work (CyberNER, Cambridge NLP 2025) shows ambiguity effects in supervised NER, no controlled study validates this in the distinct setting of training-free LLM IE with constrained decoding. The study design isolates confusability from count through controlled experiments:
+91	
+92	**Experiment 1 — Count Effect Baseline.** On ACE05 RE (18 relation types, 7 entity types) and Few-NERD (66 entity types): measure F1 with 2, 6, 12, 18 (or 22, 44, 66) types in the prompt, all randomly sampled. Establishes the count-quality curve.
+93	
+94	**Experiment 2 — Confusability Effect (Controlled).** Fix type count at 6, but systematically vary composition: (i) 6 maximally dissimilar types (low BCS), (ii) 6 random types (medium BCS, 10 random samples averaged), (iii) 6 maximally similar types (high BCS — e.g., all employment/affiliation relations, or all fine-grained location types). Repeat at count=12. If high-BCS batches show significantly lower F1 than low-BCS batches at the SAME batch size, confusability independently predicts degradation beyond count.
+95	
+96	**Experiment 3 — Interaction Effect.** 2×2 design: {low count, high count} × {low confusability, high confusability}. Tests whether confusability effects are additive (constant penalty) or multiplicative (worse at higher counts).
+97	
+98	**Experiment 4 — Selective Grounding.** With 18 relation types, compare providing all 7 entity types vs. only type-compatible entities per relation. Tests whether irrelevant upstream entities (semantically similar to valid arguments) independently degrade downstream extraction.
+99	
+100	**Deliverables:** (1) Confusability-Quality Curves (main figure) showing F1 as a function of BCS at fixed type counts; (2) Statistical tests (paired t-test, effect size) quantifying the independent confusability effect; (3) The derived confusability threshold θ* at which degradation becomes significant; (4) Interaction analysis revealing whether confusability is additive or multiplicative with count.
+101	
+102	**Outcome-Dependent Framing:**
+103	- If |r| ≥ 0.6 (strong correlation): confusability is the dominant factor → SDGD is strongly motivated, paper is primarily a method paper validated by the empirical study
+104	- If 0.3 ≤ |r| < 0.6 (moderate correlation): confusability is a significant but not dominant factor → paper reports that confusability is ONE mechanism among several (count, description quality, argument overlap), SDGD still yields gains on high-confusability subsets, and we provide practical guidance on WHEN confusability-aware decomposition is worthwhile (e.g., 'apply SDGD when >50% of type pairs exceed θ*')
+105	- If |r| < 0.3 (weak/no correlation): confusability does NOT independently predict degradation in LLM IE → NEGATIVE RESULT contribution showing that supervised NER findings (CyberNER, Cambridge 2025) do NOT transfer to training-free LLM IE, and count/context-length is the dominant mechanism. This is itself a valuable finding that redirects future research. SDGD reduces to count-minimizing decomposition (equivalent to UniNER-style per-type splitting).
+106	
+107	GPU cost for Contribution A: <3h H100.
+108	
+109	## CONTRIBUTION B: Confusability-Aware Schema Decomposition (SDGD)
+110	
+111	**Schema Confusability Score (SCS) — Formal Definition.**
+112	
+113	Given an IE schema with type set T, define pairwise confusability:
+114	
+115	*Zero-shot (embedding-based):* conf_embed(t_i, t_j) = cosine_sim(LLM_embed(desc(t_i)), LLM_embed(desc(t_j))), where desc(t) includes type name, definition, and argument constraints. Embedding model: Qwen 3.6-27B hidden states (fixed).
+116	
+117	*Few-shot (empirical):* Given k calibration examples (k ∈ {5, 10}), run extraction with all types simultaneously. Compute confusion matrix C where C[i,j] = frequency of model labeling ground-truth type-i instances as type-j. Then conf_emp(t_i, t_j) = (C[i,j] + C[j,i]) / (count(t_i) + count(t_j)).
+118	
+119	For a batch S ⊆ T, the Batch Confusability Score: BCS(S) = max_{i≠j ∈ S} conf(t_i, t_j).
+120	
+121	**Phase 1: Schema Confusability Graph (SCG) Construction.**
+122	
+123	Build weighted undirected graph G = (T, E, w) where nodes are types and edge weights w(t_i, t_j) = conf(t_i, t_j). Overlay the dependency DAG: entity types are source nodes; relation R(arg1: T1, arg2: T2) depends on T1, T2; event arguments depend on relevant entities/relations.
+124	
+125	**Phase 2: Confusability-Minimizing Batch Composition.**
+126	
+127	Within each DAG layer, partition types into batches minimizing total BCS subject to θ* (from Contribution A). Formally: find partition P = {S_1, ..., S_k} such that BCS(S_i) ≤ θ* for all i, minimizing k. Equivalent to graph coloring on the θ*-thresholded confusability graph. IE schemas are small graphs (<100 nodes) where greedy methods suffice.
+128	
+129	**Phase 3: Topological Execution with Selective Grounding.**
+130	
+131	Execute DAG layers in topological order. Layer 1: extract entity types in confusability-minimizing batches. Layer 2: for each relation type R(arg1: T1, arg2: T2), provide ONLY extracted entities of types T1 and T2 — selective grounding removes irrelevant entities. Layer 3: extract events with relevant entity and relation context.
+132	
+133	**Phase 4: Cross-Layer Consistency Verification.** Lightweight referential integrity check.
+134	
+135	**Two Variants:**
+136	- **SDGD-zero**: Zero-shot. Uses conf_embed. No labeled data.
+137	- **SDGD-cal**: Few-shot calibrated. Uses 5-10 labeled examples (no gradients) for conf_emp and in-context examples. Still training-free.
+138	
+139	## PRACTICAL IMPACT: Deployment Scenarios
+140	
+141	Training-free IE at ~40-50 F1 is practically useful in specific settings where the ALTERNATIVE is not supervised models but rather NO extraction at all:
+142	
+143	(a) **Clinical schema adaptation**: New reporting standards (e.g., mCODE updates, ICD-11 transitions) introduce extraction schemas monthly. mCODEGPT (Nature Comms Medicine 2025) validates zero-shot clinical IE deployment. Annotation by oncologists costs $150-500/hour; even 45 F1 on complex schemas enables initial triage before expert review.
+144	
+145	(b) **Regulatory compliance extraction**: FINRA's 2026 report identifies IE as the top GenAI use case among financial firms. Regulatory schemas evolve quarterly (new reporting fields, amended definitions). Training-free extraction enables same-week deployment on updated schemas.
+146	
+147	(c) **Multilingual IE**: For ~50 languages lacking annotated IE corpora (GoLLIE-TF, 2025), training-free extraction is the ONLY option. SDGD's schema-level decomposition is language-agnostic — the confusability graph depends on type definitions, not source language.
+148	
+149	(d) **Rapid prototyping for annotation**: SDGD-zero provides immediate extraction that bootstraps annotation by pre-filling structured forms for human correction, reducing annotation time by 40-60% (standard pre-annotation speedup in IE literature).
+150	
+151	In all cases, SDGD's key advantage is **schema portability** — changing the extraction schema requires NO retraining, only recomputing the confusability graph (seconds) and re-partitioning batches.
+152	
+153	## TIMELINE WITH GO/NO-GO DECISION POINT
+154	
+155	**Day 1-3: Contribution A (Phase 0).** Run Experiments 1-4. Compute confusability-quality correlation.
+156	- **Day 3 Decision Point:**
+157	  - |r| ≥ 0.3: PROCEED with full SDGD framework (strong or moderate correlation both justify the method, with framing adjusted per outcome)
+158	  - |r| < 0.3: PIVOT to pure empirical study of schema complexity degradation factors (count, depth, description quality, argument overlap) without SDGD framework — itself a contribution as negative result contradicting extrapolation from supervised NER findings
+159	
+160	**Day 4-8: SDGD Implementation + Core Experiments.** SCG construction, batch composition, selective grounding. Run SDGD-zero and SDGD-cal on 3 core benchmarks (ACE05, Few-NERD, DocRED).
+161	
+162	**Day 9-12: Ablations + Analysis.** Centerpiece ablation suite. Latency measurements. Moderate-correlation analysis if applicable.
+163	
+164	**Day 13-15: Writing + Remaining Experiments.** Paper draft. MAVEN and SciERC results for camera-ready if time permits.
+165	
+166	**Explicit Success Thresholds:**
+167	- (a) SDGD-cal ≥5 F1 over single-pass on complex schemas (>30 types) — OR ≥3 F1 if moderate correlation
+168	- (b) SDGD-zero ≥3 F1 over single-pass on complex schemas — OR ≥2 F1 if moderate correlation
+169	- (c) SDGD-cal > SDGD-zero by ≥2 F1 (validates empirical confusability over embedding proxy)
+170	- (d) Confusability-quality correlation: Pearson |r| ≥ 0.3 (minimum for proceeding)
+171	- (e) High-BCS batches show statistically significant lower F1 than low-BCS batches at same count (p < 0.05)
+172	- (f) Marginal gains (<2 F1) on simple schemas (SciERC, 13 types) — confirms confusability matters more for complex schemas
+173	
+174	**Evaluation.** 5 core benchmarks: ACE05 (joint NER/RE/EE, 58 types — full 3-layer DAG), SciERC (NER/RE, 13 types — simple schema control), MAVEN (168 event types — scaling stress test), DocRED (96 relation types — selective grounding stress test), Few-NERD (66 fine-grained entity types — confusability stress test).
+175	
+176	**Baselines (training-free).** (a) Single-pass with full schema + constrained decoding, (b) UniNER-style per-type independent queries, (c) LLM-PEE-style similarity-based partitioning (adapted), (d) ProUIE-style 3-layer NER→RE→EE (all upstream passed), (e) Random batching (same batch count as SDGD, random composition — KEY ABLATION isolating confusability-aware grouping), (f) AEVS-style text-centric grounding (adapted), (g) Count-minimizing decompo
+177	
+178	## Resource Estimate
+179	
+180	- **auto_research**: {'claude_api_cost': '$200-350 (~2000-3500 turns)', 'estimated_gpu_cost': '$425-850 at ~$2.50-5/hr H100', 'gpu_hours': '~170h H100 (Contribution A: 5h + 5 datasets × full ablation suite + calibration count sensitivity at 5/10 examples; embedding model fixed to Qwen 3.6-27B, threshold derived from Contribution A)', 'gpu_utilization': 'Moderate (~45-55%): confusion matrix computation creates sequential dependencies within-dataset; evaluation parallelizes across batches but cross-dataset analysis is sequential', 'risk_note': 'Automated confusion matrix estimation may amplify noise from small calibration sets (5-10 examples). Mitigated by deriving threshold from Contribution A controlled experiments rather than grid search. Day-3 go/no-go automated via correlation threshold check', 'speed_bottleneck': "Confusion matrix computation requires per-example extraction runs; DocRED's 96 relation types require O(96²) pairwise confusability estimation from limited calibration data", 'team': '0 (initial setup ~5h for dataset preparation, schema parsing, embedding computation)', 'timeline': '10-14 days with 2 H100 GPUs (170 GPU-hours total; at ~50% parallel efficiency across 2 GPUs, yielding ~12 productive GPU-hours per GPU per day = 170/(2×12) ≈ 7 days compute + 3-7 days analysis/iteration)'}
+181	- **human_in_loop**: {'claude_api_cost': '$150-250 (~1500-2500 turns)', 'estimated_gpu_cost': '$325-650 at ~$2.50-5/hr H100', 'gpu_hours': '~130h H100 (agent explores confusability threshold sensitivity, calibration example selection, grounding formats)', 'gpu_utilization': 'Moderate (~35-45%): agent queues experiments sequentially due to confusion matrix dependencies; human reviews daily', 'risk_note': 'Confusion matrix estimation from 5-10 examples may be noisy; human judgment needed to evaluate calibration reliability and decide go/no-go at day 3', 'team': '1 researcher, ~1.5h/day reviewing confusability analysis, calibration confusion matrices, and batch composition quality', 'timeline': '3-4 weeks'}
+182	- **manual**: {'estimated_gpu_cost': '$225-450 at ~$2.50-5/hr H100', 'gpu_hours': '~90h H100 (Contribution A: 3h + 5 datasets × 8 baselines/ablations × 2 variants, each 0.5-1.5h on H100-80GB with Qwen 3.6-27B)', 'gpu_utilization': 'Low (~15-20%): GPU idle during SCG construction, confusability analysis, statistical testing', 'team': '1-2 researchers', 'timeline': '5-6 weeks (Contribution A weeks 1-2, SDGD-zero experiments weeks 3-4, SDGD-cal + ablations week 5, analysis and writing week 6)'}
+183	
+184	## Key References
+185	
+186	- UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition (ICLR 2024, arXiv 2308.03279) — per-type querying > batch querying by 3.3 F1; foundational evidence for type-level decomposition
+187	- Context Length Alone Hurts LLM Performance Despite Perfect Retrieval (Alon et al., EMNLP 2025 Findings, arXiv 2510.05381) — 13.9-85% degradation from context length alone; supports removing irrelevant types from prompts
+188	- ExtractBench: A Benchmark and Evaluation Methodology for Complex Structured Extraction (Ferguson et al., arXiv 2602.12247, Feb 2026) — 0% valid output at 369-field schemas; catastrophic scaling failure motivating decomposition
+189	- ScrapeGraphAI-100k: A Large-Scale Dataset for LLM-Based Web Information Extraction (arXiv 2602.15189, Feb 2026) — 93,695 real-world extraction events; identifies breakpoints at schema depth >7, key count >200; measures structural complexity but not semantic confusability
+190	- Schema as Parameterized Tools for Universal Information Extraction (SPT, arXiv 2506.01276, June 2025) — treats schemas as parameterized tools for LLM tool-calling; addresses schema SELECTION from a pool (requires training); SDGD addresses schema DECOMPOSITION within a single complex schema (training-free)
+191	- AEVS: Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking (MDPI Computers, March 2026) — text-centric anchor grounding for KG triplets; SDGD provides complementary schema-centric grounding
+192	- LLM-PEE: Towards Event Extraction with Massive Types (EMNLP 2025 Main, arXiv 2503.02628) — similarity-based type recall + confidence-based partitioning; implicit confusability proxy without empirical validation
+193	- The Format Tax (arXiv 2604.03616, April 2026) — prompt-level effects account for ~71% of format-induced degradation (3.9pp vs 1.6pp decoder-level)
+194	- ACONIC: An Approach for Systematic Decomposition of Complex LLM Tasks (arXiv 2510.07772, Oct 2025) — formalizes task decomposition via constraint-satisfaction treewidth, yielding 3.6-7.5pp gains on Spider; inspiration for principled IE-specific decomposition
+195	- PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction (EMNLP 2025 Industry, arXiv 2510.08623) — ARCHITECT optimizes schema representation (up to 64.7% improvement on SWDE); complementary to SDGD (schema representation vs. schema delivery)
+196	- SAM-NER: Semantic Archetype Mediation for Zero-Shot Named Entity Recognition (arXiv 2605.03706, ACL Findings 2026) — handles entity-level type confusion via intermediate archetype space; complementary to SDGD's schema-level confusability analysis
+197	- CyberNER: A Harmonized STIX Corpus for Cybersecurity Named Entity Recognition (arXiv 2510.26499, 2025) — ~30% F1 improvement from harmonizing 50+ confusable labels into 21 types; demonstrates confusability-quality link in supervised NER
+198	- Statistical Dataset Evaluation: A Case Study on Named Entity Recognition (Natural Language Processing, Cambridge, Jan 2025) — 6.42 F1 gap between high/low entity ambiguity datasets; quantifies ambiguity impact but in supervised setting
+199	- ESNERA: Empirical and Semantic Named Entity Alignment for Named Entity Dataset Merging (arXiv 2508.06877, Aug 2025) — combines empirical + semantic similarity for cross-dataset label alignment; supports dual-estimation in SDGD
+200	- DEER: LLMs are Better Than You Think: Label-Guided In-Context Learning for NER (EMNLP 2025 Main, arXiv 2505.23722) — label-grounded statistics for ICL demonstration selection; supports calibration-based approach in SDGD-cal
+201	- APIE: Reflect then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion (arXiv 2508.10036, 2025) — decomposes extraction difficulty into format-level and content-level confusion; 18.3% relative gains
+202	- CMAS: A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition (WWW 2025, arXiv 2502.18702) — cooperative multi-agent NER; related zero-shot baseline
+203	- DLISC: Effective and Efficient Schema-aware Information Extraction Using On-Device Large Language Models (arXiv 2505.14992, May 2025) — trained two-stage schema identification + extraction with LoRA; same motivation but gradient-based
+204	- OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System (WWW 2025 Companion, arXiv 2412.20005) — schema-guided multi-agent system; fixed architecture without confusability-driven decomposition
+205	- Context Rot: How Increasing Input Tokens Impacts LLM Performance (Chroma Research, 2025) — semantically similar distractors cause worst degradation; directly motivates separating confusable types
+206	- Lost in the Middle: How Language Models Use Long Contexts (TACL 2024, arXiv 2307.03172) — established positional degradation in LLMs via controlled experiments; methodological inspiration for Contribution A's controlled confusability study
+207	- mCODEGPT: Zero-shot Information Extraction from Clinical Free Text Data (Nature Communications Medicine, 2025) — validates deployment of zero-shot IE for clinical extraction (94-96% accuracy); concrete use case for training-free IE
+208	- SH-ETRs: Learning Soft-Hard Rules with Entity Type Constraints for Document-Level Relation Extraction (Expert Systems with Applications 2025) — entity type constraints in learned models; SDGD implements analogous constraints as training-free pipeline routing
+209	- ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction (arXiv Apr 2026, 2604.10633) — current best fine-tuned UIE; training-free upper bound reference
+210	- CROSSAGENTIE: Cross-Type and Cross-Task Multi-Agent LLM Collaboration for Zero-Shot Information Extraction (ACL Findings 2025) — zero-shot multi-agent baseline using debate-based consensus
+211	- KGGen: Extracting Knowledge Graphs from Plain Text with Language Models (NeurIPS 2025, arXiv 2502.09956) — entity→relation 2-step decomposition; SDGD extends to confusability-aware DAG
+212	- DCCD: Draft-Conditioned Constrained Decoding for Structured Generation in LLMs (arXiv 2603.03305, Feb 2026) — decoder-level fix composable with SDGD (deferred to camera-ready)
+213	- How Is LLM Reasoning Distracted by Irrelevant Context? (arXiv 2505.18761, 2025) — power-law degradation with distractor count; supports selective grounding
+214	- ITER: Iterative Refinement for Joint Entity and Relation Extraction (EMNLP 2024 Findings) — supervised ACE05 RE upper bound (~71.4 F1)
+215	- DREEAM: Document-level RE with Evidence-guided Attention Mechanism (EACL 2023) — supervised Re-DocRED upper bound (~81.4 F1)
+216	- XGrammar: Flexible and Efficient Structured Generation Engine for LLMs (arXiv 2411.15100, 2024; XGrammar-2 blog May 2026)
+217	- Label Disentanglement in Partition-based Extreme Multilabel Classification (Amazon Science, NeurIPS 2021) — optimal label partitioning via flexible overlapping clusters; related formalization
+218	
+219	## Reviewer Evaluation
+220	
+221	**Scores**:
+222	  - clarity: **{'rationale': "Exceptionally well-structured after 8 rounds: explicit success thresholds, outcome-dependent framing for all correlation levels, honest Format Tax characterization, comprehensive related work with clear differentiation from 7+ competing approaches. The centerpiece ablation isolates each component's contribution.", 'score': 4}**/5
+223	  - feasibility: **{'rationale': "Budget (~170h H100) is within the 200h constraint; Qwen3.6-27B is verified available with structured generation support. The 15-day timeline is tight but the day-3 go/no-go mechanism, focused 5-benchmark scope, and Phase 0's lightweight design (<3h GPU) make it achievable. Auto mode GPU utilization estimates now internally consistent.", 'score': 4}**/5
+224	  - impact: **{'rationale': "Phase 0's confusability-quality curves would inform all future schema-guided extraction work regardless of whether SDGD is adopted — establishing empirically-grounded decomposition criteria where currently only heuristics exist. Practical deployment scenarios (clinical schema adaptation, regulatory compliance, multilingual IE where training-free is the ONLY option) are concrete and legitimized by mCODEGPT and FINRA 2026 evidence.", 'score': 4}**/5
+225	  - novelty: **{'rationale': 'The Phase 0 controlled experiment (fixing type count, varying confusability composition) is genuinely novel — confirmed through extensive search that no prior work isolates confusability from count in training-free LLM IE. The SCS formalization with dual embedding/empirical estimation combined with graph partitioning is new, though individual components (per-type splitting, selective grounding) are known.', 'score': 4}**/5
+226	
+227	## Human Review Note
+228	
+229	## Agent 审核结果（完整三阶段 pipeline）
+230	
+231	**Verdict**: PASS
+232	
+233	**入口三重共识 (X)**: 25.0%
+234	**终审自评 (Y)**: 35.0%
+235	**出口三重共识 (Z)**: 31.0%
+236	**Z 区间**: [26.0%, 37.0%]
+237	**真实提升 (Z-X)**: +6.0 pp
+238	**幻觉幅度 (Y-Z)**: +4.0 pp
+239	**出口一致性**: 高
+240	**出口三次评估**: [30.0, 32.0, 32.0]
+241	
+242	### 优化方案 / 拒绝详情
+243	【优化方案】
+244	
+245	1. [Motivation 章节 — 新增 ICL-specific mechanism 论证] — 增加 softmax bottleneck / discriminative capacity 理论框架，论证 ICL 下 type confusability 的运作机制与 supervised setting 有结构性差异（attention-based competition vs. parameter adaptation），将工作从"在新 setting 验证旧结论"提升为"研究新机制下的新现象" — 命中 Novelty 和 Technical Soundness
+246	
+247	2. [Motivation 章节 — 删除 attention sink / lost-in-the-middle 类比] — 原始 proposal 无此内容，但迭代第 2 轮曾引入 attention sink/lost-in-the-middle 作为 H1 理论支撑，第 3 轮发现其与 confusability 机制存在逻辑断层（位置效应 ≠ 语义歧义），替换为 softmax bottleneck 论证 — 命中 Technical Soundness（防御 reviewer "mechanism mismatch" 攻击）
+248	
+249	3. [Contribution A — 新增 "Expected Non-Trivial Findings" 子节] — 原始 proposal 的 Contribution A 仅声称"confusability independently predicts quality loss"，直觉性过强。新增三个具体的非平凡假设：(H1) 非线性阈值效应——性能在临界 confusability 以下 robust、以上急剧退化；(H2, exploratory) 高阶交互效应——pairwise 低混淆的类型组合可能出现涌现式崩溃；(H3, exploratory) 跨 IE 范式差异——事件抽取因 argument structure 更丰富而对 confusability 格外敏感 — 命中 Novelty（从"验证直觉"升级为"发现非平凡结构"）
+250	
+251	4. [Contribution A — 新增 Error Taxonomy Analysis] — 原始 proposal 无此设计。对每个 confusability 水平做 fine-grained error 分类：type substitution（正确 span、错误类型）、span boundary error、false negative、hallucinated entity。若高 confusability 主要增加 type substitution，直接为 attention competition 假说提供 mechanistic evidence — 命中 Technical Soundness 和 Significance（"beyond aggregate F1, we explain what goes wrong"）
+252	
+253	5. [Contribution A — 新增 SCS Validation Protocol + Divergence Analysis] — 原始 proposal 将 SCS-zero 和 SCS-cal 仅作为两个变体的实现细节。新增：(a) Spearman/Kendall rank correlation 验证 embedding proxy 有效性；(b) 三档处理方案（ρ>0.7 / 0.5-0.7 / <0.5）；(c) divergent case analysis（false-high-SCS 和 false-low-SCS 的 top-5 type pairs + 定性分析），为 Bayesian hybrid 设计提供 empirical justification — 命中 Technical Soundness 和 Novelty（SCS alignment 本身是独立发现）
+254	
+255	6. [Contribution A — 多操作化 Confusability 定义] — 原始 proposal 仅用 embedding similarity 定义 confusability。新增三种独立操作化定义：SCS-zero（embedding cosine）、ROUGE-L（定义文本重叠）、人工语义相似度评分。跨定义一致性打破循环依赖、增强因果推断 — 命中 Technical Soundness
+256	
+257	7. [Contribution A — 多模型评估] — 原始 propo
+258	
+259	
+260	
+261	## MVP Validation Results
+262	
+263	- **Date**: 2026-05-15
+264	- **Hypothesis Supported**: Yes
+265	
+266	### Key Metrics
+267	
+268	Partial r(F1, BCS)=0.303, p=0.026 | count_12 r(F1, BCS)=0.501, p=0.008 | Pairwise BCS-confusion ρ=0.254, p=4.6e-12 | Confusion rate high/low BCS: 10-28x | Recall vs count: 0.72→0.42 (monotonic decline) | WrongType errors: 0→2434 (linear with count)
+269	
+270	### Summary
+271	
+272	在 Few-NERD (66 fine-grained entity types, 1000 test samples) 上用 Qwen3-32B-FP8 验证了核心假设：type confusability 独立于 type count 驱动 training-free LLM IE 质量下降。
+273	
+274	机制发现：confusability 的降级通道是 type confusion（标错类型），而非 entity omission（遗漏实体）。这比原始假设更精确。
+275	
+276	三重证据链：
+277	1. Batch-level F1 vs BCS: count_12 r=0.501 (p=0.008)，偏相关 r=0.303 (p=0.026)
+278	2. Confusion rate: high-BCS extreme batches 的 type confusion rate 是 low-BCS 的 10-28 倍
+279	3. Type-pair level: pairwise BCS-confusion Spearman ρ=0.254 (p=1.1e-6, n=1953 pairs)，top confused pairs 全是同 coarse category 内的 fine-grained subtypes (BCS>0.85)
+280	
+281	额外发现：count curve 反转（F1 随 type count 上升），根因是低 count 时模型 over-predict（pred/gold=6.8x at count=1 vs 0.8x at count=64）。Recall 单调下降（0.72→0.42）符合 count degradation 预期。
+282	
+283	Narrative: Multi-channel degradation model — count 驱动 recall 下降 + confusability 驱动 type confusion 增加，两者正交。
+284	
+285	### Recommendation
+286	
+287	GO — 进入 research 阶段。优先执行 Exp 3a（prompt v2 重跑获取干净数据，已审批+GPU 已分配），然后按 Narrative A (multi-channel degradation) 展开完整实验矩阵。目标 EMNLP 2026 ARR May 25。
+288	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "b60c4874-661c-43b7-aa35-aab28fe248f9"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 35_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_050…",
+  "usage": {
+    "total_tokens": 43361,
+    "tool_uses": 7,
+    "duration_ms": 11112
+  },
+  "last_tool_name": "Bash",
+  "uuid": "91fa786d-cc0b-488a-bf9b-4e8025f8d55c",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Uv1czx23KAH9T5W4EvkUDc`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction -type f -name \"*.py\" | sort"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "4580cbbe-60da-4c5d-9bfd-def7c3e1fd23",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01W2Sr5zeBiCe2R9HQSaptFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4582,
+      "cache_creation_input_tokens": 14127,
+      "cache_read_input_tokens": 24559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 14127,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T03:09:11.747Z_
+
+<details><summary>↩ Tool result · `toolu_01Uv1czx23KAH9T5W4EvkUDc`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/text_match_reeval.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "62a3f0e2-78ac-4fe6-964b-73076fcd6a77"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 38_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading configs/few_nerd_types.json",
+  "usage": {
+    "total_tokens": 43622,
+    "tool_uses": 8,
+    "duration_ms": 12737
+  },
+  "last_tool_name": "Read",
+  "uuid": "7677ed4a-4382-4c32-8d61-c01a0e0f8f86",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016UNUmnJPDDFojK5MfhLkeY`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/configs/few_nerd_types.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "50b697f1-d0f8-4f1a-b8b5-1445de5940a3",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_012aii2PyaarhESrXZuXj7aM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 4831,
+      "cache_read_input_tokens": 38686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4831,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T03:09:13.319Z_
+
+<details><summary>↩ Tool result · `toolu_016UNUmnJPDDFojK5MfhLkeY`</summary>
+
+```text
+1	{
+2	  "person-actor": "A person who performs in movies, TV shows, theater, or other entertainment productions.",
+3	  "person-artist/author": "A person who creates artistic or literary works, including writers, painters, sculptors, musicians as creators, and other creative professionals.",
+4	  "person-athlete": "A person who competes in sports or athletic events, whether professional or amateur.",
+5	  "person-director": "A person who directs movies, TV shows, theater productions, or other media content.",
+6	  "person-other": "A person who does not fit into the other specific person subcategories, such as historical figures, activists, or ordinary individuals mentioned by name.",
+7	  "person-politician": "A person who holds or campaigns for political office, or is primarily known for political activities.",
+8	  "person-scholar": "A person primarily known for academic or scientific work, including professors, researchers, and intellectuals.",
+9	  "person-soldier": "A person who serves or served in a military or armed force, including officers, generals, and enlisted personnel.",
+10	
+11	  "organization-company": "A commercial business entity, corporation, or firm engaged in trade, manufacturing, or services for profit.",
+12	  "organization-education": "An educational institution such as a university, college, school, or research institute.",
+13	  "organization-government/governmentagency": "A government body, department, ministry, or agency that exercises governmental authority or provides public services.",
+14	  "organization-media/newspaper": "A media organization, news outlet, newspaper, magazine, broadcasting network, or publishing house.",
+15	  "organization-other": "An organization that does not fit into the other specific organization subcategories, such as NGOs, foundations, or international bodies.",
+16	  "organization-politicalparty": "A political party or political movement organized to participate in elections or governance.",
+17	  "organization-religion": "A religious organization, denomination, church, order, or other faith-based institutional body.",
+18	  "organization-showorganization": "An entertainment or performing arts organization such as a band, orchestra, dance troupe, or theater company.",
+19	  "organization-sportsleague": "A sports league, conference, or governing body that organizes and oversees athletic competitions.",
+20	  "organization-sportsteam": "A specific sports team that competes in organized athletic events or leagues.",
+21	
+22	  "location-GPE": "A geopolitical entity such as a country, state, province, city, or town with defined governmental boundaries.",
+23	  "location-bodiesofwater": "A natural or artificial body of water, including oceans, seas, rivers, lakes, and reservoirs.",
+24	  "location-island": "An island or archipelago, whether inhabited or uninhabited.",
+25	  "location-mountain": "A mountain, mountain range, hill, volcano, or other elevated landform.",
+26	  "location-other": "A named location that does not fit into the other specific location subcategories, such as regions, continents, or geographic areas without clear governmental boundaries.",
+27	  "location-park": "A park, nature reserve, national park, garden, or other designated recreational or conservation area.",
+28	  "location-road/railway/highway/transit": "A named road, railway, highway, bridge, tunnel, transit line, or other transportation route or infrastructure.",
+29	
+30	  "building-airport": "An airport or airfield facility used for aircraft takeoff, landing, and passenger or cargo handling.",
+31	  "building-hospital": "A hospital, medical center, clinic, or other healthcare facility.",
+32	  "building-hotel": "A hotel, motel, resort, inn, or other lodging establishment.",
+33	  "building-library": "A library or archival facility that houses collections of books, documents, or other media for public or institutional use.",
+34	  "building-other": "A named building or structure that does not fit into the other specific building subcategories, such as landmarks, monuments, palaces, or office buildings.",
+35	  "building-restaurant": "A restaurant, café, bar, pub, or other food and beverage establishment.",
+36	  "building-sportsfacility": "A sports facility such as a stadium, arena, gymnasium, racetrack, or sports complex.",
+37	  "building-theater": "A theater, opera house, concert hall, or other venue primarily used for performing arts or film screenings.",
+38	
+39	  "art-broadcastprogram": "A television show, radio program, podcast, or other broadcast or streaming media series.",
+40	  "art-film": "A motion picture or movie, including feature films, documentaries, and short films.",
+41	  "art-music": "A musical composition, song, album, or other musical work.",
+42	  "art-other": "An artistic work that does not fit into the other specific art subcategories, such as sculptures, photographs, or video games as artistic works.",
+43	  "art-painting": "A painting or drawn visual artwork, typically created on canvas, paper, or other surfaces.",
+44	  "art-writtenart": "A written literary or artistic work such as a novel, poem, play, short story, essay, comic book, or other published text.",
+45	
+46	  "event-attack/battle/war/militaryconflict": "A military conflict, war, battle, terrorist attack, bombing, or other armed confrontation.",
+47	  "event-disaster": "A natural or man-made disaster such as an earthquake, hurricane, flood, famine, industrial accident, or pandemic.",
+48	  "event-election": "A political election, referendum, or vote at any level of government.",
+49	  "event-other": "A named event that does not fit into the other specific event subcategories, such as ceremonies, festivals, summits, or cultural events.",
+50	  "event-protest": "A protest, demonstration, uprising, revolution, strike, riot, or other act of civil unrest or political dissent.",
+51	  "event-sportsevent": "A sporting event, tournament, competition, race, or championship such as the Olympics, World Cup, or Super Bowl.",
+52	
+53	  "product-airplane": "A specific model or type of aircraft, including commercial airplanes, military jets, and helicopters.",
+54	  "product-car": "A specific model or type of automobile, including cars, trucks, motorcycles, and other road vehicles.",
+55	  "product-food": "A named food product, beverage, dish, or brand of consumable goods.",
+56	  "product-game": "A named game, including video games, board games, card games, and other recreational games.",
+57	  "product-other": "A named product that does not fit into the other specific product subcategories, such as electronics, consumer goods, or industrial products.",
+58	  "product-ship": "A specific named ship, boat, submarine, or other watercraft.",
+59	  "product-software": "A named software application, operating system, platform, programming language, or digital tool.",
+60	  "product-train": "A specific named train service, locomotive model, or railway rolling stock.",
+61	  "product-weapon": "A specific type or model of weapon, including firearms, missiles, bombs, and other military armaments.",
+62	
+63	  "other-astronomything": "An astronomical object or phenomenon such as a star, planet, galaxy, constellation, comet, or nebula.",
+64	  "other-award": "A named award, prize, honor, medal, or distinction given in recognition of achievement.",
+65	  "other-biologything": "A biological entity or concept such as a species, gene, protein, cell type, or biological process.",
+66	  "other-chemicalthing": "A chemical substance, compound, element, material, or mineral.",
+67	  "other-currency": "A named currency, monetary unit, or cryptocurrency.",
+68	  "other-disease": "A disease, medical condition, disorder, syndrome, or illness.",
+69	  "other-educationaldegree": "An academic degree, diploma, certification, or educational qualification.",
+70	  "other-god": "A deity, god, goddess, or divine figure from any religion or mythology.",
+71	  "other-language": "A human language, dialect, or programming language when referred to as a linguistic system.",
+72	  "other-law": "A named law, regulation, statute, treaty, legal act, or constitutional provision.",
+73	  "other-livingthing": "A living organism referred to by common name rather than scientific classification, such as a specific animal, plant, or other life form not covered by biologything.",
+74	  "other-medical": "A medical term, treatment, procedure, drug, therapy, or medical device that is not a disease."
+75	}
+76	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "d19916ad-f051-4e28-9fdd-8e51c2aa3e23"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 41_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading artifacts/sdgd_design_doc.md",
+  "usage": {
+    "total_tokens": 43626,
+    "tool_uses": 9,
+    "duration_ms": 13184
+  },
+  "last_tool_name": "Read",
+  "uuid": "009b0d04-27a8-4d5d-9f76-0cf89c8bd5ea",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01CK5Wtq58MJ2xDcoEpSvJtF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/sdgd_design_doc.md",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "85de098b-7bb9-445a-9dec-d1e03b3d641b",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_012aii2PyaarhESrXZuXj7aM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 4831,
+      "cache_read_input_tokens": 38686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4831,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T03:09:13.766Z_
+
+<details><summary>↩ Tool result · `toolu_01CK5Wtq58MJ2xDcoEpSvJtF`</summary>
+
+````text
+1	# SDGD Framework — Algorithm Design & Code Skeleton
+2	
+3	## 1. Algorithm Flow
+4	
+5	### Input
+6	- `types: Dict[str, str]` — type name → description (e.g., `configs/few_nerd_types.json`, 66 entries)
+7	- `embeddings: Tensor[N, D]` — type embeddings from Qwen3-32B mean-pool (N=66, D=5120), loaded from `artifacts/type_embeddings.pt`
+8	- `τ: float` — confusability threshold (from Contribution A: θ* where degradation becomes significant)
+9	- `model: LLM` — vLLM engine (Qwen3-32B-FP8)
+10	- `samples: List[Dict]` — test samples with `text` field
+11	- `confusion_matrix: Optional[Tensor[N, N]]` — empirical confusion counts from calibration (SDGD-cal only)
+12	
+13	### Output
+14	- `predictions: List[Dict]` — merged predictions across all batches, format: `[{"sample_id": int, "predictions": [{"text": str, "type": str}]}]`
+15	
+16	### Pseudocode
+17	
+18	```
+19	function SDGD(types, embeddings, τ, model, samples, confusion_matrix=None):
+20	    # Step 1: Pairwise confusability matrix
+21	    if confusion_matrix is not None:                      # SDGD-cal
+22	        C = normalize_confusion(confusion_matrix)         # symmetric, [0,1]
+23	    else:                                                 # SDGD-zero
+24	        C = cosine_similarity(embeddings, embeddings)     # [N, N]
+25	
+26	    # Step 2: Thresholded adjacency graph
+27	    A = (C > τ) & ~eye(N)                                # binary adjacency
+28	    G = Graph(nodes=types.keys(), edges=A.nonzero())
+29	
+30	    # Step 3: Greedy graph coloring → type batches
+31	    coloring = greedy_color(G, strategy="largest_first")  # {type: color_id}
+32	    batches = group_by_color(coloring)                    # {color_id: [type_names]}
+33	
+34	    # Step 4: Per-batch extraction
+35	    all_predictions = []
+36	    for batch_id, batch_types in batches.items():
+37	        prompts = [build_prompt(s["text"], types, batch_types) for s in samples]
+38	        schema = build_json_schema(batch_types)
+39	        outputs = model.generate(prompts, guided_decoding=schema)
+40	        preds = parse_outputs(outputs, batch_id, batch_types)
+41	        all_predictions.append(preds)
+42	
+43	    # Step 5: Merge across batches
+44	    merged = merge_predictions(all_predictions)
+45	    return merged
+46	```
+47	
+48	## 2. Key Design Decisions
+49	
+50	### 2.1 SDGD-zero vs SDGD-cal
+51	
+52	| | SDGD-zero | SDGD-cal |
+53	|---|---|---|
+54	| Confusability source | Embedding cosine similarity | Empirical confusion matrix from k calibration examples |
+55	| Data requirement | None (zero-shot) | 5-10 labeled examples per type |
+56	| Quality | Proxy — embedding similarity ≈ semantic confusability | Ground truth — measures actual model confusion |
+57	| Cost | Free (embeddings precomputed) | k × N_types extraction calls for calibration |
+58	| When to use | No labeled data; rapid schema adaptation | Labeled data available; maximum accuracy |
+59	
+60	**Calibration procedure (SDGD-cal)**:
+61	```
+62	function compute_empirical_confusion(types, model, calibration_samples):
+63	    # Run single-pass extraction with ALL types on calibration set
+64	    preds = extract(model, calibration_samples, all_types=types)
+65	    
+66	    # Build confusion matrix: C[i,j] = count of gold type-i predicted as type-j
+67	    C = zeros(N, N)
+68	    for sample in calibration_samples:
+69	        for gold_entity in sample.entities:
+70	            matched_pred = find_best_match(gold_entity, preds[sample.id])
+71	            if matched_pred:
+72	                i = type_index[gold_entity.type]
+73	                j = type_index[matched_pred.type]
+74	                C[i, j] += 1
+75	    
+76	    # Symmetrize and normalize
+77	    C_sym = (C + C.T) / 2
+78	    row_sums = C_sym.sum(dim=1, keepdim=True).clamp(min=1)
+79	    return C_sym / row_sums
+80	```
+81	
+82	### 2.2 Threshold τ Selection
+83	
+84	**Primary method: Adaptive threshold（数据集无关）**
+85	
+86	`τ = mean(C_upper_tri) + k · std(C_upper_tri)`，k 是唯一超参数。
+87	
+88	- 自适应于不同 schema 的 embedding 分布，避免循环性问题（不从目标数据集推导阈值）
+89	- Few-NERD Qwen3 embeddings: mean=0.7837, std=0.0653 → k=1.0 时 τ ≈ 0.85
+90	- 默认 k=1.0，通过 k sweep 消融确定最优值
+91	
+92	**Oracle threshold baseline（上界对比用）**:
+93	- 从 Few-NERD BCS-quality curve 推导的固定 τ∈[0.82, 0.88]
+94	- 仅用于 Few-NERD 上的上界对比实验，**不可用于跨域验证**（exp-009 等）
+95	- 论文中明确标注为 "oracle" 以区分
+96	
+97	**跨域验证要求**:
+98	- exp-009（ACE05/MAVEN）等跨域实验 **必须** 使用 adaptive threshold
+99	- 不同数据集的 embedding 分布不同，固定 τ 无意义
+100	
+101	**消融计划**: k sweep {0.5, 1.0, 1.5, 2.0}，在 adaptive framework 内做。报告每个 k 下的：τ 值、batch 数量、F1、vs single-pass Δ。
+102	
+103	### 2.3 Graph Coloring Algorithm
+104	
+105	**选择: Greedy (largest_first)**
+106	
+107	理由：
+108	- IE schema 图很小（Few-NERD 66 nodes, ACE05 58 nodes, 最大 MAVEN 168 nodes）
+109	- Greedy coloring 时间复杂度 O(V²)，对 168 nodes 微秒级
+110	- Optimal coloring 是 NP-hard，但 greedy 在稀疏图（τ 控制密度）上接近最优
+111	- NetworkX `greedy_color` 直接可用，strategy="largest_first" 优先处理高度节点
+112	
+113	**Batch 数量预估** (Few-NERD, τ=0.85):
+114	- 同 coarse category 内 subtypes 基本都 > 0.85（如 person-* 8 个 subtypes 互相 BCS > 0.88）
+115	- 预计 chromatic number ≈ 8-10（≈ max clique size in thresholded graph）
+116	- 对比 single-pass (1 batch, 66 types) 和 per-type (66 batches)
+117	
+118	### 2.4 Merge Strategy
+119	
+120	**Primary: Simple union**（适用于 NER）
+121	```
+122	function merge_predictions(batch_predictions):
+123	    merged = defaultdict(list)
+124	    for batch_preds in batch_predictions:
+125	        for pred in batch_preds:
+126	            merged[pred.sample_id].extend(pred.predictions)
+127	    return merged
+128	```
+129	
+130	NER batch 之间 type 集合不重叠（graph coloring 保证），所以不存在同一 span 被不同 batch 提取为不同 type 的冲突。唯一可能的重复：同一 span 被提取为同一 type（hallucination）。
+131	
+132	**Conflict resolution（RE/EE 跨层时需要）**:
+133	- 同一 (text, type) pair 出现在多个 batch → deduplicate
+134	- 同一 span 不同 type → 保留 confidence 最高的（如果 model 提供 logprob）或保留全部（交给 evaluator）
+135	
+136	当前 NER-only 阶段用 simple union 即可。
+137	
+138	## 3. Module Structure
+139	
+140	```
+141	src/sdgd/
+142	  __init__.py           # Public API: sdgd_extract()
+143	  similarity.py         # Pairwise confusability computation
+144	  graph.py              # Threshold graph construction + coloring
+145	  decompose.py          # Main decomposition orchestrator
+146	  merge.py              # Result merging across batches
+147	  evaluate.py           # SDGD-specific evaluation & comparison
+148	```
+149	
+150	### 3.1 `similarity.py`
+151	
+152	```python
+153	"""Pairwise confusability matrix computation."""
+154	import torch
+155	import torch.nn.functional as F
+156	from typing import Dict, Optional, Tuple, List
+157	
+158	def load_type_embeddings(path: str) -> Tuple[torch.Tensor, List[str]]:
+159	    """Load precomputed type embeddings.
+160	    
+161	    Returns:
+162	        embeddings: [N, D] tensor (N=66, D=5120 for Qwen3)
+163	        type_names: ordered list of type names matching embedding rows
+164	    """
+165	    ...
+166	
+167	def cosine_similarity_matrix(embeddings: torch.Tensor) -> torch.Tensor:
+168	    """Compute pairwise cosine similarity. Returns [N, N] matrix in [0, 1]."""
+169	    normed = F.normalize(embeddings, dim=1)
+170	    return normed @ normed.T
+171	
+172	def normalize_confusion_matrix(C: torch.Tensor) -> torch.Tensor:
+173	    """Symmetrize and normalize raw confusion counts to [0, 1].
+174	    
+175	    C[i,j] = count of gold type-i predicted as type-j.
+176	    Output: symmetric matrix, diagonal zeroed, max-normalized.
+177	    """
+178	    ...
+179	
+180	def compute_confusability(
+181	    embeddings: torch.Tensor,
+182	    confusion_matrix: Optional[torch.Tensor] = None,
+183	) -> torch.Tensor:
+184	    """Unified confusability computation.
+185	    
+186	    SDGD-zero: uses embedding cosine similarity.
+187	    SDGD-cal: uses normalized empirical confusion matrix.
+188	    """
+189	    if confusion_matrix is not None:
+190	        return normalize_confusion_matrix(confusion_matrix)
+191	    return cosine_similarity_matrix(embeddings)
+192	```
+193	
+194	### 3.2 `graph.py`
+195	
+196	```python
+197	"""Confusability graph construction and coloring."""
+198	import networkx as nx
+199	import torch
+200	from typing import Dict, List, Tuple
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "d9354486-5226-4846-8630-a7c4cf206eb9"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 44_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading artifacts/ace05_data_prep_report.md",
+  "usage": {
+    "total_tokens": 43630,
+    "tool_uses": 10,
+    "duration_ms": 13518
+  },
+  "last_tool_name": "Read",
+  "uuid": "5f9bd5cc-1092-4a83-9398-828b9ffd4a07",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BQTqqzVqq3dNnSdZmwLygB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_data_prep_report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "53e9a320-abb1-4e69-b931-2123f6919f5d",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_012aii2PyaarhESrXZuXj7aM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 4831,
+      "cache_read_input_tokens": 38686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4831,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T03:09:14.099Z_
+
+<details><summary>↩ Tool result · `toolu_01BQTqqzVqq3dNnSdZmwLygB`</summary>
+
+````text
+1	# ACE05 数据集调研报告
+2	
+3	> 目的：为 exp-004（ACE05 confusability study）准备数据，验证 Few-NERD 上发现的 BCS-quality 相关性能否跨域复现。
+4	
+5	---
+6	
+7	## 1. 数据集概况
+8	
+9	**ACE 2005 (Automatic Content Extraction)**
+10	- **发布者**: Linguistic Data Consortium (LDC), LDC2006T06
+11	- **语言**: 英语、中文、阿拉伯语（我们只用英语部分）
+12	- **领域**: 新闻（newswire, broadcast news, broadcast conversation, weblog, discussion forum, conversational telephone speech）
+13	- **规模**: 英语部分约 599 篇文档，~30K 句子
+14	- **标注内容**: 实体 (Entity)、关系 (Relation)、事件 (Event)、值 (Value)、时间表达式 (Time Expression)
+15	- **LDC 目录**: https://catalog.ldc.upenn.edu/LDC2006T06
+16	
+17	---
+18	
+19	## 2. 实体类型（7 types）
+20	
+21	| Type | 缩写 | 说明 | Subtypes |
+22	|------|------|------|----------|
+23	| Person | PER | 人物 | Individual, Group, Indefinite |
+24	| Organization | ORG | 组织 | Commercial, Educational, Entertainment, Government, Media, Medical-Science, Non-Governmental, Religious, Sports |
+25	| GPE | GPE | 地缘政治实体 | Continent, County-or-District, GPE-Cluster, Nation, Population-Center, Special, State-or-Province |
+26	| Location | LOC | 地理位置 | Address, Boundary, Celestial, Land-Region-Natural, Region-General, Region-International, Water-Body |
+27	| Facility | FAC | 设施 | Airport, Building-Grounds, Path, Plant, Subarea-Facility |
+28	| Vehicle | VEH | 交通工具 | Air, Land, Subarea-Vehicle, Underspecified, Water |
+29	| Weapon | WEA | 武器 | Biological, Blunt, Chemical, Exploding, Nuclear, Projectile, Sharp, Shooting, Underspecified |
+30	
+31	**用于 BCS 计算的 7 个 entity type 名称**:
+32	```
+33	Person, Organization, Geo-Political Entity, Location, Facility, Vehicle, Weapon
+34	```
+35	
+36	---
+37	
+38	## 3. 关系类型（6 major types, 18 subtypes）
+39	
+40	| Type | Subtypes | 说明 |
+41	|------|----------|------|
+42	| **ART** (Artifact) | User-Owner-Inventor-Manufacturer | 人/组织与工件的关系 |
+43	| **GEN-AFF** (Gen-Affiliation) | Citizen-Resident-Religion-Ethnicity, Org-Location | 一般归属关系 |
+44	| **ORG-AFF** (Org-Affiliation) | Employment, Founder, Ownership, Student-Alum, Sports-Affiliation, Investor-Shareholder, Membership | 组织从属关系 |
+45	| **PART-WHOLE** | Geographical, Subsidiary, Artifact | 部分-整体关系 |
+46	| **PER-SOC** (Person-Social) | Business, Family, Lasting-Personal | 人际关系 |
+47	| **PHYS** (Physical) | Located, Near | 物理位置关系 |
+48	
+49	**用于 BCS 计算的 18 个 relation subtype 名称**:
+50	```
+51	User-Owner-Inventor-Manufacturer
+52	Citizen-Resident-Religion-Ethnicity
+53	Org-Location
+54	Employment
+55	Founder
+56	Ownership
+57	Student-Alum
+58	Sports-Affiliation
+59	Investor-Shareholder
+60	Membership
+61	Geographical
+62	Subsidiary
+63	Artifact
+64	Business
+65	Family
+66	Lasting-Personal
+67	Located
+68	Near
+69	```
+70	
+71	---
+72	
+73	## 4. 数据格式与标注方式
+74	
+75	### 原始格式
+76	- **文件格式**: SGM (SGML) 标注文件 + APF (XML) 标注文件
+77	- **标注方式**: Standoff annotation — 标注信息在 APF 文件中，通过 char offset 指向 SGM 源文件
+78	- **实体标注**: 每个 entity mention 有 head span 和 extent span，带类型和子类型
+79	- **关系标注**: 每个 relation mention 连接两个 entity mention，标注 type/subtype 和方向（Arg-1, Arg-2）
+80	
+81	### 常用预处理后格式
+82	大多数论文使用 JSON 格式，每个 sentence 一条记录：
+83	```json
+84	{
+85	  "tokens": ["The", "president", "of", "the", "company", "..."],
+86	  "entities": [
+87	    {"start": 1, "end": 2, "type": "PER"},
+88	    {"start": 4, "end": 5, "type": "ORG"}
+89	  ],
+90	  "relations": [
+91	    {"head": 0, "tail": 1, "type": "ORG-AFF:Employment"}
+92	  ]
+93	}
+94	```
+95	
+96	### 常用 Splits
+97	标准 split（Li & Ji 2014, 广泛沿用）:
+98	- **Train**: 351 docs
+99	- **Dev**: 80 docs
+100	- **Test**: 80 docs
+101	- 总计 511 docs（英语部分），约 14K-16K 训练句，~2K dev 句，~1.6K test 句
+102	
+103	---
+104	
+105	## 5. 公开下载渠道
+106	
+107	### 官方渠道
+108	- **LDC**: https://catalog.ldc.upenn.edu/LDC2006T06
+109	- **许可证**: LDC User Agreement — 需付费（LDC 会员单位免费），**可用于研究发表**，但不得直接重新分发原始数据
+110	- **价格**: 非会员 $300
+111	
+112	### HuggingFace Hub
+113	- **无官方预处理版本**在 HuggingFace Hub 上公开（受 LDC 许可证限制）
+114	- 部分研究者上传了私有处理版本，但不可公开获取
+115	
+116	### GitHub 预处理工具（需要已有 LDC 原始数据）
+117	| 仓库 | 用途 | 输出格式 |
+118	|------|------|----------|
+119	| [nlpcl-lab/ace2005-preprocessing](https://github.com/nlpcl-lab/ace2005-preprocessing) | Event Extraction | JSON |
+120	| [wasiahmad/ACE05-Processor](https://github.com/wasiahmad/ACE05-Processor) | NER + RE + Event | JSON (UDPipe) |
+121	| [mgormley/ace-data-prep](https://github.com/mgormley/ace-data-prep) | RE | JSON |
+122	| [princeton-nlp/PURE](https://github.com/princeton-nlp/PURE) | Entity + RE | JSON (sentence-level) |
+123	| [dwadden/dygiepp](https://github.com/dwadden/dygiepp) | NER + RE + Event | JSONL (DyGIE++ format) |
+124	| OneIE preprocessing | Joint IE | JSON (OneIE format) |
+125	
+126	---
+127	
+128	## 6. 许可证信息
+129	
+130	- **许可类型**: LDC User Agreement for Non-Members / LDC Membership
+131	- **研究发表**: ✅ 允许。大量 ACL/EMNLP/NAACL 论文使用 ACE05 发表，属于 NLP 社区标准基准
+132	- **数据重分发**: ❌ 不允许直接分发原始数据。但可以分发**预处理脚本**（配合用户自有 LDC 数据使用）
+133	- **发表时注意**: 需在论文中引用 LDC catalog number (LDC2006T06)
+134	
+135	---
+136	
+137	## 7. 与 Few-NERD 的关键差异
+138	
+139	| 维度 | ACE05 | Few-NERD |
+140	|------|-------|----------|
+141	| **Entity types** | 7 coarse types | 8 coarse / 66 fine-grained types |
+142	| **Relation types** | 6 types, 18 subtypes | ❌ 无关系标注 |
+143	| **领域** | 新闻（多源：newswire, broadcast, weblog, forum） | Wikipedia（通用百科） |
+144	| **标注粒度** | Entity + Relation + Event（联合标注） | 仅 Entity（NER only） |
+145	| **数据规模** | ~599 docs, ~30K 句子 | 188,200 句子, 491,711 entities |
+146	| **数据获取** | 需 LDC 许可（付费） | 完全公开 |
+147	| **类型层级** | flat 7 types（有 subtypes 但 NER 通常只用 coarse） | 2-level hierarchy (8 coarse → 66 fine) |
+148	| **BCS 研究意义** | 7 types 低混淆度 baseline；18 relation subtypes 提供跨任务验证 | 66 types 高混淆度，已完成 BCS 相关性验证 |
+149	
+150	**核心价值**：ACE05 提供了 (1) 不同领域（新闻 vs 百科）；(2) 不同任务（RE vs NER）；(3) 不同类型数量级（7/18 vs 66）的验证场景。如果 BCS-quality 相关性在 ACE05 RE 任务上依然成立，说明该发现具有跨域、跨任务的普遍性。
+151	
+152	---
+153	
+154	## 8. 预处理方案
+155	
+156	### 8.1 总体策略
+157	
+158	我们需要将 ACE05 转换为与 Few-NERD 类似的 pipeline 格式。考虑到：
+159	- 现有 pipeline 使用 parquet 格式（`/root/schema-dag-extraction/data/parquet/test.parquet`）
+160	- 评估使用 (text, type) pair 匹配（`text_match_reeval.py`）
+161	- BCS 基于 type 名称的 Qwen3 embedding
+162	
+163	### 8.2 NER 和 RE 分开处理
+164	
+165	**推荐分开处理**，产生两套数据：
+166	
+167	#### NER 数据 (`ace05_ner/`)
+168	```python
+169	# Schema 与 Few-NERD 对齐
+170	{
+171	    "text": "句子原文",
+172	    "entities": [
+173	        {"text": "entity mention text", "type": "PER"},  # 7 coarse types
+174	        ...
+175	    ]
+176	}
+177	```
+178	- 使用 7 个 coarse entity types
+179	- 直接复用 Few-NERD pipeline（改 type 列表即可）
+180	- 作为低混淆度 baseline（7 types vs 66 types）
+181	
+182	#### RE 数据 (`ace05_re/`)
+183	```python
+184	# 新增 relation 信息
+185	{
+186	    "text": "句子原文",
+187	    "entities": [...],  # 同上
+188	    "relations": [
+189	        {
+190	            "head": {"text": "head entity", "type": "PER"},
+191	            "tail": {"text": "tail entity", "type": "ORG"},
+192	            "type": "ORG-AFF:Employment"  # 18 subtypes
+193	        },
+194	        ...
+195	    ]
+196	}
+197	```
+198	- 使用 18 个 relation subtypes
+199	- 需要新的 evaluation 逻辑（relation triple 匹配）
+200	- 这是 exp-004 的核心验证目标
+201	
+202	### 8.3 需要的预处理脚本
+203	
+204	1. **`scripts/preprocess_ace05.py`** — 从 LDC 原始 SGM/APF 文件提取实体和关系
+205	   - 输入：LDC2006T06 原始目录
+206	   - 输出：JSON → Parquet（NER + RE）
+207	   - 参考 [wasiahmad/ACE05-Processor](https://github.com/wasiahmad/ACE05-Processor) 的解析逻辑
+208	
+209	2. **`scripts/compute_ace05_type_embeddings.py`** — 计算 type embeddings
+210	   - 使用 Qwen3 mean-pooled embedding
+211	   - NER: 7 entity types → `ace05_entity_type_embeddings.pt`
+212	   - RE: 18 relation subtypes → `ace05_relation_type_embeddings.pt`
+213	
+214	3. **`scripts/ace05_bcs_analysis.py`** — 计算 BCS 并设计实验 batches
+215	   - 复用 Few-NERD BCS pipeline 逻辑
+216	   - 按 BCS 分组设计 low/medium/high confusability batches
+217	
+218	---
+219	
+220	## 9. Embedding 方案
+221	
+222	### 9.1 Entity Type Names（7 个，用于 NER BCS）
+223	```python
+224	entity_types = [
+225	    "Person",
+226	    "Organization",
+227	    "Geo-Political Entity",
+228	    "Location",
+229	    "Facility",
+230	    "Vehicle",
+231	    "Weapon"
+232	]
+233	```
+234	
+235	### 9.2 Relation Subtype Names（18 个，用于 RE BCS）
+236	```python
+237	relation_subtypes = [
+238	    # ART
+239	    "User-Owner-Inventor-Manufacturer",
+240	    # GEN-AFF
+241	    "Citizen-Resident-Religion-Ethnicity",
+242	    "Org-Location",
+243	    # ORG-AFF
+244	    "Employment",
+245	    "Founder",
+246	    "Ownership",
+247	    "Student-Alum",
+248	    "Sports-Affiliation",
+249	    "Investor-Shareholder",
+250	    "Membership",
+251	    # PART-WHOLE
+252	    "Geographical",
+253	    "Subsidiary",
+254	    "Artifact",
+255	    # PER-SOC
+256	    "Business",
+257	    "Family",
+258	    "Lasting-Personal",
+259	    # PHYS
+260	    "Located",
+261	    "Near"
+262	]
+263	```
+264	
+265	### 9.3 Embedding 计算方式
+266	- 与 Few-NERD 一致：使用 Qwen3 mean-pooled hidden states（5120-dim）
+267	- 对每个 type name（可加 brief description 提升语义区分度）计算 embedding
+268	- 计算 pairwise cosine similarity → BCS matrix
+269	
+270	### 9.4 预期 BCS 特征
+271	- **Entity types (7)**：类型少、语义差距大，预期 BCS 整体较低（低混淆度）
+272	- **Relation subtypes (18)**：
+273	  - 高混淆对预测：`Employment ↔ Membership`、`Founder ↔ Ownership`、`Located ↔ Near`、`Geographical ↔ Org-Location`
+274	  - 低混淆对预测：`Family ↔ Located`、`Weapon ↔ Business`
+275	  - 比 Few-NERD 66 types 的混淆度分布更可控
+276	
+277	---
+278	
+279	## 10. 数据获取行动项
+280	
+281	### 方案 A（推荐）：使用已有 LDC 数据
+282	1. 确认是否已有 LDC2006T06 数据（许多学术机构有 LDC membership）
+283	2. 使用 wasiahmad/ACE05-Processor 预处理
+284	3. 转换为我们的 parquet 格式
+285	
+286	### 方案 B：使用公开预处理版本
+287	1. 部分论文作者会在 GitHub issue 中分享预处理后的 JSON（需确认许可）
+288	2. PURE / DyGIE++ 的预处理输出格式较标准，可直接转换
+289	
+290	### 方案 C：仅使用 type schema（不需要原始数据）
+291	1. **对于 BCS 验证实验，实际上可能不需要完整数据集**
+292	2. 只需 18 个 relation type names → 计算 embeddings → 分析 BCS 分布
+293	3. 然后设计 synthetic batches 或使用 LLM 生成 few-shot RE prompts
+294	4. 这可以先行推进，同时并行获取 LDC 数据
+295	
+296	---
+297	
+298	## 附录：参考资料
+299	
+300	- [LDC ACE 2005 Catalog](https://catalog.ldc.upenn.edu/LDC2006T06)
+301	- [ACE Annotation Tasks and Specifications](https://www.ldc.upenn.edu/collaborations/past-projects/ace/annotation-tasks-and-specifications)
+302	- [ACE Semantic Structures (NYU)](https://cs.nyu.edu/~grishman/jet/guide/ACEstructures.html)
+303	- [ACE 2005 Evaluation Plan](https://www.semanticscholar.org/paper/The-ACE-2005-(-ACE-05-)-Evaluation-Plan-Evaluation-Ntroduction/3a9b136ca1ab91592df36f148ef16095f74d009e)
+304	- [wasiahmad/ACE05-Processor](https://github.com/wasiahmad/ACE05-Processor)
+305	- [princeton-nlp/PURE](https://github.com/princeton-nlp/PURE)
+306	- [dwadden/dygiepp](https://github.com/dwadden/dygiepp)
+307	- [nlpcl-lab/ace2005-preprocessing](https://github.com/nlpcl-lab/ace2005-preprocessing)
+308	- [Few-NERD Paper (ACL 2021)](https://arxiv.org/abs/2105.07464)
+309	- [ACE 2005 on Papers With Code](https://paperswithcode.com/dataset/ace-2005)
+310	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "0e96a2df-f84e-46a9-95f7-fc9a6c01377f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 47_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_050…",
+  "usage": {
+    "total_tokens": 54513,
+    "tool_uses": 11,
+    "duration_ms": 19401
+  },
+  "last_tool_name": "Bash",
+  "uuid": "22d8b451-c895-4de8-b9e5-f51173da6c90",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JSAkV25UsEF7CmBDhWJ2Gs`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts -type f -name \"*.json\" -o -name \"*.pt\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "e83b770c-3576-4774-bfc3-3291d568efaf",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_019JWkEZxKmfFnLZyPFttW7P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 10880,
+      "cache_read_input_tokens": 43517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 10880,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T03:09:20.073Z_
+
+<details><summary>↩ Tool result · `toolu_01JSAkV25UsEF7CmBDhWJ2Gs`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/bcs_comparison.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/bcs_comparison.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs/ace05_relation_types.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs/ace05_entity_types.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "edee4aa4-70a0-48c7-ab27-343d87d702ec"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 50_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading artifacts/bcs_comparison.json",
+  "usage": {
+    "total_tokens": 54867,
+    "tool_uses": 12,
+    "duration_ms": 20788
+  },
+  "last_tool_name": "Read",
+  "uuid": "ca5530d5-bd72-473d-b360-2429b52891c4",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HjJ3MgubCXHDZEL1yr2ZKB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/bcs_comparison.json",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "370d5f26-954f-4c37-9c39-3d24de8d9e58",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_018LU2j5qX25KtywwyNSejwE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 296,
+      "cache_read_input_tokens": 54397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 296,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T03:09:21.374Z_
+
+<details><summary>↩ Tool result · `toolu_01HjJ3MgubCXHDZEL1yr2ZKB`</summary>
+
+```text
+1	{
+2	  "description": "BCS distribution comparison: Qwen3-32B mean-pool vs E5-large-v2 sentence embeddings on Few-NERD 66 types",
+3	  "date": "2026-05-14",
+4	  "num_types": 66,
+5	  "num_pairs": 2145,
+6	  "pairwise_cosine_similarity": {
+7	    "qwen3_mean_pool": {"min": 0.4422, "max": 0.9732, "mean": 0.8077, "std": 0.0599, "range": 0.5309, "dim": 5120},
+8	    "e5_name_def": {"min": 0.7863, "max": 0.9346, "mean": 0.8394, "std": 0.0254, "range": 0.1483, "dim": 1024},
+9	    "e5_name_only": {"min": 0.7976, "max": 0.9669, "mean": 0.8617, "std": 0.0287, "range": 0.1693, "dim": 1024}
+10	  },
+11	  "per_type_bcs_max_confusion": {
+12	    "qwen3_mean_pool": {"min": 0.8413, "max": 0.9732, "mean": 0.9139, "std": 0.0264, "range": 0.1319},
+13	    "e5_name_def": {"min": 0.879, "max": 0.9346, "mean": 0.9087, "std": 0.0147, "range": 0.0556},
+14	    "e5_name_only": {"min": 0.8984, "max": 0.9669, "mean": 0.9315, "std": 0.0155, "range": 0.0685}
+15	  },
+16	  "conclusion": "Qwen3 5120-dim hidden states have significantly better discriminability than E5 1024-dim sentence embeddings. Exp 2 uses Qwen3 BCS; E5 retained for ablation.",
+17	  "remote_files": {
+18	    "qwen3_embeddings": "/root/schema-dag-extraction/data/type_embeddings.pt",
+19	    "e5_embeddings": "/root/schema-dag-extraction/data/type_embeddings_e5.pt",
+20	    "qwen3_heatmap": "/root/schema-dag-extraction/data/heatmap.pdf",
+21	    "e5_heatmap_name_def": "/root/schema-dag-extraction/data/heatmap_e5_a_name_def.pdf",
+22	    "e5_heatmap_name_only": "/root/schema-dag-extraction/data/heatmap_e5_b_name_only.pdf"
+23	  }
+24	}
+25	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "a5d71178-2579-4979-92ed-a87192076e10"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 53_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading artifacts/ace05_code/configs/ace05_entity_types.json",
+  "usage": {
+    "total_tokens": 54926,
+    "tool_uses": 13,
+    "duration_ms": 21211
+  },
+  "last_tool_name": "Read",
+  "uuid": "de44e370-b17a-48f1-89f7-fa863192b07c",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Ed75Brg42A6SMtY9WzQdGG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs/ace05_entity_types.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "ca06c21b-b8ab-418a-a539-12ba2c4502f1",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_018LU2j5qX25KtywwyNSejwE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 296,
+      "cache_read_input_tokens": 54397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 296,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T03:09:21.800Z_
+
+<details><summary>↩ Tool result · `toolu_01Ed75Brg42A6SMtY9WzQdGG`</summary>
+
+```text
+1	{
+2	  "Person": "A person or group of people, including combatants, combatant groups, and unnamed individuals referenced by role or description.",
+3	  "Organization": "A corporation, agency, political party, religious organization, or other formal or informal group of people with a common purpose.",
+4	  "GPE": "A geopolitical entity — a location with a government, including nations, states, provinces, cities, counties, and municipalities.",
+5	  "Location": "A named geographical location that is not a geopolitical entity, including bodies of water, mountains, regions, continents, and celestial bodies.",
+6	  "Facility": "A functional structure or building, including airports, highways, bridges, factories, stadiums, hospitals, and other man-made structures.",
+7	  "Vehicle": "A physical device primarily designed for transporting people or cargo, including cars, planes, ships, trains, and spacecraft.",
+8	  "Weapon": "A physical device primarily used to inflict harm, including firearms, explosives, missiles, biological and chemical agents, and nuclear weapons."
+9	}
+10	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "b0515b2e-e3e3-4b47-be86-fae0e73e0648"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 56_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading artifacts/ace05_code/configs/ace05_relation_types.json",
+  "usage": {
+    "total_tokens": 54985,
+    "tool_uses": 14,
+    "duration_ms": 21315
+  },
+  "last_tool_name": "Read",
+  "uuid": "dc873c7e-c78e-45eb-957a-575cde9a13a6",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Ew8dGDLuU8HNBHGzHAGYhq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs/ace05_relation_types.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "da3a5927-d39b-479e-ac58-9480046318fa",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_018LU2j5qX25KtywwyNSejwE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 296,
+      "cache_read_input_tokens": 54397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 296,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T03:09:21.897Z_
+
+<details><summary>↩ Tool result · `toolu_01Ew8dGDLuU8HNBHGzHAGYhq`</summary>
+
+```text
+1	{
+2	  "ART:User-Owner-Inventor-Manufacturer": "An agent (Person, Organization, or GPE) that uses, owns, invents, or manufactures an artifact (Facility, Vehicle, or Weapon).",
+3	  "GEN-AFF:Citizen-Resident-Religion-Ethnicity": "A Person entity is a citizen of, resides in, or has a religious or ethnic affiliation with a GPE, Location, or Organization.",
+4	  "GEN-AFF:Org-Location": "An Organization is located in, based in, or operates from a GPE or Location.",
+5	  "ORG-AFF:Employment": "A Person is employed by an Organization, GPE, or other employer in a professional capacity.",
+6	  "ORG-AFF:Founder": "A Person or Organization that founded or established another Organization.",
+7	  "ORG-AFF:Membership": "A Person or Organization is a member of an Organization (not employment — e.g., political party membership, club membership).",
+8	  "ORG-AFF:Ownership": "A Person owns an Organization, either wholly or partially.",
+9	  "ORG-AFF:Sports-Affiliation": "A Person is affiliated with a sports Organization as a player, coach, or manager.",
+10	  "ORG-AFF:Student-Alum": "A Person is a student or alumnus/alumna of an educational Organization.",
+11	  "ORG-AFF:Investor-Shareholder": "A Person, Organization, or GPE holds an investment or shares in an Organization.",
+12	  "PART-WHOLE:Artifact": "An artifact (Facility, Vehicle, or Weapon) is a component or part of another artifact.",
+13	  "PART-WHOLE:Geographical": "A GPE, Location, or Facility is geographically contained within another GPE or Location.",
+14	  "PART-WHOLE:Subsidiary": "An Organization is a subsidiary, branch, or sub-unit of another Organization.",
+15	  "PER-SOC:Business": "Two Person entities have a professional or business relationship (e.g., business partners, co-workers outside of formal employment).",
+16	  "PER-SOC:Family": "Two Person entities have a familial relationship (e.g., parent-child, siblings, spouse).",
+17	  "PER-SOC:Lasting-Personal": "Two Person entities have a lasting personal relationship that is not familial or professional (e.g., friends, long-term associates).",
+18	  "PHYS:Located": "A Person, Organization, or artifact entity is physically located at a specific Facility, Location, or GPE.",
+19	  "PHYS:Near": "A Person, Organization, or artifact entity is physically near (but not at) a Facility, Location, or GPE."
+20	}
+21	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "f087e3a1-dae0-4c6c-a024-9d4d257db574"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 59_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading experiment_plan.yaml",
+  "usage": {
+    "total_tokens": 57030,
+    "tool_uses": 15,
+    "duration_ms": 23279
+  },
+  "last_tool_name": "Read",
+  "uuid": "adce5aea-763b-44e6-834b-fbb691f254c8",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01B5MNxEqRtyjpzzTM1SugK1`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/experiment_plan.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "ff625f01-be92-40e1-b77d-8701aacaacb4",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01VkkQ9jXWUKUGHsXACJpK4c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2038,
+      "cache_read_input_tokens": 54693,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T03:09:23.859Z_
+
+<details><summary>↩ Tool result · `toolu_01B5MNxEqRtyjpzzTM1SugK1`</summary>
+
+```text
+1	experiments:
+2	  # === MVP (completed) ===
+3	  - id: exp-001
+4	    claim: [1, 2]
+5	    description: "Count curve baseline: recall/precision/F1 across type counts [1,2,6,12,22,44,66] on Few-NERD with Qwen3-32B-FP8"
+6	    priority: P0
+7	    gpu_budget_hours: 3.5
+8	    deps: []
+9	    registry_id: exp001_count_baseline
+10	    status_note: "DONE. Recall 0.72->0.42 monotonic. WrongType 0->2434. Over-prediction at low counts."
+11	
+12	  - id: exp-002
+13	    claim: [1, 2]
+14	    description: "Confusability controlled: within-count r(metric, BCS) at count=6/12, 25 random + extreme batches on Few-NERD"
+15	    priority: P0
+16	    gpu_budget_hours: 3
+17	    deps: [exp-001]
+18	    registry_id: exp002_confusability_controlled
+19	    status_note: "DONE. Partial r=0.303 (p=0.026), count_12 r=0.501 (p=0.008). Confusion rate 10-28x."
+20	
+21	  - id: exp-003a
+22	    claim: [1, 2]
+23	    description: "Prompt v2 rerun: clean data without offset fabrication, anti-hallucination instruction. Re-run exp1+exp2."
+24	    priority: P0
+25	    gpu_budget_hours: 3
+26	    deps: [exp-001, exp-002]
+27	    registry_id: exp003a_prompt_v2_rerun
+28	    status_note: "FAILED (EXIT_CODE=2 syntax error). Needs fix and re-run."
+29	
+30	  # === Research Phase: Contribution A (Replication + Generalization) ===
+31	  - id: exp-004
+32	    claim: [1, 2, 3]
+33	    description: "ACE05 confusability study: count curve + within-count BCS correlation on ACE05 NER (7 entity types) + RE (18 relation types). Replicates core finding on different domain and task."
+34	    priority: P0
+35	    gpu_budget_hours: 4
+36	    deps: [exp-003a]
+37	
+38	  - id: exp-005
+39	    claim: [1, 2]
+40	    description: "DocRED confusability study: count curve + BCS correlation on DocRED (96 relation types). Scaling stress test."
+41	    priority: P1
+42	    gpu_budget_hours: 5
+43	    deps: [exp-003a]
+44	
+45	  - id: exp-006
+46	    claim: [2]
+47	    description: "Interaction effect 2x2: {low count, high count} x {low BCS, high BCS} on Few-NERD. Tests additive vs multiplicative interaction between count and confusability."
+48	    priority: P1
+49	    gpu_budget_hours: 2
+50	    deps: [exp-003a]
+51	
+52	  - id: exp-007
+53	    claim: [2]
+54	    description: "Error taxonomy: systematic FP classification (type_substitution / boundary_error / false_negative / hallucination) across BCS bins. Mechanistic evidence for multi-channel model."
+55	    priority: P1
+56	    gpu_budget_hours: 1
+57	    deps: [exp-002]
+58	    status_note: "Partially done via reeval_text_match.py FP three-way. Needs systematic BCS-binned analysis."
+59	
+60	  - id: exp-012
+61	    claim: [1, 2]
+62	    description: "Multi-model validation: replicate exp-002 protocol with >=1 additional model (candidate: Qwen2.5-72B-Instruct or LLaMA-3.3-70B-Instruct). Addresses single-model generalizability."
+63	    priority: P0
+64	    gpu_budget_hours: 6
+65	    deps: [exp-003a]
+66	
+67	  # === Research Phase: Contribution B (SDGD Framework) ===
+68	  - id: exp-008
+69	    claim: [3]
+70	    description: "SDGD-zero on Few-NERD: confusability-minimizing batch composition via embedding SCS + graph coloring. Compare vs single-pass full-schema baseline."
+71	    priority: P0
+72	    gpu_budget_hours: 3
+73	    deps: [exp-003a]
+74	
+75	  - id: exp-009
+76	    claim: [3]
+77	    description: "SDGD-zero on ACE05: full 3-layer DAG (entity->relation->event) with selective grounding. Compare vs single-pass + ProUIE-style fixed pipeline."
+78	    priority: P0
+79	    gpu_budget_hours: 4
+80	    deps: [exp-004, exp-008]
+81	
+82	  - id: exp-010
+83	    claim: [3]
+84	    description: "SDGD-cal on Few-NERD: empirical confusability from 5-10 calibration examples (no gradients). Compare vs SDGD-zero."
+85	    priority: P1
+86	    gpu_budget_hours: 4
+87	    deps: [exp-008]
+88	
+89	  - id: exp-011
+90	    claim: [3]
+91	    description: "SDGD-cal on ACE05: empirical confusability with calibration. Full comparison table."
+92	    priority: P1
+93	    gpu_budget_hours: 4
+94	    deps: [exp-009, exp-010]
+95	
+96	  # === Ablations ===
+97	  - id: exp-013
+98	    claim: [3]
+99	    description: "Ablation: random batching -- same batch count k as SDGD, random composition. Isolates confusability-aware grouping from batch count reduction."
+100	    priority: P0
+101	    gpu_budget_hours: 3
+102	    deps: [exp-008]
+103	
+104	  - id: exp-014
+105	    claim: [3]
+106	    description: "Ablation: per-type splitting (UniNER-style, 1 type per batch). Upper bound on decomposition benefit. Reveals latency vs quality tradeoff."
+107	    priority: P1
+108	    gpu_budget_hours: 3
+109	    deps: [exp-008]
+110	
+111	  - id: exp-015
+112	    claim: [1]
+113	    description: "SCS validation: Spearman/Kendall rank correlation between embedding SCS and empirical confusion matrix. Validates embedding proxy for practical use."
+114	    priority: P1
+115	    gpu_budget_hours: 1
+116	    deps: [exp-010]
+117	
+118	# GPU budget summary:
+119	# P0: exp-003a(3h) + exp-004(4h) + exp-008(3h) + exp-009(4h) + exp-012(6h) + exp-013(3h) = 23h
+120	# P1: exp-005(5h) + exp-006(2h) + exp-007(1h) + exp-010(4h) + exp-011(4h) + exp-014(3h) + exp-015(1h) = 20h
+121	# Total: ~43h on 1x RTX PRO 6000 Blackwell
+122	# With 10 days to deadline: 4.3h/day average -- feasible
+123	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "9af9684d-81e6-4d26-aa71-3aa3b110820d"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 62_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading ROADMAP.md",
+  "usage": {
+    "total_tokens": 57033,
+    "tool_uses": 16,
+    "duration_ms": 23696
+  },
+  "last_tool_name": "Read",
+  "uuid": "59b9b150-1d64-45f3-ab3a-c729eaac7d94",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AAvyKkdYfL9PE5ycC9kgAT`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "edc9e1bf-91d0-415a-8677-dcab1e841282",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01VkkQ9jXWUKUGHsXACJpK4c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2038,
+      "cache_read_input_tokens": 54693,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T03:09:24.276Z_
+
+<details><summary>↩ Tool result · `toolu_01AAvyKkdYfL9PE5ycC9kgAT`</summary>
+
+```text
+1	# schema-dag-extraction — Research Dashboard
+2	
+3	> 最后更新: 2026-05-15 02:49 UTC | 更新原因: Post-MVP kickoff: research phase entry, framing + plan written, Dream launched
+4	
+5	## 核心方向
+6	验证 type confusability 独立于 type count 驱动 training-free LLM IE 质量下降，发现 multi-channel degradation model（count→recall, confusability→type confusion），并据此构建 SDGD 框架。详见 paper_framing.md。
+7	
+8	## 当前阶段
+9	**Research 阶段** — MVP 已通过（D005）。paper_framing.md + experiment_plan.yaml 已写好。Dream 模拟运行中（dream_20260515T024826, review_mode=full）。等待 Dream 回调后批准 P0 实验。
+10	
+11	## MVP 结论摘要
+12	- Claim 1 (confusability independence): partial r=0.303 (p=0.026), count_12 r=0.501 (p=0.008)
+13	- Claim 2 (multi-channel): recall 0.72→0.42 (count channel) + WrongType 0→2434 (confusability channel)
+14	- Pairwise BCS-confusion: Spearman ρ=0.254, p=1.1e-6 (n=1953 type pairs)
+15	- Confusion rate: high-BCS extreme batches 10-28x vs low-BCS
+16	
+17	## 近期任务
+18	- [x] MVP 验证通过 (D005)
+19	- [x] 写 paper_framing.md (3 Core Claims + Story Spine)
+20	- [x] 写 experiment_plan.yaml (15 experiments, P0=23h, P1=20h)
+21	- [ ] Dream 模拟完成 → 分析审稿反馈 → 调整 framing/plan
+22	- [ ] 修复 exp3a (prompt v2 rerun, syntax error) → 重跑
+23	- [ ] 批准 P0 实验启动（等 Dream 回调）
+24	- [ ] ACE05 数据准备 + confusability study (exp-004)
+25	- [ ] SDGD 框架实现 (exp-008)
+26	- [ ] 多模型验证 (exp-012)
+27	
+28	## GPU 预算
+29	- 服务器: cqa1-38874, 1× RTX PRO 6000 Blackwell (98GB), cuda:0
+30	- MVP 已用: ~6h
+31	- Research P0 预估: ~23h
+32	- Research P1 预估: ~20h
+33	- 总计: ~49h（10 天内 ~5h/day，可行）
+34	
+35	## 实验计划概览（详见 experiment_plan.yaml）
+36	- **P0** (6 experiments, 23h): exp-003a, exp-004 (ACE05), exp-008 (SDGD-zero/FewNERD), exp-009 (SDGD-zero/ACE05), exp-012 (multi-model), exp-013 (random batching ablation)
+37	- **P1** (9 experiments, 20h): exp-005 (DocRED), exp-006 (interaction), exp-007 (error taxonomy), exp-010/011 (SDGD-cal), exp-014 (per-type ablation), exp-015 (SCS validation)
+38	
+39	## 目标会议
+40	EMNLP 2026, ARR May 25 提交（距今 10 天）
+41	
+42	## 关键决策日志
+43	
+44	| ID | 日期 | 摘要 | 关联实验 |
+45	|----|------|------|----------|
+46	| D005 | 2026-05-15 | MVP PASS（refined mechanism）: confusability 通过 type | exp001_count_baseline, exp002_confusability_controlled |
+47	| D004 | 2026-05-14 | MVP 主指标更新为 within-count r(recall, BCS)，F1 因 over-p | exp001_count_baseline |
+48	| D003 | 2026-05-14 | MVP 分析方法从 Δ(solo-batch) 切换到 within-count Pearson r | exp001_count_baseline |
+49	| D002 | 2026-05-14 | 修正 MVP 统计设计：random samples 从 10 增至 25/档，加入 per-typ | — |
+50	| D001 | 2026-05-14 | 项目立项，MVP 验证方案：Experiment 2 (Confusability Controll | — |
+51	
+52	
+53	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "3c2b52d8-d48a-477a-969d-a8c67f9a31f2"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 65_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading .claude/CLAUDE.md",
+  "usage": {
+    "total_tokens": 57036,
+    "tool_uses": 17,
+    "duration_ms": 23918
+  },
+  "last_tool_name": "Read",
+  "uuid": "27b76c32-ddcc-4fb4-91f2-363ee4d1f442",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RsEfZcZgjDDr28FT6qPqTf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/CLAUDE.md",
+  "limit": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "49a4f6bb-aaa8-45aa-a964-4e9c986df084",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01VkkQ9jXWUKUGHsXACJpK4c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2038,
+      "cache_read_input_tokens": 54693,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2038,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T03:09:24.499Z_
+
+<details><summary>↩ Tool result · `toolu_01RsEfZcZgjDDr28FT6qPqTf`</summary>
+
+````text
+1	## 当前项目
+2	当前绑定项目：**schema-dag-extraction**
+3	
+4	## 按需查阅
+5	- 项目配置：`load_project_config("schema-dag-extraction")` 或 `load_project_config("schema-dag-extraction", section="execution")`
+6	- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）
+7	- 路线图：`read_roadmap()` 读取研究方向和短期任务
+8	- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/`（写文件后用 `register_artifact` 注册）
+9	
+10	## Worker 操作规范
+11	
+12	### ssh-env-setup
+13	
+14	# 远程服务器环境搭建规范
+15	
+16	## 核心原则
+17	
+18	**先探测，再安装。** 不要假设服务器上什么都没有——很多包已经装好了。安装前必须走 discovery 流程。
+19	
+20	**镜像快速路径**：连接服务器后，先用 `detect_image` 检测是否为预置镜像。如果是已知镜像且版本匹配，跳过基础环境搭建（Phase 1-4），直接安装项目特有依赖。未检测到镜像时走传统流程。
+21	
+22	**aml-train 镜像使用 conda 环境**（不是 venv）。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。pip/python 在 `/root/miniconda3/bin/` 下。**不要假设 .venv 存在，不要创建 venv。**
+23	
+24	## Phase 1: 环境探测（用 ssh_read_only）
+25	
+26	连接到服务器后，第一步永远是收集信息，不要直接装东西：
+27	
+28	```bash
+29	# 1. Python 环境
+30	which python3 && python3 --version
+31	pip3 --version 2>/dev/null || echo "NO_PIP"
+32	
+33	# 2. CUDA 环境
+34	nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader 2>/dev/null || echo "NO_GPU"
+35	nvcc --version 2>/dev/null | grep "release" || echo "NO_NVCC"
+36	
+37	# 3. 包管理器
+38	ls -d /opt/miniconda3 ~/miniconda3 ~/.conda 2>/dev/null || echo "NO_CONDA"
+39	ls -d .venv venv env 2>/dev/null || echo "NO_VENV"
+40	pip3 list --format=freeze 2>/dev/null | grep -iE "torch|transformers|flash" || echo "NO_ML_PKGS"
+41	
+42	# 4. PEP 668 检查
+43	python3 -c "import sysconfig; print(sysconfig.get_path('stdlib'))" 2>/dev/null
+44	ls /usr/lib/python*/EXTERNALLY-MANAGED 2>/dev/null && echo "PEP668_MANAGED" || echo "PEP668_OK"
+45	```
+46	
+47	根据探测结果决定安装策略，不要猜。
+48	
+49	## Phase 2: 环境策略选择
+50	
+51	根据 Phase 1 结果选择**一个**策略，不要混用：
+52	
+53	| 探测结果 | 策略 | 说明 |
+54	|----------|------|------|
+55	| 项目目录有 `.venv/` | 用它：`source .venv/bin/activate` | 最优先 |
+56	| 有 conda 且有写权限 | `conda activate base` 或创建专属 env | 次优先 |
+57	| PEP668_MANAGED + 无 venv | 创建 venv：`python3 -m venv .venv && source .venv/bin/activate` | 不要用 --break-system-packages |
+58	| PEP668_OK（无保护） | 直接 `pip install`（旧系统） | 仍建议 venv |
+59	
+60	**决不混用 conda install + pip install 到同一环境。** 选了 pip 就全用 pip。
+61	
+62	## Phase 3: PyTorch 安装
+63	
+64	### CUDA 版本映射（2025-2026 常用）
+65	
+66	先从 `nvcc --version` 或 `nvidia-smi` 获取 CUDA 版本，然后匹配：
+67	
+68	| CUDA 版本 | PyTorch pip index URL | 推荐 torch 版本 |
+69	|-----------|----------------------|-----------------|
+70	| 11.8 | `https://download.pytorch.org/whl/cu118` | ≥ 2.0 |
+71	| 12.1 | `https://download.pytorch.org/whl/cu121` | ≥ 2.1 |
+72	| 12.4 | `https://download.pytorch.org/whl/cu124` | ≥ 2.4 |
+73	| 12.6 | `https://download.pytorch.org/whl/cu126` | ≥ 2.6 |
+74	
+75	**不要猜版本号。** 如果不确定可用版本：
+76	```bash
+77	pip index versions torch --index-url https://download.pytorch.org/whl/cu121 2>/dev/null | head -3
+78	```
+79	
+80	安装命令：
+81	```bash
+82	pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu{CUDA_SHORT}
+83	```
+84	
+85	### 大包超时处理
+86	
+87	PyTorch wheel 约 500MB-2GB，默认 SSH 超时可能不够。策略：
+88	
+89	```bash
+90	# 方法 1: nohup + 轮询（推荐）
+91	nohup pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 > /tmp/pip_install.log 2>&1 &
+92	echo $!  # 记录 PID
+93	
+94	# 后续用 ssh_read_only 轮询
+95	cat /tmp/pip_install.log | tail -5
+96	ps -p &lt;PID> -o pid= 2>/dev/null && echo "STILL_RUNNING" || echo "DONE"
+97	```
+98	
+99	```bash
+100	# 方法 2: 加大 pip 超时
+101	pip install --timeout 300 torch ...
+102	```
+103	
+104	## Phase 4: 验证（必须执行）
+105	
+106	安装后必须验证，不要假设成功：
+107	
+108	```bash
+109	python3 -c "
+110	import torch
+111	print(f'torch={torch.__version__}, cuda={torch.cuda.is_available()}, gpus={torch.cuda.device_count()}')
+112	if torch.cuda.is_available():
+113	    for i in range(torch.cuda.device_count()):
+114	        print(f'  GPU {i}: {torch.cuda.get_device_name(i)} ({torch.cuda.get_device_properties(i).total_mem // 1024**3}GB)')
+115	"
+116	```
+117	
+118	验证失败的常见原因：
+119	- `torch.cuda.is_available()` 返回 False → CUDA 版本和 torch 不匹配，重装正确版本
+120	- `ImportError: libcudnn` → 缺 cuDNN，装 `nvidia-cudnn-cu1x`
+121	- GPU 数量不对 → 检查 `CUDA_VISIBLE_DEVICES` 环境变量
+122	
+123	## Phase 5: 项目依赖
+124	
+125	基础环境就绪后，安装项目依赖：
+126	
+127	```bash
+128	# 优先用 requirements.txt / pyproject.toml
+129	pip install -r requirements.txt  # 或 pip install -e .
+130	
+131	# 常用 ML 依赖补装
+132	pip install transformers datasets einops accelerate wandb
+133	```
+134	
+135	flash-attention 特殊处理（编译型包）：
+136	```bash
+137	# 需要匹配的 CUDA toolkit，编译耗时 5-15 分钟
+138	pip install flash-attn --no-build-isolation
+139	# 如果编译失败，试预编译版本
+140	pip install flash-attn --no-build-isolation 2>/dev/null || pip install flash-attn-wheels
+141	```
+142	
+143	## ssh_read_only vs ssh_execute 使用规则
+144	
+145	| 操作 | 用哪个工具 |
+146	|------|-----------|
+147	| 检查环境（python --version, nvidia-smi, pip list） | `ssh_read_only` |
+148	| 读文件内容、查日志 | `ssh_read_only` |
+149	| 安装包（pip install, conda install） | `ssh_execute` |
+150	| 创建/修改文件、启动进程 | `ssh_execute` |
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "24ba8320-5f64-40bc-b8e2-44907fb24258"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 68_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_050…",
+  "usage": {
+    "total_tokens": 63417,
+    "tool_uses": 18,
+    "duration_ms": 26030
+  },
+  "last_tool_name": "Bash",
+  "uuid": "c9a9db79-dd5f-47a4-9686-e7b434290e97",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019gHC3DMhzN4xaKfVEM63pe`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts -type f -name \"*.md\" | head -10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "658c38df-cb3c-4d20-a125-e4b7dcfb6570",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01NYJXNMWpD4tSmkyLZwWLWw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 6375,
+      "cache_read_input_tokens": 56731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6375,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T03:09:26.710Z_
+
+<details><summary>↩ Tool result · `toolu_019gHC3DMhzN4xaKfVEM63pe`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/sdgd_design_doc.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_data_prep_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/report/ace05_data_prep_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/sdgd_design_doc.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "11f98f28-22b3-4875-a4a8-6ef3fbda52ad"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 71_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_050…",
+  "usage": {
+    "total_tokens": 63765,
+    "tool_uses": 19,
+    "duration_ms": 27707
+  },
+  "last_tool_name": "Bash",
+  "uuid": "bc31c341-584e-4613-b286-e09e82bcbe4a",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01H4yGEpwW6ckha18xRazH1F`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers -name \"*ace05*\" -o -name \"*maven*\" | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "2f712985-a0c0-4bd6-918b-76ac395c5f19",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_018Bsg2VBvMP2aEC2o5FMp4j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 289,
+      "cache_read_input_tokens": 63106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 289,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T03:09:28.385Z_
+
+<details><summary>↩ Tool result · `toolu_01H4yGEpwW6ckha18xRazH1F`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_code_ace05-preprocess-scripts_20260515T030622.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_research_ace05-data-prep_20260515T025909_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_research_maven-dataset-study_20260515T030839.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_research_ace05-data-prep_20260515T025909.log
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "f66d338c-ce14-4e10-b37e-58588a7f4164"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 74_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading paper_framing.md",
+  "usage": {
+    "total_tokens": 64095,
+    "tool_uses": 20,
+    "duration_ms": 29426
+  },
+  "last_tool_name": "Read",
+  "uuid": "81133df0-991e-4c08-bc03-d459897b03bd",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HVxMkXbWKRhVDjnK2ta8ev`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_framing.md",
+  "limit": 300
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "5d3ceb46-0769-4e75-80c0-d3ad04f79774",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01RPZ7M3YZXVJhXLBT8n9FkP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 322,
+      "cache_read_input_tokens": 63395,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 322,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T03:09:30.006Z_
+
+<details><summary>↩ Tool result · `toolu_01HVxMkXbWKRhVDjnK2ta8ev`</summary>
+
+```text
+1	# Paper Framing — schema-dag-extraction
+2	
+3	## Target Venue
+4	- Primary: EMNLP 2026 Main (ARR May 25 cycle)
+5	- Commitment deadline: August 2, 2026
+6	- Fallback: EMNLP 2026 Findings (same ARR cycle, commitment August 26)
+7	- Deadline: ARR May 25, 2026 (10 days from today)
+8	
+9	## Core Claims (3 conditions)
+10	
+11	1. **Confusability Independence**: Type confusability independently predicts extraction quality degradation in training-free LLM IE, beyond what type count alone explains. Evidence required: within-count correlation r(metric, BCS) significant after controlling for count, replicated on >=2 datasets and >=2 models.
+12	
+13	2. **Multi-Channel Degradation**: Count and confusability degrade extraction through orthogonal channels -- count causes entity omission (recall decline), while confusability causes type confusion (precision decline via mislabeling). Evidence required: error taxonomy showing differential error types per channel, monotonic trends in separate metrics.
+14	
+15	3. **SDGD Effectiveness**: Confusability-aware schema decomposition (SDGD) -- partitioning types into low-confusability batches via graph coloring on the SCS-thresholded confusability graph -- yields significant F1 gains over single-pass and heuristic decomposition on complex schemas (>=30 types). Evidence required: SDGD > single-pass, SDGD > random batching (same k), SDGD >= per-type splitting (with lower latency).
+16	
+17	## Story Spine
+18	
+19	- **Problem**: Training-free LLM IE degrades severely on complex schemas (20-60 F1 gap vs supervised). All existing decomposition approaches (per-type splitting, similarity-based partitioning, fixed k-step pipelines) operate on unvalidated assumptions about WHAT makes schemas complex for LLMs.
+20	
+21	- **Existing approaches & their gaps**: UniNER splits per-type (gains 3.3 F1 but loses cross-type context, no criterion for when to split). LLM-PEE uses similarity as implicit confusability proxy (never validated empirically). ProUIE/KGGen use fixed task-level decomposition (ignores intra-layer schema structure). No prior work isolates confusability from count in training-free LLM IE.
+22	
+23	- **Our framing**: We conduct the first controlled empirical study isolating type confusability from type count in training-free LLM IE. We discover a multi-channel degradation model: count drives recall decline (capacity bottleneck) while confusability drives type confusion (disambiguation failure). We then operationalize this into SDGD -- a principled framework for confusability-minimizing schema decomposition.
+24	
+25	- **Headline result template**: "Controlling for type count, batch confusability score (BCS) independently predicts F1 degradation (partial r=0.30, p<0.05), with high-confusability batches showing 10-28x more type confusion errors. SDGD-zero improves F1 by X points over single-pass on Few-NERD (66 types) and Y points on ACE05 (58 types), matching per-type splitting quality at Z% of the API cost."
+26	
+27	## Core Insight (Narrative A -- Multi-Channel Degradation)
+28	
+29	Schema-induced degradation in LLM IE is not a single phenomenon but a multi-channel process:
+30	- **Channel 1 (Count -> Recall)**: More types in the prompt -> attention dilution -> entities missed. Monotonic, near-linear. Addressable by reducing batch size.
+31	- **Channel 2 (Confusability -> Type Confusion)**: Semantically similar co-present types -> interference during type assignment -> correct entities labeled with wrong types. Correlated with pairwise type similarity. Addressable by separating confusable types into different batches.
+32	
+33	These channels are orthogonal (partial correlation significant after controlling for count) and independently addressable. SDGD targets Channel 2; batch size reduction targets Channel 1; combining both yields additive gains.
+34	
+35	## Venue Fit Risks
+36	
+37	- **"Just an empirical study"**: Mitigated by SDGD as direct operationalization. Controlled experimental design parallels "Lost in the Middle" (TACL 2024) methodology.
+38	- **Training-free IE relevance**: Cite deployment scenarios -- clinical (mCODEGPT), regulatory (FINRA 2026), multilingual (50+ languages with no IE corpora). Training-free is sometimes the ONLY option.
+39	- **Multi-model generalizability**: MVP used only Qwen3-32B. Need >=2 models. Plan: add one model from different family.
+40	- **Over-prediction confound**: F1 curve reversal at low counts needs careful framing. Present recall as clean degradation signal; precision artifact explained in methodology section.
+41	
+42	## Anticipated Reviewer Concerns
+43	
+44	| Concern | Response Strategy | Experiment |
+45	|---------|------------------|------------|
+46	| Only one model | Add >=1 more model | exp-012 |
+47	| Only one dataset for Claim 1 | Replicate on ACE05 + DocRED | exp-004, exp-005 |
+48	| No practical method | SDGD framework | exp-008 to exp-011 |
+49	| Confusability measure validity | SCS validation: embedding vs empirical | exp-015 |
+50	| Effect size small | Report batch-level + type-pair-level + error decomposition | exp-006, exp-007 |
+51	| Why not just per-type splitting? | Ablation: SDGD vs per-type vs random | exp-013, exp-014 |
+52	| Latency overhead of decomposition | Report API calls and wall-clock time | exp-008 |
+53	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "bc2069a8-e552-4cf0-bbdf-7edbb920751f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 77_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running grep -r \"MAVEN\\|parquet\\|embeddings\\|confusion_ma…",
+  "usage": {
+    "total_tokens": 64099,
+    "tool_uses": 21,
+    "duration_ms": 30006
+  },
+  "last_tool_name": "Bash",
+  "uuid": "bf606d97-02b6-42b2-a22a-478176c67340",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TByWVXvbST1UFrhSiYNGdz`</summary>
+
+```json
+{
+  "command": "grep -r \"MAVEN\\|parquet\\|embeddings\\|confusion_matrix\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction --include=\"*.md\" --include=\"*.yaml\" 2>/dev/null | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "4514bd3d-44b0-42ab-9f55-37ce35fd58f4",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01RPZ7M3YZXVJhXLBT8n9FkP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 322,
+      "cache_read_input_tokens": 63395,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 322,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T03:09:30.663Z_
+
+<details><summary>↩ Tool result · `toolu_01TByWVXvbST1UFrhSiYNGdz`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md:- **Target Venues**: EMNLP 2026 (ARR May 25, 2026 submission — 15 days from today; commitment deadline August 2, 2026; reviews due June 29; meta-reviews July 30; conference October 24-29, Budapest, Hungary). Feasible with dual-contribution framing: Contribution A (empirical study) is completable in 3 days and self-contained; Contribution B (SDGD) on 3 core benchmarks (ACE05, Few-NERD, DocRED) by day 12. MAVEN and SciERC for camera-ready., AACL-IJCNLP 2026 (same ARR May 25, 2026 submission; commitment deadline August 26, 2026; Hengqin, China November 6-10, 2026 — fallback if EMNLP reviews suggest Findings-level), ARR August 3, 2026 for EACL 2027 (commitment deadline October 11, 2026 — backup with full 3-month timeline for complete experiment suite including moderate-correlation analysis if May 25 is infeasible)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md:3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md:The key gap is EMPIRICAL: no controlled study has established whether type confusability (not just count) independently drives extraction degradation in training-free LLM IE. Without this evidence, all existing decomposition approaches operate on unvalidated assumptions about what makes schemas 'complex' for LLMs. A formal **confusability measure** that (a) is empirically validated as predictive of extraction quality degradation, (b) enables principled batch composition via graph partitioning, (c) can be estimated both from embeddings (zero-shot) and from empirical confusion matrices (few-shot calibrated), and (d) integrates with schema dependency structure for selective cross-layer grounding — would transform schema decomposition from ad-hoc heuristics to evidence-based methodology.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md:**Day 13-15: Writing + Remaining Experiments.** Paper draft. MAVEN and SciERC results for camera-ready if time permits.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md:**Evaluation.** 5 core benchmarks: ACE05 (joint NER/RE/EE, 58 types — full 3-layer DAG), SciERC (NER/RE, 13 types — simple schema control), MAVEN (168 event types — scaling stress test), DocRED (96 relation types — selective grounding stress test), Few-NERD (66 fine-grained entity types — confusability stress test).
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/agent.md:- 数据：Few-NERD parquet at `/root/schema-dag-extraction/data/parquet/{train,test,validation}.parquet`
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/agent.md:- Embeddings：`data/type_embeddings.pt`（Qwen3），`data/type_embeddings_e5.pt`（E5 ablation）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/reviewer.md:- 数据：`/root/schema-dag-extraction/data/parquet/{train,test,validation}.parquet`（Few-NERD）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/reviewer.md:- Embeddings：`data/type_embeddings.pt`（Qwen3）+ `data/type_embeddings_e5.pt`（E5-large-v2，两个变体）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/reviewer.md:- **E5 alternate embeddings**: 已计算完毕（`data/type_embeddings_e5.pt`），但 BCS 分布对比数值未持久化到 log 文件——需要 Agent 确认 E5 vs Qwen3 的 BCS range，决定 exp2 用哪个 embedding。
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/registry.yaml:      data_path: /root/schema-dag-extraction/data/parquet/test.parquet
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/registry.yaml:      data_path: /root/schema-dag-extraction/data/parquet/test.parquet
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/registry.yaml:      data_path: /root/schema-dag-extraction/data/parquet/test.parquet
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/sdgd_design_doc.md:- `embeddings: Tensor[N, D]` — type embeddings from Qwen3-32B mean-pool (N=66, D=5120), loaded from `artifacts/type_embeddings.pt`
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/sdgd_design_doc.md:- `confusion_matrix: Optional[Tensor[N, N]]` — empirical confusion counts from calibration (SDGD-cal only)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/sdgd_design_doc.md:function SDGD(types, embeddings, τ, model, samples, confusion_matrix=None):
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/sdgd_design_doc.md:    if confusion_matrix is not None:                      # SDGD-cal
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/sdgd_design_doc.md:        C = normalize_confusion(confusion_matrix)         # symmetric, [0,1]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/sdgd_design_doc.md:        C = cosine_similarity(embeddings, embeddings)     # [N, N]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/sdgd_design_doc.md:| Cost | Free (embeddings precomputed) | k × N_types extraction calls for calibration |
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "fed1ab9f-ca43-4855-afc1-c3cc2a26d6e5"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 80_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_050…",
+  "usage": {
+    "total_tokens": 67795,
+    "tool_uses": 22,
+    "duration_ms": 31708
+  },
+  "last_tool_name": "Bash",
+  "uuid": "5bf6bc18-53d8-417f-8794-ff0184fc1c76",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KpzXWV4Z5sps4HutXeshVK`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction -type d -name \"data\" -o -name \"configs\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "28889cef-4c18-4fb7-aef8-aa2d6e40e0e9",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01RpPUji8A941xVd1hbEwoXN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 3693,
+      "cache_read_input_tokens": 63717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3693,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T03:09:32.353Z_
+
+<details><summary>↩ Tool result · `toolu_01KpzXWV4Z5sps4HutXeshVK`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/configs
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "2d140743-b21a-4d99-8c04-e2252ed8664f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 83_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running ls -lah /home/ubuntu/.agent-ml-research-idea_gen_…",
+  "usage": {
+    "total_tokens": 68084,
+    "tool_uses": 23,
+    "duration_ms": 33197
+  },
+  "last_tool_name": "Bash",
+  "uuid": "836dd700-edbe-4fb6-8bcc-ffb5ad7ff8ad",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01X3HraLaPaSbgudwXf2UraC`</summary>
+
+```json
+{
+  "command": "ls -lah /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/configs/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "0b501eaa-f251-4b87-9201-a5f5a9d95ca8",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01MFaP5PTaHGE56XeqoPc6ic",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 67410,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 227,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-15T03:09:33.878Z_
+
+<details><summary>↩ Tool result · `toolu_01X3HraLaPaSbgudwXf2UraC`</summary>
+
+```text
+total 20K
+drwxr-xr-x  2 ubuntu ubuntu 4.0K May 14 16:41 .
+drwxr-xr-x 10 ubuntu ubuntu 4.0K May 15 03:00 ..
+-rw-r--r--  1 ubuntu ubuntu 8.1K May 14 16:41 few_nerd_types.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "6eb3aaa5-7fc1-4ac6-ad0a-55d3543d5cf7"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 86_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running ls -lah /home/ubuntu/.agent-ml-research-idea_gen_…",
+  "usage": {
+    "total_tokens": 68342,
+    "tool_uses": 24,
+    "duration_ms": 34600
+  },
+  "last_tool_name": "Bash",
+  "uuid": "f537f37f-4f9d-4838-b7fe-d345c90dd294",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DRBpK3nwo2y3qMaeArKYkv`</summary>
+
+```json
+{
+  "command": "ls -lah /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "baea0929-1164-4ab0-a137-a9c26f1d3eec",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LJpFbaRUg7i6LmX4fszHJz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 194,
+      "cache_read_input_tokens": 67637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 194,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T03:09:35.234Z_
+
+<details><summary>↩ Tool result · `toolu_01DRBpK3nwo2y3qMaeArKYkv`</summary>
+
+```text
+total 16K
+drwxr-xr-x 2 ubuntu ubuntu 4.0K May 15 03:09 .
+drwxr-xr-x 4 ubuntu ubuntu 4.0K May 15 03:08 ..
+-rw-r--r-- 1 ubuntu ubuntu 1.1K May 15 03:09 ace05_entity_types.json
+-rw-r--r-- 1 ubuntu ubuntu 2.3K May 15 03:09 ace05_relation_types.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "bcb1fca1-2a15-416d-83f9-3f948095ef06"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 89_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading registry.yaml",
+  "usage": {
+    "total_tokens": 68691,
+    "tool_uses": 25,
+    "duration_ms": 36092
+  },
+  "last_tool_name": "Read",
+  "uuid": "cc6adffc-738f-4351-b3a6-4e752d2ea349",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WBHE2uEYHi6ppEggewDjxZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/registry.yaml",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "5a37730d-09bf-4c2f-9317-30342595d599",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01HaqvKnQwC1B1pcYpf6cEuH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 340,
+      "cache_read_input_tokens": 67831,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 340,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-15T03:09:36.682Z_
+
+<details><summary>↩ Tool result · `toolu_01WBHE2uEYHi6ppEggewDjxZ`</summary>
+
+```text
+1	baseline: null
+2	experiments:
+3	  exp001_count_baseline:
+4	    status: ANALYZING
+5	    retry_count: 0
+6	    created_at: '2026-05-14T16:13:40.180Z'
+7	    updated_at: '2026-05-14T23:30:48.347Z'
+8	    spec:
+9	      hypothesis: F1 随 type count 增加而下降（复现已知现象，验证 setup 正确性）
+10	      dataset: Few-NERD
+11	      model: Qwen3-32B-FP8
+12	      design: count=[1,2,6,12,22,44,66]，每档 5 random samples，count=1 = solo baseline
+13	      command: nohup python3 run_experiment.py --mode exp1 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/
+14	        --max_samples 1000
+15	      server: cqa1-38874
+16	      data_path: /root/schema-dag-extraction/data/parquet/test.parquet
+17	      data_count: 1000
+18	      model_name: Qwen3-32B-FP8
+19	      seed: 42
+20	      gpu: cuda:0
+21	      pid: 188307
+22	      vllm_version: 0.20.2
+23	      max_model_len: 4096
+24	      gpu_memory_utilization: 0.95
+25	    log_path: /root/schema-dag-extraction/logs/exp1.log
+26	    metrics:
+27	      diagnosis: char offset 96.5% fabricated by model
+28	      text_match_reeval:
+29	        count_1:
+30	          f1: 0.184
+31	          precision: 0.105
+32	          recall: 0.72
+33	          pred_gold_ratio: 6.85
+34	        count_2:
+35	          f1: 0.123
+36	          precision: 0.068
+37	          recall: 0.698
+38	          pred_gold_ratio: 10.33
+39	        count_6:
+40	          f1: 0.155
+41	          precision: 0.088
+42	          recall: 0.62
+43	          pred_gold_ratio: 7.02
+44	        count_12:
+45	          f1: 0.246
+46	          precision: 0.16
+47	          recall: 0.539
+48	          pred_gold_ratio: 3.38
+49	        count_22:
+50	          f1: 0.322
+51	          precision: 0.232
+52	          recall: 0.527
+53	          pred_gold_ratio: 2.27
+54	        count_44:
+55	          f1: 0.473
+56	          precision: 0.414
+57	          recall: 0.551
+58	          pred_gold_ratio: 1.33
+59	        count_64:
+60	          f1: 0.463
+61	          precision: 0.52
+62	          recall: 0.418
+63	          pred_gold_ratio: 0.8
+64	      key_finding: recall monotonically decreases (0.72→0.42), precision monotonically
+65	        increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak
+66	        at count_44
+67	      wrong_type_trend: 'type confusion increases with count: 0→2434, supports confusability
+68	        hypothesis'
+69	      spurious_dominant: spurious FPs (text in source but not entity) dominate at
+70	        low count, not hallucination
+71	      conclusion_text_match: F1 curve inversion caused by over-prediction confound,
+72	        NOT absence of confusability effect. Recall curve + type confusion pattern
+73	        support hypothesis.
+74	  exp002_confusability_controlled:
+75	    status: ANALYZING
+76	    retry_count: 0
+77	    created_at: '2026-05-14T16:13:42.626Z'
+78	    updated_at: '2026-05-15T02:41:21.197Z'
+79	    spec:
+80	      hypothesis: 固定 type count 时，高 BCS batch 的 recall 显著低于低 BCS batch（confusability
+81	        独立驱动质量下降）
+82	      dataset: Few-NERD
+83	      model: Qwen3-32B-FP8
+84	      design: count=6,12 × 25 random + 1 low-BCS + 1 high-BCS = 54 batches
+85	      pass_criteria:
+86	        primary: within-count |r(recall, BCS)| >= 0.3, p < 0.05
+87	        secondary: within-count |r(F1, BCS)|
+88	        mechanistic: confusion_rate(high-BCS pairs) > confusion_rate(low-BCS pairs)
+89	      command: nohup python3 run_experiment.py --mode exp2 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/
+90	      server: cqa1-38874
+91	      data_path: /root/schema-dag-extraction/data/parquet/test.parquet
+92	      data_count: 1000
+93	      model_name: Qwen3-32B-FP8
+94	      seed: 42
+95	      gpu: cuda:0
+96	      pid: 197321
+97	    log_path: /root/schema-dag-extraction/logs/exp2.log
+98	    metrics:
+99	      data_source: exp2_reeval_results.json (text_match, CLEAN)
+100	      primary_recall_vs_bcs:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "4f132d89-0a74-43f5-98b3-31154a745879"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 92_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading decisions.yaml",
+  "usage": {
+    "total_tokens": 68696,
+    "tool_uses": 26,
+    "duration_ms": 36193
+  },
+  "last_tool_name": "Read",
+  "uuid": "12e0aef5-229f-4507-8c80-8b9e327dce10",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PdXy5qSic778S1HHY9FZnG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/decisions.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "77c1164c-829a-49a4-ae93-b90b083158eb",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01HaqvKnQwC1B1pcYpf6cEuH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 340,
+      "cache_read_input_tokens": 67831,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 340,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-15T03:09:36.774Z_
+
+<details><summary>↩ Tool result · `toolu_01PdXy5qSic778S1HHY9FZnG`</summary>
+
+```text
+1	_next_id: 6
+2	decisions:
+3	- id: D001
+4	  date: 2026-05-14 16:10 UTC
+5	  summary: 项目立项，MVP 验证方案：Experiment 2 (Confusability Controlled) 为核心验证实验
+6	  rationale: 'IDEA_BRIEF 的核心假设是 type confusability 独立于 type count 驱动 LLM IE 质量下降。Experiment
+7	    2（固定 count 变 BCS）是最直接的假设检验。Pass 标准: |r|≥0.3 且 p<0.05。ACE05 RE + Few-NERD 双数据集验证。ARR
+8	    May 25 DDL（11天），MVP 需 1-2 天完成。'
+9	  related_experiments: []
+10	  depends_on: []
+11	- id: D002
+12	  date: 2026-05-14 16:15 UTC
+13	  summary: 修正 MVP 统计设计：random samples 从 10 增至 25/档，加入 per-type solo baseline 控制变量，核心指标改为
+14	    Δ(solo_F1 - batch_F1)
+15	  rationale: Reviewer 指出 n=12 下 |r|=0.3 对应 p≈0.34，无法同时满足 |r|≥0.3 且 p<0.05。增至 25 random
+16	    batches/档 → n≈54，|r|≥0.27 即可达 p<0.05。同时加入 solo F1 控制 type 固有难度，避免将"类型本身难抽取"误归因于"confusability
+17	    效应"。
+18	  related_experiments: []
+19	  depends_on:
+20	  - D001
+21	- id: D003
+22	  date: 2026-05-14 23:11 UTC
+23	  summary: MVP 分析方法从 Δ(solo-batch) 切换到 within-count Pearson r(F1, BCS)，pass 标准更新为
+24	    |r|≥0.3 at fixed count
+25	  rationale: Exp 1 发现 count curve 方向反转（F1 随 count 上升），根因是低 count 时模型过度 hallucinate（pred/gold=8x
+26	    at count=1）。solo baseline 处于极端行为模式，Δ 被跨 count 行为差异污染。改为 within-count 对比更干净：同一
+27	    count 下比较不同 BCS 的 F1，直接检验 confusability 独立效应。
+28	  related_experiments:
+29	  - exp_id: exp001_count_baseline
+30	    role: evidence
+31	    result: count curve reversed, hallucination at low count
+32	  depends_on:
+33	  - D002
+34	- id: D004
+35	  date: 2026-05-14 23:31 UTC
+36	  summary: MVP 主指标更新为 within-count r(recall, BCS)，F1 因 over-prediction confound 降为补充指标
+37	  rationale: Exp 1 text-match 重评估发现：recall 单调下降（0.72→0.42，符合预期），precision 单调上升（0.11→0.52，over-prediction
+38	    减少），F1 受 precision 主导而反转。within-count 分析中 precision confound 在同一 count 下近似恒定，F1
+39	    仍可用；但 recall 更干净且直接反映 type confusion。WrongType 错误（text 正确但 type 错标）随 count 从 0
+40	    升至 2434，直接支持 confusability 假设。
+41	  related_experiments:
+42	  - exp_id: exp001_count_baseline
+43	    role: evidence
+44	    result: recall monotonically decreases with count; WrongType errors increase;
+45	      over-prediction confounds F1
+46	  depends_on:
+47	  - D003
+48	- id: D005
+49	  date: 2026-05-15 02:34 UTC
+50	  summary: 'MVP PASS（refined mechanism）: confusability 通过 type confusion 通道驱动降级，选择
+51	    Narrative A (multi-channel degradation model)'
+52	  rationale: Exp 2 结果：recall vs BCS 不显著（r=0.25, p=0.066），但 F1 vs BCS 在 count_12 显著（r=0.50,
+53	    p=0.008），偏相关 r=0.30 p=0.026 达到 pass 标准。Confusion rate high-BCS vs low-BCS 差异 30-40x（p=0.043）。机制清晰：confusability
+54	    不导致遗漏，而是导致错标。选 Narrative A（multi-channel）因为：(1) 用上所有数据（exp1 count→recall + exp2
+55	    BCS→confusion）(2) 两个正交机制 story 更丰富 (3) SDGD 框架天然需要同时处理 count 和 confusability。
+56	  related_experiments:
+57	  - exp_id: exp001_count_baseline
+58	    role: evidence
+59	    result: count drives recall decline 0.72→0.42
+60	  - exp_id: exp002_confusability_controlled
+61	    role: evidence
+62	    result: BCS drives type confusion 30-40x, F1 partial r=0.30 p=0.026
+63	  depends_on:
+64	  - D004
+65	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "a55b06e1-16df-4b14-a6ef-dfbad6c71e31"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 95_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_050…",
+  "usage": {
+    "total_tokens": 72025,
+    "tool_uses": 27,
+    "duration_ms": 38145
+  },
+  "last_tool_name": "Bash",
+  "uuid": "94d6121a-04ce-45ed-a177-9a67aa081e85",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PWD1xXwTjnZ6to9mdpnQHH`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction -name \"*.ipynb\" -o -name \"requirements*.txt\" -o -name \"setup.py\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "59d629d0-d0c7-4fc8-805f-ff1b0134ba2e",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01R2F78xAZ5r14n6msm7Z6Rb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 3320,
+      "cache_read_input_tokens": 68171,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3320,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-15T03:09:38.777Z_
+
+<details><summary>↩ Tool result · `toolu_01PWD1xXwTjnZ6to9mdpnQHH`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "30fc16ea-c95d-47c0-9e11-0e1453f1fe5e"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 98_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading task_context/agent.md",
+  "usage": {
+    "total_tokens": 72170,
+    "tool_uses": 28,
+    "duration_ms": 40095
+  },
+  "last_tool_name": "Read",
+  "uuid": "465011bd-ea4e-45d8-8e00-d219ad8ccdcf",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SSgS3WLHMxs1PMKx9B7dSM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/agent.md",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "557990d5-162a-4d53-a3c9-f8ea888fd210",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_012ePEmy4i44joGAeQpWn6Bq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 145,
+      "cache_read_input_tokens": 71491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 145,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-15T03:09:40.681Z_
+
+<details><summary>↩ Tool result · `toolu_01SSgS3WLHMxs1PMKx9B7dSM`</summary>
+
+```text
+1	---
+2	loop: 1
+3	reason: max_wall_time
+4	updated: '2026-05-14T23:11:23+00:00'
+5	---
+6	
+7	### 1. 🔴 硬约束 / 红线
+8	- 本项目只能用 cqa1-38874 cuda:0（唯一分配的 GPU）
+9	- 模型和 HF cache 必须放 `/root/autodl-tmp/`（根分区仅 9GB 可用）
+10	- 实验用 `--max_samples 1000`（不是 test set 全量 37648）
+11	- vLLM 当前是 0.20.2（Director 曾要求回滚到 0.18.1 但未执行，0.20.2 实际可用，不要再动）
+12	- 代码修复已通过 Director 确认（5 个 fix），不要再改 BCS/random samples/solo baseline/ΔF1/dynamic enum 相关逻辑
+13	- Exp 1 count curve 方向反了（F1 随 count 上升），Director 已知晓，正在等 evaluation 诊断结果再决策
+14	
+15	### 2. 🖥️ 基础设施快照
+16	- 服务器：cqa1-38874，账户 root
+17	- 工作目录：`/root/schema-dag-extraction/`（代码 `src/`，数据 `data/`，结果 `results/`，日志 `logs/`）
+18	- Python：`/root/miniconda3/bin/python3`（conda base，不是 venv）
+19	- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache`
+20	- 模型：Qwen3-32B-FP8 at `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`（7 shards，完整）
+21	- 数据：Few-NERD parquet at `/root/schema-dag-extraction/data/parquet/{train,test,validation}.parquet`
+22	- Type configs：`configs/few_nerd_types.json`（66 types），`data/few_nerd_type_stats.json`
+23	- Embeddings：`data/type_embeddings.pt`（Qwen3），`data/type_embeddings_e5.pt`（E5 ablation）
+24	- Heatmaps：`data/heatmap.pdf`（Qwen3），`data/heatmap_e5_*.pdf`（E5）
+25	- 活跃进程：Exp 2 PID 197321（`run_experiment.py --mode exp2`，cuda:0）
+26	- Cron：`exp002_confusability_controlled`（每 180s 监控 PID 197321）
+27	- 等待回调的 Worker：`worker_ssh_eval-diagnosis-b2_20260514T231026`（evaluation 诊断，CPU only）
+28	
+29	### 3. 📊 当前状态
+30	- **exp001_count_baseline**: ANALYZING。94/94 batches 完成。结果异常——relaxed F1 随 count 上升（0.067→0.247）。Exact F1 全部 < 0.02。已派 Worker 做 evaluation 诊断（B 方案 2）
+31	- **exp002_confusability_controlled**: RUNNING（PID 197321）。54 batches（count=6/12 × 25 random + low/high BCS），预计 ~1.5-2h。第一个 batch `count_6_low_bcs` 已开始
+32	- **Worker `eval-diagnosis-b2`**: 正在运行，读代码 + 抽样对比模型输出 vs gold。诊断 relaxed match 逻辑、type 过滤、P/R 分拆、预测数量 vs count。Director 说这个结果优先于 Exp 2 汇报
+33	
+34	### 4. 📋 待办（条件触发式）
+35	- `eval-diagnosis-b2` Worker 回调 → **立即汇报 Director**（优先于一切）。如果发现 evaluation bug → 派 Worker 修复 evaluate.py → 用修复版重新计算 Exp 1 指标 → 更新 registry
+36	- `exp002` cron 回调（进程退出）→ SSH 检查 log → 判断成功/失败 → 更新 registry → 如成功：运行 analyze_results.py（Δ(solo_F1 - batch_F1) vs BCS，Pearson r）→ 汇报 Director
+37	- 如果 evaluation 诊断发现 type 过滤 bug → Exp 2 结果也需要用修复版 evaluate.py 重算
+38	- 如果 Pearson |r| ≥ 0.3 且 p < 0.05 → PASS，推进 SDGD 框架实现
+39	- 如果 |r| < 0.3 → NEGATIVE，按 red-section skill 产出 Framing 调整提案，禁止默默跑下一个实验
+40	- Director 提过：如果 Exp 2 在 count=6 上因 BCS variance restriction 不显著 → 追加 count=2 和 count=4 数据点
+41	
+42	### 5. 🎯 战略上下文
+43	- 项目核心：验证 type confusability（BCS）是否独立驱动 LLM IE 质量下降。EMNLP 2026 ARR May 25（距今 11 天）
+44	- D001：项目立项 MVP。D002：统计效力修正（random 10→25，加 solo baseline，改用 ΔF1）
+45	- **当前最大风险**：evaluation 可能有 bug（count curve 反转 + exact F1 ≈ 0 + 预测数远超 gold）。如果 evaluation 确认有问题，Exp 1/2 结果都不可信，需要修复后重跑。这是下一步所有决策的前提
+46	- BCS 用 Qwen3 mean-pool（已验证优于 E5）。BCS 定义是 max pairwise similarity（不是 mean）
+47	- 易错点：few_nerd_utils.py 用 `fine_ner_tags`（66 细粒度），不是 `ner_tags`（9 粗粒度）。之前有过这个 bug
+48	- 易错点：实际只有 64 active types（不是 66），代码中 `min(66, len(active_types))` = 64
+49	- 易错点：不要在未分配的 GPU 上启动实验。本项目只有 cuda:0
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "af0fd38c-7dae-4fb1-a50b-24d42e127ee6"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 101_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Reading task_context/director.md",
+  "usage": {
+    "total_tokens": 72171,
+    "tool_uses": 29,
+    "duration_ms": 40486
+  },
+  "last_tool_name": "Read",
+  "uuid": "e148fd66-2966-43dd-8435-b50a6fed1789",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01CKYgVrmGWPWvDiWXccJuZ9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/director.md",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "c7858c8f-beac-4c59-b556-0a455810ee54",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_012ePEmy4i44joGAeQpWn6Bq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 145,
+      "cache_read_input_tokens": 71491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 145,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-15T03:09:41.070Z_
+
+<details><summary>↩ Tool result · `toolu_01CKYgVrmGWPWvDiWXccJuZ9`</summary>
+
+```text
+1	---
+2	loop: 1
+3	reason: max_wall_time
+4	updated: '2026-05-15T02:51:11+00:00'
+5	---
+6	
+7	### 1. 🔴 硬约束 / 红线
+8	- 本项目只能用 cqa1-38874 cuda:0（唯一分配的 GPU）
+9	- BCS 计算必须用 max pairwise cosine similarity，不是 mean（compute_bcs.py 已修复，但新代码要继续遵守）
+10	- 评估必须用 text-match（text.find() offset correction），不能用 exact match（模型 fabricate 96.5% 的 char offset）
+11	- Few-NERD 必须用 fine_ner_tags（66 types），不是 ner_tags（8 types）
+12	- Post-MVP 禁止批准新实验直到 Dream 回调处理完毕（post-mvp-kickoff skill Step 5）
+13	
+14	### 2. 🖥️ 基础设施快照
+15	- 服务器：cqa1-38874 (connect.cqa1.seetacloud.com)，用户 root
+16	- 工作目录：/root/schema-dag-extraction
+17	- 模型：Qwen3-32B-FP8，通过 vLLM 0.20.2 serving（constrained JSON decoding）
+18	- GPU：1× RTX PRO 6000 Blackwell (98GB)，cuda:0
+19	- 数据：Few-NERD via HuggingFace datasets（66 fine-grained entity types，1000 test samples，64 active types）
+20	- 关键代码：src/ 下 compute_bcs.py, run_experiment.py, run_extraction.py, evaluate.py, analyze_results.py, reeval_text_match.py, select_type_batches.py, few_nerd_utils.py
+21	- 活跃进程：无（GPU 空闲，等 Agent 修复 exp3a）
+22	
+23	### 3. 📊 当前状态
+24	刚完成 post-MVP kickoff Steps 1-4：
+25	- paper_framing.md 已写好（3 Core Claims: confusability independence / multi-channel degradation / SDGD effectiveness）
+26	- experiment_plan.yaml 已写好（15 experiments, P0=23h, P1=20h, total ~43h）
+27	- Dream 模拟已启动：dream_20260515T024826, review_mode=full, 等待回调
+28	- ROADMAP 已更新为 research phase dashboard
+29	
+30	Registry:
+31	- exp001_count_baseline: ANALYZING（MVP 完成）
+32	- exp002_confusability_controlled: ANALYZING (success)（MVP 完成）
+33	- exp003a_prompt_v2_rerun: DONE (failed, EXIT_CODE=2 syntax error)
+34	
+35	已派 Agent 诊断修复 exp3a 并重跑。GPU cuda:0 当前空闲。
+36	
+37	### 4. 📋 待办
+38	- Dream 回调 `[DREAM dream_20260515T024826] 完成` → Read dream-report-action skill → 分析三档审稿 → 决定是否调整 framing/plan → 达标则批准 P0 实验
+39	- Agent 回复 exp3a 修复结果 → 确认重新提交成功 → GPU 恢复工作
+40	- exp3a 完成后 → 批准 exp-004 (ACE05) + exp-008 (SDGD-zero) + exp-012 (multi-model) 并行铺开（如只有 1 GPU 则串行排优先级）
+41	- 如 Dream 报告指出需要第二个模型才够 reviewer 信服 → director_post_to_manager 申请第二张 GPU 跑 exp-012
+42	
+43	### 5. 🎯 战略上下文
+44	- 决策链：D001(立项) → D002(统计功效修正) → D003(Δ→within-count r) → D004(F1→recall主指标) → D005(MVP PASS, Narrative A)
+45	- MVP 核心发现：confusability 的降级通道是 type confusion（标错类型），不是 entity omission（遗漏实体）。这比原假设更精确，是论文的关键 insight
+46	- F1 curve 反转是 over-prediction confound（低 count 时 pred/gold=6.8x），recall 才是干净的 count degradation 信号。写论文时必须解释清楚
+47	- 易错点1：exp3a 之前因 syntax error 失败，不要以为它已经跑过了——数据还没有
+48	- 易错点2：不要在 Dream 回调之前批准 P0 实验（post-mvp-kickoff skill 硬约束）
+49	- 时间极紧：ARR May 25 只剩 10 天，43h GPU 工作量，必须保持 GPU 零空闲
+50	- 多模型验证（exp-012）是最可能被 reviewer 攻击的短板，但也是 GPU 需求最大的实验（6h + 可能需要第二张卡）
+51	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "107d7a49-d3be-4c6f-9c89-26206dcd78a9"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 104_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "description": "Running cat /home/ubuntu/.agent-ml-research-idea_gen_0509…",
+  "usage": {
+    "total_tokens": 75829,
+    "tool_uses": 30,
+    "duration_ms": 42786
+  },
+  "last_tool_name": "Bash",
+  "uuid": "6079aced-a13d-4b1a-b2f5-875a637434af",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HAMR8ECMVf28XSr7GceeNh`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "f0d2fc3a-e33a-42f2-9843-adc0591f70f9",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01SS7e1cfhTFc454cuFCKCZx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3655,
+      "cache_read_input_tokens": 71636,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3655,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-15T03:09:43.416Z_
+
+<details><summary>↩ Tool result · `toolu_01HAMR8ECMVf28XSr7GceeNh`</summary>
+
+```text
+# Handover — 2026-05-15
+
+> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。
+
+## 运行中
+| exp_id | 假设 | 状态 | 关键指标 |
+|--------|------|------|---------|
+| exp003a_prompt_v2_rerun | Prompt v2 (no offset + anti-overpredict) 重跑 exp1+exp2 | RUNNING (PID 209542, ~4h) | 等完成 |
+
+## 已完成（待结论确认）
+| exp_id | 假设 | 状态 | 关键指标 |
+|--------|------|------|---------|
+| exp001_count_baseline | F1 随 count 增加下降 | ANALYZING | recall 0.72→0.42 单调↓, WrongType 0→2434 |
+| exp002_confusability_controlled | BCS 独立驱动质量下降 | ANALYZING (conclusion=success) | partial r(F1,BCS)=0.303 p=0.026; pairwise BCS-confusion r=0.156 p=4.6e-12; confusion rate 10-28x |
+
+## MVP 结论 (D005)
+通过。Narrative A: Multi-channel degradation model。
+- Channel 1: Count → recall decline (exp001)
+- Channel 2: Confusability → type confusion / precision decline (exp002)
+- 两通道正交，pairwise evidence 强
+
+## 活跃 Worker
+| worker_id | 任务 | 类型 |
+|-----------|------|------|
+| research:ace05-data-prep | ACE05 数据集调研+下载准备 | CPU |
+| code:sdgd-framework-design | SDGD 框架算法设计文档 | CPU |
+
+## 下一步（等 exp003a 完成）
+1. text_match 重评估 exp003a 输出 → 确认 prompt v2 数据干净度
+2. 运行 analyze_results.py → within-count r(recall, BCS) 是否改善
+3. 若信号 |r| > 0.2 → 用 v2 数据作为最终实验数据
+4. 启动 P0 实验: exp-004 (ACE05), exp-008 (SDGD-zero), exp-012 (multi-model)
+
+## 资源状态
+- GPU: cqa1-38874 cuda:0 — exp003a RUNNING
+- Cron: 已注册 (interval=120s)
+- Worker 池: 3 (GPU 0 / CPU 3)
+
+## 告警
+- exp003a 之前因路径错误失败 2 次，第 3 次已修正并运行中
+- Dream 模拟 (dream_20260515T024826) 状态待确认
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "50d1ed2f-b0f6-4534-964e-447c61c381e1"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 107_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "ad7579de8e3db467b",
+  "tool_use_id": "toolu_012tVLzcq52fRWcz4zk9YThq",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Explore project structure",
+  "usage": {
+    "total_tokens": 76815,
+    "tool_uses": 30,
+    "duration_ms": 87140
+  },
+  "uuid": "ef71e1fa-0ce0-49e1-acd8-73aa876736d9",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-15T03:10:27.718Z_
+
+<details><summary>↩ Tool result · `toolu_012tVLzcq52fRWcz4zk9YThq`</summary>
+
+````text
+Perfect! Now I have a comprehensive understanding. Let me compile my findings:
+
+## Comprehensive Project Exploration Report
+
+### Project Overview
+**Location**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/`
+
+This is an active ML research project investigating whether type confusability drives schema-induced degradation in LLM-based information extraction (IE). The project targets EMNLP 2026 (ARR May 25, 2026 submission deadline — 10 days away).
+
+---
+
+## 1. Data Processing Pipeline
+
+### Few-NERD Dataset
+- **Format**: Parquet (Apache Parquet columnar format)
+- **Location**: `/root/schema-dag-extraction/data/parquet/{train,test,validation}.parquet`
+- **Schema**: 
+  - `text`: source text
+  - `entities`: list of `{"text": str, "type": str}` pairs
+  - 66 fine-grained entity types (8 coarse categories with 66 subtypes)
+  - 1000 test samples used (not full 37,648-sample test set)
+  - 64 active types in current codebase
+
+### Type Configuration
+- **File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/configs/few_nerd_types.json`
+- **Content**: JSON mapping type names to definitions
+- **Example types**:
+  - Person subtypes: `person-actor`, `person-artist/author`, `person-athlete`, `person-director`, `person-other`, `person-politician`, `person-scholar`, `person-soldier` (8 subtypes)
+  - Organization subtypes: 10 types (company, education, government, media, other, political-party, religion, show-organization, sports-league, sports-team)
+  - Location: 7 subtypes
+  - Building: 8 subtypes
+  - Art: 5 subtypes
+  - Event: 6 subtypes
+  - Product: 9 subtypes
+  - Other: 12 subtypes
+
+---
+
+## 2. Type Embedding Computation
+
+### Embedding Models Used
+1. **Primary**: Qwen3-32B mean-pooled hidden states
+   - Dimension: 5,120
+   - File: `/root/schema-dag-extraction/data/type_embeddings.pt`
+   - Precomputed pairwise cosine similarity for all 66 types
+
+2. **Ablation**: E5-large-v2 sentence embeddings
+   - Dimension: 1,024
+   - Files: 
+     - `/root/schema-dag-extraction/data/type_embeddings_e5.pt`
+     - Heatmaps: `/root/schema-dag-extraction/data/heatmap_e5_*.pdf`
+   - BCS comparison stored in `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/bcs_comparison.json`
+
+### Embedding Statistics (Few-NERD, Qwen3)
+```json
+{
+  "pairwise_cosine_similarity": {
+    "min": 0.4422, "max": 0.9732, "mean": 0.8077, "std": 0.0599, "dim": 5120
+  },
+  "per_type_bcs_max_confusion": {
+    "min": 0.8413, "max": 0.9732, "mean": 0.9139, "std": 0.0264
+  }
+}
+```
+
+### Batch Confusability Score (BCS)
+- **Definition**: `BCS(batch) = max pairwise cosine_sim(embeddings)` for all pairs in the batch
+- **Threshold**: Adaptive = `mean(C) + k·std(C)`, where k ∈ {0.5, 1.0, 1.5, 2.0}
+- **Few-NERD Qwen3**: τ ≈ 0.85 at k=1.0
+
+---
+
+## 3. Few-NERD Current Handling
+
+### Data Loading
+- **File**: `src/text_match_reeval.py` (key function: `load_few_nerd()` via `few_nerd_utils.py`)
+- **Format**: Loads from parquet, returns list of dicts with `text` and `entities` fields
+- **Filtering**: Uses fine-grained tags (66 types), NOT coarse tags (8 types)
+
+### Evaluation Method
+- **Text-match evaluation** (offset-agnostic, as stored in `text_match_reeval.py`)
+- **Logic**: 
+  - Match by (text, type) pair, not by character offset
+  - Substring search: `pred.text in source_text`
+  - Greedy matching to avoid double-counting
+  - Computes P/R/F1 per batch, per type, and aggregated
+
+### Key Findings from MVP (Exp1 + Exp2)
+- **Exp1 (Count Baseline)**:
+  - Count = [1, 2, 6, 12, 22, 44, 66]
+  - Recall monotonically decreases: 0.72 → 0.42
+  - Type confusion errors (WrongType): 0 → 2,434
+  - Over-prediction at low counts: pred/gold ratio 6.85:1 at count=1, 0.8:1 at count=64
+  
+- **Exp2 (Confusability Controlled, 54 batches at count=6,12)**:
+  - Primary: F1 vs BCS within count_12: r=0.501, p=0.008
+  - Partial r(F1, BCS) controlling for count: r=0.303, p=0.026
+  - Pairwise BCS-confusion correlation: Spearman ρ=0.254, p=1.1e-6 (n=1,953 pairs)
+  - Confusion rate: high-BCS batches 10-28x more type confusion than low-BCS
+
+---
+
+## 4. ACE05 Dataset References
+
+### Data Preparation Report
+- **File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_data_prep_report.md`
+
+### Schema Definitions
+- **Entity Types (7)**: Person, Organization, GPE, Location, Facility, Vehicle, Weapon
+- **Relation Subtypes (18)**: Includes `ORG-AFF:Employment`, `PER-SOC:Family`, `PHYS:Located`, `PHYS:Near`, etc.
+- **Config Files**:
+  - `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs/ace05_entity_types.json`
+  - `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs/ace05_relation_types.json`
+
+### Planned Usage
+- **Exp-004**: ACE05 confusability study (NER 7 types + RE 18 types)
+- **Exp-009**: SDGD-zero on ACE05 with full 3-layer DAG (entity→relation→event) and selective grounding
+- Data format: JSON with `text`, `entities`, `relations` fields (converting from LDC SGM/APF format)
+
+---
+
+## 5. MAVEN Dataset References
+
+### Current Status
+- Listed as planned for camera-ready/optional experiments
+- **Experiment**: Exp-005 (optional P1) uses DocRED 96 relation types
+- **MAVEN mentioned in**:
+  - docs/IDEA_BRIEF.md: "168 event types — scaling stress test" (evaluation benchmark)
+  - experiment_plan.yaml: Not explicitly scheduled P0, but "MAVEN and SciERC for camera-ready if time permits"
+  - No preprocessing code or configs found yet for MAVEN
+
+### Reference Context
+- MAVEN (Multi-event Agreement Benchmark) is an event extraction benchmark with 168 event types
+- Used as a scaling stress test to validate confusability findings on high-complexity schemas
+
+---
+
+## 6. SDGD (Schema Confusability Graph Decomposition) Framework
+
+### Algorithm Structure
+**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/sdgd_design_doc.md`
+
+#### Phase 1: Confusability Matrix Computation
+- **SDGD-zero**: Uses embedding cosine similarity
+- **SDGD-cal**: Uses empirical confusion matrix from k=5-10 calibration examples
+  - `C[i,j]` = count of gold type-i predicted as type-j
+  - Symmetrize and normalize: `C_sym = (C + C.T) / 2`
+
+#### Phase 2: Graph Construction
+- Build weighted undirected graph G = (T, E, w)
+- Nodes: types; Edge weights: pairwise confusability
+- Overlay dependency DAG: entity → relation → event
+
+#### Phase 3: Greedy Graph Coloring (Type Batching)
+- **Algorithm**: `greedy_color(strategy="largest_first")` from NetworkX
+- **Constraint**: BCS(batch) ≤ τ for each batch
+- **Goal**: Minimize k (number of batches)
+- **Few-NERD Prediction**: Chromatic number ≈ 8-10 (vs single-pass 1 batch or per-type 66 batches)
+
+#### Phase 4: Per-Batch Extraction with JSON Schema
+- For each batch, build prompt with batch types only
+- Use vLLM constrained decoding with JSON schema
+- Parse outputs and accumulate predictions
+
+#### Phase 5: Merge Across Batches
+- **NER**: Simple union (type batches don't overlap)
+- **RE/EE**: Deduplication by (text, type) pair
+
+### Key Design Decisions
+1. **Threshold Selection**: Adaptive τ = mean(C) + k·std(C)
+   - Avoids circularity (not derived from target dataset)
+   - k sweep {0.5, 1.0, 1.5, 2.0} for ablation
+   - Oracle baseline τ from Few-NERD only for Few-NERD experiments
+
+2. **Merge Strategy**: Simple union for NER (no type overlap between batches)
+
+3. **Conflict Resolution**: For RE/EE, deduplicate identical (text, type) pairs
+
+### Planned Variants
+- **SDGD-zero**: Zero-shot, uses embeddings only, no labeled data required
+- **SDGD-cal**: Few-shot calibrated, requires 5-10 labeled examples per type for empirical confusion matrix
+
+---
+
+## 7. Code Structure and Key Scripts
+
+### Main Source File
+- **`/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/text_match_reeval.py`**
+  - Purpose: Text-match re-evaluation script
+  - Key functions:
+    - `text_match_eval(pred_entries, samples, batch_types)` — computes P/R/F1 with substring matching
+    - `main()` — runs evaluation, produces:
+      - `exp1_text_match_reeval.json` (per-batch results with BCS metadata)
+      - `exp1_text_match_summary.json` (per-count aggregated metrics)
+      - `exp1_overprediction_analysis.json` (FP breakdown: hallucination/wrong_type/spurious)
+
+### Proposed Module Structure (SDGD)
+```
+src/sdgd/
+  __init__.py           # Public API: sdgd_extract()
+  similarity.py         # Confusability computation (embedding / empirical)
+  graph.py              # Threshold graph + greedy coloring
+  decompose.py          # Main orchestrator
+  merge.py              # Result merging
+  evaluate.py           # SDGD-specific evaluation
+```
+
+### Supporting Utilities Referenced
+- `compute_bcs.py` — Batch Confusability Score computation
+- `run_experiment.py` — Main experiment runner
+- `run_extraction.py` — Wrapper around vLLM extraction
+- `evaluate.py` — Evaluation with exact + relaxed matching
+- `analyze_results.py` — Statistical analysis (Pearson r, pairwise correlations)
+- `select_type_batches.py` — Batch selection logic
+- `few_nerd_utils.py` — Data loading and utilities
+
+---
+
+## 8. Experimental Plan
+
+### Completed (MVP, 3 experiments)
+- **Exp-001**: Count baseline (F1 degradation with increasing type count)
+- **Exp-002**: Confusability controlled (within-count BCS correlation)
+- **Exp-003a**: Prompt v2 rerun (anti-hallucination instruction, text-only prompts)
+
+### Planned (15 total, ~43h GPU)
+**P0 (6 experiments, 23h):**
+- exp-004: ACE05 confusability study (NER + RE)
+- exp-008: SDGD-zero on Few-NERD
+- exp-009: SDGD-zero on ACE05 (3-layer DAG)
+- exp-012: Multi-model validation (≥2 models)
+- exp-013: Random batching ablation
+
+**P1 (9 experiments, 20h):**
+- exp-005: DocRED confusability study (96 relation types)
+- exp-006: Interaction effects (2×2: count vs confusability)
+- exp-007: Error taxonomy analysis
+- exp-010/011: SDGD-cal (empirical calibration)
+- exp-014/015: Ablations + SCS validation
+
+---
+
+## 9. Infrastructure & Data Formats
+
+### Server Configuration
+- **Server**: cqa1-38874 (connect.cqa1.seetacloud.com)
+- **GPU**: 1× RTX PRO 6000 Blackwell (98GB VRAM), cuda:0 only
+- **Python**: `/root/miniconda3/bin/python3` (conda base)
+- **vLLM**: Version 0.20.2 with constrained JSON decoding
+- **Model**: Qwen3-32B-FP8 (7 shards) at `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`
+
+### Data Storage
+- **Working directory**: `/root/schema-dag-extraction/`
+- **Source code**: `src/`
+- **Data**: `data/parquet/`, `data/type_embeddings*.pt`
+- **Configs**: `configs/few_nerd_types.json`
+- **Results**: `results/`, `logs/`
+
+### Key File Formats
+- **Parquet**: Few-NERD dataset
+- **PyTorch tensors (.pt)**: Type embeddings (N×D matrices)
+- **JSON**: Type definitions, BCS comparison stats, prediction outputs
+- **PDF**: Heatmaps for embedding similarity matrices
+
+---
+
+## 10. Key Documentation Files
+
+### Project Navigation
+- **`memory.md`**: Current MVP results, multi-channel degradation narrative, SDGD design decisions
+- **`ROADMAP.md`**: Research phase dashboard, experiment overview, decision log
+- **`paper_framing.md`**: 3 core claims, story spine, reviewer concerns & responses
+- **`experiment_plan.yaml`**: 15 experiments with GPU budgets, dependencies, pass criteria
+- **`decisions.yaml`**: Decision log D001-D005, rationale for key methodological choices
+- **`IDEA_BRIEF.md`**: Complete research proposal with literature review, feasibility analysis
+
+### Artifact Reports
+- **`artifacts/sdgd_design_doc.md`**: Algorithm pseudocode, module structure, design decisions
+- **`artifacts/ace05_data_prep_report.md`**: ACE05 schema, preprocessing strategies, embedding plan
+- **`artifacts/bcs_comparison.json`**: Embedding model comparison (Qwen3 vs E5)
+
+### Agent/Director Context
+- **`task_context/agent.md`**: Execution guidelines (Phase 1-5 for environment setup)
+- **`task_context/director.md`**: Strategic context, constraints, current priorities
+
+---
+
+## Summary of Key Findings
+
+| Aspect | Details |
+|--------|---------|
+| **Core Hypothesis** | Type confusability (BCS) independently drives LLM IE degradation beyond type count effects |
+| **MVP Evidence** | Partial r(F1, BCS)=0.303 p=0.026 (exp2); confusion rate high/low BCS = 10-28x |
+| **Multi-Channel Model** | Count→recall decline (0.72→0.42) + Confusability→type confusion (0→2434 errors) |
+| **Dataset** | Few-NERD: 66 fine-grained entity types, 1000 test samples, parquet format |
+| **Embeddings** | Qwen3-32B mean-pool (5120-dim) chosen over E5 for better discriminability |
+| **SDGD Method** | Graph coloring on confusability graph, 8-10 batches for Few-NERD vs 1 (single-pass) or 66 (per-type) |
+| **Evaluation** | Text-match (offset-agnostic) preferred due to 96.5% fabricated offsets in model output |
+| **Timeline** | ARR May 25 deadline (10 days); P0 experiments = 23h GPU |
+| **ACE05/MAVEN** | Planned for cross-domain validation; ACE05 configs ready; MAVEN for camera-ready |
+
+---
+
+This comprehensive exploration covers the full scope of the project's data processing pipeline, Few-NERD handling, references to ACE05 and MAVEN datasets, and the complete SDGD methodology framework. All file paths are absolute and reflect the current project state as of May 15, 2026.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "05da483d-bc00-4e6c-89ab-735bc63d7a0c",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "Explore the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ to understand:\n1. What data processing pipeline exists (parquet format, type embedding computation)\n2. How Few-NERD is currently handled\n3. Any existing references to ACE05 or MAVEN\n4. The BCS/SDGD methodology code structure\n\nSearch broadly across the codebase. Report file paths, key functions, and data formats used.",
+    "agentId": "ad7579de8e3db467b",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! Now I have a comprehensive understanding. Let me compile my findings:\n\n## Comprehensive Project Exploration Report\n\n### Project Overview\n**Location**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/`\n\nThis is an active ML research project investigating whether type confusability drives schema-induced degradation in LLM-based information extraction (IE). The project targets EMNLP 2026 (ARR May 25, 2026 submission deadline — 10 days away).\n\n---\n\n## 1. Data Processing Pipeline\n\n### Few-NERD Dataset\n- **Format**: Parquet (Apache Parquet columnar format)\n- **Location**: `/root/schema-dag-extraction/data/parquet/{train,test,validation}.parquet`\n- **Schema**: \n  - `text`: source text\n  - `entities`: list of `{\"text\": str, \"type\": str}` pairs\n  - 66 fine-grained entity types (8 coarse categories with 66 subtypes)\n  - 1000 test samples used (not full 37,648-sample test set)\n  - 64 active types in current codebase\n\n### Type Configuration\n- **File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/configs/few_nerd_types.json`\n- **Content**: JSON mapping type names to definitions\n- **Example types**:\n  - Person subtypes: `person-actor`, `person-artist/author`, `person-athlete`, `person-director`, `person-other`, `person-politician`, `person-scholar`, `person-soldier` (8 subtypes)\n  - Organization subtypes: 10 types (company, education, government, media, other, political-party, religion, show-organization, sports-league, sports-team)\n  - Location: 7 subtypes\n  - Building: 8 subtypes\n  - Art: 5 subtypes\n  - Event: 6 subtypes\n  - Product: 9 subtypes\n  - Other: 12 subtypes\n\n---\n\n## 2. Type Embedding Computation\n\n### Embedding Models Used\n1. **Primary**: Qwen3-32B mean-pooled hidden states\n   - Dimension: 5,120\n   - File: `/root/schema-dag-extraction/data/type_embeddings.pt`\n   - Precomputed pairwise cosine similarity for all 66 types\n\n2. **Ablation**: E5-large-v2 sentence embeddings\n   - Dimension: 1,024\n   - Files: \n     - `/root/schema-dag-extraction/data/type_embeddings_e5.pt`\n     - Heatmaps: `/root/schema-dag-extraction/data/heatmap_e5_*.pdf`\n   - BCS comparison stored in `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/bcs_comparison.json`\n\n### Embedding Statistics (Few-NERD, Qwen3)\n```json\n{\n  \"pairwise_cosine_similarity\": {\n    \"min\": 0.4422, \"max\": 0.9732, \"mean\": 0.8077, \"std\": 0.0599, \"dim\": 5120\n  },\n  \"per_type_bcs_max_confusion\": {\n    \"min\": 0.8413, \"max\": 0.9732, \"mean\": 0.9139, \"std\": 0.0264\n  }\n}\n```\n\n### Batch Confusability Score (BCS)\n- **Definition**: `BCS(batch) = max pairwise cosine_sim(embeddings)` for all pairs in the batch\n- **Threshold**: Adaptive = `mean(C) + k·std(C)`, where k ∈ {0.5, 1.0, 1.5, 2.0}\n- **Few-NERD Qwen3**: τ ≈ 0.85 at k=1.0\n\n---\n\n## 3. Few-NERD Current Handling\n\n### Data Loading\n- **File**: `src/text_match_reeval.py` (key function: `load_few_nerd()` via `few_nerd_utils.py`)\n- **Format**: Loads from parquet, returns list of dicts with `text` and `entities` fields\n- **Filtering**: Uses fine-grained tags (66 types), NOT coarse tags (8 types)\n\n### Evaluation Method\n- **Text-match evaluation** (offset-agnostic, as stored in `text_match_reeval.py`)\n- **Logic**: \n  - Match by (text, type) pair, not by character offset\n  - Substring search: `pred.text in source_text`\n  - Greedy matching to avoid double-counting\n  - Computes P/R/F1 per batch, per type, and aggregated\n\n### Key Findings from MVP (Exp1 + Exp2)\n- **Exp1 (Count Baseline)**:\n  - Count = [1, 2, 6, 12, 22, 44, 66]\n  - Recall monotonically decreases: 0.72 → 0.42\n  - Type confusion errors (WrongType): 0 → 2,434\n  - Over-prediction at low counts: pred/gold ratio 6.85:1 at count=1, 0.8:1 at count=64\n  \n- **Exp2 (Confusability Controlled, 54 batches at count=6,12)**:\n  - Primary: F1 vs BCS within count_12: r=0.501, p=0.008\n  - Partial r(F1, BCS) controlling for count: r=0.303, p=0.026\n  - Pairwise BCS-confusion correlation: Spearman ρ=0.254, p=1.1e-6 (n=1,953 pairs)\n  - Confusion rate: high-BCS batches 10-28x more type confusion than low-BCS\n\n---\n\n## 4. ACE05 Dataset References\n\n### Data Preparation Report\n- **File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_data_prep_report.md`\n\n### Schema Definitions\n- **Entity Types (7)**: Person, Organization, GPE, Location, Facility, Vehicle, Weapon\n- **Relation Subtypes (18)**: Includes `ORG-AFF:Employment`, `PER-SOC:Family`, `PHYS:Located`, `PHYS:Near`, etc.\n- **Config Files**:\n  - `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs/ace05_entity_types.json`\n  - `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/configs/ace05_relation_types.json`\n\n### Planned Usage\n- **Exp-004**: ACE05 confusability study (NER 7 types + RE 18 types)\n- **Exp-009**: SDGD-zero on ACE05 with full 3-layer DAG (entity→relation→event) and selective grounding\n- Data format: JSON with `text`, `entities`, `relations` fields (converting from LDC SGM/APF format)\n\n---\n\n## 5. MAVEN Dataset References\n\n### Current Status\n- Listed as planned for camera-ready/optional experiments\n- **Experiment**: Exp-005 (optional P1) uses DocRED 96 relation types\n- **MAVEN mentioned in**:\n  - docs/IDEA_BRIEF.md: \"168 event types — scaling stress test\" (evaluation benchmark)\n  - experiment_plan.yaml: Not explicitly scheduled P0, but \"MAVEN and SciERC for camera-ready if time permits\"\n  - No preprocessing code or configs found yet for MAVEN\n\n### Reference Context\n- MAVEN (Multi-event Agreement Benchmark) is an event extraction benchmark with 168 event types\n- Used as a scaling stress test to validate confusability findings on high-complexity schemas\n\n---\n\n## 6. SDGD (Schema Confusability Graph Decomposition) Framework\n\n### Algorithm Structure\n**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/sdgd_design_doc.md`\n\n#### Phase 1: Confusability Matrix Computation\n- **SDGD-zero**: Uses embedding cosine similarity\n- **SDGD-cal**: Uses empirical confusion matrix from k=5-10 calibration examples\n  - `C[i,j]` = count of gold type-i predicted as type-j\n  - Symmetrize and normalize: `C_sym = (C + C.T) / 2`\n\n#### Phase 2: Graph Construction\n- Build weighted undirected graph G = (T, E, w)\n- Nodes: types; Edge weights: pairwise confusability\n- Overlay dependency DAG: entity → relation → event\n\n#### Phase 3: Greedy Graph Coloring (Type Batching)\n- **Algorithm**: `greedy_color(strategy=\"largest_first\")` from NetworkX\n- **Constraint**: BCS(batch) ≤ τ for each batch\n- **Goal**: Minimize k (number of batches)\n- **Few-NERD Prediction**: Chromatic number ≈ 8-10 (vs single-pass 1 batch or per-type 66 batches)\n\n#### Phase 4: Per-Batch Extraction with JSON Schema\n- For each batch, build prompt with batch types only\n- Use vLLM constrained decoding with JSON schema\n- Parse outputs and accumulate predictions\n\n#### Phase 5: Merge Across Batches\n- **NER**: Simple union (type batches don't overlap)\n- **RE/EE**: Deduplication by (text, type) pair\n\n### Key Design Decisions\n1. **Threshold Selection**: Adaptive τ = mean(C) + k·std(C)\n   - Avoids circularity (not derived from target dataset)\n   - k sweep {0.5, 1.0, 1.5, 2.0} for ablation\n   - Oracle baseline τ from Few-NERD only for Few-NERD experiments\n\n2. **Merge Strategy**: Simple union for NER (no type overlap between batches)\n\n3. **Conflict Resolution**: For RE/EE, deduplicate identical (text, type) pairs\n\n### Planned Variants\n- **SDGD-zero**: Zero-shot, uses embeddings only, no labeled data required\n- **SDGD-cal**: Few-shot calibrated, requires 5-10 labeled examples per type for empirical confusion matrix\n\n---\n\n## 7. Code Structure and Key Scripts\n\n### Main Source File\n- **`/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/text_match_reeval.py`**\n  - Purpose: Text-match re-evaluation script\n  - Key functions:\n    - `text_match_eval(pred_entries, samples, batch_types)` — computes P/R/F1 with substring matching\n    - `main()` — runs evaluation, produces:\n      - `exp1_text_match_reeval.json` (per-batch results with BCS metadata)\n      - `exp1_text_match_summary.json` (per-count aggregated metrics)\n      - `exp1_overprediction_analysis.json` (FP breakdown: hallucination/wrong_type/spurious)\n\n### Proposed Module Structure (SDGD)\n```\nsrc/sdgd/\n  __init__.py           # Public API: sdgd_extract()\n  similarity.py         # Confusability computation (embedding / empirical)\n  graph.py              # Threshold graph + greedy coloring\n  decompose.py          # Main orchestrator\n  merge.py              # Result merging\n  evaluate.py           # SDGD-specific evaluation\n```\n\n### Supporting Utilities Referenced\n- `compute_bcs.py` — Batch Confusability Score computation\n- `run_experiment.py` — Main experiment runner\n- `run_extraction.py` — Wrapper around vLLM extraction\n- `evaluate.py` — Evaluation with exact + relaxed matching\n- `analyze_results.py` — Statistical analysis (Pearson r, pairwise correlations)\n- `select_type_batches.py` — Batch selection logic\n- `few_nerd_utils.py` — Data loading and utilities\n\n---\n\n## 8. Experimental Plan\n\n### Completed (MVP, 3 experiments)\n- **Exp-001**: Count baseline (F1 degradation with increasing type count)\n- **Exp-002**: Confusability controlled (within-count BCS correlation)\n- **Exp-003a**: Prompt v2 rerun (anti-hallucination instruction, text-only prompts)\n\n### Planned (15 total, ~43h GPU)\n**P0 (6 experiments, 23h):**\n- exp-004: ACE05 confusability study (NER + RE)\n- exp-008: SDGD-zero on Few-NERD\n- exp-009: SDGD-zero on ACE05 (3-layer DAG)\n- exp-012: Multi-model validation (≥2 models)\n- exp-013: Random batching ablation\n\n**P1 (9 experiments, 20h):**\n- exp-005: DocRED confusability study (96 relation types)\n- exp-006: Interaction effects (2×2: count vs confusability)\n- exp-007: Error taxonomy analysis\n- exp-010/011: SDGD-cal (empirical calibration)\n- exp-014/015: Ablations + SCS validation\n\n---\n\n## 9. Infrastructure & Data Formats\n\n### Server Configuration\n- **Server**: cqa1-38874 (connect.cqa1.seetacloud.com)\n- **GPU**: 1× RTX PRO 6000 Blackwell (98GB VRAM), cuda:0 only\n- **Python**: `/root/miniconda3/bin/python3` (conda base)\n- **vLLM**: Version 0.20.2 with constrained JSON decoding\n- **Model**: Qwen3-32B-FP8 (7 shards) at `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/`\n\n### Data Storage\n- **Working directory**: `/root/schema-dag-extraction/`\n- **Source code**: `src/`\n- **Data**: `data/parquet/`, `data/type_embeddings*.pt`\n- **Configs**: `configs/few_nerd_types.json`\n- **Results**: `results/`, `logs/`\n\n### Key File Formats\n- **Parquet**: Few-NERD dataset\n- **PyTorch tensors (.pt)**: Type embeddings (N×D matrices)\n- **JSON**: Type definitions, BCS comparison stats, prediction outputs\n- **PDF**: Heatmaps for embedding similarity matrices\n\n---\n\n## 10. Key Documentation Files\n\n### Project Navigation\n- **`memory.md`**: Current MVP results, multi-channel degradation narrative, SDGD design decisions\n- **`ROADMAP.md`**: Research phase dashboard, experiment overview, decision log\n- **`paper_framing.md`**: 3 core claims, story spine, reviewer concerns & responses\n- **`experiment_plan.yaml`**: 15 experiments with GPU budgets, dependencies, pass criteria\n- **`decisions.yaml`**: Decision log D001-D005, rationale for key methodological choices\n- **`IDEA_BRIEF.md`**: Complete research proposal with literature review, feasibility analysis\n\n### Artifact Reports\n- **`artifacts/sdgd_design_doc.md`**: Algorithm pseudocode, module structure, design decisions\n- **`artifacts/ace05_data_prep_report.md`**: ACE05 schema, preprocessing strategies, embedding plan\n- **`artifacts/bcs_comparison.json`**: Embedding model comparison (Qwen3 vs E5)\n\n### Agent/Director Context\n- **`task_context/agent.md`**: Execution guidelines (Phase 1-5 for environment setup)\n- **`task_context/director.md`**: Strategic context, constraints, current priorities\n\n---\n\n## Summary of Key Findings\n\n| Aspect | Details |\n|--------|---------|\n| **Core Hypothesis** | Type confusability (BCS) independently drives LLM IE degradation beyond type count effects |\n| **MVP Evidence** | Partial r(F1, BCS)=0.303 p=0.026 (exp2); confusion rate high/low BCS = 10-28x |\n| **Multi-Channel Model** | Count→recall decline (0.72→0.42) + Confusability→type confusion (0→2434 errors) |\n| **Dataset** | Few-NERD: 66 fine-grained entity types, 1000 test samples, parquet format |\n| **Embeddings** | Qwen3-32B mean-pool (5120-dim) chosen over E5 for better discriminability |\n| **SDGD Method** | Graph coloring on confusability graph, 8-10 batches for Few-NERD vs 1 (single-pass) or 66 (per-type) |\n| **Evaluation** | Text-match (offset-agnostic) preferred due to 96.5% fabricated offsets in model output |\n| **Timeline** | ARR May 25 deadline (10 days); P0 experiments = 23h GPU |\n| **ACE05/MAVEN** | Planned for cross-domain validation; ACE05 configs ready; MAVEN for camera-ready |\n\n---\n\nThis comprehensive exploration covers the full scope of the project's data processing pipeline, Few-NERD handling, references to ACE05 and MAVEN datasets, and the complete SDGD methodology framework. All file paths are absolute and reflect the current project state as of May 15, 2026."
+      }
+    ],
+    "totalDurationMs": 87143,
+    "totalTokens": 80731,
+    "totalToolUseCount": 30,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 75291,
+      "output_tokens": 4452,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 987
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4452,
+          "cache_read_input_tokens": 75291,
+          "cache_creation_input_tokens": 987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 987,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 17,
+      "searchCount": 0,
+      "bashCount": 13,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have a comprehensive understanding of the project and the MAVEN dataset basics. Let me get more specific details:
+
+1. The MAVEN paper details (168 event types, hierarchy)
+2. HuggingFace availability
+3. The actual event type list
+
+Let me fetch more specific information.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "80cb5a4d-caa8-47dc-aff9-fad3a70332dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Y5zWzixC9YameALreVXm5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7562,
+      "cache_read_input_tokens": 25897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7562
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110_
+
+获取了基础信息。继续深入获取 MAVEN 的 type schema、HuggingFace 可用性和论文细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "f19ea5d4-6695-4f70-b46d-ba53bff608e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Y5zWzixC9YameALreVXm5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7562,
+      "cache_read_input_tokens": 25897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7562
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014Pu2Zj2tbxG5JvSBwrmhpk`</summary>
+
+```json
+{
+  "url": "https://github.com/THU-KEG/MAVEN-dataset",
+  "prompt": "Extract: 1) Full list of 168 event types or link to type list file. 2) Data format (JSON structure, fields). 3) Train/dev/test split sizes. 4) Download instructions. 5) Whether it's on HuggingFace. 6) License/access restrictions. 7) Any hierarchical structure of event types."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "4155c7a5-1b7b-444b-b14c-b45b78120ea5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Y5zWzixC9YameALreVXm5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7562,
+      "cache_read_input_tokens": 25897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7562
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KwqTRf7tLEPLbv1dDYZZhg`</summary>
+
+```json
+{
+  "query": "HuggingFace datasets \"MAVEN\" event detection site:huggingface.co"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "e97f54e9-e567-4f25-8b4b-30d85b4d5f0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Y5zWzixC9YameALreVXm5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7562,
+      "cache_read_input_tokens": 25897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7562
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QgQDTQD8RX6KxbukjdWMFJ`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2020.emnlp-main.129/",
+  "prompt": "Extract: 1) Authors full list. 2) Abstract. 3) Data statistics (number of documents, event mentions, types). 4) Domain of data. 5) How types were selected (FrameNet hierarchy). 6) Key baseline results. 7) Any mention of hierarchical type structure."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "1fd419fe-1233-4174-a867-35b4e5b2a91c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Y5zWzixC9YameALreVXm5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7562,
+      "cache_read_input_tokens": 25897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7562
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-15T03:10:39.444Z_
+
+<details><summary>↩ Tool result · `toolu_01KwqTRf7tLEPLbv1dDYZZhg`</summary>
+
+```text
+Web search results for query: "HuggingFace datasets "MAVEN" event detection site:huggingface.co"
+
+Links: [{"title":"Nofing/maven-ere-json · Datasets at Hugging Face","url":"https://huggingface.co/datasets/Nofing/maven-ere-json/viewer"},{"title":"ErickP/maven · Datasets at Hugging Face","url":"https://huggingface.co/datasets/ErickP/maven/viewer"},{"title":"propfirmkey/maven-trading-review-uae-forex-prop-firm at main","url":"https://huggingface.co/datasets/propfirmkey/maven-trading-review-uae-forex-prop-firm/tree/main"},{"title":"MavenGlider/my-distiset · Datasets at Hugging Face","url":"https://huggingface.co/datasets/MavenGlider/my-distiset/viewer"},{"title":"camel-as2.md · megacamelus/camel-documentation at main","url":"https://huggingface.co/datasets/megacamelus/camel-documentation/blob/main/camel-as2.md"}]
+
+The search found several results related to MAVEN datasets on Hugging Face. The most relevant results appear to be:
+
+1. **Nofing/maven-ere-json** - A dataset available at https://huggingface.co/datasets/Nofing/maven-ere-json/viewer
+
+2. **ErickP/maven** - Another MAVEN dataset available at https://huggingface.co/datasets/ErickP/maven/viewer
+
+These results suggest there are MAVEN-related event detection datasets available on the Hugging Face platform. The first result appears to be focused on event relation extraction (ERE) in JSON format, while the second is a more general MAVEN dataset. You can visit these links directly to view more detailed information about each dataset, including their descriptions, features, and usage instructions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "11da1424-c711-4fd7-83f3-0923aac7eec9",
+  "tool_use_result": {
+    "query": "HuggingFace datasets \"MAVEN\" event detection site:huggingface.co",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017TSwHFi4uGwNi1g7AQv1mQ",
+        "content": [
+          {
+            "title": "Nofing/maven-ere-json · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/Nofing/maven-ere-json/viewer"
+          },
+          {
+            "title": "ErickP/maven · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/ErickP/maven/viewer"
+          },
+          {
+            "title": "propfirmkey/maven-trading-review-uae-forex-prop-firm at main",
+            "url": "https://huggingface.co/datasets/propfirmkey/maven-trading-review-uae-forex-prop-firm/tree/main"
+          },
+          {
+            "title": "MavenGlider/my-distiset · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/MavenGlider/my-distiset/viewer"
+          },
+          {
+            "title": "camel-as2.md · megacamelus/camel-documentation at main",
+            "url": "https://huggingface.co/datasets/megacamelus/camel-documentation/blob/main/camel-as2.md"
+          }
+        ]
+      },
+      "The search found several results related to MAVEN datasets on Hugging Face. The most relevant results appear to be:\n\n1. **Nofing/maven-ere-json** - A dataset available at https://huggingface.co/datasets/Nofing/maven-ere-json/viewer\n\n2. **ErickP/maven** - Another MAVEN dataset available at https://huggingface.co/datasets/ErickP/maven/viewer\n\nThese results suggest there are MAVEN-related event detection datasets available on the Hugging Face platform. The first result appears to be focused on event relation extraction (ERE) in JSON format, while the second is a more general MAVEN dataset. You can visit these links directly to view more detailed information about each dataset, including their descriptions, features, and usage instructions."
+    ],
+    "durationSeconds": 3.572551931000009
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-15T03:10:39.721Z_
+
+<details><summary>↩ Tool result · `toolu_014Pu2Zj2tbxG5JvSBwrmhpk`</summary>
+
+```text
+# MAVEN Dataset Information
+
+**1) Event Types List:**
+Not explicitly provided in this page. The document mentions "168 event types" implicitly through references to EventWiki topic labels in `docid2topic.json`, but the actual type list is not shown.
+
+**2) Data Format:**
+The webpage states: "The data format is introduced in this document" linking to `DataFormat.md`. The actual structure isn't displayed here, but you can access it directly in the repository.
+
+**3) Train/Dev/Test Split Sizes:**
+Not specified on this page.
+
+**4) Download Instructions:**
+The dataset is available through two sources: "The dataset (ver. 1.0) can be obtained from Tsinghua Cloud or Google Drive." Direct links are provided in the repository.
+
+**5) HuggingFace Availability:**
+Not mentioned on this page.
+
+**6) License/Access Restrictions:**
+The repository uses an MIT license. No special access restrictions are mentioned beyond standard GitHub access.
+
+**7) Hierarchical Event Type Structure:**
+Not addressed in the provided content.
+
+**Note:** For complete information on items 2, 3, and 7, consult the `DataFormat.md` file and the actual dataset files from the provided download links.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "0e6210b6-92a5-40d4-8c59-203b53fd0361",
+  "tool_use_result": {
+    "bytes": 266388,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# MAVEN Dataset Information\n\n**1) Event Types List:**\nNot explicitly provided in this page. The document mentions \"168 event types\" implicitly through references to EventWiki topic labels in `docid2topic.json`, but the actual type list is not shown.\n\n**2) Data Format:**\nThe webpage states: \"The data format is introduced in this document\" linking to `DataFormat.md`. The actual structure isn't displayed here, but you can access it directly in the repository.\n\n**3) Train/Dev/Test Split Sizes:**\nNot specified on this page.\n\n**4) Download Instructions:**\nThe dataset is available through two sources: \"The dataset (ver. 1.0) can be obtained from Tsinghua Cloud or Google Drive.\" Direct links are provided in the repository.\n\n**5) HuggingFace Availability:**\nNot mentioned on this page.\n\n**6) License/Access Restrictions:**\nThe repository uses an MIT license. No special access restrictions are mentioned beyond standard GitHub access.\n\n**7) Hierarchical Event Type Structure:**\nNot addressed in the provided content.\n\n**Note:** For complete information on items 2, 3, and 7, consult the `DataFormat.md` file and the actual dataset files from the provided download links.",
+    "durationMs": 5008,
+    "url": "https://github.com/THU-KEG/MAVEN-dataset"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-15T03:10:41.646Z_
+
+<details><summary>↩ Tool result · `toolu_01QgQDTQD8RX6KxbukjdWMFJ`</summary>
+
+```text
+# MAVEN Dataset: Key Information
+
+## 1) Authors
+Xiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, and Jie Zhou
+
+## 2) Abstract Summary
+The paper introduces MAVEN to address two critical limitations in event detection: insufficient training data and limited event type coverage. Event detection involves "identifying event trigger words and classifying event types" as the foundational step for knowledge extraction.
+
+## 3) Data Statistics
+- **Documents:** 4,480 Wikipedia documents
+- **Event mentions:** 118,732 instances
+- **Event types:** 168
+
+## 4) Domain
+General domain (sourced from Wikipedia)
+
+## 5) Type Selection Method
+The document provided does not specify how the 168 event types were selected or mention FrameNet hierarchy involvement.
+
+## 6) Baseline Results
+The abstract notes that "existing ED methods cannot achieve promising results on MAVEN" compared to performance on smaller datasets, indicating the dataset presents a more challenging benchmark for current approaches.
+
+## 7) Hierarchical Type Structure
+No mention of hierarchical organization of event types appears in the available content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "9d8b6ab8-cee3-43fb-9bcb-594ac95639d3",
+  "tool_use_result": {
+    "bytes": 44462,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# MAVEN Dataset: Key Information\n\n## 1) Authors\nXiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, and Jie Zhou\n\n## 2) Abstract Summary\nThe paper introduces MAVEN to address two critical limitations in event detection: insufficient training data and limited event type coverage. Event detection involves \"identifying event trigger words and classifying event types\" as the foundational step for knowledge extraction.\n\n## 3) Data Statistics\n- **Documents:** 4,480 Wikipedia documents\n- **Event mentions:** 118,732 instances\n- **Event types:** 168\n\n## 4) Domain\nGeneral domain (sourced from Wikipedia)\n\n## 5) Type Selection Method\nThe document provided does not specify how the 168 event types were selected or mention FrameNet hierarchy involvement.\n\n## 6) Baseline Results\nThe abstract notes that \"existing ED methods cannot achieve promising results on MAVEN\" compared to performance on smaller datasets, indicating the dataset presents a more challenging benchmark for current approaches.\n\n## 7) Hierarchical Type Structure\nNo mention of hierarchical organization of event types appears in the available content.",
+    "durationMs": 4110,
+    "url": "https://aclanthology.org/2020.emnlp-main.129/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019HeJ5SWkij6atKQG1iwGx8`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/datasets/ErickP/maven",
+  "prompt": "Extract: 1) Dataset description. 2) Available splits and sizes. 3) Data format/features. 4) How to load with datasets library. 5) License. 6) Any event type list or schema info."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "41904e27-44ee-46ed-bbaa-2fbb2e1f23b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUfuNpnLHGMYMwPVJ3cBA2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1723,
+      "cache_read_input_tokens": 33459,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1723
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Jx3wVx6uFRnJf69wdwXCpc`</summary>
+
+```json
+{
+  "query": "MAVEN event detection 168 event types complete list categories FrameNet"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "e2200a32-0be3-4de1-8305-68d1cb44410f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUfuNpnLHGMYMwPVJ3cBA2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1723,
+      "cache_read_input_tokens": 33459,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1723
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013CB8ebyGhRTEnaUEdHnT2T`</summary>
+
+```json
+{
+  "query": "MAVEN dataset train dev test split size number samples documents statistics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "a56a933b-b7ef-43f0-b321-6b64e874c761",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUfuNpnLHGMYMwPVJ3cBA2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1723,
+      "cache_read_input_tokens": 33459,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1723
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-15T03:10:50.742Z_
+
+<details><summary>↩ Tool result · `toolu_019HeJ5SWkij6atKQG1iwGx8`</summary>
+
+````text
+# Maven Dataset Overview
+
+## 1) Dataset Description
+The **maven** dataset is a text classification dataset containing event-related documents from Wikipedia. It appears to be designed for event detection and classification tasks, with documents labeled into different conflict types.
+
+## 2) Available Splits and Sizes
+- **Total rows**: 4,345
+- **Train split**: 2,900 rows
+- **Validation split**: 725 rows
+- **Test split**: 725 rows
+- **Total file size**: 7 MB
+
+## 3) Data Format/Features
+The dataset has two main columns:
+
+| Feature | Type | Description |
+|---------|------|-------------|
+| `text` | string | Document text (418 - 6,510 characters) |
+| `label` | class label | Classification label with 3 classes |
+
+**Label Classes**:
+- `0` - neutral
+- `1` - military conflict
+- `2` - civil conflict
+
+## 4) How to Load with Datasets Library
+
+```python
+from datasets import load_dataset
+
+# Load the dataset
+dataset = load_dataset("ErickP/maven")
+
+# Access splits
+train_data = dataset["train"]
+val_data = dataset["validation"]
+test_data = dataset["test"]
+
+# View a sample
+print(train_data[0])
+```
+
+## 5) License
+Not explicitly specified on the page.
+
+## 6) Event Type Schema
+The dataset uses a **3-class classification schema**:
+- **Neutral** (0): Non-conflict events (sports, music festivals, cultural events, weather events)
+- **Military Conflict** (1): War operations, battles, military campaigns
+- **Civil Conflict** (2): Civil violence, shootings, assassinations, uprisings
+
+**Dataset Modalities**: Text  
+**Library Support**: Hugging Face Datasets, Croissant
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "e05997c5-6cc1-4541-bbe1-a780b4d9bf8c",
+  "tool_use_result": {
+    "bytes": 428514,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Maven Dataset Overview\n\n## 1) Dataset Description\nThe **maven** dataset is a text classification dataset containing event-related documents from Wikipedia. It appears to be designed for event detection and classification tasks, with documents labeled into different conflict types.\n\n## 2) Available Splits and Sizes\n- **Total rows**: 4,345\n- **Train split**: 2,900 rows\n- **Validation split**: 725 rows\n- **Test split**: 725 rows\n- **Total file size**: 7 MB\n\n## 3) Data Format/Features\nThe dataset has two main columns:\n\n| Feature | Type | Description |\n|---------|------|-------------|\n| `text` | string | Document text (418 - 6,510 characters) |\n| `label` | class label | Classification label with 3 classes |\n\n**Label Classes**:\n- `0` - neutral\n- `1` - military conflict\n- `2` - civil conflict\n\n## 4) How to Load with Datasets Library\n\n```python\nfrom datasets import load_dataset\n\n# Load the dataset\ndataset = load_dataset(\"ErickP/maven\")\n\n# Access splits\ntrain_data = dataset[\"train\"]\nval_data = dataset[\"validation\"]\ntest_data = dataset[\"test\"]\n\n# View a sample\nprint(train_data[0])\n```\n\n## 5) License\nNot explicitly specified on the page.\n\n## 6) Event Type Schema\nThe dataset uses a **3-class classification schema**:\n- **Neutral** (0): Non-conflict events (sports, music festivals, cultural events, weather events)\n- **Military Conflict** (1): War operations, battles, military campaigns\n- **Civil Conflict** (2): Civil violence, shootings, assassinations, uprisings\n\n**Dataset Modalities**: Text  \n**Library Support**: Hugging Face Datasets, Croissant",
+    "durationMs": 5392,
+    "url": "https://huggingface.co/datasets/ErickP/maven"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-15T03:10:52.723Z_
+
+<details><summary>↩ Tool result · `toolu_01Jx3wVx6uFRnJf69wdwXCpc`</summary>
+
+```text
+Web search results for query: "MAVEN event detection 168 event types complete list categories FrameNet"
+
+Links: [{"title":"MAVEN: A Massive General Domain Event Detection Dataset","url":"https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset","url":"https://arxiv.org/pdf/2004.13590"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset","url":"http://edx.leafnlp.org/event_detection/data"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset | Request PDF","url":"https://www.researchgate.net/publication/340997027_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"},{"title":"[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset","url":"https://arxiv.org/abs/2004.13590"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology","url":"https://aclanthology.org/2020.emnlp-main.129/"},{"title":"PILED: An Identify-and-Localize Framework for Few-Shot Event Detection | DeepAI","url":"https://deepai.org/publication/piled-an-identify-and-localize-framework-for-few-shot-event-detection"},{"title":"Maven-Arg: Completing the Puzzle of All-in-One Event Understanding Dataset with Event Argument Annotation","url":"https://arxiv.org/html/2311.09105"},{"title":"MAVEN","url":"https://thukeg.gitee.io/maven/"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智","url":"https://bakser.github.io/publication/2020-11-17-MAVEN"}]
+
+I found information about MAVEN and its 168 event types. The search results confirm the existence of these event types and their connection to FrameNet, but the actual complete list of all 168 event types is referenced in "Table 15" of the MAVEN paper, which appears in the PDF documents but isn't fully displayed in the search results.
+
+The event types in MAVEN are derived from the frames defined in the linguistic resource FrameNet with a large coverage of events in the general domain. The 168 event types in MAVEN and their corresponding frames in FrameNet are documented in Table 15 of the MAVEN paper.
+
+MAVEN contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types.
+
+However, the search results don't display the complete list of all 168 event types with their categories. To access the full list, you would need to consult Table 15 directly from the MAVEN paper itself, available at the official sources linked in the search results (such as the arXiv PDF or the EMNLP proceedings). The paper is available at https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf or through the ACL Anthology.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "f48bedce-cd8f-4a15-9ab3-dbd07295e435",
+  "tool_use_result": {
+    "query": "MAVEN event detection 168 event types complete list categories FrameNet",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wix8NmqtA5CN1zETedZjNH",
+        "content": [
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://arxiv.org/pdf/2004.13590"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "http://edx.leafnlp.org/event_detection/data"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset | Request PDF",
+            "url": "https://www.researchgate.net/publication/340997027_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"
+          },
+          {
+            "title": "[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://arxiv.org/abs/2004.13590"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology",
+            "url": "https://aclanthology.org/2020.emnlp-main.129/"
+          },
+          {
+            "title": "PILED: An Identify-and-Localize Framework for Few-Shot Event Detection | DeepAI",
+            "url": "https://deepai.org/publication/piled-an-identify-and-localize-framework-for-few-shot-event-detection"
+          },
+          {
+            "title": "Maven-Arg: Completing the Puzzle of All-in-One Event Understanding Dataset with Event Argument Annotation",
+            "url": "https://arxiv.org/html/2311.09105"
+          },
+          {
+            "title": "MAVEN",
+            "url": "https://thukeg.gitee.io/maven/"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智",
+            "url": "https://bakser.github.io/publication/2020-11-17-MAVEN"
+          }
+        ]
+      },
+      "I found information about MAVEN and its 168 event types. The search results confirm the existence of these event types and their connection to FrameNet, but the actual complete list of all 168 event types is referenced in \"Table 15\" of the MAVEN paper, which appears in the PDF documents but isn't fully displayed in the search results.\n\nThe event types in MAVEN are derived from the frames defined in the linguistic resource FrameNet with a large coverage of events in the general domain. The 168 event types in MAVEN and their corresponding frames in FrameNet are documented in Table 15 of the MAVEN paper.\n\nMAVEN contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types.\n\nHowever, the search results don't display the complete list of all 168 event types with their categories. To access the full list, you would need to consult Table 15 directly from the MAVEN paper itself, available at the official sources linked in the search results (such as the arXiv PDF or the EMNLP proceedings). The paper is available at https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf or through the ACL Anthology."
+    ],
+    "durationSeconds": 6.833280411
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-15T03:11:04.046Z_
+
+<details><summary>↩ Tool result · `toolu_013CB8ebyGhRTEnaUEdHnT2T`</summary>
+
+```text
+Web search results for query: "MAVEN dataset train dev test split size number samples documents statistics"
+
+Links: [{"title":"Splitting into train, dev and test sets - CS230 Deep Learning","url":"https://cs230.stanford.edu/blog/split/"},{"title":"train_test_split — scikit-learn 1.8.0 documentation","url":"https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"},{"title":"Train Test Validation Split: How To & Best Practices [2024]","url":"https://www.v7darwin.com/blog/train-validation-test-set"},{"title":"How to Split Machine Learning Datasets: Training, Validation, & Test Sets","url":"https://encord.com/blog/train-val-test-split/"},{"title":"Train Test Validation Split: Best Practices & Examples","url":"https://www.lightly.ai/blog/train-test-validation-split"},{"title":"Train-Test Split for Evaluating Machine Learning Algorithms - MachineLearningMastery.com","url":"https://machinelearningmastery.com/train-test-split-for-evaluating-machine-learning-algorithms/"},{"title":"Split Your Dataset With scikit-learn's train_test_split() – Real Python","url":"https://realpython.com/train-test-split-python-data/"},{"title":"Splitting a Dataset into Train and Test Sets | Baeldung on Computer Science","url":"https://www.baeldung.com/cs/train-test-datasets-ratio"},{"title":"How to split main dataset into train, dev, test as DatasetDict - 🤗Datasets - Hugging Face Forums","url":"https://discuss.huggingface.co/t/how-to-split-main-dataset-into-train-dev-test-as-datasetdict/1090"},{"title":"Train Test Split: What it Means and How to Use It | Built In","url":"https://builtin.com/data-science/train-test-split"}]
+
+The search results are providing general information about train/dev/test splitting in machine learning, but not specific information about the MAVEN dataset. Let me search more specifically for the MAVEN dataset.
+
+Links: [{"title":"MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology","url":"https://aclanthology.org/2020.emnlp-main.129/"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset","url":"https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"},{"title":"MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference,","url":"https://bakser.github.io/files/EMNLP22-MAVEN-ERE/MAVEN-ERE.pdf"},{"title":"[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset","url":"https://arxiv.org/abs/2004.13590"},{"title":"[2211.07342] Maven-Ere: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction","url":"https://ar5iv.labs.arxiv.org/html/2211.07342"},{"title":"MAVEN-ERE: A Uniﬁed Large-scale Dataset for Event Coreference,","url":"https://arxiv.org/pdf/2211.07342"},{"title":"(PDF) MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction","url":"https://www.researchgate.net/publication/372924293_MAVEN-ERE_A_Unified_Large-scale_Dataset_for_Event_Coreference_Temporal_Causal_and_Subevent_Relation_Extraction"},{"title":"GitHub - THU-KEG/MAVEN-ERE: Source code and dataset for EMNLP 2022 paper \"MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction\". · GitHub","url":"https://github.com/THU-KEG/MAVEN-ERE"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset | Request PDF","url":"https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"},{"title":"GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub","url":"https://github.com/THU-KEG/MAVEN-dataset"}]
+
+Now I have information about the MAVEN dataset overall, but I need to find the specific train/dev/test split statistics. Let me search for more specific information about the split.
+
+Links: [{"title":"Free Practice & Sample Datasets | Data Playground - Maven Analytics","url":"https://mavenanalytics.io/data-playground"},{"title":"GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub","url":"https://github.com/THU-KEG/MAVEN-dataset"},{"title":"Maven Repository: dataset","url":"https://mvnrepository.com/tags/dataset"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset","url":"https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"},{"title":"GitHub - THU-KEG/MAVEN-ERE: Source code and dataset for EMNLP 2022 paper \"MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction\". · GitHub","url":"https://github.com/THU-KEG/MAVEN-ERE"},{"title":"[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset","url":"https://arxiv.org/abs/2004.13590"},{"title":"MAVEN-dataset/DataFormat.md at main · THU-KEG/MAVEN-dataset","url":"https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md"},{"title":"[2407.15352] MAVEN-Fact: A Large-scale Event Factuality Detection Dataset","url":"https://arxiv.org/abs/2407.15352"},{"title":"MAVEN Dataset - NLP Hub","url":"https://metatext.io/datasets/maven"},{"title":"The Maven repository dataset of metrics, changes, and dependencies | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/6624031/"}]
+
+Let me try a more direct search for the specific paper data with train/dev/test split numbers.
+
+No links found.
+
+Let me try searching for the paper with event detection and specific split information.
+
+No links found.
+
+Based on the search results I've gathered, here's what I found about the MAVEN dataset and its train/dev/test split:
+
+## MAVEN Dataset Overview
+
+MAVEN (MAssive eVENt detection dataset) contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types.
+
+## Dataset Statistics
+
+The search results reference "Table 4: The statistics of splitting MAVEN" in the original paper, though the specific numbers from that table were not fully visible in the search results. However, I found comprehensive information about the MAVEN dataset composition:
+
+- The dataset contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types.
+
+For the extended MAVEN-ERE dataset (which includes additional relation annotations): It contains 4480 documents, with 103,193 coreference chains, 1,216,217 temporal relations, 15,841 subevent relations, and 57,992 causal relations.
+
+To get the exact train/dev/test split numbers for the original MAVEN dataset, you would need to refer directly to Table 4 in the original EMNLP 2020 paper "MAVEN: A Massive General Domain Event Detection Dataset" by Wang et al., which is available on GitHub at the official repository (https://github.com/THU-KEG/MAVEN-dataset).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "b2b2caa1-0356-475f-baeb-71a7f240a387",
+  "tool_use_result": {
+    "query": "MAVEN dataset train dev test split size number samples documents statistics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FTFy6CXFAyAeg3Zkp2WePQ",
+        "content": [
+          {
+            "title": "Splitting into train, dev and test sets - CS230 Deep Learning",
+            "url": "https://cs230.stanford.edu/blog/split/"
+          },
+          {
+            "title": "train_test_split — scikit-learn 1.8.0 documentation",
+            "url": "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"
+          },
+          {
+            "title": "Train Test Validation Split: How To & Best Practices [2024]",
+            "url": "https://www.v7darwin.com/blog/train-validation-test-set"
+          },
+          {
+            "title": "How to Split Machine Learning Datasets: Training, Validation, & Test Sets",
+            "url": "https://encord.com/blog/train-val-test-split/"
+          },
+          {
+            "title": "Train Test Validation Split: Best Practices & Examples",
+            "url": "https://www.lightly.ai/blog/train-test-validation-split"
+          },
+          {
+            "title": "Train-Test Split for Evaluating Machine Learning Algorithms - MachineLearningMastery.com",
+            "url": "https://machinelearningmastery.com/train-test-split-for-evaluating-machine-learning-algorithms/"
+          },
+          {
+            "title": "Split Your Dataset With scikit-learn's train_test_split() – Real Python",
+            "url": "https://realpython.com/train-test-split-python-data/"
+          },
+          {
+            "title": "Splitting a Dataset into Train and Test Sets | Baeldung on Computer Science",
+            "url": "https://www.baeldung.com/cs/train-test-datasets-ratio"
+          },
+          {
+            "title": "How to split main dataset into train, dev, test as DatasetDict - 🤗Datasets - Hugging Face Forums",
+            "url": "https://discuss.huggingface.co/t/how-to-split-main-dataset-into-train-dev-test-as-datasetdict/1090"
+          },
+          {
+            "title": "Train Test Split: What it Means and How to Use It | Built In",
+            "url": "https://builtin.com/data-science/train-test-split"
+          }
+        ]
+      },
+      "The search results are providing general information about train/dev/test splitting in machine learning, but not specific information about the MAVEN dataset. Let me search more specifically for the MAVEN dataset.",
+      {
+        "tool_use_id": "srvtoolu_011whnkuBqjxJk3uMNsLCicU",
+        "content": [
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology",
+            "url": "https://aclanthology.org/2020.emnlp-main.129/"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+          },
+          {
+            "title": "MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference,",
+            "url": "https://bakser.github.io/files/EMNLP22-MAVEN-ERE/MAVEN-ERE.pdf"
+          },
+          {
+            "title": "[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://arxiv.org/abs/2004.13590"
+          },
+          {
+            "title": "[2211.07342] Maven-Ere: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction",
+            "url": "https://ar5iv.labs.arxiv.org/html/2211.07342"
+          },
+          {
+            "title": "MAVEN-ERE: A Uniﬁed Large-scale Dataset for Event Coreference,",
+            "url": "https://arxiv.org/pdf/2211.07342"
+          },
+          {
+            "title": "(PDF) MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction",
+            "url": "https://www.researchgate.net/publication/372924293_MAVEN-ERE_A_Unified_Large-scale_Dataset_for_Event_Coreference_Temporal_Causal_and_Subevent_Relation_Extraction"
+          },
+          {
+            "title": "GitHub - THU-KEG/MAVEN-ERE: Source code and dataset for EMNLP 2022 paper \"MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction\". · GitHub",
+            "url": "https://github.com/THU-KEG/MAVEN-ERE"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset | Request PDF",
+            "url": "https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"
+          },
+          {
+            "title": "GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub",
+            "url": "https://github.com/THU-KEG/MAVEN-dataset"
+          }
+        ]
+      },
+      "Now I have information about the MAVEN dataset overall, but I need to find the specific train/dev/test split statistics. Let me search for more specific information about the split.",
+      {
+        "tool_use_id": "srvtoolu_01RLsCYPFHkKAC5pVPndS4b8",
+        "content": [
+          {
+            "title": "Free Practice & Sample Datasets | Data Playground - Maven Analytics",
+            "url": "https://mavenanalytics.io/data-playground"
+          },
+          {
+            "title": "GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub",
+            "url": "https://github.com/THU-KEG/MAVEN-dataset"
+          },
+          {
+            "title": "Maven Repository: dataset",
+            "url": "https://mvnrepository.com/tags/dataset"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+          },
+          {
+            "title": "GitHub - THU-KEG/MAVEN-ERE: Source code and dataset for EMNLP 2022 paper \"MAVEN-ERE: A Unified Large-scale Dataset for Event Coreference, Temporal, Causal, and Subevent Relation Extraction\". · GitHub",
+            "url": "https://github.com/THU-KEG/MAVEN-ERE"
+          },
+          {
+            "title": "[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://arxiv.org/abs/2004.13590"
+          },
+          {
+            "title": "MAVEN-dataset/DataFormat.md at main · THU-KEG/MAVEN-dataset",
+            "url": "https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md"
+          },
+          {
+            "title": "[2407.15352] MAVEN-Fact: A Large-scale Event Factuality Detection Dataset",
+            "url": "https://arxiv.org/abs/2407.15352"
+          },
+          {
+            "title": "MAVEN Dataset - NLP Hub",
+            "url": "https://metatext.io/datasets/maven"
+          },
+          {
+            "title": "The Maven repository dataset of metrics, changes, and dependencies | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/6624031/"
+          }
+        ]
+      },
+      "Let me try a more direct search for the specific paper data with train/dev/test split numbers.",
+      {
+        "tool_use_id": "srvtoolu_01F4buRrMGZ3jbTHTQi1ec1X",
+        "content": []
+      },
+      "Let me try searching for the paper with event detection and specific split information.",
+      {
+        "tool_use_id": "srvtoolu_01CjyM1e8XpMDbhRxACNU7eP",
+        "content": []
+      },
+      "Based on the search results I've gathered, here's what I found about the MAVEN dataset and its train/dev/test split:\n\n## MAVEN Dataset Overview\n\nMAVEN (MAssive eVENt detection dataset) contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types.\n\n## Dataset Statistics\n\nThe search results reference \"Table 4: The statistics of splitting MAVEN\" in the original paper, though the specific numbers from that table were not fully visible in the search results. However, I found comprehensive information about the MAVEN dataset composition:\n\n- The dataset contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types.\n\nFor the extended MAVEN-ERE dataset (which includes additional relation annotations): It contains 4480 documents, with 103,193 coreference chains, 1,216,217 temporal relations, 15,841 subevent relations, and 57,992 causal relations.\n\nTo get the exact train/dev/test split numbers for the original MAVEN dataset, you would need to refer directly to Table 4 in the original EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\" by Wang et al., which is available on GitHub at the official repository (https://github.com/THU-KEG/MAVEN-dataset)."
+    ],
+    "durationSeconds": 17.675150995999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 123_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ErickP/maven dataset on HuggingFace is NOT the original MAVEN - it's a 3-class conflict classification version. Let me look for the actual MAVEN dataset format and the complete type list. Let me fetch the DataFormat.md from the GitHub repo and the paper PDF for the type list.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "9cdf1502-c464-4870-87c8-27f9ad46b68a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Rm2jN7P838sxiupcy3i1B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3544,
+      "cache_read_input_tokens": 35182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 124_
+
+ErickP/maven 不是原始 MAVEN（那是个 3-class 分类子集）。继续获取原始数据格式和 type 列表。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "f7d4bc7a-ea9d-4b37-bbf8-808c5bb72102",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Rm2jN7P838sxiupcy3i1B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3544,
+      "cache_read_input_tokens": 35182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RriFEC4s4xVY8Hx5StfbFt`</summary>
+
+```json
+{
+  "url": "https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md",
+  "prompt": "Extract the complete data format specification: JSON structure, all fields, field descriptions, and any example data. Also extract any information about train/dev/test splits and their sizes."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "aa81cf18-d8ed-4baa-a279-5e90353c989f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Rm2jN7P838sxiupcy3i1B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3544,
+      "cache_read_input_tokens": 35182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011XburxK44LqmgGG3EkByX5`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2004.13590",
+  "prompt": "Extract: 1) Train/dev/test split sizes (number of documents and event mentions per split). 2) The hierarchical event type structure or categories. 3) Any mention of confusable or similar event types. 4) How types were derived from FrameNet. 5) Any example event types listed. 6) Table of statistics."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "262b5c04-9618-4c14-a1df-1d9101f054aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Rm2jN7P838sxiupcy3i1B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3544,
+      "cache_read_input_tokens": 35182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WQ4BmF63wy7St2uN32y5kZ`</summary>
+
+```json
+{
+  "url": "https://metatext.io/datasets/maven",
+  "prompt": "Extract all information about the MAVEN dataset: event types, train/dev/test sizes, data format, download information, and any list of event type categories."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "903e8f2e-d174-49d1-ac4b-7189fea033ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Rm2jN7P838sxiupcy3i1B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3544,
+      "cache_read_input_tokens": 35182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3544
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-15T03:11:15.127Z_
+
+<details><summary>↩ Tool result · `toolu_01RriFEC4s4xVY8Hx5StfbFt`</summary>
+
+```text
+# MAVEN Dataset Format Specification
+
+## Train/Valid/Test Data Structure
+
+The MAVEN dataset uses `.jsonl` files where each line represents a document as a JSON object.
+
+### Train and Valid Sets Format
+
+Core fields include:
+- **id**: Unique document identifier (string)
+- **title**: Document title
+- **content**: Array of sentence objects, each containing:
+  - "sentence": Plain text
+  - "tokens": Token array
+- **events**: Array of annotated event objects with:
+  - id, type, type_id
+  - "mention" array containing trigger information (id, trigger_word, sent_id, offset)
+- **negative_triggers**: Array of negative instances with id, trigger_word, sent_id, and offset
+
+### Test Set Format
+
+Differs by replacing labeled data with:
+- **candidates**: Array of trigger candidates requiring classification, containing id, trigger_word, sent_id, and offset (labels hidden)
+
+### Submission Format
+
+Results must be named `results.jsonl` (compressed as `.zip`) with structure:
+- id: Document identifier
+- "predictions": Array with id, type_id (0 indicates negative instances)
+
+## Dataset Sizes
+
+The document does not specify train/dev/test split sizes or total document counts. Evaluation submissions are directed to CodaLab competition platform 27320.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "585da097-faf0-409f-8578-4548813df339",
+  "tool_use_result": {
+    "bytes": 260129,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# MAVEN Dataset Format Specification\n\n## Train/Valid/Test Data Structure\n\nThe MAVEN dataset uses `.jsonl` files where each line represents a document as a JSON object.\n\n### Train and Valid Sets Format\n\nCore fields include:\n- **id**: Unique document identifier (string)\n- **title**: Document title\n- **content**: Array of sentence objects, each containing:\n  - \"sentence\": Plain text\n  - \"tokens\": Token array\n- **events**: Array of annotated event objects with:\n  - id, type, type_id\n  - \"mention\" array containing trigger information (id, trigger_word, sent_id, offset)\n- **negative_triggers**: Array of negative instances with id, trigger_word, sent_id, and offset\n\n### Test Set Format\n\nDiffers by replacing labeled data with:\n- **candidates**: Array of trigger candidates requiring classification, containing id, trigger_word, sent_id, and offset (labels hidden)\n\n### Submission Format\n\nResults must be named `results.jsonl` (compressed as `.zip`) with structure:\n- id: Document identifier\n- \"predictions\": Array with id, type_id (0 indicates negative instances)\n\n## Dataset Sizes\n\nThe document does not specify train/dev/test split sizes or total document counts. Evaluation submissions are directed to CodaLab competition platform 27320.",
+    "durationMs": 4584,
+    "url": "https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-15T03:11:15.252Z_
+
+<details><summary>↩ Tool result · `toolu_01WQ4BmF63wy7St2uN32y5kZ`</summary>
+
+```text
+I appreciate your request, but I'm unable to provide the information you've asked for about the MAVEN dataset. The web page content provided only contains the word "Metatext" with no actual details about:
+
+- Event types
+- Train/dev/test dataset sizes
+- Data format specifications
+- Download information
+- Event type categories
+
+To extract MAVEN dataset information, I would need access to the actual content of a page that describes this dataset. If you could share the relevant webpage content or documentation about MAVEN, I'd be happy to extract and summarize the requested information while adhering to your guidelines about character limits and proper attribution.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "248f6d2a-f742-41fe-be50-5bfb54159b1a",
+  "tool_use_result": {
+    "bytes": 8843,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I appreciate your request, but I'm unable to provide the information you've asked for about the MAVEN dataset. The web page content provided only contains the word \"Metatext\" with no actual details about:\n\n- Event types\n- Train/dev/test dataset sizes\n- Data format specifications\n- Download information\n- Event type categories\n\nTo extract MAVEN dataset information, I would need access to the actual content of a page that describes this dataset. If you could share the relevant webpage content or documentation about MAVEN, I'd be happy to extract and summarize the requested information while adhering to your guidelines about character limits and proper attribution.",
+    "durationMs": 2040,
+    "url": "https://metatext.io/datasets/maven"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-15T03:11:16.588Z_
+
+<details><summary>↩ Tool result · `toolu_011XburxK44LqmgGG3EkByX5`</summary>
+
+```text
+# MAVEN Dataset Information
+
+Based on the arXiv page content provided, I can extract the following:
+
+## Available Information
+
+**Dataset Size:**
+The abstract states the dataset "contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types."
+
+**Data Splits:**
+No specific train/dev/test split sizes are provided on this page.
+
+**Event Type Structure:**
+The page does not detail the hierarchical organization of the 168 event types or mention confusable/similar event types.
+
+**FrameNet Derivation:**
+There is no mention of how types were derived from FrameNet in the visible content.
+
+**Example Types:**
+No specific event type examples are listed on this abstract page.
+
+**Statistics Table:**
+No statistical table appears in the provided webpage content.
+
+## Note
+
+The abstract emphasizes that MAVEN addresses "data scarcity" and "low coverage" issues in event detection, and that "existing ED methods cannot achieve promising results on MAVEN as on the small datasets." For detailed information about splits, hierarchical structure, and methodology, you would need to access the full PDF paper, which is available through the provided link.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "0ee2ce27-dabc-44c0-a518-87f63229ef4d",
+  "tool_use_result": {
+    "bytes": 48157,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# MAVEN Dataset Information\n\nBased on the arXiv page content provided, I can extract the following:\n\n## Available Information\n\n**Dataset Size:**\nThe abstract states the dataset \"contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types.\"\n\n**Data Splits:**\nNo specific train/dev/test split sizes are provided on this page.\n\n**Event Type Structure:**\nThe page does not detail the hierarchical organization of the 168 event types or mention confusable/similar event types.\n\n**FrameNet Derivation:**\nThere is no mention of how types were derived from FrameNet in the visible content.\n\n**Example Types:**\nNo specific event type examples are listed on this abstract page.\n\n**Statistics Table:**\nNo statistical table appears in the provided webpage content.\n\n## Note\n\nThe abstract emphasizes that MAVEN addresses \"data scarcity\" and \"low coverage\" issues in event detection, and that \"existing ED methods cannot achieve promising results on MAVEN as on the small datasets.\" For detailed information about splits, hierarchical structure, and methodology, you would need to access the full PDF paper, which is available through the provided link.",
+    "durationMs": 4162,
+    "url": "https://arxiv.org/abs/2004.13590"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 131_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need the actual paper PDF for the detailed statistics and type list. Let me fetch the paper PDF and the MAVEN official website.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "beae53fc-5538-4f8b-91e9-f467442cd4fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tQ1yJCtabj4TWUVjEvnPs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 165,
+      "cache_creation_input_tokens": 1107,
+      "cache_read_input_tokens": 38726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1107
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 132_
+
+需要从论文 PDF 获取详细统计和 type 列表。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "184889cd-fb22-48c8-ab4a-9729fdcb2252",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tQ1yJCtabj4TWUVjEvnPs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 165,
+      "cache_creation_input_tokens": 1107,
+      "cache_read_input_tokens": 38726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1107
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SdyEpjVku1v37atRoLn3ap`</summary>
+
+```json
+{
+  "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf",
+  "prompt": "Extract from this paper: 1) Table 4 - train/dev/test split statistics (number of documents, events, mentions per split). 2) Table 15 or appendix - complete list of 168 event types with their categories/hierarchy. 3) How types were derived from FrameNet. 4) Any examples of confusable or semantically similar event types. 5) Domain information. 6) Annotation statistics."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "5913f18f-6ae6-41dc-b8c8-1758210c45ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tQ1yJCtabj4TWUVjEvnPs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 165,
+      "cache_creation_input_tokens": 1107,
+      "cache_read_input_tokens": 38726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1107
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013j61MVj75vNYMFWmd4v1G6`</summary>
+
+```json
+{
+  "url": "https://thukeg.gitee.io/maven/",
+  "prompt": "Extract all information about MAVEN dataset: statistics, event type list or categories, download links, data format, leaderboard results, any hierarchy visualization."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "2a8f65c2-7d42-4b4f-a1db-2a0e157cbc3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tQ1yJCtabj4TWUVjEvnPs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 165,
+      "cache_creation_input_tokens": 1107,
+      "cache_read_input_tokens": 38726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1107
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-15T03:11:23.677Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_013j61MVj75vNYMFWmd4v1G6`</summary>
+
+```text
+Request failed with status code 404
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "89c0ada0-4de3-4f71-b7f5-aa4000b5b50e",
+  "tool_use_result": "Error: Request failed with status code 404"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-15T03:11:26.191Z_
+
+<details><summary>↩ Tool result · `toolu_01SdyEpjVku1v37atRoLn3ap`</summary>
+
+```text
+I cannot extract the requested information from this PDF document. The content provided is raw PDF binary data and metadata structures, not readable text. The document appears to be a LaTeX-generated PDF titled "MAVEN: A Massive General Domain Event Detection Dataset," but the actual content is encoded in compressed streams that are not human-readable in this format.
+
+To provide the information you're seeking (Table 4 statistics, event type hierarchies, FrameNet derivation methods, annotation details), I would need:
+
+1. A properly decoded text version of the PDF
+2. The actual paper text rather than the binary PDF structure
+3. Access to the readable content pages
+
+I recommend downloading the paper directly from an academic source (arXiv, ACL Anthology, etc.) and either reviewing it as a PDF in a reader or accessing a text-extracted version for analysis.
+
+[Binary content (application/pdf, 602KB) also saved to /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/b19638c9-060a-40d2-87c6-ba7ebec5cdd8/tool-results/webfetch-1778814682350-p02glg.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "f7976f0e-358f-4b5a-99e7-edef731bbed7",
+  "tool_use_result": {
+    "bytes": 616398,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot extract the requested information from this PDF document. The content provided is raw PDF binary data and metadata structures, not readable text. The document appears to be a LaTeX-generated PDF titled \"MAVEN: A Massive General Domain Event Detection Dataset,\" but the actual content is encoded in compressed streams that are not human-readable in this format.\n\nTo provide the information you're seeking (Table 4 statistics, event type hierarchies, FrameNet derivation methods, annotation details), I would need:\n\n1. A properly decoded text version of the PDF\n2. The actual paper text rather than the binary PDF structure\n3. Access to the readable content pages\n\nI recommend downloading the paper directly from an academic source (arXiv, ACL Anthology, etc.) and either reviewing it as a PDF in a reader or accessing a text-extracted version for analysis.\n\n[Binary content (application/pdf, 602KB) also saved to /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/b19638c9-060a-40d2-87c6-ba7ebec5cdd8/tool-results/webfetch-1778814682350-p02glg.pdf]",
+    "durationMs": 4270,
+    "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 137_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The PDF was saved locally. Let me read it to extract the type list and statistics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "777d590b-7ec8-49d9-9c8e-78c612a9fa34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019vph7e3qij5DUNmxPTtYMP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 39,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 39833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 138_
+
+PDF 已下载到本地，直接读取。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "06847590-4ff1-414f-9b8a-ab09f9a1939b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019vph7e3qij5DUNmxPTtYMP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 39,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 39833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011ddW8JHyaxU3M2bNyr6brY`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/b19638c9-060a-40d2-87c6-ba7ebec5cdd8/tool-results/webfetch-1778814682350-p02glg.pdf",
+  "pages": "1-10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "342aeba6-b7bb-44f3-8bcd-e0d3800ba891",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019vph7e3qij5DUNmxPTtYMP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 39,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 39833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 934
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-15T03:11:31.326Z_
+
+<details><summary>↩ Tool result · `toolu_011ddW8JHyaxU3M2bNyr6brY`</summary>
+
+```text
+PDF pages extracted: 10 page(s) from /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/b19638c9-060a-40d2-87c6-ba7ebec5cdd8/tool-results/webfetch-1778814682350-p02glg.pdf (602KB)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "a4ac60de-de22-40f0-941e-d1cd0394dfeb",
+  "tool_use_result": {
+    "type": "parts",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/b19638c9-060a-40d2-87c6-ba7ebec5cdd8/tool-results/webfetch-1778814682350-p02glg.pdf",
+      "originalSize": 616398,
+      "outputDir": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/b19638c9-060a-40d2-87c6-ba7ebec5cdd8/tool-results/pdf-74cc3042-a00c-4377-a9c1-91c0bfffb177",
+      "count": 10
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+1 recorded events
+
+### User
+
+_source line 141 · 2026-05-15T03:11:31.324Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "384f5bb2-6970-45d0-a4d6-000000000000",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 142 · 2026-05-15T03:11:31.324Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "384f5bb2-6970-45d0-a4d6-000000000001",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 4
+
+1 recorded events
+
+### User
+
+_source line 143 · 2026-05-15T03:11:31.324Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "384f5bb2-6970-45d0-a4d6-000000000002",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 5
+
+1 recorded events
+
+### User
+
+_source line 144 · 2026-05-15T03:11:31.324Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "384f5bb2-6970-45d0-a4d6-000000000003",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 6
+
+1 recorded events
+
+### User
+
+_source line 145 · 2026-05-15T03:11:31.324Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "384f5bb2-6970-45d0-a4d6-000000000004",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 7
+
+1 recorded events
+
+### User
+
+_source line 146 · 2026-05-15T03:11:31.324Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "384f5bb2-6970-45d0-a4d6-000000000005",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 8
+
+1 recorded events
+
+### User
+
+_source line 147 · 2026-05-15T03:11:31.324Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "384f5bb2-6970-45d0-a4d6-000000000006",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 9
+
+1 recorded events
+
+### User
+
+_source line 148 · 2026-05-15T03:11:31.324Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "384f5bb2-6970-45d0-a4d6-000000000007",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 10
+
+1 recorded events
+
+### User
+
+_source line 149 · 2026-05-15T03:11:31.324Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "384f5bb2-6970-45d0-a4d6-000000000008",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 11
+
+5 recorded events
+
+### User
+
+_source line 150 · 2026-05-15T03:11:31.324Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "384f5bb2-6970-45d0-a4d6-000000000009",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 151_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the key statistics from the paper. Let me also get the appendix with the full type hierarchy. The paper mentions Appendix C has the hierarchical schema and Appendix D has the mapping between event types and FrameNet frames. Let me read the remaining pages of the PDF.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "fed4f8c3-b91b-45ac-bce2-7c9b95eedb57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016vuvnoiu9hHz1vGV9DNQz2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12993,
+      "cache_read_input_tokens": 40767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12993
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 152_
+
+从论文中提取到了关键统计数据。继续读取附录获取完整 type 层级结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "e0db787b-8781-48f7-82d7-f5c8439ea0f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016vuvnoiu9hHz1vGV9DNQz2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12993,
+      "cache_read_input_tokens": 40767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12993
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TAbBZf7SVnAk9ZSVMSUmim`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/b19638c9-060a-40d2-87c6-ba7ebec5cdd8/tool-results/webfetch-1778814682350-p02glg.pdf",
+  "pages": "11-20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "0bf0c74e-b8f7-46b0-a923-12f2beaa9a48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016vuvnoiu9hHz1vGV9DNQz2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12993,
+      "cache_read_input_tokens": 40767,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12993
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-15T03:11:41.851Z_
+
+<details><summary>↩ Tool result · `toolu_01TAbBZf7SVnAk9ZSVMSUmim`</summary>
+
+```text
+PDF pages extracted: 10 page(s) from /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/b19638c9-060a-40d2-87c6-ba7ebec5cdd8/tool-results/webfetch-1778814682350-p02glg.pdf (602KB)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "a674f330-1504-4c7b-a391-dd7c1d38cf3c",
+  "tool_use_result": {
+    "type": "parts",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/b19638c9-060a-40d2-87c6-ba7ebec5cdd8/tool-results/webfetch-1778814682350-p02glg.pdf",
+      "originalSize": 616398,
+      "outputDir": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/b19638c9-060a-40d2-87c6-ba7ebec5cdd8/tool-results/pdf-6e781c7b-59d3-42db-b276-a4c9577df1c5",
+      "count": 10
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 12
+
+1 recorded events
+
+### User
+
+_source line 155 · 2026-05-15T03:11:41.850Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "667a4af8-8460-4535-9177-000000000000",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 13
+
+1 recorded events
+
+### User
+
+_source line 156 · 2026-05-15T03:11:41.850Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "667a4af8-8460-4535-9177-000000000001",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 14
+
+1 recorded events
+
+### User
+
+_source line 157 · 2026-05-15T03:11:41.850Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "667a4af8-8460-4535-9177-000000000002",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 15
+
+1 recorded events
+
+### User
+
+_source line 158 · 2026-05-15T03:11:41.850Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "667a4af8-8460-4535-9177-000000000003",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 16
+
+1 recorded events
+
+### User
+
+_source line 159 · 2026-05-15T03:11:41.850Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "667a4af8-8460-4535-9177-000000000004",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 17
+
+1 recorded events
+
+### User
+
+_source line 160 · 2026-05-15T03:11:41.850Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "667a4af8-8460-4535-9177-000000000005",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 18
+
+1 recorded events
+
+### User
+
+_source line 161 · 2026-05-15T03:11:41.850Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "667a4af8-8460-4535-9177-000000000006",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 19
+
+1 recorded events
+
+### User
+
+_source line 162 · 2026-05-15T03:11:41.850Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "667a4af8-8460-4535-9177-000000000007",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 20
+
+1 recorded events
+
+### User
+
+_source line 163 · 2026-05-15T03:11:41.850Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "667a4af8-8460-4535-9177-000000000008",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 21
+
+9 recorded events
+
+### User
+
+_source line 164 · 2026-05-15T03:11:41.850Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "667a4af8-8460-4535-9177-000000000009",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 165_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive information from the paper. Let me compile everything I need:
+
+1. **Dataset overview**: MAVEN = MAssive eVENt detection dataset, EMNLP 2020, authors listed
+2. **Task**: Event Detection (trigger identification + trigger classification)
+3. **Statistics**: 
+   - Total: 4,480 docs, 111,611 events, 118,732 mentions, 168 event types
+   - Train: 2,913 docs, 73,496 events, 77,993 mentions, 323,992 negatives
+   - Dev: 710 docs, 17,726 events, 18,904 mentions, 79,699 negatives
+   - Test: 857 docs, 20,389 events, 21,835 mentions, 93,570 negatives
+4. **Domain**: Wikipedia (general domain)
+5. **Hierarchical structure**: The event types are organized into 5 top-level categories with Action being the largest at 46.9%, followed by Change at 27.5%, Scenario at 13.4%, Sentiment at 6.4%, and Possession at 5.7%.
+6. **Format**: JSONL with documents containing id, title, content, events with type information and trigger words, plus negative triggers
+7. **Download**: Available on GitHub with MIT license, no application required
+8. **HuggingFace**: Not officially hosted on the hub, though there's a derivative 3-class subset available
+9. **Error analysis**: The confusion patterns show parent-child type mistakes occur 13-15.5% of the time, while sibling confusion ranges from 14.6-19.8%, which aligns with the hierarchical structure creating these classification challenges
+10. **Confusable types**: The hierarchy naturally groups similar types together—like the Violence subtree with Attack, Military_operation, Hostile_encounter and others, or the Legality subtree with Legal_rulings, Prison, Arrest—making these siblings particularly prone to confusion during classification
+
+.
+
+I'm also noting the ACE05→MAVEN mappings show many-to-one relationships, and the Possession subtree alone contains a dense cluster of commerce and transfer-related types that would be challenging to distinguish. This hierarchical structure gives me exactly what I need for identifying high-confusability pairs.
+
+Now I'll draft the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "21807a28-140d-4c5b-951b-3586eb1b4788",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPBxriwwKXBoyVJ1dn7qG8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13021,
+      "cache_read_input_tokens": 53760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 166_
+
+所有关键信息已收集完毕。现在撰写报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "48692f47-69de-4b95-bef1-eabc1721a9ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPBxriwwKXBoyVJ1dn7qG8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13021,
+      "cache_read_input_tokens": 53760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 167_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01JY4fuD5RdsKyo6SiNf4FXB`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/maven_dataset_report.md",
+  "content": "# MAVEN 数据集调研报告\n\n## 1. 数据集概况\n\n| 项目 | 内容 |\n|------|------|\n| 全称 | MAVEN: A MAssive eVENt detection dataset |\n| 论文 | Wang et al., EMNLP 2020 (pp. 1652-1671) |\n| 作者 | Xiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, Jie Zhou (清华 + 腾讯) |\n| 任务 | Event Detection = Trigger Identification + Trigger Classification |\n| 类型数 | 168 event types (+ 8 virtual intermediate nodes) |\n| 领域 | 英文 Wikipedia（general domain） |\n| Schema 来源 | 从 FrameNet 598 event-related frames 手动归纳合并而来 |\n| 层级结构 | **有！** 树状 hierarchical event type schema（见下文） |\n| 引用格式 | `@inproceedings{wang2020maven, title={MAVEN: A Massive General Domain Event Detection Dataset}, author={Wang, Xiaozhi and Wang, Ziqi and Han, Xu and Jiang, Wangyi and Han, Rong and Liu, Zhiyuan and Li, Juanzi and Li, Peng and Lin, Yankai and Zhou, Jie}, booktitle={EMNLP}, year={2020}}` |\n\n### 数据规模\n\n| Split | #Document | #Event | #Mention | #Negative |\n|-------|-----------|--------|----------|-----------|\n| Train | 2,913 | 73,496 | 77,993 | 323,992 |\n| Dev | 710 | 17,726 | 18,904 | 79,699 |\n| Test | 857 | 20,389 | 21,835 | 93,570 |\n| **Total** | **4,480** | **111,611** | **118,732** | **497,261** |\n\n对比 ACE 2005: 599 docs, 33 types, 4,090 events, 5,349 mentions — MAVEN 大 20 倍。\n\n### 标注格式（JSONL）\n\n```json\n{\n  \"id\": \"doc_id\",\n  \"title\": \"Document Title\",\n  \"content\": [\n    {\"sentence\": \"plain text\", \"tokens\": [\"token1\", \"token2\", ...]},\n    ...\n  ],\n  \"events\": [\n    {\n      \"id\": \"event_id\",\n      \"type\": \"Attack\",\n      \"type_id\": 45,\n      \"mention\": [\n        {\"id\": \"mention_id\", \"trigger_word\": \"attacked\", \"sent_id\": 3, \"offset\": [2, 3]}\n      ]\n    }\n  ],\n  \"negative_triggers\": [\n    {\"id\": \"neg_id\", \"trigger_word\": \"said\", \"sent_id\": 0, \"offset\": [5, 6]}\n  ]\n}\n```\n\nTest set 不含 events 字段，改为 `candidates` 列表（labels hidden，提交 CodaLab 评测）。\n\n## 2. 获取方式\n\n| 项目 | 内容 |\n|------|------|\n| GitHub | https://github.com/THU-KEG/MAVEN-dataset |\n| 下载 | Tsinghua Cloud 或 Google Drive（GitHub README 有链接） |\n| License | MIT |\n| 是否需要申请 | **不需要，完全公开** |\n| HuggingFace | **无官方 HF 数据集**。HF 上的 `ErickP/maven` 是第三方 3-class 子集，不可用 |\n| 数据大小 | ~50MB（jsonl 压缩） |\n| 加载方式 | 下载 jsonl 后自行解析，不能用 `datasets.load_dataset()` 直接加载 |\n\n## 3. Hierarchical Event Type Schema\n\nMAVEN 有树状层级结构，5 个顶层类别 + 8 个虚拟中间节点（不参与分类）+ 168 个叶子类型：\n\n### 顶层分布\n\n| Top-level | 占比 | 子类型示例 |\n|-----------|------|----------|\n| **Action** | 46.9% | Telling, Attack, Building, Writing, Creating, Using, Wearing... |\n| **Change** | 27.5% | Change_event_time, Change_of_leadership, Bodily_harm, Death, Destroying, Becoming... |\n| **Scenario** | 13.4% | Emergency, Catastrophe, Incident, Competition, Rite, Lighting... |\n| **Sentiment** | 6.4% | Supporting, Convincing, Quarreling, Warning, Suspicion... |\n| **Possession** | 5.7% | Commerce_buy, Giving, Renting, Supply, Exchange, Cost... |\n\n### 高 Confusability 子树（关键！）\n\n从 Figure 6 的层级结构中，以下子树内的 sibling types 语义高度相近，是天然的 confusability hotspots：\n\n**Violence 子树（6 types）：**\n- Attack, Military_operation, Hostile_encounter, Terrorism, Besieging, Surrounding\n- 加上近邻：Bearing_arms, Defending, Killing\n\n**Legality 子树（5 types）：**\n- Legal_rulings → Prison, Extradition, Arrest, Releasing\n- Criminal_investigation\n- Committing_crime → Theft, Robbery, Kidnapping\n\n**Motion 子树（8+ types）：**\n- Motion_directional, Body_movement (→ Breathing, Vocalizations, Ingestion, Escaping), Self_motion (→ Patrolling)\n- Traveling → Arriving, Departing, Temporary_stay\n\n**Possession 子树（16 types）：**\n- Receiving, Getting, Commerce_buy, Commerce_sell, Commerce_pay\n- Giving, Sending, Bringing, Supply\n- Renting, Exchange, Cost, Expensiveness, Earnings_and_losses, Carry_goods\n\n**Change 子树（20+ types）：**\n- Bodily_harm, Damaging, Destroying, Death\n- Becoming, Change_event_time, Cause_change_of_strength\n- Cure, Recovering\n\n**Communication 子树：**\n- Telling, Communication, Reporting, Statement, Expressing_publicly, Reveal_secret, Adducing, Response\n\n### 完整 168 Types 列表\n\n从 Table 15 提取（按 FrameNet 映射）：\n\n```\nKnow, Warning, Catastrophe, Placing, Causation, Arriving, Sending, Protest,\nPreventing_or_letting, Motion, Damaging, Destroying, Death, Perception_active,\nPresence, Influence, Receiving, Check, Hostile_encounter, Killing, Conquering,\nReleasing, Attack, Earnings_and_losses, Choosing, Traveling, Recovering, Using,\nComing_to_be, Cause_to_be_included, Process_start, Change_event_time, Reporting,\nBodily_harm, Suspicion, Statement, Cause_change_of_position_on_a_scale,\nComing_to_believe, Expressing_publicly, Request, Control, Supporting, Defending,\nBuilding, Military_operation, Self_motion, GetReady, Forming_relationships,\nBecoming_a_member, Action, Removing, Surrendering, Agree_or_refuse_to_act,\nParticipation, Deciding, Education_teaching, Emptying, Getting, Besieging,\nCreating, Process_end, Body_movement, Expansion, Telling, Change, Legal_rulings,\nBearing_arms, Giving, Name_conferral, Arranging, Use_firearm, Committing_crime,\nAssistance, Surrounding, Quarreling, Expend_resource, Motion_directional,\nBringing, Communication, Containing, Manufacturing, Social_event, Robbery,\nCompetition, Writing, Rescuing, Judgment_communication, Change_tool, Hold,\nBeing_in_operation, Recording, Carry_goods, Cost, Departing, GiveUp,\nChange_of_leadership, Escaping, Aiming, Hindering, Preserving, Create_artwork,\nOpenness, Connect, Reveal_secret, Response, Scrutiny, Lighting,\nCriminal_investigation, Hiding_objects, Confronting_problem, Renting,\nBreathing, Patrolling, Arrest, Convincing, Commerce_sell, Cure, Temporary_stay,\nDispersal, Collaboration, Extradition, Change_sentiment, Commitment,\nCommerce_pay, Filling, Becoming, Achieve, Cause_change_of_strength, Supply,\nCause_to_amalgamate, Scouring, Violence, Reforming_a_system, Come_together,\nWearing, Cause_to_make_progress, Legality, Employment, Rite, Publishing,\nAdducing, Exchange, Ratification, Sign_agreement, Commerce_buy,\nImposing_obligation, Rewards_and_punishments, Institutionalization, Testing,\nIngestion, Labeling, Kidnapping, Submitting_documents, Prison, Justifying,\nEmergency, Terrorism, Vocalizations, Risk, Resolve_problem, Revenge, Limiting,\nResearch, Having_or_lacking_access, Theft, Incident, Award, Practice\n```\n\n## 4. 与 Few-NERD 对比\n\n| 维度 | Few-NERD | MAVEN |\n|------|----------|-------|\n| Task | NER (Named Entity Recognition) | ED (Event Detection / Trigger Classification) |\n| #Types | 66 fine-grained (8 coarse) | 168 (5 top-level + 8 virtual) |\n| Domain | Wikipedia | Wikipedia |\n| Annotation | Entity spans + types | Event triggers + types + mentions |\n| Train size | ~131k sentences | 2,913 docs / 77,993 mentions |\n| Test size | 37,648 sentences (我们用 1,000) | 857 docs / 21,835 mentions |\n| Hierarchy | 2-level (coarse→fine) | Tree-structure (~3-4 levels) |\n| Public | Yes (HF) | Yes (GitHub, MIT) |\n| Evaluation | Entity-level P/R/F1 | Trigger-level micro P/R/F1 |\n\n**关键差异：任务类型不同。** Few-NERD 是 NER（标注 entity spans），MAVEN 是 ED（标注 event trigger words）。但两者都需要 type classification，confusability 影响的核心机制相同。\n\n## 5. BCS/SDGD 验证适用性分析\n\n### 5.1 Confusability 丰富度\n\n**极其适合。** 论文原文 Table 7 的错误分析直接验证了 confusability：\n\n| 错误类型 | DMCNN | BiLSTM | MOGANED | DMBERT |\n|---------|-------|--------|---------|--------|\n| Parent-Children 混淆 | 15.5% | 14.5% | 15.5% | 13.1% |\n| **Between Siblings 混淆** | **19.8%** | **14.6%** | **17.8%** | **19.0%** |\n| Into Top 50% types | 89.2% | 90.3% | 86.8% | 87.0% |\n\n**Sibling 混淆率 14.6-19.8%** — 这正是我们的 confusability hypothesis 的直接证据。模型在层级结构中的 sibling types 之间频繁犯错。\n\n### 5.2 高 Confusability Pairs（预测）\n\n基于层级结构，以下 pairs 预期 cosine similarity 极高：\n\n| Type A | Type B | 共同 Parent | 预期 Confusability |\n|--------|--------|-----------|-------------------|\n| Attack | Military_operation | Violence | 极高 |\n| Attack | Hostile_encounter | Violence | 极高 |\n| Terrorism | Violence | - | 极高 |\n| Theft | Robbery | Committing_crime | 极高 |\n| Arrest | Prison | Legality | 高 |\n| Arriving | Departing | Traveling | 高 |\n| Commerce_buy | Commerce_sell | Possession | 高 |\n| Telling | Communication | Action/Communication | 高 |\n| Bodily_harm | Killing | Violence/Change | 高 |\n| Damaging | Destroying | Change | 高 |\n| Statement | Expressing_publicly | Communication | 高 |\n| Giving | Sending | Possession | 高 |\n\n### 5.3 SDGD 效果预估\n\n- 168 types → 对比 Few-NERD 66 types，confusability graph 边数增长 ~6.5x（168×167/2 = 14,028 pairs vs 66×65/2 = 2,145 pairs）\n- Graph coloring chromatic number 预估 15-25 batches（vs Few-NERD 8-10）\n- **SDGD 分 batch 的收益空间更大**：单次 prompt 塞 168 types 几乎不可能（prompt 长度 + confusion），SDGD 的 per-batch extraction 必要性更强\n- 层级结构可直接用作 confusability 分析的先验（siblings 应有高 BCS）\n\n### 5.4 论文验证价值\n\n1. **Cross-task generalization**: Few-NERD (NER) + MAVEN (ED) 证明 confusability 现象跨 IE 子任务通用\n2. **Scale stress test**: 168 types 比 66 types 更极端，如果 SDGD 在 168 types 上也有效，说服力极强\n3. **Hierarchy validation**: MAVEN 的树状 schema 可验证 \"同 parent 下 sibling types 有更高 BCS\" 假设\n4. **独立验证 Table 7 的 sibling confusion 发现**: 我们的 BCS 指标是否能预测 MAVEN 原论文中观察到的 sibling 混淆模式？\n\n## 6. 与 ACE05 对比优劣\n\n| 维度 | ACE05 | MAVEN | 判断 |\n|------|-------|-------|------|\n| **获取** | LDC 许可 $300 + 审批耗时 | GitHub 直接下载，MIT | MAVEN 胜 |\n| **类型数** | 7 entity + 18 relation (+ 33 event) | 168 event | MAVEN 胜（confusability 空间大） |\n| **任务** | NER + RE + ED 联合 | ED only | ACE05 胜（多任务 DAG） |\n| **与 Few-NERD 互补** | NER+RE（不同任务维度） | ED（不同任务但都是 classification） | ACE05 略胜 |\n| **学术认可度** | 经典 benchmark，20 年历史 | 2020 EMNLP，已被广泛引用 | 平手 |\n| **Confusability 分析** | 7 entity types 太少，confusability 有限 | 168 types + hierarchy = 理想 testbed | MAVEN 胜 |\n| **层级结构** | 无显式层级 | 有树状层级 | MAVEN 胜 |\n| **数据量** | 599 docs, 5,349 mentions | 4,480 docs, 118,732 mentions | MAVEN 胜 |\n| **Reviewer 认可** | 经典但需付费获取 | Reviewer 主动推荐 | MAVEN 胜 |\n\n### 结论\n\n**推荐用 MAVEN 替代 ACE05，理由：**\n\n1. **免费公开** — 消除 LDC $300 + 审批延迟的风险（距 ARR 提交仅 10 天）\n2. **168 types 是 confusability 的完美 stress test** — 比 ACE05 的 7 entity types 有说服力得多\n3. **层级结构** — 天然产生 sibling confusability，直接对应我们的 BCS 分析\n4. **原论文已有 type confusion 数据** — Table 7 的 sibling confusion 率直接支持我们的 hypothesis\n5. **Reviewer 推荐** — 采纳 reviewer 建议本身就是加分项\n6. **跨任务泛化** — Few-NERD (NER) + MAVEN (ED) 比 Few-NERD + ACE05 (也有 NER) 的任务多样性更好\n\n**唯一风险：任务类型差异。** MAVEN 是 event detection 不是 NER/RE。需要在论文中明确框架：我们验证的是 \"type confusability 影响 LLM-based IE\" 这一通用现象，不限于某个特定 IE 子任务。NER 和 ED 都需要 type classification，confusability 的影响机制相同。\n\n## 7. 实施方案（如果用 MAVEN）\n\n### 7.1 预处理\n\n```python\n# 1. 下载数据\n# 从 GitHub releases 下载 train.jsonl, valid.jsonl, test.jsonl\n\n# 2. 转换为我们的格式\n# MAVEN 的 event detection 不同于 NER，需要适配：\n# - NER: 输入 text → 输出 [{\"text\": \"entity_text\", \"type\": \"entity_type\"}, ...]\n# - ED:  输入 text → 输出 [{\"trigger\": \"trigger_word\", \"type\": \"event_type\"}, ...]\n\n# 3. 从 valid.jsonl 采样（test set 无标签）\n# 采样策略：随机选 200-500 docs（有 17,726 events），确保覆盖大部分 types\n```\n\n关键：**用 dev set 而非 test set**，因为 test set 标签不公开（CodaLab 评测）。Dev set 有 710 docs / 18,904 mentions，足够。\n\n### 7.2 Type Embedding 计算\n\n```python\n# 168 types 的 Qwen3-32B mean-pool embeddings\n# 与 Few-NERD 流程相同：\n# 1. 构建 type description（type name + FrameNet frame definition）\n# 2. 输入 Qwen3-32B，取最后一层 hidden states 的 mean-pool\n# 3. 计算 168×168 pairwise cosine similarity matrix\n# 4. 保存为 type_embeddings_maven.pt\n\n# Type definition 来源：\n# - Table 15 的 FrameNet frame mapping（每个 type 有对应的 frame name）\n# - 可从 FrameNet 获取 frame definition 作为 type description\n```\n\n### 7.3 Prompt 适配\n\n```python\n# Event Detection prompt 模板（vs NER prompt）：\nMAVEN_PROMPT = \"\"\"Given the following text, identify all event triggers and classify their event types.\nAn event trigger is the key word or phrase that most clearly expresses an event occurrence.\n\nAvailable event types for this batch: {batch_types}\n\nText: {text}\n\nOutput format: [{\"trigger\": \"word\", \"type\": \"EventType\"}, ...]\"\"\"\n```\n\n### 7.4 GPU 预算估算\n\n| 步骤 | Few-NERD (66 types) | MAVEN (168 types) | 倍数 |\n|------|--------------------|--------------------|------|\n| Type embedding | ~10 min | ~25 min | 2.5x |\n| Graph coloring | 秒级 | 秒级 | 1x |\n| SDGD extraction (per doc) | ~8-10 batches × 1 call | ~15-25 batches × 1 call | 2-3x |\n| Total extraction (500 docs) | ~4h | ~8-12h | 2-3x |\n| Single-pass baseline (500 docs) | ~2h | ~3h | 1.5x |\n\n**预估总 GPU 时间：~15-20h**（含 baseline + SDGD + 对比实验）。在 1× RTX PRO 6000 Blackwell 上可接受。\n\n### 7.5 实验矩阵\n\n```\nExp-M1: MAVEN count baseline（类似 exp-001）\n  - type count = [10, 20, 40, 80, 168]\n  - 观测 F1 下降趋势\n  \nExp-M2: MAVEN confusability controlled（类似 exp-002）\n  - 固定 count=20/40，变化 BCS\n  - 观测 within-count BCS 与 F1 相关性\n\nExp-M3: MAVEN SDGD-zero\n  - Graph coloring on 168 types\n  - 对比 single-pass vs SDGD\n```\n\n## 8. 风险与缓解\n\n| 风险 | 影响 | 缓解 |\n|------|------|------|\n| 任务不同（ED vs NER） | Reviewer 可能质疑可比性 | 论文框架强调 \"type classification 通用现象\"，非特定任务 |\n| Test set 无标签 | 只能用 dev set | Dev set 18,904 mentions 足够；或提交 CodaLab 获取 test 分数 |\n| 168 types prompt 过长 | Single-pass baseline 可能 OOM 或 prompt truncation | 正好说明 SDGD 的必要性 |\n| Event trigger 与 entity span 评测逻辑不同 | 需要新的评测代码 | Trigger 是 word-level，比 entity span 更简单 |\n| 下载需翻墙 | AutoDL 可能无法直接下载 | 本地下载后 scp 到服务器，或用 GitHub mirror |\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "a520d31f-c2a7-430c-8b96-fc45c025d685",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPBxriwwKXBoyVJ1dn7qG8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13021,
+      "cache_read_input_tokens": 53760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 168 · 2026-05-15T03:14:07.761Z_
+
+<details><summary>↩ Tool result · `toolu_01JY4fuD5RdsKyo6SiNf4FXB`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/maven_dataset_report.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "e9f64501-2fa5-40a5-b005-a498668e5ea8",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/maven_dataset_report.md",
+    "content": "# MAVEN 数据集调研报告\n\n## 1. 数据集概况\n\n| 项目 | 内容 |\n|------|------|\n| 全称 | MAVEN: A MAssive eVENt detection dataset |\n| 论文 | Wang et al., EMNLP 2020 (pp. 1652-1671) |\n| 作者 | Xiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, Jie Zhou (清华 + 腾讯) |\n| 任务 | Event Detection = Trigger Identification + Trigger Classification |\n| 类型数 | 168 event types (+ 8 virtual intermediate nodes) |\n| 领域 | 英文 Wikipedia（general domain） |\n| Schema 来源 | 从 FrameNet 598 event-related frames 手动归纳合并而来 |\n| 层级结构 | **有！** 树状 hierarchical event type schema（见下文） |\n| 引用格式 | `@inproceedings{wang2020maven, title={MAVEN: A Massive General Domain Event Detection Dataset}, author={Wang, Xiaozhi and Wang, Ziqi and Han, Xu and Jiang, Wangyi and Han, Rong and Liu, Zhiyuan and Li, Juanzi and Li, Peng and Lin, Yankai and Zhou, Jie}, booktitle={EMNLP}, year={2020}}` |\n\n### 数据规模\n\n| Split | #Document | #Event | #Mention | #Negative |\n|-------|-----------|--------|----------|-----------|\n| Train | 2,913 | 73,496 | 77,993 | 323,992 |\n| Dev | 710 | 17,726 | 18,904 | 79,699 |\n| Test | 857 | 20,389 | 21,835 | 93,570 |\n| **Total** | **4,480** | **111,611** | **118,732** | **497,261** |\n\n对比 ACE 2005: 599 docs, 33 types, 4,090 events, 5,349 mentions — MAVEN 大 20 倍。\n\n### 标注格式（JSONL）\n\n```json\n{\n  \"id\": \"doc_id\",\n  \"title\": \"Document Title\",\n  \"content\": [\n    {\"sentence\": \"plain text\", \"tokens\": [\"token1\", \"token2\", ...]},\n    ...\n  ],\n  \"events\": [\n    {\n      \"id\": \"event_id\",\n      \"type\": \"Attack\",\n      \"type_id\": 45,\n      \"mention\": [\n        {\"id\": \"mention_id\", \"trigger_word\": \"attacked\", \"sent_id\": 3, \"offset\": [2, 3]}\n      ]\n    }\n  ],\n  \"negative_triggers\": [\n    {\"id\": \"neg_id\", \"trigger_word\": \"said\", \"sent_id\": 0, \"offset\": [5, 6]}\n  ]\n}\n```\n\nTest set 不含 events 字段，改为 `candidates` 列表（labels hidden，提交 CodaLab 评测）。\n\n## 2. 获取方式\n\n| 项目 | 内容 |\n|------|------|\n| GitHub | https://github.com/THU-KEG/MAVEN-dataset |\n| 下载 | Tsinghua Cloud 或 Google Drive（GitHub README 有链接） |\n| License | MIT |\n| 是否需要申请 | **不需要，完全公开** |\n| HuggingFace | **无官方 HF 数据集**。HF 上的 `ErickP/maven` 是第三方 3-class 子集，不可用 |\n| 数据大小 | ~50MB（jsonl 压缩） |\n| 加载方式 | 下载 jsonl 后自行解析，不能用 `datasets.load_dataset()` 直接加载 |\n\n## 3. Hierarchical Event Type Schema\n\nMAVEN 有树状层级结构，5 个顶层类别 + 8 个虚拟中间节点（不参与分类）+ 168 个叶子类型：\n\n### 顶层分布\n\n| Top-level | 占比 | 子类型示例 |\n|-----------|------|----------|\n| **Action** | 46.9% | Telling, Attack, Building, Writing, Creating, Using, Wearing... |\n| **Change** | 27.5% | Change_event_time, Change_of_leadership, Bodily_harm, Death, Destroying, Becoming... |\n| **Scenario** | 13.4% | Emergency, Catastrophe, Incident, Competition, Rite, Lighting... |\n| **Sentiment** | 6.4% | Supporting, Convincing, Quarreling, Warning, Suspicion... |\n| **Possession** | 5.7% | Commerce_buy, Giving, Renting, Supply, Exchange, Cost... |\n\n### 高 Confusability 子树（关键！）\n\n从 Figure 6 的层级结构中，以下子树内的 sibling types 语义高度相近，是天然的 confusability hotspots：\n\n**Violence 子树（6 types）：**\n- Attack, Military_operation, Hostile_encounter, Terrorism, Besieging, Surrounding\n- 加上近邻：Bearing_arms, Defending, Killing\n\n**Legality 子树（5 types）：**\n- Legal_rulings → Prison, Extradition, Arrest, Releasing\n- Criminal_investigation\n- Committing_crime → Theft, Robbery, Kidnapping\n\n**Motion 子树（8+ types）：**\n- Motion_directional, Body_movement (→ Breathing, Vocalizations, Ingestion, Escaping), Self_motion (→ Patrolling)\n- Traveling → Arriving, Departing, Temporary_stay\n\n**Possession 子树（16 types）：**\n- Receiving, Getting, Commerce_buy, Commerce_sell, Commerce_pay\n- Giving, Sending, Bringing, Supply\n- Renting, Exchange, Cost, Expensiveness, Earnings_and_losses, Carry_goods\n\n**Change 子树（20+ types）：**\n- Bodily_harm, Damaging, Destroying, Death\n- Becoming, Change_event_time, Cause_change_of_strength\n- Cure, Recovering\n\n**Communication 子树：**\n- Telling, Communication, Reporting, Statement, Expressing_publicly, Reveal_secret, Adducing, Response\n\n### 完整 168 Types 列表\n\n从 Table 15 提取（按 FrameNet 映射）：\n\n```\nKnow, Warning, Catastrophe, Placing, Causation, Arriving, Sending, Protest,\nPreventing_or_letting, Motion, Damaging, Destroying, Death, Perception_active,\nPresence, Influence, Receiving, Check, Hostile_encounter, Killing, Conquering,\nReleasing, Attack, Earnings_and_losses, Choosing, Traveling, Recovering, Using,\nComing_to_be, Cause_to_be_included, Process_start, Change_event_time, Reporting,\nBodily_harm, Suspicion, Statement, Cause_change_of_position_on_a_scale,\nComing_to_believe, Expressing_publicly, Request, Control, Supporting, Defending,\nBuilding, Military_operation, Self_motion, GetReady, Forming_relationships,\nBecoming_a_member, Action, Removing, Surrendering, Agree_or_refuse_to_act,\nParticipation, Deciding, Education_teaching, Emptying, Getting, Besieging,\nCreating, Process_end, Body_movement, Expansion, Telling, Change, Legal_rulings,\nBearing_arms, Giving, Name_conferral, Arranging, Use_firearm, Committing_crime,\nAssistance, Surrounding, Quarreling, Expend_resource, Motion_directional,\nBringing, Communication, Containing, Manufacturing, Social_event, Robbery,\nCompetition, Writing, Rescuing, Judgment_communication, Change_tool, Hold,\nBeing_in_operation, Recording, Carry_goods, Cost, Departing, GiveUp,\nChange_of_leadership, Escaping, Aiming, Hindering, Preserving, Create_artwork,\nOpenness, Connect, Reveal_secret, Response, Scrutiny, Lighting,\nCriminal_investigation, Hiding_objects, Confronting_problem, Renting,\nBreathing, Patrolling, Arrest, Convincing, Commerce_sell, Cure, Temporary_stay,\nDispersal, Collaboration, Extradition, Change_sentiment, Commitment,\nCommerce_pay, Filling, Becoming, Achieve, Cause_change_of_strength, Supply,\nCause_to_amalgamate, Scouring, Violence, Reforming_a_system, Come_together,\nWearing, Cause_to_make_progress, Legality, Employment, Rite, Publishing,\nAdducing, Exchange, Ratification, Sign_agreement, Commerce_buy,\nImposing_obligation, Rewards_and_punishments, Institutionalization, Testing,\nIngestion, Labeling, Kidnapping, Submitting_documents, Prison, Justifying,\nEmergency, Terrorism, Vocalizations, Risk, Resolve_problem, Revenge, Limiting,\nResearch, Having_or_lacking_access, Theft, Incident, Award, Practice\n```\n\n## 4. 与 Few-NERD 对比\n\n| 维度 | Few-NERD | MAVEN |\n|------|----------|-------|\n| Task | NER (Named Entity Recognition) | ED (Event Detection / Trigger Classification) |\n| #Types | 66 fine-grained (8 coarse) | 168 (5 top-level + 8 virtual) |\n| Domain | Wikipedia | Wikipedia |\n| Annotation | Entity spans + types | Event triggers + types + mentions |\n| Train size | ~131k sentences | 2,913 docs / 77,993 mentions |\n| Test size | 37,648 sentences (我们用 1,000) | 857 docs / 21,835 mentions |\n| Hierarchy | 2-level (coarse→fine) | Tree-structure (~3-4 levels) |\n| Public | Yes (HF) | Yes (GitHub, MIT) |\n| Evaluation | Entity-level P/R/F1 | Trigger-level micro P/R/F1 |\n\n**关键差异：任务类型不同。** Few-NERD 是 NER（标注 entity spans），MAVEN 是 ED（标注 event trigger words）。但两者都需要 type classification，confusability 影响的核心机制相同。\n\n## 5. BCS/SDGD 验证适用性分析\n\n### 5.1 Confusability 丰富度\n\n**极其适合。** 论文原文 Table 7 的错误分析直接验证了 confusability：\n\n| 错误类型 | DMCNN | BiLSTM | MOGANED | DMBERT |\n|---------|-------|--------|---------|--------|\n| Parent-Children 混淆 | 15.5% | 14.5% | 15.5% | 13.1% |\n| **Between Siblings 混淆** | **19.8%** | **14.6%** | **17.8%** | **19.0%** |\n| Into Top 50% types | 89.2% | 90.3% | 86.8% | 87.0% |\n\n**Sibling 混淆率 14.6-19.8%** — 这正是我们的 confusability hypothesis 的直接证据。模型在层级结构中的 sibling types 之间频繁犯错。\n\n### 5.2 高 Confusability Pairs（预测）\n\n基于层级结构，以下 pairs 预期 cosine similarity 极高：\n\n| Type A | Type B | 共同 Parent | 预期 Confusability |\n|--------|--------|-----------|-------------------|\n| Attack | Military_operation | Violence | 极高 |\n| Attack | Hostile_encounter | Violence | 极高 |\n| Terrorism | Violence | - | 极高 |\n| Theft | Robbery | Committing_crime | 极高 |\n| Arrest | Prison | Legality | 高 |\n| Arriving | Departing | Traveling | 高 |\n| Commerce_buy | Commerce_sell | Possession | 高 |\n| Telling | Communication | Action/Communication | 高 |\n| Bodily_harm | Killing | Violence/Change | 高 |\n| Damaging | Destroying | Change | 高 |\n| Statement | Expressing_publicly | Communication | 高 |\n| Giving | Sending | Possession | 高 |\n\n### 5.3 SDGD 效果预估\n\n- 168 types → 对比 Few-NERD 66 types，confusability graph 边数增长 ~6.5x（168×167/2 = 14,028 pairs vs 66×65/2 = 2,145 pairs）\n- Graph coloring chromatic number 预估 15-25 batches（vs Few-NERD 8-10）\n- **SDGD 分 batch 的收益空间更大**：单次 prompt 塞 168 types 几乎不可能（prompt 长度 + confusion），SDGD 的 per-batch extraction 必要性更强\n- 层级结构可直接用作 confusability 分析的先验（siblings 应有高 BCS）\n\n### 5.4 论文验证价值\n\n1. **Cross-task generalization**: Few-NERD (NER) + MAVEN (ED) 证明 confusability 现象跨 IE 子任务通用\n2. **Scale stress test**: 168 types 比 66 types 更极端，如果 SDGD 在 168 types 上也有效，说服力极强\n3. **Hierarchy validation**: MAVEN 的树状 schema 可验证 \"同 parent 下 sibling types 有更高 BCS\" 假设\n4. **独立验证 Table 7 的 sibling confusion 发现**: 我们的 BCS 指标是否能预测 MAVEN 原论文中观察到的 sibling 混淆模式？\n\n## 6. 与 ACE05 对比优劣\n\n| 维度 | ACE05 | MAVEN | 判断 |\n|------|-------|-------|------|\n| **获取** | LDC 许可 $300 + 审批耗时 | GitHub 直接下载，MIT | MAVEN 胜 |\n| **类型数** | 7 entity + 18 relation (+ 33 event) | 168 event | MAVEN 胜（confusability 空间大） |\n| **任务** | NER + RE + ED 联合 | ED only | ACE05 胜（多任务 DAG） |\n| **与 Few-NERD 互补** | NER+RE（不同任务维度） | ED（不同任务但都是 classification） | ACE05 略胜 |\n| **学术认可度** | 经典 benchmark，20 年历史 | 2020 EMNLP，已被广泛引用 | 平手 |\n| **Confusability 分析** | 7 entity types 太少，confusability 有限 | 168 types + hierarchy = 理想 testbed | MAVEN 胜 |\n| **层级结构** | 无显式层级 | 有树状层级 | MAVEN 胜 |\n| **数据量** | 599 docs, 5,349 mentions | 4,480 docs, 118,732 mentions | MAVEN 胜 |\n| **Reviewer 认可** | 经典但需付费获取 | Reviewer 主动推荐 | MAVEN 胜 |\n\n### 结论\n\n**推荐用 MAVEN 替代 ACE05，理由：**\n\n1. **免费公开** — 消除 LDC $300 + 审批延迟的风险（距 ARR 提交仅 10 天）\n2. **168 types 是 confusability 的完美 stress test** — 比 ACE05 的 7 entity types 有说服力得多\n3. **层级结构** — 天然产生 sibling confusability，直接对应我们的 BCS 分析\n4. **原论文已有 type confusion 数据** — Table 7 的 sibling confusion 率直接支持我们的 hypothesis\n5. **Reviewer 推荐** — 采纳 reviewer 建议本身就是加分项\n6. **跨任务泛化** — Few-NERD (NER) + MAVEN (ED) 比 Few-NERD + ACE05 (也有 NER) 的任务多样性更好\n\n**唯一风险：任务类型差异。** MAVEN 是 event detection 不是 NER/RE。需要在论文中明确框架：我们验证的是 \"type confusability 影响 LLM-based IE\" 这一通用现象，不限于某个特定 IE 子任务。NER 和 ED 都需要 type classification，confusability 的影响机制相同。\n\n## 7. 实施方案（如果用 MAVEN）\n\n### 7.1 预处理\n\n```python\n# 1. 下载数据\n# 从 GitHub releases 下载 train.jsonl, valid.jsonl, test.jsonl\n\n# 2. 转换为我们的格式\n# MAVEN 的 event detection 不同于 NER，需要适配：\n# - NER: 输入 text → 输出 [{\"text\": \"entity_text\", \"type\": \"entity_type\"}, ...]\n# - ED:  输入 text → 输出 [{\"trigger\": \"trigger_word\", \"type\": \"event_type\"}, ...]\n\n# 3. 从 valid.jsonl 采样（test set 无标签）\n# 采样策略：随机选 200-500 docs（有 17,726 events），确保覆盖大部分 types\n```\n\n关键：**用 dev set 而非 test set**，因为 test set 标签不公开（CodaLab 评测）。Dev set 有 710 docs / 18,904 mentions，足够。\n\n### 7.2 Type Embedding 计算\n\n```python\n# 168 types 的 Qwen3-32B mean-pool embeddings\n# 与 Few-NERD 流程相同：\n# 1. 构建 type description（type name + FrameNet frame definition）\n# 2. 输入 Qwen3-32B，取最后一层 hidden states 的 mean-pool\n# 3. 计算 168×168 pairwise cosine similarity matrix\n# 4. 保存为 type_embeddings_maven.pt\n\n# Type definition 来源：\n# - Table 15 的 FrameNet frame mapping（每个 type 有对应的 frame name）\n# - 可从 FrameNet 获取 frame definition 作为 type description\n```\n\n### 7.3 Prompt 适配\n\n```python\n# Event Detection prompt 模板（vs NER prompt）：\nMAVEN_PROMPT = \"\"\"Given the following text, identify all event triggers and classify their event types.\nAn event trigger is the key word or phrase that most clearly expresses an event occurrence.\n\nAvailable event types for this batch: {batch_types}\n\nText: {text}\n\nOutput format: [{\"trigger\": \"word\", \"type\": \"EventType\"}, ...]\"\"\"\n```\n\n### 7.4 GPU 预算估算\n\n| 步骤 | Few-NERD (66 types) | MAVEN (168 types) | 倍数 |\n|------|--------------------|--------------------|------|\n| Type embedding | ~10 min | ~25 min | 2.5x |\n| Graph coloring | 秒级 | 秒级 | 1x |\n| SDGD extraction (per doc) | ~8-10 batches × 1 call | ~15-25 batches × 1 call | 2-3x |\n| Total extraction (500 docs) | ~4h | ~8-12h | 2-3x |\n| Single-pass baseline (500 docs) | ~2h | ~3h | 1.5x |\n\n**预估总 GPU 时间：~15-20h**（含 baseline + SDGD + 对比实验）。在 1× RTX PRO 6000 Blackwell 上可接受。\n\n### 7.5 实验矩阵\n\n```\nExp-M1: MAVEN count baseline（类似 exp-001）\n  - type count = [10, 20, 40, 80, 168]\n  - 观测 F1 下降趋势\n  \nExp-M2: MAVEN confusability controlled（类似 exp-002）\n  - 固定 count=20/40，变化 BCS\n  - 观测 within-count BCS 与 F1 相关性\n\nExp-M3: MAVEN SDGD-zero\n  - Graph coloring on 168 types\n  - 对比 single-pass vs SDGD\n```\n\n## 8. 风险与缓解\n\n| 风险 | 影响 | 缓解 |\n|------|------|------|\n| 任务不同（ED vs NER） | Reviewer 可能质疑可比性 | 论文框架强调 \"type classification 通用现象\"，非特定任务 |\n| Test set 无标签 | 只能用 dev set | Dev set 18,904 mentions 足够；或提交 CodaLab 获取 test 分数 |\n| 168 types prompt 过长 | Single-pass baseline 可能 OOM 或 prompt truncation | 正好说明 SDGD 的必要性 |\n| Event trigger 与 entity span 评测逻辑不同 | 需要新的评测代码 | Trigger 是 word-level，比 entity span 更简单 |\n| 下载需翻墙 | AutoDL 可能无法直接下载 | 本地下载后 scp 到服务器，或用 GitHub mirror |\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 169_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_0141n6HjHikFT25M52zPaFKq`</summary>
+
+```json
+{
+  "name": "MAVEN Dataset Research Report",
+  "type": "report",
+  "description": "MAVEN 数据集调研报告：168 event types，hierarchical schema，与 Few-NERD/ACE05 对比，BCS/SDGD 适用性分析，实施方案",
+  "project": "schema-dag-extraction",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/maven_dataset_report.md",
+  "tags": [
+    "maven",
+    "dataset",
+    "event-detection",
+    "confusability",
+    "survey"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "98d6f221-b909-4a99-ad67-18f03ce71003",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MX5FrvgieZohdA5uE3tcMh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6952,
+      "cache_read_input_tokens": 66781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6952
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-15T03:14:14.055Z_
+
+<details><summary>↩ Tool result · `toolu_0141n6HjHikFT25M52zPaFKq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_3424dc\", \"name\": \"MAVEN Dataset Research Report\", \"type\": \"report\", \"description\": \"MAVEN 数据集调研报告：168 event types，hierarchical schema，与 Few-NERD/ACE05 对比，BCS/SDGD 适用性分析，实施方案\", \"path\": \"projects/schema-dag-extraction/artifacts/_project/report/maven_dataset_report.md\", \"url\": null, \"project\": \"schema-dag-extraction\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T03:14:14.032551+00:00\", \"tags\": [\"maven\", \"dataset\", \"event-detection\", \"confusability\", \"survey\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "21b942c9-345a-4805-b855-79124fda040b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_3424dc\\\", \\\"name\\\": \\\"MAVEN Dataset Research Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"MAVEN 数据集调研报告：168 event types，hierarchical schema，与 Few-NERD/ACE05 对比，BCS/SDGD 适用性分析，实施方案\\\", \\\"path\\\": \\\"projects/schema-dag-extraction/artifacts/_project/report/maven_dataset_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema-dag-extraction\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T03:14:14.032551+00:00\\\", \\\"tags\\\": [\\\"maven\\\", \\\"dataset\\\", \\\"event-detection\\\", \\\"confusability\\\", \\\"survey\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_3424dc\", \"name\": \"MAVEN Dataset Research Report\", \"type\": \"report\", \"description\": \"MAVEN 数据集调研报告：168 event types，hierarchical schema，与 Few-NERD/ACE05 对比，BCS/SDGD 适用性分析，实施方案\", \"path\": \"projects/schema-dag-extraction/artifacts/_project/report/maven_dataset_report.md\", \"url\": null, \"project\": \"schema-dag-extraction\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T03:14:14.032551+00:00\", \"tags\": [\"maven\", \"dataset\", \"event-detection\", \"confusability\", \"survey\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 171_
+
+报告已写入并注册。核心结论：
+
+**强烈推荐 MAVEN 替代 ACE05。**
+
+关键发现：
+
+1. **168 event types + 树状层级结构** — 天然产生 sibling confusability，比 ACE05 的 7 entity types 好得多
+2. **原论文 Table 7 已有 type confusion 数据** — sibling 混淆率 14.6-19.8%，直接支持我们的 hypothesis
+3. **免费公开（MIT）** — GitHub 下载，无需 LDC $300 + 审批
+4. **高 confusability 热点丰富** — Violence 子树（Attack/Military_operation/Hostile_encounter/Terrorism）、Legality 子树（Arrest/Prison/Extradition）、Possession 子树（16 types 涉及买卖交换）等
+5. **跨任务泛化** — Few-NERD (NER) + MAVEN (ED) 比两个 NER 数据集更有说服力
+
+**唯一风险**：任务类型不同（ED vs NER），需在论文中框架化为 "type classification 通用现象"。
+
+**实施要点**：
+- 用 dev set（710 docs / 18,904 mentions），test set 无标签
+- GPU 预算约 15-20h（168 types，graph coloring 预估 15-25 batches）
+- 需适配 prompt（trigger extraction vs entity extraction）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "uuid": "22956710-2d30-412a-8b74-ec244f577286",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LiHvkHAcEKGXi2Q5wpHB4b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 562,
+      "cache_read_input_tokens": 73733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 562
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 172_
+
+报告已写入并注册。核心结论：
+
+**强烈推荐 MAVEN 替代 ACE05。**
+
+关键发现：
+
+1. **168 event types + 树状层级结构** — 天然产生 sibling confusability，比 ACE05 的 7 entity types 好得多
+2. **原论文 Table 7 已有 type confusion 数据** — sibling 混淆率 14.6-19.8%，直接支持我们的 hypothesis
+3. **免费公开（MIT）** — GitHub 下载，无需 LDC $300 + 审批
+4. **高 confusability 热点丰富** — Violence 子树（Attack/Military_operation/Hostile_encounter/Terrorism）、Legality 子树（Arrest/Prison/Extradition）、Possession 子树（16 types 涉及买卖交换）等
+5. **跨任务泛化** — Few-NERD (NER) + MAVEN (ED) 比两个 NER 数据集更有说服力
+
+**唯一风险**：任务类型不同（ED vs NER），需在论文中框架化为 "type classification 通用现象"。
+
+**实施要点**：
+- 用 dev set（710 docs / 18,904 mentions），test set 无标签
+- GPU 预算约 15-20h（168 types，graph coloring 预估 15-25 batches）
+- 需适配 prompt（trigger extraction vs entity extraction）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 335150,
+  "duration_api_ms": 380042,
+  "num_turns": 23,
+  "stop_reason": "end_turn",
+  "session_id": "b19638c9-060a-40d2-87c6-ba7ebec5cdd8",
+  "total_cost_usd": 1.54655995,
+  "usage": {
+    "input_tokens": 220,
+    "cache_creation_input_tokens": 62454,
+    "cache_read_input_tokens": 443425,
+    "output_tokens": 10220,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 62454,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 407,
+        "cache_read_input_tokens": 73733,
+        "cache_creation_input_tokens": 562,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 562
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 341311,
+      "outputTokens": 12163,
+      "cacheReadInputTokens": 1028477,
+      "cacheCreationInputTokens": 58349,
+      "webSearchRequests": 10,
+      "costUSD": 0.6779099500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 220,
+      "outputTokens": 10220,
+      "cacheReadInputTokens": 443425,
+      "cacheCreationInputTokens": 62454,
+      "webSearchRequests": 0,
+      "costUSD": 0.86865,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9ff006b1-0983-4577-b474-f5db3bfd6d95"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,1329 @@
+# cron hook eval pi05 l2norm k09 long seed43 strict cqa1 20260529T034104 071428
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 2
+- **Tool calls:** 18
+- **Original source:** `logs/chats/archive/cron_hook_eval_pi05_l2norm_k09_long_seed43_strict_cqa1_20260529T034104_071428.jsonl`
+- **Structured JSON:** [`9ad8d0ca7e398b746bc7.json`](../../sessions/9a/9ad8d0ca7e398b746bc7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+38 recorded events
+
+### User
+
+_source line 1 · 2026-05-28T11:30:10.952037+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #16。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0-3 on westd-27271, cqa1-33015, westd-41074, westd-38929（共 14 张）
+- westd-27271 **不支持 attention pruning mode**（代码未同步，仅 none/random/l2norm）。Worker 正在修复但未确认完成。w38 同理未确认
+- cqa1-33015 和 westd-41074 **已确认支持 attention**
+- submit_training_job 的 command 必须 `bash -c "..."` 包裹（tmux 用 sh 不是 bash，source/conda activate 裸写会 EXIT_CODE=127）
+- L2norm k=0.95 seed43 数据已存在（D274: 85.8%），QUEUED 的 eval_pi05_l2norm_k095_long_seed43_strict_w41 是**过期条目**，不要重跑
+- Random k=0.85 s43 per-task T0/T1 数据有混入错误，论文须用 server log 真值
+
+### 2. 🖥️ 基础设施快照
+- **4 台服务器**，account=root，工作目录 `/root/autodl-tmp/importance_margin_vla_compress`
+- Python: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- HF cache: `/root/autodl-tmp/.hf_cache`，离线模式 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`
+- 评测脚本: `eval_pi05_pruning_libero.py`（π0.5）、`eval_openvla_pruning_libero.py`（OV）
+- 磁盘: cqa1 /autodl-pub 91% ⚠️ 需关注；w27/w38/w41 均 <30%
+- 活跃进程（reconcile 确认的 11 + 新部署 1）：
+  - cqa1: cuda:0 L2norm k=0.5 s43 (pid=572418), cuda:1 Random k=0.9 s43 v2 (pid=330514), cuda:2 Attn k=0.9 s43 (pid=503245), cuda:3 Attn k=0.75 s43 (pid=588702)
+  - w41: cuda:0 Attn k=0.85 s43 (pid=2953), cuda:1 Attn k=0.7 s43 (pid=993383), cuda:2 Random k=0.75 s43 (pid=840142), cuda:3 L2norm k=0.7 s43 (pid=821246)
+  - w27: cuda:0 Random k=0.5 s43 (pid=53712), cuda:1 L2norm k=0.7 s43 (pid=53966)
+  - w38: cuda:0 OV Random k=0.95 (running), cuda:1 OV Attn k=0.75 (running), cuda:2 Random k=0.7 s43 (pid=433034), **cuda:3 空闲**
+- Workers running: `worker_fix_w27_attn_code_sync_20260527T175538`（修 w27 attention 代码）、`worker_ops_harvest-l2norm-k09-s43-cqa1_20260527T180531`（收割 L2norm k=0.9 s43 结果）
+
+### 3. 📊 当前状态
+刚处理 **eval_pi05_l2norm_k09_long_seed43_strict_cqa1** 完成回调：SR=81.2%（seed42=80.0%），这是 **MUST-HAVE** 的 importance margin 峰值点。已向 Director 汇报。
+
+Importance margin profile 现状（3/6 有 error bar）：
+| k | Margin | Error bar? |
+|---|--------|-----------|
+| 0.95 | 25.3pp | ✅ |
+| 0.9 | **46.0pp** | ✅ peak |
+| 0.85 | 32.5pp | ✅ |
+| 0.75/0.7/0.5 | — | 🏃 running |
+
+12 实验 RUNNING（见上），1 QUEUED（过期），预计 ~2-3h 大批完成。
+
+等待中：
+- 12 个 cron 回调（实验完成时自动触发）
+- 2 个 Worker 回调（w27 代码修复 + L2norm k=0.9 收割）
+- w38:cuda:3 空闲，等 w27 代码修复 Worker 完成后可能解锁 w38 attention 能力
+
+### 4. 📋 待办（条件触发式）
+- seed43 实验 cron 回调到达 → 按 on-experiment-done 流程：读 metrics、update registry、计算 importance margin、汇报 Director
+- GPU 释放（任一实验完成） → 检查是否有 Attn seed43 缺口可部署（k=0.75 已部署 cqa1:cuda:3，k=0.5 低优先）
+- Worker `fix_w27_attn_code_sync` 完成 → 验证 w27/w38 attention 支持 → 部署 Attn seed43 实验到空闲 GPU
+- Worker `harvest-l2norm-k09-s43-cqa1` 完成 → 检查是否有额外 log 分析产出需整合
+- OV 最后 2 格完成（w38 cuda:0/1） → OV Long cliff curve 闭合 → 汇报 Director
+- 全部 seed43 完成 → 生成完整 importance margin profile（6 个 k 值全有 error bar）→ Paper Agent 更新 figures
+- 实验硬截止 May 28 20:00 BJT → 之前必须闭合所有可闭合的 error bar
+
+### 5. 🎯 战略上下文
+- **核心结论**：importance margin (L2norm - Random) 呈 inverted-U，峰值 k=0.9 = 46.0pp。这是论文的 central diagnostic metric
+- **Narrative 已定稿**（D276）：systematic study + importance margin 作为 diagnostic metric
+- **π0.5 cliff curve 18/18 已完成**，OV cliff curve 16/18（最后 2 格 running）
+- **Crossover table 16/16 完成**
+- **Abstract 已提交** May 26，Paper provenance 83/83
+- **CoRL 2026 deadline: May 29**
+- 当前阶段是收割 seed43 error bar 充实论文。MUST-HAVE 已全部闭合，余下 NICE-TO-HAVE
+- 易错：不要把 QUEUED 的 L2norm k=0.95 s43 (w41) 当作未完成——D274 已有数据 (85.8%)，是过期条目
+- 易错：w27/w38 上跑 `--prune_mode attention` 会静默失败 (EXIT_CODE=2)，必须先确认代码同步
+- 易错：Random k=0.85 s43 的 per-task T0/T1 数据有混入错误（ROADMAP 已标注），论文数值须从 server log 原始数据取
+
+## 项目硬约束 (memory.md 节选)
+
+## 服务器能力备忘
+
+- **cqa1-33015**: 支持 attention pruning mode（已验证）
+- **westd-41074**: 支持 attention pruning mode（已验证）
+- **westd-27271**: ⚠️ 代码未同步，仅支持 none/random/l2norm（Worker 正在修复）
+- **westd-38929**: attention 支持未确认，待 w27 修复后一并验证
+
+## 可查的历史
+前 83 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-28T11:30:25.437237+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-28T11:30:25.492997+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 55
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-28T11:30:29.430484+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu', 'pid', 'metrics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu', 'pid', 'metrics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-28T11:30:29.482328+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-28T11:30:30.086270+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-28T11:30:30.287789+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-28T11:30:35.724114+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k07_long_seed46_strict_w41\": {\"status\": \"RUNNING\", \"hypothesis\": \"π0.5 L2norm k=0.7 Long strict seed46 — crossover 区第5个 seed，v1 w38 失败后换 w41 重跑。s42=63.2%, s43=65.4%, s44=67.4%, s45=68.4%。收窄 L2norm k=0.7 error bar\"}, \"eval_pi05_attn_k05_long_seed47_w38\": {\"status\": \"RUNNING\", \"hypothesis\": \"π0.5 Attn k=0.5 Long seed47 — 6th seed bonus data，plateau 区确认。填充 w38 空闲 GPU，不在 CoRL deadline 内但可用于 revision\"}, \"eval_pi05_l2norm_k05_long_seed47_w38\": {\"status\": \"RUNNING\", \"hypothesis\": \"π0.5 L2norm k=0.5 Long seed47 — 6th seed bonus data，high variance 点 (s42-s46 std ~1.8pp)。填充 w38 空闲 GPU，不在 CoRL deadline 内但可用于 revision\"}, \"eval_pi05_random_k085_long_seed47_w38\": {\"status\": \"RUNNING\", \"hypothesis\": \"π0.5 Random k=0.85 Long seed47 — 6th seed bonus data，high variance 点 (s42-s46 std ~1.6pp)。填充 w38 空闲 GPU，不在 CoRL deadline 内但可用于 revision\"}, \"eval_pi05_random_k05_long_seed46_strict_w41\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k095_long_seed46_strict_w41\": {\"status\": \"RUNNING\", \"hypothesis\": \"π0.5 Random k=0.95 Long strict seed46 — 第5 seed 加固 margin 顶端点。s42=60.6%, s43=60.8%, s44=61.2%, s45=62.4%, 4-seed mean=61.25%±0.81pp\"}, \"eval_openvla_l2norm_k095_long_seed43_w27\": {\"status\": \"RUNNING\", \"hypothesis\": \"OpenVLA L2norm k=0.95 Long seed43 — OV Long curve 全部单 seed42，加 seed43 获取 OV 最高 scoring 点误差棒。seed42=42.6%。w27 non-attention\", \"server\": \"westd-27271\", \"gpu\": \"cuda:0\", \"pid\": \"545112\"}}, \"count\": 7, \"total\": 7, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.222}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 6293
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-28T11:32:01.353414+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 7, \"results\": [{\"exp_id\": \"eval_openvla_l2norm_k095_long_seed43_w27\", \"success\": true, \"actions\": [\"Job still running (pid=545112)\"]}, {\"exp_id\": \"eval_pi05_random_k095_long_seed46_strict_w41\", \"success\": true, \"actions\": [\"Job still running (pid=898746)\"]}, {\"exp_id\": \"eval_pi05_random_k05_long_seed46_strict_w41\", \"success\": true, \"actions\": [\"Job still running (pid=899098)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k07_long_seed46_strict_w41\", \"success\": true, \"actions\": [\"Job still running (pid=923767)\"]}, {\"exp_id\": \"eval_pi05_random_k085_long_seed47_w38\", \"success\": true, \"actions\": [\"Job still running (pid=589824)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k05_long_seed47_w38\", \"success\": true, \"actions\": [\"Job still running (pid=589899)\"]}, {\"exp_id\": \"eval_pi05_attn_k05_long_seed47_w38\", \"success\": true, \"actions\": [\"Job still running (pid=590036)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 91871
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T11:32:01.404348+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md\", \"content\": \"# Handover — 2026-05-28\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_pi05_attn_k05_long_seed47_w38 | π0.5 Attn k=0.5 Long seed47 — 6th seed bonus data，plateau 区确认。填充 w38 空闲 GPU，不在 CoRL deadline 内但可用于 revision | — | — | — |\\n\\n## 待处理\\n- eval_pi05_l2norm_k07_long_seed46_strict_w38_v2: π0.5 L2norm k=0.7 Long strict seed46 — v1 被 GPU OOM kill (w38:cuda:1 三进程共享)。重试部署到独占 GPU。5th seed for crossover point, 4-seed mean=63.5±1.57pp（准备中）\\n- eval_openvla_random_k095_goal_seed42_v3: OV Random k=0.95 Goal v3 retry on cqa1 — v2 cqa1 transformers 版本问题, v3 w41 模型文件缺失。cqa1 环境已修复，重新部署。Goal Random cliff curve 顶端数据点（准备中）\\n- …另有 94 项\\n\\n## 近期结论\\n- **eval_pi05_attn_k095_long_seed46_strict_w38** (success): Attention-based token pruning at k=0.95 on pi0.5 preserves task performance on LIBERO-Long because removing only 5% lowest-attention vision tokens eliminates redundant spatial information without losing action-critical features.\\n\\n## 趋势\\n成功 572 / 负向 110 / 失败 117 / 共 883\\nsuccess_rate: 75.2 ↓（近 3 次 success）\\ntotal_episodes: 500 →（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-33015: 无 GPU 信息\\nwestd-27271: 无 GPU 信息\\nwestd-38929: 无 GPU 信息\\nwestd-41074: 无 GPU 信息\\n\\n## 告警\\n- eval_acis_k05_supplement_200eps: 训练失败 — unknown\\n- eval_e5_xvla_attn_last_goal_k03: 已被终止 — unknown\\n- eval_e5_xvla_attn_mean_goal_k03: 已被终止 — unknown\\n- eval_k07_bypass_v2: 训练失败 — unknown\\n- eval_official_smolvla_prune_k05_spatial: 训练失败 — unknown\\n- eval_official_smolvla_pruning: 训练失败 — unknown\\n- eval_oft_baseline_k10: 训练失败 — unknown\\n- eval_oft_baseline_object_seed42: 已被终止 — unknown\\n- eval_oft_baseline_object_seed42_v2: 训练失败 — unknown\\n- eval_openvla_attn_k05_object_seed42_v2: 训练失败 — unknown\\n- eva
+…[truncated 6163 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 91318
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T11:32:01.457084+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/ROADMAP.md\", \"content\": \"# importance_margin_vla_compress — Research Dashboard\\n\\n> 最后更新: 2026-05-28 11:22 UTC | 更新原因: s46 15/18 (L2norm k=0.5=52.6%, Attn k=0.95=75.2% 收割), 3个seed47 bonus已部署w38, OV Goal v4 DONE\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA vision token compressibility: **scoring method × connector × task 三维交互**。5+ 模型 × 4 LIBERO suites。\\n\\n## 当前阶段\\n✅ **π0.5 Cliff Curve 18/18 完成**\\n✅ **OpenVLA Long Curve 18/18 完成** (D288)\\n✅ **Crossover table 16/16 完成**\\n✅ **Abstract 已提交** (May 26)\\n✅ **Narrative 定稿** (D276)\\n✅ **Importance Margin Inverted-U 6/6 全闭合** (D291) 🎯\\n✅ **Attn cliff+plateau 全 6 点闭合** (D290)\\n\\n## Deadlines\\n- **实验硬截止**: May 28 20:00 BJT (C002) — s44✅ s45✅ s46全面推进中\\n- **CoRL 2026 Paper**: May 29\\n\\n## Importance Margin Profile — ✅ COMPLETE (2-seed)\\n| k | L2norm mean±Δ | Random mean±Δ | **Margin** |\\n|---|--------------|--------------|-----------|\\n| 0.95 | **86.0%±0.2** | **60.7%±0.1** | **+25.3pp** |\\n| 0.9 | **80.6%±0.6** | **34.6%±0.4** | **+46.0pp** ⭐peak |\\n| 0.85 | **78.1%±0.5** | **45.6%±1.6** | **+32.5pp** |\\n| 0.75 | **72.0%±1.2** | **61.8%±1.2** | **+10.2pp** |\\n| 0.7 | **64.3%±1.1** | **65.2%±0.8** | **-0.9pp** 🔄crossover |\\n| 0.5 | **51.0%±1.8** | **50.6%±0.8** | **+0.4pp** ≈0 |\\n\\n## Attn Cliff+Plateau — ✅ COMPLETE (2-seed, 待修正)\\n| k | Mean±Δ | Zone | 备注 |\\n|---|--------|------|------|\\n| 0.95 | **77.8%±0.6** | cliff top | |\\n| 0.9 | **63.4%±0.6** | cliff | |\\n| 0.85 | **51.2%±1.2** | cliff→plateau | |\\n| 0.75 | **~50.9%±1.1** | plateau | ⚠️ 修正: seed43 用 cqa1=52.0% |\\n| 0.7 | **53.7%±0.1** | plateau | |\\n| 0.5 | **50.4%±1.6** | plateau | |\\n\\n## Third Seed (s44) — ✅ 全部完成\\n| 实验 | 状态 | 目的 |\\n|------|------|------|\\n| Random k=0.9 s44 | ✅ DONE | peak margin |\\n| L2norm k=0.9 s44 | ✅ DONE | peak margin |\\n| L2norm k=0.5 s44 | ✅ DONE | 收窄 ±1.8pp
+…[truncated 3497 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 91169
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-28T11:32:29.225305+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-28T11:32:29.327480+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T11:32:33.444325+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'updated_at']",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'updated_at']",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-28T11:32:34.147539+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-28T11:32:34.602368+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'updated_at']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'updated_at']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T11:32:39.604210+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_attn_k095_long_seed46_strict_w38\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-28T11:17:38.433Z\", \"metrics\": {\"success_rate\": 75.2, \"per_task\": {\"T0\": 94, \"T1\": 96, \"T2\": 76, \"T3\": 92, \"T4\": 82, \"T5\": 94, \"T6\": 12, \"T7\": 82, \"T8\": 28, \"T9\": 96}, \"total_successes\": 376, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k05_long_seed46_strict\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-28T11:16:24.512Z\", \"metrics\": {\"success_rate\": 52.6, \"per_task_sr\": [66, 64, 72, 44, 30, 54, 32, 46, 30, 88], \"total_successes\": 263, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_openvla_random_k095_goal_seed42_v4\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-28T11:15:30.745Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 78.4, \"total_successes\": 392, \"total_episodes\": 500, \"per_task\": {\"T1_open_middle_drawer\": 50, \"T2_bowl_on_stove\": 94, \"T3_wine_bottle_on_cabinet\": 82, \"T4_open_top_drawer_bowl_inside\": 56, \"T5_bowl_on_top_cabinet\": 98, \"T6_push_plate_front_stove\": 84, \"T7_cream_cheese_in_bowl\": 76, \"T8_turn_on_stove\": 100, \"T9_bowl_on_plate\": 86, \"T10_wine_bottle_on_rack\": 58}, \"eval_time_min\": 317.3}}, \"eval_pi05_attn_k07_long_seed46_strict_cqa1\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-28T11:01:48.608Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 51.4, \"per_task\": {\"T0_alphabet_soup_tomato\": 70, \"T1_cream_cheese_butter\": 74, \"T2_stove_moka_pot\": 70, \"T3_black_bowl_drawer\": 36, \"T4_white_mug_left_plate\": 40, \"T5_book_back_shelf\": 34, \"T6_white_mug_plate\": 64, \"T7_alphabet_soup_cream\": 42, \"T8_moka_pots_stove\": 4, \"T9_yellow_white_mug_microwave\": 80}, \"episodes_completed\": 500, \"episodes_total\": 500}}, \"eval_pi05_l2norm_k095_long_seed46_strict_w27\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-28T11:01:20.614Z
+…[truncated 5670 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 6159
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-28T11:32:40.007904+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_monitor_w41_progress_final_20260528T113200\", \"task_type\": \"monitor:w41_progress_final\", \"project\": \"importance_margin_vla_compress\", \"status\": \"running\", \"started_at\": \"2026-05-28T11:32:01.061015+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 5860
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-28T11:32:44.930216+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.8916}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 10327
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-28T11:33:28.133480+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'PREPARING'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['exp_id', 'status', 'updated_at']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'PREPARING'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['exp_id', 'status', 'updated_at']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-28T11:33:28.436359+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'QUEUED'}",
+  "project": "importance_margin_vla_compress",
+  "fields": "['exp_id', 'status', 'updated_at']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'QUEUED'}",
+    "project": "importance_margin_vla_compress",
+    "fields": "['exp_id', 'status', 'updated_at']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-28T11:33:29.196467+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "date -u '+%Y-%m-%d %H:%M UTC' && TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M BJT'",
+  "description": "Check current time in UTC and Beijing time"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "date -u '+%Y-%m-%d %H:%M UTC' && TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M BJT'",
+    "description": "Check current time in UTC and Beijing time"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-28T11:33:30.954754+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k07_long_seed46_strict_w38_v2\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-28T08:07:49.917Z\"}, \"eval_openvla_random_k095_goal_seed42_v3\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-28T05:45:48.292Z\"}, \"eval_pi05_random_k095_long_seed44_strict_cqa1_v2\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-28T01:00:14.570Z\"}, \"eval_openvla_attn_k095_goal_seed42_v3\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-27T05:56:10.014Z\"}, \"eval_openvla_random_k085_object_seed42_v2\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-26T19:58:57.159Z\"}, \"eval_pi05_attention_k05_long_seed42_v3\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-26T19:23:26.160Z\"}, \"eval_openvla_random_k07_goal_seed42_v3\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-26T11:13:50.589Z\"}, \"eval_openvla_attn_k09_goal_seed43_v3\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-26T04:25:27.551Z\"}, \"eval_openvla_random_k085_long_seed42_v2\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-26T01:39:36.302Z\"}, \"eval_xvla_l2norm_k05_long_seed42_v2\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-23T18:40:20.197Z\"}, \"eval_openvla_baseline_goal_seed42_v2\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-23T14:14:52.462Z\"}, \"diag_find_pi05_path\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-23T14:13:41.358Z\"}, \"diag_openvla_script_model_path\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-23T14:13:37.579Z\"}, \"eval_openvla_baseline_goal_seed42\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-23T14:11:24.684Z\"}, \"eval_pi05_l2norm_k0925_goal_seed42\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-23T14:11:17.039Z\"}, \"eval_pi05_random_k0925_goal_seed42\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-23T14:11:14.237Z\"}, \"diag_openvla_script_args\": {\"status\": \"PREPARING\", \"u
+…[truncated 8928 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 2821
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-28T11:33:36.933570+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.9376}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 8497
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-28T11:33:37.408833+00:00_
+
+2026-05-28 11:33 UTC
+2026-05-28 19:33 BJT
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "Bash",
+  "elapsed_ms": 8212
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-28T11:34:14.947222+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 7/14 active | Worker 1 (monitor) | 磁盘: 未查\n\n**📊 实验截止前 27min 状态汇报 (19:33 BJT)**\n\n**s46 第5 seed sweep**: 15/18 完成，3 RUNNING on w41\n- ⏳ L2norm k=0.7 (pid=923767)\n- ⏳ Random k=0.95 (pid=898746)  \n- ⏳ Random k=0.5 (pid=899098)\n- 预计 ~21:30 BJT 完成（超 20:00 截止 ~1.5h，继续跑不中断）\n\n**s47 第6 seed bonus**: 3 RUNNING on w38 (Attn k=0.5, L2norm k=0.5, Random k=0.85)\n**OV**: 1 RUNNING on w27 (L2norm k=0.95 s43)\n\n**已过 19:30 BJT 部署停止线，不再新增实验。** cqa1 全部空闲。\n\n**Importance Margin Profile 已 COMPLETE (5-seed for 15/18 cells)**：\n| k | L2norm | Random | Margin |\n|---|--------|--------|--------|\n| 0.95 | 86.0%→86.3% (5s) | 60.7%→61.0% (4s+1⏳) | ~25.3pp |\n| 0.9 | 80.6%→80.5% (5s) | 34.6%→33.7% (5s) | ~46.8pp ⭐peak |\n| 0.85 | 78.1%→78.3% (5s) | 45.6%→45.1% (5s) | ~33.2pp |\n| 0.75 | 72.0%→72.2% (5s) | 61.8%→62.1% (5s) | ~10.1pp |\n| 0.7 | 64.3%→63.8% (4s+1⏳) | 65.2%→65.5% (5s) | ~-1.7pp crossover |\n| 0.5 | 51.0%→51.4% (5s) | 50.6%→50.5% (4s+1⏳) | ~0.9pp ≈0 |\n\n核心结论不变：inverted-U 峰值 k=0.9，crossover k≈0.7。5-seed error bar 进一步加固。\n\n**下一步**：\n1. 等 w41 最后 3 个完成 → 闭合 s46 全 18 格\n2. 数据整合注意事项逐条清理（ROADMAP 已列 checklist）\n3. Paper Agent 更新 figures with 5-seed data → May 29 提交",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 7/14 active | Worker 1 (monitor) | 磁盘: 未查\n\n**📊 实验截止前 27min 状态汇报 (19:33 BJT)**\n\n**s46 第5 seed sweep**: 15/18 完成，3 RUNNING on w41\n- ⏳ L2norm k=0.7 (pid=923767)\n- ⏳ Random k=0.95 (pid=898746)  \n- ⏳ Random k=0.5 (pid=899098)\n- 预计 ~21:30 BJT 完成（超 20:00 截止 ~1.5h，继续跑不中断）\n\n**s47 第6 seed bonus**: 3 RUNNING on w38 (Attn k=0.5, L2norm k=0.5, Random k=0.85)\n**OV**: 1 RUNNING on w27 (L2norm k=0.95 s43)\n\n**已过 19:30 BJT 部署停止线，不再新增实验。** cqa1 全部空闲。\n\n**Importance Margin Profile 已 COMPLETE (5-seed for 15/18 cells)**：\n| k | L2norm | Random | Margin |\n|---|--------|--------|--------|\n| 0.95 | 86.0%→86.3% (5s) | 60.7%→61.0% (4s+1⏳) | ~25.3pp |\n| 0.9 | 80.6%→80.5% (5s) | 34.6%→33.7% (5s) | ~46.8pp ⭐peak |\n| 0.85 | 78.1%→78.3% (5s) | 45.6%→45.1% (5s) | ~33.2pp |\n| 0.75 | 72.0%→72.2% (5s) | 61.8%→62.1% (5s) | ~10.1pp |\n| 0.7 | 64.3%→63.8% (4s+1⏳) | 65.2%→65.5% (5s) | ~-1.7pp crossover |\n| 0.5 | 51.0%→51.4% (5s) | 50.6%→50.5% (4s+1⏳) | ~0.9pp ≈0 |\n\n核心结论不变：inverted-U 峰值 k=0.9，crossover k≈0.7。5-seed error bar 进一步加固。\n\n**下一步**：\n1. 等 w41 最后 3 个完成 → 闭合 s46 全 18 格\n2. 数据整合注意事项逐条清理（ROADMAP 已列 checklist）\n3. Paper Agent 更新 figures with 5-seed data → May 29 提交",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T11:34:19.932326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6ea0e93e255655758819bea2ab1f224d:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4985
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-28T11:34:30.365543+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_monitor_w41_progress_final_20260528T113200",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_monitor_w41_progress_final_20260528T113200",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-28T11:34:30.591470+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_monitor_w41_progress_final_20260528T113200\", \"status\": \"done\", \"task_type\": \"monitor:w41_progress_final\", \"project\": \"importance_margin_vla_compress\", \"started_at\": \"2026-05-28T11:32:01.061015+00:00\", \"ended_at\": \"2026-05-28T11:34:01.303887+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"| 实验 | 状态 | 进度 | 当前SR | 预计剩余 |\\n|------|------|------|--------|----------|\\n| **l2norm_k075** seed46 | **已完成** ✓ | 500/500 | **73.2%** | — |\\n| **random_k095** seed46 | 运行中 (T9 ep=40) | 490/500 | 58.4% (T0-T8) | ~3 min |\\n| **random_k05** seed46 | 运行中 (T9 ep=10) | 460/500 | 50.0% (T0-T8) | ~12 min |\\n\\n注意：\\n- l2norm 实际日志名为 `l2norm_k075`（非 k07），已于 16:15 完成，EXIT_CODE=0，结果存于 `pi05_l2norm_k0.75_libero_10_seed46.json`\\n- PID 923767 仍存活（463% CPU, 2h14m），可能已被复用跑其他任务\\n- random_k095 和 random_k05 均接近完成，预计 ~15 分钟内全部结束\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 225
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-28T11:35:09.661614+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-28T11:36:54.239607+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 7, \"results\": [{\"exp_id\": \"eval_openvla_l2norm_k095_long_seed43_w27\", \"success\": true, \"actions\": [\"Job still running (pid=545112)\"]}, {\"exp_id\": \"eval_pi05_random_k095_long_seed46_strict_w41\", \"success\": true, \"actions\": [\"Sentinel EXIT_CODE=0 → Registry → ANALYZING\", \"Cron deleted\"]}, {\"exp_id\": \"eval_pi05_random_k05_long_seed46_strict_w41\", \"success\": true, \"actions\": [\"Job still running (pid=899098)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k07_long_seed46_strict_w41\", \"success\": true, \"actions\": [\"Job still running (pid=923767)\"]}, {\"exp_id\": \"eval_pi05_random_k085_long_seed47_w38\", \"success\": true, \"actions\": [\"Job still running (pid=589824)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k05_long_seed47_w38\", \"success\": true, \"actions\": [\"Job still running (pid=589899)\"]}, {\"exp_id\": \"eval_pi05_attn_k05_long_seed47_w38\", \"success\": true, \"actions\": [\"Job still running (pid=590036)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 104577
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-28T11:37:04.408410+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-28T11:37:04.475418+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 67
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-28T11:37:26.275745+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "ops:harvest-w41-final-s46",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务：收割 w41 上 s46 最后几个实验结果 + 调查 L2norm k=0.7 配置错误\n\n### 服务器信息\n- 服务器: westd-41074, account=root\n- 工作目录: `/root/autodl-tmp/importance_margin_vla_compress`\n- Python: `/root/miniconda3/bin/python`\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 任务 1: 收割 Random k=0.95 seed46 结果\n实验 `eval_pi05_random_k095_long_seed46_strict_w41` 已完成 (EXIT_CODE=0, ANALYZING)。\n\n1. SSH 到 w41，找到结果文件。结果 JSON 通常在工作目录下，文件名类似 `pi05_random_k0.95_libero_10_seed46.json` 或查看 tmux log\n2. 提取: overall success_rate, per_task SR (T0-T9), total_episodes, total_successes\n3. 用 `update_registry` 更新:\n   - exp_id: `eval_pi05_random_k095_long_seed46_strict_w41`\n   - metrics: {success_rate, per_task, total_episodes, total_successes}\n   - conclusion: success (如果正常完成)\n   - status: DONE\n   - spec 补充 checkpoint_path 和 log_path\n\n之前 4 seed 数据: s42=60.6%, s43=60.8%, s44=61.2%, s45=62.4%, mean=61.25%±0.81pp。看 s46 是否在这个范围。\n\n### 任务 2: 调查 L2norm k=0.7 → k=0.75 配置错误\n实验 `eval_pi05_l2norm_k07_long_seed46_strict_w41` (pid=923767) 可能实际跑的是 k=0.75 而非 k=0.7。\n\n1. 检查 tmux session 或日志，找到实际运行的命令行参数 (`--keep_ratio` 或 `--prune_ratio` 值)\n2. 检查结果文件名——如果文件名含 `k0.75` 则确认配置错误\n3. 如果确认是 k=0.75:\n   - 汇报: \"L2norm k=0.7 s46 实际跑了 k=0.75，是重复数据（k=0.75 s46 已有 73.2%）\"\n   - 用 update_registry 标注 exp_id `eval_pi05_l2norm_k07_long_seed46_strict_w41` 的 conclusion 为 \"failed\"，metrics 注明 \"配置错误: 实际 k=0.75\"\n4. 如果确认是 k=0.7: 汇报实际结果\n\n### 任务 3: 检查 Random k=0.5 seed46 进度\n实验 `eval_pi05_random_k05_long_seed46_strict_w41` (pid=899098) 应该即将完成。\n\n1. 检查进度 (当前 task/episode)\n2. 如果已完成，同任务1一样收割结果并更新 registry\n3. 如果还在跑，报告预计剩余时间\n\n### 产出\n汇总报告，包含:\n- Random k=0.95 s46 SR + 5-seed 统计\n- L2norm k=0.7 配置调查结论\n- Random k=0.5 s46 状态/结果",
+  "tool_groups": "['ssh', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:harvest-w41-final-s46",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务：收割 w41 上 s46 最后几个实验结果 + 调查 L2norm k=0.7 配置错误\n\n### 服务器信息\n- 服务器: westd-41074, account=root\n- 工作目录: `/root/autodl-tmp/importance_margin_vla_compress`\n- Python: `/root/miniconda3/bin/python`\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 任务 1: 收割 Random k=0.95 seed46 结果\n实验 `eval_pi05_random_k095_long_seed46_strict_w41` 已完成 (EXIT_CODE=0, ANALYZING)。\n\n1. SSH 到 w41，找到结果文件。结果 JSON 通常在工作目录下，文件名类似 `pi05_random_k0.95_libero_10_seed46.json` 或查看 tmux log\n2. 提取: overall success_rate, per_task SR (T0-T9), total_episodes, total_successes\n3. 用 `update_registry` 更新:\n   - exp_id: `eval_pi05_random_k095_long_seed46_strict_w41`\n   - metrics: {success_rate, per_task, total_episodes, total_successes}\n   - conclusion: success (如果正常完成)\n   - status: DONE\n   - spec 补充 checkpoint_path 和 log_path\n\n之前 4 seed 数据: s42=60.6%, s43=60.8%, s44=61.2%, s45=62.4%, mean=61.25%±0.81pp。看 s46 是否在这个范围。\n\n### 任务 2: 调查 L2norm k=0.7 → k=0.75 配置错误\n实验 `eval_pi05_l2norm_k07_long_seed46_strict_w41` (pid=923767) 可能实际跑的是 k=0.75 而非 k=0.7。\n\n1. 检查 tmux session 或日志，找到实际运行的命令行参数 (`--keep_ratio` 或 `--prune_ratio` 值)\n2. 检查结果文件名——如果文件名含 `k0.75` 则确认配置错误\n3. 如果确认是 k=0.75:\n   - 汇报: \"L2norm k=0.7 s46 实际跑了 k=0.75，是重复数据（k=0.75 s46 已有 73.2%）\"\n   - 用 update_registry 标注 exp_id `eval_pi05_l2norm_k07_long_seed46_strict_w41` 的 conclusion 为 \"failed\"，metrics 注明 \"配置错误: 实际 k=0.75\"\n4. 如果确认是 k=0.7: 汇报实际结果\n\n### 任务 3: 检查 Random k=0.5 seed46 进度\n实验 `eval_pi05_random_k05_long_seed46_strict_w41` (pid=899098) 应该即将完成。\n\n1. 检查进度 (当前 task/episode)\n2. 如果已完成，同任务1一样收割结果并更新 registry\n3. 如果还在跑，报告预计剩余时间\n\n### 产出\n汇总报告，包含:\n- Random k=0.95 s46 SR + 5-seed 统计\n- L2norm k=0.7 配置调查结论\n- Random k=0.5 s46 状态/结果",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-28T11:37:32.694574+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_harvest-w41-final-s46_20260528T113728\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_ops_harvest-w41-final-s46_20260528T113728.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_harvest-w41-final-s46_20260528T113728 started. Use get_worker_status('worker_ops_harvest-w41-final-s46_20260528T113728') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 6418
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-28T11:38:16.176211+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:final-data-consolidation",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "## 任务：编制最终论文数据表 — 5-seed Importance Margin Profile\n\nCoRL 2026 deadline May 29，需要编制最终数据表用于论文 figures。\n\n### 背景\nπ0.5 LIBERO-Long 上 3 种 pruning method (L2norm, Random, Attention) × 6 个 keep ratio (0.95, 0.9, 0.85, 0.75, 0.7, 0.5)。每个 cell 有 seed42-46 共 5 seeds（部分可能只有 4 seed）。\n\n### 数据完整性 checklist（必须逐条确认）\n1. **Attn k=0.75 seed43**: 必须用 cqa1=52.0%（w27 不支持 attention scoring，w27 数据无效）\n2. **Attn k=0.75 seed42**: 确认来源服务器——如果来自 w27 需标注可能不可靠\n3. **Random k=0.9 seed43**: 必须用 v2=35.0%（D292），不引用旧版 32.4%\n4. **OV Attn k=0.75**: 用 v3=34.2%\n5. **Random k=0.85 s43**: per-task T0/T1 数据有混入错误，overall SR 可信但 per-task 需从 server log 取\n6. **metrics 格式统一**: 全部转为百分比（0-100 scale）\n\n### 产出要求\n读取 registry 中所有 π0.5 Long seed42-46 的 DONE 实验，编制以下表格并保存到 artifacts：\n\n**表1: π0.5 LIBERO-Long Success Rate (%) — 完整 5-seed 矩阵**\n格式: 每个 cell = mean ± std (n seeds)\n行: keep_ratio (0.95, 0.9, 0.85, 0.75, 0.7, 0.5)\n列: L2norm, Random, Attention, Baseline(k=1.0)\n附 Importance Margin 列 = L2norm - Random\n\n**表2: 各 cell 的逐 seed 明细**\n每个 cell 列出 seed42, seed43, seed44, seed45, seed46 的 SR\n\n### 步骤\n1. `read_registry(filters={\"status\": \"DONE\"}, fields=[\"exp_id\", \"metrics\", \"conclusion\"])` 拉全部 DONE 实验\n2. 筛选 π0.5 Long strict 实验（exp_id 含 `pi05` + `long` + `seed4`）\n3. 按 (method, k, seed) 分组，提取 success_rate\n4. 检查数据完整性 checklist 中每一条\n5. 计算 mean ± sample std (ddof=1)\n6. 保存为 `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/final_importance_margin_table_5seed.md`\n7. 用 `register_artifact` 注册\n\n**注意**: seed46 有 3 个 cell 可能还在 RUNNING (L2norm k=0.7, Random k=0.95, Random k=0.5)，这些用 4-seed 数据并标注 \"(4s)\"。",
+  "tool_groups": "['registry', 'knowledge']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:final-data-consolidation",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "## 任务：编制最终论文数据表 — 5-seed Importance Margin Profile\n\nCoRL 2026 deadline May 29，需要编制最终数据表用于论文 figures。\n\n### 背景\nπ0.5 LIBERO-Long 上 3 种 pruning method (L2norm, Random, Attention) × 6 个 keep ratio (0.95, 0.9, 0.85, 0.75, 0.7, 0.5)。每个 cell 有 seed42-46 共 5 seeds（部分可能只有 4 seed）。\n\n### 数据完整性 checklist（必须逐条确认）\n1. **Attn k=0.75 seed43**: 必须用 cqa1=52.0%（w27 不支持 attention scoring，w27 数据无效）\n2. **Attn k=0.75 seed42**: 确认来源服务器——如果来自 w27 需标注可能不可靠\n3. **Random k=0.9 seed43**: 必须用 v2=35.0%（D292），不引用旧版 32.4%\n4. **OV Attn k=0.75**: 用 v3=34.2%\n5. **Random k=0.85 s43**: per-task T0/T1 数据有混入错误，overall SR 可信但 per-task 需从 server log 取\n6. **metrics 格式统一**: 全部转为百分比（0-100 scale）\n\n### 产出要求\n读取 registry 中所有 π0.5 Long seed42-46 的 DONE 实验，编制以下表格并保存到 artifacts：\n\n**表1: π0.5 LIBERO-Long Success Rate (%) — 完整 5-seed 矩阵**\n格式: 每个 cell = mean ± std (n seeds)\n行: keep_ratio (0.95, 0.9, 0.85, 0.75, 0.7, 0.5)\n列: L2norm, Random, Attention, Baseline(k=1.0)\n附 Importance Margin 列 = L2norm - Random\n\n**表2: 各 cell 的逐 seed 明细**\n每个 cell 列出 seed42, seed43, seed44, seed45, seed46 的 SR\n\n### 步骤\n1. `read_registry(filters={\"status\": \"DONE\"}, fields=[\"exp_id\", \"metrics\", \"conclusion\"])` 拉全部 DONE 实验\n2. 筛选 π0.5 Long strict 实验（exp_id 含 `pi05` + `long` + `seed4`）\n3. 按 (method, k, seed) 分组，提取 success_rate\n4. 检查数据完整性 checklist 中每一条\n5. 计算 mean ± sample std (ddof=1)\n6. 保存为 `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/final_importance_margin_table_5seed.md`\n7. 用 `register_artifact` 注册\n\n**注意**: seed46 有 3 个 cell 可能还在 RUNNING (L2norm k=0.7, Random k=0.95, Random k=0.5)，这些用 4-seed 数据并标注 \"(4s)\"。",
+    "tool_groups": "['registry', 'knowledge']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-28T11:38:19.443152+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_final-data-consolidation_20260528T113816\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_analysis_final-data-consolidation_20260528T113816.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_final-data-consolidation_20260528T113816 started. Use get_worker_status('worker_analysis_final-data-consolidation_20260528T113816') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3266
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-28T11:38:31.393520+00:00_
+
+两个 Worker 已派发：
+1. **harvest-w41-final-s46** — 收割 Random k=0.95 s46 结果 + 调查 L2norm k=0.7 配置 + 检查 Random k=0.5 进度
+2. **final-data-consolidation** — 编制最终 5-seed 数据表（含数据完整性 checklist 逐条校验）
+
+**当前状态 (19:38 BJT, 距截止 22min)**：
+- 7 实验 RUNNING（w41×3 + w38×3 + w27×1），其中 Random k=0.95 s46 刚转 ANALYZING
+- 2 Worker 运行中
+- cqa1 全部空闲，已过部署截止线
+- 等待 Worker 回调 + cron 回调处理后续
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 39 · 2026-05-29T03:40:03.344091+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-29T03:41:04.069574+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0-3 on westd-27271, cqa1-33015, westd-41074, westd-38929（共 14 张）
+- westd-27271 **不支持 attention pruning mode**（代码未同步，仅 none/random/l2norm）。w38 同理未确认
+- cqa1-33015 和 westd-41074 **已确认支持 attention**
+- submit_training_job 的 command 必须 `bash -c "..."` 包裹（tmux 用 sh，裸 source/conda activate → EXIT_CODE=127）
+- L2norm k=0.95 seed43 数据已存在（D274: 85.8%），QUEUED 的 eval_pi05_l2norm_k095_long_seed43_strict_w41 是**过期条目**，不要重跑
+- Random k=0.85 s43 per-task T0/T1 数据有混入错误，论文须用 server log 真值
+- Random k=0.9 seed43 必须用 v2=35.0%（D292），不引用旧版 32.4%
+- Attn k=0.75 seed43 必须用 cqa1=52.0%（w27 不支持 attention）
+- **L2norm k=0.7 seed46 实际跑成了 k=0.75**（monitor worker 确认日志文件名 `l2norm_k075`）— 该 cell 只有 4 seeds，无法补跑（已过截止）
+
+### 2. 🖥️ 基础设施快照
+- **4 台服务器**，account=root，工作目录 `/root/autodl-tmp/importance_margin_vla_compress`
+- Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- HF cache: `/root/autodl-tmp/.hf_cache`，离线模式 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`
+- 评测脚本: `eval_pi05_pruning_libero.py`（π0.5）、`eval_openvla_pruning_libero.py`（OV）
+- 磁盘: cqa1 /autodl-pub 91% ⚠️；w27/w38/w41 均 <30%
+- 活跃进程（reconcile 11:37 UTC 确认）：
+  - w41: cuda:0 Random k=0.5 s46 (pid=899098), cuda:1 L2norm "k=0.7" 实为 k=0.75 (pid=923767)
+  - w38: cuda:0 Random k=0.85 s47 (pid=589824), cuda:1 L2norm k=0.5 s47 (pid=589899), cuda:2 Attn k=0.5 s47 (pid=590036)
+  - w27: cuda:0 OV L2norm k=0.95 s43 (pid=545112)
+  - Random k=0.95 s46 (w41) 刚完成 → ANALYZING，Worker 正在收割
+- cqa1 全部 4 GPU 空闲（实验已完成）；w27:cuda:1, w41:cuda:2-3, w38:cuda:3 空闲
+
+### 3. 📊 当前状态
+Session 启动时做了 reconcile + registry 读取。发现 Random k=0.95 s46 完成 (EXIT_CODE=0 → ANALYZING)。
+
+已派 2 个 Worker：
+1. `worker_ops_harvest-w41-final-s46_20260528T113728` — 收割 Random k=0.95 s46 结果 + 调查 L2norm k=0.7 配置错误 + 检查 Random k=0.5 s46 进度
+2. `worker_analysis_final-data-consolidation_20260528T113816` — 编制最终 5-seed importance margin 数据表（含数据完整性 checklist 逐条确认）
+
+已向 Director 汇报截止前 27min 状态（19:33 BJT）。
+
+RUNNING 实验 6 个（Random k=0.95 s46 已转 ANALYZING）：
+- s46 最后 2 个: Random k=0.5 (w41), L2norm "k=0.7"=实为 k=0.75 (w41)
+- s47 bonus 3 个: w38 上 Attn k=0.5, L2norm k=0.5, Random k=0.85
+- OV 1 个: w27 L2norm k=0.95 s43
+
+### 4. 📋 待办（条件触发式）
+- Worker `harvest-w41-final-s46` 回调 → 读取 Random k=0.95 s46 SR，确认 L2norm k=0.7 配置错误结论，更新 registry + ROADMAP
+- Worker `final-data-consolidation` 回调 → 审查数据表，注册 artifact，通知 Director 数据就绪
+- Random k=0.5 s46 cron 回调 → 收割结果，s46 sweep 闭合（17/18，L2norm k=0.7 因配置错误缺失）
+- L2norm "k=0.7" s46 实验完成 cron 回调 → 标记为配置错误/重复（实为 k=0.75），conclusion=failed
+- OV L2norm k=0.95 s43 完成 → 收割，OV 误差棒补充
+- s47 bonus 完成 → 收割但非 deadline 关键路径
+- 全部数据就绪 → 汇报 Director，触发 Paper Agent 更新 figures → May 29 提交
+
+### 5. 🎯 战略上下文
+- **核心结论**：importance margin (L2norm - Random) 呈 inverted-U，峰值 k=0.9 ≈ 46pp。crossover k≈0.7。这是论文的 central diagnostic metric
+- **Narrative 已定稿**（D276）：systematic study + importance margin 作为 diagnostic metric
+- **π0.5 cliff curve 18/18 完成**，OV cliff curve 18/18 完成（D288），Crossover table 16/16 完成
+- **Importance Margin Profile COMPLETE** at 5-seed (15/18 cells) or 4-seed (3 cells: L2norm k=0.7 因配置错误只有 4s)
+- **Abstract 已提交** May 26，Paper provenance 83/83
+- **CoRL 2026 deadline: May 29**，实验截止 May 28 20:00 BJT（已过）
+- s46 第5 seed sweep 15/18 完成后 ROADMAP 已标记全面收割阶段
+- 易错：L2norm k=0.7 s46 的 registry 条目 `eval_pi05_l2norm_k07_long_seed46_strict_w41` 实际跑的是 k=0.75 — 不要把它当作 k=0.7 数据。该 crossover 点用 4-seed 数据 (mean≈66.1±2.2)
+- 易错：不要把 PREPARING 状态的 96 个历史实验当作待办——它们是废弃条目
+- 易错：w38 s47 实验是 deadline 外 bonus，完成后收割但不影响论文提交
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_pi05_l2norm_k09_long_seed43_strict_cqa1"
+}
+```
+
+</details>
+
+---

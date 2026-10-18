@@ -1,0 +1,1401 @@
+# investigate gemma2 results
+
+**When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_investigate_gemma2_results_20260514T154602.jsonl`
+- **Structured JSON:** [`cebd90fd45dd758d5e61.json`](../../sessions/ce/cebd90fd45dd758d5e61.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T15:48:18.066819+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T15:48:18.067178+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T15:48:18.067345+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls -la /root/ratekv/*gemma*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "ls -la /root/ratekv/*gemma*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T15:48:18.067478+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls -la /root/runs/ratekv/*gemma*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "ls -la /root/runs/ratekv/*gemma*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T15:48:18.067615+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 54156 May 14 23:15 /root/ratekv/gemma2_full.log\\n-rw-r--r-- 1 root root  3183 May 14 23:15 /root/ratekv/gemma2_full_results.json\\n-rw-r--r-- 1 root root 43941 May 14 23:06 /root/ratekv/gemma2_profiling_results.json\\n-rw-r--r-- 1 root root 25589 May 14 23:40 /root/ratekv/run_gemma2_full_pipeline.py\\n-rwxr-xr-x 1 root root  1337 May 14 21:58 /root/ratekv/wait_and_run_gemma2.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T15:48:18.067789+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -r BOS /root/ratekv/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep -r BOS /root/ratekv/*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T15:48:18.067919+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 56143 May 14 23:15 /root/runs/ratekv/gemma2_9b_full_pipeline.log\\n-rw-r--r-- 1 root root 18282 May 14 23:46 /root/runs/ratekv/gemma2_9b_rerun.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T15:48:18.068039+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T15:48:18.068173+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/gemma2_full_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat /root/ratekv/gemma2_full_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T15:48:18.068378+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/google/gemma-2-9b\\\",\\n  \\\"model_name\\\": \\\"Gemma-2-9B\\\",\\n  \\\"model_type\\\": \\\"gemma2\\\",\\n  \\\"architecture\\\": {\\n    \\\"num_layers\\\": 42,\\n    \\\"num_kv_heads\\\": 8,\\n    \\\"num_attention_heads\\\": 16,\\n    \\\"head_dim\\\": 256,\\n    \\\"hidden_size\\\": 3584,\\n    \\\"gqa_ratio\\\": 2,\\n    \\\"total_kv_heads\\\": 336,\\n    \\\"attn_logit_softcapping\\\": 50.0,\\n    \\\"sliding_window\\\": 4096\\n  },\\n  \\\"verdict\\\": \\\"PASS\\\",\\n  \\\"baseline_calibration_ppl\\\": 1077.4877742805365,\\n  \\\"baseline_wikitext2_ppl\\\": 711.3796206975478,\\n  \\\"mckp_wikitext2_ppl\\\": 514.6171939565882,\\n  \\\"uniform4bit_wikitext2_ppl\\\": 579.9084193639011,\\n  \\\"mckp_improvement_over_uniform\\\": 65.29122540731294,\\n  \\\"initial_k\\\": 8,\\n  \\\"bit_distribution\\\": {\\n    \\\"4\\\": 324,\\n    \\\"2\\\": 8,\\n    \\\"8\\\": 4\\n  },\\n  \\\"mckp_actual_memory_ratio\\\": 0.25,\\n  \\\"k_ablation\\\": [\\n    {\\n      \\\"max_2bit\\\": 2,\\n      \\\"ppl\\\": 560.9959,\\n      \\\"n_2bit\\\": 2,\\n      \\\"n_4bit\\\": 333,\\n      \\\"n_8bit\\\": 1,\\n      \\\"n_16bit\\\": 0,\\n      \\\"mem_ratio\\\": 0.25,\\n      \\\"total_distortion\\\": 171.355603\\n    },\\n    {\\n      \\\"max_2bit\\\": 4,\\n      \\\"ppl\\\": 563.6092,\\n      \\\"n_2bit\\\": 4,\\n      \\\"n_4bit\\\": 330,\\n      \\\"n_8bit\\\": 2,\\n      \\\"n_16bit\\\": 0,\\n      \\\"mem_ratio\\\": 0.25,\\n      \\\"total_distortion\\\": 137.084482\\n    },\\n    {\\n      \\\"max_2bit\\\": 6,\\n      \\\"ppl\\\": 541.1365,\\n      \\\"n_2bit\\\": 6,\\n      \\\"n_4bit\\\": 327,\\n      \\\"n_8bit\\\": 3,\\n      \\\"n_16bit\\\": 0,\\n      \\\"mem_ratio\\\": 0.25,\\n      \\\"total_distortion\\\": 102.813362\\n    },\\n    {\\n      \\\"max_2bit\\\": 8,\\n      \\\"ppl\\\": 514.6172,\\n      \\\"n_2bit\\\": 8,\\n      \\\"n_4bit\\\": 324,\\n      \
+…[truncated 2383 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T15:48:18.068538+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "tail -200 /root/runs/ratekv/gemma2_9b_full_pipeline.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "tail -200 /root/runs/ratekv/gemma2_9b_full_pipeline.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T15:48:18.068777+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  chunk 50/564, running ppl=471.65\\n  chunk 100/564, running ppl=546.47\\n  chunk 150/564, running ppl=522.39\\n  chunk 200/564, running ppl=564.49\\n  chunk 250/564, running ppl=559.38\\n  chunk 300/564, running ppl=542.69\\n  chunk 350/564, running ppl=539.12\\n  chunk 400/564, running ppl=585.25\\n  chunk 450/564, running ppl=580.49\\n  chunk 500/564, running ppl=560.58\\n  chunk 550/564, running ppl=554.47\\n  >>> PPL = 560.9959\\n\\n--- max_2bit = 4 ---\\n  Bit dist: {4: 330, 2: 4, 8: 2}, mem=0.2500\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\nEvaluating PPL on 288894 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=484.37\\n  chunk 100/564, running ppl=554.49\\n  chunk 150/564, running ppl=529.81\\n  chunk 200/564, running ppl=570.13\\n  chunk 250/564, running ppl=561.45\\n  chunk 300/564, running ppl=544.54\\n  chunk 350/564, running ppl=541.13\\n  chunk 400/564, running ppl=587.34\\n  chunk 450/564, running ppl=582.90\\n  chunk 500/564, running ppl=563.69\\n  chunk 550/564, running ppl=556.90\\n  >>> PPL = 563.6092\\n\\n--- max_2bit = 6 ---\\n  Bit dist: {4: 327, 2: 6, 8: 3}, mem=0.2500\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\nEvaluating PPL on 288894 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=460.27\\n  chunk 100/564, running ppl=522.46\\n  chunk 1
+…[truncated 6568 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T15:48:18.068942+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/runs/ratekv/gemma2_9b_rerun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat /root/runs/ratekv/gemma2_9b_rerun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T15:48:18.069145+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nGemma-2-9B Full Pipeline\\n============================================================\\nModel:         /root/autodl-tmp/.hf_cache/google/gemma-2-9b\\nmodel_type:    gemma2\\nLayers:        42\\nQ heads:       16\\nKV heads:      8 (GQA 2:1)\\nhead_dim:      256\\nhidden_size:   3584\\nTotal KV heads:336\\nsoftcap:       50.0\\nsliding_window:4096\\nBudget:        0.25\\nInitial k:     8\\nK sweep:       [2, 4, 6, 8, 10, 12, 14, 16]\\n\\nLoading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]\\rLoading checkpoint shards:  12%|█▎        | 1/8 [00:00<00:01,  4.28it/s]\\rLoading checkpoint shards:  25%|██▌       | 2/8 [00:00<00:01,  4.40it/s]\\rLoading checkpoint shards:  38%|███▊      | 3/8 [00:00<00:01,  4.44it/s]\\rLoading checkpoint shards:  50%|█████     | 4/8 [00:00<00:00,  4.48it/s]\\rLoading checkpoint shards:  62%|██████▎   | 5/8 [00:01<00:00,  4.47it/s]\\rLoading checkpoint shards:  75%|███████▌  | 6/8 [00:01<00:00,  4.42it/s]\\rLoading checkpoint shards:  88%|████████▊ | 7/8 [00:01<00:00,  4.37it/s]\\rLoading checkpoint shards: 100%|██████████| 8/8 [00:01<00:00,  5.19it/s]\\rLoading checkpoint shards: 100%|██████████| 8/8 [00:01<00:00,  4.69it/s]\\nModel loaded in 5.5s\\n\\n============================================================\\n[Phase 1] Profiling per-head PPL sensitivity...\\n============================================================\\nConfig: 42 layers, 8 KV heads/layer, 336 heads total\\nCalibration: 16 seqs x 512 tokens\\nComputing baseline PPL...\\nBaseline PPL: 9.3816\\n[1/1008] L0H0 @2bit: delta=0.000000\\n[2/1008] L0H0 @4bit: delta=0.000000\\n[3/1008] L0H0 @8bit: delta=0.000000\\n[4/1008] L0H1 @2bit: delta=0.148030\\n[5/1008] L0H1 @4bit: delta=0.000000\\n[6/1008] L0H1 @8bit: delta=0.000000\\n[7/1008] L0H2 @2bit: delta=0.000000\\n[8/1008] L0H
+…[truncated 6616 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T15:48:18.069330+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "head -100 /root/runs/ratekv/gemma2_9b_rerun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "head -100 /root/runs/ratekv/gemma2_9b_rerun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T15:48:18.069514+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nGemma-2-9B Full Pipeline\\n============================================================\\nModel:         /root/autodl-tmp/.hf_cache/google/gemma-2-9b\\nmodel_type:    gemma2\\nLayers:        42\\nQ heads:       16\\nKV heads:      8 (GQA 2:1)\\nhead_dim:      256\\nhidden_size:   3584\\nTotal KV heads:336\\nsoftcap:       50.0\\nsliding_window:4096\\nBudget:        0.25\\nInitial k:     8\\nK sweep:       [2, 4, 6, 8, 10, 12, 14, 16]\\n\\nLoading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]\\rLoading checkpoint shards:  12%|█▎        | 1/8 [00:00<00:01,  4.28it/s]\\rLoading checkpoint shards:  25%|██▌       | 2/8 [00:00<00:01,  4.40it/s]\\rLoading checkpoint shards:  38%|███▊      | 3/8 [00:00<00:01,  4.44it/s]\\rLoading checkpoint shards:  50%|█████     | 4/8 [00:00<00:00,  4.48it/s]\\rLoading checkpoint shards:  62%|██████▎   | 5/8 [00:01<00:00,  4.47it/s]\\rLoading checkpoint shards:  75%|███████▌  | 6/8 [00:01<00:00,  4.42it/s]\\rLoading checkpoint shards:  88%|████████▊ | 7/8 [00:01<00:00,  4.37it/s]\\rLoading checkpoint shards: 100%|██████████| 8/8 [00:01<00:00,  5.19it/s]\\rLoading checkpoint shards: 100%|██████████| 8/8 [00:01<00:00,  4.69it/s]\\nModel loaded in 5.5s\\n\\n============================================================\\n[Phase 1] Profiling per-head PPL sensitivity...\\n============================================================\\nConfig: 42 layers, 8 KV heads/layer, 336 heads total\\nCalibration: 16 seqs x 512 tokens\\nComputing baseline PPL...\\nBaseline PPL: 9.3816\\n[1/1008] L0H0 @2bit: delta=0.000000\\n[2/1008] L0H0 @4bit: delta=0.000000\\n[3/1008] L0H0 @8bit: delta=0.000000\\n[4/1008] L0H1 @2bit: delta=0.148030\\n[5/1008] L0H1 @4bit: delta=0.000000\\n[6/1008] L0H1 @8bit: delta=0.000000\\n[7/1008] L0H2 @2bit: delta=0.000000\\n[8/1008] L0H
+…[truncated 2586 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T15:48:18.069679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "tail -100 /root/runs/ratekv/gemma2_9b_rerun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "tail -100 /root/runs/ratekv/gemma2_9b_rerun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T15:48:18.069846+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[374/1008] L15H4 @4bit: delta=0.000000\\n[375/1008] L15H4 @8bit: delta=0.000000\\n[376/1008] L15H5 @2bit: delta=0.000000\\n[377/1008] L15H5 @4bit: delta=0.000000\\n[378/1008] L15H5 @8bit: delta=0.000000\\n[379/1008] L15H6 @2bit: delta=0.000000\\n[380/1008] L15H6 @4bit: delta=0.000000\\n[381/1008] L15H6 @8bit: delta=0.000000\\n[382/1008] L15H7 @2bit: delta=0.000000\\n[383/1008] L15H7 @4bit: delta=0.000000\\n[384/1008] L15H7 @8bit: delta=0.000000\\n[385/1008] L16H0 @2bit: delta=0.000000\\n[386/1008] L16H0 @4bit: delta=0.000000\\n[387/1008] L16H0 @8bit: delta=0.000000\\n[388/1008] L16H1 @2bit: delta=0.000000\\n[389/1008] L16H1 @4bit: delta=0.000000\\n[390/1008] L16H1 @8bit: delta=0.000000\\n[391/1008] L16H2 @2bit: delta=0.000000\\n[392/1008] L16H2 @4bit: delta=0.000000\\n[393/1008] L16H2 @8bit: delta=0.000000\\n[394/1008] L16H3 @2bit: delta=0.000000\\n[395/1008] L16H3 @4bit: delta=0.000000\\n[396/1008] L16H3 @8bit: delta=0.000000\\n[397/1008] L16H4 @2bit: delta=0.000000\\n[398/1008] L16H4 @4bit: delta=0.000000\\n[399/1008] L16H4 @8bit: delta=0.000000\\n[400/1008] L16H5 @2bit: delta=0.000000\\n[401/1008] L16H5 @4bit: delta=0.000000\\n[402/1008] L16H5 @8bit: delta=0.000000\\n[403/1008] L16H6 @2bit: delta=0.000000\\n[404/1008] L16H6 @4bit: delta=0.000000\\n[405/1008] L16H6 @8bit: delta=0.000000\\n[406/1008] L16H7 @2bit: delta=0.000000\\n[407/1008] L16H7 @4bit: delta=0.000000\\n[408/1008] L16H7 @8bit: delta=0.000000\\n[409/1008] L17H0 @2bit: delta=0.000000\\n[410/1008] L17H0 @4bit: delta=0.000000\\n[411/1008] L17H0 @8bit: delta=0.000000\\n[412/1008] L17H1 @2bit: delta=0.000000\\n[413/1008] L17H1 @4bit: delta=0.000000\\n[414/1008] L17H1 @8bit: delta=0.000000\\n[415/1008] L17H2 @2bit: delta=0.000000\\n[416/1008] L17H2 @4bit: delta=0.000000\\n[417/1008] L17H2 @8bit: delta=0.000000\\n[418/1008] L17H3 @2bit: delta=0.000000\\n[419/1008] L17H3 @4bit: delta=0.000000\\n[420/1008] L17H3 @8bit: delta=0.000000\\n[421/1008] L17H4 
+…[truncated 2260 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T15:48:18.069994+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -in \"bos\\|BOS\\|bos_token\\|add_bos\\|prepend\" /root/ratekv/run_gemma2_full_pipeline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep -in \"bos\\|BOS\\|bos_token\\|add_bos\\|prepend\" /root/ratekv/run_gemma2_full_pipeline.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T15:48:18.070119+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T15:48:18.070273+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "wc -l /root/runs/ratekv/gemma2_9b_rerun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "wc -l /root/runs/ratekv/gemma2_9b_rerun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T15:48:18.070398+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"513 /root/runs/ratekv/gemma2_9b_rerun.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T15:48:18.070515+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -in \"bos\" /root/ratekv/run_gemma2_full_pipeline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep -in \"bos\" /root/ratekv/run_gemma2_full_pipeline.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T15:48:18.070654+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"159:        bos_id = self.tokenizer.bos_token_id\\n164:                seq = [bos_id] + tokens[:self.seq_len - 1]\\n244:    bos_id = tokenizer.bos_token_id\\n245:    bos_tensor = torch.tensor([[bos_id]], device=device)\\n252:        needs_bos = chunk[0, 0].item() != bos_id\\n253:        if needs_bos:\\n254:            model_input = torch.cat([bos_tensor, chunk], dim=1)\\n263:        if needs_bos:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T15:48:18.070781+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -rn \"bos\" /root/ratekv/ratekv/eval_ppl.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep -rn \"bos\" /root/ratekv/ratekv/eval_ppl.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T15:48:18.070908+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "find /root/ratekv -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "find /root/ratekv -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T15:48:18.071031+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/ratekv/ratekv/eval_ppl.py: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T15:48:18.071176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/utils.py\\n/root/ratekv/profiler.py\\n/root/ratekv/solver.py\\n/root/ratekv/eval_ppl.py\\n/root/ratekv/visualize.py\\n/root/ratekv/run_mvp.py\\n/root/ratekv/cliff_test.py\\n/root/ratekv/ppl_profiler.py\\n/root/ratekv/run_ppl_mvp.py\\n/root/ratekv/targeted_hybrid.py\\n/root/ratekv/generate_calibration_hires.py\\n/root/ratekv/hires_quant_profiler.py\\n/root/ratekv/run_hires_quant.py\\n/root/ratekv/full_bitwidth_profiler.py\\n/root/ratekv/run_full_bitwidth.py\\n/root/ratekv/manual_alloc_test.py\\n/root/ratekv/budget_matched_test.py\\n/root/ratekv/run_exp_c.py\\n/root/ratekv/run_exp_c_no2bit.py\\n/root/ratekv/run_exp_d.py\\n/root/ratekv/run_exp_e.py\\n/root/ratekv/run_compounding_sweep.py\\n/root/ratekv/run_compounding_k10_12.py\\n/root/ratekv/run_ratequant_greedy.py\\n/root/ratekv/run_monotonicity_comparison.py\\n/root/ratekv/run_budget_sweep.py\\n/root/ratekv/run_c4_cross_dataset.py\\n/root/ratekv/run_c4_phase2_4.py\\n/root/ratekv/run_llama_pipeline.py\\n/root/ratekv/run_mistral_pipeline.py\\n/root/ratekv/run_exp_e_eval.py\\n/root/ratekv/run_exp_e_eval_fix.py\\n/root/ratekv/eval_exp_c_bf16.py\\n/root/ratekv/run_exp_e_phase23.py\\n/root/ratekv/run_llama_phase23.py\\n/root/ratekv/run_llama_eval_fix.py\\n/root/ratekv/run_llama_eval_recovery.py\\n/root/ratekv/run_llama_hires_pipeline.py\\n/root/ratekv/run_mistral_hires_pipeline.py\\n/root/ratekv/run_gemma2_full_pipeline.py\\n/root/ratekv/heterogeneity_analysis.py\\n/root/ratekv/run_llama_aggressive.py\\n/root/ratekv/generate_figures.py\\n/root/ratekv/run_downstream_eval.py\\n/root/ratekv/run_mistral_aggressive.py\\n/root/ratekv/run_kv_separation.py\\n/root/ratekv/run_l0_heuristic.py\\n/root/ratekv/run_greedy_constrained.py\\n/root/ratekv/eval_uniform_4bit_bf16.py\\n/root/ratekv/run_l0_heuristic_corrected.py\\n/root/ratekv/l0_heuristic_eval.py\\n/root/ratekv/run_bf16_reeval.py\\n/root/ratekv/rerun_mckp_eval.py\\n/root/ratekv/run_hires_reeval.py\\n/root/ra
+…[truncated 853 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T15:48:18.071342+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "head -80 /root/runs/ratekv/gemma2_9b_full_pipeline.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "head -80 /root/runs/ratekv/gemma2_9b_full_pipeline.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T15:48:18.071520+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[Thu May 14 21:58:07 CST 2026] Waiting for model download to complete...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 0/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 1/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 1/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 1/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 2/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 2/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 2/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 3/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 4/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 4/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 7/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 7/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] 7/8 shards ready, waiting...\\n[Thu May 14 21:58:07 CST 2026] All 8 shards present, no temp files, download process done.\\n[Thu May 14 21:58:07 CST 2026] Starting 
+…[truncated 2581 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T15:48:18.071731+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -n \"Baseline PPL\" /root/runs/ratekv/gemma2_9b_full_pipeline.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep -n \"Baseline PPL\" /root/runs/ratekv/gemma2_9b_full_pipeline.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T15:48:18.071877+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"60:Baseline PPL: 1077.4878\\n1110:  >>> Baseline PPL: 711.3796\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T15:48:18.071999+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -n \"baseline\\|Baseline\\|bf16\\|wikitext\" /root/runs/ratekv/gemma2_9b_full_pipeline.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep -n \"baseline\\|Baseline\\|bf16\\|wikitext\" /root/runs/ratekv/gemma2_9b_full_pipeline.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T15:48:18.072118+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T15:48:18.072274+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -n \"bos\" /root/ratekv/eval_ppl.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "grep -n \"bos\" /root/ratekv/eval_ppl.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T15:48:18.072393+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "head -30 /root/ratekv/gemma2_full.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "head -30 /root/ratekv/gemma2_full.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T15:48:18.072516+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T15:48:18.072676+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nGemma-2-9B Full Pipeline\\n============================================================\\nModel:         /root/autodl-tmp/.hf_cache/google/gemma-2-9b\\nmodel_type:    gemma2\\nLayers:        42\\nQ heads:       16\\nKV heads:      8 (GQA 2:1)\\nhead_dim:      256\\nhidden_size:   3584\\nTotal KV heads:336\\nsoftcap:       50.0\\nsliding_window:4096\\nBudget:        0.25\\nInitial k:     8\\nK sweep:       [2, 4, 6, 8, 10, 12, 14, 16]\\n\\nLoading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]\\rLoading checkpoint shards:  12%|█▎        | 1/8 [00:00<00:03,  1.85it/s]\\rLoading checkpoint shards:  25%|██▌       | 2/8 [00:00<00:02,  2.04it/s]\\rLoading checkpoint shards:  38%|███▊      | 3/8 [00:01<00:02,  2.10it/s]\\rLoading checkpoint shards:  50%|█████     | 4/8 [00:01<00:01,  2.05it/s]\\rLoading checkpoint shards:  62%|██████▎   | 5/8 [00:02<00:01,  2.03it/s]\\rLoading checkpoint shards:  75%|███████▌  | 6/8 [00:02<00:00,  2.02it/s]\\rLoading checkpoint shards:  88%|████████▊ | 7/8 [00:03<00:00,  1.97it/s]\\rLoading checkpoint shards: 100%|██████████| 8/8 [00:03<00:00,  2.48it/s]\\rLoading checkpoint shards: 100%|██████████| 8/8 [00:03<00:00,  2.18it/s]\\nModel loaded in 7.6s\\n\\n============================================================\\n[Phase 1] Profiling per-head PPL sensitivity...\\n============================================================\\nConfig: 42 layers, 8 KV heads/layer, 336 heads total\\nCalibration: 16 seqs x 512 tokens\\nComputing baseline PPL...\\nBaseline PPL: 1077.4878\\n[1/1008] L0H0 @2bit: delta=0.000000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T15:48:18.072847+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat -n /root/ratekv/run_gemma2_full_pipeline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat -n /root/ratekv/run_gemma2_full_pipeline.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T15:48:18.073116+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"Gemma-2-9B full pipeline: profile -> MCKP solve -> eval -> k ablation -> analysis.\\n     2\\t\\n     3\\tGemma-2 adaptations vs Llama/Qwen baseline code:\\n     4\\t  - head_dim from config (256), not hidden_size//num_heads (224)\\n     5\\t  - attn_logit_softcapping: tanh(scores/softcap)*softcap before mask+softmax\\n     6\\t  - query_pre_attn_scalar for attention scaling (not 1/sqrt(head_dim))\\n     7\\t  - sliding_window on alternating layers (handled by 4D attention mask)\\n     8\\t\\n     9\\tInput:  model checkpoint, calibration JSON\\n    10\\tOutput: gemma2_full_results.json, gemma2_profiling_results.json\\n    11\\t\\\"\\\"\\\"\\n    12\\timport os\\n    13\\tos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n    14\\tos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n    15\\t\\n    16\\timport argparse\\n    17\\timport copy\\n    18\\timport importlib\\n    19\\timport json\\n    20\\timport math\\n    21\\timport time\\n    22\\timport torch\\n    23\\timport torch.nn.functional as F\\n    24\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\n    25\\tfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\n    26\\tfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\n    27\\t\\n    28\\t\\n    29\\t# ---------------------------------------------------------------------------\\n    30\\t# Gemma-2-aware attention patching\\n    31\\t# ---------------------------------------------------------------------------\\n    32\\t\\n    33\\tdef _get_rotary_fn(model):\\n    34\\t    model_type = model.config.model_type\\n    35\\t    module_name = f\\\"transformers.models.{model_type}.modeling_{model_type}\\\"\\n    36\\t    module = importlib.import_module(module_name)\\n    37\\t    return module.apply_rotary_pos_emb\\n    38\\t\\n    39\\t\\n    40\\tdef patch_attention_gemma2(m
+…[truncated 7378 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T15:48:18.073302+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "head -270 /root/ratekv/run_gemma2_full_pipeline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "head -270 /root/ratekv/run_gemma2_full_pipeline.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T15:48:18.073543+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Gemma-2-9B full pipeline: profile -> MCKP solve -> eval -> k ablation -> analysis.\\n\\nGemma-2 adaptations vs Llama/Qwen baseline code:\\n  - head_dim from config (256), not hidden_size//num_heads (224)\\n  - attn_logit_softcapping: tanh(scores/softcap)*softcap before mask+softmax\\n  - query_pre_attn_scalar for attention scaling (not 1/sqrt(head_dim))\\n  - sliding_window on alternating layers (handled by 4D attention mask)\\n\\nInput:  model checkpoint, calibration JSON\\nOutput: gemma2_full_results.json, gemma2_profiling_results.json\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport copy\\nimport importlib\\nimport json\\nimport math\\nimport time\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\nfrom solver import solve_mckp_constrained, uniform_quantization_baseline, enforce_monotonicity\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\n\\n\\n# ---------------------------------------------------------------------------\\n# Gemma-2-aware attention patching\\n# ---------------------------------------------------------------------------\\n\\ndef _get_rotary_fn(model):\\n    model_type = model.config.model_type\\n    module_name = f\\\"transformers.models.{model_type}.modeling_{model_type}\\\"\\n    module = importlib.import_module(module_name)\\n    return module.apply_rotary_pos_emb\\n\\n\\ndef patch_attention_gemma2(model, allocations):\\n    \\\"\\\"\\\"Monkey-patch Gemma-2 attention with per-head quantization.\\n\\n    Handles head_dim != hidden_size//num_heads, logit soft-capping,\\n    and sliding window (via attention_mask from the model).\\n    \\\"\\\"\\\"\\n    config = model.config\\n    num_kv_heads = config.num_key_value_heads\\n    num_q_heads = config.num_at
+…[truncated 6813 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T15:48:18.073760+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "find /root/ratekv -name \"*gemma*result*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "find /root/ratekv -name \"*gemma*result*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T15:48:18.073892+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "find /root/runs/ratekv -name \"*gemma*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "find /root/runs/ratekv -name \"*gemma*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T15:48:18.074018+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/gemma2_profiling_results.json\\n/root/ratekv/gemma2_full_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T15:48:18.074140+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/ratekv/gemma2_9b_full_pipeline.log\\n/root/runs/ratekv/gemma2_9b_rerun.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_investigate_gemma2_results_20260514T154602",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-14T15:48:18.074293+00:00_
+
+没有 rerun 产出的新结果文件。结论明确：
+
+---
+
+## Gemma-2-9B 数据质量报告
+
+### 1. 真实 bf16 baseline PPL
+**未知（需要重跑）**。当前文件里的 711.38 是 BOS bug 产生的错误值。rerun 中校准数据的 baseline PPL 从 1077 降到 9.38（~115x），按此比例 wikitext2 baseline 应在 **~6-7** 左右，与 D044 提到的 "PPL 7" 一致。
+
+### 2. 711.38 的来源
+wikitext2 bf16 baseline，由 **未修复 BOS bug 的代码** 计算。Gemma 2 要求每个 chunk 以 BOS token 开头，缺少 BOS 导致模型推理时上下文错乱，PPL 膨胀约 100 倍。
+
+### 3. BOS fix 状态
+- 修复代码 **已存在** 于 `run_gemma2_full_pipeline.py`：
+  - 校准数据：L159-164，给每条序列前置 `bos_id`
+  - wikitext2 评估：L244-263，检测并补 BOS，排除 BOS logit
+- 但 `gemma2_full_results.json`（May 14 23:15）是修复 **之前** 产生的
+- rerun（May 14 23:46）使用了修复后的代码（calibration baseline=9.38），但 **只完成了 47% 的 Phase 1 profiling 就中断了**，没有产出新的结果文件
+
+### 4. 结论
+**需要重跑。** 当前 `gemma2_full_results.json` 中的所有数值（baseline、MCKP、uniform、k ablation）全部无效——它们都基于错误的 profiling 数据（BOS bug 使校准 baseline 为 1077 而非 9.38，profiling delta 严重失真）。registry 中的 711.38 应标记为 invalid。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_investigate_gemma2_results_20260514T154602"
+}
+```
+
+</details>
+
+---

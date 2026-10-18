@@ -1,0 +1,821 @@
+# code w2 unconstrained baselines
+
+**When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/chats/worker_code_w2_unconstrained_baselines_20260515T050316.jsonl`
+- **Structured JSON:** [`f6a5917cfaefeddb1c7a.json`](../../sessions/f6/f6a5917cfaefeddb1c7a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+28 recorded events
+
+### Assistant
+
+_source line 1 · 2026-05-15T05:03:23.195769+00:00_
+
+You've hit your limit · resets May 16, 9am (UTC)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T05:04:56.849181+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T05:04:56.849549+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T05:04:56.849835+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westd-37397"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westd-37397"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T05:04:56.850072+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls /root/ratekv/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "ls /root/ratekv/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T05:04:56.850216+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T05:04:56.850421+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nallocation_full_0.125.json\\nallocation_full_0.25.json\\nallocation_full_0.5.json\\nallocation_qonly_0.125.json\\nallocation_qonly_0.25.json\\nallocation_qonly_0.5.json\\nbf16_reeval.log\\nbf16_reeval_results.json\\nbudget_matched.log\\nbudget_matched_test.py\\nbudget_sweep.log\\nbudget_sweep_results.csv\\nbudget_sweep_results.json\\nc4_calibration.json\\nc4_calibration_CONTAMINATED_wikitext.json\\nc4_calibration_real.json\\nc4_cross_dataset.log\\nc4_cross_dataset_eval_v2.log\\nc4_eval_results.json\\nc4_phase2_4.log\\nc4_profiling_results.json\\nc4_profiling_results_v2.json\\nc4_rerun.log\\nc4_rerun_plan007_results.json\\nc4_rerun_plan010_results.json\\ncalibration_data.json\\ncalibration_hires.json\\ncliff_1.5B_results.json\\ncliff_7B_results.json\\ncliff_test.py\\ncompounding_k10_12_results.json\\ncompounding_sweep_results.csv\\ncompounding_sweep_results.json\\ncompute_shape_metrics.py\\nconcentration_investigation.txt\\ncross_domain.log\\nd041_llama_heuristic_k2.log\\nd041_llama_heuristic_k2_results.json\\ndownload_yi15.sh\\ndownstream_eval.log\\ndownstream_eval_mckp.log\\ndownstream_eval_results.json\\neval_exp_c_bf16.py\\neval_ppl.py\\neval_uniform_4bit_bf16.py\\nexp_c.log\\nexp_c_bf16_eval.log\\nexp_c_no2bit.log\\nexp_c_no2bit_results.json\\nexp_c_results.json\\nexp_d.log\\nexp_d_results.json\\nexp_e.log\\nexp_e_eval.log\\nexp_e_eval_fix.log\\nexp_e_hires_results.json\\nexp_e_phase23.log\\nexp_e_results.json\\nfigures\\nfull_bitwidth.log\\nfull_bitwidth_profiler.py\\nfull_bitwidth_results.json\\ngemma2_full.log\\ngemma2_full_results.json\\ngemma2_hires_bf16_2bitonly_profiles.json\\ngemma2_hires_bf16_2bitonly_results.json\\ngemma2_ppl_debug_report.txt\\ngemma2_profiling_results.json\\ngenerate_calibration_hires.py\\ngenerate_figures.py\\ngenerate_hires_heatmap.py\\ngreedy_constrained_k8_results.json\\ngreedy_vs_mckp_comparison.json\\nheterogeneity_analysis.py\\nheterogeneity_analysis.txt\\nhi
+…[truncated 5408 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T05:04:56.850609+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/run_w2_unconstrained_baselines.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat /root/ratekv/run_w2_unconstrained_baselines.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T05:04:56.850954+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"W2: unconstrained greedy & MCKP baselines for Yi-1.5 / Llama / Mistral / Gemma-2.\\n\\nReads each model's hires bf16 2bit-only profile, runs unconstrained allocation\\n(no cardinality limit on 2-bit heads), patches per-head quantization, and\\nevaluates PPL on calibration_hires.json (64 seq x 2048 tok).\\n\\nSince the hires profiles only contain 2-bit deltas, the per-head Pareto\\naction set is {full=16, quant=2}; budget=0.25 implies ~85.7% heads at 2-bit.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport gc\\nimport json\\nimport math\\nimport time\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\n\\nfrom solver import solve_mckp, enforce_monotonicity\\nfrom eval_ppl import patch_attention, restore_attention\\nfrom run_gemma2_full_pipeline import patch_attention_gemma2\\n\\n\\nMODELS = [\\n    {\\n        \\\"name\\\": \\\"Yi-1.5-9B\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B\\\",\\n        \\\"profiles\\\": \\\"/root/ratekv/yi15_hires_bf16_2bitonly_profiles.json\\\",\\n        \\\"patch\\\": \\\"standard\\\",\\n        \\\"prepend_bos\\\": False,\\n    },\\n    {\\n        \\\"name\\\": \\\"Llama-3.1-8B\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B\\\",\\n        \\\"profiles\\\": \\\"/root/ratekv/llama_hires_bf16_2bitonly_profiles.json\\\",\\n        \\\"patch\\\": \\\"standard\\\",\\n        \\\"prepend_bos\\\": False,\\n    },\\n    {\\n        \\\"name\\\": \\\"Mistral-7B-v0.3\\\",\\n        \\\"path\\\": \\\"/root/autodl-tmp/models/Mistral-7B-v0.3\\\",\\n        \\\"profiles\\\": \\\"/root/ratekv/mistral_hires_bf16_2bitonly_profiles.json\\\",\\n        \\\"patch\\\": \\\"standard\
+…[truncated 7361 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T05:04:56.851122+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/solver.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat /root/ratekv/solver.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T05:04:56.851251+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/w2_unconstrained_baselines_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "cat /root/ratekv/w2_unconstrained_baselines_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T05:04:56.851534+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MCKP solver for KV cache allocation.\\nInput: distortion profiles + memory budget\\nOutput: per-head allocation decisions\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\n\\n\\ndef _build_pareto(head_data, mode):\\n    \\\"\\\"\\\"Build Pareto-optimal action set for a single head.\\\"\\\"\\\"\\n    actions = [(1.0, 0.0, \\\"full\\\", 16)]\\n\\n    if mode == \\\"full\\\":\\n        for r_str, mse in head_data.get(\\\"eviction\\\", {}).items():\\n            r = float(r_str)\\n            actions.append((r, mse, \\\"evict\\\", r))\\n\\n    for b_str, mse in head_data.get(\\\"quantization\\\", {}).items():\\n        b = int(float(b_str))\\n        actions.append((b / 16.0, mse, \\\"quant\\\", b))\\n\\n    # Deduplicate by memory: keep lowest distortion per memory level\\n    by_mem = {}\\n    for a in actions:\\n        mem = round(a[0], 6)\\n        if mem not in by_mem or a[1] < by_mem[mem][1]:\\n            by_mem[mem] = a\\n\\n    # Sort by memory ascending, build Pareto front\\n    sorted_actions = sorted(by_mem.values(), key=lambda x: x[0])\\n    pareto = [sorted_actions[0]]\\n    for a in sorted_actions[1:]:\\n        if a[1] < pareto[-1][1] - 1e-12:\\n            pareto.append(a)\\n\\n    # Sort by memory descending for greedy downgrade\\n    pareto.sort(key=lambda x: -x[0])\\n    return pareto\\n\\n\\ndef solve_mckp(profiles, budget, mode=\\\"full\\\"):\\n    \\\"\\\"\\\"Solve MCKP for KV cache allocation via greedy downgrade.\\n\\n    Args:\\n        profiles: {layer: {head: {eviction: {ratio: mse}, quantization: {bits: mse}}}}\\n        budget: target average memory ratio per head (e.g. 0.25 for 4x compression)\\n        mode: \\\"full\\\" (eviction + quantization) or \\\"quant_only\\\"\\n    Returns:\\n        dict with allocation, total_distortion, actual_memory_ratio\\n    \\\"\\\"\\\"\\n    heads = []\\n    for l_str in sorted(profiles.keys(), key=lambda x: int(x)):\\n        for h_s
+…[truncated 6950 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T05:04:56.851828+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"w2_unconstrained_baselines\\\",\\n  \\\"models\\\": {\\n    \\\"Yi-1.5-9B\\\": {\\n      \\\"model_name\\\": \\\"Yi-1.5-9B\\\",\\n      \\\"model_path\\\": \\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B\\\",\\n      \\\"profile_source\\\": \\\"/root/ratekv/yi15_hires_bf16_2bitonly_profiles.json\\\",\\n      \\\"budget\\\": 0.25,\\n      \\\"bit_options\\\": [\\n        2,\\n        4,\\n        8,\\n        16\\n      ],\\n      \\\"calibration\\\": {\\n        \\\"num_samples\\\": 64,\\n        \\\"seq_len\\\": 2048,\\n        \\\"batch_size\\\": 2\\n      },\\n      \\\"baseline_calibration_ppl\\\": 5.888,\\n      \\\"unconstrained_greedy_ppl\\\": 672.1558,\\n      \\\"unconstrained_mckp_ppl\\\": 672.1558,\\n      \\\"greedy\\\": {\\n        \\\"bit_distribution\\\": {\\n          \\\"2\\\": 165,\\n          \\\"16\\\": 27\\n        },\\n        \\\"n_2bit_heads\\\": 165,\\n        \\\"actual_memory_ratio\\\": 0.248,\\n        \\\"total_distortion\\\": 4.629357379780946\\n      },\\n      \\\"mckp\\\": {\\n        \\\"bit_distribution\\\": {\\n          \\\"2\\\": 165,\\n          \\\"16\\\": 27\\n        },\\n        \\\"n_2bit_heads\\\": 165,\\n        \\\"actual_memory_ratio\\\": 0.248,\\n        \\\"total_distortion\\\": 4.629357379780946\\n      },\\n      \\\"elapsed_seconds\\\": 58.9\\n    },\\n    \\\"Llama-3.1-8B\\\": {\\n      \\\"model_name\\\": \\\"Llama-3.1-8B\\\",\\n      \\\"model_path\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B\\\",\\n      \\\"profile_source\\\": \\\"/root/ratekv/llama_hires_bf16_2bitonly_profiles.json\\\",\\n      \\\"budget\\\": 0.25,\\n      \\\"bit_options\\\": [\\n        2,\\n        4,\\n        8,\\n        16\\n      ],\\n      \\\"calibration\\\": {\\n        \\\"num_samples\\\": 64,\\n        \\\"seq_len\\\": 2048,\\n        \\\"batch_size\\\": 2\\n      },\\n      \\\"baseline_calibration_ppl\\\": 6.5055,\\n      \\
+…[truncated 3411 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T05:04:56.852030+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_w2_unconstrained_baselines.py 2>/dev/null && echo \"EXISTS\" || echo \"MISSING\"",
+  "description": "Check if local file exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_w2_unconstrained_baselines.py 2>/dev/null && echo \"EXISTS\" || echo \"MISSING\"",
+    "description": "Check if local file exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T05:04:56.852161+00:00_
+
+MISSING
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T05:04:56.852280+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls -la /root/ratekv/run_w2_unconstrained_baselines.py /root/ratekv/w2_unconstrained_baselines_results.json /root/ratekv/w2_unconstrained_baselines.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "ls -la /root/ratekv/run_w2_unconstrained_baselines.py /root/ratekv/w2_unconstrained_baselines_results.json /root/ratekv/w2_unconstrained_baselines.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T05:04:56.852408+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 11993 May 15 12:46 /root/ratekv/run_w2_unconstrained_baselines.py\\n-rw-r--r-- 1 root root  4939 May 15 12:49 /root/ratekv/w2_unconstrained_baselines.log\\n-rw-r--r-- 1 root root  4161 May 15 12:49 /root/ratekv/w2_unconstrained_baselines_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T05:04:56.852547+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Inspect existing server script + results', 'activeForm': 'Inspecting existing server script + results', 'status': 'in_progress'}, {'content': 'Verify experiment completion log', 'activeForm': 'Verifying experiment completion log', 'status': 'pending'}, {'content': 'Pull script to local mirror', 'activeForm': 'Pulling script to local mirror', 'status': 'pending'}, {'content': 'Report results and rerun decision', 'activeForm': 'Reporting results and rerun decision', 'status': 'pending'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Inspect existing server script + results', 'activeForm': 'Inspecting existing server script + results', 'status': 'in_progress'}, {'content': 'Verify experiment completion log', 'activeForm': 'Verifying experiment completion log', 'status': 'pending'}, {'content': 'Pull script to local mirror', 'activeForm': 'Pulling script to local mirror', 'status': 'pending'}, {'content': 'Report results and rerun decision', 'activeForm': 'Reporting results and rerun decision', 'status': 'pending'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T05:04:56.852702+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T05:04:56.852822+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "tail -50 /root/ratekv/w2_unconstrained_baselines.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-37397",
+    "command": "tail -50 /root/ratekv/w2_unconstrained_baselines.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T05:04:56.853022+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Profiles: 32 layers x 8 kv-heads = 256 heads\\n\\nGreedy unconstrained ([2, 4, 8, 16], budget=0.25)...\\n  bit_distribution={2: 220, 16: 36}  mem_ratio=0.2480  n_2bit=220\\n\\nMCKP unconstrained (quant_only, budget=0.25)...\\n  bit_distribution={2: 220, 16: 36}  mem_ratio=0.2480  n_2bit=220\\n\\nLoading model Mistral-7B-v0.3 to cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 176.24it/s]\\n  GPU mem after load: 17.1GB\\nCalibration: 64 seq x 2048 tok\\nBaseline PPL (no compression)...\\n  baseline_ppl=5.8702\\nGreedy unconstrained PPL...\\n  greedy_ppl=47.8459\\nMCKP unconstrained PPL...\\n  mckp_ppl=47.8459\\n\\nMODEL Mistral-7B-v0.3 done in 0.7min\\n  unconstrained_greedy_ppl=47.8459  unconstrained_mckp_ppl=47.8459\\nIntermediate save -> /root/ratekv/w2_unconstrained_baselines_results.json\\n\\n======================================================================\\nMODEL: Gemma-2-9B\\n======================================================================\\nProfiles: 42 layers x 8 kv-heads = 336 heads\\n\\nGreedy unconstrained ([2, 4, 8, 16], budget=0.25)...\\n  bit_distribution={2: 288, 16: 48}  mem_ratio=0.2500  n_2bit=288\\n\\nMCKP unconstrained (quant_only, budget=0.25)...\\n  bit_distribution={2: 288, 16: 48}  mem_ratio=0.2500  n_2bit=288\\n\\nLoading model Gemma-2-9B to cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]\\rLoading checkpoint shards:  12%|█▎        | 1/8 [00:00<00:03,  2.13it/s]\\rLoading checkpoint shards:  25%|██▌       | 2/8 [00:00<00:02,  2.34it/s]\\rLoading checkpoint shards:  38%|███▊      | 3/8 [00:01<00:02,  2.47it/s]\\rLoading checkpoint shards:  50%|█████     | 4/8 [00:01<00:01,  2.64it/s]\\rLoading checkpoint shards:  62%|██████▎   | 5/8 [00:01<00:01,  2.66it/s]\\rLoading checkpoint shards:  75%|███████▌  | 6/8 [00:02<00:00,  2.77it/s]\\rLoading checkpoint
+…[truncated 810 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T05:04:56.853234+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Inspect existing server script + results', 'activeForm': 'Inspecting existing server script + results', 'status': 'completed'}, {'content': 'Verify experiment completion log', 'activeForm': 'Verifying experiment completion log', 'status': 'completed'}, {'content': 'Pull script to local mirror', 'activeForm': 'Pulling script to local mirror', 'status': 'in_progress'}, {'content': 'Report results and rerun decision', 'activeForm': 'Reporting results and rerun decision', 'status': 'pending'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Inspect existing server script + results', 'activeForm': 'Inspecting existing server script + results', 'status': 'completed'}, {'content': 'Verify experiment completion log', 'activeForm': 'Verifying experiment completion log', 'status': 'completed'}, {'content': 'Pull script to local mirror', 'activeForm': 'Pulling script to local mirror', 'status': 'in_progress'}, {'content': 'Report results and rerun decision', 'activeForm': 'Reporting results and rerun decision', 'status': 'pending'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T05:04:56.853385+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T05:04:56.853510+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp westd-37397:/root/ratekv/run_w2_unconstrained_baselines.py /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_w2_unconstrained_baselines.py && scp westd-37397:/root/ratekv/w2_unconstrained_baselines_results.json /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/w2_unconstrained_baselines_results.json && ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_w2_unconstrained_baselines.py /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/w2_unconstrained_baselines_results.json",
+  "description": "Pull script + results to local"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp westd-37397:/root/ratekv/run_w2_unconstrained_baselines.py /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_w2_unconstrained_baselines.py && scp westd-37397:/root/ratekv/w2_unconstrained_baselines_results.json /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/w2_unconstrained_baselines_results.json && ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_w2_unconstrained_baselines.py /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/w2_unconstrained_baselines_results.json",
+    "description": "Pull script + results to local"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T05:04:56.853676+00:00_
+
+-rw-r--r-- 1 ubuntu ubuntu  4161 May 15 05:04 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/w2_unconstrained_baselines_results.json
+-rw-r--r-- 1 ubuntu ubuntu 11993 May 15 05:04 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/run_w2_unconstrained_baselines.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T05:04:56.853841+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Inspect existing server script + results', 'activeForm': 'Inspecting existing server script + results', 'status': 'completed'}, {'content': 'Verify experiment completion log', 'activeForm': 'Verifying experiment completion log', 'status': 'completed'}, {'content': 'Pull script to local mirror', 'activeForm': 'Pulling script to local mirror', 'status': 'completed'}, {'content': 'Report results and rerun decision', 'activeForm': 'Reporting results and rerun decision', 'status': 'completed'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Inspect existing server script + results', 'activeForm': 'Inspecting existing server script + results', 'status': 'completed'}, {'content': 'Verify experiment completion log', 'activeForm': 'Verifying experiment completion log', 'status': 'completed'}, {'content': 'Pull script to local mirror', 'activeForm': 'Pulling script to local mirror', 'status': 'completed'}, {'content': 'Report results and rerun decision', 'activeForm': 'Reporting results and rerun decision', 'status': 'completed'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T05:04:56.853980+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-15T05:04:56.854139+00:00_
+
+## 状态：实验已完成，无需重跑
+
+服务器上 `/root/ratekv/run_w2_unconstrained_baselines.py`（11993 字节，2026-05-15 12:46）和结果 JSON、log 均存在；log 末尾 "ALL DONE. Total 3.5min"。已同步到本地：
+- `run_w2_unconstrained_baselines.py`
+- `artifacts/w2_unconstrained_baselines_results.json`
+
+### 结果（budget=0.25, 64 seq × 2048 tok）
+
+| Model | conc | baseline PPL | unconstrained PPL | 倍数 | 行为 |
+|---|---|---|---|---|---|
+| Yi-1.5-9B | 0.71 (Spike) | 5.89 | **672.2** | 114× | catastrophic |
+| Llama-3.1-8B | 0.57 (Spike) | 6.51 | **1219.7** | 187× | catastrophic |
+| Mistral-7B-v0.3 | 0.24 (Flat) | 5.87 | **47.8** | 8.2× | severe 但非 catastrophic |
+| Gemma-2-9B | 0.23 (Flat) | 7.32 | **277.4** | 37.9× | catastrophic |
+
+### 关键观察
+
+1. **MCKP 与 Greedy 在所有 4 个模型上 PPL 完全相同**：bf16_2bitonly profile 的每头动作集是 {16, 2}，只有 2 个选项，MCKP 退化为 greedy。bit distribution 也一致（Yi 165/27, Llama 220/36, Mistral 220/36, Gemma2 288/48）。
+
+2. **Backfire 部分发生但混合**：
+   - 强支持假设：Mistral (Flat) 仅 8.2× 退化，远轻于 Yi/Llama (Spike)
+   - 不支持：Gemma-2 (Flat, conc=0.23) 也 catastrophic (37.9×)
+   - reframe 思路："concentration alone 不充分预测 catastrophic"——可能需要叠加 calibration heavy-tail 或 layer-wise variance。或者 Gemma-2 的 softcap/post-LN 架构使其对量化更敏感。
+
+3. **结论与 paper 一致**：unconstrained allocation 对高 concentration 模型必然 catastrophic，cardinality constraint 是必要的；Flat 模型的失败程度依赖架构而非仅 concentration。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_w2_unconstrained_baselines_20260515T050316"
+}
+```
+
+</details>
+
+---

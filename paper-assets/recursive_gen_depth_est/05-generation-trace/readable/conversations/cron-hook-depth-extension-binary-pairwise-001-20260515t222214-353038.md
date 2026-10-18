@@ -1,0 +1,3159 @@
+# cron hook depth extension binary pairwise 001 20260515T222214 353038
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 100
+- **Recorded user turns:** 2
+- **Tool calls:** 48
+- **Original source:** `logs/chats/archive/cron_hook_depth_extension_binary_pairwise_001_20260515T222214_353038.jsonl`
+- **Structured JSON:** [`0c583ec1fe3579fbc89f.json`](../../sessions/0c/0c583ec1fe3579fbc89f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+66 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T19:11:23.925913+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #10。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：gpu-6000pro-2 的 cuda:0 和 cuda:1（2× RTX 6000 Pro）。禁止使用其他 GPU
+- 工作目录：`/root/autodl-tmp/recursive_gen_depth_est`（根分区空间小，大文件必须在 autodl-tmp）
+- DDL：EMNLP ARR May 25, 2026 — 剩余 **10 天**，Phase 2 写作阶段
+- feat_ablation_v1 正在跑（PID 473989），不要 kill 它——这是 feature ablation forward selection v2（4/9 cells done, olmo_temp09 running）
+- feature_ablation_9cell 是 PREPARING+failed 的僵尸条目，不要提交，是被 feat_ablation_v1 替代的旧版本
+- 三个模型 pipeline（Pythia/OLMo/GPT-2 XL）共用同一份 **Wikipedia 种子数据**——Worker 写 paper 时曾错误改成 "OpenWebText/Dolma/WebText"，必须保持 Wikipedia
+
+### 2. 🖥️ 基础设施快照
+- 服务器：**gpu-6000pro-2**，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`
+- Python 环境：需 SSH 探测确认（可能是 conda base 或 venv，上次用 miniconda3）
+- 模型/数据：所有实验数据和 results 在 `/root/autodl-tmp/recursive_gen_depth_est/results/`
+- Feature ablation 结果：`/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/`
+- 活跃进程：feat_ablation_v1 (PID 473989, gpu-6000pro-2)，cron 监控中
+- W&B：未配置（feature ablation 是 RF 实验，无 W&B tracking）
+- HF cache：应在 `/root/autodl-tmp/.hf_cache`（AutoDL 规范）
+
+### 3. 📊 当前状态
+**Phase 1 实验全部完成**（48 DONE + 1 RUNNING + 1 僵尸 PREPARING），**Phase 2 写作已启动**。
+
+**RUNNING**：
+- `feat_ablation_v1`：feature ablation 9-cell forward selection v2，4/9 cells done，olmo_temp09 正在跑。Phase 1 已完成 topk ablation、category ablation、LOGO、PCA、VIF。关键发现：var_surprisal 是 6/9 cells 的 top-1 特征；top-3 features 达到 93% full accuracy；perplexity category 单独捕获 92-99% accuracy
+
+**Worker 池**：0 running workers（Phase 2 写作尚未派 Worker）
+
+**等待中**：
+- feat_ablation_v1 cron 回调（forward selection 剩余 5/9 cells）
+- 无 Director 待决事项
+
+**实验总览**：成功 26 / 负向 3 / 失败 6 / killed 13 / 共 50
+
+### 4. 📋 待办（条件触发式）
+- feat_ablation_v1 cron 回调(DONE) → 分析 forward selection 结果 → 更新 registry notes → 汇报 Director
+- feat_ablation_v1 完成 → spawn Paper Agent Worker 开始 Phase 2 写作：纳入 N2 双 backbone 结果 + feature overlap 到 Section 5.4
+- Phase 2 写作启动 → 处理所有 Warning 级审稿修改（R1-N1 EDD公式 / W1 permutation / W3 LoRA引用 / W5 无条件生成 / W6 per-class recall / R2-N2 文献 / R2-W2 术语 / R2-W4 Limitations / R2-W6 orphan bib）
+- Paper draft 完成 → Reviewer 对抗迭代 (max 5 rounds)
+- May 23 → 最终 polish + bibliography audit → 提交 ARR
+
+### 5. 🎯 战略上下文
+- **核心 Framing (Plan A, D011)**：Atlas/EDD 为 primary contribution，DCOL 已放弃（v1-v6 全败）。论文定位为 task formalization + systematic empirical study，非 method paper
+- **3×3 矩阵 9/9 完成**：70-85% 4-class acc，最佳 GPT-2 XL temp09 85.4%
+- **EDD 叙事 (D024/D027)**：从硬阈值转向连续 AUC 衰减曲线。d3v4 三模型收敛于 AUC ~0.75，d4v5 均 <0.70。Pythia 显著 (p=0.001)，OLMo 边际 — 需按统计强度分层报告
+- **Cross-strategy 关键发现 (D028)**：temperature 的 uniform logit scaling 导致 d1v2 feature boundary inversion（AUC 低至 0.13）。Z-score normalization 不能修复（LR d1v2 AUC 反降），确认是几何级别的特征空间偏移而非 scale artifact
+- **N2 reviewer concern 已解决**：DeBERTa 58.3% / RoBERTa 59.5% 均远低于 RF 78.2%，Spearman ρ=-0.484 说明是 representation bias 非训练不足
+- **易错点**：
+  - 不要把 GC4-par (temperature parallel) 和 GC4-seq (nucleus/topk sequential) 直接对比
+  - Worker 写 method section 时会错改种子数据来源，必须审查
+  - EXIT_CODE=129 是 tmux SIGHUP，不一定是真失败——先查 results 文件完整性
+  - DCOL 已死透，不要再尝试任何变体
+
+## 可查的历史
+前 44 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T19:11:35.981397+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T19:11:36.132588+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T19:11:39.145060+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T19:11:39.546995+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"feat_ablation_v1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T17:11:38.111Z\", \"updated_at\": \"2026-05-15T19:01:36.156Z\", \"notes\": \"Phase 1 COMPLETE (9/9 cells): topk_ablation, category_ablation, LOGO, PCA, VIF. Phase 2 IN PROGRESS: forward selection v2 (4/9 cells done, olmo_temp09 running). Key findings: (1) var_surprisal is top-1 in 6/9 cells, p90_ppl in 3/9; (2) top-3 features reach 93% of full accuracy; (3) perplexity category alone captures 92-99% of full acc; (4) LOGO: removing perplexity costs -3.5pp mean, all other categories <-0.6pp; (5) PCA effective dim 6-7 from 19 features; (6) VIF: 14-16/19 features with VIF>10. Results at /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2788}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T19:11:39.547429+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'PREPARING'}",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'PREPARING'}",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T19:11:40.050057+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T19:11:40.050495+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"feature_ablation_9cell\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T18:40:33.974Z\", \"updated_at\": \"2026-05-15T18:40:33.974Z\", \"conclusion\": \"failed\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2069}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T19:11:40.552554+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T19:11:40.653385+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T19:11:45.323316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"feat_ablation_v1\", \"success\": true, \"actions\": [\"Job still running (pid=473989)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 5273
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T19:11:45.323891+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| feat_ablation_v1 | — | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **zeroshot_llm_500_001** (success): R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\\n- **temp07_pilot_pythia_001** (success): R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\\n- **n2_roberta_finetune_001** (success): N2 reviewer concern: end-to-end RoBERTa-base finetune baseline vs RF on hand-crafted features (78.2%). 与 DeBERTa 形成双 backbone 对比，排除模型选择偏差。\\n  [n2_roberta_feature_overlap_analysis](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/n2_roberta_finetune_001/report/n2_roberta_feature_overlap_analysis.md)\\n\\n## 趋势\\n成功 26 / 负向 3 / 失败 6 / 共 48\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ngpu-6000pro-2: 无 GPU 信息\\n\\n## 告警\\n- mvp_pipeline_001: 已被终止 — unknown\\n- mvp_pipeline_002: 已被终止 — unknown\\n- mvp_pipeline_003: 已被终止 — unknown\\n- mvp_pipeline_004: 已被终止 — unknown\\n- mvp_pipeline_base_002: 已被终止 — unknown\\n- mvp_pipeline_base_003: 已被终止 — unknown\\n- mvp_pipeline_pythia_001: 已被终止 — unknown\\n- mvp_pipeline_qwen_base_004: 已被终止 — unknown\\n- cross_model_olmo_001: 训练失败 — unknown\\n- dcol_deberta_001: 训练失败 — unknown\\n- cross_model_olmo_temp09_001: 已被终止 — unknown\\n- dcol_deberta_002: 训练失败 — unknown\\n- dcol_deberta_003: 已被终止 — unknown\\n- olmo_temp09_002: 已被终止 — unknown\\n- dcol_deberta_004: 已被终止 — unknown\\n- dcol_deberta_005: 训练失败 — unknown\\n- cross_model_loo_001: 已被终止 — unknown\\n- depth_extension_binary_pairwise_001: 训练失败 — unknown\\n- de
+…[truncated 132 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4771
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T19:11:45.324431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ROADMAP.md\", \"content\": \"# recursive_gen_depth_est — Research Dashboard\\n\\n> 最后更新: 2026-05-15 13:29 UTC | 更新原因: Phase 1 全部完成，Phase 2 写作启动。R1-N3 resolved (dual backbone)。\\n\\n## 核心方向\\n递归生成深度估计：给定文本，预测其经历了多少轮 model→data→model 递归训练循环。\\n**Primary contribution**: Depth Degradation Atlas + EDD metric + feature universality findings。\\n详见 paper_framing.md（Plan A, D011）。\\n\\n## 当前进展\\n- **阶段**: **Phase 2 写作**（Phase 1 全部完成 2026-05-15）+ 审稿进行中\\n- **Framing**: Plan A 已激活 — Atlas/EDD primary, DCOL non-blocking (D011)\\n- **3×3 矩阵**: ✅ 9/9 全部完成（70–85% 4-class acc）\\n- **EDD 跨模型一致性**: 三模型 d3v4 AUC 收敛于 0.75 附近，d4v5 均<0.70。连续 AUC 衰减曲线叙事 (D024/D027)\\n- **Cross-model LOO (plan_005)**: ✅ 均值 66.4%\\n- **Cross-strategy LOO (plan_007)**: ✅ 均值 59.1%\\n- **N2 Dual Backbone**: ✅ DeBERTa 58.3%±4.7%, RoBERTa 59.5%±3.2%, 均远低于 RF 78.2% (-19.9pp/-18.7pp)\\n- **Feature Overlap**: ✅ Spearman ρ=-0.484 (p=0.036), DeBERTa vs RF 关注完全相反特征\\n- **DDL**: EMNLP ARR May 25 — **剩余 10 天**\\n\\n## 审稿 Issue 进度\\n**Critical (4)**: R1-N1 EDD公式 ⏳ | R1-N2 std/CI ✅ | R1-N3 end-to-end baseline ✅ | R2-N2 文献 ⏳\\n**Warning 数据已完成**: W1 permutation importance ✅ | W5 无条件生成确认 ✅ | W6 per-class recall ✅ | N3 fold std ✅\\n**Warning 待 Paper Agent**: W3 LoRA引用 | W5 论文文本 | W6 论文纳入 | R2-W2 术语 | R2-W4 Limitations位置 | R2-W6 orphan bib\\n**Open (rebuttal)**: W2 domain bias | W4 zero-shot样本量 | R2-W3 multi-τ\\n\\n## Phase 2 写作计划 (May 15–22)\\n- [ ] Paper Agent Patch: 纳入 N2 双 backbone 结果 + feature overlap 分析到 Section 5.4\\n- [ ] Paper Agent: 处理所有 Warning 级审稿修改 (R1-N1/W1/W3/W5/W6/R2-N2/R2-W2/R2-W4/R2-W6)\\n- [ ] Reviewer 对抗迭代 (max 5 rounds)\\n- [ ] RoBERTa feature overlap 分析（等 Agent 完成）\\n\\n## Phase 3: 提交 (May 23–25)\\n- [ ] 最终 polish + bibliography audit\\n- [ ] 提交 ARR\\n\\n## GPU 预算\\n- 本项目分配: gpu-6000pro-2 cuda:0, cuda:1 (2× RTX 6000 Pro)\\n- 已消耗: ~36 GPU·h\\n- 当前: 两卡空闲，Phase 2 写作期间可用于补充实验\
+…[truncated 2415 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 4671
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T19:12:02.708676+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__load_project_config",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__load_project_config",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T19:12:02.709173+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T19:12:03.061223+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T19:12:03.112973+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_e56a59c2.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T19:12:06.630908+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T19:12:06.681583+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T19:12:09.495101+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T19:12:09.545694+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T19:12:18.839048+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "paper_framing.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "paper_framing.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T19:12:19.341222+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper_framing.md\", \"content\": \"# Paper Framing — recursive_gen_depth_est\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\n- Backup: AAAI 2027 (abstract July 25, full paper August 1, 2026)\\n- EMNLP 2026 special theme \\\"New Missions for NLP Research\\\" explicitly calls for work on data contamination, synthetic data feedback loops, and data governance — direct venue fit\\n\\n## Core Claims (2 条 + Discussion implication)\\n\\n1. **Ordinal depth estimation is feasible and accurate**: Given text alone, recursive generation depth (d ∈ {0,1,2,...,K}) can be estimated with high accuracy using statistical features from reference-model perplexity distributions. On our 3-model × 3-strategy benchmark, Random Forest classifiers on 19 statistical features achieve 70–85% four-class accuracy (chance=25%), with the best configuration (GPT-2 XL, temp τ=0.9) reaching 85.4%. Feature-based methods (RF, CORAL, DivEye) consistently outperform single-feature baselines across all 9 settings.\\n\\n2. **Depth Degradation Atlas — systematic characterization of recursive collapse** (PRIMARY): We provide the first systematic empirical characterization of how text statistical properties evolve across recursive generation depths, revealing (a) perplexity tail statistics (p90_ppl) and surprisal variance (var_surprisal) as the dominant depth signal family — consistently occupying the top-4 features across all models and strategies, though their relative ranking is model-dependent, (b) non-uniform inter-depth distances (depth 0→1 gap >> depth 2→3 gap), (c) an Effective Discriminable Depth (EDD) boundary beyond which adjacent depths become indistinguishable, and (d) **strategy-dependent feature trajectory reversal** — temperature sampling causes the depth-1→depth-2 feature boundary to invert relative to nucleus/top-k (cross-strategy LOO d1v
+…[truncated 10616 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T19:12:19.844012+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "writing_plan.yaml",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "writing_plan.yaml",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T19:12:20.197533+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/writing_plan.yaml\", \"content\": \"# Writing Plan — recursive_gen_depth_est\\n# Generated: 2026-05-15 by Paper Agent\\n# Contract for all downstream Workers — Director 审批后生效\\n\\nmeta:\\n  venue: EMNLP 2026\\n  track: \\\"ARR May 2026 — New Missions for NLP Research\\\"\\n  template: \\\"acl2023\\\"\\n  template_note: \\\"需下载 ARR/ACL 官方 LaTeX 模板到 templates/latex/emnlp2026/；当前使用 acl2023 style 规范\\\"\\n  page_limit: 8\\n  deadline: \\\"2026-05-25\\\"\\n  title: \\\"How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints\\\"\\n  core_claim: >\\n    Recursive generation leaves quantifiable statistical fingerprints —\\n    perplexity tail statistics (p90_ppl, var_surprisal) universally mark\\n    generation depth across 3 model families × 3 decoding strategies,\\n    enabling 70–85% four-class depth estimation (chance=25%). The Depth\\n    Degradation Atlas reveals that decoding strategy fundamentally shapes\\n    degradation trajectories rather than merely attenuating them.\\n  contributions:\\n    - \\\"C1: Task formalization — define recursive generation depth estimation + EDD metric\\\"\\n    - \\\"C2: Depth Degradation Atlas — 3×3 systematic map with p90_ppl/var_surprisal universality, strategy-dependent trajectories, EDD=4\\\"\\n    - \\\"C3: Cross-model (66.4%) and cross-strategy (59.1%) generalization analysis, including temp09 d1v2 reversal mechanism + z-score mitigation\\\"\\n    - \\\"C4: DCOL 6× failure as negative result — end-to-end contrastive ordinal learning insufficient vs statistical features + simple classifiers\\\"\\n  flags: []\\n  created_at: \\\"2026-05-15T12:00:00Z\\\"\\n\\n# ============================================================\\n# PAPER OUTLINE\\n# ============================================================\\npaper_outline:\\n\\n  - section: abstract\\n    word_budget: 
+…[truncated 11225 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 353
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T19:12:20.197994+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T19:12:20.301850+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/memory.md\", \"content\": \"# Memory\\n\\n## Phase 2 Writing 注意事项\\n\\n### worker_write_section_method artifact 不可直接合并 (2026-05-15)\\n- Worker 错误地将种子语料从 \\\"Wikipedia subset\\\" 改为 \\\"OpenWebText/Dolma/WebText\\\"\\n- **事实**：三个模型 pipeline（Pythia/OLMo/GPT-2 XL）共用同一份 Wikipedia 种子数据\\n- 原论文 method.tex 描述正确，不需要改\\n- 该 artifact 的其他修改（LoRA targets 等）需逐项审查后选择性合并\\n\\n## N2 Feature Overlap 关键发现 (2026-05-15)\\n- DeBERTa/RoBERTa 与 RF 的 feature importance Spearman ρ 分别为 -0.484/-0.456（显著负相关）\\n- Transformer 擅长表面特征 (TTR, n-gram repetition)，RF 依赖 perplexity 分布统计量\\n- Top-5 overlap = 0，跨架构一致\\n- 这是 representation bias，非训练不足——直接解释 finetune 20pp 差距\\n\\n## τ=0.7 Temperature Pilot 结论 (2026-05-15)\\n- Pythia-1.4B τ=0.7 d1v2 AUC=0.838，与 τ=0.9 (0.833) 基本持平，无反转\\n- Cross-strategy LOO 的 d1v2 低 AUC（GPT-2 XL 0.129, OLMo 0.253）是模型特性差异，非温度导致\\n- Pythia 在两个温度下都保持 0.83+ d1v2 AUC\\n\\n## 经验教训\\n- EXIT_CODE=129 是 tmux SIGHUP，非真正失败——检查 results 文件完整性再判断\\n- AutoDL 上 RoBERTa 模型下载容易中断导致 pytorch_model.bin 损坏，用 hf-mirror.com 更可靠\\n- 多 Worker 操作同一服务器时注意进程冲突——spawn worker 前先确认目标 GPU 无已有进程\\n\", \"total_chars\": 980, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 103
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T19:12:48.880020+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/**/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T19:12:49.362851+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_introduction_b88807.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization_e30935.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_atlas_6ebd75.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_atlas.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_method_d088f8.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization_1d7f7e.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion_1560ed.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/con
+…[truncated 656 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "elapsed_ms": 482
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T19:12:49.865220+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/**/*.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T19:12:50.267495+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/citations_audit.md
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/r3_text_fixes_log.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T19:12:50.418640+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "paper_checklist.yaml",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "paper_checklist.yaml",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T19:12:50.471086+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'recursive_gen_depth_est'.\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T19:13:19.008030+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/artifacts/**/*review*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/artifacts/**/*review*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T19:13:19.059114+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260514T140607/best/review_context.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260514T140607/logs/review_best.log
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260514T140607/median/review_context.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260514T140607/median/review_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260514T140607/logs/review_median.log
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260514T140607/worst/review_context.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260514T140607/best/review_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260514T140607/worst/review_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260514T140607/logs/review_worst.log
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_issues.yaml
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T19:13:19.059543+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/artifacts/**/n2_*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/artifacts/**/n2_*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T19:13:19.059769+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/n2_deberta_check_result.md
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/n2_deberta_finetune_001/report/n2_feature_overlap_analysis.md
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/n2_roberta_finetune_001/report/n2_roberta_feature_overlap_analysis.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T19:13:19.059983+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/artifacts/**/*review_issue*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/artifacts/**/*review_issue*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T19:13:19.110423+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_issues.yaml
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T19:13:21.870060+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_issues.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/review_issues.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T19:13:22.222348+00:00_
+
+1	issues:
+2	  # ============================================================
+3	  # Round 1-2 历史 issues（保留完整记录）
+4	  # ============================================================
+5	  - id: R1-N1
+6	    summary: "EDD 公式 (Eq.1) 存在系统性 off-by-one 错误，公式输出值比全文报告值小 1"
+7	    category: method
+8	    severity: critical
+9	    status: resolved
+10	    first_raised_round: 1
+11	    last_seen_round: 1
+12	    mentions:
+13	      - round: 1
+14	        reviewers: [1, 2]
+15	        note: "R1 发现，R2 独立验证确认。Eq.1 定义 EDD_T=max{d*:AUC(d*,d*+1)>=T}，Pythia nucleus d0-d5 T=0.75 时公式得 3 但报告 4。Table 3 所有行均差 1。需修正公式为 max{d*+1:...} 或全文数值下调 1。"
+16	    action_items:
+17	      - round: 1
+18	        action: "修正 Eq.1 公式定义为 EDD_T = max{d*+1 : AUC(d*,d*+1)>=T}，报告值不变"
+19	        assigned_to: paper_agent
+20	        status: done
+21	    resolution: "method.tex Eq.1 已修正为 max{d*+1:...}，报告值不变。"
+22	    resolution_round: 2
+23	
+24	  - id: R1-N2
+25	    summary: "主实验 Table 1/2 无 std/CI/significance test，无法判断方法间差异是否显著"
+26	    category: experiment
+27	    severity: critical
+28	    status: resolved
+29	    first_raised_round: 1
+30	    last_seen_round: 1
+31	    mentions:
+32	      - round: 1
+33	        reviewers: [1, 2]
+34	        note: "R1 列为 critical，R2 同意但建议分两级：Table 1 加 fold-level std (must-fix)，Table 2 方法间 significance test (should-fix)。5-fold CV 天然产生 fold estimates，报告 mean±std 成本为零。"
+35	    action_items:
+36	      - round: 1
+37	        action: "修改 atlas_v2_analysis.py 保存 fold-level metrics，重跑 9 cell，Table 1/2 加 ±std"
+38	        assigned_to: main_agent
+39	        status: done
+40	        note: "Reviewer 确认 fold std 0.002-0.009，极稳定。数据与 registry 一致 (Δ<1pp)。"
+41	      - round: 1
+42	        action: "RF vs CORAL/DivEye/CE-MLP paired bootstrap test"
+43	        assigned_to: main_agent
+44	        status: done
+45	        note: "RF vs DivEye p=0.096 (n.s.), RF vs CORAL p=0.048 (Bonferroni n.s.), RF vs CE-MLP p<0.001。触发 D022 叙事重构。"
+46	      - round: 1
+47	        action: "Paper Agent 更新叙事：RF ≈ CORAL ≈ DivEye >> CE-MLP，强调特征而非分类器"
+48	      
+…[truncated 20112 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Read",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T19:13:22.272995+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/n2_roberta_finetune_001/report/n2_roberta_feature_overlap_analysis.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/n2_roberta_finetune_001/report/n2_roberta_feature_overlap_analysis.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T19:13:22.273578+00:00_
+
+1	# N2 RoBERTa Feature Overlap Analysis
+2	
+3	## Probing R²
+4	| Feature | RoBERTa R² | DeBERTa R² | RF Rank |
+5	|---------|-----------|-----------|---------|
+6	| bigram_entropy | 0.829 | 0.807 | 17 |
+7	| rep_2gram | 0.819 | 0.815 | 14 |
+8	| mean_surprisal | 0.818 | 0.814 | 11 |
+9	| type_token_ratio | 0.811 | 0.853 | 18 |
+10	| trigram_entropy | 0.789 | 0.783 | 9 |
+11	| var_ppl | -4215.8 | -28.1 | 5 |
+12	| mean_ppl | -9.50 | -4.18 | 7 |
+13	
+14	## Cross-Architecture Consistency
+15	| Metric | RoBERTa | DeBERTa |
+16	|--------|---------|---------|
+17	| Spearman ρ | -0.456 (p=0.050) | -0.484 (p=0.036) |
+18	| Top-5 overlap | 0/10 | 0/10 |
+19	| Top-10 Jaccard | 0.111 | 0.111 |
+20	
+21	## Conclusion
+22	Systematic representation bias confirmed across architectures. Transformers encode surface text features; RF relies on perplexity distribution statistics. The gap is structural, not model-specific.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T19:14:16.809056+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 (gpu-6000pro-2 cuda:0/1) / 实际跑 1 (feat_ablation_v1, CPU-bound RF) | Worker 池 0→2 (立即补)\n\n**Session #10 启动汇报**\n\n**运行中**:\n- feat_ablation_v1: forward selection v2, 4/9 cells done, olmo_temp09 running (PID 473989, cron alive)\n\n**Phase 2 写作立即启动**，两个 Worker 并行：\n1. **Paper R3 Writing Worker**: 处理所有 Round 3 writing-only fixes (R3-N1 EDD连续版/R3-N4 scope universal/R3-N5+W3 弱化claims/R3-W1 d1-d3 headline/R3-W2 扩展Discussion/R3-W4 去exp ID/R3-W6 混合深度/R3-M1 minor fixes)\n2. **SHAP Analysis Worker**: SSH 到服务器跑 SHAP TreeExplainer 替换 attention-importance (R3-N3)\n\n**等待中**:\n- feat_ablation_v1 cron 回调 → R3-N2 contribution 表述调整\n- zeroshot_llm_500_001 结果（R1-W4 样本量扩展）— 需确认状态\n\nDDL May 25, 剩 10 天。Phase 2 写作 + R3 修复今天全面铺开。",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 (gpu-6000pro-2 cuda:0/1) / 实际跑 1 (feat_ablation_v1, CPU-bound RF) | Worker 池 0→2 (立即补)\n\n**Session #10 启动汇报**\n\n**运行中**:\n- feat_ablation_v1: forward selection v2, 4/9 cells done, olmo_temp09 running (PID 473989, cron alive)\n\n**Phase 2 写作立即启动**，两个 Worker 并行：\n1. **Paper R3 Writing Worker**: 处理所有 Round 3 writing-only fixes (R3-N1 EDD连续版/R3-N4 scope universal/R3-N5+W3 弱化claims/R3-W1 d1-d3 headline/R3-W2 扩展Discussion/R3-W4 去exp ID/R3-W6 混合深度/R3-M1 minor fixes)\n2. **SHAP Analysis Worker**: SSH 到服务器跑 SHAP TreeExplainer 替换 attention-importance (R3-N3)\n\n**等待中**:\n- feat_ablation_v1 cron 回调 → R3-N2 contribution 表述调整\n- zeroshot_llm_500_001 结果（R1-W4 样本量扩展）— 需确认状态\n\nDDL May 25, 剩 10 天。Phase 2 写作 + R3 修复今天全面铺开。",
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T19:14:20.426517+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3617
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T19:14:55.279536+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'DONE'}",
+  "project": "recursive_gen_depth_est",
+  "limit": "5",
+  "fields": "['status', 'conclusion', 'metrics', 'notes']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'DONE'}",
+    "project": "recursive_gen_depth_est",
+    "limit": "5",
+    "fields": "['status', 'conclusion', 'metrics', 'notes']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T19:14:56.139700+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"zeroshot_llm_500_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.362, \"accuracy_ci95\": [0.32, 0.404], \"ci_width_pp\": 8.4, \"mae\": 1.028, \"per_class_f1\": {\"d0\": 0.55, \"d1\": 0.18, \"d2\": 0.27, \"d3\": 0.18}, \"per_class_recall\": {\"d0\": 0.952, \"d1\": 0.128, \"d2\": 0.248, \"d3\": 0.12}, \"vs_rf_baseline\": \"36.2% vs 78.2% (-42.0pp)\", \"vs_200_sample\": \"36.2% vs 40.0% (consistent, within CI)\", \"n_samples\": 500, \"n_errors\": 0}, \"notes\": \"500-sample zero-shot LLM baseline. Acc=36.2% [32.0%, 40.4%]，CI 从 ~13.6pp 缩至 8.4pp。与 200-sample (40.0%) 一致。LLM 几乎只能识别 d0 (recall 95.2%)，d1-d3 collapse (recall 12-25%)。RF 优势 42pp 无可争议。\"}, \"temp07_pilot_pythia_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"samples_per_depth\": 500, \"depths\": 6, \"six_class_rf_accuracy\": 0.5733, \"six_class_rf_ci95\": [0.5333, 0.615], \"six_class_lr_accuracy\": 0.5467, \"pairwise_auc_rf\": {\"d0v1\": 0.9981, \"d1v2\": 0.8378, \"d2v3\": 0.635, \"d3v4\": 0.5997, \"d4v5\": 0.6025}, \"pairwise_auc_lr\": {\"d0v1\": 0.9954, \"d1v2\": 0.8031, \"d2v3\": 0.608, \"d3v4\": 0.6525, \"d4v5\": 0.5652}, \"vs_temp09_d1v2_rf\": \"0.8378 vs 0.8327 (+0.005)\", \"vs_temp09_d1v2_lr\": \"0.8031 vs 0.7833 (+0.020)\", \"d1v2_inversion\": false, \"top_features\": [\"p90_ppl\", \"var_surprisal\", \"mean_surprisal\", \"mean_ppl\", \"p75_ppl\"]}, \"notes\": \"Pipeline 完成 (d0-d5, 500 samples/depth)。**d1v2 inversion 未出现**: d1v2 AUC RF=0.8378 (vs temp09 0.8327), LR=0.8031 (vs temp09 0.7833)。τ=0.7 within-strategy separability 与 τ=0.9 几乎相同。注意：cross-strategy LOO 中的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是跨策略泛化问题，非 within-strategy 问题。τ=0.7 的 within-strategy 结果正常，说明 temperature 均匀缩放 logit 不影响组内深度可分性。EDD 估计: d2v3=0.635<0.75 → EDD≈2 (6-class setting, 500 samples)。Feature importance 与 temp09 一致: perplexity 分布统计量主导 (p90_ppl, var_surprisal, mean_surprisal)。\"}, \"n2_roberta_finetu
+…[truncated 3297 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 860
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T19:15:11.755423+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/skills/write-paper-section.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/skills/write-paper-section.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T19:15:11.856290+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_e56a59c2.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T19:15:14.575497+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/*write*paper*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/*write*paper*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T19:15:14.626153+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T19:15:17.440132+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*write*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*write*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T19:15:17.490741+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T19:15:24.381151+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/**/*.bib",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/**/*.bib",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T19:15:24.431995+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/references.bib
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T19:16:26.073800+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "paper:r3-writing-fixes",
+  "project": "recursive_gen_depth_est",
+  "tool_groups": "['knowledge', 'registry']",
+  "tools": "['web_search']",
+  "task_prompt": "你是论文修改 Worker。任务：处理 Round 3 审稿的所有**纯写作**修改（不涉及新实验）。\n\n## 论文文件位置\n所有 tex 文件在：`/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/`\n- main.tex, abstract.tex, introduction.tex, related_work.tex, method.tex, atlas.tex, generalization.tex, discussion.tex, conclusion.tex, section_appendix.tex\n- references.bib\n\n## ⚠️ 硬约束\n- 三个模型 pipeline（Pythia/OLMo/GPT-2 XL）共用同一份 **Wikipedia 种子数据**——不要改成 OpenWebText/Dolma/WebText\n- 所有数字必须用 `read_registry` 确认，不凭记忆\n- 修改前必须 Read 原文件，理解上下文\n\n## 需要修复的 Issues（按优先级排序）\n\n### 1. R3-N1 (warning): EDD 公式改为连续版本\n- **文件**: method.tex, Eq. 1\n- **修改**: 将 `EDD_T = max{d*+1 : AUC(d*,d*+1) >= T}` 改为 `EDD_T = max{d*+1 : ∀d' ≤ d*, AUC(d',d'+1) >= T}`\n- 即要求所有之前的 depth pair 也满足阈值（连续版本）\n- **额外**: 在 Limitations/Discussion 中加一句说明当前数据中 AUC 严格单调衰减，两个版本等价，但连续版本更鲁棒\n\n### 2. R3-N4 (warning): 限定 'universal' 范围\n- **文件**: abstract.tex, introduction.tex\n- **修改**: 所有 'universal stability' / 'universally mark' 处加显式范围限定：\n  - \"across all 9 model-strategy settings in our benchmark\" 或 \"within the studied 3-model × 3-strategy grid\"\n  - 不要完全删除 universal，而是加限定语\n\n### 3. R3-N5 + R3-W3: 弱化跨策略部署声明 + 'geometry-level shift' 措辞\n- **文件**: discussion.tex, atlas.tex, paper_framing.md 中的措辞\n- **修改**:\n  - 所有 'genuine geometry-level shift in feature space' → 'a distributional shift that simple feature normalization cannot resolve; whether more sophisticated domain adaptation methods could recover the d1/d2 boundary remains open'\n  - 在 Discussion 中加 feasibility discussion：两阶段 pipeline（先识别 decoding strategy 再分类深度）作为 future direction\n  - 降低 Discussion §6 关于数据筛选应用的期望\n\n### 4. R3-W1 (warning): d1-d3 accuracy 并列报告\n- **文件**: abstract.tex, atlas.tex 主表\n- **修改**:\n  - Abstract 中 \"70–85% four-class accuracy\" 后加 \"(d1–d3 only: XX–YY%)\"——需从 registry 查 3-class accuracy\n  - 主结果表中增加 \"excl. d0\" 行或列\n  - Cross-model (Table 5) 和 cross-strategy (Table 6) 表中增加排除 d0 的 mean accuracy\n  - 注意：cross-model LOO mean 66.4% 中 d0 recall>98% 膨胀了 headline，d2 recall 最低 26.8%\n\n### 5. R3-W2 + R3-W6: 扩展 Discussion 至 300-400 词\n- **文件**: discussion.tex\n- **当前**: 仅 2 段 ~80 词，过短\n- **扩展至少覆盖**:\n  (a) 混合深度语料库：实际文档可能包含不同深度段落，当前假设单一深度。段落级检测 vs 文档级检测 tradeoff\n  (b) 对抗攻击鲁棒性：paraphrase/watermark removal 可能破坏统计指纹\n  (c) 数据溯源联系：depth estimation 作为 data provenance pipeline 的一环\n  (d) 规模扩展预测：当前 1-1.5B 模型，7B+ 和更大模型的 degradation pattern 可能不同\n  (e) Feature evolution insight：var_surprisal → p90_ppl/kurtosis 从浅到深的演变，与 Shumailov tail erosion theory 一致\n\n### 6. R3-W4 (warning): 删除表格 caption 中的 experiment tracking ID\n- **文件**: 所有 .tex\n- **修改**: 搜索所有 `depth_extension_`, `mvp_pipeline_`, `cross_model_`, `baseline_battery_`, `feat_ablation_` 等 experiment ID，从 caption 和正文引用中删除\n- 这些 ID 可通过搜索反推作者，违反 double-blind\n\n### 7. R3-M1: Minor 修复合集\n- §3 标题：如果是 \"Task Formulation\"，改为 \"Method\"（或检查当前标题）\n- 引用年份：holtzman2020 → holtzman2019, basu2021 → basu2020（在 references.bib 中修正）\n- Abstract：移除 ρ=0.868 细节（过细不适合 abstract）\n- 添加 Ethics Statement（在 conclusion 之后、references 之前）\n- 'standard LoRA' → 'commonly used LoRA configuration'\n- 在 references.bib 和 related_work.tex 中加入 Ghostbuster (Verma et al. 2024)、M4-SemEval (Wang et al. 2024)、DNA-GPT (Yang et al. 2024) 引用\n  → **注意**: 引用的具体年份和 venue 请用 WebSearch 确认，不要凭记忆杜撰\n\n### 8. R2-W1 (info): 核实 DivEye venue\n- 用 WebSearch 确认 DivEye 的正确发表 venue（ICLR vs TMLR vs 其他）\n- 在 references.bib 中修正\n\n### 9. 500-sample zero-shot 结果更新\n- zeroshot_llm_500_001 已完成：36.2% [32.0%, 40.4%], n=500\n- 如果论文中引用的是 200-sample 的 40.0%，更新为 500-sample 结果\n- 在 generalization.tex 中更新 zero-shot baseline 数据\n\n## 工作流程\n1. 先 Read 每个要修改的 tex 文件，理解当前内容\n2. 用 `read_registry` 查询需要的准确数字（特别是 3-class accuracy / d1-d3 only accuracy）\n3. 逐个 issue 修改，每次修改后确认不破坏上下文\n4. 最后做一轮全文一致性检查\n\n## 产出\n完成后在 artifacts 目录写一份修改日志 `r3_writing_fixes_log.md`，列出每个 issue 的修改位置和内容摘要。",
+  "context": "## 关键实验数字 (from registry)\n- 3×3 matrix: 70-85% 4-class acc, best GPT-2 XL temp09 85.4%\n- Cross-model LOO: mean 66.4% (Pythia 62.4%, OLMo 69.2%, GPT-2 XL 67.6%)\n- Cross-strategy LOO: mean 59.1%, temp09 holdout d1v2 AUC inverts (GPT-2 XL 0.13, OLMo 0.25)\n- N2: DeBERTa 58.3%±4.7%, RoBERTa 59.5%±3.2%, RF 78.2%, Spearman ρ=-0.484\n- Zero-shot 500: 36.2% [32.0%, 40.4%] vs RF 78.2% (-42pp)\n- EDD: 7/9 cells EDD≥3 at T=0.75; binary pairwise d3v4 AUC Pythia=0.784/OLMo=0.765/GPT-2 XL=0.750; d4v5 all <0.70\n\n## Writing Rules\n- 所有定量 claim 必须可追溯到 registry\n- 不 cherry-pick\n- 强度词与 evidence 匹配（1 dataset → 不说 consistently）\n- 'significantly' 必须有统计检验\n- Three-tier strategy classification: nucleus=baseline, temperature=enhancement+reversal, topk=attenuation\n- Wikipedia 种子数据，不要改"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper:r3-writing-fixes",
+    "project": "recursive_gen_depth_est",
+    "tool_groups": "['knowledge', 'registry']",
+    "tools": "['web_search']",
+    "task_prompt": "你是论文修改 Worker。任务：处理 Round 3 审稿的所有**纯写作**修改（不涉及新实验）。\n\n## 论文文件位置\n所有 tex 文件在：`/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/`\n- main.tex, abstract.tex, introduction.tex, related_work.tex, method.tex, atlas.tex, generalization.tex, discussion.tex, conclusion.tex, section_appendix.tex\n- references.bib\n\n## ⚠️ 硬约束\n- 三个模型 pipeline（Pythia/OLMo/GPT-2 XL）共用同一份 **Wikipedia 种子数据**——不要改成 OpenWebText/Dolma/WebText\n- 所有数字必须用 `read_registry` 确认，不凭记忆\n- 修改前必须 Read 原文件，理解上下文\n\n## 需要修复的 Issues（按优先级排序）\n\n### 1. R3-N1 (warning): EDD 公式改为连续版本\n- **文件**: method.tex, Eq. 1\n- **修改**: 将 `EDD_T = max{d*+1 : AUC(d*,d*+1) >= T}` 改为 `EDD_T = max{d*+1 : ∀d' ≤ d*, AUC(d',d'+1) >= T}`\n- 即要求所有之前的 depth pair 也满足阈值（连续版本）\n- **额外**: 在 Limitations/Discussion 中加一句说明当前数据中 AUC 严格单调衰减，两个版本等价，但连续版本更鲁棒\n\n### 2. R3-N4 (warning): 限定 'universal' 范围\n- **文件**: abstract.tex, introduction.tex\n- **修改**: 所有 'universal stability' / 'universally mark' 处加显式范围限定：\n  - \"across all 9 model-strategy settings in our benchmark\" 或 \"within the studied 3-model × 3-strategy grid\"\n  - 不要完全删除 universal，而是加限定语\n\n### 3. R3-N5 + R3-W3: 弱化跨策略部署声明 + 'geometry-level shift' 措辞\n- **文件**: discussion.tex, atlas.tex, paper_framing.md 中的措辞\n- **修改**:\n  - 所有 'genuine geometry-level shift in feature space' → 'a distributional shift that simple feature normalization cannot resolve; whether more sophisticated domain adaptation methods could recover the d1/d2 boundary remains open'\n  - 在 Discussion 中加 feasibility discussion：两阶段 pipeline（先识别 decoding strategy 再分类深度）作为 future direction\n  - 降低 Discussion §6 关于数据筛选应用的期望\n\n### 4. R3-W1 (warning): d1-d3 accuracy 并列报告\n- **文件**: abstract.tex, atlas.tex 主表\n- **修改**:\n  - Abstract 中 \"70–85% four-class accuracy\" 后加 \"(d1–d3 only: XX–YY%)\"——需从 registry 查 3-class accuracy\n  - 主结果表中增加 \"excl. d0\" 行或列\n  - Cross-model (Table 5) 和 cross-strategy (Table 6) 表中增加排除 d0 的 mean accuracy\n  - 注意：cross-model LOO mean 66.4% 中 d0 recall>98% 膨胀了 headline，d2 recall 最低 26.8%\n\n### 5. R3-W2 + R3-W6: 扩展 Discussion 至 300-400 词\n- **文件**: discussion.tex\n- **当前**: 仅 2 段 ~80 词，过短\n- **扩展至少覆盖**:\n  (a) 混合深度语料库：实际文档可能包含不同深度段落，当前假设单一深度。段落级检测 vs 文档级检测 tradeoff\n  (b) 对抗攻击鲁棒性：paraphrase/watermark removal 可能破坏统计指纹\n  (c) 数据溯源联系：depth estimation 作为 data provenance pipeline 的一环\n  (d) 规模扩展预测：当前 1-1.5B 模型，7B+ 和更大模型的 degradation pattern 可能不同\n  (e) Feature evolution insight：var_surprisal → p90_ppl/kurtosis 从浅到深的演变，与 Shumailov tail erosion theory 一致\n\n### 6. R3-W4 (warning): 删除表格 caption 中的 experiment tracking ID\n- **文件**: 所有 .tex\n- **修改**: 搜索所有 `depth_extension_`, `mvp_pipeline_`, `cross_model_`, `baseline_battery_`, `feat_ablation_` 等 experiment ID，从 caption 和正文引用中删除\n- 这些 ID 可通过搜索反推作者，违反 double-blind\n\n### 7. R3-M1: Minor 修复合集\n- §3 标题：如果是 \"Task Formulation\"，改为 \"Method\"（或检查当前标题）\n- 引用年份：holtzman2020 → holtzman2019, basu2021 → basu2020（在 references.bib 中修正）\n- Abstract：移除 ρ=0.868 细节（过细不适合 abstract）\n- 添加 Ethics Statement（在 conclusion 之后、references 之前）\n- 'standard LoRA' → 'commonly used LoRA configuration'\n- 在 references.bib 和 related_work.tex 中加入 Ghostbuster (Verma et al. 2024)、M4-SemEval (Wang et al. 2024)、DNA-GPT (Yang et al. 2024) 引用\n  → **注意**: 引用的具体年份和 venue 请用 WebSearch 确认，不要凭记忆杜撰\n\n### 8. R2-W1 (info): 核实 DivEye venue\n- 用 WebSearch 确认 DivEye 的正确发表 venue（ICLR vs TMLR vs 其他）\n- 在 references.bib 中修正\n\n### 9. 500-sample zero-shot 结果更新\n- zeroshot_llm_500_001 已完成：36.2% [32.0%, 40.4%], n=500\n- 如果论文中引用的是 200-sample 的 40.0%，更新为 500-sample 结果\n- 在 generalization.tex 中更新 zero-shot baseline 数据\n\n## 工作流程\n1. 先 Read 每个要修改的 tex 文件，理解当前内容\n2. 用 `read_registry` 查询需要的准确数字（特别是 3-class accuracy / d1-d3 only accuracy）\n3. 逐个 issue 修改，每次修改后确认不破坏上下文\n4. 最后做一轮全文一致性检查\n\n## 产出\n完成后在 artifacts 目录写一份修改日志 `r3_writing_fixes_log.md`，列出每个 issue 的修改位置和内容摘要。",
+    "context": "## 关键实验数字 (from registry)\n- 3×3 matrix: 70-85% 4-class acc, best GPT-2 XL temp09 85.4%\n- Cross-model LOO: mean 66.4% (Pythia 62.4%, OLMo 69.2%, GPT-2 XL 67.6%)\n- Cross-strategy LOO: mean 59.1%, temp09 holdout d1v2 AUC inverts (GPT-2 XL 0.13, OLMo 0.25)\n- N2: DeBERTa 58.3%±4.7%, RoBERTa 59.5%±3.2%, RF 78.2%, Spearman ρ=-0.484\n- Zero-shot 500: 36.2% [32.0%, 40.4%] vs RF 78.2% (-42pp)\n- EDD: 7/9 cells EDD≥3 at T=0.75; binary pairwise d3v4 AUC Pythia=0.784/OLMo=0.765/GPT-2 XL=0.750; d4v5 all <0.70\n\n## Writing Rules\n- 所有定量 claim 必须可追溯到 registry\n- 不 cherry-pick\n- 强度词与 evidence 匹配（1 dataset → 不说 consistently）\n- 'significantly' 必须有统计检验\n- Three-tier strategy classification: nucleus=baseline, temperature=enhancement+reversal, topk=attenuation\n- Wikipedia 种子数据，不要改"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T19:16:53.612117+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_r3-writing-fixes_20260515T191626\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/logs/workers/worker_paper_r3-writing-fixes_20260515T191626.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_r3-writing-fixes_20260515T191626 started. Use get_worker_status('worker_paper_r3-writing-fixes_20260515T191626') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 27538
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-15T19:16:56.977194+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:shap-treexplainer",
+  "project": "recursive_gen_depth_est",
+  "tool_groups": "['ssh', 'knowledge', 'registry']",
+  "task_prompt": "你是分析 Worker。任务：在 gpu-6000pro-2 上运行 SHAP TreeExplainer 分析，替代论文中被审稿人质疑的 attention-importance 相关性方法 (R3-N3)。\n\n## 背景\n论文 §5.4 用 DeBERTa/RoBERTa attention weight 与 RF feature importance 的 Spearman 相关性 (ρ=-0.484) 论证 \"end-to-end models 无法捕捉 perplexity tail features\"。审稿人指出 attention weight ≠ feature importance (Jain & Wallace 2019)，方法论有缺陷。\n\n**解决方案**: 用 SHAP TreeExplainer（model-agnostic, 理论上 exact for tree models）重新计算 RF feature importance，与 Gini importance 和 permutation importance 交叉验证。\n\n## 服务器信息\n- 服务器: gpu-6000pro-2\n- 工作目录: `/root/autodl-tmp/recursive_gen_depth_est/`\n- 结果目录: `/root/autodl-tmp/recursive_gen_depth_est/results/`\n- Python 环境: 先探测（`which python3`, `pip list | grep -i shap`），可能需要 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- ⚠️ feat_ablation_v1 (PID 473989) 正在跑 CPU-bound RF 实验，不要 kill 它。你的 SHAP 分析也是 CPU-bound，注意资源共享\n\n## 任务步骤\n\n### Phase 1: 环境探测 (ssh_read_only)\n```bash\n# 确认环境\nwhich python3 && python3 --version\npip list 2>/dev/null | grep -iE \"shap|sklearn|numpy|pandas\"\n# 确认 feat_ablation 进程存在\nps -p 473989 -o pid,cmd --no-headers 2>/dev/null\n# 找到已训练的 RF 模型和数据\nls /root/autodl-tmp/recursive_gen_depth_est/results/\nfind /root/autodl-tmp/recursive_gen_depth_est/results/ -name \"*.pkl\" -o -name \"*.joblib\" | head -20\n```\n\n### Phase 2: 理解现有代码\n- 查看 atlas_v2_analysis.py 或类似分析脚本，找到 RF 模型训练和特征数据的加载方式\n- 确认 19 个特征的名称和顺序\n\n### Phase 3: 安装 SHAP (如需要)\n```bash\npip install shap\n```\n\n### Phase 4: 编写并运行 SHAP 分析脚本\n在服务器上创建 `/root/autodl-tmp/recursive_gen_depth_est/scripts/shap_analysis.py`\n\n脚本需要：\n1. **加载已训练的 RF 模型和测试数据**（至少 3 个 representative cells: Pythia nucleus, OLMo nucleus, GPT-2 XL nucleus）\n   - 如果没有保存的 RF 模型，用现有代码重新训练（数据在 results/ 下）\n2. **SHAP TreeExplainer**: 对每个 cell 计算 SHAP values\n3. **输出**:\n   - SHAP feature importance ranking (mean |SHAP|) vs Gini ranking vs Permutation ranking — 三种方法对比\n   - 跨 cell 的 SHAP importance rank correlation (Spearman ρ)\n   - SHAP summary plot (beeswarm) — 保存为 PNG/PDF\n   - Feature importance 三方法交叉验证表格\n4. **保存结果**到 `/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/`\n\n### Phase 5: 验证和产出\n- 验证 SHAP 结果是否与已知发现一致（p90_ppl / var_surprisal 应为 top features）\n- 如果不一致，这本身也是有价值的发现，记录下来\n- 保存分析报告\n\n## 关键发现预期\n从现有 Gini/permutation 分析已知：\n- p90_ppl 在 9/9 cells 中 top-2 (100%)\n- var_surprisal 在 7/9 cells 中 top-2 (78%)\n- top-3 features 达到 93% of full accuracy\n- perplexity category alone captures 92-99% accuracy\n\nSHAP 应该给出类似排名，但提供更精确的 per-sample contribution 信息。\n\n## 产出\n1. 分析脚本: `/root/autodl-tmp/recursive_gen_depth_est/scripts/shap_analysis.py`\n2. 结果目录: `/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/`\n3. 用 `save_project_file` 将结果摘要保存为 artifact\n4. 最后用文字总结 SHAP 排名 vs Gini/Permutation 的关键差异",
+  "context": "## 19 Features\nPerplexity stats (9): mean_ppl, var_ppl, skewness_ppl, kurtosis_ppl, p10_ppl, p25_ppl, p50_ppl, p75_ppl, p90_ppl\nSurprisal stats (3): mean_surprisal, var_surprisal, entropy_of_surprisal\nLexical diversity (4): type_token_ratio, hapax_ratio, bigram_entropy, trigram_entropy\nRepetition (3): rep_2gram, rep_3gram, rep_4gram\n\n## Existing Gini top-5 (Pythia nucleus)\n1. p90_ppl, 2. var_surprisal, 3. mean_ppl, 4. p75_ppl, 5. kurtosis_ppl"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:shap-treexplainer",
+    "project": "recursive_gen_depth_est",
+    "tool_groups": "['ssh', 'knowledge', 'registry']",
+    "task_prompt": "你是分析 Worker。任务：在 gpu-6000pro-2 上运行 SHAP TreeExplainer 分析，替代论文中被审稿人质疑的 attention-importance 相关性方法 (R3-N3)。\n\n## 背景\n论文 §5.4 用 DeBERTa/RoBERTa attention weight 与 RF feature importance 的 Spearman 相关性 (ρ=-0.484) 论证 \"end-to-end models 无法捕捉 perplexity tail features\"。审稿人指出 attention weight ≠ feature importance (Jain & Wallace 2019)，方法论有缺陷。\n\n**解决方案**: 用 SHAP TreeExplainer（model-agnostic, 理论上 exact for tree models）重新计算 RF feature importance，与 Gini importance 和 permutation importance 交叉验证。\n\n## 服务器信息\n- 服务器: gpu-6000pro-2\n- 工作目录: `/root/autodl-tmp/recursive_gen_depth_est/`\n- 结果目录: `/root/autodl-tmp/recursive_gen_depth_est/results/`\n- Python 环境: 先探测（`which python3`, `pip list | grep -i shap`），可能需要 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- ⚠️ feat_ablation_v1 (PID 473989) 正在跑 CPU-bound RF 实验，不要 kill 它。你的 SHAP 分析也是 CPU-bound，注意资源共享\n\n## 任务步骤\n\n### Phase 1: 环境探测 (ssh_read_only)\n```bash\n# 确认环境\nwhich python3 && python3 --version\npip list 2>/dev/null | grep -iE \"shap|sklearn|numpy|pandas\"\n# 确认 feat_ablation 进程存在\nps -p 473989 -o pid,cmd --no-headers 2>/dev/null\n# 找到已训练的 RF 模型和数据\nls /root/autodl-tmp/recursive_gen_depth_est/results/\nfind /root/autodl-tmp/recursive_gen_depth_est/results/ -name \"*.pkl\" -o -name \"*.joblib\" | head -20\n```\n\n### Phase 2: 理解现有代码\n- 查看 atlas_v2_analysis.py 或类似分析脚本，找到 RF 模型训练和特征数据的加载方式\n- 确认 19 个特征的名称和顺序\n\n### Phase 3: 安装 SHAP (如需要)\n```bash\npip install shap\n```\n\n### Phase 4: 编写并运行 SHAP 分析脚本\n在服务器上创建 `/root/autodl-tmp/recursive_gen_depth_est/scripts/shap_analysis.py`\n\n脚本需要：\n1. **加载已训练的 RF 模型和测试数据**（至少 3 个 representative cells: Pythia nucleus, OLMo nucleus, GPT-2 XL nucleus）\n   - 如果没有保存的 RF 模型，用现有代码重新训练（数据在 results/ 下）\n2. **SHAP TreeExplainer**: 对每个 cell 计算 SHAP values\n3. **输出**:\n   - SHAP feature importance ranking (mean |SHAP|) vs Gini ranking vs Permutation ranking — 三种方法对比\n   - 跨 cell 的 SHAP importance rank correlation (Spearman ρ)\n   - SHAP summary plot (beeswarm) — 保存为 PNG/PDF\n   - Feature importance 三方法交叉验证表格\n4. **保存结果**到 `/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/`\n\n### Phase 5: 验证和产出\n- 验证 SHAP 结果是否与已知发现一致（p90_ppl / var_surprisal 应为 top features）\n- 如果不一致，这本身也是有价值的发现，记录下来\n- 保存分析报告\n\n## 关键发现预期\n从现有 Gini/permutation 分析已知：\n- p90_ppl 在 9/9 cells 中 top-2 (100%)\n- var_surprisal 在 7/9 cells 中 top-2 (78%)\n- top-3 features 达到 93% of full accuracy\n- perplexity category alone captures 92-99% accuracy\n\nSHAP 应该给出类似排名，但提供更精确的 per-sample contribution 信息。\n\n## 产出\n1. 分析脚本: `/root/autodl-tmp/recursive_gen_depth_est/scripts/shap_analysis.py`\n2. 结果目录: `/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/`\n3. 用 `save_project_file` 将结果摘要保存为 artifact\n4. 最后用文字总结 SHAP 排名 vs Gini/Permutation 的关键差异",
+    "context": "## 19 Features\nPerplexity stats (9): mean_ppl, var_ppl, skewness_ppl, kurtosis_ppl, p10_ppl, p25_ppl, p50_ppl, p75_ppl, p90_ppl\nSurprisal stats (3): mean_surprisal, var_surprisal, entropy_of_surprisal\nLexical diversity (4): type_token_ratio, hapax_ratio, bigram_entropy, trigram_entropy\nRepetition (3): rep_2gram, rep_3gram, rep_4gram\n\n## Existing Gini top-5 (Pythia nucleus)\n1. p90_ppl, 2. var_surprisal, 3. mean_ppl, 4. p75_ppl, 5. kurtosis_ppl"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T19:16:59.551231+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_shap-treexplainer_20260515T191657\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/logs/workers/worker_analysis_shap-treexplainer_20260515T191657.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_shap-treexplainer_20260515T191657 started. Use get_worker_status('worker_analysis_shap-treexplainer_20260515T191657') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2574
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T19:17:16.073986+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T19:17:16.125028+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-15T19:17:19.641948+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T19:17:19.692673+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-15T19:17:28.544607+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Session start: read registry + reconcile crons + report Director', 'status': 'completed', 'activeForm': 'Completing session start initialization'}, {'content': 'Spawn Worker 1: Paper R3 writing fixes', 'status': 'completed', 'activeForm': 'Spawning paper writing Worker'}, {'content': 'Spawn Worker 2: SHAP TreeExplainer analysis (R3-N3)', 'status': 'completed', 'activeForm': 'Spawning SHAP analysis Worker'}, {'content': 'Wait for Worker 1 callback: R3 writing fixes done', 'status': 'in_progress', 'activeForm': 'Waiting for paper writing Worker callback'}, {'content': 'Wait for Worker 2 callback: SHAP analysis done', 'status': 'pending', 'activeForm': 'Waiting for SHAP analysis Worker callback'}, {'content': 'Wait for feat_ablation_v1 cron callback: forward selection complete', 'status': 'pending', 'activeForm': 'Waiting for feature ablation cron callback'}, {'content': 'After feat_ablation: update R3-N2 contribution wording based on ablation results', 'status': 'pending', 'activeForm': 'Updating contribution wording from ablation results'}, {'content': 'After SHAP + writing fixes: spawn Reviewer Worker for adversarial review round', 'status': 'pending', 'activeForm': 'Spawning Reviewer Worker for adversarial review'}, {'content': 'Final polish + bibliography audit (May 23)', 'status': 'pending', 'activeForm': 'Running final polish and bibliography audit'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Session start: read registry + reconcile crons + report Director', 'status': 'completed', 'activeForm': 'Completing session start initialization'}, {'content': 'Spawn Worker 1: Paper R3 writing fixes', 'status': 'completed', 'activeForm': 'Spawning paper writing Worker'}, {'content': 'Spawn Worker 2: SHAP TreeExplainer analysis (R3-N3)', 'status': 'completed', 'activeForm': 'Spawning SHAP analysis Worker'}, {'content': 'Wait for Worker 1 callback: R3 writing fixes done', 'status': 'in_progress', 'activeForm': 'Waiting for paper writing Worker callback'}, {'content': 'Wait for Worker 2 callback: SHAP analysis done', 'status': 'pending', 'activeForm': 'Waiting for SHAP analysis Worker callback'}, {'content': 'Wait for feat_ablation_v1 cron callback: forward selection complete', 'status': 'pending', 'activeForm': 'Waiting for feature ablation cron callback'}, {'content': 'After feat_ablation: update R3-N2 contribution wording based on ablation results', 'status': 'pending', 'activeForm': 'Updating contribution wording from ablation results'}, {'content': 'After SHAP + writing fixes: spawn Reviewer Worker for adversarial review round', 'status': 'pending', 'activeForm': 'Spawning Reviewer Worker for adversarial review'}, {'content': 'Final polish + bibliography audit (May 23)', 'status': 'pending', 'activeForm': 'Running final polish and bibliography audit'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T19:17:28.597065+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "TodoWrite",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-15T19:17:37.365806+00:00_
+
+Session #10 初始化完成。
+
+**当前状态**:
+- `feat_ablation_v1`: RUNNING (4/9 forward selection, PID 473989, cron 监控中)
+- Worker 1 (`paper:r3-writing-fixes`): 处理 R3 全部写作修复（R3-N1/N4/N5/W1/W2/W3/W4/W6/M1 + 500-sample zero-shot 更新）
+- Worker 2 (`analysis:shap-treexplainer`): SHAP TreeExplainer 分析替代 attention-importance (R3-N3)
+- Worker 池 = 2，GPU 分配 2 / feat_ablation CPU-bound
+
+**等待回调**:
+1. Worker 1/2 完成 → 整合结果 → 派 Reviewer Worker 做对抗审查
+2. feat_ablation_v1 cron → 分析 forward selection 全 9-cell 结果 → R3-N2 contribution 表述调整
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:depth_extension_binary_pairwise_001"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+34 recorded events
+
+### User
+
+_source line 67 · 2026-05-15T22:20:25.891150+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-15T22:20:34.838177+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T22:20:34.838538+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-15T22:20:37.499449+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T22:20:37.550232+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T22:20:38.254719+00:00_
+
+Error: result (116,151 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-agent-e56a59c2/640f277a-d4a1-4492-b8a5-c1f29caacaf5/tool-results/mcp-agent-ml-research-read_registry-1778883638008.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-agent-e56a59c2/640f277a-d4a1-4492-b8a5-c1f29caacaf5/tool-results/mcp-agent-ml-research-read_registry-1778883638008.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-agent-e56a59c2/640f277a-d4a1-4492-b8a5-c1f29caacaf5/tool-results/mcp-agent-ml-research-read_registry-1778883638008.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 755
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T22:20:38.255240+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 705
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-15T22:20:38.556688+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-15T22:20:39.059376+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- downstream_curation_poc_001（排队等待 GPU）\\n- feature_ablation_9cell（准备中）\\n\\n## 近期结论\\n- **wild_data_calibration_001** (success): —\\n- **w2_domain_bias_001** (success): —\\n  [w2_domain_bias_results](ssh://gpu-6000pro-2/root/autodl-tmp/recursive_gen_depth_est/results/w2_domain_bias/w2_domain_bias_results.json) | [w2_domain_bias_bc_rerun_results](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/w2_domain_bias_001/data/w2_domain_bias_bc_rerun_summary.txt)\\n- **xgboost_lgbm_3cell_001** (success): —\\n  [xgb_lgbm_3cell_results](gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/xgb_lgbm_3cell/results.json)\\n\\n## 趋势\\n成功 32 / 负向 3 / 失败 6 / 共 54\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ngpu-6000pro-2: 无 GPU 信息\\n\\n## 告警\\n- mvp_pipeline_001: 已被终止 — unknown\\n- mvp_pipeline_002: 已被终止 — unknown\\n- mvp_pipeline_003: 已被终止 — unknown\\n- mvp_pipeline_004: 已被终止 — unknown\\n- mvp_pipeline_base_002: 已被终止 — unknown\\n- mvp_pipeline_base_003: 已被终止 — unknown\\n- mvp_pipeline_pythia_001: 已被终止 — unknown\\n- mvp_pipeline_qwen_base_004: 已被终止 — unknown\\n- cross_model_olmo_001: 训练失败 — unknown\\n- dcol_deberta_001: 训练失败 — unknown\\n- cross_model_olmo_temp09_001: 已被终止 — unknown\\n- dcol_deberta_002: 训练失败 — unknown\\n- dcol_deberta_003: 已被终止 — unknown\\n- olmo_temp09_002: 已被终止 — unknown\\n- dcol_deberta_004: 已被终止 — unknown\\n- dcol_deberta_005: 训练失败 — unknown\\n- cross_model_loo_001: 已被终止 — unknown\\n- depth_extension_binary_pairwise_001: 训练失败 — unknown\\n- depth_extension_olmo_d4d5_001: 训练失败 — unknown\\n\", \"total_chars\": 1553, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-15T22:20:39.059832+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T22:20:39.110627+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ROADMAP.md\", \"content\": \"# recursive_gen_depth_est — Research Dashboard\\n\\n> 最后更新: 2026-05-15 13:29 UTC | 更新原因: Phase 1 全部完成，Phase 2 写作启动。R1-N3 resolved (dual backbone)。\\n\\n## 核心方向\\n递归生成深度估计：给定文本，预测其经历了多少轮 model→data→model 递归训练循环。\\n**Primary contribution**: Depth Degradation Atlas + EDD metric + feature universality findings。\\n详见 paper_framing.md（Plan A, D011）。\\n\\n## 当前进展\\n- **阶段**: **Phase 2 写作**（Phase 1 全部完成 2026-05-15）+ 审稿进行中\\n- **Framing**: Plan A 已激活 — Atlas/EDD primary, DCOL non-blocking (D011)\\n- **3×3 矩阵**: ✅ 9/9 全部完成（70–85% 4-class acc）\\n- **EDD 跨模型一致性**: 三模型 d3v4 AUC 收敛于 0.75 附近，d4v5 均<0.70。连续 AUC 衰减曲线叙事 (D024/D027)\\n- **Cross-model LOO (plan_005)**: ✅ 均值 66.4%\\n- **Cross-strategy LOO (plan_007)**: ✅ 均值 59.1%\\n- **N2 Dual Backbone**: ✅ DeBERTa 58.3%±4.7%, RoBERTa 59.5%±3.2%, 均远低于 RF 78.2% (-19.9pp/-18.7pp)\\n- **Feature Overlap**: ✅ Spearman ρ=-0.484 (p=0.036), DeBERTa vs RF 关注完全相反特征\\n- **DDL**: EMNLP ARR May 25 — **剩余 10 天**\\n\\n## 审稿 Issue 进度\\n**Critical (4)**: R1-N1 EDD公式 ⏳ | R1-N2 std/CI ✅ | R1-N3 end-to-end baseline ✅ | R2-N2 文献 ⏳\\n**Warning 数据已完成**: W1 permutation importance ✅ | W5 无条件生成确认 ✅ | W6 per-class recall ✅ | N3 fold std ✅\\n**Warning 待 Paper Agent**: W3 LoRA引用 | W5 论文文本 | W6 论文纳入 | R2-W2 术语 | R2-W4 Limitations位置 | R2-W6 orphan bib\\n**Open (rebuttal)**: W2 domain bias | W4 zero-shot样本量 | R2-W3 multi-τ\\n\\n## Phase 2 写作计划 (May 15–22)\\n- [ ] Paper Agent Patch: 纳入 N2 双 backbone 结果 + feature overlap 分析到 Section 5.4\\n- [ ] Paper Agent: 处理所有 Warning 级审稿修改 (R1-N1/W1/W3/W5/W6/R2-N2/R2-W2/R2-W4/R2-W6)\\n- [ ] Reviewer 对抗迭代 (max 5 rounds)\\n- [ ] RoBERTa feature overlap 分析（等 Agent 完成）\\n\\n## Phase 3: 提交 (May 23–25)\\n- [ ] 最终 polish + bibliography audit\\n- [ ] 提交 ARR\\n\\n## GPU 预算\\n- 本项目分配: gpu-6000pro-2 cuda:0, cuda:1 (2× RTX 6000 Pro)\\n- 已消耗: ~36 GPU·h\\n- 当前: 两卡空闲，Phase 2 写作期间可用于补充实验\
+…[truncated 2377 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-15T22:20:39.211600+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "recursive_gen_depth_est",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "recursive_gen_depth_est",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T22:20:39.412893+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"recursive_gen_depth_est\", \"section\": \"execution\", \"config\": {\"execution\": {\"project_path\": \"/root/autodl-tmp/recursive_gen_depth_est\", \"servers\": [{\"gpu_ids\": [0, 1], \"server\": \"gpu-6000pro-2\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-15T22:20:48.899983+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-agent-e56a59c2/640f277a-d4a1-4492-b8a5-c1f29caacaf5/tool-results/mcp-agent-ml-research-read_registry-1778883638008.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nexps = json.loads(data['result'])['data']\n# Show all experiments with status\nfor e in exps:\n    eid = e.get('exp_id','?')\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    hypothesis = e.get('hypothesis','')[:80] if e.get('hypothesis') else ''\n    print(f'{eid} | {status} | {conclusion} | {hypothesis}')\n\"",
+  "description": "Extract experiment statuses from registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-agent-e56a59c2/640f277a-d4a1-4492-b8a5-c1f29caacaf5/tool-results/mcp-agent-ml-research-read_registry-1778883638008.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nexps = json.loads(data['result'])['data']\n# Show all experiments with status\nfor e in exps:\n    eid = e.get('exp_id','?')\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    hypothesis = e.get('hypothesis','')[:80] if e.get('hypothesis') else ''\n    print(f'{eid} | {status} | {conclusion} | {hypothesis}')\n\"",
+    "description": "Extract experiment statuses from registry JSON"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T22:20:49.455609+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    eid = e.get('exp_id','?')
+          ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Bash",
+  "elapsed_ms": 555
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-15T22:20:49.908011+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-15T22:20:49.908366+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-1/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-15T22:20:50.511037+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "paper_framing.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "paper_framing.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-15T22:20:50.511401+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-1/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-15T22:20:55.885739+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-agent-e56a59c2/640f277a-d4a1-4492-b8a5-c1f29caacaf5/tool-results/mcp-agent-ml-research-read_registry-1778883638008.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']\nprint(type(exps))\nif isinstance(exps, dict):\n    for k,v in list(exps.items())[:3]:\n        print(k, type(v))\nelif isinstance(exps, list):\n    print(len(exps))\n    print(exps[0] if exps else 'empty')\nelse:\n    print(str(exps)[:500])\n\"",
+  "description": "Probe registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-agent-e56a59c2/640f277a-d4a1-4492-b8a5-c1f29caacaf5/tool-results/mcp-agent-ml-research-read_registry-1778883638008.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']\nprint(type(exps))\nif isinstance(exps, dict):\n    for k,v in list(exps.items())[:3]:\n        print(k, type(v))\nelif isinstance(exps, list):\n    print(len(exps))\n    print(exps[0] if exps else 'empty')\nelse:\n    print(str(exps)[:500])\n\"",
+    "description": "Probe registry JSON structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-15T22:20:55.986585+00:00_
+
+&lt;class 'dict'>
+experiments &lt;class 'dict'>
+count &lt;class 'int'>
+total &lt;class 'int'>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-15T22:20:59.551122+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-agent-e56a59c2/640f277a-d4a1-4492-b8a5-c1f29caacaf5/tool-results/mcp-agent-ml-research-read_registry-1778883638008.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, e in exps.items():\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    print(f'{eid} | {status} | {conclusion}')\n\"",
+  "description": "List all experiments with status and conclusion"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est--claude-sessions-agent-e56a59c2/640f277a-d4a1-4492-b8a5-c1f29caacaf5/tool-results/mcp-agent-ml-research-read_registry-1778883638008.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid, e in exps.items():\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    print(f'{eid} | {status} | {conclusion}')\n\"",
+    "description": "List all experiments with status and conclusion"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-15T22:20:59.902802+00:00_
+
+downstream_curation_poc_001 | QUEUED | 
+wild_data_calibration_001 | DONE | success
+w2_domain_bias_001 | DONE | success
+xgboost_lgbm_3cell_001 | DONE | success
+xgboost_lgbm_baseline_001 | DONE | success
+feat_ablation_v1 | DONE | success
+shap_supplement_001 | DONE | success
+feature_ablation_9cell | PREPARING | failed
+zeroshot_llm_500_001 | DONE | success
+temp07_pilot_pythia_001 | DONE | success
+n2_roberta_finetune_001 | DONE | success
+n2_deberta_finetune_001 | DONE | success
+cross_strategy_loo_001 | DONE | success
+depth_extension_olmo_d4d5_002 | DONE | success
+depth_extension_gpt2xl_d4d5_001 | DONE | success
+depth_extension_olmo_d4d5_001 | DONE | failed
+lr_zscore_cross_strategy_001 | DONE | negative
+granularity_ablation_rf_001 | DONE | success
+zero_shot_llm_baseline_001 | DONE | success
+olmo_temp09_002 | DONE | killed
+depth_extension_pythia_d4d5_001 | DONE | success
+depth_extension_binary_pairwise_002 | DONE | success
+depth_extension_binary_pairwise_001 | DONE | failed
+dcol_roberta_v6_001 | DONE | negative
+cross_strategy_loo_zscore_001 | DONE | negative
+cross_model_loo_v1 | DONE | success
+baseline_battery_9cell_001 | DONE | success
+olmo_topk50_001 | DONE | success
+atlas_v2_analysis | DONE | success
+cross_model_loo_001 | DONE | killed
+batch_feature_extraction_5cells | DONE | success
+gpt2xl_topk50_001 | DONE | success
+dcol_deberta_005 | DONE | failed
+dcol_deberta_004 | DONE | killed
+dcol_deberta_003 | DONE | killed
+olmo_temp09_001 | DONE | success
+baseline_battery_001 | DONE | success
+atlas_v1_analysis | DONE | success
+dcol_deberta_002 | DONE | failed
+gpt2xl_temp09_001 | DONE | success
+dcol_deberta_001 | DONE | failed
+cross_model_olmo_temp09_001 | DONE | killed
+pythia_topk50_001 | DONE | success
+cross_model_gpt2xl_001 | DONE | success
+cross_model_olmo_002 | DONE | success
+pythia_temp09_001 | DONE | success
+mvp_pipeline_pythia_002 | DONE | success
+cross_model_olmo_001 | DONE | failed
+mvp_pipeline_qwen_base_004 | DONE | killed
+mvp_pipeline_pythia_001 | DONE | killed
+mvp_p
+…[truncated 202 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "Bash",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-15T22:21:00.405139+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-15T22:21:00.756974+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/memory.md\", \"content\": \"# Memory\\n\\n## SHAP TreeExplainer Analysis (R3-N3) — 2026-05-16\\n\\n### 结果摘要\\n\\nSHAP TreeExplainer 9-cell RF 分析完成，替代论文 §5.4 被审稿人质疑的 attention-importance 相关性方法。\\n\\n**三方法一致性 (SHAP vs Gini vs Permutation)**:\\n- Kendall's W: mean=0.8955, range=[0.8503, 0.9314] — 三方法高度一致\\n- ρ(SHAP, Gini): mean=0.9312 — SHAP 和 Gini 几乎完全一致\\n- ρ(SHAP, Perm): mean=0.8392\\n\\n**跨 cell SHAP 一致性**:\\n- Mean ρ=0.8047, range=[0.6263, 0.9439]\\n\\n**Top-2 特征稳定性 (SHAP)**:\\n- p90_ppl in top-2: **9/9** (100%)\\n- var_surprisal in top-2: **8/9** (89%)\\n\\n**SHAP 聚合排名**: p90_ppl > var_surprisal > p75_ppl > mean_surprisal > mean_ppl\\n**Gini 聚合排名**: var_surprisal > p90_ppl > mean_ppl > mean_surprisal > p75_ppl\\n\\n**品类贡献**: PPL/surprisal 特征占 SHAP importance 的 88.8%\\n\\n**Top-3 三方法对比 (各 cell)**:\\n| Cell | SHAP | Gini | Perm |\\n|------|------|------|------|\\n| Pythia/Nucleus | var_surprisal, p90_ppl, mean_ppl | var_surprisal, p90_ppl, mean_ppl | var_surprisal, p90_ppl, p50_ppl |\\n| GPT-2 XL/Nucleus | var_surprisal, p90_ppl, p75_ppl | var_surprisal, p90_ppl, p75_ppl | var_surprisal, p90_ppl, p75_ppl |\\n| OLMo/Nucleus | p90_ppl, var_surprisal, p75_ppl | p90_ppl, var_surprisal, p75_ppl | p90_ppl, var_surprisal, p75_ppl |\\n\\n**产出文件** (`results/shap_analysis/`):\\n- `concordance_summary.json` — 三方法一致性统计\\n- `three_way_comparison.json` — 每 cell 每特征三方法排名\\n- `beeswarm_{pythia,gpt2xl,olmo}_nucleus095.png` — SHAP beeswarm plots\\n- `cross_cell_shap_consistency.png` — 跨 cell 一致性热力图\\n- 先前已有: `shap_importance*.json`, `shap_summary.txt`, bar plots, heatmap\\n\\n### 对 R3-N3 的回应价值\\n1. 三种独立方法（Gini/Permutation/SHAP）的特征排名高度一致，Kendall's W=0.90，这完全不依赖 attention weight\\n2. SHAP 提供了理论上 exact 的 Shapley value（对 tree model），是 model-agnostic 的 gold standard\\n3. Beeswarm plots 提供 per-sample 级别的贡献方向信息，比 Gini/Perm 更丰富\\n\", \"total_chars\": 1723, \
+…[truncated 58 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-15T22:21:00.757331+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "paper_framing.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "paper_framing.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-15T22:21:00.808094+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper_framing.md\", \"content\": \"# Paper Framing — recursive_gen_depth_est\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\n- Backup: AAAI 2027 (abstract July 25, full paper August 1, 2026)\\n- EMNLP 2026 special theme \\\"New Missions for NLP Research\\\" explicitly calls for work on data contamination, synthetic data feedback loops, and data governance — direct venue fit\\n\\n## Core Claims (2 条 + Discussion implication)\\n\\n1. **Ordinal depth estimation is feasible and accurate**: Given text alone, recursive generation depth (d ∈ {0,1,2,...,K}) can be estimated with high accuracy using statistical features from reference-model perplexity distributions. On our 3-model × 3-strategy benchmark, Random Forest classifiers on 19 statistical features achieve 70–85% four-class accuracy (chance=25%), with the best configuration (GPT-2 XL, temp τ=0.9) reaching 85.4%. Feature-based methods (RF, CORAL, DivEye) consistently outperform single-feature baselines across all 9 settings.\\n\\n2. **Depth Degradation Atlas — systematic characterization of recursive collapse** (PRIMARY): We provide the first systematic empirical characterization of how text statistical properties evolve across recursive generation depths, revealing (a) perplexity tail statistics (p90_ppl) and surprisal variance (var_surprisal) as the dominant depth signal family — consistently occupying the top-4 features across all models and strategies, though their relative ranking is model-dependent, (b) non-uniform inter-depth distances (depth 0→1 gap >> depth 2→3 gap), (c) an Effective Discriminable Depth (EDD) boundary beyond which adjacent depths become indistinguishable, and (d) **strategy-dependent feature trajectory reversal** — temperature sampling causes the depth-1→depth-2 feature boundary to invert relative to nucleus/top-k (cross-strategy LOO d1v
+…[truncated 4399 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-15T22:21:03.920336+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__poll_cron",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__poll_cron",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-15T22:21:03.970961+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-15T22:21:06.631950+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-15T22:21:06.632401+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_exp_plan_013_downstream_curation_poc_20260515T213758\", \"task_type\": \"exp:plan_013_downstream_curation_poc\", \"project\": \"recursive_gen_depth_est\", \"status\": \"running\", \"started_at\": \"2026-05-15T21:37:58.802807+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_exp_plan_015_dolma_supplement_20260515T214713\", \"task_type\": \"exp:plan_015_dolma_supplement\", \"project\": \"recursive_gen_depth_est\", \"status\": \"running\", \"started_at\": \"2026-05-15T21:47:13.362510+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-15T22:21:08.590343+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-15T22:21:08.842525+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001a\", \"claim\": 1, \"description\": \"Pythia-1.4B recursive chain — nucleus p=0.95 (MVP)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"status\": \"DONE\", \"notes\": \"4 depths × 1 strategy. 78.2% 4-class acc, d1v2 AUC 0.861. Content-type control: 81.6%.\", \"registry_id\": \"mvp_pipeline_pythia_002\", \"conclusion\": \"success\", \"metrics\": {\"full_4class_acc\": 0.782, \"full_4class_acc_ci\": [0.769, 0.794], \"full_4class_acc_stratified\": 0.781, \"full_mae\": 0.2367, \"full_auc_0v1\": 0.9975, \"full_auc_1v2\": 0.8607, \"full_auc_2v3\": 0.8005, \"filtered_4class_acc\": 0.816, \"filtered_4class_acc_ci\": [0.803, 0.829], \"filtered_mae\": 0.1995, \"filtered_auc_0v1\": 0.9977, \"filtered_auc_1v2\": 0.8782, \"filtered_auc_2v3\": 0.8323, \"filtered_sample_count\": 16993, \"three_class_acc\": 0.708, \"three_class_acc_ci\": [0.692, 0.725], \"three_class_mae\": 0.3203, \"three_class_auc_1v2\": 0.854, \"three_class_auc_1v3\": 0.9569, \"three_class_auc_2v3\": 0.7931, \"three_class_recall_d1\": 0.79, \"three_class_recall_d2\": 0.607, \"three_class_recall_d3\": 0.728, \"three_class_precision_d1\": 0.852, \"three_class_precision_d2\": 0.605, \"three_class_precision_d3\": 0.68, \"three_class_f1_d1\": 0.82, \"three_class_f1_d2\": 0.606, \"three_class_f1_d3\": 0.703, \"three_class_lr_acc\": 0.671, \"filtered_three_class_acc\": 0.747, \"filtered_three_class_acc_ci\": [0.727, 0.764], \"filtered_three_class_mae\": 0.2759, \"filtered_three_class_recall_d1\": 0.862, \"filtered_three_class_recall_d2\": 0.635, \"filtered_three_class_recall_d3\": 0.735, \"filtered_three_class_precision_d1\": 0.867, \"filtered_three_class_precision_d2\": 0.659, \"filtered_three_class_precision_d3\": 0.704, \"filtered_three_class_f1_d1\": 0.864, \"filtered_three_class_f1_d2\": 0.647, \"filtered_three_class_f1_d3\": 0.719, \"filtered_three_class_auc_1v2\": 0.8926, \"filtered_three_class_auc_1v3\": 0.9769, \"f
+…[truncated 27252 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:depth_extension_binary_pairwise_001",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100 · 2026-05-15T22:22:14.351291+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：gpu-6000pro-2 上 **cuda:0, cuda:1** 仅此两卡，禁止使用其他设备号
+- EMNLP ARR May 25 DDL，**剩余 10 天**，所有决策以此为锚
+- DCOL 已死（v1-v6 全部失败/negative），**不要再尝试任何 DCOL 变体**——Plan A 已激活，Atlas/EDD 是 PRIMARY contribution
+- EDD 跨模型声明已降级（D026/D027）：Pythia 显著 p=0.001，OLMo 边际 p=0.05——不能说"均 EDD=4"，必须说"一致的 depth-4 衰减边界，统计强度分层"
+- 域偏差叙事（D029）：从"无偏差"改为"depth dominates, residual exists"——不要回退到旧措辞
+- Cross-strategy normalization claim（D028）：z-score 不能修复 d1v2 反转，这是结构性偏移不是 scale artifact
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: gpu-6000pro-2，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`
+- **Python**: 需确认（conda base 或 venv，上次 session 用的 conda `/root/miniconda3/bin/python`）
+- **模型缓存**: `/root/autodl-tmp/.hf_cache`（AutoDL 磁盘规则：大文件必须在 autodl-tmp）
+- **数据目录**: `/root/autodl-tmp/recursive_gen_depth_est/data/` 下按 `{model}_{strategy}/` 组织（9 cells + depth extension d4/d5）
+- **结果目录**: `results/` 下按实验名组织；SHAP 分析在 `results/shap_analysis/`
+- **活跃进程**: 无训练进程在跑（reconcile_crons=0），两卡空闲
+- **活跃 Worker**:
+  - `worker_exp_plan_013_downstream_curation_poc_20260515T213758`（running，downstream curation PoC）
+  - `worker_exp_plan_015_dolma_supplement_20260515T214713`（running，Dolma wild-data 补充实验）
+- **活跃 Cron**: 无
+
+### 3. 📊 当前状态
+**刚完成**: Session 启动初始化（registry 同步 + cron reconcile）。这是一个 fresh session，尚未执行任何操作。
+
+**Registry 概览**: 55 实验，成功 32 / negative 3 / failed 6 / killed 8 / QUEUED 1 / PREPARING 1 / planned 3。**无 RUNNING 实验**。
+
+**等待中**:
+- Worker 回调：plan_013 downstream curation PoC（预计产出 curation 效果数据，支撑 Claim 3 Discussion）
+- Worker 回调：plan_015 Dolma wild-data 补充（补充 wild-data calibration 数据）
+- downstream_curation_poc_001 处于 QUEUED 状态，等 GPU
+- feature_ablation_9cell 处于 PREPARING 但标记 failed
+
+**审稿 Issue 进度**（Phase 2 核心任务）:
+- **Critical 未完成**: R1-N1 EDD 公式定义 ⏳ | R2-N2 文献补充 ⏳
+- **Critical 已完成**: R1-N2 std/CI ✅ | R1-N3 end-to-end baseline（N2 双 backbone）✅
+- **Warning 数据已完成待写入论文**: W1 permutation importance ✅ | W5 无条件生成确认 ✅ | W6 per-class recall ✅ | SHAP 三方法一致性 ✅
+- **Warning 待 Paper Agent**: W3 LoRA 引用 | W5 论文文本 | W6 论文纳入 | R2-W2 术语 | R2-W4 Limitations 位置 | R2-W6 orphan bib
+- **Open (rebuttal)**: W2 domain bias | W4 zero-shot 样本量 | R2-W3 multi-τ
+
+### 4. 📋 待办（条件触发式）
+- **plan_013 Worker 回调到达** → 读产出，更新 registry，评估 curation 效果是否足以支撑 Claim 3 Discussion → 汇报 Director
+- **plan_015 Worker 回调到达** → 读 Dolma calibration 结果，更新 registry → 如果效果好，纳入论文 Section 5
+- **两个 Worker 都完成后** → Phase 2 写作全面启动：spawn Paper Agent Worker 处理所有 Warning 级审稿修改（批量：W3/W5/W6/R2-W2/R2-W4/R2-W6 + N2 双 backbone 结果纳入 §5.4 + SHAP 结果替换 attention-importance）
+- **R1-N1 EDD 公式** → 需要 Paper Agent 给 EDD 写正式数学定义（已有数据：三模型 d3v4 AUC 收敛 0.75，d4v5 < 0.70）
+- **R2-N2 文献补充** → spawn research Worker 补充 model collapse 文献（Shumailov Nature 2024、Drayson EMNLP 2025 等已在 framing 中引用，需补充更多）
+- **GPU 空闲** → 两卡当前无任务，Phase 2 写作期间可用于补充实验（plan_014 7B cross-scale 如果 Director 批准）
+
+### 5. 🎯 战略上下文
+**核心结论链**:
+- D011: Plan A 激活，Atlas/EDD 升为 PRIMARY，DCOL 降为 negative analysis
+- D024/D027: EDD 叙事从硬阈值转向连续 AUC 衰减曲线，三模型 d3v4 ≈ 0.75 收敛，d4v5 均 < 0.70
+- D028: Cross-strategy z-score normalization 不能修复 d1v2 反转，claim 降级为 RF-only finding
+- D029: 域偏差 = "depth dominates, residual exists"
+
+**最容易判断错的事**:
+1. **不要低估论文工作量**——10 天看似充裕，但有 6+ 个 Warning 要改论文文本 + 2 个 Critical 未完成 + rebuttal 要写，Paper Agent 需要多轮迭代
+2. **SHAP 结果（memory.md）是 R3-N3 的关键回应**——三方法一致性 W=0.90 直接替换被质疑的 attention-importance 方法，必须纳入论文
+3. **plan_013/015 是 P2 实验**——如果 Worker 产出不理想，不要花时间救，直接写 Discussion 级 conceptual argument 即可，DDL 优先
+4. **feature_ablation_9cell PREPARING+failed** 看起来异常——可能是之前的失败残留，需要决定是否重新提交或跳过
+5. **两卡空闲是浪费**——如果 Worker 不需要 GPU（纯写作/分析），应考虑向 Director 提议跑 plan_014（7B cross-scale）利用 GPU 时间
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:depth_extension_binary_pairwise_001"
+}
+```
+
+</details>
+
+---

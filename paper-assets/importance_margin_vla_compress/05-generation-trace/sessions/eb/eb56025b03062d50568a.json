@@ -2524,5 +2524,6 @@
       ],
       "message_count": 60
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/fix-westd38929-registry.md"
 }

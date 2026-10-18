@@ -56,5 +56,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/gpu-mistral-hires-bf16-v2.md"
 }

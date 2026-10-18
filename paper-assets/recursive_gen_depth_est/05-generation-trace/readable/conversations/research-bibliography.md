@@ -1,0 +1,2514 @@
+# research bibliography
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 75
+- **Recorded user turns:** 0
+- **Tool calls:** 37
+- **Original source:** `logs/chats/worker_research_bibliography_20260515T155440.jsonl`
+- **Structured JSON:** [`e64117d13398b394d82c.json`](../../sessions/e6/e64117d13398b394d82c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+75 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T15:59:58.591978+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Read existing paper files",
+  "subagent_type": "Explore",
+  "prompt": "Find and read all paper-related files in /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/. Look for:\n1. Any existing .bib files\n2. section_related_work.tex\n3. Any other .tex files that contain \\cite commands\n\nAlso check /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ for any .bib or .tex files.\n\nReport the full content of any .bib file found, and all \\cite{} keys from .tex files."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Read existing paper files",
+    "subagent_type": "Explore",
+    "prompt": "Find and read all paper-related files in /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/. Look for:\n1. Any existing .bib files\n2. section_related_work.tex\n3. Any other .tex files that contain \\cite commands\n\nAlso check /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ for any .bib or .tex files.\n\nReport the full content of any .bib file found, and all \\cite{} keys from .tex files."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T15:59:58.592363+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/ -type f \\( -name \"*.bib\" -o -name \"*.tex\" \\) 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/ -type f \\( -name \"*.bib\" -o -name \"*.tex\" \\) 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T15:59:58.592524+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_related_work.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T15:59:58.592665+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ -maxdepth 1 -type f \\( -name \"*.bib\" -o -name \"*.tex\" \\) 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ -maxdepth 1 -type f \\( -name \"*.bib\" -o -name \"*.tex\" \\) 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T15:59:58.592789+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T15:59:58.592967+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T15:59:58.593202+00:00_
+
+1	\section{Related Work}
+2	\label{sec:related}
+3	
+4	\paragraph{Model Collapse Theory.}
+5	\citet{shumailov2024_nature} demonstrate that recursively training language models on their own outputs erodes distributional tails, eventually collapsing the output distribution to a narrow mode.
+6	\citet{dohmatob2024_tale_of_tails} formalize this phenomenon through scaling laws that distinguish tail \emph{narrowing} (reduced variance) from tail \emph{cutting} (lost support), showing both accelerate with recursion depth.
+7	The MAD framework \cite{alemohammad2024_mad} extends this analysis to self-consuming generative models and quantifies the precision--recall tradeoff as synthetic data accumulates across generations.
+8	\citet{gerstgrasser2024_accumulate} show that retaining real data alongside synthetic data across generations mitigates collapse, while \citet{drayson2025_detection_prevents_collapse} demonstrate that filtering synthetic samples via binary detection can preserve model quality.
+9	Recent work further refines the theoretical picture: \citet{bakshi2026_collapse_improvement} identify non-monotonic dynamics where early recursion can temporarily \emph{improve} model quality before eventual degradation; \citet{marchi2024_heat_death} characterize convergence to a fixed-point ``heat death'' distribution; and \citet{wang2026_contamination} derive contamination guarantees bounding how much synthetic data a corpus can absorb.
+10	Additional lines of work address curated synthetic pipelines \cite{falahati2026_curated}, knowledge collapse in factual recall \cite{knowledge_collapse2025}, spectral signatures of model-generated text \cite{sigma2026_spectral}, and the ``synthetic eggs'' problem in self-improving loops \cite{synthetic_eggs2026}.
+11	These works characterize degradation patterns but assume the generation depth is known a priori; our work addresses the inverse problem of estimating depth from text alone.
+12	
+13	\paragraph{AI Text Detection.}
+14	DetectGPT \cite{mitchell
+…[truncated 3329 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T15:59:58.593395+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T15:59:58.593583+00:00_
+
+1	\section{Task Formulation}
+2	\label{sec:method}
+3	
+4	\subsection{Problem Definition}
+5	\label{sec:method:problem}
+6	
+7	Let $f_\theta$ denote a language model and $\mathcal{D}_0$ a corpus of human-written seed text.
+8	We define a \emph{recursive generation chain} of depth $K$ as the sequence $\mathcal{D}_0, \mathcal{D}_1, \dots, \mathcal{D}_K$, where each $\mathcal{D}_k$ ($k \geq 1$) is produced by finetuning $f_\theta$ on $\mathcal{D}_{k-1}$ and sampling from the resulting model.
+9	Depth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.
+10	
+11	Given a text passage $x$, the task is to estimate its recursive generation depth $d \in \{0, 1, \dots, K\}$.
+12	This is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.
+13	
+14	\subsection{Multi-Generational Benchmark Construction}
+15	\label{sec:method:benchmark}
+16	
+17	We construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.
+18	
+19	\paragraph{Model families.}
+20	We select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).
+21	Restricting to a narrow parameter range isolates the effect of architecture and training data from scale.
+22	
+23	\paragraph{Decoding strategies.}
+24	Each model is paired with three sampling methods: nucleus sampling ($p{=}0.95$) \cite{holtzman2020_nucleus}, temperature sampling ($\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).
+25	These span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.
+26	
+27	\paragraph{Depth and scale.}
+28	The primary benchmark covers depths d0--d3 across all $3 \times 3 = 9$ model--strategy cells, with 5{,}000 samples per depth per cell (180K samples total).
+29	For depth exten
+…[truncated 5131 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T15:59:58.593739+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T15:59:58.593897+00:00_
+
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\subsection{Implications}
+5	\label{sec:discussion:implications}
+6	
+7	\paragraph{Depth-graduated data curation.}
+8	Binary synthetic-data filters discard all machine-generated text indiscriminately, yet first-generation outputs may be benign or even beneficial for training \cite{drayson2025_detection_prevents_collapse}.
+9	Our depth estimates offer a finer-grained alternative: predicted depth can serve as a continuous quality proxy for importance weighting in data curation pipelines such as DSIR \cite{dsir2023} and QuRating \cite{qurating2024}.
+10	Rather than filtering at a binary threshold, a curation system could assign importance weights that decay with estimated depth \cite{sugiyama2007_importance_weighting}, retaining shallow-generation text while down-weighting deeply recursive samples.
+11	We note this as a conceptual contribution---empirical validation of depth-weighted curation remains future work.
+12	
+13	\paragraph{Feature evolution tracks tail erosion.}
+14	The feature importance analysis in \S\ref{sec:atlas:features} reveals a depth-dependent shift in which features carry discriminative power.
+15	At shallow depths (d0 vs.\ d1), \textsc{var\_surprisal} dominates, reflecting changes in second-order distributional structure---the variability of token surprisals decreases as the model's output distribution narrows.
+16	At deeper recursions (d2 vs.\ d3 and beyond), \textsc{p90\_ppl} and kurtosis assume greater importance, capturing changes in the shape of the distribution's tail.
+17	This progression aligns with the tail erosion theory of \citet{shumailov2024_nature}: early recursive generations preserve bulk distributional properties while eroding variability, and deeper generations progressively collapse the tail itself, consistent with the ``tale of tails'' analysis by \citet{dohmatob2024_tale_of_tails}.
+18	The feature importance shift thus provides an empirical counterpart to these theoretical predictions.
+19	
+…[truncated 3701 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T15:59:58.594105+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/ -name \"*.bib\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/ -name \"*.bib\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T15:59:58.594230+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T15:59:58.594356+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/ -type f -name \"*.tex\" | sort"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/ -type f -name \"*.tex\" | sort"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T15:59:58.594520+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_related_work.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T15:59:58.594689+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\\\cite\\{[^}]+\\}",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\\\cite\\{[^}]+\\}",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T15:59:58.594826+00:00_
+
+artifacts/_project/paper/section_related_work.tex:7:The MAD framework \cite{alemohammad2024_mad} extends this analysis to self-consuming generative models and quantifies the precision--recall tradeoff as synthetic data accumulates across generations.
+artifacts/_project/paper/section_related_work.tex:10:Additional lines of work address curated synthetic pipelines \cite{falahati2026_curated}, knowledge collapse in factual recall \cite{knowledge_collapse2025}, spectral signatures of model-generated text \cite{sigma2026_spectral}, and the ``synthetic eggs'' problem in self-improving loops \cite{synthetic_eggs2026}.
+artifacts/_project/paper/section_related_work.tex:14:DetectGPT \cite{mitchell2023_detectgpt} introduced probability curvature---the tendency of model-generated text to occupy local maxima of the log-probability surface---as a zero-shot detection signal.
+artifacts/_project/paper/section_related_work.tex:16:Binoculars \cite{binoculars2024} exploits the perplexity ratio between two related models, achieving strong detection without training data.
+artifacts/_project/paper/section_related_work.tex:17:DivEye \cite{diveye2026} leverages surprisal diversity patterns, while GLTR \cite{gehrmann2019_gltr} provides statistical visualization of per-token likelihood ranks for human inspection.
+artifacts/_project/paper/section_related_work.tex:24:EditLens \cite{editlens2026} estimates the \emph{extent} of editing applied to a passage---a continuous measure of how much a text has been modified in a single pass---but does not model recursive generation chains.
+artifacts/_project/paper/section_related_work.tex:26:LOKI \cite{loki2025} provides a comprehensive benchmark spanning multiple synthetic data modalities but evaluates binary detection, not depth estimation.
+artifacts/_project/paper/section_related_work.tex:34:\citet{wiher2022_decoding} provide a systematic comparison of decoding methods on surface-level text properties, and Mirostat \cite{basu2021_mirostat} introduces p
+…[truncated 1900 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T15:59:58.595069+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\\\citet\\{[^}]+\\}",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\\\citet\\{[^}]+\\}",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T15:59:58.595253+00:00_
+
+artifacts/_project/paper/section_related_work.tex:5:\citet{shumailov2024_nature} demonstrate that recursively training language models on their own outputs erodes distributional tails, eventually collapsing the output distribution to a narrow mode.
+artifacts/_project/paper/section_related_work.tex:6:\citet{dohmatob2024_tale_of_tails} formalize this phenomenon through scaling laws that distinguish tail \emph{narrowing} (reduced variance) from tail \emph{cutting} (lost support), showing both accelerate with recursion depth.
+artifacts/_project/paper/section_related_work.tex:8:\citet{gerstgrasser2024_accumulate} show that retaining real data alongside synthetic data across generations mitigates collapse, while \citet{drayson2025_detection_prevents_collapse} demonstrate that filtering synthetic samples via binary detection can preserve model quality.
+artifacts/_project/paper/section_related_work.tex:9:Recent work further refines the theoretical picture: \citet{bakshi2026_collapse_improvement} identify non-monotonic dynamics where early recursion can temporarily \emph{improve} model quality before eventual degradation; \citet{marchi2024_heat_death} characterize convergence to a fixed-point ``heat death'' distribution; and \citet{wang2026_contamination} derive contamination guarantees bounding how much synthetic data a corpus can absorb.
+artifacts/_project/paper/section_related_work.tex:15:\citet{fast_detectgpt2024} improve computational efficiency by replacing random perturbations with conditional probability curvature from a surrogate model.
+artifacts/_project/paper/section_related_work.tex:18:\citet{sadasivan2023_paraphrase} expose fundamental limits: paraphrasing attacks reduce detection accuracy to near chance, and \citet{pudasaini2026_detection_fails} show detection degrades under distribution shift between training and deployment domains.
+artifacts/_project/paper/section_related_work.tex:19:\citet{pu2026_generator_barrier} formalize a generator barrier bounding dete
+…[truncated 2376 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T15:59:58.595416+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ -name \"*.bib\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ -name \"*.bib\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T15:59:58.595537+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T15:59:58.595660+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T15:59:58.595819+00:00_
+
+1	@article{shumailov2024_nature,
+2	  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},
+3	  title     = {{AI models collapse when trained on recursively generated data}},
+4	  journal   = {Nature},
+5	  year      = {2024},
+6	  doi       = {10.1038/s41586-024-07566-y},
+7	}
+8	
+9	@inproceedings{marchi2024_heat_death,
+10	  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},
+11	  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},
+12	  booktitle = {Proceedings of ICASSP},
+13	  year      = {2024},
+14	  note      = {arXiv:2404.02325},
+15	  url       = {https://arxiv.org/abs/2404.02325},
+16	}
+17	
+18	@inproceedings{dohmatob2024_tale_of_tails,
+19	  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},
+20	  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},
+21	  booktitle = {Proceedings of ICML},
+22	  year      = {2024},
+23	  note      = {arXiv:2402.07043},
+24	  url       = {https://arxiv.org/abs/2402.07043},
+25	}
+26	
+27	@inproceedings{dohmatob2024_strong_collapse,
+28	  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},
+29	  title     = {{Strong Model Collapse}},
+30	  booktitle = {Proceedings of ICLR},
+31	  year      = {2024},
+32	  note      = {arXiv:2410.04840},
+33	  url       = {https://arxiv.org/abs/2410.04840},
+34	}
+35	
+36	@inproceedings{dohmatob2024_demystified,
+37	  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},
+38	  title     = {{Model Collapse Demystified: The Case of Regression}},
+39	  booktitle = {Proceedings of NeurIPS},
+40	  year      = {2024},
+41	  note      = {arXiv:2402.07712},
+42	  url       = {https://arxiv.org/abs/2402.07712},
+43	}
+44	
+45	@inproceedings{mohamed2025_broken_telephone,
+46	  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},
+47	  title     = {{LLM a
+…[truncated 12027 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T15:59:58.596064+00:00_
+
+Perfect! Now let me create a comprehensive report with all my findings.
+
+## Summary of Paper-Related Files Found
+
+I've thoroughly searched the project directories and found the following:
+
+### Locations Checked
+1. `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/`
+2. `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/` (root directory)
+
+### Files Found
+
+**Paper Sections (`.tex` files in artifacts/_project/paper/):**
+- `section_related_work.tex`
+- `section_method.tex`
+- `section_discussion.tex`
+
+**Bibliography File:**
+- `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib`
+
+### Bibliography File Content (references.bib)
+
+The complete `references.bib` file is provided above (125 lines, 55 entries covering model collapse theory, AI text detection methods, and decoding strategies).
+
+### All \cite{} and \citet{} Keys Found in .tex Files
+
+**From section_related_work.tex:**
+- shumailov2024_nature
+- dohmatob2024_tale_of_tails
+- alemohammad2024_mad
+- gerstgrasser2024_accumulate
+- drayson2025_detection_prevents_collapse
+- bakshi2026_collapse_improvement
+- marchi2024_heat_death
+- wang2026_contamination
+- falahati2026_curated
+- knowledge_collapse2025
+- sigma2026_spectral
+- synthetic_eggs2026
+- mitchell2023_detectgpt
+- fast_detectgpt2024
+- binoculars2024
+- diveye2026
+- gehrmann2019_gltr
+- sadasivan2023_paraphrase
+- pudasaini2026_detection_fails
+- pu2026_generator_barrier
+- editlens2026
+- uchendu2020_attribution
+- loki2025
+- holtzman2020_nucleus
+- finlayson2024_closing
+- garces_arias2025_decoding_decoded
+- wiher2022_decoding
+- basu2021_mirostat
+
+**From section_method.tex:**
+- holtzman2020_nucleus
+- hu2022lora
+- coral2020
+- diveye2026
+
+**From section_discussion.tex:**
+- drayson2025_detection_prevents_collapse
+- dsir2023
+- qurating2024
+- sugiyama2007_importance_weighting
+- shumailov2024_nature
+- dohmatob2024_tale_of_tails
+- pudasaini2026_de
+…[truncated 675 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Agent",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T15:59:58.596228+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T15:59:58.596430+00:00_
+
+1	@article{shumailov2024_nature,
+2	  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},
+3	  title     = {{AI models collapse when trained on recursively generated data}},
+4	  journal   = {Nature},
+5	  year      = {2024},
+6	  doi       = {10.1038/s41586-024-07566-y},
+7	}
+8	
+9	@inproceedings{marchi2024_heat_death,
+10	  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},
+11	  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},
+12	  booktitle = {Proceedings of ICASSP},
+13	  year      = {2024},
+14	  note      = {arXiv:2404.02325},
+15	  url       = {https://arxiv.org/abs/2404.02325},
+16	}
+17	
+18	@inproceedings{dohmatob2024_tale_of_tails,
+19	  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},
+20	  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},
+21	  booktitle = {Proceedings of ICML},
+22	  year      = {2024},
+23	  note      = {arXiv:2402.07043},
+24	  url       = {https://arxiv.org/abs/2402.07043},
+25	}
+26	
+27	@inproceedings{dohmatob2024_strong_collapse,
+28	  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},
+29	  title     = {{Strong Model Collapse}},
+30	  booktitle = {Proceedings of ICLR},
+31	  year      = {2024},
+32	  note      = {arXiv:2410.04840},
+33	  url       = {https://arxiv.org/abs/2410.04840},
+34	}
+35	
+36	@inproceedings{dohmatob2024_demystified,
+37	  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},
+38	  title     = {{Model Collapse Demystified: The Case of Regression}},
+39	  booktitle = {Proceedings of NeurIPS},
+40	  year      = {2024},
+41	  note      = {arXiv:2402.07712},
+42	  url       = {https://arxiv.org/abs/2402.07712},
+43	}
+44	
+45	@inproceedings{mohamed2025_broken_telephone,
+46	  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},
+47	  title     = {{LLM a
+…[truncated 12027 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T15:59:58.596627+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T15:59:58.596776+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T15:59:58.596929+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2602.10531 Bakshi Chakraborty \"From Collapse to Improvement\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2602.10531 Bakshi Chakraborty \"From Collapse to Improvement\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T15:59:58.597056+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2602.16065 Wang Niu Li \"Can Generative AI Survive Data Contamination\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2602.16065 Wang Niu Li \"Can Generative AI Survive Data Contamination\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T15:59:58.597170+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2605.07724 Falahati \"Curated Synthetic Data\" model collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2605.07724 Falahati \"Curated Synthetic Data\" model collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T15:59:58.597280+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2509.04796 \"Knowledge Collapse in LLMs\" Figarri Keisha"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2509.04796 \"Knowledge Collapse in LLMs\" Figarri Keisha"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T15:59:58.597387+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2601.03385 SIGMA spectral LLM model collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2601.03385 SIGMA spectral LLM model collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T15:59:58.597551+00:00_
+
+Web search results for query: "arxiv 2602.10531 Bakshi Chakraborty "From Collapse to Improvement""
+
+Links: [{"title":"[2602.10531] From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources","url":"https://arxiv.org/abs/2602.10531"},{"title":"From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources","url":"https://arxiv.org/html/2602.10531"},{"title":"[2602.10531v1] From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources","url":"https://arxiv.org/abs/2602.10531v1"},{"title":"From Collapse to Improvement: Statistical Perspectives on the Evolutionary","url":"https://arxiv.org/pdf/2602.10531"}]
+
+I found the paper! Here are the key details:
+
+**Title:** From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources
+
+**Authors:** Soham Bakshi and Sunrit Chakraborty
+
+**Overview:** The paper addresses model collapse, where iterative training of generative models with synthetic data leads to performance degradation. However, the authors argue from a statistical viewpoint that improvement is possible when models are trained on data contaminated with synthetic samples, as long as there is some fresh information from the true target distribution.
+
+**Key Analysis:** The paper analyzes the entire iterative evolution in a next-token prediction language model, capturing how the interplay between mixture weights and sample size controls the overall long-term performance.
+
+The paper was submitted on February 11, 2026 (v1) and last revised on February 17, 2026 (v2), and is available on arXiv at https://arxiv.org/abs/2602.10531.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T15:59:58.597695+00:00_
+
+Web search results for query: "arxiv 2602.16065 Wang Niu Li "Can Generative AI Survive Data Contamination""
+
+No links found.
+
+The search didn't return any results. This could mean the arXiv paper with that specific ID or those exact authors might not be indexed in the search results, or the reference details might be slightly different. 
+
+You can try accessing the paper directly by:
+1. Visiting arXiv.org and searching for the paper ID "2602.16065"
+2. Going directly to: https://arxiv.org/abs/2602.16065
+
+If you have slightly different details about the paper (alternative author names, a different title, or publication date), I'd be happy to search again with that information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T15:59:58.597857+00:00_
+
+Web search results for query: "arxiv 2605.07724 Falahati "Curated Synthetic Data" model collapse"
+
+Links: [{"title":"[2605.07724] Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences","url":"https://arxiv.org/abs/2605.07724"},{"title":"Curated Synthetic Data Doesn’t Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences","url":"https://arxiv.org/html/2605.07724"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data | Rylan Schaeffer","url":"https://rylanschaeffer.github.io/content/research/2024_arxiv_is_model_collapse_inevitable/main.html"},{"title":"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World","url":"https://arxiv.org/html/2410.16713v2"},{"title":"Addressing Concerns of Model Collapse from Synthetic Data in AI | by Alexander Watson | TDS Archive | Medium","url":"https://medium.com/data-science/addressing-concerns-of-model-collapse-from-synthetic-data-in-ai-7cd380208d14"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/html/2404.01413v2"},{"title":"1 Introduction","url":"https://arxiv.org/html/2410.16713v4"},{"title":"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.","url":"https://arxiv.org/html/2510.16657v1"},{"title":"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World | OpenReview","url":"https://openreview.net/forum?id=Xr5iINA3zU"},{"title":"A Closer Look at Mo
+…[truncated 1381 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T15:59:58.598116+00:00_
+
+Web search results for query: "arxiv 2509.04796 "Knowledge Collapse in LLMs" Figarri Keisha"
+
+Links: [{"title":"[2509.04796] Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training","url":"https://arxiv.org/abs/2509.04796"},{"title":"Knowledge Collapse in LLMs: When Fluency Survives but ...","url":"https://www.arxiv.org/pdf/2509.04796"},{"title":"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training","url":"https://arxiv.org/html/2509.04796"},{"title":"(PDF) Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training","url":"https://www.researchgate.net/publication/395339050_Knowledge_Collapse_in_LLMs_When_Fluency_Survives_but_Facts_Fail_under_Recursive_Synthetic_Training"},{"title":"Knowledge Collapse in LLMs","url":"https://www.emergentmind.com/topics/knowledge-collapse-in-llms"},{"title":"Epistemic Diversity and Knowledge Collapse in Large Language Models","url":"https://arxiv.org/html/2510.04226v6"},{"title":"The Anti-Ouroboros Effect: Emergent Resilience in Large Language Models from Recursive Selective Feedback","url":"https://arxiv.org/html/2509.10509v1"},{"title":"Unlearning Isn’t Deletion: Investigating Reversibility of Machine Unlearning in LLMs","url":"https://arxiv.org/html/2505.16831v1"},{"title":"How to inject knowledge efficiently? Knowledge Infusion Scaling Law for Pre-training Large Language Models","url":"https://arxiv.org/html/2509.19371"},{"title":"LLM Output Homogenization is Task Dependent","url":"https://arxiv.org/pdf/2509.21267"}]
+
+I found the paper you're looking for! Here's the information about arXiv:2509.04796:
+
+## Paper Title
+"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training"
+
+## Authors
+The paper is authored by Figarri Keisha, Zekun Wu, Ze Wang, Adriano Koshiyama, and Philip Treleaven
+
+## Key Findings
+Large language models increasingly rely on synthetic data 
+…[truncated 1135 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T15:59:58.598338+00:00_
+
+Web search results for query: "arxiv 2601.03385 SIGMA spectral LLM model collapse"
+
+Links: [{"title":"[2601.03385] SIGMA: Scalable Spectral Insights for LLM Model Collapse","url":"https://arxiv.org/abs/2601.03385"},{"title":"SIGMA: Scalable Spectral Insights for LLM Model Collapse","url":"https://www.arxiv.org/pdf/2601.03385"},{"title":"Sigma: Scalable Spectral Insights for LLM Model Collapse","url":"https://arxiv.org/html/2601.03385"},{"title":"Sigma: Scalable Spectral Insights for LLM Collapse","url":"https://arxiv.org/html/2601.03385v1"},{"title":"Rohan Paul on X: \"The authors measure LLM health by sampling embeddings and checking whether the meaning space keeps shrinking over training cycles. SIGMA spots LLM collapse early by measuring how much their sentence embedding space shrinks during self training. Recursive training on model https://t.co/ixJmA3N4y7\" / X","url":"https://x.com/rohanpaul_ai/status/2011373977176846463/photo/1"},{"title":"Tracing the Representation Geometry of Language Models from Pretraining to Post-training","url":"https://arxiv.org/html/2509.23024"},{"title":"[2601.11042v1] Spectral Characterization and Mitigation of Sequential Knowledge Editing Collapse","url":"https://arxiv.org/abs/2601.11042v1"},{"title":"Controlled LLM Training on Spectral Sphere","url":"https://arxiv.org/html/2601.08393"},{"title":"Model Collapse Demystified: The Case of Regression","url":"https://arxiv.org/html/2402.07712v1"},{"title":"[2601.08393] Controlled LLM Training on Spectral Sphere","url":"https://arxiv.org/abs/2601.08393"}]
+
+Based on the search results, here's what I found about the arxiv paper 2601.03385:
+
+## SIGMA: Scalable Spectral Insights for LLM Model Collapse
+
+SIGMA (Spectral Inequalities for Gram Matrix Analysis) is a unified framework that benchmarks model collapse through the spectral lens of the embedding Gram matrix, deriving and utilizing deterministic and stochastic bounds on the matrix's spectrum to provide a mathematically grounded metric t
+…[truncated 1184 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T15:59:58.598515+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2602.16065 \"data contamination\" generative AI theoretical guarantees"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2602.16065 \"data contamination\" generative AI theoretical guarantees"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T15:59:58.598642+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2511.01490 \"Synthetic Eggs in Many Baskets\" synthetic data diversity LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2511.01490 \"Synthetic Eggs in Many Baskets\" synthetic data diversity LLM"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T15:59:58.598759+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2603.23146 Pudasaini \"AI-Generated Text Detection Fails\" explainable AI"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2603.23146 Pudasaini \"AI-Generated Text Detection Fails\" explainable AI"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T15:59:58.598908+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2604.13692 Pu Cheng \"Breaking the Generator Barrier\" AI text detection"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2604.13692 Pu Cheng \"Breaking the Generator Barrier\" AI text detection"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T15:59:58.599067+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2509.18880 DivEye diversity AI-generated text detection Basani Chen"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2509.18880 DivEye diversity AI-generated text detection Basani Chen"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T15:59:58.599208+00:00_
+
+Web search results for query: "arxiv 2511.01490 "Synthetic Eggs in Many Baskets" synthetic data diversity LLM"
+
+Links: [{"title":"[2511.01490] Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning","url":"https://arxiv.org/abs/2511.01490"},{"title":"Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-TuningAccepted to Findings of the Association for Computational Linguistics (ACL 2026).","url":"https://arxiv.org/html/2511.01490"},{"title":"Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning","url":"https://arxiv.org/html/2511.01490v1"},{"title":"Putting all eggs in one basket: some insights from a correlation inequality","url":"https://arxiv.org/html/2403.15957"},{"title":"[1904.01490] Synthetic learner: model-free inference on treatments over time","url":"https://arxiv.org/abs/1904.01490"},{"title":"[2407.01490] LLM See, LLM Do: Guiding Data Generation to Target Non-Differentiable Objectives","url":"https://arxiv.org/abs/2407.01490"},{"title":"[2403.15957] Putting all eggs in one basket: some insights from a correlation inequality","url":"https://arxiv.org/abs/2403.15957"},{"title":"Using Synthetic Data to estimate the True Error is theoretically and practically doable","url":"https://arxiv.org/html/2511.00964v1"},{"title":"LLM See, LLM Do: Guiding Data Generation to Target Non-Differentiable Objectives","url":"https://arxiv.org/html/2407.01490"},{"title":"Using Synthetic Data to estimate the True Error is ...","url":"https://arxiv.org/pdf/2511.00964"}]
+
+I found the paper! Here are the key details about arxiv paper 2511.01490:
+
+**Title:** "Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning"
+
+**Authors:** Max Schaffelder and Albert Gatt from Utrecht University
+
+**Main Focus:** The paper investigates the impact of the diversity of sources of synthetic data on fine-tuned large language models, focusing on three key dimensions:
+…[truncated 777 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T15:59:58.599372+00:00_
+
+Web search results for query: "arxiv 2602.16065 "data contamination" generative AI theoretical guarantees"
+
+Links: [{"title":"[2602.16065] Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training","url":"https://arxiv.org/abs/2602.16065"},{"title":"Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training","url":"https://arxiv.org/html/2602.16065"},{"title":"Can Generative Artificial Intelligence Survive Data ...","url":"https://arxiv.org/pdf/2602.16065"},{"title":"[2601.12946] AI-generated data contamination erodes pathological variability and diagnostic reliability","url":"https://arxiv.org/abs/2601.12946"},{"title":"AI-generated data contamination erodes pathological variability and diagnostic reliability | Research Square","url":"https://www.researchsquare.com/article/rs-8753102/v1"},{"title":"Unveiling the Spectrum of Data Contamination in Language Models: A Survey from Detection to Remediation","url":"https://arxiv.org/html/2406.14644v1"},{"title":"AI-generated data contamination erodes pathological variability and diagnostic reliability | medRxiv","url":"https://www.medrxiv.org/content/10.64898/2026.01.19.26344383v3"},{"title":"Rethinking Data Protection in the (Generative) Artificial Intelligence Era","url":"https://arxiv.org/html/2507.03034v4"},{"title":"AI-generated data contamination erodes pathological variability and diagnostic reliability | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2601.12946"},{"title":"Benchmark Data Contamination of Large Language Models: A Survey","url":"https://arxiv.org/html/2406.04244v1"}]
+
+I found the paper! Here's a summary of arxiv 2602.16065:
+
+## Paper Overview
+
+The paper is titled "Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training" by Kevin Wang, Hongqian Niu, and Didong Li (su
+…[truncated 1321 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T15:59:58.599546+00:00_
+
+Web search results for query: "arxiv 2603.23146 Pudasaini "AI-Generated Text Detection Fails" explainable AI"
+
+Links: [{"title":"[2603.23146] Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy","url":"https://arxiv.org/abs/2603.23146"},{"title":"[2603.23146v1] Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy","url":"https://arxiv.org/abs/2603.23146v1"},{"title":"Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy","url":"https://arxiv.org/html/2603.23146"},{"title":"On the Detectability of LLM-Generated Text: What Exactly Is LLM-Generated Text?","url":"https://arxiv.org/html/2510.20810v1"},{"title":"Can AI-Generated Text be Reliably Detected?","url":"https://arxiv.org/pdf/2303.11156"},{"title":"[2303.11156] Can AI-Generated Text be Reliably Detected?","url":"https://arxiv.org/abs/2303.11156"},{"title":"Can AI-Generated Text be Reliably Detected? | OpenReview","url":"https://openreview.net/forum?id=NvSwR4IvLO"},{"title":"Detecting AI-Generated Text: Factors Influencing Detectability with Current Methods","url":"https://arxiv.org/html/2406.15583v1"},{"title":"People who frequently use ChatGPT for writing tasks are accurate and robust detectors of AI-generated text","url":"https://arxiv.org/html/2501.15654v2"},{"title":"Can AI-Generated Text be Reliably Detected? - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230311156S/abstract"}]
+
+I found the paper you're looking for! Here are the key details:
+
+## Paper Overview
+
+The paper is titled "Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy" (arXiv:2603.23146), authored by Shushanta Pudasaini, Luis Miralles-Pechuán, David Lillis, and Marisa Llorens Salvador.
+
+## Main Findings
+
+The widespread adoption of Large Language Models (LLMs) has made the detection of AI-generated text a pressing and complex challenge. Although many detection systems repo
+…[truncated 1001 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T15:59:58.599708+00:00_
+
+Web search results for query: "arxiv 2604.13692 Pu Cheng "Breaking the Generator Barrier" AI text detection"
+
+Links: [{"title":"[2604.13692v1] Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection","url":"https://arxiv.org/abs/2604.13692v1"},{"title":"[2604.13692] Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection","url":"https://arxiv.org/abs/2604.13692"},{"title":"Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection","url":"https://arxiv.org/html/2604.13692v1"},{"title":"AI Generated Text Detection Using Instruction Fine-tuned Large Language and Transformer-Based Models","url":"https://arxiv.org/html/2507.05157v1"},{"title":"Detecting AI-Generated Text: Factors Influencing Detectability with Current Methods","url":"https://arxiv.org/html/2406.15583v1"},{"title":"Alignment Imprint: Zero-Shot AI-Generated Text Detection via","url":"https://arxiv.org/pdf/2604.16923"},{"title":"[2507.05157] AI Generated Text Detection Using Instruction Fine-tuned Large Language and Transformer-Based Models","url":"https://arxiv.org/abs/2507.05157"},{"title":"Diversity Boosts AI-Generated Text Detection","url":"https://arxiv.org/html/2509.18880v1"},{"title":"Are AI-Generated Text Detectors Robust to Adversarial Perturbations?","url":"https://arxiv.org/html/2406.01179v2"},{"title":"Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy","url":"https://arxiv.org/html/2603.23146"}]
+
+I found the paper you were searching for! Here's the information about arxiv paper 2604.13692:
+
+**Title:** Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection
+
+**Authors:** Xiao Pu, Zepeng Cheng, Lin Yuan, Yu Wu, and Xiuli Bi
+
+**Key Problem:** As large language models (LLMs) generate text that increasingly resembles human writing, the subtle cues that distinguish AI-generated content from human-writte
+…[truncated 888 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T15:59:58.599900+00:00_
+
+Web search results for query: "arxiv 2509.18880 DivEye diversity AI-generated text detection Basani Chen"
+
+Links: [{"title":"[2509.18880] Diversity Boosts AI-Generated Text Detection","url":"https://arxiv.org/abs/2509.18880"},{"title":"Diversity Boosts AI-Generated Text Detection","url":"https://arxiv.org/pdf/2509.18880"},{"title":"Diversity Boosts AI-Generated Text Detection","url":"https://www.arxiv.org/pdf/2509.18880v1"},{"title":"Diversity Boosts AI-Generated Text Detection","url":"https://www.researchgate.net/publication/395771470_Diversity_Boosts_AI-Generated_Text_Detection"},{"title":"[PDF] Diversity Boosts AI-Generated Text Detection | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Diversity-Boosts-AI-Generated-Text-Detection-Basani-Chen/77269d404ea3438f6d2ac327316f0b6ba116a48d"},{"title":"GitHub - IBM/diveye: [TMLR '26] Code for Diversity Boosts AI-generated Text Detection · GitHub","url":"https://github.com/IBM/diveye"},{"title":"Diversity Boosts AI-Generated Text Detection | OpenReview","url":"https://openreview.net/forum?id=DNgsOhGZBI"},{"title":"ICML Diversity Boosts AI-Generated Text Detection","url":"https://icml.cc/virtual/2025/51028"},{"title":"DivEye at PAN 2025: Diversity Boosts AI-Generated Text Detection","url":"https://ceur-ws.org/Vol-4038/paper_282.pdf"},{"title":"DivEye - Diversity Boosts AI-generated Text Detection - a Hugging Face Space by pinyuchen","url":"https://huggingface.co/spaces/pinyuchen/Diveye_AI_text_detector"}]
+
+I found the paper! Here's information about arxiv 2509.18880:
+
+## Paper Overview
+
+The paper is titled "Diversity Boosts AI-Generated Text Detection" by Advik Raj Basani and Pin-Yu Chen, submitted on September 23, 2025.
+
+## DivEye Framework
+
+DivEye is a novel detection framework that captures how unpredictability fluctuates across a text using surprisal-based features. The method is motivated by the observation that human-authored text exhibits richer variability in lexical and structural unpredictability 
+…[truncated 908 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T15:59:58.600087+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "DivEye \"Diversity Boosts AI-Generated Text Detection\" venue TMLR ICLR 2026 accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "DivEye \"Diversity Boosts AI-Generated Text Detection\" venue TMLR ICLR 2026 accepted"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T15:59:58.600217+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2510.03154 EditLens \"Quantifying the Extent of AI Editing\" Thai Iyyer"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2510.03154 EditLens \"Quantifying the Extent of AI Editing\" Thai Iyyer"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T15:59:58.600336+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2410.09732 LOKI \"Comprehensive Synthetic Data Detection Benchmark\" multimodal"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2410.09732 LOKI \"Comprehensive Synthetic Data Detection Benchmark\" multimodal"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T15:59:58.600449+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2502.20258 Mohamed \"LLM Broken Telephone\" iterative generation distorts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2502.20258 Mohamed \"LLM Broken Telephone\" iterative generation distorts"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T15:59:58.600561+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2504.17813 CLOC \"Contrastive Learning Ordinal Classification\" multi-margin"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2504.17813 CLOC \"Contrastive Learning Ordinal Classification\" multi-margin"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T15:59:58.601021+00:00_
+
+Web search results for query: "DivEye "Diversity Boosts AI-Generated Text Detection" venue TMLR ICLR 2026 accepted"
+
+Links: [{"title":"GitHub - IBM/diveye: [TMLR '26] Code for Diversity Boosts AI-generated Text Detection · GitHub","url":"https://github.com/IBM/diveye"},{"title":"Diversity Boosts AI-Generated Text Detection","url":"https://arxiv.org/pdf/2509.18880"},{"title":"[2509.18880] Diversity Boosts AI-Generated Text Detection","url":"https://arxiv.org/abs/2509.18880"},{"title":"Diversity Boosts AI-Generated Text Detection | OpenReview","url":"https://openreview.net/forum?id=DNgsOhGZBI"},{"title":"Diversity Boosts AI-Generated Text Detection","url":"https://www.arxiv.org/pdf/2509.18880v1"},{"title":"Under review as submission to TMLR Diversity Boosts AI-Generated Text Detection","url":"https://openreview.net/pdf/4aea3388770b3a0f09e30cf27c5be1a0d9fa9fb3.pdf"},{"title":"DIVERSITY BOOSTS AI-GENERATED TEXT DETECTION","url":"https://openreview.net/pdf?id=DNgsOhGZBI"},{"title":"Pin-Yu Chen on X: \"Happy to see this work published at @TmlrOrg We show that diversity-driven features (computed by a very small LM, such as GPT-2) are powerful for detecting AI-written content. Try out our online detector at https://t.co/7sLfMdcmDG Kudos to Advik for leading this work.\" / X","url":"https://x.com/pinyuchenTW/status/2031014939846995984"},{"title":"ICML Diversity Boosts AI-Generated Text Detection","url":"https://icml.cc/virtual/2025/51028"},{"title":"Diversity Boosts AI-Generated Text Detection","url":"https://www.researchgate.net/publication/395771470_Diversity_Boosts_AI-Generated_Text_Detection"}]
+
+Based on the search results, here's what I found about DivEye and the paper "Diversity Boosts AI-Generated Text Detection":
+
+## Paper Status
+
+The paper "Diversity Boosts AI-Generated Text Detection" was accepted at TMLR '26 and also presented at ICML, Data in Generative Models (DIG-BUG) '25. However, it's worth noting that the ICLR 2026 submission was withdrawn, so while it was s
+…[truncated 871 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T15:59:58.601258+00:00_
+
+Web search results for query: "arxiv 2410.09732 LOKI "Comprehensive Synthetic Data Detection Benchmark" multimodal"
+
+Links: [{"title":"[2410.09732] LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://arxiv.org/abs/2410.09732"},{"title":"[2410.09732v2] LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://arxiv.org/abs/2410.09732v2"},{"title":"Paper page - LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://huggingface.co/papers/2410.09732"},{"title":"LOKI: Can Large mOdels Identify syntheticK data?","url":"https://opendatalab.github.io/LOKI/"},{"title":"LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models | Request PDF","url":"https://www.researchgate.net/publication/384928384_LOKI_A_Comprehensive_Synthetic_Data_Detection_Benchmark_using_Large_Multimodal_Models"},{"title":"[Literature Review] LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://www.themoonlight.io/en/review/loki-a-comprehensive-synthetic-data-detection-benchmark-using-large-multimodal-models"},{"title":"LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://www.rohan-paul.com/p/loki-a-comprehensive-synthetic-data"},{"title":"LOKI: A Comprehensive Synthetic Data Detection Benchmark ...","url":"https://bytez.com/docs/arxiv/2410.09732/paper"},{"title":"bczhou/LOKI · Datasets at Hugging Face","url":"https://huggingface.co/datasets/bczhou/LOKI"},{"title":"LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models | OpenReview","url":"https://openreview.net/forum?id=z8sxoCYgmd"}]
+
+I found the paper! Here are the key details about arxiv paper 2410.09732:
+
+**Paper Title:** LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models
+
+**Authors:** Junyan Ye, Baichuan Zhou, Zilo
+…[truncated 1136 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T15:59:58.601518+00:00_
+
+Web search results for query: "arxiv 2510.03154 EditLens "Quantifying the Extent of AI Editing" Thai Iyyer"
+
+Links: [{"title":"[2510.03154] EditLens: Quantifying the Extent of AI Editing in Text","url":"https://arxiv.org/abs/2510.03154"},{"title":"EditLens: Quantifying the Extent of AI Editing in Text","url":"https://arxiv.org/pdf/2510.03154"},{"title":"EditLens: Quantifying the Extent of AI Editing in Text | alphaXiv","url":"https://www.alphaxiv.org/abs/2510.03154"},{"title":"EditLens: Quantifying the Extent of AI Editing in Text","url":"https://chatpaper.com/paper/195828"},{"title":"[Paper Note] EditLens: Quantifying the Extent of AI Editing in Text, Katherine Thai+, arXiv'25, 2025.10 · Issue #3696 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/3696"},{"title":"(PDF) EditLens: Quantifying the Extent of AI Editing in Text","url":"https://www.researchgate.net/publication/396223292_EditLens_Quantifying_the_Extent_of_AI_Editing_in_Text"},{"title":"Paper page - EditLens: Quantifying the Extent of AI Editing in Text","url":"https://huggingface.co/papers/2510.03154"},{"title":"GitHub - pangramlabs/EditLens · GitHub","url":"https://github.com/pangramlabs/EditLens"},{"title":"dblp: EditLens: Quantifying the Extent of AI Editing in Text.","url":"https://dblp.org/rec/journals/corr/abs-2510-03154.html"},{"title":"EditLens: Quantifying AI Text Editing","url":"https://www.emergentmind.com/papers/2510.03154"}]
+
+I found the paper! Here's information about arxiv 2510.03154:
+
+**EditLens: Quantifying the Extent of AI Editing in Text**
+
+The paper is authored by Katherine Thai, Bradley Emi, Elyas Masrour, and Mohit Iyyer, and was submitted on October 3, 2025.
+
+**Overview:**
+A significant proportion of queries to large language models ask them to edit user-provided text, rather than generate new text from scratch. While previous work focuses on detecting fully AI-generated text, the authors demonstrate that AI-edited text is distinguishable 
+…[truncated 967 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T15:59:58.601716+00:00_
+
+Web search results for query: "arxiv 2502.20258 Mohamed "LLM Broken Telephone" iterative generation distorts"
+
+Links: [{"title":"[2502.20258] LLM as a Broken Telephone: Iterative Generation Distorts Information","url":"https://arxiv.org/abs/2502.20258"},{"title":"LLM as a Broken Telephone: Iterative Generation Distorts Information","url":"https://arxiv.org/html/2502.20258"},{"title":"Paper page - LLM as a Broken Telephone: Iterative Generation Distorts Information","url":"https://huggingface.co/papers/2502.20258"},{"title":"GitHub - amr-mohamedd/LLM-as-a-Broken-Telephone: [ACL 2025] Code implementation for the \"LLM as a Broken Telephone: Iterative Generation Distorts Information\" paper.","url":"https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone"},{"title":"LLM as a Broken Telephone: Iterative Generation Distorts Information | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.20258v1"},{"title":"dblp: LLM as a Broken Telephone: Iterative Generation Distorts Information.","url":"https://dblp.org/rec/journals/corr/abs-2502-20258.html"},{"title":"Computer Science Feb 2025","url":"https://arxiv.org/list/cs/2025-02?skip=10175&show=2000"},{"title":"LLM as a Broken Telephone: Iterative Generation Distorts Information - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.371/"},{"title":"LLM as a Broken Telephone: Iterative Generation Distorts Information | Request PDF","url":"https://www.researchgate.net/publication/394300051_LLM_as_a_Broken_Telephone_Iterative_Generation_Distorts_Information"},{"title":"LLM as a Broken Telephone: Iterative Generation Distorts ...","url":"https://www.semanticscholar.org/paper/LLM-as-a-Broken-Telephone:-Iterative-Generation-Mohamed-Geng/2707bd266515112a43a430c1a077387fe3b8149f"}]
+
+I found the paper! Here's a summary of the research:
+
+## Paper Overview
+
+The study investigates whether LLMs similarly distort information through iterative generation, inspired by the "broken telephone" effect in chained human communication
+…[truncated 1226 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T15:59:58.601936+00:00_
+
+Web search results for query: "arxiv 2504.17813 CLOC "Contrastive Learning Ordinal Classification" multi-margin"
+
+Links: [{"title":"[2504.17813] CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://arxiv.org/abs/2504.17813"},{"title":"CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://arxiv.org/html/2504.17813v2"},{"title":"(PDF) CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://www.researchgate.net/publication/391220117_CLOC_Contrastive_Learning_for_Ordinal_Classification_with_Multi-Margin_N-pair_Loss"},{"title":"250417813 — Grokipedia","url":"https://grokipedia.com/page/250417813"},{"title":"dblp: Dileepa Pitawela","url":"https://dblp.org/pid/239/2550.html"},{"title":"CLOC: Contrastive Learning for Ordinal Classification with ...","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Pitawela_CLOC_Contrastive_Learning_for_Ordinal_Classification_with_Multi-Margin_N-pair_Loss_CVPR_2025_paper.pdf"},{"title":"[PDF] CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CLOC:-Contrastive-Learning-for-Ordinal-with-N-pair-Pitawela-Carneiro/7700b46ac3e76407652c19707bb612adf959dbe7"},{"title":"GitHub - dpitawela/CLOC · GitHub","url":"https://github.com/dpitawela/CLOC"},{"title":"CVPR Poster CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://cvpr.thecvf.com/virtual/2025/poster/32653"},{"title":"CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss | CoLab","url":"https://colab.ws/articles/10.1109/cvpr52734.2025.01448"}]
+
+Based on the search results, I found comprehensive information about the arXiv paper 2504.17813:
+
+## CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss
+
+CLOC is a new margin-based contrastive learning met
+…[truncated 1751 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T15:59:58.602163+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "EditLens \"Quantifying the Extent of AI Editing\" ICLR 2026 accepted venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "EditLens \"Quantifying the Extent of AI Editing\" ICLR 2026 accepted venue"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T15:59:58.602297+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "LOKI \"Comprehensive Synthetic Data Detection Benchmark\" ICLR 2025 accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "LOKI \"Comprehensive Synthetic Data Detection Benchmark\" ICLR 2025 accepted"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T15:59:58.602416+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Garces Arias \"Decoding Decoded\" COLING 2025 \"hyperparameter effects\" open-ended text generation arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Garces Arias \"Decoding Decoded\" COLING 2025 \"hyperparameter effects\" open-ended text generation arxiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-15T15:59:58.602537+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "QuRating Wettig \"Selecting High-Quality Data\" ICML 2024 accepted venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "QuRating Wettig \"Selecting High-Quality Data\" ICML 2024 accepted venue"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T15:59:58.602751+00:00_
+
+Web search results for query: "QuRating Wettig "Selecting High-Quality Data" ICML 2024 accepted venue"
+
+Links: [{"title":"GitHub - princeton-nlp/QuRating: [ICML 2024] Selecting High-Quality Data for Training Language Models","url":"https://github.com/princeton-nlp/QuRating"},{"title":"[2402.09739] QuRating: Selecting High-Quality Data for Training Language Models","url":"https://arxiv.org/abs/2402.09739"},{"title":"ICLR QuRating: Selecting High-Quality Data for Training Language Models","url":"https://iclr.cc/virtual/2024/21159"},{"title":"QuRating: selecting high-quality data for training language ...","url":"https://dl.acm.org/doi/10.5555/3692070.3694241"},{"title":"ICLR QuRating: Selecting High-Quality Data for Training Lanugage Models","url":"https://iclr.cc/virtual/2024/22410"},{"title":"QuRating: Selecting High-Quality Data for Training Language Models","url":"https://proceedings.mlr.press/v235/wettig24a.html"},{"title":"QuRating: Selecting High-Quality Data for Training Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240209739W/abstract"},{"title":"[2402.09739v3] QuRating: Selecting High-Quality Data for Training Language Models","url":"https://arxiv.org/abs/2402.09739v3"},{"title":"QuRating: Selecting High-Quality Data for Training Language Models | OpenReview","url":"https://openreview.net/forum?id=GLGYYqPwjy"},{"title":"[PDF] QuRating: Selecting High-Quality Data for Training Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/QuRating:-Selecting-High-Quality-Data-for-Training-Wettig-Gupta/34efdeaf0a78d6906b4da7335afc7182df11f639"}]
+
+Based on the search results, I can confirm the details about the QuRating paper:
+
+The paper "QuRating: Selecting High-Quality Data for Training Language Models" by Alexander Wettig, Aatmik Gupta, Saumya Malik, and Danqi Chen was published at the International Conference on Machine Learning (ICML) in 2024.
+
+The paper appears in the Proceedings of the 41st International Confe
+…[truncated 629 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T15:59:58.602991+00:00_
+
+Web search results for query: "EditLens "Quantifying the Extent of AI Editing" ICLR 2026 accepted venue"
+
+Links: [{"title":"ICLR Poster EditLens: Quantifying the Extent of AI Editing in Text","url":"https://iclr.cc/virtual/2026/poster/10008153"},{"title":"EditLens: Quantifying the Extent of AI Editing in Text [Quick Review]","url":"https://liner.com/review/editlens-quantifying-the-extent-of-ai-editing-in-text"},{"title":"GitHub - pangramlabs/EditLens · GitHub","url":"https://github.com/pangramlabs/EditLens"},{"title":"EditLens: Quantifying the Extent of AI Editing in Text | OpenReview","url":"https://openreview.net/forum?id=gOkitaPCfZ"},{"title":"[2510.03154] EditLens: Quantifying the Extent of AI Editing in Text","url":"https://arxiv.org/abs/2510.03154"},{"title":"EditLens: Quantifying the Extent of AI Editing in Text","url":"https://arxiv.org/html/2510.03154v1"},{"title":"EDITLENS: QUANTIFYING THE EXTENT OF AI EDIT- ING IN TEXT","url":"https://openreview.net/pdf/64a3b000c0ea81915db97eadbe47a55011e55e73.pdf"},{"title":"EditLens: Quantifying the Extent of AI Editing in Text","url":"https://chatpaper.com/paper/195828"},{"title":"Introducing Open Pangram | Pangram Labs","url":"https://www.pangram.com/blog/introducing-open-pangram"},{"title":"EDITLENS: QUANTIFYING THE EXTENT OF AI EDIT","url":"https://openreview.net/pdf/2f45e8c8c1cbb0caa633f4c3fc982559e56c25be.pdf"}]
+
+Based on the search results, I found comprehensive information about EditLens:
+
+## EditLens: Quantifying the Extent of AI Editing in Text
+
+**Accepted Venue:** This ICLR 2026 paper introduces EditLens, a regression model that quantifies the extent of AI editing in text.
+
+**Overview:**
+The work was presented as a poster at ICLR on Friday, April 24, 2026. EditLens is the first paper to formalize the task of scoring text according to the extent of AI intervention in the text, as opposed to prior work that treated AI text detection as a binary (or occasionally ternary) classification task.
+
+**Key Contributions
+…[truncated 764 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T15:59:58.603197+00:00_
+
+Web search results for query: "LOKI "Comprehensive Synthetic Data Detection Benchmark" ICLR 2025 accepted"
+
+Links: [{"title":"GitHub - opendatalab/LOKI: [ICLR 2025 Spotlight] The official implementation of the paper “LOKI：A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models”","url":"https://github.com/opendatalab/LOKI"},{"title":"LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models | OpenReview","url":"https://openreview.net/forum?id=z8sxoCYgmd"},{"title":"[2410.09732] LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://arxiv.org/abs/2410.09732"},{"title":"ICLR Poster LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://iclr.cc/virtual/2025/poster/27689"},{"title":"LOKI/requirements.txt at main · opendatalab/LOKI","url":"https://github.com/opendatalab/LOKI/blob/main/requirements.txt"},{"title":"[2410.09732v2] LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://arxiv.org/abs/2410.09732v2"},{"title":"Paper page - LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://huggingface.co/papers/2410.09732"},{"title":"LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models | Request PDF","url":"https://www.researchgate.net/publication/384928384_LOKI_A_Comprehensive_Synthetic_Data_Detection_Benchmark_using_Large_Multimodal_Models"},{"title":"[Literature Review] LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://www.themoonlight.io/en/review/loki-a-comprehensive-synthetic-data-detection-benchmark-using-large-multimodal-models"},{"title":"Junyan Ye - Homepage","url":"https://yejy53.github.io/"}]
+
+Based on the search results, I found comprehensive information about LOKI. Here's what I found:
+
+## LOKI Paper Acceptance at ICLR 2025
+
+LOKI: A C
+…[truncated 1160 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T15:59:58.603712+00:00_
+
+Web search results for query: "Garces Arias "Decoding Decoded" COLING 2025 "hyperparameter effects" open-ended text generation arxiv"
+
+Links: [{"title":"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation - ACL Anthology","url":"https://aclanthology.org/2025.coling-main.668/"},{"title":"GitHub - YecanLee/Decoding-Decoded: [COLING 2025] Official PyTorch Implementation of \"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\" · GitHub","url":"https://github.com/YecanLee/Decoding-Decoded"},{"title":"Understanding Hyperparameter Effects in Open-Ended ...","url":"https://aclanthology.org/2025.coling-main.668.pdf"},{"title":"[2410.06097] Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation","url":"https://arxiv.org/abs/2410.06097"},{"title":"[2410.06097v2] Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation","url":"https://arxiv.org/abs/2410.06097v2"},{"title":"(PDF) Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation","url":"https://www.researchgate.net/publication/389215115_Decoding_Decoded_Understanding_Hyperparameter_Effects_in_Open-Ended_Text_Generation"},{"title":"The Truncation Blind Spot: How Decoding Strategies Systematically Exclude Human-Like Token Choices","url":"https://arxiv.org/html/2603.18482"},{"title":"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation","url":"https://arxiv.org/html/2410.06097v1"},{"title":"(PDF) GUARD: Glocal Uncertainty-Aware Robust Decoding for Effective and Efficient Open-Ended Text Generation","url":"https://www.researchgate.net/publication/395033855_GUARD_Glocal_Uncertainty-Aware_Robust_Decoding_for_Effective_and_Efficient_Open-Ended_Text_Generation"},{"title":"GUARD: Glocal Uncertainty-Aware Robust Decoding for Effective and Efficient Open-Ended Text Generation - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.380/"}
+…[truncated 1191 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T15:59:58.604071+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/",
+  "description": "List paper artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/",
+    "description": "List paper artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T15:59:58.604278+00:00_
+
+section_discussion.tex
+section_introduction.tex
+section_introduction_b88807.tex
+section_method.tex
+section_related_work.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T15:59:58.604522+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/references.bib",
+  "content": "% ============================================================\n% Model Collapse Theory\n% ============================================================\n\n@article{shumailov2024_nature,\n  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  title     = {{AI models collapse when trained on recursively generated data}},\n  journal   = {Nature},\n  volume    = {631},\n  pages     = {755--759},\n  year      = {2024},\n  doi       = {10.1038/s41586-024-07566-y},\n}\n\n@inproceedings{dohmatob2024_tale_of_tails,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},\n  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.07043},\n  url       = {https://arxiv.org/abs/2402.07043},\n}\n\n@inproceedings{dohmatob2024_strong_collapse,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n  title     = {{Strong Model Collapse}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2410.04840},\n  url       = {https://arxiv.org/abs/2410.04840},\n}\n\n@inproceedings{dohmatob2024_demystified,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},\n  title     = {{Model Collapse Demystified: The Case of Regression}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n  note      = {arXiv:2402.07712},\n  url       = {https://arxiv.org/abs/2402.07712},\n}\n\n@inproceedings{alemohammad2024_mad,\n  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Hossain, Hossein and Romero, Oscar and Ramanarayanan, Sriram and Baraniuk, Richard G.},\n  title     = {{Self-Consuming Generative Models Go MAD}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2307.01850},\n  url       = {https://arxiv.org/abs/2307.01850},\n}\n\n@misc{gerstgrasser2024_accumulate,\n  author    = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n  title     = {{Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data}},\n  year      = {2024},\n  howpublished = {arXiv:2404.01413},\n  url       = {https://arxiv.org/abs/2404.01413},\n}\n\n@inproceedings{marchi2024_heat_death,\n  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},\n  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},\n  booktitle = {Proceedings of ICASSP},\n  year      = {2024},\n  note      = {arXiv:2404.02325},\n  url       = {https://arxiv.org/abs/2404.02325},\n}\n\n@misc{knowledge_collapse2025,\n  author    = {Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip},\n  title     = {{Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training}},\n  year      = {2025},\n  howpublished = {arXiv:2509.04796},\n  url       = {https://arxiv.org/abs/2509.04796},\n}\n\n@misc{sigma2026_spectral,\n  author    = {Gu, Yi and Pang, Lingyou and Ye, Xiangkun and Wang, Tianyu and Lin, Jianyu and Priebe, Carey E. and Aue, Alexander},\n  title     = {{SIGMA: Scalable Spectral Insights for LLM Model Collapse}},\n  year      = {2026},\n  howpublished = {arXiv:2601.03385},\n  url       = {https://arxiv.org/abs/2601.03385},\n}\n\n@inproceedings{mohamed2025_broken_telephone,\n  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},\n  title     = {{LLM as a Broken Telephone: Iterative Generation Distorts Information}},\n  booktitle = {Proceedings of ACL},\n  year      = {2025},\n  note      = {arXiv:2502.20258},\n  url       = {https://arxiv.org/abs/2502.20258},\n}\n\n@inproceedings{synthetic_eggs2026,\n  author    = {Schaffelder, Max and Gatt, Albert},\n  title     = {{Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning}},\n  booktitle = {Findings of ACL},\n  year      = {2026},\n  note      = {arXiv:2511.01490},\n  url       = {https://arxiv.org/abs/2511.01490},\n}\n\n% --- Model collapse: collapse-can-be-avoided / contamination ---\n\n@inproceedings{drayson2025_detection_prevents_collapse,\n  author    = {Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  title     = {{Machine-generated text detection prevents language model collapse}},\n  booktitle = {Findings of EMNLP},\n  year      = {2025},\n  note      = {arXiv:2502.15654},\n  url       = {https://arxiv.org/abs/2502.15654},\n}\n\n@misc{bakshi2026_collapse_improvement,\n  author    = {Bakshi, Soham and Chakraborty, Sunrit},\n  title     = {{From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources}},\n  year      = {2026},\n  howpublished = {arXiv:2602.10531},\n  url       = {https://arxiv.org/abs/2602.10531},\n}\n\n@misc{wang2026_contamination,\n  author    = {Wang, Kevin and Niu, Hongqian and Li, Didong},\n  title     = {{Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training}},\n  year      = {2026},\n  howpublished = {arXiv:2602.16065},\n  url       = {https://arxiv.org/abs/2602.16065},\n}\n\n@misc{falahati2026_curated,\n  author    = {Falahati, Ali and Mohammadi Amiri, Mohammad and Larson, Kate and Golab, Lukasz},\n  title     = {{Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences}},\n  year      = {2026},\n  howpublished = {arXiv:2605.07724},\n  url       = {https://arxiv.org/abs/2605.07724},\n}\n\n% ============================================================\n% AI-Generated Text Detection\n% ============================================================\n\n% --- Statistical / zero-shot detectors ---\n\n@inproceedings{gehrmann2019_gltr,\n  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n  title     = {{GLTR: Statistical Detection and Visualization of Generated Text}},\n  booktitle = {Proceedings of ACL: System Demonstrations},\n  year      = {2019},\n  note      = {arXiv:1906.04043},\n  url       = {https://arxiv.org/abs/1906.04043},\n}\n\n@inproceedings{mitchell2023_detectgpt,\n  author    = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  title     = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.11305},\n  url       = {https://arxiv.org/abs/2301.11305},\n}\n\n@inproceedings{fast_detectgpt2024,\n  author    = {Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n  title     = {{Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.05130},\n  url       = {https://arxiv.org/abs/2310.05130},\n}\n\n@inproceedings{binoculars2024,\n  author    = {Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n  title     = {{Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2401.12070},\n  url       = {https://arxiv.org/abs/2401.12070},\n}\n\n@article{diveye2026,\n  author    = {Basani, Advik Raj and Chen, Pin-Yu},\n  title     = {{Diversity Boosts AI-Generated Text Detection}},\n  journal   = {Transactions on Machine Learning Research (TMLR)},\n  year      = {2026},\n  note      = {arXiv:2509.18880},\n  url       = {https://arxiv.org/abs/2509.18880},\n}\n\n% --- Robustness / limitations of detectors ---\n\n@misc{sadasivan2023_paraphrase,\n  author    = {Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n  title     = {{Can AI-Generated Text be Reliably Detected?}},\n  year      = {2023},\n  howpublished = {arXiv:2303.11156},\n  url       = {https://arxiv.org/abs/2303.11156},\n}\n\n@misc{pudasaini2026_detection_fails,\n  author    = {Pudasaini, Shushanta and Miralles-Pech{\\'u}an, Luis and Lillis, David and Llorens Salvador, Marisa},\n  title     = {{Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy}},\n  year      = {2026},\n  howpublished = {arXiv:2603.23146},\n  url       = {https://arxiv.org/abs/2603.23146},\n}\n\n@misc{pu2026_generator_barrier,\n  author    = {Pu, Xiao and Cheng, Zepeng and Yuan, Lin and Wu, Yu and Bi, Xiuli},\n  title     = {{Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection}},\n  year      = {2026},\n  howpublished = {arXiv:2604.13692},\n  url       = {https://arxiv.org/abs/2604.13692},\n}\n\n% --- Beyond binary: attribution, editing extent, benchmarks ---\n\n@inproceedings{uchendu2020_attribution,\n  author    = {Uchendu, Adaku and Le, Thai and Shu, Kai and Lee, Dongwon},\n  title     = {{Authorship Attribution for Neural Text Generation}},\n  booktitle = {Proceedings of EMNLP},\n  year      = {2020},\n}\n\n@inproceedings{editlens2026,\n  author    = {Thai, Katherine and Emi, Bradley and Masrour, Elyas and Iyyer, Mohit},\n  title     = {{EditLens: Quantifying the Extent of AI Editing in Text}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2026},\n  note      = {arXiv:2510.03154},\n  url       = {https://arxiv.org/abs/2510.03154},\n}\n\n@inproceedings{loki2025,\n  author    = {Ye, Junyan and Zhou, Baichuan and Huang, Zilong and Zhang, Junan and Bai, Tianyi and Kang, Hengrui and He, Jun and Lin, Honglin and Wang, Zihao and Wu, Tong and Wu, Zhizheng and Chen, Yiping and Lin, Dahua and He, Conghui and Li, Weijia},\n  title     = {{LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models}},\n  booktitle = {Proceedings of ICLR (Spotlight)},\n  year      = {2025},\n  note      = {arXiv:2410.09732},\n  url       = {https://arxiv.org/abs/2410.09732},\n}\n\n% --- Watermarking ---\n\n@inproceedings{kirchenbauer2023_watermark,\n  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  title     = {{A Watermark for Large Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.10226},\n  url       = {https://arxiv.org/abs/2301.10226},\n}\n\n% ============================================================\n% Decoding Strategies\n% ============================================================\n\n@inproceedings{holtzman2020_nucleus,\n  author    = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n  title     = {{The Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2020},\n  note      = {arXiv:1904.09751},\n  url       = {https://arxiv.org/abs/1904.09751},\n}\n\n@inproceedings{finlayson2024_closing,\n  author    = {Finlayson, Matthew and Hewitt, John and Koller, Alexander and Swayamdipta, Swabha and Sabharwal, Ashish},\n  title     = {{Closing the Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.01693},\n  url       = {https://arxiv.org/abs/2310.01693},\n}\n\n@inproceedings{garces_arias2025_decoding_decoded,\n  author    = {{Garces Arias}, Esteban and Li, Meimingwei and Heumann, Christian and Assenmacher, Matthias},\n  title     = {{Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation}},\n  booktitle = {Proceedings of COLING},\n  year      = {2025},\n  note      = {arXiv:2410.06097},\n  url       = {https://arxiv.org/abs/2410.06097},\n}\n\n@article{wiher2022_decoding,\n  author    = {Wiher, Gian and Meister, Clara and Cotterell, Ryan},\n  title     = {{On Decoding Strategies for Neural Text Generators}},\n  journal   = {Transactions of the Association for Computational Linguistics},\n  volume    = {10},\n  pages     = {997--1012},\n  year      = {2022},\n}\n\n@inproceedings{basu2021_mirostat,\n  author    = {Basu, Sourya and Ramachandran, Govardana Sachitanandam and Keskar, Nitish Shirish and Varshney, Lav R.},\n  title     = {{Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2021},\n}\n\n% ============================================================\n% Ordinal Classification / Contrastive Learning\n% ============================================================\n\n@article{coral2020,\n  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  title     = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n  journal   = {Pattern Recognition Letters},\n  volume    = {140},\n  pages     = {325--331},\n  year      = {2020},\n  note      = {arXiv:1901.07884},\n  url       = {https://arxiv.org/abs/1901.07884},\n}\n\n@inproceedings{cloc2025,\n  author    = {Pitawela, Dileepa and Carneiro, Gustavo and Chen, Hsiang-Ting},\n  title     = {{CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss}},\n  booktitle = {Proceedings of CVPR},\n  year      = {2025},\n  note      = {arXiv:2504.17813},\n  url       = {https://arxiv.org/abs/2504.17813},\n}\n\n% ============================================================\n% Data Curation / Importance Weighting\n% ============================================================\n\n@inproceedings{dsir2023,\n  author    = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  title     = {{Data Selection for Language Models via Importance Resampling}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2023},\n  note      = {arXiv:2302.03169},\n  url       = {https://arxiv.org/abs/2302.03169},\n}\n\n@inproceedings{qurating2024,\n  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.09739},\n  url       = {https://arxiv.org/abs/2402.09739},\n}\n\n@article{sugiyama2007_importance_weighting,\n  author    = {Sugiyama, Masashi and Krauledat, Matthias and M{\\\"u}ller, Klaus-Robert},\n  title     = {{Covariate Shift Adaptation by Importance Weighted Cross Validation}},\n  journal   = {Journal of Machine Learning Research},\n  volume    = {8},\n  pages     = {985--1005},\n  year      = {2007},\n}\n\n% ============================================================\n% Foundation Models / Fine-tuning\n% ============================================================\n\n@inproceedings{hu2022lora,\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2022},\n  note      = {arXiv:2106.09685},\n  url       = {https://arxiv.org/abs/2106.09685},\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/references.bib",
+    "content": "% ============================================================\n% Model Collapse Theory\n% ============================================================\n\n@article{shumailov2024_nature,\n  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  title     = {{AI models collapse when trained on recursively generated data}},\n  journal   = {Nature},\n  volume    = {631},\n  pages     = {755--759},\n  year      = {2024},\n  doi       = {10.1038/s41586-024-07566-y},\n}\n\n@inproceedings{dohmatob2024_tale_of_tails,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},\n  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.07043},\n  url       = {https://arxiv.org/abs/2402.07043},\n}\n\n@inproceedings{dohmatob2024_strong_collapse,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n  title     = {{Strong Model Collapse}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2410.04840},\n  url       = {https://arxiv.org/abs/2410.04840},\n}\n\n@inproceedings{dohmatob2024_demystified,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},\n  title     = {{Model Collapse Demystified: The Case of Regression}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n  note      = {arXiv:2402.07712},\n  url       = {https://arxiv.org/abs/2402.07712},\n}\n\n@inproceedings{alemohammad2024_mad,\n  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Hossain, Hossein and Romero, Oscar and Ramanarayanan, Sriram and Baraniuk, Richard G.},\n  title     = {{Self-Consuming Generative Models Go MAD}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2307.01850},\n  url       = {https://arxiv.org/abs/2307.01850},\n}\n\n@misc{gerstgrasser2024_accumulate,\n  author    = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n  title     = {{Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data}},\n  year      = {2024},\n  howpublished = {arXiv:2404.01413},\n  url       = {https://arxiv.org/abs/2404.01413},\n}\n\n@inproceedings{marchi2024_heat_death,\n  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},\n  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},\n  booktitle = {Proceedings of ICASSP},\n  year      = {2024},\n  note      = {arXiv:2404.02325},\n  url       = {https://arxiv.org/abs/2404.02325},\n}\n\n@misc{knowledge_collapse2025,\n  author    = {Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip},\n  title     = {{Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training}},\n  year      = {2025},\n  howpublished = {arXiv:2509.04796},\n  url       = {https://arxiv.org/abs/2509.04796},\n}\n\n@misc{sigma2026_spectral,\n  author    = {Gu, Yi and Pang, Lingyou and Ye, Xiangkun and Wang, Tianyu and Lin, Jianyu and Priebe, Carey E. and Aue, Alexander},\n  title     = {{SIGMA: Scalable Spectral Insights for LLM Model Collapse}},\n  year      = {2026},\n  howpublished = {arXiv:2601.03385},\n  url       = {https://arxiv.org/abs/2601.03385},\n}\n\n@inproceedings{mohamed2025_broken_telephone,\n  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},\n  title     = {{LLM as a Broken Telephone: Iterative Generation Distorts Information}},\n  booktitle = {Proceedings of ACL},\n  year      = {2025},\n  note      = {arXiv:2502.20258},\n  url       = {https://arxiv.org/abs/2502.20258},\n}\n\n@inproceedings{synthetic_eggs2026,\n  author    = {Schaffelder, Max and Gatt, Albert},\n  title     = {{Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning}},\n  booktitle = {Findings of ACL},\n  year      = {2026},\n  note      = {arXiv:2511.01490},\n  url       = {https://arxiv.org/abs/2511.01490},\n}\n\n% --- Model collapse: collapse-can-be-avoided / contamination ---\n\n@inproceedings{drayson2025_detection_prevents_collapse,\n  author    = {Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  title     = {{Machine-generated text detection prevents language model collapse}},\n  booktitle = {Findings of EMNLP},\n  year      = {2025},\n  note      = {arXiv:2502.15654},\n  url       = {https://arxiv.org/abs/2502.15654},\n}\n\n@misc{bakshi2026_collapse_improvement,\n  author    = {Bakshi, Soham and Chakraborty, Sunrit},\n  title     = {{From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources}},\n  year      = {2026},\n  howpublished = {arXiv:2602.10531},\n  url       = {https://arxiv.org/abs/2602.10531},\n}\n\n@misc{wang2026_contamination,\n  author    = {Wang, Kevin and Niu, Hongqian and Li, Didong},\n  title     = {{Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training}},\n  year      = {2026},\n  howpublished = {arXiv:2602.16065},\n  url       = {https://arxiv.org/abs/2602.16065},\n}\n\n@misc{falahati2026_curated,\n  author    = {Falahati, Ali and Mohammadi Amiri, Mohammad and Larson, Kate and Golab, Lukasz},\n  title     = {{Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences}},\n  year      = {2026},\n  howpublished = {arXiv:2605.07724},\n  url       = {https://arxiv.org/abs/2605.07724},\n}\n\n% ============================================================\n% AI-Generated Text Detection\n% ============================================================\n\n% --- Statistical / zero-shot detectors ---\n\n@inproceedings{gehrmann2019_gltr,\n  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n  title     = {{GLTR: Statistical Detection and Visualization of Generated Text}},\n  booktitle = {Proceedings of ACL: System Demonstrations},\n  year      = {2019},\n  note      = {arXiv:1906.04043},\n  url       = {https://arxiv.org/abs/1906.04043},\n}\n\n@inproceedings{mitchell2023_detectgpt,\n  author    = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  title     = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.11305},\n  url       = {https://arxiv.org/abs/2301.11305},\n}\n\n@inproceedings{fast_detectgpt2024,\n  author    = {Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n  title     = {{Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.05130},\n  url       = {https://arxiv.org/abs/2310.05130},\n}\n\n@inproceedings{binoculars2024,\n  author    = {Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n  title     = {{Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2401.12070},\n  url       = {https://arxiv.org/abs/2401.12070},\n}\n\n@article{diveye2026,\n  author    = {Basani, Advik Raj and Chen, Pin-Yu},\n  title     = {{Diversity Boosts AI-Generated Text Detection}},\n  journal   = {Transactions on Machine Learning Research (TMLR)},\n  year      = {2026},\n  note      = {arXiv:2509.18880},\n  url       = {https://arxiv.org/abs/2509.18880},\n}\n\n% --- Robustness / limitations of detectors ---\n\n@misc{sadasivan2023_paraphrase,\n  author    = {Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n  title     = {{Can AI-Generated Text be Reliably Detected?}},\n  year      = {2023},\n  howpublished = {arXiv:2303.11156},\n  url       = {https://arxiv.org/abs/2303.11156},\n}\n\n@misc{pudasaini2026_detection_fails,\n  author    = {Pudasaini, Shushanta and Miralles-Pech{\\'u}an, Luis and Lillis, David and Llorens Salvador, Marisa},\n  title     = {{Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy}},\n  year      = {2026},\n  howpublished = {arXiv:2603.23146},\n  url       = {https://arxiv.org/abs/2603.23146},\n}\n\n@misc{pu2026_generator_barrier,\n  author    = {Pu, Xiao and Cheng, Zepeng and Yuan, Lin and Wu, Yu and Bi, Xiuli},\n  title     = {{Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection}},\n  year      = {2026},\n  howpublished = {arXiv:2604.13692},\n  url       = {https://arxiv.org/abs/2604.13692},\n}\n\n% --- Beyond binary: attribution, editing extent, benchmarks ---\n\n@inproceedings{uchendu2020_attribution,\n  author    = {Uchendu, Adaku and Le, Thai and Shu, Kai and Lee, Dongwon},\n  title     = {{Authorship Attribution for Neural Text Generation}},\n  booktitle = {Proceedings of EMNLP},\n  year      = {2020},\n}\n\n@inproceedings{editlens2026,\n  author    = {Thai, Katherine and Emi, Bradley and Masrour, Elyas and Iyyer, Mohit},\n  title     = {{EditLens: Quantifying the Extent of AI Editing in Text}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2026},\n  note      = {arXiv:2510.03154},\n  url       = {https://arxiv.org/abs/2510.03154},\n}\n\n@inproceedings{loki2025,\n  author    = {Ye, Junyan and Zhou, Baichuan and Huang, Zilong and Zhang, Junan and Bai, Tianyi and Kang, Hengrui and He, Jun and Lin, Honglin and Wang, Zihao and Wu, Tong and Wu, Zhizheng and Chen, Yiping and Lin, Dahua and He, Conghui and Li, Weijia},\n  title     = {{LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models}},\n  booktitle = {Proceedings of ICLR (Spotlight)},\n  year      = {2025},\n  note      = {arXiv:2410.09732},\n  url       = {https://arxiv.org/abs/2410.09732},\n}\n\n% --- Watermarking ---\n\n@inproceedings{kirchenbauer2023_watermark,\n  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  title     = {{A Watermark for Large Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.10226},\n  url       = {https://arxiv.org/abs/2301.10226},\n}\n\n% ============================================================\n% Decoding Strategies\n% ============================================================\n\n@inproceedings{holtzman2020_nucleus,\n  author    = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n  title     = {{The Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2020},\n  note      = {arXiv:1904.09751},\n  url       = {https://arxiv.org/abs/1904.09751},\n}\n\n@inproceedings{finlayson2024_closing,\n  author    = {Finlayson, Matthew and Hewitt, John and Koller, Alexander and Swayamdipta, Swabha and Sabharwal, Ashish},\n  title     = {{Closing the Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.01693},\n  url       = {https://arxiv.org/abs/2310.01693},\n}\n\n@inproceedings{garces_arias2025_decoding_decoded,\n  author    = {{Garces Arias}, Esteban and Li, Meimingwei and Heumann, Christian and Assenmacher, Matthias},\n  title     = {{Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation}},\n  booktitle = {Proceedings of COLING},\n  year      = {2025},\n  note      = {arXiv:2410.06097},\n  url       = {https://arxiv.org/abs/2410.06097},\n}\n\n@article{wiher2022_decoding,\n  author    = {Wiher, Gian and Meister, Clara and Cotterell, Ryan},\n  title     = {{On Decoding Strategies for Neural Text Generators}},\n  journal   = {Transactions of the Association for Computational Linguistics},\n  volume    = {10},\n  pages     = {997--1012},\n  year      = {2022},\n}\n\n@inproceedings{basu2021_mirostat,\n  author    = {Basu, Sourya and Ramachandran, Govardana Sachitanandam and Keskar, Nitish Shirish and Varshney, Lav R.},\n  title     = {{Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2021},\n}\n\n% ============================================================\n% Ordinal Classification / Contrastive Learning\n% ============================================================\n\n@article{coral2020,\n  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  title     = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n  journal   = {Pattern Recognition Letters},\n  volume    = {140},\n  pages     = {325--331},\n  year      = {2020},\n  note      = {arXiv:1901.07884},\n  url       = {https://arxiv.org/abs/1901.07884},\n}\n\n@inproceedings{cloc2025,\n  author    = {Pitawela, Dileepa and Carneiro, Gustavo and Chen, Hsiang-Ting},\n  title     = {{CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss}},\n  booktitle = {Proceedings of CVPR},\n  year      = {2025},\n  note      = {arXiv:2504.17813},\n  url       = {https://arxiv.org/abs/2504.17813},\n}\n\n% ============================================================\n% Data Curation / Importance Weighting\n% ============================================================\n\n@inproceedings{dsir2023,\n  author    = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  title     = {{Data Selection for Language Models via Importance Resampling}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2023},\n  note      = {arXiv:2302.03169},\n  url       = {https://arxiv.org/abs/2302.03169},\n}\n\n@inproceedings{qurating2024,\n  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.09739},\n  url       = {https://arxiv.org/abs/2402.09739},\n}\n\n@article{sugiyama2007_importance_weighting,\n  author    = {Sugiyama, Masashi and Krauledat, Matthias and M{\\\"u}ller, Klaus-Robert},\n  title     = {{Covariate Shift Adaptation by Importance Weighted Cross Validation}},\n  journal   = {Journal of Machine Learning Research},\n  volume    = {8},\n  pages     = {985--1005},\n  year      = {2007},\n}\n\n% ============================================================\n% Foundation Models / Fine-tuning\n% ============================================================\n\n@inproceedings{hu2022lora,\n  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2022},\n  note      = {arXiv:2106.09685},\n  url       = {https://arxiv.org/abs/2106.09685},\n}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T15:59:58.604983+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/references.bib
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T15:59:58.605221+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/citations_audit.md",
+  "content": "# Citations Audit Report\n\n**Date**: 2026-05-15\n**Total entries in references.bib**: 38\n**Target**: 25+ (SATISFIED)\n\n---\n\n## D002 Hard Constraint Coverage\n\n| Domain | Required | Status |\n|--------|----------|--------|\n| Watermarking | Kirchenbauer et al. ICML 2023 | `kirchenbauer2023_watermark` |\n| Model Collapse Theory | Alemohammad ICLR 2024 | `alemohammad2024_mad` |\n| Model Collapse Theory | Dohmatob 2024 | `dohmatob2024_tale_of_tails` + `dohmatob2024_strong_collapse` + `dohmatob2024_demystified` |\n| Model Collapse Theory | Gerstgrasser 2024 | `gerstgrasser2024_accumulate` |\n| Model Collapse Theory | Shumailov Nature 2024 | `shumailov2024_nature` |\n| Data Curation | DSIR (Xie et al. 2023) | `dsir2023` |\n| Data Curation | QuRating (2024) | `qurating2024` |\n| Multi-source Attribution | Uchendu et al. 2020 | `uchendu2020_attribution` |\n| Binary Detectors | Binoculars (Hans et al. ICML 2024) | `binoculars2024` |\n| Binary Detectors | Fast-DetectGPT (Bao et al. 2024) | `fast_detectgpt2024` |\n| Decoding Strategy | Garces Arias COLING 2025 | `garces_arias2025_decoding_decoded` |\n| Decoding Strategy | Holtzman ICLR 2020 | `holtzman2020_nucleus` |\n\n**All D002 domains covered.**\n\n---\n\n## Verification Status (all entries)\n\n### Model Collapse Theory (15 entries)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `shumailov2024_nature` | Confirmed | Nature 2024, doi:10.1038/s41586-024-07566-y |\n| `dohmatob2024_tale_of_tails` | Confirmed | ICML 2024, arXiv:2402.07043 |\n| `dohmatob2024_strong_collapse` | Confirmed | ICLR 2024, arXiv:2410.04840 |\n| `dohmatob2024_demystified` | Confirmed | NeurIPS 2024, arXiv:2402.07712 |\n| `alemohammad2024_mad` | Confirmed | ICLR 2024, arXiv:2307.01850 |\n| `gerstgrasser2024_accumulate` | Confirmed | arXiv:2404.01413 |\n| `marchi2024_heat_death` | Confirmed | ICASSP 2024, arXiv:2404.02325 |\n| `knowledge_collapse2025` | Confirmed | arXiv:2509.04796 |\n| `sigma2026_spectral` | Confirmed | arXiv:2601.03385 |\n| `mohamed2025_broken_telephone` | Confirmed | ACL 2025, arXiv:2502.20258 |\n| `synthetic_eggs2026` | Confirmed | Findings of ACL 2026, arXiv:2511.01490 |\n| `drayson2025_detection_prevents_collapse` | Confirmed | Findings of EMNLP 2025, arXiv:2502.15654 |\n| `bakshi2026_collapse_improvement` | Confirmed | arXiv:2602.10531 |\n| `wang2026_contamination` | Confirmed | arXiv:2602.16065 |\n| `falahati2026_curated` | Confirmed | arXiv:2605.07724 |\n\n### AI-Generated Text Detection (11 entries)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `gehrmann2019_gltr` | Confirmed | ACL 2019, arXiv:1906.04043 |\n| `mitchell2023_detectgpt` | Confirmed | ICML 2023, arXiv:2301.11305 |\n| `fast_detectgpt2024` | Confirmed | ICLR 2024, arXiv:2310.05130 |\n| `binoculars2024` | Confirmed | ICML 2024, arXiv:2401.12070 |\n| `diveye2026` | Confirmed | **TMLR 2026** (NOT ICLR; ICLR submission withdrawn), arXiv:2509.18880 |\n| `sadasivan2023_paraphrase` | Confirmed | arXiv:2303.11156 |\n| `pudasaini2026_detection_fails` | Confirmed | arXiv:2603.23146 |\n| `pu2026_generator_barrier` | Confirmed | arXiv:2604.13692 |\n| `uchendu2020_attribution` | Confirmed | EMNLP 2020 |\n| `editlens2026` | Confirmed | ICLR 2026, arXiv:2510.03154 |\n| `loki2025` | Confirmed | ICLR 2025 Spotlight, arXiv:2410.09732 |\n\n### Watermarking (1 entry)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `kirchenbauer2023_watermark` | Confirmed | ICML 2023, arXiv:2301.10226 |\n\n### Decoding Strategies (5 entries)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `holtzman2020_nucleus` | Confirmed | ICLR 2020, arXiv:1904.09751 |\n| `finlayson2024_closing` | Confirmed | ICLR 2024, arXiv:2310.01693 |\n| `garces_arias2025_decoding_decoded` | Confirmed | COLING 2025, arXiv:2410.06097 |\n| `wiher2022_decoding` | Confirmed | TACL 2022 |\n| `basu2021_mirostat` | Confirmed | ICLR 2021 |\n\n### Ordinal Classification (2 entries)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `coral2020` | Confirmed | Pattern Recognition Letters 2020, arXiv:1901.07884 |\n| `cloc2025` | Confirmed | CVPR 2025, arXiv:2504.17813 |\n\n### Data Curation (3 entries)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `dsir2023` | Confirmed | NeurIPS 2023, arXiv:2302.03169 |\n| `qurating2024` | Confirmed | ICML 2024 Spotlight, arXiv:2402.09739 |\n| `sugiyama2007_importance_weighting` | Confirmed | JMLR 2007 |\n\n### Foundation Models (1 entry)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `hu2022lora` | Confirmed | ICLR 2022, arXiv:2106.09685 |\n\n---\n\n## Corrections Applied\n\n1. **`diveye2026`**: Changed venue from `Proceedings of ICLR` to `Transactions on Machine Learning Research (TMLR)`. The ICLR 2026 submission was withdrawn; the paper was accepted at TMLR.\n2. **`garces_arias2025_decoding_decoded`**: Added missing arXiv ID (2410.06097).\n3. **`loki2025`**: Updated booktitle to note Spotlight designation.\n4. **`bakshi2026_collapse_improvement`**: Expanded title to full version (\"...Evolutionary Dynamics of Iterative Training on Contaminated Sources\").\n5. **`falahati2026_curated`**: Expanded title to include subtitle (\"...A Theoretical Study of Generative Retraining with Pluralistic Preferences\").\n6. **`pudasaini2026_detection_fails`**: Expanded title to include subtitle (\"...Beyond Benchmark Accuracy\").\n7. **`alemohammad2024_mad`**: Expanded author list from `others` to named authors.\n8. **`loki2025`**: Expanded author list from `others` to named authors.\n9. **`sigma2026_spectral`**: Expanded author list from `others` to named authors.\n10. Added volume/page numbers where available (`shumailov2024_nature`, `wiher2022_decoding`, `coral2020`, `sugiyama2007_importance_weighting`).\n\n---\n\n## Summary\n\n- **38 total entries**, all verified as real publications\n- **0 hallucinated citations** detected\n- All D002 hard constraint domains fully covered\n- 4 entries in bib but not cited in any .tex file: `dohmatob2024_strong_collapse`, `dohmatob2024_demystified`, `mohamed2025_broken_telephone`, `cloc2025` (available for future use in method/discussion sections)\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/citations_audit.md",
+    "content": "# Citations Audit Report\n\n**Date**: 2026-05-15\n**Total entries in references.bib**: 38\n**Target**: 25+ (SATISFIED)\n\n---\n\n## D002 Hard Constraint Coverage\n\n| Domain | Required | Status |\n|--------|----------|--------|\n| Watermarking | Kirchenbauer et al. ICML 2023 | `kirchenbauer2023_watermark` |\n| Model Collapse Theory | Alemohammad ICLR 2024 | `alemohammad2024_mad` |\n| Model Collapse Theory | Dohmatob 2024 | `dohmatob2024_tale_of_tails` + `dohmatob2024_strong_collapse` + `dohmatob2024_demystified` |\n| Model Collapse Theory | Gerstgrasser 2024 | `gerstgrasser2024_accumulate` |\n| Model Collapse Theory | Shumailov Nature 2024 | `shumailov2024_nature` |\n| Data Curation | DSIR (Xie et al. 2023) | `dsir2023` |\n| Data Curation | QuRating (2024) | `qurating2024` |\n| Multi-source Attribution | Uchendu et al. 2020 | `uchendu2020_attribution` |\n| Binary Detectors | Binoculars (Hans et al. ICML 2024) | `binoculars2024` |\n| Binary Detectors | Fast-DetectGPT (Bao et al. 2024) | `fast_detectgpt2024` |\n| Decoding Strategy | Garces Arias COLING 2025 | `garces_arias2025_decoding_decoded` |\n| Decoding Strategy | Holtzman ICLR 2020 | `holtzman2020_nucleus` |\n\n**All D002 domains covered.**\n\n---\n\n## Verification Status (all entries)\n\n### Model Collapse Theory (15 entries)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `shumailov2024_nature` | Confirmed | Nature 2024, doi:10.1038/s41586-024-07566-y |\n| `dohmatob2024_tale_of_tails` | Confirmed | ICML 2024, arXiv:2402.07043 |\n| `dohmatob2024_strong_collapse` | Confirmed | ICLR 2024, arXiv:2410.04840 |\n| `dohmatob2024_demystified` | Confirmed | NeurIPS 2024, arXiv:2402.07712 |\n| `alemohammad2024_mad` | Confirmed | ICLR 2024, arXiv:2307.01850 |\n| `gerstgrasser2024_accumulate` | Confirmed | arXiv:2404.01413 |\n| `marchi2024_heat_death` | Confirmed | ICASSP 2024, arXiv:2404.02325 |\n| `knowledge_collapse2025` | Confirmed | arXiv:2509.04796 |\n| `sigma2026_spectral` | Confirmed | arXiv:2601.03385 |\n| `mohamed2025_broken_telephone` | Confirmed | ACL 2025, arXiv:2502.20258 |\n| `synthetic_eggs2026` | Confirmed | Findings of ACL 2026, arXiv:2511.01490 |\n| `drayson2025_detection_prevents_collapse` | Confirmed | Findings of EMNLP 2025, arXiv:2502.15654 |\n| `bakshi2026_collapse_improvement` | Confirmed | arXiv:2602.10531 |\n| `wang2026_contamination` | Confirmed | arXiv:2602.16065 |\n| `falahati2026_curated` | Confirmed | arXiv:2605.07724 |\n\n### AI-Generated Text Detection (11 entries)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `gehrmann2019_gltr` | Confirmed | ACL 2019, arXiv:1906.04043 |\n| `mitchell2023_detectgpt` | Confirmed | ICML 2023, arXiv:2301.11305 |\n| `fast_detectgpt2024` | Confirmed | ICLR 2024, arXiv:2310.05130 |\n| `binoculars2024` | Confirmed | ICML 2024, arXiv:2401.12070 |\n| `diveye2026` | Confirmed | **TMLR 2026** (NOT ICLR; ICLR submission withdrawn), arXiv:2509.18880 |\n| `sadasivan2023_paraphrase` | Confirmed | arXiv:2303.11156 |\n| `pudasaini2026_detection_fails` | Confirmed | arXiv:2603.23146 |\n| `pu2026_generator_barrier` | Confirmed | arXiv:2604.13692 |\n| `uchendu2020_attribution` | Confirmed | EMNLP 2020 |\n| `editlens2026` | Confirmed | ICLR 2026, arXiv:2510.03154 |\n| `loki2025` | Confirmed | ICLR 2025 Spotlight, arXiv:2410.09732 |\n\n### Watermarking (1 entry)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `kirchenbauer2023_watermark` | Confirmed | ICML 2023, arXiv:2301.10226 |\n\n### Decoding Strategies (5 entries)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `holtzman2020_nucleus` | Confirmed | ICLR 2020, arXiv:1904.09751 |\n| `finlayson2024_closing` | Confirmed | ICLR 2024, arXiv:2310.01693 |\n| `garces_arias2025_decoding_decoded` | Confirmed | COLING 2025, arXiv:2410.06097 |\n| `wiher2022_decoding` | Confirmed | TACL 2022 |\n| `basu2021_mirostat` | Confirmed | ICLR 2021 |\n\n### Ordinal Classification (2 entries)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `coral2020` | Confirmed | Pattern Recognition Letters 2020, arXiv:1901.07884 |\n| `cloc2025` | Confirmed | CVPR 2025, arXiv:2504.17813 |\n\n### Data Curation (3 entries)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `dsir2023` | Confirmed | NeurIPS 2023, arXiv:2302.03169 |\n| `qurating2024` | Confirmed | ICML 2024 Spotlight, arXiv:2402.09739 |\n| `sugiyama2007_importance_weighting` | Confirmed | JMLR 2007 |\n\n### Foundation Models (1 entry)\n\n| Key | Status | Verification |\n|-----|--------|-------------|\n| `hu2022lora` | Confirmed | ICLR 2022, arXiv:2106.09685 |\n\n---\n\n## Corrections Applied\n\n1. **`diveye2026`**: Changed venue from `Proceedings of ICLR` to `Transactions on Machine Learning Research (TMLR)`. The ICLR 2026 submission was withdrawn; the paper was accepted at TMLR.\n2. **`garces_arias2025_decoding_decoded`**: Added missing arXiv ID (2410.06097).\n3. **`loki2025`**: Updated booktitle to note Spotlight designation.\n4. **`bakshi2026_collapse_improvement`**: Expanded title to full version (\"...Evolutionary Dynamics of Iterative Training on Contaminated Sources\").\n5. **`falahati2026_curated`**: Expanded title to include subtitle (\"...A Theoretical Study of Generative Retraining with Pluralistic Preferences\").\n6. **`pudasaini2026_detection_fails`**: Expanded title to include subtitle (\"...Beyond Benchmark Accuracy\").\n7. **`alemohammad2024_mad`**: Expanded author list from `others` to named authors.\n8. **`loki2025`**: Expanded author list from `others` to named authors.\n9. **`sigma2026_spectral`**: Expanded author list from `others` to named authors.\n10. Added volume/page numbers where available (`shumailov2024_nature`, `wiher2022_decoding`, `coral2020`, `sugiyama2007_importance_weighting`).\n\n---\n\n## Summary\n\n- **38 total entries**, all verified as real publications\n- **0 hallucinated citations** detected\n- All D002 hard constraint domains fully covered\n- 4 entries in bib but not cited in any .tex file: `dohmatob2024_strong_collapse`, `dohmatob2024_demystified`, `mohamed2025_broken_telephone`, `cloc2025` (available for future use in method/discussion sections)\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T15:59:58.605592+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/citations_audit.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-15T15:59:58.605811+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/references.bib /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+  "description": "Sync bib to docs/paper/ location"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/references.bib /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+    "description": "Sync bib to docs/paper/ location"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T15:59:58.606023+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_bibliography_20260515T155440",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-15T15:59:58.606237+00:00_
+
+完成。产出：
+
+**`references.bib`** — 38 条经过 WebSearch 验证的真实引用，0 条幻觉引用。关键修正：
+- DivEye 发表地从 ICLR 改为 TMLR 2026（ICLR 投稿已撤回）
+- Garces Arias 补充了 arXiv ID (2410.06097)
+- 多个条目补全了完整标题、作者名、卷号页码
+
+**`citations_audit.md`** — 每条引用的验证状态、D002 硬约束覆盖检查（全部满足）、所有修正记录。
+
+**D002 全部 6 个领域已覆盖**，总引用数 38 远超 25+ 要求。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_bibliography_20260515T155440"
+}
+```
+
+</details>
+
+---

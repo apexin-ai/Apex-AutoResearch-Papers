@@ -1926,5 +1926,6 @@
       ],
       "message_count": 47
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/infra-vllm-check-restart.md"
 }

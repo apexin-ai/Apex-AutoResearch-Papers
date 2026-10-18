@@ -43,5 +43,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/deploy-fill-cqa1-idle-gpus.md"
 }

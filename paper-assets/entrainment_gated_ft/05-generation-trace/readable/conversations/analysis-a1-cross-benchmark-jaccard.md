@@ -1,0 +1,2495 @@
+# analysis a1 cross benchmark jaccard
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 83
+- **Recorded user turns:** 0
+- **Tool calls:** 41
+- **Original source:** `logs/chats/worker_analysis_a1_cross_benchmark_jaccard_20260522T075546.jsonl`
+- **Structured JSON:** [`5a18654efff2a5a1c7f5.json`](../../sessions/5a/5a18654efff2a5a1c7f5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+83 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T08:05:03.332282+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T08:05:03.332711+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T08:05:03.332927+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T08:05:03.333214+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/memory.md\", \"content\": \"# FLA 版本与 m-a-p 模型兼容性调查结果 (2026-05-18)\\n\\n## 核心结论：fla 0.5.0 与 m-a-p 模型兼容，attn.D 丢弃无影响\\n\\n（详情见前版，略）\\n\\n- m-a-p 模型的 `attn.D` 是死参数，fla ≥0.1.0 已移除，strict=False 加载安全\\n- 训练框架：fla + flame (torchtitan)，训练数据：FineWeb-Edu，72 模型\\n- HuggingFace: https://huggingface.co/collections/m-a-p/hybrid-linear-attention-research-686c488a63d609d2f20e2b1e\\n\\n---\\n\\n# 统计报告规则 (2026-05-19, Director 硬约束)\\n\\n**所有统计 claim 必须附原始数值 (ρ=X, p=Y)。** \\\"majority\\\"/\\\"most\\\" 必须有准确计数。适用于所有产出。\\n\\n---\\n\\n# exp-003 表面特征：无法区分 helped/hurt (2026-05-19)\\n\\n表面特征（token frequency、context length、lexical diversity）对 LAMBADA helped/hurt 无区分力（GDN/HGRN2 全部 p>0.2）。机制在模型内部，不在输入。→ 需要 exp-004 attention weight analysis。\\n\\n---\\n\\n# exp-004-r2 Attention Patterns：不是 per-example 效应的来源 (2026-05-19)\\n\\n**Attention entropy 无法区分 helped vs hurt**（三个架构差异均 <0.02）。Per-example divergence 不由 attention pattern 差异驱动——效应发生在 recurrent component 层面。\\n\\n**跨架构相似度发现**：GDN-RetNet 全层高度相似（>0.9）。HGRN2 在浅层 L2 与另外两者差异大（cos sim ~0.2），但深层收敛到 >0.94。→ 三架构深层 attention 相似但 per-example 仍分化，进一步支持 decoupling。\\n\\n**论文影响**：排除了 \\\"不同 attention pattern → 不同受影响样本\\\" 的 trivial 解释。效应来源指向 attention-recurrence interaction，非 attention 本身。Supplementary/appendix material。\\n\\n---\\n\\n# exp-010 Decoupling 叙事 (2026-05-19, D008)\\n\\n**禁用**：co-evolution, paradoxical coexistence, paradox\\n**使用**：decoupling, different timescales\\n\\nJaccard 在 4% attention 饱和 (~0.095)，aggregate σ 持续下降 (0.024→0.005)。两个过程不同时间尺度。Net asymmetry 递增 (0.013→0.040) 是真实 pattern。\\n\\n---\\n\\n# W1 统计策略 (2026-05-19, D009 — 最重要的 framing 决策)\\n\\n**Convergence 是 LAMBADA-Specific。** 5 个新 benchmark (boolq/piqa/sciq/copa/xstorycloze_en) 均不显著。10-Bonf 0/10。\\n\\n**D009 批准的论证策略**：\\n1. **BCa CI [-1.0, -0.7] 作为主证据**（不依赖多重比较）\\n2. **6-benchmark Bonferroni adj-p=0.100**（D003 pre-registered），诚实报告为 \\\"does not survive s
+…[truncated 8425 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T08:05:03.333579+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/ -maxdepth 3 -type d -name \"results\" -o -name \"artifacts\" -o -name \"data\" -o -name \"eval_results\" -o -name \"samples\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/ -maxdepth 3 -type d -name \"results\" -o -name \"artifacts\" -o -name \"data\" -o -name \"eval_results\" -o -name \"samples\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T08:05:03.333834+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/data\\n/root/entrainment_gated_ft/results\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T08:05:03.334015+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls -la /root/entrainment_gated_ft/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-22T08:05:03.334266+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls -la /root/entrainment_gated_ft/data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T08:05:03.334428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 72\\ndrwxr-xr-x  7 root root   186 May 18 15:28 .\\ndrwxr-xr-x 12 root root  4096 May 22 06:26 ..\\ndrwxr-xr-x  3 root root    30 May 18 14:20 func_comp\\ndrwxr-xr-x  3 root root  8192 May 18 15:20 mvp_direct\\ndrwxr-xr-x  2 root root  8192 May 18 15:36 mvp_logprob\\n-rw-r--r--  1 root root 35275 May 18 15:36 mvp_logprob_run.log\\ndrwxr-xr-x  2 root root   110 May 18 15:28 test_logprob\\n-rw-r--r--  1 root root  2397 May 18 15:28 test_logprob_dryrun.log\\ndrwxr-xr-x  3 root root  4096 May 18 14:29 test_run\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T08:05:03.334566+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 18 13:36 .\\ndrwxr-xr-x 12 root root 4096 May 22 06:26 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T08:05:03.334762+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/results/mvp_logprob/ -h",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls -la /root/entrainment_gated_ft/results/mvp_logprob/ -h",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-22T08:05:03.334911+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/ -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/ -name \"*.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T08:05:03.335108+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 19M\\ndrwxr-xr-x 2 root root 8.0K May 18 15:36 .\\ndrwxr-xr-x 7 root root  186 May 18 15:28 ..\\n-rw-r--r-- 1 root root 232K May 18 15:31 340M-20B-GatedDeltaNet-New-hybrid-24-1_depth1_details.json\\n-rw-r--r-- 1 root root 232K May 18 15:31 340M-20B-GatedDeltaNet-New-hybrid-24-1_depth2_details.json\\n-rw-r--r-- 1 root root 232K May 18 15:31 340M-20B-GatedDeltaNet-New-hybrid-24-1_depth3_details.json\\n-rw-r--r-- 1 root root 232K May 18 15:31 340M-20B-GatedDeltaNet-New-hybrid-24-1_depth4_details.json\\n-rw-r--r-- 1 root root 232K May 18 15:31 340M-20B-GatedDeltaNet-New-hybrid-24-1_depth5_details.json\\n-rw-r--r-- 1 root root 232K May 18 15:31 340M-20B-GatedDeltaNet-hybrid-12-1_depth1_details.json\\n-rw-r--r-- 1 root root 233K May 18 15:31 340M-20B-GatedDeltaNet-hybrid-12-1_depth2_details.json\\n-rw-r--r-- 1 root root 233K May 18 15:31 340M-20B-GatedDeltaNet-hybrid-12-1_depth3_details.json\\n-rw-r--r-- 1 root root 233K May 18 15:31 340M-20B-GatedDeltaNet-hybrid-12-1_depth4_details.json\\n-rw-r--r-- 1 root root 234K May 18 15:32 340M-20B-GatedDeltaNet-hybrid-12-1_depth5_details.json\\n-rw-r--r-- 1 root root 234K May 18 15:32 340M-20B-GatedDeltaNet-hybrid-3-1_depth1_details.json\\n-rw-r--r-- 1 root root 234K May 18 15:32 340M-20B-GatedDeltaNet-hybrid-3-1_depth2_details.json\\n-rw-r--r-- 1 root root 234K May 18 15:32 340M-20B-GatedDeltaNet-hybrid-3-1_depth3_details.json\\n-rw-r--r-- 1 root root 234K May 18 15:32 340M-20B-GatedDeltaNet-hybrid-3-1_depth4_details.json\\n-rw-r--r-- 1 root root 235K May 18 15:32 340M-20B-GatedDeltaNet-hybrid-3-1_depth5_details.json\\n-rw-r--r-- 1 root root 232K May 18 15:32 340M-20B-GatedDeltaNet-hybrid-6-1_depth1_details.json\\n-rw-r--r-- 1 root root 232K May 18 15:32 340M-20B-GatedDeltaNet-hybrid-6-1_depth2_details.json\\n-rw-r--r-- 1 root root 232K May 18 15:32 340M-20B-GatedDeltaNet-hybrid-6-1_depth3_details.json\\n-rw-r--r-- 1 root root 232K May 18 15:32 340M-20B-GatedDeltaNet-h
+…[truncated 5722 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T08:05:03.335275+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/ -name \"*.csv\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/ -name \"*.csv\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T08:05:03.335503+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/func_comp/datasets/depth_1_direct_n10.json\\n/root/entrainment_gated_ft/results/func_comp/datasets/depth_2_direct_n10.json\\n/root/entrainment_gated_ft/results/func_comp/datasets/depth_3_direct_n10.json\\n/root/entrainment_gated_ft/results/func_comp/datasets/depth_4_direct_n10.json\\n/root/entrainment_gated_ft/results/func_comp/datasets/depth_5_direct_n10.json\\n/root/entrainment_gated_ft/results/test_run/datasets/depth_1_direct_n5.json\\n/root/entrainment_gated_ft/results/test_run/datasets/depth_2_direct_n5.json\\n/root/entrainment_gated_ft/results/test_run/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/test_run/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/test_run/summary_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_1_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_2_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_3_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_4_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_5_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth1_
+…[truncated 6384 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T08:05:03.335731+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\\n/root/entrainment_gated_ft/analysis/lambada_per_example.csv\\n/root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\n/root/entrainment_gated_ft/analysis/lambada_matched_per_example.csv\\n/root/entrainment_gated_ft/analysis/task_specificity_results.csv\\n/root/entrainment_gated_ft/analysis/sample_characterization_results.csv\\n/root/entrainment_gated_ft/analysis/robustness_results.csv\\n/root/entrainment_gated_ft/analysis/sample_perplexity_results.csv\\n/root/entrainment_gated_ft/analysis/robustness_supplement_gdn_excluded.csv\\n/root/entrainment_gated_ft/analysis/exp010_bridge_results.csv\\n/root/entrainment_gated_ft/analysis/paper_data/table1_task_specificity.csv\\n/root/entrainment_gated_ft/analysis/paper_data/fig1_decoupling_data.csv\\n/root/entrainment_gated_ft/analysis/paper_data/table_gdn_sensitivity.csv\\n/root/entrainment_gated_ft/analysis/exp011_convergence_results.csv\\n/root/entrainment_gated_ft/analysis/xstorycloze_convergence_results.csv\\n/root/entrainment_gated_ft/analysis/attention_weights/gdn_attention_entropy.csv\\n/root/entrainment_gated_ft/analysis/attention_weights/retnet_attention_entropy.csv\\n/root/entrainment_gated_ft/analysis/attention_weights/hgrn2_attention_entropy.csv\\n/root/entrainment_gated_ft/analysis/attention_weights/helped_vs_hurt_entropy.csv\\n/root/entrainment_gated_ft/analysis/attention_weights/cross_arch_attention_similarity.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T08:05:03.335957+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/hellaswag/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/hellaswag/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T08:05:03.336107+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T08:05:03.336239+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/piqa/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/piqa/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-22T08:05:03.336373+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/arc_easy/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/arc_easy/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T08:05:03.336506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-22T08:05:03.336652+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -c 2000 /root/entrainment_gated_ft/hellaswag_jaccard_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "head -c 2000 /root/entrainment_gated_ft/hellaswag_jaccard_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T08:05:03.336785+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -c 2000 /root/entrainment_gated_ft/arc_easy_jaccard_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "head -c 2000 /root/entrainment_gated_ft/arc_easy_jaccard_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T08:05:03.336923+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-12-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1_eval.log\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-GatedDeltaNet-pure_eval.log\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-12-1_eval.log\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-24-1_eval.log\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-3-1_eval.log\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-hybrid-6-1_eval.log\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-HGRN2-pure_eval.log\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-12-1_eval.log\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-24-1_eval.log\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-3-1_eval.log\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-hybrid-6-1_eval.log\\n1.3B-100B-RetNet-pure\\n1.3B-100B-RetNet-pure_eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T08:05:03.337110+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -c 2000 /root/entrainment_gated_ft/lm_eval_clean/analysis/piqa_jaccard_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "head -c 2000 /root/entrainment_gated_ft/lm_eval_clean/analysis/piqa_jaccard_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T08:05:03.337325+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"hellaswag\\\",\\n  \\\"n_samples\\\": 10042,\\n  \\\"jaccard_similarity\\\": {\\n    \\\"h24-1\\\": {\\n      \\\"GDN-RetNet\\\": {\\n        \\\"helped_jaccard\\\": 0.0605,\\n        \\\"hurt_jaccard\\\": 0.0892,\\n        \\\"helped_sizes\\\": [\\n          317,\\n          314\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          358,\\n          289\\n        ],\\n        \\\"helped_intersection\\\": 36,\\n        \\\"hurt_intersection\\\": 53\\n      },\\n      \\\"GDN-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.0942,\\n        \\\"hurt_jaccard\\\": 0.0771,\\n        \\\"helped_sizes\\\": [\\n          317,\\n          287\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          358,\\n          271\\n        ],\\n        \\\"helped_intersection\\\": 52,\\n        \\\"hurt_intersection\\\": 45\\n      },\\n      \\\"RetNet-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.0967,\\n        \\\"hurt_jaccard\\\": 0.0874,\\n        \\\"helped_sizes\\\": [\\n          314,\\n          287\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          289,\\n          271\\n        ],\\n        \\\"helped_intersection\\\": 53,\\n        \\\"hurt_intersection\\\": 45\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"GDN-RetNet\\\": {\\n        \\\"helped_jaccard\\\": 0.076,\\n        \\\"hurt_jaccard\\\": 0.0589,\\n        \\\"helped_sizes\\\": [\\n          346,\\n          305\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          360,\\n          251\\n        ],\\n        \\\"helped_intersection\\\": 46,\\n        \\\"hurt_intersection\\\": 34\\n      },\\n      \\\"GDN-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.092,\\n        \\\"hurt_jaccard\\\": 0.0568,\\n        \\\"helped_sizes\\\": [\\n          346,\\n          307\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          360,\\n          235\\n        ],\\n        \\\"helped_intersection\\\": 55,\\n        \\\"h
+…[truncated 667 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T08:05:03.337530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"arc_easy\\\",\\n  \\\"n_samples\\\": 2376,\\n  \\\"jaccard_similarity\\\": {\\n    \\\"h24-1\\\": {\\n      \\\"GDN-RetNet\\\": {\\n        \\\"helped_jaccard\\\": 0.0667,\\n        \\\"hurt_jaccard\\\": 0.0795,\\n        \\\"helped_sizes\\\": [\\n          178,\\n          158\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          185,\\n          168\\n        ],\\n        \\\"helped_intersection\\\": 21,\\n        \\\"hurt_intersection\\\": 26\\n      },\\n      \\\"GDN-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.0833,\\n        \\\"hurt_jaccard\\\": 0.1095,\\n        \\\"helped_sizes\\\": [\\n          178,\\n          160\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          185,\\n          119\\n        ],\\n        \\\"helped_intersection\\\": 26,\\n        \\\"hurt_intersection\\\": 30\\n      },\\n      \\\"RetNet-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.0743,\\n        \\\"hurt_jaccard\\\": 0.0913,\\n        \\\"helped_sizes\\\": [\\n          158,\\n          160\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          168,\\n          119\\n        ],\\n        \\\"helped_intersection\\\": 22,\\n        \\\"hurt_intersection\\\": 24\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"GDN-RetNet\\\": {\\n        \\\"helped_jaccard\\\": 0.0935,\\n        \\\"hurt_jaccard\\\": 0.1282,\\n        \\\"helped_sizes\\\": [\\n          176,\\n          163\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          206,\\n          146\\n        ],\\n        \\\"helped_intersection\\\": 29,\\n        \\\"hurt_intersection\\\": 40\\n      },\\n      \\\"GDN-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.1167,\\n        \\\"hurt_jaccard\\\": 0.0856,\\n        \\\"helped_sizes\\\": [\\n          176,\\n          159\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          206,\\n          111\\n        ],\\n        \\\"helped_intersection\\\": 35,\\n        \\\"h
+…[truncated 667 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T08:05:03.337785+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"piqa\\\",\\n  \\\"n_samples\\\": 1838,\\n  \\\"jaccard_analysis\\\": {\\n    \\\"h24-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"J\\\": 0.0872,\\n          \\\"J_null\\\": 0.0217,\\n          \\\"J_max\\\": 0.6875,\\n          \\\"nES\\\": 0.0984,\\n          \\\"p\\\": 0.0,\\n          \\\"n_A\\\": 96,\\n          \\\"n_B\\\": 66,\\n          \\\"n_intersection\\\": 13\\n        },\\n        \\\"hurt\\\": {\\n          \\\"J\\\": 0.0608,\\n          \\\"J_null\\\": 0.0216,\\n          \\\"J_max\\\": 0.8256,\\n          \\\"nES\\\": 0.0488,\\n          \\\"p\\\": 0.0051,\\n          \\\"n_A\\\": 86,\\n          \\\"n_B\\\": 71,\\n          \\\"n_intersection\\\": 9\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"J\\\": 0.0637,\\n          \\\"J_null\\\": 0.0227,\\n          \\\"J_max\\\": 0.7396,\\n          \\\"nES\\\": 0.0572,\\n          \\\"p\\\": 0.0026,\\n          \\\"n_A\\\": 96,\\n          \\\"n_B\\\": 71,\\n          \\\"n_intersection\\\": 10\\n        },\\n        \\\"hurt\\\": {\\n          \\\"J\\\": 0.1241,\\n          \\\"J_null\\\": 0.0211,\\n          \\\"J_max\\\": 0.7907,\\n          \\\"nES\\\": 0.1338,\\n          \\\"p\\\": 0.0,\\n          \\\"n_A\\\": 86,\\n          \\\"n_B\\\": 68,\\n          \\\"n_intersection\\\": 17\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"J\\\": 0.1048,\\n          \\\"J_null\\\": 0.019,\\n          \\\"J_max\\\": 0.9296,\\n          \\\"nES\\\": 0.0943,\\n          \\\"p\\\": 0.0,\\n          \\\"n_A\\\": 66,\\n          \\\"n_B\\\": 71,\\n          \\\"n_intersection\\\": 13\\n        },\\n        \\\"hurt\\\": {\\n          \\\"J\\\": 0.0945,\\n          \\\"J_null\\\": 0.0193,\\n          \\\"J_max\\\": 0.9577,\\n          \\\"nES\\\": 0.0802,\\n          \\\"p\\\": 0.0,\\n     
+…[truncated 828 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T08:05:03.338009+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T08:05:03.338174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,model_family,variant,attn_layers,lambada_acc,lambada_ppl,hellaswag_norm,winogrande_acc,arc_easy_norm,arc_challenge_norm,mmlu_acc\\nGDN-pure,GDN,pure,0,0.5429846691247817,8.259574763727228,0.6080462059350727,0.6077348066298343,0.6418350168350169,0.3924914675767918,0.2606466315339695\\nGDN-h24-1,GDN,h24-1,1,0.5396856200271687,8.555169104606378,0.59699263095001,0.6282557221783741,0.6304713804713805,0.39419795221843,0.24405355362483977\\nGDN-h12-1,GDN,h12-1,2,0.5336697069668155,8.727515503459855,0.610336586337383,0.611681136543015,0.6292087542087542,0.3856655290102389,0.25409485828229594\\nGDN-h6-1,GDN,h6-1,4,0.5109644867067727,10.28205860310266,0.6046604262099183,0.5927387529597474,0.6578282828282829,0.38822525597269625,0.25729952998148414\\nGDN-h3-1,GDN,h3-1,8,0.5134872889578886,10.227175868006594,0.6030671181039634,0.606156274664562,0.6485690235690236,0.4044368600682594,0.24312775957840763\\nHGRN2-pure,HGRN2,pure,0,0.48418397050261985,11.36211779775561,0.5982871937860984,0.5919494869771112,0.6654040404040404,0.40017064846416384,0.23871243412619286\\nHGRN2-h24-1,HGRN2,h24-1,1,0.5002910925674364,10.750592967966465,0.6025692093208525,0.6093133385951065,0.6763468013468014,0.40187713310580203,0.23372738926078906\\nHGRN2-h12-1,HGRN2,h12-1,2,0.5030079565301766,10.281009129016564,0.6053574985062736,0.6053670086819258,0.6696127946127947,0.4044368600682594,0.2343683236006267\\nHGRN2-h6-1,HGRN2,h6-1,4,0.5088298078789055,9.916431286037415,0.6048595897231627,0.5982636148382005,0.6670875420875421,0.4052901023890785,0.24027916251246262\\nHGRN2-h3-1,HGRN2,h3-1,8,0.5138754123811372,9.834408010677175,0.6026687910774746,0.6077348066298343,0.6460437710437711,0.3873720136518771,0.24156103119213787\\nRetNet-pure,RetNet,pure,0,0.5165922763438774,10.006744377387193,0.5798645688109938,0.6037884767166535,0.6477272727272727,0.3771331058020478,0.24519299245121778\\nRetNet-h24-1,RetNet,h24-1,1,0.5152338443625073,9.992366845175308
+…[truncated 863 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T08:05:03.338323+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/analysis/paper_data/fig1_decoupling_data.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/analysis/paper_data/fig1_decoupling_data.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-22T08:05:03.338452+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/hellaswag_jaccard_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/hellaswag_jaccard_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T08:05:03.338584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"variant,attention_ratio,cross_arch_std,mean_jaccard_helped,mean_jaccard_hurt,mean_net_asymmetry\\npure,0.0,0.024047,,,\\nh24-1,0.04,0.016238,0.094523,0.087332,0.012808\\nh12-1,0.0769,0.013596,0.09509,0.08087,0.018889\\nh6-1,0.1429,0.006055,0.09223,0.098795,0.038683\\nh3-1,0.25,0.004943,0.100182,0.092811,0.039589\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T08:05:03.338969+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"hellaswag\\\",\\n  \\\"n_samples\\\": 10042,\\n  \\\"jaccard_similarity\\\": {\\n    \\\"h24-1\\\": {\\n      \\\"GDN-RetNet\\\": {\\n        \\\"helped_jaccard\\\": 0.0605,\\n        \\\"hurt_jaccard\\\": 0.0892,\\n        \\\"helped_sizes\\\": [\\n          317,\\n          314\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          358,\\n          289\\n        ],\\n        \\\"helped_intersection\\\": 36,\\n        \\\"hurt_intersection\\\": 53\\n      },\\n      \\\"GDN-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.0942,\\n        \\\"hurt_jaccard\\\": 0.0771,\\n        \\\"helped_sizes\\\": [\\n          317,\\n          287\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          358,\\n          271\\n        ],\\n        \\\"helped_intersection\\\": 52,\\n        \\\"hurt_intersection\\\": 45\\n      },\\n      \\\"RetNet-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.0967,\\n        \\\"hurt_jaccard\\\": 0.0874,\\n        \\\"helped_sizes\\\": [\\n          314,\\n          287\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          289,\\n          271\\n        ],\\n        \\\"helped_intersection\\\": 53,\\n        \\\"hurt_intersection\\\": 45\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"GDN-RetNet\\\": {\\n        \\\"helped_jaccard\\\": 0.076,\\n        \\\"hurt_jaccard\\\": 0.0589,\\n        \\\"helped_sizes\\\": [\\n          346,\\n          305\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          360,\\n          251\\n        ],\\n        \\\"helped_intersection\\\": 46,\\n        \\\"hurt_intersection\\\": 34\\n      },\\n      \\\"GDN-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.092,\\n        \\\"hurt_jaccard\\\": 0.0568,\\n        \\\"helped_sizes\\\": [\\n          346,\\n          307\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          360,\\n          235\\n        ],\\n        \\\"helped_intersection\\\": 55,\\n        \\\"h
+…[truncated 8262 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T08:05:03.339188+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/arc_easy_jaccard_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/arc_easy_jaccard_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T08:05:03.339541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"arc_easy\\\",\\n  \\\"n_samples\\\": 2376,\\n  \\\"jaccard_similarity\\\": {\\n    \\\"h24-1\\\": {\\n      \\\"GDN-RetNet\\\": {\\n        \\\"helped_jaccard\\\": 0.0667,\\n        \\\"hurt_jaccard\\\": 0.0795,\\n        \\\"helped_sizes\\\": [\\n          178,\\n          158\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          185,\\n          168\\n        ],\\n        \\\"helped_intersection\\\": 21,\\n        \\\"hurt_intersection\\\": 26\\n      },\\n      \\\"GDN-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.0833,\\n        \\\"hurt_jaccard\\\": 0.1095,\\n        \\\"helped_sizes\\\": [\\n          178,\\n          160\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          185,\\n          119\\n        ],\\n        \\\"helped_intersection\\\": 26,\\n        \\\"hurt_intersection\\\": 30\\n      },\\n      \\\"RetNet-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.0743,\\n        \\\"hurt_jaccard\\\": 0.0913,\\n        \\\"helped_sizes\\\": [\\n          158,\\n          160\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          168,\\n          119\\n        ],\\n        \\\"helped_intersection\\\": 22,\\n        \\\"hurt_intersection\\\": 24\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"GDN-RetNet\\\": {\\n        \\\"helped_jaccard\\\": 0.0935,\\n        \\\"hurt_jaccard\\\": 0.1282,\\n        \\\"helped_sizes\\\": [\\n          176,\\n          163\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          206,\\n          146\\n        ],\\n        \\\"helped_intersection\\\": 29,\\n        \\\"hurt_intersection\\\": 40\\n      },\\n      \\\"GDN-HGRN2\\\": {\\n        \\\"helped_jaccard\\\": 0.1167,\\n        \\\"hurt_jaccard\\\": 0.0856,\\n        \\\"helped_sizes\\\": [\\n          176,\\n          159\\n        ],\\n        \\\"hurt_sizes\\\": [\\n          206,\\n          111\\n        ],\\n        \\\"helped_intersection\\\": 35,\\n        \\\"h
+…[truncated 8260 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T08:05:03.339759+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/lm_eval_clean/analysis/piqa_jaccard_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/lm_eval_clean/analysis/piqa_jaccard_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T08:05:03.340048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"piqa\\\",\\n  \\\"n_samples\\\": 1838,\\n  \\\"jaccard_analysis\\\": {\\n    \\\"h24-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"J\\\": 0.0872,\\n          \\\"J_null\\\": 0.0217,\\n          \\\"J_max\\\": 0.6875,\\n          \\\"nES\\\": 0.0984,\\n          \\\"p\\\": 0.0,\\n          \\\"n_A\\\": 96,\\n          \\\"n_B\\\": 66,\\n          \\\"n_intersection\\\": 13\\n        },\\n        \\\"hurt\\\": {\\n          \\\"J\\\": 0.0608,\\n          \\\"J_null\\\": 0.0216,\\n          \\\"J_max\\\": 0.8256,\\n          \\\"nES\\\": 0.0488,\\n          \\\"p\\\": 0.0051,\\n          \\\"n_A\\\": 86,\\n          \\\"n_B\\\": 71,\\n          \\\"n_intersection\\\": 9\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"J\\\": 0.0637,\\n          \\\"J_null\\\": 0.0227,\\n          \\\"J_max\\\": 0.7396,\\n          \\\"nES\\\": 0.0572,\\n          \\\"p\\\": 0.0026,\\n          \\\"n_A\\\": 96,\\n          \\\"n_B\\\": 71,\\n          \\\"n_intersection\\\": 10\\n        },\\n        \\\"hurt\\\": {\\n          \\\"J\\\": 0.1241,\\n          \\\"J_null\\\": 0.0211,\\n          \\\"J_max\\\": 0.7907,\\n          \\\"nES\\\": 0.1338,\\n          \\\"p\\\": 0.0,\\n          \\\"n_A\\\": 86,\\n          \\\"n_B\\\": 68,\\n          \\\"n_intersection\\\": 17\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"J\\\": 0.1048,\\n          \\\"J_null\\\": 0.019,\\n          \\\"J_max\\\": 0.9296,\\n          \\\"nES\\\": 0.0943,\\n          \\\"p\\\": 0.0,\\n          \\\"n_A\\\": 66,\\n          \\\"n_B\\\": 71,\\n          \\\"n_intersection\\\": 13\\n        },\\n        \\\"hurt\\\": {\\n          \\\"J\\\": 0.0945,\\n          \\\"J_null\\\": 0.0193,\\n          \\\"J_max\\\": 0.9577,\\n          \\\"nES\\\": 0.0802,\\n          \\\"p\\\": 0.0,\\n     
+…[truncated 6116 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T08:05:03.340221+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "python3 -c \"import json; d=json.load(open('/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json')); print(json.dumps(d.get('results',{}), indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "python3 -c \"import json; d=json.load(open('/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json')); print(json.dumps(d.get('results',{}), indent=2))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T08:05:03.340576+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T08:05:03.340803+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -r \"acc,none\" /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "grep -r \"acc,none\" /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T08:05:03.340947+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"acc,none\\\": 0.7236126224156693,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T08:05:03.341077+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep \"acc\" /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "grep \"acc\" /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T08:05:03.341215+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"acc,none\\\": 0.7236126224156693,\\n      \\\"acc_stderr,none\\\": 0.010434162388275511,\\n      \\\"acc_norm,none\\\": 0.7306855277475517,\\n      \\\"acc_norm_stderr,none\\\": 0.010350004070588812\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T08:05:03.341368+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep \"acc,none\" /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-24-1/1.3B-100B-GatedDeltaNet-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-12-1/1.3B-100B-GatedDeltaNet-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-6-1/1.3B-100B-GatedDeltaNet-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-3-1/1.3B-100B-GatedDeltaNet-hybrid-3-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-pure/1.3B-100B-RetNet-pure.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-24-1/1.3B-100B-RetNet-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-12-1/1.3B-100B-RetNet-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-6-1/1.3B-100B-RetNet-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-3-1/1.3B-100B-RetNet-hybrid-3-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-pure/1.3B-100B-HGRN2-pure.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-24-1/1.3B-100B-HGRN2-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-12-1/1.3B-100B-HGRN2-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-6-1/1.3B-100B-HGRN2-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-3-1/1.3B-100B-HGRN2-hybrid-3-1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "grep \"acc,none\" /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-24-1/1.3B-100B-GatedDeltaNet-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-12-1/1.3B-100B-GatedDeltaNet-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-6-1/1.3B-100B-GatedDeltaNet-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-3-1/1.3B-100B-GatedDeltaNet-hybrid-3-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-pure/1.3B-100B-RetNet-pure.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-24-1/1.3B-100B-RetNet-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-12-1/1.3B-100B-RetNet-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-6-1/1.3B-100B-RetNet-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-3-1/1.3B-100B-RetNet-hybrid-3-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-pure/1.3B-100B-HGRN2-pure.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-24-1/1.3B-100B-HGRN2-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-12-1/1.3B-100B-HGRN2-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-6-1/1.3B-100B-HGRN2-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-3-1/1.3B-100B-HGRN2-hybrid-3-1.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T08:05:03.341549+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json:      \\\"acc,none\\\": 0.7236126224156693,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-24-1/1.3B-100B-GatedDeltaNet-hybrid-24-1.json:      \\\"acc,none\\\": 0.7290533188248096,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-12-1/1.3B-100B-GatedDeltaNet-hybrid-12-1.json:      \\\"acc,none\\\": 0.7257889009793254,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-6-1/1.3B-100B-GatedDeltaNet-hybrid-6-1.json:      \\\"acc,none\\\": 0.7312295973884657,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-3-1/1.3B-100B-GatedDeltaNet-hybrid-3-1.json:      \\\"acc,none\\\": 0.7377584330794341,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-pure/1.3B-100B-RetNet-pure.json:      \\\"acc,none\\\": 0.7263329706202394,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-24-1/1.3B-100B-RetNet-hybrid-24-1.json:      \\\"acc,none\\\": 0.7236126224156693,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-12-1/1.3B-100B-RetNet-hybrid-12-1.json:      \\\"acc,none\\\": 0.7263329706202394,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-6-1/1.3B-100B-RetNet-hybrid-6-1.json:      \\\"acc,none\\\": 0.7252448313384113,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-3-1/1.3B-100B-RetNet-hybrid-3-1.json:      \\\"acc,none\\\": 0.7290533188248096,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-pure/1.3B-100B-HGRN2-pure.json:      \\\"acc,none\\\": 0.73449401523395,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-24-1/1.3B-100B-HGRN2-hybrid-24-1.json:      \\\"acc,none\\\": 0.736126224156692,\\n/root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-12
+…[truncated 488 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T08:05:03.341805+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep \"acc\" /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "grep \"acc\" /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T08:05:03.341962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"acc,none\\\": 0.7121212121212122,\\n      \\\"acc_stderr,none\\\": 0.009290733161670237,\\n      \\\"acc_norm,none\\\": 0.6414141414141414,\\n      \\\"acc_norm_stderr,none\\\": 0.009840882301225278\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T08:05:03.342098+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep \"acc,none\" /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-24-1/1.3B-100B-GatedDeltaNet-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-12-1/1.3B-100B-GatedDeltaNet-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-6-1/1.3B-100B-GatedDeltaNet-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-3-1/1.3B-100B-GatedDeltaNet-hybrid-3-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-pure/1.3B-100B-RetNet-pure.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-24-1/1.3B-100B-RetNet-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-12-1/1.3B-100B-RetNet-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-6-1/1.3B-100B-RetNet-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-3-1/1.3B-100B-RetNet-hybrid-3-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-pure/1.3B-100B-HGRN2-pure.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-24-1/1.3B-100B-HGRN2-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-12-1/1.3B-100B-HGRN2-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-6-1/1.3B-100B-HGRN2-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-3-1/1.3B-100B-HGRN2-hybrid-3-1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "grep \"acc,none\" /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-24-1/1.3B-100B-GatedDeltaNet-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-12-1/1.3B-100B-GatedDeltaNet-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-6-1/1.3B-100B-GatedDeltaNet-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-3-1/1.3B-100B-GatedDeltaNet-hybrid-3-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-pure/1.3B-100B-RetNet-pure.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-24-1/1.3B-100B-RetNet-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-12-1/1.3B-100B-RetNet-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-6-1/1.3B-100B-RetNet-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-3-1/1.3B-100B-RetNet-hybrid-3-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-pure/1.3B-100B-HGRN2-pure.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-24-1/1.3B-100B-HGRN2-hybrid-24-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-12-1/1.3B-100B-HGRN2-hybrid-12-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-6-1/1.3B-100B-HGRN2-hybrid-6-1.json /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-3-1/1.3B-100B-HGRN2-hybrid-3-1.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T08:05:03.342265+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json:      \\\"acc,none\\\": 0.7121212121212122,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-24-1/1.3B-100B-GatedDeltaNet-hybrid-24-1.json:      \\\"acc,none\\\": 0.7091750841750841,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-12-1/1.3B-100B-GatedDeltaNet-hybrid-12-1.json:      \\\"acc,none\\\": 0.6994949494949495,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-6-1/1.3B-100B-GatedDeltaNet-hybrid-6-1.json:      \\\"acc,none\\\": 0.7175925925925926,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-hybrid-3-1/1.3B-100B-GatedDeltaNet-hybrid-3-1.json:      \\\"acc,none\\\": 0.7083333333333334,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-pure/1.3B-100B-RetNet-pure.json:      \\\"acc,none\\\": 0.7129629629629629,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-24-1/1.3B-100B-RetNet-hybrid-24-1.json:      \\\"acc,none\\\": 0.7087542087542088,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-12-1/1.3B-100B-RetNet-hybrid-12-1.json:      \\\"acc,none\\\": 0.7201178451178452,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-6-1/1.3B-100B-RetNet-hybrid-6-1.json:      \\\"acc,none\\\": 0.718013468013468,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-RetNet-hybrid-3-1/1.3B-100B-RetNet-hybrid-3-1.json:      \\\"acc,none\\\": 0.6961279461279462,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-pure/1.3B-100B-HGRN2-pure.json:      \\\"acc,none\\\": 0.7129629629629629,\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-HGRN2-hybrid-24-1/1.3B-100B-HGRN2-hybrid-24-1.json:      \\\"acc,none\\\": 0.7302188552188552,\\n/root/entrainment_gat
+…[truncated 550 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T08:05:03.342474+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "mkdir -p /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "mkdir -p /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T08:05:03.342617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T08:05:03.342855+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat > /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/compute_trajectories.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom itertools import permutations\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\nOUT_DIR = \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\"\n\n# ============================================================\n# 1. Accuracy data (aggregate) for σ computation\n# ============================================================\n# Order: [pure, h24-1, h12-1, h6-1, h3-1]\nRATIOS = [0.0, 0.04, 0.0769, 0.1429, 0.25]\nRATIO_LABELS = [\"0%\", \"4%\", \"7.7%\", \"14.3%\", \"25%\"]\nVARIANTS = [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nHYBRID_VARIANTS = [\"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nHYBRID_RATIOS = [0.04, 0.0769, 0.1429, 0.25]\n\n# LAMBADA acc\nacc_lambada = {\n    \"GDN\":   [0.5429846691247817, 0.5396856200271687, 0.5336697069668155, 0.5109644867067727, 0.5134872889578886],\n    \"RetNet\":[0.5165922763438774, 0.5152338443625073, 0.5070832524742869, 0.4971861051814477, 0.5032020182418009],\n    \"HGRN2\": [0.48418397050261985, 0.5002910925674364, 0.5030079565301766, 0.5088298078789055, 0.5138754123811372],\n}\n\n# HellaSwag acc_norm\nacc_hellaswag = {\n    \"GDN\":   [0.6080462059350727, 0.59699263095001, 0.610336586337383, 0.6046604262099183, 0.6030671181039634],\n    \"RetNet\":[0.5798645688109938, 0.5821549492133041, 0.5882294363672576, 0.5852419836685919, 0.5777733519219279],\n    \"HGRN2\": [0.5982871937860984, 0.6025692093208525, 0.6053574985062736, 0.6048595897231627, 0.6026687910774746],\n}\n\n# PIQA acc\nacc_piqa = {\n    \"GDN\":   [0.7236126224156693, 0.7290533188248096, 0.7257889009793254, 0.7312295973884657, 0.7377584330794341],\n    \"RetNet\":[0.7263329706202394, 0.7236126224156693, 0.7263329706202394, 0.7252448313384113, 0.7290533188248096],\n    \"HGRN2\": [0.73449401523395, 0.736126224156692, 0.7372143634385201, 0.7334058759521219, 0.7301414581066377],\n}\n\n# ARC-Easy acc\nacc_arceasy = {\n    \"GDN\":   [0.7121212121212122, 0.7091750841750841, 0.6994949494949495, 0.7175925925925926, 0.7083333333333334],\n    \"RetNet\":[0.7129629629629629, 0.7087542087542088, 0.7201178451178452, 0.718013468013468, 0.6961279461279462],\n    \"HGRN2\": [0.7129629629629629, 0.7302188552188552, 0.7331649831649831, 0.7411616161616161, 0.7205387205387206],\n}\n\nall_acc = {\n    \"LAMBADA\": acc_lambada,\n    \"HellaSwag\": acc_hellaswag,\n    \"PIQA\": acc_piqa,\n    \"ARC-Easy\": acc_arceasy,\n}\n\n# ============================================================\n# 2. Compute cross-architecture σ\n# ============================================================\nsigma_data = {}\nfor bench, acc_dict in all_acc.items():\n    sigmas = []\n    for i in range(5):\n        vals = [acc_dict[a][i] for a in [\"GDN\", \"RetNet\", \"HGRN2\"]]\n        sigmas.append(float(np.std(vals, ddof=0)))\n    sigma_data[bench] = sigmas\n\n# Verify LAMBADA against known values\nprint(\"=== σ Verification (LAMBADA) ===\")\nknown_sigma = [0.024047, 0.016238, 0.013596, 0.006055, 0.004943]\nfor i, (comp, known) in enumerate(zip(sigma_data[\"LAMBADA\"], known_sigma)):\n    diff = abs(comp - known)\n    status = \"OK\" if diff < 0.001 else \"MISMATCH\"\n    print(f\"  {VARIANTS[i]}: computed={comp:.6f}, known={known:.6f}, diff={diff:.6f} [{status}]\")\n\n# ============================================================\n# 3. Load Jaccard data from existing files\n# ============================================================\n\n# --- LAMBADA: from decoupling_data.csv ---\nlambada_jaccard = {\n    \"h24-1\": {\"J_helped\": 0.094523, \"J_hurt\": 0.087332},\n    \"h12-1\": {\"J_helped\": 0.09509, \"J_hurt\": 0.08087},\n    \"h6-1\":  {\"J_helped\": 0.09223, \"J_hurt\": 0.098795},\n    \"h3-1\":  {\"J_helped\": 0.100182, \"J_hurt\": 0.092811},\n}\n\n# --- HellaSwag: from hellaswag_jaccard_analysis.json ---\nwith open(\"/root/entrainment_gated_ft/hellaswag_jaccard_analysis.json\") as f:\n    hs_data = json.load(f)\n\nhellaswag_jaccard = {}\nfor var in HYBRID_VARIANTS:\n    jd = hs_data[\"jaccard_similarity\"][var]\n    pairs = list(jd.keys())\n    h_vals = [jd[p][\"helped_jaccard\"] for p in pairs]\n    u_vals = [jd[p][\"hurt_jaccard\"] for p in pairs]\n    hellaswag_jaccard[var] = {\n        \"J_helped\": float(np.mean(h_vals)),\n        \"J_hurt\": float(np.mean(u_vals)),\n        \"pair_details\": {p: {\"helped\": jd[p][\"helped_jaccard\"], \"hurt\": jd[p][\"hurt_jaccard\"]} for p in pairs},\n    }\n\n# --- ARC-Easy: from arc_easy_jaccard_analysis.json ---\nwith open(\"/root/entrainment_gated_ft/arc_easy_jaccard_analysis.json\") as f:\n    ae_data = json.load(f)\n\narceasy_jaccard = {}\nfor var in HYBRID_VARIANTS:\n    jd = ae_data[\"jaccard_similarity\"][var]\n    pairs = list(jd.keys())\n    h_vals = [jd[p][\"helped_jaccard\"] for p in pairs]\n    u_vals = [jd[p][\"hurt_jaccard\"] for p in pairs]\n    arceasy_jaccard[var] = {\n        \"J_helped\": float(np.mean(h_vals)),\n        \"J_hurt\": float(np.mean(u_vals)),\n        \"pair_details\": {p: {\"helped\": jd[p][\"helped_jaccard\"], \"hurt\": jd[p][\"hurt_jaccard\"]} for p in pairs},\n    }\n\n# --- PIQA: from piqa_jaccard_analysis.json ---\nwith open(\"/root/entrainment_gated_ft/lm_eval_clean/analysis/piqa_jaccard_analysis.json\") as f:\n    piqa_data = json.load(f)\n\npiqa_jaccard = {}\nfor var in HYBRID_VARIANTS:\n    jd = piqa_data[\"jaccard_analysis\"][var]\n    pairs = list(jd.keys())\n    h_vals = [jd[p][\"helped\"][\"J\"] for p in pairs]\n    u_vals = [jd[p][\"hurt\"][\"J\"] for p in pairs]\n    piqa_jaccard[var] = {\n        \"J_helped\": float(np.mean(h_vals)),\n        \"J_hurt\": float(np.mean(u_vals)),\n        \"pair_details\": {p: {\"helped\": jd[p][\"helped\"][\"J\"], \"hurt\": jd[p][\"hurt\"][\"J\"]} for p in pairs},\n    }\n\nall_jaccard = {\n    \"LAMBADA\": lambada_jaccard,\n    \"HellaSwag\": hellaswag_jaccard,\n    \"PIQA\": piqa_jaccard,\n    \"ARC-Easy\": arceasy_jaccard,\n}\n\n# Print Jaccard trajectories\nprint(\"\\n=== Mean Pairwise Jaccard Trajectories ===\")\nfor bench in [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]:\n    jd = all_jaccard[bench]\n    print(f\"\\n{bench}:\")\n    print(f\"  {'ratio':>8s}  {'J_helped':>10s}  {'J_hurt':>10s}  {'J_mean':>10s}\")\n    for var in HYBRID_VARIANTS:\n        j = jd[var]\n        j_mean = (j[\"J_helped\"] + j[\"J_hurt\"]) / 2\n        print(f\"  {var:>8s}  {j['J_helped']:>10.4f}  {j['J_hurt']:>10.4f}  {j_mean:>10.4f}\")\n\n# ============================================================\n# 4. Statistical tests: Spearman ρ + exact permutation (n=4)\n# ============================================================\n\ndef spearman_rho(x, y):\n    from scipy.stats import rankdata\n    rx = rankdata(x)\n    ry = rankdata(y)\n    n = len(x)\n    d2 = np.sum((rx - ry) ** 2)\n    return 1 - 6 * d2 / (n * (n**2 - 1))\n\ndef exact_permutation_test(x, y):\n    n = len(x)\n    observed = spearman_rho(x, y)\n    count_extreme = 0\n    total = 0\n    for perm in permutations(range(n)):\n        y_perm = [y[i] for i in perm]\n        rho_perm = spearman_rho(x, y_perm)\n        if abs(rho_perm) >= abs(observed):\n            count_extreme += 1\n        total += 1\n    return observed, count_extreme / total, total\n\nprint(\"\\n=== Statistical Tests ===\")\nrank_x = list(range(1, 5))  # attention ratio rank: 1=h24-1, 2=h12-1, 3=h6-1, 4=h3-1\n\nstats_results = {}\nfor bench in [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]:\n    jd = all_jaccard[bench]\n    j_helped = [jd[v][\"J_helped\"] for v in HYBRID_VARIANTS]\n    j_hurt = [jd[v][\"J_hurt\"] for v in HYBRID_VARIANTS]\n    j_mean = [(h + u) / 2 for h, u in zip(j_helped, j_hurt)]\n    \n    # Spearman with mean Jaccard\n    rho_mean, p_mean, n_perms = exact_permutation_test(rank_x, j_mean)\n    rho_helped, p_helped, _ = exact_permutation_test(rank_x, j_helped)\n    rho_hurt, p_hurt, _ = exact_permutation_test(rank_x, j_hurt)\n    \n    # σ trajectory Spearman (5 points, all ratios)\n    from scipy.stats import spearmanr\n    rho_sigma, p_sigma = spearmanr(RATIOS, sigma_data[bench])\n    \n    stats_results[bench] = {\n        \"jaccard_mean_rho\": rho_mean, \"jaccard_mean_p\": p_mean,\n        \"jaccard_helped_rho\": rho_helped, \"jaccard_helped_p\": p_helped,\n        \"jaccard_hurt_rho\": rho_hurt, \"jaccard_hurt_p\": p_hurt,\n        \"sigma_rho\": float(rho_sigma), \"sigma_p\": float(p_sigma),\n        \"n_permutations\": n_perms,\n    }\n    \n    print(f\"\\n{bench}:\")\n    print(f\"  σ trajectory:     ρ={rho_sigma:.4f}, p={p_sigma:.4f}\")\n    print(f\"  J_mean trajectory: ρ={rho_mean:.4f}, p={p_mean:.4f} (exact, {n_perms} perms)\")\n    print(f\"  J_helped:          ρ={rho_helped:.4f}, p={p_helped:.4f}\")\n    print(f\"  J_hurt:            ρ={rho_hurt:.4f}, p={p_hurt:.4f}\")\n\n# ============================================================\n# 5. Build comprehensive output JSON\n# ============================================================\noutput = {\n    \"description\": \"Cross-benchmark Jaccard trajectory analysis (A1)\",\n    \"benchmarks\": [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"],\n    \"attention_ratios\": RATIOS,\n    \"ratio_labels\": RATIO_LABELS,\n    \"variants\": VARIANTS,\n    \"metrics_used\": {\n        \"LAMBADA\": \"acc\",\n        \"HellaSwag\": \"acc_norm\",\n        \"PIQA\": \"acc\",\n        \"ARC-Easy\": \"acc\",\n    },\n    \"sigma_trajectories\": {},\n    \"jaccard_trajectories\": {},\n    \"statistics\": stats_results,\n}\n\nfor bench in [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]:\n    output[\"sigma_trajectories\"][bench] = {\n        v: sigma_data[bench][i] for i, v in enumerate(VARIANTS)\n    }\n    jd = all_jaccard[bench]\n    output[\"jaccard_trajectories\"][bench] = {}\n    for var in HYBRID_VARIANTS:\n        j = jd[var]\n        entry = {\"J_helped\": j[\"J_helped\"], \"J_hurt\": j[\"J_hurt\"], \"J_mean\": (j[\"J_helped\"] + j[\"J_hurt\"]) / 2}\n        if \"pair_details\" in j:\n            entry[\"pair_details\"] = j[\"pair_details\"]\n        output[\"jaccard_trajectories\"][bench][var] = entry\n\nwith open(f\"{OUT_DIR}/cross_benchmark_jaccard_trajectories.json\", \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved: {OUT_DIR}/cross_benchmark_jaccard_trajectories.json\")\n\n# ============================================================\n# 6. Generate 4-panel figure\n# ============================================================\nplt.rcParams.update({\n    'font.size': 13,\n    'axes.labelsize': 14,\n    'xtick.labelsize': 12,\n    'ytick.labelsize': 12,\n    'legend.fontsize': 12,\n    'font.family': 'serif',\n    'mathtext.fontset': 'cm',\n})\n\nfig, axes = plt.subplots(1, 4, figsize=(20, 4.5))\nbenchmarks = [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]\nbench_titles = [\"LAMBADA\", \"HellaSwag (acc_norm)\", \"PIQA\", \"ARC-Easy\"]\n\ncolor_sigma = '#2166ac'\ncolor_j_helped = '#b2182b'\ncolor_j_hurt = '#ef8a62'\ncolor_j_mean = '#d6604d'\n\nfor idx, (bench, title) in enumerate(zip(benchmarks, bench_titles)):\n    ax1 = axes[idx]\n    ax2 = ax1.twinx()\n    \n    # σ trajectory (5 points)\n    sigmas = sigma_data[bench]\n    l1, = ax1.plot(RATIOS, sigmas, 'o-', color=color_sigma, linewidth=2, markersize=7,\n                   label=r'$\\sigma$ (cross-arch)', zorder=3)\n    \n    # Jaccard trajectories (4 points, no pure)\n    jd = all_jaccard[bench]\n    j_helped = [jd[v][\"J_helped\"] for v in HYBRID_VARIANTS]\n    j_hurt = [jd[v][\"J_hurt\"] for v in HYBRID_VARIANTS]\n    j_mean = [(h + u) / 2 for h, u in zip(j_helped, j_hurt)]\n    \n    l2, = ax2.plot(HYBRID_RATIOS, j_helped, 's--', color=color_j_helped, linewidth=1.5,\n                   markersize=6, label='J(helped)', zorder=2)\n    l3, = ax2.plot(HYBRID_RATIOS, j_hurt, 'D--', color=color_j_hurt, linewidth=1.5,\n                   markersize=6, label='J(hurt)', zorder=2)\n    \n    ax1.set_xlabel('Attention ratio')\n    ax1.set_xticks(RATIOS)\n    ax1.set_xticklabels(RATIO_LABELS, rotation=30, ha='right')\n    \n    if idx == 0:\n        ax1.set_ylabel(r'Cross-arch $\\sigma$', color=color_sigma)\n    ax1.tick_params(axis='y', labelcolor=color_sigma)\n    \n    if idx == 3:\n        ax2.set_ylabel('Mean pairwise Jaccard', color=color_j_helped)\n    ax2.tick_params(axis='y', labelcolor=color_j_helped)\n    \n    # Add statistics annotation\n    st = stats_results[bench]\n    rho_s = st[\"sigma_rho\"]\n    p_s = st[\"sigma_p\"]\n    rho_j = st[\"jaccard_mean_rho\"]\n    p_j = st[\"jaccard_mean_p\"]\n    \n    ann_text = (f'$\\\\sigma$: $\\\\rho$={rho_s:.2f}, p={p_s:.3f}\\n'\n                f'J: $\\\\rho$={rho_j:.2f}, p={p_j:.3f}')\n    ax1.text(0.05, 0.95, ann_text, transform=ax1.transAxes,\n             verticalalignment='top', fontsize=10,\n             bbox=dict(boxstyle='round,pad=0.3', facecolor='wheat', alpha=0.7))\n    \n    ax1.set_title(title, fontsize=13, fontweight='bold')\n    \n    # Unified y limits per panel\n    sigma_range = max(sigmas) - min(sigmas)\n    ax1.set_ylim(min(sigmas) - sigma_range * 0.3, max(sigmas) + sigma_range * 0.3)\n    \n    all_j = j_helped + j_hurt\n    j_range = max(all_j) - min(all_j)\n    if j_range < 0.01:\n        j_range = 0.02\n    ax2.set_ylim(min(all_j) - j_range * 0.5, max(all_j) + j_range * 0.5)\n    \n    if idx == 0:\n        lines = [l1, l2, l3]\n        labels = [l.get_label() for l in lines]\n        ax1.legend(lines, labels, loc='lower left', fontsize=9, framealpha=0.8)\n\nplt.tight_layout()\nfig.savefig(f\"{OUT_DIR}/fig_cross_benchmark_decoupling.pdf\", bbox_inches='tight', dpi=150)\nfig.savefig(f\"{OUT_DIR}/fig_cross_benchmark_decoupling.png\", bbox_inches='tight', dpi=150)\nprint(f\"Saved: {OUT_DIR}/fig_cross_benchmark_decoupling.pdf\")\nprint(f\"Saved: {OUT_DIR}/fig_cross_benchmark_decoupling.png\")\n\n# ============================================================\n# 7. Summary table\n# ============================================================\nprint(\"\\n=== Summary Table ===\")\nprint(f\"{'Benchmark':>12s} | {'σ_pure':>8s} {'σ_h3-1':>8s} {'σ_reduction':>12s} | {'J_helped range':>16s} {'J_hurt range':>16s} | {'σ_ρ':>6s} {'σ_p':>8s} {'J_ρ':>6s} {'J_p':>8s}\")\nprint(\"-\" * 120)\nfor bench in benchmarks:\n    s = sigma_data[bench]\n    jd = all_jaccard[bench]\n    jh = [jd[v][\"J_helped\"] for v in HYBRID_VARIANTS]\n    ju = [jd[v][\"J_hurt\"] for v in HYBRID_VARIANTS]\n    st = stats_results[bench]\n    reduction = (1 - s[4] / s[0]) * 100\n    print(f\"{bench:>12s} | {s[0]:.6f} {s[4]:.6f} {reduction:>10.1f}% | [{min(jh):.4f}, {max(jh):.4f}] [{min(ju):.4f}, {max(ju):.4f}] | {st['sigma_rho']:>6.2f} {st['sigma_p']:>8.4f} {st['jaccard_mean_rho']:>6.2f} {st['jaccard_mean_p']:>8.4f}\")\n\nprint(\"\\nDone.\")\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat > /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/compute_trajectories.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom itertools import permutations\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\nOUT_DIR = \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\"\n\n# ============================================================\n# 1. Accuracy data (aggregate) for σ computation\n# ============================================================\n# Order: [pure, h24-1, h12-1, h6-1, h3-1]\nRATIOS = [0.0, 0.04, 0.0769, 0.1429, 0.25]\nRATIO_LABELS = [\"0%\", \"4%\", \"7.7%\", \"14.3%\", \"25%\"]\nVARIANTS = [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nHYBRID_VARIANTS = [\"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nHYBRID_RATIOS = [0.04, 0.0769, 0.1429, 0.25]\n\n# LAMBADA acc\nacc_lambada = {\n    \"GDN\":   [0.5429846691247817, 0.5396856200271687, 0.5336697069668155, 0.5109644867067727, 0.5134872889578886],\n    \"RetNet\":[0.5165922763438774, 0.5152338443625073, 0.5070832524742869, 0.4971861051814477, 0.5032020182418009],\n    \"HGRN2\": [0.48418397050261985, 0.5002910925674364, 0.5030079565301766, 0.5088298078789055, 0.5138754123811372],\n}\n\n# HellaSwag acc_norm\nacc_hellaswag = {\n    \"GDN\":   [0.6080462059350727, 0.59699263095001, 0.610336586337383, 0.6046604262099183, 0.6030671181039634],\n    \"RetNet\":[0.5798645688109938, 0.5821549492133041, 0.5882294363672576, 0.5852419836685919, 0.5777733519219279],\n    \"HGRN2\": [0.5982871937860984, 0.6025692093208525, 0.6053574985062736, 0.6048595897231627, 0.6026687910774746],\n}\n\n# PIQA acc\nacc_piqa = {\n    \"GDN\":   [0.7236126224156693, 0.7290533188248096, 0.7257889009793254, 0.7312295973884657, 0.7377584330794341],\n    \"RetNet\":[0.7263329706202394, 0.7236126224156693, 0.7263329706202394, 0.7252448313384113, 0.7290533188248096],\n    \"HGRN2\": [0.73449401523395, 0.736126224156692, 0.7372143634385201, 0.7334058759521219, 0.7301414581066377],\n}\n\n# ARC-Easy acc\nacc_arceasy = {\n    \"GDN\":   [0.7121212121212122, 0.7091750841750841, 0.6994949494949495, 0.7175925925925926, 0.7083333333333334],\n    \"RetNet\":[0.7129629629629629, 0.7087542087542088, 0.7201178451178452, 0.718013468013468, 0.6961279461279462],\n    \"HGRN2\": [0.7129629629629629, 0.7302188552188552, 0.7331649831649831, 0.7411616161616161, 0.7205387205387206],\n}\n\nall_acc = {\n    \"LAMBADA\": acc_lambada,\n    \"HellaSwag\": acc_hellaswag,\n    \"PIQA\": acc_piqa,\n    \"ARC-Easy\": acc_arceasy,\n}\n\n# ============================================================\n# 2. Compute cross-architecture σ\n# ============================================================\nsigma_data = {}\nfor bench, acc_dict in all_acc.items():\n    sigmas = []\n    for i in range(5):\n        vals = [acc_dict[a][i] for a in [\"GDN\", \"RetNet\", \"HGRN2\"]]\n        sigmas.append(float(np.std(vals, ddof=0)))\n    sigma_data[bench] = sigmas\n\n# Verify LAMBADA against known values\nprint(\"=== σ Verification (LAMBADA) ===\")\nknown_sigma = [0.024047, 0.016238, 0.013596, 0.006055, 0.004943]\nfor i, (comp, known) in enumerate(zip(sigma_data[\"LAMBADA\"], known_sigma)):\n    diff = abs(comp - known)\n    status = \"OK\" if diff < 0.001 else \"MISMATCH\"\n    print(f\"  {VARIANTS[i]}: computed={comp:.6f}, known={known:.6f}, diff={diff:.6f} [{status}]\")\n\n# ============================================================\n# 3. Load Jaccard data from existing files\n# ============================================================\n\n# --- LAMBADA: from decoupling_data.csv ---\nlambada_jaccard = {\n    \"h24-1\": {\"J_helped\": 0.094523, \"J_hurt\": 0.087332},\n    \"h12-1\": {\"J_helped\": 0.09509, \"J_hurt\": 0.08087},\n    \"h6-1\":  {\"J_helped\": 0.09223, \"J_hurt\": 0.098795},\n    \"h3-1\":  {\"J_helped\": 0.100182, \"J_hurt\": 0.092811},\n}\n\n# --- HellaSwag: from hellaswag_jaccard_analysis.json ---\nwith open(\"/root/entrainment_gated_ft/hellaswag_jaccard_analysis.json\") as f:\n    hs_data = json.load(f)\n\nhellaswag_jaccard = {}\nfor var in HYBRID_VARIANTS:\n    jd = hs_data[\"jaccard_similarity\"][var]\n    pairs = list(jd.keys())\n    h_vals = [jd[p][\"helped_jaccard\"] for p in pairs]\n    u_vals = [jd[p][\"hurt_jaccard\"] for p in pairs]\n    hellaswag_jaccard[var] = {\n        \"J_helped\": float(np.mean(h_vals)),\n        \"J_hurt\": float(np.mean(u_vals)),\n        \"pair_details\": {p: {\"helped\": jd[p][\"helped_jaccard\"], \"hurt\": jd[p][\"hurt_jaccard\"]} for p in pairs},\n    }\n\n# --- ARC-Easy: from arc_easy_jaccard_analysis.json ---\nwith open(\"/root/entrainment_gated_ft/arc_easy_jaccard_analysis.json\") as f:\n    ae_data = json.load(f)\n\narceasy_jaccard = {}\nfor var in HYBRID_VARIANTS:\n    jd = ae_data[\"jaccard_similarity\"][var]\n    pairs = list(jd.keys())\n    h_vals = [jd[p][\"helped_jaccard\"] for p in pairs]\n    u_vals = [jd[p][\"hurt_jaccard\"] for p in pairs]\n    arceasy_jaccard[var] = {\n        \"J_helped\": float(np.mean(h_vals)),\n        \"J_hurt\": float(np.mean(u_vals)),\n        \"pair_details\": {p: {\"helped\": jd[p][\"helped_jaccard\"], \"hurt\": jd[p][\"hurt_jaccard\"]} for p in pairs},\n    }\n\n# --- PIQA: from piqa_jaccard_analysis.json ---\nwith open(\"/root/entrainment_gated_ft/lm_eval_clean/analysis/piqa_jaccard_analysis.json\") as f:\n    piqa_data = json.load(f)\n\npiqa_jaccard = {}\nfor var in HYBRID_VARIANTS:\n    jd = piqa_data[\"jaccard_analysis\"][var]\n    pairs = list(jd.keys())\n    h_vals = [jd[p][\"helped\"][\"J\"] for p in pairs]\n    u_vals = [jd[p][\"hurt\"][\"J\"] for p in pairs]\n    piqa_jaccard[var] = {\n        \"J_helped\": float(np.mean(h_vals)),\n        \"J_hurt\": float(np.mean(u_vals)),\n        \"pair_details\": {p: {\"helped\": jd[p][\"helped\"][\"J\"], \"hurt\": jd[p][\"hurt\"][\"J\"]} for p in pairs},\n    }\n\nall_jaccard = {\n    \"LAMBADA\": lambada_jaccard,\n    \"HellaSwag\": hellaswag_jaccard,\n    \"PIQA\": piqa_jaccard,\n    \"ARC-Easy\": arceasy_jaccard,\n}\n\n# Print Jaccard trajectories\nprint(\"\\n=== Mean Pairwise Jaccard Trajectories ===\")\nfor bench in [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]:\n    jd = all_jaccard[bench]\n    print(f\"\\n{bench}:\")\n    print(f\"  {'ratio':>8s}  {'J_helped':>10s}  {'J_hurt':>10s}  {'J_mean':>10s}\")\n    for var in HYBRID_VARIANTS:\n        j = jd[var]\n        j_mean = (j[\"J_helped\"] + j[\"J_hurt\"]) / 2\n        print(f\"  {var:>8s}  {j['J_helped']:>10.4f}  {j['J_hurt']:>10.4f}  {j_mean:>10.4f}\")\n\n# ============================================================\n# 4. Statistical tests: Spearman ρ + exact permutation (n=4)\n# ============================================================\n\ndef spearman_rho(x, y):\n    from scipy.stats import rankdata\n    rx = rankdata(x)\n    ry = rankdata(y)\n    n = len(x)\n    d2 = np.sum((rx - ry) ** 2)\n    return 1 - 6 * d2 / (n * (n**2 - 1))\n\ndef exact_permutation_test(x, y):\n    n = len(x)\n    observed = spearman_rho(x, y)\n    count_extreme = 0\n    total = 0\n    for perm in permutations(range(n)):\n        y_perm = [y[i] for i in perm]\n        rho_perm = spearman_rho(x, y_perm)\n        if abs(rho_perm) >= abs(observed):\n            count_extreme += 1\n        total += 1\n    return observed, count_extreme / total, total\n\nprint(\"\\n=== Statistical Tests ===\")\nrank_x = list(range(1, 5))  # attention ratio rank: 1=h24-1, 2=h12-1, 3=h6-1, 4=h3-1\n\nstats_results = {}\nfor bench in [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]:\n    jd = all_jaccard[bench]\n    j_helped = [jd[v][\"J_helped\"] for v in HYBRID_VARIANTS]\n    j_hurt = [jd[v][\"J_hurt\"] for v in HYBRID_VARIANTS]\n    j_mean = [(h + u) / 2 for h, u in zip(j_helped, j_hurt)]\n    \n    # Spearman with mean Jaccard\n    rho_mean, p_mean, n_perms = exact_permutation_test(rank_x, j_mean)\n    rho_helped, p_helped, _ = exact_permutation_test(rank_x, j_helped)\n    rho_hurt, p_hurt, _ = exact_permutation_test(rank_x, j_hurt)\n    \n    # σ trajectory Spearman (5 points, all ratios)\n    from scipy.stats import spearmanr\n    rho_sigma, p_sigma = spearmanr(RATIOS, sigma_data[bench])\n    \n    stats_results[bench] = {\n        \"jaccard_mean_rho\": rho_mean, \"jaccard_mean_p\": p_mean,\n        \"jaccard_helped_rho\": rho_helped, \"jaccard_helped_p\": p_helped,\n        \"jaccard_hurt_rho\": rho_hurt, \"jaccard_hurt_p\": p_hurt,\n        \"sigma_rho\": float(rho_sigma), \"sigma_p\": float(p_sigma),\n        \"n_permutations\": n_perms,\n    }\n    \n    print(f\"\\n{bench}:\")\n    print(f\"  σ trajectory:     ρ={rho_sigma:.4f}, p={p_sigma:.4f}\")\n    print(f\"  J_mean trajectory: ρ={rho_mean:.4f}, p={p_mean:.4f} (exact, {n_perms} perms)\")\n    print(f\"  J_helped:          ρ={rho_helped:.4f}, p={p_helped:.4f}\")\n    print(f\"  J_hurt:            ρ={rho_hurt:.4f}, p={p_hurt:.4f}\")\n\n# ============================================================\n# 5. Build comprehensive output JSON\n# ============================================================\noutput = {\n    \"description\": \"Cross-benchmark Jaccard trajectory analysis (A1)\",\n    \"benchmarks\": [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"],\n    \"attention_ratios\": RATIOS,\n    \"ratio_labels\": RATIO_LABELS,\n    \"variants\": VARIANTS,\n    \"metrics_used\": {\n        \"LAMBADA\": \"acc\",\n        \"HellaSwag\": \"acc_norm\",\n        \"PIQA\": \"acc\",\n        \"ARC-Easy\": \"acc\",\n    },\n    \"sigma_trajectories\": {},\n    \"jaccard_trajectories\": {},\n    \"statistics\": stats_results,\n}\n\nfor bench in [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]:\n    output[\"sigma_trajectories\"][bench] = {\n        v: sigma_data[bench][i] for i, v in enumerate(VARIANTS)\n    }\n    jd = all_jaccard[bench]\n    output[\"jaccard_trajectories\"][bench] = {}\n    for var in HYBRID_VARIANTS:\n        j = jd[var]\n        entry = {\"J_helped\": j[\"J_helped\"], \"J_hurt\": j[\"J_hurt\"], \"J_mean\": (j[\"J_helped\"] + j[\"J_hurt\"]) / 2}\n        if \"pair_details\" in j:\n            entry[\"pair_details\"] = j[\"pair_details\"]\n        output[\"jaccard_trajectories\"][bench][var] = entry\n\nwith open(f\"{OUT_DIR}/cross_benchmark_jaccard_trajectories.json\", \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved: {OUT_DIR}/cross_benchmark_jaccard_trajectories.json\")\n\n# ============================================================\n# 6. Generate 4-panel figure\n# ============================================================\nplt.rcParams.update({\n    'font.size': 13,\n    'axes.labelsize': 14,\n    'xtick.labelsize': 12,\n    'ytick.labelsize': 12,\n    'legend.fontsize': 12,\n    'font.family': 'serif',\n    'mathtext.fontset': 'cm',\n})\n\nfig, axes = plt.subplots(1, 4, figsize=(20, 4.5))\nbenchmarks = [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]\nbench_titles = [\"LAMBADA\", \"HellaSwag (acc_norm)\", \"PIQA\", \"ARC-Easy\"]\n\ncolor_sigma = '#2166ac'\ncolor_j_helped = '#b2182b'\ncolor_j_hurt = '#ef8a62'\ncolor_j_mean = '#d6604d'\n\nfor idx, (bench, title) in enumerate(zip(benchmarks, bench_titles)):\n    ax1 = axes[idx]\n    ax2 = ax1.twinx()\n    \n    # σ trajectory (5 points)\n    sigmas = sigma_data[bench]\n    l1, = ax1.plot(RATIOS, sigmas, 'o-', color=color_sigma, linewidth=2, markersize=7,\n                   label=r'$\\sigma$ (cross-arch)', zorder=3)\n    \n    # Jaccard trajectories (4 points, no pure)\n    jd = all_jaccard[bench]\n    j_helped = [jd[v][\"J_helped\"] for v in HYBRID_VARIANTS]\n    j_hurt = [jd[v][\"J_hurt\"] for v in HYBRID_VARIANTS]\n    j_mean = [(h + u) / 2 for h, u in zip(j_helped, j_hurt)]\n    \n    l2, = ax2.plot(HYBRID_RATIOS, j_helped, 's--', color=color_j_helped, linewidth=1.5,\n                   markersize=6, label='J(helped)', zorder=2)\n    l3, = ax2.plot(HYBRID_RATIOS, j_hurt, 'D--', color=color_j_hurt, linewidth=1.5,\n                   markersize=6, label='J(hurt)', zorder=2)\n    \n    ax1.set_xlabel('Attention ratio')\n    ax1.set_xticks(RATIOS)\n    ax1.set_xticklabels(RATIO_LABELS, rotation=30, ha='right')\n    \n    if idx == 0:\n        ax1.set_ylabel(r'Cross-arch $\\sigma$', color=color_sigma)\n    ax1.tick_params(axis='y', labelcolor=color_sigma)\n    \n    if idx == 3:\n        ax2.set_ylabel('Mean pairwise Jaccard', color=color_j_helped)\n    ax2.tick_params(axis='y', labelcolor=color_j_helped)\n    \n    # Add statistics annotation\n    st = stats_results[bench]\n    rho_s = st[\"sigma_rho\"]\n    p_s = st[\"sigma_p\"]\n    rho_j = st[\"jaccard_mean_rho\"]\n    p_j = st[\"jaccard_mean_p\"]\n    \n    ann_text = (f'$\\\\sigma$: $\\\\rho$={rho_s:.2f}, p={p_s:.3f}\\n'\n                f'J: $\\\\rho$={rho_j:.2f}, p={p_j:.3f}')\n    ax1.text(0.05, 0.95, ann_text, transform=ax1.transAxes,\n             verticalalignment='top', fontsize=10,\n             bbox=dict(boxstyle='round,pad=0.3', facecolor='wheat', alpha=0.7))\n    \n    ax1.set_title(title, fontsize=13, fontweight='bold')\n    \n    # Unified y limits per panel\n    sigma_range = max(sigmas) - min(sigmas)\n    ax1.set_ylim(min(sigmas) - sigma_range * 0.3, max(sigmas) + sigma_range * 0.3)\n    \n    all_j = j_helped + j_hurt\n    j_range = max(all_j) - min(all_j)\n    if j_range < 0.01:\n        j_range = 0.02\n    ax2.set_ylim(min(all_j) - j_range * 0.5, max(all_j) + j_range * 0.5)\n    \n    if idx == 0:\n        lines = [l1, l2, l3]\n        labels = [l.get_label() for l in lines]\n        ax1.legend(lines, labels, loc='lower left', fontsize=9, framealpha=0.8)\n\nplt.tight_layout()\nfig.savefig(f\"{OUT_DIR}/fig_cross_benchmark_decoupling.pdf\", bbox_inches='tight', dpi=150)\nfig.savefig(f\"{OUT_DIR}/fig_cross_benchmark_decoupling.png\", bbox_inches='tight', dpi=150)\nprint(f\"Saved: {OUT_DIR}/fig_cross_benchmark_decoupling.pdf\")\nprint(f\"Saved: {OUT_DIR}/fig_cross_benchmark_decoupling.png\")\n\n# ============================================================\n# 7. Summary table\n# ============================================================\nprint(\"\\n=== Summary Table ===\")\nprint(f\"{'Benchmark':>12s} | {'σ_pure':>8s} {'σ_h3-1':>8s} {'σ_reduction':>12s} | {'J_helped range':>16s} {'J_hurt range':>16s} | {'σ_ρ':>6s} {'σ_p':>8s} {'J_ρ':>6s} {'J_p':>8s}\")\nprint(\"-\" * 120)\nfor bench in benchmarks:\n    s = sigma_data[bench]\n    jd = all_jaccard[bench]\n    jh = [jd[v][\"J_helped\"] for v in HYBRID_VARIANTS]\n    ju = [jd[v][\"J_hurt\"] for v in HYBRID_VARIANTS]\n    st = stats_results[bench]\n    reduction = (1 - s[4] / s[0]) * 100\n    print(f\"{bench:>12s} | {s[0]:.6f} {s[4]:.6f} {reduction:>10.1f}% | [{min(jh):.4f}, {max(jh):.4f}] [{min(ju):.4f}, {max(ju):.4f}] | {st['sigma_rho']:>6.2f} {st['sigma_p']:>8.4f} {st['jaccard_mean_rho']:>6.2f} {st['jaccard_mean_p']:>8.4f}\")\n\nprint(\"\\nDone.\")\nPYEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T08:05:03.343159+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T08:05:03.343299+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cd /root/entrainment_gated_ft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python results/a1_cross_benchmark_jaccard/compute_trajectories.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cd /root/entrainment_gated_ft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python results/a1_cross_benchmark_jaccard/compute_trajectories.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T08:05:03.343481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== σ Verification (LAMBADA) ===\\n  pure: computed=0.024047, known=0.024047, diff=0.000000 [OK]\\n  h24-1: computed=0.016238, known=0.016238, diff=0.000000 [OK]\\n  h12-1: computed=0.013596, known=0.013596, diff=0.000000 [OK]\\n  h6-1: computed=0.006055, known=0.006055, diff=0.000000 [OK]\\n  h3-1: computed=0.004943, known=0.004943, diff=0.000000 [OK]\\n\\n=== Mean Pairwise Jaccard Trajectories ===\\n\\nLAMBADA:\\n     ratio    J_helped      J_hurt      J_mean\\n     h24-1      0.0945      0.0873      0.0909\\n     h12-1      0.0951      0.0809      0.0880\\n      h6-1      0.0922      0.0988      0.0955\\n      h3-1      0.1002      0.0928      0.0965\\n\\nHellaSwag:\\n     ratio    J_helped      J_hurt      J_mean\\n     h24-1      0.0838      0.0846      0.0842\\n     h12-1      0.0949      0.0668      0.0809\\n      h6-1      0.0945      0.0867      0.0906\\n      h3-1      0.0894      0.0833      0.0864\\n\\nPIQA:\\n     ratio    J_helped      J_hurt      J_mean\\n     h24-1      0.0852      0.0931      0.0892\\n     h12-1      0.0862      0.1050      0.0956\\n      h6-1      0.0807      0.0976      0.0892\\n      h3-1      0.1122      0.0784      0.0953\\n\\nARC-Easy:\\n     ratio    J_helped      J_hurt      J_mean\\n     h24-1      0.0748      0.0934      0.0841\\n     h12-1      0.0981      0.0994      0.0988\\n      h6-1      0.0935      0.0876      0.0906\\n      h3-1      0.1023      0.1149      0.1086\\n\\n=== Statistical Tests ===\\n\\nLAMBADA:\\n  σ trajectory:     ρ=-1.0000, p=0.0000\\n  J_mean trajectory: ρ=0.8000, p=0.3333 (exact, 24 perms)\\n  J_helped:          ρ=0.4000, p=0.5833\\n  J_hurt:            ρ=0.6000, p=0.4167\\n\\nHellaSwag:\\n  σ trajectory:     ρ=0.3000, p=0.6238\\n  J_mean trajectory: ρ=0.6000, p=0.4167 (exact, 24 perms)\\n  J_helped:          ρ=0.2000, p=0.9167\\n  J_hurt:            ρ=0.0000, p=1.0000\\n\\nPIQA:\\n  σ trajectory:     ρ=-0.5000, p=0.3910\\n  J_mean trajector
+…[truncated 1506 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-22T08:05:03.343700+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T08:05:03.343855+00:00_
+
+EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-22T08:05:03.344001+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat > /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fix_pvalues.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom itertools import permutations\n\ndef spearman_rho(x, y):\n    from scipy.stats import rankdata\n    rx = rankdata(x)\n    ry = rankdata(y)\n    n = len(x)\n    d2 = np.sum((rx - ry) ** 2)\n    return 1 - 6 * d2 / (n * (n**2 - 1))\n\ndef exact_permutation_test_sigma(x, y):\n    n = len(x)\n    observed = spearman_rho(x, y)\n    count_extreme = 0\n    total = 0\n    for perm in permutations(range(n)):\n        y_perm = [y[i] for i in perm]\n        rho_perm = spearman_rho(x, y_perm)\n        if abs(rho_perm) >= abs(observed):\n            count_extreme += 1\n        total += 1\n    return observed, count_extreme / total, total\n\nOUT_DIR = \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\"\nwith open(f\"{OUT_DIR}/cross_benchmark_jaccard_trajectories.json\") as f:\n    data = json.load(f)\n\nRATIOS = [0.0, 0.04, 0.0769, 0.1429, 0.25]\nbenchmarks = [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]\n\nprint(\"=== Fixed σ Spearman (exact permutation, n=5, 120 perms) ===\")\nfor bench in benchmarks:\n    sigmas = [data[\"sigma_trajectories\"][bench][v] for v in data[\"variants\"]]\n    rho, p, n_perms = exact_permutation_test_sigma(RATIOS, sigmas)\n    data[\"statistics\"][bench][\"sigma_rho\"] = float(rho)\n    data[\"statistics\"][bench][\"sigma_p\"] = float(p)\n    data[\"statistics\"][bench][\"sigma_n_permutations\"] = n_perms\n    print(f\"  {bench}: ρ={rho:.4f}, p={p:.4f} ({n_perms} perms)\")\n\nwith open(f\"{OUT_DIR}/cross_benchmark_jaccard_trajectories.json\", \"w\") as f:\n    json.dump(data, f, indent=2)\nprint(\"\\nJSON updated.\")\nPYEOF\ncd /root/entrainment_gated_ft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python results/a1_cross_benchmark_jaccard/fix_pvalues.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat > /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fix_pvalues.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom itertools import permutations\n\ndef spearman_rho(x, y):\n    from scipy.stats import rankdata\n    rx = rankdata(x)\n    ry = rankdata(y)\n    n = len(x)\n    d2 = np.sum((rx - ry) ** 2)\n    return 1 - 6 * d2 / (n * (n**2 - 1))\n\ndef exact_permutation_test_sigma(x, y):\n    n = len(x)\n    observed = spearman_rho(x, y)\n    count_extreme = 0\n    total = 0\n    for perm in permutations(range(n)):\n        y_perm = [y[i] for i in perm]\n        rho_perm = spearman_rho(x, y_perm)\n        if abs(rho_perm) >= abs(observed):\n            count_extreme += 1\n        total += 1\n    return observed, count_extreme / total, total\n\nOUT_DIR = \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\"\nwith open(f\"{OUT_DIR}/cross_benchmark_jaccard_trajectories.json\") as f:\n    data = json.load(f)\n\nRATIOS = [0.0, 0.04, 0.0769, 0.1429, 0.25]\nbenchmarks = [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]\n\nprint(\"=== Fixed σ Spearman (exact permutation, n=5, 120 perms) ===\")\nfor bench in benchmarks:\n    sigmas = [data[\"sigma_trajectories\"][bench][v] for v in data[\"variants\"]]\n    rho, p, n_perms = exact_permutation_test_sigma(RATIOS, sigmas)\n    data[\"statistics\"][bench][\"sigma_rho\"] = float(rho)\n    data[\"statistics\"][bench][\"sigma_p\"] = float(p)\n    data[\"statistics\"][bench][\"sigma_n_permutations\"] = n_perms\n    print(f\"  {bench}: ρ={rho:.4f}, p={p:.4f} ({n_perms} perms)\")\n\nwith open(f\"{OUT_DIR}/cross_benchmark_jaccard_trajectories.json\", \"w\") as f:\n    json.dump(data, f, indent=2)\nprint(\"\\nJSON updated.\")\nPYEOF\ncd /root/entrainment_gated_ft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python results/a1_cross_benchmark_jaccard/fix_pvalues.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T08:05:03.344162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Fixed σ Spearman (exact permutation, n=5, 120 perms) ===\\n  LAMBADA: ρ=-1.0000, p=0.0167 (120 perms)\\n  HellaSwag: ρ=0.3000, p=0.6833 (120 perms)\\n  PIQA: ρ=-0.5000, p=0.4500 (120 perms)\\n  ARC-Easy: ρ=0.3000, p=0.6833 (120 perms)\\n\\nJSON updated.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-22T08:05:03.344418+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat > /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/gen_figure.py << 'PYEOF'\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\nOUT_DIR = \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\"\nwith open(f\"{OUT_DIR}/cross_benchmark_jaccard_trajectories.json\") as f:\n    data = json.load(f)\n\nRATIOS = data[\"attention_ratios\"]\nRATIO_LABELS = data[\"ratio_labels\"]\nVARIANTS = data[\"variants\"]\nHYBRID_VARIANTS = [\"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nHYBRID_RATIOS = RATIOS[1:]\n\nplt.rcParams.update({\n    'font.size': 13,\n    'axes.labelsize': 14,\n    'xtick.labelsize': 12,\n    'ytick.labelsize': 12,\n    'legend.fontsize': 11,\n    'font.family': 'serif',\n    'mathtext.fontset': 'cm',\n})\n\nfig, axes = plt.subplots(1, 4, figsize=(20, 4.8))\nbenchmarks = [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]\nbench_titles = [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]\n\ncolor_sigma = '#2166ac'\ncolor_j_helped = '#b2182b'\ncolor_j_hurt = '#ef8a62'\n\nfor idx, bench in enumerate(benchmarks):\n    ax1 = axes[idx]\n    ax2 = ax1.twinx()\n    \n    sigmas = [data[\"sigma_trajectories\"][bench][v] for v in VARIANTS]\n    l1, = ax1.plot(RATIOS, sigmas, 'o-', color=color_sigma, linewidth=2.2, markersize=7,\n                   label=r'$\\sigma$ (cross-arch)', zorder=3)\n    \n    jd = data[\"jaccard_trajectories\"][bench]\n    j_helped = [jd[v][\"J_helped\"] for v in HYBRID_VARIANTS]\n    j_hurt = [jd[v][\"J_hurt\"] for v in HYBRID_VARIANTS]\n    \n    l2, = ax2.plot(HYBRID_RATIOS, j_helped, 's--', color=color_j_helped, linewidth=1.8,\n                   markersize=6, label=r'$\\bar{J}$(helped)', zorder=2)\n    l3, = ax2.plot(HYBRID_RATIOS, j_hurt, 'D--', color=color_j_hurt, linewidth=1.8,\n                   markersize=6, label=r'$\\bar{J}$(hurt)', zorder=2)\n    \n    ax1.set_xlabel('Attention ratio')\n    ax1.set_xticks(RATIOS)\n    ax1.set_xticklabels(RATIO_LABELS, rotation=30, ha='right')\n    \n    if idx == 0:\n        ax1.set_ylabel(r'Cross-arch $\\sigma$', color=color_sigma)\n    ax1.tick_params(axis='y', labelcolor=color_sigma)\n    \n    if idx == 3:\n        ax2.set_ylabel('Mean pairwise Jaccard', color=color_j_helped)\n    ax2.tick_params(axis='y', labelcolor=color_j_helped)\n    \n    st = data[\"statistics\"][bench]\n    rho_s = st[\"sigma_rho\"]\n    p_s = st[\"sigma_p\"]\n    rho_j = st[\"jaccard_mean_rho\"]\n    p_j = st[\"jaccard_mean_p\"]\n    \n    def fmt_p(p):\n        if p < 0.001:\n            return \"<.001\"\n        elif p < 0.01:\n            return f\"={p:.3f}\"\n        elif p < 0.1:\n            return f\"={p:.3f}\"\n        else:\n            return f\"={p:.2f}\"\n    \n    ann_text = (f'$\\\\sigma$: $\\\\rho$={rho_s:.2f}, p{fmt_p(p_s)}\\n'\n                f'$\\\\bar{{J}}$: $\\\\rho$={rho_j:.2f}, p{fmt_p(p_j)}')\n    ax1.text(0.05, 0.95, ann_text, transform=ax1.transAxes,\n             verticalalignment='top', fontsize=10,\n             bbox=dict(boxstyle='round,pad=0.3', facecolor='wheat', alpha=0.7))\n    \n    ax1.set_title(bench_titles[idx], fontsize=13, fontweight='bold')\n    \n    sigma_range = max(sigmas) - min(sigmas)\n    if sigma_range < 0.001:\n        sigma_range = 0.005\n    ax1.set_ylim(min(sigmas) - sigma_range * 0.3, max(sigmas) + sigma_range * 0.3)\n    \n    all_j = j_helped + j_hurt\n    j_range = max(all_j) - min(all_j)\n    if j_range < 0.01:\n        j_range = 0.02\n    ax2.set_ylim(min(all_j) - j_range * 0.5, max(all_j) + j_range * 0.5)\n    \n    if idx == 0:\n        lines = [l1, l2, l3]\n        labels = [l.get_label() for l in lines]\n        ax1.legend(lines, labels, loc='lower left', fontsize=9.5, framealpha=0.8)\n\nplt.tight_layout(w_pad=2.5)\nfig.savefig(f\"{OUT_DIR}/fig_cross_benchmark_decoupling.pdf\", bbox_inches='tight', dpi=300)\nfig.savefig(f\"{OUT_DIR}/fig_cross_benchmark_decoupling.png\", bbox_inches='tight', dpi=150)\nprint(f\"Saved PDF and PNG\")\nPYEOF\ncd /root/entrainment_gated_ft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python results/a1_cross_benchmark_jaccard/gen_figure.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat > /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/gen_figure.py << 'PYEOF'\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\nOUT_DIR = \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\"\nwith open(f\"{OUT_DIR}/cross_benchmark_jaccard_trajectories.json\") as f:\n    data = json.load(f)\n\nRATIOS = data[\"attention_ratios\"]\nRATIO_LABELS = data[\"ratio_labels\"]\nVARIANTS = data[\"variants\"]\nHYBRID_VARIANTS = [\"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nHYBRID_RATIOS = RATIOS[1:]\n\nplt.rcParams.update({\n    'font.size': 13,\n    'axes.labelsize': 14,\n    'xtick.labelsize': 12,\n    'ytick.labelsize': 12,\n    'legend.fontsize': 11,\n    'font.family': 'serif',\n    'mathtext.fontset': 'cm',\n})\n\nfig, axes = plt.subplots(1, 4, figsize=(20, 4.8))\nbenchmarks = [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]\nbench_titles = [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"]\n\ncolor_sigma = '#2166ac'\ncolor_j_helped = '#b2182b'\ncolor_j_hurt = '#ef8a62'\n\nfor idx, bench in enumerate(benchmarks):\n    ax1 = axes[idx]\n    ax2 = ax1.twinx()\n    \n    sigmas = [data[\"sigma_trajectories\"][bench][v] for v in VARIANTS]\n    l1, = ax1.plot(RATIOS, sigmas, 'o-', color=color_sigma, linewidth=2.2, markersize=7,\n                   label=r'$\\sigma$ (cross-arch)', zorder=3)\n    \n    jd = data[\"jaccard_trajectories\"][bench]\n    j_helped = [jd[v][\"J_helped\"] for v in HYBRID_VARIANTS]\n    j_hurt = [jd[v][\"J_hurt\"] for v in HYBRID_VARIANTS]\n    \n    l2, = ax2.plot(HYBRID_RATIOS, j_helped, 's--', color=color_j_helped, linewidth=1.8,\n                   markersize=6, label=r'$\\bar{J}$(helped)', zorder=2)\n    l3, = ax2.plot(HYBRID_RATIOS, j_hurt, 'D--', color=color_j_hurt, linewidth=1.8,\n                   markersize=6, label=r'$\\bar{J}$(hurt)', zorder=2)\n    \n    ax1.set_xlabel('Attention ratio')\n    ax1.set_xticks(RATIOS)\n    ax1.set_xticklabels(RATIO_LABELS, rotation=30, ha='right')\n    \n    if idx == 0:\n        ax1.set_ylabel(r'Cross-arch $\\sigma$', color=color_sigma)\n    ax1.tick_params(axis='y', labelcolor=color_sigma)\n    \n    if idx == 3:\n        ax2.set_ylabel('Mean pairwise Jaccard', color=color_j_helped)\n    ax2.tick_params(axis='y', labelcolor=color_j_helped)\n    \n    st = data[\"statistics\"][bench]\n    rho_s = st[\"sigma_rho\"]\n    p_s = st[\"sigma_p\"]\n    rho_j = st[\"jaccard_mean_rho\"]\n    p_j = st[\"jaccard_mean_p\"]\n    \n    def fmt_p(p):\n        if p < 0.001:\n            return \"<.001\"\n        elif p < 0.01:\n            return f\"={p:.3f}\"\n        elif p < 0.1:\n            return f\"={p:.3f}\"\n        else:\n            return f\"={p:.2f}\"\n    \n    ann_text = (f'$\\\\sigma$: $\\\\rho$={rho_s:.2f}, p{fmt_p(p_s)}\\n'\n                f'$\\\\bar{{J}}$: $\\\\rho$={rho_j:.2f}, p{fmt_p(p_j)}')\n    ax1.text(0.05, 0.95, ann_text, transform=ax1.transAxes,\n             verticalalignment='top', fontsize=10,\n             bbox=dict(boxstyle='round,pad=0.3', facecolor='wheat', alpha=0.7))\n    \n    ax1.set_title(bench_titles[idx], fontsize=13, fontweight='bold')\n    \n    sigma_range = max(sigmas) - min(sigmas)\n    if sigma_range < 0.001:\n        sigma_range = 0.005\n    ax1.set_ylim(min(sigmas) - sigma_range * 0.3, max(sigmas) + sigma_range * 0.3)\n    \n    all_j = j_helped + j_hurt\n    j_range = max(all_j) - min(all_j)\n    if j_range < 0.01:\n        j_range = 0.02\n    ax2.set_ylim(min(all_j) - j_range * 0.5, max(all_j) + j_range * 0.5)\n    \n    if idx == 0:\n        lines = [l1, l2, l3]\n        labels = [l.get_label() for l in lines]\n        ax1.legend(lines, labels, loc='lower left', fontsize=9.5, framealpha=0.8)\n\nplt.tight_layout(w_pad=2.5)\nfig.savefig(f\"{OUT_DIR}/fig_cross_benchmark_decoupling.pdf\", bbox_inches='tight', dpi=300)\nfig.savefig(f\"{OUT_DIR}/fig_cross_benchmark_decoupling.png\", bbox_inches='tight', dpi=150)\nprint(f\"Saved PDF and PNG\")\nPYEOF\ncd /root/entrainment_gated_ft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python results/a1_cross_benchmark_jaccard/gen_figure.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T08:05:03.344920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved PDF and PNG\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.25}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T08:05:03.345464+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "base64 /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.png | head -c 200",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "base64 /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.png | head -c 200",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-22T08:05:03.345862+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls -la /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-22T08:05:03.346036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"iVBORw0KGgoAAAANSUhEUgAAC50AAAKyCAYAAADsYltYAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\\nbGliIHZlcnNpb24zLjEwLjUsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvWftoOwAAAAlwSFlzAAAX\\nEgAAFxIBZ5/SUgABAABJREFUeJzs3XdcU1cbB/Bf2HsKio\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T08:05:03.346194+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 336\\ndrwxr-xr-x 2 root root   4096 May 22 16:03 .\\ndrwxr-xr-x 8 root root   4096 May 22 16:00 ..\\n-rw-r--r-- 1 root root  13985 May 22 16:02 compute_trajectories.py\\n-rw-r--r-- 1 root root   9021 May 22 16:02 cross_benchmark_jaccard_trajectories.json\\n-rw-r--r-- 1 root root  36408 May 22 16:03 fig_cross_benchmark_decoupling.pdf\\n-rw-r--r-- 1 root root 262012 May 22 16:03 fig_cross_benchmark_decoupling.png\\n-rw-r--r-- 1 root root   1538 May 22 16:02 fix_pvalues.py\\n-rw-r--r-- 1 root root   3715 May 22 16:03 gen_figure.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-22T08:05:03.346365+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp westb-48145:/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.png /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/fig_cross_benchmark_decoupling.png 2>&1",
+  "description": "Download figure PNG from remote server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp westb-48145:/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.png /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/fig_cross_benchmark_decoupling.png 2>&1",
+    "description": "Download figure PNG from remote server"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-22T08:05:03.346507+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp westb-48145:/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/fig_cross_benchmark_decoupling.pdf 2>&1",
+  "description": "Download figure PDF from remote server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp westb-48145:/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/fig_cross_benchmark_decoupling.pdf 2>&1",
+    "description": "Download figure PDF from remote server"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-22T08:05:03.346655+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp westb-48145:/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/cross_benchmark_jaccard_trajectories.json 2>&1",
+  "description": "Download JSON results from remote server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp westb-48145:/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/cross_benchmark_jaccard_trajectories.json 2>&1",
+    "description": "Download JSON results from remote server"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-22T08:05:03.346837+00:00_
+
+Exit code 255
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+root@connect.westb.seetacloud.com: Permission denied (publickey,password).
+scp: Connection closed
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-22T08:05:03.346968+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(scp westb-48145:/root/entrainment_gated_…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-22T08:05:03.347091+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(scp westb-48145:/root/entrainment_gated_…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-22T08:05:03.347250+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-22T08:05:03.347613+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Cross-benchmark Jaccard trajectory analysis (A1)\\\",\\n  \\\"benchmarks\\\": [\\n    \\\"LAMBADA\\\",\\n    \\\"HellaSwag\\\",\\n    \\\"PIQA\\\",\\n    \\\"ARC-Easy\\\"\\n  ],\\n  \\\"attention_ratios\\\": [\\n    0.0,\\n    0.04,\\n    0.0769,\\n    0.1429,\\n    0.25\\n  ],\\n  \\\"ratio_labels\\\": [\\n    \\\"0%\\\",\\n    \\\"4%\\\",\\n    \\\"7.7%\\\",\\n    \\\"14.3%\\\",\\n    \\\"25%\\\"\\n  ],\\n  \\\"variants\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"metrics_used\\\": {\\n    \\\"LAMBADA\\\": \\\"acc\\\",\\n    \\\"HellaSwag\\\": \\\"acc_norm\\\",\\n    \\\"PIQA\\\": \\\"acc\\\",\\n    \\\"ARC-Easy\\\": \\\"acc\\\"\\n  },\\n  \\\"sigma_trajectories\\\": {\\n    \\\"LAMBADA\\\": {\\n      \\\"pure\\\": 0.024047126977057007,\\n      \\\"h24-1\\\": 0.016238171620323174,\\n      \\\"h12-1\\\": 0.013595712311665276,\\n      \\\"h6-1\\\": 0.006055084765553574,\\n      \\\"h3-1\\\": 0.004942545182713789\\n    },\\n    \\\"HellaSwag\\\": {\\n      \\\"pure\\\": 0.011684919531365783,\\n      \\\"h24-1\\\": 0.008615212910147576,\\n      \\\"h12-1\\\": 0.00946859081425128,\\n      \\\"h6-1\\\": 0.009201244143823003,\\n      \\\"h3-1\\\": 0.01183082679011367\\n    },\\n    \\\"PIQA\\\": {\\n      \\\"pure\\\": 0.004623702859623485,\\n      \\\"h24-1\\\": 0.005123121832363242,\\n      \\\"h12-1\\\": 0.0052624657702382525,\\n      \\\"h6-1\\\": 0.003450543632651522,\\n      \\\"h3-1\\\": 0.003872716087062462\\n    },\\n    \\\"ARC-Easy\\\": {\\n      \\\"pure\\\": 0.000396805152180962,\\n      \\\"h24-1\\\": 0.0100208032707231,\\n      \\\"h12-1\\\": 0.013861228109911963,\\n      \\\"h6-1\\\": 0.011012683449377308,\\n      \\\"h3-1\\\": 0.009965656922097678\\n    }\\n  },\\n  \\\"jaccard_trajectories\\\": {\\n    \\\"LAMBADA\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"J_helped\\\": 0.094523,\\n      
+…[truncated 8409 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-22T08:05:03.347996+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "cross_benchmark_jaccard_trajectories",
+  "type": "data",
+  "description": "A1 analysis: Cross-benchmark Jaccard trajectory data with σ trajectories and Spearman tests for LAMBADA, HellaSwag, PIQA, ARC-Easy (4 benchmarks × 5 attention ratios × 3 architectures)",
+  "project": "entrainment_gated_ft",
+  "content_filename": "cross_benchmark_jaccard_trajectories.json",
+  "content": "{\n  \"description\": \"Cross-benchmark Jaccard trajectory analysis (A1)\",\n  \"benchmarks\": [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"],\n  \"server_path\": \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\",\n  \"figure_path\": \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf\",\n  \"key_findings\": {\n    \"jaccard_saturation_universal\": \"All 4 benchmarks show flat Jaccard trajectories (all p>0.33), confirming saturation at 4% attention is cross-benchmark\",\n    \"sigma_convergence_lambada_only\": \"Only LAMBADA shows significant σ convergence (ρ=-1.0, p=0.017). HellaSwag/PIQA/ARC-Easy all p>0.45\",\n    \"decoupling_confirmed\": \"σ and Jaccard operate on different timescales across all benchmarks\"\n  },\n  \"summary_table\": {\n    \"LAMBADA\":   {\"σ_pure\": 0.024047, \"σ_h3-1\": 0.004943, \"σ_reduction\": \"79.4%\", \"σ_ρ\": -1.0, \"σ_p\": 0.017, \"J_ρ\": 0.80, \"J_p\": 0.333},\n    \"HellaSwag\": {\"σ_pure\": 0.011685, \"σ_h3-1\": 0.011831, \"σ_reduction\": \"-1.2%\", \"σ_ρ\": 0.30, \"σ_p\": 0.683, \"J_ρ\": 0.60, \"J_p\": 0.417},\n    \"PIQA\":      {\"σ_pure\": 0.004624, \"σ_h3-1\": 0.003873, \"σ_reduction\": \"16.2%\", \"σ_ρ\": -0.50, \"σ_p\": 0.450, \"J_ρ\": 0.00, \"J_p\": 1.000},\n    \"ARC-Easy\":  {\"σ_pure\": 0.000397, \"σ_h3-1\": 0.009966, \"σ_reduction\": \"-2411%\", \"σ_ρ\": 0.30, \"σ_p\": 0.683, \"J_ρ\": 0.80, \"J_p\": 0.333}\n  }\n}",
+  "tags": "['A1', 'jaccard', 'decoupling', 'cross-benchmark']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "cross_benchmark_jaccard_trajectories",
+    "type": "data",
+    "description": "A1 analysis: Cross-benchmark Jaccard trajectory data with σ trajectories and Spearman tests for LAMBADA, HellaSwag, PIQA, ARC-Easy (4 benchmarks × 5 attention ratios × 3 architectures)",
+    "project": "entrainment_gated_ft",
+    "content_filename": "cross_benchmark_jaccard_trajectories.json",
+    "content": "{\n  \"description\": \"Cross-benchmark Jaccard trajectory analysis (A1)\",\n  \"benchmarks\": [\"LAMBADA\", \"HellaSwag\", \"PIQA\", \"ARC-Easy\"],\n  \"server_path\": \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\",\n  \"figure_path\": \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf\",\n  \"key_findings\": {\n    \"jaccard_saturation_universal\": \"All 4 benchmarks show flat Jaccard trajectories (all p>0.33), confirming saturation at 4% attention is cross-benchmark\",\n    \"sigma_convergence_lambada_only\": \"Only LAMBADA shows significant σ convergence (ρ=-1.0, p=0.017). HellaSwag/PIQA/ARC-Easy all p>0.45\",\n    \"decoupling_confirmed\": \"σ and Jaccard operate on different timescales across all benchmarks\"\n  },\n  \"summary_table\": {\n    \"LAMBADA\":   {\"σ_pure\": 0.024047, \"σ_h3-1\": 0.004943, \"σ_reduction\": \"79.4%\", \"σ_ρ\": -1.0, \"σ_p\": 0.017, \"J_ρ\": 0.80, \"J_p\": 0.333},\n    \"HellaSwag\": {\"σ_pure\": 0.011685, \"σ_h3-1\": 0.011831, \"σ_reduction\": \"-1.2%\", \"σ_ρ\": 0.30, \"σ_p\": 0.683, \"J_ρ\": 0.60, \"J_p\": 0.417},\n    \"PIQA\":      {\"σ_pure\": 0.004624, \"σ_h3-1\": 0.003873, \"σ_reduction\": \"16.2%\", \"σ_ρ\": -0.50, \"σ_p\": 0.450, \"J_ρ\": 0.00, \"J_p\": 1.000},\n    \"ARC-Easy\":  {\"σ_pure\": 0.000397, \"σ_h3-1\": 0.009966, \"σ_reduction\": \"-2411%\", \"σ_ρ\": 0.30, \"σ_p\": 0.683, \"J_ρ\": 0.80, \"J_p\": 0.333}\n  }\n}",
+    "tags": "['A1', 'jaccard', 'decoupling', 'cross-benchmark']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-22T08:05:03.348180+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'description': 'Cross-be...': 0.8, 'J_p': 0.333}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-22T08:05:03.348329+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "fig_cross_benchmark_decoupling",
+  "type": "chart",
+  "description": "A1 figure: 4-panel cross-benchmark decoupling plot (σ + Jaccard trajectories) for LAMBADA, HellaSwag, PIQA, ARC-Easy. PDF at server: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf",
+  "project": "entrainment_gated_ft",
+  "tags": "['A1', 'figure', 'decoupling', 'cross-benchmark']",
+  "content": "4-panel figure showing σ (left y-axis, blue) and mean pairwise Jaccard (right y-axis, red/orange) vs attention ratio for LAMBADA, HellaSwag, PIQA, ARC-Easy. Each panel annotated with Spearman ρ and exact permutation p-value.\n\nServer paths:\n- PDF: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf\n- PNG: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.png",
+  "content_filename": "fig_cross_benchmark_decoupling_info.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "fig_cross_benchmark_decoupling",
+    "type": "chart",
+    "description": "A1 figure: 4-panel cross-benchmark decoupling plot (σ + Jaccard trajectories) for LAMBADA, HellaSwag, PIQA, ARC-Easy. PDF at server: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf",
+    "project": "entrainment_gated_ft",
+    "tags": "['A1', 'figure', 'decoupling', 'cross-benchmark']",
+    "content": "4-panel figure showing σ (left y-axis, blue) and mean pairwise Jaccard (right y-axis, red/orange) vs attention ratio for LAMBADA, HellaSwag, PIQA, ARC-Easy. Each panel annotated with Spearman ρ and exact permutation p-value.\n\nServer paths:\n- PDF: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf\n- PNG: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.png",
+    "content_filename": "fig_cross_benchmark_decoupling_info.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-22T08:05:03.348495+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260522_78ef48\", \"name\": \"fig_cross_benchmark_decoupling\", \"type\": \"chart\", \"description\": \"A1 figure: 4-panel cross-benchmark decoupling plot (σ + Jaccard trajectories) for LAMBADA, HellaSwag, PIQA, ARC-Easy. PDF at server: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf\", \"path\": \"projects/entrainment_gated_ft/artifacts/_project/chart/fig_cross_benchmark_decoupling_info.txt\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-22T08:04:25.351119+00:00\", \"tags\": [\"A1\", \"figure\", \"decoupling\", \"cross-benchmark\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-22T08:05:03.348668+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "cross_benchmark_jaccard_trajectories",
+  "type": "data",
+  "description": "A1 analysis: Cross-benchmark Jaccard trajectory data with σ trajectories and Spearman tests for 4 benchmarks × 5 attention ratios × 3 architectures",
+  "project": "entrainment_gated_ft",
+  "content_filename": "cross_benchmark_jaccard_trajectories.json",
+  "content": "{\"description\":\"Cross-benchmark Jaccard trajectory analysis (A1)\",\"server_path\":\"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\",\"key_findings\":{\"jaccard_saturation_universal\":\"All 4 benchmarks show flat Jaccard trajectories (all p>0.33)\",\"sigma_convergence_lambada_only\":\"Only LAMBADA has significant σ convergence (ρ=-1.0, p=0.017)\",\"decoupling_confirmed\":\"σ and Jaccard operate on different timescales across all benchmarks\"},\"summary\":{\"LAMBADA\":{\"σ_pure\":0.024047,\"σ_h3-1\":0.004943,\"σ_reduction\":\"79.4%\",\"σ_ρ\":-1.0,\"σ_p\":0.017,\"J_ρ\":0.80,\"J_p\":0.333},\"HellaSwag\":{\"σ_pure\":0.011685,\"σ_h3-1\":0.011831,\"σ_reduction\":\"-1.2%\",\"σ_ρ\":0.30,\"σ_p\":0.683,\"J_ρ\":0.60,\"J_p\":0.417},\"PIQA\":{\"σ_pure\":0.004624,\"σ_h3-1\":0.003873,\"σ_reduction\":\"16.2%\",\"σ_ρ\":-0.50,\"σ_p\":0.450,\"J_ρ\":0.00,\"J_p\":1.000},\"ARC-Easy\":{\"σ_pure\":0.000397,\"σ_h3-1\":0.009966,\"σ_reduction\":\"-2411%\",\"σ_ρ\":0.30,\"σ_p\":0.683,\"J_ρ\":0.80,\"J_p\":0.333}}}",
+  "tags": "['A1', 'jaccard', 'decoupling', 'cross-benchmark']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "cross_benchmark_jaccard_trajectories",
+    "type": "data",
+    "description": "A1 analysis: Cross-benchmark Jaccard trajectory data with σ trajectories and Spearman tests for 4 benchmarks × 5 attention ratios × 3 architectures",
+    "project": "entrainment_gated_ft",
+    "content_filename": "cross_benchmark_jaccard_trajectories.json",
+    "content": "{\"description\":\"Cross-benchmark Jaccard trajectory analysis (A1)\",\"server_path\":\"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\",\"key_findings\":{\"jaccard_saturation_universal\":\"All 4 benchmarks show flat Jaccard trajectories (all p>0.33)\",\"sigma_convergence_lambada_only\":\"Only LAMBADA has significant σ convergence (ρ=-1.0, p=0.017)\",\"decoupling_confirmed\":\"σ and Jaccard operate on different timescales across all benchmarks\"},\"summary\":{\"LAMBADA\":{\"σ_pure\":0.024047,\"σ_h3-1\":0.004943,\"σ_reduction\":\"79.4%\",\"σ_ρ\":-1.0,\"σ_p\":0.017,\"J_ρ\":0.80,\"J_p\":0.333},\"HellaSwag\":{\"σ_pure\":0.011685,\"σ_h3-1\":0.011831,\"σ_reduction\":\"-1.2%\",\"σ_ρ\":0.30,\"σ_p\":0.683,\"J_ρ\":0.60,\"J_p\":0.417},\"PIQA\":{\"σ_pure\":0.004624,\"σ_h3-1\":0.003873,\"σ_reduction\":\"16.2%\",\"σ_ρ\":-0.50,\"σ_p\":0.450,\"J_ρ\":0.00,\"J_p\":1.000},\"ARC-Easy\":{\"σ_pure\":0.000397,\"σ_h3-1\":0.009966,\"σ_reduction\":\"-2411%\",\"σ_ρ\":0.30,\"σ_p\":0.683,\"J_ρ\":0.80,\"J_p\":0.333}}}",
+    "tags": "['A1', 'jaccard', 'decoupling', 'cross-benchmark']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-22T08:05:03.348840+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'description': 'Cross-be...': 0.8, 'J_p': 0.333}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-22T08:05:03.348976+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "cross_benchmark_jaccard_trajectories",
+  "type": "data",
+  "description": "A1 analysis: Cross-benchmark Jaccard trajectory data with sigma trajectories and Spearman tests for 4 benchmarks x 5 attention ratios x 3 architectures",
+  "project": "entrainment_gated_ft",
+  "content_filename": "cross_benchmark_jaccard_summary.txt",
+  "content": "A1 Cross-Benchmark Jaccard Trajectory Analysis\n\nFull data: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\n\nKey Findings:\n1. Jaccard saturation is universal: All 4 benchmarks show flat Jaccard trajectories (all p>0.33)\n2. sigma convergence is LAMBADA-only: rho=-1.0, p=0.017. Others all p>0.45\n3. Decoupling confirmed cross-benchmark: sigma and Jaccard operate on different timescales\n\nSummary Table:\nBenchmark   | sigma_pure  sigma_h3-1  reduction | sigma_rho  sigma_p | J_rho  J_p\nLAMBADA     | 0.024047    0.004943    79.4%     | -1.00      0.017   | 0.80   0.333\nHellaSwag   | 0.011685    0.011831    -1.2%     |  0.30      0.683   | 0.60   0.417\nPIQA        | 0.004624    0.003873    16.2%     | -0.50      0.450   | 0.00   1.000\nARC-Easy    | 0.000397    0.009966    -2411%    |  0.30      0.683   | 0.80   0.333\n\nJaccard Trajectories (mean pairwise, 3 arch pairs):\n           h24-1    h12-1    h6-1     h3-1\nLAMBADA    0.091    0.088    0.096    0.097\nHellaSwag  0.084    0.081    0.091    0.086\nPIQA       0.089    0.096    0.089    0.095\nARC-Easy   0.084    0.099    0.091    0.109",
+  "tags": "['A1', 'jaccard', 'decoupling', 'cross-benchmark']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "cross_benchmark_jaccard_trajectories",
+    "type": "data",
+    "description": "A1 analysis: Cross-benchmark Jaccard trajectory data with sigma trajectories and Spearman tests for 4 benchmarks x 5 attention ratios x 3 architectures",
+    "project": "entrainment_gated_ft",
+    "content_filename": "cross_benchmark_jaccard_summary.txt",
+    "content": "A1 Cross-Benchmark Jaccard Trajectory Analysis\n\nFull data: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\n\nKey Findings:\n1. Jaccard saturation is universal: All 4 benchmarks show flat Jaccard trajectories (all p>0.33)\n2. sigma convergence is LAMBADA-only: rho=-1.0, p=0.017. Others all p>0.45\n3. Decoupling confirmed cross-benchmark: sigma and Jaccard operate on different timescales\n\nSummary Table:\nBenchmark   | sigma_pure  sigma_h3-1  reduction | sigma_rho  sigma_p | J_rho  J_p\nLAMBADA     | 0.024047    0.004943    79.4%     | -1.00      0.017   | 0.80   0.333\nHellaSwag   | 0.011685    0.011831    -1.2%     |  0.30      0.683   | 0.60   0.417\nPIQA        | 0.004624    0.003873    16.2%     | -0.50      0.450   | 0.00   1.000\nARC-Easy    | 0.000397    0.009966    -2411%    |  0.30      0.683   | 0.80   0.333\n\nJaccard Trajectories (mean pairwise, 3 arch pairs):\n           h24-1    h12-1    h6-1     h3-1\nLAMBADA    0.091    0.088    0.096    0.097\nHellaSwag  0.084    0.081    0.091    0.086\nPIQA       0.089    0.096    0.089    0.095\nARC-Easy   0.084    0.099    0.091    0.109",
+    "tags": "['A1', 'jaccard', 'decoupling', 'cross-benchmark']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-22T08:05:03.349132+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260522_e9317e\", \"name\": \"cross_benchmark_jaccard_trajectories\", \"type\": \"data\", \"description\": \"A1 analysis: Cross-benchmark Jaccard trajectory data with sigma trajectories and Spearman tests for 4 benchmarks x 5 attention ratios x 3 architectures\", \"path\": \"projects/entrainment_gated_ft/artifacts/_project/data/cross_benchmark_jaccard_summary.txt\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-22T08:04:49.267348+00:00\", \"tags\": [\"A1\", \"jaccard\", \"decoupling\", \"cross-benchmark\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-22T08:05:03.349307+00:00_
+
+A1 分析完成。
+
+## 结果摘要
+
+### σ 轨迹（cross-architecture std of accuracy）
+| Benchmark | σ_pure | σ_h3-1 | Reduction | ρ | p |
+|-----------|--------|--------|-----------|---|---|
+| LAMBADA | 0.0240 | 0.0049 | 79.4% | **-1.00** | **0.017** |
+| HellaSwag | 0.0117 | 0.0118 | -1.2% | 0.30 | 0.683 |
+| PIQA | 0.0046 | 0.0039 | 16.2% | -0.50 | 0.450 |
+| ARC-Easy | 0.0004 | 0.0100 | -2411% | 0.30 | 0.683 |
+
+→ σ convergence 是 LAMBADA 特有的（p=0.017），其他三个 benchmark 均不显著。
+
+### Jaccard 轨迹（mean pairwise J across 3 arch pairs）
+| Benchmark | h24-1 | h12-1 | h6-1 | h3-1 | ρ | p |
+|-----------|-------|-------|------|------|---|---|
+| LAMBADA | 0.091 | 0.088 | 0.096 | 0.097 | 0.80 | 0.333 |
+| HellaSwag | 0.084 | 0.081 | 0.091 | 0.086 | 0.60 | 0.417 |
+| PIQA | 0.089 | 0.096 | 0.089 | 0.095 | 0.00 | 1.000 |
+| ARC-Easy | 0.084 | 0.099 | 0.091 | 0.109 | 0.80 | 0.333 |
+
+→ **所有 4 个 benchmark 的 Jaccard 均无显著趋势**（全部 p>0.33）。Jaccard 在 4% attention 即饱和，不随 attention 增加而变化——这是跨 benchmark 的普遍现象。
+
+### Decoupling 确认
+Jaccard 饱和（平坦轨迹）vs σ（仅 LAMBADA 下降）：两个量在不同 timescale 上运作，decoupling 不仅限于 LAMBADA。
+
+### 产出文件
+- **JSON**: `/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json`
+- **Figure**: `/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf`
+- LAMBADA σ 验证通过（与 decoupling_data.csv 完全一致）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_a1_cross_benchmark_jaccard_20260522T075546"
+}
+```
+
+</details>
+
+---

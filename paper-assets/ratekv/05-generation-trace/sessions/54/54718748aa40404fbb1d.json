@@ -9531,5 +9531,6 @@
       ],
       "message_count": 234
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/gpu-qwen-float32-validation.md"
 }

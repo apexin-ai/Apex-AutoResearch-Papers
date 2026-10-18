@@ -1,0 +1,1392 @@
+# analysis plan 018 retrieve results
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_analysis_plan_018_retrieve_results_20260522T112606.log`
+- **Structured JSON:** [`eba47151269427dac0bf.json`](../../sessions/eb/eba47151269427dac0bf.json)
+
+## Before a recorded user message
+
+26 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d0cb74fa-5afb-48fc-b17a-364685d33080",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779453600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "29b8d8cd-cedc-490f-b441-5500970dc731",
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the server for the experiment results. I'll start by checking the process status, logs, and result files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "1fff110f-393c-497d-b91f-c2a74af04a89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U6HKuSeMgoXtCmz2mMPKLX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12814,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12814
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+检查服务器上的实验状态和结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "6b659e17-919a-4330-8fdc-632a65eb153b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U6HKuSeMgoXtCmz2mMPKLX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12814,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12814
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Ly7rYvwzDr4Pq7ocxz2iNV`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "83bbd0cd-a93e-4808-800f-a17a6a0cd842",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U6HKuSeMgoXtCmz2mMPKLX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12814,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12814
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T11:26:19.900Z_
+
+<details><summary>↩ Tool result · `toolu_01Ly7rYvwzDr4Pq7ocxz2iNV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "c60c8fcb-8ca2-472f-9147-2ed683e0ea34",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012Fb2SfEUF2p3oc5EaVsLxH`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ps aux | grep -E \"detection_baselines|baseline_ordinal\" | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "0df07c36-fa52-475b-ae7c-70cf8ce10293",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WrGSRdDZjQyJZZwv1VpPKV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 481,
+      "cache_read_input_tokens": 24655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 481
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T11:26:23.269Z_
+
+<details><summary>↩ Tool result · `toolu_012Fb2SfEUF2p3oc5EaVsLxH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "248d11b1-f88c-4713-9f52-8f5893a0c450",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UcyFeDMuJaGnWKVSyEbaGy`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -100 /tmp/baseline_ordinal_full.log 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "26333b26-c951-4bd2-b39c-9b9ed32648b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WrGSRdDZjQyJZZwv1VpPKV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 481,
+      "cache_read_input_tokens": 24655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 481
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T11:26:24.136Z_
+
+<details><summary>↩ Tool result · `toolu_01UcyFeDMuJaGnWKVSyEbaGy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "f24aedc7-3636-4119-bd5b-1a0efae05ae4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014MR1xu6jdNiRqb8cKaP3YL`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est/results -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "84f9a7c0-ce40-419b-8e2e-eeed0f6f8f6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WrGSRdDZjQyJZZwv1VpPKV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 481,
+      "cache_read_input_tokens": 24655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 481
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T11:26:27.147Z_
+
+<details><summary>↩ Tool result · `toolu_014MR1xu6jdNiRqb8cKaP3YL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/results/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/baselines/baseline_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/baselines/zeroshot_llm_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/three_class_pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/three_class_feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/three_class_pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/three_class_feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/rf_eval_seed42_rerun/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/baselines_coral100/baseline_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_d\\n\\n... [截断: 输出过长，省略 47490 字符] ...\\n\\ntimator_001/ordinal_mlp_gpt2xl.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/ordinal_mlp_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/ordinal_mlp_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/prototypical_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/prototypical_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/xgboost_gpt2xl.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/xgboost_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/xgboost_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/ordinal_mlp_gpt2xl.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/ordinal_mlp_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/ordinal_mlp_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/prototypical_gpt2xl.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/prototypical_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/prototypical_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/xgboost_gpt2xl.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/xgboost_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/xgboost_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/binoculars_ordinal_9cell.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/downstream_benchmark_v2.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_importance_ablation.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/per_cell_pi.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/bootstrap_ranks.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_temp09_pi.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_temp09_bootstrap.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_topk50_pi.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_topk50_bootstrap.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/family_grouped.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/14b_cross_ref/14b_cross_ref_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix25/rf_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix25/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix50/rf_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix50/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix25/rf_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix25/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix50/rf_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix50/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_edd/edd_comparison.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/wild_data_calibration_comprehensive/comprehensive_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accum_mix50_pairwise_auc_verified.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/bootstrap_ci_table1.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/detection_baselines_ordinal/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "dbcf1ece-e4f3-42d8-9fe2-e93aca2f5e8e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/results/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/baselines/baseline_results.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/baselines/zeroshot_llm_results.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/three_class_pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/three_class_feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/three_class_pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/three_class_feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/rf_eval_seed42_rerun/summary.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/baselines_coral100/baseline_results.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/feature_importance.json\\\\n/root/autodl-tmp/recursive_gen_d\\\\n\\\\n... [截断: 输出过长，省略 47490 字符] ...\\\\n\\\\ntimator_001/ordinal_mlp_gpt2xl.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/ordinal_mlp_olmo.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/ordinal_mlp_pythia.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/prototypical_olmo.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/prototypical_pythia.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/xgboost_gpt2xl.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/xgboost_olmo.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/xgboost_pythia.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/ordinal_mlp_gpt2xl.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/ordinal_mlp_olmo.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/ordinal_mlp_pythia.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/prototypical_gpt2xl.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/prototypical_olmo.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/prototypical_pythia.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/xgboost_gpt2xl.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/xgboost_olmo.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/xgboost_pythia.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/binoculars_ordinal_9cell.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/downstream_benchmark_v2.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_importance_ablation.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/summary.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/per_cell_pi.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/bootstrap_ranks.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_temp09_pi.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_temp09_bootstrap.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_topk50_pi.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_topk50_bootstrap.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/summary.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/family_grouped.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/14b_cross_ref/14b_cross_ref_results.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix25/rf_results.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix25/summary.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix50/rf_results.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix50/summary.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix25/rf_results.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix25/summary.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix50/rf_results.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix50/summary.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_edd/edd_comparison.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_pairwise_auc.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/wild_data_calibration_comprehensive/comprehensive_results.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/accum_mix50_pairwise_auc_verified.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/bootstrap_ci_table1.json\\\\n/root/autodl-tmp/recursive_gen_depth_est/results/detection_baselines_ordinal/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/results/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/baselines/baseline_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/baselines/zeroshot_llm_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/three_class_pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo/three_class_feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/three_class_pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/three_class_feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl/rf_eval_seed42_rerun/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/baselines_coral100/baseline_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class/feature_importance.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/three_class_filtered/feature_importance.json\\n/root/autodl-tmp/recursive_gen_d\\n\\n... [截断: 输出过长，省略 47490 字符] ...\\n\\ntimator_001/ordinal_mlp_gpt2xl.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/ordinal_mlp_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/ordinal_mlp_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/prototypical_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/prototypical_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/xgboost_gpt2xl.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/xgboost_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_001/xgboost_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/ordinal_mlp_gpt2xl.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/ordinal_mlp_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/ordinal_mlp_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/prototypical_gpt2xl.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/prototypical_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/prototypical_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/xgboost_gpt2xl.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/xgboost_olmo.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/xgboost_pythia.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/binoculars_ordinal_9cell.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/downstream_benchmark_v2.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/feature_importance_ablation.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/per_cell_pi.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/bootstrap_ranks.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_temp09_pi.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_temp09_bootstrap.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_topk50_pi.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/remaining_cells/gpt2xl_topk50_bootstrap.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/family_grouped.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/14b_cross_ref/14b_cross_ref_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix25/rf_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix25/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix50/rf_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix50/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix25/rf_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix25/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix50/rf_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/olmo_temp09/mix50/summary.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_edd/edd_comparison.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_pairwise_auc.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/wild_data_calibration_comprehensive/comprehensive_results.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/accum_mix50_pairwise_auc_verified.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/bootstrap_ci_table1.json\\n/root/autodl-tmp/recursive_gen_depth_est/results/detection_baselines_ordinal/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the key result file: `/root/autodl-tmp/recursive_gen_depth_est/results/detection_baselines_ordinal/results.json`
+
+Also found: `/root/autodl-tmp/recursive_gen_depth_est/results/binoculars_ordinal_9cell.json`
+
+Let me also check for the log and read these result files. The pipe character is blocked, so I need to use different commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "c8f8736e-ef25-469a-bc91-b697999372aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E4b7tiwQ8BoJRpXzRaW6pT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3766,
+      "cache_read_input_tokens": 25136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3766
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+找到关键结果文件。让我读取内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "1e9133ff-301d-4946-a6c5-f393349a70c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E4b7tiwQ8BoJRpXzRaW6pT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3766,
+      "cache_read_input_tokens": 25136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3766
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011bRmih44joL6NpEatmQTft`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/detection_baselines_ordinal/results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "17a45d6e-b5f7-4f95-b7f8-1f39094cee2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E4b7tiwQ8BoJRpXzRaW6pT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3766,
+      "cache_read_input_tokens": 25136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3766
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015qdNmD7FAqBWwVvZxraGFC`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/binoculars_ordinal_9cell.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "88540cd4-bc23-428b-897f-05166eb41d5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E4b7tiwQ8BoJRpXzRaW6pT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3766,
+      "cache_read_input_tokens": 25136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3766
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T11:26:35.819Z_
+
+<details><summary>↩ Tool result · `toolu_011bRmih44joL6NpEatmQTft`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"detection_baselines_ordinal\\\",\\n  \\\"plan_id\\\": \\\"plan_018\\\",\\n  \\\"per_cell\\\": {\\n    \\\"pythia_nucleus\\\": {\\n      \\\"cell\\\": \\\"pythia_nucleus\\\",\\n      \\\"n_samples\\\": 20000,\\n      \\\"binoculars\\\": {\\n        \\\"lr_4class_acc\\\": 0.3761,\\n        \\\"lr_4class_std\\\": 0.0051,\\n        \\\"isotonic_acc\\\": 0.3067,\\n        \\\"isotonic_std\\\": 0.0037,\\n        \\\"spearman_rho\\\": 0.4475,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.7995,\\n        \\\"d0_binary_auc\\\": 0.8145,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.7379,\\n          \\\"d1v2\\\": 0.5292,\\n          \\\"d2v3\\\": 0.5145\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": 1.2051,\\n            \\\"std\\\": 0.1794,\\n            \\\"median\\\": 1.1523\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 1.835,\\n            \\\"std\\\": 3.375,\\n            \\\"median\\\": 1.3281\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 2.1016,\\n            \\\"std\\\": 3.5527,\\n            \\\"median\\\": 1.4062\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 2.248,\\n            \\\"std\\\": 3.002,\\n            \\\"median\\\": 1.5059\\n          }\\n        }\\n      },\\n      \\\"fast_detectgpt\\\": {\\n        \\\"lr_4class_acc\\\": 0.395,\\n        \\\"lr_4class_std\\\": 0.0062,\\n        \\\"isotonic_acc\\\": 0.2786,\\n        \\\"isotonic_std\\\": 0.0042,\\n        \\\"spearman_rho\\\": 0.3644,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.6922,\\n        \\\"d0_binary_auc\\\": 0.7631,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.7971,\\n          \\\"d1v2\\\": 0.5963,\\n          \\\"d2v3\\\": 0.5304\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": -0.0605,\\n            \\\"std\\\": 0.0681,\\n            \\\"median\\\": -0.0548\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 28515.709,\\n            \\\"std\\\": 2016157.375,\\n            \\\"median\\\": 0.1033\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.1525,\\n            \\\"std\\\": 0.2304,\\n            \\\"median\\\": 0.1843\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.1736,\\n            \\\"std\\\": 0.2616,\\n            \\\"median\\\": 0.2021\\n          }\\n        }\\n      },\\n      \\\"combined\\\": {\\n        \\\"lr_4class_acc\\\": 0.5132,\\n        \\\"lr_4class_std\\\": 0.013,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9899,\\n          \\\"d1v2\\\": 0.7671,\\n          \\\"d2v3\\\": 0.6261\\n        }\\n      }\\n    },\\n    \\\"pythia_temp09\\\": {\\n      \\\"cell\\\": \\\"pythia_temp09\\\",\\n      \\\"n_samples\\\": 20000,\\n      \\\"binoculars\\\": {\\n        \\\"lr_4class_acc\\\": 0.3863,\\n        \\\"lr_4class_std\\\": 0.0042,\\n        \\\"isotonic_acc\\\": 0.303,\\n        \\\"isotonic_std\\\": 0.0079,\\n        \\\"spearman_rho\\\": 0.4597,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.8019,\\n        \\\"d0_binary_auc\\\": 0.8217,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.7468,\\n          \\\"d1v2\\\": 0.5093,\\n          \\\"d2v3\\\": 0.5121\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": 1.2051,\\n            \\\"std\\\": 0.1794,\\n            \\\"median\\\": 1.1523\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 1.7529,\\n            \\\"std\\\": 2.3516,\\n            \\\"median\\\": 1.3457\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 1.9873,\\n            \\\"std\\\": 2.4961,\\n            \\\"median\\\": 1.4268\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 2.1484,\\n            \\\"std\\\": 2.291,\\n            \\\"median\\\": 1.5459\\n          }\\n        }\\n      },\\n      \\\"fast_detectgpt\\\": {\\n        \\\"lr_4class_acc\\\": 0.3865,\\n        \\\"lr_4class_std\\\": 0.0024,\\n        \\\"isotonic_acc\\\": 0.2695,\\n        \\\"isotonic_std\\\": 0.0027,\\n        \\\"spearman_rho\\\": 0.3511,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.6874,\\n        \\\"d0_binary_auc\\\": 0.7564,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.7825,\\n          \\\"d1v2\\\": 0.5765,\\n          \\\"d2v3\\\": 0.5091\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": -0.0605,\\n            \\\"std\\\": 0.0681,\\n            \\\"median\\\": -0.0548\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 28515.7051,\\n            \\\"std\\\": 2016157.375,\\n            \\\"median\\\": 0.0925\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.1406,\\n            \\\"std\\\": 0.2208,\\n            \\\"median\\\": 0.1674\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.1515,\\n            \\\"std\\\": 0.243\\n\\n... [截断: 输出过长，省略 10921 字符] ...\\n\\n0003,\\n        \\\"spearman_rho\\\": -0.6309,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.8355,\\n        \\\"d0_binary_auc\\\": 0.9487,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9441,\\n          \\\"d1v2\\\": 0.5936,\\n          \\\"d2v3\\\": 0.5368\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": 1.2051,\\n            \\\"std\\\": 0.1794,\\n            \\\"median\\\": 1.1523\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 0.9551,\\n            \\\"std\\\": 0.1168,\\n            \\\"median\\\": 0.9297\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.9385,\\n            \\\"std\\\": 0.1594,\\n            \\\"median\\\": 0.9097\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.9224,\\n            \\\"std\\\": 0.1816,\\n            \\\"median\\\": 0.8994\\n          }\\n        }\\n      },\\n      \\\"fast_detectgpt\\\": {\\n        \\\"lr_4class_acc\\\": 0.6136,\\n        \\\"lr_4class_std\\\": 0.0062,\\n        \\\"isotonic_acc\\\": 0.543,\\n        \\\"isotonic_std\\\": 0.003,\\n        \\\"spearman_rho\\\": 0.7695,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.8618,\\n        \\\"d0_binary_auc\\\": 0.9794,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9574,\\n          \\\"d1v2\\\": 0.714,\\n          \\\"d2v3\\\": 0.6021\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": -0.0605,\\n            \\\"std\\\": 0.0681,\\n            \\\"median\\\": -0.0548\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 0.3442,\\n            \\\"std\\\": 0.1723,\\n            \\\"median\\\": 0.3785\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.5096,\\n            \\\"std\\\": 0.2205,\\n            \\\"median\\\": 0.5589\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.6243,\\n            \\\"std\\\": 0.2478,\\n            \\\"median\\\": 0.6814\\n          }\\n        }\\n      },\\n      \\\"combined\\\": {\\n        \\\"lr_4class_acc\\\": 0.6213,\\n        \\\"lr_4class_std\\\": 0.0093,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9724,\\n          \\\"d1v2\\\": 0.7905,\\n          \\\"d2v3\\\": 0.6539\\n        }\\n      }\\n    },\\n    \\\"gpt2xl_topk50\\\": {\\n      \\\"cell\\\": \\\"gpt2xl_topk50\\\",\\n      \\\"n_samples\\\": 20000,\\n      \\\"binoculars\\\": {\\n        \\\"lr_4class_acc\\\": 0.4808,\\n        \\\"lr_4class_std\\\": 0.0061,\\n        \\\"isotonic_acc\\\": 0.25,\\n        \\\"isotonic_std\\\": 0.0001,\\n        \\\"spearman_rho\\\": -0.569,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.8456,\\n        \\\"d0_binary_auc\\\": 0.9575,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9513,\\n          \\\"d1v2\\\": 0.5068,\\n          \\\"d2v3\\\": 0.4939\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": 1.2051,\\n            \\\"std\\\": 0.1794,\\n            \\\"median\\\": 1.1523\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 0.9531,\\n            \\\"std\\\": 0.0917,\\n            \\\"median\\\": 0.9336\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.9487,\\n            \\\"std\\\": 0.1042,\\n            \\\"median\\\": 0.9282\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.9414,\\n            \\\"std\\\": 0.1034,\\n            \\\"median\\\": 0.9238\\n          }\\n        }\\n      },\\n      \\\"fast_detectgpt\\\": {\\n        \\\"lr_4class_acc\\\": 0.5467,\\n        \\\"lr_4class_std\\\": 0.0085,\\n        \\\"isotonic_acc\\\": 0.4752,\\n        \\\"isotonic_std\\\": 0.0107,\\n        \\\"spearman_rho\\\": 0.6838,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.8544,\\n        \\\"d0_binary_auc\\\": 0.967,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9414,\\n          \\\"d1v2\\\": 0.5977,\\n          \\\"d2v3\\\": 0.5368\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": -0.0605,\\n            \\\"std\\\": 0.0681,\\n            \\\"median\\\": -0.0548\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 0.2362,\\n            \\\"std\\\": 0.1344,\\n            \\\"median\\\": 0.2599\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.3063,\\n            \\\"std\\\": 0.1591,\\n            \\\"median\\\": 0.3304\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.3553,\\n            \\\"std\\\": 0.169,\\n            \\\"median\\\": 0.3858\\n          }\\n        }\\n      },\\n      \\\"combined\\\": {\\n        \\\"lr_4class_acc\\\": 0.5632,\\n        \\\"lr_4class_std\\\": 0.0053,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9576,\\n          \\\"d1v2\\\": 0.6416,\\n          \\\"d2v3\\\": 0.5679\\n        }\\n      }\\n    }\\n  },\\n  \\\"elapsed_seconds\\\": 4855.7,\\n  \\\"pilot_mode\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "4642eae0-1fb2-42a2-b53c-699a68a9332e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"detection_baselines_ordinal\\\\\\\",\\\\n  \\\\\\\"plan_id\\\\\\\": \\\\\\\"plan_018\\\\\\\",\\\\n  \\\\\\\"per_cell\\\\\\\": {\\\\n    \\\\\\\"pythia_nucleus\\\\\\\": {\\\\n      \\\\\\\"cell\\\\\\\": \\\\\\\"pythia_nucleus\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 20000,\\\\n      \\\\\\\"binoculars\\\\\\\": {\\\\n        \\\\\\\"lr_4class_acc\\\\\\\": 0.3761,\\\\n        \\\\\\\"lr_4class_std\\\\\\\": 0.0051,\\\\n        \\\\\\\"isotonic_acc\\\\\\\": 0.3067,\\\\n        \\\\\\\"isotonic_std\\\\\\\": 0.0037,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.4475,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"d0_binary_acc\\\\\\\": 0.7995,\\\\n        \\\\\\\"d0_binary_auc\\\\\\\": 0.8145,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.7379,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.5292,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.5145\\\\n        },\\\\n        \\\\\\\"score_stats\\\\\\\": {\\\\n          \\\\\\\"d0\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 1.2051,\\\\n            \\\\\\\"std\\\\\\\": 0.1794,\\\\n            \\\\\\\"median\\\\\\\": 1.1523\\\\n          },\\\\n          \\\\\\\"d1\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 1.835,\\\\n            \\\\\\\"std\\\\\\\": 3.375,\\\\n            \\\\\\\"median\\\\\\\": 1.3281\\\\n          },\\\\n          \\\\\\\"d2\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 2.1016,\\\\n            \\\\\\\"std\\\\\\\": 3.5527,\\\\n            \\\\\\\"median\\\\\\\": 1.4062\\\\n          },\\\\n          \\\\\\\"d3\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 2.248,\\\\n            \\\\\\\"std\\\\\\\": 3.002,\\\\n            \\\\\\\"median\\\\\\\": 1.5059\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"fast_detectgpt\\\\\\\": {\\\\n        \\\\\\\"lr_4class_acc\\\\\\\": 0.395,\\\\n        \\\\\\\"lr_4class_std\\\\\\\": 0.0062,\\\\n        \\\\\\\"isotonic_acc\\\\\\\": 0.2786,\\\\n        \\\\\\\"isotonic_std\\\\\\\": 0.0042,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.3644,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"d0_binary_acc\\\\\\\": 0.6922,\\\\n        \\\\\\\"d0_binary_auc\\\\\\\": 0.7631,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.7971,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.5963,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.5304\\\\n        },\\\\n        \\\\\\\"score_stats\\\\\\\": {\\\\n          \\\\\\\"d0\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": -0.0605,\\\\n            \\\\\\\"std\\\\\\\": 0.0681,\\\\n            \\\\\\\"median\\\\\\\": -0.0548\\\\n          },\\\\n          \\\\\\\"d1\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 28515.709,\\\\n            \\\\\\\"std\\\\\\\": 2016157.375,\\\\n            \\\\\\\"median\\\\\\\": 0.1033\\\\n          },\\\\n          \\\\\\\"d2\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.1525,\\\\n            \\\\\\\"std\\\\\\\": 0.2304,\\\\n            \\\\\\\"median\\\\\\\": 0.1843\\\\n          },\\\\n          \\\\\\\"d3\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.1736,\\\\n            \\\\\\\"std\\\\\\\": 0.2616,\\\\n            \\\\\\\"median\\\\\\\": 0.2021\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"combined\\\\\\\": {\\\\n        \\\\\\\"lr_4class_acc\\\\\\\": 0.5132,\\\\n        \\\\\\\"lr_4class_std\\\\\\\": 0.013,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.9899,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.7671,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.6261\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"pythia_temp09\\\\\\\": {\\\\n      \\\\\\\"cell\\\\\\\": \\\\\\\"pythia_temp09\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 20000,\\\\n      \\\\\\\"binoculars\\\\\\\": {\\\\n        \\\\\\\"lr_4class_acc\\\\\\\": 0.3863,\\\\n        \\\\\\\"lr_4class_std\\\\\\\": 0.0042,\\\\n        \\\\\\\"isotonic_acc\\\\\\\": 0.303,\\\\n        \\\\\\\"isotonic_std\\\\\\\": 0.0079,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.4597,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"d0_binary_acc\\\\\\\": 0.8019,\\\\n        \\\\\\\"d0_binary_auc\\\\\\\": 0.8217,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.7468,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.5093,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.5121\\\\n        },\\\\n        \\\\\\\"score_stats\\\\\\\": {\\\\n          \\\\\\\"d0\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 1.2051,\\\\n            \\\\\\\"std\\\\\\\": 0.1794,\\\\n            \\\\\\\"median\\\\\\\": 1.1523\\\\n          },\\\\n          \\\\\\\"d1\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 1.7529,\\\\n            \\\\\\\"std\\\\\\\": 2.3516,\\\\n            \\\\\\\"median\\\\\\\": 1.3457\\\\n          },\\\\n          \\\\\\\"d2\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 1.9873,\\\\n            \\\\\\\"std\\\\\\\": 2.4961,\\\\n            \\\\\\\"median\\\\\\\": 1.4268\\\\n          },\\\\n          \\\\\\\"d3\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 2.1484,\\\\n            \\\\\\\"std\\\\\\\": 2.291,\\\\n            \\\\\\\"median\\\\\\\": 1.5459\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"fast_detectgpt\\\\\\\": {\\\\n        \\\\\\\"lr_4class_acc\\\\\\\": 0.3865,\\\\n        \\\\\\\"lr_4class_std\\\\\\\": 0.0024,\\\\n        \\\\\\\"isotonic_acc\\\\\\\": 0.2695,\\\\n        \\\\\\\"isotonic_std\\\\\\\": 0.0027,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.3511,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"d0_binary_acc\\\\\\\": 0.6874,\\\\n        \\\\\\\"d0_binary_auc\\\\\\\": 0.7564,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.7825,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.5765,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.5091\\\\n        },\\\\n        \\\\\\\"score_stats\\\\\\\": {\\\\n          \\\\\\\"d0\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": -0.0605,\\\\n            \\\\\\\"std\\\\\\\": 0.0681,\\\\n            \\\\\\\"median\\\\\\\": -0.0548\\\\n          },\\\\n          \\\\\\\"d1\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 28515.7051,\\\\n            \\\\\\\"std\\\\\\\": 2016157.375,\\\\n            \\\\\\\"median\\\\\\\": 0.0925\\\\n          },\\\\n          \\\\\\\"d2\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.1406,\\\\n            \\\\\\\"std\\\\\\\": 0.2208,\\\\n            \\\\\\\"median\\\\\\\": 0.1674\\\\n          },\\\\n          \\\\\\\"d3\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.1515,\\\\n            \\\\\\\"std\\\\\\\": 0.243\\\\n\\\\n... [截断: 输出过长，省略 10921 字符] ...\\\\n\\\\n0003,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.6309,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"d0_binary_acc\\\\\\\": 0.8355,\\\\n        \\\\\\\"d0_binary_auc\\\\\\\": 0.9487,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.9441,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.5936,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.5368\\\\n        },\\\\n        \\\\\\\"score_stats\\\\\\\": {\\\\n          \\\\\\\"d0\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 1.2051,\\\\n            \\\\\\\"std\\\\\\\": 0.1794,\\\\n            \\\\\\\"median\\\\\\\": 1.1523\\\\n          },\\\\n          \\\\\\\"d1\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.9551,\\\\n            \\\\\\\"std\\\\\\\": 0.1168,\\\\n            \\\\\\\"median\\\\\\\": 0.9297\\\\n          },\\\\n          \\\\\\\"d2\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.9385,\\\\n            \\\\\\\"std\\\\\\\": 0.1594,\\\\n            \\\\\\\"median\\\\\\\": 0.9097\\\\n          },\\\\n          \\\\\\\"d3\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.9224,\\\\n            \\\\\\\"std\\\\\\\": 0.1816,\\\\n            \\\\\\\"median\\\\\\\": 0.8994\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"fast_detectgpt\\\\\\\": {\\\\n        \\\\\\\"lr_4class_acc\\\\\\\": 0.6136,\\\\n        \\\\\\\"lr_4class_std\\\\\\\": 0.0062,\\\\n        \\\\\\\"isotonic_acc\\\\\\\": 0.543,\\\\n        \\\\\\\"isotonic_std\\\\\\\": 0.003,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.7695,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"d0_binary_acc\\\\\\\": 0.8618,\\\\n        \\\\\\\"d0_binary_auc\\\\\\\": 0.9794,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.9574,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.714,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.6021\\\\n        },\\\\n        \\\\\\\"score_stats\\\\\\\": {\\\\n          \\\\\\\"d0\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": -0.0605,\\\\n            \\\\\\\"std\\\\\\\": 0.0681,\\\\n            \\\\\\\"median\\\\\\\": -0.0548\\\\n          },\\\\n          \\\\\\\"d1\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.3442,\\\\n            \\\\\\\"std\\\\\\\": 0.1723,\\\\n            \\\\\\\"median\\\\\\\": 0.3785\\\\n          },\\\\n          \\\\\\\"d2\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.5096,\\\\n            \\\\\\\"std\\\\\\\": 0.2205,\\\\n            \\\\\\\"median\\\\\\\": 0.5589\\\\n          },\\\\n          \\\\\\\"d3\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.6243,\\\\n            \\\\\\\"std\\\\\\\": 0.2478,\\\\n            \\\\\\\"median\\\\\\\": 0.6814\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"combined\\\\\\\": {\\\\n        \\\\\\\"lr_4class_acc\\\\\\\": 0.6213,\\\\n        \\\\\\\"lr_4class_std\\\\\\\": 0.0093,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.9724,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.7905,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.6539\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"gpt2xl_topk50\\\\\\\": {\\\\n      \\\\\\\"cell\\\\\\\": \\\\\\\"gpt2xl_topk50\\\\\\\",\\\\n      \\\\\\\"n_samples\\\\\\\": 20000,\\\\n      \\\\\\\"binoculars\\\\\\\": {\\\\n        \\\\\\\"lr_4class_acc\\\\\\\": 0.4808,\\\\n        \\\\\\\"lr_4class_std\\\\\\\": 0.0061,\\\\n        \\\\\\\"isotonic_acc\\\\\\\": 0.25,\\\\n        \\\\\\\"isotonic_std\\\\\\\": 0.0001,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.569,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"d0_binary_acc\\\\\\\": 0.8456,\\\\n        \\\\\\\"d0_binary_auc\\\\\\\": 0.9575,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.9513,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.5068,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.4939\\\\n        },\\\\n        \\\\\\\"score_stats\\\\\\\": {\\\\n          \\\\\\\"d0\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 1.2051,\\\\n            \\\\\\\"std\\\\\\\": 0.1794,\\\\n            \\\\\\\"median\\\\\\\": 1.1523\\\\n          },\\\\n          \\\\\\\"d1\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.9531,\\\\n            \\\\\\\"std\\\\\\\": 0.0917,\\\\n            \\\\\\\"median\\\\\\\": 0.9336\\\\n          },\\\\n          \\\\\\\"d2\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.9487,\\\\n            \\\\\\\"std\\\\\\\": 0.1042,\\\\n            \\\\\\\"median\\\\\\\": 0.9282\\\\n          },\\\\n          \\\\\\\"d3\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.9414,\\\\n            \\\\\\\"std\\\\\\\": 0.1034,\\\\n            \\\\\\\"median\\\\\\\": 0.9238\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"fast_detectgpt\\\\\\\": {\\\\n        \\\\\\\"lr_4class_acc\\\\\\\": 0.5467,\\\\n        \\\\\\\"lr_4class_std\\\\\\\": 0.0085,\\\\n        \\\\\\\"isotonic_acc\\\\\\\": 0.4752,\\\\n        \\\\\\\"isotonic_std\\\\\\\": 0.0107,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.6838,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"d0_binary_acc\\\\\\\": 0.8544,\\\\n        \\\\\\\"d0_binary_auc\\\\\\\": 0.967,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.9414,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.5977,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.5368\\\\n        },\\\\n        \\\\\\\"score_stats\\\\\\\": {\\\\n          \\\\\\\"d0\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": -0.0605,\\\\n            \\\\\\\"std\\\\\\\": 0.0681,\\\\n            \\\\\\\"median\\\\\\\": -0.0548\\\\n          },\\\\n          \\\\\\\"d1\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.2362,\\\\n            \\\\\\\"std\\\\\\\": 0.1344,\\\\n            \\\\\\\"median\\\\\\\": 0.2599\\\\n          },\\\\n          \\\\\\\"d2\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.3063,\\\\n            \\\\\\\"std\\\\\\\": 0.1591,\\\\n            \\\\\\\"median\\\\\\\": 0.3304\\\\n          },\\\\n          \\\\\\\"d3\\\\\\\": {\\\\n            \\\\\\\"mean\\\\\\\": 0.3553,\\\\n            \\\\\\\"std\\\\\\\": 0.169,\\\\n            \\\\\\\"median\\\\\\\": 0.3858\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"combined\\\\\\\": {\\\\n        \\\\\\\"lr_4class_acc\\\\\\\": 0.5632,\\\\n        \\\\\\\"lr_4class_std\\\\\\\": 0.0053,\\\\n        \\\\\\\"pairwise_auc\\\\\\\": {\\\\n          \\\\\\\"d0v1\\\\\\\": 0.9576,\\\\n          \\\\\\\"d1v2\\\\\\\": 0.6416,\\\\n          \\\\\\\"d2v3\\\\\\\": 0.5679\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 4855.7,\\\\n  \\\\\\\"pilot_mode\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"detection_baselines_ordinal\\\",\\n  \\\"plan_id\\\": \\\"plan_018\\\",\\n  \\\"per_cell\\\": {\\n    \\\"pythia_nucleus\\\": {\\n      \\\"cell\\\": \\\"pythia_nucleus\\\",\\n      \\\"n_samples\\\": 20000,\\n      \\\"binoculars\\\": {\\n        \\\"lr_4class_acc\\\": 0.3761,\\n        \\\"lr_4class_std\\\": 0.0051,\\n        \\\"isotonic_acc\\\": 0.3067,\\n        \\\"isotonic_std\\\": 0.0037,\\n        \\\"spearman_rho\\\": 0.4475,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.7995,\\n        \\\"d0_binary_auc\\\": 0.8145,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.7379,\\n          \\\"d1v2\\\": 0.5292,\\n          \\\"d2v3\\\": 0.5145\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": 1.2051,\\n            \\\"std\\\": 0.1794,\\n            \\\"median\\\": 1.1523\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 1.835,\\n            \\\"std\\\": 3.375,\\n            \\\"median\\\": 1.3281\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 2.1016,\\n            \\\"std\\\": 3.5527,\\n            \\\"median\\\": 1.4062\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 2.248,\\n            \\\"std\\\": 3.002,\\n            \\\"median\\\": 1.5059\\n          }\\n        }\\n      },\\n      \\\"fast_detectgpt\\\": {\\n        \\\"lr_4class_acc\\\": 0.395,\\n        \\\"lr_4class_std\\\": 0.0062,\\n        \\\"isotonic_acc\\\": 0.2786,\\n        \\\"isotonic_std\\\": 0.0042,\\n        \\\"spearman_rho\\\": 0.3644,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.6922,\\n        \\\"d0_binary_auc\\\": 0.7631,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.7971,\\n          \\\"d1v2\\\": 0.5963,\\n          \\\"d2v3\\\": 0.5304\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": -0.0605,\\n            \\\"std\\\": 0.0681,\\n            \\\"median\\\": -0.0548\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 28515.709,\\n            \\\"std\\\": 2016157.375,\\n            \\\"median\\\": 0.1033\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.1525,\\n            \\\"std\\\": 0.2304,\\n            \\\"median\\\": 0.1843\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.1736,\\n            \\\"std\\\": 0.2616,\\n            \\\"median\\\": 0.2021\\n          }\\n        }\\n      },\\n      \\\"combined\\\": {\\n        \\\"lr_4class_acc\\\": 0.5132,\\n        \\\"lr_4class_std\\\": 0.013,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9899,\\n          \\\"d1v2\\\": 0.7671,\\n          \\\"d2v3\\\": 0.6261\\n        }\\n      }\\n    },\\n    \\\"pythia_temp09\\\": {\\n      \\\"cell\\\": \\\"pythia_temp09\\\",\\n      \\\"n_samples\\\": 20000,\\n      \\\"binoculars\\\": {\\n        \\\"lr_4class_acc\\\": 0.3863,\\n        \\\"lr_4class_std\\\": 0.0042,\\n        \\\"isotonic_acc\\\": 0.303,\\n        \\\"isotonic_std\\\": 0.0079,\\n        \\\"spearman_rho\\\": 0.4597,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.8019,\\n        \\\"d0_binary_auc\\\": 0.8217,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.7468,\\n          \\\"d1v2\\\": 0.5093,\\n          \\\"d2v3\\\": 0.5121\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": 1.2051,\\n            \\\"std\\\": 0.1794,\\n            \\\"median\\\": 1.1523\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 1.7529,\\n            \\\"std\\\": 2.3516,\\n            \\\"median\\\": 1.3457\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 1.9873,\\n            \\\"std\\\": 2.4961,\\n            \\\"median\\\": 1.4268\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 2.1484,\\n            \\\"std\\\": 2.291,\\n            \\\"median\\\": 1.5459\\n          }\\n        }\\n      },\\n      \\\"fast_detectgpt\\\": {\\n        \\\"lr_4class_acc\\\": 0.3865,\\n        \\\"lr_4class_std\\\": 0.0024,\\n        \\\"isotonic_acc\\\": 0.2695,\\n        \\\"isotonic_std\\\": 0.0027,\\n        \\\"spearman_rho\\\": 0.3511,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.6874,\\n        \\\"d0_binary_auc\\\": 0.7564,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.7825,\\n          \\\"d1v2\\\": 0.5765,\\n          \\\"d2v3\\\": 0.5091\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": -0.0605,\\n            \\\"std\\\": 0.0681,\\n            \\\"median\\\": -0.0548\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 28515.7051,\\n            \\\"std\\\": 2016157.375,\\n            \\\"median\\\": 0.0925\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.1406,\\n            \\\"std\\\": 0.2208,\\n            \\\"median\\\": 0.1674\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.1515,\\n            \\\"std\\\": 0.243\\n\\n... [截断: 输出过长，省略 10921 字符] ...\\n\\n0003,\\n        \\\"spearman_rho\\\": -0.6309,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.8355,\\n        \\\"d0_binary_auc\\\": 0.9487,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9441,\\n          \\\"d1v2\\\": 0.5936,\\n          \\\"d2v3\\\": 0.5368\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": 1.2051,\\n            \\\"std\\\": 0.1794,\\n            \\\"median\\\": 1.1523\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 0.9551,\\n            \\\"std\\\": 0.1168,\\n            \\\"median\\\": 0.9297\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.9385,\\n            \\\"std\\\": 0.1594,\\n            \\\"median\\\": 0.9097\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.9224,\\n            \\\"std\\\": 0.1816,\\n            \\\"median\\\": 0.8994\\n          }\\n        }\\n      },\\n      \\\"fast_detectgpt\\\": {\\n        \\\"lr_4class_acc\\\": 0.6136,\\n        \\\"lr_4class_std\\\": 0.0062,\\n        \\\"isotonic_acc\\\": 0.543,\\n        \\\"isotonic_std\\\": 0.003,\\n        \\\"spearman_rho\\\": 0.7695,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.8618,\\n        \\\"d0_binary_auc\\\": 0.9794,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9574,\\n          \\\"d1v2\\\": 0.714,\\n          \\\"d2v3\\\": 0.6021\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": -0.0605,\\n            \\\"std\\\": 0.0681,\\n            \\\"median\\\": -0.0548\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 0.3442,\\n            \\\"std\\\": 0.1723,\\n            \\\"median\\\": 0.3785\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.5096,\\n            \\\"std\\\": 0.2205,\\n            \\\"median\\\": 0.5589\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.6243,\\n            \\\"std\\\": 0.2478,\\n            \\\"median\\\": 0.6814\\n          }\\n        }\\n      },\\n      \\\"combined\\\": {\\n        \\\"lr_4class_acc\\\": 0.6213,\\n        \\\"lr_4class_std\\\": 0.0093,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9724,\\n          \\\"d1v2\\\": 0.7905,\\n          \\\"d2v3\\\": 0.6539\\n        }\\n      }\\n    },\\n    \\\"gpt2xl_topk50\\\": {\\n      \\\"cell\\\": \\\"gpt2xl_topk50\\\",\\n      \\\"n_samples\\\": 20000,\\n      \\\"binoculars\\\": {\\n        \\\"lr_4class_acc\\\": 0.4808,\\n        \\\"lr_4class_std\\\": 0.0061,\\n        \\\"isotonic_acc\\\": 0.25,\\n        \\\"isotonic_std\\\": 0.0001,\\n        \\\"spearman_rho\\\": -0.569,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.8456,\\n        \\\"d0_binary_auc\\\": 0.9575,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9513,\\n          \\\"d1v2\\\": 0.5068,\\n          \\\"d2v3\\\": 0.4939\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": 1.2051,\\n            \\\"std\\\": 0.1794,\\n            \\\"median\\\": 1.1523\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 0.9531,\\n            \\\"std\\\": 0.0917,\\n            \\\"median\\\": 0.9336\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.9487,\\n            \\\"std\\\": 0.1042,\\n            \\\"median\\\": 0.9282\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.9414,\\n            \\\"std\\\": 0.1034,\\n            \\\"median\\\": 0.9238\\n          }\\n        }\\n      },\\n      \\\"fast_detectgpt\\\": {\\n        \\\"lr_4class_acc\\\": 0.5467,\\n        \\\"lr_4class_std\\\": 0.0085,\\n        \\\"isotonic_acc\\\": 0.4752,\\n        \\\"isotonic_std\\\": 0.0107,\\n        \\\"spearman_rho\\\": 0.6838,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"d0_binary_acc\\\": 0.8544,\\n        \\\"d0_binary_auc\\\": 0.967,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9414,\\n          \\\"d1v2\\\": 0.5977,\\n          \\\"d2v3\\\": 0.5368\\n        },\\n        \\\"score_stats\\\": {\\n          \\\"d0\\\": {\\n            \\\"mean\\\": -0.0605,\\n            \\\"std\\\": 0.0681,\\n            \\\"median\\\": -0.0548\\n          },\\n          \\\"d1\\\": {\\n            \\\"mean\\\": 0.2362,\\n            \\\"std\\\": 0.1344,\\n            \\\"median\\\": 0.2599\\n          },\\n          \\\"d2\\\": {\\n            \\\"mean\\\": 0.3063,\\n            \\\"std\\\": 0.1591,\\n            \\\"median\\\": 0.3304\\n          },\\n          \\\"d3\\\": {\\n            \\\"mean\\\": 0.3553,\\n            \\\"std\\\": 0.169,\\n            \\\"median\\\": 0.3858\\n          }\\n        }\\n      },\\n      \\\"combined\\\": {\\n        \\\"lr_4class_acc\\\": 0.5632,\\n        \\\"lr_4class_std\\\": 0.0053,\\n        \\\"pairwise_auc\\\": {\\n          \\\"d0v1\\\": 0.9576,\\n          \\\"d1v2\\\": 0.6416,\\n          \\\"d2v3\\\": 0.5679\\n        }\\n      }\\n    }\\n  },\\n  \\\"elapsed_seconds\\\": 4855.7,\\n  \\\"pilot_mode\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019715gze5UpTpzeVZgPhrh4`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -100 /tmp/baseline_ordinal_full.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "9ac9116b-f2ea-4270-a1fe-c843d88f0931",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E4b7tiwQ8BoJRpXzRaW6pT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3766,
+      "cache_read_input_tokens": 25136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3766
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017BPj5itPEZVNL779Mq54pK`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/detection_baselines_ordinal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "2ade686c-ed78-4bff-9188-1f59294634db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E4b7tiwQ8BoJRpXzRaW6pT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3766,
+      "cache_read_input_tokens": 25136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3766
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T11:26:37.161Z_
+
+<details><summary>↩ Tool result · `toolu_015qdNmD7FAqBWwVvZxraGFC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.375,\\n      \\\"4class_acc_std\\\": 0.0677,\\n      \\\"d1d3_bal_acc\\\": 0.4305,\\n      \\\"d1d3_bal_acc_std\\\": 0.0627\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.3995,\\n      \\\"4class_acc_std\\\": 0.0117,\\n      \\\"d1d3_bal_acc\\\": 0.5326,\\n      \\\"d1d3_bal_acc_std\\\": 0.0156\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7631,\\n      \\\"4class_acc_std\\\": 0.0121,\\n      \\\"d1d3_bal_acc\\\": 0.6854,\\n      \\\"d1d3_bal_acc_std\\\": 0.0162\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.6868,\\n      \\\"4class_acc_std\\\": 0.0054,\\n      \\\"d1d3_bal_acc\\\": 0.5956,\\n      \\\"d1d3_bal_acc_std\\\": 0.0057\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.8044,\\n      \\\"4class_acc_std\\\": 0.0065,\\n      \\\"d1d3_bal_acc\\\": 0.7426,\\n      \\\"d1d3_bal_acc_std\\\": 0.0078\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.4954,\\n      \\\"4class_acc_std\\\": 0.0054,\\n      \\\"d1d3_bal_acc\\\": 0.3833,\\n      \\\"d1d3_bal_acc_std\\\": 0.0844\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.4024,\\n      \\\"4class_acc_std\\\": 0.0075,\\n      \\\"d1d3_bal_acc\\\": 0.5366,\\n      \\\"d1d3_bal_acc_std\\\": 0.01\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7473,\\n      \\\"4class_acc_std\\\": 0.0075,\\n      \\\"d1d3_bal_acc\\\": 0.6649,\\n      \\\"d1d3_bal_acc_std\\\": 0.0109\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.6764,\\n      \\\"4class_acc_std\\\": 0.0043,\\n      \\\"d1d3_bal_acc\\\": 0.5815,\\n      \\\"d1d3_bal_acc_std\\\": 0.008\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.7951,\\n      \\\"4class_acc_std\\\": 0.0052,\\n      \\\"d1d3_bal_acc\\\": 0.7299,\\n      \\\"d1d3_bal_acc_std\\\": 0.0073\\n    }\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.4041,\\n      \\\"4class_acc_std\\\": 0.0386,\\n      \\\"d1d3_bal_acc\\\": 0.3412,\\n      \\\"d1d3_bal_acc_std\\\": 0.0317\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.3264,\\n      \\\"4class_acc_std\\\": 0.0168,\\n      \\\"d1d3_bal_acc\\\": 0.4352,\\n      \\\"d1d3_bal_acc_std\\\": 0.0225\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.586,\\n      \\\"4class_acc_std\\\": 0.0014,\\n      \\\"d1d3_bal_acc\\\": 0.4581,\\n      \\\"d1d3_bal_acc_std\\\": 0.0011\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.5207,\\n      \\\"4class_acc_std\\\": 0.0038,\\n      \\\"d1d3_bal_acc\\\": 0.4072,\\n      \\\"d1d3_bal_acc_std\\\": 0.0049\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.6814,\\n      \\\"4class_acc_std\\\": 0.0031,\\n      \\\"d1d3_bal_acc\\\": 0.5848,\\n      \\\"d1d3_bal_acc_std\\\": 0.0044\\n    }\\n  },\\n  \\\"olmo_nucleus\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.5331,\\n      \\\"4class_acc_std\\\": 0.0172,\\n      \\\"d1d3_bal_acc\\\": 0.4127,\\n      \\\"d1d3_bal_acc_std\\\": 0.0455\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.4005,\\n      \\\"4class_acc_std\\\": 0.0067,\\n      \\\"d1d3_bal_acc\\\": 0.5341,\\n      \\\"d1d3_bal_acc_std\\\": 0.0089\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7205,\\n      \\\"4class_acc_std\\\": 0.0033,\\n      \\\"d1d3_bal_acc\\\": 0.6302,\\n      \\\"d1d3_bal_acc_std\\\": 0.0047\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.6697,\\n      \\\"4class_acc_std\\\": 0.0095,\\n      \\\"d1d3_bal_acc\\\": 0.5693,\\n      \\\"d1d3_bal_acc_std\\\": 0.0119\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.8177,\\n      \\\"4class_acc_std\\\": 0.0056,\\n      \\\"d1d3_bal_acc\\\": 0.7606,\\n      \\\"d1d3_bal_acc_std\\\": 0.0073\\n    }\\n  },\\n  \\\"olmo_temp09\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.5881,\\n      \\\"4class_acc_std\\\": 0.0104,\\n      \\\"d1d3_bal_acc\\\": 0.5269,\\n      \\\"d1d3_bal_acc_std\\\": 0.0111\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.4043,\\n      \\\"4class_acc_std\\\": 0.0105,\\n      \\\"d1d3_bal_acc\\\": 0.539,\\n      \\\"d1d3_bal_acc_std\\\": 0.014\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7202,\\n      \\\"4class_acc_std\\\": 0.003,\\n      \\\"d1d3_bal_acc\\\": 0.63,\\n      \\\"d1d3_bal_acc_std\\\": 0.0031\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.6698,\\n      \\\"4class_acc_std\\\": 0.0052,\\n      \\\"d1d3_bal_acc\\\": 0.5686,\\n      \\\"d1d3_bal_acc_std\\\": 0.0077\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.8095,\\n      \\\"4class_acc_std\\\": 0.0023,\\n      \\\"d1d3_bal_acc\\\": 0.7495,\\n      \\\"d1d3_bal_acc_std\\\": 0.0024\\n    }\\n  },\\n  \\\"olmo_topk50\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.3969,\\n      \\\"4class_acc_std\\\": 0.0437,\\n      \\\"d1d3_bal_acc\\\": 0.4026,\\n      \\\"d1d3_bal_acc_std\\\": 0.0084\\n    },\\n    \\\"\\n\\n... [截断: 输出过长，省略 413 字符] ...\\n\\n_acc_std\\\": 0.0092\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.7045,\\n      \\\"4class_acc_std\\\": 0.0061,\\n      \\\"d1d3_bal_acc\\\": 0.6151,\\n      \\\"d1d3_bal_acc_std\\\": 0.0068\\n    }\\n  },\\n  \\\"gpt2xl_nucleus\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.5058,\\n      \\\"4class_acc_std\\\": 0.0129,\\n      \\\"d1d3_bal_acc\\\": 0.3477,\\n      \\\"d1d3_bal_acc_std\\\": 0.027\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.4155,\\n      \\\"4class_acc_std\\\": 0.0173,\\n      \\\"d1d3_bal_acc\\\": 0.5539,\\n      \\\"d1d3_bal_acc_std\\\": 0.023\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7557,\\n      \\\"4class_acc_std\\\": 0.0083,\\n      \\\"d1d3_bal_acc\\\": 0.6754,\\n      \\\"d1d3_bal_acc_std\\\": 0.0113\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.7106,\\n      \\\"4class_acc_std\\\": 0.0047,\\n      \\\"d1d3_bal_acc\\\": 0.6183,\\n      \\\"d1d3_bal_acc_std\\\": 0.0059\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.8515,\\n      \\\"4class_acc_std\\\": 0.0051,\\n      \\\"d1d3_bal_acc\\\": 0.8037,\\n      \\\"d1d3_bal_acc_std\\\": 0.0071\\n    }\\n  },\\n  \\\"gpt2xl_temp09\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.6208,\\n      \\\"4class_acc_std\\\": 0.0154,\\n      \\\"d1d3_bal_acc\\\": 0.5725,\\n      \\\"d1d3_bal_acc_std\\\": 0.0064\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.4019,\\n      \\\"4class_acc_std\\\": 0.0203,\\n      \\\"d1d3_bal_acc\\\": 0.5358,\\n      \\\"d1d3_bal_acc_std\\\": 0.0271\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7583,\\n      \\\"4class_acc_std\\\": 0.0067,\\n      \\\"d1d3_bal_acc\\\": 0.6789,\\n      \\\"d1d3_bal_acc_std\\\": 0.0095\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.7039,\\n      \\\"4class_acc_std\\\": 0.0091,\\n      \\\"d1d3_bal_acc\\\": 0.6091,\\n      \\\"d1d3_bal_acc_std\\\": 0.0122\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.8285,\\n      \\\"4class_acc_std\\\": 0.0043,\\n      \\\"d1d3_bal_acc\\\": 0.7729,\\n      \\\"d1d3_bal_acc_std\\\": 0.0059\\n    }\\n  },\\n  \\\"gpt2xl_topk50\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.4747,\\n      \\\"4class_acc_std\\\": 0.0111,\\n      \\\"d1d3_bal_acc\\\": 0.3367,\\n      \\\"d1d3_bal_acc_std\\\": 0.052\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.3483,\\n      \\\"4class_acc_std\\\": 0.0272,\\n      \\\"d1d3_bal_acc\\\": 0.4645,\\n      \\\"d1d3_bal_acc_std\\\": 0.0363\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.6524,\\n      \\\"4class_acc_std\\\": 0.003,\\n      \\\"d1d3_bal_acc\\\": 0.5441,\\n      \\\"d1d3_bal_acc_std\\\": 0.0054\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.5847,\\n      \\\"4class_acc_std\\\": 0.0069,\\n      \\\"d1d3_bal_acc\\\": 0.4653,\\n      \\\"d1d3_bal_acc_std\\\": 0.01\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.7345,\\n      \\\"4class_acc_std\\\": 0.0044,\\n      \\\"d1d3_bal_acc\\\": 0.6511,\\n      \\\"d1d3_bal_acc_std\\\": 0.0063\\n    }\\n  },\\n  \\\"__9cell_average__\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.4882,\\n      \\\"4class_acc_std\\\": 0.0247,\\n      \\\"d1d3_bal_acc\\\": 0.4171,\\n      \\\"d1d3_bal_acc_std\\\": 0.0366\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.3813,\\n      \\\"4class_acc_std\\\": 0.0145,\\n      \\\"d1d3_bal_acc\\\": 0.5083,\\n      \\\"d1d3_bal_acc_std\\\": 0.0194\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.6981,\\n      \\\"4class_acc_std\\\": 0.0054,\\n      \\\"d1d3_bal_acc\\\": 0.6024,\\n      \\\"d1d3_bal_acc_std\\\": 0.0076\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.6374,\\n      \\\"4class_acc_std\\\": 0.0063,\\n      \\\"d1d3_bal_acc\\\": 0.5339,\\n      \\\"d1d3_bal_acc_std\\\": 0.0084\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.7808,\\n      \\\"4class_acc_std\\\": 0.0047,\\n      \\\"d1d3_bal_acc\\\": 0.7122,\\n      \\\"d1d3_bal_acc_std\\\": 0.0061\\n    }\\n  },\\n  \\\"__meta__\\\": {\\n    \\\"observer\\\": \\\"EleutherAI/pythia-1.4b\\\",\\n    \\\"performer\\\": \\\"EleutherAI/pythia-410m\\\",\\n    \\\"max_samples_per_depth\\\": \\\"all\\\",\\n    \\\"n_folds\\\": 5,\\n    \\\"rf_n_estimators\\\": 200,\\n    \\\"multi_features\\\": [\\n      \\\"bino_score\\\",\\n      \\\"ppl_mean\\\",\\n      \\\"ppl_var\\\",\\n      \\\"ppl_median\\\",\\n      \\\"ppl_p10\\\",\\n      \\\"ppl_p90\\\",\\n      \\\"ppl_skew\\\",\\n      \\\"xppl_mean\\\",\\n      \\\"xppl_var\\\",\\n      \\\"xppl_median\\\",\\n      \\\"bino_score_median\\\"\\n    ],\\n    \\\"cell_times_sec\\\": {\\n      \\\"pythia_nucleus\\\": 424.3,\\n      \\\"pythia_temp09\\\": 422.7,\\n      \\\"pythia_topk50\\\": 424.2,\\n      \\\"olmo_nucleus\\\": 425.6,\\n      \\\"olmo_temp09\\\": 425.7,\\n      \\\"olmo_topk50\\\": 427.4,\\n      \\\"gpt2xl_nucleus\\\": 420.8,\\n      \\\"gpt2xl_temp09\\\": 420.2,\\n      \\\"gpt2xl_topk50\\\": 419.3\\n    },\\n    \\\"total_time_sec\\\": 3810.2\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "7f6afbdb-b452-4643-8409-c56990b95904",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_nucleus\\\\\\\": {\\\\n    \\\\\\\"equal_width\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.375,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0677,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.4305,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0627\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.3995,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0117,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5326,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0156\\\\n    },\\\\n    \\\\\\\"threshold\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7631,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0121,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.6854,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0162\\\\n    },\\\\n    \\\\\\\"RF_single\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.6868,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0054,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5956,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0057\\\\n    },\\\\n    \\\\\\\"RF_multi\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.8044,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0065,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.7426,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0078\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia_temp09\\\\\\\": {\\\\n    \\\\\\\"equal_width\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.4954,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0054,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.3833,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0844\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.4024,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0075,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5366,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.01\\\\n    },\\\\n    \\\\\\\"threshold\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7473,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0075,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.6649,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0109\\\\n    },\\\\n    \\\\\\\"RF_single\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.6764,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0043,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5815,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.008\\\\n    },\\\\n    \\\\\\\"RF_multi\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7951,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0052,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.7299,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0073\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia_topk50\\\\\\\": {\\\\n    \\\\\\\"equal_width\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.4041,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0386,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.3412,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0317\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.3264,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0168,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.4352,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0225\\\\n    },\\\\n    \\\\\\\"threshold\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.586,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0014,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.4581,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0011\\\\n    },\\\\n    \\\\\\\"RF_single\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.5207,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0038,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.4072,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0049\\\\n    },\\\\n    \\\\\\\"RF_multi\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.6814,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0031,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5848,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0044\\\\n    }\\\\n  },\\\\n  \\\\\\\"olmo_nucleus\\\\\\\": {\\\\n    \\\\\\\"equal_width\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.5331,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0172,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.4127,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0455\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.4005,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0067,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5341,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0089\\\\n    },\\\\n    \\\\\\\"threshold\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7205,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0033,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.6302,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0047\\\\n    },\\\\n    \\\\\\\"RF_single\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.6697,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0095,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5693,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0119\\\\n    },\\\\n    \\\\\\\"RF_multi\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.8177,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0056,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.7606,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0073\\\\n    }\\\\n  },\\\\n  \\\\\\\"olmo_temp09\\\\\\\": {\\\\n    \\\\\\\"equal_width\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.5881,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0104,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5269,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0111\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.4043,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0105,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.539,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.014\\\\n    },\\\\n    \\\\\\\"threshold\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7202,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.003,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.63,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0031\\\\n    },\\\\n    \\\\\\\"RF_single\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.6698,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0052,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5686,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0077\\\\n    },\\\\n    \\\\\\\"RF_multi\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.8095,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0023,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.7495,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0024\\\\n    }\\\\n  },\\\\n  \\\\\\\"olmo_topk50\\\\\\\": {\\\\n    \\\\\\\"equal_width\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.3969,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0437,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.4026,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0084\\\\n    },\\\\n    \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 413 字符] ...\\\\n\\\\n_acc_std\\\\\\\": 0.0092\\\\n    },\\\\n    \\\\\\\"RF_multi\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7045,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0061,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.6151,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0068\\\\n    }\\\\n  },\\\\n  \\\\\\\"gpt2xl_nucleus\\\\\\\": {\\\\n    \\\\\\\"equal_width\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.5058,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0129,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.3477,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.027\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.4155,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0173,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5539,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.023\\\\n    },\\\\n    \\\\\\\"threshold\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7557,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0083,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.6754,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0113\\\\n    },\\\\n    \\\\\\\"RF_single\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7106,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0047,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.6183,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0059\\\\n    },\\\\n    \\\\\\\"RF_multi\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.8515,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.8037,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0071\\\\n    }\\\\n  },\\\\n  \\\\\\\"gpt2xl_temp09\\\\\\\": {\\\\n    \\\\\\\"equal_width\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.6208,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0154,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5725,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0064\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.4019,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0203,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5358,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0271\\\\n    },\\\\n    \\\\\\\"threshold\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7583,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0067,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.6789,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0095\\\\n    },\\\\n    \\\\\\\"RF_single\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7039,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0091,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.6091,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0122\\\\n    },\\\\n    \\\\\\\"RF_multi\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.8285,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0043,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.7729,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0059\\\\n    }\\\\n  },\\\\n  \\\\\\\"gpt2xl_topk50\\\\\\\": {\\\\n    \\\\\\\"equal_width\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.4747,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0111,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.3367,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.052\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.3483,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0272,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.4645,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0363\\\\n    },\\\\n    \\\\\\\"threshold\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.6524,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.003,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5441,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0054\\\\n    },\\\\n    \\\\\\\"RF_single\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.5847,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0069,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.4653,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.01\\\\n    },\\\\n    \\\\\\\"RF_multi\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7345,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0044,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.6511,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0063\\\\n    }\\\\n  },\\\\n  \\\\\\\"__9cell_average__\\\\\\\": {\\\\n    \\\\\\\"equal_width\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.4882,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0247,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.4171,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0366\\\\n    },\\\\n    \\\\\\\"coral\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.3813,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0145,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5083,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0194\\\\n    },\\\\n    \\\\\\\"threshold\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.6981,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0054,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.6024,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0076\\\\n    },\\\\n    \\\\\\\"RF_single\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.6374,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0063,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.5339,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0084\\\\n    },\\\\n    \\\\\\\"RF_multi\\\\\\\": {\\\\n      \\\\\\\"4class_acc\\\\\\\": 0.7808,\\\\n      \\\\\\\"4class_acc_std\\\\\\\": 0.0047,\\\\n      \\\\\\\"d1d3_bal_acc\\\\\\\": 0.7122,\\\\n      \\\\\\\"d1d3_bal_acc_std\\\\\\\": 0.0061\\\\n    }\\\\n  },\\\\n  \\\\\\\"__meta__\\\\\\\": {\\\\n    \\\\\\\"observer\\\\\\\": \\\\\\\"EleutherAI/pythia-1.4b\\\\\\\",\\\\n    \\\\\\\"performer\\\\\\\": \\\\\\\"EleutherAI/pythia-410m\\\\\\\",\\\\n    \\\\\\\"max_samples_per_depth\\\\\\\": \\\\\\\"all\\\\\\\",\\\\n    \\\\\\\"n_folds\\\\\\\": 5,\\\\n    \\\\\\\"rf_n_estimators\\\\\\\": 200,\\\\n    \\\\\\\"multi_features\\\\\\\": [\\\\n      \\\\\\\"bino_score\\\\\\\",\\\\n      \\\\\\\"ppl_mean\\\\\\\",\\\\n      \\\\\\\"ppl_var\\\\\\\",\\\\n      \\\\\\\"ppl_median\\\\\\\",\\\\n      \\\\\\\"ppl_p10\\\\\\\",\\\\n      \\\\\\\"ppl_p90\\\\\\\",\\\\n      \\\\\\\"ppl_skew\\\\\\\",\\\\n      \\\\\\\"xppl_mean\\\\\\\",\\\\n      \\\\\\\"xppl_var\\\\\\\",\\\\n      \\\\\\\"xppl_median\\\\\\\",\\\\n      \\\\\\\"bino_score_median\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"cell_times_sec\\\\\\\": {\\\\n      \\\\\\\"pythia_nucleus\\\\\\\": 424.3,\\\\n      \\\\\\\"pythia_temp09\\\\\\\": 422.7,\\\\n      \\\\\\\"pythia_topk50\\\\\\\": 424.2,\\\\n      \\\\\\\"olmo_nucleus\\\\\\\": 425.6,\\\\n      \\\\\\\"olmo_temp09\\\\\\\": 425.7,\\\\n      \\\\\\\"olmo_topk50\\\\\\\": 427.4,\\\\n      \\\\\\\"gpt2xl_nucleus\\\\\\\": 420.8,\\\\n      \\\\\\\"gpt2xl_temp09\\\\\\\": 420.2,\\\\n      \\\\\\\"gpt2xl_topk50\\\\\\\": 419.3\\\\n    },\\\\n    \\\\\\\"total_time_sec\\\\\\\": 3810.2\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.375,\\n      \\\"4class_acc_std\\\": 0.0677,\\n      \\\"d1d3_bal_acc\\\": 0.4305,\\n      \\\"d1d3_bal_acc_std\\\": 0.0627\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.3995,\\n      \\\"4class_acc_std\\\": 0.0117,\\n      \\\"d1d3_bal_acc\\\": 0.5326,\\n      \\\"d1d3_bal_acc_std\\\": 0.0156\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7631,\\n      \\\"4class_acc_std\\\": 0.0121,\\n      \\\"d1d3_bal_acc\\\": 0.6854,\\n      \\\"d1d3_bal_acc_std\\\": 0.0162\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.6868,\\n      \\\"4class_acc_std\\\": 0.0054,\\n      \\\"d1d3_bal_acc\\\": 0.5956,\\n      \\\"d1d3_bal_acc_std\\\": 0.0057\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.8044,\\n      \\\"4class_acc_std\\\": 0.0065,\\n      \\\"d1d3_bal_acc\\\": 0.7426,\\n      \\\"d1d3_bal_acc_std\\\": 0.0078\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.4954,\\n      \\\"4class_acc_std\\\": 0.0054,\\n      \\\"d1d3_bal_acc\\\": 0.3833,\\n      \\\"d1d3_bal_acc_std\\\": 0.0844\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.4024,\\n      \\\"4class_acc_std\\\": 0.0075,\\n      \\\"d1d3_bal_acc\\\": 0.5366,\\n      \\\"d1d3_bal_acc_std\\\": 0.01\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7473,\\n      \\\"4class_acc_std\\\": 0.0075,\\n      \\\"d1d3_bal_acc\\\": 0.6649,\\n      \\\"d1d3_bal_acc_std\\\": 0.0109\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.6764,\\n      \\\"4class_acc_std\\\": 0.0043,\\n      \\\"d1d3_bal_acc\\\": 0.5815,\\n      \\\"d1d3_bal_acc_std\\\": 0.008\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.7951,\\n      \\\"4class_acc_std\\\": 0.0052,\\n      \\\"d1d3_bal_acc\\\": 0.7299,\\n      \\\"d1d3_bal_acc_std\\\": 0.0073\\n    }\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.4041,\\n      \\\"4class_acc_std\\\": 0.0386,\\n      \\\"d1d3_bal_acc\\\": 0.3412,\\n      \\\"d1d3_bal_acc_std\\\": 0.0317\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.3264,\\n      \\\"4class_acc_std\\\": 0.0168,\\n      \\\"d1d3_bal_acc\\\": 0.4352,\\n      \\\"d1d3_bal_acc_std\\\": 0.0225\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.586,\\n      \\\"4class_acc_std\\\": 0.0014,\\n      \\\"d1d3_bal_acc\\\": 0.4581,\\n      \\\"d1d3_bal_acc_std\\\": 0.0011\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.5207,\\n      \\\"4class_acc_std\\\": 0.0038,\\n      \\\"d1d3_bal_acc\\\": 0.4072,\\n      \\\"d1d3_bal_acc_std\\\": 0.0049\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.6814,\\n      \\\"4class_acc_std\\\": 0.0031,\\n      \\\"d1d3_bal_acc\\\": 0.5848,\\n      \\\"d1d3_bal_acc_std\\\": 0.0044\\n    }\\n  },\\n  \\\"olmo_nucleus\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.5331,\\n      \\\"4class_acc_std\\\": 0.0172,\\n      \\\"d1d3_bal_acc\\\": 0.4127,\\n      \\\"d1d3_bal_acc_std\\\": 0.0455\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.4005,\\n      \\\"4class_acc_std\\\": 0.0067,\\n      \\\"d1d3_bal_acc\\\": 0.5341,\\n      \\\"d1d3_bal_acc_std\\\": 0.0089\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7205,\\n      \\\"4class_acc_std\\\": 0.0033,\\n      \\\"d1d3_bal_acc\\\": 0.6302,\\n      \\\"d1d3_bal_acc_std\\\": 0.0047\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.6697,\\n      \\\"4class_acc_std\\\": 0.0095,\\n      \\\"d1d3_bal_acc\\\": 0.5693,\\n      \\\"d1d3_bal_acc_std\\\": 0.0119\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.8177,\\n      \\\"4class_acc_std\\\": 0.0056,\\n      \\\"d1d3_bal_acc\\\": 0.7606,\\n      \\\"d1d3_bal_acc_std\\\": 0.0073\\n    }\\n  },\\n  \\\"olmo_temp09\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.5881,\\n      \\\"4class_acc_std\\\": 0.0104,\\n      \\\"d1d3_bal_acc\\\": 0.5269,\\n      \\\"d1d3_bal_acc_std\\\": 0.0111\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.4043,\\n      \\\"4class_acc_std\\\": 0.0105,\\n      \\\"d1d3_bal_acc\\\": 0.539,\\n      \\\"d1d3_bal_acc_std\\\": 0.014\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7202,\\n      \\\"4class_acc_std\\\": 0.003,\\n      \\\"d1d3_bal_acc\\\": 0.63,\\n      \\\"d1d3_bal_acc_std\\\": 0.0031\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.6698,\\n      \\\"4class_acc_std\\\": 0.0052,\\n      \\\"d1d3_bal_acc\\\": 0.5686,\\n      \\\"d1d3_bal_acc_std\\\": 0.0077\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.8095,\\n      \\\"4class_acc_std\\\": 0.0023,\\n      \\\"d1d3_bal_acc\\\": 0.7495,\\n      \\\"d1d3_bal_acc_std\\\": 0.0024\\n    }\\n  },\\n  \\\"olmo_topk50\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.3969,\\n      \\\"4class_acc_std\\\": 0.0437,\\n      \\\"d1d3_bal_acc\\\": 0.4026,\\n      \\\"d1d3_bal_acc_std\\\": 0.0084\\n    },\\n    \\\"\\n\\n... [截断: 输出过长，省略 413 字符] ...\\n\\n_acc_std\\\": 0.0092\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.7045,\\n      \\\"4class_acc_std\\\": 0.0061,\\n      \\\"d1d3_bal_acc\\\": 0.6151,\\n      \\\"d1d3_bal_acc_std\\\": 0.0068\\n    }\\n  },\\n  \\\"gpt2xl_nucleus\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.5058,\\n      \\\"4class_acc_std\\\": 0.0129,\\n      \\\"d1d3_bal_acc\\\": 0.3477,\\n      \\\"d1d3_bal_acc_std\\\": 0.027\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.4155,\\n      \\\"4class_acc_std\\\": 0.0173,\\n      \\\"d1d3_bal_acc\\\": 0.5539,\\n      \\\"d1d3_bal_acc_std\\\": 0.023\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7557,\\n      \\\"4class_acc_std\\\": 0.0083,\\n      \\\"d1d3_bal_acc\\\": 0.6754,\\n      \\\"d1d3_bal_acc_std\\\": 0.0113\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.7106,\\n      \\\"4class_acc_std\\\": 0.0047,\\n      \\\"d1d3_bal_acc\\\": 0.6183,\\n      \\\"d1d3_bal_acc_std\\\": 0.0059\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.8515,\\n      \\\"4class_acc_std\\\": 0.0051,\\n      \\\"d1d3_bal_acc\\\": 0.8037,\\n      \\\"d1d3_bal_acc_std\\\": 0.0071\\n    }\\n  },\\n  \\\"gpt2xl_temp09\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.6208,\\n      \\\"4class_acc_std\\\": 0.0154,\\n      \\\"d1d3_bal_acc\\\": 0.5725,\\n      \\\"d1d3_bal_acc_std\\\": 0.0064\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.4019,\\n      \\\"4class_acc_std\\\": 0.0203,\\n      \\\"d1d3_bal_acc\\\": 0.5358,\\n      \\\"d1d3_bal_acc_std\\\": 0.0271\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.7583,\\n      \\\"4class_acc_std\\\": 0.0067,\\n      \\\"d1d3_bal_acc\\\": 0.6789,\\n      \\\"d1d3_bal_acc_std\\\": 0.0095\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.7039,\\n      \\\"4class_acc_std\\\": 0.0091,\\n      \\\"d1d3_bal_acc\\\": 0.6091,\\n      \\\"d1d3_bal_acc_std\\\": 0.0122\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.8285,\\n      \\\"4class_acc_std\\\": 0.0043,\\n      \\\"d1d3_bal_acc\\\": 0.7729,\\n      \\\"d1d3_bal_acc_std\\\": 0.0059\\n    }\\n  },\\n  \\\"gpt2xl_topk50\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.4747,\\n      \\\"4class_acc_std\\\": 0.0111,\\n      \\\"d1d3_bal_acc\\\": 0.3367,\\n      \\\"d1d3_bal_acc_std\\\": 0.052\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.3483,\\n      \\\"4class_acc_std\\\": 0.0272,\\n      \\\"d1d3_bal_acc\\\": 0.4645,\\n      \\\"d1d3_bal_acc_std\\\": 0.0363\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.6524,\\n      \\\"4class_acc_std\\\": 0.003,\\n      \\\"d1d3_bal_acc\\\": 0.5441,\\n      \\\"d1d3_bal_acc_std\\\": 0.0054\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.5847,\\n      \\\"4class_acc_std\\\": 0.0069,\\n      \\\"d1d3_bal_acc\\\": 0.4653,\\n      \\\"d1d3_bal_acc_std\\\": 0.01\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.7345,\\n      \\\"4class_acc_std\\\": 0.0044,\\n      \\\"d1d3_bal_acc\\\": 0.6511,\\n      \\\"d1d3_bal_acc_std\\\": 0.0063\\n    }\\n  },\\n  \\\"__9cell_average__\\\": {\\n    \\\"equal_width\\\": {\\n      \\\"4class_acc\\\": 0.4882,\\n      \\\"4class_acc_std\\\": 0.0247,\\n      \\\"d1d3_bal_acc\\\": 0.4171,\\n      \\\"d1d3_bal_acc_std\\\": 0.0366\\n    },\\n    \\\"coral\\\": {\\n      \\\"4class_acc\\\": 0.3813,\\n      \\\"4class_acc_std\\\": 0.0145,\\n      \\\"d1d3_bal_acc\\\": 0.5083,\\n      \\\"d1d3_bal_acc_std\\\": 0.0194\\n    },\\n    \\\"threshold\\\": {\\n      \\\"4class_acc\\\": 0.6981,\\n      \\\"4class_acc_std\\\": 0.0054,\\n      \\\"d1d3_bal_acc\\\": 0.6024,\\n      \\\"d1d3_bal_acc_std\\\": 0.0076\\n    },\\n    \\\"RF_single\\\": {\\n      \\\"4class_acc\\\": 0.6374,\\n      \\\"4class_acc_std\\\": 0.0063,\\n      \\\"d1d3_bal_acc\\\": 0.5339,\\n      \\\"d1d3_bal_acc_std\\\": 0.0084\\n    },\\n    \\\"RF_multi\\\": {\\n      \\\"4class_acc\\\": 0.7808,\\n      \\\"4class_acc_std\\\": 0.0047,\\n      \\\"d1d3_bal_acc\\\": 0.7122,\\n      \\\"d1d3_bal_acc_std\\\": 0.0061\\n    }\\n  },\\n  \\\"__meta__\\\": {\\n    \\\"observer\\\": \\\"EleutherAI/pythia-1.4b\\\",\\n    \\\"performer\\\": \\\"EleutherAI/pythia-410m\\\",\\n    \\\"max_samples_per_depth\\\": \\\"all\\\",\\n    \\\"n_folds\\\": 5,\\n    \\\"rf_n_estimators\\\": 200,\\n    \\\"multi_features\\\": [\\n      \\\"bino_score\\\",\\n      \\\"ppl_mean\\\",\\n      \\\"ppl_var\\\",\\n      \\\"ppl_median\\\",\\n      \\\"ppl_p10\\\",\\n      \\\"ppl_p90\\\",\\n      \\\"ppl_skew\\\",\\n      \\\"xppl_mean\\\",\\n      \\\"xppl_var\\\",\\n      \\\"xppl_median\\\",\\n      \\\"bino_score_median\\\"\\n    ],\\n    \\\"cell_times_sec\\\": {\\n      \\\"pythia_nucleus\\\": 424.3,\\n      \\\"pythia_temp09\\\": 422.7,\\n      \\\"pythia_topk50\\\": 424.2,\\n      \\\"olmo_nucleus\\\": 425.6,\\n      \\\"olmo_temp09\\\": 425.7,\\n      \\\"olmo_topk50\\\": 427.4,\\n      \\\"gpt2xl_nucleus\\\": 420.8,\\n      \\\"gpt2xl_temp09\\\": 420.2,\\n      \\\"gpt2xl_topk50\\\": 419.3\\n    },\\n    \\\"total_time_sec\\\": 3810.2\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T11:26:38.497Z_
+
+<details><summary>↩ Tool result · `toolu_019715gze5UpTpzeVZgPhrh4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  depth_0: 5000 samples\\n  depth_1: 5000 samples\\n  depth_2: 5000 samples\\n  depth_3: 5000 samples\\n  Total: 20000 samples, depths: [5000 5000 5000 5000]\\n  Computing LL (observer: gpt2-xl)...\\n    216.2s\\n  Computing LL (performer: pythia-1.4b)...\\n    122.3s\\n  Computing Fast-DetectGPT scores...\\n    222.4s\\n  Scores cached to results/detection_baselines_ordinal/scores/gpt2xl_temp09_scores.npz\\n\\n  gpt2xl_temp09 results:\\n    Binoculars  LR-4cls: 0.5082  Iso: 0.2503  rho: -0.6309  d0-bin: 0.8355\\n    FastDetGPT  LR-4cls: 0.6136  Iso: 0.5430  rho: 0.7695  d0-bin: 0.8618\\n    Combined    LR-4cls: 0.6213\\n    Pairwise AUC (Bino):  d0v1=0.9441  d1v2=0.5936  d2v3=0.5368\\n    Pairwise AUC (FDGPT): d0v1=0.9574  d1v2=0.714  d2v3=0.6021\\n    Pairwise AUC (Comb):  d0v1=0.9724  d1v2=0.7905  d2v3=0.6539\\n\\n============================================================\\n  gpt2xl_topk50\\n============================================================\\n  depth_0: 5000 samples\\n  depth_1: 5000 samples\\n  depth_2: 5000 samples\\n  depth_3: 5000 samples\\n  Total: 20000 samples, depths: [5000 5000 5000 5000]\\n  Computing LL (observer: gpt2-xl)...\\n    217.1s\\n  Computing LL (performer: pythia-1.4b)...\\n    122.0s\\n  Computing Fast-DetectGPT scores...\\n    223.0s\\n  Scores cached to results/detection_baselines_ordinal/scores/gpt2xl_topk50_scores.npz\\n\\n  gpt2xl_topk50 results:\\n    Binoculars  LR-4cls: 0.4808  Iso: 0.2500  rho: -0.5690  d0-bin: 0.8456\\n    FastDetGPT  LR-4cls: 0.5467  Iso: 0.4752  rho: 0.6838  d0-bin: 0.8544\\n    Combined    LR-4cls: 0.5632\\n    Pairwise AUC (Bino):  d0v1=0.9513  d1v2=0.5068  d2v3=0.4939\\n    Pairwise AUC (FDGPT): d0v1=0.9414  d1v2=0.5977  d2v3=0.5368\\n    Pairwise AUC (Comb):  d0v1=0.9576  d1v2=0.6416  d2v3=0.5679\\n\\n\\n==============================================================================================================\\n  COMPARISON TABLE\\n==============================================================================================================\\n  Cell             Method         4cls-Acc   d0v1     d1v2     d2v3     Spearman   d0-bin  \\n  ----------------------------------------------------------------------------------------------------------\\n  pythia_nucleus   RF-19feat      0.787      0.999    0.895    0.76     -1.0       ---     \\n                   Bino-LR        0.3761     0.7379   0.5292   0.5145   0.4475     0.7995  \\n                   FDGPT-LR       0.3950     0.7971   0.5963   0.5304   0.3644     0.6922  \\n                   Combined       0.5132     0.9899   0.7671   0.6261   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  pythia_temp09    RF-19feat      0.768                                 -1.0       ---     \\n                   Bino-LR        0.3863     0.7468   0.5093   0.5121   0.4597     0.8019  \\n                   FDGPT-LR       0.3865     0.7825   0.5765   0.5091   0.3511     0.6874  \\n                   Combined       0.5188     0.9898   0.7692   0.6035   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  pythia_topk50    RF-19feat      0.689                                 -1.0       ---     \\n                   Bino-LR        0.3302     0.6917   0.5009   0.507    0.3181     0.7475  \\n                   FDGPT-LR       0.3588     0.737    0.5473   0.5107   0.3110     0.6611  \\n                   Combined       0.4563     0.9504   0.6447   0.5282   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  olmo_nucleus     RF-19feat      0.789                                 -1.0       ---     \\n                   Bino-LR        0.3452     0.7443   0.5093   0.5222   -0.3724    0.7661  \\n                   FDGPT-LR       0.5800     0.9172   0.6677   0.5202   0.7368     0.8558  \\n                   Combined       0.5881     0.9487   0.7418   0.55     ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  olmo_temp09      RF-19feat      0.823                                 -1.0       ---     \\n                   Bino-LR        0.3548     0.7482   0.5252   0.5041   -0.3727    0.7679  \\n                   FDGPT-LR       0.5702     0.9225   0.6693   0.5157   0.7315     0.858   \\n                   Combined       0.5778     0.9506   0.7523   0.5169   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  olmo_topk50      RF-19feat      0.744                                 -1.0       ---     \\n                   Bino-LR        0.3785     0.7763   0.5161   0.503    -0.4293    0.8043  \\n                   FDGPT-LR       0.5058     0.8418   0.5963   0.5269   0.6751     0.8418  \\n                   Combined       0.5078     0.8694   0.6413   0.5318   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  gpt2xl_nucleus   RF-19feat      0.843                                 -1.0       ---     \\n                   Bino-LR        0.4932     0.9417   0.5016   0.5812   -0.6048    0.8362  \\n                   FDGPT-LR       0.5972     0.9551   0.6436   0.6547   0.7660     0.8638  \\n                   Combined       0.6134     0.9687   0.7237   0.7033   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  gpt2xl_temp09    RF-19feat      0.859                                 -1.0       ---     \\n                   Bino-LR        0.5082     0.9441   0.5936   0.5368   -0.6309    0.8355  \\n                   FDGPT-LR       0.6136     0.9574   0.714    0.6021   0.7695     0.8618  \\n                   Combined       0.6213     0.9724   0.7905   0.6539   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  gpt2xl_topk50    RF-19feat      0.758                                 -1.0       ---     \\n                   Bino-LR        0.4808     0.9513   0.5068   0.4939   -0.5690    0.8456  \\n                   FDGPT-LR       0.5467     0.9414   0.5977   0.5368   0.6838     0.8544  \\n                   Combined       0.5632     0.9576   0.6416   0.5679   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n\\n  Mean 4-class Acc:  RF=0.7844  Bino=0.4059  FDGPT=0.5060  Combined=0.5511\\n\\nSaved to results/detection_baselines_ordinal/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "b26593b8-de6d-44d4-b7a3-ef93281d6084",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  depth_0: 5000 samples\\\\n  depth_1: 5000 samples\\\\n  depth_2: 5000 samples\\\\n  depth_3: 5000 samples\\\\n  Total: 20000 samples, depths: [5000 5000 5000 5000]\\\\n  Computing LL (observer: gpt2-xl)...\\\\n    216.2s\\\\n  Computing LL (performer: pythia-1.4b)...\\\\n    122.3s\\\\n  Computing Fast-DetectGPT scores...\\\\n    222.4s\\\\n  Scores cached to results/detection_baselines_ordinal/scores/gpt2xl_temp09_scores.npz\\\\n\\\\n  gpt2xl_temp09 results:\\\\n    Binoculars  LR-4cls: 0.5082  Iso: 0.2503  rho: -0.6309  d0-bin: 0.8355\\\\n    FastDetGPT  LR-4cls: 0.6136  Iso: 0.5430  rho: 0.7695  d0-bin: 0.8618\\\\n    Combined    LR-4cls: 0.6213\\\\n    Pairwise AUC (Bino):  d0v1=0.9441  d1v2=0.5936  d2v3=0.5368\\\\n    Pairwise AUC (FDGPT): d0v1=0.9574  d1v2=0.714  d2v3=0.6021\\\\n    Pairwise AUC (Comb):  d0v1=0.9724  d1v2=0.7905  d2v3=0.6539\\\\n\\\\n============================================================\\\\n  gpt2xl_topk50\\\\n============================================================\\\\n  depth_0: 5000 samples\\\\n  depth_1: 5000 samples\\\\n  depth_2: 5000 samples\\\\n  depth_3: 5000 samples\\\\n  Total: 20000 samples, depths: [5000 5000 5000 5000]\\\\n  Computing LL (observer: gpt2-xl)...\\\\n    217.1s\\\\n  Computing LL (performer: pythia-1.4b)...\\\\n    122.0s\\\\n  Computing Fast-DetectGPT scores...\\\\n    223.0s\\\\n  Scores cached to results/detection_baselines_ordinal/scores/gpt2xl_topk50_scores.npz\\\\n\\\\n  gpt2xl_topk50 results:\\\\n    Binoculars  LR-4cls: 0.4808  Iso: 0.2500  rho: -0.5690  d0-bin: 0.8456\\\\n    FastDetGPT  LR-4cls: 0.5467  Iso: 0.4752  rho: 0.6838  d0-bin: 0.8544\\\\n    Combined    LR-4cls: 0.5632\\\\n    Pairwise AUC (Bino):  d0v1=0.9513  d1v2=0.5068  d2v3=0.4939\\\\n    Pairwise AUC (FDGPT): d0v1=0.9414  d1v2=0.5977  d2v3=0.5368\\\\n    Pairwise AUC (Comb):  d0v1=0.9576  d1v2=0.6416  d2v3=0.5679\\\\n\\\\n\\\\n==============================================================================================================\\\\n  COMPARISON TABLE\\\\n==============================================================================================================\\\\n  Cell             Method         4cls-Acc   d0v1     d1v2     d2v3     Spearman   d0-bin  \\\\n  ----------------------------------------------------------------------------------------------------------\\\\n  pythia_nucleus   RF-19feat      0.787      0.999    0.895    0.76     -1.0       ---     \\\\n                   Bino-LR        0.3761     0.7379   0.5292   0.5145   0.4475     0.7995  \\\\n                   FDGPT-LR       0.3950     0.7971   0.5963   0.5304   0.3644     0.6922  \\\\n                   Combined       0.5132     0.9899   0.7671   0.6261   ---        ---     \\\\n  ----------------------------------------------------------------------------------------------------------\\\\n  pythia_temp09    RF-19feat      0.768                                 -1.0       ---     \\\\n                   Bino-LR        0.3863     0.7468   0.5093   0.5121   0.4597     0.8019  \\\\n                   FDGPT-LR       0.3865     0.7825   0.5765   0.5091   0.3511     0.6874  \\\\n                   Combined       0.5188     0.9898   0.7692   0.6035   ---        ---     \\\\n  ----------------------------------------------------------------------------------------------------------\\\\n  pythia_topk50    RF-19feat      0.689                                 -1.0       ---     \\\\n                   Bino-LR        0.3302     0.6917   0.5009   0.507    0.3181     0.7475  \\\\n                   FDGPT-LR       0.3588     0.737    0.5473   0.5107   0.3110     0.6611  \\\\n                   Combined       0.4563     0.9504   0.6447   0.5282   ---        ---     \\\\n  ----------------------------------------------------------------------------------------------------------\\\\n  olmo_nucleus     RF-19feat      0.789                                 -1.0       ---     \\\\n                   Bino-LR        0.3452     0.7443   0.5093   0.5222   -0.3724    0.7661  \\\\n                   FDGPT-LR       0.5800     0.9172   0.6677   0.5202   0.7368     0.8558  \\\\n                   Combined       0.5881     0.9487   0.7418   0.55     ---        ---     \\\\n  ----------------------------------------------------------------------------------------------------------\\\\n  olmo_temp09      RF-19feat      0.823                                 -1.0       ---     \\\\n                   Bino-LR        0.3548     0.7482   0.5252   0.5041   -0.3727    0.7679  \\\\n                   FDGPT-LR       0.5702     0.9225   0.6693   0.5157   0.7315     0.858   \\\\n                   Combined       0.5778     0.9506   0.7523   0.5169   ---        ---     \\\\n  ----------------------------------------------------------------------------------------------------------\\\\n  olmo_topk50      RF-19feat      0.744                                 -1.0       ---     \\\\n                   Bino-LR        0.3785     0.7763   0.5161   0.503    -0.4293    0.8043  \\\\n                   FDGPT-LR       0.5058     0.8418   0.5963   0.5269   0.6751     0.8418  \\\\n                   Combined       0.5078     0.8694   0.6413   0.5318   ---        ---     \\\\n  ----------------------------------------------------------------------------------------------------------\\\\n  gpt2xl_nucleus   RF-19feat      0.843                                 -1.0       ---     \\\\n                   Bino-LR        0.4932     0.9417   0.5016   0.5812   -0.6048    0.8362  \\\\n                   FDGPT-LR       0.5972     0.9551   0.6436   0.6547   0.7660     0.8638  \\\\n                   Combined       0.6134     0.9687   0.7237   0.7033   ---        ---     \\\\n  ----------------------------------------------------------------------------------------------------------\\\\n  gpt2xl_temp09    RF-19feat      0.859                                 -1.0       ---     \\\\n                   Bino-LR        0.5082     0.9441   0.5936   0.5368   -0.6309    0.8355  \\\\n                   FDGPT-LR       0.6136     0.9574   0.714    0.6021   0.7695     0.8618  \\\\n                   Combined       0.6213     0.9724   0.7905   0.6539   ---        ---     \\\\n  ----------------------------------------------------------------------------------------------------------\\\\n  gpt2xl_topk50    RF-19feat      0.758                                 -1.0       ---     \\\\n                   Bino-LR        0.4808     0.9513   0.5068   0.4939   -0.5690    0.8456  \\\\n                   FDGPT-LR       0.5467     0.9414   0.5977   0.5368   0.6838     0.8544  \\\\n                   Combined       0.5632     0.9576   0.6416   0.5679   ---        ---     \\\\n  ----------------------------------------------------------------------------------------------------------\\\\n\\\\n  Mean 4-class Acc:  RF=0.7844  Bino=0.4059  FDGPT=0.5060  Combined=0.5511\\\\n\\\\nSaved to results/detection_baselines_ordinal/results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  depth_0: 5000 samples\\n  depth_1: 5000 samples\\n  depth_2: 5000 samples\\n  depth_3: 5000 samples\\n  Total: 20000 samples, depths: [5000 5000 5000 5000]\\n  Computing LL (observer: gpt2-xl)...\\n    216.2s\\n  Computing LL (performer: pythia-1.4b)...\\n    122.3s\\n  Computing Fast-DetectGPT scores...\\n    222.4s\\n  Scores cached to results/detection_baselines_ordinal/scores/gpt2xl_temp09_scores.npz\\n\\n  gpt2xl_temp09 results:\\n    Binoculars  LR-4cls: 0.5082  Iso: 0.2503  rho: -0.6309  d0-bin: 0.8355\\n    FastDetGPT  LR-4cls: 0.6136  Iso: 0.5430  rho: 0.7695  d0-bin: 0.8618\\n    Combined    LR-4cls: 0.6213\\n    Pairwise AUC (Bino):  d0v1=0.9441  d1v2=0.5936  d2v3=0.5368\\n    Pairwise AUC (FDGPT): d0v1=0.9574  d1v2=0.714  d2v3=0.6021\\n    Pairwise AUC (Comb):  d0v1=0.9724  d1v2=0.7905  d2v3=0.6539\\n\\n============================================================\\n  gpt2xl_topk50\\n============================================================\\n  depth_0: 5000 samples\\n  depth_1: 5000 samples\\n  depth_2: 5000 samples\\n  depth_3: 5000 samples\\n  Total: 20000 samples, depths: [5000 5000 5000 5000]\\n  Computing LL (observer: gpt2-xl)...\\n    217.1s\\n  Computing LL (performer: pythia-1.4b)...\\n    122.0s\\n  Computing Fast-DetectGPT scores...\\n    223.0s\\n  Scores cached to results/detection_baselines_ordinal/scores/gpt2xl_topk50_scores.npz\\n\\n  gpt2xl_topk50 results:\\n    Binoculars  LR-4cls: 0.4808  Iso: 0.2500  rho: -0.5690  d0-bin: 0.8456\\n    FastDetGPT  LR-4cls: 0.5467  Iso: 0.4752  rho: 0.6838  d0-bin: 0.8544\\n    Combined    LR-4cls: 0.5632\\n    Pairwise AUC (Bino):  d0v1=0.9513  d1v2=0.5068  d2v3=0.4939\\n    Pairwise AUC (FDGPT): d0v1=0.9414  d1v2=0.5977  d2v3=0.5368\\n    Pairwise AUC (Comb):  d0v1=0.9576  d1v2=0.6416  d2v3=0.5679\\n\\n\\n==============================================================================================================\\n  COMPARISON TABLE\\n==============================================================================================================\\n  Cell             Method         4cls-Acc   d0v1     d1v2     d2v3     Spearman   d0-bin  \\n  ----------------------------------------------------------------------------------------------------------\\n  pythia_nucleus   RF-19feat      0.787      0.999    0.895    0.76     -1.0       ---     \\n                   Bino-LR        0.3761     0.7379   0.5292   0.5145   0.4475     0.7995  \\n                   FDGPT-LR       0.3950     0.7971   0.5963   0.5304   0.3644     0.6922  \\n                   Combined       0.5132     0.9899   0.7671   0.6261   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  pythia_temp09    RF-19feat      0.768                                 -1.0       ---     \\n                   Bino-LR        0.3863     0.7468   0.5093   0.5121   0.4597     0.8019  \\n                   FDGPT-LR       0.3865     0.7825   0.5765   0.5091   0.3511     0.6874  \\n                   Combined       0.5188     0.9898   0.7692   0.6035   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  pythia_topk50    RF-19feat      0.689                                 -1.0       ---     \\n                   Bino-LR        0.3302     0.6917   0.5009   0.507    0.3181     0.7475  \\n                   FDGPT-LR       0.3588     0.737    0.5473   0.5107   0.3110     0.6611  \\n                   Combined       0.4563     0.9504   0.6447   0.5282   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  olmo_nucleus     RF-19feat      0.789                                 -1.0       ---     \\n                   Bino-LR        0.3452     0.7443   0.5093   0.5222   -0.3724    0.7661  \\n                   FDGPT-LR       0.5800     0.9172   0.6677   0.5202   0.7368     0.8558  \\n                   Combined       0.5881     0.9487   0.7418   0.55     ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  olmo_temp09      RF-19feat      0.823                                 -1.0       ---     \\n                   Bino-LR        0.3548     0.7482   0.5252   0.5041   -0.3727    0.7679  \\n                   FDGPT-LR       0.5702     0.9225   0.6693   0.5157   0.7315     0.858   \\n                   Combined       0.5778     0.9506   0.7523   0.5169   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  olmo_topk50      RF-19feat      0.744                                 -1.0       ---     \\n                   Bino-LR        0.3785     0.7763   0.5161   0.503    -0.4293    0.8043  \\n                   FDGPT-LR       0.5058     0.8418   0.5963   0.5269   0.6751     0.8418  \\n                   Combined       0.5078     0.8694   0.6413   0.5318   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  gpt2xl_nucleus   RF-19feat      0.843                                 -1.0       ---     \\n                   Bino-LR        0.4932     0.9417   0.5016   0.5812   -0.6048    0.8362  \\n                   FDGPT-LR       0.5972     0.9551   0.6436   0.6547   0.7660     0.8638  \\n                   Combined       0.6134     0.9687   0.7237   0.7033   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  gpt2xl_temp09    RF-19feat      0.859                                 -1.0       ---     \\n                   Bino-LR        0.5082     0.9441   0.5936   0.5368   -0.6309    0.8355  \\n                   FDGPT-LR       0.6136     0.9574   0.714    0.6021   0.7695     0.8618  \\n                   Combined       0.6213     0.9724   0.7905   0.6539   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n  gpt2xl_topk50    RF-19feat      0.758                                 -1.0       ---     \\n                   Bino-LR        0.4808     0.9513   0.5068   0.4939   -0.5690    0.8456  \\n                   FDGPT-LR       0.5467     0.9414   0.5977   0.5368   0.6838     0.8544  \\n                   Combined       0.5632     0.9576   0.6416   0.5679   ---        ---     \\n  ----------------------------------------------------------------------------------------------------------\\n\\n  Mean 4-class Acc:  RF=0.7844  Bino=0.4059  FDGPT=0.5060  Combined=0.5511\\n\\nSaved to results/detection_baselines_ordinal/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T11:26:39.827Z_
+
+<details><summary>↩ Tool result · `toolu_017BPj5itPEZVNL779Mq54pK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 36\\ndrwxr-xr-x  3 root root    52 May 22 17:56 .\\ndrwxr-xr-x 93 root root  8192 May 22 17:44 ..\\n-rw-r--r--  1 root root 18921 May 22 19:18 results.json\\ndrwxr-xr-x  2 root root  4096 May 22 19:17 scores\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "4fcd1e61-1218-466d-8eae-9d1e3dbf560b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 36\\\\ndrwxr-xr-x  3 root root    52 May 22 17:56 .\\\\ndrwxr-xr-x 93 root root  8192 May 22 17:44 ..\\\\n-rw-r--r--  1 root root 18921 May 22 19:18 results.json\\\\ndrwxr-xr-x  2 root root  4096 May 22 19:17 scores\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 36\\ndrwxr-xr-x  3 root root    52 May 22 17:56 .\\ndrwxr-xr-x 93 root root  8192 May 22 17:44 ..\\n-rw-r--r--  1 root root 18921 May 22 19:18 results.json\\ndrwxr-xr-x  2 root root  4096 May 22 19:17 scores\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have all the data I need. Let me also check the binoculars_ordinal_9cell.json for the olmo_topk50 data that was truncated. But actually, I already have the full comparison table from the log. Let me compile the results.
+
+The experiment completed successfully. Let me now compile a comprehensive summary.
+
+Key findings from the log's comparison table:
+
+| Cell | Method | 4cls-Acc | d0v1 | d1v2 | d2v3 | Spearman | d0-bin |
+
+
+|------|--------|----------|------|------|------|----------|--------|
+| pythia_nucleus | RF-19feat | 0.787 | 0.999 | 0.895 | 0.760 | | |
+| | Bino-LR | 0.376 | 0.738 | 0.529 | 0.515 | 0.448 | 0.800 |
+| | FDGPT-LR | 0.395 | 0.797 | 0.596 | 0.530 | 0.364 | 0.692 |
+| | Combined | 0.513 | 0.990 |
+
+Generating markdown table... Generating performance metrics table... Generating performance metrics table... Now I'm looking at the mean accuracy scores across the different models — Random Forest achieves 0.7844, while the learning-based approaches (Binoculars, FDGPT, and Combined) range from 0.41 to 0.55. I notice there's a separate experiment using Binoculars features with ordinal methods like CORAL and threshold-based approaches, which is distinct from the main detection baselines comparison I should focus on.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "f34e7bc5-c2fd-40f5-8c8f-e4683babcb2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011VnxyUe8PcQodf3hakGJpW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13923,
+      "cache_read_input_tokens": 28902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13923
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+实验已完成（耗时 ~81 分钟）。进程不再运行。以下是全 9-cell 结果。
+
+## Binoculars + Fast-DetectGPT Ordinal Baseline（plan_018）
+
+### 主对比表
+
+| Cell | Method | 4cls-Acc | d0v1 AUC | d1v2 AUC | d2v3 AUC | Spearman ρ |
+|------|--------|----------|----------|----------|----------|-----------|
+| **pythia_nucleus** | RF-19feat | **0.787** | **0.999** | **0.895** | **0.760** | — |
+| | Bino-LR | 0.376 | 0.738 | 0.529 | 0.515 | 0.448 |
+| | FDGPT-LR | 0.395 | 0.797 | 0.596 | 0.530 | 0.364 |
+| | Combined | 0.513 | 0.990 | 0.767 | 0.626 | — |
+| **pythia_temp09** | RF-19feat | **0.768** | — | — | — | — |
+| | Bino-LR | 0.386 | 0.747 | 0.509 | 0.512 | 0.460 |
+| | FDGPT-LR | 0.387 | 0.783 | 0.577 | 0.509 | 0.351 |
+| | Combined | 0.519 | 0.990 | 0.769 | 0.604 | — |
+| **pythia_topk50** | RF-19feat | **0.689** | — | — | — | — |
+| | Bino-LR | 0.330 | 0.692 | 0.501 | 0.507 | 0.318 |
+| | FDGPT-LR | 0.359 | 0.737 | 0.547 | 0.511 | 0.311 |
+| | Combined | 0.456 | 0.950 | 0.645 | 0.528 | — |
+| **olmo_nucleus** | RF-19feat | **0.789** | — | — | — | — |
+| | Bino-LR | 0.345 | 0.744 | 0.509 | 0.522 | −0.372 |
+| | FDGPT-LR | 0.580 | 0.917 | 0.668 | 0.520 | 0.737 |
+| | Combined | 0.588 | 0.949 | 0.742 | 0.550 | — |
+| **olmo_temp09** | RF-19feat | **0.823** | — | — | — | — |
+| | Bino-LR | 0.355 | 0.748 | 0.525 | 0.504 | −0.373 |
+| | FDGPT-LR | 0.570 | 0.923 | 0.669 | 0.516 | 0.732 |
+| | Combined | 0.578 | 0.951 | 0.752 | 0.517 | — |
+| **olmo_topk50** | RF-19feat | **0.744** | — | — | — | — |
+| | Bino-LR | 0.379 | 0.776 | 0.516 | 0.503 | −0.429 |
+| | FDGPT-LR | 0.506 | 0.842 | 0.596 | 0.527 | 0.675 |
+| | Combined | 0.508 | 0.869 | 0.641 | 0.532 | — |
+| **gpt2xl_nucleus** | RF-19feat | **0.843** | — | — | — | — |
+| | Bino-LR | 0.493 | 0.942 | 0.502 | 0.581 | −0.605 |
+| | FDGPT-LR | 0.597 | 0.955 | 0.644 | 0.655 | 0.766 |
+| | Combined | 0.613 | 0.969 | 0.724 | 0.703 | — |
+| **gpt2xl_temp09** | RF-19feat | **0.859** | — | — | — | — |
+| | Bino-LR | 0.508 | 0.944 | 0.594 | 0.537 | −0.631 |
+| | FDGPT-LR | 0.614 | 0.957 | 0.714 | 0.602 | 0.770 |
+| | Combined | 0.621 | 0.972 | 0.791 | 0.654 | — |
+| **gpt2xl_topk50** | RF-19feat | **0.758** | — | — | — | — |
+| | Bino-LR | 0.481 | 0.951 | 0.507 | 0.494 | −0.569 |
+| | FDGPT-LR | 0.547 | 0.941 | 0.598 | 0.537 | 0.684 |
+| | Combined | 0.563 | 0.958 | 0.642 | 0.568 | — |
+
+### 9-cell 平均
+
+| Method | Mean 4cls-Acc |
+|--------|-------------|
+| **RF-19feat** | **0.784** |
+| Combined (Bino+FDGPT) | 0.551 |
+| Fast-DetectGPT LR | 0.506 |
+| Binoculars LR | 0.406 |
+
+### 关键发现
+
+1. **RF-19feat 大幅领先**：平均 78.4% vs Combined 55.1%，绝对差 23.3pp。单 scalar detector 即使组合也远不及多特征 RF。
+
+2. **d0v1 区分 OK，d1v2/d2v3 接近随机**：Binoculars 在 d1v2/d2v3 AUC 基本 ~0.50-0.59（接近 chance），说明单一分数无法区分相邻 depth。Fast-DetectGPT 稍好但仍远逊 RF（d1v2 最高 0.714 vs RF 的 0.895）。
+
+3. **Binoculars 在 OLMo/GPT2XL 上 ρ 为负**：因为 Binoculars score = observer_LL / performer_LL，对不同 model family 的 depth 方向可能反转。
+
+4. **gpt2xl 系列 detector 效果最好**：FDGPT 在 gpt2xl_temp09 达到最高单方法 acc（61.4%），因为 observer=gpt2-xl 与 generator family 匹配。
+
+5. **Combined 几乎不比 FDGPT 单独强多少**：平均 55.1% vs 50.6%，说明 Binoculars 提供的额外信息有限。
+
+### 另有 binoculars_ordinal_9cell.json（Binoculars 多特征 RF）
+
+这是用 Binoculars 衍生的 11 个统计特征（bino_score, ppl_mean/var/median/p10/p90/skew, xppl_mean/var/median, bino_score_median）训练 RF 的结果：
+
+| Cell | RF_multi (Bino-11feat) | RF-19feat (参考) |
+|------|----------------------|----------------|
+| pythia_nucleus | 80.4% | 78.7% |
+| gpt2xl_temp09 | 82.9% | 85.9% |
+| **9-cell 平均** | **78.1%** | **78.4%** |
+
+Binoculars 多特征 RF 与我们的 19-feature RF 几乎持平（78.1% vs 78.4%），但这需要 observer+performer 两个模型前向传播，计算成本高得多。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "uuid": "7718959c-4a0c-4541-85d0-ecc51efe690c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011VnxyUe8PcQodf3hakGJpW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13923,
+      "cache_read_input_tokens": 28902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13923
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 26_
+
+实验已完成（耗时 ~81 分钟）。进程不再运行。以下是全 9-cell 结果。
+
+## Binoculars + Fast-DetectGPT Ordinal Baseline（plan_018）
+
+### 主对比表
+
+| Cell | Method | 4cls-Acc | d0v1 AUC | d1v2 AUC | d2v3 AUC | Spearman ρ |
+|------|--------|----------|----------|----------|----------|-----------|
+| **pythia_nucleus** | RF-19feat | **0.787** | **0.999** | **0.895** | **0.760** | — |
+| | Bino-LR | 0.376 | 0.738 | 0.529 | 0.515 | 0.448 |
+| | FDGPT-LR | 0.395 | 0.797 | 0.596 | 0.530 | 0.364 |
+| | Combined | 0.513 | 0.990 | 0.767 | 0.626 | — |
+| **pythia_temp09** | RF-19feat | **0.768** | — | — | — | — |
+| | Bino-LR | 0.386 | 0.747 | 0.509 | 0.512 | 0.460 |
+| | FDGPT-LR | 0.387 | 0.783 | 0.577 | 0.509 | 0.351 |
+| | Combined | 0.519 | 0.990 | 0.769 | 0.604 | — |
+| **pythia_topk50** | RF-19feat | **0.689** | — | — | — | — |
+| | Bino-LR | 0.330 | 0.692 | 0.501 | 0.507 | 0.318 |
+| | FDGPT-LR | 0.359 | 0.737 | 0.547 | 0.511 | 0.311 |
+| | Combined | 0.456 | 0.950 | 0.645 | 0.528 | — |
+| **olmo_nucleus** | RF-19feat | **0.789** | — | — | — | — |
+| | Bino-LR | 0.345 | 0.744 | 0.509 | 0.522 | −0.372 |
+| | FDGPT-LR | 0.580 | 0.917 | 0.668 | 0.520 | 0.737 |
+| | Combined | 0.588 | 0.949 | 0.742 | 0.550 | — |
+| **olmo_temp09** | RF-19feat | **0.823** | — | — | — | — |
+| | Bino-LR | 0.355 | 0.748 | 0.525 | 0.504 | −0.373 |
+| | FDGPT-LR | 0.570 | 0.923 | 0.669 | 0.516 | 0.732 |
+| | Combined | 0.578 | 0.951 | 0.752 | 0.517 | — |
+| **olmo_topk50** | RF-19feat | **0.744** | — | — | — | — |
+| | Bino-LR | 0.379 | 0.776 | 0.516 | 0.503 | −0.429 |
+| | FDGPT-LR | 0.506 | 0.842 | 0.596 | 0.527 | 0.675 |
+| | Combined | 0.508 | 0.869 | 0.641 | 0.532 | — |
+| **gpt2xl_nucleus** | RF-19feat | **0.843** | — | — | — | — |
+| | Bino-LR | 0.493 | 0.942 | 0.502 | 0.581 | −0.605 |
+| | FDGPT-LR | 0.597 | 0.955 | 0.644 | 0.655 | 0.766 |
+| | Combined | 0.613 | 0.969 | 0.724 | 0.703 | — |
+| **gpt2xl_temp09** | RF-19feat | **0.859** | — | — | — | — |
+| | Bino-LR | 0.508 | 0.944 | 0.594 | 0.537 | −0.631 |
+| | FDGPT-LR | 0.614 | 0.957 | 0.714 | 0.602 | 0.770 |
+| | Combined | 0.621 | 0.972 | 0.791 | 0.654 | — |
+| **gpt2xl_topk50** | RF-19feat | **0.758** | — | — | — | — |
+| | Bino-LR | 0.481 | 0.951 | 0.507 | 0.494 | −0.569 |
+| | FDGPT-LR | 0.547 | 0.941 | 0.598 | 0.537 | 0.684 |
+| | Combined | 0.563 | 0.958 | 0.642 | 0.568 | — |
+
+### 9-cell 平均
+
+| Method | Mean 4cls-Acc |
+|--------|-------------|
+| **RF-19feat** | **0.784** |
+| Combined (Bino+FDGPT) | 0.551 |
+| Fast-DetectGPT LR | 0.506 |
+| Binoculars LR | 0.406 |
+
+### 关键发现
+
+1. **RF-19feat 大幅领先**：平均 78.4% vs Combined 55.1%，绝对差 23.3pp。单 scalar detector 即使组合也远不及多特征 RF。
+
+2. **d0v1 区分 OK，d1v2/d2v3 接近随机**：Binoculars 在 d1v2/d2v3 AUC 基本 ~0.50-0.59（接近 chance），说明单一分数无法区分相邻 depth。Fast-DetectGPT 稍好但仍远逊 RF（d1v2 最高 0.714 vs RF 的 0.895）。
+
+3. **Binoculars 在 OLMo/GPT2XL 上 ρ 为负**：因为 Binoculars score = observer_LL / performer_LL，对不同 model family 的 depth 方向可能反转。
+
+4. **gpt2xl 系列 detector 效果最好**：FDGPT 在 gpt2xl_temp09 达到最高单方法 acc（61.4%），因为 observer=gpt2-xl 与 generator family 匹配。
+
+5. **Combined 几乎不比 FDGPT 单独强多少**：平均 55.1% vs 50.6%，说明 Binoculars 提供的额外信息有限。
+
+### 另有 binoculars_ordinal_9cell.json（Binoculars 多特征 RF）
+
+这是用 Binoculars 衍生的 11 个统计特征（bino_score, ppl_mean/var/median/p10/p90/skew, xppl_mean/var/median, bino_score_median）训练 RF 的结果：
+
+| Cell | RF_multi (Bino-11feat) | RF-19feat (参考) |
+|------|----------------------|----------------|
+| pythia_nucleus | 80.4% | 78.7% |
+| gpt2xl_temp09 | 82.9% | 85.9% |
+| **9-cell 平均** | **78.1%** | **78.4%** |
+
+Binoculars 多特征 RF 与我们的 19-feature RF 几乎持平（78.1% vs 78.4%），但这需要 observer+performer 两个模型前向传播，计算成本高得多。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 77321,
+  "duration_api_ms": 72834,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "a4dd4c6c-98d2-4f08-bab7-64c28d9f809c",
+  "total_cost_usd": 0.362394,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 30984,
+    "cache_read_input_tokens": 90534,
+    "output_tokens": 4849,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30984,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 3880,
+        "cache_read_input_tokens": 28902,
+        "cache_creation_input_tokens": 13923,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 13923
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2092,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0022170000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 4849,
+      "cacheReadInputTokens": 90534,
+      "cacheCreationInputTokens": 30984,
+      "webSearchRequests": 0,
+      "costUSD": 0.36017699999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "28732219-face-4015-9e34-5dd934edfc70"
+}
+```
+
+</details>
+
+---

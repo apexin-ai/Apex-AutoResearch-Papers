@@ -1,156 +1,156 @@
 # Task result records
 
-[Back to trace guide](../README.md)
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
 
-| Source record | Events | User turns | JSON |
-|---|---:|---:|---|
-| `logs/workers/worker_code_fix_eval_pythia_topk50_20260514T184732_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d7/d71a8297e54c058825c0.json) |
-| `logs/workers/worker_code_fix_fig4_atlas_heatmap_20260515T180645_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f7/f74e19a4f1ed78aabb9b.json) |
-| `logs/workers/worker_code_fix_fig4_rounding_20260515T181139_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c8/c8acd46ee4db3c916c5a.json) |
-| `logs/workers/worker_code_gen_length_ablation_c_20260517T045550_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/93/938dd0d990b8219e08f0.json) |
-| `logs/workers/worker_code_gpt2xl_ref_model_a2_20260516T174038_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f9/f9b2f81aec19a6abd1c3.json) |
-| `logs/workers/worker_code_gpt2xl_seed43_001_20260518T081955_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a1/a14ac8bb559030d94490.json) |
-| `logs/workers/worker_code_gpt2xl_topk50_001_20260514T224607_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5c/5c53d1f625dcc50f73e5.json) |
-| `logs/workers/worker_code_granularity_ablation_rf_001_20260515T091818_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bf/bf015f676ac33561ebc3.json) |
-| `logs/workers/worker_code_lora_rank_ablation_a1_20260516T174023_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/20/203d73e4add4a64a626b.json) |
-| `logs/workers/worker_code_mixed_depth_corpus_b_20260517T035401_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2d/2d30f5cc6b66f98dd133.json) |
-| `logs/workers/worker_code_mlp_19feat_baseline_20260517T115718_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5d/5d12f9e61be2c314950a.json) |
-| `logs/workers/worker_code_multi_tau_ablation_001_20260516T015650_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d6/d660fe8afe6515efad7d.json) |
-| `logs/workers/worker_code_n2_deberta_finetune_20260515T112648_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/29/299a5955781a61a2960f.json) |
-| `logs/workers/worker_code_n2_feature_overlap_analysis_20260515T123203_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ed/ede6699f499d02f210b2.json) |
-| `logs/workers/worker_code_n4_reverse_chain_prep_20260516T140408_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/32/32ef144b66209fe78b03.json) |
-| `logs/workers/worker_code_olmo-depth-ext-prep_20260515T091735_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4d/4da97b1d6dc9b558655c.json) |
-| `logs/workers/worker_code_olmo_nucleus_eval_20260514T182449_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/93/932fb4fca446cceb4855.json) |
-| `logs/workers/worker_code_olmo_temp09_001_20260514T222144_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/da/da06fbdb510e7bc196c0.json) |
-| `logs/workers/worker_code_olmo_temp09_002_resume_script_20260514T230046_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e5/e58bd4dd17b90800677c.json) |
-| `logs/workers/worker_code_olmo_topk50_001_prep_20260514T224618_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ea/ea7df9a96c23a72e0acb.json) |
-| `logs/workers/worker_code_pipeline_scripts_3x3_20260514T171704_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ab/abc9a3b10cfbfce2cdc1.json) |
-| `logs/workers/worker_code_plan_015_wild_data_prep_20260516T045647_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b4/b4d3e8a5d9134706830d.json) |
-| `logs/workers/worker_code_plan_018_binoculars_fdgpt_20260522T094023_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a9/a923542509b4d4affceb.json) |
-| `logs/workers/worker_code_plan_022_text_length_20260517T124748_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0a/0a51b67dd1595b4e76bd.json) |
-| `logs/workers/worker_code_plan_024_downstream_benchmark_20260517T155538_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2c/2caa48d12fa187ccd6d3.json) |
-| `logs/workers/worker_code_plan_025_learned_estimator_20260517T155600_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/35/357c95148f78c18a6244.json) |
-| `logs/workers/worker_code_prep_remaining_scripts_20260514T174849_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a9/a961ee3963d57c2c06d3.json) |
-| `logs/workers/worker_code_prepare_last_two_3x3_cells_20260514T223033_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/64/643fc111602ecb3be4c1.json) |
-| `logs/workers/worker_code_prepare_olmo_temp09_experiment_20260514T203351_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b4/b48b61da6e4ad21c6a19.json) |
-| `logs/workers/worker_code_prepare_olmo_temp09_submission_20260514T203347_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c0/c0a0d74849fd770bca17.json) |
-| `logs/workers/worker_code_prompted_generation_20260517T084602_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9e/9e93c6742cb49c7551fd.json) |
-| `logs/workers/worker_code_qwen25_14b_multistrategy_prep_20260519T025659_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d6/d64d1132e97e117df753.json) |
-| `logs/workers/worker_code_qwen25_14b_restart_20260517T130946_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4e/4ecacc1a6ebb0db7d34e.json) |
-| `logs/workers/worker_code_qwen25_7b_selfref_001_20260522T121946_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bf/bf43ea9c789b9303d9a6.json) |
-| `logs/workers/worker_code_recursive-gen-chain_20260514T095847_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3f/3f430774f8cec9dbea8b.json) |
-| `logs/workers/worker_code_ref_model_ablation_001_20260516T074944_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/15/15f43fa4d9bd8cf1a7ff.json) |
-| `logs/workers/worker_code_reference_free_baseline_20260517T045516_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/50/50513e7db17ca72ad15f.json) |
-| `logs/workers/worker_code_remaining_3x3_scripts_20260514T193717_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/81/818fc9a9273d241ca790.json) |
-| `logs/workers/worker_code_remaining_baselines_20260514T201130_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/56/561ccc7fb064a3eda20e.json) |
-| `logs/workers/worker_code_rename_dcol_deprecated_20260514T193215_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6a/6aaac2fa6920349e9d7d.json) |
-| `logs/workers/worker_code_second_seed_replication_a_20260517T033224_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/83/83b44775362ae05a5b70.json) |
-| `logs/workers/worker_code_submit_olmo_temp09_20260514T182428_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9d/9db9e5365ea15d2c7fa0.json) |
-| `logs/workers/worker_code_submit_pythia_topk50_20260514T182132_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e5/e5cd117007e46d8d5808.json) |
-| `logs/workers/worker_code_temp07_pilot_pythia_001_20260515T155152_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f2/f28263be8fe6cec8a004.json) |
-| `logs/workers/worker_code_temp07_pilot_pythia_001_20260515T163617_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a9/a9e2151f536cd6f6af31.json) |
-| `logs/workers/worker_code_unify_auc_data_sources_20260515T043454_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bb/bbca728a3fc8f5e8f1ee.json) |
-| `logs/workers/worker_code_wild_data_calibration_002_20260516T002255_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/20/2099ecd765c037aaf749.json) |
-| `logs/workers/worker_code_wild_data_calibration_003_20260516T013319_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/fd/fd1d79ed1a9c9051c67e.json) |
-| `logs/workers/worker_code_wild_data_calibration_005_20260516T045705_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/97/97a55d7db4793f0899a9.json) |
-| `logs/workers/worker_code_wild_data_calibration_015_20260522T080508_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/36/36d14604feb893f242c8.json) |
-| `logs/workers/worker_code_wild_data_pipeline_plan_015_20260517T143556_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0b/0be5d7b82e6251db5b91.json) |
-| `logs/workers/worker_code_zeroshot_baseline_prep_20260515T004650_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8b/8bf880ac9e98896233cc.json) |
-| `logs/workers/worker_code_zeroshot_llm_500_001_20260515T161117_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/84/84034538fd4220d35304.json) |
-| `logs/workers/worker_code_zeroshot_llm_500_001_20260515T163627_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/87/879389b434e717918ecd.json) |
-| `logs/workers/worker_code_zeroshot_qwen7b_500_001_20260516T013534_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/31/31eceb079f99c6e838d9.json) |
-| `logs/workers/worker_data_feat_ablation_artifact_20260515T194617_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/97/97ad0722b40afe504b7d.json) |
-| `logs/workers/worker_data_seed-prep_20260514T095557_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0b/0b24f1fefabf94056e01.json) |
-| `logs/workers/worker_data_xgboost_lgbm_paper_data_20260515T194627_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d4/d451a21562f25de915e4.json) |
-| `logs/workers/worker_deploy_baseline-scripts-and-extract-mink_20260519T140337_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3d/3d9a34b898c09589b75c.json) |
-| `logs/workers/worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f5/f55d598cf11494bdd20a.json) |
-| `logs/workers/worker_deploy_mink-to-gpu6000pro2_20260519T140015_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/fe/fed4125b32b59d514a82.json) |
-| `logs/workers/worker_deploy_urgent-baseline-scripts-gpu6000pro2_20260519T142327_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/93/931ff10c6a1c67a2c898.json) |
-| `logs/workers/worker_design_plan_013_downstream_curation_20260515T212947_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/75/75fe3992c75ef796cf52.json) |
-| `logs/workers/worker_diag_dcol_deberta_003_20260515T020544_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b7/b72ec3fa14287336d919.json) |
-| `logs/workers/worker_diagnose_cross_model_olmo_002_20260514T170358_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c3/c3d13fd7275fcfaf84d0.json) |
-| `logs/workers/worker_diagnose_cross_model_olmo_002_20260514T182106_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/27/271621437c4461f07a13.json) |
-| `logs/workers/worker_diagnose_dcol_deberta_002_oom_20260514T224140_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/04/043cab10443f8406aab5.json) |
-| `logs/workers/worker_diagnose_depth_extension_binary_pairwise_001_20260515T060402_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ea/ea6b00138e6d8f61b391.json) |
-| `logs/workers/worker_diagnose_detectgpt_ordinal_baseline_003_20260519T175656_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4e/4e90b5a8a35c651903b1.json) |
-| `logs/workers/worker_diagnose_n2_deberta_finetune_001_20260515T131545_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/dd/dd517f8376531688bf80.json) |
-| `logs/workers/worker_diagnose_n2_roberta_convergence_20260515T124221_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5e/5eef72a083b1bd51cace.json) |
-| `logs/workers/worker_diagnose_qwen25_14b_scale_002_20260517T143600_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/16/16514b98a9d59dcae9a6.json) |
-| `logs/workers/worker_diagnose_qwen25_14b_scale_002_failure_20260518T181615_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/83/831fe206ecacc1e7face.json) |
-| `logs/workers/worker_diagnose_qwen25_1p5b_instruct_001_20260517T161832_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/71/716392796023d5de9054.json) |
-| `logs/workers/worker_diagnosis_qwen25_14b_scale_003_20260518T191220_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a5/a57a90d0dcb5b11531df.json) |
-| `logs/workers/worker_eval_binoculars_14b_topk50_20260520T053504_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/97/97627a7f22aa6f95144e.json) |
-| `logs/workers/worker_eval_binoculars_14b_topk50_check_20260520T054700_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/48/484a993d40076b7e9b01.json) |
-| `logs/workers/worker_eval_binoculars_14b_topk50_recovery_20260520T054202_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/10/107ed08ab17c1b73ad98.json) |
-| `logs/workers/worker_eval_pythia_topk50_001_20260514T183056_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a2/a2caf3a93ac7e15a63c8.json) |
-| `logs/workers/worker_exp_14b_cross_ref_001_20260521T070619_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d9/d9799036cef8b864b548.json) |
-| `logs/workers/worker_exp_ablation_pca_supplement_20260515T173806_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7e/7e1c2b26411b159027d5.json) |
-| `logs/workers/worker_exp_accum_discovery_20260521T070711_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/62/625b81eee8532ace8cfb.json) |
-| `logs/workers/worker_exp_accum_olmo_temp_001_20260521T072723_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b7/b7fc2d58087d4dd0e77a.json) |
-| `logs/workers/worker_exp_accum_olmo_temp_mix50_20260522T045521_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6c/6c5661f5709af31b17c9.json) |
-| `logs/workers/worker_exp_accum_pythia_nuc_001_20260521T072324_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f5/f5ac880aeda961717de9.json) |
-| `logs/workers/worker_exp_accum_pythia_nuc_002_20260521T114751_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3b/3b75f92044c16a4befdc.json) |
-| `logs/workers/worker_exp_accum_pythia_nuc_mix50_20260522T021144_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f8/f82335bdad5788e6da4b.json) |
-| `logs/workers/worker_exp_conditional_pi_001_20260521T070638_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e1/e1a664fcaeba94c6e672.json) |
-| `logs/workers/worker_exp_conditional_pi_002_20260522T021207_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bf/bffa513eb41276c44d00.json) |
-| `logs/workers/worker_exp_d4_depth_extension_gpt2xl_20260518T183412_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/16/16f2614782d7f9630d9a.json) |
-| `logs/workers/worker_exp_d4_depth_extension_olmo_20260518T190341_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4c/4c6548070c09bf99ea52.json) |
-| `logs/workers/worker_exp_d4_depth_extension_pythia_20260518T185442_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/38/389f34fd450c7b010702.json) |
-| `logs/workers/worker_exp_downstream_benchmark_002_20260517T172537_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/52/522aa5fc84c90b8fc0fa.json) |
-| `logs/workers/worker_exp_feat_ablation_parallel_20260515T193305_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/36/36932daa56610965d315.json) |
-| `logs/workers/worker_exp_feature_ablation_9cell_20260515T171759_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/21/214306c732b8574541f2.json) |
-| `logs/workers/worker_exp_feature_ablation_9cell_harvest_20260515T184719_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a3/a3aa49e2e4fbe5eb96d4.json) |
-| `logs/workers/worker_exp_feature_ablation_9cell_monitor_20260515T184207_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/eb/eb00e269b65dac97a5c9.json) |
-| `logs/workers/worker_exp_feature_ablation_collect_phase1_20260515T185659_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/1e/1e35a851986d15939d5d.json) |
-| `logs/workers/worker_exp_feature_ablation_overlap_and_merged_20260519T193520_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e4/e4501350284a73283fe9.json) |
-| `logs/workers/worker_exp_feature_importance_ablation_20260517T205142_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7d/7d89e63b2e02639006c5.json) |
-| `logs/workers/worker_exp_fpr_coverage_001_20260521T070655_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4f/4f9dc0be4326233ef731.json) |
-| `logs/workers/worker_exp_instruct_bf16_fix_20260517T185702_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6e/6eb97b41e6c9b87e1d92.json) |
-| `logs/workers/worker_exp_learned_estimator_resweep_westd_20260517T180629_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/09/091c2389b404296a0e9d.json) |
-| `logs/workers/worker_exp_olmo_seed43_001_20260518T151655_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/91/91fda0aec3647b1b3ef6.json) |
-| `logs/workers/worker_exp_plan_013_downstream_curation_poc_20260515T213758_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b3/b3dd679f0688fea63d6c.json) |
-| `logs/workers/worker_exp_plan_015_dolma_supplement_20260515T214713_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f4/f44fc254130aea712c7e.json) |
-| `logs/workers/worker_exp_plan_015_gpt2xl_wild_calibration_20260515T223324_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/44/44037e63c2b9d1286db0.json) |
-| `logs/workers/worker_exp_plan_015_olmo_wild_calibration_20260515T224354_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c3/c3f847237eafded81efe.json) |
-| `logs/workers/worker_exp_plan_015_wild_data_calibration_20260515T212643_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b3/b303f6a7615547c606f9.json) |
-| `logs/workers/worker_exp_plan_015_wild_data_design_20260515T193645_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bc/bcfbf43b11a8ad498a67.json) |
-| `logs/workers/worker_exp_plan_015_wild_features_gpu_20260517T151732_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6b/6b2d84367f576cfa1ff7.json) |
-| `logs/workers/worker_exp_plan_018_binoculars_baseline_20260517T133152_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f2/f2bfdddfcdf85d788f51.json) |
-| `logs/workers/worker_exp_plan_020_bootstrap_ci_20260517T140847_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/70/70ed1638ccdf6db01813.json) |
-| `logs/workers/worker_exp_plan_021_instruct_model_20260517T145549_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/63/63515f92227363d2b83f.json) |
-| `logs/workers/worker_exp_plan_021_instruct_model_20260517T153626_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9a/9ae1b4c6b6c7823e61ad.json) |
-| `logs/workers/worker_exp_proto_full_rerun_westd_cuda1_20260517T182509_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/12/1244558bee7f697625a8.json) |
-| `logs/workers/worker_exp_pythia_seed43_001_20260518T130548_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6c/6c7a061ba029cc9ce00e.json) |
-| `logs/workers/worker_exp_qwen25_14b_scale_cuda0_20260517T174654_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d8/d874ce62982ae0d73585.json) |
-| `logs/workers/worker_exp_r3n5_strategy_classify_20260516T045604_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0d/0d4fdade4a4686b9f591.json) |
-| `logs/workers/worker_exp_r3w5_xgboost_lgbm_baseline_20260515T193827_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/40/40a0dace01d8fff261ec.json) |
-| `logs/workers/worker_exp_rf_seed_robustness_20260517T203625_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b9/b98c3e7d0cc641c3fdb7.json) |
-| `logs/workers/worker_exp_shap_analysis_r3n3_20260515T190141_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/01/0148f27d53d60f003eec.json) |
-| `logs/workers/worker_exp_shap_and_lr_zscore_20260515T170353_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/69/6975992046e6eed80fe8.json) |
-| `logs/workers/worker_exp_single_feature_p90ppl_20260517T224525_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ed/edb01700a12c69a44be0.json) |
-| `logs/workers/worker_exp_w2_domain_bias_design_20260515T191751_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8c/8cbe1381a376a40b4ccb.json) |
-| `logs/workers/worker_exp_w2_logo_bugfix_rerun_20260515T200026_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a8/a8da8482f32bc8c72f89.json) |
-| `logs/workers/worker_exp_xgb_lgbm_3cell_consistent_20260515T194731_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/38/387249281614e445e687.json) |
-| `logs/workers/worker_experiment_depth_extension_binary_pairwise_002_20260515T060515_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d3/d3476f38653e287f9edb.json) |
-| `logs/workers/worker_experiment_lr_zscore_cross_strategy_001_20260515T094139_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c2/c2fb3360a349ebaa505f.json) |
-| `logs/workers/worker_experiment_plan_005_cross_model_loo_detailed_20260515T050435_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/77/77b9a311df1576112696.json) |
-| `logs/workers/worker_experiment_plan_007_cross_strategy_loo_zscore_20260515T050637_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9a/9a5e1588ec75900db472.json) |
-| `logs/workers/worker_figures_atlas_figure_bugfix_20260515T042039_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e1/e18d26b4c1067ab36560.json) |
-| `logs/workers/worker_figures_atlas_figure_fixes_20260515T042151_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/84/84c6578008a68c666cbc.json) |
-| `logs/workers/worker_figures_atlas_paper_figures_20260515T040104_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/70/70be8f2fa9a818fe978b.json) |
-| `logs/workers/worker_figures_edd_fix_v2_20260515T042848_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0a/0a33f76dc2c2440e87bf.json) |
-| `logs/workers/worker_fix_accum_baseline_and_check_baselines_20260519T131726_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/be/be6d86512c71f39c1bb8.json) |
-| `logs/workers/worker_fix_atlas_data_errors_20260515T165653_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/23/237f9d7c2afcc1002d5e.json) |
-| `logs/workers/worker_fix_atlas_olmo_d4v5_typo_20260515T150214_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c2/c2995976696bebf26666.json) |
-| `logs/workers/worker_fix_atlas_tex_critical_review_20260515T161519_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b7/b74b11e5f5b14f4988f0.json) |
-| `logs/workers/worker_fix_binoculars_14b_json_naming_20260520T052230_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4e/4edc2181d137159b0541.json) |
-| `logs/workers/worker_fix_cleanup_tmux_and_submit_n2_20260515T121325_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0c/0c8b0cae566cb3b0e524.json) |
-| `logs/workers/worker_fix_depth_extension_olmo_d4d5_001_20260515T103056_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/64/640ac6a0b5c0de232cb6.json) |
-| `logs/workers/worker_fix_edd_summary_stats_20260515T044024_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/be/bec6e97a4dd324099aac.json) |
-| `logs/workers/worker_fix_generalization_tex_integration_20260515T161350_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/44/4460e0ffd0ce7b56cec1.json) |
-| `logs/workers/worker_fix_gpt2xl_seed43_eval_v2_20260518T130134_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c4/c416b2ddcd3fc9cbc103.json) |
-| `logs/workers/worker_fix_gpt2xl_seed43_eval_v3_20260518T130527_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e8/e8bc9234c459efc02cd2.json) |
-| `logs/workers/worker_fix_matrix_analysis_warnings_20260515T021640_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/32/3256748d898534ec2e4e.json) |
-| `logs/workers/worker_fix_n2_roberta_finetune_001_20260515T122400_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/72/72b6ca59bcace1709ff2.json) |
-| `logs/workers/worker_fix_qwen25-1p5b-instruct-002_20260517T185750_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/95/95a0aaad6d562987882c.json) |
-| `logs/workers/worker_fix_roberta_download_modelscope_20260515T121342_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/06/06f52ce1520b3562531b.json) |
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/workers/worker_code_fix_eval_pythia_topk50_20260514T184732_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-fix-eval-pythia-topk50.md) | [Open JSON](../sessions/d7/d71a8297e54c058825c0.json) |
+| `logs/workers/worker_code_fix_fig4_atlas_heatmap_20260515T180645_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-fix-fig4-atlas-heatmap.md) | [Open JSON](../sessions/f7/f74e19a4f1ed78aabb9b.json) |
+| `logs/workers/worker_code_fix_fig4_rounding_20260515T181139_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-fix-fig4-rounding.md) | [Open JSON](../sessions/c8/c8acd46ee4db3c916c5a.json) |
+| `logs/workers/worker_code_gen_length_ablation_c_20260517T045550_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-gen-length-ablation-c.md) | [Open JSON](../sessions/93/938dd0d990b8219e08f0.json) |
+| `logs/workers/worker_code_gpt2xl_ref_model_a2_20260516T174038_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-gpt2xl-ref-model-a2.md) | [Open JSON](../sessions/f9/f9b2f81aec19a6abd1c3.json) |
+| `logs/workers/worker_code_gpt2xl_seed43_001_20260518T081955_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-gpt2xl-seed43-001.md) | [Open JSON](../sessions/a1/a14ac8bb559030d94490.json) |
+| `logs/workers/worker_code_gpt2xl_topk50_001_20260514T224607_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-gpt2xl-topk50-001.md) | [Open JSON](../sessions/5c/5c53d1f625dcc50f73e5.json) |
+| `logs/workers/worker_code_granularity_ablation_rf_001_20260515T091818_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-granularity-ablation-rf-001.md) | [Open JSON](../sessions/bf/bf015f676ac33561ebc3.json) |
+| `logs/workers/worker_code_lora_rank_ablation_a1_20260516T174023_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-lora-rank-ablation-a1.md) | [Open JSON](../sessions/20/203d73e4add4a64a626b.json) |
+| `logs/workers/worker_code_mixed_depth_corpus_b_20260517T035401_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-mixed-depth-corpus-b.md) | [Open JSON](../sessions/2d/2d30f5cc6b66f98dd133.json) |
+| `logs/workers/worker_code_mlp_19feat_baseline_20260517T115718_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-mlp-19feat-baseline.md) | [Open JSON](../sessions/5d/5d12f9e61be2c314950a.json) |
+| `logs/workers/worker_code_multi_tau_ablation_001_20260516T015650_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-multi-tau-ablation-001.md) | [Open JSON](../sessions/d6/d660fe8afe6515efad7d.json) |
+| `logs/workers/worker_code_n2_deberta_finetune_20260515T112648_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-n2-deberta-finetune.md) | [Open JSON](../sessions/29/299a5955781a61a2960f.json) |
+| `logs/workers/worker_code_n2_feature_overlap_analysis_20260515T123203_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-n2-feature-overlap-analysis.md) | [Open JSON](../sessions/ed/ede6699f499d02f210b2.json) |
+| `logs/workers/worker_code_n4_reverse_chain_prep_20260516T140408_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-n4-reverse-chain-prep.md) | [Open JSON](../sessions/32/32ef144b66209fe78b03.json) |
+| `logs/workers/worker_code_olmo-depth-ext-prep_20260515T091735_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-olmo-depth-ext-prep.md) | [Open JSON](../sessions/4d/4da97b1d6dc9b558655c.json) |
+| `logs/workers/worker_code_olmo_nucleus_eval_20260514T182449_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-olmo-nucleus-eval.md) | [Open JSON](../sessions/93/932fb4fca446cceb4855.json) |
+| `logs/workers/worker_code_olmo_temp09_001_20260514T222144_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-olmo-temp09-001.md) | [Open JSON](../sessions/da/da06fbdb510e7bc196c0.json) |
+| `logs/workers/worker_code_olmo_temp09_002_resume_script_20260514T230046_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-olmo-temp09-002-resume-script.md) | [Open JSON](../sessions/e5/e58bd4dd17b90800677c.json) |
+| `logs/workers/worker_code_olmo_topk50_001_prep_20260514T224618_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-olmo-topk50-001-prep.md) | [Open JSON](../sessions/ea/ea7df9a96c23a72e0acb.json) |
+| `logs/workers/worker_code_pipeline_scripts_3x3_20260514T171704_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-pipeline-scripts-3x3.md) | [Open JSON](../sessions/ab/abc9a3b10cfbfce2cdc1.json) |
+| `logs/workers/worker_code_plan_015_wild_data_prep_20260516T045647_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan-015-wild-data-prep.md) | [Open JSON](../sessions/b4/b4d3e8a5d9134706830d.json) |
+| `logs/workers/worker_code_plan_018_binoculars_fdgpt_20260522T094023_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan-018-binoculars-fdgpt.md) | [Open JSON](../sessions/a9/a923542509b4d4affceb.json) |
+| `logs/workers/worker_code_plan_022_text_length_20260517T124748_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan-022-text-length.md) | [Open JSON](../sessions/0a/0a51b67dd1595b4e76bd.json) |
+| `logs/workers/worker_code_plan_024_downstream_benchmark_20260517T155538_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan-024-downstream-benchmark.md) | [Open JSON](../sessions/2c/2caa48d12fa187ccd6d3.json) |
+| `logs/workers/worker_code_plan_025_learned_estimator_20260517T155600_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan-025-learned-estimator.md) | [Open JSON](../sessions/35/357c95148f78c18a6244.json) |
+| `logs/workers/worker_code_prep_remaining_scripts_20260514T174849_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-prep-remaining-scripts.md) | [Open JSON](../sessions/a9/a961ee3963d57c2c06d3.json) |
+| `logs/workers/worker_code_prepare_last_two_3x3_cells_20260514T223033_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-prepare-last-two-3x3-cells.md) | [Open JSON](../sessions/64/643fc111602ecb3be4c1.json) |
+| `logs/workers/worker_code_prepare_olmo_temp09_experiment_20260514T203351_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-prepare-olmo-temp09-experiment.md) | [Open JSON](../sessions/b4/b48b61da6e4ad21c6a19.json) |
+| `logs/workers/worker_code_prepare_olmo_temp09_submission_20260514T203347_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-prepare-olmo-temp09-submission.md) | [Open JSON](../sessions/c0/c0a0d74849fd770bca17.json) |
+| `logs/workers/worker_code_prompted_generation_20260517T084602_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-prompted-generation.md) | [Open JSON](../sessions/9e/9e93c6742cb49c7551fd.json) |
+| `logs/workers/worker_code_qwen25_14b_multistrategy_prep_20260519T025659_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-qwen25-14b-multistrategy-prep.md) | [Open JSON](../sessions/d6/d64d1132e97e117df753.json) |
+| `logs/workers/worker_code_qwen25_14b_restart_20260517T130946_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-qwen25-14b-restart.md) | [Open JSON](../sessions/4e/4ecacc1a6ebb0db7d34e.json) |
+| `logs/workers/worker_code_qwen25_7b_selfref_001_20260522T121946_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-qwen25-7b-selfref-001.md) | [Open JSON](../sessions/bf/bf43ea9c789b9303d9a6.json) |
+| `logs/workers/worker_code_recursive-gen-chain_20260514T095847_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-recursive-gen-chain.md) | [Open JSON](../sessions/3f/3f430774f8cec9dbea8b.json) |
+| `logs/workers/worker_code_ref_model_ablation_001_20260516T074944_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-ref-model-ablation-001.md) | [Open JSON](../sessions/15/15f43fa4d9bd8cf1a7ff.json) |
+| `logs/workers/worker_code_reference_free_baseline_20260517T045516_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-reference-free-baseline.md) | [Open JSON](../sessions/50/50513e7db17ca72ad15f.json) |
+| `logs/workers/worker_code_remaining_3x3_scripts_20260514T193717_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-remaining-3x3-scripts.md) | [Open JSON](../sessions/81/818fc9a9273d241ca790.json) |
+| `logs/workers/worker_code_remaining_baselines_20260514T201130_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-remaining-baselines.md) | [Open JSON](../sessions/56/561ccc7fb064a3eda20e.json) |
+| `logs/workers/worker_code_rename_dcol_deprecated_20260514T193215_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-rename-dcol-deprecated.md) | [Open JSON](../sessions/6a/6aaac2fa6920349e9d7d.json) |
+| `logs/workers/worker_code_second_seed_replication_a_20260517T033224_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-second-seed-replication-a.md) | [Open JSON](../sessions/83/83b44775362ae05a5b70.json) |
+| `logs/workers/worker_code_submit_olmo_temp09_20260514T182428_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-submit-olmo-temp09.md) | [Open JSON](../sessions/9d/9db9e5365ea15d2c7fa0.json) |
+| `logs/workers/worker_code_submit_pythia_topk50_20260514T182132_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-submit-pythia-topk50.md) | [Open JSON](../sessions/e5/e5cd117007e46d8d5808.json) |
+| `logs/workers/worker_code_temp07_pilot_pythia_001_20260515T155152_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-temp07-pilot-pythia-001-copy-2.md) | [Open JSON](../sessions/f2/f28263be8fe6cec8a004.json) |
+| `logs/workers/worker_code_temp07_pilot_pythia_001_20260515T163617_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-temp07-pilot-pythia-001.md) | [Open JSON](../sessions/a9/a9e2151f536cd6f6af31.json) |
+| `logs/workers/worker_code_unify_auc_data_sources_20260515T043454_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-unify-auc-data-sources.md) | [Open JSON](../sessions/bb/bbca728a3fc8f5e8f1ee.json) |
+| `logs/workers/worker_code_wild_data_calibration_002_20260516T002255_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-wild-data-calibration-002.md) | [Open JSON](../sessions/20/2099ecd765c037aaf749.json) |
+| `logs/workers/worker_code_wild_data_calibration_003_20260516T013319_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-wild-data-calibration-003.md) | [Open JSON](../sessions/fd/fd1d79ed1a9c9051c67e.json) |
+| `logs/workers/worker_code_wild_data_calibration_005_20260516T045705_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-wild-data-calibration-005.md) | [Open JSON](../sessions/97/97a55d7db4793f0899a9.json) |
+| `logs/workers/worker_code_wild_data_calibration_015_20260522T080508_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-wild-data-calibration-015.md) | [Open JSON](../sessions/36/36d14604feb893f242c8.json) |
+| `logs/workers/worker_code_wild_data_pipeline_plan_015_20260517T143556_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-wild-data-pipeline-plan-015.md) | [Open JSON](../sessions/0b/0be5d7b82e6251db5b91.json) |
+| `logs/workers/worker_code_zeroshot_baseline_prep_20260515T004650_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-zeroshot-baseline-prep.md) | [Open JSON](../sessions/8b/8bf880ac9e98896233cc.json) |
+| `logs/workers/worker_code_zeroshot_llm_500_001_20260515T161117_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-zeroshot-llm-500-001-copy-2.md) | [Open JSON](../sessions/84/84034538fd4220d35304.json) |
+| `logs/workers/worker_code_zeroshot_llm_500_001_20260515T163627_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-zeroshot-llm-500-001.md) | [Open JSON](../sessions/87/879389b434e717918ecd.json) |
+| `logs/workers/worker_code_zeroshot_qwen7b_500_001_20260516T013534_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-zeroshot-qwen7b-500-001.md) | [Open JSON](../sessions/31/31eceb079f99c6e838d9.json) |
+| `logs/workers/worker_data_feat_ablation_artifact_20260515T194617_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/data-feat-ablation-artifact.md) | [Open JSON](../sessions/97/97ad0722b40afe504b7d.json) |
+| `logs/workers/worker_data_seed-prep_20260514T095557_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/data-seed-prep.md) | [Open JSON](../sessions/0b/0b24f1fefabf94056e01.json) |
+| `logs/workers/worker_data_xgboost_lgbm_paper_data_20260515T194627_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/data-xgboost-lgbm-paper-data.md) | [Open JSON](../sessions/d4/d451a21562f25de915e4.json) |
+| `logs/workers/worker_deploy_baseline-scripts-and-extract-mink_20260519T140337_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/deploy-baseline-scripts-and-extract-mink.md) | [Open JSON](../sessions/3d/3d9a34b898c09589b75c.json) |
+| `logs/workers/worker_deploy_check_baseline_readiness_gpu6000pro2_20260519T133707_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/deploy-check-baseline-readiness-gpu6000pro2.md) | [Open JSON](../sessions/f5/f55d598cf11494bdd20a.json) |
+| `logs/workers/worker_deploy_mink-to-gpu6000pro2_20260519T140015_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/deploy-mink-to-gpu6000pro2.md) | [Open JSON](../sessions/fe/fed4125b32b59d514a82.json) |
+| `logs/workers/worker_deploy_urgent-baseline-scripts-gpu6000pro2_20260519T142327_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/deploy-urgent-baseline-scripts-gpu6000pro2.md) | [Open JSON](../sessions/93/931ff10c6a1c67a2c898.json) |
+| `logs/workers/worker_design_plan_013_downstream_curation_20260515T212947_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/design-plan-013-downstream-curation.md) | [Open JSON](../sessions/75/75fe3992c75ef796cf52.json) |
+| `logs/workers/worker_diag_dcol_deberta_003_20260515T020544_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diag-dcol-deberta-003.md) | [Open JSON](../sessions/b7/b72ec3fa14287336d919.json) |
+| `logs/workers/worker_diagnose_cross_model_olmo_002_20260514T170358_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnose-cross-model-olmo-002-copy-2.md) | [Open JSON](../sessions/c3/c3d13fd7275fcfaf84d0.json) |
+| `logs/workers/worker_diagnose_cross_model_olmo_002_20260514T182106_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnose-cross-model-olmo-002.md) | [Open JSON](../sessions/27/271621437c4461f07a13.json) |
+| `logs/workers/worker_diagnose_dcol_deberta_002_oom_20260514T224140_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnose-dcol-deberta-002-oom.md) | [Open JSON](../sessions/04/043cab10443f8406aab5.json) |
+| `logs/workers/worker_diagnose_depth_extension_binary_pairwise_001_20260515T060402_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnose-depth-extension-binary-pairwise-001.md) | [Open JSON](../sessions/ea/ea6b00138e6d8f61b391.json) |
+| `logs/workers/worker_diagnose_detectgpt_ordinal_baseline_003_20260519T175656_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnose-detectgpt-ordinal-baseline-003.md) | [Open JSON](../sessions/4e/4e90b5a8a35c651903b1.json) |
+| `logs/workers/worker_diagnose_n2_deberta_finetune_001_20260515T131545_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnose-n2-deberta-finetune-001.md) | [Open JSON](../sessions/dd/dd517f8376531688bf80.json) |
+| `logs/workers/worker_diagnose_n2_roberta_convergence_20260515T124221_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnose-n2-roberta-convergence.md) | [Open JSON](../sessions/5e/5eef72a083b1bd51cace.json) |
+| `logs/workers/worker_diagnose_qwen25_14b_scale_002_20260517T143600_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnose-qwen25-14b-scale-002.md) | [Open JSON](../sessions/16/16514b98a9d59dcae9a6.json) |
+| `logs/workers/worker_diagnose_qwen25_14b_scale_002_failure_20260518T181615_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnose-qwen25-14b-scale-002-failure.md) | [Open JSON](../sessions/83/831fe206ecacc1e7face.json) |
+| `logs/workers/worker_diagnose_qwen25_1p5b_instruct_001_20260517T161832_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnose-qwen25-1p5b-instruct-001.md) | [Open JSON](../sessions/71/716392796023d5de9054.json) |
+| `logs/workers/worker_diagnosis_qwen25_14b_scale_003_20260518T191220_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/diagnosis-qwen25-14b-scale-003.md) | [Open JSON](../sessions/a5/a57a90d0dcb5b11531df.json) |
+| `logs/workers/worker_eval_binoculars_14b_topk50_20260520T053504_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/eval-binoculars-14b-topk50.md) | [Open JSON](../sessions/97/97627a7f22aa6f95144e.json) |
+| `logs/workers/worker_eval_binoculars_14b_topk50_check_20260520T054700_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/eval-binoculars-14b-topk50-check.md) | [Open JSON](../sessions/48/484a993d40076b7e9b01.json) |
+| `logs/workers/worker_eval_binoculars_14b_topk50_recovery_20260520T054202_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/eval-binoculars-14b-topk50-recovery.md) | [Open JSON](../sessions/10/107ed08ab17c1b73ad98.json) |
+| `logs/workers/worker_eval_pythia_topk50_001_20260514T183056_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/eval-pythia-topk50-001.md) | [Open JSON](../sessions/a2/a2caf3a93ac7e15a63c8.json) |
+| `logs/workers/worker_exp_14b_cross_ref_001_20260521T070619_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-14b-cross-ref-001.md) | [Open JSON](../sessions/d9/d9799036cef8b864b548.json) |
+| `logs/workers/worker_exp_ablation_pca_supplement_20260515T173806_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-ablation-pca-supplement.md) | [Open JSON](../sessions/7e/7e1c2b26411b159027d5.json) |
+| `logs/workers/worker_exp_accum_discovery_20260521T070711_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-accum-discovery.md) | [Open JSON](../sessions/62/625b81eee8532ace8cfb.json) |
+| `logs/workers/worker_exp_accum_olmo_temp_001_20260521T072723_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-accum-olmo-temp-001.md) | [Open JSON](../sessions/b7/b7fc2d58087d4dd0e77a.json) |
+| `logs/workers/worker_exp_accum_olmo_temp_mix50_20260522T045521_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-accum-olmo-temp-mix50.md) | [Open JSON](../sessions/6c/6c5661f5709af31b17c9.json) |
+| `logs/workers/worker_exp_accum_pythia_nuc_001_20260521T072324_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-accum-pythia-nuc-001.md) | [Open JSON](../sessions/f5/f5ac880aeda961717de9.json) |
+| `logs/workers/worker_exp_accum_pythia_nuc_002_20260521T114751_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-accum-pythia-nuc-002.md) | [Open JSON](../sessions/3b/3b75f92044c16a4befdc.json) |
+| `logs/workers/worker_exp_accum_pythia_nuc_mix50_20260522T021144_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-accum-pythia-nuc-mix50.md) | [Open JSON](../sessions/f8/f82335bdad5788e6da4b.json) |
+| `logs/workers/worker_exp_conditional_pi_001_20260521T070638_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-conditional-pi-001.md) | [Open JSON](../sessions/e1/e1a664fcaeba94c6e672.json) |
+| `logs/workers/worker_exp_conditional_pi_002_20260522T021207_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-conditional-pi-002.md) | [Open JSON](../sessions/bf/bffa513eb41276c44d00.json) |
+| `logs/workers/worker_exp_d4_depth_extension_gpt2xl_20260518T183412_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-d4-depth-extension-gpt2xl.md) | [Open JSON](../sessions/16/16f2614782d7f9630d9a.json) |
+| `logs/workers/worker_exp_d4_depth_extension_olmo_20260518T190341_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-d4-depth-extension-olmo.md) | [Open JSON](../sessions/4c/4c6548070c09bf99ea52.json) |
+| `logs/workers/worker_exp_d4_depth_extension_pythia_20260518T185442_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-d4-depth-extension-pythia.md) | [Open JSON](../sessions/38/389f34fd450c7b010702.json) |
+| `logs/workers/worker_exp_downstream_benchmark_002_20260517T172537_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-downstream-benchmark-002.md) | [Open JSON](../sessions/52/522aa5fc84c90b8fc0fa.json) |
+| `logs/workers/worker_exp_feat_ablation_parallel_20260515T193305_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-feat-ablation-parallel.md) | [Open JSON](../sessions/36/36932daa56610965d315.json) |
+| `logs/workers/worker_exp_feature_ablation_9cell_20260515T171759_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-feature-ablation-9cell.md) | [Open JSON](../sessions/21/214306c732b8574541f2.json) |
+| `logs/workers/worker_exp_feature_ablation_9cell_harvest_20260515T184719_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-feature-ablation-9cell-harvest.md) | [Open JSON](../sessions/a3/a3aa49e2e4fbe5eb96d4.json) |
+| `logs/workers/worker_exp_feature_ablation_9cell_monitor_20260515T184207_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-feature-ablation-9cell-monitor.md) | [Open JSON](../sessions/eb/eb00e269b65dac97a5c9.json) |
+| `logs/workers/worker_exp_feature_ablation_collect_phase1_20260515T185659_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-feature-ablation-collect-phase1.md) | [Open JSON](../sessions/1e/1e35a851986d15939d5d.json) |
+| `logs/workers/worker_exp_feature_ablation_overlap_and_merged_20260519T193520_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-feature-ablation-overlap-and-merged.md) | [Open JSON](../sessions/e4/e4501350284a73283fe9.json) |
+| `logs/workers/worker_exp_feature_importance_ablation_20260517T205142_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-feature-importance-ablation.md) | [Open JSON](../sessions/7d/7d89e63b2e02639006c5.json) |
+| `logs/workers/worker_exp_fpr_coverage_001_20260521T070655_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-fpr-coverage-001.md) | [Open JSON](../sessions/4f/4f9dc0be4326233ef731.json) |
+| `logs/workers/worker_exp_instruct_bf16_fix_20260517T185702_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-instruct-bf16-fix.md) | [Open JSON](../sessions/6e/6eb97b41e6c9b87e1d92.json) |
+| `logs/workers/worker_exp_learned_estimator_resweep_westd_20260517T180629_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-learned-estimator-resweep-westd.md) | [Open JSON](../sessions/09/091c2389b404296a0e9d.json) |
+| `logs/workers/worker_exp_olmo_seed43_001_20260518T151655_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-olmo-seed43-001.md) | [Open JSON](../sessions/91/91fda0aec3647b1b3ef6.json) |
+| `logs/workers/worker_exp_plan_013_downstream_curation_poc_20260515T213758_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-013-downstream-curation-poc.md) | [Open JSON](../sessions/b3/b3dd679f0688fea63d6c.json) |
+| `logs/workers/worker_exp_plan_015_dolma_supplement_20260515T214713_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-015-dolma-supplement.md) | [Open JSON](../sessions/f4/f44fc254130aea712c7e.json) |
+| `logs/workers/worker_exp_plan_015_gpt2xl_wild_calibration_20260515T223324_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-015-gpt2xl-wild-calibration.md) | [Open JSON](../sessions/44/44037e63c2b9d1286db0.json) |
+| `logs/workers/worker_exp_plan_015_olmo_wild_calibration_20260515T224354_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-015-olmo-wild-calibration.md) | [Open JSON](../sessions/c3/c3f847237eafded81efe.json) |
+| `logs/workers/worker_exp_plan_015_wild_data_calibration_20260515T212643_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-015-wild-data-calibration.md) | [Open JSON](../sessions/b3/b303f6a7615547c606f9.json) |
+| `logs/workers/worker_exp_plan_015_wild_data_design_20260515T193645_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-015-wild-data-design.md) | [Open JSON](../sessions/bc/bcfbf43b11a8ad498a67.json) |
+| `logs/workers/worker_exp_plan_015_wild_features_gpu_20260517T151732_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-015-wild-features-gpu.md) | [Open JSON](../sessions/6b/6b2d84367f576cfa1ff7.json) |
+| `logs/workers/worker_exp_plan_018_binoculars_baseline_20260517T133152_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-018-binoculars-baseline.md) | [Open JSON](../sessions/f2/f2bfdddfcdf85d788f51.json) |
+| `logs/workers/worker_exp_plan_020_bootstrap_ci_20260517T140847_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-020-bootstrap-ci.md) | [Open JSON](../sessions/70/70ed1638ccdf6db01813.json) |
+| `logs/workers/worker_exp_plan_021_instruct_model_20260517T145549_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-021-instruct-model.md) | [Open JSON](../sessions/63/63515f92227363d2b83f.json) |
+| `logs/workers/worker_exp_plan_021_instruct_model_20260517T153626_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan-021-instruct-model-copy-2.md) | [Open JSON](../sessions/9a/9ae1b4c6b6c7823e61ad.json) |
+| `logs/workers/worker_exp_proto_full_rerun_westd_cuda1_20260517T182509_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-proto-full-rerun-westd-cuda1.md) | [Open JSON](../sessions/12/1244558bee7f697625a8.json) |
+| `logs/workers/worker_exp_pythia_seed43_001_20260518T130548_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-pythia-seed43-001.md) | [Open JSON](../sessions/6c/6c7a061ba029cc9ce00e.json) |
+| `logs/workers/worker_exp_qwen25_14b_scale_cuda0_20260517T174654_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-qwen25-14b-scale-cuda0.md) | [Open JSON](../sessions/d8/d874ce62982ae0d73585.json) |
+| `logs/workers/worker_exp_r3n5_strategy_classify_20260516T045604_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-r3n5-strategy-classify.md) | [Open JSON](../sessions/0d/0d4fdade4a4686b9f591.json) |
+| `logs/workers/worker_exp_r3w5_xgboost_lgbm_baseline_20260515T193827_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-r3w5-xgboost-lgbm-baseline.md) | [Open JSON](../sessions/40/40a0dace01d8fff261ec.json) |
+| `logs/workers/worker_exp_rf_seed_robustness_20260517T203625_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-rf-seed-robustness.md) | [Open JSON](../sessions/b9/b98c3e7d0cc641c3fdb7.json) |
+| `logs/workers/worker_exp_shap_analysis_r3n3_20260515T190141_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-shap-analysis-r3n3.md) | [Open JSON](../sessions/01/0148f27d53d60f003eec.json) |
+| `logs/workers/worker_exp_shap_and_lr_zscore_20260515T170353_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-shap-and-lr-zscore.md) | [Open JSON](../sessions/69/6975992046e6eed80fe8.json) |
+| `logs/workers/worker_exp_single_feature_p90ppl_20260517T224525_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-single-feature-p90ppl.md) | [Open JSON](../sessions/ed/edb01700a12c69a44be0.json) |
+| `logs/workers/worker_exp_w2_domain_bias_design_20260515T191751_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-w2-domain-bias-design.md) | [Open JSON](../sessions/8c/8cbe1381a376a40b4ccb.json) |
+| `logs/workers/worker_exp_w2_logo_bugfix_rerun_20260515T200026_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-w2-logo-bugfix-rerun.md) | [Open JSON](../sessions/a8/a8da8482f32bc8c72f89.json) |
+| `logs/workers/worker_exp_xgb_lgbm_3cell_consistent_20260515T194731_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-xgb-lgbm-3cell-consistent.md) | [Open JSON](../sessions/38/387249281614e445e687.json) |
+| `logs/workers/worker_experiment_depth_extension_binary_pairwise_002_20260515T060515_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-depth-extension-binary-pairwise-002.md) | [Open JSON](../sessions/d3/d3476f38653e287f9edb.json) |
+| `logs/workers/worker_experiment_lr_zscore_cross_strategy_001_20260515T094139_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-lr-zscore-cross-strategy-001.md) | [Open JSON](../sessions/c2/c2fb3360a349ebaa505f.json) |
+| `logs/workers/worker_experiment_plan_005_cross_model_loo_detailed_20260515T050435_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-plan-005-cross-model-loo-detailed.md) | [Open JSON](../sessions/77/77b9a311df1576112696.json) |
+| `logs/workers/worker_experiment_plan_007_cross_strategy_loo_zscore_20260515T050637_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-plan-007-cross-strategy-loo-zscore.md) | [Open JSON](../sessions/9a/9a5e1588ec75900db472.json) |
+| `logs/workers/worker_figures_atlas_figure_bugfix_20260515T042039_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/figures-atlas-figure-bugfix.md) | [Open JSON](../sessions/e1/e18d26b4c1067ab36560.json) |
+| `logs/workers/worker_figures_atlas_figure_fixes_20260515T042151_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/figures-atlas-figure-fixes.md) | [Open JSON](../sessions/84/84c6578008a68c666cbc.json) |
+| `logs/workers/worker_figures_atlas_paper_figures_20260515T040104_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/figures-atlas-paper-figures.md) | [Open JSON](../sessions/70/70be8f2fa9a818fe978b.json) |
+| `logs/workers/worker_figures_edd_fix_v2_20260515T042848_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/figures-edd-fix-v2.md) | [Open JSON](../sessions/0a/0a33f76dc2c2440e87bf.json) |
+| `logs/workers/worker_fix_accum_baseline_and_check_baselines_20260519T131726_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-accum-baseline-and-check-baselines.md) | [Open JSON](../sessions/be/be6d86512c71f39c1bb8.json) |
+| `logs/workers/worker_fix_atlas_data_errors_20260515T165653_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-atlas-data-errors.md) | [Open JSON](../sessions/23/237f9d7c2afcc1002d5e.json) |
+| `logs/workers/worker_fix_atlas_olmo_d4v5_typo_20260515T150214_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-atlas-olmo-d4v5-typo.md) | [Open JSON](../sessions/c2/c2995976696bebf26666.json) |
+| `logs/workers/worker_fix_atlas_tex_critical_review_20260515T161519_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-atlas-tex-critical-review.md) | [Open JSON](../sessions/b7/b74b11e5f5b14f4988f0.json) |
+| `logs/workers/worker_fix_binoculars_14b_json_naming_20260520T052230_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-binoculars-14b-json-naming.md) | [Open JSON](../sessions/4e/4edc2181d137159b0541.json) |
+| `logs/workers/worker_fix_cleanup_tmux_and_submit_n2_20260515T121325_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-cleanup-tmux-and-submit-n2.md) | [Open JSON](../sessions/0c/0c8b0cae566cb3b0e524.json) |
+| `logs/workers/worker_fix_depth_extension_olmo_d4d5_001_20260515T103056_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-depth-extension-olmo-d4d5-001.md) | [Open JSON](../sessions/64/640ac6a0b5c0de232cb6.json) |
+| `logs/workers/worker_fix_edd_summary_stats_20260515T044024_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-edd-summary-stats.md) | [Open JSON](../sessions/be/bec6e97a4dd324099aac.json) |
+| `logs/workers/worker_fix_generalization_tex_integration_20260515T161350_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-generalization-tex-integration.md) | [Open JSON](../sessions/44/4460e0ffd0ce7b56cec1.json) |
+| `logs/workers/worker_fix_gpt2xl_seed43_eval_v2_20260518T130134_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-gpt2xl-seed43-eval-v2.md) | [Open JSON](../sessions/c4/c416b2ddcd3fc9cbc103.json) |
+| `logs/workers/worker_fix_gpt2xl_seed43_eval_v3_20260518T130527_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-gpt2xl-seed43-eval-v3.md) | [Open JSON](../sessions/e8/e8bc9234c459efc02cd2.json) |
+| `logs/workers/worker_fix_matrix_analysis_warnings_20260515T021640_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-matrix-analysis-warnings.md) | [Open JSON](../sessions/32/3256748d898534ec2e4e.json) |
+| `logs/workers/worker_fix_n2_roberta_finetune_001_20260515T122400_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-n2-roberta-finetune-001.md) | [Open JSON](../sessions/72/72b6ca59bcace1709ff2.json) |
+| `logs/workers/worker_fix_qwen25-1p5b-instruct-002_20260517T185750_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-qwen25-1p5b-instruct-002.md) | [Open JSON](../sessions/95/95a0aaad6d562987882c.json) |
+| `logs/workers/worker_fix_roberta_download_modelscope_20260515T121342_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-roberta-download-modelscope.md) | [Open JSON](../sessions/06/06f52ce1520b3562531b.json) |

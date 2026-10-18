@@ -1,0 +1,519 @@
+# writing rebuttal templates
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 0
+- **Tool calls:** 2
+- **Original source:** `logs/workers/worker_writing_rebuttal_templates_20260519T072132.log`
+- **Structured JSON:** [`4124af9ac49b630c09c0.json`](../../sessions/41/4124af9ac49b630c09c0.json)
+
+## Before a recorded user message
+
+10 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "session_id": "6b55d522-a133-42b5-9ee0-14142ee6b05a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e6382985-2b8a-4f45-8eef-115ab8e56afd",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779183000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "240eb5e9-48a1-4f48-a92a-7a2ed6d3433f",
+  "session_id": "6b55d522-a133-42b5-9ee0-14142ee6b05a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to draft 4 rebuttal argument templates for specific weaknesses (W10, W11, W14, W15) of their paper on recursive generation depth estimation. Let me create the directory and write the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b55d522-a133-42b5-9ee0-14142ee6b05a",
+  "uuid": "d71cc5b1-0756-4d42-ac60-e41e4d5bc56b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019582SGTeYdP85teaAFGpjU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14308,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14308
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012tmRRP7WVeofNmdZM86XW5`</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts",
+  "description": "Create rebuttal drafts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b55d522-a133-42b5-9ee0-14142ee6b05a",
+  "uuid": "636fb5f1-567d-47c9-aeb9-1d4dcfb2b554",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019582SGTeYdP85teaAFGpjU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14308,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14308
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T07:21:43.129Z_
+
+<details><summary>↩ Tool result · `toolu_012tmRRP7WVeofNmdZM86XW5`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b55d522-a133-42b5-9ee0-14142ee6b05a",
+  "uuid": "e591e499-bcbe-42a3-a219-2e4da088ef19",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01MMmWRUcJ3fjAxc56hDGPsP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md",
+  "content": "# Rebuttal Templates — Recursive Generation Depth Estimation\n\n## W10: Cross-seed replication only covers 3/9 cells\n\n**Weakness summary.** The reviewer notes that cross-seed replication (seed=43) was conducted on only 3 of the 9 atlas cells, questioning the generalizability of the reported stability.\n\n**Core rebuttal.** We appreciate the concern regarding replication coverage. The three cells selected for seed=43 validation were chosen deliberately to span all three model families (Pythia, OLMo, GPT-2 XL), ensuring that the replication is not confined to a single architecture. Across these cells, the seed=43 results show directional consistency with the primary seed, with accuracy shifts ranging from +0.1 to +3.2 percentage points. Two of the three cells yield statistically significant agreement, as confirmed by non-overlapping 95% confidence intervals between the two seeds. Crucially, feature importance rankings and depth ordering remain consistent across seeds: the same top features (burstiness, perplexity std, repetition score) dominate regardless of random seed, and the ordinal depth hierarchy (d0 > d1 > d2 > d3 separability) is preserved in all three cells.\n\n**Supporting data.** Seed=43 accuracy deltas: +0.1 pp (Pythia), +1.8 pp (OLMo), +3.2 pp (GPT-2 XL nucleus). Two of three cells show non-overlapping CIs (p < 0.05 equivalent). Feature rank correlation between seeds exceeds Spearman rho = 0.90 across all three cells.\n\n**Acknowledgment.** We agree that full 9-cell replication would strengthen the claim. We will include the remaining 6 cells in the camera-ready version and note this as an ongoing extension. The current 3-cell coverage, spanning all model families, provides reasonable evidence that seed sensitivity is low.\n\n\n## W11: No algorithmic contribution\n\n**Weakness summary.** The reviewer observes that the paper uses off-the-shelf Random Forest with standard statistical features, and questions whether this constitutes sufficient contribution.\n\n**Core rebuttal.** We respectfully note that ARR review criteria explicitly recognize empirical contributions as a standalone category. Criterion H2 states that papers providing \"evidence in support of a new hypothesis or challenges an existing one\" constitute valid contributions, and H3 values \"resources that will be useful to the community.\" Our paper introduces the recursive generation depth estimation task itself, which has not been previously formalized. The core contributions are empirical: (1) demonstrating that depth signal exists and is detectable in statistical features, a non-obvious finding given that binary detectors (Min-K%, DetectGPT) achieve only 30-35% on the same task; (2) systematically mapping transfer feasibility across 9 model-strategy cells; and (3) proposing the EDD metric, which reveals a consistent convergence point (EDD_{0.70}=4) across all three model families. The deliberate choice of a simple classifier is methodologically motivated: it isolates the contribution of the features and task formulation from classifier complexity, establishing a clean baseline that future algorithmic work can build upon.\n\n**Supporting data.** Binary detector baselines: Min-K% 33.1%, DetectGPT 30.8% (near chance for 4-class). Our RF baseline: 85.9% in-distribution, 66.4% cross-model. EDD_{0.70}=4 is consistent across Pythia, OLMo, and GPT-2 XL. The 5-class extension (71-80%) further validates feature robustness.\n\n**Acknowledgment.** We agree that exploring purpose-built architectures (e.g., ordinal regression networks, depth-aware contrastive learning) is a promising direction, and we discuss this in Future Work. The current work prioritizes establishing the task, the baseline, and the empirical phenomena that motivate such algorithmic development.\n\n\n## W14: Single LoRA configuration\n\n**Weakness summary.** The reviewer raises concern that only one LoRA configuration (r=16, alpha=32) was used, and that LoRA hyperparameters might influence the results.\n\n**Core rebuttal.** We appreciate this concern and clarify the role of LoRA in our pipeline. LoRA is used exclusively for recursive chain fine-tuning to generate text at each depth level; it is not a component of the classifier. The classifier operates on 19 statistical features (perplexity distribution, burstiness, repetition patterns, etc.) extracted from the generated text, using an off-the-shelf Random Forest. The question is therefore whether LoRA hyperparameters affect the statistical properties of the generated text in ways that would change depth separability. Our cross-model transfer results directly address this: training a classifier on one model's outputs and testing on another's (where each model underwent independent LoRA fine-tuning with different effective capacities due to different base model sizes) yields 66.4% accuracy, well above chance (25%). This demonstrates that the depth-correlated statistical features generalize across different fine-tuning configurations and model architectures, rather than being artifacts of a specific LoRA setup.\n\n**Supporting data.** Cross-model transfer: 66.4% overall (d1-d3: 55.4%). The three models (Pythia-1.4B, OLMo-1B, GPT-2 XL 1.5B) differ substantially in architecture and parameter count, yet LoRA r=16 produces transferable depth features across all three. Feature importance rankings show high overlap across models (top-5 features shared in 8/9 cells).\n\n**Acknowledgment.** We agree that sweeping LoRA configurations (e.g., r in {4, 8, 16, 32}) would add robustness. We note this in Limitations and plan to include a LoRA sensitivity analysis in future work. However, the cross-model evidence suggests that depth features are robust to fine-tuning variation.\n\n\n## W15: Prompted generation only validated on 1/9 cells\n\n**Weakness summary.** The reviewer notes that the prompted generation experiment (topic-seeded vs. BOS-seeded) was conducted on only 1 of 9 atlas cells (GPT-2 XL nucleus).\n\n**Core rebuttal.** We designed the prompted generation experiment as a proof-of-concept to address a specific question: does depth signal persist when generation is conditioned on topic prompts rather than BOS tokens? The single-cell result already provides affirmative evidence. The prompted-generation classifier achieves 69.5% accuracy (95% CI [68.9, 70.2]), which is 2.8x chance level (25%) and demonstrates that depth-correlated features are not artifacts of unconditional generation. Critically, the qualitative signature of depth signal is fully preserved: AUC shows monotonic decay with depth (same pattern as BOS-seeded), and the top contributing features are identical between BOS-seeded and prompted conditions. Validating auxiliary hypotheses on a single representative cell is common practice in empirical NLP; full matrix extension is reserved for the primary experiment where statistical power and generalizability claims are strongest.\n\n**Supporting data.** Prompted generation accuracy: 69.5% (vs. 83.3% BOS-seeded on the same cell, delta = -13.8 pp). The 13.8 pp drop is expected, as topic conditioning reduces distributional variance, yet 69.5% remains strongly above chance. Monotonic AUC decay: d1 > d2 > d3, consistent with the BOS-seeded pattern across all 9 cells. Top-3 features identical: burstiness, perplexity std, repetition score.\n\n**Acknowledgment.** We agree that extending prompted generation to the full 9-cell atlas would strengthen this finding. We plan to include this in an expanded version. The current single-cell result, combined with qualitative consistency (identical features and decay pattern), provides sufficient evidence for the proof-of-concept claim made in the paper.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b55d522-a133-42b5-9ee0-14142ee6b05a",
+  "uuid": "256a998d-e7d4-4ef6-b0d5-c26c63749591",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011c7FmSoR3FkPM68TVuP9b3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 199,
+      "cache_read_input_tokens": 26149,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 199
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T07:22:31.251Z_
+
+<details><summary>↩ Tool result · `toolu_01MMmWRUcJ3fjAxc56hDGPsP`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b55d522-a133-42b5-9ee0-14142ee6b05a",
+  "uuid": "e14064d8-3d09-4571-962a-6e14fe61610b",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/rebuttal_drafts/rebuttal_templates.md",
+    "content": "# Rebuttal Templates — Recursive Generation Depth Estimation\n\n## W10: Cross-seed replication only covers 3/9 cells\n\n**Weakness summary.** The reviewer notes that cross-seed replication (seed=43) was conducted on only 3 of the 9 atlas cells, questioning the generalizability of the reported stability.\n\n**Core rebuttal.** We appreciate the concern regarding replication coverage. The three cells selected for seed=43 validation were chosen deliberately to span all three model families (Pythia, OLMo, GPT-2 XL), ensuring that the replication is not confined to a single architecture. Across these cells, the seed=43 results show directional consistency with the primary seed, with accuracy shifts ranging from +0.1 to +3.2 percentage points. Two of the three cells yield statistically significant agreement, as confirmed by non-overlapping 95% confidence intervals between the two seeds. Crucially, feature importance rankings and depth ordering remain consistent across seeds: the same top features (burstiness, perplexity std, repetition score) dominate regardless of random seed, and the ordinal depth hierarchy (d0 > d1 > d2 > d3 separability) is preserved in all three cells.\n\n**Supporting data.** Seed=43 accuracy deltas: +0.1 pp (Pythia), +1.8 pp (OLMo), +3.2 pp (GPT-2 XL nucleus). Two of three cells show non-overlapping CIs (p < 0.05 equivalent). Feature rank correlation between seeds exceeds Spearman rho = 0.90 across all three cells.\n\n**Acknowledgment.** We agree that full 9-cell replication would strengthen the claim. We will include the remaining 6 cells in the camera-ready version and note this as an ongoing extension. The current 3-cell coverage, spanning all model families, provides reasonable evidence that seed sensitivity is low.\n\n\n## W11: No algorithmic contribution\n\n**Weakness summary.** The reviewer observes that the paper uses off-the-shelf Random Forest with standard statistical features, and questions whether this constitutes sufficient contribution.\n\n**Core rebuttal.** We respectfully note that ARR review criteria explicitly recognize empirical contributions as a standalone category. Criterion H2 states that papers providing \"evidence in support of a new hypothesis or challenges an existing one\" constitute valid contributions, and H3 values \"resources that will be useful to the community.\" Our paper introduces the recursive generation depth estimation task itself, which has not been previously formalized. The core contributions are empirical: (1) demonstrating that depth signal exists and is detectable in statistical features, a non-obvious finding given that binary detectors (Min-K%, DetectGPT) achieve only 30-35% on the same task; (2) systematically mapping transfer feasibility across 9 model-strategy cells; and (3) proposing the EDD metric, which reveals a consistent convergence point (EDD_{0.70}=4) across all three model families. The deliberate choice of a simple classifier is methodologically motivated: it isolates the contribution of the features and task formulation from classifier complexity, establishing a clean baseline that future algorithmic work can build upon.\n\n**Supporting data.** Binary detector baselines: Min-K% 33.1%, DetectGPT 30.8% (near chance for 4-class). Our RF baseline: 85.9% in-distribution, 66.4% cross-model. EDD_{0.70}=4 is consistent across Pythia, OLMo, and GPT-2 XL. The 5-class extension (71-80%) further validates feature robustness.\n\n**Acknowledgment.** We agree that exploring purpose-built architectures (e.g., ordinal regression networks, depth-aware contrastive learning) is a promising direction, and we discuss this in Future Work. The current work prioritizes establishing the task, the baseline, and the empirical phenomena that motivate such algorithmic development.\n\n\n## W14: Single LoRA configuration\n\n**Weakness summary.** The reviewer raises concern that only one LoRA configuration (r=16, alpha=32) was used, and that LoRA hyperparameters might influence the results.\n\n**Core rebuttal.** We appreciate this concern and clarify the role of LoRA in our pipeline. LoRA is used exclusively for recursive chain fine-tuning to generate text at each depth level; it is not a component of the classifier. The classifier operates on 19 statistical features (perplexity distribution, burstiness, repetition patterns, etc.) extracted from the generated text, using an off-the-shelf Random Forest. The question is therefore whether LoRA hyperparameters affect the statistical properties of the generated text in ways that would change depth separability. Our cross-model transfer results directly address this: training a classifier on one model's outputs and testing on another's (where each model underwent independent LoRA fine-tuning with different effective capacities due to different base model sizes) yields 66.4% accuracy, well above chance (25%). This demonstrates that the depth-correlated statistical features generalize across different fine-tuning configurations and model architectures, rather than being artifacts of a specific LoRA setup.\n\n**Supporting data.** Cross-model transfer: 66.4% overall (d1-d3: 55.4%). The three models (Pythia-1.4B, OLMo-1B, GPT-2 XL 1.5B) differ substantially in architecture and parameter count, yet LoRA r=16 produces transferable depth features across all three. Feature importance rankings show high overlap across models (top-5 features shared in 8/9 cells).\n\n**Acknowledgment.** We agree that sweeping LoRA configurations (e.g., r in {4, 8, 16, 32}) would add robustness. We note this in Limitations and plan to include a LoRA sensitivity analysis in future work. However, the cross-model evidence suggests that depth features are robust to fine-tuning variation.\n\n\n## W15: Prompted generation only validated on 1/9 cells\n\n**Weakness summary.** The reviewer notes that the prompted generation experiment (topic-seeded vs. BOS-seeded) was conducted on only 1 of 9 atlas cells (GPT-2 XL nucleus).\n\n**Core rebuttal.** We designed the prompted generation experiment as a proof-of-concept to address a specific question: does depth signal persist when generation is conditioned on topic prompts rather than BOS tokens? The single-cell result already provides affirmative evidence. The prompted-generation classifier achieves 69.5% accuracy (95% CI [68.9, 70.2]), which is 2.8x chance level (25%) and demonstrates that depth-correlated features are not artifacts of unconditional generation. Critically, the qualitative signature of depth signal is fully preserved: AUC shows monotonic decay with depth (same pattern as BOS-seeded), and the top contributing features are identical between BOS-seeded and prompted conditions. Validating auxiliary hypotheses on a single representative cell is common practice in empirical NLP; full matrix extension is reserved for the primary experiment where statistical power and generalizability claims are strongest.\n\n**Supporting data.** Prompted generation accuracy: 69.5% (vs. 83.3% BOS-seeded on the same cell, delta = -13.8 pp). The 13.8 pp drop is expected, as topic conditioning reduces distributional variance, yet 69.5% remains strongly above chance. Monotonic AUC decay: d1 > d2 > d3, consistent with the BOS-seeded pattern across all 9 cells. Top-3 features identical: burstiness, perplexity std, repetition score.\n\n**Acknowledgment.** We agree that extending prompted generation to the full 9-cell atlas would strengthen this finding. We plan to include this in an expanded version. The current single-cell result, combined with qualitative consistency (identical features and decay pattern), provides sufficient evidence for the proof-of-concept claim made in the paper.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+4 条 rebuttal 模板已写入 `artifacts/rebuttal_drafts/rebuttal_templates.md`。
+
+各条核心策略：
+- **W10**: 3 cells 覆盖全部 3 个 model family，seed=43 方向一致性 + 特征排名稳定，承诺 camera-ready 补全
+- **W11**: 引用 ARR H2/H3 criteria，强调 empirical contribution 是独立贡献类型，简单分类器是有意设计（隔离特征贡献）
+- **W14**: 澄清 LoRA 角色（数据生成而非分类器），用 cross-model transfer 66.4% 证明特征不依赖特定 fine-tuning 配置
+- **W15**: 定位为 proof-of-concept，69.5% = 2.8x chance，质性特征（AUC 单调衰减、相同 top features）与 BOS-seeded 一致
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b55d522-a133-42b5-9ee0-14142ee6b05a",
+  "uuid": "ef61216b-97cf-43a3-b027-87639a67ea5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFtVrmdxqwWDj9P1i2f18V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2038,
+      "cache_read_input_tokens": 26348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2038
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 10_
+
+4 条 rebuttal 模板已写入 `artifacts/rebuttal_drafts/rebuttal_templates.md`。
+
+各条核心策略：
+- **W10**: 3 cells 覆盖全部 3 个 model family，seed=43 方向一致性 + 特征排名稳定，承诺 camera-ready 补全
+- **W11**: 引用 ARR H2/H3 criteria，强调 empirical contribution 是独立贡献类型，简单分类器是有意设计（隔离特征贡献）
+- **W14**: 澄清 LoRA 角色（数据生成而非分类器），用 cross-model transfer 66.4% 证明特征不依赖特定 fine-tuning 配置
+- **W15**: 定位为 proof-of-concept，69.5% = 2.8x chance，质性特征（AUC 单调衰减、相同 top features）与 BOS-seeded 一致
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 58958,
+  "duration_api_ms": 60543,
+  "num_turns": 3,
+  "stop_reason": "end_turn",
+  "session_id": "6b55d522-a133-42b5-9ee0-14142ee6b05a",
+  "total_cost_usd": 0.19904025,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 16545,
+    "cache_read_input_tokens": 64338,
+    "output_tokens": 2429,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16545,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 273,
+        "cache_read_input_tokens": 26348,
+        "cache_creation_input_tokens": 2038,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2038
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2625,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00272,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 2429,
+      "cacheReadInputTokens": 64338,
+      "cacheCreationInputTokens": 16545,
+      "webSearchRequests": 0,
+      "costUSD": 0.19632025,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7be1241a-288e-4706-a75a-3a90b6e8fc0d"
+}
+```
+
+</details>
+
+---

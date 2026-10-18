@@ -1,0 +1,78 @@
+# reviewer / loop_1.md
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_1.md`
+- **Structured JSON:** [`0575843af33ae8e797ee.json`](../../sessions/05/0575843af33ae8e797ee.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 1
+reason: max_wall_time
+updated: '2026-05-21T08:23:16+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目 Reviewer 是**只读角色**：不执行实验、不修改文件、不 ssh_execute。唯一输出渠道是 `reviewer_post_to_director`。
+- EMNLP 2026 主文硬限 **8 页**。当前实测 ~8.2 页，W5 必须在提交前解决，否则 desk reject。
+- Table 2（experiments.tex L62-78）的 ρ_α 列：LAMBADA 必须是 **-0.6**（不是 -1.0）。这个 CRITICAL 已修复，但任何后续编辑都可能回退——每次审查 experiments.tex 时优先检查 L73。
+- ρ_σ（收敛指标，Spearman between attention ratio and σ）= -1.0 for LAMBADA 是**正确的**。ρ_α（multiplicity 指标，Spearman between attention ratio and α）= -0.6 for LAMBADA。两者容易混淆，审查时必须区分。
+- BoolQ 数据只在 appendix，主文 α range 必须保持 0.10–0.30（不含 BoolQ 的 0.45）。"all p < .01" 必须限定为 3 main benchmarks。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：`westb-48145`（root），代码根目录 `/root/entrainment_gated_ft`
+- 论文本地路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/`
+- 关键文件：`main.tex`, `sections/{introduction,experiments,method,conclusion,related_work,appendix}.tex`, `author_response.tex`, `references.bib`, `arr_checklist.tex`
+- Artifacts：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/` 下有 `formal_multiplicity_metrics.json`, `*_jaccard_analysis.json`, `confidence_margin_within_category.json`, `cross_benchmark_confidence_margin.json`, `boolq_confidence_margin.json`, `loglik_range_diagnostic.json`
+- 编译输出：`main.pdf` (18 pages = 8 main + 10 appendix), 0 overfull hbox, 0 critical warnings
+- 无活跃 GPU 实验；loglik range 诊断已完成
+
+### 3. 📊 当前状态
+**刚完成**：Round 5 审稿报告（Overall 3.0 Findings）的 Action Matrix 独立评估，已 post 给 Director。评估了 5 个焦点问题：W1 seed proxy argument、W3 GPU 实验价值、W2 压缩幅度、优先级、分数预测。
+
+**等待中**：
+- Director 批准 Action Matrix 并启动 Paper Agent 执行 W1-W9
+- 可能触发 W3 GPU 实验（WinoGrande per-example decomposition）——需先查服务器是否有原始 predictions
+- Round 5 论文修改完成后需终审
+
+**Registry**：无 RUNNING/PREPARING 实验。全部 DONE。
+
+### 4. 📋 待办（条件触发式）
+- **Paper Agent 修改完成 → 全文一致性终审**：重点检查 (1) 页数 ≤ 8.0，(2) Table 2 L73 ρ_α=-0.6 未回退，(3) α range 0.10-0.30 无 BoolQ 渗透，(4) "all p<.01" scope 未扩大，(5) Limitations 是否压到 ≤3 段
+- **W2 收敛压缩完成 → 验证** Figure 2 是否保留 + Table 1 是否移至 appendix + 主文数字（ρ, p, σ, 79%）是否齐全
+- **W3 GPU 实验结果到达 → 审查** WinoGrande α 值。α≈0.10 → 强化 task-type narrative；α≈0.21 → 需讨论 within-category variance；其他值 → 旗标风险
+- **W1 seed reframe 落地 → 审查**措辞是否过强（不能说 "rules out seed effects"，只能 "suggestive"）
+- **Author response 更新 → 审查** Round 5 新问题（seed confound, format confound）的回应是否充分
+- **最终提交前 → pre-submission checklist**：grep 占位符（XX.XX/TODO/TBD）、匿名化、引用完整性
+
+### 5. 🎯 战略上下文
+**核心结论**：Hybrid recurrent architectures 的 per-example multiplicity 是 task-dependent spectrum（α=0.10-0.30），与 aggregate convergence decoupled。证据来自 3 architectures × 5 ratios × 2 scales × 3+1 benchmarks，使用 Wang 2025 model zoo。
+
+**决策链关键节点**：
+- D018：4-benchmark spectrum confirmed，BoolQ 移入 appendix（α=0.45 + 12/24 Jaccard 混合）
+- D017：Deadline 修正为 May 25（非 June 15），~4 天
+- D014：审稿策略——predictive multiplicity 为核心贡献，convergence 降为 secondary
+
+**下一个"你"最容易判断错的事**：
+1. **ρ_σ vs ρ_α 混淆**：论文中有两个 Spearman ρ。ρ_σ=-1.0（LAMBADA 收敛，正确）出现在 §4.1/Table 1/§4.5。ρ_α=-0.6（LAMBADA multiplicity，已修复）只在 Table 2。它们看起来都是 "LAMBADA 的 Spearman 相关"——但指标不同。审查时必须看上下文判断是哪个。
+2. **BoolQ "architectural similarity" 解释有逻辑漏洞**：appendix 说 RetNet-HGRN2 0/8 Jaccard 是因为 "architectural similarity of recurrent components"，但 RetNet-HGRN2 其实是三对中差异最大的一对。其他 benchmark 的 pair-specific Jaccard 可能不支持这个解释。如果审稿人追问，需要改为 "BoolQ-specific interaction"。
+3. **W1 proxy argument 的逻辑漏洞**：within-arch J≈0.33 vs cross-arch J≈0.10 的 3× gap 是 suggestive evidence for architecture > seed，但缺少 "same arch, different seed, same ratio" 的直接对照。不能呈现为 definitive proof。
+4. **Limitations 过长**：当前 6 段，EMNLP 规则说 ~3 个点就够。如果 Paper Agent 没压缩，旗标为 warning。
+5. **分数预期**：3.0→3.5 是 realistic best case。不可能到 4.0。天花板是 observational study + single zoo。不要因为修改很多就高估分数提升。
+
+
+---

@@ -81,6 +81,11 @@
       $('record-kind').textContent=kindLabel[session.kind]||session.kind;
       $('session-title').textContent=session.title;
       $('source-path').textContent=session.source.member;
+      const readablePath=entry.readable_path||session.readable_path;
+      if(readablePath){
+        $('markdown-link').href=offline?`${repository}paper-assets/${encodeURIComponent(session.project)}/05-generation-trace/${readablePath}`:new URL(readablePath,state.catalogURL).href;
+        $('markdown-link').hidden=false;
+      }else $('markdown-link').hidden=true;
       if(offline){
         if(state.previewURL)URL.revokeObjectURL(state.previewURL);
         state.previewURL=URL.createObjectURL(new Blob([JSON.stringify(session,null,2)],{type:'application/json'}));

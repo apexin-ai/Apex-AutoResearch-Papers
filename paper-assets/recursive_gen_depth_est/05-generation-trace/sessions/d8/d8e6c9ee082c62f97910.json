@@ -68,5 +68,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ssh-zeroshot-baseline-dryrun.md"
 }

@@ -1268,5 +1268,6 @@
       ],
       "message_count": 30
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ops-fp16-restart-8b-awq.md"
 }

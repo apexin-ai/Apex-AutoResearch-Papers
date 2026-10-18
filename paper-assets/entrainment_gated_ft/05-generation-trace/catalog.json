@@ -29,6 +29,7 @@
       "preview": "[PROJECT BOOTSTRAP] 项目: entrainment_gated_ft | Loop #1 | 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDEA_BRIEF.md **立刻 Read `workspace://projects/entrainment_gated_ft/docs/IDEA_BRIEF.md`**。 这份文档是 Idea 阶段立项时自动生成的正式交接，包含 Core Problem / Opportunity ",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-20260521-082008.md",
       "path": "sessions/01/01c06d01fb3b255b8d2a.json"
     },
     {
@@ -46,6 +47,7 @@
       "preview": "[PROJECT BOOTSTRAP] 项目: entrainment_gated_ft | Loop #1 | 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDEA_BRIEF.md **立刻 Read `workspace://projects/entrainment_gated_ft/docs/IDEA_BRIEF.md`**。 这份文档是 Idea 阶段立项时自动生成的正式交接，包含 Core Problem / Opportunity ",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260521-082316.md",
       "path": "sessions/7f/7fcf6b0b858ddba0937d.json"
     },
     {
@@ -63,6 +65,7 @@
       "preview": "[Director 指令] **项目: entrainment_gated_ft — MVP 准备工作（不需要 GPU）** 我们在做 hybrid linear-full attention 架构的三假设降解测试。MVP 是 Synthetic Validation Pilot。 **现在请做以下准备工作**： 1. **查找 Wang et al. (arXiv 2507.06457) 的 72 个开源 hybrid 模型**： - 在 HuggingFace 上找到他们",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/coordination-coordination-20260521-175454.md",
       "path": "sessions/78/78fa5963c8103b3db23c.json"
     },
     {
@@ -80,6 +83,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-wang-models-survey.md",
       "path": "sessions/f1/f127503a0e26c8fe4108.json"
     },
     {
@@ -97,6 +101,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-gateddeltanet-new-check.md",
       "path": "sessions/1b/1b6a8794a0b10af8e0d3.json"
     },
     {
@@ -114,6 +119,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-env-setup.md",
       "path": "sessions/c1/c1e1780fbaf9addeda8c.json"
     },
     {
@@ -131,6 +137,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-attn-heads-audit.md",
       "path": "sessions/be/be969fc972160b3eb2dd.json"
     },
     {
@@ -148,6 +155,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-1-3b-remaining-download.md",
       "path": "sessions/e8/e88662657280d164e121.json"
     },
     {
@@ -165,6 +173,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-gpu-now.md",
       "path": "sessions/8d/8de228d8d5b45b60a388.json"
     },
     {
@@ -182,6 +191,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-wang-fla-version.md",
       "path": "sessions/ce/ce368333aa8e1b4fde00.json"
     },
     {
@@ -199,6 +209,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/ssh-fla-version-investigate.md",
       "path": "sessions/e7/e7b4fac078776a22cabf.json"
     },
     {
@@ -216,6 +227,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-fla-version-online.md",
       "path": "sessions/c0/c0b07733dfb45be35f86.json"
     },
     {
@@ -233,6 +245,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-hgrn2-register.md",
       "path": "sessions/92/92ea11e016d2a09502eb.json"
     },
     {
@@ -250,6 +263,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-1-3b-remaining-eval.md",
       "path": "sessions/be/be5c3bce986b255e3dbc.json"
     },
     {
@@ -267,6 +281,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-check-new-gdn-config.md",
       "path": "sessions/82/828178803287b5139bba.json"
     },
     {
@@ -284,6 +299,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-file-inventory.md",
       "path": "sessions/dc/dcf3d4b960d4f2f04c10.json"
     },
     {
@@ -301,6 +317,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-340m-retnet-hgrn2-eval.md",
       "path": "sessions/f5/f546052d5757b8e0d545.json"
     },
     {
@@ -318,6 +335,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-gdn-h24-extract.md",
       "path": "sessions/ed/ed31cc6d618df8e91c63.json"
     },
     {
@@ -335,6 +353,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-fix-convergence-pvalues.md",
       "path": "sessions/67/67918a944a54004c7798.json"
     },
     {
@@ -352,6 +371,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-pvalue-sweep-fix.md",
       "path": "sessions/08/085b08c7e3c3302fe19a.json"
     },
     {
@@ -369,6 +389,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-task-specificity.md",
       "path": "sessions/20/205d02790691ba15be40.json"
     },
     {
@@ -386,6 +407,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-wang-differentiation.md",
       "path": "sessions/be/be53377af35161932d3a.json"
     },
     {
@@ -403,6 +425,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-exp-001-task-specificity.md",
       "path": "sessions/13/130e2db390269ae4f97d.json"
     },
     {
@@ -420,6 +443,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-exp-009-wang-differentiation.md",
       "path": "sessions/3e/3e3d51981b4ced3aea85.json"
     },
     {
@@ -437,6 +461,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-exp-003-sample-characterization.md",
       "path": "sessions/62/62292da8e6a046bc811f.json"
     },
     {
@@ -454,6 +479,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/fix-wang-differentiation-stats.md",
       "path": "sessions/f8/f80a362d873214cf2785.json"
     },
     {
@@ -471,6 +497,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-exp-003-p2.md",
       "path": "sessions/f7/f7134c40c4486dbb6437.json"
     },
     {
@@ -488,6 +515,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-storycloze-investigation.md",
       "path": "sessions/c0/c04fa36e3bea291c2388.json"
     },
     {
@@ -505,6 +533,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-exp-011-check-and-analyze.md",
       "path": "sessions/d9/d94cd60fc6e67985214e.json"
     },
     {
@@ -522,6 +551,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/check-exp-011-gpu-status.md",
       "path": "sessions/57/57f7dc7e27c81bbd0baf.json"
     },
     {
@@ -539,6 +569,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-figure-table-data-prep.md",
       "path": "sessions/53/532e26d2fea1a293d1f5.json"
     },
     {
@@ -556,6 +587,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-d009-paper-strength-assessment.md",
       "path": "sessions/2a/2abbb2cea43b205fe23b.json"
     },
     {
@@ -573,6 +605,7 @@
       "preview": "[Director 指令] [Full Draft] 写一篇 EMNLP 2026 论文，投 ARR June cycle（DDL ~June 15）。目标 Findings (3.0)。 ## 核心 Narrative Hybrid recurrent architectures 加 attention 后在 LAMBADA 上 aggregate performance 趋同（cross-arch std 降 79%），但 per-example 效应几乎不重叠（Jacc",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-agent-coordination.md",
       "path": "sessions/0b/0b774fe7103edbeaef82.json"
     },
     {
@@ -590,6 +623,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/check-exp-004-r2-completion.md",
       "path": "sessions/2e/2ef667be63b2a6cd37d4.json"
     },
     {
@@ -607,6 +641,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-figure-fig1-decoupling-hero.md",
       "path": "sessions/12/126af87dbd7e564aa416.json"
     },
     {
@@ -624,6 +659,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-figure-fig2-task-specificity.md",
       "path": "sessions/ca/ca93f33b197aa3af001e.json"
     },
     {
@@ -641,6 +677,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-research-lit-cluster-1-hybrid.md",
       "path": "sessions/52/525c3f5f7a16f4f9784d.json"
     },
     {
@@ -658,6 +695,7 @@
       "preview": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: exp-007 - project: entrainment_gated_ft - server: westb-48145 - log_path: ~/runs/entrainment_gated_ft/exp-007.log",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/cron-hook-exp-007.md",
       "path": "sessions/26/26a41f49cbe34022ee2e.json"
     },
     {
@@ -675,6 +713,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-exp-007-340m-rebound.md",
       "path": "sessions/fc/fcb49b8f7a1a37694dfa.json"
     },
     {
@@ -692,6 +731,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-method.md",
       "path": "sessions/00/00b488f4213d037bc190.json"
     },
     {
@@ -709,6 +749,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-introduction.md",
       "path": "sessions/fa/fa167c9eee156302f96b.json"
     },
     {
@@ -726,6 +767,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-related-work.md",
       "path": "sessions/70/70bedbe09d8afdf6fe31.json"
     },
     {
@@ -743,6 +785,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-conclusion.md",
       "path": "sessions/5d/5dc256c478ad3ce59ded.json"
     },
     {
@@ -760,6 +803,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-abstract.md",
       "path": "sessions/d5/d580bdc0895f3111fc53.json"
     },
     {
@@ -777,6 +821,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-jaccard-v2.md",
       "path": "sessions/6b/6bd037c4236365144dbe.json"
     },
     {
@@ -794,6 +839,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-within-scale-jaccard.md",
       "path": "sessions/b0/b04bc109f4b5da497d7b.json"
     },
     {
@@ -811,6 +857,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-transformer-baseline-perexample.md",
       "path": "sessions/e3/e35c33eb22f2f5c34652.json"
     },
     {
@@ -828,6 +875,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-null-jaccard-permutation.md",
       "path": "sessions/d0/d03f9b0b02b4d9169685.json"
     },
     {
@@ -845,6 +893,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-bootstrap-ci-decoupling.md",
       "path": "sessions/41/41f64ea7b8f278c8f383.json"
     },
     {
@@ -862,6 +911,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-exp003-p2-data-check.md",
       "path": "sessions/8c/8c75c5e5b8679abc7e88.json"
     },
     {
@@ -879,6 +929,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-within-arch-helped-stability.md",
       "path": "sessions/f5/f504aa93bbd11992444c.json"
     },
     {
@@ -896,6 +947,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-appendix-h-within-arch.md",
       "path": "sessions/29/29efbb60f8dd93d06086.json"
     },
     {
@@ -913,6 +965,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-confidence-margin-rebuttal-v2.md",
       "path": "sessions/76/7616f043659ecbbf092f.json"
     },
     {
@@ -930,6 +983,7 @@
       "preview": "系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: entrainment_gated_ft - 论文路径: projects/entrainment_gated_ft/docs/paper/main.tex - 目标 venue: EMNLP 2026 - 投稿类别: Long Paper (ARR June 2026) - 截止日期: 2026-06-15 请 `Read /home/ubuntu/agent-ml-research/skills/globa",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-copy-2.md",
       "path": "sessions/bb/bb384fed2f084cd5d585.json"
     },
     {
@@ -947,6 +1001,7 @@
       "preview": "[Round 1 审稿请求]: 你是 Reviewer 1，负责 **方法严谨性 + 实验设计 + 统计方法** 审查。 ## 投稿信息 - **Venue**: EMNLP 2026 (via ARR June 2026 cycle) - **Deadline**: 2026-06-15 - **类别**: Long Paper（正文 ≤ 8 页，参考文献不限） - **模板**: ACL 两栏格式 - **匿名规则**: Double-blind ## 论文路径 - ma",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-1-coordination.md",
       "path": "sessions/bd/bd2820d6b33e20413c51.json"
     },
     {
@@ -964,6 +1019,7 @@
       "preview": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性 + 相关工作完整性 + 论文写作质量** 审查。 ## 投稿信息 - **Venue**: EMNLP 2026 (via ARR June 2026 cycle) - **Deadline**: 2026-06-15 - **类别**: Long Paper（正文 ≤ 8 页，参考文献不限） - **模板**: ACL 两栏格式 - **匿名规则**: Double-blind ## 论文路径 -",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-2-coordination.md",
       "path": "sessions/d6/d6e6323219bc00f03388.json"
     },
     {
@@ -981,6 +1037,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-arc-easy-per-example-full.md",
       "path": "sessions/aa/aa54caa747755f2a5367.json"
     },
     {
@@ -998,6 +1055,7 @@
       "preview": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: exp-boolq-hellaswag-eval - project: entrainment_gated_ft - server: westb-48145 - log_path: /root/entrainment_gated_ft/lm_eval_clean/",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/cron-hook-exp-boolq-hellaswag-eval-20260521t085143-376015.md",
       "path": "sessions/c1/c18f2e4ab0a7c22b8c00.json"
     },
     {
@@ -1015,6 +1073,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-boolq-confidence-margin.md",
       "path": "sessions/03/03473e4b1a3dac203336.json"
     },
     {
@@ -1032,6 +1091,7 @@
       "preview": "[HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（唯一分配的 GPU） - 这是 observational analysis 项目，使用 wang2025hybrid 的 model zoo，不能自己训练新模型 - 论文主文严格 ≤ 8 页（EMNLP 2026 Long Paper），当前 ~8.2 页超限，必须压缩",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-20260521-175445.md",
       "path": "sessions/5b/5b5d4b24f388eee9c856.json"
     },
     {
@@ -1049,6 +1109,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目 Reviewer 是**只读角色**：不执行实验、不修改文件、不 ssh_execute。唯一输出渠道是 `reviewer_post_to_director`。 - EMNLP 2026 主文硬限 **8 页**。当前实测 ~8.2 页，W5 必须在提交前解决，否则 desk reject。 -",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260522-012734.md",
       "path": "sessions/47/476227ad3d2094c30662.json"
     },
     {
@@ -1066,6 +1127,7 @@
       "preview": "[HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（gpu_ids 白名单仅此一张） - 所有 fla 模型评估必须用 `run_lmeval_clean.py`（它注入 `allow_neg_eigval=True`，用其他 wrapper 会导致 GDN acc 偏低 ~3.3pp） - D009 禁止 post-",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/cron-hook-exp-boolq-hellaswag-eval-20260522t012751-745868.md",
       "path": "sessions/b3/b36924420fe957dc4c8c.json"
     },
     {
@@ -1083,6 +1145,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/diagnose-hellaswag-metric-check.md",
       "path": "sessions/cc/cc49c3f0d4927563ab6f.json"
     },
     {
@@ -1100,6 +1163,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-bootstrap-ci-alpha.md",
       "path": "sessions/fa/faddc57949d2c22560e3.json"
     },
     {
@@ -1117,6 +1181,7 @@
       "preview": "[HANDOFF] 你是 Director，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（唯一分配的 GPU） - Observational study：使用 Wang et al. 2025 预训练模型，不自己训练。只能跑 eval-only 实验 - HellaSwag 必须用 acc_norm（不是 acc），之前因此出过 M012 critical ",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-20260522-181407.md",
       "path": "sessions/c6/c6796eda0b0667e0db0f.json"
     },
     {
@@ -1134,6 +1199,7 @@
       "preview": "[HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（唯一分配 GPU） - HellaSwag 必须用 `acc_norm` 字段（不是 `acc`）——2026-05-21 修复过，旧 artifacts 基于 acc 已全部替换 - eval 必须用 `/root/entrainment_gated_ft/scri",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/coordination-coordination-20260525-195533.md",
       "path": "sessions/9c/9c0b21d44095da54824b.json"
     },
     {
@@ -1151,6 +1217,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 cuda:0（westb-48145 单卡，`execution.gpu_ids=[0]`） - 论文 α 值必须用 `alpha_pure`（3 架构 × 固定 ratio），**绝不能用** `alpha_all_15`（15 模型全局 α）——artifact 的 summary 字段",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260522-181412.md",
       "path": "sessions/05/050b1b98b8a34aabf109.json"
     },
     {
@@ -1168,6 +1235,7 @@
       "preview": "[HANDOFF] 你是 Main Agent，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（gpu_ids 白名单仅此一张） - 所有 fla 模型评估必须用 `run_lmeval_clean.py`（它注入 `allow_neg_eigval=True`，用其他 wrapper 会导致 GDN acc 偏低 ~3.3pp） - D009 禁止 post-",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/cron-hook-exp-boolq-hellaswag-eval.md",
       "path": "sessions/8b/8b3ee7dfe7a38024e20e.json"
     },
     {
@@ -1185,6 +1253,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/check-citation-verify.md",
       "path": "sessions/50/50873c900cab859fdaf7.json"
     },
     {
@@ -1202,6 +1271,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-a1-cross-benchmark-jaccard.md",
       "path": "sessions/5a/5a18654efff2a5a1c7f5.json"
     },
     {
@@ -1219,6 +1289,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/monitor-e4-pythia-eval.md",
       "path": "sessions/7b/7bf173b214658f176bc7.json"
     },
     {
@@ -1236,6 +1307,7 @@
       "preview": "[CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: e4-pythia-seed-calibration - project: entrainment_gated_ft - server: westb-48145 - log_path: /root/entrainment_gated_ft/results/e4_pythia_seed/eval_all.log",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/cron-hook-e4-pythia-seed-calibration.md",
       "path": "sessions/6c/6c5b05fd5a155a0f4a56.json"
     },
     {
@@ -1253,6 +1325,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/fix-e4-pythia-exact.md",
       "path": "sessions/70/70b0f32cf074bba8d76e.json"
     },
     {
@@ -1270,6 +1343,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/fix-e4-clean-restart.md",
       "path": "sessions/c3/c35ee5f9dc625d3ed492.json"
     },
     {
@@ -1287,6 +1361,7 @@
       "preview": "[CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: exp-005-eval - project: entrainment_gated_ft - server: westb-48145 - log_path: ~/runs/entrainment_gated_ft/exp-005-eval.log",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/cron-hook-exp-005-eval.md",
       "path": "sessions/62/620a2c18743a4c5d3320.json"
     },
     {
@@ -1304,6 +1379,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/diagnose-exp-005-eval-failure.md",
       "path": "sessions/36/368b691b02193590a311.json"
     },
     {
@@ -1321,6 +1397,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-exp-005-alternatives.md",
       "path": "sessions/28/28b9b57dfe9111bfe1f4.json"
     },
     {
@@ -1338,6 +1415,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/exp-exp-005-priority1-v2.md",
       "path": "sessions/f6/f6d8cb4e96f9754e52a5.json"
     },
     {
@@ -1355,6 +1433,7 @@
       "preview": "[CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: exp-005 - project: entrainment_gated_ft - server: westb-48145 - log_path: /root/runs/entrainment_gated_ft/exp-005-p1-v4.log",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/cron-hook-exp-005.md",
       "path": "sessions/1a/1a50f6677e328838f098.json"
     },
     {
@@ -1372,6 +1451,7 @@
       "preview": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: exp-005-gla-eval - project: entrainment_gated_ft - server: westb-48145 - log_path: /root/entrainment_gated_ft/results/exp005_zoo_exp",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/cron-hook-exp-005-gla-eval.md",
       "path": "sessions/54/540664267a246d69aca0.json"
     },
     {
@@ -1389,6 +1469,7 @@
       "preview": "[CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: exp-005-batch - project: entrainment_gated_ft - server: westb-48145 - log_path: /root/entrainment_gated_ft/results/exp005_zoo_expansion/eval_download.log",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/cron-hook-exp-005-batch.md",
       "path": "sessions/2f/2fcbb746b50c807ce575.json"
     },
     {
@@ -1406,6 +1487,7 @@
       "preview": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: exp-005-gla-pure - project: entrainment_gated_ft - server: westb-48145 - log_path: ~/runs/entrainment_gated_ft/exp-005-gla-pure.log",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/cron-hook-exp-005-gla-pure.md",
       "path": "sessions/0e/0efa255153b7d0a74d6c.json"
     },
     {
@@ -1423,6 +1505,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-exp-005-5arch-jaccard.md",
       "path": "sessions/3a/3ac7b80f4fe81cec68e3.json"
     },
     {
@@ -1440,6 +1523,7 @@
       "preview": "[HANDOFF] 你是 Director，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（唯一分配的 GPU） - 论文保持 **5-arch**（GDN/RetNet/HGRN2/GLA/DeltaNet），**不升级到 6-arch**（D038：HGRN pure acc=0.263 是 outlier，会打破 \"≤ 0.14\" claim） - App",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-20260525-075931.md",
       "path": "sessions/e7/e734916f6b8e45480097.json"
     },
     {
@@ -1457,6 +1541,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 论文 Appendix Table 30 必须保持 **5-arch**（GDN/RetNet/HGRN2/GLA/DeltaNet），**不要升级到 6-arch**。HGRN 的极低 pure acc（LAMBADA 0.263）导致 J_h 最高达 0.163，会破坏 \"≤ 0.14\" claim ",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260525-075924.md",
       "path": "sessions/41/4197fd29d1f7cf8dcb9d.json"
     },
     {
@@ -1474,6 +1559,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/prep-arr-checklist-draft.md",
       "path": "sessions/c6/c64dda751dfb63ff96c7.json"
     },
     {
@@ -1491,6 +1577,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/file-download.md",
       "path": "sessions/49/49a528f2dc78fd662a65.json"
     },
     {
@@ -1508,6 +1595,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/util-scp-pdf-jaccard.md",
       "path": "sessions/f0/f0f24b970ae8c749ddb1.json"
     },
     {
@@ -1525,6 +1613,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/util-fetch-jaccard-pdf.md",
       "path": "sessions/39/39b66ad777e9ea477066.json"
     },
     {
@@ -1542,6 +1631,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/data-fetch-5arch-json.md",
       "path": "sessions/57/57d7a0864843de646947.json"
     },
     {
@@ -1559,6 +1649,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-r16-w1-routing-variance.md",
       "path": "sessions/b6/b694e4165ea6ad820034.json"
     },
     {
@@ -1576,6 +1667,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-r16-shapiro-wilk.md",
       "path": "sessions/a8/a8ae35b359de12a70ce3.json"
     },
     {
@@ -1593,6 +1685,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/prep-code-release-final.md",
       "path": "sessions/03/0366f83080a9a83cf5c8.json"
     },
     {
@@ -1610,6 +1703,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #5。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目 GPU 白名单：westb-48145 cuda:0 仅此一张，当前空闲无活跃进程 - Yang & Wang (2026) \"Benchmark Illusion\" arXiv:2602.11898 已入 bib + Abstract——我三次标记为高风险幻觉引用要求 WebSearch 验证，",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260525-174837.md",
       "path": "sessions/f7/f714cc08f00ca1428167.json"
     },
     {
@@ -1627,6 +1721,7 @@
       "preview": "[HANDOFF] 你是 Director，这是 Loop #5。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 实验，纯论文写作项目——所有实验数据来自 Wang et al. (2025) 预训练 model zoo，不需要训练 - 论文 PDF 路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/do",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-20260525-174829.md",
       "path": "sessions/a8/a86d60d072ee6d14913a.json"
     },
     {
@@ -1644,6 +1739,7 @@
       "preview": "[HANDOFF] 你是 Director，这是 Loop #6。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 实验、无远程服务器——纯分析项目，所有工作在本地 workspace 完成 - 论文 EMNLP 2026 严格 8 页正文限制，当前刚好卡在 8 页，任何改动后必须编译验证页数 - Abstract 不超过 200 words（当前约 150 words，安全） - ARR DDL 2026-05-25",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination.md",
       "path": "sessions/89/899bb3b340cade83507a.json"
     },
     {
@@ -1661,6 +1757,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #6。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westb-48145 cuda:0 仅此一张，无其他可用设备 - Yang & Wang (2026) arXiv:2602.11898 — Loop 5 已 WebSearch 验证为**真实引用**，三轮幻觉引用风险正式解除，无需再验证 - **页数溢出 CRITICAL（本轮新发现",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination.md",
       "path": "sessions/38/38c00bf4301415b922eb.json"
     },
     {
@@ -1678,6 +1775,7 @@
       "preview": "[Director 指令] 项目归档任务。在 westb-48145 上执行以下操作： 1. 先探测项目目录结构： ```bash ls -la /root/entrainment_gated_ft/ du -sh /root/entrainment_gated_ft/ find /root/entrainment_gated_ft/ -maxdepth 2 -type d | head -40 ls /root/entrainment_gated_ft/.git 2>/de",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/coordination-coordination.md",
       "path": "sessions/7f/7f27fe6c4158135afdfd.json"
     },
     {
@@ -1695,6 +1793,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/ops-cleanup-remote-tarball.md",
       "path": "sessions/e0/e076d0d3ea68c844c802.json"
     },
     {
@@ -1712,6 +1811,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-wang-models-survey.md",
       "path": "sessions/32/32305adfcbe06f8748bb.json"
     },
     {
@@ -1729,6 +1829,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-gateddeltanet-new-check.md",
       "path": "sessions/e1/e1cbe7837c06bf0ac769.json"
     },
     {
@@ -1746,6 +1847,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-synthetic-composition-design.md",
       "path": "sessions/60/606094aa3780d61fb7b3.json"
     },
     {
@@ -1763,6 +1865,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-env-setup.md",
       "path": "sessions/5f/5f5c397afb184c147c60.json"
     },
     {
@@ -1780,6 +1883,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested downloading all 16 MVP 340M m",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-model-download.md",
       "path": "sessions/eb/eb41db608920ac58f29a.json"
     },
     {
@@ -1797,6 +1901,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-attn-heads-audit.md",
       "path": "sessions/2b/2bc068b17f0af8f9f7d7.json"
     },
     {
@@ -1814,6 +1919,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-eval-deploy.md",
       "path": "sessions/86/861a1af166acf8f4b7b2.json"
     },
     {
@@ -1831,6 +1937,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested a multi-step task: - **Step 1",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-mvp-run.md",
       "path": "sessions/ea/eac67544611f1a2e991e.json"
     },
     {
@@ -1848,6 +1955,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-logprob-eval.md",
       "path": "sessions/f5/f569783d3625a8f8d1a0.json"
     },
     {
@@ -1865,6 +1973,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-1-3b-model-check.md",
       "path": "sessions/0e/0e518da7b8f7c9698be3.json"
     },
     {
@@ -1882,6 +1991,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-1-3b-download.md",
       "path": "sessions/49/496cbbb7946f6850ab5d.json"
     },
     {
@@ -1899,6 +2009,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-logprob-results.md",
       "path": "sessions/d6/d6f490ce3263df56e75c.json"
     },
     {
@@ -1916,6 +2027,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user wants to download 3 priority 1.3B model",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-1-3b-priority-verify.md",
       "path": "sessions/9a/9af27efaf7337ff5b97e.json"
     },
     {
@@ -1933,6 +2045,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-1-3b-pipeline-ready.md",
       "path": "sessions/98/98ecb4b521d1ef0eadc4.json"
     },
     {
@@ -1950,6 +2063,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-status-check.md",
       "path": "sessions/a9/a99be99d2caed0fbf226.json"
     },
     {
@@ -1967,6 +2081,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-1-3b-hfmirror-download.md",
       "path": "sessions/7b/7b987b432f0cd3aa1c89.json"
     },
     {
@@ -1984,6 +2099,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-1-3b-lmeval-benchmarks.md",
       "path": "sessions/13/13da244c2f18e75fd572.json"
     },
     {
@@ -2001,6 +2117,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-7b-task-validation.md",
       "path": "sessions/f2/f2bdcaf6b991169faf1f.json"
     },
     {
@@ -2018,6 +2135,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-1-3b-remaining-download.md",
       "path": "sessions/6a/6a17d1358e58a1bfde8d.json"
     },
     {
@@ -2035,6 +2153,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fix-weight-tying.md",
       "path": "sessions/10/1036f62d0626cc97034f.json"
     },
     {
@@ -2052,6 +2171,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-1-3b-correct-download.md",
       "path": "sessions/82/82422b398f49b69271df.json"
     },
     {
@@ -2069,6 +2189,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-aria2c-batch-download.md",
       "path": "sessions/d5/d5dbc37840432d9da5c2.json"
     },
     {
@@ -2086,6 +2207,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user urgently requested fixing weight tying ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-urgent-benchmark-run.md",
       "path": "sessions/fb/fbcc8bb69475094197cd.json"
     },
     {
@@ -2103,6 +2225,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gpu-now.md",
       "path": "sessions/4c/4c92602525b5782ec60e.json"
     },
     {
@@ -2120,6 +2243,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fix-patch-v2.md",
       "path": "sessions/b2/b275cea6e5bc94fa681b.json"
     },
     {
@@ -2137,6 +2261,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested two sequential tasks on serve",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-check-and-run-benchmarks.md",
       "path": "sessions/c1/c171dd90d4b96317e70e.json"
     },
     {
@@ -2154,6 +2279,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-check-smoke-results.md",
       "path": "sessions/2c/2c8a7cbc2624a610f998.json"
     },
     {
@@ -2171,6 +2297,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fix-tying-v3.md",
       "path": "sessions/1b/1bcb0740b42922d0d194.json"
     },
     {
@@ -2188,6 +2315,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fix-tying-v4.md",
       "path": "sessions/18/189aa67f0a7dc03f963a.json"
     },
     {
@@ -2205,6 +2333,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-full-benchmark-run.md",
       "path": "sessions/43/43eb42c639479bcfc3c6.json"
     },
     {
@@ -2222,6 +2351,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-benchmark-monitor.md",
       "path": "sessions/f1/f13478a86c176fbdede0.json"
     },
     {
@@ -2239,6 +2369,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-v5-patch-and-benchmark.md",
       "path": "sessions/49/4972c5196f4389478bcf.json"
     },
     {
@@ -2256,6 +2387,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fix-gdn-shard.md",
       "path": "sessions/aa/aa7a79644dd8cdef4abe.json"
     },
     {
@@ -2273,6 +2405,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-serial-benchmark.md",
       "path": "sessions/61/61da61908a0cb71dfeed.json"
     },
     {
@@ -2290,6 +2423,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-collect-results.md",
       "path": "sessions/ae/aee6e18a347ff2243c92.json"
     },
     {
@@ -2307,6 +2441,7 @@
       "preview": "I need to find the exact version history of the flash-linear-attention Python package. Please: 1. Use WebFetch to get https://pypi.org/project/flash-linear-attention/#history — look for all version numbers and release dates 2. Use WebFetch ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-wang-fla-version.md",
       "path": "sessions/4b/4b81d4c3d43403998d6a.json"
     },
     {
@@ -2324,6 +2459,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fla-version-fix.md",
       "path": "sessions/5f/5fa829506aad85125a4b.json"
     },
     {
@@ -2341,6 +2477,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-wang-fla-version-20260518t122417-retry1.md",
       "path": "sessions/9b/9b75b7f808f59adff24e.json"
     },
     {
@@ -2358,6 +2495,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-clean-lmeval-script.md",
       "path": "sessions/8f/8f6b3d51bf6f8e7a9c8a.json"
     },
     {
@@ -2375,6 +2513,7 @@
       "preview": "I need to find the exact commit in fla-org/flash-linear-attention that removed self.D from fla/layers/gated_deltanet.py. Context: - The initial commit adding GatedDeltaNet was 4064237 on 2024-12-20. It had self.D as an nn.Parameter. - By v0",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-fla-version-online.md",
       "path": "sessions/c7/c72d19b00b02aaee33bf.json"
     },
     {
@@ -2392,6 +2531,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ssh-fla-version-investigate.md",
       "path": "sessions/c1/c1f7857eec0dfe6fad9f.json"
     },
     {
@@ -2409,6 +2549,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-lmeval-clean-script.md",
       "path": "sessions/e9/e9b1a41e0673d2fe135b.json"
     },
     {
@@ -2426,6 +2567,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: Write a clean `run_lmeval_clean.py` script (no m",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-lmeval-clean-v2.md",
       "path": "sessions/0c/0c5523707ef94d49ba83.json"
     },
     {
@@ -2443,6 +2585,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested writing a new `run_lmeval_cle",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-lmeval-clean-v3.md",
       "path": "sessions/37/37f147a28cca38670bf1.json"
     },
     {
@@ -2460,6 +2603,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-lmeval-collect-v4.md",
       "path": "sessions/8f/8fef88bfb0eff0c26ac4.json"
     },
     {
@@ -2477,6 +2621,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-retnet-fix-eval.md",
       "path": "sessions/bd/bdae1f429c31fe115be5.json"
     },
     {
@@ -2494,6 +2639,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-config-restore-hgrn2.md",
       "path": "sessions/60/6094b47733f8854266ce.json"
     },
     {
@@ -2511,6 +2657,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested evaluation of all 340M GDN (G",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-340m-eval.md",
       "path": "sessions/df/dfdb758fc9063490e60d.json"
     },
     {
@@ -2528,6 +2675,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-register.md",
       "path": "sessions/cf/cf997104f8366f4131ed.json"
     },
     {
@@ -2545,6 +2693,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user issued an urgent multi-step task to: - ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-retnet-kill-fix-reeval.md",
       "path": "sessions/9b/9bb3b1dec98959da3d96.json"
     },
     {
@@ -2562,6 +2711,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user provided a detailed 6-step task: - Step",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-retnet-download-fix.md",
       "path": "sessions/a4/a4c79c1dd68e97a82424.json"
     },
     {
@@ -2579,6 +2729,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-1-3b-remaining-eval.md",
       "path": "sessions/5b/5ba691b48af36ecfa6df.json"
     },
     {
@@ -2596,6 +2747,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-check-new-gdn-config.md",
       "path": "sessions/24/2445631d223f0aa0b9ad.json"
     },
     {
@@ -2613,6 +2765,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-attn-heads-check.md",
       "path": "sessions/8f/8f43ead2d0574310d29d.json"
     },
     {
@@ -2630,6 +2783,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-eval-1-3b.md",
       "path": "sessions/dc/dc63302b73c79467e768.json"
     },
     {
@@ -2647,6 +2801,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user asked me to continue HGRN2 1.3B model e",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-eval-followup.md",
       "path": "sessions/63/6372afb4d9fdaba2a2b2.json"
     },
     {
@@ -2664,6 +2819,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-nohup-start.md",
       "path": "sessions/c0/c07a2bfd8a67d97f3a74.json"
     },
     {
@@ -2681,6 +2837,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-diagnose.md",
       "path": "sessions/03/03f74773f4fd60846e06.json"
     },
     {
@@ -2698,6 +2855,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-eval-remaining.md",
       "path": "sessions/35/35acf496db314feccad3.json"
     },
     {
@@ -2715,6 +2873,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-h3-1-repair.md",
       "path": "sessions/2d/2de25b3c1387df4842b9.json"
     },
     {
@@ -2732,6 +2891,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-eval-queue.md",
       "path": "sessions/44/4477352115c0309c26c8.json"
     },
     {
@@ -2749,6 +2909,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-h3-1-repair-v2.md",
       "path": "sessions/76/7697301f05192ebe2690.json"
     },
     {
@@ -2766,6 +2927,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-h3-1-eval-and-downloads.md",
       "path": "sessions/66/66e377f5edb348e71f4b.json"
     },
     {
@@ -2783,6 +2945,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-h6-1-eval.md",
       "path": "sessions/38/38bbcb23a1309c8195e8.json"
     },
     {
@@ -2800,6 +2963,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-multiseed-lambada-eval.md",
       "path": "sessions/05/05c0955d94a5d8c3623f.json"
     },
     {
@@ -2817,6 +2981,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-hgrn2-pure-final-eval.md",
       "path": "sessions/dc/dcfef8f84e7e9132a747.json"
     },
     {
@@ -2834,6 +2999,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-benchmark-visualization.md",
       "path": "sessions/8f/8f9bc86c9c934ca87d4e.json"
     },
     {
@@ -2851,6 +3017,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-wang-et-al-check.md",
       "path": "sessions/1e/1e5e78c3b85ce97dfb26.json"
     },
     {
@@ -2868,6 +3035,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-convergence-analysis.md",
       "path": "sessions/4c/4ce4982293287d93c1df.json"
     },
     {
@@ -2885,6 +3053,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-logprob-analysis.md",
       "path": "sessions/62/62c90a2ecccec68eb0a2.json"
     },
     {
@@ -2902,6 +3071,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-file-inventory.md",
       "path": "sessions/94/94e23163fd173db17a04.json"
     },
     {
@@ -2919,6 +3089,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-final-report.md",
       "path": "sessions/c6/c65e374f2dce91f334bd.json"
     },
     {
@@ -2936,6 +3107,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fix-final-report.md",
       "path": "sessions/66/6654bfdeb475422a5542.json"
     },
     {
@@ -2953,6 +3125,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-local-backup.md",
       "path": "sessions/74/7417e9743f1f1904bd49.json"
     },
     {
@@ -2970,6 +3143,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gdn-logsamples.md",
       "path": "sessions/40/406e8f7c51943d1d66b6.json"
     },
     {
@@ -2987,6 +3161,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-340m-retnet-hgrn2-eval.md",
       "path": "sessions/ef/ef2093660f0989778833.json"
     },
     {
@@ -3004,6 +3179,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-check-340m-eval-results.md",
       "path": "sessions/25/256b605ed4c0f6fb3784.json"
     },
     {
@@ -3021,6 +3197,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gdn-h24-extract.md",
       "path": "sessions/6d/6d5e223bfcbea7972073.json"
     },
     {
@@ -3038,6 +3215,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 5,
+      "readable_path": "readable/worker-executions/code-cross-scale-convergence.md",
       "path": "sessions/f8/f859a4287d69ca0c389d.json"
     },
     {
@@ -3055,6 +3233,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fix-convergence-pvalues.md",
       "path": "sessions/cd/cd299f76f78dfc94855e.json"
     },
     {
@@ -3072,6 +3251,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-matched-dose-comparison.md",
       "path": "sessions/38/38ccd9c2ceb4bba6d648.json"
     },
     {
@@ -3089,6 +3269,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fix-report-pvalues-v2.md",
       "path": "sessions/66/6694973f05070e388c91.json"
     },
     {
@@ -3106,6 +3287,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-pvalue-sweep-fix.md",
       "path": "sessions/e7/e74b5da799e387b59862.json"
     },
     {
@@ -3123,6 +3305,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-caveat-and-h6-robustness.md",
       "path": "sessions/21/21d4f22ff92a50837d10.json"
     },
     {
@@ -3140,6 +3323,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-retnet-three-arch.md",
       "path": "sessions/92/921585b5a70f4009b7c2.json"
     },
     {
@@ -3157,6 +3341,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-wang-7b-models.md",
       "path": "sessions/9f/9f3efe51e13c759ab7c8.json"
     },
     {
@@ -3174,6 +3359,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-per-example-data-audit.md",
       "path": "sessions/af/afb351c68c6015a35230.json"
     },
     {
@@ -3191,6 +3377,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-task-specificity.md",
       "path": "sessions/08/08f9acc3b3f8e5348fe3.json"
     },
     {
@@ -3208,6 +3395,7 @@
       "preview": "Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/ for files related to \"equalizer\", \"spearman\", \"permutation test\", \"Jaccard\", \"convergence\", \"std\", \"net effect\", \"asymmetry\", \"ret",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-wang-differentiation.md",
       "path": "sessions/eb/ebb4e07e1c9d29c1d2f2.json"
     },
     {
@@ -3225,6 +3413,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-001-task-specificity.md",
       "path": "sessions/0b/0bff19813f56da981c0c.json"
     },
     {
@@ -3242,6 +3431,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-exp-009-wang-differentiation.md",
       "path": "sessions/1f/1f9e0404e4992ceeb659.json"
     },
     {
@@ -3259,6 +3449,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-003-sample-characterization.md",
       "path": "sessions/de/decfdfbf894efdda76b4.json"
     },
     {
@@ -3276,6 +3467,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-wang-differentiation-stats.md",
       "path": "sessions/1e/1e37a917e83a6905fc7e.json"
     },
     {
@@ -3293,6 +3485,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-003-phase2-perplexity.md",
       "path": "sessions/ed/ed55de36d42bdd697c15.json"
     },
     {
@@ -3310,6 +3503,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-008-statistical-robustness.md",
       "path": "sessions/9e/9e9d442d46825f91ca67.json"
     },
     {
@@ -3327,6 +3521,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-003-p2.md",
       "path": "sessions/06/06fe90cbcae949b0fada.json"
     },
     {
@@ -3344,6 +3539,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/eval-exp-011-additional-benchmarks.md",
       "path": "sessions/db/dbb3b86fb7b8d8296338.json"
     },
     {
@@ -3361,6 +3557,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-008-statistical-robustness-copy-2.md",
       "path": "sessions/68/688a73da4ef4ff04c6cb.json"
     },
     {
@@ -3378,6 +3575,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-008-bca-gdn-excluded.md",
       "path": "sessions/35/35d4e97515959c9e189f.json"
     },
     {
@@ -3395,6 +3593,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/eval-exp-011-additional-benchmarks-retry.md",
       "path": "sessions/e6/e686d0a9804f9ed88680.json"
     },
     {
@@ -3412,6 +3611,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-storycloze-investigation.md",
       "path": "sessions/71/718e1318a4c36b55d244.json"
     },
     {
@@ -3429,6 +3629,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-011-check-and-analyze.md",
       "path": "sessions/3e/3e75c1d186f36cc7d5ad.json"
     },
     {
@@ -3446,6 +3647,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-010-convergence-divergence-bridge.md",
       "path": "sessions/8d/8d48ed92b5ab5733486d.json"
     },
     {
@@ -3463,6 +3665,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-exp-011-gpu-status.md",
       "path": "sessions/82/82671daa8b4127ce9f9c.json"
     },
     {
@@ -3480,6 +3683,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-004-preparation.md",
       "path": "sessions/79/79f6b064f7fb6bc53049.json"
     },
     {
@@ -3497,6 +3701,7 @@
       "preview": "",
       "reported_errors": 1,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-figure-table-prep.md",
       "path": "sessions/27/273d631db50dc89edb0d.json"
     },
     {
@@ -3514,6 +3719,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-exp-011-completion.md",
       "path": "sessions/6b/6b04eb33571560a235f1.json"
     },
     {
@@ -3531,6 +3737,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/eval-xstorycloze-en-16models.md",
       "path": "sessions/03/03b0056c86b4e0a6544a.json"
     },
     {
@@ -3548,6 +3755,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-011-convergence.md",
       "path": "sessions/34/347143cbf20fe292741c.json"
     },
     {
@@ -3565,6 +3773,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-xstorycloze-completion.md",
       "path": "sessions/76/76d1a97acc168f6269ff.json"
     },
     {
@@ -3582,6 +3791,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-xstorycloze-convergence.md",
       "path": "sessions/9c/9c7ffbb696275f00e19f.json"
     },
     {
@@ -3599,6 +3809,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/eval-exp-004-attention-extraction.md",
       "path": "sessions/f5/f5a1c1c31e4b06cae11b.json"
     },
     {
@@ -3616,6 +3827,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-figure-table-data-prep.md",
       "path": "sessions/70/702fd5f62c25ef3f409c.json"
     },
     {
@@ -3633,6 +3845,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-d009-paper-strength-assessment.md",
       "path": "sessions/65/65261e3c769b981fce1f.json"
     },
     {
@@ -3650,6 +3863,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/eval-exp-004-r2-attention-extraction.md",
       "path": "sessions/ef/ef348c2775f340659aab.json"
     },
     {
@@ -3667,6 +3881,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-copa-rho-recompute.md",
       "path": "sessions/39/3924eb23cd3cd670b134.json"
     },
     {
@@ -3684,6 +3899,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-exp-007-data-availability.md",
       "path": "sessions/61/61c9ac750039d9352b27.json"
     },
     {
@@ -3701,6 +3917,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-wang-paradox-boolq-taxonomy-cleanup.md",
       "path": "sessions/eb/eb95aab6b444b920ba17.json"
     },
     {
@@ -3718,6 +3935,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp-007-data-collection-script.md",
       "path": "sessions/4b/4bac77855db6e98f00b6.json"
     },
     {
@@ -3735,6 +3953,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-exp-004-r2-completion.md",
       "path": "sessions/b2/b25efaebc4f04f4c0ce1.json"
     },
     {
@@ -3752,6 +3971,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-figure-fig1-decoupling-hero.md",
       "path": "sessions/79/79de41c089e22c5720c5.json"
     },
     {
@@ -3769,6 +3989,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-exp-007-dtype-and-launch.md",
       "path": "sessions/71/71adf45f2e61ef9db90c.json"
     },
     {
@@ -3786,6 +4007,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-figure-fig2-task-specificity.md",
       "path": "sessions/55/5588784ffc77ad889a6d.json"
     },
     {
@@ -3803,6 +4025,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-figure-fig2-task-specificity-copy-2.md",
       "path": "sessions/31/315d4ec476aa0a5fe291.json"
     },
     {
@@ -3820,6 +4043,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-exp-007-dtype-and-launch-v2.md",
       "path": "sessions/8c/8cc57d9d8f8c4df3ed95.json"
     },
     {
@@ -3837,6 +4061,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-exp-007-use-clean-script-v3.md",
       "path": "sessions/dc/dc6cb31222bbab82b0ff.json"
     },
     {
@@ -3854,6 +4079,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-experiments.md",
       "path": "sessions/4d/4d26b9e9be718424a9be.json"
     },
     {
@@ -3871,6 +4097,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-research-lit-cluster-1-hybrid.md",
       "path": "sessions/93/939ac86dd48f3fdc0912.json"
     },
     {
@@ -3888,6 +4115,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-fig2-boolq-color.md",
       "path": "sessions/45/4570328204ed35f9e570.json"
     },
     {
@@ -3905,6 +4133,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-exp-007-progress.md",
       "path": "sessions/62/625eb48ff3a7db0bc222.json"
     },
     {
@@ -3922,6 +4151,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-xstorycloze-taxonomy-fig2.md",
       "path": "sessions/39/39b33506eefa2aa813b2.json"
     },
     {
@@ -3939,6 +4169,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-experiments-tex-consistency.md",
       "path": "sessions/92/926734f72a5f9b896037.json"
     },
     {
@@ -3956,6 +4187,7 @@
       "preview": "Run the following commands in the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft to search for papers using Semantic Scholar API. Try the search and report back ALL results with full details. First, ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-research-lit-cluster-2-linear-recurrent.md",
       "path": "sessions/74/74ae2cea06269eee063b.json"
     },
     {
@@ -3973,6 +4205,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-007.md",
       "path": "sessions/d4/d44be34d2fe446f2cc25.json"
     },
     {
@@ -3990,6 +4223,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-007-340m-rebound.md",
       "path": "sessions/82/82c08d0b9f54fac74e39.json"
     },
     {
@@ -4007,6 +4241,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-method.md",
       "path": "sessions/cd/cd866af2f2d31029e5f1.json"
     },
     {
@@ -4024,6 +4259,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-experiments-tex-s42-update.md",
       "path": "sessions/24/2453fa72696a4071cc7d.json"
     },
     {
@@ -4041,6 +4277,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-retnet-pure-1-3b-rerun.md",
       "path": "sessions/99/99668c66c4858c9c550a.json"
     },
     {
@@ -4058,6 +4295,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-fig1-340m-sigma-update.md",
       "path": "sessions/5d/5d3eb723a7a70cd23b80.json"
     },
     {
@@ -4075,6 +4313,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-method-tex-reviewer-fixes.md",
       "path": "sessions/41/4168984cc6faff1cf12a.json"
     },
     {
@@ -4092,6 +4331,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-introduction.md",
       "path": "sessions/03/03422b6a8b3683c7faa7.json"
     },
     {
@@ -4109,6 +4349,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-related-work.md",
       "path": "sessions/67/67c8094a9fdc0214b96d.json"
     },
     {
@@ -4126,6 +4367,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-conclusion.md",
       "path": "sessions/13/1361170e83f606d68ae2.json"
     },
     {
@@ -4143,6 +4385,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-abstract.md",
       "path": "sessions/81/81269e506e10dc26f4ec.json"
     },
     {
@@ -4160,6 +4403,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-appendix-340m-jaccard.md",
       "path": "sessions/28/28de374ec1842ad9c044.json"
     },
     {
@@ -4177,6 +4421,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-within-scale-jaccard.md",
       "path": "sessions/9f/9fc610fd81b516788cb5.json"
     },
     {
@@ -4194,6 +4439,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-jaccard-within-scale.md",
       "path": "sessions/fe/fe649b078168bd39029a.json"
     },
     {
@@ -4211,6 +4457,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-jaccard-similarity.md",
       "path": "sessions/f4/f4a7067df2841d792bce.json"
     },
     {
@@ -4228,6 +4475,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/compute-jaccard-pairwise.md",
       "path": "sessions/a9/a9b222fd1c973b10df6d.json"
     },
     {
@@ -4245,6 +4493,7 @@
       "preview": "Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ for any files that contain 1.3B within-scale pairwise Jaccard similarity data. I'm looking for Jaccard values computed between different 1.3",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-jaccard-v2.md",
       "path": "sessions/55/550162cee707760339fd.json"
     },
     {
@@ -4262,6 +4511,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-arch-extension-check.md",
       "path": "sessions/a2/a234cf2c0898ec8fa960.json"
     },
     {
@@ -4279,6 +4529,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-decoupling-data-pipeline-verify.md",
       "path": "sessions/53/53e8ed0d951b16c1ce7d.json"
     },
     {
@@ -4296,6 +4547,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-null-jaccard-permutation.md",
       "path": "sessions/03/0335a7d7a0ccda902862.json"
     },
     {
@@ -4313,6 +4565,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-bootstrap-ci-decoupling.md",
       "path": "sessions/e7/e72a7e8d3410751cc0e3.json"
     },
     {
@@ -4330,6 +4583,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-transformer-baseline-perexample.md",
       "path": "sessions/38/38a905e554f71837efdc.json"
     },
     {
@@ -4347,6 +4601,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp003-p2-data-check.md",
       "path": "sessions/f0/f07f964ad8a8a35b5ec2.json"
     },
     {
@@ -4364,6 +4619,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-within-arch-helped-stability.md",
       "path": "sessions/55/5524bef0b9faf93eea90.json"
     },
     {
@@ -4381,6 +4637,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-appendix-h-within-arch.md",
       "path": "sessions/6c/6ce0f62cfef63e14293d.json"
     },
     {
@@ -4398,6 +4655,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-confidence-margin-rebuttal.md",
       "path": "sessions/52/5201f30c916511de002d.json"
     },
     {
@@ -4415,6 +4673,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-confidence-margin-rebuttal-v2.md",
       "path": "sessions/2f/2fa1d03a6bda3d755543.json"
     },
     {
@@ -4432,6 +4691,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-confidence-margin-within-category.md",
       "path": "sessions/97/9787701e975297584338.json"
     },
     {
@@ -4449,6 +4709,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-appendix-i-confidence-margin.md",
       "path": "sessions/4f/4f4b9de8732e3b1cc96c.json"
     },
     {
@@ -4466,6 +4727,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-fix-appendix-i-overfull.md",
       "path": "sessions/45/4591bf713d7ce8036c57.json"
     },
     {
@@ -4483,6 +4745,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-jaccard-upper-bound.md",
       "path": "sessions/d7/d7b44cba015359835ca2.json"
     },
     {
@@ -4500,6 +4763,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-retnet-hgrn2-only-decoupling.md",
       "path": "sessions/63/63723a6c532a3b91b089.json"
     },
     {
@@ -4517,6 +4781,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/eval-arc-easy-per-example-setup.md",
       "path": "sessions/8c/8c2d41bf0d1d59936db0.json"
     },
     {
@@ -4534,6 +4799,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/eval-arc-easy-recovery.md",
       "path": "sessions/49/493d8db871fb7e67d4d4.json"
     },
     {
@@ -4551,6 +4817,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-arc-easy-per-example-full.md",
       "path": "sessions/b5/b5ca1382936795eaab97.json"
     },
     {
@@ -4568,6 +4835,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-citation-verification.md",
       "path": "sessions/31/31529e5868d5fe7a0b29.json"
     },
     {
@@ -4585,6 +4853,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/eval-boolq-hellaswag-probe.md",
       "path": "sessions/b6/b699319fafc175d2d528.json"
     },
     {
@@ -4602,6 +4871,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-boolq-hellaswag-eval.md",
       "path": "sessions/6a/6a81b85469b817451af4.json"
     },
     {
@@ -4619,6 +4889,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-boolq-hellaswag-per-example.md",
       "path": "sessions/00/0000ae8d76e9e1536dec.json"
     },
     {
@@ -4636,6 +4907,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-boolq-hellaswag-v2.md",
       "path": "sessions/88/88a315b81895d044fc12.json"
     },
     {
@@ -4653,6 +4925,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-cross-benchmark-confidence-margin.md",
       "path": "sessions/a8/a85ca213b0b9ccc226f0.json"
     },
     {
@@ -4670,6 +4943,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-boolq-confidence-margin.md",
       "path": "sessions/b8/b8a5066836cd0a97ac96.json"
     },
     {
@@ -4687,6 +4961,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-loglik-range-diagnostic.md",
       "path": "sessions/82/82b6b6582dbaa4572912.json"
     },
     {
@@ -4704,6 +4979,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-w3-format-confound-eval-copy-2.md",
       "path": "sessions/01/0164d17064b9548d4a2b.json"
     },
     {
@@ -4721,6 +4997,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-w3-format-confound-eval.md",
       "path": "sessions/c6/c66ee5b670244674b563.json"
     },
     {
@@ -4738,6 +5015,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/diagnose-w3-gpu-check.md",
       "path": "sessions/31/313478c7454ef0d260ba.json"
     },
     {
@@ -4755,6 +5033,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-w3-winogrande-piqa-multiplicity.md",
       "path": "sessions/e3/e3b511911fa35d43c445.json"
     },
     {
@@ -4772,6 +5051,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/diagnose-hellaswag-metric-check.md",
       "path": "sessions/db/db402faec253a41fd57a.json"
     },
     {
@@ -4789,6 +5069,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-hellaswag-acc-norm.md",
       "path": "sessions/be/be628d983b2c60ae4f81.json"
     },
     {
@@ -4806,6 +5087,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-bootstrap-ci-alpha.md",
       "path": "sessions/f1/f123578a20d434580bf6.json"
     },
     {
@@ -4823,6 +5105,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-340m-lambada-per-example.md",
       "path": "sessions/3d/3dcec15faf3fe63d22b2.json"
     },
     {
@@ -4840,6 +5123,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-subsample-sensitivity.md",
       "path": "sessions/ca/ca6f42df8eb703a00375.json"
     },
     {
@@ -4857,6 +5141,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/recon-340m-eval-prep.md",
       "path": "sessions/5e/5ed21cb003f276b52cdb.json"
     },
     {
@@ -4874,6 +5159,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-340m-eval-script-fix.md",
       "path": "sessions/b1/b1ba08c7c32939dc4c68.json"
     },
     {
@@ -4891,6 +5177,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-340m-eval-status.md",
       "path": "sessions/2a/2a37371c2bcd2ff9c470.json"
     },
     {
@@ -4908,6 +5195,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-340m-eval-urgent.md",
       "path": "sessions/47/479c16b11a21997f48c5.json"
     },
     {
@@ -4925,6 +5213,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-340m-multi-bench.md",
       "path": "sessions/f8/f8e8e372d82f1f730d90.json"
     },
     {
@@ -4942,6 +5231,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/data-340m-accuracy-extract.md",
       "path": "sessions/80/8071f14e8eda9de03d75.json"
     },
     {
@@ -4959,6 +5249,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-submission-format.md",
       "path": "sessions/b6/b69d4010252fd68c1446.json"
     },
     {
@@ -4976,6 +5267,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-citation-verify.md",
       "path": "sessions/60/6072e62bd11d08017ab5.json"
     },
     {
@@ -4993,6 +5285,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-a1-cross-benchmark-jaccard.md",
       "path": "sessions/40/40c0b49c3e885f3ea7b6.json"
     },
     {
@@ -5010,6 +5303,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-a2-confidence-prediction.md",
       "path": "sessions/e1/e15b0fa1bb14e7103fa1.json"
     },
     {
@@ -5027,6 +5321,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-a3-complementarity.md",
       "path": "sessions/4a/4af9ca632ac15ef46a57.json"
     },
     {
@@ -5044,6 +5339,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-e1-confidence-selection.md",
       "path": "sessions/ff/ff4ce95104490a1e5502.json"
     },
     {
@@ -5061,6 +5357,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-e2-e3-continuous-jaccard-calibration.md",
       "path": "sessions/76/767a4cb4e11f7876884e.json"
     },
     {
@@ -5078,6 +5375,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-seed-investigation.md",
       "path": "sessions/17/17e3f416918291be64ed.json"
     },
     {
@@ -5095,6 +5393,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-e4-pythia-seed-calibration.md",
       "path": "sessions/ab/ab5efc2590309d759fa2.json"
     },
     {
@@ -5112,6 +5411,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-e4-pythia-progress.md",
       "path": "sessions/ba/ba8d41f5bb767e8df46f.json"
     },
     {
@@ -5129,6 +5429,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: Fix and restart the E4 Pythia multi-seed calibra",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-e4-pythia-restart.md",
       "path": "sessions/1b/1bbec26c0075ce162016.json"
     },
     {
@@ -5146,6 +5447,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-e4-pythia-monitor.md",
       "path": "sessions/40/40c4acdae36d3bfd7f0c.json"
     },
     {
@@ -5163,6 +5465,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/monitor-e4-pythia-eval.md",
       "path": "sessions/ab/ab8c26fd1a2798996e05.json"
     },
     {
@@ -5180,6 +5483,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-e4-pythia-final.md",
       "path": "sessions/77/770421ac3eb13c459e50.json"
     },
     {
@@ -5197,6 +5501,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-e4-pythia-urgent.md",
       "path": "sessions/25/2559c44735bdbc14a9a1.json"
     },
     {
@@ -5214,6 +5519,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/diagnose-e4-pythia-seed-calibration.md",
       "path": "sessions/14/147d0b7a7f73b66aadf9.json"
     },
     {
@@ -5231,6 +5537,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-e4-pythia-exact.md",
       "path": "sessions/4b/4b3afd0cda7938873628.json"
     },
     {
@@ -5248,6 +5555,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-e4-clean-restart.md",
       "path": "sessions/52/5246024582018848e3ce.json"
     },
     {
@@ -5265,6 +5573,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested execution of **exp-005: Wang ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-exp-005-zoo-expansion.md",
       "path": "sessions/bf/bf4905a111e65fe9746b.json"
     },
     {
@@ -5282,6 +5591,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/diag-exp-005-status-check.md",
       "path": "sessions/52/524e571d62b12255e1bd.json"
     },
     {
@@ -5299,6 +5609,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/diagnose-exp-005-eval-failure.md",
       "path": "sessions/b3/b3de6fc8ed6ff275538b.json"
     },
     {
@@ -5316,6 +5627,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-exp-005-script-setup.md",
       "path": "sessions/46/4643dc75b1245e843c86.json"
     },
     {
@@ -5333,6 +5645,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-exp-005-alternatives.md",
       "path": "sessions/64/648e976b0bf98d547b75.json"
     },
     {
@@ -5350,6 +5663,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-exp-005-priority1-v2.md",
       "path": "sessions/cc/cc55096bab318c232f53.json"
     },
     {
@@ -5367,6 +5681,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/diagnose-exp-005-p1-v4.md",
       "path": "sessions/f3/f31f6050da048563e6d6.json"
     },
     {
@@ -5384,6 +5699,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-exp-005-download-fix.md",
       "path": "sessions/88/88958bf2fa9fe40022c3.json"
     },
     {
@@ -5401,6 +5717,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-005-gla-eval.md",
       "path": "sessions/f9/f9bce8b6f7826af3ff6e.json"
     },
     {
@@ -5418,6 +5735,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-exp-005-gla-eval-hardcode.md",
       "path": "sessions/d5/d503590230ce5efd2826.json"
     },
     {
@@ -5435,6 +5753,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-exp-005-deltanet-eval-hgrn-fix.md",
       "path": "sessions/d9/d9816f79b7a8449a204d.json"
     },
     {
@@ -5452,6 +5771,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested downloading and evaluating 3 ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-exp-005-pure-baselines.md",
       "path": "sessions/2e/2e6f66b59e0f8ddd5336.json"
     },
     {
@@ -5469,6 +5789,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-exp-005-hgrn-eval-watch.md",
       "path": "sessions/45/459c95b28d361620997a.json"
     },
     {
@@ -5486,6 +5807,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-exp-005-hgrn-eval-submit.md",
       "path": "sessions/74/744b9bd5bfa705579593.json"
     },
     {
@@ -5503,6 +5825,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-exp-005-hgrn-chain.md",
       "path": "sessions/3c/3c95d7f18c3d1dec0f5b.json"
     },
     {
@@ -5520,6 +5843,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-exp-005-eval-and-download.md",
       "path": "sessions/81/81bdc5941c8f5b0877bc.json"
     },
     {
@@ -5537,6 +5861,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/diagnose-exp-005-batch.md",
       "path": "sessions/37/377185b72d2aeafb064d.json"
     },
     {
@@ -5554,6 +5879,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-exp-005-gla-pure-now.md",
       "path": "sessions/9f/9faacb76924df1cc512f.json"
     },
     {
@@ -5571,6 +5897,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-005-gla-pure-results.md",
       "path": "sessions/32/3287f86ca2dfbf8dc83c.json"
     },
     {
@@ -5588,6 +5915,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-005-gla-jaccard.md",
       "path": "sessions/e1/e187946b73df4f4e1c19.json"
     },
     {
@@ -5605,6 +5933,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-005-5arch-jaccard.md",
       "path": "sessions/80/8096e031b7696d263deb.json"
     },
     {
@@ -5622,6 +5951,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested a two-step task for exp-005: ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-005-6arch-jaccard.md",
       "path": "sessions/e6/e69b8742c2487d4fd042.json"
     },
     {
@@ -5639,6 +5969,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/data-exp-005-6arch-extract.md",
       "path": "sessions/91/912b0a8046163ade0588.json"
     },
     {
@@ -5656,6 +5987,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/prep-arr-checklist-draft.md",
       "path": "sessions/a9/a918f3dfe3508252c740.json"
     },
     {
@@ -5673,6 +6005,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/prep-code-release-cleanup.md",
       "path": "sessions/29/29ec32fb530650e48914.json"
     },
     {
@@ -5690,6 +6023,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/prep-code-release-fix.md",
       "path": "sessions/85/85b3915b3fa1399dae99.json"
     },
     {
@@ -5707,6 +6041,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/viz-jaccard-heatmap-5arch.md",
       "path": "sessions/4b/4b25889760b886016d25.json"
     },
     {
@@ -5724,6 +6059,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/file-download.md",
       "path": "sessions/19/195f824db0321b9c0ef7.json"
     },
     {
@@ -5741,6 +6077,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/util-download-figure.md",
       "path": "sessions/7b/7b4f6d42ab19dae03ae8.json"
     },
     {
@@ -5758,6 +6095,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/util-download-pdf.md",
       "path": "sessions/d2/d2f457ca16bfde5f011d.json"
     },
     {
@@ -5775,6 +6113,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-download-pdf.md",
       "path": "sessions/40/40f5b59cf54e9196f76a.json"
     },
     {
@@ -5792,6 +6131,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/file-download-pdf.md",
       "path": "sessions/55/556cdbb5655b7eaca27d.json"
     },
     {
@@ -5809,6 +6149,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/util-scp-pdf-jaccard.md",
       "path": "sessions/6a/6a59943aa135d510b81b.json"
     },
     {
@@ -5826,6 +6167,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/download-jaccard-heatmap.md",
       "path": "sessions/ef/ef4b52716153a9951d30.json"
     },
     {
@@ -5843,6 +6185,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/util-fetch-jaccard-pdf.md",
       "path": "sessions/e2/e28e953544277ce945ab.json"
     },
     {
@@ -5860,6 +6203,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-exp-005-extended-jaccard.md",
       "path": "sessions/ff/ffe0f338b2d67273580c.json"
     },
     {
@@ -5877,6 +6221,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/data-fetch-5arch-json.md",
       "path": "sessions/26/26507c59c8139769611c.json"
     },
     {
@@ -5894,6 +6239,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/viz-jaccard-heatmap-4bench.md",
       "path": "sessions/05/05ada9d2a0cae1e19534.json"
     },
     {
@@ -5911,6 +6257,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-r16-w1-routing-variance.md",
       "path": "sessions/03/03cf0c8bbe23892a70e6.json"
     },
     {
@@ -5928,6 +6275,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-r16-w5-watson-daniels.md",
       "path": "sessions/33/33090e2223ca80f66660.json"
     },
     {
@@ -5945,6 +6293,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-r16-w3-auc-normality.md",
       "path": "sessions/0a/0a949c16eee80bea8e21.json"
     },
     {
@@ -5962,6 +6311,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-r17-citation-verify.md",
       "path": "sessions/97/9710b09651d0560b1a8f.json"
     },
     {
@@ -5979,6 +6329,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-ssh-check-westb.md",
       "path": "sessions/53/5300fa6323b5089b8e6d.json"
     },
     {
@@ -5996,6 +6347,7 @@
       "preview": "I need to find how the MCP agent-ml-research SSH tool connects to remote servers. Look for: 1. Any YAML/JSON/TOML config files that contain SSH credentials, passwords, or key paths - especially for a server called \"westb-48145\" or \"seetaclo",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/prep-code-release-final.md",
       "path": "sessions/21/21ee178e573a72686311.json"
     },
     {
@@ -6013,6 +6365,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-r16-shapiro-wilk.md",
       "path": "sessions/f5/f5fbb0e4e7137fab22b3.json"
     },
     {
@@ -6030,6 +6383,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-r16-paired-ttest.md",
       "path": "sessions/a5/a5fe665cbc38158e3482.json"
     },
     {
@@ -6047,6 +6401,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/verify-pdf-patches.md",
       "path": "sessions/d1/d100e5c812c03e60ce91.json"
     },
     {
@@ -6064,6 +6419,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/verify-data-points.md",
       "path": "sessions/9c/9cac15deceeaff40f3b1.json"
     },
     {
@@ -6081,6 +6437,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested a systematic pre-ARR-submissi",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/verify-maintext-data-audit.md",
       "path": "sessions/95/955c47e4ef997c631ef6.json"
     },
     {
@@ -6098,6 +6455,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/verify-appendix-data-audit.md",
       "path": "sessions/d4/d441a52d998ccd25c55b.json"
     },
     {
@@ -6115,6 +6473,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/verify-tab7-fix-data.md",
       "path": "sessions/f2/f289b5025fd761bb1c7a.json"
     },
     {
@@ -6132,6 +6491,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/verify-final-maintext-audit.md",
       "path": "sessions/44/44e3fa98b4ecfa9ff09b.json"
     },
     {
@@ -6149,6 +6509,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/verify-final-appendix-audit.md",
       "path": "sessions/82/8288b8e12cd6766ff933.json"
     },
     {
@@ -6166,6 +6527,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/prep-final-compile-push.md",
       "path": "sessions/e3/e32256c769b1ad30dbc9.json"
     },
     {
@@ -6183,6 +6545,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-archive-project.md",
       "path": "sessions/ef/ef1cd70e50cae1cb228e.json"
     },
     {
@@ -6200,6 +6563,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-cleanup-remote-tarball.md",
       "path": "sessions/ba/ba1062490e1089b7fe21.json"
     },
     {
@@ -6217,6 +6581,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-340m-lambada-per-example.md",
       "path": "sessions/c5/c56d5c645b14be9f2b6d.json"
     },
     {
@@ -6234,6 +6599,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-340m-multi-bench.md",
       "path": "sessions/24/24fa419f0c0af5fecd71.json"
     },
     {
@@ -6251,6 +6617,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-a1-cross-benchmark-jaccard.md",
       "path": "sessions/92/92e839c0a07541df125a.json"
     },
     {
@@ -6268,6 +6635,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-a2-confidence-prediction.md",
       "path": "sessions/41/41566aa4abeecccf6357.json"
     },
     {
@@ -6285,6 +6653,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-a3-complementarity.md",
       "path": "sessions/f2/f2d315c68ff6776b452a.json"
     },
     {
@@ -6302,6 +6671,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-arc-easy-per-example-full.md",
       "path": "sessions/ba/ba210943950e0baa906a.json"
     },
     {
@@ -6319,6 +6689,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-arch-extension-check.md",
       "path": "sessions/96/96844f81585988573db7.json"
     },
     {
@@ -6336,6 +6707,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-boolq-confidence-margin.md",
       "path": "sessions/33/33e5376bd68415a3ca50.json"
     },
     {
@@ -6353,6 +6725,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-boolq-hellaswag-v2.md",
       "path": "sessions/f2/f2db3058da5e51b73f8a.json"
     },
     {
@@ -6370,6 +6743,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-bootstrap-ci-alpha.md",
       "path": "sessions/98/981623209c0c680a15fc.json"
     },
     {
@@ -6387,6 +6761,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-bootstrap-ci-decoupling.md",
       "path": "sessions/0c/0c93bc37bd80914638b1.json"
     },
     {
@@ -6404,6 +6779,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-confidence-margin-rebuttal-v2.md",
       "path": "sessions/52/521afe6fd73178ea81e5.json"
     },
     {
@@ -6421,6 +6797,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-confidence-margin-within-category.md",
       "path": "sessions/4e/4e175053a421d6181836.json"
     },
     {
@@ -6438,6 +6815,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-copa-rho-recompute.md",
       "path": "sessions/d6/d699db0a7f2278cd3582.json"
     },
     {
@@ -6455,6 +6833,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-cross-benchmark-confidence-margin.md",
       "path": "sessions/6b/6b30d16ac01604d9d45f.json"
     },
     {
@@ -6472,6 +6851,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-d009-paper-strength-assessment.md",
       "path": "sessions/9f/9fe6c1e1ab11df2352b2.json"
     },
     {
@@ -6489,6 +6869,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-decoupling-data-pipeline-verify.md",
       "path": "sessions/34/34894b075f3b867bfc78.json"
     },
     {
@@ -6506,6 +6887,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-e1-confidence-selection.md",
       "path": "sessions/9d/9dca8ecf4c4ae85681f0.json"
     },
     {
@@ -6523,6 +6905,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-e2-e3-continuous-jaccard-calibration.md",
       "path": "sessions/51/51e247140d175c66eac0.json"
     },
     {
@@ -6540,6 +6923,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-003-p2.md",
       "path": "sessions/0a/0aea53e04605c272de70.json"
     },
     {
@@ -6557,6 +6941,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-005-5arch-jaccard.md",
       "path": "sessions/84/84d5ebf0d7fc4a05cac5.json"
     },
     {
@@ -6574,6 +6959,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-005-6arch-jaccard.md",
       "path": "sessions/28/284cd9fe2e0d04102e77.json"
     },
     {
@@ -6591,6 +6977,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-005-extended-jaccard.md",
       "path": "sessions/2d/2d4d9ecdadcd9fbfa86c.json"
     },
     {
@@ -6608,6 +6995,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-005-gla-eval.md",
       "path": "sessions/3e/3e42ff4612bcee8495dd.json"
     },
     {
@@ -6625,6 +7013,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-005-gla-jaccard.md",
       "path": "sessions/55/552e5e9e3d2a5f73872d.json"
     },
     {
@@ -6642,6 +7031,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-005-gla-pure-results.md",
       "path": "sessions/30/30cd9ddcc27490c0b2b9.json"
     },
     {
@@ -6659,6 +7049,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-007-340m-rebound.md",
       "path": "sessions/45/45844ff333fcf0b89b5a.json"
     },
     {
@@ -6676,6 +7067,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-007.md",
       "path": "sessions/54/54adb39dd7ccee656c1b.json"
     },
     {
@@ -6693,6 +7085,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-010-convergence-divergence-bridge.md",
       "path": "sessions/16/16da70842ecf2733b48c.json"
     },
     {
@@ -6710,6 +7103,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-011-check-and-analyze.md",
       "path": "sessions/e4/e47f2256d8d7e8e51778.json"
     },
     {
@@ -6727,6 +7121,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-011-convergence.md",
       "path": "sessions/aa/aa6623dc208e318b6613.json"
     },
     {
@@ -6744,6 +7139,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-boolq-hellaswag-eval.md",
       "path": "sessions/29/2961a8cdb13d24322cda.json"
     },
     {
@@ -6761,6 +7157,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp003-p2-data-check.md",
       "path": "sessions/0b/0b91edf28283508da9b5.json"
     },
     {
@@ -6778,6 +7175,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-001-task-specificity.md",
       "path": "sessions/15/15ded3eae9a68395e4c3.json"
     },
     {
@@ -6795,6 +7193,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-003-sample-characterization.md",
       "path": "sessions/12/127bbab14cd881d19f40.json"
     },
     {
@@ -6812,6 +7211,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-008-bca-gdn-excluded.md",
       "path": "sessions/5f/5f6659594c1712cfe784.json"
     },
     {
@@ -6829,6 +7229,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-exp-008-statistical-robustness.md",
       "path": "sessions/f3/f328c57c7770d8602b58.json"
     },
     {
@@ -6846,6 +7247,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-figure-table-data-prep.md",
       "path": "sessions/ca/ca58dca607983d4ee114.json"
     },
     {
@@ -6863,6 +7265,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-figure-table-prep.md",
       "path": "sessions/d7/d77d756fafbd70505b2e.json"
     },
     {
@@ -6880,6 +7283,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-jaccard-upper-bound.md",
       "path": "sessions/7f/7f59db71f60f9770c5c8.json"
     },
     {
@@ -6897,6 +7301,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-jaccard-v2.md",
       "path": "sessions/21/21b6bb284aa48fb42558.json"
     },
     {
@@ -6914,6 +7319,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-loglik-range-diagnostic.md",
       "path": "sessions/27/279a055ed7ebc9b8f47a.json"
     },
     {
@@ -6931,6 +7337,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-null-jaccard-permutation.md",
       "path": "sessions/2c/2cf5d612bd16bddd7244.json"
     },
     {
@@ -6948,6 +7355,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-r16-paired-ttest.md",
       "path": "sessions/33/3331d83b200b86740207.json"
     },
     {
@@ -6965,6 +7373,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-r16-shapiro-wilk.md",
       "path": "sessions/11/11352bd38580cb7763b8.json"
     },
     {
@@ -6982,6 +7391,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-r16-w1-routing-variance.md",
       "path": "sessions/2f/2f5b5e122f263e777936.json"
     },
     {
@@ -6999,6 +7409,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-r16-w3-auc-normality.md",
       "path": "sessions/1c/1c9b24aae98f03d99fd1.json"
     },
     {
@@ -7016,6 +7427,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-retnet-hgrn2-only-decoupling.md",
       "path": "sessions/58/58e4464b22d12e050c81.json"
     },
     {
@@ -7033,6 +7445,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-subsample-sensitivity.md",
       "path": "sessions/d0/d0d246292a20ea6753bd.json"
     },
     {
@@ -7050,6 +7463,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-transformer-baseline-perexample.md",
       "path": "sessions/36/3631331ddcdf4a030b4c.json"
     },
     {
@@ -7067,6 +7481,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-w3-winogrande-piqa-multiplicity.md",
       "path": "sessions/f0/f00381d1f1a06e8407f3.json"
     },
     {
@@ -7084,6 +7499,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-within-arch-helped-stability.md",
       "path": "sessions/dc/dcb0d380d525221454d6.json"
     },
     {
@@ -7101,6 +7517,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-within-scale-jaccard.md",
       "path": "sessions/2b/2bdbec94a5b9dc8aabe1.json"
     },
     {
@@ -7118,6 +7535,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-xstorycloze-convergence.md",
       "path": "sessions/fa/fa4afda020dac24b7900.json"
     },
     {
@@ -7135,6 +7553,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-340m-eval-status.md",
       "path": "sessions/a6/a6a127636afb559e121d.json"
     },
     {
@@ -7152,6 +7571,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-340m-eval-urgent.md",
       "path": "sessions/5b/5bd37acca269ac91189e.json"
     },
     {
@@ -7169,6 +7589,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-citation-verify.md",
       "path": "sessions/6f/6fbc19d61050b4bfece4.json"
     },
     {
@@ -7186,6 +7607,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-e4-pythia-monitor.md",
       "path": "sessions/a0/a0f1c08602654d4a59bb.json"
     },
     {
@@ -7203,6 +7625,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-exp-004-r2-completion.md",
       "path": "sessions/1b/1b1eec37ff24d26fb981.json"
     },
     {
@@ -7220,6 +7643,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-exp-007-data-availability.md",
       "path": "sessions/7e/7e8871ffb8314215469b.json"
     },
     {
@@ -7237,6 +7661,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-exp-007-progress.md",
       "path": "sessions/d4/d410bd9a29dd8880fb57.json"
     },
     {
@@ -7254,6 +7679,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-exp-011-completion.md",
       "path": "sessions/0e/0e2c47d606b4f616233c.json"
     },
     {
@@ -7271,6 +7697,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-exp-011-gpu-status.md",
       "path": "sessions/63/6317e8c700241e2248d4.json"
     },
     {
@@ -7288,6 +7715,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-submission-format.md",
       "path": "sessions/ad/ade8a96a2e9aca20c414.json"
     },
     {
@@ -7305,6 +7733,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-xstorycloze-completion.md",
       "path": "sessions/e6/e6aa96f60bb26cc8c25f.json"
     },
     {
@@ -7322,6 +7751,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-1-3b-correct-download.md",
       "path": "sessions/8b/8b117a22ee7441c1de54.json"
     },
     {
@@ -7339,6 +7769,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-1-3b-hfmirror-download.md",
       "path": "sessions/ca/cad3130331f0050ffd57.json"
     },
     {
@@ -7356,6 +7787,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-1-3b-pipeline-ready.md",
       "path": "sessions/bf/bfc96846ad3d9f01900f.json"
     },
     {
@@ -7373,6 +7805,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-1-3b-remaining-download.md",
       "path": "sessions/a1/a135efaa189918ccb83c.json"
     },
     {
@@ -7390,6 +7823,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-1-3b-remaining-eval.md",
       "path": "sessions/ad/add0de59f763b1eb1567.json"
     },
     {
@@ -7407,6 +7841,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-340m-eval-script-fix.md",
       "path": "sessions/b2/b21e575403bc2337cc00.json"
     },
     {
@@ -7424,6 +7859,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-340m-eval.md",
       "path": "sessions/21/213d629768e85c2f593f.json"
     },
     {
@@ -7441,6 +7877,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-340m-retnet-hgrn2-eval.md",
       "path": "sessions/5e/5e674da879ac544b6816.json"
     },
     {
@@ -7458,6 +7895,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-7b-task-validation.md",
       "path": "sessions/de/deec5886b773ca36acd5.json"
     },
     {
@@ -7475,6 +7913,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-aria2c-batch-download.md",
       "path": "sessions/32/323f51efc24d4887e264.json"
     },
     {
@@ -7492,6 +7931,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-attn-heads-check.md",
       "path": "sessions/a2/a2e01a949435cefda15c.json"
     },
     {
@@ -7509,6 +7949,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-benchmark-visualization.md",
       "path": "sessions/46/46576d77f4a930db28c6.json"
     },
     {
@@ -7526,6 +7967,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-caveat-and-h6-robustness.md",
       "path": "sessions/f0/f0ff1fec0bbd1e804a16.json"
     },
     {
@@ -7543,6 +7985,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-check-and-run-benchmarks.md",
       "path": "sessions/54/541f058c1e3f4c23cd7d.json"
     },
     {
@@ -7560,6 +8003,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-check-smoke-results.md",
       "path": "sessions/b5/b5b532ed609035ca50e8.json"
     },
     {
@@ -7577,6 +8021,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-check-340m-eval-results.md",
       "path": "sessions/c7/c78e1884606e82e7fee2.json"
     },
     {
@@ -7594,6 +8039,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-check-new-gdn-config.md",
       "path": "sessions/59/5991583602e43ebc9bce.json"
     },
     {
@@ -7611,6 +8057,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-collect-results.md",
       "path": "sessions/17/1752eaf78074201d966d.json"
     },
     {
@@ -7628,6 +8075,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-config-restore-hgrn2.md",
       "path": "sessions/d8/d85161942764a5a392d5.json"
     },
     {
@@ -7645,6 +8093,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-convergence-analysis.md",
       "path": "sessions/2b/2b641ddd5267b416db83.json"
     },
     {
@@ -7662,6 +8111,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-cross-scale-convergence.md",
       "path": "sessions/25/253fc2b184586e9bbb1f.json"
     },
     {
@@ -7679,6 +8129,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-debug-retnet.md",
       "path": "sessions/e8/e80475a553ab00c4c72f.json"
     },
     {
@@ -7696,6 +8147,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-env-setup.md",
       "path": "sessions/d3/d3d38819facd7b205b2c.json"
     },
     {
@@ -7713,6 +8165,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-eval-deploy.md",
       "path": "sessions/6f/6f67ec6167cae3d762d4.json"
     },
     {
@@ -7730,6 +8183,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-004-preparation.md",
       "path": "sessions/b9/b93ad4a6d9e270483b42.json"
     },
     {
@@ -7747,6 +8201,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp-007-data-collection-script.md",
       "path": "sessions/5a/5aa823e274bf1963533a.json"
     },
     {
@@ -7764,6 +8219,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-file-inventory.md",
       "path": "sessions/42/4241c28ccb6d5590a6cc.json"
     },
     {
@@ -7781,6 +8237,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-final-report.md",
       "path": "sessions/96/96d55477054540fbb767.json"
     },
     {
@@ -7798,6 +8255,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fix-gdn-shard.md",
       "path": "sessions/a4/a495858135582f6a203e.json"
     },
     {
@@ -7815,6 +8273,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fix-patch-v2.md",
       "path": "sessions/b0/b01f554cf1e67361e286.json"
     },
     {
@@ -7832,6 +8291,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fix-tying-v4.md",
       "path": "sessions/37/37d90a1d67016cfe186d.json"
     },
     {
@@ -7849,6 +8309,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fix-convergence-pvalues.md",
       "path": "sessions/72/724cf1a2d231238a0433.json"
     },
     {
@@ -7866,6 +8327,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fix-final-report.md",
       "path": "sessions/98/982aaa10b3bf5980a7d2.json"
     },
     {
@@ -7883,6 +8345,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fix-report-pvalues-v2.md",
       "path": "sessions/b9/b9ee46870c1d86f463ad.json"
     },
     {
@@ -7900,6 +8363,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-full-benchmark-run.md",
       "path": "sessions/2b/2bd3dbbbeb5e1c2c2c02.json"
     },
     {
@@ -7917,6 +8381,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gdn-h24-extract.md",
       "path": "sessions/4b/4b32aa78d351d06f71ef.json"
     },
     {
@@ -7934,6 +8399,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gdn-logsamples.md",
       "path": "sessions/60/60539b7a3f503eaf22cb.json"
     },
     {
@@ -7951,6 +8417,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gpu-now.md",
       "path": "sessions/05/059bfd67578f981e2e9c.json"
     },
     {
@@ -7968,6 +8435,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-hgrn2-diagnose.md",
       "path": "sessions/f4/f4d7db96d13ea9486259.json"
     },
     {
@@ -7985,6 +8453,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-hgrn2-eval-1-3b.md",
       "path": "sessions/77/77630986b4f1d6f2f1ad.json"
     },
     {
@@ -8002,6 +8471,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-hgrn2-eval-followup.md",
       "path": "sessions/b3/b3b3e7c6fe522999b334.json"
     },
     {
@@ -8019,6 +8489,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-hgrn2-eval-queue.md",
       "path": "sessions/ef/ef614dccee4c7b02da54.json"
     },
     {
@@ -8036,6 +8507,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-hgrn2-h3-1-eval-and-downloads.md",
       "path": "sessions/2d/2d1afd0b635b8844985b.json"
     },
     {
@@ -8053,6 +8525,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-hgrn2-h3-1-repair-v2.md",
       "path": "sessions/4c/4c6f9b2d74b43b9c304c.json"
     },
     {
@@ -8070,6 +8543,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-hgrn2-nohup-start.md",
       "path": "sessions/10/1041e310bb2ca87cf9dc.json"
     },
     {
@@ -8087,6 +8561,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-hgrn2-pure-final-eval.md",
       "path": "sessions/97/971fb70ddf47b697a606.json"
     },
     {
@@ -8104,6 +8579,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-hgrn2-register.md",
       "path": "sessions/89/896aa1e57cbc2730f8c5.json"
     },
     {
@@ -8121,6 +8597,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-lmeval-clean-v2.md",
       "path": "sessions/ab/abb1f04df1a771f928c7.json"
     },
     {
@@ -8138,6 +8615,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-lmeval-clean-v3.md",
       "path": "sessions/03/034a5142d0b78888797f.json"
     },
     {
@@ -8155,6 +8633,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-local-backup.md",
       "path": "sessions/cd/cd3234281316717fbfbd.json"
     },
     {
@@ -8172,6 +8651,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-logprob-eval.md",
       "path": "sessions/af/af6f55da19bd4dc77c68.json"
     },
     {
@@ -8189,6 +8669,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-logprob-results.md",
       "path": "sessions/31/3131929cdaf3232f4131.json"
     },
     {
@@ -8206,6 +8687,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-logprob-analysis.md",
       "path": "sessions/9b/9bcb3dfff167ece8396e.json"
     },
     {
@@ -8223,6 +8705,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-matched-dose-comparison.md",
       "path": "sessions/84/84d1a8d5bc8a939b510b.json"
     },
     {
@@ -8240,6 +8723,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-model-download.md",
       "path": "sessions/cb/cbc9b7ae9c545229d546.json"
     },
     {
@@ -8257,6 +8741,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-multiseed-lambada-eval.md",
       "path": "sessions/e9/e94b5b78a3fd0f8ec355.json"
     },
     {
@@ -8274,6 +8759,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-mvp-run.md",
       "path": "sessions/a0/a0cce97e72395881f9bf.json"
     },
     {
@@ -8291,6 +8777,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-pvalue-sweep-fix.md",
       "path": "sessions/70/7037f3d8beba8081a181.json"
     },
     {
@@ -8308,6 +8795,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-retnet-download-fix.md",
       "path": "sessions/8a/8a0c4a01a576b58d621c.json"
     },
     {
@@ -8325,6 +8813,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-retnet-kill-fix-reeval.md",
       "path": "sessions/67/670435b91736e3e00618.json"
     },
     {
@@ -8342,6 +8831,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-retnet-three-arch.md",
       "path": "sessions/df/dfd71bc41484f85f85d9.json"
     },
     {
@@ -8359,6 +8849,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-serial-benchmark.md",
       "path": "sessions/01/0151440ff6b365e25f05.json"
     },
     {
@@ -8376,6 +8867,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/data-340m-accuracy-extract.md",
       "path": "sessions/62/6257bc446bebecea2ec0.json"
     },
     {
@@ -8393,6 +8885,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/data-exp-005-6arch-extract.md",
       "path": "sessions/37/37f6fbd5a10017a55bb5.json"
     },
     {
@@ -8410,6 +8903,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/data-fetch-5arch-json.md",
       "path": "sessions/22/228fa0f0422c73a64444.json"
     },
     {
@@ -8427,6 +8921,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/diag-exp-005-status-check.md",
       "path": "sessions/4e/4e0b684b543dbc01cb25.json"
     },
     {
@@ -8444,6 +8939,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/diagnose-e4-pythia-seed-calibration.md",
       "path": "sessions/19/19464432ff934eb5dc2b.json"
     },
     {
@@ -8461,6 +8957,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/diagnose-exp-005-batch.md",
       "path": "sessions/23/2380c5bd942a0971970d.json"
     },
     {
@@ -8478,6 +8975,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/diagnose-exp-005-eval-failure.md",
       "path": "sessions/eb/ebf2d2bd50de9b247427.json"
     },
     {
@@ -8495,6 +8993,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/diagnose-exp-005-p1-v4.md",
       "path": "sessions/83/83ece910411859201679.json"
     },
     {
@@ -8512,6 +9011,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/diagnose-hellaswag-metric-check.md",
       "path": "sessions/91/91a235a02ce6ed0aa349.json"
     },
     {
@@ -8529,6 +9029,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/diagnose-w3-gpu-check.md",
       "path": "sessions/e4/e4844e799a541d678fcf.json"
     },
     {
@@ -8546,6 +9047,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/eval-arc-easy-per-example-setup.md",
       "path": "sessions/6b/6b4d900ae4a34b3cbfd3.json"
     },
     {
@@ -8563,6 +9065,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/eval-arc-easy-recovery.md",
       "path": "sessions/e3/e374ae05f86db753ab1c.json"
     },
     {
@@ -8580,6 +9083,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/eval-boolq-hellaswag-probe.md",
       "path": "sessions/b1/b1574f92ed75f9e10167.json"
     },
     {
@@ -8597,6 +9101,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/eval-exp-004-attention-extraction.md",
       "path": "sessions/5b/5b2d3612ea4ee410a618.json"
     },
     {
@@ -8614,6 +9119,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/eval-exp-004-r2-attention-extraction.md",
       "path": "sessions/87/876d1b3e45e182b9f632.json"
     },
     {
@@ -8631,6 +9137,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/eval-exp-011-additional-benchmarks-retry.md",
       "path": "sessions/5f/5fa2765f145cceb665d9.json"
     },
     {
@@ -8648,6 +9155,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/eval-xstorycloze-en-16models.md",
       "path": "sessions/9a/9a4bb8c45b9bb5c29fe0.json"
     },
     {
@@ -8665,6 +9173,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-e4-pythia-seed-calibration.md",
       "path": "sessions/a4/a44b8e43463ddb665e18.json"
     },
     {
@@ -8682,6 +9191,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-exp-005-deltanet-eval-hgrn-fix.md",
       "path": "sessions/69/692e88344afb6201444d.json"
     },
     {
@@ -8699,6 +9209,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-exp-005-eval-and-download.md",
       "path": "sessions/ca/ca31b12eb460ddd72420.json"
     },
     {
@@ -8716,6 +9227,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-exp-005-gla-pure-now.md",
       "path": "sessions/67/67e234343f6859f09ff2.json"
     },
     {
@@ -8733,6 +9245,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-exp-005-hgrn-chain.md",
       "path": "sessions/30/30143bcd52c7311434af.json"
     },
     {
@@ -8750,6 +9263,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-exp-005-hgrn-eval-submit.md",
       "path": "sessions/06/0682b185b5fbc3fbfad6.json"
     },
     {
@@ -8767,6 +9281,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-exp-005-hgrn-eval-watch.md",
       "path": "sessions/0b/0b8b6f2c90b286afba99.json"
     },
     {
@@ -8784,6 +9299,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-exp-005-priority1-v2.md",
       "path": "sessions/c6/c676209d508bd6d14220.json"
     },
     {
@@ -8801,6 +9317,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-exp-005-pure-baselines.md",
       "path": "sessions/0f/0f814994e60b00bd057c.json"
     },
     {
@@ -8818,6 +9335,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/file-download.md",
       "path": "sessions/15/15c43ec8e9f9828d3c3d.json"
     },
     {
@@ -8835,6 +9353,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-e4-clean-restart.md",
       "path": "sessions/58/585821a21fff430a7526.json"
     },
     {
@@ -8852,6 +9371,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-e4-pythia-exact.md",
       "path": "sessions/51/51ce52cb555078e3f291.json"
     },
     {
@@ -8869,6 +9389,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/task-results/fix-e4-pythia-restart.md",
       "path": "sessions/c8/c859e698deedad05d0b3.json"
     },
     {
@@ -8886,6 +9407,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-exp-005-gla-eval-hardcode.md",
       "path": "sessions/75/7526c27ece84e32a4ce0.json"
     },
     {
@@ -8903,6 +9425,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-exp-007-use-clean-script-v3.md",
       "path": "sessions/ad/ad6341d9e08ff4151f82.json"
     },
     {
@@ -8920,6 +9443,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-experiments-tex-consistency.md",
       "path": "sessions/9c/9cca15d8194398e04e3b.json"
     },
     {
@@ -8937,6 +9461,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-experiments-tex-s42-update.md",
       "path": "sessions/5e/5eb412f18f50fbe115cc.json"
     },
     {
@@ -8954,6 +9479,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-fig1-340m-sigma-update.md",
       "path": "sessions/89/894efa66bdd3fdd6cce8.json"
     },
     {
@@ -8971,6 +9497,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-fig2-boolq-color.md",
       "path": "sessions/df/dfdc98f763575b52942c.json"
     },
     {
@@ -8988,6 +9515,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-hellaswag-acc-norm.md",
       "path": "sessions/ad/ad6e36835fe4d6a1f6c4.json"
     },
     {
@@ -9005,6 +9533,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-method-tex-reviewer-fixes.md",
       "path": "sessions/f5/f5a960d638fe261a3cc7.json"
     },
     {
@@ -9022,6 +9551,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-retnet-pure-1-3b-rerun.md",
       "path": "sessions/46/4662ef457eff1c2282cc.json"
     },
     {
@@ -9039,6 +9569,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-wang-paradox-boolq-taxonomy-cleanup.md",
       "path": "sessions/d3/d3cbae7b884129357aea.json"
     },
     {
@@ -9056,6 +9587,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-wang-differentiation-stats.md",
       "path": "sessions/81/8140a374556e2547b097.json"
     },
     {
@@ -9073,6 +9605,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-xstorycloze-taxonomy-fig2.md",
       "path": "sessions/1e/1e6bc3457535674fa821.json"
     },
     {
@@ -9090,6 +9623,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-ssh-check-westb.md",
       "path": "sessions/a2/a2803031cb867fba8c69.json"
     },
     {
@@ -9107,6 +9641,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/monitor-e4-pythia-eval.md",
       "path": "sessions/fd/fddf25e351d256379d36.json"
     },
     {
@@ -9124,6 +9659,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-archive-project.md",
       "path": "sessions/d3/d3d28b416fba174d8245.json"
     },
     {
@@ -9141,6 +9677,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-cleanup-remote-tarball.md",
       "path": "sessions/a1/a1cfcdcd6b9b1400932e.json"
     },
     {
@@ -9158,6 +9695,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-s3-backup.md",
       "path": "sessions/4b/4b2e71d0560e6f7d0a82.json"
     },
     {
@@ -9175,6 +9713,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-appendix-h-within-arch.md",
       "path": "sessions/e7/e78f9395574ee28e439c.json"
     },
     {
@@ -9192,6 +9731,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-appendix-i-confidence-margin.md",
       "path": "sessions/ba/ba68402df19641553be4.json"
     },
     {
@@ -9209,6 +9749,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-figure-fig1-decoupling-hero.md",
       "path": "sessions/72/724a4e89d82f8bd580b4.json"
     },
     {
@@ -9226,6 +9767,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-figure-fig2-task-specificity.md",
       "path": "sessions/35/3563e77615b3a9ebc7aa.json"
     },
     {
@@ -9243,6 +9785,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-fix-appendix-i-overfull.md",
       "path": "sessions/fc/fca584e9267fed573592.json"
     },
     {
@@ -9260,6 +9803,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-research-lit-cluster-1-hybrid.md",
       "path": "sessions/39/392b025ec613d932453d.json"
     },
     {
@@ -9277,6 +9821,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-research-lit-cluster-2-linear-recurrent.md",
       "path": "sessions/35/35cd5043b775696b9c02.json"
     },
     {
@@ -9294,6 +9839,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-abstract.md",
       "path": "sessions/ad/adebbd557a90b6d4997c.json"
     },
     {
@@ -9311,6 +9857,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-conclusion.md",
       "path": "sessions/66/660e6df49289e6fcadf2.json"
     },
     {
@@ -9328,6 +9875,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-experiments.md",
       "path": "sessions/15/15fc02b3b4816743c1f0.json"
     },
     {
@@ -9345,6 +9893,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-introduction.md",
       "path": "sessions/8f/8f736e8205db671cee0a.json"
     },
     {
@@ -9362,6 +9911,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-method.md",
       "path": "sessions/57/574e90ccad37f181757d.json"
     },
     {
@@ -9379,6 +9929,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-related-work.md",
       "path": "sessions/79/7957fedee78129b9821d.json"
     },
     {
@@ -9396,6 +9947,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/prep-arr-checklist-draft.md",
       "path": "sessions/de/de3f916e410aa550465d.json"
     },
     {
@@ -9413,6 +9965,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/prep-code-release-cleanup.md",
       "path": "sessions/ae/ae636b39b79b8097cffa.json"
     },
     {
@@ -9430,6 +9983,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/prep-code-release-final.md",
       "path": "sessions/24/2442962a656a993810dc.json"
     },
     {
@@ -9447,6 +10001,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/prep-code-release-fix.md",
       "path": "sessions/8d/8d8153e0427f87661dd5.json"
     },
     {
@@ -9464,6 +10019,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/prep-final-compile-push.md",
       "path": "sessions/e6/e61c948450ae8bbe0d40.json"
     },
     {
@@ -9481,6 +10037,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/recon-340m-eval-prep.md",
       "path": "sessions/70/704891a28685204c645a.json"
     },
     {
@@ -9498,6 +10055,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-1-3b-model-check.md",
       "path": "sessions/76/76290cbceaf1cdfe1dd0.json"
     },
     {
@@ -9515,6 +10073,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-attn-heads-audit.md",
       "path": "sessions/47/47e7a5404d7e5abb24c6.json"
     },
     {
@@ -9532,6 +10091,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-citation-verification.md",
       "path": "sessions/1a/1ae0e263ebe493667403.json"
     },
     {
@@ -9549,6 +10109,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-exp-005-alternatives.md",
       "path": "sessions/74/7458a3e9aa0333fc31a7.json"
     },
     {
@@ -9566,6 +10127,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-exp-009-wang-differentiation.md",
       "path": "sessions/be/be68b2fa995a3ec487d5.json"
     },
     {
@@ -9583,6 +10145,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-fla-version-online.md",
       "path": "sessions/cd/cdb43cc1a65be5a13238.json"
     },
     {
@@ -9600,6 +10163,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-gateddeltanet-new-check.md",
       "path": "sessions/1a/1a4ac8a8409ca0b7d6e8.json"
     },
     {
@@ -9617,6 +10181,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-per-example-data-audit.md",
       "path": "sessions/9a/9a6c302d22f88fddc736.json"
     },
     {
@@ -9634,6 +10199,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-r16-w5-watson-daniels.md",
       "path": "sessions/4b/4b3ee6b583cc2e130df6.json"
     },
     {
@@ -9651,6 +10217,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-r17-citation-verify.md",
       "path": "sessions/6c/6cb9212f651ba167587a.json"
     },
     {
@@ -9668,6 +10235,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-seed-investigation.md",
       "path": "sessions/58/589b56d94fda6b68a8c7.json"
     },
     {
@@ -9685,6 +10253,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-storycloze-investigation.md",
       "path": "sessions/03/0378768a381c1452e491.json"
     },
     {
@@ -9702,6 +10271,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-synthetic-composition-design.md",
       "path": "sessions/1a/1a0bc873ffb4ac4392f4.json"
     },
     {
@@ -9719,6 +10289,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-task-specificity.md",
       "path": "sessions/39/393dc6bb591358ac934c.json"
     },
     {
@@ -9736,6 +10307,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-wang-fla-version.md",
       "path": "sessions/91/91da60ae6283095e540b.json"
     },
     {
@@ -9753,6 +10325,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-wang-models-survey.md",
       "path": "sessions/52/523fa3d21a6240bd9aa1.json"
     },
     {
@@ -9770,6 +10343,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-wang-7b-models.md",
       "path": "sessions/49/4993b2d8b0e85dcec845.json"
     },
     {
@@ -9787,6 +10361,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-wang-differentiation.md",
       "path": "sessions/08/0869ab2f76234b927c22.json"
     },
     {
@@ -9804,6 +10379,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-wang-et-al-check.md",
       "path": "sessions/5e/5e35740fa32be84574a4.json"
     },
     {
@@ -9821,6 +10397,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ssh-fla-version-investigate.md",
       "path": "sessions/74/748b4cfadfbc16bd6a4b.json"
     },
     {
@@ -9838,6 +10415,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/util-fetch-jaccard-pdf.md",
       "path": "sessions/c1/c1afe2a762aced254c42.json"
     },
     {
@@ -9855,6 +10433,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/util-scp-pdf-jaccard.md",
       "path": "sessions/9d/9d02bb67d7640f79f801.json"
     },
     {
@@ -9872,6 +10451,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/verify-appendix-data-audit.md",
       "path": "sessions/8d/8d33105413964d17ef3d.json"
     },
     {
@@ -9889,6 +10469,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/verify-data-points.md",
       "path": "sessions/b2/b25565ed8265d5c200dc.json"
     },
     {
@@ -9906,6 +10487,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/verify-final-appendix-audit.md",
       "path": "sessions/a6/a6212ba3a9af327bbbb1.json"
     },
     {
@@ -9923,6 +10505,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/verify-final-maintext-audit.md",
       "path": "sessions/9f/9f6e229f16fe02085c82.json"
     },
     {
@@ -9940,6 +10523,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/verify-maintext-data-audit.md",
       "path": "sessions/43/4348b0cc674602c755d4.json"
     },
     {
@@ -9957,6 +10541,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/verify-pdf-patches.md",
       "path": "sessions/ae/aebe4c2bd88ab2118714.json"
     },
     {
@@ -9974,6 +10559,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/verify-tab7-fix-data.md",
       "path": "sessions/a8/a853bc18047e07529671.json"
     },
     {
@@ -9991,6 +10577,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/viz-jaccard-heatmap-4bench.md",
       "path": "sessions/ca/ca4b8eedfb20b76f9471.json"
     },
     {
@@ -10008,6 +10595,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/viz-jaccard-heatmap-5arch.md",
       "path": "sessions/f8/f84257ded48ce3451261.json"
     },
     {
@@ -10025,6 +10613,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-1-copy-2.md",
       "path": "sessions/bc/bc3aa6cd7fafc1151069.json"
     },
     {
@@ -10042,6 +10631,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-1-1779413271.md",
       "path": "sessions/45/4521a6ab7983fb6dd68a.json"
     },
     {
@@ -10059,6 +10649,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-2-copy-2.md",
       "path": "sessions/d3/d3794febf74e992e1a78.json"
     },
     {
@@ -10076,6 +10667,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-1.md",
       "path": "sessions/c6/c6c3efc2da13e49ceedc.json"
     },
     {
@@ -10093,6 +10685,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-2.md",
       "path": "sessions/5a/5a7d297f0785600b2828.json"
     },
     {
@@ -10110,6 +10703,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-3.md",
       "path": "sessions/9a/9aa5eedfb1a8fea75363.json"
     },
     {
@@ -10127,6 +10721,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-4.md",
       "path": "sessions/52/5234ecaf93585779e5e1.json"
     },
     {
@@ -10144,6 +10739,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-1-copy-3.md",
       "path": "sessions/05/0575843af33ae8e797ee.json"
     },
     {
@@ -10161,6 +10757,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-2-copy-3.md",
       "path": "sessions/75/75b0fc2393a2caf65e03.json"
     },
     {
@@ -10178,6 +10775,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-3-copy-2.md",
       "path": "sessions/e0/e093b93cffa0b1d87490.json"
     },
     {
@@ -10195,6 +10793,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-4-copy-2.md",
       "path": "sessions/6d/6dff8c4413ef9b3e87f9.json"
     }
   ]

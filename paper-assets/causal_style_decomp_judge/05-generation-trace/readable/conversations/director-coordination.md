@@ -1,0 +1,23 @@
+# Director coordination
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1,110
+- **Recorded user turns:** 91
+- **Tool calls:** 471
+- **Original source:** `logs/chats/feishu_group_oc_5ce280de124a4e308d1827c6450ad337_director.jsonl`
+- **Structured JSON:** [`82efd14fef289dd3eed9.json`](../../sessions/82/82efd14fef289dd3eed9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Browse this transcript
+
+This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+
+[Part 1](director-coordination/part-001.md) · [Part 2](director-coordination/part-002.md)

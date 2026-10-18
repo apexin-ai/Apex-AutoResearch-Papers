@@ -1,0 +1,271 @@
+# research theory t1 sdpi
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 9
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/chats/worker_research_theory-t1-sdpi_20260521T194207.jsonl`
+- **Structured JSON:** [`4079ab794cc88ea510b9.json`](../../sessions/40/4079ab794cc88ea510b9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+9 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T19:58:09.808293+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/ 2>/dev/null && echo \"---EXISTS---\" || echo \"---MISSING---\"",
+  "description": "Check artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_theory-t1-sdpi_20260521T194207",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/ 2>/dev/null && echo \"---EXISTS---\" || echo \"---MISSING---\"",
+    "description": "Check artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T19:58:09.808600+00:00_
+
+theory
+---EXISTS---
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_theory-t1-sdpi_20260521T194207",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T19:58:09.808798+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theory/ 2>/dev/null && echo \"---EXISTS---\" || echo \"---MISSING---\"",
+  "description": "Check theory subdirectory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_theory-t1-sdpi_20260521T194207",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theory/ 2>/dev/null && echo \"---EXISTS---\" || echo \"---MISSING---\"",
+    "description": "Check theory subdirectory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T19:58:09.808939+00:00_
+
+---EXISTS---
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_theory-t1-sdpi_20260521T194207",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T19:58:09.809107+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theory/",
+  "description": "List existing theory files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_theory-t1-sdpi_20260521T194207",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theory/",
+    "description": "List existing theory files"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T19:58:09.809239+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_theory-t1-sdpi_20260521T194207",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T19:58:09.809446+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theory/t1_sdpi_parallel.md",
+  "content": "# T1: SDPI Parallel Channel Composition\n\n## Setting\n\nConsider a multi-judge evaluation protocol where $K$ judges independently score the same input.\n\n| Symbol | Definition |\n|--------|-----------|\n| $\\mathcal{X}$ | Input space (e.g., response pairs) |\n| $\\mathcal{Y}$ | Score/verdict space |\n| $X \\in \\mathcal{X}$ | Input to be evaluated |\n| $W_k: \\mathcal{X} \\to \\mathcal{Y}$ | Judge $k$'s stochastic channel, $k = 1, \\ldots, K$ |\n| $Y_k = W_k(X)$ | Judge $k$'s output |\n| $\\eta_k \\in [0,1]$ | SDPI contraction coefficient of $W_k$: $\\eta_k := \\sup_{P \\neq Q} \\frac{D_{KL}(W_k P \\| W_k Q)}{D_{KL}(P \\| Q)}$ |\n| $\\eta_{\\max}$ | $\\max_k \\eta_k$ |\n| $I(Y_i; Y_j)$ | Pairwise mutual information between judge outputs (under reference input distribution) |\n| $I_{\\max}$ | $\\max_{i \\neq j} I(Y_i; Y_j)$ |\n| $f(Y_1, \\ldots, Y_K)$ | Panel aggregation rule (e.g., majority vote) |\n\n**Attacker's action**: Replace the input distribution $P_X$ with a manipulated distribution $Q_X$, incurring cost $\\Delta := D_{KL}(Q_X \\| P_X)$, with the goal of flipping $f(Y^K)$.\n\n**Channel model**: The joint channel $W^{(K)}: X \\to (Y_1, \\ldots, Y_K)$ broadcasts a single input to $K$ judges. Judges may be correlated—both through the shared input $X$ (which induces marginal dependence) and through shared biases (training data overlap, architectural similarities), which induce conditional dependence $I(Y_i; Y_j \\mid X) > 0$.\n\n---\n\n## Key Distinction: Serial vs Parallel\n\n### Serial Chain (Markov cascade)\n\nIf judges formed a processing pipeline $X \\to Y_1 \\to Y_2 \\to \\cdots \\to Y_K$ (each judge only sees the previous judge's output):\n\n$$D_{KL}(P_{Y_K \\mid Q} \\| P_{Y_K \\mid P}) \\leq \\prod_{k=1}^K \\eta_k \\cdot D_{KL}(Q \\| P) = \\eta^K \\cdot \\Delta$$\n\nfor homogeneous channels ($\\eta_k = \\eta$). The attacker's influence **decays exponentially** with $K$—each link in the chain further attenuates the perturbation signal. This is iterated application of the data processing inequality.\n\n### Parallel Channels (broadcast)\n\nThe actual multi-judge setting: $X$ is broadcast simultaneously to all $K$ judges.\n\n$$X \\longrightarrow \\begin{cases} W_1 \\to Y_1 \\\\ W_2 \\to Y_2 \\\\ \\vdots \\\\ W_K \\to Y_K \\end{cases}$$\n\nEach channel independently processes the **same input**. The information about the perturbation $P \\to Q$ does not attenuate through a chain; instead, each judge extracts its own view of the perturbation. The total information the attacker injects into the panel **grows** with $K$ (additively, bounded by redundancy), rather than decaying.\n\n**Mathematical distinction**:\n\n| Property | Serial ($X \\to Y_1 \\to \\cdots \\to Y_K$) | Parallel ($X \\to \\{Y_1, \\ldots, Y_K\\}$) |\n|----------|------|----------|\n| SDPI composition | $\\eta_{\\text{joint}} = \\prod_k \\eta_k = \\eta^K$ | $\\eta_{\\text{joint}} \\leq K_{\\text{eff}} \\cdot \\eta_{\\max}$ |\n| Scaling with $K$ | Exponential decay | Linear growth (sublinear with correlation) |\n| Attacker's influence | Vanishes: $\\eta^K \\to 0$ | Bounded: $\\leq K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot \\Delta$ |\n| Defense mechanism | Information attenuation | Voting concentration |\n\n**The original proposal's error**: treating the multi-judge panel as a serial chain gives a misleadingly optimistic $\\eta^K$ defense. The parallel model is weaker in information attenuation but provides defense through a different mechanism: the combinatorial difficulty of flipping a majority vote.\n\n---\n\n## Lemma 1: Parallel Information Bound\n\n**Lemma 1** (Parallel Channel SDPI). *Let $W^{(K)}: \\mathcal{X} \\to \\mathcal{Y}^K$ be a $K$-judge parallel channel with component SDPI constants $\\eta_1, \\ldots, \\eta_K$ and pairwise mutual information $I(Y_i; Y_j)$ under a reference input distribution. For any two input distributions $P, Q$ over $\\mathcal{X}$:*\n\n$$D_{KL}\\!\\left(W^{(K)} Q \\;\\big\\|\\; W^{(K)} P\\right) \\leq K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot D_{KL}(Q \\| P)$$\n\n*where*\n\n$$\\boxed{K_{\\text{eff}} = 1 + (K-1) \\cdot \\exp\\!\\left(-2 \\, I_{\\max}\\right)}$$\n\n*with $I_{\\max} = \\max_{i \\neq j} I(Y_i; Y_j)$.*\n\n**Boundary behavior**:\n- $I_{\\max} = 0$ (independent judges): $K_{\\text{eff}} = K$ — full additive composition.\n- $I_{\\max} \\to \\infty$ (perfectly correlated): $K_{\\text{eff}} \\to 1$ — degenerates to a single channel.\n- For fixed $I_{\\max}$: $K_{\\text{eff}}$ is affine in $K$, growing as $\\exp(-2I_{\\max}) \\cdot K$.\n\n---\n\n## Proof Sketch\n\n### Step 1: Individual SDPI\n\nBy definition of the contraction coefficient, for each channel $k$:\n\n$$D_{KL}(W_k Q \\| W_k P) \\leq \\eta_k \\cdot D_{KL}(Q \\| P) \\leq \\eta_{\\max} \\cdot \\Delta$$\n\nwhere $\\Delta = D_{KL}(Q \\| P)$.\n\n### Step 2: Joint channel decomposition\n\nThe joint output KL divergence decomposes via the chain rule:\n\n$$D_{KL}\\!\\left(P_{Y^K \\mid Q} \\;\\big\\|\\; P_{Y^K \\mid P}\\right) = \\sum_{k=1}^K D_{KL}\\!\\left(P_{Y_k \\mid Y_{&lt;k}, Q} \\;\\big\\|\\; P_{Y_k \\mid Y_{&lt;k}, P}\\right)$$\n\nwhere $Y_{&lt;k} = (Y_1, \\ldots, Y_{k-1})$. Each term is the **conditional information increment**: how much new information channel $k$ provides about whether the input was $P$ or $Q$, given the outputs of channels $1, \\ldots, k-1$.\n\n### Step 3: Conditional reduction via correlation\n\nDefine the **residual information ratio** for channel $k$:\n\n$$r_k := \\frac{D_{KL}\\!\\left(P_{Y_k \\mid Y_{&lt;k}, Q} \\;\\big\\|\\; P_{Y_k \\mid Y_{&lt;k}, P}\\right)}{\\eta_{\\max} \\cdot \\Delta}$$\n\nFor the first channel: $r_1 \\leq 1$ (direct SDPI).\n\nFor $k \\geq 2$: conditioning on $Y_{&lt;k}$ partially \"explains\" the variation in $Y_k$ due to the shared input perturbation. When $Y_k$ is correlated with $Y_{&lt;k}$, the previous outputs already carry most of the perturbation signal, reducing $Y_k$'s conditional contribution.\n\nConcretely, in the compound symmetric setting (all pairwise MI equal to $I_0$), the conditional KL for channel $k$ given $Y_{&lt;k}$ reflects the **residual uncertainty** after removing the information already extracted by earlier channels. The Gaussian analysis (Step 4) shows this residual is governed by $\\exp(-2 \\, I_0)$.\n\n### Step 4: Gaussian compound symmetric derivation\n\nConsider the canonical model: $Y_k = X + \\sqrt{\\rho} \\, Z + \\sqrt{1-\\rho} \\, \\varepsilon_k$ where $Z, \\varepsilon_k \\sim \\mathcal{N}(0,1)$ i.i.d., $X \\sim \\mathcal{N}(\\mu, \\sigma_X^2)$, and $\\rho \\in [0,1]$ is the shared-noise fraction.\n\n**Conditional covariance** of $(Y_1, \\ldots, Y_K)$ given $X$:\n\n$$\\Sigma_{ij \\mid X} = \\begin{cases} 1 & i = j \\\\ \\rho & i \\neq j \\end{cases} = (1-\\rho) \\, I + \\rho \\, \\mathbf{1}\\mathbf{1}^\\top$$\n\n**Joint KL divergence** under mean shift $\\mu \\to \\mu'$, $\\Delta\\mu = \\mu' - \\mu$:\n\n$$D_{KL}\\!\\left(P_{Y^K \\mid Q} \\;\\big\\|\\; P_{Y^K \\mid P}\\right) = \\frac{(\\Delta\\mu)^2}{2} \\cdot \\mathbf{1}^\\top \\!\\left[({\\sigma_X^2 + \\rho}) \\, \\mathbf{1}\\mathbf{1}^\\top + (1-\\rho) \\, I\\right]^{-1}\\! \\mathbf{1}$$\n\nBy the Sherman–Morrison formula:\n\n$$\\mathbf{1}^\\top \\Sigma_{\\text{total}}^{-1} \\mathbf{1} = \\frac{K}{(1-\\rho) + K(\\sigma_X^2 + \\rho)}$$\n\nThe **exact** joint SDPI constant:\n\n$$\\eta_{\\text{joint}} = \\frac{K \\, \\sigma_X^2}{(1-\\rho) + K(\\sigma_X^2 + \\rho)}$$\n\nDividing by $\\eta_{\\text{single}} = \\sigma_X^2 / (\\sigma_X^2 + 1)$ gives the **exact** effective channel count:\n\n$$K_{\\text{eff}}^{\\text{exact}} = \\frac{K \\, (\\sigma_X^2 + 1)}{(1-\\rho) + K(\\sigma_X^2 + \\rho)}$$\n\n### Step 5: Deriving the proposed upper bound\n\nIn the Gaussian model, the conditional mutual information:\n\n$$I(Y_i; Y_j \\mid X) = -\\tfrac{1}{2} \\log(1 - \\rho^2) \\implies \\exp(-2 \\, I_0) = 1 - \\rho^2$$\n\nWe claim $K_{\\text{eff}}^{\\text{exact}} \\leq 1 + (K-1)(1-\\rho^2)$, which is the proposed $K_{\\text{eff}}$ when $I_{\\max} = I_0$.\n\n**Proof of the upper bound**: Set $e = \\exp(-2 \\, I_0) = 1 - \\rho^2 \\in [0,1]$ and $a = 1 - e = \\rho^2$. We need:\n\n$$\\frac{K}{1 + (K-1) \\, a \\cdot g(\\sigma_X^2)} \\leq 1 + (K-1)(1-a)$$\n\nwhere $g$ absorbs the SNR dependence. It suffices to show $K \\leq [1 + (K-1)a][1 + (K-1)(1-a)]$.\n\nExpanding the RHS:\n\n$$[1 + (K-1)a][1 + (K-1)(1-a)] = 1 + (K-1) + (K-1)^2 a(1-a) = K + (K-1)^2 a(1-a) \\geq K$$\n\nsince $(K-1)^2 a(1-a) \\geq 0$ for $a \\in [0,1]$, $K \\geq 1$. $\\square$\n\nThe bound is tight at the boundaries: $a = 0$ gives $K_{\\text{eff}} = K$ (independent), $a = 1$ gives $K_{\\text{eff}} = 1$ (fully correlated).\n\n**Remark on the MI quantity**: The above uses $I(Y_i; Y_j \\mid X)$ (conditional on input). When using the unconditional $I(Y_i; Y_j)$—which also includes correlation through the shared signal $X$—the bound remains valid because $I(Y_i; Y_j) \\geq I(Y_i; Y_j \\mid X)$, so $\\exp(-2 \\, I(Y_i; Y_j)) \\leq \\exp(-2 \\, I(Y_i; Y_j \\mid X))$, giving a (possibly looser but still valid) upper bound on $K_{\\text{eff}}$.\n\n---\n\n## Corollary: K_eff Interpretation\n\n### Formula\n\n$$K_{\\text{eff}} = 1 + (K-1) \\cdot \\exp(-2 \\, I_{\\max}) = \\underbrace{\\exp(-2I_{\\max})}_{\\text{independence factor}} \\cdot K + \\underbrace{(1 - \\exp(-2I_{\\max}))}_{\\text{redundancy}}$$\n\n$K_{\\text{eff}}$ decomposes $K$ judges into an \"effective independent count\" that discounts the redundancy from correlated judges.\n\n### Properties\n\n1. **Monotonicity in $I_{\\max}$**: $\\partial K_{\\text{eff}} / \\partial I_{\\max} = -2(K-1) \\exp(-2I_{\\max}) \\leq 0$. More correlation → fewer effective channels.\n\n2. **Affine in $K$**: For fixed $I_{\\max}$, $K_{\\text{eff}} = \\alpha + (1-\\alpha)K$ where $\\alpha = 1 - \\exp(-2I_{\\max}) \\in [0,1]$. Adding a judge increases $K_{\\text{eff}}$ by $\\exp(-2I_{\\max}) < 1$: diminishing returns under correlation.\n\n3. **Marginal gain of diversity**: $\\partial K_{\\text{eff}} / \\partial I_{\\max} \\big|_{I_{\\max}=0}$ = $-2(K-1)$. Near-independence amplifies K strongly; reducing $I_{\\max}$ from small values has disproportionate benefit.\n\n4. **Compound symmetric upper bound**: $K_{\\text{eff}} \\geq K_{\\text{eff}}^{\\text{exact}}$ (the true effective count from the Gaussian model). The gap is $O((K-1)^2 a(1-a))$ where $a = 1 - \\exp(-2I_{\\max})$, maximized at $a = 1/2$ ($I_{\\max} = \\frac{1}{2}\\ln 2 \\approx 0.35$).\n\n### Numerical examples\n\n| $K$ | $I_{\\max}$ | $\\exp(-2I_{\\max})$ | $K_{\\text{eff}}$ | Interpretation |\n|-----|-----------|-------------------|-----------------|---------------|\n| 5   | 0         | 1.0               | 5.0             | Fully independent |\n| 5   | 0.35      | 0.50              | 3.0             | Moderate correlation |\n| 5   | 1.0       | 0.14              | 1.5             | High correlation |\n| 5   | 2.0       | 0.018             | 1.07            | Near-clones |\n| 10  | 0.35      | 0.50              | 5.5             | 10 judges ≈ 5.5 effective |\n| 20  | 0.35      | 0.50              | 10.5            | Half efficiency |\n\n---\n\n## Connection to Manipulation Resistance\n\n### From information bound to attack cost\n\nThe parallel SDPI bound limits the total distinguishability the attacker can create at the panel's output:\n\n$$D_{KL}\\!\\left(W^{(K)} Q \\;\\big\\|\\; W^{(K)} P\\right) \\leq K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot \\Delta$$\n\nBy Pinsker's inequality, the total variation between attacked and honest output distributions:\n\n$$\\text{TV}\\!\\left(W^{(K)} Q, \\, W^{(K)} P\\right) \\leq \\sqrt{\\frac{K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot \\Delta}{2}}$$\n\nFor the attacker to flip the panel verdict with probability $\\geq 1 - \\delta$, they need $\\text{TV} \\geq 1 - 2\\delta$, giving:\n\n$$\\boxed{\\Delta \\geq \\frac{2(1-2\\delta)^2}{K_{\\text{eff}} \\cdot \\eta_{\\max}}}$$\n\n### The defense gap: additive information vs. exponential concentration\n\nThe information bound alone gives a **constant** (in $K$) lower bound on the perturbation cost — not an improving defense. The true defense emerges from the interaction between the SDPI bound and the **concentration of the majority vote**.\n\n**Majority vote concentration**: For $K_{\\text{eff}}$ effectively independent judges each with accuracy $p > 1/2$, by Hoeffding's inequality:\n\n$$\\Pr[\\text{incorrect verdict}] \\leq \\exp\\!\\left(-2 K_{\\text{eff}} \\left(p - \\tfrac{1}{2}\\right)^2\\right)$$\n\n**Under attack**: The attacker's perturbation shifts each judge's accuracy from $p$ to at most $p' = p - \\text{TV}(W_k Q, W_k P)$. By Pinsker applied per-channel:\n\n$$p' \\geq p - \\sqrt{\\frac{\\eta_{\\max} \\cdot \\Delta}{2}}$$\n\nFor the verdict to flip **reliably** against this concentration, the attacker needs $p' < 1/2$, AND the majority vote of $K_{\\text{eff}}$ independent coins at rate $p'$ must produce a wrong answer. This requires:\n\n$$\\sqrt{\\frac{\\eta_{\\max} \\cdot \\Delta}{2}} > \\left(p - \\frac{1}{2}\\right) - O\\!\\left(\\frac{1}{\\sqrt{K_{\\text{eff}}}}\\right)$$\n\nThe $O(1/\\sqrt{K_{\\text{eff}}})$ correction arises from the concentration width. In other words, the attacker must not just cross the $p = 1/2$ boundary — they must **clear it by $\\Omega(1/\\sqrt{K_{\\text{eff}}})$** to overcome the vote concentration.\n\n**The defense structure**:\n\n| Component | Scales as | Role |\n|-----------|----------|------|\n| Attacker's total info budget | $O(K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot \\Delta)$ | Linear in $K_{\\text{eff}}$ |\n| Per-judge accuracy shift | $O(\\sqrt{\\eta_{\\max} \\cdot \\Delta})$ | Independent of $K$ |\n| Votes needed to flip | $\\lceil K/2 \\rceil$ | Linear in $K$ |\n| Concentration barrier | $\\exp(-\\Omega(K_{\\text{eff}}))$ | Exponential in $K_{\\text{eff}}$ |\n\nThe gap: the attacker's per-perturbation leverage on each judge is **fixed** ($\\sqrt{\\eta_{\\max} \\cdot \\Delta}$, independent of $K$). But the probability that this fixed leverage flips the majority **decays exponentially** in $K_{\\text{eff}}$. To maintain a constant attack success rate, the attacker must increase $\\Delta$ as $\\Omega(\\log K_{\\text{eff}})$.\n\nMore precisely, for attack success probability $\\geq 1 - \\delta$ with $\\delta$ constant:\n\n$$\\Delta \\geq \\frac{2\\left(p - \\frac{1}{2}\\right)^2}{\\eta_{\\max}} + \\frac{c \\cdot \\log(1/\\delta)}{\\eta_{\\max} \\cdot K_{\\text{eff}}}$$\n\nThe first term is the threshold to cross $p = 1/2$; the second is the additional cost to overcome concentration. The defense improves with $K_{\\text{eff}}$ through the **concentration term**, not through the information bound alone.\n\n### Summary of the defense argument\n\n1. **SDPI**: Each judge's output shift is bounded by $\\eta_{\\max} \\cdot \\Delta$ (contraction).\n2. **Parallel composition**: The total panel information gain is $\\leq K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot \\Delta$ (sublinear due to correlation).\n3. **Voting concentration**: Flipping the majority of $K_{\\text{eff}}$ independent votes requires the perturbation to clear the accuracy margin **plus** the concentration width $\\Omega(1/\\sqrt{K_{\\text{eff}}})$.\n4. **Manipulation cost**: $\\Delta = \\Omega\\!\\left(\\frac{(p - 1/2)^2}{\\eta_{\\max}}\\right)$, with the success probability of sub-threshold attacks decaying as $\\exp(-\\Omega(K_{\\text{eff}}))$.\n\nThe parallel setting gives a **polynomial** (not exponential) information gain for the attacker, but the majority vote's exponential concentration creates the defense gap.\n\n---\n\n## Open Questions\n\n1. **Tight $K_{\\text{eff}}$ for non-Gaussian channels**: The proposed $K_{\\text{eff}} = 1 + (K-1)\\exp(-2I_{\\max})$ is an upper bound tight for Gaussians. For discrete-output LLM judges (Likert scores, binary verdicts), the true $K_{\\text{eff}}$ may be tighter. Can we derive distribution-specific bounds using the hypercontractivity ribbon (Polyanskiy & Wu, 2016)?\n\n2. **Empirical estimation of $I_{\\max}$**: $I(Y_i; Y_j)$ between LLM judge outputs needs estimation from finite samples. With discrete scores and limited evaluation instances, the plug-in MI estimator has high variance. Investigate: (a) nearest-neighbor MI estimators, (b) lower bounds via classifier-based variational MI, (c) correlation as a proxy (rank correlation → MI via copula).\n\n3. **Heterogeneous $\\eta_k$**: The bound uses $\\eta_{\\max}$, but judges may have widely varying contraction coefficients. A tighter bound via $\\sum_k \\eta_k \\cdot r_k$ (weighted by residual ratios) could give a more informative $K_{\\text{eff}}$.\n\n4. **Adaptive attacks**: The current analysis assumes the attacker commits to a single $Q$ (static perturbation). Adaptive attacks that choose different perturbations per judge (if judges can be queried independently) break the parallel model. Bound the cost of adaptive strategies.\n\n5. **Beyond majority vote**: For weighted aggregation (e.g., confidence-weighted average), the concentration argument changes. The effective defense may be stronger or weaker depending on the weight structure and its interaction with $K_{\\text{eff}}$.\n\n6. **Experimental validation (MVP)**:\n   - Fix $K = 5$ diverse LLM judges. Estimate pairwise $I(Y_i; Y_j)$ on a held-out evaluation set.\n   - Compute predicted $K_{\\text{eff}}$. Compare against empirical \"effective sample size\" from bootstrap analysis of verdict stability.\n   - Test manipulation: apply systematic perturbations to inputs and measure how many judges flip, comparing to the $K_{\\text{eff}}$-based prediction.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_theory-t1-sdpi_20260521T194207",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theory/t1_sdpi_parallel.md",
+    "content": "# T1: SDPI Parallel Channel Composition\n\n## Setting\n\nConsider a multi-judge evaluation protocol where $K$ judges independently score the same input.\n\n| Symbol | Definition |\n|--------|-----------|\n| $\\mathcal{X}$ | Input space (e.g., response pairs) |\n| $\\mathcal{Y}$ | Score/verdict space |\n| $X \\in \\mathcal{X}$ | Input to be evaluated |\n| $W_k: \\mathcal{X} \\to \\mathcal{Y}$ | Judge $k$'s stochastic channel, $k = 1, \\ldots, K$ |\n| $Y_k = W_k(X)$ | Judge $k$'s output |\n| $\\eta_k \\in [0,1]$ | SDPI contraction coefficient of $W_k$: $\\eta_k := \\sup_{P \\neq Q} \\frac{D_{KL}(W_k P \\| W_k Q)}{D_{KL}(P \\| Q)}$ |\n| $\\eta_{\\max}$ | $\\max_k \\eta_k$ |\n| $I(Y_i; Y_j)$ | Pairwise mutual information between judge outputs (under reference input distribution) |\n| $I_{\\max}$ | $\\max_{i \\neq j} I(Y_i; Y_j)$ |\n| $f(Y_1, \\ldots, Y_K)$ | Panel aggregation rule (e.g., majority vote) |\n\n**Attacker's action**: Replace the input distribution $P_X$ with a manipulated distribution $Q_X$, incurring cost $\\Delta := D_{KL}(Q_X \\| P_X)$, with the goal of flipping $f(Y^K)$.\n\n**Channel model**: The joint channel $W^{(K)}: X \\to (Y_1, \\ldots, Y_K)$ broadcasts a single input to $K$ judges. Judges may be correlated—both through the shared input $X$ (which induces marginal dependence) and through shared biases (training data overlap, architectural similarities), which induce conditional dependence $I(Y_i; Y_j \\mid X) > 0$.\n\n---\n\n## Key Distinction: Serial vs Parallel\n\n### Serial Chain (Markov cascade)\n\nIf judges formed a processing pipeline $X \\to Y_1 \\to Y_2 \\to \\cdots \\to Y_K$ (each judge only sees the previous judge's output):\n\n$$D_{KL}(P_{Y_K \\mid Q} \\| P_{Y_K \\mid P}) \\leq \\prod_{k=1}^K \\eta_k \\cdot D_{KL}(Q \\| P) = \\eta^K \\cdot \\Delta$$\n\nfor homogeneous channels ($\\eta_k = \\eta$). The attacker's influence **decays exponentially** with $K$—each link in the chain further attenuates the perturbation signal. This is iterated application of the data processing inequality.\n\n### Parallel Channels (broadcast)\n\nThe actual multi-judge setting: $X$ is broadcast simultaneously to all $K$ judges.\n\n$$X \\longrightarrow \\begin{cases} W_1 \\to Y_1 \\\\ W_2 \\to Y_2 \\\\ \\vdots \\\\ W_K \\to Y_K \\end{cases}$$\n\nEach channel independently processes the **same input**. The information about the perturbation $P \\to Q$ does not attenuate through a chain; instead, each judge extracts its own view of the perturbation. The total information the attacker injects into the panel **grows** with $K$ (additively, bounded by redundancy), rather than decaying.\n\n**Mathematical distinction**:\n\n| Property | Serial ($X \\to Y_1 \\to \\cdots \\to Y_K$) | Parallel ($X \\to \\{Y_1, \\ldots, Y_K\\}$) |\n|----------|------|----------|\n| SDPI composition | $\\eta_{\\text{joint}} = \\prod_k \\eta_k = \\eta^K$ | $\\eta_{\\text{joint}} \\leq K_{\\text{eff}} \\cdot \\eta_{\\max}$ |\n| Scaling with $K$ | Exponential decay | Linear growth (sublinear with correlation) |\n| Attacker's influence | Vanishes: $\\eta^K \\to 0$ | Bounded: $\\leq K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot \\Delta$ |\n| Defense mechanism | Information attenuation | Voting concentration |\n\n**The original proposal's error**: treating the multi-judge panel as a serial chain gives a misleadingly optimistic $\\eta^K$ defense. The parallel model is weaker in information attenuation but provides defense through a different mechanism: the combinatorial difficulty of flipping a majority vote.\n\n---\n\n## Lemma 1: Parallel Information Bound\n\n**Lemma 1** (Parallel Channel SDPI). *Let $W^{(K)}: \\mathcal{X} \\to \\mathcal{Y}^K$ be a $K$-judge parallel channel with component SDPI constants $\\eta_1, \\ldots, \\eta_K$ and pairwise mutual information $I(Y_i; Y_j)$ under a reference input distribution. For any two input distributions $P, Q$ over $\\mathcal{X}$:*\n\n$$D_{KL}\\!\\left(W^{(K)} Q \\;\\big\\|\\; W^{(K)} P\\right) \\leq K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot D_{KL}(Q \\| P)$$\n\n*where*\n\n$$\\boxed{K_{\\text{eff}} = 1 + (K-1) \\cdot \\exp\\!\\left(-2 \\, I_{\\max}\\right)}$$\n\n*with $I_{\\max} = \\max_{i \\neq j} I(Y_i; Y_j)$.*\n\n**Boundary behavior**:\n- $I_{\\max} = 0$ (independent judges): $K_{\\text{eff}} = K$ — full additive composition.\n- $I_{\\max} \\to \\infty$ (perfectly correlated): $K_{\\text{eff}} \\to 1$ — degenerates to a single channel.\n- For fixed $I_{\\max}$: $K_{\\text{eff}}$ is affine in $K$, growing as $\\exp(-2I_{\\max}) \\cdot K$.\n\n---\n\n## Proof Sketch\n\n### Step 1: Individual SDPI\n\nBy definition of the contraction coefficient, for each channel $k$:\n\n$$D_{KL}(W_k Q \\| W_k P) \\leq \\eta_k \\cdot D_{KL}(Q \\| P) \\leq \\eta_{\\max} \\cdot \\Delta$$\n\nwhere $\\Delta = D_{KL}(Q \\| P)$.\n\n### Step 2: Joint channel decomposition\n\nThe joint output KL divergence decomposes via the chain rule:\n\n$$D_{KL}\\!\\left(P_{Y^K \\mid Q} \\;\\big\\|\\; P_{Y^K \\mid P}\\right) = \\sum_{k=1}^K D_{KL}\\!\\left(P_{Y_k \\mid Y_{&lt;k}, Q} \\;\\big\\|\\; P_{Y_k \\mid Y_{&lt;k}, P}\\right)$$\n\nwhere $Y_{&lt;k} = (Y_1, \\ldots, Y_{k-1})$. Each term is the **conditional information increment**: how much new information channel $k$ provides about whether the input was $P$ or $Q$, given the outputs of channels $1, \\ldots, k-1$.\n\n### Step 3: Conditional reduction via correlation\n\nDefine the **residual information ratio** for channel $k$:\n\n$$r_k := \\frac{D_{KL}\\!\\left(P_{Y_k \\mid Y_{&lt;k}, Q} \\;\\big\\|\\; P_{Y_k \\mid Y_{&lt;k}, P}\\right)}{\\eta_{\\max} \\cdot \\Delta}$$\n\nFor the first channel: $r_1 \\leq 1$ (direct SDPI).\n\nFor $k \\geq 2$: conditioning on $Y_{&lt;k}$ partially \"explains\" the variation in $Y_k$ due to the shared input perturbation. When $Y_k$ is correlated with $Y_{&lt;k}$, the previous outputs already carry most of the perturbation signal, reducing $Y_k$'s conditional contribution.\n\nConcretely, in the compound symmetric setting (all pairwise MI equal to $I_0$), the conditional KL for channel $k$ given $Y_{&lt;k}$ reflects the **residual uncertainty** after removing the information already extracted by earlier channels. The Gaussian analysis (Step 4) shows this residual is governed by $\\exp(-2 \\, I_0)$.\n\n### Step 4: Gaussian compound symmetric derivation\n\nConsider the canonical model: $Y_k = X + \\sqrt{\\rho} \\, Z + \\sqrt{1-\\rho} \\, \\varepsilon_k$ where $Z, \\varepsilon_k \\sim \\mathcal{N}(0,1)$ i.i.d., $X \\sim \\mathcal{N}(\\mu, \\sigma_X^2)$, and $\\rho \\in [0,1]$ is the shared-noise fraction.\n\n**Conditional covariance** of $(Y_1, \\ldots, Y_K)$ given $X$:\n\n$$\\Sigma_{ij \\mid X} = \\begin{cases} 1 & i = j \\\\ \\rho & i \\neq j \\end{cases} = (1-\\rho) \\, I + \\rho \\, \\mathbf{1}\\mathbf{1}^\\top$$\n\n**Joint KL divergence** under mean shift $\\mu \\to \\mu'$, $\\Delta\\mu = \\mu' - \\mu$:\n\n$$D_{KL}\\!\\left(P_{Y^K \\mid Q} \\;\\big\\|\\; P_{Y^K \\mid P}\\right) = \\frac{(\\Delta\\mu)^2}{2} \\cdot \\mathbf{1}^\\top \\!\\left[({\\sigma_X^2 + \\rho}) \\, \\mathbf{1}\\mathbf{1}^\\top + (1-\\rho) \\, I\\right]^{-1}\\! \\mathbf{1}$$\n\nBy the Sherman–Morrison formula:\n\n$$\\mathbf{1}^\\top \\Sigma_{\\text{total}}^{-1} \\mathbf{1} = \\frac{K}{(1-\\rho) + K(\\sigma_X^2 + \\rho)}$$\n\nThe **exact** joint SDPI constant:\n\n$$\\eta_{\\text{joint}} = \\frac{K \\, \\sigma_X^2}{(1-\\rho) + K(\\sigma_X^2 + \\rho)}$$\n\nDividing by $\\eta_{\\text{single}} = \\sigma_X^2 / (\\sigma_X^2 + 1)$ gives the **exact** effective channel count:\n\n$$K_{\\text{eff}}^{\\text{exact}} = \\frac{K \\, (\\sigma_X^2 + 1)}{(1-\\rho) + K(\\sigma_X^2 + \\rho)}$$\n\n### Step 5: Deriving the proposed upper bound\n\nIn the Gaussian model, the conditional mutual information:\n\n$$I(Y_i; Y_j \\mid X) = -\\tfrac{1}{2} \\log(1 - \\rho^2) \\implies \\exp(-2 \\, I_0) = 1 - \\rho^2$$\n\nWe claim $K_{\\text{eff}}^{\\text{exact}} \\leq 1 + (K-1)(1-\\rho^2)$, which is the proposed $K_{\\text{eff}}$ when $I_{\\max} = I_0$.\n\n**Proof of the upper bound**: Set $e = \\exp(-2 \\, I_0) = 1 - \\rho^2 \\in [0,1]$ and $a = 1 - e = \\rho^2$. We need:\n\n$$\\frac{K}{1 + (K-1) \\, a \\cdot g(\\sigma_X^2)} \\leq 1 + (K-1)(1-a)$$\n\nwhere $g$ absorbs the SNR dependence. It suffices to show $K \\leq [1 + (K-1)a][1 + (K-1)(1-a)]$.\n\nExpanding the RHS:\n\n$$[1 + (K-1)a][1 + (K-1)(1-a)] = 1 + (K-1) + (K-1)^2 a(1-a) = K + (K-1)^2 a(1-a) \\geq K$$\n\nsince $(K-1)^2 a(1-a) \\geq 0$ for $a \\in [0,1]$, $K \\geq 1$. $\\square$\n\nThe bound is tight at the boundaries: $a = 0$ gives $K_{\\text{eff}} = K$ (independent), $a = 1$ gives $K_{\\text{eff}} = 1$ (fully correlated).\n\n**Remark on the MI quantity**: The above uses $I(Y_i; Y_j \\mid X)$ (conditional on input). When using the unconditional $I(Y_i; Y_j)$—which also includes correlation through the shared signal $X$—the bound remains valid because $I(Y_i; Y_j) \\geq I(Y_i; Y_j \\mid X)$, so $\\exp(-2 \\, I(Y_i; Y_j)) \\leq \\exp(-2 \\, I(Y_i; Y_j \\mid X))$, giving a (possibly looser but still valid) upper bound on $K_{\\text{eff}}$.\n\n---\n\n## Corollary: K_eff Interpretation\n\n### Formula\n\n$$K_{\\text{eff}} = 1 + (K-1) \\cdot \\exp(-2 \\, I_{\\max}) = \\underbrace{\\exp(-2I_{\\max})}_{\\text{independence factor}} \\cdot K + \\underbrace{(1 - \\exp(-2I_{\\max}))}_{\\text{redundancy}}$$\n\n$K_{\\text{eff}}$ decomposes $K$ judges into an \"effective independent count\" that discounts the redundancy from correlated judges.\n\n### Properties\n\n1. **Monotonicity in $I_{\\max}$**: $\\partial K_{\\text{eff}} / \\partial I_{\\max} = -2(K-1) \\exp(-2I_{\\max}) \\leq 0$. More correlation → fewer effective channels.\n\n2. **Affine in $K$**: For fixed $I_{\\max}$, $K_{\\text{eff}} = \\alpha + (1-\\alpha)K$ where $\\alpha = 1 - \\exp(-2I_{\\max}) \\in [0,1]$. Adding a judge increases $K_{\\text{eff}}$ by $\\exp(-2I_{\\max}) < 1$: diminishing returns under correlation.\n\n3. **Marginal gain of diversity**: $\\partial K_{\\text{eff}} / \\partial I_{\\max} \\big|_{I_{\\max}=0}$ = $-2(K-1)$. Near-independence amplifies K strongly; reducing $I_{\\max}$ from small values has disproportionate benefit.\n\n4. **Compound symmetric upper bound**: $K_{\\text{eff}} \\geq K_{\\text{eff}}^{\\text{exact}}$ (the true effective count from the Gaussian model). The gap is $O((K-1)^2 a(1-a))$ where $a = 1 - \\exp(-2I_{\\max})$, maximized at $a = 1/2$ ($I_{\\max} = \\frac{1}{2}\\ln 2 \\approx 0.35$).\n\n### Numerical examples\n\n| $K$ | $I_{\\max}$ | $\\exp(-2I_{\\max})$ | $K_{\\text{eff}}$ | Interpretation |\n|-----|-----------|-------------------|-----------------|---------------|\n| 5   | 0         | 1.0               | 5.0             | Fully independent |\n| 5   | 0.35      | 0.50              | 3.0             | Moderate correlation |\n| 5   | 1.0       | 0.14              | 1.5             | High correlation |\n| 5   | 2.0       | 0.018             | 1.07            | Near-clones |\n| 10  | 0.35      | 0.50              | 5.5             | 10 judges ≈ 5.5 effective |\n| 20  | 0.35      | 0.50              | 10.5            | Half efficiency |\n\n---\n\n## Connection to Manipulation Resistance\n\n### From information bound to attack cost\n\nThe parallel SDPI bound limits the total distinguishability the attacker can create at the panel's output:\n\n$$D_{KL}\\!\\left(W^{(K)} Q \\;\\big\\|\\; W^{(K)} P\\right) \\leq K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot \\Delta$$\n\nBy Pinsker's inequality, the total variation between attacked and honest output distributions:\n\n$$\\text{TV}\\!\\left(W^{(K)} Q, \\, W^{(K)} P\\right) \\leq \\sqrt{\\frac{K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot \\Delta}{2}}$$\n\nFor the attacker to flip the panel verdict with probability $\\geq 1 - \\delta$, they need $\\text{TV} \\geq 1 - 2\\delta$, giving:\n\n$$\\boxed{\\Delta \\geq \\frac{2(1-2\\delta)^2}{K_{\\text{eff}} \\cdot \\eta_{\\max}}}$$\n\n### The defense gap: additive information vs. exponential concentration\n\nThe information bound alone gives a **constant** (in $K$) lower bound on the perturbation cost — not an improving defense. The true defense emerges from the interaction between the SDPI bound and the **concentration of the majority vote**.\n\n**Majority vote concentration**: For $K_{\\text{eff}}$ effectively independent judges each with accuracy $p > 1/2$, by Hoeffding's inequality:\n\n$$\\Pr[\\text{incorrect verdict}] \\leq \\exp\\!\\left(-2 K_{\\text{eff}} \\left(p - \\tfrac{1}{2}\\right)^2\\right)$$\n\n**Under attack**: The attacker's perturbation shifts each judge's accuracy from $p$ to at most $p' = p - \\text{TV}(W_k Q, W_k P)$. By Pinsker applied per-channel:\n\n$$p' \\geq p - \\sqrt{\\frac{\\eta_{\\max} \\cdot \\Delta}{2}}$$\n\nFor the verdict to flip **reliably** against this concentration, the attacker needs $p' < 1/2$, AND the majority vote of $K_{\\text{eff}}$ independent coins at rate $p'$ must produce a wrong answer. This requires:\n\n$$\\sqrt{\\frac{\\eta_{\\max} \\cdot \\Delta}{2}} > \\left(p - \\frac{1}{2}\\right) - O\\!\\left(\\frac{1}{\\sqrt{K_{\\text{eff}}}}\\right)$$\n\nThe $O(1/\\sqrt{K_{\\text{eff}}})$ correction arises from the concentration width. In other words, the attacker must not just cross the $p = 1/2$ boundary — they must **clear it by $\\Omega(1/\\sqrt{K_{\\text{eff}}})$** to overcome the vote concentration.\n\n**The defense structure**:\n\n| Component | Scales as | Role |\n|-----------|----------|------|\n| Attacker's total info budget | $O(K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot \\Delta)$ | Linear in $K_{\\text{eff}}$ |\n| Per-judge accuracy shift | $O(\\sqrt{\\eta_{\\max} \\cdot \\Delta})$ | Independent of $K$ |\n| Votes needed to flip | $\\lceil K/2 \\rceil$ | Linear in $K$ |\n| Concentration barrier | $\\exp(-\\Omega(K_{\\text{eff}}))$ | Exponential in $K_{\\text{eff}}$ |\n\nThe gap: the attacker's per-perturbation leverage on each judge is **fixed** ($\\sqrt{\\eta_{\\max} \\cdot \\Delta}$, independent of $K$). But the probability that this fixed leverage flips the majority **decays exponentially** in $K_{\\text{eff}}$. To maintain a constant attack success rate, the attacker must increase $\\Delta$ as $\\Omega(\\log K_{\\text{eff}})$.\n\nMore precisely, for attack success probability $\\geq 1 - \\delta$ with $\\delta$ constant:\n\n$$\\Delta \\geq \\frac{2\\left(p - \\frac{1}{2}\\right)^2}{\\eta_{\\max}} + \\frac{c \\cdot \\log(1/\\delta)}{\\eta_{\\max} \\cdot K_{\\text{eff}}}$$\n\nThe first term is the threshold to cross $p = 1/2$; the second is the additional cost to overcome concentration. The defense improves with $K_{\\text{eff}}$ through the **concentration term**, not through the information bound alone.\n\n### Summary of the defense argument\n\n1. **SDPI**: Each judge's output shift is bounded by $\\eta_{\\max} \\cdot \\Delta$ (contraction).\n2. **Parallel composition**: The total panel information gain is $\\leq K_{\\text{eff}} \\cdot \\eta_{\\max} \\cdot \\Delta$ (sublinear due to correlation).\n3. **Voting concentration**: Flipping the majority of $K_{\\text{eff}}$ independent votes requires the perturbation to clear the accuracy margin **plus** the concentration width $\\Omega(1/\\sqrt{K_{\\text{eff}}})$.\n4. **Manipulation cost**: $\\Delta = \\Omega\\!\\left(\\frac{(p - 1/2)^2}{\\eta_{\\max}}\\right)$, with the success probability of sub-threshold attacks decaying as $\\exp(-\\Omega(K_{\\text{eff}}))$.\n\nThe parallel setting gives a **polynomial** (not exponential) information gain for the attacker, but the majority vote's exponential concentration creates the defense gap.\n\n---\n\n## Open Questions\n\n1. **Tight $K_{\\text{eff}}$ for non-Gaussian channels**: The proposed $K_{\\text{eff}} = 1 + (K-1)\\exp(-2I_{\\max})$ is an upper bound tight for Gaussians. For discrete-output LLM judges (Likert scores, binary verdicts), the true $K_{\\text{eff}}$ may be tighter. Can we derive distribution-specific bounds using the hypercontractivity ribbon (Polyanskiy & Wu, 2016)?\n\n2. **Empirical estimation of $I_{\\max}$**: $I(Y_i; Y_j)$ between LLM judge outputs needs estimation from finite samples. With discrete scores and limited evaluation instances, the plug-in MI estimator has high variance. Investigate: (a) nearest-neighbor MI estimators, (b) lower bounds via classifier-based variational MI, (c) correlation as a proxy (rank correlation → MI via copula).\n\n3. **Heterogeneous $\\eta_k$**: The bound uses $\\eta_{\\max}$, but judges may have widely varying contraction coefficients. A tighter bound via $\\sum_k \\eta_k \\cdot r_k$ (weighted by residual ratios) could give a more informative $K_{\\text{eff}}$.\n\n4. **Adaptive attacks**: The current analysis assumes the attacker commits to a single $Q$ (static perturbation). Adaptive attacks that choose different perturbations per judge (if judges can be queried independently) break the parallel model. Bound the cost of adaptive strategies.\n\n5. **Beyond majority vote**: For weighted aggregation (e.g., confidence-weighted average), the concentration argument changes. The effective defense may be stronger or weaker depending on the weight structure and its interaction with $K_{\\text{eff}}$.\n\n6. **Experimental validation (MVP)**:\n   - Fix $K = 5$ diverse LLM judges. Estimate pairwise $I(Y_i; Y_j)$ on a held-out evaluation set.\n   - Compute predicted $K_{\\text{eff}}$. Compare against empirical \"effective sample size\" from bootstrap analysis of verdict stability.\n   - Test manipulation: apply systematic perturbations to inputs and measure how many judges flip, comparing to the $K_{\\text{eff}}$-based prediction.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T19:58:09.809866+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theory/t1_sdpi_parallel.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_theory-t1-sdpi_20260521T194207",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-21T19:58:09.810054+00:00_
+
+文件已写入。核心内容：
+
+- **Serial vs Parallel 区分**：串联 $\eta^K$ 指数衰减 vs 并联 $K_{\text{eff}} \cdot \eta_{\max}$ 线性增长
+- **Lemma 1**：并联通道联合 KL 散度上界 $D_{KL}(W^{(K)}Q \| W^{(K)}P) \leq K_{\text{eff}} \cdot \eta_{\max} \cdot \Delta$
+- **Proof Sketch**：通过 KL 链式法则分解 → 条件增量递减 → Gaussian compound symmetric 模型精确推导 → Sherman-Morrison 求逆 → 证明 $K_{\text{eff}} = 1+(K-1)e^{-2I_{\max}}$ 是精确值的上界（$(K-1)^2 a(1-a) \geq 0$）
+- **K_eff 推导**：Gaussian 精确值为 $K/(1+(K-1)(1-e^{-2I_{\max}}))$，提出公式是其上界，在边界 $I_{\max}=0$ 和 $I_{\max}\to\infty$ 处 tight
+- **操纵抗性连接**：Pinsker 不等式 + Hoeffding 集中度 → 攻击者每 judge 的精度偏移固定（$\sqrt{\eta_{\max}\Delta/2}$），但翻转多数票的概率随 $K_{\text{eff}}$ 指数衰减 → defense gap
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_theory-t1-sdpi_20260521T194207"
+}
+```
+
+</details>
+
+---

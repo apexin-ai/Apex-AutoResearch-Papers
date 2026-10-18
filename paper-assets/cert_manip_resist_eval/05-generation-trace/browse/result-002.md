@@ -1,156 +1,156 @@
 # Task result records
 
-[Back to trace guide](../README.md)
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
 
-| Source record | Events | User turns | JSON |
-|---|---:|---:|---|
-| `logs/workers/worker_code_plan001-step3-5-compat-review_20260522T103145_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b0/b0a9793311ed390b6f86.json) |
-| `logs/workers/worker_code_plan001-step3-mi-matrix_20260522T075635_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/54/546b402c91cff6d97877.json) |
-| `logs/workers/worker_code_plan001-step4-5-regression-sim_20260522T075710_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e1/e17fc126011d5cf2f131.json) |
-| `logs/workers/worker_code_plan010-aggregation_20260522T120049_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a5/a5b91f59f124698f9ec8.json) |
-| `logs/workers/worker_code_prep-step2-attacks_20260521T214143_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/db/db4507700e1bdace5e9d.json) |
-| `logs/workers/worker_code_qwen14b-inference-test_20260521T194130_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/97/970595da2f83c32856a3.json) |
-| `logs/workers/worker_code_scoring-parallel-fix_20260522T152408_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/76/76c81e626143f9acc7fb.json) |
-| `logs/workers/worker_code_step3-5-pipeline-prep_20260522T145553_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2a/2a0e5a892fce43ef20b6.json) |
-| `logs/workers/worker_code_step3-mi-filter-and-sensitivity_20260522T163508_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bc/bca923038c9a2ecb26f6.json) |
-| `logs/workers/worker_code_theorem1-reviewer-fixes_20260522T113408_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ec/ec4362b6510ae95743c2.json) |
-| `logs/workers/worker_code_update-anon-repo_20260523T150507_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/99/99dd750db1de1542c2b0.json) |
-| `logs/workers/worker_code_update-step3-step4-dual-keff_20260521T220444_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/79/791fa5495ebd8174fd84.json) |
-| `logs/workers/worker_data_alt-diversity-extract_20260523T131153_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c9/c9bbc4f3c6e12f498469.json) |
-| `logs/workers/worker_data_cross-benchmark-iv-extract_20260523T161234_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d2/d265666f655829c4f685.json) |
-| `logs/workers/worker_data_k5-aggregation-table-extract_20260523T101302_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a4/a45571b5e93395a4dadc.json) |
-| `logs/workers/worker_data_sensitivity-table-extract_20260523T101251_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/30/309d8f41fb93a0f5829d.json) |
-| `logs/workers/worker_debug_correlation-discrepancy_20260523T075444_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/fc/fc2038af2f3722aea41a.json) |
-| `logs/workers/worker_exp_7model-preview-pipeline_20260522T150246_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8d/8db229b5c54e495ff6d3.json) |
-| `logs/workers/worker_exp_copula-gof-and-step2_20260521T222507_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8a/8ae55e97dc3f66a63072.json) |
-| `logs/workers/worker_exp_mvp-step1-full_20260521T214445_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/78/78d6413b8a7981d56f06.json) |
-| `logs/workers/worker_exp_plan001-step1-api-scoring_20260522T072241_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/eb/eb29d649ebfb66771e0f.json) |
-| `logs/workers/worker_exp_step1-autoscale-scoring_20260522T132636_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ac/ac1655cc1e79b038c0e7.json) |
-| `logs/workers/worker_exp_step1-scoring-restart_20260522T130523_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6f/6f28f63fc5d40390bf50.json) |
-| `logs/workers/worker_exp_step2-cron-resolve_20260522T010447_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/03/03ff905fca6e761db3a1.json) |
-| `logs/workers/worker_exp_step2-keff-v2_20260521T224936_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e6/e6a510a4dc8792640fa7.json) |
-| `logs/workers/worker_exp_step2-monitor_20260521T222750_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/74/74e9b19807dab8cf9f96.json) |
-| `logs/workers/worker_exp_step2-results-and-step3_20260522T004115_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/42/42e7c1b5106826f39be0.json) |
-| `logs/workers/worker_exp_step2-status-check_20260521T232820_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3f/3f77de9fbf9c8b165a35.json) |
-| `logs/workers/worker_exp_step2-v2-monitor-2_20260521T225631_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4d/4daff5f4e2f0e640cd10.json) |
-| `logs/workers/worker_exp_step2-v2-monitor_20260521T225449_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ff/ff9f0b5d23f40aa7f9b9.json) |
-| `logs/workers/worker_exp_step2-wait-and-continue_20260522T004503_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b9/b920511188835916a214.json) |
-| `logs/workers/worker_exp_step2v3-regression_20260522T011536_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/95/952f65978a9dd5e290e9.json) |
-| `logs/workers/worker_exp_taxonomy-broad-spectrum_20260522T033416_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a8/a8f75476216c90ca884c.json) |
-| `logs/workers/worker_experiment_fp16-attack-eval_20260525T160952_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/85/857419452dadbe140e24.json) |
-| `logs/workers/worker_experiment_fp16-baseline-v3-bugfix_20260524T182108_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a5/a578c31184e51ef4d2c6.json) |
-| `logs/workers/worker_experiment_r1w2-fp16-baseline-fix_20260524T171913_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/04/04cb259b82b45fbf4545.json) |
-| `logs/workers/worker_experiment_r1w2-fp16-baseline_20260524T163008_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/12/127184a9d27aaff39218.json) |
-| `logs/workers/worker_experiment_r6-fp16-baseline-v2-followup_20260525T080727_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/20/20736cb51155fdb8e05f.json) |
-| `logs/workers/worker_experiment_r6-fp16-baseline-v2_20260525T070622_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f1/f192ecb5b90a96cdcab8.json) |
-| `logs/workers/worker_experiment_r6-fp16-eval-now_20260525T082101_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ef/ef7d2fd5b2b884d92051.json) |
-| `logs/workers/worker_experiment_r6-fp16-v4-clean_20260525T091700_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3d/3d805849af6d82cdbc3b.json) |
-| `logs/workers/worker_experiment_temperature-pilot_20260523T084612_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/93/934344c1f2da25a44852.json) |
-| `logs/workers/worker_figure_keff-eta-scatter_20260523T134400_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/34/3496c33ddbbaab43af1c.json) |
-| `logs/workers/worker_figure_regime-transition-redraw-v3_20260524T084139_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/73/731c3af645a01ce62710.json) |
-| `logs/workers/worker_figure_regime-transition-redraw-v4_20260524T084843_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bb/bb80763e87320087bba9.json) |
-| `logs/workers/worker_figure_regime-transition-redraw_20260524T073722_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d9/d965da29c30f5e39db45.json) |
-| `logs/workers/worker_figure_regime-transition_20260523T132327_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/77/776ffa007186644d143c.json) |
-| `logs/workers/worker_fix_regime-transition-bootstrap-corrected_20260523T175031_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/05/05516ed5017fc0e6fc9b.json) |
-| `logs/workers/worker_fix_table1-k3-ols-corrected_20260523T175018_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/38/38faf5a01ea45e560f27.json) |
-| `logs/workers/worker_fix_table2-aggregation-corrected_20260523T181032_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c7/c7166d78410aae6bb85d.json) |
-| `logs/workers/worker_fix_tiebreaking-rerun-k5-epsilon_20260523T143954_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d4/d482de6443e4e0ac350e.json) |
-| `logs/workers/worker_hotfix_position-bias-invert-bug_20260525T203938_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c0/c096874e86fa105ffec6.json) |
-| `logs/workers/worker_infra_api-model-probe_20260522T033428_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/62/62e834dffd8d066e7800.json) |
-| `logs/workers/worker_infra_check-all-models_20260521T202507_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/60/60bdb9765c05722971dc.json) |
-| `logs/workers/worker_infra_deploy-code_20260521T180140_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c0/c07d36125d1acbf20b69.json) |
-| `logs/workers/worker_infra_dl-llama70b-resume_20260521T202803_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2f/2f475fe5202f6ba941a3.json) |
-| `logs/workers/worker_infra_dl-mistral-resume_20260521T202809_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/16/1607d9fcccb4206b0301.json) |
-| `logs/workers/worker_infra_dl-progress-check_20260521T204816_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7f/7fa13fda3e3275b62e7e.json) |
-| `logs/workers/worker_infra_dl-qwen32b_20260521T182508_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4b/4b0a25b85fbe1a802f7b.json) |
-| `logs/workers/worker_infra_dl-qwen72b-resume_20260521T202818_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bf/bfca730879edc6cf83d2.json) |
-| `logs/workers/worker_infra_dl-qwen72b_20260521T182458_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8c/8c79b382a80c2426b783.json) |
-| `logs/workers/worker_infra_dl-status-check_20260521T190434_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6c/6cfdf4e5a6ade50e8db5.json) |
-| `logs/workers/worker_infra_download-large-models_20260521T175959_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/29/298f0ac765774549c79c.json) |
-| `logs/workers/worker_infra_download-monitor_20260521T184450_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/58/5823d31969063c4b7956.json) |
-| `logs/workers/worker_infra_env-detect_20260521T170808_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0a/0a1bce5f82c1478db876.json) |
-| `logs/workers/worker_infra_fix-step2v3-data_20260522T015401_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/60/6013e0945510aff01167.json) |
-| `logs/workers/worker_infra_gpu-cleanup-and-restart_20260522T020502_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a4/a49a15dadac4305df82b.json) |
-| `logs/workers/worker_infra_install-tmux-and-run_20260522T013502_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/80/80ac0d167220c0da033b.json) |
-| `logs/workers/worker_infra_kill-duplicate-step1_20260522T124234_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9e/9e32b7d68f740ad935fa.json) |
-| `logs/workers/worker_infra_kill-seetacloud-scoring_20260522T134617_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/da/da0378a1d85d5cc08a0b.json) |
-| `logs/workers/worker_infra_local-openrouter-setup_20260522T132529_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ec/ec5e4004397f86cdf687.json) |
-| `logs/workers/worker_infra_model-download-check_20260521T172914_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2d/2dcb152d3efd89258ad5.json) |
-| `logs/workers/worker_infra_openrouter-verify_20260522T125727_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b1/b1565efc6332b2dec042.json) |
-| `logs/workers/worker_infra_plan001-api-model-probe_20260522T070038_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/95/957af979d758fc1b2216.json) |
-| `logs/workers/worker_infra_post-reboot-check_20260522T020924_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/de/de75ceb75b7fd0486ea6.json) |
-| `logs/workers/worker_infra_proxy-restore-and-test_20260522T130206_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e4/e4f499865e29d50c425b.json) |
-| `logs/workers/worker_infra_qwen72b-verify_20260521T212121_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/13/13f29bd120a19c5aa2ce.json) |
-| `logs/workers/worker_infra_scp-and-pipeline_20260522T165558_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d3/d34375ab1fe088c92909.json) |
-| `logs/workers/worker_infra_ssh-diagnose-and-download_20260521T173107_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/da/da41da76ecd19ce3476a.json) |
-| `logs/workers/worker_infra_step1-batched-progress_20260522T121927_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b8/b873dfc1d9ac85a986c6.json) |
-| `logs/workers/worker_infra_step1-cleanup_20260522T124310_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8a/8a13b8631e8097f5971d.json) |
-| `logs/workers/worker_infra_step1-provider-batch-fix_20260522T115926_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/74/7488ee84c390398b24e7.json) |
-| `logs/workers/worker_infra_step1-quick-check_20260522T113854_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5b/5be7014229ce389dfd8e.json) |
-| `logs/workers/worker_infra_step1-status-check_20260522T122657_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a4/a4f8164125e576bb2f19.json) |
-| `logs/workers/worker_infra_step2v3-final-fix_20260522T015550_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/96/96d9eec19c826977277e.json) |
-| `logs/workers/worker_infra_sync-keff_20260521T200247_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/15/1531adb54434b7a4110c.json) |
-| `logs/workers/worker_infra_westd-13176-connectivity_20260523T163523_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/50/506611e58840f8cb2a7b.json) |
-| `logs/workers/worker_ops_a1-check-final_20260524T125749_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c0/c0b07c0e537e7ee87ed5.json) |
-| `logs/workers/worker_ops_a4-check-final_20260524T131602_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ce/ce3d1d0968bc42762dc0.json) |
-| `logs/workers/worker_ops_a6-bash-wait_20260524T124738_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/23/23fbfe6f4a6606225230.json) |
-| `logs/workers/worker_ops_a6-check-model-spec_20260524T125412_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7b/7b09b844fd2d1d768566.json) |
-| `logs/workers/worker_ops_a6-check-result_20260524T124235_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/99/99856688f8235e16c351.json) |
-| `logs/workers/worker_ops_a6-collect-final_20260524T124441_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/71/71a093378a72cb9b12c8.json) |
-| `logs/workers/worker_ops_a6-direct-read_20260524T125134_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/34/3441afd004472982e961.json) |
-| `logs/workers/worker_ops_a6-read-final_20260524T124938_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/20/20602008d08c967c23f1.json) |
-| `logs/workers/worker_ops_a6-wait-loop_20260524T124609_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/fa/fa77df52d954dcbf1871.json) |
-| `logs/workers/worker_ops_anon-repo-integrity-check_20260523T185637_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/fe/fe814de56a8472dad560.json) |
-| `logs/workers/worker_ops_anon-repo-remote-fix_20260523T185152_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8a/8a8057b58f851e70dcb5.json) |
-| `logs/workers/worker_ops_anon-repo-v1-residual-fix_20260523T203119_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/22/2243dabe49c0b4c102ad.json) |
-| `logs/workers/worker_ops_anon-repo-v2-push_20260523T201936_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/1f/1f21cfd14b19c54c7af3.json) |
-| `logs/workers/worker_ops_anonymous-repo-push_20260525T084125_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/38/38b7b5e28e432db48529.json) |
-| `logs/workers/worker_ops_anonymous-repo-v2_20260525T090515_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5d/5d588f591c76c3d252b4.json) |
-| `logs/workers/worker_ops_appendix-citation-audit_20260525T090628_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/03/031afa53369cf6da5cba.json) |
-| `logs/workers/worker_ops_cinelli-table11-audit_20260524T164955_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/26/26895693ee48710a7818.json) |
-| `logs/workers/worker_ops_d047-aggregation-rerun_20260525T215005_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7e/7eca2a4aab5abb3f81c3.json) |
-| `logs/workers/worker_ops_d047-figure-regen_20260525T212230_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5f/5fc2aebcec3398960104.json) |
-| `logs/workers/worker_ops_d047-nearchance-filtered_20260525T215030_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/82/8254ebf6cb1fe03d199f.json) |
-| `logs/workers/worker_ops_d047-r2-figures-final_20260525T220524_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ee/ee370ad340ab3f6d9fe2.json) |
-| `logs/workers/worker_ops_d047-remaining-fixes_20260525T214133_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bb/bba0920b6fa2e152245e.json) |
-| `logs/workers/worker_ops_d047-tex-narrative-numbers_20260525T210434_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/14/14fb11beff57e7c7cc0a.json) |
-| `logs/workers/worker_ops_deprecate-regime-transition_20260524T073727_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/22/22077b28b18dc1e92b34.json) |
-| `logs/workers/worker_ops_experiment-plan-sync_20260523T201917_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c9/c9dabc400dc053764407.json) |
-| `logs/workers/worker_ops_fig-aggregation-comparison_20260525T150752_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/93/930205af85936e0f0b45.json) |
-| `logs/workers/worker_ops_fig-asr-violin_20260525T150501_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/56/564167211a8b09a99e18.json) |
-| `logs/workers/worker_ops_fig-beta-trajectory_20260525T150515_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ad/adf1bdcb66f48da0626b.json) |
-| `logs/workers/worker_ops_fig-bootstrap-null_20260525T150527_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6c/6c9fb7a20b0e17860acf.json) |
-| `logs/workers/worker_ops_fig-keff-hist-r2-heatmap_20260525T155945_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9d/9d267dc9d169d1e6d871.json) |
-| `logs/workers/worker_ops_fig-mi-heatmap_20260525T144449_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b4/b4b5ae79fe85ba48e9e5.json) |
-| `logs/workers/worker_ops_fig-p3-composition-scatter_20260525T153949_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2a/2aaff48cff7a821b9cb9.json) |
-| `logs/workers/worker_ops_fig-per-model-asr_20260525T154002_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/52/52e921cbe3bdfec3c49d.json) |
-| `logs/workers/worker_ops_fig-radar-chart_20260525T142321_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e5/e558c833e6ef51fa097d.json) |
-| `logs/workers/worker_ops_fig-sensitivity-contour_20260525T151931_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/59/5993190a17d5f27db457.json) |
-| `logs/workers/worker_ops_fig1-aspect-ratio_20260525T123154_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bc/bc9dbc0a4884300cbe01.json) |
-| `logs/workers/worker_ops_fig1-fix-values_20260525T114022_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/16/16ec5c17abaf2bb94796.json) |
-| `logs/workers/worker_ops_fig1-paperbanana_20260525T111955_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d4/d4ad1cfe14e80f95ec38.json) |
-| `logs/workers/worker_ops_fig1-redesign-v3_20260525T144334_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a3/a3725d75eeb099772baf.json) |
-| `logs/workers/worker_ops_fig2-scatter-k5-restore_20260525T200712_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4e/4e0945b22169064b6863.json) |
-| `logs/workers/worker_ops_fig2-scatter-restyle-v2_20260525T200328_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ca/ca53fcf5f5cb740a4605.json) |
-| `logs/workers/worker_ops_fig2-scatter-restyle_20260525T195243_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/06/064004219cd0b24421c9.json) |
-| `logs/workers/worker_ops_fig4-per-model-asr-restyle-v2_20260525T200401_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bd/bde337acaed11c3ae622.json) |
-| `logs/workers/worker_ops_fig4-per-model-asr-restyle_20260525T195326_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c9/c93ea945bc0fb31c6a0b.json) |
-| `logs/workers/worker_ops_fig5-brighter-colors_20260525T141754_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/be/be059c9a7cd6cba71bd0.json) |
-| `logs/workers/worker_ops_fig5-regime-transition-annotation-fix_20260525T195614_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ca/ca944103836b999b0858.json) |
-| `logs/workers/worker_ops_fix-keff-eta-scatter_20260525T222512_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0b/0b0dfd1ed716387a2017.json) |
-| `logs/workers/worker_ops_fp16-dedup-kill_20260525T105527_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/1e/1e772bfa7157565b6fba.json) |
-| `logs/workers/worker_ops_fp16-download-check_20260525T125212_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/14/144e4df4a2a3a15d1775.json) |
-| `logs/workers/worker_ops_fp16-download-check_20260525T160251_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/aa/aaa7d1593dedb0dc348f.json) |
-| `logs/workers/worker_ops_fp16-download-setup_20260525T103533_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d6/d65d82b709df1f8c1114.json) |
-| `logs/workers/worker_ops_fp16-eval-status-check_20260525T171007_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b2/b2bdd61a89fa5c2d44dd.json) |
-| `logs/workers/worker_ops_fp16-force-kill_20260525T105309_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/94/94bf0a5b26afce05d2a3.json) |
-| `logs/workers/worker_ops_fp16-hotfix-deploy_20260524T184110_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f1/f1419d3ab08b068ffd33.json) |
-| `logs/workers/worker_ops_fp16-pid-cleanup_20260524T171713_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/77/773020ac21a394872210.json) |
-| `logs/workers/worker_ops_fp16-redownload-shards_20260525T125347_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e7/e75ea4c3f2504dfc0bc1.json) |
-| `logs/workers/worker_ops_fp16-restart-8b-awq_20260525T105636_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a6/a6f3460051080ce954e9.json) |
-| `logs/workers/worker_ops_fp16-scope-cleanup_20260525T104835_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/88/88c6d27f7a3bbcfc9d7a.json) |
-| `logs/workers/worker_ops_fp16-status-check_20260524T194956_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b6/b67c4d228bbd6e8a4fcf.json) |
-| `logs/workers/worker_ops_fp16-status-check_20260525T060342_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9f/9f11097025fb96a20b97.json) |
-| `logs/workers/worker_ops_git-sync-check_20260526T121317_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d6/d6e2ca0ed370952ab608.json) |
-| `logs/workers/worker_ops_kill-buggy-fp16_20260524T190047_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/06/06d1c5f8b974502b2741.json) |
-| `logs/workers/worker_ops_kill-duplicate-mc_20260524T121015_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4b/4b940876f280ed10b1ea.json) |
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/workers/worker_code_plan001-step3-5-compat-review_20260522T103145_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan001-step3-5-compat-review.md) | [Open JSON](../sessions/b0/b0a9793311ed390b6f86.json) |
+| `logs/workers/worker_code_plan001-step3-mi-matrix_20260522T075635_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan001-step3-mi-matrix.md) | [Open JSON](../sessions/54/546b402c91cff6d97877.json) |
+| `logs/workers/worker_code_plan001-step4-5-regression-sim_20260522T075710_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan001-step4-5-regression-sim.md) | [Open JSON](../sessions/e1/e17fc126011d5cf2f131.json) |
+| `logs/workers/worker_code_plan010-aggregation_20260522T120049_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan010-aggregation.md) | [Open JSON](../sessions/a5/a5b91f59f124698f9ec8.json) |
+| `logs/workers/worker_code_prep-step2-attacks_20260521T214143_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-prep-step2-attacks.md) | [Open JSON](../sessions/db/db4507700e1bdace5e9d.json) |
+| `logs/workers/worker_code_qwen14b-inference-test_20260521T194130_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-qwen14b-inference-test.md) | [Open JSON](../sessions/97/970595da2f83c32856a3.json) |
+| `logs/workers/worker_code_scoring-parallel-fix_20260522T152408_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-scoring-parallel-fix.md) | [Open JSON](../sessions/76/76c81e626143f9acc7fb.json) |
+| `logs/workers/worker_code_step3-5-pipeline-prep_20260522T145553_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-step3-5-pipeline-prep.md) | [Open JSON](../sessions/2a/2a0e5a892fce43ef20b6.json) |
+| `logs/workers/worker_code_step3-mi-filter-and-sensitivity_20260522T163508_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-step3-mi-filter-and-sensitivity.md) | [Open JSON](../sessions/bc/bca923038c9a2ecb26f6.json) |
+| `logs/workers/worker_code_theorem1-reviewer-fixes_20260522T113408_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-theorem1-reviewer-fixes.md) | [Open JSON](../sessions/ec/ec4362b6510ae95743c2.json) |
+| `logs/workers/worker_code_update-anon-repo_20260523T150507_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-update-anon-repo.md) | [Open JSON](../sessions/99/99dd750db1de1542c2b0.json) |
+| `logs/workers/worker_code_update-step3-step4-dual-keff_20260521T220444_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-update-step3-step4-dual-keff.md) | [Open JSON](../sessions/79/791fa5495ebd8174fd84.json) |
+| `logs/workers/worker_data_alt-diversity-extract_20260523T131153_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/data-alt-diversity-extract.md) | [Open JSON](../sessions/c9/c9bbc4f3c6e12f498469.json) |
+| `logs/workers/worker_data_cross-benchmark-iv-extract_20260523T161234_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/data-cross-benchmark-iv-extract.md) | [Open JSON](../sessions/d2/d265666f655829c4f685.json) |
+| `logs/workers/worker_data_k5-aggregation-table-extract_20260523T101302_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/data-k5-aggregation-table-extract.md) | [Open JSON](../sessions/a4/a45571b5e93395a4dadc.json) |
+| `logs/workers/worker_data_sensitivity-table-extract_20260523T101251_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/data-sensitivity-table-extract.md) | [Open JSON](../sessions/30/309d8f41fb93a0f5829d.json) |
+| `logs/workers/worker_debug_correlation-discrepancy_20260523T075444_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/debug-correlation-discrepancy.md) | [Open JSON](../sessions/fc/fc2038af2f3722aea41a.json) |
+| `logs/workers/worker_exp_7model-preview-pipeline_20260522T150246_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-7model-preview-pipeline.md) | [Open JSON](../sessions/8d/8db229b5c54e495ff6d3.json) |
+| `logs/workers/worker_exp_copula-gof-and-step2_20260521T222507_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-copula-gof-and-step2.md) | [Open JSON](../sessions/8a/8ae55e97dc3f66a63072.json) |
+| `logs/workers/worker_exp_mvp-step1-full_20260521T214445_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-mvp-step1-full.md) | [Open JSON](../sessions/78/78d6413b8a7981d56f06.json) |
+| `logs/workers/worker_exp_plan001-step1-api-scoring_20260522T072241_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-plan001-step1-api-scoring.md) | [Open JSON](../sessions/eb/eb29d649ebfb66771e0f.json) |
+| `logs/workers/worker_exp_step1-autoscale-scoring_20260522T132636_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step1-autoscale-scoring.md) | [Open JSON](../sessions/ac/ac1655cc1e79b038c0e7.json) |
+| `logs/workers/worker_exp_step1-scoring-restart_20260522T130523_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step1-scoring-restart.md) | [Open JSON](../sessions/6f/6f28f63fc5d40390bf50.json) |
+| `logs/workers/worker_exp_step2-cron-resolve_20260522T010447_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step2-cron-resolve.md) | [Open JSON](../sessions/03/03ff905fca6e761db3a1.json) |
+| `logs/workers/worker_exp_step2-keff-v2_20260521T224936_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step2-keff-v2.md) | [Open JSON](../sessions/e6/e6a510a4dc8792640fa7.json) |
+| `logs/workers/worker_exp_step2-monitor_20260521T222750_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step2-monitor.md) | [Open JSON](../sessions/74/74e9b19807dab8cf9f96.json) |
+| `logs/workers/worker_exp_step2-results-and-step3_20260522T004115_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step2-results-and-step3.md) | [Open JSON](../sessions/42/42e7c1b5106826f39be0.json) |
+| `logs/workers/worker_exp_step2-status-check_20260521T232820_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step2-status-check.md) | [Open JSON](../sessions/3f/3f77de9fbf9c8b165a35.json) |
+| `logs/workers/worker_exp_step2-v2-monitor-2_20260521T225631_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step2-v2-monitor-2.md) | [Open JSON](../sessions/4d/4daff5f4e2f0e640cd10.json) |
+| `logs/workers/worker_exp_step2-v2-monitor_20260521T225449_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step2-v2-monitor.md) | [Open JSON](../sessions/ff/ff9f0b5d23f40aa7f9b9.json) |
+| `logs/workers/worker_exp_step2-wait-and-continue_20260522T004503_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step2-wait-and-continue.md) | [Open JSON](../sessions/b9/b920511188835916a214.json) |
+| `logs/workers/worker_exp_step2v3-regression_20260522T011536_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-step2v3-regression.md) | [Open JSON](../sessions/95/952f65978a9dd5e290e9.json) |
+| `logs/workers/worker_exp_taxonomy-broad-spectrum_20260522T033416_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/exp-taxonomy-broad-spectrum.md) | [Open JSON](../sessions/a8/a8f75476216c90ca884c.json) |
+| `logs/workers/worker_experiment_fp16-attack-eval_20260525T160952_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-fp16-attack-eval.md) | [Open JSON](../sessions/85/857419452dadbe140e24.json) |
+| `logs/workers/worker_experiment_fp16-baseline-v3-bugfix_20260524T182108_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-fp16-baseline-v3-bugfix.md) | [Open JSON](../sessions/a5/a578c31184e51ef4d2c6.json) |
+| `logs/workers/worker_experiment_r1w2-fp16-baseline-fix_20260524T171913_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-r1w2-fp16-baseline-fix.md) | [Open JSON](../sessions/04/04cb259b82b45fbf4545.json) |
+| `logs/workers/worker_experiment_r1w2-fp16-baseline_20260524T163008_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-r1w2-fp16-baseline.md) | [Open JSON](../sessions/12/127184a9d27aaff39218.json) |
+| `logs/workers/worker_experiment_r6-fp16-baseline-v2-followup_20260525T080727_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-r6-fp16-baseline-v2-followup.md) | [Open JSON](../sessions/20/20736cb51155fdb8e05f.json) |
+| `logs/workers/worker_experiment_r6-fp16-baseline-v2_20260525T070622_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-r6-fp16-baseline-v2.md) | [Open JSON](../sessions/f1/f192ecb5b90a96cdcab8.json) |
+| `logs/workers/worker_experiment_r6-fp16-eval-now_20260525T082101_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-r6-fp16-eval-now.md) | [Open JSON](../sessions/ef/ef7d2fd5b2b884d92051.json) |
+| `logs/workers/worker_experiment_r6-fp16-v4-clean_20260525T091700_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-r6-fp16-v4-clean.md) | [Open JSON](../sessions/3d/3d805849af6d82cdbc3b.json) |
+| `logs/workers/worker_experiment_temperature-pilot_20260523T084612_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/experiment-temperature-pilot.md) | [Open JSON](../sessions/93/934344c1f2da25a44852.json) |
+| `logs/workers/worker_figure_keff-eta-scatter_20260523T134400_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/figure-keff-eta-scatter.md) | [Open JSON](../sessions/34/3496c33ddbbaab43af1c.json) |
+| `logs/workers/worker_figure_regime-transition-redraw-v3_20260524T084139_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/figure-regime-transition-redraw-v3.md) | [Open JSON](../sessions/73/731c3af645a01ce62710.json) |
+| `logs/workers/worker_figure_regime-transition-redraw-v4_20260524T084843_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/figure-regime-transition-redraw-v4.md) | [Open JSON](../sessions/bb/bb80763e87320087bba9.json) |
+| `logs/workers/worker_figure_regime-transition-redraw_20260524T073722_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/figure-regime-transition-redraw.md) | [Open JSON](../sessions/d9/d965da29c30f5e39db45.json) |
+| `logs/workers/worker_figure_regime-transition_20260523T132327_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/figure-regime-transition.md) | [Open JSON](../sessions/77/776ffa007186644d143c.json) |
+| `logs/workers/worker_fix_regime-transition-bootstrap-corrected_20260523T175031_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-regime-transition-bootstrap-corrected.md) | [Open JSON](../sessions/05/05516ed5017fc0e6fc9b.json) |
+| `logs/workers/worker_fix_table1-k3-ols-corrected_20260523T175018_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-table1-k3-ols-corrected.md) | [Open JSON](../sessions/38/38faf5a01ea45e560f27.json) |
+| `logs/workers/worker_fix_table2-aggregation-corrected_20260523T181032_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-table2-aggregation-corrected.md) | [Open JSON](../sessions/c7/c7166d78410aae6bb85d.json) |
+| `logs/workers/worker_fix_tiebreaking-rerun-k5-epsilon_20260523T143954_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/fix-tiebreaking-rerun-k5-epsilon.md) | [Open JSON](../sessions/d4/d482de6443e4e0ac350e.json) |
+| `logs/workers/worker_hotfix_position-bias-invert-bug_20260525T203938_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/hotfix-position-bias-invert-bug.md) | [Open JSON](../sessions/c0/c096874e86fa105ffec6.json) |
+| `logs/workers/worker_infra_api-model-probe_20260522T033428_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-api-model-probe.md) | [Open JSON](../sessions/62/62e834dffd8d066e7800.json) |
+| `logs/workers/worker_infra_check-all-models_20260521T202507_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-check-all-models.md) | [Open JSON](../sessions/60/60bdb9765c05722971dc.json) |
+| `logs/workers/worker_infra_deploy-code_20260521T180140_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-deploy-code.md) | [Open JSON](../sessions/c0/c07d36125d1acbf20b69.json) |
+| `logs/workers/worker_infra_dl-llama70b-resume_20260521T202803_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-dl-llama70b-resume.md) | [Open JSON](../sessions/2f/2f475fe5202f6ba941a3.json) |
+| `logs/workers/worker_infra_dl-mistral-resume_20260521T202809_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-dl-mistral-resume.md) | [Open JSON](../sessions/16/1607d9fcccb4206b0301.json) |
+| `logs/workers/worker_infra_dl-progress-check_20260521T204816_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-dl-progress-check.md) | [Open JSON](../sessions/7f/7fa13fda3e3275b62e7e.json) |
+| `logs/workers/worker_infra_dl-qwen32b_20260521T182508_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-dl-qwen32b.md) | [Open JSON](../sessions/4b/4b0a25b85fbe1a802f7b.json) |
+| `logs/workers/worker_infra_dl-qwen72b-resume_20260521T202818_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-dl-qwen72b-resume.md) | [Open JSON](../sessions/bf/bfca730879edc6cf83d2.json) |
+| `logs/workers/worker_infra_dl-qwen72b_20260521T182458_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-dl-qwen72b.md) | [Open JSON](../sessions/8c/8c79b382a80c2426b783.json) |
+| `logs/workers/worker_infra_dl-status-check_20260521T190434_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-dl-status-check.md) | [Open JSON](../sessions/6c/6cfdf4e5a6ade50e8db5.json) |
+| `logs/workers/worker_infra_download-large-models_20260521T175959_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-download-large-models.md) | [Open JSON](../sessions/29/298f0ac765774549c79c.json) |
+| `logs/workers/worker_infra_download-monitor_20260521T184450_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-download-monitor.md) | [Open JSON](../sessions/58/5823d31969063c4b7956.json) |
+| `logs/workers/worker_infra_env-detect_20260521T170808_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-env-detect.md) | [Open JSON](../sessions/0a/0a1bce5f82c1478db876.json) |
+| `logs/workers/worker_infra_fix-step2v3-data_20260522T015401_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-fix-step2v3-data.md) | [Open JSON](../sessions/60/6013e0945510aff01167.json) |
+| `logs/workers/worker_infra_gpu-cleanup-and-restart_20260522T020502_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-gpu-cleanup-and-restart.md) | [Open JSON](../sessions/a4/a49a15dadac4305df82b.json) |
+| `logs/workers/worker_infra_install-tmux-and-run_20260522T013502_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-install-tmux-and-run.md) | [Open JSON](../sessions/80/80ac0d167220c0da033b.json) |
+| `logs/workers/worker_infra_kill-duplicate-step1_20260522T124234_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-kill-duplicate-step1.md) | [Open JSON](../sessions/9e/9e32b7d68f740ad935fa.json) |
+| `logs/workers/worker_infra_kill-seetacloud-scoring_20260522T134617_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-kill-seetacloud-scoring.md) | [Open JSON](../sessions/da/da0378a1d85d5cc08a0b.json) |
+| `logs/workers/worker_infra_local-openrouter-setup_20260522T132529_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-local-openrouter-setup.md) | [Open JSON](../sessions/ec/ec5e4004397f86cdf687.json) |
+| `logs/workers/worker_infra_model-download-check_20260521T172914_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-model-download-check.md) | [Open JSON](../sessions/2d/2dcb152d3efd89258ad5.json) |
+| `logs/workers/worker_infra_openrouter-verify_20260522T125727_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-openrouter-verify.md) | [Open JSON](../sessions/b1/b1565efc6332b2dec042.json) |
+| `logs/workers/worker_infra_plan001-api-model-probe_20260522T070038_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-plan001-api-model-probe.md) | [Open JSON](../sessions/95/957af979d758fc1b2216.json) |
+| `logs/workers/worker_infra_post-reboot-check_20260522T020924_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-post-reboot-check.md) | [Open JSON](../sessions/de/de75ceb75b7fd0486ea6.json) |
+| `logs/workers/worker_infra_proxy-restore-and-test_20260522T130206_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-proxy-restore-and-test.md) | [Open JSON](../sessions/e4/e4f499865e29d50c425b.json) |
+| `logs/workers/worker_infra_qwen72b-verify_20260521T212121_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-qwen72b-verify.md) | [Open JSON](../sessions/13/13f29bd120a19c5aa2ce.json) |
+| `logs/workers/worker_infra_scp-and-pipeline_20260522T165558_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-scp-and-pipeline.md) | [Open JSON](../sessions/d3/d34375ab1fe088c92909.json) |
+| `logs/workers/worker_infra_ssh-diagnose-and-download_20260521T173107_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-ssh-diagnose-and-download.md) | [Open JSON](../sessions/da/da41da76ecd19ce3476a.json) |
+| `logs/workers/worker_infra_step1-batched-progress_20260522T121927_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-step1-batched-progress.md) | [Open JSON](../sessions/b8/b873dfc1d9ac85a986c6.json) |
+| `logs/workers/worker_infra_step1-cleanup_20260522T124310_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-step1-cleanup.md) | [Open JSON](../sessions/8a/8a13b8631e8097f5971d.json) |
+| `logs/workers/worker_infra_step1-provider-batch-fix_20260522T115926_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-step1-provider-batch-fix.md) | [Open JSON](../sessions/74/7488ee84c390398b24e7.json) |
+| `logs/workers/worker_infra_step1-quick-check_20260522T113854_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-step1-quick-check.md) | [Open JSON](../sessions/5b/5be7014229ce389dfd8e.json) |
+| `logs/workers/worker_infra_step1-status-check_20260522T122657_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-step1-status-check.md) | [Open JSON](../sessions/a4/a4f8164125e576bb2f19.json) |
+| `logs/workers/worker_infra_step2v3-final-fix_20260522T015550_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-step2v3-final-fix.md) | [Open JSON](../sessions/96/96d9eec19c826977277e.json) |
+| `logs/workers/worker_infra_sync-keff_20260521T200247_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-sync-keff.md) | [Open JSON](../sessions/15/1531adb54434b7a4110c.json) |
+| `logs/workers/worker_infra_westd-13176-connectivity_20260523T163523_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/infra-westd-13176-connectivity.md) | [Open JSON](../sessions/50/506611e58840f8cb2a7b.json) |
+| `logs/workers/worker_ops_a1-check-final_20260524T125749_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-a1-check-final.md) | [Open JSON](../sessions/c0/c0b07c0e537e7ee87ed5.json) |
+| `logs/workers/worker_ops_a4-check-final_20260524T131602_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-a4-check-final.md) | [Open JSON](../sessions/ce/ce3d1d0968bc42762dc0.json) |
+| `logs/workers/worker_ops_a6-bash-wait_20260524T124738_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-a6-bash-wait.md) | [Open JSON](../sessions/23/23fbfe6f4a6606225230.json) |
+| `logs/workers/worker_ops_a6-check-model-spec_20260524T125412_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-a6-check-model-spec.md) | [Open JSON](../sessions/7b/7b09b844fd2d1d768566.json) |
+| `logs/workers/worker_ops_a6-check-result_20260524T124235_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-a6-check-result.md) | [Open JSON](../sessions/99/99856688f8235e16c351.json) |
+| `logs/workers/worker_ops_a6-collect-final_20260524T124441_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-a6-collect-final.md) | [Open JSON](../sessions/71/71a093378a72cb9b12c8.json) |
+| `logs/workers/worker_ops_a6-direct-read_20260524T125134_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-a6-direct-read.md) | [Open JSON](../sessions/34/3441afd004472982e961.json) |
+| `logs/workers/worker_ops_a6-read-final_20260524T124938_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-a6-read-final.md) | [Open JSON](../sessions/20/20602008d08c967c23f1.json) |
+| `logs/workers/worker_ops_a6-wait-loop_20260524T124609_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-a6-wait-loop.md) | [Open JSON](../sessions/fa/fa77df52d954dcbf1871.json) |
+| `logs/workers/worker_ops_anon-repo-integrity-check_20260523T185637_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-anon-repo-integrity-check.md) | [Open JSON](../sessions/fe/fe814de56a8472dad560.json) |
+| `logs/workers/worker_ops_anon-repo-remote-fix_20260523T185152_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-anon-repo-remote-fix.md) | [Open JSON](../sessions/8a/8a8057b58f851e70dcb5.json) |
+| `logs/workers/worker_ops_anon-repo-v1-residual-fix_20260523T203119_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-anon-repo-v1-residual-fix.md) | [Open JSON](../sessions/22/2243dabe49c0b4c102ad.json) |
+| `logs/workers/worker_ops_anon-repo-v2-push_20260523T201936_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-anon-repo-v2-push.md) | [Open JSON](../sessions/1f/1f21cfd14b19c54c7af3.json) |
+| `logs/workers/worker_ops_anonymous-repo-push_20260525T084125_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-anonymous-repo-push.md) | [Open JSON](../sessions/38/38b7b5e28e432db48529.json) |
+| `logs/workers/worker_ops_anonymous-repo-v2_20260525T090515_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-anonymous-repo-v2.md) | [Open JSON](../sessions/5d/5d588f591c76c3d252b4.json) |
+| `logs/workers/worker_ops_appendix-citation-audit_20260525T090628_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-appendix-citation-audit.md) | [Open JSON](../sessions/03/031afa53369cf6da5cba.json) |
+| `logs/workers/worker_ops_cinelli-table11-audit_20260524T164955_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-cinelli-table11-audit.md) | [Open JSON](../sessions/26/26895693ee48710a7818.json) |
+| `logs/workers/worker_ops_d047-aggregation-rerun_20260525T215005_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-d047-aggregation-rerun.md) | [Open JSON](../sessions/7e/7eca2a4aab5abb3f81c3.json) |
+| `logs/workers/worker_ops_d047-figure-regen_20260525T212230_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-d047-figure-regen.md) | [Open JSON](../sessions/5f/5fc2aebcec3398960104.json) |
+| `logs/workers/worker_ops_d047-nearchance-filtered_20260525T215030_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-d047-nearchance-filtered.md) | [Open JSON](../sessions/82/8254ebf6cb1fe03d199f.json) |
+| `logs/workers/worker_ops_d047-r2-figures-final_20260525T220524_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-d047-r2-figures-final.md) | [Open JSON](../sessions/ee/ee370ad340ab3f6d9fe2.json) |
+| `logs/workers/worker_ops_d047-remaining-fixes_20260525T214133_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-d047-remaining-fixes.md) | [Open JSON](../sessions/bb/bba0920b6fa2e152245e.json) |
+| `logs/workers/worker_ops_d047-tex-narrative-numbers_20260525T210434_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-d047-tex-narrative-numbers.md) | [Open JSON](../sessions/14/14fb11beff57e7c7cc0a.json) |
+| `logs/workers/worker_ops_deprecate-regime-transition_20260524T073727_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-deprecate-regime-transition.md) | [Open JSON](../sessions/22/22077b28b18dc1e92b34.json) |
+| `logs/workers/worker_ops_experiment-plan-sync_20260523T201917_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-experiment-plan-sync.md) | [Open JSON](../sessions/c9/c9dabc400dc053764407.json) |
+| `logs/workers/worker_ops_fig-aggregation-comparison_20260525T150752_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig-aggregation-comparison.md) | [Open JSON](../sessions/93/930205af85936e0f0b45.json) |
+| `logs/workers/worker_ops_fig-asr-violin_20260525T150501_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig-asr-violin.md) | [Open JSON](../sessions/56/564167211a8b09a99e18.json) |
+| `logs/workers/worker_ops_fig-beta-trajectory_20260525T150515_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig-beta-trajectory.md) | [Open JSON](../sessions/ad/adf1bdcb66f48da0626b.json) |
+| `logs/workers/worker_ops_fig-bootstrap-null_20260525T150527_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig-bootstrap-null.md) | [Open JSON](../sessions/6c/6c9fb7a20b0e17860acf.json) |
+| `logs/workers/worker_ops_fig-keff-hist-r2-heatmap_20260525T155945_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig-keff-hist-r2-heatmap.md) | [Open JSON](../sessions/9d/9d267dc9d169d1e6d871.json) |
+| `logs/workers/worker_ops_fig-mi-heatmap_20260525T144449_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig-mi-heatmap.md) | [Open JSON](../sessions/b4/b4b5ae79fe85ba48e9e5.json) |
+| `logs/workers/worker_ops_fig-p3-composition-scatter_20260525T153949_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig-p3-composition-scatter.md) | [Open JSON](../sessions/2a/2aaff48cff7a821b9cb9.json) |
+| `logs/workers/worker_ops_fig-per-model-asr_20260525T154002_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig-per-model-asr.md) | [Open JSON](../sessions/52/52e921cbe3bdfec3c49d.json) |
+| `logs/workers/worker_ops_fig-radar-chart_20260525T142321_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig-radar-chart.md) | [Open JSON](../sessions/e5/e558c833e6ef51fa097d.json) |
+| `logs/workers/worker_ops_fig-sensitivity-contour_20260525T151931_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig-sensitivity-contour.md) | [Open JSON](../sessions/59/5993190a17d5f27db457.json) |
+| `logs/workers/worker_ops_fig1-aspect-ratio_20260525T123154_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig1-aspect-ratio.md) | [Open JSON](../sessions/bc/bc9dbc0a4884300cbe01.json) |
+| `logs/workers/worker_ops_fig1-fix-values_20260525T114022_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig1-fix-values.md) | [Open JSON](../sessions/16/16ec5c17abaf2bb94796.json) |
+| `logs/workers/worker_ops_fig1-paperbanana_20260525T111955_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig1-paperbanana.md) | [Open JSON](../sessions/d4/d4ad1cfe14e80f95ec38.json) |
+| `logs/workers/worker_ops_fig1-redesign-v3_20260525T144334_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig1-redesign-v3.md) | [Open JSON](../sessions/a3/a3725d75eeb099772baf.json) |
+| `logs/workers/worker_ops_fig2-scatter-k5-restore_20260525T200712_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig2-scatter-k5-restore.md) | [Open JSON](../sessions/4e/4e0945b22169064b6863.json) |
+| `logs/workers/worker_ops_fig2-scatter-restyle-v2_20260525T200328_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig2-scatter-restyle-v2.md) | [Open JSON](../sessions/ca/ca53fcf5f5cb740a4605.json) |
+| `logs/workers/worker_ops_fig2-scatter-restyle_20260525T195243_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig2-scatter-restyle.md) | [Open JSON](../sessions/06/064004219cd0b24421c9.json) |
+| `logs/workers/worker_ops_fig4-per-model-asr-restyle-v2_20260525T200401_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig4-per-model-asr-restyle-v2.md) | [Open JSON](../sessions/bd/bde337acaed11c3ae622.json) |
+| `logs/workers/worker_ops_fig4-per-model-asr-restyle_20260525T195326_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig4-per-model-asr-restyle.md) | [Open JSON](../sessions/c9/c93ea945bc0fb31c6a0b.json) |
+| `logs/workers/worker_ops_fig5-brighter-colors_20260525T141754_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig5-brighter-colors.md) | [Open JSON](../sessions/be/be059c9a7cd6cba71bd0.json) |
+| `logs/workers/worker_ops_fig5-regime-transition-annotation-fix_20260525T195614_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fig5-regime-transition-annotation-fix.md) | [Open JSON](../sessions/ca/ca944103836b999b0858.json) |
+| `logs/workers/worker_ops_fix-keff-eta-scatter_20260525T222512_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fix-keff-eta-scatter.md) | [Open JSON](../sessions/0b/0b0dfd1ed716387a2017.json) |
+| `logs/workers/worker_ops_fp16-dedup-kill_20260525T105527_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-dedup-kill.md) | [Open JSON](../sessions/1e/1e772bfa7157565b6fba.json) |
+| `logs/workers/worker_ops_fp16-download-check_20260525T125212_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-download-check-copy-2.md) | [Open JSON](../sessions/14/144e4df4a2a3a15d1775.json) |
+| `logs/workers/worker_ops_fp16-download-check_20260525T160251_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-download-check.md) | [Open JSON](../sessions/aa/aaa7d1593dedb0dc348f.json) |
+| `logs/workers/worker_ops_fp16-download-setup_20260525T103533_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-download-setup.md) | [Open JSON](../sessions/d6/d65d82b709df1f8c1114.json) |
+| `logs/workers/worker_ops_fp16-eval-status-check_20260525T171007_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-eval-status-check.md) | [Open JSON](../sessions/b2/b2bdd61a89fa5c2d44dd.json) |
+| `logs/workers/worker_ops_fp16-force-kill_20260525T105309_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-force-kill.md) | [Open JSON](../sessions/94/94bf0a5b26afce05d2a3.json) |
+| `logs/workers/worker_ops_fp16-hotfix-deploy_20260524T184110_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-hotfix-deploy.md) | [Open JSON](../sessions/f1/f1419d3ab08b068ffd33.json) |
+| `logs/workers/worker_ops_fp16-pid-cleanup_20260524T171713_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-pid-cleanup.md) | [Open JSON](../sessions/77/773020ac21a394872210.json) |
+| `logs/workers/worker_ops_fp16-redownload-shards_20260525T125347_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-redownload-shards.md) | [Open JSON](../sessions/e7/e75ea4c3f2504dfc0bc1.json) |
+| `logs/workers/worker_ops_fp16-restart-8b-awq_20260525T105636_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-restart-8b-awq.md) | [Open JSON](../sessions/a6/a6f3460051080ce954e9.json) |
+| `logs/workers/worker_ops_fp16-scope-cleanup_20260525T104835_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-scope-cleanup.md) | [Open JSON](../sessions/88/88c6d27f7a3bbcfc9d7a.json) |
+| `logs/workers/worker_ops_fp16-status-check_20260524T194956_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-status-check.md) | [Open JSON](../sessions/b6/b67c4d228bbd6e8a4fcf.json) |
+| `logs/workers/worker_ops_fp16-status-check_20260525T060342_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-fp16-status-check-copy-2.md) | [Open JSON](../sessions/9f/9f11097025fb96a20b97.json) |
+| `logs/workers/worker_ops_git-sync-check_20260526T121317_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-git-sync-check.md) | [Open JSON](../sessions/d6/d6e2ca0ed370952ab608.json) |
+| `logs/workers/worker_ops_kill-buggy-fp16_20260524T190047_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-kill-buggy-fp16.md) | [Open JSON](../sessions/06/06d1c5f8b974502b2741.json) |
+| `logs/workers/worker_ops_kill-duplicate-mc_20260524T121015_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/ops-kill-duplicate-mc.md) | [Open JSON](../sessions/4b/4b940876f280ed10b1ea.json) |

@@ -691,5 +691,6 @@
       ],
       "message_count": 15
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ssh-kill-vllm-release-gpu.md"
 }

@@ -68,5 +68,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ops-batch-kill-preparing.md"
 }

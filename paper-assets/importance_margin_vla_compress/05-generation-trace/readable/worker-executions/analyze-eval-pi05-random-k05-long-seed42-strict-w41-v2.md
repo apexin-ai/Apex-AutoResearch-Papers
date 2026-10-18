@@ -1,0 +1,1040 @@
+# analyze eval pi05 random k05 long seed42 strict w41 v2
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/workers/worker_analyze_eval_pi05_random_k05_long_seed42_strict_w41_v2_20260527T120416.log`
+- **Structured JSON:** [`7a65e7632fec910b546b.json`](../../sessions/7a/7a65e7632fec910b546b.json)
+
+## Before a recorded user message
+
+20 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f0111a5d-836d-42b0-9f81-5e1d4a322bbc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the experiment log from the server to analyze the results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "a0c73424-9cf4-47b4-92dd-37b7c14cd22f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KgZdMnQSz892qj29RhnEzC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12262,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12262
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TSkjyDBhVxGV3eM5ZPzw1V`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "6d516cfc-ba4d-4c39-ab26-d4c0be52cb5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KgZdMnQSz892qj29RhnEzC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12262,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12262
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-27T12:04:27.325Z_
+
+<details><summary>↩ Tool result · `toolu_01TSkjyDBhVxGV3eM5ZPzw1V`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "b64c4f17-852b-4af0-b13e-2b017bc863e2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779901200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "808fcc73-a085-4420-9263-b5fdc88026f1",
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LGJVuCYKPXKVgeDHcTarzT`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -200 ~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "1ff43861-97c3-44d1-90a6-a3408b03b0f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PeHW6qUKN8mmikjKbZmQx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 947,
+      "cache_read_input_tokens": 24107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 947
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-27T12:04:31.696Z_
+
+<details><summary>↩ Tool result · `toolu_01LGJVuCYKPXKVgeDHcTarzT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-27 17:17:58,421 Config: suite=libero_10, prune=random, keep=0.5, eps=50, gpu=0\\n2026-05-27 17:17:58,421 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\n2026-05-27 17:19:31,658 Enabled gradient checkpointing for PI05Pytorch model\\n2026-05-27 17:19:33,628 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-27 17:19:33,628 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\n2026-05-27 17:19:35,532 Patched embed_image\\n2026-05-27 17:19:35,538 Model: 4143.4M params\\n2026-05-27 17:19:35,538 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-27 17:19:35,538 Pruning: random, keep 128/256 tokens/image (384 total)\\n2026-05-27 17:19:36,289 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-27 17:19:36,309 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-27 17:19:36,309 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-27 17:19:36,309 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-27 17:19:36,361 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n2026-05-27 17:19:36,753 Suite: libero_10, 10 tasks, max_steps=520\\n2026-05-27 17:22:45,387   T0 [put both the alphabet soup and the tomat] ep=10: 6/10=60%\\n2026-05-27 17:25:54,789   T0 [put both the alphabet soup and the tomat] ep=20: 14/20=70%\\n2026-05-27 17:29:11,832   T0 [put both the alphabet soup and the tomat] ep=30: 21/30=70%\\n2026-05-27 17:32:29,772   T0 [put both the alphabet soup and the tomat] ep=40: 27/40=68%\\n2026-05-27 17:35:42,337   T0 [put both the alphabet soup and the tomat] ep=50: 35/50=70%\\n2026-05-27 17:35:42,337 Task 0: SR=70.0% | Total: 35/50=70.0% | Time: 16.1min\\n2026-05-27 17:38:54,036   T1 [put both the cream cheese box and the bu] ep=10: 5/10=50%\\n2026-05-27 17:42:06,684   T1 [put both the cream cheese box and the bu] ep=20: 10/20=50%\\n2026-05-27 17:45:42,164   T1 [put both the cream cheese box and the bu] ep=30: 13/30=43%\\n2026-05-27 17:49:11,647   T1 [put both the cream cheese box and the bu] ep=40: 17/40=42%\\n2026-05-27 17:52:45,600   T1 [put both the cream cheese box and the bu] ep=50: 20/50=40%\\n2026-05-27 17:52:45,601 Task 1: SR=40.0% | Total: 55/100=55.0% | Time: 33.1min\\n2026-05-27 17:55:15,978   T2 [turn on the stove and put the moka pot o] ep=10: 7/10=70%\\n2026-05-27 17:57:37,586   T2 [turn on the stove and put the moka pot o] ep=20: 15/20=75%\\n2026-05-27 18:00:17,043   T2 [turn on the stove and put the moka pot o] ep=30: 21/30=70%\\n2026-05-27 18:02:59,412   T2 [turn on the stove and put the moka pot o] ep=40: 27/40=68%\\n2026-05-27 18:05:30,320   T2 [turn on the stove and put the moka pot o] ep=50: 34/50=68%\\n2026-05-27 18:05:30,320 Task 2: SR=68.0% | Total: 89/150=59.3% | Time: 45.9min\\n2026-05-27 18:08:17,640   T3 [put the black bowl in the bottom drawer ] ep=10: 7/10=70%\\n2026-05-27 18:11:23,814   T3 [put the black bowl in the bottom drawer ] ep=20: 13/20=65%\\n2026-05-27 18:13:49,713   T3 [put the black bowl in the bottom drawer ] ep=30: 21/30=70%\\n2026-05-27 18:16:26,241   T3 [put the black bowl in the bottom drawer ] ep=40: 28/40=70%\\n2026-05-27 18:18:39,726   T3 [put the black bowl in the bottom drawer ] ep=50: 37/50=74%\\n2026-05-27 18:18:39,726 Task 3: SR=74.0% | Total: 126/200=63.0% | Time: 59.0min\\n2026-05-27 18:21:32,986   T4 [put the white mug on the left plate and ] ep=10: 6/10=60%\\n2026-05-27 18:24:36,360   T4 [put the white mug on the left plate and ] ep=20: 12/20=60%\\n2026-05-27 18:27:56,116   T4 [put the white mug on the left plate and ] ep=30: 16/30=53%\\n2026-05-27 18:30:51,014   T4 [put the white mug on the left plate and ] ep=40: 22/40=55%\\n2026-05-27 18:34:14,648   T4 [put the white mug on the left plate and ] ep=50: 25/50=50%\\n2026-05-27 18:34:14,649 Task 4: SR=50.0% | Total: 151/250=60.4% | Time: 74.6min\\n2026-05-27 18:37:22,620   T5 [pick up the book and place it in the bac] ep=10: 3/10=30%\\n2026-05-27 18:40:09,347   T5 [pick up the book and place it in the bac] ep=20: 8/20=40%\\n2026-05-27 18:43:11,603   T5 [pick up the book and place it in the bac] ep=30: 11/30=37%\\n2026-05-27 18:46:30,464   T5 [pick up the book and place it in the bac] ep=40: 14/40=35%\\n2026-05-27 18:50:05,260   T5 [pick up the book and place it in the bac] ep=50: 15/50=30%\\n2026-05-27 18:50:05,260 Task 5: SR=30.0% | Total: 166/300=55.3% | Time: 90.5min\\n2026-05-27 18:53:37,025   T6 [put the white mug on the plate and put t] ep=10: 4/10=40%\\n2026-05-27 18:56:29,958   T6 [put the white mug on the plate and put t] ep=20: 11/20=55%\\n2026-05-27 18:59:49,291   T6 [put the white mug on the plate and put t] ep=30: 15/30=50%\\n2026-05-27 19:03:07,569   T6 [put the white mug on the plate and put t] ep=40: 20/40=50%\\n2026-05-27 19:07:07,754   T6 [put the white mug on the plate and put t] ep=50: 20/50=40%\\n2026-05-27 19:07:07,754 Task 6: SR=40.0% | Total: 186/350=53.1% | Time: 107.5min\\n2026-05-27 19:10:27,873   T7 [put both the alphabet soup and the cream] ep=10: 5/10=50%\\n2026-05-27 19:13:49,019   T7 [put both the alphabet soup and the cream] ep=20: 11/20=55%\\n2026-05-27 19:16:58,199   T7 [put both the alphabet soup and the cream] ep=30: 19/30=63%\\n2026-05-27 19:20:30,623   T7 [put both the alphabet soup and the cream] ep=40: 24/40=60%\\n2026-05-27 19:23:36,238   T7 [put both the alphabet soup and the cream] ep=50: 31/50=62%\\n2026-05-27 19:23:36,238 Task 7: SR=62.0% | Total: 217/400=54.2% | Time: 124.0min\\n2026-05-27 19:27:37,185   T8 [put both moka pots on the stove] ep=10: 0/10=0%\\n2026-05-27 19:31:21,811   T8 [put both moka pots on the stove] ep=20: 3/20=15%\\n2026-05-27 19:35:17,925   T8 [put both moka pots on the stove] ep=30: 3/30=10%\\n2026-05-27 19:39:16,455   T8 [put both moka pots on the stove] ep=40: 3/40=8%\\n2026-05-27 19:43:08,873   T8 [put both moka pots on the stove] ep=50: 4/50=8%\\n2026-05-27 19:43:08,873 Task 8: SR=8.0% | Total: 221/450=49.1% | Time: 143.5min\\n2026-05-27 19:45:58,358   T9 [put the yellow and white mug in the micr] ep=10: 7/10=70%\\n2026-05-27 19:49:04,315   T9 [put the yellow and white mug in the micr] ep=20: 13/20=65%\\n2026-05-27 19:52:17,664   T9 [put the yellow and white mug in the micr] ep=30: 18/30=60%\\n2026-05-27 19:55:18,359   T9 [put the yellow and white mug in the micr] ep=40: 25/40=62%\\n2026-05-27 19:58:54,257   T9 [put the yellow and white mug in the micr] ep=50: 28/50=56%\\n2026-05-27 19:58:54,257 Task 9: SR=56.0% | Total: 249/500=49.8% | Time: 159.3min\\n2026-05-27 19:58:54,469 \\n============================================================\\n2026-05-27 19:58:54,469 RESULT: libero_10 prune=random keep=0.5 SR=49.8%\\n2026-05-27 19:58:54,469 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed42.json\\n2026-05-27 19:58:54,469 ============================================================\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\nAll keys loaded successfully!\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[PRUNE-DIAG] random: n_keep=128/256, first_indices=[1, 2, 3, 4, 5]\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "d4a3c66b-a95d-470e-bf2a-5ac26838960f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-27 17:17:58,421 Config: suite=libero_10, prune=random, keep=0.5, eps=50, gpu=0\\\\n2026-05-27 17:17:58,421 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\n2026-05-27 17:19:31,658 Enabled gradient checkpointing for PI05Pytorch model\\\\n2026-05-27 17:19:33,628 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-27 17:19:33,628 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\n2026-05-27 17:19:35,532 Patched embed_image\\\\n2026-05-27 17:19:35,538 Model: 4143.4M params\\\\n2026-05-27 17:19:35,538 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-27 17:19:35,538 Pruning: random, keep 128/256 tokens/image (384 total)\\\\n2026-05-27 17:19:36,289 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n2026-05-27 17:19:36,309 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n2026-05-27 17:19:36,309 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-27 17:19:36,309 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-27 17:19:36,361 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n2026-05-27 17:19:36,753 Suite: libero_10, 10 tasks, max_steps=520\\\\n2026-05-27 17:22:45,387   T0 [put both the alphabet soup and the tomat] ep=10: 6/10=60%\\\\n2026-05-27 17:25:54,789   T0 [put both the alphabet soup and the tomat] ep=20: 14/20=70%\\\\n2026-05-27 17:29:11,832   T0 [put both the alphabet soup and the tomat] ep=30: 21/30=70%\\\\n2026-05-27 17:32:29,772   T0 [put both the alphabet soup and the tomat] ep=40: 27/40=68%\\\\n2026-05-27 17:35:42,337   T0 [put both the alphabet soup and the tomat] ep=50: 35/50=70%\\\\n2026-05-27 17:35:42,337 Task 0: SR=70.0% | Total: 35/50=70.0% | Time: 16.1min\\\\n2026-05-27 17:38:54,036   T1 [put both the cream cheese box and the bu] ep=10: 5/10=50%\\\\n2026-05-27 17:42:06,684   T1 [put both the cream cheese box and the bu] ep=20: 10/20=50%\\\\n2026-05-27 17:45:42,164   T1 [put both the cream cheese box and the bu] ep=30: 13/30=43%\\\\n2026-05-27 17:49:11,647   T1 [put both the cream cheese box and the bu] ep=40: 17/40=42%\\\\n2026-05-27 17:52:45,600   T1 [put both the cream cheese box and the bu] ep=50: 20/50=40%\\\\n2026-05-27 17:52:45,601 Task 1: SR=40.0% | Total: 55/100=55.0% | Time: 33.1min\\\\n2026-05-27 17:55:15,978   T2 [turn on the stove and put the moka pot o] ep=10: 7/10=70%\\\\n2026-05-27 17:57:37,586   T2 [turn on the stove and put the moka pot o] ep=20: 15/20=75%\\\\n2026-05-27 18:00:17,043   T2 [turn on the stove and put the moka pot o] ep=30: 21/30=70%\\\\n2026-05-27 18:02:59,412   T2 [turn on the stove and put the moka pot o] ep=40: 27/40=68%\\\\n2026-05-27 18:05:30,320   T2 [turn on the stove and put the moka pot o] ep=50: 34/50=68%\\\\n2026-05-27 18:05:30,320 Task 2: SR=68.0% | Total: 89/150=59.3% | Time: 45.9min\\\\n2026-05-27 18:08:17,640   T3 [put the black bowl in the bottom drawer ] ep=10: 7/10=70%\\\\n2026-05-27 18:11:23,814   T3 [put the black bowl in the bottom drawer ] ep=20: 13/20=65%\\\\n2026-05-27 18:13:49,713   T3 [put the black bowl in the bottom drawer ] ep=30: 21/30=70%\\\\n2026-05-27 18:16:26,241   T3 [put the black bowl in the bottom drawer ] ep=40: 28/40=70%\\\\n2026-05-27 18:18:39,726   T3 [put the black bowl in the bottom drawer ] ep=50: 37/50=74%\\\\n2026-05-27 18:18:39,726 Task 3: SR=74.0% | Total: 126/200=63.0% | Time: 59.0min\\\\n2026-05-27 18:21:32,986   T4 [put the white mug on the left plate and ] ep=10: 6/10=60%\\\\n2026-05-27 18:24:36,360   T4 [put the white mug on the left plate and ] ep=20: 12/20=60%\\\\n2026-05-27 18:27:56,116   T4 [put the white mug on the left plate and ] ep=30: 16/30=53%\\\\n2026-05-27 18:30:51,014   T4 [put the white mug on the left plate and ] ep=40: 22/40=55%\\\\n2026-05-27 18:34:14,648   T4 [put the white mug on the left plate and ] ep=50: 25/50=50%\\\\n2026-05-27 18:34:14,649 Task 4: SR=50.0% | Total: 151/250=60.4% | Time: 74.6min\\\\n2026-05-27 18:37:22,620   T5 [pick up the book and place it in the bac] ep=10: 3/10=30%\\\\n2026-05-27 18:40:09,347   T5 [pick up the book and place it in the bac] ep=20: 8/20=40%\\\\n2026-05-27 18:43:11,603   T5 [pick up the book and place it in the bac] ep=30: 11/30=37%\\\\n2026-05-27 18:46:30,464   T5 [pick up the book and place it in the bac] ep=40: 14/40=35%\\\\n2026-05-27 18:50:05,260   T5 [pick up the book and place it in the bac] ep=50: 15/50=30%\\\\n2026-05-27 18:50:05,260 Task 5: SR=30.0% | Total: 166/300=55.3% | Time: 90.5min\\\\n2026-05-27 18:53:37,025   T6 [put the white mug on the plate and put t] ep=10: 4/10=40%\\\\n2026-05-27 18:56:29,958   T6 [put the white mug on the plate and put t] ep=20: 11/20=55%\\\\n2026-05-27 18:59:49,291   T6 [put the white mug on the plate and put t] ep=30: 15/30=50%\\\\n2026-05-27 19:03:07,569   T6 [put the white mug on the plate and put t] ep=40: 20/40=50%\\\\n2026-05-27 19:07:07,754   T6 [put the white mug on the plate and put t] ep=50: 20/50=40%\\\\n2026-05-27 19:07:07,754 Task 6: SR=40.0% | Total: 186/350=53.1% | Time: 107.5min\\\\n2026-05-27 19:10:27,873   T7 [put both the alphabet soup and the cream] ep=10: 5/10=50%\\\\n2026-05-27 19:13:49,019   T7 [put both the alphabet soup and the cream] ep=20: 11/20=55%\\\\n2026-05-27 19:16:58,199   T7 [put both the alphabet soup and the cream] ep=30: 19/30=63%\\\\n2026-05-27 19:20:30,623   T7 [put both the alphabet soup and the cream] ep=40: 24/40=60%\\\\n2026-05-27 19:23:36,238   T7 [put both the alphabet soup and the cream] ep=50: 31/50=62%\\\\n2026-05-27 19:23:36,238 Task 7: SR=62.0% | Total: 217/400=54.2% | Time: 124.0min\\\\n2026-05-27 19:27:37,185   T8 [put both moka pots on the stove] ep=10: 0/10=0%\\\\n2026-05-27 19:31:21,811   T8 [put both moka pots on the stove] ep=20: 3/20=15%\\\\n2026-05-27 19:35:17,925   T8 [put both moka pots on the stove] ep=30: 3/30=10%\\\\n2026-05-27 19:39:16,455   T8 [put both moka pots on the stove] ep=40: 3/40=8%\\\\n2026-05-27 19:43:08,873   T8 [put both moka pots on the stove] ep=50: 4/50=8%\\\\n2026-05-27 19:43:08,873 Task 8: SR=8.0% | Total: 221/450=49.1% | Time: 143.5min\\\\n2026-05-27 19:45:58,358   T9 [put the yellow and white mug in the micr] ep=10: 7/10=70%\\\\n2026-05-27 19:49:04,315   T9 [put the yellow and white mug in the micr] ep=20: 13/20=65%\\\\n2026-05-27 19:52:17,664   T9 [put the yellow and white mug in the micr] ep=30: 18/30=60%\\\\n2026-05-27 19:55:18,359   T9 [put the yellow and white mug in the micr] ep=40: 25/40=62%\\\\n2026-05-27 19:58:54,257   T9 [put the yellow and white mug in the micr] ep=50: 28/50=56%\\\\n2026-05-27 19:58:54,257 Task 9: SR=56.0% | Total: 249/500=49.8% | Time: 159.3min\\\\n2026-05-27 19:58:54,469 \\\\n============================================================\\\\n2026-05-27 19:58:54,469 RESULT: libero_10 prune=random keep=0.5 SR=49.8%\\\\n2026-05-27 19:58:54,469 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed42.json\\\\n2026-05-27 19:58:54,469 ============================================================\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\nAll keys loaded successfully!\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[PRUNE-DIAG] random: n_keep=128/256, first_indices=[1, 2, 3, 4, 5]\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-27 17:17:58,421 Config: suite=libero_10, prune=random, keep=0.5, eps=50, gpu=0\\n2026-05-27 17:17:58,421 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\n2026-05-27 17:19:31,658 Enabled gradient checkpointing for PI05Pytorch model\\n2026-05-27 17:19:33,628 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-27 17:19:33,628 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\n2026-05-27 17:19:35,532 Patched embed_image\\n2026-05-27 17:19:35,538 Model: 4143.4M params\\n2026-05-27 17:19:35,538 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-27 17:19:35,538 Pruning: random, keep 128/256 tokens/image (384 total)\\n2026-05-27 17:19:36,289 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-27 17:19:36,309 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-27 17:19:36,309 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-27 17:19:36,309 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-27 17:19:36,361 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n2026-05-27 17:19:36,753 Suite: libero_10, 10 tasks, max_steps=520\\n2026-05-27 17:22:45,387   T0 [put both the alphabet soup and the tomat] ep=10: 6/10=60%\\n2026-05-27 17:25:54,789   T0 [put both the alphabet soup and the tomat] ep=20: 14/20=70%\\n2026-05-27 17:29:11,832   T0 [put both the alphabet soup and the tomat] ep=30: 21/30=70%\\n2026-05-27 17:32:29,772   T0 [put both the alphabet soup and the tomat] ep=40: 27/40=68%\\n2026-05-27 17:35:42,337   T0 [put both the alphabet soup and the tomat] ep=50: 35/50=70%\\n2026-05-27 17:35:42,337 Task 0: SR=70.0% | Total: 35/50=70.0% | Time: 16.1min\\n2026-05-27 17:38:54,036   T1 [put both the cream cheese box and the bu] ep=10: 5/10=50%\\n2026-05-27 17:42:06,684   T1 [put both the cream cheese box and the bu] ep=20: 10/20=50%\\n2026-05-27 17:45:42,164   T1 [put both the cream cheese box and the bu] ep=30: 13/30=43%\\n2026-05-27 17:49:11,647   T1 [put both the cream cheese box and the bu] ep=40: 17/40=42%\\n2026-05-27 17:52:45,600   T1 [put both the cream cheese box and the bu] ep=50: 20/50=40%\\n2026-05-27 17:52:45,601 Task 1: SR=40.0% | Total: 55/100=55.0% | Time: 33.1min\\n2026-05-27 17:55:15,978   T2 [turn on the stove and put the moka pot o] ep=10: 7/10=70%\\n2026-05-27 17:57:37,586   T2 [turn on the stove and put the moka pot o] ep=20: 15/20=75%\\n2026-05-27 18:00:17,043   T2 [turn on the stove and put the moka pot o] ep=30: 21/30=70%\\n2026-05-27 18:02:59,412   T2 [turn on the stove and put the moka pot o] ep=40: 27/40=68%\\n2026-05-27 18:05:30,320   T2 [turn on the stove and put the moka pot o] ep=50: 34/50=68%\\n2026-05-27 18:05:30,320 Task 2: SR=68.0% | Total: 89/150=59.3% | Time: 45.9min\\n2026-05-27 18:08:17,640   T3 [put the black bowl in the bottom drawer ] ep=10: 7/10=70%\\n2026-05-27 18:11:23,814   T3 [put the black bowl in the bottom drawer ] ep=20: 13/20=65%\\n2026-05-27 18:13:49,713   T3 [put the black bowl in the bottom drawer ] ep=30: 21/30=70%\\n2026-05-27 18:16:26,241   T3 [put the black bowl in the bottom drawer ] ep=40: 28/40=70%\\n2026-05-27 18:18:39,726   T3 [put the black bowl in the bottom drawer ] ep=50: 37/50=74%\\n2026-05-27 18:18:39,726 Task 3: SR=74.0% | Total: 126/200=63.0% | Time: 59.0min\\n2026-05-27 18:21:32,986   T4 [put the white mug on the left plate and ] ep=10: 6/10=60%\\n2026-05-27 18:24:36,360   T4 [put the white mug on the left plate and ] ep=20: 12/20=60%\\n2026-05-27 18:27:56,116   T4 [put the white mug on the left plate and ] ep=30: 16/30=53%\\n2026-05-27 18:30:51,014   T4 [put the white mug on the left plate and ] ep=40: 22/40=55%\\n2026-05-27 18:34:14,648   T4 [put the white mug on the left plate and ] ep=50: 25/50=50%\\n2026-05-27 18:34:14,649 Task 4: SR=50.0% | Total: 151/250=60.4% | Time: 74.6min\\n2026-05-27 18:37:22,620   T5 [pick up the book and place it in the bac] ep=10: 3/10=30%\\n2026-05-27 18:40:09,347   T5 [pick up the book and place it in the bac] ep=20: 8/20=40%\\n2026-05-27 18:43:11,603   T5 [pick up the book and place it in the bac] ep=30: 11/30=37%\\n2026-05-27 18:46:30,464   T5 [pick up the book and place it in the bac] ep=40: 14/40=35%\\n2026-05-27 18:50:05,260   T5 [pick up the book and place it in the bac] ep=50: 15/50=30%\\n2026-05-27 18:50:05,260 Task 5: SR=30.0% | Total: 166/300=55.3% | Time: 90.5min\\n2026-05-27 18:53:37,025   T6 [put the white mug on the plate and put t] ep=10: 4/10=40%\\n2026-05-27 18:56:29,958   T6 [put the white mug on the plate and put t] ep=20: 11/20=55%\\n2026-05-27 18:59:49,291   T6 [put the white mug on the plate and put t] ep=30: 15/30=50%\\n2026-05-27 19:03:07,569   T6 [put the white mug on the plate and put t] ep=40: 20/40=50%\\n2026-05-27 19:07:07,754   T6 [put the white mug on the plate and put t] ep=50: 20/50=40%\\n2026-05-27 19:07:07,754 Task 6: SR=40.0% | Total: 186/350=53.1% | Time: 107.5min\\n2026-05-27 19:10:27,873   T7 [put both the alphabet soup and the cream] ep=10: 5/10=50%\\n2026-05-27 19:13:49,019   T7 [put both the alphabet soup and the cream] ep=20: 11/20=55%\\n2026-05-27 19:16:58,199   T7 [put both the alphabet soup and the cream] ep=30: 19/30=63%\\n2026-05-27 19:20:30,623   T7 [put both the alphabet soup and the cream] ep=40: 24/40=60%\\n2026-05-27 19:23:36,238   T7 [put both the alphabet soup and the cream] ep=50: 31/50=62%\\n2026-05-27 19:23:36,238 Task 7: SR=62.0% | Total: 217/400=54.2% | Time: 124.0min\\n2026-05-27 19:27:37,185   T8 [put both moka pots on the stove] ep=10: 0/10=0%\\n2026-05-27 19:31:21,811   T8 [put both moka pots on the stove] ep=20: 3/20=15%\\n2026-05-27 19:35:17,925   T8 [put both moka pots on the stove] ep=30: 3/30=10%\\n2026-05-27 19:39:16,455   T8 [put both moka pots on the stove] ep=40: 3/40=8%\\n2026-05-27 19:43:08,873   T8 [put both moka pots on the stove] ep=50: 4/50=8%\\n2026-05-27 19:43:08,873 Task 8: SR=8.0% | Total: 221/450=49.1% | Time: 143.5min\\n2026-05-27 19:45:58,358   T9 [put the yellow and white mug in the micr] ep=10: 7/10=70%\\n2026-05-27 19:49:04,315   T9 [put the yellow and white mug in the micr] ep=20: 13/20=65%\\n2026-05-27 19:52:17,664   T9 [put the yellow and white mug in the micr] ep=30: 18/30=60%\\n2026-05-27 19:55:18,359   T9 [put the yellow and white mug in the micr] ep=40: 25/40=62%\\n2026-05-27 19:58:54,257   T9 [put the yellow and white mug in the micr] ep=50: 28/50=56%\\n2026-05-27 19:58:54,257 Task 9: SR=56.0% | Total: 249/500=49.8% | Time: 159.3min\\n2026-05-27 19:58:54,469 \\n============================================================\\n2026-05-27 19:58:54,469 RESULT: libero_10 prune=random keep=0.5 SR=49.8%\\n2026-05-27 19:58:54,469 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed42.json\\n2026-05-27 19:58:54,469 ============================================================\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\nAll keys loaded successfully!\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[PRUNE-DIAG] random: n_keep=128/256, first_indices=[1, 2, 3, 4, 5]\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment completed successfully. Let me extract the results:
+
+Overall: 249/500 = 49.8%
+
+Per-task results:
+- T0: 35/50 = 70.0%
+- T1: 20/50 = 40.0%
+- T2: 34/50 = 68.0%
+- T3: 37/50 = 74.0%
+- T4: 25/50 = 50.0%
+- T5: 15/50 = 30.0%
+- T6: 20/50 = 40.0%
+
+
+- T7: 31/50 = 62.0%
+- T8: 4/50 = 8.0%
+- T9: 28/50 = 56.0%
+
+The run completed cleanly with no errors, so now I'll update the registry with these results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "e95866e3-570d-4711-b5ec-50bb6c516f5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J79JUQy9yA448xXHq7dmLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3836,
+      "cache_read_input_tokens": 25054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+实验正常完成，EXIT_CODE=0。Overall SR = **49.8%**。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "1c1ac327-3eed-41f8-87f1-e22349520cfc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J79JUQy9yA448xXHq7dmLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3836,
+      "cache_read_input_tokens": 25054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QCMChbNo9o3rgfFvTKCg2X`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed42_strict_w41_v2",
+  "field": "metrics",
+  "value": {
+    "overall_sr": 49.8,
+    "per_task_sr": [
+      70,
+      40,
+      68,
+      74,
+      50,
+      30,
+      40,
+      62,
+      8,
+      56
+    ],
+    "total_successes": 249,
+    "total_episodes": 500,
+    "eval_time_min": 159.3
+  },
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "5eaaefbb-6283-4800-9c4c-8e02d3fe90e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J79JUQy9yA448xXHq7dmLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3836,
+      "cache_read_input_tokens": 25054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DWvkzVjJh7oKy1pJT5q4Jr`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed42_strict_w41_v2",
+  "field": "log_path",
+  "value": "~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "45521975-93c0-40b5-844b-4ed8fc803c07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J79JUQy9yA448xXHq7dmLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3836,
+      "cache_read_input_tokens": 25054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017hhLGMjQNJd5F5nrfjzgLP`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed42_strict_w41_v2",
+  "field": "checkpoint_path",
+  "value": "N/A (eval only)",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "8175da5b-4372-484b-8409-33920172f8c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J79JUQy9yA448xXHq7dmLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3836,
+      "cache_read_input_tokens": 25054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T12:04:44.534Z_
+
+<details><summary>↩ Tool result · `toolu_01QCMChbNo9o3rgfFvTKCg2X`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed42_strict_w41_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T09:18:00.185Z\", \"updated_at\": \"2026-05-27T12:04:43.074Z\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"pid\": 356612, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"submitted_at\": \"2026-05-27T09:17:56.982Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"hypothesis\": \"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\", \"parent\": \"eval_pi05_random_k05_long_seed42_strict_w41\", \"reproduce\": {\"finished_at\": \"2026-05-27T12:00:08.931Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-27T12:00:26.801348+00:00\"}]}, \"metrics\": {\"overall_sr\": 49.8, \"per_task_sr\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \"total_successes\": 249, \"total_episodes\": 500, \"eval_time_min\": 159.3}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.1461}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "f235ebf7-14f1-44a1-9347-b35df54fbb56",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k05_long_seed42_strict_w41_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T09:18:00.185Z\\\", \\\"updated_at\\\": \\\"2026-05-27T12:04:43.074Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 356612, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T09:17:56.982Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}, \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\\\", \\\"parent\\\": \\\"eval_pi05_random_k05_long_seed42_strict_w41\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-27T12:00:08.931Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-27T12:00:26.801348+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 49.8, \\\"per_task_sr\\\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \\\"total_successes\\\": 249, \\\"total_episodes\\\": 500, \\\"eval_time_min\\\": 159.3}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.1461}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed42_strict_w41_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T09:18:00.185Z\", \"updated_at\": \"2026-05-27T12:04:43.074Z\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"pid\": 356612, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"submitted_at\": \"2026-05-27T09:17:56.982Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"hypothesis\": \"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\", \"parent\": \"eval_pi05_random_k05_long_seed42_strict_w41\", \"reproduce\": {\"finished_at\": \"2026-05-27T12:00:08.931Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-27T12:00:26.801348+00:00\"}]}, \"metrics\": {\"overall_sr\": 49.8, \"per_task_sr\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \"total_successes\": 249, \"total_episodes\": 500, \"eval_time_min\": 159.3}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.1461}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T12:04:48.289Z_
+
+<details><summary>↩ Tool result · `toolu_01DWvkzVjJh7oKy1pJT5q4Jr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed42_strict_w41_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T09:18:00.185Z\", \"updated_at\": \"2026-05-27T12:04:46.826Z\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"pid\": 356612, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"submitted_at\": \"2026-05-27T09:17:56.982Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"hypothesis\": \"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\", \"parent\": \"eval_pi05_random_k05_long_seed42_strict_w41\", \"reproduce\": {\"finished_at\": \"2026-05-27T12:00:08.931Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-27T12:00:26.801348+00:00\"}]}, \"metrics\": {\"overall_sr\": 49.8, \"per_task_sr\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \"total_successes\": 249, \"total_episodes\": 500, \"eval_time_min\": 159.3}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.7412}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "7a39af59-f438-4f51-94a1-75735a3a9be7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k05_long_seed42_strict_w41_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T09:18:00.185Z\\\", \\\"updated_at\\\": \\\"2026-05-27T12:04:46.826Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 356612, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T09:17:56.982Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}, \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\\\", \\\"parent\\\": \\\"eval_pi05_random_k05_long_seed42_strict_w41\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-27T12:00:08.931Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-27T12:00:26.801348+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 49.8, \\\"per_task_sr\\\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \\\"total_successes\\\": 249, \\\"total_episodes\\\": 500, \\\"eval_time_min\\\": 159.3}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.7412}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed42_strict_w41_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T09:18:00.185Z\", \"updated_at\": \"2026-05-27T12:04:46.826Z\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"pid\": 356612, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"submitted_at\": \"2026-05-27T09:17:56.982Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"hypothesis\": \"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\", \"parent\": \"eval_pi05_random_k05_long_seed42_strict_w41\", \"reproduce\": {\"finished_at\": \"2026-05-27T12:00:08.931Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-27T12:00:26.801348+00:00\"}]}, \"metrics\": {\"overall_sr\": 49.8, \"per_task_sr\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \"total_successes\": 249, \"total_episodes\": 500, \"eval_time_min\": 159.3}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.7412}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-27T12:04:54.033Z_
+
+<details><summary>↩ Tool result · `toolu_017hhLGMjQNJd5F5nrfjzgLP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed42_strict_w41_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T09:18:00.185Z\", \"updated_at\": \"2026-05-27T12:04:51.463Z\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"pid\": 356612, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"submitted_at\": \"2026-05-27T09:17:56.982Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"hypothesis\": \"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\", \"parent\": \"eval_pi05_random_k05_long_seed42_strict_w41\", \"reproduce\": {\"finished_at\": \"2026-05-27T12:00:08.931Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-27T12:00:26.801348+00:00\"}]}, \"metrics\": {\"overall_sr\": 49.8, \"per_task_sr\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \"total_successes\": 249, \"total_episodes\": 500, \"eval_time_min\": 159.3}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"checkpoint_path\": \"N/A (eval only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.7271}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "01ab2fc8-d5c8-46ea-bdbf-578aa3ceccd8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k05_long_seed42_strict_w41_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T09:18:00.185Z\\\", \\\"updated_at\\\": \\\"2026-05-27T12:04:51.463Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 356612, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T09:17:56.982Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}, \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\\\", \\\"parent\\\": \\\"eval_pi05_random_k05_long_seed42_strict_w41\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-27T12:00:08.931Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-27T12:00:26.801348+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 49.8, \\\"per_task_sr\\\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \\\"total_successes\\\": 249, \\\"total_episodes\\\": 500, \\\"eval_time_min\\\": 159.3}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.7271}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed42_strict_w41_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T09:18:00.185Z\", \"updated_at\": \"2026-05-27T12:04:51.463Z\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"pid\": 356612, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"submitted_at\": \"2026-05-27T09:17:56.982Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"hypothesis\": \"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\", \"parent\": \"eval_pi05_random_k05_long_seed42_strict_w41\", \"reproduce\": {\"finished_at\": \"2026-05-27T12:00:08.931Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-27T12:00:26.801348+00:00\"}]}, \"metrics\": {\"overall_sr\": 49.8, \"per_task_sr\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \"total_successes\": 249, \"total_episodes\": 500, \"eval_time_min\": 159.3}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"checkpoint_path\": \"N/A (eval only)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.7271}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013F4E2EPLfbxxjXnVjGYmmK`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed42_strict_w41_v2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "905db2f2-b45b-40b4-9113-c711ccc7815a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MVn1knkQsKuHeezJQSz29F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3089,
+      "cache_read_input_tokens": 28890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3089
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-27T12:05:05.813Z_
+
+<details><summary>↩ Tool result · `toolu_013F4E2EPLfbxxjXnVjGYmmK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed42_strict_w41_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T09:18:00.185Z\", \"updated_at\": \"2026-05-27T12:05:03.920Z\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"pid\": 356612, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"submitted_at\": \"2026-05-27T09:17:56.982Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"hypothesis\": \"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\", \"parent\": \"eval_pi05_random_k05_long_seed42_strict_w41\", \"reproduce\": {\"finished_at\": \"2026-05-27T12:00:08.931Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-27T12:00:26.801348+00:00\"}]}, \"metrics\": {\"overall_sr\": 49.8, \"per_task_sr\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \"total_successes\": 249, \"total_episodes\": 500, \"eval_time_min\": 159.3}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"checkpoint_path\": \"N/A (eval only)\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.325}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "ccdeeac9-bbc9-4ae0-a4f2-005dbd4402ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k05_long_seed42_strict_w41_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T09:18:00.185Z\\\", \\\"updated_at\\\": \\\"2026-05-27T12:05:03.920Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 356612, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T09:17:56.982Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}, \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\\\", \\\"parent\\\": \\\"eval_pi05_random_k05_long_seed42_strict_w41\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-27T12:00:08.931Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-27T12:00:26.801348+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 49.8, \\\"per_task_sr\\\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \\\"total_successes\\\": 249, \\\"total_episodes\\\": 500, \\\"eval_time_min\\\": 159.3}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.325}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed42_strict_w41_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T09:18:00.185Z\", \"updated_at\": \"2026-05-27T12:05:03.920Z\", \"spec\": {\"command\": \"HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval_pi05_pruning_libero.py --suite libero_10 --prune_mode random --keep_ratio 0.5 --n_episodes 50 --gpu 0 --seed 42\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"pid\": 356612, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"submitted_at\": \"2026-05-27T09:17:56.982Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"hypothesis\": \"π0.5 Random k=0.5 Long strict 重跑，排除 cqa1 lenient 评估条件污染，同时作为 k=0.5 backup 数据点\", \"parent\": \"eval_pi05_random_k05_long_seed42_strict_w41\", \"reproduce\": {\"finished_at\": \"2026-05-27T12:00:08.931Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-27T12:00:26.801348+00:00\"}]}, \"metrics\": {\"overall_sr\": 49.8, \"per_task_sr\": [70, 40, 68, 74, 50, 30, 40, 62, 8, 56], \"total_successes\": 249, \"total_episodes\": 500, \"eval_time_min\": 159.3}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_strict_w41_v2.log\", \"checkpoint_path\": \"N/A (eval only)\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.325}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Registry 已更新。
+
+## 结果总结
+
+**π0.5 Random k=0.5 Long (strict) Overall SR = 49.8%**
+
+Per-task: 70, 40, 68, 74, 50, 30, 40, 62, 8, 56
+
+### 极端压缩点 k=0.5 三方法 strict 对比（Long suite）
+
+| 方法 | Overall SR |
+|------|-----------|
+| L2norm | 50.0% |
+| **Random** | **49.8%** |
+| Attn | 49.8% |
+
+三种方法在 k=0.5 处几乎完全一致（50.0% vs 49.8% vs 49.8%），差异在噪声范围内。这符合极端压缩下方法差异消失的预期——丢弃一半 token 后，无论用什么策略选择保留哪些，性能都坍缩到同一水平。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "uuid": "ef1d6fda-54c2-49d5-abf0-3a367b8108b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q8Kiq8mKjExG28Hbbx2HPa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 31979,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 923
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 20_
+
+Registry 已更新。
+
+## 结果总结
+
+**π0.5 Random k=0.5 Long (strict) Overall SR = 49.8%**
+
+Per-task: 70, 40, 68, 74, 50, 30, 40, 62, 8, 56
+
+### 极端压缩点 k=0.5 三方法 strict 对比（Long suite）
+
+| 方法 | Overall SR |
+|------|-----------|
+| L2norm | 50.0% |
+| **Random** | **49.8%** |
+| Attn | 49.8% |
+
+三种方法在 k=0.5 处几乎完全一致（50.0% vs 49.8% vs 49.8%），差异在噪声范围内。这符合极端压缩下方法差异消失的预期——丢弃一半 token 后，无论用什么策略选择保留哪些，性能都坍缩到同一水平。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 50089,
+  "duration_api_ms": 33469,
+  "num_turns": 7,
+  "stop_reason": "end_turn",
+  "session_id": "592df149-2a44-4422-a389-4d8def43c95d",
+  "total_cost_usd": 0.23133874999999998,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 21057,
+    "cache_read_input_tokens": 121875,
+    "output_tokens": 1466,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 21057,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 265,
+        "cache_read_input_tokens": 31979,
+        "cache_creation_input_tokens": 923,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 923
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1466,
+      "cacheReadInputTokens": 121875,
+      "cacheCreationInputTokens": 21057,
+      "webSearchRequests": 0,
+      "costUSD": 0.22923875,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1970,
+      "outputTokens": 26,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0021,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "cf0098c4-7b90-4818-a92c-3a4cf136fe6d"
+}
+```
+
+</details>
+
+---

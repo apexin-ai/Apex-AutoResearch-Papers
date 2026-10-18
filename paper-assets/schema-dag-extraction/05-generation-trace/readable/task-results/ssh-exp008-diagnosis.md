@@ -1,0 +1,36 @@
+# ssh exp008 diagnosis
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ssh_exp008-diagnosis_20260515T114006_result.json`
+- **Structured JSON:** [`70b6ba817ba4babd7164.json`](../../sessions/70/70b6ba817ba4babd7164.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+报告已保存到 `artifacts/exp008/diagnosis_report.md`。
+
+核心发现：
+
+**根因是小 batch 的 over-prediction。** SDGD 的 graph coloring 产生严重不等的 batch（3-18 types），3-type batch 的 pred/gold 达 4.4x（vs 18-type batch 的 0.6x），FP rate 高达 90%。Random batch 均为 8 types，避免了这个极端。
+
+三个分析的结论：
+1. **Pred/gold 分布**：batch size 与 over-prediction 强负相关。小 batch 是"预测黑洞"
+2. **Cross-batch hallucination**：54.6% 的 span 在不同 batch 被标为不同类型（如 "Taft Hotel" → 4 种 building 子类型）。这在 random batch 中同样严重（58%），是 union merge 策略的系统性问题
+3. **Per-type F1**：几乎所有类型都退化（系统性）。小 batch（size=3）中的类型最惨——building-library 过预测 10.9x，person-scholar 过预测 14.9x
+
+最优先的改进：**强制 minimum batch size ≥ 8** + **confidence-gated merge 替代 union merge**。
+
+---

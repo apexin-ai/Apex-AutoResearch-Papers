@@ -1,0 +1,1173 @@
+# diag westd 38929
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/chats/worker_diag_westd-38929_20260527T012815.jsonl`
+- **Structured JSON:** [`c281995ecc5a32c4f484.json`](../../sessions/c2/c281995ecc5a32c4f484.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+39 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-27T01:29:43.112340+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-27T01:29:43.112832+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-27T01:29:43.115169+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-27T01:29:43.115502+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-compute-apps=gpu_uuid,pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "nvidia-smi --query-compute-apps=gpu_uuid,pid,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-27T01:29:43.115743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 15964 MiB, 97887 MiB, 75 %\\n1, 16188 MiB, 97887 MiB, 36 %\\n2, 15780 MiB, 97887 MiB, 78 %\\n3, 16188 MiB, 97887 MiB, 36 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-27T01:29:43.115962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GPU-e9ff022e-84eb-5d0a-9c96-b71bebcfcdfa, 949253, 15946 MiB\\nGPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 949447, 16169 MiB\\nGPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 732931, 15762 MiB\\nGPU-d885bcad-4630-ef20-b2bc-2499c5aca08e, 950007, 16169 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-27T01:29:43.116182+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ps aux --sort=-rss --no-headers -w -w",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ps aux --sort=-rss --no-headers -w -w",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-27T01:29:43.116403+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-27T01:29:43.116755+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     732931  912  0.6 67897348 7365436 pts/1 Rl  01:30 4361:01 /root/miniconda3/bin/python -u /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\nroot     949447  835  0.5 67366524 6330212 pts/2 Rl  09:11 139:20 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\nroot     950007  834  0.5 67430580 6266172 pts/3 Rl  09:12 138:08 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\nroot     949253  834  0.5 67712576 5493552 pts/0 Rl  09:11 139:53 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.95 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal\\nroot        938  0.0  0.0 5405824 648396 ?      Sl   May26   1:10 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        935  0.2  0.0 6821072 106556 ?      Sl   May26   4:19 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        933  0.0  0.0 187564 102408 ?       S    May26   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        936  0.2  0.0 2867972 25372 ?       Sl   May26   5:36 proxy -c /init/proxy/proxy.ini\\nroot        915  1.9  0.0 724640 24880 ?        Sl   May26  37:15 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        937  0.0
+…[truncated 6348 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T01:29:43.117024+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-27T01:29:43.118796+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls -lt /root/autodl-tmp/importance_margin_vla_compress/*.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls -lt /root/autodl-tmp/importance_margin_vla_compress/*.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-27T01:29:43.119042+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/importance_margin_vla_compress/*.log': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T01:29:43.119338+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls -lt /root/runs/importance_margin_vla_compress/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls -lt /root/runs/importance_margin_vla_compress/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T01:29:43.119703+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1816\\n-rw-r--r-- 1 root root  2796 May 27 09:27 eval_openvla_attn_k095_goal_seed42.log\\n-rw-r--r-- 1 root root  5114 May 27 09:25 eval_openvla_l2norm_k075_long_seed42.log\\n-rw-r--r-- 1 root root  2738 May 27 09:23 eval_openvla_attn_k095_long_seed42.log\\n-rw-r--r-- 1 root root  2699 May 27 09:22 eval_openvla_l2norm_k095_long_seed42.log\\n-rw-r--r-- 1 root root  5806 May 27 09:01 eval_openvla_l2norm_k05_long_seed42.log\\n-rw-r--r-- 1 root root  5846 May 27 08:43 eval_openvla_random_k085_long_seed42_v3.log\\n-rw-r--r-- 1 root root  5895 May 27 04:18 eval_openvla_attn_k085_long_seed42_v3.log\\n-rw-r--r-- 1 root root  5606 May 27 01:25 eval_openvla_attn_k07_goal_seed42.log\\n-rw-r--r-- 1 root root  5821 May 26 23:10 eval_openvla_random_k05_long_seed42_v2.log\\n-rw-r--r-- 1 root root  1793 May 26 19:08 eval_openvla_attn_k085_long_seed42_v2.log\\n-rw-r--r-- 1 root root  1793 May 26 19:08 eval_openvla_attn_k085_long_seed42.log\\n-rw-r--r-- 1 root root  5764 May 26 18:12 eval_openvla_attn_k085_object_seed42.log\\n-rw-r--r-- 1 root root  5721 May 26 18:00 eval_openvla_random_k085_object_seed42_v2.log\\n-rw-r--r-- 1 root root  5717 May 26 16:27 eval_openvla_l2norm_k07_object_seed42.log\\n-rw-r--r-- 1 root root  3289 May 26 13:02 eval_openvla_random_k085_object_seed42.log\\n-rw-r--r-- 1 root root  3532 May 26 12:41 eval_openvla_random_k05_long_seed42.log\\n-rw-r--r-- 1 root root  5822 May 26 11:55 eval_openvla_attn_k07_long_seed42_v2.log\\n-rw-r--r-- 1 root root  5787 May 26 11:35 eval_openvla_l2norm_k07_long_seed42_v2.log\\n-rw-r--r-- 1 root root  5794 May 26 10:54 eval_openvla_l2norm_k085_long_seed42_v2.log\\n-rw-r--r-- 1 root root  5791 May 26 10:49 eval_openvla_random_k07_long_seed42_v2.log\\n-rw-r--r-- 1 root root  3389 May 25 08:42 eval_openvla_random_k09_spatial_seed42.log\\n-rw-r--r-- 1 root root  3273 May 25 08:42 eval_openvla_random_k09_goal_seed42.log\\n-rw-r--r-- 1 root root  7994 May 25 03:43 eval_pi
+…[truncated 6396 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T01:29:43.119958+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls /tmp/agent-ml-exit/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls /tmp/agent-ml-exit/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-27T01:29:43.122281+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"diag_transfer_e5_script.exit\\ndiag_transfer_e5_v2.exit\\ndiag_westd38929_e5_check.exit\\neval_e5_xvla_attn_last_goal_k05.exit\\neval_e5_xvla_attn_last_goal_k05_v2.exit\\neval_e5_xvla_attn_last_long_k05.exit\\neval_e5_xvla_attn_last_long_k05_seed43.exit\\neval_e5_xvla_attn_last_obj_k05.exit\\neval_e5_xvla_attn_last_spatial_k03.exit\\neval_e5_xvla_attn_mean_goal_k03.exit\\neval_e5_xvla_attn_mean_goal_k05.exit\\neval_e5_xvla_attn_mean_goal_k05_v2.exit\\neval_e5_xvla_attn_mean_long_k05.exit\\neval_e5_xvla_attn_mean_long_k05_seed43.exit\\neval_e5_xvla_attn_mean_obj_k03.exit\\neval_e5_xvla_attn_mean_obj_k05.exit\\neval_e5_xvla_attn_mean_spatial_k03.exit\\neval_e5_xvla_attn_rollout_goal_k05.exit\\neval_e5_xvla_attn_rollout_goal_k05_v2.exit\\neval_e5_xvla_attn_rollout_long_k05_w38.exit\\neval_e5_xvla_attn_rollout_obj_k03.exit\\neval_e5_xvla_attn_rollout_obj_k05.exit\\neval_e5_xvla_attn_rollout_spatial_k07.exit\\neval_oft_baseline_goal_seed42.exit\\neval_oft_baseline_object_seed42.exit\\neval_oft_object_nolora_v2.exit\\neval_oft_object_std_v3.exit\\neval_openvla_attn_k07_goal_seed42.exit\\neval_openvla_attn_k07_long_seed42_v2.exit\\neval_openvla_attn_k085_long_seed42.exit\\neval_openvla_attn_k085_long_seed42_v2.exit\\neval_openvla_attn_k085_long_seed42_v3.exit\\neval_openvla_attn_k085_object_seed42.exit\\neval_openvla_l2norm_k05_object_seed42_v4.exit\\neval_openvla_l2norm_k05_object_seed42_v5.exit\\neval_openvla_l2norm_k07_long_seed42_v2.exit\\neval_openvla_l2norm_k07_object_seed42.exit\\neval_openvla_l2norm_k085_long_seed42_v2.exit\\neval_openvla_random_k05_long_seed42.exit\\neval_openvla_random_k05_long_seed42_v2.exit\\neval_openvla_random_k07_long_seed42_v2.exit\\neval_openvla_random_k085_long_seed42_v3.exit\\neval_openvla_random_k085_object_seed42.exit\\neval_openvla_random_k085_object_seed42_v2.exit\\neval_openvla_random_k09_goal_seed42.exit\\neval_openvla_random_k09_spatial_seed42.exit\\neval_pi05_baseline_spatia
+…[truncated 2152 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-27T01:29:43.122581+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*.log\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*.log\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-27T01:29:43.122792+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \".sentinel_*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \".sentinel_*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T01:29:43.123177+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k1.0_libero_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.95_libero_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.9_libero_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.7_libero_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.5_libero_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.3_libero_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.2_libero_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.1_libero_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_l2norm_prune_k0_5_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_l2norm_prune_k0_3_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/liberoplus_smoke.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_baseline_spatial_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_sc_m128_vtconly_20k_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k095_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k09_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k03_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k095_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k07_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k095_seed42_v2.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k07_seed42_v2.log\\n/root/autodl-tmp/imp
+…[truncated 6377 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-27T01:29:43.123432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-27T01:29:43.123706+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k075_goal_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k075_goal_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-27T01:29:43.123943+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n[Task 8/10] turn on the stove\\n  Ep 10/50 task_sr=10/10 (2.1 eps/min)\\n  Ep 20/50 task_sr=20/20 (2.2 eps/min)\\n  Ep 30/50 task_sr=30/30 (2.2 eps/min)\\n  Ep 40/50 task_sr=40/40 (2.2 eps/min)\\n  Ep 50/50 task_sr=50/50 (2.3 eps/min)\\n  => Task SR: 1.000 (50/50)\\n\\n[Task 9/10] put the bowl on the plate\\n  Ep 10/50 task_sr=9/10 (2.3 eps/min)\\n  Ep 20/50 task_sr=15/20 (2.3 eps/min)\\n  Ep 30/50 task_sr=22/30 (2.3 eps/min)\\n  Ep 40/50 task_sr=31/40 (2.3 eps/min)\\n  Ep 50/50 task_sr=37/50 (2.3 eps/min)\\n  => Task SR: 0.740 (37/50)\\n\\n[Task 10/10] put the wine bottle on the rack\\n  Ep 10/50 task_sr=8/10 (2.3 eps/min)\\n  Ep 20/50 task_sr=12/20 (2.3 eps/min)\\n  Ep 30/50 task_sr=18/30 (2.2 eps/min)\\n  Ep 40/50 task_sr=24/40 (2.2 eps/min)\\n  Ep 50/50 task_sr=28/50 (2.2 eps/min)\\n  => Task SR: 0.560 (28/50)\\n\\n============================================================\\nOverall SR: 0.7200 (360/500)\\nTime: 228.8 min\\n============================================================\\n[*] Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k075_goal_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-27T01:29:43.126221+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_openvla_l2norm_k05_long_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_openvla_l2norm_k05_long_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T01:29:43.126526+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Ep 10/50 task_sr=0/10 (0.8 eps/min)\\n  Ep 20/50 task_sr=0/20 (0.8 eps/min)\\n  Ep 30/50 task_sr=0/30 (0.7 eps/min)\\n  Ep 40/50 task_sr=0/40 (0.7 eps/min)\\n  Ep 50/50 task_sr=0/50 (0.7 eps/min)\\n  => Task SR: 0.000 (0/50)\\n\\n[Task 10/10] put the yellow and white mug in the microwave and close it\\n  Ep 10/50 task_sr=0/10 (0.7 eps/min)\\n  Ep 20/50 task_sr=0/20 (0.7 eps/min)\\n  Ep 30/50 task_sr=1/30 (0.7 eps/min)\\n  Ep 40/50 task_sr=2/40 (0.7 eps/min)\\n  Ep 50/50 task_sr=2/50 (0.8 eps/min)\\n  => Task SR: 0.040 (2/50)\\n\\n============================================================\\nOverall SR: 0.1640 (82/500)\\nTime: 666.6 min\\n============================================================\\n[*] Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_l2norm_prune_k05_10_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-27T01:29:43.126749+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_openvla_random_k085_long_seed42_v3.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_openvla_random_k085_long_seed42_v3.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-27T01:29:43.126973+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Ep 20/50 task_sr=4/20 (0.9 eps/min)\\n  Ep 30/50 task_sr=7/30 (0.9 eps/min)\\n  Ep 40/50 task_sr=11/40 (0.9 eps/min)\\n  Ep 50/50 task_sr=16/50 (0.9 eps/min)\\n  => Task SR: 0.320 (16/50)\\n\\n[Task 10/10] put the yellow and white mug in the microwave and close it\\n  Ep 10/50 task_sr=1/10 (0.9 eps/min)\\n  Ep 20/50 task_sr=4/20 (0.9 eps/min)\\n  Ep 30/50 task_sr=5/30 (0.9 eps/min)\\n  Ep 40/50 task_sr=5/40 (0.9 eps/min)\\n  Ep 50/50 task_sr=8/50 (0.9 eps/min)\\n  => Task SR: 0.160 (8/50)\\n\\n============================================================\\nOverall SR: 0.4500 (225/500)\\nTime: 559.8 min\\n============================================================\\n[*] Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k085_10_seed42.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-27T01:29:43.127219+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_openvla_attn_k085_long_seed42_v3.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_openvla_attn_k085_long_seed42_v3.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-27T01:29:43.127457+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Ep 20/50 task_sr=3/20 (0.9 eps/min)\\n  Ep 30/50 task_sr=5/30 (0.9 eps/min)\\n  Ep 40/50 task_sr=9/40 (0.9 eps/min)\\n  Ep 50/50 task_sr=12/50 (0.9 eps/min)\\n  => Task SR: 0.240 (12/50)\\n\\n[Task 10/10] put the yellow and white mug in the microwave and close it\\n  Ep 10/50 task_sr=2/10 (0.9 eps/min)\\n  Ep 20/50 task_sr=3/20 (0.9 eps/min)\\n  Ep 30/50 task_sr=4/30 (0.9 eps/min)\\n  Ep 40/50 task_sr=7/40 (0.9 eps/min)\\n  Ep 50/50 task_sr=11/50 (0.9 eps/min)\\n  => Task SR: 0.220 (11/50)\\n\\n============================================================\\nOverall SR: 0.4580 (229/500)\\nTime: 548.6 min\\n============================================================\\n[*] Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attention_prune_k085_10_seed42.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-27T01:29:43.127678+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_openvla_attn_k07_goal_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -20 /root/runs/importance_margin_vla_compress/eval_openvla_attn_k07_goal_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-27T01:29:43.127898+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Ep 20/50 task_sr=13/20 (2.1 eps/min)\\n  Ep 30/50 task_sr=17/30 (2.1 eps/min)\\n  Ep 40/50 task_sr=23/40 (2.1 eps/min)\\n  Ep 50/50 task_sr=31/50 (2.1 eps/min)\\n  => Task SR: 0.620 (31/50)\\n\\n[Task 10/10] put the wine bottle on the rack\\n  Ep 10/50 task_sr=4/10 (2.0 eps/min)\\n  Ep 20/50 task_sr=5/20 (2.0 eps/min)\\n  Ep 30/50 task_sr=11/30 (2.0 eps/min)\\n  Ep 40/50 task_sr=16/40 (2.0 eps/min)\\n  Ep 50/50 task_sr=21/50 (2.0 eps/min)\\n  => Task SR: 0.420 (21/50)\\n\\n============================================================\\nOverall SR: 0.6640 (332/500)\\nTime: 251.7 min\\n============================================================\\n[*] Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attention_prune_k07_goal_seed42.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-27T01:29:43.128107+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_openvla_l2norm_k075_long_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_openvla_l2norm_k075_long_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-27T01:29:43.129407+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  => Task SR: 0.460 (23/50)\\n\\n[Task 9/10] put both moka pots on the stove\\n  Ep 10/50 task_sr=1/10 (0.9 eps/min)\\n  Ep 20/50 task_sr=1/20 (0.9 eps/min)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-27T01:29:43.129633+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_openvla_attn_k095_goal_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_openvla_attn_k095_goal_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-27T01:29:43.129844+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[Task 1/10] open the middle drawer of the cabinet\\n[Attn Pruning] 256 -> 243 vision tokens (k=0.95), importance range=[0.7313, 1.6883]\\n  Ep 10/50 task_sr=8/10 (2.2 eps/min)\\n  Ep 20/50 task_sr=14/20 (2.0 eps/min)\\n  Ep 30/50 task_sr=20/30 (1.9 eps/min)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-27T01:29:43.130046+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_openvla_l2norm_k095_long_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_openvla_l2norm_k095_long_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-27T01:29:43.130277+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[*] libero_10: 10 tasks x 50 episodes = 500 total\\n\\n[Task 1/10] put both the alphabet soup and the tomato sauce in the basket\\n[L2 Pruning] 256 -> 243 vision tokens (k=0.95)\\n  Ep 10/50 task_sr=7/10 (1.0 eps/min)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-27T01:29:43.130480+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_openvla_attn_k095_long_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -5 /root/runs/importance_margin_vla_compress/eval_openvla_attn_k095_long_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-27T01:29:43.130685+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[*] libero_10: 10 tasks x 50 episodes = 500 total\\n\\n[Task 1/10] put both the alphabet soup and the tomato sauce in the basket\\n[Attn Pruning] 256 -> 243 vision tokens (k=0.95), importance range=[0.7189, 1.6595]\\n  Ep 10/50 task_sr=5/10 (0.9 eps/min)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_westd-38929_20260527T012815",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-27T01:29:43.130987+00:00_
+
+全部数据已收集。结果如下：
+
+## westd-38929 诊断结果
+
+### 已完成实验（旧批次已全部结束）
+
+| 实验 | SR | 耗时 | 结果文件 |
+|---|---|---|---|
+| **Random k=0.75 Goal s42** | **72.0% (360/500)** | 228.8 min | `openvla_random_prune_k075_goal_seed42.json` |
+| L2norm k=0.5 Long s42 | 16.4% (82/500) | 666.6 min | `openvla_l2norm_prune_k05_10_seed42.json` |
+| Random k=0.85 Long s42 v3 | 45.0% (225/500) | 559.8 min | `openvla_random_prune_k085_10_seed42.json` |
+| Attn k=0.85 Long s42 v3 | 45.8% (229/500) | 548.6 min | `openvla_attention_prune_k085_10_seed42.json` |
+| Attn k=0.7 Goal s42 | 66.4% (332/500) | 251.7 min | `openvla_attention_prune_k07_goal_seed42.json` |
+
+### 当前运行中实验（新批次）
+
+| GPU | PID | 实验 | 进度 | 状态 |
+|---|---|---|---|---|
+| 0 | 949253 | **Attn k=0.95 Goal** s42 | Task 1/10, Ep 30 | running |
+| 1 | 949447 | **L2norm k=0.95 Long** s42 | Task 1/10, Ep 10 | running |
+| 2 | 732931 | **L2norm k=0.75 Long** s42 | Task 9/10, Ep 20 | running (从01:30开始，近完成) |
+| 3 | 950007 | **Attn k=0.95 Long** s42 | Task 1/10, Ep 10 | running |
+
+### 关键发现
+
+1. **Random k=0.75 Goal 已正常完成**，SR = 72.0%。进程消失是因为实验跑完了，不是崩溃。日志在 `/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k075_goal_seed42.log`，需要补录 registry。
+
+2. **GPU 2 的 L2norm k=0.75 Long** 已跑到 Task 9/10，预计很快完成。
+
+3. GPU 0/1/3 上新启动了 3 个 k=0.95 实验（约 09:11 启动），都刚开始 Task 1。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diag_westd-38929_20260527T012815"
+}
+```
+
+</details>
+
+---

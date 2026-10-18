@@ -1,0 +1,1487 @@
+# analysis api only bootstrap
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_analysis_api-only-bootstrap_20260523T073913.log`
+- **Structured JSON:** [`e7da5bce9ade4a70d956.json`](../../sessions/e7/e7da5bce9ade4a70d956.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "96070d2d-a743-465c-a4fa-6bd0fee3fd0a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779538800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4bc4e256-e381-43bf-bc72-7d591dce26c6",
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by examining the existing bootstrap scripts and data to understand the patterns, then write the API-only bootstrap script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "c3ca91a3-7e6f-451a-aed2-5a6eed597708",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BtkV93KxeBtD9Jpo5ZL4Pf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12961,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12961
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TvNZp5BwudzYHUUusopZW8`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "67e489e2-25b2-482d-bcfc-7fe100713bf2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BtkV93KxeBtD9Jpo5ZL4Pf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12961,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12961
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T07:39:26.524Z_
+
+<details><summary>↩ Tool result · `toolu_01TvNZp5BwudzYHUUusopZW8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "cfb8d8f8-39c4-4f33-9f29-ed618b0b852c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by examining the existing bootstrap scripts and the data to understand the patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "a3a72f07-9748-4ab6-a7cb-d3533a3de03a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RdHafRuvH6mcSmcQr39xsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1908,
+      "cache_read_input_tokens": 24408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1908
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Let me examine the existing bootstrap scripts and data structure on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "f886bb6b-80ee-4626-8748-235a7a5ffec7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RdHafRuvH6mcSmcQr39xsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1908,
+      "cache_read_input_tokens": 24408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1908
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Tp8ZK9W7gpzHumksDvqn1k`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/cert_manip_resist_eval/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "fb1259be-ba4c-4e87-a980-2aadeb83e0af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RdHafRuvH6mcSmcQr39xsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1908,
+      "cache_read_input_tokens": 24408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1908
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NTTrQWXnjsygiqKesZUhs8`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/cert_manip_resist_eval/artifacts/results/plan001/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "b6d9df93-5a19-4a1d-8afb-a7859802a275",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RdHafRuvH6mcSmcQr39xsv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1908,
+      "cache_read_input_tokens": 24408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1908
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T07:39:32.627Z_
+
+<details><summary>↩ Tool result · `toolu_01Tp8ZK9W7gpzHumksDvqn1k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\n_eval_single_model.py\\n_test_openai.py\\n_test_openai2.py\\nautoscale_scoring.sh\\ncopula_gof_check.py\\ndeploy_judges.py\\ndraw_fig4_panel_design_k3.py\\nfig5_forest_plot.py\\nprep_attack_data.py\\nrun_7model_preview.py\\nrun_aggregation_loglog.py\\nrun_aggregation_regression_15model.py\\nrun_all.py\\nrun_alt_diversity_effect_size.py\\nrun_api_only_regression.py\\nrun_attacked_keff.py\\nrun_beta_reg_epsilon.py\\nrun_claim6_panel_design_15model.py\\nrun_clustered_se_analysis.py\\nrun_condition_dominance.py\\nrun_controlled_regression.py\\nrun_family_copula_15model.py\\nrun_fractional_logit.py\\nrun_gam_tier_analysis.py\\nrun_gam_tier_analysis_corrected.py\\nrun_k4_wild_cluster_bootstrap.py\\nrun_k5_aggregation_analysis.py\\nrun_k5_aggregation_bootstrap.py\\nrun_k5_gam_analysis.py\\nrun_k5_k7_panel_analysis.py\\nrun_k5_panel_selection.py\\nrun_k5_panel_selection_bootstrap.py\\nrun_k5_rf_contrast.py\\nrun_k5_wild_cluster_bootstrap.py\\nrun_k7_wild_cluster_bootstrap.py\\nrun_partial_knowledge_adversary.py\\nrun_partial_knowledge_clustered_se.py\\nrun_pipeline_15model.sh\\nrun_plan001_confound_diagnosis.py\\nrun_plan001_pipeline.sh\\nrun_plan001_step1_api_scoring.py\\nrun_plan001_step1_batched.py\\nrun_plan001_step1_parallel.py\\nrun_plan001_step1_parallel_v2.py\\nrun_plan001_step1_throttled.py\\nrun_plan001_step3_mi_matrix.py\\nrun_plan001_step4_panel_regression.py\\nrun_plan001_step5_random_fault.py\\nrun_plan003_random_fault.py\\nrun_plan009_vif_analysis.py\\nrun_plan010_aggregation.py\\nrun_plan010_fdr_cv.py\\nrun_power_cr2_cr3.py\\nrun_residualized_keff_15model.py\\nrun_rf_keff_correction.py\\nrun_step1_correlation.py\\nrun_step1_full.py\\nrun_step1_subset.py\\nrun_step2_attacks.py\\nrun_step2_keff_contrast.py\\nrun_step2v3_regression.py\\nrun_step3_keff.py\\nrun_step4_scaling.py\\nrun_taxonomy_broadspectrum.py\\nrun_theorem1_violation_analysis.py\\nrun_vif_partial_corr.py\\nrun_wild_cluster_bootstrap.py\\nrun_wild_cluster_bootstrap_v2.py\\ntest_inference.py\\nvalidate_api_judges.py\\nvalidate_panel_selection.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "4b15af04-4da3-4c82-b23d-69149657c055",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\n_eval_single_model.py\\\\n_test_openai.py\\\\n_test_openai2.py\\\\nautoscale_scoring.sh\\\\ncopula_gof_check.py\\\\ndeploy_judges.py\\\\ndraw_fig4_panel_design_k3.py\\\\nfig5_forest_plot.py\\\\nprep_attack_data.py\\\\nrun_7model_preview.py\\\\nrun_aggregation_loglog.py\\\\nrun_aggregation_regression_15model.py\\\\nrun_all.py\\\\nrun_alt_diversity_effect_size.py\\\\nrun_api_only_regression.py\\\\nrun_attacked_keff.py\\\\nrun_beta_reg_epsilon.py\\\\nrun_claim6_panel_design_15model.py\\\\nrun_clustered_se_analysis.py\\\\nrun_condition_dominance.py\\\\nrun_controlled_regression.py\\\\nrun_family_copula_15model.py\\\\nrun_fractional_logit.py\\\\nrun_gam_tier_analysis.py\\\\nrun_gam_tier_analysis_corrected.py\\\\nrun_k4_wild_cluster_bootstrap.py\\\\nrun_k5_aggregation_analysis.py\\\\nrun_k5_aggregation_bootstrap.py\\\\nrun_k5_gam_analysis.py\\\\nrun_k5_k7_panel_analysis.py\\\\nrun_k5_panel_selection.py\\\\nrun_k5_panel_selection_bootstrap.py\\\\nrun_k5_rf_contrast.py\\\\nrun_k5_wild_cluster_bootstrap.py\\\\nrun_k7_wild_cluster_bootstrap.py\\\\nrun_partial_knowledge_adversary.py\\\\nrun_partial_knowledge_clustered_se.py\\\\nrun_pipeline_15model.sh\\\\nrun_plan001_confound_diagnosis.py\\\\nrun_plan001_pipeline.sh\\\\nrun_plan001_step1_api_scoring.py\\\\nrun_plan001_step1_batched.py\\\\nrun_plan001_step1_parallel.py\\\\nrun_plan001_step1_parallel_v2.py\\\\nrun_plan001_step1_throttled.py\\\\nrun_plan001_step3_mi_matrix.py\\\\nrun_plan001_step4_panel_regression.py\\\\nrun_plan001_step5_random_fault.py\\\\nrun_plan003_random_fault.py\\\\nrun_plan009_vif_analysis.py\\\\nrun_plan010_aggregation.py\\\\nrun_plan010_fdr_cv.py\\\\nrun_power_cr2_cr3.py\\\\nrun_residualized_keff_15model.py\\\\nrun_rf_keff_correction.py\\\\nrun_step1_correlation.py\\\\nrun_step1_full.py\\\\nrun_step1_subset.py\\\\nrun_step2_attacks.py\\\\nrun_step2_keff_contrast.py\\\\nrun_step2v3_regression.py\\\\nrun_step3_keff.py\\\\nrun_step4_scaling.py\\\\nrun_taxonomy_broadspectrum.py\\\\nrun_theorem1_violation_analysis.py\\\\nrun_vif_partial_corr.py\\\\nrun_wild_cluster_bootstrap.py\\\\nrun_wild_cluster_bootstrap_v2.py\\\\ntest_inference.py\\\\nvalidate_api_judges.py\\\\nvalidate_panel_selection.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\n_eval_single_model.py\\n_test_openai.py\\n_test_openai2.py\\nautoscale_scoring.sh\\ncopula_gof_check.py\\ndeploy_judges.py\\ndraw_fig4_panel_design_k3.py\\nfig5_forest_plot.py\\nprep_attack_data.py\\nrun_7model_preview.py\\nrun_aggregation_loglog.py\\nrun_aggregation_regression_15model.py\\nrun_all.py\\nrun_alt_diversity_effect_size.py\\nrun_api_only_regression.py\\nrun_attacked_keff.py\\nrun_beta_reg_epsilon.py\\nrun_claim6_panel_design_15model.py\\nrun_clustered_se_analysis.py\\nrun_condition_dominance.py\\nrun_controlled_regression.py\\nrun_family_copula_15model.py\\nrun_fractional_logit.py\\nrun_gam_tier_analysis.py\\nrun_gam_tier_analysis_corrected.py\\nrun_k4_wild_cluster_bootstrap.py\\nrun_k5_aggregation_analysis.py\\nrun_k5_aggregation_bootstrap.py\\nrun_k5_gam_analysis.py\\nrun_k5_k7_panel_analysis.py\\nrun_k5_panel_selection.py\\nrun_k5_panel_selection_bootstrap.py\\nrun_k5_rf_contrast.py\\nrun_k5_wild_cluster_bootstrap.py\\nrun_k7_wild_cluster_bootstrap.py\\nrun_partial_knowledge_adversary.py\\nrun_partial_knowledge_clustered_se.py\\nrun_pipeline_15model.sh\\nrun_plan001_confound_diagnosis.py\\nrun_plan001_pipeline.sh\\nrun_plan001_step1_api_scoring.py\\nrun_plan001_step1_batched.py\\nrun_plan001_step1_parallel.py\\nrun_plan001_step1_parallel_v2.py\\nrun_plan001_step1_throttled.py\\nrun_plan001_step3_mi_matrix.py\\nrun_plan001_step4_panel_regression.py\\nrun_plan001_step5_random_fault.py\\nrun_plan003_random_fault.py\\nrun_plan009_vif_analysis.py\\nrun_plan010_aggregation.py\\nrun_plan010_fdr_cv.py\\nrun_power_cr2_cr3.py\\nrun_residualized_keff_15model.py\\nrun_rf_keff_correction.py\\nrun_step1_correlation.py\\nrun_step1_full.py\\nrun_step1_subset.py\\nrun_step2_attacks.py\\nrun_step2_keff_contrast.py\\nrun_step2v3_regression.py\\nrun_step3_keff.py\\nrun_step4_scaling.py\\nrun_taxonomy_broadspectrum.py\\nrun_theorem1_violation_analysis.py\\nrun_vif_partial_corr.py\\nrun_wild_cluster_bootstrap.py\\nrun_wild_cluster_bootstrap_v2.py\\ntest_inference.py\\nvalidate_api_judges.py\\nvalidate_panel_selection.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T07:39:33.147Z_
+
+<details><summary>↩ Tool result · `toolu_01NTTrQWXnjsygiqKesZUhs8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aggregation_regression_15model.json\\naggregation_regression_15model_loglog.json\\nalt_diversity_effect_size.json\\napi_only_regression.json\\nattacked_keff.json\\nbeta_reg_epsilon.json\\nclaim6_panel_design_15model.json\\nclustered_se_analysis.json\\ncondition_dominance_15model.json\\nconfound_diagnosis.json\\nconfound_scatter.png\\ncontrolled_regression.json\\nfamily_copula_15model.json\\nfig4_panel_design_K3.json\\nfractional_logit.json\\ngam_tier_analysis.json\\ngam_tier_analysis_corrected.json\\nindividual_scores\\nk4_wild_cluster_bootstrap.json\\nk5_aggregation_analysis.json\\nk5_aggregation_bootstrap.json\\nk5_gam_analysis.json\\nk5_k7_panel_analysis.json\\nk5_panel_selection.json\\nk5_panel_selection_bootstrap.json\\nk5_rf_contrast.json\\nk5_wild_cluster_bootstrap.json\\nk7_wild_cluster_bootstrap.json\\nmi_matrix\\npanel_regression\\npartial_knowledge_adversary.json\\npartial_knowledge_clustered_se.json\\npower_cr2_cr3.json\\nresidualized_keff_15model.json\\nrf_keff_correction.json\\nstep1_api_scoring_summary.json\\nstochastic_dominance.json\\ntheorem1_violation.json\\nvif_partial_corr.json\\nwild_cluster_bootstrap.json\\nwild_cluster_bootstrap_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "0852f552-a5e0-4d1b-afff-8c65099f2559",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"aggregation_regression_15model.json\\\\naggregation_regression_15model_loglog.json\\\\nalt_diversity_effect_size.json\\\\napi_only_regression.json\\\\nattacked_keff.json\\\\nbeta_reg_epsilon.json\\\\nclaim6_panel_design_15model.json\\\\nclustered_se_analysis.json\\\\ncondition_dominance_15model.json\\\\nconfound_diagnosis.json\\\\nconfound_scatter.png\\\\ncontrolled_regression.json\\\\nfamily_copula_15model.json\\\\nfig4_panel_design_K3.json\\\\nfractional_logit.json\\\\ngam_tier_analysis.json\\\\ngam_tier_analysis_corrected.json\\\\nindividual_scores\\\\nk4_wild_cluster_bootstrap.json\\\\nk5_aggregation_analysis.json\\\\nk5_aggregation_bootstrap.json\\\\nk5_gam_analysis.json\\\\nk5_k7_panel_analysis.json\\\\nk5_panel_selection.json\\\\nk5_panel_selection_bootstrap.json\\\\nk5_rf_contrast.json\\\\nk5_wild_cluster_bootstrap.json\\\\nk7_wild_cluster_bootstrap.json\\\\nmi_matrix\\\\npanel_regression\\\\npartial_knowledge_adversary.json\\\\npartial_knowledge_clustered_se.json\\\\npower_cr2_cr3.json\\\\nresidualized_keff_15model.json\\\\nrf_keff_correction.json\\\\nstep1_api_scoring_summary.json\\\\nstochastic_dominance.json\\\\ntheorem1_violation.json\\\\nvif_partial_corr.json\\\\nwild_cluster_bootstrap.json\\\\nwild_cluster_bootstrap_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"aggregation_regression_15model.json\\naggregation_regression_15model_loglog.json\\nalt_diversity_effect_size.json\\napi_only_regression.json\\nattacked_keff.json\\nbeta_reg_epsilon.json\\nclaim6_panel_design_15model.json\\nclustered_se_analysis.json\\ncondition_dominance_15model.json\\nconfound_diagnosis.json\\nconfound_scatter.png\\ncontrolled_regression.json\\nfamily_copula_15model.json\\nfig4_panel_design_K3.json\\nfractional_logit.json\\ngam_tier_analysis.json\\ngam_tier_analysis_corrected.json\\nindividual_scores\\nk4_wild_cluster_bootstrap.json\\nk5_aggregation_analysis.json\\nk5_aggregation_bootstrap.json\\nk5_gam_analysis.json\\nk5_k7_panel_analysis.json\\nk5_panel_selection.json\\nk5_panel_selection_bootstrap.json\\nk5_rf_contrast.json\\nk5_wild_cluster_bootstrap.json\\nk7_wild_cluster_bootstrap.json\\nmi_matrix\\npanel_regression\\npartial_knowledge_adversary.json\\npartial_knowledge_clustered_se.json\\npower_cr2_cr3.json\\nresidualized_keff_15model.json\\nrf_keff_correction.json\\nstep1_api_scoring_summary.json\\nstochastic_dominance.json\\ntheorem1_violation.json\\nvif_partial_corr.json\\nwild_cluster_bootstrap.json\\nwild_cluster_bootstrap_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at the existing bootstrap scripts to understand the pattern, and also check the API-only regression script and data to understand the model list.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "6e98c150-e0cd-494f-9523-329c7e4aee06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018REqUGcF5g7TDe1HS8Pc2K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1742,
+      "cache_read_input_tokens": 26316,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Let me read the existing bootstrap scripts and the API-only regression script to understand patterns.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "4be8e641-7174-43cc-b9f4-b7a732e13aac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018REqUGcF5g7TDe1HS8Pc2K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1742,
+      "cache_read_input_tokens": 26316,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015xJnYDGQg9v5vm93VjESo1`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_k5_wild_cluster_bootstrap.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "ea409d7f-ac1f-4dd6-8faf-21c47e9e08e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018REqUGcF5g7TDe1HS8Pc2K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1742,
+      "cache_read_input_tokens": 26316,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W4qFEzFbHKMvFrq8DivnHS`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_api_only_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "70de53fa-d2dd-48b6-baa9-c5375da98c27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018REqUGcF5g7TDe1HS8Pc2K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1742,
+      "cache_read_input_tokens": 26316,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T07:39:38.668Z_
+
+<details><summary>↩ Tool result · `toolu_015xJnYDGQg9v5vm93VjESo1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"K=5 Wild Cluster Bootstrap — 5-position max-p inference for K=5 panels.\\n\\nExtends K=3 wild cluster bootstrap v2 to K=5 panels (C(15,5)=3003).\\n5-position clustering with max-p across positions (conservative).\\nK_eff via MI-based formula from pairwise MI matrix.\\nCanonical regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps), standardized beta.\\nBH FDR correction across 12 conditions.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport time\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n)\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\nB_BOOT = 9999\\nSEED = 42\\nK = 5\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\ndef compute_individual_asr(clean_list, attacked_list, pairs):\\n    n = min(len(clean_list), len(attacked_list), len(pairs))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        if clean_list[i].get(\\\"winner\\\", \\\"tie\\\") == gt:\\n            n_correct += 1\\n            if attacked_list[i].get(\\\"winner\\\", \\\"tie\\\") != gt:\\n                n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef compute_panel_asr(jids, clean, attacked, pairs):\\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\\n            *(len(attacked[j]) for j in jids))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        cv = majority_vote([clean[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if cv != gt:\\n            continue\\n        n_correct += 1\\n        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if av != gt:\\n            n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef mi_based_keff(mi_matrix, model_indices):\\n    \\\"\\\"\\\"Average pairwise MI-based K_eff — canonical formula.\\\"\\\"\\\"\\n    K = len(model_indices)\\n    if K <= 1:\\n        return 1.0\\n    keff = 0.0\\n    for i_idx in model_indices:\\n        term = 1.0\\n        for j_idx in model_indices:\\n            if i_idx != j_idx:\\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\\n        keff += term\\n    return keff / K\\n\\n\\ndef wild_cluster_bootstrap_vec(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\\n                                test_col_idx=1):\\n    \\\"\\\"\\\"Vectorized wild cluster bootstrap with Rademacher weights.\\n\\n    Returns: (p_value, t_original, ci_95_lo, ci_95_hi)\\n    \\\"\\\"\\\"\\n    n, p = X_full.shape\\n    unique_clusters = np.unique(cluster_ids)\\n    n_clusters = len(unique_clusters)\\n\\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\\n\\n    fit_full = sm.OLS(y, X_full).fit()\\n    t_original = fit_full.tvalues[test_col_idx]\\n    beta_original = fit_full.params[test_col_idx]\\n    se_original = fit_full.bse[test_col_idx]\\n\\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\\n    X_restricted = X_full[:, cols_restricted]\\n    fit_restricted = sm.OLS(y, X_restricted).fit()\\n    y_hat_r = fit_restricted.fittedvalues\\n    e_r = y - y_hat_r\\n\\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\\n    M = \\n\\n... [截断: 输出过长，省略 6701 字符] ...\\n\\ners\\\": eta_n_clusters,\\n            \\\"bootstrap_ci_eta_95\\\": eta_ci,\\n            \\\"skipped\\\": False,\\n        }\\n\\n    # FDR correction\\n    valid_keys = [k for k in condition_keys\\n                  if not results.get(k, {}).get(\\\"skipped\\\", True)]\\n\\n    keff_final_ps = [results[k][\\\"keff_final_p\\\"] for k in valid_keys]\\n    eta_final_ps = [results[k][\\\"eta_final_p\\\"] for k in valid_keys]\\n\\n    if len(valid_keys) > 0:\\n        _, keff_fdr_p, _, _ = multipletests(keff_final_ps, alpha=FDR_ALPHA,\\n                                            method=\\\"fdr_bh\\\")\\n        _, eta_fdr_p, _, _ = multipletests(eta_final_ps, alpha=FDR_ALPHA,\\n                                           method=\\\"fdr_bh\\\")\\n        for i, k in enumerate(valid_keys):\\n            results[k][\\\"keff_fdr_p\\\"] = float(keff_fdr_p[i])\\n            results[k][\\\"eta_fdr_p\\\"] = float(eta_fdr_p[i])\\n\\n    keff_fdr_sig = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA)\\n    eta_fdr_sig = sum(1 for k in valid_keys\\n                      if results[k][\\\"eta_fdr_p\\\"] < FDR_ALPHA)\\n    keff_sig_pos = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA\\n                       and results[k][\\\"keff_ols_beta\\\"] > 0)\\n    keff_sig_neg = keff_fdr_sig - keff_sig_pos\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"K=5 WILD CLUSTER BOOTSTRAP SUMMARY (B={B})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"  K_eff FDR sig: {keff_fdr_sig}/{len(valid_keys)} \\\"\\n          f\\\"({keff_sig_pos}+ / {keff_sig_neg}-)\\\")\\n    print(f\\\"  eta_max FDR sig: {eta_fdr_sig}/{len(valid_keys)}\\\")\\n\\n    print(f\\\"\\\\n  {'Condition':<35} {'K std_b':>8} {'K max_p':>8} \\\"\\n          f\\\"{'K fdr_p':>8} {'sig':>4} \\\"\\n          f\\\"{'e std_b':>8} {'e max_p':>8} {'e fdr_p':>8} {'sig':>4}\\\")\\n    for k in valid_keys:\\n        r = results[k]\\n        ks = \\\"*\\\" if r[\\\"keff_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        es = \\\"*\\\" if r[\\\"eta_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        print(f\\\"  {k:<35} {r['keff_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['keff_final_p']:>8.4f} {r['keff_fdr_p']:>8.4f} {ks:>4} \\\"\\n              f\\\"{r['eta_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['eta_final_p']:>8.4f} {r['eta_fdr_p']:>8.4f} {es:>4}\\\")\\n\\n    # Validation: arc×sycophancy K_eff direction\\n    arc_syc = results.get(\\\"arc_challengexsycophancy\\\", {})\\n    validation = {\\n        \\\"arc_sycophancy_keff_std_beta\\\": arc_syc.get(\\\"keff_ols_std_beta\\\"),\\n        \\\"arc_sycophancy_keff_negative\\\": (\\n            arc_syc.get(\\\"keff_ols_beta\\\", 0) < 0 if not arc_syc.get(\\\"skipped\\\") else None\\n        ),\\n        \\\"k3_reference_beta\\\": -0.192,\\n    }\\n    print(f\\\"\\\\n  Validation: arc×sycophancy K_eff β = \\\"\\n          f\\\"{arc_syc.get('keff_ols_std_beta', 'N/A'):.4f} \\\"\\n          f\\\"(K=3 ref: -0.192)\\\")\\n\\n    elapsed = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed:.0f}s\\\")\\n\\n    output = {\\n        \\\"method\\\": \\\"wild_cluster_bootstrap_k5\\\",\\n        \\\"K\\\": K,\\n        \\\"B\\\": B,\\n        \\\"weights\\\": \\\"rademacher\\\",\\n        \\\"n_positions\\\": K,\\n        \\\"seed\\\": SEED,\\n        \\\"n_total_panels\\\": len(all_combos),\\n        \\\"keff_formula\\\": \\\"mi_based_keff (average pairwise MI)\\\",\\n        \\\"regression\\\": \\\"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\\\",\\n        \\\"per_condition\\\": {k: results[k] for k in valid_keys},\\n        \\\"summary\\\": {\\n            \\\"keff_fdr_sig\\\": f\\\"{keff_fdr_sig}/{len(valid_keys)}\\\",\\n            \\\"keff_sig_positive\\\": keff_sig_pos,\\n            \\\"keff_sig_negative\\\": keff_sig_neg,\\n            \\\"eta_fdr_sig\\\": f\\\"{eta_fdr_sig}/{len(valid_keys)}\\\",\\n        },\\n        \\\"validation\\\": validation,\\n    }\\n\\n    out_path = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/\\\"\\n                    \\\"k5_wild_cluster_bootstrap.json\\\")\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    import argparse\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--B\\\", type=int, default=B_BOOT)\\n    args = parser.parse_args()\\n    main(B=args.B)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "d260d5bb-358c-441a-aab3-926453d4eb88",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"K=5 Wild Cluster Bootstrap — 5-position max-p inference for K=5 panels.\\\\n\\\\nExtends K=3 wild cluster bootstrap v2 to K=5 panels (C(15,5)=3003).\\\\n5-position clustering with max-p across positions (conservative).\\\\nK_eff via MI-based formula from pairwise MI matrix.\\\\nCanonical regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps), standardized beta.\\\\nBH FDR correction across 12 conditions.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/cert_manip_resist_eval\\\\\\\")\\\\n\\\\nimport json\\\\nimport time\\\\nimport itertools\\\\nimport numpy as np\\\\nimport statsmodels.api as sm\\\\nfrom pathlib import Path\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nfrom src.unified_data_loader import (\\\\n    ALL_MODELS, DATASETS, ATTACKS,\\\\n    load_all_scores, load_pairs, load_mi_data,\\\\n)\\\\n\\\\nEPS = 1e-6\\\\nFDR_ALPHA = 0.05\\\\nB_BOOT = 9999\\\\nSEED = 42\\\\nK = 5\\\\n\\\\n\\\\ndef _json_default(obj):\\\\n    if isinstance(obj, np.floating):\\\\n        v = float(obj)\\\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\\\n    if isinstance(obj, np.integer):\\\\n        return int(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    if isinstance(obj, np.bool_):\\\\n        return bool(obj)\\\\n    raise TypeError(f\\\\\\\"Not JSON serializable: {type(obj)}\\\\\\\")\\\\n\\\\n\\\\ndef majority_vote(votes):\\\\n    counts = {\\\\\\\"A\\\\\\\": 0, \\\\\\\"B\\\\\\\": 0, \\\\\\\"tie\\\\\\\": 0}\\\\n    for v in votes:\\\\n        counts[v] = counts.get(v, 0) + 1\\\\n    mc = max(counts.values())\\\\n    winners = [k for k, c in counts.items() if c == mc]\\\\n    if len(winners) == 1:\\\\n        return winners[0]\\\\n    for w in winners:\\\\n        if w != \\\\\\\"tie\\\\\\\":\\\\n            return w\\\\n    return \\\\\\\"tie\\\\\\\"\\\\n\\\\n\\\\ndef compute_individual_asr(clean_list, attacked_list, pairs):\\\\n    n = min(len(clean_list), len(attacked_list), len(pairs))\\\\n    n_flips = n_correct = 0\\\\n    for i in range(n):\\\\n        gt = pairs[i][\\\\\\\"ground_truth_winner\\\\\\\"]\\\\n        if clean_list[i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") == gt:\\\\n            n_correct += 1\\\\n            if attacked_list[i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") != gt:\\\\n                n_flips += 1\\\\n    return n_flips / max(n_correct, 1)\\\\n\\\\n\\\\ndef compute_panel_asr(jids, clean, attacked, pairs):\\\\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\\\\n            *(len(attacked[j]) for j in jids))\\\\n    n_flips = n_correct = 0\\\\n    for i in range(n):\\\\n        gt = pairs[i][\\\\\\\"ground_truth_winner\\\\\\\"]\\\\n        cv = majority_vote([clean[j][i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") for j in jids])\\\\n        if cv != gt:\\\\n            continue\\\\n        n_correct += 1\\\\n        av = majority_vote([attacked[j][i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") for j in jids])\\\\n        if av != gt:\\\\n            n_flips += 1\\\\n    return n_flips / max(n_correct, 1)\\\\n\\\\n\\\\ndef mi_based_keff(mi_matrix, model_indices):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Average pairwise MI-based K_eff — canonical formula.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    K = len(model_indices)\\\\n    if K <= 1:\\\\n        return 1.0\\\\n    keff = 0.0\\\\n    for i_idx in model_indices:\\\\n        term = 1.0\\\\n        for j_idx in model_indices:\\\\n            if i_idx != j_idx:\\\\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\\\\n        keff += term\\\\n    return keff / K\\\\n\\\\n\\\\ndef wild_cluster_bootstrap_vec(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\\\\n                                test_col_idx=1):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Vectorized wild cluster bootstrap with Rademacher weights.\\\\n\\\\n    Returns: (p_value, t_original, ci_95_lo, ci_95_hi)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n, p = X_full.shape\\\\n    unique_clusters = np.unique(cluster_ids)\\\\n    n_clusters = len(unique_clusters)\\\\n\\\\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\\\\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\\\\n\\\\n    fit_full = sm.OLS(y, X_full).fit()\\\\n    t_original = fit_full.tvalues[test_col_idx]\\\\n    beta_original = fit_full.params[test_col_idx]\\\\n    se_original = fit_full.bse[test_col_idx]\\\\n\\\\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\\\\n    X_restricted = X_full[:, cols_restricted]\\\\n    fit_restricted = sm.OLS(y, X_restricted).fit()\\\\n    y_hat_r = fit_restricted.fittedvalues\\\\n    e_r = y - y_hat_r\\\\n\\\\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\\\\n    M = \\\\n\\\\n... [截断: 输出过长，省略 6701 字符] ...\\\\n\\\\ners\\\\\\\": eta_n_clusters,\\\\n            \\\\\\\"bootstrap_ci_eta_95\\\\\\\": eta_ci,\\\\n            \\\\\\\"skipped\\\\\\\": False,\\\\n        }\\\\n\\\\n    # FDR correction\\\\n    valid_keys = [k for k in condition_keys\\\\n                  if not results.get(k, {}).get(\\\\\\\"skipped\\\\\\\", True)]\\\\n\\\\n    keff_final_ps = [results[k][\\\\\\\"keff_final_p\\\\\\\"] for k in valid_keys]\\\\n    eta_final_ps = [results[k][\\\\\\\"eta_final_p\\\\\\\"] for k in valid_keys]\\\\n\\\\n    if len(valid_keys) > 0:\\\\n        _, keff_fdr_p, _, _ = multipletests(keff_final_ps, alpha=FDR_ALPHA,\\\\n                                            method=\\\\\\\"fdr_bh\\\\\\\")\\\\n        _, eta_fdr_p, _, _ = multipletests(eta_final_ps, alpha=FDR_ALPHA,\\\\n                                           method=\\\\\\\"fdr_bh\\\\\\\")\\\\n        for i, k in enumerate(valid_keys):\\\\n            results[k][\\\\\\\"keff_fdr_p\\\\\\\"] = float(keff_fdr_p[i])\\\\n            results[k][\\\\\\\"eta_fdr_p\\\\\\\"] = float(eta_fdr_p[i])\\\\n\\\\n    keff_fdr_sig = sum(1 for k in valid_keys\\\\n                       if results[k][\\\\\\\"keff_fdr_p\\\\\\\"] < FDR_ALPHA)\\\\n    eta_fdr_sig = sum(1 for k in valid_keys\\\\n                      if results[k][\\\\\\\"eta_fdr_p\\\\\\\"] < FDR_ALPHA)\\\\n    keff_sig_pos = sum(1 for k in valid_keys\\\\n                       if results[k][\\\\\\\"keff_fdr_p\\\\\\\"] < FDR_ALPHA\\\\n                       and results[k][\\\\\\\"keff_ols_beta\\\\\\\"] > 0)\\\\n    keff_sig_neg = keff_fdr_sig - keff_sig_pos\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"K=5 WILD CLUSTER BOOTSTRAP SUMMARY (B={B})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"  K_eff FDR sig: {keff_fdr_sig}/{len(valid_keys)} \\\\\\\"\\\\n          f\\\\\\\"({keff_sig_pos}+ / {keff_sig_neg}-)\\\\\\\")\\\\n    print(f\\\\\\\"  eta_max FDR sig: {eta_fdr_sig}/{len(valid_keys)}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n  {'Condition':<35} {'K std_b':>8} {'K max_p':>8} \\\\\\\"\\\\n          f\\\\\\\"{'K fdr_p':>8} {'sig':>4} \\\\\\\"\\\\n          f\\\\\\\"{'e std_b':>8} {'e max_p':>8} {'e fdr_p':>8} {'sig':>4}\\\\\\\")\\\\n    for k in valid_keys:\\\\n        r = results[k]\\\\n        ks = \\\\\\\"*\\\\\\\" if r[\\\\\\\"keff_fdr_p\\\\\\\"] < FDR_ALPHA else \\\\\\\"\\\\\\\"\\\\n        es = \\\\\\\"*\\\\\\\" if r[\\\\\\\"eta_fdr_p\\\\\\\"] < FDR_ALPHA else \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {k:<35} {r['keff_ols_std_beta']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{r['keff_final_p']:>8.4f} {r['keff_fdr_p']:>8.4f} {ks:>4} \\\\\\\"\\\\n              f\\\\\\\"{r['eta_ols_std_beta']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{r['eta_final_p']:>8.4f} {r['eta_fdr_p']:>8.4f} {es:>4}\\\\\\\")\\\\n\\\\n    # Validation: arc×sycophancy K_eff direction\\\\n    arc_syc = results.get(\\\\\\\"arc_challengexsycophancy\\\\\\\", {})\\\\n    validation = {\\\\n        \\\\\\\"arc_sycophancy_keff_std_beta\\\\\\\": arc_syc.get(\\\\\\\"keff_ols_std_beta\\\\\\\"),\\\\n        \\\\\\\"arc_sycophancy_keff_negative\\\\\\\": (\\\\n            arc_syc.get(\\\\\\\"keff_ols_beta\\\\\\\", 0) < 0 if not arc_syc.get(\\\\\\\"skipped\\\\\\\") else None\\\\n        ),\\\\n        \\\\\\\"k3_reference_beta\\\\\\\": -0.192,\\\\n    }\\\\n    print(f\\\\\\\"\\\\\\\\n  Validation: arc×sycophancy K_eff β = \\\\\\\"\\\\n          f\\\\\\\"{arc_syc.get('keff_ols_std_beta', 'N/A'):.4f} \\\\\\\"\\\\n          f\\\\\\\"(K=3 ref: -0.192)\\\\\\\")\\\\n\\\\n    elapsed = time.time() - t_total\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {elapsed:.0f}s\\\\\\\")\\\\n\\\\n    output = {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"wild_cluster_bootstrap_k5\\\\\\\",\\\\n        \\\\\\\"K\\\\\\\": K,\\\\n        \\\\\\\"B\\\\\\\": B,\\\\n        \\\\\\\"weights\\\\\\\": \\\\\\\"rademacher\\\\\\\",\\\\n        \\\\\\\"n_positions\\\\\\\": K,\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"n_total_panels\\\\\\\": len(all_combos),\\\\n        \\\\\\\"keff_formula\\\\\\\": \\\\\\\"mi_based_keff (average pairwise MI)\\\\\\\",\\\\n        \\\\\\\"regression\\\\\\\": \\\\\\\"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\\\\\\\",\\\\n        \\\\\\\"per_condition\\\\\\\": {k: results[k] for k in valid_keys},\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"keff_fdr_sig\\\\\\\": f\\\\\\\"{keff_fdr_sig}/{len(valid_keys)}\\\\\\\",\\\\n            \\\\\\\"keff_sig_positive\\\\\\\": keff_sig_pos,\\\\n            \\\\\\\"keff_sig_negative\\\\\\\": keff_sig_neg,\\\\n            \\\\\\\"eta_fdr_sig\\\\\\\": f\\\\\\\"{eta_fdr_sig}/{len(valid_keys)}\\\\\\\",\\\\n        },\\\\n        \\\\\\\"validation\\\\\\\": validation,\\\\n    }\\\\n\\\\n    out_path = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/\\\\\\\"\\\\n                    \\\\\\\"k5_wild_cluster_bootstrap.json\\\\\\\")\\\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    import argparse\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--B\\\\\\\", type=int, default=B_BOOT)\\\\n    args = parser.parse_args()\\\\n    main(B=args.B)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"K=5 Wild Cluster Bootstrap — 5-position max-p inference for K=5 panels.\\n\\nExtends K=3 wild cluster bootstrap v2 to K=5 panels (C(15,5)=3003).\\n5-position clustering with max-p across positions (conservative).\\nK_eff via MI-based formula from pairwise MI matrix.\\nCanonical regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps), standardized beta.\\nBH FDR correction across 12 conditions.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport time\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n)\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\nB_BOOT = 9999\\nSEED = 42\\nK = 5\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\ndef compute_individual_asr(clean_list, attacked_list, pairs):\\n    n = min(len(clean_list), len(attacked_list), len(pairs))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        if clean_list[i].get(\\\"winner\\\", \\\"tie\\\") == gt:\\n            n_correct += 1\\n            if attacked_list[i].get(\\\"winner\\\", \\\"tie\\\") != gt:\\n                n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef compute_panel_asr(jids, clean, attacked, pairs):\\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\\n            *(len(attacked[j]) for j in jids))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        cv = majority_vote([clean[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if cv != gt:\\n            continue\\n        n_correct += 1\\n        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if av != gt:\\n            n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef mi_based_keff(mi_matrix, model_indices):\\n    \\\"\\\"\\\"Average pairwise MI-based K_eff — canonical formula.\\\"\\\"\\\"\\n    K = len(model_indices)\\n    if K <= 1:\\n        return 1.0\\n    keff = 0.0\\n    for i_idx in model_indices:\\n        term = 1.0\\n        for j_idx in model_indices:\\n            if i_idx != j_idx:\\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\\n        keff += term\\n    return keff / K\\n\\n\\ndef wild_cluster_bootstrap_vec(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\\n                                test_col_idx=1):\\n    \\\"\\\"\\\"Vectorized wild cluster bootstrap with Rademacher weights.\\n\\n    Returns: (p_value, t_original, ci_95_lo, ci_95_hi)\\n    \\\"\\\"\\\"\\n    n, p = X_full.shape\\n    unique_clusters = np.unique(cluster_ids)\\n    n_clusters = len(unique_clusters)\\n\\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\\n\\n    fit_full = sm.OLS(y, X_full).fit()\\n    t_original = fit_full.tvalues[test_col_idx]\\n    beta_original = fit_full.params[test_col_idx]\\n    se_original = fit_full.bse[test_col_idx]\\n\\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\\n    X_restricted = X_full[:, cols_restricted]\\n    fit_restricted = sm.OLS(y, X_restricted).fit()\\n    y_hat_r = fit_restricted.fittedvalues\\n    e_r = y - y_hat_r\\n\\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\\n    M = \\n\\n... [截断: 输出过长，省略 6701 字符] ...\\n\\ners\\\": eta_n_clusters,\\n            \\\"bootstrap_ci_eta_95\\\": eta_ci,\\n            \\\"skipped\\\": False,\\n        }\\n\\n    # FDR correction\\n    valid_keys = [k for k in condition_keys\\n                  if not results.get(k, {}).get(\\\"skipped\\\", True)]\\n\\n    keff_final_ps = [results[k][\\\"keff_final_p\\\"] for k in valid_keys]\\n    eta_final_ps = [results[k][\\\"eta_final_p\\\"] for k in valid_keys]\\n\\n    if len(valid_keys) > 0:\\n        _, keff_fdr_p, _, _ = multipletests(keff_final_ps, alpha=FDR_ALPHA,\\n                                            method=\\\"fdr_bh\\\")\\n        _, eta_fdr_p, _, _ = multipletests(eta_final_ps, alpha=FDR_ALPHA,\\n                                           method=\\\"fdr_bh\\\")\\n        for i, k in enumerate(valid_keys):\\n            results[k][\\\"keff_fdr_p\\\"] = float(keff_fdr_p[i])\\n            results[k][\\\"eta_fdr_p\\\"] = float(eta_fdr_p[i])\\n\\n    keff_fdr_sig = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA)\\n    eta_fdr_sig = sum(1 for k in valid_keys\\n                      if results[k][\\\"eta_fdr_p\\\"] < FDR_ALPHA)\\n    keff_sig_pos = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA\\n                       and results[k][\\\"keff_ols_beta\\\"] > 0)\\n    keff_sig_neg = keff_fdr_sig - keff_sig_pos\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"K=5 WILD CLUSTER BOOTSTRAP SUMMARY (B={B})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"  K_eff FDR sig: {keff_fdr_sig}/{len(valid_keys)} \\\"\\n          f\\\"({keff_sig_pos}+ / {keff_sig_neg}-)\\\")\\n    print(f\\\"  eta_max FDR sig: {eta_fdr_sig}/{len(valid_keys)}\\\")\\n\\n    print(f\\\"\\\\n  {'Condition':<35} {'K std_b':>8} {'K max_p':>8} \\\"\\n          f\\\"{'K fdr_p':>8} {'sig':>4} \\\"\\n          f\\\"{'e std_b':>8} {'e max_p':>8} {'e fdr_p':>8} {'sig':>4}\\\")\\n    for k in valid_keys:\\n        r = results[k]\\n        ks = \\\"*\\\" if r[\\\"keff_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        es = \\\"*\\\" if r[\\\"eta_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        print(f\\\"  {k:<35} {r['keff_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['keff_final_p']:>8.4f} {r['keff_fdr_p']:>8.4f} {ks:>4} \\\"\\n              f\\\"{r['eta_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['eta_final_p']:>8.4f} {r['eta_fdr_p']:>8.4f} {es:>4}\\\")\\n\\n    # Validation: arc×sycophancy K_eff direction\\n    arc_syc = results.get(\\\"arc_challengexsycophancy\\\", {})\\n    validation = {\\n        \\\"arc_sycophancy_keff_std_beta\\\": arc_syc.get(\\\"keff_ols_std_beta\\\"),\\n        \\\"arc_sycophancy_keff_negative\\\": (\\n            arc_syc.get(\\\"keff_ols_beta\\\", 0) < 0 if not arc_syc.get(\\\"skipped\\\") else None\\n        ),\\n        \\\"k3_reference_beta\\\": -0.192,\\n    }\\n    print(f\\\"\\\\n  Validation: arc×sycophancy K_eff β = \\\"\\n          f\\\"{arc_syc.get('keff_ols_std_beta', 'N/A'):.4f} \\\"\\n          f\\\"(K=3 ref: -0.192)\\\")\\n\\n    elapsed = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed:.0f}s\\\")\\n\\n    output = {\\n        \\\"method\\\": \\\"wild_cluster_bootstrap_k5\\\",\\n        \\\"K\\\": K,\\n        \\\"B\\\": B,\\n        \\\"weights\\\": \\\"rademacher\\\",\\n        \\\"n_positions\\\": K,\\n        \\\"seed\\\": SEED,\\n        \\\"n_total_panels\\\": len(all_combos),\\n        \\\"keff_formula\\\": \\\"mi_based_keff (average pairwise MI)\\\",\\n        \\\"regression\\\": \\\"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\\\",\\n        \\\"per_condition\\\": {k: results[k] for k in valid_keys},\\n        \\\"summary\\\": {\\n            \\\"keff_fdr_sig\\\": f\\\"{keff_fdr_sig}/{len(valid_keys)}\\\",\\n            \\\"keff_sig_positive\\\": keff_sig_pos,\\n            \\\"keff_sig_negative\\\": keff_sig_neg,\\n            \\\"eta_fdr_sig\\\": f\\\"{eta_fdr_sig}/{len(valid_keys)}\\\",\\n        },\\n        \\\"validation\\\": validation,\\n    }\\n\\n    out_path = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/\\\"\\n                    \\\"k5_wild_cluster_bootstrap.json\\\")\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    import argparse\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--B\\\", type=int, default=B_BOOT)\\n    args = parser.parse_args()\\n    main(B=args.B)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T07:39:39.182Z_
+
+<details><summary>↩ Tool result · `toolu_01W4qFEzFbHKMvFrq8DivnHS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"API-Only Subset Regression — MF-1 robustness check.\\n\\nFilters to 9 API models only, runs canonical OLS + clustered SE for K=3 (84 panels)\\nand K=5 (126 panels). Verifies the K=3→K=5 transition pattern is not driven by\\nlocal model confounding.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy.stats import t as t_dist\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, API_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n)\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\ndef compute_individual_asr(clean_list, attacked_list, pairs):\\n    n = min(len(clean_list), len(attacked_list), len(pairs))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        if clean_list[i].get(\\\"winner\\\", \\\"tie\\\") == gt:\\n            n_correct += 1\\n            if attacked_list[i].get(\\\"winner\\\", \\\"tie\\\") != gt:\\n                n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef compute_panel_asr(jids, clean, attacked, pairs):\\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\\n            *(len(attacked[j]) for j in jids))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        cv = majority_vote([clean[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if cv != gt:\\n            continue\\n        n_correct += 1\\n        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if av != gt:\\n            n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef keff_maxmi(mi_matrix, model_indices):\\n    \\\"\\\"\\\"K=3 canonical K_eff: 1 + (K-1)*exp(-2*max_MI).\\\"\\\"\\\"\\n    K = len(model_indices)\\n    max_mi = 0.0\\n    for a, b in itertools.combinations(model_indices, 2):\\n        max_mi = max(max_mi, mi_matrix[a][b])\\n    return 1 + (K - 1) * np.exp(-2 * max_mi)\\n\\n\\ndef keff_avg_pairwise(mi_matrix, model_indices):\\n    \\\"\\\"\\\"K=5 canonical K_eff: average pairwise MI-based.\\\"\\\"\\\"\\n    K = len(model_indices)\\n    if K <= 1:\\n        return 1.0\\n    keff = 0.0\\n    for i_idx in model_indices:\\n        term = 1.0\\n        for j_idx in model_indices:\\n            if i_idx != j_idx:\\n                term += np.exp(-2 * mi_matrix[i_idx][j_idx])\\n        keff += term\\n    return keff / K\\n\\n\\ndef run_ols(y, X):\\n    \\\"\\\"\\\"Canonical OLS with standardized beta.\\\"\\\"\\\"\\n    Xc = sm.add_constant(X)\\n    fit = sm.OLS(y, Xc).fit()\\n    std_y = np.std(y)\\n    std_x = np.std(X, axis=0)\\n    std_betas = fit.params[1:] * std_x / std_y if std_y > 1e-15 else np.zeros(2)\\n    return fit, std_betas\\n\\n\\ndef clustered_se_max(y, X, panel_jids_list, K):\\n    \\\"\\\"\\\"Max clustered SE across K judge positions, return p-values.\\\"\\\"\\\"\\n    Xc = sm.add_constant(X)\\n    fit_ols = sm.OLS(y, Xc).fit()\\n    n_params = Xc.shape[1]\\n    max_se = np.zeros(n_params)\\n\\n    for pos in range(K):\\n        cluster_var = np.array([jids[pos] for jids in panel_jids_list])\\n        unique_judges = sorted(set(cluster_var))\\n        judge_to_int = {j: idx for idx, j in enumerate(unique_judges)}\\n        cluster_int = np.array([judge_to_int[j] for j in cluster_var])\\n   \\n\\n... [截断: 输出过长，省略 8493 字符] ...\\n\\ncked[ds][atk]:\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\n                    )\\n    print(f\\\"  Computed {len(ind_asr)} individual ASR values\\\")\\n\\n    # K=3: 84 panels, max-MI K_eff\\n    k3_results = run_one_k(3, api_indices, mi_matrices, clean, attacked,\\n                           pairs, ind_asr, keff_maxmi)\\n\\n    # K=5: 126 panels, avg pairwise K_eff\\n    k5_results = run_one_k(5, api_indices, mi_matrices, clean, attacked,\\n                           pairs, ind_asr, keff_avg_pairwise)\\n\\n    # Load full-model reference results\\n    full_k3_path = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/wild_cluster_bootstrap_v2.json\\\")\\n    full_k5_path = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/k5_wild_cluster_bootstrap.json\\\")\\n\\n    full_k3_summary = {}\\n    full_k5_summary = {}\\n    if full_k3_path.exists():\\n        with open(full_k3_path) as f:\\n            full_k3 = json.load(f)\\n        full_k3_summary = full_k3.get(\\\"summary\\\", {})\\n    if full_k5_path.exists():\\n        with open(full_k5_path) as f:\\n            full_k5 = json.load(f)\\n        full_k5_summary = full_k5.get(\\\"summary\\\", {})\\n\\n    comparison = {\\n        \\\"full_15_K3\\\": full_k3_summary,\\n        \\\"full_15_K5\\\": full_k5_summary,\\n        \\\"api_only_K3\\\": k3_results[\\\"summary\\\"],\\n        \\\"api_only_K5\\\": k5_results[\\\"summary\\\"],\\n        \\\"transition_preserved\\\": None,\\n    }\\n\\n    # Check if transition pattern is preserved\\n    k3_eta_api = k3_results[\\\"summary\\\"][\\\"clustered_se\\\"][\\\"eta_max_sig\\\"]\\n    k3_keff_api = k3_results[\\\"summary\\\"][\\\"clustered_se\\\"][\\\"keff_sig\\\"]\\n    k5_eta_api = k5_results[\\\"summary\\\"][\\\"clustered_se\\\"][\\\"eta_max_sig\\\"]\\n    k5_keff_api = k5_results[\\\"summary\\\"][\\\"clustered_se\\\"][\\\"keff_sig\\\"]\\n\\n    k3_eta_n = int(k3_eta_api.split(\\\"/\\\")[0])\\n    k3_keff_n = int(k3_keff_api.split(\\\"/\\\")[0])\\n    k5_eta_n = int(k5_eta_api.split(\\\"/\\\")[0])\\n    k5_keff_n = int(k5_keff_api.split(\\\"/\\\")[0])\\n\\n    transition_preserved = (k3_eta_n >= k3_keff_n) and (k5_keff_n >= k5_eta_n)\\n    comparison[\\\"transition_preserved\\\"] = transition_preserved\\n    comparison[\\\"interpretation\\\"] = (\\n        f\\\"K=3: η_max dominant ({k3_eta_api} vs K_eff {k3_keff_api}), \\\"\\n        f\\\"K=5: K_eff dominant ({k5_keff_api} vs η_max {k5_eta_api}). \\\"\\n        f\\\"Transition {'preserved' if transition_preserved else 'NOT preserved'} in API-only subset.\\\"\\n    )\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"COMPARISON: API-only vs Full 15-model\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"  Full K=3:     η_max {full_k3_summary.get('eta_fdr_sig', '?')}, K_eff {full_k3_summary.get('keff_fdr_sig', '?')}\\\")\\n    print(f\\\"  API-only K=3: η_max {k3_eta_api}, K_eff {k3_keff_api}\\\")\\n    print(f\\\"  Full K=5:     η_max {full_k5_summary.get('eta_fdr_sig', '?')}, K_eff {full_k5_summary.get('keff_fdr_sig', '?')}\\\")\\n    print(f\\\"  API-only K=5: η_max {k5_eta_api}, K_eff {k5_keff_api}\\\")\\n    print(f\\\"\\\\n  Transition pattern preserved: {transition_preserved}\\\")\\n    print(f\\\"  {comparison['interpretation']}\\\")\\n\\n    # Build output\\n    output = {\\n        \\\"analysis\\\": \\\"api_only_subset_regression\\\",\\n        \\\"purpose\\\": \\\"MF-1 robustness: verify transition pattern not driven by local model confounding\\\",\\n        \\\"api_models\\\": API_MODELS,\\n        \\\"n_api_models\\\": len(API_MODELS),\\n        \\\"eps\\\": EPS,\\n        \\\"fdr_alpha\\\": FDR_ALPHA,\\n        \\\"keff_formulas\\\": {\\n            \\\"K3\\\": \\\"1 + (K-1)*exp(-2*max_MI) [max-MI canonical]\\\",\\n            \\\"K5\\\": \\\"avg pairwise MI-based [canonical for K=5]\\\",\\n        },\\n        \\\"K3\\\": k3_results,\\n        \\\"K5\\\": k5_results,\\n        \\\"comparison_with_full\\\": comparison,\\n        \\\"summary\\\": comparison[\\\"interpretation\\\"],\\n    }\\n\\n    out_dir = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001\\\")\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"api_only_regression.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "8bc81568-b908-4284-80b9-b5d3440415cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"API-Only Subset Regression — MF-1 robustness check.\\\\n\\\\nFilters to 9 API models only, runs canonical OLS + clustered SE for K=3 (84 panels)\\\\nand K=5 (126 panels). Verifies the K=3→K=5 transition pattern is not driven by\\\\nlocal model confounding.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/cert_manip_resist_eval\\\\\\\")\\\\n\\\\nimport json\\\\nimport itertools\\\\nimport numpy as np\\\\nimport statsmodels.api as sm\\\\nfrom pathlib import Path\\\\nfrom scipy.stats import t as t_dist\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nfrom src.unified_data_loader import (\\\\n    ALL_MODELS, API_MODELS, DATASETS, ATTACKS,\\\\n    load_all_scores, load_pairs, load_mi_data,\\\\n)\\\\n\\\\nEPS = 1e-6\\\\nFDR_ALPHA = 0.05\\\\n\\\\n\\\\ndef _json_default(obj):\\\\n    if isinstance(obj, np.floating):\\\\n        v = float(obj)\\\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\\\n    if isinstance(obj, np.integer):\\\\n        return int(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    if isinstance(obj, np.bool_):\\\\n        return bool(obj)\\\\n    raise TypeError(f\\\\\\\"Not JSON serializable: {type(obj)}\\\\\\\")\\\\n\\\\n\\\\ndef majority_vote(votes):\\\\n    counts = {\\\\\\\"A\\\\\\\": 0, \\\\\\\"B\\\\\\\": 0, \\\\\\\"tie\\\\\\\": 0}\\\\n    for v in votes:\\\\n        counts[v] = counts.get(v, 0) + 1\\\\n    mc = max(counts.values())\\\\n    winners = [k for k, c in counts.items() if c == mc]\\\\n    if len(winners) == 1:\\\\n        return winners[0]\\\\n    for w in winners:\\\\n        if w != \\\\\\\"tie\\\\\\\":\\\\n            return w\\\\n    return \\\\\\\"tie\\\\\\\"\\\\n\\\\n\\\\ndef compute_individual_asr(clean_list, attacked_list, pairs):\\\\n    n = min(len(clean_list), len(attacked_list), len(pairs))\\\\n    n_flips = n_correct = 0\\\\n    for i in range(n):\\\\n        gt = pairs[i][\\\\\\\"ground_truth_winner\\\\\\\"]\\\\n        if clean_list[i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") == gt:\\\\n            n_correct += 1\\\\n            if attacked_list[i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") != gt:\\\\n                n_flips += 1\\\\n    return n_flips / max(n_correct, 1)\\\\n\\\\n\\\\ndef compute_panel_asr(jids, clean, attacked, pairs):\\\\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\\\\n            *(len(attacked[j]) for j in jids))\\\\n    n_flips = n_correct = 0\\\\n    for i in range(n):\\\\n        gt = pairs[i][\\\\\\\"ground_truth_winner\\\\\\\"]\\\\n        cv = majority_vote([clean[j][i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") for j in jids])\\\\n        if cv != gt:\\\\n            continue\\\\n        n_correct += 1\\\\n        av = majority_vote([attacked[j][i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") for j in jids])\\\\n        if av != gt:\\\\n            n_flips += 1\\\\n    return n_flips / max(n_correct, 1)\\\\n\\\\n\\\\ndef keff_maxmi(mi_matrix, model_indices):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"K=3 canonical K_eff: 1 + (K-1)*exp(-2*max_MI).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    K = len(model_indices)\\\\n    max_mi = 0.0\\\\n    for a, b in itertools.combinations(model_indices, 2):\\\\n        max_mi = max(max_mi, mi_matrix[a][b])\\\\n    return 1 + (K - 1) * np.exp(-2 * max_mi)\\\\n\\\\n\\\\ndef keff_avg_pairwise(mi_matrix, model_indices):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"K=5 canonical K_eff: average pairwise MI-based.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    K = len(model_indices)\\\\n    if K <= 1:\\\\n        return 1.0\\\\n    keff = 0.0\\\\n    for i_idx in model_indices:\\\\n        term = 1.0\\\\n        for j_idx in model_indices:\\\\n            if i_idx != j_idx:\\\\n                term += np.exp(-2 * mi_matrix[i_idx][j_idx])\\\\n        keff += term\\\\n    return keff / K\\\\n\\\\n\\\\ndef run_ols(y, X):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Canonical OLS with standardized beta.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Xc = sm.add_constant(X)\\\\n    fit = sm.OLS(y, Xc).fit()\\\\n    std_y = np.std(y)\\\\n    std_x = np.std(X, axis=0)\\\\n    std_betas = fit.params[1:] * std_x / std_y if std_y > 1e-15 else np.zeros(2)\\\\n    return fit, std_betas\\\\n\\\\n\\\\ndef clustered_se_max(y, X, panel_jids_list, K):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Max clustered SE across K judge positions, return p-values.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Xc = sm.add_constant(X)\\\\n    fit_ols = sm.OLS(y, Xc).fit()\\\\n    n_params = Xc.shape[1]\\\\n    max_se = np.zeros(n_params)\\\\n\\\\n    for pos in range(K):\\\\n        cluster_var = np.array([jids[pos] for jids in panel_jids_list])\\\\n        unique_judges = sorted(set(cluster_var))\\\\n        judge_to_int = {j: idx for idx, j in enumerate(unique_judges)}\\\\n        cluster_int = np.array([judge_to_int[j] for j in cluster_var])\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 8493 字符] ...\\\\n\\\\ncked[ds][atk]:\\\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\\\n                    )\\\\n    print(f\\\\\\\"  Computed {len(ind_asr)} individual ASR values\\\\\\\")\\\\n\\\\n    # K=3: 84 panels, max-MI K_eff\\\\n    k3_results = run_one_k(3, api_indices, mi_matrices, clean, attacked,\\\\n                           pairs, ind_asr, keff_maxmi)\\\\n\\\\n    # K=5: 126 panels, avg pairwise K_eff\\\\n    k5_results = run_one_k(5, api_indices, mi_matrices, clean, attacked,\\\\n                           pairs, ind_asr, keff_avg_pairwise)\\\\n\\\\n    # Load full-model reference results\\\\n    full_k3_path = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/wild_cluster_bootstrap_v2.json\\\\\\\")\\\\n    full_k5_path = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/k5_wild_cluster_bootstrap.json\\\\\\\")\\\\n\\\\n    full_k3_summary = {}\\\\n    full_k5_summary = {}\\\\n    if full_k3_path.exists():\\\\n        with open(full_k3_path) as f:\\\\n            full_k3 = json.load(f)\\\\n        full_k3_summary = full_k3.get(\\\\\\\"summary\\\\\\\", {})\\\\n    if full_k5_path.exists():\\\\n        with open(full_k5_path) as f:\\\\n            full_k5 = json.load(f)\\\\n        full_k5_summary = full_k5.get(\\\\\\\"summary\\\\\\\", {})\\\\n\\\\n    comparison = {\\\\n        \\\\\\\"full_15_K3\\\\\\\": full_k3_summary,\\\\n        \\\\\\\"full_15_K5\\\\\\\": full_k5_summary,\\\\n        \\\\\\\"api_only_K3\\\\\\\": k3_results[\\\\\\\"summary\\\\\\\"],\\\\n        \\\\\\\"api_only_K5\\\\\\\": k5_results[\\\\\\\"summary\\\\\\\"],\\\\n        \\\\\\\"transition_preserved\\\\\\\": None,\\\\n    }\\\\n\\\\n    # Check if transition pattern is preserved\\\\n    k3_eta_api = k3_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"clustered_se\\\\\\\"][\\\\\\\"eta_max_sig\\\\\\\"]\\\\n    k3_keff_api = k3_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"clustered_se\\\\\\\"][\\\\\\\"keff_sig\\\\\\\"]\\\\n    k5_eta_api = k5_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"clustered_se\\\\\\\"][\\\\\\\"eta_max_sig\\\\\\\"]\\\\n    k5_keff_api = k5_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"clustered_se\\\\\\\"][\\\\\\\"keff_sig\\\\\\\"]\\\\n\\\\n    k3_eta_n = int(k3_eta_api.split(\\\\\\\"/\\\\\\\")[0])\\\\n    k3_keff_n = int(k3_keff_api.split(\\\\\\\"/\\\\\\\")[0])\\\\n    k5_eta_n = int(k5_eta_api.split(\\\\\\\"/\\\\\\\")[0])\\\\n    k5_keff_n = int(k5_keff_api.split(\\\\\\\"/\\\\\\\")[0])\\\\n\\\\n    transition_preserved = (k3_eta_n >= k3_keff_n) and (k5_keff_n >= k5_eta_n)\\\\n    comparison[\\\\\\\"transition_preserved\\\\\\\"] = transition_preserved\\\\n    comparison[\\\\\\\"interpretation\\\\\\\"] = (\\\\n        f\\\\\\\"K=3: η_max dominant ({k3_eta_api} vs K_eff {k3_keff_api}), \\\\\\\"\\\\n        f\\\\\\\"K=5: K_eff dominant ({k5_keff_api} vs η_max {k5_eta_api}). \\\\\\\"\\\\n        f\\\\\\\"Transition {'preserved' if transition_preserved else 'NOT preserved'} in API-only subset.\\\\\\\"\\\\n    )\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    print(\\\\\\\"COMPARISON: API-only vs Full 15-model\\\\\\\")\\\\n    print(f\\\\\\\"{'='*70}\\\\\\\")\\\\n    print(f\\\\\\\"  Full K=3:     η_max {full_k3_summary.get('eta_fdr_sig', '?')}, K_eff {full_k3_summary.get('keff_fdr_sig', '?')}\\\\\\\")\\\\n    print(f\\\\\\\"  API-only K=3: η_max {k3_eta_api}, K_eff {k3_keff_api}\\\\\\\")\\\\n    print(f\\\\\\\"  Full K=5:     η_max {full_k5_summary.get('eta_fdr_sig', '?')}, K_eff {full_k5_summary.get('keff_fdr_sig', '?')}\\\\\\\")\\\\n    print(f\\\\\\\"  API-only K=5: η_max {k5_eta_api}, K_eff {k5_keff_api}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n  Transition pattern preserved: {transition_preserved}\\\\\\\")\\\\n    print(f\\\\\\\"  {comparison['interpretation']}\\\\\\\")\\\\n\\\\n    # Build output\\\\n    output = {\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"api_only_subset_regression\\\\\\\",\\\\n        \\\\\\\"purpose\\\\\\\": \\\\\\\"MF-1 robustness: verify transition pattern not driven by local model confounding\\\\\\\",\\\\n        \\\\\\\"api_models\\\\\\\": API_MODELS,\\\\n        \\\\\\\"n_api_models\\\\\\\": len(API_MODELS),\\\\n        \\\\\\\"eps\\\\\\\": EPS,\\\\n        \\\\\\\"fdr_alpha\\\\\\\": FDR_ALPHA,\\\\n        \\\\\\\"keff_formulas\\\\\\\": {\\\\n            \\\\\\\"K3\\\\\\\": \\\\\\\"1 + (K-1)*exp(-2*max_MI) [max-MI canonical]\\\\\\\",\\\\n            \\\\\\\"K5\\\\\\\": \\\\\\\"avg pairwise MI-based [canonical for K=5]\\\\\\\",\\\\n        },\\\\n        \\\\\\\"K3\\\\\\\": k3_results,\\\\n        \\\\\\\"K5\\\\\\\": k5_results,\\\\n        \\\\\\\"comparison_with_full\\\\\\\": comparison,\\\\n        \\\\\\\"summary\\\\\\\": comparison[\\\\\\\"interpretation\\\\\\\"],\\\\n    }\\\\n\\\\n    out_dir = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results/plan001\\\\\\\")\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    out_path = out_dir / \\\\\\\"api_only_regression.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"API-Only Subset Regression — MF-1 robustness check.\\n\\nFilters to 9 API models only, runs canonical OLS + clustered SE for K=3 (84 panels)\\nand K=5 (126 panels). Verifies the K=3→K=5 transition pattern is not driven by\\nlocal model confounding.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy.stats import t as t_dist\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, API_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n)\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\ndef compute_individual_asr(clean_list, attacked_list, pairs):\\n    n = min(len(clean_list), len(attacked_list), len(pairs))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        if clean_list[i].get(\\\"winner\\\", \\\"tie\\\") == gt:\\n            n_correct += 1\\n            if attacked_list[i].get(\\\"winner\\\", \\\"tie\\\") != gt:\\n                n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef compute_panel_asr(jids, clean, attacked, pairs):\\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\\n            *(len(attacked[j]) for j in jids))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        cv = majority_vote([clean[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if cv != gt:\\n            continue\\n        n_correct += 1\\n        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if av != gt:\\n            n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef keff_maxmi(mi_matrix, model_indices):\\n    \\\"\\\"\\\"K=3 canonical K_eff: 1 + (K-1)*exp(-2*max_MI).\\\"\\\"\\\"\\n    K = len(model_indices)\\n    max_mi = 0.0\\n    for a, b in itertools.combinations(model_indices, 2):\\n        max_mi = max(max_mi, mi_matrix[a][b])\\n    return 1 + (K - 1) * np.exp(-2 * max_mi)\\n\\n\\ndef keff_avg_pairwise(mi_matrix, model_indices):\\n    \\\"\\\"\\\"K=5 canonical K_eff: average pairwise MI-based.\\\"\\\"\\\"\\n    K = len(model_indices)\\n    if K <= 1:\\n        return 1.0\\n    keff = 0.0\\n    for i_idx in model_indices:\\n        term = 1.0\\n        for j_idx in model_indices:\\n            if i_idx != j_idx:\\n                term += np.exp(-2 * mi_matrix[i_idx][j_idx])\\n        keff += term\\n    return keff / K\\n\\n\\ndef run_ols(y, X):\\n    \\\"\\\"\\\"Canonical OLS with standardized beta.\\\"\\\"\\\"\\n    Xc = sm.add_constant(X)\\n    fit = sm.OLS(y, Xc).fit()\\n    std_y = np.std(y)\\n    std_x = np.std(X, axis=0)\\n    std_betas = fit.params[1:] * std_x / std_y if std_y > 1e-15 else np.zeros(2)\\n    return fit, std_betas\\n\\n\\ndef clustered_se_max(y, X, panel_jids_list, K):\\n    \\\"\\\"\\\"Max clustered SE across K judge positions, return p-values.\\\"\\\"\\\"\\n    Xc = sm.add_constant(X)\\n    fit_ols = sm.OLS(y, Xc).fit()\\n    n_params = Xc.shape[1]\\n    max_se = np.zeros(n_params)\\n\\n    for pos in range(K):\\n        cluster_var = np.array([jids[pos] for jids in panel_jids_list])\\n        unique_judges = sorted(set(cluster_var))\\n        judge_to_int = {j: idx for idx, j in enumerate(unique_judges)}\\n        cluster_int = np.array([judge_to_int[j] for j in cluster_var])\\n   \\n\\n... [截断: 输出过长，省略 8493 字符] ...\\n\\ncked[ds][atk]:\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\n                    )\\n    print(f\\\"  Computed {len(ind_asr)} individual ASR values\\\")\\n\\n    # K=3: 84 panels, max-MI K_eff\\n    k3_results = run_one_k(3, api_indices, mi_matrices, clean, attacked,\\n                           pairs, ind_asr, keff_maxmi)\\n\\n    # K=5: 126 panels, avg pairwise K_eff\\n    k5_results = run_one_k(5, api_indices, mi_matrices, clean, attacked,\\n                           pairs, ind_asr, keff_avg_pairwise)\\n\\n    # Load full-model reference results\\n    full_k3_path = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/wild_cluster_bootstrap_v2.json\\\")\\n    full_k5_path = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/k5_wild_cluster_bootstrap.json\\\")\\n\\n    full_k3_summary = {}\\n    full_k5_summary = {}\\n    if full_k3_path.exists():\\n        with open(full_k3_path) as f:\\n            full_k3 = json.load(f)\\n        full_k3_summary = full_k3.get(\\\"summary\\\", {})\\n    if full_k5_path.exists():\\n        with open(full_k5_path) as f:\\n            full_k5 = json.load(f)\\n        full_k5_summary = full_k5.get(\\\"summary\\\", {})\\n\\n    comparison = {\\n        \\\"full_15_K3\\\": full_k3_summary,\\n        \\\"full_15_K5\\\": full_k5_summary,\\n        \\\"api_only_K3\\\": k3_results[\\\"summary\\\"],\\n        \\\"api_only_K5\\\": k5_results[\\\"summary\\\"],\\n        \\\"transition_preserved\\\": None,\\n    }\\n\\n    # Check if transition pattern is preserved\\n    k3_eta_api = k3_results[\\\"summary\\\"][\\\"clustered_se\\\"][\\\"eta_max_sig\\\"]\\n    k3_keff_api = k3_results[\\\"summary\\\"][\\\"clustered_se\\\"][\\\"keff_sig\\\"]\\n    k5_eta_api = k5_results[\\\"summary\\\"][\\\"clustered_se\\\"][\\\"eta_max_sig\\\"]\\n    k5_keff_api = k5_results[\\\"summary\\\"][\\\"clustered_se\\\"][\\\"keff_sig\\\"]\\n\\n    k3_eta_n = int(k3_eta_api.split(\\\"/\\\")[0])\\n    k3_keff_n = int(k3_keff_api.split(\\\"/\\\")[0])\\n    k5_eta_n = int(k5_eta_api.split(\\\"/\\\")[0])\\n    k5_keff_n = int(k5_keff_api.split(\\\"/\\\")[0])\\n\\n    transition_preserved = (k3_eta_n >= k3_keff_n) and (k5_keff_n >= k5_eta_n)\\n    comparison[\\\"transition_preserved\\\"] = transition_preserved\\n    comparison[\\\"interpretation\\\"] = (\\n        f\\\"K=3: η_max dominant ({k3_eta_api} vs K_eff {k3_keff_api}), \\\"\\n        f\\\"K=5: K_eff dominant ({k5_keff_api} vs η_max {k5_eta_api}). \\\"\\n        f\\\"Transition {'preserved' if transition_preserved else 'NOT preserved'} in API-only subset.\\\"\\n    )\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"COMPARISON: API-only vs Full 15-model\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"  Full K=3:     η_max {full_k3_summary.get('eta_fdr_sig', '?')}, K_eff {full_k3_summary.get('keff_fdr_sig', '?')}\\\")\\n    print(f\\\"  API-only K=3: η_max {k3_eta_api}, K_eff {k3_keff_api}\\\")\\n    print(f\\\"  Full K=5:     η_max {full_k5_summary.get('eta_fdr_sig', '?')}, K_eff {full_k5_summary.get('keff_fdr_sig', '?')}\\\")\\n    print(f\\\"  API-only K=5: η_max {k5_eta_api}, K_eff {k5_keff_api}\\\")\\n    print(f\\\"\\\\n  Transition pattern preserved: {transition_preserved}\\\")\\n    print(f\\\"  {comparison['interpretation']}\\\")\\n\\n    # Build output\\n    output = {\\n        \\\"analysis\\\": \\\"api_only_subset_regression\\\",\\n        \\\"purpose\\\": \\\"MF-1 robustness: verify transition pattern not driven by local model confounding\\\",\\n        \\\"api_models\\\": API_MODELS,\\n        \\\"n_api_models\\\": len(API_MODELS),\\n        \\\"eps\\\": EPS,\\n        \\\"fdr_alpha\\\": FDR_ALPHA,\\n        \\\"keff_formulas\\\": {\\n            \\\"K3\\\": \\\"1 + (K-1)*exp(-2*max_MI) [max-MI canonical]\\\",\\n            \\\"K5\\\": \\\"avg pairwise MI-based [canonical for K=5]\\\",\\n        },\\n        \\\"K3\\\": k3_results,\\n        \\\"K5\\\": k5_results,\\n        \\\"comparison_with_full\\\": comparison,\\n        \\\"summary\\\": comparison[\\\"interpretation\\\"],\\n    }\\n\\n    out_dir = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001\\\")\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"api_only_regression.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R4EDNyxGg9S5mtivnZBk3h`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_k7_wild_cluster_bootstrap.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "1c3c06ea-4b2d-49c5-8a6e-8f1ef3312032",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018REqUGcF5g7TDe1HS8Pc2K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1742,
+      "cache_read_input_tokens": 26316,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T07:39:39.781Z_
+
+<details><summary>↩ Tool result · `toolu_01R4EDNyxGg9S5mtivnZBk3h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"K=7 Wild Cluster Bootstrap — 7-position max-p inference for K=7 panels.\\n\\nExtends K=3 wild cluster bootstrap v2 to K=7 panels (C(15,7)=6435).\\n7-position clustering with max-p across positions (conservative).\\nK_eff via MI-based formula from pairwise MI matrix.\\nCanonical regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps), standardized beta.\\nBH FDR correction across 12 conditions.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport time\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n)\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\nB_BOOT = 9999\\nSEED = 42\\nK = 7\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\ndef compute_individual_asr(clean_list, attacked_list, pairs):\\n    n = min(len(clean_list), len(attacked_list), len(pairs))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        if clean_list[i].get(\\\"winner\\\", \\\"tie\\\") == gt:\\n            n_correct += 1\\n            if attacked_list[i].get(\\\"winner\\\", \\\"tie\\\") != gt:\\n                n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef compute_panel_asr(jids, clean, attacked, pairs):\\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\\n            *(len(attacked[j]) for j in jids))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        cv = majority_vote([clean[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if cv != gt:\\n            continue\\n        n_correct += 1\\n        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if av != gt:\\n            n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef mi_based_keff(mi_matrix, model_indices):\\n    \\\"\\\"\\\"Average pairwise MI-based K_eff — canonical formula.\\\"\\\"\\\"\\n    K = len(model_indices)\\n    if K <= 1:\\n        return 1.0\\n    keff = 0.0\\n    for i_idx in model_indices:\\n        term = 1.0\\n        for j_idx in model_indices:\\n            if i_idx != j_idx:\\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\\n        keff += term\\n    return keff / K\\n\\n\\ndef wild_cluster_bootstrap_vec(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\\n                                test_col_idx=1):\\n    \\\"\\\"\\\"Vectorized wild cluster bootstrap with Rademacher weights.\\n\\n    Returns: (p_value, t_original, ci_95_lo, ci_95_hi)\\n    \\\"\\\"\\\"\\n    n, p = X_full.shape\\n    unique_clusters = np.unique(cluster_ids)\\n    n_clusters = len(unique_clusters)\\n\\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\\n\\n    fit_full = sm.OLS(y, X_full).fit()\\n    t_original = fit_full.tvalues[test_col_idx]\\n    beta_original = fit_full.params[test_col_idx]\\n    se_original = fit_full.bse[test_col_idx]\\n\\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\\n    X_restricted = X_full[:, cols_restricted]\\n    fit_restricted = sm.OLS(y, X_restricted).fit()\\n    y_hat_r = fit_restricted.fittedvalues\\n    e_r = y - y_hat_r\\n\\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\\n    M = \\n\\n... [截断: 输出过长，省略 6701 字符] ...\\n\\ners\\\": eta_n_clusters,\\n            \\\"bootstrap_ci_eta_95\\\": eta_ci,\\n            \\\"skipped\\\": False,\\n        }\\n\\n    # FDR correction\\n    valid_keys = [k for k in condition_keys\\n                  if not results.get(k, {}).get(\\\"skipped\\\", True)]\\n\\n    keff_final_ps = [results[k][\\\"keff_final_p\\\"] for k in valid_keys]\\n    eta_final_ps = [results[k][\\\"eta_final_p\\\"] for k in valid_keys]\\n\\n    if len(valid_keys) > 0:\\n        _, keff_fdr_p, _, _ = multipletests(keff_final_ps, alpha=FDR_ALPHA,\\n                                            method=\\\"fdr_bh\\\")\\n        _, eta_fdr_p, _, _ = multipletests(eta_final_ps, alpha=FDR_ALPHA,\\n                                           method=\\\"fdr_bh\\\")\\n        for i, k in enumerate(valid_keys):\\n            results[k][\\\"keff_fdr_p\\\"] = float(keff_fdr_p[i])\\n            results[k][\\\"eta_fdr_p\\\"] = float(eta_fdr_p[i])\\n\\n    keff_fdr_sig = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA)\\n    eta_fdr_sig = sum(1 for k in valid_keys\\n                      if results[k][\\\"eta_fdr_p\\\"] < FDR_ALPHA)\\n    keff_sig_pos = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA\\n                       and results[k][\\\"keff_ols_beta\\\"] > 0)\\n    keff_sig_neg = keff_fdr_sig - keff_sig_pos\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"K=7 WILD CLUSTER BOOTSTRAP SUMMARY (B={B})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"  K_eff FDR sig: {keff_fdr_sig}/{len(valid_keys)} \\\"\\n          f\\\"({keff_sig_pos}+ / {keff_sig_neg}-)\\\")\\n    print(f\\\"  eta_max FDR sig: {eta_fdr_sig}/{len(valid_keys)}\\\")\\n\\n    print(f\\\"\\\\n  {'Condition':<35} {'K std_b':>8} {'K max_p':>8} \\\"\\n          f\\\"{'K fdr_p':>8} {'sig':>4} \\\"\\n          f\\\"{'e std_b':>8} {'e max_p':>8} {'e fdr_p':>8} {'sig':>4}\\\")\\n    for k in valid_keys:\\n        r = results[k]\\n        ks = \\\"*\\\" if r[\\\"keff_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        es = \\\"*\\\" if r[\\\"eta_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        print(f\\\"  {k:<35} {r['keff_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['keff_final_p']:>8.4f} {r['keff_fdr_p']:>8.4f} {ks:>4} \\\"\\n              f\\\"{r['eta_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['eta_final_p']:>8.4f} {r['eta_fdr_p']:>8.4f} {es:>4}\\\")\\n\\n    # Validation: arc×sycophancy K_eff direction\\n    arc_syc = results.get(\\\"arc_challengexsycophancy\\\", {})\\n    validation = {\\n        \\\"arc_sycophancy_keff_std_beta\\\": arc_syc.get(\\\"keff_ols_std_beta\\\"),\\n        \\\"arc_sycophancy_keff_negative\\\": (\\n            arc_syc.get(\\\"keff_ols_beta\\\", 0) < 0 if not arc_syc.get(\\\"skipped\\\") else None\\n        ),\\n        \\\"k3_reference_beta\\\": -0.192,\\n    }\\n    print(f\\\"\\\\n  Validation: arc×sycophancy K_eff β = \\\"\\n          f\\\"{arc_syc.get('keff_ols_std_beta', 'N/A'):.4f} \\\"\\n          f\\\"(K=3 ref: -0.192)\\\")\\n\\n    elapsed = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed:.0f}s\\\")\\n\\n    output = {\\n        \\\"method\\\": \\\"wild_cluster_bootstrap_k7\\\",\\n        \\\"K\\\": K,\\n        \\\"B\\\": B,\\n        \\\"weights\\\": \\\"rademacher\\\",\\n        \\\"n_positions\\\": K,\\n        \\\"seed\\\": SEED,\\n        \\\"n_total_panels\\\": len(all_combos),\\n        \\\"keff_formula\\\": \\\"mi_based_keff (average pairwise MI)\\\",\\n        \\\"regression\\\": \\\"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\\\",\\n        \\\"per_condition\\\": {k: results[k] for k in valid_keys},\\n        \\\"summary\\\": {\\n            \\\"keff_fdr_sig\\\": f\\\"{keff_fdr_sig}/{len(valid_keys)}\\\",\\n            \\\"keff_sig_positive\\\": keff_sig_pos,\\n            \\\"keff_sig_negative\\\": keff_sig_neg,\\n            \\\"eta_fdr_sig\\\": f\\\"{eta_fdr_sig}/{len(valid_keys)}\\\",\\n        },\\n        \\\"validation\\\": validation,\\n    }\\n\\n    out_path = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/\\\"\\n                    \\\"k7_wild_cluster_bootstrap.json\\\")\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    import argparse\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--B\\\", type=int, default=B_BOOT)\\n    args = parser.parse_args()\\n    main(B=args.B)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "5986104b-578e-4c93-aa49-0eef5d2426d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"K=7 Wild Cluster Bootstrap — 7-position max-p inference for K=7 panels.\\\\n\\\\nExtends K=3 wild cluster bootstrap v2 to K=7 panels (C(15,7)=6435).\\\\n7-position clustering with max-p across positions (conservative).\\\\nK_eff via MI-based formula from pairwise MI matrix.\\\\nCanonical regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps), standardized beta.\\\\nBH FDR correction across 12 conditions.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/cert_manip_resist_eval\\\\\\\")\\\\n\\\\nimport json\\\\nimport time\\\\nimport itertools\\\\nimport numpy as np\\\\nimport statsmodels.api as sm\\\\nfrom pathlib import Path\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nfrom src.unified_data_loader import (\\\\n    ALL_MODELS, DATASETS, ATTACKS,\\\\n    load_all_scores, load_pairs, load_mi_data,\\\\n)\\\\n\\\\nEPS = 1e-6\\\\nFDR_ALPHA = 0.05\\\\nB_BOOT = 9999\\\\nSEED = 42\\\\nK = 7\\\\n\\\\n\\\\ndef _json_default(obj):\\\\n    if isinstance(obj, np.floating):\\\\n        v = float(obj)\\\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\\\n    if isinstance(obj, np.integer):\\\\n        return int(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    if isinstance(obj, np.bool_):\\\\n        return bool(obj)\\\\n    raise TypeError(f\\\\\\\"Not JSON serializable: {type(obj)}\\\\\\\")\\\\n\\\\n\\\\ndef majority_vote(votes):\\\\n    counts = {\\\\\\\"A\\\\\\\": 0, \\\\\\\"B\\\\\\\": 0, \\\\\\\"tie\\\\\\\": 0}\\\\n    for v in votes:\\\\n        counts[v] = counts.get(v, 0) + 1\\\\n    mc = max(counts.values())\\\\n    winners = [k for k, c in counts.items() if c == mc]\\\\n    if len(winners) == 1:\\\\n        return winners[0]\\\\n    for w in winners:\\\\n        if w != \\\\\\\"tie\\\\\\\":\\\\n            return w\\\\n    return \\\\\\\"tie\\\\\\\"\\\\n\\\\n\\\\ndef compute_individual_asr(clean_list, attacked_list, pairs):\\\\n    n = min(len(clean_list), len(attacked_list), len(pairs))\\\\n    n_flips = n_correct = 0\\\\n    for i in range(n):\\\\n        gt = pairs[i][\\\\\\\"ground_truth_winner\\\\\\\"]\\\\n        if clean_list[i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") == gt:\\\\n            n_correct += 1\\\\n            if attacked_list[i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") != gt:\\\\n                n_flips += 1\\\\n    return n_flips / max(n_correct, 1)\\\\n\\\\n\\\\ndef compute_panel_asr(jids, clean, attacked, pairs):\\\\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\\\\n            *(len(attacked[j]) for j in jids))\\\\n    n_flips = n_correct = 0\\\\n    for i in range(n):\\\\n        gt = pairs[i][\\\\\\\"ground_truth_winner\\\\\\\"]\\\\n        cv = majority_vote([clean[j][i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") for j in jids])\\\\n        if cv != gt:\\\\n            continue\\\\n        n_correct += 1\\\\n        av = majority_vote([attacked[j][i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") for j in jids])\\\\n        if av != gt:\\\\n            n_flips += 1\\\\n    return n_flips / max(n_correct, 1)\\\\n\\\\n\\\\ndef mi_based_keff(mi_matrix, model_indices):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Average pairwise MI-based K_eff — canonical formula.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    K = len(model_indices)\\\\n    if K <= 1:\\\\n        return 1.0\\\\n    keff = 0.0\\\\n    for i_idx in model_indices:\\\\n        term = 1.0\\\\n        for j_idx in model_indices:\\\\n            if i_idx != j_idx:\\\\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\\\\n        keff += term\\\\n    return keff / K\\\\n\\\\n\\\\ndef wild_cluster_bootstrap_vec(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\\\\n                                test_col_idx=1):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Vectorized wild cluster bootstrap with Rademacher weights.\\\\n\\\\n    Returns: (p_value, t_original, ci_95_lo, ci_95_hi)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n, p = X_full.shape\\\\n    unique_clusters = np.unique(cluster_ids)\\\\n    n_clusters = len(unique_clusters)\\\\n\\\\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\\\\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\\\\n\\\\n    fit_full = sm.OLS(y, X_full).fit()\\\\n    t_original = fit_full.tvalues[test_col_idx]\\\\n    beta_original = fit_full.params[test_col_idx]\\\\n    se_original = fit_full.bse[test_col_idx]\\\\n\\\\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\\\\n    X_restricted = X_full[:, cols_restricted]\\\\n    fit_restricted = sm.OLS(y, X_restricted).fit()\\\\n    y_hat_r = fit_restricted.fittedvalues\\\\n    e_r = y - y_hat_r\\\\n\\\\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\\\\n    M = \\\\n\\\\n... [截断: 输出过长，省略 6701 字符] ...\\\\n\\\\ners\\\\\\\": eta_n_clusters,\\\\n            \\\\\\\"bootstrap_ci_eta_95\\\\\\\": eta_ci,\\\\n            \\\\\\\"skipped\\\\\\\": False,\\\\n        }\\\\n\\\\n    # FDR correction\\\\n    valid_keys = [k for k in condition_keys\\\\n                  if not results.get(k, {}).get(\\\\\\\"skipped\\\\\\\", True)]\\\\n\\\\n    keff_final_ps = [results[k][\\\\\\\"keff_final_p\\\\\\\"] for k in valid_keys]\\\\n    eta_final_ps = [results[k][\\\\\\\"eta_final_p\\\\\\\"] for k in valid_keys]\\\\n\\\\n    if len(valid_keys) > 0:\\\\n        _, keff_fdr_p, _, _ = multipletests(keff_final_ps, alpha=FDR_ALPHA,\\\\n                                            method=\\\\\\\"fdr_bh\\\\\\\")\\\\n        _, eta_fdr_p, _, _ = multipletests(eta_final_ps, alpha=FDR_ALPHA,\\\\n                                           method=\\\\\\\"fdr_bh\\\\\\\")\\\\n        for i, k in enumerate(valid_keys):\\\\n            results[k][\\\\\\\"keff_fdr_p\\\\\\\"] = float(keff_fdr_p[i])\\\\n            results[k][\\\\\\\"eta_fdr_p\\\\\\\"] = float(eta_fdr_p[i])\\\\n\\\\n    keff_fdr_sig = sum(1 for k in valid_keys\\\\n                       if results[k][\\\\\\\"keff_fdr_p\\\\\\\"] < FDR_ALPHA)\\\\n    eta_fdr_sig = sum(1 for k in valid_keys\\\\n                      if results[k][\\\\\\\"eta_fdr_p\\\\\\\"] < FDR_ALPHA)\\\\n    keff_sig_pos = sum(1 for k in valid_keys\\\\n                       if results[k][\\\\\\\"keff_fdr_p\\\\\\\"] < FDR_ALPHA\\\\n                       and results[k][\\\\\\\"keff_ols_beta\\\\\\\"] > 0)\\\\n    keff_sig_neg = keff_fdr_sig - keff_sig_pos\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"K=7 WILD CLUSTER BOOTSTRAP SUMMARY (B={B})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"  K_eff FDR sig: {keff_fdr_sig}/{len(valid_keys)} \\\\\\\"\\\\n          f\\\\\\\"({keff_sig_pos}+ / {keff_sig_neg}-)\\\\\\\")\\\\n    print(f\\\\\\\"  eta_max FDR sig: {eta_fdr_sig}/{len(valid_keys)}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n  {'Condition':<35} {'K std_b':>8} {'K max_p':>8} \\\\\\\"\\\\n          f\\\\\\\"{'K fdr_p':>8} {'sig':>4} \\\\\\\"\\\\n          f\\\\\\\"{'e std_b':>8} {'e max_p':>8} {'e fdr_p':>8} {'sig':>4}\\\\\\\")\\\\n    for k in valid_keys:\\\\n        r = results[k]\\\\n        ks = \\\\\\\"*\\\\\\\" if r[\\\\\\\"keff_fdr_p\\\\\\\"] < FDR_ALPHA else \\\\\\\"\\\\\\\"\\\\n        es = \\\\\\\"*\\\\\\\" if r[\\\\\\\"eta_fdr_p\\\\\\\"] < FDR_ALPHA else \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {k:<35} {r['keff_ols_std_beta']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{r['keff_final_p']:>8.4f} {r['keff_fdr_p']:>8.4f} {ks:>4} \\\\\\\"\\\\n              f\\\\\\\"{r['eta_ols_std_beta']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{r['eta_final_p']:>8.4f} {r['eta_fdr_p']:>8.4f} {es:>4}\\\\\\\")\\\\n\\\\n    # Validation: arc×sycophancy K_eff direction\\\\n    arc_syc = results.get(\\\\\\\"arc_challengexsycophancy\\\\\\\", {})\\\\n    validation = {\\\\n        \\\\\\\"arc_sycophancy_keff_std_beta\\\\\\\": arc_syc.get(\\\\\\\"keff_ols_std_beta\\\\\\\"),\\\\n        \\\\\\\"arc_sycophancy_keff_negative\\\\\\\": (\\\\n            arc_syc.get(\\\\\\\"keff_ols_beta\\\\\\\", 0) < 0 if not arc_syc.get(\\\\\\\"skipped\\\\\\\") else None\\\\n        ),\\\\n        \\\\\\\"k3_reference_beta\\\\\\\": -0.192,\\\\n    }\\\\n    print(f\\\\\\\"\\\\\\\\n  Validation: arc×sycophancy K_eff β = \\\\\\\"\\\\n          f\\\\\\\"{arc_syc.get('keff_ols_std_beta', 'N/A'):.4f} \\\\\\\"\\\\n          f\\\\\\\"(K=3 ref: -0.192)\\\\\\\")\\\\n\\\\n    elapsed = time.time() - t_total\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {elapsed:.0f}s\\\\\\\")\\\\n\\\\n    output = {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"wild_cluster_bootstrap_k7\\\\\\\",\\\\n        \\\\\\\"K\\\\\\\": K,\\\\n        \\\\\\\"B\\\\\\\": B,\\\\n        \\\\\\\"weights\\\\\\\": \\\\\\\"rademacher\\\\\\\",\\\\n        \\\\\\\"n_positions\\\\\\\": K,\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"n_total_panels\\\\\\\": len(all_combos),\\\\n        \\\\\\\"keff_formula\\\\\\\": \\\\\\\"mi_based_keff (average pairwise MI)\\\\\\\",\\\\n        \\\\\\\"regression\\\\\\\": \\\\\\\"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\\\\\\\",\\\\n        \\\\\\\"per_condition\\\\\\\": {k: results[k] for k in valid_keys},\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"keff_fdr_sig\\\\\\\": f\\\\\\\"{keff_fdr_sig}/{len(valid_keys)}\\\\\\\",\\\\n            \\\\\\\"keff_sig_positive\\\\\\\": keff_sig_pos,\\\\n            \\\\\\\"keff_sig_negative\\\\\\\": keff_sig_neg,\\\\n            \\\\\\\"eta_fdr_sig\\\\\\\": f\\\\\\\"{eta_fdr_sig}/{len(valid_keys)}\\\\\\\",\\\\n        },\\\\n        \\\\\\\"validation\\\\\\\": validation,\\\\n    }\\\\n\\\\n    out_path = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/\\\\\\\"\\\\n                    \\\\\\\"k7_wild_cluster_bootstrap.json\\\\\\\")\\\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    import argparse\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--B\\\\\\\", type=int, default=B_BOOT)\\\\n    args = parser.parse_args()\\\\n    main(B=args.B)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"K=7 Wild Cluster Bootstrap — 7-position max-p inference for K=7 panels.\\n\\nExtends K=3 wild cluster bootstrap v2 to K=7 panels (C(15,7)=6435).\\n7-position clustering with max-p across positions (conservative).\\nK_eff via MI-based formula from pairwise MI matrix.\\nCanonical regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps), standardized beta.\\nBH FDR correction across 12 conditions.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport time\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n)\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\nB_BOOT = 9999\\nSEED = 42\\nK = 7\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\ndef compute_individual_asr(clean_list, attacked_list, pairs):\\n    n = min(len(clean_list), len(attacked_list), len(pairs))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        if clean_list[i].get(\\\"winner\\\", \\\"tie\\\") == gt:\\n            n_correct += 1\\n            if attacked_list[i].get(\\\"winner\\\", \\\"tie\\\") != gt:\\n                n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef compute_panel_asr(jids, clean, attacked, pairs):\\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\\n            *(len(attacked[j]) for j in jids))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        cv = majority_vote([clean[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if cv != gt:\\n            continue\\n        n_correct += 1\\n        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if av != gt:\\n            n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef mi_based_keff(mi_matrix, model_indices):\\n    \\\"\\\"\\\"Average pairwise MI-based K_eff — canonical formula.\\\"\\\"\\\"\\n    K = len(model_indices)\\n    if K <= 1:\\n        return 1.0\\n    keff = 0.0\\n    for i_idx in model_indices:\\n        term = 1.0\\n        for j_idx in model_indices:\\n            if i_idx != j_idx:\\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\\n        keff += term\\n    return keff / K\\n\\n\\ndef wild_cluster_bootstrap_vec(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\\n                                test_col_idx=1):\\n    \\\"\\\"\\\"Vectorized wild cluster bootstrap with Rademacher weights.\\n\\n    Returns: (p_value, t_original, ci_95_lo, ci_95_hi)\\n    \\\"\\\"\\\"\\n    n, p = X_full.shape\\n    unique_clusters = np.unique(cluster_ids)\\n    n_clusters = len(unique_clusters)\\n\\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\\n\\n    fit_full = sm.OLS(y, X_full).fit()\\n    t_original = fit_full.tvalues[test_col_idx]\\n    beta_original = fit_full.params[test_col_idx]\\n    se_original = fit_full.bse[test_col_idx]\\n\\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\\n    X_restricted = X_full[:, cols_restricted]\\n    fit_restricted = sm.OLS(y, X_restricted).fit()\\n    y_hat_r = fit_restricted.fittedvalues\\n    e_r = y - y_hat_r\\n\\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\\n    M = \\n\\n... [截断: 输出过长，省略 6701 字符] ...\\n\\ners\\\": eta_n_clusters,\\n            \\\"bootstrap_ci_eta_95\\\": eta_ci,\\n            \\\"skipped\\\": False,\\n        }\\n\\n    # FDR correction\\n    valid_keys = [k for k in condition_keys\\n                  if not results.get(k, {}).get(\\\"skipped\\\", True)]\\n\\n    keff_final_ps = [results[k][\\\"keff_final_p\\\"] for k in valid_keys]\\n    eta_final_ps = [results[k][\\\"eta_final_p\\\"] for k in valid_keys]\\n\\n    if len(valid_keys) > 0:\\n        _, keff_fdr_p, _, _ = multipletests(keff_final_ps, alpha=FDR_ALPHA,\\n                                            method=\\\"fdr_bh\\\")\\n        _, eta_fdr_p, _, _ = multipletests(eta_final_ps, alpha=FDR_ALPHA,\\n                                           method=\\\"fdr_bh\\\")\\n        for i, k in enumerate(valid_keys):\\n            results[k][\\\"keff_fdr_p\\\"] = float(keff_fdr_p[i])\\n            results[k][\\\"eta_fdr_p\\\"] = float(eta_fdr_p[i])\\n\\n    keff_fdr_sig = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA)\\n    eta_fdr_sig = sum(1 for k in valid_keys\\n                      if results[k][\\\"eta_fdr_p\\\"] < FDR_ALPHA)\\n    keff_sig_pos = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA\\n                       and results[k][\\\"keff_ols_beta\\\"] > 0)\\n    keff_sig_neg = keff_fdr_sig - keff_sig_pos\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"K=7 WILD CLUSTER BOOTSTRAP SUMMARY (B={B})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"  K_eff FDR sig: {keff_fdr_sig}/{len(valid_keys)} \\\"\\n          f\\\"({keff_sig_pos}+ / {keff_sig_neg}-)\\\")\\n    print(f\\\"  eta_max FDR sig: {eta_fdr_sig}/{len(valid_keys)}\\\")\\n\\n    print(f\\\"\\\\n  {'Condition':<35} {'K std_b':>8} {'K max_p':>8} \\\"\\n          f\\\"{'K fdr_p':>8} {'sig':>4} \\\"\\n          f\\\"{'e std_b':>8} {'e max_p':>8} {'e fdr_p':>8} {'sig':>4}\\\")\\n    for k in valid_keys:\\n        r = results[k]\\n        ks = \\\"*\\\" if r[\\\"keff_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        es = \\\"*\\\" if r[\\\"eta_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        print(f\\\"  {k:<35} {r['keff_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['keff_final_p']:>8.4f} {r['keff_fdr_p']:>8.4f} {ks:>4} \\\"\\n              f\\\"{r['eta_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['eta_final_p']:>8.4f} {r['eta_fdr_p']:>8.4f} {es:>4}\\\")\\n\\n    # Validation: arc×sycophancy K_eff direction\\n    arc_syc = results.get(\\\"arc_challengexsycophancy\\\", {})\\n    validation = {\\n        \\\"arc_sycophancy_keff_std_beta\\\": arc_syc.get(\\\"keff_ols_std_beta\\\"),\\n        \\\"arc_sycophancy_keff_negative\\\": (\\n            arc_syc.get(\\\"keff_ols_beta\\\", 0) < 0 if not arc_syc.get(\\\"skipped\\\") else None\\n        ),\\n        \\\"k3_reference_beta\\\": -0.192,\\n    }\\n    print(f\\\"\\\\n  Validation: arc×sycophancy K_eff β = \\\"\\n          f\\\"{arc_syc.get('keff_ols_std_beta', 'N/A'):.4f} \\\"\\n          f\\\"(K=3 ref: -0.192)\\\")\\n\\n    elapsed = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed:.0f}s\\\")\\n\\n    output = {\\n        \\\"method\\\": \\\"wild_cluster_bootstrap_k7\\\",\\n        \\\"K\\\": K,\\n        \\\"B\\\": B,\\n        \\\"weights\\\": \\\"rademacher\\\",\\n        \\\"n_positions\\\": K,\\n        \\\"seed\\\": SEED,\\n        \\\"n_total_panels\\\": len(all_combos),\\n        \\\"keff_formula\\\": \\\"mi_based_keff (average pairwise MI)\\\",\\n        \\\"regression\\\": \\\"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\\\",\\n        \\\"per_condition\\\": {k: results[k] for k in valid_keys},\\n        \\\"summary\\\": {\\n            \\\"keff_fdr_sig\\\": f\\\"{keff_fdr_sig}/{len(valid_keys)}\\\",\\n            \\\"keff_sig_positive\\\": keff_sig_pos,\\n            \\\"keff_sig_negative\\\": keff_sig_neg,\\n            \\\"eta_fdr_sig\\\": f\\\"{eta_fdr_sig}/{len(valid_keys)}\\\",\\n        },\\n        \\\"validation\\\": validation,\\n    }\\n\\n    out_path = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/\\\"\\n                    \\\"k7_wild_cluster_bootstrap.json\\\")\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    import argparse\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--B\\\", type=int, default=B_BOOT)\\n    args = parser.parse_args()\\n    main(B=args.B)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the unified_data_loader to understand the API_MODELS list and data loading patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "cb16e87e-7b9b-411d-8627-78c51e65d2d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GF19tbZTir68yUXkNRTZ9i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11771,
+      "cache_read_input_tokens": 28058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11771
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Now let me check the unified_data_loader for the API_MODELS list, and also see the full bootstrap function that got truncated.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "3d0d0650-f498-452f-a6bc-09d45f20a110",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GF19tbZTir68yUXkNRTZ9i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11771,
+      "cache_read_input_tokens": 28058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11771
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BwxdrWp6weK5F6TBTQg5vB`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -80 /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "a3075615-0a4e-423d-a3e9-8c1ac1b0ae31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GF19tbZTir68yUXkNRTZ9i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11771,
+      "cache_read_input_tokens": 28058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11771
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T07:39:46.159Z_
+
+<details><summary>↩ Tool result · `toolu_01BwxdrWp6weK5F6TBTQg5vB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Unified data loader for 15-model cert_manip_resist_eval pipeline.\\n\\nHandles two data formats:\\n  - Checkpoint files (local 6 models): nested {clean_scores: {ds: {model: [...]}}}\\n  - Individual JSON files (API 9 models): flat {scores: [...], asr, accuracy, ...}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4-6\\\", \\\"gpt-5.5\\\", \\\"gemini-3.1-pro-preview\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\", \\\"gpt-4.1-nano\\\", \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Default paths ────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores(\\n    checkpoint_files=None,\\n    individual_dir=None,\\n    datasets=None,\\n    attacks=None,\\n    all_models=None,\\n):\\n    \\\"\\\"\\\"Load sample-level clean + attacked scores for all 15 models.\\n\\n    Returns:\\n        clean:    {ds: {model_id: [score_dicts]}}\\n        attacked: {ds: {atk: {model_id: [score_dicts]}}}\\n    \\\"\\\"\\\"\\n    checkpoint_files = checkpoint_files or CKPT_FILES\\n    individual_dir = Path(individual_dir or SCORES_DIR)\\n    datasets = datasets or DATASETS\\n    attacks = attacks or ATTACKS\\n    all_models = all_models or ALL_MODELS\\n\\n    clean = {ds: {} for ds in datasets}\\n    attacked = {ds: {a: {} for a in attacks} for ds in datasets}\\n\\n    for ckpt_path in checkpoint_files:\\n        ckpt_path = Path(ckpt_path)\\n        if not ckpt_path.exists():\\n            logger.warning(f\\\"Checkpoint not found: {ckpt_path}\\\")\\n            continue\\n        logger.info(f\\\"Loading checkpoint: {ckpt_path.name}\\\")\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        for ds in datasets:\\n            for mid, scores in data.get(\\\"clean_scores\\\", {}).get(ds, {}).items():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "cc5fb277-aca1-40fb-a679-c4753bb76789",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Unified data loader for 15-model cert_manip_resist_eval pipeline.\\\\n\\\\nHandles two data formats:\\\\n  - Checkpoint files (local 6 models): nested {clean_scores: {ds: {model: [...]}}}\\\\n  - Individual JSON files (API 9 models): flat {scores: [...], asr, accuracy, ...}\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n# ── Model lists ──────────────────────────────────────────────────────\\\\nLOCAL_MODELS = [\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\", \\\\\\\"llama3.1-70b\\\\\\\", \\\\\\\"mistral-large\\\\\\\",\\\\n    \\\\\\\"qwen2.5-32b\\\\\\\", \\\\\\\"qwen2.5-14b\\\\\\\", \\\\\\\"llama3.1-8b\\\\\\\",\\\\n]\\\\nAPI_MODELS = [\\\\n    \\\\\\\"claude-opus-4-6\\\\\\\", \\\\\\\"gpt-5.5\\\\\\\", \\\\\\\"gemini-3.1-pro-preview\\\\\\\", \\\\\\\"gpt-4.1\\\\\\\",\\\\n    \\\\\\\"claude-sonnet-4-6\\\\\\\", \\\\\\\"gpt-4.1-nano\\\\\\\", \\\\\\\"gemini-3.5-flash\\\\\\\",\\\\n    \\\\\\\"gpt-4.1-mini\\\\\\\", \\\\\\\"claude-3-haiku\\\\\\\",\\\\n]\\\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\\\nDATASETS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nATTACKS = [\\\\n    \\\\\\\"prompt_injection\\\\\\\", \\\\\\\"sycophancy\\\\\\\", \\\\\\\"score_manipulation\\\\\\\",\\\\n    \\\\\\\"verbosity_bias\\\\\\\", \\\\\\\"position_bias\\\\\\\", \\\\\\\"authority_bias\\\\\\\",\\\\n]\\\\n\\\\n# ── Default paths ────────────────────────────────────────────────────\\\\nRESULTS_DIR = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results\\\\\\\")\\\\nPLAN001_DIR = RESULTS_DIR / \\\\\\\"plan001\\\\\\\"\\\\nSCORES_DIR = PLAN001_DIR / \\\\\\\"individual_scores\\\\\\\"\\\\nMI_PATH = PLAN001_DIR / \\\\\\\"mi_matrix\\\\\\\" / \\\\\\\"mi_matrix_15models.json\\\\\\\"\\\\nCKPT_FILES = [\\\\n    RESULTS_DIR / \\\\\\\"_taxonomy_checkpoint.json\\\\\\\",\\\\n    RESULTS_DIR / \\\\\\\"_step2v3_checkpoint.json\\\\\\\",\\\\n]\\\\nOUTPUT_DIR = PLAN001_DIR / \\\\\\\"panel_regression\\\\\\\"\\\\n\\\\n\\\\ndef _invert_winners(scores):\\\\n    swap = {\\\\\\\"A\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"B\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"tie\\\\\\\": \\\\\\\"tie\\\\\\\"}\\\\n    return [{**s, \\\\\\\"winner\\\\\\\": swap.get(s.get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\"), \\\\\\\"tie\\\\\\\")} for s in scores]\\\\n\\\\n\\\\ndef load_all_scores(\\\\n    checkpoint_files=None,\\\\n    individual_dir=None,\\\\n    datasets=None,\\\\n    attacks=None,\\\\n    all_models=None,\\\\n):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load sample-level clean + attacked scores for all 15 models.\\\\n\\\\n    Returns:\\\\n        clean:    {ds: {model_id: [score_dicts]}}\\\\n        attacked: {ds: {atk: {model_id: [score_dicts]}}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    checkpoint_files = checkpoint_files or CKPT_FILES\\\\n    individual_dir = Path(individual_dir or SCORES_DIR)\\\\n    datasets = datasets or DATASETS\\\\n    attacks = attacks or ATTACKS\\\\n    all_models = all_models or ALL_MODELS\\\\n\\\\n    clean = {ds: {} for ds in datasets}\\\\n    attacked = {ds: {a: {} for a in attacks} for ds in datasets}\\\\n\\\\n    for ckpt_path in checkpoint_files:\\\\n        ckpt_path = Path(ckpt_path)\\\\n        if not ckpt_path.exists():\\\\n            logger.warning(f\\\\\\\"Checkpoint not found: {ckpt_path}\\\\\\\")\\\\n            continue\\\\n        logger.info(f\\\\\\\"Loading checkpoint: {ckpt_path.name}\\\\\\\")\\\\n        with open(ckpt_path) as f:\\\\n            data = json.load(f)\\\\n        for ds in datasets:\\\\n            for mid, scores in data.get(\\\\\\\"clean_scores\\\\\\\", {}).get(ds, {}).items():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Unified data loader for 15-model cert_manip_resist_eval pipeline.\\n\\nHandles two data formats:\\n  - Checkpoint files (local 6 models): nested {clean_scores: {ds: {model: [...]}}}\\n  - Individual JSON files (API 9 models): flat {scores: [...], asr, accuracy, ...}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4-6\\\", \\\"gpt-5.5\\\", \\\"gemini-3.1-pro-preview\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\", \\\"gpt-4.1-nano\\\", \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Default paths ────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores(\\n    checkpoint_files=None,\\n    individual_dir=None,\\n    datasets=None,\\n    attacks=None,\\n    all_models=None,\\n):\\n    \\\"\\\"\\\"Load sample-level clean + attacked scores for all 15 models.\\n\\n    Returns:\\n        clean:    {ds: {model_id: [score_dicts]}}\\n        attacked: {ds: {atk: {model_id: [score_dicts]}}}\\n    \\\"\\\"\\\"\\n    checkpoint_files = checkpoint_files or CKPT_FILES\\n    individual_dir = Path(individual_dir or SCORES_DIR)\\n    datasets = datasets or DATASETS\\n    attacks = attacks or ATTACKS\\n    all_models = all_models or ALL_MODELS\\n\\n    clean = {ds: {} for ds in datasets}\\n    attacked = {ds: {a: {} for a in attacks} for ds in datasets}\\n\\n    for ckpt_path in checkpoint_files:\\n        ckpt_path = Path(ckpt_path)\\n        if not ckpt_path.exists():\\n            logger.warning(f\\\"Checkpoint not found: {ckpt_path}\\\")\\n            continue\\n        logger.info(f\\\"Loading checkpoint: {ckpt_path.name}\\\")\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        for ds in datasets:\\n            for mid, scores in data.get(\\\"clean_scores\\\", {}).get(ds, {}).items():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B6yu5jauG4dSFRYp3DzgPw`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"API_MODELS\" /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "bfb55a52-c5df-4347-913c-04d6c2973de4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GF19tbZTir68yUXkNRTZ9i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11771,
+      "cache_read_input_tokens": 28058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11771
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T07:39:46.759Z_
+
+<details><summary>↩ Tool result · `toolu_01B6yu5jauG4dSFRYp3DzgPw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"20:API_MODELS = [\\n25:ALL_MODELS = LOCAL_MODELS + API_MODELS\\n167:    api_models = api_models or API_MODELS\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "53205451-1c54-40cd-a80e-c43b90cdc963",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"20:API_MODELS = [\\\\n25:ALL_MODELS = LOCAL_MODELS + API_MODELS\\\\n167:    api_models = api_models or API_MODELS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"20:API_MODELS = [\\n25:ALL_MODELS = LOCAL_MODELS + API_MODELS\\n167:    api_models = api_models or API_MODELS\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good picture. Let me also check the truncated part of the K5 bootstrap script (the wild_cluster_bootstrap_vec function) to understand the full implementation. Let me look at lines that got truncated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "1c2a8a0d-6821-4eaa-adf3-02d7fd2dc9cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBFpHDr1m76uTBZoKVntK6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1891,
+      "cache_read_input_tokens": 39829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1891
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Let me see the truncated middle section of the K5 bootstrap (the vectorized bootstrap function and per-condition loop).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "81245288-d280-4f40-9921-2dc39ff5f2ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBFpHDr1m76uTBZoKVntK6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1891,
+      "cache_read_input_tokens": 39829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1891
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NAdG5heFKnKmu7nzkhw1b9`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "python3 -c \"\nwith open('/root/cert_manip_resist_eval/scripts/run_k5_wild_cluster_bootstrap.py') as f:\n    lines = f.readlines()\nprint(f'Total lines: {len(lines)}')\nfor i, l in enumerate(lines[85:240], start=86):\n    print(f'{i}: {l}', end='')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "142d6bf5-d13d-428e-8d06-fd04ce3a710b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBFpHDr1m76uTBZoKVntK6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1891,
+      "cache_read_input_tokens": 39829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1891
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T07:39:54.404Z_
+
+<details><summary>↩ Tool result · `toolu_01NAdG5heFKnKmu7nzkhw1b9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "5120c3d7-332f-4667-b720-6c627b8b98f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KXHxkhdG6JG2GAr8Us5C84`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "tail -n +86 /root/cert_manip_resist_eval/scripts/run_k5_wild_cluster_bootstrap.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "e7dca118-517a-49df-aed7-6f19fdf54317",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKuS4EkgzYv2bDLrnhnr3p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 366,
+      "cache_read_input_tokens": 41720,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 366
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T07:39:57.068Z_
+
+<details><summary>↩ Tool result · `toolu_01KXHxkhdG6JG2GAr8Us5C84`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if av != gt:\\n            n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef mi_based_keff(mi_matrix, model_indices):\\n    \\\"\\\"\\\"Average pairwise MI-based K_eff — canonical formula.\\\"\\\"\\\"\\n    K = len(model_indices)\\n    if K <= 1:\\n        return 1.0\\n    keff = 0.0\\n    for i_idx in model_indices:\\n        term = 1.0\\n        for j_idx in model_indices:\\n            if i_idx != j_idx:\\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\\n        keff += term\\n    return keff / K\\n\\n\\ndef wild_cluster_bootstrap_vec(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\\n                                test_col_idx=1):\\n    \\\"\\\"\\\"Vectorized wild cluster bootstrap with Rademacher weights.\\n\\n    Returns: (p_value, t_original, ci_95_lo, ci_95_hi)\\n    \\\"\\\"\\\"\\n    n, p = X_full.shape\\n    unique_clusters = np.unique(cluster_ids)\\n    n_clusters = len(unique_clusters)\\n\\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\\n\\n    fit_full = sm.OLS(y, X_full).fit()\\n    t_original = fit_full.tvalues[test_col_idx]\\n    beta_original = fit_full.params[test_col_idx]\\n    se_original = fit_full.bse[test_col_idx]\\n\\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\\n    X_restricted = X_full[:, cols_restricted]\\n    fit_restricted = sm.OLS(y, X_restricted).fit()\\n    y_hat_r = fit_restricted.fittedvalues\\n    e_r = y - y_hat_r\\n\\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\\n    M = XtX_inv @ X_full.T  # (p, n)\\n    q_jj = XtX_inv[test_col_idx, test_col_idx]\\n\\n    rng = np.random.RandomState(seed)\\n    w_clusters = rng.choice([-1, 1], size=(B, n_clusters)).astype(np.float64)\\n    w_panels = w_clusters[:, panel_cluster_idx]  # (B, n)\\n\\n    y_boots = y_hat_r[np.newaxis, :] + w_panels * e_r[np.newaxis, :]  # (B, n)\\n    beta_boots = y_boots @ M.T  # (B, p)\\n\\n    predicted = beta_boots @ X_full.T  # (B, n)\\n    sigma2 = np.sum((y_boots - predicted) ** 2, axis=1) / (n - p)  # (B,)\\n    del predicted, w_panels\\n\\n    t_boot = beta_boots[:, test_col_idx] / np.sqrt(sigma2 * q_jj)  # (B,)\\n\\n    p_value = (1 + np.sum(np.abs(t_boot) >= np.abs(t_original))) / (1 + B)\\n\\n    t_lo = np.percentile(t_boot, 2.5)\\n    t_hi = np.percentile(t_boot, 97.5)\\n    ci_lo = float(beta_original - t_hi * se_original)\\n    ci_hi = float(beta_original - t_lo * se_original)\\n\\n    return float(p_value), float(t_original), ci_lo, ci_hi\\n\\n\\ndef bootstrap_kpositions(y, X_full, panel_jids_list, n_positions, B=B_BOOT,\\n                          seed=SEED, test_col_idx=1):\\n    \\\"\\\"\\\"Run wild cluster bootstrap for K judge positions, return max p-value.\\\"\\\"\\\"\\n    position_ps = []\\n    position_clusters = []\\n    position_cis = []\\n    for pos in range(n_positions):\\n        cluster_ids = np.array([jids[pos] for jids in panel_jids_list])\\n        n_cl = len(np.unique(cluster_ids))\\n        position_clusters.append(n_cl)\\n        p_val, t_orig, ci_lo, ci_hi = wild_cluster_bootstrap_vec(\\n            y, X_full, cluster_ids, B=B, seed=seed, test_col_idx=test_col_idx\\n        )\\n        position_ps.append(p_val)\\n        position_cis.append((ci_lo, ci_hi))\\n\\n    max_p = max(position_ps)\\n    max_p_idx = position_ps.index(max_p)\\n    ci_95 = list(position_cis[max_p_idx])\\n\\n    return position_ps, max_p, position_clusters, ci_95\\n\\n\\ndef main(B=B_BOOT):\\n    t_total = time.time()\\n    print(f\\\"K=5 Wild Cluster Bootstrap (B={B})\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    print(\\\"Loading data...\\\")\\n    mi_data = load_mi_data()\\n    mi_matrices = mi_data[\\\"mi_matrix\\\"]\\n    clean, attacked = load_all_scores()\\n    pairs = load_pairs()\\n\\n    print(\\\"Computing individual ASR...\\\")\\n    ind_asr = {}\\n    for ds in DATASETS:\\n        for atk in ATTACKS:\\n            for mid in ALL_MODELS:\\n                if mid in clean[ds] and mid in attacked[ds][atk]:\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\n                    )\\n    p\\n\\n... [截断: 输出过长，省略 4245 字符] ...\\n\\ners\\\": eta_n_clusters,\\n            \\\"bootstrap_ci_eta_95\\\": eta_ci,\\n            \\\"skipped\\\": False,\\n        }\\n\\n    # FDR correction\\n    valid_keys = [k for k in condition_keys\\n                  if not results.get(k, {}).get(\\\"skipped\\\", True)]\\n\\n    keff_final_ps = [results[k][\\\"keff_final_p\\\"] for k in valid_keys]\\n    eta_final_ps = [results[k][\\\"eta_final_p\\\"] for k in valid_keys]\\n\\n    if len(valid_keys) > 0:\\n        _, keff_fdr_p, _, _ = multipletests(keff_final_ps, alpha=FDR_ALPHA,\\n                                            method=\\\"fdr_bh\\\")\\n        _, eta_fdr_p, _, _ = multipletests(eta_final_ps, alpha=FDR_ALPHA,\\n                                           method=\\\"fdr_bh\\\")\\n        for i, k in enumerate(valid_keys):\\n            results[k][\\\"keff_fdr_p\\\"] = float(keff_fdr_p[i])\\n            results[k][\\\"eta_fdr_p\\\"] = float(eta_fdr_p[i])\\n\\n    keff_fdr_sig = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA)\\n    eta_fdr_sig = sum(1 for k in valid_keys\\n                      if results[k][\\\"eta_fdr_p\\\"] < FDR_ALPHA)\\n    keff_sig_pos = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA\\n                       and results[k][\\\"keff_ols_beta\\\"] > 0)\\n    keff_sig_neg = keff_fdr_sig - keff_sig_pos\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"K=5 WILD CLUSTER BOOTSTRAP SUMMARY (B={B})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"  K_eff FDR sig: {keff_fdr_sig}/{len(valid_keys)} \\\"\\n          f\\\"({keff_sig_pos}+ / {keff_sig_neg}-)\\\")\\n    print(f\\\"  eta_max FDR sig: {eta_fdr_sig}/{len(valid_keys)}\\\")\\n\\n    print(f\\\"\\\\n  {'Condition':<35} {'K std_b':>8} {'K max_p':>8} \\\"\\n          f\\\"{'K fdr_p':>8} {'sig':>4} \\\"\\n          f\\\"{'e std_b':>8} {'e max_p':>8} {'e fdr_p':>8} {'sig':>4}\\\")\\n    for k in valid_keys:\\n        r = results[k]\\n        ks = \\\"*\\\" if r[\\\"keff_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        es = \\\"*\\\" if r[\\\"eta_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        print(f\\\"  {k:<35} {r['keff_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['keff_final_p']:>8.4f} {r['keff_fdr_p']:>8.4f} {ks:>4} \\\"\\n              f\\\"{r['eta_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['eta_final_p']:>8.4f} {r['eta_fdr_p']:>8.4f} {es:>4}\\\")\\n\\n    # Validation: arc×sycophancy K_eff direction\\n    arc_syc = results.get(\\\"arc_challengexsycophancy\\\", {})\\n    validation = {\\n        \\\"arc_sycophancy_keff_std_beta\\\": arc_syc.get(\\\"keff_ols_std_beta\\\"),\\n        \\\"arc_sycophancy_keff_negative\\\": (\\n            arc_syc.get(\\\"keff_ols_beta\\\", 0) < 0 if not arc_syc.get(\\\"skipped\\\") else None\\n        ),\\n        \\\"k3_reference_beta\\\": -0.192,\\n    }\\n    print(f\\\"\\\\n  Validation: arc×sycophancy K_eff β = \\\"\\n          f\\\"{arc_syc.get('keff_ols_std_beta', 'N/A'):.4f} \\\"\\n          f\\\"(K=3 ref: -0.192)\\\")\\n\\n    elapsed = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed:.0f}s\\\")\\n\\n    output = {\\n        \\\"method\\\": \\\"wild_cluster_bootstrap_k5\\\",\\n        \\\"K\\\": K,\\n        \\\"B\\\": B,\\n        \\\"weights\\\": \\\"rademacher\\\",\\n        \\\"n_positions\\\": K,\\n        \\\"seed\\\": SEED,\\n        \\\"n_total_panels\\\": len(all_combos),\\n        \\\"keff_formula\\\": \\\"mi_based_keff (average pairwise MI)\\\",\\n        \\\"regression\\\": \\\"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\\\",\\n        \\\"per_condition\\\": {k: results[k] for k in valid_keys},\\n        \\\"summary\\\": {\\n            \\\"keff_fdr_sig\\\": f\\\"{keff_fdr_sig}/{len(valid_keys)}\\\",\\n            \\\"keff_sig_positive\\\": keff_sig_pos,\\n            \\\"keff_sig_negative\\\": keff_sig_neg,\\n            \\\"eta_fdr_sig\\\": f\\\"{eta_fdr_sig}/{len(valid_keys)}\\\",\\n        },\\n        \\\"validation\\\": validation,\\n    }\\n\\n    out_path = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/\\\"\\n                    \\\"k5_wild_cluster_bootstrap.json\\\")\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    import argparse\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--B\\\", type=int, default=B_BOOT)\\n    args = parser.parse_args()\\n    main(B=args.B)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "781aceda-253c-4b0d-97cb-34f95bda9a22",
+  "uuid": "3187f695-c662-4a00-a704-39f78e8341c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        av = majority_vote([attacked[j][i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") for j in jids])\\\\n        if av != gt:\\\\n            n_flips += 1\\\\n    return n_flips / max(n_correct, 1)\\\\n\\\\n\\\\ndef mi_based_keff(mi_matrix, model_indices):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Average pairwise MI-based K_eff — canonical formula.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    K = len(model_indices)\\\\n    if K <= 1:\\\\n        return 1.0\\\\n    keff = 0.0\\\\n    for i_idx in model_indices:\\\\n        term = 1.0\\\\n        for j_idx in model_indices:\\\\n            if i_idx != j_idx:\\\\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\\\\n        keff += term\\\\n    return keff / K\\\\n\\\\n\\\\ndef wild_cluster_bootstrap_vec(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\\\\n                                test_col_idx=1):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Vectorized wild cluster bootstrap with Rademacher weights.\\\\n\\\\n    Returns: (p_value, t_original, ci_95_lo, ci_95_hi)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n, p = X_full.shape\\\\n    unique_clusters = np.unique(cluster_ids)\\\\n    n_clusters = len(unique_clusters)\\\\n\\\\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\\\\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\\\\n\\\\n    fit_full = sm.OLS(y, X_full).fit()\\\\n    t_original = fit_full.tvalues[test_col_idx]\\\\n    beta_original = fit_full.params[test_col_idx]\\\\n    se_original = fit_full.bse[test_col_idx]\\\\n\\\\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\\\\n    X_restricted = X_full[:, cols_restricted]\\\\n    fit_restricted = sm.OLS(y, X_restricted).fit()\\\\n    y_hat_r = fit_restricted.fittedvalues\\\\n    e_r = y - y_hat_r\\\\n\\\\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\\\\n    M = XtX_inv @ X_full.T  # (p, n)\\\\n    q_jj = XtX_inv[test_col_idx, test_col_idx]\\\\n\\\\n    rng = np.random.RandomState(seed)\\\\n    w_clusters = rng.choice([-1, 1], size=(B, n_clusters)).astype(np.float64)\\\\n    w_panels = w_clusters[:, panel_cluster_idx]  # (B, n)\\\\n\\\\n    y_boots = y_hat_r[np.newaxis, :] + w_panels * e_r[np.newaxis, :]  # (B, n)\\\\n    beta_boots = y_boots @ M.T  # (B, p)\\\\n\\\\n    predicted = beta_boots @ X_full.T  # (B, n)\\\\n    sigma2 = np.sum((y_boots - predicted) ** 2, axis=1) / (n - p)  # (B,)\\\\n    del predicted, w_panels\\\\n\\\\n    t_boot = beta_boots[:, test_col_idx] / np.sqrt(sigma2 * q_jj)  # (B,)\\\\n\\\\n    p_value = (1 + np.sum(np.abs(t_boot) >= np.abs(t_original))) / (1 + B)\\\\n\\\\n    t_lo = np.percentile(t_boot, 2.5)\\\\n    t_hi = np.percentile(t_boot, 97.5)\\\\n    ci_lo = float(beta_original - t_hi * se_original)\\\\n    ci_hi = float(beta_original - t_lo * se_original)\\\\n\\\\n    return float(p_value), float(t_original), ci_lo, ci_hi\\\\n\\\\n\\\\ndef bootstrap_kpositions(y, X_full, panel_jids_list, n_positions, B=B_BOOT,\\\\n                          seed=SEED, test_col_idx=1):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run wild cluster bootstrap for K judge positions, return max p-value.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    position_ps = []\\\\n    position_clusters = []\\\\n    position_cis = []\\\\n    for pos in range(n_positions):\\\\n        cluster_ids = np.array([jids[pos] for jids in panel_jids_list])\\\\n        n_cl = len(np.unique(cluster_ids))\\\\n        position_clusters.append(n_cl)\\\\n        p_val, t_orig, ci_lo, ci_hi = wild_cluster_bootstrap_vec(\\\\n            y, X_full, cluster_ids, B=B, seed=seed, test_col_idx=test_col_idx\\\\n        )\\\\n        position_ps.append(p_val)\\\\n        position_cis.append((ci_lo, ci_hi))\\\\n\\\\n    max_p = max(position_ps)\\\\n    max_p_idx = position_ps.index(max_p)\\\\n    ci_95 = list(position_cis[max_p_idx])\\\\n\\\\n    return position_ps, max_p, position_clusters, ci_95\\\\n\\\\n\\\\ndef main(B=B_BOOT):\\\\n    t_total = time.time()\\\\n    print(f\\\\\\\"K=5 Wild Cluster Bootstrap (B={B})\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    print(\\\\\\\"Loading data...\\\\\\\")\\\\n    mi_data = load_mi_data()\\\\n    mi_matrices = mi_data[\\\\\\\"mi_matrix\\\\\\\"]\\\\n    clean, attacked = load_all_scores()\\\\n    pairs = load_pairs()\\\\n\\\\n    print(\\\\\\\"Computing individual ASR...\\\\\\\")\\\\n    ind_asr = {}\\\\n    for ds in DATASETS:\\\\n        for atk in ATTACKS:\\\\n            for mid in ALL_MODELS:\\\\n                if mid in clean[ds] and mid in attacked[ds][atk]:\\\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\\\n                    )\\\\n    p\\\\n\\\\n... [截断: 输出过长，省略 4245 字符] ...\\\\n\\\\ners\\\\\\\": eta_n_clusters,\\\\n            \\\\\\\"bootstrap_ci_eta_95\\\\\\\": eta_ci,\\\\n            \\\\\\\"skipped\\\\\\\": False,\\\\n        }\\\\n\\\\n    # FDR correction\\\\n    valid_keys = [k for k in condition_keys\\\\n                  if not results.get(k, {}).get(\\\\\\\"skipped\\\\\\\", True)]\\\\n\\\\n    keff_final_ps = [results[k][\\\\\\\"keff_final_p\\\\\\\"] for k in valid_keys]\\\\n    eta_final_ps = [results[k][\\\\\\\"eta_final_p\\\\\\\"] for k in valid_keys]\\\\n\\\\n    if len(valid_keys) > 0:\\\\n        _, keff_fdr_p, _, _ = multipletests(keff_final_ps, alpha=FDR_ALPHA,\\\\n                                            method=\\\\\\\"fdr_bh\\\\\\\")\\\\n        _, eta_fdr_p, _, _ = multipletests(eta_final_ps, alpha=FDR_ALPHA,\\\\n                                           method=\\\\\\\"fdr_bh\\\\\\\")\\\\n        for i, k in enumerate(valid_keys):\\\\n            results[k][\\\\\\\"keff_fdr_p\\\\\\\"] = float(keff_fdr_p[i])\\\\n            results[k][\\\\\\\"eta_fdr_p\\\\\\\"] = float(eta_fdr_p[i])\\\\n\\\\n    keff_fdr_sig = sum(1 for k in valid_keys\\\\n                       if results[k][\\\\\\\"keff_fdr_p\\\\\\\"] < FDR_ALPHA)\\\\n    eta_fdr_sig = sum(1 for k in valid_keys\\\\n                      if results[k][\\\\\\\"eta_fdr_p\\\\\\\"] < FDR_ALPHA)\\\\n    keff_sig_pos = sum(1 for k in valid_keys\\\\n                       if results[k][\\\\\\\"keff_fdr_p\\\\\\\"] < FDR_ALPHA\\\\n                       and results[k][\\\\\\\"keff_ols_beta\\\\\\\"] > 0)\\\\n    keff_sig_neg = keff_fdr_sig - keff_sig_pos\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"K=5 WILD CLUSTER BOOTSTRAP SUMMARY (B={B})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"  K_eff FDR sig: {keff_fdr_sig}/{len(valid_keys)} \\\\\\\"\\\\n          f\\\\\\\"({keff_sig_pos}+ / {keff_sig_neg}-)\\\\\\\")\\\\n    print(f\\\\\\\"  eta_max FDR sig: {eta_fdr_sig}/{len(valid_keys)}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n  {'Condition':<35} {'K std_b':>8} {'K max_p':>8} \\\\\\\"\\\\n          f\\\\\\\"{'K fdr_p':>8} {'sig':>4} \\\\\\\"\\\\n          f\\\\\\\"{'e std_b':>8} {'e max_p':>8} {'e fdr_p':>8} {'sig':>4}\\\\\\\")\\\\n    for k in valid_keys:\\\\n        r = results[k]\\\\n        ks = \\\\\\\"*\\\\\\\" if r[\\\\\\\"keff_fdr_p\\\\\\\"] < FDR_ALPHA else \\\\\\\"\\\\\\\"\\\\n        es = \\\\\\\"*\\\\\\\" if r[\\\\\\\"eta_fdr_p\\\\\\\"] < FDR_ALPHA else \\\\\\\"\\\\\\\"\\\\n        print(f\\\\\\\"  {k:<35} {r['keff_ols_std_beta']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{r['keff_final_p']:>8.4f} {r['keff_fdr_p']:>8.4f} {ks:>4} \\\\\\\"\\\\n              f\\\\\\\"{r['eta_ols_std_beta']:>8.4f} \\\\\\\"\\\\n              f\\\\\\\"{r['eta_final_p']:>8.4f} {r['eta_fdr_p']:>8.4f} {es:>4}\\\\\\\")\\\\n\\\\n    # Validation: arc×sycophancy K_eff direction\\\\n    arc_syc = results.get(\\\\\\\"arc_challengexsycophancy\\\\\\\", {})\\\\n    validation = {\\\\n        \\\\\\\"arc_sycophancy_keff_std_beta\\\\\\\": arc_syc.get(\\\\\\\"keff_ols_std_beta\\\\\\\"),\\\\n        \\\\\\\"arc_sycophancy_keff_negative\\\\\\\": (\\\\n            arc_syc.get(\\\\\\\"keff_ols_beta\\\\\\\", 0) < 0 if not arc_syc.get(\\\\\\\"skipped\\\\\\\") else None\\\\n        ),\\\\n        \\\\\\\"k3_reference_beta\\\\\\\": -0.192,\\\\n    }\\\\n    print(f\\\\\\\"\\\\\\\\n  Validation: arc×sycophancy K_eff β = \\\\\\\"\\\\n          f\\\\\\\"{arc_syc.get('keff_ols_std_beta', 'N/A'):.4f} \\\\\\\"\\\\n          f\\\\\\\"(K=3 ref: -0.192)\\\\\\\")\\\\n\\\\n    elapsed = time.time() - t_total\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {elapsed:.0f}s\\\\\\\")\\\\n\\\\n    output = {\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"wild_cluster_bootstrap_k5\\\\\\\",\\\\n        \\\\\\\"K\\\\\\\": K,\\\\n        \\\\\\\"B\\\\\\\": B,\\\\n        \\\\\\\"weights\\\\\\\": \\\\\\\"rademacher\\\\\\\",\\\\n        \\\\\\\"n_positions\\\\\\\": K,\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"n_total_panels\\\\\\\": len(all_combos),\\\\n        \\\\\\\"keff_formula\\\\\\\": \\\\\\\"mi_based_keff (average pairwise MI)\\\\\\\",\\\\n        \\\\\\\"regression\\\\\\\": \\\\\\\"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\\\\\\\",\\\\n        \\\\\\\"per_condition\\\\\\\": {k: results[k] for k in valid_keys},\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"keff_fdr_sig\\\\\\\": f\\\\\\\"{keff_fdr_sig}/{len(valid_keys)}\\\\\\\",\\\\n            \\\\\\\"keff_sig_positive\\\\\\\": keff_sig_pos,\\\\n            \\\\\\\"keff_sig_negative\\\\\\\": keff_sig_neg,\\\\n            \\\\\\\"eta_fdr_sig\\\\\\\": f\\\\\\\"{eta_fdr_sig}/{len(valid_keys)}\\\\\\\",\\\\n        },\\\\n        \\\\\\\"validation\\\\\\\": validation,\\\\n    }\\\\n\\\\n    out_path = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/\\\\\\\"\\\\n                    \\\\\\\"k5_wild_cluster_bootstrap.json\\\\\\\")\\\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    import argparse\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--B\\\\\\\", type=int, default=B_BOOT)\\\\n    args = parser.parse_args()\\\\n    main(B=args.B)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if av != gt:\\n            n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\ndef mi_based_keff(mi_matrix, model_indices):\\n    \\\"\\\"\\\"Average pairwise MI-based K_eff — canonical formula.\\\"\\\"\\\"\\n    K = len(model_indices)\\n    if K <= 1:\\n        return 1.0\\n    keff = 0.0\\n    for i_idx in model_indices:\\n        term = 1.0\\n        for j_idx in model_indices:\\n            if i_idx != j_idx:\\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\\n        keff += term\\n    return keff / K\\n\\n\\ndef wild_cluster_bootstrap_vec(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\\n                                test_col_idx=1):\\n    \\\"\\\"\\\"Vectorized wild cluster bootstrap with Rademacher weights.\\n\\n    Returns: (p_value, t_original, ci_95_lo, ci_95_hi)\\n    \\\"\\\"\\\"\\n    n, p = X_full.shape\\n    unique_clusters = np.unique(cluster_ids)\\n    n_clusters = len(unique_clusters)\\n\\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\\n\\n    fit_full = sm.OLS(y, X_full).fit()\\n    t_original = fit_full.tvalues[test_col_idx]\\n    beta_original = fit_full.params[test_col_idx]\\n    se_original = fit_full.bse[test_col_idx]\\n\\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\\n    X_restricted = X_full[:, cols_restricted]\\n    fit_restricted = sm.OLS(y, X_restricted).fit()\\n    y_hat_r = fit_restricted.fittedvalues\\n    e_r = y - y_hat_r\\n\\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\\n    M = XtX_inv @ X_full.T  # (p, n)\\n    q_jj = XtX_inv[test_col_idx, test_col_idx]\\n\\n    rng = np.random.RandomState(seed)\\n    w_clusters = rng.choice([-1, 1], size=(B, n_clusters)).astype(np.float64)\\n    w_panels = w_clusters[:, panel_cluster_idx]  # (B, n)\\n\\n    y_boots = y_hat_r[np.newaxis, :] + w_panels * e_r[np.newaxis, :]  # (B, n)\\n    beta_boots = y_boots @ M.T  # (B, p)\\n\\n    predicted = beta_boots @ X_full.T  # (B, n)\\n    sigma2 = np.sum((y_boots - predicted) ** 2, axis=1) / (n - p)  # (B,)\\n    del predicted, w_panels\\n\\n    t_boot = beta_boots[:, test_col_idx] / np.sqrt(sigma2 * q_jj)  # (B,)\\n\\n    p_value = (1 + np.sum(np.abs(t_boot) >= np.abs(t_original))) / (1 + B)\\n\\n    t_lo = np.percentile(t_boot, 2.5)\\n    t_hi = np.percentile(t_boot, 97.5)\\n    ci_lo = float(beta_original - t_hi * se_original)\\n    ci_hi = float(beta_original - t_lo * se_original)\\n\\n    return float(p_value), float(t_original), ci_lo, ci_hi\\n\\n\\ndef bootstrap_kpositions(y, X_full, panel_jids_list, n_positions, B=B_BOOT,\\n                          seed=SEED, test_col_idx=1):\\n    \\\"\\\"\\\"Run wild cluster bootstrap for K judge positions, return max p-value.\\\"\\\"\\\"\\n    position_ps = []\\n    position_clusters = []\\n    position_cis = []\\n    for pos in range(n_positions):\\n        cluster_ids = np.array([jids[pos] for jids in panel_jids_list])\\n        n_cl = len(np.unique(cluster_ids))\\n        position_clusters.append(n_cl)\\n        p_val, t_orig, ci_lo, ci_hi = wild_cluster_bootstrap_vec(\\n            y, X_full, cluster_ids, B=B, seed=seed, test_col_idx=test_col_idx\\n        )\\n        position_ps.append(p_val)\\n        position_cis.append((ci_lo, ci_hi))\\n\\n    max_p = max(position_ps)\\n    max_p_idx = position_ps.index(max_p)\\n    ci_95 = list(position_cis[max_p_idx])\\n\\n    return position_ps, max_p, position_clusters, ci_95\\n\\n\\ndef main(B=B_BOOT):\\n    t_total = time.time()\\n    print(f\\\"K=5 Wild Cluster Bootstrap (B={B})\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    print(\\\"Loading data...\\\")\\n    mi_data = load_mi_data()\\n    mi_matrices = mi_data[\\\"mi_matrix\\\"]\\n    clean, attacked = load_all_scores()\\n    pairs = load_pairs()\\n\\n    print(\\\"Computing individual ASR...\\\")\\n    ind_asr = {}\\n    for ds in DATASETS:\\n        for atk in ATTACKS:\\n            for mid in ALL_MODELS:\\n                if mid in clean[ds] and mid in attacked[ds][atk]:\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\n                    )\\n    p\\n\\n... [截断: 输出过长，省略 4245 字符] ...\\n\\ners\\\": eta_n_clusters,\\n            \\\"bootstrap_ci_eta_95\\\": eta_ci,\\n            \\\"skipped\\\": False,\\n        }\\n\\n    # FDR correction\\n    valid_keys = [k for k in condition_keys\\n                  if not results.get(k, {}).get(\\\"skipped\\\", True)]\\n\\n    keff_final_ps = [results[k][\\\"keff_final_p\\\"] for k in valid_keys]\\n    eta_final_ps = [results[k][\\\"eta_final_p\\\"] for k in valid_keys]\\n\\n    if len(valid_keys) > 0:\\n        _, keff_fdr_p, _, _ = multipletests(keff_final_ps, alpha=FDR_ALPHA,\\n                                            method=\\\"fdr_bh\\\")\\n        _, eta_fdr_p, _, _ = multipletests(eta_final_ps, alpha=FDR_ALPHA,\\n                                           method=\\\"fdr_bh\\\")\\n        for i, k in enumerate(valid_keys):\\n            results[k][\\\"keff_fdr_p\\\"] = float(keff_fdr_p[i])\\n            results[k][\\\"eta_fdr_p\\\"] = float(eta_fdr_p[i])\\n\\n    keff_fdr_sig = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA)\\n    eta_fdr_sig = sum(1 for k in valid_keys\\n                      if results[k][\\\"eta_fdr_p\\\"] < FDR_ALPHA)\\n    keff_sig_pos = sum(1 for k in valid_keys\\n                       if results[k][\\\"keff_fdr_p\\\"] < FDR_ALPHA\\n                       and results[k][\\\"keff_ols_beta\\\"] > 0)\\n    keff_sig_neg = keff_fdr_sig - keff_sig_pos\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"K=5 WILD CLUSTER BOOTSTRAP SUMMARY (B={B})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"  K_eff FDR sig: {keff_fdr_sig}/{len(valid_keys)} \\\"\\n          f\\\"({keff_sig_pos}+ / {keff_sig_neg}-)\\\")\\n    print(f\\\"  eta_max FDR sig: {eta_fdr_sig}/{len(valid_keys)}\\\")\\n\\n    print(f\\\"\\\\n  {'Condition':<35} {'K std_b':>8} {'K max_p':>8} \\\"\\n          f\\\"{'K fdr_p':>8} {'sig':>4} \\\"\\n          f\\\"{'e std_b':>8} {'e max_p':>8} {'e fdr_p':>8} {'sig':>4}\\\")\\n    for k in valid_keys:\\n        r = results[k]\\n        ks = \\\"*\\\" if r[\\\"keff_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        es = \\\"*\\\" if r[\\\"eta_fdr_p\\\"] < FDR_ALPHA else \\\"\\\"\\n        print(f\\\"  {k:<35} {r['keff_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['keff_final_p']:>8.4f} {r['keff_fdr_p']:>8.4f} {ks:>4} \\\"\\n              f\\\"{r['eta_ols_std_beta']:>8.4f} \\\"\\n              f\\\"{r['eta_final_p']:>8.4f} {r['eta_fdr_p']:>8.4f} {es:>4}\\\")\\n\\n    # Validation: arc×sycophancy K_eff direction\\n    arc_syc = results.get(\\\"arc_challengexsycophancy\\\", {})\\n    validation = {\\n        \\\"arc_sycophancy_keff_std_beta\\\": arc_syc.get(\\\"keff_ols_std_beta\\\"),\\n        \\\"arc_sycophancy_keff_negative\\\": (\\n            arc_syc.get(\\\"keff_ols_beta\\\", 0) < 0 if not arc_syc.get(\\\"skipped\\\") else None\\n        ),\\n        \\\"k3_reference_beta\\\": -0.192,\\n    }\\n    print(f\\\"\\\\n  Validation: arc×sycophancy K_eff β = \\\"\\n          f\\\"{arc_syc.get('keff_ols_std_beta', 'N/A'):.4f} \\\"\\n          f\\\"(K=3 ref: -0.192)\\\")\\n\\n    elapsed = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed:.0f}s\\\")\\n\\n    output = {\\n        \\\"method\\\": \\\"wild_cluster_bootstrap_k5\\\",\\n        \\\"K\\\": K,\\n        \\\"B\\\": B,\\n        \\\"weights\\\": \\\"rademacher\\\",\\n        \\\"n_positions\\\": K,\\n        \\\"seed\\\": SEED,\\n        \\\"n_total_panels\\\": len(all_combos),\\n        \\\"keff_formula\\\": \\\"mi_based_keff (average pairwise MI)\\\",\\n        \\\"regression\\\": \\\"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\\\",\\n        \\\"per_condition\\\": {k: results[k] for k in valid_keys},\\n        \\\"summary\\\": {\\n            \\\"keff_fdr_sig\\\": f\\\"{keff_fdr_sig}/{len(valid_keys)}\\\",\\n            \\\"keff_sig_positive\\\": keff_sig_pos,\\n            \\\"keff_sig_negative\\\": keff_sig_neg,\\n            \\\"eta_fdr_sig\\\": f\\\"{eta_fdr_sig}/{len(valid_keys)}\\\",\\n        },\\n        \\\"validation\\\": validation,\\n    }\\n\\n    out_path = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001/\\\"\\n                    \\\"k5_wild_cluster_bootstrap.json\\\")\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    import argparse\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--B\\\", type=int, default=B_BOOT)\\n    args = parser.parse_args()\\n    main(B=args.B)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

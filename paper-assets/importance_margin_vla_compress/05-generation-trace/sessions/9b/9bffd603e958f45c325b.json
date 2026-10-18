@@ -274,5 +274,6 @@
       ],
       "message_count": 5
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/fix-westd38929-gpu3-redeploy-v3.md"
 }

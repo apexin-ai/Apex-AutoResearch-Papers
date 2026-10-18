@@ -6,7 +6,7 @@ Project directory: `entrainment_gated_ft`
 
 [Visual browser](../../traces/index.html?project=entrainment_gated_ft) · [Offline preview](../../traces/demo.html?project=entrainment_gated_ft) · [GitHub trace guide](05-generation-trace/README.md) · [JSON catalogue](05-generation-trace/catalog.json)
 
-Includes 599 source files and 80,801 recorded messages/events. Use the trace guide for session JSON and the browser for per-round inspection and downloads. Counts include overlapping source snapshots.
+Includes 599 source files and 80,801 recorded messages/events. Use the trace guide's Readable Markdown pages for human review; the adjacent JSON links and browser provide structured and per-round inspection. Counts include overlapping source snapshots.
 
 ## Asset review matrix
 

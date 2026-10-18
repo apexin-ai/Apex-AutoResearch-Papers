@@ -1,0 +1,2633 @@
+# analysis exp003 p2 data check
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/workers/worker_analysis_exp003-p2-data-check_20260520T022655.log`
+- **Structured JSON:** [`f07f964ad8a8a35b5ec2.json`](../../sessions/f0/f07f964ad8a8a35b5ec2.json)
+
+## Before a recorded user message
+
+56 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "42f2d22a-9e79-4794-8c71-530bd9f71532",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779248400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "de5a9dc7-186e-426e-b2f8-8ac475ede295",
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the server for the required data. I'll use ssh_read_only to inspect the directories and files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "d11c29e6-18d4-4fea-bd7e-04e9ea51a26d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KX4Fax5SEpfzCAiEspdbt9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12074,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12074
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Lr2aPt7tYjFyymfZnrTohs`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "95997c8e-4b83-44d4-886c-c515b71a492c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KX4Fax5SEpfzCAiEspdbt9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12074,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12074
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T02:27:08.015Z_
+
+<details><summary>↩ Tool result · `toolu_01Lr2aPt7tYjFyymfZnrTohs`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "ad9a81da-8133-4d5d-b893-7e536bf1f537",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012fXQdMHAbxD1Uqr5SFCgvV`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/lm_eval_clean/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "2b0d868d-77c5-4393-a203-d4a9eacda340",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012c5zZFrfzgJj6mHGkcQvVS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 466,
+      "cache_read_input_tokens": 23915,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 466
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019wqXew8Vqq6bZZZafYKLth`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "fa06752c-977d-413e-b69b-37329c269d5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012c5zZFrfzgJj6mHGkcQvVS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 466,
+      "cache_read_input_tokens": 23915,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 466
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T02:27:13.611Z_
+
+<details><summary>↩ Tool result · `toolu_012fXQdMHAbxD1Uqr5SFCgvV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1689444\\ndrwxr-xr-x 10 root root      4096 May 20 01:51 .\\ndrwxr-xr-x 11 root root      4096 May 20 09:23 ..\\n-rw-r--r--  1 root root 132179538 May 18 21:55 1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r--  1 root root    271099 May 18 21:55 1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\n-rw-r--r--  1 root root     14282 May 18 22:13 1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n-rw-r--r--  1 root root     14289 May 18 22:00 1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n-rw-r--r--  1 root root     14300 May 18 22:07 1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n-rw-r--r--  1 root root 132160102 May 18 21:45 1.3B-100B-GatedDeltaNet-pure.json\\n-rw-r--r--  1 root root      5444 May 18 21:38 1.3B-100B-GatedDeltaNet-pure.log\\n-rw-r--r--  1 root root    246441 May 18 21:45 1.3B-100B-GatedDeltaNet-pure_final.log\\n-rw-r--r--  1 root root   7929496 May 18 21:17 1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n-rw-r--r--  1 root root       286 May 18 21:22 1.3B-100B-GatedDeltaNet-pure_results.json\\n-rw-r--r--  1 root root 132153710 May 19 00:15 1.3B-100B-HGRN2-hybrid-12-1.json\\n-rw-r--r--  1 root root 132165547 May 19 00:24 1.3B-100B-HGRN2-hybrid-24-1.json\\n-rw-r--r--  1 root root 132168839 May 19 00:51 1.3B-100B-HGRN2-hybrid-3-1.json\\n-rw-r--r--  1 root root 132176544 May 19 01:04 1.3B-100B-HGRN2-hybrid-6-1.json\\n-rw-r--r--  1 root root 132172054 May 19 02:37 1.3B-100B-HGRN2-pure.json\\n-rw-r--r--  1 root root 132168964 May 18 23:27 1.3B-100B-RetNet-hybrid-12-1.json\\n-rw-r--r--  1 root root 132159737 May 18 23:30 1.3B-100B-RetNet-hybrid-24-1.json\\n-rw-r--r--  1 root root 132165204 May 19 00:41 1.3B-100B-RetNet-hybrid-3-1.json\\n-rw-r--r--  1 root root 132160156 May 19 00:34 1.3B-100B-RetNet-hybrid-6-1.json\\n-rw-r--r--  1 root root 132175098 May 18 23:15 1.3B-100B-RetNet-pure.json\\n-rw-r--r--  1 root root    344046 May 18 22:04 1.3B-100B-RetNet-pure_final.log\\n-rw-r--r--  1 root root     14250 May 18 21:53 1.3B-100B-RetNet-pure_results.json\\ndrwxr-xr-x  5 root root       104 May 19 11:40 1.3b\\ndrwxr-xr-x 12 root root      4096 May 19 12:22 340m\\ndrwxr-xr-x  2 root root        10 May 19 00:02 debug\\n-rw-r--r--  1 root root   1020535 May 18 22:03 eval_all.log\\n-rw-r--r--  1 root root    256818 May 18 22:13 eval_h24.log\\n-rw-r--r--  1 root root    867431 May 18 22:07 eval_remaining.log\\ndrwxr-xr-x  4 root root        42 May 20 02:22 exp007\\ndrwxr-xr-x  2 root root      4096 May 20 00:11 exp011\\ndrwxr-xr-x  2 root root      4096 May 19 03:16 figures\\n-rw-r--r--  1 root root      3185 May 18 21:06 gdn_pure_validation.log\\n-rw-r--r--  1 root root    118367 May 19 00:00 hgrn2_debug.log\\n-rw-r--r--  1 root root      2660 May 19 00:04 hgrn2_debug_lambada.log\\ndrwxr-xr-x  4 root root        97 May 19 02:24 multiseed\\n-rw-r--r--  1 root root      5598 May 18 21:38 remaining.log\\n-rw-r--r--  1 root root    342505 May 18 23:27 retnet_hybrid12_eval.log\\n-rw-r--r--  1 root root      9710 May 18 21:28 retnet_pure.log\\n-rw-r--r--  1 root root      1216 May 18 21:39 retnet_pure_final.log\\n-rw-r--r--  1 root root      3313 May 18 21:31 retnet_pure_v2.log\\n-rw-r--r--  1 root root        90 May 18 22:21 retnet_redownload_eval.log\\n-rw-r--r--  1 root root      9216 May 18 22:49 retnet_reeval.log\\n-rw-r--r--  1 root root      2669 May 19 03:16 summary_all_1.3b.csv\\n-rw-r--r--  1 root root 132170684 May 18 21:48 transformer_1.3B_baseline.json\\n-rw-r--r--  1 root root    158277 May 18 21:48 transformer_1.3B_baseline_final.log\\n-rw-r--r--  1 root root     26268 May 18 21:13 validation.log\\n-rw-r--r--  1 root root     27235 May 18 21:17 validation2.log\\ndrwxr-xr-x  2 root root      4096 May 20 00:30 xstorycloze\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "04ee1810-79c4-405d-abab-c42142271dde",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1689444\\\\ndrwxr-xr-x 10 root root      4096 May 20 01:51 .\\\\ndrwxr-xr-x 11 root root      4096 May 20 09:23 ..\\\\n-rw-r--r--  1 root root 132179538 May 18 21:55 1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\\\n-rw-r--r--  1 root root    271099 May 18 21:55 1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\\\n-rw-r--r--  1 root root     14282 May 18 22:13 1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\\\n-rw-r--r--  1 root root     14289 May 18 22:00 1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\\\n-rw-r--r--  1 root root     14300 May 18 22:07 1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\\\n-rw-r--r--  1 root root 132160102 May 18 21:45 1.3B-100B-GatedDeltaNet-pure.json\\\\n-rw-r--r--  1 root root      5444 May 18 21:38 1.3B-100B-GatedDeltaNet-pure.log\\\\n-rw-r--r--  1 root root    246441 May 18 21:45 1.3B-100B-GatedDeltaNet-pure_final.log\\\\n-rw-r--r--  1 root root   7929496 May 18 21:17 1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\\\n-rw-r--r--  1 root root       286 May 18 21:22 1.3B-100B-GatedDeltaNet-pure_results.json\\\\n-rw-r--r--  1 root root 132153710 May 19 00:15 1.3B-100B-HGRN2-hybrid-12-1.json\\\\n-rw-r--r--  1 root root 132165547 May 19 00:24 1.3B-100B-HGRN2-hybrid-24-1.json\\\\n-rw-r--r--  1 root root 132168839 May 19 00:51 1.3B-100B-HGRN2-hybrid-3-1.json\\\\n-rw-r--r--  1 root root 132176544 May 19 01:04 1.3B-100B-HGRN2-hybrid-6-1.json\\\\n-rw-r--r--  1 root root 132172054 May 19 02:37 1.3B-100B-HGRN2-pure.json\\\\n-rw-r--r--  1 root root 132168964 May 18 23:27 1.3B-100B-RetNet-hybrid-12-1.json\\\\n-rw-r--r--  1 root root 132159737 May 18 23:30 1.3B-100B-RetNet-hybrid-24-1.json\\\\n-rw-r--r--  1 root root 132165204 May 19 00:41 1.3B-100B-RetNet-hybrid-3-1.json\\\\n-rw-r--r--  1 root root 132160156 May 19 00:34 1.3B-100B-RetNet-hybrid-6-1.json\\\\n-rw-r--r--  1 root root 132175098 May 18 23:15 1.3B-100B-RetNet-pure.json\\\\n-rw-r--r--  1 root root    344046 May 18 22:04 1.3B-100B-RetNet-pure_final.log\\\\n-rw-r--r--  1 root root     14250 May 18 21:53 1.3B-100B-RetNet-pure_results.json\\\\ndrwxr-xr-x  5 root root       104 May 19 11:40 1.3b\\\\ndrwxr-xr-x 12 root root      4096 May 19 12:22 340m\\\\ndrwxr-xr-x  2 root root        10 May 19 00:02 debug\\\\n-rw-r--r--  1 root root   1020535 May 18 22:03 eval_all.log\\\\n-rw-r--r--  1 root root    256818 May 18 22:13 eval_h24.log\\\\n-rw-r--r--  1 root root    867431 May 18 22:07 eval_remaining.log\\\\ndrwxr-xr-x  4 root root        42 May 20 02:22 exp007\\\\ndrwxr-xr-x  2 root root      4096 May 20 00:11 exp011\\\\ndrwxr-xr-x  2 root root      4096 May 19 03:16 figures\\\\n-rw-r--r--  1 root root      3185 May 18 21:06 gdn_pure_validation.log\\\\n-rw-r--r--  1 root root    118367 May 19 00:00 hgrn2_debug.log\\\\n-rw-r--r--  1 root root      2660 May 19 00:04 hgrn2_debug_lambada.log\\\\ndrwxr-xr-x  4 root root        97 May 19 02:24 multiseed\\\\n-rw-r--r--  1 root root      5598 May 18 21:38 remaining.log\\\\n-rw-r--r--  1 root root    342505 May 18 23:27 retnet_hybrid12_eval.log\\\\n-rw-r--r--  1 root root      9710 May 18 21:28 retnet_pure.log\\\\n-rw-r--r--  1 root root      1216 May 18 21:39 retnet_pure_final.log\\\\n-rw-r--r--  1 root root      3313 May 18 21:31 retnet_pure_v2.log\\\\n-rw-r--r--  1 root root        90 May 18 22:21 retnet_redownload_eval.log\\\\n-rw-r--r--  1 root root      9216 May 18 22:49 retnet_reeval.log\\\\n-rw-r--r--  1 root root      2669 May 19 03:16 summary_all_1.3b.csv\\\\n-rw-r--r--  1 root root 132170684 May 18 21:48 transformer_1.3B_baseline.json\\\\n-rw-r--r--  1 root root    158277 May 18 21:48 transformer_1.3B_baseline_final.log\\\\n-rw-r--r--  1 root root     26268 May 18 21:13 validation.log\\\\n-rw-r--r--  1 root root     27235 May 18 21:17 validation2.log\\\\ndrwxr-xr-x  2 root root      4096 May 20 00:30 xstorycloze\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1689444\\ndrwxr-xr-x 10 root root      4096 May 20 01:51 .\\ndrwxr-xr-x 11 root root      4096 May 20 09:23 ..\\n-rw-r--r--  1 root root 132179538 May 18 21:55 1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r--  1 root root    271099 May 18 21:55 1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\n-rw-r--r--  1 root root     14282 May 18 22:13 1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n-rw-r--r--  1 root root     14289 May 18 22:00 1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n-rw-r--r--  1 root root     14300 May 18 22:07 1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n-rw-r--r--  1 root root 132160102 May 18 21:45 1.3B-100B-GatedDeltaNet-pure.json\\n-rw-r--r--  1 root root      5444 May 18 21:38 1.3B-100B-GatedDeltaNet-pure.log\\n-rw-r--r--  1 root root    246441 May 18 21:45 1.3B-100B-GatedDeltaNet-pure_final.log\\n-rw-r--r--  1 root root   7929496 May 18 21:17 1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n-rw-r--r--  1 root root       286 May 18 21:22 1.3B-100B-GatedDeltaNet-pure_results.json\\n-rw-r--r--  1 root root 132153710 May 19 00:15 1.3B-100B-HGRN2-hybrid-12-1.json\\n-rw-r--r--  1 root root 132165547 May 19 00:24 1.3B-100B-HGRN2-hybrid-24-1.json\\n-rw-r--r--  1 root root 132168839 May 19 00:51 1.3B-100B-HGRN2-hybrid-3-1.json\\n-rw-r--r--  1 root root 132176544 May 19 01:04 1.3B-100B-HGRN2-hybrid-6-1.json\\n-rw-r--r--  1 root root 132172054 May 19 02:37 1.3B-100B-HGRN2-pure.json\\n-rw-r--r--  1 root root 132168964 May 18 23:27 1.3B-100B-RetNet-hybrid-12-1.json\\n-rw-r--r--  1 root root 132159737 May 18 23:30 1.3B-100B-RetNet-hybrid-24-1.json\\n-rw-r--r--  1 root root 132165204 May 19 00:41 1.3B-100B-RetNet-hybrid-3-1.json\\n-rw-r--r--  1 root root 132160156 May 19 00:34 1.3B-100B-RetNet-hybrid-6-1.json\\n-rw-r--r--  1 root root 132175098 May 18 23:15 1.3B-100B-RetNet-pure.json\\n-rw-r--r--  1 root root    344046 May 18 22:04 1.3B-100B-RetNet-pure_final.log\\n-rw-r--r--  1 root root     14250 May 18 21:53 1.3B-100B-RetNet-pure_results.json\\ndrwxr-xr-x  5 root root       104 May 19 11:40 1.3b\\ndrwxr-xr-x 12 root root      4096 May 19 12:22 340m\\ndrwxr-xr-x  2 root root        10 May 19 00:02 debug\\n-rw-r--r--  1 root root   1020535 May 18 22:03 eval_all.log\\n-rw-r--r--  1 root root    256818 May 18 22:13 eval_h24.log\\n-rw-r--r--  1 root root    867431 May 18 22:07 eval_remaining.log\\ndrwxr-xr-x  4 root root        42 May 20 02:22 exp007\\ndrwxr-xr-x  2 root root      4096 May 20 00:11 exp011\\ndrwxr-xr-x  2 root root      4096 May 19 03:16 figures\\n-rw-r--r--  1 root root      3185 May 18 21:06 gdn_pure_validation.log\\n-rw-r--r--  1 root root    118367 May 19 00:00 hgrn2_debug.log\\n-rw-r--r--  1 root root      2660 May 19 00:04 hgrn2_debug_lambada.log\\ndrwxr-xr-x  4 root root        97 May 19 02:24 multiseed\\n-rw-r--r--  1 root root      5598 May 18 21:38 remaining.log\\n-rw-r--r--  1 root root    342505 May 18 23:27 retnet_hybrid12_eval.log\\n-rw-r--r--  1 root root      9710 May 18 21:28 retnet_pure.log\\n-rw-r--r--  1 root root      1216 May 18 21:39 retnet_pure_final.log\\n-rw-r--r--  1 root root      3313 May 18 21:31 retnet_pure_v2.log\\n-rw-r--r--  1 root root        90 May 18 22:21 retnet_redownload_eval.log\\n-rw-r--r--  1 root root      9216 May 18 22:49 retnet_reeval.log\\n-rw-r--r--  1 root root      2669 May 19 03:16 summary_all_1.3b.csv\\n-rw-r--r--  1 root root 132170684 May 18 21:48 transformer_1.3B_baseline.json\\n-rw-r--r--  1 root root    158277 May 18 21:48 transformer_1.3B_baseline_final.log\\n-rw-r--r--  1 root root     26268 May 18 21:13 validation.log\\n-rw-r--r--  1 root root     27235 May 18 21:17 validation2.log\\ndrwxr-xr-x  2 root root      4096 May 20 00:30 xstorycloze\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T02:27:14.481Z_
+
+<details><summary>↩ Tool result · `toolu_019wqXew8Vqq6bZZZafYKLth`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3908\\ndrwxr-xr-x  5 root root   4096 May 20 02:52 .\\ndrwxr-xr-x 11 root root   4096 May 20 09:23 ..\\n-rw-r--r--  1 root root   7227 May 19 22:37 additional_benchmarks_convergence.py\\n-rw-r--r--  1 root root   4587 May 20 01:03 all_benchmark_convergence_summary.json\\ndrwxr-xr-x  2 root root   4096 May 20 01:14 attention_weights\\n-rw-r--r--  1 root root  23299 May 19 14:38 convergence_analysis.pdf\\n-rw-r--r--  1 root root 131061 May 19 14:38 convergence_analysis.png\\n-rw-r--r--  1 root root   4818 May 19 14:38 convergence_analysis.py\\n-rw-r--r--  1 root root  34344 May 19 13:37 cross_scale_convergence.pdf\\n-rw-r--r--  1 root root 305368 May 19 13:37 cross_scale_convergence.png\\n-rw-r--r--  1 root root  12937 May 19 13:37 cross_scale_convergence.py\\n-rw-r--r--  1 root root   9219 May 19 13:37 cross_scale_summary.csv\\n-rw-r--r--  1 root root  12372 May 20 02:52 exp007_analysis.py\\n-rw-r--r--  1 root root   5885 May 20 02:53 exp007_analysis_summary.json\\n-rw-r--r--  1 root root  13822 May 19 23:06 exp010_bridge_analysis.py\\n-rw-r--r--  1 root root   1539 May 19 23:07 exp010_bridge_results.csv\\n-rw-r--r--  1 root root   6557 May 19 23:07 exp010_bridge_summary.json\\n-rw-r--r--  1 root root   9295 May 20 00:18 exp011_convergence_analysis.py\\n-rw-r--r--  1 root root   1450 May 20 00:18 exp011_convergence_results.csv\\n-rw-r--r--  1 root root   2840 May 20 00:18 exp011_convergence_summary.json\\n-rw-r--r--  1 root root  15494 May 20 00:42 extract_attention_weights.py\\ndrwxr-xr-x  2 root root     70 May 20 00:07 figures\\n-rw-r--r--  1 root root  12116 May 19 22:00 fix_hgrn2_and_complete.py\\n-rw-r--r--  1 root root   3160 May 20 00:07 generate_paper_data.py\\n-rw-r--r--  1 root root 218267 May 19 04:59 lambada_attention_analysis.png\\n-rw-r--r--  1 root root 181908 May 19 04:59 lambada_crossmodel_scatter.png\\n-rw-r--r--  1 root root  37465 May 19 14:54 lambada_matched_comparison.pdf\\n-rw-r--r--  1 root root 182961 May 19 14:54 lambada_matched_comparison.png\\n-rw-r--r--  1 root root  13787 May 19 14:54 lambada_matched_comparison.py\\n-rw-r--r--  1 root root  13140 May 19 14:53 lambada_matched_comparison.py.bak\\n-rw-r--r--  1 root root 330031 May 19 14:54 lambada_matched_per_example.csv\\n-rw-r--r--  1 root root 330886 May 19 07:40 lambada_per_example.csv\\n-rw-r--r--  1 root root  25634 May 19 14:55 lambada_robustness_h6.pdf\\n-rw-r--r--  1 root root 164277 May 19 14:55 lambada_robustness_h6.png\\n-rw-r--r--  1 root root  13759 May 19 14:55 lambada_robustness_h6.py\\n-rw-r--r--  1 root root  40698 May 19 14:54 lambada_three_arch_comparison.pdf\\n-rw-r--r--  1 root root 179101 May 19 14:54 lambada_three_arch_comparison.png\\n-rw-r--r--  1 root root  11673 May 19 14:54 lambada_three_arch_comparison.py\\n-rw-r--r--  1 root root   8841 May 19 04:58 logprob_analysis.py\\n-rw-r--r--  1 root root   6527 May 19 04:59 logprob_plots.py\\ndrwxr-xr-x  2 root root    122 May 20 00:07 paper_data\\n-rw-r--r--  1 root root   2801 May 20 00:07 plot_decoupling.py\\n-rw-r--r--  1 root root   2934 May 19 22:17 robustness_results.csv\\n-rw-r--r--  1 root root   3027 May 19 22:15 robustness_results.csv.bak\\n-rw-r--r--  1 root root   2084 May 19 22:17 robustness_summary.md\\n-rw-r--r--  1 root root   1958 May 19 22:15 robustness_summary.md.bak\\n-rw-r--r--  1 root root   1999 May 19 22:28 robustness_supplement_gdn_excluded.csv\\n-rw-r--r--  1 root root   4785 May 19 22:28 robustness_supplement_summary.json\\n-rwxr-xr-x  1 root root    727 May 20 00:45 run_exp004.sh\\n-rw-r--r--  1 root root  85559 May 19 21:17 sample_characterization.pdf\\n-rw-r--r--  1 root root 357367 May 19 21:17 sample_characterization.png\\n-rw-r--r--  1 root root  12198 May 19 21:16 sample_characterization.py\\n-rw-r--r--  1 root root   2721 May 19 21:17 sample_characterization_results.csv\\n-rw-r--r--  1 root root  12116 May 19 22:06 sample_perplexity_analysis.py\\n-rw-r--r--  1 root root   1996 May 19 21:47 sample_perplexity_dryrun.py\\n-rw-r--r--  1 root root  39891 May 19 22:06 sample_perplexity_figure.pdf\\n-rw-r--r--  1 root root 219465 May 19 22:06 sample_perplexity_figure.png\\n-rw-r--r--  1 root root 230900 May 19 22:06 sample_perplexity_results.csv\\n-rw-r--r--  1 root root   1999 May 19 22:06 sample_perplexity_summary.json\\n-rw-r--r--  1 root root  13575 May 19 22:16 statistical_robustness.py\\n-rw-r--r--  1 root root  12453 May 19 22:15 statistical_robustness.py.bak\\n-rw-r--r--  1 root root   9970 May 19 22:28 statistical_robustness_supplement.py\\n-rw-r--r--  1 root root  10470 May 19 21:13 task_specificity_analysis.py\\n-rw-r--r--  1 root root  37436 May 19 21:13 task_specificity_figure.pdf\\n-rw-r--r--  1 root root 380463 May 19 21:13 task_specificity_figure.png\\n-rw-r--r--  1 root root   2072 May 19 21:13 task_specificity_results.csv\\n-rw-r--r--  1 root root  17043 May 20 01:05 wang_et_al_differentiation.md\\n-rw-r--r--  1 root root   9279 May 20 01:03 xstorycloze_convergence_analysis.py\\n-rw-r--r--  1 root root    620 May 20 00:34 xstorycloze_convergence_results.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "d8d993de-7a9c-4d50-88b5-11b3bf0f8a22",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3908\\\\ndrwxr-xr-x  5 root root   4096 May 20 02:52 .\\\\ndrwxr-xr-x 11 root root   4096 May 20 09:23 ..\\\\n-rw-r--r--  1 root root   7227 May 19 22:37 additional_benchmarks_convergence.py\\\\n-rw-r--r--  1 root root   4587 May 20 01:03 all_benchmark_convergence_summary.json\\\\ndrwxr-xr-x  2 root root   4096 May 20 01:14 attention_weights\\\\n-rw-r--r--  1 root root  23299 May 19 14:38 convergence_analysis.pdf\\\\n-rw-r--r--  1 root root 131061 May 19 14:38 convergence_analysis.png\\\\n-rw-r--r--  1 root root   4818 May 19 14:38 convergence_analysis.py\\\\n-rw-r--r--  1 root root  34344 May 19 13:37 cross_scale_convergence.pdf\\\\n-rw-r--r--  1 root root 305368 May 19 13:37 cross_scale_convergence.png\\\\n-rw-r--r--  1 root root  12937 May 19 13:37 cross_scale_convergence.py\\\\n-rw-r--r--  1 root root   9219 May 19 13:37 cross_scale_summary.csv\\\\n-rw-r--r--  1 root root  12372 May 20 02:52 exp007_analysis.py\\\\n-rw-r--r--  1 root root   5885 May 20 02:53 exp007_analysis_summary.json\\\\n-rw-r--r--  1 root root  13822 May 19 23:06 exp010_bridge_analysis.py\\\\n-rw-r--r--  1 root root   1539 May 19 23:07 exp010_bridge_results.csv\\\\n-rw-r--r--  1 root root   6557 May 19 23:07 exp010_bridge_summary.json\\\\n-rw-r--r--  1 root root   9295 May 20 00:18 exp011_convergence_analysis.py\\\\n-rw-r--r--  1 root root   1450 May 20 00:18 exp011_convergence_results.csv\\\\n-rw-r--r--  1 root root   2840 May 20 00:18 exp011_convergence_summary.json\\\\n-rw-r--r--  1 root root  15494 May 20 00:42 extract_attention_weights.py\\\\ndrwxr-xr-x  2 root root     70 May 20 00:07 figures\\\\n-rw-r--r--  1 root root  12116 May 19 22:00 fix_hgrn2_and_complete.py\\\\n-rw-r--r--  1 root root   3160 May 20 00:07 generate_paper_data.py\\\\n-rw-r--r--  1 root root 218267 May 19 04:59 lambada_attention_analysis.png\\\\n-rw-r--r--  1 root root 181908 May 19 04:59 lambada_crossmodel_scatter.png\\\\n-rw-r--r--  1 root root  37465 May 19 14:54 lambada_matched_comparison.pdf\\\\n-rw-r--r--  1 root root 182961 May 19 14:54 lambada_matched_comparison.png\\\\n-rw-r--r--  1 root root  13787 May 19 14:54 lambada_matched_comparison.py\\\\n-rw-r--r--  1 root root  13140 May 19 14:53 lambada_matched_comparison.py.bak\\\\n-rw-r--r--  1 root root 330031 May 19 14:54 lambada_matched_per_example.csv\\\\n-rw-r--r--  1 root root 330886 May 19 07:40 lambada_per_example.csv\\\\n-rw-r--r--  1 root root  25634 May 19 14:55 lambada_robustness_h6.pdf\\\\n-rw-r--r--  1 root root 164277 May 19 14:55 lambada_robustness_h6.png\\\\n-rw-r--r--  1 root root  13759 May 19 14:55 lambada_robustness_h6.py\\\\n-rw-r--r--  1 root root  40698 May 19 14:54 lambada_three_arch_comparison.pdf\\\\n-rw-r--r--  1 root root 179101 May 19 14:54 lambada_three_arch_comparison.png\\\\n-rw-r--r--  1 root root  11673 May 19 14:54 lambada_three_arch_comparison.py\\\\n-rw-r--r--  1 root root   8841 May 19 04:58 logprob_analysis.py\\\\n-rw-r--r--  1 root root   6527 May 19 04:59 logprob_plots.py\\\\ndrwxr-xr-x  2 root root    122 May 20 00:07 paper_data\\\\n-rw-r--r--  1 root root   2801 May 20 00:07 plot_decoupling.py\\\\n-rw-r--r--  1 root root   2934 May 19 22:17 robustness_results.csv\\\\n-rw-r--r--  1 root root   3027 May 19 22:15 robustness_results.csv.bak\\\\n-rw-r--r--  1 root root   2084 May 19 22:17 robustness_summary.md\\\\n-rw-r--r--  1 root root   1958 May 19 22:15 robustness_summary.md.bak\\\\n-rw-r--r--  1 root root   1999 May 19 22:28 robustness_supplement_gdn_excluded.csv\\\\n-rw-r--r--  1 root root   4785 May 19 22:28 robustness_supplement_summary.json\\\\n-rwxr-xr-x  1 root root    727 May 20 00:45 run_exp004.sh\\\\n-rw-r--r--  1 root root  85559 May 19 21:17 sample_characterization.pdf\\\\n-rw-r--r--  1 root root 357367 May 19 21:17 sample_characterization.png\\\\n-rw-r--r--  1 root root  12198 May 19 21:16 sample_characterization.py\\\\n-rw-r--r--  1 root root   2721 May 19 21:17 sample_characterization_results.csv\\\\n-rw-r--r--  1 root root  12116 May 19 22:06 sample_perplexity_analysis.py\\\\n-rw-r--r--  1 root root   1996 May 19 21:47 sample_perplexity_dryrun.py\\\\n-rw-r--r--  1 root root  39891 May 19 22:06 sample_perplexity_figure.pdf\\\\n-rw-r--r--  1 root root 219465 May 19 22:06 sample_perplexity_figure.png\\\\n-rw-r--r--  1 root root 230900 May 19 22:06 sample_perplexity_results.csv\\\\n-rw-r--r--  1 root root   1999 May 19 22:06 sample_perplexity_summary.json\\\\n-rw-r--r--  1 root root  13575 May 19 22:16 statistical_robustness.py\\\\n-rw-r--r--  1 root root  12453 May 19 22:15 statistical_robustness.py.bak\\\\n-rw-r--r--  1 root root   9970 May 19 22:28 statistical_robustness_supplement.py\\\\n-rw-r--r--  1 root root  10470 May 19 21:13 task_specificity_analysis.py\\\\n-rw-r--r--  1 root root  37436 May 19 21:13 task_specificity_figure.pdf\\\\n-rw-r--r--  1 root root 380463 May 19 21:13 task_specificity_figure.png\\\\n-rw-r--r--  1 root root   2072 May 19 21:13 task_specificity_results.csv\\\\n-rw-r--r--  1 root root  17043 May 20 01:05 wang_et_al_differentiation.md\\\\n-rw-r--r--  1 root root   9279 May 20 01:03 xstorycloze_convergence_analysis.py\\\\n-rw-r--r--  1 root root    620 May 20 00:34 xstorycloze_convergence_results.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 3908\\ndrwxr-xr-x  5 root root   4096 May 20 02:52 .\\ndrwxr-xr-x 11 root root   4096 May 20 09:23 ..\\n-rw-r--r--  1 root root   7227 May 19 22:37 additional_benchmarks_convergence.py\\n-rw-r--r--  1 root root   4587 May 20 01:03 all_benchmark_convergence_summary.json\\ndrwxr-xr-x  2 root root   4096 May 20 01:14 attention_weights\\n-rw-r--r--  1 root root  23299 May 19 14:38 convergence_analysis.pdf\\n-rw-r--r--  1 root root 131061 May 19 14:38 convergence_analysis.png\\n-rw-r--r--  1 root root   4818 May 19 14:38 convergence_analysis.py\\n-rw-r--r--  1 root root  34344 May 19 13:37 cross_scale_convergence.pdf\\n-rw-r--r--  1 root root 305368 May 19 13:37 cross_scale_convergence.png\\n-rw-r--r--  1 root root  12937 May 19 13:37 cross_scale_convergence.py\\n-rw-r--r--  1 root root   9219 May 19 13:37 cross_scale_summary.csv\\n-rw-r--r--  1 root root  12372 May 20 02:52 exp007_analysis.py\\n-rw-r--r--  1 root root   5885 May 20 02:53 exp007_analysis_summary.json\\n-rw-r--r--  1 root root  13822 May 19 23:06 exp010_bridge_analysis.py\\n-rw-r--r--  1 root root   1539 May 19 23:07 exp010_bridge_results.csv\\n-rw-r--r--  1 root root   6557 May 19 23:07 exp010_bridge_summary.json\\n-rw-r--r--  1 root root   9295 May 20 00:18 exp011_convergence_analysis.py\\n-rw-r--r--  1 root root   1450 May 20 00:18 exp011_convergence_results.csv\\n-rw-r--r--  1 root root   2840 May 20 00:18 exp011_convergence_summary.json\\n-rw-r--r--  1 root root  15494 May 20 00:42 extract_attention_weights.py\\ndrwxr-xr-x  2 root root     70 May 20 00:07 figures\\n-rw-r--r--  1 root root  12116 May 19 22:00 fix_hgrn2_and_complete.py\\n-rw-r--r--  1 root root   3160 May 20 00:07 generate_paper_data.py\\n-rw-r--r--  1 root root 218267 May 19 04:59 lambada_attention_analysis.png\\n-rw-r--r--  1 root root 181908 May 19 04:59 lambada_crossmodel_scatter.png\\n-rw-r--r--  1 root root  37465 May 19 14:54 lambada_matched_comparison.pdf\\n-rw-r--r--  1 root root 182961 May 19 14:54 lambada_matched_comparison.png\\n-rw-r--r--  1 root root  13787 May 19 14:54 lambada_matched_comparison.py\\n-rw-r--r--  1 root root  13140 May 19 14:53 lambada_matched_comparison.py.bak\\n-rw-r--r--  1 root root 330031 May 19 14:54 lambada_matched_per_example.csv\\n-rw-r--r--  1 root root 330886 May 19 07:40 lambada_per_example.csv\\n-rw-r--r--  1 root root  25634 May 19 14:55 lambada_robustness_h6.pdf\\n-rw-r--r--  1 root root 164277 May 19 14:55 lambada_robustness_h6.png\\n-rw-r--r--  1 root root  13759 May 19 14:55 lambada_robustness_h6.py\\n-rw-r--r--  1 root root  40698 May 19 14:54 lambada_three_arch_comparison.pdf\\n-rw-r--r--  1 root root 179101 May 19 14:54 lambada_three_arch_comparison.png\\n-rw-r--r--  1 root root  11673 May 19 14:54 lambada_three_arch_comparison.py\\n-rw-r--r--  1 root root   8841 May 19 04:58 logprob_analysis.py\\n-rw-r--r--  1 root root   6527 May 19 04:59 logprob_plots.py\\ndrwxr-xr-x  2 root root    122 May 20 00:07 paper_data\\n-rw-r--r--  1 root root   2801 May 20 00:07 plot_decoupling.py\\n-rw-r--r--  1 root root   2934 May 19 22:17 robustness_results.csv\\n-rw-r--r--  1 root root   3027 May 19 22:15 robustness_results.csv.bak\\n-rw-r--r--  1 root root   2084 May 19 22:17 robustness_summary.md\\n-rw-r--r--  1 root root   1958 May 19 22:15 robustness_summary.md.bak\\n-rw-r--r--  1 root root   1999 May 19 22:28 robustness_supplement_gdn_excluded.csv\\n-rw-r--r--  1 root root   4785 May 19 22:28 robustness_supplement_summary.json\\n-rwxr-xr-x  1 root root    727 May 20 00:45 run_exp004.sh\\n-rw-r--r--  1 root root  85559 May 19 21:17 sample_characterization.pdf\\n-rw-r--r--  1 root root 357367 May 19 21:17 sample_characterization.png\\n-rw-r--r--  1 root root  12198 May 19 21:16 sample_characterization.py\\n-rw-r--r--  1 root root   2721 May 19 21:17 sample_characterization_results.csv\\n-rw-r--r--  1 root root  12116 May 19 22:06 sample_perplexity_analysis.py\\n-rw-r--r--  1 root root   1996 May 19 21:47 sample_perplexity_dryrun.py\\n-rw-r--r--  1 root root  39891 May 19 22:06 sample_perplexity_figure.pdf\\n-rw-r--r--  1 root root 219465 May 19 22:06 sample_perplexity_figure.png\\n-rw-r--r--  1 root root 230900 May 19 22:06 sample_perplexity_results.csv\\n-rw-r--r--  1 root root   1999 May 19 22:06 sample_perplexity_summary.json\\n-rw-r--r--  1 root root  13575 May 19 22:16 statistical_robustness.py\\n-rw-r--r--  1 root root  12453 May 19 22:15 statistical_robustness.py.bak\\n-rw-r--r--  1 root root   9970 May 19 22:28 statistical_robustness_supplement.py\\n-rw-r--r--  1 root root  10470 May 19 21:13 task_specificity_analysis.py\\n-rw-r--r--  1 root root  37436 May 19 21:13 task_specificity_figure.pdf\\n-rw-r--r--  1 root root 380463 May 19 21:13 task_specificity_figure.png\\n-rw-r--r--  1 root root   2072 May 19 21:13 task_specificity_results.csv\\n-rw-r--r--  1 root root  17043 May 20 01:05 wang_et_al_differentiation.md\\n-rw-r--r--  1 root root   9279 May 20 01:03 xstorycloze_convergence_analysis.py\\n-rw-r--r--  1 root root    620 May 20 00:34 xstorycloze_convergence_results.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I can see:
+
+1. In `lm_eval_clean/`:
+   - `1.3B-100B-GatedDeltaNet-pure.json` (132MB) - exists
+   - `1.3B-100B-RetNet-pure.json` (132MB) - exists
+   - `1.3B-100B-HGRN2-pure.json` (132MB) - exists
+   - `1.3B-100B-GatedDeltaNet-pure_lambada_only.json` (7.9MB) - also exists
+   - H3-1 hybrids: I see hybrid-12-1, hybrid-24-1, hybrid-3-1, hybrid-6-1 but no "h3-1" specifically. Let me check inside subdirectories.
+   - There are also subdirs `1.3b/` and `340m/`
+
+2. In `analysis/`:
+   - `sample_perplexity_analysis.py` exists (12KB)
+   - `sample_perplexity_results.csv` exists (230KB)
+   - Also `lambada_per_example.csv` (330KB), `lambada_matched_per_example.csv` (330KB)
+
+The hybrid files are named with ratios like hybrid-3-1, hybrid-6-1, etc., so "h3-1" probably refers to hybrid-3-1. I should check the subdirectories and see what's in there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "59d58665-4dec-4a02-a4dd-21235910e10c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JBitUfjEfpD2DaP9bKmYFb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 24381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+数据基本都在。让我进一步检查子目录和文件内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "77fac78c-e9fc-4103-beec-eab3f0312ab5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JBitUfjEfpD2DaP9bKmYFb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 24381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LrQkDxPYv5jHYzh1qe2tU3`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/lm_eval_clean/ -name \"*pure*\" -o -name \"*h3*\" -o -name \"*hybrid-3-1*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "1cec20c1-edc9-4c06-ac17-11d03acd2048",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JBitUfjEfpD2DaP9bKmYFb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 24381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T02:27:26.515Z_
+
+<details><summary>↩ Tool result · `toolu_01LrQkDxPYv5jHYzh1qe2tU3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/gdn_pure_validation.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/retnet_pure.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n/root/entrainment_gated_ft/lm_eval_clean/retnet_pure_v2.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.log\\n/root/entrainment_gated_ft/lm_eval_clean/retnet_pure_final.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_final.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_final.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-pure-baseline.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-pure\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-pure/340M-20B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-hybrid-3-1\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-hybrid-3-1/340M-20B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-pure-baseline\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-pure-baseline/340M-20B-HGRN2-pure-baseline.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-hybrid-3-1\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-hybrid-3-1/340M-20B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/340M-20B-GatedDeltaNet-pure-baseline.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1/340M-20B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure/340M-20B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1/340M-20B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure/340M-20B-HGRN2-pure-baseline.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1/340M-20B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-h3-1\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-h3-1/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-pure/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-h3-1\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-h3-1/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-pure/1.3B-100B-RetNet-pure.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "aa3d2d9c-8e53-4013-81f6-07541bf9e85e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/gdn_pure_validation.log\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_results.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/retnet_pure.log\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/retnet_pure_v2.log\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.log\\\\n/root/entrainment_gated_ft/lm_eval_clean/retnet_pure_final.log\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_final.log\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_results.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_final.log\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-pure-baseline.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-pure\\\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-pure/340M-20B-RetNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-hybrid-3-1\\\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-hybrid-3-1/340M-20B-RetNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-pure-baseline\\\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-pure-baseline/340M-20B-HGRN2-pure-baseline.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-hybrid-3-1\\\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-hybrid-3-1/340M-20B-HGRN2-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-GatedDeltaNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-RetNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-RetNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-HGRN2-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-HGRN2-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/340M-20B-GatedDeltaNet-pure-baseline.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1/340M-20B-GatedDeltaNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure/340M-20B-RetNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1/340M-20B-RetNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure/340M-20B-HGRN2-pure-baseline.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1/340M-20B-HGRN2-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure/1.3B-100B-GatedDeltaNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-h3-1\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-h3-1/1.3B-100B-RetNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-pure\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-pure/1.3B-100B-HGRN2-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-h3-1\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-h3-1/1.3B-100B-HGRN2-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-pure\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-pure/1.3B-100B-RetNet-pure.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/gdn_pure_validation.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/retnet_pure.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n/root/entrainment_gated_ft/lm_eval_clean/retnet_pure_v2.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.log\\n/root/entrainment_gated_ft/lm_eval_clean/retnet_pure_final.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_final.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_final.log\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-pure-baseline.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-pure\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-pure/340M-20B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-hybrid-3-1\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-RetNet-hybrid-3-1/340M-20B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-pure-baseline\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-pure-baseline/340M-20B-HGRN2-pure-baseline.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-hybrid-3-1\\n/root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-HGRN2-hybrid-3-1/340M-20B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/340M-20B-GatedDeltaNet-pure-baseline.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1/340M-20B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure/340M-20B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1/340M-20B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure/340M-20B-HGRN2-pure-baseline.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1/340M-20B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-h3-1\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-h3-1/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-pure/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-h3-1\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/HGRN2-h3-1/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-pure\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/RetNet-pure/1.3B-100B-RetNet-pure.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DthSNqXFWMW7q5Vy3fq2pi`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -5 /root/entrainment_gated_ft/analysis/sample_perplexity_results.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "7b3972b1-83b6-4720-8c4a-6c8f8b924729",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JBitUfjEfpD2DaP9bKmYFb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 24381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T02:27:27.526Z_
+
+<details><summary>↩ Tool result · `toolu_01DthSNqXFWMW7q5Vy3fq2pi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"doc_id,GDN_pure_loss,GDN_helped,GDN_hurt,RetNet_pure_loss,RetNet_helped,RetNet_hurt,HGRN2_pure_loss,HGRN2_helped,HGRN2_hurt\\r\\n0,3.423137,0,0,3.505070,0,0,3.428979,0,0\\r\\n1,3.347848,0,0,3.456544,0,1,3.342849,0,0\\r\\n2,3.456130,1,0,3.479137,0,0,3.446791,0,0\\r\\n3,2.973024,0,0,3.004976,0,0,2.914154,0,1\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "63472307-2777-41f5-a796-5adb73598316",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,GDN_pure_loss,GDN_helped,GDN_hurt,RetNet_pure_loss,RetNet_helped,RetNet_hurt,HGRN2_pure_loss,HGRN2_helped,HGRN2_hurt\\\\r\\\\n0,3.423137,0,0,3.505070,0,0,3.428979,0,0\\\\r\\\\n1,3.347848,0,0,3.456544,0,1,3.342849,0,0\\\\r\\\\n2,3.456130,1,0,3.479137,0,0,3.446791,0,0\\\\r\\\\n3,2.973024,0,0,3.004976,0,0,2.914154,0,1\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"doc_id,GDN_pure_loss,GDN_helped,GDN_hurt,RetNet_pure_loss,RetNet_helped,RetNet_hurt,HGRN2_pure_loss,HGRN2_helped,HGRN2_hurt\\r\\n0,3.423137,0,0,3.505070,0,0,3.428979,0,0\\r\\n1,3.347848,0,0,3.456544,0,1,3.342849,0,0\\r\\n2,3.456130,1,0,3.479137,0,0,3.446791,0,0\\r\\n3,2.973024,0,0,3.004976,0,0,2.914154,0,1\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XXH4VowRupGC19pURhZrJc`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "wc -l /root/entrainment_gated_ft/analysis/sample_perplexity_results.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "033ab5a9-3d81-4e11-9314-e9acdefaec42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JBitUfjEfpD2DaP9bKmYFb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 24381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JoMS9kiW7C5XtJ8s4ARMYg`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/lm_eval_clean/1.3b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "82ecc99d-401d-4ea7-b80f-1bb382761b73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JBitUfjEfpD2DaP9bKmYFb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 24381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T02:27:28.534Z_
+
+<details><summary>↩ Tool result · `toolu_01XXH4VowRupGC19pURhZrJc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5154 /root/entrainment_gated_ft/analysis/sample_perplexity_results.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "cb1d2dc7-3f16-4fdf-b851-1de163cf71bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5154 /root/entrainment_gated_ft/analysis/sample_perplexity_results.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"5154 /root/entrainment_gated_ft/analysis/sample_perplexity_results.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T02:27:29.417Z_
+
+<details><summary>↩ Tool result · `toolu_01JoMS9kiW7C5XtJ8s4ARMYg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  5 root root  104 May 19 11:40 .\\ndrwxr-xr-x 10 root root 4096 May 20 01:51 ..\\ndrwxr-xr-x  3 root root   81 May 19 11:39 GDN-h24-1-logsamples\\ndrwxr-xr-x  3 root root   80 May 19 11:38 GDN-h3-1-logsamples\\ndrwxr-xr-x  3 root root   80 May 19 11:40 GDN-h6-1-logsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "0963958d-6a84-4422-a984-2ca94b5ba064",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  5 root root  104 May 19 11:40 .\\\\ndrwxr-xr-x 10 root root 4096 May 20 01:51 ..\\\\ndrwxr-xr-x  3 root root   81 May 19 11:39 GDN-h24-1-logsamples\\\\ndrwxr-xr-x  3 root root   80 May 19 11:38 GDN-h3-1-logsamples\\\\ndrwxr-xr-x  3 root root   80 May 19 11:40 GDN-h6-1-logsamples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  5 root root  104 May 19 11:40 .\\ndrwxr-xr-x 10 root root 4096 May 20 01:51 ..\\ndrwxr-xr-x  3 root root   81 May 19 11:39 GDN-h24-1-logsamples\\ndrwxr-xr-x  3 root root   80 May 19 11:38 GDN-h3-1-logsamples\\ndrwxr-xr-x  3 root root   80 May 19 11:40 GDN-h6-1-logsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the sizes of the key files and get the summary JSON.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "b10871f1-9a54-4792-ba00-2e139bc15cd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqhjpppUePFQh1UznUr5XQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 29220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4374
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JRNAD55SJaGBM2K6r14qfv`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/analysis/sample_perplexity_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "1cd42155-8d77-4ec2-b4ab-7bb79efab2bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqhjpppUePFQh1UznUr5XQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 29220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4374
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T02:27:33.773Z_
+
+<details><summary>↩ Tool result · `toolu_01JRNAD55SJaGBM2K6r14qfv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"phase2_perplexity\\\": {\\n    \\\"per_arch\\\": {\\n      \\\"GDN\\\": {\\n        \\\"n_helped\\\": 462,\\n        \\\"n_hurt\\\": 615,\\n        \\\"helped_mean\\\": 3.3694951250439598,\\n        \\\"helped_median\\\": 3.381838321685791,\\n        \\\"hurt_mean\\\": 3.3382038151345603,\\n        \\\"hurt_median\\\": 3.329054832458496,\\n        \\\"helped_std\\\": 0.3823682017339572,\\n        \\\"hurt_std\\\": 0.36454578631490975,\\n        \\\"U\\\": 148410.0,\\n        \\\"p\\\": 0.20918889018323172,\\n        \\\"r_rb\\\": -0.04466265441875206\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"n_helped\\\": 426,\\n        \\\"n_hurt\\\": 495,\\n        \\\"helped_mean\\\": 3.4432366946493516,\\n        \\\"helped_median\\\": 3.412011504173279,\\n        \\\"hurt_mean\\\": 3.420704110945114,\\n        \\\"hurt_median\\\": 3.4004030227661133,\\n        \\\"helped_std\\\": 0.3818517346223916,\\n        \\\"hurt_std\\\": 0.37388984830392696,\\n        \\\"U\\\": 107210.0,\\n        \\\"p\\\": 0.659319445715385,\\n        \\\"r_rb\\\": -0.01683501683501687\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"n_helped\\\": 548,\\n        \\\"n_hurt\\\": 395,\\n        \\\"helped_mean\\\": 3.3775308388863166,\\n        \\\"helped_median\\\": 3.3708789348602295,\\n        \\\"hurt_mean\\\": 3.3538390660587747,\\n        \\\"hurt_median\\\": 3.3314054012298584,\\n        \\\"helped_std\\\": 0.3714853490681262,\\n        \\\"hurt_std\\\": 0.3634934045283436,\\n        \\\"U\\\": 112999.0,\\n        \\\"p\\\": 0.24785563963631896,\\n        \\\"r_rb\\\": -0.044063568326711655\\n      }\\n    },\\n    \\\"cross_arch_helped\\\": {\\n      \\\"kruskal_wallis_H\\\": 7.810488381645882,\\n      \\\"kruskal_wallis_p\\\": 0.020136036855481716,\\n      \\\"pairwise\\\": {\\n        \\\"GDN_vs_RetNet\\\": {\\n          \\\"U\\\": 88819.0,\\n          \\\"p\\\": 0.01205330727905433,\\n          \\\"r\\\": 0.09742292136658337\\n        },\\n        \\\"GDN_vs_HGRN2\\\": {\\n          \\\"U\\\": 125336.0,\\n          \\\"p\\\": 0.7864076653905396,\\n          \\\"r\\\": 0.009890352956046344\\n        },\\n        \\\"RetNet_vs_HGRN2\\\": {\\n          \\\"U\\\": 127111.0,\\n          \\\"p\\\": 0.0170857310804903,\\n          \\\"r\\\": -0.08898769747438395\\n        }\\n      }\\n    },\\n    \\\"cross_arch_hurt\\\": {\\n      \\\"kruskal_wallis_H\\\": 15.210878763455185,\\n      \\\"kruskal_wallis_p\\\": 0.0004977366770495868\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "89ed8d8f-d2bf-43ee-823d-a2048bd15129",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"phase2_perplexity\\\\\\\": {\\\\n    \\\\\\\"per_arch\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 462,\\\\n        \\\\\\\"n_hurt\\\\\\\": 615,\\\\n        \\\\\\\"helped_mean\\\\\\\": 3.3694951250439598,\\\\n        \\\\\\\"helped_median\\\\\\\": 3.381838321685791,\\\\n        \\\\\\\"hurt_mean\\\\\\\": 3.3382038151345603,\\\\n        \\\\\\\"hurt_median\\\\\\\": 3.329054832458496,\\\\n        \\\\\\\"helped_std\\\\\\\": 0.3823682017339572,\\\\n        \\\\\\\"hurt_std\\\\\\\": 0.36454578631490975,\\\\n        \\\\\\\"U\\\\\\\": 148410.0,\\\\n        \\\\\\\"p\\\\\\\": 0.20918889018323172,\\\\n        \\\\\\\"r_rb\\\\\\\": -0.04466265441875206\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 426,\\\\n        \\\\\\\"n_hurt\\\\\\\": 495,\\\\n        \\\\\\\"helped_mean\\\\\\\": 3.4432366946493516,\\\\n        \\\\\\\"helped_median\\\\\\\": 3.412011504173279,\\\\n        \\\\\\\"hurt_mean\\\\\\\": 3.420704110945114,\\\\n        \\\\\\\"hurt_median\\\\\\\": 3.4004030227661133,\\\\n        \\\\\\\"helped_std\\\\\\\": 0.3818517346223916,\\\\n        \\\\\\\"hurt_std\\\\\\\": 0.37388984830392696,\\\\n        \\\\\\\"U\\\\\\\": 107210.0,\\\\n        \\\\\\\"p\\\\\\\": 0.659319445715385,\\\\n        \\\\\\\"r_rb\\\\\\\": -0.01683501683501687\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 548,\\\\n        \\\\\\\"n_hurt\\\\\\\": 395,\\\\n        \\\\\\\"helped_mean\\\\\\\": 3.3775308388863166,\\\\n        \\\\\\\"helped_median\\\\\\\": 3.3708789348602295,\\\\n        \\\\\\\"hurt_mean\\\\\\\": 3.3538390660587747,\\\\n        \\\\\\\"hurt_median\\\\\\\": 3.3314054012298584,\\\\n        \\\\\\\"helped_std\\\\\\\": 0.3714853490681262,\\\\n        \\\\\\\"hurt_std\\\\\\\": 0.3634934045283436,\\\\n        \\\\\\\"U\\\\\\\": 112999.0,\\\\n        \\\\\\\"p\\\\\\\": 0.24785563963631896,\\\\n        \\\\\\\"r_rb\\\\\\\": -0.044063568326711655\\\\n      }\\\\n    },\\\\n    \\\\\\\"cross_arch_helped\\\\\\\": {\\\\n      \\\\\\\"kruskal_wallis_H\\\\\\\": 7.810488381645882,\\\\n      \\\\\\\"kruskal_wallis_p\\\\\\\": 0.020136036855481716,\\\\n      \\\\\\\"pairwise\\\\\\\": {\\\\n        \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n          \\\\\\\"U\\\\\\\": 88819.0,\\\\n          \\\\\\\"p\\\\\\\": 0.01205330727905433,\\\\n          \\\\\\\"r\\\\\\\": 0.09742292136658337\\\\n        },\\\\n        \\\\\\\"GDN_vs_HGRN2\\\\\\\": {\\\\n          \\\\\\\"U\\\\\\\": 125336.0,\\\\n          \\\\\\\"p\\\\\\\": 0.7864076653905396,\\\\n          \\\\\\\"r\\\\\\\": 0.009890352956046344\\\\n        },\\\\n        \\\\\\\"RetNet_vs_HGRN2\\\\\\\": {\\\\n          \\\\\\\"U\\\\\\\": 127111.0,\\\\n          \\\\\\\"p\\\\\\\": 0.0170857310804903,\\\\n          \\\\\\\"r\\\\\\\": -0.08898769747438395\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"cross_arch_hurt\\\\\\\": {\\\\n      \\\\\\\"kruskal_wallis_H\\\\\\\": 15.210878763455185,\\\\n      \\\\\\\"kruskal_wallis_p\\\\\\\": 0.0004977366770495868\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"phase2_perplexity\\\": {\\n    \\\"per_arch\\\": {\\n      \\\"GDN\\\": {\\n        \\\"n_helped\\\": 462,\\n        \\\"n_hurt\\\": 615,\\n        \\\"helped_mean\\\": 3.3694951250439598,\\n        \\\"helped_median\\\": 3.381838321685791,\\n        \\\"hurt_mean\\\": 3.3382038151345603,\\n        \\\"hurt_median\\\": 3.329054832458496,\\n        \\\"helped_std\\\": 0.3823682017339572,\\n        \\\"hurt_std\\\": 0.36454578631490975,\\n        \\\"U\\\": 148410.0,\\n        \\\"p\\\": 0.20918889018323172,\\n        \\\"r_rb\\\": -0.04466265441875206\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"n_helped\\\": 426,\\n        \\\"n_hurt\\\": 495,\\n        \\\"helped_mean\\\": 3.4432366946493516,\\n        \\\"helped_median\\\": 3.412011504173279,\\n        \\\"hurt_mean\\\": 3.420704110945114,\\n        \\\"hurt_median\\\": 3.4004030227661133,\\n        \\\"helped_std\\\": 0.3818517346223916,\\n        \\\"hurt_std\\\": 0.37388984830392696,\\n        \\\"U\\\": 107210.0,\\n        \\\"p\\\": 0.659319445715385,\\n        \\\"r_rb\\\": -0.01683501683501687\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"n_helped\\\": 548,\\n        \\\"n_hurt\\\": 395,\\n        \\\"helped_mean\\\": 3.3775308388863166,\\n        \\\"helped_median\\\": 3.3708789348602295,\\n        \\\"hurt_mean\\\": 3.3538390660587747,\\n        \\\"hurt_median\\\": 3.3314054012298584,\\n        \\\"helped_std\\\": 0.3714853490681262,\\n        \\\"hurt_std\\\": 0.3634934045283436,\\n        \\\"U\\\": 112999.0,\\n        \\\"p\\\": 0.24785563963631896,\\n        \\\"r_rb\\\": -0.044063568326711655\\n      }\\n    },\\n    \\\"cross_arch_helped\\\": {\\n      \\\"kruskal_wallis_H\\\": 7.810488381645882,\\n      \\\"kruskal_wallis_p\\\": 0.020136036855481716,\\n      \\\"pairwise\\\": {\\n        \\\"GDN_vs_RetNet\\\": {\\n          \\\"U\\\": 88819.0,\\n          \\\"p\\\": 0.01205330727905433,\\n          \\\"r\\\": 0.09742292136658337\\n        },\\n        \\\"GDN_vs_HGRN2\\\": {\\n          \\\"U\\\": 125336.0,\\n          \\\"p\\\": 0.7864076653905396,\\n          \\\"r\\\": 0.009890352956046344\\n        },\\n        \\\"RetNet_vs_HGRN2\\\": {\\n          \\\"U\\\": 127111.0,\\n          \\\"p\\\": 0.0170857310804903,\\n          \\\"r\\\": -0.08898769747438395\\n        }\\n      }\\n    },\\n    \\\"cross_arch_hurt\\\": {\\n      \\\"kruskal_wallis_H\\\": 15.210878763455185,\\n      \\\"kruskal_wallis_p\\\": 0.0004977366770495868\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0167PLMNjyxo1MTCUbAYqv9t`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "du -sh /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1.json /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "b88e1a2a-6887-40b5-9fc2-0ee53c4f5382",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqhjpppUePFQh1UznUr5XQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 29220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4374
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T02:27:36.241Z_
+
+<details><summary>↩ Tool result · `toolu_0167PLMNjyxo1MTCUbAYqv9t`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"127M\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json\\n127M\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json\\n127M\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json\\n127M\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json\\n127M\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\\n\", \"stderr\": \"du: cannot access '/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1.json': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "23b2441d-3504-49d6-80ed-59a49e4ed803",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"127M\\\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json\\\\n127M\\\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json\\\\n127M\\\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json\\\\n127M\\\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json\\\\n127M\\\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\\\\n\\\", \\\"stderr\\\": \\\"du: cannot access '/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"127M\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json\\n127M\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json\\n127M\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json\\n127M\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json\\n127M\\t/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\\n\", \"stderr\": \"du: cannot access '/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1.json': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JjasGDiGSjzMKoTAzyRmU6`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -3 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_lambada_only.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "340d356c-fb4e-4b7e-8125-ded94ea9a808",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PqhjpppUePFQh1UznUr5XQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4374,
+      "cache_read_input_tokens": 29220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4374
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T02:27:37.270Z_
+
+<details><summary>↩ Tool result · `toolu_01JjasGDiGSjzMKoTAzyRmU6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"lambada_openai\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "6a1093ab-3c25-4587-ba6d-482009ca201d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"lambada_openai\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"lambada_openai\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The GDN hybrid-3-1 log_samples file doesn't exist at the top-level, but it exists in the `1.3b/GDN-h3-1-logsamples/` subdirectory. Let me check its size.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "0e28b5f4-8469-4725-aa38-fc1b025f8c70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HzivBcJnw6gwSE6L1vAJ7w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2447,
+      "cache_read_input_tokens": 33594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2447
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+GDN hybrid-3-1 的 log_samples 不在顶层目录，在子目录里。让我确认。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "c5e2561a-1d76-4c9b-b304-a84bba49ff98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HzivBcJnw6gwSE6L1vAJ7w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2447,
+      "cache_read_input_tokens": 33594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2447
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UuXEUDWvR1AqUNCAQpyE8a`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "du -sh /root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/1.3B-100B-GatedDeltaNet-hybrid-3-1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "1614a534-1d00-4de6-a35c-3d61987e7a68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HzivBcJnw6gwSE6L1vAJ7w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2447,
+      "cache_read_input_tokens": 33594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2447
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T02:27:43.878Z_
+
+<details><summary>↩ Tool result · `toolu_01UuXEUDWvR1AqUNCAQpyE8a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12K\\t/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "dfd7ac98-beac-43fb-8e50-3d6ff60ec673",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"12K\\\\t/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"12K\\t/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D7pzTw2QRZxqZLZmWqgosZ`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "python3 -c \"import json; d=json.load(open('/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json')); tasks=list(d.get('samples',{}).keys()) if 'samples' in d else list(d.keys()); print('keys:', tasks[:10])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "be4b37c0-0d6b-4a75-8ac3-e3ea149a2cfb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HzivBcJnw6gwSE6L1vAJ7w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2447,
+      "cache_read_input_tokens": 33594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2447
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T02:27:44.508Z_
+
+<details><summary>↩ Tool result · `toolu_01D7pzTw2QRZxqZLZmWqgosZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "10735359-4cfc-4135-b55a-b83bd7b6c732",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R7x7hkBKHhK97EAwdoWYZx`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "wc -l /root/entrainment_gated_ft/analysis/lambada_per_example.csv /root/entrainment_gated_ft/analysis/lambada_matched_per_example.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "a02d7b1e-bb43-4059-abe7-52e89bbad6a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HzivBcJnw6gwSE6L1vAJ7w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2447,
+      "cache_read_input_tokens": 33594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2447
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T02:27:46.314Z_
+
+<details><summary>↩ Tool result · `toolu_01R7x7hkBKHhK97EAwdoWYZx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  5162 /root/entrainment_gated_ft/analysis/lambada_per_example.csv\\n  5162 /root/entrainment_gated_ft/analysis/lambada_matched_per_example.csv\\n 10324 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "b34acd7b-f49b-4328-9bd0-10f6700a4c9c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  5162 /root/entrainment_gated_ft/analysis/lambada_per_example.csv\\\\n  5162 /root/entrainment_gated_ft/analysis/lambada_matched_per_example.csv\\\\n 10324 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  5162 /root/entrainment_gated_ft/analysis/lambada_per_example.csv\\n  5162 /root/entrainment_gated_ft/analysis/lambada_matched_per_example.csv\\n 10324 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AQhhamDzMVE3iaJVyhmc74`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "python3 -c \"import json; d=json.load(open('/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json')); print(list(d.keys())[:10])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "9b6a5274-e8af-43e6-9573-af626f7f0afb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEiCohFoCGxARrQEXtt1Wx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 36041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T02:27:50.286Z_
+
+<details><summary>↩ Tool result · `toolu_01AQhhamDzMVE3iaJVyhmc74`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "fed59ed2-30f5-4848-8fc1-55fcb5e026e8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RLuJDbJGXbh1JnbMtQLJBn`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/1.3B-100B-GatedDeltaNet-hybrid-3-1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "4b551c89-0430-4335-9927-ea38d383d776",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEiCohFoCGxARrQEXtt1Wx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 36041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AST8fnCMx1CMa6SQk9sgjA`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -1 /root/entrainment_gated_ft/analysis/lambada_per_example.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "8fa539bb-b999-466c-b05f-cebe886ec709",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEiCohFoCGxARrQEXtt1Wx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 36041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T02:27:51.994Z_
+
+<details><summary>↩ Tool result · `toolu_01RLuJDbJGXbh1JnbMtQLJBn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "7ebc9ab1-1b3b-4588-ab82-9fb752959afb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T02:27:52.866Z_
+
+<details><summary>↩ Tool result · `toolu_01AST8fnCMx1CMa6SQk9sgjA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"doc_id,context_length,target,gdn_pure_acc,gdn_pure_lp,gdn_h12_acc,gdn_h12_lp,hgrn2_pure_acc,hgrn2_pure_lp,hgrn2_h3_acc,hgrn2_h3_lp\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "3791039e-df11-49ca-80d2-d848ffc6fb54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,context_length,target,gdn_pure_acc,gdn_pure_lp,gdn_h12_acc,gdn_h12_lp,hgrn2_pure_acc,hgrn2_pure_lp,hgrn2_h3_acc,hgrn2_h3_lp\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"doc_id,context_length,target,gdn_pure_acc,gdn_pure_lp,gdn_h12_acc,gdn_h12_lp,hgrn2_pure_acc,hgrn2_pure_lp,hgrn2_h3_acc,hgrn2_h3_lp\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also check the top-level JSON structure more carefully. The pure model JSONs are ~127MB each, which is consistent with full lm-eval --log_samples output (all benchmarks). The `_lambada_only.json` is 7.9MB which is LAMBADA-specific. Let me also check if the GDN hybrid-3-1 results JSON exists at the top level (I see `1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json` which is just the results, not samples).
+
+Let me also check exp011 directory which seems to have all 6 models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "183934dd-d4ad-4ffd-a772-9c8cf5bc2b59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xqgktVN4cQtA519HNpQdf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 37077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GaBphwSq41Aw3frcCvBLGd`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "du -sh /root/entrainment_gated_ft/lm_eval_clean/exp011/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "4443b924-4b02-4691-aa7f-09773ab8f957",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xqgktVN4cQtA519HNpQdf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 37077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T02:28:00.100Z_
+
+<details><summary>↩ Tool result · `toolu_01GaBphwSq41Aw3frcCvBLGd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"952K\\t/root/entrainment_gated_ft/lm_eval_clean/exp011/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "cfebc2d2-6a69-4e3d-bf28-baa84cd0bd54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"952K\\\\t/root/entrainment_gated_ft/lm_eval_clean/exp011/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"952K\\t/root/entrainment_gated_ft/lm_eval_clean/exp011/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WF5RCDRkAiT48g6P5XbPap`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -lh /root/entrainment_gated_ft/lm_eval_clean/exp011/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "0411cccc-4aac-4ff8-bf6e-d0c3ed60dbb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xqgktVN4cQtA519HNpQdf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 37077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YXgJQEJYG17nqJtELG3JfX`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -5 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_lambada_only.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "7e91b7d0-5c9c-4324-a649-fd268e5dd41b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xqgktVN4cQtA519HNpQdf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 37077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T02:28:01.123Z_
+
+<details><summary>↩ Tool result · `toolu_01WF5RCDRkAiT48g6P5XbPap`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 948K\\n-rw-r--r-- 1 root root  15K May 19 22:49 1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root  15K May 19 22:42 1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:01 1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root  15K May 19 22:56 1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root  15K May 19 22:31 1.3B-100B-GatedDeltaNet-pure.json\\n-rw-r--r-- 1 root root  15K May 19 23:52 1.3B-100B-HGRN2-hybrid-12-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:46 1.3B-100B-HGRN2-hybrid-24-1.json\\n-rw-r--r-- 1 root root  15K May 20 00:05 1.3B-100B-HGRN2-hybrid-3-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:59 1.3B-100B-HGRN2-hybrid-6-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:39 1.3B-100B-HGRN2-pure.json\\n-rw-r--r-- 1 root root  15K May 19 23:20 1.3B-100B-RetNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:13 1.3B-100B-RetNet-hybrid-24-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:33 1.3B-100B-RetNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:27 1.3B-100B-RetNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:07 1.3B-100B-RetNet-pure.json\\n-rw-r--r-- 1 root root 691K May 20 00:11 run_all.log\\n-rw-r--r-- 1 root root  15K May 20 00:11 transformer_1.3B_baseline.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "581bf1de-1479-41d8-8d7b-c8853dd62dc3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 948K\\\\n-rw-r--r-- 1 root root  15K May 19 22:49 1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 22:42 1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 23:01 1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 22:56 1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 22:31 1.3B-100B-GatedDeltaNet-pure.json\\\\n-rw-r--r-- 1 root root  15K May 19 23:52 1.3B-100B-HGRN2-hybrid-12-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 23:46 1.3B-100B-HGRN2-hybrid-24-1.json\\\\n-rw-r--r-- 1 root root  15K May 20 00:05 1.3B-100B-HGRN2-hybrid-3-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 23:59 1.3B-100B-HGRN2-hybrid-6-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 23:39 1.3B-100B-HGRN2-pure.json\\\\n-rw-r--r-- 1 root root  15K May 19 23:20 1.3B-100B-RetNet-hybrid-12-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 23:13 1.3B-100B-RetNet-hybrid-24-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 23:33 1.3B-100B-RetNet-hybrid-3-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 23:27 1.3B-100B-RetNet-hybrid-6-1.json\\\\n-rw-r--r-- 1 root root  15K May 19 23:07 1.3B-100B-RetNet-pure.json\\\\n-rw-r--r-- 1 root root 691K May 20 00:11 run_all.log\\\\n-rw-r--r-- 1 root root  15K May 20 00:11 transformer_1.3B_baseline.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 948K\\n-rw-r--r-- 1 root root  15K May 19 22:49 1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root  15K May 19 22:42 1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:01 1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root  15K May 19 22:56 1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root  15K May 19 22:31 1.3B-100B-GatedDeltaNet-pure.json\\n-rw-r--r-- 1 root root  15K May 19 23:52 1.3B-100B-HGRN2-hybrid-12-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:46 1.3B-100B-HGRN2-hybrid-24-1.json\\n-rw-r--r-- 1 root root  15K May 20 00:05 1.3B-100B-HGRN2-hybrid-3-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:59 1.3B-100B-HGRN2-hybrid-6-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:39 1.3B-100B-HGRN2-pure.json\\n-rw-r--r-- 1 root root  15K May 19 23:20 1.3B-100B-RetNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:13 1.3B-100B-RetNet-hybrid-24-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:33 1.3B-100B-RetNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:27 1.3B-100B-RetNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root  15K May 19 23:07 1.3B-100B-RetNet-pure.json\\n-rw-r--r-- 1 root root 691K May 20 00:11 run_all.log\\n-rw-r--r-- 1 root root  15K May 20 00:11 transformer_1.3B_baseline.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T02:28:01.991Z_
+
+<details><summary>↩ Tool result · `toolu_01YXgJQEJYG17nqJtELG3JfX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"lambada_openai\\\": {\\n      \\\"name\\\": \\\"lambada_openai\\\",\\n      \\\"alias\\\": \\\"lambada_openai\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "bedc82ce-915b-459f-ab47-6204d06469ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"lambada_openai\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"lambada_openai\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"lambada_openai\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"lambada_openai\\\": {\\n      \\\"name\\\": \\\"lambada_openai\\\",\\n      \\\"alias\\\": \\\"lambada_openai\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me also check the GDN hybrid-3-1 in the top-level lm_eval_clean — the `1.3B-100B-GatedDeltaNet-hybrid-12-1.json` exists (132MB), but `1.3B-100B-GatedDeltaNet-hybrid-3-1.json` doesn't exist at the top level. It only has `_results.json` (14KB, just scores).
+
+The `1.3b/GDN-h3-1-logsamples/` directory has the file but it's only 12K — that's also just results, not log_samples.
+ 
+So the large top-level JSON files should contain the actual per-example log_samples data from lm-eval, while the `_results.json` and `_lambada_only.json` files are just aggregated scores. The `_lambada_only.json` at 7.9MB is surprisingly large for just results, so I should verify what's actually in these files to understand the data structure. I'm confirming the hybrid model files at the top level—GatedDeltaNet hybrid-12-1 is there at 132MB, and RetNet hybrid-3-1 is also present at 132MB.  But GatedDeltaNet hybrid-3-1 only has a results file (14KB), not the full log_samples, even though there's a 12K file in the subdirectory.
+
+The analysis still completed though — sample_perplexity_results.csv has 5154 lines with per-example loss and accuracy data across all three architectures, and lambada_per_example.csv contains context length and target information with per-model metrics.
+
+I notice the column names show `gdn_h12` rather than `gdn_h3`, so the comparison used h12-1 for GDN and h3-1 for HGRN2. The sample_perplexity_results.csv has 5153 data rows matching LAMBADA OpenAI's test set size, which checks out.
+
+Now I need to figure out whether the analysis actually used GDN hybrid-3-1 log_samples or if it relied on a different checkpoint.
+
+Looking at the summary JSON, I can see the helped/hurt comparison metrics for each architecture — GDN shows 462 helped versus 615 hurt with a p-value of 0.209, while RetNet has 426 helped and 495 hurt. Let me examine the full summary to understand the complete picture before writing this up.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "84b3acb5-817e-4905-9b66-0ee3c486b889",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFoSVmyPQoSVD4kNiuKwit",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1789,
+      "cache_read_input_tokens": 37914,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1789
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+数据收集完毕，写报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "0285afcd-7e90-47e7-8300-47bb45214367",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFoSVmyPQoSVD4kNiuKwit",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1789,
+      "cache_read_input_tokens": 37914,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1789
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0136Nanvw4tQqXDB9T31HRLz`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "820d7e01-813d-4d06-935b-e9199488bd23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NFoSVmyPQoSVD4kNiuKwit",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1789,
+      "cache_read_input_tokens": 37914,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1789
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T02:28:36.890Z_
+
+<details><summary>↩ Tool result · `toolu_0136Nanvw4tQqXDB9T31HRLz`</summary>
+
+```text
+__pycache__
+_project
+d009_assessment.md
+dream_reports
+eval_composition.py
+eval_composition_modified.py
+exp-001
+exp-003
+exp-003-p2
+exp-004
+exp-007
+exp007_data_check.md
+exp007_script_ready.md
+lm_eval_1.3b_results.md
+manifest.yaml
+null_jaccard_results.json
+paper_agent_inputs.md
+paper_data
+per_example_data_audit.md
+synthetic_task_design.md
+wang_7b_search_results.md
+wang_et_al_analysis.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "7e355324-bcd5-48ab-995e-9a13e0f6f7fa",
+  "tool_use_result": {
+    "stdout": "__pycache__\n_project\nd009_assessment.md\ndream_reports\neval_composition.py\neval_composition_modified.py\nexp-001\nexp-003\nexp-003-p2\nexp-004\nexp-007\nexp007_data_check.md\nexp007_script_ready.md\nlm_eval_1.3b_results.md\nmanifest.yaml\nnull_jaccard_results.json\npaper_agent_inputs.md\npaper_data\nper_example_data_audit.md\nsynthetic_task_design.md\nwang_7b_search_results.md\nwang_et_al_analysis.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — Write · `toolu_019AFgo8x8uLWfjvbvtkGxSv`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/exp003_p2_data_check.md",
+  "content": "# exp-003-p2 数据完整性检查\n\n检查时间: 2026-05-20\n\n## 1. Pure 模型 log_samples (1.3B)\n\n全部存在，均为 lm-eval `--log_samples` 全 benchmark 输出（含 per-example logprob）：\n\n| 模型 | 文件路径 | 大小 |\n|------|----------|------|\n| GatedDeltaNet-pure | `lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json` | 127M |\n| RetNet-pure | `lm_eval_clean/1.3B-100B-RetNet-pure.json` | 127M |\n| HGRN2-pure | `lm_eval_clean/1.3B-100B-HGRN2-pure.json` | 127M |\n\n另有 GDN-pure LAMBADA-only 结果文件: `1.3B-100B-GatedDeltaNet-pure_lambada_only.json` (7.6M)，格式为 results（非 per-example samples）。\n\n## 2. H3-1 (hybrid-3-1) 模型 log_samples (1.3B)\n\n| 模型 | 文件路径 | 大小 | 状态 |\n|------|----------|------|------|\n| GatedDeltaNet h3-1 | 顶层无 log_samples，仅 `_results.json` (14K) | — | **缺失** |\n| RetNet h3-1 | `lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json` | 127M | 存在 |\n| HGRN2 h3-1 | `lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json` | 127M | 存在 |\n\n**注意**: GDN h3-1 的 log_samples 缺失。`1.3b/GDN-h3-1-logsamples/` 下有一个 12K 文件，是 results 格式（非 per-example）。顶层 `1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json` 也仅是聚合 scores。\n\nGDN **h12-1** 的 log_samples 存在: `1.3B-100B-GatedDeltaNet-hybrid-12-1.json` (127M)。\n\n## 3. exp-003-p2 分析脚本和输出\n\n| 文件 | 存在 | 详情 |\n|------|------|------|\n| `analysis/sample_perplexity_analysis.py` | ✓ | 12K, 2026-05-19 22:06 |\n| `analysis/sample_perplexity_results.csv` | ✓ | 226K, 5154 行 (header + 5153 examples = LAMBADA 全集) |\n| `analysis/sample_perplexity_summary.json` | ✓ | 统计检验结果 |\n| `analysis/sample_perplexity_figure.pdf` | ✓ | 可视化 |\n| `analysis/lambada_per_example.csv` | ✓ | 5162 行, 列含 `gdn_h12` (非 h3) |\n| `analysis/lambada_matched_per_example.csv` | ✓ | 5162 行, matched comparison |\n\n### sample_perplexity_results.csv 字段\n```\ndoc_id, GDN_pure_loss, GDN_helped, GDN_hurt, RetNet_pure_loss, RetNet_helped, RetNet_hurt, HGRN2_pure_loss, HGRN2_helped, HGRN2_hurt\n```\n\n### 统计检验结果 (summary.json)\n- GDN: helped=462, hurt=615, Mann-Whitney p=0.209 (不显著)\n- RetNet: helped=426, hurt=495, p=0.659 (不显著)\n- HGRN2: helped=548, hurt=395, p=0.248 (不显著)\n- 结论: within-arch helped vs hurt perplexity 差异不显著\n\n### lambada_per_example.csv 注意\n列名使用 `gdn_h12`（hybrid-12-1）而非 `gdn_h3`（hybrid-3-1），说明 **GDN 的 per-example 分析使用了 h12-1 作为 hybrid baseline**，可能因为 h3-1 log_samples 缺失。\n\n## 4. 结论\n\n| 项 | 状态 |\n|----|------|\n| Pure 模型 log_samples | ✅ 3/3 完整 |\n| H3-1 模型 log_samples | ⚠️ 2/3 (GDN h3-1 缺失，分析用了 h12-1 替代) |\n| 分析脚本和结果 | ✅ 完整，5153 examples 覆盖 LAMBADA 全集 |\n| 是否需要重跑 GPU inference | **视需求而定** — 如果要求 GDN 也用 h3-1 做 per-example 对比（与 RetNet/HGRN2 一致），需补跑 GDN h3-1 的 `--log_samples` eval；如果接受用 h12-1 作为 GDN hybrid baseline，则现有数据已足够 |\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "4e9134de-fe77-47dd-a673-261ba1ee122a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015B4t1gNyNjxgwbXUhQHtSd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2125,
+      "cache_read_input_tokens": 39703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2125
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T02:29:01.473Z_
+
+<details><summary>↩ Tool result · `toolu_019AFgo8x8uLWfjvbvtkGxSv`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/exp003_p2_data_check.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "7d7d6a02-dc34-42c1-b837-5749d104f247",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/exp003_p2_data_check.md",
+    "content": "# exp-003-p2 数据完整性检查\n\n检查时间: 2026-05-20\n\n## 1. Pure 模型 log_samples (1.3B)\n\n全部存在，均为 lm-eval `--log_samples` 全 benchmark 输出（含 per-example logprob）：\n\n| 模型 | 文件路径 | 大小 |\n|------|----------|------|\n| GatedDeltaNet-pure | `lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json` | 127M |\n| RetNet-pure | `lm_eval_clean/1.3B-100B-RetNet-pure.json` | 127M |\n| HGRN2-pure | `lm_eval_clean/1.3B-100B-HGRN2-pure.json` | 127M |\n\n另有 GDN-pure LAMBADA-only 结果文件: `1.3B-100B-GatedDeltaNet-pure_lambada_only.json` (7.6M)，格式为 results（非 per-example samples）。\n\n## 2. H3-1 (hybrid-3-1) 模型 log_samples (1.3B)\n\n| 模型 | 文件路径 | 大小 | 状态 |\n|------|----------|------|------|\n| GatedDeltaNet h3-1 | 顶层无 log_samples，仅 `_results.json` (14K) | — | **缺失** |\n| RetNet h3-1 | `lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json` | 127M | 存在 |\n| HGRN2 h3-1 | `lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json` | 127M | 存在 |\n\n**注意**: GDN h3-1 的 log_samples 缺失。`1.3b/GDN-h3-1-logsamples/` 下有一个 12K 文件，是 results 格式（非 per-example）。顶层 `1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json` 也仅是聚合 scores。\n\nGDN **h12-1** 的 log_samples 存在: `1.3B-100B-GatedDeltaNet-hybrid-12-1.json` (127M)。\n\n## 3. exp-003-p2 分析脚本和输出\n\n| 文件 | 存在 | 详情 |\n|------|------|------|\n| `analysis/sample_perplexity_analysis.py` | ✓ | 12K, 2026-05-19 22:06 |\n| `analysis/sample_perplexity_results.csv` | ✓ | 226K, 5154 行 (header + 5153 examples = LAMBADA 全集) |\n| `analysis/sample_perplexity_summary.json` | ✓ | 统计检验结果 |\n| `analysis/sample_perplexity_figure.pdf` | ✓ | 可视化 |\n| `analysis/lambada_per_example.csv` | ✓ | 5162 行, 列含 `gdn_h12` (非 h3) |\n| `analysis/lambada_matched_per_example.csv` | ✓ | 5162 行, matched comparison |\n\n### sample_perplexity_results.csv 字段\n```\ndoc_id, GDN_pure_loss, GDN_helped, GDN_hurt, RetNet_pure_loss, RetNet_helped, RetNet_hurt, HGRN2_pure_loss, HGRN2_helped, HGRN2_hurt\n```\n\n### 统计检验结果 (summary.json)\n- GDN: helped=462, hurt=615, Mann-Whitney p=0.209 (不显著)\n- RetNet: helped=426, hurt=495, p=0.659 (不显著)\n- HGRN2: helped=548, hurt=395, p=0.248 (不显著)\n- 结论: within-arch helped vs hurt perplexity 差异不显著\n\n### lambada_per_example.csv 注意\n列名使用 `gdn_h12`（hybrid-12-1）而非 `gdn_h3`（hybrid-3-1），说明 **GDN 的 per-example 分析使用了 h12-1 作为 hybrid baseline**，可能因为 h3-1 log_samples 缺失。\n\n## 4. 结论\n\n| 项 | 状态 |\n|----|------|\n| Pure 模型 log_samples | ✅ 3/3 完整 |\n| H3-1 模型 log_samples | ⚠️ 2/3 (GDN h3-1 缺失，分析用了 h12-1 替代) |\n| 分析脚本和结果 | ✅ 完整，5153 examples 覆盖 LAMBADA 全集 |\n| 是否需要重跑 GPU inference | **视需求而定** — 如果要求 GDN 也用 h3-1 做 per-example 对比（与 RetNet/HGRN2 一致），需补跑 GDN h3-1 的 `--log_samples` eval；如果接受用 h12-1 作为 GDN hybrid baseline，则现有数据已足够 |\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+报告已写入 `artifacts/exp003_p2_data_check.md`。
+
+核心发现：
+- **Pure 模型 log_samples**: 3/3 完整（GDN/RetNet/HGRN2，各 127MB）
+- **H3-1 模型 log_samples**: 2/3 — RetNet 和 HGRN2 存在，**GDN h3-1 缺失**（只有 14K 的聚合 results，无 per-example 数据）
+- **分析结果**: 完整，5153 examples 覆盖 LAMBADA 全集。但 `lambada_per_example.csv` 中 GDN 用的是 **h12-1**（非 h3-1）做 hybrid baseline，可能正是因为 h3-1 log_samples 缺失
+- **统计结论不变**: 三个 arch 的 helped vs hurt perplexity 差异均不显著（p=0.21/0.66/0.25）
+
+如果要求三个 arch 统一用 h3-1 对比，需补跑 GDN h3-1 的 `--log_samples` eval。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "uuid": "37931d83-b6df-4783-b873-00bb4cc6eafa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8YvhHaMGUnuNRhzXmtKEt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1664,
+      "cache_read_input_tokens": 41828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1664
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 56_
+
+报告已写入 `artifacts/exp003_p2_data_check.md`。
+
+核心发现：
+- **Pure 模型 log_samples**: 3/3 完整（GDN/RetNet/HGRN2，各 127MB）
+- **H3-1 模型 log_samples**: 2/3 — RetNet 和 HGRN2 存在，**GDN h3-1 缺失**（只有 14K 的聚合 results，无 per-example 数据）
+- **分析结果**: 完整，5153 examples 覆盖 LAMBADA 全集。但 `lambada_per_example.csv` 中 GDN 用的是 **h12-1**（非 h3-1）做 hybrid baseline，可能正是因为 h3-1 log_samples 缺失
+- **统计结论不变**: 三个 arch 的 helped vs hurt perplexity 差异均不显著（p=0.21/0.66/0.25）
+
+如果要求三个 arch 统一用 h3-1 对比，需补跑 GDN h3-1 的 `--log_samples` eval。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 124194,
+  "duration_api_ms": 117901,
+  "num_turns": 22,
+  "stop_reason": "end_turn",
+  "session_id": "c91f2e3f-4cdb-492c-b560-620091ae77fe",
+  "total_cost_usd": 0.53862975,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 31651,
+    "cache_read_input_tokens": 315514,
+    "output_tokens": 7258,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 31651,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 322,
+        "cache_read_input_tokens": 41828,
+        "cache_creation_input_tokens": 1664,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1664
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1454,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001534,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 7258,
+      "cacheReadInputTokens": 315514,
+      "cacheCreationInputTokens": 31651,
+      "webSearchRequests": 0,
+      "costUSD": 0.53709575,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "99d553fe-3b33-48ea-86c0-c0b3f48cd602"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,3770 @@
+# analysis exp015 scs validation
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 80
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/workers/worker_analysis_exp015_scs_validation_20260515T152134.log`
+- **Structured JSON:** [`c1da2f4017b3587637a5.json`](../../sessions/c1/c1da2f4017b3587637a5.json)
+
+## Before a recorded user message
+
+80 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "fb37ddd6-2432-4f87-88c0-060a006a74e7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778875200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "06830168-d896-404e-a7f1-8143d1797d19",
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by connecting to the server to explore the available data files, then write and run the analysis script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "07b303df-2ad4-4c88-945f-4d4611849280",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wd7U845czFXN8z1WQop8nk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11424,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11424
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先上服务器看数据文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "ecdf4bd2-f1c5-4958-bd06-b07d660f41b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wd7U845czFXN8z1WQop8nk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11424,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11424
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CGRXyzfqJqNtzGWmW5gR3Z`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "97f1d06c-b0e3-4f2c-b545-52f46335f8ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wd7U845czFXN8z1WQop8nk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11424,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11424
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T15:21:47.040Z_
+
+<details><summary>↩ Tool result · `toolu_01CGRXyzfqJqNtzGWmW5gR3Z`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "7a106be9-f09d-43ee-b1aa-c271a479e14e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012ZByJ6LNJ8HfZF72uosTVv`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/*sim*matrix* /root/schema-dag-extraction/artifacts/*embeddings* /root/schema-dag-extraction/artifacts/*confusion* /root/schema-dag-extraction/artifacts/*pairwise* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "5e2031e5-7b4d-46d6-9dd7-db1e7e835ad7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCAupsZyfVWWBdLpbVAFyL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 922,
+      "cache_read_input_tokens": 23265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 922
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T15:21:51.244Z_
+
+<details><summary>↩ Tool result · `toolu_012ZByJ6LNJ8HfZF72uosTVv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "15896cef-ce16-4162-91f8-28cf642909b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WSTNGyJHpLZaXnmLYycZTb`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/exp007/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "1aa3323c-15e7-4a9c-9d17-653708a8da8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCAupsZyfVWWBdLpbVAFyL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 922,
+      "cache_read_input_tokens": 23265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 922
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T15:21:52.212Z_
+
+<details><summary>↩ Tool result · `toolu_01WSTNGyJHpLZaXnmLYycZTb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "bfadcd94-791b-4fe0-8872-8bfdee035070",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AADRUZabWT7fxd7K1MS828`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts -name \"*.pt\" -o -name \"*.json\" -o -name \"*.csv\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "3ce60e65-7ec5-4a2e-b391-ba9c7b4eb165",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCAupsZyfVWWBdLpbVAFyL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 922,
+      "cache_read_input_tokens": 23265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 922
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T15:21:52.725Z_
+
+<details><summary>↩ Tool result · `toolu_01AADRUZabWT7fxd7K1MS828`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "24ba9f67-eb95-4e6e-98a1-c27ef025c069",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `-o` flag in find is being treated as a shell metacharacter issue. Let me try without stderr redirection and without `-o` flags.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "db95d387-bbe5-4f86-a2bb-e17ecfb646b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0185kbthrEgXDcXWMzg2Biou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 24187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Shell metacharacters blocked. Let me adjust the commands.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "0f4754dc-10c0-43ab-88ec-4a55f47d83c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0185kbthrEgXDcXWMzg2Biou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 24187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Au7UtYQhCXgmZBLywdmRbi`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "f1ce9daf-9466-4f75-be15-a2d594b92b52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0185kbthrEgXDcXWMzg2Biou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 24187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015ej1GmTSUewuqZAWFCdzsw`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts -name \"*.pt\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "38e67f76-d5bb-4d41-8f4e-e42bb5b11159",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0185kbthrEgXDcXWMzg2Biou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 24187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T15:21:57.214Z_
+
+<details><summary>↩ Tool result · `toolu_01Au7UtYQhCXgmZBLywdmRbi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"batch_config_dry_run.json\\nbatch_config_exp1.json\\nbatch_config_exp2.json\\nbatch_config_maven_dry_run.json\\nbootstrap_ci.json\\nembedding_ablation_fewnerd.json\\neval_dry_run.json\\neval_exp1.json\\neval_exp2.json\\neval_maven_dry_run.json\\nexp004\\nexp004_exp1.log\\nexp004_exp2.log\\nexp007\\nexp008\\nexp008_dryrun\\nexp008_dryrun2\\nexp008_run.log\\nexp008_run2.log\\nexp008_v2\\nexp012\\nexp_maven_minilm\\nfewnerd_bcs_matrix_minilm.pt\\nfewrel_80rel_error_taxonomy.json\\nfewrel_formal\\nfewrel_formal_full\\nfewrel_pilot\\nfewrel_qwen3_embeddings.pt\\nfewrel_qwen3_sim_matrix.pt\\nmaven_bcs_matrix_qwen3.pt\\nmaven_minilm_embeddings.pt\\nmaven_minilm_pertype_analysis.json\\nmaven_minilm_sim_matrix.pt\\nmaven_type_embeddings_qwen3.pt\\npredictions_dry_run.json\\npredictions_exp1.json\\npredictions_exp2.json\\npredictions_maven_dry_run.json\\nsdgd_v2_validation.json\\nsim_matrix.pt\\ntype_embeddings.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "64a543cb-bf1b-42cb-978e-55509b1e0d31",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"batch_config_dry_run.json\\\\nbatch_config_exp1.json\\\\nbatch_config_exp2.json\\\\nbatch_config_maven_dry_run.json\\\\nbootstrap_ci.json\\\\nembedding_ablation_fewnerd.json\\\\neval_dry_run.json\\\\neval_exp1.json\\\\neval_exp2.json\\\\neval_maven_dry_run.json\\\\nexp004\\\\nexp004_exp1.log\\\\nexp004_exp2.log\\\\nexp007\\\\nexp008\\\\nexp008_dryrun\\\\nexp008_dryrun2\\\\nexp008_run.log\\\\nexp008_run2.log\\\\nexp008_v2\\\\nexp012\\\\nexp_maven_minilm\\\\nfewnerd_bcs_matrix_minilm.pt\\\\nfewrel_80rel_error_taxonomy.json\\\\nfewrel_formal\\\\nfewrel_formal_full\\\\nfewrel_pilot\\\\nfewrel_qwen3_embeddings.pt\\\\nfewrel_qwen3_sim_matrix.pt\\\\nmaven_bcs_matrix_qwen3.pt\\\\nmaven_minilm_embeddings.pt\\\\nmaven_minilm_pertype_analysis.json\\\\nmaven_minilm_sim_matrix.pt\\\\nmaven_type_embeddings_qwen3.pt\\\\npredictions_dry_run.json\\\\npredictions_exp1.json\\\\npredictions_exp2.json\\\\npredictions_maven_dry_run.json\\\\nsdgd_v2_validation.json\\\\nsim_matrix.pt\\\\ntype_embeddings.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"batch_config_dry_run.json\\nbatch_config_exp1.json\\nbatch_config_exp2.json\\nbatch_config_maven_dry_run.json\\nbootstrap_ci.json\\nembedding_ablation_fewnerd.json\\neval_dry_run.json\\neval_exp1.json\\neval_exp2.json\\neval_maven_dry_run.json\\nexp004\\nexp004_exp1.log\\nexp004_exp2.log\\nexp007\\nexp008\\nexp008_dryrun\\nexp008_dryrun2\\nexp008_run.log\\nexp008_run2.log\\nexp008_v2\\nexp012\\nexp_maven_minilm\\nfewnerd_bcs_matrix_minilm.pt\\nfewrel_80rel_error_taxonomy.json\\nfewrel_formal\\nfewrel_formal_full\\nfewrel_pilot\\nfewrel_qwen3_embeddings.pt\\nfewrel_qwen3_sim_matrix.pt\\nmaven_bcs_matrix_qwen3.pt\\nmaven_minilm_embeddings.pt\\nmaven_minilm_pertype_analysis.json\\nmaven_minilm_sim_matrix.pt\\nmaven_type_embeddings_qwen3.pt\\npredictions_dry_run.json\\npredictions_exp1.json\\npredictions_exp2.json\\npredictions_maven_dry_run.json\\nsdgd_v2_validation.json\\nsim_matrix.pt\\ntype_embeddings.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JbBG1epBnVK4tf63LZBzHL`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "c9b41e31-7759-462c-be74-d94679fecbc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0185kbthrEgXDcXWMzg2Biou",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 24187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T15:21:57.768Z_
+
+<details><summary>↩ Tool result · `toolu_015ej1GmTSUewuqZAWFCdzsw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/type_embeddings.pt\\n/root/schema-dag-extraction/artifacts/maven_type_embeddings_qwen3.pt\\n/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/relation_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\n/root/schema-dag-extraction/artifacts/fewrel_formal/relation_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\\n/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewrel_qwen3_embeddings.pt\\n/root/schema-dag-extraction/artifacts/fewrel_qwen3_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/relation_sim_matrix.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "01d74f4f-78de-47fc-bd3a-2cf48b5c3a10",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/type_embeddings.pt\\\\n/root/schema-dag-extraction/artifacts/maven_type_embeddings_qwen3.pt\\\\n/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/relation_sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/relation_sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\\\\n/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/fewrel_qwen3_embeddings.pt\\\\n/root/schema-dag-extraction/artifacts/fewrel_qwen3_sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/relation_sim_matrix.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/type_embeddings.pt\\n/root/schema-dag-extraction/artifacts/maven_type_embeddings_qwen3.pt\\n/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/relation_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\n/root/schema-dag-extraction/artifacts/fewrel_formal/relation_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/maven_minilm_embeddings.pt\\n/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewrel_qwen3_embeddings.pt\\n/root/schema-dag-extraction/artifacts/fewrel_qwen3_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/relation_sim_matrix.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T15:21:58.274Z_
+
+<details><summary>↩ Tool result · `toolu_01JbBG1epBnVK4tf63LZBzHL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_dry_run.json\\n/root/schema-dag-extraction/artifacts/eval_dry_run.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/eval_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/eval_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp2.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/predictions.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/eval_results.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun/decomposition.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/analysis_summary.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero_min8.json\\n/root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/single_pass_results.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/single_pass_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/random_batch_results.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/random_batch_predictions.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/sdgd_v2_validation.json\\n/root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp1_llama-3.3-70b-fp8.json\\n/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_raw.json\\n/root/schema-dag-extraction/artifacts/fewrel_80rel_error_taxonomy.json\\n/root/schema-dag-extraction/artifacts/bootstrap_ci.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "f9f51ff7-036b-42bf-a21f-f83995903b07",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/predictions_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/eval_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/eval_exp1.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\\\n/root/schema-dag-extraction/artifacts/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/predictions_maven_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/eval_maven_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp1.json\\\\n/root/schema-dag-extraction/artifacts/exp004/predictions_maven_exp1.json\\\\n/root/schema-dag-extraction/artifacts/exp004/eval_maven_exp1.json\\\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp2.json\\\\n/root/schema-dag-extraction/artifacts/exp004/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/exp004/eval_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/predictions.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/eval_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun/decomposition.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_single_pass.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_random_batch.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_per_type.json\\\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/analysis_summary.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero_min8.json\\\\n/root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_sdgd_zero.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_single_pass.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_random_batch.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_per_type.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_sdgd_zero.json\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_single_pass.json\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_per_type.json\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_random_batch.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_sdgd_zero.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_single_pass.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_random_batch.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_per_type.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/sdgd_zero_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/sdgd_zero_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/single_pass_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/single_pass_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/random_batch_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/random_batch_predictions.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/preprocess_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/preprocess_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/predictions_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/sdgd_v2_validation.json\\\\n/root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp1_llama-3.3-70b-fp8.json\\\\n/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_raw.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_80rel_error_taxonomy.json\\\\n/root/schema-dag-extraction/artifacts/bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_dry_run.json\\n/root/schema-dag-extraction/artifacts/eval_dry_run.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/eval_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/eval_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp2.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/predictions.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/eval_results.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun/decomposition.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/analysis_summary.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero_min8.json\\n/root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/single_pass_results.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/single_pass_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/random_batch_results.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/random_batch_predictions.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/sdgd_v2_validation.json\\n/root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp1_llama-3.3-70b-fp8.json\\n/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_raw.json\\n/root/schema-dag-extraction/artifacts/fewrel_80rel_error_taxonomy.json\\n/root/schema-dag-extraction/artifacts/bootstrap_ci.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key files identified:
+
+**Similarity matrices:**
+- `artifacts/sim_matrix.pt` - Qwen3 similarity matrix (Few-NERD)
+- `artifacts/type_embeddings.pt` - Qwen3 type embeddings (Few-NERD)
+- `artifacts/fewnerd_bcs_matrix_minilm.pt` - MiniLM BCS matrix (Few-NERD)
+
+**Confusion data candidates:**
+- `artifacts/exp007/error_taxonomy_raw.json` - error taxonomy raw data
+- `artifacts/predictions_exp2.json` - exp-002 predictions
+
+
+- `artifacts/eval_exp2.json` - exp-002 evaluation results
+
+Now I'm examining the exp-002 data, which was the confusability-controlled experiment on Few-NERD. The pairwise confusion patterns should emerge from cases where the model misclassified one entity type as another, so I need to check how these files are structured to extract that information.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "d1a71308-730b-4a89-bdbd-bedee36bfac0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014M4goZyy6ZH35PGP1zyt9E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 24947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3390
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Found the files. Let me check the data structures.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "d2e5b4bd-b470-492a-beb4-3d96283faa77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014M4goZyy6ZH35PGP1zyt9E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 24947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3390
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VajhmnusWfWu3HZGKWFdez`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import torch; m=torch.load('/root/schema-dag-extraction/artifacts/sim_matrix.pt',map_location='cpu'); print(type(m),m.shape if hasattr(m,'shape') else len(m))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "cbbeed89-35ba-4412-a8f7-e65640c6f48d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014M4goZyy6ZH35PGP1zyt9E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 24947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3390
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T15:22:07.432Z_
+
+<details><summary>↩ Tool result · `toolu_01VajhmnusWfWu3HZGKWFdez`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "07c9bb38-0c5b-4117-bd14-c069e1aa085d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SffZr9A6RxpQJyqg2SsdCp`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import torch; m=torch.load('/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt',map_location='cpu'); print(type(m)); print(list(m.keys())[:10] if isinstance(m,dict) else m.shape)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "7c3bb2fe-2f20-43d0-a276-7f197aa93caf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014M4goZyy6ZH35PGP1zyt9E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 24947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3390
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T15:22:08.828Z_
+
+<details><summary>↩ Tool result · `toolu_01SffZr9A6RxpQJyqg2SsdCp`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "3ba66238-677c-4c06-b2af-fd3af50a1283",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ByGyv4yuu9BjjztG53i4A7`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import torch; m=torch.load('/root/schema-dag-extraction/artifacts/type_embeddings.pt',map_location='cpu'); print(type(m)); print(list(m.keys())[:5] if isinstance(m,dict) else m.shape)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "0c019828-7171-4345-90f3-ce2734f9c503",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014M4goZyy6ZH35PGP1zyt9E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 24947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3390
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T15:22:10.244Z_
+
+<details><summary>↩ Tool result · `toolu_01ByGyv4yuu9BjjztG53i4A7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "abaf4f41-7cfb-44eb-b340-612a1a8d70b3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Li9Qid3YNRczH4LUhMDJT1`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -c 2000 /root/schema-dag-extraction/artifacts/exp007/error_taxonomy_raw.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "36e1c4a6-4f17-41fb-91c5-e7bfc07a6df9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014M4goZyy6ZH35PGP1zyt9E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3390,
+      "cache_read_input_tokens": 24947,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3390
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T15:22:11.309Z_
+
+<details><summary>↩ Tool result · `toolu_01Li9Qid3YNRczH4LUhMDJT1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp1_random\\\": {\\n    \\\"count_1_random_0\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 69,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 2,\\n      \\\"spurious\\\": 13,\\n      \\\"false_negative\\\": 10,\\n      \\\"true_positive\\\": 12,\\n      \\\"total_pred\\\": 96,\\n      \\\"total_gold\\\": 22\\n    },\\n    \\\"count_1_random_1\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 69,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 2,\\n      \\\"spurious\\\": 8,\\n      \\\"false_negative\\\": 3,\\n      \\\"true_positive\\\": 18,\\n      \\\"total_pred\\\": 97,\\n      \\\"total_gold\\\": 21\\n    },\\n    \\\"count_1_random_2\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 28,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 2,\\n      \\\"spurious\\\": 4,\\n      \\\"false_negative\\\": 9,\\n      \\\"true_positive\\\": 14,\\n      \\\"total_pred\\\": 48,\\n      \\\"total_gold\\\": 23\\n    },\\n    \\\"count_1_random_3\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 66,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 3,\\n      \\\"spurious\\\": 11,\\n      \\\"false_negative\\\": 16,\\n      \\\"true_positive\\\": 1,\\n      \\\"total_pred\\\": 81,\\n      \\\"total_gold\\\": 17\\n    },\\n    \\\"count_1_random_4\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 137,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 6,\\n      \\\"spurious\\\": 21,\\n      \\\"false_negative\\\": 8,\\n      \\\"true_positive\\\": 26,\\n      \\\"total_pred\\\": 190,\\n      \\\"total_gold\\\": 34\\n    },\\n    \\\"count_1_random_5\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 27,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 0,\\n      \\\"spurious\\\": 1,\\n      \\\"false_negative\\\": 2,\\n      \\\"true_positive\\\": 10,\\n      \\\"total_pred\\\": 38,\\n     \", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "d24cdebe-1630-4140-9add-09cc919fe35b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp1_random\\\\\\\": {\\\\n    \\\\\\\"count_1_random_0\\\\\\\": {\\\\n      \\\\\\\"bcs\\\\\\\": 0.0,\\\\n      \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n      \\\\\\\"num_types\\\\\\\": 1,\\\\n      \\\\\\\"intra_type_sub\\\\\\\": 0,\\\\n      \\\\\\\"extra_type_sub\\\\\\\": 69,\\\\n      \\\\\\\"boundary_error\\\\\\\": 0,\\\\n      \\\\\\\"hallucination\\\\\\\": 2,\\\\n      \\\\\\\"spurious\\\\\\\": 13,\\\\n      \\\\\\\"false_negative\\\\\\\": 10,\\\\n      \\\\\\\"true_positive\\\\\\\": 12,\\\\n      \\\\\\\"total_pred\\\\\\\": 96,\\\\n      \\\\\\\"total_gold\\\\\\\": 22\\\\n    },\\\\n    \\\\\\\"count_1_random_1\\\\\\\": {\\\\n      \\\\\\\"bcs\\\\\\\": 0.0,\\\\n      \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n      \\\\\\\"num_types\\\\\\\": 1,\\\\n      \\\\\\\"intra_type_sub\\\\\\\": 0,\\\\n      \\\\\\\"extra_type_sub\\\\\\\": 69,\\\\n      \\\\\\\"boundary_error\\\\\\\": 0,\\\\n      \\\\\\\"hallucination\\\\\\\": 2,\\\\n      \\\\\\\"spurious\\\\\\\": 8,\\\\n      \\\\\\\"false_negative\\\\\\\": 3,\\\\n      \\\\\\\"true_positive\\\\\\\": 18,\\\\n      \\\\\\\"total_pred\\\\\\\": 97,\\\\n      \\\\\\\"total_gold\\\\\\\": 21\\\\n    },\\\\n    \\\\\\\"count_1_random_2\\\\\\\": {\\\\n      \\\\\\\"bcs\\\\\\\": 0.0,\\\\n      \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n      \\\\\\\"num_types\\\\\\\": 1,\\\\n      \\\\\\\"intra_type_sub\\\\\\\": 0,\\\\n      \\\\\\\"extra_type_sub\\\\\\\": 28,\\\\n      \\\\\\\"boundary_error\\\\\\\": 0,\\\\n      \\\\\\\"hallucination\\\\\\\": 2,\\\\n      \\\\\\\"spurious\\\\\\\": 4,\\\\n      \\\\\\\"false_negative\\\\\\\": 9,\\\\n      \\\\\\\"true_positive\\\\\\\": 14,\\\\n      \\\\\\\"total_pred\\\\\\\": 48,\\\\n      \\\\\\\"total_gold\\\\\\\": 23\\\\n    },\\\\n    \\\\\\\"count_1_random_3\\\\\\\": {\\\\n      \\\\\\\"bcs\\\\\\\": 0.0,\\\\n      \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n      \\\\\\\"num_types\\\\\\\": 1,\\\\n      \\\\\\\"intra_type_sub\\\\\\\": 0,\\\\n      \\\\\\\"extra_type_sub\\\\\\\": 66,\\\\n      \\\\\\\"boundary_error\\\\\\\": 0,\\\\n      \\\\\\\"hallucination\\\\\\\": 3,\\\\n      \\\\\\\"spurious\\\\\\\": 11,\\\\n      \\\\\\\"false_negative\\\\\\\": 16,\\\\n      \\\\\\\"true_positive\\\\\\\": 1,\\\\n      \\\\\\\"total_pred\\\\\\\": 81,\\\\n      \\\\\\\"total_gold\\\\\\\": 17\\\\n    },\\\\n    \\\\\\\"count_1_random_4\\\\\\\": {\\\\n      \\\\\\\"bcs\\\\\\\": 0.0,\\\\n      \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n      \\\\\\\"num_types\\\\\\\": 1,\\\\n      \\\\\\\"intra_type_sub\\\\\\\": 0,\\\\n      \\\\\\\"extra_type_sub\\\\\\\": 137,\\\\n      \\\\\\\"boundary_error\\\\\\\": 0,\\\\n      \\\\\\\"hallucination\\\\\\\": 6,\\\\n      \\\\\\\"spurious\\\\\\\": 21,\\\\n      \\\\\\\"false_negative\\\\\\\": 8,\\\\n      \\\\\\\"true_positive\\\\\\\": 26,\\\\n      \\\\\\\"total_pred\\\\\\\": 190,\\\\n      \\\\\\\"total_gold\\\\\\\": 34\\\\n    },\\\\n    \\\\\\\"count_1_random_5\\\\\\\": {\\\\n      \\\\\\\"bcs\\\\\\\": 0.0,\\\\n      \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n      \\\\\\\"num_types\\\\\\\": 1,\\\\n      \\\\\\\"intra_type_sub\\\\\\\": 0,\\\\n      \\\\\\\"extra_type_sub\\\\\\\": 27,\\\\n      \\\\\\\"boundary_error\\\\\\\": 0,\\\\n      \\\\\\\"hallucination\\\\\\\": 0,\\\\n      \\\\\\\"spurious\\\\\\\": 1,\\\\n      \\\\\\\"false_negative\\\\\\\": 2,\\\\n      \\\\\\\"true_positive\\\\\\\": 10,\\\\n      \\\\\\\"total_pred\\\\\\\": 38,\\\\n     \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp1_random\\\": {\\n    \\\"count_1_random_0\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 69,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 2,\\n      \\\"spurious\\\": 13,\\n      \\\"false_negative\\\": 10,\\n      \\\"true_positive\\\": 12,\\n      \\\"total_pred\\\": 96,\\n      \\\"total_gold\\\": 22\\n    },\\n    \\\"count_1_random_1\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 69,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 2,\\n      \\\"spurious\\\": 8,\\n      \\\"false_negative\\\": 3,\\n      \\\"true_positive\\\": 18,\\n      \\\"total_pred\\\": 97,\\n      \\\"total_gold\\\": 21\\n    },\\n    \\\"count_1_random_2\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 28,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 2,\\n      \\\"spurious\\\": 4,\\n      \\\"false_negative\\\": 9,\\n      \\\"true_positive\\\": 14,\\n      \\\"total_pred\\\": 48,\\n      \\\"total_gold\\\": 23\\n    },\\n    \\\"count_1_random_3\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 66,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 3,\\n      \\\"spurious\\\": 11,\\n      \\\"false_negative\\\": 16,\\n      \\\"true_positive\\\": 1,\\n      \\\"total_pred\\\": 81,\\n      \\\"total_gold\\\": 17\\n    },\\n    \\\"count_1_random_4\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 137,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 6,\\n      \\\"spurious\\\": 21,\\n      \\\"false_negative\\\": 8,\\n      \\\"true_positive\\\": 26,\\n      \\\"total_pred\\\": 190,\\n      \\\"total_gold\\\": 34\\n    },\\n    \\\"count_1_random_5\\\": {\\n      \\\"bcs\\\": 0.0,\\n      \\\"count_key\\\": \\\"count_1\\\",\\n      \\\"num_types\\\": 1,\\n      \\\"intra_type_sub\\\": 0,\\n      \\\"extra_type_sub\\\": 27,\\n      \\\"boundary_error\\\": 0,\\n      \\\"hallucination\\\": 0,\\n      \\\"spurious\\\": 1,\\n      \\\"false_negative\\\": 2,\\n      \\\"true_positive\\\": 10,\\n      \\\"total_pred\\\": 38,\\n     \", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The error_taxonomy_raw.json has aggregated stats per batch (count_1_random_0, etc.), not pairwise confusion data. I need to look at the predictions files to extract pairwise confusion.
+
+Let me check the predictions_exp2.json structure (exp-002 is the confusability controlled experiment). I also need to check if there's a way to get pairwise confusion from the predictions.
+
+Let me use ssh_execute to inspect the data structures since ssh_read_only blocks semicolons.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "0a7cbe64-16d4-4850-93d9-49c7e580abb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuTw2aEW8ge9tkzW3AC8YF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2672,
+      "cache_read_input_tokens": 28337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2672
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+Let me use ssh_execute to inspect data structures since read_only blocks semicolons in python commands.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "64f1a7d3-fc0b-4867-ba4f-062d3cd39d86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuTw2aEW8ge9tkzW3AC8YF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2672,
+      "cache_read_input_tokens": 28337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2672
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SF6aaP4KB5KY8GEuATMYjK`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && python3 -c \"\nimport torch, json\n\n# Check sim_matrix (Qwen3)\nm = torch.load('artifacts/sim_matrix.pt', map_location='cpu')\nprint('=== sim_matrix.pt (Qwen3) ===')\nprint(type(m), m.shape if hasattr(m,'shape') else len(m))\n\n# Check type_embeddings (Qwen3)\ne = torch.load('artifacts/type_embeddings.pt', map_location='cpu')\nprint('=== type_embeddings.pt (Qwen3) ===')\nprint(type(e))\nif isinstance(e, dict):\n    keys = list(e.keys())\n    print(f'  keys ({len(keys)}): {keys[:5]}...')\n    v0 = list(e.values())[0]\n    print(f'  val type: {type(v0)}, shape: {v0.shape if hasattr(v0,\\\"shape\\\") else len(v0)}')\n\n# Check MiniLM bcs matrix\nbcs = torch.load('artifacts/fewnerd_bcs_matrix_minilm.pt', map_location='cpu')\nprint('=== fewnerd_bcs_matrix_minilm.pt ===')\nprint(type(bcs))\nif isinstance(bcs, dict):\n    keys = list(bcs.keys())\n    print(f'  keys ({len(keys)}): {keys[:5]}...')\n    v0 = list(bcs.values())[0]\n    print(f'  val: {v0}')\nelif hasattr(bcs, 'shape'):\n    print(f'  shape: {bcs.shape}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "628f0bef-80b8-432f-9ea7-c9067c4f2a99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuTw2aEW8ge9tkzW3AC8YF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2672,
+      "cache_read_input_tokens": 28337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2672
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T15:22:24.563Z_
+
+<details><summary>↩ Tool result · `toolu_01SF6aaP4KB5KY8GEuATMYjK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/schema-dag-extraction && python3 -c \\\"\\\\nimport torch, json\\\\n\\\\n# Check sim_matrix (Qwen3)\\\\nm = torch.load(\\\\'artifacts/sim_matrix.pt\\\\', map_location=\\\\'cpu\\\\')\\\\nprint(\\\\'=== sim_matrix.pt (Qwen3) ===\\\\')\\\\nprint(type(m), m.shape if hasattr(m,\\\\'shape\\\\') else len(m))\\\\n\\\\n# Check type_embeddings (Qwen3)\\\\ne = torch.load(\\\\'artifacts/type_embeddings.pt\\\\', map_location=\\\\'cpu\\\\')\\\\nprint(\\\\'=== type_embeddings.pt (Qwen3) ===\\\\')\\\\nprint(type(e))\\\\nif isinstance(e, dict):\\\\n    keys = list(e.keys())\\\\n    print(f\\\\'  keys ({len(keys)}): {keys[:5]}...\\\\')\\\\n    v0 = list(e.values())[0]\\\\n    print(f\\\\'  val type: {type(v0)}, shape: {v0.shape if hasattr(v0,\\\\\\\\\\\"shape\\\\\\\\\\\") else len(v0)}\\\\')\\\\n\\\\n# Check MiniLM bcs matrix\\\\nbcs = torch.load(\\\\'artifacts/fewnerd_bcs_matrix_minilm.pt\\\\', map_location=\\\\'cpu\\\\')\\\\nprint(\\\\'=== fewnerd_bcs_matrix_minilm.pt ===\\\\')\\\\nprint(type(bcs))\\\\nif isinstance(bcs, dict):\\\\n    keys = list(bcs.keys())\\\\n    print(f\\\\'  keys ({len(keys)}): {keys[:5]}...\\\\')\\\\n    v0 = list(bcs.values())[0]\\\\n    print(f\\\\'  val: {v0}\\\\')\\\\nelif hasattr(bcs, \\\\'shape\\\\'):\\\\n    print(f\\\\'  shape: {bcs.shape}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "f342a35f-993a-412e-9b36-a1be9ed4b285",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/schema-dag-extraction && python3 -c \\\\\\\"\\\\\\\\nimport torch, json\\\\\\\\n\\\\\\\\n# Check sim_matrix (Qwen3)\\\\\\\\nm = torch.load(\\\\\\\\'artifacts/sim_matrix.pt\\\\\\\\', map_location=\\\\\\\\'cpu\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'=== sim_matrix.pt (Qwen3) ===\\\\\\\\')\\\\\\\\nprint(type(m), m.shape if hasattr(m,\\\\\\\\'shape\\\\\\\\') else len(m))\\\\\\\\n\\\\\\\\n# Check type_embeddings (Qwen3)\\\\\\\\ne = torch.load(\\\\\\\\'artifacts/type_embeddings.pt\\\\\\\\', map_location=\\\\\\\\'cpu\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'=== type_embeddings.pt (Qwen3) ===\\\\\\\\')\\\\\\\\nprint(type(e))\\\\\\\\nif isinstance(e, dict):\\\\\\\\n    keys = list(e.keys())\\\\\\\\n    print(f\\\\\\\\'  keys ({len(keys)}): {keys[:5]}...\\\\\\\\')\\\\\\\\n    v0 = list(e.values())[0]\\\\\\\\n    print(f\\\\\\\\'  val type: {type(v0)}, shape: {v0.shape if hasattr(v0,\\\\\\\\\\\\\\\\\\\\\\\"shape\\\\\\\\\\\\\\\\\\\\\\\") else len(v0)}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Check MiniLM bcs matrix\\\\\\\\nbcs = torch.load(\\\\\\\\'artifacts/fewnerd_bcs_matrix_minilm.pt\\\\\\\\', map_location=\\\\\\\\'cpu\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'=== fewnerd_bcs_matrix_minilm.pt ===\\\\\\\\')\\\\\\\\nprint(type(bcs))\\\\\\\\nif isinstance(bcs, dict):\\\\\\\\n    keys = list(bcs.keys())\\\\\\\\n    print(f\\\\\\\\'  keys ({len(keys)}): {keys[:5]}...\\\\\\\\')\\\\\\\\n    v0 = list(bcs.values())[0]\\\\\\\\n    print(f\\\\\\\\'  val: {v0}\\\\\\\\')\\\\\\\\nelif hasattr(bcs, \\\\\\\\'shape\\\\\\\\'):\\\\\\\\n    print(f\\\\\\\\'  shape: {bcs.shape}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/schema-dag-extraction && python3 -c \\\"\\\\nimport torch, json\\\\n\\\\n# Check sim_matrix (Qwen3)\\\\nm = torch.load(\\\\'artifacts/sim_matrix.pt\\\\', map_location=\\\\'cpu\\\\')\\\\nprint(\\\\'=== sim_matrix.pt (Qwen3) ===\\\\')\\\\nprint(type(m), m.shape if hasattr(m,\\\\'shape\\\\') else len(m))\\\\n\\\\n# Check type_embeddings (Qwen3)\\\\ne = torch.load(\\\\'artifacts/type_embeddings.pt\\\\', map_location=\\\\'cpu\\\\')\\\\nprint(\\\\'=== type_embeddings.pt (Qwen3) ===\\\\')\\\\nprint(type(e))\\\\nif isinstance(e, dict):\\\\n    keys = list(e.keys())\\\\n    print(f\\\\'  keys ({len(keys)}): {keys[:5]}...\\\\')\\\\n    v0 = list(e.values())[0]\\\\n    print(f\\\\'  val type: {type(v0)}, shape: {v0.shape if hasattr(v0,\\\\\\\\\\\"shape\\\\\\\\\\\") else len(v0)}\\\\')\\\\n\\\\n# Check MiniLM bcs matrix\\\\nbcs = torch.load(\\\\'artifacts/fewnerd_bcs_matrix_minilm.pt\\\\', map_location=\\\\'cpu\\\\')\\\\nprint(\\\\'=== fewnerd_bcs_matrix_minilm.pt ===\\\\')\\\\nprint(type(bcs))\\\\nif isinstance(bcs, dict):\\\\n    keys = list(bcs.keys())\\\\n    print(f\\\\'  keys ({len(keys)}): {keys[:5]}...\\\\')\\\\n    v0 = list(bcs.values())[0]\\\\n    print(f\\\\'  val: {v0}\\\\')\\\\nelif hasattr(bcs, \\\\'shape\\\\'):\\\\n    print(f\\\\'  shape: {bcs.shape}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015xSPCGBY4tTL65cuK4Egd4`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && python3 -c \"\nimport json\n# Check predictions_exp2.json structure\nwith open('artifacts/predictions_exp2.json') as f:\n    data = json.load(f)\nprint('=== predictions_exp2.json ===')\nprint(type(data))\nif isinstance(data, list):\n    print(f'  len: {len(data)}')\n    print(f'  first keys: {list(data[0].keys()) if data else None}')\n    if data:\n        d = data[0]\n        for k,v in d.items():\n            print(f'    {k}: {type(v).__name__} = {str(v)[:100]}')\nelif isinstance(data, dict):\n    print(f'  keys: {list(data.keys())[:10]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "5f3f66f8-1af2-4610-8c64-c6e7e99236f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuTw2aEW8ge9tkzW3AC8YF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2672,
+      "cache_read_input_tokens": 28337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2672
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T15:22:27.469Z_
+
+<details><summary>↩ Tool result · `toolu_015xSPCGBY4tTL65cuK4Egd4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/schema-dag-extraction && python3 -c \\\"\\\\nimport json\\\\n# Check predictions_exp2.json structure\\\\nwith open(\\\\'artifacts/predictions_exp2.json\\\\') as f:\\\\n    data = json.load(f)\\\\nprint(\\\\'=== predictions_exp2.json ===\\\\')\\\\nprint(type(data))\\\\nif isinstance(data, list):\\\\n    print(f\\\\'  len: {len(data)}\\\\')\\\\n    print(f\\\\'  first keys: {list(data[0].keys()) if data else None}\\\\')\\\\n    if data:\\\\n        d = data[0]\\\\n        for k,v in d.items():\\\\n            print(f\\\\'    {k}: {type(v).__name__} = {str(v)[:100]}\\\\')\\\\nelif isinstance(data, dict):\\\\n    print(f\\\\'  keys: {list(data.keys())[:10]}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "a61114cb-6094-4041-9127-ef73f8cbe332",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/schema-dag-extraction && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\n# Check predictions_exp2.json structure\\\\\\\\nwith open(\\\\\\\\'artifacts/predictions_exp2.json\\\\\\\\') as f:\\\\\\\\n    data = json.load(f)\\\\\\\\nprint(\\\\\\\\'=== predictions_exp2.json ===\\\\\\\\')\\\\\\\\nprint(type(data))\\\\\\\\nif isinstance(data, list):\\\\\\\\n    print(f\\\\\\\\'  len: {len(data)}\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'  first keys: {list(data[0].keys()) if data else None}\\\\\\\\')\\\\\\\\n    if data:\\\\\\\\n        d = data[0]\\\\\\\\n        for k,v in d.items():\\\\\\\\n            print(f\\\\\\\\'    {k}: {type(v).__name__} = {str(v)[:100]}\\\\\\\\')\\\\\\\\nelif isinstance(data, dict):\\\\\\\\n    print(f\\\\\\\\'  keys: {list(data.keys())[:10]}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/schema-dag-extraction && python3 -c \\\"\\\\nimport json\\\\n# Check predictions_exp2.json structure\\\\nwith open(\\\\'artifacts/predictions_exp2.json\\\\') as f:\\\\n    data = json.load(f)\\\\nprint(\\\\'=== predictions_exp2.json ===\\\\')\\\\nprint(type(data))\\\\nif isinstance(data, list):\\\\n    print(f\\\\'  len: {len(data)}\\\\')\\\\n    print(f\\\\'  first keys: {list(data[0].keys()) if data else None}\\\\')\\\\n    if data:\\\\n        d = data[0]\\\\n        for k,v in d.items():\\\\n            print(f\\\\'    {k}: {type(v).__name__} = {str(v)[:100]}\\\\')\\\\nelif isinstance(data, dict):\\\\n    print(f\\\\'  keys: {list(data.keys())[:10]}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Python3 not found directly — this is a conda environment. I need to activate conda first. The CLAUDE.md says: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "24fb8fba-69b1-45e8-93d2-e22872ea8f9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015tRkSc1oUAU9jjEFaDFn8R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2092,
+      "cache_read_input_tokens": 31009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+Conda environment needed. Let me activate it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "444cec20-8ef3-4361-ae43-f90678949b43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015tRkSc1oUAU9jjEFaDFn8R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2092,
+      "cache_read_input_tokens": 31009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01G8JJEuiuAbZn4dP2GZAfA4`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 -c \"\nimport torch, json\n\nm = torch.load('artifacts/sim_matrix.pt', map_location='cpu')\nprint('=== sim_matrix.pt (Qwen3) ===')\nprint(type(m), m.shape if hasattr(m,'shape') else len(m))\n\ne = torch.load('artifacts/type_embeddings.pt', map_location='cpu')\nprint('=== type_embeddings.pt (Qwen3) ===')\nprint(type(e))\nif isinstance(e, dict):\n    keys = list(e.keys())\n    print(f'  keys ({len(keys)}): {keys[:5]}...')\n    v0 = list(e.values())[0]\n    print(f'  val type: {type(v0)}, shape: {v0.shape}')\n\nbcs = torch.load('artifacts/fewnerd_bcs_matrix_minilm.pt', map_location='cpu')\nprint('=== fewnerd_bcs_matrix_minilm.pt ===')\nprint(type(bcs))\nif isinstance(bcs, dict):\n    keys = list(bcs.keys())\n    print(f'  keys ({len(keys)}): {keys[:5]}...')\n    v0 = list(bcs.values())[0]\n    print(f'  val: {v0}')\nelif hasattr(bcs, 'shape'):\n    print(f'  shape: {bcs.shape}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "51bdf05d-c122-436d-888c-62fe98610453",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015tRkSc1oUAU9jjEFaDFn8R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2092,
+      "cache_read_input_tokens": 31009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TAv4uN25jETJXRrvkb5SfU`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 -c \"\nimport json\nwith open('artifacts/predictions_exp2.json') as f:\n    data = json.load(f)\nprint('=== predictions_exp2.json ===')\nprint(type(data))\nif isinstance(data, list):\n    print(f'  len: {len(data)}')\n    if data:\n        d = data[0]\n        for k,v in d.items():\n            print(f'  {k}: {type(v).__name__} = {str(v)[:120]}')\nelif isinstance(data, dict):\n    keys = list(data.keys())\n    print(f'  keys ({len(keys)}): {keys[:10]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "4dce1827-1382-44dc-85aa-749829b1cbf2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015tRkSc1oUAU9jjEFaDFn8R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2092,
+      "cache_read_input_tokens": 31009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T15:22:44.527Z_
+
+<details><summary>↩ Tool result · `toolu_01G8JJEuiuAbZn4dP2GZAfA4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== sim_matrix.pt (Qwen3) ===\\n&lt;class 'dict'> 3\\n=== type_embeddings.pt (Qwen3) ===\\n&lt;class 'dict'>\\n  keys (66): ['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other']...\\n  val type: &lt;class 'torch.Tensor'>, shape: torch.Size([5120])\\n=== fewnerd_bcs_matrix_minilm.pt ===\\n&lt;class 'dict'>\\n  keys (5): ['sim_matrix', 'type_names', 'type_to_idx', 'model', 'embeddings']...\\n  val: tensor([[1.0000, 0.5508, 0.4624,  ..., 0.1270, 0.2324, 0.1509],\\n        [0.5508, 1.0000, 0.3698,  ..., 0.0348, 0.1978, 0.0928],\\n        [0.4624, 0.3698, 1.0000,  ..., 0.0995, 0.1520, 0.2021],\\n        ...,\\n        [0.1270, 0.0348, 0.0995,  ..., 1.0000, 0.4896, 0.4795],\\n        [0.2324, 0.1978, 0.1520,  ..., 0.4896, 1.0000, 0.4318],\\n        [0.1509, 0.0928, 0.2021,  ..., 0.4795, 0.4318, 1.0000]])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "86e2049f-62aa-4c17-82e4-d98ab7ec5d20",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== sim_matrix.pt (Qwen3) ===\\\\n&lt;class 'dict'> 3\\\\n=== type_embeddings.pt (Qwen3) ===\\\\n&lt;class 'dict'>\\\\n  keys (66): ['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other']...\\\\n  val type: &lt;class 'torch.Tensor'>, shape: torch.Size([5120])\\\\n=== fewnerd_bcs_matrix_minilm.pt ===\\\\n&lt;class 'dict'>\\\\n  keys (5): ['sim_matrix', 'type_names', 'type_to_idx', 'model', 'embeddings']...\\\\n  val: tensor([[1.0000, 0.5508, 0.4624,  ..., 0.1270, 0.2324, 0.1509],\\\\n        [0.5508, 1.0000, 0.3698,  ..., 0.0348, 0.1978, 0.0928],\\\\n        [0.4624, 0.3698, 1.0000,  ..., 0.0995, 0.1520, 0.2021],\\\\n        ...,\\\\n        [0.1270, 0.0348, 0.0995,  ..., 1.0000, 0.4896, 0.4795],\\\\n        [0.2324, 0.1978, 0.1520,  ..., 0.4896, 1.0000, 0.4318],\\\\n        [0.1509, 0.0928, 0.2021,  ..., 0.4795, 0.4318, 1.0000]])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== sim_matrix.pt (Qwen3) ===\\n&lt;class 'dict'> 3\\n=== type_embeddings.pt (Qwen3) ===\\n&lt;class 'dict'>\\n  keys (66): ['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other']...\\n  val type: &lt;class 'torch.Tensor'>, shape: torch.Size([5120])\\n=== fewnerd_bcs_matrix_minilm.pt ===\\n&lt;class 'dict'>\\n  keys (5): ['sim_matrix', 'type_names', 'type_to_idx', 'model', 'embeddings']...\\n  val: tensor([[1.0000, 0.5508, 0.4624,  ..., 0.1270, 0.2324, 0.1509],\\n        [0.5508, 1.0000, 0.3698,  ..., 0.0348, 0.1978, 0.0928],\\n        [0.4624, 0.3698, 1.0000,  ..., 0.0995, 0.1520, 0.2021],\\n        ...,\\n        [0.1270, 0.0348, 0.0995,  ..., 1.0000, 0.4896, 0.4795],\\n        [0.2324, 0.1978, 0.1520,  ..., 0.4896, 1.0000, 0.4318],\\n        [0.1509, 0.0928, 0.2021,  ..., 0.4795, 0.4318, 1.0000]])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T15:22:47.170Z_
+
+<details><summary>↩ Tool result · `toolu_01TAv4uN25jETJXRrvkb5SfU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== predictions_exp2.json ===\\n&lt;class 'list'>\\n  len: 54000\\n  sample_id: int = 0\\n  batch_id: str = count_6_low_bcs\\n  count_key: str = count_6\\n  batch_types: list = ['organization-politicalparty', 'person-actor', 'location-bodiesofwater', 'other-disease', 'organization-education', 'ar\\n  batch_bcs: float = 0.8708932995796204\\n  predictions: list = []\\n  prompt_tokens: int = 233\\n  gen_tokens: int = 2\\n  latency_s: float = 0.047937602281570436\\n  prompt_version: str = v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "b563b4ab-19b5-40a2-8add-b3baec4b7339",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== predictions_exp2.json ===\\\\n&lt;class 'list'>\\\\n  len: 54000\\\\n  sample_id: int = 0\\\\n  batch_id: str = count_6_low_bcs\\\\n  count_key: str = count_6\\\\n  batch_types: list = ['organization-politicalparty', 'person-actor', 'location-bodiesofwater', 'other-disease', 'organization-education', 'ar\\\\n  batch_bcs: float = 0.8708932995796204\\\\n  predictions: list = []\\\\n  prompt_tokens: int = 233\\\\n  gen_tokens: int = 2\\\\n  latency_s: float = 0.047937602281570436\\\\n  prompt_version: str = v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== predictions_exp2.json ===\\n&lt;class 'list'>\\n  len: 54000\\n  sample_id: int = 0\\n  batch_id: str = count_6_low_bcs\\n  count_key: str = count_6\\n  batch_types: list = ['organization-politicalparty', 'person-actor', 'location-bodiesofwater', 'other-disease', 'organization-education', 'ar\\n  batch_bcs: float = 0.8708932995796204\\n  predictions: list = []\\n  prompt_tokens: int = 233\\n  gen_tokens: int = 2\\n  latency_s: float = 0.047937602281570436\\n  prompt_version: str = v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the structure:
+
+1. **sim_matrix.pt (Qwen3)** - a dict with 3 keys (probably sim_matrix, type_names, etc.)
+2. **type_embeddings.pt (Qwen3)** - dict with 66 type names as keys, each mapping to a 5120-dim tensor
+3. **fewnerd_bcs_matrix_minilm.pt** - dict with keys: `sim_matrix`, `type_names`, `type_to_idx`, `model`, `embeddings`
+
+
+4. **predictions_exp2.json** - 54000 predictions with batch_types, predictions, and gold labels
+
+I need to dig into the sim_matrix dict structure, understand how the predictions are organized, and see what the gold labels contain so I can properly extract the pairwise confusion data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "b43bb2b8-512d-4618-aee8-850f46ee1747",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lqd7MAaozAyS8tY6M3nViK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1703,
+      "cache_read_input_tokens": 33101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1703
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013j37fYHkvcMc3QqR2rUigr`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 -c \"\nimport torch, json\n\n# sim_matrix.pt dict keys\nm = torch.load('artifacts/sim_matrix.pt', map_location='cpu')\nprint('=== sim_matrix.pt keys ===')\nfor k,v in m.items():\n    if hasattr(v, 'shape'):\n        print(f'  {k}: tensor {v.shape}')\n    elif isinstance(v, list):\n        print(f'  {k}: list[{len(v)}] = {v[:5]}...')\n    elif isinstance(v, dict):\n        print(f'  {k}: dict[{len(v)}]')\n    else:\n        print(f'  {k}: {type(v).__name__} = {v}')\n\n# MiniLM type_names\nbcs = torch.load('artifacts/fewnerd_bcs_matrix_minilm.pt', map_location='cpu')\nprint(f'\\\\n=== MiniLM type_names ({len(bcs[\\\"type_names\\\"])}) ===')\nprint(bcs['type_names'][:5])\nprint(f'sim_matrix shape: {bcs[\\\"sim_matrix\\\"].shape}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "f0f573c8-e017-43fb-ab64-ceb1251db056",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lqd7MAaozAyS8tY6M3nViK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1703,
+      "cache_read_input_tokens": 33101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1703
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Bb18Yu8zcPjHEzA3fFVcp3`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 -c \"\nimport json\nwith open('artifacts/predictions_exp2.json') as f:\n    data = json.load(f)\n\n# Find a sample with predictions\nfor d in data[:100]:\n    if d['predictions']:\n        print('=== Sample with predictions ===')\n        print(f'  batch_id: {d[\\\"batch_id\\\"]}')\n        print(f'  batch_types: {d[\\\"batch_types\\\"]}')\n        print(f'  predictions: {d[\\\"predictions\\\"][:3]}')\n        # check if there are gold labels\n        for k in d.keys():\n            if k not in ['sample_id','batch_id','count_key','batch_types','batch_bcs','predictions','prompt_tokens','gen_tokens','latency_s','prompt_version']:\n                print(f'  extra key: {k} = {str(d[k])[:100]}')\n        break\n\n# Check eval_exp2 for confusion data\nwith open('artifacts/eval_exp2.json') as f:\n    ev = json.load(f)\nprint('\\\\n=== eval_exp2.json ===')\nprint(type(ev))\nif isinstance(ev, dict):\n    for k in list(ev.keys())[:15]:\n        v = ev[k]\n        print(f'  {k}: {type(v).__name__} = {str(v)[:100]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "d39890b6-2136-43d8-92e8-a1673b816eaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lqd7MAaozAyS8tY6M3nViK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1703,
+      "cache_read_input_tokens": 33101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1703
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T15:23:11.455Z_
+
+<details><summary>↩ Tool result · `toolu_013j37fYHkvcMc3QqR2rUigr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== sim_matrix.pt keys ===\\n  sim_matrix: tensor torch.Size([66, 66])\\n  type_names: list[66] = ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting']...\\n  type_to_idx: dict[66]\\n\\n=== MiniLM type_names (66) ===\\n['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other']\\nsim_matrix shape: torch.Size([66, 66])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "5abfd45a-ca2d-47e6-9114-9e05be860ad0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== sim_matrix.pt keys ===\\\\n  sim_matrix: tensor torch.Size([66, 66])\\\\n  type_names: list[66] = ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting']...\\\\n  type_to_idx: dict[66]\\\\n\\\\n=== MiniLM type_names (66) ===\\\\n['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other']\\\\nsim_matrix shape: torch.Size([66, 66])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== sim_matrix.pt keys ===\\n  sim_matrix: tensor torch.Size([66, 66])\\n  type_names: list[66] = ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting']...\\n  type_to_idx: dict[66]\\n\\n=== MiniLM type_names (66) ===\\n['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other']\\nsim_matrix shape: torch.Size([66, 66])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T15:23:14.119Z_
+
+<details><summary>↩ Tool result · `toolu_01Bb18Yu8zcPjHEzA3fFVcp3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Sample with predictions ===\\n  batch_id: count_6_low_bcs\\n  batch_types: ['organization-politicalparty', 'person-actor', 'location-bodiesofwater', 'other-disease', 'organization-education', 'art-film']\\n  predictions: [{'text': 'Larry G. Messinger', 'type': 'person-actor'}]\\n\\n=== eval_exp2.json ===\\n&lt;class 'dict'>\\n  count_6_low_bcs: dict = {'bcs': 0.8708932995796204, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_high_bcs: dict = {'bcs': 0.9446906447410583, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_0: dict = {'bcs': 0.9021296501159668, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_1: dict = {'bcs': 0.8867964744567871, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_2: dict = {'bcs': 0.8683533072471619, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_3: dict = {'bcs': 0.9162936210632324, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_4: dict = {'bcs': 0.8878266215324402, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_5: dict = {'bcs': 0.867279052734375, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match'\\n  count_6_random_6: dict = {'bcs': 0.8690363168716431, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_7: dict = {'bcs': 0.8919055461883545, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_8: dict = {'bcs': 0.8849315643310547, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_9: dict = {'bcs': 0.9326926469802856, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_10: dict = {'bcs': 0.8909147381782532, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_11: dict = {'bcs': 0.8786852359771729, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_12: dict = {'bcs': 0.9195427298545837, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.65}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "ed518d6d-0c0f-47ff-8842-fc91585db97d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Sample with predictions ===\\\\n  batch_id: count_6_low_bcs\\\\n  batch_types: ['organization-politicalparty', 'person-actor', 'location-bodiesofwater', 'other-disease', 'organization-education', 'art-film']\\\\n  predictions: [{'text': 'Larry G. Messinger', 'type': 'person-actor'}]\\\\n\\\\n=== eval_exp2.json ===\\\\n&lt;class 'dict'>\\\\n  count_6_low_bcs: dict = {'bcs': 0.8708932995796204, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_high_bcs: dict = {'bcs': 0.9446906447410583, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_0: dict = {'bcs': 0.9021296501159668, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_1: dict = {'bcs': 0.8867964744567871, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_2: dict = {'bcs': 0.8683533072471619, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_3: dict = {'bcs': 0.9162936210632324, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_4: dict = {'bcs': 0.8878266215324402, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_5: dict = {'bcs': 0.867279052734375, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match'\\\\n  count_6_random_6: dict = {'bcs': 0.8690363168716431, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_7: dict = {'bcs': 0.8919055461883545, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_8: dict = {'bcs': 0.8849315643310547, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_9: dict = {'bcs': 0.9326926469802856, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_10: dict = {'bcs': 0.8909147381782532, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_11: dict = {'bcs': 0.8786852359771729, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n  count_6_random_12: dict = {'bcs': 0.9195427298545837, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.65}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Sample with predictions ===\\n  batch_id: count_6_low_bcs\\n  batch_types: ['organization-politicalparty', 'person-actor', 'location-bodiesofwater', 'other-disease', 'organization-education', 'art-film']\\n  predictions: [{'text': 'Larry G. Messinger', 'type': 'person-actor'}]\\n\\n=== eval_exp2.json ===\\n&lt;class 'dict'>\\n  count_6_low_bcs: dict = {'bcs': 0.8708932995796204, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_high_bcs: dict = {'bcs': 0.9446906447410583, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_0: dict = {'bcs': 0.9021296501159668, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_1: dict = {'bcs': 0.8867964744567871, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_2: dict = {'bcs': 0.8683533072471619, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_3: dict = {'bcs': 0.9162936210632324, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_4: dict = {'bcs': 0.8878266215324402, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_5: dict = {'bcs': 0.867279052734375, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match'\\n  count_6_random_6: dict = {'bcs': 0.8690363168716431, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_7: dict = {'bcs': 0.8919055461883545, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_8: dict = {'bcs': 0.8849315643310547, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_9: dict = {'bcs': 0.9326926469802856, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_10: dict = {'bcs': 0.8909147381782532, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_11: dict = {'bcs': 0.8786852359771729, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n  count_6_random_12: dict = {'bcs': 0.9195427298545837, 'count_key': 'count_6', 'num_types': 6, 'num_samples': 1000, 'text_match\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.65}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see that:
+
+1. **Qwen3 sim_matrix**: dict with `sim_matrix` (66x66 tensor), `type_names` (66 type names), `type_to_idx`
+2. **MiniLM**: dict with `sim_matrix` (66x66 tensor), `type_names` (66 type names), `type_to_idx`, `model`, `embeddings`
+3. **predictions_exp2.json**: 54000 samples, each with gold type labels and model predictions
+
+But I need to understand how to get pairwise confusion from predictions. The predictions have `predictions` (list of {text, type}) and there should be gold labels. 
+
+I'm trying to figure out where the gold labels are stored in the prediction data—they might be in a separate field or I may need to reconstruct them by comparing the model's predictions against the original dataset. Let me look more carefully at the structure of each prediction record to see if there's a gold label field, or if I need to check the evaluation results for per-type confusion information.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "c5cc2e10-0182-470c-aa82-8ef95fe7fd8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9vW5dFVvaueTHFaBLPJ44",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2542,
+      "cache_read_input_tokens": 34804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2542
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PMR5XTpephA2Rs2529fkJT`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 -c \"\nimport json\nwith open('artifacts/predictions_exp2.json') as f:\n    data = json.load(f)\n\n# Print all keys of first few samples with non-empty predictions\nfor d in data:\n    if d['predictions']:\n        print('ALL KEYS:', sorted(d.keys()))\n        break\n\n# Check if gold_entities or similar field exists\nsample = data[0]\nprint('Sample keys:', list(sample.keys()))\n\n# Check eval_exp2 structure more deeply\nwith open('artifacts/eval_exp2.json') as f:\n    ev = json.load(f)\nbatch = list(ev.values())[0]\nprint('\\\\nEval batch keys:', sorted(batch.keys()))\nfor k in sorted(batch.keys()):\n    v = batch[k]\n    if isinstance(v, (int, float, str)):\n        print(f'  {k}: {v}')\n    elif isinstance(v, dict):\n        print(f'  {k}: dict[{len(v)}] keys={list(v.keys())[:5]}')\n    elif isinstance(v, list):\n        print(f'  {k}: list[{len(v)}]')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "e917e649-b95f-4da5-a471-a3cfb462e128",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9vW5dFVvaueTHFaBLPJ44",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2542,
+      "cache_read_input_tokens": 34804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2542
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T15:23:32.885Z_
+
+<details><summary>↩ Tool result · `toolu_01PMR5XTpephA2Rs2529fkJT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ALL KEYS: ['batch_bcs', 'batch_id', 'batch_types', 'count_key', 'gen_tokens', 'latency_s', 'predictions', 'prompt_tokens', 'prompt_version', 'sample_id']\\nSample keys: ['sample_id', 'batch_id', 'count_key', 'batch_types', 'batch_bcs', 'predictions', 'prompt_tokens', 'gen_tokens', 'latency_s', 'prompt_version']\\n\\nEval batch keys: ['bcs', 'count_key', 'num_samples', 'num_types', 'text_match']\\n  bcs: 0.8708932995796204\\n  count_key: count_6\\n  num_samples: 1000\\n  num_types: 6\\n  text_match: dict[6] keys=['precision', 'recall', 'f1', 'tp', 'total_pred']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "f4fd4025-47ed-49a3-90aa-5fe335195635",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ALL KEYS: ['batch_bcs', 'batch_id', 'batch_types', 'count_key', 'gen_tokens', 'latency_s', 'predictions', 'prompt_tokens', 'prompt_version', 'sample_id']\\\\nSample keys: ['sample_id', 'batch_id', 'count_key', 'batch_types', 'batch_bcs', 'predictions', 'prompt_tokens', 'gen_tokens', 'latency_s', 'prompt_version']\\\\n\\\\nEval batch keys: ['bcs', 'count_key', 'num_samples', 'num_types', 'text_match']\\\\n  bcs: 0.8708932995796204\\\\n  count_key: count_6\\\\n  num_samples: 1000\\\\n  num_types: 6\\\\n  text_match: dict[6] keys=['precision', 'recall', 'f1', 'tp', 'total_pred']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ALL KEYS: ['batch_bcs', 'batch_id', 'batch_types', 'count_key', 'gen_tokens', 'latency_s', 'predictions', 'prompt_tokens', 'prompt_version', 'sample_id']\\nSample keys: ['sample_id', 'batch_id', 'count_key', 'batch_types', 'batch_bcs', 'predictions', 'prompt_tokens', 'gen_tokens', 'latency_s', 'prompt_version']\\n\\nEval batch keys: ['bcs', 'count_key', 'num_samples', 'num_types', 'text_match']\\n  bcs: 0.8708932995796204\\n  count_key: count_6\\n  num_samples: 1000\\n  num_types: 6\\n  text_match: dict[6] keys=['precision', 'recall', 'f1', 'tp', 'total_pred']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The predictions don't have gold labels. The eval only has aggregate metrics per batch. I need to figure out how to get pairwise confusion data. Let me check if exp-007's error_taxonomy_raw.json has it, since it was mentioned as containing error taxonomy data. But from the earlier peek, it seemed to have per-batch error counts (intra_type_sub, extra_type_sub, etc.) without pairwise type-level confusion.
+
+Let me look at the original dataset to get gold labels and then compute confusion from predictions. Actually, let me check if there's an FewNERD dataset loaded somewhere or if I need to load it.
+
+
+I need to find the gold labels to compare against the predictions. For each sample, I'd need to match predicted entity types against the actual types when the text spans align. Let me check what data files are available or look at the evaluation code to see how it loads the gold labels.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "b927e2ff-3dcb-434f-9c21-cf591e3a2265",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GWqqch8hNVM85bszY7AA3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 37346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012NUAhe5k8nntR8QuDq2sEz`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "0029e2a4-f05d-4e06-b59e-c5c7978afdfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GWqqch8hNVM85bszY7AA3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 37346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T15:23:42.536Z_
+
+<details><summary>↩ Tool result · `toolu_012NUAhe5k8nntR8QuDq2sEz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalyze_exp008_results.py\\nanalyze_fewrel_results.py\\nanalyze_maven_results.py\\nanalyze_results.py\\nbootstrap_ci.py\\nbuild_re_prompt.py\\ncompute_bcs.py\\ncompute_maven_scs.py\\ncompute_type_embeddings.py\\ndiagnose_eval.py\\nembedding_ablation_fewnerd.py\\nerror_taxonomy.py\\nevaluate.py\\nfew_nerd_utils.py\\nfewrel_error_taxonomy.py\\nfewrel_utils.py\\nmaven_utils.py\\npairwise_confusion_analysis.py\\nper_type_analysis.py\\npreprocess_fewrel.py\\npreprocess_maven.py\\nreeval_text_match.py\\nrun_experiment.py\\nrun_extraction.py\\nrun_fewrel_formal.py\\nrun_fewrel_pilot.py\\nrun_sdgd_experiment.py\\nrun_sdgd_full.sh\\nsdgd\\nsdgd_decompose_cpu.py\\nsdgd_extract_gpu.py\\nselect_type_batches.py\\ntext_match_reeval.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "7eb4dcb8-c44d-468f-a337-b4dc57997dbf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nanalyze_exp008_results.py\\\\nanalyze_fewrel_results.py\\\\nanalyze_maven_results.py\\\\nanalyze_results.py\\\\nbootstrap_ci.py\\\\nbuild_re_prompt.py\\\\ncompute_bcs.py\\\\ncompute_maven_scs.py\\\\ncompute_type_embeddings.py\\\\ndiagnose_eval.py\\\\nembedding_ablation_fewnerd.py\\\\nerror_taxonomy.py\\\\nevaluate.py\\\\nfew_nerd_utils.py\\\\nfewrel_error_taxonomy.py\\\\nfewrel_utils.py\\\\nmaven_utils.py\\\\npairwise_confusion_analysis.py\\\\nper_type_analysis.py\\\\npreprocess_fewrel.py\\\\npreprocess_maven.py\\\\nreeval_text_match.py\\\\nrun_experiment.py\\\\nrun_extraction.py\\\\nrun_fewrel_formal.py\\\\nrun_fewrel_pilot.py\\\\nrun_sdgd_experiment.py\\\\nrun_sdgd_full.sh\\\\nsdgd\\\\nsdgd_decompose_cpu.py\\\\nsdgd_extract_gpu.py\\\\nselect_type_batches.py\\\\ntext_match_reeval.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalyze_exp008_results.py\\nanalyze_fewrel_results.py\\nanalyze_maven_results.py\\nanalyze_results.py\\nbootstrap_ci.py\\nbuild_re_prompt.py\\ncompute_bcs.py\\ncompute_maven_scs.py\\ncompute_type_embeddings.py\\ndiagnose_eval.py\\nembedding_ablation_fewnerd.py\\nerror_taxonomy.py\\nevaluate.py\\nfew_nerd_utils.py\\nfewrel_error_taxonomy.py\\nfewrel_utils.py\\nmaven_utils.py\\npairwise_confusion_analysis.py\\nper_type_analysis.py\\npreprocess_fewrel.py\\npreprocess_maven.py\\nreeval_text_match.py\\nrun_experiment.py\\nrun_extraction.py\\nrun_fewrel_formal.py\\nrun_fewrel_pilot.py\\nrun_sdgd_experiment.py\\nrun_sdgd_full.sh\\nsdgd\\nsdgd_decompose_cpu.py\\nsdgd_extract_gpu.py\\nselect_type_batches.py\\ntext_match_reeval.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018rJbiXWUuWijwJFJnCb3Ys`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/src -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "0a4ef5e4-d1e0-4442-b630-44017bacbb2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GWqqch8hNVM85bszY7AA3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 37346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T15:23:43.009Z_
+
+<details><summary>↩ Tool result · `toolu_018rJbiXWUuWijwJFJnCb3Ys`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/few_nerd_utils.py\\n/root/schema-dag-extraction/src/compute_type_embeddings.py\\n/root/schema-dag-extraction/src/compute_bcs.py\\n/root/schema-dag-extraction/src/select_type_batches.py\\n/root/schema-dag-extraction/src/run_extraction.py\\n/root/schema-dag-extraction/src/evaluate.py\\n/root/schema-dag-extraction/src/run_experiment.py\\n/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/diagnose_eval.py\\n/root/schema-dag-extraction/src/text_match_reeval.py\\n/root/schema-dag-extraction/src/reeval_text_match.py\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\n/root/schema-dag-extraction/src/preprocess_maven.py\\n/root/schema-dag-extraction/src/build_re_prompt.py\\n/root/schema-dag-extraction/src/preprocess_fewrel.py\\n/root/schema-dag-extraction/src/compute_maven_scs.py\\n/root/schema-dag-extraction/src/per_type_analysis.py\\n/root/schema-dag-extraction/src/maven_utils.py\\n/root/schema-dag-extraction/src/fewrel_utils.py\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\n/root/schema-dag-extraction/src/sdgd/similarity.py\\n/root/schema-dag-extraction/src/sdgd/graph.py\\n/root/schema-dag-extraction/src/sdgd/merge.py\\n/root/schema-dag-extraction/src/sdgd/evaluate.py\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\n/root/schema-dag-extraction/src/sdgd/__init__.py\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\n/root/schema-dag-extraction/src/analyze_fewrel_results.py\\n/root/schema-dag-extraction/src/sdgd_decompose_cpu.py\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\n/root/schema-dag-extraction/src/analyze_exp008_results.py\\n/root/schema-dag-extraction/src/error_taxonomy.py\\n/root/schema-dag-extraction/src/fewrel_error_taxonomy.py\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "f46035a7-8be3-4fa7-b0b9-a42c48d773f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/few_nerd_utils.py\\\\n/root/schema-dag-extraction/src/compute_type_embeddings.py\\\\n/root/schema-dag-extraction/src/compute_bcs.py\\\\n/root/schema-dag-extraction/src/select_type_batches.py\\\\n/root/schema-dag-extraction/src/run_extraction.py\\\\n/root/schema-dag-extraction/src/evaluate.py\\\\n/root/schema-dag-extraction/src/run_experiment.py\\\\n/root/schema-dag-extraction/src/analyze_results.py\\\\n/root/schema-dag-extraction/src/diagnose_eval.py\\\\n/root/schema-dag-extraction/src/text_match_reeval.py\\\\n/root/schema-dag-extraction/src/reeval_text_match.py\\\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\\\n/root/schema-dag-extraction/src/preprocess_maven.py\\\\n/root/schema-dag-extraction/src/build_re_prompt.py\\\\n/root/schema-dag-extraction/src/preprocess_fewrel.py\\\\n/root/schema-dag-extraction/src/compute_maven_scs.py\\\\n/root/schema-dag-extraction/src/per_type_analysis.py\\\\n/root/schema-dag-extraction/src/maven_utils.py\\\\n/root/schema-dag-extraction/src/fewrel_utils.py\\\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\\\n/root/schema-dag-extraction/src/sdgd/similarity.py\\\\n/root/schema-dag-extraction/src/sdgd/graph.py\\\\n/root/schema-dag-extraction/src/sdgd/merge.py\\\\n/root/schema-dag-extraction/src/sdgd/evaluate.py\\\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\\\n/root/schema-dag-extraction/src/sdgd/__init__.py\\\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\\\n/root/schema-dag-extraction/src/analyze_fewrel_results.py\\\\n/root/schema-dag-extraction/src/sdgd_decompose_cpu.py\\\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\\\n/root/schema-dag-extraction/src/analyze_exp008_results.py\\\\n/root/schema-dag-extraction/src/error_taxonomy.py\\\\n/root/schema-dag-extraction/src/fewrel_error_taxonomy.py\\\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/few_nerd_utils.py\\n/root/schema-dag-extraction/src/compute_type_embeddings.py\\n/root/schema-dag-extraction/src/compute_bcs.py\\n/root/schema-dag-extraction/src/select_type_batches.py\\n/root/schema-dag-extraction/src/run_extraction.py\\n/root/schema-dag-extraction/src/evaluate.py\\n/root/schema-dag-extraction/src/run_experiment.py\\n/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/diagnose_eval.py\\n/root/schema-dag-extraction/src/text_match_reeval.py\\n/root/schema-dag-extraction/src/reeval_text_match.py\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\n/root/schema-dag-extraction/src/preprocess_maven.py\\n/root/schema-dag-extraction/src/build_re_prompt.py\\n/root/schema-dag-extraction/src/preprocess_fewrel.py\\n/root/schema-dag-extraction/src/compute_maven_scs.py\\n/root/schema-dag-extraction/src/per_type_analysis.py\\n/root/schema-dag-extraction/src/maven_utils.py\\n/root/schema-dag-extraction/src/fewrel_utils.py\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\n/root/schema-dag-extraction/src/sdgd/similarity.py\\n/root/schema-dag-extraction/src/sdgd/graph.py\\n/root/schema-dag-extraction/src/sdgd/merge.py\\n/root/schema-dag-extraction/src/sdgd/evaluate.py\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\n/root/schema-dag-extraction/src/sdgd/__init__.py\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\n/root/schema-dag-extraction/src/analyze_fewrel_results.py\\n/root/schema-dag-extraction/src/sdgd_decompose_cpu.py\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\n/root/schema-dag-extraction/src/analyze_exp008_results.py\\n/root/schema-dag-extraction/src/error_taxonomy.py\\n/root/schema-dag-extraction/src/fewrel_error_taxonomy.py\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+There's already a `pairwise_confusion_analysis.py`. Let me check it and the error_taxonomy file for actual pairwise confusion data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "a7c51012-e08a-4cfb-a367-76aba27dcd10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZGxAG3P59XxMKYePnMRQ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 38423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1916
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018gAkuq6pmsobi15xWBMeMz`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat /root/schema-dag-extraction/src/pairwise_confusion_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "2f6614e8-3ad5-4c5b-b9a8-65a823735fc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZGxAG3P59XxMKYePnMRQ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 38423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1916
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01E4k5UchwDx4sLPBJx5zyNy`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat /root/schema-dag-extraction/src/error_taxonomy.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "db8ad56a-1619-4b70-a1ca-f86dac16cbff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZGxAG3P59XxMKYePnMRQ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 38423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1916
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T15:23:47.878Z_
+
+<details><summary>↩ Tool result · `toolu_018gAkuq6pmsobi15xWBMeMz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Pairwise type confusion analysis for exp2:\\n# Computes confusion matrix from predictions vs gold, correlates with BCS (pairwise cosine similarity).\\nimport json\\nimport logging\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nsys.path.insert(0, str(Path(__file__).parent))\\nfrom few_nerd_utils import load_few_nerd\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nPREDICTIONS_PATH = \\\"/root/schema-dag-extraction/artifacts/predictions_exp2.json\\\"\\nEMBEDDINGS_PATH = \\\"/root/schema-dag-extraction/data/type_embeddings.pt\\\"\\nOUTPUT_DIR = Path(\\\"/root/schema-dag-extraction/results\\\")\\nMAX_SAMPLES = 1000\\n\\n\\ndef load_predictions():\\n    with open(PREDICTIONS_PATH) as f:\\n        return json.load(f)\\n\\n\\ndef build_confusion_matrix(pred_entries, samples, count_filter=None):\\n    \\\"\\\"\\\"Build pairwise confusion counts: C[gold_type][pred_type] = count.\\n\\n    For each prediction, find matching gold entity by text (exact match).\\n    If pred.type != gold.type, record confusion.\\n    Also track gold counts per type for normalization.\\n    \\\"\\\"\\\"\\n    confusion = defaultdict(lambda: defaultdict(int))\\n    gold_counts = defaultdict(int)\\n\\n    by_batch_sample = defaultdict(list)\\n    for p in pred_entries:\\n        if count_filter and p[\\\"count_key\\\"] != count_filter:\\n            continue\\n        by_batch_sample[(p[\\\"batch_id\\\"], p[\\\"sample_id\\\"])].append(p)\\n\\n    for (batch_id, sid), entries in by_batch_sample.items():\\n        if sid >= len(samples):\\n            continue\\n\\n        entry = entries[0]\\n        batch_types = set(entry[\\\"batch_types\\\"])\\n        source_text = samples[sid][\\\"text\\\"]\\n        gold_entities = [e for e in samples[sid][\\\"entities\\\"] if e[\\\"type\\\"] in batch_types]\\n        preds = [p for p in entry.get(\\\"predictions\\\", []) if p.get(\\\"type\\\") in batch_types]\\n\\n        for g in gold_entities:\\n            gold_counts[g[\\\"type\\\"]] += 1\\n\\n        # For each pred, try to find a gold entity with same text but possibly different type\\n        gold_available = [[g[\\\"text\\\"], g[\\\"type\\\"], False] for g in gold_entities]\\n\\n        for pred in preds:\\n            pt = pred.get(\\\"text\\\", \\\"\\\")\\n            ptype = pred.get(\\\"type\\\", \\\"\\\")\\n            if pt not in source_text:\\n                continue\\n\\n            # First try exact match (text + type) - this is a correct prediction, skip\\n            exact_matched = False\\n            for g in gold_available:\\n                if not g[2] and g[0] == pt and g[1] == ptype:\\n                    g[2] = True\\n                    exact_matched = True\\n                    break\\n\\n            if exact_matched:\\n                continue\\n\\n            # Text matches but type differs → confusion\\n            for g in gold_available:\\n                if not g[2] and g[0] == pt and g[1] != ptype:\\n                    confusion[g[1]][ptype] += 1\\n                    g[2] = True\\n                    break\\n\\n    return confusion, gold_counts\\n\\n\\ndef compute_pairwise_bcs(embeddings_path):\\n    \\\"\\\"\\\"Compute pairwise cosine similarity between all type embeddings.\\\"\\\"\\\"\\n    emb_dict = torch.load(embeddings_path, map_location=\\\"cpu\\\")\\n    type_names = sorted(emb_dict.keys())\\n    emb_matrix = torch.stack([emb_dict[t] for t in type_names])\\n    emb_norm = emb_matrix / emb_matrix.norm(dim=1, keepdim=True)\\n    sim_matrix = emb_norm @ emb_norm.T\\n    return type_names, sim_matrix.float().numpy()\\n\\n\\ndef analyze_correlation(confusion, gold_counts, type_names, sim_matrix, label=\\\"all\\\"):\\n    \\\"\\\"\\\"Compute correlation between pairwise BCS and confusion rate.\\\"\\\"\\\"\\n    type_to_idx = {t: i for i, t in enumerate(type_names)}\\n\\n    bcs_vals = []\\n    confusion_vals = []\\n    pair_labels = []\\n\\n    all_types = sorted(set(list(gold_counts.keys())))\\n\\n    for i, t1 in enumerate(all_types):\\n        for j, t2 in enumerate(all_types):\\n            if t1 == t2:\\n                continue\\n            if t1 not in type_to_\\n\\n... [截断: 输出过长，省略 3713 字符] ...\\n\\nlogger.info(\\\"Saved scatter plot to %s\\\", output_path)\\n\\n\\ndef print_top_confused(confusion, gold_counts, type_names, sim_matrix, n=20):\\n    \\\"\\\"\\\"Print top-N most confused type pairs with their BCS.\\\"\\\"\\\"\\n    type_to_idx = {t: i for i, t in enumerate(type_names)}\\n\\n    pair_data = []\\n    seen = set()\\n    for gt in confusion:\\n        for pt in confusion[gt]:\\n            key = tuple(sorted([gt, pt]))\\n            if key in seen:\\n                continue\\n            seen.add(key)\\n            c_ij = confusion.get(gt, {}).get(pt, 0)\\n            c_ji = confusion.get(pt, {}).get(gt, 0)\\n            total_conf = c_ij + c_ji\\n            denom = gold_counts.get(gt, 0) + gold_counts.get(pt, 0)\\n            rate = total_conf / denom if denom > 0 else 0\\n\\n            if gt in type_to_idx and pt in type_to_idx:\\n                bcs = sim_matrix[type_to_idx[gt], type_to_idx[pt]]\\n            else:\\n                bcs = float(\\\"nan\\\")\\n\\n            pair_data.append((gt, pt, total_conf, rate, bcs, c_ij, c_ji))\\n\\n    pair_data.sort(key=lambda x: x[2], reverse=True)\\n\\n    print(f\\\"\\\\n{'Rank':<5} {'Type A':<35} {'Type B':<35} {'Conf':<6} {'Rate':<8} {'BCS':<7} {'A→B':<5} {'B→A':<5}\\\")\\n    print(\\\"-\\\" * 110)\\n    for i, (t1, t2, total, rate, bcs, c12, c21) in enumerate(pair_data[:n]):\\n        print(f\\\"{i+1:<5} {t1:<35} {t2:<35} {total:<6} {rate:<8.4f} {bcs:<7.4f} {c12:<5} {c21:<5}\\\")\\n\\n    return pair_data[:n]\\n\\n\\ndef main():\\n    logger.info(\\\"Loading gold data...\\\")\\n    samples = load_few_nerd(split=\\\"test\\\", max_samples=MAX_SAMPLES)\\n    logger.info(\\\"Loading predictions...\\\")\\n    preds = load_predictions()\\n    logger.info(\\\"Computing pairwise BCS...\\\")\\n    type_names, sim_matrix = compute_pairwise_bcs(EMBEDDINGS_PATH)\\n\\n    results = {}\\n\\n    for count_filter, label in [(None, \\\"all\\\"), (\\\"count_6\\\", \\\"count_6\\\"), (\\\"count_12\\\", \\\"count_12\\\")]:\\n        logger.info(\\\"=== Analyzing: %s ===\\\", label)\\n        confusion, gold_counts = build_confusion_matrix(preds, samples, count_filter)\\n\\n        total_confusions = sum(v for d in confusion.values() for v in d.values())\\n        logger.info(\\\"Total confusion events (%s): %d\\\", label, total_confusions)\\n        logger.info(\\\"Types with gold entities: %d\\\", len(gold_counts))\\n\\n        corr, bcs_arr, conf_arr, pair_labels = analyze_correlation(\\n            confusion, gold_counts, type_names, sim_matrix, label\\n        )\\n        results[label] = corr\\n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  {label.upper()}\\\")\\n        print(f\\\"{'='*60}\\\")\\n        print(f\\\"  Total unique type pairs:     {corr['n_pairs']}\\\")\\n        print(f\\\"  Pairs with nonzero confusion: {corr['n_nonzero_confusion']}\\\")\\n        print(f\\\"  Pearson  r = {corr['pearson_r']:.4f}  (p = {corr['pearson_p']:.2e})\\\")\\n        print(f\\\"  Spearman ρ = {corr['spearman_rho']:.4f}  (p = {corr['spearman_p']:.2e})\\\")\\n        if \\\"pearson_r_nonzero\\\" in corr:\\n            print(f\\\"  [nonzero only] Pearson  r = {corr['pearson_r_nonzero']:.4f}  (p = {corr['pearson_p_nonzero']:.2e})\\\")\\n            print(f\\\"  [nonzero only] Spearman ρ = {corr['spearman_rho_nonzero']:.4f}  (p = {corr['spearman_p_nonzero']:.2e})\\\")\\n\\n        if label == \\\"all\\\":\\n            plot_scatter(bcs_arr, conf_arr, pair_labels, corr,\\n                         OUTPUT_DIR / \\\"pairwise_confusion_analysis.png\\\")\\n            print(\\\"\\\\n  Top-20 most confused type pairs (ALL):\\\")\\n            top_pairs = print_top_confused(confusion, gold_counts, type_names, sim_matrix, n=20)\\n\\n        elif label == \\\"count_6\\\":\\n            plot_scatter(bcs_arr, conf_arr, pair_labels, corr,\\n                         OUTPUT_DIR / \\\"pairwise_confusion_count6.png\\\")\\n        elif label == \\\"count_12\\\":\\n            plot_scatter(bcs_arr, conf_arr, pair_labels, corr,\\n                         OUTPUT_DIR / \\\"pairwise_confusion_count12.png\\\")\\n\\n    # Save JSON results\\n    output_json = OUTPUT_DIR / \\\"pairwise_confusion_correlation.json\\\"\\n    with open(output_json, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved correlation results to %s\\\", output_json)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "861275c9-f5f0-4f81-ac8c-224698ed38df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Pairwise type confusion analysis for exp2:\\\\n# Computes confusion matrix from predictions vs gold, correlates with BCS (pairwise cosine similarity).\\\\nimport json\\\\nimport logging\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\n\\\\nsys.path.insert(0, str(Path(__file__).parent))\\\\nfrom few_nerd_utils import load_few_nerd\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nPREDICTIONS_PATH = \\\\\\\"/root/schema-dag-extraction/artifacts/predictions_exp2.json\\\\\\\"\\\\nEMBEDDINGS_PATH = \\\\\\\"/root/schema-dag-extraction/data/type_embeddings.pt\\\\\\\"\\\\nOUTPUT_DIR = Path(\\\\\\\"/root/schema-dag-extraction/results\\\\\\\")\\\\nMAX_SAMPLES = 1000\\\\n\\\\n\\\\ndef load_predictions():\\\\n    with open(PREDICTIONS_PATH) as f:\\\\n        return json.load(f)\\\\n\\\\n\\\\ndef build_confusion_matrix(pred_entries, samples, count_filter=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build pairwise confusion counts: C[gold_type][pred_type] = count.\\\\n\\\\n    For each prediction, find matching gold entity by text (exact match).\\\\n    If pred.type != gold.type, record confusion.\\\\n    Also track gold counts per type for normalization.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    confusion = defaultdict(lambda: defaultdict(int))\\\\n    gold_counts = defaultdict(int)\\\\n\\\\n    by_batch_sample = defaultdict(list)\\\\n    for p in pred_entries:\\\\n        if count_filter and p[\\\\\\\"count_key\\\\\\\"] != count_filter:\\\\n            continue\\\\n        by_batch_sample[(p[\\\\\\\"batch_id\\\\\\\"], p[\\\\\\\"sample_id\\\\\\\"])].append(p)\\\\n\\\\n    for (batch_id, sid), entries in by_batch_sample.items():\\\\n        if sid >= len(samples):\\\\n            continue\\\\n\\\\n        entry = entries[0]\\\\n        batch_types = set(entry[\\\\\\\"batch_types\\\\\\\"])\\\\n        source_text = samples[sid][\\\\\\\"text\\\\\\\"]\\\\n        gold_entities = [e for e in samples[sid][\\\\\\\"entities\\\\\\\"] if e[\\\\\\\"type\\\\\\\"] in batch_types]\\\\n        preds = [p for p in entry.get(\\\\\\\"predictions\\\\\\\", []) if p.get(\\\\\\\"type\\\\\\\") in batch_types]\\\\n\\\\n        for g in gold_entities:\\\\n            gold_counts[g[\\\\\\\"type\\\\\\\"]] += 1\\\\n\\\\n        # For each pred, try to find a gold entity with same text but possibly different type\\\\n        gold_available = [[g[\\\\\\\"text\\\\\\\"], g[\\\\\\\"type\\\\\\\"], False] for g in gold_entities]\\\\n\\\\n        for pred in preds:\\\\n            pt = pred.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            ptype = pred.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            if pt not in source_text:\\\\n                continue\\\\n\\\\n            # First try exact match (text + type) - this is a correct prediction, skip\\\\n            exact_matched = False\\\\n            for g in gold_available:\\\\n                if not g[2] and g[0] == pt and g[1] == ptype:\\\\n                    g[2] = True\\\\n                    exact_matched = True\\\\n                    break\\\\n\\\\n            if exact_matched:\\\\n                continue\\\\n\\\\n            # Text matches but type differs → confusion\\\\n            for g in gold_available:\\\\n                if not g[2] and g[0] == pt and g[1] != ptype:\\\\n                    confusion[g[1]][ptype] += 1\\\\n                    g[2] = True\\\\n                    break\\\\n\\\\n    return confusion, gold_counts\\\\n\\\\n\\\\ndef compute_pairwise_bcs(embeddings_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute pairwise cosine similarity between all type embeddings.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    emb_dict = torch.load(embeddings_path, map_location=\\\\\\\"cpu\\\\\\\")\\\\n    type_names = sorted(emb_dict.keys())\\\\n    emb_matrix = torch.stack([emb_dict[t] for t in type_names])\\\\n    emb_norm = emb_matrix / emb_matrix.norm(dim=1, keepdim=True)\\\\n    sim_matrix = emb_norm @ emb_norm.T\\\\n    return type_names, sim_matrix.float().numpy()\\\\n\\\\n\\\\ndef analyze_correlation(confusion, gold_counts, type_names, sim_matrix, label=\\\\\\\"all\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute correlation between pairwise BCS and confusion rate.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_to_idx = {t: i for i, t in enumerate(type_names)}\\\\n\\\\n    bcs_vals = []\\\\n    confusion_vals = []\\\\n    pair_labels = []\\\\n\\\\n    all_types = sorted(set(list(gold_counts.keys())))\\\\n\\\\n    for i, t1 in enumerate(all_types):\\\\n        for j, t2 in enumerate(all_types):\\\\n            if t1 == t2:\\\\n                continue\\\\n            if t1 not in type_to_\\\\n\\\\n... [截断: 输出过长，省略 3713 字符] ...\\\\n\\\\nlogger.info(\\\\\\\"Saved scatter plot to %s\\\\\\\", output_path)\\\\n\\\\n\\\\ndef print_top_confused(confusion, gold_counts, type_names, sim_matrix, n=20):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Print top-N most confused type pairs with their BCS.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_to_idx = {t: i for i, t in enumerate(type_names)}\\\\n\\\\n    pair_data = []\\\\n    seen = set()\\\\n    for gt in confusion:\\\\n        for pt in confusion[gt]:\\\\n            key = tuple(sorted([gt, pt]))\\\\n            if key in seen:\\\\n                continue\\\\n            seen.add(key)\\\\n            c_ij = confusion.get(gt, {}).get(pt, 0)\\\\n            c_ji = confusion.get(pt, {}).get(gt, 0)\\\\n            total_conf = c_ij + c_ji\\\\n            denom = gold_counts.get(gt, 0) + gold_counts.get(pt, 0)\\\\n            rate = total_conf / denom if denom > 0 else 0\\\\n\\\\n            if gt in type_to_idx and pt in type_to_idx:\\\\n                bcs = sim_matrix[type_to_idx[gt], type_to_idx[pt]]\\\\n            else:\\\\n                bcs = float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n            pair_data.append((gt, pt, total_conf, rate, bcs, c_ij, c_ji))\\\\n\\\\n    pair_data.sort(key=lambda x: x[2], reverse=True)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'Rank':<5} {'Type A':<35} {'Type B':<35} {'Conf':<6} {'Rate':<8} {'BCS':<7} {'A→B':<5} {'B→A':<5}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 110)\\\\n    for i, (t1, t2, total, rate, bcs, c12, c21) in enumerate(pair_data[:n]):\\\\n        print(f\\\\\\\"{i+1:<5} {t1:<35} {t2:<35} {total:<6} {rate:<8.4f} {bcs:<7.4f} {c12:<5} {c21:<5}\\\\\\\")\\\\n\\\\n    return pair_data[:n]\\\\n\\\\n\\\\ndef main():\\\\n    logger.info(\\\\\\\"Loading gold data...\\\\\\\")\\\\n    samples = load_few_nerd(split=\\\\\\\"test\\\\\\\", max_samples=MAX_SAMPLES)\\\\n    logger.info(\\\\\\\"Loading predictions...\\\\\\\")\\\\n    preds = load_predictions()\\\\n    logger.info(\\\\\\\"Computing pairwise BCS...\\\\\\\")\\\\n    type_names, sim_matrix = compute_pairwise_bcs(EMBEDDINGS_PATH)\\\\n\\\\n    results = {}\\\\n\\\\n    for count_filter, label in [(None, \\\\\\\"all\\\\\\\"), (\\\\\\\"count_6\\\\\\\", \\\\\\\"count_6\\\\\\\"), (\\\\\\\"count_12\\\\\\\", \\\\\\\"count_12\\\\\\\")]:\\\\n        logger.info(\\\\\\\"=== Analyzing: %s ===\\\\\\\", label)\\\\n        confusion, gold_counts = build_confusion_matrix(preds, samples, count_filter)\\\\n\\\\n        total_confusions = sum(v for d in confusion.values() for v in d.values())\\\\n        logger.info(\\\\\\\"Total confusion events (%s): %d\\\\\\\", label, total_confusions)\\\\n        logger.info(\\\\\\\"Types with gold entities: %d\\\\\\\", len(gold_counts))\\\\n\\\\n        corr, bcs_arr, conf_arr, pair_labels = analyze_correlation(\\\\n            confusion, gold_counts, type_names, sim_matrix, label\\\\n        )\\\\n        results[label] = corr\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"  {label.upper()}\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"  Total unique type pairs:     {corr['n_pairs']}\\\\\\\")\\\\n        print(f\\\\\\\"  Pairs with nonzero confusion: {corr['n_nonzero_confusion']}\\\\\\\")\\\\n        print(f\\\\\\\"  Pearson  r = {corr['pearson_r']:.4f}  (p = {corr['pearson_p']:.2e})\\\\\\\")\\\\n        print(f\\\\\\\"  Spearman ρ = {corr['spearman_rho']:.4f}  (p = {corr['spearman_p']:.2e})\\\\\\\")\\\\n        if \\\\\\\"pearson_r_nonzero\\\\\\\" in corr:\\\\n            print(f\\\\\\\"  [nonzero only] Pearson  r = {corr['pearson_r_nonzero']:.4f}  (p = {corr['pearson_p_nonzero']:.2e})\\\\\\\")\\\\n            print(f\\\\\\\"  [nonzero only] Spearman ρ = {corr['spearman_rho_nonzero']:.4f}  (p = {corr['spearman_p_nonzero']:.2e})\\\\\\\")\\\\n\\\\n        if label == \\\\\\\"all\\\\\\\":\\\\n            plot_scatter(bcs_arr, conf_arr, pair_labels, corr,\\\\n                         OUTPUT_DIR / \\\\\\\"pairwise_confusion_analysis.png\\\\\\\")\\\\n            print(\\\\\\\"\\\\\\\\n  Top-20 most confused type pairs (ALL):\\\\\\\")\\\\n            top_pairs = print_top_confused(confusion, gold_counts, type_names, sim_matrix, n=20)\\\\n\\\\n        elif label == \\\\\\\"count_6\\\\\\\":\\\\n            plot_scatter(bcs_arr, conf_arr, pair_labels, corr,\\\\n                         OUTPUT_DIR / \\\\\\\"pairwise_confusion_count6.png\\\\\\\")\\\\n        elif label == \\\\\\\"count_12\\\\\\\":\\\\n            plot_scatter(bcs_arr, conf_arr, pair_labels, corr,\\\\n                         OUTPUT_DIR / \\\\\\\"pairwise_confusion_count12.png\\\\\\\")\\\\n\\\\n    # Save JSON results\\\\n    output_json = OUTPUT_DIR / \\\\\\\"pairwise_confusion_correlation.json\\\\\\\"\\\\n    with open(output_json, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    logger.info(\\\\\\\"Saved correlation results to %s\\\\\\\", output_json)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# Pairwise type confusion analysis for exp2:\\n# Computes confusion matrix from predictions vs gold, correlates with BCS (pairwise cosine similarity).\\nimport json\\nimport logging\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nsys.path.insert(0, str(Path(__file__).parent))\\nfrom few_nerd_utils import load_few_nerd\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nPREDICTIONS_PATH = \\\"/root/schema-dag-extraction/artifacts/predictions_exp2.json\\\"\\nEMBEDDINGS_PATH = \\\"/root/schema-dag-extraction/data/type_embeddings.pt\\\"\\nOUTPUT_DIR = Path(\\\"/root/schema-dag-extraction/results\\\")\\nMAX_SAMPLES = 1000\\n\\n\\ndef load_predictions():\\n    with open(PREDICTIONS_PATH) as f:\\n        return json.load(f)\\n\\n\\ndef build_confusion_matrix(pred_entries, samples, count_filter=None):\\n    \\\"\\\"\\\"Build pairwise confusion counts: C[gold_type][pred_type] = count.\\n\\n    For each prediction, find matching gold entity by text (exact match).\\n    If pred.type != gold.type, record confusion.\\n    Also track gold counts per type for normalization.\\n    \\\"\\\"\\\"\\n    confusion = defaultdict(lambda: defaultdict(int))\\n    gold_counts = defaultdict(int)\\n\\n    by_batch_sample = defaultdict(list)\\n    for p in pred_entries:\\n        if count_filter and p[\\\"count_key\\\"] != count_filter:\\n            continue\\n        by_batch_sample[(p[\\\"batch_id\\\"], p[\\\"sample_id\\\"])].append(p)\\n\\n    for (batch_id, sid), entries in by_batch_sample.items():\\n        if sid >= len(samples):\\n            continue\\n\\n        entry = entries[0]\\n        batch_types = set(entry[\\\"batch_types\\\"])\\n        source_text = samples[sid][\\\"text\\\"]\\n        gold_entities = [e for e in samples[sid][\\\"entities\\\"] if e[\\\"type\\\"] in batch_types]\\n        preds = [p for p in entry.get(\\\"predictions\\\", []) if p.get(\\\"type\\\") in batch_types]\\n\\n        for g in gold_entities:\\n            gold_counts[g[\\\"type\\\"]] += 1\\n\\n        # For each pred, try to find a gold entity with same text but possibly different type\\n        gold_available = [[g[\\\"text\\\"], g[\\\"type\\\"], False] for g in gold_entities]\\n\\n        for pred in preds:\\n            pt = pred.get(\\\"text\\\", \\\"\\\")\\n            ptype = pred.get(\\\"type\\\", \\\"\\\")\\n            if pt not in source_text:\\n                continue\\n\\n            # First try exact match (text + type) - this is a correct prediction, skip\\n            exact_matched = False\\n            for g in gold_available:\\n                if not g[2] and g[0] == pt and g[1] == ptype:\\n                    g[2] = True\\n                    exact_matched = True\\n                    break\\n\\n            if exact_matched:\\n                continue\\n\\n            # Text matches but type differs → confusion\\n            for g in gold_available:\\n                if not g[2] and g[0] == pt and g[1] != ptype:\\n                    confusion[g[1]][ptype] += 1\\n                    g[2] = True\\n                    break\\n\\n    return confusion, gold_counts\\n\\n\\ndef compute_pairwise_bcs(embeddings_path):\\n    \\\"\\\"\\\"Compute pairwise cosine similarity between all type embeddings.\\\"\\\"\\\"\\n    emb_dict = torch.load(embeddings_path, map_location=\\\"cpu\\\")\\n    type_names = sorted(emb_dict.keys())\\n    emb_matrix = torch.stack([emb_dict[t] for t in type_names])\\n    emb_norm = emb_matrix / emb_matrix.norm(dim=1, keepdim=True)\\n    sim_matrix = emb_norm @ emb_norm.T\\n    return type_names, sim_matrix.float().numpy()\\n\\n\\ndef analyze_correlation(confusion, gold_counts, type_names, sim_matrix, label=\\\"all\\\"):\\n    \\\"\\\"\\\"Compute correlation between pairwise BCS and confusion rate.\\\"\\\"\\\"\\n    type_to_idx = {t: i for i, t in enumerate(type_names)}\\n\\n    bcs_vals = []\\n    confusion_vals = []\\n    pair_labels = []\\n\\n    all_types = sorted(set(list(gold_counts.keys())))\\n\\n    for i, t1 in enumerate(all_types):\\n        for j, t2 in enumerate(all_types):\\n            if t1 == t2:\\n                continue\\n            if t1 not in type_to_\\n\\n... [截断: 输出过长，省略 3713 字符] ...\\n\\nlogger.info(\\\"Saved scatter plot to %s\\\", output_path)\\n\\n\\ndef print_top_confused(confusion, gold_counts, type_names, sim_matrix, n=20):\\n    \\\"\\\"\\\"Print top-N most confused type pairs with their BCS.\\\"\\\"\\\"\\n    type_to_idx = {t: i for i, t in enumerate(type_names)}\\n\\n    pair_data = []\\n    seen = set()\\n    for gt in confusion:\\n        for pt in confusion[gt]:\\n            key = tuple(sorted([gt, pt]))\\n            if key in seen:\\n                continue\\n            seen.add(key)\\n            c_ij = confusion.get(gt, {}).get(pt, 0)\\n            c_ji = confusion.get(pt, {}).get(gt, 0)\\n            total_conf = c_ij + c_ji\\n            denom = gold_counts.get(gt, 0) + gold_counts.get(pt, 0)\\n            rate = total_conf / denom if denom > 0 else 0\\n\\n            if gt in type_to_idx and pt in type_to_idx:\\n                bcs = sim_matrix[type_to_idx[gt], type_to_idx[pt]]\\n            else:\\n                bcs = float(\\\"nan\\\")\\n\\n            pair_data.append((gt, pt, total_conf, rate, bcs, c_ij, c_ji))\\n\\n    pair_data.sort(key=lambda x: x[2], reverse=True)\\n\\n    print(f\\\"\\\\n{'Rank':<5} {'Type A':<35} {'Type B':<35} {'Conf':<6} {'Rate':<8} {'BCS':<7} {'A→B':<5} {'B→A':<5}\\\")\\n    print(\\\"-\\\" * 110)\\n    for i, (t1, t2, total, rate, bcs, c12, c21) in enumerate(pair_data[:n]):\\n        print(f\\\"{i+1:<5} {t1:<35} {t2:<35} {total:<6} {rate:<8.4f} {bcs:<7.4f} {c12:<5} {c21:<5}\\\")\\n\\n    return pair_data[:n]\\n\\n\\ndef main():\\n    logger.info(\\\"Loading gold data...\\\")\\n    samples = load_few_nerd(split=\\\"test\\\", max_samples=MAX_SAMPLES)\\n    logger.info(\\\"Loading predictions...\\\")\\n    preds = load_predictions()\\n    logger.info(\\\"Computing pairwise BCS...\\\")\\n    type_names, sim_matrix = compute_pairwise_bcs(EMBEDDINGS_PATH)\\n\\n    results = {}\\n\\n    for count_filter, label in [(None, \\\"all\\\"), (\\\"count_6\\\", \\\"count_6\\\"), (\\\"count_12\\\", \\\"count_12\\\")]:\\n        logger.info(\\\"=== Analyzing: %s ===\\\", label)\\n        confusion, gold_counts = build_confusion_matrix(preds, samples, count_filter)\\n\\n        total_confusions = sum(v for d in confusion.values() for v in d.values())\\n        logger.info(\\\"Total confusion events (%s): %d\\\", label, total_confusions)\\n        logger.info(\\\"Types with gold entities: %d\\\", len(gold_counts))\\n\\n        corr, bcs_arr, conf_arr, pair_labels = analyze_correlation(\\n            confusion, gold_counts, type_names, sim_matrix, label\\n        )\\n        results[label] = corr\\n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  {label.upper()}\\\")\\n        print(f\\\"{'='*60}\\\")\\n        print(f\\\"  Total unique type pairs:     {corr['n_pairs']}\\\")\\n        print(f\\\"  Pairs with nonzero confusion: {corr['n_nonzero_confusion']}\\\")\\n        print(f\\\"  Pearson  r = {corr['pearson_r']:.4f}  (p = {corr['pearson_p']:.2e})\\\")\\n        print(f\\\"  Spearman ρ = {corr['spearman_rho']:.4f}  (p = {corr['spearman_p']:.2e})\\\")\\n        if \\\"pearson_r_nonzero\\\" in corr:\\n            print(f\\\"  [nonzero only] Pearson  r = {corr['pearson_r_nonzero']:.4f}  (p = {corr['pearson_p_nonzero']:.2e})\\\")\\n            print(f\\\"  [nonzero only] Spearman ρ = {corr['spearman_rho_nonzero']:.4f}  (p = {corr['spearman_p_nonzero']:.2e})\\\")\\n\\n        if label == \\\"all\\\":\\n            plot_scatter(bcs_arr, conf_arr, pair_labels, corr,\\n                         OUTPUT_DIR / \\\"pairwise_confusion_analysis.png\\\")\\n            print(\\\"\\\\n  Top-20 most confused type pairs (ALL):\\\")\\n            top_pairs = print_top_confused(confusion, gold_counts, type_names, sim_matrix, n=20)\\n\\n        elif label == \\\"count_6\\\":\\n            plot_scatter(bcs_arr, conf_arr, pair_labels, corr,\\n                         OUTPUT_DIR / \\\"pairwise_confusion_count6.png\\\")\\n        elif label == \\\"count_12\\\":\\n            plot_scatter(bcs_arr, conf_arr, pair_labels, corr,\\n                         OUTPUT_DIR / \\\"pairwise_confusion_count12.png\\\")\\n\\n    # Save JSON results\\n    output_json = OUTPUT_DIR / \\\"pairwise_confusion_correlation.json\\\"\\n    with open(output_json, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    logger.info(\\\"Saved correlation results to %s\\\", output_json)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T15:23:48.836Z_
+
+<details><summary>↩ Tool result · `toolu_01E4k5UchwDx4sLPBJx5zyNy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Error taxonomy analysis: classify FP predictions by BCS bin.\\n\\nSupports Claim 2 (multi-channel degradation model): high BCS environments\\nshould show higher intra-batch type_substitution rates (confusability channel).\\n\\nDistinguishes intra-batch vs extra-batch type substitution:\\n  - intra: pred text matches gold entity whose type IS in batch_types (within-batch confusion)\\n  - extra: pred text matches gold entity whose type is NOT in batch_types\\n\\nInput:\\n  - artifacts/predictions_exp1.json (random batches, BCS 0-0.97)\\n  - artifacts/predictions_exp2.json (controlled BCS batches, BCS 0.86-0.97)\\n  - data/parquet/test.parquet (1000 samples, Few-NERD)\\nOutput:\\n  - artifacts/exp007/error_taxonomy_report.txt\\n  - artifacts/exp007/error_taxonomy_by_bcs.csv\\n  - artifacts/exp007/error_taxonomy_raw.json\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nimport os\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\nfrom typing import Dict, List, Set, Tuple\\n\\nimport numpy as np\\n\\nsys.path.insert(0, str(Path(__file__).parent))\\nfrom few_nerd_utils import load_few_nerd\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nBASE_DIR = \\\"/root/schema-dag-extraction\\\"\\nARTIFACTS_DIR = os.path.join(BASE_DIR, \\\"artifacts\\\")\\nMAX_SAMPLES = 1000\\n\\nBCS_BINS_EXP1 = [\\n    (\\\"zero\\\", 0.0, 0.001),       # count_1 batches, BCS=0\\n    (\\\"low\\\", 0.001, 0.90),       # multi-type, low confusability\\n    (\\\"medium\\\", 0.90, 0.95),     # multi-type, medium confusability\\n    (\\\"high\\\", 0.95, 1.001),      # multi-type, high confusability\\n]\\n\\nBCS_BINS_EXP2 = [\\n    (\\\"low\\\", 0.0, 0.90),\\n    (\\\"medium\\\", 0.90, 0.95),\\n    (\\\"high\\\", 0.95, 1.001),\\n]\\n\\n# intra_type_sub = within-batch confusion (confusability channel signal)\\n# extra_type_sub = pred matches gold entity whose type is outside batch\\nERROR_TYPES = [\\n    \\\"intra_type_sub\\\", \\\"extra_type_sub\\\",\\n    \\\"boundary_error\\\", \\\"hallucination\\\", \\\"spurious\\\",\\n]\\n\\n\\ndef text_overlaps(a: str, b: str) -> bool:\\n    if not a or not b:\\n        return False\\n    al, bl = a.lower(), b.lower()\\n    return al == bl or al in bl or bl in al\\n\\n\\ndef words_overlap(a: str, b: str) -> bool:\\n    a_words = {w for w in a.lower().split() if len(w) > 2}\\n    b_words = {w for w in b.lower().split() if len(w) > 2}\\n    return bool(a_words & b_words)\\n\\n\\ndef classify_fp(\\n    pred: Dict, all_gold_entities: List[Dict],\\n    source_text: str, batch_types: Set[str],\\n) -> str:\\n    \\\"\\\"\\\"Classify a false-positive prediction.\\n\\n    Priority: hallucination > intra_type_sub > extra_type_sub > boundary_error > spurious\\n    \\\"\\\"\\\"\\n    pred_text = pred.get(\\\"text\\\", \\\"\\\").strip()\\n    pred_type = pred.get(\\\"type\\\", \\\"\\\")\\n\\n    # 1. Hallucination\\n    if not pred_text or pred_text.lower() not in source_text.lower():\\n        return \\\"hallucination\\\"\\n\\n    # 2. Type substitution (check intra-batch first, then extra-batch)\\n    for gold in all_gold_entities:\\n        gold_text = gold.get(\\\"text\\\", \\\"\\\").strip()\\n        if text_overlaps(pred_text, gold_text) and pred_type != gold[\\\"type\\\"]:\\n            if gold[\\\"type\\\"] in batch_types:\\n                return \\\"intra_type_sub\\\"  # confused with another batch type\\n            # don't return yet — keep looking for intra match\\n\\n    for gold in all_gold_entities:\\n        gold_text = gold.get(\\\"text\\\", \\\"\\\").strip()\\n        if text_overlaps(pred_text, gold_text) and pred_type != gold[\\\"type\\\"]:\\n            return \\\"extra_type_sub\\\"  # matches gold of type outside batch\\n\\n    # 3. Boundary error: same type, partial word overlap\\n    for gold in all_gold_entities:\\n        if pred_type != gold[\\\"type\\\"]:\\n            continue\\n        gold_text = gold.get(\\\"text\\\", \\\"\\\").strip()\\n        if words_overlap(pred_text, gold_text):\\n            return \\\"boundary_error\\\"\\n\\n    # 4. Spurious\\n    return \\\"spurious\\\"\\n\\n\\ndef match_predictions_to_gold(\\n    pred_entities: List[Dict],\\n    gold_entities: List[Dict],\\n    source_text: str,\\n) -> Tuple[set, set]:\\n    matched_pred = set()\\n    matched_gold = set()\\n\\n    for pi, pred in enumerate(pred_entities):\\n        pt = pr\\n\\n... [截断: 输出过长，省略 7655 字符] ...\\n\\n       else:\\n            sig = \\\"***\\\" if chi2[\\\"p_value\\\"] < 0.001 else (\\\"**\\\" if chi2[\\\"p_value\\\"] < 0.01 else (\\\"*\\\" if chi2[\\\"p_value\\\"] < 0.05 else \\\"n.s.\\\"))\\n            lines.append(f\\\"Chi-square: chi2={chi2['chi2']:.2f}, df={chi2['dof']}, p={chi2['p_value']:.2e} {sig}\\\")\\n\\n        trend_pct = intra_sub_trend_test(ba, bins)\\n        if \\\"error\\\" in trend_pct:\\n            lines.append(f\\\"IntraSub fraction trend: {trend_pct['error']}\\\")\\n        else:\\n            sig = \\\"***\\\" if trend_pct[\\\"p_value\\\"] < 0.001 else (\\\"**\\\" if trend_pct[\\\"p_value\\\"] < 0.01 else (\\\"*\\\" if trend_pct[\\\"p_value\\\"] < 0.05 else \\\"n.s.\\\"))\\n            lines.append(f\\\"IntraSub fraction ~ BCS: rho={trend_pct['rho']:.3f}, p={trend_pct['p_value']:.4f} {sig}\\\")\\n            lines.append(f\\\"  bcs_mid={[f'{x:.3f}' for x in trend_pct['bcs_mid']]}\\\")\\n            lines.append(f\\\"  frac   ={[f'{y:.4f}' for y in trend_pct['frac']]}\\\")\\n\\n        trend_rate = intra_sub_count_trend(ba, bins)\\n        if \\\"error\\\" in trend_rate:\\n            lines.append(f\\\"IntraSub rate/gold trend: {trend_rate['error']}\\\")\\n        else:\\n            sig = \\\"***\\\" if trend_rate[\\\"p_value\\\"] < 0.001 else (\\\"**\\\" if trend_rate[\\\"p_value\\\"] < 0.01 else (\\\"*\\\" if trend_rate[\\\"p_value\\\"] < 0.05 else \\\"n.s.\\\"))\\n            lines.append(f\\\"IntraSub rate/gold ~ BCS: rho={trend_rate['rho']:.3f}, p={trend_rate['p_value']:.4f} {sig}\\\")\\n            lines.append(f\\\"  bcs_mid={[f'{x:.3f}' for x in trend_rate['bcs_mid']]}\\\")\\n            lines.append(f\\\"  rate   ={[f'{y:.4f}' for y in trend_rate['rate']]}\\\")\\n\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef write_csv(results_list: List[Dict], path: str):\\n    header = (\\n        \\\"experiment,bcs_bin,n_batches,true_positive,total_fp,\\\"\\n        \\\"intra_type_sub,intra_sub_pct,extra_type_sub,extra_sub_pct,\\\"\\n        \\\"boundary_error,boundary_pct,hallucination,halluc_pct,\\\"\\n        \\\"spurious,spurious_pct,false_negative,total_pred,total_gold\\\"\\n    )\\n    rows = [header]\\n    for res in results_list:\\n        ba = res[\\\"bin_agg\\\"]\\n        bn = res[\\\"bin_n\\\"]\\n        for bname, _, _ in res[\\\"bcs_bins\\\"]:\\n            c = ba[bname]\\n            tfp = sum(c[et] for et in ERROR_TYPES)\\n            def pct(et):\\n                return c[et] / tfp * 100 if tfp else 0\\n            rows.append(\\n                f\\\"{res['label']},{bname},{bn[bname]},{c['true_positive']},{tfp},\\\"\\n                f\\\"{c['intra_type_sub']},{pct('intra_type_sub'):.2f},\\\"\\n                f\\\"{c['extra_type_sub']},{pct('extra_type_sub'):.2f},\\\"\\n                f\\\"{c['boundary_error']},{pct('boundary_error'):.2f},\\\"\\n                f\\\"{c['hallucination']},{pct('hallucination'):.2f},\\\"\\n                f\\\"{c['spurious']},{pct('spurious'):.2f},\\\"\\n                f\\\"{c['false_negative']},{c['total_pred']},{c['total_gold']}\\\"\\n            )\\n    with open(path, \\\"w\\\") as f:\\n        f.write(\\\"\\\\n\\\".join(rows) + \\\"\\\\n\\\")\\n\\n\\ndef main():\\n    output_dir = os.path.join(ARTIFACTS_DIR, \\\"exp007\\\")\\n    os.makedirs(output_dir, exist_ok=True)\\n\\n    logger.info(\\\"Loading test data (max_samples=%d)\\\", MAX_SAMPLES)\\n    samples = load_few_nerd(split=\\\"test\\\", max_samples=MAX_SAMPLES)\\n    logger.info(\\\"Loaded %d samples\\\", len(samples))\\n\\n    results = []\\n\\n    for fname, label, bins in [\\n        (\\\"predictions_exp1.json\\\", \\\"exp1_random\\\", BCS_BINS_EXP1),\\n        (\\\"predictions_exp2.json\\\", \\\"exp2_controlled\\\", BCS_BINS_EXP2),\\n    ]:\\n        path = os.path.join(ARTIFACTS_DIR, fname)\\n        if os.path.exists(path):\\n            logger.info(\\\"Analyzing %s\\\", label)\\n            r = analyze_predictions(path, samples, bins, label)\\n            results.append(r)\\n\\n    report = format_report(results)\\n    print(report)\\n\\n    with open(os.path.join(output_dir, \\\"error_taxonomy_report.txt\\\"), \\\"w\\\") as f:\\n        f.write(report + \\\"\\\\n\\\")\\n\\n    write_csv(results, os.path.join(output_dir, \\\"error_taxonomy_by_bcs.csv\\\"))\\n\\n    raw = {r[\\\"label\\\"]: r[\\\"batch_results\\\"] for r in results}\\n    with open(os.path.join(output_dir, \\\"error_taxonomy_raw.json\\\"), \\\"w\\\") as f:\\n        json.dump(raw, f, indent=2)\\n\\n    logger.info(\\\"Done. Output in %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "d4db5314-1644-4f77-823f-583661bd5d1f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Error taxonomy analysis: classify FP predictions by BCS bin.\\\\n\\\\nSupports Claim 2 (multi-channel degradation model): high BCS environments\\\\nshould show higher intra-batch type_substitution rates (confusability channel).\\\\n\\\\nDistinguishes intra-batch vs extra-batch type substitution:\\\\n  - intra: pred text matches gold entity whose type IS in batch_types (within-batch confusion)\\\\n  - extra: pred text matches gold entity whose type is NOT in batch_types\\\\n\\\\nInput:\\\\n  - artifacts/predictions_exp1.json (random batches, BCS 0-0.97)\\\\n  - artifacts/predictions_exp2.json (controlled BCS batches, BCS 0.86-0.97)\\\\n  - data/parquet/test.parquet (1000 samples, Few-NERD)\\\\nOutput:\\\\n  - artifacts/exp007/error_taxonomy_report.txt\\\\n  - artifacts/exp007/error_taxonomy_by_bcs.csv\\\\n  - artifacts/exp007/error_taxonomy_raw.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Set, Tuple\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, str(Path(__file__).parent))\\\\nfrom few_nerd_utils import load_few_nerd\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = \\\\\\\"/root/schema-dag-extraction\\\\\\\"\\\\nARTIFACTS_DIR = os.path.join(BASE_DIR, \\\\\\\"artifacts\\\\\\\")\\\\nMAX_SAMPLES = 1000\\\\n\\\\nBCS_BINS_EXP1 = [\\\\n    (\\\\\\\"zero\\\\\\\", 0.0, 0.001),       # count_1 batches, BCS=0\\\\n    (\\\\\\\"low\\\\\\\", 0.001, 0.90),       # multi-type, low confusability\\\\n    (\\\\\\\"medium\\\\\\\", 0.90, 0.95),     # multi-type, medium confusability\\\\n    (\\\\\\\"high\\\\\\\", 0.95, 1.001),      # multi-type, high confusability\\\\n]\\\\n\\\\nBCS_BINS_EXP2 = [\\\\n    (\\\\\\\"low\\\\\\\", 0.0, 0.90),\\\\n    (\\\\\\\"medium\\\\\\\", 0.90, 0.95),\\\\n    (\\\\\\\"high\\\\\\\", 0.95, 1.001),\\\\n]\\\\n\\\\n# intra_type_sub = within-batch confusion (confusability channel signal)\\\\n# extra_type_sub = pred matches gold entity whose type is outside batch\\\\nERROR_TYPES = [\\\\n    \\\\\\\"intra_type_sub\\\\\\\", \\\\\\\"extra_type_sub\\\\\\\",\\\\n    \\\\\\\"boundary_error\\\\\\\", \\\\\\\"hallucination\\\\\\\", \\\\\\\"spurious\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef text_overlaps(a: str, b: str) -> bool:\\\\n    if not a or not b:\\\\n        return False\\\\n    al, bl = a.lower(), b.lower()\\\\n    return al == bl or al in bl or bl in al\\\\n\\\\n\\\\ndef words_overlap(a: str, b: str) -> bool:\\\\n    a_words = {w for w in a.lower().split() if len(w) > 2}\\\\n    b_words = {w for w in b.lower().split() if len(w) > 2}\\\\n    return bool(a_words & b_words)\\\\n\\\\n\\\\ndef classify_fp(\\\\n    pred: Dict, all_gold_entities: List[Dict],\\\\n    source_text: str, batch_types: Set[str],\\\\n) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Classify a false-positive prediction.\\\\n\\\\n    Priority: hallucination > intra_type_sub > extra_type_sub > boundary_error > spurious\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pred_text = pred.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\").strip()\\\\n    pred_type = pred.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\")\\\\n\\\\n    # 1. Hallucination\\\\n    if not pred_text or pred_text.lower() not in source_text.lower():\\\\n        return \\\\\\\"hallucination\\\\\\\"\\\\n\\\\n    # 2. Type substitution (check intra-batch first, then extra-batch)\\\\n    for gold in all_gold_entities:\\\\n        gold_text = gold.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\").strip()\\\\n        if text_overlaps(pred_text, gold_text) and pred_type != gold[\\\\\\\"type\\\\\\\"]:\\\\n            if gold[\\\\\\\"type\\\\\\\"] in batch_types:\\\\n                return \\\\\\\"intra_type_sub\\\\\\\"  # confused with another batch type\\\\n            # don't return yet — keep looking for intra match\\\\n\\\\n    for gold in all_gold_entities:\\\\n        gold_text = gold.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\").strip()\\\\n        if text_overlaps(pred_text, gold_text) and pred_type != gold[\\\\\\\"type\\\\\\\"]:\\\\n            return \\\\\\\"extra_type_sub\\\\\\\"  # matches gold of type outside batch\\\\n\\\\n    # 3. Boundary error: same type, partial word overlap\\\\n    for gold in all_gold_entities:\\\\n        if pred_type != gold[\\\\\\\"type\\\\\\\"]:\\\\n            continue\\\\n        gold_text = gold.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\").strip()\\\\n        if words_overlap(pred_text, gold_text):\\\\n            return \\\\\\\"boundary_error\\\\\\\"\\\\n\\\\n    # 4. Spurious\\\\n    return \\\\\\\"spurious\\\\\\\"\\\\n\\\\n\\\\ndef match_predictions_to_gold(\\\\n    pred_entities: List[Dict],\\\\n    gold_entities: List[Dict],\\\\n    source_text: str,\\\\n) -> Tuple[set, set]:\\\\n    matched_pred = set()\\\\n    matched_gold = set()\\\\n\\\\n    for pi, pred in enumerate(pred_entities):\\\\n        pt = pr\\\\n\\\\n... [截断: 输出过长，省略 7655 字符] ...\\\\n\\\\n       else:\\\\n            sig = \\\\\\\"***\\\\\\\" if chi2[\\\\\\\"p_value\\\\\\\"] < 0.001 else (\\\\\\\"**\\\\\\\" if chi2[\\\\\\\"p_value\\\\\\\"] < 0.01 else (\\\\\\\"*\\\\\\\" if chi2[\\\\\\\"p_value\\\\\\\"] < 0.05 else \\\\\\\"n.s.\\\\\\\"))\\\\n            lines.append(f\\\\\\\"Chi-square: chi2={chi2['chi2']:.2f}, df={chi2['dof']}, p={chi2['p_value']:.2e} {sig}\\\\\\\")\\\\n\\\\n        trend_pct = intra_sub_trend_test(ba, bins)\\\\n        if \\\\\\\"error\\\\\\\" in trend_pct:\\\\n            lines.append(f\\\\\\\"IntraSub fraction trend: {trend_pct['error']}\\\\\\\")\\\\n        else:\\\\n            sig = \\\\\\\"***\\\\\\\" if trend_pct[\\\\\\\"p_value\\\\\\\"] < 0.001 else (\\\\\\\"**\\\\\\\" if trend_pct[\\\\\\\"p_value\\\\\\\"] < 0.01 else (\\\\\\\"*\\\\\\\" if trend_pct[\\\\\\\"p_value\\\\\\\"] < 0.05 else \\\\\\\"n.s.\\\\\\\"))\\\\n            lines.append(f\\\\\\\"IntraSub fraction ~ BCS: rho={trend_pct['rho']:.3f}, p={trend_pct['p_value']:.4f} {sig}\\\\\\\")\\\\n            lines.append(f\\\\\\\"  bcs_mid={[f'{x:.3f}' for x in trend_pct['bcs_mid']]}\\\\\\\")\\\\n            lines.append(f\\\\\\\"  frac   ={[f'{y:.4f}' for y in trend_pct['frac']]}\\\\\\\")\\\\n\\\\n        trend_rate = intra_sub_count_trend(ba, bins)\\\\n        if \\\\\\\"error\\\\\\\" in trend_rate:\\\\n            lines.append(f\\\\\\\"IntraSub rate/gold trend: {trend_rate['error']}\\\\\\\")\\\\n        else:\\\\n            sig = \\\\\\\"***\\\\\\\" if trend_rate[\\\\\\\"p_value\\\\\\\"] < 0.001 else (\\\\\\\"**\\\\\\\" if trend_rate[\\\\\\\"p_value\\\\\\\"] < 0.01 else (\\\\\\\"*\\\\\\\" if trend_rate[\\\\\\\"p_value\\\\\\\"] < 0.05 else \\\\\\\"n.s.\\\\\\\"))\\\\n            lines.append(f\\\\\\\"IntraSub rate/gold ~ BCS: rho={trend_rate['rho']:.3f}, p={trend_rate['p_value']:.4f} {sig}\\\\\\\")\\\\n            lines.append(f\\\\\\\"  bcs_mid={[f'{x:.3f}' for x in trend_rate['bcs_mid']]}\\\\\\\")\\\\n            lines.append(f\\\\\\\"  rate   ={[f'{y:.4f}' for y in trend_rate['rate']]}\\\\\\\")\\\\n\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef write_csv(results_list: List[Dict], path: str):\\\\n    header = (\\\\n        \\\\\\\"experiment,bcs_bin,n_batches,true_positive,total_fp,\\\\\\\"\\\\n        \\\\\\\"intra_type_sub,intra_sub_pct,extra_type_sub,extra_sub_pct,\\\\\\\"\\\\n        \\\\\\\"boundary_error,boundary_pct,hallucination,halluc_pct,\\\\\\\"\\\\n        \\\\\\\"spurious,spurious_pct,false_negative,total_pred,total_gold\\\\\\\"\\\\n    )\\\\n    rows = [header]\\\\n    for res in results_list:\\\\n        ba = res[\\\\\\\"bin_agg\\\\\\\"]\\\\n        bn = res[\\\\\\\"bin_n\\\\\\\"]\\\\n        for bname, _, _ in res[\\\\\\\"bcs_bins\\\\\\\"]:\\\\n            c = ba[bname]\\\\n            tfp = sum(c[et] for et in ERROR_TYPES)\\\\n            def pct(et):\\\\n                return c[et] / tfp * 100 if tfp else 0\\\\n            rows.append(\\\\n                f\\\\\\\"{res['label']},{bname},{bn[bname]},{c['true_positive']},{tfp},\\\\\\\"\\\\n                f\\\\\\\"{c['intra_type_sub']},{pct('intra_type_sub'):.2f},\\\\\\\"\\\\n                f\\\\\\\"{c['extra_type_sub']},{pct('extra_type_sub'):.2f},\\\\\\\"\\\\n                f\\\\\\\"{c['boundary_error']},{pct('boundary_error'):.2f},\\\\\\\"\\\\n                f\\\\\\\"{c['hallucination']},{pct('hallucination'):.2f},\\\\\\\"\\\\n                f\\\\\\\"{c['spurious']},{pct('spurious'):.2f},\\\\\\\"\\\\n                f\\\\\\\"{c['false_negative']},{c['total_pred']},{c['total_gold']}\\\\\\\"\\\\n            )\\\\n    with open(path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(\\\\\\\"\\\\\\\\n\\\\\\\".join(rows) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    output_dir = os.path.join(ARTIFACTS_DIR, \\\\\\\"exp007\\\\\\\")\\\\n    os.makedirs(output_dir, exist_ok=True)\\\\n\\\\n    logger.info(\\\\\\\"Loading test data (max_samples=%d)\\\\\\\", MAX_SAMPLES)\\\\n    samples = load_few_nerd(split=\\\\\\\"test\\\\\\\", max_samples=MAX_SAMPLES)\\\\n    logger.info(\\\\\\\"Loaded %d samples\\\\\\\", len(samples))\\\\n\\\\n    results = []\\\\n\\\\n    for fname, label, bins in [\\\\n        (\\\\\\\"predictions_exp1.json\\\\\\\", \\\\\\\"exp1_random\\\\\\\", BCS_BINS_EXP1),\\\\n        (\\\\\\\"predictions_exp2.json\\\\\\\", \\\\\\\"exp2_controlled\\\\\\\", BCS_BINS_EXP2),\\\\n    ]:\\\\n        path = os.path.join(ARTIFACTS_DIR, fname)\\\\n        if os.path.exists(path):\\\\n            logger.info(\\\\\\\"Analyzing %s\\\\\\\", label)\\\\n            r = analyze_predictions(path, samples, bins, label)\\\\n            results.append(r)\\\\n\\\\n    report = format_report(results)\\\\n    print(report)\\\\n\\\\n    with open(os.path.join(output_dir, \\\\\\\"error_taxonomy_report.txt\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(report + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n    write_csv(results, os.path.join(output_dir, \\\\\\\"error_taxonomy_by_bcs.csv\\\\\\\"))\\\\n\\\\n    raw = {r[\\\\\\\"label\\\\\\\"]: r[\\\\\\\"batch_results\\\\\\\"] for r in results}\\\\n    with open(os.path.join(output_dir, \\\\\\\"error_taxonomy_raw.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(raw, f, indent=2)\\\\n\\\\n    logger.info(\\\\\\\"Done. Output in %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Error taxonomy analysis: classify FP predictions by BCS bin.\\n\\nSupports Claim 2 (multi-channel degradation model): high BCS environments\\nshould show higher intra-batch type_substitution rates (confusability channel).\\n\\nDistinguishes intra-batch vs extra-batch type substitution:\\n  - intra: pred text matches gold entity whose type IS in batch_types (within-batch confusion)\\n  - extra: pred text matches gold entity whose type is NOT in batch_types\\n\\nInput:\\n  - artifacts/predictions_exp1.json (random batches, BCS 0-0.97)\\n  - artifacts/predictions_exp2.json (controlled BCS batches, BCS 0.86-0.97)\\n  - data/parquet/test.parquet (1000 samples, Few-NERD)\\nOutput:\\n  - artifacts/exp007/error_taxonomy_report.txt\\n  - artifacts/exp007/error_taxonomy_by_bcs.csv\\n  - artifacts/exp007/error_taxonomy_raw.json\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nimport os\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\nfrom typing import Dict, List, Set, Tuple\\n\\nimport numpy as np\\n\\nsys.path.insert(0, str(Path(__file__).parent))\\nfrom few_nerd_utils import load_few_nerd\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nBASE_DIR = \\\"/root/schema-dag-extraction\\\"\\nARTIFACTS_DIR = os.path.join(BASE_DIR, \\\"artifacts\\\")\\nMAX_SAMPLES = 1000\\n\\nBCS_BINS_EXP1 = [\\n    (\\\"zero\\\", 0.0, 0.001),       # count_1 batches, BCS=0\\n    (\\\"low\\\", 0.001, 0.90),       # multi-type, low confusability\\n    (\\\"medium\\\", 0.90, 0.95),     # multi-type, medium confusability\\n    (\\\"high\\\", 0.95, 1.001),      # multi-type, high confusability\\n]\\n\\nBCS_BINS_EXP2 = [\\n    (\\\"low\\\", 0.0, 0.90),\\n    (\\\"medium\\\", 0.90, 0.95),\\n    (\\\"high\\\", 0.95, 1.001),\\n]\\n\\n# intra_type_sub = within-batch confusion (confusability channel signal)\\n# extra_type_sub = pred matches gold entity whose type is outside batch\\nERROR_TYPES = [\\n    \\\"intra_type_sub\\\", \\\"extra_type_sub\\\",\\n    \\\"boundary_error\\\", \\\"hallucination\\\", \\\"spurious\\\",\\n]\\n\\n\\ndef text_overlaps(a: str, b: str) -> bool:\\n    if not a or not b:\\n        return False\\n    al, bl = a.lower(), b.lower()\\n    return al == bl or al in bl or bl in al\\n\\n\\ndef words_overlap(a: str, b: str) -> bool:\\n    a_words = {w for w in a.lower().split() if len(w) > 2}\\n    b_words = {w for w in b.lower().split() if len(w) > 2}\\n    return bool(a_words & b_words)\\n\\n\\ndef classify_fp(\\n    pred: Dict, all_gold_entities: List[Dict],\\n    source_text: str, batch_types: Set[str],\\n) -> str:\\n    \\\"\\\"\\\"Classify a false-positive prediction.\\n\\n    Priority: hallucination > intra_type_sub > extra_type_sub > boundary_error > spurious\\n    \\\"\\\"\\\"\\n    pred_text = pred.get(\\\"text\\\", \\\"\\\").strip()\\n    pred_type = pred.get(\\\"type\\\", \\\"\\\")\\n\\n    # 1. Hallucination\\n    if not pred_text or pred_text.lower() not in source_text.lower():\\n        return \\\"hallucination\\\"\\n\\n    # 2. Type substitution (check intra-batch first, then extra-batch)\\n    for gold in all_gold_entities:\\n        gold_text = gold.get(\\\"text\\\", \\\"\\\").strip()\\n        if text_overlaps(pred_text, gold_text) and pred_type != gold[\\\"type\\\"]:\\n            if gold[\\\"type\\\"] in batch_types:\\n                return \\\"intra_type_sub\\\"  # confused with another batch type\\n            # don't return yet — keep looking for intra match\\n\\n    for gold in all_gold_entities:\\n        gold_text = gold.get(\\\"text\\\", \\\"\\\").strip()\\n        if text_overlaps(pred_text, gold_text) and pred_type != gold[\\\"type\\\"]:\\n            return \\\"extra_type_sub\\\"  # matches gold of type outside batch\\n\\n    # 3. Boundary error: same type, partial word overlap\\n    for gold in all_gold_entities:\\n        if pred_type != gold[\\\"type\\\"]:\\n            continue\\n        gold_text = gold.get(\\\"text\\\", \\\"\\\").strip()\\n        if words_overlap(pred_text, gold_text):\\n            return \\\"boundary_error\\\"\\n\\n    # 4. Spurious\\n    return \\\"spurious\\\"\\n\\n\\ndef match_predictions_to_gold(\\n    pred_entities: List[Dict],\\n    gold_entities: List[Dict],\\n    source_text: str,\\n) -> Tuple[set, set]:\\n    matched_pred = set()\\n    matched_gold = set()\\n\\n    for pi, pred in enumerate(pred_entities):\\n        pt = pr\\n\\n... [截断: 输出过长，省略 7655 字符] ...\\n\\n       else:\\n            sig = \\\"***\\\" if chi2[\\\"p_value\\\"] < 0.001 else (\\\"**\\\" if chi2[\\\"p_value\\\"] < 0.01 else (\\\"*\\\" if chi2[\\\"p_value\\\"] < 0.05 else \\\"n.s.\\\"))\\n            lines.append(f\\\"Chi-square: chi2={chi2['chi2']:.2f}, df={chi2['dof']}, p={chi2['p_value']:.2e} {sig}\\\")\\n\\n        trend_pct = intra_sub_trend_test(ba, bins)\\n        if \\\"error\\\" in trend_pct:\\n            lines.append(f\\\"IntraSub fraction trend: {trend_pct['error']}\\\")\\n        else:\\n            sig = \\\"***\\\" if trend_pct[\\\"p_value\\\"] < 0.001 else (\\\"**\\\" if trend_pct[\\\"p_value\\\"] < 0.01 else (\\\"*\\\" if trend_pct[\\\"p_value\\\"] < 0.05 else \\\"n.s.\\\"))\\n            lines.append(f\\\"IntraSub fraction ~ BCS: rho={trend_pct['rho']:.3f}, p={trend_pct['p_value']:.4f} {sig}\\\")\\n            lines.append(f\\\"  bcs_mid={[f'{x:.3f}' for x in trend_pct['bcs_mid']]}\\\")\\n            lines.append(f\\\"  frac   ={[f'{y:.4f}' for y in trend_pct['frac']]}\\\")\\n\\n        trend_rate = intra_sub_count_trend(ba, bins)\\n        if \\\"error\\\" in trend_rate:\\n            lines.append(f\\\"IntraSub rate/gold trend: {trend_rate['error']}\\\")\\n        else:\\n            sig = \\\"***\\\" if trend_rate[\\\"p_value\\\"] < 0.001 else (\\\"**\\\" if trend_rate[\\\"p_value\\\"] < 0.01 else (\\\"*\\\" if trend_rate[\\\"p_value\\\"] < 0.05 else \\\"n.s.\\\"))\\n            lines.append(f\\\"IntraSub rate/gold ~ BCS: rho={trend_rate['rho']:.3f}, p={trend_rate['p_value']:.4f} {sig}\\\")\\n            lines.append(f\\\"  bcs_mid={[f'{x:.3f}' for x in trend_rate['bcs_mid']]}\\\")\\n            lines.append(f\\\"  rate   ={[f'{y:.4f}' for y in trend_rate['rate']]}\\\")\\n\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef write_csv(results_list: List[Dict], path: str):\\n    header = (\\n        \\\"experiment,bcs_bin,n_batches,true_positive,total_fp,\\\"\\n        \\\"intra_type_sub,intra_sub_pct,extra_type_sub,extra_sub_pct,\\\"\\n        \\\"boundary_error,boundary_pct,hallucination,halluc_pct,\\\"\\n        \\\"spurious,spurious_pct,false_negative,total_pred,total_gold\\\"\\n    )\\n    rows = [header]\\n    for res in results_list:\\n        ba = res[\\\"bin_agg\\\"]\\n        bn = res[\\\"bin_n\\\"]\\n        for bname, _, _ in res[\\\"bcs_bins\\\"]:\\n            c = ba[bname]\\n            tfp = sum(c[et] for et in ERROR_TYPES)\\n            def pct(et):\\n                return c[et] / tfp * 100 if tfp else 0\\n            rows.append(\\n                f\\\"{res['label']},{bname},{bn[bname]},{c['true_positive']},{tfp},\\\"\\n                f\\\"{c['intra_type_sub']},{pct('intra_type_sub'):.2f},\\\"\\n                f\\\"{c['extra_type_sub']},{pct('extra_type_sub'):.2f},\\\"\\n                f\\\"{c['boundary_error']},{pct('boundary_error'):.2f},\\\"\\n                f\\\"{c['hallucination']},{pct('hallucination'):.2f},\\\"\\n                f\\\"{c['spurious']},{pct('spurious'):.2f},\\\"\\n                f\\\"{c['false_negative']},{c['total_pred']},{c['total_gold']}\\\"\\n            )\\n    with open(path, \\\"w\\\") as f:\\n        f.write(\\\"\\\\n\\\".join(rows) + \\\"\\\\n\\\")\\n\\n\\ndef main():\\n    output_dir = os.path.join(ARTIFACTS_DIR, \\\"exp007\\\")\\n    os.makedirs(output_dir, exist_ok=True)\\n\\n    logger.info(\\\"Loading test data (max_samples=%d)\\\", MAX_SAMPLES)\\n    samples = load_few_nerd(split=\\\"test\\\", max_samples=MAX_SAMPLES)\\n    logger.info(\\\"Loaded %d samples\\\", len(samples))\\n\\n    results = []\\n\\n    for fname, label, bins in [\\n        (\\\"predictions_exp1.json\\\", \\\"exp1_random\\\", BCS_BINS_EXP1),\\n        (\\\"predictions_exp2.json\\\", \\\"exp2_controlled\\\", BCS_BINS_EXP2),\\n    ]:\\n        path = os.path.join(ARTIFACTS_DIR, fname)\\n        if os.path.exists(path):\\n            logger.info(\\\"Analyzing %s\\\", label)\\n            r = analyze_predictions(path, samples, bins, label)\\n            results.append(r)\\n\\n    report = format_report(results)\\n    print(report)\\n\\n    with open(os.path.join(output_dir, \\\"error_taxonomy_report.txt\\\"), \\\"w\\\") as f:\\n        f.write(report + \\\"\\\\n\\\")\\n\\n    write_csv(results, os.path.join(output_dir, \\\"error_taxonomy_by_bcs.csv\\\"))\\n\\n    raw = {r[\\\"label\\\"]: r[\\\"batch_results\\\"] for r in results}\\n    with open(os.path.join(output_dir, \\\"error_taxonomy_raw.json\\\"), \\\"w\\\") as f:\\n        json.dump(raw, f, indent=2)\\n\\n    logger.info(\\\"Done. Output in %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have a clear picture now. The existing `pairwise_confusion_analysis.py` already does exactly what I need for Qwen3 embeddings - it:
+1. Loads gold data from Few-NERD
+2. Loads predictions from exp2
+3. Builds confusion matrix (gold_type → pred_type counts)
+4. Computes correlation with BCS (pairwise cosine similarity from embeddings)
+
+But it only uses one set of embeddings (from `data/type_embeddings.pt`). I need to:
+1. Also use the MiniLM embeddings
+
+
+2. Load the Qwen3 similarities from `artifacts/sim_matrix.pt` (or `artifacts/type_embeddings.pt`)
+3. Load the MiniLM similarities from `artifacts/fewnerd_bcs_matrix_minilm.pt`
+4. Add Kendall tau correlation alongside the existing metrics
+5. Output everything in clean JSON format
+
+Let me first check what results already exist and what the current data paths look like, then I'll write a script that handles both embedding sets.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "f6e7dd7c-598a-459a-b216-fc99a00eca14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZorkHfdbMQ6MWsZ4qQ4u9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7167,
+      "cache_read_input_tokens": 40339,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7167
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XBN1sAdj3E5n463hV2zSkw`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "c4997004-8d99-45b5-afad-17b16b8ade15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZorkHfdbMQ6MWsZ4qQ4u9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7167,
+      "cache_read_input_tokens": 40339,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7167
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018izK8PNKHtFZd3GsoB7yBS`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "f20ad296-f41f-4f08-9ddd-89b1781f28c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZorkHfdbMQ6MWsZ4qQ4u9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7167,
+      "cache_read_input_tokens": 40339,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7167
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T15:23:59.965Z_
+
+<details><summary>↩ Tool result · `toolu_01XBN1sAdj3E5n463hV2zSkw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis\\nanalysis_summary.json\\nbatch_config_exp1.json\\nconfusion_analysis.json\\neval_diagnosis.md\\neval_exp1.json\\neval_exp2.json\\nexp1\\nexp1_overprediction_analysis.json\\nexp1_reeval_results.json\\nexp1_reeval_results_v1.json\\nexp1_reeval_summary.json\\nexp1_reeval_summary_v1.json\\nexp1_text_match_reeval.json\\nexp1_text_match_summary.json\\nexp2\\nexp2_analysis_f1.pdf\\nexp2_analysis_f1.png\\nexp2_analysis_f1_combined.pdf\\nexp2_analysis_f1_combined.png\\nexp2_analysis_recall.pdf\\nexp2_analysis_recall.png\\nexp2_analysis_recall_combined.pdf\\nexp2_analysis_recall_combined.png\\nexp2_reeval_results.json\\nexp2_reeval_results_v1.json\\nexp2_reeval_summary.json\\nexp2_reeval_summary_v1.json\\nfig_count_quality.pdf\\nfig_count_quality.png\\nmaven_analysis.json\\nmaven_analysis_dryrun.json\\npairwise_confusion_analysis.png\\npairwise_confusion_correlation.json\\npairwise_confusion_count12.png\\npairwise_confusion_count6.png\\nper_type_analysis.json\\nper_type_bcs_f1_scatter.png\\nsim_matrix.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "b0814b9c-5c13-44c9-9b4b-d497690d1067",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis\\\\nanalysis_summary.json\\\\nbatch_config_exp1.json\\\\nconfusion_analysis.json\\\\neval_diagnosis.md\\\\neval_exp1.json\\\\neval_exp2.json\\\\nexp1\\\\nexp1_overprediction_analysis.json\\\\nexp1_reeval_results.json\\\\nexp1_reeval_results_v1.json\\\\nexp1_reeval_summary.json\\\\nexp1_reeval_summary_v1.json\\\\nexp1_text_match_reeval.json\\\\nexp1_text_match_summary.json\\\\nexp2\\\\nexp2_analysis_f1.pdf\\\\nexp2_analysis_f1.png\\\\nexp2_analysis_f1_combined.pdf\\\\nexp2_analysis_f1_combined.png\\\\nexp2_analysis_recall.pdf\\\\nexp2_analysis_recall.png\\\\nexp2_analysis_recall_combined.pdf\\\\nexp2_analysis_recall_combined.png\\\\nexp2_reeval_results.json\\\\nexp2_reeval_results_v1.json\\\\nexp2_reeval_summary.json\\\\nexp2_reeval_summary_v1.json\\\\nfig_count_quality.pdf\\\\nfig_count_quality.png\\\\nmaven_analysis.json\\\\nmaven_analysis_dryrun.json\\\\npairwise_confusion_analysis.png\\\\npairwise_confusion_correlation.json\\\\npairwise_confusion_count12.png\\\\npairwise_confusion_count6.png\\\\nper_type_analysis.json\\\\nper_type_bcs_f1_scatter.png\\\\nsim_matrix.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analysis\\nanalysis_summary.json\\nbatch_config_exp1.json\\nconfusion_analysis.json\\neval_diagnosis.md\\neval_exp1.json\\neval_exp2.json\\nexp1\\nexp1_overprediction_analysis.json\\nexp1_reeval_results.json\\nexp1_reeval_results_v1.json\\nexp1_reeval_summary.json\\nexp1_reeval_summary_v1.json\\nexp1_text_match_reeval.json\\nexp1_text_match_summary.json\\nexp2\\nexp2_analysis_f1.pdf\\nexp2_analysis_f1.png\\nexp2_analysis_f1_combined.pdf\\nexp2_analysis_f1_combined.png\\nexp2_analysis_recall.pdf\\nexp2_analysis_recall.png\\nexp2_analysis_recall_combined.pdf\\nexp2_analysis_recall_combined.png\\nexp2_reeval_results.json\\nexp2_reeval_results_v1.json\\nexp2_reeval_summary.json\\nexp2_reeval_summary_v1.json\\nfig_count_quality.pdf\\nfig_count_quality.png\\nmaven_analysis.json\\nmaven_analysis_dryrun.json\\npairwise_confusion_analysis.png\\npairwise_confusion_correlation.json\\npairwise_confusion_count12.png\\npairwise_confusion_count6.png\\nper_type_analysis.json\\nper_type_bcs_f1_scatter.png\\nsim_matrix.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T15:24:00.519Z_
+
+<details><summary>↩ Tool result · `toolu_018izK8PNKHtFZd3GsoB7yBS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"few_nerd_type_stats.json\\nfewrel\\nfewrel_parquet\\nheatmap.pdf\\nheatmap_e5_a_name_def.pdf\\nheatmap_e5_b_name_only.pdf\\nmaven\\nmaven_parquet\\nmaven_scs_matrix.json\\nmaven_sim_matrix.pt\\nparquet\\nsim_matrix.pt\\ntype_embeddings.pt\\ntype_embeddings_e5.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "7f1bb6f7-afc3-4b5a-9848-79b7e5e80b33",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"few_nerd_type_stats.json\\\\nfewrel\\\\nfewrel_parquet\\\\nheatmap.pdf\\\\nheatmap_e5_a_name_def.pdf\\\\nheatmap_e5_b_name_only.pdf\\\\nmaven\\\\nmaven_parquet\\\\nmaven_scs_matrix.json\\\\nmaven_sim_matrix.pt\\\\nparquet\\\\nsim_matrix.pt\\\\ntype_embeddings.pt\\\\ntype_embeddings_e5.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"few_nerd_type_stats.json\\nfewrel\\nfewrel_parquet\\nheatmap.pdf\\nheatmap_e5_a_name_def.pdf\\nheatmap_e5_b_name_only.pdf\\nmaven\\nmaven_parquet\\nmaven_scs_matrix.json\\nmaven_sim_matrix.pt\\nparquet\\nsim_matrix.pt\\ntype_embeddings.pt\\ntype_embeddings_e5.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's already `results/pairwise_confusion_correlation.json` - let me see what's in it first, and then I'll extend the analysis for MiniLM and add Kendall tau.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "1a6215a3-9272-47c8-b7a6-75f7bb7938e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CiCzssJb6KPz6WhWNoPDM5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1212,
+      "cache_read_input_tokens": 47506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Y6fVxDuWiUfzAgmXVe5ZUM`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/schema-dag-extraction/results/pairwise_confusion_correlation.json') as f:\n    d = json.load(f)\nprint(json.dumps(d, indent=2))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "0cd20323-8cb8-49e5-83fa-a569459c95b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CiCzssJb6KPz6WhWNoPDM5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1212,
+      "cache_read_input_tokens": 47506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T15:24:05.494Z_
+
+<details><summary>↩ Tool result · `toolu_01Y6fVxDuWiUfzAgmXVe5ZUM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"all\\\": {\\n    \\\"label\\\": \\\"all\\\",\\n    \\\"n_pairs\\\": 1953,\\n    \\\"n_nonzero_confusion\\\": 216,\\n    \\\"pearson_r\\\": 0.11194228679186226,\\n    \\\"pearson_p\\\": 7.068720876233276e-07,\\n    \\\"spearman_rho\\\": 0.1642574949938599,\\n    \\\"spearman_p\\\": 2.7932273809397594e-13,\\n    \\\"pearson_r_nonzero\\\": 0.10418150746342597,\\n    \\\"pearson_p_nonzero\\\": 0.12690496199483564,\\n    \\\"spearman_rho_nonzero\\\": 0.16433197127789442,\\n    \\\"spearman_p_nonzero\\\": 0.015622313312690402\\n  },\\n  \\\"count_6\\\": {\\n    \\\"label\\\": \\\"count_6\\\",\\n    \\\"n_pairs\\\": 1770,\\n    \\\"n_nonzero_confusion\\\": 65,\\n    \\\"pearson_r\\\": 0.044999259894759835,\\n    \\\"pearson_p\\\": 0.05838423150894134,\\n    \\\"spearman_rho\\\": 0.0692081487925564,\\n    \\\"spearman_p\\\": 0.0035783947820869464,\\n    \\\"pearson_r_nonzero\\\": 0.08137909112672356,\\n    \\\"pearson_p_nonzero\\\": 0.5192908351310317,\\n    \\\"spearman_rho_nonzero\\\": 0.14900294882910248,\\n    \\\"spearman_p_nonzero\\\": 0.2361686448138052\\n  },\\n  \\\"count_12\\\": {\\n    \\\"label\\\": \\\"count_12\\\",\\n    \\\"n_pairs\\\": 1953,\\n    \\\"n_nonzero_confusion\\\": 176,\\n    \\\"pearson_r\\\": 0.11160046568750981,\\n    \\\"pearson_p\\\": 7.644673858510701e-07,\\n    \\\"spearman_rho\\\": 0.16493278372289216,\\n    \\\"spearman_p\\\": 2.226312893393179e-13,\\n    \\\"pearson_r_nonzero\\\": 0.10203678520843514,\\n    \\\"pearson_p_nonzero\\\": 0.17780474380642558,\\n    \\\"spearman_rho_nonzero\\\": 0.14770129956190148,\\n    \\\"spearman_p_nonzero\\\": 0.0504345568662853\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "58401a54-e03b-450a-9d6d-40b40021ffc8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"all\\\\\\\": {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"all\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 1953,\\\\n    \\\\\\\"n_nonzero_confusion\\\\\\\": 216,\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.11194228679186226,\\\\n    \\\\\\\"pearson_p\\\\\\\": 7.068720876233276e-07,\\\\n    \\\\\\\"spearman_rho\\\\\\\": 0.1642574949938599,\\\\n    \\\\\\\"spearman_p\\\\\\\": 2.7932273809397594e-13,\\\\n    \\\\\\\"pearson_r_nonzero\\\\\\\": 0.10418150746342597,\\\\n    \\\\\\\"pearson_p_nonzero\\\\\\\": 0.12690496199483564,\\\\n    \\\\\\\"spearman_rho_nonzero\\\\\\\": 0.16433197127789442,\\\\n    \\\\\\\"spearman_p_nonzero\\\\\\\": 0.015622313312690402\\\\n  },\\\\n  \\\\\\\"count_6\\\\\\\": {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 1770,\\\\n    \\\\\\\"n_nonzero_confusion\\\\\\\": 65,\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.044999259894759835,\\\\n    \\\\\\\"pearson_p\\\\\\\": 0.05838423150894134,\\\\n    \\\\\\\"spearman_rho\\\\\\\": 0.0692081487925564,\\\\n    \\\\\\\"spearman_p\\\\\\\": 0.0035783947820869464,\\\\n    \\\\\\\"pearson_r_nonzero\\\\\\\": 0.08137909112672356,\\\\n    \\\\\\\"pearson_p_nonzero\\\\\\\": 0.5192908351310317,\\\\n    \\\\\\\"spearman_rho_nonzero\\\\\\\": 0.14900294882910248,\\\\n    \\\\\\\"spearman_p_nonzero\\\\\\\": 0.2361686448138052\\\\n  },\\\\n  \\\\\\\"count_12\\\\\\\": {\\\\n    \\\\\\\"label\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 1953,\\\\n    \\\\\\\"n_nonzero_confusion\\\\\\\": 176,\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.11160046568750981,\\\\n    \\\\\\\"pearson_p\\\\\\\": 7.644673858510701e-07,\\\\n    \\\\\\\"spearman_rho\\\\\\\": 0.16493278372289216,\\\\n    \\\\\\\"spearman_p\\\\\\\": 2.226312893393179e-13,\\\\n    \\\\\\\"pearson_r_nonzero\\\\\\\": 0.10203678520843514,\\\\n    \\\\\\\"pearson_p_nonzero\\\\\\\": 0.17780474380642558,\\\\n    \\\\\\\"spearman_rho_nonzero\\\\\\\": 0.14770129956190148,\\\\n    \\\\\\\"spearman_p_nonzero\\\\\\\": 0.0504345568662853\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"all\\\": {\\n    \\\"label\\\": \\\"all\\\",\\n    \\\"n_pairs\\\": 1953,\\n    \\\"n_nonzero_confusion\\\": 216,\\n    \\\"pearson_r\\\": 0.11194228679186226,\\n    \\\"pearson_p\\\": 7.068720876233276e-07,\\n    \\\"spearman_rho\\\": 0.1642574949938599,\\n    \\\"spearman_p\\\": 2.7932273809397594e-13,\\n    \\\"pearson_r_nonzero\\\": 0.10418150746342597,\\n    \\\"pearson_p_nonzero\\\": 0.12690496199483564,\\n    \\\"spearman_rho_nonzero\\\": 0.16433197127789442,\\n    \\\"spearman_p_nonzero\\\": 0.015622313312690402\\n  },\\n  \\\"count_6\\\": {\\n    \\\"label\\\": \\\"count_6\\\",\\n    \\\"n_pairs\\\": 1770,\\n    \\\"n_nonzero_confusion\\\": 65,\\n    \\\"pearson_r\\\": 0.044999259894759835,\\n    \\\"pearson_p\\\": 0.05838423150894134,\\n    \\\"spearman_rho\\\": 0.0692081487925564,\\n    \\\"spearman_p\\\": 0.0035783947820869464,\\n    \\\"pearson_r_nonzero\\\": 0.08137909112672356,\\n    \\\"pearson_p_nonzero\\\": 0.5192908351310317,\\n    \\\"spearman_rho_nonzero\\\": 0.14900294882910248,\\n    \\\"spearman_p_nonzero\\\": 0.2361686448138052\\n  },\\n  \\\"count_12\\\": {\\n    \\\"label\\\": \\\"count_12\\\",\\n    \\\"n_pairs\\\": 1953,\\n    \\\"n_nonzero_confusion\\\": 176,\\n    \\\"pearson_r\\\": 0.11160046568750981,\\n    \\\"pearson_p\\\": 7.644673858510701e-07,\\n    \\\"spearman_rho\\\": 0.16493278372289216,\\n    \\\"spearman_p\\\": 2.226312893393179e-13,\\n    \\\"pearson_r_nonzero\\\": 0.10203678520843514,\\n    \\\"pearson_p_nonzero\\\": 0.17780474380642558,\\n    \\\"spearman_rho_nonzero\\\": 0.14770129956190148,\\n    \\\"spearman_p_nonzero\\\": 0.0504345568662853\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Existing results only have the Qwen3 embeddings (from `data/type_embeddings.pt`). I need to:
+1. Re-run for Qwen3 using `artifacts/sim_matrix.pt` (the proper sim matrix)
+2. Run for MiniLM using `artifacts/fewnerd_bcs_matrix_minilm.pt`
+3. Add Kendall tau
+
+But wait - the existing `pairwise_confusion_analysis.py` uses `data/type_embeddings.pt` which is the Qwen3 embeddings. 
+
+The `artifacts/sim_matrix.pt` and `artifacts/type_embeddings.pt` are both Qwen3 but from different sources - one's the precomputed similarity matrix while the other is the raw embeddings that the existing analysis computed cosine similarity from on the fly, so the results should match. For the new exp-015 task, I need to write a validation script that loads both the Qwen3 and MiniLM similarity matrices, computes pairwise confusion metrics from the exp-002 predictions, and calculates Spearman and Kendall correlations between them. Since the type orderings might differ between the two matrices, I'll need to align them before comparing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "0beacc06-a859-4e95-984e-c90ebd12f111",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CE4By5aauraCZEmYw1M8Jk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1158,
+      "cache_read_input_tokens": 48718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1158
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+Existing results have Qwen3 only, no Kendall tau, no MiniLM. Let me write the combined script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "ecc0bdb3-552e-42a0-8ca8-95597ad8c600",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CE4By5aauraCZEmYw1M8Jk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1158,
+      "cache_read_input_tokens": 48718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1158
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TgxzkD5BMrUa9XMuCkcp5M`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 -c \"\nimport torch\n# Check Qwen3 type ordering\nq = torch.load('artifacts/sim_matrix.pt', map_location='cpu')\nprint('Qwen3 type_names:', q['type_names'][:5], '...', len(q['type_names']))\n\n# Check MiniLM type ordering  \nm = torch.load('artifacts/fewnerd_bcs_matrix_minilm.pt', map_location='cpu')\nprint('MiniLM type_names:', m['type_names'][:5], '...', len(m['type_names']))\n\n# Check if orderings match\nprint('Same set:', set(q['type_names']) == set(m['type_names']))\nprint('Same order:', q['type_names'] == m['type_names'])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "39eca0f3-fcec-4530-b7bb-6d4d6a78f76f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CE4By5aauraCZEmYw1M8Jk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1158,
+      "cache_read_input_tokens": 48718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1158
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T15:24:30.498Z_
+
+<details><summary>↩ Tool result · `toolu_01TgxzkD5BMrUa9XMuCkcp5M`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Qwen3 type_names: ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting'] ... 66\\nMiniLM type_names: ['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other'] ... 66\\nSame set: True\\nSame order: False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "24d2b9f6-42b2-44b8-bb43-34a6c1da55b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen3 type_names: ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting'] ... 66\\\\nMiniLM type_names: ['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other'] ... 66\\\\nSame set: True\\\\nSame order: False\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Qwen3 type_names: ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting'] ... 66\\nMiniLM type_names: ['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other'] ... 66\\nSame set: True\\nSame order: False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+Same 66 types, different ordering. Now writing the script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "0b2f4f25-6301-4243-bf75-295dda3cc6cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011objwjKg33RNgjvHZYCvbL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 49876,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 978
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Rd3mf5FgFdHkfGAQVDLxQj`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/src/scs_validation.py << 'PYEOF'\n\"\"\"exp-015: Validate embedding SCS as proxy for empirical confusion.\n\nComputes rank correlation (Spearman rho, Kendall tau) between\npairwise embedding similarity and pairwise confusion counts\nfrom exp-002 predictions. Compares Qwen3 vs MiniLM embeddings.\n\"\"\"\nimport json\nimport sys\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nfrom scipy import stats\n\nsys.path.insert(0, str(Path(__file__).parent))\nfrom few_nerd_utils import load_few_nerd\n\nBASE = Path(\"/root/schema-dag-extraction\")\nPREDICTIONS = BASE / \"artifacts\" / \"predictions_exp2.json\"\nQWEN3_SIM = BASE / \"artifacts\" / \"sim_matrix.pt\"\nMINILM_SIM = BASE / \"artifacts\" / \"fewnerd_bcs_matrix_minilm.pt\"\nOUTPUT = BASE / \"artifacts\" / \"exp015_scs_validation.json\"\nMAX_SAMPLES = 1000\n\n\ndef load_sim_matrix(path):\n    d = torch.load(path, map_location=\"cpu\")\n    type_names = d[\"type_names\"]\n    sim = d[\"sim_matrix\"].float().numpy()\n    idx = {t: i for i, t in enumerate(type_names)}\n    return type_names, sim, idx\n\n\ndef build_confusion(predictions, samples):\n    confusion = defaultdict(lambda: defaultdict(int))\n    gold_counts = defaultdict(int)\n\n    by_key = defaultdict(list)\n    for p in predictions:\n        by_key[(p[\"batch_id\"], p[\"sample_id\"])].append(p)\n\n    for (batch_id, sid), entries in by_key.items():\n        if sid >= len(samples):\n            continue\n        entry = entries[0]\n        batch_types = set(entry[\"batch_types\"])\n        source_text = samples[sid][\"text\"]\n        gold_entities = [e for e in samples[sid][\"entities\"] if e[\"type\"] in batch_types]\n        preds = [p for p in entry.get(\"predictions\", []) if p.get(\"type\") in batch_types]\n\n        for g in gold_entities:\n            gold_counts[g[\"type\"]] += 1\n\n        gold_available = [[g[\"text\"], g[\"type\"], False] for g in gold_entities]\n\n        for pred in preds:\n            pt = pred.get(\"text\", \"\")\n            ptype = pred.get(\"type\", \"\")\n            if pt.lower() not in source_text.lower():\n                continue\n\n            exact = False\n            for g in gold_available:\n                if not g[2] and g[0] == pt and g[1] == ptype:\n                    g[2] = True\n                    exact = True\n                    break\n            if exact:\n                continue\n\n            for g in gold_available:\n                if not g[2] and g[0] == pt and g[1] != ptype:\n                    confusion[g[1]][ptype] += 1\n                    g[2] = True\n                    break\n\n    return confusion, gold_counts\n\n\ndef correlate(confusion, gold_counts, type_names, sim, idx):\n    all_types = sorted(set(gold_counts.keys()))\n    scs_vals = []\n    conf_vals = []\n\n    for t1 in all_types:\n        for t2 in all_types:\n            if t1 >= t2:\n                continue\n            if t1 not in idx or t2 not in idx:\n                continue\n            c12 = confusion.get(t1, {}).get(t2, 0)\n            c21 = confusion.get(t2, {}).get(t1, 0)\n            total_conf = c12 + c21\n            scs = float(sim[idx[t1], idx[t2]])\n            scs_vals.append(scs)\n            conf_vals.append(total_conf)\n\n    scs_arr = np.array(scs_vals)\n    conf_arr = np.array(conf_vals)\n\n    sp = stats.spearmanr(scs_arr, conf_arr)\n    kt = stats.kendalltau(scs_arr, conf_arr)\n\n    result = {\n        \"n_pairs\": len(scs_arr),\n        \"n_nonzero\": int((conf_arr > 0).sum()),\n        \"total_confusions\": int(conf_arr.sum()),\n        \"spearman_rho\": round(float(sp.statistic), 5),\n        \"spearman_p\": float(sp.pvalue),\n        \"kendall_tau\": round(float(kt.statistic), 5),\n        \"kendall_p\": float(kt.pvalue),\n    }\n\n    # nonzero-only subset\n    nz = conf_arr > 0\n    if nz.sum() >= 5:\n        sp_nz = stats.spearmanr(scs_arr[nz], conf_arr[nz])\n        kt_nz = stats.kendalltau(scs_arr[nz], conf_arr[nz])\n        result[\"nonzero_spearman_rho\"] = round(float(sp_nz.statistic), 5)\n        result[\"nonzero_spearman_p\"] = float(sp_nz.pvalue)\n        result[\"nonzero_kendall_tau\"] = round(float(kt_nz.statistic), 5)\n        result[\"nonzero_kendall_p\"] = float(kt_nz.pvalue)\n\n    return result\n\n\ndef main():\n    print(\"Loading gold data...\")\n    samples = load_few_nerd(split=\"test\", max_samples=MAX_SAMPLES)\n    print(f\"Loaded {len(samples)} samples\")\n\n    print(\"Loading predictions...\")\n    with open(PREDICTIONS) as f:\n        preds = json.load(f)\n    print(f\"Loaded {len(preds)} prediction entries\")\n\n    print(\"Building confusion matrix...\")\n    confusion, gold_counts = build_confusion(preds, samples)\n    total = sum(v for d in confusion.values() for v in d.values())\n    print(f\"Total confusion events: {total}, types with gold: {len(gold_counts)}\")\n\n    results = {}\n\n    for name, path in [(\"qwen3\", QWEN3_SIM), (\"minilm\", MINILM_SIM)]:\n        print(f\"\\nProcessing {name}...\")\n        type_names, sim, idx = load_sim_matrix(path)\n        r = correlate(confusion, gold_counts, type_names, sim, idx)\n        results[name] = r\n\n        print(f\"  {name} — all pairs (n={r['n_pairs']}, nonzero={r['n_nonzero']}):\")\n        print(f\"    Spearman ρ = {r['spearman_rho']:.4f}  (p = {r['spearman_p']:.2e})\")\n        print(f\"    Kendall  τ = {r['kendall_tau']:.4f}  (p = {r['kendall_p']:.2e})\")\n        if \"nonzero_spearman_rho\" in r:\n            print(f\"  {name} — nonzero only (n={r['n_nonzero']}):\")\n            print(f\"    Spearman ρ = {r['nonzero_spearman_rho']:.4f}  (p = {r['nonzero_spearman_p']:.2e})\")\n            print(f\"    Kendall  τ = {r['nonzero_kendall_tau']:.4f}  (p = {r['nonzero_kendall_p']:.2e})\")\n\n    with open(OUTPUT, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved to {OUTPUT}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "7d379b7b-f56e-4d70-a899-f19c61fdf30f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011objwjKg33RNgjvHZYCvbL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 49876,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 978
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T15:24:59.903Z_
+
+<details><summary>↩ Tool result · `toolu_01Rd3mf5FgFdHkfGAQVDLxQj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "4fc59083-8f3c-4020-bf92-f8b1dd0cb17c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LYWxNmBGPjDvuGZhHZ4Wrv`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && CUDA_VISIBLE_DEVICES=\"\" python3 src/scs_validation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "afb53645-9356-42e1-93d0-4c6740a4e720",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XwRCeHpXtftUE8anybceZQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2296,
+      "cache_read_input_tokens": 50854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2296
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T15:25:24.903Z_
+
+<details><summary>↩ Tool result · `toolu_01LYWxNmBGPjDvuGZhHZ4Wrv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading gold data...\\nLoaded 1000 samples\\nLoading predictions...\\nLoaded 54000 prediction entries\\nBuilding confusion matrix...\\nTotal confusion events: 859, types with gold: 63\\n\\nProcessing qwen3...\\n  qwen3 — all pairs (n=1953, nonzero=216):\\n    Spearman ρ = 0.1682  (p = 7.31e-14)\\n    Kendall  τ = 0.1351  (p = 8.84e-14)\\n  qwen3 — nonzero only (n=216):\\n    Spearman ρ = 0.2722  (p = 5.04e-05)\\n    Kendall  τ = 0.2001  (p = 6.93e-05)\\n\\nProcessing minilm...\\n  minilm — all pairs (n=1953, nonzero=216):\\n    Spearman ρ = 0.1439  (p = 1.67e-10)\\n    Kendall  τ = 0.1152  (p = 2.04e-10)\\n  minilm — nonzero only (n=216):\\n    Spearman ρ = 0.3060  (p = 4.62e-06)\\n    Kendall  τ = 0.2276  (p = 6.00e-06)\\n\\nSaved to /root/schema-dag-extraction/artifacts/exp015_scs_validation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 21.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "5ff3d89e-516e-48d1-b317-4b99b49d5ece",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading gold data...\\\\nLoaded 1000 samples\\\\nLoading predictions...\\\\nLoaded 54000 prediction entries\\\\nBuilding confusion matrix...\\\\nTotal confusion events: 859, types with gold: 63\\\\n\\\\nProcessing qwen3...\\\\n  qwen3 — all pairs (n=1953, nonzero=216):\\\\n    Spearman ρ = 0.1682  (p = 7.31e-14)\\\\n    Kendall  τ = 0.1351  (p = 8.84e-14)\\\\n  qwen3 — nonzero only (n=216):\\\\n    Spearman ρ = 0.2722  (p = 5.04e-05)\\\\n    Kendall  τ = 0.2001  (p = 6.93e-05)\\\\n\\\\nProcessing minilm...\\\\n  minilm — all pairs (n=1953, nonzero=216):\\\\n    Spearman ρ = 0.1439  (p = 1.67e-10)\\\\n    Kendall  τ = 0.1152  (p = 2.04e-10)\\\\n  minilm — nonzero only (n=216):\\\\n    Spearman ρ = 0.3060  (p = 4.62e-06)\\\\n    Kendall  τ = 0.2276  (p = 6.00e-06)\\\\n\\\\nSaved to /root/schema-dag-extraction/artifacts/exp015_scs_validation.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 21.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading gold data...\\nLoaded 1000 samples\\nLoading predictions...\\nLoaded 54000 prediction entries\\nBuilding confusion matrix...\\nTotal confusion events: 859, types with gold: 63\\n\\nProcessing qwen3...\\n  qwen3 — all pairs (n=1953, nonzero=216):\\n    Spearman ρ = 0.1682  (p = 7.31e-14)\\n    Kendall  τ = 0.1351  (p = 8.84e-14)\\n  qwen3 — nonzero only (n=216):\\n    Spearman ρ = 0.2722  (p = 5.04e-05)\\n    Kendall  τ = 0.2001  (p = 6.93e-05)\\n\\nProcessing minilm...\\n  minilm — all pairs (n=1953, nonzero=216):\\n    Spearman ρ = 0.1439  (p = 1.67e-10)\\n    Kendall  τ = 0.1152  (p = 2.04e-10)\\n  minilm — nonzero only (n=216):\\n    Spearman ρ = 0.3060  (p = 4.62e-06)\\n    Kendall  τ = 0.2276  (p = 6.00e-06)\\n\\nSaved to /root/schema-dag-extraction/artifacts/exp015_scs_validation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 21.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+完成。结果：
+
+## exp-015: SCS vs Empirical Confusion Rank Correlation
+
+| Metric | Qwen3 | MiniLM |
+|--------|-------|--------|
+| **All pairs** (n=1953, 216 nonzero) | | |
+| Spearman ρ | **0.1682** (p=7.3e-14) | 0.1439 (p=1.7e-10) |
+| Kendall τ | **0.1351** (p=8.8e-14) | 0.1152 (p=2.0e-10) |
+| **Nonzero-only** (n=216) | | |
+| Spearman ρ | 0.2722 (p=5.0e-05) | **0.3060** (p=4.6e-06) |
+| Kendall τ | 0.2001 (p=6.9e-05) | **0.2276** (p=6.0e-06) |
+
+**结论：**
+
+- 两个 embedding 的 SCS 都与 empirical confusion 显著正相关（所有 p < 1e-5），确认 SCS 是 confusion 的有效 proxy。
+- **All pairs**：Qwen3 略优（ρ=0.168 vs 0.144），更大的 embedding 维度捕获了更多语义差异。
+- **Nonzero-only**：MiniLM 反超（ρ=0.306 vs 0.272）。在实际发生混淆的 type pair 中，MiniLM 的 similarity ranking 与混淆程度更一致。
+- 整体相关性中等偏弱（ρ ≈ 0.14–0.31），说明 SCS 能捕捉 confusion 趋势但非唯一因素——上下文、频率、mention ambiguity 等也影响混淆。
+
+结果已保存到 `artifacts/exp015_scs_validation.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "uuid": "efd33461-6aa5-4c96-8aa9-d5db6d1ab306",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LppbyHsrpFhtQ2HMLsNT8c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 622,
+      "cache_read_input_tokens": 53150,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 622
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 80_
+
+完成。结果：
+
+## exp-015: SCS vs Empirical Confusion Rank Correlation
+
+| Metric | Qwen3 | MiniLM |
+|--------|-------|--------|
+| **All pairs** (n=1953, 216 nonzero) | | |
+| Spearman ρ | **0.1682** (p=7.3e-14) | 0.1439 (p=1.7e-10) |
+| Kendall τ | **0.1351** (p=8.8e-14) | 0.1152 (p=2.0e-10) |
+| **Nonzero-only** (n=216) | | |
+| Spearman ρ | 0.2722 (p=5.0e-05) | **0.3060** (p=4.6e-06) |
+| Kendall τ | 0.2001 (p=6.9e-05) | **0.2276** (p=6.0e-06) |
+
+**结论：**
+
+- 两个 embedding 的 SCS 都与 empirical confusion 显著正相关（所有 p < 1e-5），确认 SCS 是 confusion 的有效 proxy。
+- **All pairs**：Qwen3 略优（ρ=0.168 vs 0.144），更大的 embedding 维度捕获了更多语义差异。
+- **Nonzero-only**：MiniLM 反超（ρ=0.306 vs 0.272）。在实际发生混淆的 type pair 中，MiniLM 的 similarity ranking 与混淆程度更一致。
+- 整体相关性中等偏弱（ρ ≈ 0.14–0.31），说明 SCS 能捕捉 confusion 趋势但非唯一因素——上下文、频率、mention ambiguity 等也影响混淆。
+
+结果已保存到 `artifacts/exp015_scs_validation.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 232869,
+  "duration_api_ms": 180363,
+  "num_turns": 29,
+  "stop_reason": "end_turn",
+  "session_id": "12a51295-503d-4dfc-b416-059a0bb19470",
+  "total_cost_usd": 0.8183772499999998,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 41931,
+    "cache_read_input_tokens": 577703,
+    "output_tokens": 10639,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 41931,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 537,
+        "cache_read_input_tokens": 53150,
+        "cache_creation_input_tokens": 622,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 622
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1287,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001382,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 10639,
+      "cacheReadInputTokens": 577703,
+      "cacheCreationInputTokens": 41931,
+      "webSearchRequests": 0,
+      "costUSD": 0.8169952499999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "36a25403-1a68-4937-a7ef-d9d927594b6e"
+}
+```
+
+</details>
+
+---

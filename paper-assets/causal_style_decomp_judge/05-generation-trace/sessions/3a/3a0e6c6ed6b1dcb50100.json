@@ -1486,5 +1486,6 @@
       ],
       "message_count": 35
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ops-32b-prep-and-vllm-start.md"
 }

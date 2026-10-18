@@ -2,9 +2,9 @@
 
 **Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility**
 
-[Open the visual browser](../../../traces/index.html?project=importance_margin_vla_compress) · [Offline preview](../../../traces/demo.html?project=importance_margin_vla_compress) · [JSON catalogue](catalog.json) · [Source archive index](trace-index.csv)
+[Open the visual browser](../../../traces/index.html?project=importance_margin_vla_compress) · [Offline preview](../../../traces/demo.html?project=importance_margin_vla_compress) · [Readable Markdown](readable/README.md) · [JSON catalogue](catalog.json) · [Source archive index](trace-index.csv)
 
-On GitHub, use the tables below to open readable session JSON directly. To use the interactive browser, clone the repository and run `python3 scripts/serve_traces.py --open` from its root, or open `traces/demo.html` for an offline preview.
+For a quick review on GitHub, start with the readable Markdown pages. Each page shows the recorded user instructions, assistant replies, tool calls, and tool results in order. The JSON links remain available for complete machine-readable inspection. To use the interactive browser, clone the repository and run `python3 scripts/serve_traces.py --open` from its root, or open `traces/demo.html` for an offline preview.
 
 ## What is included
 
@@ -19,9 +19,11 @@ On GitHub, use the tables below to open readable session JSON directly. To use t
 
 A user-role entry may come from another agent or the system. It is not a human-authorship label. Worker tool results wrapped in user envelopes are labelled `tool_result` and do not start a new turn. Records before any user message remain a separate unbounded sequence. Parallel source logs are never interleaved.
 
-Source text retains its recorded language. JSON is a deterministic normalized view of the already sanitized archive; it does not translate or summarize the research process. Every session includes archive member, occurrence, SHA-256, and source-line provenance. Large rounds use linked JSON chunks; no message text is shortened in the export.
+Source text retains its recorded language. Markdown is a reading layer over the same sanitized source; it does not translate or summarize the research process. JSON is the complete normalized export and retains archive member, occurrence, SHA-256, and source-line provenance. Large rounds use linked JSON chunks; no message text is shortened in either export.
 
-## Browse all source records
+## Human-readable trace pages
+
+The Markdown pages are grouped by source kind. Their filenames describe the recorded task or coordination stream; hash-sharded JSON folders are used only as a storage detail.
 
 - **Conversation logs** (1,235): [Page 1](browse/conversation-001.md) · [Page 2](browse/conversation-002.md) · [Page 3](browse/conversation-003.md) · [Page 4](browse/conversation-004.md) · [Page 5](browse/conversation-005.md) · [Page 6](browse/conversation-006.md) · [Page 7](browse/conversation-007.md) · [Page 8](browse/conversation-008.md) · [Page 9](browse/conversation-009.md)
 - **Worker execution logs** (2,223): [Page 1](browse/worker-001.md) · [Page 2](browse/worker-002.md) · [Page 3](browse/worker-003.md) · [Page 4](browse/worker-004.md) · [Page 5](browse/worker-005.md) · [Page 6](browse/worker-006.md) · [Page 7](browse/worker-007.md) · [Page 8](browse/worker-008.md) · [Page 9](browse/worker-009.md) · [Page 10](browse/worker-010.md) · [Page 11](browse/worker-011.md) · [Page 12](browse/worker-012.md) · [Page 13](browse/worker-013.md) · [Page 14](browse/worker-014.md) · [Page 15](browse/worker-015.md)

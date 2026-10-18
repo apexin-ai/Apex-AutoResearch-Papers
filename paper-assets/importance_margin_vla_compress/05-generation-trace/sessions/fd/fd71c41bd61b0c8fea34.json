@@ -41,5 +41,6 @@
       ],
       "message_count": 1
     }
-  ]
+  ],
+  "readable_path": "readable/task-results/ops-fix-westd38929-race-condition-and-restart.md"
 }

@@ -1,0 +1,2312 @@
+# Reviewer coordination
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 70
+- **Recorded user turns:** 2
+- **Tool calls:** 33
+- **Original source:** `logs/chats/feishu_group_oc_83179cdc26b856fbbaf531d145edb3bd_reviewer_3.jsonl`
+- **Structured JSON:** [`ede9dde7e6d26a7b7f25.json`](../../sessions/ed/ede9dde7e6d26a7b7f25.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+66 recorded events
+
+### User
+
+_source line 1 · 2026-05-23T05:44:07.357221+00:00_
+
+[Round 1 审稿请求]:
+你是 Reviewer 3，负责**写作质量、格式合规和 Limitations/Ethics**的审查。
+
+## 投稿信息
+- **Venue**: CoRL 2026（Conference on Robot Learning）
+- **Deadline**: 2026-05-29
+- **页数限制**: 8 页正文（附录/参考文献不计入，审稿人不要求读附录）
+- **匿名规则**: Double-blind
+- **模板**: CoRL 2026 (`\usepackage{corl_2026}`)
+- **必须包含**: Limitations section（计入 8 页）
+- **Generative AI policy**: 需要披露 AI 工具使用
+
+## 论文文件
+- LaTeX 源码: `projects/importance_margin_vla_compress/docs/paper/main.tex`
+- PDF: `projects/importance_margin_vla_compress/artifacts/review_round_6/submitted.pdf`
+
+## 你的审查侧重
+
+### 1. 格式合规
+- 正文是否在 8 页以内？检查 main text 的 page count
+- 是否使用了正确的 CoRL 2026 模板（`\usepackage{corl_2026}`，submission 版本而非 camera-ready）？
+- 是否有 double-blind violation？检查作者信息、自引用方式、致谢、代码/数据链接
+- Limitations section 是否存在且在正文中？
+- `\keywords{}` 是否合规？
+
+### 2. 写作质量
+- Abstract 是否自包含、信息密度是否合适？（当前约 150 词）
+- Introduction 的论证逻辑是否清晰？problem statement → gap → approach → contributions 的流程
+- 术语一致性：CV, token pruning, retention ratio, success rate 等术语是否全文一致？
+- Figure/Table 引用是否正确？每个 Figure/Table 是否在文中被引用？
+- 数字精度：百分比是否一致使用小数位？pp 单位是否正确使用？
+- 语法和拼写检查
+
+### 3. Figure 和 Table 质量
+- Figure 1 (teaser)：是否清晰传达 two-axis framework？
+- Figure 2 (pruning overview)：degradation curve 是否易读？
+- Figure 3 (method gap)：是否有效展示 CV-sensitivity relationship？
+- Table 1 (model properties)：信息是否完整且准确？
+- Table 2 (main results)：布局是否清晰？"--" 缺失数据是否过多？
+
+### 4. Limitations 评估
+- 当前 Limitations 是否充分覆盖主要弱点？
+- 是否遗漏了重要 limitation（如 sim-only, single benchmark, limited model diversity within connector type）？
+- Future Work 方向是否合理？
+
+### 5. Reproducibility
+- 训练超参数是否充分披露？
+- 评估协议是否足够详细以支持复现？
+- 是否提到代码/数据发布计划？（注意 double-blind 约束）
+- Checkpoint 来源是否清晰？
+
+### 6. 叙事一致性
+- Abstract 中的数字是否与正文一致？
+- Introduction 中的 contribution 是否与 Experiments 中的证据对齐？
+- Conclusion 是否 overstate findings？
+
+请提供结构化审稿报告：Summary → Strengths → Weaknesses（按 severity 分 Must-Fix / Should-Fix / Minor） → Questions → Formatting Issues。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "source": "review_reviewer_3"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-23T05:44:16.847120+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/skills/review-reviewer-session-start.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/skills/review-reviewer-session-start.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-23T05:44:18.239415+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/.claude/sessions/review_reviewer_3_bff287c2.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 1392
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T05:44:18.325042+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director,WebSearch,WebFetch",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director,WebSearch,WebFetch",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-23T05:44:18.383399+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "ToolSearch",
+  "elapsed_ms": 58
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-23T05:44:22.674879+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CoRL 2026 reviewer guidelines review form criteria"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CoRL 2026 reviewer guidelines review form criteria"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T05:44:25.144563+00:00_
+
+called mcp__agent-ml-research__pdf_to_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/submitted.pdf",
+  "project": "importance_margin_vla_compress",
+  "pages": "1-10",
+  "dpi": "150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "tool_args": {
+    "pdf_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/submitted.pdf",
+    "project": "importance_margin_vla_compress",
+    "pages": "1-10",
+    "dpi": "150"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T05:44:30.165392+00:00_
+
+Web search results for query: "CoRL 2026 reviewer guidelines review form criteria"
+
+Links: [{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"ICLR 2026 Reviewer Guide","url":"https://iclr.cc/Conferences/2026/ReviewerGuide"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Reviewer Guidelines — CoRL 2023","url":"https://www.corl2023.org/reviewer-guidelines"},{"title":"CVPR 2026 Reviewer Guidelines","url":"https://cvpr.thecvf.com/Conferences/2026/ReviewerGuidelinesq"},{"title":"Which Coauthor Should I Nominate in My 99 ICLR Submissions? A Mathematical Analysis of the ICLR 2026 Reciprocal Reviewer Nomination Policy","url":"https://arxiv.org/pdf/2512.17950"},{"title":"CoRL 2024 - Instruction for Reviews","url":"https://2024.corl.org/contributions/instruction-for-reviews"}]
+
+Based on the search results, I found some information about CoRL reviewer guidelines, though the specific CoRL 2026 reviewer guidelines page wasn't directly available. However, I can provide you with relevant information from CoRL's official sources:
+
+**Review Criteria:**
+Submissions will be evaluated based on the significance and novelty of the results, either theoretical or empirical.
+
+**Relevance Assessment:**
+Reviewers should assess whether the paper addresses a problem in robot learning, whether it applies or improves a learning-based method or learned model, whether the method is evaluated in simulation, on real robots, or both, and whether the CoRL audience will be interested in reading the paper.
+
+**Limitations Section:**
+CoRL papers are required to include a limitations section, and honestly reported limitations should be treated kindly and with high appreciation, while obvious shortcomings or flaws not reported by the authors should be pointed out extensively and strongly reflected in scores.
+
+**Reviewer Conduct:**
+Reviewers should be constructive and concre
+…[truncated 484 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebSearch",
+  "elapsed_ms": 7490
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T05:44:31.626268+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p1.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 314.1}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p2.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 306.5}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p3.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 334.2}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p4.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 301.8}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p5.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 273.9}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p6.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 414.9}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p7.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 340.9}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p8.png\", \"width\": 1275, \"height\": 1650, \"size_kb\": 236.3}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_v
+…[truncated 603 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "mcp__agent-ml-research__pdf_to_images",
+  "elapsed_ms": 6481
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-23T05:44:39.170005+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://2024.corl.org/contributions/instruction-for-reviews",
+  "prompt": "Extract the complete review form criteria, scoring dimensions, rating scales, and all reviewer instructions. Include all specific questions reviewers must answer and the rating scale descriptions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://2024.corl.org/contributions/instruction-for-reviews",
+    "prompt": "Extract the complete review form criteria, scoring dimensions, rating scales, and all reviewer instructions. Include all specific questions reviewers must answer and the rating scale descriptions."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T05:44:40.175316+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://www.corl2023.org/reviewer-guidelines",
+  "prompt": "Extract all review criteria, scoring dimensions, rating scales, and reviewer guidelines. Include specific questions and rating scale descriptions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://www.corl2023.org/reviewer-guidelines",
+    "prompt": "Extract all review criteria, scoring dimensions, rating scales, and reviewer guidelines. Include specific questions and rating scale descriptions."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-23T05:44:41.133622+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p1.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p1.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T05:44:41.537303+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p2.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p2.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T05:44:42.494559+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 1360
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T05:44:42.494994+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p3.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T05:44:42.801031+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 1263
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T05:44:42.801565+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p4.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p4.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T05:44:43.205791+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 710
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T05:44:43.411790+00:00_
+
+# CoRL 2024 Review Instructions - Summary
+
+Based on the provided content, the page outlines review guidelines but **does not include a complete review form, scoring dimensions, rating scales, or specific reviewer questions.**
+
+## What IS Provided:
+
+**Review Criteria for Regular Papers:**
+Submissions evaluated on "significance and novelty of the results, either theoretical or empirical" with judgment based on "the degree to which they have been objectively established and/or their potential for scientific and technological impact, as well as their relevance to robotic learning."
+
+**Desk Rejection Criteria (3 grounds):**
+- Formatting issues (length or incorrect format)
+- Anonymity violations in manuscript or supplemental materials
+- Scope: Papers must demonstrate robot learning relevance through either explicit intent to address "a learning question for physical robots" OR testing solutions "on physical robots"
+
+**Reviewer Qualifications:**
+Reviewers should demonstrate expertise with "a minimum of 3 first author publications in major robotics conferences and journals" plus core machine learning venues.
+
+## Missing Information:
+
+The document does not contain:
+- Numerical rating scales
+- Specific review questions/prompts
+- Scoring dimension details
+- Response guidelines for reviewers
+- Confidence scales or reviewer instructions
+
+The full review form appears to be hosted elsewhere or not included in this instructional page.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebFetch",
+  "elapsed_ms": 4241
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T05:44:43.613879+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 812
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T05:44:46.226099+00:00_
+
+# CoRL 2023 Reviewer Guidelines - Review Criteria & Standards
+
+## Primary Review Dimensions
+
+The review form evaluates submissions across six key criteria:
+
+**Originality**
+"Are the problems or methods new?" Assessment includes novelty of approach, clarity of differentiation from prior work, and adequacy of related work citations.
+
+**Quality**
+Reviewers assess technical soundness, whether "claims well supported (e.g., by theoretical analysis or experimental results)," methodological appropriateness, and completeness of work.
+
+**Clarity**
+Evaluation of "submission clearly written? Is it well organized?" Reviewers should provide constructive suggestions for improvement and verify sufficient detail for expert reproduction.
+
+**Significance**
+"Are the results important?" Considers whether research advances state-of-the-art, addresses difficult problems effectively, and offers unique theoretical or experimental approaches.
+
+**Relevance**
+"Does the paper address a problem in robot learning?" Includes assessment of learning-based methods, evaluation context (simulation/real robots), and audience interest.
+
+**Limitations**
+Authors must include a limitations section. Reviewers should appreciate honestly reported limitations while identifying unreported shortcomings.
+
+## Reviewer Conduct Standards
+
+Reviewers should remain "constructive" and "concrete," starting with strengths, offering improvements, and respecting diverse perspectives. The guidelines explicitly discourage common pitfalls like unsupported novelty claims, unsubstantiated alternative approach suggestions, and mandatory requirement demands (publications, theorems, robotics demonstrations).
+
+**No fixed rating scale values are specified** in this document.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebFetch",
+  "elapsed_ms": 6050
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T05:44:51.468126+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p5.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T05:44:51.921105+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-23T05:44:52.022091+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p6.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p6.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T05:44:52.524923+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p7.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T05:44:53.027482+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 1005
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T05:44:53.030851+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 505
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-23T05:44:53.032255+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p8.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T05:44:53.434892+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-23T05:45:00.919041+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T05:45:02.375346+00:00_
+
+1	\documentclass{article}
+2	
+3	\usepackage{corl_2026} % Submission version: anonymous, line numbers enabled.
+4	% \usepackage[final]{corl_2026} % Uncomment for camera-ready.
+5	
+6	\usepackage{amsmath,amssymb}
+7	\usepackage{graphicx}
+8	\usepackage{booktabs}
+9	\usepackage{multirow}
+10	\usepackage{enumitem}
+11	\usepackage{subcaption}
+12	
+13	\title{Why Token Pruning Crashes Some Robot Policies but Not Others:\\Vision Connectors and VLA Token Compressibility}
+14	
+15	\begin{document}
+16	\maketitle
+17	
+18	\input{abstract}
+19	
+20	\keywords{vision-language-action models, token pruning, robot learning}
+21	
+22	\input{introduction}
+23	
+24	\input{related_work}
+25	
+26	\input{method}
+27	
+28	\input{experiments}
+29	
+30	\input{conclusion}
+31	
+32	\bibliography{references}
+33	
+34	\input{appendix}
+35	
+36	\end{document}
+37	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 1456
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-23T05:45:02.375939+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p9.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T05:45:02.880188+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p10.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images/submitted_p10.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T05:45:03.034296+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 658
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T05:45:03.440093+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 559
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-23T05:45:09.794128+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T05:45:09.894892+00:00_
+
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/background.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/experimental_setup.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/results_draft.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/analysis_draft.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/experiments_deprecated.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/experiments.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/related_work_draft.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/sections/introduction.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/background.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/results_v2.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/experimental_setup.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/analysis.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/results.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/discussion.tex
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/main.tex
+/home/ubuntu/.agent-ml-
+…[truncated 792 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-23T05:45:15.519034+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/abstract.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T05:45:16.020973+00:00_
+
+1	\begin{abstract}
+2	Removing 5\% of vision tokens collapses SmolVLA from 59.2\% to 0.0\% success rate, while the same reduction on $\pi_0.5$ retains 98.2\% under importance-based selection but only 69.4\% under random selection. Token pruning, well-established for Vision Transformers, transfers unpredictably across Vision-Language-Action (VLA) models because the vision connector governs token compressibility. We analyze this sensitivity along two axes: connector coupling (token-independent vs.\ token-entangling) and task complexity (single-step vs.\ multi-step manipulation). The coefficient of variation (CV) of post-connector token L2 norms, ranging from 0.038 to 0.314 across models, serves as a single-pass diagnostic that correlates with both pruning tolerance and method sensitivity across all three connector families. Token-entangling connectors exhibit task-amplified collapse: X-VLA loses just 1.4 percentage points on single-step Object at 90\% retention but 27.8 percentage points on multi-step Goal tasks (both under random pruning), a $20{\times}$ task-complexity amplification. Low-CV models show 15$\times$ greater sensitivity to pruning method choice than higher-CV models, and at aggressive compression random selection outperforms L2 norm ranking by 36 percentage points for low-CV architectures. For pixel-shuffle connectors where all pruning strategies yield 0.0\%, Vision Token Re-encoder (VTR), a lightweight cross-attention module, recovers over 60\% success rate at 75\% compression through learned re-encoding. Evaluation spans six VLA architectures (450M to 7B parameters), three connector families, and four LIBERO task suites.
+3	\end{abstract}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 501
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-23T05:45:16.071683+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T05:45:16.473395+00:00_
+
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	\begin{figure*}[t]
+5	\centering
+6	\includegraphics[width=\textwidth]{figures/paper/fig_teaser.pdf}
+7	\caption{Two-axis framework for VLA token compressibility. Pruning robustness depends on both connector coupling (token-independent vs.\ token-entangling) and task complexity (single-step vs.\ multi-step). X-VLA loses 1.4\,pp on Object at $k{=}0.9$ but 27.8\,pp on Goal (random pruning), a $20{\times}$ task-complexity amplification.}
+8	\label{fig:teaser}
+9	\end{figure*}
+10	
+11	Remove 5\% of vision tokens from SmolVLA and its success rate collapses from 59.2\% to 0.0\% across all task suites and pruning methods. Apply the same 5\% reduction to $\pi_0.5$ and it retains 98.2\% under L2 norm selection. Both are Vision-Language-Action (VLA) models built on a Vision Transformer (ViT) encoder feeding tokens through a connector into a language model backbone; the critical difference is not model scale (450M vs.\ 4B parameters) but the connector architecture. Token pruning is well-established for ViTs~\cite{rao2021dynamicvit,bolya2023tome,liang2022evit} and a growing body of work extends it to VLAs~\cite{cheng2026vlaiap,xu2025vlacache,yang2025efficientvla,liu2025vlapruner}, but each method validates on a single architecture.
+12	
+13	These methods implicitly assume that pruning transfers across VLA designs. Yet current VLAs employ fundamentally different vision connectors: linear projections~\cite{black2024pi0}, MLP projectors~\cite{kim2024openvla}, pixel-shuffle folding~\cite{shukor2025smolvla}, and learned encoders with cross-token self-attention~\cite{zheng2025xvla}. Each imposes distinct constraints on how visual information distributes across tokens. Deploying a pruning method validated on one connector type to another risks silent degradation or complete failure. No prior work evaluates pruning robustness across both connector architectures and task complexity.
+14	
+15	We propose a two-axis analysis of VLA token compr
+…[truncated 2036 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-23T05:45:16.473894+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T05:45:17.028095+00:00_
+
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	Vision token pruning in VLAs is not a uniform operation: its outcome depends on the interaction between connector architecture and task complexity. Across six VLA architectures (450M--7B) and four LIBERO suites, connector coupling is the primary determinant of pruning robustness. Token-independent connectors degrade proportionally to the fraction removed; token-entangling connectors exhibit task-amplified collapse. SmolVLA's pixel-shuffle produces 0.0\% SR when just 5\% of tokens are removed; X-VLA loses 1.4\,pp on Object at $k{=}0.9$ but 27.8\,pp on Goal under random pruning, a $20{\times}$ amplification. The CV of token L2 norms serves as a single-pass diagnostic that correlates with both pruning tolerance and method sensitivity across all three connector families. For architectures where all pruning strategies fail, VTR recovers a pixel-shuffle VLA from 0.0\% to over 60\% SR at 75\% compression.
+5	
+6	Two directions remain open: real-robot validation to confirm the connector-complexity interaction transfers beyond simulation, and adaptive per-task pruning schedules that adjust retention ratio to estimated task complexity.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 554
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-23T05:45:17.028653+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-23T05:45:17.079915+00:00_
+
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\subsection{Models and Connectors}
+5	\label{sec:models}
+6	
+7	We evaluate token pruning across six VLA architectures spanning three vision connector families (Table~\ref{tab:model_properties}). These connectors differ in whether they process ViT patches independently or create cross-token dependencies, a distinction we formalize as \emph{coupling}.
+8	
+9	\textbf{Linear projection} applies a single matrix multiplication per patch. $\pi_0$~\cite{black2024pi0} projects 256 patches through a linear layer; $\pi_0.5$~\cite{black2025pi05} uses a $\times\!\sqrt{d}$-scaled linear projection across 768 tokens from three cameras (CV$\,{<}\,$0.06).
+10	
+11	\textbf{MLP projector} maps each patch independently through a multi-layer perceptron. OpenVLA~\cite{kim2024openvla} uses a three-layer MLP (256 tokens; CV$\,{=}\,$0.215); OFT~\cite{kim2025openoft}, an OpenVLA fine-tuning variant evaluated offline, shares the same connector (512 tokens; CV$\,{=}\,$0.219).
+12	
+13	\textbf{Token-entangling connectors} introduce cross-token dependencies. X-VLA~\cite{zheng2025xvla} feeds linearly projected tokens through a 12-layer BART encoder~\cite{lewis2020bart} (50 tokens). SmolVLA~\cite{shukor2025smolvla} applies pixel-shuffle $4{\times}4$ folding, concatenating 16 contiguous patches into each output token's channel dimension (128 tokens).
+14	
+15	We classify coupling as \emph{independent} when each output token depends on a single input patch, and \emph{entangling} when output tokens encode information from multiple patches. Four models ($\pi_0.5$, X-VLA, OpenVLA, SmolVLA) are evaluated in closed-loop control on LIBERO~\cite{liu2023libero}; $\pi_0$ and OFT are analyzed via offline metrics only.
+16	
+17	\begin{table}[t]
+18	\centering
+19	\small
+20	\caption{VLA models evaluated in this study. Coupling indicates whether the connector processes patches independently or creates cross-token dependencies. $N$ = number of vision tokens input to the LLM backbone
+…[truncated 4081 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-23T05:45:21.316317+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-23T05:45:22.325706+00:00_
+
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	\label{sec:exp_setup}
+6	
+7	We evaluate vision token pruning across six VLA architectures spanning three connector families on the LIBERO benchmark~\cite{liu2023libero}. LIBERO provides four task suites of increasing complexity: Object (object manipulation), Spatial (spatial reasoning), Goal (goal-conditioned tasks), and Long (long-horizon multi-step tasks). Each suite contains 10 tasks evaluated over 50 episodes, yielding 500 episodes per condition.
+8	
+9	Four models are evaluated in closed-loop robotic control: $\pi_0.5$~\cite{black2025pi05} (4B parameters, linear projection with $\times\!\sqrt{d}$ scaling, 768 tokens from three cameras, CV$\,{=}\,$0.055), X-VLA~\cite{zheng2025xvla} (880M, linear projection followed by a 12-layer BART encoder~\cite{lewis2020bart}, 50 tokens, CV$\,{=}\,$0.151), OpenVLA~\cite{kim2024openvla} (7B, three-layer MLP projector, 256 tokens, CV$\,{=}\,$0.215), and SmolVLA~\cite{shukor2025smolvla} (450M, pixel-shuffle $4{\times}4$ folding, 128 tokens, CV$\,{=}\,$0.314). Two additional models are analyzed via offline metrics only: $\pi_0$~\cite{black2024pi0} (3.3B, linear projection, 256 tokens, CV$\,{=}\,$0.038) and OFT~\cite{kim2025openoft} (7B, three-layer MLP, 512 tokens, CV$\,{=}\,$0.219). All six architectures contribute to the CV diagnostic (Section~\ref{sec:cv_sensitivity}). Table~\ref{tab:model_properties} summarizes model properties and connector details.
+10	
+11	The pruning protocol applies post-connector token pruning at retention ratios $k \in \{0.3, 0.5, 0.7, 0.85, 0.9, 0.95\}$. Two strategies bracket the robustness range: \textbf{L2 norm selection} ranks tokens by L2 norm and retains the top-$k$ fraction, providing an importance-based favorable test; \textbf{random subsampling} selects tokens uniformly at random, providing a conservative lower bound. Both strategies physically remove tokens and re-index position IDs. All results report mean s
+…[truncated 12480 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 1009
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-23T05:45:22.376450+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/appendix.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-23T05:45:22.628697+00:00_
+
+1	\appendix
+2	
+3	\section{Extended Discussion}
+4	\label{app:discussion}
+5	
+6	\paragraph{Limitations (extended).}
+7	All closed-loop evaluations use the LIBERO simulation benchmark; real-robot validation is absent. The six architectures differ in backbone capacity, vision encoder, and fusion strategy beyond the connector, so the connector effect cannot be causally isolated. $\pi_0$ and OFT are evaluated through offline metrics only, without closed-loop verification. The CV diagnostic spans six architectures across all three connector families; closed-loop validation covers four models ($\pi_0.5$, X-VLA, OpenVLA, SmolVLA). SmolVLA baselines (59.2\% official, 44.8\% LoRA reproduction) are substantially weaker than those of the other models; whether VTR recovery generalizes to stronger baselines is unknown.
+8	
+9	\paragraph{Non-monotonicity as structural property.}
+10	X-VLA on Goal exhibits non-monotonic degradation: $k{=}0.95$ drops to 53.8\% (L2) and 54.0\% (random), while $k{=}0.9$ recovers to 70.2\% under L2 selection (Table~\ref{tab:main_results}). The 0.2\,pp method gap at $k{=}0.95$ confirms that the anomaly is independent of the token scoring criterion. This pattern is consistent with position sensitivity in the 12-layer BART encoder~\cite{lewis2020bart}, where specific token positions carry disproportionate structural importance regardless of content.
+11	
+12	\paragraph{$\pi_0.5$ random subsampling anomaly.}
+13	Random selection on $\pi_0.5$ Object collapses from 69.4\% at $k{=}0.95$ to 12.0\% at $k{=}0.9$, then recovers to 77.2\% at $k{=}0.7$ (Table~\ref{tab:main_results}). The V-shaped recovery at more aggressive pruning remains unexplained.
+14	
+15	\paragraph{Small-$N$ interactions.}
+16	X-VLA operates with only 50 vision tokens. At $k{=}0.95$, removing 3 tokens produces $-$44.6\,pp on Goal and $-$47.0\,pp on Long (L2 norm selection). Absolute token count interacts with CV: identical retention ratios impose qualitatively different damage when the token budget is s
+…[truncated 59151 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-23T05:45:22.629207+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T05:45:22.679649+00:00_
+
+1	\section{Related Work}
+2	\label{sec:related_work}
+3	
+4	\paragraph{ViT token pruning.}
+5	DynamicViT~\cite{rao2021dynamicvit}, EViT~\cite{liang2022evit}, A-ViT~\cite{yin2022avit}, and Token Merging~\cite{bolya2023tome} remove 50--66\% of tokens with under 0.5\,pp ImageNet accuracy loss. Their success rests on classification's insensitivity to spatial layout; robotic manipulation inverts this assumption, as grasping depends on spatial arrangement. None has been evaluated in closed-loop VLA control.
+6	
+7	\paragraph{Token efficiency in VLMs and VLAs.}
+8	FastV~\cite{chen2024fastv} and PruMerge~\cite{shang2024prumerge} reduce vision tokens in VLMs using language-backbone attention signals. VLA-specific methods have emerged in parallel: VLA-IAP~\cite{cheng2026vlaiap} aligns pruning with action-prediction importance, VLA-Cache~\cite{xu2025vlacache} compresses at the KV-cache level, EfficientVLA~\cite{yang2025efficientvla} combines pruning with merging, and VLA-Pruner~\cite{liu2025vlapruner} learns a pruning policy jointly with the action head. Each validates on a single architecture; no study compares pruning robustness across connector designs.
+9	
+10	\paragraph{Vision connectors.}
+11	The connector between ViT and language backbone governs how spatial information distributes across tokens. LLaVA~\cite{liu2023llava} projects patches independently through an MLP; BLIP-2~\cite{li2023blip2} uses cross-attention queries; pixel shuffle~\cite{shi2016subpixel} folds spatial neighborhoods into channels, adopted by SmolVLA~\cite{shukor2025smolvla}. These create qualitatively different token dependencies; independent connectors leave patch information separable, while entangling connectors distribute content across tokens. The pruning consequences have not been characterized.
+12	
+13	We provide the first cross-architecture analysis of how connector coupling and task complexity jointly govern VLA token compressibility, introducing CV of token norms as a single-pass diagnostic that corr
+…[truncated 63 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-23T05:45:35.833838+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions/instruction-for-authors",
+  "prompt": "Extract all formatting requirements: page limits, template requirements, anonymity rules, limitations section requirements, keywords requirements, generative AI policy, any mandatory sections. Be comprehensive."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://www.corl.org/contributions/instruction-for-authors",
+    "prompt": "Extract all formatting requirements: page limits, template requirements, anonymity rules, limitations section requirements, keywords requirements, generative AI policy, any mandatory sections. Be comprehensive."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T05:45:36.741650+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions/call-for-papers",
+  "prompt": "Extract all submission requirements, review criteria, page limits, formatting requirements, and any reviewer guidelines or evaluation dimensions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://www.corl.org/contributions/call-for-papers",
+    "prompt": "Extract all submission requirements, review criteria, page limits, formatting requirements, and any reviewer guidelines or evaluation dimensions."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T05:45:41.215174+00:00_
+
+# CoRL 2026 Formatting & Submission Requirements
+
+## Page Limits
+- **Initial submission:** 8 pages maximum for main paper
+- **Camera-ready version:** 9 pages maximum for main paper
+- Acknowledgments, references, and optional appendix do not count toward page limits
+
+## Template Requirements
+- LaTeX template mandatory for submissions
+- Use `\usepackage[final]{corl_2026}` for camera-ready versions
+- "Text density, fonts, and spacing should be the same as the provided template"
+- Margins must match the provided template
+- Camera-ready footer: "10th Conference on Robot Learning (CoRL 2026), Austin, Texas, USA."
+
+## Anonymity Rules
+- **Initial review phase:** Double-blind; all papers must be anonymized
+- **Camera-ready:** Author list is NOT anonymous
+- Authors cannot be added/removed after abstract deadline
+
+## Mandatory Sections
+- **Limitations section:** Required, counted within the 8-page limit, must describe "limiting assumptions, failure modes, and other limitations"
+
+## Generative AI Policy
+- Disclose how generative AI tools were used for research and writing
+- Papers with non-existent citations will be desk-rejected
+- Multiple substantially similar papers by same author(s) face desk rejection
+- LLMs cannot qualify for authorship
+
+## Other Requirements
+- Double-blind peer review (minimum 2 reviewers per paper)
+- Supplementary materials submitted as single zip file via OpenReview
+- Video submission encouraged (max 250 MB, 3 minutes suggested)
+- Reciprocal reviewing requirement for qualified authors
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebFetch",
+  "elapsed_ms": 5381
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-23T05:45:41.316013+00:00_
+
+# CoRL 2026 Submission Requirements
+
+Based on the provided content, here are the key submission guidelines:
+
+## Core Requirements
+
+**Subject Matter:** Submissions must "focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics."
+
+**Experimental Validation:** Authors should prioritize "real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots." Papers lacking robotics focus "will be returned without review."
+
+## Required Sections
+
+**Limitations Section:** All submissions must include documentation that explicitly addresses "limiting assumptions, failure modes, and other limitations of the results and experiments and how these might be addressed in the future."
+
+## Supplementary Materials
+
+Authors are encouraged to submit video, code, and data alongside their papers.
+
+## Additional Details
+
+The document references a separate page titled "Instruction for Authors" for specific information about paper submission format and timeline, but those detailed specifications are not included in the provided content.
+
+**Note:** For comprehensive formatting requirements, page limits, and reviewer evaluation criteria, consult the [Instruction for Authors](/contributions/instruction-for-authors) page directly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebFetch",
+  "elapsed_ms": 4574
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-23T05:45:46.143368+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CoRL 2025 2026 review form OpenReview rating scale soundness clarity significance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CoRL 2025 2026 review form OpenReview rating scale soundness clarity significance"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-23T05:45:51.442940+00:00_
+
+Web search results for query: "CoRL 2025 2026 review form OpenReview rating scale soundness clarity significance"
+
+Links: [{"title":"2025 Reviewer Guidelines","url":"https://neurips.cc/Conferences/2025/ReviewerGuidelines"},{"title":"CoRL 2025 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2025%2FConference"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"Reviewer Guidelines — CoRL 2023","url":"https://www.corl2023.org/reviewer-guidelines"},{"title":"What Drives Paper Acceptance? A Process-Centric Analysis of Modern Peer Review","url":"https://arxiv.org/pdf/2509.25701"},{"title":"Insights from the ICLR Peer Review and Rebuttal Process","url":"https://arxiv.org/pdf/2511.15462"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"}]
+
+Based on the search results, I found limited specific information about the CoRL 2025/2026 review form rating scale. However, I can see that CoRL 2023's review form asks for evaluation of originality, quality, clarity, significance, relevance and limitations.
+
+The search results show that CoRL 2025 Conference uses OpenReview, and CoRL 2026 Conference also has an OpenReview page, but the specific rating scales and forms for CoRL 2025/2026 were not fully detailed in these results.
+
+For reference, the results included information about other conferences: ICLR 2024 and 2025 provides numerical scores for soundness, presentation, contribution, confidence, and overall rating, with overall ratings in {1, 3, 5, 6, 8, 10}.
+
+To get the exact review form specifications for CoRL 2025/2026, you may want to visit the OpenReview pages directly or check the official CoRL reviewer guidelines documentation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebSearch",
+  "elapsed_ms": 5299
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-23T05:45:56.665594+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://openreview.net/group?id=robot-learning.org/CoRL/2025/Conference",
+  "prompt": "Extract the review form criteria, rating scales, scoring dimensions used for CoRL 2025. Look for any details about how reviewers rate papers - what dimensions they score on and what scales they use."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://openreview.net/group?id=robot-learning.org/CoRL/2025/Conference",
+    "prompt": "Extract the review form criteria, rating scales, scoring dimensions used for CoRL 2025. Look for any details about how reviewers rate papers - what dimensions they score on and what scales they use."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-23T05:45:59.376471+00:00_
+
+# CoRL 2025 Review Form Criteria
+
+Based on the provided web page content, I cannot extract any information about review form criteria, rating scales, or scoring dimensions for CoRL 2025.
+
+The page excerpt contains only general OpenReview navigation elements, footer links, and a brief description that "OpenReview is a long-term project to advance science through improved peer review." It does not include specific details about:
+
+- Reviewer rating scales
+- Scoring dimensions
+- Review form structure
+- Paper evaluation criteria
+
+To find this information, you would need to access the actual CoRL 2025 conference page on OpenReview or review the full conference submission guidelines.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "WebFetch",
+  "elapsed_ms": 2710
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-23T05:47:09.125102+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-23T05:47:09.226164+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "ToolSearch",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-23T05:47:12.745171+00:00_
+
+called mcp__agent-ml-research__cleanup_pdf_images
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cleanup_pdf_images</summary>
+
+```json
+{
+  "output_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "tool_args": {
+    "output_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/review_round_6/_pdf_images"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-23T05:47:12.795901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-23T05:48:58.478304+00:00_
+
+called mcp__agent-ml-research__review_reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "## Reviewer 3 审稿报告：写作质量、格式合规与 Limitations/Ethics\n\n**论文标题**: Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility\n**Venue**: CoRL 2026\n\n---\n\n## 总体评分\n**Overall**: 6/10（Marginally above acceptance threshold）\n**一句话总结**: 论文写作整体清晰、论证有条理，但存在一项可能触发 desk rejection 的合规缺失（Generative AI 披露）、主文与附录术语不一致、以及 Limitations 覆盖不充分等问题。\n\n## 官方维度打分（基于 CoRL review form：Originality / Quality / Clarity / Significance / Relevance / Limitations）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Clarity | 3.5/5 | 整体结构清晰，但 VTR/Smart Compress 命名不一致严重影响可读性；LaTeX 渲染错误贯穿全文 |\n| Relevance | 4/5 | 直接关系机器人学习中的 VLA 部署效率，符合 CoRL 核心议题 |\n| Limitations | 2.5/5 | 主文 Limitations 仅 3 句话，关键局限（sim-only、单 benchmark、connector type 内样本不足）认识不够充分 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 缺少 Generative AI 使用披露\n- 具体位置：全文（main.tex 中无任何 AI disclosure 段落）\n- 问题：CoRL 2026 Author Instructions 明确要求 \"Disclose how generative AI tools were used for research and writing\"（https://www.corl.org/contributions/instruction-for-authors）。论文全文无任何相关披露。\n- 为什么影响接收：CoRL 2026 明确声明 \"Papers with non-existent citations will be desk-rejected\"，AI disclosure 同样列为合规要求。缺失可能导致 desk rejection 或至少引发 AC 质疑。\n- 建议修改方向：在 Acknowledgments 或 Limitations 末尾添加 AI 工具使用说明（即使未使用也应显式声明）。\n\n**N2** [critical] \"VTR\" 与 \"Smart Compress\" 命名不一致\n- 具体位置：主文 Section 3.4 定义为 \"Vision Token Re-encoder (VTR)\"、Section 4.5 使用 \"VTR Recovery\"；但附录中大量使用 \"Smart Compress\"——Appendix E (Table 8) \"Full Smart Compress ablation\"、Appendix F (Table 9) \"Smart Compress ($M{=}32$) evaluation\"、Appendix G \"Smart Compress Training Details\"、Table 7 标题 \"Smart Compress per-task...\"\n- 问题：同一模块在主文和附录中使用两个完全不同的名称，读者无法确定 \"Smart Compress\" 和 \"VTR\" 是否为同一组件。这不是简称的问题——两个名字没有任何词汇重叠，构成术语混淆。\n- 为什么影响接收：术语不一致是 reviewer 降分的常见原因。对于论文的核心贡献之一（VTR），命名混乱直接损害可信度和可理解性。\n- 建议修改方向：统一为一个名称（建议 VTR），全文搜索替换 \"Smart Compress\"。\n\n**N3** [critical] Table 2 缺失数据过多（\"--\" 条目）\n- 具体位置：Table 2（main results，experiments.tex lines 37-67）\n- 问题：在核心结果表中，存在大量 \"--\" 条目：\n  - π₀.₅ Goal: k=0.9 Random 缺失, k=0.7 L2 缺失\n  - X-VLA Spatial: k=0.7 Random 缺失\n  - X-VLA Goal: k=0.5 Random 缺失\n  - X-VLA Long: k=0.9 Random 缺失, k=0.7 L2 和 Random 均缺失, k=0.5 L2 和 Random 均缺失\n  - OpenVLA: 仅报告 Object 一个 suite（其余三个 suite 完全缺失）\n  共计约 11 个 \"--\" 单元格，占非 SmolVLA 有效数据的约 20%。\n- 为什么影响接收：论文声称进行 \"cross-architecture, cross-suite analysis\"，但最重要的结果表数据严重不完整。特别是 X-VLA Long suite 几乎没有中低 retention ratio 的数据，OpenVLA 只有 Object 一个 suite，无法支撑 \"cross-suite\" 的 claim。Reviewer 会质疑这些数据是否有意省略了不利结果。\n- 建议修改方向：补全缺失实验，或在表格注释中明确解释每个 \"--\" 的原因（如 \"实验未完成\" vs \"结果为 0%\"）。如果是资源限制，应在 Limitations 中承认。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] LaTeX 渲染错误：`$\\pi_0.5$` 应为 `$\\pi_{0.5}$`\n- 具体位置：全文贯穿出现（abstract.tex, introduction.tex, method.tex, experiments.tex 等，超过 50 处）\n- 问题：`$\\pi_0.5$` 在 LaTeX 中仅将 `0` 作为下标，`.5` 以正文字体显示。正确写法为 `$\\pi_{0.5}$`，将 `0.5` 整体下标。同样的问题出现在 `$\\pi_0$`（应为 `$\\pi_{0}$`，虽然效果相同但不规范）。在 PDF 中，这导致 π₀.5 中的 \".5\" 与下标 \"0\" 不在同一基线，视觉上显得像是数学乘法 π₀ × 0.5。\n- 建议：全局搜索替换 `$\\pi_0.5$` → `$\\pi_{0.5}$`，以及 `$\\pi_0$` → `$\\pi_{0}$`。\n\n**W2** [warning] Limitations section 过于简短且格式不够突出\n- 具体位置：experiments.tex lines 105-106（主文末尾的 `\\paragraph{Limitations.}`）\n- 问题：CoRL 2026 要求 Limitations section \"describe limiting assumptions, failure modes, and other limitations\"。当前主文 Limitations 仅 3 句话（约 60 词），以 `\\paragraph{}` 而非 `\\subsection{}` 或 `\\section{}` 形式呈现，在 PDF 中视觉上不够醒目。虽然 Appendix A 有 Extended Discussion 补充，但 CoRL reviewer \"not required to read appendix\"，意味着 reviewer 可能只看到这 3 句话。\n- 遗漏的重要 limitations：\n  1. **单一 benchmark**：仅使用 LIBERO，未在其他机器人操控 benchmark（如 RLBench、MetaWorld）验证\n  2. **仅 simulation**：CoRL Call for Papers 明确强调 \"prioritize real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots\"——论文完全缺少 sim-to-real transferability 论证\n  3. **Connector type 内样本不足**：pixel-shuffle 仅测试 SmolVLA 一个模型，无法排除 SmolVLA 自身的缺陷（而非 pixel-shuffle 的固有问题）\n  4. **VTR 仅在一个架构上验证**：VTR 只在 SmolVLA 上测试，对其他 entangling connector（如 X-VLA 的 BART）是否有效未知\n  5. **单种子问题**：Table 2 中多数条件为单种子实验（exceptions: VTR 3-seed, 部分 X-VLA 3-seed）\n- 建议：将 Limitations 提升为独立 `\\section{Limitations}` 或至少 `\\subsection{}`，扩展至 150-200 词覆盖以上关键局限。\n\n**W3** [warning] 缺少代码/数据发布计划\n- 具体位置：全文（无任何 code/data availability 声明）\n- 问题：CoRL 2026 鼓励提交 code 和 data。论文未提及代码是否会开源、实验数据是否可获取。虽然 double-blind 阶段不应包含可识别链接，但可以声明 \"Code and data will be released upon acceptance\" 或提供匿名链接。\n- 建议：在 Limitations 或 Conclusion 末尾添加代码发布计划声明。\n\n**W4** [warning] Abstract 信息密度过高\n- 具体位置：abstract.tex（约 180 词）\n- 问题：Abstract 在约 180 词中塞入了过多具体数字（59.2%, 0.0%, 98.2%, 69.4%, 0.038, 0.314, 1.4 pp, 27.8 pp, 20×, 15×, 36 pp, 22M, 5%, 60%, 75%, 450M, 7B），共计约 17 个数字/百分比。信息过载使读者难以把握核心 message。\n- 建议：保留 3-4 个最关键数字（如 SmolVLA 5% pruning → 0%、VTR 恢复 60%、6 architectures），其余用定性描述替代。\n\n**W5** [warning] Figure 3 (Method sensitivity) 可读性问题\n- 具体位置：Figure 3（experiments.tex line 91-96，PDF page 7）\n- 问题：条形图中 X-VLA 和 OpenVLA 的 bar 值均 < 2pp，在与 π₀.₅ 的 15-29pp bars 同尺度下几乎不可见。\"1.4\" 和 \"0.2\" 标签字体极小。15× 标注虽然有用但增加了视觉噪音。\n- 建议：考虑使用 broken axis 或 log scale，或在 bar 旁用大字标注具体数值。\n\n---\n\n## 小问题（不影响接收）\n\n- abstract.tex line 2：`$\\pi_0.5$` 前有 `on` 缺少空格（\"reduction on$\\pi_0.5$\" → \"reduction on $\\pi_0.5$\"）——实际渲染可能正常，但源码不清晰\n- experiments.tex line 40 caption：\"``--'' indicates data not yet collected\" 承认数据未收集，这比 \"--\" 无解释好，但在正式投稿中不够专业\n- method.tex line 9：`$\\times\\!\\sqrt{d}$-scaled` 中 `\\!` 负间距的使用是否必要？视觉上较紧凑\n- related_work.tex：Related Work 段落较短（约 200 词），对 VLA pruning 的相关工作（VLA-IAP, VLA-Cache, EfficientVLA, VLA-Pruner）仅一句话带过，缺少具体方法对比\n- 附录中部分 table caption 过长（如 Table 14 caption 超过 5 行），可精简\n\n---\n\n## 叙事一致性检查\n\n| 检查项 | 结果 |\n|--------|------|\n| Abstract 数字与正文一致 | ✅ \"59.2% to 0.0%\"、\"98.2%\"、\"60% at 75%\" 均与 experiments section 一致 |\n| Introduction contributions 与 Experiments 证据对齐 | ✅ 三条 contribution 均有对应实验支撑 |\n| Conclusion 是否 overstate | ⚠️ Conclusion 说 \"connector coupling is the primary determinant\"，但 confounders（backbone, encoder, scale）未充分控制，\"primary\" 过强——Appendix I 自己也承认 \"preventing clean isolation\" |\n| 术语一致性 | ❌ VTR vs Smart Compress（见 N2）；其余术语（CV, SR, pp, retention ratio）全文一致 |\n| Figure/Table 引用完整 | ✅ 主文中所有 Figure 和 Table 均被引用 |\n\n---\n\n## 格式合规总结\n\n| 检查项 | 状态 | 备注 |\n|--------|------|------|\n| 8 页限制 | ✅ | 主文 8 页，References 从 page 9 开始 |\n| CoRL 2026 模板 | ✅ | `\\usepackage{corl_2026}` submission 版本 |\n| Double-blind | ✅ | \"Anonymous Authors\"，无可识别自引或致谢 |\n| Limitations section | ⚠️ | 存在但过短（3 句话），格式为 paragraph 而非 section |\n| `\\keywords{}` | ✅ | 合规 |\n| Generative AI 披露 | ❌ | **完全缺失** |\n| 代码/数据声明 | ❌ | 未提及 |\n\n---\n\n## 主要优势\n\n- **结构清晰**：Introduction 的 problem → gap → approach → contributions 流程逻辑严密，读者能快速理解 motivation\n- **数据呈现规范**：Wilson 95% CI、多种子验证（VTR 3-seed）、per-task breakdown 均体现了实验严谨性\n- **附录详尽**：18 页附录提供了丰富的 ablation、per-task 分析、超参数细节，远超 CoRL 平均水平\n- **Figure 1 (teaser) 效果好**：两轴框架的可视化直观传达了核心 message，connector coupling × task complexity 的交互一目了然\n- **Table 1 (model properties) 设计精简**：6 个模型的关键属性一目了然，CV 排序的呈现方式支持论文论点\n\n---\n\n## 总结\n\n写作整体水准较高，论证逻辑清晰，数据呈现规范。但存在三个影响接收决定的问题：(1) Generative AI 披露缺失可能触发合规审查；(2) VTR/Smart Compress 命名不一致损害论文核心贡献的可信度；(3) Table 2 缺失数据过多，削弱 cross-suite analysis 的 claim。Limitations section 需要实质性扩展以满足 CoRL 的要求。建议在提交前优先修复 N1-N3。",
+  "reviewer_id": "3",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "tool_args": {
+    "text": "## Reviewer 3 审稿报告：写作质量、格式合规与 Limitations/Ethics\n\n**论文标题**: Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility\n**Venue**: CoRL 2026\n\n---\n\n## 总体评分\n**Overall**: 6/10（Marginally above acceptance threshold）\n**一句话总结**: 论文写作整体清晰、论证有条理，但存在一项可能触发 desk rejection 的合规缺失（Generative AI 披露）、主文与附录术语不一致、以及 Limitations 覆盖不充分等问题。\n\n## 官方维度打分（基于 CoRL review form：Originality / Quality / Clarity / Significance / Relevance / Limitations）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Clarity | 3.5/5 | 整体结构清晰，但 VTR/Smart Compress 命名不一致严重影响可读性；LaTeX 渲染错误贯穿全文 |\n| Relevance | 4/5 | 直接关系机器人学习中的 VLA 部署效率，符合 CoRL 核心议题 |\n| Limitations | 2.5/5 | 主文 Limitations 仅 3 句话，关键局限（sim-only、单 benchmark、connector type 内样本不足）认识不够充分 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 缺少 Generative AI 使用披露\n- 具体位置：全文（main.tex 中无任何 AI disclosure 段落）\n- 问题：CoRL 2026 Author Instructions 明确要求 \"Disclose how generative AI tools were used for research and writing\"（https://www.corl.org/contributions/instruction-for-authors）。论文全文无任何相关披露。\n- 为什么影响接收：CoRL 2026 明确声明 \"Papers with non-existent citations will be desk-rejected\"，AI disclosure 同样列为合规要求。缺失可能导致 desk rejection 或至少引发 AC 质疑。\n- 建议修改方向：在 Acknowledgments 或 Limitations 末尾添加 AI 工具使用说明（即使未使用也应显式声明）。\n\n**N2** [critical] \"VTR\" 与 \"Smart Compress\" 命名不一致\n- 具体位置：主文 Section 3.4 定义为 \"Vision Token Re-encoder (VTR)\"、Section 4.5 使用 \"VTR Recovery\"；但附录中大量使用 \"Smart Compress\"——Appendix E (Table 8) \"Full Smart Compress ablation\"、Appendix F (Table 9) \"Smart Compress ($M{=}32$) evaluation\"、Appendix G \"Smart Compress Training Details\"、Table 7 标题 \"Smart Compress per-task...\"\n- 问题：同一模块在主文和附录中使用两个完全不同的名称，读者无法确定 \"Smart Compress\" 和 \"VTR\" 是否为同一组件。这不是简称的问题——两个名字没有任何词汇重叠，构成术语混淆。\n- 为什么影响接收：术语不一致是 reviewer 降分的常见原因。对于论文的核心贡献之一（VTR），命名混乱直接损害可信度和可理解性。\n- 建议修改方向：统一为一个名称（建议 VTR），全文搜索替换 \"Smart Compress\"。\n\n**N3** [critical] Table 2 缺失数据过多（\"--\" 条目）\n- 具体位置：Table 2（main results，experiments.tex lines 37-67）\n- 问题：在核心结果表中，存在大量 \"--\" 条目：\n  - π₀.₅ Goal: k=0.9 Random 缺失, k=0.7 L2 缺失\n  - X-VLA Spatial: k=0.7 Random 缺失\n  - X-VLA Goal: k=0.5 Random 缺失\n  - X-VLA Long: k=0.9 Random 缺失, k=0.7 L2 和 Random 均缺失, k=0.5 L2 和 Random 均缺失\n  - OpenVLA: 仅报告 Object 一个 suite（其余三个 suite 完全缺失）\n  共计约 11 个 \"--\" 单元格，占非 SmolVLA 有效数据的约 20%。\n- 为什么影响接收：论文声称进行 \"cross-architecture, cross-suite analysis\"，但最重要的结果表数据严重不完整。特别是 X-VLA Long suite 几乎没有中低 retention ratio 的数据，OpenVLA 只有 Object 一个 suite，无法支撑 \"cross-suite\" 的 claim。Reviewer 会质疑这些数据是否有意省略了不利结果。\n- 建议修改方向：补全缺失实验，或在表格注释中明确解释每个 \"--\" 的原因（如 \"实验未完成\" vs \"结果为 0%\"）。如果是资源限制，应在 Limitations 中承认。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] LaTeX 渲染错误：`$\\pi_0.5$` 应为 `$\\pi_{0.5}$`\n- 具体位置：全文贯穿出现（abstract.tex, introduction.tex, method.tex, experiments.tex 等，超过 50 处）\n- 问题：`$\\pi_0.5$` 在 LaTeX 中仅将 `0` 作为下标，`.5` 以正文字体显示。正确写法为 `$\\pi_{0.5}$`，将 `0.5` 整体下标。同样的问题出现在 `$\\pi_0$`（应为 `$\\pi_{0}$`，虽然效果相同但不规范）。在 PDF 中，这导致 π₀.5 中的 \".5\" 与下标 \"0\" 不在同一基线，视觉上显得像是数学乘法 π₀ × 0.5。\n- 建议：全局搜索替换 `$\\pi_0.5$` → `$\\pi_{0.5}$`，以及 `$\\pi_0$` → `$\\pi_{0}$`。\n\n**W2** [warning] Limitations section 过于简短且格式不够突出\n- 具体位置：experiments.tex lines 105-106（主文末尾的 `\\paragraph{Limitations.}`）\n- 问题：CoRL 2026 要求 Limitations section \"describe limiting assumptions, failure modes, and other limitations\"。当前主文 Limitations 仅 3 句话（约 60 词），以 `\\paragraph{}` 而非 `\\subsection{}` 或 `\\section{}` 形式呈现，在 PDF 中视觉上不够醒目。虽然 Appendix A 有 Extended Discussion 补充，但 CoRL reviewer \"not required to read appendix\"，意味着 reviewer 可能只看到这 3 句话。\n- 遗漏的重要 limitations：\n  1. **单一 benchmark**：仅使用 LIBERO，未在其他机器人操控 benchmark（如 RLBench、MetaWorld）验证\n  2. **仅 simulation**：CoRL Call for Papers 明确强调 \"prioritize real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots\"——论文完全缺少 sim-to-real transferability 论证\n  3. **Connector type 内样本不足**：pixel-shuffle 仅测试 SmolVLA 一个模型，无法排除 SmolVLA 自身的缺陷（而非 pixel-shuffle 的固有问题）\n  4. **VTR 仅在一个架构上验证**：VTR 只在 SmolVLA 上测试，对其他 entangling connector（如 X-VLA 的 BART）是否有效未知\n  5. **单种子问题**：Table 2 中多数条件为单种子实验（exceptions: VTR 3-seed, 部分 X-VLA 3-seed）\n- 建议：将 Limitations 提升为独立 `\\section{Limitations}` 或至少 `\\subsection{}`，扩展至 150-200 词覆盖以上关键局限。\n\n**W3** [warning] 缺少代码/数据发布计划\n- 具体位置：全文（无任何 code/data availability 声明）\n- 问题：CoRL 2026 鼓励提交 code 和 data。论文未提及代码是否会开源、实验数据是否可获取。虽然 double-blind 阶段不应包含可识别链接，但可以声明 \"Code and data will be released upon acceptance\" 或提供匿名链接。\n- 建议：在 Limitations 或 Conclusion 末尾添加代码发布计划声明。\n\n**W4** [warning] Abstract 信息密度过高\n- 具体位置：abstract.tex（约 180 词）\n- 问题：Abstract 在约 180 词中塞入了过多具体数字（59.2%, 0.0%, 98.2%, 69.4%, 0.038, 0.314, 1.4 pp, 27.8 pp, 20×, 15×, 36 pp, 22M, 5%, 60%, 75%, 450M, 7B），共计约 17 个数字/百分比。信息过载使读者难以把握核心 message。\n- 建议：保留 3-4 个最关键数字（如 SmolVLA 5% pruning → 0%、VTR 恢复 60%、6 architectures），其余用定性描述替代。\n\n**W5** [warning] Figure 3 (Method sensitivity) 可读性问题\n- 具体位置：Figure 3（experiments.tex line 91-96，PDF page 7）\n- 问题：条形图中 X-VLA 和 OpenVLA 的 bar 值均 < 2pp，在与 π₀.₅ 的 15-29pp bars 同尺度下几乎不可见。\"1.4\" 和 \"0.2\" 标签字体极小。15× 标注虽然有用但增加了视觉噪音。\n- 建议：考虑使用 broken axis 或 log scale，或在 bar 旁用大字标注具体数值。\n\n---\n\n## 小问题（不影响接收）\n\n- abstract.tex line 2：`$\\pi_0.5$` 前有 `on` 缺少空格（\"reduction on$\\pi_0.5$\" → \"reduction on $\\pi_0.5$\"）——实际渲染可能正常，但源码不清晰\n- experiments.tex line 40 caption：\"``--'' indicates data not yet collected\" 承认数据未收集，这比 \"--\" 无解释好，但在正式投稿中不够专业\n- method.tex line 9：`$\\times\\!\\sqrt{d}$-scaled` 中 `\\!` 负间距的使用是否必要？视觉上较紧凑\n- related_work.tex：Related Work 段落较短（约 200 词），对 VLA pruning 的相关工作（VLA-IAP, VLA-Cache, EfficientVLA, VLA-Pruner）仅一句话带过，缺少具体方法对比\n- 附录中部分 table caption 过长（如 Table 14 caption 超过 5 行），可精简\n\n---\n\n## 叙事一致性检查\n\n| 检查项 | 结果 |\n|--------|------|\n| Abstract 数字与正文一致 | ✅ \"59.2% to 0.0%\"、\"98.2%\"、\"60% at 75%\" 均与 experiments section 一致 |\n| Introduction contributions 与 Experiments 证据对齐 | ✅ 三条 contribution 均有对应实验支撑 |\n| Conclusion 是否 overstate | ⚠️ Conclusion 说 \"connector coupling is the primary determinant\"，但 confounders（backbone, encoder, scale）未充分控制，\"primary\" 过强——Appendix I 自己也承认 \"preventing clean isolation\" |\n| 术语一致性 | ❌ VTR vs Smart Compress（见 N2）；其余术语（CV, SR, pp, retention ratio）全文一致 |\n| Figure/Table 引用完整 | ✅ 主文中所有 Figure 和 Table 均被引用 |\n\n---\n\n## 格式合规总结\n\n| 检查项 | 状态 | 备注 |\n|--------|------|------|\n| 8 页限制 | ✅ | 主文 8 页，References 从 page 9 开始 |\n| CoRL 2026 模板 | ✅ | `\\usepackage{corl_2026}` submission 版本 |\n| Double-blind | ✅ | \"Anonymous Authors\"，无可识别自引或致谢 |\n| Limitations section | ⚠️ | 存在但过短（3 句话），格式为 paragraph 而非 section |\n| `\\keywords{}` | ✅ | 合规 |\n| Generative AI 披露 | ❌ | **完全缺失** |\n| 代码/数据声明 | ❌ | 未提及 |\n\n---\n\n## 主要优势\n\n- **结构清晰**：Introduction 的 problem → gap → approach → contributions 流程逻辑严密，读者能快速理解 motivation\n- **数据呈现规范**：Wilson 95% CI、多种子验证（VTR 3-seed）、per-task breakdown 均体现了实验严谨性\n- **附录详尽**：18 页附录提供了丰富的 ablation、per-task 分析、超参数细节，远超 CoRL 平均水平\n- **Figure 1 (teaser) 效果好**：两轴框架的可视化直观传达了核心 message，connector coupling × task complexity 的交互一目了然\n- **Table 1 (model properties) 设计精简**：6 个模型的关键属性一目了然，CV 排序的呈现方式支持论文论点\n\n---\n\n## 总结\n\n写作整体水准较高，论证逻辑清晰，数据呈现规范。但存在三个影响接收决定的问题：(1) Generative AI 披露缺失可能触发合规审查；(2) VTR/Smart Compress 命名不一致损害论文核心贡献的可信度；(3) Table 2 缺失数据过多，削弱 cross-suite analysis 的 claim。Limitations section 需要实质性扩展以满足 CoRL 的要求。建议在提交前优先修复 N1-N3。",
+    "reviewer_id": "3",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-23T05:49:03.100301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "elapsed_ms": 4621
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-23T05:49:13.567722+00:00_
+
+审稿报告已提交给 Review Director。
+
+**审查结论**：Overall 6/10。发现 3 个 Must-Fix 问题：
+
+1. **Generative AI 披露完全缺失** — CoRL 2026 明确要求，可能触发 desk rejection
+2. **VTR vs Smart Compress 命名不一致** — 主文用 "VTR"，附录用 "Smart Compress"，核心贡献术语混乱
+3. **Table 2 缺失数据过多** — 约 20% 条目为 "--"，削弱 cross-suite analysis 的 claim
+
+另有 5 个 Should-Fix：LaTeX 渲染错误（`$\pi_0.5$` 全文 50+ 处）、Limitations 过短（3 句话）、无代码发布声明、Abstract 信息过载、Figure 3 可读性差。
+
+写作整体水准较高，结构清晰，附录详尽（18 页），但合规问题和术语不一致需在提交前优先修复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+4 recorded events
+
+### User
+
+_source line 67 · 2026-05-23T05:52:41.922454+00:00_
+
+[Round 1 审稿请求]:
+## 交叉分享：请逐条回应 Reviewer 1 和 Reviewer 2 的审稿意见
+
+请对以下两份审稿报告中的每个 Must-Fix 和 Should-Fix 条目逐条回应：
+- **[AGREE]** 同意并说明理由
+- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）
+
+---
+
+## Reviewer 1 的审稿报告（方法严谨性/实验有效性）
+
+### Must-Fix:
+**R1-N1**: CV diagnostic 的统计基础不足：N=4 闭环模型无法建立可靠的诊断关系。论文未提供 Spearman rank correlation 及 p-value。
+
+**R1-N2**: 因果叙事超出证据范围：Connector → pruning tolerance 因果推断缺乏控制。Title 和 Section 5 使用"primary determinant"措辞过强。
+
+**R1-N3**: 缺少关键 pruning baseline：attention-based scoring 和 gradient-based importance 完全缺失。
+
+### Should-Fix:
+**R1-W1**: VTR 贡献被 MLP adapter 控制实验严重削弱。
+**R1-W2**: VTR 训练条件不公平：batch size 4 vs. 64。
+**R1-W3**: 跨条件使用不同 seed 引入潜在混淆。
+**R1-W4**: Table 2 大量缺失数据。
+**R1-W5**: Post-connector pruning 缺乏系统 justification。
+**R1-W6**: CV 选择的理论动机不足。
+
+---
+
+## Reviewer 2 的审稿报告（新颖性/定位/相关工作）
+
+### Must-Fix:
+**R2-N1**: CV Diagnostic 的 Evidence Base 严重不足——3 个数据点不能建立可靠的 diagnostic tool。
+
+**R2-N2**: 论文 identity 分裂——empirical study / diagnostic tool / method 三者均不够深入。
+
+**R2-N3**: Table 2 数据大量缺失（填充率不足 70%）。
+
+### Should-Fix:
+**R2-W1**: VTR 的 novelty 不足——cross-attention re-encoding 是已知技术。
+**R2-W2**: 与 "Don't Run with Scissors" 差异化讨论不足。
+**R2-W3**: Two-axis framework 可能是对已知现象的 re-packaging。
+**R2-W4**: 仅在 LIBERO simulation 上评估。
+**R2-W5**: OpenVLA 仅评估了 Object suite。
+
+---
+
+请逐条回应，重点关注你的专长领域（写作质量/格式/Limitations）的交叉点。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "source": "review_reviewer_3"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-23T05:54:48.338538+00:00_
+
+called mcp__agent-ml-research__review_reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "## Reviewer 3 交叉回应：逐条回应 R1 和 R2 意见\n\n---\n\n## 回应 Reviewer 1（方法严谨性/实验有效性）\n\n### Must-Fix\n\n**[AGREE] R1-N1: CV diagnostic 统计基础不足**\n从写作角度完全同意。论文对 CV 的定位存在表述膨胀：Section 3.3 将 CV 称为 \"single-pass diagnostic that correlates with both pruning tolerance and method sensitivity\"（method.tex line 61），Abstract 中重复此 claim，Introduction contributions 第二条也将其列为核心贡献。但支撑这一 claim 的闭环数据仅有 3 个可比较模型（π₀.₅, X-VLA, OpenVLA；SmolVLA 全部 0% 无法参与 method sensitivity 比较）。从叙事角度，\"correlates\" 这个词暗示统计关系，但论文未报告任何相关系数或 p-value。这不是统计方法的问题——是写作中 claim 的强度与证据的强度不匹配。建议：要么降级措辞为 \"is consistent with\" / \"tracks\"，要么补充更多模型数据点以支撑 \"correlates\" 的 claim。\n\n**[AGREE] R1-N2: 因果叙事超出证据范围**\n这与我在叙事一致性检查中标记的问题一致。Conclusion（conclusion.tex line 4）写道 \"connector coupling is the primary determinant of pruning robustness\"，但论文自己在 Appendix I（appendix.tex line 681）承认 \"preventing clean isolation of the connector effect from backbone differences\"。主文 Title 中 \"Vision Connectors and VLA Token Compressibility\" 也隐含因果方向。更严重的是，主文 Limitations 段（experiments.tex lines 105-106）仅用一句话 \"the connector effect cannot be causally isolated\" 带过，而 Conclusion 紧接其后的 Section 5 却使用了 \"primary determinant\" 这一因果性极强的措辞。从写作一致性角度，Conclusion 的 claim 强度与 Limitations 的 caveat 直接矛盾。建议：将 \"primary determinant\" 改为 \"primary correlate\" 或 \"strongest observed factor\"，并在 Conclusion 中加入一句 confounder caveat。\n\n**[AGREE with nuance] R1-N3: 缺少关键 pruning baseline**\n从 Limitations 覆盖角度同意。当前 Limitations 段（主文）完全未提及仅使用了 L2 norm 和 random 两种 pruning 方法。论文的 Related Work 列举了 attention-based（FastV, VLA-IAP）和 gradient-based（VLA-Pruner）方法（related_work.tex lines 7-8），但实验中未与这些方法对比。从写作角度，Related Work 提到的方法未在 Experiments 中出现，构成了叙事缺口。不过，论文的核心 claim 是关于 connector architecture 对 pruning sensitivity 的影响，而非评比 pruning 方法，因此缺少这些 baseline 的严重性取决于论文的最终定位。我建议至少在 Limitations 中显式承认这一局限。\n\n### Should-Fix\n\n**[AGREE] R1-W1: VTR 贡献被 MLP adapter 削弱**\n论文的处理是诚实的——experiments.tex line 103 报告 MLP adapter 63.4±2.6% vs. VTR 60.1±1.3%，p=0.15。但从写作 framing 角度，Introduction 将 VTR 列为第三条独立 contribution（introduction.tex line 23: \"Vision Token Re-encoder (VTR), which recovers a pixel-shuffle VLA from 0.0% to over 60%\"），没有提及 MLP adapter 同样有效。这种 framing 让读者以为 cross-attention 是关键机制，但实验数据表明 any learned re-encoding 都能 work。建议：修改 contribution 表述，将 contribution 聚焦在 \"learned re-encoding recovers pixel-shuffle VLAs\" 而非 VTR 本身。\n\n**[AGREE] R1-W2: VTR 训练条件不公平**\n从写作透明度角度同意。batch size 差异（4 vs 64）导致 LoRA baseline 仅 44.8% vs. 官方 59.2%，这一关键信息仅出现在 Appendix G 的表格脚注中（appendix.tex line 530: \"Our batch size 4 on a single GPU contributes to the lower baseline SR (44.8% vs. 87.3%)\"）。注意这里甚至提到官方 LIBERO 全套成绩是 87.3%——与主文报告的 59.2% 之间的巨大差距仅在脚注中披露。建议将此信息提升至主文 Limitations 或 Section 4.5 中。\n\n**[AGREE] R1-W3: 跨条件不同 seed**\nAppendix I（appendix.tex lines 685-686）披露了 OpenVLA L2/random 使用不同 seed，并提供了 same-seed 控制。从写作角度，这种控制实验是好的，但主文 Table 2 没有注明哪些结果来自不同 seed——读者在不读附录的情况下无法知道 L2 vs Random 的比较可能受 seed 混淆。Table 2 caption 应增加 seed 信息。\n\n**[AGREE] R1-W4: Table 2 缺失数据**\n与我的 R3-N3 完全一致。三位 reviewer 均独立指出此问题，说明这是共识性缺陷。\n\n**[AGREE with nuance] R1-W5: Post-connector pruning 缺乏 justification**\n从写作结构角度，Section 3.2（Pruning Protocol）直接描述了 post-connector pruning 的操作，但未解释为什么选择在 connector 之后而非之前进行 pruning。这是一个叙事缺口：论文的核心论点是 connector 架构决定 pruning 鲁棒性，但如果在 connector 之前 pruning，connector 的影响可能完全不同。至少需要一段 justification 解释 post-connector 是更贴近实际部署场景的选择。不过我认为这是 should-fix 而非 must-fix——post-connector pruning 在实践中是合理的默认选择。\n\n**[AGREE] R1-W6: CV 选择的理论动机不足**\nSection 3.3 引入 CV 时（method.tex lines 51-61）的 motivation 基本是操作性的（\"We quantify the heterogeneity...\"），没有解释为什么选择 CV 而非其他度量（如 entropy、kurtosis、Gini coefficient）。从写作角度，一个被定位为核心 contribution 的 diagnostic metric 应该有更强的动机论证。至少需要一段讨论 CV 相对于替代指标的优势。\n\n---\n\n## 回应 Reviewer 2（新颖性/定位/相关工作）\n\n### Must-Fix\n\n**[AGREE] R2-N1: CV Diagnostic evidence base 不足**\n与 R1-N1 一致，从写作角度补充一个观察：论文在不同位置对 CV 的描述强度不一致。Abstract 说 \"serves as a single-pass diagnostic\"（abstract.tex line 2），Section 3.3 标题直接写 \"Compressibility Diagnostic: Importance CV\"（method.tex line 51），但 Appendix H（appendix.tex line 639）标题是 \"CV as Diagnostic Metric: Extended Analysis\"——在 extended analysis 中才提供更细致的讨论。这意味着 CV 作为 diagnostic 的核心 claim 在主文中缺乏充分论证，关键分析被放到了 reviewer 不一定会读的附录中。\n\n**[AGREE] R2-N2: 论文 identity 分裂**\n从写作结构角度，这是一个合理的批评。Introduction 的三条 contributions（introduction.tex lines 19-24）分别对应：(1) empirical study（two-axis analysis across 6 architectures），(2) diagnostic tool（CV metric），(3) method（VTR）。这三个方向各自的深度不足以独立成文：empirical study 缺数据（Table 2 的 \"--\"），diagnostic tool 缺统计验证（N=3-4），method 被 MLP adapter 控制实验削弱。论文的叙事试图将三者统一为 \"understand → diagnose → fix\" 的递进关系，这个叙事弧线是合理的，但每一步的执行力度都略显不足。\n\n我的建议（从写作角度）：论文应该明确主次。如果定位为 empirical study，则 CV 和 VTR 应降级为 secondary findings；如果定位为 diagnostic tool paper，需要更多模型验证 CV 的预测力。当前的 equal-weight 三 contribution 结构分散了论文的力量。\n\n**[AGREE] R2-N3: Table 2 数据缺失**\n三位 reviewer 共识。不再重复。\n\n### Should-Fix\n\n**[AGREE with nuance] R2-W1: VTR novelty 不足**\n从写作角度，Related Work（related_work.tex line 11）提到了 BLIP-2 的 cross-attention queries，但未讨论 VTR 与 BLIP-2 Q-Former 的区别。如果 VTR 本质上是 Q-Former 应用于 VLA token compression 的场景，论文应该显式 acknowledge 这一联系并说明 contribution 在于 application context 而非 architecture novelty。当前写作给读者的印象是 VTR 是一个全新的模块设计，但实际上 cross-attention pooling 是一个成熟技术。\n\n**[AGREE] R2-W2: 与 \"Don't Run with Scissors\" 差异化不足**\nRelated Work 中未出现对这篇论文的引用或讨论。如果 \"Don't Run with Scissors\" 确实研究了类似问题（VLA/VLM 中 token pruning 的 architecture-dependent 效果），那么缺少对比讨论是 Related Work 的重要遗漏。从写作完整性角度，应增加一段讨论说明本文与其的差异（例如 connector-specific analysis、task complexity axis、CV diagnostic 等本文的独特贡献）。\n\n**[AGREE] R2-W3: Two-axis framework 可能是 re-packaging**\n从写作角度，\"connector coupling × task complexity\" 的 two-axis framing 在概念层面是直观的——独立处理的 token 比纠缠的 token 更容易 prune，复杂任务比简单任务更 sensitive。论文需要更清晰地论证 two-axis 的新颖性在于 (a) 首次在 VLA 上系统验证了这一交互效应，以及 (b) 量化了 20× amplification 这类具体数字。当前写作在 Introduction 中将 two-axis framework 隐含为概念性贡献，但实际贡献更多是实证性的。\n\n**[AGREE] R2-W4: 仅 LIBERO simulation**\n与我的 R3-W2 一致。补充一点：CoRL 2026 Call for Papers 明确写 \"Authors should prioritize real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots\"。论文未提供任何 sim-to-real transferability 的论证——Conclusion（conclusion.tex line 6）仅将 \"real-robot validation\" 列为 future work，没有讨论 LIBERO 结论是否可能 transfer 到真实机器人。从 CoRL venue 匹配度角度，这是一个写作和定位上的明显缺陷。\n\n**[AGREE] R2-W5: OpenVLA 仅评估 Object suite**\n与 R3-N3 一致。从写作角度补充：论文 Abstract 声称 \"Evaluation spans six VLA architectures... three connector families, and four LIBERO task suites\"（abstract.tex line 2），但 OpenVLA（7B，论文中最大的模型）仅有 Object 一个 suite 的数据。Abstract 的表述让读者预期所有模型都覆盖了四个 suite，实际情况远非如此。这构成了 abstract 与正文之间的叙事落差。\n\n---\n\n## 三位 Reviewer 的共识汇总\n\n| 问题 | R1 | R2 | R3 | 共识强度 |\n|------|----|----|----|---------| \n| Table 2 数据大量缺失 | W4 | N3 | N3 | ⭐⭐⭐ 全员一致，两人列为 Must-Fix |\n| CV diagnostic 证据不足（N=3-4） | N1 | N1 | AGREE | ⭐⭐⭐ 全员一致 |\n| 因果 claim 过强 | N2 | — | 叙事不一致 | ⭐⭐ R1+R3 |\n| 仅 LIBERO simulation | — | W4 | W2 | ⭐⭐ R2+R3 |\n| VTR 贡献被 MLP adapter 削弱 | W1 | W1 | AGREE | ⭐⭐⭐ 全员一致 |\n| 论文定位/identity 问题 | — | N2 | AGREE | ⭐⭐ R2+R3 |\n| Generative AI 披露缺失 | — | — | N1 | ⭐ 仅 R3（格式合规专属） |\n| VTR/Smart Compress 命名不一致 | — | — | N2 | ⭐ 仅 R3（写作专属） |\n\n从写作和格式角度，我认为以下问题应列为 rebuttal/revision 的最高优先级：\n1. **Table 2 补全**（全员共识）\n2. **CV claim 降级措辞**（全员共识）\n3. **Conclusion 因果表述修正**（R1+R3）\n4. **VTR/Smart Compress 命名统一**（R3）\n5. **Generative AI 披露**（CoRL 合规硬要求）\n6. **Limitations 扩展**（覆盖 sim-only、单 benchmark、pruning 方法有限等全员关切）",
+  "reviewer_id": "3",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "tool_args": {
+    "text": "## Reviewer 3 交叉回应：逐条回应 R1 和 R2 意见\n\n---\n\n## 回应 Reviewer 1（方法严谨性/实验有效性）\n\n### Must-Fix\n\n**[AGREE] R1-N1: CV diagnostic 统计基础不足**\n从写作角度完全同意。论文对 CV 的定位存在表述膨胀：Section 3.3 将 CV 称为 \"single-pass diagnostic that correlates with both pruning tolerance and method sensitivity\"（method.tex line 61），Abstract 中重复此 claim，Introduction contributions 第二条也将其列为核心贡献。但支撑这一 claim 的闭环数据仅有 3 个可比较模型（π₀.₅, X-VLA, OpenVLA；SmolVLA 全部 0% 无法参与 method sensitivity 比较）。从叙事角度，\"correlates\" 这个词暗示统计关系，但论文未报告任何相关系数或 p-value。这不是统计方法的问题——是写作中 claim 的强度与证据的强度不匹配。建议：要么降级措辞为 \"is consistent with\" / \"tracks\"，要么补充更多模型数据点以支撑 \"correlates\" 的 claim。\n\n**[AGREE] R1-N2: 因果叙事超出证据范围**\n这与我在叙事一致性检查中标记的问题一致。Conclusion（conclusion.tex line 4）写道 \"connector coupling is the primary determinant of pruning robustness\"，但论文自己在 Appendix I（appendix.tex line 681）承认 \"preventing clean isolation of the connector effect from backbone differences\"。主文 Title 中 \"Vision Connectors and VLA Token Compressibility\" 也隐含因果方向。更严重的是，主文 Limitations 段（experiments.tex lines 105-106）仅用一句话 \"the connector effect cannot be causally isolated\" 带过，而 Conclusion 紧接其后的 Section 5 却使用了 \"primary determinant\" 这一因果性极强的措辞。从写作一致性角度，Conclusion 的 claim 强度与 Limitations 的 caveat 直接矛盾。建议：将 \"primary determinant\" 改为 \"primary correlate\" 或 \"strongest observed factor\"，并在 Conclusion 中加入一句 confounder caveat。\n\n**[AGREE with nuance] R1-N3: 缺少关键 pruning baseline**\n从 Limitations 覆盖角度同意。当前 Limitations 段（主文）完全未提及仅使用了 L2 norm 和 random 两种 pruning 方法。论文的 Related Work 列举了 attention-based（FastV, VLA-IAP）和 gradient-based（VLA-Pruner）方法（related_work.tex lines 7-8），但实验中未与这些方法对比。从写作角度，Related Work 提到的方法未在 Experiments 中出现，构成了叙事缺口。不过，论文的核心 claim 是关于 connector architecture 对 pruning sensitivity 的影响，而非评比 pruning 方法，因此缺少这些 baseline 的严重性取决于论文的最终定位。我建议至少在 Limitations 中显式承认这一局限。\n\n### Should-Fix\n\n**[AGREE] R1-W1: VTR 贡献被 MLP adapter 削弱**\n论文的处理是诚实的——experiments.tex line 103 报告 MLP adapter 63.4±2.6% vs. VTR 60.1±1.3%，p=0.15。但从写作 framing 角度，Introduction 将 VTR 列为第三条独立 contribution（introduction.tex line 23: \"Vision Token Re-encoder (VTR), which recovers a pixel-shuffle VLA from 0.0% to over 60%\"），没有提及 MLP adapter 同样有效。这种 framing 让读者以为 cross-attention 是关键机制，但实验数据表明 any learned re-encoding 都能 work。建议：修改 contribution 表述，将 contribution 聚焦在 \"learned re-encoding recovers pixel-shuffle VLAs\" 而非 VTR 本身。\n\n**[AGREE] R1-W2: VTR 训练条件不公平**\n从写作透明度角度同意。batch size 差异（4 vs 64）导致 LoRA baseline 仅 44.8% vs. 官方 59.2%，这一关键信息仅出现在 Appendix G 的表格脚注中（appendix.tex line 530: \"Our batch size 4 on a single GPU contributes to the lower baseline SR (44.8% vs. 87.3%)\"）。注意这里甚至提到官方 LIBERO 全套成绩是 87.3%——与主文报告的 59.2% 之间的巨大差距仅在脚注中披露。建议将此信息提升至主文 Limitations 或 Section 4.5 中。\n\n**[AGREE] R1-W3: 跨条件不同 seed**\nAppendix I（appendix.tex lines 685-686）披露了 OpenVLA L2/random 使用不同 seed，并提供了 same-seed 控制。从写作角度，这种控制实验是好的，但主文 Table 2 没有注明哪些结果来自不同 seed——读者在不读附录的情况下无法知道 L2 vs Random 的比较可能受 seed 混淆。Table 2 caption 应增加 seed 信息。\n\n**[AGREE] R1-W4: Table 2 缺失数据**\n与我的 R3-N3 完全一致。三位 reviewer 均独立指出此问题，说明这是共识性缺陷。\n\n**[AGREE with nuance] R1-W5: Post-connector pruning 缺乏 justification**\n从写作结构角度，Section 3.2（Pruning Protocol）直接描述了 post-connector pruning 的操作，但未解释为什么选择在 connector 之后而非之前进行 pruning。这是一个叙事缺口：论文的核心论点是 connector 架构决定 pruning 鲁棒性，但如果在 connector 之前 pruning，connector 的影响可能完全不同。至少需要一段 justification 解释 post-connector 是更贴近实际部署场景的选择。不过我认为这是 should-fix 而非 must-fix——post-connector pruning 在实践中是合理的默认选择。\n\n**[AGREE] R1-W6: CV 选择的理论动机不足**\nSection 3.3 引入 CV 时（method.tex lines 51-61）的 motivation 基本是操作性的（\"We quantify the heterogeneity...\"），没有解释为什么选择 CV 而非其他度量（如 entropy、kurtosis、Gini coefficient）。从写作角度，一个被定位为核心 contribution 的 diagnostic metric 应该有更强的动机论证。至少需要一段讨论 CV 相对于替代指标的优势。\n\n---\n\n## 回应 Reviewer 2（新颖性/定位/相关工作）\n\n### Must-Fix\n\n**[AGREE] R2-N1: CV Diagnostic evidence base 不足**\n与 R1-N1 一致，从写作角度补充一个观察：论文在不同位置对 CV 的描述强度不一致。Abstract 说 \"serves as a single-pass diagnostic\"（abstract.tex line 2），Section 3.3 标题直接写 \"Compressibility Diagnostic: Importance CV\"（method.tex line 51），但 Appendix H（appendix.tex line 639）标题是 \"CV as Diagnostic Metric: Extended Analysis\"——在 extended analysis 中才提供更细致的讨论。这意味着 CV 作为 diagnostic 的核心 claim 在主文中缺乏充分论证，关键分析被放到了 reviewer 不一定会读的附录中。\n\n**[AGREE] R2-N2: 论文 identity 分裂**\n从写作结构角度，这是一个合理的批评。Introduction 的三条 contributions（introduction.tex lines 19-24）分别对应：(1) empirical study（two-axis analysis across 6 architectures），(2) diagnostic tool（CV metric），(3) method（VTR）。这三个方向各自的深度不足以独立成文：empirical study 缺数据（Table 2 的 \"--\"），diagnostic tool 缺统计验证（N=3-4），method 被 MLP adapter 控制实验削弱。论文的叙事试图将三者统一为 \"understand → diagnose → fix\" 的递进关系，这个叙事弧线是合理的，但每一步的执行力度都略显不足。\n\n我的建议（从写作角度）：论文应该明确主次。如果定位为 empirical study，则 CV 和 VTR 应降级为 secondary findings；如果定位为 diagnostic tool paper，需要更多模型验证 CV 的预测力。当前的 equal-weight 三 contribution 结构分散了论文的力量。\n\n**[AGREE] R2-N3: Table 2 数据缺失**\n三位 reviewer 共识。不再重复。\n\n### Should-Fix\n\n**[AGREE with nuance] R2-W1: VTR novelty 不足**\n从写作角度，Related Work（related_work.tex line 11）提到了 BLIP-2 的 cross-attention queries，但未讨论 VTR 与 BLIP-2 Q-Former 的区别。如果 VTR 本质上是 Q-Former 应用于 VLA token compression 的场景，论文应该显式 acknowledge 这一联系并说明 contribution 在于 application context 而非 architecture novelty。当前写作给读者的印象是 VTR 是一个全新的模块设计，但实际上 cross-attention pooling 是一个成熟技术。\n\n**[AGREE] R2-W2: 与 \"Don't Run with Scissors\" 差异化不足**\nRelated Work 中未出现对这篇论文的引用或讨论。如果 \"Don't Run with Scissors\" 确实研究了类似问题（VLA/VLM 中 token pruning 的 architecture-dependent 效果），那么缺少对比讨论是 Related Work 的重要遗漏。从写作完整性角度，应增加一段讨论说明本文与其的差异（例如 connector-specific analysis、task complexity axis、CV diagnostic 等本文的独特贡献）。\n\n**[AGREE] R2-W3: Two-axis framework 可能是 re-packaging**\n从写作角度，\"connector coupling × task complexity\" 的 two-axis framing 在概念层面是直观的——独立处理的 token 比纠缠的 token 更容易 prune，复杂任务比简单任务更 sensitive。论文需要更清晰地论证 two-axis 的新颖性在于 (a) 首次在 VLA 上系统验证了这一交互效应，以及 (b) 量化了 20× amplification 这类具体数字。当前写作在 Introduction 中将 two-axis framework 隐含为概念性贡献，但实际贡献更多是实证性的。\n\n**[AGREE] R2-W4: 仅 LIBERO simulation**\n与我的 R3-W2 一致。补充一点：CoRL 2026 Call for Papers 明确写 \"Authors should prioritize real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots\"。论文未提供任何 sim-to-real transferability 的论证——Conclusion（conclusion.tex line 6）仅将 \"real-robot validation\" 列为 future work，没有讨论 LIBERO 结论是否可能 transfer 到真实机器人。从 CoRL venue 匹配度角度，这是一个写作和定位上的明显缺陷。\n\n**[AGREE] R2-W5: OpenVLA 仅评估 Object suite**\n与 R3-N3 一致。从写作角度补充：论文 Abstract 声称 \"Evaluation spans six VLA architectures... three connector families, and four LIBERO task suites\"（abstract.tex line 2），但 OpenVLA（7B，论文中最大的模型）仅有 Object 一个 suite 的数据。Abstract 的表述让读者预期所有模型都覆盖了四个 suite，实际情况远非如此。这构成了 abstract 与正文之间的叙事落差。\n\n---\n\n## 三位 Reviewer 的共识汇总\n\n| 问题 | R1 | R2 | R3 | 共识强度 |\n|------|----|----|----|---------| \n| Table 2 数据大量缺失 | W4 | N3 | N3 | ⭐⭐⭐ 全员一致，两人列为 Must-Fix |\n| CV diagnostic 证据不足（N=3-4） | N1 | N1 | AGREE | ⭐⭐⭐ 全员一致 |\n| 因果 claim 过强 | N2 | — | 叙事不一致 | ⭐⭐ R1+R3 |\n| 仅 LIBERO simulation | — | W4 | W2 | ⭐⭐ R2+R3 |\n| VTR 贡献被 MLP adapter 削弱 | W1 | W1 | AGREE | ⭐⭐⭐ 全员一致 |\n| 论文定位/identity 问题 | — | N2 | AGREE | ⭐⭐ R2+R3 |\n| Generative AI 披露缺失 | — | — | N1 | ⭐ 仅 R3（格式合规专属） |\n| VTR/Smart Compress 命名不一致 | — | — | N2 | ⭐ 仅 R3（写作专属） |\n\n从写作和格式角度，我认为以下问题应列为 rebuttal/revision 的最高优先级：\n1. **Table 2 补全**（全员共识）\n2. **CV claim 降级措辞**（全员共识）\n3. **Conclusion 因果表述修正**（R1+R3）\n4. **VTR/Smart Compress 命名统一**（R3）\n5. **Generative AI 披露**（CoRL 合规硬要求）\n6. **Limitations 扩展**（覆盖 sim-only、单 benchmark、pruning 方法有限等全员关切）",
+    "reviewer_id": "3",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-23T05:54:54.525405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3",
+  "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+  "elapsed_ms": 6186
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-23T05:55:02.197708+00:00_
+
+交叉回应已提交。对 R1 的 3 条 Must-Fix 和 6 条 Should-Fix、R2 的 3 条 Must-Fix 和 5 条 Should-Fix 均逐条给出了 [AGREE] 或 [AGREE with nuance]，无 [REBUT]。三位 reviewer 在 Table 2 数据缺失、CV diagnostic 证据不足、VTR 被 MLP adapter 削弱三个问题上形成全员共识。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_83179cdc26b856fbbaf531d145edb3bd:reviewer_3"
+}
+```
+
+</details>
+
+---

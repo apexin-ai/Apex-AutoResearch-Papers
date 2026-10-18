@@ -1,0 +1,2814 @@
+# eval arc easy recovery
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/workers/worker_eval_arc-easy-recovery_20260520T092339.log`
+- **Structured JSON:** [`493d8db871fb7e67d4d4.json`](../../sessions/49/493d8db871fb7e67d4d4.json)
+
+## Before a recorded user message
+
+59 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "69a48fdf-3f72-4006-a0d4-e0fa80081b39",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779286200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "bf2078e8-13af-456c-98b6-9249d64bc54d",
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the current status of the ARC-Easy evaluation on the server. I'll start by loading the necessary tools and checking the server state.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "fd443185-a10e-4ba9-81c7-324075767e88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpuwLri6k36nXWju1jG3wy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12703,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12703
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+检查服务器上的评估状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "1aa8fa0f-13ea-4d7d-b380-4d23538312e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpuwLri6k36nXWju1jG3wy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12703,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12703
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RCFzLjoE1Sh79jf7zPqgxE`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "e5f26073-e7d7-4d98-9b2c-0a77e8910e4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpuwLri6k36nXWju1jG3wy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12703,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12703
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T09:23:52.773Z_
+
+<details><summary>↩ Tool result · `toolu_01RCFzLjoE1Sh79jf7zPqgxE`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "a882afcd-e169-46b2-afd1-878f1335d7cb",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Apxtf3FXLXtJWwwWjdZrNZ`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "tmux ls 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "06db4077-b45c-4de8-a30d-68bf3bbf3f3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHyM1696Lq6kgAPpahYCxg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1568,
+      "cache_read_input_tokens": 24544,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1568
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T09:23:59.015Z_
+
+<details><summary>↩ Tool result · `toolu_01Apxtf3FXLXtJWwwWjdZrNZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "a70668a0-d4b3-43ca-baa7-58a20cd7f871",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SFGvsFGCYVxGyJ1nZuU2px`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ps -p 620603 -o pid,cmd 2>/dev/null || echo \"PID_DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "decc5380-bfb8-49ee-aef4-dcb1ffe764db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHyM1696Lq6kgAPpahYCxg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1568,
+      "cache_read_input_tokens": 24544,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1568
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T09:23:59.993Z_
+
+<details><summary>↩ Tool result · `toolu_01SFGvsFGCYVxGyJ1nZuU2px`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "1654b3fd-cf91-431e-9a22-10119a380d83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PAogjEJLfthvhEfj38fxsy`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/lm_eval_clean/arc_easy/ 2>/dev/null || echo \"NO_RESULTS_DIR\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "5d53e7f9-899e-4912-9b93-420a133503da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHyM1696Lq6kgAPpahYCxg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1568,
+      "cache_read_input_tokens": 24544,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1568
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T09:24:00.865Z_
+
+<details><summary>↩ Tool result · `toolu_01PAogjEJLfthvhEfj38fxsy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "032bcbf4-f658-4861-be74-48c1d50453af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The read_only tool blocks shell metacharacters. I need to use simpler commands without `||`, `>`, `2>&1`, etc. Let me use ssh_execute for the tmux check and use simpler read_only commands for the rest.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "e0da1fc9-1729-4ab7-a98e-2c11e267117d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCEWQV2Lwzg3S79mNJFBcr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 26112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 711
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+需要用 ssh_execute 来执行包含 shell 元字符的命令。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "6f5c4b90-2bb6-4cb3-91eb-00fac94888be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCEWQV2Lwzg3S79mNJFBcr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 26112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 711
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Dk2zp1UzXGQLuyMBHXq4Lq`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "tmux ls 2>&1; echo \"---\"; ps -p 620603 -o pid,cmd 2>/dev/null || echo \"PID_DEAD\"; echo \"---\"; ls -la /root/entrainment_gated_ft/lm_eval_clean/arc_easy/ 2>/dev/null || echo \"NO_RESULTS_DIR\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "cac7db50-5752-4749-b6d0-d366c651f9e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCEWQV2Lwzg3S79mNJFBcr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 26112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 711
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T09:24:08.080Z_
+
+<details><summary>↩ Tool result · `toolu_01Dk2zp1UzXGQLuyMBHXq4Lq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"no server running on /tmp/tmux-0/default\\n---\\n   PID CMD\\nPID_DEAD\\n---\\ntotal 340\\ndrwxr-xr-x 17 root root  4096 May 20 14:37 .\\ndrwxr-xr-x 11 root root  4096 May 20 14:08 ..\\ndrwxr-xr-x  3 root root    81 May 20 14:15 1.3B-100B-GatedDeltaNet-hybrid-12-1\\n-rw-r--r--  1 root root 25170 May 20 14:15 1.3B-100B-GatedDeltaNet-hybrid-12-1_eval.log\\ndrwxr-xr-x  3 root root    81 May 20 14:13 1.3B-100B-GatedDeltaNet-hybrid-24-1\\n-rw-r--r--  1 root root 25587 May 20 14:13 1.3B-100B-GatedDeltaNet-hybrid-24-1_eval.log\\ndrwxr-xr-x  3 root root    80 May 20 14:18 1.3B-100B-GatedDeltaNet-hybrid-3-1\\n-rw-r--r--  1 root root 21587 May 20 14:18 1.3B-100B-GatedDeltaNet-hybrid-3-1_eval.log\\ndrwxr-xr-x  3 root root    80 May 20 14:17 1.3B-100B-GatedDeltaNet-hybrid-6-1\\n-rw-r--r--  1 root root 24490 May 20 14:17 1.3B-100B-GatedDeltaNet-hybrid-6-1_eval.log\\ndrwxr-xr-x  3 root root    74 May 20 14:10 1.3B-100B-GatedDeltaNet-pure\\n-rw-r--r--  1 root root 25528 May 20 14:10 1.3B-100B-GatedDeltaNet-pure_eval.log\\ndrwxr-xr-x  3 root root    73 May 20 14:35 1.3B-100B-HGRN2-hybrid-12-1\\n-rw-r--r--  1 root root 17873 May 20 14:35 1.3B-100B-HGRN2-hybrid-12-1_eval.log\\ndrwxr-xr-x  3 root root    73 May 20 14:33 1.3B-100B-HGRN2-hybrid-24-1\\n-rw-r--r--  1 root root 17937 May 20 14:33 1.3B-100B-HGRN2-hybrid-24-1_eval.log\\ndrwxr-xr-x  3 root root    72 May 20 14:39 1.3B-100B-HGRN2-hybrid-3-1\\n-rw-r--r--  1 root root 17650 May 20 14:39 1.3B-100B-HGRN2-hybrid-3-1_eval.log\\ndrwxr-xr-x  3 root root    72 May 20 14:37 1.3B-100B-HGRN2-hybrid-6-1\\n-rw-r--r--  1 root root 17614 May 20 14:37 1.3B-100B-HGRN2-hybrid-6-1_eval.log\\ndrwxr-xr-x  3 root root    66 May 20 14:31 1.3B-100B-HGRN2-pure\\n-rw-r--r--  1 root root 18405 May 20 14:31 1.3B-100B-HGRN2-pure_eval.log\\ndrwxr-xr-x  3 root root    74 May 20 14:25 1.3B-100B-RetNet-hybrid-12-1\\n-rw-r--r--  1 root root 20285 May 20 14:25 1.3B-100B-RetNet-hybrid-12-1_eval.log\\ndrwxr-xr-x  3 root root    74 May 20 14:23 1.3B-100B-RetNet-hybrid-24-1\\n-rw-r--r--  1 root root 20233 May 20 14:23 1.3B-100B-RetNet-hybrid-24-1_eval.log\\ndrwxr-xr-x  3 root root    73 May 20 14:29 1.3B-100B-RetNet-hybrid-3-1\\n-rw-r--r--  1 root root 19882 May 20 14:29 1.3B-100B-RetNet-hybrid-3-1_eval.log\\ndrwxr-xr-x  3 root root    73 May 20 14:27 1.3B-100B-RetNet-hybrid-6-1\\n-rw-r--r--  1 root root 20284 May 20 14:27 1.3B-100B-RetNet-hybrid-6-1_eval.log\\ndrwxr-xr-x  3 root root    67 May 20 14:21 1.3B-100B-RetNet-pure\\n-rw-r--r--  1 root root 20351 May 20 14:21 1.3B-100B-RetNet-pure_eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "32dd7112-47ae-40e6-91b9-a9694246dc45",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"no server running on /tmp/tmux-0/default\\\\n---\\\\n   PID CMD\\\\nPID_DEAD\\\\n---\\\\ntotal 340\\\\ndrwxr-xr-x 17 root root  4096 May 20 14:37 .\\\\ndrwxr-xr-x 11 root root  4096 May 20 14:08 ..\\\\ndrwxr-xr-x  3 root root    81 May 20 14:15 1.3B-100B-GatedDeltaNet-hybrid-12-1\\\\n-rw-r--r--  1 root root 25170 May 20 14:15 1.3B-100B-GatedDeltaNet-hybrid-12-1_eval.log\\\\ndrwxr-xr-x  3 root root    81 May 20 14:13 1.3B-100B-GatedDeltaNet-hybrid-24-1\\\\n-rw-r--r--  1 root root 25587 May 20 14:13 1.3B-100B-GatedDeltaNet-hybrid-24-1_eval.log\\\\ndrwxr-xr-x  3 root root    80 May 20 14:18 1.3B-100B-GatedDeltaNet-hybrid-3-1\\\\n-rw-r--r--  1 root root 21587 May 20 14:18 1.3B-100B-GatedDeltaNet-hybrid-3-1_eval.log\\\\ndrwxr-xr-x  3 root root    80 May 20 14:17 1.3B-100B-GatedDeltaNet-hybrid-6-1\\\\n-rw-r--r--  1 root root 24490 May 20 14:17 1.3B-100B-GatedDeltaNet-hybrid-6-1_eval.log\\\\ndrwxr-xr-x  3 root root    74 May 20 14:10 1.3B-100B-GatedDeltaNet-pure\\\\n-rw-r--r--  1 root root 25528 May 20 14:10 1.3B-100B-GatedDeltaNet-pure_eval.log\\\\ndrwxr-xr-x  3 root root    73 May 20 14:35 1.3B-100B-HGRN2-hybrid-12-1\\\\n-rw-r--r--  1 root root 17873 May 20 14:35 1.3B-100B-HGRN2-hybrid-12-1_eval.log\\\\ndrwxr-xr-x  3 root root    73 May 20 14:33 1.3B-100B-HGRN2-hybrid-24-1\\\\n-rw-r--r--  1 root root 17937 May 20 14:33 1.3B-100B-HGRN2-hybrid-24-1_eval.log\\\\ndrwxr-xr-x  3 root root    72 May 20 14:39 1.3B-100B-HGRN2-hybrid-3-1\\\\n-rw-r--r--  1 root root 17650 May 20 14:39 1.3B-100B-HGRN2-hybrid-3-1_eval.log\\\\ndrwxr-xr-x  3 root root    72 May 20 14:37 1.3B-100B-HGRN2-hybrid-6-1\\\\n-rw-r--r--  1 root root 17614 May 20 14:37 1.3B-100B-HGRN2-hybrid-6-1_eval.log\\\\ndrwxr-xr-x  3 root root    66 May 20 14:31 1.3B-100B-HGRN2-pure\\\\n-rw-r--r--  1 root root 18405 May 20 14:31 1.3B-100B-HGRN2-pure_eval.log\\\\ndrwxr-xr-x  3 root root    74 May 20 14:25 1.3B-100B-RetNet-hybrid-12-1\\\\n-rw-r--r--  1 root root 20285 May 20 14:25 1.3B-100B-RetNet-hybrid-12-1_eval.log\\\\ndrwxr-xr-x  3 root root    74 May 20 14:23 1.3B-100B-RetNet-hybrid-24-1\\\\n-rw-r--r--  1 root root 20233 May 20 14:23 1.3B-100B-RetNet-hybrid-24-1_eval.log\\\\ndrwxr-xr-x  3 root root    73 May 20 14:29 1.3B-100B-RetNet-hybrid-3-1\\\\n-rw-r--r--  1 root root 19882 May 20 14:29 1.3B-100B-RetNet-hybrid-3-1_eval.log\\\\ndrwxr-xr-x  3 root root    73 May 20 14:27 1.3B-100B-RetNet-hybrid-6-1\\\\n-rw-r--r--  1 root root 20284 May 20 14:27 1.3B-100B-RetNet-hybrid-6-1_eval.log\\\\ndrwxr-xr-x  3 root root    67 May 20 14:21 1.3B-100B-RetNet-pure\\\\n-rw-r--r--  1 root root 20351 May 20 14:21 1.3B-100B-RetNet-pure_eval.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"no server running on /tmp/tmux-0/default\\n---\\n   PID CMD\\nPID_DEAD\\n---\\ntotal 340\\ndrwxr-xr-x 17 root root  4096 May 20 14:37 .\\ndrwxr-xr-x 11 root root  4096 May 20 14:08 ..\\ndrwxr-xr-x  3 root root    81 May 20 14:15 1.3B-100B-GatedDeltaNet-hybrid-12-1\\n-rw-r--r--  1 root root 25170 May 20 14:15 1.3B-100B-GatedDeltaNet-hybrid-12-1_eval.log\\ndrwxr-xr-x  3 root root    81 May 20 14:13 1.3B-100B-GatedDeltaNet-hybrid-24-1\\n-rw-r--r--  1 root root 25587 May 20 14:13 1.3B-100B-GatedDeltaNet-hybrid-24-1_eval.log\\ndrwxr-xr-x  3 root root    80 May 20 14:18 1.3B-100B-GatedDeltaNet-hybrid-3-1\\n-rw-r--r--  1 root root 21587 May 20 14:18 1.3B-100B-GatedDeltaNet-hybrid-3-1_eval.log\\ndrwxr-xr-x  3 root root    80 May 20 14:17 1.3B-100B-GatedDeltaNet-hybrid-6-1\\n-rw-r--r--  1 root root 24490 May 20 14:17 1.3B-100B-GatedDeltaNet-hybrid-6-1_eval.log\\ndrwxr-xr-x  3 root root    74 May 20 14:10 1.3B-100B-GatedDeltaNet-pure\\n-rw-r--r--  1 root root 25528 May 20 14:10 1.3B-100B-GatedDeltaNet-pure_eval.log\\ndrwxr-xr-x  3 root root    73 May 20 14:35 1.3B-100B-HGRN2-hybrid-12-1\\n-rw-r--r--  1 root root 17873 May 20 14:35 1.3B-100B-HGRN2-hybrid-12-1_eval.log\\ndrwxr-xr-x  3 root root    73 May 20 14:33 1.3B-100B-HGRN2-hybrid-24-1\\n-rw-r--r--  1 root root 17937 May 20 14:33 1.3B-100B-HGRN2-hybrid-24-1_eval.log\\ndrwxr-xr-x  3 root root    72 May 20 14:39 1.3B-100B-HGRN2-hybrid-3-1\\n-rw-r--r--  1 root root 17650 May 20 14:39 1.3B-100B-HGRN2-hybrid-3-1_eval.log\\ndrwxr-xr-x  3 root root    72 May 20 14:37 1.3B-100B-HGRN2-hybrid-6-1\\n-rw-r--r--  1 root root 17614 May 20 14:37 1.3B-100B-HGRN2-hybrid-6-1_eval.log\\ndrwxr-xr-x  3 root root    66 May 20 14:31 1.3B-100B-HGRN2-pure\\n-rw-r--r--  1 root root 18405 May 20 14:31 1.3B-100B-HGRN2-pure_eval.log\\ndrwxr-xr-x  3 root root    74 May 20 14:25 1.3B-100B-RetNet-hybrid-12-1\\n-rw-r--r--  1 root root 20285 May 20 14:25 1.3B-100B-RetNet-hybrid-12-1_eval.log\\ndrwxr-xr-x  3 root root    74 May 20 14:23 1.3B-100B-RetNet-hybrid-24-1\\n-rw-r--r--  1 root root 20233 May 20 14:23 1.3B-100B-RetNet-hybrid-24-1_eval.log\\ndrwxr-xr-x  3 root root    73 May 20 14:29 1.3B-100B-RetNet-hybrid-3-1\\n-rw-r--r--  1 root root 19882 May 20 14:29 1.3B-100B-RetNet-hybrid-3-1_eval.log\\ndrwxr-xr-x  3 root root    73 May 20 14:27 1.3B-100B-RetNet-hybrid-6-1\\n-rw-r--r--  1 root root 20284 May 20 14:27 1.3B-100B-RetNet-hybrid-6-1_eval.log\\ndrwxr-xr-x  3 root root    67 May 20 14:21 1.3B-100B-RetNet-pure\\n-rw-r--r--  1 root root 20351 May 20 14:21 1.3B-100B-RetNet-pure_eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The tmux session is dead and the PID is dead, but looking at the results directory, there are 15 directories - one for each model. Let me verify that each directory has a results.json file.
+
+The directories are:
+1. 1.3B-100B-GatedDeltaNet-hybrid-12-1
+2. 1.3B-100B-GatedDeltaNet-hybrid-24-1
+
+
+3. 1.3B-100B-GatedDeltaNet-hybrid-3-1
+4. 1.3B-100B-GatedDeltaNet-hybrid-6-1
+5. 1.3B-100B-GatedDeltaNet-pure
+6. 1.3B-100B-HGRN2-hybrid-12-1
+7. 1.3B-100B-HGRN2-hybrid-24-1
+8. 1.3B-100B-HGRN2-hybrid-3-1
+9. 1.3B-100B-HGRN2-hybrid-6-1
+10. 1.3B-100B-HGRN2-pure
+11. 1.3
+
+B-100B-RetNet-hybrid-12-1
+12. 1.3B-100B-RetNet-hybrid-24-1
+13. 1.3B-100B-RetNet-hybrid-3-1
+14. 1.3B-100B-RetNet-hybrid-6-1
+15. 1.3B-100B-RetNet-pure
+
+That completes all 15 models, so now I need to check that each one has a results.json file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "fa07d26c-dd8d-4ea5-adf9-39f14f057f17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CoekDoaD666iKkZe9FQfvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1861,
+      "cache_read_input_tokens": 26823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1861
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+tmux 和 PID 均已死，但结果目录存在且有 15 个子目录。验证每个模型是否都有 results.json。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "7a4d0a75-4bf5-4820-871c-2c5210c4da81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CoekDoaD666iKkZe9FQfvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1861,
+      "cache_read_input_tokens": 26823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1861
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0113ZDy5AUCimteyr14gbHG9`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "for d in /root/entrainment_gated_ft/lm_eval_clean/arc_easy/*/; do name=$(basename \"$d\"); if [ -f \"$d/results.json\" ]; then echo \"DONE: $name\"; else results=$(find \"$d\" -name \"results*.json\" 2>/dev/null | head -1); if [ -n \"$results\" ]; then echo \"DONE(alt): $name -> $results\"; else echo \"MISSING: $name\"; fi; fi; done",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "a9f62d88-9773-4724-8008-3642f955fabc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CoekDoaD666iKkZe9FQfvF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1861,
+      "cache_read_input_tokens": 26823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1861
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T09:24:18.710Z_
+
+<details><summary>↩ Tool result · `toolu_0113ZDy5AUCimteyr14gbHG9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"MISSING: 1.3B-100B-GatedDeltaNet-hybrid-12-1\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-24-1\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-3-1\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-6-1\\nMISSING: 1.3B-100B-GatedDeltaNet-pure\\nMISSING: 1.3B-100B-HGRN2-hybrid-12-1\\nMISSING: 1.3B-100B-HGRN2-hybrid-24-1\\nMISSING: 1.3B-100B-HGRN2-hybrid-3-1\\nMISSING: 1.3B-100B-HGRN2-hybrid-6-1\\nMISSING: 1.3B-100B-HGRN2-pure\\nMISSING: 1.3B-100B-RetNet-hybrid-12-1\\nMISSING: 1.3B-100B-RetNet-hybrid-24-1\\nMISSING: 1.3B-100B-RetNet-hybrid-3-1\\nMISSING: 1.3B-100B-RetNet-hybrid-6-1\\nMISSING: 1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "12991334-e2c5-4911-9f8b-d0e70f2c1e94",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"MISSING: 1.3B-100B-GatedDeltaNet-hybrid-12-1\\\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-24-1\\\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-3-1\\\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-6-1\\\\nMISSING: 1.3B-100B-GatedDeltaNet-pure\\\\nMISSING: 1.3B-100B-HGRN2-hybrid-12-1\\\\nMISSING: 1.3B-100B-HGRN2-hybrid-24-1\\\\nMISSING: 1.3B-100B-HGRN2-hybrid-3-1\\\\nMISSING: 1.3B-100B-HGRN2-hybrid-6-1\\\\nMISSING: 1.3B-100B-HGRN2-pure\\\\nMISSING: 1.3B-100B-RetNet-hybrid-12-1\\\\nMISSING: 1.3B-100B-RetNet-hybrid-24-1\\\\nMISSING: 1.3B-100B-RetNet-hybrid-3-1\\\\nMISSING: 1.3B-100B-RetNet-hybrid-6-1\\\\nMISSING: 1.3B-100B-RetNet-pure\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"MISSING: 1.3B-100B-GatedDeltaNet-hybrid-12-1\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-24-1\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-3-1\\nMISSING: 1.3B-100B-GatedDeltaNet-hybrid-6-1\\nMISSING: 1.3B-100B-GatedDeltaNet-pure\\nMISSING: 1.3B-100B-HGRN2-hybrid-12-1\\nMISSING: 1.3B-100B-HGRN2-hybrid-24-1\\nMISSING: 1.3B-100B-HGRN2-hybrid-3-1\\nMISSING: 1.3B-100B-HGRN2-hybrid-6-1\\nMISSING: 1.3B-100B-HGRN2-pure\\nMISSING: 1.3B-100B-RetNet-hybrid-12-1\\nMISSING: 1.3B-100B-RetNet-hybrid-24-1\\nMISSING: 1.3B-100B-RetNet-hybrid-3-1\\nMISSING: 1.3B-100B-RetNet-hybrid-6-1\\nMISSING: 1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 15 models are missing results.json. Let me check what's actually inside these directories - they exist but have no results.json. Let me look at the directory structure and also check the eval logs to understand what happened.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "19f54205-f9f1-42ad-a3f9-27762155f27d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186yFPqhhB2PRNRDGYyZy3o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1156,
+      "cache_read_input_tokens": 28684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+所有 15 个模型都缺少 results.json。检查目录内容和日志来了解中断状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "9cccb04f-65d7-4912-9dec-966ca7050eb4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186yFPqhhB2PRNRDGYyZy3o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1156,
+      "cache_read_input_tokens": 28684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WwCySwbF38G2GLJPMkpT9T`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/; echo \"---\"; find /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/ -type f | head -10",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "671aeef6-958a-474d-852b-86f6d959ab32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186yFPqhhB2PRNRDGYyZy3o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1156,
+      "cache_read_input_tokens": 28684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T09:24:25.972Z_
+
+<details><summary>↩ Tool result · `toolu_01WwCySwbF38G2GLJPMkpT9T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16\\ndrwxr-xr-x  3 root root   74 May 20 14:10 .\\ndrwxr-xr-x 17 root root 4096 May 20 14:37 ..\\n-rw-r--r--  1 root root 9350 May 20 14:10 1.3B-100B-GatedDeltaNet-pure.json\\ndrwxr-xr-x  2 root root   36 May 20 14:10 samples\\n---\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/arc_easy.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "30299ea1-0899-4308-a391-9c04b075671a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\ndrwxr-xr-x  3 root root   74 May 20 14:10 .\\\\ndrwxr-xr-x 17 root root 4096 May 20 14:37 ..\\\\n-rw-r--r--  1 root root 9350 May 20 14:10 1.3B-100B-GatedDeltaNet-pure.json\\\\ndrwxr-xr-x  2 root root   36 May 20 14:10 samples\\\\n---\\\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/arc_easy.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16\\ndrwxr-xr-x  3 root root   74 May 20 14:10 .\\ndrwxr-xr-x 17 root root 4096 May 20 14:37 ..\\n-rw-r--r--  1 root root 9350 May 20 14:10 1.3B-100B-GatedDeltaNet-pure.json\\ndrwxr-xr-x  2 root root   36 May 20 14:10 samples\\n---\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/arc_easy.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MNp9hQjyCz2KwT1g92yX9u`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "tail -30 /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure_eval.log",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "77774db9-d945-4248-9b72-23e5be9c6473",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186yFPqhhB2PRNRDGYyZy3o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1156,
+      "cache_read_input_tokens": 28684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T09:24:27.684Z_
+
+<details><summary>↩ Tool result · `toolu_01MNp9hQjyCz2KwT1g92yX9u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[fix] allow_neg_eigval=True\\n\\rLoading weights:   0%|          | 0/435 [00:00<?, ?it/s]\\rLoading weights:   2%|▏         | 9/435 [00:00<00:14, 29.98it/s]\\rLoading weights:  10%|█         | 45/435 [00:00<00:03, 110.09it/s]\\rLoading weights:  14%|█▎        | 59/435 [00:00<00:03, 96.99it/s] \\rLoading weights:  16%|█▋        | 71/435 [00:00<00:03, 100.35it/s]\\rLoading weights:  20%|██        | 87/435 [00:00<00:03, 114.03it/s]\\rLoading weights:  23%|██▎       | 100/435 [00:01<00:03, 95.41it/s]\\rLoading weights:  26%|██▌       | 111/435 [00:01<00:03, 96.81it/s]\\rLoading weights:  28%|██▊       | 123/435 [00:01<00:03, 84.36it/s]\\rLoading weights:  31%|███▏      | 137/435 [00:01<00:03, 96.08it/s]\\rLoading weights:  34%|███▍      | 148/435 [00:01<00:02, 98.87it/s]\\rLoading weights:  37%|███▋      | 159/435 [00:01<00:03, 82.12it/s]\\rLoading weights:  41%|████      | 177/435 [00:01<00:03, 84.77it/s]\\rLoading weights:  44%|████▍     | 193/435 [00:02<00:02, 98.79it/s]\\rLoading weights:  48%|████▊     | 207/435 [00:02<00:02, 106.99it/s]\\rLoading weights:  50%|█████     | 219/435 [00:02<00:02, 90.29it/s] \\rLoading weights:  53%|█████▎    | 231/435 [00:02<00:02, 96.26it/s]\\rLoading weights:  57%|█████▋    | 247/435 [00:02<00:01, 105.90it/s]\\rLoading weights:  61%|██████▏   | 267/435 [00:02<00:01, 110.52it/s]\\rLoading weights:  64%|██████▍   | 279/435 [00:02<00:01, 109.79it/s]\\rLoading weights:  67%|██████▋   | 291/435 [00:03<00:01, 91.74it/s] \\rLoading weights:  70%|██████▉   | 303/435 [00:03<00:01, 97.33it/s]\\rLoading weights:  74%|███████▍  | 322/435 [00:03<00:01, 97.51it/s]\\rLoading weights:  78%|███████▊  | 340/435 [00:03<00:01, 79.26it/s]\\rLoading weights:  80%|████████  | 350/435 [00:03<00:01, 81.17it/s]\\rLoading weights:  83%|████████▎ | 359/435 [00:03<00:01, 70.20it/s]\\rLoading weights:  89%|████████▊ | 385/435 [00:04<00:00, 106.64it/s]\\rLoading weights:  93%|█████████▎| 406/435 [00:04<00:00, 128.21it/s]\\rLoading weights:  97%|█████████▋| 422/435 [00:04<00:00, 110.53it/s]\\rLoading weights: 100%|██████████| 435/435 [00:04<00:00, 95.53it/s] \\n[transformers] \\u001b[1mGatedDeltaNetForCausalLM LOAD REPORT\\u001b[0m from: /root/autodl-tmp/models_1.3b/1.3B-100B-GatedDeltaNet-pure\\nKey                          | Status     |  | \\n-----------------------------+------------+--+-\\nmodel.layers.{0...23}.attn.D | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\nHF model type is neither marked as CausalLM or Seq2SeqLM.                     This is expected if your model requires `trust_remote_code=True` but may be an error otherwise.Setting backend to causal\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ai2_arc.py\\nRetrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since allenai/ai2_arc couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'ARC-Easy' at /root/.cache/huggingface/datasets/allenai___ai2_arc/ARC-Easy/0.0.0/210d026faf9955653af8916fad021475a3f00453 (last modified on Mon May 18 17:55:56 2026).\\nRunning tasks: ['arc_easy']\\n\\r  0%|          | 0/2376 [00:00<?, ?it/s]\\r  3%|▎         | 79/2376 [00:00<00:02, 781.29it/s]\\r  7%|▋         | 158/2376 [00:00<00:02, 774.79it/s]\\r 10%|▉         | 236/2376 [00:00<00:02, 776.03it/s]\\r 13%|█▎        | 314/2376 [00:00<00:02, 769.93it/s]\\r 16%|█▋        | 392/2376 [00:00<00:02, 770.13it/s]\\r 20%|█▉        | 470/2376 [00:00<00:02, 765.38it/s]\\r 23%|██▎       | 547/2376 [00:00<00:02, 766.71it/s]\\r 26%|██▋       | 625/2376 [00:00<00:02, 770.79it/s]\\r 30%|██▉       | 703/2376 [00:00<00:02\\n\\n... [截断: 输出过长，省略 14748 字符] ...\\n\\noglikelihood requests:  76%|███████▌  | 7226/9501 [00:16<00:05, 452.07it/s]\\rRunning loglikelihood requests:  77%|███████▋  | 7279/9501 [00:17<00:04, 461.65it/s]\\rRunning loglikelihood requests:  77%|███████▋  | 7332/9501 [00:17<00:04, 463.45it/s]\\rRunning loglikelihood requests:  78%|███████▊  | 7383/9501 [00:17<00:04, 459.91it/s]\\rRunning loglikelihood requests:  78%|███████▊  | 7440/9501 [00:17<00:04, 478.26it/s]\\rRunning loglikelihood requests:  79%|███████▉  | 7497/9501 [00:17<00:04, 490.36it/s]\\rRunning loglikelihood requests:  79%|███████▉  | 7547/9501 [00:17<00:04, 479.69it/s]\\rRunning loglikelihood requests:  80%|███████▉  | 7597/9501 [00:17<00:04, 473.41it/s]\\rRunning loglikelihood requests:  81%|████████  | 7649/9501 [00:17<00:03, 474.30it/s]\\rRunning loglikelihood requests:  81%|████████  | 7701/9501 [00:17<00:03, 475.49it/s]\\rRunning loglikelihood requests:  82%|████████▏ | 7754/9501 [00:18<00:03, 478.01it/s]\\rRunning loglikelihood requests:  82%|████████▏ | 7806/9501 [00:18<00:03, 478.48it/s]\\rRunning loglikelihood requests:  83%|████████�� | 7858/9501 [00:18<00:03, 476.47it/s]\\rRunning loglikelihood requests:  83%|████████▎ | 7913/9501 [00:18<00:03, 479.04it/s]\\rRunning loglikelihood requests:  84%|████████▍ | 7967/9501 [00:18<00:03, 483.41it/s]\\rRunning loglikelihood requests:  84%|████████▍ | 8017/9501 [00:18<00:03, 476.51it/s]\\rRunning loglikelihood requests:  85%|████████▍ | 8067/9501 [00:18<00:03, 471.46it/s]\\rRunning loglikelihood requests:  86%|████████▌ | 8130/9501 [00:18<00:02, 501.29it/s]\\rRunning loglikelihood requests:  86%|████████▌ | 8183/9501 [00:18<00:02, 495.97it/s]\\rRunning loglikelihood requests:  87%|████████▋ | 8237/9501 [00:19<00:02, 495.12it/s]\\rRunning loglikelihood requests:  87%|████████▋ | 8287/9501 [00:19<00:02, 484.26it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 8336/9501 [00:19<00:02, 475.48it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 8389/9501 [00:19<00:02, 478.65it/s]\\rRunning loglikelihood requests:  89%|████████▉ | 8457/9501 [00:19<00:02, 521.29it/s]\\rRunning loglikelihood requests:  90%|████████▉ | 8521/9501 [00:19<00:01, 541.60it/s]\\rRunning loglikelihood requests:  90%|█████████ | 8582/9501 [00:19<00:01, 547.36it/s]\\rRunning loglikelihood requests:  91%|█████████ | 8637/9501 [00:19<00:01, 533.94it/s]\\rRunning loglikelihood requests:  91%|█████████▏| 8693/9501 [00:19<00:01, 529.23it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 8748/9501 [00:20<00:01, 523.05it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 8805/9501 [00:20<00:01, 524.30it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 8863/9501 [00:20<00:01, 527.81it/s]\\rRunning loglikelihood requests:  94%|█████████▍| 8932/9501 [00:20<00:01, 560.47it/s]\\rRunning loglikelihood requests:  95%|█████████▍| 9011/9501 [00:20<00:00, 610.15it/s]\\rRunning loglikelihood requests:  95%|█████████▌| 9072/9501 [00:20<00:00, 593.80it/s]\\rRunning loglikelihood requests:  96%|█████████▌| 9132/9501 [00:20<00:00, 583.71it/s]\\rRunning loglikelihood requests:  97%|█████████▋| 9191/9501 [00:20<00:00, 572.97it/s]\\rRunning loglikelihood requests:  97%|█████████▋| 9262/9501 [00:20<00:00, 594.43it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 9325/9501 [00:21<00:00, 591.81it/s]\\rRunning loglikelihood requests:  99%|█████████▉| 9395/9501 [00:21<00:00, 607.75it/s]\\rRunning loglikelihood requests: 100%|█████████▉| 9460/9501 [00:21<00:00, 606.25it/s]\\rRunning loglikelihood requests: 100%|██████████| 9501/9501 [00:21<00:00, 445.99it/s]\\nfatal: not a git repository (or any of the parent directories): .git\\nSaved 2376 samples to /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/arc_easy.jsonl\\n\\n============================================================\\nModel: 1.3B-100B-GatedDeltaNet-pure\\n============================================================\\n  arc_easy: acc,none=0.7121, acc_norm,none=0.6414\\n\\nSaved: /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "c81127cd-9ad0-4465-8500-86559ab52780",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[fix] allow_neg_eigval=True\\\\n\\\\rLoading weights:   0%|          | 0/435 [00:00<?, ?it/s]\\\\rLoading weights:   2%|▏         | 9/435 [00:00<00:14, 29.98it/s]\\\\rLoading weights:  10%|█         | 45/435 [00:00<00:03, 110.09it/s]\\\\rLoading weights:  14%|█▎        | 59/435 [00:00<00:03, 96.99it/s] \\\\rLoading weights:  16%|█▋        | 71/435 [00:00<00:03, 100.35it/s]\\\\rLoading weights:  20%|██        | 87/435 [00:00<00:03, 114.03it/s]\\\\rLoading weights:  23%|██▎       | 100/435 [00:01<00:03, 95.41it/s]\\\\rLoading weights:  26%|██▌       | 111/435 [00:01<00:03, 96.81it/s]\\\\rLoading weights:  28%|██▊       | 123/435 [00:01<00:03, 84.36it/s]\\\\rLoading weights:  31%|███▏      | 137/435 [00:01<00:03, 96.08it/s]\\\\rLoading weights:  34%|███▍      | 148/435 [00:01<00:02, 98.87it/s]\\\\rLoading weights:  37%|███▋      | 159/435 [00:01<00:03, 82.12it/s]\\\\rLoading weights:  41%|████      | 177/435 [00:01<00:03, 84.77it/s]\\\\rLoading weights:  44%|████▍     | 193/435 [00:02<00:02, 98.79it/s]\\\\rLoading weights:  48%|████▊     | 207/435 [00:02<00:02, 106.99it/s]\\\\rLoading weights:  50%|█████     | 219/435 [00:02<00:02, 90.29it/s] \\\\rLoading weights:  53%|█████▎    | 231/435 [00:02<00:02, 96.26it/s]\\\\rLoading weights:  57%|█████▋    | 247/435 [00:02<00:01, 105.90it/s]\\\\rLoading weights:  61%|██████▏   | 267/435 [00:02<00:01, 110.52it/s]\\\\rLoading weights:  64%|██████▍   | 279/435 [00:02<00:01, 109.79it/s]\\\\rLoading weights:  67%|██████▋   | 291/435 [00:03<00:01, 91.74it/s] \\\\rLoading weights:  70%|██████▉   | 303/435 [00:03<00:01, 97.33it/s]\\\\rLoading weights:  74%|███████▍  | 322/435 [00:03<00:01, 97.51it/s]\\\\rLoading weights:  78%|███████▊  | 340/435 [00:03<00:01, 79.26it/s]\\\\rLoading weights:  80%|████████  | 350/435 [00:03<00:01, 81.17it/s]\\\\rLoading weights:  83%|████████▎ | 359/435 [00:03<00:01, 70.20it/s]\\\\rLoading weights:  89%|████████▊ | 385/435 [00:04<00:00, 106.64it/s]\\\\rLoading weights:  93%|█████████▎| 406/435 [00:04<00:00, 128.21it/s]\\\\rLoading weights:  97%|█████████▋| 422/435 [00:04<00:00, 110.53it/s]\\\\rLoading weights: 100%|██████████| 435/435 [00:04<00:00, 95.53it/s] \\\\n[transformers] \\\\u001b[1mGatedDeltaNetForCausalLM LOAD REPORT\\\\u001b[0m from: /root/autodl-tmp/models_1.3b/1.3B-100B-GatedDeltaNet-pure\\\\nKey                          | Status     |  | \\\\n-----------------------------+------------+--+-\\\\nmodel.layers.{0...23}.attn.D | UNEXPECTED |  | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\\\nHF model type is neither marked as CausalLM or Seq2SeqLM.                     This is expected if your model requires `trust_remote_code=True` but may be an error otherwise.Setting backend to causal\\\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ai2_arc.py\\\\nRetrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since allenai/ai2_arc couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'ARC-Easy' at /root/.cache/huggingface/datasets/allenai___ai2_arc/ARC-Easy/0.0.0/210d026faf9955653af8916fad021475a3f00453 (last modified on Mon May 18 17:55:56 2026).\\\\nRunning tasks: ['arc_easy']\\\\n\\\\r  0%|          | 0/2376 [00:00<?, ?it/s]\\\\r  3%|▎         | 79/2376 [00:00<00:02, 781.29it/s]\\\\r  7%|▋         | 158/2376 [00:00<00:02, 774.79it/s]\\\\r 10%|▉         | 236/2376 [00:00<00:02, 776.03it/s]\\\\r 13%|█▎        | 314/2376 [00:00<00:02, 769.93it/s]\\\\r 16%|█▋        | 392/2376 [00:00<00:02, 770.13it/s]\\\\r 20%|█▉        | 470/2376 [00:00<00:02, 765.38it/s]\\\\r 23%|██▎       | 547/2376 [00:00<00:02, 766.71it/s]\\\\r 26%|██▋       | 625/2376 [00:00<00:02, 770.79it/s]\\\\r 30%|██▉       | 703/2376 [00:00<00:02\\\\n\\\\n... [截断: 输出过长，省略 14748 字符] ...\\\\n\\\\noglikelihood requests:  76%|███████▌  | 7226/9501 [00:16<00:05, 452.07it/s]\\\\rRunning loglikelihood requests:  77%|███████▋  | 7279/9501 [00:17<00:04, 461.65it/s]\\\\rRunning loglikelihood requests:  77%|███████▋  | 7332/9501 [00:17<00:04, 463.45it/s]\\\\rRunning loglikelihood requests:  78%|███████▊  | 7383/9501 [00:17<00:04, 459.91it/s]\\\\rRunning loglikelihood requests:  78%|███████▊  | 7440/9501 [00:17<00:04, 478.26it/s]\\\\rRunning loglikelihood requests:  79%|███████▉  | 7497/9501 [00:17<00:04, 490.36it/s]\\\\rRunning loglikelihood requests:  79%|███████▉  | 7547/9501 [00:17<00:04, 479.69it/s]\\\\rRunning loglikelihood requests:  80%|███████▉  | 7597/9501 [00:17<00:04, 473.41it/s]\\\\rRunning loglikelihood requests:  81%|████████  | 7649/9501 [00:17<00:03, 474.30it/s]\\\\rRunning loglikelihood requests:  81%|████████  | 7701/9501 [00:17<00:03, 475.49it/s]\\\\rRunning loglikelihood requests:  82%|████████▏ | 7754/9501 [00:18<00:03, 478.01it/s]\\\\rRunning loglikelihood requests:  82%|████████▏ | 7806/9501 [00:18<00:03, 478.48it/s]\\\\rRunning loglikelihood requests:  83%|████████�� | 7858/9501 [00:18<00:03, 476.47it/s]\\\\rRunning loglikelihood requests:  83%|████████▎ | 7913/9501 [00:18<00:03, 479.04it/s]\\\\rRunning loglikelihood requests:  84%|████████▍ | 7967/9501 [00:18<00:03, 483.41it/s]\\\\rRunning loglikelihood requests:  84%|████████▍ | 8017/9501 [00:18<00:03, 476.51it/s]\\\\rRunning loglikelihood requests:  85%|████████▍ | 8067/9501 [00:18<00:03, 471.46it/s]\\\\rRunning loglikelihood requests:  86%|████████▌ | 8130/9501 [00:18<00:02, 501.29it/s]\\\\rRunning loglikelihood requests:  86%|████████▌ | 8183/9501 [00:18<00:02, 495.97it/s]\\\\rRunning loglikelihood requests:  87%|████████▋ | 8237/9501 [00:19<00:02, 495.12it/s]\\\\rRunning loglikelihood requests:  87%|████████▋ | 8287/9501 [00:19<00:02, 484.26it/s]\\\\rRunning loglikelihood requests:  88%|████████▊ | 8336/9501 [00:19<00:02, 475.48it/s]\\\\rRunning loglikelihood requests:  88%|████████▊ | 8389/9501 [00:19<00:02, 478.65it/s]\\\\rRunning loglikelihood requests:  89%|████████▉ | 8457/9501 [00:19<00:02, 521.29it/s]\\\\rRunning loglikelihood requests:  90%|████████▉ | 8521/9501 [00:19<00:01, 541.60it/s]\\\\rRunning loglikelihood requests:  90%|█████████ | 8582/9501 [00:19<00:01, 547.36it/s]\\\\rRunning loglikelihood requests:  91%|█████████ | 8637/9501 [00:19<00:01, 533.94it/s]\\\\rRunning loglikelihood requests:  91%|█████████▏| 8693/9501 [00:19<00:01, 529.23it/s]\\\\rRunning loglikelihood requests:  92%|█████████▏| 8748/9501 [00:20<00:01, 523.05it/s]\\\\rRunning loglikelihood requests:  93%|█████████▎| 8805/9501 [00:20<00:01, 524.30it/s]\\\\rRunning loglikelihood requests:  93%|█████████▎| 8863/9501 [00:20<00:01, 527.81it/s]\\\\rRunning loglikelihood requests:  94%|█████████▍| 8932/9501 [00:20<00:01, 560.47it/s]\\\\rRunning loglikelihood requests:  95%|█████████▍| 9011/9501 [00:20<00:00, 610.15it/s]\\\\rRunning loglikelihood requests:  95%|█████████▌| 9072/9501 [00:20<00:00, 593.80it/s]\\\\rRunning loglikelihood requests:  96%|█████████▌| 9132/9501 [00:20<00:00, 583.71it/s]\\\\rRunning loglikelihood requests:  97%|█████████▋| 9191/9501 [00:20<00:00, 572.97it/s]\\\\rRunning loglikelihood requests:  97%|█████████▋| 9262/9501 [00:20<00:00, 594.43it/s]\\\\rRunning loglikelihood requests:  98%|█████████▊| 9325/9501 [00:21<00:00, 591.81it/s]\\\\rRunning loglikelihood requests:  99%|█████████▉| 9395/9501 [00:21<00:00, 607.75it/s]\\\\rRunning loglikelihood requests: 100%|█████████▉| 9460/9501 [00:21<00:00, 606.25it/s]\\\\rRunning loglikelihood requests: 100%|██████████| 9501/9501 [00:21<00:00, 445.99it/s]\\\\nfatal: not a git repository (or any of the parent directories): .git\\\\nSaved 2376 samples to /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/arc_easy.jsonl\\\\n\\\\n============================================================\\\\nModel: 1.3B-100B-GatedDeltaNet-pure\\\\n============================================================\\\\n  arc_easy: acc,none=0.7121, acc_norm,none=0.6414\\\\n\\\\nSaved: /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[fix] allow_neg_eigval=True\\n\\rLoading weights:   0%|          | 0/435 [00:00<?, ?it/s]\\rLoading weights:   2%|▏         | 9/435 [00:00<00:14, 29.98it/s]\\rLoading weights:  10%|█         | 45/435 [00:00<00:03, 110.09it/s]\\rLoading weights:  14%|█▎        | 59/435 [00:00<00:03, 96.99it/s] \\rLoading weights:  16%|█▋        | 71/435 [00:00<00:03, 100.35it/s]\\rLoading weights:  20%|██        | 87/435 [00:00<00:03, 114.03it/s]\\rLoading weights:  23%|██▎       | 100/435 [00:01<00:03, 95.41it/s]\\rLoading weights:  26%|██▌       | 111/435 [00:01<00:03, 96.81it/s]\\rLoading weights:  28%|██▊       | 123/435 [00:01<00:03, 84.36it/s]\\rLoading weights:  31%|███▏      | 137/435 [00:01<00:03, 96.08it/s]\\rLoading weights:  34%|███▍      | 148/435 [00:01<00:02, 98.87it/s]\\rLoading weights:  37%|███▋      | 159/435 [00:01<00:03, 82.12it/s]\\rLoading weights:  41%|████      | 177/435 [00:01<00:03, 84.77it/s]\\rLoading weights:  44%|████▍     | 193/435 [00:02<00:02, 98.79it/s]\\rLoading weights:  48%|████▊     | 207/435 [00:02<00:02, 106.99it/s]\\rLoading weights:  50%|█████     | 219/435 [00:02<00:02, 90.29it/s] \\rLoading weights:  53%|█████▎    | 231/435 [00:02<00:02, 96.26it/s]\\rLoading weights:  57%|█████▋    | 247/435 [00:02<00:01, 105.90it/s]\\rLoading weights:  61%|██████▏   | 267/435 [00:02<00:01, 110.52it/s]\\rLoading weights:  64%|██████▍   | 279/435 [00:02<00:01, 109.79it/s]\\rLoading weights:  67%|██████▋   | 291/435 [00:03<00:01, 91.74it/s] \\rLoading weights:  70%|██████▉   | 303/435 [00:03<00:01, 97.33it/s]\\rLoading weights:  74%|███████▍  | 322/435 [00:03<00:01, 97.51it/s]\\rLoading weights:  78%|███████▊  | 340/435 [00:03<00:01, 79.26it/s]\\rLoading weights:  80%|████████  | 350/435 [00:03<00:01, 81.17it/s]\\rLoading weights:  83%|████████▎ | 359/435 [00:03<00:01, 70.20it/s]\\rLoading weights:  89%|████████▊ | 385/435 [00:04<00:00, 106.64it/s]\\rLoading weights:  93%|█████████▎| 406/435 [00:04<00:00, 128.21it/s]\\rLoading weights:  97%|█████████▋| 422/435 [00:04<00:00, 110.53it/s]\\rLoading weights: 100%|██████████| 435/435 [00:04<00:00, 95.53it/s] \\n[transformers] \\u001b[1mGatedDeltaNetForCausalLM LOAD REPORT\\u001b[0m from: /root/autodl-tmp/models_1.3b/1.3B-100B-GatedDeltaNet-pure\\nKey                          | Status     |  | \\n-----------------------------+------------+--+-\\nmodel.layers.{0...23}.attn.D | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\nHF model type is neither marked as CausalLM or Seq2SeqLM.                     This is expected if your model requires `trust_remote_code=True` but may be an error otherwise.Setting backend to causal\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ai2_arc.py\\nRetrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since allenai/ai2_arc couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'ARC-Easy' at /root/.cache/huggingface/datasets/allenai___ai2_arc/ARC-Easy/0.0.0/210d026faf9955653af8916fad021475a3f00453 (last modified on Mon May 18 17:55:56 2026).\\nRunning tasks: ['arc_easy']\\n\\r  0%|          | 0/2376 [00:00<?, ?it/s]\\r  3%|▎         | 79/2376 [00:00<00:02, 781.29it/s]\\r  7%|▋         | 158/2376 [00:00<00:02, 774.79it/s]\\r 10%|▉         | 236/2376 [00:00<00:02, 776.03it/s]\\r 13%|█▎        | 314/2376 [00:00<00:02, 769.93it/s]\\r 16%|█▋        | 392/2376 [00:00<00:02, 770.13it/s]\\r 20%|█▉        | 470/2376 [00:00<00:02, 765.38it/s]\\r 23%|██▎       | 547/2376 [00:00<00:02, 766.71it/s]\\r 26%|██▋       | 625/2376 [00:00<00:02, 770.79it/s]\\r 30%|██▉       | 703/2376 [00:00<00:02\\n\\n... [截断: 输出过长，省略 14748 字符] ...\\n\\noglikelihood requests:  76%|███████▌  | 7226/9501 [00:16<00:05, 452.07it/s]\\rRunning loglikelihood requests:  77%|███████▋  | 7279/9501 [00:17<00:04, 461.65it/s]\\rRunning loglikelihood requests:  77%|███████▋  | 7332/9501 [00:17<00:04, 463.45it/s]\\rRunning loglikelihood requests:  78%|███████▊  | 7383/9501 [00:17<00:04, 459.91it/s]\\rRunning loglikelihood requests:  78%|███████▊  | 7440/9501 [00:17<00:04, 478.26it/s]\\rRunning loglikelihood requests:  79%|███████▉  | 7497/9501 [00:17<00:04, 490.36it/s]\\rRunning loglikelihood requests:  79%|███████▉  | 7547/9501 [00:17<00:04, 479.69it/s]\\rRunning loglikelihood requests:  80%|███████▉  | 7597/9501 [00:17<00:04, 473.41it/s]\\rRunning loglikelihood requests:  81%|████████  | 7649/9501 [00:17<00:03, 474.30it/s]\\rRunning loglikelihood requests:  81%|████████  | 7701/9501 [00:17<00:03, 475.49it/s]\\rRunning loglikelihood requests:  82%|████████▏ | 7754/9501 [00:18<00:03, 478.01it/s]\\rRunning loglikelihood requests:  82%|████████▏ | 7806/9501 [00:18<00:03, 478.48it/s]\\rRunning loglikelihood requests:  83%|████████�� | 7858/9501 [00:18<00:03, 476.47it/s]\\rRunning loglikelihood requests:  83%|████████▎ | 7913/9501 [00:18<00:03, 479.04it/s]\\rRunning loglikelihood requests:  84%|████████▍ | 7967/9501 [00:18<00:03, 483.41it/s]\\rRunning loglikelihood requests:  84%|████████▍ | 8017/9501 [00:18<00:03, 476.51it/s]\\rRunning loglikelihood requests:  85%|████████▍ | 8067/9501 [00:18<00:03, 471.46it/s]\\rRunning loglikelihood requests:  86%|████████▌ | 8130/9501 [00:18<00:02, 501.29it/s]\\rRunning loglikelihood requests:  86%|████████▌ | 8183/9501 [00:18<00:02, 495.97it/s]\\rRunning loglikelihood requests:  87%|████████▋ | 8237/9501 [00:19<00:02, 495.12it/s]\\rRunning loglikelihood requests:  87%|████████▋ | 8287/9501 [00:19<00:02, 484.26it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 8336/9501 [00:19<00:02, 475.48it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 8389/9501 [00:19<00:02, 478.65it/s]\\rRunning loglikelihood requests:  89%|████████▉ | 8457/9501 [00:19<00:02, 521.29it/s]\\rRunning loglikelihood requests:  90%|████████▉ | 8521/9501 [00:19<00:01, 541.60it/s]\\rRunning loglikelihood requests:  90%|█████████ | 8582/9501 [00:19<00:01, 547.36it/s]\\rRunning loglikelihood requests:  91%|█████████ | 8637/9501 [00:19<00:01, 533.94it/s]\\rRunning loglikelihood requests:  91%|█████████▏| 8693/9501 [00:19<00:01, 529.23it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 8748/9501 [00:20<00:01, 523.05it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 8805/9501 [00:20<00:01, 524.30it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 8863/9501 [00:20<00:01, 527.81it/s]\\rRunning loglikelihood requests:  94%|█████████▍| 8932/9501 [00:20<00:01, 560.47it/s]\\rRunning loglikelihood requests:  95%|█████████▍| 9011/9501 [00:20<00:00, 610.15it/s]\\rRunning loglikelihood requests:  95%|█████████▌| 9072/9501 [00:20<00:00, 593.80it/s]\\rRunning loglikelihood requests:  96%|█████████▌| 9132/9501 [00:20<00:00, 583.71it/s]\\rRunning loglikelihood requests:  97%|█████████▋| 9191/9501 [00:20<00:00, 572.97it/s]\\rRunning loglikelihood requests:  97%|█████████▋| 9262/9501 [00:20<00:00, 594.43it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 9325/9501 [00:21<00:00, 591.81it/s]\\rRunning loglikelihood requests:  99%|█████████▉| 9395/9501 [00:21<00:00, 607.75it/s]\\rRunning loglikelihood requests: 100%|█████████▉| 9460/9501 [00:21<00:00, 606.25it/s]\\rRunning loglikelihood requests: 100%|██████████| 9501/9501 [00:21<00:00, 445.99it/s]\\nfatal: not a git repository (or any of the parent directories): .git\\nSaved 2376 samples to /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/samples/arc_easy.jsonl\\n\\n============================================================\\nModel: 1.3B-100B-GatedDeltaNet-pure\\n============================================================\\n  arc_easy: acc,none=0.7121, acc_norm,none=0.6414\\n\\nSaved: /root/entrainment_gated_ft/lm_eval_clean/arc_easy/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Go9v9G6ZSRzHxaDqUCg1KY`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/run_arc_easy_all.sh 2>/dev/null || echo \"NO_SCRIPT\"; echo \"---\"; cat /root/entrainment_gated_ft/run_lmeval_clean.py 2>/dev/null | head -5 || echo \"NO_EVAL_SCRIPT\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "59800102-75e0-4073-a462-eb10bec4ee2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186yFPqhhB2PRNRDGYyZy3o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1156,
+      "cache_read_input_tokens": 28684,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1156
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T09:24:28.743Z_
+
+<details><summary>↩ Tool result · `toolu_01Go9v9G6ZSRzHxaDqUCg1KY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\n\\nSCRIPT=\\\"/root/entrainment_gated_ft/run_lmeval_clean.py\\\"\\nMODEL_DIR=\\\"/root/autodl-tmp/models_1.3b\\\"\\nOUTPUT_BASE=\\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy\\\"\\n\\nmkdir -p \\\"$OUTPUT_BASE\\\"\\n\\nMODELS=(\\n    \\\"1.3B-100B-GatedDeltaNet-pure\\\"\\n    \\\"1.3B-100B-GatedDeltaNet-hybrid-24-1\\\"\\n    \\\"1.3B-100B-GatedDeltaNet-hybrid-12-1\\\"\\n    \\\"1.3B-100B-GatedDeltaNet-hybrid-6-1\\\"\\n    \\\"1.3B-100B-GatedDeltaNet-hybrid-3-1\\\"\\n    \\\"1.3B-100B-RetNet-pure\\\"\\n    \\\"1.3B-100B-RetNet-hybrid-24-1\\\"\\n    \\\"1.3B-100B-RetNet-hybrid-12-1\\\"\\n    \\\"1.3B-100B-RetNet-hybrid-6-1\\\"\\n    \\\"1.3B-100B-RetNet-hybrid-3-1\\\"\\n    \\\"1.3B-100B-HGRN2-pure\\\"\\n    \\\"1.3B-100B-HGRN2-hybrid-24-1\\\"\\n    \\\"1.3B-100B-HGRN2-hybrid-12-1\\\"\\n    \\\"1.3B-100B-HGRN2-hybrid-6-1\\\"\\n    \\\"1.3B-100B-HGRN2-hybrid-3-1\\\"\\n)\\n\\nfor MODEL in \\\"${MODELS[@]}\\\"; do\\n    echo \\\"=== $(date '+%H:%M:%S') Evaluating $MODEL ===\\\"\\n    MODEL_OUT=\\\"$OUTPUT_BASE/$MODEL\\\"\\n    mkdir -p \\\"$MODEL_OUT\\\"\\n    python \\\"$SCRIPT\\\" \\\\\\n        --model_path \\\"$MODEL_DIR/$MODEL\\\" \\\\\\n        --tasks arc_easy \\\\\\n        --batch_size 16 \\\\\\n        --device cuda:0 \\\\\\n        --log_samples \\\\\\n        --output_dir \\\"$MODEL_OUT\\\" \\\\\\n        2>&1 | tee \\\"$OUTPUT_BASE/${MODEL}_eval.log\\\"\\n    echo \\\"=== $(date '+%H:%M:%S') Done $MODEL ===\\\"\\ndone\\n\\necho \\\"ALL DONE at $(date '+%H:%M:%S')\\\"\\n---\\n#!/usr/bin/env python3\\nimport argparse\\nimport json\\nimport os\\nimport torch\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "eb07d81b-9ace-4ad1-95d6-ee49112c62ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\n\\\\nSCRIPT=\\\\\\\"/root/entrainment_gated_ft/run_lmeval_clean.py\\\\\\\"\\\\nMODEL_DIR=\\\\\\\"/root/autodl-tmp/models_1.3b\\\\\\\"\\\\nOUTPUT_BASE=\\\\\\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy\\\\\\\"\\\\n\\\\nmkdir -p \\\\\\\"$OUTPUT_BASE\\\\\\\"\\\\n\\\\nMODELS=(\\\\n    \\\\\\\"1.3B-100B-GatedDeltaNet-pure\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-GatedDeltaNet-hybrid-24-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-GatedDeltaNet-hybrid-12-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-GatedDeltaNet-hybrid-6-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-GatedDeltaNet-hybrid-3-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-RetNet-pure\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-RetNet-hybrid-24-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-RetNet-hybrid-12-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-RetNet-hybrid-6-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-RetNet-hybrid-3-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-HGRN2-pure\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-HGRN2-hybrid-24-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-HGRN2-hybrid-12-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-HGRN2-hybrid-6-1\\\\\\\"\\\\n    \\\\\\\"1.3B-100B-HGRN2-hybrid-3-1\\\\\\\"\\\\n)\\\\n\\\\nfor MODEL in \\\\\\\"${MODELS[@]}\\\\\\\"; do\\\\n    echo \\\\\\\"=== $(date '+%H:%M:%S') Evaluating $MODEL ===\\\\\\\"\\\\n    MODEL_OUT=\\\\\\\"$OUTPUT_BASE/$MODEL\\\\\\\"\\\\n    mkdir -p \\\\\\\"$MODEL_OUT\\\\\\\"\\\\n    python \\\\\\\"$SCRIPT\\\\\\\" \\\\\\\\\\\\n        --model_path \\\\\\\"$MODEL_DIR/$MODEL\\\\\\\" \\\\\\\\\\\\n        --tasks arc_easy \\\\\\\\\\\\n        --batch_size 16 \\\\\\\\\\\\n        --device cuda:0 \\\\\\\\\\\\n        --log_samples \\\\\\\\\\\\n        --output_dir \\\\\\\"$MODEL_OUT\\\\\\\" \\\\\\\\\\\\n        2>&1 | tee \\\\\\\"$OUTPUT_BASE/${MODEL}_eval.log\\\\\\\"\\\\n    echo \\\\\\\"=== $(date '+%H:%M:%S') Done $MODEL ===\\\\\\\"\\\\ndone\\\\n\\\\necho \\\\\\\"ALL DONE at $(date '+%H:%M:%S')\\\\\\\"\\\\n---\\\\n#!/usr/bin/env python3\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport torch\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\n\\nSCRIPT=\\\"/root/entrainment_gated_ft/run_lmeval_clean.py\\\"\\nMODEL_DIR=\\\"/root/autodl-tmp/models_1.3b\\\"\\nOUTPUT_BASE=\\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy\\\"\\n\\nmkdir -p \\\"$OUTPUT_BASE\\\"\\n\\nMODELS=(\\n    \\\"1.3B-100B-GatedDeltaNet-pure\\\"\\n    \\\"1.3B-100B-GatedDeltaNet-hybrid-24-1\\\"\\n    \\\"1.3B-100B-GatedDeltaNet-hybrid-12-1\\\"\\n    \\\"1.3B-100B-GatedDeltaNet-hybrid-6-1\\\"\\n    \\\"1.3B-100B-GatedDeltaNet-hybrid-3-1\\\"\\n    \\\"1.3B-100B-RetNet-pure\\\"\\n    \\\"1.3B-100B-RetNet-hybrid-24-1\\\"\\n    \\\"1.3B-100B-RetNet-hybrid-12-1\\\"\\n    \\\"1.3B-100B-RetNet-hybrid-6-1\\\"\\n    \\\"1.3B-100B-RetNet-hybrid-3-1\\\"\\n    \\\"1.3B-100B-HGRN2-pure\\\"\\n    \\\"1.3B-100B-HGRN2-hybrid-24-1\\\"\\n    \\\"1.3B-100B-HGRN2-hybrid-12-1\\\"\\n    \\\"1.3B-100B-HGRN2-hybrid-6-1\\\"\\n    \\\"1.3B-100B-HGRN2-hybrid-3-1\\\"\\n)\\n\\nfor MODEL in \\\"${MODELS[@]}\\\"; do\\n    echo \\\"=== $(date '+%H:%M:%S') Evaluating $MODEL ===\\\"\\n    MODEL_OUT=\\\"$OUTPUT_BASE/$MODEL\\\"\\n    mkdir -p \\\"$MODEL_OUT\\\"\\n    python \\\"$SCRIPT\\\" \\\\\\n        --model_path \\\"$MODEL_DIR/$MODEL\\\" \\\\\\n        --tasks arc_easy \\\\\\n        --batch_size 16 \\\\\\n        --device cuda:0 \\\\\\n        --log_samples \\\\\\n        --output_dir \\\"$MODEL_OUT\\\" \\\\\\n        2>&1 | tee \\\"$OUTPUT_BASE/${MODEL}_eval.log\\\"\\n    echo \\\"=== $(date '+%H:%M:%S') Done $MODEL ===\\\"\\ndone\\n\\necho \\\"ALL DONE at $(date '+%H:%M:%S')\\\"\\n---\\n#!/usr/bin/env python3\\nimport argparse\\nimport json\\nimport os\\nimport torch\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand. The results are saved as `{MODEL_NAME}.json` files, not `results.json`. Each model directory has a `.json` file with the results. Let me verify all 15 have their JSON files.
+
+Looking at the log, the GatedDeltaNet-pure completed successfully with:
+- arc_easy: acc,none=0.7121, acc_norm,none=0.6414
+
+And the file is saved as `1.3B-100B-GatedDeltaNet-pure.json`, not `results.json`.
+
+Let me check if all 15 models have their JSON files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "77561bce-b4a9-4809-a8ca-d53fec646678",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cpsg1Boorfr6e3KzZ1SptX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6003,
+      "cache_read_input_tokens": 29840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6003
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+结果文件命名为 `{MODEL_NAME}.json` 而非 `results.json`。验证所有 15 个模型是否都有结果文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "46806d7d-5d27-4074-b8a2-9b2972cbf123",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cpsg1Boorfr6e3KzZ1SptX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6003,
+      "cache_read_input_tokens": 29840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6003
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013C9LALp7cDQMe64LaTiAFW`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "for d in /root/entrainment_gated_ft/lm_eval_clean/arc_easy/*/; do name=$(basename \"$d\"); json=\"$d/${name}.json\"; samples=\"$d/samples/arc_easy.jsonl\"; if [ -f \"$json\" ] && [ -f \"$samples\" ]; then echo \"DONE: $name\"; else echo \"MISSING: $name (json=$([ -f $json ] && echo Y || echo N), samples=$([ -f $samples ] && echo Y || echo N))\"; fi; done",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "42299ea9-9c72-4a72-9918-260e911c8e7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cpsg1Boorfr6e3KzZ1SptX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6003,
+      "cache_read_input_tokens": 29840,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6003
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T09:24:38.897Z_
+
+<details><summary>↩ Tool result · `toolu_013C9LALp7cDQMe64LaTiAFW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE: 1.3B-100B-GatedDeltaNet-hybrid-12-1\\nDONE: 1.3B-100B-GatedDeltaNet-hybrid-24-1\\nDONE: 1.3B-100B-GatedDeltaNet-hybrid-3-1\\nDONE: 1.3B-100B-GatedDeltaNet-hybrid-6-1\\nDONE: 1.3B-100B-GatedDeltaNet-pure\\nDONE: 1.3B-100B-HGRN2-hybrid-12-1\\nDONE: 1.3B-100B-HGRN2-hybrid-24-1\\nDONE: 1.3B-100B-HGRN2-hybrid-3-1\\nDONE: 1.3B-100B-HGRN2-hybrid-6-1\\nDONE: 1.3B-100B-HGRN2-pure\\nDONE: 1.3B-100B-RetNet-hybrid-12-1\\nDONE: 1.3B-100B-RetNet-hybrid-24-1\\nDONE: 1.3B-100B-RetNet-hybrid-3-1\\nDONE: 1.3B-100B-RetNet-hybrid-6-1\\nDONE: 1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "bf506a28-46db-4d52-bd95-db47daa669e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE: 1.3B-100B-GatedDeltaNet-hybrid-12-1\\\\nDONE: 1.3B-100B-GatedDeltaNet-hybrid-24-1\\\\nDONE: 1.3B-100B-GatedDeltaNet-hybrid-3-1\\\\nDONE: 1.3B-100B-GatedDeltaNet-hybrid-6-1\\\\nDONE: 1.3B-100B-GatedDeltaNet-pure\\\\nDONE: 1.3B-100B-HGRN2-hybrid-12-1\\\\nDONE: 1.3B-100B-HGRN2-hybrid-24-1\\\\nDONE: 1.3B-100B-HGRN2-hybrid-3-1\\\\nDONE: 1.3B-100B-HGRN2-hybrid-6-1\\\\nDONE: 1.3B-100B-HGRN2-pure\\\\nDONE: 1.3B-100B-RetNet-hybrid-12-1\\\\nDONE: 1.3B-100B-RetNet-hybrid-24-1\\\\nDONE: 1.3B-100B-RetNet-hybrid-3-1\\\\nDONE: 1.3B-100B-RetNet-hybrid-6-1\\\\nDONE: 1.3B-100B-RetNet-pure\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DONE: 1.3B-100B-GatedDeltaNet-hybrid-12-1\\nDONE: 1.3B-100B-GatedDeltaNet-hybrid-24-1\\nDONE: 1.3B-100B-GatedDeltaNet-hybrid-3-1\\nDONE: 1.3B-100B-GatedDeltaNet-hybrid-6-1\\nDONE: 1.3B-100B-GatedDeltaNet-pure\\nDONE: 1.3B-100B-HGRN2-hybrid-12-1\\nDONE: 1.3B-100B-HGRN2-hybrid-24-1\\nDONE: 1.3B-100B-HGRN2-hybrid-3-1\\nDONE: 1.3B-100B-HGRN2-hybrid-6-1\\nDONE: 1.3B-100B-HGRN2-pure\\nDONE: 1.3B-100B-RetNet-hybrid-12-1\\nDONE: 1.3B-100B-RetNet-hybrid-24-1\\nDONE: 1.3B-100B-RetNet-hybrid-3-1\\nDONE: 1.3B-100B-RetNet-hybrid-6-1\\nDONE: 1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+全部完成。提取各模型的 accuracy 结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "1b523f6f-1695-44c0-8077-1ecb5a5c4381",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HaKK1kkvESK8ApaCL4QBB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 35843,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Pdy8KiUbKgUQW1sbiTFMqq`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "for d in /root/entrainment_gated_ft/lm_eval_clean/arc_easy/*/; do name=$(basename \"$d\"); json=\"$d/${name}.json\"; python3 -c \"import json; d=json.load(open('$json')); r=d['results']['arc_easy']; print(f'$name: acc={r[\\\"acc,none\\\"]:.4f}, acc_norm={r[\\\"acc_norm,none\\\"]:.4f}')\" 2>/dev/null; done",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "e3f44110-3641-4a82-bd84-398a16615d99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HaKK1kkvESK8ApaCL4QBB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 35843,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T09:24:45.695Z_
+
+<details><summary>↩ Tool result · `toolu_01Pdy8KiUbKgUQW1sbiTFMqq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "6f2725ae-a53f-4bd3-a8fb-3b9c26041900",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Dt27P5bidPTS21CX4qrQLP`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && for d in /root/entrainment_gated_ft/lm_eval_clean/arc_easy/*/; do name=$(basename \"$d\"); json=\"$d/${name}.json\"; python3 -c \"\nimport json\nd=json.load(open('$json'))\nr=d['results']['arc_easy']\nprint(f'$name: acc={r[\\\"acc,none\\\"]:.4f}, acc_norm={r[\\\"acc_norm,none\\\"]:.4f}')\n\"; done",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "3b2019fb-0d5b-4a03-8cb0-646a3862e336",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVcxKMdabSgXALpjuqy592",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 336,
+      "cache_read_input_tokens": 36743,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 336
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T09:24:51.230Z_
+
+<details><summary>↩ Tool result · `toolu_01Dt27P5bidPTS21CX4qrQLP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1: acc=0.6995, acc_norm=0.6292\\n1.3B-100B-GatedDeltaNet-hybrid-24-1: acc=0.7092, acc_norm=0.6305\\n1.3B-100B-GatedDeltaNet-hybrid-3-1: acc=0.7083, acc_norm=0.6486\\n1.3B-100B-GatedDeltaNet-hybrid-6-1: acc=0.7176, acc_norm=0.6574\\n1.3B-100B-GatedDeltaNet-pure: acc=0.7121, acc_norm=0.6414\\n1.3B-100B-HGRN2-hybrid-12-1: acc=0.7332, acc_norm=0.6688\\n1.3B-100B-HGRN2-hybrid-24-1: acc=0.7302, acc_norm=0.6785\\n1.3B-100B-HGRN2-hybrid-3-1: acc=0.7205, acc_norm=0.6435\\n1.3B-100B-HGRN2-hybrid-6-1: acc=0.7412, acc_norm=0.6696\\n1.3B-100B-HGRN2-pure: acc=0.7130, acc_norm=0.6646\\n1.3B-100B-RetNet-hybrid-12-1: acc=0.7201, acc_norm=0.6553\\n1.3B-100B-RetNet-hybrid-24-1: acc=0.7088, acc_norm=0.6431\\n1.3B-100B-RetNet-hybrid-3-1: acc=0.6961, acc_norm=0.6444\\n1.3B-100B-RetNet-hybrid-6-1: acc=0.7180, acc_norm=0.6582\\n1.3B-100B-RetNet-pure: acc=0.7130, acc_norm=0.6486\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "b3be02aa-4d47-4b7f-be6a-68fdc5d58f70",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3B-100B-GatedDeltaNet-hybrid-12-1: acc=0.6995, acc_norm=0.6292\\\\n1.3B-100B-GatedDeltaNet-hybrid-24-1: acc=0.7092, acc_norm=0.6305\\\\n1.3B-100B-GatedDeltaNet-hybrid-3-1: acc=0.7083, acc_norm=0.6486\\\\n1.3B-100B-GatedDeltaNet-hybrid-6-1: acc=0.7176, acc_norm=0.6574\\\\n1.3B-100B-GatedDeltaNet-pure: acc=0.7121, acc_norm=0.6414\\\\n1.3B-100B-HGRN2-hybrid-12-1: acc=0.7332, acc_norm=0.6688\\\\n1.3B-100B-HGRN2-hybrid-24-1: acc=0.7302, acc_norm=0.6785\\\\n1.3B-100B-HGRN2-hybrid-3-1: acc=0.7205, acc_norm=0.6435\\\\n1.3B-100B-HGRN2-hybrid-6-1: acc=0.7412, acc_norm=0.6696\\\\n1.3B-100B-HGRN2-pure: acc=0.7130, acc_norm=0.6646\\\\n1.3B-100B-RetNet-hybrid-12-1: acc=0.7201, acc_norm=0.6553\\\\n1.3B-100B-RetNet-hybrid-24-1: acc=0.7088, acc_norm=0.6431\\\\n1.3B-100B-RetNet-hybrid-3-1: acc=0.6961, acc_norm=0.6444\\\\n1.3B-100B-RetNet-hybrid-6-1: acc=0.7180, acc_norm=0.6582\\\\n1.3B-100B-RetNet-pure: acc=0.7130, acc_norm=0.6486\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1: acc=0.6995, acc_norm=0.6292\\n1.3B-100B-GatedDeltaNet-hybrid-24-1: acc=0.7092, acc_norm=0.6305\\n1.3B-100B-GatedDeltaNet-hybrid-3-1: acc=0.7083, acc_norm=0.6486\\n1.3B-100B-GatedDeltaNet-hybrid-6-1: acc=0.7176, acc_norm=0.6574\\n1.3B-100B-GatedDeltaNet-pure: acc=0.7121, acc_norm=0.6414\\n1.3B-100B-HGRN2-hybrid-12-1: acc=0.7332, acc_norm=0.6688\\n1.3B-100B-HGRN2-hybrid-24-1: acc=0.7302, acc_norm=0.6785\\n1.3B-100B-HGRN2-hybrid-3-1: acc=0.7205, acc_norm=0.6435\\n1.3B-100B-HGRN2-hybrid-6-1: acc=0.7412, acc_norm=0.6696\\n1.3B-100B-HGRN2-pure: acc=0.7130, acc_norm=0.6646\\n1.3B-100B-RetNet-hybrid-12-1: acc=0.7201, acc_norm=0.6553\\n1.3B-100B-RetNet-hybrid-24-1: acc=0.7088, acc_norm=0.6431\\n1.3B-100B-RetNet-hybrid-3-1: acc=0.6961, acc_norm=0.6444\\n1.3B-100B-RetNet-hybrid-6-1: acc=0.7180, acc_norm=0.6582\\n1.3B-100B-RetNet-pure: acc=0.7130, acc_norm=0.6486\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+更新 registry 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "1d35b6f9-8468-45c1-a92c-43274910485a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3zQqkk1Uc6F47jQu3ryKA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 37079,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 865
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01D65BGiR2j5zh4cbXWW2sks`</summary>
+
+```json
+{
+  "exp_id": "exp-arc-easy-eval",
+  "field": "status",
+  "value": "DONE",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "f82a8f39-eb74-44d5-905d-7f2515c6a314",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V3zQqkk1Uc6F47jQu3ryKA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 37079,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 865
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T09:24:54.929Z_
+
+<details><summary>↩ Tool result · `toolu_01D65BGiR2j5zh4cbXWW2sks`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0471}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "8f7c0f71-2eff-4767-8803-0dbcf4b67d51",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0471}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0471}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01R2p5XMeLbeSMmmp27uFUYj`</summary>
+
+```json
+{
+  "exp_id": "exp-arc-easy-eval",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "39511bf0-1444-4fa3-94cd-77aa108ef634",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1ycHnxrgcngy8wXDW2iWE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 213,
+      "cache_read_input_tokens": 37944,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 213
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T09:24:58.501Z_
+
+<details><summary>↩ Tool result · `toolu_01R2p5XMeLbeSMmmp27uFUYj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-arc-easy-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:24:57.905Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7474}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "523db70c-20a2-4540-bf5c-1352ad84a5e8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-arc-easy-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:08:47.284Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:24:57.905Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"620603\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:08:47.244Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\\\", \\\"parent\\\": \\\"exp-001\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7474}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-arc-easy-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:24:57.905Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7474}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01L2uP7Aqqj7BCd8fXbgd4Ww`</summary>
+
+```json
+{
+  "exp_id": "exp-arc-easy-eval",
+  "field": "status",
+  "value": "DONE",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "b256097f-dc35-4da8-96e3-d11c3f24fe67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LgioyUgWcgFgDmVSpLJoBw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 522,
+      "cache_read_input_tokens": 38157,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 522
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T09:25:01.149Z_
+
+<details><summary>↩ Tool result · `toolu_01L2uP7Aqqj7BCd8fXbgd4Ww`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.054}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "006125da-97d1-426f-bc63-327e11bcce90",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.054}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.054}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HrgsddUjeAT5MTyMEeRzJ6`</summary>
+
+```json
+{
+  "exp_id": "exp-arc-easy-eval",
+  "field": "conclusion",
+  "value": "All 15 models (3 archs × 5 ratios) evaluated on ARC-Easy. Results saved with --log_samples for per-example analysis. HGRN2-h6-1 highest acc (0.7412), RetNet-h3-1 lowest (0.6961).",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "114bd948-5954-4f53-8a2a-d1e474d2363d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015auHjGkg5HJHjsoSC4Xi9q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 197,
+      "cache_read_input_tokens": 38679,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 197
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T09:25:06.167Z_
+
+<details><summary>↩ Tool result · `toolu_01HrgsddUjeAT5MTyMEeRzJ6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'All 15 models (3 archs × 5 ratios) evaluated on ARC-Easy. Results saved with --log_samples for per-example analysis. HGRN2-h6-1 highest acc (0.7412), RetNet-h3-1 lowest (0.6961).'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.0463}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "85a52b42-8b07-42fe-9e28-99e72a2fd040",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'All 15 models (3 archs × 5 ratios) evaluated on ARC-Easy. Results saved with --log_samples for per-example analysis. HGRN2-h6-1 highest acc (0.7412), RetNet-h3-1 lowest (0.6961).'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0463}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'All 15 models (3 archs × 5 ratios) evaluated on ARC-Easy. Results saved with --log_samples for per-example analysis. HGRN2-h6-1 highest acc (0.7412), RetNet-h3-1 lowest (0.6961).'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.0463}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01CdqiuJqrVwi7DRNWQg673q`</summary>
+
+```json
+{
+  "exp_id": "exp-arc-easy-eval",
+  "field": "conclusion",
+  "value": "success",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "efbcd380-fd7f-4359-8273-021987a8d5e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WecekmNUxp2VSKxz8Xvrig",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 447,
+      "cache_read_input_tokens": 38876,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 447
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T09:25:08.980Z_
+
+<details><summary>↩ Tool result · `toolu_01CdqiuJqrVwi7DRNWQg673q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-arc-easy-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:25:08.935Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0891}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "defaea24-eeac-47a1-bab5-e1abad84f43a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-arc-easy-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:08:47.284Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:25:08.935Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"620603\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:08:47.244Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0891}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-arc-easy-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:25:08.935Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0891}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QN86M1ayyV7eiW3kmnPXAD`</summary>
+
+```json
+{
+  "exp_id": "exp-arc-easy-eval",
+  "field": "status",
+  "value": "DONE",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "dea37a36-1e12-4eef-b64c-afa1ca58ee73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBvXthDs45vLLa35LEFch5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 39323,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T09:25:12.231Z_
+
+<details><summary>↩ Tool result · `toolu_01QN86M1ayyV7eiW3kmnPXAD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.0509}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "7886f1c9-e268-47e8-9478-ba366c705533",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0509}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.0509}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Vt8DhYtV7jc4Ljm73Up7cb`</summary>
+
+```json
+{
+  "exp_id": "exp-arc-easy-eval",
+  "field": "checkpoint_path",
+  "value": "/root/entrainment_gated_ft/lm_eval_clean/arc_easy/",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "9a8ebe46-01d3-4cdc-836c-a380ae621018",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014SYA5J5AfqjY9SxW73bEo9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 206,
+      "cache_read_input_tokens": 39851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 206
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T09:25:15.731Z_
+
+<details><summary>↩ Tool result · `toolu_01Vt8DhYtV7jc4Ljm73Up7cb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-arc-easy-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:25:15.664Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1552}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "a8a5e887-fda7-4c30-afb1-188d45de1869",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-arc-easy-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:08:47.284Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:25:15.664Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"620603\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:08:47.244Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1552}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-arc-easy-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:25:15.664Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1552}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AeA2Gx6KQMHiVq65zYhtB2`</summary>
+
+```json
+{
+  "exp_id": "exp-arc-easy-eval",
+  "field": "log_path",
+  "value": "/root/entrainment_gated_ft/lm_eval_clean/arc_easy/",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "2bedcdbf-6c8d-4381-88a4-eef989fd2d19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014SYA5J5AfqjY9SxW73bEo9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 206,
+      "cache_read_input_tokens": 39851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 206
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-20T09:25:16.652Z_
+
+<details><summary>↩ Tool result · `toolu_01AeA2Gx6KQMHiVq65zYhtB2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-arc-easy-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:25:16.584Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.172}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "fdd29c51-07e6-4556-b317-902576ec8636",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-arc-easy-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:08:47.284Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:25:16.584Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"620603\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:08:47.244Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.172}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-arc-easy-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:25:16.584Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.172}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_018P8RRwqqBxK2udTCAEZAxG`</summary>
+
+```json
+{
+  "exp_id": "exp-arc-easy-eval",
+  "field": "status",
+  "value": "DONE",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "86a6f7ec-b5a1-441b-a137-5d0bace2f984",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CgKLWajPYbYSicqnhJdcvV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1239,
+      "cache_read_input_tokens": 40057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1239
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-20T09:25:21.006Z_
+
+<details><summary>↩ Tool result · `toolu_018P8RRwqqBxK2udTCAEZAxG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-arc-easy-eval\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:25:20.825Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11793.6, \"gpu_hours\": 3.28}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"completed_at\": \"2026-05-20T09:25:20.825Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2272}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "36bbee7d-83a0-41b4-805c-3f9a29fd8291",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-arc-easy-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:08:47.284Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:25:20.825Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"620603\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:08:47.244Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 11793.6, \\\"gpu_hours\\\": 3.28}, \\\"hypothesis\\\": \\\"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\\\", \\\"completed_at\\\": \\\"2026-05-20T09:25:20.825Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2272}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-arc-easy-eval\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:25:20.825Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_arc_easy_all.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"620603\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-arc-easy-eval.log\", \"submitted_at\": \"2026-05-20T06:08:47.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11793.6, \"gpu_hours\": 3.28}, \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/arc_easy/\", \"completed_at\": \"2026-05-20T09:25:20.825Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2272}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+**已完成模型：15/15**
+缺失模型列表：无
+恢复操作：无需恢复（服务器重启前已全部跑完）
+
+结果汇总（acc / acc_norm）：
+
+| 模型 | acc | acc_norm |
+|------|-----|----------|
+| **GatedDeltaNet-pure** | 0.7121 | 0.6414 |
+| GatedDeltaNet-h24-1 | 0.7092 | 0.6305 |
+| GatedDeltaNet-h12-1 | 0.6995 | 0.6292 |
+| GatedDeltaNet-h6-1 | 0.7176 | 0.6574 |
+| GatedDeltaNet-h3-1 | 0.7083 | 0.6486 |
+| **RetNet-pure** | 0.7130 | 0.6486 |
+| RetNet-h24-1 | 0.7088 | 0.6431 |
+| RetNet-h12-1 | 0.7201 | 0.6553 |
+| RetNet-h6-1 | 0.7180 | 0.6582 |
+| RetNet-h3-1 | 0.6961 | 0.6444 |
+| **HGRN2-pure** | 0.7130 | 0.6646 |
+| HGRN2-h24-1 | 0.7302 | 0.6785 |
+| HGRN2-h12-1 | 0.7332 | 0.6688 |
+| **HGRN2-h6-1** | **0.7412** | 0.6696 |
+| HGRN2-h3-1 | 0.7205 | 0.6435 |
+
+结果路径：`/root/entrainment_gated_ft/lm_eval_clean/arc_easy/`（每个模型目录含 `.json` 结果和 `samples/arc_easy.jsonl`）。Registry 已更新为 DONE/success。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "uuid": "3951bd6e-8ceb-4033-9f11-6ba4e75e291a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ke5akXRtA9Yzk8sUmkoTNw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 641,
+      "cache_read_input_tokens": 41296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 641
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 59_
+
+**已完成模型：15/15**
+缺失模型列表：无
+恢复操作：无需恢复（服务器重启前已全部跑完）
+
+结果汇总（acc / acc_norm）：
+
+| 模型 | acc | acc_norm |
+|------|-----|----------|
+| **GatedDeltaNet-pure** | 0.7121 | 0.6414 |
+| GatedDeltaNet-h24-1 | 0.7092 | 0.6305 |
+| GatedDeltaNet-h12-1 | 0.6995 | 0.6292 |
+| GatedDeltaNet-h6-1 | 0.7176 | 0.6574 |
+| GatedDeltaNet-h3-1 | 0.7083 | 0.6486 |
+| **RetNet-pure** | 0.7130 | 0.6486 |
+| RetNet-h24-1 | 0.7088 | 0.6431 |
+| RetNet-h12-1 | 0.7201 | 0.6553 |
+| RetNet-h6-1 | 0.7180 | 0.6582 |
+| RetNet-h3-1 | 0.6961 | 0.6444 |
+| **HGRN2-pure** | 0.7130 | 0.6646 |
+| HGRN2-h24-1 | 0.7302 | 0.6785 |
+| HGRN2-h12-1 | 0.7332 | 0.6688 |
+| **HGRN2-h6-1** | **0.7412** | 0.6696 |
+| HGRN2-h3-1 | 0.7205 | 0.6435 |
+
+结果路径：`/root/entrainment_gated_ft/lm_eval_clean/arc_easy/`（每个模型目录含 `.json` 结果和 `samples/arc_easy.jsonl`）。Registry 已更新为 DONE/success。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 102915,
+  "duration_api_ms": 95248,
+  "num_turns": 22,
+  "stop_reason": "end_turn",
+  "session_id": "381d5cc9-e4fc-4ef5-81b8-9b3ca45d9f56",
+  "total_cost_usd": 0.5998590000000001,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 30096,
+    "cache_read_input_tokens": 571692,
+    "output_tokens": 4947,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30096,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 562,
+        "cache_read_input_tokens": 41296,
+        "cache_creation_input_tokens": 641,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 641
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2043,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002138,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 4947,
+      "cacheReadInputTokens": 571692,
+      "cacheCreationInputTokens": 30096,
+      "webSearchRequests": 0,
+      "costUSD": 0.5977210000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2d5555d4-ffc1-435f-b885-cce2b59557b7"
+}
+```
+
+</details>
+
+---

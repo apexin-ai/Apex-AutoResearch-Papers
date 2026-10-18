@@ -1,0 +1,33 @@
+# paper atlas edd r1n1
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_paper_atlas-edd-r1n1_20260515T155041_result.json`
+- **Structured JSON:** [`74dae71c03c96ff6607e.json`](../../sessions/74/74dae71c03c96ff6607e.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+全部 4 项修改已完成：
+
+1. **R1-N1 EDD 正式定义** (L60-67) — 添加了 Eq.1 公式 `EDD_T = max{d*: AUC(d*, d*+1) ≥ T}`，说明 T 含义，并前向引用 decision boundary dilution。
+
+2. **D024/D027 连续衰减叙事** (L79-88) — 跨模型段落重写为 "Cross-model AUC decay"，报告三模型完整 AUC 衰减曲线 + bootstrap p-values（Pythia 0.001/OLMo 0.091/GPT-2 XL 0.505），强调方向一致性 + 统计强度分层，不做硬阈值判定。新增 Table `cross_model_auc` (L90-104)。
+
+3. **EDD Sensitivity Table** (L117-132) — 扩展为三模型 × 四档 T 的 EDD 值表格，注明 experiment ID。
+
+4. **Decision boundary dilution** (L134-140) — 从原来一句扩展为完整段落，解释多分类 softmax 边界稀释机制，引用 4-class→6-class d2v3 AUC 从 0.804 降至 0.689 (-14.3%) 的具体数据，添加 `\label{sec:atlas:edd:dilution}` 供前文交叉引用。
+
+---

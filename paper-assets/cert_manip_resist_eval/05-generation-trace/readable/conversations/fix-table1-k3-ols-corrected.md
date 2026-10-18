@@ -1,0 +1,1375 @@
+# fix table1 k3 ols corrected
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_fix_table1-k3-ols-corrected_20260523T175018.jsonl`
+- **Structured JSON:** [`2d09436de4da07e5d76b.json`](../../sessions/2d/2d09436de4da07e5d76b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T17:56:46.693726+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T17:56:46.694050+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T17:56:46.694228+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "find /root/cert_manip_resist_eval /root/autodl-tmp/cert_manip_resist_eval -name \"*.py\" -type f 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "find /root/cert_manip_resist_eval /root/autodl-tmp/cert_manip_resist_eval -name \"*.py\" -type f 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T17:56:46.694396+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T17:56:46.694570+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "find /root/cert_manip_resist_eval -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "find /root/cert_manip_resist_eval -name \"*.py\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T17:56:46.694797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cert_manip_resist_eval/src/__init__.py\\n/root/cert_manip_resist_eval/src/config.py\\n/root/cert_manip_resist_eval/src/utils.py\\n/root/cert_manip_resist_eval/src/judge_service.py\\n/root/cert_manip_resist_eval/src/eval_pipeline.py\\n/root/cert_manip_resist_eval/src/correlation.py\\n/root/cert_manip_resist_eval/src/attacks.py\\n/root/cert_manip_resist_eval/src/panels.py\\n/root/cert_manip_resist_eval/src/keff.py\\n/root/cert_manip_resist_eval/src/scaling.py\\n/root/cert_manip_resist_eval/src/panel_selection.py\\n/root/cert_manip_resist_eval/src/api_judge_service.py\\n/root/cert_manip_resist_eval/src/unified_data_loader.py\\n/root/cert_manip_resist_eval/scripts/run_step1_correlation.py\\n/root/cert_manip_resist_eval/scripts/run_step2_attacks.py\\n/root/cert_manip_resist_eval/scripts/run_step3_keff.py\\n/root/cert_manip_resist_eval/scripts/run_step4_scaling.py\\n/root/cert_manip_resist_eval/scripts/run_all.py\\n/root/cert_manip_resist_eval/scripts/deploy_judges.py\\n/root/cert_manip_resist_eval/scripts/test_inference.py\\n/root/cert_manip_resist_eval/scripts/run_step1_subset.py\\n/root/cert_manip_resist_eval/scripts/prep_attack_data.py\\n/root/cert_manip_resist_eval/scripts/_eval_single_model.py\\n/root/cert_manip_resist_eval/scripts/run_step1_full.py\\n/root/cert_manip_resist_eval/scripts/copula_gof_check.py\\n/root/cert_manip_resist_eval/scripts/run_step2_keff_contrast.py\\n/root/cert_manip_resist_eval/scripts/run_step2v3_regression.py\\n/root/cert_manip_resist_eval/scripts/run_taxonomy_broadspectrum.py\\n/root/cert_manip_resist_eval/scripts/validate_panel_selection.py\\n/root/cert_manip_resist_eval/scripts/run_plan003_random_fault.py\\n/root/cert_manip_resist_eval/scripts/run_plan009_vif_analysis.py\\n/root/cert_manip_resist_eval/scripts/validate_api_judges.py\\n/root/cert_manip_resist_eval/scripts/run_plan001_step1_api_scoring.py\\n/root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py\\n/r
+…[truncated 4423 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T17:56:46.694988+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -rn \"\\.get.*winner.*tie\" /root/cert_manip_resist_eval --include=\"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -rn \"\\.get.*winner.*tie\" /root/cert_manip_resist_eval --include=\"*.py\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T17:56:46.695290+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cert_manip_resist_eval/src/correlation.py:18:    return np.array([mapping.get(s.get(\\\"winner\\\", \\\"tie\\\"), 2) for s in scores])\\n/root/cert_manip_resist_eval/src/panels.py:36:                winner = scores[jid][idx].get(\\\"winner\\\", \\\"tie\\\")\\n/root/cert_manip_resist_eval/src/unified_data_loader.py:46:    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n/root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py:81:        if clean_list[i].get(\\\"winner\\\", \\\"tie\\\") == gt:\\n/root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py:83:            if attacked_list[i].get(\\\"winner\\\", \\\"tie\\\") != gt:\\n/root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py:93:        cv = majority_vote([clean[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n/root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py:97:        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n/root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py:80:        if clean_list[i].get(\\\"winner\\\", \\\"tie\\\") == gt:\\n/root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py:82:            if attacked_list[i].get(\\\"winner\\\", \\\"tie\\\") != gt:\\n/root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py:92:        cv = majority_vote([clean[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n/root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py:96:        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n/root/cert_manip_resist_eval/scripts/run_7model_preview.py:113:                    s.get(\\\"winner\\\", \\\"tie\\\") if isinstance(s, dict) else \\\"tie\\\"\\n/root/cert_manip_resist_eval/scripts/run_7model_preview.py:149:        if clean_list[i]
+…[truncated 7106 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T17:56:46.695504+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_aggregation_loglog.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/scripts/run_aggregation_loglog.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T17:56:46.695857+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Aggregation regression: log-log OLS for 4 aggregation methods.\\n\\nFor each of 12 conditions (2 datasets x 6 attacks) x 4 aggregation methods, runs:\\n    log(ASR + eps) ~ log(K_eff) + log(eta_max + eps)\\nwith BH FDR correction per method.\\n\\nOutput:\\n  - artifacts/results/plan001/aggregation_regression_15model_loglog.json\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n    compute_clean_accuracy,\\n)\\n\\nlogger = setup_logging(\\\"aggregation_loglog\\\")\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\nMETHODS = [\\\"majority_vote\\\", \\\"weighted_vote\\\", \\\"threshold_unanimous\\\", \\\"bayesian\\\"]\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\nd
+…[truncated 7354 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T17:56:46.696076+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "wc -l /root/cert_manip_resist_eval/scripts/run_aggregation_loglog.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "wc -l /root/cert_manip_resist_eval/scripts/run_aggregation_loglog.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T17:56:46.696216+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"420 /root/cert_manip_resist_eval/scripts/run_aggregation_loglog.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T17:56:46.696340+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T17:56:46.696584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Unified data loader for 15-model cert_manip_resist_eval pipeline.\\n\\nHandles two data formats:\\n  - Checkpoint files (local 6 models): nested {clean_scores: {ds: {model: [...]}}}\\n  - Individual JSON files (API 9 models): flat {scores: [...], asr, accuracy, ...}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4-6\\\", \\\"gpt-5.5\\\", \\\"gemini-3.1-pro-preview\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\", \\\"gpt-4.1-nano\\\", \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Default paths ────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef l
+…[truncated 7136 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T17:56:46.696804+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -200 /root/cert_manip_resist_eval/scripts/run_aggregation_loglog.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -200 /root/cert_manip_resist_eval/scripts/run_aggregation_loglog.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T17:56:46.697031+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Aggregation regression: log-log OLS for 4 aggregation methods.\\n\\nFor each of 12 conditions (2 datasets x 6 attacks) x 4 aggregation methods, runs:\\n    log(ASR + eps) ~ log(K_eff) + log(eta_max + eps)\\nwith BH FDR correction per method.\\n\\nOutput:\\n  - artifacts/results/plan001/aggregation_regression_15model_loglog.json\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n    compute_clean_accuracy,\\n)\\n\\nlogger = setup_logging(\\\"aggregation_loglog\\\")\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\nMETHODS = [\\\"majority_vote\\\", \\\"weighted_vote\\\", \\\"threshold_unanimous\\\", \\\"bayesian\\\"]\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\nd
+…[truncated 5483 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T17:56:46.697189+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "tail -n +200 /root/cert_manip_resist_eval/scripts/run_aggregation_loglog.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "tail -n +200 /root/cert_manip_resist_eval/scripts/run_aggregation_loglog.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T17:56:46.697474+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                panel_accs = [clean_acc.get((j, ds), 0.5) for j in jids]\\n\\n                results = compute_panel_asr_all_methods(\\n                    jids, cs, ats, pairs[ds], panel_accs\\n                )\\n\\n                for m in METHODS:\\n                    asr, denom = results[m]\\n                    if m == \\\"threshold_unanimous\\\" and denom == 0:\\n                        continue\\n                    method_panels[m][\\\"asrs\\\"].append(asr)\\n                    method_panels[m][\\\"keffs\\\"].append(keff)\\n                    method_panels[m][\\\"etas\\\"].append(eta_max)\\n\\n            logger.info(\\n                f\\\"  majority={len(method_panels['majority_vote']['asrs'])}, \\\"\\n                f\\\"threshold={len(method_panels['threshold_unanimous']['asrs'])}, \\\"\\n                f\\\"skipped={skipped}\\\"\\n            )\\n\\n            for m in METHODS:\\n                mp = method_panels[m]\\n                n_panels = len(mp[\\\"asrs\\\"])\\n\\n                if n_panels < 10:\\n                    logger.warning(f\\\"  {m}: {n_panels} panels, skipping\\\")\\n                    continue\\n\\n                p_asrs = np.array(mp[\\\"asrs\\\"])\\n                p_keffs = np.array(mp[\\\"keffs\\\"])\\n                p_etas = np.array(mp[\\\"etas\\\"])\\n\\n                if np.std(p_asrs) < 1e-10:\\n                    logger.warning(f\\\"  {m}: constant ASR ({p_asrs[0]:.4f}), skipping\\\")\\n                    continue\\n\\n                log_keff = np.log(p_keffs)\\n                log_eta = np.log(p_etas + EPS)\\n                y = np.log(p_asrs + EPS)\\n\\n                X = np.column_stack([log_keff, log_eta])\\n                Xc = sm.add_constant(X)\\n                fit = sm.OLS(y, Xc).fit()\\n\\n                keff_p = float(fit.pvalues[1])\\n                eta_p = float(fit.pvalues[2])\\n\\n                sd_y = np.std(y)\\n                keff
+…[truncated 7402 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T17:56:46.697688+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"_is_valid_score\" /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -n \"_is_valid_score\" /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T17:56:46.697871+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"232:def _is_valid_score(score):\\n255:        if not _is_valid_score(clean_list[i]) or not _is_valid_score(attacked_list[i]):\\n272:        if not _is_valid_score(clean_scores[i]) or not _is_valid_score(attacked_scores[i]):\\n292:            if not _is_valid_score(clean[j][i]) or not _is_valid_score(attacked[j][i]):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T17:56:46.698017+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -30 /root/cert_manip_resist_eval/artifacts/results/plan001/aggregation_regression_15model_loglog.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -30 /root/cert_manip_resist_eval/artifacts/results/plan001/aggregation_regression_15model_loglog.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T17:56:46.698167+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"aggregation_regression_loglog_15model\\\",\\n  \\\"n_models\\\": 15,\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"methods\\\": [\\n    \\\"majority_vote\\\",\\n    \\\"weighted_vote\\\",\\n    \\\"threshold_unanimous\\\",\\n    \\\"bayesian\\\"\\n  ],\\n  \\\"fdr_alpha\\\": 0.05,\\n  \\\"eps\\\": 1e-06,\\n  \\\"summary\\\": {\\n    \\\"majority_vote\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T17:56:46.698294+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -n 245 /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -n 245 /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T17:56:46.698544+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Unified data loader for 15-model cert_manip_resist_eval pipeline.\\n\\nHandles two data formats:\\n  - Checkpoint files (local 6 models): nested {clean_scores: {ds: {model: [...]}}}\\n  - Individual JSON files (API 9 models): flat {scores: [...], asr, accuracy, ...}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4-6\\\", \\\"gpt-5.5\\\", \\\"gemini-3.1-pro-preview\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\", \\\"gpt-4.1-nano\\\", \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Default paths ────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef l
+…[truncated 7194 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T17:56:46.698780+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/aggregation_regression_15model_loglog.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/aggregation_regression_15model_loglog.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T17:56:46.699136+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"aggregation_regression_loglog_15model\\\",\\n  \\\"n_models\\\": 15,\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"methods\\\": [\\n    \\\"majority_vote\\\",\\n    \\\"weighted_vote\\\",\\n    \\\"threshold_unanimous\\\",\\n    \\\"bayesian\\\"\\n  ],\\n  \\\"fdr_alpha\\\": 0.05,\\n  \\\"eps\\\": 1e-06,\\n  \\\"summary\\\": {\\n    \\\"majority_vote\\\": {\\n      \\\"eta_fdr_sig\\\": 11,\\n      \\\"keff_fdr_sig\\\": 8,\\n      \\\"keff_sig_positive\\\": 7,\\n      \\\"keff_sig_negative\\\": 1,\\n      \\\"n_conditions\\\": 12,\\n      \\\"mean_R2\\\": 0.2975103784195199\\n    },\\n    \\\"weighted_vote\\\": {\\n      \\\"eta_fdr_sig\\\": 9,\\n      \\\"keff_fdr_sig\\\": 9,\\n      \\\"keff_sig_positive\\\": 9,\\n      \\\"keff_sig_negative\\\": 0,\\n      \\\"n_conditions\\\": 12,\\n      \\\"mean_R2\\\": 0.2841329710218683\\n    },\\n    \\\"threshold_unanimous\\\": {\\n      \\\"eta_fdr_sig\\\": 12,\\n      \\\"keff_fdr_sig\\\": 11,\\n      \\\"keff_sig_positive\\\": 10,\\n      \\\"keff_sig_negative\\\": 1,\\n      \\\"n_conditions\\\": 12,\\n      \\\"mean_R2\\\": 0.88997712032931\\n    },\\n    \\\"bayesian\\\": {\\n      \\\"eta_fdr_sig\\\": 9,\\n      \\\"keff_fdr_sig\\\": 7,\\n      \\\"keff_sig_positive\\\": 1,\\n      \\\"keff_sig_negative\\\": 6,\\n      \\\"n_conditions\\\": 12,\\n      \\\"mean_R2\\\": 0.10366278458673168\\n    }\\n  },\\n  \\\"detail\\\": [\\n    {\\n      \\\"condition\\\": \\\"mmluxprompt_injection\\\",\\n      \\\"method\\\": \\\"majo
+…[truncated 8436 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T17:56:46.699330+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && python3 -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom src.unified_data_loader import load_all_scores, DATASETS, ATTACKS, ALL_MODELS\nclean, attacked = load_all_scores()\n\nn_error = 0\nn_total = 0\nerror_models = {}\nfor ds in DATASETS:\n    for mid in ALL_MODELS:\n        if mid not in clean[ds]:\n            continue\n        for s in clean[ds][mid]:\n            n_total += 1\n            w = s.get('winner')\n            if w is None or s.get('error'):\n                n_error += 1\n                error_models[mid] = error_models.get(mid, 0) + 1\n        for atk in ATTACKS:\n            if mid not in attacked[ds][atk]:\n                continue\n            for s in attacked[ds][atk][mid]:\n                n_total += 1\n                w = s.get('winner')\n                if w is None or s.get('error'):\n                    n_error += 1\n                    error_models[mid] = error_models.get(mid, 0) + 1\n\nprint(f'Total scores: {n_total}')\nprint(f'Error scores: {n_error}')\nprint(f'Error rate: {n_error/n_total:.4%}')\nprint('By model:')\nfor mid, cnt in sorted(error_models.items(), key=lambda x: -x[1]):\n    print(f'  {mid}: {cnt}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cd /root/cert_manip_resist_eval && python3 -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom src.unified_data_loader import load_all_scores, DATASETS, ATTACKS, ALL_MODELS\nclean, attacked = load_all_scores()\n\nn_error = 0\nn_total = 0\nerror_models = {}\nfor ds in DATASETS:\n    for mid in ALL_MODELS:\n        if mid not in clean[ds]:\n            continue\n        for s in clean[ds][mid]:\n            n_total += 1\n            w = s.get('winner')\n            if w is None or s.get('error'):\n                n_error += 1\n                error_models[mid] = error_models.get(mid, 0) + 1\n        for atk in ATTACKS:\n            if mid not in attacked[ds][atk]:\n                continue\n            for s in attacked[ds][atk][mid]:\n                n_total += 1\n                w = s.get('winner')\n                if w is None or s.get('error'):\n                    n_error += 1\n                    error_models[mid] = error_models.get(mid, 0) + 1\n\nprint(f'Total scores: {n_total}')\nprint(f'Error scores: {n_error}')\nprint(f'Error rate: {n_error/n_total:.4%}')\nprint('By model:')\nfor mid, cnt in sorted(error_models.items(), key=lambda x: -x[1]):\n    print(f'  {mid}: {cnt}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T17:56:46.699498+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/cert_manip_resist_eval && python3 -c \\\"\\\\nimport sys\\\\nsys.path.insert(0, \\\\'.\\\\')\\\\nfrom src.unified_data_loader import load_all_scores, DATASETS, ATTACKS, ALL_MODELS\\\\nclean, attacked = load_all_scores()\\\\n\\\\nn_error = 0\\\\nn_total = 0\\\\nerror_models = {}\\\\nfor ds in DATASETS:\\\\n    for mid in ALL_MODELS:\\\\n        if mid not in clean[ds]:\\\\n            continue\\\\n        for s in clean[ds][mid]:\\\\n            n_total += 1\\\\n            w = s.get(\\\\'winner\\\\')\\\\n            if w is None or s.get(\\\\'error\\\\'):\\\\n                n_error += 1\\\\n                error_models[mid] = error_models.get(mid, 0) + 1\\\\n        for atk in ATTACKS:\\\\n            if mid not in attacked[ds][atk]:\\\\n                continue\\\\n            for s in attacked[ds][atk][mid]:\\\\n                n_total += 1\\\\n                w = s.get(\\\\'winner\\\\')\\\\n                if w is None or s.get(\\\\'error\\\\'):\\\\n                    n_error += 1\\\\n                    error_models[mid] = error_models.get(mid, 0) + 1\\\\n\\\\nprint(f\\\\'Total scores: {n_total}\\\\')\\\\nprint(f\\\\'Error scores: {n_error}\\\\')\\\\nprint(f\\\\'Error rate: {n_error/n_total:.4%}\\\\')\\\\nprint(\\\\'By model:\\\\')\\\\nfor mid, cnt in sorted(error_models.items(), key=lambda x: -x[1]):\\\\n    print(f\\\\'  {mid}: {cnt}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T17:56:46.699670+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "seetacloud-rtx6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T17:56:46.699802+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T17:56:46.699920+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/miniconda3/bin/python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls /root/miniconda3/bin/python3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T17:56:46.700038+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T17:56:46.700157+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python3 -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom src.unified_data_loader import load_all_scores, DATASETS, ATTACKS, ALL_MODELS\nclean, attacked = load_all_scores()\n\nn_error = 0\nn_total = 0\nerror_models = {}\nfor ds in DATASETS:\n    for mid in ALL_MODELS:\n        if mid not in clean[ds]:\n            continue\n        for s in clean[ds][mid]:\n            n_total += 1\n            w = s.get('winner')\n            if w is None or s.get('error'):\n                n_error += 1\n                error_models[mid] = error_models.get(mid, 0) + 1\n        for atk in ATTACKS:\n            if mid not in attacked[ds][atk]:\n                continue\n            for s in attacked[ds][atk][mid]:\n                n_total += 1\n                w = s.get('winner')\n                if w is None or s.get('error'):\n                    n_error += 1\n                    error_models[mid] = error_models.get(mid, 0) + 1\n\nprint(f'Total scores: {n_total}')\nprint(f'Error scores: {n_error}')\nprint(f'Error rate: {n_error/n_total:.4%}')\nprint('By model:')\nfor mid, cnt in sorted(error_models.items(), key=lambda x: -x[1]):\n    print(f'  {mid}: {cnt}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python3 -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom src.unified_data_loader import load_all_scores, DATASETS, ATTACKS, ALL_MODELS\nclean, attacked = load_all_scores()\n\nn_error = 0\nn_total = 0\nerror_models = {}\nfor ds in DATASETS:\n    for mid in ALL_MODELS:\n        if mid not in clean[ds]:\n            continue\n        for s in clean[ds][mid]:\n            n_total += 1\n            w = s.get('winner')\n            if w is None or s.get('error'):\n                n_error += 1\n                error_models[mid] = error_models.get(mid, 0) + 1\n        for atk in ATTACKS:\n            if mid not in attacked[ds][atk]:\n                continue\n            for s in attacked[ds][atk][mid]:\n                n_total += 1\n                w = s.get('winner')\n                if w is None or s.get('error'):\n                    n_error += 1\n                    error_models[mid] = error_models.get(mid, 0) + 1\n\nprint(f'Total scores: {n_total}')\nprint(f'Error scores: {n_error}')\nprint(f'Error rate: {n_error/n_total:.4%}')\nprint('By model:')\nfor mid, cnt in sorted(error_models.items(), key=lambda x: -x[1]):\n    print(f'  {mid}: {cnt}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T17:56:46.700289+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total scores: 63000\\nError scores: 1221\\nError rate: 1.9381%\\nBy model:\\n  gemini-3.5-flash: 742\\n  gemini-3.1-pro-preview: 335\\n  gpt-5.5: 129\\n  llama3.1-70b: 7\\n  qwen2.5-14b: 4\\n  claude-opus-4-6: 1\\n  gpt-4.1: 1\\n  claude-3-haiku: 1\\n  llama3.1-8b: 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T17:56:46.700474+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat > /root/cert_manip_resist_eval/scripts/run_aggregation_loglog_corrected.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Corrected aggregation regression: log-log OLS with error filtering.\n\nFix: .get(\"winner\", \"tie\") treated API errors as ties. Now skips samples\nwhere any judge returned an error (winner=None or error=True).\n\nOutput: aggregation_regression_15model_loglog_corrected.json\n\"\"\"\n\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n\nimport sys\nsys.path.insert(0, \"/root/cert_manip_resist_eval\")\n\nimport json\nimport itertools\nimport numpy as np\nimport statsmodels.api as sm\nfrom pathlib import Path\nfrom statsmodels.stats.multitest import multipletests\n\nfrom src.utils import setup_logging\nfrom src.unified_data_loader import (\n    ALL_MODELS, DATASETS, ATTACKS,\n    load_all_scores, load_pairs, load_mi_data,\n    compute_clean_accuracy,\n)\n\nlogger = setup_logging(\"aggregation_loglog_corrected\")\n\nEPS = 1e-6\nFDR_ALPHA = 0.05\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\ndef _is_valid_score(score):\n    if not isinstance(score, dict):\n        return False\n    w = score.get(\"winner\")\n    if w is None:\n        return False\n    if score.get(\"error\"):\n        return False\n    if isinstance(w, str) and w.lower() in ('error', 'format_error', 'api_error', 'timeout'):\n        return False\n    return True\n\n\ndef majority_vote(votes):\n    counts = {\"A\": 0, \"B\": 0, \"tie\": 0}\n    for v in votes:\n        counts[v] = counts.get(v, 0) + 1\n    mc = max(counts.values())\n    winners = [k for k, c in counts.items() if c == mc]\n    if len(winners) == 1:\n        return winners[0]\n    for w in winners:\n        if w != \"tie\":\n            return w\n    return \"tie\"\n\n\ndef compute_individual_asr_corrected(clean_list, attacked_list, pairs):\n    n = min(len(clean_list), len(attacked_list), len(pairs))\n    n_flips = n_correct = n_filtered = 0\n    for i in range(n):\n        if not _is_valid_score(clean_list[i]) or not _is_valid_score(attacked_list[i]):\n            n_filtered += 1\n            continue\n        gt = pairs[i][\"ground_truth_winner\"]\n        if clean_list[i][\"winner\"] == gt:\n            n_correct += 1\n            if attacked_list[i][\"winner\"] != gt:\n                n_flips += 1\n    return n_flips / max(n_correct, 1), n_filtered\n\n\ndef compute_panel_asr_corrected(jids, clean, attacked, pairs):\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\n            *(len(attacked[j]) for j in jids))\n\n    mv_flips = mv_correct = n_filtered = 0\n\n    for i in range(n):\n        any_invalid = False\n        for j in jids:\n            if not _is_valid_score(clean[j][i]) or not _is_valid_score(attacked[j][i]):\n                any_invalid = True\n                break\n        if any_invalid:\n            n_filtered += 1\n            continue\n\n        gt = pairs[i][\"ground_truth_winner\"]\n        c_votes = [clean[j][i][\"winner\"] for j in jids]\n        a_votes = [attacked[j][i][\"winner\"] for j in jids]\n\n        cv = majority_vote(c_votes)\n        if cv == gt:\n            mv_correct += 1\n            if majority_vote(a_votes) != gt:\n                mv_flips += 1\n\n    asr = mv_flips / max(mv_correct, 1)\n    return asr, mv_correct, n_filtered\n\n\ndef main():\n    logger.info(\"=\" * 60)\n    logger.info(\"Corrected Aggregation Regression (log-log OLS, majority_vote)\")\n    logger.info(\"Error samples EXCLUDED\")\n    logger.info(\"=\" * 60)\n\n    mi_data = load_mi_data()\n    pairs = load_pairs()\n    clean, attacked = load_all_scores()\n\n    clean_acc = compute_clean_accuracy(clean, pairs)\n\n    ind_asr = {}\n    total_filtered = 0\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            for mid in ALL_MODELS:\n                if mid in clean[ds] and mid in attacked[ds][atk]:\n                    asr, nf = compute_individual_asr_corrected(\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\n                    )\n                    ind_asr[(ds, atk, mid)] = asr\n                    total_filtered += nf\n    logger.info(f\"Individual ASR: {len(ind_asr)} values, {total_filtered} error samples filtered\")\n\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), 3))\n    logger.info(f\"Total panels: {len(all_combos)}\")\n\n    raw_eta_ps = []\n    raw_keff_ps = []\n    valid_keys = []\n    conditions = {}\n\n    for ds in DATASETS:\n        keff_data = mi_data[\"keff_per_panel\"].get(ds, {})\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n            logger.info(f\"\\n--- {cond} ---\")\n\n            asrs = []\n            keffs = []\n            etas = []\n            skipped = 0\n            panel_filtered_total = 0\n\n            for combo in all_combos:\n                jids = [ALL_MODELS[i] for i in combo]\n                if not all((ds, atk, j) in ind_asr for j in jids):\n                    skipped += 1\n                    continue\n                pk = \"|\".join(jids)\n                if pk not in keff_data:\n                    skipped += 1\n                    continue\n\n                keff = keff_data[pk][\"keff\"]\n                eta_max = max(ind_asr[(ds, atk, j)] for j in jids)\n\n                cs = {j: clean[ds][j] for j in jids}\n                ats = {j: attacked[ds][atk][j] for j in jids}\n\n                asr, denom, nf = compute_panel_asr_corrected(\n                    jids, cs, ats, pairs[ds]\n                )\n                panel_filtered_total += nf\n\n                asrs.append(asr)\n                keffs.append(keff)\n                etas.append(eta_max)\n\n            n_panels = len(asrs)\n            logger.info(f\"  panels={n_panels}, skipped={skipped}, error_samples_filtered={panel_filtered_total}\")\n\n            if n_panels < 10:\n                logger.warning(f\"  {n_panels} panels, skipping\")\n                continue\n\n            p_asrs = np.array(asrs)\n            p_keffs = np.array(keffs)\n            p_etas = np.array(etas)\n\n            if np.std(p_asrs) < 1e-10:\n                logger.warning(f\"  constant ASR ({p_asrs[0]:.4f}), skipping\")\n                continue\n\n            log_keff = np.log(p_keffs)\n            log_eta = np.log(p_etas + EPS)\n            y = np.log(p_asrs + EPS)\n\n            X = np.column_stack([log_keff, log_eta])\n            Xc = sm.add_constant(X)\n            fit = sm.OLS(y, Xc).fit()\n\n            keff_p = float(fit.pvalues[1])\n            eta_p = float(fit.pvalues[2])\n\n            sd_y = np.std(y)\n            keff_std_beta = float(fit.params[1] * np.std(log_keff) / sd_y)\n            eta_std_beta = float(fit.params[2] * np.std(log_eta) / sd_y)\n\n            cd = {\n                \"condition\": cond,\n                \"method\": \"majority_vote\",\n                \"dataset\": ds,\n                \"attack\": atk,\n                \"n_panels\": n_panels,\n                \"eta_std_beta\": eta_std_beta,\n                \"eta_raw_p\": eta_p,\n                \"keff_std_beta\": keff_std_beta,\n                \"keff_raw_p\": keff_p,\n                \"R2\": float(fit.rsquared),\n            }\n\n            conditions[cond] = cd\n            raw_eta_ps.append(eta_p)\n            raw_keff_ps.append(keff_p)\n            valid_keys.append(cond)\n\n            logger.info(\n                f\"  beta_eta={eta_std_beta:+.4f} (p={eta_p:.2e}), \"\n                f\"beta_K={keff_std_beta:+.4f} (p={keff_p:.2e}), R2={fit.rsquared:.4f}\"\n            )\n\n    # FDR correction\n    if valid_keys:\n        _, fdr_eta, _, _ = multipletests(raw_eta_ps, method=\"fdr_bh\")\n        _, fdr_keff, _, _ = multipletests(raw_keff_ps, method=\"fdr_bh\")\n        for i, ck in enumerate(valid_keys):\n            conditions[ck][\"eta_fdr_p\"] = float(fdr_eta[i])\n            conditions[ck][\"keff_fdr_p\"] = float(fdr_keff[i])\n\n    # Summary\n    logger.info(\"\\n\" + \"=\" * 60)\n    logger.info(\"CORRECTED RESULTS SUMMARY (majority_vote only)\")\n    logger.info(\"=\" * 60)\n\n    n_eta = sum(1 for ck in valid_keys if conditions[ck].get(\"eta_fdr_p\", 1) < FDR_ALPHA)\n    n_keff = sum(1 for ck in valid_keys if conditions[ck].get(\"keff_fdr_p\", 1) < FDR_ALPHA)\n    n_pos = sum(1 for ck in valid_keys\n                if conditions[ck].get(\"keff_fdr_p\", 1) < FDR_ALPHA\n                and conditions[ck][\"keff_std_beta\"] > 0)\n    n_neg = sum(1 for ck in valid_keys\n                if conditions[ck].get(\"keff_fdr_p\", 1) < FDR_ALPHA\n                and conditions[ck][\"keff_std_beta\"] < 0)\n\n    logger.info(f\"  eta_max FDR sig: {n_eta}/12\")\n    logger.info(f\"  K_eff FDR sig:   {n_keff}/12\")\n    logger.info(f\"    positive: {n_pos}\")\n    logger.info(f\"    negative: {n_neg}\")\n\n    for ck in valid_keys:\n        cd = conditions[ck]\n        e_s = \"+*\" if cd.get(\"eta_fdr_p\", 1) < FDR_ALPHA and cd[\"eta_std_beta\"] > 0 else \\\n              \"-*\" if cd.get(\"eta_fdr_p\", 1) < FDR_ALPHA and cd[\"eta_std_beta\"] < 0 else \"n.s.\"\n        k_s = \"+*\" if cd.get(\"keff_fdr_p\", 1) < FDR_ALPHA and cd[\"keff_std_beta\"] > 0 else \\\n              \"-*\" if cd.get(\"keff_fdr_p\", 1) < FDR_ALPHA and cd[\"keff_std_beta\"] < 0 else \"n.s.\"\n        # dominance\n        eta_sig = cd.get(\"eta_fdr_p\", 1) < FDR_ALPHA\n        keff_sig = cd.get(\"keff_fdr_p\", 1) < FDR_ALPHA\n        if eta_sig and keff_sig:\n            dom = \"Co\"\n        elif eta_sig and not keff_sig:\n            dom = \"eta\"\n        elif not eta_sig and keff_sig:\n            dom = \"K\"\n        else:\n            dom = \"--\"\n\n        cd[\"eta_sig\"] = e_s\n        cd[\"keff_sig\"] = k_s\n        cd[\"dominance\"] = dom\n\n        logger.info(\n            f\"  {ck:<40} eta={e_s:<4} K={k_s:<4} dom={dom:<4} \"\n            f\"R2={cd['R2']:.4f} beta_eta={cd['eta_std_beta']:+.4f} beta_K={cd['keff_std_beta']:+.4f}\"\n        )\n\n    # Save\n    output = {\n        \"analysis\": \"aggregation_regression_loglog_15model_corrected\",\n        \"fix\": \"error samples excluded (was: .get('winner', 'tie') treating errors as ties)\",\n        \"n_models\": len(ALL_MODELS),\n        \"models\": ALL_MODELS,\n        \"method\": \"majority_vote\",\n        \"fdr_alpha\": FDR_ALPHA,\n        \"eps\": EPS,\n        \"K\": 3,\n        \"n_panels\": 455,\n        \"summary\": {\n            \"eta_fdr_sig\": n_eta,\n            \"keff_fdr_sig\": n_keff,\n            \"keff_sig_positive\": n_pos,\n            \"keff_sig_negative\": n_neg,\n            \"n_conditions\": len(valid_keys),\n            \"mean_R2\": float(np.mean([conditions[ck][\"R2\"] for ck in valid_keys])) if valid_keys else 0,\n        },\n        \"conditions\": conditions,\n    }\n\n    out_dir = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001\")\n    out_dir.mkdir(parents=True, exist_ok=True)\n    out_path = out_dir / \"aggregation_regression_15model_loglog_corrected.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\n    logger.info(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat > /root/cert_manip_resist_eval/scripts/run_aggregation_loglog_corrected.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Corrected aggregation regression: log-log OLS with error filtering.\n\nFix: .get(\"winner\", \"tie\") treated API errors as ties. Now skips samples\nwhere any judge returned an error (winner=None or error=True).\n\nOutput: aggregation_regression_15model_loglog_corrected.json\n\"\"\"\n\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n\nimport sys\nsys.path.insert(0, \"/root/cert_manip_resist_eval\")\n\nimport json\nimport itertools\nimport numpy as np\nimport statsmodels.api as sm\nfrom pathlib import Path\nfrom statsmodels.stats.multitest import multipletests\n\nfrom src.utils import setup_logging\nfrom src.unified_data_loader import (\n    ALL_MODELS, DATASETS, ATTACKS,\n    load_all_scores, load_pairs, load_mi_data,\n    compute_clean_accuracy,\n)\n\nlogger = setup_logging(\"aggregation_loglog_corrected\")\n\nEPS = 1e-6\nFDR_ALPHA = 0.05\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\ndef _is_valid_score(score):\n    if not isinstance(score, dict):\n        return False\n    w = score.get(\"winner\")\n    if w is None:\n        return False\n    if score.get(\"error\"):\n        return False\n    if isinstance(w, str) and w.lower() in ('error', 'format_error', 'api_error', 'timeout'):\n        return False\n    return True\n\n\ndef majority_vote(votes):\n    counts = {\"A\": 0, \"B\": 0, \"tie\": 0}\n    for v in votes:\n        counts[v] = counts.get(v, 0) + 1\n    mc = max(counts.values())\n    winners = [k for k, c in counts.items() if c == mc]\n    if len(winners) == 1:\n        return winners[0]\n    for w in winners:\n        if w != \"tie\":\n            return w\n    return \"tie\"\n\n\ndef compute_individual_asr_corrected(clean_list, attacked_list, pairs):\n    n = min(len(clean_list), len(attacked_list), len(pairs))\n    n_flips = n_correct = n_filtered = 0\n    for i in range(n):\n        if not _is_valid_score(clean_list[i]) or not _is_valid_score(attacked_list[i]):\n            n_filtered += 1\n            continue\n        gt = pairs[i][\"ground_truth_winner\"]\n        if clean_list[i][\"winner\"] == gt:\n            n_correct += 1\n            if attacked_list[i][\"winner\"] != gt:\n                n_flips += 1\n    return n_flips / max(n_correct, 1), n_filtered\n\n\ndef compute_panel_asr_corrected(jids, clean, attacked, pairs):\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\n            *(len(attacked[j]) for j in jids))\n\n    mv_flips = mv_correct = n_filtered = 0\n\n    for i in range(n):\n        any_invalid = False\n        for j in jids:\n            if not _is_valid_score(clean[j][i]) or not _is_valid_score(attacked[j][i]):\n                any_invalid = True\n                break\n        if any_invalid:\n            n_filtered += 1\n            continue\n\n        gt = pairs[i][\"ground_truth_winner\"]\n        c_votes = [clean[j][i][\"winner\"] for j in jids]\n        a_votes = [attacked[j][i][\"winner\"] for j in jids]\n\n        cv = majority_vote(c_votes)\n        if cv == gt:\n            mv_correct += 1\n            if majority_vote(a_votes) != gt:\n                mv_flips += 1\n\n    asr = mv_flips / max(mv_correct, 1)\n    return asr, mv_correct, n_filtered\n\n\ndef main():\n    logger.info(\"=\" * 60)\n    logger.info(\"Corrected Aggregation Regression (log-log OLS, majority_vote)\")\n    logger.info(\"Error samples EXCLUDED\")\n    logger.info(\"=\" * 60)\n\n    mi_data = load_mi_data()\n    pairs = load_pairs()\n    clean, attacked = load_all_scores()\n\n    clean_acc = compute_clean_accuracy(clean, pairs)\n\n    ind_asr = {}\n    total_filtered = 0\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            for mid in ALL_MODELS:\n                if mid in clean[ds] and mid in attacked[ds][atk]:\n                    asr, nf = compute_individual_asr_corrected(\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\n                    )\n                    ind_asr[(ds, atk, mid)] = asr\n                    total_filtered += nf\n    logger.info(f\"Individual ASR: {len(ind_asr)} values, {total_filtered} error samples filtered\")\n\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), 3))\n    logger.info(f\"Total panels: {len(all_combos)}\")\n\n    raw_eta_ps = []\n    raw_keff_ps = []\n    valid_keys = []\n    conditions = {}\n\n    for ds in DATASETS:\n        keff_data = mi_data[\"keff_per_panel\"].get(ds, {})\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n            logger.info(f\"\\n--- {cond} ---\")\n\n            asrs = []\n            keffs = []\n            etas = []\n            skipped = 0\n            panel_filtered_total = 0\n\n            for combo in all_combos:\n                jids = [ALL_MODELS[i] for i in combo]\n                if not all((ds, atk, j) in ind_asr for j in jids):\n                    skipped += 1\n                    continue\n                pk = \"|\".join(jids)\n                if pk not in keff_data:\n                    skipped += 1\n                    continue\n\n                keff = keff_data[pk][\"keff\"]\n                eta_max = max(ind_asr[(ds, atk, j)] for j in jids)\n\n                cs = {j: clean[ds][j] for j in jids}\n                ats = {j: attacked[ds][atk][j] for j in jids}\n\n                asr, denom, nf = compute_panel_asr_corrected(\n                    jids, cs, ats, pairs[ds]\n                )\n                panel_filtered_total += nf\n\n                asrs.append(asr)\n                keffs.append(keff)\n                etas.append(eta_max)\n\n            n_panels = len(asrs)\n            logger.info(f\"  panels={n_panels}, skipped={skipped}, error_samples_filtered={panel_filtered_total}\")\n\n            if n_panels < 10:\n                logger.warning(f\"  {n_panels} panels, skipping\")\n                continue\n\n            p_asrs = np.array(asrs)\n            p_keffs = np.array(keffs)\n            p_etas = np.array(etas)\n\n            if np.std(p_asrs) < 1e-10:\n                logger.warning(f\"  constant ASR ({p_asrs[0]:.4f}), skipping\")\n                continue\n\n            log_keff = np.log(p_keffs)\n            log_eta = np.log(p_etas + EPS)\n            y = np.log(p_asrs + EPS)\n\n            X = np.column_stack([log_keff, log_eta])\n            Xc = sm.add_constant(X)\n            fit = sm.OLS(y, Xc).fit()\n\n            keff_p = float(fit.pvalues[1])\n            eta_p = float(fit.pvalues[2])\n\n            sd_y = np.std(y)\n            keff_std_beta = float(fit.params[1] * np.std(log_keff) / sd_y)\n            eta_std_beta = float(fit.params[2] * np.std(log_eta) / sd_y)\n\n            cd = {\n                \"condition\": cond,\n                \"method\": \"majority_vote\",\n                \"dataset\": ds,\n                \"attack\": atk,\n                \"n_panels\": n_panels,\n                \"eta_std_beta\": eta_std_beta,\n                \"eta_raw_p\": eta_p,\n                \"keff_std_beta\": keff_std_beta,\n                \"keff_raw_p\": keff_p,\n                \"R2\": float(fit.rsquared),\n            }\n\n            conditions[cond] = cd\n            raw_eta_ps.append(eta_p)\n            raw_keff_ps.append(keff_p)\n            valid_keys.append(cond)\n\n            logger.info(\n                f\"  beta_eta={eta_std_beta:+.4f} (p={eta_p:.2e}), \"\n                f\"beta_K={keff_std_beta:+.4f} (p={keff_p:.2e}), R2={fit.rsquared:.4f}\"\n            )\n\n    # FDR correction\n    if valid_keys:\n        _, fdr_eta, _, _ = multipletests(raw_eta_ps, method=\"fdr_bh\")\n        _, fdr_keff, _, _ = multipletests(raw_keff_ps, method=\"fdr_bh\")\n        for i, ck in enumerate(valid_keys):\n            conditions[ck][\"eta_fdr_p\"] = float(fdr_eta[i])\n            conditions[ck][\"keff_fdr_p\"] = float(fdr_keff[i])\n\n    # Summary\n    logger.info(\"\\n\" + \"=\" * 60)\n    logger.info(\"CORRECTED RESULTS SUMMARY (majority_vote only)\")\n    logger.info(\"=\" * 60)\n\n    n_eta = sum(1 for ck in valid_keys if conditions[ck].get(\"eta_fdr_p\", 1) < FDR_ALPHA)\n    n_keff = sum(1 for ck in valid_keys if conditions[ck].get(\"keff_fdr_p\", 1) < FDR_ALPHA)\n    n_pos = sum(1 for ck in valid_keys\n                if conditions[ck].get(\"keff_fdr_p\", 1) < FDR_ALPHA\n                and conditions[ck][\"keff_std_beta\"] > 0)\n    n_neg = sum(1 for ck in valid_keys\n                if conditions[ck].get(\"keff_fdr_p\", 1) < FDR_ALPHA\n                and conditions[ck][\"keff_std_beta\"] < 0)\n\n    logger.info(f\"  eta_max FDR sig: {n_eta}/12\")\n    logger.info(f\"  K_eff FDR sig:   {n_keff}/12\")\n    logger.info(f\"    positive: {n_pos}\")\n    logger.info(f\"    negative: {n_neg}\")\n\n    for ck in valid_keys:\n        cd = conditions[ck]\n        e_s = \"+*\" if cd.get(\"eta_fdr_p\", 1) < FDR_ALPHA and cd[\"eta_std_beta\"] > 0 else \\\n              \"-*\" if cd.get(\"eta_fdr_p\", 1) < FDR_ALPHA and cd[\"eta_std_beta\"] < 0 else \"n.s.\"\n        k_s = \"+*\" if cd.get(\"keff_fdr_p\", 1) < FDR_ALPHA and cd[\"keff_std_beta\"] > 0 else \\\n              \"-*\" if cd.get(\"keff_fdr_p\", 1) < FDR_ALPHA and cd[\"keff_std_beta\"] < 0 else \"n.s.\"\n        # dominance\n        eta_sig = cd.get(\"eta_fdr_p\", 1) < FDR_ALPHA\n        keff_sig = cd.get(\"keff_fdr_p\", 1) < FDR_ALPHA\n        if eta_sig and keff_sig:\n            dom = \"Co\"\n        elif eta_sig and not keff_sig:\n            dom = \"eta\"\n        elif not eta_sig and keff_sig:\n            dom = \"K\"\n        else:\n            dom = \"--\"\n\n        cd[\"eta_sig\"] = e_s\n        cd[\"keff_sig\"] = k_s\n        cd[\"dominance\"] = dom\n\n        logger.info(\n            f\"  {ck:<40} eta={e_s:<4} K={k_s:<4} dom={dom:<4} \"\n            f\"R2={cd['R2']:.4f} beta_eta={cd['eta_std_beta']:+.4f} beta_K={cd['keff_std_beta']:+.4f}\"\n        )\n\n    # Save\n    output = {\n        \"analysis\": \"aggregation_regression_loglog_15model_corrected\",\n        \"fix\": \"error samples excluded (was: .get('winner', 'tie') treating errors as ties)\",\n        \"n_models\": len(ALL_MODELS),\n        \"models\": ALL_MODELS,\n        \"method\": \"majority_vote\",\n        \"fdr_alpha\": FDR_ALPHA,\n        \"eps\": EPS,\n        \"K\": 3,\n        \"n_panels\": 455,\n        \"summary\": {\n            \"eta_fdr_sig\": n_eta,\n            \"keff_fdr_sig\": n_keff,\n            \"keff_sig_positive\": n_pos,\n            \"keff_sig_negative\": n_neg,\n            \"n_conditions\": len(valid_keys),\n            \"mean_R2\": float(np.mean([conditions[ck][\"R2\"] for ck in valid_keys])) if valid_keys else 0,\n        },\n        \"conditions\": conditions,\n    }\n\n    out_dir = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001\")\n    out_dir.mkdir(parents=True, exist_ok=True)\n    out_path = out_dir / \"aggregation_regression_15model_loglog_corrected.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\n    logger.info(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T17:56:46.700721+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T17:56:46.700851+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python3 scripts/run_aggregation_loglog_corrected.py 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python3 scripts/run_aggregation_loglog_corrected.py 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T17:56:46.701034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[01:53:40 INFO] aggregation_loglog_corrected: ============================================================\\n[01:53:40 INFO] aggregation_loglog_corrected: Corrected Aggregation Regression (log-log OLS, majority_vote)\\n[01:53:40 INFO] aggregation_loglog_corrected: Error samples EXCLUDED\\n[01:53:40 INFO] aggregation_loglog_corrected: ============================================================\\n[01:53:40 INFO] aggregation_loglog_corrected: Individual ASR: 180 values, 1365 error samples filtered\\n[01:53:40 INFO] aggregation_loglog_corrected: Total panels: 455\\n[01:53:40 INFO] aggregation_loglog_corrected: \\n--- mmluxprompt_injection ---\\n[01:53:40 INFO] aggregation_loglog_corrected:   panels=455, skipped=0, error_samples_filtered=17023\\n[01:53:40 INFO] aggregation_loglog_corrected:   beta_eta=+0.1821 (p=1.00e-03), beta_K=+0.5103 (p=6.99e-19), R2=0.4359\\n[01:53:40 INFO] aggregation_loglog_corrected: \\n--- mmluxsycophancy ---\\n[01:53:40 INFO] aggregation_loglog_corrected:   panels=455, skipped=0, error_samples_filtered=15372\\n[01:53:40 INFO] aggregation_loglog_corrected:   beta_eta=+0.1910 (p=1.26e-05), beta_K=+0.4795 (p=1.96e-25), R2=0.3557\\n[01:53:40 INFO] aggregation_loglog_corrected: \\n--- mmluxscore_manipulation ---\\n[01:53:41 INFO] aggregation_loglog_corrected:   panels=455, skipped=0, error_samples_filtered=15479\\n[01:53:41 INFO] aggregation_loglog_corrected:   beta_eta=+0.0817 (p=2.39e-01), beta_K=+0.5757 (p=1.21e-15), R2=0.4186\\n[01:53:41 INFO] aggregation_loglog_corrected: \\n--- mmluxverbosity_bias ---\\n[01:53:41 INFO] aggregation_loglog_corrected:   panels=455, skipped=0, error_samples_filtered=15518\\n[01:53:41 INFO] aggregation_loglog_corrected:   beta_eta=+0.2894 (p=6.59e-10), beta_K=+0.3797 (p=1.38e-15), R2=0.3517\\n[01:53:41 INFO] aggregation_loglog_corrected: \\n--- mmluxposition_bias ---\\n[01:53:41 INFO] aggregation_loglog_corrected:   panels=455, skipped=0, error_samples_filter
+…[truncated 5044 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T17:56:46.701229+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/aggregation_regression_15model_loglog_corrected.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/aggregation_regression_15model_loglog_corrected.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T17:56:46.701519+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"aggregation_regression_loglog_15model_corrected\\\",\\n  \\\"fix\\\": \\\"error samples excluded (was: .get('winner', 'tie') treating errors as ties)\\\",\\n  \\\"n_models\\\": 15,\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"method\\\": \\\"majority_vote\\\",\\n  \\\"fdr_alpha\\\": 0.05,\\n  \\\"eps\\\": 1e-06,\\n  \\\"K\\\": 3,\\n  \\\"n_panels\\\": 455,\\n  \\\"summary\\\": {\\n    \\\"eta_fdr_sig\\\": 10,\\n    \\\"keff_fdr_sig\\\": 12,\\n    \\\"keff_sig_positive\\\": 12,\\n    \\\"keff_sig_negative\\\": 0,\\n    \\\"n_conditions\\\": 12,\\n    \\\"mean_R2\\\": 0.32692196851796684\\n  },\\n  \\\"conditions\\\": {\\n    \\\"mmluxprompt_injection\\\": {\\n      \\\"condition\\\": \\\"mmluxprompt_injection\\\",\\n      \\\"method\\\": \\\"majority_vote\\\",\\n      \\\"dataset\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"prompt_injection\\\",\\n      \\\"n_panels\\\": 455,\\n      \\\"eta_std_beta\\\": 0.18206057916690113,\\n      \\\"eta_raw_p\\\": 0.0010024115377702436,\\n      \\\"keff_std_beta\\\": 0.5102872116314237,\\n      \\\"keff_raw_p\\\": 6.99185530579516e-19,\\n      \\\"R2\\\": 0.43591082694602534,\\n      \\\"eta_fdr_p\\\": 0.0017184197790347032,\\n      \\\"keff_fdr_p\\\": 2.796742122318064e-18,\\n      \\\"eta_sig\\\": \\\"+*\\\",\\n      \\\"keff_sig\\\": \\\"+*\\\",\\n      \\\"dominance\\\": \\\"Co\\\"\\n    },\\n    \\\"mmluxsycophancy\\\": {\\n      \\\"condition\\\": \\\"mmluxsycophancy\\\",\\n      \\\"method\\\": \\\"majority_vote\\\",\\n    
+…[truncated 8106 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T17:56:46.701725+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/cert_manip_resist_eval/artifacts/results/plan001/aggregation_regression_15model_loglog.json') as f:\n    old = json.load(f)\n\nFDR_ALPHA = 0.05\nfor d in old['detail']:\n    if d['method'] != 'majority_vote':\n        continue\n    eta_sig = d.get('eta_fdr_p', 1) < FDR_ALPHA\n    keff_sig = d.get('keff_fdr_p', 1) < FDR_ALPHA\n    e_s = '+*' if eta_sig and d['eta_std_beta'] > 0 else '-*' if eta_sig and d['eta_std_beta'] < 0 else 'n.s.'\n    k_s = '+*' if keff_sig and d['keff_std_beta'] > 0 else '-*' if keff_sig and d['keff_std_beta'] < 0 else 'n.s.'\n    if eta_sig and keff_sig: dom = 'Co'\n    elif eta_sig: dom = 'eta'\n    elif keff_sig: dom = 'K'\n    else: dom = '--'\n    print(f\\\"{d['condition']}: eta={e_s} ({d['eta_std_beta']:+.4f}, fdr={d.get('eta_fdr_p',1):.2e}), K={k_s} ({d['keff_std_beta']:+.4f}, fdr={d.get('keff_fdr_p',1):.2e}), R2={d['R2']:.4f}, dom={dom}\\\")\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/cert_manip_resist_eval/artifacts/results/plan001/aggregation_regression_15model_loglog.json') as f:\n    old = json.load(f)\n\nFDR_ALPHA = 0.05\nfor d in old['detail']:\n    if d['method'] != 'majority_vote':\n        continue\n    eta_sig = d.get('eta_fdr_p', 1) < FDR_ALPHA\n    keff_sig = d.get('keff_fdr_p', 1) < FDR_ALPHA\n    e_s = '+*' if eta_sig and d['eta_std_beta'] > 0 else '-*' if eta_sig and d['eta_std_beta'] < 0 else 'n.s.'\n    k_s = '+*' if keff_sig and d['keff_std_beta'] > 0 else '-*' if keff_sig and d['keff_std_beta'] < 0 else 'n.s.'\n    if eta_sig and keff_sig: dom = 'Co'\n    elif eta_sig: dom = 'eta'\n    elif keff_sig: dom = 'K'\n    else: dom = '--'\n    print(f\\\"{d['condition']}: eta={e_s} ({d['eta_std_beta']:+.4f}, fdr={d.get('eta_fdr_p',1):.2e}), K={k_s} ({d['keff_std_beta']:+.4f}, fdr={d.get('keff_fdr_p',1):.2e}), R2={d['R2']:.4f}, dom={dom}\\\")\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T17:56:46.701882+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"mmluxprompt_injection: eta=+* (+0.6159, fdr=8.94e-45), K=+* (+0.2524, fdr=1.93e-09), R2=0.6626, dom=Co\\nmmluxsycophancy: eta=+* (+0.4864, fdr=4.77e-26), K=+* (+0.1656, fdr=3.55e-04), R2=0.3342, dom=Co\\nmmluxscore_manipulation: eta=+* (+0.5977, fdr=1.09e-18), K=n.s. (+0.0328, fdr=6.62e-01), R2=0.3904, dom=eta\\nmmluxverbosity_bias: eta=+* (+0.5929, fdr=2.37e-39), K=+* (+0.0903, fdr=3.90e-02), R2=0.4072, dom=Co\\nmmluxposition_bias: eta=+* (+0.4181, fdr=2.73e-13), K=n.s. (+0.1040, fdr=6.89e-02), R2=0.2431, dom=eta\\nmmluxauthority_bias: eta=+* (+0.3767, fdr=5.76e-11), K=n.s. (+0.0104, fdr=8.52e-01), R2=0.1469, dom=eta\\narc_challengexprompt_injection: eta=+* (+0.2439, fdr=9.56e-04), K=+* (+0.3297, fdr=2.57e-05), R2=0.3032, dom=Co\\narc_challengexsycophancy: eta=+* (+0.4924, fdr=1.34e-11), K=-* (-0.1917, fdr=1.26e-02), R2=0.1322, dom=Co\\narc_challengexscore_manipulation: eta=+* (+0.2242, fdr=4.64e-02), K=+* (+0.2522, fdr=3.87e-02), R2=0.2186, dom=Co\\narc_challengexverbosity_bias: eta=+* (+0.3432, fdr=7.43e-06), K=n.s. (+0.1455, fdr=6.75e-02), R2=0.2217, dom=eta\\narc_challengexposition_bias: eta=n.s. (-0.0112, fdr=9.09e-01), K=+* (+0.5842, fdr=3.54e-08), R2=0.3293, dom=K\\narc_challengexauthority_bias: eta=+* (+0.2613, fdr=4.75e-05), K=+* (+0.1946, fdr=4.78e-03), R2=0.1806, dom=Co\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T17:56:46.702076+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/ 2>/dev/null || echo \"DIR_NOT_EXIST\"",
+  "description": "Check if output directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/ 2>/dev/null || echo \"DIR_NOT_EXIST\"",
+    "description": "Check if output directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T17:56:46.702206+00:00_
+
+aggregation_bootstrap.json
+alt_diversity_measures.txt
+cross_benchmark_iv.json
+epsilon_sensitivity.json
+epsilon_sensitivity_k5.json
+gam_bootstrap_ci_k3.json
+gam_bootstrap_ci_k5.json
+k5_aggregation_table_data.txt
+keff_distribution.json
+keff_distribution_corrected.json
+keff_stability_split.json
+power_analysis_all_K.json
+provenance_trace.txt
+sensitivity_analysis_poolA.json
+sensitivity_table_data.txt
+stochastic_dominance_analysis.json
+temperature_pilot_summary.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T17:56:46.702372+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/table1_corrected.json",
+  "content": "{\n  \"method\": \"OLS log-log, error samples excluded\",\n  \"fix_description\": \".get('winner', 'tie') treated API errors (1221/63000 = 1.94%, mostly gemini-3.5-flash:742, gemini-3.1-pro-preview:335) as ties. Corrected to skip samples with invalid scores.\",\n  \"K\": 3,\n  \"n_panels\": 455,\n  \"conditions\": {\n    \"mmlu_prompt_injection\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.6159, \"keff_beta_std\": 0.2524, \"R2\": 0.6626},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1821, \"keff_beta_std\": 0.5103, \"R2\": 0.4359},\n      \"changed\": false,\n      \"note\": \"Sig/dom unchanged but betas flip relative magnitude: eta drops 0.62→0.18, K rises 0.25→0.51\"\n    },\n    \"mmlu_sycophancy\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.4864, \"keff_beta_std\": 0.1656, \"R2\": 0.3342},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1910, \"keff_beta_std\": 0.4795, \"R2\": 0.3557},\n      \"changed\": false,\n      \"note\": \"Sig/dom unchanged but betas flip relative magnitude: eta drops 0.49→0.19, K rises 0.17→0.48\"\n    },\n    \"mmlu_score_manipulation\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.5977, \"keff_beta_std\": 0.0328, \"R2\": 0.3904},\n      \"new\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": 0.0817, \"keff_beta_std\": 0.5757, \"R2\": 0.4186},\n      \"changed\": true,\n      \"note\": \"Dominance FLIPPED from eta to K. eta collapses 0.60→0.08 (loses sig), K rises 0.03→0.58 (gains sig)\"\n    },\n    \"mmlu_verbosity_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.5929, \"keff_beta_std\": 0.0903, \"R2\": 0.4072},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2894, \"keff_beta_std\": 0.3797, \"R2\": 0.3517},\n      \"changed\": false,\n      \"note\": \"Sig/dom unchanged but K effect strengthens 0.09→0.38\"\n    },\n    \"mmlu_position_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.4181, \"keff_beta_std\": 0.1040, \"R2\": 0.2431},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2356, \"keff_beta_std\": 0.3829, \"R2\": 0.3227},\n      \"changed\": true,\n      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.10→0.38\"\n    },\n    \"mmlu_authority_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.3767, \"keff_beta_std\": 0.0104, \"R2\": 0.1469},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1022, \"keff_beta_std\": 0.4972, \"R2\": 0.3145},\n      \"changed\": true,\n      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.01→0.50. R2 doubles\"\n    },\n    \"arc_prompt_injection\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2439, \"keff_beta_std\": 0.3297, \"R2\": 0.3032},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2809, \"keff_beta_std\": 0.3378, \"R2\": 0.3178},\n      \"changed\": false,\n      \"note\": \"Minor changes. ARC has fewer errors so less impact\"\n    },\n    \"arc_sycophancy\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"-*\", \"dom\": \"Co\", \"eta_beta_std\": 0.4924, \"keff_beta_std\": -0.1917, \"R2\": 0.1322},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2844, \"keff_beta_std\": 0.2572, \"R2\": 0.2449},\n      \"changed\": true,\n      \"note\": \"K sign FLIPPED from -0.19 to +0.26. Dom stays Co but K direction reverses\"\n    },\n    \"arc_score_manipulation\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2242, \"keff_beta_std\": 0.2522, \"R2\": 0.2186},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1911, \"keff_beta_std\": 0.3707, \"R2\": 0.2959},\n      \"changed\": false,\n      \"note\": \"Both stay sig. K strengthens. R2 increases\"\n    },\n    \"arc_verbosity_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.3432, \"keff_beta_std\": 0.1455, \"R2\": 0.2217},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2155, \"keff_beta_std\": 0.3870, \"R2\": 0.3127},\n      \"changed\": true,\n      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.15→0.39\"\n    },\n    \"arc_position_bias\": {\n      \"old\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": -0.0112, \"keff_beta_std\": 0.5842, \"R2\": 0.3293},\n      \"new\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": -0.0758, \"keff_beta_std\": 0.6507, \"R2\": 0.3382},\n      \"changed\": false,\n      \"note\": \"Already K-dominant, minor changes\"\n    },\n    \"arc_authority_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2613, \"keff_beta_std\": 0.1946, \"R2\": 0.1806},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1738, \"keff_beta_std\": 0.3288, \"R2\": 0.2145},\n      \"changed\": false,\n      \"note\": \"Both stay sig. K strengthens 0.19→0.33\"\n    }\n  },\n  \"summary\": {\n    \"eta_sig_count_old\": \"11/12\",\n    \"eta_sig_count_new\": \"10/12\",\n    \"keff_sig_count_old\": \"8/12\",\n    \"keff_sig_count_new\": \"12/12\",\n    \"n_conditions_changed\": 5,\n    \"changed_conditions\": [\n      \"mmlu_score_manipulation (eta→K)\",\n      \"mmlu_position_bias (eta→Co)\",\n      \"mmlu_authority_bias (eta→Co)\",\n      \"arc_sycophancy (K sign flip: -→+)\",\n      \"arc_verbosity_bias (eta→Co)\"\n    ],\n    \"old_dominance_dist\": {\"Co\": 7, \"eta\": 4, \"K\": 1, \"--\": 0},\n    \"new_dominance_dist\": {\"Co\": 10, \"K\": 2, \"eta\": 0, \"--\": 0},\n    \"interpretation\": \"Error-as-tie bug inflated eta_max effect (errors correlated with high-eta models like Gemini) and suppressed K_eff effect. After correction: K_eff is universally significant (12/12), always positive. Diversity is protective across ALL conditions. Dominance shifts strongly toward Co-dominance (10/12) with no pure eta-dominant conditions remaining.\"\n  },\n  \"results_tex_discrepancy\": {\n    \"note\": \"The task-provided results.tex Table 1 shows 9/12 eta sig and 7/12 K sig, which differs from the JSON output (11/12 eta, 8/12 K). Conditions differing: mmlu_score_manipulation (tex=both n.s., json=eta sig) and arc_score_manipulation (tex=eta n.s., json=eta sig). The JSON values are used as 'old' baseline since they are the verifiable buggy script output.\"\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/table1_corrected.json",
+    "content": "{\n  \"method\": \"OLS log-log, error samples excluded\",\n  \"fix_description\": \".get('winner', 'tie') treated API errors (1221/63000 = 1.94%, mostly gemini-3.5-flash:742, gemini-3.1-pro-preview:335) as ties. Corrected to skip samples with invalid scores.\",\n  \"K\": 3,\n  \"n_panels\": 455,\n  \"conditions\": {\n    \"mmlu_prompt_injection\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.6159, \"keff_beta_std\": 0.2524, \"R2\": 0.6626},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1821, \"keff_beta_std\": 0.5103, \"R2\": 0.4359},\n      \"changed\": false,\n      \"note\": \"Sig/dom unchanged but betas flip relative magnitude: eta drops 0.62→0.18, K rises 0.25→0.51\"\n    },\n    \"mmlu_sycophancy\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.4864, \"keff_beta_std\": 0.1656, \"R2\": 0.3342},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1910, \"keff_beta_std\": 0.4795, \"R2\": 0.3557},\n      \"changed\": false,\n      \"note\": \"Sig/dom unchanged but betas flip relative magnitude: eta drops 0.49→0.19, K rises 0.17→0.48\"\n    },\n    \"mmlu_score_manipulation\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.5977, \"keff_beta_std\": 0.0328, \"R2\": 0.3904},\n      \"new\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": 0.0817, \"keff_beta_std\": 0.5757, \"R2\": 0.4186},\n      \"changed\": true,\n      \"note\": \"Dominance FLIPPED from eta to K. eta collapses 0.60→0.08 (loses sig), K rises 0.03→0.58 (gains sig)\"\n    },\n    \"mmlu_verbosity_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.5929, \"keff_beta_std\": 0.0903, \"R2\": 0.4072},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2894, \"keff_beta_std\": 0.3797, \"R2\": 0.3517},\n      \"changed\": false,\n      \"note\": \"Sig/dom unchanged but K effect strengthens 0.09→0.38\"\n    },\n    \"mmlu_position_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.4181, \"keff_beta_std\": 0.1040, \"R2\": 0.2431},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2356, \"keff_beta_std\": 0.3829, \"R2\": 0.3227},\n      \"changed\": true,\n      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.10→0.38\"\n    },\n    \"mmlu_authority_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.3767, \"keff_beta_std\": 0.0104, \"R2\": 0.1469},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1022, \"keff_beta_std\": 0.4972, \"R2\": 0.3145},\n      \"changed\": true,\n      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.01→0.50. R2 doubles\"\n    },\n    \"arc_prompt_injection\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2439, \"keff_beta_std\": 0.3297, \"R2\": 0.3032},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2809, \"keff_beta_std\": 0.3378, \"R2\": 0.3178},\n      \"changed\": false,\n      \"note\": \"Minor changes. ARC has fewer errors so less impact\"\n    },\n    \"arc_sycophancy\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"-*\", \"dom\": \"Co\", \"eta_beta_std\": 0.4924, \"keff_beta_std\": -0.1917, \"R2\": 0.1322},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2844, \"keff_beta_std\": 0.2572, \"R2\": 0.2449},\n      \"changed\": true,\n      \"note\": \"K sign FLIPPED from -0.19 to +0.26. Dom stays Co but K direction reverses\"\n    },\n    \"arc_score_manipulation\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2242, \"keff_beta_std\": 0.2522, \"R2\": 0.2186},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1911, \"keff_beta_std\": 0.3707, \"R2\": 0.2959},\n      \"changed\": false,\n      \"note\": \"Both stay sig. K strengthens. R2 increases\"\n    },\n    \"arc_verbosity_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.3432, \"keff_beta_std\": 0.1455, \"R2\": 0.2217},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2155, \"keff_beta_std\": 0.3870, \"R2\": 0.3127},\n      \"changed\": true,\n      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.15→0.39\"\n    },\n    \"arc_position_bias\": {\n      \"old\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": -0.0112, \"keff_beta_std\": 0.5842, \"R2\": 0.3293},\n      \"new\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": -0.0758, \"keff_beta_std\": 0.6507, \"R2\": 0.3382},\n      \"changed\": false,\n      \"note\": \"Already K-dominant, minor changes\"\n    },\n    \"arc_authority_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2613, \"keff_beta_std\": 0.1946, \"R2\": 0.1806},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1738, \"keff_beta_std\": 0.3288, \"R2\": 0.2145},\n      \"changed\": false,\n      \"note\": \"Both stay sig. K strengthens 0.19→0.33\"\n    }\n  },\n  \"summary\": {\n    \"eta_sig_count_old\": \"11/12\",\n    \"eta_sig_count_new\": \"10/12\",\n    \"keff_sig_count_old\": \"8/12\",\n    \"keff_sig_count_new\": \"12/12\",\n    \"n_conditions_changed\": 5,\n    \"changed_conditions\": [\n      \"mmlu_score_manipulation (eta→K)\",\n      \"mmlu_position_bias (eta→Co)\",\n      \"mmlu_authority_bias (eta→Co)\",\n      \"arc_sycophancy (K sign flip: -→+)\",\n      \"arc_verbosity_bias (eta→Co)\"\n    ],\n    \"old_dominance_dist\": {\"Co\": 7, \"eta\": 4, \"K\": 1, \"--\": 0},\n    \"new_dominance_dist\": {\"Co\": 10, \"K\": 2, \"eta\": 0, \"--\": 0},\n    \"interpretation\": \"Error-as-tie bug inflated eta_max effect (errors correlated with high-eta models like Gemini) and suppressed K_eff effect. After correction: K_eff is universally significant (12/12), always positive. Diversity is protective across ALL conditions. Dominance shifts strongly toward Co-dominance (10/12) with no pure eta-dominant conditions remaining.\"\n  },\n  \"results_tex_discrepancy\": {\n    \"note\": \"The task-provided results.tex Table 1 shows 9/12 eta sig and 7/12 K sig, which differs from the JSON output (11/12 eta, 8/12 K). Conditions differing: mmlu_score_manipulation (tex=both n.s., json=eta sig) and arc_score_manipulation (tex=eta n.s., json=eta sig). The JSON values are used as 'old' baseline since they are the verifiable buggy script output.\"\n  }\n}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T17:56:46.702610+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/table1_corrected.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-23T17:56:46.702805+00:00_
+
+Results summary:
+
+**Error impact**: 1221/63000 scores invalid (1.94%), concentrated in Gemini models (gemini-3.5-flash: 742, gemini-3.1-pro-preview: 335). The bug `.get("winner", "tie")` treated these as ties, inflating η_max (high-error models = high-η models) and suppressing K_eff.
+
+**5 of 12 conditions changed significance/dominance:**
+
+| Condition | Old dom | New dom | Key change |
+|---|---|---|---|
+| MMLU × Score manip | η | **K** | η collapses 0.60→0.08, K rises 0.03→0.58 |
+| MMLU × Position bias | η | **Co** | K gains sig, 0.10→0.38 |
+| MMLU × Authority bias | η | **Co** | K gains sig, 0.01→0.50, R² doubles |
+| ARC × Sycophancy | Co (K-) | **Co (K+)** | K sign flips −0.19→+0.26 |
+| ARC × Verbosity | η | **Co** | K gains sig, 0.15→0.39 |
+
+**Aggregate shift:**
+- η sig: 11/12 → 10/12
+- K sig: 8/12 → **12/12** (all conditions!)
+- All K_eff betas now positive (was 1 negative)
+- Dominance: {Co:7, η:4, K:1} → {**Co:10**, K:2, η:0}
+- No pure η-dominant conditions remain
+
+The corrected script is at `scripts/run_aggregation_loglog_corrected.py` on the server, corrected JSON saved to `artifacts/results/plan001/aggregation_regression_15model_loglog_corrected.json`, and the comparison at `docs/paper/data/table1_corrected.json` locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_fix_table1-k3-ols-corrected_20260523T175018"
+}
+```
+
+</details>
+
+---

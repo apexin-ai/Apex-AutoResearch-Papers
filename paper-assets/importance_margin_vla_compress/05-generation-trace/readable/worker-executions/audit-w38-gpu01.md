@@ -1,0 +1,1455 @@
+# audit w38 gpu01
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_audit_w38-gpu01_20260527T194331.log`
+- **Structured JSON:** [`f0172176cb68d74e19e2.json`](../../sessions/f0/f0172176cb68d74e19e2.json)
+
+## Before a recorded user message
+
+29 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7b13cb90-5e92-4bdf-97c5-0b18a9148797",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779928800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7b0ba542-322b-4140-98bf-aa14247fffd0",
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the GPU processes on westd-38929 and the registry entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "0afb07e7-36a7-4f73-8f31-70dcdb220f77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdwrGeSXkjc45iZELRDM39",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12209,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12209
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TZxwxqwFMsBRqeKDVgvK9X`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "872eb678-310a-4c30-adcb-0d0773ee1ffc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdwrGeSXkjc45iZELRDM39",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12209,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12209
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-27T19:43:46.460Z_
+
+<details><summary>↩ Tool result · `toolu_01TZxwxqwFMsBRqeKDVgvK9X`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "8134e762-74a9-4601-b313-2893c6546c41",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me run the GPU checks and read the registry entries in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "45fa57ab-7c08-40d7-8e1c-f9768615e0e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FyFZJ1XXueBGj73jEuLD93",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1300,
+      "cache_read_input_tokens": 24054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1300
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RwefhSBwAQ93ngEwVSN4Ye`</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "8559568b-9e9b-45de-8fad-b555c55efecf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FyFZJ1XXueBGj73jEuLD93",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1300,
+      "cache_read_input_tokens": 24054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1300
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GmgTKR4c1JBZRVD2dZ3iAS`</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-gpu=index,gpu_uuid,utilization.gpu,memory.used --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "13c5d999-38e6-49b9-bc0e-d90bb423685e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FyFZJ1XXueBGj73jEuLD93",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1300,
+      "cache_read_input_tokens": 24054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1300
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T19:43:51.712Z_
+
+<details><summary>↩ Tool result · `toolu_01RwefhSBwAQ93ngEwVSN4Ye`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"272022, GPU-e9ff022e-84eb-5d0a-9c96-b71bebcfcdfa, 15798 MiB\\n266221, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 15762 MiB\\n557458, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 10244 MiB\\n541249, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e, 10553 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "33a76b1b-322e-4750-b25f-d20d11cc2668",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"272022, GPU-e9ff022e-84eb-5d0a-9c96-b71bebcfcdfa, 15798 MiB\\\\n266221, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 15762 MiB\\\\n557458, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 10244 MiB\\\\n541249, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e, 10553 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"272022, GPU-e9ff022e-84eb-5d0a-9c96-b71bebcfcdfa, 15798 MiB\\n266221, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 15762 MiB\\n557458, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 10244 MiB\\n541249, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e, 10553 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_017KvvrtDTswWajXhn2Cfgc2`</summary>
+
+```json
+{
+  "filters": {
+    "status": "RUNNING"
+  },
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "*"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "7bf6be81-a71f-4ac6-b6ac-f15f9ce9a3ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FyFZJ1XXueBGj73jEuLD93",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1300,
+      "cache_read_input_tokens": 24054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1300
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-27T19:43:52.329Z_
+
+<details><summary>↩ Tool result · `toolu_01GmgTKR4c1JBZRVD2dZ3iAS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, GPU-e9ff022e-84eb-5d0a-9c96-b71bebcfcdfa, 72 %, 15816 MiB\\n1, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 69 %, 15780 MiB\\n2, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 37 %, 10262 MiB\\n3, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e, 49 %, 10572 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "7f5016a1-04c2-4ac3-8c60-a7c2b814cb9f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, GPU-e9ff022e-84eb-5d0a-9c96-b71bebcfcdfa, 72 %, 15816 MiB\\\\n1, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 69 %, 15780 MiB\\\\n2, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 37 %, 10262 MiB\\\\n3, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e, 49 %, 10572 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, GPU-e9ff022e-84eb-5d0a-9c96-b71bebcfcdfa, 72 %, 15816 MiB\\n1, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 69 %, 15780 MiB\\n2, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 37 %, 10262 MiB\\n3, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e, 49 %, 10572 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-27T19:43:56.282Z_
+
+<details><summary>↩ Tool result · `toolu_017KvvrtDTswWajXhn2Cfgc2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k05_long_seed44_strict_w38\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T19:04:15.139Z\", \"updated_at\": \"2026-05-27T19:08:09.126Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Long strict seed44 — k=0.5 交汇点第三个种子。seed42=49.2%, seed43 RUNNING。验证极端压缩下三方法收敛的 error bar\", \"parent\": \"eval_pi05_l2norm_k05_long_seed42_strict\", \"server\": \"westd-38929\", \"gpu\": \"cuda:2\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:2\"], \"pid\": \"557449\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed44_strict_w38.log\", \"submitted_at\": \"2026-05-27T19:07:48.743Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"557449\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed44_strict_w38.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\"}}, \"eval_pi05_random_k09_long_seed44_strict_w41\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T19:04:09.672Z\", \"updated_at\": \"2026-05-27T19:07:40.212Z\", \"hypothesis\": \"π0.5 Random k=0.9 Long strict seed44 — 峰值点 importance margin (46pp) 的第三个种子 Random 端。seed42=34.2%, seed43=32.4%, seed44 将 n=2→3 加固 Random valley 可信度\", \"parent\": \"eval_pi05_random_k09_long_seed43_strict_cqa1_v2\", \"server\": \"westd-41074\", \"gpu\": \"cuda:2\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:2\"], \"pid\": \"68640\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed44_strict_w41.log\", \"submitted_at\": \"2026-05-27T19:07:22.231Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"68640\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed44_strict_w41.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\"}}, \"eval_pi05_l2norm_k09_long_seed44_strict_cqa1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T19:04:04.866Z\", \"updated_at\": \"2026-05-27T19:07:05.543Z\", \"hypothesis\": \"π0.5 L2norm k=0.9 Long strict seed44 — 峰值点 importance margin (46pp) 的第三个种子。seed42=80.0%, seed43=81.2%, seed44 将 n=2→3 加固核心 claim 可信度\", \"parent\": \"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:1\"], \"pid\": \"628418\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed44_strict_cqa1.log\", \"submitted_at\": \"2026-05-27T19:06:50.615Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"628418\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed44_strict_cqa1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\"}}, \"eval_pi05_attn_k05_long_seed43_strict_w41\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T19:00:16.740Z\", \"updated_at\": \"2026-05-27T19:01:29.757Z\", \"hypothesis\": \"π0.5 Attn k=0.5 Long strict seed43 backup — seed42=52.0% 的 seed 复制。w38 版本(PREPARING)状态不确定，w41 作为 Attn 最稳定服务器的保险部署。若 w38 也成功则获得跨硬件对比数据\", \"parent\": \"eval_pi05_attn_k05_long_seed42_strict_w41\", \"server\": \"westd-41074\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:3\"], \"pid\": \"62928\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w41.log\", \"submitted_at\": \"2026-05-27T19:01:22.087Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"62928\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w41.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_attn_k05_long_seed43_strict_w38\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T18:10:15.232Z\", \"updated_at\": \"2026-05-27T18:58:51.306Z\", \"hypothesis\": \"π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar\", \"parent\": \"eval_pi05_attn_k05_long_seed42_strict_w41\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:3\"], \"pid\": \"541240\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\", \"submitted_at\": \"2026-05-27T18:40:11.366Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"server\": \"westd-38929\", \"gpu\": \"cuda:3\", \"pid\": 541240, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\"}, \"eval_pi05_attn_k075_long_seed43_strict_cqa1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T18:10:09.805Z\", \"updated_at\": \"2026-05-27T18:43:47.395Z\", \"hypothesis\": \"π0.5 Attn k=0.75 Long strict seed43 — seed42=52.4% 的 seed 复制，验证 Attn cliff 后平台段 error bar（w27 不支持 attention，重新部署到 cqa1）\", \"parent\": \"eval_pi05_attn_k075_long_seed42_strict_cqa1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:3\", \"pid\": \"588702\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_cqa1.log\", \"submitted_at\": \"2026-05-27T18:10:53.074Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"server\": \"cqa1-33015\", \"gpu\": \"cuda:3\"}, \"eval_pi05_attn_k075_long_seed43_strict_w27_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T18:13:53.095Z\", \"updated_at\": \"2026-05-27T18:16:45.913Z\", \"hypothesis\": \"π0.5 Attn k=0.75 Long strict seed43 — seed42=52.4% 的 seed 复制，验证 Attn cliff 后平台段 error bar。v2: w27 代码同步修复后重跑（v1 因 --prune_mode 不支持 attention 而失败）\", \"parent\": \"eval_pi05_attn_k075_long_seed42_strict_cqa1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_w27_v2.log\", \"submitted_at\": \"2026-05-27T18:14:24Z\", \"submitted_via\": \"manual_tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}}, \"eval_pi05_attn_k085_long_seed43_strict_w27_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T18:13:47.422Z\", \"updated_at\": \"2026-05-27T18:16:34.743Z\", \"hypothesis\": \"π0.5 Attn k=0.85 Long strict seed43 — seed42=50.0% 的 seed 复制，验证 Attn step-function 降级可复现性。v2: w27 代码同步修复后重跑（v1 因 --prune_mode 不支持 attention 而失败）\", \"parent\": \"eval_pi05_attn_k085_long_seed42_strict\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w27_v2.log\", \"submitted_at\": \"2026-05-27T18:14:23Z\", \"submitted_via\": \"manual_tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}}, \"eval_pi05_attn_k085_long_seed43_strict_w41\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:55:12.802Z\", \"updated_at\": \"2026-05-27T17:58:47.667Z\", \"hypothesis\": \"π0.5 Attn k=0.85 Long strict seed43 — seed42=50.0% 的 seed 复制（w27 部署失败后重新部署到支持 attention 的 w41），验证 Attn step-function 降级可复现性\", \"parent\": \"eval_pi05_attn_k085_long_seed42_strict\", \"server\": \"westd-41074\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"2953\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w41.log\", \"submitted_at\": \"2026-05-27T17:58:34.953Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"2953\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w41.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_l2norm_k07_long_seed43_strict_w27\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:55:07.165Z\", \"updated_at\": \"2026-05-27T17:58:17.514Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Long strict seed43 — w41 GPU3 同实验的双保险（w41 曾因 cascade 共享 GPU 被拖慢），确保截止前获得 L2norm k=0.7 error bar\", \"parent\": \"eval_pi05_l2norm_k07_long_seed42_strict\", \"server\": \"westd-27271\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"53966\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed43_strict_w27.log\", \"submitted_at\": \"2026-05-27T17:58:07.865Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"53966\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed43_strict_w27.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_random_k05_long_seed43_strict_w27\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:55:02.771Z\", \"updated_at\": \"2026-05-27T17:57:58.137Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long strict seed43 — seed42=52.4% 的 seed 复制，验证极端压缩下 Random U-shape 的 error bar\", \"parent\": \"eval_pi05_random_k05_long_seed42_strict\", \"server\": \"westd-27271\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:0\"], \"pid\": \"53712\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed43_strict_w27.log\", \"submitted_at\": \"2026-05-27T17:57:50.725Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"53712\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed43_strict_w27.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_attn_k07_long_seed43_strict_w41\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:42:31.778Z\", \"updated_at\": \"2026-05-27T17:49:18.797Z\", \"hypothesis\": \"π0.5 Attn k=0.7 Long strict seed43 — seed42=53.6% 的 seed 复制，验证 Attn cliff 后平台段 error bar（k=0.7 在 step-function 后持平区间）\", \"parent\": \"eval_pi05_attn_k07_long_seed42_strict_cqa1\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"993383\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k07_long_seed43_strict_w41.log\", \"submitted_at\": \"2026-05-27T17:48:54.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"993383\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k07_long_seed43_strict_w41.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_l2norm_k05_long_seed43_strict_cqa1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:42:35.483Z\", \"updated_at\": \"2026-05-27T17:47:51.693Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Long strict seed43 — seed42=50.0% 的 seed 复制，验证极端压缩下三方法收敛到 ~50% 的 error bar\", \"parent\": \"eval_pi05_l2norm_k05_long_seed42_strict\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:0\"], \"pid\": \"572418\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed43_strict_cqa1.log\", \"submitted_at\": \"2026-05-27T17:47:37.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"572418\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed43_strict_cqa1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_attn_k09_long_seed43_strict_cqa1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T16:17:39.274Z\", \"updated_at\": \"2026-05-27T16:19:09.599Z\", \"hypothesis\": \"π0.5 Attn k=0.9 Long strict seed43 — Attn k=0.9 seed42 尚无 strict 数据（cliff curve 缺失点）。Attn k=0.95=78.4%, k=0.85=50.0%，k=0.9 是断崖（78.4→50.0）的中间位置，seed43 同步生成 error bar\", \"parent\": \"eval_pi05_attn_k09_long_seed42_strict\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:2\"], \"pid\": \"503245\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k09_long_seed43_strict_cqa1.log\", \"submitted_at\": \"2026-05-27T16:18:55.720Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"cqa1-33015\", \"gpu\": \"cuda:2\", \"pid\": \"503245\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k09_long_seed43_strict_cqa1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_openvla_random_k095_long_seed42_v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:26:54.075Z\", \"updated_at\": \"2026-05-27T12:29:13.417Z\", \"hypothesis\": \"OV Random k=0.95 Long v3 — 前次 v2/backup 因 8h timeout (EXIT_CODE=124) 中断在 Task 7 ep20。增加 timeout 到 12h 重跑。OV Long Random cliff curve 顶端最后缺口，跨架构对比需要\", \"parent\": \"eval_openvla_random_k095_long_seed42_backup\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl timeout 43200 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"openvla-7b-finetuned-libero-10\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\", \"eval_data\": \"libero_10 (Long suite, 10 tasks x 50 episodes)\"}}, \"eval_openvla_attn_k075_long_seed42_v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:13:07.834Z\", \"updated_at\": \"2026-05-27T12:19:59.316Z\", \"hypothesis\": \"OpenVLA Attention k=0.75 Long seed42 v3 — 当前 39.8% 是 partial 数据（†标记），需要完整重跑。Long Attn curve 中间段：k=0.85=45.8%, k=0.7=24.0%\", \"parent\": \"eval_openvla_attn_k075_long_seed42\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"gpu\": 1, \"pid\": 266221, \"tmux_session\": \"ov_attn_k075_long\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log\", \"fix_note\": \"v3: added conda activation (v2 failed with 'python: command not found'), removed invalid --gpu param\"}}}, \"count\": 16, \"total\": 16, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.9296}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "cb3e578c-1e13-43d0-be67-b7b06c744d08",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k05_long_seed44_strict_w38\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T19:04:15.139Z\\\", \\\"updated_at\\\": \\\"2026-05-27T19:08:09.126Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 Long strict seed44 — k=0.5 交汇点第三个种子。seed42=49.2%, seed43 RUNNING。验证极端压缩下三方法收敛的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k05_long_seed42_strict\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"557449\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed44_strict_w38.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T19:07:48.743Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"557449\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed44_strict_w38.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\\\\\"\\\"}}, \\\"eval_pi05_random_k09_long_seed44_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T19:04:09.672Z\\\", \\\"updated_at\\\": \\\"2026-05-27T19:07:40.212Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.9 Long strict seed44 — 峰值点 importance margin (46pp) 的第三个种子 Random 端。seed42=34.2%, seed43=32.4%, seed44 将 n=2→3 加固 Random valley 可信度\\\", \\\"parent\\\": \\\"eval_pi05_random_k09_long_seed43_strict_cqa1_v2\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"68640\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed44_strict_w41.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T19:07:22.231Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"68640\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed44_strict_w41.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\\\\\"\\\"}}, \\\"eval_pi05_l2norm_k09_long_seed44_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T19:04:04.866Z\\\", \\\"updated_at\\\": \\\"2026-05-27T19:07:05.543Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.9 Long strict seed44 — 峰值点 importance margin (46pp) 的第三个种子。seed42=80.0%, seed43=81.2%, seed44 将 n=2→3 加固核心 claim 可信度\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"628418\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed44_strict_cqa1.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T19:06:50.615Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"628418\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed44_strict_cqa1.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\\\\\"\\\"}}, \\\"eval_pi05_attn_k05_long_seed43_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T19:00:16.740Z\\\", \\\"updated_at\\\": \\\"2026-05-27T19:01:29.757Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.5 Long strict seed43 backup — seed42=52.0% 的 seed 复制。w38 版本(PREPARING)状态不确定，w41 作为 Attn 最稳定服务器的保险部署。若 w38 也成功则获得跨硬件对比数据\\\", \\\"parent\\\": \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"62928\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w41.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T19:01:22.087Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"62928\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w41.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\"}}, \\\"eval_pi05_attn_k05_long_seed43_strict_w38\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:10:15.232Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:58:51.306Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_attn_k05_long_seed42_strict_w41\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"541240\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:40:11.366Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}, \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 541240, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\\\"}, \\\"eval_pi05_attn_k075_long_seed43_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:10:09.805Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:43:47.395Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.75 Long strict seed43 — seed42=52.4% 的 seed 复制，验证 Attn cliff 后平台段 error bar（w27 不支持 attention，重新部署到 cqa1）\\\", \\\"parent\\\": \\\"eval_pi05_attn_k075_long_seed42_strict_cqa1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"588702\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_cqa1.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:10:53.074Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}, \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:3\\\"}, \\\"eval_pi05_attn_k075_long_seed43_strict_w27_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:13:53.095Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:16:45.913Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.75 Long strict seed43 — seed42=52.4% 的 seed 复制，验证 Attn cliff 后平台段 error bar。v2: w27 代码同步修复后重跑（v1 因 --prune_mode 不支持 attention 而失败）\\\", \\\"parent\\\": \\\"eval_pi05_attn_k075_long_seed42_strict_cqa1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_w27_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:14:24Z\\\", \\\"submitted_via\\\": \\\"manual_tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}}, \\\"eval_pi05_attn_k085_long_seed43_strict_w27_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T18:13:47.422Z\\\", \\\"updated_at\\\": \\\"2026-05-27T18:16:34.743Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.85 Long strict seed43 — seed42=50.0% 的 seed 复制，验证 Attn step-function 降级可复现性。v2: w27 代码同步修复后重跑（v1 因 --prune_mode 不支持 attention 而失败）\\\", \\\"parent\\\": \\\"eval_pi05_attn_k085_long_seed42_strict\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w27_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T18:14:23Z\\\", \\\"submitted_via\\\": \\\"manual_tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi0.5 pretrained\\\", \\\"eval_data\\\": \\\"libero_10 (Long)\\\"}}, \\\"eval_pi05_attn_k085_long_seed43_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T17:55:12.802Z\\\", \\\"updated_at\\\": \\\"2026-05-27T17:58:47.667Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.85 Long strict seed43 — seed42=50.0% 的 seed 复制（w27 部署失败后重新部署到支持 attention 的 w41），验证 Attn step-function 降级可复现性\\\", \\\"parent\\\": \\\"eval_pi05_attn_k085_long_seed42_strict\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"2953\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w41.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T17:58:34.953Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"2953\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w41.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\"}}, \\\"eval_pi05_l2norm_k07_long_seed43_strict_w27\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T17:55:07.165Z\\\", \\\"updated_at\\\": \\\"2026-05-27T17:58:17.514Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.7 Long strict seed43 — w41 GPU3 同实验的双保险（w41 曾因 cascade 共享 GPU 被拖慢），确保截止前获得 L2norm k=0.7 error bar\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k07_long_seed42_strict\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"53966\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed43_strict_w27.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T17:58:07.865Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"53966\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed43_strict_w27.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\"}}, \\\"eval_pi05_random_k05_long_seed43_strict_w27\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T17:55:02.771Z\\\", \\\"updated_at\\\": \\\"2026-05-27T17:57:58.137Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long strict seed43 — seed42=52.4% 的 seed 复制，验证极端压缩下 Random U-shape 的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_random_k05_long_seed42_strict\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"53712\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed43_strict_w27.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T17:57:50.725Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"53712\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed43_strict_w27.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\"}}, \\\"eval_pi05_attn_k07_long_seed43_strict_w41\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T17:42:31.778Z\\\", \\\"updated_at\\\": \\\"2026-05-27T17:49:18.797Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.7 Long strict seed43 — seed42=53.6% 的 seed 复制，验证 Attn cliff 后平台段 error bar（k=0.7 在 step-function 后持平区间）\\\", \\\"parent\\\": \\\"eval_pi05_attn_k07_long_seed42_strict_cqa1\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"993383\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k07_long_seed43_strict_w41.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T17:48:54.603Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"993383\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k07_long_seed43_strict_w41.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\"}}, \\\"eval_pi05_l2norm_k05_long_seed43_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T17:42:35.483Z\\\", \\\"updated_at\\\": \\\"2026-05-27T17:47:51.693Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 Long strict seed43 — seed42=50.0% 的 seed 复制，验证极端压缩下三方法收敛到 ~50% 的 error bar\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k05_long_seed42_strict\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"572418\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed43_strict_cqa1.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T17:47:37.244Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"572418\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed43_strict_cqa1.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\"}}, \\\"eval_pi05_attn_k09_long_seed43_strict_cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T16:17:39.274Z\\\", \\\"updated_at\\\": \\\"2026-05-27T16:19:09.599Z\\\", \\\"hypothesis\\\": \\\"π0.5 Attn k=0.9 Long strict seed43 — Attn k=0.9 seed42 尚无 strict 数据（cliff curve 缺失点）。Attn k=0.95=78.4%, k=0.85=50.0%，k=0.9 是断崖（78.4→50.0）的中间位置，seed43 同步生成 error bar\\\", \\\"parent\\\": \\\"eval_pi05_attn_k09_long_seed42_strict\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"503245\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k09_long_seed43_strict_cqa1.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T16:18:55.720Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"503245\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_attn_k09_long_seed43_strict_cqa1.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\\\\"\\\"}}, \\\"eval_openvla_random_k095_long_seed42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T12:26:54.075Z\\\", \\\"updated_at\\\": \\\"2026-05-27T12:29:13.417Z\\\", \\\"hypothesis\\\": \\\"OV Random k=0.95 Long v3 — 前次 v2/backup 因 8h timeout (EXIT_CODE=124) 中断在 Task 7 ep20。增加 timeout 到 12h 重跑。OV Long Random cliff curve 顶端最后缺口，跨架构对比需要\\\", \\\"parent\\\": \\\"eval_openvla_random_k095_long_seed42_backup\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl timeout 43200 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\\\", \\\"eval_data\\\": \\\"libero_10 (Long suite, 10 tasks x 50 episodes)\\\"}}, \\\"eval_openvla_attn_k075_long_seed42_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T12:13:07.834Z\\\", \\\"updated_at\\\": \\\"2026-05-27T12:19:59.316Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attention k=0.75 Long seed42 v3 — 当前 39.8% 是 partial 数据（†标记），需要完整重跑。Long Attn curve 中间段：k=0.85=45.8%, k=0.7=24.0%\\\", \\\"parent\\\": \\\"eval_openvla_attn_k075_long_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": 1, \\\"pid\\\": 266221, \\\"tmux_session\\\": \\\"ov_attn_k075_long\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log\\\", \\\"fix_note\\\": \\\"v3: added conda activation (v2 failed with 'python: command not found'), removed invalid --gpu param\\\"}}}, \\\"count\\\": 16, \\\"total\\\": 16, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.9296}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k05_long_seed44_strict_w38\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T19:04:15.139Z\", \"updated_at\": \"2026-05-27T19:08:09.126Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Long strict seed44 — k=0.5 交汇点第三个种子。seed42=49.2%, seed43 RUNNING。验证极端压缩下三方法收敛的 error bar\", \"parent\": \"eval_pi05_l2norm_k05_long_seed42_strict\", \"server\": \"westd-38929\", \"gpu\": \"cuda:2\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:2\"], \"pid\": \"557449\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed44_strict_w38.log\", \"submitted_at\": \"2026-05-27T19:07:48.743Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"557449\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed44_strict_w38.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\"}}, \"eval_pi05_random_k09_long_seed44_strict_w41\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T19:04:09.672Z\", \"updated_at\": \"2026-05-27T19:07:40.212Z\", \"hypothesis\": \"π0.5 Random k=0.9 Long strict seed44 — 峰值点 importance margin (46pp) 的第三个种子 Random 端。seed42=34.2%, seed43=32.4%, seed44 将 n=2→3 加固 Random valley 可信度\", \"parent\": \"eval_pi05_random_k09_long_seed43_strict_cqa1_v2\", \"server\": \"westd-41074\", \"gpu\": \"cuda:2\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:2\"], \"pid\": \"68640\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed44_strict_w41.log\", \"submitted_at\": \"2026-05-27T19:07:22.231Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"68640\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed44_strict_w41.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\"}}, \"eval_pi05_l2norm_k09_long_seed44_strict_cqa1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T19:04:04.866Z\", \"updated_at\": \"2026-05-27T19:07:05.543Z\", \"hypothesis\": \"π0.5 L2norm k=0.9 Long strict seed44 — 峰值点 importance margin (46pp) 的第三个种子。seed42=80.0%, seed43=81.2%, seed44 将 n=2→3 加固核心 claim 可信度\", \"parent\": \"eval_pi05_l2norm_k09_long_seed43_strict_cqa1\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:1\"], \"pid\": \"628418\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed44_strict_cqa1.log\", \"submitted_at\": \"2026-05-27T19:06:50.615Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"628418\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_long_seed44_strict_cqa1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\"\"}}, \"eval_pi05_attn_k05_long_seed43_strict_w41\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T19:00:16.740Z\", \"updated_at\": \"2026-05-27T19:01:29.757Z\", \"hypothesis\": \"π0.5 Attn k=0.5 Long strict seed43 backup — seed42=52.0% 的 seed 复制。w38 版本(PREPARING)状态不确定，w41 作为 Attn 最稳定服务器的保险部署。若 w38 也成功则获得跨硬件对比数据\", \"parent\": \"eval_pi05_attn_k05_long_seed42_strict_w41\", \"server\": \"westd-41074\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:3\"], \"pid\": \"62928\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w41.log\", \"submitted_at\": \"2026-05-27T19:01:22.087Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"62928\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w41.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_attn_k05_long_seed43_strict_w38\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T18:10:15.232Z\", \"updated_at\": \"2026-05-27T18:58:51.306Z\", \"hypothesis\": \"π0.5 Attn k=0.5 Long strict seed43 — seed42 对比值待查，验证极端压缩下 Attn 的 error bar\", \"parent\": \"eval_pi05_attn_k05_long_seed42_strict_w41\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:3\"], \"pid\": \"541240\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\", \"submitted_at\": \"2026-05-27T18:40:11.366Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"server\": \"westd-38929\", \"gpu\": \"cuda:3\", \"pid\": 541240, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k05_long_seed43_strict_w38.log\"}, \"eval_pi05_attn_k075_long_seed43_strict_cqa1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T18:10:09.805Z\", \"updated_at\": \"2026-05-27T18:43:47.395Z\", \"hypothesis\": \"π0.5 Attn k=0.75 Long strict seed43 — seed42=52.4% 的 seed 复制，验证 Attn cliff 后平台段 error bar（w27 不支持 attention，重新部署到 cqa1）\", \"parent\": \"eval_pi05_attn_k075_long_seed42_strict_cqa1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:3\", \"pid\": \"588702\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_cqa1.log\", \"submitted_at\": \"2026-05-27T18:10:53.074Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}, \"server\": \"cqa1-33015\", \"gpu\": \"cuda:3\"}, \"eval_pi05_attn_k075_long_seed43_strict_w27_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T18:13:53.095Z\", \"updated_at\": \"2026-05-27T18:16:45.913Z\", \"hypothesis\": \"π0.5 Attn k=0.75 Long strict seed43 — seed42=52.4% 的 seed 复制，验证 Attn cliff 后平台段 error bar。v2: w27 代码同步修复后重跑（v1 因 --prune_mode 不支持 attention 而失败）\", \"parent\": \"eval_pi05_attn_k075_long_seed42_strict_cqa1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed43_strict_w27_v2.log\", \"submitted_at\": \"2026-05-27T18:14:24Z\", \"submitted_via\": \"manual_tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}}, \"eval_pi05_attn_k085_long_seed43_strict_w27_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T18:13:47.422Z\", \"updated_at\": \"2026-05-27T18:16:34.743Z\", \"hypothesis\": \"π0.5 Attn k=0.85 Long strict seed43 — seed42=50.0% 的 seed 复制，验证 Attn step-function 降级可复现性。v2: w27 代码同步修复后重跑（v1 因 --prune_mode 不支持 attention 而失败）\", \"parent\": \"eval_pi05_attn_k085_long_seed42_strict\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w27_v2.log\", \"submitted_at\": \"2026-05-27T18:14:23Z\", \"submitted_via\": \"manual_tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi0.5 pretrained\", \"eval_data\": \"libero_10 (Long)\"}}, \"eval_pi05_attn_k085_long_seed43_strict_w41\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:55:12.802Z\", \"updated_at\": \"2026-05-27T17:58:47.667Z\", \"hypothesis\": \"π0.5 Attn k=0.85 Long strict seed43 — seed42=50.0% 的 seed 复制（w27 部署失败后重新部署到支持 attention 的 w41），验证 Attn step-function 降级可复现性\", \"parent\": \"eval_pi05_attn_k085_long_seed42_strict\", \"server\": \"westd-41074\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"2953\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w41.log\", \"submitted_at\": \"2026-05-27T17:58:34.953Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"2953\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k085_long_seed43_strict_w41.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.85 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_l2norm_k07_long_seed43_strict_w27\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:55:07.165Z\", \"updated_at\": \"2026-05-27T17:58:17.514Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Long strict seed43 — w41 GPU3 同实验的双保险（w41 曾因 cascade 共享 GPU 被拖慢），确保截止前获得 L2norm k=0.7 error bar\", \"parent\": \"eval_pi05_l2norm_k07_long_seed42_strict\", \"server\": \"westd-27271\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"53966\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed43_strict_w27.log\", \"submitted_at\": \"2026-05-27T17:58:07.865Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"53966\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed43_strict_w27.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_random_k05_long_seed43_strict_w27\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:55:02.771Z\", \"updated_at\": \"2026-05-27T17:57:58.137Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long strict seed43 — seed42=52.4% 的 seed 复制，验证极端压缩下 Random U-shape 的 error bar\", \"parent\": \"eval_pi05_random_k05_long_seed42_strict\", \"server\": \"westd-27271\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:0\"], \"pid\": \"53712\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed43_strict_w27.log\", \"submitted_at\": \"2026-05-27T17:57:50.725Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"53712\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed43_strict_w27.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_attn_k07_long_seed43_strict_w41\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:42:31.778Z\", \"updated_at\": \"2026-05-27T17:49:18.797Z\", \"hypothesis\": \"π0.5 Attn k=0.7 Long strict seed43 — seed42=53.6% 的 seed 复制，验证 Attn cliff 后平台段 error bar（k=0.7 在 step-function 后持平区间）\", \"parent\": \"eval_pi05_attn_k07_long_seed42_strict_cqa1\", \"server\": \"westd-41074\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"993383\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k07_long_seed43_strict_w41.log\", \"submitted_at\": \"2026-05-27T17:48:54.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"993383\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k07_long_seed43_strict_w41.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_l2norm_k05_long_seed43_strict_cqa1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T17:42:35.483Z\", \"updated_at\": \"2026-05-27T17:47:51.693Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Long strict seed43 — seed42=50.0% 的 seed 复制，验证极端压缩下三方法收敛到 ~50% 的 error bar\", \"parent\": \"eval_pi05_l2norm_k05_long_seed42_strict\", \"server\": \"cqa1-33015\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:0\"], \"pid\": \"572418\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed43_strict_cqa1.log\", \"submitted_at\": \"2026-05-27T17:47:37.244Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"572418\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_long_seed43_strict_cqa1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_pi05_attn_k09_long_seed43_strict_cqa1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T16:17:39.274Z\", \"updated_at\": \"2026-05-27T16:19:09.599Z\", \"hypothesis\": \"π0.5 Attn k=0.9 Long strict seed43 — Attn k=0.9 seed42 尚无 strict 数据（cliff curve 缺失点）。Attn k=0.95=78.4%, k=0.85=50.0%，k=0.9 是断崖（78.4→50.0）的中间位置，seed43 同步生成 error bar\", \"parent\": \"eval_pi05_attn_k09_long_seed42_strict\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\", \"server\": \"cqa1-33015\", \"gpu\": [\"cuda:2\"], \"pid\": \"503245\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k09_long_seed43_strict_cqa1.log\", \"submitted_at\": \"2026-05-27T16:18:55.720Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"cqa1-33015\", \"gpu\": \"cuda:2\", \"pid\": \"503245\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k09_long_seed43_strict_cqa1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\"\"}}, \"eval_openvla_random_k095_long_seed42_v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:26:54.075Z\", \"updated_at\": \"2026-05-27T12:29:13.417Z\", \"hypothesis\": \"OV Random k=0.95 Long v3 — 前次 v2/backup 因 8h timeout (EXIT_CODE=124) 中断在 Task 7 ep20。增加 timeout 到 12h 重跑。OV Long Random cliff curve 顶端最后缺口，跨架构对比需要\", \"parent\": \"eval_openvla_random_k095_long_seed42_backup\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl timeout 43200 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"openvla-7b-finetuned-libero-10\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\", \"eval_data\": \"libero_10 (Long suite, 10 tasks x 50 episodes)\"}}, \"eval_openvla_attn_k075_long_seed42_v3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:13:07.834Z\", \"updated_at\": \"2026-05-27T12:19:59.316Z\", \"hypothesis\": \"OpenVLA Attention k=0.75 Long seed42 v3 — 当前 39.8% 是 partial 数据（†标记），需要完整重跑。Long Attn curve 中间段：k=0.85=45.8%, k=0.7=24.0%\", \"parent\": \"eval_openvla_attn_k075_long_seed42\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"gpu\": 1, \"pid\": 266221, \"tmux_session\": \"ov_attn_k075_long\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log\", \"fix_note\": \"v3: added conda activation (v2 failed with 'python: command not found'), removed invalid --gpu param\"}}}, \"count\": 16, \"total\": 16, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.9296}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me map out what I see:
+
+**GPU processes on w38:**
+| GPU | GPU UUID | PID | Memory |
+|-----|----------|-----|--------|
+| 0 | GPU-e9ff022e... | 272022 | 15798 MiB |
+| 1 | GPU-b42ecc48... | 266221 | 15762 MiB |
+| 2 | GPU-2b25bd52... | 557458 | 10244 MiB |
+| 3 | GPU-d885bcad... | 541249 | 10553 MiB |
+
+
+Now I'm checking the registry entries for w38 to see how the jobs are configured. The first entry is missing GPU and PID info at the top level, though the spec assigns CUDA_VISIBLE_DEVICES=0. The second entry also lacks top-level GPU details but the spec shows gpu=1 with pid=266221 matching one of the running processes. The third entry appears to be cut off but follows a similar pattern.
+
+Looking at the remaining entries, I'm noticing discrepancies between the registered PIDs and what's actually running on each GPU. For instance, entry 3 shows pid=557449 in the registry but the actual process on GPU 2 is 557458, and entry 4 has a similar mismatch with pid=541240 registered but 541249 actually running. I need to pull the process information to verify which experiments these PIDs correspond to and understand why there's a drift between the registry and reality.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "3b6717a1-96ba-4e7c-ace2-8cc7a7364375",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nmp8XRUczQnBQLm4HerQP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11597,
+      "cache_read_input_tokens": 25354,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11597
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+获取所有 4 个进程的命令行信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "d9560a10-e2a7-4457-87b5-df94da38ad7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nmp8XRUczQnBQLm4HerQP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11597,
+      "cache_read_input_tokens": 25354,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11597
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0167qN7sFMc6k7GXL6Domcud`</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ps -p 272022,266221,557458,541249 -o pid,etime,args --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "f6d9e61c-3ce3-405d-8aef-1f85b76a097d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nmp8XRUczQnBQLm4HerQP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11597,
+      "cache_read_input_tokens": 25354,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11597
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T19:44:12.576Z_
+
+<details><summary>↩ Tool result · `toolu_0167qN7sFMc6k7GXL6Domcud`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"266221    07:25:03 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\n272022    07:17:56 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\n541249    01:04:01 python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\n557458       36:24 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "c0a7b309-ce62-43e9-bc1f-176adcc3890f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"266221    07:25:03 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\\n272022    07:17:56 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\\n541249    01:04:01 python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\\n557458       36:24 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"266221    07:25:03 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\n272022    07:17:56 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\n541249    01:04:01 python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\n557458       36:24 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 44 --gpu 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture:
+
+**GPU 0 (PID 272022)**: `eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95` — running 7h17m
+- Maps to registry: `eval_openvla_random_k095_long_seed42_v3`
+- Registry issues: no top-level `gpu`, `pid`, `log_path` fields
+
+
+**GPU 1 (PID 266221)**: `eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75` — running 7h25m
+- Maps to registry: `eval_openvla_attn_k075_long_seed42_v3`
+- Has spec-level pid and gpu fields but missing the top-level metadata fields
+**GPU 2 (PID 557458)**: `eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --seed 44` — running 36m
+- Maps to registry: `eval_pi05_l2norm_k05_seed44_v3`
+- Also missing the top-level `gpu`, `pid`, `log_path` fields
+**GPU 3 (PID 541249)**: `eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.5 --seed 43` — running 1h4m
+- Maps to registry: `eval_pi05_attn_k05_long_seed43_strict_w38`
+- Registry has top-level gpu=cuda:3, pid=541240. Actual PID is 541249. Same bash wrapper vs python child discrepancy.
+
+I'm noticing a pattern where the registered PIDs don't match the actual running PIDs — the registry captures the bash wrapper PID while the actual Python child process has a different PID, which is a known behavior from submit_training_job.
+
+Now I need to fix two entries that are missing top-level metadata: `eval_openvla_random_k095_long_seed42_v3` lacks gpu, pid, and log_path entirely, while `eval_openvla_attn_k075_long_seed42_v3` has gpu and pid in the spec but I need to verify the log_path exists. I'm updating the configuration entries for the two OpenVLA experiments by setting their GPU assignments and process IDs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "dc266e4f-fcbe-45ce-b681-6551fbdf747e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMN18nc7DhJSbfyWWUfxMM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1188,
+      "cache_read_input_tokens": 36951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1188
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+确认完毕，所有 4 个 GPU 进程对应关系清晰：
+
+| GPU | PID | Uptime | 实验 | Registry 状态 |
+|-----|-----|--------|------|--------------|
+| cuda:0 | 272022 | 7h17m | `eval_openvla_random_k095_long_seed42_v3` (random_prune k=0.95) | 缺 gpu/pid 顶层字段 |
+| cuda:1 | 266221 | 7h25m | `eval_openvla_attn_k075_long_seed42_v3` (attention_prune k=0.75) | 缺 gpu/pid 顶层字段 |
+| cuda:2 | 557458 | 36m | `eval_pi05_l2norm_k05_long_seed44_strict_w38` (l2norm k=0.5 s44) | OK (gpu=cuda:2, pid=557449 是 bash wrapper) |
+| cuda:3 | 541249 | 1h4m | `eval_pi05_attn_k05_long_seed43_strict_w38` (attn k=0.5 s43) | OK (gpu=cuda:3, pid=541240 是 bash wrapper) |
+
+补全两个 OV 实验的顶层字段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "81a70159-86ac-42a3-b225-46ae9ec49fd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMN18nc7DhJSbfyWWUfxMM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1188,
+      "cache_read_input_tokens": 36951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1188
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WZbHYxGjtrfg1cPiSYqyjG`</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_random_k095_long_seed42_v3",
+  "field": "gpu",
+  "value": "cuda:0",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "8d0ea944-abcd-48ce-ab36-0d4eabd98d82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMN18nc7DhJSbfyWWUfxMM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1188,
+      "cache_read_input_tokens": 36951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1188
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SfgDQoY9aHdMBiyM4zMAQj`</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_random_k095_long_seed42_v3",
+  "field": "pid",
+  "value": 272022,
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "050435cb-77b4-4fa2-a466-ed904e5ba965",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMN18nc7DhJSbfyWWUfxMM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1188,
+      "cache_read_input_tokens": 36951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1188
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Bqa1gFR9vxoqrzrf75op2z`</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k075_long_seed42_v3",
+  "field": "gpu",
+  "value": "cuda:1",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "fe303829-ebde-477a-876d-d842cfde198a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMN18nc7DhJSbfyWWUfxMM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1188,
+      "cache_read_input_tokens": 36951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1188
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014f8fkK7dEo1QbHTGtiW4R9`</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_attn_k075_long_seed42_v3",
+  "field": "pid",
+  "value": 266221,
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "ec3454f9-d54d-4a4f-923b-b2983d63806c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WMN18nc7DhJSbfyWWUfxMM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1188,
+      "cache_read_input_tokens": 36951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1188
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T19:44:38.870Z_
+
+<details><summary>↩ Tool result · `toolu_01WZbHYxGjtrfg1cPiSYqyjG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k095_long_seed42_v3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:26:54.075Z\", \"updated_at\": \"2026-05-27T19:44:36.149Z\", \"hypothesis\": \"OV Random k=0.95 Long v3 — 前次 v2/backup 因 8h timeout (EXIT_CODE=124) 中断在 Task 7 ep20。增加 timeout 到 12h 重跑。OV Long Random cliff curve 顶端最后缺口，跨架构对比需要\", \"parent\": \"eval_openvla_random_k095_long_seed42_backup\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl timeout 43200 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"openvla-7b-finetuned-libero-10\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\", \"eval_data\": \"libero_10 (Long suite, 10 tasks x 50 episodes)\"}, \"gpu\": \"cuda:0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.6466}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "c6aca5d4-19cf-4490-8733-11b72219c365",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k095_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T12:26:54.075Z\\\", \\\"updated_at\\\": \\\"2026-05-27T19:44:36.149Z\\\", \\\"hypothesis\\\": \\\"OV Random k=0.95 Long v3 — 前次 v2/backup 因 8h timeout (EXIT_CODE=124) 中断在 Task 7 ep20。增加 timeout 到 12h 重跑。OV Long Random cliff curve 顶端最后缺口，跨架构对比需要\\\", \\\"parent\\\": \\\"eval_openvla_random_k095_long_seed42_backup\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl timeout 43200 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\\\", \\\"eval_data\\\": \\\"libero_10 (Long suite, 10 tasks x 50 episodes)\\\"}, \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.6466}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k095_long_seed42_v3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:26:54.075Z\", \"updated_at\": \"2026-05-27T19:44:36.149Z\", \"hypothesis\": \"OV Random k=0.95 Long v3 — 前次 v2/backup 因 8h timeout (EXIT_CODE=124) 中断在 Task 7 ep20。增加 timeout 到 12h 重跑。OV Long Random cliff curve 顶端最后缺口，跨架构对比需要\", \"parent\": \"eval_openvla_random_k095_long_seed42_backup\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl timeout 43200 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"openvla-7b-finetuned-libero-10\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\", \"eval_data\": \"libero_10 (Long suite, 10 tasks x 50 episodes)\"}, \"gpu\": \"cuda:0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.6466}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-27T19:44:44.509Z_
+
+<details><summary>↩ Tool result · `toolu_01SfgDQoY9aHdMBiyM4zMAQj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k095_long_seed42_v3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:26:54.075Z\", \"updated_at\": \"2026-05-27T19:44:42.307Z\", \"hypothesis\": \"OV Random k=0.95 Long v3 — 前次 v2/backup 因 8h timeout (EXIT_CODE=124) 中断在 Task 7 ep20。增加 timeout 到 12h 重跑。OV Long Random cliff curve 顶端最后缺口，跨架构对比需要\", \"parent\": \"eval_openvla_random_k095_long_seed42_backup\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl timeout 43200 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"openvla-7b-finetuned-libero-10\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\", \"eval_data\": \"libero_10 (Long suite, 10 tasks x 50 episodes)\"}, \"gpu\": \"cuda:0\", \"pid\": 272022}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.6232}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "4316186d-344e-4067-b137-bd4a5c64e793",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k095_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T12:26:54.075Z\\\", \\\"updated_at\\\": \\\"2026-05-27T19:44:42.307Z\\\", \\\"hypothesis\\\": \\\"OV Random k=0.95 Long v3 — 前次 v2/backup 因 8h timeout (EXIT_CODE=124) 中断在 Task 7 ep20。增加 timeout 到 12h 重跑。OV Long Random cliff curve 顶端最后缺口，跨架构对比需要\\\", \\\"parent\\\": \\\"eval_openvla_random_k095_long_seed42_backup\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl timeout 43200 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": \\\"10 tasks x 50 episodes\\\", \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-10\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\\\", \\\"eval_data\\\": \\\"libero_10 (Long suite, 10 tasks x 50 episodes)\\\"}, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 272022}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.6232}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k095_long_seed42_v3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:26:54.075Z\", \"updated_at\": \"2026-05-27T19:44:42.307Z\", \"hypothesis\": \"OV Random k=0.95 Long v3 — 前次 v2/backup 因 8h timeout (EXIT_CODE=124) 中断在 Task 7 ep20。增加 timeout 到 12h 重跑。OV Long Random cliff curve 顶端最后缺口，跨架构对比需要\", \"parent\": \"eval_openvla_random_k095_long_seed42_backup\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl timeout 43200 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.95 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"openvla-7b-finetuned-libero-10\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/openvla-7b-finetuned-libero-10\", \"eval_data\": \"libero_10 (Long suite, 10 tasks x 50 episodes)\"}, \"gpu\": \"cuda:0\", \"pid\": 272022}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.6232}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-27T19:44:50.529Z_
+
+<details><summary>↩ Tool result · `toolu_01Bqa1gFR9vxoqrzrf75op2z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k075_long_seed42_v3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:13:07.834Z\", \"updated_at\": \"2026-05-27T19:44:47.956Z\", \"hypothesis\": \"OpenVLA Attention k=0.75 Long seed42 v3 — 当前 39.8% 是 partial 数据（†标记），需要完整重跑。Long Attn curve 中间段：k=0.85=45.8%, k=0.7=24.0%\", \"parent\": \"eval_openvla_attn_k075_long_seed42\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"gpu\": 1, \"pid\": 266221, \"tmux_session\": \"ov_attn_k075_long\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log\", \"fix_note\": \"v3: added conda activation (v2 failed with 'python: command not found'), removed invalid --gpu param\"}, \"gpu\": \"cuda:1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.0024}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "784b1508-9a0d-4d6e-9b08-76a311cd9333",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_attn_k075_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T12:13:07.834Z\\\", \\\"updated_at\\\": \\\"2026-05-27T19:44:47.956Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attention k=0.75 Long seed42 v3 — 当前 39.8% 是 partial 数据（†标记），需要完整重跑。Long Attn curve 中间段：k=0.85=45.8%, k=0.7=24.0%\\\", \\\"parent\\\": \\\"eval_openvla_attn_k075_long_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": 1, \\\"pid\\\": 266221, \\\"tmux_session\\\": \\\"ov_attn_k075_long\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log\\\", \\\"fix_note\\\": \\\"v3: added conda activation (v2 failed with 'python: command not found'), removed invalid --gpu param\\\"}, \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.0024}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k075_long_seed42_v3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:13:07.834Z\", \"updated_at\": \"2026-05-27T19:44:47.956Z\", \"hypothesis\": \"OpenVLA Attention k=0.75 Long seed42 v3 — 当前 39.8% 是 partial 数据（†标记），需要完整重跑。Long Attn curve 中间段：k=0.85=45.8%, k=0.7=24.0%\", \"parent\": \"eval_openvla_attn_k075_long_seed42\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"gpu\": 1, \"pid\": 266221, \"tmux_session\": \"ov_attn_k075_long\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log\", \"fix_note\": \"v3: added conda activation (v2 failed with 'python: command not found'), removed invalid --gpu param\"}, \"gpu\": \"cuda:1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.0024}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-27T19:44:56.066Z_
+
+<details><summary>↩ Tool result · `toolu_014f8fkK7dEo1QbHTGtiW4R9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k075_long_seed42_v3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:13:07.834Z\", \"updated_at\": \"2026-05-27T19:44:54.125Z\", \"hypothesis\": \"OpenVLA Attention k=0.75 Long seed42 v3 — 当前 39.8% 是 partial 数据（†标记），需要完整重跑。Long Attn curve 中间段：k=0.85=45.8%, k=0.7=24.0%\", \"parent\": \"eval_openvla_attn_k075_long_seed42\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"gpu\": 1, \"pid\": 266221, \"tmux_session\": \"ov_attn_k075_long\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log\", \"fix_note\": \"v3: added conda activation (v2 failed with 'python: command not found'), removed invalid --gpu param\"}, \"gpu\": \"cuda:1\", \"pid\": 266221}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.5086}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "ed354fc2-1c5e-4d67-9668-9edc0d9e3bb9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_attn_k075_long_seed42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T12:13:07.834Z\\\", \\\"updated_at\\\": \\\"2026-05-27T19:44:54.125Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attention k=0.75 Long seed42 v3 — 当前 39.8% 是 partial 数据（†标记），需要完整重跑。Long Attn curve 中间段：k=0.85=45.8%, k=0.7=24.0%\\\", \\\"parent\\\": \\\"eval_openvla_attn_k075_long_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": 1, \\\"pid\\\": 266221, \\\"tmux_session\\\": \\\"ov_attn_k075_long\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log\\\", \\\"fix_note\\\": \\\"v3: added conda activation (v2 failed with 'python: command not found'), removed invalid --gpu param\\\"}, \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 266221}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5086}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_attn_k075_long_seed42_v3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T12:13:07.834Z\", \"updated_at\": \"2026-05-27T19:44:54.125Z\", \"hypothesis\": \"OpenVLA Attention k=0.75 Long seed42 v3 — 当前 39.8% 是 partial 数据（†标记），需要完整重跑。Long Attn curve 中间段：k=0.85=45.8%, k=0.7=24.0%\", \"parent\": \"eval_openvla_attn_k075_long_seed42\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.75 --suite libero_10 --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/models/openvla-7b-finetuned-libero-10 --unnorm_key libero_10\", \"server\": \"westd-38929\", \"gpu\": 1, \"pid\": 266221, \"tmux_session\": \"ov_attn_k075_long\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_attn_k075_long_seed42_v3.log\", \"fix_note\": \"v3: added conda activation (v2 failed with 'python: command not found'), removed invalid --gpu param\"}, \"gpu\": \"cuda:1\", \"pid\": 266221}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.5086}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+审计完成。w38 全部 4 个 GPU 状态正常，无未注册进程。
+
+**修复内容：**
+- `eval_openvla_random_k095_long_seed42_v3`：补全 gpu=cuda:0, pid=272022
+- `eval_openvla_attn_k075_long_seed42_v3`：补全 gpu=cuda:1, pid=266221
+
+**确认正常运行：**
+- cuda:2: L2norm k=0.5 s44 (PID 557458, 36m) — 已注册，pid=557449 是 bash wrapper
+- cuda:3: Attn k=0.5 s43 (PID 541249, 1h4m) — 已注册，pid=541240 是 bash wrapper
+
+两个 OV 实验已跑 7h+，接近完成。无异常进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "uuid": "2e548887-5801-43bd-a863-fc0439cc4cc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011C4zrG15E1AHs6RrNj78WP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4227,
+      "cache_read_input_tokens": 38139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4227
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 29_
+
+审计完成。w38 全部 4 个 GPU 状态正常，无未注册进程。
+
+**修复内容：**
+- `eval_openvla_random_k095_long_seed42_v3`：补全 gpu=cuda:0, pid=272022
+- `eval_openvla_attn_k075_long_seed42_v3`：补全 gpu=cuda:1, pid=266221
+
+**确认正常运行：**
+- cuda:2: L2norm k=0.5 s44 (PID 557458, 36m) — 已注册，pid=557449 是 bash wrapper
+- cuda:3: Attn k=0.5 s43 (PID 541249, 1h4m) — 已注册，pid=541240 是 bash wrapper
+
+两个 OV 实验已跑 7h+，接近完成。无异常进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 79456,
+  "duration_api_ms": 55340,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "aa51586f-e713-4830-9225-25b43a1f24ae",
+  "total_cost_usd": 0.34596375,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 30521,
+    "cache_read_input_tokens": 136343,
+    "output_tokens": 3399,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 30521,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 241,
+        "cache_read_input_tokens": 38139,
+        "cache_creation_input_tokens": 4227,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4227
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1916,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002016,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 3399,
+      "cacheReadInputTokens": 136343,
+      "cacheCreationInputTokens": 30521,
+      "webSearchRequests": 0,
+      "costUSD": 0.34394775,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d67ba88b-a086-4a75-864f-2055b802368e"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,3381 @@
+# paper research bib fix
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 105
+- **Recorded user turns:** 0
+- **Tool calls:** 52
+- **Original source:** `logs/chats/worker_paper_research_bib_fix_20260515T090356.jsonl`
+- **Structured JSON:** [`28245c6096ef3cce7111.json`](../../sessions/28/28245c6096ef3cce7111.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+105 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T09:07:10.598437+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T09:07:10.598850+00:00_
+
+1	@article{shumailov2024_nature,
+2	  author    = {Shumailov and Shumaylov and Zhao and Papernot and Anderson and Gal},
+3	  title     = {{AI models collapse when trained on recursively generated data}},
+4	  journal   = {Nature},
+5	  year      = {2024},
+6	  doi       = {10.1038/s41586-024-07566-y},
+7	}
+8	
+9	@inproceedings{marchi2024_heat_death,
+10	  author    = {Marchi and Soatto and Chaudhari and Tabuada},
+11	  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},
+12	  booktitle = {Proceedings of ICASSP},
+13	  year      = {2024},
+14	  note      = {arXiv:2404.02325},
+15	}
+16	
+17	@inproceedings{dohmatob2024_tale_of_tails,
+18	  author    = {Dohmatob and Feng and Yang and Charton and Kempe},
+19	  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},
+20	  booktitle = {Proceedings of ICML},
+21	  year      = {2024},
+22	  note      = {arXiv:2402.07043},
+23	}
+24	
+25	@inproceedings{dohmatob2024_strong_collapse,
+26	  author    = {Dohmatob and Feng and Subramonian and Kempe},
+27	  title     = {{Strong Model Collapse}},
+28	  booktitle = {Proceedings of ICLR},
+29	  year      = {2024},
+30	  note      = {arXiv:2410.04840},
+31	}
+32	
+33	@inproceedings{dohmatob2024_demystified,
+34	  author    = {Dohmatob and Feng and Kempe},
+35	  title     = {{Model Collapse Demystified: The Case of Regression}},
+36	  booktitle = {Proceedings of NeurIPS},
+37	  year      = {2024},
+38	  note      = {arXiv:2402.07712},
+39	}
+40	
+41	@inproceedings{alemohammad2024_mad,
+42	  author    = {Alemohammad and Casco-Rodriguez and others},
+43	  title     = {{Self-Consuming Generative Models Go MAD}},
+44	  booktitle = {Proceedings of ICLR},
+45	  year      = {2024},
+46	  note      = {arXiv:2307.01850},
+47	}
+48	
+49	@misc{gerstgrasser2024_accumulate,
+50	  author    = {Gerstgrasser and Schaeffer and others},
+51	  title     = {{Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data}},
+52	  year      = {2024},
+53	  howpublished = {arXiv
+…[truncated 8627 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T09:07:10.599092+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T09:07:10.599260+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T09:07:10.599422+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Search batch 1: papers 1-10",
+  "prompt": "Search for the full author lists of these academic papers. For each paper, I need ALL author first names and last names in order. Return the results in a structured format like:\n- paper_key: Author1FirstName Author1LastName, Author2FirstName Author2LastName, ...\n\nUse WebSearch for each paper. Search by arXiv ID when available.\n\n1. shumailov2024_nature: \"AI models collapse when trained on recursively generated data\", DOI 10.1038/s41586-024-07566-y\n   - Current authors: Shumailov, Shumaylov, Zhao, Papernot, Anderson, Gal\n   \n2. marchi2024_heat_death: arXiv:2404.02325 \"Heat Death of Generative Models in Closed-Loop Learning\"\n   - Current authors: Marchi, Soatto, Chaudhari, Tabuada\n\n3. dohmatob2024_tale_of_tails: arXiv:2402.07043 \"A Tale of Tails: Model Collapse as a Change of Scaling Laws\"\n   - Current authors: Dohmatob, Feng, Yang, Charton, Kempe\n\n4. dohmatob2024_strong_collapse: arXiv:2410.04840 \"Strong Model Collapse\"\n   - Current authors: Dohmatob, Feng, Subramonian, Kempe\n\n5. dohmatob2024_demystified: arXiv:2402.07712 \"Model Collapse Demystified: The Case of Regression\"\n   - Current authors: Dohmatob, Feng, Kempe\n\n6. alemohammad2024_mad: arXiv:2307.01850 \"Self-Consuming Generative Models Go MAD\"\n   - Need first 3+ authors with full names\n\n7. gerstgrasser2024_accumulate: arXiv:2404.01413 \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\"\n   - Need first 3+ authors with full names\n\n8. drayson2025_detection_prevents_collapse: arXiv:2502.15654 \"Machine-generated text detection prevents language model collapse\"\n   - Need first 3+ authors with full names (currently just \"Drayson and others\")\n\n9. bakshi2026_collapse_improvement: arXiv:2602.10531 \"From Collapse to Improvement: Statistical Perspectives on Iterative Training\"\n   - Current authors: Bakshi, Chakraborty\n\n10. wang2026_contamination: arXiv:2602.16065 \"Can Generative AI Survive Data Contamination?\"\n    - Current authors: Wang, Niu, Li\n\nReturn ONLY the structured results, nothing else.",
+  "model": "sonnet"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Search batch 1: papers 1-10",
+    "prompt": "Search for the full author lists of these academic papers. For each paper, I need ALL author first names and last names in order. Return the results in a structured format like:\n- paper_key: Author1FirstName Author1LastName, Author2FirstName Author2LastName, ...\n\nUse WebSearch for each paper. Search by arXiv ID when available.\n\n1. shumailov2024_nature: \"AI models collapse when trained on recursively generated data\", DOI 10.1038/s41586-024-07566-y\n   - Current authors: Shumailov, Shumaylov, Zhao, Papernot, Anderson, Gal\n   \n2. marchi2024_heat_death: arXiv:2404.02325 \"Heat Death of Generative Models in Closed-Loop Learning\"\n   - Current authors: Marchi, Soatto, Chaudhari, Tabuada\n\n3. dohmatob2024_tale_of_tails: arXiv:2402.07043 \"A Tale of Tails: Model Collapse as a Change of Scaling Laws\"\n   - Current authors: Dohmatob, Feng, Yang, Charton, Kempe\n\n4. dohmatob2024_strong_collapse: arXiv:2410.04840 \"Strong Model Collapse\"\n   - Current authors: Dohmatob, Feng, Subramonian, Kempe\n\n5. dohmatob2024_demystified: arXiv:2402.07712 \"Model Collapse Demystified: The Case of Regression\"\n   - Current authors: Dohmatob, Feng, Kempe\n\n6. alemohammad2024_mad: arXiv:2307.01850 \"Self-Consuming Generative Models Go MAD\"\n   - Need first 3+ authors with full names\n\n7. gerstgrasser2024_accumulate: arXiv:2404.01413 \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\"\n   - Need first 3+ authors with full names\n\n8. drayson2025_detection_prevents_collapse: arXiv:2502.15654 \"Machine-generated text detection prevents language model collapse\"\n   - Need first 3+ authors with full names (currently just \"Drayson and others\")\n\n9. bakshi2026_collapse_improvement: arXiv:2602.10531 \"From Collapse to Improvement: Statistical Perspectives on Iterative Training\"\n   - Current authors: Bakshi, Chakraborty\n\n10. wang2026_contamination: arXiv:2602.16065 \"Can Generative AI Survive Data Contamination?\"\n    - Current authors: Wang, Niu, Li\n\nReturn ONLY the structured results, nothing else.",
+    "model": "sonnet"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T09:07:10.599735+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T09:07:10.599952+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T09:07:10.600092+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Shumailov Shumaylov Zhao Papernot Anderson Gal \"AI models collapse when trained on recursively generated data\" Nature 2024 full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Shumailov Shumaylov Zhao Papernot Anderson Gal \"AI models collapse when trained on recursively generated data\" Nature 2024 full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T09:07:10.600217+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2404.02325 \"Heat Death of Generative Models\" Marchi Soatto Chaudhari Tabuada full authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2404.02325 \"Heat Death of Generative Models\" Marchi Soatto Chaudhari Tabuada full authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T09:07:10.600335+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2402.07043 \"Tale of Tails\" Dohmatob Feng Yang Charton Kempe full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2402.07043 \"Tale of Tails\" Dohmatob Feng Yang Charton Kempe full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T09:07:10.600454+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2410.04840 \"Strong Model Collapse\" Dohmatob Feng Subramonian Kempe full authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2410.04840 \"Strong Model Collapse\" Dohmatob Feng Subramonian Kempe full authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T09:07:10.600566+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2402.07712 \"Model Collapse Demystified\" Dohmatob Feng Kempe full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2402.07712 \"Model Collapse Demystified\" Dohmatob Feng Kempe full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T09:07:10.600693+00:00_
+
+Web search results for query: "Shumailov Shumaylov Zhao Papernot Anderson Gal "AI models collapse when trained on recursively generated data" Nature 2024 full author list"
+
+Links: [{"title":"AI models collapse when trained on recursively generated data | Nature","url":"https://www.nature.com/articles/s41586-024-07566-y"},{"title":"A Note on Shumailov et al. (2024): ‘AI Models Collapse When Trained on Recursively Generated Data’","url":"https://arxiv.org/html/2410.12954v2"},{"title":"AI models collapse when trained on recursively generated data - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/39048682/"},{"title":"Author Correction: AI models collapse when trained on recursively generated data | Nature","url":"https://www.nature.com/articles/s41586-025-08905-3"},{"title":"[PDF] AI models collapse when trained on recursively generated data | Semantic Scholar","url":"https://www.semanticscholar.org/paper/AI-models-collapse-when-trained-on-recursively-data-Shumailov-Shumaylov/603d3f90fc40f79ff51258f0295de3ec5107f73e"},{"title":"AI models collapse when trained on recursively generated data - ORA - Oxford University Research Archive","url":"https://ora.ox.ac.uk/objects/uuid:fa1155e9-c2ff-436a-8391-455b622f4e64"},{"title":"A Note on Shumailov et al. (2024): 'AI Models Collapse ...","url":"https://arxiv.org/pdf/2410.12954"},{"title":"AI models collapse when trained on recursively generated data – ScienceOpen","url":"https://www.scienceopen.com/document?vid=5f8bdb26-74ea-49ae-b558-08bc8fe69772"},{"title":"AI models collapse when trained on recursively generated data","url":"https://ideas.repec.org/a/nat/nature/v631y2024i8022d10.1038_s41586-024-07566-y.html"},{"title":"Author Correction: AI models collapse when trained on recursively generated data - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11981929/"}]
+
+Based on the search results, I found the complete author list for the Nature 2024 paper "AI models collapse when trained on recursively generated data":
+
+The auth
+…[truncated 317 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T09:07:10.600855+00:00_
+
+Web search results for query: "arXiv 2402.07043 "Tale of Tails" Dohmatob Feng Yang Charton Kempe full author list"
+
+Links: [{"title":"[2402.07043] A Tale of Tails: Model Collapse as a Change of Scaling Laws","url":"https://arxiv.org/abs/2402.07043"},{"title":"A Tale of Tails: Model Collapse as a Change of Scaling Laws","url":"https://arxiv.org/html/2402.07043"},{"title":"Paper page - A Tale of Tails: Model Collapse as a Change of Scaling Laws","url":"https://huggingface.co/papers/2402.07043"},{"title":"A Tale of Tails: Model Collapse as a Change of Scaling Laws","url":"https://www.emergentmind.com/papers/2402.07043"},{"title":"A Tale of Tails: Model Collapse as a Change of Scaling Laws | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/tale-tails-model-collapse-as-change-scaling"},{"title":"[Literature Review] A Tale of Tails: Model Collapse as a Change of Scaling Laws","url":"https://www.themoonlight.io/en/review/a-tale-of-tails-model-collapse-as-a-change-of-scaling-laws"},{"title":"arXiv:2402.07043v2 [cs.LG] 31 May 2024","url":"https://arxiv.org/pdf/2402.07043"},{"title":"A Tale of Tails: Model Collapse as a Change of Scaling Laws","url":"https://par.nsf.gov/servlets/purl/10535859"},{"title":"arxiv preprint - A Tale of Tails: Model Collapse as a Change of Scaling Laws - Welcome","url":"https://aibreakdown.org/arxiv-preprint-a-tale-of-tails-model-collapse-as-a-change-of-scaling-laws/"},{"title":"[short] A Tale of Tails: Model Collapse as a Change of Scaling Laws - YouTube","url":"https://www.youtube.com/watch?v=JsL_IktEj6E"}]
+
+Based on the search results, I found the full author list for arXiv paper 2402.07043 "A Tale of Tails: Model Collapse as a Change of Scaling Laws":
+
+The authors are: Elvis Dohmatob, Yunzhen Feng, Pu Yang, Francois Charton, and Julia Kempe.
+
+The paper was submitted on February 10, 2024, with a revised version on May 31, 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyper
+…[truncated 6 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T09:07:10.601030+00:00_
+
+Web search results for query: "arXiv 2404.02325 "Heat Death of Generative Models" Marchi Soatto Chaudhari Tabuada full authors"
+
+Links: [{"title":"[2404.02325] Heat Death of Generative Models in Closed-Loop Learning","url":"https://arxiv.org/abs/2404.02325"},{"title":"Heat Death of Generative Models in Closed-Loop Learning","url":"https://arxiv.org/html/2404.02325"},{"title":"Self-Consuming AI Resources","url":"https://dsp.rice.edu/ai-loops/"},{"title":"[Literature Review] Heat Death of Generative Models in Closed-Loop Learning","url":"https://www.themoonlight.io/en/review/heat-death-of-generative-models-in-closed-loop-learning"},{"title":"Heat Death of Generative Models in Closed-Loop Learning | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/10886816/;jsessionid=60FC898E365129B3B254A2F246637E5B"},{"title":"Heat Death of Generative Models in Closed-Loop Learning | Request PDF","url":"https://www.researchgate.net/publication/389367496_Heat_Death_of_Generative_Models_in_Closed-Loop_Learning"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/html/2509.16499v2"},{"title":"(PDF) Generative Modelling With Inverse Heat Dissipation","url":"https://www.researchgate.net/publication/361581722_Generative_Modelling_With_Inverse_Heat_Dissipation"},{"title":"Generative Modelling With Inverse Heat Dissipation","url":"https://aaltoml.github.io/generative-inverse-heat-dissipation/"},{"title":"Deep generative modelling of canonical ensemble with differentiable thermal properties","url":"https://arxiv.org/html/2404.18404v1"}]
+
+Based on the search results, I found the information about the paper. The authors of "Heat Death of Generative Models in Closed-Loop Learning" (arXiv:2404.02325) are Matteo Marchi, Stefano Soatto, Pratik Chaudhari, and Paulo Tabuada.
+
+The paper was submitted on April 2, 2024 (v1), with the last revision on August 28, 2024 (v2).
+
+
+REMINDER: You MUST includ
+…[truncated 75 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T09:07:10.601174+00:00_
+
+Web search results for query: "arXiv 2402.07712 "Model Collapse Demystified" Dohmatob Feng Kempe full author list"
+
+Links: [{"title":"[2402.07712] Model Collapse Demystified: The Case of Regression","url":"https://arxiv.org/abs/2402.07712"},{"title":"Model Collapse Demystified: The Case of Regression","url":"https://arxiv.org/html/2402.07712"},{"title":"Model Collapse Demystified: The Case of Regression - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240207712D/abstract"},{"title":"Paper page - Model Collapse Demystified: The Case of Regression","url":"https://huggingface.co/papers/2402.07712"},{"title":"Model Collapse Demystified: The Case of Regression | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/model-collapse-demystified-case-regression"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/html/2404.01413v2"},{"title":"1 Introduction","url":"https://arxiv.org/html/2503.03150v2"},{"title":"arXiv:2402.07712v1 [cs.LG] 12 Feb 2024","url":"http://arxiv.org/pdf/2402.07712"},{"title":"Position: Model Collapse Does Not Mean What You Think","url":"https://arxiv.org/pdf/2503.03150"},{"title":"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Reinforcement","url":"https://arxiv.org/html/2406.07515v1"}]
+
+Based on the search results, the authors of arXiv paper 2402.07712 "Model Collapse Demystified: The Case of Regression" are Elvis Dohmatob, Yunzhen Feng, and Julia Kempe.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T09:07:10.601320+00:00_
+
+Web search results for query: "arXiv 2410.04840 "Strong Model Collapse" Dohmatob Feng Subramonian Kempe full authors"
+
+Links: [{"title":"[2410.04840] Strong Model Collapse","url":"https://arxiv.org/abs/2410.04840"},{"title":"Strong Model Collapse Elvis Dohmatob1 e.dohmatob@meta.com Yunzhen Feng1,2,∗","url":"https://arxiv.org/pdf/2410.04840"},{"title":"Strong Model Collapse","url":"https://arxiv.org/html/2410.04840.pdf"},{"title":"Strong Model Collapse - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv241004840D/abstract"},{"title":"Strong Model Collapse | alphaXiv","url":"https://www.alphaxiv.org/abs/2410.04840"},{"title":"Strong Model Collapse | Request PDF","url":"https://www.researchgate.net/publication/384700001_Strong_Model_Collapse"},{"title":"Position: Model Collapse Does Not Mean What You Think","url":"https://arxiv.org/pdf/2503.03150"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/html/2509.16499v2"},{"title":"Strong Model Collapse","url":"https://www.emergentmind.com/papers/2410.04840"},{"title":"Xuandong Zhao on X: \"🚨 Fascinating insights from the paper “Strong Model Collapse”! (https://t.co/WTg2dujtkE) It concludes that even the smallest fraction of synthetic data (as little as 1% of the total dataset) can lead to model collapse. 🧠 Larger datasets don’t necessarily improve performance! https://t.co/8ILPRQ5f8b\" / X","url":"https://x.com/xuandongzhao/status/1845330594185806117"}]
+
+Based on the search results, I found information about the arXiv paper 2410.04840 "Strong Model Collapse":
+
+**Full Authors:** Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe
+
+**Paper Details:**
+- Submitted on October 7, 2024 with revision on October 8, 2024
+- The paper establishes the existence of a strong form of the model collapse phenomenon, a critical performance degradation due to synthetic data in the training corpus
+- Even the smallest fraction of synthetic data (as little as 1% 
+…[truncated 279 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T09:07:10.601518+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Search batch 2: papers 11-20",
+  "prompt": "Search for the full author lists of these academic papers. For each paper, I need ALL author first names and last names in order. Return the results in a structured format like:\n- paper_key: Author1FirstName Author1LastName, Author2FirstName Author2LastName, ...\n\nUse WebSearch for each paper. Search by arXiv ID when available.\n\n11. falahati2026_curated: arXiv:2605.07724 \"Curated Synthetic Data Doesn't Have to Collapse\"\n    - Current authors: Falahati, Amiri, Larson, Golab\n\n12. knowledge_collapse2025: arXiv:2509.04796 \"Knowledge Collapse in LLMs: Fluency Survives but Facts Fail\"\n    - Current authors: Keisha, Wu, Wang, Koshiyama, Treleaven\n\n13. synthetic_eggs2026: arXiv:2511.01490 \"Synthetic Eggs in Many Baskets: Impact of Synthetic Data Diversity on LLM Fine-Tuning\"\n    - Current authors: Schaffelder, Gatt\n\n14. mohamed2025_broken_telephone: arXiv:2502.20258 \"LLM as a Broken Telephone: Iterative Generation Distorts Information\"\n    - Current authors: Mohamed, Geng, Vazirgiannis, Shang\n\n15. sigma2026_spectral: arXiv:2601.03385 \"SIGMA: Scalable Spectral Insights for LLM Model Collapse\"\n    - CRITICAL: current author is \"(multiple)\" — need real authors\n\n16. holtzman2020_nucleus: arXiv:1904.09751 \"The Curious Case of Neural Text Degeneration\"\n    - Current authors: Holtzman, Buys, Du, Forbes, Choi\n\n17. finlayson2024_closing: arXiv:2310.01693 \"Closing the Curious Case of Neural Text Degeneration\"\n    - Current authors: Finlayson, Hewitt, Koller, Swayamdipta, Sabharwal\n\n18. garces_arias2025_decoding_decoded: COLING 2025 \"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\"\n    - Need first 3+ authors (currently just \"Garces Arias and others\")\n\n19. wiher2022_decoding: TACL \"On Decoding Strategies for Neural Text Generators\"\n    - Current authors: Wiher, Meister, Cotterell\n\n20. basu2021_mirostat: ICLR 2021 \"Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity\"\n    - Current authors: Basu, Sachdev, Kamdar, Nishi\n\nReturn ONLY the structured results, nothing else.",
+  "model": "sonnet"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Search batch 2: papers 11-20",
+    "prompt": "Search for the full author lists of these academic papers. For each paper, I need ALL author first names and last names in order. Return the results in a structured format like:\n- paper_key: Author1FirstName Author1LastName, Author2FirstName Author2LastName, ...\n\nUse WebSearch for each paper. Search by arXiv ID when available.\n\n11. falahati2026_curated: arXiv:2605.07724 \"Curated Synthetic Data Doesn't Have to Collapse\"\n    - Current authors: Falahati, Amiri, Larson, Golab\n\n12. knowledge_collapse2025: arXiv:2509.04796 \"Knowledge Collapse in LLMs: Fluency Survives but Facts Fail\"\n    - Current authors: Keisha, Wu, Wang, Koshiyama, Treleaven\n\n13. synthetic_eggs2026: arXiv:2511.01490 \"Synthetic Eggs in Many Baskets: Impact of Synthetic Data Diversity on LLM Fine-Tuning\"\n    - Current authors: Schaffelder, Gatt\n\n14. mohamed2025_broken_telephone: arXiv:2502.20258 \"LLM as a Broken Telephone: Iterative Generation Distorts Information\"\n    - Current authors: Mohamed, Geng, Vazirgiannis, Shang\n\n15. sigma2026_spectral: arXiv:2601.03385 \"SIGMA: Scalable Spectral Insights for LLM Model Collapse\"\n    - CRITICAL: current author is \"(multiple)\" — need real authors\n\n16. holtzman2020_nucleus: arXiv:1904.09751 \"The Curious Case of Neural Text Degeneration\"\n    - Current authors: Holtzman, Buys, Du, Forbes, Choi\n\n17. finlayson2024_closing: arXiv:2310.01693 \"Closing the Curious Case of Neural Text Degeneration\"\n    - Current authors: Finlayson, Hewitt, Koller, Swayamdipta, Sabharwal\n\n18. garces_arias2025_decoding_decoded: COLING 2025 \"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\"\n    - Need first 3+ authors (currently just \"Garces Arias and others\")\n\n19. wiher2022_decoding: TACL \"On Decoding Strategies for Neural Text Generators\"\n    - Current authors: Wiher, Meister, Cotterell\n\n20. basu2021_mirostat: ICLR 2021 \"Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity\"\n    - Current authors: Basu, Sachdev, Kamdar, Nishi\n\nReturn ONLY the structured results, nothing else.",
+    "model": "sonnet"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T09:07:10.601782+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2307.01850 \"Self-Consuming Generative Models Go MAD\" full author list Alemohammad"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2307.01850 \"Self-Consuming Generative Models Go MAD\" full author list Alemohammad"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T09:07:10.601934+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2404.01413 \"Is Model Collapse Inevitable Breaking the Curse of Recursion\" Gerstgrasser full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2404.01413 \"Is Model Collapse Inevitable Breaking the Curse of Recursion\" Gerstgrasser full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T09:07:10.602059+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2502.15654 \"Machine-generated text detection prevents language model collapse\" Drayson full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2502.15654 \"Machine-generated text detection prevents language model collapse\" Drayson full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T09:07:10.602176+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2602.10531 \"From Collapse to Improvement Statistical Perspectives Iterative Training\" Bakshi Chakraborty full authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2602.10531 \"From Collapse to Improvement Statistical Perspectives Iterative Training\" Bakshi Chakraborty full authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T09:07:10.602299+00:00_
+
+Web search results for query: "arXiv 2307.01850 "Self-Consuming Generative Models Go MAD" full author list Alemohammad"
+
+Links: [{"title":"[2307.01850] Self-Consuming Generative Models Go MAD","url":"https://arxiv.org/abs/2307.01850"},{"title":"Self-Consuming Generative Models Go MAD - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230701850A/abstract"},{"title":"[PDF] Self-Consuming Generative Models Go MAD | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Self-Consuming-Generative-Models-Go-MAD-Alemohammad-Casco-Rodriguez/ad022cd5da75637ac3e0a8f8cc4f0d394ba5ff7a"},{"title":"(PDF) Self-Consuming Generative Models Go MAD","url":"https://www.researchgate.net/publication/372136378_Self-Consuming_Generative_Models_Go_MAD"},{"title":"Self-Consuming Generative Models Go MAD","url":"https://dsp.rice.edu/2023/07/06/self-consuming-generative-models-go-mad/"},{"title":"Paper page - Self-Consuming Generative Models Go MAD","url":"https://huggingface.co/papers/2307.01850"},{"title":"Self-Consuming Generative Models Go MAD | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2307.01850"},{"title":"Self-Consuming Generative Models Go MAD","url":"https://richb.rice.edu/2023/07/12/self-consuming-generative-models-go-mad/"},{"title":"Self-Consuming Generative Models Go MAD | Montreal AI Ethics Institute","url":"https://montrealethics.ai/self-consuming-generative-models-go-mad/"},{"title":"Self-Consuming Generative Models Go MAD | OpenReview","url":"https://openreview.net/forum?id=ShjMHfmPs0"}]
+
+Based on the search results, the full author list for arXiv paper 2307.01850 "Self-Consuming Generative Models Go MAD" is: Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard G. Baraniuk.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T09:07:10.602428+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2602.16065 \"Can Generative AI Survive Data Contamination\" Wang Niu Li full authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2602.16065 \"Can Generative AI Survive Data Contamination\" Wang Niu Li full authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T09:07:10.602540+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T09:07:10.602655+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T09:07:10.602766+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv:2605.07724 \"Curated Synthetic Data Doesn't Have to Collapse\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv:2605.07724 \"Curated Synthetic Data Doesn't Have to Collapse\" authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T09:07:10.602895+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv:2509.04796 \"Knowledge Collapse in LLMs\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv:2509.04796 \"Knowledge Collapse in LLMs\" authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T09:07:10.603010+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv:2511.01490 \"Synthetic Eggs in Many Baskets\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv:2511.01490 \"Synthetic Eggs in Many Baskets\" authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T09:07:10.603119+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv:2502.20258 \"LLM as a Broken Telephone\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv:2502.20258 \"LLM as a Broken Telephone\" authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T09:07:10.603223+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv:2601.03385 \"SIGMA Scalable Spectral Insights LLM Model Collapse\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv:2601.03385 \"SIGMA Scalable Spectral Insights LLM Model Collapse\" authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T09:07:10.603347+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Search batch 3: papers 21-30",
+  "prompt": "Search for the full author lists of these academic papers. For each paper, I need ALL author first names and last names in order. Return the results in a structured format like:\n- paper_key: Author1FirstName Author1LastName, Author2FirstName Author2LastName, ...\n\nUse WebSearch for each paper. Search by arXiv ID when available.\n\n21. mitchell2023_detectgpt: arXiv:2301.11305 \"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\"\n    - Current authors: Mitchell, Lee, Khazatsky, Manning, Finn\n\n22. sadasivan2023_paraphrase: arXiv:2303.11156 \"Can AI-Generated Text be Reliably Detected?\"\n    - Current authors: Sadasivan, Kumar, Balasubramanian, Wang, Feizi\n\n23. binoculars2024: arXiv:2401.12070 \"Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text\"\n    - Need first 3+ authors (currently \"Hans and Schwarzschild and Manber and others\")\n\n24. fast_detectgpt2024: arXiv:2310.05130 \"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\"\n    - Need first 3+ authors (currently just \"Bao and others\")\n\n25. diveye2026: arXiv:2509.18880 \"DivEye: Diversity Boosts AI-Generated Text Detection\"\n    - Current authors: Basani, Chen\n\n26. loki2025: arXiv:2410.09732 \"LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models\"\n    - Has many authors, need first names for all listed: Ye, Zhou, Huang, Zhang, Bai, Kang, He, Lin, Wang, Wu, Wu, Chen, Lin, He, Li\n\n27. gehrmann2019_gltr: arXiv:1906.04043 \"GLTR: Statistical Detection and Visualization of Generated Text\"\n    - Current authors: Gehrmann, Strobelt, Rush\n\n28. pudasaini2026_detection_fails: arXiv:2603.23146 \"Why AI-Generated Text Detection Fails: Evidence from Explainable AI\"\n    - Need first 3+ authors (currently just \"Pudasaini and others\")\n\n29. editlens2026: arXiv:2510.03154 \"EditLens: Quantifying the Extent of AI Editing in Text\"\n    - Need first 3+ authors (currently just \"Thai and others\")\n\n30. uchendu2020_attribution: EMNLP 2020 \"Authorship Attribution for Neural Text Generation\"\n    - Current authors: Uchendu, Le, Shu, Lee\n\nReturn ONLY the structured results, nothing else.",
+  "model": "sonnet"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Search batch 3: papers 21-30",
+    "prompt": "Search for the full author lists of these academic papers. For each paper, I need ALL author first names and last names in order. Return the results in a structured format like:\n- paper_key: Author1FirstName Author1LastName, Author2FirstName Author2LastName, ...\n\nUse WebSearch for each paper. Search by arXiv ID when available.\n\n21. mitchell2023_detectgpt: arXiv:2301.11305 \"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\"\n    - Current authors: Mitchell, Lee, Khazatsky, Manning, Finn\n\n22. sadasivan2023_paraphrase: arXiv:2303.11156 \"Can AI-Generated Text be Reliably Detected?\"\n    - Current authors: Sadasivan, Kumar, Balasubramanian, Wang, Feizi\n\n23. binoculars2024: arXiv:2401.12070 \"Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text\"\n    - Need first 3+ authors (currently \"Hans and Schwarzschild and Manber and others\")\n\n24. fast_detectgpt2024: arXiv:2310.05130 \"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\"\n    - Need first 3+ authors (currently just \"Bao and others\")\n\n25. diveye2026: arXiv:2509.18880 \"DivEye: Diversity Boosts AI-Generated Text Detection\"\n    - Current authors: Basani, Chen\n\n26. loki2025: arXiv:2410.09732 \"LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models\"\n    - Has many authors, need first names for all listed: Ye, Zhou, Huang, Zhang, Bai, Kang, He, Lin, Wang, Wu, Wu, Chen, Lin, He, Li\n\n27. gehrmann2019_gltr: arXiv:1906.04043 \"GLTR: Statistical Detection and Visualization of Generated Text\"\n    - Current authors: Gehrmann, Strobelt, Rush\n\n28. pudasaini2026_detection_fails: arXiv:2603.23146 \"Why AI-Generated Text Detection Fails: Evidence from Explainable AI\"\n    - Need first 3+ authors (currently just \"Pudasaini and others\")\n\n29. editlens2026: arXiv:2510.03154 \"EditLens: Quantifying the Extent of AI Editing in Text\"\n    - Need first 3+ authors (currently just \"Thai and others\")\n\n30. uchendu2020_attribution: EMNLP 2020 \"Authorship Attribution for Neural Text Generation\"\n    - Current authors: Uchendu, Le, Shu, Lee\n\nReturn ONLY the structured results, nothing else.",
+    "model": "sonnet"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T09:07:10.603510+00:00_
+
+Web search results for query: "arXiv 2404.01413 "Is Model Collapse Inevitable Breaking the Curse of Recursion" Gerstgrasser full author list"
+
+Links: [{"title":"[2404.01413] Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/abs/2404.01413"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/html/2404.01413v2"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data | Rylan Schaeffer","url":"https://rylanschaeffer.github.io/content/research/2024_arxiv_is_model_collapse_inevitable/main.html"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240401413G/abstract"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of","url":"https://arxiv.org/pdf/2404.01413"},{"title":"[PDF] Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Is-Model-Collapse-Inevitable-Breaking-the-Curse-of-Gerstgrasser-Schaeffer/e8815da26d4e6cac8b23b7e6aa75cec028cb66d2"},{"title":"[2404.01413v1] Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/abs/2404.01413v1"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by","url":"https://openreview.net/pdf?id=y4vaskUK1b"},{"title":"AI-Powered Paper Summarization about the arXiv paper 2404.01413v1","url":"https://www.summarizepaper.com/en/arxiv-id/2404.01413v1/"},{"title":"Accumulating Data Prevents Model Collapse","url":"https://www.emergentmind.com/papers/2404.01413"}]
+
+Based on the search results, the full author list for arXiv paper 2404.01413 "Is Model Collapse Inevitable? Breaking the Curse of Recur
+…[truncated 375 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T09:07:10.603651+00:00_
+
+Web search results for query: "arXiv:2605.07724 "Curated Synthetic Data Doesn't Have to Collapse" authors"
+
+Links: [{"title":"[2605.07724] Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences","url":"https://arxiv.org/abs/2605.07724"}]
+
+The authors of arXiv:2605.07724 "Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences" are Ali Falahati, Mohammad Mohammadi Amiri, Kate Larson, and Lukasz Golab.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T09:07:10.603778+00:00_
+
+Web search results for query: "arXiv 2502.15654 "Machine-generated text detection prevents language model collapse" Drayson full author list"
+
+Links: [{"title":"[2502.15654] Machine-generated text detection prevents language model collapse","url":"https://arxiv.org/abs/2502.15654"},{"title":"Machine-generated text detection prevents language model collapse","url":"https://arxiv.org/html/2502.15654"},{"title":"Computation and Language Feb 2025","url":"https://www.arxiv.org/list/cs.CL/2025-02?skip=1325&show=250"},{"title":"Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI","url":"https://arxiv.org/html/2410.12341v3"},{"title":"Machine Learning Feb 2025","url":"https://arxiv.org/list/cs.LG/2025-02?skip=3800&show=2000"},{"title":"arXiv:2502.15654v5 [cs.CL] 19 May 2025","url":"https://arxiv.org/pdf/2502.15654"},{"title":"Computer Science Feb 2025","url":"https://www.arxiv.org/list/cs/2025-02?skip=7900&show=100"},{"title":"Machine-generated text detection prevents language model collapse - UCL Discovery","url":"https://discovery.ucl.ac.uk/id/eprint/10217226/"},{"title":"Language Models Optimized to Fool Detectors Still Have a Distinct Style (And How to Change It)","url":"https://arxiv.org/html/2505.14608"},{"title":"Machine-generated text detection prevents language model collapse","url":"https://openreview.net/pdf/22a5ff4d5a06122ee42c12ae85435b110781d685.pdf"}]
+
+Based on the search results, the full author list for arXiv paper 2502.15654 "Machine-generated text detection prevents language model collapse" is George Drayson, Emine Yilmaz, and Vasileios Lampos.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T09:07:10.603938+00:00_
+
+Web search results for query: "arXiv 2602.10531 "From Collapse to Improvement Statistical Perspectives Iterative Training" Bakshi Chakraborty full authors"
+
+Links: [{"title":"[2602.10531] From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources","url":"https://arxiv.org/abs/2602.10531"},{"title":"[2602.10531v1] From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources","url":"https://arxiv.org/abs/2602.10531v1"},{"title":"From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources","url":"https://arxiv.org/html/2602.10531"},{"title":"From Collapse to Improvement: Statistical Perspectives on the Evolutionary","url":"https://arxiv.org/pdf/2602.10531"},{"title":"Machine Learning","url":"https://www.arxiv.org/list/cs.LG/recent?skip=173&show=2000"},{"title":"Neural Hodge Corrective Solvers: A Hybrid Iterative–Neural Framework","url":"https://arxiv.org/html/2602.03404"},{"title":"A Task-Centric Theory for Iterative Self-Improvement with ...","url":"https://arxiv.org/pdf/2602.10014"},{"title":"Statistics Jan 2025","url":"https://www.arxiv.org/list/stat/2025-01?skip=100&show=1000"},{"title":"Artificial Intelligence","url":"https://arxiv.org/list/cs.AI/pastweek?skip=560&show=2000"},{"title":"[2602.24191] Resilient Strategies for Stochastic Systems: How Much Does It Take to Break a Winning Strategy?","url":"https://arxiv.org/abs/2602.24191"}]
+
+Based on the search results, I found the information about arXiv paper 2602.10531. Here are the full details:
+
+**Title:** From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources
+
+**Authors:** Soham Bakshi and Sunrit Chakraborty
+
+**Key Information:**
+- The paper was submitted on 11 Feb 2026 (v1), with a revised version on 17 Feb 2026 (v2)
+- The paper add
+…[truncated 388 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T09:07:10.604089+00:00_
+
+Web search results for query: "arXiv 2602.16065 "Can Generative AI Survive Data Contamination" Wang Niu Li full authors"
+
+Links: [{"title":"[2602.16065] Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training","url":"https://arxiv.org/abs/2602.16065"},{"title":"Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training","url":"https://arxiv.org/html/2602.16065"},{"title":"Can Generative Artificial Intelligence Survive Data ...","url":"https://arxiv.org/pdf/2602.16065"},{"title":"AI-generated data contamination erodes pathological variability and diagnostic reliability | medRxiv","url":"https://www.medrxiv.org/content/10.64898/2026.01.19.26344383v3"},{"title":"A Closer Look at the Existing Risks of Generative AI: Mapping the Who, What, and How of Real-World Incidents","url":"https://arxiv.org/html/2505.22073v2"},{"title":"Highlights AI Safety in Generative AI Large Language Models: A Survey","url":"https://arxiv.org/pdf/2407.18369"},{"title":"[2601.12946] AI-generated data contamination erodes pathological variability and diagnostic reliability","url":"https://arxiv.org/abs/2601.12946"},{"title":"A Survey of Defenses Against AI-Generated Visual Media: Detection, Disruption, and Authentication | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3770916"},{"title":"Generative AI for Biosciences: Emerging Threats and Roadmap to Biosecurity","url":"https://arxiv.org/html/2510.15975v1"},{"title":"Gen-AI for User Safety: A Survey * These authors contributed equally.","url":"https://arxiv.org/html/2411.06606v1"}]
+
+Based on the search results, I found the paper you're looking for. Here are the full author details:
+
+The authors of arXiv paper 2602.16065 "Can Generative Artificial Intelligence Survive Data Contamination?" are Kevin Wang, Hongqian Niu, and Didong Li. They are affiliated with the Department of Biostatistics at th
+…[truncated 382 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T09:07:10.604225+00:00_
+
+Web search results for query: "arXiv:2511.01490 "Synthetic Eggs in Many Baskets" authors"
+
+Links: [{"title":"[2511.01490] Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning","url":"https://arxiv.org/abs/2511.01490"},{"title":"Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-TuningAccepted to Findings of the Association for Computational Linguistics (ACL 2026).","url":"https://arxiv.org/html/2511.01490"},{"title":"Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning","url":"https://arxiv.org/html/2511.01490v1"}]
+
+The authors of arXiv:2511.01490 "Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning" are Max Schaffelder and Albert Gatt.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T09:07:10.604348+00:00_
+
+Web search results for query: "arXiv:2502.20258 "LLM as a Broken Telephone" authors"
+
+Links: [{"title":"[2502.20258] LLM as a Broken Telephone: Iterative Generation Distorts Information","url":"https://arxiv.org/abs/2502.20258"},{"title":"LLM as a Broken Telephone: Iterative Generation Distorts Information","url":"https://arxiv.org/html/2502.20258"},{"title":"Paper page - LLM as a Broken Telephone: Iterative Generation Distorts Information","url":"https://huggingface.co/papers/2502.20258"},{"title":"LLM as a Broken Telephone: Iterative Generation Distorts Information | alphaXiv","url":"https://www.alphaxiv.org/overview/2502.20258v1"},{"title":"dblp: LLM as a Broken Telephone: Iterative Generation Distorts Information.","url":"https://dblp.org/rec/journals/corr/abs-2502-20258.html"},{"title":"GitHub - amr-mohamedd/LLM-as-a-Broken-Telephone: [ACL 2025] Code implementation for the \"LLM as a Broken Telephone: Iterative Generation Distorts Information\" paper.","url":"https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone"},{"title":"Computation and Language Feb 2025","url":"https://www.arxiv.org/list/cs.CL/2025-02?skip=1700&show=50"},{"title":"LLM as a Broken Telephone: Iterative Generation Distorts Information | Request PDF","url":"https://www.researchgate.net/publication/394300051_LLM_as_a_Broken_Telephone_Iterative_Generation_Distorts_Information"},{"title":"LLM as a Broken Telephone: Iterative Generation Distorts Information - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.371/"},{"title":"LLM as a Broken Telephone: Iterative Generation Distorts ...","url":"https://aclanthology.org/2025.acl-long.371.pdf"}]
+
+The authors of arXiv:2502.20258 "LLM as a Broken Telephone: Iterative Generation Distorts Information" are Amr Mohamed, Mingmeng Geng, Michalis Vazirgiannis, and Guokan Shang.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T09:07:10.604481+00:00_
+
+Web search results for query: "arXiv:2509.04796 "Knowledge Collapse in LLMs" authors"
+
+Links: [{"title":"[2509.04796] Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training","url":"https://arxiv.org/abs/2509.04796"},{"title":"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training","url":"https://arxiv.org/html/2509.04796"},{"title":"Knowledge Collapse in LLMs: When Fluency Survives but ...","url":"https://www.arxiv.org/pdf/2509.04796"},{"title":"(PDF) Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training","url":"https://www.researchgate.net/publication/395339050_Knowledge_Collapse_in_LLMs_When_Fluency_Survives_but_Facts_Fail_under_Recursive_Synthetic_Training"},{"title":"Knowledge Collapse in LLMs","url":"https://www.emergentmind.com/topics/knowledge-collapse-in-llms"},{"title":"Epistemic Diversity and Knowledge Collapse in Large Language Models","url":"https://arxiv.org/html/2510.04226v6"},{"title":"[2510.04226] Epistemic Diversity and Knowledge Collapse in Large Language Models","url":"https://arxiv.org/abs/2510.04226"},{"title":"Knowledge Mechanisms in Large Language Models: A Survey and Perspective","url":"https://arxiv.org/html/2407.15017v1"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/html/2509.16499v1"},{"title":"[2509.07430] The Choice of Divergence: A Neglected Key to Mitigating Diversity Collapse in Reinforcement Learning with Verifiable Reward","url":"https://arxiv.org/abs/2509.07430"}]
+
+Based on the search results, the authors of arXiv:2509.04796 "Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training" are Figarri Keisha, Zekun Wu, Ze Wang, Adriano Koshiyama, and Philip Treleaven.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T09:07:10.604612+00:00_
+
+Web search results for query: "arXiv:2601.03385 "SIGMA Scalable Spectral Insights LLM Model Collapse" authors"
+
+Links: [{"title":"[2601.03385] SIGMA: Scalable Spectral Insights for LLM Model Collapse","url":"https://arxiv.org/abs/2601.03385"},{"title":"SIGMA: Scalable Spectral Insights for LLM Model Collapse","url":"https://www.arxiv.org/pdf/2601.03385"},{"title":"Sigma: Scalable Spectral Insights for LLM Model Collapse","url":"https://arxiv.org/html/2601.03385"},{"title":"Sigma: Scalable Spectral Insights for LLM Collapse","url":"https://arxiv.org/html/2601.03385v1"},{"title":"Rohan Paul on X: \"The authors measure LLM health by sampling embeddings and checking whether the meaning space keeps shrinking over training cycles. SIGMA spots LLM collapse early by measuring how much their sentence embedding space shrinks during self training. Recursive training on model https://t.co/ixJmA3N4y7\" / X","url":"https://x.com/rohanpaul_ai/status/2011373977176846463/photo/1"},{"title":"Machine Learning Jun 2025","url":"https://arxiv.org/list/cs.LG/2025-06?skip=2900&show=2000"},{"title":"Machine Learning Mar 2025","url":"https://arxiv.org/list/cs.LG/2025-03?skip=25&show=1000"},{"title":"[2506.06470] SIGMA: Refining Large Language Model Reasoning via Sibling-Guided Monte Carlo Augmentation","url":"https://arxiv.org/abs/2506.06470"},{"title":"Machine Learning Feb 2025","url":"https://arxiv.org/list/stat.ML/2025-02?skip=200&show=100"},{"title":"[2601.20099] Dynamics of Human-AI Collective Knowledge on the Web: A Scalable Model and Insights for Sustainable Growth","url":"https://arxiv.org/abs/2601.20099"}]
+
+Based on the search results, the authors of the paper "SIGMA: Scalable Spectral Insights for LLM Model Collapse" (arXiv:2601.03385) are Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, and Alexander Aue.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T09:07:10.604742+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T09:07:10.604855+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T09:07:10.604995+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Search batch 4: papers 31-37",
+  "prompt": "Search for the full author lists of these academic papers. For each paper, I need ALL author first names and last names in order. Return the results in a structured format like:\n- paper_key: Author1FirstName Author1LastName, Author2FirstName Author2LastName, ...\n\nUse WebSearch for each paper. Search by arXiv ID when available.\n\n31. pu2026_generator_barrier: arXiv:2604.13692 \"Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection\"\n    - Current authors: Pu, Cheng, Yuan, Wu, Bi\n\n32. coral2020: arXiv:1901.07884 \"Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation\"\n    - Current authors: Cao, Mirjalili, Raschka\n\n33. cloc2025: arXiv:2504.17813 \"CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss\"\n    - Need first 3+ authors (currently \"Pitawela and Carneiro and others\")\n\n34. kirchenbauer2023_watermark: arXiv:2301.10226 \"A Watermark for Large Language Models\"\n    - Current authors: Kirchenbauer, Geiping, Wen, Katz, Miers, Goldstein\n\n35. dsir2023: arXiv:2302.03169 \"Data Selection for Language Models via Importance Resampling\"\n    - Current authors: Xie, Santurkar, Ma, Liang\n\n36. qurating2024: arXiv:2402.09739 \"QuRating: Selecting High-Quality Data for Training Language Models\"\n    - Need first 3+ authors (currently \"Wettig and Gupta and others\")\n\n37. sugiyama2007_importance_weighting: JMLR 2007 \"Covariate Shift Adaptation by Importance Weighted Cross Validation\"\n    - Current authors: Sugiyama, Krauledat, Mueller\n\nReturn ONLY the structured results, nothing else.",
+  "model": "sonnet"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Search batch 4: papers 31-37",
+    "prompt": "Search for the full author lists of these academic papers. For each paper, I need ALL author first names and last names in order. Return the results in a structured format like:\n- paper_key: Author1FirstName Author1LastName, Author2FirstName Author2LastName, ...\n\nUse WebSearch for each paper. Search by arXiv ID when available.\n\n31. pu2026_generator_barrier: arXiv:2604.13692 \"Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection\"\n    - Current authors: Pu, Cheng, Yuan, Wu, Bi\n\n32. coral2020: arXiv:1901.07884 \"Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation\"\n    - Current authors: Cao, Mirjalili, Raschka\n\n33. cloc2025: arXiv:2504.17813 \"CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss\"\n    - Need first 3+ authors (currently \"Pitawela and Carneiro and others\")\n\n34. kirchenbauer2023_watermark: arXiv:2301.10226 \"A Watermark for Large Language Models\"\n    - Current authors: Kirchenbauer, Geiping, Wen, Katz, Miers, Goldstein\n\n35. dsir2023: arXiv:2302.03169 \"Data Selection for Language Models via Importance Resampling\"\n    - Current authors: Xie, Santurkar, Ma, Liang\n\n36. qurating2024: arXiv:2402.09739 \"QuRating: Selecting High-Quality Data for Training Language Models\"\n    - Need first 3+ authors (currently \"Wettig and Gupta and others\")\n\n37. sugiyama2007_importance_weighting: JMLR 2007 \"Covariate Shift Adaptation by Importance Weighted Cross Validation\"\n    - Current authors: Sugiyama, Krauledat, Mueller\n\nReturn ONLY the structured results, nothing else.",
+    "model": "sonnet"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T09:07:10.605156+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2301.11305 DetectGPT authors Mitchell Lee Khazatsky Manning Finn full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2301.11305 DetectGPT authors Mitchell Lee Khazatsky Manning Finn full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T09:07:10.605286+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv:1904.09751 \"The Curious Case of Neural Text Degeneration\" Holtzman authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv:1904.09751 \"The Curious Case of Neural Text Degeneration\" Holtzman authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T09:07:10.605425+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2303.11156 \"Can AI-Generated Text be Reliably Detected\" Sadasivan Kumar Balasubramanian Wang Feizi authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2303.11156 \"Can AI-Generated Text be Reliably Detected\" Sadasivan Kumar Balasubramanian Wang Feizi authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T09:07:10.605592+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv:2310.01693 \"Closing the Curious Case of Neural Text Degeneration\" Finlayson authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv:2310.01693 \"Closing the Curious Case of Neural Text Degeneration\" Finlayson authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T09:07:10.605986+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2401.12070 \"Spotting LLMs With Binoculars\" Hans Schwarzschild Manber full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2401.12070 \"Spotting LLMs With Binoculars\" Hans Schwarzschild Manber full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T09:07:10.606129+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2310.05130 \"Fast-DetectGPT\" Bao full author list authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2310.05130 \"Fast-DetectGPT\" Bao full author list authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T09:07:10.606257+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "COLING 2025 \"Decoding Decoded Understanding Hyperparameter Effects Open-Ended Text Generation\" Garces Arias authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "COLING 2025 \"Decoding Decoded Understanding Hyperparameter Effects Open-Ended Text Generation\" Garces Arias authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T09:07:10.606559+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T09:07:10.606698+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T09:07:10.606896+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2509.18880 \"DivEye\" Basani Chen AI-Generated Text Detection authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2509.18880 \"DivEye\" Basani Chen AI-Generated Text Detection authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T09:07:10.607066+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2410.09732 LOKI synthetic data detection benchmark large multimodal models full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2410.09732 LOKI synthetic data detection benchmark large multimodal models full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-15T09:07:10.607194+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 1906.04043 GLTR Gehrmann Strobelt Rush full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 1906.04043 GLTR Gehrmann Strobelt Rush full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T09:07:10.607315+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"On Decoding Strategies for Neural Text Generators\" Wiher Meister Cotterell TACL authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"On Decoding Strategies for Neural Text Generators\" Wiher Meister Cotterell TACL authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-15T09:07:10.607434+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2603.23146 \"Why AI-Generated Text Detection Fails\" Pudasaini authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2603.23146 \"Why AI-Generated Text Detection Fails\" Pudasaini authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T09:07:10.607554+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv ICLR 2021 \"Mirostat Neural Text Decoding Algorithm Directly Controls Perplexity\" Basu authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv ICLR 2021 \"Mirostat Neural Text Decoding Algorithm Directly Controls Perplexity\" Basu authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T09:07:10.607673+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2510.03154 \"EditLens\" Thai AI editing text full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2510.03154 \"EditLens\" Thai AI editing text full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T09:07:10.607796+00:00_
+
+Web search results for query: "arXiv:1904.09751 "The Curious Case of Neural Text Degeneration" Holtzman authors"
+
+Links: [{"title":"[1904.09751] The Curious Case of Neural Text Degeneration","url":"https://arxiv.org/abs/1904.09751"},{"title":"[1904.09751] The Curious Case of Neural Text Degeneration","url":"https://ar5iv.labs.arxiv.org/html/1904.09751"},{"title":"[PDF] The Curious Case of Neural Text Degeneration | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-Curious-Case-of-Neural-Text-Degeneration-Holtzman-Buys/cf4aa38ae31b43fd07abe13b4ffdb265babb7be1"},{"title":"The curious case of neural text degeneration","url":"https://ceur-ws.org/Vol-2540/FAIR2019_paper_15.pdf"},{"title":"Paper page - The Curious Case of Neural Text Degeneration","url":"https://huggingface.co/papers/1904.09751"},{"title":"Curious case of Neural Text Degeneration","url":"https://arxiv.org/pdf/1904.09751"},{"title":"THE CURIOUS CASE OF NEURAL TEXT DeGENERATION","url":"https://openreview.net/pdf?id=rygGQyrFvH"},{"title":"The Curious Case of Neural Text Degeneration. | PUMA","url":"https://puma.ub.uni-stuttgart.de/bibtex/1ce28540963fab56aa0395674be178bf9"},{"title":"The Curious Case of Neural Text Degeneration - UCT Computer Science Research Document Archive","url":"https://pubs.cs.uct.ac.za/id/eprint/1407/"},{"title":"The Curious Case of Neural Text Degeneration - ADS","url":"https://ui.adsabs.harvard.edu/abs/2019arXiv190409751H/abstract"}]
+
+I found the paper you're looking for. The paper is authored by Ari Holtzman, Jan Buys, Li Du, Maxwell Forbes, and Yejin Choi.
+
+The paper addresses the problem that despite advancements with deep neural language models, neural text degeneration persists when these models are tested as text generators. The counter-intuitive observation is that while likelihood as a training objective leads to high quality models for language understanding tasks, using likelihood as a decoding objective leads to bland and repetitive text.
+
+The paper propos
+…[truncated 304 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-15T09:07:10.608143+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "EMNLP 2020 \"Authorship Attribution for Neural Text Generation\" Uchendu Le Shu Lee full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "EMNLP 2020 \"Authorship Attribution for Neural Text Generation\" Uchendu Le Shu Lee full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T09:07:10.608289+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2604.13692 \"Breaking the Generator Barrier\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2604.13692 \"Breaking the Generator Barrier\" authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T09:07:10.608423+00:00_
+
+Web search results for query: "arXiv:2310.01693 "Closing the Curious Case of Neural Text Degeneration" Finlayson authors"
+
+Links: [{"title":"[2310.01693] Closing the Curious Case of Neural Text Degeneration","url":"https://arxiv.org/abs/2310.01693"},{"title":"[PDF] Closing the Curious Case of Neural Text Degeneration | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Closing-the-Curious-Case-of-Neural-Text-Finlayson-Hewitt/678a3cc761024b6daaf41ac4333f695358447a2f"},{"title":"CLOSING THE CURIOUS CASE OF NEURAL TEXT DEGENERATION Matthew Finlayson","url":"https://arxiv.org/pdf/2310.01693"},{"title":"dblp: Closing the Curious Case of Neural Text Degeneration.","url":"https://dblp.org/rec/journals/corr/abs-2310-01693.html"},{"title":"Closing the Curious Case of Neural Text Degeneration - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv231001693F/abstract"},{"title":"Paper page - Closing the Curious Case of Neural Text Degeneration","url":"https://huggingface.co/papers/2310.01693"},{"title":"Closing the Curious Case of Neural Text Degeneration","url":"https://proceedings.iclr.cc/paper_files/paper/2024/hash/34899013589ef41aea4d7b2f0ef310c1-Abstract-Conference.html"},{"title":"GitHub - mattf1n/basis-aware-threshold: Code for the paper \"Closing the Curious Case of Neural Text Degeneration\"","url":"https://github.com/mattf1n/basis-aware-threshold"},{"title":"The Curious Case of Neural Text Degeneration | OpenReview","url":"https://openreview.net/forum?id=rygGQyrFvH"},{"title":"Closing the Curious Case of Neural Text Degeneration | OpenReview","url":"https://openreview.net/forum?id=dONpC9GL1o"}]
+
+I found the paper for you! Here are the key details:
+
+**Paper Title:** "Closing the Curious Case of Neural Text Degeneration"
+
+**Authors:** Matthew Finlayson, John Hewitt, Alexander Koller, Swabha Swayamdipta, and Ashish Sabharwal
+
+**Publication Date:** October 2, 2023
+
+**arXiv ID:** 2310.01693
+
+**Main Contribution:** The paper proves that truncation methods tha
+…[truncated 572 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T09:07:10.608576+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 1901.07884 \"Rank Consistent Ordinal Regression\" authors Cao Mirjalili Raschka"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 1901.07884 \"Rank Consistent Ordinal Regression\" authors Cao Mirjalili Raschka"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T09:07:10.608704+00:00_
+
+Web search results for query: "arXiv 2310.05130 "Fast-DetectGPT" Bao full author list authors"
+
+Links: [{"title":"[2310.05130] Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature","url":"https://arxiv.org/abs/2310.05130"},{"title":"fast-detectgpt: efficient zero-shot detec","url":"https://arxiv.org/pdf/2310.05130"},{"title":"[2310.05130v2] Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature","url":"https://arxiv.org/abs/2310.05130v2"},{"title":"[2310.05130v3] Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature","url":"https://arxiv.org/abs/2310.05130v3"},{"title":"Paper page - Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature","url":"https://huggingface.co/papers/2310.05130"},{"title":"Zero-Shot Detection of LLM-Generated Code via Approximated Task Conditioning","url":"https://arxiv.org/html/2506.06069v1"},{"title":"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature","url":"https://arxiv.org/html/2310.05130v3"},{"title":"The Impact of Prompts on Zero-Shot Detection of AI-Generated Text","url":"https://arxiv.org/pdf/2403.20127"},{"title":"GPT-4 Attempting to Attack AI-Text Detectors | SpringerLink","url":"https://link.springer.com/chapter/10.1007/978-981-96-0348-0_12"},{"title":"(PDF) FAST-DETECTGPT: EFFICIENT ZERO-SHOT DETEC- TION OF MACHINE-GENERATED TEXT VIA CONDI- TIONAL PROBABILITY CURVATURE","url":"https://www.researchgate.net/publication/376045105_FAST-DETECTGPT_EFFICIENT_ZERO-SHOT_DETEC-_TION_OF_MACHINE-GENERATED_TEXT_VIA_CONDI-_TIONAL_PROBABILITY_CURVATURE"}]
+
+Based on the search results, the full author list for arXiv paper 2310.05130 "Fast-DetectGPT" is: Guangsheng Bao, Yanbin Zhao, Zhiyang Teng, Linyi Yang, and Yue Zhang.
+
+
+REMINDER: You MUST include the sources above
+…[truncated 56 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T09:07:10.608851+00:00_
+
+Web search results for query: "arXiv 2401.12070 "Spotting LLMs With Binoculars" Hans Schwarzschild Manber full author list"
+
+Links: [{"title":"[2401.12070] Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text","url":"https://arxiv.org/abs/2401.12070"},{"title":"[2401.12070v1] Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text","url":"https://arxiv.org/abs/2401.12070v1"},{"title":"[2401.12070v2] Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text","url":"https://arxiv.org/abs/2401.12070v2"},{"title":"Spotting LLMs With Binoculars: Zero-Shot Detection of ...","url":"https://arxiv.org/pdf/2401.12070"},{"title":"GitHub - ahans30/Binoculars: [ICML 2024] Binoculars: Zero-Shot Detection of LLM-Generated Text · GitHub","url":"https://github.com/ahans30/Binoculars"},{"title":"[PDF] Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Spotting-LLMs-With-Binoculars:-Zero-Shot-Detection-Hans-Schwarzschild/8dafb105a0cec1956443003eeea9fcf13c0ffa99"},{"title":"Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text | OpenReview","url":"https://openreview.net/forum?id=iARAKITHTH"},{"title":"Spotting LLMs with binoculars | Proceedings of the 41st International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3692070.3692768"},{"title":"Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text","url":"https://arxiv.org/html/2401.12070v3"},{"title":"Paper page - Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text","url":"https://huggingface.co/papers/2401.12070"}]
+
+Based on the search results, the full author list for arXiv paper 2401.12070 "Spotting LLMs With Binoculars" is: Abhimanyu Hans, Avi Schwarzschild, Valeriia Cherepanova, Hamid Kazemi, Aniruddha Saha, Micah Goldblum, Jonas Geiping, and Tom Goldstein.
+
+
+REMINDER: You MUST include 
+…[truncated 73 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T09:07:10.609025+00:00_
+
+Web search results for query: "arXiv 2303.11156 "Can AI-Generated Text be Reliably Detected" Sadasivan Kumar Balasubramanian Wang Feizi authors"
+
+Links: [{"title":"[2303.11156] Can AI-Generated Text be Reliably Detected?","url":"https://arxiv.org/abs/2303.11156"},{"title":"[2303.11156] Can AI-Generated Text be Reliably Detected?","url":"https://ar5iv.labs.arxiv.org/html/2303.11156"},{"title":"Can AI-Generated Text be Reliably Detected? | alphaXiv","url":"https://www.alphaxiv.org/overview/2303.11156v4"},{"title":"Can AI-Generated Text be Reliably Detected?","url":"https://arxiv.org/pdf/2303.11156"},{"title":"[2303.11156v1] Can AI-Generated Text be Reliably Detected?","url":"https://arxiv.org/abs/2303.11156v1"},{"title":"Can AI-Generated Text be Reliably Detected? - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230311156S/abstract"},{"title":"[2303.11156v3] Can AI-Generated Text be Reliably Detected?","url":"https://arxiv.org/abs/2303.11156v3"},{"title":"Can AI-Generated Text be Reliably Detected? | OpenReview","url":"https://openreview.net/forum?id=NvSwR4IvLO"},{"title":"(PDF) Can AI-Generated Text be Reliably Detected?","url":"https://www.researchgate.net/publication/369380286_Can_AI-Generated_Text_be_Reliably_Detected"},{"title":"[2303.11156v4] Can AI-Generated Text be Reliably Detected?","url":"https://arxiv.org/abs/2303.11156v4"}]
+
+I found the paper! Here are the search results for arXiv 2303.11156:
+
+**Paper Title:** "Can AI-Generated Text be Reliably Detected?"
+
+**Authors:** Vinu Sankar Sadasivan, Aounon Kumar, Sriram Balasubramanian, Wenxiao Wang, and Soheil Feizi
+
+**Submission Information:** Submitted on March 17, 2023 (v1), last revised January 17, 2025 (v4)
+
+**Summary:** The paper stress-tests the robustness of AI text detectors in the presence of an attacker, introducing a recursive paraphrasing attack to test a wide range of detection schemes, including watermarking-based detectors, neural network-based detectors, zero-shot classifiers, and retrie
+…[truncated 425 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T09:07:10.609176+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2504.17813 \"CLOC Contrastive Learning Ordinal Classification\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2504.17813 \"CLOC Contrastive Learning Ordinal Classification\" authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-15T09:07:10.609305+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2301.10226 \"A Watermark for Large Language Models\" authors Kirchenbauer"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2301.10226 \"A Watermark for Large Language Models\" authors Kirchenbauer"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-15T09:07:10.609449+00:00_
+
+Web search results for query: "arXiv 1906.04043 GLTR Gehrmann Strobelt Rush full author list"
+
+Links: [{"title":"[1906.04043] GLTR: Statistical Detection and Visualization of Generated Text","url":"https://arxiv.org/abs/1906.04043"},{"title":"[1906.04043v1] GLTR: Statistical Detection and Visualization of Generated Text","url":"https://arxiv.org/abs/1906.04043v1"},{"title":"GLTR: Giant Language Model Test Room","url":"https://github.com/HendrikStrobelt/detecting-fake-text"},{"title":"GLTR: Statistical Detection and Visualization of Generated Text. | BibSonomy","url":"https://www.bibsonomy.org/bibtex/26d2c9cb8d6d798a8f24762f8392e60f3/ghagerer"},{"title":"arXiv:1906.04043v1 [cs.CL] 10 Jun 2019","url":"https://arxiv.org/pdf/1906.04043"},{"title":"AI-generated Text Detection with a GLTR-based Approach","url":"https://arxiv.org/pdf/2502.12064"},{"title":"GLTR: Statistical Detection and Visualization of Generated Text - ADS","url":"https://ui.adsabs.harvard.edu/abs/2019arXiv190604043G/abstract"},{"title":"GitHub - tgao1337/detecting-fake-text-2: Giant Language Model Test Room, most up to date","url":"https://github.com/tgao1337/detecting-fake-text-2"},{"title":"[PDF] GLTR: Statistical Detection and Visualization of Generated Text | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GLTR:-Statistical-Detection-and-Visualization-of-Gehrmann-Strobelt/867db5097ad6aaef098c60b0845785b440eca49a"},{"title":"Word-Level Interpretation of Chatgpt Detector Based on Classification Contribution | Highlights in Science, Engineering and Technology","url":"https://drpress.org/ojs/index.php/HSET/article/view/12204"}]
+
+Based on the search results, the full author list for arXiv paper 1906.04043 "GLTR: Statistical Detection and Visualization of Generated Text" is: Sebastian Gehrmann, Hendrik Strobelt, and Alexander M. Rush.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-15T09:07:10.609634+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2302.03169 \"Data Selection for Language Models via Importance Resampling\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2302.03169 \"Data Selection for Language Models via Importance Resampling\" authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T09:07:10.609789+00:00_
+
+Web search results for query: "arXiv 2301.11305 DetectGPT authors Mitchell Lee Khazatsky Manning Finn full author list"
+
+Links: [{"title":"[2301.11305] DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature","url":"https://arxiv.org/abs/2301.11305"},{"title":"Paper page - DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature","url":"https://huggingface.co/papers/2301.11305"},{"title":"[2301.11305v1] DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature","url":"http://export.arxiv.org/abs/2301.11305v1"},{"title":"[2301.11305v1] DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature","url":"https://arxiv.org/abs/2301.11305v1"},{"title":"AI-Powered Paper Summarization about the arXiv paper 2301.11305v1","url":"https://www.summarizepaper.com/en/arxiv-id/2301.11305v1/"},{"title":"[2301.11305v2] DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature","url":"https://arxiv.org/abs/2301.11305v2"},{"title":"GPT-4 Attempting to Attack AI-Text Detectors | SpringerLink","url":"https://link.springer.com/chapter/10.1007/978-981-96-0348-0_12"},{"title":"GitHub - eric-mitchell/detect-gpt: DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature · GitHub","url":"https://github.com/eric-mitchell/detect-gpt"},{"title":"(PDF) DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature","url":"https://www.researchgate.net/publication/367461943_DetectGPT_Zero-Shot_Machine-Generated_Text_Detection_using_Probability_Curvature"},{"title":"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature","url":"https://arxiv.org/html/2310.05130v3"}]
+
+Based on the search results, the full author list for arXiv paper 2301.11305 (DetectGPT) is: Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, and Chelsea Finn.
+
+
+REMINDER: You MUST include the sourc
+…[truncated 64 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-15T09:07:10.609968+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arXiv 2402.09739 \"QuRating Selecting High-Quality Data\" authors Wettig Gupta"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arXiv 2402.09739 \"QuRating Selecting High-Quality Data\" authors Wettig Gupta"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-15T09:07:10.610105+00:00_
+
+Web search results for query: "arXiv 2410.09732 LOKI synthetic data detection benchmark large multimodal models full author list"
+
+Links: [{"title":"[2410.09732] LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://arxiv.org/abs/2410.09732"},{"title":"[2410.09732v2] LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://arxiv.org/abs/2410.09732v2"},{"title":"Paper page - LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://huggingface.co/papers/2410.09732"},{"title":"LOKI: Can Large mOdels Identify syntheticK data?","url":"https://opendatalab.github.io/LOKI/"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar?q=LOKI:+A+Comprehensive+Synthetic+Data+Detection+Benchmark+using+Large+Multimodal+Models."},{"title":"LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models | Request PDF","url":"https://www.researchgate.net/publication/384928384_LOKI_A_Comprehensive_Synthetic_Data_Detection_Benchmark_using_Large_Multimodal_Models"},{"title":"GitHub - opendatalab/LOKI: [ICLR 2025 Spotlight] The official implementation of the paper “LOKI：A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models”","url":"https://github.com/opendatalab/LOKI"},{"title":"[Literature Review] LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models","url":"https://www.themoonlight.io/en/review/loki-a-comprehensive-synthetic-data-detection-benchmark-using-large-multimodal-models"},{"title":"LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models | OpenReview","url":"https://openreview.net/forum?id=z8sxoCYgmd"},{"title":"bczhou/LOKI · Datasets at Hugging Face","url":"https://huggingface.co/datasets/bczhou/LOKI"}]
+
+Based on the search results, here is the full author list for arXiv paper 2410.09732:
+
+The authors are: Junyan Ye,
+…[truncated 488 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-15T09:07:10.610253+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Sugiyama Krauledat Mueller \"Covariate Shift Adaptation Importance Weighted Cross Validation\" JMLR 2007 full authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Sugiyama Krauledat Mueller \"Covariate Shift Adaptation Importance Weighted Cross Validation\" JMLR 2007 full authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T09:07:10.610393+00:00_
+
+Web search results for query: "EMNLP 2020 "Authorship Attribution for Neural Text Generation" Uchendu Le Shu Lee full author list"
+
+Links: [{"title":"Authorship Attribution for Neural Text Generation - ACL Anthology","url":"https://aclanthology.org/2020.emnlp-main.673/"},{"title":"Authorship attribution for neural text generation - Penn State","url":"https://pure.psu.edu/en/publications/authorship-attribution-for-neural-text-generation"},{"title":"Authorship Attribution for Neural Text Generation.","url":"https://dblp.org/rec/conf/emnlp/UchenduLSL20.xml"},{"title":"GitHub - AdaUchendu/Authorship-Attribution-for-Neural-Text-Generation · GitHub","url":"https://github.com/AdaUchendu/Authorship-Attribution-for-Neural-Text-Generation"},{"title":"[PDF] Authorship Attribution for Neural Text Generation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Authorship-Attribution-for-Neural-Text-Generation-Uchendu-Le/9da9cab545bd1534a8c953bb66e611243dcee24d"},{"title":"Authorship Attribution for Neural Text Generation | Request PDF","url":"https://www.researchgate.net/publication/347235360_Authorship_Attribution_for_Neural_Text_Generation"},{"title":"Attribution and Obfuscation of Neural Text Authorship: A Data Mining Perspective | ACM SIGKDD Explorations Newsletter","url":"https://dl.acm.org/doi/10.1145/3606274.3606276"},{"title":"Authorship Attribution for Neural Text Generation - researchr publication","url":"https://researchr.org/publication/UchenduLSL20"},{"title":"EMNLP2020: Authorship Attribution for Neural Text Generation","url":"https://virtual.2020.emnlp.org/paper_main.125.html"},{"title":"Authorship Attribution for Neural Text Generation (Conference Paper) | NSF PAGES","url":"https://par.nsf.gov/biblio/10212709-authorship-attribution-neural-text-generation"}]
+
+Based on the search results, the full author list for "Authorship Attribution for Neural Text Generation" presented at EMNLP 2020 is: Adaku Uchendu, Thai Le, Kai Shu, and Dongwon Lee.
+
+
+REMINDER: 
+…[truncated 90 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T09:07:10.610542+00:00_
+
+Web search results for query: "arXiv 2604.13692 "Breaking the Generator Barrier" authors"
+
+Links: [{"title":"[2604.13692] Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection","url":"https://arxiv.org/abs/2604.13692"},{"title":"[2604.13692v1] Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection","url":"https://arxiv.org/abs/2604.13692v1"},{"title":"Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection","url":"https://arxiv.org/html/2604.13692"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/pastweek?skip=235&show=1000"},{"title":"[2604.24453] NL-COMM-Sat: Breaking the Direct Device-to-Satellite Communication Barrier via \"Aggressive\" Non-Orthogonal Transmissions and Non-Linear Processing","url":"https://arxiv.org/abs/2604.24453"},{"title":"IceBreaker for Conversational Agents: Breaking the First-Message Barrier with Personalized Starters","url":"https://arxiv.org/html/2604.18375"},{"title":"[2005.13692] First-Passage Time Distributions in Two-State Protein Folding Kinetics: Exploring the Native-Like States vs Overcoming the Free Energy Barrier","url":"https://arxiv.org/abs/2005.13692"},{"title":"Breaking the Molecular Dynamics Timescale Barrier Using a Wafer-Scale System Corresponding authors emails: michael@cerebras.net, srajama@sandia.gov","url":"https://arxiv.org/html/2405.07898v1"},{"title":"[2604.18375] IceBreaker for Conversational Agents: Breaking the First-Message Barrier with Personalized Starters","url":"https://arxiv.org/abs/2604.18375"},{"title":"Understanding Quantum Instruments","url":"https://arxiv.org/html/2604.18884v3"}]
+
+Based on the search results, the authors of arXiv paper 2604.13692 "Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection" are Xiao Pu, Zepeng Cheng, Lin Yuan, Yu Wu, and Xiuli Bi. They are affiliated with Chongqing University of Posts and Telecommun
+…[truncated 121 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T09:07:10.610690+00:00_
+
+Web search results for query: "arXiv 2510.03154 "EditLens" Thai AI editing text full author list"
+
+Links: [{"title":"[2510.03154] EditLens: Quantifying the Extent of AI Editing in Text","url":"https://arxiv.org/abs/2510.03154"},{"title":"[Paper Note] EditLens: Quantifying the Extent of AI Editing in Text, Katherine Thai+, arXiv'25, 2025.10 · Issue #3696 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/3696"},{"title":"EditLens: Quantifying the Extent of AI Editing in Text","url":"https://arxiv.org/html/2510.03154"},{"title":"[PDF] EditLens: Quantifying the Extent of AI Editing in Text | Semantic Scholar","url":"https://www.semanticscholar.org/paper/EditLens:-Quantifying-the-Extent-of-AI-Editing-in-Thai-Emi/5e7890592dea915fb5b61be51030add4bf384787"},{"title":"(PDF) EditLens: Quantifying the Extent of AI Editing in Text","url":"https://www.researchgate.net/publication/396223292_EditLens_Quantifying_the_Extent_of_AI_Editing_in_Text"},{"title":"GitHub - pangramlabs/EditLens · GitHub","url":"https://github.com/pangramlabs/EditLens"},{"title":"dblp: EditLens: Quantifying the Extent of AI Editing in Text.","url":"https://dblp.org/rec/journals/corr/abs-2510-03154.html"},{"title":"EditLens: Quantifying the Extent of AI Editing in Text | alphaXiv","url":"https://www.alphaxiv.org/abs/2510.03154"},{"title":"Editlens: Quantifying The Extent Of Ai Editing In Text | SCALE Initiative","url":"https://scale.stanford.edu/ai/repository/editlens-quantifying-extent-ai-editing-text"},{"title":"EditLens: Quantifying AI Text Editing","url":"https://www.emergentmind.com/papers/2510.03154"}]
+
+Based on the search results, here is the full author list for arXiv paper 2510.03154 "EditLens: Quantifying the Extent of AI Editing in Text":
+
+**Full Author List:**
+1. Katherine Thai (Pangram Labs & University of Massachusetts Amherst)
+2. Bradley Emi (Pangram Labs)
+3. Elyas Masrour (Pangram Labs)
+4. Mohit Iyyer (University of Maryland, College Park)
+
+The paper 
+…[truncated 242 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T09:07:10.610841+00:00_
+
+Web search results for query: ""On Decoding Strategies for Neural Text Generators" Wiher Meister Cotterell TACL authors"
+
+Links: [{"title":"On Decoding Strategies for Neural Text Generators | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00502/113024/On-Decoding-Strategies-for-Neural-Text-Generators"},{"title":"On Decoding Strategies for Neural Text Generators - ACL Anthology","url":"https://aclanthology.org/2022.tacl-1.58/"},{"title":"On Decoding Strategies for Neural Text Generators | Clara Meister","url":"https://cimeister.github.io/publication/wiheral-tacl-22/"},{"title":"[PDF] On Decoding Strategies for Neural Text Generators | Semantic Scholar","url":"https://www.semanticscholar.org/paper/On-Decoding-Strategies-for-Neural-Text-Generators-Wiher-Meister/4402c98a2f19154da3daaec25e243644ba84ecf3"},{"title":"On Decoding Strategies for Neural Text Generators | Transactions of the Association for Computational Linguistics","url":"https://transacl.org/ojs/index.php/tacl/article/view/3807"},{"title":"On Decoding Strategies for Neural Text Generators","url":"https://www.mendeley.com/catalogue/6d004644-be9b-3691-98d6-c75ad76d6177/"},{"title":"On Decoding Strategies for Neural Text Generators","url":"https://direct.mit.edu/tacl/article-abstract/doi/10.1162/tacl_a_00502/113024"},{"title":"On Decoding Strategies for Neural Text Generators | Rycolab","url":"https://rycolab.io/publication/wiheral-tacl-22/"},{"title":"[2203.15721] On Decoding Strategies for Neural Text Generators","url":"https://arxiv.org/abs/2203.15721"},{"title":"(PDF) On Decoding Strategies for Neural Text Generators","url":"https://www.researchgate.net/publication/363744968_On_Decoding_Strategies_for_Neural_Text_Generators"}]
+
+I found the paper you're looking for. Here are the details:
+
+**Title:** On Decoding Strategies for Neural Text Generators
+
+**Authors:** Gian Wiher, Clara Meister, and Ryan Cotterell
+
+**Publicat
+…[truncated 661 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T09:07:10.611013+00:00_
+
+Web search results for query: "arXiv 2504.17813 "CLOC Contrastive Learning Ordinal Classification" authors"
+
+Links: [{"title":"[2504.17813] CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://arxiv.org/abs/2504.17813"},{"title":"(PDF) CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://www.researchgate.net/publication/391220117_CLOC_Contrastive_Learning_for_Ordinal_Classification_with_Multi-Margin_N-pair_Loss"},{"title":"250417813 — Grokipedia","url":"https://grokipedia.com/page/250417813"},{"title":"CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://arxiv.org/html/2504.17813v2"},{"title":"CLOC: Contrastive Learning for Ordinal Classification with ...","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Pitawela_CLOC_Contrastive_Learning_for_Ordinal_Classification_with_Multi-Margin_N-pair_Loss_CVPR_2025_paper.pdf"},{"title":"GitHub - dpitawela/CLOC · GitHub","url":"https://github.com/dpitawela/CLOC"},{"title":"dblp: Dileepa Pitawela","url":"https://dblp.org/pid/239/2550.html"},{"title":"[PDF] CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CLOC:-Contrastive-Learning-for-Ordinal-with-N-pair-Pitawela-Carneiro/7700b46ac3e76407652c19707bb612adf959dbe7"},{"title":"Computer Science Apr 2025","url":"https://www.arxiv.org/list/cs/2025-04?skip=8400&show=500"},{"title":"CVPR Poster CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://cvpr.thecvf.com/virtual/2025/poster/32653"}]
+
+Based on the search results, the authors of arXiv paper 2504.17813 "CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss" are Dileepa Pitawela, Gustavo Carneiro, and Hsiang-Ting Chen.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown 
+…[truncated 11 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T09:07:10.611159+00:00_
+
+Web search results for query: "arXiv 2509.18880 "DivEye" Basani Chen AI-Generated Text Detection authors"
+
+Links: [{"title":"[2509.18880] Diversity Boosts AI-Generated Text Detection","url":"https://arxiv.org/abs/2509.18880"},{"title":"Diversity Boosts AI-Generated Text Detection","url":"https://arxiv.org/pdf/2509.18880"},{"title":"[PDF] Diversity Boosts AI-Generated Text Detection | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Diversity-Boosts-AI-Generated-Text-Detection-Basani-Chen/77269d404ea3438f6d2ac327316f0b6ba116a48d"},{"title":"Diversity Boosts AI-Generated Text Detection","url":"https://www.researchgate.net/publication/395771470_Diversity_Boosts_AI-Generated_Text_Detection"},{"title":"Diversity Boosts AI-Generated Text Detection","url":"https://www.arxiv.org/pdf/2509.18880v1"},{"title":"Diversity Boosts AI-Generated Text Detection Advik Raj Basani 1 Pin-Yu Chen 2","url":"https://openreview.net/pdf?id=QuDDXJ47nq"},{"title":"[PDF] DivEye at PAN 2025: Diversity Boosts AI-Generated Text Detection | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DivEye-at-PAN-2025:-Diversity-Boosts-AI-Generated-Basani-Chen/b18cdaf7ea2898664ed0850790059278ed50bb79"},{"title":"DivEye","url":"https://diveye.vercel.app/"},{"title":"DivEye at PAN 2025: Diversity Boosts AI-Generated Text Detection","url":"https://ceur-ws.org/Vol-4038/paper_282.pdf"},{"title":"Can AI-Generated Text be Reliably Detected?","url":"https://arxiv.org/pdf/2303.11156"}]
+
+Based on the search results, here is information about the arXiv paper 2509.18880:
+
+**Title:** Diversity Boosts AI-Generated Text Detection
+
+**Authors:** Advik Raj Basani and Pin-Yu Chen
+
+**Overview:** DivEye is a novel detection framework that captures how unpredictability fluctuates across a text using surprisal-based features. Human-authored text exhibits richer variability in lexical and structural unpredictability than LLM outputs, which DivEye captures through a set of interpretable statistical features
+…[truncated 670 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-15T09:07:10.611301+00:00_
+
+Web search results for query: "arXiv 2302.03169 "Data Selection for Language Models via Importance Resampling" authors"
+
+Links: [{"title":"[2302.03169] Data Selection for Language Models via Importance Resampling","url":"https://arxiv.org/abs/2302.03169"},{"title":"Paper page - Data Selection for Language Models via Importance Resampling","url":"https://huggingface.co/papers/2302.03169"},{"title":"Data Selection for Language Models via Importance Resampling","url":"https://arxiv.org/pdf/2302.03169"},{"title":"[2302.03169v3] Data Selection for Language Models via Importance Resampling","url":"http://arxiv.org/abs/2302.03169v3"},{"title":"[PDF] Data Selection for Language Models via Importance Resampling | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Data-Selection-for-Language-Models-via-Importance-Xie-Santurkar/74013b7cfa0fc524803350fca51341004565eb22"},{"title":"Data Selection for Language Models via Importance Resampling","url":"https://www.researchgate.net/publication/368333487_Data_Selection_for_Language_Models_via_Importance_Resampling"},{"title":"Data Selection for Language Models via Importance Resampling - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230203169X/abstract"},{"title":"dblp: Data Selection for Language Models via Importance Resampling.","url":"https://dblp.uni-trier.de/rec/journals/corr/abs-2302-03169.html"},{"title":"GitHub - alon-albalak/data-selection-survey: A Survey on Data Selection for Language Models","url":"https://github.com/alon-albalak/data-selection-survey"},{"title":"Data selection for language models via importance resampling | Proceedings of the 37th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3666122.3667604"}]
+
+Based on the search results, the authors of arXiv paper 2302.03169 "Data Selection for Language Models via Importance Resampling" are Sang Michael Xie, Shibani Santurkar, Tengyu Ma, and Percy Liang.
+
+
+REMINDER: You MUST include the s
+…[truncated 68 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-15T09:07:10.611447+00:00_
+
+Web search results for query: "COLING 2025 "Decoding Decoded Understanding Hyperparameter Effects Open-Ended Text Generation" Garces Arias authors"
+
+No links found.
+
+The search didn't return results for this specific query. Let me try a more targeted search:
+
+Links: [{"title":"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation - ACL Anthology","url":"https://aclanthology.org/2025.coling-main.668/"},{"title":"GitHub - YecanLee/Decoding-Decoded: [COLING 2025] Official PyTorch Implementation of \"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation\" · GitHub","url":"https://github.com/YecanLee/Decoding-Decoded"},{"title":"Understanding Hyperparameter Effects in Open-Ended ...","url":"https://aclanthology.org/2025.coling-main.668.pdf"},{"title":"[2410.06097v2] Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation","url":"https://arxiv.org/abs/2410.06097v2"},{"title":"[2410.06097] Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation","url":"https://arxiv.org/abs/2410.06097"},{"title":"COLING 2025 Tutorial: Speculative Decoding for Efficient LLM Inference","url":"https://speculative-decoding.github.io/"},{"title":"(PDF) Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation","url":"https://www.researchgate.net/publication/389215115_Decoding_Decoded_Understanding_Hyperparameter_Effects_in_Open-Ended_Text_Generation"},{"title":"ultimate guide to Speculative decoding - Newline.co","url":"https://www.newline.co/@zaoyang/ultimate-guide-to-speculative-decoding--540ed334"},{"title":"Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation","url":"https://arxiv.org/html/2410.06097v1"},{"title":"Tutorials - COLING 2025","url":"https://coling2025.org/program/tutorials/"}]
+
+I found the paper you're looking for! Here are the details:
+
+**Title:** Decoding Decoded: Understanding Hyperparameter Effects
+…[truncated 976 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 5
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-15T09:07:10.611620+00:00_
+
+- shumailov2024_nature: Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal
+
+- marchi2024_heat_death: Matteo Marchi, Stefano Soatto, Pratik Chaudhari, Paulo Tabuada
+
+- dohmatob2024_tale_of_tails: Elvis Dohmatob, Yunzhen Feng, Pu Yang, Francois Charton, Julia Kempe
+
+- dohmatob2024_strong_collapse: Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe
+
+- dohmatob2024_demystified: Elvis Dohmatob, Yunzhen Feng, Julia Kempe
+
+- alemohammad2024_mad: Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk
+
+- gerstgrasser2024_accumulate: Matthias Gerstgrasser, Rylan Schaeffer, Apratim Dey, Rafael Rafailov, Henry Sleight, John Hughes, Tomasz Korbak, Rajashree Agrawal, Dhruv Pai, Andrey Gromov, Daniel A. Roberts, Diyi Yang, David L. Donoho, Sanmi Koyejo
+
+- drayson2025_detection_prevents_collapse: George Drayson, Emine Yilmaz, Vasileios Lampos
+
+- bakshi2026_collapse_improvement: Soham Bakshi, Sunrit Chakraborty
+
+- wang2026_contamination: Kevin Wang, Hongqian Niu, Didong Li
+agentId: a198b31c263288829 (use SendMessage with to: 'a198b31c263288829' to continue this agent)
+&lt;usage>total_tokens: 24588
+tool_uses: 11
+duration_ms: 30898&lt;/usage>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Agent",
+  "elapsed_ms": 12
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-15T09:07:10.611760+00:00_
+
+Web search results for query: "arXiv ICLR 2021 "Mirostat Neural Text Decoding Algorithm Directly Controls Perplexity" Basu authors"
+
+Links: [{"title":"GitHub - basusourya/mirostat: Code for the paper-\"Mirostat: A Perplexity-Controlled Neural Text Decoding Algorithm\" (https://arxiv.org/abs/2007.14966). · GitHub","url":"https://github.com/basusourya/mirostat"},{"title":"MIROSTAT: A NEURAL TEXT DECODING ALGORITHM THAT DIRECTLY CONTROLS PERPLEXITY | OpenReview","url":"https://openreview.net/forum?id=W1G1JZEIy5_"},{"title":"MIROSTAT: A NEURAL TEXT DECODING ALGORITHM THAT DIRECTLY CONTROLS PERPLEXITY | by Sourya Basu | Medium","url":"https://basusourya.medium.com/mirostat-a-perplexity-controlled-neural-text-decoding-algorithm-249f74921ea6"},{"title":"ICLR Poster Mirostat: A Neural Text Decoding Algorithm That Directly Controls Perplexity","url":"https://iclr.cc/virtual/2021/poster/2700"},{"title":"mirostat/README.md at master · basusourya/mirostat","url":"https://github.com/basusourya/mirostat/blob/master/README.md"},{"title":"MIROSTAT: A NEURAL TEXT DECODING ALGORITHM THAT DIRECTLY CONTROLS PERPLEXITY - Illinois Experts","url":"https://experts.illinois.edu/en/publications/mirostat-a-neural-text-decoding-algorithm-that-directly-controls-/"},{"title":"Sourya Basu University of Illinois at Urbana-Champaign Mirostat:","url":"https://iclr.cc/media/Slides/iclr/2021/virtual(05-00-00)-05-00-00UTC-2700-mirostat_a_neu.pdf"},{"title":"[PDF] Mirostat: a Neural Text decoding Algorithm that directly controls perplexity | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Mirostat:-a-Neural-Text-decoding-Algorithm-that-Basu-Ramachandran/e8f1d69cdf4d92350ce237e2d6a615ebe2e52e43"},{"title":"[2007.14966] Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity","url":"https://arxiv.org/abs/2007.14966"},{"title":"MIROSTAT:ANEURAL TEXT DECODING ALGORITHM","url":"https://openreview.net/pdf?id=W1G1JZEIy5_"}]
+
+Based on my search results, I found comprehensive 
+…[truncated 1080 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-15T09:07:10.612093+00:00_
+
+Web search results for query: "Sugiyama Krauledat Mueller "Covariate Shift Adaptation Importance Weighted Cross Validation" JMLR 2007 full authors"
+
+Links: [{"title":"Covariate Shift Adaptation by Importance Weighted Cross Validation","url":"https://jmlr.org/papers/v8/sugiyama07a.html"},{"title":"Covariate Shift Adaptation by Importance Weighted Cross Validation | The Journal of Machine Learning Research","url":"https://dl.acm.org/doi/10.5555/1314498.1390324"},{"title":"Covariate Shift Adaptation by Importance Weighted Cross Validation. | Request PDF","url":"https://www.researchgate.net/publication/220320162_Covariate_Shift_Adaptation_by_Importance_Weighted_Cross_Validation"},{"title":"Covariate shift adaptation by importance weighted cross validation - Korea University Pure","url":"https://pure.korea.ac.kr/en/publications/covariate-shift-adaptation-by-importance-weighted-cross-validatio"},{"title":"Covariate shift adaptation by importance weighted cross ...","url":"https://psycnet.apa.org/record/2008-05713-035"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=Covariate+shift+adaptation+by+importance+weighted+cross+validation&amp=&author=M.+Sugiyama&amp=&author=M.+Krauledat&amp=&author=K.-R.+M%C3%BCller&amp=&publication_year=2007&amp=&journal=Journal+of+Machine+Learning+Research&amp=&volume=8&amp=&pages=985-1005"},{"title":"Direct importance estimation for covariate shift adaptation | Annals of the Institute of Statistical Mathematics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10463-008-0197-x"},{"title":"v8/sugiyama07a/info.json at main · JmlrOrg/v8","url":"https://github.com/JmlrOrg/v8/blob/main/sugiyama07a/info.json"},{"title":"Importance-Weighted Cross-Validation for Covariate Shift | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/11861898_36"},{"title":"Covariate Shift Adaptation by Importance Weighted Cross Validation - Academic Torrents","url":"https://academictorrents.com
+…[truncated 546 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T09:07:10.612249+00:00_
+
+Web search results for query: "arXiv 2301.10226 "A Watermark for Large Language Models" authors Kirchenbauer"
+
+Links: [{"title":"[2301.10226] A Watermark for Large Language Models","url":"https://arxiv.org/abs/2301.10226"},{"title":"A Watermark for Large Language Models","url":"https://proceedings.mlr.press/v202/kirchenbauer23a.html"},{"title":"A Watermark for Large Language Models","url":"https://arxiv.org/pdf/2301.10226"},{"title":"A Watermark for Large Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230110226K/abstract"},{"title":"A Watermark for Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/367388838_A_Watermark_for_Large_Language_Models"},{"title":"[PDF] A Watermark for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-Watermark-for-Large-Language-Models-Kirchenbauer-Geiping/cb5b71a622aff47014d4f28a958679629a8b6363"},{"title":"Watermarking Large Language Models","url":"https://journals.library.columbia.edu/index.php/cusj/blog/view/561"},{"title":"1 Introduction","url":"https://arxiv.org/html/arXiv:2301.10226"},{"title":"[2301.10226v1] A Watermark for Large Language Models","url":"https://export.arxiv.org/abs/2301.10226v1"},{"title":"[2301.10226v4] A Watermark for Large Language Models","url":"https://arxiv.org/abs/2301.10226v4"}]
+
+I found the paper! Here's the information about arXiv 2301.10226:
+
+**Title:** A Watermark for Large Language Models
+
+**Authors:** John Kirchenbauer, Jonas Geiping, Yuxin Wen, Jonathan Katz, Ian Miers, Tom Goldstein
+
+**Submission Date:** Submitted on 24 Jan 2023 (v1), last revised 1 May 2024 (this version, v4)
+
+**Publication Status:** Published at ICML 2023
+
+**Summary:** The paper proposes a watermarking framework for proprietary language models where signals are embedded into generated text that are invisible to humans but algorithmically detectable from a short span of tokens. The watermark can be embedded with negligible impact on 
+…[truncated 508 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-15T09:07:10.612409+00:00_
+
+Web search results for query: "arXiv 2603.23146 "Why AI-Generated Text Detection Fails" Pudasaini authors"
+
+Links: [{"title":"[2603.23146] Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy","url":"https://arxiv.org/abs/2603.23146"},{"title":"[2603.23146v1] Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy","url":"https://arxiv.org/abs/2603.23146v1"},{"title":"Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy","url":"https://arxiv.org/html/2603.23146"},{"title":"On the Detectability of LLM-Generated Text: What Exactly Is LLM-Generated Text?","url":"https://arxiv.org/html/2510.20810v1"},{"title":"Can AI-Generated Text be Reliably Detected? | OpenReview","url":"https://openreview.net/forum?id=NvSwR4IvLO"},{"title":"[2303.11156] Can AI-Generated Text be Reliably Detected?","url":"https://arxiv.org/abs/2303.11156"},{"title":"Can AI-Generated Text be Reliably Detected?","url":"https://arxiv.org/pdf/2303.11156"},{"title":"Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection","url":"https://arxiv.org/html/2604.13692v1"},{"title":"Detecting AI-Generated Text: Factors Influencing Detectability with Current Methods","url":"https://arxiv.org/html/2406.15583v1"},{"title":"The Problems with AI Detectors: False Positives and False Negatives - Generative AI Detection Tools - Guides at University of San Diego Legal Research Center","url":"https://lawlibguides.sandiego.edu/c.php?g=1443311&p=10721367"}]
+
+I found the paper you requested! Here's what I found:
+
+The paper arXiv:2603.23146 is titled "Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy" by authors Shushanta Pudasaini, Luis Miralles-Pechuán, David Lillis, and Marisa Llorens Salvador.
+
+**Summary of the paper:**
+
+The widespread adoption of Large Language Models (LLMs) has made the detection of AI-generated text a 
+…[truncated 1008 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T09:07:10.612561+00:00_
+
+Web search results for query: "arXiv 1901.07884 "Rank Consistent Ordinal Regression" authors Cao Mirjalili Raschka"
+
+Links: [{"title":"[1901.07884] Rank consistent ordinal regression for neural networks with application to age estimation","url":"https://arxiv.org/abs/1901.07884"},{"title":"arXiv:1901.07884v7 [cs.LG] 13 Nov 2020","url":"https://arxiv.org/pdf/1901.07884"},{"title":"Rank consistent ordinal regression for neural networks with application to age estimation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2020PaReL.140..325C/abstract"},{"title":"Consistent Rank Logits for Ordinal Regression with Convolutional Neural Networks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Consistent-Rank-Logits-for-Ordinal-Regression-with-Cao-Mirjalili/1b9472907f5b7a1815c98b4562dce6c46dd2cf34"},{"title":"Deep Neural Networks for Rank-Consistent Ordinal Regression Based On Conditional Probabilities","url":"https://arxiv.org/html/2111.08851v5"},{"title":"GitHub - Raschka-research-group/coral-cnn: Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation · GitHub","url":"https://github.com/Raschka-research-group/coral-cnn"},{"title":"Rank-consistent Ordinal Regression for Neural Networks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Rank-consistent-Ordinal-Regression-for-Neural-Cao-Mirjalili/b6c62ee74bea72fe5e45f27a2373bed52aeb29dc"},{"title":"(PDF) Rank consistent ordinal regression for neural networks with application to age estimation","url":"https://www.researchgate.net/publication/347503290_Rank_consistent_ordinal_regression_for_neural_networks_with_application_to_age_estimation"},{"title":"Rank consistent ordinal regression for neural networks with ...","url":"https://sebastianraschka.com/pdf/papers/2020-coral.pdf"},{"title":"Rank Consistent Logits for Ordinal Regression with Convolutional Neural Networks | Request PDF","url":"https://www.researchgate.net/publication/330576658_Rank_Consistent_Logits_for
+…[truncated 1298 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-15T09:07:10.612714+00:00_
+
+Web search results for query: "arXiv 2402.09739 "QuRating Selecting High-Quality Data" authors Wettig Gupta"
+
+Links: [{"title":"[2402.09739] QuRating: Selecting High-Quality Data for Training Language Models","url":"https://arxiv.org/abs/2402.09739"},{"title":"QuRating: Selecting High-Quality Data for Training Language Models","url":"https://arxiv.org/pdf/2402.09739"},{"title":"[2402.09739v3] QuRating: Selecting High-Quality Data for Training Language Models","url":"https://arxiv.org/abs/2402.09739v3"},{"title":"QuRating: Selecting High-Quality Data for Training Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240209739W/abstract"},{"title":"Paper page - QuRating: Selecting High-Quality Data for Training Language Models","url":"https://huggingface.co/papers/2402.09739"},{"title":"[PDF] QuRating: Selecting High-Quality Data for Training Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/QuRating:-Selecting-High-Quality-Data-for-Training-Wettig-Gupta/34efdeaf0a78d6906b4da7335afc7182df11f639"},{"title":"princeton-nlp/QuRater-1.3B · Hugging Face","url":"https://huggingface.co/princeton-nlp/QuRater-1.3B"},{"title":"MuRating: A High Quality Data Selecting Approach to Multilingual Large Language Model Pretraining","url":"https://arxiv.org/html/2507.01785v3"},{"title":"QuRating: Selecting High-Quality Data for Training Language Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/qurating-selecting-high-quality-data-training-language"},{"title":"GitHub - princeton-nlp/QuRating: [ICML 2024] Selecting High-Quality Data for Training Language Models","url":"https://github.com/princeton-nlp/qurating"}]
+
+I found the paper! Here are the details for arXiv 2402.09739:
+
+**Title:** QuRating: Selecting High-Quality Data for Training Language Models
+
+**Authors:** Alexander Wettig, Aatmik Gupta, Saumya Malik, Danqi Chen
+
+**Overview:** The paper introduces QuRating, a method for selecting pre-training data t
+…[truncated 805 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-15T09:07:10.612887+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2007.14966 Mirostat Basu Sachdev Kamdar Nishi authors full names"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2007.14966 Mirostat Basu Sachdev Kamdar Nishi authors full names"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-15T09:07:10.613029+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:arxiv.org 2601.03385 SIGMA spectral LLM collapse full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:arxiv.org 2601.03385 SIGMA spectral LLM collapse full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-15T09:07:10.613154+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2504.17813 CLOC Pitawela Carneiro Chen full author list complete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2504.17813 CLOC Pitawela Carneiro Chen full author list complete"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-15T09:07:10.613449+00:00_
+
+Web search results for query: "arxiv 2007.14966 Mirostat Basu Sachdev Kamdar Nishi authors full names"
+
+Links: [{"title":"[2007.14966] Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity","url":"https://arxiv.org/abs/2007.14966"},{"title":"[2007.14966v1] Mirostat: A Perplexity-Controlled Neural Text Decoding Algorithm","url":"https://arxiv.org/abs/2007.14966v1"},{"title":"Paper page - Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity","url":"https://huggingface.co/papers/2007.14966"},{"title":"Mirostat: A Perplexity-Controlled Neural Text Decoding Algorithm | Request PDF","url":"https://www.researchgate.net/publication/343304115_Mirostat_A_Perplexity-Controlled_Neural_Text_Decoding_Algorithm"},{"title":"Mirostat: Neural Decoding for Controlled Perplexity","url":"https://www.emergentmind.com/papers/2007.14966"},{"title":"GitHub - basusourya/mirostat: Code for the paper-\"Mirostat: A Perplexity-Controlled Neural Text Decoding Algorithm\" (https://arxiv.org/abs/2007.14966). · GitHub","url":"https://github.com/basusourya/mirostat"},{"title":"A Perplexity-Controlled Neural Text Decoding Algorithm","url":"https://arxiv.org/pdf/2007.14966"},{"title":"[PDF] Mirostat: A Perplexity-Controlled Neural Text Decoding Algorithm | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Mirostat:-A-Perplexity-Controlled-Neural-Text-Basu-Ramachandran/08d7554e08bf8795c01d8412957f1d2db4031985"},{"title":"[2007.14966] Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity","url":"https://ar5iv.labs.arxiv.org/html/2007.14966"},{"title":"arXiv:2007.14966v1 [cs.CL] 29 Jul 2020","url":"https://arxiv.org/pdf/2007.14966v1"}]
+
+Based on the search results, I found the full names of the authors for arxiv paper 2007.14966 "Mirostat":
+
+The authors are: Sourya Basu, Govardana Sachitanandam Ramachandran, Nitish Shirish Keskar, and Lav R. Varshney.
+
+Note: Your query mentioned "Basu Sachdev Kamdar Nishi" but the actual au
+…[truncated 299 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-15T09:07:10.613671+00:00_
+
+Web search results for query: "site:arxiv.org 2601.03385 SIGMA spectral LLM collapse full author list"
+
+Links: [{"title":"[2601.03385] SIGMA: Scalable Spectral Insights for LLM Model Collapse","url":"https://arxiv.org/abs/2601.03385"},{"title":"SIGMA: Scalable Spectral Insights for LLM Model Collapse","url":"https://www.arxiv.org/pdf/2601.03385"},{"title":"Sigma: Scalable Spectral Insights for LLM Model Collapse","url":"https://arxiv.org/html/2601.03385"},{"title":"Sigma: Scalable Spectral Insights for LLM Collapse","url":"https://arxiv.org/html/2601.03385v1"},{"title":"SIGMA-PPG: Statistical-prior Informed Generative Masking Architecture for PPG Foundation Model","url":"https://arxiv.org/html/2601.21031"},{"title":"SpectraLLM: Uncovering the Ability of LLMs for Molecular Structure Elucidation from Multi-Spectral Data | OpenReview","url":"https://openreview.net/forum?id=J5XUzUW8o3"},{"title":"Controlled LLM Training on Spectral Sphere","url":"https://arxiv.org/html/2601.08393"},{"title":"Spectral Lens: Activation and Gradient Spectra as Diagnostics of LLM Optimization","url":"https://arxiv.org/html/2605.05683"},{"title":"[2508.08441] SpectraLLM: Uncovering the Ability of LLMs for Molecule Structure Elucidation from Multi-Spectral","url":"https://arxiv.org/abs/2508.08441"},{"title":"[2601.08393] Controlled LLM Training on Spectral Sphere","url":"https://arxiv.org/abs/2601.08393"}]
+
+Based on the search results, I found the paper arxiv 2601.03385. The full author list for "SIGMA: Scalable Spectral Insights for LLM Model Collapse" is: Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, and Alexander Aue.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-15T09:07:10.613839+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Mirostat\" \"Sachdev\" OR \"Kamdar\" OR \"Nishi\" neural text decoding perplexity authors 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Mirostat\" \"Sachdev\" OR \"Kamdar\" OR \"Nishi\" neural text decoding perplexity authors 2021"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-15T09:07:10.613994+00:00_
+
+Web search results for query: "arxiv 2504.17813 CLOC Pitawela Carneiro Chen full author list complete"
+
+Links: [{"title":"[2504.17813] CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://arxiv.org/abs/2504.17813"},{"title":"CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://arxiv.org/html/2504.17813v2"},{"title":"(PDF) CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss","url":"https://www.researchgate.net/publication/391220117_CLOC_Contrastive_Learning_for_Ordinal_Classification_with_Multi-Margin_N-pair_Loss"},{"title":"[2601.17813] A Cloud Condensation Model on Insoluble Nuclei Validated with Radiosonde and Ceilometer Data: Implications for Dust based Rainfall Forecasting","url":"https://arxiv.org/abs/2601.17813"},{"title":"[2505.17813] Don't Overthink it. Preferring Shorter Thinking Chains for Improved LLM Reasoning","url":"https://arxiv.org/abs/2505.17813"},{"title":"[2303.17813] Learning the Complexity of Weakly Noisy Quantum States","url":"https://arxiv.org/abs/2303.17813"},{"title":"[2510.17813] A Physics-Informed Machine Learning Framework for Solid Boundary Treatment in Meshfree Particle Methods","url":"https://arxiv.org/abs/2510.17813"},{"title":"Arxiv","url":"https://arxiv.org/pdf/2305.17813"},{"title":"Computer Science Apr 2025","url":"https://arxiv.org/list/cs/2025-04?skip=4675&show=1000"},{"title":"[2603.17813] M2P: Improving Visual Foundation Models with Mask-to-Point Weakly-Supervised Learning for Dense Point Tracking","url":"https://arxiv.org/abs/2603.17813"}]
+
+Based on the search results, I found the complete author list for the paper arxiv 2504.17813 "CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss":
+
+The authors are Dileepa Pitawela and 2 other authors, which according to the ResearchGate listing are:
+
+1. Dileepa Pitawela
+2. Gustavo Carneiro
+3. Hsiang-Ting Chen
+
+
+REMINDER: You MUST in
+…[truncated 79 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-15T09:07:10.614173+00:00_
+
+- mitchell2023_detectgpt: Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn
+- sadasivan2023_paraphrase: Vinu Sankar Sadasivan, Aounon Kumar, Sriram Balasubramanian, Wenxiao Wang, Soheil Feizi
+- binoculars2024: Abhimanyu Hans, Avi Schwarzschild, Valeriia Cherepanova, Hamid Kazemi, Aniruddha Saha, Micah Goldblum, Jonas Geiping, Tom Goldstein
+- fast_detectgpt2024: Guangsheng Bao, Yanbin Zhao, Zhiyang Teng, Linyi Yang, Yue Zhang
+- diveye2026: Advik Raj Basani, Pin-Yu Chen
+- loki2025: Junyan Ye, Baichuan Zhou, Zilong Huang, Junan Zhang, Tianyi Bai, Hengrui Kang, Jun He, Honglin Lin, Zihao Wang, Tong Wu, Zhizheng Wu, Yiping Chen, Dahua Lin, Conghui He, Weijia Li
+- gehrmann2019_gltr: Sebastian Gehrmann, Hendrik Strobelt, Alexander M. Rush
+- pudasaini2026_detection_fails: Shushanta Pudasaini, Luis Miralles-Pechuán, David Lillis, Marisa Llorens Salvador
+- editlens2026: Katherine Thai, Bradley Emi, Elyas Masrour, Mohit Iyyer
+- uchendu2020_attribution: Adaku Uchendu, Thai Le, Kai Shu, Dongwon Lee
+agentId: a237e112b689a0a2e (use SendMessage with to: 'a237e112b689a0a2e' to continue this agent)
+&lt;usage>total_tokens: 25232
+tool_uses: 11
+duration_ms: 26525&lt;/usage>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Agent",
+  "elapsed_ms": 10
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-15T09:07:10.614324+00:00_
+
+Web search results for query: ""Mirostat" "Sachdev" OR "Kamdar" OR "Nishi" neural text decoding perplexity authors 2021"
+
+Links: [{"title":"[2007.14966] Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity","url":"https://arxiv.org/abs/2007.14966"},{"title":"GitHub - basusourya/mirostat: Code for the paper-\"Mirostat: A Perplexity-Controlled Neural Text Decoding Algorithm\" (https://arxiv.org/abs/2007.14966). · GitHub","url":"https://github.com/basusourya/mirostat"},{"title":"MIROSTAT: A NEURAL TEXT DECODING ALGORITHM THAT DIRECTLY CONTROLS PERPLEXITY | OpenReview","url":"https://openreview.net/forum?id=W1G1JZEIy5_"},{"title":"[2007.14966] Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity","url":"https://ar5iv.labs.arxiv.org/html/2007.14966"},{"title":"MIROSTAT: A NEURAL TEXT DECODING ALGORITHM THAT DIRECTLY CONTROLS PERPLEXITY - Illinois Experts","url":"https://experts.illinois.edu/en/publications/mirostat-a-neural-text-decoding-algorithm-that-directly-controls-/"},{"title":"Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity | alphaXiv","url":"https://www.alphaxiv.org/abs/2007.14966"},{"title":"[PDF] Mirostat: A Perplexity-Controlled Neural Text Decoding Algorithm | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Mirostat:-A-Perplexity-Controlled-Neural-Text-Basu-Ramachandran/08d7554e08bf8795c01d8412957f1d2db4031985"},{"title":"Mirostat: A Perplexity-Controlled Neural Text Decoding Algorithm | Request PDF","url":"https://www.researchgate.net/publication/343304115_Mirostat_A_Perplexity-Controlled_Neural_Text_Decoding_Algorithm"},{"title":"ICLR Poster Mirostat: A Neural Text Decoding Algorithm That Directly Controls Perplexity","url":"https://iclr.cc/virtual/2021/poster/2700"},{"title":"MIROSTAT: A NEURAL TEXT DECODING ALGORITHM THAT DIRECTLY CONTROLS PERPLEXITY | Request PDF","url":"https://www.researchgate.net/publication/352560296_MIROSTAT_A_NEURAL_TEXT_DECODING_ALGORITHM_T
+…[truncated 1022 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-15T09:07:10.614497+00:00_
+
+- **pu2026_generator_barrier**: Xiao Pu, Zepeng Cheng, Lin Yuan, Yu Wu, Xiuli Bi
+
+- **coral2020**: Wenzhi Cao, Vahid Mirjalili, Sebastian Raschka
+
+- **cloc2025**: Dileepa Pitawela, Gustavo Carneiro, Hsiang-Ting Chen
+
+- **kirchenbauer2023_watermark**: John Kirchenbauer, Jonas Geiping, Yuxin Wen, Jonathan Katz, Ian Miers, Tom Goldstein
+
+- **dsir2023**: Sang Michael Xie, Shibani Santurkar, Tengyu Ma, Percy Liang
+
+- **qurating2024**: Alexander Wettig, Aatmik Gupta, Saumya Malik, Danqi Chen
+
+- **sugiyama2007_importance_weighting**: Masashi Sugiyama, Matthias Krauledat, Klaus-Robert Müller
+agentId: afd7ab562ebe0f984 (use SendMessage with to: 'afd7ab562ebe0f984' to continue this agent)
+&lt;usage>total_tokens: 23296
+tool_uses: 9
+duration_ms: 25611&lt;/usage>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Agent",
+  "elapsed_ms": 9
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-15T09:07:10.614673+00:00_
+
+The confirmed authors for all 10 papers are now verified. Here are the results:
+
+- **falahati2026_curated**: Ali Falahati, Mohammad Mohammadi Amiri, Kate Larson, Lukasz Golab
+
+- **knowledge_collapse2025**: Figarri Keisha, Zekun Wu, Ze Wang, Adriano Koshiyama, Philip Treleaven
+
+- **synthetic_eggs2026**: Max Schaffelder, Albert Gatt
+
+- **mohamed2025_broken_telephone**: Amr Mohamed, Mingmeng Geng, Michalis Vazirgiannis, Guokan Shang
+
+- **sigma2026_spectral**: Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, Alexander Aue
+
+- **holtzman2020_nucleus**: Ari Holtzman, Jan Buys, Li Du, Maxwell Forbes, Yejin Choi
+
+- **finlayson2024_closing**: Matthew Finlayson, John Hewitt, Alexander Koller, Swabha Swayamdipta, Ashish Sabharwal
+
+- **garces_arias2025_decoding_decoded**: Esteban Garces Arias, Meimingwei Li, Christian Heumann, Matthias Assenmacher
+
+- **wiher2022_decoding**: Gian Wiher, Clara Meister, Ryan Cotterell
+
+- **basu2021_mirostat**: Sourya Basu, Govardana Sachitanandam Ramachandran, Nitish Shirish Keskar, Lav R. Varshney
+
+**Note on basu2021_mirostat**: The current bibliography lists "Basu, Sachdev, Kamdar, Nishi" — these are incorrect. The actual authors are Basu, Ramachandran, Keskar, Varshney (arXiv:2007.14966).
+agentId: a664471efb1dd976b (use SendMessage with to: 'a664471efb1dd976b' to continue this agent)
+&lt;usage>total_tokens: 27286
+tool_uses: 14
+duration_ms: 50100&lt;/usage>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Agent",
+  "elapsed_ms": 13
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-15T09:07:10.614915+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+  "content": "@article{shumailov2024_nature,\n  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  title     = {{AI models collapse when trained on recursively generated data}},\n  journal   = {Nature},\n  year      = {2024},\n  doi       = {10.1038/s41586-024-07566-y},\n}\n\n@inproceedings{marchi2024_heat_death,\n  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},\n  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},\n  booktitle = {Proceedings of ICASSP},\n  year      = {2024},\n  note      = {arXiv:2404.02325},\n  url       = {https://arxiv.org/abs/2404.02325},\n}\n\n@inproceedings{dohmatob2024_tale_of_tails,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},\n  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.07043},\n  url       = {https://arxiv.org/abs/2402.07043},\n}\n\n@inproceedings{dohmatob2024_strong_collapse,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n  title     = {{Strong Model Collapse}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2410.04840},\n  url       = {https://arxiv.org/abs/2410.04840},\n}\n\n@inproceedings{dohmatob2024_demystified,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},\n  title     = {{Model Collapse Demystified: The Case of Regression}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n  note      = {arXiv:2402.07712},\n  url       = {https://arxiv.org/abs/2402.07712},\n}\n\n@inproceedings{alemohammad2024_mad,\n  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and others},\n  title     = {{Self-Consuming Generative Models Go MAD}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2307.01850},\n  url       = {https://arxiv.org/abs/2307.01850},\n}\n\n@misc{gerstgrasser2024_accumulate,\n  author    = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and others},\n  title     = {{Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data}},\n  year      = {2024},\n  howpublished = {arXiv:2404.01413},\n  url       = {https://arxiv.org/abs/2404.01413},\n}\n\n@inproceedings{drayson2025_detection_prevents_collapse,\n  author    = {Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  title     = {{Machine-generated text detection prevents language model collapse}},\n  booktitle = {Findings of EMNLP},\n  year      = {2025},\n  note      = {arXiv:2502.15654},\n  url       = {https://arxiv.org/abs/2502.15654},\n}\n\n@misc{bakshi2026_collapse_improvement,\n  author    = {Bakshi, Soham and Chakraborty, Sunrit},\n  title     = {{From Collapse to Improvement: Statistical Perspectives on Iterative Training}},\n  year      = {2026},\n  howpublished = {arXiv:2602.10531},\n  url       = {https://arxiv.org/abs/2602.10531},\n}\n\n@misc{wang2026_contamination,\n  author    = {Wang, Kevin and Niu, Hongqian and Li, Didong},\n  title     = {{Can Generative AI Survive Data Contamination? Theoretical Guarantees}},\n  year      = {2026},\n  howpublished = {arXiv:2602.16065},\n  url       = {https://arxiv.org/abs/2602.16065},\n}\n\n@misc{falahati2026_curated,\n  author    = {Falahati, Ali and Mohammadi Amiri, Mohammad and Larson, Kate and Golab, Lukasz},\n  title     = {{Curated Synthetic Data Doesn't Have to Collapse}},\n  year      = {2026},\n  howpublished = {arXiv:2605.07724},\n  url       = {https://arxiv.org/abs/2605.07724},\n}\n\n@misc{knowledge_collapse2025,\n  author    = {Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip},\n  title     = {{Knowledge Collapse in LLMs: Fluency Survives but Facts Fail}},\n  year      = {2025},\n  howpublished = {arXiv:2509.04796},\n  url       = {https://arxiv.org/abs/2509.04796},\n}\n\n@inproceedings{synthetic_eggs2026,\n  author    = {Schaffelder, Max and Gatt, Albert},\n  title     = {{Synthetic Eggs in Many Baskets: Impact of Synthetic Data Diversity on LLM Fine-Tuning}},\n  booktitle = {Findings of ACL},\n  year      = {2026},\n  note      = {arXiv:2511.01490},\n  url       = {https://arxiv.org/abs/2511.01490},\n}\n\n@inproceedings{mohamed2025_broken_telephone,\n  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},\n  title     = {{LLM as a Broken Telephone: Iterative Generation Distorts Information}},\n  booktitle = {Proceedings of ACL},\n  year      = {2025},\n  note      = {arXiv:2502.20258},\n  url       = {https://arxiv.org/abs/2502.20258},\n}\n\n@misc{sigma2026_spectral,\n  author    = {Gu, Yi and Pang, Lingyou and Ye, Xiangkun and others},\n  title     = {{SIGMA: Scalable Spectral Insights for LLM Model Collapse}},\n  year      = {2026},\n  howpublished = {arXiv:2601.03385},\n  url       = {https://arxiv.org/abs/2601.03385},\n}\n\n@inproceedings{holtzman2020_nucleus,\n  author    = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n  title     = {{The Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2020},\n  note      = {arXiv:1904.09751},\n  url       = {https://arxiv.org/abs/1904.09751},\n}\n\n@inproceedings{finlayson2024_closing,\n  author    = {Finlayson, Matthew and Hewitt, John and Koller, Alexander and Swayamdipta, Swabha and Sabharwal, Ashish},\n  title     = {{Closing the Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.01693},\n  url       = {https://arxiv.org/abs/2310.01693},\n}\n\n@inproceedings{garces_arias2025_decoding_decoded,\n  author    = {{Garces Arias}, Esteban and Li, Meimingwei and Heumann, Christian and Assenmacher, Matthias},\n  title     = {{Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation}},\n  booktitle = {Proceedings of COLING},\n  year      = {2025},\n}\n\n@article{wiher2022_decoding,\n  author    = {Wiher, Gian and Meister, Clara and Cotterell, Ryan},\n  title     = {{On Decoding Strategies for Neural Text Generators}},\n  journal   = {Transactions of the Association for Computational Linguistics},\n  year      = {2022},\n}\n\n@inproceedings{basu2021_mirostat,\n  author    = {Basu, Sourya and Ramachandran, Govardana Sachitanandam and Keskar, Nitish Shirish and Varshney, Lav R.},\n  title     = {{Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2021},\n}\n\n@inproceedings{mitchell2023_detectgpt,\n  author    = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  title     = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.11305},\n  url       = {https://arxiv.org/abs/2301.11305},\n}\n\n@misc{sadasivan2023_paraphrase,\n  author    = {Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n  title     = {{Can AI-Generated Text be Reliably Detected?}},\n  year      = {2023},\n  howpublished = {arXiv:2303.11156},\n  url       = {https://arxiv.org/abs/2303.11156},\n}\n\n@inproceedings{binoculars2024,\n  author    = {Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and others},\n  title     = {{Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2401.12070},\n  url       = {https://arxiv.org/abs/2401.12070},\n}\n\n@inproceedings{fast_detectgpt2024,\n  author    = {Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n  title     = {{Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.05130},\n  url       = {https://arxiv.org/abs/2310.05130},\n}\n\n@inproceedings{diveye2026,\n  author    = {Basani, Advik Raj and Chen, Pin-Yu},\n  title     = {{DivEye: Diversity Boosts AI-Generated Text Detection}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2026},\n  note      = {arXiv:2509.18880},\n  url       = {https://arxiv.org/abs/2509.18880},\n}\n\n@inproceedings{loki2025,\n  author    = {Ye, Junyan and Zhou, Baichuan and Huang, Zilong and others},\n  title     = {{LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2025},\n  note      = {arXiv:2410.09732},\n  url       = {https://arxiv.org/abs/2410.09732},\n}\n\n@inproceedings{gehrmann2019_gltr,\n  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n  title     = {{GLTR: Statistical Detection and Visualization of Generated Text}},\n  booktitle = {Proceedings of ACL},\n  year      = {2019},\n  note      = {arXiv:1906.04043},\n  url       = {https://arxiv.org/abs/1906.04043},\n}\n\n@misc{pudasaini2026_detection_fails,\n  author    = {Pudasaini, Shushanta and Miralles-Pech{\\'u}an, Luis and Lillis, David and Llorens Salvador, Marisa},\n  title     = {{Why AI-Generated Text Detection Fails: Evidence from Explainable AI}},\n  year      = {2026},\n  howpublished = {arXiv:2603.23146},\n  url       = {https://arxiv.org/abs/2603.23146},\n}\n\n@inproceedings{editlens2026,\n  author    = {Thai, Katherine and Emi, Bradley and Masrour, Elyas and Iyyer, Mohit},\n  title     = {{EditLens: Quantifying the Extent of AI Editing in Text}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2026},\n  note      = {arXiv:2510.03154},\n  url       = {https://arxiv.org/abs/2510.03154},\n}\n\n@inproceedings{uchendu2020_attribution,\n  author    = {Uchendu, Adaku and Le, Thai and Shu, Kai and Lee, Dongwon},\n  title     = {{Authorship Attribution for Neural Text Generation}},\n  booktitle = {Proceedings of EMNLP},\n  year      = {2020},\n}\n\n@misc{pu2026_generator_barrier,\n  author    = {Pu, Xiao and Cheng, Zepeng and Yuan, Lin and Wu, Yu and Bi, Xiuli},\n  title     = {{Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection}},\n  year      = {2026},\n  howpublished = {arXiv:2604.13692},\n  url       = {https://arxiv.org/abs/2604.13692},\n}\n\n@article{coral2020,\n  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  title     = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n  journal   = {Pattern Recognition Letters},\n  year      = {2020},\n  note      = {arXiv:1901.07884},\n  url       = {https://arxiv.org/abs/1901.07884},\n}\n\n@inproceedings{cloc2025,\n  author    = {Pitawela, Dileepa and Carneiro, Gustavo and Chen, Hsiang-Ting},\n  title     = {{CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss}},\n  booktitle = {Proceedings of CVPR},\n  year      = {2025},\n  note      = {arXiv:2504.17813},\n  url       = {https://arxiv.org/abs/2504.17813},\n}\n\n@inproceedings{kirchenbauer2023_watermark,\n  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  title     = {{A Watermark for Large Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.10226},\n  url       = {https://arxiv.org/abs/2301.10226},\n}\n\n@inproceedings{dsir2023,\n  author    = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  title     = {{Data Selection for Language Models via Importance Resampling}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2023},\n  note      = {arXiv:2302.03169},\n  url       = {https://arxiv.org/abs/2302.03169},\n}\n\n@inproceedings{qurating2024,\n  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.09739},\n  url       = {https://arxiv.org/abs/2402.09739},\n}\n\n@article{sugiyama2007_importance_weighting,\n  author    = {Sugiyama, Masashi and Krauledat, Matthias and M{\\\"u}ller, Klaus-Robert},\n  title     = {{Covariate Shift Adaptation by Importance Weighted Cross Validation}},\n  journal   = {Journal of Machine Learning Research},\n  year      = {2007},\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib",
+    "content": "@article{shumailov2024_nature,\n  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  title     = {{AI models collapse when trained on recursively generated data}},\n  journal   = {Nature},\n  year      = {2024},\n  doi       = {10.1038/s41586-024-07566-y},\n}\n\n@inproceedings{marchi2024_heat_death,\n  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},\n  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},\n  booktitle = {Proceedings of ICASSP},\n  year      = {2024},\n  note      = {arXiv:2404.02325},\n  url       = {https://arxiv.org/abs/2404.02325},\n}\n\n@inproceedings{dohmatob2024_tale_of_tails,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},\n  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.07043},\n  url       = {https://arxiv.org/abs/2402.07043},\n}\n\n@inproceedings{dohmatob2024_strong_collapse,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n  title     = {{Strong Model Collapse}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2410.04840},\n  url       = {https://arxiv.org/abs/2410.04840},\n}\n\n@inproceedings{dohmatob2024_demystified,\n  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},\n  title     = {{Model Collapse Demystified: The Case of Regression}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n  note      = {arXiv:2402.07712},\n  url       = {https://arxiv.org/abs/2402.07712},\n}\n\n@inproceedings{alemohammad2024_mad,\n  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and others},\n  title     = {{Self-Consuming Generative Models Go MAD}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2307.01850},\n  url       = {https://arxiv.org/abs/2307.01850},\n}\n\n@misc{gerstgrasser2024_accumulate,\n  author    = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and others},\n  title     = {{Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data}},\n  year      = {2024},\n  howpublished = {arXiv:2404.01413},\n  url       = {https://arxiv.org/abs/2404.01413},\n}\n\n@inproceedings{drayson2025_detection_prevents_collapse,\n  author    = {Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  title     = {{Machine-generated text detection prevents language model collapse}},\n  booktitle = {Findings of EMNLP},\n  year      = {2025},\n  note      = {arXiv:2502.15654},\n  url       = {https://arxiv.org/abs/2502.15654},\n}\n\n@misc{bakshi2026_collapse_improvement,\n  author    = {Bakshi, Soham and Chakraborty, Sunrit},\n  title     = {{From Collapse to Improvement: Statistical Perspectives on Iterative Training}},\n  year      = {2026},\n  howpublished = {arXiv:2602.10531},\n  url       = {https://arxiv.org/abs/2602.10531},\n}\n\n@misc{wang2026_contamination,\n  author    = {Wang, Kevin and Niu, Hongqian and Li, Didong},\n  title     = {{Can Generative AI Survive Data Contamination? Theoretical Guarantees}},\n  year      = {2026},\n  howpublished = {arXiv:2602.16065},\n  url       = {https://arxiv.org/abs/2602.16065},\n}\n\n@misc{falahati2026_curated,\n  author    = {Falahati, Ali and Mohammadi Amiri, Mohammad and Larson, Kate and Golab, Lukasz},\n  title     = {{Curated Synthetic Data Doesn't Have to Collapse}},\n  year      = {2026},\n  howpublished = {arXiv:2605.07724},\n  url       = {https://arxiv.org/abs/2605.07724},\n}\n\n@misc{knowledge_collapse2025,\n  author    = {Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip},\n  title     = {{Knowledge Collapse in LLMs: Fluency Survives but Facts Fail}},\n  year      = {2025},\n  howpublished = {arXiv:2509.04796},\n  url       = {https://arxiv.org/abs/2509.04796},\n}\n\n@inproceedings{synthetic_eggs2026,\n  author    = {Schaffelder, Max and Gatt, Albert},\n  title     = {{Synthetic Eggs in Many Baskets: Impact of Synthetic Data Diversity on LLM Fine-Tuning}},\n  booktitle = {Findings of ACL},\n  year      = {2026},\n  note      = {arXiv:2511.01490},\n  url       = {https://arxiv.org/abs/2511.01490},\n}\n\n@inproceedings{mohamed2025_broken_telephone,\n  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},\n  title     = {{LLM as a Broken Telephone: Iterative Generation Distorts Information}},\n  booktitle = {Proceedings of ACL},\n  year      = {2025},\n  note      = {arXiv:2502.20258},\n  url       = {https://arxiv.org/abs/2502.20258},\n}\n\n@misc{sigma2026_spectral,\n  author    = {Gu, Yi and Pang, Lingyou and Ye, Xiangkun and others},\n  title     = {{SIGMA: Scalable Spectral Insights for LLM Model Collapse}},\n  year      = {2026},\n  howpublished = {arXiv:2601.03385},\n  url       = {https://arxiv.org/abs/2601.03385},\n}\n\n@inproceedings{holtzman2020_nucleus,\n  author    = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n  title     = {{The Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2020},\n  note      = {arXiv:1904.09751},\n  url       = {https://arxiv.org/abs/1904.09751},\n}\n\n@inproceedings{finlayson2024_closing,\n  author    = {Finlayson, Matthew and Hewitt, John and Koller, Alexander and Swayamdipta, Swabha and Sabharwal, Ashish},\n  title     = {{Closing the Curious Case of Neural Text Degeneration}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.01693},\n  url       = {https://arxiv.org/abs/2310.01693},\n}\n\n@inproceedings{garces_arias2025_decoding_decoded,\n  author    = {{Garces Arias}, Esteban and Li, Meimingwei and Heumann, Christian and Assenmacher, Matthias},\n  title     = {{Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation}},\n  booktitle = {Proceedings of COLING},\n  year      = {2025},\n}\n\n@article{wiher2022_decoding,\n  author    = {Wiher, Gian and Meister, Clara and Cotterell, Ryan},\n  title     = {{On Decoding Strategies for Neural Text Generators}},\n  journal   = {Transactions of the Association for Computational Linguistics},\n  year      = {2022},\n}\n\n@inproceedings{basu2021_mirostat,\n  author    = {Basu, Sourya and Ramachandran, Govardana Sachitanandam and Keskar, Nitish Shirish and Varshney, Lav R.},\n  title     = {{Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2021},\n}\n\n@inproceedings{mitchell2023_detectgpt,\n  author    = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  title     = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.11305},\n  url       = {https://arxiv.org/abs/2301.11305},\n}\n\n@misc{sadasivan2023_paraphrase,\n  author    = {Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n  title     = {{Can AI-Generated Text be Reliably Detected?}},\n  year      = {2023},\n  howpublished = {arXiv:2303.11156},\n  url       = {https://arxiv.org/abs/2303.11156},\n}\n\n@inproceedings{binoculars2024,\n  author    = {Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and others},\n  title     = {{Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2401.12070},\n  url       = {https://arxiv.org/abs/2401.12070},\n}\n\n@inproceedings{fast_detectgpt2024,\n  author    = {Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n  title     = {{Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2024},\n  note      = {arXiv:2310.05130},\n  url       = {https://arxiv.org/abs/2310.05130},\n}\n\n@inproceedings{diveye2026,\n  author    = {Basani, Advik Raj and Chen, Pin-Yu},\n  title     = {{DivEye: Diversity Boosts AI-Generated Text Detection}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2026},\n  note      = {arXiv:2509.18880},\n  url       = {https://arxiv.org/abs/2509.18880},\n}\n\n@inproceedings{loki2025,\n  author    = {Ye, Junyan and Zhou, Baichuan and Huang, Zilong and others},\n  title     = {{LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal Models}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2025},\n  note      = {arXiv:2410.09732},\n  url       = {https://arxiv.org/abs/2410.09732},\n}\n\n@inproceedings{gehrmann2019_gltr,\n  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n  title     = {{GLTR: Statistical Detection and Visualization of Generated Text}},\n  booktitle = {Proceedings of ACL},\n  year      = {2019},\n  note      = {arXiv:1906.04043},\n  url       = {https://arxiv.org/abs/1906.04043},\n}\n\n@misc{pudasaini2026_detection_fails,\n  author    = {Pudasaini, Shushanta and Miralles-Pech{\\'u}an, Luis and Lillis, David and Llorens Salvador, Marisa},\n  title     = {{Why AI-Generated Text Detection Fails: Evidence from Explainable AI}},\n  year      = {2026},\n  howpublished = {arXiv:2603.23146},\n  url       = {https://arxiv.org/abs/2603.23146},\n}\n\n@inproceedings{editlens2026,\n  author    = {Thai, Katherine and Emi, Bradley and Masrour, Elyas and Iyyer, Mohit},\n  title     = {{EditLens: Quantifying the Extent of AI Editing in Text}},\n  booktitle = {Proceedings of ICLR},\n  year      = {2026},\n  note      = {arXiv:2510.03154},\n  url       = {https://arxiv.org/abs/2510.03154},\n}\n\n@inproceedings{uchendu2020_attribution,\n  author    = {Uchendu, Adaku and Le, Thai and Shu, Kai and Lee, Dongwon},\n  title     = {{Authorship Attribution for Neural Text Generation}},\n  booktitle = {Proceedings of EMNLP},\n  year      = {2020},\n}\n\n@misc{pu2026_generator_barrier,\n  author    = {Pu, Xiao and Cheng, Zepeng and Yuan, Lin and Wu, Yu and Bi, Xiuli},\n  title     = {{Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection}},\n  year      = {2026},\n  howpublished = {arXiv:2604.13692},\n  url       = {https://arxiv.org/abs/2604.13692},\n}\n\n@article{coral2020,\n  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  title     = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n  journal   = {Pattern Recognition Letters},\n  year      = {2020},\n  note      = {arXiv:1901.07884},\n  url       = {https://arxiv.org/abs/1901.07884},\n}\n\n@inproceedings{cloc2025,\n  author    = {Pitawela, Dileepa and Carneiro, Gustavo and Chen, Hsiang-Ting},\n  title     = {{CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss}},\n  booktitle = {Proceedings of CVPR},\n  year      = {2025},\n  note      = {arXiv:2504.17813},\n  url       = {https://arxiv.org/abs/2504.17813},\n}\n\n@inproceedings{kirchenbauer2023_watermark,\n  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  title     = {{A Watermark for Large Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2023},\n  note      = {arXiv:2301.10226},\n  url       = {https://arxiv.org/abs/2301.10226},\n}\n\n@inproceedings{dsir2023,\n  author    = {Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  title     = {{Data Selection for Language Models via Importance Resampling}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2023},\n  note      = {arXiv:2302.03169},\n  url       = {https://arxiv.org/abs/2302.03169},\n}\n\n@inproceedings{qurating2024,\n  author    = {Wettig, Alexander and Gupta, Aatmik and Malik, Saumya and Chen, Danqi},\n  title     = {{QuRating: Selecting High-Quality Data for Training Language Models}},\n  booktitle = {Proceedings of ICML},\n  year      = {2024},\n  note      = {arXiv:2402.09739},\n  url       = {https://arxiv.org/abs/2402.09739},\n}\n\n@article{sugiyama2007_importance_weighting,\n  author    = {Sugiyama, Masashi and Krauledat, Matthias and M{\\\"u}ller, Klaus-Robert},\n  title     = {{Covariate Shift Adaptation by Importance Weighted Cross Validation}},\n  journal   = {Journal of Machine Learning Research},\n  year      = {2007},\n}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-15T09:07:10.615290+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_bib_fix_20260515T090356",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105 · 2026-05-15T09:07:10.615486+00:00_
+
+All 37 entries fixed. Summary of changes:
+
+**Critical fix:**
+- `sigma2026_spectral`: replaced `(multiple)` with real authors (Gu, Yi and Pang, Lingyou and Ye, Xiangkun and others)
+
+**Warning 1 — Full first names added to all 37 entries** in `{LastName, FirstName}` format.
+
+**Warning 2 — Expanded incomplete author lists:**
+- `alemohammad2024_mad`: 3 named authors + others (was 2)
+- `gerstgrasser2024_accumulate`: 3 named + others (was 2)
+- `drayson2025_detection_prevents_collapse`: all 3 authors listed (was 1)
+- `binoculars2024`: 3 named + others (was 3 + others, now with first names)
+- `fast_detectgpt2024`: all 5 authors listed (was 1 + others)
+- `garces_arias2025_decoding_decoded`: all 4 authors listed (was 1)
+- `pudasaini2026_detection_fails`: all 4 authors listed (was 1)
+- `editlens2026`: all 4 authors listed (was 1)
+- `qurating2024`: all 4 authors listed (was 2 + others)
+- `cloc2025`: all 3 authors listed (was 2 + others)
+- `loki2025`: 3 named + others (was 15 last-name-only, trimmed per >6 rule)
+
+**Warning 3 — URLs added** for all entries with arXiv IDs (28 entries).
+
+**Bonus fix:** `basu2021_mirostat` had wrong author names (Sachdev/Kamdar/Nishi) — corrected to Ramachandran/Keskar/Varshney per the actual ICLR 2021 paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_research_bib_fix_20260515T090356"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,1847 @@
+# check exp 004 r2 completion
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_check_exp-004-r2-completion_20260519T171608.log`
+- **Structured JSON:** [`b25efaebc4f04f4c0ce1.json`](../../sessions/b2/b25efaebc4f04f4c0ce1.json)
+
+## Before a recorded user message
+
+37 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2867a441-9789-4182-98e9-7ceb767981b6",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779218400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "36adc33d-d766-476b-a1ed-8faca8096faa",
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the experiment status on the server by running the diagnostic commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "66f0b335-ded5-4977-81b2-3781ced8e9bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011FWzg97gRHaEKQxarsBFic",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12221,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12221
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+检查 exp-004-r2 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "9a06263b-d827-4a82-b083-6f9dd9803952",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011FWzg97gRHaEKQxarsBFic",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12221,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12221
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013ZVT94qJCpX7MEehZTZHhU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "2d9c04bf-bcb1-4e84-8dbc-0cc34b9da43a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011FWzg97gRHaEKQxarsBFic",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12221,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12221
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T17:16:20.805Z_
+
+<details><summary>↩ Tool result · `toolu_013ZVT94qJCpX7MEehZTZHhU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "29b1b9fc-874a-4b43-9880-6dec72274598",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YBFEP2dM5UN7RcF4GQGFkw`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "tail -100 /tmp/exp004.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "cc8c360c-3128-4b9b-8583-e1ec8e739821",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fu2V9dvoHii5qZcGq2nvp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 962,
+      "cache_read_input_tokens": 24062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 962
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J2CssJkqPdNH4B6SdAS5An`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/analysis/attention_weights/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "0ce9be11-04b9-4711-a39d-374c01a4edd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fu2V9dvoHii5qZcGq2nvp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 962,
+      "cache_read_input_tokens": 24062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 962
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CGexRvkDrBb1opxxG6MTyR`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "screen -ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "ba7397dd-d5fe-4986-8dc9-50c91505222b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fu2V9dvoHii5qZcGq2nvp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 962,
+      "cache_read_input_tokens": 24062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 962
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C3RQqmGm3bgujsHo28epcm`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "2d6d20a3-561a-484c-ab3e-1a61c5f49705",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fu2V9dvoHii5qZcGq2nvp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 962,
+      "cache_read_input_tokens": 24062,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 962
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T17:16:32.588Z_
+
+<details><summary>↩ Tool result · `toolu_01YBFEP2dM5UN7RcF4GQGFkw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== exp-004 START: Wed May 20 00:45:11 CST 2026 ===\\n--- GatedDeltaNet ---\\nLoading gdn model...\\n\\rLoading weights:   0%|          | 0/363 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/363 [00:00<01:10,  5.13it/s]\\rLoading weights:   5%|▌         | 19/363 [00:00<00:04, 76.76it/s]\\rLoading weights:  10%|█         | 37/363 [00:00<00:02, 114.35it/s]\\rLoading weights:  14%|█▍        | 51/363 [00:00<00:03, 92.63it/s] \\rLoading weights:  19%|█▉        | 70/363 [00:00<00:02, 118.65it/s]\\rLoading weights:  23%|██▎       | 84/363 [00:00<00:02, 123.67it/s]\\rLoading weights:  27%|██▋       | 98/363 [00:00<00:02, 101.09it/s]\\rLoading weights:  32%|███▏      | 115/363 [00:01<00:02, 117.56it/s]\\rLoading weights:  36%|███▌      | 129/363 [00:01<00:01, 122.36it/s]\\rLoading weights:  39%|███▉      | 143/363 [00:01<00:01, 126.18it/s]\\rLoading weights:  43%|████▎     | 157/363 [00:01<00:01, 107.15it/s]\\rLoading weights:  49%|████▉     | 177/363 [00:01<00:01, 128.79it/s]\\rLoading weights:  53%|█████▎    | 192/363 [00:01<00:01, 132.53it/s]\\rLoading weights:  58%|█████▊    | 211/363 [00:01<00:01, 146.76it/s]\\rLoading weights:  63%|██████▎   | 227/363 [00:01<00:00, 145.84it/s]\\rLoading weights:  67%|██████▋   | 244/363 [00:02<00:00, 151.91it/s]\\rLoading weights:  73%|███████▎  | 266/363 [00:02<00:00, 168.79it/s]\\rLoading weights:  79%|███████▊  | 285/363 [00:02<00:00, 174.76it/s]\\rLoading weights:  83%|████████▎ | 303/363 [00:02<00:00, 144.46it/s]\\rLoading weights:  88%|████████▊ | 319/363 [00:02<00:00, 145.22it/s]\\rLoading weights:  92%|█████████▏| 335/363 [00:02<00:00, 147.18it/s]\\rLoading weights:  98%|█████████▊| 356/363 [00:02<00:00, 163.85it/s]\\rLoading weights: 100%|██████████| 363/363 [00:02<00:00, 129.73it/s]\\n[transformers] \\u001b[1mGatedDeltaNetForCausalLM LOAD REPORT\\u001b[0m from: /root/autodl-tmp/models_1.3b/1.3B-100B-GatedDeltaNet-hybrid-3-1\\nKey                          | Status     |  | \\n-----------------------------+------------+--+-\\nmodel.layers.{0...22}.attn.D | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\nLoading LAMBADA dataset...\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/EleutherAI/lambada_openai/resolve/900124bf3b8235c6daf21033af9948b3f07346c4/lambada_openai.py\\nRetrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since EleutherAI/lambada_openai couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/EleutherAI___lambada_openai/default/0.0.0/900124bf3b8235c6daf21033af9948b3f07346c4 (last modified on Mon May 18 17:55:05 2026).\\n\\rExtracting gdn:   0%|          | 0/5153 [00:00<?, ?it/s][transformers] `use_return_dict` is deprecated! Use `return_dict` instead!\\n\\rExtracting gdn:   0%|          | 1/5153 [00:00<1:11:09,  1.21it/s]\\rExtracting gdn:   0%|          | 3/5153 [00:00<23:00,  3.73it/s]  \\rExtracting gdn:   0%|          | 5/5153 [00:01<14:16,  6.01it/s]\\rExtracting gdn:   0%|          | 7/5153 [00:01<11:10,  7.68it/s]\\rExtracting gdn:   0%|          | 9/5153 [00:01<09:44,  8.80it/s]\\rExtracting gdn:   0%|          | 11/5153 [00:01<09:18,  9.21it/s]\\rExtracting gdn:   0%|          | 13/5153 [00:01<09:04,  9.44it/s]\\rExtracting gdn:   0%|          | 15/5153 [00:02<08:54,  9.61it/s]\\rExtracting gdn:   0%|          | 17/5153 [00:02<08:58,  9.53it/s]\\rExtracting gdn:   0%|          | 19/5153 [00:02<08:12, 10.43it/s]\\rExtracting gdn:   0%|          | 21/5153 [00:02<08:12, 10.43it/s]\\rExtracting gdn:   0%|          | 23/5153 [00:02<08:18, 10.29it/s]\\rExtracting gdn:   0%|          | 25/5153 [00:03<08:22, 10.21it/s]\\rExtracting gdn:   1%|          | 27/5153 [00:03<08:22, 10.21it/s]\\rExtracting gdn:   1%|          | 29/5153 [00:03<08:24, 10.16it/s]\\rExtracting gdn:   1%|          | 31/5153 [00:03<08:20, 10.24it/s]\\rExtracting gdn:   1%|          | 33/5153 [00:03<07:55, 10.77it/s]\\rExtracting gdn:   1%|          | 35/5153 [00:03<08:00, 1\\n\\n... [截断: 输出过长，省略 541450 字符] ...\\n\\ncting hgrn2:  98%|█████████▊| 5064/5153 [07:57<00:08, 10.71it/s]\\rExtracting hgrn2:  98%|█████████▊| 5066/5153 [07:58<00:08, 10.04it/s]\\rExtracting hgrn2:  98%|█████████▊| 5068/5153 [07:58<00:08, 10.50it/s]\\rExtracting hgrn2:  98%|█████████▊| 5070/5153 [07:58<00:08, 10.35it/s]\\rExtracting hgrn2:  98%|█████████▊| 5072/5153 [07:58<00:07, 10.22it/s]\\rExtracting hgrn2:  98%|█████████▊| 5074/5153 [07:58<00:07, 10.18it/s]\\rExtracting hgrn2:  99%|█████████▊| 5076/5153 [07:59<00:07, 10.12it/s]\\rExtracting hgrn2:  99%|█████████▊| 5078/5153 [07:59<00:07, 10.07it/s]\\rExtracting hgrn2:  99%|█████████▊| 5080/5153 [07:59<00:06, 10.80it/s]\\rExtracting hgrn2:  99%|█████████▊| 5082/5153 [07:59<00:07,  9.85it/s]\\rExtracting hgrn2:  99%|█████████▊| 5084/5153 [07:59<00:06, 10.61it/s]\\rExtracting hgrn2:  99%|█████████▊| 5086/5153 [08:00<00:06, 10.59it/s]\\rExtracting hgrn2:  99%|█████████▊| 5088/5153 [08:00<00:06, 10.36it/s]\\rExtracting hgrn2:  99%|█████████▉| 5090/5153 [08:00<00:05, 10.55it/s]\\rExtracting hgrn2:  99%|█████████▉| 5092/5153 [08:00<00:05, 10.83it/s]\\rExtracting hgrn2:  99%|█████████▉| 5094/5153 [08:00<00:05, 10.64it/s]\\rExtracting hgrn2:  99%|█████████▉| 5096/5153 [08:00<00:05, 10.43it/s]\\rExtracting hgrn2:  99%|█████████▉| 5098/5153 [08:01<00:05, 10.30it/s]\\rExtracting hgrn2:  99%|█████████▉| 5100/5153 [08:01<00:05, 10.21it/s]\\rExtracting hgrn2:  99%|█████████▉| 5102/5153 [08:01<00:04, 10.94it/s]\\rExtracting hgrn2:  99%|█████████▉| 5104/5153 [08:01<00:04, 10.68it/s]\\rExtracting hgrn2:  99%|█████████▉| 5106/5153 [08:01<00:04, 10.64it/s]\\rExtracting hgrn2:  99%|█████████▉| 5108/5153 [08:02<00:04, 10.61it/s]\\rExtracting hgrn2:  99%|█████████▉| 5110/5153 [08:02<00:03, 10.87it/s]\\rExtracting hgrn2:  99%|█████████▉| 5112/5153 [08:02<00:03, 10.58it/s]\\rExtracting hgrn2:  99%|█████████▉| 5114/5153 [08:02<00:03, 10.43it/s]\\rExtracting hgrn2:  99%|█████████▉| 5116/5153 [08:02<00:03, 11.07it/s]\\rExtracting hgrn2:  99%|█████████▉| 5118/5153 [08:03<00:03, 10.90it/s]\\rExtracting hgrn2:  99%|█████████▉| 5120/5153 [08:03<00:03, 10.65it/s]\\rExtracting hgrn2:  99%|█████████▉| 5122/5153 [08:03<00:02, 10.52it/s]\\rExtracting hgrn2:  99%|█████████▉| 5124/5153 [08:03<00:02, 11.31it/s]\\rExtracting hgrn2:  99%|█████████▉| 5126/5153 [08:03<00:02, 10.51it/s]\\rExtracting hgrn2: 100%|█████████▉| 5128/5153 [08:03<00:02, 11.21it/s]\\rExtracting hgrn2: 100%|█████████▉| 5130/5153 [08:04<00:02, 10.13it/s]\\rExtracting hgrn2: 100%|██��██████▉| 5132/5153 [08:04<00:01, 10.94it/s]\\rExtracting hgrn2: 100%|█████████▉| 5134/5153 [08:04<00:01, 10.65it/s]\\rExtracting hgrn2: 100%|█████████▉| 5136/5153 [08:04<00:01, 10.75it/s]\\rExtracting hgrn2: 100%|█████████▉| 5138/5153 [08:04<00:01, 10.96it/s]\\rExtracting hgrn2: 100%|█████████▉| 5140/5153 [08:05<00:01, 10.68it/s]\\rExtracting hgrn2: 100%|█████████▉| 5142/5153 [08:05<00:00, 11.42it/s]\\rExtracting hgrn2: 100%|█████████▉| 5144/5153 [08:05<00:00, 10.98it/s]\\rExtracting hgrn2: 100%|█████████▉| 5146/5153 [08:05<00:00, 10.70it/s]\\rExtracting hgrn2: 100%|█████████▉| 5148/5153 [08:05<00:00, 10.52it/s]\\rExtracting hgrn2: 100%|█████████▉| 5150/5153 [08:05<00:00, 11.08it/s]\\rExtracting hgrn2: 100%|█████████▉| 5152/5153 [08:06<00:00, 10.72it/s]\\rExtracting hgrn2: 100%|██████████| 5153/5153 [08:06<00:00, 10.60it/s]\\nSaved raw patterns: /root/entrainment_gated_ft/analysis/attention_weights/hgrn2_attention_patterns.pt (5153 samples)\\nSaved entropy data: /root/entrainment_gated_ft/analysis/attention_weights/hgrn2_attention_entropy.csv\\n=== HGRN2 finished at Wed May 20 01:14:32 CST 2026 ===\\n=== Starting analysis at Wed May 20 01:14:32 CST 2026 ===\\n=== Helped vs Hurt Analysis ===\\nSaved helped-vs-hurt analysis: /root/entrainment_gated_ft/analysis/attention_weights/helped_vs_hurt_entropy.csv\\nSaved summary: /root/entrainment_gated_ft/analysis/attention_weights/attention_analysis_summary.json\\n\\n=== Cross-Architecture Similarity ===\\nSaved cross-arch similarity: /root/entrainment_gated_ft/analysis/attention_weights/cross_arch_attention_similarity.csv\\n=== ALL_DONE at Wed May 20 01:14:40 CST 2026 ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "dfb9252e-7d46-45f3-863c-6daef83197f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== exp-004 START: Wed May 20 00:45:11 CST 2026 ===\\\\n--- GatedDeltaNet ---\\\\nLoading gdn model...\\\\n\\\\rLoading weights:   0%|          | 0/363 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/363 [00:00<01:10,  5.13it/s]\\\\rLoading weights:   5%|▌         | 19/363 [00:00<00:04, 76.76it/s]\\\\rLoading weights:  10%|█         | 37/363 [00:00<00:02, 114.35it/s]\\\\rLoading weights:  14%|█▍        | 51/363 [00:00<00:03, 92.63it/s] \\\\rLoading weights:  19%|█▉        | 70/363 [00:00<00:02, 118.65it/s]\\\\rLoading weights:  23%|██▎       | 84/363 [00:00<00:02, 123.67it/s]\\\\rLoading weights:  27%|██▋       | 98/363 [00:00<00:02, 101.09it/s]\\\\rLoading weights:  32%|███▏      | 115/363 [00:01<00:02, 117.56it/s]\\\\rLoading weights:  36%|███▌      | 129/363 [00:01<00:01, 122.36it/s]\\\\rLoading weights:  39%|███▉      | 143/363 [00:01<00:01, 126.18it/s]\\\\rLoading weights:  43%|████▎     | 157/363 [00:01<00:01, 107.15it/s]\\\\rLoading weights:  49%|████▉     | 177/363 [00:01<00:01, 128.79it/s]\\\\rLoading weights:  53%|█████▎    | 192/363 [00:01<00:01, 132.53it/s]\\\\rLoading weights:  58%|█████▊    | 211/363 [00:01<00:01, 146.76it/s]\\\\rLoading weights:  63%|██████▎   | 227/363 [00:01<00:00, 145.84it/s]\\\\rLoading weights:  67%|██████▋   | 244/363 [00:02<00:00, 151.91it/s]\\\\rLoading weights:  73%|███████▎  | 266/363 [00:02<00:00, 168.79it/s]\\\\rLoading weights:  79%|███████▊  | 285/363 [00:02<00:00, 174.76it/s]\\\\rLoading weights:  83%|████████▎ | 303/363 [00:02<00:00, 144.46it/s]\\\\rLoading weights:  88%|████████▊ | 319/363 [00:02<00:00, 145.22it/s]\\\\rLoading weights:  92%|█████████▏| 335/363 [00:02<00:00, 147.18it/s]\\\\rLoading weights:  98%|█████████▊| 356/363 [00:02<00:00, 163.85it/s]\\\\rLoading weights: 100%|██████████| 363/363 [00:02<00:00, 129.73it/s]\\\\n[transformers] \\\\u001b[1mGatedDeltaNetForCausalLM LOAD REPORT\\\\u001b[0m from: /root/autodl-tmp/models_1.3b/1.3B-100B-GatedDeltaNet-hybrid-3-1\\\\nKey                          | Status     |  | \\\\n-----------------------------+------------+--+-\\\\nmodel.layers.{0...22}.attn.D | UNEXPECTED |  | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\nLoading LAMBADA dataset...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/EleutherAI/lambada_openai/resolve/900124bf3b8235c6daf21033af9948b3f07346c4/lambada_openai.py\\\\nRetrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since EleutherAI/lambada_openai couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/EleutherAI___lambada_openai/default/0.0.0/900124bf3b8235c6daf21033af9948b3f07346c4 (last modified on Mon May 18 17:55:05 2026).\\\\n\\\\rExtracting gdn:   0%|          | 0/5153 [00:00<?, ?it/s][transformers] `use_return_dict` is deprecated! Use `return_dict` instead!\\\\n\\\\rExtracting gdn:   0%|          | 1/5153 [00:00<1:11:09,  1.21it/s]\\\\rExtracting gdn:   0%|          | 3/5153 [00:00<23:00,  3.73it/s]  \\\\rExtracting gdn:   0%|          | 5/5153 [00:01<14:16,  6.01it/s]\\\\rExtracting gdn:   0%|          | 7/5153 [00:01<11:10,  7.68it/s]\\\\rExtracting gdn:   0%|          | 9/5153 [00:01<09:44,  8.80it/s]\\\\rExtracting gdn:   0%|          | 11/5153 [00:01<09:18,  9.21it/s]\\\\rExtracting gdn:   0%|          | 13/5153 [00:01<09:04,  9.44it/s]\\\\rExtracting gdn:   0%|          | 15/5153 [00:02<08:54,  9.61it/s]\\\\rExtracting gdn:   0%|          | 17/5153 [00:02<08:58,  9.53it/s]\\\\rExtracting gdn:   0%|          | 19/5153 [00:02<08:12, 10.43it/s]\\\\rExtracting gdn:   0%|          | 21/5153 [00:02<08:12, 10.43it/s]\\\\rExtracting gdn:   0%|          | 23/5153 [00:02<08:18, 10.29it/s]\\\\rExtracting gdn:   0%|          | 25/5153 [00:03<08:22, 10.21it/s]\\\\rExtracting gdn:   1%|          | 27/5153 [00:03<08:22, 10.21it/s]\\\\rExtracting gdn:   1%|          | 29/5153 [00:03<08:24, 10.16it/s]\\\\rExtracting gdn:   1%|          | 31/5153 [00:03<08:20, 10.24it/s]\\\\rExtracting gdn:   1%|          | 33/5153 [00:03<07:55, 10.77it/s]\\\\rExtracting gdn:   1%|          | 35/5153 [00:03<08:00, 1\\\\n\\\\n... [截断: 输出过长，省略 541450 字符] ...\\\\n\\\\ncting hgrn2:  98%|█████████▊| 5064/5153 [07:57<00:08, 10.71it/s]\\\\rExtracting hgrn2:  98%|█████████▊| 5066/5153 [07:58<00:08, 10.04it/s]\\\\rExtracting hgrn2:  98%|█████████▊| 5068/5153 [07:58<00:08, 10.50it/s]\\\\rExtracting hgrn2:  98%|█████████▊| 5070/5153 [07:58<00:08, 10.35it/s]\\\\rExtracting hgrn2:  98%|█████████▊| 5072/5153 [07:58<00:07, 10.22it/s]\\\\rExtracting hgrn2:  98%|█████████▊| 5074/5153 [07:58<00:07, 10.18it/s]\\\\rExtracting hgrn2:  99%|█████████▊| 5076/5153 [07:59<00:07, 10.12it/s]\\\\rExtracting hgrn2:  99%|█████████▊| 5078/5153 [07:59<00:07, 10.07it/s]\\\\rExtracting hgrn2:  99%|█████████▊| 5080/5153 [07:59<00:06, 10.80it/s]\\\\rExtracting hgrn2:  99%|█████████▊| 5082/5153 [07:59<00:07,  9.85it/s]\\\\rExtracting hgrn2:  99%|█████████▊| 5084/5153 [07:59<00:06, 10.61it/s]\\\\rExtracting hgrn2:  99%|█████████▊| 5086/5153 [08:00<00:06, 10.59it/s]\\\\rExtracting hgrn2:  99%|█████████▊| 5088/5153 [08:00<00:06, 10.36it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5090/5153 [08:00<00:05, 10.55it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5092/5153 [08:00<00:05, 10.83it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5094/5153 [08:00<00:05, 10.64it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5096/5153 [08:00<00:05, 10.43it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5098/5153 [08:01<00:05, 10.30it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5100/5153 [08:01<00:05, 10.21it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5102/5153 [08:01<00:04, 10.94it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5104/5153 [08:01<00:04, 10.68it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5106/5153 [08:01<00:04, 10.64it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5108/5153 [08:02<00:04, 10.61it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5110/5153 [08:02<00:03, 10.87it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5112/5153 [08:02<00:03, 10.58it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5114/5153 [08:02<00:03, 10.43it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5116/5153 [08:02<00:03, 11.07it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5118/5153 [08:03<00:03, 10.90it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5120/5153 [08:03<00:03, 10.65it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5122/5153 [08:03<00:02, 10.52it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5124/5153 [08:03<00:02, 11.31it/s]\\\\rExtracting hgrn2:  99%|█████████▉| 5126/5153 [08:03<00:02, 10.51it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5128/5153 [08:03<00:02, 11.21it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5130/5153 [08:04<00:02, 10.13it/s]\\\\rExtracting hgrn2: 100%|██��██████▉| 5132/5153 [08:04<00:01, 10.94it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5134/5153 [08:04<00:01, 10.65it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5136/5153 [08:04<00:01, 10.75it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5138/5153 [08:04<00:01, 10.96it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5140/5153 [08:05<00:01, 10.68it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5142/5153 [08:05<00:00, 11.42it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5144/5153 [08:05<00:00, 10.98it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5146/5153 [08:05<00:00, 10.70it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5148/5153 [08:05<00:00, 10.52it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5150/5153 [08:05<00:00, 11.08it/s]\\\\rExtracting hgrn2: 100%|█████████▉| 5152/5153 [08:06<00:00, 10.72it/s]\\\\rExtracting hgrn2: 100%|██████████| 5153/5153 [08:06<00:00, 10.60it/s]\\\\nSaved raw patterns: /root/entrainment_gated_ft/analysis/attention_weights/hgrn2_attention_patterns.pt (5153 samples)\\\\nSaved entropy data: /root/entrainment_gated_ft/analysis/attention_weights/hgrn2_attention_entropy.csv\\\\n=== HGRN2 finished at Wed May 20 01:14:32 CST 2026 ===\\\\n=== Starting analysis at Wed May 20 01:14:32 CST 2026 ===\\\\n=== Helped vs Hurt Analysis ===\\\\nSaved helped-vs-hurt analysis: /root/entrainment_gated_ft/analysis/attention_weights/helped_vs_hurt_entropy.csv\\\\nSaved summary: /root/entrainment_gated_ft/analysis/attention_weights/attention_analysis_summary.json\\\\n\\\\n=== Cross-Architecture Similarity ===\\\\nSaved cross-arch similarity: /root/entrainment_gated_ft/analysis/attention_weights/cross_arch_attention_similarity.csv\\\\n=== ALL_DONE at Wed May 20 01:14:40 CST 2026 ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== exp-004 START: Wed May 20 00:45:11 CST 2026 ===\\n--- GatedDeltaNet ---\\nLoading gdn model...\\n\\rLoading weights:   0%|          | 0/363 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/363 [00:00<01:10,  5.13it/s]\\rLoading weights:   5%|▌         | 19/363 [00:00<00:04, 76.76it/s]\\rLoading weights:  10%|█         | 37/363 [00:00<00:02, 114.35it/s]\\rLoading weights:  14%|█▍        | 51/363 [00:00<00:03, 92.63it/s] \\rLoading weights:  19%|█▉        | 70/363 [00:00<00:02, 118.65it/s]\\rLoading weights:  23%|██▎       | 84/363 [00:00<00:02, 123.67it/s]\\rLoading weights:  27%|██▋       | 98/363 [00:00<00:02, 101.09it/s]\\rLoading weights:  32%|███▏      | 115/363 [00:01<00:02, 117.56it/s]\\rLoading weights:  36%|███▌      | 129/363 [00:01<00:01, 122.36it/s]\\rLoading weights:  39%|███▉      | 143/363 [00:01<00:01, 126.18it/s]\\rLoading weights:  43%|████▎     | 157/363 [00:01<00:01, 107.15it/s]\\rLoading weights:  49%|████▉     | 177/363 [00:01<00:01, 128.79it/s]\\rLoading weights:  53%|█████▎    | 192/363 [00:01<00:01, 132.53it/s]\\rLoading weights:  58%|█████▊    | 211/363 [00:01<00:01, 146.76it/s]\\rLoading weights:  63%|██████▎   | 227/363 [00:01<00:00, 145.84it/s]\\rLoading weights:  67%|██████▋   | 244/363 [00:02<00:00, 151.91it/s]\\rLoading weights:  73%|███████▎  | 266/363 [00:02<00:00, 168.79it/s]\\rLoading weights:  79%|███████▊  | 285/363 [00:02<00:00, 174.76it/s]\\rLoading weights:  83%|████████▎ | 303/363 [00:02<00:00, 144.46it/s]\\rLoading weights:  88%|████████▊ | 319/363 [00:02<00:00, 145.22it/s]\\rLoading weights:  92%|█████████▏| 335/363 [00:02<00:00, 147.18it/s]\\rLoading weights:  98%|█████████▊| 356/363 [00:02<00:00, 163.85it/s]\\rLoading weights: 100%|██████████| 363/363 [00:02<00:00, 129.73it/s]\\n[transformers] \\u001b[1mGatedDeltaNetForCausalLM LOAD REPORT\\u001b[0m from: /root/autodl-tmp/models_1.3b/1.3B-100B-GatedDeltaNet-hybrid-3-1\\nKey                          | Status     |  | \\n-----------------------------+------------+--+-\\nmodel.layers.{0...22}.attn.D | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\nLoading LAMBADA dataset...\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/EleutherAI/lambada_openai/resolve/900124bf3b8235c6daf21033af9948b3f07346c4/lambada_openai.py\\nRetrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since EleutherAI/lambada_openai couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/EleutherAI___lambada_openai/default/0.0.0/900124bf3b8235c6daf21033af9948b3f07346c4 (last modified on Mon May 18 17:55:05 2026).\\n\\rExtracting gdn:   0%|          | 0/5153 [00:00<?, ?it/s][transformers] `use_return_dict` is deprecated! Use `return_dict` instead!\\n\\rExtracting gdn:   0%|          | 1/5153 [00:00<1:11:09,  1.21it/s]\\rExtracting gdn:   0%|          | 3/5153 [00:00<23:00,  3.73it/s]  \\rExtracting gdn:   0%|          | 5/5153 [00:01<14:16,  6.01it/s]\\rExtracting gdn:   0%|          | 7/5153 [00:01<11:10,  7.68it/s]\\rExtracting gdn:   0%|          | 9/5153 [00:01<09:44,  8.80it/s]\\rExtracting gdn:   0%|          | 11/5153 [00:01<09:18,  9.21it/s]\\rExtracting gdn:   0%|          | 13/5153 [00:01<09:04,  9.44it/s]\\rExtracting gdn:   0%|          | 15/5153 [00:02<08:54,  9.61it/s]\\rExtracting gdn:   0%|          | 17/5153 [00:02<08:58,  9.53it/s]\\rExtracting gdn:   0%|          | 19/5153 [00:02<08:12, 10.43it/s]\\rExtracting gdn:   0%|          | 21/5153 [00:02<08:12, 10.43it/s]\\rExtracting gdn:   0%|          | 23/5153 [00:02<08:18, 10.29it/s]\\rExtracting gdn:   0%|          | 25/5153 [00:03<08:22, 10.21it/s]\\rExtracting gdn:   1%|          | 27/5153 [00:03<08:22, 10.21it/s]\\rExtracting gdn:   1%|          | 29/5153 [00:03<08:24, 10.16it/s]\\rExtracting gdn:   1%|          | 31/5153 [00:03<08:20, 10.24it/s]\\rExtracting gdn:   1%|          | 33/5153 [00:03<07:55, 10.77it/s]\\rExtracting gdn:   1%|          | 35/5153 [00:03<08:00, 1\\n\\n... [截断: 输出过长，省略 541450 字符] ...\\n\\ncting hgrn2:  98%|█████████▊| 5064/5153 [07:57<00:08, 10.71it/s]\\rExtracting hgrn2:  98%|█████████▊| 5066/5153 [07:58<00:08, 10.04it/s]\\rExtracting hgrn2:  98%|█████████▊| 5068/5153 [07:58<00:08, 10.50it/s]\\rExtracting hgrn2:  98%|█████████▊| 5070/5153 [07:58<00:08, 10.35it/s]\\rExtracting hgrn2:  98%|█████████▊| 5072/5153 [07:58<00:07, 10.22it/s]\\rExtracting hgrn2:  98%|█████████▊| 5074/5153 [07:58<00:07, 10.18it/s]\\rExtracting hgrn2:  99%|█████████▊| 5076/5153 [07:59<00:07, 10.12it/s]\\rExtracting hgrn2:  99%|█████████▊| 5078/5153 [07:59<00:07, 10.07it/s]\\rExtracting hgrn2:  99%|█████████▊| 5080/5153 [07:59<00:06, 10.80it/s]\\rExtracting hgrn2:  99%|█████████▊| 5082/5153 [07:59<00:07,  9.85it/s]\\rExtracting hgrn2:  99%|█████████▊| 5084/5153 [07:59<00:06, 10.61it/s]\\rExtracting hgrn2:  99%|█████████▊| 5086/5153 [08:00<00:06, 10.59it/s]\\rExtracting hgrn2:  99%|█████████▊| 5088/5153 [08:00<00:06, 10.36it/s]\\rExtracting hgrn2:  99%|█████████▉| 5090/5153 [08:00<00:05, 10.55it/s]\\rExtracting hgrn2:  99%|█████████▉| 5092/5153 [08:00<00:05, 10.83it/s]\\rExtracting hgrn2:  99%|█████████▉| 5094/5153 [08:00<00:05, 10.64it/s]\\rExtracting hgrn2:  99%|█████████▉| 5096/5153 [08:00<00:05, 10.43it/s]\\rExtracting hgrn2:  99%|█████████▉| 5098/5153 [08:01<00:05, 10.30it/s]\\rExtracting hgrn2:  99%|█████████▉| 5100/5153 [08:01<00:05, 10.21it/s]\\rExtracting hgrn2:  99%|█████████▉| 5102/5153 [08:01<00:04, 10.94it/s]\\rExtracting hgrn2:  99%|█████████▉| 5104/5153 [08:01<00:04, 10.68it/s]\\rExtracting hgrn2:  99%|█████████▉| 5106/5153 [08:01<00:04, 10.64it/s]\\rExtracting hgrn2:  99%|█████████▉| 5108/5153 [08:02<00:04, 10.61it/s]\\rExtracting hgrn2:  99%|█████████▉| 5110/5153 [08:02<00:03, 10.87it/s]\\rExtracting hgrn2:  99%|█████████▉| 5112/5153 [08:02<00:03, 10.58it/s]\\rExtracting hgrn2:  99%|█████████▉| 5114/5153 [08:02<00:03, 10.43it/s]\\rExtracting hgrn2:  99%|█████████▉| 5116/5153 [08:02<00:03, 11.07it/s]\\rExtracting hgrn2:  99%|█████████▉| 5118/5153 [08:03<00:03, 10.90it/s]\\rExtracting hgrn2:  99%|█████████▉| 5120/5153 [08:03<00:03, 10.65it/s]\\rExtracting hgrn2:  99%|█████████▉| 5122/5153 [08:03<00:02, 10.52it/s]\\rExtracting hgrn2:  99%|█████████▉| 5124/5153 [08:03<00:02, 11.31it/s]\\rExtracting hgrn2:  99%|█████████▉| 5126/5153 [08:03<00:02, 10.51it/s]\\rExtracting hgrn2: 100%|█████████▉| 5128/5153 [08:03<00:02, 11.21it/s]\\rExtracting hgrn2: 100%|█████████▉| 5130/5153 [08:04<00:02, 10.13it/s]\\rExtracting hgrn2: 100%|██��██████▉| 5132/5153 [08:04<00:01, 10.94it/s]\\rExtracting hgrn2: 100%|█████████▉| 5134/5153 [08:04<00:01, 10.65it/s]\\rExtracting hgrn2: 100%|█████████▉| 5136/5153 [08:04<00:01, 10.75it/s]\\rExtracting hgrn2: 100%|█████████▉| 5138/5153 [08:04<00:01, 10.96it/s]\\rExtracting hgrn2: 100%|█████████▉| 5140/5153 [08:05<00:01, 10.68it/s]\\rExtracting hgrn2: 100%|█████████▉| 5142/5153 [08:05<00:00, 11.42it/s]\\rExtracting hgrn2: 100%|█████████▉| 5144/5153 [08:05<00:00, 10.98it/s]\\rExtracting hgrn2: 100%|█████████▉| 5146/5153 [08:05<00:00, 10.70it/s]\\rExtracting hgrn2: 100%|█████████▉| 5148/5153 [08:05<00:00, 10.52it/s]\\rExtracting hgrn2: 100%|█████████▉| 5150/5153 [08:05<00:00, 11.08it/s]\\rExtracting hgrn2: 100%|█████████▉| 5152/5153 [08:06<00:00, 10.72it/s]\\rExtracting hgrn2: 100%|██████████| 5153/5153 [08:06<00:00, 10.60it/s]\\nSaved raw patterns: /root/entrainment_gated_ft/analysis/attention_weights/hgrn2_attention_patterns.pt (5153 samples)\\nSaved entropy data: /root/entrainment_gated_ft/analysis/attention_weights/hgrn2_attention_entropy.csv\\n=== HGRN2 finished at Wed May 20 01:14:32 CST 2026 ===\\n=== Starting analysis at Wed May 20 01:14:32 CST 2026 ===\\n=== Helped vs Hurt Analysis ===\\nSaved helped-vs-hurt analysis: /root/entrainment_gated_ft/analysis/attention_weights/helped_vs_hurt_entropy.csv\\nSaved summary: /root/entrainment_gated_ft/analysis/attention_weights/attention_analysis_summary.json\\n\\n=== Cross-Architecture Similarity ===\\nSaved cross-arch similarity: /root/entrainment_gated_ft/analysis/attention_weights/cross_arch_attention_similarity.csv\\n=== ALL_DONE at Wed May 20 01:14:40 CST 2026 ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T17:16:34.141Z_
+
+<details><summary>↩ Tool result · `toolu_01J2CssJkqPdNH4B6SdAS5An`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 543096\\ndrwxr-xr-x 2 root root      4096 May 20 01:14 .\\ndrwxr-xr-x 5 root root      4096 May 20 00:45 ..\\n-rw-r--r-- 1 root root      1486 May 20 01:14 attention_analysis_summary.json\\n-rw-r--r-- 1 root root      1502 May 20 01:14 cross_arch_attention_similarity.csv\\n-rw-r--r-- 1 root root  59242574 May 20 00:54 gdn_attention_entropy.csv\\n-rw-r--r-- 1 root root 126029273 May 20 00:54 gdn_attention_patterns.pt\\n-rw-r--r-- 1 root root      8419 May 20 01:14 helped_vs_hurt_entropy.csv\\n-rw-r--r-- 1 root root  59233934 May 20 01:14 hgrn2_attention_entropy.csv\\n-rw-r--r-- 1 root root 126111733 May 20 01:14 hgrn2_attention_patterns.pt\\n-rw-r--r-- 1 root root  59321660 May 20 01:04 retnet_attention_entropy.csv\\n-rw-r--r-- 1 root root 126152963 May 20 01:04 retnet_attention_patterns.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "7667cdb0-6b9f-4302-ae0f-95b38f4120ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 543096\\\\ndrwxr-xr-x 2 root root      4096 May 20 01:14 .\\\\ndrwxr-xr-x 5 root root      4096 May 20 00:45 ..\\\\n-rw-r--r-- 1 root root      1486 May 20 01:14 attention_analysis_summary.json\\\\n-rw-r--r-- 1 root root      1502 May 20 01:14 cross_arch_attention_similarity.csv\\\\n-rw-r--r-- 1 root root  59242574 May 20 00:54 gdn_attention_entropy.csv\\\\n-rw-r--r-- 1 root root 126029273 May 20 00:54 gdn_attention_patterns.pt\\\\n-rw-r--r-- 1 root root      8419 May 20 01:14 helped_vs_hurt_entropy.csv\\\\n-rw-r--r-- 1 root root  59233934 May 20 01:14 hgrn2_attention_entropy.csv\\\\n-rw-r--r-- 1 root root 126111733 May 20 01:14 hgrn2_attention_patterns.pt\\\\n-rw-r--r-- 1 root root  59321660 May 20 01:04 retnet_attention_entropy.csv\\\\n-rw-r--r-- 1 root root 126152963 May 20 01:04 retnet_attention_patterns.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 543096\\ndrwxr-xr-x 2 root root      4096 May 20 01:14 .\\ndrwxr-xr-x 5 root root      4096 May 20 00:45 ..\\n-rw-r--r-- 1 root root      1486 May 20 01:14 attention_analysis_summary.json\\n-rw-r--r-- 1 root root      1502 May 20 01:14 cross_arch_attention_similarity.csv\\n-rw-r--r-- 1 root root  59242574 May 20 00:54 gdn_attention_entropy.csv\\n-rw-r--r-- 1 root root 126029273 May 20 00:54 gdn_attention_patterns.pt\\n-rw-r--r-- 1 root root      8419 May 20 01:14 helped_vs_hurt_entropy.csv\\n-rw-r--r-- 1 root root  59233934 May 20 01:14 hgrn2_attention_entropy.csv\\n-rw-r--r-- 1 root root 126111733 May 20 01:14 hgrn2_attention_patterns.pt\\n-rw-r--r-- 1 root root  59321660 May 20 01:04 retnet_attention_entropy.csv\\n-rw-r--r-- 1 root root 126152963 May 20 01:04 retnet_attention_patterns.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T17:16:34.150Z_
+
+<details><summary>↩ Tool result · `toolu_01CGexRvkDrBb1opxxG6MTyR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'screen' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "c8fc689f-3745-48a5-840e-050e386e7fc0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'screen' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'screen' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T17:16:35.768Z_
+
+<details><summary>↩ Tool result · `toolu_01C3RQqmGm3bgujsHo28epcm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0 %, 11773 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "b8fc5c2f-a2ba-4f0d-a151-d7aa668b3b77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 %, 11773 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0 %, 11773 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+读取分析结果文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "81282d9b-0d60-4655-9313-a47c88107687",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AJrca7ekfCkzWfVpYNmdAV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5599,
+      "cache_read_input_tokens": 25024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5599
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017D1HQjiS7dBmLksm2e4saj`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/analysis/attention_weights/attention_analysis_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "85a57eec-c47b-41d8-a0c5-25f6eae5ad16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AJrca7ekfCkzWfVpYNmdAV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5599,
+      "cache_read_input_tokens": 25024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5599
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G1G7LVGVA28qqSPQwM2cEW`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/analysis/attention_weights/cross_arch_attention_similarity.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "58c252ef-1941-4604-9d2f-712c6f3bc8be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AJrca7ekfCkzWfVpYNmdAV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5599,
+      "cache_read_input_tokens": 25024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5599
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T17:16:41.570Z_
+
+<details><summary>↩ Tool result · `toolu_017D1HQjiS7dBmLksm2e4saj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"gdn\\\": {\\n    \\\"helped_mean_entropy\\\": 2.5069904699428314,\\n    \\\"hurt_mean_entropy\\\": 2.5079077829347485,\\n    \\\"entropy_diff\\\": -0.0009173129919171075,\\n    \\\"helped_mean_last5_mass\\\": 0.08336685951703754,\\n    \\\"hurt_mean_last5_mass\\\": 0.083104316899048\\n  },\\n  \\\"retnet\\\": {\\n    \\\"helped_mean_entropy\\\": 2.670717218884864,\\n    \\\"hurt_mean_entropy\\\": 2.6528326897969308,\\n    \\\"entropy_diff\\\": 0.017884529087933032,\\n    \\\"helped_mean_last5_mass\\\": 0.15775146557024736,\\n    \\\"hurt_mean_last5_mass\\\": 0.15907384413217485\\n  },\\n  \\\"hgrn2\\\": {\\n    \\\"helped_mean_entropy\\\": 2.0936378816001646,\\n    \\\"hurt_mean_entropy\\\": 2.0916107855016612,\\n    \\\"entropy_diff\\\": 0.002027096098503378,\\n    \\\"helped_mean_last5_mass\\\": 0.04531818463809252,\\n    \\\"hurt_mean_last5_mass\\\": 0.0466802221322586\\n  },\\n  \\\"cross_arch_similarity\\\": {\\n    \\\"gdn_vs_hgrn2\\\": {\\n      \\\"layer_2\\\": 0.2441,\\n      \\\"layer_5\\\": 0.6539,\\n      \\\"layer_8\\\": 0.8498,\\n      \\\"layer_11\\\": 0.9011,\\n      \\\"layer_14\\\": 0.8638,\\n      \\\"layer_17\\\": 0.9321,\\n      \\\"layer_20\\\": 0.9417,\\n      \\\"layer_23\\\": 0.7409\\n    },\\n    \\\"gdn_vs_retnet\\\": {\\n      \\\"layer_2\\\": 0.9953,\\n      \\\"layer_5\\\": 0.7054,\\n      \\\"layer_8\\\": 0.7208,\\n      \\\"layer_11\\\": 0.9895,\\n      \\\"layer_14\\\": 0.9637,\\n      \\\"layer_17\\\": 0.9604,\\n      \\\"layer_20\\\": 0.986,\\n      \\\"layer_23\\\": 0.9161\\n    },\\n    \\\"hgrn2_vs_retnet\\\": {\\n      \\\"layer_2\\\": 0.1963,\\n      \\\"layer_5\\\": 0.4355,\\n      \\\"layer_8\\\": 0.7119,\\n      \\\"layer_11\\\": 0.893,\\n      \\\"layer_14\\\": 0.8465,\\n      \\\"layer_17\\\": 0.8972,\\n      \\\"layer_20\\\": 0.9432,\\n      \\\"layer_23\\\": 0.6638\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "be1a5165-347c-4f35-87a2-f39c20f1ab7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"gdn\\\\\\\": {\\\\n    \\\\\\\"helped_mean_entropy\\\\\\\": 2.5069904699428314,\\\\n    \\\\\\\"hurt_mean_entropy\\\\\\\": 2.5079077829347485,\\\\n    \\\\\\\"entropy_diff\\\\\\\": -0.0009173129919171075,\\\\n    \\\\\\\"helped_mean_last5_mass\\\\\\\": 0.08336685951703754,\\\\n    \\\\\\\"hurt_mean_last5_mass\\\\\\\": 0.083104316899048\\\\n  },\\\\n  \\\\\\\"retnet\\\\\\\": {\\\\n    \\\\\\\"helped_mean_entropy\\\\\\\": 2.670717218884864,\\\\n    \\\\\\\"hurt_mean_entropy\\\\\\\": 2.6528326897969308,\\\\n    \\\\\\\"entropy_diff\\\\\\\": 0.017884529087933032,\\\\n    \\\\\\\"helped_mean_last5_mass\\\\\\\": 0.15775146557024736,\\\\n    \\\\\\\"hurt_mean_last5_mass\\\\\\\": 0.15907384413217485\\\\n  },\\\\n  \\\\\\\"hgrn2\\\\\\\": {\\\\n    \\\\\\\"helped_mean_entropy\\\\\\\": 2.0936378816001646,\\\\n    \\\\\\\"hurt_mean_entropy\\\\\\\": 2.0916107855016612,\\\\n    \\\\\\\"entropy_diff\\\\\\\": 0.002027096098503378,\\\\n    \\\\\\\"helped_mean_last5_mass\\\\\\\": 0.04531818463809252,\\\\n    \\\\\\\"hurt_mean_last5_mass\\\\\\\": 0.0466802221322586\\\\n  },\\\\n  \\\\\\\"cross_arch_similarity\\\\\\\": {\\\\n    \\\\\\\"gdn_vs_hgrn2\\\\\\\": {\\\\n      \\\\\\\"layer_2\\\\\\\": 0.2441,\\\\n      \\\\\\\"layer_5\\\\\\\": 0.6539,\\\\n      \\\\\\\"layer_8\\\\\\\": 0.8498,\\\\n      \\\\\\\"layer_11\\\\\\\": 0.9011,\\\\n      \\\\\\\"layer_14\\\\\\\": 0.8638,\\\\n      \\\\\\\"layer_17\\\\\\\": 0.9321,\\\\n      \\\\\\\"layer_20\\\\\\\": 0.9417,\\\\n      \\\\\\\"layer_23\\\\\\\": 0.7409\\\\n    },\\\\n    \\\\\\\"gdn_vs_retnet\\\\\\\": {\\\\n      \\\\\\\"layer_2\\\\\\\": 0.9953,\\\\n      \\\\\\\"layer_5\\\\\\\": 0.7054,\\\\n      \\\\\\\"layer_8\\\\\\\": 0.7208,\\\\n      \\\\\\\"layer_11\\\\\\\": 0.9895,\\\\n      \\\\\\\"layer_14\\\\\\\": 0.9637,\\\\n      \\\\\\\"layer_17\\\\\\\": 0.9604,\\\\n      \\\\\\\"layer_20\\\\\\\": 0.986,\\\\n      \\\\\\\"layer_23\\\\\\\": 0.9161\\\\n    },\\\\n    \\\\\\\"hgrn2_vs_retnet\\\\\\\": {\\\\n      \\\\\\\"layer_2\\\\\\\": 0.1963,\\\\n      \\\\\\\"layer_5\\\\\\\": 0.4355,\\\\n      \\\\\\\"layer_8\\\\\\\": 0.7119,\\\\n      \\\\\\\"layer_11\\\\\\\": 0.893,\\\\n      \\\\\\\"layer_14\\\\\\\": 0.8465,\\\\n      \\\\\\\"layer_17\\\\\\\": 0.8972,\\\\n      \\\\\\\"layer_20\\\\\\\": 0.9432,\\\\n      \\\\\\\"layer_23\\\\\\\": 0.6638\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"gdn\\\": {\\n    \\\"helped_mean_entropy\\\": 2.5069904699428314,\\n    \\\"hurt_mean_entropy\\\": 2.5079077829347485,\\n    \\\"entropy_diff\\\": -0.0009173129919171075,\\n    \\\"helped_mean_last5_mass\\\": 0.08336685951703754,\\n    \\\"hurt_mean_last5_mass\\\": 0.083104316899048\\n  },\\n  \\\"retnet\\\": {\\n    \\\"helped_mean_entropy\\\": 2.670717218884864,\\n    \\\"hurt_mean_entropy\\\": 2.6528326897969308,\\n    \\\"entropy_diff\\\": 0.017884529087933032,\\n    \\\"helped_mean_last5_mass\\\": 0.15775146557024736,\\n    \\\"hurt_mean_last5_mass\\\": 0.15907384413217485\\n  },\\n  \\\"hgrn2\\\": {\\n    \\\"helped_mean_entropy\\\": 2.0936378816001646,\\n    \\\"hurt_mean_entropy\\\": 2.0916107855016612,\\n    \\\"entropy_diff\\\": 0.002027096098503378,\\n    \\\"helped_mean_last5_mass\\\": 0.04531818463809252,\\n    \\\"hurt_mean_last5_mass\\\": 0.0466802221322586\\n  },\\n  \\\"cross_arch_similarity\\\": {\\n    \\\"gdn_vs_hgrn2\\\": {\\n      \\\"layer_2\\\": 0.2441,\\n      \\\"layer_5\\\": 0.6539,\\n      \\\"layer_8\\\": 0.8498,\\n      \\\"layer_11\\\": 0.9011,\\n      \\\"layer_14\\\": 0.8638,\\n      \\\"layer_17\\\": 0.9321,\\n      \\\"layer_20\\\": 0.9417,\\n      \\\"layer_23\\\": 0.7409\\n    },\\n    \\\"gdn_vs_retnet\\\": {\\n      \\\"layer_2\\\": 0.9953,\\n      \\\"layer_5\\\": 0.7054,\\n      \\\"layer_8\\\": 0.7208,\\n      \\\"layer_11\\\": 0.9895,\\n      \\\"layer_14\\\": 0.9637,\\n      \\\"layer_17\\\": 0.9604,\\n      \\\"layer_20\\\": 0.986,\\n      \\\"layer_23\\\": 0.9161\\n    },\\n    \\\"hgrn2_vs_retnet\\\": {\\n      \\\"layer_2\\\": 0.1963,\\n      \\\"layer_5\\\": 0.4355,\\n      \\\"layer_8\\\": 0.7119,\\n      \\\"layer_11\\\": 0.893,\\n      \\\"layer_14\\\": 0.8465,\\n      \\\"layer_17\\\": 0.8972,\\n      \\\"layer_20\\\": 0.9432,\\n      \\\"layer_23\\\": 0.6638\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TStSiSiNouARoFJuqmVebZ`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -30 /root/entrainment_gated_ft/analysis/attention_weights/helped_vs_hurt_entropy.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "df060974-e5d1-4377-8d19-7bfa2cc8ba87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AJrca7ekfCkzWfVpYNmdAV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5599,
+      "cache_read_input_tokens": 25024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5599
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T17:16:43.125Z_
+
+<details><summary>↩ Tool result · `toolu_01G1G7LVGVA28qqSPQwM2cEW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"arch_pair,layer_idx,mean_cosine_sim,std_cosine_sim,n_pairs\\ngdn_vs_hgrn2,2,0.244067350551486,0.04187825568527959,200\\ngdn_vs_hgrn2,5,0.6538706232607364,0.08130207332207127,200\\ngdn_vs_hgrn2,8,0.8498032689094543,0.04324593872161826,200\\ngdn_vs_hgrn2,11,0.901146770119667,0.03380515476148431,200\\ngdn_vs_hgrn2,14,0.8637910610437394,0.053138002245221104,200\\ngdn_vs_hgrn2,17,0.9320535138249397,0.0239432320404235,200\\ngdn_vs_hgrn2,20,0.9416736695170402,0.022551264755899688,200\\ngdn_vs_hgrn2,23,0.7408545778691769,0.0679051997539618,200\\ngdn_vs_retnet,2,0.9953377142548561,0.0025699043525934362,200\\ngdn_vs_retnet,5,0.7053805243968964,0.07846415519932023,200\\ngdn_vs_retnet,8,0.7207838653028011,0.0952789237131578,200\\ngdn_vs_retnet,11,0.9894753354787826,0.010881041460638013,200\\ngdn_vs_retnet,14,0.9637213537096977,0.024112707181218874,200\\ngdn_vs_retnet,17,0.9603737649321556,0.03837196102041241,200\\ngdn_vs_retnet,20,0.9860485929250717,0.015249309488574761,200\\ngdn_vs_retnet,23,0.9160587790608407,0.05369530999127196,200\\nhgrn2_vs_retnet,2,0.19630853623151778,0.026003296971737692,200\\nhgrn2_vs_retnet,5,0.4354790809750557,0.05732346278515305,200\\nhgrn2_vs_retnet,8,0.7119435696303844,0.08160495811839388,200\\nhgrn2_vs_retnet,11,0.8929758059978485,0.0347054149798213,200\\nhgrn2_vs_retnet,14,0.8465192019939423,0.055317494640623015,200\\nhgrn2_vs_retnet,17,0.8972166284918786,0.04957725518868029,200\\nhgrn2_vs_retnet,20,0.9432251161336899,0.02646842738904231,200\\nhgrn2_vs_retnet,23,0.6637656427919865,0.08575489209009558,200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "b1d16c05-0976-4366-9a89-29d21258333e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arch_pair,layer_idx,mean_cosine_sim,std_cosine_sim,n_pairs\\\\ngdn_vs_hgrn2,2,0.244067350551486,0.04187825568527959,200\\\\ngdn_vs_hgrn2,5,0.6538706232607364,0.08130207332207127,200\\\\ngdn_vs_hgrn2,8,0.8498032689094543,0.04324593872161826,200\\\\ngdn_vs_hgrn2,11,0.901146770119667,0.03380515476148431,200\\\\ngdn_vs_hgrn2,14,0.8637910610437394,0.053138002245221104,200\\\\ngdn_vs_hgrn2,17,0.9320535138249397,0.0239432320404235,200\\\\ngdn_vs_hgrn2,20,0.9416736695170402,0.022551264755899688,200\\\\ngdn_vs_hgrn2,23,0.7408545778691769,0.0679051997539618,200\\\\ngdn_vs_retnet,2,0.9953377142548561,0.0025699043525934362,200\\\\ngdn_vs_retnet,5,0.7053805243968964,0.07846415519932023,200\\\\ngdn_vs_retnet,8,0.7207838653028011,0.0952789237131578,200\\\\ngdn_vs_retnet,11,0.9894753354787826,0.010881041460638013,200\\\\ngdn_vs_retnet,14,0.9637213537096977,0.024112707181218874,200\\\\ngdn_vs_retnet,17,0.9603737649321556,0.03837196102041241,200\\\\ngdn_vs_retnet,20,0.9860485929250717,0.015249309488574761,200\\\\ngdn_vs_retnet,23,0.9160587790608407,0.05369530999127196,200\\\\nhgrn2_vs_retnet,2,0.19630853623151778,0.026003296971737692,200\\\\nhgrn2_vs_retnet,5,0.4354790809750557,0.05732346278515305,200\\\\nhgrn2_vs_retnet,8,0.7119435696303844,0.08160495811839388,200\\\\nhgrn2_vs_retnet,11,0.8929758059978485,0.0347054149798213,200\\\\nhgrn2_vs_retnet,14,0.8465192019939423,0.055317494640623015,200\\\\nhgrn2_vs_retnet,17,0.8972166284918786,0.04957725518868029,200\\\\nhgrn2_vs_retnet,20,0.9432251161336899,0.02646842738904231,200\\\\nhgrn2_vs_retnet,23,0.6637656427919865,0.08575489209009558,200\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"arch_pair,layer_idx,mean_cosine_sim,std_cosine_sim,n_pairs\\ngdn_vs_hgrn2,2,0.244067350551486,0.04187825568527959,200\\ngdn_vs_hgrn2,5,0.6538706232607364,0.08130207332207127,200\\ngdn_vs_hgrn2,8,0.8498032689094543,0.04324593872161826,200\\ngdn_vs_hgrn2,11,0.901146770119667,0.03380515476148431,200\\ngdn_vs_hgrn2,14,0.8637910610437394,0.053138002245221104,200\\ngdn_vs_hgrn2,17,0.9320535138249397,0.0239432320404235,200\\ngdn_vs_hgrn2,20,0.9416736695170402,0.022551264755899688,200\\ngdn_vs_hgrn2,23,0.7408545778691769,0.0679051997539618,200\\ngdn_vs_retnet,2,0.9953377142548561,0.0025699043525934362,200\\ngdn_vs_retnet,5,0.7053805243968964,0.07846415519932023,200\\ngdn_vs_retnet,8,0.7207838653028011,0.0952789237131578,200\\ngdn_vs_retnet,11,0.9894753354787826,0.010881041460638013,200\\ngdn_vs_retnet,14,0.9637213537096977,0.024112707181218874,200\\ngdn_vs_retnet,17,0.9603737649321556,0.03837196102041241,200\\ngdn_vs_retnet,20,0.9860485929250717,0.015249309488574761,200\\ngdn_vs_retnet,23,0.9160587790608407,0.05369530999127196,200\\nhgrn2_vs_retnet,2,0.19630853623151778,0.026003296971737692,200\\nhgrn2_vs_retnet,5,0.4354790809750557,0.05732346278515305,200\\nhgrn2_vs_retnet,8,0.7119435696303844,0.08160495811839388,200\\nhgrn2_vs_retnet,11,0.8929758059978485,0.0347054149798213,200\\nhgrn2_vs_retnet,14,0.8465192019939423,0.055317494640623015,200\\nhgrn2_vs_retnet,17,0.8972166284918786,0.04957725518868029,200\\nhgrn2_vs_retnet,20,0.9432251161336899,0.02646842738904231,200\\nhgrn2_vs_retnet,23,0.6637656427919865,0.08575489209009558,200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T17:16:44.681Z_
+
+<details><summary>↩ Tool result · `toolu_01TStSiSiNouARoFJuqmVebZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"arch,layer_idx,group,mean_entropy,std_entropy,mean_max_attn_val,mean_last_5_mass,mean_first_5_mass,n_samples\\ngdn,2,helped,4.394559720700437,0.184508986419178,0.02348189411402143,0.06365099592029527,0.06523030915915422,462\\ngdn,2,hurt,4.393485515219409,0.1727964105887409,0.02317359845690629,0.06350282408903742,0.06488011087730099,615\\ngdn,2,neutral,4.396558930649549,0.18311196131360752,0.02355249780366313,0.0633988200120618,0.06527310989166939,4076\\ngdn,5,helped,3.6010646028927975,0.5941786159657946,0.1736243652732684,0.0710206766045728,0.18008284073562897,462\\ngdn,5,hurt,3.5860152378814614,0.6033959870837692,0.1779084962308104,0.06725097712971793,0.18640450823832516,615\\ngdn,5,neutral,3.608466786807458,0.5792849528180212,0.1738761546568302,0.0700065276623117,0.18383864558067908,4076\\ngdn,8,helped,1.847617606491302,0.9279531434563245,0.6161602994999587,0.04035449999063333,0.6100398291699141,462\\ngdn,8,hurt,1.8399339334456235,0.933983785537619,0.6196896011252108,0.04062491158591411,0.6149467191957051,615\\ngdn,8,neutral,1.8086962416384555,0.9302392247687187,0.6289283918690141,0.041442675016453705,0.6247455482492251,4076\\ngdn,11,helped,2.018211780692495,0.9586334723018645,0.5488524477126568,0.04985507262902938,0.5085614812404466,462\\ngdn,11,hurt,2.0625331004021494,0.9526942798222408,0.5392928333301854,0.049914335975881796,0.5024391093769603,615\\ngdn,11,neutral,2.008804778372003,0.9591878979731151,0.5525425769128426,0.05290279224109665,0.5187224356641961,4076\\ngdn,14,helped,2.0560244326443198,0.9449408769367733,0.535328987937469,0.038051298101709104,0.47626881646095554,462\\ngdn,14,hurt,2.039870152134889,0.9460910958085309,0.5407862576326673,0.03787666694029365,0.4811960835078417,615\\ngdn,14,neutral,2.0122246728610294,0.947085138005666,0.5499578859556856,0.039313301731492396,0.4956166349566164,4076\\ngdn,17,helped,1.6291024885023504,0.9986151461090979,0.641537528360581,0.05009599848359446,0.6122550962781295,462\\ngdn,17,hurt,1.6484556662390455,0.999623157383669,0.6372684644202028,0.05056260056716916,0.6042838750022657,615\\ngdn,17,neutral,1.6134481245749581,1.0014875727858767,0.6454587713121236,0.05222562293099531,0.6159268298752337,4076\\ngdn,20,helped,2.0109620580103984,0.7816974262325255,0.540646185433226,0.12572146144735125,0.4948477921298429,462\\ngdn,20,hurt,2.0052385714175784,0.7737391126653532,0.5441303183377637,0.12800789456264539,0.4973467636740598,615\\ngdn,20,neutral,1.9782763628939235,0.7813660297016708,0.5500397751454201,0.12491565546463715,0.5051552808883286,4076\\ngdn,23,helped,2.4983810696085524,0.7625699897013593,0.40718620753286655,0.2281848729591148,0.2861272236191793,462\\ngdn,23,hurt,2.487730086737831,0.7677191916186776,0.4081511195128163,0.2270943243417246,0.2849635833893463,615\\ngdn,23,neutral,2.4958681438227224,0.7603827552447358,0.4087044685733778,0.22482697525605594,0.29144761723203383,4076\\nretnet,2,helped,4.460517301525869,0.14614087046220933,0.01170081242968426,0.05841045221368484,0.058314702441607566,426\\nretnet,2,hurt,4.436182315602447,0.1315152989466175,0.011967516154923304,0.05974055996254045,0.059646519997646294,495\\nretnet,2,neutral,4.447803062575188,0.14245364339442035,0.011846347048389575,0.05913707083740883,0.05904106003404387,4232\\nretnet,5,helped,3.6832452094370387,0.9208750814290553,0.15856006480381768,0.21312639830298416,0.0858421601655371,426\\nretnet,5,hurt,3.653119983537254,0.9288190361696171,0.16319969522065925,0.21507008450994777,0.08687914320797777,495\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "270f69cd-3f90-4e72-805e-5594f241abad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"arch,layer_idx,group,mean_entropy,std_entropy,mean_max_attn_val,mean_last_5_mass,mean_first_5_mass,n_samples\\\\ngdn,2,helped,4.394559720700437,0.184508986419178,0.02348189411402143,0.06365099592029527,0.06523030915915422,462\\\\ngdn,2,hurt,4.393485515219409,0.1727964105887409,0.02317359845690629,0.06350282408903742,0.06488011087730099,615\\\\ngdn,2,neutral,4.396558930649549,0.18311196131360752,0.02355249780366313,0.0633988200120618,0.06527310989166939,4076\\\\ngdn,5,helped,3.6010646028927975,0.5941786159657946,0.1736243652732684,0.0710206766045728,0.18008284073562897,462\\\\ngdn,5,hurt,3.5860152378814614,0.6033959870837692,0.1779084962308104,0.06725097712971793,0.18640450823832516,615\\\\ngdn,5,neutral,3.608466786807458,0.5792849528180212,0.1738761546568302,0.0700065276623117,0.18383864558067908,4076\\\\ngdn,8,helped,1.847617606491302,0.9279531434563245,0.6161602994999587,0.04035449999063333,0.6100398291699141,462\\\\ngdn,8,hurt,1.8399339334456235,0.933983785537619,0.6196896011252108,0.04062491158591411,0.6149467191957051,615\\\\ngdn,8,neutral,1.8086962416384555,0.9302392247687187,0.6289283918690141,0.041442675016453705,0.6247455482492251,4076\\\\ngdn,11,helped,2.018211780692495,0.9586334723018645,0.5488524477126568,0.04985507262902938,0.5085614812404466,462\\\\ngdn,11,hurt,2.0625331004021494,0.9526942798222408,0.5392928333301854,0.049914335975881796,0.5024391093769603,615\\\\ngdn,11,neutral,2.008804778372003,0.9591878979731151,0.5525425769128426,0.05290279224109665,0.5187224356641961,4076\\\\ngdn,14,helped,2.0560244326443198,0.9449408769367733,0.535328987937469,0.038051298101709104,0.47626881646095554,462\\\\ngdn,14,hurt,2.039870152134889,0.9460910958085309,0.5407862576326673,0.03787666694029365,0.4811960835078417,615\\\\ngdn,14,neutral,2.0122246728610294,0.947085138005666,0.5499578859556856,0.039313301731492396,0.4956166349566164,4076\\\\ngdn,17,helped,1.6291024885023504,0.9986151461090979,0.641537528360581,0.05009599848359446,0.6122550962781295,462\\\\ngdn,17,hurt,1.6484556662390455,0.999623157383669,0.6372684644202028,0.05056260056716916,0.6042838750022657,615\\\\ngdn,17,neutral,1.6134481245749581,1.0014875727858767,0.6454587713121236,0.05222562293099531,0.6159268298752337,4076\\\\ngdn,20,helped,2.0109620580103984,0.7816974262325255,0.540646185433226,0.12572146144735125,0.4948477921298429,462\\\\ngdn,20,hurt,2.0052385714175784,0.7737391126653532,0.5441303183377637,0.12800789456264539,0.4973467636740598,615\\\\ngdn,20,neutral,1.9782763628939235,0.7813660297016708,0.5500397751454201,0.12491565546463715,0.5051552808883286,4076\\\\ngdn,23,helped,2.4983810696085524,0.7625699897013593,0.40718620753286655,0.2281848729591148,0.2861272236191793,462\\\\ngdn,23,hurt,2.487730086737831,0.7677191916186776,0.4081511195128163,0.2270943243417246,0.2849635833893463,615\\\\ngdn,23,neutral,2.4958681438227224,0.7603827552447358,0.4087044685733778,0.22482697525605594,0.29144761723203383,4076\\\\nretnet,2,helped,4.460517301525869,0.14614087046220933,0.01170081242968426,0.05841045221368484,0.058314702441607566,426\\\\nretnet,2,hurt,4.436182315602447,0.1315152989466175,0.011967516154923304,0.05974055996254045,0.059646519997646294,495\\\\nretnet,2,neutral,4.447803062575188,0.14245364339442035,0.011846347048389575,0.05913707083740883,0.05904106003404387,4232\\\\nretnet,5,helped,3.6832452094370387,0.9208750814290553,0.15856006480381768,0.21312639830298416,0.0858421601655371,426\\\\nretnet,5,hurt,3.653119983537254,0.9288190361696171,0.16319969522065925,0.21507008450994777,0.08687914320797777,495\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"arch,layer_idx,group,mean_entropy,std_entropy,mean_max_attn_val,mean_last_5_mass,mean_first_5_mass,n_samples\\ngdn,2,helped,4.394559720700437,0.184508986419178,0.02348189411402143,0.06365099592029527,0.06523030915915422,462\\ngdn,2,hurt,4.393485515219409,0.1727964105887409,0.02317359845690629,0.06350282408903742,0.06488011087730099,615\\ngdn,2,neutral,4.396558930649549,0.18311196131360752,0.02355249780366313,0.0633988200120618,0.06527310989166939,4076\\ngdn,5,helped,3.6010646028927975,0.5941786159657946,0.1736243652732684,0.0710206766045728,0.18008284073562897,462\\ngdn,5,hurt,3.5860152378814614,0.6033959870837692,0.1779084962308104,0.06725097712971793,0.18640450823832516,615\\ngdn,5,neutral,3.608466786807458,0.5792849528180212,0.1738761546568302,0.0700065276623117,0.18383864558067908,4076\\ngdn,8,helped,1.847617606491302,0.9279531434563245,0.6161602994999587,0.04035449999063333,0.6100398291699141,462\\ngdn,8,hurt,1.8399339334456235,0.933983785537619,0.6196896011252108,0.04062491158591411,0.6149467191957051,615\\ngdn,8,neutral,1.8086962416384555,0.9302392247687187,0.6289283918690141,0.041442675016453705,0.6247455482492251,4076\\ngdn,11,helped,2.018211780692495,0.9586334723018645,0.5488524477126568,0.04985507262902938,0.5085614812404466,462\\ngdn,11,hurt,2.0625331004021494,0.9526942798222408,0.5392928333301854,0.049914335975881796,0.5024391093769603,615\\ngdn,11,neutral,2.008804778372003,0.9591878979731151,0.5525425769128426,0.05290279224109665,0.5187224356641961,4076\\ngdn,14,helped,2.0560244326443198,0.9449408769367733,0.535328987937469,0.038051298101709104,0.47626881646095554,462\\ngdn,14,hurt,2.039870152134889,0.9460910958085309,0.5407862576326673,0.03787666694029365,0.4811960835078417,615\\ngdn,14,neutral,2.0122246728610294,0.947085138005666,0.5499578859556856,0.039313301731492396,0.4956166349566164,4076\\ngdn,17,helped,1.6291024885023504,0.9986151461090979,0.641537528360581,0.05009599848359446,0.6122550962781295,462\\ngdn,17,hurt,1.6484556662390455,0.999623157383669,0.6372684644202028,0.05056260056716916,0.6042838750022657,615\\ngdn,17,neutral,1.6134481245749581,1.0014875727858767,0.6454587713121236,0.05222562293099531,0.6159268298752337,4076\\ngdn,20,helped,2.0109620580103984,0.7816974262325255,0.540646185433226,0.12572146144735125,0.4948477921298429,462\\ngdn,20,hurt,2.0052385714175784,0.7737391126653532,0.5441303183377637,0.12800789456264539,0.4973467636740598,615\\ngdn,20,neutral,1.9782763628939235,0.7813660297016708,0.5500397751454201,0.12491565546463715,0.5051552808883286,4076\\ngdn,23,helped,2.4983810696085524,0.7625699897013593,0.40718620753286655,0.2281848729591148,0.2861272236191793,462\\ngdn,23,hurt,2.487730086737831,0.7677191916186776,0.4081511195128163,0.2270943243417246,0.2849635833893463,615\\ngdn,23,neutral,2.4958681438227224,0.7603827552447358,0.4087044685733778,0.22482697525605594,0.29144761723203383,4076\\nretnet,2,helped,4.460517301525869,0.14614087046220933,0.01170081242968426,0.05841045221368484,0.058314702441607566,426\\nretnet,2,hurt,4.436182315602447,0.1315152989466175,0.011967516154923304,0.05974055996254045,0.059646519997646294,495\\nretnet,2,neutral,4.447803062575188,0.14245364339442035,0.011846347048389575,0.05913707083740883,0.05904106003404387,4232\\nretnet,5,helped,3.6832452094370387,0.9208750814290553,0.15856006480381768,0.21312639830298416,0.0858421601655371,426\\nretnet,5,hurt,3.653119983537254,0.9288190361696171,0.16319969522065925,0.21507008450994777,0.08687914320797777,495\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment completed successfully. Let me summarize the findings:
+
+**Status**: SUCCESS - All 3 architectures completed extraction + analysis ran successfully.
+
+**Output files** (all present and reasonably sized):
+- gdn_attention_patterns.pt (126MB), gdn_attention_entropy.csv (59MB)
+- retnet_attention_patterns.pt (126MB), retnet_attention_entropy.csv (59MB)
+- hgrn2_attention_patterns.pt (126MB), hgrn2_attention_entropy.csv (59MB)
+- attention_analysis_summary.json (1.5KB)
+
+
+- cross_arch_attention_similarity.csv (1.5KB)
+- helped_vs_hurt_entropy.csv (8.4KB)
+
+The whole run took about 30 minutes from start to finish, with each architecture completing sequentially between 00:45 and 01:14. GPU memory is sitting at 11773 MiB with no active utilization, so the system is ready for the next experiment.
+
+Looking at the key findings, the entropy differences between helped and hurt cases are essentially negligible across all three architectures—GDN shows -0.0009 and RetNet shows a similarly minimal value.
+
+For cross-architecture attention pattern similarity, GDN and RetNet align remarkably well in the early and late layers (both hitting 0.99 at layer 2), though they diverge somewhat in the middle layers around 0.71-0.72. GDN and HGRN2 show a different pattern—starting with very low similarity at 0.24 in early layers but steadily climbing to 0.94 by layer 20 before dropping again at the final layer. HGRN2 and RetNet follow a similar trajectory.
+
+What's striking is that the entropy differences between models that helped versus hurt fine-tuning don't actually show up in the attention patterns themselves—the gating mechanisms look fundamentally similar regardless of performance impact. This suggests the distinction lies elsewhere in how these architectures process information. Let me update the registry with these findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "943d1d00-c0bb-473e-8a20-19afda6c0e8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DhSU3vjt27ieJcF33drhH8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4089,
+      "cache_read_input_tokens": 30623,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4089
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+**exp-004-r2 成功完成。** 三个架构全部提取完毕，分析也已运行。
+
+关键发现：
+
+**Helped vs Hurt entropy 差异极小**：
+- GDN: -0.0009（几乎为零）
+- RetNet: +0.018（微弱）
+- HGRN2: +0.002（几乎为零）
+
+**跨架构 attention 相似度**：
+- GDN vs RetNet: 非常高（多数层 >0.9），layer 5/8 稍低（~0.71）
+- GDN vs HGRN2: 浅层低（layer 2: 0.24），深层收敛（layer 20: 0.94）
+- HGRN2 vs RetNet: 类似趋势，浅层分化大，深层趋同
+
+GPU 空闲（0% util），可释放给 exp-007。
+
+更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "660f5cb9-8ee0-4fa5-a83c-eba360bacc85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DhSU3vjt27ieJcF33drhH8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4089,
+      "cache_read_input_tokens": 30623,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4089
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01A4zXs3dtBuET7FyZ4C2btP`</summary>
+
+```json
+{
+  "exp_id": "exp-004-r2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "99dc3498-d2cf-4781-bdd1-8e27e05072ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DhSU3vjt27ieJcF33drhH8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4089,
+      "cache_read_input_tokens": 30623,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4089
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T17:17:06.356Z_
+
+<details><summary>↩ Tool result · `toolu_01A4zXs3dtBuET7FyZ4C2btP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-004-r2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:58:01.256Z\", \"updated_at\": \"2026-05-19T17:17:06.291Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-004\", \"spec\": {\"command\": \"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\", \"server\": \"westb-48145\", \"data_path\": \"EleutherAI/lambada_openai (default, split=test, cached)\", \"data_count\": 5153, \"model_name\": \"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\", \"seed\": 0, \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"LAMBADA OpenAI (5153 samples)\", \"log_path\": \"/tmp/exp004.log\", \"pid\": 517172, \"output_dir\": \"/root/entrainment_gated_ft/analysis/attention_weights/\", \"progress\": \"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\", \"session\": \"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0986}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "0daa8b98-33e4-4436-aef3-8fa6941e34cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:58:01.256Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:17:06.291Z\\\", \\\"hypothesis\\\": \\\"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"EleutherAI/lambada_openai (default, split=test, cached)\\\", \\\"data_count\\\": 5153, \\\"model_name\\\": \\\"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\\\", \\\"seed\\\": 0, \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/\\\", \\\"eval_data\\\": \\\"LAMBADA OpenAI (5153 samples)\\\", \\\"log_path\\\": \\\"/tmp/exp004.log\\\", \\\"pid\\\": 517172, \\\"output_dir\\\": \\\"/root/entrainment_gated_ft/analysis/attention_weights/\\\", \\\"progress\\\": \\\"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\\\", \\\"session\\\": \\\"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0986}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-004-r2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:58:01.256Z\", \"updated_at\": \"2026-05-19T17:17:06.291Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-004\", \"spec\": {\"command\": \"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\", \"server\": \"westb-48145\", \"data_path\": \"EleutherAI/lambada_openai (default, split=test, cached)\", \"data_count\": 5153, \"model_name\": \"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\", \"seed\": 0, \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"LAMBADA OpenAI (5153 samples)\", \"log_path\": \"/tmp/exp004.log\", \"pid\": 517172, \"output_dir\": \"/root/entrainment_gated_ft/analysis/attention_weights/\", \"progress\": \"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\", \"session\": \"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0986}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01NssoPyknp1WaPXe1bcViFG`</summary>
+
+```json
+{
+  "exp_id": "exp-004-r2",
+  "field": "status",
+  "value": "DONE",
+  "project": "entrainment_gated_ft",
+  "spec": {
+    "checkpoint_path": "/root/entrainment_gated_ft/analysis/attention_weights/",
+    "log_path": "/tmp/exp004.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "e6781d56-7aab-450e-8090-eaa4fce69329",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GevDVCzxnNDAUnwrGWemwF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1610,
+      "cache_read_input_tokens": 34712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1610
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T17:17:10.356Z_
+
+<details><summary>↩ Tool result · `toolu_01NssoPyknp1WaPXe1bcViFG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-004-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:58:01.256Z\", \"updated_at\": \"2026-05-19T17:17:10.232Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-004\", \"spec\": {\"command\": \"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\", \"server\": \"westb-48145\", \"data_path\": \"EleutherAI/lambada_openai (default, split=test, cached)\", \"data_count\": 5153, \"model_name\": \"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\", \"seed\": 0, \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"LAMBADA OpenAI (5153 samples)\", \"log_path\": \"/tmp/exp004.log\", \"pid\": 517172, \"output_dir\": \"/root/entrainment_gated_ft/analysis/attention_weights/\", \"progress\": \"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\", \"session\": \"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\", \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/attention_weights/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T17:17:10.232Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1618}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "a3a1af67-8010-42c2-8ffc-c31b5b9de308",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:58:01.256Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:17:10.232Z\\\", \\\"hypothesis\\\": \\\"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"EleutherAI/lambada_openai (default, split=test, cached)\\\", \\\"data_count\\\": 5153, \\\"model_name\\\": \\\"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\\\", \\\"seed\\\": 0, \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/\\\", \\\"eval_data\\\": \\\"LAMBADA OpenAI (5153 samples)\\\", \\\"log_path\\\": \\\"/tmp/exp004.log\\\", \\\"pid\\\": 517172, \\\"output_dir\\\": \\\"/root/entrainment_gated_ft/analysis/attention_weights/\\\", \\\"progress\\\": \\\"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\\\", \\\"session\\\": \\\"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/analysis/attention_weights/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T17:17:10.232Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1618}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-004-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:58:01.256Z\", \"updated_at\": \"2026-05-19T17:17:10.232Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-004\", \"spec\": {\"command\": \"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\", \"server\": \"westb-48145\", \"data_path\": \"EleutherAI/lambada_openai (default, split=test, cached)\", \"data_count\": 5153, \"model_name\": \"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\", \"seed\": 0, \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"LAMBADA OpenAI (5153 samples)\", \"log_path\": \"/tmp/exp004.log\", \"pid\": 517172, \"output_dir\": \"/root/entrainment_gated_ft/analysis/attention_weights/\", \"progress\": \"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\", \"session\": \"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\", \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/attention_weights/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T17:17:10.232Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1618}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01E4KWm1z1Xt4uQPmztd4GJP`</summary>
+
+```json
+{
+  "exp_id": "exp-004-r2",
+  "field": "metrics",
+  "value": {
+    "helped_vs_hurt_entropy_diff": {
+      "gdn": -0.0009,
+      "retnet": 0.0179,
+      "hgrn2": 0.002
+    },
+    "helped_vs_hurt_last5_mass": {
+      "gdn_helped": 0.0834,
+      "gdn_hurt": 0.0831,
+      "retnet_helped": 0.1578,
+      "retnet_hurt": 0.1591,
+      "hgrn2_helped": 0.0453,
+      "hgrn2_hurt": 0.0467
+    },
+    "cross_arch_similarity_mean": {
+      "gdn_vs_retnet": 0.905,
+      "gdn_vs_hgrn2": 0.766,
+      "hgrn2_vs_retnet": 0.698
+    },
+    "cross_arch_similarity_deep_layers": {
+      "gdn_vs_retnet_L20": 0.986,
+      "gdn_vs_hgrn2_L20": 0.942,
+      "hgrn2_vs_retnet_L20": 0.943
+    },
+    "cross_arch_similarity_early_layers": {
+      "gdn_vs_retnet_L2": 0.995,
+      "gdn_vs_hgrn2_L2": 0.244,
+      "hgrn2_vs_retnet_L2": 0.196
+    },
+    "finding": "Attention entropy does NOT differentiate helped vs hurt samples — differences are negligible across all 3 architectures. Cross-arch: GDN and RetNet highly similar throughout; HGRN2 diverges in early layers but converges in deep layers (>0.94 at L20). The per-example effect is not visible at the attention pattern level.",
+    "n_samples": 5153,
+    "runtime_minutes": 30,
+    "output_files": [
+      "gdn_attention_patterns.pt",
+      "gdn_attention_entropy.csv",
+      "retnet_attention_patterns.pt",
+      "retnet_attention_entropy.csv",
+      "hgrn2_attention_patterns.pt",
+      "hgrn2_attention_entropy.csv",
+      "attention_analysis_summary.json",
+      "cross_arch_attention_similarity.csv",
+      "helped_vs_hurt_entropy.csv"
+    ]
+  },
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "6c585daa-32cd-4c84-ad4e-917c566606a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013d6jzedr6TnfW5KdjuTfCH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 36322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 779
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T17:17:20.255Z_
+
+<details><summary>↩ Tool result · `toolu_01E4KWm1z1Xt4uQPmztd4GJP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-004-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:58:01.256Z\", \"updated_at\": \"2026-05-19T17:17:20.215Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-004\", \"spec\": {\"command\": \"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\", \"server\": \"westb-48145\", \"data_path\": \"EleutherAI/lambada_openai (default, split=test, cached)\", \"data_count\": 5153, \"model_name\": \"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\", \"seed\": 0, \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"LAMBADA OpenAI (5153 samples)\", \"log_path\": \"/tmp/exp004.log\", \"pid\": 517172, \"output_dir\": \"/root/entrainment_gated_ft/analysis/attention_weights/\", \"progress\": \"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\", \"session\": \"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\", \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/attention_weights/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T17:17:10.232Z\", \"metrics\": {\"helped_vs_hurt_entropy_diff\": {\"gdn\": -0.0009, \"retnet\": 0.0179, \"hgrn2\": 0.002}, \"helped_vs_hurt_last5_mass\": {\"gdn_helped\": 0.0834, \"gdn_hurt\": 0.0831, \"retnet_helped\": 0.1578, \"retnet_hurt\": 0.1591, \"hgrn2_helped\": 0.0453, \"hgrn2_hurt\": 0.0467}, \"cross_arch_similarity_mean\": {\"gdn_vs_retnet\": 0.905, \"gdn_vs_hgrn2\": 0.766, \"hgrn2_vs_retnet\": 0.698}, \"cross_arch_similarity_deep_layers\": {\"gdn_vs_retnet_L20\": 0.986, \"gdn_vs_hgrn2_L20\": 0.942, \"hgrn2_vs_retnet_L20\": 0.943}, \"cross_arch_similarity_early_layers\": {\"gdn_vs_retnet_L2\": 0.995, \"gdn_vs_hgrn2_L2\": 0.244, \"hgrn2_vs_retnet_L2\": 0.196}, \"finding\": \"Attention entropy does NOT differentiate helped vs hurt samples — differences are negligible across all 3 architectures. Cross-arch: GDN and RetNet highly similar throughout; HGRN2 diverges in early layers but converges in deep layers (>0.94 at L20). The per-example effect is not visible at the attention pattern level.\", \"n_samples\": 5153, \"runtime_minutes\": 30, \"output_files\": [\"gdn_attention_patterns.pt\", \"gdn_attention_entropy.csv\", \"retnet_attention_patterns.pt\", \"retnet_attention_entropy.csv\", \"hgrn2_attention_patterns.pt\", \"hgrn2_attention_entropy.csv\", \"attention_analysis_summary.json\", \"cross_arch_attention_similarity.csv\", \"helped_vs_hurt_entropy.csv\"]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0863}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "e6108665-37a6-4a7d-9b35-93911a377371",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:58:01.256Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:17:20.215Z\\\", \\\"hypothesis\\\": \\\"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"EleutherAI/lambada_openai (default, split=test, cached)\\\", \\\"data_count\\\": 5153, \\\"model_name\\\": \\\"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\\\", \\\"seed\\\": 0, \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/\\\", \\\"eval_data\\\": \\\"LAMBADA OpenAI (5153 samples)\\\", \\\"log_path\\\": \\\"/tmp/exp004.log\\\", \\\"pid\\\": 517172, \\\"output_dir\\\": \\\"/root/entrainment_gated_ft/analysis/attention_weights/\\\", \\\"progress\\\": \\\"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\\\", \\\"session\\\": \\\"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/analysis/attention_weights/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T17:17:10.232Z\\\", \\\"metrics\\\": {\\\"helped_vs_hurt_entropy_diff\\\": {\\\"gdn\\\": -0.0009, \\\"retnet\\\": 0.0179, \\\"hgrn2\\\": 0.002}, \\\"helped_vs_hurt_last5_mass\\\": {\\\"gdn_helped\\\": 0.0834, \\\"gdn_hurt\\\": 0.0831, \\\"retnet_helped\\\": 0.1578, \\\"retnet_hurt\\\": 0.1591, \\\"hgrn2_helped\\\": 0.0453, \\\"hgrn2_hurt\\\": 0.0467}, \\\"cross_arch_similarity_mean\\\": {\\\"gdn_vs_retnet\\\": 0.905, \\\"gdn_vs_hgrn2\\\": 0.766, \\\"hgrn2_vs_retnet\\\": 0.698}, \\\"cross_arch_similarity_deep_layers\\\": {\\\"gdn_vs_retnet_L20\\\": 0.986, \\\"gdn_vs_hgrn2_L20\\\": 0.942, \\\"hgrn2_vs_retnet_L20\\\": 0.943}, \\\"cross_arch_similarity_early_layers\\\": {\\\"gdn_vs_retnet_L2\\\": 0.995, \\\"gdn_vs_hgrn2_L2\\\": 0.244, \\\"hgrn2_vs_retnet_L2\\\": 0.196}, \\\"finding\\\": \\\"Attention entropy does NOT differentiate helped vs hurt samples — differences are negligible across all 3 architectures. Cross-arch: GDN and RetNet highly similar throughout; HGRN2 diverges in early layers but converges in deep layers (>0.94 at L20). The per-example effect is not visible at the attention pattern level.\\\", \\\"n_samples\\\": 5153, \\\"runtime_minutes\\\": 30, \\\"output_files\\\": [\\\"gdn_attention_patterns.pt\\\", \\\"gdn_attention_entropy.csv\\\", \\\"retnet_attention_patterns.pt\\\", \\\"retnet_attention_entropy.csv\\\", \\\"hgrn2_attention_patterns.pt\\\", \\\"hgrn2_attention_entropy.csv\\\", \\\"attention_analysis_summary.json\\\", \\\"cross_arch_attention_similarity.csv\\\", \\\"helped_vs_hurt_entropy.csv\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0863}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-004-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:58:01.256Z\", \"updated_at\": \"2026-05-19T17:17:20.215Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-004\", \"spec\": {\"command\": \"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\", \"server\": \"westb-48145\", \"data_path\": \"EleutherAI/lambada_openai (default, split=test, cached)\", \"data_count\": 5153, \"model_name\": \"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\", \"seed\": 0, \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"LAMBADA OpenAI (5153 samples)\", \"log_path\": \"/tmp/exp004.log\", \"pid\": 517172, \"output_dir\": \"/root/entrainment_gated_ft/analysis/attention_weights/\", \"progress\": \"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\", \"session\": \"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\", \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/attention_weights/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T17:17:10.232Z\", \"metrics\": {\"helped_vs_hurt_entropy_diff\": {\"gdn\": -0.0009, \"retnet\": 0.0179, \"hgrn2\": 0.002}, \"helped_vs_hurt_last5_mass\": {\"gdn_helped\": 0.0834, \"gdn_hurt\": 0.0831, \"retnet_helped\": 0.1578, \"retnet_hurt\": 0.1591, \"hgrn2_helped\": 0.0453, \"hgrn2_hurt\": 0.0467}, \"cross_arch_similarity_mean\": {\"gdn_vs_retnet\": 0.905, \"gdn_vs_hgrn2\": 0.766, \"hgrn2_vs_retnet\": 0.698}, \"cross_arch_similarity_deep_layers\": {\"gdn_vs_retnet_L20\": 0.986, \"gdn_vs_hgrn2_L20\": 0.942, \"hgrn2_vs_retnet_L20\": 0.943}, \"cross_arch_similarity_early_layers\": {\"gdn_vs_retnet_L2\": 0.995, \"gdn_vs_hgrn2_L2\": 0.244, \"hgrn2_vs_retnet_L2\": 0.196}, \"finding\": \"Attention entropy does NOT differentiate helped vs hurt samples — differences are negligible across all 3 architectures. Cross-arch: GDN and RetNet highly similar throughout; HGRN2 diverges in early layers but converges in deep layers (>0.94 at L20). The per-example effect is not visible at the attention pattern level.\", \"n_samples\": 5153, \"runtime_minutes\": 30, \"output_files\": [\"gdn_attention_patterns.pt\", \"gdn_attention_entropy.csv\", \"retnet_attention_patterns.pt\", \"retnet_attention_entropy.csv\", \"hgrn2_attention_patterns.pt\", \"hgrn2_attention_entropy.csv\", \"attention_analysis_summary.json\", \"cross_arch_attention_similarity.csv\", \"helped_vs_hurt_entropy.csv\"]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0863}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Registry 已更新。现在检查并清除 cron 监控。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "207c4966-7cc2-4f19-903f-0ce1ef728347",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JxcS4BEi7svRDoDEngVKHh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1811,
+      "cache_read_input_tokens": 37101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1811
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PbtNAq3FQrRL5DtiAMjYdX`</summary>
+
+```json
+{
+  "query": "select:CronList,CronDelete",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "28ca69a4-cba9-4f32-9edb-bffb357a92c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JxcS4BEi7svRDoDEngVKHh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1811,
+      "cache_read_input_tokens": 37101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1811
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T17:17:25.029Z_
+
+<details><summary>↩ Tool result · `toolu_01PbtNAq3FQrRL5DtiAMjYdX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronList"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "a07b05eb-f51a-47d1-90af-e5110ac1ae22",
+  "tool_use_result": {
+    "matches": [
+      "CronList",
+      "CronDelete"
+    ],
+    "query": "select:CronList,CronDelete",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — CronList · `toolu_01KkmNwcZQi2r5tBFk5XrhFk`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "e21eda2a-84b5-46f4-8886-96103d706661",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fe9Rzg1hvtFp169WkZQ8Ry",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 315,
+      "cache_read_input_tokens": 38912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 315
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T17:17:31.151Z_
+
+<details><summary>↩ Tool result · `toolu_01KkmNwcZQi2r5tBFk5XrhFk`</summary>
+
+```text
+No scheduled jobs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "44a554d1-93a4-49c3-bc72-bc95c199e1d2",
+  "tool_use_result": {
+    "jobs": []
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+没有活跃的 cron 监控任务，无需清除。
+
+---
+
+**exp-004-r2 总结**：
+
+| 项目 | 状态 |
+|------|------|
+| **状态** | DONE (success) |
+| **耗时** | ~30 min（00:45 → 01:14 CST） |
+| **输出** | 3×.pt (~126MB each) + 3×.csv (~59MB each) + 3 分析文件 |
+| **GPU** | 空闲（0% util），可释放给 exp-007 |
+
+**核心发现**：假设被否定——attention entropy **无法**区分 helped 与 hurt 样本（三个架构的差异均 <0.02）。Per-example effect 不体现在 attention pattern 层面。
+
+**跨架构相似度**有意思：GDN 和 RetNet 全层高度相似（>0.9），HGRN2 在浅层（L2）与另外两者差异大（cos sim ~0.2），但深层收敛到 >0.94。这意味着三个架构在深层学到了相似的 attention pattern，分化主要在浅层。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "uuid": "6a204570-ed79-4380-8381-903e53a3b620",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R1EM4wAu6c7CeakzxQpPWu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 369,
+      "cache_read_input_tokens": 38912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 369
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 37_
+
+没有活跃的 cron 监控任务，无需清除。
+
+---
+
+**exp-004-r2 总结**：
+
+| 项目 | 状态 |
+|------|------|
+| **状态** | DONE (success) |
+| **耗时** | ~30 min（00:45 → 01:14 CST） |
+| **输出** | 3×.pt (~126MB each) + 3×.csv (~59MB each) + 3 分析文件 |
+| **GPU** | 空闲（0% util），可释放给 exp-007 |
+
+**核心发现**：假设被否定——attention entropy **无法**区分 helped 与 hurt 样本（三个架构的差异均 <0.02）。Per-example effect 不体现在 attention pattern 层面。
+
+**跨架构相似度**有意思：GDN 和 RetNet 全层高度相似（>0.9），HGRN2 在浅层（L2）与另外两者差异大（cos sim ~0.2），但深层收敛到 >0.94。这意味着三个架构在深层学到了相似的 attention pattern，分化主要在浅层。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 83207,
+  "duration_api_ms": 71464,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "9ca750c6-be3e-4841-b7e2-33368e5a801b",
+  "total_cost_usd": 0.39648425,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 27755,
+    "cache_read_input_tokens": 277509,
+    "output_tokens": 3301,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 27755,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 330,
+        "cache_read_input_tokens": 38912,
+        "cache_creation_input_tokens": 369,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 369
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1561,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016610000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 3301,
+      "cacheReadInputTokens": 277509,
+      "cacheCreationInputTokens": 27755,
+      "webSearchRequests": 0,
+      "costUSD": 0.39482324999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "6f550191-0ccf-47db-aefb-b211742df57a"
+}
+```
+
+</details>
+
+---

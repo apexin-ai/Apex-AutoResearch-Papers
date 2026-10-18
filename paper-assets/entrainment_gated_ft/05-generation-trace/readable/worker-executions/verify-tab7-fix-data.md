@@ -1,0 +1,2518 @@
+# verify tab7 fix data
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_verify_tab7-fix-data_20260523T194255.log`
+- **Structured JSON:** [`f289b5025fd761bb1c7a.json`](../../sessions/f2/f289b5025fd761bb1c7a.json)
+
+## Before a recorded user message
+
+46 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "807a3c4f-d88b-4d3a-8873-69ece96ad1f9",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this task into parallel steps:
+1. Read the local paper appendix.tex to find Tab 7
+2. SSH to the server to find and read the jaccard upper bound data
+
+Let me start both in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "9ce3719a-4889-43e3-aab8-e94b36409a14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Heyimd9SuTrrmJtpdnWEgy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12562,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12562
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018zaMPhzTQs3JLqnx1BevWS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "87c6a83c-79f5-42b7-96c8-b5938f4f443a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Heyimd9SuTrrmJtpdnWEgy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12562,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12562
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-23T19:43:09.343Z_
+
+<details><summary>↩ Tool result · `toolu_018zaMPhzTQs3JLqnx1BevWS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "bb48ed00-72c1-48e2-a066-9abf9814d26f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779565800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "c184d327-775f-428a-93ef-5c70790489d1",
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4"
+}
+```
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01VC5jMV14s7GN6ZrQcdAQ5y`</summary>
+
+```json
+{
+  "pattern": "normalized.*effect\\|norm.*ES\\|Tab.*7\\|table.*7\\|upper.bound",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/appendix.tex",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "83a6acb8-8dd8-4052-be99-993944520ff9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRRAV1XNxap7fUmE7Qwu6M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 24403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T19:43:14.668Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01VC5jMV14s7GN6ZrQcdAQ5y`</summary>
+
+```text
+&lt;tool_use_error>Path does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/appendix.tex. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "655da37d-3b17-4366-bfde-6b5e7614bd7f",
+  "tool_use_result": "Error: Path does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/appendix.tex. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EynXBiNHYLWaNgb5vcMDGc`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/results/ -name \"*upper_bound*\" -o -name \"*jaccard_upper*\" -o -name \"*normalized*\" -o -name \"*effect_size*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "a88c6922-43d3-40a2-bd6b-84e6d58934dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRRAV1XNxap7fUmE7Qwu6M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 24403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 491
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T19:43:18.676Z_
+
+<details><summary>↩ Tool result · `toolu_01EynXBiNHYLWaNgb5vcMDGc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "1f2ba29f-3695-4fe2-aeaa-3977d4693a1f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The appendix.tex file doesn't exist at that path, and the find command returned empty results. Let me search for the actual file locations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "2bb40edd-8828-4446-a442-0af0b2ee2fb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Sz1n1C7gJE4qQBaTsrwLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 551,
+      "cache_read_input_tokens": 24894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 551
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+文件路径不对，搜索实际位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "73636a2e-958b-416b-bf17-c12180485757",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Sz1n1C7gJE4qQBaTsrwLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 551,
+      "cache_read_input_tokens": 24894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 551
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_011T9P2Lp3fRtwWXCVSh2phF`</summary>
+
+```json
+{
+  "pattern": "**/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "bc2028ef-aa6b-4a59-9131-4c33b22824f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Sz1n1C7gJE4qQBaTsrwLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 551,
+      "cache_read_input_tokens": 24894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 551
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T19:43:21.987Z_
+
+<details><summary>↩ Tool result · `toolu_011T9P2Lp3fRtwWXCVSh2phF`</summary>
+
+```text
+docs/paper/sections/appendix.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "ee0ca700-aed6-4693-bdb9-cd143f5433ee",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/sections/appendix.tex"
+    ],
+    "durationMs": 17,
+    "numFiles": 1,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01NfDkRtEscUBo4VY8Gsh8Lt`</summary>
+
+```json
+{
+  "pattern": "**/*paper*/**/*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "be9ff818-4f04-44b7-b003-006f40194936",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Sz1n1C7gJE4qQBaTsrwLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 551,
+      "cache_read_input_tokens": 24894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 551
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T19:43:22.434Z_
+
+<details><summary>↩ Tool result · `toolu_01NfDkRtEscUBo4VY8Gsh8Lt`</summary>
+
+```text
+docs/paper/author_response.tex
+docs/paper/author_response_r7.tex
+docs/paper/arr_checklist.tex
+docs/paper/sections/method.tex
+docs/paper/sections/related_work.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/conclusion.tex
+docs/paper/sections/experiments.tex
+docs/paper/main.tex
+docs/paper/sections/appendix.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "d777dec3-5111-4173-b92b-9e506e5e7e56",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/author_response.tex",
+      "docs/paper/author_response_r7.tex",
+      "docs/paper/arr_checklist.tex",
+      "docs/paper/sections/method.tex",
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/conclusion.tex",
+      "docs/paper/sections/experiments.tex",
+      "docs/paper/main.tex",
+      "docs/paper/sections/appendix.tex"
+    ],
+    "durationMs": 14,
+    "numFiles": 10,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PNCh1ZkgfMCCq2ctSPQd6B`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft -maxdepth 3 -name \"*.json\" -path \"*result*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "d7d71feb-1a96-41b7-b779-75dd48a55c8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Sz1n1C7gJE4qQBaTsrwLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 551,
+      "cache_read_input_tokens": 24894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 551
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QwKdE37WqzkEKEXgknNLzN`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft -maxdepth 4 -name \"*jaccard*\" -o -name \"*upper_bound*\" -o -name \"*effect_size*\" -o -name \"*normalized*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "27490b30-5416-43cb-a66d-bf1ad8821b0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Sz1n1C7gJE4qQBaTsrwLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 551,
+      "cache_read_input_tokens": 24894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 551
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T19:43:24.856Z_
+
+<details><summary>↩ Tool result · `toolu_01PNCh1ZkgfMCCq2ctSPQd6B`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/test_run/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/test_run/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/test_run/summary_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/pred\\n\\n... [截断: 输出过长，省略 14594 字符] ...\\n\\nment_gated_ft/results_1.3b/func_comp/predictions_1.3B-100B-RetNet-pure_depth3_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_1.3B-100B-RetNet-pure_depth4_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_1.3B-100B-RetNet-pure_depth5_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth1_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth2_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth3_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth4_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth5_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/summary_logprob.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth1_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth2_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth3_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth4_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth5_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth1_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth2_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth3_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth4_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth5_details.json\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth1_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth2_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth3_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth4_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth5_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp/summary_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth1_cot.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth2_cot.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth3_cot.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth4_cot.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth5_cot.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/summary_cot.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n/root/entrainment_gated_ft/null_jaccard_results.json\\n/root/entrainment_gated_ft/bootstrap_ci_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "0140fe48-2865-4013-a518-53b21586f793",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/test_run/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/test_run/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/test_run/summary_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/pred\\\\n\\\\n... [截断: 输出过长，省略 14594 字符] ...\\\\n\\\\nment_gated_ft/results_1.3b/func_comp/predictions_1.3B-100B-RetNet-pure_depth3_direct.json\\\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_1.3B-100B-RetNet-pure_depth4_direct.json\\\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_1.3B-100B-RetNet-pure_depth5_direct.json\\\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth1_direct.json\\\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth2_direct.json\\\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth3_direct.json\\\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth4_direct.json\\\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth5_direct.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth1_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth2_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth3_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth4_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth5_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/summary_logprob.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth1_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth2_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth3_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth4_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth5_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth1_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth2_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth3_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth4_details.json\\\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth5_details.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth1_direct.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth2_direct.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth3_direct.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth4_direct.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth5_direct.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp/summary_direct.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth1_cot.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth2_cot.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth3_cot.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth4_cot.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth5_cot.json\\\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/summary_cot.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_results.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_results.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\\\n/root/entrainment_gated_ft/null_jaccard_results.json\\\\n/root/entrainment_gated_ft/bootstrap_ci_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/test_run/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/test_run/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/test_run/summary_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/pred\\n\\n... [截断: 输出过长，省略 14594 字符] ...\\n\\nment_gated_ft/results_1.3b/func_comp/predictions_1.3B-100B-RetNet-pure_depth3_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_1.3B-100B-RetNet-pure_depth4_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_1.3B-100B-RetNet-pure_depth5_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results_1.3b/func_comp/predictions_transformer_1.3B_baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth1_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth2_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth3_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth4_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-GatedDeltaNet-hybrid-3-1_depth5_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/summary_logprob.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth1_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth2_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth3_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth4_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/1.3B-100B-RetNet-pure_depth5_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth1_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth2_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth3_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth4_details.json\\n/root/entrainment_gated_ft/results_1.3b/logprob/transformer_1.3B_baseline_depth5_details.json\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth1_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth2_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth3_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth4_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp/predictions_Qwen2.5-7B-Instruct_depth5_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp/summary_direct.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth1_cot.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth2_cot.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth3_cot.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth4_cot.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/predictions_Qwen2.5-7B-Instruct_depth5_cot.json\\n/root/entrainment_gated_ft/results_7b/func_comp_cot/summary_cot.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n/root/entrainment_gated_ft/null_jaccard_results.json\\n/root/entrainment_gated_ft/bootstrap_ci_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T19:43:25.756Z_
+
+<details><summary>↩ Tool result · `toolu_01QwKdE37WqzkEKEXgknNLzN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\\n/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\\n/root/entrainment_gated_ft/results/e2_continuous_jaccard.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch_jaccard.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch_extended.json\\n/root/entrainment_gated_ft/results/figures/plot_jaccard_heatmap.py\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.pdf\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.png\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch_4bench.pdf\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch_4bench.png\\n/root/entrainment_gated_ft/lm_eval_clean/analysis/winogrande_jaccard_analysis.json\\n/root/entrainment_gated_ft/lm_eval_clean/analysis/piqa_jaccard_analysis.json\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.py\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.json\\n/root/entrainment_gated_ft/analysis/e2_continuous_jaccard.py\\n/root/entrainment_gated_ft/null_jaccard_permutation.py\\n/root/entrainment_gated_ft/null_jaccard_results.json\\n/root/entrainment_gated_ft/arc_easy_jaccard_analysis.json\\n/root/entrainment_gated_ft/boolq_jaccard_analysis.json\\n/root/entrainment_gated_ft/hellaswag_jaccard_analysis.json\\n/root/entrainment_gated_ft/analysis_output/boolq_jaccard_analysis.json\\n/root/entrainment_gated_ft/analysis_output/hellaswag_jaccard_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "4d9e99f1-9d08-4eb4-86e3-4640b11b15eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\\\\n/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\\\\n/root/entrainment_gated_ft/results/e2_continuous_jaccard.json\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch_jaccard.py\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch_extended.json\\\\n/root/entrainment_gated_ft/results/figures/plot_jaccard_heatmap.py\\\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.pdf\\\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.png\\\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch_4bench.pdf\\\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch_4bench.png\\\\n/root/entrainment_gated_ft/lm_eval_clean/analysis/winogrande_jaccard_analysis.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/analysis/piqa_jaccard_analysis.json\\\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.py\\\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.json\\\\n/root/entrainment_gated_ft/analysis/e2_continuous_jaccard.py\\\\n/root/entrainment_gated_ft/null_jaccard_permutation.py\\\\n/root/entrainment_gated_ft/null_jaccard_results.json\\\\n/root/entrainment_gated_ft/arc_easy_jaccard_analysis.json\\\\n/root/entrainment_gated_ft/boolq_jaccard_analysis.json\\\\n/root/entrainment_gated_ft/hellaswag_jaccard_analysis.json\\\\n/root/entrainment_gated_ft/analysis_output/boolq_jaccard_analysis.json\\\\n/root/entrainment_gated_ft/analysis_output/hellaswag_jaccard_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\\n/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\\n/root/entrainment_gated_ft/results/e2_continuous_jaccard.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch_jaccard.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch_extended.json\\n/root/entrainment_gated_ft/results/figures/plot_jaccard_heatmap.py\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.pdf\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.png\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch_4bench.pdf\\n/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch_4bench.png\\n/root/entrainment_gated_ft/lm_eval_clean/analysis/winogrande_jaccard_analysis.json\\n/root/entrainment_gated_ft/lm_eval_clean/analysis/piqa_jaccard_analysis.json\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.py\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.json\\n/root/entrainment_gated_ft/analysis/e2_continuous_jaccard.py\\n/root/entrainment_gated_ft/null_jaccard_permutation.py\\n/root/entrainment_gated_ft/null_jaccard_results.json\\n/root/entrainment_gated_ft/arc_easy_jaccard_analysis.json\\n/root/entrainment_gated_ft/boolq_jaccard_analysis.json\\n/root/entrainment_gated_ft/hellaswag_jaccard_analysis.json\\n/root/entrainment_gated_ft/analysis_output/boolq_jaccard_analysis.json\\n/root/entrainment_gated_ft/analysis_output/hellaswag_jaccard_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found the key files:
+1. Local: `docs/paper/sections/appendix.tex`
+2. Server: `/root/entrainment_gated_ft/analysis/jaccard_upper_bound.json` - this is the main data file
+3. Also: `/root/entrainment_gated_ft/null_jaccard_results.json` - might have null Jaccard values
+
+Let me read the appendix.tex and the JSON files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "d033297e-04bf-410c-bc93-08ebd105efd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011okpZAK9igvbQu6W6nmu4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5091,
+      "cache_read_input_tokens": 25445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5091
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+找到关键文件。并行读取论文和服务器数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "04a27fa2-c535-4a0b-92d9-168aae496930",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011okpZAK9igvbQu6W6nmu4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5091,
+      "cache_read_input_tokens": 25445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5091
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01UU28Qo8xyc6Sb9ytC9ygDt`</summary>
+
+```json
+{
+  "pattern": "normalized|effect.size|norm.*ES|tab:.*7|upper.bound|J_obs|J_null|J_ub",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true,
+  "-C": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "ace2fd0e-081a-4b5c-a48a-b5fd6a5dbdae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011okpZAK9igvbQu6W6nmu4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5091,
+      "cache_read_input_tokens": 25445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5091
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T19:43:36.367Z_
+
+<details><summary>↩ Tool result · `toolu_01UU28Qo8xyc6Sb9ytC9ygDt`</summary>
+
+```text
+47-
+48-The GDN h3-1 configuration uses 16 attention heads rather than 32 (see Appendix~\ref{app:gdn_confound}). To assess the influence of this confound, we recompute all convergence correlations after excluding GDN, leaving two architectures (RetNet, HGRN2) at five attention ratios.
+49-
+50:Table~\ref{tab:gdn_sensitivity} reports the results for benchmarks where the correlation changes by $|\Delta\rho| \geq 0.3$. LAMBADA weakens from $\rho = -1.0$ to $\rho = -0.7$ ($p = .233$), consistent with GDN contributing to the convergence signal. MMLU reverses from $\rho = -0.7$ to $\rho = +0.6$, confirming that the moderate negative correlation on MMLU depends on GDN's inclusion and should not be interpreted as evidence of convergence.
+51-
+52-\begin{table}[ht]
+53-\centering
+--
+212-\end{tabular}
+213-\end{table}
+214-
+215:\section{Normalized Jaccard Effect Size}\label{app:normalized_es}
+216-
+217:To assess whether low observed Jaccard reflects a floor effect imposed by unequal set sizes, we compute the theoretical upper bound $J_{\max} = \min(|A|,|B|) / \max(|A|,|B|)$ and the normalized effect size $(J_{\text{obs}} - J_{\text{null}}) / (J_{\max} - J_{\text{null}})$, which measures observed overlap as a fraction of the achievable range above chance. Table~\ref{tab:normalized_es} reports per-pair results.
+218-
+219-\begin{table}[ht]
+220-\centering
+221-\small
+222:\caption{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\max}$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}
+223:\label{tab:normalized_es}
+224-\resizebox{\columnwidth}{!}{%
+225-\begin{tabular}{llcccc}
+226-\toprule
+227:Category & Pair & $J_{\text{obs}}$ & $J_{\max}$ & $J_{\text{null}}$ & Norm.\ ES \\
+228-\midrule
+229-Helped & GDN--RetNet & .086 & .922 & .048 & .044 \\
+230- & GDN--HGRN2 & .099 & .843 & .050 & .062 \\
+--
+240-}
+241-\end{table}
+242-
+243:All normalized effect sizes fall below 0.10, confirming that observed overlap reaches only 6--7\% of the theoretical maximum. The low Jaccard values cannot be attributed to set-size constraints.
+244-
+245-\section{ARC-Easy Per-Example Analysis}\label{app:arceasy}
+246-
+247:Table~\ref{tab:arceasy_effects} reports per-example effect counts on ARC-Easy ($N = 2{,}376$) at 1.3B scale for each attention ratio. Unlike LAMBADA, ARC-Easy shows no aggregate convergence ($\rho = -0.20$, $p = .783$). HGRN2 is net positive at all ratios; GDN and RetNet are mixed.
+248-
+249-\begin{table}[ht]
+250-\centering
+--
+348-
+349-[Omitted long context line]
+350-
+351:Table~\ref{tab:within_arch_summary} reports mean within-architecture Jaccard for each architecture. HGRN2 shows the highest helped overlap and lowest hurt overlap, consistent with its monotonically increasing helped count across ratios (479 $\to$ 548).
+352-
+353-\begin{table}[ht]
+354-\centering
+--
+367-\end{tabular}
+368-\end{table}
+369-
+370:Table~\ref{tab:within_arch_pairwise} reports the full pairwise Jaccard matrix. Attention ratios are denoted by their h$k$-1 labels: h24-1 (4\%), h12-1 (7.7\%), h6-1 (14.3\%), h3-1 (25\%).
+371-
+372-\begin{table}[ht]
+373-\centering
+--
+468-
+469-\subsection{Cross-Benchmark Extension}\label{app:cm_cross}
+470-
+471:[Omitted long matching line]
+472-
+473-\begin{table}[ht]
+474-\centering
+--
+516-
+517-We formalize the confidence margin analysis as a binary prediction task: given a pure-model example and its target-token $|\log p|$, predict whether attention will change the example's correctness. Using the within-category summary statistics (Tables~\ref{tab:cm_c1},~\ref{tab:cm_c2}), we derive analytic AUC from Cohen's $d$ via $\text{AUC} = \Phi(|d|/\sqrt{2})$ and compute Gaussian-intersection thresholds (the $|\log p|$ value at which the two group densities intersect under equal priors).
+518-
+519:Table~\ref{tab:prediction_auc} reports within-architecture prediction performance. All AUCs exceed 0.69, confirming that pure-model confidence is a reliable within-architecture predictor of attention effects. Disruption prediction is consistently stronger than rescue (mean AUC 0.73 vs.\ 0.70), reflecting the larger effect sizes in Control~1.
+520-
+521-\begin{table}[ht]
+522-\centering
+--
+538-\end{tabular}
+539-\end{table}
+540-
+541:[Omitted long matching line]
+542-
+543:[Omitted long matching line]
+544-
+545-\begin{table}[ht]
+546-\centering
+--
+564-\section{BoolQ Supplementary Analysis}
+565-\label{app:boolq}
+566-
+567:BoolQ ($N = 3{,}270$; comprehension, binary yes/no classification) shows the highest ambiguity among the benchmarks we analyzed ($\alpha \approx 0.45$), but the Jaccard significance pattern is mixed: only 12 of 24 architecture $\times$ attention-ratio pair combinations yield $p < .01$. In particular, the RetNet--HGRN2 pair produces 0/8 significant Jaccard values, with several normalized effect sizes below zero, suggesting anti-correlated per-example effects for this pair.
+568-
+569-[Omitted long context line]
+570-
+--
+583-\bottomrule
+584-\end{tabular}
+585-\par\vspace{1pt}
+586:{\footnotesize RetNet--HGRN2: 0/8 significant; multiple normalized ES $< 0$.}
+587-\end{table}
+588-
+589-The significant Jaccard overlap concentrates in GDN--RetNet pairs (8/8 significant), while RetNet--HGRN2 shows none (0/8). This pair-specificity does not appear on the four main benchmarks, where all architecture pairs show significant overlap; it may reflect a BoolQ-specific interaction between binary classification structure and particular recurrent architectures rather than a general property of architecture pairs.
+590-
+591:[Omitted long matching line]
+592-
+593-\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly.
+594-
+--
+597-
+598-WinoGrande ($N = 1{,}267$; reasoning, two-choice coreference resolution) shows high ambiguity ($\alpha \approx 0.41$ at h3-1) but mixed Jaccard significance: 10 of 24 architecture $\times$ attention-ratio pair combinations yield $p < .01$. Mean pairwise Jaccard ($\bar{J}_h = 0.110$, $\bar{J}_u = 0.103$) is comparable to the four main benchmarks, but the elevated null baseline from near-chance accuracy (${\sim}60\%$) reduces statistical power to detect above-chance overlap.
+599-
+600:[Omitted long matching line]
+601-
+602-\begin{table}[ht]
+603-\centering
+--
+700-
+701-We decompose the three-architecture vote on each example into four categories: unanimous correct (3/3), majority correct (2/3), minority correct (1/3), and unanimous wrong (0/3). This decomposition explains the structural failure of majority vote despite substantial per-example complementarity.
+702-
+703:[Omitted long matching line]
+704-
+705-\begin{table}[ht]
+706-\centering
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "cbacff51-6ab1-4194-a9ce-a55b46a36718",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "47-\n48-The GDN h3-1 configuration uses 16 attention heads rather than 32 (see Appendix~\\ref{app:gdn_confound}). To assess the influence of this confound, we recompute all convergence correlations after excluding GDN, leaving two architectures (RetNet, HGRN2) at five attention ratios.\n49-\n50:Table~\\ref{tab:gdn_sensitivity} reports the results for benchmarks where the correlation changes by $|\\Delta\\rho| \\geq 0.3$. LAMBADA weakens from $\\rho = -1.0$ to $\\rho = -0.7$ ($p = .233$), consistent with GDN contributing to the convergence signal. MMLU reverses from $\\rho = -0.7$ to $\\rho = +0.6$, confirming that the moderate negative correlation on MMLU depends on GDN's inclusion and should not be interpreted as evidence of convergence.\n51-\n52-\\begin{table}[ht]\n53-\\centering\n--\n212-\\end{tabular}\n213-\\end{table}\n214-\n215:\\section{Normalized Jaccard Effect Size}\\label{app:normalized_es}\n216-\n217:To assess whether low observed Jaccard reflects a floor effect imposed by unequal set sizes, we compute the theoretical upper bound $J_{\\max} = \\min(|A|,|B|) / \\max(|A|,|B|)$ and the normalized effect size $(J_{\\text{obs}} - J_{\\text{null}}) / (J_{\\max} - J_{\\text{null}})$, which measures observed overlap as a fraction of the achievable range above chance. Table~\\ref{tab:normalized_es} reports per-pair results.\n218-\n219-\\begin{table}[ht]\n220-\\centering\n221-\\small\n222:\\caption{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\\max}$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}\n223:\\label{tab:normalized_es}\n224-\\resizebox{\\columnwidth}{!}{%\n225-\\begin{tabular}{llcccc}\n226-\\toprule\n227:Category & Pair & $J_{\\text{obs}}$ & $J_{\\max}$ & $J_{\\text{null}}$ & Norm.\\ ES \\\\\n228-\\midrule\n229-Helped & GDN--RetNet & .086 & .922 & .048 & .044 \\\\\n230- & GDN--HGRN2 & .099 & .843 & .050 & .062 \\\\\n--\n240-}\n241-\\end{table}\n242-\n243:All normalized effect sizes fall below 0.10, confirming that observed overlap reaches only 6--7\\% of the theoretical maximum. The low Jaccard values cannot be attributed to set-size constraints.\n244-\n245-\\section{ARC-Easy Per-Example Analysis}\\label{app:arceasy}\n246-\n247:Table~\\ref{tab:arceasy_effects} reports per-example effect counts on ARC-Easy ($N = 2{,}376$) at 1.3B scale for each attention ratio. Unlike LAMBADA, ARC-Easy shows no aggregate convergence ($\\rho = -0.20$, $p = .783$). HGRN2 is net positive at all ratios; GDN and RetNet are mixed.\n248-\n249-\\begin{table}[ht]\n250-\\centering\n--\n348-\n349-[Omitted long context line]\n350-\n351:Table~\\ref{tab:within_arch_summary} reports mean within-architecture Jaccard for each architecture. HGRN2 shows the highest helped overlap and lowest hurt overlap, consistent with its monotonically increasing helped count across ratios (479 $\\to$ 548).\n352-\n353-\\begin{table}[ht]\n354-\\centering\n--\n367-\\end{tabular}\n368-\\end{table}\n369-\n370:Table~\\ref{tab:within_arch_pairwise} reports the full pairwise Jaccard matrix. Attention ratios are denoted by their h$k$-1 labels: h24-1 (4\\%), h12-1 (7.7\\%), h6-1 (14.3\\%), h3-1 (25\\%).\n371-\n372-\\begin{table}[ht]\n373-\\centering\n--\n468-\n469-\\subsection{Cross-Benchmark Extension}\\label{app:cm_cross}\n470-\n471:[Omitted long matching line]\n472-\n473-\\begin{table}[ht]\n474-\\centering\n--\n516-\n517-We formalize the confidence margin analysis as a binary prediction task: given a pure-model example and its target-token $|\\log p|$, predict whether attention will change the example's correctness. Using the within-category summary statistics (Tables~\\ref{tab:cm_c1},~\\ref{tab:cm_c2}), we derive analytic AUC from Cohen's $d$ via $\\text{AUC} = \\Phi(|d|/\\sqrt{2})$ and compute Gaussian-intersection thresholds (the $|\\log p|$ value at which the two group densities intersect under equal priors).\n518-\n519:Table~\\ref{tab:prediction_auc} reports within-architecture prediction performance. All AUCs exceed 0.69, confirming that pure-model confidence is a reliable within-architecture predictor of attention effects. Disruption prediction is consistently stronger than rescue (mean AUC 0.73 vs.\\ 0.70), reflecting the larger effect sizes in Control~1.\n520-\n521-\\begin{table}[ht]\n522-\\centering\n--\n538-\\end{tabular}\n539-\\end{table}\n540-\n541:[Omitted long matching line]\n542-\n543:[Omitted long matching line]\n544-\n545-\\begin{table}[ht]\n546-\\centering\n--\n564-\\section{BoolQ Supplementary Analysis}\n565-\\label{app:boolq}\n566-\n567:BoolQ ($N = 3{,}270$; comprehension, binary yes/no classification) shows the highest ambiguity among the benchmarks we analyzed ($\\alpha \\approx 0.45$), but the Jaccard significance pattern is mixed: only 12 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. In particular, the RetNet--HGRN2 pair produces 0/8 significant Jaccard values, with several normalized effect sizes below zero, suggesting anti-correlated per-example effects for this pair.\n568-\n569-[Omitted long context line]\n570-\n--\n583-\\bottomrule\n584-\\end{tabular}\n585-\\par\\vspace{1pt}\n586:{\\footnotesize RetNet--HGRN2: 0/8 significant; multiple normalized ES $< 0$.}\n587-\\end{table}\n588-\n589-The significant Jaccard overlap concentrates in GDN--RetNet pairs (8/8 significant), while RetNet--HGRN2 shows none (0/8). This pair-specificity does not appear on the four main benchmarks, where all architecture pairs show significant overlap; it may reflect a BoolQ-specific interaction between binary classification structure and particular recurrent architectures rather than a general property of architecture pairs.\n590-\n591:[Omitted long matching line]\n592-\n593-\\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly.\n594-\n--\n597-\n598-WinoGrande ($N = 1{,}267$; reasoning, two-choice coreference resolution) shows high ambiguity ($\\alpha \\approx 0.41$ at h3-1) but mixed Jaccard significance: 10 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. Mean pairwise Jaccard ($\\bar{J}_h = 0.110$, $\\bar{J}_u = 0.103$) is comparable to the four main benchmarks, but the elevated null baseline from near-chance accuracy (${\\sim}60\\%$) reduces statistical power to detect above-chance overlap.\n599-\n600:[Omitted long matching line]\n601-\n602-\\begin{table}[ht]\n603-\\centering\n--\n700-\n701-We decompose the three-architecture vote on each example into four categories: unanimous correct (3/3), majority correct (2/3), minority correct (1/3), and unanimous wrong (0/3). This decomposition explains the structural failure of majority vote despite substantial per-example complementarity.\n702-\n703:[Omitted long matching line]\n704-\n705-\\begin{table}[ht]\n706-\\centering",
+    "numLines": 118
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LeVWxU4NCjrL1JhNvvN9pf`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/analysis/jaccard_upper_bound.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "22a69dcb-bbfc-43a9-8ce1-f4272de43940",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011okpZAK9igvbQu6W6nmu4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5091,
+      "cache_read_input_tokens": 25445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5091
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T27qbK4sdCHFMNxaBRmJnP`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/null_jaccard_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "600c7b26-5ff8-497a-887b-b699955fdd5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011okpZAK9igvbQu6W6nmu4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5091,
+      "cache_read_input_tokens": 25445,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5091
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T19:43:38.279Z_
+
+<details><summary>↩ Tool result · `toolu_01LeVWxU4NCjrL1JhNvvN9pf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"jaccard_upper_bound\\\",\\n  \\\"date\\\": \\\"2026-05-20\\\",\\n  \\\"method\\\": {\\n    \\\"J_max\\\": \\\"min(|A|,|B|)/max(|A|,|B|) \\\\u2014 theoretical max when smaller set is subset of larger\\\",\\n    \\\"J_null\\\": \\\"analytical E[J] under random placement, validated against 10k permutation test (h3-1)\\\",\\n    \\\"normalized_ES\\\": \\\"(J_obs - J_null) / (J_max - J_null)\\\",\\n    \\\"J_null_permutation_validation\\\": {\\n      \\\"GDN_vs_HGRN2_helped\\\": {\\n        \\\"analytical\\\": 0.051133,\\n        \\\"permutation_10k\\\": 0.051056,\\n        \\\"abs_diff\\\": 7.7e-05\\n      },\\n      \\\"GDN_vs_HGRN2_hurt\\\": {\\n        \\\"analytical\\\": 0.048961,\\n        \\\"permutation_10k\\\": 0.048967,\\n        \\\"abs_diff\\\": 6e-06\\n      },\\n      \\\"GDN_vs_RetNet_helped\\\": {\\n        \\\"analytical\\\": 0.044944,\\n        \\\"permutation_10k\\\": 0.044946,\\n        \\\"abs_diff\\\": 2e-06\\n      },\\n      \\\"GDN_vs_RetNet_hurt\\\": {\\n        \\\"analytical\\\": 0.056215,\\n        \\\"permutation_10k\\\": 0.056292,\\n        \\\"abs_diff\\\": 7.7e-05\\n      },\\n      \\\"HGRN2_vs_RetNet_helped\\\": {\\n        \\\"analytical\\\": 0.048782,\\n        \\\"permutation_10k\\\": 0.048826,\\n        \\\"abs_diff\\\": 4.4e-05\\n      },\\n      \\\"HGRN2_vs_RetNet_hurt\\\": {\\n        \\\"analytical\\\": 0.044532,\\n        \\\"permutation_10k\\\": 0.044571,\\n        \\\"abs_diff\\\": 3.9e-05\\n      }\\n    }\\n  },\\n  \\\"N\\\": 5153,\\n  \\\"per_ratio\\\": {\\n    \\\"h24-1\\\": {\\n      \\\"attention_ratio\\\": 0.04,\\n      \\\"pairs\\\": {\\n        \\\"GDN_HGRN2\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 485,\\n            \\\"n_B\\\": 479,\\n            \\\"J_obs\\\": 0.100457,\\n            \\\"J_max\\\": 0.987629,\\n            \\\"J_null\\\": 0.049062,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.054759,\\n            \\\"J_obs_over_J_max_pct\\\": 10.2\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 501,\\n            \\\"n_B\\\": 396,\\n            \\\"J_obs\\\": 0.071685,\\n            \\\"J_max\\\": 0.790419,\\n            \\\"J_null\\\": 0.044847,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.035996,\\n            \\\"J_obs_over_J_max_pct\\\": 9.1\\n          }\\n        },\\n        \\\"GDN_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 485,\\n            \\\"n_B\\\": 448,\\n            \\\"J_obs\\\": 0.089953,\\n            \\\"J_max\\\": 0.923711,\\n            \\\"J_null\\\": 0.047333,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.048632,\\n            \\\"J_obs_over_J_max_pct\\\": 9.7\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 501,\\n            \\\"n_B\\\": 455,\\n            \\\"J_obs\\\": 0.095074,\\n            \\\"J_max\\\": 0.908184,\\n            \\\"J_null\\\": 0.048518,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.054156,\\n            \\\"J_obs_over_J_max_pct\\\": 10.5\\n          }\\n        },\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 479,\\n            \\\"n_B\\\": 448,\\n            \\\"J_obs\\\": 0.09316,\\n            \\\"J_max\\\": 0.935282,\\n            \\\"J_null\\\": 0.047037,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.051927,\\n            \\\"J_obs_over_J_max_pct\\\": 10.0\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 396,\\n            \\\"n_B\\\": 455,\\n            \\\"J_obs\\\": 0.095238,\\n            \\\"J_max\\\": 0.87033,\\n            \\\"J_null\\\": 0.042849,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.063312,\\n            \\\"J_obs_over_J_max_pct\\\": 10.9\\n          }\\n        }\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"attention_ratio\\\": 0.07692307692307693,\\n      \\\"pairs\\\": {\\n        \\\"GDN_HGRN2\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 464,\\n            \\\"n_B\\\": 512,\\n            \\\"J_obs\\\": 0.097863,\\n            \\\"J_max\\\": 0.90625,\\n            \\\"J_null\\\": 0.049578,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.056363,\\n            \\\"J_obs_over_J_max_pct\\\": 10.8\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 512,\\n            \\\"n_B\\\": 415,\\n            \\\"J_obs\\\": 0.070439,\\n            \\\"J_max\\\": 0.810547,\\n            \\\"J_null\\\": 0.046552,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.031266,\\n            \\\"J_obs_over_J_max_pct\\\": 8.7\\n          }\\n        },\\n        \\\"GDN_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 464,\\n            \\\"n_B\\\": 427,\\n            \\\"J_obs\\\": 0.086585,\\n     \\n\\n... [截断: 输出过长，省略 8772 字符] ...\\n\\n_A\\\": 426,\\n      \\\"n_B\\\": 399,\\n      \\\"J_obs\\\": 0.0913,\\n      \\\"J_max\\\": 0.9366,\\n      \\\"J_null\\\": 0.0416,\\n      \\\"norm_ES\\\": 0.0554\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 598,\\n      \\\"n_B\\\": 499,\\n      \\\"J_obs\\\": 0.116,\\n      \\\"J_max\\\": 0.8344,\\n      \\\"J_null\\\": 0.0557,\\n      \\\"norm_ES\\\": 0.0774\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 524,\\n      \\\"n_B\\\": 399,\\n      \\\"J_obs\\\": 0.0859,\\n      \\\"J_max\\\": 0.7615,\\n      \\\"J_null\\\": 0.046,\\n      \\\"norm_ES\\\": 0.0558\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 397,\\n      \\\"n_B\\\": 499,\\n      \\\"J_obs\\\": 0.0954,\\n      \\\"J_max\\\": 0.7956,\\n      \\\"J_null\\\": 0.0448,\\n      \\\"norm_ES\\\": 0.0673\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 462,\\n      \\\"n_B\\\": 548,\\n      \\\"J_obs\\\": 0.1002,\\n      \\\"J_max\\\": 0.8431,\\n      \\\"J_null\\\": 0.0511,\\n      \\\"norm_ES\\\": 0.0621\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 615,\\n      \\\"n_B\\\": 395,\\n      \\\"J_obs\\\": 0.0884,\\n      \\\"J_max\\\": 0.6423,\\n      \\\"J_null\\\": 0.049,\\n      \\\"norm_ES\\\": 0.0664\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 462,\\n      \\\"n_B\\\": 426,\\n      \\\"J_obs\\\": 0.0923,\\n      \\\"J_max\\\": 0.9221,\\n      \\\"J_null\\\": 0.0449,\\n      \\\"norm_ES\\\": 0.0539\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 615,\\n      \\\"n_B\\\": 495,\\n      \\\"J_obs\\\": 0.1034,\\n      \\\"J_max\\\": 0.8049,\\n      \\\"J_null\\\": 0.0563,\\n      \\\"norm_ES\\\": 0.0629\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 548,\\n      \\\"n_B\\\": 426,\\n      \\\"J_obs\\\": 0.1081,\\n      \\\"J_max\\\": 0.7774,\\n      \\\"J_null\\\": 0.0488,\\n      \\\"norm_ES\\\": 0.0813\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 395,\\n      \\\"n_B\\\": 495,\\n      \\\"J_obs\\\": 0.0867,\\n      \\\"J_max\\\": 0.798,\\n      \\\"J_null\\\": 0.0446,\\n      \\\"norm_ES\\\": 0.0559\\n    }\\n  ],\\n  \\\"mean_normalized_ES_by_ratio\\\": {\\n    \\\"h24-1_helped\\\": 0.0518,\\n    \\\"h24-1_hurt\\\": 0.0512,\\n    \\\"h12-1_helped\\\": 0.0573,\\n    \\\"h12-1_hurt\\\": 0.0406,\\n    \\\"h6-1_helped\\\": 0.0596,\\n    \\\"h6-1_hurt\\\": 0.068,\\n    \\\"h3-1_helped\\\": 0.0658,\\n    \\\"h3-1_hurt\\\": 0.0617\\n  },\\n  \\\"saturation_analysis\\\": {\\n    \\\"helped\\\": {\\n      \\\"trend\\\": [\\n        [\\n          \\\"h24-1\\\",\\n          0.0518\\n        ],\\n        [\\n          \\\"h12-1\\\",\\n          0.0573\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.0596\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0658\\n        ]\\n      ],\\n      \\\"cv\\\": 0.0856,\\n      \\\"mean\\\": 0.0586\\n    },\\n    \\\"hurt\\\": {\\n      \\\"trend\\\": [\\n        [\\n          \\\"h24-1\\\",\\n          0.0512\\n        ],\\n        [\\n          \\\"h12-1\\\",\\n          0.0406\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.068\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0617\\n        ]\\n      ],\\n      \\\"cv\\\": 0.1883,\\n      \\\"mean\\\": 0.0554\\n    }\\n  },\\n  \\\"overall_stats\\\": {\\n    \\\"mean_norm_ES_helped\\\": 0.0586,\\n    \\\"mean_norm_ES_hurt\\\": 0.0554,\\n    \\\"std_norm_ES_helped\\\": 0.0092,\\n    \\\"std_norm_ES_hurt\\\": 0.0131,\\n    \\\"range_norm_ES_helped\\\": [\\n      0.0474,\\n      0.0813\\n    ],\\n    \\\"range_norm_ES_hurt\\\": [\\n      0.0313,\\n      0.0774\\n    ],\\n    \\\"mean_J_obs_over_J_max_pct\\\": 11.1,\\n    \\\"range_J_obs_over_J_max_pct\\\": [\\n      8.7,\\n      13.9\\n    ]\\n  },\\n  \\\"conclusion\\\": \\\"Normalized ES: helped [0.05, 0.08], hurt [0.03, 0.08]. Mean J_obs/J_max = 11.1%. Low absolute Jaccard reflects geometric ceiling from set-size asymmetry, not absence of signal. Normalized ES consistently exceeds chance across all ratios, confirming architecture-specific responses.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "a8ce1642-4400-4737-99e8-c903c6453f94",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"jaccard_upper_bound\\\\\\\",\\\\n  \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-20\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": {\\\\n    \\\\\\\"J_max\\\\\\\": \\\\\\\"min(|A|,|B|)/max(|A|,|B|) \\\\\\\\u2014 theoretical max when smaller set is subset of larger\\\\\\\",\\\\n    \\\\\\\"J_null\\\\\\\": \\\\\\\"analytical E[J] under random placement, validated against 10k permutation test (h3-1)\\\\\\\",\\\\n    \\\\\\\"normalized_ES\\\\\\\": \\\\\\\"(J_obs - J_null) / (J_max - J_null)\\\\\\\",\\\\n    \\\\\\\"J_null_permutation_validation\\\\\\\": {\\\\n      \\\\\\\"GDN_vs_HGRN2_helped\\\\\\\": {\\\\n        \\\\\\\"analytical\\\\\\\": 0.051133,\\\\n        \\\\\\\"permutation_10k\\\\\\\": 0.051056,\\\\n        \\\\\\\"abs_diff\\\\\\\": 7.7e-05\\\\n      },\\\\n      \\\\\\\"GDN_vs_HGRN2_hurt\\\\\\\": {\\\\n        \\\\\\\"analytical\\\\\\\": 0.048961,\\\\n        \\\\\\\"permutation_10k\\\\\\\": 0.048967,\\\\n        \\\\\\\"abs_diff\\\\\\\": 6e-06\\\\n      },\\\\n      \\\\\\\"GDN_vs_RetNet_helped\\\\\\\": {\\\\n        \\\\\\\"analytical\\\\\\\": 0.044944,\\\\n        \\\\\\\"permutation_10k\\\\\\\": 0.044946,\\\\n        \\\\\\\"abs_diff\\\\\\\": 2e-06\\\\n      },\\\\n      \\\\\\\"GDN_vs_RetNet_hurt\\\\\\\": {\\\\n        \\\\\\\"analytical\\\\\\\": 0.056215,\\\\n        \\\\\\\"permutation_10k\\\\\\\": 0.056292,\\\\n        \\\\\\\"abs_diff\\\\\\\": 7.7e-05\\\\n      },\\\\n      \\\\\\\"HGRN2_vs_RetNet_helped\\\\\\\": {\\\\n        \\\\\\\"analytical\\\\\\\": 0.048782,\\\\n        \\\\\\\"permutation_10k\\\\\\\": 0.048826,\\\\n        \\\\\\\"abs_diff\\\\\\\": 4.4e-05\\\\n      },\\\\n      \\\\\\\"HGRN2_vs_RetNet_hurt\\\\\\\": {\\\\n        \\\\\\\"analytical\\\\\\\": 0.044532,\\\\n        \\\\\\\"permutation_10k\\\\\\\": 0.044571,\\\\n        \\\\\\\"abs_diff\\\\\\\": 3.9e-05\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"N\\\\\\\": 5153,\\\\n  \\\\\\\"per_ratio\\\\\\\": {\\\\n    \\\\\\\"h24-1\\\\\\\": {\\\\n      \\\\\\\"attention_ratio\\\\\\\": 0.04,\\\\n      \\\\\\\"pairs\\\\\\\": {\\\\n        \\\\\\\"GDN_HGRN2\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 485,\\\\n            \\\\\\\"n_B\\\\\\\": 479,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.100457,\\\\n            \\\\\\\"J_max\\\\\\\": 0.987629,\\\\n            \\\\\\\"J_null\\\\\\\": 0.049062,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.054759,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 10.2\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 501,\\\\n            \\\\\\\"n_B\\\\\\\": 396,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.071685,\\\\n            \\\\\\\"J_max\\\\\\\": 0.790419,\\\\n            \\\\\\\"J_null\\\\\\\": 0.044847,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.035996,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 9.1\\\\n          }\\\\n        },\\\\n        \\\\\\\"GDN_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 485,\\\\n            \\\\\\\"n_B\\\\\\\": 448,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.089953,\\\\n            \\\\\\\"J_max\\\\\\\": 0.923711,\\\\n            \\\\\\\"J_null\\\\\\\": 0.047333,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.048632,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 9.7\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 501,\\\\n            \\\\\\\"n_B\\\\\\\": 455,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.095074,\\\\n            \\\\\\\"J_max\\\\\\\": 0.908184,\\\\n            \\\\\\\"J_null\\\\\\\": 0.048518,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.054156,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 10.5\\\\n          }\\\\n        },\\\\n        \\\\\\\"HGRN2_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 479,\\\\n            \\\\\\\"n_B\\\\\\\": 448,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.09316,\\\\n            \\\\\\\"J_max\\\\\\\": 0.935282,\\\\n            \\\\\\\"J_null\\\\\\\": 0.047037,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.051927,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 10.0\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 396,\\\\n            \\\\\\\"n_B\\\\\\\": 455,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.095238,\\\\n            \\\\\\\"J_max\\\\\\\": 0.87033,\\\\n            \\\\\\\"J_null\\\\\\\": 0.042849,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.063312,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 10.9\\\\n          }\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"h12-1\\\\\\\": {\\\\n      \\\\\\\"attention_ratio\\\\\\\": 0.07692307692307693,\\\\n      \\\\\\\"pairs\\\\\\\": {\\\\n        \\\\\\\"GDN_HGRN2\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 464,\\\\n            \\\\\\\"n_B\\\\\\\": 512,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.097863,\\\\n            \\\\\\\"J_max\\\\\\\": 0.90625,\\\\n            \\\\\\\"J_null\\\\\\\": 0.049578,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.056363,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 10.8\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 512,\\\\n            \\\\\\\"n_B\\\\\\\": 415,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.070439,\\\\n            \\\\\\\"J_max\\\\\\\": 0.810547,\\\\n            \\\\\\\"J_null\\\\\\\": 0.046552,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.031266,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 8.7\\\\n          }\\\\n        },\\\\n        \\\\\\\"GDN_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 464,\\\\n            \\\\\\\"n_B\\\\\\\": 427,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.086585,\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 8772 字符] ...\\\\n\\\\n_A\\\\\\\": 426,\\\\n      \\\\\\\"n_B\\\\\\\": 399,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0913,\\\\n      \\\\\\\"J_max\\\\\\\": 0.9366,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0416,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0554\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h6-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.14285714285714285,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 598,\\\\n      \\\\\\\"n_B\\\\\\\": 499,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.116,\\\\n      \\\\\\\"J_max\\\\\\\": 0.8344,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0557,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0774\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h6-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.14285714285714285,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 524,\\\\n      \\\\\\\"n_B\\\\\\\": 399,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0859,\\\\n      \\\\\\\"J_max\\\\\\\": 0.7615,\\\\n      \\\\\\\"J_null\\\\\\\": 0.046,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0558\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h6-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.14285714285714285,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 397,\\\\n      \\\\\\\"n_B\\\\\\\": 499,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0954,\\\\n      \\\\\\\"J_max\\\\\\\": 0.7956,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0448,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0673\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 462,\\\\n      \\\\\\\"n_B\\\\\\\": 548,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.1002,\\\\n      \\\\\\\"J_max\\\\\\\": 0.8431,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0511,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0621\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 615,\\\\n      \\\\\\\"n_B\\\\\\\": 395,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0884,\\\\n      \\\\\\\"J_max\\\\\\\": 0.6423,\\\\n      \\\\\\\"J_null\\\\\\\": 0.049,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0664\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 462,\\\\n      \\\\\\\"n_B\\\\\\\": 426,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0923,\\\\n      \\\\\\\"J_max\\\\\\\": 0.9221,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0449,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0539\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 615,\\\\n      \\\\\\\"n_B\\\\\\\": 495,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.1034,\\\\n      \\\\\\\"J_max\\\\\\\": 0.8049,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0563,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0629\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 548,\\\\n      \\\\\\\"n_B\\\\\\\": 426,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.1081,\\\\n      \\\\\\\"J_max\\\\\\\": 0.7774,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0488,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0813\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 395,\\\\n      \\\\\\\"n_B\\\\\\\": 495,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0867,\\\\n      \\\\\\\"J_max\\\\\\\": 0.798,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0446,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0559\\\\n    }\\\\n  ],\\\\n  \\\\\\\"mean_normalized_ES_by_ratio\\\\\\\": {\\\\n    \\\\\\\"h24-1_helped\\\\\\\": 0.0518,\\\\n    \\\\\\\"h24-1_hurt\\\\\\\": 0.0512,\\\\n    \\\\\\\"h12-1_helped\\\\\\\": 0.0573,\\\\n    \\\\\\\"h12-1_hurt\\\\\\\": 0.0406,\\\\n    \\\\\\\"h6-1_helped\\\\\\\": 0.0596,\\\\n    \\\\\\\"h6-1_hurt\\\\\\\": 0.068,\\\\n    \\\\\\\"h3-1_helped\\\\\\\": 0.0658,\\\\n    \\\\\\\"h3-1_hurt\\\\\\\": 0.0617\\\\n  },\\\\n  \\\\\\\"saturation_analysis\\\\\\\": {\\\\n    \\\\\\\"helped\\\\\\\": {\\\\n      \\\\\\\"trend\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"h24-1\\\\\\\",\\\\n          0.0518\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h12-1\\\\\\\",\\\\n          0.0573\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h6-1\\\\\\\",\\\\n          0.0596\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h3-1\\\\\\\",\\\\n          0.0658\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"cv\\\\\\\": 0.0856,\\\\n      \\\\\\\"mean\\\\\\\": 0.0586\\\\n    },\\\\n    \\\\\\\"hurt\\\\\\\": {\\\\n      \\\\\\\"trend\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"h24-1\\\\\\\",\\\\n          0.0512\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h12-1\\\\\\\",\\\\n          0.0406\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h6-1\\\\\\\",\\\\n          0.068\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h3-1\\\\\\\",\\\\n          0.0617\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"cv\\\\\\\": 0.1883,\\\\n      \\\\\\\"mean\\\\\\\": 0.0554\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_stats\\\\\\\": {\\\\n    \\\\\\\"mean_norm_ES_helped\\\\\\\": 0.0586,\\\\n    \\\\\\\"mean_norm_ES_hurt\\\\\\\": 0.0554,\\\\n    \\\\\\\"std_norm_ES_helped\\\\\\\": 0.0092,\\\\n    \\\\\\\"std_norm_ES_hurt\\\\\\\": 0.0131,\\\\n    \\\\\\\"range_norm_ES_helped\\\\\\\": [\\\\n      0.0474,\\\\n      0.0813\\\\n    ],\\\\n    \\\\\\\"range_norm_ES_hurt\\\\\\\": [\\\\n      0.0313,\\\\n      0.0774\\\\n    ],\\\\n    \\\\\\\"mean_J_obs_over_J_max_pct\\\\\\\": 11.1,\\\\n    \\\\\\\"range_J_obs_over_J_max_pct\\\\\\\": [\\\\n      8.7,\\\\n      13.9\\\\n    ]\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"Normalized ES: helped [0.05, 0.08], hurt [0.03, 0.08]. Mean J_obs/J_max = 11.1%. Low absolute Jaccard reflects geometric ceiling from set-size asymmetry, not absence of signal. Normalized ES consistently exceeds chance across all ratios, confirming architecture-specific responses.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"jaccard_upper_bound\\\",\\n  \\\"date\\\": \\\"2026-05-20\\\",\\n  \\\"method\\\": {\\n    \\\"J_max\\\": \\\"min(|A|,|B|)/max(|A|,|B|) \\\\u2014 theoretical max when smaller set is subset of larger\\\",\\n    \\\"J_null\\\": \\\"analytical E[J] under random placement, validated against 10k permutation test (h3-1)\\\",\\n    \\\"normalized_ES\\\": \\\"(J_obs - J_null) / (J_max - J_null)\\\",\\n    \\\"J_null_permutation_validation\\\": {\\n      \\\"GDN_vs_HGRN2_helped\\\": {\\n        \\\"analytical\\\": 0.051133,\\n        \\\"permutation_10k\\\": 0.051056,\\n        \\\"abs_diff\\\": 7.7e-05\\n      },\\n      \\\"GDN_vs_HGRN2_hurt\\\": {\\n        \\\"analytical\\\": 0.048961,\\n        \\\"permutation_10k\\\": 0.048967,\\n        \\\"abs_diff\\\": 6e-06\\n      },\\n      \\\"GDN_vs_RetNet_helped\\\": {\\n        \\\"analytical\\\": 0.044944,\\n        \\\"permutation_10k\\\": 0.044946,\\n        \\\"abs_diff\\\": 2e-06\\n      },\\n      \\\"GDN_vs_RetNet_hurt\\\": {\\n        \\\"analytical\\\": 0.056215,\\n        \\\"permutation_10k\\\": 0.056292,\\n        \\\"abs_diff\\\": 7.7e-05\\n      },\\n      \\\"HGRN2_vs_RetNet_helped\\\": {\\n        \\\"analytical\\\": 0.048782,\\n        \\\"permutation_10k\\\": 0.048826,\\n        \\\"abs_diff\\\": 4.4e-05\\n      },\\n      \\\"HGRN2_vs_RetNet_hurt\\\": {\\n        \\\"analytical\\\": 0.044532,\\n        \\\"permutation_10k\\\": 0.044571,\\n        \\\"abs_diff\\\": 3.9e-05\\n      }\\n    }\\n  },\\n  \\\"N\\\": 5153,\\n  \\\"per_ratio\\\": {\\n    \\\"h24-1\\\": {\\n      \\\"attention_ratio\\\": 0.04,\\n      \\\"pairs\\\": {\\n        \\\"GDN_HGRN2\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 485,\\n            \\\"n_B\\\": 479,\\n            \\\"J_obs\\\": 0.100457,\\n            \\\"J_max\\\": 0.987629,\\n            \\\"J_null\\\": 0.049062,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.054759,\\n            \\\"J_obs_over_J_max_pct\\\": 10.2\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 501,\\n            \\\"n_B\\\": 396,\\n            \\\"J_obs\\\": 0.071685,\\n            \\\"J_max\\\": 0.790419,\\n            \\\"J_null\\\": 0.044847,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.035996,\\n            \\\"J_obs_over_J_max_pct\\\": 9.1\\n          }\\n        },\\n        \\\"GDN_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 485,\\n            \\\"n_B\\\": 448,\\n            \\\"J_obs\\\": 0.089953,\\n            \\\"J_max\\\": 0.923711,\\n            \\\"J_null\\\": 0.047333,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.048632,\\n            \\\"J_obs_over_J_max_pct\\\": 9.7\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 501,\\n            \\\"n_B\\\": 455,\\n            \\\"J_obs\\\": 0.095074,\\n            \\\"J_max\\\": 0.908184,\\n            \\\"J_null\\\": 0.048518,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.054156,\\n            \\\"J_obs_over_J_max_pct\\\": 10.5\\n          }\\n        },\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 479,\\n            \\\"n_B\\\": 448,\\n            \\\"J_obs\\\": 0.09316,\\n            \\\"J_max\\\": 0.935282,\\n            \\\"J_null\\\": 0.047037,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.051927,\\n            \\\"J_obs_over_J_max_pct\\\": 10.0\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 396,\\n            \\\"n_B\\\": 455,\\n            \\\"J_obs\\\": 0.095238,\\n            \\\"J_max\\\": 0.87033,\\n            \\\"J_null\\\": 0.042849,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.063312,\\n            \\\"J_obs_over_J_max_pct\\\": 10.9\\n          }\\n        }\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"attention_ratio\\\": 0.07692307692307693,\\n      \\\"pairs\\\": {\\n        \\\"GDN_HGRN2\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 464,\\n            \\\"n_B\\\": 512,\\n            \\\"J_obs\\\": 0.097863,\\n            \\\"J_max\\\": 0.90625,\\n            \\\"J_null\\\": 0.049578,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.056363,\\n            \\\"J_obs_over_J_max_pct\\\": 10.8\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 512,\\n            \\\"n_B\\\": 415,\\n            \\\"J_obs\\\": 0.070439,\\n            \\\"J_max\\\": 0.810547,\\n            \\\"J_null\\\": 0.046552,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.031266,\\n            \\\"J_obs_over_J_max_pct\\\": 8.7\\n          }\\n        },\\n        \\\"GDN_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 464,\\n            \\\"n_B\\\": 427,\\n            \\\"J_obs\\\": 0.086585,\\n     \\n\\n... [截断: 输出过长，省略 8772 字符] ...\\n\\n_A\\\": 426,\\n      \\\"n_B\\\": 399,\\n      \\\"J_obs\\\": 0.0913,\\n      \\\"J_max\\\": 0.9366,\\n      \\\"J_null\\\": 0.0416,\\n      \\\"norm_ES\\\": 0.0554\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 598,\\n      \\\"n_B\\\": 499,\\n      \\\"J_obs\\\": 0.116,\\n      \\\"J_max\\\": 0.8344,\\n      \\\"J_null\\\": 0.0557,\\n      \\\"norm_ES\\\": 0.0774\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 524,\\n      \\\"n_B\\\": 399,\\n      \\\"J_obs\\\": 0.0859,\\n      \\\"J_max\\\": 0.7615,\\n      \\\"J_null\\\": 0.046,\\n      \\\"norm_ES\\\": 0.0558\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 397,\\n      \\\"n_B\\\": 499,\\n      \\\"J_obs\\\": 0.0954,\\n      \\\"J_max\\\": 0.7956,\\n      \\\"J_null\\\": 0.0448,\\n      \\\"norm_ES\\\": 0.0673\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 462,\\n      \\\"n_B\\\": 548,\\n      \\\"J_obs\\\": 0.1002,\\n      \\\"J_max\\\": 0.8431,\\n      \\\"J_null\\\": 0.0511,\\n      \\\"norm_ES\\\": 0.0621\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 615,\\n      \\\"n_B\\\": 395,\\n      \\\"J_obs\\\": 0.0884,\\n      \\\"J_max\\\": 0.6423,\\n      \\\"J_null\\\": 0.049,\\n      \\\"norm_ES\\\": 0.0664\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 462,\\n      \\\"n_B\\\": 426,\\n      \\\"J_obs\\\": 0.0923,\\n      \\\"J_max\\\": 0.9221,\\n      \\\"J_null\\\": 0.0449,\\n      \\\"norm_ES\\\": 0.0539\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 615,\\n      \\\"n_B\\\": 495,\\n      \\\"J_obs\\\": 0.1034,\\n      \\\"J_max\\\": 0.8049,\\n      \\\"J_null\\\": 0.0563,\\n      \\\"norm_ES\\\": 0.0629\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 548,\\n      \\\"n_B\\\": 426,\\n      \\\"J_obs\\\": 0.1081,\\n      \\\"J_max\\\": 0.7774,\\n      \\\"J_null\\\": 0.0488,\\n      \\\"norm_ES\\\": 0.0813\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 395,\\n      \\\"n_B\\\": 495,\\n      \\\"J_obs\\\": 0.0867,\\n      \\\"J_max\\\": 0.798,\\n      \\\"J_null\\\": 0.0446,\\n      \\\"norm_ES\\\": 0.0559\\n    }\\n  ],\\n  \\\"mean_normalized_ES_by_ratio\\\": {\\n    \\\"h24-1_helped\\\": 0.0518,\\n    \\\"h24-1_hurt\\\": 0.0512,\\n    \\\"h12-1_helped\\\": 0.0573,\\n    \\\"h12-1_hurt\\\": 0.0406,\\n    \\\"h6-1_helped\\\": 0.0596,\\n    \\\"h6-1_hurt\\\": 0.068,\\n    \\\"h3-1_helped\\\": 0.0658,\\n    \\\"h3-1_hurt\\\": 0.0617\\n  },\\n  \\\"saturation_analysis\\\": {\\n    \\\"helped\\\": {\\n      \\\"trend\\\": [\\n        [\\n          \\\"h24-1\\\",\\n          0.0518\\n        ],\\n        [\\n          \\\"h12-1\\\",\\n          0.0573\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.0596\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0658\\n        ]\\n      ],\\n      \\\"cv\\\": 0.0856,\\n      \\\"mean\\\": 0.0586\\n    },\\n    \\\"hurt\\\": {\\n      \\\"trend\\\": [\\n        [\\n          \\\"h24-1\\\",\\n          0.0512\\n        ],\\n        [\\n          \\\"h12-1\\\",\\n          0.0406\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.068\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0617\\n        ]\\n      ],\\n      \\\"cv\\\": 0.1883,\\n      \\\"mean\\\": 0.0554\\n    }\\n  },\\n  \\\"overall_stats\\\": {\\n    \\\"mean_norm_ES_helped\\\": 0.0586,\\n    \\\"mean_norm_ES_hurt\\\": 0.0554,\\n    \\\"std_norm_ES_helped\\\": 0.0092,\\n    \\\"std_norm_ES_hurt\\\": 0.0131,\\n    \\\"range_norm_ES_helped\\\": [\\n      0.0474,\\n      0.0813\\n    ],\\n    \\\"range_norm_ES_hurt\\\": [\\n      0.0313,\\n      0.0774\\n    ],\\n    \\\"mean_J_obs_over_J_max_pct\\\": 11.1,\\n    \\\"range_J_obs_over_J_max_pct\\\": [\\n      8.7,\\n      13.9\\n    ]\\n  },\\n  \\\"conclusion\\\": \\\"Normalized ES: helped [0.05, 0.08], hurt [0.03, 0.08]. Mean J_obs/J_max = 11.1%. Low absolute Jaccard reflects geometric ceiling from set-size asymmetry, not absence of signal. Normalized ES consistently exceeds chance across all ratios, confirming architecture-specific responses.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T19:43:39.176Z_
+
+<details><summary>↩ Tool result · `toolu_01T27qbK4sdCHFMNxaBRmJnP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"helped\\\": {\\n    \\\"GDN_vs_HGRN2\\\": {\\n      \\\"J_obs\\\": 0.100218,\\n      \\\"J_null_mean\\\": 0.051056,\\n      \\\"J_null_std\\\": 0.006911,\\n      \\\"z_score\\\": 7.11,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"GDN_vs_RetNet\\\": {\\n      \\\"J_obs\\\": 0.092251,\\n      \\\"J_null_mean\\\": 0.044946,\\n      \\\"J_null_std\\\": 0.007013,\\n      \\\"z_score\\\": 6.75,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"HGRN2_vs_RetNet\\\": {\\n      \\\"J_obs\\\": 0.108077,\\n      \\\"J_null_mean\\\": 0.048826,\\n      \\\"J_null_std\\\": 0.006882,\\n      \\\"z_score\\\": 8.61,\\n      \\\"p_value\\\": 0.0001\\n    }\\n  },\\n  \\\"hurt\\\": {\\n    \\\"GDN_vs_HGRN2\\\": {\\n      \\\"J_obs\\\": 0.088362,\\n      \\\"J_null_mean\\\": 0.048967,\\n      \\\"J_null_std\\\": 0.006666,\\n      \\\"z_score\\\": 5.91,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"GDN_vs_RetNet\\\": {\\n      \\\"J_obs\\\": 0.10338,\\n      \\\"J_null_mean\\\": 0.056292,\\n      \\\"J_null_std\\\": 0.006875,\\n      \\\"z_score\\\": 6.85,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"HGRN2_vs_RetNet\\\": {\\n      \\\"J_obs\\\": 0.086691,\\n      \\\"J_null_mean\\\": 0.044571,\\n      \\\"J_null_std\\\": 0.006965,\\n      \\\"z_score\\\": 6.05,\\n      \\\"p_value\\\": 0.0001\\n    }\\n  },\\n  \\\"overall_null_mean_helped\\\": 0.048276,\\n  \\\"overall_null_mean_hurt\\\": 0.049943,\\n  \\\"set_sizes\\\": {\\n    \\\"GDN\\\": {\\n      \\\"helped\\\": 462,\\n      \\\"hurt\\\": 615\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"helped\\\": 548,\\n      \\\"hurt\\\": 395\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"helped\\\": 426,\\n      \\\"hurt\\\": 495\\n    }\\n  },\\n  \\\"N\\\": 5153,\\n  \\\"n_permutations\\\": 10000,\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "43f5cebe-1c17-4d02-b571-3ca65a3fda79",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"helped\\\\\\\": {\\\\n    \\\\\\\"GDN_vs_HGRN2\\\\\\\": {\\\\n      \\\\\\\"J_obs\\\\\\\": 0.100218,\\\\n      \\\\\\\"J_null_mean\\\\\\\": 0.051056,\\\\n      \\\\\\\"J_null_std\\\\\\\": 0.006911,\\\\n      \\\\\\\"z_score\\\\\\\": 7.11,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0001\\\\n    },\\\\n    \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n      \\\\\\\"J_obs\\\\\\\": 0.092251,\\\\n      \\\\\\\"J_null_mean\\\\\\\": 0.044946,\\\\n      \\\\\\\"J_null_std\\\\\\\": 0.007013,\\\\n      \\\\\\\"z_score\\\\\\\": 6.75,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0001\\\\n    },\\\\n    \\\\\\\"HGRN2_vs_RetNet\\\\\\\": {\\\\n      \\\\\\\"J_obs\\\\\\\": 0.108077,\\\\n      \\\\\\\"J_null_mean\\\\\\\": 0.048826,\\\\n      \\\\\\\"J_null_std\\\\\\\": 0.006882,\\\\n      \\\\\\\"z_score\\\\\\\": 8.61,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0001\\\\n    }\\\\n  },\\\\n  \\\\\\\"hurt\\\\\\\": {\\\\n    \\\\\\\"GDN_vs_HGRN2\\\\\\\": {\\\\n      \\\\\\\"J_obs\\\\\\\": 0.088362,\\\\n      \\\\\\\"J_null_mean\\\\\\\": 0.048967,\\\\n      \\\\\\\"J_null_std\\\\\\\": 0.006666,\\\\n      \\\\\\\"z_score\\\\\\\": 5.91,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0001\\\\n    },\\\\n    \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n      \\\\\\\"J_obs\\\\\\\": 0.10338,\\\\n      \\\\\\\"J_null_mean\\\\\\\": 0.056292,\\\\n      \\\\\\\"J_null_std\\\\\\\": 0.006875,\\\\n      \\\\\\\"z_score\\\\\\\": 6.85,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0001\\\\n    },\\\\n    \\\\\\\"HGRN2_vs_RetNet\\\\\\\": {\\\\n      \\\\\\\"J_obs\\\\\\\": 0.086691,\\\\n      \\\\\\\"J_null_mean\\\\\\\": 0.044571,\\\\n      \\\\\\\"J_null_std\\\\\\\": 0.006965,\\\\n      \\\\\\\"z_score\\\\\\\": 6.05,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0001\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_null_mean_helped\\\\\\\": 0.048276,\\\\n  \\\\\\\"overall_null_mean_hurt\\\\\\\": 0.049943,\\\\n  \\\\\\\"set_sizes\\\\\\\": {\\\\n    \\\\\\\"GDN\\\\\\\": {\\\\n      \\\\\\\"helped\\\\\\\": 462,\\\\n      \\\\\\\"hurt\\\\\\\": 615\\\\n    },\\\\n    \\\\\\\"HGRN2\\\\\\\": {\\\\n      \\\\\\\"helped\\\\\\\": 548,\\\\n      \\\\\\\"hurt\\\\\\\": 395\\\\n    },\\\\n    \\\\\\\"RetNet\\\\\\\": {\\\\n      \\\\\\\"helped\\\\\\\": 426,\\\\n      \\\\\\\"hurt\\\\\\\": 495\\\\n    }\\\\n  },\\\\n  \\\\\\\"N\\\\\\\": 5153,\\\\n  \\\\\\\"n_permutations\\\\\\\": 10000,\\\\n  \\\\\\\"seed\\\\\\\": 42\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"helped\\\": {\\n    \\\"GDN_vs_HGRN2\\\": {\\n      \\\"J_obs\\\": 0.100218,\\n      \\\"J_null_mean\\\": 0.051056,\\n      \\\"J_null_std\\\": 0.006911,\\n      \\\"z_score\\\": 7.11,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"GDN_vs_RetNet\\\": {\\n      \\\"J_obs\\\": 0.092251,\\n      \\\"J_null_mean\\\": 0.044946,\\n      \\\"J_null_std\\\": 0.007013,\\n      \\\"z_score\\\": 6.75,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"HGRN2_vs_RetNet\\\": {\\n      \\\"J_obs\\\": 0.108077,\\n      \\\"J_null_mean\\\": 0.048826,\\n      \\\"J_null_std\\\": 0.006882,\\n      \\\"z_score\\\": 8.61,\\n      \\\"p_value\\\": 0.0001\\n    }\\n  },\\n  \\\"hurt\\\": {\\n    \\\"GDN_vs_HGRN2\\\": {\\n      \\\"J_obs\\\": 0.088362,\\n      \\\"J_null_mean\\\": 0.048967,\\n      \\\"J_null_std\\\": 0.006666,\\n      \\\"z_score\\\": 5.91,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"GDN_vs_RetNet\\\": {\\n      \\\"J_obs\\\": 0.10338,\\n      \\\"J_null_mean\\\": 0.056292,\\n      \\\"J_null_std\\\": 0.006875,\\n      \\\"z_score\\\": 6.85,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"HGRN2_vs_RetNet\\\": {\\n      \\\"J_obs\\\": 0.086691,\\n      \\\"J_null_mean\\\": 0.044571,\\n      \\\"J_null_std\\\": 0.006965,\\n      \\\"z_score\\\": 6.05,\\n      \\\"p_value\\\": 0.0001\\n    }\\n  },\\n  \\\"overall_null_mean_helped\\\": 0.048276,\\n  \\\"overall_null_mean_hurt\\\": 0.049943,\\n  \\\"set_sizes\\\": {\\n    \\\"GDN\\\": {\\n      \\\"helped\\\": 462,\\n      \\\"hurt\\\": 615\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"helped\\\": 548,\\n      \\\"hurt\\\": 395\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"helped\\\": 426,\\n      \\\"hurt\\\": 495\\n    }\\n  },\\n  \\\"N\\\": 5153,\\n  \\\"n_permutations\\\": 10000,\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the data. Let me read the full appendix.tex table section to get the exact current values in the paper. I also need to extract the h12-1 data and h3-1 data from the JSON.
+
+From the grep output, the paper's Tab 7 (tab:normalized_es) is at lines 219-241. Let me read those lines exactly.
+
+From the JSON data, I can see the structure. The `per_ratio` section has h24-1, h12-1, h6-1, h3-1 data. But the output was truncated. Let me also look at the `flat_table` section at the end which had h3-1 data.
+
+
+Now I'm pulling the exact table values from the paper and cross-referencing them with the h12-1 and h3-1 entries from the JSON to see what needs updating. I'm seeing the rest of the h3-1 metrics for the remaining pairwise comparisons, then realizing I need to pull the h12-1 data from the per_ratio section since it got cut off earlier.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "6698e1bd-d1bd-4d69-a163-3c77d8a8426f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sNCnV5VN5TDDh5YXCzaMu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9159,
+      "cache_read_input_tokens": 30536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9159
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+需要读取完整的 Tab 7 和 h12-1 的数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "903e655c-8d3c-420b-a6dd-13dfbb81990d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sNCnV5VN5TDDh5YXCzaMu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9159,
+      "cache_read_input_tokens": 30536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9159
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NkZmUFgfd5ZmZyQEdUSEoW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+  "offset": 219,
+  "limit": 25
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "8d1112d2-cc4d-4ab6-8e06-6f353246378e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sNCnV5VN5TDDh5YXCzaMu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9159,
+      "cache_read_input_tokens": 30536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9159
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T19:44:00.330Z_
+
+<details><summary>↩ Tool result · `toolu_01NkZmUFgfd5ZmZyQEdUSEoW`</summary>
+
+```text
+219	\begin{table}[ht]
+220	\centering
+221	\small
+222	\caption{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\max}$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}
+223	\label{tab:normalized_es}
+224	\resizebox{\columnwidth}{!}{%
+225	\begin{tabular}{llcccc}
+226	\toprule
+227	Category & Pair & $J_{\text{obs}}$ & $J_{\max}$ & $J_{\text{null}}$ & Norm.\ ES \\
+228	\midrule
+229	Helped & GDN--RetNet & .086 & .922 & .048 & .044 \\
+230	 & GDN--HGRN2 & .099 & .843 & .050 & .062 \\
+231	 & RetNet--HGRN2 & .108 & .777 & .042 & .090 \\
+232	 & \textit{Mean} & \textit{.098} & \textit{.847} & \textit{.047} & \textit{.065} \\
+233	\midrule
+234	Hurt & GDN--RetNet & .092 & .805 & .056 & .048 \\
+235	 & GDN--HGRN2 & .070 & .642 & .043 & .045 \\
+236	 & RetNet--HGRN2 & .087 & .798 & .050 & .049 \\
+237	 & \textit{Mean} & \textit{.083} & \textit{.748} & \textit{.050} & \textit{.047} \\
+238	\bottomrule
+239	\end{tabular}%
+240	}
+241	\end{table}
+242	
+243	All normalized effect sizes fall below 0.10, confirming that observed overlap reaches only 6--7\% of the theoretical maximum. The low Jaccard values cannot be attributed to set-size constraints.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "1161ce2a-d4b0-4f1c-b22f-311ae86eff85",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+      "content": "\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\\max}$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}\n\\label{tab:normalized_es}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\nCategory & Pair & $J_{\\text{obs}}$ & $J_{\\max}$ & $J_{\\text{null}}$ & Norm.\\ ES \\\\\n\\midrule\nHelped & GDN--RetNet & .086 & .922 & .048 & .044 \\\\\n & GDN--HGRN2 & .099 & .843 & .050 & .062 \\\\\n & RetNet--HGRN2 & .108 & .777 & .042 & .090 \\\\\n & \\textit{Mean} & \\textit{.098} & \\textit{.847} & \\textit{.047} & \\textit{.065} \\\\\n\\midrule\nHurt & GDN--RetNet & .092 & .805 & .056 & .048 \\\\\n & GDN--HGRN2 & .070 & .642 & .043 & .045 \\\\\n & RetNet--HGRN2 & .087 & .798 & .050 & .049 \\\\\n & \\textit{Mean} & \\textit{.083} & \\textit{.748} & \\textit{.050} & \\textit{.047} \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAll normalized effect sizes fall below 0.10, confirming that observed overlap reaches only 6--7\\% of the theoretical maximum. The low Jaccard values cannot be attributed to set-size constraints.",
+      "numLines": 25,
+      "startLine": 219,
+      "totalLines": 790
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U97LgLEtptAgurUmn9mJxw`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "python3 -c \"\nimport json\nwith open('/root/entrainment_gated_ft/analysis/jaccard_upper_bound.json') as f:\n    d = json.load(f)\nh12 = d['per_ratio']['h12-1']['pairs']\nh3 = d['per_ratio']['h3-1']['pairs']\nprint('=== h12-1 ===')\nfor pair in ['GDN_RetNet','GDN_HGRN2','HGRN2_RetNet']:\n    for cat in ['helped','hurt']:\n        v = h12[pair][cat]\n        print(f'{pair} {cat}: J_obs={v[\\\"J_obs\\\"]:.6f} J_max={v[\\\"J_max\\\"]:.6f} J_null={v[\\\"J_null\\\"]:.6f} norm_ES={v[\\\"norm_ES\\\"]:.6f}')\nprint()\nprint('=== h3-1 ===')\nfor pair in ['GDN_RetNet','GDN_HGRN2','HGRN2_RetNet']:\n    for cat in ['helped','hurt']:\n        v = h3[pair][cat]\n        print(f'{pair} {cat}: J_obs={v[\\\"J_obs\\\"]:.6f} J_max={v[\\\"J_max\\\"]:.6f} J_null={v[\\\"J_null\\\"]:.6f} norm_ES={v[\\\"norm_ES\\\"]:.6f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "7c6b929f-1e07-435c-98fb-19e03095d8a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sNCnV5VN5TDDh5YXCzaMu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9159,
+      "cache_read_input_tokens": 30536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9159
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T19:44:05.109Z_
+
+<details><summary>↩ Tool result · `toolu_01U97LgLEtptAgurUmn9mJxw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "27cf5f8e-c483-46bc-9da3-26058d01f0c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Can't use python via ssh_read_only with file open. Let me use a different approach - grep or cat with filtering.
+
+Actually, I already have the h3-1 data from the flat_table in the JSON I already read. Let me also get the h12-1 data.
+
+From the JSON output I already received (truncated), I had the h12-1 data partially:
+- GDN_HGRN2 helped: J_obs=0.097863, J_max=0.90625, J_null=0.049578, norm_ES=0.056363
+
+
+- GDN_HGRN2 hurt: J_obs=0.070439, J_max=0.810547, J_null=0.046552, norm_ES=0.031266
+- GDN_RetNet helped: J_obs=0.086585 (then truncated)
+
+I need to retrieve the complete h12-1 dataset. Let me try using grep to extract the relevant section from the JSON file instead of trying to parse it with Python.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "4d26ca8e-5421-48da-b012-adfe6438bbd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gi1MBA71uQxNdVU6yeYiJu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2078,
+      "cache_read_input_tokens": 39695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2078
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NJ4rVVpF9UqetcXaQ4WHuf`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -A 50 '\"h12-1\"' /root/entrainment_gated_ft/analysis/jaccard_upper_bound.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "2f21be9b-5478-4263-b262-d4792a03d0ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gi1MBA71uQxNdVU6yeYiJu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2078,
+      "cache_read_input_tokens": 39695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2078
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T19:44:15.341Z_
+
+<details><summary>↩ Tool result · `toolu_01NJ4rVVpF9UqetcXaQ4WHuf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"h12-1\\\": {\\n      \\\"attention_ratio\\\": 0.07692307692307693,\\n      \\\"pairs\\\": {\\n        \\\"GDN_HGRN2\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 464,\\n            \\\"n_B\\\": 512,\\n            \\\"J_obs\\\": 0.097863,\\n            \\\"J_max\\\": 0.90625,\\n            \\\"J_null\\\": 0.049578,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.056363,\\n            \\\"J_obs_over_J_max_pct\\\": 10.8\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 512,\\n            \\\"n_B\\\": 415,\\n            \\\"J_obs\\\": 0.070439,\\n            \\\"J_max\\\": 0.810547,\\n            \\\"J_null\\\": 0.046552,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.031266,\\n            \\\"J_obs_over_J_max_pct\\\": 8.7\\n          }\\n        },\\n        \\\"GDN_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 464,\\n            \\\"n_B\\\": 427,\\n            \\\"J_obs\\\": 0.086585,\\n            \\\"J_max\\\": 0.920259,\\n            \\\"J_null\\\": 0.045099,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.047405,\\n            \\\"J_obs_over_J_max_pct\\\": 9.4\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 512,\\n            \\\"n_B\\\": 476,\\n            \\\"J_obs\\\": 0.086909,\\n            \\\"J_max\\\": 0.929688,\\n            \\\"J_null\\\": 0.050276,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.041656,\\n            \\\"J_obs_over_J_max_pct\\\": 9.3\\n          }\\n        },\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 512,\\n            \\\"n_B\\\": 427,\\n--\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 464,\\n      \\\"n_B\\\": 512,\\n      \\\"J_obs\\\": 0.0979,\\n      \\\"J_max\\\": 0.9062,\\n      \\\"J_null\\\": 0.0496,\\n      \\\"norm_ES\\\": 0.0564\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 512,\\n      \\\"n_B\\\": 415,\\n      \\\"J_obs\\\": 0.0704,\\n      \\\"J_max\\\": 0.8105,\\n      \\\"J_null\\\": 0.0466,\\n      \\\"norm_ES\\\": 0.0313\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 464,\\n      \\\"n_B\\\": 427,\\n      \\\"J_obs\\\": 0.0866,\\n      \\\"J_max\\\": 0.9203,\\n      \\\"J_null\\\": 0.0451,\\n      \\\"norm_ES\\\": 0.0474\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 512,\\n      \\\"n_B\\\": 476,\\n      \\\"J_obs\\\": 0.0869,\\n      \\\"J_max\\\": 0.9297,\\n      \\\"J_null\\\": 0.0503,\\n      \\\"norm_ES\\\": 0.0417\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 512,\\n      \\\"n_B\\\": 427,\\n      \\\"J_obs\\\": 0.1008,\\n      \\\"J_max\\\": 0.834,\\n      \\\"J_null\\\": 0.0473,\\n      \\\"norm_ES\\\": 0.068\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 415,\\n      \\\"n_B\\\": 476,\\n      \\\"J_obs\\\": 0.0853,\\n      \\\"J_max\\\": 0.8718,\\n      \\\"J_null\\\": 0.045,\\n      \\\"norm_ES\\\": 0.0487\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 426,\\n      \\\"n_B\\\": 524,\\n      \\\"J_obs\\\": 0.0995,\\n      \\\"J_max\\\": 0.813,\\n      \\\"J_null\\\": 0.0478,\\n      \\\"norm_ES\\\": 0.0676\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 598,\\n      \\\"n_B\\\": 397,\\n      \\\"J_obs\\\": 0.0851,\\n      \\\"J_max\\\": 0.6639,\\n      \\\"J_null\\\": 0.0486,\\n      \\\"norm_ES\\\": 0.0593\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 426,\\n      \\\"n_B\\\": 399,\\n      \\\"J_obs\\\": 0.0913,\\n      \\\"J_max\\\": 0.9366,\\n      \\\"J_null\\\": 0.0416,\\n      \\\"norm_ES\\\": 0.0554\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n--\\n          \\\"h12-1\\\",\\n          0.0573\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.0596\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0658\\n        ]\\n      ],\\n      \\\"cv\\\": 0.0856,\\n      \\\"mean\\\": 0.0586\\n    },\\n    \\\"hurt\\\": {\\n      \\\"trend\\\": [\\n        [\\n          \\\"h24-1\\\",\\n          0.0512\\n        ],\\n        [\\n          \\\"h12-1\\\",\\n          0.0406\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.068\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0617\\n        ]\\n      ],\\n      \\\"cv\\\": 0.1883,\\n      \\\"mean\\\": 0.0554\\n    }\\n  },\\n  \\\"overall_stats\\\": {\\n    \\\"mean_norm_ES_helped\\\": 0.0586,\\n    \\\"mean_norm_ES_hurt\\\": 0.0554,\\n    \\\"std_norm_ES_helped\\\": 0.0092,\\n    \\\"std_norm_ES_hurt\\\": 0.0131,\\n    \\\"range_norm_ES_helped\\\": [\\n      0.0474,\\n      0.0813\\n    ],\\n    \\\"range_norm_ES_hurt\\\": [\\n      0.0313,\\n      0.0774\\n    ],\\n    \\\"mean_J_obs_over_J_max_pct\\\": 11.1,\\n    \\\"range_J_obs_over_J_max_pct\\\": [\\n      8.7,\\n      13.9\\n    ]\\n  },\\n  \\\"conclusion\\\": \\\"Normalized ES: helped [0.05, 0.08], hurt [0.03, 0.08]. Mean J_obs/J_max = 11.1%. Low absolute Jaccard reflects geometric ceiling from set-size asymmetry, not absence of signal. Normalized ES consistently exceeds chance across all ratios, confirming architecture-specific responses.\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "09a45a6e-b0d9-47e6-b5b8-c6566080ea4c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"h12-1\\\\\\\": {\\\\n      \\\\\\\"attention_ratio\\\\\\\": 0.07692307692307693,\\\\n      \\\\\\\"pairs\\\\\\\": {\\\\n        \\\\\\\"GDN_HGRN2\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 464,\\\\n            \\\\\\\"n_B\\\\\\\": 512,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.097863,\\\\n            \\\\\\\"J_max\\\\\\\": 0.90625,\\\\n            \\\\\\\"J_null\\\\\\\": 0.049578,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.056363,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 10.8\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 512,\\\\n            \\\\\\\"n_B\\\\\\\": 415,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.070439,\\\\n            \\\\\\\"J_max\\\\\\\": 0.810547,\\\\n            \\\\\\\"J_null\\\\\\\": 0.046552,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.031266,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 8.7\\\\n          }\\\\n        },\\\\n        \\\\\\\"GDN_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 464,\\\\n            \\\\\\\"n_B\\\\\\\": 427,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.086585,\\\\n            \\\\\\\"J_max\\\\\\\": 0.920259,\\\\n            \\\\\\\"J_null\\\\\\\": 0.045099,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.047405,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 9.4\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 512,\\\\n            \\\\\\\"n_B\\\\\\\": 476,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.086909,\\\\n            \\\\\\\"J_max\\\\\\\": 0.929688,\\\\n            \\\\\\\"J_null\\\\\\\": 0.050276,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.041656,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 9.3\\\\n          }\\\\n        },\\\\n        \\\\\\\"HGRN2_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 512,\\\\n            \\\\\\\"n_B\\\\\\\": 427,\\\\n--\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h12-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.07692307692307693,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 464,\\\\n      \\\\\\\"n_B\\\\\\\": 512,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0979,\\\\n      \\\\\\\"J_max\\\\\\\": 0.9062,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0496,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0564\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h12-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.07692307692307693,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 512,\\\\n      \\\\\\\"n_B\\\\\\\": 415,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0704,\\\\n      \\\\\\\"J_max\\\\\\\": 0.8105,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0466,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0313\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h12-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.07692307692307693,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 464,\\\\n      \\\\\\\"n_B\\\\\\\": 427,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0866,\\\\n      \\\\\\\"J_max\\\\\\\": 0.9203,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0451,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0474\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h12-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.07692307692307693,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 512,\\\\n      \\\\\\\"n_B\\\\\\\": 476,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0869,\\\\n      \\\\\\\"J_max\\\\\\\": 0.9297,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0503,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0417\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h12-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.07692307692307693,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 512,\\\\n      \\\\\\\"n_B\\\\\\\": 427,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.1008,\\\\n      \\\\\\\"J_max\\\\\\\": 0.834,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0473,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.068\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h12-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.07692307692307693,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 415,\\\\n      \\\\\\\"n_B\\\\\\\": 476,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0853,\\\\n      \\\\\\\"J_max\\\\\\\": 0.8718,\\\\n      \\\\\\\"J_null\\\\\\\": 0.045,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0487\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h6-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.14285714285714285,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 426,\\\\n      \\\\\\\"n_B\\\\\\\": 524,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0995,\\\\n      \\\\\\\"J_max\\\\\\\": 0.813,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0478,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0676\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h6-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.14285714285714285,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 598,\\\\n      \\\\\\\"n_B\\\\\\\": 397,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0851,\\\\n      \\\\\\\"J_max\\\\\\\": 0.6639,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0486,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0593\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h6-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.14285714285714285,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 426,\\\\n      \\\\\\\"n_B\\\\\\\": 399,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0913,\\\\n      \\\\\\\"J_max\\\\\\\": 0.9366,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0416,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0554\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h6-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.14285714285714285,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_RetNet\\\\\\\",\\\\n--\\\\n          \\\\\\\"h12-1\\\\\\\",\\\\n          0.0573\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h6-1\\\\\\\",\\\\n          0.0596\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h3-1\\\\\\\",\\\\n          0.0658\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"cv\\\\\\\": 0.0856,\\\\n      \\\\\\\"mean\\\\\\\": 0.0586\\\\n    },\\\\n    \\\\\\\"hurt\\\\\\\": {\\\\n      \\\\\\\"trend\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"h24-1\\\\\\\",\\\\n          0.0512\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h12-1\\\\\\\",\\\\n          0.0406\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h6-1\\\\\\\",\\\\n          0.068\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h3-1\\\\\\\",\\\\n          0.0617\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"cv\\\\\\\": 0.1883,\\\\n      \\\\\\\"mean\\\\\\\": 0.0554\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_stats\\\\\\\": {\\\\n    \\\\\\\"mean_norm_ES_helped\\\\\\\": 0.0586,\\\\n    \\\\\\\"mean_norm_ES_hurt\\\\\\\": 0.0554,\\\\n    \\\\\\\"std_norm_ES_helped\\\\\\\": 0.0092,\\\\n    \\\\\\\"std_norm_ES_hurt\\\\\\\": 0.0131,\\\\n    \\\\\\\"range_norm_ES_helped\\\\\\\": [\\\\n      0.0474,\\\\n      0.0813\\\\n    ],\\\\n    \\\\\\\"range_norm_ES_hurt\\\\\\\": [\\\\n      0.0313,\\\\n      0.0774\\\\n    ],\\\\n    \\\\\\\"mean_J_obs_over_J_max_pct\\\\\\\": 11.1,\\\\n    \\\\\\\"range_J_obs_over_J_max_pct\\\\\\\": [\\\\n      8.7,\\\\n      13.9\\\\n    ]\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"Normalized ES: helped [0.05, 0.08], hurt [0.03, 0.08]. Mean J_obs/J_max = 11.1%. Low absolute Jaccard reflects geometric ceiling from set-size asymmetry, not absence of signal. Normalized ES consistently exceeds chance across all ratios, confirming architecture-specific responses.\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    \\\"h12-1\\\": {\\n      \\\"attention_ratio\\\": 0.07692307692307693,\\n      \\\"pairs\\\": {\\n        \\\"GDN_HGRN2\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 464,\\n            \\\"n_B\\\": 512,\\n            \\\"J_obs\\\": 0.097863,\\n            \\\"J_max\\\": 0.90625,\\n            \\\"J_null\\\": 0.049578,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.056363,\\n            \\\"J_obs_over_J_max_pct\\\": 10.8\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 512,\\n            \\\"n_B\\\": 415,\\n            \\\"J_obs\\\": 0.070439,\\n            \\\"J_max\\\": 0.810547,\\n            \\\"J_null\\\": 0.046552,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.031266,\\n            \\\"J_obs_over_J_max_pct\\\": 8.7\\n          }\\n        },\\n        \\\"GDN_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 464,\\n            \\\"n_B\\\": 427,\\n            \\\"J_obs\\\": 0.086585,\\n            \\\"J_max\\\": 0.920259,\\n            \\\"J_null\\\": 0.045099,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.047405,\\n            \\\"J_obs_over_J_max_pct\\\": 9.4\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 512,\\n            \\\"n_B\\\": 476,\\n            \\\"J_obs\\\": 0.086909,\\n            \\\"J_max\\\": 0.929688,\\n            \\\"J_null\\\": 0.050276,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.041656,\\n            \\\"J_obs_over_J_max_pct\\\": 9.3\\n          }\\n        },\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 512,\\n            \\\"n_B\\\": 427,\\n--\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 464,\\n      \\\"n_B\\\": 512,\\n      \\\"J_obs\\\": 0.0979,\\n      \\\"J_max\\\": 0.9062,\\n      \\\"J_null\\\": 0.0496,\\n      \\\"norm_ES\\\": 0.0564\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 512,\\n      \\\"n_B\\\": 415,\\n      \\\"J_obs\\\": 0.0704,\\n      \\\"J_max\\\": 0.8105,\\n      \\\"J_null\\\": 0.0466,\\n      \\\"norm_ES\\\": 0.0313\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 464,\\n      \\\"n_B\\\": 427,\\n      \\\"J_obs\\\": 0.0866,\\n      \\\"J_max\\\": 0.9203,\\n      \\\"J_null\\\": 0.0451,\\n      \\\"norm_ES\\\": 0.0474\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 512,\\n      \\\"n_B\\\": 476,\\n      \\\"J_obs\\\": 0.0869,\\n      \\\"J_max\\\": 0.9297,\\n      \\\"J_null\\\": 0.0503,\\n      \\\"norm_ES\\\": 0.0417\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 512,\\n      \\\"n_B\\\": 427,\\n      \\\"J_obs\\\": 0.1008,\\n      \\\"J_max\\\": 0.834,\\n      \\\"J_null\\\": 0.0473,\\n      \\\"norm_ES\\\": 0.068\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 415,\\n      \\\"n_B\\\": 476,\\n      \\\"J_obs\\\": 0.0853,\\n      \\\"J_max\\\": 0.8718,\\n      \\\"J_null\\\": 0.045,\\n      \\\"norm_ES\\\": 0.0487\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 426,\\n      \\\"n_B\\\": 524,\\n      \\\"J_obs\\\": 0.0995,\\n      \\\"J_max\\\": 0.813,\\n      \\\"J_null\\\": 0.0478,\\n      \\\"norm_ES\\\": 0.0676\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 598,\\n      \\\"n_B\\\": 397,\\n      \\\"J_obs\\\": 0.0851,\\n      \\\"J_max\\\": 0.6639,\\n      \\\"J_null\\\": 0.0486,\\n      \\\"norm_ES\\\": 0.0593\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 426,\\n      \\\"n_B\\\": 399,\\n      \\\"J_obs\\\": 0.0913,\\n      \\\"J_max\\\": 0.9366,\\n      \\\"J_null\\\": 0.0416,\\n      \\\"norm_ES\\\": 0.0554\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n--\\n          \\\"h12-1\\\",\\n          0.0573\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.0596\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0658\\n        ]\\n      ],\\n      \\\"cv\\\": 0.0856,\\n      \\\"mean\\\": 0.0586\\n    },\\n    \\\"hurt\\\": {\\n      \\\"trend\\\": [\\n        [\\n          \\\"h24-1\\\",\\n          0.0512\\n        ],\\n        [\\n          \\\"h12-1\\\",\\n          0.0406\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.068\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0617\\n        ]\\n      ],\\n      \\\"cv\\\": 0.1883,\\n      \\\"mean\\\": 0.0554\\n    }\\n  },\\n  \\\"overall_stats\\\": {\\n    \\\"mean_norm_ES_helped\\\": 0.0586,\\n    \\\"mean_norm_ES_hurt\\\": 0.0554,\\n    \\\"std_norm_ES_helped\\\": 0.0092,\\n    \\\"std_norm_ES_hurt\\\": 0.0131,\\n    \\\"range_norm_ES_helped\\\": [\\n      0.0474,\\n      0.0813\\n    ],\\n    \\\"range_norm_ES_hurt\\\": [\\n      0.0313,\\n      0.0774\\n    ],\\n    \\\"mean_J_obs_over_J_max_pct\\\": 11.1,\\n    \\\"range_J_obs_over_J_max_pct\\\": [\\n      8.7,\\n      13.9\\n    ]\\n  },\\n  \\\"conclusion\\\": \\\"Normalized ES: helped [0.05, 0.08], hurt [0.03, 0.08]. Mean J_obs/J_max = 11.1%. Low absolute Jaccard reflects geometric ceiling from set-size asymmetry, not absence of signal. Normalized ES consistently exceeds chance across all ratios, confirming architecture-specific responses.\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I also need the h12-1 HGRN2_RetNet data. I got it from the output:
+
+h12-1:
+- GDN_HGRN2 helped: J_obs=0.097863, J_max=0.906250, J_null=0.049578, norm_ES=0.056363
+- GDN_HGRN2 hurt: J_obs=0.070439, J_max=0.810547, J_null=0.046552, norm_ES=0.031266
+
+
+- GDN_RetNet helped: J_obs=0.086585, J_max=0.920259, J_null=0.045099, norm_ES=0.047405
+- GDN_RetNet hurt: J_obs=0.086909, J_max=0.929688, J_null=0.050276, norm_ES=0.041656
+
+I still need to find the HGRN2_RetNet metrics from the flat_table section in the grep output. Now I'm pulling the metrics for the h3-1 dataset, looking at how each model pair performed on helped versus hurt cases across the different metrics. Now I'm checking the h3-1 permutation results from the null_jaccard output to verify those specific values, and I can see the helped and hurt comparisons across all three model pairs. Let me pull up Table 7 from the paper to compare against the h12-1 and h3-1 data I'm working with. I need to pull the exact HGRN2_RetNet values from the flat_table for h12-1 since the grep output got cut off—I can see the helped case shows J_obs=0.1008, J_max=0.834, J_null=0.0473, norm_ES=0.068, and the hurt case starts with J_obs=0.0853, J_max=0.8718, but I need to find where that hurt case ends.
+
+Now I'm looking at the h3-1 metrics from the flat_table to compare across the different model pairs—GDN_RetNet, GDN_HGRN2, HGRN2_RetNet, and the hurt cases for each combination. I'm noticing the rounding discrepancies—h12-1's J_obs of 0.086585 would round to .087, not the paper's .086, suggesting the paper might be truncating rather than rounding. The J_null values also don't align perfectly, with h12-1 at 0.045099 versus the paper's .048, so there's still some uncertainty about which run matches the published results. to .048 but not exact. Let me reconsider the data more systematically—the J_null values shift depending on the ratio because the sample sizes change, so I need to compare the specific entries cell by cell rather than assuming they should all converge to the same value.
+
+Looking at the paper's results across different ratios, I can see the pattern now: for h12-1, GDN versus RetNet shows J_obs around .087 with J_null at .045, while GDN versus HGRN2 has J_obs near .098 with J_null at .050, and the h3-1 comparisons follow a similar structure with slightly different magnitudes. The h3-1 model matches the paper's results for both GDN--HGRN2 and RetNet--HGRN2, though there are some discrepancies in the J_null and norm_ES values for the latter. Now I'm checking the GDN--RetNet comparison, where the paper shows J_obs=.086 and J_max=.922, but the h3-1 values appear to diverge. The J_max and J_null values keep matching h3-1, but the J_obs values are inconsistent—sometimes matching h12-1 instead. For the GDN--HGRN2 comparison, J_max aligns with h3-1 while J_obs matches h12-1, suggesting the results are pulling from both runs rather than a single source.
+
+Generating markdown table... Continuing through the rest of the comparison metrics, I see several more model pairs where h3-1 matches perfectly on key measures like J_max and J_obs, while h12-1 shows mixed results. Now I'm looking at the cases where the models performed worse, starting with GDN and RetNet. Looking at the comparison metrics across these model pairs, I'm noticing that J_max values consistently align with h3-1, which makes sense given they're tied to set size ratios, but there are scattered mismatches elsewhere that suggest something more nuanced is happening with the other metrics.
+
+Let me trace through the actual numbers for h3-1 across the different model comparisons. When I calculate J_max from the helped and hurt counts—taking the minimum divided by the maximum—I get values that match the JSON and paper results. But when I work through J_null using the analytical formula based on set sizes, I'm getting slight discrepancies with what the paper reports, particularly a .045 versus .048 difference that I need to investigate further.
+
+Looking at the permutation test results from the JSON file, the J_null values still don't quite align with the paper's reported .048. I could chase down every rounding difference, but since the user is asking specifically about the h3-1 comparison, I should focus on pulling the precise values directly from the JSON data for that ratio and building the comparison table they need. I'm noticing the rounded values aren't precise enough for what I need, so I should pull the full precision data from the per_ratio table instead of relying on the truncated flat_table output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "565f3197-78a1-41a5-86e7-765838130d4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4edfacBnSPhCTs4Q2VUUX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3714,
+      "cache_read_input_tokens": 41773,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+需要 h3-1 per_ratio 精确数据和 h12-1 HGRN2_RetNet 完整数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "4639c078-6e91-4b3f-aa2e-6518b2dc7c59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4edfacBnSPhCTs4Q2VUUX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3714,
+      "cache_read_input_tokens": 41773,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YUVPAEy433N2t7ct1WKAYi`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -A 80 '\"h3-1\"' /root/entrainment_gated_ft/analysis/jaccard_upper_bound.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "49e09362-ddde-4b26-aa7a-9fe4ee5eea7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4edfacBnSPhCTs4Q2VUUX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3714,
+      "cache_read_input_tokens": 41773,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HZeUsHhMgHihtZqBFS5cTM`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -A 15 'HGRN2_RetNet' /root/entrainment_gated_ft/analysis/jaccard_upper_bound.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "1741288f-cbd6-4825-87c8-ecc42d51c44e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4edfacBnSPhCTs4Q2VUUX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3714,
+      "cache_read_input_tokens": 41773,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3714
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T19:45:50.401Z_
+
+<details><summary>↩ Tool result · `toolu_01YUVPAEy433N2t7ct1WKAYi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"h3-1\\\": {\\n      \\\"attention_ratio\\\": 0.25,\\n      \\\"pairs\\\": {\\n        \\\"GDN_HGRN2\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 462,\\n            \\\"n_B\\\": 548,\\n            \\\"J_obs\\\": 0.100218,\\n            \\\"J_max\\\": 0.843066,\\n            \\\"J_null\\\": 0.051056,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.062072,\\n            \\\"J_obs_over_J_max_pct\\\": 11.9\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 615,\\n            \\\"n_B\\\": 395,\\n            \\\"J_obs\\\": 0.088362,\\n            \\\"J_max\\\": 0.642276,\\n            \\\"J_null\\\": 0.048967,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.066399,\\n            \\\"J_obs_over_J_max_pct\\\": 13.8\\n          }\\n        },\\n        \\\"GDN_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 462,\\n            \\\"n_B\\\": 426,\\n            \\\"J_obs\\\": 0.092251,\\n            \\\"J_max\\\": 0.922078,\\n            \\\"J_null\\\": 0.044946,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.053931,\\n            \\\"J_obs_over_J_max_pct\\\": 10.0\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 615,\\n            \\\"n_B\\\": 495,\\n            \\\"J_obs\\\": 0.10338,\\n            \\\"J_max\\\": 0.804878,\\n            \\\"J_null\\\": 0.056292,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.062902,\\n            \\\"J_obs_over_J_max_pct\\\": 12.8\\n          }\\n        },\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 548,\\n            \\\"n_B\\\": 426,\\n            \\\"J_obs\\\": 0.108077,\\n            \\\"J_max\\\": 0.777372,\\n            \\\"J_null\\\": 0.048826,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.081328,\\n            \\\"J_obs_over_J_max_pct\\\": 13.9\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 395,\\n            \\\"n_B\\\": 495,\\n            \\\"J_obs\\\": 0.086691,\\n            \\\"J_max\\\": 0.79798,\\n            \\\"J_null\\\": 0.044571,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.055906,\\n            \\\"J_obs_over_J_max_pct\\\": 10.9\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"summary_table\\\": [\\n    {\\n      \\\"ratio\\\": \\\"h24-1\\\",\\n      \\\"attn_ratio\\\": 0.04,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 485,\\n      \\\"n_B\\\": 479,\\n      \\\"J_obs\\\": 0.1005,\\n--\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 462,\\n      \\\"n_B\\\": 548,\\n      \\\"J_obs\\\": 0.1002,\\n      \\\"J_max\\\": 0.8431,\\n      \\\"J_null\\\": 0.0511,\\n      \\\"norm_ES\\\": 0.0621\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 615,\\n      \\\"n_B\\\": 395,\\n      \\\"J_obs\\\": 0.0884,\\n      \\\"J_max\\\": 0.6423,\\n      \\\"J_null\\\": 0.049,\\n      \\\"norm_ES\\\": 0.0664\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 462,\\n      \\\"n_B\\\": 426,\\n      \\\"J_obs\\\": 0.0923,\\n      \\\"J_max\\\": 0.9221,\\n      \\\"J_null\\\": 0.0449,\\n      \\\"norm_ES\\\": 0.0539\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 615,\\n      \\\"n_B\\\": 495,\\n      \\\"J_obs\\\": 0.1034,\\n      \\\"J_max\\\": 0.8049,\\n      \\\"J_null\\\": 0.0563,\\n      \\\"norm_ES\\\": 0.0629\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 548,\\n      \\\"n_B\\\": 426,\\n      \\\"J_obs\\\": 0.1081,\\n      \\\"J_max\\\": 0.7774,\\n      \\\"J_null\\\": 0.0488,\\n      \\\"norm_ES\\\": 0.0813\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 395,\\n      \\\"n_B\\\": 495,\\n      \\\"J_obs\\\": 0.0867,\\n      \\\"J_max\\\": 0.798,\\n      \\\"J_null\\\": 0.0446,\\n      \\\"norm_ES\\\": 0.0559\\n    }\\n  ],\\n  \\\"mean_normalized_ES_by_ratio\\\": {\\n    \\\"h24-1_helped\\\": 0.0518,\\n    \\\"h24-1_hurt\\\": 0.0512,\\n    \\\"h12-1_helped\\\": 0.0573,\\n    \\\"h12-1_hurt\\\": 0.0406,\\n    \\\"h6-1_helped\\\": 0.0596,\\n    \\\"h6-1_hurt\\\": 0.068,\\n    \\\"h3-1_helped\\\": 0.0658,\\n    \\\"h3-1_hurt\\\": 0.0617\\n  },\\n  \\\"saturation_analysis\\\": {\\n    \\\"helped\\\": {\\n      \\\"trend\\\": [\\n        [\\n          \\\"h24-1\\\",\\n          0.0518\\n        ],\\n        [\\n          \\\"h12-1\\\",\\n          0.0573\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.0596\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0658\\n        ]\\n      ],\\n      \\\"cv\\\": 0.0856,\\n      \\\"mean\\\": 0.0586\\n    },\\n    \\\"hurt\\\": {\\n      \\\"trend\\\": [\\n        [\\n          \\\"h24-1\\\",\\n          0.0512\\n        ],\\n        [\\n          \\\"h12-1\\\",\\n          0.0406\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.068\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0617\\n        ]\\n      ],\\n      \\\"cv\\\": 0.1883,\\n      \\\"mean\\\": 0.0554\\n    }\\n  },\\n  \\\"overall_stats\\\": {\\n    \\\"mean_norm_ES_helped\\\": 0.0586,\\n    \\\"mean_norm_ES_hurt\\\": 0.0554,\\n    \\\"std_norm_ES_helped\\\": 0.0092,\\n    \\\"std_norm_ES_hurt\\\": 0.0131,\\n    \\\"range_norm_ES_helped\\\": [\\n      0.0474,\\n      0.0813\\n    ],\\n    \\\"range_norm_ES_hurt\\\": [\\n      0.0313,\\n      0.0774\\n    ],\\n    \\\"mean_J_obs_over_J_max_pct\\\": 11.1,\\n    \\\"range_J_obs_over_J_max_pct\\\": [\\n      8.7,\\n      13.9\\n    ]\\n  },\\n  \\\"conclusion\\\": \\\"Normalized ES: helped [0.05, 0.08], hurt [0.03, 0.08]. Mean J_obs/J_max = 11.1%. Low absolute Jaccard reflects geometric ceiling from set-size asymmetry, not absence of signal. Normalized ES consistently exceeds chance across all ratios, confirming architecture-specific responses.\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "252360b6-b2aa-42d4-a497-21a480df0180",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"h3-1\\\\\\\": {\\\\n      \\\\\\\"attention_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pairs\\\\\\\": {\\\\n        \\\\\\\"GDN_HGRN2\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 462,\\\\n            \\\\\\\"n_B\\\\\\\": 548,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.100218,\\\\n            \\\\\\\"J_max\\\\\\\": 0.843066,\\\\n            \\\\\\\"J_null\\\\\\\": 0.051056,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"permutation_10k\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.062072,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 11.9\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 615,\\\\n            \\\\\\\"n_B\\\\\\\": 395,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.088362,\\\\n            \\\\\\\"J_max\\\\\\\": 0.642276,\\\\n            \\\\\\\"J_null\\\\\\\": 0.048967,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"permutation_10k\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.066399,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 13.8\\\\n          }\\\\n        },\\\\n        \\\\\\\"GDN_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 462,\\\\n            \\\\\\\"n_B\\\\\\\": 426,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.092251,\\\\n            \\\\\\\"J_max\\\\\\\": 0.922078,\\\\n            \\\\\\\"J_null\\\\\\\": 0.044946,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"permutation_10k\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.053931,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 10.0\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 615,\\\\n            \\\\\\\"n_B\\\\\\\": 495,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.10338,\\\\n            \\\\\\\"J_max\\\\\\\": 0.804878,\\\\n            \\\\\\\"J_null\\\\\\\": 0.056292,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"permutation_10k\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.062902,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 12.8\\\\n          }\\\\n        },\\\\n        \\\\\\\"HGRN2_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 548,\\\\n            \\\\\\\"n_B\\\\\\\": 426,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.108077,\\\\n            \\\\\\\"J_max\\\\\\\": 0.777372,\\\\n            \\\\\\\"J_null\\\\\\\": 0.048826,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"permutation_10k\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.081328,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 13.9\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 395,\\\\n            \\\\\\\"n_B\\\\\\\": 495,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.086691,\\\\n            \\\\\\\"J_max\\\\\\\": 0.79798,\\\\n            \\\\\\\"J_null\\\\\\\": 0.044571,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"permutation_10k\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.055906,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 10.9\\\\n          }\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary_table\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h24-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.04,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 485,\\\\n      \\\\\\\"n_B\\\\\\\": 479,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.1005,\\\\n--\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 462,\\\\n      \\\\\\\"n_B\\\\\\\": 548,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.1002,\\\\n      \\\\\\\"J_max\\\\\\\": 0.8431,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0511,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0621\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 615,\\\\n      \\\\\\\"n_B\\\\\\\": 395,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0884,\\\\n      \\\\\\\"J_max\\\\\\\": 0.6423,\\\\n      \\\\\\\"J_null\\\\\\\": 0.049,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0664\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 462,\\\\n      \\\\\\\"n_B\\\\\\\": 426,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0923,\\\\n      \\\\\\\"J_max\\\\\\\": 0.9221,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0449,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0539\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 615,\\\\n      \\\\\\\"n_B\\\\\\\": 495,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.1034,\\\\n      \\\\\\\"J_max\\\\\\\": 0.8049,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0563,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0629\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 548,\\\\n      \\\\\\\"n_B\\\\\\\": 426,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.1081,\\\\n      \\\\\\\"J_max\\\\\\\": 0.7774,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0488,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0813\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 395,\\\\n      \\\\\\\"n_B\\\\\\\": 495,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0867,\\\\n      \\\\\\\"J_max\\\\\\\": 0.798,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0446,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0559\\\\n    }\\\\n  ],\\\\n  \\\\\\\"mean_normalized_ES_by_ratio\\\\\\\": {\\\\n    \\\\\\\"h24-1_helped\\\\\\\": 0.0518,\\\\n    \\\\\\\"h24-1_hurt\\\\\\\": 0.0512,\\\\n    \\\\\\\"h12-1_helped\\\\\\\": 0.0573,\\\\n    \\\\\\\"h12-1_hurt\\\\\\\": 0.0406,\\\\n    \\\\\\\"h6-1_helped\\\\\\\": 0.0596,\\\\n    \\\\\\\"h6-1_hurt\\\\\\\": 0.068,\\\\n    \\\\\\\"h3-1_helped\\\\\\\": 0.0658,\\\\n    \\\\\\\"h3-1_hurt\\\\\\\": 0.0617\\\\n  },\\\\n  \\\\\\\"saturation_analysis\\\\\\\": {\\\\n    \\\\\\\"helped\\\\\\\": {\\\\n      \\\\\\\"trend\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"h24-1\\\\\\\",\\\\n          0.0518\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h12-1\\\\\\\",\\\\n          0.0573\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h6-1\\\\\\\",\\\\n          0.0596\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h3-1\\\\\\\",\\\\n          0.0658\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"cv\\\\\\\": 0.0856,\\\\n      \\\\\\\"mean\\\\\\\": 0.0586\\\\n    },\\\\n    \\\\\\\"hurt\\\\\\\": {\\\\n      \\\\\\\"trend\\\\\\\": [\\\\n        [\\\\n          \\\\\\\"h24-1\\\\\\\",\\\\n          0.0512\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h12-1\\\\\\\",\\\\n          0.0406\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h6-1\\\\\\\",\\\\n          0.068\\\\n        ],\\\\n        [\\\\n          \\\\\\\"h3-1\\\\\\\",\\\\n          0.0617\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"cv\\\\\\\": 0.1883,\\\\n      \\\\\\\"mean\\\\\\\": 0.0554\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_stats\\\\\\\": {\\\\n    \\\\\\\"mean_norm_ES_helped\\\\\\\": 0.0586,\\\\n    \\\\\\\"mean_norm_ES_hurt\\\\\\\": 0.0554,\\\\n    \\\\\\\"std_norm_ES_helped\\\\\\\": 0.0092,\\\\n    \\\\\\\"std_norm_ES_hurt\\\\\\\": 0.0131,\\\\n    \\\\\\\"range_norm_ES_helped\\\\\\\": [\\\\n      0.0474,\\\\n      0.0813\\\\n    ],\\\\n    \\\\\\\"range_norm_ES_hurt\\\\\\\": [\\\\n      0.0313,\\\\n      0.0774\\\\n    ],\\\\n    \\\\\\\"mean_J_obs_over_J_max_pct\\\\\\\": 11.1,\\\\n    \\\\\\\"range_J_obs_over_J_max_pct\\\\\\\": [\\\\n      8.7,\\\\n      13.9\\\\n    ]\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"Normalized ES: helped [0.05, 0.08], hurt [0.03, 0.08]. Mean J_obs/J_max = 11.1%. Low absolute Jaccard reflects geometric ceiling from set-size asymmetry, not absence of signal. Normalized ES consistently exceeds chance across all ratios, confirming architecture-specific responses.\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    \\\"h3-1\\\": {\\n      \\\"attention_ratio\\\": 0.25,\\n      \\\"pairs\\\": {\\n        \\\"GDN_HGRN2\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 462,\\n            \\\"n_B\\\": 548,\\n            \\\"J_obs\\\": 0.100218,\\n            \\\"J_max\\\": 0.843066,\\n            \\\"J_null\\\": 0.051056,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.062072,\\n            \\\"J_obs_over_J_max_pct\\\": 11.9\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 615,\\n            \\\"n_B\\\": 395,\\n            \\\"J_obs\\\": 0.088362,\\n            \\\"J_max\\\": 0.642276,\\n            \\\"J_null\\\": 0.048967,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.066399,\\n            \\\"J_obs_over_J_max_pct\\\": 13.8\\n          }\\n        },\\n        \\\"GDN_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 462,\\n            \\\"n_B\\\": 426,\\n            \\\"J_obs\\\": 0.092251,\\n            \\\"J_max\\\": 0.922078,\\n            \\\"J_null\\\": 0.044946,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.053931,\\n            \\\"J_obs_over_J_max_pct\\\": 10.0\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 615,\\n            \\\"n_B\\\": 495,\\n            \\\"J_obs\\\": 0.10338,\\n            \\\"J_max\\\": 0.804878,\\n            \\\"J_null\\\": 0.056292,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.062902,\\n            \\\"J_obs_over_J_max_pct\\\": 12.8\\n          }\\n        },\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 548,\\n            \\\"n_B\\\": 426,\\n            \\\"J_obs\\\": 0.108077,\\n            \\\"J_max\\\": 0.777372,\\n            \\\"J_null\\\": 0.048826,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.081328,\\n            \\\"J_obs_over_J_max_pct\\\": 13.9\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 395,\\n            \\\"n_B\\\": 495,\\n            \\\"J_obs\\\": 0.086691,\\n            \\\"J_max\\\": 0.79798,\\n            \\\"J_null\\\": 0.044571,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.055906,\\n            \\\"J_obs_over_J_max_pct\\\": 10.9\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"summary_table\\\": [\\n    {\\n      \\\"ratio\\\": \\\"h24-1\\\",\\n      \\\"attn_ratio\\\": 0.04,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 485,\\n      \\\"n_B\\\": 479,\\n      \\\"J_obs\\\": 0.1005,\\n--\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 462,\\n      \\\"n_B\\\": 548,\\n      \\\"J_obs\\\": 0.1002,\\n      \\\"J_max\\\": 0.8431,\\n      \\\"J_null\\\": 0.0511,\\n      \\\"norm_ES\\\": 0.0621\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 615,\\n      \\\"n_B\\\": 395,\\n      \\\"J_obs\\\": 0.0884,\\n      \\\"J_max\\\": 0.6423,\\n      \\\"J_null\\\": 0.049,\\n      \\\"norm_ES\\\": 0.0664\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 462,\\n      \\\"n_B\\\": 426,\\n      \\\"J_obs\\\": 0.0923,\\n      \\\"J_max\\\": 0.9221,\\n      \\\"J_null\\\": 0.0449,\\n      \\\"norm_ES\\\": 0.0539\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 615,\\n      \\\"n_B\\\": 495,\\n      \\\"J_obs\\\": 0.1034,\\n      \\\"J_max\\\": 0.8049,\\n      \\\"J_null\\\": 0.0563,\\n      \\\"norm_ES\\\": 0.0629\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 548,\\n      \\\"n_B\\\": 426,\\n      \\\"J_obs\\\": 0.1081,\\n      \\\"J_max\\\": 0.7774,\\n      \\\"J_null\\\": 0.0488,\\n      \\\"norm_ES\\\": 0.0813\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 395,\\n      \\\"n_B\\\": 495,\\n      \\\"J_obs\\\": 0.0867,\\n      \\\"J_max\\\": 0.798,\\n      \\\"J_null\\\": 0.0446,\\n      \\\"norm_ES\\\": 0.0559\\n    }\\n  ],\\n  \\\"mean_normalized_ES_by_ratio\\\": {\\n    \\\"h24-1_helped\\\": 0.0518,\\n    \\\"h24-1_hurt\\\": 0.0512,\\n    \\\"h12-1_helped\\\": 0.0573,\\n    \\\"h12-1_hurt\\\": 0.0406,\\n    \\\"h6-1_helped\\\": 0.0596,\\n    \\\"h6-1_hurt\\\": 0.068,\\n    \\\"h3-1_helped\\\": 0.0658,\\n    \\\"h3-1_hurt\\\": 0.0617\\n  },\\n  \\\"saturation_analysis\\\": {\\n    \\\"helped\\\": {\\n      \\\"trend\\\": [\\n        [\\n          \\\"h24-1\\\",\\n          0.0518\\n        ],\\n        [\\n          \\\"h12-1\\\",\\n          0.0573\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.0596\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0658\\n        ]\\n      ],\\n      \\\"cv\\\": 0.0856,\\n      \\\"mean\\\": 0.0586\\n    },\\n    \\\"hurt\\\": {\\n      \\\"trend\\\": [\\n        [\\n          \\\"h24-1\\\",\\n          0.0512\\n        ],\\n        [\\n          \\\"h12-1\\\",\\n          0.0406\\n        ],\\n        [\\n          \\\"h6-1\\\",\\n          0.068\\n        ],\\n        [\\n          \\\"h3-1\\\",\\n          0.0617\\n        ]\\n      ],\\n      \\\"cv\\\": 0.1883,\\n      \\\"mean\\\": 0.0554\\n    }\\n  },\\n  \\\"overall_stats\\\": {\\n    \\\"mean_norm_ES_helped\\\": 0.0586,\\n    \\\"mean_norm_ES_hurt\\\": 0.0554,\\n    \\\"std_norm_ES_helped\\\": 0.0092,\\n    \\\"std_norm_ES_hurt\\\": 0.0131,\\n    \\\"range_norm_ES_helped\\\": [\\n      0.0474,\\n      0.0813\\n    ],\\n    \\\"range_norm_ES_hurt\\\": [\\n      0.0313,\\n      0.0774\\n    ],\\n    \\\"mean_J_obs_over_J_max_pct\\\": 11.1,\\n    \\\"range_J_obs_over_J_max_pct\\\": [\\n      8.7,\\n      13.9\\n    ]\\n  },\\n  \\\"conclusion\\\": \\\"Normalized ES: helped [0.05, 0.08], hurt [0.03, 0.08]. Mean J_obs/J_max = 11.1%. Low absolute Jaccard reflects geometric ceiling from set-size asymmetry, not absence of signal. Normalized ES consistently exceeds chance across all ratios, confirming architecture-specific responses.\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T19:45:51.292Z_
+
+<details><summary>↩ Tool result · `toolu_01HZeUsHhMgHihtZqBFS5cTM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 479,\\n            \\\"n_B\\\": 448,\\n            \\\"J_obs\\\": 0.09316,\\n            \\\"J_max\\\": 0.935282,\\n            \\\"J_null\\\": 0.047037,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.051927,\\n            \\\"J_obs_over_J_max_pct\\\": 10.0\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 396,\\n            \\\"n_B\\\": 455,\\n            \\\"J_obs\\\": 0.095238,\\n            \\\"J_max\\\": 0.87033,\\n--\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 512,\\n            \\\"n_B\\\": 427,\\n            \\\"J_obs\\\": 0.100821,\\n            \\\"J_max\\\": 0.833984,\\n            \\\"J_null\\\": 0.047321,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.068009,\\n            \\\"J_obs_over_J_max_pct\\\": 12.1\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 415,\\n            \\\"n_B\\\": 476,\\n            \\\"J_obs\\\": 0.085262,\\n            \\\"J_max\\\": 0.871849,\\n--\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 524,\\n            \\\"n_B\\\": 399,\\n            \\\"J_obs\\\": 0.085882,\\n            \\\"J_max\\\": 0.76145,\\n            \\\"J_null\\\": 0.04598,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.055771,\\n            \\\"J_obs_over_J_max_pct\\\": 11.3\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 397,\\n            \\\"n_B\\\": 499,\\n            \\\"J_obs\\\": 0.095355,\\n            \\\"J_max\\\": 0.795591,\\n--\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 548,\\n            \\\"n_B\\\": 426,\\n            \\\"J_obs\\\": 0.108077,\\n            \\\"J_max\\\": 0.777372,\\n            \\\"J_null\\\": 0.048826,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.081328,\\n            \\\"J_obs_over_J_max_pct\\\": 13.9\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 395,\\n            \\\"n_B\\\": 495,\\n            \\\"J_obs\\\": 0.086691,\\n            \\\"J_max\\\": 0.79798,\\n--\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 479,\\n      \\\"n_B\\\": 448,\\n      \\\"J_obs\\\": 0.0932,\\n      \\\"J_max\\\": 0.9353,\\n      \\\"J_null\\\": 0.047,\\n      \\\"norm_ES\\\": 0.0519\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h24-1\\\",\\n      \\\"attn_ratio\\\": 0.04,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 396,\\n      \\\"n_B\\\": 455,\\n      \\\"J_obs\\\": 0.0952,\\n      \\\"J_max\\\": 0.8703,\\n      \\\"J_null\\\": 0.0428,\\n      \\\"norm_ES\\\": 0.0633\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 464,\\n      \\\"n_B\\\": 512,\\n--\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 512,\\n      \\\"n_B\\\": 427,\\n      \\\"J_obs\\\": 0.1008,\\n      \\\"J_max\\\": 0.834,\\n      \\\"J_null\\\": 0.0473,\\n      \\\"norm_ES\\\": 0.068\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 415,\\n      \\\"n_B\\\": 476,\\n      \\\"J_obs\\\": 0.0853,\\n      \\\"J_max\\\": 0.8718,\\n      \\\"J_null\\\": 0.045,\\n      \\\"norm_ES\\\": 0.0487\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 426,\\n      \\\"n_B\\\": 524,\\n--\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 524,\\n      \\\"n_B\\\": 399,\\n      \\\"J_obs\\\": 0.0859,\\n      \\\"J_max\\\": 0.7615,\\n      \\\"J_null\\\": 0.046,\\n      \\\"norm_ES\\\": 0.0558\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 397,\\n      \\\"n_B\\\": 499,\\n      \\\"J_obs\\\": 0.0954,\\n      \\\"J_max\\\": 0.7956,\\n      \\\"J_null\\\": 0.0448,\\n      \\\"norm_ES\\\": 0.0673\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 462,\\n      \\\"n_B\\\": 548,\\n--\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 548,\\n      \\\"n_B\\\": 426,\\n      \\\"J_obs\\\": 0.1081,\\n      \\\"J_max\\\": 0.7774,\\n      \\\"J_null\\\": 0.0488,\\n      \\\"norm_ES\\\": 0.0813\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 395,\\n      \\\"n_B\\\": 495,\\n      \\\"J_obs\\\": 0.0867,\\n      \\\"J_max\\\": 0.798,\\n      \\\"J_null\\\": 0.0446,\\n      \\\"norm_ES\\\": 0.0559\\n    }\\n  ],\\n  \\\"mean_normalized_ES_by_ratio\\\": {\\n    \\\"h24-1_helped\\\": 0.0518,\\n    \\\"h24-1_hurt\\\": 0.0512,\\n    \\\"h12-1_helped\\\": 0.0573,\\n    \\\"h12-1_hurt\\\": 0.0406,\\n    \\\"h6-1_helped\\\": 0.0596,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "ef252633-41fd-4921-b6d0-ae891382a227",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"HGRN2_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 479,\\\\n            \\\\\\\"n_B\\\\\\\": 448,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.09316,\\\\n            \\\\\\\"J_max\\\\\\\": 0.935282,\\\\n            \\\\\\\"J_null\\\\\\\": 0.047037,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.051927,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 10.0\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 396,\\\\n            \\\\\\\"n_B\\\\\\\": 455,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.095238,\\\\n            \\\\\\\"J_max\\\\\\\": 0.87033,\\\\n--\\\\n        \\\\\\\"HGRN2_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 512,\\\\n            \\\\\\\"n_B\\\\\\\": 427,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.100821,\\\\n            \\\\\\\"J_max\\\\\\\": 0.833984,\\\\n            \\\\\\\"J_null\\\\\\\": 0.047321,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.068009,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 12.1\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 415,\\\\n            \\\\\\\"n_B\\\\\\\": 476,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.085262,\\\\n            \\\\\\\"J_max\\\\\\\": 0.871849,\\\\n--\\\\n        \\\\\\\"HGRN2_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 524,\\\\n            \\\\\\\"n_B\\\\\\\": 399,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.085882,\\\\n            \\\\\\\"J_max\\\\\\\": 0.76145,\\\\n            \\\\\\\"J_null\\\\\\\": 0.04598,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"analytical\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.055771,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 11.3\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 397,\\\\n            \\\\\\\"n_B\\\\\\\": 499,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.095355,\\\\n            \\\\\\\"J_max\\\\\\\": 0.795591,\\\\n--\\\\n        \\\\\\\"HGRN2_RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 548,\\\\n            \\\\\\\"n_B\\\\\\\": 426,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.108077,\\\\n            \\\\\\\"J_max\\\\\\\": 0.777372,\\\\n            \\\\\\\"J_null\\\\\\\": 0.048826,\\\\n            \\\\\\\"J_null_source\\\\\\\": \\\\\\\"permutation_10k\\\\\\\",\\\\n            \\\\\\\"norm_ES\\\\\\\": 0.081328,\\\\n            \\\\\\\"J_obs_over_J_max_pct\\\\\\\": 13.9\\\\n          },\\\\n          \\\\\\\"hurt\\\\\\\": {\\\\n            \\\\\\\"n_A\\\\\\\": 395,\\\\n            \\\\\\\"n_B\\\\\\\": 495,\\\\n            \\\\\\\"J_obs\\\\\\\": 0.086691,\\\\n            \\\\\\\"J_max\\\\\\\": 0.79798,\\\\n--\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 479,\\\\n      \\\\\\\"n_B\\\\\\\": 448,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0932,\\\\n      \\\\\\\"J_max\\\\\\\": 0.9353,\\\\n      \\\\\\\"J_null\\\\\\\": 0.047,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0519\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h24-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.04,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 396,\\\\n      \\\\\\\"n_B\\\\\\\": 455,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0952,\\\\n      \\\\\\\"J_max\\\\\\\": 0.8703,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0428,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0633\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h12-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.07692307692307693,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 464,\\\\n      \\\\\\\"n_B\\\\\\\": 512,\\\\n--\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 512,\\\\n      \\\\\\\"n_B\\\\\\\": 427,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.1008,\\\\n      \\\\\\\"J_max\\\\\\\": 0.834,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0473,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.068\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h12-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.07692307692307693,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 415,\\\\n      \\\\\\\"n_B\\\\\\\": 476,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0853,\\\\n      \\\\\\\"J_max\\\\\\\": 0.8718,\\\\n      \\\\\\\"J_null\\\\\\\": 0.045,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0487\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h6-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.14285714285714285,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 426,\\\\n      \\\\\\\"n_B\\\\\\\": 524,\\\\n--\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 524,\\\\n      \\\\\\\"n_B\\\\\\\": 399,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0859,\\\\n      \\\\\\\"J_max\\\\\\\": 0.7615,\\\\n      \\\\\\\"J_null\\\\\\\": 0.046,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0558\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h6-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.14285714285714285,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 397,\\\\n      \\\\\\\"n_B\\\\\\\": 499,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0954,\\\\n      \\\\\\\"J_max\\\\\\\": 0.7956,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0448,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0673\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"GDN_HGRN2\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 462,\\\\n      \\\\\\\"n_B\\\\\\\": 548,\\\\n--\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"helped\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 548,\\\\n      \\\\\\\"n_B\\\\\\\": 426,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.1081,\\\\n      \\\\\\\"J_max\\\\\\\": 0.7774,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0488,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0813\\\\n    },\\\\n    {\\\\n      \\\\\\\"ratio\\\\\\\": \\\\\\\"h3-1\\\\\\\",\\\\n      \\\\\\\"attn_ratio\\\\\\\": 0.25,\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"HGRN2_RetNet\\\\\\\",\\\\n      \\\\\\\"category\\\\\\\": \\\\\\\"hurt\\\\\\\",\\\\n      \\\\\\\"n_A\\\\\\\": 395,\\\\n      \\\\\\\"n_B\\\\\\\": 495,\\\\n      \\\\\\\"J_obs\\\\\\\": 0.0867,\\\\n      \\\\\\\"J_max\\\\\\\": 0.798,\\\\n      \\\\\\\"J_null\\\\\\\": 0.0446,\\\\n      \\\\\\\"norm_ES\\\\\\\": 0.0559\\\\n    }\\\\n  ],\\\\n  \\\\\\\"mean_normalized_ES_by_ratio\\\\\\\": {\\\\n    \\\\\\\"h24-1_helped\\\\\\\": 0.0518,\\\\n    \\\\\\\"h24-1_hurt\\\\\\\": 0.0512,\\\\n    \\\\\\\"h12-1_helped\\\\\\\": 0.0573,\\\\n    \\\\\\\"h12-1_hurt\\\\\\\": 0.0406,\\\\n    \\\\\\\"h6-1_helped\\\\\\\": 0.0596,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 479,\\n            \\\"n_B\\\": 448,\\n            \\\"J_obs\\\": 0.09316,\\n            \\\"J_max\\\": 0.935282,\\n            \\\"J_null\\\": 0.047037,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.051927,\\n            \\\"J_obs_over_J_max_pct\\\": 10.0\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 396,\\n            \\\"n_B\\\": 455,\\n            \\\"J_obs\\\": 0.095238,\\n            \\\"J_max\\\": 0.87033,\\n--\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 512,\\n            \\\"n_B\\\": 427,\\n            \\\"J_obs\\\": 0.100821,\\n            \\\"J_max\\\": 0.833984,\\n            \\\"J_null\\\": 0.047321,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.068009,\\n            \\\"J_obs_over_J_max_pct\\\": 12.1\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 415,\\n            \\\"n_B\\\": 476,\\n            \\\"J_obs\\\": 0.085262,\\n            \\\"J_max\\\": 0.871849,\\n--\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 524,\\n            \\\"n_B\\\": 399,\\n            \\\"J_obs\\\": 0.085882,\\n            \\\"J_max\\\": 0.76145,\\n            \\\"J_null\\\": 0.04598,\\n            \\\"J_null_source\\\": \\\"analytical\\\",\\n            \\\"norm_ES\\\": 0.055771,\\n            \\\"J_obs_over_J_max_pct\\\": 11.3\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 397,\\n            \\\"n_B\\\": 499,\\n            \\\"J_obs\\\": 0.095355,\\n            \\\"J_max\\\": 0.795591,\\n--\\n        \\\"HGRN2_RetNet\\\": {\\n          \\\"helped\\\": {\\n            \\\"n_A\\\": 548,\\n            \\\"n_B\\\": 426,\\n            \\\"J_obs\\\": 0.108077,\\n            \\\"J_max\\\": 0.777372,\\n            \\\"J_null\\\": 0.048826,\\n            \\\"J_null_source\\\": \\\"permutation_10k\\\",\\n            \\\"norm_ES\\\": 0.081328,\\n            \\\"J_obs_over_J_max_pct\\\": 13.9\\n          },\\n          \\\"hurt\\\": {\\n            \\\"n_A\\\": 395,\\n            \\\"n_B\\\": 495,\\n            \\\"J_obs\\\": 0.086691,\\n            \\\"J_max\\\": 0.79798,\\n--\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 479,\\n      \\\"n_B\\\": 448,\\n      \\\"J_obs\\\": 0.0932,\\n      \\\"J_max\\\": 0.9353,\\n      \\\"J_null\\\": 0.047,\\n      \\\"norm_ES\\\": 0.0519\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h24-1\\\",\\n      \\\"attn_ratio\\\": 0.04,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 396,\\n      \\\"n_B\\\": 455,\\n      \\\"J_obs\\\": 0.0952,\\n      \\\"J_max\\\": 0.8703,\\n      \\\"J_null\\\": 0.0428,\\n      \\\"norm_ES\\\": 0.0633\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 464,\\n      \\\"n_B\\\": 512,\\n--\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 512,\\n      \\\"n_B\\\": 427,\\n      \\\"J_obs\\\": 0.1008,\\n      \\\"J_max\\\": 0.834,\\n      \\\"J_null\\\": 0.0473,\\n      \\\"norm_ES\\\": 0.068\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h12-1\\\",\\n      \\\"attn_ratio\\\": 0.07692307692307693,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 415,\\n      \\\"n_B\\\": 476,\\n      \\\"J_obs\\\": 0.0853,\\n      \\\"J_max\\\": 0.8718,\\n      \\\"J_null\\\": 0.045,\\n      \\\"norm_ES\\\": 0.0487\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 426,\\n      \\\"n_B\\\": 524,\\n--\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 524,\\n      \\\"n_B\\\": 399,\\n      \\\"J_obs\\\": 0.0859,\\n      \\\"J_max\\\": 0.7615,\\n      \\\"J_null\\\": 0.046,\\n      \\\"norm_ES\\\": 0.0558\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h6-1\\\",\\n      \\\"attn_ratio\\\": 0.14285714285714285,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 397,\\n      \\\"n_B\\\": 499,\\n      \\\"J_obs\\\": 0.0954,\\n      \\\"J_max\\\": 0.7956,\\n      \\\"J_null\\\": 0.0448,\\n      \\\"norm_ES\\\": 0.0673\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"GDN_HGRN2\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 462,\\n      \\\"n_B\\\": 548,\\n--\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"helped\\\",\\n      \\\"n_A\\\": 548,\\n      \\\"n_B\\\": 426,\\n      \\\"J_obs\\\": 0.1081,\\n      \\\"J_max\\\": 0.7774,\\n      \\\"J_null\\\": 0.0488,\\n      \\\"norm_ES\\\": 0.0813\\n    },\\n    {\\n      \\\"ratio\\\": \\\"h3-1\\\",\\n      \\\"attn_ratio\\\": 0.25,\\n      \\\"pair\\\": \\\"HGRN2_RetNet\\\",\\n      \\\"category\\\": \\\"hurt\\\",\\n      \\\"n_A\\\": 395,\\n      \\\"n_B\\\": 495,\\n      \\\"J_obs\\\": 0.0867,\\n      \\\"J_max\\\": 0.798,\\n      \\\"J_null\\\": 0.0446,\\n      \\\"norm_ES\\\": 0.0559\\n    }\\n  ],\\n  \\\"mean_normalized_ES_by_ratio\\\": {\\n    \\\"h24-1_helped\\\": 0.0518,\\n    \\\"h24-1_hurt\\\": 0.0512,\\n    \\\"h12-1_helped\\\": 0.0573,\\n    \\\"h12-1_hurt\\\": 0.0406,\\n    \\\"h6-1_helped\\\": 0.0596,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have complete h12-1 HGRN2_RetNet data:
+- h12-1 HGRN2_RetNet helped: J_obs=0.100821, J_max=0.833984, J_null=0.047321, norm_ES=0.068009
+- h12-1 HGRN2_RetNet hurt: J_obs=0.085262, J_max=0.871849, J_null=? (truncated)
+
+Let me get the h12-1 HGRN2_RetNet hurt value. From the flat_table: J_obs=0.0853, J_max=0.8718, J_null=0.045, norm_ES=0.0487
+
+
+I can cross-check with per_ratio data showing n_A=415, n_B=476, and the analytical J_null around 0.044952 aligns with the flat_table value. Now I'm ready to compile the complete comparison table.
+
+Generating markdown table... Now I'm looking at the h12-1 per_ratio metrics with full precision across the same model pairs, comparing how often each pairing helped versus hurt performance. Comparing my results across different model configurations, I'm seeing the hurt cases for h3-1 and h12-1 now, and they're showing some variation from the paper's reported values—particularly in the second and fourth metrics where there are noticeable differences in a few cases. Now I'm comparing each metric value from the paper against my two hypothesis sets to see which one aligns better. For the GDN-RetNet pair, h3-1 matches the maximum value perfectly while the other metrics show mismatches. Moving to GDN-HGRN2, h3-1 again matches the maximum value exactly, though the observed values are close but not precise matches across both hypotheses. Now I'm seeing more mismatches in the HURT category—the GDN--RetNet and GDN--HGRN2 comparisons show several metrics where neither model variant aligns with the paper's reported values, particularly for J_obs and norm_ES metrics. Looking at the comparison across both models, J_max consistently matches the h3-1 implementation, but J_obs, J_null, and norm_ES show scattered mismatches—particularly J_null values that don't align with either the paper or my implementations, which then propagates errors into the normalized effect size calculations. mismatches from h3-1:
+1. GDN--RetNet helped: J_obs .086 should be .092, J_null .048 should be .045, norm_ES .044 should be .054
+2. GDN--HGRN2 helped: J_obs .099 should be .100, J_null .050 should be .051 (paper's .050 is wrong by 1 in last digit)
+3. RetNet--HGRN2 helped: J_null .042 should be .049, norm_ES .090 should be .081
+4. GDN--RetNet hurt: J_obs .092 should be .103, norm_ES .048 should be .063
+5. GDN--HGRN2 hurt: J_obs .070 should be .088, J_null .043 should be .049, norm_ES .045 should be .066
+6. RetNet--HGRN2 hurt: J_null .050 should be .045, norm_ES .049 should be .056
+
+I'm noticing something suspicious in the audit—some values appear to match h12-1 data instead of h3-1, particularly the GDN--HGRN2 hurt J_obs (.070) and RetNet--HGRN2 hurt norm_ES (.049) which are exact matches to h12-1. This suggests at least a couple cells were copied from the wrong dataset, though the broader pattern of incorrect J_null values across many cells doesn't align cleanly with either source.
+
+Now I'm calculating what the correct h3-1 means should be by averaging across the three model pairs for each metric and outcome type. Now I'm working through the remaining comparison pairs, rounding the precision values for the h3-1 hurt category where GDN_RetNet shows higher J_obs and J_max values, while the other models have lower performance metrics in this scenario. Finishing the norm_ES calculation for the helped cases, then computing the averages for the hurt cases across all three model pairs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "a7aa28f6-9c32-4978-87e1-0e78799cc781",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjndnpbkQ9jvK8sMKigoiA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12547,
+      "cache_read_input_tokens": 45487,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+数据已全部获取。以下是完整对照表。
+
+---
+
+## Tab 7 (Normalized Effect Size) 全 Cell 对照
+
+### 数据源
+- **论文**: `appendix.tex` lines 229–237, `\label{tab:normalized_es}`，标注为 "1.3B h3-1 on LAMBADA"
+- **h3-1**: `jaccard_upper_bound.json` → `per_ratio.h3-1`（permutation_10k validated）
+- **h12-1**: `jaccard_upper_bound.json` → `per_ratio.h12-1`（analytical J_null）
+
+### Helped
+
+| Cell | 论文当前值 | h3-1 正确值 | h12-1 值 | 判断 |
+|------|-----------|------------|---------|------|
+| GDN–RetNet J_obs | **.086** | .092 | .087 | **错误** — 接近 h12-1，非 h3-1 |
+| GDN–RetNet J_max | .922 | .922 | .920 | h3-1 ✓ |
+| GDN–RetNet J_null | **.048** | .045 | .045 | **错误** — 两者都是 .045，.048 无来源 |
+| GDN–RetNet Norm ES | **.044** | .054 | .047 | **错误** — 因 J_obs/J_null 都错导致 |
+| GDN–HGRN2 J_obs | **.099** | .100 | .098 | **微差** — h3-1 为 0.100218→.100 |
+| GDN–HGRN2 J_max | .843 | .843 | .906 | h3-1 ✓ |
+| GDN–HGRN2 J_null | **.050** | .051 | .050 | **微差** — h3-1 为 0.051056→.051 |
+| GDN–HGRN2 Norm ES | .062 | .062 | .056 | h3-1 ✓ |
+| RetNet–HGRN2 J_obs | .108 | .108 | .101 | h3-1 ✓ |
+| RetNet–HGRN2 J_max | .777 | .777 | .834 | h3-1 ✓ |
+| RetNet–HGRN2 J_null | **.042** | .049 | .047 | **错误** — 两者都不匹配，.042 无来源 |
+| RetNet–HGRN2 Norm ES | **.090** | .081 | .068 | **错误** — 因 J_null 错导致 |
+| *Mean J_obs* | *.098* | *.100* | — | *微差* |
+| *Mean J_max* | *.847* | *.848* | — | *微差* |
+| *Mean J_null* | *.047* | *.048* | — | *微差* |
+| *Mean Norm ES* | **.065** | *.066* | — | *微差（但由错误 cell 平均出来恰好接近）* |
+
+### Hurt
+
+| Cell | 论文当前值 | h3-1 正确值 | h12-1 值 | 判断 |
+|------|-----------|------------|---------|------|
+| GDN–RetNet J_obs | **.092** | .103 | .087 | **错误** — 两者都不匹配，差距大 |
+| GDN–RetNet J_max | .805 | .805 | .930 | h3-1 ✓ |
+| GDN–RetNet J_null | .056 | .056 | .050 | h3-1 ✓ |
+| GDN–RetNet Norm ES | **.048** | .063 | .042 | **错误** — 因 J_obs 错 |
+| GDN–HGRN2 J_obs | **.070** | .088 | **.070** | **错误** — 完全匹配 h12-1！ |
+| GDN–HGRN2 J_max | .642 | .642 | .811 | h3-1 ✓ |
+| GDN–HGRN2 J_null | **.043** | .049 | .047 | **错误** — 两者都不匹配 |
+| GDN–HGRN2 Norm ES | **.045** | .066 | .031 | **错误** — J_obs 和 J_null 都错 |
+| RetNet–HGRN2 J_obs | .087 | .087 | .085 | h3-1 ✓ |
+| RetNet–HGRN2 J_max | .798 | .798 | .872 | h3-1 ✓ |
+| RetNet–HGRN2 J_null | **.050** | .045 | .045 | **错误** — 两者都是 .045 |
+| RetNet–HGRN2 Norm ES | **.049** | .056 | **.049** | **错误** — 匹配 h12-1 |
+| *Mean J_obs* | *.083* | *.093* | — | **错误** |
+| *Mean J_max* | *.748* | *.748* | — | *正确* |
+| *Mean J_null* | *.050* | *.050* | — | *正确* |
+| *Mean Norm ES* | **.047** | *.062* | — | **错误** |
+
+### 总结
+
+**24 个数据 cell（不含 Mean），其中：**
+- **正确（匹配 h3-1）**: 10 个 — 所有 J_max (6) + 4 个其他
+- **错误**: 14 个 — 分布在 J_obs (5)、J_null (5)、Norm ES (4)
+
+**确认 h12-1 混入的 cell（精确匹配）**:
+- GDN–HGRN2 hurt J_obs: 论文 .070 = h12-1 .070（h3-1 应为 .088）
+- RetNet–HGRN2 hurt Norm ES: 论文 .049 = h12-1 .049（h3-1 应为 .056）
+- GDN–RetNet helped J_obs: 论文 .086 ≈ h12-1 .087（h3-1 应为 .092）
+
+**无来源的异常值（既不匹配 h3-1 也不匹配 h12-1）**:
+- J_null 列有 4 个 cell 数值无法追溯到任何 ratio 的数据，可能来自更早版本的分析脚本或手动录入错误
+
+**h3-1 正确值（用于替换论文 Tab 7）**:
+
+```
+Helped & GDN--RetNet   & .092 & .922 & .045 & .054 \\
+       & GDN--HGRN2    & .100 & .843 & .051 & .062 \\
+       & RetNet--HGRN2  & .108 & .777 & .049 & .081 \\
+       & Mean           & .100 & .848 & .048 & .066 \\
+Hurt   & GDN--RetNet   & .103 & .805 & .056 & .063 \\
+       & GDN--HGRN2    & .088 & .642 & .049 & .066 \\
+       & RetNet--HGRN2  & .087 & .798 & .045 & .056 \\
+       & Mean           & .093 & .748 & .050 & .062 \\
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "uuid": "a7378a4c-8316-43d6-9232-a57026b2f3e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjndnpbkQ9jvK8sMKigoiA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12547,
+      "cache_read_input_tokens": 45487,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 46_
+
+数据已全部获取。以下是完整对照表。
+
+---
+
+## Tab 7 (Normalized Effect Size) 全 Cell 对照
+
+### 数据源
+- **论文**: `appendix.tex` lines 229–237, `\label{tab:normalized_es}`，标注为 "1.3B h3-1 on LAMBADA"
+- **h3-1**: `jaccard_upper_bound.json` → `per_ratio.h3-1`（permutation_10k validated）
+- **h12-1**: `jaccard_upper_bound.json` → `per_ratio.h12-1`（analytical J_null）
+
+### Helped
+
+| Cell | 论文当前值 | h3-1 正确值 | h12-1 值 | 判断 |
+|------|-----------|------------|---------|------|
+| GDN–RetNet J_obs | **.086** | .092 | .087 | **错误** — 接近 h12-1，非 h3-1 |
+| GDN–RetNet J_max | .922 | .922 | .920 | h3-1 ✓ |
+| GDN–RetNet J_null | **.048** | .045 | .045 | **错误** — 两者都是 .045，.048 无来源 |
+| GDN–RetNet Norm ES | **.044** | .054 | .047 | **错误** — 因 J_obs/J_null 都错导致 |
+| GDN–HGRN2 J_obs | **.099** | .100 | .098 | **微差** — h3-1 为 0.100218→.100 |
+| GDN–HGRN2 J_max | .843 | .843 | .906 | h3-1 ✓ |
+| GDN–HGRN2 J_null | **.050** | .051 | .050 | **微差** — h3-1 为 0.051056→.051 |
+| GDN–HGRN2 Norm ES | .062 | .062 | .056 | h3-1 ✓ |
+| RetNet–HGRN2 J_obs | .108 | .108 | .101 | h3-1 ✓ |
+| RetNet–HGRN2 J_max | .777 | .777 | .834 | h3-1 ✓ |
+| RetNet–HGRN2 J_null | **.042** | .049 | .047 | **错误** — 两者都不匹配，.042 无来源 |
+| RetNet–HGRN2 Norm ES | **.090** | .081 | .068 | **错误** — 因 J_null 错导致 |
+| *Mean J_obs* | *.098* | *.100* | — | *微差* |
+| *Mean J_max* | *.847* | *.848* | — | *微差* |
+| *Mean J_null* | *.047* | *.048* | — | *微差* |
+| *Mean Norm ES* | **.065** | *.066* | — | *微差（但由错误 cell 平均出来恰好接近）* |
+
+### Hurt
+
+| Cell | 论文当前值 | h3-1 正确值 | h12-1 值 | 判断 |
+|------|-----------|------------|---------|------|
+| GDN–RetNet J_obs | **.092** | .103 | .087 | **错误** — 两者都不匹配，差距大 |
+| GDN–RetNet J_max | .805 | .805 | .930 | h3-1 ✓ |
+| GDN–RetNet J_null | .056 | .056 | .050 | h3-1 ✓ |
+| GDN–RetNet Norm ES | **.048** | .063 | .042 | **错误** — 因 J_obs 错 |
+| GDN–HGRN2 J_obs | **.070** | .088 | **.070** | **错误** — 完全匹配 h12-1！ |
+| GDN–HGRN2 J_max | .642 | .642 | .811 | h3-1 ✓ |
+| GDN–HGRN2 J_null | **.043** | .049 | .047 | **错误** — 两者都不匹配 |
+| GDN–HGRN2 Norm ES | **.045** | .066 | .031 | **错误** — J_obs 和 J_null 都错 |
+| RetNet–HGRN2 J_obs | .087 | .087 | .085 | h3-1 ✓ |
+| RetNet–HGRN2 J_max | .798 | .798 | .872 | h3-1 ✓ |
+| RetNet–HGRN2 J_null | **.050** | .045 | .045 | **错误** — 两者都是 .045 |
+| RetNet–HGRN2 Norm ES | **.049** | .056 | **.049** | **错误** — 匹配 h12-1 |
+| *Mean J_obs* | *.083* | *.093* | — | **错误** |
+| *Mean J_max* | *.748* | *.748* | — | *正确* |
+| *Mean J_null* | *.050* | *.050* | — | *正确* |
+| *Mean Norm ES* | **.047** | *.062* | — | **错误** |
+
+### 总结
+
+**24 个数据 cell（不含 Mean），其中：**
+- **正确（匹配 h3-1）**: 10 个 — 所有 J_max (6) + 4 个其他
+- **错误**: 14 个 — 分布在 J_obs (5)、J_null (5)、Norm ES (4)
+
+**确认 h12-1 混入的 cell（精确匹配）**:
+- GDN–HGRN2 hurt J_obs: 论文 .070 = h12-1 .070（h3-1 应为 .088）
+- RetNet–HGRN2 hurt Norm ES: 论文 .049 = h12-1 .049（h3-1 应为 .056）
+- GDN–RetNet helped J_obs: 论文 .086 ≈ h12-1 .087（h3-1 应为 .092）
+
+**无来源的异常值（既不匹配 h3-1 也不匹配 h12-1）**:
+- J_null 列有 4 个 cell 数值无法追溯到任何 ratio 的数据，可能来自更早版本的分析脚本或手动录入错误
+
+**h3-1 正确值（用于替换论文 Tab 7）**:
+
+```
+Helped & GDN--RetNet   & .092 & .922 & .045 & .054 \\
+       & GDN--HGRN2    & .100 & .843 & .051 & .062 \\
+       & RetNet--HGRN2  & .108 & .777 & .049 & .081 \\
+       & Mean           & .100 & .848 & .048 & .066 \\
+Hurt   & GDN--RetNet   & .103 & .805 & .056 & .063 \\
+       & GDN--HGRN2    & .088 & .642 & .049 & .066 \\
+       & RetNet--HGRN2  & .087 & .798 & .045 & .056 \\
+       & Mean           & .093 & .748 & .050 & .062 \\
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 258495,
+  "duration_api_ms": 263488,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "84cb0e53-c2a6-4945-835e-6ac11209acd4",
+  "total_cost_usd": 0.8131562500000001,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 46193,
+    "cache_read_input_tokens": 244074,
+    "output_tokens": 16019,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 46193,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 6595,
+        "cache_read_input_tokens": 45487,
+        "cache_creation_input_tokens": 12547,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 12547
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 16019,
+      "cacheReadInputTokens": 244074,
+      "cacheCreationInputTokens": 46193,
+      "webSearchRequests": 0,
+      "costUSD": 0.8112782500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1768,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0018780000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "83a83db0-7389-4958-86b5-a93510b12ff6"
+}
+```
+
+</details>
+
+---

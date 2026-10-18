@@ -1,0 +1,67 @@
+# reviewer / loop_10.md
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_10.md`
+- **Structured JSON:** [`24709549333c9eefe0e7.json`](../../sessions/24/24709549333c9eefe0e7.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 10
+reason: max_wall_time
+updated: '2026-05-16T10:36:57+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0, cuda:1（gpu-6000pro-2）。之前 cross_scale_llama3 系列全在 cuda:0 跑，合规。
+- Reference model 是 **Pythia-1.4B**（不是 GPT-2 base）。之前发生过全文写错为 GPT-2 base 的 CRITICAL 事故，已修复。论文中所有 "reference model" 提及必须是 Pythia-1.4B。
+- EDD 计算必须用 **consecutive binary AUC**（专用二分类器）+ threshold check，不能用 multi-class pairwise AUC。Llama 实验的脚本曾算错 EDD（报 >5 实际是 4），registry 已修正。
+- 论文 cross-scale 叙事：U-shape 是 **Qwen-specific**，不是 "7B scale" 效应。Llama 是单调递减。任何泛化为 "7B models show non-monotonic" 的表述都是错的。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：gpu-6000pro-2，工作目录 `/root/autodl-tmp/recursive_gen_depth_est`
+- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/`
+- 论文源文件：`docs/paper/` 下 main.tex, abstract.tex, introduction.tex, method.tex, generalization.tex, conclusion.tex 等
+- 模型路径：`/root/autodl-tmp/models/pythia-1.4b`, `/root/autodl-tmp/models/olmo-1b`, `/root/autodl-tmp/models/gpt2-xl`, `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3.1-8B-Instruct`
+- 数据：`data/` 下按 pipeline 分目录（`llama3_8b_nucleus/`, `domain_extension/` 等）
+- 活跃进程：**无**。两张 GPU 均空闲（0%/0MB）。所有实验已完成。
+
+### 3. 📊 当前状态
+**刚完成**：审查了 3 轮论文修改（narrative_upgrade → cross_scale_llama3_patch → director_revision_final）。Abstract/Introduction/Body 三层叙事现已一致。
+
+**Registry**：无 RUNNING 实验。cross_scale_llama3_8b_003 已 DONE（EDD 已修正为 4）。总计 77 个实验。
+
+**待修正**：generalization.tex L191 "mean consecutive AUC: 0.822 for Llama-3.1" 数值错误（实际 0.786）。已 post 两次 WARNING，尚未被修。
+
+**等待中**：无 pending worker/cron。GPU 空闲待分配。
+
+### 4. 📋 待办
+- generalization.tex L191 被修正 → 验证 0.786 是否正确写入，检查计算口径是否与 1-1.5B 的 0.876 一致（4 pairs vs 5 pairs 问题）
+- 如果 Director 安排新实验（如 base model 7B、更多 domain extension）→ 按标准审查：GPU 合规 + 数据一致性 + 结论可靠性
+- 如果论文提交前全文审查请求 → 重点检查：(1) 所有数字与 registry 一致，(2) abstract/intro/body/limitations 四层叙事无矛盾，(3) Llama citation `\cite{llama3}` 存在于 references.bib
+- compile_check worker 刚完成但 registry 里没有对应条目 → 下次收到编译相关通知时检查 PDF 是否能正常生成
+
+### 5. 🎯 战略上下文
+- **论文核心**：2 Core Claims（task formalization + Depth Degradation Atlas）+ 7-axis generalization。不建议升级为 3 Claims——证据不足（单 7B 模型、单 domain extension）。
+- **最强数字**：cross-model chain 84.75%（跨模型边界）、Llama 70.2%（cross-scale）、arXiv 74.1%（cross-domain）。这些应在 abstract/intro 显著位置。
+- **易错点 1**：Qwen EDD>5 vs Llama EDD=4 的对比。Qwen 的 d2v3 AUC=0.709 仅比 T=0.70 高 0.009——极其边缘。如果审稿人质疑这个 margin，需要有准备。
+- **易错点 2**：method.tex 和 conclusion.tex 关于 reference model 的叙事已经对齐为 "suggesting moderate robustness"。不要回退到 "confirming" 或 "future work should validate" 的旧措辞。
+- **易错点 3**：论文说 "formulaic degradation" 只用于描述 Qwen 的 U-shape，但 abstract L8 用了 "attributed to formulaic degradation"——比 body 的 "possibly related to" 更强。审稿人可能攻击这个 attribution 没有直接 evidence（没测 template/repetition 是否真的在 Qwen high-depth 增加）。
+- **决策链参考**：`decisions.yaml`（本地 workspace）记录了研究决策。`paper_framing.md` 定义了 claim 结构。
+
+
+---

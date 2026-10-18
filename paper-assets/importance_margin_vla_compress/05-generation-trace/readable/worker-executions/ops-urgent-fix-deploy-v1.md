@@ -1,0 +1,2521 @@
+# ops urgent fix deploy v1
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 50
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_ops_urgent_fix_deploy_v1_20260522T092357.log`
+- **Structured JSON:** [`d5246325e549e224e1a4.json`](../../sessions/d5/d5246325e549e224e1a4.json)
+
+## Before a recorded user message
+
+50 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "fd7ea977-98ba-4147-8b43-244856c39d8e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779459000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "51f1e497-51e8-4b28-9e19-f22057c4be41",
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break down the 4 subtasks and execute them in order. First, I need to:
+
+1. P0: Check GPU 1 L2norm k=0.95 Object s43 results on westd-27271
+2. P1: Deploy l2norm_k0925_object_seed43
+3. P2: Clarify L2norm k=0.5 Object s43 = 39.2%
+4. P3: Deploy on GPU 0
+
+Let me start by loading the MCP tools I need, and then do P0 + read_registry for P1/P2/P3 in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "d79f968c-bc1d-49f0-a69f-0eb8203ae2cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYDNQwyVGBCAh1PLSr4Nyq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13064,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13064
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先加载需要的工具，同时开始 P0 检查和 registry 查询。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "62ed439a-c194-40fa-90b2-d819bbc8e373",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYDNQwyVGBCAh1PLSr4Nyq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13064,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13064
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SozS4dpbV3c2Trh4p7rAkt`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "88b2ceba-0e7f-4ff7-b306-7982a52c4512",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYDNQwyVGBCAh1PLSr4Nyq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13064,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13064
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T09:24:15.877Z_
+
+<details><summary>↩ Tool result · `toolu_01SozS4dpbV3c2Trh4p7rAkt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "072957ab-9b4e-442e-bdb6-066034231ea8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me execute P0 (SSH check) and registry reads in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "3ecddc0d-57d1-4208-b174-beb84b42c833",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwJJDck6o13vWVkDo5m6d1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2509,
+      "cache_read_input_tokens": 24905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2509
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+开始并行执行 P0 检查、registry 查询。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "0499a84f-9460-460e-afc0-6cec0e369e26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwJJDck6o13vWVkDo5m6d1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2509,
+      "cache_read_input_tokens": 24905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2509
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BwRtzBiBCFgw91SZZi7haq`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "echo \"=== GPU STATUS ===\" && nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null && echo \"=== CHECK PIDs ===\" && ps -p 212585 -o pid,etime,args 2>/dev/null || echo \"PID 212585 NOT FOUND\" && echo \"=== L2NORM K095 LOG ===\" && tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_object_seed43.log 2>/dev/null || echo \"LOG NOT FOUND\" && echo \"=== CHECK EVAL RESULTS ===\" && cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.95_libero_object_seed43.json 2>/dev/null || echo \"JSON NOT FOUND\" && echo \"=== ALT LOG LOCATIONS ===\" && ls -la /root/autodl-tmp/importance_margin_vla_compress/logs/*k095*seed43* /root/autodl-tmp/importance_margin_vla_compress/eval_results/*k0.95*seed43* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "7825795a-63bb-4847-8751-0e607c07f34e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwJJDck6o13vWVkDo5m6d1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2509,
+      "cache_read_input_tokens": 24905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2509
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T09:24:24.625Z_
+
+<details><summary>↩ Tool result · `toolu_01BwRtzBiBCFgw91SZZi7haq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "e932f24a-a512-4e0a-972e-4995a4595841",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01GmCWowEdt1kF4q6zfHJ9cn`</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "limit": 0,
+  "fields": [
+    "exp_id",
+    "status",
+    "conclusion",
+    "metrics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "0c6ddb0e-ff40-4a1d-857b-16219918e51b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwJJDck6o13vWVkDo5m6d1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2509,
+      "cache_read_input_tokens": 24905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2509
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T09:24:26.476Z_
+
+<details><summary>↩ Tool result · `toolu_01GmCWowEdt1kF4q6zfHJ9cn`</summary>
+
+```text
+Error: result (91,905 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/226a801f-eb8f-4ec5-ac8f-a82624548c98/tool-results/mcp-agent-ml-research-read_registry-1779441866461.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/226a801f-eb8f-4ec5-ac8f-a82624548c98/tool-results/mcp-agent-ml-research-read_registry-1779441866461.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/226a801f-eb8f-4ec5-ac8f-a82624548c98/tool-results/mcp-agent-ml-research-read_registry-1779441866461.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "afb2c0a4-cba4-47bb-96e2-5bedcef1ac6d",
+  "tool_use_result": {
+    "content": "Error: result (91,905 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/226a801f-eb8f-4ec5-ac8f-a82624548c98/tool-results/mcp-agent-ml-research-read_registry-1779441866461.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/226a801f-eb8f-4ec5-ac8f-a82624548c98/tool-results/mcp-agent-ml-research-read_registry-1779441866461.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/226a801f-eb8f-4ec5-ac8f-a82624548c98/tool-results/mcp-agent-ml-research-read_registry-1779441866461.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k095_object_seed43_v2\": {\"status\": \"RUNNING\"}, \"eval_pi05_l2norm_k0925_object_seed43\": {\"status\": \"RUNNING\"}, \"eval_pi05_l2norm_k07_spatial_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.684, \"total_successes\": 342, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_random_k07_spatial_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.738, \"total_successes\": 369, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_smart_compress_m32_official\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"SR\": 53.4, \"episodes\": 500, \"CI_95_wilson\": \"49.0-57.7\", \"per_task_SR\": [64, 48, 56, 46, 46, 28, 78, 42, 66, 60]}}, \"eval_smolvla_official_l2norm_k090_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"SR\": 0, \"episodes\": 500, \"note\": \"all 10 tasks 0% SR, mean_steps=280 (max)\"}}, \"eval_pi05_random_k03_object_seed43_v4\": {\"status\": \"RUNNING\"}, \"eval_pi05_l2norm_k09_object_seed43\": {\"status\": \"RUNNING\"}, \"eval_pi05_l2norm_k095_object_seed43\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k085_spatial_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.576, \"total_successes\": 288, \"total_episodes\": 500, \"per_task\": {\"T0\": 0.82, \"T1\": 0.62, \"T2\": 0.9, \"T3\": 0.08, \"T4\": 0.48, \"T5\": 0.38, \"T6\": 0.38, \"T7\": 0.74, \"T8\": 0.92, \"T9\": 0.44}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k05_spatial_seed43\": {\"status\": \"RUNNING\"}, \"eval_pi05_l2norm_k0925_spatial_seed43\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k05_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 68.4, \"total_successes\": 342, \"total_episodes\": 500, \"elapsed_min\": 82.3}}, \"eval_pi05_random_k07_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 73.8, \"total_successes\": 369, \"total_episodes\": 500, \"elapsed_min\": 86.9}}, \"eval_pi05_l2norm_k085_object_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.984, \"total_successes\": 492, \"total_episodes\": 500, \"per_task\": {\"T0\": 1, \"T1\": 1, \"T2\": 1, \"T3\": 0.98, \"T4\": 1, \"T5\": 0.96, \"T6\": 0.98, \"T7\": 0.92, \"T8\": 1, \"T9\": 1}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k0925_spatial_seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.97, \"total_successes\": 485, \"total_episodes\": 500, \"per_task\": {\"T0\": 1, \"T1\": 0.98, \"T2\": 0.98, \"T3\": 0.94, \"T4\": 0.92, \"T5\": 0.94, \"T6\": 1, \"T7\": 0.98, \"T8\": 1, \"T9\": 0.96}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k09_spatial_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.956, \"total_successes\": 478, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_random_k09_spatial_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.536, \"total_successes\": 268, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k095_spatial_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.98, \"total_successes\": 490, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_random_k0925_spatial_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.578, \"total_successes\": 289, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_openvla_l2norm_k05_object_seed42_v5\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.392, \"total_successes\": 196, \"total_episodes\": 500, \"per_task\": {\"T0\": 0.56, \"T1\": 0.14, \"T2\": 0.38, \"T3\": 0.32, \"T4\": 0.7, \"T5\": 0.32, \"T6\": 0.12, \"T7\": 0.5, \"T8\": 0.44, \"T9\": 0.44}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k085_spatial_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.88, \"total_successes\": 440, \"total_episodes\": 500, \"per_task\": {\"T0\": 1, \"T1\": 0.92, \"T2\": 1, \"T3\": 0.78, \"T4\": 0.62, \"T5\": 0.84, \"T6\": 0.96, \"T7\": 0.9, \"T8\": 0.96, \"T9\": 0.82}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k095_spatial_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0.768, \"total_successes\": 384, \"total_episodes\": 500, \"per_task\": {\"T0\": 1, \"T1\": 0.94, \"T2\": 1, \"T3\": 0.6, \"T4\": 0.36, \"T5\": 0.76, \"T6\": 0.9, \"T7\": 0.74, \"T8\": 1, \"T9\": 0.38}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k03_object_seed43_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_pi05_random_k085_object_seed43_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_pi05_random_k095_spatial_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k07_object_seed43_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate_mean\": 57.2}}, \"eval_pi05_random_k095_spatial_seed42_v4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate_mean\": 76.4}}, \"eval_pi05_random_k0925_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate_mean\": 60.4}}, \"eval_pi05_random_k095_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.728, \"total_successes\": 364, \"total_episodes\": 500, \"elapsed_min\": 85.5, \"per_task_sr\": {\"T0_alphabet_soup\": 0.7, \"T1_cream_cheese\": 0.9, \"T2_salad_dressing\": 0.78, \"T3_bbq_sauce\": 0.66, \"T4_ketchup\": 0.54, \"T5_tomato_sauce\": 0.8, \"T6_butter\": 0.82, \"T7_milk\": 0.66, \"T8_chocolate_pudding\": 0.78, \"T9_orange_juice\": 0.64}}}, \"eval_pi05_random_k085_object_seed43_v3\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate_mean\": 3.8}}, \"eval_pi05_random_k03_object_seed43_v3\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k0925_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 99.2, \"per_task\": {\"T0_alphabet_soup\": 98, \"T1_cream_cheese\": 98, \"T2_salad_dressing\": 96, \"T3_bbq_sauce\": 100, \"T4_ketchup\": 100, \"T5_tomato_sauce\": 100, \"T6_butter\": 100, \"T7_milk\": 100, \"T8_chocolate_pudding\": 100, \"T9_orange_juice\": 100}, \"n_episodes\": 500, \"successes\": 496}}, \"eval_pi05_l2norm_k095_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate_mean\": 97.8, \"episodes\": 489, \"total_episodes\": 500}}, \"eval_pi05_random_k095_spatial_seed42_v3\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k095_spatial_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k085_spatial_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k07_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 67, \"episodes\": 500, \"tasks\": 10, \"duration_min\": 98.8, \"per_task_sr\": \"10 tasks completed, overall 335/500\"}}, \"eval_pi05_l2norm_k085_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate_mean\": 0.904, \"tasks_evaluated\": 10, \"episodes_per_task\": 50, \"total_success\": 452, \"total_episodes\": 500, \"suite\": \"libero_spatial\", \"prune_mode\": \"l2norm\", \"keep_ratio\": 0.85, \"seed\": 42}}, \"eval_pi05_l2norm_k09_spatial_seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate_mean\": 0.95, \"tasks_evaluated\": 10, \"episodes_per_task\": 50, \"total_success\": 475, \"total_episodes\": 500, \"suite\": \"libero_spatial\", \"prune_mode\": \"l2norm\", \"keep_ratio\": 0.9, \"seed\": 42}, \"conclusion\": \"success\"}, \"eval_pi05_random_k09_spatial_seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate_mean\": 0.546, \"tasks_evaluated\": 10, \"episodes_per_task\": 50, \"total_success\": 273, \"total_episodes\": 500, \"suite\": \"libero_spatial\", \"prune_mode\": \"random\", \"keep_ratio\": 0.9, \"seed\": 42}, \"conclusion\": \"success\"}, \"eval_pi05_random_k0925_object_seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate_mean\": 0.3, \"tasks_evaluated\": 10, \"episodes_per_task\": 50, \"total_success\": 150, \"total_episodes\": 500, \"suite\": \"libero_object\", \"prune_mode\": \"random\", \"keep_ratio\": 0.925, \"seed\": 43}, \"conclusion\": \"success\"}, \"eval_pi05_random_k085_spatial_seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate_mean\": 0.584, \"tasks_evaluated\": 10, \"episodes_per_task\": 50, \"total_success\": 292, \"total_episodes\": 500, \"suite\": \"libero_spatial\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42}, \"conclusion\": \"success\"}, \"eval_pi05_random_k07_spatial_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k095_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k085_object_seed42_v4\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.98, \"total_successes\": 490, \"total_episodes\": 500, \"elapsed_min\": 64.35, \"per_task_sr\": {\"T0_alphabet_soup\": 1, \"T1_cream_cheese\": 1, \"T2_salad_dressing\": 0.98, \"T3_bbq_sauce\": 0.98, \"T4_ketchup\": 0.98, \"T5_tomato_sauce\": 0.98, \"T6_butter\": 1, \"T7_milk\": 0.88, \"T8_chocolate_pudding\": 1, \"T9_orange_juice\": 1}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k095_object_seed42_v2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 98.2, \"total_success\": 491, \"total_episodes\": 500, \"per_task_sr\": [96, 98, 96, 96, 96, 100, 100, 100, 100, 100], \"prune_method\": \"l2norm\", \"keep_ratio\": 0.95, \"tokens_kept\": \"243/256\", \"suite\": \"libero_object\", \"seed\": 42, \"eval_episodes_per_task\": 50, \"wall_time_min\": 63.2}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k085_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_openvla_baseline_spatial_seed42_v3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"train_openvla_sc_m32_vtconly_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k095_object_seed42\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k085_object_seed42_v3\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k0925_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"overall_sr\": 0.276, \"total_successes\": 138, \"total_episodes\": 500, \"elapsed_min\": 108.9, \"per_task_sr\": [0.34, 0.42, 0.24, 0.14, 0.08, 0.42, 0.4, 0.12, 0.34, 0.26]}}, \"eval_pi05_random_k03_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k085_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k085_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k085_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 5, \"episodes\": 500, \"tasks\": 10, \"duration_min\": 108.5, \"per_task_sr\": \"10 tasks completed, overall 25/500\"}}, \"eval_openvla_l2norm_k05_object_seed42_v4\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k03_spatial_seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 49.6, \"total_episodes\": 500, \"per_task_sr\": {\"T0_between_plate\": 66, \"T1_next_to_ramekin\": 80, \"T2_from_table_center\": 62, \"T3_on_cookie_box\": 14, \"T4_in_top_drawer\": 30, \"T5_on_ramekin\": 28, \"T6_next_to_cookie\": 32, \"T7_on_stove\": 64, \"T8_next_to_plate\": 82, \"T9_on_wooden_cab\": 38}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k09_fixedmask_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.17, \"successes\": 85, \"total_episodes\": 500, \"per_task_sr\": [0.12, 0.26, 0.16, 0.14, 0.12, 0.24, 0.18, 0.14, 0.24, 0.1]}}, \"train_smart_compress_m16_seed44_v3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.0677, \"eval_action_loss\": 0.0495, \"train_grad_norm\": 1.88821, \"total_steps\": 99999}}, \"train_smart_compress_m16_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.07652, \"eval_action_loss\": 0.06236, \"train_grad_norm\": 0.97135, \"total_steps\": 99999}}, \"train_smart_compress_m128_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.05584, \"eval_action_loss\": 0.06125, \"train_grad_norm\": 0.95519, \"total_steps\": 99999}}, \"train_smart_compress_m96_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.04668, \"eval_action_loss\": 0.05259, \"train_grad_norm\": 0.97222, \"total_steps\": 99999}}, \"train_smart_compress_m32_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.04146, \"eval_action_loss\": 0.0635, \"train_grad_norm\": 0.57272, \"total_steps\": 99999}}, \"train_smart_compress_m64_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.031, \"eval_action_loss\": 0.06994, \"train_grad_norm\": 1.08378, \"total_steps\": 99999}}, \"train_smart_compress_m128_resume\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.05412, \"eval_action_loss\": 0.05743, \"train_grad_norm\": 0.92663, \"total_steps\": 99999, \"resumed_from_step\": 32001}}, \"eval_pi05_random_k07_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 74.4, \"total_episodes\": 500, \"per_task_sr\": {\"T0_between_plate\": 90, \"T1_next_to_ramekin\": 96, \"T2_table_center\": 94, \"T3_on_cookie_box\": 52, \"T4_in_top_drawer\": 60, \"T5_on_ramekin\": 42, \"T6_next_to_cookie\": 58, \"T7_on_stove\": 76, \"T8_next_to_plate\": 80, \"T9_on_wooden_cab\": 96}}}, \"eval_openvla_random_k05_object_seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 35.8, \"total_successes\": 179, \"total_episodes\": 500, \"per_task\": {\"alphabet_soup\": 56, \"cream_cheese\": 2, \"salad_dressing\": 40, \"bbq_sauce\": 58, \"ketchup\": 60, \"tomato_sauce\": 26, \"butter\": 0, \"milk\": 12, \"chocolate_pudding\": 30, \"orange_juice\": 74}}, \"conclusion\": \"success\"}, \"eval_openvla_random_k07_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.444, \"total_successes\": 222, \"total_episodes\": 500, \"per_task\": {\"alphabet_soup\": 0.72, \"cream_cheese\": 0.2, \"salad_dressing\": 0.56, \"bbq_sauce\": 0.38, \"ketchup\": 0.64, \"tomato_sauce\": 0.52, \"butter\": 0.2, \"milk\": 0.24, \"chocolate_pudding\": 0.34, \"orange_juice\": 0.64}, \"elapsed_minutes\": 274.4}}, \"eval_openvla_random_k09_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k03_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.554, \"total_successes\": 277, \"total_episodes\": 500, \"elapsed_min\": 85.15, \"per_task\": {\"alphabet_soup\": 0.16, \"cream_cheese\": 0.56, \"salad_dressing\": 0.9, \"bbq_sauce\": 0.54, \"ketchup\": 0.4, \"tomato_sauce\": 0.86, \"butter\": 0.52, \"milk\": 0.14, \"chocolate_pudding\": 0.92, \"orange_juice\": 0.54}}}, \"eval_openvla_l2norm_k09_object_seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.706, \"total_successes\": 353, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.66, \"cream_cheese\": 0.58, \"salad_dressing\": 0.66, \"bbq_sauce\": 0.48, \"ketchup\": 0.9, \"tomato_sauce\": 0.64, \"butter\": 0.74, \"milk\": 0.74, \"chocolate_pudding\": 0.78, \"orange_juice\": 0.88}, \"elapsed_minutes\": 228.5}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k05_object_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.336, \"total_successes\": 168, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.44, \"cream_cheese\": 0.08, \"salad_dressing\": 0, \"bbq_sauce\": 0.04, \"ketchup\": 0.6, \"tomato_sauce\": 0.38, \"butter\": 0.32, \"milk\": 0.52, \"chocolate_pudding\": 0.46, \"orange_juice\": 0.52}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k095_object_seed42_v2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 69.4, \"total_successes\": 347, \"total_episodes\": 500, \"elapsed_min\": 91.3, \"per_task_sr\": {\"T0_alphabet_soup\": 64, \"T1_cream_cheese\": 92, \"T2_salad_dressing\": 84, \"T3_bbq_sauce\": 56, \"T4_ketchup\": 54, \"T5_tomato_sauce\": 68, \"T6_butter\": 86, \"T7_milk\": 52, \"T8_chocolate_pudding\": 80, \"T9_orange_juice\": 58}}, \"conclusion\": \"success\"}, \"eval_smolvla_official_random_k050_object_seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\"}, \"eval_smolvla_official_random_k090_object_seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\"}, \"eval_smolvla_official_l2norm_k070_object_seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\"}, \"eval_smolvla_official_l2norm_k030_object_seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\"}, \"eval_smolvla_official_random_k070_object_seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\"}, \"eval_smolvla_official_random_k030_object_seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\"}, \"eval_smolvla_official_l2norm_k050_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0, \"total_episodes\": 500, \"seed\": 42}}, \"eval_pi05_l2norm_k05_spatial_seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 55.6, \"total_successes\": 278, \"total_episodes\": 500, \"elapsed_min\": 108.9, \"per_task_sr\": {\"T0_pick_up_black_bowl_between_plate\": 74, \"T1_pick_up_black_bowl_next_to_ramekin\": 82, \"T2_pick_up_black_bowl_on_plate\": 78, \"T3_pick_up_black_bowl_on_cookie_box\": 28, \"T4_pick_up_black_bowl_in_top_drawer\": 38, \"T5_pick_up_black_bowl_on_ramekin\": 44, \"T6_pick_up_black_bowl_next_to_cookie\": 32, \"T7_pick_up_black_bowl_on_stove\": 74, \"T8_pick_up_black_bowl_next_to_plate\": 62, \"T9_pick_up_black_bowl_on_wooden_cab\": 44}, \"comparison\": {\"vs_random_k05_spatial\": \"55.6 vs 71.6 (-16.0pp)\", \"vs_l2norm_k05_object\": \"55.6 vs 33.4 (+22.2pp)\", \"vs_baseline_spatial\": \"55.6 vs 97.2 (-41.6pp)\"}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k03_spatial_seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 57.2, \"total_successes\": 286, \"total_episodes\": 500, \"elapsed_min\": 108.4, \"seed\": 42, \"per_task_sr\": {\"T0_bowl_between_plate\": 62, \"T1_bowl_next_to_ramekin\": 72, \"T2_bowl_from_table_center\": 78, \"T3_bowl_on_cookie_box\": 24, \"T4_bowl_in_top_drawer\": 34, \"T5_bowl_on_ramekin\": 26, \"T6_bowl_next_to_cookie\": 74, \"T7_bowl_on_stove\": 90, \"T8_bowl_next_to_plate\": 66, \"T9_bowl_on_wooden_cabinet\": 46}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_spatial_seed42.json\"}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k05_spatial_seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 71.6, \"total_successes\": 358, \"total_episodes\": 500, \"per_task\": {\"T0_bowl_between_plate_ramekin\": 88, \"T1_bowl_next_to_ramekin\": 82, \"T2_bowl_from_table_center\": 88, \"T3_bowl_on_cookie_box\": 52, \"T4_bowl_in_top_drawer\": 44, \"T5_bowl_on_ramekin\": 38, \"T6_bowl_next_to_cookie_box\": 84, \"T7_bowl_on_stove\": 84, \"T8_bowl_next_to_plate\": 80, \"T9_bowl_on_wooden_cabinet\": 76}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k085_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k09_fixedmask_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"error\": \"Network unreachable - AutoTokenizer.from_pretrained('google/paligemma-3b-pt-224') failed because AutoDL network was not enabled (source /etc/network_turbo not run). No episodes executed.\", \"overall_sr\": null, \"total_episodes\": 0}}, \"eval_pi05_baseline_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97.2, \"total_successes\": 486, \"num_episodes\": 500, \"elapsed_minutes\": 55.8, \"seed\": 42, \"per_task\": {\"T0_pick_up_black_bowl_between_plate\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T1_pick_up_black_bowl_next_to_ramekin\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T2_pick_up_black_bowl_from_stove\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T3_pick_up_black_bowl_on_cookie_box\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T4_pick_up_black_bowl_in_top_drawer\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T5_pick_up_black_bowl_on_ramekin\": {\"sr\": 78, \"success\": 39, \"total\": 50}, \"T6_pick_up_black_bowl_next_to_cookie\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T7_pick_up_black_bowl_on_stove\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T8_pick_up_black_bowl_next_to_plate\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T9_pick_up_black_bowl_on_wooden_cabinet\": {\"sr\": 100, \"success\": 50, \"total\": 50}}}}, \"eval_pi05_random_k095_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k09_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.096, \"total_successes\": 48, \"total_episodes\": 500, \"elapsed_min\": 119.5, \"per_task_sr\": {\"T0_alphabet_soup\": 0.16, \"T1_cream_cheese\": 0.16, \"T2_salad_dressing\": 0.1, \"T3_bbq_sauce\": 0.02, \"T4_ketchup\": 0.06, \"T5_tomato_sauce\": 0.14, \"T6_butter\": 0.14, \"T7_milk\": 0.02, \"T8_chocolate_pudding\": 0.08, \"T9_orange_juice\": 0.08}}}, \"eval_pi05_random_k09_object_seed42_v2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 12, \"total_episodes\": 500, \"seed\": 42, \"suspect\": false, \"suspect_reason\": \"cleared - seed43=9.6% confirms result is real, not bug\"}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k01_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.026, \"total_successes\": 13, \"total_episodes\": 500, \"elapsed_min\": 117.55, \"per_task_sr\": {\"T0_alphabet_soup\": 0.02, \"T1_cream_cheese\": 0.06, \"T2_salad_dressing\": 0.04, \"T3_bbq_sauce\": 0.02, \"T4_ketchup\": 0.04, \"T5_tomato_sauce\": 0.02, \"T6_butter\": 0, \"T7_milk\": 0, \"T8_chocolate_pudding\": 0.02, \"T9_orange_juice\": 0.04}}}, \"eval_smolvla_official_random_k050_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_smolvla_official_l2norm_k095_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_smolvla_official_random_k095_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_smolvla_official_baseline_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"train_openvla_sc_m64_seed42_v6\": {\"status\": \"RUNNING\"}, \"eval_smolvla_official_l2norm_k095_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.4, \"total_episodes\": 500, \"seed\": 42}}, \"eval_smolvla_official_random_k095_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0, \"total_episodes\": 500, \"seed\": 42}}, \"eval_smolvla_official_baseline_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 57.2, \"total_episodes\": 500, \"seed\": 42, \"note\": \"Official checkpoint, paper reports ~87% - significant gap\"}}, \"eval_openvla_l2norm_k05_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 39.2, \"total_episodes\": 500, \"seed\": 43}}, \"train_openvla_sc_m64_seed42_v5\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k09_object_seed42_v2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 98.2, \"total_successes\": 491, \"total_episodes\": 500, \"seed\": 42}, \"conclusion\": \"success\"}, \"eval_openvla_l2norm_k03_object_seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 25, \"num_episodes\": 500, \"per_task\": {\"alphabet_soup\": 42, \"cream_cheese\": 6, \"salad_dressing\": 28, \"bbq_sauce\": 10, \"ketchup\": 66, \"tomato_sauce\": 0, \"butter\": 8, \"milk\": 36, \"chocolate_pudding\": 28, \"orange_juice\": 26}}, \"conclusion\": \"success\"}, \"eval_openvla_random_k07_object_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.526, \"total_successes\": 263, \"total_episodes\": 500, \"elapsed_min\": 272.6, \"per_task\": {\"alphabet_soup\": 0.84, \"cream_cheese\": 0.2, \"salad_dressing\": 0.66, \"bbq_sauce\": 0.42, \"ketchup\": 0.7, \"tomato_sauce\": 0.54, \"butter\": 0.1, \"milk\": 0.6, \"chocolate_pudding\": 0.36, \"orange_juice\": 0.84}}, \"conclusion\": \"success\"}, \"eval_openvla_baseline_object_seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 74, \"num_episodes\": 500, \"source\": \"log extraction - full eval completed but results/ dir missing caused save failure\"}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k03_object_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {}}, \"eval_xvla_random_k07_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 65.2, \"num_episodes\": 500}}, \"eval_xvla_random_k085_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 63.2, \"num_episodes\": 500}}, \"eval_xvla_random_k085_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 63.6, \"num_episodes\": 500}}, \"eval_pi05_l2norm_k07_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 56.4, \"total_successes\": 282, \"total_episodes\": 500, \"elapsed_min\": 100.3}}, \"eval_pi05_l2norm_k07_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 55, \"total_successes\": 275, \"total_episodes\": 500, \"elapsed_min\": 91.7}}, \"eval_xvla_l2norm_k03_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_xvla_l2norm_k085_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_xvla_random_k085_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 63.6, \"num_episodes\": 500, \"wilson_ci_95\": [0.593, 0.677]}}, \"eval_xvla_l2norm_k03_object_seed43\": {\"status\": \"DONE\", \"metrics\": {\"SR\": 0.21}, \"conclusion\": \"success\"}, \"eval_xvla_random_k03_object_seed43\": {\"status\": \"DONE\", \"metrics\": {\"SR\": 0.662}, \"conclusion\": \"success\"}, \"eval_xvla_random_k07_object_seed44\": {\"status\": \"DONE\", \"metrics\": {\"SR\": 0.65}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k07_object_seed43\": {\"status\": \"DONE\", \"metrics\": {\"SR\": 0.59}, \"conclusion\": \"success\"}, \"eval_xvla_random_k03_object_seed44\": {\"status\": \"DONE\", \"metrics\": {\"SR\": 0.63, \"per_task\": [0.74, 0.42, 0.96, 0.8, 0.88, 0.84, 0, 0.74, 0, 0.92]}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k07_object_seed44\": {\"status\": \"DONE\", \"metrics\": {\"SR\": 0.564, \"per_task\": [0.96, 0, 1, 0.8, 0.26, 0.9, 0.12, 0.7, 0.02, 0.88]}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_object_seed43_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.578, \"total_successes\": 289, \"total_episodes\": 500, \"elapsed_min\": 91.34, \"per_task\": {\"alphabet_soup\": 0.46, \"cream_cheese\": 0.96, \"salad_dressing\": 0.8, \"bbq_sauce\": 0.8, \"ketchup\": 0.26, \"tomato_sauce\": 1, \"butter\": 0.3, \"milk\": 0.04, \"chocolate_pudding\": 0.7, \"orange_juice\": 0.46}}}, \"eval_openvla_l2norm_k03_object_seed42_rerun\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.25, \"total_successes\": 125, \"total_episodes\": 500, \"per_task\": {\"alphabet_soup\": 0.42, \"cream_cheese\": 0.06, \"salad_dressing\": 0.28, \"bbq_sauce\": 0.1, \"ketchup\": 0.66, \"tomato_sauce\": 0, \"butter\": 0.08, \"milk\": 0.36, \"chocolate_pudding\": 0.28, \"orange_juice\": 0.26}, \"vision_tokens\": \"256->76\", \"elapsed_minutes\": 299.2}}, \"eval_openvla_random_k03_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.214, \"per_task\": {\"alphabet_soup\": 0.14, \"cream_cheese\": 0, \"salad_dressing\": 0.56, \"bbq_sauce\": 0.3, \"ketchup\": 0.26, \"tomato_sauce\": 0, \"butter\": 0.02, \"milk\": 0.14, \"chocolate_pudding\": 0.16, \"orange_juice\": 0.56}, \"elapsed_min\": 304.1, \"seed\": 42}}, \"eval_openvla_l2norm_k05_object_seed42_v3\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_openvla_l2norm_k05_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.392, \"total_successes\": 196, \"total_episodes\": 500, \"per_task_SR\": {\"alphabet_soup\": 0.56, \"cream_cheese\": 0.14, \"salad_dressing\": 0.38, \"bbq_sauce\": 0.32, \"ketchup\": 0.7, \"tomato_sauce\": 0.32, \"butter\": 0.12, \"milk\": 0.5, \"chocolate_pudding\": 0.44, \"orange_juice\": 0.44}, \"elapsed_minutes\": 279.3, \"seed\": 42}}, \"eval_openvla_l2norm_k07_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.498, \"total_successes\": 249, \"total_episodes\": 500}}, \"eval_pi05_random_k07_object_seed42_v3\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_pi05_random_k07_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.772, \"total_successes\": 386, \"total_episodes\": 500, \"elapsed_min\": 83.1}}, \"eval_xvla_l2norm_k03_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.222, \"total_successes\": 111, \"total_episodes\": 500, \"wilson_ci_95\": [0.188, 0.26], \"per_task\": [26, 0, 32, 40, 18, 46, 0, 24, 0, 36], \"notes\": \"3 tasks at 0% SR (catastrophic). vs random k=0.3=62.8% → gap +40.6pp confirms D132.\"}}, \"eval_pi05_random_k07_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_pi05_random_k03_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.364, \"total_successes\": 182, \"total_episodes\": 500}}, \"eval_xvla_l2norm_k05_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.434, \"total_successes\": 217, \"total_episodes\": 500}}, \"eval_pi05_l2norm_k03_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.51, \"total_successes\": 255, \"total_episodes\": 500, \"notes\": \"D140: L2norm reversal at k=0.3 - L2norm > random for pi0.5\"}}, \"eval_xvla_random_k05_object_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.692, \"total_successes\": 346, \"total_episodes\": 500, \"notes\": \"3rd seed confirms D132: random k=0.5 seed42=70.6%, seed43=71.0%, seed44=69.2%\"}}, \"eval_pi05_random_k05_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.694, \"total_successes\": 347, \"total_episodes\": 500, \"elapsed_min\": 94.9, \"per_task_sr\": {\"alphabet_soup\": 0.92, \"cream_cheese\": 0.78, \"salad_dressing\": 0.68, \"bbq_sauce\": 0.6, \"ketchup\": 0.6, \"tomato_sauce\": 0.58, \"butter\": 0.88, \"milk\": 0.54, \"chocolate_pudding\": 0.78, \"orange_juice\": 0.58}, \"comparison\": {\"baseline_sr\": 0.982, \"l2norm_k05_sr\": 0.334, \"random_vs_l2norm_gap\": \"+36.0pp\", \"retention_rate\": \"70.7%\"}}}, \"eval_xvla_l2norm_k07_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.582, \"total_episodes\": 500, \"total_successes\": 291, \"per_task\": [96, 2, 100, 78, 34, 90, 18, 0, 70, 94], \"notes\": \"Reviewer confirmed. westd-38929=56.2% vs cqa1=58.2%, 2pp diff acceptable.\"}}, \"train_openvla_sc_m64_seed42_v4\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"steps_completed\": \"from_step_0_restart\", \"steps_total\": 100000, \"note\": \"Previous run crashed at 50K. Current run restarted from 0.\"}}, \"eval_xvla_random_k07_object_seed43_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.65, \"wilson_ci_95\": [0.6072, 0.6905], \"total_episodes\": 500, \"total_successes\": 325}}, \"eval_xvla_random_k05_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.71, \"wilson_ci_95\": [0.6687, 0.7481], \"total_episodes\": 500, \"total_successes\": 355}}, \"eval_openvla_sc_m128_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"7/7 episodes FAIL (280-step timeout), model output invalid after LoRA merge. Killed by Director.\"}}, \"eval_openvla_random_k07_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"Process never started — empty log, command failure on westd-38929\"}}, \"eval_pi05_l2norm_k05_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 33.4, \"total_successes\": 167, \"num_episodes\": 500, \"elapsed_minutes\": 95.6, \"seed\": 42, \"keep_ratio\": 0.5, \"per_task\": {\"alphabet_soup\": 0.5, \"cream_cheese\": 0.14, \"salad_dressing\": 0.0, \"bbq_sauce\": 0.0, \"ketchup\": 0.54, \"tomato_sauce\": 0.38, \"butter\": 0.28, \"milk\": 0.64, \"chocolate_pudding\": 0.38, \"orange_juice\": 0.48}}}, \"eval_xvla_random_k05_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 71.4, \"num_episodes\": 500, \"wilson_ci_95\": [0.673, 0.752], \"per_task\": [0.98, 0.26, 0.98, 0.9, 0.86, 0, 0.92, 0.66, 0.92, 0.66], \"duration_min\": 92.1, \"suite\": \"libero_spatial\"}}, \"eval_xvla_random_k07_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {}}, \"eval_openvla_l2norm_k05_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"failure_reason\": \"AutoDL container restart at 14:50:19 UTC killed process. Was at Task 4/10 (~40%). GPU count dropped from 4 to 1 after restart.\", \"success_rate\": 39.2, \"k_ratio\": 0.5, \"note\": \"Prior complete result found on disk after container crash. Current run crashed at Task 4/10.\"}}, \"eval_openvla_l2norm_k03_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"failure_reason\": \"AutoDL container restart at 14:50:19 UTC killed process. Was at Task 4/10 (~40%). GPU count dropped from 4 to 1 after restart.\", \"success_rate\": 25.0, \"k_ratio\": 0.3, \"note\": \"Prior complete result found on disk after container crash. Current run crashed at Task 4/10.\"}}, \"eval_openvla_random_k03_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"AutoDL container restart at 14:50:19 UTC killed process. Was at Task 4/10 (~40%). GPU count dropped from 4 to 1 after restart.\"}}, \"eval_openvla_l2norm_k07_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"AutoDL container restart at 14:50:19 UTC killed process. Was at Task 4/10 (~40%). GPU count dropped from 4 to 1 after restart.\"}}, \"eval_xvla_random_k03_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 62.8, \"keep_ratio\": 0.3}}, \"eval_smolvla_baseline_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"Ghost process: no GPU assigned, PID 224849 likely dead after westd-38929 GPUs reassigned to OpenVLA experiments\"}}, \"eval_pi05_baseline_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.982, \"total_successes\": 491, \"num_episodes\": 500, \"elapsed_minutes\": 60.6, \"seed\": 42, \"per_task\": {\"alphabet_soup\": 0.96, \"cream_cheese\": 0.98, \"salad_dressing\": 0.97, \"bbq_sauce\": 1, \"ketchup\": 0.94, \"tomato_sauce\": 1, \"butter\": 1, \"milk\": 0.98, \"chocolate_pudding\": 1, \"orange_juice\": 0.98}}}, \"eval_xvla_random_k05_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 70.6, \"num_episodes\": 500, \"wilson_ci_95\": [0.665, 0.744], \"per_task\": [0.96, 0.46, 0.98, 0.8, 1.0, 0.76, 0.02, 0.82, 0.26, 1.0], \"duration_min\": 76.0}}, \"eval_xvla_random_k07_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 65.2, \"num_episodes\": 500, \"wilson_ci_95\": [0.609, 0.692], \"per_task\": [0.98, 0.0, 1.0, 0.94, 0.62, 0.96, 0.1, 0.92, 0.0, 1.0], \"duration_min\": 77.3}}, \"eval_openvla_sc_m128_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"success_rate\": 0.0, \"num_episodes_completed\": 16, \"all_fail\": true}}, \"eval_openvla_prune_random_k05_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 35.8, \"num_episodes\": 500, \"seed\": 42, \"per_task\": [0.56, 0.02, 0.4, 0.58, 0.6, 0.26, 0.0, 0.12, 0.3, 0.74], \"wilson_ci_95\": [0.317, 0.401], \"duration_min\": 291}}, \"eval_xvla_random_k085_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 67.6, \"num_episodes\": 500, \"wilson_ci_95\": [0.634, 0.716], \"per_task\": [1.0, 0.04, 0.98, 1.0, 0.8, 0.06, 0.96, 0.04, 0.94, 0.94], \"duration_min\": 94.9}}, \"eval_openvla_prune_random_k07_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 44.4, \"num_episodes\": 500, \"seed\": 42}}, \"eval_openvla_prune_random_k095_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 69.2, \"num_episodes\": 500, \"seed\": 42, \"per_task\": [0.8, 0.42, 0.7, 0.42, 0.88, 0.84, 0.6, 0.68, 0.66, 0.92], \"wilson_ci_95\": [0.65, 0.731]}}, \"eval_smolvla_baseline_spatial_westd38929_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 8.0, \"num_episodes\": 500, \"wilson_ci_95\": [0.059, 0.107], \"per_task\": [0.24, 0.08, 0.04, 0.24, 0.0, 0.02, 0.02, 0.02, 0.14, 0.0], \"note\": \"OffScreenRenderEnv - not comparable with LiberoEnv results\"}}, \"eval_xvla_random_k08_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 89.4, \"num_episodes\": 500, \"wilson_ci_95\": [0.864, 0.918], \"per_task\": [0.96, 0.88, 1.0, 0.92, 0.94, 0.96, 0.5, 0.94, 0.84, 1.0]}}, \"eval_xvla_random_k09_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97.8, \"num_episodes\": 500, \"wilson_ci_95\": [0.961, 0.988], \"per_task\": [0.96, 1.0, 1.0, 0.94, 1.0, 0.94, 1.0, 0.98, 0.96, 1.0], \"duration_min\": 50.4}}, \"eval_oft_baseline_goal_seed42\": {\"status\": \"PREPARING\"}, \"eval_oft_object_std_v3\": {\"status\": \"PREPARING\"}, \"eval_oft_object_nolora_v2\": {\"status\": \"PREPARING\"}, \"eval_xvla_spatial_k085_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 66.6, \"num_episodes\": 500}}, \"eval_openvla_prune_l2norm_k07_seed43_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 49.8, \"num_episodes\": 500, \"wilson_ci_95\": [0.455, 0.541]}}, \"eval_oft_baseline_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"train_openvla_sc_m64_seed42_v3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_openvla_sc_m64_50k_seed42\": {\"status\": \"PREPARING\"}, \"openvla-spatial-maxsteps600-quick\": {\"status\": \"PREPARING\"}, \"openvla-spatial-maxsteps600-test\": {\"status\": \"PREPARING\"}, \"eval_openvla_baseline_spatial_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_xvla_goal_k05_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.61, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42, \"wilson_ci_95\": [0.567, 0.652], \"per_task\": [0.82, 0.98, 1.0, 0.4, 1.0, 0.0, 0.24, 0.74, 0.92, 0.0]}}, \"eval_xvla_baseline_long_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.94, \"num_episodes\": 500, \"wilson_ci_95\": [0.916, 0.958], \"suite\": \"libero_10\", \"seed\": 42, \"per_task\": [0.96, 0.68, 1.0, 0.98, 0.94, 0.96, 0.94, 0.96, 1.0, 0.98]}}, \"eval_xvla_goal_k09_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.702, \"num_episodes\": 500, \"wilson_ci_95\": [0.66, 0.74], \"suite\": \"libero_goal\", \"seed\": 42, \"per_task\": [1.0, 0.82, 0.96, 0.06, 0.96, 0.0, 0.78, 1.0, 0.46, 0.98]}}, \"eval_xvla_baseline_goal_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.98, \"num_episodes\": 500, \"wilson_ci_95\": [0.964, 0.989]}}, \"eval_xvla_baseline_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.916, \"num_episodes\": 500, \"wilson_ci_95\": [0.888, 0.937]}}, \"eval_xvla_spatial_k09_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.79, \"num_episodes\": 500, \"wilson_ci_95\": [0.752, 0.823]}}, \"eval_openvla_sc_m128_spatial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_openvla_prune_random_k03_seed43\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_openvla_prune_random_k07_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_openvla_prune_random_k095_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_openvla_prune_l2norm_k09_seed43\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_xvla_spatial_k05_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.588, \"num_episodes\": 500, \"wilson_ci_95\": [0.544, 0.63], \"per_task\": [0.94, 0.22, 0.9, 0.74, 0.88, 0.0, 0.78, 0.3, 0.74, 0.38]}}, \"eval_xvla_prune_k085_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.682, \"num_episodes\": 500, \"wilson_ci_95\": [0.64, 0.721]}}, \"eval_xvla_prune_k08_seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.898, \"num_episodes\": 500, \"total_successes\": 449, \"wilson_ci_95\": [0.868, 0.922]}, \"conclusion\": \"success\"}, \"eval_openvla_prune_random_k095_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.668, \"num_episodes\": 500, \"total_successes\": 334, \"wilson_ci_95\": [0.626, 0.708], \"elapsed_minutes\": 249.43, \"seed\": 43, \"k_ratio\": 0.95, \"mode\": \"random_prune\"}}, \"eval_openvla_prune_l2norm_k07_seed43\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"success_rate\": 0.74, \"total_successes\": 370, \"num_episodes\": 500, \"wilson_ci_95\": [0.7, 0.777], \"elapsed_minutes\": 237.8, \"seed\": 43, \"per_task\": {\"alphabet_soup\": 0.78, \"cream_cheese\": 0.8, \"salad_dressing\": 0.82, \"bbq_sauce\": 0.46, \"ketchup\": 0.96, \"tomato_sauce\": 0.78, \"butter\": 0.58, \"milk\": 0.72, \"chocolate_pudding\": 0.68, \"orange_juice\": 0.82}}}, \"eval_xvla_prune_k08_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.888, \"num_episodes\": 500, \"wilson_ci_95\": [0.8573, 0.9127], \"n_vision_tokens_kept\": 40, \"n_vision_tokens_original\": 50, \"keep_ratio\": 0.8}}, \"eval_xvla_prune_k085_seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.676, \"num_episodes\": 500, \"wilson_ci_95\": [0.6338, 0.7155], \"n_vision_tokens_kept\": 42, \"n_vision_tokens_original\": 50, \"keep_ratio\": 0.85}, \"conclusion\": \"success\"}, \"eval_xvla_prune_k085_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.68, \"num_episodes\": 500, \"wilson_ci_95\": [0.638, 0.719]}}, \"eval_xvla_prune_k08_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.884, \"num_episodes\": 500, \"wilson_ci_95\": [0.853, 0.909]}}, \"eval_xvla_prune_k01_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0, \"num_episodes\": 500, \"wilson_ci_95\": [0, 0.008]}}, \"eval_xvla_prune_k095_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.99, \"num_episodes\": 500, \"wilson_ci_95\": [0.9768, 0.9957]}}, \"eval_xvla_prune_k095_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.994, \"num_episodes\": 500, \"wilson_ci_95\": [0.983, 0.998]}}, \"eval_xvla_prune_k095_seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.99, \"num_episodes\": 500, \"wilson_ci_95\": [0.977, 0.996]}, \"conclusion\": \"success\"}, \"eval_xvla_prune_k01_seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0, \"num_episodes\": 500, \"wilson_ci_95\": [0, 0.008]}, \"conclusion\": \"success\"}, \"eval_xvla_prune_k01_seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0, \"num_episodes\": 500, \"wilson_ci_95\": [0, 0.0076]}, \"conclusion\": \"success\"}, \"eval_openvla_prune_random_k03_seed42\": {\"status\": \"PREPARING\"}, \"eval_openvla_prune_random_k09_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.646, \"num_episodes\": 500, \"total_successes\": 323, \"wilson_ci_95\": [0.604, 0.686]}}, \"eval_openvla_prune_random_k09_seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.622, \"num_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_openvla_prune_random_k05_seed43_v2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.356, \"num_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_xvla_prune_k02_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.04, \"num_episodes\": 500}}, \"eval_xvla_prune_k02_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.048, \"num_episodes\": 500}}, \"eval_openvla_prune_l2norm_k09\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.706, \"num_episodes\": 500}}, \"eval_openvla_prune_random_k07_seed43_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.526, \"num_episodes\": 500}}, \"eval_openvla_prune_l2norm_k095\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.706, \"num_episodes\": 500}}, \"eval_openvla_prune_l2norm_k03\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.25, \"num_episodes\": 500}}, \"eval_openvla_prune_l2norm_k05\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.392, \"num_episodes\": 500}}, \"eval_xvla_prune_k03_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.21, \"num_episodes\": 500}}, \"eval_xvla_prune_k03_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.228, \"num_episodes\": 500}}, \"eval_xvla_prune_k05_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.444, \"num_episodes\": 500}}, \"eval_xvla_prune_k07_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.564, \"episodes\": 500}}, \"eval_xvla_prune_k09_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.982, \"episodes\": 500}}, \"eval_openvla_prune_random_k05_seed43\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_openvla_prune_random_k07_seed43\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_openvla_prune_seed43_sweep\": {\"status\": \"PREPARING\"}, \"eval_oft_baseline_k10\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_openvla_sc_m128_20k_seed42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"suite\": \"libero_object\", \"seed\": 42, \"task_0_sr\": 0, \"episodes_completed\": 44, \"episodes_total\": 50, \"note\": \"0/44 episodes succeeded on Task 0. All episodes timeout at 280 steps. Overfitting confirmed.\"}}, \"eval_openvla_prune_l2norm_sweep\": {\"status\": \"PREPARING\"}, \"eval_smart_compress_m16_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"suite\": \"libero_object\", \"seed\": 44, \"n_queries\": 16, \"overall_sr\": 0.565, \"n_episodes\": 500, \"per_task_sr\": {\"task_0_alphabet_soup\": 0.38, \"task_1_cream_cheese\": 0.7, \"task_2_salad_dressing\": 0.55, \"task_3_bbq_sauce\": 0.42, \"task_4_ketchup\": 0.65, \"task_5_tomato_sauce\": 0.33, \"task_6_butter\": 0.73, \"task_7_milk\": 0.64, \"task_8_chocolate_pudding\": 0.87, \"task_9_orange_juice\": 0.38}}}, \"analysis_smolvla_importance_cv\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"importance_cv\": 0.314, \"importance_cv_std\": 0.015, \"importance_gini\": 0.156, \"entropy_ratio\": 0.952}}, \"eval_smart_compress_m16_seed43\": {\"status\": \"DONE\", \"metrics\": {\"suite\": \"libero_object\", \"seed\": 43, \"n_queries\": 16, \"overall_sr\": 0.584, \"wilson_ci_95\": [0.5703, 0.5976], \"per_task_sr\": {\"task_0_alphabet_soup\": 0.428, \"task_1_cream_cheese\": 0.474, \"task_2_salad_dressing\": 0.662, \"task_3_bbq_sauce\": 0.484, \"task_4_ketchup\": 0.742, \"task_5_tomato_sauce\": 0.4, \"task_6_butter\": 0.792, \"task_7_milk\": 0.698, \"task_8_chocolate_pudding\": 0.766, \"task_9_orange_juice\": 0.394}}, \"conclusion\": \"success\"}, \"eval_smart_compress_m128_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"suite\": \"libero_object\", \"seed\": 43, \"n_queries\": 128, \"overall_sr\": 0.54, \"wilson_ci_95\": [0.5262, 0.5538], \"per_task_sr\": {\"task_0_alphabet_soup\": 0.646, \"task_1_cream_cheese\": 0.322, \"task_2_salad_dressing\": 0.614, \"task_3_bbq_sauce\": 0.432, \"task_4_ketchup\": 0.348, \"task_5_tomato_sauce\": 0.442, \"task_6_butter\": 0.716, \"task_7_milk\": 0.604, \"task_8_chocolate_pudding\": 0.818, \"task_9_orange_juice\": 0.458}}}, \"train_openvla_sc_m128_vtconly_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_openvla_sc_m128_vtconly_20k_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"analysis_pi0_token_importance\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"k01_norm_loss\": 0.976, \"k05_norm_loss\": 0.983, \"k09_norm_loss\": 0.993, \"importance_cv\": 0.038, \"importance_gini\": 0.009, \"entropy_ratio\": 0.9999, \"suffix_vis_entropy_mean\": 0.959}}, \"train_openvla_sc_m128_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"train_openvla_sc_m96_seed42_v3\": {\"status\": \"RUNNING\"}, \"train_openvla_sc_m64_seed42\": {\"status\": \"PREPARING\"}, \"train_openvla_sc_m96_seed42\": {\"status\": \"PREPARING\"}, \"analysis_xvla_token_importance\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"train_openvla_sc_m96_vtconly_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"train_openvla_sc_m64_vtconly_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"train_c5_roboflamingo_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"train_c5_roboflamingo_libero_object\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"train_openvla_sc_m128_lora_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_smart_compress_m32_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 59.6, \"ci_95_lower\": 55.2, \"ci_95_upper\": 63.8, \"n_episodes\": 500, \"seed\": 44}}, \"eval_smart_compress_m96_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 52.8, \"ci_95_lower\": 48.4, \"ci_95_upper\": 57.1, \"n_episodes\": 500, \"seed\": 44}}, \"eval_smart_compress_m64_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 64.4, \"ci_95_lower\": 60.1, \"ci_95_upper\": 68.5, \"n_episodes\": 500, \"seed\": 44}}, \"eval_openvla_random_pruning_sweep\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"k1.0_sr\": 74, \"k0.95_sr\": 69.4, \"k0.90_sr\": 62, \"k0.70_sr\": 49, \"k0.50_sr\": 37.4, \"k0.30_sr\": 20.6, \"n_episodes\": 500, \"seed\": 7, \"suite\": \"libero_object\"}}, \"c5_roboflamingo_libero_object\": {\"status\": \"PREPARING\"}, \"c5-roboflamingo-libero-baseline\": {\"status\": \"PREPARING\"}, \"train_openvla_sc_m128_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_openvla_baseline_spatial\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"note\": \"0% SR as expected - OpenVLA fine-tuned on LIBERO-Object is OOD on Spatial\"}}, \"train_smart_compress_m16_seed44_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"Disk full on /root/autodl-tmp/ (250G/250G, 100% used, 4MB free). Training ran normally to step=1000 (loss 5.0→0.2), but torch.save() failed at first checkpoint save with PytorchStreamWriter write error. Checkpoints dir already 112GB from prior experiments — needs cleanup before retry. Partial checkpoint.pt (228MB) likely corrupted.\", \"last_step\": 1000, \"last_loss\": 0.207, \"steps_per_second\": 3.8}}, \"eval_official_smolvla_prune_k05_spatial_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.006, \"total_successes\": 3, \"total_episodes\": 500, \"note\": \"cliff-edge confirmed on Spatial suite, 0.6% SR with k=0.5 random pruning\"}}, \"eval_smart_compress_m96_seed44_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.528, \"total_successes\": 264, \"total_episodes\": 500, \"wilson_ci_95\": [0.4842, 0.5714]}}, \"eval_smart_compress_m64_seed44_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.644, \"total_successes\": 322, \"total_episodes\": 500, \"wilson_ci_95\": [0.6011, 0.6847]}}, \"eval_smart_compress_m32_seed44_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.596, \"total_successes\": 298, \"total_episodes\": 500, \"wilson_ci_95\": [0.5524, 0.6381]}}, \"eval_mlp_adapter_seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.604, \"wilson_ci_95\": [0.5605, 0.6459], \"total_episodes\": 500, \"total_successes\": 302, \"suite\": \"libero_object\", \"per_task_sr\": {\"0_alphabet_soup\": 0.54, \"1_cream_cheese\": 0.68, \"2_salad_dressing\": 0.58, \"3_bbq_sauce\": 0.5, \"4_ketchup\": 0.8, \"5_tomato_sauce\": 0.58, \"6_butter\": 0.82, \"7_milk\": 0.58, \"8_chocolate_pudding\": 0.54, \"9_orange_juice\": 0.42}}, \"conclusion\": \"negative\"}, \"eval_official_smolvla_prune_k05_spatial\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_smolvla_official_baseline_spatial_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.438, \"wilson_ci_95\": [0.3951, 0.4818], \"total_episodes\": 500, \"total_successes\": 219, \"per_task_sr\": {\"task_0\": 0.54, \"task_1\": 0.48, \"task_2\": 0.08, \"task_3\": 0.76, \"task_4\": 0.38, \"task_5\": 0.2, \"task_6\": 0.34, \"task_7\": 0.78, \"task_8\": 0.48, \"task_9\": 0.34}}}, \"eval_mlp_adapter_seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.646, \"wilson_ci_95\": [0.603, 0.687], \"total_episodes\": 500, \"total_successes\": 323, \"suite\": \"libero_object\", \"per_task_sr\": {\"task0_alphabet_soup\": 0.74, \"task1_cream_cheese\": 0.74, \"task2_salad_dressing\": 0.66, \"task3_bbq_sauce\": 0.44, \"task4_ketchup\": 0.56, \"task5_tomato_sauce\": 0.64, \"task6_butter\": 0.86, \"task7_milk\": 0.58, \"task8_chocolate_pudding\": 0.72, \"task9_orange_juice\": 0.52}}, \"conclusion\": \"negative\"}, \"eval_mlp_adapter_control\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"overall_success_rate\": 0.652, \"wilson_ci_95\": [0.6092, 0.6925], \"total_episodes\": 500, \"total_successes\": 326, \"suite\": \"libero_object\", \"per_task_sr\": {\"task0_alphabet_soup\": 0.58, \"task1_cream_cheese\": 0.74, \"task2_salad_dressing\": 0.72, \"task3_bbq_sauce\": 0.56, \"task4_ketchup\": 0.76, \"task5_tomato_sauce\": 0.68, \"task6_butter\": 0.8, \"task7_milk\": 0.62, \"task8_chocolate_pudding\": 0.52, \"task9_orange_juice\": 0.54}}}, \"eval_smolvla_prune_k05_spatial_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0, \"wilson_ci_95\": [0, 0.0076], \"total_episodes\": 500, \"total_successes\": 0, \"num_tasks\": 10, \"episodes_per_task\": 50, \"per_task_sr\": {\"T0\": 0, \"T1\": 0, \"T2\": 0, \"T3\": 0, \"T4\": 0, \"T5\": 0, \"T6\": 0, \"T7\": 0, \"T8\": 0, \"T9\": 0}, \"k_ratio\": 0.5, \"tokens_kept\": 64, \"tokens_removed\": 64, \"pruning_method\": \"true_removal\"}}, \"eval_smolvla_baseline_spatial\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.062, \"total_successes\": 31, \"total_episodes\": 500}}, \"eval_smolvla_official_baseline_spatial\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_smolvla_prune_k05_spatial\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"train_smart_compress_m16_seed44\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"train_mlp_adapter_control\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_smart_compress_m32_spatial\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_smart_compress_m128_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.602, \"total_successes\": 301, \"total_episodes\": 500, \"wilson_ci_95\": [0.5585, 0.644], \"per_task_sr\": {\"alphabet_soup\": 0.54, \"cream_cheese\": 0.3, \"salad_dressing\": 0.62, \"bbq_sauce\": 0.5, \"ketchup\": 0.86, \"tomato_sauce\": 0.4, \"butter\": 0.66, \"milk\": 0.72, \"chocolate_pudding\": 0.88, \"orange_juice\": 0.54}}}, \"train_smart_compress_m32_official\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"train_smart_compress_m128_seed44\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_openvla_prune_k095\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 69.4, \"per_task_sr\": [76, 38, 84, 54, 84, 82, 46, 74, 64, 92], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"eval_openvla_prune_k09\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 62, \"per_task_sr\": [70, 28, 76, 56, 78, 70, 42, 60, 54, 86], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"eval_smart_compress_m32_seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 59.2, \"per_task_sr\": [72, 38, 68, 36, 68, 48, 86, 44, 96, 36], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"eval_smart_compress_m32_libero_spatial\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 53.2, \"per_task_sr\": [58, 62, 52, 82, 28, 18, 82, 70, 56, 24], \"num_episodes\": 500, \"suite\": \"libero_spatial\"}, \"conclusion\": \"success\"}, \"eval_smart_compress_m64_seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 60, \"per_task_sr\": [58, 56, 46, 50, 48, 58, 80, 60, 86, 58], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"eval_smart_compress_m32_libero_goal\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 56.4, \"per_task_sr\": [60, 94, 62, 52, 32, 28, 28, 100, 78, 30], \"num_episodes\": 500, \"suite\": \"libero_goal\"}, \"conclusion\": \"success\"}, \"eval_baseline_control_prune_k05\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0, \"per_task_sr\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"train_smart_compress_m64_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"train_smart_compress_m32_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_smart_compress_m96_seed43_v2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 58.2, \"per_task_sr\": [72, 66, 54, 48, 52, 40, 88, 60, 86, 16], \"num_episodes\": 500, \"suite\": \"libero_object\", \"wilson_ci_95\": [53.8, 62.4]}, \"conclusion\": \"success\"}, \"eval_smart_compress_m96_seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0, \"per_task_sr\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"num_episodes\": 500, \"suite\": \"libero_object\", \"note\": \"INVALID — used wrong eval script (eval_success_rate_libero.py --mode baseline, no compressor loaded). Re-eval as eval_smart_compress_m96_seed43_v2.\"}, \"conclusion\": \"failed\"}, \"train_smart_compress_m96_seed43\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"train_baseline_control_100k_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_baseline_control_100k_v2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 45, \"per_task_sr\": [0, 50, 74, 64, 68, 8, 58, 38, 52, 38], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"eval_official_smolvla_prune_k095\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"per_task_sr\": {\"all_10_tasks\": \"0%\"}, \"note\": \"Official SmolVLA checkpoint k=0.95 random pruning (true_removal, remove 5% = 7 tokens) = 0% SR. All 500 episodes timeout at 280 steps.\"}}, \"eval_official_smolvla_prune_k09\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"per_task_sr\": {\"all_10_tasks\": \"0%\"}, \"note\": \"Official SmolVLA checkpoint k=0.9 random pruning (true_removal, remove 10% tokens) = 0% SR. All 500 episodes timeout at 280 steps.\"}}, \"eval_acis_k05_supplement_v2\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": \"0.0% (0/200)\", \"wilson_ci_95\": \"[0.0%, 1.9%]\", \"task6_SR\": \"0% (0/50)\", \"task7_SR\": \"0% (0/50)\", \"task8_SR\": \"0% (0/50)\", \"task9_SR\": \"0% (0/50)\", \"note\": \"Fixed eval script with offset-based ACIS hook confirms 0% SR. Previous 47.5% was due to pruning hook bug (never applied pruning).\"}, \"conclusion\": \"success\"}, \"eval_acis_k05_supplement_200eps\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"metrics\": {\"overall_SR\": \"47.5% (95/200)\", \"wilson_ci_95\": \"[40.7%, 54.4%]\", \"task6_SR\": \"48% (24/50)\", \"task7_SR\": \"40% (20/50)\", \"task8_SR\": \"64% (32/50)\", \"task9_SR\": \"38% (19/50)\"}}, \"eval_official_smolvla_prune_k05_v2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"per_task_sr\": {\"all_tasks\": \"0%\"}, \"note\": \"Official SmolVLA checkpoint with k=0.5 random pruning = 0% SR, confirming cliff-edge on official checkpoint (59.2% baseline → 0%)\"}, \"conclusion\": \"success\"}, \"eval_official_smolvla_baseline\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 59.2, \"wilson_ci_95\": [54.8, 63.4], \"total_episodes\": 500, \"total_successes\": 296, \"per_task_sr\": {\"task_0_alphabet_soup\": 64, \"task_1_cream_cheese\": 40, \"task_2_salad_dressing\": 44, \"task_3_bbq_sauce\": 38, \"task_4_ketchup\": 60, \"task_5_tomato_sauce\": 46, \"task_6_butter\": 78, \"task_7_milk\": 52, \"task_8_chocolate_pudding\": 90, \"task_9_orange_juice\": 80}}}, \"eval_smolvla_random_prune_k095\": {\"status\": \"DONE\", \"metrics\": {\"overall_SR\": 0, \"wilson_ci_95\": [0, 0.0076], \"total_episodes\": 500, \"total_successes\": 0, \"tokens_kept\": 121, \"tokens_removed\": 7, \"k_ratio\": 0.95, \"per_task_SR\": {\"T0_alphabet_soup\": 0, \"T1_cream_cheese\": 0, \"T2_salad_dressing\": 0, \"T3_bbq_sauce\": 0, \"T4_ketchup\": 0, \"T5_tomato_sauce\": 0, \"T6_butter\": 0, \"T7_milk\": 0, \"T8_chocolate_pudding\": 0, \"T9_orange_juice\": 0}}, \"conclusion\": \"success\"}, \"eval_official_smolvla_pruning\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"debug_obs_official\": {\"status\": \"PREPARING\"}, \"eval_official_smolvla_prune_k05\": {\"status\": \"PREPARING\"}, \"train_baseline_control_100k\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_smart_compress_m128\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"libero_object_sr\": 0.598, \"libero_object_sr_ci95\": [0.554, 0.64], \"total_episodes\": 500, \"total_successes\": 299, \"per_task_sr\": {\"alphabet_soup\": 0.62, \"cream_cheese\": 0.58, \"salad_dressing\": 0.54, \"bbq_sauce\": 0.34, \"ketchup\": 0.62, \"tomato_sauce\": 0.5, \"butter\": 0.82, \"milk\": 0.56, \"chocolate_pudding\": 0.82, \"orange_juice\": 0.58}}}, \"eval_openvla_pruning_k03_restart\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.206, \"total_successes\": 103, \"total_episodes\": 500, \"wilson_ci_95\": [0.173, 0.244], \"elapsed_minutes\": 288.6, \"per_task_sr\": {\"alphabet_soup\": 0.14, \"cream_cheese\": 0, \"salad_dressing\": 0.64, \"bbq_sauce\": 0.3, \"ketchup\": 0.3, \"tomato_sauce\": 0.08, \"butter\": 0, \"milk\": 0.08, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.42}}}, \"smolvla_entropy_perlayer\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_entropy_ratio\": 0.9521, \"overall_entropy_std\": 0.02, \"n_images\": 260, \"n_tasks\": 10, \"n_layers\": 16, \"entropy_range\": [0.9311, 0.9826], \"entropy_range_width\": 0.05, \"per_layer\": {\"L0\": 0.9826, \"L1\": 0.9561, \"L2\": 0.9597, \"L3\": 0.9434, \"L4\": 0.9408, \"L5\": 0.9406, \"L6\": 0.9474, \"L7\": 0.9628, \"L8\": 0.9614, \"L9\": 0.9572, \"L10\": 0.9455, \"L11\": 0.951, \"L12\": 0.9485, \"L13\": 0.9311, \"L14\": 0.9482, \"L15\": 0.9566}, \"dataset\": \"LIBERO-Object (task 20-29)\", \"note\": \"Fixed: previous run sampled task 0-8 (LIBERO-90), not LIBERO-Object. Difference: 0.952 vs 0.944, conclusion unchanged.\", \"openvla_comparison\": {\"overall\": 0.639, \"range_width\": 0.5}}}, \"inference_latency_comparison\": {\"status\": \"DONE\", \"metrics\": {\"baseline_128_mean_ms\": 164.33, \"m32_mean_ms\": 154.78, \"m64_mean_ms\": 156.16, \"speedup_m32\": 1.0617, \"speedup_m64\": 1.0523, \"baseline_params\": 450046176, \"compressor_m32_params\": 22179840}, \"conclusion\": \"success\"}, \"eval_openvla_pruning_k03\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"openvla_entropy_real\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_entropy_ratio\": 0.6393, \"overall_entropy_std\": 0.1334, \"overall_vision_attn_frac\": 0.1211, \"n_images\": 250, \"n_tasks\": 10, \"min_entropy_layer\": {\"layer\": 29, \"ratio\": 0.4774}, \"max_entropy_layer\": {\"layer\": 0, \"ratio\": 0.979}, \"shallow_layers_0_1\": [0.979, 0.952], \"deep_layers_27_30\": [0.542, 0.53, 0.477, 0.524], \"previous_random_N20\": 0.617, \"smolvla_reference\": 0.98}}, \"train_smart_compress_m128\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_smart_compress_m96\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 52.6, \"total_episodes\": 500, \"total_successes\": 263, \"wilson_ci_95\": [48.2, 56.9], \"per_task_sr\": {\"task_0_alphabet_soup\": 40, \"task_1_cream_cheese\": 52, \"task_2_salad_dressing\": 56, \"task_3_bbq_sauce\": 40, \"task_4_ketchup\": 26, \"task_5_tomato_sauce\": 50, \"task_6_butter\": 72, \"task_7_milk\": 62, \"task_8_chocolate_pudding\": 86, \"task_9_orange_juice\": 42}}, \"conclusion\": \"success\"}, \"eval_smart_compress_m16\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 55.8, \"overall_sr_ci95\": [51.4, 60.1], \"total_episodes\": 500, \"total_successes\": 279, \"per_task_sr\": {\"task_0_alphabet_soup\": 56, \"task_1_cream_cheese\": 44, \"task_2_salad_dressing\": 72, \"task_3_bbq_sauce\": 56, \"task_4_ketchup\": 62, \"task_5_tomato_sauce\": 40, \"task_6_butter\": 78, \"task_7_milk\": 54, \"task_8_chocolate_pudding\": 76, \"task_9_orange_juice\": 20}, \"runtime_minutes\": 55}, \"conclusion\": \"success\"}, \"eval_openvla_pruning_k07\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.49, \"total_successes\": 245, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.74, \"cream_cheese\": 0.18, \"salad_dressing\": 0.64, \"bbq_sauce\": 0.46, \"ketchup\": 0.68, \"tomato_sauce\": 0.62, \"butter\": 0.1, \"milk\": 0.4, \"chocolate_pudding\": 0.32, \"orange_juice\": 0.76}, \"elapsed_minutes\": 260.7}}, \"train_smart_compress_m96\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.055, \"eval_action_loss\": 0.064, \"total_steps\": 100000}}, \"smart_compress_m16\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.058, \"eval_action_loss\": 0.069, \"total_steps\": 100000}}, \"eval_smart_compress_m64\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.616, \"total_episodes\": 500, \"total_successes\": 308, \"wilson_ci_95\": [0.573, 0.658], \"per_task_sr\": {\"alphabet_soup\": 0.74, \"cream_cheese\": 0.38, \"salad_dressing\": 0.64, \"bbq_sauce\": 0.56, \"ketchup\": 0.64, \"tomato_sauce\": 0.54, \"butter\": 0.84, \"milk\": 0.62, \"chocolate_pudding\": 0.74, \"orange_juice\": 0.46}}}, \"eval_smart_compress_m32\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.616, \"total_episodes\": 500, \"total_successes\": 308, \"wilson_ci_95\": [0.573, 0.658], \"per_task_sr\": {\"alphabet_soup\": 0.68, \"cream_cheese\": 0.64, \"salad_dressing\": 0.6, \"bbq_sauce\": 0.46, \"ketchup\": 0.66, \"tomato_sauce\": 0.36, \"butter\": 0.82, \"milk\": 0.76, \"chocolate_pudding\": 0.9, \"orange_juice\": 0.28}}}, \"train_smart_compress_m32\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.11, \"eval_action_loss\": 0.052, \"total_steps\": 100000, \"checkpoint\": \"checkpoints/smart_compress_m32/checkpoint.pt\", \"checkpoint_size_gb\": 1.5, \"training_duration_h\": 6.5, \"speed_sps\": 4.1}}, \"train_smart_compress_m64\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.045, \"eval_action_loss\": 0.062, \"total_steps\": 100000, \"checkpoint\": \"checkpoints/smart_compress_m64/checkpoint.pt\", \"checkpoint_size_gb\": 1.5, \"training_duration_h\": 6.5, \"speed_sps\": 4.1}}, \"libero_full_ft_baseline\": {\"status\": \"DONE\", \"metrics\": {\"diversity_10k\": {\"noise_diversity_std\": 0.1987, \"pass\": true, \"threshold\": 0.05, \"per_obs\": [0.193, 0.192, 0.203, 0.193, 0.213]}, \"sr_50k\": {\"overall\": 0.33, \"n_episodes\": 100, \"suite\": \"libero_object\", \"wilson_ci_95\": [0.246, 0.427], \"per_task\": [0.1, 0.7, 0.5, 0.1, 0.3, 0.1, 0.5, 0.1, 0.4, 0.5]}, \"sr_50k_spatial\": {\"overall\": 0.34, \"n_episodes\": 100, \"suite\": \"libero_spatial\", \"wilson_ci_95\": [0.255, 0.437], \"per_task\": [0.8, 0.1, 0.3, 0.2, 0.2, 0.4, 0.3, 0.2, 0.6, 0.3]}, \"sr_50k_goal\": {\"overall\": 0.42, \"n_episodes\": 100, \"suite\": \"libero_goal\", \"wilson_ci_95\": [0.328, 0.518], \"per_task\": [0.2, 0.7, 0.5, 0.1, 0.6, 0.5, 0.2, 0.8, 0.5, 0.1]}, \"sr_100k_object\": {\"overall\": 0.36, \"n_episodes\": 100, \"suite\": \"libero_object\", \"per_task\": [0, 0.3, 0.4, 0.6, 0.5, 0.1, 0.3, 0.5, 0.4, 0.5]}, \"sr_100k_spatial\": {\"overall\": 0.48, \"n_episodes\": 100, \"suite\": \"libero_spatial\", \"per_task\": [0.8, 0.5, 0.4, 0.4, 0.3, 0.3, 0.6, 0.2, 0.9, 0.4]}, \"sr_100k_goal\": {\"overall\": 0.63, \"n_episodes\": 100, \"suite\": \"libero_goal\", \"per_task\": [0.5, 0.9, 0.7, 0.3, 1, 0.4, 0.4, 1, 0.8, 0.3]}, \"sr_100k_overall\": 0.49}, \"conclusion\": \"success\"}, \"train_acis_stage1only_k03\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_openvla_pruning_k05\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"geometric_prior_k05_eval\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"eval_openvla_crossmodel_pruning\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_geometric_prior_k09\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"eval_geometric_prior_k07\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"eval_geometric_prior_k05\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"libero_fullft_batch64_v2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"baseline_bypass_object\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.448, \"total_episodes\": 500, \"total_successes\": 224, \"wilson_ci_95\": [0.405, 0.492], \"per_task_sr\": [0.22, 0.6, 0.42, 0.38, 0.58, 0.26, 0.62, 0.38, 0.5, 0.52], \"mode\": \"bypass\", \"k_ratio\": 1, \"checkpoint_matches_object_eval\": true}}, \"action_divergence_v2_clean\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"action_l2_mean\": 1.117, \"action_l2_median\": 0.85, \"eef_position_l2_mean_m\": 0.214, \"eef_position_l2_median_m\": 0.214, \"divergence_onset_step\": 0, \"first_10_steps_action_l2\": 1.262, \"first_10_steps_eef_l2_m\": 0.041, \"last_10_steps_action_l2\": 0.759, \"last_10_steps_eef_l2_m\": 0.198, \"bypass_early_terminations\": \"multiple\", \"pruned_early_terminations\": 0, \"n_tasks\": 3, \"n_episodes_per_task\": 10, \"max_steps\": 300, \"pattern\": \"immediate_onset_monotonic_growth\"}}, \"eval_goal_prune_k05\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"suite\": \"libero_goal\", \"mode\": \"acis_prune\", \"pruning_method\": \"true_removal\", \"k_ratio\": 0.5, \"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"baseline_sr\": 0.63, \"sr_drop\": -0.63, \"all_tasks_zero\": true}}, \"offline_singlestep_action_error\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"bypass_vs_pruned_l2_mean\": 1.284, \"bypass_vs_gt_l2_mean\": 0.414, \"pruned_vs_gt_l2_mean\": 1.391, \"relative_error_pct\": 111.5, \"per_dim_position_xyz\": [0.2, 0.25, 0.3], \"per_dim_rotation_xyz\": [0.01, 0.02, 0.01], \"per_dim_gripper\": 1.02, \"n_steps\": 200, \"conclusion_type\": \"large_per_step_error\", \"interpretation\": \"Pruning directly destroys action prediction at each step. Not a compounding issue.\"}}, \"offline_singlestep_error_k05\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_spatial_prune_k05\": {\"status\": \"DONE\", \"metrics\": {\"suite\": \"libero_spatial\", \"mode\": \"acis_prune\", \"pruning_method\": \"true_removal\", \"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"baseline_sr\": 0.518, \"sr_drop\": -0.518, \"all_tasks_zero\": true}, \"conclusion\": \"success\"}, \"eval_merge_k05\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"libero_object_sr\": 0, \"episodes\": 500, \"pruning_method\": \"merge\", \"merge_alpha\": 1, \"k_ratio\": 0.5, \"pruning_type\": \"acis\", \"wilson_ci_95\": \"[0.0%, 0.76%]\"}}, \"eval_k07_zero_mask\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"libero_object_sr\": 0, \"episodes\": 500, \"pruning_method\": \"zero_mask\", \"k_ratio\": 0.7, \"pruning_type\": \"acis\", \"wilson_ci_95\": \"[0.0%, 0.76%]\"}}, \"eval_true_removal_k05\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"libero_object_sr\": 0, \"episodes\": 500, \"pruning_method\": \"true_removal\", \"k_ratio\": 0.5, \"pruning_type\": \"acis\", \"wilson_ci_95\": \"[0.0%, 0.8%]\"}}, \"eval_stage1only_k09\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"libero_object_sr\": 0, \"episodes\": 500, \"pruning_method\": \"zero_mask\", \"k_ratio\": 0.9, \"pruning_type\": \"acis\"}}, \"eval_random_prune_k05\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"libero_object_sr\": 0, \"episodes\": 500, \"pruning_method\": \"zero_mask\", \"k_ratio\": 0.5, \"pruning_type\": \"random\"}}, \"train_acis_stage1only_k07\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"eval_stage1only_object_v2_fixed\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"overall_success_rate\": 0, \"total_episodes\": 300, \"total_successes\": 0, \"per_task_sr\": [0, 0, 0, 0, 0, 0], \"mode\": \"acis_prune\", \"k_ratio\": 0.5, \"note\": \"Fixed pruning (offset-tracking). Pruning actually executed this time. 0% SR confirms ACIS importance scoring is ineffective for closed-loop control after Stage1-only training.\"}}, \"eval_stage1only_spatial\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"eval_stage1_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.448, \"total_episodes\": 500, \"total_successes\": 224, \"wilson_ci_95\": [0.405, 0.4918], \"per_task_sr\": [0.22, 0.6, 0.42, 0.38, 0.58, 0.26, 0.62, 0.38, 0.5, 0.52], \"mode\": \"acis_prune\", \"k_ratio\": 0.5}}, \"sanity_acis_prune\": {\"status\": \"PREPARING\"}, \"libero_fullft_seed1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.04282, \"eval_action_loss\": 0.05404, \"train_grad_norm\": 1.17539, \"total_steps\": 100000}}, \"libero_fullft_batch64\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_random_prune_baseline\": {\"status\": \"PREPARING\"}, \"eval_imm100k_bypass\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"overall_success_rate\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"mode\": \"baseline_bypass\", \"note\": \"Stage2 completely destroyed expert weights\"}}, \"eval_k07_bypass_v3\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"overall_success_rate\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"mode\": \"baseline_bypass\", \"note\": \"Stage2 k=0.7 also completely destroyed expert weights\"}}, \"eval_k07_bypass_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_k07_bypass\": {\"status\": \"PREPARING\"}, \"eval_imm_k07_object\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.048, \"total_episodes\": 500, \"total_successes\": 24, \"wilson_ci_95\": [0.0325, 0.0704], \"per_task_sr\": [0, 0, 0.06, 0.02, 0.32, 0.06, 0.02, 0, 0, 0]}, \"conclusion\": \"negative\"}, \"mvp_imm_anchor_v7_2\": {\"status\": \"DONE\", \"metrics\": {\"eval_500batch_soft\": {\"clean_action_loss\": 0.013, \"clean_margin_median\": 0.6627, \"clean_preservation\": 1, \"eps001_preservation\": 0.9253, \"eps002_preservation\": 0.8482, \"eps005_preservation\": 0.6597, \"eps001_led_median\": 0.162, \"eps002_led_median\": 0.3232, \"eps005_led_median\": 0.7656, \"lipschitz_empirical\": 0.3393, \"lipschitz_spectral\": 1.0672}, \"bypass_acis\": {\"clean_action_loss\": 0.0078, \"g3_ratio\": 1.91, \"conclusion\": \"weights_damaged\"}, \"gate_v7_2\": {\"G1_margin_ratio\": 64.25, \"G1_pass\": true, \"G2_preservation_diff_pp\": 47.46, \"G2_pass\": true, \"G3_action_loss_ratio\": 3.19, \"G3_pass\": false, \"G4_led_median\": 0.323, \"G4_pass\": true, \"overall\": \"FAIL\"}, \"source\": \"eval_results/eval_imm_v7_2_final.json + eval_results/eval_imm_v7_2_bypass_acis.json\"}, \"conclusion\": \"negative\"}, \"mvp_imm_anchor_v7\": {\"status\": \"DONE\", \"metrics\": {\"eval_500batch\": {\"clean_action_loss\": 0.0134, \"clean_margin_median\": 0.5743, \"clean_preservation\": 1, \"eps001_preservation\": 0.9124, \"eps002_preservation\": 0.8172, \"eps005_preservation\": 0.6079, \"eps001_led_median\": 0.1341, \"eps002_led_median\": 0.2726, \"eps005_led_median\": 0.69, \"lipschitz_empirical\": 0.2493, \"lipschitz_spectral\": 1.0672}, \"source\": \"eval_results/eval_imm_v7_final.json\"}, \"conclusion\": \"failed\"}, \"libero_fullft_seed0\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"libero_imm_fullft_k07\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"libero_imm_fullft_seed0\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"libero_imm_fullft_100k\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"libero_imm_fullft_v2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"sr_object\": {\"overall\": 0.154, \"n_episodes\": 100, \"suite\": \"libero_object\", \"source\": \"imm_v2_fullft_libero_object.json\", \"note\": \"IMM two-stage on 50K FT checkpoint, Object suite eval. 15.4% vs baseline 44.8% (-66% relative)\"}}}, \"libero_lora_seed0\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"libero_lora_baseline\": {\"status\": \"DONE\", \"metrics\": {\"diversity_10k\": {\"noise_diversity_std\": 0.1736, \"pass\": true, \"threshold\": 0.05, \"per_obs\": [0.166, 0.177, 0.154, 0.198, 0.174]}, \"sr_50k\": {\"overall\": 0, \"n_episodes\": 50, \"suite\": \"libero_object\", \"per_task\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"verified\": true, \"lora_keys_loaded\": 74, \"missing_keys\": 0, \"unexpected_keys\": 0, \"verdict\": \"CORRECT_LOAD_confirmed_0pct_SR\"}, \"training_100k\": {\"final_step\": 99999, \"final_train_loss\": 0.0648, \"final_eval_loss\": 0.08041, \"final_lr\": 2.5e-06, \"final_grad_norm\": 0.415, \"checkpoint_size_mb\": 883, \"completed_normally\": true}, \"sr_100k\": {\"overall\": 0, \"n_episodes_completed\": 10, \"n_episodes_total\": 100, \"suite\": \"libero_object\", \"task_0_sr\": 0, \"task_0_episodes\": 10, \"all_episodes_hit_max_steps\": true, \"max_steps\": 400, \"eval_running\": true, \"note\": \"task_0 complete 0/10, remaining tasks 1-9 still evaluating but pattern is conclusive\"}}, \"conclusion\": \"negative\"}, \"libero_imm_twostage_v1\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"plan_009_token_importance\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"spearman_corr_mean\": 0.4069, \"spearman_corr_std\": 0.1022, \"spearman_corr_median\": 0.4065, \"gradient_ratio_retained_over_pruned\": 1.7027, \"retained_grad_mean\": 0.000311, \"pruned_grad_mean\": 0.000183, \"action_loss_mean\": 0.0195, \"n_samples\": 100, \"n_vis_tokens\": 64}}, \"plan_011_acis_overhead\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"params_baseline_M\": 451.53, \"params_acis_increment_M\": 3.46, \"params_overhead_pct\": 0.77, \"flops_baseline_G\": 169.87, \"flops_acis_increment_M\": 409.75, \"flops_overhead_pct\": 0.24, \"latency_baseline_ms\": 51.16, \"latency_acis_increment_ms\": 0.32, \"latency_overhead_pct\": 0.63, \"n_trials\": 100, \"source\": \"results/acis_overhead.json\"}}, \"plan_008_pruning_sweep_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"G3_best\": 0.237, \"G3_best_k\": 0.6, \"G3_k05\": 0.24, \"improvement_pct\": 76.2, \"sweet_spot\": \"k=0.5-0.6\", \"source\": \"eval_results/pruning_sweep_v2.json\"}}, \"plan_005_formal_bound_v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"tightness_spectral_min\": 1.005, \"tightness_spectral_max\": 1.125, \"stability_eps01\": 0.976, \"margin_median\": 0.96, \"L_spectral\": 1.067, \"L_empirical\": 0.193, \"source\": \"results/formal_bound_plan005.json\"}}, \"plan_008_pruning_sweep\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"plan_005_formal_bound\": {\"status\": \"PREPARING\", \"conclusion\": \"failed\"}, \"baseline_v6_alpha16\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"mode_collapse_test\": {\"verdict\": \"FAIL\", \"cross_obs_std\": 0.096329, \"noise_diversity_std\": 0.007352, \"pretrained_noise_std\": null, \"checkpoint\": \"checkpoints/baseline_v6_alpha16/step_029999/checkpoint.pt\", \"threshold_fail\": 0.01, \"threshold_pass\": 0.05, \"comparison_alpha64\": \"alpha64 std=0.006, alpha16 std=0.007 — no meaningful improvement\"}}}, \"mvp_imm_v8c_annealing\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"G1_margin_ratio\": 108.15, \"G2_preservation_diff\": 60.92, \"G3_deploy\": 2.04, \"G4_LED\": 0.1046, \"action_loss_acis_prune\": null, \"action_loss_baseline\": null, \"final_train_loss\": 0.0492, \"final_action_loss\": 0.0023, \"final_margin_loss\": 0.0938}}, \"eval_sim_success_rate\": {\"status\": \"PREPARING\"}, \"mvp_imm_v8b_twostage\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"sim_success_rate\": {\"baseline\": 0, \"acis_prune\": 0, \"bypass\": 0, \"n_episodes\": 50, \"wilson_ci_95_upper\": 0.0714, \"baseline_mean_reward\": 0.16, \"acis_prune_mean_reward\": 0, \"bypass_mean_reward\": 0}}}, \"mvp_imm_anchor_v8_1\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"imm_two_stage_v9\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"mvp_imm_anchor_v8\": {\"status\": \"DONE\", \"metrics\": {\"checkpoint_trajectory\": {\"step_2000\": {\"standard\": 0.03787, \"acis_prune\": 0.0357, \"bypass\": 0.05842, \"random_prune\": 0.0425, \"acis_advantage\": 0.0068}, \"step_29999\": {\"standard\": 0.00659, \"acis_prune\": 0.0033, \"bypass\": 0.0323, \"random_prune\": 0.01576, \"acis_advantage\": 0.01246}}, \"eval_500batch_fixed\": {\"source\": \"eval_results/eval_imm_v8_fixed.json\", \"eval_tag\": \"D028_fix_reeval\", \"standard_clean_action_loss\": 0.005462, \"bypass_clean_action_loss\": 0.028948, \"pruneTrue_clean_action_loss\": 0.005462, \"pruneFalse_clean_action_loss\": 0.029996, \"margin_median\": 0.5034, \"margin_mean\": 0.7696, \"margin_std\": 0.8133, \"eps001_preservation\": 0.923, \"eps002_preservation\": 0.8367, \"eps005_preservation\": 0.6613, \"eps001_kendall_tau\": 0.8393, \"eps001_led_median\": 0.0852, \"eps002_led_median\": 0.1714, \"eps005_led_median\": 0.4429, \"lipschitz_empirical\": 0.1364, \"lipschitz_spectral\": 1.0672}, \"eval_500batch_bypass_fixed\": {\"source\": \"eval_results/eval_imm_v8_bypass_fixed.json\", \"bypass_clean_action_loss\": 0.028948, \"bypass_pruned_action_loss\": 0.017215, \"eps001_action_loss_noprune\": 0.027873, \"eps001_action_loss_prune\": 0.016572, \"eps005_action_loss_noprune\": 0.039901, \"eps005_action_loss_prune\": 0.02627}, \"baseline_v5_fixed\": {\"source\": \"eval_results/eval_baseline_v5_fixed.json\", \"clean_action_loss\": 0.004063, \"margin_median\": 0.010022, \"eps001_preservation\": 0.3352}, \"gate_analysis_fixed\": {\"eval_tag\": \"D028_fix_reeval\", \"G1_margin_ratio\": 50.2, \"G1_pass\": true, \"G2_preservation_diff_pp\": 58.78, \"G2_pass\": true, \"G3_clean_loss_ratio\": 1.344, \"G3_target\": 1.1, \"G3_pass\": false, \"G3_deploy_ratio\": 1.344, \"G3_deploy_pass\": false, \"G4_led_median\": 0.0865, \"G4_pass\": true, \"overall_pass\": false, \"bypass_backbone_ratio\": 7.12, \"notes\": \"Fixed eval (5 bugs: eps0 pruning flag, hard binary mask, per-condition RNG, eval mode, preloaded batches). Results consistent with old buggy eval within ~5%. G3 still fails at 1.344x.\"}}, \"conclusion\": \"negative\"}, \"mvp_baseline_v5\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_500batch\": {\"clean_action_loss\": 0.004077, \"clean_margin_median\": 0.010022, \"eps001_preservation\": 0.3352, \"eps002_preservation\": 0.3362, \"eps005_preservation\": 0.3381}, \"mid_checkpoints\": {\"step005000\": {\"clean_action_loss\": 0.01891, \"clean_margin_median\": 0.01002, \"clean_margin_mean\": 0.01608, \"clean_pruned_action_loss\": 0.08304, \"eps001_action_loss\": 0.02234, \"eps001_preservation\": 0.3359, \"eps001_kendall_tau\": -0.2315, \"eps002_action_loss\": 0.02057, \"eps002_preservation\": 0.3369, \"eps005_action_loss\": 0.03377, \"eps005_preservation\": 0.34, \"eps001_pruned_action_loss\": 0.08645, \"eps002_pruned_action_loss\": 0.0882, \"eps005_pruned_action_loss\": 0.0912, \"lipschitz_empirical\": 0, \"lipschitz_spectral\": 0, \"source\": \"eval_results/eval_baseline_v5_step5000.json\"}, \"step010000\": {\"clean_action_loss\": 0.00974, \"clean_margin_median\": 0.01002, \"clean_margin_mean\": 0.01608, \"clean_pruned_action_loss\": 0.09434, \"eps001_action_loss\": 0.01243, \"eps001_preservation\": 0.3359, \"eps001_kendall_tau\": -0.2315, \"eps002_action_loss\": 0.01092, \"eps002_preservation\": 0.3369, \"eps005_action_loss\": 0.02565, \"eps005_preservation\": 0.34, \"eps001_pruned_action_loss\": 0.09473, \"eps002_pruned_action_loss\": 0.10085, \"eps005_pruned_action_loss\": 0.10132, \"lipschitz_empirical\": 0, \"lipschitz_spectral\": 0, \"source\": \"eval_results/eval_baseline_v5_step10000.json\"}}, \"source\": \"eval_results/eval_baseline_v5_final.json\"}}, \"mvp_imm_anchor_v7_1\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor_v6\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor_v5\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_baseline_v4\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_imm_anchor_v4\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_baseline_v3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_baseline_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"mvp_baseline\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"eval_openvla_prune_l2norm_k095_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.706, \"num_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42}}, \"eval_openvla_prune_l2norm_k09_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.706, \"num_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42}}, \"eval_openvla_prune_l2norm_k05_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.392, \"num_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42}}, \"eval_openvla_prune_l2norm_k03_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.25, \"num_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42}}, \"eval_oft_baseline_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}}, \"count\": 379, \"total\": 379, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9036}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ssh_read_only doesn't allow `&&`. I need to run individual commands. And the registry output is too large, I need to query it with jq. Let me run multiple things in parallel:
+
+1. Individual SSH read_only commands for P0
+2. jq queries on the registry file for the specific experiments I need
+
+Let me do SSH commands individually and parse the registry file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "966df910-0aba-447b-90c9-02014f2335f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BpLPvzQ7FHJNBeg21R6Rvr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 27414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+ssh_read_only 不支持 `&&`，需要分开执行。同时用 jq 从 registry 提取关键实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "b108da8b-850c-46c3-8866-0322ff0bfb24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BpLPvzQ7FHJNBeg21R6Rvr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 27414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J19Q8Kp39JB2a8YwuLFXhs`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "71365ca1-a45c-4634-ae75-bcb26b4cf5d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BpLPvzQ7FHJNBeg21R6Rvr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 27414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J49pwnnpLf3ZoBiXGMeGWK`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -30 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_object_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "4f124670-93ad-4842-b7e7-cf6f8c29804c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BpLPvzQ7FHJNBeg21R6Rvr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 27414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T09:24:33.932Z_
+
+<details><summary>↩ Tool result · `toolu_01J19Q8Kp39JB2a8YwuLFXhs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"325659, GPU-61b30677-7730-b313-f127-1daed87ddc80, 9700 MiB\\n325931, GPU-7c68aa5d-bf4f-da3f-ad3e-8c40fe36d745, 9700 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "4f6c3130-178d-4291-8ac9-0b4e59dae5c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"325659, GPU-61b30677-7730-b313-f127-1daed87ddc80, 9700 MiB\\\\n325931, GPU-7c68aa5d-bf4f-da3f-ad3e-8c40fe36d745, 9700 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"325659, GPU-61b30677-7730-b313-f127-1daed87ddc80, 9700 MiB\\n325931, GPU-7c68aa5d-bf4f-da3f-ad3e-8c40fe36d745, 9700 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T09:24:34.473Z_
+
+<details><summary>↩ Tool result · `toolu_01J49pwnnpLf3ZoBiXGMeGWK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_object_seed43.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "7a5db210-c4b3-48b5-a1bb-0bc7914e419e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_object_seed43.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_object_seed43.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CjQdAoby6TjkUqeK9mQuJU`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.95_libero_object_seed43.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "225c93da-2f41-433a-a2c3-66644c1e8989",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BpLPvzQ7FHJNBeg21R6Rvr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 27414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T09:24:35.146Z_
+
+<details><summary>↩ Tool result · `toolu_01CjQdAoby6TjkUqeK9mQuJU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"pi05\\\",\\n    \\\"ckpt\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\",\\n    \\\"suite\\\": \\\"libero_object\\\",\\n    \\\"prune_mode\\\": \\\"l2norm\\\",\\n    \\\"keep_ratio\\\": 0.95,\\n    \\\"n_eps_per_task\\\": 50,\\n    \\\"seed\\\": 43,\\n    \\\"vision_tokens_per_image\\\": 256,\\n    \\\"total_vision_tokens\\\": 768,\\n    \\\"n_keep_per_image\\\": 243\\n  },\\n  \\\"per_task\\\": {\\n    \\\"pick up the alphabet soup and place it in the basket\\\": {\\n      \\\"id\\\": 0,\\n      \\\"sr\\\": 0.96,\\n      \\\"n\\\": 48\\n    },\\n    \\\"pick up the cream cheese and place it in the basket\\\": {\\n      \\\"id\\\": 1,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"pick up the salad dressing and place it in the basket\\\": {\\n      \\\"id\\\": 2,\\n      \\\"sr\\\": 0.98,\\n      \\\"n\\\": 49\\n    },\\n    \\\"pick up the bbq sauce and place it in the basket\\\": {\\n      \\\"id\\\": 3,\\n      \\\"sr\\\": 0.94,\\n      \\\"n\\\": 47\\n    },\\n    \\\"pick up the ketchup and place it in the basket\\\": {\\n      \\\"id\\\": 4,\\n      \\\"sr\\\": 0.96,\\n      \\\"n\\\": 48\\n    },\\n    \\\"pick up the tomato sauce and place it in the basket\\\": {\\n      \\\"id\\\": 5,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"pick up the butter and place it in the basket\\\": {\\n      \\\"id\\\": 6,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"pick up the milk and place it in the basket\\\": {\\n      \\\"id\\\": 7,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"pick up the chocolate pudding and place it in the basket\\\": {\\n      \\\"id\\\": 8,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"pick up the orange juice and place it in the basket\\\": {\\n      \\\"id\\\": 9,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    }\\n  },\\n  \\\"overall_sr\\\": 0.984,\\n  \\\"total_successes\\\": 492,\\n  \\\"total_episodes\\\": 500,\\n  \\\"elapsed_min\\\": 68.26697649161021\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "42087bb9-dd8b-4238-941f-ef91e2d54a5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"pi05\\\\\\\",\\\\n    \\\\\\\"ckpt\\\\\\\": \\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\",\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_object\\\\\\\",\\\\n    \\\\\\\"prune_mode\\\\\\\": \\\\\\\"l2norm\\\\\\\",\\\\n    \\\\\\\"keep_ratio\\\\\\\": 0.95,\\\\n    \\\\\\\"n_eps_per_task\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"vision_tokens_per_image\\\\\\\": 256,\\\\n    \\\\\\\"total_vision_tokens\\\\\\\": 768,\\\\n    \\\\\\\"n_keep_per_image\\\\\\\": 243\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick up the alphabet soup and place it in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 0,\\\\n      \\\\\\\"sr\\\\\\\": 0.96,\\\\n      \\\\\\\"n\\\\\\\": 48\\\\n    },\\\\n    \\\\\\\"pick up the cream cheese and place it in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 1,\\\\n      \\\\\\\"sr\\\\\\\": 1.0,\\\\n      \\\\\\\"n\\\\\\\": 50\\\\n    },\\\\n    \\\\\\\"pick up the salad dressing and place it in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 2,\\\\n      \\\\\\\"sr\\\\\\\": 0.98,\\\\n      \\\\\\\"n\\\\\\\": 49\\\\n    },\\\\n    \\\\\\\"pick up the bbq sauce and place it in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 3,\\\\n      \\\\\\\"sr\\\\\\\": 0.94,\\\\n      \\\\\\\"n\\\\\\\": 47\\\\n    },\\\\n    \\\\\\\"pick up the ketchup and place it in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 4,\\\\n      \\\\\\\"sr\\\\\\\": 0.96,\\\\n      \\\\\\\"n\\\\\\\": 48\\\\n    },\\\\n    \\\\\\\"pick up the tomato sauce and place it in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 5,\\\\n      \\\\\\\"sr\\\\\\\": 1.0,\\\\n      \\\\\\\"n\\\\\\\": 50\\\\n    },\\\\n    \\\\\\\"pick up the butter and place it in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 6,\\\\n      \\\\\\\"sr\\\\\\\": 1.0,\\\\n      \\\\\\\"n\\\\\\\": 50\\\\n    },\\\\n    \\\\\\\"pick up the milk and place it in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 7,\\\\n      \\\\\\\"sr\\\\\\\": 1.0,\\\\n      \\\\\\\"n\\\\\\\": 50\\\\n    },\\\\n    \\\\\\\"pick up the chocolate pudding and place it in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 8,\\\\n      \\\\\\\"sr\\\\\\\": 1.0,\\\\n      \\\\\\\"n\\\\\\\": 50\\\\n    },\\\\n    \\\\\\\"pick up the orange juice and place it in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 9,\\\\n      \\\\\\\"sr\\\\\\\": 1.0,\\\\n      \\\\\\\"n\\\\\\\": 50\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_sr\\\\\\\": 0.984,\\\\n  \\\\\\\"total_successes\\\\\\\": 492,\\\\n  \\\\\\\"total_episodes\\\\\\\": 500,\\\\n  \\\\\\\"elapsed_min\\\\\\\": 68.26697649161021\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"pi05\\\",\\n    \\\"ckpt\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\",\\n    \\\"suite\\\": \\\"libero_object\\\",\\n    \\\"prune_mode\\\": \\\"l2norm\\\",\\n    \\\"keep_ratio\\\": 0.95,\\n    \\\"n_eps_per_task\\\": 50,\\n    \\\"seed\\\": 43,\\n    \\\"vision_tokens_per_image\\\": 256,\\n    \\\"total_vision_tokens\\\": 768,\\n    \\\"n_keep_per_image\\\": 243\\n  },\\n  \\\"per_task\\\": {\\n    \\\"pick up the alphabet soup and place it in the basket\\\": {\\n      \\\"id\\\": 0,\\n      \\\"sr\\\": 0.96,\\n      \\\"n\\\": 48\\n    },\\n    \\\"pick up the cream cheese and place it in the basket\\\": {\\n      \\\"id\\\": 1,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"pick up the salad dressing and place it in the basket\\\": {\\n      \\\"id\\\": 2,\\n      \\\"sr\\\": 0.98,\\n      \\\"n\\\": 49\\n    },\\n    \\\"pick up the bbq sauce and place it in the basket\\\": {\\n      \\\"id\\\": 3,\\n      \\\"sr\\\": 0.94,\\n      \\\"n\\\": 47\\n    },\\n    \\\"pick up the ketchup and place it in the basket\\\": {\\n      \\\"id\\\": 4,\\n      \\\"sr\\\": 0.96,\\n      \\\"n\\\": 48\\n    },\\n    \\\"pick up the tomato sauce and place it in the basket\\\": {\\n      \\\"id\\\": 5,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"pick up the butter and place it in the basket\\\": {\\n      \\\"id\\\": 6,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"pick up the milk and place it in the basket\\\": {\\n      \\\"id\\\": 7,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"pick up the chocolate pudding and place it in the basket\\\": {\\n      \\\"id\\\": 8,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    },\\n    \\\"pick up the orange juice and place it in the basket\\\": {\\n      \\\"id\\\": 9,\\n      \\\"sr\\\": 1.0,\\n      \\\"n\\\": 50\\n    }\\n  },\\n  \\\"overall_sr\\\": 0.984,\\n  \\\"total_successes\\\": 492,\\n  \\\"total_episodes\\\": 500,\\n  \\\"elapsed_min\\\": 68.26697649161021\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01STMdUbNfx9dSxhSHsod7WP`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ps -p 212585 -o pid,etime,args",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "7048d834-95c7-4a52-8a63-c0f54eb451e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BpLPvzQ7FHJNBeg21R6Rvr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 27414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T09:24:35.682Z_
+
+<details><summary>↩ Tool result · `toolu_01STMdUbNfx9dSxhSHsod7WP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "8a417ee7-4a44-4fe0-bb2f-44f5e8fdd81f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED COMMAND\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019d68brn3ep6WmdGEH12Yyw`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/226a801f-eb8f-4ec5-ac8f-a82624548c98/tool-results/mcp-agent-ml-research-read_registry-1779441866461.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nexps = json.loads(data['result'])\n# Filter for experiments we care about\ntargets = ['l2norm_k095', 'l2norm_k0925', 'l2norm_k05', 'l2norm_k0.5', 'l2norm_k03', 'l2norm_k07', 'random_k09']\nfor exp in exps:\n    eid = exp.get('exp_id', '')\n    for t in targets:\n        if t in eid and 'object' in eid and 'seed43' in eid:\n            print(json.dumps({k: exp.get(k) for k in ['exp_id', 'status', 'conclusion', 'metrics']}, ensure_ascii=False))\n            break\n\"\n",
+  "description": "Filter registry for target experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "c41ca5d9-6580-403b-a77b-2c3ad1b1c3df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BpLPvzQ7FHJNBeg21R6Rvr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 27414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1227
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T09:24:39.893Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_019d68brn3ep6WmdGEH12Yyw`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 8, in &lt;module>
+    eid = exp.get('exp_id', '')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "7bdc42ba-d9d7-4d62-8d51-7e273c1ee40b",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 8, in &lt;module>\n    eid = exp.get('exp_id', '')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+P0 results:
+- GPU status: Two processes running - PID 325659 on GPU 0 (9700 MiB) and PID 325931 on GPU 1 (9700 MiB)
+- PID 212585 NOT FOUND (old PID)
+- Log file not found at expected path
+- JSON result FOUND: overall_sr = 0.984 (98.4%), 492/500 successes, elapsed 68.27 min
+- Both GPUs are occupied!
+
+Let me fix the jq query and also check what processes are running on those GPUs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "4117fc7a-eaf4-42e6-bc05-18ef977ef4d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EFwXy9FPdb65keJnWCPyPV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2678,
+      "cache_read_input_tokens": 28641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2678
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+P0 找到了！L2norm k=0.95 Object s43 = **98.4%** (492/500)。两个 GPU 都在用。现在查 registry 和 GPU 进程详情。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "bf09d99b-7d90-4de2-84e4-a45f6f1e86cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EFwXy9FPdb65keJnWCPyPV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2678,
+      "cache_read_input_tokens": 28641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2678
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LcMB528dqVgSBkqFL3iZVT`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ps -p 325659 -o pid,etime,args",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "31b28dc0-aed7-4e95-af89-37deb0e025c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EFwXy9FPdb65keJnWCPyPV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2678,
+      "cache_read_input_tokens": 28641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2678
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T09:24:48.071Z_
+
+<details><summary>↩ Tool result · `toolu_01LcMB528dqVgSBkqFL3iZVT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n325659       03:26 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.925 --suite libero_object --n_episodes 500 --seed 43 --gpu 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "034a3aa0-a018-4413-b5d1-ff33e1886265",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED COMMAND\\\\n325659       03:26 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.925 --suite libero_object --n_episodes 500 --seed 43 --gpu 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n325659       03:26 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.925 --suite libero_object --n_episodes 500 --seed 43 --gpu 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qd1YngqtgJTsT2RKoaTzp2`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ps -p 325931 -o pid,etime,args",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "ce2de5b6-feeb-4c05-a61a-75822b16d6ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EFwXy9FPdb65keJnWCPyPV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2678,
+      "cache_read_input_tokens": 28641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2678
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T09:24:48.610Z_
+
+<details><summary>↩ Tool result · `toolu_01Qd1YngqtgJTsT2RKoaTzp2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n325931       02:56 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_object --n_episodes 500 --seed 43 --gpu 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "e2c5730d-0a48-44e2-b2c5-78a5992f3439",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED COMMAND\\\\n325931       02:56 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_object --n_episodes 500 --seed 43 --gpu 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED COMMAND\\n325931       02:56 python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_object --n_episodes 500 --seed 43 --gpu 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LwSL6vymAuGYAm2bA2c7q3`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/226a801f-eb8f-4ec5-ac8f-a82624548c98/tool-results/mcp-agent-ml-research-read_registry-1779441866461.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\n# The result field is a JSON string itself\nresult_str = raw['result']\n# It might be a JSON array or a JSON-encoded string\ntry:\n    exps = json.loads(result_str)\nexcept:\n    exps = result_str\n\nif isinstance(exps, list):\n    targets = ['l2norm_k095', 'l2norm_k0925', 'l2norm_k05', 'l2norm_k0.5', 'l2norm_k03', 'l2norm_k07', 'random_k09']\n    for exp in exps:\n        if isinstance(exp, dict):\n            eid = exp.get('exp_id', '')\n            for t in targets:\n                if t in eid and 'object' in eid and 'seed43' in eid:\n                    print(json.dumps({k: exp.get(k) for k in ['exp_id', 'status', 'conclusion', 'metrics']}, ensure_ascii=False))\n                    break\nelif isinstance(exps, dict):\n    # Maybe it's a dict with exp_ids as keys\n    print('Dict with keys:', list(exps.keys())[:5])\nelse:\n    print('Type:', type(exps), 'First 500 chars:', str(exps)[:500])\n\"\n",
+  "description": "Parse registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "01074c28-f4a0-4bee-a145-a06651e9a391",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EFwXy9FPdb65keJnWCPyPV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2678,
+      "cache_read_input_tokens": 28641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2678
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T09:24:53.536Z_
+
+<details><summary>↩ Tool result · `toolu_01LwSL6vymAuGYAm2bA2c7q3`</summary>
+
+```text
+Dict with keys: ['success', 'data', 'error', 'metadata']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "86cad79f-9a7e-44e4-b279-22bc6b41edb4",
+  "tool_use_result": {
+    "stdout": "Dict with keys: ['success', 'data', 'error', 'metadata']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the registry result is wrapped in another layer. Let me parse it properly. Also important findings:
+
+- GPU 0: PID 325659, running for 3:26, l2norm k=0.925 object seed43 - this is exactly what P1 needs! It's already running!
+- GPU 1: PID 325931, running for 2:56, l2norm k=0.95 object seed43 - wait, this is weird. P0's JSON result already shows it completed (98.4%). But there's a new run with PID 325931 running for only 2:56...
+
+
+- The k=0.95 experiment has a completed JSON file with 98.4% accuracy and 68 minutes elapsed, yet someone appears to have just started a fresh run with PID 325931 a couple minutes ago. P1's exact configuration is already executing on GPU 0, so that deployment is confirmed.
+
+Now I need to parse the registry to see what other experiments are queued up.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "285ec949-3d79-44ec-ad34-0d138c069751",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QJFYy3TjXt8og2vJqMCgE1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1319,
+      "cache_read_input_tokens": 31319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+关键发现：
+- GPU 0 (PID 325659): 已在跑 `l2norm k=0.925 object seed43` — P1 已经在部署中！
+- GPU 1 (PID 325931): 在跑 `l2norm k=0.95 object seed43`（但 JSON 结果已存在 98.4%）
+
+两个 GPU 都被占用。现在解析 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "e9a30e68-8314-4863-b108-e6333e715128",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QJFYy3TjXt8og2vJqMCgE1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1319,
+      "cache_read_input_tokens": 31319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Ne1b2zb2w4CT69cyWGqJQj`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/226a801f-eb8f-4ec5-ac8f-a82624548c98/tool-results/mcp-agent-ml-research-read_registry-1779441866461.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = raw['result']\n# data might be a string\nif isinstance(data, str):\n    data = json.loads(data)\ninner = data.get('data', data)\nif isinstance(inner, str):\n    inner = json.loads(inner)\n# Now inner should be the actual data\nif isinstance(inner, dict):\n    # Check if experiments are in a sub-key\n    for k in ['experiments', 'items', 'records']:\n        if k in inner:\n            inner = inner[k]\n            break\n    if isinstance(inner, dict):\n        # Maybe exp_id -> exp_data\n        targets = ['l2norm_k095', 'l2norm_k0925', 'l2norm_k05', 'l2norm_k0.5', 'l2norm_k03', 'l2norm_k07', 'random_k09']\n        for eid, exp in inner.items():\n            for t in targets:\n                if t in eid and 'object' in eid and 'seed43' in eid:\n                    if isinstance(exp, dict):\n                        print(json.dumps({**{'exp_id': eid}, **{k: exp.get(k) for k in ['status', 'conclusion', 'metrics'] if k in exp}}, ensure_ascii=False))\n                    else:\n                        print(f'{eid}: {exp}')\n                    break\nelif isinstance(inner, list):\n    targets = ['l2norm_k095', 'l2norm_k0925', 'l2norm_k05', 'l2norm_k0.5', 'l2norm_k03', 'l2norm_k07', 'random_k09']\n    for exp in inner:\n        if isinstance(exp, dict):\n            eid = exp.get('exp_id', '')\n            for t in targets:\n                if t in eid and 'object' in eid and 'seed43' in eid:\n                    print(json.dumps({k: exp.get(k) for k in ['exp_id', 'status', 'conclusion', 'metrics']}, ensure_ascii=False))\n                    break\nprint('---')\nprint('Type of inner:', type(inner).__name__)\nif isinstance(inner, (dict, list)):\n    print('Length:', len(inner))\n    if isinstance(inner, dict):\n        print('Keys sample:', list(inner.keys())[:10])\n    elif isinstance(inner, list) and inner:\n        print('First item type:', type(inner[0]).__name__)\n        if isinstance(inner[0], dict):\n            print('First item keys:', list(inner[0].keys()))\n\"\n",
+  "description": "Parse nested registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "ffdf47e7-7584-4933-b160-335cb7cc4769",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QJFYy3TjXt8og2vJqMCgE1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1319,
+      "cache_read_input_tokens": 31319,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1319
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T09:25:14.886Z_
+
+<details><summary>↩ Tool result · `toolu_01Ne1b2zb2w4CT69cyWGqJQj`</summary>
+
+```text
+{"exp_id": "eval_pi05_l2norm_k095_object_seed43_v2", "status": "RUNNING"}
+{"exp_id": "eval_pi05_l2norm_k0925_object_seed43", "status": "RUNNING"}
+{"exp_id": "eval_pi05_l2norm_k095_object_seed43", "status": "RUNNING"}
+{"exp_id": "eval_pi05_l2norm_k07_object_seed43_v3", "status": "DONE", "conclusion": "success", "metrics": {"success_rate_mean": 57.2}}
+{"exp_id": "eval_pi05_random_k095_object_seed43", "status": "DONE", "conclusion": "success", "metrics": {"success_rate": 0.728, "total_successes": 364, "total_episodes": 500, "elapsed_min": 85.5, "per_task_sr": {"T0_alphabet_soup": 0.7, "T1_cream_cheese": 0.9, "T2_salad_dressing": 0.78, "T3_bbq_sauce": 0.66, "T4_ketchup": 0.54, "T5_tomato_sauce": 0.8, "T6_butter": 0.82, "T7_milk": 0.66, "T8_chocolate_pudding": 0.78, "T9_orange_juice": 0.64}}}
+{"exp_id": "eval_pi05_random_k0925_object_seed43", "status": "DONE", "conclusion": "success", "metrics": {"success_rate_mean": 0.3, "tasks_evaluated": 10, "episodes_per_task": 50, "total_success": 150, "total_episodes": 500, "suite": "libero_object", "prune_mode": "random", "keep_ratio": 0.925, "seed": 43}}
+{"exp_id": "eval_pi05_l2norm_k03_object_seed43", "status": "DONE", "conclusion": "success", "metrics": {"SR": 0.554, "total_successes": 277, "total_episodes": 500, "elapsed_min": 85.15, "per_task": {"alphabet_soup": 0.16, "cream_cheese": 0.56, "salad_dressing": 0.9, "bbq_sauce": 0.54, "ketchup": 0.4, "tomato_sauce": 0.86, "butter": 0.52, "milk": 0.14, "chocolate_pudding": 0.92, "orange_juice": 0.54}}}
+{"exp_id": "eval_pi05_l2norm_k05_object_seed43", "status": "DONE", "conclusion": "success", "metrics": {"overall_sr": 0.336, "total_successes": 168, "total_episodes": 500, "per_task_sr": {"alphabet_soup": 0.44, "cream_cheese": 0.08, "salad_dressing": 0, "bbq_sauce": 0.04, "ketchup": 0.6, "tomato_sauce": 0.38, "butter": 0.32, "milk": 0.52, "chocolate_pudding": 0.46, "orange_juice": 0.52}}}
+{"exp_id": "eval_pi05_random_k09_object_seed43", "status": "DONE", "conclusion": "success", "metrics": {"overall_sr": 0.096, "total_successes": 48, "total_episodes": 500, "elapsed_min": 119.5, "per_task_sr": {"T0_alphabet_soup": 0.16, "T1_cream_cheese": 0.16, "T2_salad_dressing": 0.1, "T3_bbq_sauce": 0.02, "T4_ketchup": 0.06, "T5_tomato_sauce": 0.14, "T6_butter": 0.14, "T7_milk": 0.02, "T8_chocolate_pudding": 0.08, "T9_orange_juice": 0.08}}}
+{"exp_id": "eval_smolvla_official_l2norm_k095_object_seed43", "status": "DONE", "conclusion": "success"}
+{"exp_id": "eval_smolvla_official_random_k095_object_seed43", "status": "DONE", "conclusion": "success"}
+{"exp_id": "eval_openvla_l2norm_k05_object_seed43", "status": "DONE", "conclusion": "success", "metrics": {"success_rate": 39.2, "total_episodes": 500, "seed": 43}}
+{"exp_id": "eval_openvla_l2norm_k03_object_seed43", "status": "DONE", "conclusion": "success", "metrics": {"success_rate": 25, "num_episodes": 500, "per_task": {"alphabet_soup": 42, "cream_cheese": 6, "salad_dressing": 28, "bbq_sauce": 10, "ketchup": 66, "tomato_sauce": 0, "butter": 8, "milk": 36, "chocolate_pudding": 28, "orange_juice": 26}}}
+{"exp_id": "eval_pi05_l2norm_k07_object_seed43", "status": "DONE", "conclusion": "success", "metrics": {"success_rate": 56.4, "total_successes": 282, "total_episodes": 500, "elapsed_min": 100.3}}
+{"exp_id": "eval_xvla_l2norm_k03_object_seed43", "status": "DONE", "conclusion": "success", "metrics": {"SR": 0.21}}
+{"exp_id": "eval_xvla_l2norm_k07_object_seed43", "status": "DONE", "conclusion": "success", "metrics": {"SR": 0.59}}
+{"exp_id": "eval_pi05_l2norm_k07_object_seed43_v2", "status": "DONE", "conclusion": "success", "metrics": {"SR": 0.578, "total_successes": 289, "total_episodes": 500, "elapsed_min": 91.34, "per_task": {"alphabet_soup": 0.46, "cream_cheese": 0.96, "salad_dressing": 0.8, "bbq_sauce": 0.8, "ketchup": 0.26, "tomato_sauce": 1, "butter": 0.3, "milk": 0.04, "chocolate_pudding": 0.7, "orange_juice": 0.46}}}
+---
+Type of inner: dict
+Length: 379
+Keys sample: ['eval_pi05_l2norm_k095_object_seed43_v2', 'eval_pi05_l2norm_k0925_object_seed43', 'eval_pi05_l2norm_k07_spatial_seed43', 'eval_pi05_random_k07_spatial_seed43', 'eval_smart_compress_m32_official', 'eval_smolvla_official_l2norm_k090_object_seed42', 'eval_pi05_random_k03_object_seed43_v4', 'eval_pi05_l2norm_k09_object_seed43', 'eval_pi05_l2norm_k095_object_seed43', 'eval_pi05_random_k085_spatial_seed43']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "c074f412-60e4-4cfe-9250-3ccc1c96fa57",
+  "tool_use_result": {
+    "stdout": "{\"exp_id\": \"eval_pi05_l2norm_k095_object_seed43_v2\", \"status\": \"RUNNING\"}\n{\"exp_id\": \"eval_pi05_l2norm_k0925_object_seed43\", \"status\": \"RUNNING\"}\n{\"exp_id\": \"eval_pi05_l2norm_k095_object_seed43\", \"status\": \"RUNNING\"}\n{\"exp_id\": \"eval_pi05_l2norm_k07_object_seed43_v3\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate_mean\": 57.2}}\n{\"exp_id\": \"eval_pi05_random_k095_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.728, \"total_successes\": 364, \"total_episodes\": 500, \"elapsed_min\": 85.5, \"per_task_sr\": {\"T0_alphabet_soup\": 0.7, \"T1_cream_cheese\": 0.9, \"T2_salad_dressing\": 0.78, \"T3_bbq_sauce\": 0.66, \"T4_ketchup\": 0.54, \"T5_tomato_sauce\": 0.8, \"T6_butter\": 0.82, \"T7_milk\": 0.66, \"T8_chocolate_pudding\": 0.78, \"T9_orange_juice\": 0.64}}}\n{\"exp_id\": \"eval_pi05_random_k0925_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate_mean\": 0.3, \"tasks_evaluated\": 10, \"episodes_per_task\": 50, \"total_success\": 150, \"total_episodes\": 500, \"suite\": \"libero_object\", \"prune_mode\": \"random\", \"keep_ratio\": 0.925, \"seed\": 43}}\n{\"exp_id\": \"eval_pi05_l2norm_k03_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.554, \"total_successes\": 277, \"total_episodes\": 500, \"elapsed_min\": 85.15, \"per_task\": {\"alphabet_soup\": 0.16, \"cream_cheese\": 0.56, \"salad_dressing\": 0.9, \"bbq_sauce\": 0.54, \"ketchup\": 0.4, \"tomato_sauce\": 0.86, \"butter\": 0.52, \"milk\": 0.14, \"chocolate_pudding\": 0.92, \"orange_juice\": 0.54}}}\n{\"exp_id\": \"eval_pi05_l2norm_k05_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.336, \"total_successes\": 168, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.44, \"cream_cheese\": 0.08, \"salad_dressing\": 0, \"bbq_sauce\": 0.04, \"ketchup\": 0.6, \"tomato_sauce\": 0.38, \"butter\": 0.32, \"milk\": 0.52, \"chocolate_pudding\": 0.46, \"orange_juice\": 0.52}}}\n{\"exp_id\": \"eval_pi05_random_k09_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.096, \"total_successes\": 48, \"total_episodes\": 500, \"elapsed_min\": 119.5, \"per_task_sr\": {\"T0_alphabet_soup\": 0.16, \"T1_cream_cheese\": 0.16, \"T2_salad_dressing\": 0.1, \"T3_bbq_sauce\": 0.02, \"T4_ketchup\": 0.06, \"T5_tomato_sauce\": 0.14, \"T6_butter\": 0.14, \"T7_milk\": 0.02, \"T8_chocolate_pudding\": 0.08, \"T9_orange_juice\": 0.08}}}\n{\"exp_id\": \"eval_smolvla_official_l2norm_k095_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\"}\n{\"exp_id\": \"eval_smolvla_official_random_k095_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\"}\n{\"exp_id\": \"eval_openvla_l2norm_k05_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 39.2, \"total_episodes\": 500, \"seed\": 43}}\n{\"exp_id\": \"eval_openvla_l2norm_k03_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 25, \"num_episodes\": 500, \"per_task\": {\"alphabet_soup\": 42, \"cream_cheese\": 6, \"salad_dressing\": 28, \"bbq_sauce\": 10, \"ketchup\": 66, \"tomato_sauce\": 0, \"butter\": 8, \"milk\": 36, \"chocolate_pudding\": 28, \"orange_juice\": 26}}}\n{\"exp_id\": \"eval_pi05_l2norm_k07_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 56.4, \"total_successes\": 282, \"total_episodes\": 500, \"elapsed_min\": 100.3}}\n{\"exp_id\": \"eval_xvla_l2norm_k03_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.21}}\n{\"exp_id\": \"eval_xvla_l2norm_k07_object_seed43\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.59}}\n{\"exp_id\": \"eval_pi05_l2norm_k07_object_seed43_v2\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.578, \"total_successes\": 289, \"total_episodes\": 500, \"elapsed_min\": 91.34, \"per_task\": {\"alphabet_soup\": 0.46, \"cream_cheese\": 0.96, \"salad_dressing\": 0.8, \"bbq_sauce\": 0.8, \"ketchup\": 0.26, \"tomato_sauce\": 1, \"butter\": 0.3, \"milk\": 0.04, \"chocolate_pudding\": 0.7, \"orange_juice\": 0.46}}}\n---\nType of inner: dict\nLength: 379\nKeys sample: ['eval_pi05_l2norm_k095_object_seed43_v2', 'eval_pi05_l2norm_k0925_object_seed43', 'eval_pi05_l2norm_k07_spatial_seed43', 'eval_pi05_random_k07_spatial_seed43', 'eval_smart_compress_m32_official', 'eval_smolvla_official_l2norm_k090_object_seed42', 'eval_pi05_random_k03_object_seed43_v4', 'eval_pi05_l2norm_k09_object_seed43', 'eval_pi05_l2norm_k095_object_seed43', 'eval_pi05_random_k085_spatial_seed43']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me summarize:
+
+**P0: L2norm k=0.95 Object s43**
+- JSON result exists: **98.4%** SR (492/500, 68.27 min)
+- PID 325931 on GPU 1 is running another instance (l2norm k=0.95, only 2:56 elapsed) - this might be a v2 run
+- Registry shows both `eval_pi05_l2norm_k095_object_seed43` (RUNNING) and `eval_pi05_l2norm_k095_object_seed43_v2` (RUNNING)
+
+
+- **P1: l2norm_k0925_object_seed43** is already running on GPU 0 (PID 325659, 3:26 elapsed)
+- **P2: L2norm k=0.5 Object s43** shows mixed results - the pi05 variant completed with 33.6% SR while the openvla variant achieved 39.2%
+- Both GPUs are currently occupied, so I can't deploy new experiments right now
+- Looking at the registry, I'm seeing the pi05 experiments across different k values: k=0.3 hit 55.4%, k=0.5 was 33.6%, k=0.9 only 9.6%, and k=0.7 appears to be around 56%
+
++ across multiple versions
+- Since all four candidate experiments for P3 are already done and both GPUs are busy with P1 and the k=0.95 v2 run, there's nothing new to deploy—I should just monitor the k=0.925 log to ensure P1 is running smoothly
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "e612c016-f52c-43b7-8903-8974e22cda34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y88UZPNbKvjefr1tkWb4m7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3256,
+      "cache_read_input_tokens": 32638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+全部信息已收集。让我验证 P1 (k=0.925) 的健康状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "600c2d93-6105-4aee-adbb-32f6352a99cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y88UZPNbKvjefr1tkWb4m7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3256,
+      "cache_read_input_tokens": 32638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015kUwGgtMjBmm2Gvr4jNihV`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -10 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k0925_object_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "b67655ef-5889-4456-b5e7-8e6c7eed2fac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y88UZPNbKvjefr1tkWb4m7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3256,
+      "cache_read_input_tokens": 32638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-22T09:25:32.755Z_
+
+<details><summary>↩ Tool result · `toolu_015kUwGgtMjBmm2Gvr4jNihV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 17:22:54,106 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-22 17:22:55,848 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-22 17:22:55,848 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-22 17:22:57,869 Patched embed_image\\n2026-05-22 17:22:57,876 Model: 4143.4M params\\n2026-05-22 17:22:57,876 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-22 17:22:57,876 Pruning: l2norm, keep 236/256 tokens/image (708 total)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "54c2b77b-a471-436e-95c2-80e64a39f593",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 17:22:54,106 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-22 17:22:55,848 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-22 17:22:55,848 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-22 17:22:57,869 Patched embed_image\\\\n2026-05-22 17:22:57,876 Model: 4143.4M params\\\\n2026-05-22 17:22:57,876 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-22 17:22:57,876 Pruning: l2norm, keep 236/256 tokens/image (708 total)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 17:22:54,106 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-22 17:22:55,848 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-22 17:22:55,848 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-22 17:22:57,869 Patched embed_image\\n2026-05-22 17:22:57,876 Model: 4143.4M params\\n2026-05-22 17:22:57,876 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-22 17:22:57,876 Pruning: l2norm, keep 236/256 tokens/image (708 total)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MyTeo1gwYcPE9TMdVdoQWL`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -10 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_object_seed43_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "f479328e-4fea-4eed-9ddd-645830a05c53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y88UZPNbKvjefr1tkWb4m7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3256,
+      "cache_read_input_tokens": 32638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-22T09:25:33.364Z_
+
+<details><summary>↩ Tool result · `toolu_01MyTeo1gwYcPE9TMdVdoQWL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 17:23:29,115 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-22 17:23:30,731 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-22 17:23:30,731 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-22 17:23:32,636 Patched embed_image\\n2026-05-22 17:23:32,643 Model: 4143.4M params\\n2026-05-22 17:23:32,643 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-22 17:23:32,643 Pruning: l2norm, keep 243/256 tokens/image (729 total)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "9a4641f2-e630-47ba-9934-41c6b4a00d8f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 17:23:29,115 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-22 17:23:30,731 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-22 17:23:30,731 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-22 17:23:32,636 Patched embed_image\\\\n2026-05-22 17:23:32,643 Model: 4143.4M params\\\\n2026-05-22 17:23:32,643 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-22 17:23:32,643 Pruning: l2norm, keep 243/256 tokens/image (729 total)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 17:23:29,115 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-22 17:23:30,731 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-22 17:23:30,731 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-22 17:23:32,636 Patched embed_image\\n2026-05-22 17:23:32,643 Model: 4143.4M params\\n2026-05-22 17:23:32,643 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-22 17:23:32,643 Pruning: l2norm, keep 243/256 tokens/image (729 total)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both logs show the model just loaded (timestamps show 17:22-17:23, which is just a few minutes ago). They're both in the very early stage - model loaded, pruning parameters set. This is consistent with the `ps` output showing elapsed times of ~3 minutes.
+
+- GPU 0: k=0.925, keep 236/256 tokens (92.5% of 256 = 236.8 ≈ 236) ✓
+
+
+- GPU 1: k=0.95 v2, keep 243/256 tokens (95% of 256 = 243.2 ≈ 243) ✓
+
+Both are running smoothly. Now I'm checking the evaluation results - the P0 experiment with L2norm k=0.95 on Object s43 is complete with a 98.4% success rate across 492 out of 500 test cases, and the JSON output is saved at the expected path.
+
+The P1 variant with k=0.925 just launched on GPU 0 a few minutes ago and is already showing healthy signs - the process is active, logs are being written, and the GPU is properly allocated with 236 tokens kept. For P2, I'm verifying which model variant produced the 39.2% result - it's the OpenVLA version, while the pi05 variant achieved 33.6% success rate on the same configuration.
+
+Looking at the westd-27271 deployment, both GPUs are now fully occupied with the k=0.925 and k=0.95 v2 runs, and all four candidate experiments I was tracking have already completed with their respective success rates ranging from 9.6% to 56.4%. Since there's no available GPU capacity and no remaining gaps to fill, I need to update the registry with the k=0.95 result.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "9eb93a7f-141a-43f8-9f50-cdc05c571b8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M9KDLvZHNJRYwmwNq17vyt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1835,
+      "cache_read_input_tokens": 35894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1835
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+两个 GPU 都刚启动任务（~3分钟前），都健康。k=0.95 已有完成的 JSON 结果，更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "08e0049c-c432-4e58-a94a-fda87747799b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M9KDLvZHNJRYwmwNq17vyt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1835,
+      "cache_read_input_tokens": 35894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1835
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01P1h6cgZyX89fnsB88sYzrY`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k095_object_seed43",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress",
+  "spec": {
+    "checkpoint_path": "/root/autodl-tmp/pi05_libero_finetuned",
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.95_libero_object_seed43.json"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "a89ba93c-7dc0-4dc3-a743-518ea0e03756",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M9KDLvZHNJRYwmwNq17vyt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1835,
+      "cache_read_input_tokens": 35894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1835
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-22T09:25:56.618Z_
+
+<details><summary>↩ Tool result · `toolu_01P1h6cgZyX89fnsB88sYzrY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k095_object_seed43\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T08:35:59.676Z\", \"updated_at\": \"2026-05-22T09:25:54.954Z\", \"hypothesis\": \"π0.5 L2norm k=0.95 Object seed43: 双种子验证。seed42 Object l2norm k=0.95 未测。Spatial seed42=98.0%, seed43=98.0%。预期 Object 也在 plateau 区间 ~95-99%。\", \"spec\": {\"command\": \"eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_object --seed 43\", \"server\": \"cqa1-33015\", \"seed\": 43, \"model_name\": \"pi0-fast\", \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"pi0-fast-pruned-l2norm-k095\", \"eval_data\": \"libero_object\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.95_libero_object_seed43.json\"}, \"metrics\": {\"overall_SR\": 0.984, \"total_successes\": 492, \"total_episodes\": 500}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T09:25:10.106Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.6234}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "9e131add-608e-454e-831c-5323f7787875",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k095_object_seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T08:35:59.676Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:25:54.954Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.95 Object seed43: 双种子验证。seed42 Object l2norm k=0.95 未测。Spatial seed42=98.0%, seed43=98.0%。预期 Object 也在 plateau 区间 ~95-99%。\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_object --seed 43\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"seed\\\": 43, \\\"model_name\\\": \\\"pi0-fast\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"pi0-fast-pruned-l2norm-k095\\\", \\\"eval_data\\\": \\\"libero_object\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.95_libero_object_seed43.json\\\"}, \\\"metrics\\\": {\\\"overall_SR\\\": 0.984, \\\"total_successes\\\": 492, \\\"total_episodes\\\": 500}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T09:25:10.106Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6234}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k095_object_seed43\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T08:35:59.676Z\", \"updated_at\": \"2026-05-22T09:25:54.954Z\", \"hypothesis\": \"π0.5 L2norm k=0.95 Object seed43: 双种子验证。seed42 Object l2norm k=0.95 未测。Spatial seed42=98.0%, seed43=98.0%。预期 Object 也在 plateau 区间 ~95-99%。\", \"spec\": {\"command\": \"eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.95 --suite libero_object --seed 43\", \"server\": \"cqa1-33015\", \"seed\": 43, \"model_name\": \"pi0-fast\", \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"pi0-fast-pruned-l2norm-k095\", \"eval_data\": \"libero_object\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.95_libero_object_seed43.json\"}, \"metrics\": {\"overall_SR\": 0.984, \"total_successes\": 492, \"total_episodes\": 500}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T09:25:10.106Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.6234}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Registry updated. Now let me compile the final report.
+
+Summary:
+
+**P0**: L2norm k=0.95 Object s43 = **98.4%** (DONE, JSON exists)
+
+**P1**: Already deployed by someone else on westd-27271 GPU 0 (PID 325659, 3 min elapsed, healthy). No action needed.
+
+**P2**: 39.2% = OpenVLA experiment (`eval_openvla_l2norm_k05_object_seed43`). 
+
+33.6% for the Pi05 version (`eval_pi05_l2norm_k05_object_seed43`), so no gap there.
+
+**P3**: Both GPUs occupied. All 4 candidate experiments DONE. No deployment needed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "b242f8ab-d0f2-4f1a-8ca6-0ac65c51da79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012oS3qvRLMLUP71mCtuBCtf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1781,
+      "cache_read_input_tokens": 37729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1781
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+## P0: L2norm k=0.95 Object s43 结果
+状态: **完成**
+SR: **98.4%** (492/500, 68.3 min)
+Log: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.95_libero_object_seed43.json`
+Registry 已更新为 DONE。
+注：GPU 1 上有人刚启动了 v2 重跑 (PID 325931)。
+
+## P1: l2norm_k0925_object_s43 部署
+部署位置: westd-27271 GPU 0（**已在运行**）
+PID: 325659（elapsed 3:26）
+验证: ✓ 进程存活 / ✓ Log 存在 / ✓ 内容健康（模型已加载, pruning l2norm keep 236/256 tokens）/ ✓ GPU 占用 9700 MiB
+无需重新部署。
+
+## P2: L2norm k=0.5 Object s43 澄清
+- `eval_pi05_l2norm_k05_object_seed43`: **存在, DONE, SR = 33.6%** (168/500)
+- 39.2% 实际对应: **`eval_openvla_l2norm_k05_object_seed43`**（OpenVLA 实验，非 pi05）
+- 无缺口，pi05 版本已完成。
+
+## P3: westd-27271 GPU 0 部署
+**无法部署** — 两个 GPU 均被占用：
+- GPU 0: l2norm k=0.925 object s43 (PID 325659)
+- GPU 1: l2norm k=0.95 object s43 v2 (PID 325931)
+
+4 个候选实验已全部 DONE：
+| 实验 | 状态 | SR |
+|------|------|----|
+| eval_pi05_l2norm_k03_object_seed43 | DONE | 55.4% |
+| eval_pi05_l2norm_k05_object_seed43 | DONE | 33.6% |
+| eval_pi05_random_k09_object_seed43 | DONE | 9.6% |
+| eval_pi05_l2norm_k07_object_seed43 | DONE | 56.4% |
+
+无缺口需要填补。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "uuid": "6bab68e1-120b-4502-9721-26edfcad0979",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012oS3qvRLMLUP71mCtuBCtf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1781,
+      "cache_read_input_tokens": 37729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1781
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 50_
+
+## P0: L2norm k=0.95 Object s43 结果
+状态: **完成**
+SR: **98.4%** (492/500, 68.3 min)
+Log: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.95_libero_object_seed43.json`
+Registry 已更新为 DONE。
+注：GPU 1 上有人刚启动了 v2 重跑 (PID 325931)。
+
+## P1: l2norm_k0925_object_s43 部署
+部署位置: westd-27271 GPU 0（**已在运行**）
+PID: 325659（elapsed 3:26）
+验证: ✓ 进程存活 / ✓ Log 存在 / ✓ 内容健康（模型已加载, pruning l2norm keep 236/256 tokens）/ ✓ GPU 占用 9700 MiB
+无需重新部署。
+
+## P2: L2norm k=0.5 Object s43 澄清
+- `eval_pi05_l2norm_k05_object_seed43`: **存在, DONE, SR = 33.6%** (168/500)
+- 39.2% 实际对应: **`eval_openvla_l2norm_k05_object_seed43`**（OpenVLA 实验，非 pi05）
+- 无缺口，pi05 版本已完成。
+
+## P3: westd-27271 GPU 0 部署
+**无法部署** — 两个 GPU 均被占用：
+- GPU 0: l2norm k=0.925 object s43 (PID 325659)
+- GPU 1: l2norm k=0.95 object s43 v2 (PID 325931)
+
+4 个候选实验已全部 DONE：
+| 实验 | 状态 | SR |
+|------|------|----|
+| eval_pi05_l2norm_k03_object_seed43 | DONE | 55.4% |
+| eval_pi05_l2norm_k05_object_seed43 | DONE | 33.6% |
+| eval_pi05_random_k09_object_seed43 | DONE | 9.6% |
+| eval_pi05_l2norm_k07_object_seed43 | DONE | 56.4% |
+
+无缺口需要填补。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 123443,
+  "duration_api_ms": 119984,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "226a801f-eb8f-4ec5-ac8f-a82624548c98",
+  "total_cost_usd": 0.46891075,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 27669,
+    "cache_read_input_tokens": 230381,
+    "output_tokens": 7116,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 27669,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 842,
+        "cache_read_input_tokens": 37729,
+        "cache_creation_input_tokens": 1781,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1781
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2754,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0028339999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 7116,
+      "cacheReadInputTokens": 230381,
+      "cacheCreationInputTokens": 27669,
+      "webSearchRequests": 0,
+      "costUSD": 0.46607675,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0d9b90a6-eda1-4e5e-bf2b-edbe09b86b26"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,3208 @@
+# code internlm2 constrained fix
+
+**When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 68
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/workers/worker_code_internlm2_constrained_fix_20260516T030739.log`
+- **Structured JSON:** [`9e0152b1e9cea4772223.json`](../../sessions/9e/9e0152b1e9cea4772223.json)
+
+## Before a recorded user message
+
+68 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__submit_training_job",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "06f4aceb-7df1-4f86-94ed-635ca5824e7e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-ratekv/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778904600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2289c652-15d9-490c-89f6-c1344b97b575",
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the two scripts on the remote server to understand the current code and the fix needed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "422ad3f7-e072-4325-afa6-c18cf302b2c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NM5KTmbRR4mb2SrnsAzjR8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12931,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12931
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Reading both scripts from the server to understand the current code and the fix needed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "97f8f348-17c2-4aed-a442-b38adb820ac4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NM5KTmbRR4mb2SrnsAzjR8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12931,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12931
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BKeugFaruEV1qAZto9fude`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "f6f613fc-0362-4218-ba5d-d04b438fcb68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NM5KTmbRR4mb2SrnsAzjR8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12931,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12931
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T03:07:55.166Z_
+
+<details><summary>↩ Tool result · `toolu_01BKeugFaruEV1qAZto9fude`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_training_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "6f897fe4-ae86-47ca-b8e3-f4be28c2b259",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JQpWE1dMaiHaXcJf5sN84i`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/run_internlm2_hires_profiling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "aef963fd-53ba-4987-bc91-2e80e8d3fa85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yxMR3rLpveUqrUrJ96MZo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1908,
+      "cache_read_input_tokens": 24772,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1908
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TAEiqsLhTAfPbCHt8nCenT`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/run_internlm2_constrained_mckp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "2271efd1-c894-417c-a1a8-f64717f321ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yxMR3rLpveUqrUrJ96MZo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1908,
+      "cache_read_input_tokens": 24772,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1908
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T03:08:00.974Z_
+
+<details><summary>↩ Tool result · `toolu_01JQpWE1dMaiHaXcJf5sN84i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"InternLM2-7B hires bf16 profiling — 2-bit only concentration measurement.\\nCustom attention patching for InternLM2's fused wqkv architecture.\\n64 samples x 2048 tokens, bfloat16 precision, only 2-bit quantization deltas.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport time\\nimport torch\\nimport torch.nn.functional as F\\nfrom einops import rearrange\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\n\\n\\ndef rotate_half(x):\\n    x1 = x[..., : x.shape[-1] // 2]\\n    x2 = x[..., x.shape[-1] // 2 :]\\n    return torch.cat((-x2, x1), dim=-1)\\n\\n\\ndef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\\n    cos = cos.unsqueeze(unsqueeze_dim)\\n    sin = sin.unsqueeze(unsqueeze_dim)\\n    q_embed = (q * cos) + (rotate_half(q) * sin)\\n    k_embed = (k * cos) + (rotate_half(k) * sin)\\n    return q_embed, k_embed\\n\\n\\ndef patch_attention_internlm2(model, allocations):\\n    config = model.config\\n    num_kv_heads = config.num_key_value_heads\\n    num_q_heads = config.num_attention_heads\\n    head_dim = config.hidden_size // num_q_heads\\n    n_groups = num_q_heads // num_kv_heads\\n\\n    original_forwards = {}\\n\\n    for layer_idx, layer in enumerate(model.model.layers):\\n        attn = layer.attention\\n\\n        head_allocs = {}\\n        for h in range(num_kv_heads):\\n            key = f\\\"{layer_idx},{h}\\\"\\n            if key in allocations:\\n                atype, param = allocations[key]\\n                head_allocs[h] = (atype, param)\\n            else:\\n                head_allocs[h] = (\\\"full\\\", 16)\\n\\n        all_full = all(a[0] == \\\"full\\\" for a in head_allocs.values())\\n        if all_full:\\n            continue\\n\\n        original_forwards[layer_idx] = attn.forward\\n\\n        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\\n            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\\n                                   past_key_value=None, output_attentions=False,\\n                                   use_cache=False, cache_position=None, **kwargs):\\n                bsz, q_len, _ = hidden_states.size()\\n\\n                qkv_states = orig_attn.wqkv(hidden_states)\\n                qkv_states = rearrange(\\n                    qkv_states,\\n                    \\\"b q (h gs d) -> b q h gs d\\\",\\n                    gs=2 + ng,\\n                    d=hd,\\n                )\\n\\n                query_states = qkv_states[..., :ng, :]\\n                query_states = rearrange(query_states, \\\"b q h gs d -> b q (h gs) d\\\").transpose(1, 2)\\n                key_states = qkv_states[..., -2, :].transpose(1, 2)\\n                value_states = qkv_states[..., -1, :].transpose(1, 2)\\n\\n                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\\n                query_states, key_states = apply_rotary_pos_emb(\\n                    query_states, key_states, cos, sin, position_ids\\n                )\\n\\n                for h in range(n_kv):\\n                    atype, param = h_allocs[h]\\n                    if atype == \\\"quant\\\" and int(param) < 16:\\n                        bits = int(param)\\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\\n\\n                key_exp = repeat_kv(key_states, ng)\\n                value_exp = repeat_kv(value_states, ng)\\n\\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\\n\\n                if attention_mask is not None:\\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\\n                    attn_weights = attn_weights + causal_mask\\n                else:\\n                    causal = torch.triu(\\n                        torch.full((q_len, q_len), float(\\\"-inf\\\"),\\n                                \\n\\n... [截断: 输出过长，省略 5944 字符] ...\\n\\nnProfiling done in {profile_time / 60:.1f}min\\\")\\n\\n    # ========== Concentration Analysis ==========\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"Concentration Analysis\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    all_deltas_2bit = []\\n    layer_deltas = {}\\n    for l_str in sorted(profiles.keys(), key=int):\\n        l = int(l_str)\\n        layer_deltas[l] = []\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\n            d2 = profiles[l_str][h_str][\\\"quantization\\\"].get(\\\"2\\\", 0.0)\\n            all_deltas_2bit.append((l, int(h_str), d2))\\n            layer_deltas[l].append(d2)\\n\\n    sorted_by_d2 = sorted(all_deltas_2bit, key=lambda x: -x[2])\\n    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\\n    total_sum = sum(x[2] for x in all_deltas_2bit)\\n    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\n\\n    l0_deltas = layer_deltas.get(0, [0])\\n    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\\n    other_means = []\\n    for l in range(1, num_layers):\\n        if l in layer_deltas and layer_deltas[l]:\\n            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\\n    other_avg = sum(other_means) / len(other_means) if other_means else 0\\n    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\\\"inf\\\")\\n\\n    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\\n    n_positive = int((d_tensor > 1e-6).sum().item())\\n    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\\n\\n    print(f\\\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\\\")\\n    print(f\\\"Layer 0 mean delta(2bit): {l0_mean:.6f}\\\")\\n    print(f\\\"Other layers mean delta(2bit): {other_avg:.6f}\\\")\\n    print(f\\\"L0 dominance ratio: {l0_ratio:.2f}x\\\")\\n    print(f\\\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\\\")\\n    print(f\\\"CV of delta(2bit): {cv:.4f}\\\")\\n\\n    print(\\\"\\\\nTop-5 most sensitive heads:\\\")\\n    for name_l, name_h, d2 in sorted_by_d2[:5]:\\n        print(f\\\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\\\")\\n\\n    # ========== Save Results ==========\\n    total_time = time.time() - t0\\n\\n    results = {\\n        \\\"model\\\": args.model,\\n        \\\"model_name\\\": \\\"InternLM2-7B\\\",\\n        \\\"precision\\\": \\\"bfloat16\\\",\\n        \\\"profiling_config\\\": {\\n            \\\"num_samples\\\": args.num_samples,\\n            \\\"seq_len\\\": args.seq_len,\\n            \\\"batch_size\\\": args.batch_size,\\n            \\\"bitwidths\\\": [2],\\n        },\\n        \\\"architecture\\\": {\\n            \\\"num_layers\\\": num_layers,\\n            \\\"num_kv_heads\\\": num_kv_heads,\\n            \\\"num_attention_heads\\\": num_q_heads,\\n            \\\"head_dim\\\": config.hidden_size // num_q_heads,\\n            \\\"hidden_size\\\": config.hidden_size,\\n            \\\"gqa_ratio\\\": gqa_ratio,\\n            \\\"total_kv_heads\\\": total_kv_heads,\\n        },\\n        \\\"baseline_calibration_ppl\\\": baseline_ppl,\\n        \\\"analysis\\\": {\\n            \\\"top5_concentration\\\": round(top5_concentration, 4),\\n            \\\"top5_n_heads\\\": n_top5,\\n            \\\"layer0_mean_delta_2bit\\\": round(l0_mean, 6),\\n            \\\"other_layers_mean_delta_2bit\\\": round(other_avg, 6),\\n            \\\"layer0_dominance_ratio\\\": round(l0_ratio, 2),\\n            \\\"delta_2bit_mean\\\": round(d_tensor.mean().item(), 6),\\n            \\\"delta_2bit_std\\\": round(d_tensor.std().item(), 6),\\n            \\\"delta_2bit_cv\\\": round(cv, 4),\\n            \\\"heads_with_positive_delta\\\": n_positive,\\n            \\\"total_heads\\\": len(all_deltas_2bit),\\n        },\\n        \\\"top5_sensitive_heads\\\": [\\n            {\\\"layer\\\": l, \\\"head\\\": h, \\\"delta_2bit\\\": round(d2, 6)}\\n            for l, h, d2 in sorted_by_d2[:5]\\n        ],\\n        \\\"timing\\\": {\\n            \\\"profile_seconds\\\": round(profile_time, 1),\\n            \\\"total_seconds\\\": round(total_time, 1),\\n        },\\n    }\\n\\n    with open(\\\"artifacts/internlm2_hires_bf16_2bitonly_results.json\\\", \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nTotal time: {total_time / 3600:.2f}h\\\")\\n    print(f\\\"Saved: artifacts/internlm2_profiles_hires.json, artifacts/internlm2_hires_bf16_2bitonly_results.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "8655f76f-1b74-4af1-9ed7-3056141f970e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"InternLM2-7B hires bf16 profiling — 2-bit only concentration measurement.\\\\nCustom attention patching for InternLM2's fused wqkv architecture.\\\\n64 samples x 2048 tokens, bfloat16 precision, only 2-bit quantization deltas.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport time\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom einops import rearrange\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\\\n\\\\n\\\\ndef rotate_half(x):\\\\n    x1 = x[..., : x.shape[-1] // 2]\\\\n    x2 = x[..., x.shape[-1] // 2 :]\\\\n    return torch.cat((-x2, x1), dim=-1)\\\\n\\\\n\\\\ndef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\\\\n    cos = cos.unsqueeze(unsqueeze_dim)\\\\n    sin = sin.unsqueeze(unsqueeze_dim)\\\\n    q_embed = (q * cos) + (rotate_half(q) * sin)\\\\n    k_embed = (k * cos) + (rotate_half(k) * sin)\\\\n    return q_embed, k_embed\\\\n\\\\n\\\\ndef patch_attention_internlm2(model, allocations):\\\\n    config = model.config\\\\n    num_kv_heads = config.num_key_value_heads\\\\n    num_q_heads = config.num_attention_heads\\\\n    head_dim = config.hidden_size // num_q_heads\\\\n    n_groups = num_q_heads // num_kv_heads\\\\n\\\\n    original_forwards = {}\\\\n\\\\n    for layer_idx, layer in enumerate(model.model.layers):\\\\n        attn = layer.attention\\\\n\\\\n        head_allocs = {}\\\\n        for h in range(num_kv_heads):\\\\n            key = f\\\\\\\"{layer_idx},{h}\\\\\\\"\\\\n            if key in allocations:\\\\n                atype, param = allocations[key]\\\\n                head_allocs[h] = (atype, param)\\\\n            else:\\\\n                head_allocs[h] = (\\\\\\\"full\\\\\\\", 16)\\\\n\\\\n        all_full = all(a[0] == \\\\\\\"full\\\\\\\" for a in head_allocs.values())\\\\n        if all_full:\\\\n            continue\\\\n\\\\n        original_forwards[layer_idx] = attn.forward\\\\n\\\\n        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\\\\n            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\\\\n                                   past_key_value=None, output_attentions=False,\\\\n                                   use_cache=False, cache_position=None, **kwargs):\\\\n                bsz, q_len, _ = hidden_states.size()\\\\n\\\\n                qkv_states = orig_attn.wqkv(hidden_states)\\\\n                qkv_states = rearrange(\\\\n                    qkv_states,\\\\n                    \\\\\\\"b q (h gs d) -> b q h gs d\\\\\\\",\\\\n                    gs=2 + ng,\\\\n                    d=hd,\\\\n                )\\\\n\\\\n                query_states = qkv_states[..., :ng, :]\\\\n                query_states = rearrange(query_states, \\\\\\\"b q h gs d -> b q (h gs) d\\\\\\\").transpose(1, 2)\\\\n                key_states = qkv_states[..., -2, :].transpose(1, 2)\\\\n                value_states = qkv_states[..., -1, :].transpose(1, 2)\\\\n\\\\n                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\\\\n                query_states, key_states = apply_rotary_pos_emb(\\\\n                    query_states, key_states, cos, sin, position_ids\\\\n                )\\\\n\\\\n                for h in range(n_kv):\\\\n                    atype, param = h_allocs[h]\\\\n                    if atype == \\\\\\\"quant\\\\\\\" and int(param) < 16:\\\\n                        bits = int(param)\\\\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\\\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\\\\n\\\\n                key_exp = repeat_kv(key_states, ng)\\\\n                value_exp = repeat_kv(value_states, ng)\\\\n\\\\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\\\\n\\\\n                if attention_mask is not None:\\\\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\\\\n                    attn_weights = attn_weights + causal_mask\\\\n                else:\\\\n                    causal = torch.triu(\\\\n                        torch.full((q_len, q_len), float(\\\\\\\"-inf\\\\\\\"),\\\\n                                \\\\n\\\\n... [截断: 输出过长，省略 5944 字符] ...\\\\n\\\\nnProfiling done in {profile_time / 60:.1f}min\\\\\\\")\\\\n\\\\n    # ========== Concentration Analysis ==========\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Concentration Analysis\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    all_deltas_2bit = []\\\\n    layer_deltas = {}\\\\n    for l_str in sorted(profiles.keys(), key=int):\\\\n        l = int(l_str)\\\\n        layer_deltas[l] = []\\\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\\\n            d2 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"2\\\\\\\", 0.0)\\\\n            all_deltas_2bit.append((l, int(h_str), d2))\\\\n            layer_deltas[l].append(d2)\\\\n\\\\n    sorted_by_d2 = sorted(all_deltas_2bit, key=lambda x: -x[2])\\\\n    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\\\\n    total_sum = sum(x[2] for x in all_deltas_2bit)\\\\n    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\\\\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\\\n\\\\n    l0_deltas = layer_deltas.get(0, [0])\\\\n    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\\\\n    other_means = []\\\\n    for l in range(1, num_layers):\\\\n        if l in layer_deltas and layer_deltas[l]:\\\\n            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\\\\n    other_avg = sum(other_means) / len(other_means) if other_means else 0\\\\n    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\\\\\\\"inf\\\\\\\")\\\\n\\\\n    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\\\\n    n_positive = int((d_tensor > 1e-6).sum().item())\\\\n    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\\\\n\\\\n    print(f\\\\\\\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\\\\\\\")\\\\n    print(f\\\\\\\"Layer 0 mean delta(2bit): {l0_mean:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"Other layers mean delta(2bit): {other_avg:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"L0 dominance ratio: {l0_ratio:.2f}x\\\\\\\")\\\\n    print(f\\\\\\\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\\\\\\\")\\\\n    print(f\\\\\\\"CV of delta(2bit): {cv:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nTop-5 most sensitive heads:\\\\\\\")\\\\n    for name_l, name_h, d2 in sorted_by_d2[:5]:\\\\n        print(f\\\\\\\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\\\\\\\")\\\\n\\\\n    # ========== Save Results ==========\\\\n    total_time = time.time() - t0\\\\n\\\\n    results = {\\\\n        \\\\\\\"model\\\\\\\": args.model,\\\\n        \\\\\\\"model_name\\\\\\\": \\\\\\\"InternLM2-7B\\\\\\\",\\\\n        \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n        \\\\\\\"profiling_config\\\\\\\": {\\\\n            \\\\\\\"num_samples\\\\\\\": args.num_samples,\\\\n            \\\\\\\"seq_len\\\\\\\": args.seq_len,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n            \\\\\\\"bitwidths\\\\\\\": [2],\\\\n        },\\\\n        \\\\\\\"architecture\\\\\\\": {\\\\n            \\\\\\\"num_layers\\\\\\\": num_layers,\\\\n            \\\\\\\"num_kv_heads\\\\\\\": num_kv_heads,\\\\n            \\\\\\\"num_attention_heads\\\\\\\": num_q_heads,\\\\n            \\\\\\\"head_dim\\\\\\\": config.hidden_size // num_q_heads,\\\\n            \\\\\\\"hidden_size\\\\\\\": config.hidden_size,\\\\n            \\\\\\\"gqa_ratio\\\\\\\": gqa_ratio,\\\\n            \\\\\\\"total_kv_heads\\\\\\\": total_kv_heads,\\\\n        },\\\\n        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_ppl,\\\\n        \\\\\\\"analysis\\\\\\\": {\\\\n            \\\\\\\"top5_concentration\\\\\\\": round(top5_concentration, 4),\\\\n            \\\\\\\"top5_n_heads\\\\\\\": n_top5,\\\\n            \\\\\\\"layer0_mean_delta_2bit\\\\\\\": round(l0_mean, 6),\\\\n            \\\\\\\"other_layers_mean_delta_2bit\\\\\\\": round(other_avg, 6),\\\\n            \\\\\\\"layer0_dominance_ratio\\\\\\\": round(l0_ratio, 2),\\\\n            \\\\\\\"delta_2bit_mean\\\\\\\": round(d_tensor.mean().item(), 6),\\\\n            \\\\\\\"delta_2bit_std\\\\\\\": round(d_tensor.std().item(), 6),\\\\n            \\\\\\\"delta_2bit_cv\\\\\\\": round(cv, 4),\\\\n            \\\\\\\"heads_with_positive_delta\\\\\\\": n_positive,\\\\n            \\\\\\\"total_heads\\\\\\\": len(all_deltas_2bit),\\\\n        },\\\\n        \\\\\\\"top5_sensitive_heads\\\\\\\": [\\\\n            {\\\\\\\"layer\\\\\\\": l, \\\\\\\"head\\\\\\\": h, \\\\\\\"delta_2bit\\\\\\\": round(d2, 6)}\\\\n            for l, h, d2 in sorted_by_d2[:5]\\\\n        ],\\\\n        \\\\\\\"timing\\\\\\\": {\\\\n            \\\\\\\"profile_seconds\\\\\\\": round(profile_time, 1),\\\\n            \\\\\\\"total_seconds\\\\\\\": round(total_time, 1),\\\\n        },\\\\n    }\\\\n\\\\n    with open(\\\\\\\"artifacts/internlm2_hires_bf16_2bitonly_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {total_time / 3600:.2f}h\\\\\\\")\\\\n    print(f\\\\\\\"Saved: artifacts/internlm2_profiles_hires.json, artifacts/internlm2_hires_bf16_2bitonly_results.json\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"InternLM2-7B hires bf16 profiling — 2-bit only concentration measurement.\\nCustom attention patching for InternLM2's fused wqkv architecture.\\n64 samples x 2048 tokens, bfloat16 precision, only 2-bit quantization deltas.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport time\\nimport torch\\nimport torch.nn.functional as F\\nfrom einops import rearrange\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\n\\n\\ndef rotate_half(x):\\n    x1 = x[..., : x.shape[-1] // 2]\\n    x2 = x[..., x.shape[-1] // 2 :]\\n    return torch.cat((-x2, x1), dim=-1)\\n\\n\\ndef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\\n    cos = cos.unsqueeze(unsqueeze_dim)\\n    sin = sin.unsqueeze(unsqueeze_dim)\\n    q_embed = (q * cos) + (rotate_half(q) * sin)\\n    k_embed = (k * cos) + (rotate_half(k) * sin)\\n    return q_embed, k_embed\\n\\n\\ndef patch_attention_internlm2(model, allocations):\\n    config = model.config\\n    num_kv_heads = config.num_key_value_heads\\n    num_q_heads = config.num_attention_heads\\n    head_dim = config.hidden_size // num_q_heads\\n    n_groups = num_q_heads // num_kv_heads\\n\\n    original_forwards = {}\\n\\n    for layer_idx, layer in enumerate(model.model.layers):\\n        attn = layer.attention\\n\\n        head_allocs = {}\\n        for h in range(num_kv_heads):\\n            key = f\\\"{layer_idx},{h}\\\"\\n            if key in allocations:\\n                atype, param = allocations[key]\\n                head_allocs[h] = (atype, param)\\n            else:\\n                head_allocs[h] = (\\\"full\\\", 16)\\n\\n        all_full = all(a[0] == \\\"full\\\" for a in head_allocs.values())\\n        if all_full:\\n            continue\\n\\n        original_forwards[layer_idx] = attn.forward\\n\\n        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\\n            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\\n                                   past_key_value=None, output_attentions=False,\\n                                   use_cache=False, cache_position=None, **kwargs):\\n                bsz, q_len, _ = hidden_states.size()\\n\\n                qkv_states = orig_attn.wqkv(hidden_states)\\n                qkv_states = rearrange(\\n                    qkv_states,\\n                    \\\"b q (h gs d) -> b q h gs d\\\",\\n                    gs=2 + ng,\\n                    d=hd,\\n                )\\n\\n                query_states = qkv_states[..., :ng, :]\\n                query_states = rearrange(query_states, \\\"b q h gs d -> b q (h gs) d\\\").transpose(1, 2)\\n                key_states = qkv_states[..., -2, :].transpose(1, 2)\\n                value_states = qkv_states[..., -1, :].transpose(1, 2)\\n\\n                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\\n                query_states, key_states = apply_rotary_pos_emb(\\n                    query_states, key_states, cos, sin, position_ids\\n                )\\n\\n                for h in range(n_kv):\\n                    atype, param = h_allocs[h]\\n                    if atype == \\\"quant\\\" and int(param) < 16:\\n                        bits = int(param)\\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\\n\\n                key_exp = repeat_kv(key_states, ng)\\n                value_exp = repeat_kv(value_states, ng)\\n\\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\\n\\n                if attention_mask is not None:\\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\\n                    attn_weights = attn_weights + causal_mask\\n                else:\\n                    causal = torch.triu(\\n                        torch.full((q_len, q_len), float(\\\"-inf\\\"),\\n                                \\n\\n... [截断: 输出过长，省略 5944 字符] ...\\n\\nnProfiling done in {profile_time / 60:.1f}min\\\")\\n\\n    # ========== Concentration Analysis ==========\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"Concentration Analysis\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    all_deltas_2bit = []\\n    layer_deltas = {}\\n    for l_str in sorted(profiles.keys(), key=int):\\n        l = int(l_str)\\n        layer_deltas[l] = []\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\n            d2 = profiles[l_str][h_str][\\\"quantization\\\"].get(\\\"2\\\", 0.0)\\n            all_deltas_2bit.append((l, int(h_str), d2))\\n            layer_deltas[l].append(d2)\\n\\n    sorted_by_d2 = sorted(all_deltas_2bit, key=lambda x: -x[2])\\n    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\\n    total_sum = sum(x[2] for x in all_deltas_2bit)\\n    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\n\\n    l0_deltas = layer_deltas.get(0, [0])\\n    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\\n    other_means = []\\n    for l in range(1, num_layers):\\n        if l in layer_deltas and layer_deltas[l]:\\n            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\\n    other_avg = sum(other_means) / len(other_means) if other_means else 0\\n    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\\\"inf\\\")\\n\\n    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\\n    n_positive = int((d_tensor > 1e-6).sum().item())\\n    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\\n\\n    print(f\\\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\\\")\\n    print(f\\\"Layer 0 mean delta(2bit): {l0_mean:.6f}\\\")\\n    print(f\\\"Other layers mean delta(2bit): {other_avg:.6f}\\\")\\n    print(f\\\"L0 dominance ratio: {l0_ratio:.2f}x\\\")\\n    print(f\\\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\\\")\\n    print(f\\\"CV of delta(2bit): {cv:.4f}\\\")\\n\\n    print(\\\"\\\\nTop-5 most sensitive heads:\\\")\\n    for name_l, name_h, d2 in sorted_by_d2[:5]:\\n        print(f\\\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\\\")\\n\\n    # ========== Save Results ==========\\n    total_time = time.time() - t0\\n\\n    results = {\\n        \\\"model\\\": args.model,\\n        \\\"model_name\\\": \\\"InternLM2-7B\\\",\\n        \\\"precision\\\": \\\"bfloat16\\\",\\n        \\\"profiling_config\\\": {\\n            \\\"num_samples\\\": args.num_samples,\\n            \\\"seq_len\\\": args.seq_len,\\n            \\\"batch_size\\\": args.batch_size,\\n            \\\"bitwidths\\\": [2],\\n        },\\n        \\\"architecture\\\": {\\n            \\\"num_layers\\\": num_layers,\\n            \\\"num_kv_heads\\\": num_kv_heads,\\n            \\\"num_attention_heads\\\": num_q_heads,\\n            \\\"head_dim\\\": config.hidden_size // num_q_heads,\\n            \\\"hidden_size\\\": config.hidden_size,\\n            \\\"gqa_ratio\\\": gqa_ratio,\\n            \\\"total_kv_heads\\\": total_kv_heads,\\n        },\\n        \\\"baseline_calibration_ppl\\\": baseline_ppl,\\n        \\\"analysis\\\": {\\n            \\\"top5_concentration\\\": round(top5_concentration, 4),\\n            \\\"top5_n_heads\\\": n_top5,\\n            \\\"layer0_mean_delta_2bit\\\": round(l0_mean, 6),\\n            \\\"other_layers_mean_delta_2bit\\\": round(other_avg, 6),\\n            \\\"layer0_dominance_ratio\\\": round(l0_ratio, 2),\\n            \\\"delta_2bit_mean\\\": round(d_tensor.mean().item(), 6),\\n            \\\"delta_2bit_std\\\": round(d_tensor.std().item(), 6),\\n            \\\"delta_2bit_cv\\\": round(cv, 4),\\n            \\\"heads_with_positive_delta\\\": n_positive,\\n            \\\"total_heads\\\": len(all_deltas_2bit),\\n        },\\n        \\\"top5_sensitive_heads\\\": [\\n            {\\\"layer\\\": l, \\\"head\\\": h, \\\"delta_2bit\\\": round(d2, 6)}\\n            for l, h, d2 in sorted_by_d2[:5]\\n        ],\\n        \\\"timing\\\": {\\n            \\\"profile_seconds\\\": round(profile_time, 1),\\n            \\\"total_seconds\\\": round(total_time, 1),\\n        },\\n    }\\n\\n    with open(\\\"artifacts/internlm2_hires_bf16_2bitonly_results.json\\\", \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nTotal time: {total_time / 3600:.2f}h\\\")\\n    print(f\\\"Saved: artifacts/internlm2_profiles_hires.json, artifacts/internlm2_hires_bf16_2bitonly_results.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T03:08:01.486Z_
+
+<details><summary>↩ Tool result · `toolu_01TAEiqsLhTAfPbCHt8nCenT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"InternLM2-7B constrained MCKP + WikiText-2 eval pipeline.\\n\\nArchitecture: 32 layers × 8 KV heads (GQA 4:1), 256 total KV heads.\\nProfiling source: artifacts/internlm2_profiles_hires.json (2-bit only).\\n4-bit/8-bit deltas synthesized from 2-bit via fixed ratios.\\nBoundary case: concentration=0.2422, only 0.008 from threshold 0.25.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport json\\nimport time\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\nfrom solver import (solve_mckp_constrained, solve_mckp,\\n                    solve_greedy_ratequant, uniform_quantization_baseline)\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\\\"\\nPROFILE_PATH = \\\"artifacts/internlm2_profiles_hires.json\\\"\\nOUTPUT_PATH = \\\"artifacts/internlm2_constrained_mckp_results.json\\\"\\nBUDGET = 0.25\\nMAX_2BIT = 2\\nRATIO_4BIT = 0.25\\nRATIO_8BIT = 0.05\\n\\n\\ndef synthesize_multibit_profiles(raw_profiles, num_layers, num_kv_heads):\\n    \\\"\\\"\\\"Synthesize 4-bit and 8-bit deltas from 2-bit-only profiling data.\\\"\\\"\\\"\\n    profiles = {}\\n    for li in range(num_layers):\\n        l_str = str(li)\\n        layer_data = raw_profiles[l_str]\\n        profiles[l_str] = {}\\n        for hi in range(num_kv_heads):\\n            h_str = str(hi)\\n            d2 = layer_data[h_str][\\\"quantization\\\"][\\\"2\\\"]\\n            profiles[l_str][h_str] = {\\n                \\\"quantization\\\": {\\n                    \\\"2\\\": d2,\\n                    \\\"4\\\": d2 * RATIO_4BIT,\\n                    \\\"8\\\": d2 * RATIO_8BIT,\\n                }\\n            }\\n    return profiles\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"InternLM2-7B constrained MCKP pipeline\\\")\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    args = parser.parse_args()\\n\\n    device = f\\\"cuda:{args.gpu}\\\"\\n    t0 = time.time()\\n\\n    config = AutoConfig.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    num_layers = config.num_hidden_layers\\n    num_kv_heads = config.num_key_value_heads\\n    num_q_heads = config.num_attention_heads\\n    gqa_ratio = num_q_heads // num_kv_heads\\n    total_kv_heads = num_layers * num_kv_heads\\n    print(f\\\"InternLM2-7B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\\\")\\n\\n    # Load 2-bit-only profiles and synthesize multi-bit\\n    print(f\\\"\\\\nLoading profiles from {PROFILE_PATH}...\\\")\\n    with open(PROFILE_PATH) as f:\\n        raw = json.load(f)\\n    raw_profiles = raw[\\\"profiles\\\"] if \\\"profiles\\\" in raw else raw\\n    profiles = synthesize_multibit_profiles(raw_profiles, num_layers, num_kv_heads)\\n    print(f\\\"Synthesized multi-bit profiles: {num_layers} layers x {num_kv_heads} heads\\\")\\n\\n    # Concentration analysis\\n    all_deltas_2bit = []\\n    for l_str in sorted(profiles.keys(), key=int):\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\n            d2 = profiles[l_str][h_str][\\\"quantization\\\"][\\\"2\\\"]\\n            all_deltas_2bit.append(d2)\\n    sorted_d2 = sorted(all_deltas_2bit, reverse=True)\\n    n_top5 = max(1, int(len(sorted_d2) * 0.05))\\n    total_sum = sum(all_deltas_2bit)\\n    top5_sum = sum(sorted_d2[:n_top5])\\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\n    print(f\\\"Top-5% concentration: {top5_concentration:.4f} (Flat pattern, boundary case)\\\")\\n\\n    # --- Solve allocations ---\\n    print(f\\\"\\\\n--- Solving allocations (budget={BUDGET}, max_2bit={MAX_2BIT}) ---\\\")\\n\\n    constrained = solve_mckp_constrained(\\n        profiles, BUDGET, mode=\\\"quant_only\\\",\\n        max_2bit=MAX_2BIT, l0_exclude_2bit=True)\\n\\n    unconstrained = solve_mckp(profiles, BUDGET, mode=\\\"quant_only\\\")\\n\\n    greedy = solve_greedy_ratequant(profiles, budget=BUDGET, mode=\\\"quant_only\\\")\\n\\n    uniform = uniform_quantization_baseline(profiles, bits=4)\\n\\n    for name, sol in [(\\\"Constrained MCKP\\\", constrained),\\n                      (\\\"Unconstrained MCKP\\\", unconstrained),\\n                      (\\\"Greedy\\\", greedy),\\n   \\n\\n... [截断: 输出过长，省略 1240 字符] ...\\n\\nt(f\\\"  Uniform-4bit PPL = {ppl_uniform:.4f}\\\")\\n\\n    # --- Eval: Constrained MCKP ---\\n    print(\\\"\\\\n[3/5] Constrained MCKP PPL...\\\")\\n    orig_fwds = patch_attention(model, constrained[\\\"allocation\\\"])\\n    ppl_constrained = evaluate_perplexity(model, tokenizer, device)\\n    restore_attention(model, orig_fwds)\\n    print(f\\\"  Constrained PPL = {ppl_constrained:.4f}\\\")\\n\\n    # --- Eval: Unconstrained MCKP ---\\n    print(\\\"\\\\n[4/5] Unconstrained MCKP PPL...\\\")\\n    orig_fwds = patch_attention(model, unconstrained[\\\"allocation\\\"])\\n    ppl_unconstrained = evaluate_perplexity(model, tokenizer, device)\\n    restore_attention(model, orig_fwds)\\n    print(f\\\"  Unconstrained PPL = {ppl_unconstrained:.4f}\\\")\\n\\n    # --- Eval: Greedy ---\\n    print(\\\"\\\\n[5/5] Greedy PPL...\\\")\\n    orig_fwds = patch_attention(model, greedy[\\\"allocation\\\"])\\n    ppl_greedy = evaluate_perplexity(model, tokenizer, device)\\n    restore_attention(model, orig_fwds)\\n    print(f\\\"  Greedy PPL = {ppl_greedy:.4f}\\\")\\n\\n    # --- Save results ---\\n    elapsed = time.time() - t0\\n\\n    results = {\\n        \\\"model\\\": MODEL_PATH,\\n        \\\"model_name\\\": \\\"InternLM2-7B\\\",\\n        \\\"precision\\\": \\\"bfloat16\\\",\\n        \\\"architecture\\\": {\\n            \\\"num_layers\\\": num_layers,\\n            \\\"num_kv_heads\\\": num_kv_heads,\\n            \\\"num_attention_heads\\\": num_q_heads,\\n            \\\"head_dim\\\": config.hidden_size // num_q_heads,\\n            \\\"hidden_size\\\": config.hidden_size,\\n            \\\"gqa_ratio\\\": gqa_ratio,\\n            \\\"total_kv_heads\\\": total_kv_heads,\\n        },\\n        \\\"profiling_source\\\": PROFILE_PATH,\\n        \\\"synthesis\\\": {\\\"ratio_4bit\\\": RATIO_4BIT, \\\"ratio_8bit\\\": RATIO_8BIT},\\n        \\\"constraint\\\": {\\\"budget\\\": BUDGET, \\\"max_2bit\\\": MAX_2BIT, \\\"l0_exclude_2bit\\\": True},\\n        \\\"analysis\\\": {\\n            \\\"top5_concentration\\\": round(top5_concentration, 4),\\n            \\\"boundary_case\\\": True,\\n            \\\"distance_to_threshold\\\": 0.008,\\n        },\\n        \\\"ppl_bf16\\\": round(ppl_bf16, 4),\\n        \\\"ppl_uniform_4bit\\\": round(ppl_uniform, 4),\\n        \\\"ppl_constrained_mckp\\\": round(ppl_constrained, 4),\\n        \\\"ppl_unconstrained_mckp\\\": round(ppl_unconstrained, 4),\\n        \\\"ppl_greedy\\\": round(ppl_greedy, 4),\\n        \\\"delta_uniform\\\": round(ppl_uniform - ppl_bf16, 4),\\n        \\\"delta_constrained\\\": round(ppl_constrained - ppl_bf16, 4),\\n        \\\"delta_unconstrained\\\": round(ppl_unconstrained - ppl_bf16, 4),\\n        \\\"delta_greedy\\\": round(ppl_greedy - ppl_bf16, 4),\\n        \\\"constrained_vs_uniform\\\": round(ppl_uniform - ppl_constrained, 4),\\n        \\\"constrained_bit_distribution\\\": constrained.get(\\\"bit_distribution\\\", {}),\\n        \\\"unconstrained_bit_distribution\\\": unconstrained.get(\\\"bit_distribution\\\", {}),\\n        \\\"greedy_bit_distribution\\\": greedy.get(\\\"bit_distribution\\\", {}),\\n        \\\"constrained_allocation\\\": {k: list(v) for k, v in constrained[\\\"allocation\\\"].items()},\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n    }\\n\\n    os.makedirs(\\\"artifacts\\\", exist_ok=True)\\n    with open(OUTPUT_PATH, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {OUTPUT_PATH}\\\")\\n\\n    # --- Summary ---\\n    print(f\\\"\\\\n{'='*65}\\\")\\n    print(\\\"RESULTS — InternLM2-7B Constrained MCKP Pipeline\\\")\\n    print(f\\\"{'='*65}\\\")\\n    print(f\\\"{'Method':<28} {'PPL':>10} {'Delta':>10} {'vs Uniform':>12}\\\")\\n    print(\\\"-\\\" * 65)\\n    print(f\\\"{'Baseline (bf16)':<28} {ppl_bf16:>10.4f} {'---':>10} {'---':>12}\\\")\\n    print(f\\\"{'Constrained MCKP (k=2)':<28} {ppl_constrained:>10.4f} {ppl_constrained-ppl_bf16:>+10.4f} {ppl_uniform-ppl_constrained:>+12.4f}\\\")\\n    print(f\\\"{'Unconstrained MCKP':<28} {ppl_unconstrained:>10.4f} {ppl_unconstrained-ppl_bf16:>+10.4f} {ppl_uniform-ppl_unconstrained:>+12.4f}\\\")\\n    print(f\\\"{'Greedy':<28} {ppl_greedy:>10.4f} {ppl_greedy-ppl_bf16:>+10.4f} {ppl_uniform-ppl_greedy:>+12.4f}\\\")\\n    print(f\\\"{'Uniform 4-bit':<28} {ppl_uniform:>10.4f} {ppl_uniform-ppl_bf16:>+10.4f} {'---':>12}\\\")\\n    print(f\\\"\\\\nTop-5% concentration: {top5_concentration:.4f} (boundary case, 0.008 from threshold)\\\")\\n    print(f\\\"Total time: {elapsed/60:.1f}min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "28c5a612-04af-4c21-9cc7-fff5c91c3864",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"InternLM2-7B constrained MCKP + WikiText-2 eval pipeline.\\\\n\\\\nArchitecture: 32 layers × 8 KV heads (GQA 4:1), 256 total KV heads.\\\\nProfiling source: artifacts/internlm2_profiles_hires.json (2-bit only).\\\\n4-bit/8-bit deltas synthesized from 2-bit via fixed ratios.\\\\nBoundary case: concentration=0.2422, only 0.008 from threshold 0.25.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport time\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\nfrom solver import (solve_mckp_constrained, solve_mckp,\\\\n                    solve_greedy_ratequant, uniform_quantization_baseline)\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\\\\\\\"\\\\nPROFILE_PATH = \\\\\\\"artifacts/internlm2_profiles_hires.json\\\\\\\"\\\\nOUTPUT_PATH = \\\\\\\"artifacts/internlm2_constrained_mckp_results.json\\\\\\\"\\\\nBUDGET = 0.25\\\\nMAX_2BIT = 2\\\\nRATIO_4BIT = 0.25\\\\nRATIO_8BIT = 0.05\\\\n\\\\n\\\\ndef synthesize_multibit_profiles(raw_profiles, num_layers, num_kv_heads):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Synthesize 4-bit and 8-bit deltas from 2-bit-only profiling data.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    profiles = {}\\\\n    for li in range(num_layers):\\\\n        l_str = str(li)\\\\n        layer_data = raw_profiles[l_str]\\\\n        profiles[l_str] = {}\\\\n        for hi in range(num_kv_heads):\\\\n            h_str = str(hi)\\\\n            d2 = layer_data[h_str][\\\\\\\"quantization\\\\\\\"][\\\\\\\"2\\\\\\\"]\\\\n            profiles[l_str][h_str] = {\\\\n                \\\\\\\"quantization\\\\\\\": {\\\\n                    \\\\\\\"2\\\\\\\": d2,\\\\n                    \\\\\\\"4\\\\\\\": d2 * RATIO_4BIT,\\\\n                    \\\\\\\"8\\\\\\\": d2 * RATIO_8BIT,\\\\n                }\\\\n            }\\\\n    return profiles\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"InternLM2-7B constrained MCKP pipeline\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    args = parser.parse_args()\\\\n\\\\n    device = f\\\\\\\"cuda:{args.gpu}\\\\\\\"\\\\n    t0 = time.time()\\\\n\\\\n    config = AutoConfig.from_pretrained(MODEL_PATH, trust_remote_code=True)\\\\n    num_layers = config.num_hidden_layers\\\\n    num_kv_heads = config.num_key_value_heads\\\\n    num_q_heads = config.num_attention_heads\\\\n    gqa_ratio = num_q_heads // num_kv_heads\\\\n    total_kv_heads = num_layers * num_kv_heads\\\\n    print(f\\\\\\\"InternLM2-7B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\\\\\\\")\\\\n\\\\n    # Load 2-bit-only profiles and synthesize multi-bit\\\\n    print(f\\\\\\\"\\\\\\\\nLoading profiles from {PROFILE_PATH}...\\\\\\\")\\\\n    with open(PROFILE_PATH) as f:\\\\n        raw = json.load(f)\\\\n    raw_profiles = raw[\\\\\\\"profiles\\\\\\\"] if \\\\\\\"profiles\\\\\\\" in raw else raw\\\\n    profiles = synthesize_multibit_profiles(raw_profiles, num_layers, num_kv_heads)\\\\n    print(f\\\\\\\"Synthesized multi-bit profiles: {num_layers} layers x {num_kv_heads} heads\\\\\\\")\\\\n\\\\n    # Concentration analysis\\\\n    all_deltas_2bit = []\\\\n    for l_str in sorted(profiles.keys(), key=int):\\\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\\\n            d2 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"][\\\\\\\"2\\\\\\\"]\\\\n            all_deltas_2bit.append(d2)\\\\n    sorted_d2 = sorted(all_deltas_2bit, reverse=True)\\\\n    n_top5 = max(1, int(len(sorted_d2) * 0.05))\\\\n    total_sum = sum(all_deltas_2bit)\\\\n    top5_sum = sum(sorted_d2[:n_top5])\\\\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\\\n    print(f\\\\\\\"Top-5% concentration: {top5_concentration:.4f} (Flat pattern, boundary case)\\\\\\\")\\\\n\\\\n    # --- Solve allocations ---\\\\n    print(f\\\\\\\"\\\\\\\\n--- Solving allocations (budget={BUDGET}, max_2bit={MAX_2BIT}) ---\\\\\\\")\\\\n\\\\n    constrained = solve_mckp_constrained(\\\\n        profiles, BUDGET, mode=\\\\\\\"quant_only\\\\\\\",\\\\n        max_2bit=MAX_2BIT, l0_exclude_2bit=True)\\\\n\\\\n    unconstrained = solve_mckp(profiles, BUDGET, mode=\\\\\\\"quant_only\\\\\\\")\\\\n\\\\n    greedy = solve_greedy_ratequant(profiles, budget=BUDGET, mode=\\\\\\\"quant_only\\\\\\\")\\\\n\\\\n    uniform = uniform_quantization_baseline(profiles, bits=4)\\\\n\\\\n    for name, sol in [(\\\\\\\"Constrained MCKP\\\\\\\", constrained),\\\\n                      (\\\\\\\"Unconstrained MCKP\\\\\\\", unconstrained),\\\\n                      (\\\\\\\"Greedy\\\\\\\", greedy),\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 1240 字符] ...\\\\n\\\\nt(f\\\\\\\"  Uniform-4bit PPL = {ppl_uniform:.4f}\\\\\\\")\\\\n\\\\n    # --- Eval: Constrained MCKP ---\\\\n    print(\\\\\\\"\\\\\\\\n[3/5] Constrained MCKP PPL...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, constrained[\\\\\\\"allocation\\\\\\\"])\\\\n    ppl_constrained = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  Constrained PPL = {ppl_constrained:.4f}\\\\\\\")\\\\n\\\\n    # --- Eval: Unconstrained MCKP ---\\\\n    print(\\\\\\\"\\\\\\\\n[4/5] Unconstrained MCKP PPL...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, unconstrained[\\\\\\\"allocation\\\\\\\"])\\\\n    ppl_unconstrained = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  Unconstrained PPL = {ppl_unconstrained:.4f}\\\\\\\")\\\\n\\\\n    # --- Eval: Greedy ---\\\\n    print(\\\\\\\"\\\\\\\\n[5/5] Greedy PPL...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, greedy[\\\\\\\"allocation\\\\\\\"])\\\\n    ppl_greedy = evaluate_perplexity(model, tokenizer, device)\\\\n    restore_attention(model, orig_fwds)\\\\n    print(f\\\\\\\"  Greedy PPL = {ppl_greedy:.4f}\\\\\\\")\\\\n\\\\n    # --- Save results ---\\\\n    elapsed = time.time() - t0\\\\n\\\\n    results = {\\\\n        \\\\\\\"model\\\\\\\": MODEL_PATH,\\\\n        \\\\\\\"model_name\\\\\\\": \\\\\\\"InternLM2-7B\\\\\\\",\\\\n        \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n        \\\\\\\"architecture\\\\\\\": {\\\\n            \\\\\\\"num_layers\\\\\\\": num_layers,\\\\n            \\\\\\\"num_kv_heads\\\\\\\": num_kv_heads,\\\\n            \\\\\\\"num_attention_heads\\\\\\\": num_q_heads,\\\\n            \\\\\\\"head_dim\\\\\\\": config.hidden_size // num_q_heads,\\\\n            \\\\\\\"hidden_size\\\\\\\": config.hidden_size,\\\\n            \\\\\\\"gqa_ratio\\\\\\\": gqa_ratio,\\\\n            \\\\\\\"total_kv_heads\\\\\\\": total_kv_heads,\\\\n        },\\\\n        \\\\\\\"profiling_source\\\\\\\": PROFILE_PATH,\\\\n        \\\\\\\"synthesis\\\\\\\": {\\\\\\\"ratio_4bit\\\\\\\": RATIO_4BIT, \\\\\\\"ratio_8bit\\\\\\\": RATIO_8BIT},\\\\n        \\\\\\\"constraint\\\\\\\": {\\\\\\\"budget\\\\\\\": BUDGET, \\\\\\\"max_2bit\\\\\\\": MAX_2BIT, \\\\\\\"l0_exclude_2bit\\\\\\\": True},\\\\n        \\\\\\\"analysis\\\\\\\": {\\\\n            \\\\\\\"top5_concentration\\\\\\\": round(top5_concentration, 4),\\\\n            \\\\\\\"boundary_case\\\\\\\": True,\\\\n            \\\\\\\"distance_to_threshold\\\\\\\": 0.008,\\\\n        },\\\\n        \\\\\\\"ppl_bf16\\\\\\\": round(ppl_bf16, 4),\\\\n        \\\\\\\"ppl_uniform_4bit\\\\\\\": round(ppl_uniform, 4),\\\\n        \\\\\\\"ppl_constrained_mckp\\\\\\\": round(ppl_constrained, 4),\\\\n        \\\\\\\"ppl_unconstrained_mckp\\\\\\\": round(ppl_unconstrained, 4),\\\\n        \\\\\\\"ppl_greedy\\\\\\\": round(ppl_greedy, 4),\\\\n        \\\\\\\"delta_uniform\\\\\\\": round(ppl_uniform - ppl_bf16, 4),\\\\n        \\\\\\\"delta_constrained\\\\\\\": round(ppl_constrained - ppl_bf16, 4),\\\\n        \\\\\\\"delta_unconstrained\\\\\\\": round(ppl_unconstrained - ppl_bf16, 4),\\\\n        \\\\\\\"delta_greedy\\\\\\\": round(ppl_greedy - ppl_bf16, 4),\\\\n        \\\\\\\"constrained_vs_uniform\\\\\\\": round(ppl_uniform - ppl_constrained, 4),\\\\n        \\\\\\\"constrained_bit_distribution\\\\\\\": constrained.get(\\\\\\\"bit_distribution\\\\\\\", {}),\\\\n        \\\\\\\"unconstrained_bit_distribution\\\\\\\": unconstrained.get(\\\\\\\"bit_distribution\\\\\\\", {}),\\\\n        \\\\\\\"greedy_bit_distribution\\\\\\\": greedy.get(\\\\\\\"bit_distribution\\\\\\\", {}),\\\\n        \\\\\\\"constrained_allocation\\\\\\\": {k: list(v) for k, v in constrained[\\\\\\\"allocation\\\\\\\"].items()},\\\\n        \\\\\\\"elapsed_seconds\\\\\\\": round(elapsed, 1),\\\\n    }\\\\n\\\\n    os.makedirs(\\\\\\\"artifacts\\\\\\\", exist_ok=True)\\\\n    with open(OUTPUT_PATH, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {OUTPUT_PATH}\\\\\\\")\\\\n\\\\n    # --- Summary ---\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*65}\\\\\\\")\\\\n    print(\\\\\\\"RESULTS — InternLM2-7B Constrained MCKP Pipeline\\\\\\\")\\\\n    print(f\\\\\\\"{'='*65}\\\\\\\")\\\\n    print(f\\\\\\\"{'Method':<28} {'PPL':>10} {'Delta':>10} {'vs Uniform':>12}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 65)\\\\n    print(f\\\\\\\"{'Baseline (bf16)':<28} {ppl_bf16:>10.4f} {'---':>10} {'---':>12}\\\\\\\")\\\\n    print(f\\\\\\\"{'Constrained MCKP (k=2)':<28} {ppl_constrained:>10.4f} {ppl_constrained-ppl_bf16:>+10.4f} {ppl_uniform-ppl_constrained:>+12.4f}\\\\\\\")\\\\n    print(f\\\\\\\"{'Unconstrained MCKP':<28} {ppl_unconstrained:>10.4f} {ppl_unconstrained-ppl_bf16:>+10.4f} {ppl_uniform-ppl_unconstrained:>+12.4f}\\\\\\\")\\\\n    print(f\\\\\\\"{'Greedy':<28} {ppl_greedy:>10.4f} {ppl_greedy-ppl_bf16:>+10.4f} {ppl_uniform-ppl_greedy:>+12.4f}\\\\\\\")\\\\n    print(f\\\\\\\"{'Uniform 4-bit':<28} {ppl_uniform:>10.4f} {ppl_uniform-ppl_bf16:>+10.4f} {'---':>12}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nTop-5% concentration: {top5_concentration:.4f} (boundary case, 0.008 from threshold)\\\\\\\")\\\\n    print(f\\\\\\\"Total time: {elapsed/60:.1f}min\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"InternLM2-7B constrained MCKP + WikiText-2 eval pipeline.\\n\\nArchitecture: 32 layers × 8 KV heads (GQA 4:1), 256 total KV heads.\\nProfiling source: artifacts/internlm2_profiles_hires.json (2-bit only).\\n4-bit/8-bit deltas synthesized from 2-bit via fixed ratios.\\nBoundary case: concentration=0.2422, only 0.008 from threshold 0.25.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport json\\nimport time\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\nfrom solver import (solve_mckp_constrained, solve_mckp,\\n                    solve_greedy_ratequant, uniform_quantization_baseline)\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\\\"\\nPROFILE_PATH = \\\"artifacts/internlm2_profiles_hires.json\\\"\\nOUTPUT_PATH = \\\"artifacts/internlm2_constrained_mckp_results.json\\\"\\nBUDGET = 0.25\\nMAX_2BIT = 2\\nRATIO_4BIT = 0.25\\nRATIO_8BIT = 0.05\\n\\n\\ndef synthesize_multibit_profiles(raw_profiles, num_layers, num_kv_heads):\\n    \\\"\\\"\\\"Synthesize 4-bit and 8-bit deltas from 2-bit-only profiling data.\\\"\\\"\\\"\\n    profiles = {}\\n    for li in range(num_layers):\\n        l_str = str(li)\\n        layer_data = raw_profiles[l_str]\\n        profiles[l_str] = {}\\n        for hi in range(num_kv_heads):\\n            h_str = str(hi)\\n            d2 = layer_data[h_str][\\\"quantization\\\"][\\\"2\\\"]\\n            profiles[l_str][h_str] = {\\n                \\\"quantization\\\": {\\n                    \\\"2\\\": d2,\\n                    \\\"4\\\": d2 * RATIO_4BIT,\\n                    \\\"8\\\": d2 * RATIO_8BIT,\\n                }\\n            }\\n    return profiles\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"InternLM2-7B constrained MCKP pipeline\\\")\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    args = parser.parse_args()\\n\\n    device = f\\\"cuda:{args.gpu}\\\"\\n    t0 = time.time()\\n\\n    config = AutoConfig.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    num_layers = config.num_hidden_layers\\n    num_kv_heads = config.num_key_value_heads\\n    num_q_heads = config.num_attention_heads\\n    gqa_ratio = num_q_heads // num_kv_heads\\n    total_kv_heads = num_layers * num_kv_heads\\n    print(f\\\"InternLM2-7B: {num_layers}L x {num_kv_heads}KV, GQA {gqa_ratio}:1, {total_kv_heads} total heads\\\")\\n\\n    # Load 2-bit-only profiles and synthesize multi-bit\\n    print(f\\\"\\\\nLoading profiles from {PROFILE_PATH}...\\\")\\n    with open(PROFILE_PATH) as f:\\n        raw = json.load(f)\\n    raw_profiles = raw[\\\"profiles\\\"] if \\\"profiles\\\" in raw else raw\\n    profiles = synthesize_multibit_profiles(raw_profiles, num_layers, num_kv_heads)\\n    print(f\\\"Synthesized multi-bit profiles: {num_layers} layers x {num_kv_heads} heads\\\")\\n\\n    # Concentration analysis\\n    all_deltas_2bit = []\\n    for l_str in sorted(profiles.keys(), key=int):\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\n            d2 = profiles[l_str][h_str][\\\"quantization\\\"][\\\"2\\\"]\\n            all_deltas_2bit.append(d2)\\n    sorted_d2 = sorted(all_deltas_2bit, reverse=True)\\n    n_top5 = max(1, int(len(sorted_d2) * 0.05))\\n    total_sum = sum(all_deltas_2bit)\\n    top5_sum = sum(sorted_d2[:n_top5])\\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\n    print(f\\\"Top-5% concentration: {top5_concentration:.4f} (Flat pattern, boundary case)\\\")\\n\\n    # --- Solve allocations ---\\n    print(f\\\"\\\\n--- Solving allocations (budget={BUDGET}, max_2bit={MAX_2BIT}) ---\\\")\\n\\n    constrained = solve_mckp_constrained(\\n        profiles, BUDGET, mode=\\\"quant_only\\\",\\n        max_2bit=MAX_2BIT, l0_exclude_2bit=True)\\n\\n    unconstrained = solve_mckp(profiles, BUDGET, mode=\\\"quant_only\\\")\\n\\n    greedy = solve_greedy_ratequant(profiles, budget=BUDGET, mode=\\\"quant_only\\\")\\n\\n    uniform = uniform_quantization_baseline(profiles, bits=4)\\n\\n    for name, sol in [(\\\"Constrained MCKP\\\", constrained),\\n                      (\\\"Unconstrained MCKP\\\", unconstrained),\\n                      (\\\"Greedy\\\", greedy),\\n   \\n\\n... [截断: 输出过长，省略 1240 字符] ...\\n\\nt(f\\\"  Uniform-4bit PPL = {ppl_uniform:.4f}\\\")\\n\\n    # --- Eval: Constrained MCKP ---\\n    print(\\\"\\\\n[3/5] Constrained MCKP PPL...\\\")\\n    orig_fwds = patch_attention(model, constrained[\\\"allocation\\\"])\\n    ppl_constrained = evaluate_perplexity(model, tokenizer, device)\\n    restore_attention(model, orig_fwds)\\n    print(f\\\"  Constrained PPL = {ppl_constrained:.4f}\\\")\\n\\n    # --- Eval: Unconstrained MCKP ---\\n    print(\\\"\\\\n[4/5] Unconstrained MCKP PPL...\\\")\\n    orig_fwds = patch_attention(model, unconstrained[\\\"allocation\\\"])\\n    ppl_unconstrained = evaluate_perplexity(model, tokenizer, device)\\n    restore_attention(model, orig_fwds)\\n    print(f\\\"  Unconstrained PPL = {ppl_unconstrained:.4f}\\\")\\n\\n    # --- Eval: Greedy ---\\n    print(\\\"\\\\n[5/5] Greedy PPL...\\\")\\n    orig_fwds = patch_attention(model, greedy[\\\"allocation\\\"])\\n    ppl_greedy = evaluate_perplexity(model, tokenizer, device)\\n    restore_attention(model, orig_fwds)\\n    print(f\\\"  Greedy PPL = {ppl_greedy:.4f}\\\")\\n\\n    # --- Save results ---\\n    elapsed = time.time() - t0\\n\\n    results = {\\n        \\\"model\\\": MODEL_PATH,\\n        \\\"model_name\\\": \\\"InternLM2-7B\\\",\\n        \\\"precision\\\": \\\"bfloat16\\\",\\n        \\\"architecture\\\": {\\n            \\\"num_layers\\\": num_layers,\\n            \\\"num_kv_heads\\\": num_kv_heads,\\n            \\\"num_attention_heads\\\": num_q_heads,\\n            \\\"head_dim\\\": config.hidden_size // num_q_heads,\\n            \\\"hidden_size\\\": config.hidden_size,\\n            \\\"gqa_ratio\\\": gqa_ratio,\\n            \\\"total_kv_heads\\\": total_kv_heads,\\n        },\\n        \\\"profiling_source\\\": PROFILE_PATH,\\n        \\\"synthesis\\\": {\\\"ratio_4bit\\\": RATIO_4BIT, \\\"ratio_8bit\\\": RATIO_8BIT},\\n        \\\"constraint\\\": {\\\"budget\\\": BUDGET, \\\"max_2bit\\\": MAX_2BIT, \\\"l0_exclude_2bit\\\": True},\\n        \\\"analysis\\\": {\\n            \\\"top5_concentration\\\": round(top5_concentration, 4),\\n            \\\"boundary_case\\\": True,\\n            \\\"distance_to_threshold\\\": 0.008,\\n        },\\n        \\\"ppl_bf16\\\": round(ppl_bf16, 4),\\n        \\\"ppl_uniform_4bit\\\": round(ppl_uniform, 4),\\n        \\\"ppl_constrained_mckp\\\": round(ppl_constrained, 4),\\n        \\\"ppl_unconstrained_mckp\\\": round(ppl_unconstrained, 4),\\n        \\\"ppl_greedy\\\": round(ppl_greedy, 4),\\n        \\\"delta_uniform\\\": round(ppl_uniform - ppl_bf16, 4),\\n        \\\"delta_constrained\\\": round(ppl_constrained - ppl_bf16, 4),\\n        \\\"delta_unconstrained\\\": round(ppl_unconstrained - ppl_bf16, 4),\\n        \\\"delta_greedy\\\": round(ppl_greedy - ppl_bf16, 4),\\n        \\\"constrained_vs_uniform\\\": round(ppl_uniform - ppl_constrained, 4),\\n        \\\"constrained_bit_distribution\\\": constrained.get(\\\"bit_distribution\\\", {}),\\n        \\\"unconstrained_bit_distribution\\\": unconstrained.get(\\\"bit_distribution\\\", {}),\\n        \\\"greedy_bit_distribution\\\": greedy.get(\\\"bit_distribution\\\", {}),\\n        \\\"constrained_allocation\\\": {k: list(v) for k, v in constrained[\\\"allocation\\\"].items()},\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n    }\\n\\n    os.makedirs(\\\"artifacts\\\", exist_ok=True)\\n    with open(OUTPUT_PATH, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {OUTPUT_PATH}\\\")\\n\\n    # --- Summary ---\\n    print(f\\\"\\\\n{'='*65}\\\")\\n    print(\\\"RESULTS — InternLM2-7B Constrained MCKP Pipeline\\\")\\n    print(f\\\"{'='*65}\\\")\\n    print(f\\\"{'Method':<28} {'PPL':>10} {'Delta':>10} {'vs Uniform':>12}\\\")\\n    print(\\\"-\\\" * 65)\\n    print(f\\\"{'Baseline (bf16)':<28} {ppl_bf16:>10.4f} {'---':>10} {'---':>12}\\\")\\n    print(f\\\"{'Constrained MCKP (k=2)':<28} {ppl_constrained:>10.4f} {ppl_constrained-ppl_bf16:>+10.4f} {ppl_uniform-ppl_constrained:>+12.4f}\\\")\\n    print(f\\\"{'Unconstrained MCKP':<28} {ppl_unconstrained:>10.4f} {ppl_unconstrained-ppl_bf16:>+10.4f} {ppl_uniform-ppl_unconstrained:>+12.4f}\\\")\\n    print(f\\\"{'Greedy':<28} {ppl_greedy:>10.4f} {ppl_greedy-ppl_bf16:>+10.4f} {ppl_uniform-ppl_greedy:>+12.4f}\\\")\\n    print(f\\\"{'Uniform 4-bit':<28} {ppl_uniform:>10.4f} {ppl_uniform-ppl_bf16:>+10.4f} {'---':>12}\\\")\\n    print(f\\\"\\\\nTop-5% concentration: {top5_concentration:.4f} (boundary case, 0.008 from threshold)\\\")\\n    print(f\\\"Total time: {elapsed/60:.1f}min\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check the `eval_ppl.py` `patch_attention` function to understand what it does and why it fails for InternLM2.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "6fad5e41-7404-476d-9a9c-a1accd5e3089",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZsMbF53UWbungYfHGHXPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7435,
+      "cache_read_input_tokens": 26680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7435
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Now let me check `eval_ppl.py`'s `patch_attention` to see the incompatibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "1ba7f673-832a-4404-9d4d-1f5f5a036dc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZsMbF53UWbungYfHGHXPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7435,
+      "cache_read_input_tokens": 26680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7435
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KbgRz9vw88Vho7t5heC197`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -n \"def patch_attention\\|def restore_attention\" /root/ratekv/eval_ppl.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "c70570f6-32d1-4741-b8db-d97682a3dc61",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZsMbF53UWbungYfHGHXPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7435,
+      "cache_read_input_tokens": 26680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7435
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T03:08:06.276Z_
+
+<details><summary>↩ Tool result · `toolu_01KbgRz9vw88Vho7t5heC197`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "06390517-813e-4801-8540-7f78ea49e6b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EanKuC8yeqSQaAVCWzLVau`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -n \"def patch_attention\\|def restore_attention\" /root/ratekv/eval_ppl.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "435bbf24-2e87-4c83-9242-1e06df487dc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yCxuQZdA9K5DpUBfvzud3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 300,
+      "cache_read_input_tokens": 34115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 300
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T03:08:09.322Z_
+
+<details><summary>↩ Tool result · `toolu_01EanKuC8yeqSQaAVCWzLVau`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "6d9346ba-18ee-461d-b9a9-b1081fc336c8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LBjWm3XhcR5Um8o4GE36qE`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -n \"def patch_attention\" /root/ratekv/eval_ppl.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "d633e39d-2f62-4e80-b70e-14f71bac187f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfSABhUGBDYRLx5wNQm4o2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 222,
+      "cache_read_input_tokens": 34415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 222
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T03:08:12.698Z_
+
+<details><summary>↩ Tool result · `toolu_01LBjWm3XhcR5Um8o4GE36qE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"24:def patch_attention(model, allocations):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "b8248b17-f715-4a61-99af-f4355e75c801",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"24:def patch_attention(model, allocations):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"24:def patch_attention(model, allocations):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xuwwrikrp96CRnKjNgPjo6`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "head -120 /root/ratekv/eval_ppl.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "c8450d08-38b2-4ba7-b94b-20af37aec7bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cjbRXc7fca9Ef6pHH4HCH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 210,
+      "cache_read_input_tokens": 34637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 210
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T03:08:17.128Z_
+
+<details><summary>↩ Tool result · `toolu_01Xuwwrikrp96CRnKjNgPjo6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate perplexity on WikiText-2 with per-head KV compression.\\nInput: model + allocation decisions\\nOutput: perplexity number\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport importlib\\nimport json\\nimport math\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\n\\n\\ndef _get_rotary_fn(model):\\n    \\\"\\\"\\\"Import apply_rotary_pos_emb matching the model architecture.\\\"\\\"\\\"\\n    model_type = model.config.model_type\\n    module_name = f\\\"transformers.models.{model_type}.modeling_{model_type}\\\"\\n    module = importlib.import_module(module_name)\\n    return module.apply_rotary_pos_emb\\n\\n\\ndef patch_attention(model, allocations):\\n    \\\"\\\"\\\"Monkey-patch attention layers to apply per-head compression.\\n\\n    Returns dict of original forward methods for restoration.\\n    \\\"\\\"\\\"\\n    config = model.config\\n    num_kv_heads = config.num_key_value_heads\\n    num_q_heads = config.num_attention_heads\\n    try:\\n        head_dim = model.model.layers[0].self_attn.head_dim\\n    except AttributeError:\\n        head_dim = getattr(config, 'head_dim', config.hidden_size // num_q_heads)\\n    n_groups = num_q_heads // num_kv_heads\\n\\n    rotary_fn = _get_rotary_fn(model)\\n    original_forwards = {}\\n\\n    for layer_idx, layer in enumerate(model.model.layers):\\n        attn = layer.self_attn\\n\\n        head_allocs = {}\\n        for h in range(num_kv_heads):\\n            key = f\\\"{layer_idx},{h}\\\"\\n            if key in allocations:\\n                atype, param = allocations[key]\\n                head_allocs[h] = (atype, param)\\n            else:\\n                head_allocs[h] = (\\\"full\\\", 16)\\n\\n        all_full = all(a[0] == \\\"full\\\" for a in head_allocs.values())\\n        if all_full:\\n            continue\\n\\n        has_eviction = any(a[0] == \\\"evict\\\" for a in head_allocs.values())\\n        original_forwards[layer_idx] = attn.forward\\n\\n        def make_forward(orig_attn, h_allocs, has_evict, n_kv=num_kv_heads, ng=n_groups, hd=head_dim, rope_fn=rotary_fn):\\n            fused_qkv = hasattr(orig_attn, 'qkv_proj')\\n            def compressed_forward(hidden_states, position_embeddings, attention_mask=None, **kwargs):\\n                bsz, seq_len = hidden_states.shape[:2]\\n\\n                if fused_qkv:\\n                    qkv = orig_attn.qkv_proj(hidden_states)\\n                    q_size = n_kv * ng * hd\\n                    kv_size = n_kv * hd\\n                    q = qkv[..., :q_size].view(bsz, seq_len, -1, hd).transpose(1, 2)\\n                    k = qkv[..., q_size:q_size + kv_size].view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\n                    v = qkv[..., q_size + kv_size:].view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\n                else:\\n                    q = orig_attn.q_proj(hidden_states).view(bsz, seq_len, -1, hd).transpose(1, 2)\\n                    k = orig_attn.k_proj(hidden_states).view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\n                    v = orig_attn.v_proj(hidden_states).view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\n\\n                cos, sin = position_embeddings\\n                q, k = rope_fn(q, k, cos, sin)\\n\\n                # Per-head quantization\\n                for h in range(n_kv):\\n                    atype, param = h_allocs[h]\\n                    if atype == \\\"quant\\\" and int(param) < 16:\\n                        bits = int(param)\\n                        k[:, h] = quantize_per_channel(k[:, h:h + 1], bits).squeeze(1)\\n                        v[:, h] = quantize_per_token(v[:, h:h + 1], bits).squeeze(1)\\n\\n                k_exp = repeat_kv(k, ng)\\n                v_exp = repeat_kv(v, ng)\\n\\n                attn_scores = torch.matmul(q, k_exp.transpose(2, 3)) * orig_attn.scaling\\n                if attention_mask is not None:\\n                    cm = attention_mask[:, :, :, :k_exp.shape[-2]]\\n                    attn_scores = attn_scores + cm\\n                else:\\n                    causal = torch.triu(\\n                        torch.full((seq_len, seq_len), float(\\\"-inf\\\"),\\n                                   device=attn_scores.device, dtype=attn_scores.dtype),\\n                        diagonal=1\\n                    )\\n                    attn_scores = attn_scores + causal\\n\\n                # Eviction: compute importance from initial softmax, then mask and re-softmax\\n                if has_evict:\\n                    soft_w = F.softmax(attn_scores, dim=-1, dtype=torch.float32)\\n                    for h in range(n_kv):\\n                        atype, param = h_allocs[h]\\n                        if atype == \\\"evict\\\":\\n                            ratio = float(param)\\n                            skv = k.shape[2]\\n                            n_keep = max(1, int(skv * ratio))\\n                            qs, qe = h * ng, (h + 1) * ng\\n                            importance = soft_w[:, qs:qe].mean(dim=(0, 1, 2))\\n                            _, top_idx = importance.topk(n_keep)\\n                            emask = torch.full(\\n                                (skv,), float(\\\"-inf\\\"), device=k.device, dtype=attn_scores.dtype\\n                            )\\n                            emask[top_idx] = 0\\n                            attn_scores[:, qs:qe] = attn_scores[:, qs:qe] + emask\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "f27d1bbf-36f6-4e88-8f01-a7bf58ac212b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluate perplexity on WikiText-2 with per-head KV compression.\\\\nInput: model + allocation decisions\\\\nOutput: perplexity number\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport importlib\\\\nimport json\\\\nimport math\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\\\n\\\\n\\\\ndef _get_rotary_fn(model):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Import apply_rotary_pos_emb matching the model architecture.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    model_type = model.config.model_type\\\\n    module_name = f\\\\\\\"transformers.models.{model_type}.modeling_{model_type}\\\\\\\"\\\\n    module = importlib.import_module(module_name)\\\\n    return module.apply_rotary_pos_emb\\\\n\\\\n\\\\ndef patch_attention(model, allocations):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Monkey-patch attention layers to apply per-head compression.\\\\n\\\\n    Returns dict of original forward methods for restoration.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    config = model.config\\\\n    num_kv_heads = config.num_key_value_heads\\\\n    num_q_heads = config.num_attention_heads\\\\n    try:\\\\n        head_dim = model.model.layers[0].self_attn.head_dim\\\\n    except AttributeError:\\\\n        head_dim = getattr(config, 'head_dim', config.hidden_size // num_q_heads)\\\\n    n_groups = num_q_heads // num_kv_heads\\\\n\\\\n    rotary_fn = _get_rotary_fn(model)\\\\n    original_forwards = {}\\\\n\\\\n    for layer_idx, layer in enumerate(model.model.layers):\\\\n        attn = layer.self_attn\\\\n\\\\n        head_allocs = {}\\\\n        for h in range(num_kv_heads):\\\\n            key = f\\\\\\\"{layer_idx},{h}\\\\\\\"\\\\n            if key in allocations:\\\\n                atype, param = allocations[key]\\\\n                head_allocs[h] = (atype, param)\\\\n            else:\\\\n                head_allocs[h] = (\\\\\\\"full\\\\\\\", 16)\\\\n\\\\n        all_full = all(a[0] == \\\\\\\"full\\\\\\\" for a in head_allocs.values())\\\\n        if all_full:\\\\n            continue\\\\n\\\\n        has_eviction = any(a[0] == \\\\\\\"evict\\\\\\\" for a in head_allocs.values())\\\\n        original_forwards[layer_idx] = attn.forward\\\\n\\\\n        def make_forward(orig_attn, h_allocs, has_evict, n_kv=num_kv_heads, ng=n_groups, hd=head_dim, rope_fn=rotary_fn):\\\\n            fused_qkv = hasattr(orig_attn, 'qkv_proj')\\\\n            def compressed_forward(hidden_states, position_embeddings, attention_mask=None, **kwargs):\\\\n                bsz, seq_len = hidden_states.shape[:2]\\\\n\\\\n                if fused_qkv:\\\\n                    qkv = orig_attn.qkv_proj(hidden_states)\\\\n                    q_size = n_kv * ng * hd\\\\n                    kv_size = n_kv * hd\\\\n                    q = qkv[..., :q_size].view(bsz, seq_len, -1, hd).transpose(1, 2)\\\\n                    k = qkv[..., q_size:q_size + kv_size].view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\\\n                    v = qkv[..., q_size + kv_size:].view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\\\n                else:\\\\n                    q = orig_attn.q_proj(hidden_states).view(bsz, seq_len, -1, hd).transpose(1, 2)\\\\n                    k = orig_attn.k_proj(hidden_states).view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\\\n                    v = orig_attn.v_proj(hidden_states).view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\\\n\\\\n                cos, sin = position_embeddings\\\\n                q, k = rope_fn(q, k, cos, sin)\\\\n\\\\n                # Per-head quantization\\\\n                for h in range(n_kv):\\\\n                    atype, param = h_allocs[h]\\\\n                    if atype == \\\\\\\"quant\\\\\\\" and int(param) < 16:\\\\n                        bits = int(param)\\\\n                        k[:, h] = quantize_per_channel(k[:, h:h + 1], bits).squeeze(1)\\\\n                        v[:, h] = quantize_per_token(v[:, h:h + 1], bits).squeeze(1)\\\\n\\\\n                k_exp = repeat_kv(k, ng)\\\\n                v_exp = repeat_kv(v, ng)\\\\n\\\\n                attn_scores = torch.matmul(q, k_exp.transpose(2, 3)) * orig_attn.scaling\\\\n                if attention_mask is not None:\\\\n                    cm = attention_mask[:, :, :, :k_exp.shape[-2]]\\\\n                    attn_scores = attn_scores + cm\\\\n                else:\\\\n                    causal = torch.triu(\\\\n                        torch.full((seq_len, seq_len), float(\\\\\\\"-inf\\\\\\\"),\\\\n                                   device=attn_scores.device, dtype=attn_scores.dtype),\\\\n                        diagonal=1\\\\n                    )\\\\n                    attn_scores = attn_scores + causal\\\\n\\\\n                # Eviction: compute importance from initial softmax, then mask and re-softmax\\\\n                if has_evict:\\\\n                    soft_w = F.softmax(attn_scores, dim=-1, dtype=torch.float32)\\\\n                    for h in range(n_kv):\\\\n                        atype, param = h_allocs[h]\\\\n                        if atype == \\\\\\\"evict\\\\\\\":\\\\n                            ratio = float(param)\\\\n                            skv = k.shape[2]\\\\n                            n_keep = max(1, int(skv * ratio))\\\\n                            qs, qe = h * ng, (h + 1) * ng\\\\n                            importance = soft_w[:, qs:qe].mean(dim=(0, 1, 2))\\\\n                            _, top_idx = importance.topk(n_keep)\\\\n                            emask = torch.full(\\\\n                                (skv,), float(\\\\\\\"-inf\\\\\\\"), device=k.device, dtype=attn_scores.dtype\\\\n                            )\\\\n                            emask[top_idx] = 0\\\\n                            attn_scores[:, qs:qe] = attn_scores[:, qs:qe] + emask\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate perplexity on WikiText-2 with per-head KV compression.\\nInput: model + allocation decisions\\nOutput: perplexity number\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport importlib\\nimport json\\nimport math\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\n\\n\\ndef _get_rotary_fn(model):\\n    \\\"\\\"\\\"Import apply_rotary_pos_emb matching the model architecture.\\\"\\\"\\\"\\n    model_type = model.config.model_type\\n    module_name = f\\\"transformers.models.{model_type}.modeling_{model_type}\\\"\\n    module = importlib.import_module(module_name)\\n    return module.apply_rotary_pos_emb\\n\\n\\ndef patch_attention(model, allocations):\\n    \\\"\\\"\\\"Monkey-patch attention layers to apply per-head compression.\\n\\n    Returns dict of original forward methods for restoration.\\n    \\\"\\\"\\\"\\n    config = model.config\\n    num_kv_heads = config.num_key_value_heads\\n    num_q_heads = config.num_attention_heads\\n    try:\\n        head_dim = model.model.layers[0].self_attn.head_dim\\n    except AttributeError:\\n        head_dim = getattr(config, 'head_dim', config.hidden_size // num_q_heads)\\n    n_groups = num_q_heads // num_kv_heads\\n\\n    rotary_fn = _get_rotary_fn(model)\\n    original_forwards = {}\\n\\n    for layer_idx, layer in enumerate(model.model.layers):\\n        attn = layer.self_attn\\n\\n        head_allocs = {}\\n        for h in range(num_kv_heads):\\n            key = f\\\"{layer_idx},{h}\\\"\\n            if key in allocations:\\n                atype, param = allocations[key]\\n                head_allocs[h] = (atype, param)\\n            else:\\n                head_allocs[h] = (\\\"full\\\", 16)\\n\\n        all_full = all(a[0] == \\\"full\\\" for a in head_allocs.values())\\n        if all_full:\\n            continue\\n\\n        has_eviction = any(a[0] == \\\"evict\\\" for a in head_allocs.values())\\n        original_forwards[layer_idx] = attn.forward\\n\\n        def make_forward(orig_attn, h_allocs, has_evict, n_kv=num_kv_heads, ng=n_groups, hd=head_dim, rope_fn=rotary_fn):\\n            fused_qkv = hasattr(orig_attn, 'qkv_proj')\\n            def compressed_forward(hidden_states, position_embeddings, attention_mask=None, **kwargs):\\n                bsz, seq_len = hidden_states.shape[:2]\\n\\n                if fused_qkv:\\n                    qkv = orig_attn.qkv_proj(hidden_states)\\n                    q_size = n_kv * ng * hd\\n                    kv_size = n_kv * hd\\n                    q = qkv[..., :q_size].view(bsz, seq_len, -1, hd).transpose(1, 2)\\n                    k = qkv[..., q_size:q_size + kv_size].view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\n                    v = qkv[..., q_size + kv_size:].view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\n                else:\\n                    q = orig_attn.q_proj(hidden_states).view(bsz, seq_len, -1, hd).transpose(1, 2)\\n                    k = orig_attn.k_proj(hidden_states).view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\n                    v = orig_attn.v_proj(hidden_states).view(bsz, seq_len, n_kv, hd).transpose(1, 2)\\n\\n                cos, sin = position_embeddings\\n                q, k = rope_fn(q, k, cos, sin)\\n\\n                # Per-head quantization\\n                for h in range(n_kv):\\n                    atype, param = h_allocs[h]\\n                    if atype == \\\"quant\\\" and int(param) < 16:\\n                        bits = int(param)\\n                        k[:, h] = quantize_per_channel(k[:, h:h + 1], bits).squeeze(1)\\n                        v[:, h] = quantize_per_token(v[:, h:h + 1], bits).squeeze(1)\\n\\n                k_exp = repeat_kv(k, ng)\\n                v_exp = repeat_kv(v, ng)\\n\\n                attn_scores = torch.matmul(q, k_exp.transpose(2, 3)) * orig_attn.scaling\\n                if attention_mask is not None:\\n                    cm = attention_mask[:, :, :, :k_exp.shape[-2]]\\n                    attn_scores = attn_scores + cm\\n                else:\\n                    causal = torch.triu(\\n                        torch.full((seq_len, seq_len), float(\\\"-inf\\\"),\\n                                   device=attn_scores.device, dtype=attn_scores.dtype),\\n                        diagonal=1\\n                    )\\n                    attn_scores = attn_scores + causal\\n\\n                # Eviction: compute importance from initial softmax, then mask and re-softmax\\n                if has_evict:\\n                    soft_w = F.softmax(attn_scores, dim=-1, dtype=torch.float32)\\n                    for h in range(n_kv):\\n                        atype, param = h_allocs[h]\\n                        if atype == \\\"evict\\\":\\n                            ratio = float(param)\\n                            skv = k.shape[2]\\n                            n_keep = max(1, int(skv * ratio))\\n                            qs, qe = h * ng, (h + 1) * ng\\n                            importance = soft_w[:, qs:qe].mean(dim=(0, 1, 2))\\n                            _, top_idx = importance.topk(n_keep)\\n                            emask = torch.full(\\n                                (skv,), float(\\\"-inf\\\"), device=k.device, dtype=attn_scores.dtype\\n                            )\\n                            emask[top_idx] = 0\\n                            attn_scores[:, qs:qe] = attn_scores[:, qs:qe] + emask\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I understand the problem. The `eval_ppl.py`'s `patch_attention` function calls `_get_rotary_fn` which does:
+
+```python
+def _get_rotary_fn(model):
+    model_type = model.config.model_type
+    module_name = f"transformers.models.{model_type}.modeling_{model_type}"
+    module = importlib.import_module(module_name)
+    return module.apply_rotary_pos_emb
+```
+
+For InternLM2, `model.config.model_type` is `"internlm2"`, and it tries to import `transformers.models.internlm2.modeling_internlm2`, which doesn't exist in transformers (InternLM2 uses custom code from the model repo, not from the transformers library).
+
+
+The generic `patch_attention` also assumes `layer.self_attn`, but InternLM2 uses `layer.attention` with a fused `wqkv` projection that requires a different split pattern. The profiling script's `patch_attention_internlm2` handles this by accessing the correct attention module, using the fused projection, and applying einops rearrange to split the combined QKV tensor into separate Q, K, V components.
+
+So I need to update `run_internlm2_constrained_mckp.py` to import the InternLM2-specific patching functions from the profiling script and swap out the generic attention patching calls with these custom versions, while keeping the perplexity evaluation function itself unchanged. Let me check how the restore function works so I can replicate that part too.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "f2153cb4-f6c9-4d16-bb4e-fbb297b70908",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xq2rRnbyYod96xiHnBsAu4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2052,
+      "cache_read_input_tokens": 34847,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2052
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Now I have a clear picture. The issue is:
+1. `eval_ppl.patch_attention` uses `_get_rotary_fn` which tries to import `transformers.models.internlm2` — doesn't exist
+2. It assumes `layer.self_attn` but InternLM2 uses `layer.attention` with fused `wqkv`
+
+I need to port `patch_attention_internlm2` from the profiling script. Let me also check `restore_attention` and verify the full profiling script's patching code (it was truncated).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "9493343c-20bc-4bc2-af5b-93e6430aed6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xq2rRnbyYod96xiHnBsAu4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2052,
+      "cache_read_input_tokens": 34847,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2052
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JK7vm1nbtkSFmvhuKQGTYe`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -n \"def restore_attention\" /root/ratekv/eval_ppl.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "bfad2298-a266-4c1a-8a47-c1b9b6467ad3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xq2rRnbyYod96xiHnBsAu4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2052,
+      "cache_read_input_tokens": 34847,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2052
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T03:08:33.110Z_
+
+<details><summary>↩ Tool result · `toolu_01JK7vm1nbtkSFmvhuKQGTYe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"134:def restore_attention(model, original_forwards):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "3d020c24-4ba4-439e-a441-9d0523ad6eb1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"134:def restore_attention(model, original_forwards):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"134:def restore_attention(model, original_forwards):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SHc3mdyUCXa3E6FGZfxZtz`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat -n /root/ratekv/run_internlm2_hires_profiling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "4360816f-07bf-4e3d-977b-f844965c441d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xq2rRnbyYod96xiHnBsAu4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2052,
+      "cache_read_input_tokens": 34847,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2052
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T03:08:34.040Z_
+
+<details><summary>↩ Tool result · `toolu_01SHc3mdyUCXa3E6FGZfxZtz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"InternLM2-7B hires bf16 profiling — 2-bit only concentration measurement.\\n     2\\tCustom attention patching for InternLM2's fused wqkv architecture.\\n     3\\t64 samples x 2048 tokens, bfloat16 precision, only 2-bit quantization deltas.\\n     4\\t\\\"\\\"\\\"\\n     5\\timport os\\n     6\\tos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n     7\\tos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n     8\\t\\n     9\\timport argparse\\n    10\\timport json\\n    11\\timport math\\n    12\\timport time\\n    13\\timport torch\\n    14\\timport torch.nn.functional as F\\n    15\\tfrom einops import rearrange\\n    16\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\n    17\\tfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\n    18\\t\\n    19\\t\\n    20\\tdef rotate_half(x):\\n    21\\t    x1 = x[..., : x.shape[-1] // 2]\\n    22\\t    x2 = x[..., x.shape[-1] // 2 :]\\n    23\\t    return torch.cat((-x2, x1), dim=-1)\\n    24\\t\\n    25\\t\\n    26\\tdef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\\n    27\\t    cos = cos.unsqueeze(unsqueeze_dim)\\n    28\\t    sin = sin.unsqueeze(unsqueeze_dim)\\n    29\\t    q_embed = (q * cos) + (rotate_half(q) * sin)\\n    30\\t    k_embed = (k * cos) + (rotate_half(k) * sin)\\n    31\\t    return q_embed, k_embed\\n    32\\t\\n    33\\t\\n    34\\tdef patch_attention_internlm2(model, allocations):\\n    35\\t    config = model.config\\n    36\\t    num_kv_heads = config.num_key_value_heads\\n    37\\t    num_q_heads = config.num_attention_heads\\n    38\\t    head_dim = config.hidden_size // num_q_heads\\n    39\\t    n_groups = num_q_heads // num_kv_heads\\n    40\\t\\n    41\\t    original_forwards = {}\\n    42\\t\\n    43\\t    for layer_idx, layer in enumerate(model.model.layers):\\n    44\\t        attn = layer.attention\\n    45\\t\\n    46\\t        head_allocs = {}\\n    47\\t        for h in range(num_kv_heads):\\n    48\\t            key = f\\\"{layer_idx},{h}\\\"\\n    49\\t            if key in allocations:\\n    50\\t                atype, param = allocations[key]\\n    51\\t                head_allocs[h] = (atype, param)\\n    52\\t            else:\\n    53\\t                head_allocs[h] = (\\\"full\\\", 16)\\n    54\\t\\n    55\\t        all_full = all(a[0] == \\\"full\\\" for a in head_allocs.values())\\n    56\\t        if all_full:\\n    57\\t            continue\\n    58\\t\\n    59\\t        original_forwards[layer_idx] = attn.forward\\n    60\\t\\n    61\\t        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\\n    62\\t            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\\n    63\\t                                   past_key_value=None, output_attentions=False,\\n    64\\t                                   use_cache=False, cache_position=None, **kwargs):\\n    65\\t                bsz, q_len, _ = hidden_states.size()\\n    66\\t\\n    67\\t                qkv_states = orig_attn.wqkv(hidden_states)\\n    68\\t                qkv_states = rearrange(\\n    69\\t                    qkv_states,\\n    70\\t                    \\\"b q (h gs d) -> b q h gs d\\\",\\n    71\\t                    gs=2 + ng,\\n    72\\t                    d=hd,\\n    73\\t                )\\n    74\\t\\n    75\\t                query_states = qkv_states[..., :ng, :]\\n    76\\t                query_states = rearrange(query_states, \\\"b q h gs d -> b q (h gs) d\\\").transpose(1, 2)\\n    77\\t                key_states = qkv_states[..., -2, :].transpose(1, 2)\\n    78\\t                value_states = qkv_states[..., -1, :].transpose(1, 2)\\n    79\\t\\n    80\\t                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\\n    81\\t                query_states, key_states = apply_rotary_pos_emb(\\n    82\\t                    query_states, key_states, cos, sin, position_ids\\n    83\\t                )\\n    84\\t\\n    85\\t                for h in range(n_kv):\\n    86\\t                    atype, param = h_allocs[h]\\n    87\\t                    if atype == \\\"quant\\\" and int(param) < 16:\\n    88\\t                        bits = int(param)\\n    89\\t                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\n    90\\t                        value_state\\n\\n... [截断: 输出过长，省略 8415 字符] ...\\n\\nsorted(all_deltas_2bit, key=lambda x: -x[2])\\n   271\\t    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\\n   272\\t    total_sum = sum(x[2] for x in all_deltas_2bit)\\n   273\\t    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\\n   274\\t    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\n   275\\t\\n   276\\t    l0_deltas = layer_deltas.get(0, [0])\\n   277\\t    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\\n   278\\t    other_means = []\\n   279\\t    for l in range(1, num_layers):\\n   280\\t        if l in layer_deltas and layer_deltas[l]:\\n   281\\t            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\\n   282\\t    other_avg = sum(other_means) / len(other_means) if other_means else 0\\n   283\\t    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\\\"inf\\\")\\n   284\\t\\n   285\\t    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\\n   286\\t    n_positive = int((d_tensor > 1e-6).sum().item())\\n   287\\t    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\\n   288\\t\\n   289\\t    print(f\\\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\\\")\\n   290\\t    print(f\\\"Layer 0 mean delta(2bit): {l0_mean:.6f}\\\")\\n   291\\t    print(f\\\"Other layers mean delta(2bit): {other_avg:.6f}\\\")\\n   292\\t    print(f\\\"L0 dominance ratio: {l0_ratio:.2f}x\\\")\\n   293\\t    print(f\\\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\\\")\\n   294\\t    print(f\\\"CV of delta(2bit): {cv:.4f}\\\")\\n   295\\t\\n   296\\t    print(\\\"\\\\nTop-5 most sensitive heads:\\\")\\n   297\\t    for name_l, name_h, d2 in sorted_by_d2[:5]:\\n   298\\t        print(f\\\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\\\")\\n   299\\t\\n   300\\t    # ========== Save Results ==========\\n   301\\t    total_time = time.time() - t0\\n   302\\t\\n   303\\t    results = {\\n   304\\t        \\\"model\\\": args.model,\\n   305\\t        \\\"model_name\\\": \\\"InternLM2-7B\\\",\\n   306\\t        \\\"precision\\\": \\\"bfloat16\\\",\\n   307\\t        \\\"profiling_config\\\": {\\n   308\\t            \\\"num_samples\\\": args.num_samples,\\n   309\\t            \\\"seq_len\\\": args.seq_len,\\n   310\\t            \\\"batch_size\\\": args.batch_size,\\n   311\\t            \\\"bitwidths\\\": [2],\\n   312\\t        },\\n   313\\t        \\\"architecture\\\": {\\n   314\\t            \\\"num_layers\\\": num_layers,\\n   315\\t            \\\"num_kv_heads\\\": num_kv_heads,\\n   316\\t            \\\"num_attention_heads\\\": num_q_heads,\\n   317\\t            \\\"head_dim\\\": config.hidden_size // num_q_heads,\\n   318\\t            \\\"hidden_size\\\": config.hidden_size,\\n   319\\t            \\\"gqa_ratio\\\": gqa_ratio,\\n   320\\t            \\\"total_kv_heads\\\": total_kv_heads,\\n   321\\t        },\\n   322\\t        \\\"baseline_calibration_ppl\\\": baseline_ppl,\\n   323\\t        \\\"analysis\\\": {\\n   324\\t            \\\"top5_concentration\\\": round(top5_concentration, 4),\\n   325\\t            \\\"top5_n_heads\\\": n_top5,\\n   326\\t            \\\"layer0_mean_delta_2bit\\\": round(l0_mean, 6),\\n   327\\t            \\\"other_layers_mean_delta_2bit\\\": round(other_avg, 6),\\n   328\\t            \\\"layer0_dominance_ratio\\\": round(l0_ratio, 2),\\n   329\\t            \\\"delta_2bit_mean\\\": round(d_tensor.mean().item(), 6),\\n   330\\t            \\\"delta_2bit_std\\\": round(d_tensor.std().item(), 6),\\n   331\\t            \\\"delta_2bit_cv\\\": round(cv, 4),\\n   332\\t            \\\"heads_with_positive_delta\\\": n_positive,\\n   333\\t            \\\"total_heads\\\": len(all_deltas_2bit),\\n   334\\t        },\\n   335\\t        \\\"top5_sensitive_heads\\\": [\\n   336\\t            {\\\"layer\\\": l, \\\"head\\\": h, \\\"delta_2bit\\\": round(d2, 6)}\\n   337\\t            for l, h, d2 in sorted_by_d2[:5]\\n   338\\t        ],\\n   339\\t        \\\"timing\\\": {\\n   340\\t            \\\"profile_seconds\\\": round(profile_time, 1),\\n   341\\t            \\\"total_seconds\\\": round(total_time, 1),\\n   342\\t        },\\n   343\\t    }\\n   344\\t\\n   345\\t    with open(\\\"artifacts/internlm2_hires_bf16_2bitonly_results.json\\\", \\\"w\\\") as f:\\n   346\\t        json.dump(results, f, indent=2)\\n   347\\t\\n   348\\t    print(f\\\"\\\\nTotal time: {total_time / 3600:.2f}h\\\")\\n   349\\t    print(f\\\"Saved: artifacts/internlm2_profiles_hires.json, artifacts/internlm2_hires_bf16_2bitonly_results.json\\\")\\n   350\\t\\n   351\\t\\n   352\\tif __name__ == \\\"__main__\\\":\\n   353\\t    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "08f8654d-bcf6-4c66-be5d-a7e6dc7dc33d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\"\\\\\\\"\\\\\\\"InternLM2-7B hires bf16 profiling — 2-bit only concentration measurement.\\\\n     2\\\\tCustom attention patching for InternLM2's fused wqkv architecture.\\\\n     3\\\\t64 samples x 2048 tokens, bfloat16 precision, only 2-bit quantization deltas.\\\\n     4\\\\t\\\\\\\"\\\\\\\"\\\\\\\"\\\\n     5\\\\timport os\\\\n     6\\\\tos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n     7\\\\tos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n     8\\\\t\\\\n     9\\\\timport argparse\\\\n    10\\\\timport json\\\\n    11\\\\timport math\\\\n    12\\\\timport time\\\\n    13\\\\timport torch\\\\n    14\\\\timport torch.nn.functional as F\\\\n    15\\\\tfrom einops import rearrange\\\\n    16\\\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\\\n    17\\\\tfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\\\n    18\\\\t\\\\n    19\\\\t\\\\n    20\\\\tdef rotate_half(x):\\\\n    21\\\\t    x1 = x[..., : x.shape[-1] // 2]\\\\n    22\\\\t    x2 = x[..., x.shape[-1] // 2 :]\\\\n    23\\\\t    return torch.cat((-x2, x1), dim=-1)\\\\n    24\\\\t\\\\n    25\\\\t\\\\n    26\\\\tdef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\\\\n    27\\\\t    cos = cos.unsqueeze(unsqueeze_dim)\\\\n    28\\\\t    sin = sin.unsqueeze(unsqueeze_dim)\\\\n    29\\\\t    q_embed = (q * cos) + (rotate_half(q) * sin)\\\\n    30\\\\t    k_embed = (k * cos) + (rotate_half(k) * sin)\\\\n    31\\\\t    return q_embed, k_embed\\\\n    32\\\\t\\\\n    33\\\\t\\\\n    34\\\\tdef patch_attention_internlm2(model, allocations):\\\\n    35\\\\t    config = model.config\\\\n    36\\\\t    num_kv_heads = config.num_key_value_heads\\\\n    37\\\\t    num_q_heads = config.num_attention_heads\\\\n    38\\\\t    head_dim = config.hidden_size // num_q_heads\\\\n    39\\\\t    n_groups = num_q_heads // num_kv_heads\\\\n    40\\\\t\\\\n    41\\\\t    original_forwards = {}\\\\n    42\\\\t\\\\n    43\\\\t    for layer_idx, layer in enumerate(model.model.layers):\\\\n    44\\\\t        attn = layer.attention\\\\n    45\\\\t\\\\n    46\\\\t        head_allocs = {}\\\\n    47\\\\t        for h in range(num_kv_heads):\\\\n    48\\\\t            key = f\\\\\\\"{layer_idx},{h}\\\\\\\"\\\\n    49\\\\t            if key in allocations:\\\\n    50\\\\t                atype, param = allocations[key]\\\\n    51\\\\t                head_allocs[h] = (atype, param)\\\\n    52\\\\t            else:\\\\n    53\\\\t                head_allocs[h] = (\\\\\\\"full\\\\\\\", 16)\\\\n    54\\\\t\\\\n    55\\\\t        all_full = all(a[0] == \\\\\\\"full\\\\\\\" for a in head_allocs.values())\\\\n    56\\\\t        if all_full:\\\\n    57\\\\t            continue\\\\n    58\\\\t\\\\n    59\\\\t        original_forwards[layer_idx] = attn.forward\\\\n    60\\\\t\\\\n    61\\\\t        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\\\\n    62\\\\t            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\\\\n    63\\\\t                                   past_key_value=None, output_attentions=False,\\\\n    64\\\\t                                   use_cache=False, cache_position=None, **kwargs):\\\\n    65\\\\t                bsz, q_len, _ = hidden_states.size()\\\\n    66\\\\t\\\\n    67\\\\t                qkv_states = orig_attn.wqkv(hidden_states)\\\\n    68\\\\t                qkv_states = rearrange(\\\\n    69\\\\t                    qkv_states,\\\\n    70\\\\t                    \\\\\\\"b q (h gs d) -> b q h gs d\\\\\\\",\\\\n    71\\\\t                    gs=2 + ng,\\\\n    72\\\\t                    d=hd,\\\\n    73\\\\t                )\\\\n    74\\\\t\\\\n    75\\\\t                query_states = qkv_states[..., :ng, :]\\\\n    76\\\\t                query_states = rearrange(query_states, \\\\\\\"b q h gs d -> b q (h gs) d\\\\\\\").transpose(1, 2)\\\\n    77\\\\t                key_states = qkv_states[..., -2, :].transpose(1, 2)\\\\n    78\\\\t                value_states = qkv_states[..., -1, :].transpose(1, 2)\\\\n    79\\\\t\\\\n    80\\\\t                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\\\\n    81\\\\t                query_states, key_states = apply_rotary_pos_emb(\\\\n    82\\\\t                    query_states, key_states, cos, sin, position_ids\\\\n    83\\\\t                )\\\\n    84\\\\t\\\\n    85\\\\t                for h in range(n_kv):\\\\n    86\\\\t                    atype, param = h_allocs[h]\\\\n    87\\\\t                    if atype == \\\\\\\"quant\\\\\\\" and int(param) < 16:\\\\n    88\\\\t                        bits = int(param)\\\\n    89\\\\t                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\\\n    90\\\\t                        value_state\\\\n\\\\n... [截断: 输出过长，省略 8415 字符] ...\\\\n\\\\nsorted(all_deltas_2bit, key=lambda x: -x[2])\\\\n   271\\\\t    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\\\\n   272\\\\t    total_sum = sum(x[2] for x in all_deltas_2bit)\\\\n   273\\\\t    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\\\\n   274\\\\t    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\\\n   275\\\\t\\\\n   276\\\\t    l0_deltas = layer_deltas.get(0, [0])\\\\n   277\\\\t    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\\\\n   278\\\\t    other_means = []\\\\n   279\\\\t    for l in range(1, num_layers):\\\\n   280\\\\t        if l in layer_deltas and layer_deltas[l]:\\\\n   281\\\\t            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\\\\n   282\\\\t    other_avg = sum(other_means) / len(other_means) if other_means else 0\\\\n   283\\\\t    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\\\\\\\"inf\\\\\\\")\\\\n   284\\\\t\\\\n   285\\\\t    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\\\\n   286\\\\t    n_positive = int((d_tensor > 1e-6).sum().item())\\\\n   287\\\\t    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\\\\n   288\\\\t\\\\n   289\\\\t    print(f\\\\\\\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\\\\\\\")\\\\n   290\\\\t    print(f\\\\\\\"Layer 0 mean delta(2bit): {l0_mean:.6f}\\\\\\\")\\\\n   291\\\\t    print(f\\\\\\\"Other layers mean delta(2bit): {other_avg:.6f}\\\\\\\")\\\\n   292\\\\t    print(f\\\\\\\"L0 dominance ratio: {l0_ratio:.2f}x\\\\\\\")\\\\n   293\\\\t    print(f\\\\\\\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\\\\\\\")\\\\n   294\\\\t    print(f\\\\\\\"CV of delta(2bit): {cv:.4f}\\\\\\\")\\\\n   295\\\\t\\\\n   296\\\\t    print(\\\\\\\"\\\\\\\\nTop-5 most sensitive heads:\\\\\\\")\\\\n   297\\\\t    for name_l, name_h, d2 in sorted_by_d2[:5]:\\\\n   298\\\\t        print(f\\\\\\\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\\\\\\\")\\\\n   299\\\\t\\\\n   300\\\\t    # ========== Save Results ==========\\\\n   301\\\\t    total_time = time.time() - t0\\\\n   302\\\\t\\\\n   303\\\\t    results = {\\\\n   304\\\\t        \\\\\\\"model\\\\\\\": args.model,\\\\n   305\\\\t        \\\\\\\"model_name\\\\\\\": \\\\\\\"InternLM2-7B\\\\\\\",\\\\n   306\\\\t        \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n   307\\\\t        \\\\\\\"profiling_config\\\\\\\": {\\\\n   308\\\\t            \\\\\\\"num_samples\\\\\\\": args.num_samples,\\\\n   309\\\\t            \\\\\\\"seq_len\\\\\\\": args.seq_len,\\\\n   310\\\\t            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n   311\\\\t            \\\\\\\"bitwidths\\\\\\\": [2],\\\\n   312\\\\t        },\\\\n   313\\\\t        \\\\\\\"architecture\\\\\\\": {\\\\n   314\\\\t            \\\\\\\"num_layers\\\\\\\": num_layers,\\\\n   315\\\\t            \\\\\\\"num_kv_heads\\\\\\\": num_kv_heads,\\\\n   316\\\\t            \\\\\\\"num_attention_heads\\\\\\\": num_q_heads,\\\\n   317\\\\t            \\\\\\\"head_dim\\\\\\\": config.hidden_size // num_q_heads,\\\\n   318\\\\t            \\\\\\\"hidden_size\\\\\\\": config.hidden_size,\\\\n   319\\\\t            \\\\\\\"gqa_ratio\\\\\\\": gqa_ratio,\\\\n   320\\\\t            \\\\\\\"total_kv_heads\\\\\\\": total_kv_heads,\\\\n   321\\\\t        },\\\\n   322\\\\t        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_ppl,\\\\n   323\\\\t        \\\\\\\"analysis\\\\\\\": {\\\\n   324\\\\t            \\\\\\\"top5_concentration\\\\\\\": round(top5_concentration, 4),\\\\n   325\\\\t            \\\\\\\"top5_n_heads\\\\\\\": n_top5,\\\\n   326\\\\t            \\\\\\\"layer0_mean_delta_2bit\\\\\\\": round(l0_mean, 6),\\\\n   327\\\\t            \\\\\\\"other_layers_mean_delta_2bit\\\\\\\": round(other_avg, 6),\\\\n   328\\\\t            \\\\\\\"layer0_dominance_ratio\\\\\\\": round(l0_ratio, 2),\\\\n   329\\\\t            \\\\\\\"delta_2bit_mean\\\\\\\": round(d_tensor.mean().item(), 6),\\\\n   330\\\\t            \\\\\\\"delta_2bit_std\\\\\\\": round(d_tensor.std().item(), 6),\\\\n   331\\\\t            \\\\\\\"delta_2bit_cv\\\\\\\": round(cv, 4),\\\\n   332\\\\t            \\\\\\\"heads_with_positive_delta\\\\\\\": n_positive,\\\\n   333\\\\t            \\\\\\\"total_heads\\\\\\\": len(all_deltas_2bit),\\\\n   334\\\\t        },\\\\n   335\\\\t        \\\\\\\"top5_sensitive_heads\\\\\\\": [\\\\n   336\\\\t            {\\\\\\\"layer\\\\\\\": l, \\\\\\\"head\\\\\\\": h, \\\\\\\"delta_2bit\\\\\\\": round(d2, 6)}\\\\n   337\\\\t            for l, h, d2 in sorted_by_d2[:5]\\\\n   338\\\\t        ],\\\\n   339\\\\t        \\\\\\\"timing\\\\\\\": {\\\\n   340\\\\t            \\\\\\\"profile_seconds\\\\\\\": round(profile_time, 1),\\\\n   341\\\\t            \\\\\\\"total_seconds\\\\\\\": round(total_time, 1),\\\\n   342\\\\t        },\\\\n   343\\\\t    }\\\\n   344\\\\t\\\\n   345\\\\t    with open(\\\\\\\"artifacts/internlm2_hires_bf16_2bitonly_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n   346\\\\t        json.dump(results, f, indent=2)\\\\n   347\\\\t\\\\n   348\\\\t    print(f\\\\\\\"\\\\\\\\nTotal time: {total_time / 3600:.2f}h\\\\\\\")\\\\n   349\\\\t    print(f\\\\\\\"Saved: artifacts/internlm2_profiles_hires.json, artifacts/internlm2_hires_bf16_2bitonly_results.json\\\\\\\")\\\\n   350\\\\t\\\\n   351\\\\t\\\\n   352\\\\tif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n   353\\\\t    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"InternLM2-7B hires bf16 profiling — 2-bit only concentration measurement.\\n     2\\tCustom attention patching for InternLM2's fused wqkv architecture.\\n     3\\t64 samples x 2048 tokens, bfloat16 precision, only 2-bit quantization deltas.\\n     4\\t\\\"\\\"\\\"\\n     5\\timport os\\n     6\\tos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n     7\\tos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n     8\\t\\n     9\\timport argparse\\n    10\\timport json\\n    11\\timport math\\n    12\\timport time\\n    13\\timport torch\\n    14\\timport torch.nn.functional as F\\n    15\\tfrom einops import rearrange\\n    16\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\n    17\\tfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\n    18\\t\\n    19\\t\\n    20\\tdef rotate_half(x):\\n    21\\t    x1 = x[..., : x.shape[-1] // 2]\\n    22\\t    x2 = x[..., x.shape[-1] // 2 :]\\n    23\\t    return torch.cat((-x2, x1), dim=-1)\\n    24\\t\\n    25\\t\\n    26\\tdef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\\n    27\\t    cos = cos.unsqueeze(unsqueeze_dim)\\n    28\\t    sin = sin.unsqueeze(unsqueeze_dim)\\n    29\\t    q_embed = (q * cos) + (rotate_half(q) * sin)\\n    30\\t    k_embed = (k * cos) + (rotate_half(k) * sin)\\n    31\\t    return q_embed, k_embed\\n    32\\t\\n    33\\t\\n    34\\tdef patch_attention_internlm2(model, allocations):\\n    35\\t    config = model.config\\n    36\\t    num_kv_heads = config.num_key_value_heads\\n    37\\t    num_q_heads = config.num_attention_heads\\n    38\\t    head_dim = config.hidden_size // num_q_heads\\n    39\\t    n_groups = num_q_heads // num_kv_heads\\n    40\\t\\n    41\\t    original_forwards = {}\\n    42\\t\\n    43\\t    for layer_idx, layer in enumerate(model.model.layers):\\n    44\\t        attn = layer.attention\\n    45\\t\\n    46\\t        head_allocs = {}\\n    47\\t        for h in range(num_kv_heads):\\n    48\\t            key = f\\\"{layer_idx},{h}\\\"\\n    49\\t            if key in allocations:\\n    50\\t                atype, param = allocations[key]\\n    51\\t                head_allocs[h] = (atype, param)\\n    52\\t            else:\\n    53\\t                head_allocs[h] = (\\\"full\\\", 16)\\n    54\\t\\n    55\\t        all_full = all(a[0] == \\\"full\\\" for a in head_allocs.values())\\n    56\\t        if all_full:\\n    57\\t            continue\\n    58\\t\\n    59\\t        original_forwards[layer_idx] = attn.forward\\n    60\\t\\n    61\\t        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\\n    62\\t            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\\n    63\\t                                   past_key_value=None, output_attentions=False,\\n    64\\t                                   use_cache=False, cache_position=None, **kwargs):\\n    65\\t                bsz, q_len, _ = hidden_states.size()\\n    66\\t\\n    67\\t                qkv_states = orig_attn.wqkv(hidden_states)\\n    68\\t                qkv_states = rearrange(\\n    69\\t                    qkv_states,\\n    70\\t                    \\\"b q (h gs d) -> b q h gs d\\\",\\n    71\\t                    gs=2 + ng,\\n    72\\t                    d=hd,\\n    73\\t                )\\n    74\\t\\n    75\\t                query_states = qkv_states[..., :ng, :]\\n    76\\t                query_states = rearrange(query_states, \\\"b q h gs d -> b q (h gs) d\\\").transpose(1, 2)\\n    77\\t                key_states = qkv_states[..., -2, :].transpose(1, 2)\\n    78\\t                value_states = qkv_states[..., -1, :].transpose(1, 2)\\n    79\\t\\n    80\\t                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\\n    81\\t                query_states, key_states = apply_rotary_pos_emb(\\n    82\\t                    query_states, key_states, cos, sin, position_ids\\n    83\\t                )\\n    84\\t\\n    85\\t                for h in range(n_kv):\\n    86\\t                    atype, param = h_allocs[h]\\n    87\\t                    if atype == \\\"quant\\\" and int(param) < 16:\\n    88\\t                        bits = int(param)\\n    89\\t                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\n    90\\t                        value_state\\n\\n... [截断: 输出过长，省略 8415 字符] ...\\n\\nsorted(all_deltas_2bit, key=lambda x: -x[2])\\n   271\\t    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\\n   272\\t    total_sum = sum(x[2] for x in all_deltas_2bit)\\n   273\\t    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\\n   274\\t    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\n   275\\t\\n   276\\t    l0_deltas = layer_deltas.get(0, [0])\\n   277\\t    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\\n   278\\t    other_means = []\\n   279\\t    for l in range(1, num_layers):\\n   280\\t        if l in layer_deltas and layer_deltas[l]:\\n   281\\t            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\\n   282\\t    other_avg = sum(other_means) / len(other_means) if other_means else 0\\n   283\\t    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\\\"inf\\\")\\n   284\\t\\n   285\\t    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\\n   286\\t    n_positive = int((d_tensor > 1e-6).sum().item())\\n   287\\t    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\\n   288\\t\\n   289\\t    print(f\\\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\\\")\\n   290\\t    print(f\\\"Layer 0 mean delta(2bit): {l0_mean:.6f}\\\")\\n   291\\t    print(f\\\"Other layers mean delta(2bit): {other_avg:.6f}\\\")\\n   292\\t    print(f\\\"L0 dominance ratio: {l0_ratio:.2f}x\\\")\\n   293\\t    print(f\\\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\\\")\\n   294\\t    print(f\\\"CV of delta(2bit): {cv:.4f}\\\")\\n   295\\t\\n   296\\t    print(\\\"\\\\nTop-5 most sensitive heads:\\\")\\n   297\\t    for name_l, name_h, d2 in sorted_by_d2[:5]:\\n   298\\t        print(f\\\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\\\")\\n   299\\t\\n   300\\t    # ========== Save Results ==========\\n   301\\t    total_time = time.time() - t0\\n   302\\t\\n   303\\t    results = {\\n   304\\t        \\\"model\\\": args.model,\\n   305\\t        \\\"model_name\\\": \\\"InternLM2-7B\\\",\\n   306\\t        \\\"precision\\\": \\\"bfloat16\\\",\\n   307\\t        \\\"profiling_config\\\": {\\n   308\\t            \\\"num_samples\\\": args.num_samples,\\n   309\\t            \\\"seq_len\\\": args.seq_len,\\n   310\\t            \\\"batch_size\\\": args.batch_size,\\n   311\\t            \\\"bitwidths\\\": [2],\\n   312\\t        },\\n   313\\t        \\\"architecture\\\": {\\n   314\\t            \\\"num_layers\\\": num_layers,\\n   315\\t            \\\"num_kv_heads\\\": num_kv_heads,\\n   316\\t            \\\"num_attention_heads\\\": num_q_heads,\\n   317\\t            \\\"head_dim\\\": config.hidden_size // num_q_heads,\\n   318\\t            \\\"hidden_size\\\": config.hidden_size,\\n   319\\t            \\\"gqa_ratio\\\": gqa_ratio,\\n   320\\t            \\\"total_kv_heads\\\": total_kv_heads,\\n   321\\t        },\\n   322\\t        \\\"baseline_calibration_ppl\\\": baseline_ppl,\\n   323\\t        \\\"analysis\\\": {\\n   324\\t            \\\"top5_concentration\\\": round(top5_concentration, 4),\\n   325\\t            \\\"top5_n_heads\\\": n_top5,\\n   326\\t            \\\"layer0_mean_delta_2bit\\\": round(l0_mean, 6),\\n   327\\t            \\\"other_layers_mean_delta_2bit\\\": round(other_avg, 6),\\n   328\\t            \\\"layer0_dominance_ratio\\\": round(l0_ratio, 2),\\n   329\\t            \\\"delta_2bit_mean\\\": round(d_tensor.mean().item(), 6),\\n   330\\t            \\\"delta_2bit_std\\\": round(d_tensor.std().item(), 6),\\n   331\\t            \\\"delta_2bit_cv\\\": round(cv, 4),\\n   332\\t            \\\"heads_with_positive_delta\\\": n_positive,\\n   333\\t            \\\"total_heads\\\": len(all_deltas_2bit),\\n   334\\t        },\\n   335\\t        \\\"top5_sensitive_heads\\\": [\\n   336\\t            {\\\"layer\\\": l, \\\"head\\\": h, \\\"delta_2bit\\\": round(d2, 6)}\\n   337\\t            for l, h, d2 in sorted_by_d2[:5]\\n   338\\t        ],\\n   339\\t        \\\"timing\\\": {\\n   340\\t            \\\"profile_seconds\\\": round(profile_time, 1),\\n   341\\t            \\\"total_seconds\\\": round(total_time, 1),\\n   342\\t        },\\n   343\\t    }\\n   344\\t\\n   345\\t    with open(\\\"artifacts/internlm2_hires_bf16_2bitonly_results.json\\\", \\\"w\\\") as f:\\n   346\\t        json.dump(results, f, indent=2)\\n   347\\t\\n   348\\t    print(f\\\"\\\\nTotal time: {total_time / 3600:.2f}h\\\")\\n   349\\t    print(f\\\"Saved: artifacts/internlm2_profiles_hires.json, artifacts/internlm2_hires_bf16_2bitonly_results.json\\\")\\n   350\\t\\n   351\\t\\n   352\\tif __name__ == \\\"__main__\\\":\\n   353\\t    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me see the rest of the profiling script's `compressed_forward` (the truncated part around line 90) and the `restore_attention` in eval_ppl.py.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "9cf83d40-69d4-4ebc-a09f-554467e92074",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LN7f4SrVGFwrD9YqK4cLan",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4821,
+      "cache_read_input_tokens": 36899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+Let me see the truncated middle section of the profiling script and eval_ppl's restore function.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "e6653614-ef13-46a4-a408-0f0bb1ba25e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LN7f4SrVGFwrD9YqK4cLan",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4821,
+      "cache_read_input_tokens": 36899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RFwpUQXtmNkk1LGPCP6Yxa`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "tail -n +88 /root/ratekv/run_internlm2_hires_profiling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "4b71f70e-cdd1-4085-a6c3-559a50829556",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LN7f4SrVGFwrD9YqK4cLan",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4821,
+      "cache_read_input_tokens": 36899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016WzN7Y6voVpUwxHWBDdAj2`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "tail -n +134 /root/ratekv/eval_ppl.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "0a4e2688-d3b4-438e-a697-9a8d4f844e6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LN7f4SrVGFwrD9YqK4cLan",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4821,
+      "cache_read_input_tokens": 36899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T03:08:39.165Z_
+
+<details><summary>↩ Tool result · `toolu_01RFwpUQXtmNkk1LGPCP6Yxa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                        bits = int(param)\\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\\n\\n                key_exp = repeat_kv(key_states, ng)\\n                value_exp = repeat_kv(value_states, ng)\\n\\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\\n\\n                if attention_mask is not None:\\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\\n                    attn_weights = attn_weights + causal_mask\\n                else:\\n                    causal = torch.triu(\\n                        torch.full((q_len, q_len), float(\\\"-inf\\\"),\\n                                   device=attn_weights.device, dtype=attn_weights.dtype),\\n                        diagonal=1,\\n                    )\\n                    attn_weights = attn_weights + causal\\n\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\\n                attn_output = torch.matmul(attn_weights, value_exp)\\n\\n                attn_output = attn_output.transpose(1, 2).contiguous()\\n                attn_output = attn_output.reshape(bsz, q_len, -1)\\n                attn_output = orig_attn.wo(attn_output)\\n\\n                if not output_attentions:\\n                    attn_weights = None\\n\\n                return attn_output, attn_weights, past_key_value\\n\\n            return compressed_forward\\n\\n        attn.forward = make_forward(attn, head_allocs)\\n\\n    return original_forwards\\n\\n\\ndef restore_attention_internlm2(model, original_forwards):\\n    for layer_idx, fwd in original_forwards.items():\\n        model.model.layers[layer_idx].attention.forward = fwd\\n\\n\\ndef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\\n    with open(path) as f:\\n        samples = json.load(f)\\n    all_ids = []\\n    for s in samples:\\n        tokens = tokenizer.encode(s[\\\"text\\\"], add_special_tokens=False)\\n        if len(tokens) >= seq_len:\\n            all_ids.append(tokens[:seq_len])\\n        if len(all_ids) >= num_samples:\\n            break\\n    if not all_ids:\\n        raise RuntimeError(f\\\"No calibration seqs with >= {seq_len} tokens\\\")\\n    return torch.tensor(all_ids, dtype=torch.long, device=device)\\n\\n\\ndef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\\n    total_loss = 0.0\\n    total_tokens = 0\\n    n = input_ids.shape[0]\\n    with torch.no_grad():\\n        for start in range(0, n, batch_size):\\n            end = min(start + batch_size, n)\\n            batch = input_ids[start:end]\\n            outputs = model(\\n                batch, use_cache=False,\\n                cache_position=torch.arange(seq_len, device=device)\\n            )\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\n            shift_labels = batch[:, 1:].contiguous()\\n            loss = F.cross_entropy(\\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\\n                shift_labels.view(-1),\\n                reduction=\\\"sum\\\"\\n            )\\n            total_loss += loss.item()\\n            total_tokens += shift_labels.numel()\\n            del outputs, shift_logits, loss\\n            torch.cuda.empty_cache()\\n    return math.exp(total_loss / total_tokens)\\n\\n\\ndef profile_single_head(model, input_ids, seq_len, batch_size, device, baseline_ppl, layer, head, bits):\\n    if bits >= 16:\\n        return 0.0\\n    allocations = {f\\\"{layer},{head}\\\": [\\\"quant\\\", bits]}\\n    orig_fwds = patch_attention_internlm2(model, allocations)\\n    ppl = compute_ppl_batched(model, input_ids, seq_len, batch_size, device)\\n    restore_attention_internlm2(model, orig_fwds)\\n    return ppl - baseline_ppl\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"InternLM2-7B hires bf16 2-bit-only profiling\\\")\\n    parser.add_argument(\\\"--model\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\\\")\\n    parser.add_argument(\\\"--c\\n\\n... [截断: 输出过长，省略 2756 字符] ...\\n\\nnProfiling done in {profile_time / 60:.1f}min\\\")\\n\\n    # ========== Concentration Analysis ==========\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"Concentration Analysis\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    all_deltas_2bit = []\\n    layer_deltas = {}\\n    for l_str in sorted(profiles.keys(), key=int):\\n        l = int(l_str)\\n        layer_deltas[l] = []\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\n            d2 = profiles[l_str][h_str][\\\"quantization\\\"].get(\\\"2\\\", 0.0)\\n            all_deltas_2bit.append((l, int(h_str), d2))\\n            layer_deltas[l].append(d2)\\n\\n    sorted_by_d2 = sorted(all_deltas_2bit, key=lambda x: -x[2])\\n    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\\n    total_sum = sum(x[2] for x in all_deltas_2bit)\\n    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\n\\n    l0_deltas = layer_deltas.get(0, [0])\\n    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\\n    other_means = []\\n    for l in range(1, num_layers):\\n        if l in layer_deltas and layer_deltas[l]:\\n            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\\n    other_avg = sum(other_means) / len(other_means) if other_means else 0\\n    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\\\"inf\\\")\\n\\n    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\\n    n_positive = int((d_tensor > 1e-6).sum().item())\\n    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\\n\\n    print(f\\\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\\\")\\n    print(f\\\"Layer 0 mean delta(2bit): {l0_mean:.6f}\\\")\\n    print(f\\\"Other layers mean delta(2bit): {other_avg:.6f}\\\")\\n    print(f\\\"L0 dominance ratio: {l0_ratio:.2f}x\\\")\\n    print(f\\\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\\\")\\n    print(f\\\"CV of delta(2bit): {cv:.4f}\\\")\\n\\n    print(\\\"\\\\nTop-5 most sensitive heads:\\\")\\n    for name_l, name_h, d2 in sorted_by_d2[:5]:\\n        print(f\\\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\\\")\\n\\n    # ========== Save Results ==========\\n    total_time = time.time() - t0\\n\\n    results = {\\n        \\\"model\\\": args.model,\\n        \\\"model_name\\\": \\\"InternLM2-7B\\\",\\n        \\\"precision\\\": \\\"bfloat16\\\",\\n        \\\"profiling_config\\\": {\\n            \\\"num_samples\\\": args.num_samples,\\n            \\\"seq_len\\\": args.seq_len,\\n            \\\"batch_size\\\": args.batch_size,\\n            \\\"bitwidths\\\": [2],\\n        },\\n        \\\"architecture\\\": {\\n            \\\"num_layers\\\": num_layers,\\n            \\\"num_kv_heads\\\": num_kv_heads,\\n            \\\"num_attention_heads\\\": num_q_heads,\\n            \\\"head_dim\\\": config.hidden_size // num_q_heads,\\n            \\\"hidden_size\\\": config.hidden_size,\\n            \\\"gqa_ratio\\\": gqa_ratio,\\n            \\\"total_kv_heads\\\": total_kv_heads,\\n        },\\n        \\\"baseline_calibration_ppl\\\": baseline_ppl,\\n        \\\"analysis\\\": {\\n            \\\"top5_concentration\\\": round(top5_concentration, 4),\\n            \\\"top5_n_heads\\\": n_top5,\\n            \\\"layer0_mean_delta_2bit\\\": round(l0_mean, 6),\\n            \\\"other_layers_mean_delta_2bit\\\": round(other_avg, 6),\\n            \\\"layer0_dominance_ratio\\\": round(l0_ratio, 2),\\n            \\\"delta_2bit_mean\\\": round(d_tensor.mean().item(), 6),\\n            \\\"delta_2bit_std\\\": round(d_tensor.std().item(), 6),\\n            \\\"delta_2bit_cv\\\": round(cv, 4),\\n            \\\"heads_with_positive_delta\\\": n_positive,\\n            \\\"total_heads\\\": len(all_deltas_2bit),\\n        },\\n        \\\"top5_sensitive_heads\\\": [\\n            {\\\"layer\\\": l, \\\"head\\\": h, \\\"delta_2bit\\\": round(d2, 6)}\\n            for l, h, d2 in sorted_by_d2[:5]\\n        ],\\n        \\\"timing\\\": {\\n            \\\"profile_seconds\\\": round(profile_time, 1),\\n            \\\"total_seconds\\\": round(total_time, 1),\\n        },\\n    }\\n\\n    with open(\\\"artifacts/internlm2_hires_bf16_2bitonly_results.json\\\", \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nTotal time: {total_time / 3600:.2f}h\\\")\\n    print(f\\\"Saved: artifacts/internlm2_profiles_hires.json, artifacts/internlm2_hires_bf16_2bitonly_results.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "8dbcc68a-1b15-4ff9-9aed-434404bf4f05",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                        bits = int(param)\\\\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\\\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\\\\n\\\\n                key_exp = repeat_kv(key_states, ng)\\\\n                value_exp = repeat_kv(value_states, ng)\\\\n\\\\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\\\\n\\\\n                if attention_mask is not None:\\\\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\\\\n                    attn_weights = attn_weights + causal_mask\\\\n                else:\\\\n                    causal = torch.triu(\\\\n                        torch.full((q_len, q_len), float(\\\\\\\"-inf\\\\\\\"),\\\\n                                   device=attn_weights.device, dtype=attn_weights.dtype),\\\\n                        diagonal=1,\\\\n                    )\\\\n                    attn_weights = attn_weights + causal\\\\n\\\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\\\\n                attn_output = torch.matmul(attn_weights, value_exp)\\\\n\\\\n                attn_output = attn_output.transpose(1, 2).contiguous()\\\\n                attn_output = attn_output.reshape(bsz, q_len, -1)\\\\n                attn_output = orig_attn.wo(attn_output)\\\\n\\\\n                if not output_attentions:\\\\n                    attn_weights = None\\\\n\\\\n                return attn_output, attn_weights, past_key_value\\\\n\\\\n            return compressed_forward\\\\n\\\\n        attn.forward = make_forward(attn, head_allocs)\\\\n\\\\n    return original_forwards\\\\n\\\\n\\\\ndef restore_attention_internlm2(model, original_forwards):\\\\n    for layer_idx, fwd in original_forwards.items():\\\\n        model.model.layers[layer_idx].attention.forward = fwd\\\\n\\\\n\\\\ndef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\\\\n    with open(path) as f:\\\\n        samples = json.load(f)\\\\n    all_ids = []\\\\n    for s in samples:\\\\n        tokens = tokenizer.encode(s[\\\\\\\"text\\\\\\\"], add_special_tokens=False)\\\\n        if len(tokens) >= seq_len:\\\\n            all_ids.append(tokens[:seq_len])\\\\n        if len(all_ids) >= num_samples:\\\\n            break\\\\n    if not all_ids:\\\\n        raise RuntimeError(f\\\\\\\"No calibration seqs with >= {seq_len} tokens\\\\\\\")\\\\n    return torch.tensor(all_ids, dtype=torch.long, device=device)\\\\n\\\\n\\\\ndef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    n = input_ids.shape[0]\\\\n    with torch.no_grad():\\\\n        for start in range(0, n, batch_size):\\\\n            end = min(start + batch_size, n)\\\\n            batch = input_ids[start:end]\\\\n            outputs = model(\\\\n                batch, use_cache=False,\\\\n                cache_position=torch.arange(seq_len, device=device)\\\\n            )\\\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\\\n            shift_labels = batch[:, 1:].contiguous()\\\\n            loss = F.cross_entropy(\\\\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\\\\n                shift_labels.view(-1),\\\\n                reduction=\\\\\\\"sum\\\\\\\"\\\\n            )\\\\n            total_loss += loss.item()\\\\n            total_tokens += shift_labels.numel()\\\\n            del outputs, shift_logits, loss\\\\n            torch.cuda.empty_cache()\\\\n    return math.exp(total_loss / total_tokens)\\\\n\\\\n\\\\ndef profile_single_head(model, input_ids, seq_len, batch_size, device, baseline_ppl, layer, head, bits):\\\\n    if bits >= 16:\\\\n        return 0.0\\\\n    allocations = {f\\\\\\\"{layer},{head}\\\\\\\": [\\\\\\\"quant\\\\\\\", bits]}\\\\n    orig_fwds = patch_attention_internlm2(model, allocations)\\\\n    ppl = compute_ppl_batched(model, input_ids, seq_len, batch_size, device)\\\\n    restore_attention_internlm2(model, orig_fwds)\\\\n    return ppl - baseline_ppl\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"InternLM2-7B hires bf16 2-bit-only profiling\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--c\\\\n\\\\n... [截断: 输出过长，省略 2756 字符] ...\\\\n\\\\nnProfiling done in {profile_time / 60:.1f}min\\\\\\\")\\\\n\\\\n    # ========== Concentration Analysis ==========\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Concentration Analysis\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    all_deltas_2bit = []\\\\n    layer_deltas = {}\\\\n    for l_str in sorted(profiles.keys(), key=int):\\\\n        l = int(l_str)\\\\n        layer_deltas[l] = []\\\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\\\n            d2 = profiles[l_str][h_str][\\\\\\\"quantization\\\\\\\"].get(\\\\\\\"2\\\\\\\", 0.0)\\\\n            all_deltas_2bit.append((l, int(h_str), d2))\\\\n            layer_deltas[l].append(d2)\\\\n\\\\n    sorted_by_d2 = sorted(all_deltas_2bit, key=lambda x: -x[2])\\\\n    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\\\\n    total_sum = sum(x[2] for x in all_deltas_2bit)\\\\n    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\\\\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\\\n\\\\n    l0_deltas = layer_deltas.get(0, [0])\\\\n    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\\\\n    other_means = []\\\\n    for l in range(1, num_layers):\\\\n        if l in layer_deltas and layer_deltas[l]:\\\\n            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\\\\n    other_avg = sum(other_means) / len(other_means) if other_means else 0\\\\n    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\\\\\\\"inf\\\\\\\")\\\\n\\\\n    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\\\\n    n_positive = int((d_tensor > 1e-6).sum().item())\\\\n    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\\\\n\\\\n    print(f\\\\\\\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\\\\\\\")\\\\n    print(f\\\\\\\"Layer 0 mean delta(2bit): {l0_mean:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"Other layers mean delta(2bit): {other_avg:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"L0 dominance ratio: {l0_ratio:.2f}x\\\\\\\")\\\\n    print(f\\\\\\\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\\\\\\\")\\\\n    print(f\\\\\\\"CV of delta(2bit): {cv:.4f}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nTop-5 most sensitive heads:\\\\\\\")\\\\n    for name_l, name_h, d2 in sorted_by_d2[:5]:\\\\n        print(f\\\\\\\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\\\\\\\")\\\\n\\\\n    # ========== Save Results ==========\\\\n    total_time = time.time() - t0\\\\n\\\\n    results = {\\\\n        \\\\\\\"model\\\\\\\": args.model,\\\\n        \\\\\\\"model_name\\\\\\\": \\\\\\\"InternLM2-7B\\\\\\\",\\\\n        \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n        \\\\\\\"profiling_config\\\\\\\": {\\\\n            \\\\\\\"num_samples\\\\\\\": args.num_samples,\\\\n            \\\\\\\"seq_len\\\\\\\": args.seq_len,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n            \\\\\\\"bitwidths\\\\\\\": [2],\\\\n        },\\\\n        \\\\\\\"architecture\\\\\\\": {\\\\n            \\\\\\\"num_layers\\\\\\\": num_layers,\\\\n            \\\\\\\"num_kv_heads\\\\\\\": num_kv_heads,\\\\n            \\\\\\\"num_attention_heads\\\\\\\": num_q_heads,\\\\n            \\\\\\\"head_dim\\\\\\\": config.hidden_size // num_q_heads,\\\\n            \\\\\\\"hidden_size\\\\\\\": config.hidden_size,\\\\n            \\\\\\\"gqa_ratio\\\\\\\": gqa_ratio,\\\\n            \\\\\\\"total_kv_heads\\\\\\\": total_kv_heads,\\\\n        },\\\\n        \\\\\\\"baseline_calibration_ppl\\\\\\\": baseline_ppl,\\\\n        \\\\\\\"analysis\\\\\\\": {\\\\n            \\\\\\\"top5_concentration\\\\\\\": round(top5_concentration, 4),\\\\n            \\\\\\\"top5_n_heads\\\\\\\": n_top5,\\\\n            \\\\\\\"layer0_mean_delta_2bit\\\\\\\": round(l0_mean, 6),\\\\n            \\\\\\\"other_layers_mean_delta_2bit\\\\\\\": round(other_avg, 6),\\\\n            \\\\\\\"layer0_dominance_ratio\\\\\\\": round(l0_ratio, 2),\\\\n            \\\\\\\"delta_2bit_mean\\\\\\\": round(d_tensor.mean().item(), 6),\\\\n            \\\\\\\"delta_2bit_std\\\\\\\": round(d_tensor.std().item(), 6),\\\\n            \\\\\\\"delta_2bit_cv\\\\\\\": round(cv, 4),\\\\n            \\\\\\\"heads_with_positive_delta\\\\\\\": n_positive,\\\\n            \\\\\\\"total_heads\\\\\\\": len(all_deltas_2bit),\\\\n        },\\\\n        \\\\\\\"top5_sensitive_heads\\\\\\\": [\\\\n            {\\\\\\\"layer\\\\\\\": l, \\\\\\\"head\\\\\\\": h, \\\\\\\"delta_2bit\\\\\\\": round(d2, 6)}\\\\n            for l, h, d2 in sorted_by_d2[:5]\\\\n        ],\\\\n        \\\\\\\"timing\\\\\\\": {\\\\n            \\\\\\\"profile_seconds\\\\\\\": round(profile_time, 1),\\\\n            \\\\\\\"total_seconds\\\\\\\": round(total_time, 1),\\\\n        },\\\\n    }\\\\n\\\\n    with open(\\\\\\\"artifacts/internlm2_hires_bf16_2bitonly_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {total_time / 3600:.2f}h\\\\\\\")\\\\n    print(f\\\\\\\"Saved: artifacts/internlm2_profiles_hires.json, artifacts/internlm2_hires_bf16_2bitonly_results.json\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"                        bits = int(param)\\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\\n\\n                key_exp = repeat_kv(key_states, ng)\\n                value_exp = repeat_kv(value_states, ng)\\n\\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\\n\\n                if attention_mask is not None:\\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\\n                    attn_weights = attn_weights + causal_mask\\n                else:\\n                    causal = torch.triu(\\n                        torch.full((q_len, q_len), float(\\\"-inf\\\"),\\n                                   device=attn_weights.device, dtype=attn_weights.dtype),\\n                        diagonal=1,\\n                    )\\n                    attn_weights = attn_weights + causal\\n\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\\n                attn_output = torch.matmul(attn_weights, value_exp)\\n\\n                attn_output = attn_output.transpose(1, 2).contiguous()\\n                attn_output = attn_output.reshape(bsz, q_len, -1)\\n                attn_output = orig_attn.wo(attn_output)\\n\\n                if not output_attentions:\\n                    attn_weights = None\\n\\n                return attn_output, attn_weights, past_key_value\\n\\n            return compressed_forward\\n\\n        attn.forward = make_forward(attn, head_allocs)\\n\\n    return original_forwards\\n\\n\\ndef restore_attention_internlm2(model, original_forwards):\\n    for layer_idx, fwd in original_forwards.items():\\n        model.model.layers[layer_idx].attention.forward = fwd\\n\\n\\ndef load_calibration_data(tokenizer, path, num_samples, seq_len, device):\\n    with open(path) as f:\\n        samples = json.load(f)\\n    all_ids = []\\n    for s in samples:\\n        tokens = tokenizer.encode(s[\\\"text\\\"], add_special_tokens=False)\\n        if len(tokens) >= seq_len:\\n            all_ids.append(tokens[:seq_len])\\n        if len(all_ids) >= num_samples:\\n            break\\n    if not all_ids:\\n        raise RuntimeError(f\\\"No calibration seqs with >= {seq_len} tokens\\\")\\n    return torch.tensor(all_ids, dtype=torch.long, device=device)\\n\\n\\ndef compute_ppl_batched(model, input_ids, seq_len, batch_size, device):\\n    total_loss = 0.0\\n    total_tokens = 0\\n    n = input_ids.shape[0]\\n    with torch.no_grad():\\n        for start in range(0, n, batch_size):\\n            end = min(start + batch_size, n)\\n            batch = input_ids[start:end]\\n            outputs = model(\\n                batch, use_cache=False,\\n                cache_position=torch.arange(seq_len, device=device)\\n            )\\n            shift_logits = outputs.logits[:, :-1].contiguous()\\n            shift_labels = batch[:, 1:].contiguous()\\n            loss = F.cross_entropy(\\n                shift_logits.float().view(-1, shift_logits.shape[-1]),\\n                shift_labels.view(-1),\\n                reduction=\\\"sum\\\"\\n            )\\n            total_loss += loss.item()\\n            total_tokens += shift_labels.numel()\\n            del outputs, shift_logits, loss\\n            torch.cuda.empty_cache()\\n    return math.exp(total_loss / total_tokens)\\n\\n\\ndef profile_single_head(model, input_ids, seq_len, batch_size, device, baseline_ppl, layer, head, bits):\\n    if bits >= 16:\\n        return 0.0\\n    allocations = {f\\\"{layer},{head}\\\": [\\\"quant\\\", bits]}\\n    orig_fwds = patch_attention_internlm2(model, allocations)\\n    ppl = compute_ppl_batched(model, input_ids, seq_len, batch_size, device)\\n    restore_attention_internlm2(model, orig_fwds)\\n    return ppl - baseline_ppl\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"InternLM2-7B hires bf16 2-bit-only profiling\\\")\\n    parser.add_argument(\\\"--model\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\\\")\\n    parser.add_argument(\\\"--c\\n\\n... [截断: 输出过长，省略 2756 字符] ...\\n\\nnProfiling done in {profile_time / 60:.1f}min\\\")\\n\\n    # ========== Concentration Analysis ==========\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"Concentration Analysis\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    all_deltas_2bit = []\\n    layer_deltas = {}\\n    for l_str in sorted(profiles.keys(), key=int):\\n        l = int(l_str)\\n        layer_deltas[l] = []\\n        for h_str in sorted(profiles[l_str].keys(), key=int):\\n            d2 = profiles[l_str][h_str][\\\"quantization\\\"].get(\\\"2\\\", 0.0)\\n            all_deltas_2bit.append((l, int(h_str), d2))\\n            layer_deltas[l].append(d2)\\n\\n    sorted_by_d2 = sorted(all_deltas_2bit, key=lambda x: -x[2])\\n    n_top5 = max(1, int(len(sorted_by_d2) * 0.05))\\n    total_sum = sum(x[2] for x in all_deltas_2bit)\\n    top5_sum = sum(x[2] for x in sorted_by_d2[:n_top5])\\n    top5_concentration = top5_sum / total_sum if total_sum > 0 else 0\\n\\n    l0_deltas = layer_deltas.get(0, [0])\\n    l0_mean = sum(l0_deltas) / max(len(l0_deltas), 1)\\n    other_means = []\\n    for l in range(1, num_layers):\\n        if l in layer_deltas and layer_deltas[l]:\\n            other_means.append(sum(layer_deltas[l]) / len(layer_deltas[l]))\\n    other_avg = sum(other_means) / len(other_means) if other_means else 0\\n    l0_ratio = l0_mean / other_avg if other_avg > 0 else float(\\\"inf\\\")\\n\\n    d_tensor = torch.tensor([x[2] for x in all_deltas_2bit])\\n    n_positive = int((d_tensor > 1e-6).sum().item())\\n    cv = d_tensor.std().item() / d_tensor.mean().item() if d_tensor.mean().item() > 0 else 0\\n\\n    print(f\\\"Top-5% concentration: {top5_concentration:.4f} ({n_top5} heads)\\\")\\n    print(f\\\"Layer 0 mean delta(2bit): {l0_mean:.6f}\\\")\\n    print(f\\\"Other layers mean delta(2bit): {other_avg:.6f}\\\")\\n    print(f\\\"L0 dominance ratio: {l0_ratio:.2f}x\\\")\\n    print(f\\\"Heads with positive delta: {n_positive}/{len(all_deltas_2bit)}\\\")\\n    print(f\\\"CV of delta(2bit): {cv:.4f}\\\")\\n\\n    print(\\\"\\\\nTop-5 most sensitive heads:\\\")\\n    for name_l, name_h, d2 in sorted_by_d2[:5]:\\n        print(f\\\"  L{name_l}H{name_h}: 2bit={d2:+.4f}\\\")\\n\\n    # ========== Save Results ==========\\n    total_time = time.time() - t0\\n\\n    results = {\\n        \\\"model\\\": args.model,\\n        \\\"model_name\\\": \\\"InternLM2-7B\\\",\\n        \\\"precision\\\": \\\"bfloat16\\\",\\n        \\\"profiling_config\\\": {\\n            \\\"num_samples\\\": args.num_samples,\\n            \\\"seq_len\\\": args.seq_len,\\n            \\\"batch_size\\\": args.batch_size,\\n            \\\"bitwidths\\\": [2],\\n        },\\n        \\\"architecture\\\": {\\n            \\\"num_layers\\\": num_layers,\\n            \\\"num_kv_heads\\\": num_kv_heads,\\n            \\\"num_attention_heads\\\": num_q_heads,\\n            \\\"head_dim\\\": config.hidden_size // num_q_heads,\\n            \\\"hidden_size\\\": config.hidden_size,\\n            \\\"gqa_ratio\\\": gqa_ratio,\\n            \\\"total_kv_heads\\\": total_kv_heads,\\n        },\\n        \\\"baseline_calibration_ppl\\\": baseline_ppl,\\n        \\\"analysis\\\": {\\n            \\\"top5_concentration\\\": round(top5_concentration, 4),\\n            \\\"top5_n_heads\\\": n_top5,\\n            \\\"layer0_mean_delta_2bit\\\": round(l0_mean, 6),\\n            \\\"other_layers_mean_delta_2bit\\\": round(other_avg, 6),\\n            \\\"layer0_dominance_ratio\\\": round(l0_ratio, 2),\\n            \\\"delta_2bit_mean\\\": round(d_tensor.mean().item(), 6),\\n            \\\"delta_2bit_std\\\": round(d_tensor.std().item(), 6),\\n            \\\"delta_2bit_cv\\\": round(cv, 4),\\n            \\\"heads_with_positive_delta\\\": n_positive,\\n            \\\"total_heads\\\": len(all_deltas_2bit),\\n        },\\n        \\\"top5_sensitive_heads\\\": [\\n            {\\\"layer\\\": l, \\\"head\\\": h, \\\"delta_2bit\\\": round(d2, 6)}\\n            for l, h, d2 in sorted_by_d2[:5]\\n        ],\\n        \\\"timing\\\": {\\n            \\\"profile_seconds\\\": round(profile_time, 1),\\n            \\\"total_seconds\\\": round(total_time, 1),\\n        },\\n    }\\n\\n    with open(\\\"artifacts/internlm2_hires_bf16_2bitonly_results.json\\\", \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nTotal time: {total_time / 3600:.2f}h\\\")\\n    print(f\\\"Saved: artifacts/internlm2_profiles_hires.json, artifacts/internlm2_hires_bf16_2bitonly_results.json\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T03:08:39.699Z_
+
+<details><summary>↩ Tool result · `toolu_016WzN7Y6voVpUwxHWBDdAj2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def restore_attention(model, original_forwards):\\n    \\\"\\\"\\\"Restore original attention forwards.\\\"\\\"\\\"\\n    for layer_idx, fwd in original_forwards.items():\\n        model.model.layers[layer_idx].self_attn.forward = fwd\\n\\n\\ndef evaluate_perplexity(model, tokenizer, device, stride=512):\\n    \\\"\\\"\\\"Evaluate perplexity on WikiText-2.\\\"\\\"\\\"\\n    from datasets import load_dataset, Dataset\\n\\n    try:\\n        ds = load_dataset(\\\"wikitext\\\", \\\"wikitext-2-raw-v1\\\", split=\\\"test\\\")\\n    except Exception:\\n        arrow_path = \\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-test.arrow\\\"\\n        print(f\\\"  Hub unavailable, loading from arrow: {arrow_path}\\\")\\n        ds = Dataset.from_file(arrow_path)\\n    text = \\\"\\\\n\\\\n\\\".join([t for t in ds[\\\"text\\\"] if t.strip()])\\n\\n    encodings = tokenizer(text, return_tensors=\\\"pt\\\")\\n    input_ids = encodings.input_ids.to(device)\\n    total_len = input_ids.shape[1]\\n\\n    total_loss = 0.0\\n    total_tokens = 0\\n    n_chunks = (total_len - 1) // stride\\n\\n    print(f\\\"Evaluating perplexity on {total_len} tokens, stride={stride}, {n_chunks} chunks\\\")\\n\\n    for i, begin in enumerate(range(0, total_len - 1, stride)):\\n        end = min(begin + stride, total_len)\\n        chunk = input_ids[:, begin:end]\\n\\n        with torch.no_grad():\\n            outputs = model(chunk, use_cache=False, cache_position=torch.arange(chunk.shape[1], device=chunk.device))\\n            logits = outputs.logits\\n\\n        shift_logits = logits[:, :-1].contiguous()\\n        shift_labels = chunk[:, 1:].contiguous()\\n\\n        loss = F.cross_entropy(\\n            shift_logits.float().view(-1, shift_logits.shape[-1]),\\n            shift_labels.view(-1),\\n            reduction=\\\"sum\\\",\\n        )\\n        total_loss += loss.item()\\n        total_tokens += shift_labels.numel()\\n\\n        if (i + 1) % 50 == 0:\\n            print(f\\\"  chunk {i + 1}/{n_chunks}, running ppl={math.exp(total_loss / total_tokens):.2f}\\\")\\n\\n    ppl = math.exp(total_loss / total_tokens)\\n    return ppl\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--model\\\", type=str, default=\\\"Qwen/Qwen2.5-7B\\\")\\n    parser.add_argument(\\\"--allocation\\\", type=str, required=True)\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--stride\\\", type=int, default=512)\\n    args = parser.parse_args()\\n\\n    with open(args.allocation) as f:\\n        alloc_data = json.load(f)\\n    allocations = alloc_data[\\\"allocation\\\"]\\n\\n    print(f\\\"Loading model {args.model}...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(args.model)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        args.model, torch_dtype=torch.bfloat16, attn_implementation=\\\"eager\\\"\\n    )\\n    model = model.to(args.device)\\n    model.eval()\\n\\n    print(\\\"Patching attention layers...\\\")\\n    orig_fwds = patch_attention(model, allocations)\\n\\n    ppl = evaluate_perplexity(model, tokenizer, args.device, args.stride)\\n    print(f\\\"Perplexity: {ppl:.2f}\\\")\\n\\n    restore_attention(model, orig_fwds)\\n    return ppl\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "c480331b-c155-4507-a966-322a241b5484",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def restore_attention(model, original_forwards):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Restore original attention forwards.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for layer_idx, fwd in original_forwards.items():\\\\n        model.model.layers[layer_idx].self_attn.forward = fwd\\\\n\\\\n\\\\ndef evaluate_perplexity(model, tokenizer, device, stride=512):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Evaluate perplexity on WikiText-2.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from datasets import load_dataset, Dataset\\\\n\\\\n    try:\\\\n        ds = load_dataset(\\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-2-raw-v1\\\\\\\", split=\\\\\\\"test\\\\\\\")\\\\n    except Exception:\\\\n        arrow_path = \\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-test.arrow\\\\\\\"\\\\n        print(f\\\\\\\"  Hub unavailable, loading from arrow: {arrow_path}\\\\\\\")\\\\n        ds = Dataset.from_file(arrow_path)\\\\n    text = \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join([t for t in ds[\\\\\\\"text\\\\\\\"] if t.strip()])\\\\n\\\\n    encodings = tokenizer(text, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n    input_ids = encodings.input_ids.to(device)\\\\n    total_len = input_ids.shape[1]\\\\n\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    n_chunks = (total_len - 1) // stride\\\\n\\\\n    print(f\\\\\\\"Evaluating perplexity on {total_len} tokens, stride={stride}, {n_chunks} chunks\\\\\\\")\\\\n\\\\n    for i, begin in enumerate(range(0, total_len - 1, stride)):\\\\n        end = min(begin + stride, total_len)\\\\n        chunk = input_ids[:, begin:end]\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(chunk, use_cache=False, cache_position=torch.arange(chunk.shape[1], device=chunk.device))\\\\n            logits = outputs.logits\\\\n\\\\n        shift_logits = logits[:, :-1].contiguous()\\\\n        shift_labels = chunk[:, 1:].contiguous()\\\\n\\\\n        loss = F.cross_entropy(\\\\n            shift_logits.float().view(-1, shift_logits.shape[-1]),\\\\n            shift_labels.view(-1),\\\\n            reduction=\\\\\\\"sum\\\\\\\",\\\\n        )\\\\n        total_loss += loss.item()\\\\n        total_tokens += shift_labels.numel()\\\\n\\\\n        if (i + 1) % 50 == 0:\\\\n            print(f\\\\\\\"  chunk {i + 1}/{n_chunks}, running ppl={math.exp(total_loss / total_tokens):.2f}\\\\\\\")\\\\n\\\\n    ppl = math.exp(total_loss / total_tokens)\\\\n    return ppl\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--model\\\\\\\", type=str, default=\\\\\\\"Qwen/Qwen2.5-7B\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--allocation\\\\\\\", type=str, required=True)\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--stride\\\\\\\", type=int, default=512)\\\\n    args = parser.parse_args()\\\\n\\\\n    with open(args.allocation) as f:\\\\n        alloc_data = json.load(f)\\\\n    allocations = alloc_data[\\\\\\\"allocation\\\\\\\"]\\\\n\\\\n    print(f\\\\\\\"Loading model {args.model}...\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(args.model)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        args.model, torch_dtype=torch.bfloat16, attn_implementation=\\\\\\\"eager\\\\\\\"\\\\n    )\\\\n    model = model.to(args.device)\\\\n    model.eval()\\\\n\\\\n    print(\\\\\\\"Patching attention layers...\\\\\\\")\\\\n    orig_fwds = patch_attention(model, allocations)\\\\n\\\\n    ppl = evaluate_perplexity(model, tokenizer, args.device, args.stride)\\\\n    print(f\\\\\\\"Perplexity: {ppl:.2f}\\\\\\\")\\\\n\\\\n    restore_attention(model, orig_fwds)\\\\n    return ppl\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def restore_attention(model, original_forwards):\\n    \\\"\\\"\\\"Restore original attention forwards.\\\"\\\"\\\"\\n    for layer_idx, fwd in original_forwards.items():\\n        model.model.layers[layer_idx].self_attn.forward = fwd\\n\\n\\ndef evaluate_perplexity(model, tokenizer, device, stride=512):\\n    \\\"\\\"\\\"Evaluate perplexity on WikiText-2.\\\"\\\"\\\"\\n    from datasets import load_dataset, Dataset\\n\\n    try:\\n        ds = load_dataset(\\\"wikitext\\\", \\\"wikitext-2-raw-v1\\\", split=\\\"test\\\")\\n    except Exception:\\n        arrow_path = \\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-test.arrow\\\"\\n        print(f\\\"  Hub unavailable, loading from arrow: {arrow_path}\\\")\\n        ds = Dataset.from_file(arrow_path)\\n    text = \\\"\\\\n\\\\n\\\".join([t for t in ds[\\\"text\\\"] if t.strip()])\\n\\n    encodings = tokenizer(text, return_tensors=\\\"pt\\\")\\n    input_ids = encodings.input_ids.to(device)\\n    total_len = input_ids.shape[1]\\n\\n    total_loss = 0.0\\n    total_tokens = 0\\n    n_chunks = (total_len - 1) // stride\\n\\n    print(f\\\"Evaluating perplexity on {total_len} tokens, stride={stride}, {n_chunks} chunks\\\")\\n\\n    for i, begin in enumerate(range(0, total_len - 1, stride)):\\n        end = min(begin + stride, total_len)\\n        chunk = input_ids[:, begin:end]\\n\\n        with torch.no_grad():\\n            outputs = model(chunk, use_cache=False, cache_position=torch.arange(chunk.shape[1], device=chunk.device))\\n            logits = outputs.logits\\n\\n        shift_logits = logits[:, :-1].contiguous()\\n        shift_labels = chunk[:, 1:].contiguous()\\n\\n        loss = F.cross_entropy(\\n            shift_logits.float().view(-1, shift_logits.shape[-1]),\\n            shift_labels.view(-1),\\n            reduction=\\\"sum\\\",\\n        )\\n        total_loss += loss.item()\\n        total_tokens += shift_labels.numel()\\n\\n        if (i + 1) % 50 == 0:\\n            print(f\\\"  chunk {i + 1}/{n_chunks}, running ppl={math.exp(total_loss / total_tokens):.2f}\\\")\\n\\n    ppl = math.exp(total_loss / total_tokens)\\n    return ppl\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--model\\\", type=str, default=\\\"Qwen/Qwen2.5-7B\\\")\\n    parser.add_argument(\\\"--allocation\\\", type=str, required=True)\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--stride\\\", type=int, default=512)\\n    args = parser.parse_args()\\n\\n    with open(args.allocation) as f:\\n        alloc_data = json.load(f)\\n    allocations = alloc_data[\\\"allocation\\\"]\\n\\n    print(f\\\"Loading model {args.model}...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(args.model)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        args.model, torch_dtype=torch.bfloat16, attn_implementation=\\\"eager\\\"\\n    )\\n    model = model.to(args.device)\\n    model.eval()\\n\\n    print(\\\"Patching attention layers...\\\")\\n    orig_fwds = patch_attention(model, allocations)\\n\\n    ppl = evaluate_perplexity(model, tokenizer, args.device, args.stride)\\n    print(f\\\"Perplexity: {ppl:.2f}\\\")\\n\\n    restore_attention(model, orig_fwds)\\n    return ppl\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. The fix is:
+
+1. `eval_ppl.patch_attention` accesses `layer.self_attn` — InternLM2 uses `layer.attention`
+2. `eval_ppl.restore_attention` restores to `layer.self_attn` — same issue
+3. `eval_ppl._get_rotary_fn` tries to import `transformers.models.internlm2` — doesn't exist
+4. InternLM2 uses fused `wqkv` with einops rearrange instead of separate `q_proj`, `k_proj`, `v_proj`
+
+
+5. The profiling script already has `patch_attention_internlm2` and `restore_attention_internlm2` that handle all these cases correctly
+
+So I need to remove the broken imports from `eval_ppl`, add the necessary dependencies, and copy over the working attention patching functions from the profiling script to use instead. I need to verify which imports are already present in the constrained script before adding new ones. Looking at the existing imports, I have `torch` and `time`, but I'm missing `math`, `torch.nn.functional`, `einops.rearrange`, and the utility functions from `utils`. Let me check the full import section to see what's already there and what needs to be added. I'm deciding between using sed patches or a Python script to modify the file, but the cleanest approach is to write out the entire modified script using a heredoc and send it over SSH, which avoids the complexity of multiple find-and-replace operations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "4b00000c-7a37-460a-83a2-bee37e0c9e6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FTb6cAvj1Gn4k99zshwS6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5000,
+      "cache_read_input_tokens": 41720,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5000
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+I have the full picture. Now I'll write the patched script. The changes:
+1. Replace `from eval_ppl import patch_attention, restore_attention, evaluate_perplexity` → only import `evaluate_perplexity`
+2. Add `math`, `F`, `einops`, `utils` imports
+3. Port `rotate_half`, `apply_rotary_pos_emb`, `patch_attention_internlm2`, `restore_attention_internlm2` from profiling script
+4. Replace all `patch_attention`/`restore_attention` calls with the InternLM2-specific versions
+
+Let me get the full constrained script first (it was truncated earlier).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "34df2da5-0860-4646-b765-94ee3ff0c612",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FTb6cAvj1Gn4k99zshwS6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5000,
+      "cache_read_input_tokens": 41720,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5000
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016RYLEfg4FxhZGanH6L3qm1`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "wc -l /root/ratekv/run_internlm2_constrained_mckp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "b4de1fab-a4c7-4fbc-b3e6-98944b7390c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FTb6cAvj1Gn4k99zshwS6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5000,
+      "cache_read_input_tokens": 41720,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5000
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T03:09:04.698Z_
+
+<details><summary>↩ Tool result · `toolu_016RYLEfg4FxhZGanH6L3qm1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"218 /root/ratekv/run_internlm2_constrained_mckp.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "db8a834c-2efd-446a-aa26-7c06ebaef390",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"218 /root/ratekv/run_internlm2_constrained_mckp.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"218 /root/ratekv/run_internlm2_constrained_mckp.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JhBhXTU8MCYx73ApfA4fKP`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "head -20 /root/ratekv/run_internlm2_constrained_mckp.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "aaa2091c-cb6a-4581-af08-ac9cac0a698b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAF2ktYvHHnCq96FikA3FG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 46720,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1498
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T03:09:08.713Z_
+
+<details><summary>↩ Tool result · `toolu_01JhBhXTU8MCYx73ApfA4fKP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"InternLM2-7B constrained MCKP + WikiText-2 eval pipeline.\\n\\nArchitecture: 32 layers × 8 KV heads (GQA 4:1), 256 total KV heads.\\nProfiling source: artifacts/internlm2_profiles_hires.json (2-bit only).\\n4-bit/8-bit deltas synthesized from 2-bit via fixed ratios.\\nBoundary case: concentration=0.2422, only 0.008 from threshold 0.25.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport json\\nimport time\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\nfrom solver import (solve_mckp_constrained, solve_mckp,\\n                    solve_greedy_ratequant, uniform_quantization_baseline)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "d0121cba-1ec3-494e-bc8d-d42905349f67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"InternLM2-7B constrained MCKP + WikiText-2 eval pipeline.\\\\n\\\\nArchitecture: 32 layers × 8 KV heads (GQA 4:1), 256 total KV heads.\\\\nProfiling source: artifacts/internlm2_profiles_hires.json (2-bit only).\\\\n4-bit/8-bit deltas synthesized from 2-bit via fixed ratios.\\\\nBoundary case: concentration=0.2422, only 0.008 from threshold 0.25.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport time\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\nfrom solver import (solve_mckp_constrained, solve_mckp,\\\\n                    solve_greedy_ratequant, uniform_quantization_baseline)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"InternLM2-7B constrained MCKP + WikiText-2 eval pipeline.\\n\\nArchitecture: 32 layers × 8 KV heads (GQA 4:1), 256 total KV heads.\\nProfiling source: artifacts/internlm2_profiles_hires.json (2-bit only).\\n4-bit/8-bit deltas synthesized from 2-bit via fixed ratios.\\nBoundary case: concentration=0.2422, only 0.008 from threshold 0.25.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_DATASETS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport json\\nimport time\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig\\nfrom eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\nfrom solver import (solve_mckp_constrained, solve_mckp,\\n                    solve_greedy_ratequant, uniform_quantization_baseline)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+Now I'll apply the patches via ssh_execute. Using Python to do precise text replacements on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "4d280425-f518-48c5-a768-483efa5ebdd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016h7xUjFHBGguJkgyY8cnCs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 519,
+      "cache_read_input_tokens": 48218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 519
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017WQoBip3HgXrzruC8Gaa6r`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "account": "root",
+  "command": "cd /root/ratekv && python3 -c \"\nimport re\n\nwith open('run_internlm2_constrained_mckp.py', 'r') as f:\n    content = f.read()\n\n# 1. Replace the eval_ppl import\ncontent = content.replace(\n    'from eval_ppl import patch_attention, restore_attention, evaluate_perplexity',\n    'from eval_ppl import evaluate_perplexity'\n)\n\n# 2. Add new imports after 'import torch'\ncontent = content.replace(\n    'import torch\\n',\n    'import torch\\nimport math\\nimport torch.nn.functional as F\\nfrom einops import rearrange\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\n'\n)\n\n# 3. Add the custom InternLM2 attention functions before MODEL_PATH\ninternlm2_funcs = '''\ndef rotate_half(x):\n    x1 = x[..., : x.shape[-1] // 2]\n    x2 = x[..., x.shape[-1] // 2 :]\n    return torch.cat((-x2, x1), dim=-1)\n\n\ndef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\n    cos = cos.unsqueeze(unsqueeze_dim)\n    sin = sin.unsqueeze(unsqueeze_dim)\n    q_embed = (q * cos) + (rotate_half(q) * sin)\n    k_embed = (k * cos) + (rotate_half(k) * sin)\n    return q_embed, k_embed\n\n\ndef patch_attention_internlm2(model, allocations):\n    config = model.config\n    num_kv_heads = config.num_key_value_heads\n    num_q_heads = config.num_attention_heads\n    head_dim = config.hidden_size // num_q_heads\n    n_groups = num_q_heads // num_kv_heads\n\n    original_forwards = {}\n\n    for layer_idx, layer in enumerate(model.model.layers):\n        attn = layer.attention\n\n        head_allocs = {}\n        for h in range(num_kv_heads):\n            key = f\\\"{layer_idx},{h}\\\"\n            if key in allocations:\n                atype, param = allocations[key]\n                head_allocs[h] = (atype, param)\n            else:\n                head_allocs[h] = (\\\"full\\\", 16)\n\n        all_full = all(a[0] == \\\"full\\\" for a in head_allocs.values())\n        if all_full:\n            continue\n\n        original_forwards[layer_idx] = attn.forward\n\n        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\n            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\n                                   past_key_value=None, output_attentions=False,\n                                   use_cache=False, cache_position=None, **kwargs):\n                bsz, q_len, _ = hidden_states.size()\n\n                qkv_states = orig_attn.wqkv(hidden_states)\n                qkv_states = rearrange(\n                    qkv_states,\n                    \\\"b q (h gs d) -> b q h gs d\\\",\n                    gs=2 + ng,\n                    d=hd,\n                )\n\n                query_states = qkv_states[..., :ng, :]\n                query_states = rearrange(query_states, \\\"b q h gs d -> b q (h gs) d\\\").transpose(1, 2)\n                key_states = qkv_states[..., -2, :].transpose(1, 2)\n                value_states = qkv_states[..., -1, :].transpose(1, 2)\n\n                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\n                query_states, key_states = apply_rotary_pos_emb(\n                    query_states, key_states, cos, sin, position_ids\n                )\n\n                for h in range(n_kv):\n                    atype, param = h_allocs[h]\n                    if atype == \\\"quant\\\" and int(param) < 16:\n                        bits = int(param)\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\n\n                key_exp = repeat_kv(key_states, ng)\n                value_exp = repeat_kv(value_states, ng)\n\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\n\n                if attention_mask is not None:\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\n                    attn_weights = attn_weights + causal_mask\n                else:\n                    causal = torch.triu(\n                        torch.full((q_len, q_len), float(\\\"-inf\\\"),\n                                   device=attn_weights.device, dtype=attn_weights.dtype),\n                        diagonal=1,\n                    )\n                    attn_weights = attn_weights + causal\n\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\n                attn_output = torch.matmul(attn_weights, value_exp)\n\n                attn_output = attn_output.transpose(1, 2).contiguous()\n                attn_output = attn_output.reshape(bsz, q_len, -1)\n                attn_output = orig_attn.wo(attn_output)\n\n                if not output_attentions:\n                    attn_weights = None\n\n                return attn_output, attn_weights, past_key_value\n\n            return compressed_forward\n\n        attn.forward = make_forward(attn, head_allocs)\n\n    return original_forwards\n\n\ndef restore_attention_internlm2(model, original_forwards):\n    for layer_idx, fwd in original_forwards.items():\n        model.model.layers[layer_idx].attention.forward = fwd\n\n\n'''\n\ncontent = content.replace(\n    'MODEL_PATH =',\n    internlm2_funcs + 'MODEL_PATH ='\n)\n\n# 4. Replace all patch_attention/restore_attention calls\ncontent = content.replace('patch_attention(model,', 'patch_attention_internlm2(model,')\ncontent = content.replace('restore_attention(model,', 'restore_attention_internlm2(model,')\n\nwith open('run_internlm2_constrained_mckp.py', 'w') as f:\n    f.write(content)\n\nprint('DONE')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "1a7c6689-10fa-4fa1-b60f-ad7499c44f3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016h7xUjFHBGguJkgyY8cnCs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 519,
+      "cache_read_input_tokens": 48218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 519
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T03:09:34.074Z_
+
+<details><summary>↩ Tool result · `toolu_017WQoBip3HgXrzruC8Gaa6r`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/ratekv && python3 -c \\\"\\\\nimport re\\\\n\\\\nwith open(\\\\'run_internlm2_constrained_mckp.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Replace the eval_ppl import\\\\ncontent = content.replace(\\\\n    \\\\'from eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\',\\\\n    \\\\'from eval_ppl import evaluate_perplexity\\\\'\\\\n)\\\\n\\\\n# 2. Add new imports after \\\\'import torch\\\\'\\\\ncontent = content.replace(\\\\n    \\\\'import torch\\\\\\\\n\\\\',\\\\n    \\\\'import torch\\\\\\\\nimport math\\\\\\\\nimport torch.nn.functional as F\\\\\\\\nfrom einops import rearrange\\\\\\\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\\\\\\\n\\\\'\\\\n)\\\\n\\\\n# 3. Add the custom InternLM2 attention functions before MODEL_PATH\\\\ninternlm2_funcs = \\\\'\\\\'\\\\'\\\\ndef rotate_half(x):\\\\n    x1 = x[..., : x.shape[-1] // 2]\\\\n    x2 = x[..., x.shape[-1] // 2 :]\\\\n    return torch.cat((-x2, x1), dim=-1)\\\\n\\\\n\\\\ndef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\\\\n    cos = cos.unsqueeze(unsqueeze_dim)\\\\n    sin = sin.unsqueeze(unsqueeze_dim)\\\\n    q_embed = (q * cos) + (rotate_half(q) * sin)\\\\n    k_embed = (k * cos) + (rotate_half(k) * sin)\\\\n    return q_embed, k_embed\\\\n\\\\n\\\\ndef patch_attention_internlm2(model, allocations):\\\\n    config = model.config\\\\n    num_kv_heads = config.num_key_value_heads\\\\n    num_q_heads = config.num_attention_heads\\\\n    head_dim = config.hidden_size // num_q_heads\\\\n    n_groups = num_q_heads // num_kv_heads\\\\n\\\\n    original_forwards = {}\\\\n\\\\n    for layer_idx, layer in enumerate(model.model.layers):\\\\n        attn = layer.attention\\\\n\\\\n        head_allocs = {}\\\\n        for h in range(num_kv_heads):\\\\n            key = f\\\\\\\\\\\"{layer_idx},{h}\\\\\\\\\\\"\\\\n            if key in allocations:\\\\n                atype, param = allocations[key]\\\\n                head_allocs[h] = (atype, param)\\\\n            else:\\\\n                head_allocs[h] = (\\\\\\\\\\\"full\\\\\\\\\\\", 16)\\\\n\\\\n        all_full = all(a[0] == \\\\\\\\\\\"full\\\\\\\\\\\" for a in head_allocs.values())\\\\n        if all_full:\\\\n            continue\\\\n\\\\n        original_forwards[layer_idx] = attn.forward\\\\n\\\\n        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\\\\n            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\\\\n                                   past_key_value=None, output_attentions=False,\\\\n                                   use_cache=False, cache_position=None, **kwargs):\\\\n                bsz, q_len, _ = hidden_states.size()\\\\n\\\\n                qkv_states = orig_attn.wqkv(hidden_states)\\\\n                qkv_states = rearrange(\\\\n                    qkv_states,\\\\n                    \\\\\\\\\\\"b q (h gs d) -> b q h gs d\\\\\\\\\\\",\\\\n                    gs=2 + ng,\\\\n                    d=hd,\\\\n                )\\\\n\\\\n                query_states = qkv_states[..., :ng, :]\\\\n                query_states = rearrange(query_states, \\\\\\\\\\\"b q h gs d -> b q (h gs) d\\\\\\\\\\\").transpose(1, 2)\\\\n                key_states = qkv_states[..., -2, :].transpose(1, 2)\\\\n                value_states = qkv_states[..., -1, :].transpose(1, 2)\\\\n\\\\n                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\\\\n                query_states, key_states = apply_rotary_pos_emb(\\\\n                    query_states, key_states, cos, sin, position_ids\\\\n                )\\\\n\\\\n                for h in range(n_kv):\\\\n                    atype, param = h_allocs[h]\\\\n                    if atype == \\\\\\\\\\\"quant\\\\\\\\\\\" and int(param) < 16:\\\\n                        bits = int(param)\\\\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\\\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\\\\n\\\\n                key_exp = repeat_kv(key_states, ng)\\\\n                value_exp = repeat_kv(value_states, ng)\\\\n\\\\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\\\\n\\\\n                if attention_mask is not None:\\\\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\\\\n                    attn_weights = attn_weights + causal_mask\\\\n                else:\\\\n                    causal = torch.triu(\\\\n                        torch.full((q_len, q_len), float(\\\\\\\\\\\"-inf\\\\\\\\\\\"),\\\\n                                   device=attn_weights.device, dtype=attn_weights.dtype),\\\\n                        diagonal=1,\\\\n                    )\\\\n                    attn_weights = attn_weights + causal\\\\n\\\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\\\\n                attn_output = torch.matmul(attn_weights, value_exp)\\\\n\\\\n                attn_output = attn_output.transpose(1, 2).contiguous()\\\\n                attn_output = attn_output.reshape(bsz, q_len, -1)\\\\n                attn_output = orig_attn.wo(attn_output)\\\\n\\\\n                if not output_attentions:\\\\n                    attn_weights = None\\\\n\\\\n                return attn_output, attn_weights, past_key_value\\\\n\\\\n            return compressed_forward\\\\n\\\\n        attn.forward = make_forward(attn, head_allocs)\\\\n\\\\n    return original_forwards\\\\n\\\\n\\\\ndef restore_attention_internlm2(model, original_forwards):\\\\n    for layer_idx, fwd in original_forwards.items():\\\\n        model.model.layers[layer_idx].attention.forward = fwd\\\\n\\\\n\\\\n\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(\\\\n    \\\\'MODEL_PATH =\\\\',\\\\n    internlm2_funcs + \\\\'MODEL_PATH =\\\\'\\\\n)\\\\n\\\\n# 4. Replace all patch_attention/restore_attention calls\\\\ncontent = content.replace(\\\\'patch_attention(model,\\\\', \\\\'patch_attention_internlm2(model,\\\\')\\\\ncontent = content.replace(\\\\'restore_attention(model,\\\\', \\\\'restore_attention_internlm2(model,\\\\')\\\\n\\\\nwith open(\\\\'run_internlm2_constrained_mckp.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\'DONE\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "8ebfda12-0274-442c-a82c-9c808a661bf5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/ratekv && python3 -c \\\\\\\"\\\\\\\\nimport re\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'run_internlm2_constrained_mckp.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\n# 1. Replace the eval_ppl import\\\\\\\\ncontent = content.replace(\\\\\\\\n    \\\\\\\\'from eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\\\\\',\\\\\\\\n    \\\\\\\\'from eval_ppl import evaluate_perplexity\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 2. Add new imports after \\\\\\\\'import torch\\\\\\\\'\\\\\\\\ncontent = content.replace(\\\\\\\\n    \\\\\\\\'import torch\\\\\\\\\\\\\\\\n\\\\\\\\',\\\\\\\\n    \\\\\\\\'import torch\\\\\\\\\\\\\\\\nimport math\\\\\\\\\\\\\\\\nimport torch.nn.functional as F\\\\\\\\\\\\\\\\nfrom einops import rearrange\\\\\\\\\\\\\\\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\\\\\\\\\\\\\\\n\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 3. Add the custom InternLM2 attention functions before MODEL_PATH\\\\\\\\ninternlm2_funcs = \\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\ndef rotate_half(x):\\\\\\\\n    x1 = x[..., : x.shape[-1] // 2]\\\\\\\\n    x2 = x[..., x.shape[-1] // 2 :]\\\\\\\\n    return torch.cat((-x2, x1), dim=-1)\\\\\\\\n\\\\\\\\n\\\\\\\\ndef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\\\\\\\\n    cos = cos.unsqueeze(unsqueeze_dim)\\\\\\\\n    sin = sin.unsqueeze(unsqueeze_dim)\\\\\\\\n    q_embed = (q * cos) + (rotate_half(q) * sin)\\\\\\\\n    k_embed = (k * cos) + (rotate_half(k) * sin)\\\\\\\\n    return q_embed, k_embed\\\\\\\\n\\\\\\\\n\\\\\\\\ndef patch_attention_internlm2(model, allocations):\\\\\\\\n    config = model.config\\\\\\\\n    num_kv_heads = config.num_key_value_heads\\\\\\\\n    num_q_heads = config.num_attention_heads\\\\\\\\n    head_dim = config.hidden_size // num_q_heads\\\\\\\\n    n_groups = num_q_heads // num_kv_heads\\\\\\\\n\\\\\\\\n    original_forwards = {}\\\\\\\\n\\\\\\\\n    for layer_idx, layer in enumerate(model.model.layers):\\\\\\\\n        attn = layer.attention\\\\\\\\n\\\\\\\\n        head_allocs = {}\\\\\\\\n        for h in range(num_kv_heads):\\\\\\\\n            key = f\\\\\\\\\\\\\\\\\\\\\\\"{layer_idx},{h}\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\n            if key in allocations:\\\\\\\\n                atype, param = allocations[key]\\\\\\\\n                head_allocs[h] = (atype, param)\\\\\\\\n            else:\\\\\\\\n                head_allocs[h] = (\\\\\\\\\\\\\\\\\\\\\\\"full\\\\\\\\\\\\\\\\\\\\\\\", 16)\\\\\\\\n\\\\\\\\n        all_full = all(a[0] == \\\\\\\\\\\\\\\\\\\\\\\"full\\\\\\\\\\\\\\\\\\\\\\\" for a in head_allocs.values())\\\\\\\\n        if all_full:\\\\\\\\n            continue\\\\\\\\n\\\\\\\\n        original_forwards[layer_idx] = attn.forward\\\\\\\\n\\\\\\\\n        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\\\\\\\\n            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\\\\\\\\n                                   past_key_value=None, output_attentions=False,\\\\\\\\n                                   use_cache=False, cache_position=None, **kwargs):\\\\\\\\n                bsz, q_len, _ = hidden_states.size()\\\\\\\\n\\\\\\\\n                qkv_states = orig_attn.wqkv(hidden_states)\\\\\\\\n                qkv_states = rearrange(\\\\\\\\n                    qkv_states,\\\\\\\\n                    \\\\\\\\\\\\\\\\\\\\\\\"b q (h gs d) -> b q h gs d\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\n                    gs=2 + ng,\\\\\\\\n                    d=hd,\\\\\\\\n                )\\\\\\\\n\\\\\\\\n                query_states = qkv_states[..., :ng, :]\\\\\\\\n                query_states = rearrange(query_states, \\\\\\\\\\\\\\\\\\\\\\\"b q h gs d -> b q (h gs) d\\\\\\\\\\\\\\\\\\\\\\\").transpose(1, 2)\\\\\\\\n                key_states = qkv_states[..., -2, :].transpose(1, 2)\\\\\\\\n                value_states = qkv_states[..., -1, :].transpose(1, 2)\\\\\\\\n\\\\\\\\n                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\\\\\\\\n                query_states, key_states = apply_rotary_pos_emb(\\\\\\\\n                    query_states, key_states, cos, sin, position_ids\\\\\\\\n                )\\\\\\\\n\\\\\\\\n                for h in range(n_kv):\\\\\\\\n                    atype, param = h_allocs[h]\\\\\\\\n                    if atype == \\\\\\\\\\\\\\\\\\\\\\\"quant\\\\\\\\\\\\\\\\\\\\\\\" and int(param) < 16:\\\\\\\\n                        bits = int(param)\\\\\\\\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\\\\\\\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\\\\\\\\n\\\\\\\\n                key_exp = repeat_kv(key_states, ng)\\\\\\\\n                value_exp = repeat_kv(value_states, ng)\\\\\\\\n\\\\\\\\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\\\\\\\\n\\\\\\\\n                if attention_mask is not None:\\\\\\\\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\\\\\\\\n                    attn_weights = attn_weights + causal_mask\\\\\\\\n                else:\\\\\\\\n                    causal = torch.triu(\\\\\\\\n                        torch.full((q_len, q_len), float(\\\\\\\\\\\\\\\\\\\\\\\"-inf\\\\\\\\\\\\\\\\\\\\\\\"),\\\\\\\\n                                   device=attn_weights.device, dtype=attn_weights.dtype),\\\\\\\\n                        diagonal=1,\\\\\\\\n                    )\\\\\\\\n                    attn_weights = attn_weights + causal\\\\\\\\n\\\\\\\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\\\\\\\\n                attn_output = torch.matmul(attn_weights, value_exp)\\\\\\\\n\\\\\\\\n                attn_output = attn_output.transpose(1, 2).contiguous()\\\\\\\\n                attn_output = attn_output.reshape(bsz, q_len, -1)\\\\\\\\n                attn_output = orig_attn.wo(attn_output)\\\\\\\\n\\\\\\\\n                if not output_attentions:\\\\\\\\n                    attn_weights = None\\\\\\\\n\\\\\\\\n                return attn_output, attn_weights, past_key_value\\\\\\\\n\\\\\\\\n            return compressed_forward\\\\\\\\n\\\\\\\\n        attn.forward = make_forward(attn, head_allocs)\\\\\\\\n\\\\\\\\n    return original_forwards\\\\\\\\n\\\\\\\\n\\\\\\\\ndef restore_attention_internlm2(model, original_forwards):\\\\\\\\n    for layer_idx, fwd in original_forwards.items():\\\\\\\\n        model.model.layers[layer_idx].attention.forward = fwd\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\'\\\\\\\\'\\\\\\\\'\\\\\\\\n\\\\\\\\ncontent = content.replace(\\\\\\\\n    \\\\\\\\'MODEL_PATH =\\\\\\\\',\\\\\\\\n    internlm2_funcs + \\\\\\\\'MODEL_PATH =\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 4. Replace all patch_attention/restore_attention calls\\\\\\\\ncontent = content.replace(\\\\\\\\'patch_attention(model,\\\\\\\\', \\\\\\\\'patch_attention_internlm2(model,\\\\\\\\')\\\\\\\\ncontent = content.replace(\\\\\\\\'restore_attention(model,\\\\\\\\', \\\\\\\\'restore_attention_internlm2(model,\\\\\\\\')\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'run_internlm2_constrained_mckp.py\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'DONE\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/ratekv && python3 -c \\\"\\\\nimport re\\\\n\\\\nwith open(\\\\'run_internlm2_constrained_mckp.py\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Replace the eval_ppl import\\\\ncontent = content.replace(\\\\n    \\\\'from eval_ppl import patch_attention, restore_attention, evaluate_perplexity\\\\',\\\\n    \\\\'from eval_ppl import evaluate_perplexity\\\\'\\\\n)\\\\n\\\\n# 2. Add new imports after \\\\'import torch\\\\'\\\\ncontent = content.replace(\\\\n    \\\\'import torch\\\\\\\\n\\\\',\\\\n    \\\\'import torch\\\\\\\\nimport math\\\\\\\\nimport torch.nn.functional as F\\\\\\\\nfrom einops import rearrange\\\\\\\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\\\\\\\n\\\\'\\\\n)\\\\n\\\\n# 3. Add the custom InternLM2 attention functions before MODEL_PATH\\\\ninternlm2_funcs = \\\\'\\\\'\\\\'\\\\ndef rotate_half(x):\\\\n    x1 = x[..., : x.shape[-1] // 2]\\\\n    x2 = x[..., x.shape[-1] // 2 :]\\\\n    return torch.cat((-x2, x1), dim=-1)\\\\n\\\\n\\\\ndef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\\\\n    cos = cos.unsqueeze(unsqueeze_dim)\\\\n    sin = sin.unsqueeze(unsqueeze_dim)\\\\n    q_embed = (q * cos) + (rotate_half(q) * sin)\\\\n    k_embed = (k * cos) + (rotate_half(k) * sin)\\\\n    return q_embed, k_embed\\\\n\\\\n\\\\ndef patch_attention_internlm2(model, allocations):\\\\n    config = model.config\\\\n    num_kv_heads = config.num_key_value_heads\\\\n    num_q_heads = config.num_attention_heads\\\\n    head_dim = config.hidden_size // num_q_heads\\\\n    n_groups = num_q_heads // num_kv_heads\\\\n\\\\n    original_forwards = {}\\\\n\\\\n    for layer_idx, layer in enumerate(model.model.layers):\\\\n        attn = layer.attention\\\\n\\\\n        head_allocs = {}\\\\n        for h in range(num_kv_heads):\\\\n            key = f\\\\\\\\\\\"{layer_idx},{h}\\\\\\\\\\\"\\\\n            if key in allocations:\\\\n                atype, param = allocations[key]\\\\n                head_allocs[h] = (atype, param)\\\\n            else:\\\\n                head_allocs[h] = (\\\\\\\\\\\"full\\\\\\\\\\\", 16)\\\\n\\\\n        all_full = all(a[0] == \\\\\\\\\\\"full\\\\\\\\\\\" for a in head_allocs.values())\\\\n        if all_full:\\\\n            continue\\\\n\\\\n        original_forwards[layer_idx] = attn.forward\\\\n\\\\n        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\\\\n            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\\\\n                                   past_key_value=None, output_attentions=False,\\\\n                                   use_cache=False, cache_position=None, **kwargs):\\\\n                bsz, q_len, _ = hidden_states.size()\\\\n\\\\n                qkv_states = orig_attn.wqkv(hidden_states)\\\\n                qkv_states = rearrange(\\\\n                    qkv_states,\\\\n                    \\\\\\\\\\\"b q (h gs d) -> b q h gs d\\\\\\\\\\\",\\\\n                    gs=2 + ng,\\\\n                    d=hd,\\\\n                )\\\\n\\\\n                query_states = qkv_states[..., :ng, :]\\\\n                query_states = rearrange(query_states, \\\\\\\\\\\"b q h gs d -> b q (h gs) d\\\\\\\\\\\").transpose(1, 2)\\\\n                key_states = qkv_states[..., -2, :].transpose(1, 2)\\\\n                value_states = qkv_states[..., -1, :].transpose(1, 2)\\\\n\\\\n                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\\\\n                query_states, key_states = apply_rotary_pos_emb(\\\\n                    query_states, key_states, cos, sin, position_ids\\\\n                )\\\\n\\\\n                for h in range(n_kv):\\\\n                    atype, param = h_allocs[h]\\\\n                    if atype == \\\\\\\\\\\"quant\\\\\\\\\\\" and int(param) < 16:\\\\n                        bits = int(param)\\\\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\\\\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\\\\n\\\\n                key_exp = repeat_kv(key_states, ng)\\\\n                value_exp = repeat_kv(value_states, ng)\\\\n\\\\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\\\\n\\\\n                if attention_mask is not None:\\\\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\\\\n                    attn_weights = attn_weights + causal_mask\\\\n                else:\\\\n                    causal = torch.triu(\\\\n                        torch.full((q_len, q_len), float(\\\\\\\\\\\"-inf\\\\\\\\\\\"),\\\\n                                   device=attn_weights.device, dtype=attn_weights.dtype),\\\\n                        diagonal=1,\\\\n                    )\\\\n                    attn_weights = attn_weights + causal\\\\n\\\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\\\\n                attn_output = torch.matmul(attn_weights, value_exp)\\\\n\\\\n                attn_output = attn_output.transpose(1, 2).contiguous()\\\\n                attn_output = attn_output.reshape(bsz, q_len, -1)\\\\n                attn_output = orig_attn.wo(attn_output)\\\\n\\\\n                if not output_attentions:\\\\n                    attn_weights = None\\\\n\\\\n                return attn_output, attn_weights, past_key_value\\\\n\\\\n            return compressed_forward\\\\n\\\\n        attn.forward = make_forward(attn, head_allocs)\\\\n\\\\n    return original_forwards\\\\n\\\\n\\\\ndef restore_attention_internlm2(model, original_forwards):\\\\n    for layer_idx, fwd in original_forwards.items():\\\\n        model.model.layers[layer_idx].attention.forward = fwd\\\\n\\\\n\\\\n\\\\'\\\\'\\\\'\\\\n\\\\ncontent = content.replace(\\\\n    \\\\'MODEL_PATH =\\\\',\\\\n    internlm2_funcs + \\\\'MODEL_PATH =\\\\'\\\\n)\\\\n\\\\n# 4. Replace all patch_attention/restore_attention calls\\\\ncontent = content.replace(\\\\'patch_attention(model,\\\\', \\\\'patch_attention_internlm2(model,\\\\')\\\\ncontent = content.replace(\\\\'restore_attention(model,\\\\', \\\\'restore_attention_internlm2(model,\\\\')\\\\n\\\\nwith open(\\\\'run_internlm2_constrained_mckp.py\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\'DONE\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Ah, the conda environment is needed. Let me use the full path to python or source conda first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "f2f1d8f0-3315-45a5-b883-286dc709c721",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aw2uzWq9vvaQHzPPrM5eT9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4321,
+      "cache_read_input_tokens": 48737,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4321
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+Need to use conda python. Let me write a patch script file instead — cleaner than inline.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "91e9eaf2-3b67-4f77-b528-84eefec5b2e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aw2uzWq9vvaQHzPPrM5eT9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4321,
+      "cache_read_input_tokens": 48737,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4321
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Xs8VrDwyStCdrNmd7y3tcn`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "account": "root",
+  "command": "cat << 'PATCHEOF' > /tmp/patch_internlm2.py\nimport re\n\nwith open('/root/ratekv/run_internlm2_constrained_mckp.py', 'r') as f:\n    content = f.read()\n\n# 1. Replace the eval_ppl import\ncontent = content.replace(\n    'from eval_ppl import patch_attention, restore_attention, evaluate_perplexity',\n    'from eval_ppl import evaluate_perplexity'\n)\n\n# 2. Add new imports after 'import torch\\n'\ncontent = content.replace(\n    'import torch\\n',\n    'import torch\\nimport math\\nimport torch.nn.functional as F\\nfrom einops import rearrange\\nfrom utils import quantize_per_channel, quantize_per_token, repeat_kv\\n'\n)\n\n# 3. Add the custom InternLM2 attention functions before MODEL_PATH\ninternlm2_funcs = '''\ndef rotate_half(x):\n    x1 = x[..., : x.shape[-1] // 2]\n    x2 = x[..., x.shape[-1] // 2 :]\n    return torch.cat((-x2, x1), dim=-1)\n\n\ndef apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):\n    cos = cos.unsqueeze(unsqueeze_dim)\n    sin = sin.unsqueeze(unsqueeze_dim)\n    q_embed = (q * cos) + (rotate_half(q) * sin)\n    k_embed = (k * cos) + (rotate_half(k) * sin)\n    return q_embed, k_embed\n\n\ndef patch_attention_internlm2(model, allocations):\n    config = model.config\n    num_kv_heads = config.num_key_value_heads\n    num_q_heads = config.num_attention_heads\n    head_dim = config.hidden_size // num_q_heads\n    n_groups = num_q_heads // num_kv_heads\n\n    original_forwards = {}\n\n    for layer_idx, layer in enumerate(model.model.layers):\n        attn = layer.attention\n\n        head_allocs = {}\n        for h in range(num_kv_heads):\n            key = f\"{layer_idx},{h}\"\n            if key in allocations:\n                atype, param = allocations[key]\n                head_allocs[h] = (atype, param)\n            else:\n                head_allocs[h] = (\"full\", 16)\n\n        all_full = all(a[0] == \"full\" for a in head_allocs.values())\n        if all_full:\n            continue\n\n        original_forwards[layer_idx] = attn.forward\n\n        def make_forward(orig_attn, h_allocs, n_kv=num_kv_heads, ng=n_groups, hd=head_dim):\n            def compressed_forward(hidden_states, attention_mask=None, position_ids=None,\n                                   past_key_value=None, output_attentions=False,\n                                   use_cache=False, cache_position=None, **kwargs):\n                bsz, q_len, _ = hidden_states.size()\n\n                qkv_states = orig_attn.wqkv(hidden_states)\n                qkv_states = rearrange(\n                    qkv_states,\n                    \"b q (h gs d) -> b q h gs d\",\n                    gs=2 + ng,\n                    d=hd,\n                )\n\n                query_states = qkv_states[..., :ng, :]\n                query_states = rearrange(query_states, \"b q h gs d -> b q (h gs) d\").transpose(1, 2)\n                key_states = qkv_states[..., -2, :].transpose(1, 2)\n                value_states = qkv_states[..., -1, :].transpose(1, 2)\n\n                cos, sin = orig_attn.rotary_emb(value_states, position_ids)\n                query_states, key_states = apply_rotary_pos_emb(\n                    query_states, key_states, cos, sin, position_ids\n                )\n\n                for h in range(n_kv):\n                    atype, param = h_allocs[h]\n                    if atype == \"quant\" and int(param) < 16:\n                        bits = int(param)\n                        key_states[:, h] = quantize_per_channel(key_states[:, h:h + 1], bits).squeeze(1)\n                        value_states[:, h] = quantize_per_token(value_states[:, h:h + 1], bits).squeeze(1)\n\n                key_exp = repeat_kv(key_states, ng)\n                value_exp = repeat_kv(value_states, ng)\n\n                attn_weights = torch.matmul(query_states, key_exp.transpose(2, 3)) / math.sqrt(hd)\n\n                if attention_mask is not None:\n                    causal_mask = attention_mask[:, :, :, :key_exp.shape[-2]]\n                    attn_weights = attn_weights + causal_mask\n                else:\n                    causal = torch.triu(\n                        torch.full((q_len, q_len), float(\"-inf\"),\n                                   device=attn_weights.device, dtype=attn_weights.dtype),\n                        diagonal=1,\n                    )\n                    attn_weights = attn_weights + causal\n\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)\n                attn_output = torch.matmul(attn_weights, value_exp)\n\n                attn_output = attn_output.transpose(1, 2).contiguous()\n                attn_output = attn_output.reshape(bsz, q_len, -1)\n                attn_output = orig_attn.wo(attn_output)\n\n                if not output_attentions:\n                    attn_weights = None\n\n                return attn_output, attn_weights, past_key_value\n\n            return compressed_forward\n\n        attn.forward = make_forward(attn, head_allocs)\n\n    return original_forwards\n\n\ndef restore_attention_internlm2(model, original_forwards):\n    for layer_idx, fwd in original_forwards.items():\n        model.model.layers[layer_idx].attention.forward = fwd\n\n\n'''\n\ncontent = content.replace(\n    '\\nMODEL_PATH =',\n    internlm2_funcs + 'MODEL_PATH ='\n)\n\n# 4. Replace all patch_attention/restore_attention calls\ncontent = content.replace('patch_attention(model,', 'patch_attention_internlm2(model,')\ncontent = content.replace('restore_attention(model,', 'restore_attention_internlm2(model,')\n\nwith open('/root/ratekv/run_internlm2_constrained_mckp.py', 'w') as f:\n    f.write(content)\n\nprint('DONE')\nPATCHEOF\n/root/miniconda3/bin/python /tmp/patch_internlm2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "03980fd0-cd74-4846-a8bd-cd26ae41cfa6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aw2uzWq9vvaQHzPPrM5eT9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4321,
+      "cache_read_input_tokens": 48737,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4321
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T03:09:55.294Z_
+
+<details><summary>↩ Tool result · `toolu_01Xs8VrDwyStCdrNmd7y3tcn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "0cc44b3e-4e29-481b-8ba2-0e62bc9a168b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+Patch applied. Now dry-run to verify no ImportError.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "50792f7a-b259-4380-b53a-09afa2f7666d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016R23JZP4NLjX96NhChEa8m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2175,
+      "cache_read_input_tokens": 53058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2175
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UrcjRwjTtThA8cmYBvBzNQ`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "account": "root",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_internlm2_constrained_mckp.py --help\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "0951803c-2206-4a50-b32e-82ec88bd8240",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016R23JZP4NLjX96NhChEa8m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2175,
+      "cache_read_input_tokens": 53058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2175
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T03:10:05.079Z_
+
+<details><summary>↩ Tool result · `toolu_01UrcjRwjTtThA8cmYBvBzNQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: run_internlm2_constrained_mckp.py [-h] [--gpu GPU]\\n\\nInternLM2-7B constrained MCKP pipeline\\n\\noptions:\\n  -h, --help  show this help message and exit\\n  --gpu GPU\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "28ef8688-f2e5-4a0c-a934-ccaef788cf36",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: run_internlm2_constrained_mckp.py [-h] [--gpu GPU]\\\\n\\\\nInternLM2-7B constrained MCKP pipeline\\\\n\\\\noptions:\\\\n  -h, --help  show this help message and exit\\\\n  --gpu GPU\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: run_internlm2_constrained_mckp.py [-h] [--gpu GPU]\\n\\nInternLM2-7B constrained MCKP pipeline\\n\\noptions:\\n  -h, --help  show this help message and exit\\n  --gpu GPU\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+No import errors. Now register the experiment and submit the job.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "3bd089af-4116-4127-8c96-e6ad52dca787",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMj32Q28maye8gEqVq1Hze",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 55233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01VwnohVKnyw2quSRV5m28YC`</summary>
+
+```json
+{
+  "exp_id": "internlm2_constrained_mckp_v2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "ratekv",
+  "spec": {
+    "command": "python run_internlm2_constrained_mckp.py --gpu 0",
+    "server": "westd-37397",
+    "data_path": "wikitext-2 (via eval_ppl)",
+    "data_count": "wikitext-2-test",
+    "model_name": "InternLM2-7B",
+    "seed": 42,
+    "hypothesis": "InternLM2-7B constrained MCKP (retry): Flat shape (c=0.2422, boundary case 0.008 from threshold). Expect minimal benefit from non-uniform allocation. Fix: ported custom attention patching from profiling script.",
+    "parent": "internlm2_7b_hires_profiling"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "2bb72872-540a-436f-9251-8d299b29be7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMj32Q28maye8gEqVq1Hze",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 313,
+      "cache_read_input_tokens": 55233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 313
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T03:10:18.038Z_
+
+<details><summary>↩ Tool result · `toolu_01VwnohVKnyw2quSRV5m28YC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.279}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "bb5a3460-e58e-496c-9f7e-b77f7908ff56",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.279}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.279}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015ARRJGRD5q87XAueMFeC5g`</summary>
+
+```json
+{
+  "exp_id": "internlm2_constrained_mckp_v2",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "48830038-d3eb-4998-aa66-e4cc5037bb16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M489eySc3Q9R4B2Ht6WkAM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 407,
+      "cache_read_input_tokens": 55546,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 407
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T03:10:22.962Z_
+
+<details><summary>↩ Tool result · `toolu_015ARRJGRD5q87XAueMFeC5g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"internlm2_constrained_mckp_v2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:10:21.809Z\", \"updated_at\": \"2026-05-16T03:10:21.810Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6305}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "f9b76339-584a-4b5f-8797-3702da766475",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"internlm2_constrained_mckp_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T03:10:21.809Z\\\", \\\"updated_at\\\": \\\"2026-05-16T03:10:21.810Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6305}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"internlm2_constrained_mckp_v2\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:10:21.809Z\", \"updated_at\": \"2026-05-16T03:10:21.810Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6305}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DsyyN8X2wjFWGdhJsq5dcV`</summary>
+
+```json
+{
+  "exp_id": "internlm2_constrained_mckp_v2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "ratekv",
+  "spec": {
+    "command": "python run_internlm2_constrained_mckp.py --gpu 0",
+    "server": "westd-37397",
+    "data_path": "wikitext-2 (via eval_ppl)",
+    "data_count": "wikitext-2-test",
+    "model_name": "InternLM2-7B",
+    "seed": 42,
+    "hypothesis": "InternLM2-7B constrained MCKP (retry): Flat shape (c=0.2422, boundary case 0.008 from threshold). Expect minimal benefit from non-uniform allocation. Fix: ported custom attention patching from profiling script.",
+    "parent": "internlm2_7b_hires_profiling"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "58ff7c9d-42f5-467d-b186-13d9726a34ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Un7sELLUPmLjJ4yaTP4FLi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 279,
+      "cache_read_input_tokens": 55953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 279
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T03:10:28.695Z_
+
+<details><summary>↩ Tool result · `toolu_01DsyyN8X2wjFWGdhJsq5dcV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.6291}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "9deaf8f4-d303-42e0-b32d-8ccdc1fcc5b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6291}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.6291}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WMxm3DqD7m3Jj1p8psDZHh`</summary>
+
+```json
+{
+  "exp_id": "internlm2_constrained_mckp_v2",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "ratekv",
+  "spec": {
+    "command": "python run_internlm2_constrained_mckp.py --gpu 0",
+    "server": "westd-37397",
+    "data_path": "wikitext-2 (via eval_ppl)",
+    "data_count": "wikitext-2-test",
+    "model_name": "InternLM2-7B",
+    "seed": 42,
+    "hypothesis": "InternLM2-7B constrained MCKP (retry): Flat shape (c=0.2422, boundary case 0.008 from threshold). Expect minimal benefit from non-uniform allocation. Fix: ported custom attention patching from profiling script.",
+    "parent": "internlm2_7b_hires_profiling",
+    "checkpoint_source": "/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b",
+    "eval_data": "wikitext-2-raw-v1"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "c7cfa0a8-2bf1-4544-b90f-23ea90c337dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013WFQ7CT8U7PCGNmZo2Rh7F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 409,
+      "cache_read_input_tokens": 56232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 409
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T03:10:37.341Z_
+
+<details><summary>↩ Tool result · `toolu_01WMxm3DqD7m3Jj1p8psDZHh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"internlm2_constrained_mckp_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:10:21.809Z\", \"updated_at\": \"2026-05-16T03:10:36.247Z\", \"spec\": {\"command\": \"python run_internlm2_constrained_mckp.py --gpu 0\", \"server\": \"westd-37397\", \"data_path\": \"wikitext-2 (via eval_ppl)\", \"data_count\": \"wikitext-2-test\", \"model_name\": \"InternLM2-7B\", \"seed\": 42, \"hypothesis\": \"InternLM2-7B constrained MCKP (retry): Flat shape (c=0.2422, boundary case 0.008 from threshold). Expect minimal benefit from non-uniform allocation. Fix: ported custom attention patching from profiling script.\", \"parent\": \"internlm2_7b_hires_profiling\", \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\", \"eval_data\": \"wikitext-2-raw-v1\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.675}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "dfbc62b2-fc40-4dbd-8bd1-9ad57568f325",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"internlm2_constrained_mckp_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T03:10:21.809Z\\\", \\\"updated_at\\\": \\\"2026-05-16T03:10:36.247Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_internlm2_constrained_mckp.py --gpu 0\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-2 (via eval_ppl)\\\", \\\"data_count\\\": \\\"wikitext-2-test\\\", \\\"model_name\\\": \\\"InternLM2-7B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"InternLM2-7B constrained MCKP (retry): Flat shape (c=0.2422, boundary case 0.008 from threshold). Expect minimal benefit from non-uniform allocation. Fix: ported custom attention patching from profiling script.\\\", \\\"parent\\\": \\\"internlm2_7b_hires_profiling\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\\\", \\\"eval_data\\\": \\\"wikitext-2-raw-v1\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.675}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"internlm2_constrained_mckp_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:10:21.809Z\", \"updated_at\": \"2026-05-16T03:10:36.247Z\", \"spec\": {\"command\": \"python run_internlm2_constrained_mckp.py --gpu 0\", \"server\": \"westd-37397\", \"data_path\": \"wikitext-2 (via eval_ppl)\", \"data_count\": \"wikitext-2-test\", \"model_name\": \"InternLM2-7B\", \"seed\": 42, \"hypothesis\": \"InternLM2-7B constrained MCKP (retry): Flat shape (c=0.2422, boundary case 0.008 from threshold). Expect minimal benefit from non-uniform allocation. Fix: ported custom attention patching from profiling script.\", \"parent\": \"internlm2_7b_hires_profiling\", \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/Shanghai_AI_Laboratory/internlm2-7b\", \"eval_data\": \"wikitext-2-raw-v1\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.675}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job · `toolu_01EZaiAaS3jFvBvwNsQJwkzU`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "gpu_ids": [
+    "cuda:0"
+  ],
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_internlm2_constrained_mckp.py --gpu 0\"",
+  "exp_id": "internlm2_constrained_mckp_v2",
+  "account": "root",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "564b247c-e76d-48e2-beec-63a88e2f633a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GGJ6aANEUqJHkDD54SuVe9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 759,
+      "cache_read_input_tokens": 56641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 759
+      },
+      "output_tokens": 52,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T03:10:43.013Z_
+
+<details><summary>↩ Tool result · `toolu_01EZaiAaS3jFvBvwNsQJwkzU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"395573\", \"log_file\": \"~/runs/ratekv/internlm2_constrained_mckp_v2.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westd-37397\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"internlm2_constrained_mckp_v2\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "22639afa-effb-42ec-abd3-63be7710496d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"395573\\\", \\\"log_file\\\": \\\"~/runs/ratekv/internlm2_constrained_mckp_v2.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-37397\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"internlm2_constrained_mckp_v2\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"395573\", \"log_file\": \"~/runs/ratekv/internlm2_constrained_mckp_v2.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westd-37397\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"internlm2_constrained_mckp_v2\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+Job submitted. Let me verify it started properly by checking early log output.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "866c6b58-8383-4824-85e2-fba750dd3ec1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsqqzdMG1dJF9Qym9sAyGQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 57400,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018hpvUFcJWYt1Nb1qvcXoEN`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "tail -20 /root/runs/ratekv/internlm2_constrained_mckp_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "354abed9-a811-45a0-bdf0-451d549afd9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsqqzdMG1dJF9Qym9sAyGQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 57400,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-16T03:10:47.103Z_
+
+<details><summary>↩ Tool result · `toolu_018hpvUFcJWYt1Nb1qvcXoEN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "662ff125-0166-4226-bead-2c306c0fbe5a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+Model is loading (only a deprecation warning, no errors). Let me wait a moment and check again to confirm it gets past the model loading phase.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "8c24dfa4-6b9d-442b-8a52-1fccc3a1a6f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvdCqHdMhMLGUNLuApqhyK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 338,
+      "cache_read_input_tokens": 57800,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 338
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NubBzwNy6TvjoZdk6kTYd7`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "tail -30 /root/runs/ratekv/internlm2_constrained_mckp_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "2aabfc86-bbb7-4102-add1-75565d99df76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvdCqHdMhMLGUNLuApqhyK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 338,
+      "cache_read_input_tokens": 57800,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 338
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T03:10:51.561Z_
+
+<details><summary>↩ Tool result · `toolu_01NubBzwNy6TvjoZdk6kTYd7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\nInternLM2-7B: 32L x 8KV, GQA 4:1, 256 total heads\\n\\nLoading profiles from artifacts/internlm2_profiles_hires.json...\\nSynthesized multi-bit profiles: 32 layers x 8 heads\\nTop-5% concentration: 0.2422 (Flat pattern, boundary case)\\n\\n--- Solving allocations (budget=0.25, max_2bit=2) ---\\n  Constrained MCKP: mem=0.2500, dist=1.320522, bits={4: 253, 8: 1, 2: 2}\\n  Unconstrained MCKP: mem=0.2495, dist=1.077427, bits={4: 198, 8: 19, 2: 39}\\n  Greedy: mem=0.2495, dist=1.077427, bits={4: 198, 8: 19, 2: 39}\\n  Uniform-4bit: mem=0.2500, dist=1.385275, bits={4: 256}\\n\\nLoading model in bf16 to cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 101.79it/s]\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "704d1e60-26a8-4f1a-b7ab-9b85334f44da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"`torch_dtype` is deprecated! Use `dtype` instead!\\\\nInternLM2-7B: 32L x 8KV, GQA 4:1, 256 total heads\\\\n\\\\nLoading profiles from artifacts/internlm2_profiles_hires.json...\\\\nSynthesized multi-bit profiles: 32 layers x 8 heads\\\\nTop-5% concentration: 0.2422 (Flat pattern, boundary case)\\\\n\\\\n--- Solving allocations (budget=0.25, max_2bit=2) ---\\\\n  Constrained MCKP: mem=0.2500, dist=1.320522, bits={4: 253, 8: 1, 2: 2}\\\\n  Unconstrained MCKP: mem=0.2495, dist=1.077427, bits={4: 198, 8: 19, 2: 39}\\\\n  Greedy: mem=0.2495, dist=1.077427, bits={4: 198, 8: 19, 2: 39}\\\\n  Uniform-4bit: mem=0.2500, dist=1.385275, bits={4: 256}\\\\n\\\\nLoading model in bf16 to cuda:0...\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 101.79it/s]\\\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\nInternLM2-7B: 32L x 8KV, GQA 4:1, 256 total heads\\n\\nLoading profiles from artifacts/internlm2_profiles_hires.json...\\nSynthesized multi-bit profiles: 32 layers x 8 heads\\nTop-5% concentration: 0.2422 (Flat pattern, boundary case)\\n\\n--- Solving allocations (budget=0.25, max_2bit=2) ---\\n  Constrained MCKP: mem=0.2500, dist=1.320522, bits={4: 253, 8: 1, 2: 2}\\n  Unconstrained MCKP: mem=0.2495, dist=1.077427, bits={4: 198, 8: 19, 2: 39}\\n  Greedy: mem=0.2495, dist=1.077427, bits={4: 198, 8: 19, 2: 39}\\n  Uniform-4bit: mem=0.2500, dist=1.385275, bits={4: 256}\\n\\nLoading model in bf16 to cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 101.79it/s]\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+Running successfully — model loaded, profiles synthesized, allocations solved, now evaluating PPL on WikiText-2. No import errors.
+
+修复完成并已提交：
+- **修复内容**：从 profiling 脚本移植了 `patch_attention_internlm2` + `restore_attention_internlm2`（处理 InternLM2 的 fused `wqkv` + einops rearrange），替换了通用 `eval_ppl.patch_attention` 调用
+- **实验 ID**：`internlm2_constrained_mckp_v2`，在 `westd-37397` cuda:0 运行中
+- **日志**：`~/runs/ratekv/internlm2_constrained_mckp_v2.log`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "uuid": "9326b1c7-8c5f-49d8-9c5e-28aabfb8d792",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ax8R3y4DAevzYBANeooewc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 58138,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 748
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 68_
+
+Running successfully — model loaded, profiles synthesized, allocations solved, now evaluating PPL on WikiText-2. No import errors.
+
+修复完成并已提交：
+- **修复内容**：从 profiling 脚本移植了 `patch_attention_internlm2` + `restore_attention_internlm2`（处理 InternLM2 的 fused `wqkv` + einops rearrange），替换了通用 `eval_ppl.patch_attention` 调用
+- **实验 ID**：`internlm2_constrained_mckp_v2`，在 `westd-37397` cuda:0 运行中
+- **日志**：`~/runs/ratekv/internlm2_constrained_mckp_v2.log`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 187117,
+  "duration_api_ms": 170943,
+  "num_turns": 24,
+  "stop_reason": "end_turn",
+  "session_id": "6c268e1f-3124-4e45-80e7-47ff1e7745ed",
+  "total_cost_usd": 1.00432925,
+  "usage": {
+    "input_tokens": 25,
+    "cache_creation_input_tokens": 47045,
+    "cache_read_input_tokens": 929602,
+    "output_tokens": 9748,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 47045,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 204,
+        "cache_read_input_tokens": 58138,
+        "cache_creation_input_tokens": 748,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 748
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1547,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016719999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 25,
+      "outputTokens": 9748,
+      "cacheReadInputTokens": 929602,
+      "cacheCreationInputTokens": 47045,
+      "webSearchRequests": 0,
+      "costUSD": 1.00265725,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d962c966-542b-4595-8962-0da8c052b594"
+}
+```
+
+</details>
+
+---

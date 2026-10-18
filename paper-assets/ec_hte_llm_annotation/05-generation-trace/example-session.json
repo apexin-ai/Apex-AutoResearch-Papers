@@ -12,6 +12,7 @@
     "bytes": 2355528,
     "sha256": "d1acc425e206e186357565ed8b415f5b6246914421c4234fc007cc25a867d657"
   },
+  "readable_path": "readable/conversations/reviewer-2-coordination.md",
   "paper_title": "When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects",
   "preview_selection": {
     "round": 1,

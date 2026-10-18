@@ -1,0 +1,77 @@
+# exp w2 domain bias design
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_exp_w2_domain_bias_design_20260515T191751_result.json`
+- **Structured JSON:** [`8cbe1381a376a40b4ccb.json`](../../sessions/8c/8cbe1381a376a40b4ccb.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+---
+
+## 完成总结
+
+### W2 审稿意见原文
+**R1-W2** (Round 1, 持续至 Round 3): "Wikipedia seed text 引入 domain bias，d0 recall >99% 可能部分反映文体特征而非 depth signal"
+**R3-W1**: "d0 recall >98% 严重膨胀 headline accuracy，要求在主表并列报告 d1-d3 accuracy"
+
+### 实验设计 & 结果
+
+**Sub-exp A — d1-d3 only 3-class RF（排除 d0 Wikipedia）**
+
+| Cell | d1-d3 Acc | ±std |
+|------|-----------|------|
+| pythia_nucleus095 | 72.2% | 0.6% |
+| pythia_temp09 | 69.5% | 0.4% |
+| pythia_topk50 | 59.1% | 0.4% |
+| gpt2xl_nucleus095 | 80.0% | 0.8% |
+| gpt2xl_temp09 | **81.8%** | 0.5% |
+| gpt2xl_topk50 | 68.4% | 0.8% |
+| olmo_nucleus095 | 73.6% | 0.5% |
+| olmo_temp09 | 76.7% | 0.7% |
+| olmo_topk50 | 66.6% | 0.5% |
+| **MEAN** | **72.0%** | — |
+
+所有 9 cells 远超 33.3% chance → 在纯合成文本（无 Wikipedia）中 depth signal 依然强烈。
+
+**Sub-exp B — Seed-stratified LOGO（10-fold）**
+- Mean: 64.0%，所有 cells 均 >33% chance
+- LOGO 比 in-distribution 低 ~8pp（72%→64%），说明部分信号与 seed article 相关，但主要信号来自 depth
+- gpt2xl_temp09 最高 (76.7%)，topk50 系列最低
+
+**Sub-exp C — 负对照（depth vs seed group 预测）**
+
+| | Depth Pred | Seed Group Pred | Chance | Ratio |
+|---|---|---|---|---|
+| Mean | 72.0% | 20.8% | 10.0% | **3.5x** |
+
+Features 编码 depth 的强度是编码 topic 的 **3.5 倍**。Seed group 预测虽然 >chance（20% vs 10%），但这是预期的——不同 Wikipedia 文章固有的 perplexity 分布不同。关键是 depth 信号远远压倒 domain 信号。
+
+### Rebuttal 要点
+1. 排除 d0 后 3-class accuracy **72.0%**（chance=33.3%），证明 depth signal 存在于纯合成数据中
+2. Seed-stratified LOGO **64.0%** 证明信号跨文章 topic 泛化
+3. 负对照 depth/topic ratio **3.5x** 量化证明 features 主要编码 depth 而非 domain
+
+### 产出状态
+- 脚本：`src/w2_domain_bias.py` ✓
+- Registry：`w2_domain_bias_001` (status=DONE, conclusion=success) ✓
+- 结果 JSON：`results/w2_domain_bias/w2_domain_bias_results.json` ✓
+- Artifact 已注册 ✓
+
+### 注意事项
+Seed group 预测 ~20%（2x chance）需要在论文中诚实报告——部分 feature variance 与 seed article 相关，但 depth signal 是主导因素（3.5x ratio）。建议在 rebuttal 中措辞："While features show weak correlation with seed article identity (20.8% vs 10% chance), the depth signal dominates by a factor of 3.5×, and d1-d3 only accuracy of 72.0% confirms depth discrimination persists entirely within synthetic text."
+
+---

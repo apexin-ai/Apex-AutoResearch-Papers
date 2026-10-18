@@ -1,0 +1,52 @@
+# analysis cross strategy conditional decomp
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_cross_strategy_conditional_decomp_20260518T175942_result.json`
+- **Structured JSON:** [`08f0ef9fbbb4b717b6ab.json`](../../sessions/08/08f0ef9fbbb4b717b6ab.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+数据完整。结果已保存到 `pipeline_conditional_decomp.json`。
+
+关键发现：
+
+**Overall Aggregated (3 models, 180k samples)**
+
+| Route | N | Depth 4-class Acc | Mean d1-d3 BalAcc |
+|-------|---|-------------------|-------------------|
+| Correct | 103,498 | 0.726 | — |
+| Wrong | 76,502 | 0.680 | — |
+| Mean gap | — | **+0.046** | **+0.315** |
+
+**Per-Model Breakdown**
+
+| Model | Route | N | Depth Acc | d1-d3 BalAcc | Gap (Acc) | Gap (d1d3) |
+|-------|-------|---|-----------|-------------|-----------|------------|
+| Pythia-1.4B | Correct | 31,374 | 0.666 | 0.669 | -0.057 | +0.238 |
+| | Wrong | 28,626 | 0.723 | 0.431 | | |
+| OLMo-1B | Correct | 32,886 | 0.724 | 0.699 | +0.063 | +0.284 |
+| | Wrong | 27,114 | 0.661 | 0.415 | | |
+| GPT-2 XL | Correct | 39,238 | 0.776 | 0.750 | +0.132 | +0.423 |
+| | Wrong | 20,762 | 0.644 | 0.327 | | |
+
+**值得注意的 pattern：**
+
+1. **4-class accuracy gap 很小甚至反转**（Pythia 为 -0.057），因为错误路由的样本中 d0 被大量预测为正确（~99.5% acc），掩盖了 d1-d3 的大幅下降。
+2. **d1-d3 balanced accuracy gap 非常大**（均值 +0.315），这才是真实的 routing error impact。错误路由时 d1-d3 balacc 降到 0.33-0.43。
+3. **per_depth_class 显示**：d0 在错误路由下反而更准（~99.6% vs ~98.2%），但 d1 从 ~0.79 降到 ~0.40，d2 从 ~0.61 降到 ~0.36，d3 从 ~0.71 降到 ~0.41。错误路由主要影响是把 d1-d3 samples 误判为 d0。
+
+---

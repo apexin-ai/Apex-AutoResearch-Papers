@@ -1,0 +1,87 @@
+# reviewer / loop_2.md
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_2.md`
+- **Structured JSON:** [`984f26bce4f3206302ae.json`](../../sessions/98/984f26bce4f3206302ae.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 2
+reason: max_wall_time
+updated: '2026-05-15T12:14:46+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 服务器 cqa1-38874 只有一张 RTX PRO 6000 Blackwell (98GB)，cuda:0 独占——同一时刻只能跑一个 vLLM 推理实验
+- LLaMA 模型是 **nvidia/Llama-3.3-70B-Instruct-FP8**（15 shards, 72.7GB），绝对不能用 neuralmagic 版本下载/补全，会污染权重
+- vLLM 0.20.2 有 fork 死锁 bug：**torch/networkx 在 vLLM init 之前加载会导致 EngineCore futex 死锁**。所有新脚本必须用两阶段架构（CPU decompose 分进程 → GPU extract vLLM-first）或 CUDA_VISIBLE_DEVICES='' 保护
+- ssh_read_only 不允许 `|` `;` `&&` `>` 等 metacharacters，需要分开调用
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: cqa1-38874 (root), 工作目录 `/root/schema-dag-extraction`
+- **Python**: `/root/miniconda3/bin/python` (conda base 环境)
+- **Qwen3-32B-FP8**: `/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/` (7 shards)
+- **LLaMA-3.3-70B-FP8**: `/root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/` (15 shards, 72.7GB)
+- **Few-NERD**: `/root/schema-dag-extraction/data/parquet/test.parquet` (1000 samples)
+- **MAVEN**: `/root/schema-dag-extraction/data/maven_parquet/valid.parquet` (8042 sentences, 149 active types)
+- **FewRel**: `/root/schema-dag-extraction/data/fewrel_parquet/{train,val}.parquet` (80 relations)
+- **Embeddings**: `artifacts/type_embeddings.pt` (Qwen3 Few-NERD), `artifacts/fewrel_qwen3_{embeddings,sim_matrix}.pt`, `artifacts/maven_minilm_{embeddings,sim_matrix}.pt`
+- **活跃进程**: 上次检查 GPU 空闲（FewRel formal 启动失败，exp-008 已完成）。需重新确认。
+- **本地 workspace**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/`
+
+### 3. 📊 当前状态
+
+**刚完成审查的关键结果**:
+- **exp-008 SDGD-zero (Few-NERD)**: DONE。**所有分解模式 F1 低于 single_pass (0.445)**。sdgd_zero=0.251 < random_batch=0.320 < per_type=0.292 << single_pass=0.445。Root cause: 小 batch over-prediction + union merge amplification。诊断完成，已实现两个改进：min_batch_size=8 + confidence-gated merge (SDGD-v2)
+- **FewRel formal 启动失败**: 缺少 `--mode` 参数，PID 已死，GPU 空闲。待修复重发
+- **exp-012 (LLaMA)**: 脚本就绪 (`scripts/submit_exp012.sh`)，模型就绪，待 GPU 空闲
+- **FewRel Qwen3 embeddings**: 已计算完成 (`artifacts/fewrel_qwen3_embeddings.pt`, BCS mean=0.879)
+- **SDGD-v2 scripts**: `scripts/run_sdgd_v2_fewnerd.sh` + `scripts/run_sdgd_v2_maven_minilm.sh` 就绪
+
+**Registry**: exp008_sdgd_zero_fewnerd=DONE(failed conclusion，实际结果已出), fewrel_pilot=DONE(success), exp004_maven_bcs=DONE(negative), exp002=DONE(success), exp003a=DONE(success), exp-004=DONE(success), exp001=DONE(success)。无 RUNNING。
+
+**等待**: Director 决策 FewRel formal 重发 + SDGD-v2 ablation + exp-012 排队
+
+### 4. 📋 待办（条件触发式）
+- FewRel formal 修复重发 worker 完成 → 核实 GPU 状态 + 模型加载 + 进度
+- SDGD-v2 (min_batch_size + confidence merge) 跑完 → **关键审查**：F1 是否超过 random_batch (0.320)？超过 = SDGD story 可救；不超过 = SDGD 作为诊断工具而非优化方法
+- exp-012 (LLaMA) 跑完 → 核实 cross-model replication：LLaMA 是否也表现出 BCS→quality 负相关？
+- FewRel formal 结果出 → 核实 RE 任务的 BCS→accuracy 信号强度，完成 2×3 evidence matrix 的 FewRel 列
+- SDGD MAVEN MiniLM 结果出 → 与 Few-NERD SDGD 对比，MiniLM pairwise signal (r=0.12) 是否转化为更好的 decomposition
+- Director 转发 framing 提案 → 立即 Read negative-framing-review skill，四维度审查
+
+### 5. 🎯 战略上下文
+
+**核心假设**: Type confusability (BCS = max pairwise cosine similarity) independently drives quality degradation in training-free LLM IE。
+
+**Evidence matrix 现状** (Qwen3/MiniLM × Few-NERD/MAVEN/FewRel):
+| | Few-NERD | MAVEN | FewRel |
+|---|---|---|---|
+| Qwen3 | ρ=-0.293 (p=0.02) ✓ | ρ=+0.189 ✗ (正方向) | pilot 强信号，formal pending |
+| MiniLM | ρ=+0.005 ✗ | ρ=+0.208 ✗ | pilot Δ=21-50pp ✓ |
+
+**MAVEN 正方向已确认是 intrinsic property**（centrality confound），非 embedding artifact——MiniLM 也正。但 MiniLM pairwise SCS→confusion 在 MAVEN 上显著 (r=0.12, p≈0)，Qwen3 无信号。
+
+**最容易判断错的事**:
+1. **exp-008 结论不是"SDGD 失败"——是 naive decomposition + union merge 失败**。min_batch_size + confidence merge 可能救回来，SDGD-v2 结果出来前不要下最终结论
+2. **Registry 里 exp008 显示 conclusion="failed"**——这是第一次死锁的标记，不是实验结论。实际 4 modes 数据已完整（analysis_summary.json 有全部数据）
+3. **MAVEN 的 per-type BCS→F1 正方向不是 bug**——不要再建议"换 embedding 试试"，已经换过 MiniLM 验证了，是 MAVEN event types 的 intrinsic property
+4. **Qwen3 embedding BCS mean=0.879 (FewRel)**——高度各向异性压缩，BCS range 窄。如果 FewRel formal 用 Qwen3 embedding 信号弱，要考虑 anisotropy 是原因而非假设被否定
+
+
+---

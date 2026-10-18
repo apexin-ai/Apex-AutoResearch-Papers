@@ -1,0 +1,962 @@
+# writing discussion auc fix
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_writing_discussion_auc_fix_20260516T111900.log`
+- **Structured JSON:** [`741211cf31d45a2f3e75.json`](../../sessions/74/741211cf31d45a2f3e75.json)
+
+## Before a recorded user message
+
+19 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__edit_paper_section",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "957e4f84-4413-4ce2-880b-f7df450201ba",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778941800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ddee3b77-6938-431f-9c52-d161b0cc6859",
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first read the discussion.tex file to find the relevant content, then use the MCP tool to edit it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "b51e4bb4-dc29-431c-99fd-b2db87581431",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HFRihJE2t1AtpSQpyGHDHN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11266,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11266
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Qtj8449xTJ1qArkBtYK24b`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__edit_paper_section",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "ce8cc1cb-5d41-4183-89ac-cb42635131fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HFRihJE2t1AtpSQpyGHDHN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11266,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11266
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T11:19:14.680Z_
+
+<details><summary>↩ Tool result · `toolu_01Qtj8449xTJ1qArkBtYK24b`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__edit_paper_section"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "a8844737-5477-4725-9dd1-340c90daa507",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__edit_paper_section"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__edit_paper_section",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first read the discussion.tex file to see its current content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "27271946-9b29-41b2-9e41-5ee427c6781c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016d25f3QuqWcjvUunaCgFqS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 878,
+      "cache_read_input_tokens": 23107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 878
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01TFaC7yxgYymFnCSzZroUtV`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "discussion.tex",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "76729c5b-06c2-4824-80ff-8b07d6f13978",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016d25f3QuqWcjvUunaCgFqS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 878,
+      "cache_read_input_tokens": 23107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 878
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T11:19:18.084Z_
+
+<details><summary>↩ Tool result · `toolu_01TFaC7yxgYymFnCSzZroUtV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'discussion.tex'\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "6fb33c58-c187-4dc8-b275-d9e8ea7bd498",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'discussion.tex'\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'discussion.tex'\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Let me find the file directly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "2e5bd7c4-61d6-464d-b0f8-9d3051e2b347",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBUBtgmm2WxV2nGLsVs53q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 299,
+      "cache_read_input_tokens": 23985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 299
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_013auLP7bzGtPXwz5v47MgXT`</summary>
+
+```json
+{
+  "pattern": "**/discussion.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "1f01b7e0-2ec8-4841-bbb2-1ace70d3b8c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBUBtgmm2WxV2nGLsVs53q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 299,
+      "cache_read_input_tokens": 23985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 299
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T11:19:23.421Z_
+
+<details><summary>↩ Tool result · `toolu_013auLP7bzGtPXwz5v47MgXT`</summary>
+
+```text
+docs/paper/discussion.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "d2100257-fff9-4d7c-97d8-21c37754559a",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/discussion.tex"
+    ],
+    "durationMs": 14,
+    "numFiles": 1,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014nCyYdUnkzB1WG4rFVssLU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "bbae2306-e387-4fe5-91c7-b1164eec05fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019kZ1hUasm5S8Pp4Zgi3zmT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 128,
+      "cache_read_input_tokens": 24284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 128
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T11:19:27.683Z_
+
+<details><summary>↩ Tool result · `toolu_014nCyYdUnkzB1WG4rFVssLU`</summary>
+
+```text
+1	\section{Discussion and Conclusion}
+2	\label{sec:discussion}
+3	
+4	We formalized recursive generation depth estimation and showed that a compact feature set dominated by perplexity tail statistics achieves 70--85\% four-class accuracy ($\mathrm{EDD}_{0.75}{=}4$ across models; \S\ref{sec:atlas:edd}), with five features sufficing for 97.6\% of full performance and classifier-agnostic convergence within $\leq$0.4pp.
+5	The dominant pair (\texttt{p90\_ppl} top-2 in 9/9 cells, \texttt{var\_surprisal} in 8/9 under SHAP) generalizes across the three studied model families without retraining, making depth estimation a candidate early-warning signal for model collapse~\cite{shumailov2024_nature} within this experimental scope.
+6	Recent work corroborates this connection, identifying entropy decline as a measurable signal of recursive degradation that parallels the tail erosion our features capture~\cite{shi2025_closer_look}.
+7	Zero-shot LLM baselines reinforce this view: DeepSeek V3.2 (36.2\%) and Qwen2.5-7B (30.4\%) exhibit complementary failure modes---the former predicts nearly all samples as d0 while the latter is biased toward d1---yet both perform near chance, confirming that depth discrimination requires the targeted statistical features our pipeline extracts rather than general language understanding.
+8	
+9	Cross-strategy transfer remains the primary bottleneck (59.1\% vs.\ 66.4\% cross-model), with the temperature-induced d1/d2 AUC inversion making single-classifier deployment across unknown decoding strategies infeasible.
+10	A multi-temperature ablation ($\tau \in [0.5, 1.1]$, Pythia-1.4B; Appendix~\ref{app:multi_tau}) reinforces this: within-$\tau$ depth discrimination is robust for $\tau \leq 0.9$ (d1v2 AUC $>0.80$), but cross-$\tau$ transfer (mean 46.7\%) is harder than cross-strategy transfer (59.1\%), confirming that strategy-conditioned classifiers are necessary.
+11	A two-stage pipeline---first identifying the decoding strategy, then applying a strategy-conditioned depth classifier---could address this.
+12	Different strategies produce distinguishable perplexity signatures (top-$k$ yields narrower distributions; temperature sampling produces heavier tails), suggesting that automatic strategy identification is technically feasible, though independent validation on held-out strategy sets is needed.
+13	As an alternative, when deployment is restricted to a single platform or API provider, the decoding strategy is typically known a priori, and a strategy-conditioned classifier can be applied directly.
+14	
+15	\paragraph{Depth-graduated data curation.}
+16	Current data curation operates on a binary human-vs-machine distinction~\cite{dsir2023,qurating2024}.
+17	Depth estimation enables a finer-grained alternative: retain low-depth generations (d1) while filtering high-depth text (d3+) where tail erosion has degraded quality.
+18	A proof-of-concept LoRA fine-tuning experiment shows RF depth-based filtering matches unfiltered performance with 44\% of the data, significantly outperforming size-matched random subsampling at all stringency tiers (Appendix~\ref{app:curation_poc}).
+19	Cross-strategy deployment would first require strategy identification to avoid boundary inversion (\S\ref{sec:gen:crossstrategy}).
+20	
+21	\paragraph{Toward a provenance toolkit.}
+22	Depth estimation complements existing provenance methods---watermarking~\cite{kirchenbauer2023_watermark} (requires generator cooperation) and source attribution~\cite{uchendu2020_attribution} (identifies model, not history)---by characterizing \emph{iterative reuse} regardless of generator identity~\cite{bevendorff2025_two_paradigms}.
+23	A layered system combining watermark presence, source model, and recursive depth could support more nuanced data auditing than any single method.
+24	
+25	\paragraph{Mixed-depth documents.}
+26	Sliding-window depth estimation at the segment level (256--512 tokens) could extend the approach to mixed-depth documents, enabling paragraph-level curation even from partially contaminated content.
+27	
+28	\paragraph{Adversarial robustness.}
+29	Perplexity tail statistics exhibit inherent resistance to surface-level transformations (paraphrasing, back-translation) that preserve surprisal structure, though robustness to targeted distribution-aware attacks remains unverified.
+30	
+31	\paragraph{Scaling behavior.}
+32	Our cross-scale experiments (\S\ref{sec:gen:crossscale}) confirm that depth signal persists at 7--8B scale (Llama-3.1-8B: 70.2\%, Qwen2.5-7B: 60.1\%).
+33	Llama-3.1-8B matches the smaller models at $\mathrm{EDD}{=}4$ with monotonic AUC decay, while Qwen2.5-7B achieves $\mathrm{EDD}_{T{=}0.70} > 5$ via a non-monotonic (U-shaped) trajectory---exceeding the $\mathrm{EDD}{=}4$ at 1--1.5B.
+34	Per-step signal strength decreases (mean consecutive AUC 0.80 vs.\ 0.88 at 1--1.5B), consistent with larger models generating more fluent text with narrower perplexity distributions.
+35	The divergent AUC trajectories (monotonic for Llama-3.1 vs.\ U-shaped for Qwen2.5-Instruct) suggest that instruction tuning may alter degradation dynamics at high recursion depth, an observation warranting further investigation with controlled base/instruct pairs.
+36	Tail erosion is driven by retraining on one's own output distribution rather than model capacity per se, explaining why the signal attenuates but does not vanish; further scaling beyond 8B may require richer feature sets (e.g., attention entropy or generation diversity metrics) to maintain discriminability.
+37	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "f23403d2-bf0b-42e5-8f70-22a58c39ddbd",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex",
+      "content": "\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\nWe formalized recursive generation depth estimation and showed that a compact feature set dominated by perplexity tail statistics achieves 70--85\\% four-class accuracy ($\\mathrm{EDD}_{0.75}{=}4$ across models; \\S\\ref{sec:atlas:edd}), with five features sufficing for 97.6\\% of full performance and classifier-agnostic convergence within $\\leq$0.4pp.\nThe dominant pair (\\texttt{p90\\_ppl} top-2 in 9/9 cells, \\texttt{var\\_surprisal} in 8/9 under SHAP) generalizes across the three studied model families without retraining, making depth estimation a candidate early-warning signal for model collapse~\\cite{shumailov2024_nature} within this experimental scope.\nRecent work corroborates this connection, identifying entropy decline as a measurable signal of recursive degradation that parallels the tail erosion our features capture~\\cite{shi2025_closer_look}.\nZero-shot LLM baselines reinforce this view: DeepSeek V3.2 (36.2\\%) and Qwen2.5-7B (30.4\\%) exhibit complementary failure modes---the former predicts nearly all samples as d0 while the latter is biased toward d1---yet both perform near chance, confirming that depth discrimination requires the targeted statistical features our pipeline extracts rather than general language understanding.\n\nCross-strategy transfer remains the primary bottleneck (59.1\\% vs.\\ 66.4\\% cross-model), with the temperature-induced d1/d2 AUC inversion making single-classifier deployment across unknown decoding strategies infeasible.\nA multi-temperature ablation ($\\tau \\in [0.5, 1.1]$, Pythia-1.4B; Appendix~\\ref{app:multi_tau}) reinforces this: within-$\\tau$ depth discrimination is robust for $\\tau \\leq 0.9$ (d1v2 AUC $>0.80$), but cross-$\\tau$ transfer (mean 46.7\\%) is harder than cross-strategy transfer (59.1\\%), confirming that strategy-conditioned classifiers are necessary.\nA two-stage pipeline---first identifying the decoding strategy, then applying a strategy-conditioned depth classifier---could address this.\nDifferent strategies produce distinguishable perplexity signatures (top-$k$ yields narrower distributions; temperature sampling produces heavier tails), suggesting that automatic strategy identification is technically feasible, though independent validation on held-out strategy sets is needed.\nAs an alternative, when deployment is restricted to a single platform or API provider, the decoding strategy is typically known a priori, and a strategy-conditioned classifier can be applied directly.\n\n\\paragraph{Depth-graduated data curation.}\nCurrent data curation operates on a binary human-vs-machine distinction~\\cite{dsir2023,qurating2024}.\nDepth estimation enables a finer-grained alternative: retain low-depth generations (d1) while filtering high-depth text (d3+) where tail erosion has degraded quality.\nA proof-of-concept LoRA fine-tuning experiment shows RF depth-based filtering matches unfiltered performance with 44\\% of the data, significantly outperforming size-matched random subsampling at all stringency tiers (Appendix~\\ref{app:curation_poc}).\nCross-strategy deployment would first require strategy identification to avoid boundary inversion (\\S\\ref{sec:gen:crossstrategy}).\n\n\\paragraph{Toward a provenance toolkit.}\nDepth estimation complements existing provenance methods---watermarking~\\cite{kirchenbauer2023_watermark} (requires generator cooperation) and source attribution~\\cite{uchendu2020_attribution} (identifies model, not history)---by characterizing \\emph{iterative reuse} regardless of generator identity~\\cite{bevendorff2025_two_paradigms}.\nA layered system combining watermark presence, source model, and recursive depth could support more nuanced data auditing than any single method.\n\n\\paragraph{Mixed-depth documents.}\nSliding-window depth estimation at the segment level (256--512 tokens) could extend the approach to mixed-depth documents, enabling paragraph-level curation even from partially contaminated content.\n\n\\paragraph{Adversarial robustness.}\nPerplexity tail statistics exhibit inherent resistance to surface-level transformations (paraphrasing, back-translation) that preserve surprisal structure, though robustness to targeted distribution-aware attacks remains unverified.\n\n\\paragraph{Scaling behavior.}\nOur cross-scale experiments (\\S\\ref{sec:gen:crossscale}) confirm that depth signal persists at 7--8B scale (Llama-3.1-8B: 70.2\\%, Qwen2.5-7B: 60.1\\%).\nLlama-3.1-8B matches the smaller models at $\\mathrm{EDD}{=}4$ with monotonic AUC decay, while Qwen2.5-7B achieves $\\mathrm{EDD}_{T{=}0.70} > 5$ via a non-monotonic (U-shaped) trajectory---exceeding the $\\mathrm{EDD}{=}4$ at 1--1.5B.\nPer-step signal strength decreases (mean consecutive AUC 0.80 vs.\\ 0.88 at 1--1.5B), consistent with larger models generating more fluent text with narrower perplexity distributions.\nThe divergent AUC trajectories (monotonic for Llama-3.1 vs.\\ U-shaped for Qwen2.5-Instruct) suggest that instruction tuning may alter degradation dynamics at high recursion depth, an observation warranting further investigation with controlled base/instruct pairs.\nTail erosion is driven by retraining on one's own output distribution rather than model capacity per se, explaining why the signal attenuates but does not vanish; further scaling beyond 8B may require richer feature sets (e.g., attention entropy or generation diversity metrics) to maintain discriminability.\n",
+      "numLines": 37,
+      "startLine": 1,
+      "totalLines": 37
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Found the exact text on line 34. Let me apply the edit.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "d35c91c5-80e8-4994-966a-6eee61704c6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HgT1ZCRuXfrht6djUcqf89",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1643,
+      "cache_read_input_tokens": 24412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1643
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__edit_paper_section · `toolu_018Tech7uc1oiqwdybpbe9xD`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "section": "discussion",
+  "old_text": "mean consecutive AUC 0.80 vs.\\ 0.88 at 1--1.5B",
+  "new_text": "mean consecutive AUC ${\\approx}$0.78 vs.\\ ${\\approx}$0.85 at 1--1.5B"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "2f900764-9605-43a6-a105-1bdfa1ae65de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HgT1ZCRuXfrht6djUcqf89",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1643,
+      "cache_read_input_tokens": 24412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1643
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T11:19:32.356Z_
+
+<details><summary>↩ Tool result · `toolu_018Tech7uc1oiqwdybpbe9xD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex\", \"version\": 45, \"coverage\": \"87/101\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "e78137ff-eefb-49b2-a565-31e033d0546e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex\\\", \\\"version\\\": 45, \\\"coverage\\\": \\\"87/101\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex\", \"version\": 45, \"coverage\": \"87/101\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+修正完成。`discussion.tex` 第34行的 AUC 数字已从 `0.80 vs.\ 0.88` 改为 `${\approx}$0.78 vs.\ ${\approx}$0.85`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "uuid": "39fdc6d8-eed0-48ea-9ea4-88a4cf348ffa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017MKgG8EeJkaRpArZjEpo8e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 303,
+      "cache_read_input_tokens": 26055,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 303
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 19_
+
+修正完成。`discussion.tex` 第34行的 AUC 数字已从 `0.80 vs.\ 0.88` 改为 `${\approx}$0.78 vs.\ ${\approx}$0.85`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 26141,
+  "duration_api_ms": 26859,
+  "num_turns": 6,
+  "stop_reason": "end_turn",
+  "session_id": "a4dc4ffe-dd75-43c6-a64a-970ba4e2538f",
+  "total_cost_usd": 0.17758925,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 14517,
+    "cache_read_input_tokens": 133684,
+    "output_tokens": 750,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 14517,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 70,
+        "cache_read_input_tokens": 26055,
+        "cache_creation_input_tokens": 303,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 303
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1116,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001216,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 750,
+      "cacheReadInputTokens": 133684,
+      "cacheCreationInputTokens": 14517,
+      "webSearchRequests": 0,
+      "costUSD": 0.17637325,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e71f3812-9232-4c41-a5ca-caf7415dfe25"
+}
+```
+
+</details>
+
+---

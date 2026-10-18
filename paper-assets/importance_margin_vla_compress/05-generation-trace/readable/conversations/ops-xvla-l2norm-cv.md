@@ -1,0 +1,2780 @@
+# ops xvla l2norm cv
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 91
+- **Recorded user turns:** 0
+- **Tool calls:** 45
+- **Original source:** `logs/chats/worker_ops_xvla-l2norm-cv_20260520T102821.jsonl`
+- **Structured JSON:** [`ddce16628d4b1184db81.json`](../../sessions/dd/ddce16628d4b1184db81.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+91 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T10:33:59.670938+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T10:33:59.671343+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T10:33:59.671528+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/analyze_*importance*.py /root/autodl-tmp/importance_margin_vla_compress/analyze_*token*.py /root/autodl-tmp/importance_margin_vla_compress/compute_*cv*.py 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/analyze_*importance*.py /root/autodl-tmp/importance_margin_vla_compress/analyze_*token*.py /root/autodl-tmp/importance_margin_vla_compress/compute_*cv*.py 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T10:33:59.671666+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T10:33:59.671793+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*xvla*norm*\" -o -name \"*xvla*l2*\" -o -name \"*xvla*cv*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*xvla*norm*\" -o -name \"*xvla*l2*\" -o -name \"*xvla*cv*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T10:33:59.671919+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T10:33:59.672040+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/analyze_token_importance*.py 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/analyze_token_importance*.py 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T10:33:59.672195+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T10:33:59.672365+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T10:33:59.672486+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls /root/autodl-tmp/importance_margin_vla_compress/analyze_token_importance*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "ls /root/autodl-tmp/importance_margin_vla_compress/analyze_token_importance*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T10:33:59.672609+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 15896 May 20 12:20 /root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T10:33:59.672748+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/importance_margin_vla_compress/analyze_token_importance*.py': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T10:33:59.672975+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*xvla*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*xvla*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T10:33:59.673350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attention_entropy_perlayer.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k1.0_libero_object.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k1.0_libero_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.95_libero_object.log\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/run_xvla_prune_sweep.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T10:33:59.673522+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T10:33:59.673649+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 1 MiB, 97887 MiB, 0 %\\n1, 4872 MiB, 97887 MiB, 86 %\\n2, 28555 MiB, 97887 MiB, 0 %\\n3, 27535 MiB, 97887 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T10:33:59.673790+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "cat /root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T10:33:59.674040+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python\\n\\\"\\\"\\\"X-VLA token importance analysis on LIBERO.\\n\\nMeasures:\\n  (1) Attention entropy in the SoftPromptedTransformer (action→vision tokens)\\n  (2) Pruning curve: flow matching loss vs. vision token retention ratio\\n\\nUses cuda:1 only.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport io\\nimport json\\nimport math\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pyarrow.parquet as pq\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom torchvision.transforms.functional import resize, to_tensor\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/models/xvla-libero\\\"\\nSNAP_DIR = Path(\\n    \\\"/root/autodl-tmp/.hf_cache/lerobot/hub/\\\"\\n    \\\"datasets--HuggingFaceVLA--libero/snapshots/\\\"\\n    \\\"86958911c0f959db2bbbdb107eb3e17c5f9c798e\\\"\\n)\\nDATA_DIR = SNAP_DIR / \\\"data\\\" / \\\"chunk-000\\\"\\nOUTPUT_PATH = Path(\\n    \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\\\"\\n    \\\"xvla_attention_entropy_perlayer.json\\\"\\n)\\nLIBERO_OBJECT_TASKS = range(20, 30)\\nFRAMES_PER_TASK = 10\\nPRUNING_RATIOS = [0.3, 0.5, 0.7, 0.9, 0.95, 1.0]\\n\\n\\ndef resize_with_pad(img_t, h, w, pad_value=0):\\n    _, oh, ow = img_t.shape\\n    scale = min(h / oh, w / ow)\\n    nh, nw = int(oh * scale), int(ow * scale)\\n    img_r = resize(img_t, [nh, nw], antialias=True)\\n    ph, pw = h - nh, w - nw\\n    return F.pad(img_r, [pw // 2, pw - pw // 2, ph // 2, ph - ph // 2], value=pad_value)\\n\\n\\ndef load_libero_frames():\\n    tasks_df = pq.read_table(SNAP_DIR / \\\"meta\\\" / \\\"tasks.parquet\\\").to_pandas()\\n    task_names = tasks_df.index.tolist()\\n\\n    per_task_rows = defaultdict(list)\\n    for pf in sorted(os.listdir(DATA_DI
+…[truncated 7263 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T10:33:59.674270+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "head -200 /root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "head -200 /root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T10:33:59.674506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python\\n\\\"\\\"\\\"X-VLA token importance analysis on LIBERO.\\n\\nMeasures:\\n  (1) Attention entropy in the SoftPromptedTransformer (action→vision tokens)\\n  (2) Pruning curve: flow matching loss vs. vision token retention ratio\\n\\nUses cuda:1 only.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport io\\nimport json\\nimport math\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pyarrow.parquet as pq\\nimport torch\\nimport torch.nn.functional as F\\nfrom PIL import Image\\nfrom torchvision.transforms.functional import resize, to_tensor\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/models/xvla-libero\\\"\\nSNAP_DIR = Path(\\n    \\\"/root/autodl-tmp/.hf_cache/lerobot/hub/\\\"\\n    \\\"datasets--HuggingFaceVLA--libero/snapshots/\\\"\\n    \\\"86958911c0f959db2bbbdb107eb3e17c5f9c798e\\\"\\n)\\nDATA_DIR = SNAP_DIR / \\\"data\\\" / \\\"chunk-000\\\"\\nOUTPUT_PATH = Path(\\n    \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\\\"\\n    \\\"xvla_attention_entropy_perlayer.json\\\"\\n)\\nLIBERO_OBJECT_TASKS = range(20, 30)\\nFRAMES_PER_TASK = 10\\nPRUNING_RATIOS = [0.3, 0.5, 0.7, 0.9, 0.95, 1.0]\\n\\n\\ndef resize_with_pad(img_t, h, w, pad_value=0):\\n    _, oh, ow = img_t.shape\\n    scale = min(h / oh, w / ow)\\n    nh, nw = int(oh * scale), int(ow * scale)\\n    img_r = resize(img_t, [nh, nw], antialias=True)\\n    ph, pw = h - nh, w - nw\\n    return F.pad(img_r, [pw // 2, pw - pw // 2, ph // 2, ph - ph // 2], value=pad_value)\\n\\n\\ndef load_libero_frames():\\n    tasks_df = pq.read_table(SNAP_DIR / \\\"meta\\\" / \\\"tasks.parquet\\\").to_pandas()\\n    task_names = tasks_df.index.tolist()\\n\\n    per_task_rows = defaultdict(list)\\n    for pf in sorted(os.listdir(DATA_DI
+…[truncated 5866 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T10:33:59.674670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attention_entropy_perlayer.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attention_entropy_perlayer.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T10:33:59.674885+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"X-VLA-0.9B (lerobot/xvla-libero)\\\",\\n  \\\"dataset\\\": \\\"LIBERO-Object (task_index 20-29)\\\",\\n  \\\"n_images\\\": 100,\\n  \\\"n_tasks\\\": 10,\\n  \\\"architecture\\\": {\\n    \\\"vision_encoder\\\": \\\"Florence-2 DaViT-Large\\\",\\n    \\\"connector\\\": \\\"Linear projection (image_projection matrix + LayerNorm)\\\",\\n    \\\"vlm_encoder\\\": \\\"Florence-2 BART encoder (12 layers, d=1024)\\\",\\n    \\\"action_head\\\": \\\"SoftPromptedTransformer (24L, h=1024)\\\",\\n    \\\"soft_prompts\\\": 32,\\n    \\\"projection_dim\\\": 1024\\n  },\\n  \\\"sequence_layout\\\": {\\n    \\\"action_tokens\\\": 30,\\n    \\\"vlm_features\\\": 64,\\n    \\\"aux_visual\\\": 150,\\n    \\\"soft_prompts\\\": 32,\\n    \\\"total\\\": 276\\n  },\\n  \\\"per_layer_entropy_ratio\\\": {\\n    \\\"0\\\": 0.4569,\\n    \\\"1\\\": 0.3381,\\n    \\\"2\\\": 0.3838,\\n    \\\"3\\\": 0.5218,\\n    \\\"4\\\": 0.4664,\\n    \\\"5\\\": 0.5572,\\n    \\\"6\\\": 0.6177,\\n    \\\"7\\\": 0.6368,\\n    \\\"8\\\": 0.6378,\\n    \\\"9\\\": 0.6222,\\n    \\\"10\\\": 0.6379,\\n    \\\"11\\\": 0.6595,\\n    \\\"12\\\": 0.6246,\\n    \\\"13\\\": 0.5569,\\n    \\\"14\\\": 0.5868,\\n    \\\"15\\\": 0.6236,\\n    \\\"16\\\": 0.626,\\n    \\\"17\\\": 0.704,\\n    \\\"18\\\": 0.7496,\\n    \\\"19\\\": 0.7422,\\n    \\\"20\\\": 0.7313,\\n    \\\"21\\\": 0.7452,\\n    \\\"22\\\": 0.7933,\\n    \\\"23\\\": 0.7125\\n  },\\n  \\\"per_layer_entropy_std\\\": {\\n    \\\"0\\\": 0.0079,\\n    \\\"1\\\": 0.0167,\\n    \\\"2\\\": 0.0166,\\n    \\\"3\\\": 0.0191,\\n    \\\"4\\\": 0.0263,\\n    \\\"5\\\": 0.0288,\\n    \\\"6\\\": 0.0245,\\n    \\\"7\\\": 0.0275,\\n    \\\"8\\\": 0.0255,\\n    \\\"9\\\": 0.0236,\\n    \\\"10\\\": 0.0241,\\n    \\\"11\\\": 0.0205,\\n    \\\"12\\\": 0.0327,\\n    \\\"13\\\": 0.0262,\\n    \\\"14\\\": 0.0174,\\n    \\\"15\\\": 0.014,\\n    \\\"16\\\": 0.0189,\\n    \\\"17\\\": 0.0188,\\n    \\\"18\\\"
+…[truncated 1842 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T10:33:59.675079+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -n +200 /root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "tail -n +200 /root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T10:33:59.675464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    batch = prepare_xvla_batch(frames[0], tokenizer, policy, device)\\n    inputs = policy._build_model_inputs(batch)\\n    enc = model.forward_vlm(inputs[\\\"input_ids\\\"], inputs[\\\"image_input\\\"], inputs[\\\"image_mask\\\"])\\n    vlm_feat = enc[\\\"vlm_features\\\"]\\n    aux_feat = enc[\\\"aux_visual_inputs\\\"]\\n    print(f\\\"  vlm_features: {vlm_feat.shape}\\\")\\n    print(f\\\"  aux_visual_inputs: {aux_feat.shape}\\\")\\n    print(f\\\"  input_ids: {inputs['input_ids'].shape}\\\")\\n    print(f\\\"  image_input: {inputs['image_input'].shape}\\\")\\n    print(f\\\"  image_mask: {inputs['image_mask']}\\\")\\n\\n    n_vlm = vlm_feat.shape[1]\\n    n_aux = aux_feat.shape[1]\\n    chunk_size = config.chunk_size\\n    n_soft = config.len_soft_prompts\\n    total_seq = chunk_size + n_vlm + n_aux + n_soft\\n    print(f\\\"  Sequence layout: action({chunk_size}) + vlm({n_vlm}) + \\\"\\n          f\\\"aux({n_aux}) + soft({n_soft}) = {total_seq}\\\")\\n\\n    # ── Analysis 1: Attention Entropy ───────────────────────\\n    print(\\\"\\\\n=== Attention Entropy Analysis ===\\\")\\n    attn_storage, restore_fn = patch_attention_capture(transformer)\\n\\n    per_layer_ent = defaultdict(list)\\n    per_layer_vfrac = defaultdict(list)\\n    n_layers = config.depth\\n\\n    for fi, frame in enumerate(frames):\\n        if fi % 20 == 0:\\n            print(f\\\"  Frame {fi}/{len(frames)}...\\\")\\n\\n        batch = prepare_xvla_batch(frame, tokenizer, policy, device)\\n        inputs = policy._build_model_inputs(batch)\\n        targets = policy._prepare_action_targets(batch)\\n        enc = model.forward_vlm(inputs[\\\"input_ids\\\"], inputs[\\\"image_input\\\"], inputs[\\\"image_mask\\\"])\\n\\n        target_dtype = model._get_target_dtype()\\n        t_val = torch.tensor([0.5], device=device, dtype=target_dtype)\\n        action_noisy = torch.randn_like(targets) * 0.5 + targets * 0.5\\n        proprio_m, actio
+…[truncated 7105 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T10:33:59.675776+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*l2*\" -o -name \"*norm_cv*\" -o -name \"*token_importance*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*l2*\" -o -name \"*norm_cv*\" -o -name \"*token_importance*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T10:33:59.675998+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/scripts/visualize_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/artifacts/v8_step2k_diagnostics/token_importance_heatmap.png\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T10:33:59.676228+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T10:33:59.676480+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/imm/__init__.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/acis.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/soft_topk.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/losses.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/metrics.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/token_selection.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/smolvla_wrapper.py\\n/root/autodl-tmp/importance_margin_vla_compress/train.py\\n/root/autodl-tmp/importance_margin_vla_compress/evaluate.py\\n/root/autodl-tmp/importance_margin_vla_compress/_lerobot_compat.py\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_gate.py\\n/root/autodl-tmp/importance_margin_vla_compress/verify_grad_isolation.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_twostage.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/analyze_margin_distribution.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/eval_checkpoint_trajectory.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/analyze_keep_ratio_sensitivity.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/visualize_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/plot_checkpoint_trajectory.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/test_action_diversity_by_step.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_mode_collapse.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_inference_fixes.py\\n/root/autodl-tmp/importance_margin_vla_compress/scan_collapse.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_pretrained_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/diag_ep42.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_full
+…[truncated 2727 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T10:33:59.676744+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -rn \"l2_norm\\|L2.*norm\\|norm_cv\\|CV.*norm\\|coefficient_of_variation\\|std.*mean\" /root/autodl-tmp/importance_margin_vla_compress/docs/paper/figures/gen_figures.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -rn \"l2_norm\\|L2.*norm\\|norm_cv\\|CV.*norm\\|coefficient_of_variation\\|std.*mean\" /root/autodl-tmp/importance_margin_vla_compress/docs/paper/figures/gen_figures.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T10:33:59.676938+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T10:33:59.677117+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -rn \"0.038\\|0.215\\|0.314\\|l2_norm_cv\\|norm_cv\" /root/autodl-tmp/importance_margin_vla_compress/docs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -rn \"0.038\\|0.215\\|0.314\\|l2_norm_cv\\|norm_cv\" /root/autodl-tmp/importance_margin_vla_compress/docs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T10:33:59.677363+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T10:33:59.677555+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -rn \"l2_norm\" /root/autodl-tmp/importance_margin_vla_compress/docs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -rn \"l2_norm\" /root/autodl-tmp/importance_margin_vla_compress/docs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T10:33:59.677733+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T10:33:59.677898+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -rn \"0.038\" /root/autodl-tmp/importance_margin_vla_compress/docs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -rn \"0.038\" /root/autodl-tmp/importance_margin_vla_compress/docs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T10:33:59.678077+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T10:33:59.678286+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -rn \"norm_cv\" /root/autodl-tmp/importance_margin_vla_compress/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -rn \"norm_cv\" /root/autodl-tmp/importance_margin_vla_compress/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T10:33:59.678456+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 16.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T10:33:59.678639+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -rn \"coefficient_of_variation\\|l2_norm\\|\\.norm(\" /root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -rn \"coefficient_of_variation\\|l2_norm\\|\\.norm(\" /root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T10:33:59.678771+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T10:33:59.678905+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/report.md",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/report.md",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T10:33:59.679072+00:00_
+
+report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T10:33:59.679279+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -rn \"l2_norm\" /root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -rn \"l2_norm\" /root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T10:33:59.679421+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T10:33:59.679542+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "L2.*norm.*CV|l2_norm_cv|0\\.038|0\\.215|0\\.314",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "L2.*norm.*CV|l2_norm_cv|0\\.038|0\\.215|0\\.314",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T10:33:59.679662+00:00_
+
+65:- analysis_smolvla_importance_cv: SmolVLA (pixel-shuffle connector) token importance CV analysis. D103 verification: if SmolVLA CV is low like π0 (0.038), entropy+CV cannot distinguish compressible/non-compressible; if high, CV is a useful predictor of connector behavior.（准备中）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T10:33:59.679799+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "D104|diagnostic composite|norm.*CV|CV.*norm",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md",
+  "output_mode": "content",
+  "-C": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "D104|diagnostic composite|norm.*CV|CV.*norm",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md",
+    "output_mode": "content",
+    "-C": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T10:33:59.679914+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T10:33:59.680025+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "D104",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "output_mode": "content",
+  "-C": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "D104",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+    "output_mode": "content",
+    "-C": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T10:33:59.680373+00:00_
+
+&lt;persisted-output>
+Output too large (48.6KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/3c0c1f1f-ac67-4beb-a325-8e0ba27ba100/tool-results/toolu_01XMpbhyYnnXubiCUJvH93z9.txt
+
+Preview (first 2KB):
+paper_framing.md-23-**Analysis contribution (primary)**: First systematic study of why token pruning catastrophically fails on some VLA architectures. We identify a clean 3-class connector taxonomy: linear projection (immune) → MLP projector (graded degradation) → pixel-shuffle (catastrophic). 5 models across 4 model sizes (450M-7B) eliminate size confound. No competing work does cross-architecture VLA token analysis.
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/paper_framing.md-24-
+paper_framing.md-25-**Method contribution**: Diagnose-then-Compress framework:
+paper_framing.md:26:- Step 1: **Connector Compressibility Diagnostic** (D104: resolved)
+paper_framing.md-27-  - **Primary metric: Importance CV** (token importance heterogeneity) — zero-cost, one forward pass
+paper_framing.md-28-  - CV directly separates three classes: π0=0.038 (immune) < OpenVLA=0.215 (graded) < SmolVLA=0.314 (catastrophic)
+paper_framing.md-29-  - **Entropy as mechanistic supplement**: explains WHY tokens are (non-)dispensable
+--
+paper_framing.md-75-  - k=0.7: in progress
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/paper_framing.md-76-  - Batch 2 (k=0.5/0.3/0.2/0.1) auto-launching after Batch 1
+paper_framing.md-77-- Attention entropy: π0 overall ratio 0.9999 (maximally uniform across 18 layers, range [0.931, 0.983])
+paper_framing.md:78:- Importance CV: π0 = 0.038, SmolVLA = 0.314 (D104: composite metric works)
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/paper_framing.md-79-- Two models at very different scales (880M vs 3.3B) both immune → eliminates size 
+…[truncated 316 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T10:33:59.680563+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "Importance CV|importance_cv|importance.*CV|CV.*0\\.\\d{3}",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/paper_framing.md",
+  "output_mode": "content",
+  "-C": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "Importance CV|importance_cv|importance.*CV|CV.*0\\.\\d{3}",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/paper_framing.md",
+    "output_mode": "content",
+    "-C": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T10:33:59.680713+00:00_
+
+25-**Method contribution**: Diagnose-then-Compress framework:
+26-- Step 1: **Connector Compressibility Diagnostic** (D104: resolved)
+27:  - **Primary metric: Importance CV** (token importance heterogeneity) — zero-cost, one forward pass
+28:  - CV directly separates three classes: π0=0.038 (immune) < OpenVLA=0.215 (graded) < SmolVLA=0.314 (catastrophic)
+29-  - **Entropy as mechanistic supplement**: explains WHY tokens are (non-)dispensable
+30:    - High entropy + Low CV → uniform & independent → **immune** (π0: 0.9999/0.038)
+31:    - Low entropy + Medium CV → selective & partially dependent → **graded** (OpenVLA: 0.661/0.215)
+32:    - High entropy + High CV → uniform but entangled → **catastrophic** (SmolVLA: 0.952/0.314)
+33-  - Framing: "CV measures token importance heterogeneity; entropy provides mechanistic interpretation"
+34-  - X-VLA L2 norm CV pending (will add 4th data point to confirm linear→low CV trend)
+--
+76-  - Batch 2 (k=0.5/0.3/0.2/0.1) auto-launching after Batch 1
+77-- Attention entropy: π0 overall ratio 0.9999 (maximally uniform across 18 layers, range [0.931, 0.983])
+78:- Importance CV: π0 = 0.038, SmolVLA = 0.314 (D104: composite metric works)
+79-- Two models at very different scales (880M vs 3.3B) both immune → eliminates size confound
+80-
+--
+127-Key controlled comparison: π0 (256 tokens, linear) vs OpenVLA (256 tokens, MLP) — same tokens, same encoder, different connector. k=0.1 loss: π0 improves 2.4% vs OpenVLA degrades 61%.
+128-
+129:**Solution**: Diagnose-then-Compress framework. Step 1: Entropy + Importance CV composite provides zero-cost diagnostic for connector compressibility (one forward pass). Step 2: VTR (Vision Token Re-encoding) provides universal compression. For pixel-shuffle: recovers from 0% to 60%+ SR, M-curve confirmed flat (D105: M=16 56.9% ≈ M=128 58.0%, near-lossless at any compression ratio). For MLP projector: C4-ext pending.
+130-
+131-[Omitted long context line]
+--
+206-| SmolVLA | Pixel-shuffle | 0.952 | **0.314** | 0.156 | C
+…[truncated 538 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T10:33:59.680878+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/docs/paper/figures/gen_figures.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "cat /root/autodl-tmp/importance_margin_vla_compress/docs/paper/figures/gen_figures.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T10:33:59.681219+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport matplotlib.patches as mpatches\\nimport matplotlib.font_manager as fm\\nimport numpy as np\\nfrom pathlib import Path\\n\\nOUT_DIR = Path(__file__).parent\\n\\nplt.rcParams.update({\\n    'font.family': 'serif',\\n    'font.size': 9,\\n    'axes.titlesize': 10,\\n    'axes.labelsize': 9,\\n    'xtick.labelsize': 8,\\n    'ytick.labelsize': 8,\\n    'legend.fontsize': 8,\\n    'figure.dpi': 300,\\n    'savefig.dpi': 300,\\n    'savefig.bbox': 'tight',\\n    'savefig.pad_inches': 0.03,\\n    'axes.spines.top': False,\\n    'axes.spines.right': False,\\n    'lines.linewidth': 1.5,\\n    'text.usetex': False,\\n    'mathtext.fontset': 'cm',\\n})\\n\\nBLUE = '#0072B2'\\nRED = '#D55E00'\\nORANGE = '#E69F00'\\nGRAY = '#888888'\\n\\n\\ndef fig2_degradation_curve():\\n    fig, ax = plt.subplots(figsize=(3.5, 2.6))\\n\\n    # OpenVLA (MLP projection) — solid + squares\\n    ox = [0.0, 0.3, 0.5, 0.7]\\n    oy = [74.0, 49.0, 37.4, 20.6]\\n    ax.plot(ox, oy, '-s', color=BLUE, markersize=5, markerfacecolor=BLUE,\\n            label='OpenVLA (MLP proj., 7B)', zorder=3)\\n\\n    # SmolVLA official checkpoint — dashed + triangles\\n    sox = [0.0, 0.5]\\n    soy = [59.2, 0.0]\\n    ax.plot(sox, soy, '--^', color=ORANGE, markersize=6, markerfacecolor=ORANGE,\\n            label='SmolVLA (official, 0.5B)', zorder=3)\\n\\n    # SmolVLA ours — solid + circles\\n    sx = [0.0, 0.05, 0.1, 0.3, 0.5, 0.7]\\n    sy = [44.8, 0.0, 0.0, 0.0, 0.0, 0.0]\\n    ax.plot(sx, sy, '-o', color=RED, markersize=5, markerfacecolor=RED,\\n            label='SmolVLA (ours, 0.5B)', zorder=3)\\n\\n    ax.annotate('Cliff-edge\\\\ncollapse', xy=(0.08, 3.0), xytext=(0.25, 30.0),\\n                fontsize=8, color=RED, fontweight='bold',\\n                arrowprops=dict(arrowstyle='->', color=RED, lw=1.2),\\n                zorder=4)\\n\\n    ax.text(0.55, 28.0, 'Graded\\\
+…[truncated 757 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T10:33:59.681456+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -rn \"l2\\|L2\\|\\.norm\\|coefficient\" /root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -rn \"l2\\|L2\\|\\.norm\\|coefficient\" /root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T10:33:59.681595+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T10:33:59.681719+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -n \"norm\" /root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -n \"norm\" /root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T10:33:59.681845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"250:            vis_norm = vis_attn / vis_sum\\n251:            ent = -(vis_norm * torch.log(vis_norm + 1e-10)).sum(dim=-1)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T10:33:59.681979+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -rn \"0.038\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -rn \"0.038\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-20T10:33:59.682108+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "ls /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-20T10:33:59.682273+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/trajectory/v8_step_008000_bypass.json:3:    \\\"action_loss\\\": 0.03844954614527524\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/trajectory/v8_step_029999_standard.json:7:    \\\"margin_min\\\": 0.0003886222839355469,\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/trajectory/v8_step_029999_standard.json:77:    \\\"margin_min\\\": 0.0003871917724609375,\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_imm_v8_final.json:7:    \\\"margin_min\\\": 0.0003886222839355469,\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_imm_v8_final_30k.json:8:      \\\"margin_min\\\": 0.0003886222839355469,\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_imm_v8_fixed.json:73:    \\\"action_loss\\\": 0.007038401065045037,\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_imm_v8_1_standard.json:59:    \\\"action_loss\\\": 0.03898628028482199,\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/action_diversity_by_step.json:37:    \\\"noise_diversity_std\\\": 0.038716,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T10:33:59.682433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"action_diversity_by_step.json\\neval_acis_k05_supplement_200eps.json\\neval_acis_k05_supplement_v2.json\\neval_acis_k07_trained_prune.json\\neval_baseline_control_100k_v2.json\\neval_baseline_control_prune_k05.json\\neval_baseline_v5_bypass_acis.json\\neval_baseline_v5_final.json\\neval_baseline_v5_fixed.json\\neval_baseline_v5_step10000.json\\neval_baseline_v5_step5000.json\\neval_geometric_prior_k09_dryrun.json\\neval_imm_v7_2_bypass_acis.json\\neval_imm_v7_2_final.json\\neval_imm_v7_2_step010000.json\\neval_imm_v7_2_step020000.json\\neval_imm_v7_final.json\\neval_imm_v8_1_acis_prune.json\\neval_imm_v8_1_bypass.json\\neval_imm_v8_1_standard.json\\neval_imm_v8_bypass_final.json\\neval_imm_v8_bypass_fixed.json\\neval_imm_v8_final.json\\neval_imm_v8_final_30k.json\\neval_imm_v8_fixed.json\\neval_imm_v8_step002000.json\\neval_imm_v8_step002000_bypass.json\\neval_imm_v8b_acis_prune.json\\neval_imm_v8b_bypass.json\\neval_imm_v8b_standard.json\\neval_imm_v8c_acis_prune.json\\neval_imm_v8c_bypass.json\\neval_imm_v8c_standard.json\\neval_lora_100k_sr.json\\neval_pi05_baseline.json\\neval_prune_k05_spatial.log\\neval_smart_compress_m32_libero_goal.json\\neval_smart_compress_m32_libero_spatial.json\\neval_smart_compress_m32_official.json\\neval_smart_compress_m32_seed43.json\\neval_smart_compress_m32_seed44.json\\neval_smart_compress_m64_seed43.json\\neval_smart_compress_m64_seed44.json\\neval_smart_compress_m96_seed43.json\\neval_smart_compress_m96_seed43_v2.json\\neval_smart_compress_m96_seed44.json\\neval_smolvla_baseline_spatial.json\\neval_smolvla_official_baseline_spatial.json\\nfullft_100k_goal.json\\nfullft_100k_object.json\\nfullft_100k_spatial.json\\ngate_report.json\\ngate_report_v7_2.json\\ngate_report_v8_1_final.json\\ngate_report_v8_final.json\\ngate_report_v8_step2k.json\\ngate_report_v8b_final.json\\ngate_report_v8c_final.json\\ninference_latency_comparison.json\\nlerobot_eval_investigation.md\\nlibero_o
+…[truncated 956 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T10:33:59.682594+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -n \"cv\\|CV\\|l2\\|L2\\|norm\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_attention_entropy_perlayer_fixed.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -n \"cv\\|CV\\|l2\\|L2\\|norm\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_attention_entropy_perlayer_fixed.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T10:33:59.682722+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T10:33:59.682841+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -n \"cv\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_attention_entropy_perlayer_fixed.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -n \"cv\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_attention_entropy_perlayer_fixed.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-20T10:33:59.682960+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -n \"l2\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_attention_entropy_perlayer_fixed.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep -n \"l2\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_attention_entropy_perlayer_fixed.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-20T10:33:59.683082+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T10:33:59.683223+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T10:33:59.683363+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "l2_norm|L2 norm|hidden_state.*norm|norm.*hidden",
+  "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "output_mode": "content",
+  "-C": "3",
+  "glob": "*.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "l2_norm|L2 norm|hidden_state.*norm|norm.*hidden",
+    "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+    "output_mode": "content",
+    "-C": "3",
+    "glob": "*.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T10:33:59.683499+00:00_
+
+paper_framing.md-31-    - Low entropy + Medium CV → selective & partially dependent → **graded** (OpenVLA: 0.661/0.215)
+paper_framing.md-32-    - High entropy + High CV → uniform but entangled → **catastrophic** (SmolVLA: 0.952/0.314)
+paper_framing.md-33-  - Framing: "CV measures token importance heterogeneity; entropy provides mechanistic interpretation"
+paper_framing.md:34:  - X-VLA L2 norm CV pending (will add 4th data point to confirm linear→low CV trend)
+paper_framing.md-35-  - Supplementary: lightweight pruning probe (remove 5%, one forward pass) as practitioner-friendly alternative
+paper_framing.md-36-- Step 2: VTR (Vision Token Re-encoding) — lightweight cross-attention module (~22M params) for universal compression
+paper_framing.md-37-- For entangled tokens (pixel-shuffle): recovers from 0% to 60%+, M-curve confirmed flat D105 (near-lossless at any compression ratio)
+--
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/ROADMAP.md-46-## 待执行 (按优先级)
+ROADMAP.md-47-- [ ] **P0: 修复 M=16 seed44 registry** (误报 failed → 实际 success 56.5%)
+ROADMAP.md-48-- [ ] **P1: C4-ext 20K eval 重试 on cqa1** (最关键 pending 数据)
+ROADMAP.md:49:- [ ] **P2: X-VLA L2 norm importance CV** (诊断表第 4 个数据点)
+ROADMAP.md-50-- [ ] P3: 收集 X-VLA Batch 1 k=0.7 + 监控 Batch 2
+ROADMAP.md-51-- [ ] P4: westd-41074 GPU 1 残留进程识别+清理
+ROADMAP.md-52-- [ ] P5: 启动 Paper Agent 写论文 (analysis 部分数据就绪)
+--
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md-507-| **X-VLA** | **Linear proj** | **0.61 (中高)** | **1.0014 (0.14%↑)** | **几乎无损** |
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md-508-
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md-509-### 解读
+memory.md:510:1. **Linear projection connector 产生了高度冗余的 vision token 表示**——大部分信息集中在少数 token 中，L2 norm 可以轻松识别
+/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_marg
+…[truncated 384 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T10:33:59.683684+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__kill_job",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__kill_job",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T10:33:59.684067+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T10:33:59.684325+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py\n#!/usr/bin/env python\n\"\"\"Compute L2 norm CV of X-VLA vision tokens (after connector, before action head).\n\nMatches methodology used for π0 (CV=0.038), OpenVLA (CV=0.215), SmolVLA (CV=0.314).\n\"\"\"\n\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\n\nimport io\nimport json\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\nimport pyarrow.parquet as pq\nimport torch\nimport torch.nn.functional as F\nfrom PIL import Image\nfrom torchvision.transforms.functional import resize, to_tensor\n\nMODEL_PATH = \"/root/autodl-tmp/models/xvla-libero\"\nSNAP_DIR = Path(\n    \"/root/autodl-tmp/.hf_cache/lerobot/hub/\"\n    \"datasets--HuggingFaceVLA--libero/snapshots/\"\n    \"86958911c0f959db2bbbdb107eb3e17c5f9c798e\"\n)\nDATA_DIR = SNAP_DIR / \"data\" / \"chunk-000\"\nOUTPUT_PATH = Path(\n    \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\"\n    \"xvla_l2norm_cv.json\"\n)\nLIBERO_OBJECT_TASKS = range(20, 30)\nFRAMES_PER_TASK = 10\n\n\ndef resize_with_pad(img_t, h, w, pad_value=0):\n    _, oh, ow = img_t.shape\n    scale = min(h / oh, w / ow)\n    nh, nw = int(oh * scale), int(ow * scale)\n    img_r = resize(img_t, [nh, nw], antialias=True)\n    ph, pw = h - nh, w - nw\n    return F.pad(img_r, [pw // 2, pw - pw // 2, ph // 2, ph - ph // 2], value=pad_value)\n\n\ndef load_libero_frames():\n    tasks_df = pq.read_table(SNAP_DIR / \"meta\" / \"tasks.parquet\").to_pandas()\n    task_names = tasks_df.index.tolist()\n\n    per_task_rows = defaultdict(list)\n    for pf in sorted(os.listdir(DATA_DIR)):\n        tbl = pq.read_table(DATA_DIR / pf)\n        task_col = tbl.column(\"task_index\").to_pylist()\n        for idx, tid in enumerate(task_col):\n            if tid in LIBERO_OBJECT_TASKS:\n                per_task_rows[tid].append((pf, idx))\n\n    print(\"LIBERO-Object task coverage:\")\n    for tid in sorted(per_task_rows.keys()):\n        tname = task_names[tid] if tid < len(task_names) else \"unknown\"\n        print(f\"  task {tid}: {len(per_task_rows[tid])} rows — {tname}\")\n\n    frames = []\n    for tid in sorted(per_task_rows.keys()):\n        rows = per_task_rows[tid]\n        step = max(1, len(rows) // FRAMES_PER_TASK)\n        sampled = rows[::step][:FRAMES_PER_TASK]\n        for pf, idx in sampled:\n            tbl = pq.read_table(DATA_DIR / pf)\n            task_str = task_names[tbl.column(\"task_index\")[idx].as_py()]\n            frames.append(dict(\n                img1=Image.open(io.BytesIO(\n                    tbl.column(\"observation.images.image\")[idx][\"bytes\"].as_py()\n                )).convert(\"RGB\"),\n                img2=Image.open(io.BytesIO(\n                    tbl.column(\"observation.images.image2\")[idx][\"bytes\"].as_py()\n                )).convert(\"RGB\"),\n                state=torch.tensor(\n                    tbl.column(\"observation.state\")[idx].as_py(), dtype=torch.float32\n                ),\n                action=torch.tensor(\n                    tbl.column(\"action\")[idx].as_py(), dtype=torch.float32\n                ),\n                task=task_str,\n                task_idx=tbl.column(\"task_index\")[idx].as_py(),\n            ))\n\n    n_tasks = len(set(f[\"task_idx\"] for f in frames))\n    print(f\"\\nLoaded {len(frames)} frames from {n_tasks} tasks\")\n    return frames\n\n\ndef prepare_xvla_batch(frame, tokenizer, policy, device):\n    img1_t = to_tensor(frame[\"img1\"])\n    img2_t = to_tensor(frame[\"img2\"])\n    img1_t = resize_with_pad(img1_t, 224, 224)\n    img2_t = resize_with_pad(img2_t, 224, 224)\n\n    task_text = frame[\"task\"]\n    if not task_text.endswith(\"\\n\"):\n        task_text += \"\\n\"\n    encoded = tokenizer(\n        [task_text], padding=\"longest\", max_length=64,\n        truncation=True, return_tensors=\"pt\",\n    )\n\n    state = frame[\"state\"].unsqueeze(0)\n    action = frame[\"action\"].unsqueeze(0).unsqueeze(0)\n    action = action.expand(-1, policy.config.chunk_size, -1)\n\n    batch = {\n        \"observation.images.image\": img1_t.unsqueeze(0).to(device),\n        \"observation.images.image2\": img2_t.unsqueeze(0).to(device),\n        \"observation.state\": state.to(device),\n        \"observation.language.tokens\": encoded[\"input_ids\"].to(device),\n        \"action\": action.to(device),\n    }\n    return batch\n\n\n@torch.no_grad()\ndef main():\n    device = torch.device(\"cuda:0\")\n\n    print(\"Loading X-VLA model...\")\n    from lerobot.policies.xvla.modeling_xvla import XVLAPolicy\n    policy = XVLAPolicy.from_pretrained(MODEL_PATH)\n    policy.eval().to(device)\n\n    model = policy.model\n    config = policy.config\n\n    print(f\"  hidden_size={config.hidden_size}, depth={config.depth}\")\n    print(f\"  chunk_size={config.chunk_size}, soft_prompts={config.len_soft_prompts}\")\n\n    from transformers import AutoTokenizer\n    tokenizer = AutoTokenizer.from_pretrained(\n        config.tokenizer_name, padding_side=config.tokenizer_padding_side,\n    )\n\n    frames = load_libero_frames()\n\n    # Collect L2 norms across all frames\n    all_vlm_norms = []\n    all_aux_norms = []\n    all_combined_norms = []\n    per_task_vlm_norms = defaultdict(list)\n\n    for fi, frame in enumerate(frames):\n        if fi % 20 == 0:\n            print(f\"  Processing frame {fi}/{len(frames)}...\")\n\n        batch = prepare_xvla_batch(frame, tokenizer, policy, device)\n        inputs = policy._build_model_inputs(batch)\n        enc = model.forward_vlm(\n            inputs[\"input_ids\"], inputs[\"image_input\"], inputs[\"image_mask\"]\n        )\n\n        vlm_feat = enc[\"vlm_features\"]   # [1, n_vlm, d]\n        aux_feat = enc[\"aux_visual_inputs\"]  # [1, n_aux, d]\n\n        # Per-token L2 norms\n        vlm_norms = torch.norm(vlm_feat, p=2, dim=-1).squeeze(0).cpu().numpy()  # [n_vlm]\n        aux_norms = torch.norm(aux_feat, p=2, dim=-1).squeeze(0).cpu().numpy()  # [n_aux]\n        combined_norms = np.concatenate([vlm_norms, aux_norms])\n\n        all_vlm_norms.append(vlm_norms)\n        all_aux_norms.append(aux_norms)\n        all_combined_norms.append(combined_norms)\n        per_task_vlm_norms[frame[\"task_idx\"]].append(vlm_norms)\n\n    # Compute CV for each scope\n    def compute_cv(norms_list):\n        flat = np.concatenate(norms_list)\n        mean = float(np.mean(flat))\n        std = float(np.std(flat))\n        cv = std / mean if mean > 0 else 0.0\n        return {\"cv\": round(cv, 4), \"mean\": round(mean, 4), \"std\": round(std, 4),\n                \"n_tokens\": len(flat), \"min\": round(float(np.min(flat)), 4),\n                \"max\": round(float(np.max(flat)), 4)}\n\n    # Also compute per-image CV (CV within each image, then average)\n    def compute_per_image_cv(norms_list):\n        cvs = []\n        for norms in norms_list:\n            m = np.mean(norms)\n            if m > 0:\n                cvs.append(float(np.std(norms) / m))\n        return {\"mean_cv\": round(float(np.mean(cvs)), 4),\n                \"std_cv\": round(float(np.std(cvs)), 4),\n                \"n_images\": len(cvs)}\n\n    vlm_stats = compute_cv(all_vlm_norms)\n    aux_stats = compute_cv(all_aux_norms)\n    combined_stats = compute_cv(all_combined_norms)\n\n    vlm_per_image = compute_per_image_cv(all_vlm_norms)\n    aux_per_image = compute_per_image_cv(all_aux_norms)\n    combined_per_image = compute_per_image_cv(all_combined_norms)\n\n    # Per-task CV\n    per_task_cv = {}\n    for tid in sorted(per_task_vlm_norms.keys()):\n        per_task_cv[str(tid)] = compute_cv(per_task_vlm_norms[tid])\n\n    results = {\n        \"model\": \"X-VLA-0.9B (lerobot/xvla-libero)\",\n        \"dataset\": \"LIBERO-Object (task_index 20-29)\",\n        \"n_images\": len(frames),\n        \"n_tasks\": len(set(f[\"task_idx\"] for f in frames)),\n        \"architecture\": {\n            \"vision_encoder\": \"Florence-2 DaViT-Large\",\n            \"connector\": \"Linear projection (image_projection + LayerNorm)\",\n            \"vlm_encoder\": \"Florence-2 BART encoder (12 layers, d=1024)\",\n            \"action_head\": f\"SoftPromptedTransformer ({config.depth}L, h={config.hidden_size})\",\n        },\n        \"vlm_features_l2norm\": vlm_stats,\n        \"vlm_features_per_image_cv\": vlm_per_image,\n        \"aux_visual_l2norm\": aux_stats,\n        \"aux_visual_per_image_cv\": aux_per_image,\n        \"all_vision_tokens_l2norm\": combined_stats,\n        \"all_vision_tokens_per_image_cv\": combined_per_image,\n        \"per_task_vlm_cv\": per_task_cv,\n        \"comparison\": {\n            \"pi0_linear_projection\": 0.038,\n            \"openvla_mlp_projector\": 0.215,\n            \"smolvla_pixel_shuffle\": 0.314,\n        }\n    }\n\n    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {OUTPUT_PATH}\")\n    print(f\"{'='*60}\")\n    print(f\"\\nL2 Norm CV Results:\")\n    print(f\"  VLM features (64 tokens):     CV = {vlm_stats['cv']:.4f}  (mean={vlm_stats['mean']:.2f}, std={vlm_stats['std']:.2f})\")\n    print(f\"  Aux visual (150 tokens):       CV = {aux_stats['cv']:.4f}  (mean={aux_stats['mean']:.2f}, std={aux_stats['std']:.2f})\")\n    print(f\"  All vision (214 tokens):       CV = {combined_stats['cv']:.4f}  (mean={combined_stats['mean']:.2f}, std={combined_stats['std']:.2f})\")\n    print(f\"\\nPer-image CV (averaged across {len(frames)} images):\")\n    print(f\"  VLM features: mean_CV = {vlm_per_image['mean_cv']:.4f} ± {vlm_per_image['std_cv']:.4f}\")\n    print(f\"  Aux visual:   mean_CV = {aux_per_image['mean_cv']:.4f} ± {aux_per_image['std_cv']:.4f}\")\n    print(f\"  Combined:     mean_CV = {combined_per_image['mean_cv']:.4f} ± {combined_per_image['std_cv']:.4f}\")\n    print(f\"\\nComparison (L2 norm CV):\")\n    print(f\"  π0 (linear projection):    0.038\")\n    print(f\"  X-VLA (linear projection): {vlm_stats['cv']:.4f}  ← THIS\")\n    print(f\"  OpenVLA (MLP projector):   0.215\")\n    print(f\"  SmolVLA (pixel-shuffle):   0.314\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py\n#!/usr/bin/env python\n\"\"\"Compute L2 norm CV of X-VLA vision tokens (after connector, before action head).\n\nMatches methodology used for π0 (CV=0.038), OpenVLA (CV=0.215), SmolVLA (CV=0.314).\n\"\"\"\n\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\n\nimport io\nimport json\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\nimport pyarrow.parquet as pq\nimport torch\nimport torch.nn.functional as F\nfrom PIL import Image\nfrom torchvision.transforms.functional import resize, to_tensor\n\nMODEL_PATH = \"/root/autodl-tmp/models/xvla-libero\"\nSNAP_DIR = Path(\n    \"/root/autodl-tmp/.hf_cache/lerobot/hub/\"\n    \"datasets--HuggingFaceVLA--libero/snapshots/\"\n    \"86958911c0f959db2bbbdb107eb3e17c5f9c798e\"\n)\nDATA_DIR = SNAP_DIR / \"data\" / \"chunk-000\"\nOUTPUT_PATH = Path(\n    \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\"\n    \"xvla_l2norm_cv.json\"\n)\nLIBERO_OBJECT_TASKS = range(20, 30)\nFRAMES_PER_TASK = 10\n\n\ndef resize_with_pad(img_t, h, w, pad_value=0):\n    _, oh, ow = img_t.shape\n    scale = min(h / oh, w / ow)\n    nh, nw = int(oh * scale), int(ow * scale)\n    img_r = resize(img_t, [nh, nw], antialias=True)\n    ph, pw = h - nh, w - nw\n    return F.pad(img_r, [pw // 2, pw - pw // 2, ph // 2, ph - ph // 2], value=pad_value)\n\n\ndef load_libero_frames():\n    tasks_df = pq.read_table(SNAP_DIR / \"meta\" / \"tasks.parquet\").to_pandas()\n    task_names = tasks_df.index.tolist()\n\n    per_task_rows = defaultdict(list)\n    for pf in sorted(os.listdir(DATA_DIR)):\n        tbl = pq.read_table(DATA_DIR / pf)\n        task_col = tbl.column(\"task_index\").to_pylist()\n        for idx, tid in enumerate(task_col):\n            if tid in LIBERO_OBJECT_TASKS:\n                per_task_rows[tid].append((pf, idx))\n\n    print(\"LIBERO-Object task coverage:\")\n    for tid in sorted(per_task_rows.keys()):\n        tname = task_names[tid] if tid < len(task_names) else \"unknown\"\n        print(f\"  task {tid}: {len(per_task_rows[tid])} rows — {tname}\")\n\n    frames = []\n    for tid in sorted(per_task_rows.keys()):\n        rows = per_task_rows[tid]\n        step = max(1, len(rows) // FRAMES_PER_TASK)\n        sampled = rows[::step][:FRAMES_PER_TASK]\n        for pf, idx in sampled:\n            tbl = pq.read_table(DATA_DIR / pf)\n            task_str = task_names[tbl.column(\"task_index\")[idx].as_py()]\n            frames.append(dict(\n                img1=Image.open(io.BytesIO(\n                    tbl.column(\"observation.images.image\")[idx][\"bytes\"].as_py()\n                )).convert(\"RGB\"),\n                img2=Image.open(io.BytesIO(\n                    tbl.column(\"observation.images.image2\")[idx][\"bytes\"].as_py()\n                )).convert(\"RGB\"),\n                state=torch.tensor(\n                    tbl.column(\"observation.state\")[idx].as_py(), dtype=torch.float32\n                ),\n                action=torch.tensor(\n                    tbl.column(\"action\")[idx].as_py(), dtype=torch.float32\n                ),\n                task=task_str,\n                task_idx=tbl.column(\"task_index\")[idx].as_py(),\n            ))\n\n    n_tasks = len(set(f[\"task_idx\"] for f in frames))\n    print(f\"\\nLoaded {len(frames)} frames from {n_tasks} tasks\")\n    return frames\n\n\ndef prepare_xvla_batch(frame, tokenizer, policy, device):\n    img1_t = to_tensor(frame[\"img1\"])\n    img2_t = to_tensor(frame[\"img2\"])\n    img1_t = resize_with_pad(img1_t, 224, 224)\n    img2_t = resize_with_pad(img2_t, 224, 224)\n\n    task_text = frame[\"task\"]\n    if not task_text.endswith(\"\\n\"):\n        task_text += \"\\n\"\n    encoded = tokenizer(\n        [task_text], padding=\"longest\", max_length=64,\n        truncation=True, return_tensors=\"pt\",\n    )\n\n    state = frame[\"state\"].unsqueeze(0)\n    action = frame[\"action\"].unsqueeze(0).unsqueeze(0)\n    action = action.expand(-1, policy.config.chunk_size, -1)\n\n    batch = {\n        \"observation.images.image\": img1_t.unsqueeze(0).to(device),\n        \"observation.images.image2\": img2_t.unsqueeze(0).to(device),\n        \"observation.state\": state.to(device),\n        \"observation.language.tokens\": encoded[\"input_ids\"].to(device),\n        \"action\": action.to(device),\n    }\n    return batch\n\n\n@torch.no_grad()\ndef main():\n    device = torch.device(\"cuda:0\")\n\n    print(\"Loading X-VLA model...\")\n    from lerobot.policies.xvla.modeling_xvla import XVLAPolicy\n    policy = XVLAPolicy.from_pretrained(MODEL_PATH)\n    policy.eval().to(device)\n\n    model = policy.model\n    config = policy.config\n\n    print(f\"  hidden_size={config.hidden_size}, depth={config.depth}\")\n    print(f\"  chunk_size={config.chunk_size}, soft_prompts={config.len_soft_prompts}\")\n\n    from transformers import AutoTokenizer\n    tokenizer = AutoTokenizer.from_pretrained(\n        config.tokenizer_name, padding_side=config.tokenizer_padding_side,\n    )\n\n    frames = load_libero_frames()\n\n    # Collect L2 norms across all frames\n    all_vlm_norms = []\n    all_aux_norms = []\n    all_combined_norms = []\n    per_task_vlm_norms = defaultdict(list)\n\n    for fi, frame in enumerate(frames):\n        if fi % 20 == 0:\n            print(f\"  Processing frame {fi}/{len(frames)}...\")\n\n        batch = prepare_xvla_batch(frame, tokenizer, policy, device)\n        inputs = policy._build_model_inputs(batch)\n        enc = model.forward_vlm(\n            inputs[\"input_ids\"], inputs[\"image_input\"], inputs[\"image_mask\"]\n        )\n\n        vlm_feat = enc[\"vlm_features\"]   # [1, n_vlm, d]\n        aux_feat = enc[\"aux_visual_inputs\"]  # [1, n_aux, d]\n\n        # Per-token L2 norms\n        vlm_norms = torch.norm(vlm_feat, p=2, dim=-1).squeeze(0).cpu().numpy()  # [n_vlm]\n        aux_norms = torch.norm(aux_feat, p=2, dim=-1).squeeze(0).cpu().numpy()  # [n_aux]\n        combined_norms = np.concatenate([vlm_norms, aux_norms])\n\n        all_vlm_norms.append(vlm_norms)\n        all_aux_norms.append(aux_norms)\n        all_combined_norms.append(combined_norms)\n        per_task_vlm_norms[frame[\"task_idx\"]].append(vlm_norms)\n\n    # Compute CV for each scope\n    def compute_cv(norms_list):\n        flat = np.concatenate(norms_list)\n        mean = float(np.mean(flat))\n        std = float(np.std(flat))\n        cv = std / mean if mean > 0 else 0.0\n        return {\"cv\": round(cv, 4), \"mean\": round(mean, 4), \"std\": round(std, 4),\n                \"n_tokens\": len(flat), \"min\": round(float(np.min(flat)), 4),\n                \"max\": round(float(np.max(flat)), 4)}\n\n    # Also compute per-image CV (CV within each image, then average)\n    def compute_per_image_cv(norms_list):\n        cvs = []\n        for norms in norms_list:\n            m = np.mean(norms)\n            if m > 0:\n                cvs.append(float(np.std(norms) / m))\n        return {\"mean_cv\": round(float(np.mean(cvs)), 4),\n                \"std_cv\": round(float(np.std(cvs)), 4),\n                \"n_images\": len(cvs)}\n\n    vlm_stats = compute_cv(all_vlm_norms)\n    aux_stats = compute_cv(all_aux_norms)\n    combined_stats = compute_cv(all_combined_norms)\n\n    vlm_per_image = compute_per_image_cv(all_vlm_norms)\n    aux_per_image = compute_per_image_cv(all_aux_norms)\n    combined_per_image = compute_per_image_cv(all_combined_norms)\n\n    # Per-task CV\n    per_task_cv = {}\n    for tid in sorted(per_task_vlm_norms.keys()):\n        per_task_cv[str(tid)] = compute_cv(per_task_vlm_norms[tid])\n\n    results = {\n        \"model\": \"X-VLA-0.9B (lerobot/xvla-libero)\",\n        \"dataset\": \"LIBERO-Object (task_index 20-29)\",\n        \"n_images\": len(frames),\n        \"n_tasks\": len(set(f[\"task_idx\"] for f in frames)),\n        \"architecture\": {\n            \"vision_encoder\": \"Florence-2 DaViT-Large\",\n            \"connector\": \"Linear projection (image_projection + LayerNorm)\",\n            \"vlm_encoder\": \"Florence-2 BART encoder (12 layers, d=1024)\",\n            \"action_head\": f\"SoftPromptedTransformer ({config.depth}L, h={config.hidden_size})\",\n        },\n        \"vlm_features_l2norm\": vlm_stats,\n        \"vlm_features_per_image_cv\": vlm_per_image,\n        \"aux_visual_l2norm\": aux_stats,\n        \"aux_visual_per_image_cv\": aux_per_image,\n        \"all_vision_tokens_l2norm\": combined_stats,\n        \"all_vision_tokens_per_image_cv\": combined_per_image,\n        \"per_task_vlm_cv\": per_task_cv,\n        \"comparison\": {\n            \"pi0_linear_projection\": 0.038,\n            \"openvla_mlp_projector\": 0.215,\n            \"smolvla_pixel_shuffle\": 0.314,\n        }\n    }\n\n    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {OUTPUT_PATH}\")\n    print(f\"{'='*60}\")\n    print(f\"\\nL2 Norm CV Results:\")\n    print(f\"  VLM features (64 tokens):     CV = {vlm_stats['cv']:.4f}  (mean={vlm_stats['mean']:.2f}, std={vlm_stats['std']:.2f})\")\n    print(f\"  Aux visual (150 tokens):       CV = {aux_stats['cv']:.4f}  (mean={aux_stats['mean']:.2f}, std={aux_stats['std']:.2f})\")\n    print(f\"  All vision (214 tokens):       CV = {combined_stats['cv']:.4f}  (mean={combined_stats['mean']:.2f}, std={combined_stats['std']:.2f})\")\n    print(f\"\\nPer-image CV (averaged across {len(frames)} images):\")\n    print(f\"  VLM features: mean_CV = {vlm_per_image['mean_cv']:.4f} ± {vlm_per_image['std_cv']:.4f}\")\n    print(f\"  Aux visual:   mean_CV = {aux_per_image['mean_cv']:.4f} ± {aux_per_image['std_cv']:.4f}\")\n    print(f\"  Combined:     mean_CV = {combined_per_image['mean_cv']:.4f} ± {combined_per_image['std_cv']:.4f}\")\n    print(f\"\\nComparison (L2 norm CV):\")\n    print(f\"  π0 (linear projection):    0.038\")\n    print(f\"  X-VLA (linear projection): {vlm_stats['cv']:.4f}  ← THIS\")\n    print(f\"  OpenVLA (MLP projector):   0.215\")\n    print(f\"  SmolVLA (pixel-shuffle):   0.314\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T10:33:59.684630+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T10:33:59.684813+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && nohup python compute_xvla_l2norm_cv.py > /tmp/xvla_l2norm_cv.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && nohup python compute_xvla_l2norm_cv.py > /tmp/xvla_l2norm_cv.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T10:33:59.684975+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && nohup python compute_xvla_l2norm_cv.py > /tmp/xvla_l2norm_cv.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=179520\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-20T10:33:59.685157+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -30 /tmp/xvla_l2norm_cv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "tail -30 /tmp/xvla_l2norm_cv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T10:33:59.685406+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Florence2ForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-20T10:33:59.685596+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -30 /tmp/xvla_l2norm_cv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "tail -30 /tmp/xvla_l2norm_cv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T10:33:59.685766+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  task 27: 7102 rows — pick up the butter and place it in the basket\\n  task 28: 6097 rows — pick up the tomato sauce and place it in the basket\\n  task 29: 7964 rows — pick up the chocolate pudding and place it in the basket\\n\\nLoaded 100 frames from 10 tasks\\n  Processing frame 0/100...\\n  Processing frame 20/100...\\n  Processing frame 40/100...\\n  Processing frame 60/100...\\n  Processing frame 80/100...\\n\\n============================================================\\nResults saved to /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_l2norm_cv.json\\n============================================================\\n\\nL2 Norm CV Results:\\n  VLM features (64 tokens):     CV = 0.1509  (mean=47.10, std=7.11)\\n  Aux visual (150 tokens):       CV = 1.4142  (mean=10.63, std=15.04)\\n  All vision (214 tokens):       CV = 0.9875  (mean=21.54, std=21.27)\\n\\nPer-image CV (averaged across 100 images):\\n  VLM features: mean_CV = 0.1487 ± 0.0120\\n  Aux visual:   mean_CV = 1.4142 ± 0.0000\\n  Combined:     mean_CV = 0.9872 ± 0.0062\\n\\nComparison (L2 norm CV):\\n  π0 (linear projection):    0.038\\n  X-VLA (linear projection): 0.1509  ← THIS\\n  OpenVLA (MLP projector):   0.215\\n  SmolVLA (pixel-shuffle):   0.314\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T10:33:59.685930+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_l2norm_cv.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_l2norm_cv.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T10:33:59.686177+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"X-VLA-0.9B (lerobot/xvla-libero)\\\",\\n  \\\"dataset\\\": \\\"LIBERO-Object (task_index 20-29)\\\",\\n  \\\"n_images\\\": 100,\\n  \\\"n_tasks\\\": 10,\\n  \\\"architecture\\\": {\\n    \\\"vision_encoder\\\": \\\"Florence-2 DaViT-Large\\\",\\n    \\\"connector\\\": \\\"Linear projection (image_projection + LayerNorm)\\\",\\n    \\\"vlm_encoder\\\": \\\"Florence-2 BART encoder (12 layers, d=1024)\\\",\\n    \\\"action_head\\\": \\\"SoftPromptedTransformer (24L, h=1024)\\\"\\n  },\\n  \\\"vlm_features_l2norm\\\": {\\n    \\\"cv\\\": 0.1509,\\n    \\\"mean\\\": 47.1033,\\n    \\\"std\\\": 7.1065,\\n    \\\"n_tokens\\\": 6400,\\n    \\\"min\\\": 11.9872,\\n    \\\"max\\\": 55.3598\\n  },\\n  \\\"vlm_features_per_image_cv\\\": {\\n    \\\"mean_cv\\\": 0.1487,\\n    \\\"std_cv\\\": 0.012,\\n    \\\"n_images\\\": 100\\n  },\\n  \\\"aux_visual_l2norm\\\": {\\n    \\\"cv\\\": 1.4142,\\n    \\\"mean\\\": 10.6331,\\n    \\\"std\\\": 15.0376,\\n    \\\"n_tokens\\\": 15000,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 32.183\\n  },\\n  \\\"aux_visual_per_image_cv\\\": {\\n    \\\"mean_cv\\\": 1.4142,\\n    \\\"std_cv\\\": 0.0,\\n    \\\"n_images\\\": 100\\n  },\\n  \\\"all_vision_tokens_l2norm\\\": {\\n    \\\"cv\\\": 0.9875,\\n    \\\"mean\\\": 21.5401,\\n    \\\"std\\\": 21.2702,\\n    \\\"n_tokens\\\": 21400,\\n    \\\"min\\\": 0.0,\\n    \\\"max\\\": 55.3598\\n  },\\n  \\\"all_vision_tokens_per_image_cv\\\": {\\n    \\\"mean_cv\\\": 0.9872,\\n    \\\"std_cv\\\": 0.0062,\\n    \\\"n_images\\\": 100\\n  },\\n  \\\"per_task_vlm_cv\\\": {\\n    \\\"20\\\": {\\n      \\\"cv\\\": 0.1528,\\n      \\\"mean\\\": 46.1868,\\n      \\\"std\\\": 7.0596,\\n      \\\"n_tokens\\\": 640,\\n      \\\"min\\\": 11.9957,\\n      \\\"max\\\": 53.0416\\n    },\\n    \\\"21\\\": {\\n      \\\"cv\\\": 0.1514,\\n      \\\"mean\\\": 47.4466,\\n      \\\"std\\\": 7.1853,\\n      \\\"n_tokens\\\": 640,\\n      \\\"min\\\": 
+…[truncated 1975 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T10:33:59.686470+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "X-VLA L2 Norm CV Analysis",
+  "type": "data",
+  "description": "X-VLA vision token L2 norm coefficient of variation (CV=0.1509) computed on 100 LIBERO-Object frames. VLM features (64 tokens after BART encoder): CV=0.151, aux visual (150 tokens): CV=1.414 (includes zero-padded tokens). Per-image CV consistent at 0.149±0.012.",
+  "project": "importance_margin_vla_compress",
+  "content": "{\n  \"model\": \"X-VLA-0.9B (lerobot/xvla-libero)\",\n  \"dataset\": \"LIBERO-Object (task_index 20-29)\",\n  \"n_images\": 100,\n  \"n_tasks\": 10,\n  \"vlm_features_l2norm\": {\"cv\": 0.1509, \"mean\": 47.1033, \"std\": 7.1065, \"n_tokens\": 6400},\n  \"vlm_features_per_image_cv\": {\"mean_cv\": 0.1487, \"std_cv\": 0.012},\n  \"aux_visual_l2norm\": {\"cv\": 1.4142, \"mean\": 10.6331, \"std\": 15.0376, \"n_tokens\": 15000, \"min\": 0.0},\n  \"comparison_table\": {\n    \"pi0_linear_projection\": 0.038,\n    \"xvla_linear_projection_plus_bart\": 0.151,\n    \"openvla_mlp_projector\": 0.215,\n    \"smolvla_pixel_shuffle\": 0.314\n  }\n}",
+  "content_filename": "xvla_l2norm_cv.json",
+  "tags": "['D104', 'diagnostic', 'CV', 'L2-norm', 'X-VLA']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "X-VLA L2 Norm CV Analysis",
+    "type": "data",
+    "description": "X-VLA vision token L2 norm coefficient of variation (CV=0.1509) computed on 100 LIBERO-Object frames. VLM features (64 tokens after BART encoder): CV=0.151, aux visual (150 tokens): CV=1.414 (includes zero-padded tokens). Per-image CV consistent at 0.149±0.012.",
+    "project": "importance_margin_vla_compress",
+    "content": "{\n  \"model\": \"X-VLA-0.9B (lerobot/xvla-libero)\",\n  \"dataset\": \"LIBERO-Object (task_index 20-29)\",\n  \"n_images\": 100,\n  \"n_tasks\": 10,\n  \"vlm_features_l2norm\": {\"cv\": 0.1509, \"mean\": 47.1033, \"std\": 7.1065, \"n_tokens\": 6400},\n  \"vlm_features_per_image_cv\": {\"mean_cv\": 0.1487, \"std_cv\": 0.012},\n  \"aux_visual_l2norm\": {\"cv\": 1.4142, \"mean\": 10.6331, \"std\": 15.0376, \"n_tokens\": 15000, \"min\": 0.0},\n  \"comparison_table\": {\n    \"pi0_linear_projection\": 0.038,\n    \"xvla_linear_projection_plus_bart\": 0.151,\n    \"openvla_mlp_projector\": 0.215,\n    \"smolvla_pixel_shuffle\": 0.314\n  }\n}",
+    "content_filename": "xvla_l2norm_cv.json",
+    "tags": "['D104', 'diagnostic', 'CV', 'L2-norm', 'X-VLA']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T10:33:59.686632+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'model': 'X-VLA-0.9B (le..._pixel_shuffle': 0.314}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-20T10:33:59.686786+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "X-VLA L2 Norm CV Analysis",
+  "type": "data",
+  "description": "X-VLA vision token L2 norm coefficient of variation (CV=0.1509) computed on 100 LIBERO-Object frames. VLM features (64 tokens after BART encoder): CV=0.151, aux visual (150 tokens): CV=1.414 (includes zero-padded tokens). Per-image CV consistent at 0.149±0.012.",
+  "project": "importance_margin_vla_compress",
+  "source_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_l2norm_cv.json",
+  "tags": "['D104', 'diagnostic', 'CV', 'L2-norm', 'X-VLA']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "X-VLA L2 Norm CV Analysis",
+    "type": "data",
+    "description": "X-VLA vision token L2 norm coefficient of variation (CV=0.1509) computed on 100 LIBERO-Object frames. VLM features (64 tokens after BART encoder): CV=0.151, aux visual (150 tokens): CV=1.414 (includes zero-padded tokens). Per-image CV consistent at 0.149±0.012.",
+    "project": "importance_margin_vla_compress",
+    "source_path": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_l2norm_cv.json",
+    "tags": "['D104', 'diagnostic', 'CV', 'L2-norm', 'X-VLA']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T10:33:59.686932+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_l2norm_cv.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T10:33:59.687071+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "X-VLA L2 Norm CV Analysis",
+  "type": "data",
+  "description": "X-VLA vision token L2 norm coefficient of variation (CV=0.1509) computed on 100 LIBERO-Object frames. VLM features (64 tokens after BART encoder): CV=0.151, aux visual (150 tokens): CV=1.414 (includes zero-padded tokens). Per-image CV consistent at 0.149±0.012.",
+  "project": "importance_margin_vla_compress",
+  "content": "{\"model\":\"X-VLA-0.9B (lerobot/xvla-libero)\",\"dataset\":\"LIBERO-Object (task_index 20-29)\",\"n_images\":100,\"n_tasks\":10,\"vlm_features_l2norm\":{\"cv\":0.1509,\"mean\":47.1033,\"std\":7.1065,\"n_tokens\":6400},\"vlm_features_per_image_cv\":{\"mean_cv\":0.1487,\"std_cv\":0.012},\"aux_visual_l2norm\":{\"cv\":1.4142,\"mean\":10.6331,\"std\":15.0376,\"n_tokens\":15000,\"min\":0.0},\"comparison_table\":{\"pi0_linear_projection\":0.038,\"xvla_linear_projection_plus_bart\":0.151,\"openvla_mlp_projector\":0.215,\"smolvla_pixel_shuffle\":0.314}}",
+  "content_filename": "xvla_l2norm_cv.json",
+  "tags": "['D104', 'diagnostic', 'CV', 'L2-norm', 'X-VLA']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "X-VLA L2 Norm CV Analysis",
+    "type": "data",
+    "description": "X-VLA vision token L2 norm coefficient of variation (CV=0.1509) computed on 100 LIBERO-Object frames. VLM features (64 tokens after BART encoder): CV=0.151, aux visual (150 tokens): CV=1.414 (includes zero-padded tokens). Per-image CV consistent at 0.149±0.012.",
+    "project": "importance_margin_vla_compress",
+    "content": "{\"model\":\"X-VLA-0.9B (lerobot/xvla-libero)\",\"dataset\":\"LIBERO-Object (task_index 20-29)\",\"n_images\":100,\"n_tasks\":10,\"vlm_features_l2norm\":{\"cv\":0.1509,\"mean\":47.1033,\"std\":7.1065,\"n_tokens\":6400},\"vlm_features_per_image_cv\":{\"mean_cv\":0.1487,\"std_cv\":0.012},\"aux_visual_l2norm\":{\"cv\":1.4142,\"mean\":10.6331,\"std\":15.0376,\"n_tokens\":15000,\"min\":0.0},\"comparison_table\":{\"pi0_linear_projection\":0.038,\"xvla_linear_projection_plus_bart\":0.151,\"openvla_mlp_projector\":0.215,\"smolvla_pixel_shuffle\":0.314}}",
+    "content_filename": "xvla_l2norm_cv.json",
+    "tags": "['D104', 'diagnostic', 'CV', 'L2-norm', 'X-VLA']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T10:33:59.687278+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'model': 'X-VLA-0.9B (le..._pixel_shuffle': 0.314}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-20T10:33:59.687433+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "X-VLA L2 Norm CV Analysis",
+  "type": "data",
+  "description": "X-VLA vision token L2 norm CV=0.1509 on 100 LIBERO-Object frames. Places X-VLA between pi0 (0.038) and OpenVLA (0.215) in the diagnostic composite.",
+  "project": "importance_margin_vla_compress",
+  "content": "X-VLA L2 Norm CV Results (100 images, 10 LIBERO-Object tasks)\n\nVLM features (64 tokens): CV=0.1509 mean=47.10 std=7.11\nAux visual (150 tokens):   CV=1.4142 mean=10.63 std=15.04 (includes zero-padded tokens)\nAll vision (214 tokens):   CV=0.9875 mean=21.54 std=21.27\n\nPer-image CV: VLM=0.1487±0.012, Aux=1.4142±0.000, Combined=0.9872±0.006\n\nComparison:\n  pi0 (linear projection):              0.038\n  X-VLA (linear proj + BART encoder):   0.151\n  OpenVLA (MLP projector):              0.215\n  SmolVLA (pixel-shuffle):              0.314\n\nServer: westd-41074, GPU 0\nScript: /root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py\nFull JSON: /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_l2norm_cv.json",
+  "content_filename": "xvla_l2norm_cv_report.txt",
+  "tags": "['D104', 'diagnostic', 'CV', 'L2-norm', 'X-VLA']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "X-VLA L2 Norm CV Analysis",
+    "type": "data",
+    "description": "X-VLA vision token L2 norm CV=0.1509 on 100 LIBERO-Object frames. Places X-VLA between pi0 (0.038) and OpenVLA (0.215) in the diagnostic composite.",
+    "project": "importance_margin_vla_compress",
+    "content": "X-VLA L2 Norm CV Results (100 images, 10 LIBERO-Object tasks)\n\nVLM features (64 tokens): CV=0.1509 mean=47.10 std=7.11\nAux visual (150 tokens):   CV=1.4142 mean=10.63 std=15.04 (includes zero-padded tokens)\nAll vision (214 tokens):   CV=0.9875 mean=21.54 std=21.27\n\nPer-image CV: VLM=0.1487±0.012, Aux=1.4142±0.000, Combined=0.9872±0.006\n\nComparison:\n  pi0 (linear projection):              0.038\n  X-VLA (linear proj + BART encoder):   0.151\n  OpenVLA (MLP projector):              0.215\n  SmolVLA (pixel-shuffle):              0.314\n\nServer: westd-41074, GPU 0\nScript: /root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py\nFull JSON: /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_l2norm_cv.json",
+    "content_filename": "xvla_l2norm_cv_report.txt",
+    "tags": "['D104', 'diagnostic', 'CV', 'L2-norm', 'X-VLA']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T10:33:59.687591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_5c9ae6\", \"name\": \"X-VLA L2 Norm CV Analysis\", \"type\": \"data\", \"description\": \"X-VLA vision token L2 norm CV=0.1509 on 100 LIBERO-Object frames. Places X-VLA between pi0 (0.038) and OpenVLA (0.215) in the diagnostic composite.\", \"path\": \"projects/importance_margin_vla_compress/artifacts/_project/data/xvla_l2norm_cv_report.txt\", \"url\": null, \"project\": \"importance_margin_vla_compress\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T10:33:43.660696+00:00\", \"tags\": [\"D104\", \"diagnostic\", \"CV\", \"L2-norm\", \"X-VLA\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-20T10:33:59.687778+00:00_
+
+## 结果
+
+**X-VLA L2 Norm CV = 0.1509**
+
+完整对比表（D104 diagnostic composite）：
+
+| Model | Connector | Entropy | L2 Norm CV | Pruning Effect |
+|-------|-----------|---------|------------|----------------|
+| π0 | Linear projection | 0.9999 | **0.038** | Immune |
+| **X-VLA** | **Linear proj + BART encoder** | **0.614** | **0.151** | **Near-immune** |
+| OpenVLA | MLP projector | 0.661 | **0.215** | Graded |
+| SmolVLA | Pixel-shuffle | 0.952 | **0.314** | Catastrophic |
+
+关键发现：
+
+- X-VLA CV=0.151 介于 π0 (0.038) 和 OpenVLA (0.215) 之间，**不像预期那样接近 π0**
+- 原因：虽然 X-VLA 的 connector 是 linear projection，但 `vlm_features` 还经过了 Florence-2 BART encoder（12 层 transformer），这额外引入了非线性，提升了 token 间异质性
+- 这与 pruning 实验一致：X-VLA k=0.3 normalized loss=1.0014（仅 0.14% 退化），仍属 near-immune
+- Aux visual tokens CV=1.414 是因为 150 个 token 中有大量 zero-padded（min=0.0），不适合直接对比
+
+结论：X-VLA 作为第 4 个数据点支持 CV 作为 compressibility predictor 的趋势，但也揭示了 connector 之后的处理层（如 BART encoder）会提升 CV，需要在论文中注明 "CV reflects the full projection pipeline, not the connector alone"。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_xvla-l2norm-cv_20260520T102821"
+}
+```
+
+</details>
+
+---

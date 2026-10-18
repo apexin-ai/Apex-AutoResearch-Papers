@@ -1,0 +1,843 @@
+# code file inventory
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_code_file_inventory_20260518T233755.log`
+- **Structured JSON:** [`94e23163fd173db17a04.json`](../../sessions/94/94e23163fd173db17a04.json)
+
+## Before a recorded user message
+
+13 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "4c7553b3-2f0a-4b8f-a1a2-345f18382ac2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779155400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "61155b1d-420c-452d-9c12-0da41772be4c",
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to list files on a remote server and save the inventory. Let me first load the necessary MCP tools to execute SSH commands and save project files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "uuid": "b395e05d-b447-4ecd-b746-fbebf2319998",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5dHgW227vSUYK51jfgUwL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12646,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12646
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01S1JP4rhuH2bwxLbs9JTmm6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "uuid": "c1ca1fa6-9aa5-413a-ab6b-03fb1e60c3e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5dHgW227vSUYK51jfgUwL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12646,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12646
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T23:38:08.878Z_
+
+<details><summary>↩ Tool result · `toolu_01S1JP4rhuH2bwxLbs9JTmm6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "uuid": "07e31da7-729c-4594-a320-78cb3db9802e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me execute the SSH command to list the files on the remote server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "uuid": "e900a4c9-ffcc-4c91-a63b-ca40b60b2bd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019a19WzkGPiseS8RnRnjhuy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 24487,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BGXgH9Uk426wtde2oVr4BP`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "echo \"=== lm_eval_clean ===\" && find /root/entrainment_gated_ft/lm_eval_clean/ -type f -exec ls -lh {} \\; | sort -k9 && echo \"=== analysis ===\" && find /root/entrainment_gated_ft/analysis/ -type f -exec ls -lh {} \\; | sort -k9",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "uuid": "66032985-d46f-4994-b117-04738a92a044",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019a19WzkGPiseS8RnRnjhuy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 24487,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T23:38:16.314Z_
+
+<details><summary>↩ Tool result · `toolu_01BGXgH9Uk426wtde2oVr4BP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== lm_eval_clean ===\\n-rw-r--r-- 1 root root 127M May 18 21:55 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root 265K May 18 21:55 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\n-rw-r--r-- 1 root root 14K May 18 22:13 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n-rw-r--r-- 1 root root 14K May 18 22:00 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n-rw-r--r-- 1 root root 14K May 18 22:07 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n-rw-r--r-- 1 root root 127M May 18 21:45 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json\\n-rw-r--r-- 1 root root 5.4K May 18 21:38 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.log\\n-rw-r--r-- 1 root root 241K May 18 21:45 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_final.log\\n-rw-r--r-- 1 root root 7.6M May 18 21:17 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n-rw-r--r-- 1 root root 286 May 18 21:22 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_results.json\\n-rw-r--r-- 1 root root 127M May 19 00:15 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-12-1.json\\n-rw-r--r-- 1 root root 127M May 19 00:24 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-24-1.json\\n-rw-r--r-- 1 root root 127M May 19 00:51 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\\n-rw-r--r-- 1 root root 127M May 19 01:04 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-6-1.json\\n-rw-r--r-- 1 root root 127M May 19 02:37 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json\\n-rw-r--r-- 1 root root 127M May 18 23:27 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root 127M May 18 23:30 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-24-1.json\\n-rw-r--r-- 1 root root 127M May 19 00:41 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root 127M May 19 00:34 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root 127M May 18 23:15 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json\\n-rw-r--r-- 1 root root 336K May 18 22:04 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_final.log\\n-rw-r--r-- 1 root root 14K May 18 21:53 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_results.json\\n-rw-r--r-- 1 root root 126M May 18 23:13 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-New-hybrid-24-1.json\\n-rw-r--r-- 1 root root 126M May 18 23:06 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root 126M May 18 22:55 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root 127M May 18 23:01 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root 127M May 18 22:49 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-pure-baseline.json\\n-rw-r--r-- 1 root root 1.3M May 18 23:13 /root/entrainment_gated_ft/lm_eval_clean/340m/eval_all.log\\n-rw-r--r-- 1 root root 127M May 18 22:42 /root/entrainment_gated_ft/lm_eval_clean/340m/transformer_340M_baseline.json\\n-rw-r--r-- 1 root root 15K May 18 22:31 /root/entrainment_gated_ft/lm_eval_clean/340m/transformer_340M_baseline_lambada.log\\n-rw-r--r-- 1 root root 997K May 18 22:03 /root/entrainment_gated_ft/lm_eval_clean/eval_all.log\\n-rw-r--r-- 1 root root 251K May 18 22:13 /root/entrainment_gated_ft/lm_eval_clean/eval_h24.log\\n-rw-r--r-- 1 root root 848K May 18 22:07 /root/entrainment_gated_ft/lm_eval_clean/eval_remaining.log\\n-rw-r--r-- 1 root root 17K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig1_lambada_vs_attn.pdf\\n-rw-r--r-- 1 root root 86K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig1_lambada_vs_attn.png\\n-rw-r--r-- 1 root root 27K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig2_all_benchmarks.pdf\\n-rw-r--r-- 1 root root 344K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig2_all_benchmarks.png\\n-rw-r--r-- 1 root root 23K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig3_delta_heatmap.pdf\\n-rw-r--r-- 1 root root 194K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig3_delta_heatmap.png\\n-rw-r--r-- 1 root root 3.2K May 18 21:06 /root/entrainment_gated_ft/lm_eval_clean/gdn_pure_validation.log\\n-rw-r--r-- 1 root root 116K May 19 00:00 /root/entrainment_gated_ft/lm_eval_clean/hgrn2_debug.log\\n-rw-r--r-- 1 root root 2.6K May 19 00:04 /root/entrainment_gated_ft/lm_eval_clean/hgrn2_debug_lambada.log\\n-rw-r--r-- 1 root root 7.6M May 19 02:24 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_0/results.json\\n-rw-r--r-- 1 root root 7.6M May 19 02:24 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_4/results.json\\n-rw-r--r-- 1 root root 7.6M May 19 02:22 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure/seed_0/results.json\\n-rw-r--r-- 1 root root 7.6M May 19 02:25 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure/seed_1/results.json\\n-rw-r--r-- 1 root root 7.6M May 19 02:22 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure/seed_4/results.json\\n-rw-r--r-- 1 root root 5.5K May 18 21:38 /root/entrainment_gated_ft/lm_eval_clean/remaining.log\\n-rw-r--r-- 1 root root 335K May 18 23:27 /root/entrainment_gated_ft/lm_eval_clean/retnet_hybrid12_eval.log\\n-rw-r--r-- 1 root root 9.5K May 18 21:28 /root/entrainment_gated_ft/lm_eval_clean/retnet_pure.log\\n-rw-r--r-- 1 root root 1.2K May 18 21:39 /root/entrainment_gated_ft/lm_eval_clean/retnet_pure_final.log\\n-rw-r--r-- 1 root root 3.3K May 18 21:31 /root/entrainment_gated_ft/lm_eval_clean/retnet_pure_v2.log\\n-rw-r--r-- 1 root root 90 May 18 22:21 /root/entrainment_gated_ft/lm_eval_clean/retnet_redownload_eval.log\\n-rw-r--r-- 1 root root 9.0K May 18 22:49 /root/entrainment_gated_ft/lm_eval_clean/retnet_reeval.log\\n-rw-r--r-- 1 root root 2.7K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\\n-rw-r--r-- 1 root root 127M May 18 21:48 /root/entrainment_gated_ft/lm_eval_clean/transformer_1.3B_baseline.json\\n-rw-r--r-- 1 root root 155K May 18 21:48 /root/entrainment_gated_ft/lm_eval_clean/transformer_1.3B_baseline_final.log\\n-rw-r--r-- 1 root root 26K May 18 21:13 /root/entrainment_gated_ft/lm_eval_clean/validation.log\\n-rw-r--r-- 1 root root 27K May 18 21:17 /root/entrainment_gated_ft/lm_eval_clean/validation2.log\\n=== analysis ===\\n-rw-r--r-- 1 root root 23K May 19 04:57 /root/entrainment_gated_ft/analysis/convergence_analysis.pdf\\n-rw-r--r-- 1 root root 128K May 19 04:57 /root/entrainment_gated_ft/analysis/convergence_analysis.png\\n-rw-r--r-- 1 root root 4.4K May 19 04:57 /root/entrainment_gated_ft/analysis/convergence_analysis.py\\n-rw-r--r-- 1 root root 214K May 19 04:59 /root/entrainment_gated_ft/analysis/lambada_attention_analysis.png\\n-rw-r--r-- 1 root root 178K May 19 04:59 /root/entrainment_gated_ft/analysis/lambada_crossmodel_scatter.png\\n-rw-r--r-- 1 root root 324K May 19 04:58 /root/entrainment_gated_ft/analysis/lambada_per_example.csv\\n-rw-r--r-- 1 root root 8.7K May 19 04:58 /root/entrainment_gated_ft/analysis/logprob_analysis.py\\n-rw-r--r-- 1 root root 6.4K May 19 04:59 /root/entrainment_gated_ft/analysis/logprob_plots.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "uuid": "d690f211-a4bc-4dc6-bcfc-1b2e0ab9c33c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== lm_eval_clean ===\\\\n-rw-r--r-- 1 root root 127M May 18 21:55 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\\\n-rw-r--r-- 1 root root 265K May 18 21:55 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\\\n-rw-r--r-- 1 root root 14K May 18 22:13 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\\\n-rw-r--r-- 1 root root 14K May 18 22:00 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\\\n-rw-r--r-- 1 root root 14K May 18 22:07 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\\\n-rw-r--r-- 1 root root 127M May 18 21:45 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json\\\\n-rw-r--r-- 1 root root 5.4K May 18 21:38 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.log\\\\n-rw-r--r-- 1 root root 241K May 18 21:45 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_final.log\\\\n-rw-r--r-- 1 root root 7.6M May 18 21:17 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\\\n-rw-r--r-- 1 root root 286 May 18 21:22 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_results.json\\\\n-rw-r--r-- 1 root root 127M May 19 00:15 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-12-1.json\\\\n-rw-r--r-- 1 root root 127M May 19 00:24 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-24-1.json\\\\n-rw-r--r-- 1 root root 127M May 19 00:51 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\\\\n-rw-r--r-- 1 root root 127M May 19 01:04 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-6-1.json\\\\n-rw-r--r-- 1 root root 127M May 19 02:37 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json\\\\n-rw-r--r-- 1 root root 127M May 18 23:27 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-12-1.json\\\\n-rw-r--r-- 1 root root 127M May 18 23:30 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-24-1.json\\\\n-rw-r--r-- 1 root root 127M May 19 00:41 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json\\\\n-rw-r--r-- 1 root root 127M May 19 00:34 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-6-1.json\\\\n-rw-r--r-- 1 root root 127M May 18 23:15 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json\\\\n-rw-r--r-- 1 root root 336K May 18 22:04 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_final.log\\\\n-rw-r--r-- 1 root root 14K May 18 21:53 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_results.json\\\\n-rw-r--r-- 1 root root 126M May 18 23:13 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-New-hybrid-24-1.json\\\\n-rw-r--r-- 1 root root 126M May 18 23:06 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-12-1.json\\\\n-rw-r--r-- 1 root root 126M May 18 22:55 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-3-1.json\\\\n-rw-r--r-- 1 root root 127M May 18 23:01 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-6-1.json\\\\n-rw-r--r-- 1 root root 127M May 18 22:49 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-pure-baseline.json\\\\n-rw-r--r-- 1 root root 1.3M May 18 23:13 /root/entrainment_gated_ft/lm_eval_clean/340m/eval_all.log\\\\n-rw-r--r-- 1 root root 127M May 18 22:42 /root/entrainment_gated_ft/lm_eval_clean/340m/transformer_340M_baseline.json\\\\n-rw-r--r-- 1 root root 15K May 18 22:31 /root/entrainment_gated_ft/lm_eval_clean/340m/transformer_340M_baseline_lambada.log\\\\n-rw-r--r-- 1 root root 997K May 18 22:03 /root/entrainment_gated_ft/lm_eval_clean/eval_all.log\\\\n-rw-r--r-- 1 root root 251K May 18 22:13 /root/entrainment_gated_ft/lm_eval_clean/eval_h24.log\\\\n-rw-r--r-- 1 root root 848K May 18 22:07 /root/entrainment_gated_ft/lm_eval_clean/eval_remaining.log\\\\n-rw-r--r-- 1 root root 17K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig1_lambada_vs_attn.pdf\\\\n-rw-r--r-- 1 root root 86K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig1_lambada_vs_attn.png\\\\n-rw-r--r-- 1 root root 27K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig2_all_benchmarks.pdf\\\\n-rw-r--r-- 1 root root 344K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig2_all_benchmarks.png\\\\n-rw-r--r-- 1 root root 23K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig3_delta_heatmap.pdf\\\\n-rw-r--r-- 1 root root 194K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig3_delta_heatmap.png\\\\n-rw-r--r-- 1 root root 3.2K May 18 21:06 /root/entrainment_gated_ft/lm_eval_clean/gdn_pure_validation.log\\\\n-rw-r--r-- 1 root root 116K May 19 00:00 /root/entrainment_gated_ft/lm_eval_clean/hgrn2_debug.log\\\\n-rw-r--r-- 1 root root 2.6K May 19 00:04 /root/entrainment_gated_ft/lm_eval_clean/hgrn2_debug_lambada.log\\\\n-rw-r--r-- 1 root root 7.6M May 19 02:24 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_0/results.json\\\\n-rw-r--r-- 1 root root 7.6M May 19 02:24 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_4/results.json\\\\n-rw-r--r-- 1 root root 7.6M May 19 02:22 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure/seed_0/results.json\\\\n-rw-r--r-- 1 root root 7.6M May 19 02:25 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure/seed_1/results.json\\\\n-rw-r--r-- 1 root root 7.6M May 19 02:22 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure/seed_4/results.json\\\\n-rw-r--r-- 1 root root 5.5K May 18 21:38 /root/entrainment_gated_ft/lm_eval_clean/remaining.log\\\\n-rw-r--r-- 1 root root 335K May 18 23:27 /root/entrainment_gated_ft/lm_eval_clean/retnet_hybrid12_eval.log\\\\n-rw-r--r-- 1 root root 9.5K May 18 21:28 /root/entrainment_gated_ft/lm_eval_clean/retnet_pure.log\\\\n-rw-r--r-- 1 root root 1.2K May 18 21:39 /root/entrainment_gated_ft/lm_eval_clean/retnet_pure_final.log\\\\n-rw-r--r-- 1 root root 3.3K May 18 21:31 /root/entrainment_gated_ft/lm_eval_clean/retnet_pure_v2.log\\\\n-rw-r--r-- 1 root root 90 May 18 22:21 /root/entrainment_gated_ft/lm_eval_clean/retnet_redownload_eval.log\\\\n-rw-r--r-- 1 root root 9.0K May 18 22:49 /root/entrainment_gated_ft/lm_eval_clean/retnet_reeval.log\\\\n-rw-r--r-- 1 root root 2.7K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\\\\n-rw-r--r-- 1 root root 127M May 18 21:48 /root/entrainment_gated_ft/lm_eval_clean/transformer_1.3B_baseline.json\\\\n-rw-r--r-- 1 root root 155K May 18 21:48 /root/entrainment_gated_ft/lm_eval_clean/transformer_1.3B_baseline_final.log\\\\n-rw-r--r-- 1 root root 26K May 18 21:13 /root/entrainment_gated_ft/lm_eval_clean/validation.log\\\\n-rw-r--r-- 1 root root 27K May 18 21:17 /root/entrainment_gated_ft/lm_eval_clean/validation2.log\\\\n=== analysis ===\\\\n-rw-r--r-- 1 root root 23K May 19 04:57 /root/entrainment_gated_ft/analysis/convergence_analysis.pdf\\\\n-rw-r--r-- 1 root root 128K May 19 04:57 /root/entrainment_gated_ft/analysis/convergence_analysis.png\\\\n-rw-r--r-- 1 root root 4.4K May 19 04:57 /root/entrainment_gated_ft/analysis/convergence_analysis.py\\\\n-rw-r--r-- 1 root root 214K May 19 04:59 /root/entrainment_gated_ft/analysis/lambada_attention_analysis.png\\\\n-rw-r--r-- 1 root root 178K May 19 04:59 /root/entrainment_gated_ft/analysis/lambada_crossmodel_scatter.png\\\\n-rw-r--r-- 1 root root 324K May 19 04:58 /root/entrainment_gated_ft/analysis/lambada_per_example.csv\\\\n-rw-r--r-- 1 root root 8.7K May 19 04:58 /root/entrainment_gated_ft/analysis/logprob_analysis.py\\\\n-rw-r--r-- 1 root root 6.4K May 19 04:59 /root/entrainment_gated_ft/analysis/logprob_plots.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== lm_eval_clean ===\\n-rw-r--r-- 1 root root 127M May 18 21:55 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root 265K May 18 21:55 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\n-rw-r--r-- 1 root root 14K May 18 22:13 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n-rw-r--r-- 1 root root 14K May 18 22:00 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n-rw-r--r-- 1 root root 14K May 18 22:07 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n-rw-r--r-- 1 root root 127M May 18 21:45 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json\\n-rw-r--r-- 1 root root 5.4K May 18 21:38 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.log\\n-rw-r--r-- 1 root root 241K May 18 21:45 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_final.log\\n-rw-r--r-- 1 root root 7.6M May 18 21:17 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n-rw-r--r-- 1 root root 286 May 18 21:22 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_results.json\\n-rw-r--r-- 1 root root 127M May 19 00:15 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-12-1.json\\n-rw-r--r-- 1 root root 127M May 19 00:24 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-24-1.json\\n-rw-r--r-- 1 root root 127M May 19 00:51 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\\n-rw-r--r-- 1 root root 127M May 19 01:04 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-6-1.json\\n-rw-r--r-- 1 root root 127M May 19 02:37 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-pure.json\\n-rw-r--r-- 1 root root 127M May 18 23:27 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root 127M May 18 23:30 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-24-1.json\\n-rw-r--r-- 1 root root 127M May 19 00:41 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root 127M May 19 00:34 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root 127M May 18 23:15 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure.json\\n-rw-r--r-- 1 root root 336K May 18 22:04 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_final.log\\n-rw-r--r-- 1 root root 14K May 18 21:53 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-RetNet-pure_results.json\\n-rw-r--r-- 1 root root 126M May 18 23:13 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-New-hybrid-24-1.json\\n-rw-r--r-- 1 root root 126M May 18 23:06 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root 126M May 18 22:55 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root 127M May 18 23:01 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root 127M May 18 22:49 /root/entrainment_gated_ft/lm_eval_clean/340m/340M-20B-GatedDeltaNet-pure-baseline.json\\n-rw-r--r-- 1 root root 1.3M May 18 23:13 /root/entrainment_gated_ft/lm_eval_clean/340m/eval_all.log\\n-rw-r--r-- 1 root root 127M May 18 22:42 /root/entrainment_gated_ft/lm_eval_clean/340m/transformer_340M_baseline.json\\n-rw-r--r-- 1 root root 15K May 18 22:31 /root/entrainment_gated_ft/lm_eval_clean/340m/transformer_340M_baseline_lambada.log\\n-rw-r--r-- 1 root root 997K May 18 22:03 /root/entrainment_gated_ft/lm_eval_clean/eval_all.log\\n-rw-r--r-- 1 root root 251K May 18 22:13 /root/entrainment_gated_ft/lm_eval_clean/eval_h24.log\\n-rw-r--r-- 1 root root 848K May 18 22:07 /root/entrainment_gated_ft/lm_eval_clean/eval_remaining.log\\n-rw-r--r-- 1 root root 17K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig1_lambada_vs_attn.pdf\\n-rw-r--r-- 1 root root 86K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig1_lambada_vs_attn.png\\n-rw-r--r-- 1 root root 27K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig2_all_benchmarks.pdf\\n-rw-r--r-- 1 root root 344K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig2_all_benchmarks.png\\n-rw-r--r-- 1 root root 23K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig3_delta_heatmap.pdf\\n-rw-r--r-- 1 root root 194K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/figures/fig3_delta_heatmap.png\\n-rw-r--r-- 1 root root 3.2K May 18 21:06 /root/entrainment_gated_ft/lm_eval_clean/gdn_pure_validation.log\\n-rw-r--r-- 1 root root 116K May 19 00:00 /root/entrainment_gated_ft/lm_eval_clean/hgrn2_debug.log\\n-rw-r--r-- 1 root root 2.6K May 19 00:04 /root/entrainment_gated_ft/lm_eval_clean/hgrn2_debug_lambada.log\\n-rw-r--r-- 1 root root 7.6M May 19 02:24 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_0/results.json\\n-rw-r--r-- 1 root root 7.6M May 19 02:24 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_4/results.json\\n-rw-r--r-- 1 root root 7.6M May 19 02:22 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure/seed_0/results.json\\n-rw-r--r-- 1 root root 7.6M May 19 02:25 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure/seed_1/results.json\\n-rw-r--r-- 1 root root 7.6M May 19 02:22 /root/entrainment_gated_ft/lm_eval_clean/multiseed/1.3B-100B-GatedDeltaNet-pure/seed_4/results.json\\n-rw-r--r-- 1 root root 5.5K May 18 21:38 /root/entrainment_gated_ft/lm_eval_clean/remaining.log\\n-rw-r--r-- 1 root root 335K May 18 23:27 /root/entrainment_gated_ft/lm_eval_clean/retnet_hybrid12_eval.log\\n-rw-r--r-- 1 root root 9.5K May 18 21:28 /root/entrainment_gated_ft/lm_eval_clean/retnet_pure.log\\n-rw-r--r-- 1 root root 1.2K May 18 21:39 /root/entrainment_gated_ft/lm_eval_clean/retnet_pure_final.log\\n-rw-r--r-- 1 root root 3.3K May 18 21:31 /root/entrainment_gated_ft/lm_eval_clean/retnet_pure_v2.log\\n-rw-r--r-- 1 root root 90 May 18 22:21 /root/entrainment_gated_ft/lm_eval_clean/retnet_redownload_eval.log\\n-rw-r--r-- 1 root root 9.0K May 18 22:49 /root/entrainment_gated_ft/lm_eval_clean/retnet_reeval.log\\n-rw-r--r-- 1 root root 2.7K May 19 03:16 /root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\\n-rw-r--r-- 1 root root 127M May 18 21:48 /root/entrainment_gated_ft/lm_eval_clean/transformer_1.3B_baseline.json\\n-rw-r--r-- 1 root root 155K May 18 21:48 /root/entrainment_gated_ft/lm_eval_clean/transformer_1.3B_baseline_final.log\\n-rw-r--r-- 1 root root 26K May 18 21:13 /root/entrainment_gated_ft/lm_eval_clean/validation.log\\n-rw-r--r-- 1 root root 27K May 18 21:17 /root/entrainment_gated_ft/lm_eval_clean/validation2.log\\n=== analysis ===\\n-rw-r--r-- 1 root root 23K May 19 04:57 /root/entrainment_gated_ft/analysis/convergence_analysis.pdf\\n-rw-r--r-- 1 root root 128K May 19 04:57 /root/entrainment_gated_ft/analysis/convergence_analysis.png\\n-rw-r--r-- 1 root root 4.4K May 19 04:57 /root/entrainment_gated_ft/analysis/convergence_analysis.py\\n-rw-r--r-- 1 root root 214K May 19 04:59 /root/entrainment_gated_ft/analysis/lambada_attention_analysis.png\\n-rw-r--r-- 1 root root 178K May 19 04:59 /root/entrainment_gated_ft/analysis/lambada_crossmodel_scatter.png\\n-rw-r--r-- 1 root root 324K May 19 04:58 /root/entrainment_gated_ft/analysis/lambada_per_example.csv\\n-rw-r--r-- 1 root root 8.7K May 19 04:58 /root/entrainment_gated_ft/analysis/logprob_analysis.py\\n-rw-r--r-- 1 root root 6.4K May 19 04:59 /root/entrainment_gated_ft/analysis/logprob_plots.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01L16peNKN7aDSiGrAXu6sbw`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "file": "file_inventory.md",
+  "content": "# 远程文件清单 (westb-48145)\n\n## /root/entrainment_gated_ft/lm_eval_clean/\n| 文件 | 大小 |\n|------|------|\n| 1.3B-100B-GatedDeltaNet-hybrid-12-1.json | 127M |\n| 1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log | 265K |\n| 1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json | 14K |\n| 1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json | 14K |\n| 1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json | 14K |\n| 1.3B-100B-GatedDeltaNet-pure.json | 127M |\n| 1.3B-100B-GatedDeltaNet-pure.log | 5.4K |\n| 1.3B-100B-GatedDeltaNet-pure_final.log | 241K |\n| 1.3B-100B-GatedDeltaNet-pure_lambada_only.json | 7.6M |\n| 1.3B-100B-GatedDeltaNet-pure_results.json | 286 |\n| 1.3B-100B-HGRN2-hybrid-12-1.json | 127M |\n| 1.3B-100B-HGRN2-hybrid-24-1.json | 127M |\n| 1.3B-100B-HGRN2-hybrid-3-1.json | 127M |\n| 1.3B-100B-HGRN2-hybrid-6-1.json | 127M |\n| 1.3B-100B-HGRN2-pure.json | 127M |\n| 1.3B-100B-RetNet-hybrid-12-1.json | 127M |\n| 1.3B-100B-RetNet-hybrid-24-1.json | 127M |\n| 1.3B-100B-RetNet-hybrid-3-1.json | 127M |\n| 1.3B-100B-RetNet-hybrid-6-1.json | 127M |\n| 1.3B-100B-RetNet-pure.json | 127M |\n| 1.3B-100B-RetNet-pure_final.log | 336K |\n| 1.3B-100B-RetNet-pure_results.json | 14K |\n| eval_all.log | 997K |\n| eval_h24.log | 251K |\n| eval_remaining.log | 848K |\n| gdn_pure_validation.log | 3.2K |\n| hgrn2_debug.log | 116K |\n| hgrn2_debug_lambada.log | 2.6K |\n| remaining.log | 5.5K |\n| retnet_hybrid12_eval.log | 335K |\n| retnet_pure.log | 9.5K |\n| retnet_pure_final.log | 1.2K |\n| retnet_pure_v2.log | 3.3K |\n| retnet_redownload_eval.log | 90 |\n| retnet_reeval.log | 9.0K |\n| summary_all_1.3b.csv | 2.7K |\n| transformer_1.3B_baseline.json | 127M |\n| transformer_1.3B_baseline_final.log | 155K |\n| validation.log | 26K |\n| validation2.log | 27K |\n\n## /root/entrainment_gated_ft/lm_eval_clean/340m/\n| 文件 | 大小 |\n|------|------|\n| 340M-20B-GatedDeltaNet-New-hybrid-24-1.json | 126M |\n| 340M-20B-GatedDeltaNet-hybrid-12-1.json | 126M |\n| 340M-20B-GatedDeltaNet-hybrid-3-1.json | 126M |\n| 340M-20B-GatedDeltaNet-hybrid-6-1.json | 127M |\n| 340M-20B-GatedDeltaNet-pure-baseline.json | 127M |\n| eval_all.log | 1.3M |\n| transformer_340M_baseline.json | 127M |\n| transformer_340M_baseline_lambada.log | 15K |\n\n## /root/entrainment_gated_ft/lm_eval_clean/multiseed/\n| 文件 | 大小 |\n|------|------|\n| 1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_0/results.json | 7.6M |\n| 1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_4/results.json | 7.6M |\n| 1.3B-100B-GatedDeltaNet-pure/seed_0/results.json | 7.6M |\n| 1.3B-100B-GatedDeltaNet-pure/seed_1/results.json | 7.6M |\n| 1.3B-100B-GatedDeltaNet-pure/seed_4/results.json | 7.6M |\n\n## /root/entrainment_gated_ft/lm_eval_clean/figures/\n| 文件 | 大小 |\n|------|------|\n| fig1_lambada_vs_attn.pdf | 17K |\n| fig1_lambada_vs_attn.png | 86K |\n| fig2_all_benchmarks.pdf | 27K |\n| fig2_all_benchmarks.png | 344K |\n| fig3_delta_heatmap.pdf | 23K |\n| fig3_delta_heatmap.png | 194K |\n\n## /root/entrainment_gated_ft/analysis/\n| 文件 | 大小 |\n|------|------|\n| convergence_analysis.pdf | 23K |\n| convergence_analysis.png | 128K |\n| convergence_analysis.py | 4.4K |\n| lambada_attention_analysis.png | 214K |\n| lambada_crossmodel_scatter.png | 178K |\n| lambada_per_example.csv | 324K |\n| logprob_analysis.py | 8.7K |\n| logprob_plots.py | 6.4K |\n\n总文件数: 53\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "uuid": "47e14a87-1e72-4ec1-97a5-7526bdcd3f8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017QydnWiLEHwodNQfoQXx4L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4326,
+      "cache_read_input_tokens": 25146,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4326
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T23:38:35.455Z_
+
+<details><summary>↩ Tool result · `toolu_01L16peNKN7aDSiGrAXu6sbw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'file_inventory.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "uuid": "86ff9f33-e0a9-4563-8dd8-16858d6e934e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'file_inventory.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'file_inventory.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+`save_project_file` 不支持写入 `file_inventory.md`。直接输出完整清单：
+
+# 远程文件清单 (westb-48145)
+
+## /root/entrainment_gated_ft/lm_eval_clean/
+| 文件 | 大小 |
+|------|------|
+| 1.3B-100B-GatedDeltaNet-hybrid-12-1.json | 127M |
+| 1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log | 265K |
+| 1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json | 14K |
+| 1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json | 14K |
+| 1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json | 14K |
+| 1.3B-100B-GatedDeltaNet-pure.json | 127M |
+| 1.3B-100B-GatedDeltaNet-pure.log | 5.4K |
+| 1.3B-100B-GatedDeltaNet-pure_final.log | 241K |
+| 1.3B-100B-GatedDeltaNet-pure_lambada_only.json | 7.6M |
+| 1.3B-100B-GatedDeltaNet-pure_results.json | 286 |
+| 1.3B-100B-HGRN2-hybrid-12-1.json | 127M |
+| 1.3B-100B-HGRN2-hybrid-24-1.json | 127M |
+| 1.3B-100B-HGRN2-hybrid-3-1.json | 127M |
+| 1.3B-100B-HGRN2-hybrid-6-1.json | 127M |
+| 1.3B-100B-HGRN2-pure.json | 127M |
+| 1.3B-100B-RetNet-hybrid-12-1.json | 127M |
+| 1.3B-100B-RetNet-hybrid-24-1.json | 127M |
+| 1.3B-100B-RetNet-hybrid-3-1.json | 127M |
+| 1.3B-100B-RetNet-hybrid-6-1.json | 127M |
+| 1.3B-100B-RetNet-pure.json | 127M |
+| 1.3B-100B-RetNet-pure_final.log | 336K |
+| 1.3B-100B-RetNet-pure_results.json | 14K |
+| eval_all.log | 997K |
+| eval_h24.log | 251K |
+| eval_remaining.log | 848K |
+| gdn_pure_validation.log | 3.2K |
+| hgrn2_debug.log | 116K |
+| hgrn2_debug_lambada.log | 2.6K |
+| remaining.log | 5.5K |
+| retnet_hybrid12_eval.log | 335K |
+| retnet_pure.log | 9.5K |
+| retnet_pure_final.log | 1.2K |
+| retnet_pure_v2.log | 3.3K |
+| retnet_redownload_eval.log | 90 |
+| retnet_reeval.log | 9.0K |
+| summary_all_1.3b.csv | 2.7K |
+| transformer_1.3B_baseline.json | 127M |
+| transformer_1.3B_baseline_final.log | 155K |
+| validation.log | 26K |
+| validation2.log | 27K |
+
+## /root/entrainment_gated_ft/lm_eval_clean/340m/
+| 文件 | 大小 |
+|------|------|
+| 340M-20B-GatedDeltaNet-New-hybrid-24-1.json | 126M |
+| 340M-20B-GatedDeltaNet-hybrid-12-1.json | 126M |
+| 340M-20B-GatedDeltaNet-hybrid-3-1.json | 126M |
+| 340M-20B-GatedDeltaNet-hybrid-6-1.json | 127M |
+| 340M-20B-GatedDeltaNet-pure-baseline.json | 127M |
+| eval_all.log | 1.3M |
+| transformer_340M_baseline.json | 127M |
+| transformer_340M_baseline_lambada.log | 15K |
+
+## /root/entrainment_gated_ft/lm_eval_clean/multiseed/
+| 文件 | 大小 |
+|------|------|
+| 1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_0/results.json | 7.6M |
+| 1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_4/results.json | 7.6M |
+| 1.3B-100B-GatedDeltaNet-pure/seed_0/results.json | 7.6M |
+| 1.3B-100B-GatedDeltaNet-pure/seed_1/results.json | 7.6M |
+| 1.3B-100B-GatedDeltaNet-pure/seed_4/results.json | 7.6M |
+
+## /root/entrainment_gated_ft/lm_eval_clean/figures/
+| 文件 | 大小 |
+|------|------|
+| fig1_lambada_vs_attn.pdf | 17K |
+| fig1_lambada_vs_attn.png | 86K |
+| fig2_all_benchmarks.pdf | 27K |
+| fig2_all_benchmarks.png | 344K |
+| fig3_delta_heatmap.pdf | 23K |
+| fig3_delta_heatmap.png | 194K |
+
+## /root/entrainment_gated_ft/analysis/
+| 文件 | 大小 |
+|------|------|
+| convergence_analysis.pdf | 23K |
+| convergence_analysis.png | 128K |
+| convergence_analysis.py | 4.4K |
+| lambada_attention_analysis.png | 214K |
+| lambada_crossmodel_scatter.png | 178K |
+| lambada_per_example.csv | 324K |
+| logprob_analysis.py | 8.7K |
+| logprob_plots.py | 6.4K |
+
+**总文件数: 53**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "uuid": "b22f5afc-2248-4527-aa11-9cc8b0f4178b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwrZ8xSrp9BDjypMBeEPhq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1899,
+      "cache_read_input_tokens": 29472,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1899
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 13_
+
+`save_project_file` 不支持写入 `file_inventory.md`。直接输出完整清单：
+
+# 远程文件清单 (westb-48145)
+
+## /root/entrainment_gated_ft/lm_eval_clean/
+| 文件 | 大小 |
+|------|------|
+| 1.3B-100B-GatedDeltaNet-hybrid-12-1.json | 127M |
+| 1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log | 265K |
+| 1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json | 14K |
+| 1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json | 14K |
+| 1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json | 14K |
+| 1.3B-100B-GatedDeltaNet-pure.json | 127M |
+| 1.3B-100B-GatedDeltaNet-pure.log | 5.4K |
+| 1.3B-100B-GatedDeltaNet-pure_final.log | 241K |
+| 1.3B-100B-GatedDeltaNet-pure_lambada_only.json | 7.6M |
+| 1.3B-100B-GatedDeltaNet-pure_results.json | 286 |
+| 1.3B-100B-HGRN2-hybrid-12-1.json | 127M |
+| 1.3B-100B-HGRN2-hybrid-24-1.json | 127M |
+| 1.3B-100B-HGRN2-hybrid-3-1.json | 127M |
+| 1.3B-100B-HGRN2-hybrid-6-1.json | 127M |
+| 1.3B-100B-HGRN2-pure.json | 127M |
+| 1.3B-100B-RetNet-hybrid-12-1.json | 127M |
+| 1.3B-100B-RetNet-hybrid-24-1.json | 127M |
+| 1.3B-100B-RetNet-hybrid-3-1.json | 127M |
+| 1.3B-100B-RetNet-hybrid-6-1.json | 127M |
+| 1.3B-100B-RetNet-pure.json | 127M |
+| 1.3B-100B-RetNet-pure_final.log | 336K |
+| 1.3B-100B-RetNet-pure_results.json | 14K |
+| eval_all.log | 997K |
+| eval_h24.log | 251K |
+| eval_remaining.log | 848K |
+| gdn_pure_validation.log | 3.2K |
+| hgrn2_debug.log | 116K |
+| hgrn2_debug_lambada.log | 2.6K |
+| remaining.log | 5.5K |
+| retnet_hybrid12_eval.log | 335K |
+| retnet_pure.log | 9.5K |
+| retnet_pure_final.log | 1.2K |
+| retnet_pure_v2.log | 3.3K |
+| retnet_redownload_eval.log | 90 |
+| retnet_reeval.log | 9.0K |
+| summary_all_1.3b.csv | 2.7K |
+| transformer_1.3B_baseline.json | 127M |
+| transformer_1.3B_baseline_final.log | 155K |
+| validation.log | 26K |
+| validation2.log | 27K |
+
+## /root/entrainment_gated_ft/lm_eval_clean/340m/
+| 文件 | 大小 |
+|------|------|
+| 340M-20B-GatedDeltaNet-New-hybrid-24-1.json | 126M |
+| 340M-20B-GatedDeltaNet-hybrid-12-1.json | 126M |
+| 340M-20B-GatedDeltaNet-hybrid-3-1.json | 126M |
+| 340M-20B-GatedDeltaNet-hybrid-6-1.json | 127M |
+| 340M-20B-GatedDeltaNet-pure-baseline.json | 127M |
+| eval_all.log | 1.3M |
+| transformer_340M_baseline.json | 127M |
+| transformer_340M_baseline_lambada.log | 15K |
+
+## /root/entrainment_gated_ft/lm_eval_clean/multiseed/
+| 文件 | 大小 |
+|------|------|
+| 1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_0/results.json | 7.6M |
+| 1.3B-100B-GatedDeltaNet-hybrid-24-1/seed_4/results.json | 7.6M |
+| 1.3B-100B-GatedDeltaNet-pure/seed_0/results.json | 7.6M |
+| 1.3B-100B-GatedDeltaNet-pure/seed_1/results.json | 7.6M |
+| 1.3B-100B-GatedDeltaNet-pure/seed_4/results.json | 7.6M |
+
+## /root/entrainment_gated_ft/lm_eval_clean/figures/
+| 文件 | 大小 |
+|------|------|
+| fig1_lambada_vs_attn.pdf | 17K |
+| fig1_lambada_vs_attn.png | 86K |
+| fig2_all_benchmarks.pdf | 27K |
+| fig2_all_benchmarks.png | 344K |
+| fig3_delta_heatmap.pdf | 23K |
+| fig3_delta_heatmap.png | 194K |
+
+## /root/entrainment_gated_ft/analysis/
+| 文件 | 大小 |
+|------|------|
+| convergence_analysis.pdf | 23K |
+| convergence_analysis.png | 128K |
+| convergence_analysis.py | 4.4K |
+| lambada_attention_analysis.png | 214K |
+| lambada_crossmodel_scatter.png | 178K |
+| lambada_per_example.csv | 324K |
+| logprob_analysis.py | 8.7K |
+| logprob_plots.py | 6.4K |
+
+**总文件数: 53**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 48210,
+  "duration_api_ms": 46205,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "bbda3462-f572-40e2-b929-2b354e35fa76",
+  "total_cost_usd": 0.2669105,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 19530,
+    "cache_read_input_tokens": 90946,
+    "output_tokens": 3923,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19530,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1740,
+        "cache_read_input_tokens": 29472,
+        "cache_creation_input_tokens": 1899,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1899
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1190,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00126,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 3923,
+      "cacheReadInputTokens": 90946,
+      "cacheCreationInputTokens": 19530,
+      "webSearchRequests": 0,
+      "costUSD": 0.2656505,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "dc85ef5a-985e-4f2a-b309-650c26dbf531"
+}
+```
+
+</details>
+
+---

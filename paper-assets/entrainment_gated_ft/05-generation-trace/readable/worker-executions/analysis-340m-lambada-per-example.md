@@ -1,0 +1,4210 @@
+# analysis 340m lambada per example
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 88
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_analysis_340m-lambada-per-example_20260521T132510.log`
+- **Structured JSON:** [`3dcec15faf3fe63d22b2.json`](../../sessions/3d/3dcec15faf3fe63d22b2.json)
+
+## Before a recorded user message
+
+88 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5db5a22b-2406-477d-9337-75c3a91422fe",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779387000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5d17ce96-6923-4115-8ace-74c83b438d89",
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by exploring the server to find the 340M LAMBADA per-example prediction data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "fca2ac7f-4e97-4234-8151-761a9401819f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EFURbkFB7m3PoWrD2jnUa2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12882,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12882
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先探测服务器上 340M LAMBADA 数据的位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "e8eeebb0-28a9-4322-90cc-db7a07e6fb87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EFURbkFB7m3PoWrD2jnUa2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12882,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12882
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UH5LPH5reKPxX8AnVTjiv1`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "319a0d77-ecb3-47f5-87ac-ebcdfaa8b098",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EFURbkFB7m3PoWrD2jnUa2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12882,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12882
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T13:25:24.431Z_
+
+<details><summary>↩ Tool result · `toolu_01UH5LPH5reKPxX8AnVTjiv1`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "e31028db-e601-41b8-910c-2a4f892623a2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014rRt413WSrTEUESDnV4orQ`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root -path \"*340*\" -name \"*lambada*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "c422fc24-9408-4911-8403-11cb0b7f5461",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fb5bM7Ys59ZbpqsCVzkE86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1806,
+      "cache_read_input_tokens": 24723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1806
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T13:25:28.062Z_
+
+<details><summary>↩ Tool result · `toolu_014rRt413WSrTEUESDnV4orQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "51f52fc2-f944-4034-89be-27ea1ca94a18",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014ymyTwnRDvQUnxC6t7oZxc`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root -path \"*340M*\" -name \"*.jsonl\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "bd6dd572-f4ff-4528-be64-e678ca05dba8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fb5bM7Ys59ZbpqsCVzkE86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1806,
+      "cache_read_input_tokens": 24723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1806
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T13:25:28.427Z_
+
+<details><summary>↩ Tool result · `toolu_014ymyTwnRDvQUnxC6t7oZxc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "5244128c-737d-42da-905a-1c0a103a3bc7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RsUykQrg4FkDsU3LTBHzbD`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/autodl-pub/eval_results/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "f23341da-03bf-4a40-8e0d-3869078ab36c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fb5bM7Ys59ZbpqsCVzkE86",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1806,
+      "cache_read_input_tokens": 24723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1806
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T13:25:29.131Z_
+
+<details><summary>↩ Tool result · `toolu_01RsUykQrg4FkDsU3LTBHzbD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "8799d989-ad86-4b00-be02-4e37d4b1f4a6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` contains `>` which is blocked. Let me retry without the redirect.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "c142177b-f0a0-4a4d-9eaa-941cb2932aca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019sDSLQdd1vAYf3q8WuMegs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 26529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+`2>/dev/null` 被拦截了，去掉重定向重试。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "7a2c7e8f-9929-4242-9f02-822798d54bd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019sDSLQdd1vAYf3q8WuMegs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 26529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QduYfQ2ThX7GYoBLCdJoXp`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root -path \"*340*\" -name \"*lambada*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "360fb0c4-df9c-47fb-a548-57fba3078411",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019sDSLQdd1vAYf3q8WuMegs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 26529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015f3WMc24G6bFQMPEKM6uBj`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root -path \"*340M*\" -name \"*.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "3a34ea3c-fa38-467b-98be-2181553e163f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019sDSLQdd1vAYf3q8WuMegs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 26529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NgNGYNgNgCeMXY9f1aJbmK`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/autodl-pub/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "fc6ae503-cc7a-46ac-808b-09ddc481cd8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019sDSLQdd1vAYf3q8WuMegs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 26529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 697
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T13:25:37.378Z_
+
+<details><summary>↩ Tool result · `toolu_01QduYfQ2ThX7GYoBLCdJoXp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/340m/transformer_340M_baseline_lambada.log\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h6-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h12-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h24-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h6-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h12-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h24-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h6-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h12-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h24-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/Transformer/samples/lambada_openai.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "49a1418c-ff5f-40a8-865b-b02670bd3cc6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/340m/transformer_340M_baseline_lambada.log\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h6-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h12-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h24-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h6-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h12-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h24-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h6-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h12-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h24-1/samples/lambada_openai.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/Transformer/samples/lambada_openai.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/340m/transformer_340M_baseline_lambada.log\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h6-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h12-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h24-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h6-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h12-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h24-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h6-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h12-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h24-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/Transformer/samples/lambada_openai.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T13:25:38.568Z_
+
+<details><summary>↩ Tool result · `toolu_015f3WMc24G6bFQMPEKM6uBj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "1f1802fd-cf66-47e5-ad72-792d845c7b4b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T13:25:39.893Z_
+
+<details><summary>↩ Tool result · `toolu_01NgNGYNgNgCeMXY9f1aJbmK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-pub/eval_results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "2d1ef100-d8af-42a1-81b5-2ea0c7a8ff91",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-pub/eval_results/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-pub/eval_results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found all 15 configs + Transformer baseline at `/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/`. Let me check the data format of one file to understand the structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "ac89795d-20c0-4af6-8457-aeca4ec8ef99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PcjoyXoyt5SsJ4tRNqF4vg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1471,
+      "cache_read_input_tokens": 27226,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+找到全部 15 个 340M configs 的 LAMBADA jsonl 文件在 `/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/`。先看一条数据确认格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "25dc32b2-5db8-4582-ad9c-6bce17df5f45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PcjoyXoyt5SsJ4tRNqF4vg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1471,
+      "cache_read_input_tokens": 27226,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015btJLwKjwTpshGRa3VTFsG`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -2 /root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "67d206f1-2efe-42ed-b70b-80b10c22c779",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PcjoyXoyt5SsJ4tRNqF4vg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1471,
+      "cache_read_input_tokens": 27226,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G7HpvxEaf9PYTkUkaPpcQt`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "wc -l /root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "167efe5f-6ed4-416f-a227-25372f4b58bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PcjoyXoyt5SsJ4tRNqF4vg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1471,
+      "cache_read_input_tokens": 27226,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T13:25:46.749Z_
+
+<details><summary>↩ Tool result · `toolu_015btJLwKjwTpshGRa3VTFsG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"text\\\": \\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\n\\\\n\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\"\\\\n\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about signs\\\"}, \\\"target\\\": \\\" signs\\\", \\\"arguments\\\": [[\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\n\\\\n\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\"\\\\n\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about\\\", \\\" signs\\\"]], \\\"resps\\\": [[[-4.3125, false]]], \\\"filtered_resps\\\": [[-4.3125, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"perplexity\\\", \\\"acc\\\"], \\\"doc_hash\\\": \\\"d5d2ee0c7bb2325b1a3b782dd2f946222c370109812c56acc7da70b662a6a60c\\\", \\\"prompt_hash\\\": \\\"8d638394e95544a75ea75bfa8cedd5fb71d5e65dfac9758cad35a0d5fa6e296c\\\", \\\"target_hash\\\": \\\"697dfd086e17614160f34474ccf8681ad12ae5839865fc979ac177eb5bba0a48\\\", \\\"perplexity\\\": -4.3125, \\\"acc\\\": 0}\\n{\\\"doc_id\\\": 1, \\\"doc\\\": {\\\"text\\\": \\\"Give me a minute to change and I'll meet you at the docks.\\\\\\\" She'd forced those words through her teeth.\\\\n\\\\n\\\\\\\"No need to change. We won't be that long.\\\\\\\"\\\\n\\\\nShane gripped her arm and started leading her to the dock.\\\\n\\\\n\\\\\\\"I can make it there on my own, Shane\\\"}, \\\"target\\\": \\\" Shane\\\", \\\"arguments\\\": [[\\\"Give me a minute to change and I'll meet you at the docks.\\\\\\\" She'd forced those words through her teeth.\\\\n\\\\n\\\\\\\"No need to change. We won't be that long.\\\\\\\"\\\\n\\\\nShane gripped her arm and started leading her to the dock.\\\\n\\\\n\\\\\\\"I can make it there on my own,\\\", \\\" Shane\\\"]], \\\"resps\\\": [[[-2.453125, false]]], \\\"filtered_resps\\\": [[-2.453125, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"perplexity\\\", \\\"acc\\\"], \\\"doc_hash\\\": \\\"a0a3a6af029a08c1101838dad7c9d14d25760f6bf91903c29a29ed93aca182c7\\\", \\\"prompt_hash\\\": \\\"4bf9c8952b622b3e634fed1df7684bf3857fbe89b76472483ac12c88672c6d0d\\\", \\\"target_hash\\\": \\\"aae27ee803ccb2af84968ea406180b5a8a91494318ca531aa757eb9ff1a74355\\\", \\\"perplexity\\\": -2.453125, \\\"acc\\\": 0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "553209c1-6bd7-46e0-a7ee-fffc64395923",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"text\\\\\\\": \\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about signs\\\\\\\"}, \\\\\\\"target\\\\\\\": \\\\\\\" signs\\\\\\\", \\\\\\\"arguments\\\\\\\": [[\\\\\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about\\\\\\\", \\\\\\\" signs\\\\\\\"]], \\\\\\\"resps\\\\\\\": [[[-4.3125, false]]], \\\\\\\"filtered_resps\\\\\\\": [[-4.3125, false]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"perplexity\\\\\\\", \\\\\\\"acc\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"d5d2ee0c7bb2325b1a3b782dd2f946222c370109812c56acc7da70b662a6a60c\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"8d638394e95544a75ea75bfa8cedd5fb71d5e65dfac9758cad35a0d5fa6e296c\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"697dfd086e17614160f34474ccf8681ad12ae5839865fc979ac177eb5bba0a48\\\\\\\", \\\\\\\"perplexity\\\\\\\": -4.3125, \\\\\\\"acc\\\\\\\": 0}\\\\n{\\\\\\\"doc_id\\\\\\\": 1, \\\\\\\"doc\\\\\\\": {\\\\\\\"text\\\\\\\": \\\\\\\"Give me a minute to change and I'll meet you at the docks.\\\\\\\\\\\\\\\" She'd forced those words through her teeth.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"No need to change. We won't be that long.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nShane gripped her arm and started leading her to the dock.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"I can make it there on my own, Shane\\\\\\\"}, \\\\\\\"target\\\\\\\": \\\\\\\" Shane\\\\\\\", \\\\\\\"arguments\\\\\\\": [[\\\\\\\"Give me a minute to change and I'll meet you at the docks.\\\\\\\\\\\\\\\" She'd forced those words through her teeth.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"No need to change. We won't be that long.\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nShane gripped her arm and started leading her to the dock.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"I can make it there on my own,\\\\\\\", \\\\\\\" Shane\\\\\\\"]], \\\\\\\"resps\\\\\\\": [[[-2.453125, false]]], \\\\\\\"filtered_resps\\\\\\\": [[-2.453125, false]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"perplexity\\\\\\\", \\\\\\\"acc\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"a0a3a6af029a08c1101838dad7c9d14d25760f6bf91903c29a29ed93aca182c7\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"4bf9c8952b622b3e634fed1df7684bf3857fbe89b76472483ac12c88672c6d0d\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"aae27ee803ccb2af84968ea406180b5a8a91494318ca531aa757eb9ff1a74355\\\\\\\", \\\\\\\"perplexity\\\\\\\": -2.453125, \\\\\\\"acc\\\\\\\": 0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"text\\\": \\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\n\\\\n\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\"\\\\n\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about signs\\\"}, \\\"target\\\": \\\" signs\\\", \\\"arguments\\\": [[\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\n\\\\n\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\"\\\\n\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about\\\", \\\" signs\\\"]], \\\"resps\\\": [[[-4.3125, false]]], \\\"filtered_resps\\\": [[-4.3125, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"perplexity\\\", \\\"acc\\\"], \\\"doc_hash\\\": \\\"d5d2ee0c7bb2325b1a3b782dd2f946222c370109812c56acc7da70b662a6a60c\\\", \\\"prompt_hash\\\": \\\"8d638394e95544a75ea75bfa8cedd5fb71d5e65dfac9758cad35a0d5fa6e296c\\\", \\\"target_hash\\\": \\\"697dfd086e17614160f34474ccf8681ad12ae5839865fc979ac177eb5bba0a48\\\", \\\"perplexity\\\": -4.3125, \\\"acc\\\": 0}\\n{\\\"doc_id\\\": 1, \\\"doc\\\": {\\\"text\\\": \\\"Give me a minute to change and I'll meet you at the docks.\\\\\\\" She'd forced those words through her teeth.\\\\n\\\\n\\\\\\\"No need to change. We won't be that long.\\\\\\\"\\\\n\\\\nShane gripped her arm and started leading her to the dock.\\\\n\\\\n\\\\\\\"I can make it there on my own, Shane\\\"}, \\\"target\\\": \\\" Shane\\\", \\\"arguments\\\": [[\\\"Give me a minute to change and I'll meet you at the docks.\\\\\\\" She'd forced those words through her teeth.\\\\n\\\\n\\\\\\\"No need to change. We won't be that long.\\\\\\\"\\\\n\\\\nShane gripped her arm and started leading her to the dock.\\\\n\\\\n\\\\\\\"I can make it there on my own,\\\", \\\" Shane\\\"]], \\\"resps\\\": [[[-2.453125, false]]], \\\"filtered_resps\\\": [[-2.453125, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"perplexity\\\", \\\"acc\\\"], \\\"doc_hash\\\": \\\"a0a3a6af029a08c1101838dad7c9d14d25760f6bf91903c29a29ed93aca182c7\\\", \\\"prompt_hash\\\": \\\"4bf9c8952b622b3e634fed1df7684bf3857fbe89b76472483ac12c88672c6d0d\\\", \\\"target_hash\\\": \\\"aae27ee803ccb2af84968ea406180b5a8a91494318ca531aa757eb9ff1a74355\\\", \\\"perplexity\\\": -2.453125, \\\"acc\\\": 0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T13:25:48.034Z_
+
+<details><summary>↩ Tool result · `toolu_01G7HpvxEaf9PYTkUkaPpcQt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5153 /root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "d0dec4c7-8593-4b18-9736-1b326b17a0f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5153 /root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"5153 /root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. The data format is clear:
+- Each line is a JSON object with `doc_id`, `acc` (0 or 1), and other fields
+- 5153 samples per file
+- `acc` field is 0 or 1 (boolean-like, actually `false` is in resps but `acc` is 0/1 integer)
+
+Now I need to write a Python script to:
+1. Load all 15 config files
+2. Compute all the metrics (ambiguity, per-example classification, Jaccard, convergence sigma)
+3. Output JSON
+
+
+I'll write the script to run on the server where the data is located, then save the results locally.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "6696cd7e-d2e5-421a-b31f-b84dece83050",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PyxWAcdH4rBPqVbB8D3Utx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1814,
+      "cache_read_input_tokens": 28697,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+数据确认：5153 samples，`acc` 字段为 0/1。现在写分析脚本在服务器上运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "a083d098-ee40-4a09-a88f-147d938ba761",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PyxWAcdH4rBPqVbB8D3Utx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1814,
+      "cache_read_input_tokens": 28697,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JrTDW3D5hjKiRWMS7iWtML`</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "4e3836e4-760d-45ff-bf1f-b4b268cc4345",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PyxWAcdH4rBPqVbB8D3Utx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1814,
+      "cache_read_input_tokens": 28697,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1814
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T13:25:57.385Z_
+
+<details><summary>↩ Tool result · `toolu_01JrTDW3D5hjKiRWMS7iWtML`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "TodoWrite"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "22740e39-2b59-43b0-bd16-598ae9790378",
+  "tool_use_result": {
+    "matches": [
+      "TodoWrite"
+    ],
+    "query": "select:TodoWrite",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_014gLgEXKN7uQ1SNU1TTHsgE`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Write and run 340M LAMBADA per-example analysis script on server",
+      "status": "in_progress",
+      "activeForm": "Writing analysis script"
+    },
+    {
+      "content": "Save output JSON locally and register artifact",
+      "status": "pending",
+      "activeForm": "Saving output and registering artifact"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "687d7f4a-510e-4416-bacc-648e67842785",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJ59vzX35UL3uwv8chyu5S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2768,
+      "cache_read_input_tokens": 30511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2768
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T13:26:01.138Z_
+
+<details><summary>↩ Tool result · `toolu_014gLgEXKN7uQ1SNU1TTHsgE`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "8f44c4df-ac4a-44e7-838b-78037fe46576",
+  "tool_use_result": {
+    "oldTodos": [],
+    "newTodos": [
+      {
+        "content": "Write and run 340M LAMBADA per-example analysis script on server",
+        "status": "in_progress",
+        "activeForm": "Writing analysis script"
+      },
+      {
+        "content": "Save output JSON locally and register artifact",
+        "status": "pending",
+        "activeForm": "Saving output and registering artifact"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me write a comprehensive Python script that:
+1. Loads all 15 config LAMBADA jsonl files
+2. Computes ambiguity α per ratio
+3. Computes per-example classification (helped/hurt/stayed_right/stayed_wrong) for each arch × hybrid ratio vs pure
+4. Computes cross-architecture Jaccard with null/max/ES and permutation test
+5. Computes convergence σ with exact Spearman permutation test
+6. Outputs JSON
+
+Let me write this script carefully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "2ad2ea7f-27e8-47dc-822a-82ff1ae0abc6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2m6tbHzSaTNa1HW4xmVk7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 168,
+      "cache_read_input_tokens": 33279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 168
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+Now writing the analysis script. It's substantial — computing ambiguity, per-example classification, cross-arch Jaccard with permutation tests, and convergence sigma with exact Spearman test.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "9c05fd82-f2d1-459a-ad65-f4500633fd88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2m6tbHzSaTNa1HW4xmVk7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 168,
+      "cache_read_input_tokens": 33279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 168
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Le4EuYvidd22XEEMsqYmYj`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat << 'PYEOF' > /tmp/analyze_340m_lambada.py\nimport json\nimport os\nimport numpy as np\nfrom itertools import combinations, permutations\nfrom scipy.stats import spearmanr\n\nBASE = \"/root/entrainment_gated_ft/lm_eval_clean/exp007/340m\"\nARCHS = [\"GDN\", \"RetNet\", \"HGRN2\"]\nRATIOS = [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nRATIO_LABELS = [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nHYBRID_RATIOS = [\"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nARCH_DIR = {\"GDN\": \"GDN\", \"RetNet\": \"RetNet\", \"HGRN2\": \"HGRN2\"}\n\ndef load_acc(arch, ratio):\n    dirname = f\"{ARCH_DIR[arch]}-{ratio}\" if ratio != \"pure\" else f\"{ARCH_DIR[arch]}-pure\"\n    path = os.path.join(BASE, dirname, \"samples\", \"lambada_openai.jsonl\")\n    accs = {}\n    with open(path) as f:\n        for line in f:\n            d = json.loads(line)\n            accs[d[\"doc_id\"]] = int(d[\"acc\"])\n    return accs\n\n# Load all data\nprint(\"Loading data...\")\ndata = {}\nfor arch in ARCHS:\n    data[arch] = {}\n    for ratio in RATIOS:\n        data[arch][ratio] = load_acc(arch, ratio)\n\ndoc_ids = sorted(data[ARCHS[0]][\"pure\"].keys())\nN = len(doc_ids)\nprint(f\"N = {N} samples\")\n\n# Verify all files have same doc_ids\nfor arch in ARCHS:\n    for ratio in RATIOS:\n        assert set(data[arch][ratio].keys()) == set(doc_ids), f\"Mismatch: {arch}-{ratio}\"\n\n# Convert to numpy arrays for efficiency\nacc_arr = {}\nfor arch in ARCHS:\n    acc_arr[arch] = {}\n    for ratio in RATIOS:\n        acc_arr[arch][ratio] = np.array([data[arch][ratio][did] for did in doc_ids])\n\n# ============ A) Ambiguity α ============\nprint(\"Computing ambiguity...\")\nambiguity = {}\nfor ratio in RATIOS:\n    votes = np.stack([acc_arr[arch][ratio] for arch in ARCHS], axis=1)  # N x 3\n    sums = votes.sum(axis=1)  # how many archs got it right\n    \n    dist = {\n        \"0_of_3\": int((sums == 0).sum()),\n        \"1_of_3\": int((sums == 1).sum()),\n        \"2_of_3\": int((sums == 2).sum()),\n        \"3_of_3\": int((sums == 3).sum()),\n    }\n    \n    # α = proportion where at least 1 arch disagrees (not all same)\n    alpha = float((sums > 0).sum() - (sums == 3).sum()) / N  # = (1_of_3 + 2_of_3) / N\n    # Actually α = proportion where NOT all agree = 1 - (0_of_3 + 3_of_3)/N\n    alpha = 1.0 - (dist[\"0_of_3\"] + dist[\"3_of_3\"]) / N\n    \n    ambiguity[ratio] = {\n        \"alpha\": round(alpha, 4),\n        \"disagreement_distribution\": dist,\n    }\n\n# ============ B) Per-example classification ============\nprint(\"Computing per-example classification...\")\nper_example = {}\nfor arch in ARCHS:\n    per_example[arch] = {}\n    pure = acc_arr[arch][\"pure\"]\n    for ratio in HYBRID_RATIOS:\n        hybrid = acc_arr[arch][ratio]\n        helped = int(((pure == 0) & (hybrid == 1)).sum())\n        hurt = int(((pure == 1) & (hybrid == 0)).sum())\n        stayed_right = int(((pure == 1) & (hybrid == 1)).sum())\n        stayed_wrong = int(((pure == 0) & (hybrid == 0)).sum())\n        per_example[arch][ratio] = {\n            \"n_helped\": helped,\n            \"n_hurt\": hurt,\n            \"n_stayed_right\": stayed_right,\n            \"n_stayed_wrong\": stayed_wrong,\n            \"net_effect\": helped - hurt,\n        }\n\n# ============ C) Cross-architecture Jaccard ============\nprint(\"Computing Jaccard analysis...\")\n\ndef jaccard(set_a, set_b):\n    if len(set_a) == 0 and len(set_b) == 0:\n        return 0.0\n    intersection = len(set_a & set_b)\n    union = len(set_a | set_b)\n    return intersection / union if union > 0 else 0.0\n\ndef j_null(size_a, size_b, n):\n    num = size_a * size_b\n    den = n * (size_a + size_b) - size_a * size_b\n    return num / den if den > 0 else 0.0\n\ndef j_max(size_a, size_b):\n    if max(size_a, size_b) == 0:\n        return 0.0\n    return min(size_a, size_b) / max(size_a, size_b)\n\ndef permutation_test_jaccard(set_a, set_b, n, n_perms=10000):\n    observed = jaccard(set_a, set_b)\n    indices_a = np.array(list(set_a))\n    indices_b = np.array(list(set_b))\n    size_a = len(set_a)\n    size_b = len(set_b)\n    \n    count_ge = 0\n    rng = np.random.RandomState(42)\n    for _ in range(n_perms):\n        perm_a = set(rng.choice(n, size_a, replace=False))\n        perm_b = set(rng.choice(n, size_b, replace=False))\n        j_perm = jaccard(perm_a, perm_b)\n        if j_perm >= observed:\n            count_ge += 1\n    \n    p_value = count_ge / n_perms\n    return observed, p_value\n\narch_pairs = list(combinations(ARCHS, 2))\njaccard_analysis = {}\n\nfor ratio in HYBRID_RATIOS:\n    jaccard_analysis[ratio] = {}\n    for a1, a2 in arch_pairs:\n        pair_key = f\"{a1}_vs_{a2}\"\n        \n        pure1 = acc_arr[a1][\"pure\"]\n        hyb1 = acc_arr[a1][ratio]\n        pure2 = acc_arr[a2][\"pure\"]\n        hyb2 = acc_arr[a2][ratio]\n        \n        helped1 = set(np.where((pure1 == 0) & (hyb1 == 1))[0])\n        helped2 = set(np.where((pure2 == 0) & (hyb2 == 1))[0])\n        hurt1 = set(np.where((pure1 == 1) & (hyb1 == 0))[0])\n        hurt2 = set(np.where((pure2 == 1) & (hyb2 == 0))[0])\n        \n        # Helped Jaccard\n        j_helped = jaccard(helped1, helped2)\n        jn_helped = j_null(len(helped1), len(helped2), N)\n        jm_helped = j_max(len(helped1), len(helped2))\n        denom_helped = jm_helped - jn_helped\n        es_helped = (j_helped - jn_helped) / denom_helped if denom_helped > 1e-10 else 0.0\n        _, p_helped = permutation_test_jaccard(helped1, helped2, N)\n        \n        # Hurt Jaccard\n        j_hurt = jaccard(hurt1, hurt2)\n        jn_hurt = j_null(len(hurt1), len(hurt2), N)\n        jm_hurt = j_max(len(hurt1), len(hurt2))\n        denom_hurt = jm_hurt - jn_hurt\n        es_hurt = (j_hurt - jn_hurt) / denom_hurt if denom_hurt > 1e-10 else 0.0\n        _, p_hurt = permutation_test_jaccard(hurt1, hurt2, N)\n        \n        jaccard_analysis[ratio][pair_key] = {\n            \"helped\": {\n                \"set_sizes\": [len(helped1), len(helped2)],\n                \"J\": round(j_helped, 4),\n                \"J_null\": round(jn_helped, 4),\n                \"J_max\": round(jm_helped, 4),\n                \"ES_normalized\": round(es_helped, 4),\n                \"p_value_permutation\": round(p_helped, 4),\n            },\n            \"hurt\": {\n                \"set_sizes\": [len(hurt1), len(hurt2)],\n                \"J\": round(j_hurt, 4),\n                \"J_null\": round(jn_hurt, 4),\n                \"J_max\": round(jm_hurt, 4),\n                \"ES_normalized\": round(es_hurt, 4),\n                \"p_value_permutation\": round(p_hurt, 4),\n            }\n        }\n        print(f\"  {ratio} {pair_key}: helped J={j_helped:.4f}, hurt J={j_hurt:.4f}\")\n\n# ============ D) Convergence σ ============\nprint(\"Computing convergence sigma...\")\n\nratio_numeric = {\"pure\": 0.0, \"h24-1\": 1/24, \"h12-1\": 1/12, \"h6-1\": 1/6, \"h3-1\": 1/3}\nratio_order = RATIOS  # pure, h24-1, h12-1, h6-1, h3-1\n\n# Per-ratio aggregate accuracy\nagg_acc = {}\nfor arch in ARCHS:\n    agg_acc[arch] = {}\n    for ratio in RATIOS:\n        agg_acc[arch][ratio] = float(acc_arr[arch][ratio].mean())\n\n# Cross-arch std per ratio\nsigmas = {}\nfor ratio in RATIOS:\n    accs = [agg_acc[arch][ratio] for arch in ARCHS]\n    sigmas[ratio] = float(np.std(accs, ddof=0))\n\n# Exact Spearman permutation test (n=5)\ndef exact_spearman_p(x, y):\n    n = len(x)\n    observed_rho, _ = spearmanr(x, y)\n    all_perms = list(permutations(range(n)))\n    count = 0\n    for p in all_perms:\n        rho_perm, _ = spearmanr(x, [y[i] for i in p])\n        if abs(rho_perm) >= abs(observed_rho):\n            count += 1\n    return float(observed_rho), count / len(all_perms)\n\nx_ratios = [ratio_numeric[r] for r in ratio_order]\ny_sigmas = [sigmas[r] for r in ratio_order]\nrho, p_exact = exact_spearman_p(x_ratios, y_sigmas)\n\nconvergence = {\n    \"per_ratio\": {r: {\"sigma\": round(sigmas[r], 6), \"accuracies\": {arch: round(agg_acc[arch][r], 4) for arch in ARCHS}} for r in RATIOS},\n    \"spearman_rho\": round(rho, 4),\n    \"spearman_p_exact\": round(p_exact, 4),\n    \"attention_ratios\": x_ratios,\n    \"sigma_values\": [round(s, 6) for s in y_sigmas],\n}\n\n# ============ E) Comparison with 1.3B ============\nprint(\"Computing 1.3B comparison...\")\n\n# 340M values\nalpha_pure_340m = ambiguity[\"pure\"][\"alpha\"]\n\n# Mean Jaccard across all pairs and ratios\nall_j_helped = []\nall_j_hurt = []\nfor ratio in HYBRID_RATIOS:\n    for pair_key in jaccard_analysis[ratio]:\n        all_j_helped.append(jaccard_analysis[ratio][pair_key][\"helped\"][\"J\"])\n        all_j_hurt.append(jaccard_analysis[ratio][pair_key][\"hurt\"][\"J\"])\n\nj_mean_340m = float(np.mean(all_j_helped + all_j_hurt))\n\ncomparison = {\n    \"alpha_340m_pure\": round(alpha_pure_340m, 4),\n    \"alpha_1_3b_pure\": 0.307,\n    \"jaccard_340m_mean\": round(j_mean_340m, 4),\n    \"jaccard_1_3b_mean\": 0.095,\n    \"convergence_rho_340m\": round(rho, 4),\n    \"convergence_rho_1_3b\": -1.0,\n    \"convergence_p_340m\": round(p_exact, 4),\n    \"convergence_p_1_3b\": 0.017,\n}\n\n# ============ Assemble output ============\noutput = {\n    \"benchmark\": \"lambada_openai\",\n    \"scale\": \"340M\",\n    \"n_samples\": N,\n    \"architectures\": ARCHS,\n    \"ratios\": RATIOS,\n    \"aggregate_accuracy\": {arch: {ratio: round(agg_acc[arch][ratio], 4) for ratio in RATIOS} for arch in ARCHS},\n    \"ambiguity\": ambiguity,\n    \"per_example_classification\": per_example,\n    \"convergence_sigma\": convergence,\n    \"jaccard_analysis\": jaccard_analysis,\n    \"comparison_1_3B\": comparison,\n}\n\nout_path = \"/tmp/340m_lambada_per_example.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\nOutput written to {out_path}\")\nprint(f\"N = {N}\")\nprint(f\"Ambiguity pure α = {alpha_pure_340m:.4f}\")\nprint(f\"Convergence ρ = {rho:.4f}, p = {p_exact:.4f}\")\nprint(f\"Mean Jaccard = {j_mean_340m:.4f}\")\nfor arch in ARCHS:\n    print(f\"  {arch} pure acc = {agg_acc[arch]['pure']:.4f}\")\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "f81cdd2f-abb3-4e3f-b7e0-b56a4b51718c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2m6tbHzSaTNa1HW4xmVk7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 168,
+      "cache_read_input_tokens": 33279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 168
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T13:26:56.632Z_
+
+<details><summary>↩ Tool result · `toolu_01Le4EuYvidd22XEEMsqYmYj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "12ea7680-f075-4d7a-8710-d51a6b4a825b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011xiPue5ySabA5ZSLSaohXH`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python /tmp/analyze_340m_lambada.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "f2c6cc37-d0a1-47f6-9c9e-27fb100ab958",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018dv9TKbTeVkbn4Cm6kciC6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4172,
+      "cache_read_input_tokens": 33447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4172
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T13:27:31.624Z_
+
+<details><summary>↩ Tool result · `toolu_011xiPue5ySabA5ZSLSaohXH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python /tmp/analyze_340m_lambada.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "9a0cf21b-ab91-42d4-a087-87f3e33ac9e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python /tmp/analyze_340m_lambada.py'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python /tmp/analyze_340m_lambada.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script timed out. The Jaccard permutation test (10K permutations × 12 pairs × 2 sets = 240K iterations) is probably slow in pure Python. Let me optimize the script by reducing permutation count or vectorizing.
+
+Let me rewrite the permutation test to be more efficient using numpy vectorization.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "89c408fd-9faa-4698-af7f-87c289f54d1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015k6BML2YRCWuhPqKnFHcNv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 293,
+      "cache_read_input_tokens": 37619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 293
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Script timed out — the permutation tests are too slow in pure Python. Let me optimize with vectorized numpy operations and run with nohup.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "9e178498-cf4e-40a1-9dec-de1b44970eea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015k6BML2YRCWuhPqKnFHcNv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 293,
+      "cache_read_input_tokens": 37619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 293
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01W78rHExk2Uzvhf8sp4dZbV`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat << 'PYEOF' > /tmp/analyze_340m_lambada.py\nimport json\nimport os\nimport numpy as np\nfrom itertools import combinations, permutations as iterperms\nfrom scipy.stats import spearmanr\n\nBASE = \"/root/entrainment_gated_ft/lm_eval_clean/exp007/340m\"\nARCHS = [\"GDN\", \"RetNet\", \"HGRN2\"]\nRATIOS = [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\nHYBRID_RATIOS = [\"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\n\ndef load_acc(arch, ratio):\n    dirname = f\"{arch}-{ratio}\" if ratio != \"pure\" else f\"{arch}-pure\"\n    path = os.path.join(BASE, dirname, \"samples\", \"lambada_openai.jsonl\")\n    accs = {}\n    with open(path) as f:\n        for line in f:\n            d = json.loads(line)\n            accs[d[\"doc_id\"]] = int(d[\"acc\"])\n    return accs\n\nprint(\"Loading data...\", flush=True)\ndata = {}\nfor arch in ARCHS:\n    data[arch] = {}\n    for ratio in RATIOS:\n        data[arch][ratio] = load_acc(arch, ratio)\n\ndoc_ids = sorted(data[ARCHS[0]][\"pure\"].keys())\nN = len(doc_ids)\nprint(f\"N = {N}\", flush=True)\n\nacc_arr = {}\nfor arch in ARCHS:\n    acc_arr[arch] = {}\n    for ratio in RATIOS:\n        acc_arr[arch][ratio] = np.array([data[arch][ratio][did] for did in doc_ids])\n\n# A) Ambiguity\nprint(\"Ambiguity...\", flush=True)\nambiguity = {}\nfor ratio in RATIOS:\n    votes = np.stack([acc_arr[arch][ratio] for arch in ARCHS], axis=1)\n    sums = votes.sum(axis=1)\n    dist = {\"0_of_3\": int((sums==0).sum()), \"1_of_3\": int((sums==1).sum()),\n            \"2_of_3\": int((sums==2).sum()), \"3_of_3\": int((sums==3).sum())}\n    alpha = 1.0 - (dist[\"0_of_3\"] + dist[\"3_of_3\"]) / N\n    ambiguity[ratio] = {\"alpha\": round(alpha, 4), \"disagreement_distribution\": dist}\n\n# B) Per-example classification\nprint(\"Per-example classification...\", flush=True)\nper_example = {}\nfor arch in ARCHS:\n    per_example[arch] = {}\n    pure = acc_arr[arch][\"pure\"]\n    for ratio in HYBRID_RATIOS:\n        hyb = acc_arr[arch][ratio]\n        h = int(((pure==0)&(hyb==1)).sum())\n        u = int(((pure==1)&(hyb==0)).sum())\n        sr = int(((pure==1)&(hyb==1)).sum())\n        sw = int(((pure==0)&(hyb==0)).sum())\n        per_example[arch][ratio] = {\"n_helped\": h, \"n_hurt\": u, \"n_stayed_right\": sr,\n                                     \"n_stayed_wrong\": sw, \"net_effect\": h - u}\n\n# C) Jaccard with vectorized permutation test\nprint(\"Jaccard analysis...\", flush=True)\n\ndef jaccard_val(a, b):\n    if len(a)==0 and len(b)==0: return 0.0\n    inter = len(a & b)\n    union = len(a | b)\n    return inter/union if union>0 else 0.0\n\ndef j_null(sa, sb, n):\n    num = sa*sb\n    den = n*(sa+sb) - sa*sb\n    return num/den if den>0 else 0.0\n\ndef j_max(sa, sb):\n    return min(sa,sb)/max(sa,sb) if max(sa,sb)>0 else 0.0\n\ndef perm_test_jaccard_vectorized(set_a, set_b, n, n_perms=10000, seed=42):\n    observed = jaccard_val(set_a, set_b)\n    sa, sb = len(set_a), len(set_b)\n    if sa == 0 or sb == 0:\n        return observed, 1.0\n    rng = np.random.RandomState(seed)\n    # Generate all random indices at once\n    perm_a = np.zeros((n_perms, n), dtype=bool)\n    perm_b = np.zeros((n_perms, n), dtype=bool)\n    for i in range(n_perms):\n        idx_a = rng.choice(n, sa, replace=False)\n        idx_b = rng.choice(n, sb, replace=False)\n        perm_a[i, idx_a] = True\n        perm_b[i, idx_b] = True\n    intersections = (perm_a & perm_b).sum(axis=1)\n    unions = (perm_a | perm_b).sum(axis=1)\n    j_perms = np.where(unions > 0, intersections / unions, 0.0)\n    p = float((j_perms >= observed).sum()) / n_perms\n    return observed, p\n\narch_pairs = list(combinations(ARCHS, 2))\njaccard_analysis = {}\n\nfor ratio in HYBRID_RATIOS:\n    jaccard_analysis[ratio] = {}\n    for a1, a2 in arch_pairs:\n        pk = f\"{a1}_vs_{a2}\"\n        p1, h1 = acc_arr[a1][\"pure\"], acc_arr[a1][ratio]\n        p2, h2 = acc_arr[a2][\"pure\"], acc_arr[a2][ratio]\n        \n        helped1 = set(np.where((p1==0)&(h1==1))[0])\n        helped2 = set(np.where((p2==0)&(h2==1))[0])\n        hurt1 = set(np.where((p1==1)&(h1==0))[0])\n        hurt2 = set(np.where((p2==1)&(h2==0))[0])\n        \n        jh = jaccard_val(helped1, helped2)\n        jnh = j_null(len(helped1), len(helped2), N)\n        jmh = j_max(len(helped1), len(helped2))\n        dh = jmh - jnh\n        esh = (jh - jnh)/dh if dh > 1e-10 else 0.0\n        _, ph = perm_test_jaccard_vectorized(helped1, helped2, N)\n        \n        ju = jaccard_val(hurt1, hurt2)\n        jnu = j_null(len(hurt1), len(hurt2), N)\n        jmu = j_max(len(hurt1), len(hurt2))\n        du = jmu - jnu\n        esu = (ju - jnu)/du if du > 1e-10 else 0.0\n        _, pu = perm_test_jaccard_vectorized(hurt1, hurt2, N)\n        \n        jaccard_analysis[ratio][pk] = {\n            \"helped\": {\"set_sizes\": [len(helped1), len(helped2)],\n                       \"J\": round(jh,4), \"J_null\": round(jnh,4), \"J_max\": round(jmh,4),\n                       \"ES_normalized\": round(esh,4), \"p_value_permutation\": round(ph,4)},\n            \"hurt\": {\"set_sizes\": [len(hurt1), len(hurt2)],\n                     \"J\": round(ju,4), \"J_null\": round(jnu,4), \"J_max\": round(jmu,4),\n                     \"ES_normalized\": round(esu,4), \"p_value_permutation\": round(pu,4)}\n        }\n        print(f\"  {ratio} {pk}: helped J={jh:.4f} hurt J={ju:.4f}\", flush=True)\n\n# D) Convergence sigma\nprint(\"Convergence sigma...\", flush=True)\nratio_numeric = {\"pure\": 0.0, \"h24-1\": 1/24, \"h12-1\": 1/12, \"h6-1\": 1/6, \"h3-1\": 1/3}\n\nagg_acc = {}\nfor arch in ARCHS:\n    agg_acc[arch] = {}\n    for ratio in RATIOS:\n        agg_acc[arch][ratio] = float(acc_arr[arch][ratio].mean())\n\nsigmas = {}\nfor ratio in RATIOS:\n    accs = [agg_acc[arch][ratio] for arch in ARCHS]\n    sigmas[ratio] = float(np.std(accs, ddof=0))\n\ndef exact_spearman_p(x, y):\n    n = len(x)\n    observed_rho, _ = spearmanr(x, y)\n    all_p = list(iterperms(range(n)))\n    count = sum(1 for p in all_p if abs(spearmanr(x, [y[i] for i in p])[0]) >= abs(observed_rho))\n    return float(observed_rho), count / len(all_p)\n\nx_r = [ratio_numeric[r] for r in RATIOS]\ny_s = [sigmas[r] for r in RATIOS]\nrho, p_exact = exact_spearman_p(x_r, y_s)\n\nconvergence = {\n    \"per_ratio\": {r: {\"sigma\": round(sigmas[r],6),\n                       \"accuracies\": {a: round(agg_acc[a][r],4) for a in ARCHS}} for r in RATIOS},\n    \"spearman_rho\": round(rho,4), \"spearman_p_exact\": round(p_exact,4),\n    \"attention_ratios\": x_r, \"sigma_values\": [round(s,6) for s in y_s]\n}\n\n# E) 1.3B comparison\nalpha_340m = ambiguity[\"pure\"][\"alpha\"]\nall_j = []\nfor ratio in HYBRID_RATIOS:\n    for pk in jaccard_analysis[ratio]:\n        all_j.append(jaccard_analysis[ratio][pk][\"helped\"][\"J\"])\n        all_j.append(jaccard_analysis[ratio][pk][\"hurt\"][\"J\"])\nj_mean = float(np.mean(all_j))\n\ncomparison = {\n    \"alpha_340m_pure\": round(alpha_340m,4), \"alpha_1_3b_pure\": 0.307,\n    \"jaccard_340m_mean\": round(j_mean,4), \"jaccard_1_3b_mean\": 0.095,\n    \"convergence_rho_340m\": round(rho,4), \"convergence_rho_1_3b\": -1.0,\n    \"convergence_p_340m\": round(p_exact,4), \"convergence_p_1_3b\": 0.017,\n}\n\noutput = {\n    \"benchmark\": \"lambada_openai\", \"scale\": \"340M\", \"n_samples\": N,\n    \"architectures\": ARCHS, \"ratios\": RATIOS,\n    \"aggregate_accuracy\": {a: {r: round(agg_acc[a][r],4) for r in RATIOS} for a in ARCHS},\n    \"ambiguity\": ambiguity, \"per_example_classification\": per_example,\n    \"convergence_sigma\": convergence, \"jaccard_analysis\": jaccard_analysis,\n    \"comparison_1_3B\": comparison,\n}\n\nout_path = \"/tmp/340m_lambada_per_example.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(f\"\\nDone. Output: {out_path}\")\nprint(f\"Alpha pure = {alpha_340m:.4f}\")\nprint(f\"Convergence rho={rho:.4f}, p={p_exact:.4f}\")\nprint(f\"Mean Jaccard = {j_mean:.4f}\")\nfor a in ARCHS:\n    print(f\"  {a} pure acc = {agg_acc[a]['pure']:.4f}\")\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "9b1573f3-5a5c-4165-95a3-ef20d10201eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015k6BML2YRCWuhPqKnFHcNv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 293,
+      "cache_read_input_tokens": 37619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 293
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T13:28:11.286Z_
+
+<details><summary>↩ Tool result · `toolu_01W78rHExk2Uzvhf8sp4dZbV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "30554864-4c9b-4830-a0dd-51eb68a16e5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The boolean array approach for permutation tests is memory-heavy (10000 × 5153 = 51M booleans per test × 24 tests). Let me think about optimization...
+
+Actually, the issue is that for each permutation, I'm creating a boolean array of size N. With 10K permutations and N=5153, that's 10000 × 5153 × 2 = ~100M booleans, which is about 100MB. That should be fine for memory but the loop is still Python-level.
+
+Actually wait - I wrote a loop `for i in range(n_perms)` which is still slow in Python. Let me use a fully vectorized approach:
+
+
+For each permutation test, I need to randomly select `sa` indices from N and `sb` indices from N, then compute Jaccard. Rather than generating random indices repeatedly, I could leverage the fact that for random sets of size sa and sb drawn from N items, the expected intersection is sa*sb/N, and compute Jaccard from intersection sizes directly. Let me represent each set as a boolean array and use matrix operations to batch compute intersections efficiently.
+
+Generating random boolean masks...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "c8af98ce-6934-4134-95f4-e7ecfc6b367f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GNVjKb5b18T5vS9wAtKNPC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3474,
+      "cache_read_input_tokens": 37912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3474
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+The permutation test loop is inherently slow. Let me run with nohup and poll.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "d848f60d-bd9a-46fa-892d-913ed64e3f9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GNVjKb5b18T5vS9wAtKNPC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3474,
+      "cache_read_input_tokens": 37912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3474
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VT4THA3f9e4w13jemD8RNF`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python /tmp/analyze_340m_lambada.py > /tmp/analyze_340m.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "7e4e0da6-2b8b-4530-af86-155f695ede19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GNVjKb5b18T5vS9wAtKNPC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3474,
+      "cache_read_input_tokens": 37912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3474
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T13:28:56.060Z_
+
+<details><summary>↩ Tool result · `toolu_01VT4THA3f9e4w13jemD8RNF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python /tmp/analyze_340m_lambada.py > /tmp/analyze_340m.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=758284\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "dc4bb205-d8f2-40e8-876e-ca076da8ef6a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python /tmp/analyze_340m_lambada.py > /tmp/analyze_340m.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=758284\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python /tmp/analyze_340m_lambada.py > /tmp/analyze_340m.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=758284\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, the PID is 758284. The command itself launched, but the ssh_execute timed out waiting. Let me poll the log file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "89fed559-d719-481b-9f3c-a9ffd77d73f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019qtg4qPH4ThtrnaaEAda3F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 791,
+      "cache_read_input_tokens": 41386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+PID=758284 launched. Let me poll the log.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "a662cb16-988f-4e1d-9246-e2f903663d1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019qtg4qPH4ThtrnaaEAda3F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 791,
+      "cache_read_input_tokens": 41386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XA1TdWJH3mqrt3PuU5mTj6`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "tail -20 /tmp/analyze_340m.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "b1c860ac-3da9-45a0-950c-94bacdb18704",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019qtg4qPH4ThtrnaaEAda3F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 791,
+      "cache_read_input_tokens": 41386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T13:29:02.586Z_
+
+<details><summary>↩ Tool result · `toolu_01XA1TdWJH3mqrt3PuU5mTj6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nN = 5153\\nAmbiguity...\\nPer-example classification...\\nJaccard analysis...\\n  h24-1 GDN_vs_RetNet: helped J=0.0939 hurt J=0.1005\\n  h24-1 GDN_vs_HGRN2: helped J=0.0974 hurt J=0.0617\\n  h24-1 RetNet_vs_HGRN2: helped J=0.1094 hurt J=0.0923\\n  h12-1 GDN_vs_RetNet: helped J=0.0827 hurt J=0.0950\\n  h12-1 GDN_vs_HGRN2: helped J=0.0634 hurt J=0.0798\\n  h12-1 RetNet_vs_HGRN2: helped J=0.1143 hurt J=0.0787\\n  h6-1 GDN_vs_RetNet: helped J=0.0831 hurt J=0.0828\\n  h6-1 GDN_vs_HGRN2: helped J=0.0850 hurt J=0.0644\\n  h6-1 RetNet_vs_HGRN2: helped J=0.1085 hurt J=0.0860\\n  h3-1 GDN_vs_RetNet: helped J=0.0920 hurt J=0.1093\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "d1be65d0-4bf7-4466-bc62-de67ee2c2afe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nN = 5153\\\\nAmbiguity...\\\\nPer-example classification...\\\\nJaccard analysis...\\\\n  h24-1 GDN_vs_RetNet: helped J=0.0939 hurt J=0.1005\\\\n  h24-1 GDN_vs_HGRN2: helped J=0.0974 hurt J=0.0617\\\\n  h24-1 RetNet_vs_HGRN2: helped J=0.1094 hurt J=0.0923\\\\n  h12-1 GDN_vs_RetNet: helped J=0.0827 hurt J=0.0950\\\\n  h12-1 GDN_vs_HGRN2: helped J=0.0634 hurt J=0.0798\\\\n  h12-1 RetNet_vs_HGRN2: helped J=0.1143 hurt J=0.0787\\\\n  h6-1 GDN_vs_RetNet: helped J=0.0831 hurt J=0.0828\\\\n  h6-1 GDN_vs_HGRN2: helped J=0.0850 hurt J=0.0644\\\\n  h6-1 RetNet_vs_HGRN2: helped J=0.1085 hurt J=0.0860\\\\n  h3-1 GDN_vs_RetNet: helped J=0.0920 hurt J=0.1093\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nN = 5153\\nAmbiguity...\\nPer-example classification...\\nJaccard analysis...\\n  h24-1 GDN_vs_RetNet: helped J=0.0939 hurt J=0.1005\\n  h24-1 GDN_vs_HGRN2: helped J=0.0974 hurt J=0.0617\\n  h24-1 RetNet_vs_HGRN2: helped J=0.1094 hurt J=0.0923\\n  h12-1 GDN_vs_RetNet: helped J=0.0827 hurt J=0.0950\\n  h12-1 GDN_vs_HGRN2: helped J=0.0634 hurt J=0.0798\\n  h12-1 RetNet_vs_HGRN2: helped J=0.1143 hurt J=0.0787\\n  h6-1 GDN_vs_RetNet: helped J=0.0831 hurt J=0.0828\\n  h6-1 GDN_vs_HGRN2: helped J=0.0850 hurt J=0.0644\\n  h6-1 RetNet_vs_HGRN2: helped J=0.1085 hurt J=0.0860\\n  h3-1 GDN_vs_RetNet: helped J=0.0920 hurt J=0.1093\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Still running, computing the h3-1 pairs. Let me wait a bit and check again.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "93780ccf-36a4-4887-9011-ec5cf21b8f5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012uvrwG1rh68LnLcy5tQjXH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 618,
+      "cache_read_input_tokens": 42177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+Still computing h3-1 pairs. Let me wait a moment and poll again.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "d006347b-a4c0-4979-8efe-2090ff47c570",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012uvrwG1rh68LnLcy5tQjXH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 618,
+      "cache_read_input_tokens": 42177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016WsjpKFzHbxjfQpqndrerk`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "tail -10 /tmp/analyze_340m.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "b3461282-4a59-43fe-bf38-e07116a68547",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012uvrwG1rh68LnLcy5tQjXH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 618,
+      "cache_read_input_tokens": 42177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 618
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T13:29:07.527Z_
+
+<details><summary>↩ Tool result · `toolu_016WsjpKFzHbxjfQpqndrerk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  h3-1 RetNet_vs_HGRN2: helped J=0.1075 hurt J=0.0851\\nConvergence sigma...\\n\\nDone. Output: /tmp/340m_lambada_per_example.json\\nAlpha pure = 0.3128\\nConvergence rho=-0.5000, p=0.4500\\nMean Jaccard = 0.0888\\n  GDN pure acc = 0.3753\\n  RetNet pure acc = 0.3660\\n  HGRN2 pure acc = 0.3186\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "8eceff93-7fb7-4cac-b7b0-81e4f27f656c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  h3-1 RetNet_vs_HGRN2: helped J=0.1075 hurt J=0.0851\\\\nConvergence sigma...\\\\n\\\\nDone. Output: /tmp/340m_lambada_per_example.json\\\\nAlpha pure = 0.3128\\\\nConvergence rho=-0.5000, p=0.4500\\\\nMean Jaccard = 0.0888\\\\n  GDN pure acc = 0.3753\\\\n  RetNet pure acc = 0.3660\\\\n  HGRN2 pure acc = 0.3186\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  h3-1 RetNet_vs_HGRN2: helped J=0.1075 hurt J=0.0851\\nConvergence sigma...\\n\\nDone. Output: /tmp/340m_lambada_per_example.json\\nAlpha pure = 0.3128\\nConvergence rho=-0.5000, p=0.4500\\nMean Jaccard = 0.0888\\n  GDN pure acc = 0.3753\\n  RetNet pure acc = 0.3660\\n  HGRN2 pure acc = 0.3186\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+Script completed. Key results:
+- α_pure = 0.3128 (vs 1.3B: 0.307)
+- Convergence ρ = -0.5, p = 0.45 (not significant, unlike 1.3B's -1.0, p=0.017)
+- Mean Jaccard = 0.0888 (vs 1.3B: 0.095)
+
+Now let me fetch the full JSON and save it locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "0e8cb103-8ad3-46da-889a-0a9efcefdc86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125ZVAUd5AH5k5A5hcDCqyE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 546,
+      "cache_read_input_tokens": 42795,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 546
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01Hh7fc7b1CNPMFKHEFjK12Q`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Write and run 340M LAMBADA per-example analysis script on server",
+      "status": "completed",
+      "activeForm": "Writing analysis script"
+    },
+    {
+      "content": "Save output JSON locally and register artifact",
+      "status": "in_progress",
+      "activeForm": "Saving output and registering artifact"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "caf721bc-3ea3-49cb-bae6-efe8f092d933",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125ZVAUd5AH5k5A5hcDCqyE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 546,
+      "cache_read_input_tokens": 42795,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 546
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T13:29:13.729Z_
+
+<details><summary>↩ Tool result · `toolu_01Hh7fc7b1CNPMFKHEFjK12Q`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "fcfd19d8-576c-49bb-aa2b-7a4e248715c1",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Write and run 340M LAMBADA per-example analysis script on server",
+        "status": "in_progress",
+        "activeForm": "Writing analysis script"
+      },
+      {
+        "content": "Save output JSON locally and register artifact",
+        "status": "pending",
+        "activeForm": "Saving output and registering artifact"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Write and run 340M LAMBADA per-example analysis script on server",
+        "status": "completed",
+        "activeForm": "Writing analysis script"
+      },
+      {
+        "content": "Save output JSON locally and register artifact",
+        "status": "in_progress",
+        "activeForm": "Saving output and registering artifact"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QGAWdpU5dgTN2JdWN7pXfG`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /tmp/340m_lambada_per_example.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "ba97ee35-b641-46f2-83f5-914e9ea8bcd6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125ZVAUd5AH5k5A5hcDCqyE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 546,
+      "cache_read_input_tokens": 42795,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 546
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T13:29:14.742Z_
+
+<details><summary>↩ Tool result · `toolu_01QGAWdpU5dgTN2JdWN7pXfG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"lambada_openai\\\",\\n  \\\"scale\\\": \\\"340M\\\",\\n  \\\"n_samples\\\": 5153,\\n  \\\"architectures\\\": [\\n    \\\"GDN\\\",\\n    \\\"RetNet\\\",\\n    \\\"HGRN2\\\"\\n  ],\\n  \\\"ratios\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"aggregate_accuracy\\\": {\\n    \\\"GDN\\\": {\\n      \\\"pure\\\": 0.3753,\\n      \\\"h24-1\\\": 0.3507,\\n      \\\"h12-1\\\": 0.3251,\\n      \\\"h6-1\\\": 0.3507,\\n      \\\"h3-1\\\": 0.3256\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"pure\\\": 0.366,\\n      \\\"h24-1\\\": 0.3652,\\n      \\\"h12-1\\\": 0.3613,\\n      \\\"h6-1\\\": 0.347,\\n      \\\"h3-1\\\": 0.3454\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"pure\\\": 0.3186,\\n      \\\"h24-1\\\": 0.3367,\\n      \\\"h12-1\\\": 0.3643,\\n      \\\"h6-1\\\": 0.372,\\n      \\\"h3-1\\\": 0.3648\\n    }\\n  },\\n  \\\"ambiguity\\\": {\\n    \\\"pure\\\": {\\n      \\\"alpha\\\": 0.3128,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2501,\\n        \\\"1_of_3\\\": 882,\\n        \\\"2_of_3\\\": 730,\\n        \\\"3_of_3\\\": 1040\\n      }\\n    },\\n    \\\"h24-1\\\": {\\n      \\\"alpha\\\": 0.2967,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2563,\\n        \\\"1_of_3\\\": 817,\\n        \\\"2_of_3\\\": 712,\\n        \\\"3_of_3\\\": 1061\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"alpha\\\": 0.2926,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2585,\\n        \\\"1_of_3\\\": 782,\\n        \\\"2_of_3\\\": 726,\\n        \\\"3_of_3\\\": 1060\\n      }\\n    },\\n    \\\"h6-1\\\": {\\n      \\\"alpha\\\": 0.2892,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2556,\\n        \\\"1_of_3\\\": 789,\\n        \\\"2_of_3\\\": 701,\\n        \\\"3_of_3\\\": 1107\\n      }\\n    },\\n    \\\"h3-1\\\": {\\n      \\\"alpha\\\": 0.2664,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2678,\\n        \\\"1_of_3\\\": 714,\\n        \\\"2_of_3\\\": 659,\\n        \\\"3_of_3\\\": 1102\\n      }\\n    }\\n  },\\n  \\\"per_example_classification\\\": {\\n    \\\"GDN\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 470,\\n        \\\"n_hurt\\\": 597,\\n        \\\"n_stayed_right\\\": 1337,\\n        \\\"n_stayed_wrong\\\": 2749,\\n        \\\"net_effect\\\": -127\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 385,\\n        \\\"n_hurt\\\": 644,\\n        \\\"n_stayed_right\\\": 1290,\\n        \\\"n_stayed_wrong\\\": 2834,\\n        \\\"net_effect\\\": -259\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 428,\\n        \\\"n_hurt\\\": 555,\\n        \\\"n_stayed_right\\\": 1379,\\n        \\\"n_stayed_wrong\\\": 2791,\\n        \\\"net_effect\\\": -127\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 422,\\n        \\\"n_hurt\\\": 678,\\n        \\\"n_stayed_right\\\": 1256,\\n        \\\"n_stayed_wrong\\\": 2797,\\n        \\\"net_effect\\\": -256\\n      }\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 439,\\n        \\\"n_hurt\\\": 443,\\n        \\\"n_stayed_right\\\": 1443,\\n        \\\"n_stayed_wrong\\\": 2828,\\n        \\\"net_effect\\\": -4\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 427,\\n        \\\"n_hurt\\\": 451,\\n        \\\"n_stayed_right\\\": 1435,\\n        \\\"n_stayed_wrong\\\": 2840,\\n        \\\"net_effect\\\": -24\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 380,\\n        \\\"n_hurt\\\": 478,\\n        \\\"n_stayed_right\\\": 1408,\\n        \\\"n_stayed_wrong\\\": 2887,\\n        \\\"net_effect\\\": -98\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 373,\\n        \\\"n_hurt\\\": 479,\\n        \\\"n_stayed_right\\\": 1407,\\n        \\\"n_stayed_wrong\\\": 2894,\\n        \\\"net_effect\\\": -106\\n      }\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 443,\\n        \\\"n_hurt\\\": 350,\\n        \\\"n_stayed_right\\\": 1292,\\n        \\\"n_stayed_wrong\\\": 3068,\\n        \\\"net_effect\\\": 93\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 538,\\n        \\\"n_hurt\\\": 303,\\n        \\\"n_stayed_right\\\": 1339,\\n        \\\"n_stayed_wrong\\\": 2973,\\n        \\\"net_effect\\\": 235\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 580,\\n        \\\"n_hurt\\\": 305,\\n        \\\"n_stayed_right\\\": 1337,\\n        \\\"n_stayed_wrong\\\": 2931,\\n        \\\"net_effect\\\": 275\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 575,\\n        \\\"n_hurt\\\": 337,\\n        \\\"n_stayed_right\\\": 1305,\\n        \\\"n_stayed_wrong\\\": 2936,\\n        \\\"net_effect\\\": 238\\n      }\\n    }\\n  },\\n  \\\"convergence_sigma\\\": {\\n    \\\"per_ratio\\\": {\\n      \\\"pure\\\": {\\n        \\\"sigma\\\": 0.02481,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3753,\\n          \\\"RetNet\\\": 0.366,\\n          \\\"HGRN2\\\": 0.3186\\n        }\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"sigma\\\": 0.011647,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3507,\\n          \\\"RetNet\\\": 0.3652,\\n          \\\"HGRN2\\\": 0.3367\\n     \\n\\n... [截断: 输出过长，省略 3651 字符] ...\\n\\n7,\\n            538\\n          ],\\n          \\\"J\\\": 0.1143,\\n          \\\"J_null\\\": 0.0484,\\n          \\\"J_max\\\": 0.7937,\\n          \\\"ES_normalized\\\": 0.0884,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            451,\\n            303\\n          ],\\n          \\\"J\\\": 0.0787,\\n          \\\"J_null\\\": 0.0365,\\n          \\\"J_max\\\": 0.6718,\\n          \\\"ES_normalized\\\": 0.0665,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"h6-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            428,\\n            380\\n          ],\\n          \\\"J\\\": 0.0831,\\n          \\\"J_null\\\": 0.0407,\\n          \\\"J_max\\\": 0.8879,\\n          \\\"ES_normalized\\\": 0.0501,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            555,\\n            478\\n          ],\\n          \\\"J\\\": 0.0828,\\n          \\\"J_null\\\": 0.0525,\\n          \\\"J_max\\\": 0.8613,\\n          \\\"ES_normalized\\\": 0.0375,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            428,\\n            580\\n          ],\\n          \\\"J\\\": 0.085,\\n          \\\"J_null\\\": 0.0502,\\n          \\\"J_max\\\": 0.7379,\\n          \\\"ES_normalized\\\": 0.0507,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            555,\\n            305\\n          ],\\n          \\\"J\\\": 0.0644,\\n          \\\"J_null\\\": 0.0397,\\n          \\\"J_max\\\": 0.5495,\\n          \\\"ES_normalized\\\": 0.0483,\\n          \\\"p_value_permutation\\\": 0.0004\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            380,\\n            580\\n          ],\\n          \\\"J\\\": 0.1085,\\n          \\\"J_null\\\": 0.0466,\\n          \\\"J_max\\\": 0.6552,\\n          \\\"ES_normalized\\\": 0.1017,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            478,\\n            305\\n          ],\\n          \\\"J\\\": 0.086,\\n          \\\"J_null\\\": 0.0375,\\n          \\\"J_max\\\": 0.6381,\\n          \\\"ES_normalized\\\": 0.0808,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"h3-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            422,\\n            373\\n          ],\\n          \\\"J\\\": 0.092,\\n          \\\"J_null\\\": 0.04,\\n          \\\"J_max\\\": 0.8839,\\n          \\\"ES_normalized\\\": 0.0617,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            678,\\n            479\\n          ],\\n          \\\"J\\\": 0.1093,\\n          \\\"J_null\\\": 0.0576,\\n          \\\"J_max\\\": 0.7065,\\n          \\\"ES_normalized\\\": 0.0797,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            422,\\n            575\\n          ],\\n          \\\"J\\\": 0.0837,\\n          \\\"J_null\\\": 0.0496,\\n          \\\"J_max\\\": 0.7339,\\n          \\\"ES_normalized\\\": 0.0499,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            678,\\n            337\\n          ],\\n          \\\"J\\\": 0.0752,\\n          \\\"J_null\\\": 0.0457,\\n          \\\"J_max\\\": 0.4971,\\n          \\\"ES_normalized\\\": 0.0654,\\n          \\\"p_value_permutation\\\": 0.0001\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            373,\\n            575\\n          ],\\n          \\\"J\\\": 0.1075,\\n          \\\"J_null\\\": 0.0459,\\n          \\\"J_max\\\": 0.6487,\\n          \\\"ES_normalized\\\": 0.1021,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            479,\\n            337\\n          ],\\n          \\\"J\\\": 0.0851,\\n          \\\"J_null\\\": 0.0399,\\n          \\\"J_max\\\": 0.7035,\\n          \\\"ES_normalized\\\": 0.0681,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    }\\n  },\\n  \\\"comparison_1_3B\\\": {\\n    \\\"alpha_340m_pure\\\": 0.3128,\\n    \\\"alpha_1_3b_pure\\\": 0.307,\\n    \\\"jaccard_340m_mean\\\": 0.0888,\\n    \\\"jaccard_1_3b_mean\\\": 0.095,\\n    \\\"convergence_rho_340m\\\": -0.5,\\n    \\\"convergence_rho_1_3b\\\": -1.0,\\n    \\\"convergence_p_340m\\\": 0.45,\\n    \\\"convergence_p_1_3b\\\": 0.017\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "c390f82f-6387-47ba-84c4-87aef4a179f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"lambada_openai\\\\\\\",\\\\n  \\\\\\\"scale\\\\\\\": \\\\\\\"340M\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 5153,\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"GDN\\\\\\\",\\\\n    \\\\\\\"RetNet\\\\\\\",\\\\n    \\\\\\\"HGRN2\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"ratios\\\\\\\": [\\\\n    \\\\\\\"pure\\\\\\\",\\\\n    \\\\\\\"h24-1\\\\\\\",\\\\n    \\\\\\\"h12-1\\\\\\\",\\\\n    \\\\\\\"h6-1\\\\\\\",\\\\n    \\\\\\\"h3-1\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"aggregate_accuracy\\\\\\\": {\\\\n    \\\\\\\"GDN\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": 0.3753,\\\\n      \\\\\\\"h24-1\\\\\\\": 0.3507,\\\\n      \\\\\\\"h12-1\\\\\\\": 0.3251,\\\\n      \\\\\\\"h6-1\\\\\\\": 0.3507,\\\\n      \\\\\\\"h3-1\\\\\\\": 0.3256\\\\n    },\\\\n    \\\\\\\"RetNet\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": 0.366,\\\\n      \\\\\\\"h24-1\\\\\\\": 0.3652,\\\\n      \\\\\\\"h12-1\\\\\\\": 0.3613,\\\\n      \\\\\\\"h6-1\\\\\\\": 0.347,\\\\n      \\\\\\\"h3-1\\\\\\\": 0.3454\\\\n    },\\\\n    \\\\\\\"HGRN2\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": 0.3186,\\\\n      \\\\\\\"h24-1\\\\\\\": 0.3367,\\\\n      \\\\\\\"h12-1\\\\\\\": 0.3643,\\\\n      \\\\\\\"h6-1\\\\\\\": 0.372,\\\\n      \\\\\\\"h3-1\\\\\\\": 0.3648\\\\n    }\\\\n  },\\\\n  \\\\\\\"ambiguity\\\\\\\": {\\\\n    \\\\\\\"pure\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.3128,\\\\n      \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n        \\\\\\\"0_of_3\\\\\\\": 2501,\\\\n        \\\\\\\"1_of_3\\\\\\\": 882,\\\\n        \\\\\\\"2_of_3\\\\\\\": 730,\\\\n        \\\\\\\"3_of_3\\\\\\\": 1040\\\\n      }\\\\n    },\\\\n    \\\\\\\"h24-1\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.2967,\\\\n      \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n        \\\\\\\"0_of_3\\\\\\\": 2563,\\\\n        \\\\\\\"1_of_3\\\\\\\": 817,\\\\n        \\\\\\\"2_of_3\\\\\\\": 712,\\\\n        \\\\\\\"3_of_3\\\\\\\": 1061\\\\n      }\\\\n    },\\\\n    \\\\\\\"h12-1\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.2926,\\\\n      \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n        \\\\\\\"0_of_3\\\\\\\": 2585,\\\\n        \\\\\\\"1_of_3\\\\\\\": 782,\\\\n        \\\\\\\"2_of_3\\\\\\\": 726,\\\\n        \\\\\\\"3_of_3\\\\\\\": 1060\\\\n      }\\\\n    },\\\\n    \\\\\\\"h6-1\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.2892,\\\\n      \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n        \\\\\\\"0_of_3\\\\\\\": 2556,\\\\n        \\\\\\\"1_of_3\\\\\\\": 789,\\\\n        \\\\\\\"2_of_3\\\\\\\": 701,\\\\n        \\\\\\\"3_of_3\\\\\\\": 1107\\\\n      }\\\\n    },\\\\n    \\\\\\\"h3-1\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.2664,\\\\n      \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n        \\\\\\\"0_of_3\\\\\\\": 2678,\\\\n        \\\\\\\"1_of_3\\\\\\\": 714,\\\\n        \\\\\\\"2_of_3\\\\\\\": 659,\\\\n        \\\\\\\"3_of_3\\\\\\\": 1102\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_example_classification\\\\\\\": {\\\\n    \\\\\\\"GDN\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 470,\\\\n        \\\\\\\"n_hurt\\\\\\\": 597,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1337,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2749,\\\\n        \\\\\\\"net_effect\\\\\\\": -127\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 385,\\\\n        \\\\\\\"n_hurt\\\\\\\": 644,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1290,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2834,\\\\n        \\\\\\\"net_effect\\\\\\\": -259\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 428,\\\\n        \\\\\\\"n_hurt\\\\\\\": 555,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1379,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2791,\\\\n        \\\\\\\"net_effect\\\\\\\": -127\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 422,\\\\n        \\\\\\\"n_hurt\\\\\\\": 678,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1256,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2797,\\\\n        \\\\\\\"net_effect\\\\\\\": -256\\\\n      }\\\\n    },\\\\n    \\\\\\\"RetNet\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 439,\\\\n        \\\\\\\"n_hurt\\\\\\\": 443,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1443,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2828,\\\\n        \\\\\\\"net_effect\\\\\\\": -4\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 427,\\\\n        \\\\\\\"n_hurt\\\\\\\": 451,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1435,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2840,\\\\n        \\\\\\\"net_effect\\\\\\\": -24\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 380,\\\\n        \\\\\\\"n_hurt\\\\\\\": 478,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1408,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2887,\\\\n        \\\\\\\"net_effect\\\\\\\": -98\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 373,\\\\n        \\\\\\\"n_hurt\\\\\\\": 479,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1407,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2894,\\\\n        \\\\\\\"net_effect\\\\\\\": -106\\\\n      }\\\\n    },\\\\n    \\\\\\\"HGRN2\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 443,\\\\n        \\\\\\\"n_hurt\\\\\\\": 350,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1292,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 3068,\\\\n        \\\\\\\"net_effect\\\\\\\": 93\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 538,\\\\n        \\\\\\\"n_hurt\\\\\\\": 303,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1339,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2973,\\\\n        \\\\\\\"net_effect\\\\\\\": 235\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 580,\\\\n        \\\\\\\"n_hurt\\\\\\\": 305,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1337,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2931,\\\\n        \\\\\\\"net_effect\\\\\\\": 275\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 575,\\\\n        \\\\\\\"n_hurt\\\\\\\": 337,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1305,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2936,\\\\n        \\\\\\\"net_effect\\\\\\\": 238\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"convergence_sigma\\\\\\\": {\\\\n    \\\\\\\"per_ratio\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"sigma\\\\\\\": 0.02481,\\\\n        \\\\\\\"accuracies\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 0.3753,\\\\n          \\\\\\\"RetNet\\\\\\\": 0.366,\\\\n          \\\\\\\"HGRN2\\\\\\\": 0.3186\\\\n        }\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"sigma\\\\\\\": 0.011647,\\\\n        \\\\\\\"accuracies\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 0.3507,\\\\n          \\\\\\\"RetNet\\\\\\\": 0.3652,\\\\n          \\\\\\\"HGRN2\\\\\\\": 0.3367\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 3651 字符] ...\\\\n\\\\n7,\\\\n            538\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.1143,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0484,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7937,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0884,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            451,\\\\n            303\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0787,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0365,\\\\n          \\\\\\\"J_max\\\\\\\": 0.6718,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0665,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"h6-1\\\\\\\": {\\\\n      \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            428,\\\\n            380\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0831,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0407,\\\\n          \\\\\\\"J_max\\\\\\\": 0.8879,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0501,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            555,\\\\n            478\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0828,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0525,\\\\n          \\\\\\\"J_max\\\\\\\": 0.8613,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0375,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"GDN_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            428,\\\\n            580\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.085,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0502,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7379,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0507,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            555,\\\\n            305\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0644,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0397,\\\\n          \\\\\\\"J_max\\\\\\\": 0.5495,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0483,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0004\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            380,\\\\n            580\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.1085,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0466,\\\\n          \\\\\\\"J_max\\\\\\\": 0.6552,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.1017,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            478,\\\\n            305\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.086,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0375,\\\\n          \\\\\\\"J_max\\\\\\\": 0.6381,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0808,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"h3-1\\\\\\\": {\\\\n      \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            422,\\\\n            373\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.092,\\\\n          \\\\\\\"J_null\\\\\\\": 0.04,\\\\n          \\\\\\\"J_max\\\\\\\": 0.8839,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0617,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            678,\\\\n            479\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.1093,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0576,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7065,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0797,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"GDN_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            422,\\\\n            575\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0837,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0496,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7339,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0499,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            678,\\\\n            337\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0752,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0457,\\\\n          \\\\\\\"J_max\\\\\\\": 0.4971,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0654,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0001\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            373,\\\\n            575\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.1075,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0459,\\\\n          \\\\\\\"J_max\\\\\\\": 0.6487,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.1021,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            479,\\\\n            337\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0851,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0399,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7035,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0681,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison_1_3B\\\\\\\": {\\\\n    \\\\\\\"alpha_340m_pure\\\\\\\": 0.3128,\\\\n    \\\\\\\"alpha_1_3b_pure\\\\\\\": 0.307,\\\\n    \\\\\\\"jaccard_340m_mean\\\\\\\": 0.0888,\\\\n    \\\\\\\"jaccard_1_3b_mean\\\\\\\": 0.095,\\\\n    \\\\\\\"convergence_rho_340m\\\\\\\": -0.5,\\\\n    \\\\\\\"convergence_rho_1_3b\\\\\\\": -1.0,\\\\n    \\\\\\\"convergence_p_340m\\\\\\\": 0.45,\\\\n    \\\\\\\"convergence_p_1_3b\\\\\\\": 0.017\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"lambada_openai\\\",\\n  \\\"scale\\\": \\\"340M\\\",\\n  \\\"n_samples\\\": 5153,\\n  \\\"architectures\\\": [\\n    \\\"GDN\\\",\\n    \\\"RetNet\\\",\\n    \\\"HGRN2\\\"\\n  ],\\n  \\\"ratios\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"aggregate_accuracy\\\": {\\n    \\\"GDN\\\": {\\n      \\\"pure\\\": 0.3753,\\n      \\\"h24-1\\\": 0.3507,\\n      \\\"h12-1\\\": 0.3251,\\n      \\\"h6-1\\\": 0.3507,\\n      \\\"h3-1\\\": 0.3256\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"pure\\\": 0.366,\\n      \\\"h24-1\\\": 0.3652,\\n      \\\"h12-1\\\": 0.3613,\\n      \\\"h6-1\\\": 0.347,\\n      \\\"h3-1\\\": 0.3454\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"pure\\\": 0.3186,\\n      \\\"h24-1\\\": 0.3367,\\n      \\\"h12-1\\\": 0.3643,\\n      \\\"h6-1\\\": 0.372,\\n      \\\"h3-1\\\": 0.3648\\n    }\\n  },\\n  \\\"ambiguity\\\": {\\n    \\\"pure\\\": {\\n      \\\"alpha\\\": 0.3128,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2501,\\n        \\\"1_of_3\\\": 882,\\n        \\\"2_of_3\\\": 730,\\n        \\\"3_of_3\\\": 1040\\n      }\\n    },\\n    \\\"h24-1\\\": {\\n      \\\"alpha\\\": 0.2967,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2563,\\n        \\\"1_of_3\\\": 817,\\n        \\\"2_of_3\\\": 712,\\n        \\\"3_of_3\\\": 1061\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"alpha\\\": 0.2926,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2585,\\n        \\\"1_of_3\\\": 782,\\n        \\\"2_of_3\\\": 726,\\n        \\\"3_of_3\\\": 1060\\n      }\\n    },\\n    \\\"h6-1\\\": {\\n      \\\"alpha\\\": 0.2892,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2556,\\n        \\\"1_of_3\\\": 789,\\n        \\\"2_of_3\\\": 701,\\n        \\\"3_of_3\\\": 1107\\n      }\\n    },\\n    \\\"h3-1\\\": {\\n      \\\"alpha\\\": 0.2664,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2678,\\n        \\\"1_of_3\\\": 714,\\n        \\\"2_of_3\\\": 659,\\n        \\\"3_of_3\\\": 1102\\n      }\\n    }\\n  },\\n  \\\"per_example_classification\\\": {\\n    \\\"GDN\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 470,\\n        \\\"n_hurt\\\": 597,\\n        \\\"n_stayed_right\\\": 1337,\\n        \\\"n_stayed_wrong\\\": 2749,\\n        \\\"net_effect\\\": -127\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 385,\\n        \\\"n_hurt\\\": 644,\\n        \\\"n_stayed_right\\\": 1290,\\n        \\\"n_stayed_wrong\\\": 2834,\\n        \\\"net_effect\\\": -259\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 428,\\n        \\\"n_hurt\\\": 555,\\n        \\\"n_stayed_right\\\": 1379,\\n        \\\"n_stayed_wrong\\\": 2791,\\n        \\\"net_effect\\\": -127\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 422,\\n        \\\"n_hurt\\\": 678,\\n        \\\"n_stayed_right\\\": 1256,\\n        \\\"n_stayed_wrong\\\": 2797,\\n        \\\"net_effect\\\": -256\\n      }\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 439,\\n        \\\"n_hurt\\\": 443,\\n        \\\"n_stayed_right\\\": 1443,\\n        \\\"n_stayed_wrong\\\": 2828,\\n        \\\"net_effect\\\": -4\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 427,\\n        \\\"n_hurt\\\": 451,\\n        \\\"n_stayed_right\\\": 1435,\\n        \\\"n_stayed_wrong\\\": 2840,\\n        \\\"net_effect\\\": -24\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 380,\\n        \\\"n_hurt\\\": 478,\\n        \\\"n_stayed_right\\\": 1408,\\n        \\\"n_stayed_wrong\\\": 2887,\\n        \\\"net_effect\\\": -98\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 373,\\n        \\\"n_hurt\\\": 479,\\n        \\\"n_stayed_right\\\": 1407,\\n        \\\"n_stayed_wrong\\\": 2894,\\n        \\\"net_effect\\\": -106\\n      }\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 443,\\n        \\\"n_hurt\\\": 350,\\n        \\\"n_stayed_right\\\": 1292,\\n        \\\"n_stayed_wrong\\\": 3068,\\n        \\\"net_effect\\\": 93\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 538,\\n        \\\"n_hurt\\\": 303,\\n        \\\"n_stayed_right\\\": 1339,\\n        \\\"n_stayed_wrong\\\": 2973,\\n        \\\"net_effect\\\": 235\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 580,\\n        \\\"n_hurt\\\": 305,\\n        \\\"n_stayed_right\\\": 1337,\\n        \\\"n_stayed_wrong\\\": 2931,\\n        \\\"net_effect\\\": 275\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 575,\\n        \\\"n_hurt\\\": 337,\\n        \\\"n_stayed_right\\\": 1305,\\n        \\\"n_stayed_wrong\\\": 2936,\\n        \\\"net_effect\\\": 238\\n      }\\n    }\\n  },\\n  \\\"convergence_sigma\\\": {\\n    \\\"per_ratio\\\": {\\n      \\\"pure\\\": {\\n        \\\"sigma\\\": 0.02481,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3753,\\n          \\\"RetNet\\\": 0.366,\\n          \\\"HGRN2\\\": 0.3186\\n        }\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"sigma\\\": 0.011647,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3507,\\n          \\\"RetNet\\\": 0.3652,\\n          \\\"HGRN2\\\": 0.3367\\n     \\n\\n... [截断: 输出过长，省略 3651 字符] ...\\n\\n7,\\n            538\\n          ],\\n          \\\"J\\\": 0.1143,\\n          \\\"J_null\\\": 0.0484,\\n          \\\"J_max\\\": 0.7937,\\n          \\\"ES_normalized\\\": 0.0884,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            451,\\n            303\\n          ],\\n          \\\"J\\\": 0.0787,\\n          \\\"J_null\\\": 0.0365,\\n          \\\"J_max\\\": 0.6718,\\n          \\\"ES_normalized\\\": 0.0665,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"h6-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            428,\\n            380\\n          ],\\n          \\\"J\\\": 0.0831,\\n          \\\"J_null\\\": 0.0407,\\n          \\\"J_max\\\": 0.8879,\\n          \\\"ES_normalized\\\": 0.0501,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            555,\\n            478\\n          ],\\n          \\\"J\\\": 0.0828,\\n          \\\"J_null\\\": 0.0525,\\n          \\\"J_max\\\": 0.8613,\\n          \\\"ES_normalized\\\": 0.0375,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            428,\\n            580\\n          ],\\n          \\\"J\\\": 0.085,\\n          \\\"J_null\\\": 0.0502,\\n          \\\"J_max\\\": 0.7379,\\n          \\\"ES_normalized\\\": 0.0507,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            555,\\n            305\\n          ],\\n          \\\"J\\\": 0.0644,\\n          \\\"J_null\\\": 0.0397,\\n          \\\"J_max\\\": 0.5495,\\n          \\\"ES_normalized\\\": 0.0483,\\n          \\\"p_value_permutation\\\": 0.0004\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            380,\\n            580\\n          ],\\n          \\\"J\\\": 0.1085,\\n          \\\"J_null\\\": 0.0466,\\n          \\\"J_max\\\": 0.6552,\\n          \\\"ES_normalized\\\": 0.1017,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            478,\\n            305\\n          ],\\n          \\\"J\\\": 0.086,\\n          \\\"J_null\\\": 0.0375,\\n          \\\"J_max\\\": 0.6381,\\n          \\\"ES_normalized\\\": 0.0808,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"h3-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            422,\\n            373\\n          ],\\n          \\\"J\\\": 0.092,\\n          \\\"J_null\\\": 0.04,\\n          \\\"J_max\\\": 0.8839,\\n          \\\"ES_normalized\\\": 0.0617,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            678,\\n            479\\n          ],\\n          \\\"J\\\": 0.1093,\\n          \\\"J_null\\\": 0.0576,\\n          \\\"J_max\\\": 0.7065,\\n          \\\"ES_normalized\\\": 0.0797,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            422,\\n            575\\n          ],\\n          \\\"J\\\": 0.0837,\\n          \\\"J_null\\\": 0.0496,\\n          \\\"J_max\\\": 0.7339,\\n          \\\"ES_normalized\\\": 0.0499,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            678,\\n            337\\n          ],\\n          \\\"J\\\": 0.0752,\\n          \\\"J_null\\\": 0.0457,\\n          \\\"J_max\\\": 0.4971,\\n          \\\"ES_normalized\\\": 0.0654,\\n          \\\"p_value_permutation\\\": 0.0001\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            373,\\n            575\\n          ],\\n          \\\"J\\\": 0.1075,\\n          \\\"J_null\\\": 0.0459,\\n          \\\"J_max\\\": 0.6487,\\n          \\\"ES_normalized\\\": 0.1021,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            479,\\n            337\\n          ],\\n          \\\"J\\\": 0.0851,\\n          \\\"J_null\\\": 0.0399,\\n          \\\"J_max\\\": 0.7035,\\n          \\\"ES_normalized\\\": 0.0681,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    }\\n  },\\n  \\\"comparison_1_3B\\\": {\\n    \\\"alpha_340m_pure\\\": 0.3128,\\n    \\\"alpha_1_3b_pure\\\": 0.307,\\n    \\\"jaccard_340m_mean\\\": 0.0888,\\n    \\\"jaccard_1_3b_mean\\\": 0.095,\\n    \\\"convergence_rho_340m\\\": -0.5,\\n    \\\"convergence_rho_1_3b\\\": -1.0,\\n    \\\"convergence_p_340m\\\": 0.45,\\n    \\\"convergence_p_1_3b\\\": 0.017\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output is truncated but I got the full data. Let me now save the JSON locally. I need to reconstruct the full JSON. Let me read it in segments from the server, or better yet, just run a Python command to get the exact content.
+
+Actually, looking at the output carefully, I have most of the data. But part of the convergence_sigma section was truncated. Let me read that section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "d7b6b7a4-088e-46f0-8908-fc280b182c00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DqmVe2x3HBeVAzxdLiu3tG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5328,
+      "cache_read_input_tokens": 43341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5328
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+Output was truncated in the middle. Let me read the missing section to get the complete JSON.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "e60e9cbf-4dbf-4cde-aff1-c8a025953890",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DqmVe2x3HBeVAzxdLiu3tG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5328,
+      "cache_read_input_tokens": 43341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5328
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019CiZimWPx6U5tANr2XRQL2`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "python3 -c \"import json; d=json.load(open('/tmp/340m_lambada_per_example.json')); print(json.dumps(d['convergence_sigma'], indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "cc4bcb23-d866-4ee9-a1ba-b13def11f380",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DqmVe2x3HBeVAzxdLiu3tG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5328,
+      "cache_read_input_tokens": 43341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5328
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T13:29:22.838Z_
+
+<details><summary>↩ Tool result · `toolu_019CiZimWPx6U5tANr2XRQL2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "a81f900b-470d-48b2-a653-f9c4c41a406a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015MbpuhNHEDmTFuNGVCwhMK`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "python3 -c \"import json; d=json.load(open('/tmp/340m_lambada_per_example.json')); print(json.dumps(d['jaccard_analysis']['h24-1'], indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "554657bb-21bc-44bc-afa4-0c5053535bb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DqmVe2x3HBeVAzxdLiu3tG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5328,
+      "cache_read_input_tokens": 43341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5328
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T13:29:23.685Z_
+
+<details><summary>↩ Tool result · `toolu_015MbpuhNHEDmTFuNGVCwhMK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "3c1374c6-db45-49d2-b879-c39318b303ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Can't use python -c with semicolons in read-only mode. Let me use sed/head/tail to read sections of the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "7f63a24f-1b54-4fd1-b361-152a06a854b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LujrsfUHN8rQ98rp9izZd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 48669,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 662
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XNWLtZjoyP6yUbtDa4Maoo`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "wc -l /tmp/340m_lambada_per_example.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "e3bd0430-3f64-44fb-99db-985077ffaade",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LujrsfUHN8rQ98rp9izZd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 48669,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 662
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-21T13:29:28.456Z_
+
+<details><summary>↩ Tool result · `toolu_01XNWLtZjoyP6yUbtDa4Maoo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"546 /tmp/340m_lambada_per_example.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "7253ef24-3394-4f64-9990-bfec7a42071b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"546 /tmp/340m_lambada_per_example.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"546 /tmp/340m_lambada_per_example.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T2Np42GxVpxPrRYTKUAmnf`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -200 /tmp/340m_lambada_per_example.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "9974220f-7ec3-4ca4-8967-84a4f7548e69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VA9qDm9nkuyd7LfaYee3Tn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 49331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LfLxstgq12YXtHBwHHcPFb`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "tail -346 /tmp/340m_lambada_per_example.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "d59f0325-f66c-4d13-b056-c88b342304f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VA9qDm9nkuyd7LfaYee3Tn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 49331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-21T13:29:32.727Z_
+
+<details><summary>↩ Tool result · `toolu_01T2Np42GxVpxPrRYTKUAmnf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"lambada_openai\\\",\\n  \\\"scale\\\": \\\"340M\\\",\\n  \\\"n_samples\\\": 5153,\\n  \\\"architectures\\\": [\\n    \\\"GDN\\\",\\n    \\\"RetNet\\\",\\n    \\\"HGRN2\\\"\\n  ],\\n  \\\"ratios\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"aggregate_accuracy\\\": {\\n    \\\"GDN\\\": {\\n      \\\"pure\\\": 0.3753,\\n      \\\"h24-1\\\": 0.3507,\\n      \\\"h12-1\\\": 0.3251,\\n      \\\"h6-1\\\": 0.3507,\\n      \\\"h3-1\\\": 0.3256\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"pure\\\": 0.366,\\n      \\\"h24-1\\\": 0.3652,\\n      \\\"h12-1\\\": 0.3613,\\n      \\\"h6-1\\\": 0.347,\\n      \\\"h3-1\\\": 0.3454\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"pure\\\": 0.3186,\\n      \\\"h24-1\\\": 0.3367,\\n      \\\"h12-1\\\": 0.3643,\\n      \\\"h6-1\\\": 0.372,\\n      \\\"h3-1\\\": 0.3648\\n    }\\n  },\\n  \\\"ambiguity\\\": {\\n    \\\"pure\\\": {\\n      \\\"alpha\\\": 0.3128,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2501,\\n        \\\"1_of_3\\\": 882,\\n        \\\"2_of_3\\\": 730,\\n        \\\"3_of_3\\\": 1040\\n      }\\n    },\\n    \\\"h24-1\\\": {\\n      \\\"alpha\\\": 0.2967,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2563,\\n        \\\"1_of_3\\\": 817,\\n        \\\"2_of_3\\\": 712,\\n        \\\"3_of_3\\\": 1061\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"alpha\\\": 0.2926,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2585,\\n        \\\"1_of_3\\\": 782,\\n        \\\"2_of_3\\\": 726,\\n        \\\"3_of_3\\\": 1060\\n      }\\n    },\\n    \\\"h6-1\\\": {\\n      \\\"alpha\\\": 0.2892,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2556,\\n        \\\"1_of_3\\\": 789,\\n        \\\"2_of_3\\\": 701,\\n        \\\"3_of_3\\\": 1107\\n      }\\n    },\\n    \\\"h3-1\\\": {\\n      \\\"alpha\\\": 0.2664,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2678,\\n        \\\"1_of_3\\\": 714,\\n        \\\"2_of_3\\\": 659,\\n        \\\"3_of_3\\\": 1102\\n      }\\n    }\\n  },\\n  \\\"per_example_classification\\\": {\\n    \\\"GDN\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 470,\\n        \\\"n_hurt\\\": 597,\\n        \\\"n_stayed_right\\\": 1337,\\n        \\\"n_stayed_wrong\\\": 2749,\\n        \\\"net_effect\\\": -127\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 385,\\n        \\\"n_hurt\\\": 644,\\n        \\\"n_stayed_right\\\": 1290,\\n        \\\"n_stayed_wrong\\\": 2834,\\n        \\\"net_effect\\\": -259\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 428,\\n        \\\"n_hurt\\\": 555,\\n        \\\"n_stayed_right\\\": 1379,\\n        \\\"n_stayed_wrong\\\": 2791,\\n        \\\"net_effect\\\": -127\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 422,\\n        \\\"n_hurt\\\": 678,\\n        \\\"n_stayed_right\\\": 1256,\\n        \\\"n_stayed_wrong\\\": 2797,\\n        \\\"net_effect\\\": -256\\n      }\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 439,\\n        \\\"n_hurt\\\": 443,\\n        \\\"n_stayed_right\\\": 1443,\\n        \\\"n_stayed_wrong\\\": 2828,\\n        \\\"net_effect\\\": -4\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 427,\\n        \\\"n_hurt\\\": 451,\\n        \\\"n_stayed_right\\\": 1435,\\n        \\\"n_stayed_wrong\\\": 2840,\\n        \\\"net_effect\\\": -24\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 380,\\n        \\\"n_hurt\\\": 478,\\n        \\\"n_stayed_right\\\": 1408,\\n        \\\"n_stayed_wrong\\\": 2887,\\n        \\\"net_effect\\\": -98\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 373,\\n        \\\"n_hurt\\\": 479,\\n        \\\"n_stayed_right\\\": 1407,\\n        \\\"n_stayed_wrong\\\": 2894,\\n        \\\"net_effect\\\": -106\\n      }\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 443,\\n        \\\"n_hurt\\\": 350,\\n        \\\"n_stayed_right\\\": 1292,\\n        \\\"n_stayed_wrong\\\": 3068,\\n        \\\"net_effect\\\": 93\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 538,\\n        \\\"n_hurt\\\": 303,\\n        \\\"n_stayed_right\\\": 1339,\\n        \\\"n_stayed_wrong\\\": 2973,\\n        \\\"net_effect\\\": 235\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 580,\\n        \\\"n_hurt\\\": 305,\\n        \\\"n_stayed_right\\\": 1337,\\n        \\\"n_stayed_wrong\\\": 2931,\\n        \\\"net_effect\\\": 275\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 575,\\n        \\\"n_hurt\\\": 337,\\n        \\\"n_stayed_right\\\": 1305,\\n        \\\"n_stayed_wrong\\\": 2936,\\n        \\\"net_effect\\\": 238\\n      }\\n    }\\n  },\\n  \\\"convergence_sigma\\\": {\\n    \\\"per_ratio\\\": {\\n      \\\"pure\\\": {\\n        \\\"sigma\\\": 0.02481,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3753,\\n          \\\"RetNet\\\": 0.366,\\n          \\\"HGRN2\\\": 0.3186\\n        }\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"sigma\\\": 0.011647,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3507,\\n          \\\"RetNet\\\": 0.3652,\\n          \\\"HGRN2\\\": 0.3367\\n        }\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"sigma\\\": 0.017833,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3251,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "b4c1bceb-f876-4505-8de3-4712cd58e7e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"lambada_openai\\\\\\\",\\\\n  \\\\\\\"scale\\\\\\\": \\\\\\\"340M\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 5153,\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"GDN\\\\\\\",\\\\n    \\\\\\\"RetNet\\\\\\\",\\\\n    \\\\\\\"HGRN2\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"ratios\\\\\\\": [\\\\n    \\\\\\\"pure\\\\\\\",\\\\n    \\\\\\\"h24-1\\\\\\\",\\\\n    \\\\\\\"h12-1\\\\\\\",\\\\n    \\\\\\\"h6-1\\\\\\\",\\\\n    \\\\\\\"h3-1\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"aggregate_accuracy\\\\\\\": {\\\\n    \\\\\\\"GDN\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": 0.3753,\\\\n      \\\\\\\"h24-1\\\\\\\": 0.3507,\\\\n      \\\\\\\"h12-1\\\\\\\": 0.3251,\\\\n      \\\\\\\"h6-1\\\\\\\": 0.3507,\\\\n      \\\\\\\"h3-1\\\\\\\": 0.3256\\\\n    },\\\\n    \\\\\\\"RetNet\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": 0.366,\\\\n      \\\\\\\"h24-1\\\\\\\": 0.3652,\\\\n      \\\\\\\"h12-1\\\\\\\": 0.3613,\\\\n      \\\\\\\"h6-1\\\\\\\": 0.347,\\\\n      \\\\\\\"h3-1\\\\\\\": 0.3454\\\\n    },\\\\n    \\\\\\\"HGRN2\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": 0.3186,\\\\n      \\\\\\\"h24-1\\\\\\\": 0.3367,\\\\n      \\\\\\\"h12-1\\\\\\\": 0.3643,\\\\n      \\\\\\\"h6-1\\\\\\\": 0.372,\\\\n      \\\\\\\"h3-1\\\\\\\": 0.3648\\\\n    }\\\\n  },\\\\n  \\\\\\\"ambiguity\\\\\\\": {\\\\n    \\\\\\\"pure\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.3128,\\\\n      \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n        \\\\\\\"0_of_3\\\\\\\": 2501,\\\\n        \\\\\\\"1_of_3\\\\\\\": 882,\\\\n        \\\\\\\"2_of_3\\\\\\\": 730,\\\\n        \\\\\\\"3_of_3\\\\\\\": 1040\\\\n      }\\\\n    },\\\\n    \\\\\\\"h24-1\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.2967,\\\\n      \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n        \\\\\\\"0_of_3\\\\\\\": 2563,\\\\n        \\\\\\\"1_of_3\\\\\\\": 817,\\\\n        \\\\\\\"2_of_3\\\\\\\": 712,\\\\n        \\\\\\\"3_of_3\\\\\\\": 1061\\\\n      }\\\\n    },\\\\n    \\\\\\\"h12-1\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.2926,\\\\n      \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n        \\\\\\\"0_of_3\\\\\\\": 2585,\\\\n        \\\\\\\"1_of_3\\\\\\\": 782,\\\\n        \\\\\\\"2_of_3\\\\\\\": 726,\\\\n        \\\\\\\"3_of_3\\\\\\\": 1060\\\\n      }\\\\n    },\\\\n    \\\\\\\"h6-1\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.2892,\\\\n      \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n        \\\\\\\"0_of_3\\\\\\\": 2556,\\\\n        \\\\\\\"1_of_3\\\\\\\": 789,\\\\n        \\\\\\\"2_of_3\\\\\\\": 701,\\\\n        \\\\\\\"3_of_3\\\\\\\": 1107\\\\n      }\\\\n    },\\\\n    \\\\\\\"h3-1\\\\\\\": {\\\\n      \\\\\\\"alpha\\\\\\\": 0.2664,\\\\n      \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n        \\\\\\\"0_of_3\\\\\\\": 2678,\\\\n        \\\\\\\"1_of_3\\\\\\\": 714,\\\\n        \\\\\\\"2_of_3\\\\\\\": 659,\\\\n        \\\\\\\"3_of_3\\\\\\\": 1102\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_example_classification\\\\\\\": {\\\\n    \\\\\\\"GDN\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 470,\\\\n        \\\\\\\"n_hurt\\\\\\\": 597,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1337,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2749,\\\\n        \\\\\\\"net_effect\\\\\\\": -127\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 385,\\\\n        \\\\\\\"n_hurt\\\\\\\": 644,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1290,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2834,\\\\n        \\\\\\\"net_effect\\\\\\\": -259\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 428,\\\\n        \\\\\\\"n_hurt\\\\\\\": 555,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1379,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2791,\\\\n        \\\\\\\"net_effect\\\\\\\": -127\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 422,\\\\n        \\\\\\\"n_hurt\\\\\\\": 678,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1256,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2797,\\\\n        \\\\\\\"net_effect\\\\\\\": -256\\\\n      }\\\\n    },\\\\n    \\\\\\\"RetNet\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 439,\\\\n        \\\\\\\"n_hurt\\\\\\\": 443,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1443,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2828,\\\\n        \\\\\\\"net_effect\\\\\\\": -4\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 427,\\\\n        \\\\\\\"n_hurt\\\\\\\": 451,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1435,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2840,\\\\n        \\\\\\\"net_effect\\\\\\\": -24\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 380,\\\\n        \\\\\\\"n_hurt\\\\\\\": 478,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1408,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2887,\\\\n        \\\\\\\"net_effect\\\\\\\": -98\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 373,\\\\n        \\\\\\\"n_hurt\\\\\\\": 479,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1407,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2894,\\\\n        \\\\\\\"net_effect\\\\\\\": -106\\\\n      }\\\\n    },\\\\n    \\\\\\\"HGRN2\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 443,\\\\n        \\\\\\\"n_hurt\\\\\\\": 350,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1292,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 3068,\\\\n        \\\\\\\"net_effect\\\\\\\": 93\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 538,\\\\n        \\\\\\\"n_hurt\\\\\\\": 303,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1339,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2973,\\\\n        \\\\\\\"net_effect\\\\\\\": 235\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 580,\\\\n        \\\\\\\"n_hurt\\\\\\\": 305,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1337,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2931,\\\\n        \\\\\\\"net_effect\\\\\\\": 275\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 575,\\\\n        \\\\\\\"n_hurt\\\\\\\": 337,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1305,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2936,\\\\n        \\\\\\\"net_effect\\\\\\\": 238\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"convergence_sigma\\\\\\\": {\\\\n    \\\\\\\"per_ratio\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"sigma\\\\\\\": 0.02481,\\\\n        \\\\\\\"accuracies\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 0.3753,\\\\n          \\\\\\\"RetNet\\\\\\\": 0.366,\\\\n          \\\\\\\"HGRN2\\\\\\\": 0.3186\\\\n        }\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"sigma\\\\\\\": 0.011647,\\\\n        \\\\\\\"accuracies\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 0.3507,\\\\n          \\\\\\\"RetNet\\\\\\\": 0.3652,\\\\n          \\\\\\\"HGRN2\\\\\\\": 0.3367\\\\n        }\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"sigma\\\\\\\": 0.017833,\\\\n        \\\\\\\"accuracies\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 0.3251,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"lambada_openai\\\",\\n  \\\"scale\\\": \\\"340M\\\",\\n  \\\"n_samples\\\": 5153,\\n  \\\"architectures\\\": [\\n    \\\"GDN\\\",\\n    \\\"RetNet\\\",\\n    \\\"HGRN2\\\"\\n  ],\\n  \\\"ratios\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"aggregate_accuracy\\\": {\\n    \\\"GDN\\\": {\\n      \\\"pure\\\": 0.3753,\\n      \\\"h24-1\\\": 0.3507,\\n      \\\"h12-1\\\": 0.3251,\\n      \\\"h6-1\\\": 0.3507,\\n      \\\"h3-1\\\": 0.3256\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"pure\\\": 0.366,\\n      \\\"h24-1\\\": 0.3652,\\n      \\\"h12-1\\\": 0.3613,\\n      \\\"h6-1\\\": 0.347,\\n      \\\"h3-1\\\": 0.3454\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"pure\\\": 0.3186,\\n      \\\"h24-1\\\": 0.3367,\\n      \\\"h12-1\\\": 0.3643,\\n      \\\"h6-1\\\": 0.372,\\n      \\\"h3-1\\\": 0.3648\\n    }\\n  },\\n  \\\"ambiguity\\\": {\\n    \\\"pure\\\": {\\n      \\\"alpha\\\": 0.3128,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2501,\\n        \\\"1_of_3\\\": 882,\\n        \\\"2_of_3\\\": 730,\\n        \\\"3_of_3\\\": 1040\\n      }\\n    },\\n    \\\"h24-1\\\": {\\n      \\\"alpha\\\": 0.2967,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2563,\\n        \\\"1_of_3\\\": 817,\\n        \\\"2_of_3\\\": 712,\\n        \\\"3_of_3\\\": 1061\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"alpha\\\": 0.2926,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2585,\\n        \\\"1_of_3\\\": 782,\\n        \\\"2_of_3\\\": 726,\\n        \\\"3_of_3\\\": 1060\\n      }\\n    },\\n    \\\"h6-1\\\": {\\n      \\\"alpha\\\": 0.2892,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2556,\\n        \\\"1_of_3\\\": 789,\\n        \\\"2_of_3\\\": 701,\\n        \\\"3_of_3\\\": 1107\\n      }\\n    },\\n    \\\"h3-1\\\": {\\n      \\\"alpha\\\": 0.2664,\\n      \\\"disagreement_distribution\\\": {\\n        \\\"0_of_3\\\": 2678,\\n        \\\"1_of_3\\\": 714,\\n        \\\"2_of_3\\\": 659,\\n        \\\"3_of_3\\\": 1102\\n      }\\n    }\\n  },\\n  \\\"per_example_classification\\\": {\\n    \\\"GDN\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 470,\\n        \\\"n_hurt\\\": 597,\\n        \\\"n_stayed_right\\\": 1337,\\n        \\\"n_stayed_wrong\\\": 2749,\\n        \\\"net_effect\\\": -127\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 385,\\n        \\\"n_hurt\\\": 644,\\n        \\\"n_stayed_right\\\": 1290,\\n        \\\"n_stayed_wrong\\\": 2834,\\n        \\\"net_effect\\\": -259\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 428,\\n        \\\"n_hurt\\\": 555,\\n        \\\"n_stayed_right\\\": 1379,\\n        \\\"n_stayed_wrong\\\": 2791,\\n        \\\"net_effect\\\": -127\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 422,\\n        \\\"n_hurt\\\": 678,\\n        \\\"n_stayed_right\\\": 1256,\\n        \\\"n_stayed_wrong\\\": 2797,\\n        \\\"net_effect\\\": -256\\n      }\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 439,\\n        \\\"n_hurt\\\": 443,\\n        \\\"n_stayed_right\\\": 1443,\\n        \\\"n_stayed_wrong\\\": 2828,\\n        \\\"net_effect\\\": -4\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 427,\\n        \\\"n_hurt\\\": 451,\\n        \\\"n_stayed_right\\\": 1435,\\n        \\\"n_stayed_wrong\\\": 2840,\\n        \\\"net_effect\\\": -24\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 380,\\n        \\\"n_hurt\\\": 478,\\n        \\\"n_stayed_right\\\": 1408,\\n        \\\"n_stayed_wrong\\\": 2887,\\n        \\\"net_effect\\\": -98\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 373,\\n        \\\"n_hurt\\\": 479,\\n        \\\"n_stayed_right\\\": 1407,\\n        \\\"n_stayed_wrong\\\": 2894,\\n        \\\"net_effect\\\": -106\\n      }\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 443,\\n        \\\"n_hurt\\\": 350,\\n        \\\"n_stayed_right\\\": 1292,\\n        \\\"n_stayed_wrong\\\": 3068,\\n        \\\"net_effect\\\": 93\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 538,\\n        \\\"n_hurt\\\": 303,\\n        \\\"n_stayed_right\\\": 1339,\\n        \\\"n_stayed_wrong\\\": 2973,\\n        \\\"net_effect\\\": 235\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"n_helped\\\": 580,\\n        \\\"n_hurt\\\": 305,\\n        \\\"n_stayed_right\\\": 1337,\\n        \\\"n_stayed_wrong\\\": 2931,\\n        \\\"net_effect\\\": 275\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"n_helped\\\": 575,\\n        \\\"n_hurt\\\": 337,\\n        \\\"n_stayed_right\\\": 1305,\\n        \\\"n_stayed_wrong\\\": 2936,\\n        \\\"net_effect\\\": 238\\n      }\\n    }\\n  },\\n  \\\"convergence_sigma\\\": {\\n    \\\"per_ratio\\\": {\\n      \\\"pure\\\": {\\n        \\\"sigma\\\": 0.02481,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3753,\\n          \\\"RetNet\\\": 0.366,\\n          \\\"HGRN2\\\": 0.3186\\n        }\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"sigma\\\": 0.011647,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3507,\\n          \\\"RetNet\\\": 0.3652,\\n          \\\"HGRN2\\\": 0.3367\\n        }\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"sigma\\\": 0.017833,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3251,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-21T13:29:33.993Z_
+
+<details><summary>↩ Tool result · `toolu_01LfLxstgq12YXtHBwHHcPFb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"          \\\"HGRN2\\\": 0.3643\\n        }\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"sigma\\\": 0.011035,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3507,\\n          \\\"RetNet\\\": 0.347,\\n          \\\"HGRN2\\\": 0.372\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"sigma\\\": 0.016004,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3256,\\n          \\\"RetNet\\\": 0.3454,\\n          \\\"HGRN2\\\": 0.3648\\n        }\\n      }\\n    },\\n    \\\"spearman_rho\\\": -0.5,\\n    \\\"spearman_p_exact\\\": 0.45,\\n    \\\"attention_ratios\\\": [\\n      0.0,\\n      0.041666666666666664,\\n      0.08333333333333333,\\n      0.16666666666666666,\\n      0.3333333333333333\\n    ],\\n    \\\"sigma_values\\\": [\\n      0.02481,\\n      0.011647,\\n      0.017833,\\n      0.011035,\\n      0.016004\\n    ]\\n  },\\n  \\\"jaccard_analysis\\\": {\\n    \\\"h24-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            470,\\n            439\\n          ],\\n          \\\"J\\\": 0.0939,\\n          \\\"J_null\\\": 0.0461,\\n          \\\"J_max\\\": 0.934,\\n          \\\"ES_normalized\\\": 0.0538,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            597,\\n            443\\n          ],\\n          \\\"J\\\": 0.1005,\\n          \\\"J_null\\\": 0.0519,\\n          \\\"J_max\\\": 0.742,\\n          \\\"ES_normalized\\\": 0.0704,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            470,\\n            443\\n          ],\\n          \\\"J\\\": 0.0974,\\n          \\\"J_null\\\": 0.0463,\\n          \\\"J_max\\\": 0.9426,\\n          \\\"ES_normalized\\\": 0.057,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            597,\\n            350\\n          ],\\n          \\\"J\\\": 0.0617,\\n          \\\"J_null\\\": 0.0447,\\n          \\\"J_max\\\": 0.5863,\\n          \\\"ES_normalized\\\": 0.0313,\\n          \\\"p_value_permutation\\\": 0.0081\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            439,\\n            443\\n          ],\\n          \\\"J\\\": 0.1094,\\n          \\\"J_null\\\": 0.0447,\\n          \\\"J_max\\\": 0.991,\\n          \\\"ES_normalized\\\": 0.0684,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            443,\\n            350\\n          ],\\n          \\\"J\\\": 0.0923,\\n          \\\"J_null\\\": 0.0394,\\n          \\\"J_max\\\": 0.7901,\\n          \\\"ES_normalized\\\": 0.0704,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            385,\\n            427\\n          ],\\n          \\\"J\\\": 0.0827,\\n          \\\"J_null\\\": 0.0409,\\n          \\\"J_max\\\": 0.9016,\\n          \\\"ES_normalized\\\": 0.0485,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            644,\\n            451\\n          ],\\n          \\\"J\\\": 0.095,\\n          \\\"J_null\\\": 0.0543,\\n          \\\"J_max\\\": 0.7003,\\n          \\\"ES_normalized\\\": 0.063,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            385,\\n            538\\n          ],\\n          \\\"J\\\": 0.0634,\\n          \\\"J_null\\\": 0.0455,\\n          \\\"J_max\\\": 0.7156,\\n          \\\"ES_normalized\\\": 0.0266,\\n          \\\"p_value_permutation\\\": 0.009\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            644,\\n            303\\n          ],\\n          \\\"J\\\": 0.0798,\\n          \\\"J_null\\\": 0.0417,\\n          \\\"J_max\\\": 0.4705,\\n          \\\"ES_normalized\\\": 0.089,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            427,\\n            538\\n          ],\\n          \\\"J\\\": 0.1143,\\n          \\\"J_null\\\": 0.0484,\\n          \\\"J_max\\\": 0.7937,\\n          \\\"ES_normalized\\\": 0.0884,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            451,\\n            303\\n          ],\\n          \\\"J\\\": 0.0787,\\n          \\\"J_null\\\": 0.0365,\\n          \\\"J_max\\\": 0.6718,\\n          \\\"ES_normalized\\\": 0.0665,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"h6-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            428,\\n            380\\n          ],\\n          \\\"J\\\": 0.0831,\\n          \\\"J_null\\\": 0.0407,\\n          \\\"J_max\\\": 0.8879,\\n          \\\"ES_normalized\\\": 0.0501,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            555,\\n            478\\n          ],\\n          \\\"J\\\": 0.0828,\\n          \\\"J_null\\\": 0.0525,\\n          \\\"J_max\\\": 0.8613,\\n          \\\"ES_normalized\\\": 0.0375,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            428,\\n            580\\n          ],\\n          \\\"J\\\": 0.085,\\n          \\\"J_null\\\": 0.0502,\\n          \\\"J_max\\\": 0.7379,\\n          \\\"ES_normalized\\\": 0.0507,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            555,\\n            305\\n          ],\\n          \\\"J\\\": 0.0644,\\n          \\\"J_null\\\": 0.0397,\\n          \\\"J_max\\\": 0.5495,\\n          \\\"ES_normalized\\\": 0.0483,\\n          \\\"p_value_permutation\\\": 0.0004\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            380,\\n            580\\n          ],\\n          \\\"J\\\": 0.1085,\\n          \\\"J_null\\\": 0.0466,\\n          \\\"J_max\\\": 0.6552,\\n          \\\"ES_normalized\\\": 0.1017,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            478,\\n            305\\n          ],\\n          \\\"J\\\": 0.086,\\n          \\\"J_null\\\": 0.0375,\\n          \\\"J_max\\\": 0.6381,\\n          \\\"ES_normalized\\\": 0.0808,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"h3-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            422,\\n            373\\n          ],\\n          \\\"J\\\": 0.092,\\n          \\\"J_null\\\": 0.04,\\n          \\\"J_max\\\": 0.8839,\\n          \\\"ES_normalized\\\": 0.0617,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            678,\\n            479\\n          ],\\n          \\\"J\\\": 0.1093,\\n          \\\"J_null\\\": 0.0576,\\n          \\\"J_max\\\": 0.7065,\\n          \\\"ES_normalized\\\": 0.0797,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            422,\\n            575\\n          ],\\n          \\\"J\\\": 0.0837,\\n          \\\"J_null\\\": 0.0496,\\n          \\\"J_max\\\": 0.7339,\\n          \\\"ES_normalized\\\": 0.0499,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            678,\\n            337\\n          ],\\n          \\\"J\\\": 0.0752,\\n          \\\"J_null\\\": 0.0457,\\n          \\\"J_max\\\": 0.4971,\\n          \\\"ES_normalized\\\": 0.0654,\\n          \\\"p_value_permutation\\\": 0.0001\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            373,\\n            575\\n          ],\\n          \\\"J\\\": 0.1075,\\n          \\\"J_null\\\": 0.0459,\\n          \\\"J_max\\\": 0.6487,\\n          \\\"ES_normalized\\\": 0.1021,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            479,\\n            337\\n          ],\\n          \\\"J\\\": 0.0851,\\n          \\\"J_null\\\": 0.0399,\\n          \\\"J_max\\\": 0.7035,\\n          \\\"ES_normalized\\\": 0.0681,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    }\\n  },\\n  \\\"comparison_1_3B\\\": {\\n    \\\"alpha_340m_pure\\\": 0.3128,\\n    \\\"alpha_1_3b_pure\\\": 0.307,\\n    \\\"jaccard_340m_mean\\\": 0.0888,\\n    \\\"jaccard_1_3b_mean\\\": 0.095,\\n    \\\"convergence_rho_340m\\\": -0.5,\\n    \\\"convergence_rho_1_3b\\\": -1.0,\\n    \\\"convergence_p_340m\\\": 0.45,\\n    \\\"convergence_p_1_3b\\\": 0.017\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "72f7f6ea-7f16-401b-832d-ab2014daaa7f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"          \\\\\\\"HGRN2\\\\\\\": 0.3643\\\\n        }\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"sigma\\\\\\\": 0.011035,\\\\n        \\\\\\\"accuracies\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 0.3507,\\\\n          \\\\\\\"RetNet\\\\\\\": 0.347,\\\\n          \\\\\\\"HGRN2\\\\\\\": 0.372\\\\n        }\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"sigma\\\\\\\": 0.016004,\\\\n        \\\\\\\"accuracies\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 0.3256,\\\\n          \\\\\\\"RetNet\\\\\\\": 0.3454,\\\\n          \\\\\\\"HGRN2\\\\\\\": 0.3648\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"spearman_rho\\\\\\\": -0.5,\\\\n    \\\\\\\"spearman_p_exact\\\\\\\": 0.45,\\\\n    \\\\\\\"attention_ratios\\\\\\\": [\\\\n      0.0,\\\\n      0.041666666666666664,\\\\n      0.08333333333333333,\\\\n      0.16666666666666666,\\\\n      0.3333333333333333\\\\n    ],\\\\n    \\\\\\\"sigma_values\\\\\\\": [\\\\n      0.02481,\\\\n      0.011647,\\\\n      0.017833,\\\\n      0.011035,\\\\n      0.016004\\\\n    ]\\\\n  },\\\\n  \\\\\\\"jaccard_analysis\\\\\\\": {\\\\n    \\\\\\\"h24-1\\\\\\\": {\\\\n      \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            470,\\\\n            439\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0939,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0461,\\\\n          \\\\\\\"J_max\\\\\\\": 0.934,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0538,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            597,\\\\n            443\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.1005,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0519,\\\\n          \\\\\\\"J_max\\\\\\\": 0.742,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0704,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"GDN_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            470,\\\\n            443\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0974,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0463,\\\\n          \\\\\\\"J_max\\\\\\\": 0.9426,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.057,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            597,\\\\n            350\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0617,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0447,\\\\n          \\\\\\\"J_max\\\\\\\": 0.5863,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0313,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0081\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            439,\\\\n            443\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.1094,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0447,\\\\n          \\\\\\\"J_max\\\\\\\": 0.991,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0684,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            443,\\\\n            350\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0923,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0394,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7901,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0704,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"h12-1\\\\\\\": {\\\\n      \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            385,\\\\n            427\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0827,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0409,\\\\n          \\\\\\\"J_max\\\\\\\": 0.9016,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0485,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            644,\\\\n            451\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.095,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0543,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7003,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.063,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"GDN_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            385,\\\\n            538\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0634,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0455,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7156,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0266,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.009\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            644,\\\\n            303\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0798,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0417,\\\\n          \\\\\\\"J_max\\\\\\\": 0.4705,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.089,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            427,\\\\n            538\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.1143,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0484,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7937,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0884,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            451,\\\\n            303\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0787,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0365,\\\\n          \\\\\\\"J_max\\\\\\\": 0.6718,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0665,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"h6-1\\\\\\\": {\\\\n      \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            428,\\\\n            380\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0831,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0407,\\\\n          \\\\\\\"J_max\\\\\\\": 0.8879,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0501,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            555,\\\\n            478\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0828,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0525,\\\\n          \\\\\\\"J_max\\\\\\\": 0.8613,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0375,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"GDN_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            428,\\\\n            580\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.085,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0502,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7379,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0507,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            555,\\\\n            305\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0644,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0397,\\\\n          \\\\\\\"J_max\\\\\\\": 0.5495,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0483,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0004\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            380,\\\\n            580\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.1085,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0466,\\\\n          \\\\\\\"J_max\\\\\\\": 0.6552,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.1017,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            478,\\\\n            305\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.086,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0375,\\\\n          \\\\\\\"J_max\\\\\\\": 0.6381,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0808,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"h3-1\\\\\\\": {\\\\n      \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            422,\\\\n            373\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.092,\\\\n          \\\\\\\"J_null\\\\\\\": 0.04,\\\\n          \\\\\\\"J_max\\\\\\\": 0.8839,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0617,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            678,\\\\n            479\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.1093,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0576,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7065,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0797,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"GDN_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            422,\\\\n            575\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0837,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0496,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7339,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0499,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            678,\\\\n            337\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0752,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0457,\\\\n          \\\\\\\"J_max\\\\\\\": 0.4971,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0654,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0001\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet_vs_HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            373,\\\\n            575\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.1075,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0459,\\\\n          \\\\\\\"J_max\\\\\\\": 0.6487,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.1021,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"hurt\\\\\\\": {\\\\n          \\\\\\\"set_sizes\\\\\\\": [\\\\n            479,\\\\n            337\\\\n          ],\\\\n          \\\\\\\"J\\\\\\\": 0.0851,\\\\n          \\\\\\\"J_null\\\\\\\": 0.0399,\\\\n          \\\\\\\"J_max\\\\\\\": 0.7035,\\\\n          \\\\\\\"ES_normalized\\\\\\\": 0.0681,\\\\n          \\\\\\\"p_value_permutation\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison_1_3B\\\\\\\": {\\\\n    \\\\\\\"alpha_340m_pure\\\\\\\": 0.3128,\\\\n    \\\\\\\"alpha_1_3b_pure\\\\\\\": 0.307,\\\\n    \\\\\\\"jaccard_340m_mean\\\\\\\": 0.0888,\\\\n    \\\\\\\"jaccard_1_3b_mean\\\\\\\": 0.095,\\\\n    \\\\\\\"convergence_rho_340m\\\\\\\": -0.5,\\\\n    \\\\\\\"convergence_rho_1_3b\\\\\\\": -1.0,\\\\n    \\\\\\\"convergence_p_340m\\\\\\\": 0.45,\\\\n    \\\\\\\"convergence_p_1_3b\\\\\\\": 0.017\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"          \\\"HGRN2\\\": 0.3643\\n        }\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"sigma\\\": 0.011035,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3507,\\n          \\\"RetNet\\\": 0.347,\\n          \\\"HGRN2\\\": 0.372\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"sigma\\\": 0.016004,\\n        \\\"accuracies\\\": {\\n          \\\"GDN\\\": 0.3256,\\n          \\\"RetNet\\\": 0.3454,\\n          \\\"HGRN2\\\": 0.3648\\n        }\\n      }\\n    },\\n    \\\"spearman_rho\\\": -0.5,\\n    \\\"spearman_p_exact\\\": 0.45,\\n    \\\"attention_ratios\\\": [\\n      0.0,\\n      0.041666666666666664,\\n      0.08333333333333333,\\n      0.16666666666666666,\\n      0.3333333333333333\\n    ],\\n    \\\"sigma_values\\\": [\\n      0.02481,\\n      0.011647,\\n      0.017833,\\n      0.011035,\\n      0.016004\\n    ]\\n  },\\n  \\\"jaccard_analysis\\\": {\\n    \\\"h24-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            470,\\n            439\\n          ],\\n          \\\"J\\\": 0.0939,\\n          \\\"J_null\\\": 0.0461,\\n          \\\"J_max\\\": 0.934,\\n          \\\"ES_normalized\\\": 0.0538,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            597,\\n            443\\n          ],\\n          \\\"J\\\": 0.1005,\\n          \\\"J_null\\\": 0.0519,\\n          \\\"J_max\\\": 0.742,\\n          \\\"ES_normalized\\\": 0.0704,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            470,\\n            443\\n          ],\\n          \\\"J\\\": 0.0974,\\n          \\\"J_null\\\": 0.0463,\\n          \\\"J_max\\\": 0.9426,\\n          \\\"ES_normalized\\\": 0.057,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            597,\\n            350\\n          ],\\n          \\\"J\\\": 0.0617,\\n          \\\"J_null\\\": 0.0447,\\n          \\\"J_max\\\": 0.5863,\\n          \\\"ES_normalized\\\": 0.0313,\\n          \\\"p_value_permutation\\\": 0.0081\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            439,\\n            443\\n          ],\\n          \\\"J\\\": 0.1094,\\n          \\\"J_null\\\": 0.0447,\\n          \\\"J_max\\\": 0.991,\\n          \\\"ES_normalized\\\": 0.0684,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            443,\\n            350\\n          ],\\n          \\\"J\\\": 0.0923,\\n          \\\"J_null\\\": 0.0394,\\n          \\\"J_max\\\": 0.7901,\\n          \\\"ES_normalized\\\": 0.0704,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"h12-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            385,\\n            427\\n          ],\\n          \\\"J\\\": 0.0827,\\n          \\\"J_null\\\": 0.0409,\\n          \\\"J_max\\\": 0.9016,\\n          \\\"ES_normalized\\\": 0.0485,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            644,\\n            451\\n          ],\\n          \\\"J\\\": 0.095,\\n          \\\"J_null\\\": 0.0543,\\n          \\\"J_max\\\": 0.7003,\\n          \\\"ES_normalized\\\": 0.063,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            385,\\n            538\\n          ],\\n          \\\"J\\\": 0.0634,\\n          \\\"J_null\\\": 0.0455,\\n          \\\"J_max\\\": 0.7156,\\n          \\\"ES_normalized\\\": 0.0266,\\n          \\\"p_value_permutation\\\": 0.009\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            644,\\n            303\\n          ],\\n          \\\"J\\\": 0.0798,\\n          \\\"J_null\\\": 0.0417,\\n          \\\"J_max\\\": 0.4705,\\n          \\\"ES_normalized\\\": 0.089,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            427,\\n            538\\n          ],\\n          \\\"J\\\": 0.1143,\\n          \\\"J_null\\\": 0.0484,\\n          \\\"J_max\\\": 0.7937,\\n          \\\"ES_normalized\\\": 0.0884,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            451,\\n            303\\n          ],\\n          \\\"J\\\": 0.0787,\\n          \\\"J_null\\\": 0.0365,\\n          \\\"J_max\\\": 0.6718,\\n          \\\"ES_normalized\\\": 0.0665,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"h6-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            428,\\n            380\\n          ],\\n          \\\"J\\\": 0.0831,\\n          \\\"J_null\\\": 0.0407,\\n          \\\"J_max\\\": 0.8879,\\n          \\\"ES_normalized\\\": 0.0501,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            555,\\n            478\\n          ],\\n          \\\"J\\\": 0.0828,\\n          \\\"J_null\\\": 0.0525,\\n          \\\"J_max\\\": 0.8613,\\n          \\\"ES_normalized\\\": 0.0375,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            428,\\n            580\\n          ],\\n          \\\"J\\\": 0.085,\\n          \\\"J_null\\\": 0.0502,\\n          \\\"J_max\\\": 0.7379,\\n          \\\"ES_normalized\\\": 0.0507,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            555,\\n            305\\n          ],\\n          \\\"J\\\": 0.0644,\\n          \\\"J_null\\\": 0.0397,\\n          \\\"J_max\\\": 0.5495,\\n          \\\"ES_normalized\\\": 0.0483,\\n          \\\"p_value_permutation\\\": 0.0004\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            380,\\n            580\\n          ],\\n          \\\"J\\\": 0.1085,\\n          \\\"J_null\\\": 0.0466,\\n          \\\"J_max\\\": 0.6552,\\n          \\\"ES_normalized\\\": 0.1017,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            478,\\n            305\\n          ],\\n          \\\"J\\\": 0.086,\\n          \\\"J_null\\\": 0.0375,\\n          \\\"J_max\\\": 0.6381,\\n          \\\"ES_normalized\\\": 0.0808,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"h3-1\\\": {\\n      \\\"GDN_vs_RetNet\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            422,\\n            373\\n          ],\\n          \\\"J\\\": 0.092,\\n          \\\"J_null\\\": 0.04,\\n          \\\"J_max\\\": 0.8839,\\n          \\\"ES_normalized\\\": 0.0617,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            678,\\n            479\\n          ],\\n          \\\"J\\\": 0.1093,\\n          \\\"J_null\\\": 0.0576,\\n          \\\"J_max\\\": 0.7065,\\n          \\\"ES_normalized\\\": 0.0797,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      },\\n      \\\"GDN_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            422,\\n            575\\n          ],\\n          \\\"J\\\": 0.0837,\\n          \\\"J_null\\\": 0.0496,\\n          \\\"J_max\\\": 0.7339,\\n          \\\"ES_normalized\\\": 0.0499,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            678,\\n            337\\n          ],\\n          \\\"J\\\": 0.0752,\\n          \\\"J_null\\\": 0.0457,\\n          \\\"J_max\\\": 0.4971,\\n          \\\"ES_normalized\\\": 0.0654,\\n          \\\"p_value_permutation\\\": 0.0001\\n        }\\n      },\\n      \\\"RetNet_vs_HGRN2\\\": {\\n        \\\"helped\\\": {\\n          \\\"set_sizes\\\": [\\n            373,\\n            575\\n          ],\\n          \\\"J\\\": 0.1075,\\n          \\\"J_null\\\": 0.0459,\\n          \\\"J_max\\\": 0.6487,\\n          \\\"ES_normalized\\\": 0.1021,\\n          \\\"p_value_permutation\\\": 0.0\\n        },\\n        \\\"hurt\\\": {\\n          \\\"set_sizes\\\": [\\n            479,\\n            337\\n          ],\\n          \\\"J\\\": 0.0851,\\n          \\\"J_null\\\": 0.0399,\\n          \\\"J_max\\\": 0.7035,\\n          \\\"ES_normalized\\\": 0.0681,\\n          \\\"p_value_permutation\\\": 0.0\\n        }\\n      }\\n    }\\n  },\\n  \\\"comparison_1_3B\\\": {\\n    \\\"alpha_340m_pure\\\": 0.3128,\\n    \\\"alpha_1_3b_pure\\\": 0.307,\\n    \\\"jaccard_340m_mean\\\": 0.0888,\\n    \\\"jaccard_1_3b_mean\\\": 0.095,\\n    \\\"convergence_rho_340m\\\": -0.5,\\n    \\\"convergence_rho_1_3b\\\": -1.0,\\n    \\\"convergence_p_340m\\\": 0.45,\\n    \\\"convergence_p_1_3b\\\": 0.017\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me assemble the full JSON and write it locally. I need to combine the two halves. Let me construct the complete file from the data I've extracted.
+
+From the first 200 lines, I have everything up to convergence_sigma.per_ratio.h12-1.accuracies.GDN = 0.3251. And from the tail, I have the rest starting from HGRN2: 0.3643 in h12-1.
+
+
+Writing the JSON file...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "3cd0569e-456c-42ec-8199-7a5383f2c4da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uN3VYPWTCKNcmDuPQcFQJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 49587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7209
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+I have all the data now. Let me write the complete JSON locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "0273b5fa-72a3-423e-97b8-1183f1f38604",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uN3VYPWTCKNcmDuPQcFQJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 49587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7209
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011qeqJnpywM1p7szvfQzPs5`</summary>
+
+```json
+{
+  "command": "ls -d /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/ 2>/dev/null || mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/",
+  "description": "Ensure paper_data directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "0c1fa6c6-fcbd-49a2-a77f-cc2990f581f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uN3VYPWTCKNcmDuPQcFQJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 49587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7209
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-21T13:29:42.531Z_
+
+<details><summary>↩ Tool result · `toolu_011qeqJnpywM1p7szvfQzPs5`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "8dc6a8d7-c4fc-49f6-a7b6-c869f8433422",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01HhJ6rw7466gHcECUt32A5n`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/340m_lambada_per_example.json",
+  "content": "{\n  \"benchmark\": \"lambada_openai\",\n  \"scale\": \"340M\",\n  \"n_samples\": 5153,\n  \"architectures\": [\n    \"GDN\",\n    \"RetNet\",\n    \"HGRN2\"\n  ],\n  \"ratios\": [\n    \"pure\",\n    \"h24-1\",\n    \"h12-1\",\n    \"h6-1\",\n    \"h3-1\"\n  ],\n  \"aggregate_accuracy\": {\n    \"GDN\": {\n      \"pure\": 0.3753,\n      \"h24-1\": 0.3507,\n      \"h12-1\": 0.3251,\n      \"h6-1\": 0.3507,\n      \"h3-1\": 0.3256\n    },\n    \"RetNet\": {\n      \"pure\": 0.366,\n      \"h24-1\": 0.3652,\n      \"h12-1\": 0.3613,\n      \"h6-1\": 0.347,\n      \"h3-1\": 0.3454\n    },\n    \"HGRN2\": {\n      \"pure\": 0.3186,\n      \"h24-1\": 0.3367,\n      \"h12-1\": 0.3643,\n      \"h6-1\": 0.372,\n      \"h3-1\": 0.3648\n    }\n  },\n  \"ambiguity\": {\n    \"pure\": {\n      \"alpha\": 0.3128,\n      \"disagreement_distribution\": {\n        \"0_of_3\": 2501,\n        \"1_of_3\": 882,\n        \"2_of_3\": 730,\n        \"3_of_3\": 1040\n      }\n    },\n    \"h24-1\": {\n      \"alpha\": 0.2967,\n      \"disagreement_distribution\": {\n        \"0_of_3\": 2563,\n        \"1_of_3\": 817,\n        \"2_of_3\": 712,\n        \"3_of_3\": 1061\n      }\n    },\n    \"h12-1\": {\n      \"alpha\": 0.2926,\n      \"disagreement_distribution\": {\n        \"0_of_3\": 2585,\n        \"1_of_3\": 782,\n        \"2_of_3\": 726,\n        \"3_of_3\": 1060\n      }\n    },\n    \"h6-1\": {\n      \"alpha\": 0.2892,\n      \"disagreement_distribution\": {\n        \"0_of_3\": 2556,\n        \"1_of_3\": 789,\n        \"2_of_3\": 701,\n        \"3_of_3\": 1107\n      }\n    },\n    \"h3-1\": {\n      \"alpha\": 0.2664,\n      \"disagreement_distribution\": {\n        \"0_of_3\": 2678,\n        \"1_of_3\": 714,\n        \"2_of_3\": 659,\n        \"3_of_3\": 1102\n      }\n    }\n  },\n  \"per_example_classification\": {\n    \"GDN\": {\n      \"h24-1\": {\n        \"n_helped\": 470,\n        \"n_hurt\": 597,\n        \"n_stayed_right\": 1337,\n        \"n_stayed_wrong\": 2749,\n        \"net_effect\": -127\n      },\n      \"h12-1\": {\n        \"n_helped\": 385,\n        \"n_hurt\": 644,\n        \"n_stayed_right\": 1290,\n        \"n_stayed_wrong\": 2834,\n        \"net_effect\": -259\n      },\n      \"h6-1\": {\n        \"n_helped\": 428,\n        \"n_hurt\": 555,\n        \"n_stayed_right\": 1379,\n        \"n_stayed_wrong\": 2791,\n        \"net_effect\": -127\n      },\n      \"h3-1\": {\n        \"n_helped\": 422,\n        \"n_hurt\": 678,\n        \"n_stayed_right\": 1256,\n        \"n_stayed_wrong\": 2797,\n        \"net_effect\": -256\n      }\n    },\n    \"RetNet\": {\n      \"h24-1\": {\n        \"n_helped\": 439,\n        \"n_hurt\": 443,\n        \"n_stayed_right\": 1443,\n        \"n_stayed_wrong\": 2828,\n        \"net_effect\": -4\n      },\n      \"h12-1\": {\n        \"n_helped\": 427,\n        \"n_hurt\": 451,\n        \"n_stayed_right\": 1435,\n        \"n_stayed_wrong\": 2840,\n        \"net_effect\": -24\n      },\n      \"h6-1\": {\n        \"n_helped\": 380,\n        \"n_hurt\": 478,\n        \"n_stayed_right\": 1408,\n        \"n_stayed_wrong\": 2887,\n        \"net_effect\": -98\n      },\n      \"h3-1\": {\n        \"n_helped\": 373,\n        \"n_hurt\": 479,\n        \"n_stayed_right\": 1407,\n        \"n_stayed_wrong\": 2894,\n        \"net_effect\": -106\n      }\n    },\n    \"HGRN2\": {\n      \"h24-1\": {\n        \"n_helped\": 443,\n        \"n_hurt\": 350,\n        \"n_stayed_right\": 1292,\n        \"n_stayed_wrong\": 3068,\n        \"net_effect\": 93\n      },\n      \"h12-1\": {\n        \"n_helped\": 538,\n        \"n_hurt\": 303,\n        \"n_stayed_right\": 1339,\n        \"n_stayed_wrong\": 2973,\n        \"net_effect\": 235\n      },\n      \"h6-1\": {\n        \"n_helped\": 580,\n        \"n_hurt\": 305,\n        \"n_stayed_right\": 1337,\n        \"n_stayed_wrong\": 2931,\n        \"net_effect\": 275\n      },\n      \"h3-1\": {\n        \"n_helped\": 575,\n        \"n_hurt\": 337,\n        \"n_stayed_right\": 1305,\n        \"n_stayed_wrong\": 2936,\n        \"net_effect\": 238\n      }\n    }\n  },\n  \"convergence_sigma\": {\n    \"per_ratio\": {\n      \"pure\": {\n        \"sigma\": 0.02481,\n        \"accuracies\": {\n          \"GDN\": 0.3753,\n          \"RetNet\": 0.366,\n          \"HGRN2\": 0.3186\n        }\n      },\n      \"h24-1\": {\n        \"sigma\": 0.011647,\n        \"accuracies\": {\n          \"GDN\": 0.3507,\n          \"RetNet\": 0.3652,\n          \"HGRN2\": 0.3367\n        }\n      },\n      \"h12-1\": {\n        \"sigma\": 0.017833,\n        \"accuracies\": {\n          \"GDN\": 0.3251,\n          \"RetNet\": 0.3613,\n          \"HGRN2\": 0.3643\n        }\n      },\n      \"h6-1\": {\n        \"sigma\": 0.011035,\n        \"accuracies\": {\n          \"GDN\": 0.3507,\n          \"RetNet\": 0.347,\n          \"HGRN2\": 0.372\n        }\n      },\n      \"h3-1\": {\n        \"sigma\": 0.016004,\n        \"accuracies\": {\n          \"GDN\": 0.3256,\n          \"RetNet\": 0.3454,\n          \"HGRN2\": 0.3648\n        }\n      }\n    },\n    \"spearman_rho\": -0.5,\n    \"spearman_p_exact\": 0.45,\n    \"attention_ratios\": [\n      0.0,\n      0.041666666666666664,\n      0.08333333333333333,\n      0.16666666666666666,\n      0.3333333333333333\n    ],\n    \"sigma_values\": [\n      0.02481,\n      0.011647,\n      0.017833,\n      0.011035,\n      0.016004\n    ]\n  },\n  \"jaccard_analysis\": {\n    \"h24-1\": {\n      \"GDN_vs_RetNet\": {\n        \"helped\": {\n          \"set_sizes\": [470, 439],\n          \"J\": 0.0939,\n          \"J_null\": 0.0461,\n          \"J_max\": 0.934,\n          \"ES_normalized\": 0.0538,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [597, 443],\n          \"J\": 0.1005,\n          \"J_null\": 0.0519,\n          \"J_max\": 0.742,\n          \"ES_normalized\": 0.0704,\n          \"p_value_permutation\": 0.0\n        }\n      },\n      \"GDN_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [470, 443],\n          \"J\": 0.0974,\n          \"J_null\": 0.0463,\n          \"J_max\": 0.9426,\n          \"ES_normalized\": 0.057,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [597, 350],\n          \"J\": 0.0617,\n          \"J_null\": 0.0447,\n          \"J_max\": 0.5863,\n          \"ES_normalized\": 0.0313,\n          \"p_value_permutation\": 0.0081\n        }\n      },\n      \"RetNet_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [439, 443],\n          \"J\": 0.1094,\n          \"J_null\": 0.0447,\n          \"J_max\": 0.991,\n          \"ES_normalized\": 0.0684,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [443, 350],\n          \"J\": 0.0923,\n          \"J_null\": 0.0394,\n          \"J_max\": 0.7901,\n          \"ES_normalized\": 0.0704,\n          \"p_value_permutation\": 0.0\n        }\n      }\n    },\n    \"h12-1\": {\n      \"GDN_vs_RetNet\": {\n        \"helped\": {\n          \"set_sizes\": [385, 427],\n          \"J\": 0.0827,\n          \"J_null\": 0.0409,\n          \"J_max\": 0.9016,\n          \"ES_normalized\": 0.0485,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [644, 451],\n          \"J\": 0.095,\n          \"J_null\": 0.0543,\n          \"J_max\": 0.7003,\n          \"ES_normalized\": 0.063,\n          \"p_value_permutation\": 0.0\n        }\n      },\n      \"GDN_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [385, 538],\n          \"J\": 0.0634,\n          \"J_null\": 0.0455,\n          \"J_max\": 0.7156,\n          \"ES_normalized\": 0.0266,\n          \"p_value_permutation\": 0.009\n        },\n        \"hurt\": {\n          \"set_sizes\": [644, 303],\n          \"J\": 0.0798,\n          \"J_null\": 0.0417,\n          \"J_max\": 0.4705,\n          \"ES_normalized\": 0.089,\n          \"p_value_permutation\": 0.0\n        }\n      },\n      \"RetNet_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [427, 538],\n          \"J\": 0.1143,\n          \"J_null\": 0.0484,\n          \"J_max\": 0.7937,\n          \"ES_normalized\": 0.0884,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [451, 303],\n          \"J\": 0.0787,\n          \"J_null\": 0.0365,\n          \"J_max\": 0.6718,\n          \"ES_normalized\": 0.0665,\n          \"p_value_permutation\": 0.0\n        }\n      }\n    },\n    \"h6-1\": {\n      \"GDN_vs_RetNet\": {\n        \"helped\": {\n          \"set_sizes\": [428, 380],\n          \"J\": 0.0831,\n          \"J_null\": 0.0407,\n          \"J_max\": 0.8879,\n          \"ES_normalized\": 0.0501,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [555, 478],\n          \"J\": 0.0828,\n          \"J_null\": 0.0525,\n          \"J_max\": 0.8613,\n          \"ES_normalized\": 0.0375,\n          \"p_value_permutation\": 0.0\n        }\n      },\n      \"GDN_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [428, 580],\n          \"J\": 0.085,\n          \"J_null\": 0.0502,\n          \"J_max\": 0.7379,\n          \"ES_normalized\": 0.0507,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [555, 305],\n          \"J\": 0.0644,\n          \"J_null\": 0.0397,\n          \"J_max\": 0.5495,\n          \"ES_normalized\": 0.0483,\n          \"p_value_permutation\": 0.0004\n        }\n      },\n      \"RetNet_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [380, 580],\n          \"J\": 0.1085,\n          \"J_null\": 0.0466,\n          \"J_max\": 0.6552,\n          \"ES_normalized\": 0.1017,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [478, 305],\n          \"J\": 0.086,\n          \"J_null\": 0.0375,\n          \"J_max\": 0.6381,\n          \"ES_normalized\": 0.0808,\n          \"p_value_permutation\": 0.0\n        }\n      }\n    },\n    \"h3-1\": {\n      \"GDN_vs_RetNet\": {\n        \"helped\": {\n          \"set_sizes\": [422, 373],\n          \"J\": 0.092,\n          \"J_null\": 0.04,\n          \"J_max\": 0.8839,\n          \"ES_normalized\": 0.0617,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [678, 479],\n          \"J\": 0.1093,\n          \"J_null\": 0.0576,\n          \"J_max\": 0.7065,\n          \"ES_normalized\": 0.0797,\n          \"p_value_permutation\": 0.0\n        }\n      },\n      \"GDN_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [422, 575],\n          \"J\": 0.0837,\n          \"J_null\": 0.0496,\n          \"J_max\": 0.7339,\n          \"ES_normalized\": 0.0499,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [678, 337],\n          \"J\": 0.0752,\n          \"J_null\": 0.0457,\n          \"J_max\": 0.4971,\n          \"ES_normalized\": 0.0654,\n          \"p_value_permutation\": 0.0001\n        }\n      },\n      \"RetNet_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [373, 575],\n          \"J\": 0.1075,\n          \"J_null\": 0.0459,\n          \"J_max\": 0.6487,\n          \"ES_normalized\": 0.1021,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [479, 337],\n          \"J\": 0.0851,\n          \"J_null\": 0.0399,\n          \"J_max\": 0.7035,\n          \"ES_normalized\": 0.0681,\n          \"p_value_permutation\": 0.0\n        }\n      }\n    }\n  },\n  \"comparison_1_3B\": {\n    \"alpha_340m_pure\": 0.3128,\n    \"alpha_1_3b_pure\": 0.307,\n    \"jaccard_340m_mean\": 0.0888,\n    \"jaccard_1_3b_mean\": 0.095,\n    \"convergence_rho_340m\": -0.5,\n    \"convergence_rho_1_3b\": -1.0,\n    \"convergence_p_340m\": 0.45,\n    \"convergence_p_1_3b\": 0.017\n  }\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "e8a8b2fb-c4c4-45ae-ae16-b321006df3c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0154CK7b4pa8MueXL24WdzJD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 365,
+      "cache_read_input_tokens": 56796,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 365
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-21T13:30:26.797Z_
+
+<details><summary>↩ Tool result · `toolu_01HhJ6rw7466gHcECUt32A5n`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/340m_lambada_per_example.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "1c04225a-9808-421d-a9c9-071d281a72a7",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/340m_lambada_per_example.json",
+    "content": "{\n  \"benchmark\": \"lambada_openai\",\n  \"scale\": \"340M\",\n  \"n_samples\": 5153,\n  \"architectures\": [\n    \"GDN\",\n    \"RetNet\",\n    \"HGRN2\"\n  ],\n  \"ratios\": [\n    \"pure\",\n    \"h24-1\",\n    \"h12-1\",\n    \"h6-1\",\n    \"h3-1\"\n  ],\n  \"aggregate_accuracy\": {\n    \"GDN\": {\n      \"pure\": 0.3753,\n      \"h24-1\": 0.3507,\n      \"h12-1\": 0.3251,\n      \"h6-1\": 0.3507,\n      \"h3-1\": 0.3256\n    },\n    \"RetNet\": {\n      \"pure\": 0.366,\n      \"h24-1\": 0.3652,\n      \"h12-1\": 0.3613,\n      \"h6-1\": 0.347,\n      \"h3-1\": 0.3454\n    },\n    \"HGRN2\": {\n      \"pure\": 0.3186,\n      \"h24-1\": 0.3367,\n      \"h12-1\": 0.3643,\n      \"h6-1\": 0.372,\n      \"h3-1\": 0.3648\n    }\n  },\n  \"ambiguity\": {\n    \"pure\": {\n      \"alpha\": 0.3128,\n      \"disagreement_distribution\": {\n        \"0_of_3\": 2501,\n        \"1_of_3\": 882,\n        \"2_of_3\": 730,\n        \"3_of_3\": 1040\n      }\n    },\n    \"h24-1\": {\n      \"alpha\": 0.2967,\n      \"disagreement_distribution\": {\n        \"0_of_3\": 2563,\n        \"1_of_3\": 817,\n        \"2_of_3\": 712,\n        \"3_of_3\": 1061\n      }\n    },\n    \"h12-1\": {\n      \"alpha\": 0.2926,\n      \"disagreement_distribution\": {\n        \"0_of_3\": 2585,\n        \"1_of_3\": 782,\n        \"2_of_3\": 726,\n        \"3_of_3\": 1060\n      }\n    },\n    \"h6-1\": {\n      \"alpha\": 0.2892,\n      \"disagreement_distribution\": {\n        \"0_of_3\": 2556,\n        \"1_of_3\": 789,\n        \"2_of_3\": 701,\n        \"3_of_3\": 1107\n      }\n    },\n    \"h3-1\": {\n      \"alpha\": 0.2664,\n      \"disagreement_distribution\": {\n        \"0_of_3\": 2678,\n        \"1_of_3\": 714,\n        \"2_of_3\": 659,\n        \"3_of_3\": 1102\n      }\n    }\n  },\n  \"per_example_classification\": {\n    \"GDN\": {\n      \"h24-1\": {\n        \"n_helped\": 470,\n        \"n_hurt\": 597,\n        \"n_stayed_right\": 1337,\n        \"n_stayed_wrong\": 2749,\n        \"net_effect\": -127\n      },\n      \"h12-1\": {\n        \"n_helped\": 385,\n        \"n_hurt\": 644,\n        \"n_stayed_right\": 1290,\n        \"n_stayed_wrong\": 2834,\n        \"net_effect\": -259\n      },\n      \"h6-1\": {\n        \"n_helped\": 428,\n        \"n_hurt\": 555,\n        \"n_stayed_right\": 1379,\n        \"n_stayed_wrong\": 2791,\n        \"net_effect\": -127\n      },\n      \"h3-1\": {\n        \"n_helped\": 422,\n        \"n_hurt\": 678,\n        \"n_stayed_right\": 1256,\n        \"n_stayed_wrong\": 2797,\n        \"net_effect\": -256\n      }\n    },\n    \"RetNet\": {\n      \"h24-1\": {\n        \"n_helped\": 439,\n        \"n_hurt\": 443,\n        \"n_stayed_right\": 1443,\n        \"n_stayed_wrong\": 2828,\n        \"net_effect\": -4\n      },\n      \"h12-1\": {\n        \"n_helped\": 427,\n        \"n_hurt\": 451,\n        \"n_stayed_right\": 1435,\n        \"n_stayed_wrong\": 2840,\n        \"net_effect\": -24\n      },\n      \"h6-1\": {\n        \"n_helped\": 380,\n        \"n_hurt\": 478,\n        \"n_stayed_right\": 1408,\n        \"n_stayed_wrong\": 2887,\n        \"net_effect\": -98\n      },\n      \"h3-1\": {\n        \"n_helped\": 373,\n        \"n_hurt\": 479,\n        \"n_stayed_right\": 1407,\n        \"n_stayed_wrong\": 2894,\n        \"net_effect\": -106\n      }\n    },\n    \"HGRN2\": {\n      \"h24-1\": {\n        \"n_helped\": 443,\n        \"n_hurt\": 350,\n        \"n_stayed_right\": 1292,\n        \"n_stayed_wrong\": 3068,\n        \"net_effect\": 93\n      },\n      \"h12-1\": {\n        \"n_helped\": 538,\n        \"n_hurt\": 303,\n        \"n_stayed_right\": 1339,\n        \"n_stayed_wrong\": 2973,\n        \"net_effect\": 235\n      },\n      \"h6-1\": {\n        \"n_helped\": 580,\n        \"n_hurt\": 305,\n        \"n_stayed_right\": 1337,\n        \"n_stayed_wrong\": 2931,\n        \"net_effect\": 275\n      },\n      \"h3-1\": {\n        \"n_helped\": 575,\n        \"n_hurt\": 337,\n        \"n_stayed_right\": 1305,\n        \"n_stayed_wrong\": 2936,\n        \"net_effect\": 238\n      }\n    }\n  },\n  \"convergence_sigma\": {\n    \"per_ratio\": {\n      \"pure\": {\n        \"sigma\": 0.02481,\n        \"accuracies\": {\n          \"GDN\": 0.3753,\n          \"RetNet\": 0.366,\n          \"HGRN2\": 0.3186\n        }\n      },\n      \"h24-1\": {\n        \"sigma\": 0.011647,\n        \"accuracies\": {\n          \"GDN\": 0.3507,\n          \"RetNet\": 0.3652,\n          \"HGRN2\": 0.3367\n        }\n      },\n      \"h12-1\": {\n        \"sigma\": 0.017833,\n        \"accuracies\": {\n          \"GDN\": 0.3251,\n          \"RetNet\": 0.3613,\n          \"HGRN2\": 0.3643\n        }\n      },\n      \"h6-1\": {\n        \"sigma\": 0.011035,\n        \"accuracies\": {\n          \"GDN\": 0.3507,\n          \"RetNet\": 0.347,\n          \"HGRN2\": 0.372\n        }\n      },\n      \"h3-1\": {\n        \"sigma\": 0.016004,\n        \"accuracies\": {\n          \"GDN\": 0.3256,\n          \"RetNet\": 0.3454,\n          \"HGRN2\": 0.3648\n        }\n      }\n    },\n    \"spearman_rho\": -0.5,\n    \"spearman_p_exact\": 0.45,\n    \"attention_ratios\": [\n      0.0,\n      0.041666666666666664,\n      0.08333333333333333,\n      0.16666666666666666,\n      0.3333333333333333\n    ],\n    \"sigma_values\": [\n      0.02481,\n      0.011647,\n      0.017833,\n      0.011035,\n      0.016004\n    ]\n  },\n  \"jaccard_analysis\": {\n    \"h24-1\": {\n      \"GDN_vs_RetNet\": {\n        \"helped\": {\n          \"set_sizes\": [470, 439],\n          \"J\": 0.0939,\n          \"J_null\": 0.0461,\n          \"J_max\": 0.934,\n          \"ES_normalized\": 0.0538,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [597, 443],\n          \"J\": 0.1005,\n          \"J_null\": 0.0519,\n          \"J_max\": 0.742,\n          \"ES_normalized\": 0.0704,\n          \"p_value_permutation\": 0.0\n        }\n      },\n      \"GDN_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [470, 443],\n          \"J\": 0.0974,\n          \"J_null\": 0.0463,\n          \"J_max\": 0.9426,\n          \"ES_normalized\": 0.057,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [597, 350],\n          \"J\": 0.0617,\n          \"J_null\": 0.0447,\n          \"J_max\": 0.5863,\n          \"ES_normalized\": 0.0313,\n          \"p_value_permutation\": 0.0081\n        }\n      },\n      \"RetNet_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [439, 443],\n          \"J\": 0.1094,\n          \"J_null\": 0.0447,\n          \"J_max\": 0.991,\n          \"ES_normalized\": 0.0684,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [443, 350],\n          \"J\": 0.0923,\n          \"J_null\": 0.0394,\n          \"J_max\": 0.7901,\n          \"ES_normalized\": 0.0704,\n          \"p_value_permutation\": 0.0\n        }\n      }\n    },\n    \"h12-1\": {\n      \"GDN_vs_RetNet\": {\n        \"helped\": {\n          \"set_sizes\": [385, 427],\n          \"J\": 0.0827,\n          \"J_null\": 0.0409,\n          \"J_max\": 0.9016,\n          \"ES_normalized\": 0.0485,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [644, 451],\n          \"J\": 0.095,\n          \"J_null\": 0.0543,\n          \"J_max\": 0.7003,\n          \"ES_normalized\": 0.063,\n          \"p_value_permutation\": 0.0\n        }\n      },\n      \"GDN_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [385, 538],\n          \"J\": 0.0634,\n          \"J_null\": 0.0455,\n          \"J_max\": 0.7156,\n          \"ES_normalized\": 0.0266,\n          \"p_value_permutation\": 0.009\n        },\n        \"hurt\": {\n          \"set_sizes\": [644, 303],\n          \"J\": 0.0798,\n          \"J_null\": 0.0417,\n          \"J_max\": 0.4705,\n          \"ES_normalized\": 0.089,\n          \"p_value_permutation\": 0.0\n        }\n      },\n      \"RetNet_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [427, 538],\n          \"J\": 0.1143,\n          \"J_null\": 0.0484,\n          \"J_max\": 0.7937,\n          \"ES_normalized\": 0.0884,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [451, 303],\n          \"J\": 0.0787,\n          \"J_null\": 0.0365,\n          \"J_max\": 0.6718,\n          \"ES_normalized\": 0.0665,\n          \"p_value_permutation\": 0.0\n        }\n      }\n    },\n    \"h6-1\": {\n      \"GDN_vs_RetNet\": {\n        \"helped\": {\n          \"set_sizes\": [428, 380],\n          \"J\": 0.0831,\n          \"J_null\": 0.0407,\n          \"J_max\": 0.8879,\n          \"ES_normalized\": 0.0501,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [555, 478],\n          \"J\": 0.0828,\n          \"J_null\": 0.0525,\n          \"J_max\": 0.8613,\n          \"ES_normalized\": 0.0375,\n          \"p_value_permutation\": 0.0\n        }\n      },\n      \"GDN_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [428, 580],\n          \"J\": 0.085,\n          \"J_null\": 0.0502,\n          \"J_max\": 0.7379,\n          \"ES_normalized\": 0.0507,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [555, 305],\n          \"J\": 0.0644,\n          \"J_null\": 0.0397,\n          \"J_max\": 0.5495,\n          \"ES_normalized\": 0.0483,\n          \"p_value_permutation\": 0.0004\n        }\n      },\n      \"RetNet_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [380, 580],\n          \"J\": 0.1085,\n          \"J_null\": 0.0466,\n          \"J_max\": 0.6552,\n          \"ES_normalized\": 0.1017,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [478, 305],\n          \"J\": 0.086,\n          \"J_null\": 0.0375,\n          \"J_max\": 0.6381,\n          \"ES_normalized\": 0.0808,\n          \"p_value_permutation\": 0.0\n        }\n      }\n    },\n    \"h3-1\": {\n      \"GDN_vs_RetNet\": {\n        \"helped\": {\n          \"set_sizes\": [422, 373],\n          \"J\": 0.092,\n          \"J_null\": 0.04,\n          \"J_max\": 0.8839,\n          \"ES_normalized\": 0.0617,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [678, 479],\n          \"J\": 0.1093,\n          \"J_null\": 0.0576,\n          \"J_max\": 0.7065,\n          \"ES_normalized\": 0.0797,\n          \"p_value_permutation\": 0.0\n        }\n      },\n      \"GDN_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [422, 575],\n          \"J\": 0.0837,\n          \"J_null\": 0.0496,\n          \"J_max\": 0.7339,\n          \"ES_normalized\": 0.0499,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [678, 337],\n          \"J\": 0.0752,\n          \"J_null\": 0.0457,\n          \"J_max\": 0.4971,\n          \"ES_normalized\": 0.0654,\n          \"p_value_permutation\": 0.0001\n        }\n      },\n      \"RetNet_vs_HGRN2\": {\n        \"helped\": {\n          \"set_sizes\": [373, 575],\n          \"J\": 0.1075,\n          \"J_null\": 0.0459,\n          \"J_max\": 0.6487,\n          \"ES_normalized\": 0.1021,\n          \"p_value_permutation\": 0.0\n        },\n        \"hurt\": {\n          \"set_sizes\": [479, 337],\n          \"J\": 0.0851,\n          \"J_null\": 0.0399,\n          \"J_max\": 0.7035,\n          \"ES_normalized\": 0.0681,\n          \"p_value_permutation\": 0.0\n        }\n      }\n    }\n  },\n  \"comparison_1_3B\": {\n    \"alpha_340m_pure\": 0.3128,\n    \"alpha_1_3b_pure\": 0.307,\n    \"jaccard_340m_mean\": 0.0888,\n    \"jaccard_1_3b_mean\": 0.095,\n    \"convergence_rho_340m\": -0.5,\n    \"convergence_rho_1_3b\": -1.0,\n    \"convergence_p_340m\": 0.45,\n    \"convergence_p_1_3b\": 0.017\n  }\n}",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+Now validate the JSON and register the artifact.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "d07bdd33-b549-416a-a66c-3c410353a4db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015isFMUUiRqdyqzyKdXA39m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4964,
+      "cache_read_input_tokens": 57161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4964
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011kwXFjf2K72JijCjxHKCZs`</summary>
+
+```json
+{
+  "command": "python3 -c \"import json; d=json.load(open('/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/340m_lambada_per_example.json')); print('Valid JSON, keys:', list(d.keys())); print('N:', d['n_samples'])\"",
+  "description": "Validate JSON integrity"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "bdceada7-b5ab-4426-af9c-ae8064c427be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015isFMUUiRqdyqzyKdXA39m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4964,
+      "cache_read_input_tokens": 57161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4964
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-21T13:30:31.377Z_
+
+<details><summary>↩ Tool result · `toolu_011kwXFjf2K72JijCjxHKCZs`</summary>
+
+```text
+Valid JSON, keys: ['benchmark', 'scale', 'n_samples', 'architectures', 'ratios', 'aggregate_accuracy', 'ambiguity', 'per_example_classification', 'convergence_sigma', 'jaccard_analysis', 'comparison_1_3B']
+N: 5153
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "666aab09-bd39-48ff-8374-575cece555c6",
+  "tool_use_result": {
+    "stdout": "Valid JSON, keys: ['benchmark', 'scale', 'n_samples', 'architectures', 'ratios', 'aggregate_accuracy', 'ambiguity', 'per_example_classification', 'convergence_sigma', 'jaccard_analysis', 'comparison_1_3B']\nN: 5153",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01N2YNtKJ1tekRKEWe6mXHqg`</summary>
+
+```json
+{
+  "name": "340M LAMBADA Per-Example Analysis",
+  "type": "data",
+  "description": "340M LAMBADA per-example multiplicity analysis: ambiguity alpha, per-example classification (helped/hurt), cross-architecture Jaccard with permutation tests, convergence sigma with exact Spearman test, and 1.3B comparison.",
+  "project": "entrainment_gated_ft",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/340m_lambada_per_example.json",
+  "tags": [
+    "340M",
+    "lambada",
+    "per-example",
+    "multiplicity",
+    "jaccard",
+    "convergence"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "bcd2f82c-2bc3-4471-9485-d493814d75c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015isFMUUiRqdyqzyKdXA39m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4964,
+      "cache_read_input_tokens": 57161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4964
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-21T13:30:34.547Z_
+
+<details><summary>↩ Tool result · `toolu_01N2YNtKJ1tekRKEWe6mXHqg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_4c5bb3\", \"name\": \"340M LAMBADA Per-Example Analysis\", \"type\": \"data\", \"description\": \"340M LAMBADA per-example multiplicity analysis: ambiguity alpha, per-example classification (helped/hurt), cross-architecture Jaccard with permutation tests, convergence sigma with exact Spearman test, and 1.3B comparison.\", \"path\": \"projects/entrainment_gated_ft/artifacts/_project/data/340m_lambada_per_example.json\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T13:30:34.366177+00:00\", \"tags\": [\"340M\", \"lambada\", \"per-example\", \"multiplicity\", \"jaccard\", \"convergence\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "9dfea4d2-6ea4-4cd0-bf63-b9ee33226251",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_4c5bb3\\\", \\\"name\\\": \\\"340M LAMBADA Per-Example Analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"340M LAMBADA per-example multiplicity analysis: ambiguity alpha, per-example classification (helped/hurt), cross-architecture Jaccard with permutation tests, convergence sigma with exact Spearman test, and 1.3B comparison.\\\", \\\"path\\\": \\\"projects/entrainment_gated_ft/artifacts/_project/data/340m_lambada_per_example.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T13:30:34.366177+00:00\\\", \\\"tags\\\": [\\\"340M\\\", \\\"lambada\\\", \\\"per-example\\\", \\\"multiplicity\\\", \\\"jaccard\\\", \\\"convergence\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_4c5bb3\", \"name\": \"340M LAMBADA Per-Example Analysis\", \"type\": \"data\", \"description\": \"340M LAMBADA per-example multiplicity analysis: ambiguity alpha, per-example classification (helped/hurt), cross-architecture Jaccard with permutation tests, convergence sigma with exact Spearman test, and 1.3B comparison.\", \"path\": \"projects/entrainment_gated_ft/artifacts/_project/data/340m_lambada_per_example.json\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T13:30:34.366177+00:00\", \"tags\": [\"340M\", \"lambada\", \"per-example\", \"multiplicity\", \"jaccard\", \"convergence\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_018iV5zfsnDzj4noXaLJdJay`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Write and run 340M LAMBADA per-example analysis script on server",
+      "status": "completed",
+      "activeForm": "Writing analysis script"
+    },
+    {
+      "content": "Save output JSON locally and register artifact",
+      "status": "completed",
+      "activeForm": "Saving output and registering artifact"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "a75859cb-8780-4c14-b600-1395966dc77f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Li5pkKDjYKN5JyUSqevn4G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 907,
+      "cache_read_input_tokens": 62125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 907
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-21T13:30:37.480Z_
+
+<details><summary>↩ Tool result · `toolu_018iV5zfsnDzj4noXaLJdJay`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "758dddcd-bfc4-4ab8-bbb9-2b4d2f0fb344",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Write and run 340M LAMBADA per-example analysis script on server",
+        "status": "completed",
+        "activeForm": "Writing analysis script"
+      },
+      {
+        "content": "Save output JSON locally and register artifact",
+        "status": "in_progress",
+        "activeForm": "Saving output and registering artifact"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Write and run 340M LAMBADA per-example analysis script on server",
+        "status": "completed",
+        "activeForm": "Writing analysis script"
+      },
+      {
+        "content": "Save output JSON locally and register artifact",
+        "status": "completed",
+        "activeForm": "Saving output and registering artifact"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87_
+
+Artifact 已注册 (`art_20260521_4c5bb3`)。
+
+### 340M LAMBADA 关键发现
+
+**A) Ambiguity α**：pure α=0.313，随 attention ratio 递减至 h3-1 的 0.266。与 1.3B (0.307) 几乎相同。
+
+**B) Per-example classification**：
+- **HGRN2** 是唯一从 attention 中净受益的架构（net +93 ~ +275），与 1.3B 一致
+- **GDN** 反而受损严重（net -127 ~ -259），attention 使其丢失更多样本
+- **RetNet** 接近持平但微负（-4 ~ -106）
+
+**C) Jaccard**：均值 J=0.0888（1.3B: 0.095），同样很低。所有 permutation test p<0.01（显著但 effect size 极小，ES_normalized 仅 0.03-0.10），确认不同架构被 help/hurt 的样本几乎不重叠。
+
+**D) Convergence σ**：340M 的 ρ=-0.5, p=0.45（**不显著**），与 1.3B 的 ρ=-1.0, p=0.017 形成对比。σ 序列为 [0.025, 0.012, 0.018, 0.011, 0.016]——非单调递减，h12-1 出现反弹。这说明 340M 尺度下 aggregate convergence 尚未建立，decoupling 现象在更大模型上才出现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "uuid": "f2f94440-e370-4c25-8071-7a77cda9e5c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNAyjXXNj4TV4GipM6h7Jf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 163,
+      "cache_read_input_tokens": 63032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 163
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 88_
+
+Artifact 已注册 (`art_20260521_4c5bb3`)。
+
+### 340M LAMBADA 关键发现
+
+**A) Ambiguity α**：pure α=0.313，随 attention ratio 递减至 h3-1 的 0.266。与 1.3B (0.307) 几乎相同。
+
+**B) Per-example classification**：
+- **HGRN2** 是唯一从 attention 中净受益的架构（net +93 ~ +275），与 1.3B 一致
+- **GDN** 反而受损严重（net -127 ~ -259），attention 使其丢失更多样本
+- **RetNet** 接近持平但微负（-4 ~ -106）
+
+**C) Jaccard**：均值 J=0.0888（1.3B: 0.095），同样很低。所有 permutation test p<0.01（显著但 effect size 极小，ES_normalized 仅 0.03-0.10），确认不同架构被 help/hurt 的样本几乎不重叠。
+
+**D) Convergence σ**：340M 的 ρ=-0.5, p=0.45（**不显著**），与 1.3B 的 ρ=-1.0, p=0.017 形成对比。σ 序列为 [0.025, 0.012, 0.018, 0.011, 0.016]——非单调递减，h12-1 出现反弹。这说明 340M 尺度下 aggregate convergence 尚未建立，decoupling 现象在更大模型上才出现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 332774,
+  "duration_api_ms": 255973,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "88559791-4058-4704-8c19-8a9bf0520e1a",
+  "total_cost_usd": 1.1885915,
+  "usage": {
+    "input_tokens": 26,
+    "cache_creation_input_tokens": 51354,
+    "cache_read_input_tokens": 848184,
+    "output_tokens": 17646,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 51354,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 448,
+        "cache_read_input_tokens": 63032,
+        "cache_creation_input_tokens": 163,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 163
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2147,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002257,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 26,
+      "outputTokens": 17646,
+      "cacheReadInputTokens": 848184,
+      "cacheCreationInputTokens": 51354,
+      "webSearchRequests": 0,
+      "costUSD": 1.1863345,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "cb26fe7c-3be9-4998-b9e9-964eb4b6f815"
+}
+```
+
+</details>
+
+---

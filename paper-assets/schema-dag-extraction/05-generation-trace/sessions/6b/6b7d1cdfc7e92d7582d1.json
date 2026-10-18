@@ -70,5 +70,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ssh-pull-gemini-data.md"
 }

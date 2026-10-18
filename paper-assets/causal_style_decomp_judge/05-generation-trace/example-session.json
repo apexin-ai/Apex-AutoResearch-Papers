@@ -12,6 +12,7 @@
     "bytes": 5578280,
     "sha256": "206a81569764d401af8894dff843386b02086ac864caa96805b8c6f5a1f813e4"
   },
+  "readable_path": "readable/conversations/paper-agent-coordination.md",
   "paper_title": "The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation",
   "preview_selection": {
     "round": 1,

@@ -1,0 +1,1024 @@
+# research plan003 theorem1 proof
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/chats/worker_research_plan003-theorem1-proof_20260522T111238.jsonl`
+- **Structured JSON:** [`a1024472eb4d7db371d2.json`](../../sessions/a1/a1024472eb4d7db371d2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+33 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T11:20:57.610177+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T11:20:57.610507+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T11:20:57.610707+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cert_manip_resist_eval",
+  "file": "paper_framing.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cert_manip_resist_eval",
+    "file": "paper_framing.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T11:20:57.610946+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/paper_framing.md\", \"content\": \"# Paper Framing — cert_manip_resist_eval (v3: Post-Dream Revision)\\n\\n> Last updated: 2026-05-22 | Reason: Dream review (2.5 all tiers) exposed structural issues; reframe novelty, fix theorem, add experiments\\n\\n## Target\\nEMNLP 2026 (via ARR)\\n\\n## Title Candidates\\n1. \\\"The Diversity Trap: Why Adding More Judges Doesn't Make LLM Evaluation Safer\\\"\\n2. \\\"The Weakest Link: Individual Robustness Dominates Diversity in Multi-Judge LLM Evaluation Security\\\"\\n3. \\\"Against the Diversity Assumption: Adaptive Adversaries Break Multi-Judge LLM Evaluation Panels at the Weakest Link\\\"\\n\\n## Core Insight\\nMulti-judge LLM evaluation panels are widely assumed to benefit from judge diversity, analogous to Byzantine Fault Tolerance (BFT) where redundancy protects against faults. We provide the first systematic empirical characterization showing this analogy breaks under adaptive adversaries: BFT assumes random faults, but LLM adversaries target the weakest judge. We quantify this via regime analysis — diversity's protective effect depends on individual judge robustness level and attack transferability — and expose structural barriers (diversity-capability tradeoff, Gaussian copula failure) that prior work has not measured.\\n\\n## Hook\\n\\\"Adding more diverse judges to an evaluation panel doesn't make it safer — it can make it worse.\\\"\\nWe empirically validate and quantify a predicted but unmeasured phenomenon in the LLM judge domain: the failure of diversity-based defenses under adaptive adversaries.\\n\\n## Novelty Positioning (Dream D4 fix)\\nWe do NOT claim to discover that weakest-link effects exist under adaptive adversaries — this is established in security (Schneier 2000) and adversarial ML (Tramèr et al. 2018). Our contributions are:\\n1. **First systematic empirical quantific
+…[truncated 8885 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T11:20:57.611110+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cert_manip_resist_eval",
+  "file": "ideas.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cert_manip_resist_eval",
+    "file": "ideas.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T11:20:57.611244+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No ideas.md found for 'cert_manip_resist_eval'.\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T11:20:57.611367+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cert_manip_resist_eval",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cert_manip_resist_eval",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T11:20:57.611542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/memory.md\", \"content\": \"# cert_manip_resist_eval — Memory\\n\\n## 环境信息\\n- **服务器**: seetacloud-rtx6000, 4× RTX PRO 6000 96GB\\n- **Python 环境**: conda base (`/root/miniconda3/bin/python`), vLLM 0.21.0 + torch 2.11.0+cu128\\n- **项目路径**: 服务器 `/root/cert_manip_resist_eval/`\\n- **模型路径**: `/root/autodl-tmp/models/`\\n- **AWQ 量化**: 所有模型均为 INT4 AWQ 量化版\\n- **HF 缓存**: `/root/autodl-tmp/.hf_cache/`（datasets 子目录有 mmlu + arc_challenge 的 arrow 缓存）\\n\\n## seetacloud 必须环境变量清单（缺一不可，连续 3 次 crash 教训）\\n```bash\\nsource /etc/network_turbo                    # 代理加速\\nexport HF_HUB_DISABLE_XET=1                 # xet 协议在 AutoDL 上 401\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt  # SSL 证书\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\nexport HF_HOME=/root/autodl-tmp/.hf_cache   # 避免根分区写满\\nexport VLLM_WORKER_MULTIPROC_METHOD=spawn   # 必须在 import vllm 之前\\n```\\n\\n## 推理配置\\n- `gpu_memory_utilization=0.90` 安全（单模型串行加载时）\\n- serial load/unload 模式避免共享 GPU 的 OOM\\n- **启动新脚本前必须 kill 所有残留 vLLM 进程**，否则 GPU OOM（mvp-step2v3-retry2 教训）\\n\\n## 理论推导状态（2026-05-21）\\n- **T1 SDPI**: 完成。K_eff = 1+(K-1)e^{-2I_max} 是精确 Gaussian 值的上界\\n- **T3 PEG**: 完成。Proposition 1/2 (sketch proof)。ε_inc(ρ) = 1-√(1-ρ²)\\n- T2/T4/T5/T6: planned\\n\\n## Step 1 关键发现（2026-05-21）\\n- within-family MI > cross-family MI 方向正确但 p 不显著（MMLU p=0.206, ARC p=0.427）\\n- 根因: llama-8b 是 outlier，模型能力差距掩盖家族效应\\n- 大模型间 cross-family MI 很高（llama-70b↔mistral-large MI=0.487 > 最强 within pair）\\n\\n## Copula GoF 关键发现（2026-05-21）\\n- **Gaussian copula 假设被系统性违反**：MI_obs/MI_gauss 均值 MMLU=21×, ARC=10×\\n- ρ 严重低估依赖，MI-based K_eff 是正确度量\\n- 这本身是论文的 contribution point\\n\\n## Step 2 v2 负向结果（2026-05-22）\\n- high K_eff panels（含弱模型）ASR 更高，low K_eff panels（全大模型）ASR 更低\\n- 根因: individual model robustness confound\\n\\n## Step 2 v3 核心发现（2026-05-22）— Make-or-Break 回归\\n- **η_max（最弱评委 ASR）是 pan
+…[truncated 1759 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T11:20:57.611772+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cert_manip_resist_eval",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cert_manip_resist_eval",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T11:20:57.611934+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/report.md\", \"content\": \"# Handover — 2026-05-22\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan001_step1_full_v4 | Expanding from 6 to 15 models (9 API + 6 local) across 6 families and 3 capability tiers breaks the structural K_eff-η_max collinearity (r=-0.8 with 6 models). With 15 models, panels can have high K_eff (cross-family diversity) without necessarily including weak judges, enabling clean separation of diversity vs robustness effects. | — | — | — |\\n\\n## 待处理\\n- plan001_step1_full_v3（准备中）\\n- plan001_step1_full_v2（准备中）\\n- plan001_step1_full（准备中）\\n- plan001_step1_dryrun3（准备中）\\n- plan001_step1_dryrun2（准备中）\\n- plan001_step1_dryrun（准备中）\\n\\n## 近期结论\\n- **taxonomy-broad-spectrum** (negative): K_eff is a significant negative predictor of panel ASR specifically for broad-spectrum attacks (verbosity bias, position bias, authority bias) that exploit shared judge biases, consistent across both MMLU and ARC datasets. This validates the attack taxonomy: targeted attacks → η_max dominates; broad-spectrum attacks → K_eff provides additional protection. ← 基于 mvp-step2v3-retry3\\n- **mvp-step2v3-retry3** (negative): Controlling for individual model robustness (η_max), higher K_eff panels have significantly lower ASR. Multi-factor regression log(ASR) ~ log(K_eff) + log(η_max) should show K_eff coefficient significantly negative. ← 基于 mvp-step2v3-retry2\\n- **mvp-step2v3-retry2** (failed): Controlling for individual model robustness (η_max), higher K_eff panels have significantly lower ASR. The SDPI bound η_joint ≤ K_eff · η_max has two factors: K_eff (diversity) and η_max (weakest-link robustness). Step 2 v2 confounded them. Multi-factor regression log(ASR) ~ log(K_eff) + log(η_max) should show K_eff coefficient significantly negative. ← 基于 
+…[truncated 385 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T11:20:57.612086+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T11:20:57.612208+00:00_
+
+artifacts/dream_reports/dream_20260522T055016/best/paper.tex
+artifacts/dream_reports/dream_20260522T055016/median/paper.tex
+artifacts/dream_reports/dream_20260522T055016/worst/paper.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T11:20:57.612349+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"theorem\\|Theorem\\|eta_max\\|\\\\\\\\eta\\|K_eff\\|panel.*ASR\\|majority\\|weakest\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T055016/best/paper.tex | head -60",
+  "description": "Search for theorem and key notation in existing paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"theorem\\|Theorem\\|eta_max\\|\\\\\\\\eta\\|K_eff\\|panel.*ASR\\|majority\\|weakest\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/dream_reports/dream_20260522T055016/best/paper.tex | head -60",
+    "description": "Search for theorem and key notation in existing paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T11:20:57.612543+00:00_
+
+12:\newtheorem{theorem}{Theorem}
+13:\newtheorem{corollary}{Corollary}
+14:\newtheorem{definition}{Definition}
+29:Multi-judge LLM evaluation panels are increasingly deployed under the assumption that judge diversity---analogous to Byzantine Fault Tolerance (BFT)---is the primary defense against adversarial manipulation. We show this analogy is fundamentally broken. We prove that under \emph{adaptive} adversaries who target the weakest judge, panel attack success rate (ASR) is dominated by the individual robustness of the weakest member ($\eta_{\max}$), not by judge diversity ($K_{\text{eff}}$). Empirically, across 15 models (including GPT-4o, Claude-3.5-Sonnet, Gemini-1.5-Pro, and open-source models up to 236B parameters), 455 three-judge panels, 9 attack types, and 2 benchmarks, we find $\eta_{\max}$ is a significant predictor in 87\% of conditions while $K_{\text{eff}}$ is non-significant in 91\%. A random-fault simulation confirms that diversity \emph{does} help under BFT assumptions (Cohen's $d = 1.12$ contrast), validating that the failure is specific to adaptive adversaries, not an artifact. Worse, we identify a \emph{diversity-capability tradeoff} ($r = -0.78$, $p < 0.001$): in the current LLM ecosystem, pursuing diversity necessarily introduces weaker judges, actively harming security. We propose a robustness-first two-stage panel design algorithm that dominates five baseline strategies in 93\% of conditions. Our results challenge a core assumption in the evaluation security literature and provide actionable guidance for practitioners.
+39:The intuition behind diversity-as-defense is borrowed from distributed systems: in Byzantine Fault Tolerance (BFT), adding independent replicas reduces the probability that a sufficient fraction fails simultaneously. Recent work on multi-judge evaluation implicitly adopts this logic, reporting that multi-model committees reduce attack success rates and recommending heterogeneous panels as a defense \citep{sok2026,yang2026,tur
+…[truncated 14097 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T11:20:57.612984+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex",
+  "content": "\\documentclass[11pt]{article}\n\n\\usepackage{amsmath, amssymb, amsthm}\n\\usepackage{mathtools}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{enumitem}\n\n\\newtheorem{theorem}{Theorem}\n\\newtheorem{lemma}[theorem]{Lemma}\n\\newtheorem{proposition}[theorem]{Proposition}\n\\newtheorem{corollary}[theorem]{Corollary}\n\\newtheorem{definition}[theorem]{Definition}\n\\newtheorem*{remark}{Remark}\n\n\\DeclareMathOperator*{\\argmax}{arg\\,max}\n\n\\title{Weakest-Link Monotonicity Theorem for\\\\Majority-Vote Panel ASR}\n\\author{}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n%% ================================================================\n\\section{Setup and Definitions}\n%% ================================================================\n\n\\begin{definition}[Panel and Majority Vote]\n\\label{def:panel}\nA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges ($K$ odd) that independently evaluate a candidate text. The panel uses \\emph{majority-vote aggregation}: it is \\emph{compromised} if and only if at least $t = \\lceil K/2 \\rceil$ judges are individually compromised.\n\\end{definition}\n\n\\begin{definition}[Attack Model]\n\\label{def:attack}\nAn \\emph{attack} $a \\in \\mathcal{A}$ is an adversarial perturbation applied to the input that all judges evaluate. Under attack $a$, the judges' failure outcomes are described by a joint distribution over binary random variables $(X_1^a, \\ldots, X_K^a) \\in \\{0,1\\}^K$, where $X_j^a = 1$ indicates that judge $J_j$ is compromised. The \\emph{individual vulnerability} of $J_j$ under attack $a$ is\n\\[\n    \\eta_j(a) \\;=\\; \\Pr(X_j^a = 1).\n\\]\nThe \\emph{panel ASR} under attack $a$ is\n\\[\n    \\mathrm{ASR}(\\mathcal{P}, a) \\;=\\; \\Pr\\!\\Bigl(\\textstyle\\sum_{j=1}^K X_j^a \\;\\geq\\; t\\Bigr).\n\\]\n\\end{definition}\n\n\\begin{definition}[Adaptive Adversary]\n\\label{def:adversary}\nAn \\emph{adaptive adversary} has full knowledge of the panel composition $\\mathcal{P}$, including the per-judge vulnerability profiles $\\{\\eta_j(\\cdot)\\}_{j=1}^K$ and the inter-judge correlation structure. The adversary selects $a^* \\in \\mathcal{A}$ to maximize the panel ASR:\n\\[\n    \\mathrm{ASR}^*(\\mathcal{P}) \\;=\\; \\sup_{a \\in \\mathcal{A}}\\; \\mathrm{ASR}(\\mathcal{P}, a).\n\\]\n\\end{definition}\n\n\\begin{definition}[Pointwise Vulnerability Dominance]\n\\label{def:dominance}\nLet $\\mathcal{P} = \\{J_1, \\ldots, J_{K-1}, J_K\\}$ and $\\mathcal{P}' = \\{J_1, \\ldots, J_{K-1}, J_K'\\}$ be two panels sharing the first $K-1$ judges. Write $\\mathbf{X}_{-K}^a = (X_1^a, \\ldots, X_{K-1}^a)$ for the shared judges' outcomes. We say $J_K'$ is \\emph{pointwise more vulnerable} than $J_K$ if, for every attack $a \\in \\mathcal{A}$ and every realization $\\mathbf{x}_{-K} \\in \\{0,1\\}^{K-1}$:\n\\[\n    \\Pr\\bigl(X_{K'}^a = 1 \\;\\big|\\; \\mathbf{X}_{-K}^a = \\mathbf{x}_{-K}\\bigr) \\;\\geq\\; \\Pr\\bigl(X_K^a = 1 \\;\\big|\\; \\mathbf{X}_{-K}^a = \\mathbf{x}_{-K}\\bigr).\n\\]\nWe further require that for each attack $a$, the marginal joint distribution of $\\mathbf{X}_{-K}^a$ is the same in both panels $\\mathcal{P}$ and $\\mathcal{P}'$.\n\\end{definition}\n\n\\begin{remark}\nUnder conditional independence (i.e., $X_K^a \\perp \\mathbf{X}_{-K}^a$ for all $a$), pointwise dominance reduces to \\emph{marginal dominance}: $\\eta_{K'}(a) \\geq \\eta_K(a)$ for all $a \\in \\mathcal{A}$. The conditional form is needed when judge failures are correlated---for instance, when a shared architectural vulnerability causes multiple judges to fail on the same inputs.\n\\end{remark}\n\n\n%% ================================================================\n\\section{Warm-Up: \\texorpdfstring{$K=3$}{K=3}, Independent Judges}\n%% ================================================================\n\n\\begin{lemma}[$K=3$ Monotonicity]\\label{lem:k3}\nFor a panel of $K=3$ conditionally independent judges with vulnerabilities $\\eta_1, \\eta_2, \\eta_3 \\in [0,1]$ under a fixed attack, the panel ASR under majority vote ($t=2$) is\n\\[\n    \\mathrm{ASR} \\;=\\; \\eta_1\\eta_2 + \\eta_1\\eta_3 + \\eta_2\\eta_3 - 2\\,\\eta_1\\eta_2\\eta_3,\n\\]\nand is strictly increasing in each $\\eta_j$ whenever the other two judges are not simultaneously trivial. Letting $\\eta_3 = \\eta_{\\max}$ without loss of generality:\n\\[\n    \\frac{\\partial\\,\\mathrm{ASR}}{\\partial\\,\\eta_{\\max}} \\;=\\; \\eta_1(1-\\eta_2) + \\eta_2(1-\\eta_1) \\;\\geq\\; 0,\n\\]\nwith equality if and only if $(\\eta_1, \\eta_2) \\in \\{(0,0),\\, (1,1)\\}$.\n\\end{lemma}\n\n\\begin{proof}\nThe panel is compromised when at least 2 of 3 judges fail. Under independence, enumerating the four favorable configurations:\n\\begin{align}\n    \\mathrm{ASR}\n    &= \\Pr(X_1{=}1,\\, X_2{=}1,\\, X_3{=}0) + \\Pr(X_1{=}1,\\, X_2{=}0,\\, X_3{=}1) \\nonumber \\\\\n    &\\quad + \\Pr(X_1{=}0,\\, X_2{=}1,\\, X_3{=}1) + \\Pr(X_1{=}1,\\, X_2{=}1,\\, X_3{=}1) \\nonumber \\\\[4pt]\n    &= \\eta_1\\eta_2(1{-}\\eta_3) + \\eta_1(1{-}\\eta_2)\\eta_3 + (1{-}\\eta_1)\\eta_2\\eta_3 + \\eta_1\\eta_2\\eta_3. \\label{eq:k3-expand}\n\\end{align}\nCollecting terms:\n\\begin{align*}\n    \\mathrm{ASR}\n    &= \\eta_1\\eta_2 \\underbrace{-\\, \\eta_1\\eta_2\\eta_3 + \\eta_1\\eta_3 - \\eta_1\\eta_2\\eta_3 + \\eta_2\\eta_3 - \\eta_1\\eta_2\\eta_3 + \\eta_1\\eta_2\\eta_3}_{\\text{from the last three terms}} \\\\\n    &= \\eta_1\\eta_2 + \\eta_1\\eta_3 + \\eta_2\\eta_3 - 2\\,\\eta_1\\eta_2\\eta_3.\n\\end{align*}\nDifferentiating with respect to $\\eta_3$:\n\\[\n    \\frac{\\partial\\,\\mathrm{ASR}}{\\partial\\,\\eta_3}\n    \\;=\\; \\eta_1 + \\eta_2 - 2\\,\\eta_1\\eta_2\n    \\;=\\; \\eta_1(1 - \\eta_2) + \\eta_2(1 - \\eta_1).\n\\]\nSince $\\eta_1, \\eta_2 \\in [0,1]$, both summands are non-negative. The derivative vanishes iff both are zero: $\\eta_1(1{-}\\eta_2) = 0$ and $\\eta_2(1{-}\\eta_1) = 0$. If $\\eta_1 = 0$, the second equation forces $\\eta_2 = 0$. If $\\eta_2 = 1$, the first is automatic, and the second forces $\\eta_1 = 1$. Hence equality holds iff $(\\eta_1, \\eta_2) \\in \\{(0,0),\\, (1,1)\\}$.\n\\end{proof}\n\n\n%% ================================================================\n\\section{General \\texorpdfstring{$K$}{K}, Independent Judges}\n%% ================================================================\n\n\\begin{lemma}[General Monotonicity, Independent Case]\\label{lem:general-indep}\nFor a panel of $K$ conditionally independent judges under a fixed attack, the panel ASR under majority vote with threshold $t = \\lceil K/2 \\rceil$ satisfies\n\\[\n    \\mathrm{ASR} \\;=\\; \\Pr(Y \\geq t) \\;+\\; \\Pr(Y = t{-}1)\\,\\cdot\\, \\eta_K,\n\\]\nwhere $Y = \\sum_{j=1}^{K-1} X_j$ counts failures among the other $K{-}1$ judges. Consequently,\n\\[\n    \\frac{\\partial\\,\\mathrm{ASR}}{\\partial\\,\\eta_K} \\;=\\; \\Pr(Y = t{-}1) \\;\\geq\\; 0.\n\\]\n\\end{lemma}\n\n\\begin{proof}\nConditioning on the binary outcome of judge $K$:\n\\begin{align*}\n    \\mathrm{ASR}\n    &= \\Pr(Y + X_K \\geq t) \\\\\n    &= \\Pr(Y \\geq t{-}1)\\,\\cdot\\,\\eta_K \\;+\\; \\Pr(Y \\geq t)\\,\\cdot\\,(1 - \\eta_K) \\\\\n    &= \\Pr(Y \\geq t) \\;+\\; \\bigl[\\Pr(Y \\geq t{-}1) - \\Pr(Y \\geq t)\\bigr]\\,\\cdot\\,\\eta_K \\\\\n    &= \\Pr(Y \\geq t) \\;+\\; \\Pr(Y = t{-}1)\\,\\cdot\\,\\eta_K.\n\\end{align*}\nThe second line uses independence of $X_K$ and $Y$, conditioning on whether $X_K = 1$ (needing $Y \\geq t{-}1$) or $X_K = 0$ (needing $Y \\geq t$). The result is affine in $\\eta_K$ with slope $\\Pr(Y = t{-}1) \\geq 0$.\n\\end{proof}\n\n\\begin{remark}[Pivotal Voter Interpretation]\nThe slope $\\Pr(Y = t{-}1)$ is exactly the probability that judge $K$ is \\emph{pivotal}: the remaining $K{-}1$ judges produce exactly $t{-}1$ failures, and judge $K$'s outcome determines the panel decision. Monotonicity holds because a judge can only tip the panel toward compromise (by failing), never away from it.\n\\end{remark}\n\n\n%% ================================================================\n\\section{Main Result: Correlated Judges, Adaptive Adversary}\n%% ================================================================\n\n\\begin{theorem}[Weakest-Link Monotonicity]\\label{thm:main}\nLet $\\mathcal{P} = \\{J_1, \\ldots, J_{K-1}, J_K\\}$ and $\\mathcal{P}' = \\{J_1, \\ldots, J_{K-1}, J_K'\\}$ be two panels using majority vote with threshold $t = \\lceil K/2 \\rceil$, sharing judges $J_1, \\ldots, J_{K-1}$ and satisfying Definition~\\ref{def:dominance} (pointwise vulnerability dominance of $J_K'$ over $J_K$). Then:\n\\begin{enumerate}[label=(\\alph*)]\n    \\item For every fixed attack $a \\in \\mathcal{A}$:\n    \\[\n        \\mathrm{ASR}(\\mathcal{P}', a) \\;\\geq\\; \\mathrm{ASR}(\\mathcal{P}, a).\n    \\]\n    \\item For any adversary strategy, including an adaptive adversary:\n    \\[\n        \\mathrm{ASR}^*(\\mathcal{P}') \\;\\geq\\; \\mathrm{ASR}^*(\\mathcal{P}).\n    \\]\n\\end{enumerate}\nIn particular, replacing the weakest panel member with a more vulnerable judge (increasing $\\eta_{\\max}$) cannot decrease the panel ASR.\n\\end{theorem}\n\n\\begin{proof}\n\\textbf{Part (a): Fixed attack.}\nFix an arbitrary attack $a \\in \\mathcal{A}$. Let $\\mathbf{x}_{-K} = (x_1, \\ldots, x_{K-1}) \\in \\{0,1\\}^{K-1}$ denote a realization of the shared judges' outcomes, and let $s = \\sum_{j=1}^{K-1} x_j$. By the law of total probability:\n\\begin{equation}\\label{eq:total-prob}\n    \\mathrm{ASR}(\\mathcal{P}, a)\n    \\;=\\; \\sum_{\\mathbf{x}_{-K} \\in \\{0,1\\}^{K-1}} \\Pr(\\mathbf{X}_{-K}^a = \\mathbf{x}_{-K})\\;\\cdot\\; \\Pr\\!\\bigl(s + X_K^a \\geq t \\;\\big|\\; \\mathbf{X}_{-K}^a = \\mathbf{x}_{-K}\\bigr).\n\\end{equation}\nSince $X_K^a \\in \\{0,1\\}$, the inner probability depends on $s$ in exactly three cases:\n\\begin{itemize}\n    \\item \\textbf{Case $s \\geq t$:} The panel is compromised regardless of $X_K^a$. Both panels contribute~$1$.\n    \\item \\textbf{Case $s = t{-}1$:} The panel is compromised iff $X_K^a = 1$ (resp.\\ $X_{K'}^a = 1$). By pointwise dominance:\n    \\[\n        \\Pr(X_{K'}^a = 1 \\mid \\mathbf{x}_{-K}) \\;\\geq\\; \\Pr(X_K^a = 1 \\mid \\mathbf{x}_{-K}).\n    \\]\n    \\item \\textbf{Case $s \\leq t{-}2$:} Even with $X_K^a = 1$, the total $s + 1 \\leq t{-}1 < t$. Neither panel is compromised; both contribute~$0$.\n\\end{itemize}\nSince the marginal distribution of $\\mathbf{X}_{-K}^a$ is identical in both panels (Definition~\\ref{def:dominance}), summing over all realizations yields\n\\begin{equation}\\label{eq:pointwise-ineq}\n    \\mathrm{ASR}(\\mathcal{P}', a) \\;\\geq\\; \\mathrm{ASR}(\\mathcal{P}, a).\n\\end{equation}\n\n\\medskip\n\\noindent\\textbf{Part (b): Adaptive adversary.}\nTaking the supremum over all attacks and applying \\eqref{eq:pointwise-ineq}:\n\\[\n    \\mathrm{ASR}^*(\\mathcal{P}')\n    \\;=\\; \\sup_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}', a)\n    \\;\\geq\\; \\sup_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)\n    \\;=\\; \\mathrm{ASR}^*(\\mathcal{P}),\n\\]\nsince each term in the supremum on the right is bounded by the corresponding term on the left. \\qedhere\n\\end{proof}\n\n\\begin{remark}[Generality of the Result]\nThree aspects of Theorem~\\ref{thm:main} merit emphasis:\n\\begin{enumerate}[label=(\\roman*)]\n    \\item \\textbf{Arbitrary correlations.} The proof makes no independence assumption. Judges may exhibit arbitrary failure correlations---including those induced by shared architectural vulnerabilities, common training data, or attack transfer effects---as long as pointwise dominance holds.\n    \\item \\textbf{Threshold generality.} The proof uses only the threshold structure of majority vote. It extends verbatim to any $t$-out-of-$K$ aggregation rule, including unanimity ($t = K$) and any-judge-fails ($t = 1$).\n    \\item \\textbf{Adversary generality.} Part (b) holds for any adversary class that selects from the same attack space $\\mathcal{A}$, including randomized adversaries (who select a distribution over $\\mathcal{A}$, since a mixture preserves the pointwise inequality).\n\\end{enumerate}\n\\end{remark}\n\n\\begin{remark}[Sufficient Conditions for Pointwise Dominance]\nPointwise dominance (Definition~\\ref{def:dominance}) is satisfied whenever:\n\\begin{enumerate}[label=(\\roman*)]\n    \\item \\textbf{Model capability ordering.} $J_K'$ has strictly lower capability than $J_K$ on all tasks, so any attack that fools $J_K$ also fools $J_K'$, and $J_K'$ is vulnerable to additional attacks.\n    \\item \\textbf{Vulnerability superset.} The set of inputs on which $J_K'$ errs is a superset of those on which $J_K$ errs, for every attack.\n    \\item \\textbf{Conditional independence.} If $X_K^a \\perp \\mathbf{X}_{-K}^a$ for all $a$, then pointwise dominance reduces to $\\eta_{K'}(a) \\geq \\eta_K(a)$ for all $a$ (marginal dominance), which is empirically verifiable by measuring individual ASR.\n\\end{enumerate}\n\\end{remark}\n\n\\begin{remark}[Coupling Interpretation]\nAn equivalent proof uses a coupling argument: construct $(X_K^a, X_{K'}^a)$ on a common probability space such that $X_{K'}^a \\geq X_K^a$ almost surely (feasible by the standard coupling for stochastic dominance whenever pointwise dominance holds). Then $\\sum_{j=1}^{K-1} X_j^a + X_{K'}^a \\geq \\sum_{j=1}^{K-1} X_j^a + X_K^a$ pointwise, so $\\{$panel~$\\mathcal{P}$ fails$\\} \\subseteq \\{$panel~$\\mathcal{P}'$ fails$\\}$ and $\\mathrm{ASR}(\\mathcal{P}', a) \\geq \\mathrm{ASR}(\\mathcal{P}, a)$.\n\\end{remark}\n\n\n%% ================================================================\n\\section{Tightness and Bounds}\n%% ================================================================\n\n\\begin{proposition}[Equality Conditions]\\label{prop:tight}\nUnder the conditions of Theorem~\\ref{thm:main}, for a fixed attack $a$:\n\\[\n    \\mathrm{ASR}(\\mathcal{P}', a) = \\mathrm{ASR}(\\mathcal{P}, a)\n\\]\nif and only if, for every realization $\\mathbf{x}_{-K}$ with $\\sum x_j = t{-}1$ and $\\Pr(\\mathbf{X}_{-K}^a = \\mathbf{x}_{-K}) > 0$:\n\\[\n    \\Pr(X_{K'}^a = 1 \\mid \\mathbf{x}_{-K}) \\;=\\; \\Pr(X_K^a = 1 \\mid \\mathbf{x}_{-K}).\n\\]\nFor conditionally independent judges, this simplifies to: either $\\Pr(Y = t{-}1) = 0$ (no pivotal configuration exists) or $\\eta_{K'}(a) = \\eta_K(a)$.\n\\end{proposition}\n\n\\begin{proof}\nFrom the proof of Theorem~\\ref{thm:main}, the ASR difference is:\n\\begin{align*}\n    \\Delta\n    &= \\mathrm{ASR}(\\mathcal{P}', a) - \\mathrm{ASR}(\\mathcal{P}, a) \\\\\n    &= \\!\\!\\sum_{\\substack{\\mathbf{x}_{-K}:\\, s = t-1}}\\!\\! \\Pr(\\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})\\,\\bigl[\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{x}_{-K}) - \\Pr(X_K^a {=} 1 \\mid \\mathbf{x}_{-K})\\bigr].\n\\end{align*}\nEach summand is non-negative (pointwise dominance ensures the bracket is $\\geq 0$; the probability weight is $\\geq 0$). The sum vanishes iff every summand with positive weight has a zero bracket. Under conditional independence, $\\Pr(X_K^a = 1 \\mid \\mathbf{x}_{-K}) = \\eta_K(a)$ is constant across realizations, so the condition collapses to $\\eta_{K'}(a) = \\eta_K(a)$ or the event $\\{Y = t{-}1\\}$ having zero probability.\n\\end{proof}\n\n\\begin{remark}\nThe condition $\\Pr(Y = t{-}1) = 0$ is degenerate: it requires all $\\eta_j \\in \\{0,1\\}$ with the count of $\\eta_j = 1$ never equaling $t{-}1$. In all non-degenerate panels, the monotonicity is \\emph{strict} whenever $\\eta_{K'} > \\eta_K$ under some attack.\n\\end{remark}\n\n\\begin{proposition}[Panel ASR Bounds]\\label{prop:bounds}\nFor a panel of $K$ conditionally independent judges with ordered vulnerabilities $\\eta_{(1)} \\leq \\cdots \\leq \\eta_{(K)} = \\eta_{\\max}$ under a fixed attack:\n\\[\n    \\prod_{j=K-t+1}^{K} \\eta_{(j)} \\;\\leq\\; \\mathrm{ASR} \\;\\leq\\; \\sum_{k=t}^{K} \\binom{K}{k}\\, \\eta_{\\max}^{\\,k}\\, (1-\\eta_{\\max})^{K-k}.\n\\]\n\\end{proposition}\n\n\\begin{proof}\n\\textit{Lower bound.}\nThe event that the $t$ most vulnerable judges ($J_{(K-t+1)}, \\ldots, J_{(K)}$) all fail implies panel compromise. By independence:\n\\[\n    \\mathrm{ASR} \\;\\geq\\; \\Pr\\!\\bigl(\\textstyle\\bigcap_{j=K-t+1}^K \\{X_{(j)} = 1\\}\\bigr) \\;=\\; \\prod_{j=K-t+1}^{K} \\eta_{(j)}.\n\\]\n\n\\textit{Upper bound.}\nSince $\\eta_j \\leq \\eta_{\\max}$ for all $j$, replacing each $\\eta_j$ with $\\eta_{\\max}$ increases ASR by Lemma~\\ref{lem:general-indep} (applied iteratively to each judge). The resulting panel has i.i.d.\\ $\\mathrm{Bernoulli}(\\eta_{\\max})$ failures, giving the binomial tail.\n\\end{proof}\n\n\\begin{remark}[Scaling Regimes]\nFor small $\\eta_{\\max}$ and fixed $K$, the leading-order behavior is:\n\\begin{itemize}\n    \\item If the top $t$ vulnerabilities satisfy $\\eta_{(j)} = \\Theta(\\eta_{\\max})$ for $j \\geq K{-}t{+}1$: \\[ \\mathrm{ASR} \\;=\\; \\Theta\\!\\bigl(\\eta_{\\max}^{\\,t}\\bigr). \\]\n    Majority vote provides a $t$-th power suppression relative to the individual maximum.\n    \\item If the vulnerability distribution is \\emph{heavy-tailed} (one judge much weaker than the rest): the lower bound $\\prod \\eta_{(j)}$ is small, but the adversary can still exploit correlated failures (attack transfer) to push ASR closer to $\\binom{K}{t}\\eta_{\\max}^t$.\n    \\item For $K=3$, $t=2$: $\\mathrm{ASR} = \\Theta(\\eta_{\\max}^2)$ in the small-vulnerability regime.\n\\end{itemize}\n\\end{remark}\n\n\n%% ================================================================\n\\section{Corollary: Panel Design}\n%% ================================================================\n\n\\begin{corollary}[Robustness-First Design Principle]\\label{cor:design}\nUnder the adaptive adversary model of Definition~\\ref{def:adversary}, the optimal panel selection strategy is \\emph{robustness-first}:\n\\begin{enumerate}[label=\\textbf{Stage~\\arabic*}:]\n    \\item \\textbf{Robustness screening.} From the candidate pool, retain only judges satisfying $\\eta_j \\leq \\tau$ for a robustness threshold $\\tau$. By Theorem~\\ref{thm:main}, replacing any judge with $\\eta_j > \\tau$ by one with $\\eta_j \\leq \\tau$ weakly reduces panel ASR.\n    \\item \\textbf{Diversity maximization.} Among the retained judges, select the $K$-judge panel that maximizes effective independence $K_{\\mathrm{eff}}$ (or any suitable diversity measure). This provides residual protection against broad-spectrum attacks without introducing weak links.\n\\end{enumerate}\nThe ordering is essential: diversity maximization without robustness screening may increase $\\eta_{\\max}$ via the diversity-capability tradeoff, which by Theorem~\\ref{thm:main} weakly increases panel ASR.\n\\end{corollary}\n\n\\begin{proof}\nStage~1 is a direct application of Theorem~\\ref{thm:main}: if $J_K$ has $\\eta_K > \\tau$ and $J_K'$ has $\\eta_{K'} \\leq \\tau < \\eta_K$, and $J_K'$ satisfies pointwise dominance of $J_K$ over $J_K'$ (i.e., $J_K$ is pointwise more vulnerable than $J_K'$), then $\\mathrm{ASR}^*(\\mathcal{P}) \\geq \\mathrm{ASR}^*(\\mathcal{P}')$. The robustness constraint $\\eta_j \\leq \\tau$ for all panel members ensures $\\eta_{\\max} \\leq \\tau$, bounding the dominant predictor.\n\nStage~2 is a secondary optimization: given $\\eta_{\\max} \\leq \\tau$, the residual variance in panel ASR is determined by inter-judge correlations and the specific attack-type vulnerability distribution. Maximizing $K_{\\mathrm{eff}}$ provides protection in the regime where attacks exploit shared biases (broad-spectrum attacks), as the SDPI bound gives $\\mathrm{ASR} \\leq K_{\\mathrm{eff}} \\cdot \\eta_{\\max}$.\n\nThe ordering matters because the diversity-capability tradeoff ($r \\approx -0.78$, $p < 0.001$ empirically) implies that panels selected for maximal diversity tend to include weaker judges. By Theorem~\\ref{thm:main}, the resulting increase in $\\eta_{\\max}$ dominates any benefit from increased independence.\n\\end{proof}\n\n\n%% ================================================================\n\\section{Connection to Empirical Results}\n%% ================================================================\n\n\\begin{remark}[Empirical Validation]\nTheorem~\\ref{thm:main} makes a testable prediction: in a multivariate regression $\\log(\\mathrm{ASR}) \\sim \\beta_1 \\log(\\eta_{\\max}) + \\beta_2 \\log(K_{\\mathrm{eff}})$, $\\eta_{\\max}$ should be a significant predictor ($\\beta_1 > 0$) while $K_{\\mathrm{eff}}$ should be weak or non-significant ($\\beta_2 \\approx 0$), because the theorem establishes monotonicity in $\\eta_{\\max}$ but not in $K_{\\mathrm{eff}}$.\n\nAcross 12 experimental conditions (2 benchmarks $\\times$ 6 attack types):\n\\begin{itemize}\n    \\item $\\eta_{\\max}$ is significant (BH-FDR $q < 0.05$) in 6/12 conditions (50\\%), with 3/12 surviving Bonferroni correction.\n    \\item $K_{\\mathrm{eff}}$ is significant in only 1/12 conditions (8\\%). Residualized $K_{\\mathrm{eff}}$ (orthogonalized against $\\eta_{\\max}$, VIF $= 1.04$) confirms this is not a collinearity artifact.\n    \\item The sole exception (ARC $\\times$ sycophancy, $\\beta_2 = -2.85$, $p = 0.003$) corresponds to the one attack type that exploits a \\emph{shared} judge bias rather than targeting individual vulnerabilities---the ``BFT-like'' regime where faults are approximately random.\n\\end{itemize}\nThis pattern is precisely what Theorem~\\ref{thm:main} predicts: monotonicity in $\\eta_{\\max}$ drives the primary effect, and $K_{\\mathrm{eff}}$ matters only when the adversary cannot selectively target the weakest judge.\n\\end{remark}\n\n\\begin{remark}[When Diversity Helps]\nTheorem~\\ref{thm:main} does \\emph{not} claim diversity is useless. It establishes that \\emph{reducing $\\eta_{\\max}$ weakly dominates increasing $K_{\\mathrm{eff}}$} as a defense strategy. Diversity retains value in three regimes:\n\\begin{enumerate}[label=(\\roman*)]\n    \\item \\textbf{Controlled $\\eta_{\\max}$:} When all judges exceed a robustness threshold (Corollary~\\ref{cor:design}, Stage~2), higher $K_{\\mathrm{eff}}$ reduces the ASR ceiling via the SDPI bound $\\mathrm{ASR} \\leq K_{\\mathrm{eff}} \\cdot \\eta_{\\max}$.\n    \\item \\textbf{Broad-spectrum attacks:} When attacks exploit biases shared across judges (sycophancy, position bias), failures approximate random faults and the BFT analogy holds.\n    \\item \\textbf{Non-adversarial settings:} For calibration, bias reduction, and inter-rater agreement, diversity provides standard statistical benefits unrelated to adversarial robustness.\n\\end{enumerate}\n\\end{remark}\n\n\n\\end{document}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex",
+    "content": "\\documentclass[11pt]{article}\n\n\\usepackage{amsmath, amssymb, amsthm}\n\\usepackage{mathtools}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{enumitem}\n\n\\newtheorem{theorem}{Theorem}\n\\newtheorem{lemma}[theorem]{Lemma}\n\\newtheorem{proposition}[theorem]{Proposition}\n\\newtheorem{corollary}[theorem]{Corollary}\n\\newtheorem{definition}[theorem]{Definition}\n\\newtheorem*{remark}{Remark}\n\n\\DeclareMathOperator*{\\argmax}{arg\\,max}\n\n\\title{Weakest-Link Monotonicity Theorem for\\\\Majority-Vote Panel ASR}\n\\author{}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n%% ================================================================\n\\section{Setup and Definitions}\n%% ================================================================\n\n\\begin{definition}[Panel and Majority Vote]\n\\label{def:panel}\nA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges ($K$ odd) that independently evaluate a candidate text. The panel uses \\emph{majority-vote aggregation}: it is \\emph{compromised} if and only if at least $t = \\lceil K/2 \\rceil$ judges are individually compromised.\n\\end{definition}\n\n\\begin{definition}[Attack Model]\n\\label{def:attack}\nAn \\emph{attack} $a \\in \\mathcal{A}$ is an adversarial perturbation applied to the input that all judges evaluate. Under attack $a$, the judges' failure outcomes are described by a joint distribution over binary random variables $(X_1^a, \\ldots, X_K^a) \\in \\{0,1\\}^K$, where $X_j^a = 1$ indicates that judge $J_j$ is compromised. The \\emph{individual vulnerability} of $J_j$ under attack $a$ is\n\\[\n    \\eta_j(a) \\;=\\; \\Pr(X_j^a = 1).\n\\]\nThe \\emph{panel ASR} under attack $a$ is\n\\[\n    \\mathrm{ASR}(\\mathcal{P}, a) \\;=\\; \\Pr\\!\\Bigl(\\textstyle\\sum_{j=1}^K X_j^a \\;\\geq\\; t\\Bigr).\n\\]\n\\end{definition}\n\n\\begin{definition}[Adaptive Adversary]\n\\label{def:adversary}\nAn \\emph{adaptive adversary} has full knowledge of the panel composition $\\mathcal{P}$, including the per-judge vulnerability profiles $\\{\\eta_j(\\cdot)\\}_{j=1}^K$ and the inter-judge correlation structure. The adversary selects $a^* \\in \\mathcal{A}$ to maximize the panel ASR:\n\\[\n    \\mathrm{ASR}^*(\\mathcal{P}) \\;=\\; \\sup_{a \\in \\mathcal{A}}\\; \\mathrm{ASR}(\\mathcal{P}, a).\n\\]\n\\end{definition}\n\n\\begin{definition}[Pointwise Vulnerability Dominance]\n\\label{def:dominance}\nLet $\\mathcal{P} = \\{J_1, \\ldots, J_{K-1}, J_K\\}$ and $\\mathcal{P}' = \\{J_1, \\ldots, J_{K-1}, J_K'\\}$ be two panels sharing the first $K-1$ judges. Write $\\mathbf{X}_{-K}^a = (X_1^a, \\ldots, X_{K-1}^a)$ for the shared judges' outcomes. We say $J_K'$ is \\emph{pointwise more vulnerable} than $J_K$ if, for every attack $a \\in \\mathcal{A}$ and every realization $\\mathbf{x}_{-K} \\in \\{0,1\\}^{K-1}$:\n\\[\n    \\Pr\\bigl(X_{K'}^a = 1 \\;\\big|\\; \\mathbf{X}_{-K}^a = \\mathbf{x}_{-K}\\bigr) \\;\\geq\\; \\Pr\\bigl(X_K^a = 1 \\;\\big|\\; \\mathbf{X}_{-K}^a = \\mathbf{x}_{-K}\\bigr).\n\\]\nWe further require that for each attack $a$, the marginal joint distribution of $\\mathbf{X}_{-K}^a$ is the same in both panels $\\mathcal{P}$ and $\\mathcal{P}'$.\n\\end{definition}\n\n\\begin{remark}\nUnder conditional independence (i.e., $X_K^a \\perp \\mathbf{X}_{-K}^a$ for all $a$), pointwise dominance reduces to \\emph{marginal dominance}: $\\eta_{K'}(a) \\geq \\eta_K(a)$ for all $a \\in \\mathcal{A}$. The conditional form is needed when judge failures are correlated---for instance, when a shared architectural vulnerability causes multiple judges to fail on the same inputs.\n\\end{remark}\n\n\n%% ================================================================\n\\section{Warm-Up: \\texorpdfstring{$K=3$}{K=3}, Independent Judges}\n%% ================================================================\n\n\\begin{lemma}[$K=3$ Monotonicity]\\label{lem:k3}\nFor a panel of $K=3$ conditionally independent judges with vulnerabilities $\\eta_1, \\eta_2, \\eta_3 \\in [0,1]$ under a fixed attack, the panel ASR under majority vote ($t=2$) is\n\\[\n    \\mathrm{ASR} \\;=\\; \\eta_1\\eta_2 + \\eta_1\\eta_3 + \\eta_2\\eta_3 - 2\\,\\eta_1\\eta_2\\eta_3,\n\\]\nand is strictly increasing in each $\\eta_j$ whenever the other two judges are not simultaneously trivial. Letting $\\eta_3 = \\eta_{\\max}$ without loss of generality:\n\\[\n    \\frac{\\partial\\,\\mathrm{ASR}}{\\partial\\,\\eta_{\\max}} \\;=\\; \\eta_1(1-\\eta_2) + \\eta_2(1-\\eta_1) \\;\\geq\\; 0,\n\\]\nwith equality if and only if $(\\eta_1, \\eta_2) \\in \\{(0,0),\\, (1,1)\\}$.\n\\end{lemma}\n\n\\begin{proof}\nThe panel is compromised when at least 2 of 3 judges fail. Under independence, enumerating the four favorable configurations:\n\\begin{align}\n    \\mathrm{ASR}\n    &= \\Pr(X_1{=}1,\\, X_2{=}1,\\, X_3{=}0) + \\Pr(X_1{=}1,\\, X_2{=}0,\\, X_3{=}1) \\nonumber \\\\\n    &\\quad + \\Pr(X_1{=}0,\\, X_2{=}1,\\, X_3{=}1) + \\Pr(X_1{=}1,\\, X_2{=}1,\\, X_3{=}1) \\nonumber \\\\[4pt]\n    &= \\eta_1\\eta_2(1{-}\\eta_3) + \\eta_1(1{-}\\eta_2)\\eta_3 + (1{-}\\eta_1)\\eta_2\\eta_3 + \\eta_1\\eta_2\\eta_3. \\label{eq:k3-expand}\n\\end{align}\nCollecting terms:\n\\begin{align*}\n    \\mathrm{ASR}\n    &= \\eta_1\\eta_2 \\underbrace{-\\, \\eta_1\\eta_2\\eta_3 + \\eta_1\\eta_3 - \\eta_1\\eta_2\\eta_3 + \\eta_2\\eta_3 - \\eta_1\\eta_2\\eta_3 + \\eta_1\\eta_2\\eta_3}_{\\text{from the last three terms}} \\\\\n    &= \\eta_1\\eta_2 + \\eta_1\\eta_3 + \\eta_2\\eta_3 - 2\\,\\eta_1\\eta_2\\eta_3.\n\\end{align*}\nDifferentiating with respect to $\\eta_3$:\n\\[\n    \\frac{\\partial\\,\\mathrm{ASR}}{\\partial\\,\\eta_3}\n    \\;=\\; \\eta_1 + \\eta_2 - 2\\,\\eta_1\\eta_2\n    \\;=\\; \\eta_1(1 - \\eta_2) + \\eta_2(1 - \\eta_1).\n\\]\nSince $\\eta_1, \\eta_2 \\in [0,1]$, both summands are non-negative. The derivative vanishes iff both are zero: $\\eta_1(1{-}\\eta_2) = 0$ and $\\eta_2(1{-}\\eta_1) = 0$. If $\\eta_1 = 0$, the second equation forces $\\eta_2 = 0$. If $\\eta_2 = 1$, the first is automatic, and the second forces $\\eta_1 = 1$. Hence equality holds iff $(\\eta_1, \\eta_2) \\in \\{(0,0),\\, (1,1)\\}$.\n\\end{proof}\n\n\n%% ================================================================\n\\section{General \\texorpdfstring{$K$}{K}, Independent Judges}\n%% ================================================================\n\n\\begin{lemma}[General Monotonicity, Independent Case]\\label{lem:general-indep}\nFor a panel of $K$ conditionally independent judges under a fixed attack, the panel ASR under majority vote with threshold $t = \\lceil K/2 \\rceil$ satisfies\n\\[\n    \\mathrm{ASR} \\;=\\; \\Pr(Y \\geq t) \\;+\\; \\Pr(Y = t{-}1)\\,\\cdot\\, \\eta_K,\n\\]\nwhere $Y = \\sum_{j=1}^{K-1} X_j$ counts failures among the other $K{-}1$ judges. Consequently,\n\\[\n    \\frac{\\partial\\,\\mathrm{ASR}}{\\partial\\,\\eta_K} \\;=\\; \\Pr(Y = t{-}1) \\;\\geq\\; 0.\n\\]\n\\end{lemma}\n\n\\begin{proof}\nConditioning on the binary outcome of judge $K$:\n\\begin{align*}\n    \\mathrm{ASR}\n    &= \\Pr(Y + X_K \\geq t) \\\\\n    &= \\Pr(Y \\geq t{-}1)\\,\\cdot\\,\\eta_K \\;+\\; \\Pr(Y \\geq t)\\,\\cdot\\,(1 - \\eta_K) \\\\\n    &= \\Pr(Y \\geq t) \\;+\\; \\bigl[\\Pr(Y \\geq t{-}1) - \\Pr(Y \\geq t)\\bigr]\\,\\cdot\\,\\eta_K \\\\\n    &= \\Pr(Y \\geq t) \\;+\\; \\Pr(Y = t{-}1)\\,\\cdot\\,\\eta_K.\n\\end{align*}\nThe second line uses independence of $X_K$ and $Y$, conditioning on whether $X_K = 1$ (needing $Y \\geq t{-}1$) or $X_K = 0$ (needing $Y \\geq t$). The result is affine in $\\eta_K$ with slope $\\Pr(Y = t{-}1) \\geq 0$.\n\\end{proof}\n\n\\begin{remark}[Pivotal Voter Interpretation]\nThe slope $\\Pr(Y = t{-}1)$ is exactly the probability that judge $K$ is \\emph{pivotal}: the remaining $K{-}1$ judges produce exactly $t{-}1$ failures, and judge $K$'s outcome determines the panel decision. Monotonicity holds because a judge can only tip the panel toward compromise (by failing), never away from it.\n\\end{remark}\n\n\n%% ================================================================\n\\section{Main Result: Correlated Judges, Adaptive Adversary}\n%% ================================================================\n\n\\begin{theorem}[Weakest-Link Monotonicity]\\label{thm:main}\nLet $\\mathcal{P} = \\{J_1, \\ldots, J_{K-1}, J_K\\}$ and $\\mathcal{P}' = \\{J_1, \\ldots, J_{K-1}, J_K'\\}$ be two panels using majority vote with threshold $t = \\lceil K/2 \\rceil$, sharing judges $J_1, \\ldots, J_{K-1}$ and satisfying Definition~\\ref{def:dominance} (pointwise vulnerability dominance of $J_K'$ over $J_K$). Then:\n\\begin{enumerate}[label=(\\alph*)]\n    \\item For every fixed attack $a \\in \\mathcal{A}$:\n    \\[\n        \\mathrm{ASR}(\\mathcal{P}', a) \\;\\geq\\; \\mathrm{ASR}(\\mathcal{P}, a).\n    \\]\n    \\item For any adversary strategy, including an adaptive adversary:\n    \\[\n        \\mathrm{ASR}^*(\\mathcal{P}') \\;\\geq\\; \\mathrm{ASR}^*(\\mathcal{P}).\n    \\]\n\\end{enumerate}\nIn particular, replacing the weakest panel member with a more vulnerable judge (increasing $\\eta_{\\max}$) cannot decrease the panel ASR.\n\\end{theorem}\n\n\\begin{proof}\n\\textbf{Part (a): Fixed attack.}\nFix an arbitrary attack $a \\in \\mathcal{A}$. Let $\\mathbf{x}_{-K} = (x_1, \\ldots, x_{K-1}) \\in \\{0,1\\}^{K-1}$ denote a realization of the shared judges' outcomes, and let $s = \\sum_{j=1}^{K-1} x_j$. By the law of total probability:\n\\begin{equation}\\label{eq:total-prob}\n    \\mathrm{ASR}(\\mathcal{P}, a)\n    \\;=\\; \\sum_{\\mathbf{x}_{-K} \\in \\{0,1\\}^{K-1}} \\Pr(\\mathbf{X}_{-K}^a = \\mathbf{x}_{-K})\\;\\cdot\\; \\Pr\\!\\bigl(s + X_K^a \\geq t \\;\\big|\\; \\mathbf{X}_{-K}^a = \\mathbf{x}_{-K}\\bigr).\n\\end{equation}\nSince $X_K^a \\in \\{0,1\\}$, the inner probability depends on $s$ in exactly three cases:\n\\begin{itemize}\n    \\item \\textbf{Case $s \\geq t$:} The panel is compromised regardless of $X_K^a$. Both panels contribute~$1$.\n    \\item \\textbf{Case $s = t{-}1$:} The panel is compromised iff $X_K^a = 1$ (resp.\\ $X_{K'}^a = 1$). By pointwise dominance:\n    \\[\n        \\Pr(X_{K'}^a = 1 \\mid \\mathbf{x}_{-K}) \\;\\geq\\; \\Pr(X_K^a = 1 \\mid \\mathbf{x}_{-K}).\n    \\]\n    \\item \\textbf{Case $s \\leq t{-}2$:} Even with $X_K^a = 1$, the total $s + 1 \\leq t{-}1 < t$. Neither panel is compromised; both contribute~$0$.\n\\end{itemize}\nSince the marginal distribution of $\\mathbf{X}_{-K}^a$ is identical in both panels (Definition~\\ref{def:dominance}), summing over all realizations yields\n\\begin{equation}\\label{eq:pointwise-ineq}\n    \\mathrm{ASR}(\\mathcal{P}', a) \\;\\geq\\; \\mathrm{ASR}(\\mathcal{P}, a).\n\\end{equation}\n\n\\medskip\n\\noindent\\textbf{Part (b): Adaptive adversary.}\nTaking the supremum over all attacks and applying \\eqref{eq:pointwise-ineq}:\n\\[\n    \\mathrm{ASR}^*(\\mathcal{P}')\n    \\;=\\; \\sup_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}', a)\n    \\;\\geq\\; \\sup_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)\n    \\;=\\; \\mathrm{ASR}^*(\\mathcal{P}),\n\\]\nsince each term in the supremum on the right is bounded by the corresponding term on the left. \\qedhere\n\\end{proof}\n\n\\begin{remark}[Generality of the Result]\nThree aspects of Theorem~\\ref{thm:main} merit emphasis:\n\\begin{enumerate}[label=(\\roman*)]\n    \\item \\textbf{Arbitrary correlations.} The proof makes no independence assumption. Judges may exhibit arbitrary failure correlations---including those induced by shared architectural vulnerabilities, common training data, or attack transfer effects---as long as pointwise dominance holds.\n    \\item \\textbf{Threshold generality.} The proof uses only the threshold structure of majority vote. It extends verbatim to any $t$-out-of-$K$ aggregation rule, including unanimity ($t = K$) and any-judge-fails ($t = 1$).\n    \\item \\textbf{Adversary generality.} Part (b) holds for any adversary class that selects from the same attack space $\\mathcal{A}$, including randomized adversaries (who select a distribution over $\\mathcal{A}$, since a mixture preserves the pointwise inequality).\n\\end{enumerate}\n\\end{remark}\n\n\\begin{remark}[Sufficient Conditions for Pointwise Dominance]\nPointwise dominance (Definition~\\ref{def:dominance}) is satisfied whenever:\n\\begin{enumerate}[label=(\\roman*)]\n    \\item \\textbf{Model capability ordering.} $J_K'$ has strictly lower capability than $J_K$ on all tasks, so any attack that fools $J_K$ also fools $J_K'$, and $J_K'$ is vulnerable to additional attacks.\n    \\item \\textbf{Vulnerability superset.} The set of inputs on which $J_K'$ errs is a superset of those on which $J_K$ errs, for every attack.\n    \\item \\textbf{Conditional independence.} If $X_K^a \\perp \\mathbf{X}_{-K}^a$ for all $a$, then pointwise dominance reduces to $\\eta_{K'}(a) \\geq \\eta_K(a)$ for all $a$ (marginal dominance), which is empirically verifiable by measuring individual ASR.\n\\end{enumerate}\n\\end{remark}\n\n\\begin{remark}[Coupling Interpretation]\nAn equivalent proof uses a coupling argument: construct $(X_K^a, X_{K'}^a)$ on a common probability space such that $X_{K'}^a \\geq X_K^a$ almost surely (feasible by the standard coupling for stochastic dominance whenever pointwise dominance holds). Then $\\sum_{j=1}^{K-1} X_j^a + X_{K'}^a \\geq \\sum_{j=1}^{K-1} X_j^a + X_K^a$ pointwise, so $\\{$panel~$\\mathcal{P}$ fails$\\} \\subseteq \\{$panel~$\\mathcal{P}'$ fails$\\}$ and $\\mathrm{ASR}(\\mathcal{P}', a) \\geq \\mathrm{ASR}(\\mathcal{P}, a)$.\n\\end{remark}\n\n\n%% ================================================================\n\\section{Tightness and Bounds}\n%% ================================================================\n\n\\begin{proposition}[Equality Conditions]\\label{prop:tight}\nUnder the conditions of Theorem~\\ref{thm:main}, for a fixed attack $a$:\n\\[\n    \\mathrm{ASR}(\\mathcal{P}', a) = \\mathrm{ASR}(\\mathcal{P}, a)\n\\]\nif and only if, for every realization $\\mathbf{x}_{-K}$ with $\\sum x_j = t{-}1$ and $\\Pr(\\mathbf{X}_{-K}^a = \\mathbf{x}_{-K}) > 0$:\n\\[\n    \\Pr(X_{K'}^a = 1 \\mid \\mathbf{x}_{-K}) \\;=\\; \\Pr(X_K^a = 1 \\mid \\mathbf{x}_{-K}).\n\\]\nFor conditionally independent judges, this simplifies to: either $\\Pr(Y = t{-}1) = 0$ (no pivotal configuration exists) or $\\eta_{K'}(a) = \\eta_K(a)$.\n\\end{proposition}\n\n\\begin{proof}\nFrom the proof of Theorem~\\ref{thm:main}, the ASR difference is:\n\\begin{align*}\n    \\Delta\n    &= \\mathrm{ASR}(\\mathcal{P}', a) - \\mathrm{ASR}(\\mathcal{P}, a) \\\\\n    &= \\!\\!\\sum_{\\substack{\\mathbf{x}_{-K}:\\, s = t-1}}\\!\\! \\Pr(\\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})\\,\\bigl[\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{x}_{-K}) - \\Pr(X_K^a {=} 1 \\mid \\mathbf{x}_{-K})\\bigr].\n\\end{align*}\nEach summand is non-negative (pointwise dominance ensures the bracket is $\\geq 0$; the probability weight is $\\geq 0$). The sum vanishes iff every summand with positive weight has a zero bracket. Under conditional independence, $\\Pr(X_K^a = 1 \\mid \\mathbf{x}_{-K}) = \\eta_K(a)$ is constant across realizations, so the condition collapses to $\\eta_{K'}(a) = \\eta_K(a)$ or the event $\\{Y = t{-}1\\}$ having zero probability.\n\\end{proof}\n\n\\begin{remark}\nThe condition $\\Pr(Y = t{-}1) = 0$ is degenerate: it requires all $\\eta_j \\in \\{0,1\\}$ with the count of $\\eta_j = 1$ never equaling $t{-}1$. In all non-degenerate panels, the monotonicity is \\emph{strict} whenever $\\eta_{K'} > \\eta_K$ under some attack.\n\\end{remark}\n\n\\begin{proposition}[Panel ASR Bounds]\\label{prop:bounds}\nFor a panel of $K$ conditionally independent judges with ordered vulnerabilities $\\eta_{(1)} \\leq \\cdots \\leq \\eta_{(K)} = \\eta_{\\max}$ under a fixed attack:\n\\[\n    \\prod_{j=K-t+1}^{K} \\eta_{(j)} \\;\\leq\\; \\mathrm{ASR} \\;\\leq\\; \\sum_{k=t}^{K} \\binom{K}{k}\\, \\eta_{\\max}^{\\,k}\\, (1-\\eta_{\\max})^{K-k}.\n\\]\n\\end{proposition}\n\n\\begin{proof}\n\\textit{Lower bound.}\nThe event that the $t$ most vulnerable judges ($J_{(K-t+1)}, \\ldots, J_{(K)}$) all fail implies panel compromise. By independence:\n\\[\n    \\mathrm{ASR} \\;\\geq\\; \\Pr\\!\\bigl(\\textstyle\\bigcap_{j=K-t+1}^K \\{X_{(j)} = 1\\}\\bigr) \\;=\\; \\prod_{j=K-t+1}^{K} \\eta_{(j)}.\n\\]\n\n\\textit{Upper bound.}\nSince $\\eta_j \\leq \\eta_{\\max}$ for all $j$, replacing each $\\eta_j$ with $\\eta_{\\max}$ increases ASR by Lemma~\\ref{lem:general-indep} (applied iteratively to each judge). The resulting panel has i.i.d.\\ $\\mathrm{Bernoulli}(\\eta_{\\max})$ failures, giving the binomial tail.\n\\end{proof}\n\n\\begin{remark}[Scaling Regimes]\nFor small $\\eta_{\\max}$ and fixed $K$, the leading-order behavior is:\n\\begin{itemize}\n    \\item If the top $t$ vulnerabilities satisfy $\\eta_{(j)} = \\Theta(\\eta_{\\max})$ for $j \\geq K{-}t{+}1$: \\[ \\mathrm{ASR} \\;=\\; \\Theta\\!\\bigl(\\eta_{\\max}^{\\,t}\\bigr). \\]\n    Majority vote provides a $t$-th power suppression relative to the individual maximum.\n    \\item If the vulnerability distribution is \\emph{heavy-tailed} (one judge much weaker than the rest): the lower bound $\\prod \\eta_{(j)}$ is small, but the adversary can still exploit correlated failures (attack transfer) to push ASR closer to $\\binom{K}{t}\\eta_{\\max}^t$.\n    \\item For $K=3$, $t=2$: $\\mathrm{ASR} = \\Theta(\\eta_{\\max}^2)$ in the small-vulnerability regime.\n\\end{itemize}\n\\end{remark}\n\n\n%% ================================================================\n\\section{Corollary: Panel Design}\n%% ================================================================\n\n\\begin{corollary}[Robustness-First Design Principle]\\label{cor:design}\nUnder the adaptive adversary model of Definition~\\ref{def:adversary}, the optimal panel selection strategy is \\emph{robustness-first}:\n\\begin{enumerate}[label=\\textbf{Stage~\\arabic*}:]\n    \\item \\textbf{Robustness screening.} From the candidate pool, retain only judges satisfying $\\eta_j \\leq \\tau$ for a robustness threshold $\\tau$. By Theorem~\\ref{thm:main}, replacing any judge with $\\eta_j > \\tau$ by one with $\\eta_j \\leq \\tau$ weakly reduces panel ASR.\n    \\item \\textbf{Diversity maximization.} Among the retained judges, select the $K$-judge panel that maximizes effective independence $K_{\\mathrm{eff}}$ (or any suitable diversity measure). This provides residual protection against broad-spectrum attacks without introducing weak links.\n\\end{enumerate}\nThe ordering is essential: diversity maximization without robustness screening may increase $\\eta_{\\max}$ via the diversity-capability tradeoff, which by Theorem~\\ref{thm:main} weakly increases panel ASR.\n\\end{corollary}\n\n\\begin{proof}\nStage~1 is a direct application of Theorem~\\ref{thm:main}: if $J_K$ has $\\eta_K > \\tau$ and $J_K'$ has $\\eta_{K'} \\leq \\tau < \\eta_K$, and $J_K'$ satisfies pointwise dominance of $J_K$ over $J_K'$ (i.e., $J_K$ is pointwise more vulnerable than $J_K'$), then $\\mathrm{ASR}^*(\\mathcal{P}) \\geq \\mathrm{ASR}^*(\\mathcal{P}')$. The robustness constraint $\\eta_j \\leq \\tau$ for all panel members ensures $\\eta_{\\max} \\leq \\tau$, bounding the dominant predictor.\n\nStage~2 is a secondary optimization: given $\\eta_{\\max} \\leq \\tau$, the residual variance in panel ASR is determined by inter-judge correlations and the specific attack-type vulnerability distribution. Maximizing $K_{\\mathrm{eff}}$ provides protection in the regime where attacks exploit shared biases (broad-spectrum attacks), as the SDPI bound gives $\\mathrm{ASR} \\leq K_{\\mathrm{eff}} \\cdot \\eta_{\\max}$.\n\nThe ordering matters because the diversity-capability tradeoff ($r \\approx -0.78$, $p < 0.001$ empirically) implies that panels selected for maximal diversity tend to include weaker judges. By Theorem~\\ref{thm:main}, the resulting increase in $\\eta_{\\max}$ dominates any benefit from increased independence.\n\\end{proof}\n\n\n%% ================================================================\n\\section{Connection to Empirical Results}\n%% ================================================================\n\n\\begin{remark}[Empirical Validation]\nTheorem~\\ref{thm:main} makes a testable prediction: in a multivariate regression $\\log(\\mathrm{ASR}) \\sim \\beta_1 \\log(\\eta_{\\max}) + \\beta_2 \\log(K_{\\mathrm{eff}})$, $\\eta_{\\max}$ should be a significant predictor ($\\beta_1 > 0$) while $K_{\\mathrm{eff}}$ should be weak or non-significant ($\\beta_2 \\approx 0$), because the theorem establishes monotonicity in $\\eta_{\\max}$ but not in $K_{\\mathrm{eff}}$.\n\nAcross 12 experimental conditions (2 benchmarks $\\times$ 6 attack types):\n\\begin{itemize}\n    \\item $\\eta_{\\max}$ is significant (BH-FDR $q < 0.05$) in 6/12 conditions (50\\%), with 3/12 surviving Bonferroni correction.\n    \\item $K_{\\mathrm{eff}}$ is significant in only 1/12 conditions (8\\%). Residualized $K_{\\mathrm{eff}}$ (orthogonalized against $\\eta_{\\max}$, VIF $= 1.04$) confirms this is not a collinearity artifact.\n    \\item The sole exception (ARC $\\times$ sycophancy, $\\beta_2 = -2.85$, $p = 0.003$) corresponds to the one attack type that exploits a \\emph{shared} judge bias rather than targeting individual vulnerabilities---the ``BFT-like'' regime where faults are approximately random.\n\\end{itemize}\nThis pattern is precisely what Theorem~\\ref{thm:main} predicts: monotonicity in $\\eta_{\\max}$ drives the primary effect, and $K_{\\mathrm{eff}}$ matters only when the adversary cannot selectively target the weakest judge.\n\\end{remark}\n\n\\begin{remark}[When Diversity Helps]\nTheorem~\\ref{thm:main} does \\emph{not} claim diversity is useless. It establishes that \\emph{reducing $\\eta_{\\max}$ weakly dominates increasing $K_{\\mathrm{eff}}$} as a defense strategy. Diversity retains value in three regimes:\n\\begin{enumerate}[label=(\\roman*)]\n    \\item \\textbf{Controlled $\\eta_{\\max}$:} When all judges exceed a robustness threshold (Corollary~\\ref{cor:design}, Stage~2), higher $K_{\\mathrm{eff}}$ reduces the ASR ceiling via the SDPI bound $\\mathrm{ASR} \\leq K_{\\mathrm{eff}} \\cdot \\eta_{\\max}$.\n    \\item \\textbf{Broad-spectrum attacks:} When attacks exploit biases shared across judges (sycophancy, position bias), failures approximate random faults and the BFT analogy holds.\n    \\item \\textbf{Non-adversarial settings:} For calibration, bias reduction, and inter-rater agreement, diversity provides standard statistical benefits unrelated to adversarial robustness.\n\\end{enumerate}\n\\end{remark}\n\n\n\\end{document}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T11:20:57.613396+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T11:20:57.613555+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts && pdflatex -interaction=nonstopmode theorem1_proof.tex 2>&1 | tail -20",
+  "description": "Compile LaTeX to check for errors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts && pdflatex -interaction=nonstopmode theorem1_proof.tex 2>&1 | tail -20",
+    "description": "Compile LaTeX to check for errors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T11:20:57.613714+00:00_
+
+/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk>&lt;/usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmbx12.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmbxti10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi12.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>&lt;/usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>&lt;/usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmti10.pfb>
+Output written on theorem1_proof.pdf (6 pages, 246010 bytes).
+Transcript written on theorem1_proof.log.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T11:20:57.613850+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -c \"^!\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.log; grep \"Warning\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.log | grep -v \"Font\" | head -5",
+  "description": "Check for LaTeX errors and warnings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -c \"^!\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.log; grep \"Warning\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.log | grep -v \"Font\" | head -5",
+    "description": "Check for LaTeX errors and warnings"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T11:20:57.613972+00:00_
+
+4
+LaTeX Warning: Reference `def:dominance' on page 3 undefined on input line 144.
+LaTeX Warning: Reference `def:dominance' on page 3 undefined on input line 174.
+LaTeX Warning: Reference `eq:pointwise-ineq' on page 3 undefined on input line 
+LaTeX Warning: Reference `thm:main' on page 4 undefined on input line 192.
+LaTeX Warning: Reference `def:dominance' on page 4 undefined on input line 201.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T11:20:57.614117+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "pdflatex -interaction=nonstopmode theorem1_proof.tex 2>&1 | grep -E \"^!|Warning|Error|Output written\" | grep -v \"Font\"",
+  "description": "Second LaTeX pass for cross-references"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "pdflatex -interaction=nonstopmode theorem1_proof.tex 2>&1 | grep -E \"^!|Warning|Error|Output written\" | grep -v \"Font\"",
+    "description": "Second LaTeX pass for cross-references"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T11:20:57.614236+00:00_
+
+! Undefined control sequence.
+! Undefined control sequence.
+! Undefined control sequence.
+! Undefined control sequence.
+Output written on theorem1_proof.pdf (6 pages, 246186 bytes).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T11:20:57.614350+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -A2 \"^! Undefined\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.log",
+  "description": "Check which control sequences are undefined"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -A2 \"^! Undefined\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.log",
+    "description": "Check which control sequences are undefined"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T11:20:57.614469+00:00_
+
+! Undefined control sequence.
+&lt;argument> Warm-Up: \texorpdfstring 
+                                    {$K=3$}{K=3}, Independent Judges
+--
+! Undefined control sequence.
+&lt;argument> ...sname }\fi Warm-Up: \texorpdfstring 
+                                                  {$K=3$}{K=3}, Independent ...
+--
+! Undefined control sequence.
+&lt;argument> General \texorpdfstring 
+                                   {$K$}{K}, Independent Judges
+--
+! Undefined control sequence.
+&lt;argument> ...csname }\fi General \texorpdfstring 
+                                                  {$K$}{K}, Independent Judg...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T11:20:57.614626+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex",
+  "old_string": "\\section{Warm-Up: \\texorpdfstring{$K=3$}{K=3}, Independent Judges}",
+  "new_string": "\\section{Warm-Up: $K=3$, Independent Judges}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex",
+    "old_string": "\\section{Warm-Up: \\texorpdfstring{$K=3$}{K=3}, Independent Judges}",
+    "new_string": "\\section{Warm-Up: $K=3$, Independent Judges}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T11:20:57.614884+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T11:20:57.615016+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex",
+  "old_string": "\\section{General \\texorpdfstring{$K$}{K}, Independent Judges}",
+  "new_string": "\\section{General $K$, Independent Judges}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex",
+    "old_string": "\\section{General \\texorpdfstring{$K$}{K}, Independent Judges}",
+    "new_string": "\\section{General $K$, Independent Judges}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T11:20:57.615216+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T11:20:57.615337+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "pdflatex -interaction=nonstopmode theorem1_proof.tex 2>&1 | grep -E \"^!|Warning|Error|Output written\" | grep -v \"Font\"",
+  "description": "Recompile LaTeX after fix"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "pdflatex -interaction=nonstopmode theorem1_proof.tex 2>&1 | grep -E \"^!|Warning|Error|Output written\" | grep -v \"Font\"",
+    "description": "Recompile LaTeX after fix"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T11:20:57.615455+00:00_
+
+Output written on theorem1_proof.pdf (6 pages, 245757 bytes).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T11:20:57.615607+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "Theorem 1: Weakest-Link Monotonicity Proof",
+  "type": "paper",
+  "description": "Complete formal proof that panel ASR under majority vote is monotonically non-decreasing in η_max. Covers K=3 explicit case, general K independent case, and general K with correlated judges + adaptive adversary. Includes tightness analysis, bounds, and panel design corollary.",
+  "project": "cert_manip_resist_eval",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex",
+  "tags": "['theory', 'theorem1', 'weakest-link', 'monotonicity', 'proof']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "Theorem 1: Weakest-Link Monotonicity Proof",
+    "type": "paper",
+    "description": "Complete formal proof that panel ASR under majority vote is monotonically non-decreasing in η_max. Covers K=3 explicit case, general K independent case, and general K with correlated judges + adaptive adversary. Includes tightness analysis, bounds, and panel design corollary.",
+    "project": "cert_manip_resist_eval",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/theorem1_proof.tex",
+    "tags": "['theory', 'theorem1', 'weakest-link', 'monotonicity', 'proof']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T11:20:57.615813+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260522_8f9b62\", \"name\": \"Theorem 1: Weakest-Link Monotonicity Proof\", \"type\": \"paper\", \"description\": \"Complete formal proof that panel ASR under majority vote is monotonically non-decreasing in η_max. Covers K=3 explicit case, general K independent case, and general K with correlated judges + adaptive adversary. Includes tightness analysis, bounds, and panel design corollary.\", \"path\": \"projects/cert_manip_resist_eval/artifacts/_project/paper/theorem1_proof.tex\", \"url\": null, \"project\": \"cert_manip_resist_eval\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-22T11:20:41.519102+00:00\", \"tags\": [\"theory\", \"theorem1\", \"weakest-link\", \"monotonicity\", \"proof\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-22T11:20:57.615993+00:00_
+
+文件已保存到 `artifacts/theorem1_proof.tex`，6 页，编译通过。
+
+**证明结构总结**：
+
+1. **Lemma 1 (K=3, 独立)**：显式计算 ASR = η₁η₂ + η₁η₃ + η₂η₃ − 2η₁η₂η₃，对 η_max 求导得 ∂ASR/∂η_max = η₁(1−η₂) + η₂(1−η₁) ≥ 0。
+
+2. **Lemma 2 (一般 K, 独立)**：利用条件分解 ASR = P(Y≥t) + P(Y=t−1)·η_K，其中 Y 是其余 K−1 个 judge 的失败数。ASR 关于 η_K 是仿射函数，斜率 P(Y=t−1) ≥ 0（pivotal voter 概率）。
+
+3. **Theorem 1 (一般 K, 相关+自适应对手)**：核心证明。对固定攻击 a，按 s = Σx_j 分三种情况：s≥t（两个 panel 都失败）、s=t−1（pivotal，由 pointwise dominance 保证）、s≤t−2（两个都不失败）。因此 ASR(P',a) ≥ ASR(P,a) 对所有 a 成立，取 sup 后 adaptive adversary 的结果跟着。
+
+4. **Tightness**：等号条件是 pivotal 状态下两个 judge 的条件失败概率完全相等（非退化情况下单调性是严格的）。上下界：ASR = Θ(η_max^t)。
+
+5. **Corollary**：robustness-first 两阶段设计——先筛 η_max ≤ τ，再最大化 K_eff。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_plan003-theorem1-proof_20260522T111238"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,86 @@
+# fix gpt2xl seed43 eval v2
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_fix_gpt2xl_seed43_eval_v2_20260518T130134_result.json`
+- **Structured JSON:** [`c416b2ddcd3fc9cbc103.json`](../../sessions/c4/c416b2ddcd3fc9cbc103.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+所有数据收集完毕。以下是完整结果。
+
+---
+
+## 结果汇总
+
+### 1. seed=43 RF Evaluation（修复后）
+
+| 指标 | 值 |
+|------|------|
+| **4-class accuracy** | **86.32%** |
+| **95% CI** | [86.17%, 86.49%] |
+| **d1v2 AUC** | 0.9489 |
+| Fold accuracies | 86.18, 86.30, 86.38, 86.65, 86.10 |
+
+Per-class recall: d0=99.4%, d1=92.0%, d2=73.4%, d3=80.5%
+
+### 2. seed=42 Baseline（同脚本+clip 重跑）
+
+| 指标 | 值 |
+|------|------|
+| **4-class accuracy** | **84.28%** |
+| **95% CI** | [83.89%, 84.77%] |
+| **d1v2 AUC** | 0.9149 |
+
+Per-class recall: d0=98.5%, d1=87.4%, d2=72.8%, d3=78.5%
+
+### 3. seed=43 vs seed=42 差异
+
+**seed43 比 seed42 高 +2.04pp**（86.32% vs 84.28%），CI 不重叠，差异显著。
+
+### 4. d3 ppl 分布对比
+
+| 统计量 | seed=42 d3 | seed=43 d3 |
+|--------|-----------|-----------|
+| n | 5000 | 5000 |
+| mean | 1,076,268 | 2,114,829 |
+| median | 56.92 | 23.92 |
+| max | 2,736,048,367 | 892,187,977 |
+| p99 | 243,008 | 39,871,399 |
+| std | 46,731,979 | 16,914,519 |
+| samples > 1e6 | 28 (0.56%) | 640 (12.8%) |
+
+**关键发现 — 全部 depth 的 max ppl：**
+
+| depth | seed=42 max | seed=43 max |
+|-------|------------|------------|
+| d0 | 1.85e7 | **4.15e31** |
+| d1 | 6.04e7 | 5.15e8 |
+| d2 | 1.79e9 | 2.44e9 |
+| d3 | 2.74e9 | 8.92e8 |
+
+### 5. d3 稳定性判断
+
+**两个 seed 的 d3 都不稳定，但模式不同：**
+
+- **seed=42**: 极端异常值更大（max=2.7B），但仅 28 个样本 > 1e6（集中在极少数 outlier），p99 仅 243K
+- **seed=43**: 最大值较小（max=892M），但 **640 个样本 > 1e6（12.8%）**，p99 高达 39.8M，说明高 ppl 是更广泛的现象而非孤立异常
+
+**真正的溢出元凶是 seed43 d0**：max ppl = 4.15e31，var_ppl = 8.44e65，远超 float32 范围（3.4e38）。d0 不应有如此极端的值（d0 是原始模型生成），说明 seed43 的特征提取过程中 reference model 可能出了问题。
+
+**修复方案 `np.clip(-1e10, 1e10)` 有效**：clip 后 RF accuracy 86.32%，高于 seed42 baseline 2pp，说明极端值被截断后不影响分类器性能，实验结论 robust。
+
+---

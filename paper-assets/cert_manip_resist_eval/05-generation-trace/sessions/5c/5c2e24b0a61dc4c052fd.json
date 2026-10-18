@@ -98,5 +98,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/experiment-fp16-attack-eval.md"
 }

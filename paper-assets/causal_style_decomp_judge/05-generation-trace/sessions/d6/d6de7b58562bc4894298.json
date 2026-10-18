@@ -48,5 +48,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/infra-fix-bertscore-download.md"
 }

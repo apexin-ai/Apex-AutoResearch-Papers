@@ -1,0 +1,32 @@
+# deploy cqa1 gpu2 next
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_deploy_cqa1_gpu2_next_20260525T122734_result.json`
+- **Structured JSON:** [`eeb50dc9ce43afba3a75.json`](../../sessions/ee/eeb50dc9ce43afba3a75.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+部署完成。
+
+**总结：**
+- `eval_pi05_l2norm_k07_long_seed43_v3` 已在 cqa1-33015 GPU 2 上启动
+- tmux session 名：`eval_pi05_l2norm_k07_long_seed43_v3`
+- 配置：`--prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 43`
+- 模型正在从 `/root/autodl-tmp/pi05_libero_finetuned` 加载
+- Registry 状态已更新为 RUNNING
+
+---

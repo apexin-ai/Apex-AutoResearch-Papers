@@ -1,0 +1,2574 @@
+# analysis boolq hellaswag per example
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_analysis_boolq-hellaswag-per-example_20260520T125150.log`
+- **Structured JSON:** [`0000ae8d76e9e1536dec.json`](../../sessions/00/0000ae8d76e9e1536dec.json)
+
+## Before a recorded user message
+
+53 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a3e806ac-7b0a-4daa-a565-4b5e61ee54ad",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779294000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "77e1b411-d155-45bc-88d6-effca4ae7c58",
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this down. The user wants me to:
+
+1. Verify GDN h24-1 BoolQ anomaly (acc=0.489)
+2. Run per-example analysis on BoolQ and HellaSwag
+3. Save results as JSON files
+4. Output a summary table
+
+Let me start by checking the data on the server - first verifying the GDN h24-1 BoolQ issue and examining the jsonl structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "c440f506-50b9-4c74-a7b9-173d3e1cc71d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tm5cH3yEna6EctwNx94wuL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13701,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13701
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先验证 GDN h24-1 BoolQ 异常并探查 jsonl 结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "90195b5e-09af-497c-b061-60df47381b32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tm5cH3yEna6EctwNx94wuL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13701,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13701
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HsbbWPp1yFyrhpkfXmYun2`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "8355207a-9502-4efe-9754-5e12f75da8cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tm5cH3yEna6EctwNx94wuL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13701,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13701
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T12:52:04.553Z_
+
+<details><summary>↩ Tool result · `toolu_01HsbbWPp1yFyrhpkfXmYun2`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "5167606b-7fc2-4e30-83b3-7db9da2f3053",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the data structure and verifying the GDN h24-1 BoolQ anomaly. I'll run multiple read-only commands in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "87b05ac3-5b58-4f55-92b8-9c521a7a1a06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WxxNhuvnJfic5q5wG9YxsP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1431,
+      "cache_read_input_tokens": 25542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1431
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AutYn9G1jzLHX2fm8NKPGv`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -3 /root/entrainment_gated_ft/lm_eval_clean/boolq/GatedDeltaNet_1.3b_h24-1/samples/boolq.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "6e13b7b4-4b81-44a0-849e-56ada0bd34da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WxxNhuvnJfic5q5wG9YxsP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1431,
+      "cache_read_input_tokens": 25542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1431
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Er8hhnAdiQVy7BED3HW1KH`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -3 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/GatedDeltaNet_1.3b_pure/samples/hellaswag.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "6709ecbd-db9d-4cc0-bade-cd99222962bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WxxNhuvnJfic5q5wG9YxsP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1431,
+      "cache_read_input_tokens": 25542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1431
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011dVs5cVjTn2LoEp489jPjX`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/boolq/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "dd98bdac-1eb0-4ff5-b106-47dc72e4b28b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WxxNhuvnJfic5q5wG9YxsP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1431,
+      "cache_read_input_tokens": 25542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1431
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T12:52:11.413Z_
+
+<details><summary>↩ Tool result · `toolu_01AutYn9G1jzLHX2fm8NKPGv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/entrainment_gated_ft/lm_eval_clean/boolq/GatedDeltaNet_1.3b_h24-1/samples/boolq.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "3077d540-b1b0-45c3-bc91-6517a1374286",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/entrainment_gated_ft/lm_eval_clean/boolq/GatedDeltaNet_1.3b_h24-1/samples/boolq.jsonl' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/entrainment_gated_ft/lm_eval_clean/boolq/GatedDeltaNet_1.3b_h24-1/samples/boolq.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SLsq1KYAmjwwTJLCrDX1fh`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/hellaswag/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "89a82373-d4a0-42bd-baa2-463a809f9d22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WxxNhuvnJfic5q5wG9YxsP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1431,
+      "cache_read_input_tokens": 25542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1431
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T12:52:12.308Z_
+
+<details><summary>↩ Tool result · `toolu_01Er8hhnAdiQVy7BED3HW1KH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/entrainment_gated_ft/lm_eval_clean/hellaswag/GatedDeltaNet_1.3b_pure/samples/hellaswag.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "2eebd3d3-69d9-47aa-a238-2174eb970190",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/entrainment_gated_ft/lm_eval_clean/hellaswag/GatedDeltaNet_1.3b_pure/samples/hellaswag.jsonl' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/entrainment_gated_ft/lm_eval_clean/hellaswag/GatedDeltaNet_1.3b_pure/samples/hellaswag.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T12:52:13.178Z_
+
+<details><summary>↩ Tool result · `toolu_011dVs5cVjTn2LoEp489jPjX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "5575f83f-9044-4723-b266-b6c16c8fff49",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3B-100B-GatedDeltaNet-hybrid-12-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\\\n1.3B-100B-GatedDeltaNet-pure\\\\n1.3B-100B-HGRN2-hybrid-12-1\\\\n1.3B-100B-HGRN2-hybrid-24-1\\\\n1.3B-100B-HGRN2-hybrid-3-1\\\\n1.3B-100B-HGRN2-hybrid-6-1\\\\n1.3B-100B-HGRN2-pure\\\\n1.3B-100B-RetNet-hybrid-12-1\\\\n1.3B-100B-RetNet-hybrid-24-1\\\\n1.3B-100B-RetNet-hybrid-3-1\\\\n1.3B-100B-RetNet-hybrid-6-1\\\\n1.3B-100B-RetNet-pure\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T12:52:14.075Z_
+
+<details><summary>↩ Tool result · `toolu_01SLsq1KYAmjwwTJLCrDX1fh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "ea5bf993-308e-4036-937c-fbf76e3a5bff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3B-100B-GatedDeltaNet-hybrid-12-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\\\n1.3B-100B-GatedDeltaNet-pure\\\\n1.3B-100B-HGRN2-hybrid-12-1\\\\n1.3B-100B-HGRN2-hybrid-24-1\\\\n1.3B-100B-HGRN2-hybrid-3-1\\\\n1.3B-100B-HGRN2-hybrid-6-1\\\\n1.3B-100B-HGRN2-pure\\\\n1.3B-100B-RetNet-hybrid-12-1\\\\n1.3B-100B-RetNet-hybrid-24-1\\\\n1.3B-100B-RetNet-hybrid-3-1\\\\n1.3B-100B-RetNet-hybrid-6-1\\\\n1.3B-100B-RetNet-pure\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The model directory names are different from what was assumed. They use the format `1.3B-100B-GatedDeltaNet-hybrid-24-1` instead of `GatedDeltaNet_1.3b_h24-1`. Let me check the actual file structure inside these directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "4768867e-307b-4212-b25e-a98bf4d75d16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MPCFiWjY5jq3j5Tx2LYWjz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1681,
+      "cache_read_input_tokens": 26973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1681
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+目录命名和预期不同，实际格式是 `1.3B-100B-{ARCH}-{hybrid-X-1|pure}`。检查内部结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "19356c09-6e78-4a32-9330-159a36189590",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MPCFiWjY5jq3j5Tx2LYWjz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1681,
+      "cache_read_input_tokens": 26973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1681
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AmVA6CKetDqR8NLgT74GFQ`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "4d54fc4d-005f-466f-a424-72a0afcccdaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MPCFiWjY5jq3j5Tx2LYWjz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1681,
+      "cache_read_input_tokens": 26973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1681
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T12:52:20.696Z_
+
+<details><summary>↩ Tool result · `toolu_01AmVA6CKetDqR8NLgT74GFQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\nsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "a6152976-e485-425a-b475-3ee25aea331e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\\\nsamples\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\nsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DXbpHkrioSkh1A7QZE8hui`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/ -name \"*.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "1499b59c-0a62-4400-8278-e5f56c9c3496",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MPCFiWjY5jq3j5Tx2LYWjz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1681,
+      "cache_read_input_tokens": 26973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1681
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T12:52:21.810Z_
+
+<details><summary>↩ Tool result · `toolu_01DXbpHkrioSkh1A7QZE8hui`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/boolq.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "85119855-6dc1-4125-bb6d-bfeaa9cf3fdd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/boolq.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/boolq.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the files exist. Now let me check the sample structure and verify the GDN h24-1 BoolQ anomaly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "1bed8ea3-2310-4f70-8079-383c0cf24e45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FsskSTzAZaG9W9tJmYQaAJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 28654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S9X3zZi6Pa7NgfG6Tcpgwg`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/boolq.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "ad1444a9-6637-41c7-a2ff-57c418814964",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FsskSTzAZaG9W9tJmYQaAJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 28654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T12:52:26.322Z_
+
+<details><summary>↩ Tool result · `toolu_01S9X3zZi6Pa7NgfG6Tcpgwg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"question\\\": \\\"does ethanol take more energy make that produces\\\", \\\"passage\\\": \\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.\\\", \\\"idx\\\": 0, \\\"label\\\": 0}, \\\"target\\\": 0, \\\"arguments\\\": [[\\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.\\\\nQuestion: does ethanol take more energy make that produces?\\\\nAnswer:\\\", \\\" no\\\"], [\\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.\\\\nQuestion: does ethanol take more energy make that produces?\\\\nAnswer:\\\", \\\" yes\\\"]], \\\"resps\\\": [[[-3.640625, false]], [[-4.21875, false]]], \\\"filtered_resps\\\": [[-3.640625, false], [-4.21875, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\"], \\\"doc_hash\\\": \\\"34c12031b4c7298fa36fd4bd2d8f2a482ec2fa5b8849bf8bbbdbe15a26a8b0e5\\\", \\\"prompt_hash\\\": \\\"99815785e839d379cc9330a0be56ce32e4956ac9aae46759c9393be9f8301ab7\\\", \\\"target_hash\\\": \\\"5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9\\\", \\\"acc\\\": 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "6632f52f-d950-4c0a-ab77-d9594d43e014",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"question\\\\\\\": \\\\\\\"does ethanol take more energy make that produces\\\\\\\", \\\\\\\"passage\\\\\\\": \\\\\\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.\\\\\\\", \\\\\\\"idx\\\\\\\": 0, \\\\\\\"label\\\\\\\": 0}, \\\\\\\"target\\\\\\\": 0, \\\\\\\"arguments\\\\\\\": [[\\\\\\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.\\\\\\\\nQuestion: does ethanol take more energy make that produces?\\\\\\\\nAnswer:\\\\\\\", \\\\\\\" no\\\\\\\"], [\\\\\\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.\\\\\\\\nQuestion: does ethanol take more energy make that produces?\\\\\\\\nAnswer:\\\\\\\", \\\\\\\" yes\\\\\\\"]], \\\\\\\"resps\\\\\\\": [[[-3.640625, false]], [[-4.21875, false]]], \\\\\\\"filtered_resps\\\\\\\": [[-3.640625, false], [-4.21875, false]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"acc\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"34c12031b4c7298fa36fd4bd2d8f2a482ec2fa5b8849bf8bbbdbe15a26a8b0e5\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"99815785e839d379cc9330a0be56ce32e4956ac9aae46759c9393be9f8301ab7\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9\\\\\\\", \\\\\\\"acc\\\\\\\": 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"question\\\": \\\"does ethanol take more energy make that produces\\\", \\\"passage\\\": \\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.\\\", \\\"idx\\\": 0, \\\"label\\\": 0}, \\\"target\\\": 0, \\\"arguments\\\": [[\\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.\\\\nQuestion: does ethanol take more energy make that produces?\\\\nAnswer:\\\", \\\" no\\\"], [\\\"Ethanol fuel -- All biomass goes through at least some of these steps: it needs to be grown, collected, dried, fermented, distilled, and burned. All of these steps require resources and an infrastructure. The total amount of energy input into the process compared to the energy released by burning the resulting ethanol fuel is known as the energy balance (or ``energy returned on energy invested''). Figures compiled in a 2007 report by National Geographic Magazine point to modest results for corn ethanol produced in the US: one unit of fossil-fuel energy is required to create 1.3 energy units from the resulting ethanol. The energy balance for sugarcane ethanol produced in Brazil is more favorable, with one unit of fossil-fuel energy required to create 8 from the ethanol. Energy balance estimates are not easily produced, thus numerous such reports have been generated that are contradictory. For instance, a separate survey reports that production of ethanol from sugarcane, which requires a tropical climate to grow productively, returns from 8 to 9 units of energy for each unit expended, as compared to corn, which only returns about 1.34 units of fuel energy for each unit of energy expended. A 2006 University of California Berkeley study, after analyzing six separate studies, concluded that producing ethanol from corn uses much less petroleum than producing gasoline.\\\\nQuestion: does ethanol take more energy make that produces?\\\\nAnswer:\\\", \\\" yes\\\"]], \\\"resps\\\": [[[-3.640625, false]], [[-4.21875, false]]], \\\"filtered_resps\\\": [[-3.640625, false], [-4.21875, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\"], \\\"doc_hash\\\": \\\"34c12031b4c7298fa36fd4bd2d8f2a482ec2fa5b8849bf8bbbdbe15a26a8b0e5\\\", \\\"prompt_hash\\\": \\\"99815785e839d379cc9330a0be56ce32e4956ac9aae46759c9393be9f8301ab7\\\", \\\"target_hash\\\": \\\"5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9\\\", \\\"acc\\\": 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q1yKmAyp9JnHrNtVSap3nH`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "483249d7-106a-47f3-ab54-1597207b9c9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FsskSTzAZaG9W9tJmYQaAJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 28654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T12:52:27.805Z_
+
+<details><summary>↩ Tool result · `toolu_01Q1yKmAyp9JnHrNtVSap3nH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"ind\\\": 24, \\\"activity_label\\\": \\\"Roof shingle removal\\\", \\\"ctx_a\\\": \\\"A man is sitting on a roof.\\\", \\\"ctx_b\\\": \\\"he\\\", \\\"ctx\\\": \\\"A man is sitting on a roof. he\\\", \\\"endings\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"source_id\\\": \\\"activitynet~v_-JhWjGDPHMY\\\", \\\"split\\\": \\\"val\\\", \\\"split_type\\\": \\\"indomain\\\", \\\"label\\\": \\\"3\\\", \\\"query\\\": \\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\"choices\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"gold\\\": 3}, \\\"target\\\": 3, \\\"arguments\\\": [[\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is using wrap to wrap a pair of skis.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is ripping level tiles off.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is holding a rubik's cube.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" starts pulling up roofing on a roof.\\\"]], \\\"resps\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\"filtered_resps\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\", \\\"prompt_hash\\\": \\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\", \\\"target_hash\\\": \\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\", \\\"acc\\\": 0.0, \\\"acc_norm\\\": 0.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "dda5223c-8c87-43de-8112-c8a839709746",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"ind\\\\\\\": 24, \\\\\\\"activity_label\\\\\\\": \\\\\\\"Roof shingle removal\\\\\\\", \\\\\\\"ctx_a\\\\\\\": \\\\\\\"A man is sitting on a roof.\\\\\\\", \\\\\\\"ctx_b\\\\\\\": \\\\\\\"he\\\\\\\", \\\\\\\"ctx\\\\\\\": \\\\\\\"A man is sitting on a roof. he\\\\\\\", \\\\\\\"endings\\\\\\\": [\\\\\\\"is using wrap to wrap a pair of skis.\\\\\\\", \\\\\\\"is ripping level tiles off.\\\\\\\", \\\\\\\"is holding a rubik's cube.\\\\\\\", \\\\\\\"starts pulling up roofing on a roof.\\\\\\\"], \\\\\\\"source_id\\\\\\\": \\\\\\\"activitynet~v_-JhWjGDPHMY\\\\\\\", \\\\\\\"split\\\\\\\": \\\\\\\"val\\\\\\\", \\\\\\\"split_type\\\\\\\": \\\\\\\"indomain\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"3\\\\\\\", \\\\\\\"query\\\\\\\": \\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\"choices\\\\\\\": [\\\\\\\"is using wrap to wrap a pair of skis.\\\\\\\", \\\\\\\"is ripping level tiles off.\\\\\\\", \\\\\\\"is holding a rubik's cube.\\\\\\\", \\\\\\\"starts pulling up roofing on a roof.\\\\\\\"], \\\\\\\"gold\\\\\\\": 3}, \\\\\\\"target\\\\\\\": 3, \\\\\\\"arguments\\\\\\\": [[\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is using wrap to wrap a pair of skis.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is ripping level tiles off.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is holding a rubik's cube.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" starts pulling up roofing on a roof.\\\\\\\"]], \\\\\\\"resps\\\\\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\\\\\"filtered_resps\\\\\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"acc\\\\\\\", \\\\\\\"acc_norm\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\\\\\", \\\\\\\"acc\\\\\\\": 0.0, \\\\\\\"acc_norm\\\\\\\": 0.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"ind\\\": 24, \\\"activity_label\\\": \\\"Roof shingle removal\\\", \\\"ctx_a\\\": \\\"A man is sitting on a roof.\\\", \\\"ctx_b\\\": \\\"he\\\", \\\"ctx\\\": \\\"A man is sitting on a roof. he\\\", \\\"endings\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"source_id\\\": \\\"activitynet~v_-JhWjGDPHMY\\\", \\\"split\\\": \\\"val\\\", \\\"split_type\\\": \\\"indomain\\\", \\\"label\\\": \\\"3\\\", \\\"query\\\": \\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\"choices\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"gold\\\": 3}, \\\"target\\\": 3, \\\"arguments\\\": [[\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is using wrap to wrap a pair of skis.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is ripping level tiles off.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is holding a rubik's cube.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" starts pulling up roofing on a roof.\\\"]], \\\"resps\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\"filtered_resps\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\", \\\"prompt_hash\\\": \\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\", \\\"target_hash\\\": \\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\", \\\"acc\\\": 0.0, \\\"acc_norm\\\": 0.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LMYYToMzmMkx79qqUeNsbi`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "wc -l /root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/boolq.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "400a29c7-d741-4a23-abc8-7684b0a8a6fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FsskSTzAZaG9W9tJmYQaAJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 28654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AVFSshFa6SKpAWN98ezvJU`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "wc -l /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "f6aae6e8-1644-4a4b-ba59-713f97558175",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FsskSTzAZaG9W9tJmYQaAJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 28654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 701
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T12:52:28.847Z_
+
+<details><summary>↩ Tool result · `toolu_01LMYYToMzmMkx79qqUeNsbi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3270 /root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/boolq.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "2e4442bd-ccb6-4718-9ad1-bb0b61b19b95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3270 /root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/boolq.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3270 /root/entrainment_gated_ft/lm_eval_clean/boolq/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/boolq.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T12:52:29.746Z_
+
+<details><summary>↩ Tool result · `toolu_01AVFSshFa6SKpAWN98ezvJU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"10042 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "ab6df237-7d5d-4e4b-aa67-b065a07b8e00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"10042 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"10042 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the structure:
+- BoolQ: `acc` field at top level, values 0.0 or 1.0. N=3270
+- HellaSwag: `acc` and `acc_norm` fields at top level. N=10042
+- Directory naming: `1.3B-100B-{ARCH}-{hybrid-X-1|pure}`
+
+Let me verify the GDN h24-1 BoolQ anomaly and check all models' BoolQ accuracy. Also, let me check if there's an existing ARC-Easy analysis for reference.
+
+
+I'll write a comprehensive analysis script to pull the GDN h24-1 BoolQ accuracy and compare it across all GDN configurations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "f7fd80ee-3e4a-42da-8de6-2417c1f24b2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FfnqZo4nsdzYM6w3CPvJGB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3340,
+      "cache_read_input_tokens": 29355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3340
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+结构确认：`acc` 字段在顶层（0.0/1.0），BoolQ N=3270，HellaSwag N=10042。目录命名为 `1.3B-100B-{ARCH}-{type}`。
+
+先快速验证 GDN h24-1 BoolQ 异常，同时检查已有 ARC-Easy 分析作为参考。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "5f3555d9-7b39-4fd5-81de-e0820828b8d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FfnqZo4nsdzYM6w3CPvJGB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3340,
+      "cache_read_input_tokens": 29355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3340
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E6baqrENLpNQKo1CPq5Dqw`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "python3 -c \"\nimport json, os\nbase = '/root/entrainment_gated_ft/lm_eval_clean/boolq'\nfor d in sorted(os.listdir(base)):\n    path = f'{base}/{d}/samples/boolq.jsonl'\n    if os.path.exists(path):\n        accs = [json.loads(l)['acc'] for l in open(path)]\n        print(f'{d}: acc={sum(accs)/len(accs):.4f} (N={len(accs)})')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "71b22e3f-8a3b-467e-8d0a-b54b259db19b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FfnqZo4nsdzYM6w3CPvJGB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3340,
+      "cache_read_input_tokens": 29355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3340
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T12:52:39.759Z_
+
+<details><summary>↩ Tool result · `toolu_01E6baqrENLpNQKo1CPq5Dqw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "7538aa6e-002e-4f98-a69b-b4f92117b38c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HPU6gNGjcukspMqWfZq8Xj`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "python3 -c \"\nimport json, os\nbase = '/root/entrainment_gated_ft/lm_eval_clean/hellaswag'\nfor d in sorted(os.listdir(base)):\n    path = f'{base}/{d}/samples/hellaswag.jsonl'\n    if os.path.exists(path):\n        accs = [json.loads(l)['acc'] for l in open(path)]\n        print(f'{d}: acc={sum(accs)/len(accs):.4f} (N={len(accs)})')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "db2dfd8e-4103-4994-abac-9730fa500e2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FfnqZo4nsdzYM6w3CPvJGB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3340,
+      "cache_read_input_tokens": 29355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3340
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T12:52:41.178Z_
+
+<details><summary>↩ Tool result · `toolu_01HPU6gNGjcukspMqWfZq8Xj`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "cfc8e892-6bf5-4393-a1ec-7f08389a5097",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01SRY3G5hj2JzVcmiS14Bv5r`</summary>
+
+```json
+{
+  "pattern": "**/artifacts/_project/data/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "548bfec0-11fb-4caa-9b44-518ba07a7d55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FfnqZo4nsdzYM6w3CPvJGB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3340,
+      "cache_read_input_tokens": 29355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3340
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T12:52:42.706Z_
+
+<details><summary>↩ Tool result · `toolu_01SRY3G5hj2JzVcmiS14Bv5r`</summary>
+
+```text
+artifacts/_project/data/convergence_table.csv
+artifacts/_project/data/per_example_table.csv
+artifacts/_project/data/gdn_sensitivity_table.csv
+artifacts/_project/data/decoupling_data.csv
+artifacts/_project/data/bca_ci_data.json
+artifacts/_project/data/confidence_margin_analysis.json
+artifacts/_project/data/confidence_margin_within_category.json
+artifacts/_project/data/retnet_hgrn2_only_decoupling.json
+artifacts/_project/data/jaccard_upper_bound.json
+artifacts/_project/data/arc_easy_per_example.json
+artifacts/_project/data/formal_multiplicity_metrics.json
+artifacts/_project/data/arc_easy_jaccard_analysis.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "0975e051-e1ab-4b03-88da-1fbc40a9b938",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/_project/data/convergence_table.csv",
+      "artifacts/_project/data/per_example_table.csv",
+      "artifacts/_project/data/gdn_sensitivity_table.csv",
+      "artifacts/_project/data/decoupling_data.csv",
+      "artifacts/_project/data/bca_ci_data.json",
+      "artifacts/_project/data/confidence_margin_analysis.json",
+      "artifacts/_project/data/confidence_margin_within_category.json",
+      "artifacts/_project/data/retnet_hgrn2_only_decoupling.json",
+      "artifacts/_project/data/jaccard_upper_bound.json",
+      "artifacts/_project/data/arc_easy_per_example.json",
+      "artifacts/_project/data/formal_multiplicity_metrics.json",
+      "artifacts/_project/data/arc_easy_jaccard_analysis.json"
+    ],
+    "durationMs": 23,
+    "numFiles": 12,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ssh_read_only blocks `open(`. I need to use ssh_execute for the Python scripts. Let me first quickly check the BoolQ accuracies using ssh_execute, and also look at the existing ARC-Easy analysis files for reference format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "50dce20f-ea24-4139-87ee-a9dfd4d5939b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABek3wgre6cfjLqEXMKvrh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 32695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1295
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+需要用 ssh_execute 跑 Python。同时检查已有 ARC-Easy 分析格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "79df81f6-f580-402e-a204-58ea1c22330e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABek3wgre6cfjLqEXMKvrh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 32695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1295
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0179QCXZQewEr6fFtHUCbNVX`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, os\nprint('=== BoolQ ===')\nbase = '/root/entrainment_gated_ft/lm_eval_clean/boolq'\nfor d in sorted(os.listdir(base)):\n    path = f'{base}/{d}/samples/boolq.jsonl'\n    if os.path.exists(path):\n        accs = [json.loads(l)['acc'] for l in open(path)]\n        print(f'{d}: acc={sum(accs)/len(accs):.4f} (N={len(accs)})')\nprint()\nprint('=== HellaSwag ===')\nbase = '/root/entrainment_gated_ft/lm_eval_clean/hellaswag'\nfor d in sorted(os.listdir(base)):\n    path = f'{base}/{d}/samples/hellaswag.jsonl'\n    if os.path.exists(path):\n        accs = [json.loads(l)['acc'] for l in open(path)]\n        print(f'{d}: acc={sum(accs)/len(accs):.4f} (N={len(accs)})')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "c21b9729-ea45-4cf1-9cb7-8eaaaa783453",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABek3wgre6cfjLqEXMKvrh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 32695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1295
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BMcb7qRR7c6XS6kciXDxJm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/arc_easy_per_example.json",
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "4321e79d-43a8-477e-9847-296b19ca19a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABek3wgre6cfjLqEXMKvrh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 32695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1295
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019T6MgZwBip6Aja983PskLG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/arc_easy_jaccard_analysis.json",
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "63f51d34-a4cf-440c-8f2f-4000c285e080",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABek3wgre6cfjLqEXMKvrh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 32695,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1295
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T12:52:54.298Z_
+
+<details><summary>↩ Tool result · `toolu_0179QCXZQewEr6fFtHUCbNVX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== BoolQ ===\\n1.3B-100B-GatedDeltaNet-hybrid-12-1: acc=0.6349 (N=3270)\\n1.3B-100B-GatedDeltaNet-hybrid-24-1: acc=0.4887 (N=3270)\\n1.3B-100B-GatedDeltaNet-hybrid-3-1: acc=0.6223 (N=3270)\\n1.3B-100B-GatedDeltaNet-hybrid-6-1: acc=0.5697 (N=3270)\\n1.3B-100B-GatedDeltaNet-pure: acc=0.5847 (N=3270)\\n1.3B-100B-HGRN2-hybrid-12-1: acc=0.6089 (N=3270)\\n1.3B-100B-HGRN2-hybrid-24-1: acc=0.6092 (N=3270)\\n1.3B-100B-HGRN2-hybrid-3-1: acc=0.6358 (N=3270)\\n1.3B-100B-HGRN2-hybrid-6-1: acc=0.6174 (N=3270)\\n1.3B-100B-HGRN2-pure: acc=0.5737 (N=3270)\\n1.3B-100B-RetNet-hybrid-12-1: acc=0.6058 (N=3270)\\n1.3B-100B-RetNet-hybrid-24-1: acc=0.6040 (N=3270)\\n1.3B-100B-RetNet-hybrid-3-1: acc=0.5813 (N=3270)\\n1.3B-100B-RetNet-hybrid-6-1: acc=0.6220 (N=3270)\\n1.3B-100B-RetNet-pure: acc=0.6113 (N=3270)\\n\\n=== HellaSwag ===\\n1.3B-100B-GatedDeltaNet-hybrid-12-1: acc=0.4627 (N=10042)\\n1.3B-100B-GatedDeltaNet-hybrid-24-1: acc=0.4600 (N=10042)\\n1.3B-100B-GatedDeltaNet-hybrid-3-1: acc=0.4584 (N=10042)\\n1.3B-100B-GatedDeltaNet-hybrid-6-1: acc=0.4633 (N=10042)\\n1.3B-100B-GatedDeltaNet-pure: acc=0.4641 (N=10042)\\n1.3B-100B-HGRN2-hybrid-12-1: acc=0.4635 (N=10042)\\n1.3B-100B-HGRN2-hybrid-24-1: acc=0.4579 (N=10042)\\n1.3B-100B-HGRN2-hybrid-3-1: acc=0.4600 (N=10042)\\n1.3B-100B-HGRN2-hybrid-6-1: acc=0.4607 (N=10042)\\n1.3B-100B-HGRN2-pure: acc=0.4563 (N=10042)\\n1.3B-100B-RetNet-hybrid-12-1: acc=0.4475 (N=10042)\\n1.3B-100B-RetNet-hybrid-24-1: acc=0.4446 (N=10042)\\n1.3B-100B-RetNet-hybrid-3-1: acc=0.4454 (N=10042)\\n1.3B-100B-RetNet-hybrid-6-1: acc=0.4520 (N=10042)\\n1.3B-100B-RetNet-pure: acc=0.4421 (N=10042)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "0fb0b3af-daf9-448c-b2ed-04b98d3079c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== BoolQ ===\\\\n1.3B-100B-GatedDeltaNet-hybrid-12-1: acc=0.6349 (N=3270)\\\\n1.3B-100B-GatedDeltaNet-hybrid-24-1: acc=0.4887 (N=3270)\\\\n1.3B-100B-GatedDeltaNet-hybrid-3-1: acc=0.6223 (N=3270)\\\\n1.3B-100B-GatedDeltaNet-hybrid-6-1: acc=0.5697 (N=3270)\\\\n1.3B-100B-GatedDeltaNet-pure: acc=0.5847 (N=3270)\\\\n1.3B-100B-HGRN2-hybrid-12-1: acc=0.6089 (N=3270)\\\\n1.3B-100B-HGRN2-hybrid-24-1: acc=0.6092 (N=3270)\\\\n1.3B-100B-HGRN2-hybrid-3-1: acc=0.6358 (N=3270)\\\\n1.3B-100B-HGRN2-hybrid-6-1: acc=0.6174 (N=3270)\\\\n1.3B-100B-HGRN2-pure: acc=0.5737 (N=3270)\\\\n1.3B-100B-RetNet-hybrid-12-1: acc=0.6058 (N=3270)\\\\n1.3B-100B-RetNet-hybrid-24-1: acc=0.6040 (N=3270)\\\\n1.3B-100B-RetNet-hybrid-3-1: acc=0.5813 (N=3270)\\\\n1.3B-100B-RetNet-hybrid-6-1: acc=0.6220 (N=3270)\\\\n1.3B-100B-RetNet-pure: acc=0.6113 (N=3270)\\\\n\\\\n=== HellaSwag ===\\\\n1.3B-100B-GatedDeltaNet-hybrid-12-1: acc=0.4627 (N=10042)\\\\n1.3B-100B-GatedDeltaNet-hybrid-24-1: acc=0.4600 (N=10042)\\\\n1.3B-100B-GatedDeltaNet-hybrid-3-1: acc=0.4584 (N=10042)\\\\n1.3B-100B-GatedDeltaNet-hybrid-6-1: acc=0.4633 (N=10042)\\\\n1.3B-100B-GatedDeltaNet-pure: acc=0.4641 (N=10042)\\\\n1.3B-100B-HGRN2-hybrid-12-1: acc=0.4635 (N=10042)\\\\n1.3B-100B-HGRN2-hybrid-24-1: acc=0.4579 (N=10042)\\\\n1.3B-100B-HGRN2-hybrid-3-1: acc=0.4600 (N=10042)\\\\n1.3B-100B-HGRN2-hybrid-6-1: acc=0.4607 (N=10042)\\\\n1.3B-100B-HGRN2-pure: acc=0.4563 (N=10042)\\\\n1.3B-100B-RetNet-hybrid-12-1: acc=0.4475 (N=10042)\\\\n1.3B-100B-RetNet-hybrid-24-1: acc=0.4446 (N=10042)\\\\n1.3B-100B-RetNet-hybrid-3-1: acc=0.4454 (N=10042)\\\\n1.3B-100B-RetNet-hybrid-6-1: acc=0.4520 (N=10042)\\\\n1.3B-100B-RetNet-pure: acc=0.4421 (N=10042)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== BoolQ ===\\n1.3B-100B-GatedDeltaNet-hybrid-12-1: acc=0.6349 (N=3270)\\n1.3B-100B-GatedDeltaNet-hybrid-24-1: acc=0.4887 (N=3270)\\n1.3B-100B-GatedDeltaNet-hybrid-3-1: acc=0.6223 (N=3270)\\n1.3B-100B-GatedDeltaNet-hybrid-6-1: acc=0.5697 (N=3270)\\n1.3B-100B-GatedDeltaNet-pure: acc=0.5847 (N=3270)\\n1.3B-100B-HGRN2-hybrid-12-1: acc=0.6089 (N=3270)\\n1.3B-100B-HGRN2-hybrid-24-1: acc=0.6092 (N=3270)\\n1.3B-100B-HGRN2-hybrid-3-1: acc=0.6358 (N=3270)\\n1.3B-100B-HGRN2-hybrid-6-1: acc=0.6174 (N=3270)\\n1.3B-100B-HGRN2-pure: acc=0.5737 (N=3270)\\n1.3B-100B-RetNet-hybrid-12-1: acc=0.6058 (N=3270)\\n1.3B-100B-RetNet-hybrid-24-1: acc=0.6040 (N=3270)\\n1.3B-100B-RetNet-hybrid-3-1: acc=0.5813 (N=3270)\\n1.3B-100B-RetNet-hybrid-6-1: acc=0.6220 (N=3270)\\n1.3B-100B-RetNet-pure: acc=0.6113 (N=3270)\\n\\n=== HellaSwag ===\\n1.3B-100B-GatedDeltaNet-hybrid-12-1: acc=0.4627 (N=10042)\\n1.3B-100B-GatedDeltaNet-hybrid-24-1: acc=0.4600 (N=10042)\\n1.3B-100B-GatedDeltaNet-hybrid-3-1: acc=0.4584 (N=10042)\\n1.3B-100B-GatedDeltaNet-hybrid-6-1: acc=0.4633 (N=10042)\\n1.3B-100B-GatedDeltaNet-pure: acc=0.4641 (N=10042)\\n1.3B-100B-HGRN2-hybrid-12-1: acc=0.4635 (N=10042)\\n1.3B-100B-HGRN2-hybrid-24-1: acc=0.4579 (N=10042)\\n1.3B-100B-HGRN2-hybrid-3-1: acc=0.4600 (N=10042)\\n1.3B-100B-HGRN2-hybrid-6-1: acc=0.4607 (N=10042)\\n1.3B-100B-HGRN2-pure: acc=0.4563 (N=10042)\\n1.3B-100B-RetNet-hybrid-12-1: acc=0.4475 (N=10042)\\n1.3B-100B-RetNet-hybrid-24-1: acc=0.4446 (N=10042)\\n1.3B-100B-RetNet-hybrid-3-1: acc=0.4454 (N=10042)\\n1.3B-100B-RetNet-hybrid-6-1: acc=0.4520 (N=10042)\\n1.3B-100B-RetNet-pure: acc=0.4421 (N=10042)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T12:52:54.307Z_
+
+<details><summary>↩ Tool result · `toolu_019T6MgZwBip6Aja983PskLG`</summary>
+
+```text
+1	{
+2	  "benchmark": "arc_easy",
+3	  "n_samples": 2376,
+4	  "jaccard_similarity": {
+5	    "h24-1": {
+6	      "GDN-RetNet": {"helped_jaccard": 0.0667, "hurt_jaccard": 0.0795, "helped_sizes": [178, 158], "hurt_sizes": [185, 168], "helped_intersection": 21, "hurt_intersection": 26},
+7	      "GDN-HGRN2": {"helped_jaccard": 0.0833, "hurt_jaccard": 0.1095, "helped_sizes": [178, 160], "hurt_sizes": [185, 119], "helped_intersection": 26, "hurt_intersection": 30},
+8	      "RetNet-HGRN2": {"helped_jaccard": 0.0743, "hurt_jaccard": 0.0913, "helped_sizes": [158, 160], "hurt_sizes": [168, 119], "helped_intersection": 22, "hurt_intersection": 24}
+9	    },
+10	    "h12-1": {
+11	      "GDN-RetNet": {"helped_jaccard": 0.0935, "hurt_jaccard": 0.1282, "helped_sizes": [176, 163], "hurt_sizes": [206, 146], "helped_intersection": 29, "hurt_intersection": 40},
+12	      "GDN-HGRN2": {"helped_jaccard": 0.1167, "hurt_jaccard": 0.0856, "helped_sizes": [176, 159], "hurt_sizes": [206, 111], "helped_intersection": 35, "hurt_intersection": 25},
+13	      "RetNet-HGRN2": {"helped_jaccard": 0.0842, "hurt_jaccard": 0.0844, "helped_sizes": [163, 159], "hurt_sizes": [146, 111], "helped_intersection": 25, "hurt_intersection": 20}
+14	    },
+15	    "h6-1": {
+16	      "GDN-RetNet": {"helped_jaccard": 0.0894, "hurt_jaccard": 0.0896, "helped_sizes": [170, 159], "hurt_sizes": [157, 147], "helped_intersection": 27, "hurt_intersection": 25},
+17	      "GDN-HGRN2": {"helped_jaccard": 0.0991, "hurt_jaccard": 0.087, "helped_sizes": [170, 185], "hurt_sizes": [157, 118], "helped_intersection": 32, "hurt_intersection": 22},
+18	      "RetNet-HGRN2": {"helped_jaccard": 0.0921, "hurt_jaccard": 0.0861, "helped_sizes": [159, 185], "hurt_sizes": [147, 118], "helped_intersection": 29, "hurt_intersection": 21}
+19	    },
+20	    "h3-1": {
+21	      "GDN-RetNet": {"helped_jaccard": 0.1131, "hurt_jaccard": 0.1131, "helped_sizes": [171, 144], "hurt_sizes": [180, 184], "helped_intersection": 32, "hurt_intersection": 37},
+22	      "GDN-HGRN2": {"helped_jaccard": 0.1056, "hurt_jaccard": 0.0976, "helped_sizes": [171, 164], "hurt_sizes": [180, 146], "helped_intersection": 32, "hurt_intersection": 29},
+23	      "RetNet-HGRN2": {"helped_jaccard": 0.0883, "hurt_jaccard": 0.134, "helped_sizes": [144, 164], "hurt_sizes": [184, 146], "helped_intersection": 25, "hurt_intersection": 39}
+24	    }
+25	  },
+26	  "jaccard_null_model": {
+27	    "h24-1": {
+28	      "GDN-RetNet_helped": {"J_obs": 0.0667, "J_null": 0.0365, "J_max": 0.8876, "normalized_ES": 0.0354, "p_value_permutation": 0.0064, "n_permutations": 10000, "sizes": [178, 158]},
+29	      "GDN-RetNet_hurt": {"J_obs": 0.0795, "J_null": 0.0385, "J_max": 0.9081, "normalized_ES": 0.0472, "p_value_permutation": 0.0005, "n_permutations": 10000, "sizes": [185, 168]},
+30	      "GDN-HGRN2_helped": {"J_obs": 0.0833, "J_null": 0.0368, "J_max": 0.8989, "normalized_ES": 0.054, "p_value_permutation": 0.0002, "n_permutations": 10000, "sizes": [178, 160]},
+31	      "GDN-HGRN2_hurt": {"J_obs": 0.1095, "J_null": 0.0314, "J_max": 0.6432, "normalized_ES": 0.1276, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [185, 119]},
+32	      "RetNet-HGRN2_helped": {"J_obs": 0.0743, "J_null": 0.0346, "J_max": 0.9875, "normalized_ES": 0.0417, "p_value_permutation": 0.0011, "n_permutations": 10000, "sizes": [158, 160]},
+33	      "RetNet-HGRN2_hurt": {"J_obs": 0.0913, "J_null": 0.0302, "J_max": 0.7083, "normalized_ES": 0.09, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [168, 119]}
+34	    },
+35	    "h12-1": {
+36	      "GDN-RetNet_helped": {"J_obs": 0.0935, "J_null": 0.0369, "J_max": 0.9261, "normalized_ES": 0.0637, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [176, 163]},
+37	      "GDN-RetNet_hurt": {"J_obs": 0.1282, "J_null": 0.0373, "J_max": 0.7087, "normalized_ES": 0.1354, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [206, 146]},
+38	      "GDN-HGRN2_helped": {"J_obs": 0.1167, "J_null": 0.0364, "J_max": 0.9034, "normalized_ES": 0.0925, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [176, 159]},
+39	      "GDN-HGRN2_hurt": {"J_obs": 0.0856, "J_null": 0.0313, "J_max": 0.5388, "normalized_ES": 0.107, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [206, 111]},
+40	      "RetNet-HGRN2_helped": {"J_obs": 0.0842, "J_null": 0.0351, "J_max": 0.9755, "normalized_ES": 0.0522, "p_value_permutation": 0.0001, "n_permutations": 10000, "sizes": [163, 159]},
+41	      "RetNet-HGRN2_hurt": {"J_obs": 0.0844, "J_null": 0.0273, "J_max": 0.7603, "normalized_ES": 0.0779, "p_value_permutation": 0.0001, "n_permutations": 10000, "sizes": [146, 111]}
+42	    },
+43	    "h6-1": {
+44	      "GDN-RetNet_helped": {"J_obs": 0.0894, "J_null": 0.0358, "J_max": 0.9353, "normalized_ES": 0.0596, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [170, 159]},
+45	      "GDN-RetNet_hurt": {"J_obs": 0.0896, "J_null": 0.033, "J_max": 0.9363, "normalized_ES": 0.0627, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [157, 147]},
+46	      "GDN-HGRN2_helped": {"J_obs": 0.0991, "J_null": 0.0387, "J_max": 0.9189, "normalized_ES": 0.0686, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [170, 185]},
+47	      "GDN-HGRN2_hurt": {"J_obs": 0.087, "J_null": 0.0292, "J_max": 0.7516, "normalized_ES": 0.08, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [157, 118]},
+48	      "RetNet-HGRN2_helped": {"J_obs": 0.0921, "J_null": 0.0373, "J_max": 0.8595, "normalized_ES": 0.0666, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [159, 185]},
+49	      "RetNet-HGRN2_hurt": {"J_obs": 0.0861, "J_null": 0.0283, "J_max": 0.8027, "normalized_ES": 0.0746, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [147, 118]}
+50	    },
+51	    "h3-1": {
+52	      "GDN-RetNet_helped": {"J_obs": 0.1131, "J_null": 0.034, "J_max": 0.8421, "normalized_ES": 0.0978, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [171, 144]},
+53	      "GDN-RetNet_hurt": {"J_obs": 0.1131, "J_null": 0.0398, "J_max": 0.9783, "normalized_ES": 0.0781, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [180, 184]},
+54	      "GDN-HGRN2_helped": {"J_obs": 0.1056, "J_null": 0.0365, "J_max": 0.9591, "normalized_ES": 0.0749, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [171, 164]},
+55	      "GDN-HGRN2_hurt": {"J_obs": 0.0976, "J_null": 0.0351, "J_max": 0.8111, "normalized_ES": 0.0806, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [180, 146]},
+56	      "RetNet-HGRN2_helped": {"J_obs": 0.0883, "J_null": 0.0333, "J_max": 0.878, "normalized_ES": 0.0651, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [144, 164]},
+57	      "RetNet-HGRN2_hurt": {"J_obs": 0.134, "J_null": 0.0355, "J_max": 0.7935, "normalized_ES": 0.13, "p_value_permutation": 0.0, "n_permutations": 10000, "sizes": [184, 146]}
+58	    }
+59	  }
+60	}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "b74080fe-0ac0-4177-b433-dee28232e3c2",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/arc_easy_jaccard_analysis.json",
+      "content": "{\n  \"benchmark\": \"arc_easy\",\n  \"n_samples\": 2376,\n  \"jaccard_similarity\": {\n    \"h24-1\": {\n      \"GDN-RetNet\": {\"helped_jaccard\": 0.0667, \"hurt_jaccard\": 0.0795, \"helped_sizes\": [178, 158], \"hurt_sizes\": [185, 168], \"helped_intersection\": 21, \"hurt_intersection\": 26},\n      \"GDN-HGRN2\": {\"helped_jaccard\": 0.0833, \"hurt_jaccard\": 0.1095, \"helped_sizes\": [178, 160], \"hurt_sizes\": [185, 119], \"helped_intersection\": 26, \"hurt_intersection\": 30},\n      \"RetNet-HGRN2\": {\"helped_jaccard\": 0.0743, \"hurt_jaccard\": 0.0913, \"helped_sizes\": [158, 160], \"hurt_sizes\": [168, 119], \"helped_intersection\": 22, \"hurt_intersection\": 24}\n    },\n    \"h12-1\": {\n      \"GDN-RetNet\": {\"helped_jaccard\": 0.0935, \"hurt_jaccard\": 0.1282, \"helped_sizes\": [176, 163], \"hurt_sizes\": [206, 146], \"helped_intersection\": 29, \"hurt_intersection\": 40},\n      \"GDN-HGRN2\": {\"helped_jaccard\": 0.1167, \"hurt_jaccard\": 0.0856, \"helped_sizes\": [176, 159], \"hurt_sizes\": [206, 111], \"helped_intersection\": 35, \"hurt_intersection\": 25},\n      \"RetNet-HGRN2\": {\"helped_jaccard\": 0.0842, \"hurt_jaccard\": 0.0844, \"helped_sizes\": [163, 159], \"hurt_sizes\": [146, 111], \"helped_intersection\": 25, \"hurt_intersection\": 20}\n    },\n    \"h6-1\": {\n      \"GDN-RetNet\": {\"helped_jaccard\": 0.0894, \"hurt_jaccard\": 0.0896, \"helped_sizes\": [170, 159], \"hurt_sizes\": [157, 147], \"helped_intersection\": 27, \"hurt_intersection\": 25},\n      \"GDN-HGRN2\": {\"helped_jaccard\": 0.0991, \"hurt_jaccard\": 0.087, \"helped_sizes\": [170, 185], \"hurt_sizes\": [157, 118], \"helped_intersection\": 32, \"hurt_intersection\": 22},\n      \"RetNet-HGRN2\": {\"helped_jaccard\": 0.0921, \"hurt_jaccard\": 0.0861, \"helped_sizes\": [159, 185], \"hurt_sizes\": [147, 118], \"helped_intersection\": 29, \"hurt_intersection\": 21}\n    },\n    \"h3-1\": {\n      \"GDN-RetNet\": {\"helped_jaccard\": 0.1131, \"hurt_jaccard\": 0.1131, \"helped_sizes\": [171, 144], \"hurt_sizes\": [180, 184], \"helped_intersection\": 32, \"hurt_intersection\": 37},\n      \"GDN-HGRN2\": {\"helped_jaccard\": 0.1056, \"hurt_jaccard\": 0.0976, \"helped_sizes\": [171, 164], \"hurt_sizes\": [180, 146], \"helped_intersection\": 32, \"hurt_intersection\": 29},\n      \"RetNet-HGRN2\": {\"helped_jaccard\": 0.0883, \"hurt_jaccard\": 0.134, \"helped_sizes\": [144, 164], \"hurt_sizes\": [184, 146], \"helped_intersection\": 25, \"hurt_intersection\": 39}\n    }\n  },\n  \"jaccard_null_model\": {\n    \"h24-1\": {\n      \"GDN-RetNet_helped\": {\"J_obs\": 0.0667, \"J_null\": 0.0365, \"J_max\": 0.8876, \"normalized_ES\": 0.0354, \"p_value_permutation\": 0.0064, \"n_permutations\": 10000, \"sizes\": [178, 158]},\n      \"GDN-RetNet_hurt\": {\"J_obs\": 0.0795, \"J_null\": 0.0385, \"J_max\": 0.9081, \"normalized_ES\": 0.0472, \"p_value_permutation\": 0.0005, \"n_permutations\": 10000, \"sizes\": [185, 168]},\n      \"GDN-HGRN2_helped\": {\"J_obs\": 0.0833, \"J_null\": 0.0368, \"J_max\": 0.8989, \"normalized_ES\": 0.054, \"p_value_permutation\": 0.0002, \"n_permutations\": 10000, \"sizes\": [178, 160]},\n      \"GDN-HGRN2_hurt\": {\"J_obs\": 0.1095, \"J_null\": 0.0314, \"J_max\": 0.6432, \"normalized_ES\": 0.1276, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [185, 119]},\n      \"RetNet-HGRN2_helped\": {\"J_obs\": 0.0743, \"J_null\": 0.0346, \"J_max\": 0.9875, \"normalized_ES\": 0.0417, \"p_value_permutation\": 0.0011, \"n_permutations\": 10000, \"sizes\": [158, 160]},\n      \"RetNet-HGRN2_hurt\": {\"J_obs\": 0.0913, \"J_null\": 0.0302, \"J_max\": 0.7083, \"normalized_ES\": 0.09, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [168, 119]}\n    },\n    \"h12-1\": {\n      \"GDN-RetNet_helped\": {\"J_obs\": 0.0935, \"J_null\": 0.0369, \"J_max\": 0.9261, \"normalized_ES\": 0.0637, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [176, 163]},\n      \"GDN-RetNet_hurt\": {\"J_obs\": 0.1282, \"J_null\": 0.0373, \"J_max\": 0.7087, \"normalized_ES\": 0.1354, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [206, 146]},\n      \"GDN-HGRN2_helped\": {\"J_obs\": 0.1167, \"J_null\": 0.0364, \"J_max\": 0.9034, \"normalized_ES\": 0.0925, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [176, 159]},\n      \"GDN-HGRN2_hurt\": {\"J_obs\": 0.0856, \"J_null\": 0.0313, \"J_max\": 0.5388, \"normalized_ES\": 0.107, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [206, 111]},\n      \"RetNet-HGRN2_helped\": {\"J_obs\": 0.0842, \"J_null\": 0.0351, \"J_max\": 0.9755, \"normalized_ES\": 0.0522, \"p_value_permutation\": 0.0001, \"n_permutations\": 10000, \"sizes\": [163, 159]},\n      \"RetNet-HGRN2_hurt\": {\"J_obs\": 0.0844, \"J_null\": 0.0273, \"J_max\": 0.7603, \"normalized_ES\": 0.0779, \"p_value_permutation\": 0.0001, \"n_permutations\": 10000, \"sizes\": [146, 111]}\n    },\n    \"h6-1\": {\n      \"GDN-RetNet_helped\": {\"J_obs\": 0.0894, \"J_null\": 0.0358, \"J_max\": 0.9353, \"normalized_ES\": 0.0596, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [170, 159]},\n      \"GDN-RetNet_hurt\": {\"J_obs\": 0.0896, \"J_null\": 0.033, \"J_max\": 0.9363, \"normalized_ES\": 0.0627, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [157, 147]},\n      \"GDN-HGRN2_helped\": {\"J_obs\": 0.0991, \"J_null\": 0.0387, \"J_max\": 0.9189, \"normalized_ES\": 0.0686, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [170, 185]},\n      \"GDN-HGRN2_hurt\": {\"J_obs\": 0.087, \"J_null\": 0.0292, \"J_max\": 0.7516, \"normalized_ES\": 0.08, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [157, 118]},\n      \"RetNet-HGRN2_helped\": {\"J_obs\": 0.0921, \"J_null\": 0.0373, \"J_max\": 0.8595, \"normalized_ES\": 0.0666, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [159, 185]},\n      \"RetNet-HGRN2_hurt\": {\"J_obs\": 0.0861, \"J_null\": 0.0283, \"J_max\": 0.8027, \"normalized_ES\": 0.0746, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [147, 118]}\n    },\n    \"h3-1\": {\n      \"GDN-RetNet_helped\": {\"J_obs\": 0.1131, \"J_null\": 0.034, \"J_max\": 0.8421, \"normalized_ES\": 0.0978, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [171, 144]},\n      \"GDN-RetNet_hurt\": {\"J_obs\": 0.1131, \"J_null\": 0.0398, \"J_max\": 0.9783, \"normalized_ES\": 0.0781, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [180, 184]},\n      \"GDN-HGRN2_helped\": {\"J_obs\": 0.1056, \"J_null\": 0.0365, \"J_max\": 0.9591, \"normalized_ES\": 0.0749, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [171, 164]},\n      \"GDN-HGRN2_hurt\": {\"J_obs\": 0.0976, \"J_null\": 0.0351, \"J_max\": 0.8111, \"normalized_ES\": 0.0806, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [180, 146]},\n      \"RetNet-HGRN2_helped\": {\"J_obs\": 0.0883, \"J_null\": 0.0333, \"J_max\": 0.878, \"normalized_ES\": 0.0651, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [144, 164]},\n      \"RetNet-HGRN2_hurt\": {\"J_obs\": 0.134, \"J_null\": 0.0355, \"J_max\": 0.7935, \"normalized_ES\": 0.13, \"p_value_permutation\": 0.0, \"n_permutations\": 10000, \"sizes\": [184, 146]}\n    }\n  }\n}",
+      "numLines": 60,
+      "startLine": 1,
+      "totalLines": 60
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T12:52:54.310Z_
+
+<details><summary>↩ Tool result · `toolu_01BMcb7qRR7c6XS6kciXDxJm`</summary>
+
+```text
+1	{
+2	  "benchmark": "arc_easy",
+3	  "n_samples": 2376,
+4	  "architectures": ["GDN", "RetNet", "HGRN2"],
+5	  "ratios": ["pure", "h24-1", "h12-1", "h6-1", "h3-1"],
+6	  "per_example_classification": {
+7	    "GDN": {
+8	      "h24-1": {"n_helped": 178, "n_hurt": 185, "n_stayed_right": 1507, "n_stayed_wrong": 506, "net_effect": -7},
+9	      "h12-1": {"n_helped": 176, "n_hurt": 206, "n_stayed_right": 1486, "n_stayed_wrong": 508, "net_effect": -30},
+10	      "h6-1": {"n_helped": 170, "n_hurt": 157, "n_stayed_right": 1535, "n_stayed_wrong": 514, "net_effect": 13},
+11	      "h3-1": {"n_helped": 171, "n_hurt": 180, "n_stayed_right": 1512, "n_stayed_wrong": 513, "net_effect": -9}
+12	    },
+13	    "RetNet": {
+14	      "h24-1": {"n_helped": 158, "n_hurt": 168, "n_stayed_right": 1526, "n_stayed_wrong": 524, "net_effect": -10},
+15	      "h12-1": {"n_helped": 163, "n_hurt": 146, "n_stayed_right": 1548, "n_stayed_wrong": 519, "net_effect": 17},
+16	      "h6-1": {"n_helped": 159, "n_hurt": 147, "n_stayed_right": 1547, "n_stayed_wrong": 523, "net_effect": 12},
+17	      "h3-1": {"n_helped": 144, "n_hurt": 184, "n_stayed_right": 1510, "n_stayed_wrong": 538, "net_effect": -40}
+18	    },
+19	    "HGRN2": {
+20	      "h24-1": {"n_helped": 160, "n_hurt": 119, "n_stayed_right": 1575, "n_stayed_wrong": 522, "net_effect": 41},
+21	      "h12-1": {"n_helped": 159, "n_hurt": 111, "n_stayed_right": 1583, "n_stayed_wrong": 523, "net_effect": 48},
+22	      "h6-1": {"n_helped": 185, "n_hurt": 118, "n_stayed_right": 1576, "n_stayed_wrong": 497, "net_effect": 67},
+23	      "h3-1": {"n_helped": 164, "n_hurt": 146, "n_stayed_right": 1548, "n_stayed_wrong": 518, "net_effect": 18}
+24	    }
+25	  },
+26	  "convergence_sigma": {
+27	    "pure": {"mean_sigma": 0.096424, "median_sigma": 0.0, "n_unanimous_correct": 1434, "n_unanimous_wrong": 456, "n_split": 486},
+28	    "h24-1": {"mean_sigma": 0.106741, "median_sigma": 0.0, "n_unanimous_correct": 1421, "n_unanimous_wrong": 417, "n_split": 538},
+29	    "h12-1": {"mean_sigma": 0.105153, "median_sigma": 0.0, "n_unanimous_correct": 1427, "n_unanimous_wrong": 419, "n_split": 530},
+30	    "h6-1": {"mean_sigma": 0.094836, "median_sigma": 0.0, "n_unanimous_correct": 1469, "n_unanimous_wrong": 429, "n_split": 478},
+31	    "h3-1": {"mean_sigma": 0.099003, "median_sigma": 0.0, "n_unanimous_correct": 1432, "n_unanimous_wrong": 445, "n_split": 499},
+32	    "spearman": {"rho": -0.2, "p_exact_two_tailed": 0.7833, "n_permutations": 120}
+33	  }
+34	}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "f4e549fe-f56e-437b-949c-c75b33120d37",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/_project/data/arc_easy_per_example.json",
+      "content": "{\n  \"benchmark\": \"arc_easy\",\n  \"n_samples\": 2376,\n  \"architectures\": [\"GDN\", \"RetNet\", \"HGRN2\"],\n  \"ratios\": [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"],\n  \"per_example_classification\": {\n    \"GDN\": {\n      \"h24-1\": {\"n_helped\": 178, \"n_hurt\": 185, \"n_stayed_right\": 1507, \"n_stayed_wrong\": 506, \"net_effect\": -7},\n      \"h12-1\": {\"n_helped\": 176, \"n_hurt\": 206, \"n_stayed_right\": 1486, \"n_stayed_wrong\": 508, \"net_effect\": -30},\n      \"h6-1\": {\"n_helped\": 170, \"n_hurt\": 157, \"n_stayed_right\": 1535, \"n_stayed_wrong\": 514, \"net_effect\": 13},\n      \"h3-1\": {\"n_helped\": 171, \"n_hurt\": 180, \"n_stayed_right\": 1512, \"n_stayed_wrong\": 513, \"net_effect\": -9}\n    },\n    \"RetNet\": {\n      \"h24-1\": {\"n_helped\": 158, \"n_hurt\": 168, \"n_stayed_right\": 1526, \"n_stayed_wrong\": 524, \"net_effect\": -10},\n      \"h12-1\": {\"n_helped\": 163, \"n_hurt\": 146, \"n_stayed_right\": 1548, \"n_stayed_wrong\": 519, \"net_effect\": 17},\n      \"h6-1\": {\"n_helped\": 159, \"n_hurt\": 147, \"n_stayed_right\": 1547, \"n_stayed_wrong\": 523, \"net_effect\": 12},\n      \"h3-1\": {\"n_helped\": 144, \"n_hurt\": 184, \"n_stayed_right\": 1510, \"n_stayed_wrong\": 538, \"net_effect\": -40}\n    },\n    \"HGRN2\": {\n      \"h24-1\": {\"n_helped\": 160, \"n_hurt\": 119, \"n_stayed_right\": 1575, \"n_stayed_wrong\": 522, \"net_effect\": 41},\n      \"h12-1\": {\"n_helped\": 159, \"n_hurt\": 111, \"n_stayed_right\": 1583, \"n_stayed_wrong\": 523, \"net_effect\": 48},\n      \"h6-1\": {\"n_helped\": 185, \"n_hurt\": 118, \"n_stayed_right\": 1576, \"n_stayed_wrong\": 497, \"net_effect\": 67},\n      \"h3-1\": {\"n_helped\": 164, \"n_hurt\": 146, \"n_stayed_right\": 1548, \"n_stayed_wrong\": 518, \"net_effect\": 18}\n    }\n  },\n  \"convergence_sigma\": {\n    \"pure\": {\"mean_sigma\": 0.096424, \"median_sigma\": 0.0, \"n_unanimous_correct\": 1434, \"n_unanimous_wrong\": 456, \"n_split\": 486},\n    \"h24-1\": {\"mean_sigma\": 0.106741, \"median_sigma\": 0.0, \"n_unanimous_correct\": 1421, \"n_unanimous_wrong\": 417, \"n_split\": 538},\n    \"h12-1\": {\"mean_sigma\": 0.105153, \"median_sigma\": 0.0, \"n_unanimous_correct\": 1427, \"n_unanimous_wrong\": 419, \"n_split\": 530},\n    \"h6-1\": {\"mean_sigma\": 0.094836, \"median_sigma\": 0.0, \"n_unanimous_correct\": 1469, \"n_unanimous_wrong\": 429, \"n_split\": 478},\n    \"h3-1\": {\"mean_sigma\": 0.099003, \"median_sigma\": 0.0, \"n_unanimous_correct\": 1432, \"n_unanimous_wrong\": 445, \"n_split\": 499},\n    \"spearman\": {\"rho\": -0.2, \"p_exact_two_tailed\": 0.7833, \"n_permutations\": 120}\n  }\n}",
+      "numLines": 34,
+      "startLine": 1,
+      "totalLines": 34
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have:
+
+**BoolQ Accuracies:**
+- GDN pure: 0.5847, h24-1: **0.4887**, h12-1: 0.6349, h6-1: 0.5697, h3-1: 0.6223
+- HGRN2 pure: 0.5737, h24-1: 0.6092, h12-1: 0.6089, h6-1: 0.6174, h3-1: 0.6358
+- RetNet pure: 0.6113, h24-1: 0.6040, h12-1: 0.6058, h6-1: 0.6220, h3-1: 0.5813
+
+
+- GDN's h24-1 variant is a clear outlier at 0.4887, dropping about 10 points below its pure version while other architectures maintain normal performance at h24-1, suggesting this is a genuine model-specific issue rather than an evaluation problem.
+
+**HellaSwag Accuracies:** All models cluster tightly in the 0.44-0.46 range with minimal variation.
+
+Now I'm setting up the analysis framework with the directory structure and naming conventions for the three architectures and their variants. I need to build a comprehensive script that classifies examples by how each hybrid variant affects performance relative to pure, then measures overlap patterns across architectures.
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "63051e45-1d96-4c35-986b-09107ea08afb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NHzGYtRWMVQezeADfKx2D4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3369,
+      "cache_creation_input_tokens": 3035,
+      "cache_read_input_tokens": 33990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3035
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+**GDN h24-1 BoolQ 验证结果**：acc=0.4887，GDN pure=0.5847，其他 GDN hybrid 0.57-0.63。HGRN2/RetNet 的 h24-1 都正常（0.60+）。这是 GDN h24-1 特有的模型表现问题，非 eval bug（N=3270 正确）。
+
+现在写完整分析脚本上传到服务器执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "e546bb67-5de5-4d4b-ab33-09f5baf5fc57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NHzGYtRWMVQezeADfKx2D4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3369,
+      "cache_creation_input_tokens": 3035,
+      "cache_read_input_tokens": 33990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3035
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012PNxmam4WQqCEjw5nmGigm`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat > /root/entrainment_gated_ft/analyze_boolq_hellaswag.py << 'PYEOF'\nimport json, os, itertools\nimport numpy as np\nfrom scipy import stats\n\nARCHS = ['GatedDeltaNet', 'RetNet', 'HGRN2']\nARCH_SHORT = {'GatedDeltaNet': 'GDN', 'RetNet': 'RetNet', 'HGRN2': 'HGRN2'}\nRATIOS = ['pure', 'hybrid-24-1', 'hybrid-12-1', 'hybrid-6-1', 'hybrid-3-1']\nRATIO_SHORT = {'pure': 'pure', 'hybrid-24-1': 'h24-1', 'hybrid-12-1': 'h12-1',\n               'hybrid-6-1': 'h6-1', 'hybrid-3-1': 'h3-1'}\nPAIRS = [('GatedDeltaNet', 'RetNet'), ('GatedDeltaNet', 'HGRN2'), ('RetNet', 'HGRN2')]\nPAIR_SHORT = {('GatedDeltaNet', 'RetNet'): 'GDN-RetNet',\n              ('GatedDeltaNet', 'HGRN2'): 'GDN-HGRN2',\n              ('RetNet', 'HGRN2'): 'RetNet-HGRN2'}\n\ndef dir_name(arch, ratio):\n    return f'1.3B-100B-{arch}-{ratio}'\n\ndef load_acc(base, bench, arch, ratio):\n    d = dir_name(arch, ratio)\n    path = f'{base}/{d}/samples/{bench}.jsonl'\n    accs = []\n    with open(path) as f:\n        for line in f:\n            accs.append(json.loads(line)['acc'])\n    return np.array(accs)\n\ndef jaccard(a_set, b_set):\n    inter = len(a_set & b_set)\n    union = len(a_set | b_set)\n    return inter / union if union > 0 else 0.0\n\ndef jaccard_null(a_size, b_size, n):\n    eo = a_size * b_size / n\n    return eo / (a_size + b_size - eo) if (a_size + b_size - eo) > 0 else 0.0\n\ndef jaccard_max(a_size, b_size):\n    m = min(a_size, b_size)\n    return m / (a_size + b_size - m) if (a_size + b_size - m) > 0 else 0.0\n\ndef normalized_es(j_obs, j_null, j_max):\n    denom = j_max - j_null\n    return (j_obs - j_null) / denom if denom > 0 else 0.0\n\ndef permutation_test_jaccard(set_a, set_b, n_total, n_perm=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    j_obs = jaccard(set_a, set_b)\n    sa, sb = len(set_a), len(set_b)\n    count = 0\n    indices = np.arange(n_total)\n    for _ in range(n_perm):\n        rng.shuffle(indices)\n        pa = set(indices[:sa].tolist())\n        pb = set(indices[:sb].tolist())\n        if jaccard(pa, pb) >= j_obs:\n            count += 1\n    return count / n_perm\n\ndef analyze_benchmark(bench, base_dir):\n    print(f'\\n=== Analyzing {bench} ===')\n    # Load all accuracies\n    data = {}\n    for arch in ARCHS:\n        data[arch] = {}\n        for ratio in RATIOS:\n            data[arch][ratio] = load_acc(base_dir, bench, arch, ratio)\n    \n    N = len(data[ARCHS[0]][RATIOS[0]])\n    print(f'  N={N}')\n    \n    # A. Per-Example Classification\n    per_example = {}\n    for arch in ARCHS:\n        ashort = ARCH_SHORT[arch]\n        per_example[ashort] = {}\n        pure = data[arch]['pure']\n        for ratio in RATIOS[1:]:  # skip pure\n            hybrid = data[arch][ratio]\n            helped = int(np.sum((pure == 0) & (hybrid == 1)))\n            hurt = int(np.sum((pure == 1) & (hybrid == 0)))\n            stayed_right = int(np.sum((pure == 1) & (hybrid == 1)))\n            stayed_wrong = int(np.sum((pure == 0) & (hybrid == 0)))\n            rshort = RATIO_SHORT[ratio]\n            per_example[ashort][rshort] = {\n                'n_helped': helped, 'n_hurt': hurt,\n                'n_stayed_right': stayed_right, 'n_stayed_wrong': stayed_wrong,\n                'net_effect': helped - hurt\n            }\n    print('  Per-example classification done')\n    \n    # B+C. Cross-Architecture Jaccard + Null Model + Permutation\n    jaccard_data = {}\n    jaccard_null_data = {}\n    for ratio in RATIOS[1:]:\n        rshort = RATIO_SHORT[ratio]\n        jaccard_data[rshort] = {}\n        jaccard_null_data[rshort] = {}\n        \n        # Build helped/hurt sets for each arch\n        helped_sets = {}\n        hurt_sets = {}\n        for arch in ARCHS:\n            pure = data[arch]['pure']\n            hybrid = data[arch][ratio]\n            helped_sets[arch] = set(np.where((pure == 0) & (hybrid == 1))[0].tolist())\n            hurt_sets[arch] = set(np.where((pure == 1) & (hybrid == 0))[0].tolist())\n        \n        for a1, a2 in PAIRS:\n            pname = PAIR_SHORT[(a1, a2)]\n            h_j = jaccard(helped_sets[a1], helped_sets[a2])\n            hu_j = jaccard(hurt_sets[a1], hurt_sets[a2])\n            h_inter = len(helped_sets[a1] & helped_sets[a2])\n            hu_inter = len(hurt_sets[a1] & hurt_sets[a2])\n            \n            jaccard_data[rshort][pname] = {\n                'helped_jaccard': round(h_j, 4),\n                'hurt_jaccard': round(hu_j, 4),\n                'helped_sizes': [len(helped_sets[a1]), len(helped_sets[a2])],\n                'hurt_sizes': [len(hurt_sets[a1]), len(hurt_sets[a2])],\n                'helped_intersection': h_inter,\n                'hurt_intersection': hu_inter\n            }\n            \n            # Null model + normalized ES + permutation for helped\n            for label, s1, s2 in [('helped', helped_sets[a1], helped_sets[a2]),\n                                    ('hurt', hurt_sets[a1], hurt_sets[a2])]:\n                j_o = jaccard(s1, s2)\n                j_n = jaccard_null(len(s1), len(s2), N)\n                j_m = jaccard_max(len(s1), len(s2))\n                nes = normalized_es(j_o, j_n, j_m)\n                p_val = permutation_test_jaccard(s1, s2, N, n_perm=10000)\n                \n                key = f'{pname}_{label}'\n                jaccard_null_data[rshort][key] = {\n                    'J_obs': round(j_o, 4),\n                    'J_null': round(j_n, 4),\n                    'J_max': round(j_m, 4),\n                    'normalized_ES': round(nes, 4),\n                    'p_value_permutation': round(p_val, 4),\n                    'n_permutations': 10000,\n                    'sizes': [len(s1), len(s2)]\n                }\n        \n        print(f'  Jaccard for {rshort} done')\n    \n    # D. Ambiguity alpha\n    ambiguity = {}\n    for ratio in RATIOS[1:]:\n        rshort = RATIO_SHORT[ratio]\n        accs_3arch = np.stack([data[arch][ratio] for arch in ARCHS])  # (3, N)\n        unanimous = np.all(accs_3arch == accs_3arch[0], axis=0)\n        n_ambiguous = int(np.sum(~unanimous))\n        ambiguity[rshort] = {\n            'n_ambiguous': n_ambiguous,\n            'n_concordant': int(np.sum(unanimous)),\n            'alpha': round(n_ambiguous / N, 4)\n        }\n    # Also for pure\n    accs_3arch_pure = np.stack([data[arch]['pure'] for arch in ARCHS])\n    unanimous_pure = np.all(accs_3arch_pure == accs_3arch_pure[0], axis=0)\n    n_amb_pure = int(np.sum(~unanimous_pure))\n    ambiguity['pure'] = {\n        'n_ambiguous': n_amb_pure,\n        'n_concordant': int(np.sum(unanimous_pure)),\n        'alpha': round(n_amb_pure / N, 4)\n    }\n    print('  Ambiguity done')\n    \n    # E. Convergence sigma + Spearman rho\n    convergence = {}\n    sigma_values = []\n    for ratio in RATIOS:\n        rshort = RATIO_SHORT[ratio]\n        accs_3arch = np.stack([data[arch][ratio] for arch in ARCHS])  # (3, N)\n        sigmas = np.std(accs_3arch, axis=0, ddof=0)  # per-sample std across 3 archs\n        mean_sigma = float(np.mean(sigmas))\n        median_sigma = float(np.median(sigmas))\n        n_unanimous_correct = int(np.sum(np.all(accs_3arch == 1, axis=0)))\n        n_unanimous_wrong = int(np.sum(np.all(accs_3arch == 0, axis=0)))\n        n_split = N - n_unanimous_correct - n_unanimous_wrong\n        convergence[rshort] = {\n            'mean_sigma': round(mean_sigma, 6),\n            'median_sigma': round(median_sigma, 6),\n            'n_unanimous_correct': n_unanimous_correct,\n            'n_unanimous_wrong': n_unanimous_wrong,\n            'n_split': n_split\n        }\n        sigma_values.append(mean_sigma)\n    \n    # Spearman rho: ratio rank [1(pure),2(h24-1),3(h12-1),4(h6-1),5(h3-1)] vs sigma\n    ranks = np.arange(1, 6)\n    rho, _ = stats.spearmanr(ranks, sigma_values)\n    \n    # Exact permutation p-value (two-tailed, n=5 -> 120 perms)\n    perms = list(itertools.permutations(sigma_values))\n    count_extreme = 0\n    for perm in perms:\n        r, _ = stats.spearmanr(ranks, list(perm))\n        if abs(r) >= abs(rho):\n            count_extreme += 1\n    p_exact = count_extreme / len(perms)\n    \n    convergence['spearman'] = {\n        'rho': round(float(rho), 4),\n        'p_exact_two_tailed': round(p_exact, 4),\n        'n_permutations': len(perms)\n    }\n    print('  Convergence done')\n    \n    # Build output\n    per_example_out = {\n        'benchmark': bench,\n        'n_samples': N,\n        'architectures': [ARCH_SHORT[a] for a in ARCHS],\n        'ratios': list(RATIO_SHORT.values()),\n        'per_example_classification': per_example,\n        'ambiguity_alpha': ambiguity,\n        'convergence_sigma': convergence\n    }\n    \n    jaccard_out = {\n        'benchmark': bench,\n        'n_samples': N,\n        'jaccard_similarity': jaccard_data,\n        'jaccard_null_model': jaccard_null_data\n    }\n    \n    return per_example_out, jaccard_out\n\nif __name__ == '__main__':\n    benchmarks = {\n        'boolq': '/root/entrainment_gated_ft/lm_eval_clean/boolq',\n        'hellaswag': '/root/entrainment_gated_ft/lm_eval_clean/hellaswag'\n    }\n    \n    outdir = '/root/entrainment_gated_ft'\n    \n    for bench, base_dir in benchmarks.items():\n        pe, jc = analyze_benchmark(bench, base_dir)\n        \n        pe_path = f'{outdir}/{bench}_per_example.json'\n        jc_path = f'{outdir}/{bench}_jaccard_analysis.json'\n        \n        with open(pe_path, 'w') as f:\n            json.dump(pe, f, indent=2)\n        with open(jc_path, 'w') as f:\n            json.dump(jc, f, indent=2)\n        \n        print(f'  Saved {pe_path}')\n        print(f'  Saved {jc_path}')\n    \n    print('\\nDone!')\nPYEOF\necho \"Script written.\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "89f11238-77a4-44ea-8465-9b3eed7de20f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NHzGYtRWMVQezeADfKx2D4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3369,
+      "cache_creation_input_tokens": 3035,
+      "cache_read_input_tokens": 33990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3035
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T12:53:57.637Z_
+
+<details><summary>↩ Tool result · `toolu_012PNxmam4WQqCEjw5nmGigm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "7b27013b-1e83-44e8-86cd-dd6f3a32b77e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JX9bBE4WK35tsQiiU3py3i`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python3 analyze_boolq_hellaswag.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "9f7dc383-e2c6-4fa2-9229-2ba3c8ce95b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0151cK1HJgf5nHwtgEzA2bdC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7997,
+      "cache_read_input_tokens": 37025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7997
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T12:54:32.045Z_
+
+<details><summary>↩ Tool result · `toolu_01JX9bBE4WK35tsQiiU3py3i`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python3 analyze_boolq_hellaswag.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d2832266-d645-4644-88ef-ef57f256728d",
+  "uuid": "0321bdfd-3189-4ef1-95a1-bf16330a70c1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python3 analyze_boolq_hellaswag.py'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.75}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python3 analyze_boolq_hellaswag.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.75}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

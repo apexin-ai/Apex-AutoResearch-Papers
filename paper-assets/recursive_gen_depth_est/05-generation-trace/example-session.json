@@ -12,6 +12,7 @@
     "bytes": 23209,
     "sha256": "4c38364caa9843b762d2ac210a112abcd74fcebea306402308c96961392cd02d"
   },
+  "readable_path": "readable/conversations/cron-hook-gpt2xl-temp09-001.md",
   "paper_title": "How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints",
   "preview_selection": {
     "round": 1,

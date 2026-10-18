@@ -44,5 +44,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/audit-gpu-audit-deploy-harvest.md"
 }

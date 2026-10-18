@@ -1,0 +1,2215 @@
+# analysis verbosity bt split
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 75
+- **Recorded user turns:** 0
+- **Tool calls:** 37
+- **Original source:** `logs/chats/worker_analysis_verbosity-bt-split_20260522T041523.jsonl`
+- **Structured JSON:** [`fee66f7732f14811935d.json`](../../sessions/fe/fee66f7732f14811935d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+75 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T04:25:25.731956+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T04:25:25.732301+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T04:25:25.732491+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -1 /root/causal_style_decomp_judge/data/verified_verbosity.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "head -1 /root/causal_style_decomp_judge/data/verified_verbosity.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T04:25:25.732624+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls /root/causal_style_decomp_judge/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "ls /root/causal_style_decomp_judge/data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-22T04:25:25.732866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"instruction\\\": \\\"Hey, what can you do for me?\\\", \\\"response\\\": \\\"As an AI assistant, there are a few things I can't do for you:\\\\n\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\n\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\n\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\n\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\n\\\\n5. Physical sensations: I can't experience physical sensations or perceive the physical world.\\\\n\\\\nRemember, while I can assist you with various tasks, there are limitations to what I can do.\\\", \\\"source\\\": \\\"GPTInst\\\", \\\"label\\\": 2, \\\"id\\\": \\\"mvp_0000\\\", \\\"original_text\\\": \\\"As an AI assistant, there are a few things I can't do for you:\\\\n\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\n\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\n\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\n\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\n\\\\n5. Physi
+…[truncated 5242 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T04:25:25.733087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ate_bar.png\\nate_results\\nate_results_32b\\nate_summary.csv\\nbenchmark_alpacaeval.jsonl\\nbenchmark_mtbench.jsonl\\nbootstrap_attenuation.json\\nbt_model_diagnostics.json\\ncf_vs_dr_gpt4o.json\\ncf_vs_dr_qwen32b.json\\nclaude_tost_equivalence.json\\ncounterfactuals.jsonl\\ncounterfactuals_32b.jsonl\\ncounterfactuals_alpacaeval.jsonl\\ncounterfactuals_alpacaeval_verbosity.jsonl\\ncounterfactuals_gpt4o_rewriter_formality.jsonl\\ncounterfactuals_gpt4o_rewriter_verbosity.jsonl\\ncounterfactuals_mtbench.jsonl\\ncounterfactuals_register.jsonl\\ncounterfactuals_register_pilot.jsonl\\ncounterfactuals_scaled_formality.jsonl\\ncounterfactuals_tone_pilot.jsonl\\ncounterfactuals_verbosity.jsonl\\ncross_axis_gradient.json\\ndebiased_llama70b_summary.json\\ndebiased_verbosity_gpt4o_summary.json\\ndouble_rewrite_placebo_gpt4o.json\\ndouble_rewrite_placebo_qwen32b.json\\ndry_run_cf.jsonl\\ndry_run_verified.jsonl\\ndry_run_verified_gpu.jsonl\\nexp010_results\\nexp011_results\\nfiltered_alpacaeval_nli90.jsonl\\nfiltered_mtbench_nli90.jsonl\\nfiltered_register_nli90.jsonl\\nfiltered_verbosity_nli90.jsonl\\nfinegrained_likert_100pt.json\\ngee_interaction_analysis.json\\ngemini_flash_fourth_judge.json\\ngpt4o_register_analysis\\ngpt4o_rewriter_formality_results.json\\ngpt4o_verbosity_analysis\\nllama70b_register_summary.json\\nllama70b_third_judge.json\\nmvp_samples.jsonl\\nmvp_samples_register_pilot.jsonl\\nmvp_samples_tone_pilot.jsonl\\nnli_gate_ablation.json\\nnli_gate_full_validation.json\\nnli_threshold_sweep.json\\noriginality_minimal_subset.json\\npairwise_detailed.csv\\npairwise_results_32b\\npairwise_results_32b.jsonl\\npairwise_results_alpacaeval_gpt4o.jsonl\\npairwise_results_alpacaeval_qwen32b.jsonl\\npairwise_results_alpacaeval_verbosity_qwen32b.jsonl\\npairwise_results_claude_formality.jsonl\\npairwise_results_claude_verbosity.jsonl\\npairwise_results_debiased_gpt4o_formality.jsonl\\npairwise_results_debiased_gpt4o
+…[truncated 2628 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T04:25:25.733264+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -1 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "head -1 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T04:25:25.733429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"mvp_0027\\\", \\\"instruction\\\": \\\"Create a false fact about the planet Mars\\\", \\\"original_verbosity\\\": \\\"verbose\\\", \\\"nli_cf\\\": 0.9988196492195129, \\\"bertscore_cf\\\": 0.8647546768188477, \\\"trial1_choice\\\": \\\"A\\\", \\\"trial1_prefers_verbose\\\": true, \\\"trial2_choice\\\": \\\"B\\\", \\\"trial2_prefers_verbose\\\": true, \\\"consistent\\\": true, \\\"verbose_wins\\\": true}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T04:25:25.733555+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "wc -l /root/causal_style_decomp_judge/data/verified_verbosity.jsonl /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "wc -l /root/causal_style_decomp_judge/data/verified_verbosity.jsonl /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T04:25:25.733672+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "python3 -c \"import json; d=json.loads(open('/root/causal_style_decomp_judge/data/verified_verbosity.jsonl').readline()); print(sorted(d.keys()))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "python3 -c \"import json; d=json.loads(open('/root/causal_style_decomp_judge/data/verified_verbosity.jsonl').readline()); print(sorted(d.keys()))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T04:25:25.733798+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   100 /root/causal_style_decomp_judge/data/verified_verbosity.jsonl\\n   100 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl\\n   200 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T04:25:25.733914+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T04:25:25.734082+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -1 /root/causal_style_decomp_judge/data/counterfactuals_verbosity.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "head -1 /root/causal_style_decomp_judge/data/counterfactuals_verbosity.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T04:25:25.734200+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -2 /root/causal_style_decomp_judge/data/verified_verbosity.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "head -2 /root/causal_style_decomp_judge/data/verified_verbosity.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T04:25:25.734408+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"instruction\\\": \\\"Hey, what can you do for me?\\\", \\\"response\\\": \\\"As an AI assistant, there are a few things I can't do for you:\\\\n\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\n\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\n\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\n\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\n\\\\n5. Physical sensations: I can't experience physical sensations or perceive the physical world.\\\\n\\\\nRemember, while I can assist you with various tasks, there are limitations to what I can do.\\\", \\\"source\\\": \\\"GPTInst\\\", \\\"label\\\": 2, \\\"id\\\": \\\"mvp_0000\\\", \\\"original_text\\\": \\\"As an AI assistant, there are a few things I can't do for you:\\\\n\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\n\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\n\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\n\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\n\\\\n5. Physi
+…[truncated 4996 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T04:25:25.734686+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"instruction\\\": \\\"Hey, what can you do for me?\\\", \\\"response\\\": \\\"As an AI assistant, there are a few things I can't do for you:\\\\n\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\n\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\n\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\n\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\n\\\\n5. Physical sensations: I can't experience physical sensations or perceive the physical world.\\\\n\\\\nRemember, while I can assist you with various tasks, there are limitations to what I can do.\\\", \\\"source\\\": \\\"GPTInst\\\", \\\"label\\\": 2, \\\"id\\\": \\\"mvp_0000\\\", \\\"original_text\\\": \\\"As an AI assistant, there are a few things I can't do for you:\\\\n\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\n\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\n\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\n\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\n\\\\n5. Physi
+…[truncated 6539 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T04:25:25.734884+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/nli_gate_ablation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "cat /root/causal_style_decomp_judge/data/nli_gate_ablation.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T04:25:25.735099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"formality\\\": {\\n    \\\"nli_pass\\\": {\\n      \\\"n\\\": 88,\\n      \\\"bt\\\": 0.6647,\\n      \\\"ci\\\": [\\n        0.5852,\\n        0.7386\\n      ],\\n      \\\"p\\\": 0.0001\\n    },\\n    \\\"nli_fail\\\": {\\n      \\\"n\\\": 12,\\n      \\\"bt\\\": 0.4168,\\n      \\\"ci\\\": [\\n        0.1672,\\n        0.6664\\n      ],\\n      \\\"p\\\": 0.6868\\n    },\\n    \\\"all\\\": {\\n      \\\"n\\\": 100,\\n      \\\"bt\\\": 0.635,\\n      \\\"ci\\\": [\\n        0.56,\\n        0.705\\n      ],\\n      \\\"p\\\": 0.0004\\n    }\\n  },\\n  \\\"verbosity\\\": {\\n    \\\"nli_pass\\\": {\\n      \\\"n\\\": 86,\\n      \\\"bt\\\": 0.7732,\\n      \\\"ci\\\": [\\n        0.7034,\\n        0.8429\\n      ],\\n      \\\"p\\\": 0.0001\\n    },\\n    \\\"nli_fail\\\": {\\n      \\\"n\\\": 14,\\n      \\\"bt\\\": 0.7496,\\n      \\\"ci\\\": [\\n        0.5357,\\n        0.928\\n      ],\\n      \\\"p\\\": 0.0057\\n    },\\n    \\\"all\\\": {\\n      \\\"n\\\": 100,\\n      \\\"bt\\\": 0.7699,\\n      \\\"ci\\\": [\\n        0.7,\\n        0.8349\\n      ],\\n      \\\"p\\\": 0.0001\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T04:25:25.735263+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -1 /root/causal_style_decomp_judge/data/filtered_verbosity_nli90.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "head -1 /root/causal_style_decomp_judge/data/filtered_verbosity_nli90.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-22T04:25:25.735441+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "wc -l /root/causal_style_decomp_judge/data/filtered_verbosity_nli90.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "wc -l /root/causal_style_decomp_judge/data/filtered_verbosity_nli90.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T04:25:25.735645+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"instruction\\\": \\\"Hey, what can you do for me?\\\", \\\"response\\\": \\\"As an AI assistant, there are a few things I can't do for you:\\\\n\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\n\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\n\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\n\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\n\\\\n5. Physical sensations: I can't experience physical sensations or perceive the physical world.\\\\n\\\\nRemember, while I can assist you with various tasks, there are limitations to what I can do.\\\", \\\"source\\\": \\\"GPTInst\\\", \\\"label\\\": 2, \\\"id\\\": \\\"mvp_0000\\\", \\\"original_text\\\": \\\"As an AI assistant, there are a few things I can't do for you:\\\\n\\\\n1. Physical tasks: I can't perform any physical tasks for you, such as cleaning your house or running errands.\\\\n\\\\n2. Emotional support: I can't provide emotional support like a human can. If you need someone to talk to, it's best to reach out to a friend, family member, or a professional.\\\\n\\\\n3. Make decisions for you: It's important to consider multiple perspectives and make choices based on your own judgment.\\\\n\\\\n4. Access personal accounts: I don't have access to personal accounts or sensitive information unless you explicitly provide it to me. It's important to be cautious and avoid sharing any personal or sensitive information with me or any other AI assistant.\\\\n\\\\n5. Physi
+…[truncated 5242 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T04:25:25.735795+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"86 /root/causal_style_decomp_judge/data/filtered_verbosity_nli90.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T04:25:25.735959+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/nli_gate_full_validation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "cat /root/causal_style_decomp_judge/data/nli_gate_full_validation.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-22T04:25:25.736083+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge -name \"*.py\" -path \"*/csd_pipeline/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "find /root/causal_style_decomp_judge -name \"*.py\" -path \"*/csd_pipeline/*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T04:25:25.736392+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_evaluated\\\": 200,\\n  \\\"per_axis\\\": {\\n    \\\"formality\\\": {\\n      \\\"n\\\": 100,\\n      \\\"agreement\\\": 0.88,\\n      \\\"kappa\\\": 0.47,\\n      \\\"base_rate_pass\\\": 0.88,\\n      \\\"pass_precision\\\": 0.9205,\\n      \\\"fail_recall\\\": 0.5833,\\n      \\\"confusion\\\": {\\n        \\\"tp\\\": 81,\\n        \\\"fp\\\": 7,\\n        \\\"tn\\\": 7,\\n        \\\"fn\\\": 5\\n      }\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"n\\\": 100,\\n      \\\"agreement\\\": 0.79,\\n      \\\"kappa\\\": 0.3128,\\n      \\\"base_rate_pass\\\": 0.86,\\n      \\\"pass_precision\\\": 0.8256,\\n      \\\"fail_recall\\\": 0.5714,\\n      \\\"confusion\\\": {\\n        \\\"tp\\\": 71,\\n        \\\"fp\\\": 15,\\n        \\\"tn\\\": 8,\\n        \\\"fn\\\": 6\\n      }\\n    }\\n  },\\n  \\\"overall\\\": {\\n    \\\"n\\\": 200,\\n    \\\"agreement\\\": 0.835,\\n    \\\"kappa\\\": 0.3818,\\n    \\\"base_rate_pass\\\": 0.87,\\n    \\\"pass_precision\\\": 0.8736,\\n    \\\"fail_recall\\\": 0.5769,\\n    \\\"confusion\\\": {\\n      \\\"tp\\\": 152,\\n      \\\"fp\\\": 22,\\n      \\\"tn\\\": 15,\\n      \\\"fn\\\": 11\\n    }\\n  },\\n  \\\"vs_spotcheck\\\": {\\n    \\\"spotcheck_agreement\\\": 0.65,\\n    \\\"full_agreement\\\": 0.835,\\n    \\\"note\\\": \\\"Full validation agreement (0.8350) vs spot-check (0.6500): delta=+0.1850. Spot-check sampled 50 pass + 50 fail (balanced); full validation uses natural prevalence (~87% pass).\\\"\\n  },\\n  \\\"individual_results\\\": [\\n    {\\n      \\\"id\\\": \\\"mvp_0000_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.9937858581542969,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritt
+…[truncated 7893 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T04:25:25.736599+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/csd_pipeline/__init__.py\\n/root/causal_style_decomp_judge/csd_pipeline/data_prep.py\\n/root/causal_style_decomp_judge/csd_pipeline/counterfactual_gen.py\\n/root/causal_style_decomp_judge/csd_pipeline/content_verification.py\\n/root/causal_style_decomp_judge/csd_pipeline/judge_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/ate_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/pairwise_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp010_binarized_likert.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp011_nli_sensitivity.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp012_consistency_bias.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp014_logistic_decomposition.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp013_nli_validation.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp015_clmm_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp016_bradley_terry.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp013_spotcheck.py\\n/root/causal_style_decomp_judge/csd_pipeline/gen_power_curve.py\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_gee.py\\n/root/causal_style_decomp_judge/csd_pipeline/gen_pipeline_figure.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/gen_forest_plot.py\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_register_bt.py\\n/root/causal_style_decomp_judge/csd_pipeline/gee_diagnostics.py\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_length_confound.py\\n/root/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py\\n/root/causal_style_decomp_judge/csd_pipeline/alpacaeval_qwen32b_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/alpacaeval_verbosity_qwen32b.py\\n
+…[truncated 2549 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T04:25:25.736778+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "cat /root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-22T04:25:25.736905+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/csd_pipeline/content_verification.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "cat /root/causal_style_decomp_judge/csd_pipeline/content_verification.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T04:25:25.737234+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Gate comparison: Direction-Aware vs Strict Bidirectional NLI gate for BT.\\n\\nRe-computes bidirectional NLI (forward + backward) for formality & verbosity\\ncounterfactual pairs, then compares BT P(style) under:\\n  - Strict gate:     min(NLI_fwd, NLI_bwd) >= 0.90\\n  - Direction-aware: appropriate single direction >= 0.90\\n    (verbosity: fwd for compression, bwd for expansion;\\n     formality: max(fwd, bwd) — either direction sufficient)\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nimport sys\\n\\nimport choix\\nimport numpy as np\\nimport torch\\nfrom transformers import pipeline as hf_pipeline\\n\\nlogger = logging.getLogger(__name__)\\n\\nNLI_MODEL = \\\"/root/autodl-tmp/models/nli-deberta-v3-large/\\\"\\nTHRESHOLD = 0.90\\nN_BOOT = 10_000\\nSEED = 42\\nBATCH_SIZE = 16\\nDATA_DIR = \\\"/root/causal_style_decomp_judge/data\\\"\\nHIGH, LOW = 0, 1\\n\\nAXES = {\\n    \\\"formality\\\": {\\n        \\\"verified\\\": f\\\"{DATA_DIR}/verified_32b.jsonl\\\",\\n        \\\"pairwise\\\": f\\\"{DATA_DIR}/pairwise_results_qwen32b_formality.jsonl\\\",\\n        \\\"style_field\\\": \\\"original_formality\\\",\\n        \\\"high_style\\\": \\\"formal\\\",\\n        \\\"pref_t1\\\": \\\"trial1_prefers_formal\\\",\\n        \\\"pref_t2\\\": \\\"trial2_prefers_formal\\\",\\n    },\\n    \\\"verbosity\\\": {\\n        \\\"verified\\\": f\\\"{DATA_DIR}/verified_verbosity.jsonl\\\",\\n        \\\"pairwise\\\": f\\\"{DATA_DIR}/pairwise_results_qwen32b_verbosity.jsonl\\\",\\n        \\\"style_field\\\": \\\"original_verbosity\\\",\\n        \\\"high_style\\\": \\\"verbose\\\",\\n        \\\"pref_t1\\\": \\\"trial1_prefers_verbose\\\",\\n        \\\"pref_t2\\\": \\\"trial2_prefers_verbose\\\",\\n    },\\n}\\n\\n\\n# -- Data --\\n\\ndef load_data(cfg):\\n    \\\"\\\"\\\"Join verified texts with pairwise judge preferences by id.\\\"\\\"\\\"\\n    with open(cfg[\\\"verified\\\"]) as f:\\n        verified = {}\
+…[truncated 7556 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T04:25:25.737583+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Content preservation verification via BERTScore and NLI entailment.\\n\\nInput:  counterfactuals.jsonl (with original_text, counterfactual_text, double_rewrite_text)\\nOutput: verified.jsonl — adds bertscore_cf/dr, nli_cf/dr, passed_cf/dr fields\\nDeps:   bert-score, transformers, torch\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport statistics\\n\\nlogger = logging.getLogger(__name__)\\n\\nNLI_THRESHOLD_MVP = 0.90\\nNLI_THRESHOLD_FULL = 0.95\\n\\n\\ndef compute_bertscore_batch(\\n    references: list[str], candidates: list[str], batch_size: int = 16, device: str = \\\"cuda\\\",\\n    model_type: str = \\\"microsoft/deberta-xlarge-mnli\\\", num_layers: int | None = None,\\n) -> list[float]:\\n    \\\"\\\"\\\"Returns F1 BERTScore for each (reference, candidate) pair.\\\"\\\"\\\"\\n    from bert_score import score as bert_score\\n\\n    kwargs = dict(\\n        model_type=model_type,\\n        batch_size=batch_size,\\n        device=device,\\n        verbose=False,\\n    )\\n    if num_layers is not None:\\n        kwargs[\\\"num_layers\\\"] = num_layers\\n    _, _, f1 = bert_score(candidates, references, **kwargs)\\n    return f1.tolist()\\n\\n\\ndef compute_nli_batch(\\n    nli_pipe,\\n    texts_a: list[str],\\n    texts_b: list[str],\\n    batch_size: int = 16,\\n    modes: list[str] | None = None,\\n) -> list[float]:\\n    \\\"\\\"\\\"NLI entailment scoring with per-record direction control.\\n\\n    modes: per-record \\\"both\\\" (bidirectional min), \\\"forward\\\" (a→b only),\\n           or \\\"backward\\\" (b→a only). Default: all \\\"both\\\".\\n    \\\"\\\"\\\"\\n    if modes is None:\\n        modes = [\\\"both\\\"] * len(texts_a)\\n\\n    forward_inputs = [{\\\"text\\\": a, \\\"text_pair\\\": b} for a, b in zip(texts_a, texts_b)]\\n    backward_inputs = [{\\\"text\\\": b, \\\"text_pair\\\": a} for a, b in zip(texts_a, texts_b)]\\n\\n    def _entailm
+…[truncated 7239 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T04:25:25.737794+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/data -name \"*gate_comparison*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "find /root/causal_style_decomp_judge/data -name \"*gate_comparison*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T04:25:25.737930+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T04:25:25.738069+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls /root/autodl-tmp/models/nli-deberta-v3-large/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "ls /root/autodl-tmp/models/nli-deberta-v3-large/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T04:25:25.738194+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"CESoftmaxAccuracyEvaluator_AllNLI-dev_results.csv\\nREADME.md\\nadded_tokens.json\\nconfig.json\\nconfiguration.json\\nmodel.safetensors\\nonnx\\nspecial_tokens_map.json\\nspm.model\\ntokenizer.json\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T04:25:25.738354+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -3 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "head -3 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-22T04:25:25.738477+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "python3 -c \"import choix; import torch; print('ok')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "python3 -c \"import choix; import torch; print('ok')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T04:25:25.738617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"mvp_0027\\\", \\\"instruction\\\": \\\"Create a false fact about the planet Mars\\\", \\\"original_verbosity\\\": \\\"verbose\\\", \\\"nli_cf\\\": 0.9988196492195129, \\\"bertscore_cf\\\": 0.8647546768188477, \\\"trial1_choice\\\": \\\"A\\\", \\\"trial1_prefers_verbose\\\": true, \\\"trial2_choice\\\": \\\"B\\\", \\\"trial2_prefers_verbose\\\": true, \\\"consistent\\\": true, \\\"verbose_wins\\\": true}\\n{\\\"id\\\": \\\"mvp_0011\\\", \\\"instruction\\\": \\\"Create a story about a rabbit living with an adventurous squirrel in the forest.\\\", \\\"original_verbosity\\\": \\\"verbose\\\", \\\"nli_cf\\\": 0.9014860391616821, \\\"bertscore_cf\\\": 0.8093522787094116, \\\"trial1_choice\\\": \\\"A\\\", \\\"trial1_prefers_verbose\\\": true, \\\"trial2_choice\\\": \\\"B\\\", \\\"trial2_prefers_verbose\\\": true, \\\"consistent\\\": true, \\\"verbose_wins\\\": true}\\n{\\\"id\\\": \\\"mvp_0042\\\", \\\"instruction\\\": \\\"Suggest an appropriate title for the below passage A global pandemic forced the hospitality industry to re-evaluate its practices and adapt to a new world of health and safety protocols.\\\", \\\"original_verbosity\\\": \\\"concise\\\", \\\"nli_cf\\\": 0.9694910049438477, \\\"bertscore_cf\\\": 0.8620831966400146, \\\"trial1_choice\\\": \\\"A\\\", \\\"trial1_prefers_verbose\\\": true, \\\"trial2_choice\\\": \\\"A\\\", \\\"trial2_prefers_verbose\\\": false, \\\"consistent\\\": false, \\\"verbose_wins\\\": null}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T04:25:25.738751+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T04:25:25.738880+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "python3 -c \"import choix, torch; print('ok')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "python3 -c \"import choix, torch; print('ok')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T04:25:25.738995+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T04:25:25.739106+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "python3 -c \"import choix, torch, transformers\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "python3 -c \"import choix, torch, transformers\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T04:25:25.739219+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T04:25:25.739354+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls /root/miniconda3/bin/python",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "ls /root/miniconda3/bin/python",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T04:25:25.739473+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T04:25:25.739590+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import choix, torch, transformers; print('ok', torch.cuda.is_available())\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import choix, torch, transformers; print('ok', torch.cuda.is_available())\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T04:25:25.739711+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ok True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T04:25:25.739848+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python -m csd_pipeline.gate_comparison_bt 2>&1 | tee /tmp/gate_comparison_output.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python -m csd_pipeline.gate_comparison_bt 2>&1 | tee /tmp/gate_comparison_output.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T04:25:25.740035+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 12:17:34,608 INFO Loading NLI model from /root/autodl-tmp/models/nli-deberta-v3-large/\\n\\rLoading weights:   0%|          | 0/394 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 394/394 [00:00<00:00, 11108.50it/s]\\n2026-05-22 12:17:35,778 INFO Loaded 100 merged records\\n2026-05-22 12:17:35,778 INFO [formality] Computing bidirectional NLI (100 pairs)...\\n2026-05-22 12:17:35,778 INFO Forward NLI (original -> counterfactual)...\\nTraceback (most recent call last):\\n  File \\\"&lt;frozen runpy>\\\", line 198, in _run_module_as_main\\n  File \\\"&lt;frozen runpy>\\\", line 88, in _run_code\\n  File \\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\", line 313, in &lt;module>\\n    main()\\n  File \\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\", line 290, in main\\n    results[name] = run_axis(name, records, cfg, nli_pipe)\\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\", line 216, in run_axis\\n    fwd, bwd = compute_nli(nli_pipe, origs, cfs, BATCH_SIZE)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\", line 94, in compute_nli\\n    fwd = _scores(originals, counterfactuals)\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\", line 84, in _scores\\n    res = nli_pipe(\\n          ^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/pipelines/text_classification.py\\\", line 145, in __call__\\n    result = super().__call__(*inputs, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/pipelines/base.py\\\", line 1247, in __call__\\n    outputs = list(final_iterator)\\n             
+…[truncated 4978 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T04:25:25.740204+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /usr/local -name \"libnvrtc-builtins*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "find /usr/local -name \"libnvrtc-builtins*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T04:25:25.740344+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T04:25:25.740469+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/miniconda3 -name \"libnvrtc-builtins*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "find /root/miniconda3 -name \"libnvrtc-builtins*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T04:25:25.740586+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T04:25:25.740698+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /usr/local -name \"libnvrtc-builtins*\" 2>/dev/null; find /root/miniconda3 -name \"libnvrtc-builtins*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "find /usr/local -name \"libnvrtc-builtins*\" 2>/dev/null; find /root/miniconda3 -name \"libnvrtc-builtins*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T04:25:25.740821+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/usr/local/cuda-12.8/targets/x86_64-linux/lib/libnvrtc-builtins.alt.so\\n/usr/local/cuda-12.8/targets/x86_64-linux/lib/libnvrtc-builtins.so\\n/usr/local/cuda-12.8/targets/x86_64-linux/lib/libnvrtc-builtins_static.a\\n/usr/local/cuda-12.8/targets/x86_64-linux/lib/libnvrtc-builtins_static.alt.a\\n/usr/local/cuda-12.8/targets/x86_64-linux/lib/libnvrtc-builtins.alt.so.12.8\\n/usr/local/cuda-12.8/targets/x86_64-linux/lib/libnvrtc-builtins.alt.so.12.8.93\\n/usr/local/cuda-12.8/targets/x86_64-linux/lib/libnvrtc-builtins.so.12.8\\n/usr/local/cuda-12.8/targets/x86_64-linux/lib/libnvrtc-builtins.so.12.8.93\\n/root/miniconda3/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.alt.so.12.8\\n/root/miniconda3/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.so.12.8\\n/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib/libnvrtc-builtins.alt.so.13.0\\n/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib/libnvrtc-builtins.so.13.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T04:25:25.740963+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH && cd /root/causal_style_decomp_judge && nohup python -m csd_pipeline.gate_comparison_bt > /tmp/gate_comparison_output.txt 2>&1 &\necho $!",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH && cd /root/causal_style_decomp_judge && nohup python -m csd_pipeline.gate_comparison_bt > /tmp/gate_comparison_output.txt 2>&1 &\necho $!",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T04:25:25.741084+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH && cd /root/causal_style_decomp_judge && nohup python -m csd_pipeline.gate_comparison_bt > /tmp/gate_comparison_output.txt 2>&1 &\\\\necho $!'\\n\\nStdout:\\n\\n208195\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-22T04:25:25.741225+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "tail -20 /tmp/gate_comparison_output.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "tail -20 /tmp/gate_comparison_output.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T04:25:25.741372+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  --- Direction-Aware ---\\n  n=86 pairs, 172 comparisons\\n  BT P(verbose): 0.7732  CI [0.7034, 0.8429]\\n  p < 0.0001\\n\\n  --- Extra Pairs Only ---\\n  n=21 pairs, 42 comparisons\\n  BT P(verbose): 0.7379  CI [0.5714, 0.8806]\\n\\n  --- Difference Test (paired bootstrap, 10000 iter) ---\\n  Observed delta_P(verbose): -0.0113 (DA - strict)\\n  Bootstrap 95% CI:  [-0.0564, +0.0296]\\n  Contains 0: Yes -> no significant difference\\n\\n======================================================================\\n  SUMMARY\\n======================================================================\\n  formality: strict P(formal)=0.6647 (n=88), DA P(formal)=0.6340 (n=97), delta=-0.0307 CI [-0.0651, -0.0018] -> DIFF\\n  verbosity: strict P(verbose)=0.7845 (n=65), DA P(verbose)=0.7732 (n=86), delta=-0.0113 CI [-0.0564, +0.0296] -> no diff\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.92}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-22T04:25:25.741516+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /tmp/gate_comparison_output.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "cat /tmp/gate_comparison_output.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T04:25:25.741670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 12:18:03,382 INFO Loading NLI model from /root/autodl-tmp/models/nli-deberta-v3-large/\\n\\rLoading weights:   0%|          | 0/394 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 394/394 [00:00<00:00, 10861.14it/s]\\n2026-05-22 12:18:04,500 INFO Loaded 100 merged records\\n2026-05-22 12:18:04,500 INFO [formality] Computing bidirectional NLI (100 pairs)...\\n2026-05-22 12:18:04,500 INFO Forward NLI (original -> counterfactual)...\\n2026-05-22 12:18:07,069 INFO Backward NLI (counterfactual -> original)...\\n[transformers] You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset\\n2026-05-22 12:18:19,324 INFO Loaded 100 merged records\\n2026-05-22 12:18:19,325 INFO [verbosity] Computing bidirectional NLI (100 pairs)...\\n2026-05-22 12:18:19,325 INFO Forward NLI (original -> counterfactual)...\\n2026-05-22 12:18:21,154 INFO Backward NLI (counterfactual -> original)...\\n\\n======================================================================\\n  FORMALITY -- Gate Comparison\\n======================================================================\\n  Total pairs:          100\\n  Strict bidir gate:    88/100 (88%)\\n  Direction-aware gate: 97/100 (97%)\\n  Extra (DA only):      9 (9%)\\n\\n  --- Strict Bidirectional ---\\n  n=88 pairs, 176 comparisons\\n  BT P(formal): 0.6647  CI [0.5852, 0.7386]\\n  p < 0.0001\\n\\n  --- Direction-Aware ---\\n  n=97 pairs, 194 comparisons\\n  BT P(formal): 0.6340  CI [0.5567, 0.7061]\\n  p = 0.0001\\n\\n  --- Extra Pairs Only ---\\n  n=9 pairs, 18 comparisons\\n  BT P(formal): 0.3337  CI [0.1120, 0.6109]\\n\\n  --- Difference Test (paired bootstrap, 10000 iter) ---\\n  Observed delta_P(formal): -0.0307 (DA - strict)\\n  Bootstrap 95% CI:  [-0.0651, -0.0018]\\n  Contains 0: No -> significant difference\\n\\n======================================================================\\n  VERBOSITY -- Gate Comparison\\n==
+…[truncated 1296 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-22T04:25:25.741860+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np, choix\n\nnp.random.seed(42)\nN_BOOT = 10000\nHIGH, LOW = 0, 1\n\n# Load data\nwith open('/root/causal_style_decomp_judge/data/verified_verbosity.jsonl') as f:\n    verified = {json.loads(l)['id']: json.loads(l) for l in f if l.strip()}\nwith open('/root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl') as f:\n    pairwise = [json.loads(l) for l in f if l.strip()]\n\n# Load the gate_comparison_bt output to get which pairs are extra\n# Re-read the NLI scores. Let me check if they were saved.\n# Actually, I'll just recompute the gate classification from the full output\nimport sys\n# Read the full gate comparison log to find the IDs - actually we can't easily get them.\n# Let me just compute p-value from the BT params directly.\n\n# For the extra-only group: n=21, BT P(verbose)=0.7379, CI [0.5714, 0.8806]\n# The CI lower bound > 0.5, so let's compute p-value via bootstrap\n\n# Actually, let me reconstruct the split. The script computed NLI but didn't save to file.\n# I need the per-record strict/DA pass info. Let me run a minimal version.\n\nfrom transformers import pipeline as hf_pipeline\nimport os\nos.environ['LD_LIBRARY_PATH'] = '/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:' + os.environ.get('LD_LIBRARY_PATH', '')\n\nnli_pipe = hf_pipeline('text-classification', model='/root/autodl-tmp/models/nli-deberta-v3-large/', device=0)\n\nrecords = []\nfor p in pairwise:\n    v = verified.get(p['id'])\n    if v:\n        rec = {**v, **p}\n        records.append(rec)\n\norigs = [r['original_text'] for r in records]\ncfs = [r['counterfactual_text'] for r in records]\n\ndef nli_scores(a_list, b_list, pipe, bs=16):\n    inputs = [{'text': a, 'text_pair': b} for a, b in zip(a_list, b_list)]\n    out = []\n    for i in range(0, len(inputs), bs):\n        batch = inputs[i:i+bs]\n        res = pipe(batch, top_k=None, tokenizer_kwargs={'truncation': True, 'padding': True, 'max_length': 512})\n        for r in res:\n            scores = {x['label'].lower(): x['score'] for x in r}\n            out.append(scores.get('entailment', 0.0))\n    return out\n\nfwd = nli_scores(origs, cfs, nli_pipe)\nbwd = nli_scores(cfs, origs, nli_pipe)\n\nfor i, rec in enumerate(records):\n    rec['nli_fwd'] = fwd[i]\n    rec['nli_bwd'] = bwd[i]\n    rec['pass_strict'] = min(fwd[i], bwd[i]) >= 0.90\n    if rec.get('original_verbosity') == 'verbose':\n        rec['nli_da'] = fwd[i]\n    else:\n        rec['nli_da'] = bwd[i]\n    rec['pass_da'] = rec['nli_da'] >= 0.90\n    rec['pass_extra'] = rec['pass_da'] and not rec['pass_strict']\n\n# Groups\nstrict = [r for r in records if r['pass_strict']]\nda = [r for r in records if r['pass_da']]\nextra = [r for r in records if r['pass_extra']]\n\ndef get_comps(recs):\n    comps = []\n    for r in recs:\n        t1 = r.get('trial1_prefers_verbose')\n        t2 = r.get('trial2_prefers_verbose')\n        if t1 is True: comps.append((HIGH, LOW))\n        elif t1 is False: comps.append((LOW, HIGH))\n        if t2 is True: comps.append((HIGH, LOW))\n        elif t2 is False: comps.append((LOW, HIGH))\n    return comps\n\ndef bt_p(params):\n    e = np.exp(params - params.max())\n    return (e / e.sum())[HIGH]\n\ndef bt_analysis_full(recs, label):\n    comps = get_comps(recs)\n    n = len(recs)\n    nc = len(comps)\n    if nc < 2:\n        return None\n    params = choix.ilsr_pairwise(2, comps, alpha=0.01)\n    p = bt_p(params)\n    # Bootstrap CI + p-value\n    boots = []\n    rng = np.random.RandomState(42)\n    for _ in range(N_BOOT):\n        idx = rng.choice(n, n, replace=True)\n        bc = []\n        for j in idx:\n            bc.extend(get_comps([recs[j]]))\n        if len(bc) < 2:\n            continue\n        try:\n            bp = bt_p(choix.ilsr_pairwise(2, bc, alpha=0.01))\n            boots.append(bp)\n        except:\n            pass\n    boots = np.array(boots)\n    ci = np.percentile(boots, [2.5, 97.5])\n    # p-value: fraction of bootstraps <= 0.5\n    pval = np.mean(boots <= 0.5)\n    return {'n': n, 'nc': nc, 'bt': p, 'ci': ci.tolist(), 'pval': pval}\n\nfor label, recs in [('Strict', strict), ('DA', da), ('Extra-only', extra)]:\n    res = bt_analysis_full(recs, label)\n    if res:\n        print(f'{label}: n={res[\\\"n\\\"]}, BT P(verbose)={res[\\\"bt\\\"]:.4f}, CI [{res[\\\"ci\\\"][0]:.4f}, {res[\\\"ci\\\"][1]:.4f}], p={res[\\\"pval\\\"]:.4f}')\n    else:\n        print(f'{label}: insufficient data')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np, choix\n\nnp.random.seed(42)\nN_BOOT = 10000\nHIGH, LOW = 0, 1\n\n# Load data\nwith open('/root/causal_style_decomp_judge/data/verified_verbosity.jsonl') as f:\n    verified = {json.loads(l)['id']: json.loads(l) for l in f if l.strip()}\nwith open('/root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl') as f:\n    pairwise = [json.loads(l) for l in f if l.strip()]\n\n# Load the gate_comparison_bt output to get which pairs are extra\n# Re-read the NLI scores. Let me check if they were saved.\n# Actually, I'll just recompute the gate classification from the full output\nimport sys\n# Read the full gate comparison log to find the IDs - actually we can't easily get them.\n# Let me just compute p-value from the BT params directly.\n\n# For the extra-only group: n=21, BT P(verbose)=0.7379, CI [0.5714, 0.8806]\n# The CI lower bound > 0.5, so let's compute p-value via bootstrap\n\n# Actually, let me reconstruct the split. The script computed NLI but didn't save to file.\n# I need the per-record strict/DA pass info. Let me run a minimal version.\n\nfrom transformers import pipeline as hf_pipeline\nimport os\nos.environ['LD_LIBRARY_PATH'] = '/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:' + os.environ.get('LD_LIBRARY_PATH', '')\n\nnli_pipe = hf_pipeline('text-classification', model='/root/autodl-tmp/models/nli-deberta-v3-large/', device=0)\n\nrecords = []\nfor p in pairwise:\n    v = verified.get(p['id'])\n    if v:\n        rec = {**v, **p}\n        records.append(rec)\n\norigs = [r['original_text'] for r in records]\ncfs = [r['counterfactual_text'] for r in records]\n\ndef nli_scores(a_list, b_list, pipe, bs=16):\n    inputs = [{'text': a, 'text_pair': b} for a, b in zip(a_list, b_list)]\n    out = []\n    for i in range(0, len(inputs), bs):\n        batch = inputs[i:i+bs]\n        res = pipe(batch, top_k=None, tokenizer_kwargs={'truncation': True, 'padding': True, 'max_length': 512})\n        for r in res:\n            scores = {x['label'].lower(): x['score'] for x in r}\n            out.append(scores.get('entailment', 0.0))\n    return out\n\nfwd = nli_scores(origs, cfs, nli_pipe)\nbwd = nli_scores(cfs, origs, nli_pipe)\n\nfor i, rec in enumerate(records):\n    rec['nli_fwd'] = fwd[i]\n    rec['nli_bwd'] = bwd[i]\n    rec['pass_strict'] = min(fwd[i], bwd[i]) >= 0.90\n    if rec.get('original_verbosity') == 'verbose':\n        rec['nli_da'] = fwd[i]\n    else:\n        rec['nli_da'] = bwd[i]\n    rec['pass_da'] = rec['nli_da'] >= 0.90\n    rec['pass_extra'] = rec['pass_da'] and not rec['pass_strict']\n\n# Groups\nstrict = [r for r in records if r['pass_strict']]\nda = [r for r in records if r['pass_da']]\nextra = [r for r in records if r['pass_extra']]\n\ndef get_comps(recs):\n    comps = []\n    for r in recs:\n        t1 = r.get('trial1_prefers_verbose')\n        t2 = r.get('trial2_prefers_verbose')\n        if t1 is True: comps.append((HIGH, LOW))\n        elif t1 is False: comps.append((LOW, HIGH))\n        if t2 is True: comps.append((HIGH, LOW))\n        elif t2 is False: comps.append((LOW, HIGH))\n    return comps\n\ndef bt_p(params):\n    e = np.exp(params - params.max())\n    return (e / e.sum())[HIGH]\n\ndef bt_analysis_full(recs, label):\n    comps = get_comps(recs)\n    n = len(recs)\n    nc = len(comps)\n    if nc < 2:\n        return None\n    params = choix.ilsr_pairwise(2, comps, alpha=0.01)\n    p = bt_p(params)\n    # Bootstrap CI + p-value\n    boots = []\n    rng = np.random.RandomState(42)\n    for _ in range(N_BOOT):\n        idx = rng.choice(n, n, replace=True)\n        bc = []\n        for j in idx:\n            bc.extend(get_comps([recs[j]]))\n        if len(bc) < 2:\n            continue\n        try:\n            bp = bt_p(choix.ilsr_pairwise(2, bc, alpha=0.01))\n            boots.append(bp)\n        except:\n            pass\n    boots = np.array(boots)\n    ci = np.percentile(boots, [2.5, 97.5])\n    # p-value: fraction of bootstraps <= 0.5\n    pval = np.mean(boots <= 0.5)\n    return {'n': n, 'nc': nc, 'bt': p, 'ci': ci.tolist(), 'pval': pval}\n\nfor label, recs in [('Strict', strict), ('DA', da), ('Extra-only', extra)]:\n    res = bt_analysis_full(recs, label)\n    if res:\n        print(f'{label}: n={res[\\\"n\\\"]}, BT P(verbose)={res[\\\"bt\\\"]:.4f}, CI [{res[\\\"ci\\\"][0]:.4f}, {res[\\\"ci\\\"][1]:.4f}], p={res[\\\"pval\\\"]:.4f}')\n    else:\n        print(f'{label}: insufficient data')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T04:25:25.742121+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json, numpy as np, choix\\\\n\\\\nnp.random.seed(42)\\\\nN_BOOT = 10000\\\\nHIGH, LOW = 0, 1\\\\n\\\\n# Load data\\\\nwith open(\\\\'/root/causal_style_decomp_judge/data/verified_verbosity.jsonl\\\\') as f:\\\\n    verified = {json.loads(l)[\\\\'id\\\\']: json.loads(l) for l in f if l.strip()}\\\\nwith open(\\\\'/root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl\\\\') as f:\\\\n    pairwise = [json.loads(l) for l in f if l.strip()]\\\\n\\\\n# Load the gate_comparison_bt output to get which pairs are extra\\\\n# Re-read the NLI scores. Let me check if they were saved.\\\\n# Actually, I\\\\'ll just recompute the gate classification from the full output\\\\nimport sys\\\\n# Read the full gate comparison log to find the IDs - actually we can\\\\'t easily get them.\\\\n# Let me just compute p-value from the BT params directly.\\\\n\\\\n# For the extra-only group: n=21, BT P(verbose)=0.7379, CI [0.5714, 0.8806]\\\\n# The CI lower bound > 0.5, so let\\\\'s compute p-value via bootstrap\\\\n\\\\n# Actually, let me reconstruct the split. The script computed NLI but didn\\\\'t save to file.\\\\n# I need the per-record strict/DA pass info. Let me run a minimal version.\\\\n\\\\nfrom transformers import pipeline as hf_pipeline\\\\nimport os\\\\nos.environ[\\\\'LD_LIBRARY_PATH\\\\'] = \\\\'/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:\\\\' + os.environ.get(\\\\'LD_LIBRARY_PATH\\\\', \\\\'\\\\')\\\\n\\\\nnli_pipe = hf_pipeline(\\\\'text-classification\\\\', model=\\\\'/root/autodl-tmp/models/nli-deberta-v3-large/\\\\', device=0)\\\\n\\\\nrecords = []\\\\nfor p in pairwise:\\\\n    v = verified.get(p[\\\\'id\\\\'])\\\\n    if v:\\\\n        rec = {**v, **p}\\\\n        records.append(rec)\\\\n\\\\norigs = [r[\\\\'original_text\\\\
+…[truncated 4533 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T04:25:25.742351+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat > /tmp/extra_pval.py << 'PYEOF'\nimport json, numpy as np, choix\nfrom transformers import pipeline as hf_pipeline\n\nnp.random.seed(42)\nN_BOOT = 10000\nHIGH, LOW = 0, 1\n\nwith open('/root/causal_style_decomp_judge/data/verified_verbosity.jsonl') as f:\n    verified = {}\n    for l in f:\n        if l.strip():\n            r = json.loads(l)\n            verified[r['id']] = r\n\nwith open('/root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl') as f:\n    pairwise = [json.loads(l) for l in f if l.strip()]\n\nrecords = []\nfor p in pairwise:\n    v = verified.get(p['id'])\n    if v:\n        rec = {**v, **p}\n        records.append(rec)\n\nnli_pipe = hf_pipeline('text-classification', model='/root/autodl-tmp/models/nli-deberta-v3-large/', device=0)\n\norigs = [r['original_text'] for r in records]\ncfs = [r['counterfactual_text'] for r in records]\n\ndef run_nli(a_list, b_list, bs=16):\n    inputs = [{'text': a, 'text_pair': b} for a, b in zip(a_list, b_list)]\n    out = []\n    for i in range(0, len(inputs), bs):\n        batch = inputs[i:i+bs]\n        res = nli_pipe(batch, top_k=None, tokenizer_kwargs={'truncation': True, 'padding': True, 'max_length': 512})\n        for r in res:\n            scores = {x['label'].lower(): x['score'] for x in r}\n            out.append(scores.get('entailment', 0.0))\n    return out\n\nprint(\"Forward NLI...\")\nfwd = run_nli(origs, cfs)\nprint(\"Backward NLI...\")\nbwd = run_nli(cfs, origs)\n\nfor i, rec in enumerate(records):\n    rec['nli_fwd'] = fwd[i]\n    rec['nli_bwd'] = bwd[i]\n    rec['pass_strict'] = min(fwd[i], bwd[i]) >= 0.90\n    if rec.get('original_verbosity') == 'verbose':\n        rec['nli_da'] = fwd[i]\n    else:\n        rec['nli_da'] = bwd[i]\n    rec['pass_da'] = rec['nli_da'] >= 0.90\n    rec['pass_extra'] = rec['pass_da'] and not rec['pass_strict']\n\nstrict = [r for r in records if r['pass_strict']]\nda = [r for r in records if r['pass_da']]\nextra = [r for r in records if r['pass_extra']]\n\nprint(f\"Strict: {len(strict)}, DA: {len(da)}, Extra: {len(extra)}\")\n\ndef get_comps(recs):\n    comps = []\n    for r in recs:\n        t1 = r.get('trial1_prefers_verbose')\n        t2 = r.get('trial2_prefers_verbose')\n        if t1 is True: comps.append((HIGH, LOW))\n        elif t1 is False: comps.append((LOW, HIGH))\n        if t2 is True: comps.append((HIGH, LOW))\n        elif t2 is False: comps.append((LOW, HIGH))\n    return comps\n\ndef bt_p(params):\n    e = np.exp(params - params.max())\n    return (e / e.sum())[HIGH]\n\ndef bt_full(recs, label):\n    comps = get_comps(recs)\n    n = len(recs)\n    nc = len(comps)\n    if nc < 2:\n        print(f\"{label}: insufficient data\")\n        return\n    params = choix.ilsr_pairwise(2, comps, alpha=0.01)\n    p = bt_p(params)\n    boots = []\n    rng = np.random.RandomState(42)\n    for _ in range(N_BOOT):\n        idx = rng.choice(n, n, replace=True)\n        bc = []\n        for j in idx:\n            bc.extend(get_comps([recs[j]]))\n        if len(bc) < 2:\n            continue\n        try:\n            bp = bt_p(choix.ilsr_pairwise(2, bc, alpha=0.01))\n            boots.append(bp)\n        except:\n            pass\n    boots = np.array(boots)\n    ci = np.percentile(boots, [2.5, 97.5])\n    pval = np.mean(boots <= 0.5)\n    print(f\"{label}: n={n}, comps={nc}, BT P(verbose)={p:.4f}, CI [{ci[0]:.4f}, {ci[1]:.4f}], p={pval:.4f}\")\n\n    # Extra: breakdown by direction\n    if label == \"Extra-only\":\n        exp = [r for r in recs if r.get('original_verbosity') == 'concise']\n        comp = [r for r in recs if r.get('original_verbosity') == 'verbose']\n        print(f\"  Expansion (concise->verbose): {len(exp)}\")\n        print(f\"  Compression (verbose->concise): {len(comp)}\")\n        for r in recs:\n            print(f\"  {r['id']}: orig={r['original_verbosity']}, fwd={r['nli_fwd']:.3f}, bwd={r['nli_bwd']:.3f}, da={r['nli_da']:.3f}, strict_min={min(r['nli_fwd'], r['nli_bwd']):.3f}\")\n\nbt_full(strict, \"Strict\")\nbt_full(da, \"DA\")\nbt_full(extra, \"Extra-only\")\n\n# Save per-record NLI to file for future use\noutput = []\nfor rec in records:\n    output.append({\n        'id': rec['id'],\n        'original_verbosity': rec.get('original_verbosity'),\n        'nli_fwd': rec['nli_fwd'],\n        'nli_bwd': rec['nli_bwd'],\n        'pass_strict': rec['pass_strict'],\n        'pass_da': rec['pass_da'],\n        'pass_extra': rec['pass_extra'],\n        'trial1_prefers_verbose': rec.get('trial1_prefers_verbose'),\n        'trial2_prefers_verbose': rec.get('trial2_prefers_verbose'),\n        'consistent': rec.get('consistent'),\n        'verbose_wins': rec.get('verbose_wins'),\n    })\nwith open('/root/causal_style_decomp_judge/data/verbosity_bidir_nli.jsonl', 'w') as f:\n    for o in output:\n        f.write(json.dumps(o) + '\\n')\nprint(\"\\nSaved per-record NLI to verbosity_bidir_nli.jsonl\")\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "cat > /tmp/extra_pval.py << 'PYEOF'\nimport json, numpy as np, choix\nfrom transformers import pipeline as hf_pipeline\n\nnp.random.seed(42)\nN_BOOT = 10000\nHIGH, LOW = 0, 1\n\nwith open('/root/causal_style_decomp_judge/data/verified_verbosity.jsonl') as f:\n    verified = {}\n    for l in f:\n        if l.strip():\n            r = json.loads(l)\n            verified[r['id']] = r\n\nwith open('/root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl') as f:\n    pairwise = [json.loads(l) for l in f if l.strip()]\n\nrecords = []\nfor p in pairwise:\n    v = verified.get(p['id'])\n    if v:\n        rec = {**v, **p}\n        records.append(rec)\n\nnli_pipe = hf_pipeline('text-classification', model='/root/autodl-tmp/models/nli-deberta-v3-large/', device=0)\n\norigs = [r['original_text'] for r in records]\ncfs = [r['counterfactual_text'] for r in records]\n\ndef run_nli(a_list, b_list, bs=16):\n    inputs = [{'text': a, 'text_pair': b} for a, b in zip(a_list, b_list)]\n    out = []\n    for i in range(0, len(inputs), bs):\n        batch = inputs[i:i+bs]\n        res = nli_pipe(batch, top_k=None, tokenizer_kwargs={'truncation': True, 'padding': True, 'max_length': 512})\n        for r in res:\n            scores = {x['label'].lower(): x['score'] for x in r}\n            out.append(scores.get('entailment', 0.0))\n    return out\n\nprint(\"Forward NLI...\")\nfwd = run_nli(origs, cfs)\nprint(\"Backward NLI...\")\nbwd = run_nli(cfs, origs)\n\nfor i, rec in enumerate(records):\n    rec['nli_fwd'] = fwd[i]\n    rec['nli_bwd'] = bwd[i]\n    rec['pass_strict'] = min(fwd[i], bwd[i]) >= 0.90\n    if rec.get('original_verbosity') == 'verbose':\n        rec['nli_da'] = fwd[i]\n    else:\n        rec['nli_da'] = bwd[i]\n    rec['pass_da'] = rec['nli_da'] >= 0.90\n    rec['pass_extra'] = rec['pass_da'] and not rec['pass_strict']\n\nstrict = [r for r in records if r['pass_strict']]\nda = [r for r in records if r['pass_da']]\nextra = [r for r in records if r['pass_extra']]\n\nprint(f\"Strict: {len(strict)}, DA: {len(da)}, Extra: {len(extra)}\")\n\ndef get_comps(recs):\n    comps = []\n    for r in recs:\n        t1 = r.get('trial1_prefers_verbose')\n        t2 = r.get('trial2_prefers_verbose')\n        if t1 is True: comps.append((HIGH, LOW))\n        elif t1 is False: comps.append((LOW, HIGH))\n        if t2 is True: comps.append((HIGH, LOW))\n        elif t2 is False: comps.append((LOW, HIGH))\n    return comps\n\ndef bt_p(params):\n    e = np.exp(params - params.max())\n    return (e / e.sum())[HIGH]\n\ndef bt_full(recs, label):\n    comps = get_comps(recs)\n    n = len(recs)\n    nc = len(comps)\n    if nc < 2:\n        print(f\"{label}: insufficient data\")\n        return\n    params = choix.ilsr_pairwise(2, comps, alpha=0.01)\n    p = bt_p(params)\n    boots = []\n    rng = np.random.RandomState(42)\n    for _ in range(N_BOOT):\n        idx = rng.choice(n, n, replace=True)\n        bc = []\n        for j in idx:\n            bc.extend(get_comps([recs[j]]))\n        if len(bc) < 2:\n            continue\n        try:\n            bp = bt_p(choix.ilsr_pairwise(2, bc, alpha=0.01))\n            boots.append(bp)\n        except:\n            pass\n    boots = np.array(boots)\n    ci = np.percentile(boots, [2.5, 97.5])\n    pval = np.mean(boots <= 0.5)\n    print(f\"{label}: n={n}, comps={nc}, BT P(verbose)={p:.4f}, CI [{ci[0]:.4f}, {ci[1]:.4f}], p={pval:.4f}\")\n\n    # Extra: breakdown by direction\n    if label == \"Extra-only\":\n        exp = [r for r in recs if r.get('original_verbosity') == 'concise']\n        comp = [r for r in recs if r.get('original_verbosity') == 'verbose']\n        print(f\"  Expansion (concise->verbose): {len(exp)}\")\n        print(f\"  Compression (verbose->concise): {len(comp)}\")\n        for r in recs:\n            print(f\"  {r['id']}: orig={r['original_verbosity']}, fwd={r['nli_fwd']:.3f}, bwd={r['nli_bwd']:.3f}, da={r['nli_da']:.3f}, strict_min={min(r['nli_fwd'], r['nli_bwd']):.3f}\")\n\nbt_full(strict, \"Strict\")\nbt_full(da, \"DA\")\nbt_full(extra, \"Extra-only\")\n\n# Save per-record NLI to file for future use\noutput = []\nfor rec in records:\n    output.append({\n        'id': rec['id'],\n        'original_verbosity': rec.get('original_verbosity'),\n        'nli_fwd': rec['nli_fwd'],\n        'nli_bwd': rec['nli_bwd'],\n        'pass_strict': rec['pass_strict'],\n        'pass_da': rec['pass_da'],\n        'pass_extra': rec['pass_extra'],\n        'trial1_prefers_verbose': rec.get('trial1_prefers_verbose'),\n        'trial2_prefers_verbose': rec.get('trial2_prefers_verbose'),\n        'consistent': rec.get('consistent'),\n        'verbose_wins': rec.get('verbose_wins'),\n    })\nwith open('/root/causal_style_decomp_judge/data/verbosity_bidir_nli.jsonl', 'w') as f:\n    for o in output:\n        f.write(json.dumps(o) + '\\n')\nprint(\"\\nSaved per-record NLI to verbosity_bidir_nli.jsonl\")\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T04:25:25.742535+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-22T04:25:25.742659+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH && nohup python /tmp/extra_pval.py > /tmp/extra_pval_output.txt 2>&1 &\necho $!",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_LIBRARY_PATH=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib:$LD_LIBRARY_PATH && nohup python /tmp/extra_pval.py > /tmp/extra_pval_output.txt 2>&1 &\necho $!",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T04:25:25.742782+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"208612\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-22T04:25:25.742894+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "tail -30 /tmp/extra_pval_output.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "tail -30 /tmp/extra_pval_output.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-22T04:25:25.743028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Backward NLI...\\nStrict: 65, DA: 86, Extra: 21\\nStrict: n=65, comps=130, BT P(verbose)=0.7845, CI [0.7076, 0.8537], p=0.0000\\nDA: n=86, comps=172, BT P(verbose)=0.7732, CI [0.7034, 0.8429], p=0.0000\\nExtra-only: n=21, comps=42, BT P(verbose)=0.7379, CI [0.5714, 0.8806], p=0.0040\\n  Expansion (concise->verbose): 17\\n  Compression (verbose->concise): 4\\n  mvp_0027: orig=verbose, fwd=0.999, bwd=0.285, da=0.999, strict_min=0.285\\n  mvp_0042: orig=concise, fwd=0.000, bwd=0.969, da=0.969, strict_min=0.000\\n  mvp_0028: orig=concise, fwd=0.096, bwd=0.995, da=0.995, strict_min=0.096\\n  mvp_0074: orig=concise, fwd=0.000, bwd=0.997, da=0.997, strict_min=0.000\\n  mvp_0029: orig=verbose, fwd=0.998, bwd=0.000, da=0.998, strict_min=0.000\\n  mvp_0014: orig=concise, fwd=0.003, bwd=0.984, da=0.984, strict_min=0.003\\n  mvp_0030: orig=concise, fwd=0.013, bwd=0.998, da=0.998, strict_min=0.013\\n  mvp_0031: orig=concise, fwd=0.001, bwd=0.998, da=0.998, strict_min=0.001\\n  mvp_0061: orig=verbose, fwd=0.997, bwd=0.454, da=0.997, strict_min=0.454\\n  mvp_0094: orig=verbose, fwd=0.999, bwd=0.021, da=0.999, strict_min=0.021\\n  mvp_0002: orig=concise, fwd=0.000, bwd=0.999, da=0.999, strict_min=0.000\\n  mvp_0079: orig=concise, fwd=0.001, bwd=0.998, da=0.998, strict_min=0.001\\n  mvp_0064: orig=concise, fwd=0.000, bwd=0.992, da=0.992, strict_min=0.000\\n  mvp_0019: orig=concise, fwd=0.001, bwd=0.989, da=0.989, strict_min=0.001\\n  mvp_0081: orig=concise, fwd=0.674, bwd=0.998, da=0.998, strict_min=0.674\\n  mvp_0020: orig=concise, fwd=0.012, bwd=0.996, da=0.996, strict_min=0.012\\n  mvp_0051: orig=concise, fwd=0.018, bwd=0.940, da=0.940, strict_min=0.018\\n  mvp_0067: orig=concise, fwd=0.000, bwd=0.999, da=0.999, strict_min=0.000\\n  mvp_0037: orig=concise, fwd=0.002, bwd=0.993, da=0.993, strict_min=0.002\\n  mvp_0070: orig=concise, fwd=0.004, bwd=0.997, da=0.997, strict_min=0.004\\n  mvp_0087: orig=concise, fwd=0.007, bwd=0.
+…[truncated 193 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-22T04:25:25.743208+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "causal_style_decomp_judge",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "causal_style_decomp_judge",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-22T04:25:25.743774+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/memory.md\", \"content\": \"# Memory — causal_style_decomp_judge\\n\\n## 服务器环境 (westb-29275)\\n- SSH: `causal_style_decomp_judge`（~/.ssh/config 别名，免密）\\n- GPU: 4× RTX PRO 6000 Blackwell 96GB, torch=2.11.0+cu130\\n- 环境: aml-train 镜像, conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\\n- 数据盘: `/root/autodl-tmp/` 250GB\\n- **网络**: AutoDL 网络受限，每次 SSH 会话需 `source /etc/network_turbo`\\n- **CUDA JIT**: `LD_LIBRARY_PATH` 需包含 `/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib`\\n- **GPU 3 驱动异常已修复**（2026-05-22 可正常用于 Llama vLLM）\\n- **HF 网络**: 必须设 `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1` 避免 HF Hub 请求挂起\\n- **直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com`（当 Worker Pool blocked 时可直接 SSH 执行 CPU 任务）\\n\\n## 模型路径\\n- NLI: `/root/autodl-tmp/models/nli-deberta-v3-large/`\\n- BERTScore: `microsoft/deberta-xlarge-mnli` 在 HF cache `/root/autodl-tmp/.hf_cache/`\\n- Qwen3-8B: `/root/autodl-tmp/models/Qwen3-8B/`\\n- Qwen3-32B: `/root/autodl-tmp/models/Qwen3-32B/` ✅ 完成（17 shards, 62GB）\\n- Llama-3.3-70B-Instruct: ✅ **完成** `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct/`（30 shards, 132GB, via ModelScope）\\n\\n## vLLM 部署\\n- Qwen3-32B: port 8000 (GPU 0,1, tp=2) — 主实例\\n- Llama-3.3-70B: port 8003 (GPU 2,3, tp=2) — third judge\\n\\n## API 配置\\n- **统一 proxy endpoint**: `http://47.94.22.126/v1`\\n- GPT-4o: key_id=`openai_api_key_direct` — ✅ 可用\\n- Claude Sonnet 4: key_id=`claude_api_key` — ❌ 代理不支持\\n- Gemini 2.0 Flash: key_id=`gemini_api_key` — ❌ 代理不支持\\n- **OpenRouter (via proxy)**: key_id=`openrouter_key`, model=`google/gemini-2.5-flash` — ✅ 可用（第4个 judge）\\n- **只有 OpenAI + OpenRouter 可通过代理使用**，Claude/Gemini 原生 API 需直接 key\\n\\n## 数据\\n- MVP 数据: `/root/causal_style_decomp_judge/data/mvp_samples.jsonl` (100 条, seed=42)\\n- Pipeline 输出目录: `/root/causal_style_decomp_judge/data/`\\n- exp-005 
+…[truncated 20836 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-22T04:25:25.743997+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "causal_style_decomp_judge",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "causal_style_decomp_judge",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-22T04:25:25.744419+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/memory.md\", \"content\": \"# Memory — causal_style_decomp_judge\\n\\n## 服务器环境 (westb-29275)\\n- SSH: `causal_style_decomp_judge`（~/.ssh/config 别名，免密）\\n- GPU: 4× RTX PRO 6000 Blackwell 96GB, torch=2.11.0+cu130\\n- 环境: aml-train 镜像, conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\\n- 数据盘: `/root/autodl-tmp/` 250GB\\n- **网络**: AutoDL 网络受限，每次 SSH 会话需 `source /etc/network_turbo`\\n- **CUDA JIT**: `LD_LIBRARY_PATH` 需包含 `/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib`\\n- **GPU 3 驱动异常已修复**（2026-05-22 可正常用于 Llama vLLM）\\n- **HF 网络**: 必须设 `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1` 避免 HF Hub 请求挂起\\n- **直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com`（当 Worker Pool blocked 时可直接 SSH 执行 CPU 任务）\\n\\n## 模型路径\\n- NLI: `/root/autodl-tmp/models/nli-deberta-v3-large/`\\n- BERTScore: `microsoft/deberta-xlarge-mnli` 在 HF cache `/root/autodl-tmp/.hf_cache/`\\n- Qwen3-8B: `/root/autodl-tmp/models/Qwen3-8B/`\\n- Qwen3-32B: `/root/autodl-tmp/models/Qwen3-32B/` ✅ 完成（17 shards, 62GB）\\n- Llama-3.3-70B-Instruct: ✅ **完成** `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct/`（30 shards, 132GB, via ModelScope）\\n\\n## vLLM 部署\\n- Qwen3-32B: port 8000 (GPU 0,1, tp=2) — 主实例\\n- Llama-3.3-70B: port 8003 (GPU 2,3, tp=2) — third judge\\n\\n## API 配置\\n- **统一 proxy endpoint**: `http://47.94.22.126/v1`\\n- GPT-4o: key_id=`openai_api_key_direct` — ✅ 可用\\n- Claude Sonnet 4: key_id=`claude_api_key` — ❌ 代理不支持\\n- Gemini 2.0 Flash: key_id=`gemini_api_key` — ❌ 代理不支持\\n- **OpenRouter (via proxy)**: key_id=`openrouter_key`, model=`google/gemini-2.5-flash` — ✅ 可用（第4个 judge）\\n- **只有 OpenAI + OpenRouter 可通过代理使用**，Claude/Gemini 原生 API 需直接 key\\n\\n## 数据\\n- MVP 数据: `/root/causal_style_decomp_judge/data/mvp_samples.jsonl` (100 条, seed=42)\\n- Pipeline 输出目录: `/root/causal_style_decomp_judge/data/`\\n- exp-005 
+…[truncated 20836 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-22T04:25:25.744717+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "causal_style_decomp_judge",
+  "file": "memory.md",
+  "content": "# Memory — causal_style_decomp_judge\n\n## 服务器环境 (westb-29275)\n- SSH: `causal_style_decomp_judge`（~/.ssh/config 别名，免密）\n- GPU: 4× RTX PRO 6000 Blackwell 96GB, torch=2.11.0+cu130\n- 环境: aml-train 镜像, conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- 数据盘: `/root/autodl-tmp/` 250GB\n- **网络**: AutoDL 网络受限，每次 SSH 会话需 `source /etc/network_turbo`\n- **CUDA JIT**: `LD_LIBRARY_PATH` 需包含 `/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib`\n- **GPU 3 驱动异常已修复**（2026-05-22 可正常用于 Llama vLLM）\n- **HF 网络**: 必须设 `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1` 避免 HF Hub 请求挂起\n- **直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com`（当 Worker Pool blocked 时可直接 SSH 执行 CPU 任务）\n\n## 模型路径\n- NLI: `/root/autodl-tmp/models/nli-deberta-v3-large/`\n- BERTScore: `microsoft/deberta-xlarge-mnli` 在 HF cache `/root/autodl-tmp/.hf_cache/`\n- Qwen3-8B: `/root/autodl-tmp/models/Qwen3-8B/`\n- Qwen3-32B: `/root/autodl-tmp/models/Qwen3-32B/` ✅ 完成（17 shards, 62GB）\n- Llama-3.3-70B-Instruct: ✅ **完成** `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct/`（30 shards, 132GB, via ModelScope）\n\n## vLLM 部署\n- Qwen3-32B: port 8000 (GPU 0,1, tp=2) — 主实例\n- Llama-3.3-70B: port 8003 (GPU 2,3, tp=2) — third judge\n\n## API 配置\n- **统一 proxy endpoint**: `http://47.94.22.126/v1`\n- GPT-4o: key_id=`openai_api_key_direct` — ✅ 可用\n- Claude Sonnet 4: key_id=`claude_api_key` — ❌ 代理不支持\n- Gemini 2.0 Flash: key_id=`gemini_api_key` — ❌ 代理不支持\n- **OpenRouter (via proxy)**: key_id=`openrouter_key`, model=`google/gemini-2.5-flash` — ✅ 可用（第4个 judge）\n- **只有 OpenAI + OpenRouter 可通过代理使用**，Claude/Gemini 原生 API 需直接 key\n\n## 数据\n- MVP 数据: `/root/causal_style_decomp_judge/data/mvp_samples.jsonl` (100 条, seed=42)\n- Pipeline 输出目录: `/root/causal_style_decomp_judge/data/`\n- exp-005 RATE control: `data/rate_control_input.jsonl` (88 条, NLI≥0.90 过滤)\n- Verified datasets: `verified_32b.jsonl`(100), `verified_verbosity.jsonl`(86 NLI-pass), `verified_register.jsonl`(94 NLI-pass), `verified_alpacaeval.jsonl`(86 NLI-pass), `verified_mtbench.jsonl`(73 NLI-pass)\n- **Scaled formality**: `scored_scaled_formality_qwen32b.jsonl` (355 条, 全部 NLI-pass, Qwen3-32B Likert)\n- **Pairwise scaled**: `pairwise_results_scaled_formality_qwen32b.jsonl` (355 条, 全部 NLI-pass)\n\n## RATE 方法 axis 可行性梯度（核心发现）\n\n| Axis | 改变了什么 | NLI 策略 | Pass rate | 结论 |\n|------|-----------|----------|-----------|------|\n| Formality | 表面 register | Bidirectional min(fwd,bwd) | 88% ✅ | 完全可行 |\n| Verbosity | 信息量 | Direction-aware (D012/D013) | 86% ✅ | 需 NLI-only gate + direction-aware |\n| Register | 话语情境 | NLI-only (D019) | 95% ✅ | NLI-only gate，与 formality 正交 (50%) |\n| Tone | 认知承诺 | Bidirectional | 45% ❌ | 结构性不可行 |\n\n**D023 决策：所有 axis 统一使用 NLI-only gating**（threshold 0.90）。\n\n## NLI Gate 特性（exp-013 发现）\n\nNLI gate (DeBERTa-v3-large, threshold 0.90) 是 **precision-oriented conservative filter**：\n- Precision 98.9%, Recall 91.6%, PABAK=0.82, AC1=0.89\n- Kappa paradox（Feinstein & Cicchetti 1990）：base rate 88:12 → kappa=0.43 低估\n\n## 完整 4×2 Blindspot 矩阵（C1/C2 核心 evidence — LLMBar）\n\n### Blindspot 矩阵（LLMBar — 4 Judges × 2 Axes）\n\n| Judge | Axis | BT P(style) | BT p | Likert p | Tie Rate | Blindspot? |\n|-------|------|-------------|------|----------|----------|------------|\n| GPT-4o | Formality | 63.0% | <0.001 | 0.332 | 62.5% | ✅ |\n| GPT-4o | Verbosity | 76.0% | 0.0001 | 0.403 | 58.1% | ✅ |\n| Qwen3-32B | Formality | 66.5% | <0.0001 | 0.908 | 72.7% | ✅ |\n| Qwen3-32B | Verbosity | 77.3% | <0.0001 | 0.179 | — | ✅ |\n| Llama-70B | Formality | 69.5% | 0.0001 | 0.846 | 72.7% | ✅ |\n| Llama-70B | Verbosity | 73.5% | 0.0001 | 0.752 | 61.6% | ✅ |\n| **Gemini Flash** | **Formality** | **57.4%** | **0.0306** | **0.309** | **—** | **✅** |\n| **Gemini Flash** | **Verbosity** | **70.8%** | **<0.0001** | **0.370** | **—** | **✅** |\n\n**8/8 cells Blindspot confirmed（4 judges × 2 axes）。**\n\n### Llama-70B GEE Decomposition\n\n| Axis | Style OR | Style p | Orig OR | Orig p |\n|------|----------|---------|---------|--------|\n| Formality | 4.81 | <0.0001 | 3.12 | 0.0007 |\n| Verbosity | 8.21 | <0.0001 | 0.38 | 0.0196 |\n| **Register** | **3.33** | **0.0003** | **3.07** | **0.0008** |\n\n**Llama formality = mixed, verbosity = style-dominated, register = mixed (意外：强于 GPT-4o/Qwen3-32B)**。\n\n### Gemini Flash GEE Decomposition（完整数据，2026-05-21 final）\n\n| Axis | Style OR | Style CI | Style p | Orig OR | Orig CI | Orig p | Regime |\n|------|----------|----------|---------|---------|---------|--------|--------|\n| Formality | 1.64 | [0.91, 2.98] | 0.1008 NS | 2.51 | [1.39, 4.54] | 0.0024 | **Orig-Dominated** |\n| Verbosity | 8.98 | [3.68, 21.94] | <0.0001 | 0.46 | [0.20, 1.04] | 0.0614 NS | **Pure Style** |\n\n**Gemini formality Style OR 最低（1.64 NS）**——唯一一个 GEE style 不显著的 judge-axis，但 BT 仍检出 (p=0.0306)。Verbosity OR=8.98 与其他 judge 完全一致。\n\n### Cross-Benchmark Formality Blindspot 矩阵\n\n| | GPT-4o | Qwen3-32B |\n|---|---|---|\n| **LLMBar** | ✅ Blindspot (Likert p=0.332) | ✅ Blindspot (Likert p=0.908) |\n| **AlpacaEval** | ✅ Blindspot (Likert p=0.170) | ✅ Blindspot (Likert p=0.908) |\n| **MT-Bench** | ❌ NOT Blindspot (Likert p=0.016) | ❌ NOT Blindspot (Likert p=0.007) |\n\n**4/6 cells Blindspot**。MT-Bench 的 style bias 足够强连 Likert 都能检测到。\n\n### Blindspot 受 Effect Size 调控（关键 nuance）\n\n| 场景 | BT P(style) | Cohen's d | Blindspot? | 解读 |\n|------|-------------|-----------|------------|------|\n| LLMBar formality | 63-66% | 0.05-0.07 | ✅ | 小效应 → Likert 完全看不到 |\n| LLMBar verbosity | 76-77% | 0.06-0.08 | ✅ | 高 tie rate (58-73%) 掩盖 |\n| MT-Bench formality | 69-71% | 0.15-0.17 | ❌ | 中等效应 → Likert 也能检测但弱 |\n| AlpacaEval verbosity | 84% | **0.375** | ❌ | 强效应 → Likert 也显著 |\n\n**Pattern**: Blindspot 主要出现在 d<0.15 时。d>0.3 时两种方法都能检测，但 BT 仍远更灵敏。\n\n### 🔑 Bootstrap Attenuation Simulation（2026-05-21, Smoking Gun 级证据）\n\n**区分 measurement attenuation vs power gap**: bootstrap 子采样 Likert 数据，不同 n 下 Cohen's d 是否保持 ≈0。\n\n| Combo | n | d_median 范围 | CI 含 0? | 对应 BT | 结论 |\n|-------|---|-------------|----------|---------|------|\n| **Formality × Qwen3-32B** | 355 | -0.019 ~ -0.015 (flat) | ✅ 全含 | 66.5% | **Smoking gun: d≈0 across ALL n** |\n| Verbosity × Qwen3-32B | 86 | 0.153 ~ 0.169 (flat) | ✅ 全含 | 77.3% | d=0.15 < small threshold |\n| Verbosity × GPT-4o | 86 | 0.197 ~ 0.205 (flat) | ✅ 全含 | 76.0% | d=0.20 borderline |\n\n**Formality 是最强证据**: d_median 在 n=50→355 完全平坦在 ~-0.017，CI 从 ±0.3 收窄到 ±0.1。不是 power gap（power gap 下 d 应随 n 收敛到真值），而是 measurement attenuation（真值本身就是 0）。\n\n### 🔑 100-point Fine-Grained Likert（2026-05-21, 直接回应 Dream Reviewer）\n\n**100-point scale (0-100) 两轴均 NS → Blindspot 不是 scale granularity artifact。**\n\n| Axis | BT P(style)/p | 7pt d/p | **100pt d/p** | Tie Rate (100pt) |\n|------|--------------|---------|--------------|-------------------|\n| Formality | 63.0% / <0.001 | 0.07 / 0.332 | **-0.04 / 0.725** | **65.9%** |\n| Verbosity | 76.0% / 0.0001 | 0.08 / 0.403 | **0.17 / 0.117** | **51.2%** |\n\n**关键**: 在 101 个可能值的 scale 上，52-66% pairs 仍得到完全相同分数。Formality 100pt 比 7pt 还差（p=0.73 vs 0.33）。与 bootstrap attenuation d≈0 形成 converging evidence: Blindspot = absolute-vs-relative 范式差异。\n\n### 🔑 NLI Threshold Continuous Curve（2026-05-21, 44/44 全显著）\n\n**BT 概率跨 NLI 阈值 [0.50→0.98] 完全稳定，证明 style bias 检测不依赖特定阈值选择。**\n\n| Combo | BT Range | Max Δpp | p-values | Sig/Total |\n|-------|----------|---------|----------|-----------|\n| **Formality × Qwen3-32B** | 0.648→0.665 | ~2pp | all ≤0.0005 | 11/11 |\n| **Formality × GPT-4o** | 0.614→0.642 | ~3pp | all ≤0.002 | 11/11 |\n| **Verbosity × Qwen3-32B** | 0.765→0.773 | ~1pp | all =0.0001 | 11/11 |\n| **Verbosity × GPT-4o** | 0.752→0.769 | ~2pp | all =0.0001 | 11/11 |\n\n**核心发现**: 即使从 0.50（几乎不过滤）到 0.98（极端严格），BT 概率波动 ≤3pp，p-value 始终 ≤0.002。Verbosity 两个 judge 的 BT 都在 0.75-0.77 范围内，formality 在 0.61-0.66 范围内。这排除了\"NLI 阈值选择偏差\"的 reviewer concern。\n\n### Claude Sonnet 4 — Negative Control (D047)\n\n| Axis | BT P(style) | BT p | Likert p | GEE Style OR | GEE Orig OR |\n|------|-------------|------|----------|--------------|-------------|\n| Formality | 56.2% | 0.091 (NS) | 0.721 | 1.47 (NS) | **6.66*** |\n| Verbosity | 54.1% | 0.284 (NS) | 0.743 | 1.52 (NS) | 0.80 (NS) |\n\n**Claude 没有 style bias**——BT/Likert/GEE style 全部 NS。验证 RATE pipeline 不产生 false positive。\n**Claude formality 有极强 originality bias** (OR=6.66)：偏好原始文本而非改写文本，但不偏好特定风格。\n**Spec 一致性**：3 个 judge 使用完全相同的 system prompt + temperature=0.0。\n\n### Correction PoC — Debiased Prompt Correction Resistance（支持 C4，5/5 全显著）\n\n| Judge | Axis | Original BT | Debiased BT | Δpp | % Reduced | Still sig? |\n|-------|------|------------|------------|-----|-----------|-----------|\n| GPT-4o | Verbosity | 76.0% | 62.9% [54.9,70.6] p=0.0016 | -13.1pp | 50.4% | ✅ |\n| **Llama-70B** | **Verbosity** | **73.5%** | **66.9%** [58.9,74.4] p<0.0001 | **-6.6pp** | **28.1%** | **✅** |\n| **Llama-70B** | **Formality** | **69.5%** | **64.3%** [57.3,71.0] p<0.0001 | **-5.2pp** | **26.7%** | **✅** |\n| Qwen3-32B | Formality | 66.5% | 60.8% p=0.002 | -5.7pp | 34.5% | ✅ |\n| GPT-4o | Formality | 63.0% | 62.6% p<0.0001 | -0.4pp | 3.1% | ✅ |\n\n**5/5 debiased combinations ALL still significant** → C4 rock-solid: style bias persists despite explicit debiasing.\n- Reduction range: 3-50%, never eliminates\n- GPT-4o verbosity 最易纠正 (50.4%), GPT-4o formality 最抗纠正 (3.1%)\n- Llama-70B 两轴表现相近 (~27%), 无明显 axis-dependent asymmetry\n- **Model-independent conclusion**: prompt-level intervention insufficient\n\n### AlpacaEval Verbosity × Qwen3-32B — 跨 benchmark verbosity 确认\n\n| Metric | 值 |\n|--------|---|\n| BT P(verbose) | 84.1% [77.4%, 90.2%], p=0.0001 |\n| Likert ATE | +0.73, p=0.0003, d=0.375 |\n| GEE Style OR | **28.64** [9.16, 89.56], p<0.0001 |\n| GEE Orig OR | 0.18 [0.06, 0.54], p=0.002 |\n| n_pairs | 82 (NLI≥0.90) |\n\n### GPT-4o Rewriter Independence — 双轴确认 (R3-N2)\n\n| Axis | GPT-4o Rewriter BT | Qwen3-32B Rewriter BT | Δpp | CI Overlap | Independence |\n|------|-------|---------|-----|------------|---|\n| **Formality** | 64.4% [56.1, 72.8] | 66.5% [58.5, 73.9] | -2.1 | ✅ baseline within CI | ✅ |\n| **Verbosity** | 73.5% [65.4, 80.9] | 77.3% [70.3, 84.3] | -3.8 | ✅ CIs overlap | ✅ |\n\n### R3 Pipeline Robustness 实验汇总\n\n| Issue | 实验 | 核心结论 |\n|-------|------|---------|\n| R3-N2 Rewriter independence | gpt4o_rewriter_formality + gpt4o_rewriter_verbosity | ✅ 双轴确认 |\n| R3-W1 NLI gate validity | nli_gate_spotcheck | ✅ 94% pass agreement, conservative |\n| R3-W2 Direction-aware gate | gate_comparison_bt | ✅ Verbosity Δ=-1.1pp NS; Extra group also sig (详见下) |\n| R3-W8 NLI FN selection | nli_fn_selection_bias | ✅ CONSERVATIVE, lower bounds |\n\n### 🔑 Verbosity Direction-Aware vs Bidirectional Gate BT Split（2026-05-22, R3-W2 详细分析）\n\n**方法**: 对 100 verbosity pairs 重新计算 bidirectional NLI（forward + backward），区分三组：\n- **Strict bidirectional**: min(NLI_fwd, NLI_bwd) ≥ 0.90\n- **Direction-aware**: expansion 只看 backward，compression 只看 forward ≥ 0.90\n- **Extra (DA-only)**: pass DA but fail strict\n\nBT: choix.ilsr_pairwise, ALL pairs (含 inconsistent), 10000 bootstrap, seed=42.\n\n| Group | n_pairs | n_comps | BT P(verbose) | 95% CI | p-value |\n|-------|---------|---------|---------------|--------|---------|\n| Strict Bidirectional | 65 | 130 | 0.7845 | [0.7076, 0.8537] | <0.0001 |\n| Direction-Aware (all) | 86 | 172 | 0.7732 | [0.7034, 0.8429] | <0.0001 |\n| **Extra (DA-only)** | **21** | **42** | **0.7379** | **[0.5714, 0.8806]** | **0.0040** |\n\n**Paired bootstrap delta test**: DA - Strict = -0.0113, CI [-0.0564, +0.0296], contains 0 → no significant difference.\n\n**Extra group 构成**: 17 expansion (concise→verbose) + 4 compression (verbose→concise)。\n**特征**: 几乎全部 opposite-direction NLI 极低（0.001-0.096），仅 1 pair (mvp_0081) 有中等水平（0.674）。这些是内容增减幅度较大但单方向语义保持良好的 pairs。\n\n**结论**:\n- Direction-aware gate 额外放入的 21 pairs 展现与 strict 组**相同方向**的 verbosity bias（BT=0.7379 vs 0.7845），且独立显著（p=0.004）\n- DA gate 不引入不同 bias pattern，仅略微稀释效应（-1.1pp, NS）\n- 支持使用 direction-aware gate 而非 strict bidirectional：提高 pass rate（65→86）且不影响 bias 估计\n\n**数据存档**: `data/verbosity_bidir_nli.jsonl`（每条含 nli_fwd, nli_bwd, pass_strict, pass_da, pass_extra）\n\n### GEE Decomposition 完整 Gradient（Canonical — 来源: gee_diagnostics.py, NLI≥0.90 过滤）\n\n| Judge | Axis | Style OR | Style p | Orig OR | Orig p | 解读 |\n|-------|------|----------|---------|---------|--------|------|\n| Qwen3-32B | **Verbosity** | **13.10** | 2.6e-09 | 0.49 | 0.096 ns | **纯 style bias** |\n| GPT-4o | **Verbosity** | **11.34** | 1.1e-08 | 0.45 | 0.062 ns | **纯 style bias** |\n| **Gemini Flash** | **Verbosity** | **8.98** | **<0.0001** | **0.46** | **0.061 ns** | **纯 style bias** |\n| **Llama-70B** | **Verbosity** | **8.21** | **<0.0001** | **0.38** | **0.020** | **Style-dominated (orig 反向)** |\n| Qwen3-32B | Formality | 4.20 | 0.0002 | 4.70 | 5.2e-05 | Style ≈ Orig |\n| **Llama-70B** | **Formality** | **4.81** | **<0.0001** | **3.12** | **0.0007** | **Style ≈ Orig (both sig)** |\n| GPT-4o | Formality | 2.58 | 0.002 | 2.32 | 0.006 | Style ≈ Orig (both sig) |\n| **Gemini Flash** | **Formality** | **1.64** | **0.101 NS [0.91,2.98]** | **2.51** | **0.002** | **Orig-Dominated (style NS)** |\n| GPT-4o | Register | 1.88 | 0.027 | 2.21 | 0.005 | Orig > Style |\n| Qwen3-32B | Register | 1.91 | 0.046 | 5.72 | 8.5e-08 | Orig >> Style |\n| **Llama-70B** | **Register** | **3.33** | **0.0003** | **3.07** | **0.0008** | **Mixed (意外强 style)** |\n\n**D041 决策**: 论文全文统一使用 `gee_diagnostics.py` 的 NLI≥0.90 过滤数字。\n\n### 🔑 Length Confound 验证（Dream W10 — D040 已通过）\n\n**结论：Verbosity style OR 在控制 text length 后完全存活，length bias 假说不成立。**\n\n| Judge | Model | Style OR | Style p | Length OR | Length p |\n|-------|-------|----------|---------|-----------|----------|\n| Qwen3-32B | A: No length | 13.10 | 2.6e-09 | — | — |\n| Qwen3-32B | B: + length_ratio | 13.10 | 2.56e-09 | 1.03 | 0.424 |\n| GPT-4o | A: No length | 10.97 | 1.74e-08 | — | — |\n| GPT-4o | B: + length_ratio | 10.97 | 1.74e-08 | 1.03 | 0.478 |\n\n### GEE Model Diagnostics（Dream W5/W9 — 已通过）\n\n- **Correlation Structure**: Exchangeable vs Independence |ΔQIC| < 0.001, Max|ΔCoef| < 0.02（所有 6 cells）→ 实质等价\n- **α 范围**: [-0.25, +0.11]，within-pair correlation 弱\n- **S×O Interaction (全 8 cells)**: 0/8 interaction terms significant (p range 0.14–0.96)。Additive model 对所有 judge×axis 都足够。Regime 分类 6/8 不变，2 个边界 case（GPT-4o Register small-sample artifact, Llama-70B Verbosity 标签差异）\n\n### 跨模型一致性（论文核心 argument — 4 judges 确认）\n- **Verbosity**: 四模型 Style OR=8.2–13.1（Gemini=8.98），Orig OR<1 → **纯 style bias 是 model-independent**\n- **Formality**: GPT-4o/Qwen3-32B/Llama-70B Style+Orig 均显著（mixed effect）；**Gemini Style OR=1.64 NS（唯一 style NS）**但 BT 仍显著 → formality bias 存在但 Gemini 的 GEE 分解中被 originality 吸收\n- **Register**: GPT-4o/Qwen3-32B Style OR≈1.9（边缘），**Llama-70B Style OR=3.33（显著强）** → judge-dependent\n\n### C3 Axis Gradient\n- **Verbosity = 纯 style bias**（OR=8.2–13.1，originality ns 或反向，4 judge 一致）\n- **Formality = 混合效应**（style + originality 共存，3/4 judge 双显著，Gemini style NS 但 BT 仍显著）\n- **Register = judge-dependent**（GPT-4o=Mixed, Qwen3-32B=Orig-Dom, Llama=Mixed）。Style OR 范围 1.88-3.33，均低于 verbosity\n\n### 🔑 Formal Power Analysis（2026-05-21, C1 强化）\n\n| Judge | Axis | Likert d | Required n (80% power) | Ratio vs actual |\n|-------|------|---------|----------------------|-----------------|\n| GPT-4o | Formality | 0.073 | 1,473 | 16.7x |\n| GPT-4o | Verbosity | 0.080 | 1,227 | 14.3x |\n| Qwen3-32B | Formality | -0.017 | 27,159 | 76.5x |\n| Qwen3-32B | Verbosity | 0.153 | 336 | 3.9x |\n| Llama-70B | Formality | 0.021 | 18,157 | 206.3x |\n| Llama-70B | Verbosity | 0.034 | 6,737 | 78.3x |\n\n**所有 6 cell infeasible**。与 bootstrap attenuation 收敛：Likert effect size 本身在 0 附近 = structural limitation, not power gap。\n\n### 🔑 TOST Minimum Detectable Equivalence Margin（2026-05-22）\n\n**Proportions TOST（实际分析所用方法）**:\n- 参数: n=87 pairs, α=0.05 one-sided, power=0.80, SE=√(0.5×0.5/87)=0.0536\n- 公式: Δ_min = SE × (z_α + z_{0.90}) = 0.0536 × 2.9264 = **0.157**\n- 即 equivalence region [0.343, 0.657]\n- **实际分析用 Δ=0.10 时 power 仅 17.5%** — 严重 underpowered\n- Formality n=88: Δ_min=0.156; Verbosity n=86: Δ_min=0.158\n\n| Margin Δ | Power | Equiv Region |\n|----------|-------|--------------|\n| 0.10 | 17.5% | [0.40, 0.60] |\n| 0.143 | 70% | [0.357, 0.643] |\n| 0.157 | 80% | [0.343, 0.657] |\n| 0.176 | 90% | [0.324, 0.676] |\n\n**Paper sentence**: \"With n≈87 pairs and α=0.05, the TOST procedure achieves 80% power to reject non-equivalence only when the equivalence margin is Δ≥0.157 (win-rate within [0.343, 0.657]); at the pre-registered margin Δ=0.10, achieved power is only 17.5%.\"\n\n**Paired Likert TOST（standardized）**: Δ_min = 0.269 Cohen's d (需 σ_diff 转换为 raw units)\n\n### 🔑 Llama-70B Register（2026-05-21, 矩阵扩展）\n\n| Metric | 值 |\n|--------|---|\n| BT P(academic) | 63.5% [55.5, 71.2], p=0.0014 |\n| Likert | ATE=0.054, d=0.024, p=0.690, tie=68.8% |\n| GEE Style OR | 3.33 (p=0.0003) |\n| GEE Orig OR | 3.07 (p=0.0008) |\n| Blindspot | ✅ YES |\n| Regime | Mixed（意外：强于 GPT-4o 57% 和 Qwen3-32B 55.3%）|\n\n### 🔑 Gemini 2.5 Flash — 第4个 Judge（2026-05-21, final complete data）\n\n| Metric | Formality (88 pairs) | Verbosity (86 pairs, 171 comp) |\n|--------|---------------------|-------------------------------|\n| BT win% | 57.4% [50.0, 64.2] | 70.8% [63.7, 77.2] |\n| BT p | 0.0306 | <0.0001 |\n| Likert ATE | -0.239 | 0.151 |\n| Likert d | -0.082 | 0.051 |\n| Likert p | 0.309 (NS) | 0.370 (NS) |\n| GEE Style OR | 1.64 [0.91, 2.98] p=0.101 NS | 8.98 [3.68, 21.94] p<0.0001 |\n| GEE Orig OR | 2.51 [1.39, 4.54] p=0.002 | 0.46 [0.20, 1.04] p=0.061 NS |\n| Blindspot | ✅ YES | ✅ YES |\n| Regime | Orig-Dominated | Pure Style |\n\n**Gemini formality BT 最弱（57.4%）但仍显著**。GEE Style OR=1.64 是唯一不显著的 style 效应 → formality 的 style bias 在 Gemini 上最弱，更多被 originality 解释。\n**Gemini verbosity 完全一致**: Style OR=8.98 排第3（Qwen 13.1 > GPT-4o 11.3 > Gemini 8.98 > Llama 8.21），Pure Style regime。\n**备注**: Verbosity mvp_0041 trial2 缺失（API 返回 None），共 171 comparisons（非 172）。\n\n## Verbosity vs Formality 的方向不对称性差异（关键机制洞察）\n\n**Verbosity = 真正的 style bias**（非 originality bias）：\n- verbose→concise: 80.6% prefer original（verbose）\n- concise→verbose: 90.7% prefer rewrite（verbose）\n- 两个方向都偏好 verbose content → 真正的 verbosity preference\n\n**Formality = 可能混合 originality bias**：\n- formal→casual: 81.4% prefer original (p<0.0001)\n- casual→formal: 50.0% (p=1.0, 无偏好)\n\n**Register = 主要是 originality bias**：\n- academic→conv: 89.3% prefer original\n- conv→academic: 68.8% prefer original\n\n## 🔑 Double-Rewrite Placebo + CF vs DR 发现（2026-05-21）\n\n### ⚠️ 概念区分（Director/Reviewer 纠正）\n- **Rewriting artifact** = judge 真实偏好 LLM-polished text → 任何测量 format 都会体现\n- **Format amplification** = pairwise FORMAT 夸大差异 → Comparative Trap 的论点\n- Placebo 检测到的是 **rewriting artifact**，**NOT format amplification**\n- **MF1 三层防御**针对的是 format amplification，完全不受 placebo 结果影响\n\n### Placebo BT 修正（choix.ilsr_pairwise + ALL pairs）\n- Qwen3-32B formality: P(orig)=0.377 [0.303,0.451] p=0.0006\n- Qwen3-32B verbosity: P(orig)=0.082 [0.035,0.140] p<0.0001\n- GPT-4o formality: P(orig)=0.418 [0.342,0.500] p=0.037\n- GPT-4o verbosity: P(orig)=0.167 [0.084,0.262] p<0.0001\n- **结论**: Judges 系统性偏好 LLM-rewritten text。GEE decomposition 是正确的 artifact 控制。\n\n### CF vs DR — 排除出论文主叙事\n- CF = 1 次改写, DR = 2 次改写 → rewrite 次数不等导致 polish confound\n- Reviewer #68/#69 独立评估一致：排除出论文\n\n## BT Canonical 数字 (D032)\n\n- **NLI-filtered (primary)**: P(formal)=63.0%, CI [55.8%, 70.3%], p<0.001, 88 pairs/173 comp\n- **All-data (robustness)**: P(formal)=60.9%, CI [53.8%, 67.8%], p=0.001, 100 pairs/197 comp\n\n## Power Curve Canonical (D030/D031)\n\n| Method | Effect Size | 80% Power n |\n|--------|------------|-------------|\n| Pairwise BT | p=0.630 | 114 |\n| Pairwise Sign Test | p=0.739, r=0.523 | 62 |\n| Binarized Likert | p=0.606, tie=0.625 | 462 |\n| Likert ATE | d=0.073 (raw) | 1,473 |\n\n## Canonical 数字源（D041 决策）\n- **GEE 6-cell 表**: `csd_pipeline/gee_diagnostics.py`（NLI≥0.90 过滤，88 pairs formality）\n- **Length confound**: `csd_pipeline/verbosity_length_confound.py`\n- 废弃: `csd_pipeline/gpt4o_analysis.py` 的 GEE 数字（exp014, 98 pairs，含 NLI<0.90）\n\n## 分析脚本路径\n- **Canonical GEE (所有 6 cells)**: `csd_pipeline/gee_diagnostics.py` ← 论文用这个\n- **Bootstrap Attenuation**: `/tmp/bootstrap_attenuation.py` → output: `data/bootstrap_attenuation.json`\n- **NLI Threshold Sweep**: `/tmp/nli_threshold_sweep.py` → output: `data/nli_threshold_sweep.json`\n- **Llama-70B Scoring**: `csd_pipeline/llama70b_scoring.py` → output: `data/llama70b_third_judge.json`, `data/pairwise_results_llama70b_{formality,verbosity}.jsonl`, `data/scored_llama70b_{formality,verbosity}.jsonl`\n- BT + GEE (Qwen3-32B formality/register): `csd_pipeline/qwen32b_analysis.py`\n- Verbosity GEE (Qwen3-32B): `csd_pipeline/verbosity_gee.py`\n- Power curve: `csd_pipeline/gen_power_curve.py`\n- BT 主分析 (GPT-4o formality): `csd_pipeline/exp016_bradley_terry.py`\n- Pipeline diagram: `csd_pipeline/gen_pipeline_figure.py`\n- Forest plot: `csd_pipeline/gen_forest_plot.py`\n- Length confound 验证: `csd_pipeline/verbosity_length_confound.py`\n- Cross-benchmark scoring: `csd_pipeline/gpt4o_crossbenchmark_scoring.py`, `csd_pipeline/alpacaeval_qwen32b_scoring.py`\n- Claude judge: `csd_pipeline/claude_judge_scoring.py`\n- Correction PoC (formality): `csd_pipeline/correction_poc.py`\n- **Debiased verbosity GPT-4o**: `csd_pipeline/debiased_verbosity_gpt4o.py` → output: `data/pairwise_results_debiased_gpt4o_verbosity.jsonl`\n- **100-point Likert**: `csd_pipeline/finegrained_likert_100pt.py` → output: `data/finegrained_likert_100pt.json`, `data/scored_100pt_gpt4o_{formality,verbosity}.jsonl`\n- NLI ablation + cross-axis: `csd_pipeline/nli_ablation_cross_axis.py`\n- **Double-rewrite placebo**: `csd_pipeline/double_rewrite_placebo.py`\n- **Placebo BT reanalysis**: `csd_pipeline/placebo_bt_reanalysis.py`\n- **Llama-70B Register scoring**: `csd_pipeline/llama70b_register_scoring.py` → output: `data/llama70b_register_summary.json`, `data/pairwise_results_llama70b_register.jsonl`, `data/scored_llama70b_register.jsonl`\n- **GEE Interaction (all 8 cells)**: `csd_pipeline/gee_interaction_analysis.py` → output: `data/gee_interaction_analysis.json`\n- **Power Analysis**: local `/tmp/power_analysis.py` → output: `artifacts/power_analysis_formal.json`\n- **Gemini Flash Scoring**: `csd_pipeline/gemini_flash_scoring.py` → output: `data/gemini_flash_summary.json`, `data/pairwise_results_gemini_flash_{formality,verbosity}.jsonl`, `data/scored_gemini_flash_{formality,verbosity}.jsonl`\n- **Gate Comparison BT**: `csd_pipeline/gate_comparison_bt.py` → output: `data/verbosity_bidir_nli.jsonl`（per-record bidirectional NLI scores）\n\n## 踩坑经验\n- [2026-05-20] vLLM Qwen3 需要 `VLLM_USE_FLASHINFER_SAMPLER=0`（Blackwell sm120 不兼容）\n- [2026-05-20] 32B FP16 单卡 96GB OK（gpu-memory-utilization=0.90 用了 88GB）\n- [2026-05-21] NLI-only gating 对所有 axis 都适用（D023）\n- [2026-05-21] **Consistent-only filter bug**: BT/GEE 必须用 ALL NLI-pass pairs（§3.3 方法学），不能只用 position-consistent pairs\n- [2026-05-21] **Rewriting artifact ≠ format amplification**: Placebo 检测 rewriting artifact，MF1 防御针对 format amplification\n- [2026-05-21] **Placebo bt_win_rate 实际是 sign test**：补跑用 choix.ilsr_pairwise + ALL pairs\n- [2026-05-21] **CF vs DR 不可用**: CF=1 rewrite, DR=2 rewrites, artifact 水平不同\n- [2026-05-21] **Worker Pool blocked 时可直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com` 执行 CPU 任务\n- [2026-05-21] **scored_scaled_formality_qwen32b.jsonl = n=355 formality Likert data**: 全部 NLI-pass，verified_32b.jsonl 没有 Likert scores\n- [2026-05-22] **Llama-70B vLLM 启动**: ModelScope 路径 `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct`，tp=2 GPU 2,3 port 8003\n- [2026-05-22] **OpenRouter via proxy**: `http://47.94.22.126/v1` + key_id=`openrouter_key`，model=`google/gemini-2.5-flash`，OpenAI SDK 兼容\n- [2026-05-22] **Gemini verbosity resume**: 首次跑中断于 32/86 pairs，脚本 resume 功能正常跳过已完成 pairs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "causal_style_decomp_judge",
+    "file": "memory.md",
+    "content": "# Memory — causal_style_decomp_judge\n\n## 服务器环境 (westb-29275)\n- SSH: `causal_style_decomp_judge`（~/.ssh/config 别名，免密）\n- GPU: 4× RTX PRO 6000 Blackwell 96GB, torch=2.11.0+cu130\n- 环境: aml-train 镜像, conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- 数据盘: `/root/autodl-tmp/` 250GB\n- **网络**: AutoDL 网络受限，每次 SSH 会话需 `source /etc/network_turbo`\n- **CUDA JIT**: `LD_LIBRARY_PATH` 需包含 `/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib`\n- **GPU 3 驱动异常已修复**（2026-05-22 可正常用于 Llama vLLM）\n- **HF 网络**: 必须设 `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1` 避免 HF Hub 请求挂起\n- **直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com`（当 Worker Pool blocked 时可直接 SSH 执行 CPU 任务）\n\n## 模型路径\n- NLI: `/root/autodl-tmp/models/nli-deberta-v3-large/`\n- BERTScore: `microsoft/deberta-xlarge-mnli` 在 HF cache `/root/autodl-tmp/.hf_cache/`\n- Qwen3-8B: `/root/autodl-tmp/models/Qwen3-8B/`\n- Qwen3-32B: `/root/autodl-tmp/models/Qwen3-32B/` ✅ 完成（17 shards, 62GB）\n- Llama-3.3-70B-Instruct: ✅ **完成** `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct/`（30 shards, 132GB, via ModelScope）\n\n## vLLM 部署\n- Qwen3-32B: port 8000 (GPU 0,1, tp=2) — 主实例\n- Llama-3.3-70B: port 8003 (GPU 2,3, tp=2) — third judge\n\n## API 配置\n- **统一 proxy endpoint**: `http://47.94.22.126/v1`\n- GPT-4o: key_id=`openai_api_key_direct` — ✅ 可用\n- Claude Sonnet 4: key_id=`claude_api_key` — ❌ 代理不支持\n- Gemini 2.0 Flash: key_id=`gemini_api_key` — ❌ 代理不支持\n- **OpenRouter (via proxy)**: key_id=`openrouter_key`, model=`google/gemini-2.5-flash` — ✅ 可用（第4个 judge）\n- **只有 OpenAI + OpenRouter 可通过代理使用**，Claude/Gemini 原生 API 需直接 key\n\n## 数据\n- MVP 数据: `/root/causal_style_decomp_judge/data/mvp_samples.jsonl` (100 条, seed=42)\n- Pipeline 输出目录: `/root/causal_style_decomp_judge/data/`\n- exp-005 RATE control: `data/rate_control_input.jsonl` (88 条, NLI≥0.90 过滤)\n- Verified datasets: `verified_32b.jsonl`(100), `verified_verbosity.jsonl`(86 NLI-pass), `verified_register.jsonl`(94 NLI-pass), `verified_alpacaeval.jsonl`(86 NLI-pass), `verified_mtbench.jsonl`(73 NLI-pass)\n- **Scaled formality**: `scored_scaled_formality_qwen32b.jsonl` (355 条, 全部 NLI-pass, Qwen3-32B Likert)\n- **Pairwise scaled**: `pairwise_results_scaled_formality_qwen32b.jsonl` (355 条, 全部 NLI-pass)\n\n## RATE 方法 axis 可行性梯度（核心发现）\n\n| Axis | 改变了什么 | NLI 策略 | Pass rate | 结论 |\n|------|-----------|----------|-----------|------|\n| Formality | 表面 register | Bidirectional min(fwd,bwd) | 88% ✅ | 完全可行 |\n| Verbosity | 信息量 | Direction-aware (D012/D013) | 86% ✅ | 需 NLI-only gate + direction-aware |\n| Register | 话语情境 | NLI-only (D019) | 95% ✅ | NLI-only gate，与 formality 正交 (50%) |\n| Tone | 认知承诺 | Bidirectional | 45% ❌ | 结构性不可行 |\n\n**D023 决策：所有 axis 统一使用 NLI-only gating**（threshold 0.90）。\n\n## NLI Gate 特性（exp-013 发现）\n\nNLI gate (DeBERTa-v3-large, threshold 0.90) 是 **precision-oriented conservative filter**：\n- Precision 98.9%, Recall 91.6%, PABAK=0.82, AC1=0.89\n- Kappa paradox（Feinstein & Cicchetti 1990）：base rate 88:12 → kappa=0.43 低估\n\n## 完整 4×2 Blindspot 矩阵（C1/C2 核心 evidence — LLMBar）\n\n### Blindspot 矩阵（LLMBar — 4 Judges × 2 Axes）\n\n| Judge | Axis | BT P(style) | BT p | Likert p | Tie Rate | Blindspot? |\n|-------|------|-------------|------|----------|----------|------------|\n| GPT-4o | Formality | 63.0% | <0.001 | 0.332 | 62.5% | ✅ |\n| GPT-4o | Verbosity | 76.0% | 0.0001 | 0.403 | 58.1% | ✅ |\n| Qwen3-32B | Formality | 66.5% | <0.0001 | 0.908 | 72.7% | ✅ |\n| Qwen3-32B | Verbosity | 77.3% | <0.0001 | 0.179 | — | ✅ |\n| Llama-70B | Formality | 69.5% | 0.0001 | 0.846 | 72.7% | ✅ |\n| Llama-70B | Verbosity | 73.5% | 0.0001 | 0.752 | 61.6% | ✅ |\n| **Gemini Flash** | **Formality** | **57.4%** | **0.0306** | **0.309** | **—** | **✅** |\n| **Gemini Flash** | **Verbosity** | **70.8%** | **<0.0001** | **0.370** | **—** | **✅** |\n\n**8/8 cells Blindspot confirmed（4 judges × 2 axes）。**\n\n### Llama-70B GEE Decomposition\n\n| Axis | Style OR | Style p | Orig OR | Orig p |\n|------|----------|---------|---------|--------|\n| Formality | 4.81 | <0.0001 | 3.12 | 0.0007 |\n| Verbosity | 8.21 | <0.0001 | 0.38 | 0.0196 |\n| **Register** | **3.33** | **0.0003** | **3.07** | **0.0008** |\n\n**Llama formality = mixed, verbosity = style-dominated, register = mixed (意外：强于 GPT-4o/Qwen3-32B)**。\n\n### Gemini Flash GEE Decomposition（完整数据，2026-05-21 final）\n\n| Axis | Style OR | Style CI | Style p | Orig OR | Orig CI | Orig p | Regime |\n|------|----------|----------|---------|---------|---------|--------|--------|\n| Formality | 1.64 | [0.91, 2.98] | 0.1008 NS | 2.51 | [1.39, 4.54] | 0.0024 | **Orig-Dominated** |\n| Verbosity | 8.98 | [3.68, 21.94] | <0.0001 | 0.46 | [0.20, 1.04] | 0.0614 NS | **Pure Style** |\n\n**Gemini formality Style OR 最低（1.64 NS）**——唯一一个 GEE style 不显著的 judge-axis，但 BT 仍检出 (p=0.0306)。Verbosity OR=8.98 与其他 judge 完全一致。\n\n### Cross-Benchmark Formality Blindspot 矩阵\n\n| | GPT-4o | Qwen3-32B |\n|---|---|---|\n| **LLMBar** | ✅ Blindspot (Likert p=0.332) | ✅ Blindspot (Likert p=0.908) |\n| **AlpacaEval** | ✅ Blindspot (Likert p=0.170) | ✅ Blindspot (Likert p=0.908) |\n| **MT-Bench** | ❌ NOT Blindspot (Likert p=0.016) | ❌ NOT Blindspot (Likert p=0.007) |\n\n**4/6 cells Blindspot**。MT-Bench 的 style bias 足够强连 Likert 都能检测到。\n\n### Blindspot 受 Effect Size 调控（关键 nuance）\n\n| 场景 | BT P(style) | Cohen's d | Blindspot? | 解读 |\n|------|-------------|-----------|------------|------|\n| LLMBar formality | 63-66% | 0.05-0.07 | ✅ | 小效应 → Likert 完全看不到 |\n| LLMBar verbosity | 76-77% | 0.06-0.08 | ✅ | 高 tie rate (58-73%) 掩盖 |\n| MT-Bench formality | 69-71% | 0.15-0.17 | ❌ | 中等效应 → Likert 也能检测但弱 |\n| AlpacaEval verbosity | 84% | **0.375** | ❌ | 强效应 → Likert 也显著 |\n\n**Pattern**: Blindspot 主要出现在 d<0.15 时。d>0.3 时两种方法都能检测，但 BT 仍远更灵敏。\n\n### 🔑 Bootstrap Attenuation Simulation（2026-05-21, Smoking Gun 级证据）\n\n**区分 measurement attenuation vs power gap**: bootstrap 子采样 Likert 数据，不同 n 下 Cohen's d 是否保持 ≈0。\n\n| Combo | n | d_median 范围 | CI 含 0? | 对应 BT | 结论 |\n|-------|---|-------------|----------|---------|------|\n| **Formality × Qwen3-32B** | 355 | -0.019 ~ -0.015 (flat) | ✅ 全含 | 66.5% | **Smoking gun: d≈0 across ALL n** |\n| Verbosity × Qwen3-32B | 86 | 0.153 ~ 0.169 (flat) | ✅ 全含 | 77.3% | d=0.15 < small threshold |\n| Verbosity × GPT-4o | 86 | 0.197 ~ 0.205 (flat) | ✅ 全含 | 76.0% | d=0.20 borderline |\n\n**Formality 是最强证据**: d_median 在 n=50→355 完全平坦在 ~-0.017，CI 从 ±0.3 收窄到 ±0.1。不是 power gap（power gap 下 d 应随 n 收敛到真值），而是 measurement attenuation（真值本身就是 0）。\n\n### 🔑 100-point Fine-Grained Likert（2026-05-21, 直接回应 Dream Reviewer）\n\n**100-point scale (0-100) 两轴均 NS → Blindspot 不是 scale granularity artifact。**\n\n| Axis | BT P(style)/p | 7pt d/p | **100pt d/p** | Tie Rate (100pt) |\n|------|--------------|---------|--------------|-------------------|\n| Formality | 63.0% / <0.001 | 0.07 / 0.332 | **-0.04 / 0.725** | **65.9%** |\n| Verbosity | 76.0% / 0.0001 | 0.08 / 0.403 | **0.17 / 0.117** | **51.2%** |\n\n**关键**: 在 101 个可能值的 scale 上，52-66% pairs 仍得到完全相同分数。Formality 100pt 比 7pt 还差（p=0.73 vs 0.33）。与 bootstrap attenuation d≈0 形成 converging evidence: Blindspot = absolute-vs-relative 范式差异。\n\n### 🔑 NLI Threshold Continuous Curve（2026-05-21, 44/44 全显著）\n\n**BT 概率跨 NLI 阈值 [0.50→0.98] 完全稳定，证明 style bias 检测不依赖特定阈值选择。**\n\n| Combo | BT Range | Max Δpp | p-values | Sig/Total |\n|-------|----------|---------|----------|-----------|\n| **Formality × Qwen3-32B** | 0.648→0.665 | ~2pp | all ≤0.0005 | 11/11 |\n| **Formality × GPT-4o** | 0.614→0.642 | ~3pp | all ≤0.002 | 11/11 |\n| **Verbosity × Qwen3-32B** | 0.765→0.773 | ~1pp | all =0.0001 | 11/11 |\n| **Verbosity × GPT-4o** | 0.752→0.769 | ~2pp | all =0.0001 | 11/11 |\n\n**核心发现**: 即使从 0.50（几乎不过滤）到 0.98（极端严格），BT 概率波动 ≤3pp，p-value 始终 ≤0.002。Verbosity 两个 judge 的 BT 都在 0.75-0.77 范围内，formality 在 0.61-0.66 范围内。这排除了\"NLI 阈值选择偏差\"的 reviewer concern。\n\n### Claude Sonnet 4 — Negative Control (D047)\n\n| Axis | BT P(style) | BT p | Likert p | GEE Style OR | GEE Orig OR |\n|------|-------------|------|----------|--------------|-------------|\n| Formality | 56.2% | 0.091 (NS) | 0.721 | 1.47 (NS) | **6.66*** |\n| Verbosity | 54.1% | 0.284 (NS) | 0.743 | 1.52 (NS) | 0.80 (NS) |\n\n**Claude 没有 style bias**——BT/Likert/GEE style 全部 NS。验证 RATE pipeline 不产生 false positive。\n**Claude formality 有极强 originality bias** (OR=6.66)：偏好原始文本而非改写文本，但不偏好特定风格。\n**Spec 一致性**：3 个 judge 使用完全相同的 system prompt + temperature=0.0。\n\n### Correction PoC — Debiased Prompt Correction Resistance（支持 C4，5/5 全显著）\n\n| Judge | Axis | Original BT | Debiased BT | Δpp | % Reduced | Still sig? |\n|-------|------|------------|------------|-----|-----------|-----------|\n| GPT-4o | Verbosity | 76.0% | 62.9% [54.9,70.6] p=0.0016 | -13.1pp | 50.4% | ✅ |\n| **Llama-70B** | **Verbosity** | **73.5%** | **66.9%** [58.9,74.4] p<0.0001 | **-6.6pp** | **28.1%** | **✅** |\n| **Llama-70B** | **Formality** | **69.5%** | **64.3%** [57.3,71.0] p<0.0001 | **-5.2pp** | **26.7%** | **✅** |\n| Qwen3-32B | Formality | 66.5% | 60.8% p=0.002 | -5.7pp | 34.5% | ✅ |\n| GPT-4o | Formality | 63.0% | 62.6% p<0.0001 | -0.4pp | 3.1% | ✅ |\n\n**5/5 debiased combinations ALL still significant** → C4 rock-solid: style bias persists despite explicit debiasing.\n- Reduction range: 3-50%, never eliminates\n- GPT-4o verbosity 最易纠正 (50.4%), GPT-4o formality 最抗纠正 (3.1%)\n- Llama-70B 两轴表现相近 (~27%), 无明显 axis-dependent asymmetry\n- **Model-independent conclusion**: prompt-level intervention insufficient\n\n### AlpacaEval Verbosity × Qwen3-32B — 跨 benchmark verbosity 确认\n\n| Metric | 值 |\n|--------|---|\n| BT P(verbose) | 84.1% [77.4%, 90.2%], p=0.0001 |\n| Likert ATE | +0.73, p=0.0003, d=0.375 |\n| GEE Style OR | **28.64** [9.16, 89.56], p<0.0001 |\n| GEE Orig OR | 0.18 [0.06, 0.54], p=0.002 |\n| n_pairs | 82 (NLI≥0.90) |\n\n### GPT-4o Rewriter Independence — 双轴确认 (R3-N2)\n\n| Axis | GPT-4o Rewriter BT | Qwen3-32B Rewriter BT | Δpp | CI Overlap | Independence |\n|------|-------|---------|-----|------------|---|\n| **Formality** | 64.4% [56.1, 72.8] | 66.5% [58.5, 73.9] | -2.1 | ✅ baseline within CI | ✅ |\n| **Verbosity** | 73.5% [65.4, 80.9] | 77.3% [70.3, 84.3] | -3.8 | ✅ CIs overlap | ✅ |\n\n### R3 Pipeline Robustness 实验汇总\n\n| Issue | 实验 | 核心结论 |\n|-------|------|---------|\n| R3-N2 Rewriter independence | gpt4o_rewriter_formality + gpt4o_rewriter_verbosity | ✅ 双轴确认 |\n| R3-W1 NLI gate validity | nli_gate_spotcheck | ✅ 94% pass agreement, conservative |\n| R3-W2 Direction-aware gate | gate_comparison_bt | ✅ Verbosity Δ=-1.1pp NS; Extra group also sig (详见下) |\n| R3-W8 NLI FN selection | nli_fn_selection_bias | ✅ CONSERVATIVE, lower bounds |\n\n### 🔑 Verbosity Direction-Aware vs Bidirectional Gate BT Split（2026-05-22, R3-W2 详细分析）\n\n**方法**: 对 100 verbosity pairs 重新计算 bidirectional NLI（forward + backward），区分三组：\n- **Strict bidirectional**: min(NLI_fwd, NLI_bwd) ≥ 0.90\n- **Direction-aware**: expansion 只看 backward，compression 只看 forward ≥ 0.90\n- **Extra (DA-only)**: pass DA but fail strict\n\nBT: choix.ilsr_pairwise, ALL pairs (含 inconsistent), 10000 bootstrap, seed=42.\n\n| Group | n_pairs | n_comps | BT P(verbose) | 95% CI | p-value |\n|-------|---------|---------|---------------|--------|---------|\n| Strict Bidirectional | 65 | 130 | 0.7845 | [0.7076, 0.8537] | <0.0001 |\n| Direction-Aware (all) | 86 | 172 | 0.7732 | [0.7034, 0.8429] | <0.0001 |\n| **Extra (DA-only)** | **21** | **42** | **0.7379** | **[0.5714, 0.8806]** | **0.0040** |\n\n**Paired bootstrap delta test**: DA - Strict = -0.0113, CI [-0.0564, +0.0296], contains 0 → no significant difference.\n\n**Extra group 构成**: 17 expansion (concise→verbose) + 4 compression (verbose→concise)。\n**特征**: 几乎全部 opposite-direction NLI 极低（0.001-0.096），仅 1 pair (mvp_0081) 有中等水平（0.674）。这些是内容增减幅度较大但单方向语义保持良好的 pairs。\n\n**结论**:\n- Direction-aware gate 额外放入的 21 pairs 展现与 strict 组**相同方向**的 verbosity bias（BT=0.7379 vs 0.7845），且独立显著（p=0.004）\n- DA gate 不引入不同 bias pattern，仅略微稀释效应（-1.1pp, NS）\n- 支持使用 direction-aware gate 而非 strict bidirectional：提高 pass rate（65→86）且不影响 bias 估计\n\n**数据存档**: `data/verbosity_bidir_nli.jsonl`（每条含 nli_fwd, nli_bwd, pass_strict, pass_da, pass_extra）\n\n### GEE Decomposition 完整 Gradient（Canonical — 来源: gee_diagnostics.py, NLI≥0.90 过滤）\n\n| Judge | Axis | Style OR | Style p | Orig OR | Orig p | 解读 |\n|-------|------|----------|---------|---------|--------|------|\n| Qwen3-32B | **Verbosity** | **13.10** | 2.6e-09 | 0.49 | 0.096 ns | **纯 style bias** |\n| GPT-4o | **Verbosity** | **11.34** | 1.1e-08 | 0.45 | 0.062 ns | **纯 style bias** |\n| **Gemini Flash** | **Verbosity** | **8.98** | **<0.0001** | **0.46** | **0.061 ns** | **纯 style bias** |\n| **Llama-70B** | **Verbosity** | **8.21** | **<0.0001** | **0.38** | **0.020** | **Style-dominated (orig 反向)** |\n| Qwen3-32B | Formality | 4.20 | 0.0002 | 4.70 | 5.2e-05 | Style ≈ Orig |\n| **Llama-70B** | **Formality** | **4.81** | **<0.0001** | **3.12** | **0.0007** | **Style ≈ Orig (both sig)** |\n| GPT-4o | Formality | 2.58 | 0.002 | 2.32 | 0.006 | Style ≈ Orig (both sig) |\n| **Gemini Flash** | **Formality** | **1.64** | **0.101 NS [0.91,2.98]** | **2.51** | **0.002** | **Orig-Dominated (style NS)** |\n| GPT-4o | Register | 1.88 | 0.027 | 2.21 | 0.005 | Orig > Style |\n| Qwen3-32B | Register | 1.91 | 0.046 | 5.72 | 8.5e-08 | Orig >> Style |\n| **Llama-70B** | **Register** | **3.33** | **0.0003** | **3.07** | **0.0008** | **Mixed (意外强 style)** |\n\n**D041 决策**: 论文全文统一使用 `gee_diagnostics.py` 的 NLI≥0.90 过滤数字。\n\n### 🔑 Length Confound 验证（Dream W10 — D040 已通过）\n\n**结论：Verbosity style OR 在控制 text length 后完全存活，length bias 假说不成立。**\n\n| Judge | Model | Style OR | Style p | Length OR | Length p |\n|-------|-------|----------|---------|-----------|----------|\n| Qwen3-32B | A: No length | 13.10 | 2.6e-09 | — | — |\n| Qwen3-32B | B: + length_ratio | 13.10 | 2.56e-09 | 1.03 | 0.424 |\n| GPT-4o | A: No length | 10.97 | 1.74e-08 | — | — |\n| GPT-4o | B: + length_ratio | 10.97 | 1.74e-08 | 1.03 | 0.478 |\n\n### GEE Model Diagnostics（Dream W5/W9 — 已通过）\n\n- **Correlation Structure**: Exchangeable vs Independence |ΔQIC| < 0.001, Max|ΔCoef| < 0.02（所有 6 cells）→ 实质等价\n- **α 范围**: [-0.25, +0.11]，within-pair correlation 弱\n- **S×O Interaction (全 8 cells)**: 0/8 interaction terms significant (p range 0.14–0.96)。Additive model 对所有 judge×axis 都足够。Regime 分类 6/8 不变，2 个边界 case（GPT-4o Register small-sample artifact, Llama-70B Verbosity 标签差异）\n\n### 跨模型一致性（论文核心 argument — 4 judges 确认）\n- **Verbosity**: 四模型 Style OR=8.2–13.1（Gemini=8.98），Orig OR<1 → **纯 style bias 是 model-independent**\n- **Formality**: GPT-4o/Qwen3-32B/Llama-70B Style+Orig 均显著（mixed effect）；**Gemini Style OR=1.64 NS（唯一 style NS）**但 BT 仍显著 → formality bias 存在但 Gemini 的 GEE 分解中被 originality 吸收\n- **Register**: GPT-4o/Qwen3-32B Style OR≈1.9（边缘），**Llama-70B Style OR=3.33（显著强）** → judge-dependent\n\n### C3 Axis Gradient\n- **Verbosity = 纯 style bias**（OR=8.2–13.1，originality ns 或反向，4 judge 一致）\n- **Formality = 混合效应**（style + originality 共存，3/4 judge 双显著，Gemini style NS 但 BT 仍显著）\n- **Register = judge-dependent**（GPT-4o=Mixed, Qwen3-32B=Orig-Dom, Llama=Mixed）。Style OR 范围 1.88-3.33，均低于 verbosity\n\n### 🔑 Formal Power Analysis（2026-05-21, C1 强化）\n\n| Judge | Axis | Likert d | Required n (80% power) | Ratio vs actual |\n|-------|------|---------|----------------------|-----------------|\n| GPT-4o | Formality | 0.073 | 1,473 | 16.7x |\n| GPT-4o | Verbosity | 0.080 | 1,227 | 14.3x |\n| Qwen3-32B | Formality | -0.017 | 27,159 | 76.5x |\n| Qwen3-32B | Verbosity | 0.153 | 336 | 3.9x |\n| Llama-70B | Formality | 0.021 | 18,157 | 206.3x |\n| Llama-70B | Verbosity | 0.034 | 6,737 | 78.3x |\n\n**所有 6 cell infeasible**。与 bootstrap attenuation 收敛：Likert effect size 本身在 0 附近 = structural limitation, not power gap。\n\n### 🔑 TOST Minimum Detectable Equivalence Margin（2026-05-22）\n\n**Proportions TOST（实际分析所用方法）**:\n- 参数: n=87 pairs, α=0.05 one-sided, power=0.80, SE=√(0.5×0.5/87)=0.0536\n- 公式: Δ_min = SE × (z_α + z_{0.90}) = 0.0536 × 2.9264 = **0.157**\n- 即 equivalence region [0.343, 0.657]\n- **实际分析用 Δ=0.10 时 power 仅 17.5%** — 严重 underpowered\n- Formality n=88: Δ_min=0.156; Verbosity n=86: Δ_min=0.158\n\n| Margin Δ | Power | Equiv Region |\n|----------|-------|--------------|\n| 0.10 | 17.5% | [0.40, 0.60] |\n| 0.143 | 70% | [0.357, 0.643] |\n| 0.157 | 80% | [0.343, 0.657] |\n| 0.176 | 90% | [0.324, 0.676] |\n\n**Paper sentence**: \"With n≈87 pairs and α=0.05, the TOST procedure achieves 80% power to reject non-equivalence only when the equivalence margin is Δ≥0.157 (win-rate within [0.343, 0.657]); at the pre-registered margin Δ=0.10, achieved power is only 17.5%.\"\n\n**Paired Likert TOST（standardized）**: Δ_min = 0.269 Cohen's d (需 σ_diff 转换为 raw units)\n\n### 🔑 Llama-70B Register（2026-05-21, 矩阵扩展）\n\n| Metric | 值 |\n|--------|---|\n| BT P(academic) | 63.5% [55.5, 71.2], p=0.0014 |\n| Likert | ATE=0.054, d=0.024, p=0.690, tie=68.8% |\n| GEE Style OR | 3.33 (p=0.0003) |\n| GEE Orig OR | 3.07 (p=0.0008) |\n| Blindspot | ✅ YES |\n| Regime | Mixed（意外：强于 GPT-4o 57% 和 Qwen3-32B 55.3%）|\n\n### 🔑 Gemini 2.5 Flash — 第4个 Judge（2026-05-21, final complete data）\n\n| Metric | Formality (88 pairs) | Verbosity (86 pairs, 171 comp) |\n|--------|---------------------|-------------------------------|\n| BT win% | 57.4% [50.0, 64.2] | 70.8% [63.7, 77.2] |\n| BT p | 0.0306 | <0.0001 |\n| Likert ATE | -0.239 | 0.151 |\n| Likert d | -0.082 | 0.051 |\n| Likert p | 0.309 (NS) | 0.370 (NS) |\n| GEE Style OR | 1.64 [0.91, 2.98] p=0.101 NS | 8.98 [3.68, 21.94] p<0.0001 |\n| GEE Orig OR | 2.51 [1.39, 4.54] p=0.002 | 0.46 [0.20, 1.04] p=0.061 NS |\n| Blindspot | ✅ YES | ✅ YES |\n| Regime | Orig-Dominated | Pure Style |\n\n**Gemini formality BT 最弱（57.4%）但仍显著**。GEE Style OR=1.64 是唯一不显著的 style 效应 → formality 的 style bias 在 Gemini 上最弱，更多被 originality 解释。\n**Gemini verbosity 完全一致**: Style OR=8.98 排第3（Qwen 13.1 > GPT-4o 11.3 > Gemini 8.98 > Llama 8.21），Pure Style regime。\n**备注**: Verbosity mvp_0041 trial2 缺失（API 返回 None），共 171 comparisons（非 172）。\n\n## Verbosity vs Formality 的方向不对称性差异（关键机制洞察）\n\n**Verbosity = 真正的 style bias**（非 originality bias）：\n- verbose→concise: 80.6% prefer original（verbose）\n- concise→verbose: 90.7% prefer rewrite（verbose）\n- 两个方向都偏好 verbose content → 真正的 verbosity preference\n\n**Formality = 可能混合 originality bias**：\n- formal→casual: 81.4% prefer original (p<0.0001)\n- casual→formal: 50.0% (p=1.0, 无偏好)\n\n**Register = 主要是 originality bias**：\n- academic→conv: 89.3% prefer original\n- conv→academic: 68.8% prefer original\n\n## 🔑 Double-Rewrite Placebo + CF vs DR 发现（2026-05-21）\n\n### ⚠️ 概念区分（Director/Reviewer 纠正）\n- **Rewriting artifact** = judge 真实偏好 LLM-polished text → 任何测量 format 都会体现\n- **Format amplification** = pairwise FORMAT 夸大差异 → Comparative Trap 的论点\n- Placebo 检测到的是 **rewriting artifact**，**NOT format amplification**\n- **MF1 三层防御**针对的是 format amplification，完全不受 placebo 结果影响\n\n### Placebo BT 修正（choix.ilsr_pairwise + ALL pairs）\n- Qwen3-32B formality: P(orig)=0.377 [0.303,0.451] p=0.0006\n- Qwen3-32B verbosity: P(orig)=0.082 [0.035,0.140] p<0.0001\n- GPT-4o formality: P(orig)=0.418 [0.342,0.500] p=0.037\n- GPT-4o verbosity: P(orig)=0.167 [0.084,0.262] p<0.0001\n- **结论**: Judges 系统性偏好 LLM-rewritten text。GEE decomposition 是正确的 artifact 控制。\n\n### CF vs DR — 排除出论文主叙事\n- CF = 1 次改写, DR = 2 次改写 → rewrite 次数不等导致 polish confound\n- Reviewer #68/#69 独立评估一致：排除出论文\n\n## BT Canonical 数字 (D032)\n\n- **NLI-filtered (primary)**: P(formal)=63.0%, CI [55.8%, 70.3%], p<0.001, 88 pairs/173 comp\n- **All-data (robustness)**: P(formal)=60.9%, CI [53.8%, 67.8%], p=0.001, 100 pairs/197 comp\n\n## Power Curve Canonical (D030/D031)\n\n| Method | Effect Size | 80% Power n |\n|--------|------------|-------------|\n| Pairwise BT | p=0.630 | 114 |\n| Pairwise Sign Test | p=0.739, r=0.523 | 62 |\n| Binarized Likert | p=0.606, tie=0.625 | 462 |\n| Likert ATE | d=0.073 (raw) | 1,473 |\n\n## Canonical 数字源（D041 决策）\n- **GEE 6-cell 表**: `csd_pipeline/gee_diagnostics.py`（NLI≥0.90 过滤，88 pairs formality）\n- **Length confound**: `csd_pipeline/verbosity_length_confound.py`\n- 废弃: `csd_pipeline/gpt4o_analysis.py` 的 GEE 数字（exp014, 98 pairs，含 NLI<0.90）\n\n## 分析脚本路径\n- **Canonical GEE (所有 6 cells)**: `csd_pipeline/gee_diagnostics.py` ← 论文用这个\n- **Bootstrap Attenuation**: `/tmp/bootstrap_attenuation.py` → output: `data/bootstrap_attenuation.json`\n- **NLI Threshold Sweep**: `/tmp/nli_threshold_sweep.py` → output: `data/nli_threshold_sweep.json`\n- **Llama-70B Scoring**: `csd_pipeline/llama70b_scoring.py` → output: `data/llama70b_third_judge.json`, `data/pairwise_results_llama70b_{formality,verbosity}.jsonl`, `data/scored_llama70b_{formality,verbosity}.jsonl`\n- BT + GEE (Qwen3-32B formality/register): `csd_pipeline/qwen32b_analysis.py`\n- Verbosity GEE (Qwen3-32B): `csd_pipeline/verbosity_gee.py`\n- Power curve: `csd_pipeline/gen_power_curve.py`\n- BT 主分析 (GPT-4o formality): `csd_pipeline/exp016_bradley_terry.py`\n- Pipeline diagram: `csd_pipeline/gen_pipeline_figure.py`\n- Forest plot: `csd_pipeline/gen_forest_plot.py`\n- Length confound 验证: `csd_pipeline/verbosity_length_confound.py`\n- Cross-benchmark scoring: `csd_pipeline/gpt4o_crossbenchmark_scoring.py`, `csd_pipeline/alpacaeval_qwen32b_scoring.py`\n- Claude judge: `csd_pipeline/claude_judge_scoring.py`\n- Correction PoC (formality): `csd_pipeline/correction_poc.py`\n- **Debiased verbosity GPT-4o**: `csd_pipeline/debiased_verbosity_gpt4o.py` → output: `data/pairwise_results_debiased_gpt4o_verbosity.jsonl`\n- **100-point Likert**: `csd_pipeline/finegrained_likert_100pt.py` → output: `data/finegrained_likert_100pt.json`, `data/scored_100pt_gpt4o_{formality,verbosity}.jsonl`\n- NLI ablation + cross-axis: `csd_pipeline/nli_ablation_cross_axis.py`\n- **Double-rewrite placebo**: `csd_pipeline/double_rewrite_placebo.py`\n- **Placebo BT reanalysis**: `csd_pipeline/placebo_bt_reanalysis.py`\n- **Llama-70B Register scoring**: `csd_pipeline/llama70b_register_scoring.py` → output: `data/llama70b_register_summary.json`, `data/pairwise_results_llama70b_register.jsonl`, `data/scored_llama70b_register.jsonl`\n- **GEE Interaction (all 8 cells)**: `csd_pipeline/gee_interaction_analysis.py` → output: `data/gee_interaction_analysis.json`\n- **Power Analysis**: local `/tmp/power_analysis.py` → output: `artifacts/power_analysis_formal.json`\n- **Gemini Flash Scoring**: `csd_pipeline/gemini_flash_scoring.py` → output: `data/gemini_flash_summary.json`, `data/pairwise_results_gemini_flash_{formality,verbosity}.jsonl`, `data/scored_gemini_flash_{formality,verbosity}.jsonl`\n- **Gate Comparison BT**: `csd_pipeline/gate_comparison_bt.py` → output: `data/verbosity_bidir_nli.jsonl`（per-record bidirectional NLI scores）\n\n## 踩坑经验\n- [2026-05-20] vLLM Qwen3 需要 `VLLM_USE_FLASHINFER_SAMPLER=0`（Blackwell sm120 不兼容）\n- [2026-05-20] 32B FP16 单卡 96GB OK（gpu-memory-utilization=0.90 用了 88GB）\n- [2026-05-21] NLI-only gating 对所有 axis 都适用（D023）\n- [2026-05-21] **Consistent-only filter bug**: BT/GEE 必须用 ALL NLI-pass pairs（§3.3 方法学），不能只用 position-consistent pairs\n- [2026-05-21] **Rewriting artifact ≠ format amplification**: Placebo 检测 rewriting artifact，MF1 防御针对 format amplification\n- [2026-05-21] **Placebo bt_win_rate 实际是 sign test**：补跑用 choix.ilsr_pairwise + ALL pairs\n- [2026-05-21] **CF vs DR 不可用**: CF=1 rewrite, DR=2 rewrites, artifact 水平不同\n- [2026-05-21] **Worker Pool blocked 时可直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com` 执行 CPU 任务\n- [2026-05-21] **scored_scaled_formality_qwen32b.jsonl = n=355 formality Likert data**: 全部 NLI-pass，verified_32b.jsonl 没有 Likert scores\n- [2026-05-22] **Llama-70B vLLM 启动**: ModelScope 路径 `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct`，tp=2 GPU 2,3 port 8003\n- [2026-05-22] **OpenRouter via proxy**: `http://47.94.22.126/v1` + key_id=`openrouter_key`，model=`google/gemini-2.5-flash`，OpenAI SDK 兼容\n- [2026-05-22] **Gemini verbosity resume**: 首次跑中断于 32/86 pairs，脚本 resume 功能正常跳过已完成 pairs"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-22T04:25:25.745248+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-22T04:25:25.745487+00:00_
+
+结果汇总：
+
+### Verbosity Direction-Aware Gate BT Split（Qwen3-32B Judge）
+
+| Group | n | BT P(verbose) | 95% CI | p |
+|-------|---|---------------|--------|---|
+| Strict Bidirectional | 65 | 0.7845 | [0.7076, 0.8537] | <0.0001 |
+| Direction-Aware (all) | 86 | 0.7732 | [0.7034, 0.8429] | <0.0001 |
+| **Extra (DA-only)** | **21** | **0.7379** | **[0.5714, 0.8806]** | **0.0040** |
+
+**Delta test**: DA - Strict = -1.1pp, CI [-5.6, +3.0], contains 0 → no significant difference.
+
+**Extra group 构成**: 17 expansion + 4 compression。几乎全部 opposite-direction NLI 极低（0.001–0.096），即内容增减幅度大但单方向语义保持良好的 pairs。
+
+**结论**: Direction-aware gate 额外放入的 21 pairs 展现与 strict 组**同方向**的 verbosity bias（0.7379 vs 0.7845），且独立显著（p=0.004）。DA gate 不引入异常 bias pattern，支持使用 DA gate 而非 strict bidirectional。
+
+数据存档于 `data/verbosity_bidir_nli.jsonl`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_verbosity-bt-split_20260522T041523"
+}
+```
+
+</details>
+
+---

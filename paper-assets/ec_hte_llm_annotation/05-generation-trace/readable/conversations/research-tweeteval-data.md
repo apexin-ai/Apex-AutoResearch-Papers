@@ -1,0 +1,412 @@
+# research tweeteval data
+
+**When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/chats/worker_research_tweeteval-data_20260520T214120.jsonl`
+- **Structured JSON:** [`59adeca225d13ec884aa.json`](../../sessions/59/59adeca225d13ec884aa.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+13 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T21:45:26.613428+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "pip install datasets 2>&1 | tail -5",
+  "timeout": "120000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "pip install datasets 2>&1 | tail -5",
+    "timeout": "120000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-20T21:45:26.613942+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/ec_hte_llm_annotation/results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/ec_hte_llm_annotation/results"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-20T21:45:26.614262+00:00_
+
+    See /usr/share/doc/python3.14/README.venv for more information.
+
+note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+hint: See PEP 668 for the detailed specification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T21:45:26.614523+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T21:45:26.614768+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "pip install --break-system-packages datasets 2>&1 | tail -5",
+  "timeout": "180000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "pip install --break-system-packages datasets 2>&1 | tail -5",
+    "timeout": "180000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T21:45:26.615068+00:00_
+
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script datasets-cli is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+Successfully installed aiohappyeyeballs-2.6.2 aiohttp-3.13.5 aiosignal-1.4.0 annotated-doc-0.0.4 anyio-4.13.0 click-8.4.0 datasets-4.8.5 dill-0.4.1 filelock-3.29.0 frozenlist-1.8.0 fsspec-2026.2.0 hf-xet-1.5.0 httpcore-1.0.9 httpx-0.28.1 huggingface-hub-1.15.0 multidict-6.7.1 multiprocess-0.70.19 propcache-0.5.2 pyarrow-24.0.0 shellingham-1.5.4 tqdm-4.67.3 typer-0.25.1 xxhash-3.7.0 yarl-1.24.2
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T21:45:26.615393+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/ec_hte_llm_annotation/scripts/explore_tweeteval.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Explore all TweetEval subtasks for EC-HTE feasibility analysis.\"\"\"\n\nimport json\nimport re\nimport sys\nfrom collections import Counter\nfrom datasets import load_dataset\n\nSUBTASKS = [\n    \"stance_feminist\", \"stance_abortion\", \"stance_atheism\",\n    \"stance_climate\", \"stance_hillary\",\n    \"sentiment\", \"hate\", \"irony\", \"offensive\", \"emoji\",\n]\n\ndef text_length_stats(texts):\n    lengths = [len(t) for t in texts]\n    lengths.sort()\n    n = len(lengths)\n    return {\n        \"mean\": sum(lengths) / n,\n        \"median\": lengths[n // 2],\n        \"min\": min(lengths),\n        \"max\": max(lengths),\n    }\n\ndef subgroup_features(texts):\n    has_hashtag = sum(1 for t in texts if \"#\" in t)\n    has_mention = sum(1 for t in texts if \"@\" in t)\n    has_url = sum(1 for t in texts if \"http\" in t.lower())\n    all_caps = sum(1 for t in texts if t == t.upper() and len(t) > 10)\n    has_emoji_pat = re.compile(\n        \"[\"\n        \"\\U0001F600-\\U0001F64F\"\n        \"\\U0001F300-\\U0001F5FF\"\n        \"\\U0001F680-\\U0001F6FF\"\n        \"\\U0001F1E0-\\U0001F1FF\"\n        \"\\U00002702-\\U000027B0\"\n        \"\\U0001f900-\\U0001f9FF\"\n        \"]+\", flags=re.UNICODE\n    )\n    has_emoji = sum(1 for t in texts if has_emoji_pat.search(t))\n    n = len(texts)\n    lengths = [len(t) for t in texts]\n    lengths.sort()\n    p33 = lengths[n // 3]\n    p66 = lengths[2 * n // 3]\n    short = sum(1 for t in texts if len(t) <= p33)\n    medium = sum(1 for t in texts if p33 < len(t) <= p66)\n    long_ = sum(1 for t in texts if len(t) > p66)\n    return {\n        \"n\": n,\n        \"has_hashtag\": has_hashtag,\n        \"has_mention\": has_mention,\n        \"has_url\": has_url,\n        \"all_caps\": all_caps,\n        \"has_emoji\": has_emoji,\n        \"length_short\": short,\n        \"length_medium\": medium,\n        \"length_long\": long_,\n        \"length_thresholds\": (p33, p66),\n    }\n\nresults = {}\n\nfor task in SUBTASKS:\n    print(f\"\\n{'='*60}\")\n    print(f\"Loading: {task}\")\n    print(f\"{'='*60}\")\n    try:\n        ds = load_dataset(\"cardiffnlp/tweet_eval\", task, trust_remote_code=True)\n    except Exception as e:\n        print(f\"  ERROR loading {task}: {e}\")\n        results[task] = {\"error\": str(e)}\n        continue\n\n    info = {}\n    # Splits and sizes\n    splits = {}\n    for split_name in ds:\n        splits[split_name] = len(ds[split_name])\n    info[\"splits\"] = splits\n    print(f\"  Splits: {splits}\")\n\n    # Determine text and label column names\n    cols = ds[list(ds.keys())[0]].column_names\n    text_col = \"text\" if \"text\" in cols else cols[0]\n    label_col = \"label\" if \"label\" in cols else cols[1]\n    info[\"columns\"] = cols\n\n    # Label distribution (train)\n    train_split = \"train\" if \"train\" in ds else list(ds.keys())[0]\n    labels = ds[train_split][label_col]\n    label_counts = Counter(labels)\n    info[\"label_distribution_train\"] = dict(label_counts)\n\n    # Try to get label names\n    try:\n        label_names = ds[train_split].features[label_col].names\n        info[\"label_names\"] = label_names\n    except:\n        info[\"label_names\"] = None\n\n    print(f\"  Labels: {info.get('label_names', label_counts)}\")\n    for lbl, cnt in sorted(label_counts.items()):\n        name = info[\"label_names\"][lbl] if info[\"label_names\"] else lbl\n        pct = cnt / len(labels) * 100\n        print(f\"    {name}: {cnt} ({pct:.1f}%)\")\n\n    # Text length stats\n    texts = ds[train_split][text_col]\n    tl_stats = text_length_stats(texts)\n    info[\"text_length_stats\"] = tl_stats\n    print(f\"  Text length: mean={tl_stats['mean']:.1f}, median={tl_stats['median']}, \"\n          f\"min={tl_stats['min']}, max={tl_stats['max']}\")\n\n    # First 5 examples\n    info[\"examples\"] = []\n    print(f\"  First 5 examples:\")\n    for i in range(min(5, len(ds[train_split]))):\n        ex = ds[train_split][i]\n        t = ex[text_col]\n        l = ex[label_col]\n        lname = info[\"label_names\"][l] if info[\"label_names\"] else l\n        info[\"examples\"].append({\"text\": t, \"label\": lname})\n        print(f\"    [{lname}] {t[:120]}\")\n\n    # Subgroup features (all data combined)\n    all_texts = []\n    for split_name in ds:\n        all_texts.extend(ds[split_name][text_col])\n    sg = subgroup_features(all_texts)\n    info[\"subgroup_features\"] = sg\n    print(f\"  Subgroup features (all splits, n={sg['n']}):\")\n    print(f\"    Hashtag: {sg['has_hashtag']} ({sg['has_hashtag']/sg['n']*100:.1f}%)\")\n    print(f\"    @mention: {sg['has_mention']} ({sg['has_mention']/sg['n']*100:.1f}%)\")\n    print(f\"    URL: {sg['has_url']} ({sg['has_url']/sg['n']*100:.1f}%)\")\n    print(f\"    ALL CAPS: {sg['all_caps']} ({sg['all_caps']/sg['n']*100:.1f}%)\")\n    print(f\"    Emoji: {sg['has_emoji']} ({sg['has_emoji']/sg['n']*100:.1f}%)\")\n    print(f\"    Length groups (thresholds {sg['length_thresholds']}): \"\n          f\"short={sg['length_short']}, medium={sg['length_medium']}, long={sg['length_long']}\")\n\n    # Test split label distribution\n    test_split = \"test\" if \"test\" in ds else None\n    if test_split:\n        test_labels = ds[test_split][label_col]\n        test_label_counts = Counter(test_labels)\n        info[\"label_distribution_test\"] = dict(test_label_counts)\n\n    results[task] = info\n\n# Save raw results\nwith open(\"/home/ubuntu/ec_hte_llm_annotation/results/tweeteval_raw.json\", \"w\") as f:\n    json.dump(results, f, indent=2, default=str)\n\nprint(\"\\n\\nDone. Raw results saved.\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/ec_hte_llm_annotation/scripts/explore_tweeteval.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Explore all TweetEval subtasks for EC-HTE feasibility analysis.\"\"\"\n\nimport json\nimport re\nimport sys\nfrom collections import Counter\nfrom datasets import load_dataset\n\nSUBTASKS = [\n    \"stance_feminist\", \"stance_abortion\", \"stance_atheism\",\n    \"stance_climate\", \"stance_hillary\",\n    \"sentiment\", \"hate\", \"irony\", \"offensive\", \"emoji\",\n]\n\ndef text_length_stats(texts):\n    lengths = [len(t) for t in texts]\n    lengths.sort()\n    n = len(lengths)\n    return {\n        \"mean\": sum(lengths) / n,\n        \"median\": lengths[n // 2],\n        \"min\": min(lengths),\n        \"max\": max(lengths),\n    }\n\ndef subgroup_features(texts):\n    has_hashtag = sum(1 for t in texts if \"#\" in t)\n    has_mention = sum(1 for t in texts if \"@\" in t)\n    has_url = sum(1 for t in texts if \"http\" in t.lower())\n    all_caps = sum(1 for t in texts if t == t.upper() and len(t) > 10)\n    has_emoji_pat = re.compile(\n        \"[\"\n        \"\\U0001F600-\\U0001F64F\"\n        \"\\U0001F300-\\U0001F5FF\"\n        \"\\U0001F680-\\U0001F6FF\"\n        \"\\U0001F1E0-\\U0001F1FF\"\n        \"\\U00002702-\\U000027B0\"\n        \"\\U0001f900-\\U0001f9FF\"\n        \"]+\", flags=re.UNICODE\n    )\n    has_emoji = sum(1 for t in texts if has_emoji_pat.search(t))\n    n = len(texts)\n    lengths = [len(t) for t in texts]\n    lengths.sort()\n    p33 = lengths[n // 3]\n    p66 = lengths[2 * n // 3]\n    short = sum(1 for t in texts if len(t) <= p33)\n    medium = sum(1 for t in texts if p33 < len(t) <= p66)\n    long_ = sum(1 for t in texts if len(t) > p66)\n    return {\n        \"n\": n,\n        \"has_hashtag\": has_hashtag,\n        \"has_mention\": has_mention,\n        \"has_url\": has_url,\n        \"all_caps\": all_caps,\n        \"has_emoji\": has_emoji,\n        \"length_short\": short,\n        \"length_medium\": medium,\n        \"length_long\": long_,\n        \"length_thresholds\": (p33, p66),\n    }\n\nresults = {}\n\nfor task in SUBTASKS:\n    print(f\"\\n{'='*60}\")\n    print(f\"Loading: {task}\")\n    print(f\"{'='*60}\")\n    try:\n        ds = load_dataset(\"cardiffnlp/tweet_eval\", task, trust_remote_code=True)\n    except Exception as e:\n        print(f\"  ERROR loading {task}: {e}\")\n        results[task] = {\"error\": str(e)}\n        continue\n\n    info = {}\n    # Splits and sizes\n    splits = {}\n    for split_name in ds:\n        splits[split_name] = len(ds[split_name])\n    info[\"splits\"] = splits\n    print(f\"  Splits: {splits}\")\n\n    # Determine text and label column names\n    cols = ds[list(ds.keys())[0]].column_names\n    text_col = \"text\" if \"text\" in cols else cols[0]\n    label_col = \"label\" if \"label\" in cols else cols[1]\n    info[\"columns\"] = cols\n\n    # Label distribution (train)\n    train_split = \"train\" if \"train\" in ds else list(ds.keys())[0]\n    labels = ds[train_split][label_col]\n    label_counts = Counter(labels)\n    info[\"label_distribution_train\"] = dict(label_counts)\n\n    # Try to get label names\n    try:\n        label_names = ds[train_split].features[label_col].names\n        info[\"label_names\"] = label_names\n    except:\n        info[\"label_names\"] = None\n\n    print(f\"  Labels: {info.get('label_names', label_counts)}\")\n    for lbl, cnt in sorted(label_counts.items()):\n        name = info[\"label_names\"][lbl] if info[\"label_names\"] else lbl\n        pct = cnt / len(labels) * 100\n        print(f\"    {name}: {cnt} ({pct:.1f}%)\")\n\n    # Text length stats\n    texts = ds[train_split][text_col]\n    tl_stats = text_length_stats(texts)\n    info[\"text_length_stats\"] = tl_stats\n    print(f\"  Text length: mean={tl_stats['mean']:.1f}, median={tl_stats['median']}, \"\n          f\"min={tl_stats['min']}, max={tl_stats['max']}\")\n\n    # First 5 examples\n    info[\"examples\"] = []\n    print(f\"  First 5 examples:\")\n    for i in range(min(5, len(ds[train_split]))):\n        ex = ds[train_split][i]\n        t = ex[text_col]\n        l = ex[label_col]\n        lname = info[\"label_names\"][l] if info[\"label_names\"] else l\n        info[\"examples\"].append({\"text\": t, \"label\": lname})\n        print(f\"    [{lname}] {t[:120]}\")\n\n    # Subgroup features (all data combined)\n    all_texts = []\n    for split_name in ds:\n        all_texts.extend(ds[split_name][text_col])\n    sg = subgroup_features(all_texts)\n    info[\"subgroup_features\"] = sg\n    print(f\"  Subgroup features (all splits, n={sg['n']}):\")\n    print(f\"    Hashtag: {sg['has_hashtag']} ({sg['has_hashtag']/sg['n']*100:.1f}%)\")\n    print(f\"    @mention: {sg['has_mention']} ({sg['has_mention']/sg['n']*100:.1f}%)\")\n    print(f\"    URL: {sg['has_url']} ({sg['has_url']/sg['n']*100:.1f}%)\")\n    print(f\"    ALL CAPS: {sg['all_caps']} ({sg['all_caps']/sg['n']*100:.1f}%)\")\n    print(f\"    Emoji: {sg['has_emoji']} ({sg['has_emoji']/sg['n']*100:.1f}%)\")\n    print(f\"    Length groups (thresholds {sg['length_thresholds']}): \"\n          f\"short={sg['length_short']}, medium={sg['length_medium']}, long={sg['length_long']}\")\n\n    # Test split label distribution\n    test_split = \"test\" if \"test\" in ds else None\n    if test_split:\n        test_labels = ds[test_split][label_col]\n        test_label_counts = Counter(test_labels)\n        info[\"label_distribution_test\"] = dict(test_label_counts)\n\n    results[task] = info\n\n# Save raw results\nwith open(\"/home/ubuntu/ec_hte_llm_annotation/results/tweeteval_raw.json\", \"w\") as f:\n    json.dump(results, f, indent=2, default=str)\n\nprint(\"\\n\\nDone. Raw results saved.\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T21:45:26.615798+00:00_
+
+File created successfully at: /home/ubuntu/ec_hte_llm_annotation/scripts/explore_tweeteval.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T21:45:26.616079+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 scripts/explore_tweeteval.py 2>&1",
+  "timeout": "300000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 scripts/explore_tweeteval.py 2>&1",
+    "timeout": "300000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T21:45:26.616668+00:00_
+
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'cardiffnlp/tweet_eval' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+
+============================================================
+Loading: stance_feminist
+============================================================
+Generating train split:   0%|          | 0/597 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 597/597 [00:00<00:00, 117619.40 examples/s]
+Generating test split:   0%|          | 0/285 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 285/285 [00:00<00:00, 81723.98 examples/s]
+Generating validation split:   0%|          | 0/67 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 67/67 [00:00<00:00, 23581.30 examples/s]
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'cardiffnlp/tweet_eval' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+  Splits: {'train': 597, 'test': 285, 'validation': 67}
+  Labels: ['none', 'against', 'favor']
+    none: 113 (18.9%)
+    against: 295 (49.4%)
+    favor: 189 (31.7%)
+  Text length: mean=106.1, median=114, min=34, max=139
+  First 5 examples:
+    [against] @user @user is the UK's answer to @user and @user  #GamerGate #SemST
+    [none] @user @user nah abi gonna get married to a rich white guy and gonna give me half of the money when they're divorced #Sem
+    [favor] RT @user Look for our latest indiegogo campaign coming out soon to help turn young girls into great leaders. #womensrigh
+    [favor] @user what's so wrong with getting dick? How come when guys do it they're praised for it? YOU SEXIST #SemST
+    [none] Sehri time seems to be turnin
+…[truncated 17762 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T21:45:26.617150+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/tweeteval_exploration.md",
+  "content": "# TweetEval 数据集探索报告\n\n**日期**: 2026-05-20  \n**目的**: 评估 CardiffNLP TweetEval 各子任务用于 EC-HTE 异质性处理效应分析的可行性\n\n---\n\n## 1. 数据集概览\n\nTweetEval（Barbieri et al., 2020）包含 10 个 Twitter 文本分类子任务。数据来源为 `cardiffnlp/tweet_eval`（Hugging Face Datasets）。\n\n### 1.1 各子任务样本量\n\n| 子任务 | N_train | N_validation | N_test | N_total | 标签数 |\n|--------|---------|-------------|--------|---------|--------|\n| stance_feminist | 597 | 67 | 285 | 949 | 3 |\n| stance_abortion | 587 | 66 | 280 | 933 | 3 |\n| stance_atheism | 461 | 52 | 220 | 733 | 3 |\n| stance_climate | 355 | 40 | 169 | 564 | 3 |\n| stance_hillary | 620 | 69 | 295 | 984 | 3 |\n| sentiment | 45,615 | 2,000 | 12,284 | 59,899 | 3 |\n| hate | 9,000 | 1,000 | 2,970 | 12,970 | 2 |\n| irony | 2,862 | 955 | 784 | 4,601 | 2 |\n| offensive | 11,916 | 1,324 | 860 | 14,100 | 2 |\n| emoji | 45,000 | 5,000 | 50,000 | 100,000 | 20 |\n\n---\n\n## 2. 标签分布\n\n### 2.1 Stance 子任务（标签：none / against / favor）\n\n| 子任务 | none | against | favor |\n|--------|------|---------|-------|\n| stance_feminist | 18.9% | 49.4% | 31.7% |\n| stance_abortion | 27.1% | 54.3% | 18.6% |\n| stance_atheism | 22.8% | 59.2% | 18.0% |\n| stance_climate | 42.5% | 3.7% | 53.8% |\n| stance_hillary | 25.8% | 57.1% | 17.1% |\n\n**关键发现**：\n- stance_climate 的 \"against\" 类仅 3.7%（13 条 train），严重不平衡\n- 其余 stance 子任务均以 \"against\" 为主（49-59%）\n\n### 2.2 其他子任务\n\n| 子任务 | 标签 | 分布 |\n|--------|------|------|\n| sentiment | negative / neutral / positive | 15.5% / 45.3% / 39.1% |\n| hate | non-hate / hate | 58.0% / 42.0% |\n| irony | non_irony / irony | 49.5% / 50.5% |\n| offensive | non-offensive / offensive | 66.9% / 33.1% |\n| emoji | 20 个 emoji 类别 | ❤ 20.5% 最多，其余 2-11% |\n\n---\n\n## 3. 文本长度分布\n\n| 子任务 | Mean | Median | Min | Max |\n|--------|------|--------|-----|-----|\n| stance_feminist | 106.1 | 114 | 34 | 139 |\n| stance_abortion | 105.0 | 111 | 23 | 139 |\n| stance_atheism | 106.8 | 111 | 34 | 140 |\n| stance_climate | 101.4 | 106 | 33 | 134 |\n| stance_hillary | 100.3 | 107 | 32 | 137 |\n| sentiment | 106.9 | 113 | 10 | 200 |\n| hate | 122.8 | 110 | 0 | 303 |\n| irony | 77.9 | 77 | 4 | 998 |\n| offensive | 124.7 | 101 | 7 | 580 |\n| emoji | 71.0 | 76 | 6 | 142 |\n\n**关键发现**：\n- Stance 子任务文本长度集中在 100-140 字符（受旧 Twitter 140 字符限制）\n- sentiment/hate/offensive 有更大变异，可能来自更新的推文\n- irony 和 emoji 文本较短\n\n---\n\n## 4. 子群结构分析\n\n### 4.1 文本特征分布（全部 splits 合并）\n\n| 子任务 | N_total | Has # | Has @ | Has URL | ALL CAPS | Has Emoji |\n|--------|---------|-------|-------|---------|----------|-----------|\n| stance_feminist | 949 | 100.0% | 31.6% | 0.0% | 0.0% | 0.0% |\n| stance_abortion | 933 | 97.2% | 38.2% | 0.0% | 0.0% | 0.0% |\n| stance_atheism | 733 | 100.0% | 22.0% | 0.0% | 0.0% | 0.0% |\n| stance_climate | 564 | 100.0% | 41.5% | 0.0% | 0.0% | 0.0% |\n| stance_hillary | 984 | 97.8% | 59.9% | 0.0% | 0.0% | 0.0% |\n| sentiment | 59,899 | 23.0% | 32.5% | 0.8% | 0.1% | 1.3% |\n| hate | 12,970 | 31.3% | 41.8% | 1.1% | 0.7% | 6.9% |\n| irony | 4,601 | 45.2% | 40.3% | 0.7% | 0.2% | 10.5% |\n| offensive | 14,100 | 18.2% | 89.5% | 0.0% | 0.2% | 11.3% |\n| emoji | 100,000 | 44.7% | 67.7% | 0.1% | 0.1% | 0.0% |\n\n### 4.2 长度分组（基于 33/66 百分位数）\n\n| 子任务 | 短文本阈值 | 长文本阈值 | Short | Medium | Long |\n|--------|-----------|-----------|-------|--------|------|\n| stance_feminist | ≤100 | ≤123 | 325 | 347 | 277 |\n| stance_abortion | ≤98 | ≤122 | 315 | 312 | 306 |\n| stance_atheism | ≤97 | ≤124 | 247 | 252 | 234 |\n| stance_climate | ≤96 | ≤120 | 193 | 192 | 179 |\n| stance_hillary | ≤93 | ≤118 | 336 | 329 | 319 |\n| sentiment | ≤94 | ≤118 | 20,197 | 20,325 | 19,377 |\n| hate | ≤87 | ≤137 | 4,327 | 4,398 | 4,245 |\n| irony | ≤60 | ≤96 | 1,552 | 1,530 | 1,519 |\n| offensive | ≤69 | ≤151 | 4,701 | 4,702 | 4,697 |\n| emoji | ≤62 | ≤87 | 33,361 | 35,484 | 31,155 |\n\n### 4.3 子群分析小结\n\n**Stance 子任务**：\n- 几乎所有文本都含 hashtag（97-100%）→ hashtag 不能作为有效子群变量\n- URL、ALL CAPS、emoji 频率为 0% → 无法用作子群变量\n- 仅 @mention 和文本长度可作为二分子群（有/无 mention），但 mention 占比在 22-60% 之间\n- 子群变量极其有限\n\n**sentiment / hate / offensive**：\n- Hashtag 和 @mention 覆盖 18-90%，可作为有效二分子群\n- URL 和 ALL CAPS 过于稀疏（<1%），不适合作为子群\n- Emoji 在 irony (10.5%)、offensive (11.3%)、hate (6.9%) 中有一定比例\n- 文本长度三分组较均匀\n\n---\n\n## 5. 数据示例\n\n### stance_feminist\n```\n[against] @user @user is the UK's answer to @user and @user  #GamerGate #SemST\n[none]    @user @user nah abi gonna get married to a rich white guy...\n[favor]   RT @user Look for our latest indiegogo campaign coming out soon to help turn young girls into great leaders. #womensrigh\n```\n\n### stance_hillary\n```\n[against] If a man demanded staff to get him an ice tea he'd be called a sexists elitist pig.. Oink oink #Hillary #SemST\n[none]    We're out here in G-town, and where are you  #sctweets #SemST\n[favor]   If you're not watching @user speech right now you're missing her drop tons of wisdom. #SemST\n```\n\n### sentiment\n```\n[positive] \"QT @user In the original draft of the 7th book, Remus Lupin survived the Battle of Hogwarts...\"\n[neutral]  \"Ben Smith / Smith (concussion) remains out of the lineup Thursday...\"\n```\n\n### hate\n```\n[non-hate] @user nice new signage. Are you not concerned by Beatlemania-style hysterical crowds...\n[hate]     @user @user real talk do you have eyes or were they gouged out by a rapefugee?\n```\n\n---\n\n## 6. HTE 可行性评估\n\n### 6.1 样本量要求\n\nEC-HTE 实验需要每个子群 × Z-level × treatment 组合有足够样本。假设：\n- Z 二分为 2 个子群\n- Treatment 有 2-3 个水平（不同 LLM prompt 策略）\n- 最低要求：每 cell ≥ 100（理想 ≥ 500）\n\n对于 2 子群 × 3 treatment = 6 cells：\n- 需要 N ≥ 600（最低），理想 N ≥ 3,000\n\n### 6.2 推荐度评估\n\n| 子任务 | N_train | N_test | 标签数 | 推荐度 | 原因 |\n|--------|---------|--------|--------|--------|------|\n| **sentiment** | 45,615 | 12,284 | 3 | ⭐⭐⭐⭐⭐ | 样本量极充足；3类标签适合分类；子群变量丰富（hashtag 23%、mention 33%、长度均匀）；广泛使用的 benchmark |\n| **hate** | 9,000 | 2,970 | 2 | ⭐⭐⭐⭐ | 样本量充足；二分类；子群变量可用（hashtag 31%、mention 42%、emoji 7%）；社会敏感话题，LLM 可能有 HTE |\n| **offensive** | 11,916 | 860 | 2 | ⭐⭐⭐⭐ | train 充足但 test 仅 860；二分类；mention 占 90% 导致该变量不平衡；与 hate 互补 |\n| **irony** | 2,862 | 784 | 2 | ⭐⭐⭐ | 样本量边缘可用；讽刺检测对 LLM 有挑战性，可能产生有趣 HTE；emoji 10.5% 可作子群 |\n| **emoji** | 45,000 | 50,000 | 20 | ⭐⭐ | 样本量极大但 20 类标签使每类较少；emoji 预测任务与 HTE 研究主题不够匹配 |\n| **stance_hillary** | 620 | 295 | 3 | ⭐⭐ | 政治话题最匹配 paper framing；但 N=984 总量太小，子群划分后每 cell <100 |\n| **stance_feminist** | 597 | 285 | 3 | ⭐⭐ | 同上，政治话题相关但样本量不足 |\n| **stance_abortion** | 587 | 280 | 3 | ⭐⭐ | 同上 |\n| **stance_atheism** | 461 | 220 | 3 | ⭐ | 样本量最小之一；宗教话题有争议但 N 不足 |\n| **stance_climate** | 355 | 169 | 3 | ⭐ | 样本量最小；\"against\" 仅 3.7%（13条），严重不平衡，无法有效分析 |\n\n### 6.3 综合推荐\n\n#### 首选方案：**sentiment**\n- **优势**：N=45,615 train 远超需求；3类标签（neg/neu/pos）结构清晰；子群变量多样（hashtag、mention、长度）；学术界广泛使用\n- **HTE 假设**：LLM 对含 hashtag vs 不含 hashtag 的推文情感判断可能有系统性差异；短文本 vs 长文本的准确率可能不同\n- **建议采样**：从 train 中采样 3,000-5,000 条即可满足实验需求\n\n#### 次选方案：**hate** 或 **offensive**\n- **优势**：样本量充足（9K-12K）；二分类任务对 LLM 有挑战性（涉及社会偏见/价值判断）\n- **HTE 假设**：LLM 可能对含 emoji/hashtag 的推文系统性高估或低估 hate speech；不同 prompt 策略可能产生异质性效应\n- **注意**：这些任务涉及敏感内容，使用时需注意伦理考量\n\n#### Stance 子任务的局限\n- **核心问题**：所有 stance 子任务的 N < 1,000，子群划分后每 cell 仅 50-150 条，统计功效不足\n- **子群结构贫乏**：几乎所有文本都含 hashtag，无 URL/emoji，只有 @mention 和长度可用\n- **如果必须使用 stance**：建议合并多个 stance 子任务（total N ≈ 4,163），用\"话题\"本身作为一个子群维度，但需要额外验证跨话题合并的合理性\n\n---\n\n## 7. 建议的下一步\n\n1. **使用 sentiment 子任务**作为主要实验数据集\n2. 定义子群变量：\n   - Z1: has_hashtag（23% vs 77%）\n   - Z2: has_mention（33% vs 67%）\n   - Z3: text_length（short/medium/long 三等分）\n3. 从 train 中采样 ~5,000 条，保持标签和子群分布平衡\n4. 设计 3 种 LLM annotation prompt 策略作为 treatment\n5. 用 test set 作为 held-out 验证集\n\n---\n\n## 附录：原始数据文件\n\n完整探索数据保存在 `results/tweeteval_raw.json`。\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/tweeteval_exploration.md",
+    "content": "# TweetEval 数据集探索报告\n\n**日期**: 2026-05-20  \n**目的**: 评估 CardiffNLP TweetEval 各子任务用于 EC-HTE 异质性处理效应分析的可行性\n\n---\n\n## 1. 数据集概览\n\nTweetEval（Barbieri et al., 2020）包含 10 个 Twitter 文本分类子任务。数据来源为 `cardiffnlp/tweet_eval`（Hugging Face Datasets）。\n\n### 1.1 各子任务样本量\n\n| 子任务 | N_train | N_validation | N_test | N_total | 标签数 |\n|--------|---------|-------------|--------|---------|--------|\n| stance_feminist | 597 | 67 | 285 | 949 | 3 |\n| stance_abortion | 587 | 66 | 280 | 933 | 3 |\n| stance_atheism | 461 | 52 | 220 | 733 | 3 |\n| stance_climate | 355 | 40 | 169 | 564 | 3 |\n| stance_hillary | 620 | 69 | 295 | 984 | 3 |\n| sentiment | 45,615 | 2,000 | 12,284 | 59,899 | 3 |\n| hate | 9,000 | 1,000 | 2,970 | 12,970 | 2 |\n| irony | 2,862 | 955 | 784 | 4,601 | 2 |\n| offensive | 11,916 | 1,324 | 860 | 14,100 | 2 |\n| emoji | 45,000 | 5,000 | 50,000 | 100,000 | 20 |\n\n---\n\n## 2. 标签分布\n\n### 2.1 Stance 子任务（标签：none / against / favor）\n\n| 子任务 | none | against | favor |\n|--------|------|---------|-------|\n| stance_feminist | 18.9% | 49.4% | 31.7% |\n| stance_abortion | 27.1% | 54.3% | 18.6% |\n| stance_atheism | 22.8% | 59.2% | 18.0% |\n| stance_climate | 42.5% | 3.7% | 53.8% |\n| stance_hillary | 25.8% | 57.1% | 17.1% |\n\n**关键发现**：\n- stance_climate 的 \"against\" 类仅 3.7%（13 条 train），严重不平衡\n- 其余 stance 子任务均以 \"against\" 为主（49-59%）\n\n### 2.2 其他子任务\n\n| 子任务 | 标签 | 分布 |\n|--------|------|------|\n| sentiment | negative / neutral / positive | 15.5% / 45.3% / 39.1% |\n| hate | non-hate / hate | 58.0% / 42.0% |\n| irony | non_irony / irony | 49.5% / 50.5% |\n| offensive | non-offensive / offensive | 66.9% / 33.1% |\n| emoji | 20 个 emoji 类别 | ❤ 20.5% 最多，其余 2-11% |\n\n---\n\n## 3. 文本长度分布\n\n| 子任务 | Mean | Median | Min | Max |\n|--------|------|--------|-----|-----|\n| stance_feminist | 106.1 | 114 | 34 | 139 |\n| stance_abortion | 105.0 | 111 | 23 | 139 |\n| stance_atheism | 106.8 | 111 | 34 | 140 |\n| stance_climate | 101.4 | 106 | 33 | 134 |\n| stance_hillary | 100.3 | 107 | 32 | 137 |\n| sentiment | 106.9 | 113 | 10 | 200 |\n| hate | 122.8 | 110 | 0 | 303 |\n| irony | 77.9 | 77 | 4 | 998 |\n| offensive | 124.7 | 101 | 7 | 580 |\n| emoji | 71.0 | 76 | 6 | 142 |\n\n**关键发现**：\n- Stance 子任务文本长度集中在 100-140 字符（受旧 Twitter 140 字符限制）\n- sentiment/hate/offensive 有更大变异，可能来自更新的推文\n- irony 和 emoji 文本较短\n\n---\n\n## 4. 子群结构分析\n\n### 4.1 文本特征分布（全部 splits 合并）\n\n| 子任务 | N_total | Has # | Has @ | Has URL | ALL CAPS | Has Emoji |\n|--------|---------|-------|-------|---------|----------|-----------|\n| stance_feminist | 949 | 100.0% | 31.6% | 0.0% | 0.0% | 0.0% |\n| stance_abortion | 933 | 97.2% | 38.2% | 0.0% | 0.0% | 0.0% |\n| stance_atheism | 733 | 100.0% | 22.0% | 0.0% | 0.0% | 0.0% |\n| stance_climate | 564 | 100.0% | 41.5% | 0.0% | 0.0% | 0.0% |\n| stance_hillary | 984 | 97.8% | 59.9% | 0.0% | 0.0% | 0.0% |\n| sentiment | 59,899 | 23.0% | 32.5% | 0.8% | 0.1% | 1.3% |\n| hate | 12,970 | 31.3% | 41.8% | 1.1% | 0.7% | 6.9% |\n| irony | 4,601 | 45.2% | 40.3% | 0.7% | 0.2% | 10.5% |\n| offensive | 14,100 | 18.2% | 89.5% | 0.0% | 0.2% | 11.3% |\n| emoji | 100,000 | 44.7% | 67.7% | 0.1% | 0.1% | 0.0% |\n\n### 4.2 长度分组（基于 33/66 百分位数）\n\n| 子任务 | 短文本阈值 | 长文本阈值 | Short | Medium | Long |\n|--------|-----------|-----------|-------|--------|------|\n| stance_feminist | ≤100 | ≤123 | 325 | 347 | 277 |\n| stance_abortion | ≤98 | ≤122 | 315 | 312 | 306 |\n| stance_atheism | ≤97 | ≤124 | 247 | 252 | 234 |\n| stance_climate | ≤96 | ≤120 | 193 | 192 | 179 |\n| stance_hillary | ≤93 | ≤118 | 336 | 329 | 319 |\n| sentiment | ≤94 | ≤118 | 20,197 | 20,325 | 19,377 |\n| hate | ≤87 | ≤137 | 4,327 | 4,398 | 4,245 |\n| irony | ≤60 | ≤96 | 1,552 | 1,530 | 1,519 |\n| offensive | ≤69 | ≤151 | 4,701 | 4,702 | 4,697 |\n| emoji | ≤62 | ≤87 | 33,361 | 35,484 | 31,155 |\n\n### 4.3 子群分析小结\n\n**Stance 子任务**：\n- 几乎所有文本都含 hashtag（97-100%）→ hashtag 不能作为有效子群变量\n- URL、ALL CAPS、emoji 频率为 0% → 无法用作子群变量\n- 仅 @mention 和文本长度可作为二分子群（有/无 mention），但 mention 占比在 22-60% 之间\n- 子群变量极其有限\n\n**sentiment / hate / offensive**：\n- Hashtag 和 @mention 覆盖 18-90%，可作为有效二分子群\n- URL 和 ALL CAPS 过于稀疏（<1%），不适合作为子群\n- Emoji 在 irony (10.5%)、offensive (11.3%)、hate (6.9%) 中有一定比例\n- 文本长度三分组较均匀\n\n---\n\n## 5. 数据示例\n\n### stance_feminist\n```\n[against] @user @user is the UK's answer to @user and @user  #GamerGate #SemST\n[none]    @user @user nah abi gonna get married to a rich white guy...\n[favor]   RT @user Look for our latest indiegogo campaign coming out soon to help turn young girls into great leaders. #womensrigh\n```\n\n### stance_hillary\n```\n[against] If a man demanded staff to get him an ice tea he'd be called a sexists elitist pig.. Oink oink #Hillary #SemST\n[none]    We're out here in G-town, and where are you  #sctweets #SemST\n[favor]   If you're not watching @user speech right now you're missing her drop tons of wisdom. #SemST\n```\n\n### sentiment\n```\n[positive] \"QT @user In the original draft of the 7th book, Remus Lupin survived the Battle of Hogwarts...\"\n[neutral]  \"Ben Smith / Smith (concussion) remains out of the lineup Thursday...\"\n```\n\n### hate\n```\n[non-hate] @user nice new signage. Are you not concerned by Beatlemania-style hysterical crowds...\n[hate]     @user @user real talk do you have eyes or were they gouged out by a rapefugee?\n```\n\n---\n\n## 6. HTE 可行性评估\n\n### 6.1 样本量要求\n\nEC-HTE 实验需要每个子群 × Z-level × treatment 组合有足够样本。假设：\n- Z 二分为 2 个子群\n- Treatment 有 2-3 个水平（不同 LLM prompt 策略）\n- 最低要求：每 cell ≥ 100（理想 ≥ 500）\n\n对于 2 子群 × 3 treatment = 6 cells：\n- 需要 N ≥ 600（最低），理想 N ≥ 3,000\n\n### 6.2 推荐度评估\n\n| 子任务 | N_train | N_test | 标签数 | 推荐度 | 原因 |\n|--------|---------|--------|--------|--------|------|\n| **sentiment** | 45,615 | 12,284 | 3 | ⭐⭐⭐⭐⭐ | 样本量极充足；3类标签适合分类；子群变量丰富（hashtag 23%、mention 33%、长度均匀）；广泛使用的 benchmark |\n| **hate** | 9,000 | 2,970 | 2 | ⭐⭐⭐⭐ | 样本量充足；二分类；子群变量可用（hashtag 31%、mention 42%、emoji 7%）；社会敏感话题，LLM 可能有 HTE |\n| **offensive** | 11,916 | 860 | 2 | ⭐⭐⭐⭐ | train 充足但 test 仅 860；二分类；mention 占 90% 导致该变量不平衡；与 hate 互补 |\n| **irony** | 2,862 | 784 | 2 | ⭐⭐⭐ | 样本量边缘可用；讽刺检测对 LLM 有挑战性，可能产生有趣 HTE；emoji 10.5% 可作子群 |\n| **emoji** | 45,000 | 50,000 | 20 | ⭐⭐ | 样本量极大但 20 类标签使每类较少；emoji 预测任务与 HTE 研究主题不够匹配 |\n| **stance_hillary** | 620 | 295 | 3 | ⭐⭐ | 政治话题最匹配 paper framing；但 N=984 总量太小，子群划分后每 cell <100 |\n| **stance_feminist** | 597 | 285 | 3 | ⭐⭐ | 同上，政治话题相关但样本量不足 |\n| **stance_abortion** | 587 | 280 | 3 | ⭐⭐ | 同上 |\n| **stance_atheism** | 461 | 220 | 3 | ⭐ | 样本量最小之一；宗教话题有争议但 N 不足 |\n| **stance_climate** | 355 | 169 | 3 | ⭐ | 样本量最小；\"against\" 仅 3.7%（13条），严重不平衡，无法有效分析 |\n\n### 6.3 综合推荐\n\n#### 首选方案：**sentiment**\n- **优势**：N=45,615 train 远超需求；3类标签（neg/neu/pos）结构清晰；子群变量多样（hashtag、mention、长度）；学术界广泛使用\n- **HTE 假设**：LLM 对含 hashtag vs 不含 hashtag 的推文情感判断可能有系统性差异；短文本 vs 长文本的准确率可能不同\n- **建议采样**：从 train 中采样 3,000-5,000 条即可满足实验需求\n\n#### 次选方案：**hate** 或 **offensive**\n- **优势**：样本量充足（9K-12K）；二分类任务对 LLM 有挑战性（涉及社会偏见/价值判断）\n- **HTE 假设**：LLM 可能对含 emoji/hashtag 的推文系统性高估或低估 hate speech；不同 prompt 策略可能产生异质性效应\n- **注意**：这些任务涉及敏感内容，使用时需注意伦理考量\n\n#### Stance 子任务的局限\n- **核心问题**：所有 stance 子任务的 N < 1,000，子群划分后每 cell 仅 50-150 条，统计功效不足\n- **子群结构贫乏**：几乎所有文本都含 hashtag，无 URL/emoji，只有 @mention 和长度可用\n- **如果必须使用 stance**：建议合并多个 stance 子任务（total N ≈ 4,163），用\"话题\"本身作为一个子群维度，但需要额外验证跨话题合并的合理性\n\n---\n\n## 7. 建议的下一步\n\n1. **使用 sentiment 子任务**作为主要实验数据集\n2. 定义子群变量：\n   - Z1: has_hashtag（23% vs 77%）\n   - Z2: has_mention（33% vs 67%）\n   - Z3: text_length（short/medium/long 三等分）\n3. 从 train 中采样 ~5,000 条，保持标签和子群分布平衡\n4. 设计 3 种 LLM annotation prompt 策略作为 treatment\n5. 用 test set 作为 held-out 验证集\n\n---\n\n## 附录：原始数据文件\n\n完整探索数据保存在 `results/tweeteval_raw.json`。\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T21:45:26.617625+00:00_
+
+File created successfully at: /home/ubuntu/ec_hte_llm_annotation/results/tweeteval_exploration.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_tweeteval-data_20260520T214120",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-20T21:45:26.617966+00:00_
+
+完成。报告已写入 `/home/ubuntu/ec_hte_llm_annotation/results/tweeteval_exploration.md`。
+
+核心结论：
+
+- **首选 sentiment**（N=45,615）：样本量远超需求，子群变量丰富（hashtag 23%、mention 33%、长度三分组均匀），3类标签结构清晰
+- **次选 hate / offensive**（N=9K-12K）：样本量充足，涉及社会价值判断，LLM 可能产生有意义的 HTE
+- **Stance 子任务不推荐**：所有 5 个 stance 子任务的 N < 1,000，子群划分后每 cell 不足 100 条，统计功效不足；且子群结构贫乏（hashtag 接近 100%，无 URL/emoji）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_tweeteval-data_20260520T214120"
+}
+```
+
+</details>
+
+---

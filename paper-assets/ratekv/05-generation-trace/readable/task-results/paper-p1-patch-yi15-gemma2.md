@@ -1,0 +1,37 @@
+# paper p1 patch yi15 gemma2
+
+**When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_paper_p1-patch-yi15-gemma2_20260514T185614_result.json`
+- **Structured JSON:** [`ecd452c4465b1b37ac8b.json`](../../sessions/ec/ecd452c4465b1b37ac8b.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+All P1 edits complete. Summary of changes across 5 files:
+
+**abstract.tex**: Added Yi-1.5/Gemma-2 to negative results (line 6-7), Yi-1.5 as GQA counterexample, "validated on five architectures" (line 8).
+
+**introduction.tex**: Added Yi-1.5 (-1.3%) and Gemma-2 (-0.3%) result paragraphs (lines 35-36), spike vs spread discussion (lines 37-38), expanded diagnostic to five architectures with Yi-1.5 boundary classification (lines 43-44), Contribution 3 → "five models" (line 53).
+
+**experiments.tex**: Model list expanded 3→5 with full specs (lines 8-14), k values for all 5 models (line 27), Table 2 rows for Yi-1.5 (7.02/7.22/7.31) and Gemma-2 (8.90/9.03/9.05) (lines 53-54), two new result paragraphs (lines 73-77), unconstrained omission note expanded (line 79).
+
+**analysis.tex**: Three→five in 3 locations, Yi-1.5 spike vs spread analysis with L4H3 outlier details (CV=4.79, 34% delta) contrasted against Qwen's 26× spread (lines 14-17), Gemma-2 as strongest negative anchor (lines 21-22), Table 6 with 2 new rows (lines 35, 38), diagnostic items restructured for 3 tiers with all 5 models classified, "5/5 classification accuracy" (line 71).
+
+**conclusion.tex**: Results summary includes all 5 models with Yi-1.5 counterexample (lines 6-7), limitations updated to "five 7--9B-scale" (line 12).
+
+**Preserved (P0/D048 dependent)**: All instances of "0.59--0.66", "0.50" threshold, "27.3%", and solver-equivalence "three architectures" are untouched.
+
+---

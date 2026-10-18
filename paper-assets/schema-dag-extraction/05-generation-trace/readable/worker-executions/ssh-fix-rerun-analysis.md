@@ -1,0 +1,2210 @@
+# ssh fix rerun analysis
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_ssh_fix-rerun-analysis_20260515T023655.log`
+- **Structured JSON:** [`e880ddaf07f5f7ed9fc7.json`](../../sessions/e8/e880ddaf07f5f7ed9fc7.json)
+
+## Before a recorded user message
+
+45 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "03f9088a-acb1-479f-abca-95b1e044d139",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778825400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "00cb2296-089f-4b11-ae2a-b94751dc7e79",
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我来执行这个任务。先确认 reeval 数据完整性，同时读取分析脚本和数据格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "51df2007-af07-4a55-8b99-454280ba0f2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcbR2fSC6dp8RN3exULT8D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12265,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12265
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014vdhZeH6jqQ97meYE5tSBz`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "4f218c41-75f3-4a93-82f2-12afb57bd49a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DcbR2fSC6dp8RN3exULT8D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12265,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12265
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T02:37:08.910Z_
+
+<details><summary>↩ Tool result · `toolu_014vdhZeH6jqQ97meYE5tSBz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "75b35bc5-e27b-4483-9c02-e6d4d0a748f6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the reeval data completeness and reading the analysis script and data formats in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "af3efe8c-f9a7-43e6-8136-a688b325214d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dekmm1coi3PSRxFrtKGzPS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 24106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 911
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GScqCPCtiRvcM17unYPHEo`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/results/exp2_reeval_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "e065b765-87d5-4694-b4e1-2bf3c180d7ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dekmm1coi3PSRxFrtKGzPS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 24106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 911
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T02:37:14.623Z_
+
+<details><summary>↩ Tool result · `toolu_01GScqCPCtiRvcM17unYPHEo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 40530 May 15 10:28 /root/schema-dag-extraction/results/exp2_reeval_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "e50abb0a-faf5-43e4-b373-80927cf6844c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 40530 May 15 10:28 /root/schema-dag-extraction/results/exp2_reeval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 40530 May 15 10:28 /root/schema-dag-extraction/results/exp2_reeval_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YAguUGPqfiSVcGGH5Ss7Ec`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import json; d=json.load(open('/root/schema-dag-extraction/results/exp2_reeval_results.json')); print(f'Batches: {len(d)}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "c347cee7-1ba3-429e-bbb9-44e3292a41d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dekmm1coi3PSRxFrtKGzPS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 24106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 911
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T02:37:14.702Z_
+
+<details><summary>↩ Tool result · `toolu_01YAguUGPqfiSVcGGH5Ss7Ec`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "c6ef7544-1fe2-42bd-be5a-da05e36be80a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Argg13xqdqhM7qD2JEVqo`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/src/analyze_results.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "0bc18ed4-0472-4d9d-8293-e51044c132b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dekmm1coi3PSRxFrtKGzPS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 24106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 911
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T02:37:16.303Z_
+
+<details><summary>↩ Tool result · `toolu_011Argg13xqdqhM7qD2JEVqo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Statistical analysis and visualization of experiment results.\\n\\nInput: eval_exp1.json, eval_exp2.json from evaluate.py\\nOutput: Figures (PDF/PNG), statistical summary\\nDependencies: matplotlib, scipy, numpy\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport sys\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom scipy import stats\\n\\nlogger = logging.getLogger(__name__)\\n\\nplt.rcParams.update({\\n    \\\"font.family\\\": \\\"serif\\\",\\n    \\\"font.size\\\": 11,\\n    \\\"axes.labelsize\\\": 12,\\n    \\\"axes.titlesize\\\": 13,\\n    \\\"xtick.labelsize\\\": 10,\\n    \\\"ytick.labelsize\\\": 10,\\n    \\\"figure.facecolor\\\": \\\"white\\\",\\n    \\\"axes.facecolor\\\": \\\"white\\\",\\n    \\\"axes.edgecolor\\\": \\\"black\\\",\\n    \\\"axes.linewidth\\\": 0.8,\\n    \\\"legend.fontsize\\\": 10,\\n})\\n\\nCOUNT_COLORS = {\\n    \\\"count_3\\\": \\\"#2ca02c\\\",\\n    \\\"count_6\\\": \\\"#1f77b4\\\",\\n    \\\"count_12\\\": \\\"#ff7f0e\\\",\\n    \\\"count_24\\\": \\\"#d62728\\\",\\n}\\n\\n\\ndef load_eval(path: str) -> dict:\\n    \\\"\\\"\\\"Load evaluation JSON.\\\"\\\"\\\"\\n    with open(path, \\\"r\\\") as f:\\n        return json.load(f)\\n\\n\\ndef _get_metrics(batch_metrics: dict, eval_mode: str) -> dict:\\n    \\\"\\\"\\\"Get metrics dict for eval_mode with fallback.\\\"\\\"\\\"\\n    result = batch_metrics.get(eval_mode)\\n    if result is not None:\\n        return result\\n    if eval_mode == \\\"text_match\\\":\\n        logger.debug(\\\"text_match not available, falling back to relaxed\\\")\\n        return batch_metrics.get(\\\"relaxed\\\", batch_metrics.get(\\\"exact\\\", {}))\\n    return batch_metrics.get(\\\"exact\\\", {})\\n\\n\\ndef pearson_ci(r: float, n: int, alpha: float = 0.05) -> tuple:\\n    \\\"\\\"\\\"95% confidence interval for Pearson r via Fisher z-transform.\\\"\\\"\\\"\\n    if n < 4 or np.isnan(r):\\n        return (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n    z = np.arctanh(r)\\n    se = 1.0 / math.sqrt(n - 3)\\n    z_crit = stats.norm.ppf(1 - alpha / 2)\\n    return (float(np.tanh(z - z_crit * se)), float(np.tanh(z + z_crit * se)))\\n\\n\\ndef partial_corr(x, y, z):\\n    \\\"\\\"\\\"Partial correlation r(x, y | z). Returns (r, p).\\\"\\\"\\\"\\n    x = np.asarray(x, dtype=float)\\n    y = np.asarray(y, dtype=float)\\n    z = np.asarray(z, dtype=float)\\n    if len(x) < 4:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    def _resid(a, b):\\n        slope, intercept = np.polyfit(b, a, 1)\\n        return a - (slope * b + intercept)\\n    return stats.pearsonr(_resid(x, z), _resid(y, z))\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Exp 1: Count-Quality\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef analyze_exp1(eval_results: dict, output_dir: Path,\\n                 eval_mode: str = \\\"relaxed\\\"):\\n    \\\"\\\"\\\"Count-Quality analysis: how does # types affect F1?\\\"\\\"\\\"\\n    count_f1s = {}\\n    for bid, metrics in eval_results.items():\\n        count_key = metrics.get(\\\"count_key\\\", bid.split(\\\"_random\\\")[0])\\n        count = int(count_key.replace(\\\"count_\\\", \\\"\\\"))\\n        f1 = _get_metrics(metrics, eval_mode).get(\\\"f1\\\", 0.0)\\n        count_f1s.setdefault(count, []).append(f1)\\n\\n    counts = sorted(count_f1s.keys())\\n    means = [np.mean(count_f1s[c]) for c in counts]\\n    stds = [np.std(count_f1s[c]) for c in counts]\\n\\n    logger.info(\\\"Count-Quality Table (%s):\\\", eval_mode)\\n    logger.info(\\\"  %-8s %-10s %-10s %-5s\\\", \\\"Count\\\", \\\"Mean F1\\\", \\\"Std F1\\\", \\\"N\\\")\\n    for c, m, s in zip(counts, means, stds):\\n        logger.info(\\\"  %-8d %-10.4f %-10.4f %-5d\\\", c, m, s, len(count_f1s[c]))\\n\\n    mode_label = eval_mode.replace(\\\"_\\\", \\\" \\\").title()\\n    fig, ax = plt.subplots(figsize=(6, 4))\\n    ax.errorbar(counts, means, yerr=stds, marker=\\\"o\\\", capsize=4,\\n                linewidth=1.5, markersize=6, color=\\\"#2c7bb6\\\")\\n    ax.set_xlabel(\\\"Number of Types in Batch\\\")\\n    ax.set_ylabel(f\\\"{mode_label} F1 Score\\\")\\n    ax.set_title(\\\"Count–Quality Curve\\\")\\n    ax.set_xticks(counts)\\n    ax.grid(True, alpha=0.3)\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"fig_count_quality.pdf\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"fig_count_quality.png\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close()\\n    logger.info(\\\"Saved Count-Quality figure\\\")\\n\\n    return {\\n      \\n\\n... [截断: 输出过长，省略 11084 字符] ...\\n\\n    result = {\\n        \\\"top_confused_pairs\\\": [\\n            {\\\"gold_type\\\": g, \\\"pred_type\\\": p, \\\"count\\\": c}\\n            for (g, p), c in top\\n        ],\\n        \\\"total_confusions\\\": sum(confusion.values()),\\n        \\\"n_unique_pairs\\\": len(confusion),\\n    }\\n\\n    with open(output_dir / \\\"confusion_analysis.json\\\", \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    logger.info(\\\"Saved confusion analysis\\\")\\n\\n    return result\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Main\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Analyze experiment results and generate figures\\\")\\n    parser.add_argument(\\\"--results_dir\\\", required=True,\\n                        help=\\\"Directory with eval_exp1.json / eval_exp2.json\\\")\\n    parser.add_argument(\\\"--output_dir\\\", default=None,\\n                        help=\\\"Figure output directory (default: results_dir)\\\")\\n    parser.add_argument(\\\"--eval_mode\\\", default=\\\"relaxed\\\",\\n                        choices=[\\\"exact\\\", \\\"relaxed\\\", \\\"text_match\\\"],\\n                        help=\\\"Metric mode (default: relaxed)\\\")\\n    parser.add_argument(\\\"--predictions_path\\\", default=None,\\n                        help=\\\"Raw predictions JSON for confusion analysis\\\")\\n    parser.add_argument(\\\"--data_dir\\\",\\n                        default=\\\"/root/schema-dag-extraction/data/parquet\\\",\\n                        help=\\\"Data directory for confusion analysis\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n\\n    results_dir = Path(args.results_dir)\\n    output_dir = Path(args.output_dir) if args.output_dir else results_dir\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    full_summary = {}\\n\\n    # ── Exp 1 ──\\n    exp1_path = results_dir / \\\"eval_exp1.json\\\"\\n    solo_f1 = None\\n    if exp1_path.exists():\\n        logger.info(\\\"=== Exp 1: Count Baseline ===\\\")\\n        exp1_results = load_eval(str(exp1_path))\\n        full_summary[\\\"exp1\\\"] = analyze_exp1(\\n            exp1_results, output_dir, eval_mode=args.eval_mode)\\n        solo_f1 = {}\\n        for bid, metrics in exp1_results.items():\\n            if (metrics.get(\\\"count_key\\\") == \\\"count_1\\\"\\n                    and \\\"per_type_f1\\\" in metrics):\\n                solo_f1.update(metrics[\\\"per_type_f1\\\"])\\n        if not solo_f1:\\n            solo_f1 = None\\n            logger.warning(\\\"No per-type solo F1 in exp1 count=1\\\")\\n        else:\\n            logger.info(\\\"Loaded solo F1 for %d types\\\", len(solo_f1))\\n    else:\\n        logger.info(\\\"No exp1 results at %s\\\", exp1_path)\\n\\n    # ── Exp 2 ──\\n    exp2_path = results_dir / \\\"eval_exp2.json\\\"\\n    if exp2_path.exists():\\n        logger.info(\\\"=== Exp 2: Confusability Controlled ===\\\")\\n        exp2_results = load_eval(str(exp2_path))\\n        full_summary[\\\"exp2\\\"] = analyze_exp2(\\n            exp2_results, output_dir, solo_f1=solo_f1,\\n            eval_mode=args.eval_mode)\\n\\n        if args.predictions_path:\\n            logger.info(\\\"=== Confusion Analysis ===\\\")\\n            full_summary[\\\"confusion\\\"] = analyze_confusion(\\n                args.predictions_path, args.data_dir,\\n                exp2_results, output_dir)\\n    else:\\n        logger.info(\\\"No exp2 results at %s\\\", exp2_path)\\n\\n    # ── Dry run ──\\n    dry_path = results_dir / \\\"eval_dry_run.json\\\"\\n    if dry_path.exists():\\n        logger.info(\\\"=== Dry Run ===\\\")\\n        dry_results = load_eval(str(dry_path))\\n        full_summary[\\\"dry_run\\\"] = analyze_exp2(\\n            dry_results, output_dir, solo_f1=solo_f1,\\n            eval_mode=args.eval_mode)\\n\\n    # ── Save summary ──\\n    summary_path = output_dir / \\\"analysis_summary.json\\\"\\n    with open(summary_path, \\\"w\\\") as f:\\n        json.dump(full_summary, f, indent=2,\\n                  default=lambda x: (None if isinstance(x, float)\\n                                     and np.isnan(x) else x))\\n    logger.info(\\\"Saved analysis summary to %s\\\", summary_path)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "ff739a19-d02b-4489-b06e-581f3f7c1fbd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Statistical analysis and visualization of experiment results.\\\\n\\\\nInput: eval_exp1.json, eval_exp2.json from evaluate.py\\\\nOutput: Figures (PDF/PNG), statistical summary\\\\nDependencies: matplotlib, scipy, numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nplt.rcParams.update({\\\\n    \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n    \\\\\\\"font.size\\\\\\\": 11,\\\\n    \\\\\\\"axes.labelsize\\\\\\\": 12,\\\\n    \\\\\\\"axes.titlesize\\\\\\\": 13,\\\\n    \\\\\\\"xtick.labelsize\\\\\\\": 10,\\\\n    \\\\\\\"ytick.labelsize\\\\\\\": 10,\\\\n    \\\\\\\"figure.facecolor\\\\\\\": \\\\\\\"white\\\\\\\",\\\\n    \\\\\\\"axes.facecolor\\\\\\\": \\\\\\\"white\\\\\\\",\\\\n    \\\\\\\"axes.edgecolor\\\\\\\": \\\\\\\"black\\\\\\\",\\\\n    \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n    \\\\\\\"legend.fontsize\\\\\\\": 10,\\\\n})\\\\n\\\\nCOUNT_COLORS = {\\\\n    \\\\\\\"count_3\\\\\\\": \\\\\\\"#2ca02c\\\\\\\",\\\\n    \\\\\\\"count_6\\\\\\\": \\\\\\\"#1f77b4\\\\\\\",\\\\n    \\\\\\\"count_12\\\\\\\": \\\\\\\"#ff7f0e\\\\\\\",\\\\n    \\\\\\\"count_24\\\\\\\": \\\\\\\"#d62728\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef load_eval(path: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load evaluation JSON.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(path, \\\\\\\"r\\\\\\\") as f:\\\\n        return json.load(f)\\\\n\\\\n\\\\ndef _get_metrics(batch_metrics: dict, eval_mode: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Get metrics dict for eval_mode with fallback.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result = batch_metrics.get(eval_mode)\\\\n    if result is not None:\\\\n        return result\\\\n    if eval_mode == \\\\\\\"text_match\\\\\\\":\\\\n        logger.debug(\\\\\\\"text_match not available, falling back to relaxed\\\\\\\")\\\\n        return batch_metrics.get(\\\\\\\"relaxed\\\\\\\", batch_metrics.get(\\\\\\\"exact\\\\\\\", {}))\\\\n    return batch_metrics.get(\\\\\\\"exact\\\\\\\", {})\\\\n\\\\n\\\\ndef pearson_ci(r: float, n: int, alpha: float = 0.05) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"95% confidence interval for Pearson r via Fisher z-transform.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if n < 4 or np.isnan(r):\\\\n        return (float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"))\\\\n    z = np.arctanh(r)\\\\n    se = 1.0 / math.sqrt(n - 3)\\\\n    z_crit = stats.norm.ppf(1 - alpha / 2)\\\\n    return (float(np.tanh(z - z_crit * se)), float(np.tanh(z + z_crit * se)))\\\\n\\\\n\\\\ndef partial_corr(x, y, z):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Partial correlation r(x, y | z). Returns (r, p).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x = np.asarray(x, dtype=float)\\\\n    y = np.asarray(y, dtype=float)\\\\n    z = np.asarray(z, dtype=float)\\\\n    if len(x) < 4:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    def _resid(a, b):\\\\n        slope, intercept = np.polyfit(b, a, 1)\\\\n        return a - (slope * b + intercept)\\\\n    return stats.pearsonr(_resid(x, z), _resid(y, z))\\\\n\\\\n\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n# Exp 1: Count-Quality\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n\\\\ndef analyze_exp1(eval_results: dict, output_dir: Path,\\\\n                 eval_mode: str = \\\\\\\"relaxed\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Count-Quality analysis: how does # types affect F1?\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    count_f1s = {}\\\\n    for bid, metrics in eval_results.items():\\\\n        count_key = metrics.get(\\\\\\\"count_key\\\\\\\", bid.split(\\\\\\\"_random\\\\\\\")[0])\\\\n        count = int(count_key.replace(\\\\\\\"count_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        f1 = _get_metrics(metrics, eval_mode).get(\\\\\\\"f1\\\\\\\", 0.0)\\\\n        count_f1s.setdefault(count, []).append(f1)\\\\n\\\\n    counts = sorted(count_f1s.keys())\\\\n    means = [np.mean(count_f1s[c]) for c in counts]\\\\n    stds = [np.std(count_f1s[c]) for c in counts]\\\\n\\\\n    logger.info(\\\\\\\"Count-Quality Table (%s):\\\\\\\", eval_mode)\\\\n    logger.info(\\\\\\\"  %-8s %-10s %-10s %-5s\\\\\\\", \\\\\\\"Count\\\\\\\", \\\\\\\"Mean F1\\\\\\\", \\\\\\\"Std F1\\\\\\\", \\\\\\\"N\\\\\\\")\\\\n    for c, m, s in zip(counts, means, stds):\\\\n        logger.info(\\\\\\\"  %-8d %-10.4f %-10.4f %-5d\\\\\\\", c, m, s, len(count_f1s[c]))\\\\n\\\\n    mode_label = eval_mode.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\").title()\\\\n    fig, ax = plt.subplots(figsize=(6, 4))\\\\n    ax.errorbar(counts, means, yerr=stds, marker=\\\\\\\"o\\\\\\\", capsize=4,\\\\n                linewidth=1.5, markersize=6, color=\\\\\\\"#2c7bb6\\\\\\\")\\\\n    ax.set_xlabel(\\\\\\\"Number of Types in Batch\\\\\\\")\\\\n    ax.set_ylabel(f\\\\\\\"{mode_label} F1 Score\\\\\\\")\\\\n    ax.set_title(\\\\\\\"Count–Quality Curve\\\\\\\")\\\\n    ax.set_xticks(counts)\\\\n    ax.grid(True, alpha=0.3)\\\\n    plt.tight_layout()\\\\n    fig.savefig(output_dir / \\\\\\\"fig_count_quality.pdf\\\\\\\", dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(output_dir / \\\\\\\"fig_count_quality.png\\\\\\\", dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close()\\\\n    logger.info(\\\\\\\"Saved Count-Quality figure\\\\\\\")\\\\n\\\\n    return {\\\\n      \\\\n\\\\n... [截断: 输出过长，省略 11084 字符] ...\\\\n\\\\n    result = {\\\\n        \\\\\\\"top_confused_pairs\\\\\\\": [\\\\n            {\\\\\\\"gold_type\\\\\\\": g, \\\\\\\"pred_type\\\\\\\": p, \\\\\\\"count\\\\\\\": c}\\\\n            for (g, p), c in top\\\\n        ],\\\\n        \\\\\\\"total_confusions\\\\\\\": sum(confusion.values()),\\\\n        \\\\\\\"n_unique_pairs\\\\\\\": len(confusion),\\\\n    }\\\\n\\\\n    with open(output_dir / \\\\\\\"confusion_analysis.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(result, f, indent=2)\\\\n    logger.info(\\\\\\\"Saved confusion analysis\\\\\\\")\\\\n\\\\n    return result\\\\n\\\\n\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n# Main\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Analyze experiment results and generate figures\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--results_dir\\\\\\\", required=True,\\\\n                        help=\\\\\\\"Directory with eval_exp1.json / eval_exp2.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Figure output directory (default: results_dir)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--eval_mode\\\\\\\", default=\\\\\\\"relaxed\\\\\\\",\\\\n                        choices=[\\\\\\\"exact\\\\\\\", \\\\\\\"relaxed\\\\\\\", \\\\\\\"text_match\\\\\\\"],\\\\n                        help=\\\\\\\"Metric mode (default: relaxed)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--predictions_path\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Raw predictions JSON for confusion analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\",\\\\n                        default=\\\\\\\"/root/schema-dag-extraction/data/parquet\\\\\\\",\\\\n                        help=\\\\\\\"Data directory for confusion analysis\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n\\\\n    results_dir = Path(args.results_dir)\\\\n    output_dir = Path(args.output_dir) if args.output_dir else results_dir\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    full_summary = {}\\\\n\\\\n    # ── Exp 1 ──\\\\n    exp1_path = results_dir / \\\\\\\"eval_exp1.json\\\\\\\"\\\\n    solo_f1 = None\\\\n    if exp1_path.exists():\\\\n        logger.info(\\\\\\\"=== Exp 1: Count Baseline ===\\\\\\\")\\\\n        exp1_results = load_eval(str(exp1_path))\\\\n        full_summary[\\\\\\\"exp1\\\\\\\"] = analyze_exp1(\\\\n            exp1_results, output_dir, eval_mode=args.eval_mode)\\\\n        solo_f1 = {}\\\\n        for bid, metrics in exp1_results.items():\\\\n            if (metrics.get(\\\\\\\"count_key\\\\\\\") == \\\\\\\"count_1\\\\\\\"\\\\n                    and \\\\\\\"per_type_f1\\\\\\\" in metrics):\\\\n                solo_f1.update(metrics[\\\\\\\"per_type_f1\\\\\\\"])\\\\n        if not solo_f1:\\\\n            solo_f1 = None\\\\n            logger.warning(\\\\\\\"No per-type solo F1 in exp1 count=1\\\\\\\")\\\\n        else:\\\\n            logger.info(\\\\\\\"Loaded solo F1 for %d types\\\\\\\", len(solo_f1))\\\\n    else:\\\\n        logger.info(\\\\\\\"No exp1 results at %s\\\\\\\", exp1_path)\\\\n\\\\n    # ── Exp 2 ──\\\\n    exp2_path = results_dir / \\\\\\\"eval_exp2.json\\\\\\\"\\\\n    if exp2_path.exists():\\\\n        logger.info(\\\\\\\"=== Exp 2: Confusability Controlled ===\\\\\\\")\\\\n        exp2_results = load_eval(str(exp2_path))\\\\n        full_summary[\\\\\\\"exp2\\\\\\\"] = analyze_exp2(\\\\n            exp2_results, output_dir, solo_f1=solo_f1,\\\\n            eval_mode=args.eval_mode)\\\\n\\\\n        if args.predictions_path:\\\\n            logger.info(\\\\\\\"=== Confusion Analysis ===\\\\\\\")\\\\n            full_summary[\\\\\\\"confusion\\\\\\\"] = analyze_confusion(\\\\n                args.predictions_path, args.data_dir,\\\\n                exp2_results, output_dir)\\\\n    else:\\\\n        logger.info(\\\\\\\"No exp2 results at %s\\\\\\\", exp2_path)\\\\n\\\\n    # ── Dry run ──\\\\n    dry_path = results_dir / \\\\\\\"eval_dry_run.json\\\\\\\"\\\\n    if dry_path.exists():\\\\n        logger.info(\\\\\\\"=== Dry Run ===\\\\\\\")\\\\n        dry_results = load_eval(str(dry_path))\\\\n        full_summary[\\\\\\\"dry_run\\\\\\\"] = analyze_exp2(\\\\n            dry_results, output_dir, solo_f1=solo_f1,\\\\n            eval_mode=args.eval_mode)\\\\n\\\\n    # ── Save summary ──\\\\n    summary_path = output_dir / \\\\\\\"analysis_summary.json\\\\\\\"\\\\n    with open(summary_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(full_summary, f, indent=2,\\\\n                  default=lambda x: (None if isinstance(x, float)\\\\n                                     and np.isnan(x) else x))\\\\n    logger.info(\\\\\\\"Saved analysis summary to %s\\\\\\\", summary_path)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Statistical analysis and visualization of experiment results.\\n\\nInput: eval_exp1.json, eval_exp2.json from evaluate.py\\nOutput: Figures (PDF/PNG), statistical summary\\nDependencies: matplotlib, scipy, numpy\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport sys\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom scipy import stats\\n\\nlogger = logging.getLogger(__name__)\\n\\nplt.rcParams.update({\\n    \\\"font.family\\\": \\\"serif\\\",\\n    \\\"font.size\\\": 11,\\n    \\\"axes.labelsize\\\": 12,\\n    \\\"axes.titlesize\\\": 13,\\n    \\\"xtick.labelsize\\\": 10,\\n    \\\"ytick.labelsize\\\": 10,\\n    \\\"figure.facecolor\\\": \\\"white\\\",\\n    \\\"axes.facecolor\\\": \\\"white\\\",\\n    \\\"axes.edgecolor\\\": \\\"black\\\",\\n    \\\"axes.linewidth\\\": 0.8,\\n    \\\"legend.fontsize\\\": 10,\\n})\\n\\nCOUNT_COLORS = {\\n    \\\"count_3\\\": \\\"#2ca02c\\\",\\n    \\\"count_6\\\": \\\"#1f77b4\\\",\\n    \\\"count_12\\\": \\\"#ff7f0e\\\",\\n    \\\"count_24\\\": \\\"#d62728\\\",\\n}\\n\\n\\ndef load_eval(path: str) -> dict:\\n    \\\"\\\"\\\"Load evaluation JSON.\\\"\\\"\\\"\\n    with open(path, \\\"r\\\") as f:\\n        return json.load(f)\\n\\n\\ndef _get_metrics(batch_metrics: dict, eval_mode: str) -> dict:\\n    \\\"\\\"\\\"Get metrics dict for eval_mode with fallback.\\\"\\\"\\\"\\n    result = batch_metrics.get(eval_mode)\\n    if result is not None:\\n        return result\\n    if eval_mode == \\\"text_match\\\":\\n        logger.debug(\\\"text_match not available, falling back to relaxed\\\")\\n        return batch_metrics.get(\\\"relaxed\\\", batch_metrics.get(\\\"exact\\\", {}))\\n    return batch_metrics.get(\\\"exact\\\", {})\\n\\n\\ndef pearson_ci(r: float, n: int, alpha: float = 0.05) -> tuple:\\n    \\\"\\\"\\\"95% confidence interval for Pearson r via Fisher z-transform.\\\"\\\"\\\"\\n    if n < 4 or np.isnan(r):\\n        return (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n    z = np.arctanh(r)\\n    se = 1.0 / math.sqrt(n - 3)\\n    z_crit = stats.norm.ppf(1 - alpha / 2)\\n    return (float(np.tanh(z - z_crit * se)), float(np.tanh(z + z_crit * se)))\\n\\n\\ndef partial_corr(x, y, z):\\n    \\\"\\\"\\\"Partial correlation r(x, y | z). Returns (r, p).\\\"\\\"\\\"\\n    x = np.asarray(x, dtype=float)\\n    y = np.asarray(y, dtype=float)\\n    z = np.asarray(z, dtype=float)\\n    if len(x) < 4:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    def _resid(a, b):\\n        slope, intercept = np.polyfit(b, a, 1)\\n        return a - (slope * b + intercept)\\n    return stats.pearsonr(_resid(x, z), _resid(y, z))\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Exp 1: Count-Quality\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef analyze_exp1(eval_results: dict, output_dir: Path,\\n                 eval_mode: str = \\\"relaxed\\\"):\\n    \\\"\\\"\\\"Count-Quality analysis: how does # types affect F1?\\\"\\\"\\\"\\n    count_f1s = {}\\n    for bid, metrics in eval_results.items():\\n        count_key = metrics.get(\\\"count_key\\\", bid.split(\\\"_random\\\")[0])\\n        count = int(count_key.replace(\\\"count_\\\", \\\"\\\"))\\n        f1 = _get_metrics(metrics, eval_mode).get(\\\"f1\\\", 0.0)\\n        count_f1s.setdefault(count, []).append(f1)\\n\\n    counts = sorted(count_f1s.keys())\\n    means = [np.mean(count_f1s[c]) for c in counts]\\n    stds = [np.std(count_f1s[c]) for c in counts]\\n\\n    logger.info(\\\"Count-Quality Table (%s):\\\", eval_mode)\\n    logger.info(\\\"  %-8s %-10s %-10s %-5s\\\", \\\"Count\\\", \\\"Mean F1\\\", \\\"Std F1\\\", \\\"N\\\")\\n    for c, m, s in zip(counts, means, stds):\\n        logger.info(\\\"  %-8d %-10.4f %-10.4f %-5d\\\", c, m, s, len(count_f1s[c]))\\n\\n    mode_label = eval_mode.replace(\\\"_\\\", \\\" \\\").title()\\n    fig, ax = plt.subplots(figsize=(6, 4))\\n    ax.errorbar(counts, means, yerr=stds, marker=\\\"o\\\", capsize=4,\\n                linewidth=1.5, markersize=6, color=\\\"#2c7bb6\\\")\\n    ax.set_xlabel(\\\"Number of Types in Batch\\\")\\n    ax.set_ylabel(f\\\"{mode_label} F1 Score\\\")\\n    ax.set_title(\\\"Count–Quality Curve\\\")\\n    ax.set_xticks(counts)\\n    ax.grid(True, alpha=0.3)\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"fig_count_quality.pdf\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"fig_count_quality.png\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close()\\n    logger.info(\\\"Saved Count-Quality figure\\\")\\n\\n    return {\\n      \\n\\n... [截断: 输出过长，省略 11084 字符] ...\\n\\n    result = {\\n        \\\"top_confused_pairs\\\": [\\n            {\\\"gold_type\\\": g, \\\"pred_type\\\": p, \\\"count\\\": c}\\n            for (g, p), c in top\\n        ],\\n        \\\"total_confusions\\\": sum(confusion.values()),\\n        \\\"n_unique_pairs\\\": len(confusion),\\n    }\\n\\n    with open(output_dir / \\\"confusion_analysis.json\\\", \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    logger.info(\\\"Saved confusion analysis\\\")\\n\\n    return result\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Main\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Analyze experiment results and generate figures\\\")\\n    parser.add_argument(\\\"--results_dir\\\", required=True,\\n                        help=\\\"Directory with eval_exp1.json / eval_exp2.json\\\")\\n    parser.add_argument(\\\"--output_dir\\\", default=None,\\n                        help=\\\"Figure output directory (default: results_dir)\\\")\\n    parser.add_argument(\\\"--eval_mode\\\", default=\\\"relaxed\\\",\\n                        choices=[\\\"exact\\\", \\\"relaxed\\\", \\\"text_match\\\"],\\n                        help=\\\"Metric mode (default: relaxed)\\\")\\n    parser.add_argument(\\\"--predictions_path\\\", default=None,\\n                        help=\\\"Raw predictions JSON for confusion analysis\\\")\\n    parser.add_argument(\\\"--data_dir\\\",\\n                        default=\\\"/root/schema-dag-extraction/data/parquet\\\",\\n                        help=\\\"Data directory for confusion analysis\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n\\n    results_dir = Path(args.results_dir)\\n    output_dir = Path(args.output_dir) if args.output_dir else results_dir\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    full_summary = {}\\n\\n    # ── Exp 1 ──\\n    exp1_path = results_dir / \\\"eval_exp1.json\\\"\\n    solo_f1 = None\\n    if exp1_path.exists():\\n        logger.info(\\\"=== Exp 1: Count Baseline ===\\\")\\n        exp1_results = load_eval(str(exp1_path))\\n        full_summary[\\\"exp1\\\"] = analyze_exp1(\\n            exp1_results, output_dir, eval_mode=args.eval_mode)\\n        solo_f1 = {}\\n        for bid, metrics in exp1_results.items():\\n            if (metrics.get(\\\"count_key\\\") == \\\"count_1\\\"\\n                    and \\\"per_type_f1\\\" in metrics):\\n                solo_f1.update(metrics[\\\"per_type_f1\\\"])\\n        if not solo_f1:\\n            solo_f1 = None\\n            logger.warning(\\\"No per-type solo F1 in exp1 count=1\\\")\\n        else:\\n            logger.info(\\\"Loaded solo F1 for %d types\\\", len(solo_f1))\\n    else:\\n        logger.info(\\\"No exp1 results at %s\\\", exp1_path)\\n\\n    # ── Exp 2 ──\\n    exp2_path = results_dir / \\\"eval_exp2.json\\\"\\n    if exp2_path.exists():\\n        logger.info(\\\"=== Exp 2: Confusability Controlled ===\\\")\\n        exp2_results = load_eval(str(exp2_path))\\n        full_summary[\\\"exp2\\\"] = analyze_exp2(\\n            exp2_results, output_dir, solo_f1=solo_f1,\\n            eval_mode=args.eval_mode)\\n\\n        if args.predictions_path:\\n            logger.info(\\\"=== Confusion Analysis ===\\\")\\n            full_summary[\\\"confusion\\\"] = analyze_confusion(\\n                args.predictions_path, args.data_dir,\\n                exp2_results, output_dir)\\n    else:\\n        logger.info(\\\"No exp2 results at %s\\\", exp2_path)\\n\\n    # ── Dry run ──\\n    dry_path = results_dir / \\\"eval_dry_run.json\\\"\\n    if dry_path.exists():\\n        logger.info(\\\"=== Dry Run ===\\\")\\n        dry_results = load_eval(str(dry_path))\\n        full_summary[\\\"dry_run\\\"] = analyze_exp2(\\n            dry_results, output_dir, solo_f1=solo_f1,\\n            eval_mode=args.eval_mode)\\n\\n    # ── Save summary ──\\n    summary_path = output_dir / \\\"analysis_summary.json\\\"\\n    with open(summary_path, \\\"w\\\") as f:\\n        json.dump(full_summary, f, indent=2,\\n                  default=lambda x: (None if isinstance(x, float)\\n                                     and np.isnan(x) else x))\\n    logger.info(\\\"Saved analysis summary to %s\\\", summary_path)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013gdbTgzR2FBCumcCz1f3nZ`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import json; d=json.load(open('/root/schema-dag-extraction/results/exp2_reeval_results.json')); print(json.dumps(d[0], indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "0a35bf35-f1a3-4e49-b0e7-b2c4682ce162",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dekmm1coi3PSRxFrtKGzPS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 24106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 911
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T02:37:16.595Z_
+
+<details><summary>↩ Tool result · `toolu_013gdbTgzR2FBCumcCz1f3nZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "54fbe89a-2bc4-4c77-aaba-45e04056aa03",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012f7tfBnwbxLHvtdHmgVse2`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import json; d=json.load(open('/root/schema-dag-extraction/artifacts/eval_exp2.json')); print(json.dumps(list(d.items())[0] if isinstance(d, dict) else d[0], indent=2, default=str)[:3000])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "63296045-b91d-454a-a2e9-fea6d3ef602f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dekmm1coi3PSRxFrtKGzPS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 24106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 911
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T02:37:17.886Z_
+
+<details><summary>↩ Tool result · `toolu_012f7tfBnwbxLHvtdHmgVse2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "15d9e29a-1f6e-4e59-9f2b-fcece129753c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `ssh_read_only` blocks semicolons. I need to use `python3 -c` without semicolons or use `ssh_execute` for compound commands. Let me use `ssh_execute` to check the data formats and batch count. Also, I got the full analyze_results.py but it was truncated. Let me get the truncated part (the analyze_exp2 function is the critical one).
+
+The script reads from `results_dir / "eval_exp2.json"` - so it looks for `eval_exp2.json` in the results dir. The reeval data is at `results/exp2_reeval_results.json`. 
+
+
+I'm weighing whether to symlink the reeval results file to match the expected filename or add a CLI argument to specify the path, then I'll check both the data formats and retrieve the missing part of the analysis script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "b4f92b26-3bab-46dc-8adf-b93675bb4c0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SRDEJtGWLPHikJzqbQRk8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4791,
+      "cache_read_input_tokens": 25017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+文件存在（40KB）。需要用 ssh_execute 检查数据格式。同时获取 analyze_results.py 被截断的部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "77c09ae0-f280-4a90-a79d-0b58b4b10547",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SRDEJtGWLPHikJzqbQRk8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4791,
+      "cache_read_input_tokens": 25017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AefAb5Mn59hvQDSefQ9WoT`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/schema-dag-extraction/results/exp2_reeval_results.json'))\nprint(f'Batches: {len(d)}')\nprint(f'Type: {type(d)}')\nif isinstance(d, list):\n    print(json.dumps(d[0], indent=2)[:2000])\nelif isinstance(d, dict):\n    k = list(d.keys())[0]\n    print(f'First key: {k}')\n    print(json.dumps(d[k], indent=2)[:2000])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "7ef76e6e-508e-41e3-8026-8dade5cf7d8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SRDEJtGWLPHikJzqbQRk8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4791,
+      "cache_read_input_tokens": 25017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T02:37:31.896Z_
+
+<details><summary>↩ Tool result · `toolu_01AefAb5Mn59hvQDSefQ9WoT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Batches: 54\\nType: &lt;class 'dict'>\\nFirst key: count_12_high_bcs\\n{\\n  \\\"count_key\\\": \\\"count_12\\\",\\n  \\\"bcs\\\": 0.9446906447410583,\\n  \\\"num_types\\\": 12,\\n  \\\"exact\\\": {\\n    \\\"precision\\\": 0.151749,\\n    \\\"recall\\\": 0.519366,\\n    \\\"f1\\\": 0.234873,\\n    \\\"tp\\\": 295,\\n    \\\"total_pred\\\": 1944,\\n    \\\"total_gold\\\": 568\\n  },\\n  \\\"relaxed\\\": {\\n    \\\"precision\\\": 0.171811,\\n    \\\"recall\\\": 0.588028,\\n    \\\"f1\\\": 0.265924,\\n    \\\"tp\\\": 334,\\n    \\\"total_pred\\\": 1944,\\n    \\\"total_gold\\\": 568\\n  },\\n  \\\"text_match\\\": {\\n    \\\"precision\\\": 0.152778,\\n    \\\"recall\\\": 0.522887,\\n    \\\"f1\\\": 0.236465,\\n    \\\"tp\\\": 297,\\n    \\\"total_pred\\\": 1944,\\n    \\\"total_gold\\\": 568\\n  },\\n  \\\"fp_breakdown\\\": {\\n    \\\"hallucinated_text\\\": 121,\\n    \\\"wrong_type\\\": 79,\\n    \\\"spurious_entity\\\": 1447,\\n    \\\"total_fp\\\": 1647\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "7bc5c371-27b2-4f87-9a16-96f6322db9c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Batches: 54\\\\nType: &lt;class 'dict'>\\\\nFirst key: count_12_high_bcs\\\\n{\\\\n  \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n  \\\\\\\"bcs\\\\\\\": 0.9446906447410583,\\\\n  \\\\\\\"num_types\\\\\\\": 12,\\\\n  \\\\\\\"exact\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.151749,\\\\n    \\\\\\\"recall\\\\\\\": 0.519366,\\\\n    \\\\\\\"f1\\\\\\\": 0.234873,\\\\n    \\\\\\\"tp\\\\\\\": 295,\\\\n    \\\\\\\"total_pred\\\\\\\": 1944,\\\\n    \\\\\\\"total_gold\\\\\\\": 568\\\\n  },\\\\n  \\\\\\\"relaxed\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.171811,\\\\n    \\\\\\\"recall\\\\\\\": 0.588028,\\\\n    \\\\\\\"f1\\\\\\\": 0.265924,\\\\n    \\\\\\\"tp\\\\\\\": 334,\\\\n    \\\\\\\"total_pred\\\\\\\": 1944,\\\\n    \\\\\\\"total_gold\\\\\\\": 568\\\\n  },\\\\n  \\\\\\\"text_match\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.152778,\\\\n    \\\\\\\"recall\\\\\\\": 0.522887,\\\\n    \\\\\\\"f1\\\\\\\": 0.236465,\\\\n    \\\\\\\"tp\\\\\\\": 297,\\\\n    \\\\\\\"total_pred\\\\\\\": 1944,\\\\n    \\\\\\\"total_gold\\\\\\\": 568\\\\n  },\\\\n  \\\\\\\"fp_breakdown\\\\\\\": {\\\\n    \\\\\\\"hallucinated_text\\\\\\\": 121,\\\\n    \\\\\\\"wrong_type\\\\\\\": 79,\\\\n    \\\\\\\"spurious_entity\\\\\\\": 1447,\\\\n    \\\\\\\"total_fp\\\\\\\": 1647\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Batches: 54\\nType: &lt;class 'dict'>\\nFirst key: count_12_high_bcs\\n{\\n  \\\"count_key\\\": \\\"count_12\\\",\\n  \\\"bcs\\\": 0.9446906447410583,\\n  \\\"num_types\\\": 12,\\n  \\\"exact\\\": {\\n    \\\"precision\\\": 0.151749,\\n    \\\"recall\\\": 0.519366,\\n    \\\"f1\\\": 0.234873,\\n    \\\"tp\\\": 295,\\n    \\\"total_pred\\\": 1944,\\n    \\\"total_gold\\\": 568\\n  },\\n  \\\"relaxed\\\": {\\n    \\\"precision\\\": 0.171811,\\n    \\\"recall\\\": 0.588028,\\n    \\\"f1\\\": 0.265924,\\n    \\\"tp\\\": 334,\\n    \\\"total_pred\\\": 1944,\\n    \\\"total_gold\\\": 568\\n  },\\n  \\\"text_match\\\": {\\n    \\\"precision\\\": 0.152778,\\n    \\\"recall\\\": 0.522887,\\n    \\\"f1\\\": 0.236465,\\n    \\\"tp\\\": 297,\\n    \\\"total_pred\\\": 1944,\\n    \\\"total_gold\\\": 568\\n  },\\n  \\\"fp_breakdown\\\": {\\n    \\\"hallucinated_text\\\": 121,\\n    \\\"wrong_type\\\": 79,\\n    \\\"spurious_entity\\\": 1447,\\n    \\\"total_fp\\\": 1647\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BL8YkcKXstsRGxGkDkM5C8`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/schema-dag-extraction/artifacts/eval_exp2.json'))\nprint(f'Batches: {len(d)}')\nprint(f'Type: {type(d)}')\nif isinstance(d, dict):\n    k = list(d.keys())[0]\n    print(f'First key: {k}')\n    print(json.dumps(d[k], indent=2)[:2000])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "b2c2c8b7-fdfb-4c21-802d-cfbe271e503d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SRDEJtGWLPHikJzqbQRk8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4791,
+      "cache_read_input_tokens": 25017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XqpBNgsVRLGduqUmkbzVV7`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "tail -n 200 /root/schema-dag-extraction/src/analyze_results.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "6055c2da-9e94-415d-9f51-9a40d0552e6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017SRDEJtGWLPHikJzqbQRk8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4791,
+      "cache_read_input_tokens": 25017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T02:37:33.394Z_
+
+<details><summary>↩ Tool result · `toolu_01BL8YkcKXstsRGxGkDkM5C8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Batches: 54\\nType: &lt;class 'dict'>\\nFirst key: count_6_low_bcs\\n{\\n  \\\"exact\\\": {\\n    \\\"precision\\\": 0.003838771593090211,\\n    \\\"recall\\\": 0.028169014084507043,\\n    \\\"f1\\\": 0.006756756756756757,\\n    \\\"tp\\\": 6,\\n    \\\"total_pred\\\": 1563,\\n    \\\"total_gold\\\": 213\\n  },\\n  \\\"relaxed\\\": {\\n    \\\"precision\\\": 0.05054382597568778,\\n    \\\"recall\\\": 0.37089201877934275,\\n    \\\"f1\\\": 0.08896396396396396,\\n    \\\"tp\\\": 79,\\n    \\\"total_pred\\\": 1563,\\n    \\\"total_gold\\\": 213\\n  },\\n  \\\"bcs\\\": 0.8708932995796204,\\n  \\\"count_key\\\": \\\"count_6\\\",\\n  \\\"num_types\\\": 6,\\n  \\\"num_samples\\\": 1000,\\n  \\\"per_type_f1\\\": {\\n    \\\"organization-education\\\": 0.013651877133105802,\\n    \\\"other-disease\\\": 0.0,\\n    \\\"person-actor\\\": 0.005376344086021506,\\n    \\\"art-film\\\": 0.007843137254901962,\\n    \\\"location-bodiesofwater\\\": 0.008032128514056224,\\n    \\\"organization-politicalparty\\\": 0.0\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "772a7cdc-bd42-4afb-b97f-6b7a1943ea53",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Batches: 54\\\\nType: &lt;class 'dict'>\\\\nFirst key: count_6_low_bcs\\\\n{\\\\n  \\\\\\\"exact\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.003838771593090211,\\\\n    \\\\\\\"recall\\\\\\\": 0.028169014084507043,\\\\n    \\\\\\\"f1\\\\\\\": 0.006756756756756757,\\\\n    \\\\\\\"tp\\\\\\\": 6,\\\\n    \\\\\\\"total_pred\\\\\\\": 1563,\\\\n    \\\\\\\"total_gold\\\\\\\": 213\\\\n  },\\\\n  \\\\\\\"relaxed\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.05054382597568778,\\\\n    \\\\\\\"recall\\\\\\\": 0.37089201877934275,\\\\n    \\\\\\\"f1\\\\\\\": 0.08896396396396396,\\\\n    \\\\\\\"tp\\\\\\\": 79,\\\\n    \\\\\\\"total_pred\\\\\\\": 1563,\\\\n    \\\\\\\"total_gold\\\\\\\": 213\\\\n  },\\\\n  \\\\\\\"bcs\\\\\\\": 0.8708932995796204,\\\\n  \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n  \\\\\\\"num_types\\\\\\\": 6,\\\\n  \\\\\\\"num_samples\\\\\\\": 1000,\\\\n  \\\\\\\"per_type_f1\\\\\\\": {\\\\n    \\\\\\\"organization-education\\\\\\\": 0.013651877133105802,\\\\n    \\\\\\\"other-disease\\\\\\\": 0.0,\\\\n    \\\\\\\"person-actor\\\\\\\": 0.005376344086021506,\\\\n    \\\\\\\"art-film\\\\\\\": 0.007843137254901962,\\\\n    \\\\\\\"location-bodiesofwater\\\\\\\": 0.008032128514056224,\\\\n    \\\\\\\"organization-politicalparty\\\\\\\": 0.0\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Batches: 54\\nType: &lt;class 'dict'>\\nFirst key: count_6_low_bcs\\n{\\n  \\\"exact\\\": {\\n    \\\"precision\\\": 0.003838771593090211,\\n    \\\"recall\\\": 0.028169014084507043,\\n    \\\"f1\\\": 0.006756756756756757,\\n    \\\"tp\\\": 6,\\n    \\\"total_pred\\\": 1563,\\n    \\\"total_gold\\\": 213\\n  },\\n  \\\"relaxed\\\": {\\n    \\\"precision\\\": 0.05054382597568778,\\n    \\\"recall\\\": 0.37089201877934275,\\n    \\\"f1\\\": 0.08896396396396396,\\n    \\\"tp\\\": 79,\\n    \\\"total_pred\\\": 1563,\\n    \\\"total_gold\\\": 213\\n  },\\n  \\\"bcs\\\": 0.8708932995796204,\\n  \\\"count_key\\\": \\\"count_6\\\",\\n  \\\"num_types\\\": 6,\\n  \\\"num_samples\\\": 1000,\\n  \\\"per_type_f1\\\": {\\n    \\\"organization-education\\\": 0.013651877133105802,\\n    \\\"other-disease\\\": 0.0,\\n    \\\"person-actor\\\": 0.005376344086021506,\\n    \\\"art-film\\\": 0.007843137254901962,\\n    \\\"location-bodiesofwater\\\": 0.008032128514056224,\\n    \\\"organization-politicalparty\\\": 0.0\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T02:37:33.918Z_
+
+<details><summary>↩ Tool result · `toolu_01XqpBNgsVRLGduqUmkbzVV7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n        handles, labels = ax.get_legend_handles_labels()\\n        seen, uh, ul = {}, [], []\\n        for hh, ll in zip(handles, labels):\\n            if ll not in seen:\\n                seen[ll] = True\\n                uh.append(hh)\\n                ul.append(ll)\\n        if ul:\\n            ax.legend(uh, ul, loc=\\\"upper right\\\")\\n\\n        # Combined plot\\n        c = COUNT_COLORS.get(ck, \\\"#999999\\\")\\n        ax2.scatter(bcs, yv, c=c, s=40, alpha=0.7,\\n                    label=ck.replace(\\\"_\\\", \\\"=\\\"))\\n        if xl is not None:\\n            ax2.plot(xl, slope * xl + intercept, \\\"--\\\", color=c,\\n                     lw=1.0, alpha=0.6)\\n\\n    plt.figure(fig.number)\\n    plt.tight_layout()\\n    fig.savefig(output_dir / f\\\"{fname}.pdf\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / f\\\"{fname}.png\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n\\n    ax2.set_xlabel(\\\"BCS\\\")\\n    ax2.set_ylabel(y_label)\\n    ax2.set_title(f\\\"BCS vs {y_label} (all counts)\\\")\\n    ax2.legend()\\n    ax2.grid(True, alpha=0.3)\\n    plt.figure(fig2.number)\\n    plt.tight_layout()\\n    fig2.savefig(output_dir / f\\\"{fname}_combined.pdf\\\", dpi=300,\\n                 bbox_inches=\\\"tight\\\")\\n    fig2.savefig(output_dir / f\\\"{fname}_combined.png\\\", dpi=300,\\n                 bbox_inches=\\\"tight\\\")\\n    plt.close(fig2)\\n    logger.info(\\\"Saved %s figures\\\", fname)\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Confusion analysis\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef analyze_confusion(predictions_path: str, data_dir: str,\\n                      eval_results: dict, output_dir: Path,\\n                      top_k: int = 20):\\n    \\\"\\\"\\\"Per-type confusion rate: which types get mislabeled as which?\\n\\n    Loads raw predictions and ground truth. For each overlapping span\\n    with wrong type, counts (gold_type, pred_type) pairs.\\n    \\\"\\\"\\\"\\n    sys.path.insert(0, str(Path(__file__).parent))\\n    from few_nerd_utils import load_few_nerd\\n\\n    with open(predictions_path, \\\"r\\\") as f:\\n        predictions = json.load(f)\\n    samples = load_few_nerd(split=\\\"test\\\", data_dir=data_dir)\\n\\n    batches = {}\\n    for p in predictions:\\n        bid = p[\\\"batch_id\\\"]\\n        batches.setdefault(bid, {\\\"entries\\\": [], \\\"types\\\": set(p[\\\"batch_types\\\"])})\\n        batches[bid][\\\"entries\\\"].append(p)\\n\\n    confusion = {}\\n\\n    for bid, info in batches.items():\\n        btypes = info[\\\"types\\\"]\\n        by_sid = {}\\n        for p in info[\\\"entries\\\"]:\\n            by_sid.setdefault(p[\\\"sample_id\\\"], []).append(p)\\n\\n        for sid, preds in by_sid.items():\\n            if sid >= len(samples):\\n                continue\\n            golds = [e for e in samples[sid][\\\"entities\\\"]\\n                     if e[\\\"type\\\"] in btypes]\\n            pred_ents = [p for p in preds[0].get(\\\"predictions\\\", [])\\n                         if p.get(\\\"type\\\") in btypes]\\n\\n            for g in golds:\\n                for p in pred_ents:\\n                    if (p.get(\\\"type\\\") != g[\\\"type\\\"]\\n                            and p.get(\\\"start\\\", -1) < g[\\\"end\\\"]\\n                            and p.get(\\\"end\\\", -1) > g[\\\"start\\\"]):\\n                        pair = (g[\\\"type\\\"], p[\\\"type\\\"])\\n                        confusion[pair] = confusion.get(pair, 0) + 1\\n\\n    top = sorted(confusion.items(), key=lambda x: -x[1])[:top_k]\\n\\n    logger.info(\\\"Top-%d confused type pairs:\\\", top_k)\\n    logger.info(\\\"  %-35s %-35s %s\\\", \\\"Gold Type\\\", \\\"Pred Type\\\", \\\"Count\\\")\\n    for (gt, pt), cnt in top:\\n        logger.info(\\\"  %-35s %-35s %d\\\", gt, pt, cnt)\\n\\n    result = {\\n        \\\"top_confused_pairs\\\": [\\n            {\\\"gold_type\\\": g, \\\"pred_type\\\": p, \\\"count\\\": c}\\n            for (g, p), c in top\\n        ],\\n        \\\"total_confusions\\\": sum(confusion.values()),\\n        \\\"n_unique_pairs\\\": len(confusion),\\n    }\\n\\n    with open(output_dir / \\\"confusion_analysis.json\\\", \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    logger.info(\\\"Saved confusion analysis\\\")\\n\\n    return result\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Main\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Analyze experiment results and generate figures\\\")\\n    parser.add_argument(\\\"--results_dir\\\", required=True,\\n                        help=\\\"Directory with eval_exp1.json / eval_exp2.json\\\")\\n    parser.add_argument(\\\"--output_dir\\\", default=None,\\n                        help=\\\"Figure output directory (default: results_dir)\\\")\\n    parser.add_argument(\\\"--eval_mode\\\", default=\\\"relaxed\\\",\\n                        choices=[\\\"exact\\\", \\\"relaxed\\\", \\\"text_match\\\"],\\n                        help=\\\"Metric mode (default: relaxed)\\\")\\n    parser.add_argument(\\\"--predictions_path\\\", default=None,\\n                        help=\\\"Raw predictions JSON for confusion analysis\\\")\\n    parser.add_argument(\\\"--data_dir\\\",\\n                        default=\\\"/root/schema-dag-extraction/data/parquet\\\",\\n                        help=\\\"Data directory for confusion analysis\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n\\n    results_dir = Path(args.results_dir)\\n    output_dir = Path(args.output_dir) if args.output_dir else results_dir\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    full_summary = {}\\n\\n    # ── Exp 1 ──\\n    exp1_path = results_dir / \\\"eval_exp1.json\\\"\\n    solo_f1 = None\\n    if exp1_path.exists():\\n        logger.info(\\\"=== Exp 1: Count Baseline ===\\\")\\n        exp1_results = load_eval(str(exp1_path))\\n        full_summary[\\\"exp1\\\"] = analyze_exp1(\\n            exp1_results, output_dir, eval_mode=args.eval_mode)\\n        solo_f1 = {}\\n        for bid, metrics in exp1_results.items():\\n            if (metrics.get(\\\"count_key\\\") == \\\"count_1\\\"\\n                    and \\\"per_type_f1\\\" in metrics):\\n                solo_f1.update(metrics[\\\"per_type_f1\\\"])\\n        if not solo_f1:\\n            solo_f1 = None\\n            logger.warning(\\\"No per-type solo F1 in exp1 count=1\\\")\\n        else:\\n            logger.info(\\\"Loaded solo F1 for %d types\\\", len(solo_f1))\\n    else:\\n        logger.info(\\\"No exp1 results at %s\\\", exp1_path)\\n\\n    # ── Exp 2 ──\\n    exp2_path = results_dir / \\\"eval_exp2.json\\\"\\n    if exp2_path.exists():\\n        logger.info(\\\"=== Exp 2: Confusability Controlled ===\\\")\\n        exp2_results = load_eval(str(exp2_path))\\n        full_summary[\\\"exp2\\\"] = analyze_exp2(\\n            exp2_results, output_dir, solo_f1=solo_f1,\\n            eval_mode=args.eval_mode)\\n\\n        if args.predictions_path:\\n            logger.info(\\\"=== Confusion Analysis ===\\\")\\n            full_summary[\\\"confusion\\\"] = analyze_confusion(\\n                args.predictions_path, args.data_dir,\\n                exp2_results, output_dir)\\n    else:\\n        logger.info(\\\"No exp2 results at %s\\\", exp2_path)\\n\\n    # ── Dry run ──\\n    dry_path = results_dir / \\\"eval_dry_run.json\\\"\\n    if dry_path.exists():\\n        logger.info(\\\"=== Dry Run ===\\\")\\n        dry_results = load_eval(str(dry_path))\\n        full_summary[\\\"dry_run\\\"] = analyze_exp2(\\n            dry_results, output_dir, solo_f1=solo_f1,\\n            eval_mode=args.eval_mode)\\n\\n    # ── Save summary ──\\n    summary_path = output_dir / \\\"analysis_summary.json\\\"\\n    with open(summary_path, \\\"w\\\") as f:\\n        json.dump(full_summary, f, indent=2,\\n                  default=lambda x: (None if isinstance(x, float)\\n                                     and np.isnan(x) else x))\\n    logger.info(\\\"Saved analysis summary to %s\\\", summary_path)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "8bd49b4c-3663-41f4-91a6-ad6dd02ff183",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n        handles, labels = ax.get_legend_handles_labels()\\\\n        seen, uh, ul = {}, [], []\\\\n        for hh, ll in zip(handles, labels):\\\\n            if ll not in seen:\\\\n                seen[ll] = True\\\\n                uh.append(hh)\\\\n                ul.append(ll)\\\\n        if ul:\\\\n            ax.legend(uh, ul, loc=\\\\\\\"upper right\\\\\\\")\\\\n\\\\n        # Combined plot\\\\n        c = COUNT_COLORS.get(ck, \\\\\\\"#999999\\\\\\\")\\\\n        ax2.scatter(bcs, yv, c=c, s=40, alpha=0.7,\\\\n                    label=ck.replace(\\\\\\\"_\\\\\\\", \\\\\\\"=\\\\\\\"))\\\\n        if xl is not None:\\\\n            ax2.plot(xl, slope * xl + intercept, \\\\\\\"--\\\\\\\", color=c,\\\\n                     lw=1.0, alpha=0.6)\\\\n\\\\n    plt.figure(fig.number)\\\\n    plt.tight_layout()\\\\n    fig.savefig(output_dir / f\\\\\\\"{fname}.pdf\\\\\\\", dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(output_dir / f\\\\\\\"{fname}.png\\\\\\\", dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n\\\\n    ax2.set_xlabel(\\\\\\\"BCS\\\\\\\")\\\\n    ax2.set_ylabel(y_label)\\\\n    ax2.set_title(f\\\\\\\"BCS vs {y_label} (all counts)\\\\\\\")\\\\n    ax2.legend()\\\\n    ax2.grid(True, alpha=0.3)\\\\n    plt.figure(fig2.number)\\\\n    plt.tight_layout()\\\\n    fig2.savefig(output_dir / f\\\\\\\"{fname}_combined.pdf\\\\\\\", dpi=300,\\\\n                 bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig2.savefig(output_dir / f\\\\\\\"{fname}_combined.png\\\\\\\", dpi=300,\\\\n                 bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig2)\\\\n    logger.info(\\\\\\\"Saved %s figures\\\\\\\", fname)\\\\n\\\\n\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n# Confusion analysis\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n\\\\ndef analyze_confusion(predictions_path: str, data_dir: str,\\\\n                      eval_results: dict, output_dir: Path,\\\\n                      top_k: int = 20):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Per-type confusion rate: which types get mislabeled as which?\\\\n\\\\n    Loads raw predictions and ground truth. For each overlapping span\\\\n    with wrong type, counts (gold_type, pred_type) pairs.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    sys.path.insert(0, str(Path(__file__).parent))\\\\n    from few_nerd_utils import load_few_nerd\\\\n\\\\n    with open(predictions_path, \\\\\\\"r\\\\\\\") as f:\\\\n        predictions = json.load(f)\\\\n    samples = load_few_nerd(split=\\\\\\\"test\\\\\\\", data_dir=data_dir)\\\\n\\\\n    batches = {}\\\\n    for p in predictions:\\\\n        bid = p[\\\\\\\"batch_id\\\\\\\"]\\\\n        batches.setdefault(bid, {\\\\\\\"entries\\\\\\\": [], \\\\\\\"types\\\\\\\": set(p[\\\\\\\"batch_types\\\\\\\"])})\\\\n        batches[bid][\\\\\\\"entries\\\\\\\"].append(p)\\\\n\\\\n    confusion = {}\\\\n\\\\n    for bid, info in batches.items():\\\\n        btypes = info[\\\\\\\"types\\\\\\\"]\\\\n        by_sid = {}\\\\n        for p in info[\\\\\\\"entries\\\\\\\"]:\\\\n            by_sid.setdefault(p[\\\\\\\"sample_id\\\\\\\"], []).append(p)\\\\n\\\\n        for sid, preds in by_sid.items():\\\\n            if sid >= len(samples):\\\\n                continue\\\\n            golds = [e for e in samples[sid][\\\\\\\"entities\\\\\\\"]\\\\n                     if e[\\\\\\\"type\\\\\\\"] in btypes]\\\\n            pred_ents = [p for p in preds[0].get(\\\\\\\"predictions\\\\\\\", [])\\\\n                         if p.get(\\\\\\\"type\\\\\\\") in btypes]\\\\n\\\\n            for g in golds:\\\\n                for p in pred_ents:\\\\n                    if (p.get(\\\\\\\"type\\\\\\\") != g[\\\\\\\"type\\\\\\\"]\\\\n                            and p.get(\\\\\\\"start\\\\\\\", -1) < g[\\\\\\\"end\\\\\\\"]\\\\n                            and p.get(\\\\\\\"end\\\\\\\", -1) > g[\\\\\\\"start\\\\\\\"]):\\\\n                        pair = (g[\\\\\\\"type\\\\\\\"], p[\\\\\\\"type\\\\\\\"])\\\\n                        confusion[pair] = confusion.get(pair, 0) + 1\\\\n\\\\n    top = sorted(confusion.items(), key=lambda x: -x[1])[:top_k]\\\\n\\\\n    logger.info(\\\\\\\"Top-%d confused type pairs:\\\\\\\", top_k)\\\\n    logger.info(\\\\\\\"  %-35s %-35s %s\\\\\\\", \\\\\\\"Gold Type\\\\\\\", \\\\\\\"Pred Type\\\\\\\", \\\\\\\"Count\\\\\\\")\\\\n    for (gt, pt), cnt in top:\\\\n        logger.info(\\\\\\\"  %-35s %-35s %d\\\\\\\", gt, pt, cnt)\\\\n\\\\n    result = {\\\\n        \\\\\\\"top_confused_pairs\\\\\\\": [\\\\n            {\\\\\\\"gold_type\\\\\\\": g, \\\\\\\"pred_type\\\\\\\": p, \\\\\\\"count\\\\\\\": c}\\\\n            for (g, p), c in top\\\\n        ],\\\\n        \\\\\\\"total_confusions\\\\\\\": sum(confusion.values()),\\\\n        \\\\\\\"n_unique_pairs\\\\\\\": len(confusion),\\\\n    }\\\\n\\\\n    with open(output_dir / \\\\\\\"confusion_analysis.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(result, f, indent=2)\\\\n    logger.info(\\\\\\\"Saved confusion analysis\\\\\\\")\\\\n\\\\n    return result\\\\n\\\\n\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n# Main\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Analyze experiment results and generate figures\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--results_dir\\\\\\\", required=True,\\\\n                        help=\\\\\\\"Directory with eval_exp1.json / eval_exp2.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Figure output directory (default: results_dir)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--eval_mode\\\\\\\", default=\\\\\\\"relaxed\\\\\\\",\\\\n                        choices=[\\\\\\\"exact\\\\\\\", \\\\\\\"relaxed\\\\\\\", \\\\\\\"text_match\\\\\\\"],\\\\n                        help=\\\\\\\"Metric mode (default: relaxed)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--predictions_path\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Raw predictions JSON for confusion analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\",\\\\n                        default=\\\\\\\"/root/schema-dag-extraction/data/parquet\\\\\\\",\\\\n                        help=\\\\\\\"Data directory for confusion analysis\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO,\\\\n                        format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n\\\\n    results_dir = Path(args.results_dir)\\\\n    output_dir = Path(args.output_dir) if args.output_dir else results_dir\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    full_summary = {}\\\\n\\\\n    # ── Exp 1 ──\\\\n    exp1_path = results_dir / \\\\\\\"eval_exp1.json\\\\\\\"\\\\n    solo_f1 = None\\\\n    if exp1_path.exists():\\\\n        logger.info(\\\\\\\"=== Exp 1: Count Baseline ===\\\\\\\")\\\\n        exp1_results = load_eval(str(exp1_path))\\\\n        full_summary[\\\\\\\"exp1\\\\\\\"] = analyze_exp1(\\\\n            exp1_results, output_dir, eval_mode=args.eval_mode)\\\\n        solo_f1 = {}\\\\n        for bid, metrics in exp1_results.items():\\\\n            if (metrics.get(\\\\\\\"count_key\\\\\\\") == \\\\\\\"count_1\\\\\\\"\\\\n                    and \\\\\\\"per_type_f1\\\\\\\" in metrics):\\\\n                solo_f1.update(metrics[\\\\\\\"per_type_f1\\\\\\\"])\\\\n        if not solo_f1:\\\\n            solo_f1 = None\\\\n            logger.warning(\\\\\\\"No per-type solo F1 in exp1 count=1\\\\\\\")\\\\n        else:\\\\n            logger.info(\\\\\\\"Loaded solo F1 for %d types\\\\\\\", len(solo_f1))\\\\n    else:\\\\n        logger.info(\\\\\\\"No exp1 results at %s\\\\\\\", exp1_path)\\\\n\\\\n    # ── Exp 2 ──\\\\n    exp2_path = results_dir / \\\\\\\"eval_exp2.json\\\\\\\"\\\\n    if exp2_path.exists():\\\\n        logger.info(\\\\\\\"=== Exp 2: Confusability Controlled ===\\\\\\\")\\\\n        exp2_results = load_eval(str(exp2_path))\\\\n        full_summary[\\\\\\\"exp2\\\\\\\"] = analyze_exp2(\\\\n            exp2_results, output_dir, solo_f1=solo_f1,\\\\n            eval_mode=args.eval_mode)\\\\n\\\\n        if args.predictions_path:\\\\n            logger.info(\\\\\\\"=== Confusion Analysis ===\\\\\\\")\\\\n            full_summary[\\\\\\\"confusion\\\\\\\"] = analyze_confusion(\\\\n                args.predictions_path, args.data_dir,\\\\n                exp2_results, output_dir)\\\\n    else:\\\\n        logger.info(\\\\\\\"No exp2 results at %s\\\\\\\", exp2_path)\\\\n\\\\n    # ── Dry run ──\\\\n    dry_path = results_dir / \\\\\\\"eval_dry_run.json\\\\\\\"\\\\n    if dry_path.exists():\\\\n        logger.info(\\\\\\\"=== Dry Run ===\\\\\\\")\\\\n        dry_results = load_eval(str(dry_path))\\\\n        full_summary[\\\\\\\"dry_run\\\\\\\"] = analyze_exp2(\\\\n            dry_results, output_dir, solo_f1=solo_f1,\\\\n            eval_mode=args.eval_mode)\\\\n\\\\n    # ── Save summary ──\\\\n    summary_path = output_dir / \\\\\\\"analysis_summary.json\\\\\\\"\\\\n    with open(summary_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(full_summary, f, indent=2,\\\\n                  default=lambda x: (None if isinstance(x, float)\\\\n                                     and np.isnan(x) else x))\\\\n    logger.info(\\\\\\\"Saved analysis summary to %s\\\\\\\", summary_path)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n        handles, labels = ax.get_legend_handles_labels()\\n        seen, uh, ul = {}, [], []\\n        for hh, ll in zip(handles, labels):\\n            if ll not in seen:\\n                seen[ll] = True\\n                uh.append(hh)\\n                ul.append(ll)\\n        if ul:\\n            ax.legend(uh, ul, loc=\\\"upper right\\\")\\n\\n        # Combined plot\\n        c = COUNT_COLORS.get(ck, \\\"#999999\\\")\\n        ax2.scatter(bcs, yv, c=c, s=40, alpha=0.7,\\n                    label=ck.replace(\\\"_\\\", \\\"=\\\"))\\n        if xl is not None:\\n            ax2.plot(xl, slope * xl + intercept, \\\"--\\\", color=c,\\n                     lw=1.0, alpha=0.6)\\n\\n    plt.figure(fig.number)\\n    plt.tight_layout()\\n    fig.savefig(output_dir / f\\\"{fname}.pdf\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / f\\\"{fname}.png\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n\\n    ax2.set_xlabel(\\\"BCS\\\")\\n    ax2.set_ylabel(y_label)\\n    ax2.set_title(f\\\"BCS vs {y_label} (all counts)\\\")\\n    ax2.legend()\\n    ax2.grid(True, alpha=0.3)\\n    plt.figure(fig2.number)\\n    plt.tight_layout()\\n    fig2.savefig(output_dir / f\\\"{fname}_combined.pdf\\\", dpi=300,\\n                 bbox_inches=\\\"tight\\\")\\n    fig2.savefig(output_dir / f\\\"{fname}_combined.png\\\", dpi=300,\\n                 bbox_inches=\\\"tight\\\")\\n    plt.close(fig2)\\n    logger.info(\\\"Saved %s figures\\\", fname)\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Confusion analysis\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef analyze_confusion(predictions_path: str, data_dir: str,\\n                      eval_results: dict, output_dir: Path,\\n                      top_k: int = 20):\\n    \\\"\\\"\\\"Per-type confusion rate: which types get mislabeled as which?\\n\\n    Loads raw predictions and ground truth. For each overlapping span\\n    with wrong type, counts (gold_type, pred_type) pairs.\\n    \\\"\\\"\\\"\\n    sys.path.insert(0, str(Path(__file__).parent))\\n    from few_nerd_utils import load_few_nerd\\n\\n    with open(predictions_path, \\\"r\\\") as f:\\n        predictions = json.load(f)\\n    samples = load_few_nerd(split=\\\"test\\\", data_dir=data_dir)\\n\\n    batches = {}\\n    for p in predictions:\\n        bid = p[\\\"batch_id\\\"]\\n        batches.setdefault(bid, {\\\"entries\\\": [], \\\"types\\\": set(p[\\\"batch_types\\\"])})\\n        batches[bid][\\\"entries\\\"].append(p)\\n\\n    confusion = {}\\n\\n    for bid, info in batches.items():\\n        btypes = info[\\\"types\\\"]\\n        by_sid = {}\\n        for p in info[\\\"entries\\\"]:\\n            by_sid.setdefault(p[\\\"sample_id\\\"], []).append(p)\\n\\n        for sid, preds in by_sid.items():\\n            if sid >= len(samples):\\n                continue\\n            golds = [e for e in samples[sid][\\\"entities\\\"]\\n                     if e[\\\"type\\\"] in btypes]\\n            pred_ents = [p for p in preds[0].get(\\\"predictions\\\", [])\\n                         if p.get(\\\"type\\\") in btypes]\\n\\n            for g in golds:\\n                for p in pred_ents:\\n                    if (p.get(\\\"type\\\") != g[\\\"type\\\"]\\n                            and p.get(\\\"start\\\", -1) < g[\\\"end\\\"]\\n                            and p.get(\\\"end\\\", -1) > g[\\\"start\\\"]):\\n                        pair = (g[\\\"type\\\"], p[\\\"type\\\"])\\n                        confusion[pair] = confusion.get(pair, 0) + 1\\n\\n    top = sorted(confusion.items(), key=lambda x: -x[1])[:top_k]\\n\\n    logger.info(\\\"Top-%d confused type pairs:\\\", top_k)\\n    logger.info(\\\"  %-35s %-35s %s\\\", \\\"Gold Type\\\", \\\"Pred Type\\\", \\\"Count\\\")\\n    for (gt, pt), cnt in top:\\n        logger.info(\\\"  %-35s %-35s %d\\\", gt, pt, cnt)\\n\\n    result = {\\n        \\\"top_confused_pairs\\\": [\\n            {\\\"gold_type\\\": g, \\\"pred_type\\\": p, \\\"count\\\": c}\\n            for (g, p), c in top\\n        ],\\n        \\\"total_confusions\\\": sum(confusion.values()),\\n        \\\"n_unique_pairs\\\": len(confusion),\\n    }\\n\\n    with open(output_dir / \\\"confusion_analysis.json\\\", \\\"w\\\") as f:\\n        json.dump(result, f, indent=2)\\n    logger.info(\\\"Saved confusion analysis\\\")\\n\\n    return result\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Main\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Analyze experiment results and generate figures\\\")\\n    parser.add_argument(\\\"--results_dir\\\", required=True,\\n                        help=\\\"Directory with eval_exp1.json / eval_exp2.json\\\")\\n    parser.add_argument(\\\"--output_dir\\\", default=None,\\n                        help=\\\"Figure output directory (default: results_dir)\\\")\\n    parser.add_argument(\\\"--eval_mode\\\", default=\\\"relaxed\\\",\\n                        choices=[\\\"exact\\\", \\\"relaxed\\\", \\\"text_match\\\"],\\n                        help=\\\"Metric mode (default: relaxed)\\\")\\n    parser.add_argument(\\\"--predictions_path\\\", default=None,\\n                        help=\\\"Raw predictions JSON for confusion analysis\\\")\\n    parser.add_argument(\\\"--data_dir\\\",\\n                        default=\\\"/root/schema-dag-extraction/data/parquet\\\",\\n                        help=\\\"Data directory for confusion analysis\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO,\\n                        format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n\\n    results_dir = Path(args.results_dir)\\n    output_dir = Path(args.output_dir) if args.output_dir else results_dir\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    full_summary = {}\\n\\n    # ── Exp 1 ──\\n    exp1_path = results_dir / \\\"eval_exp1.json\\\"\\n    solo_f1 = None\\n    if exp1_path.exists():\\n        logger.info(\\\"=== Exp 1: Count Baseline ===\\\")\\n        exp1_results = load_eval(str(exp1_path))\\n        full_summary[\\\"exp1\\\"] = analyze_exp1(\\n            exp1_results, output_dir, eval_mode=args.eval_mode)\\n        solo_f1 = {}\\n        for bid, metrics in exp1_results.items():\\n            if (metrics.get(\\\"count_key\\\") == \\\"count_1\\\"\\n                    and \\\"per_type_f1\\\" in metrics):\\n                solo_f1.update(metrics[\\\"per_type_f1\\\"])\\n        if not solo_f1:\\n            solo_f1 = None\\n            logger.warning(\\\"No per-type solo F1 in exp1 count=1\\\")\\n        else:\\n            logger.info(\\\"Loaded solo F1 for %d types\\\", len(solo_f1))\\n    else:\\n        logger.info(\\\"No exp1 results at %s\\\", exp1_path)\\n\\n    # ── Exp 2 ──\\n    exp2_path = results_dir / \\\"eval_exp2.json\\\"\\n    if exp2_path.exists():\\n        logger.info(\\\"=== Exp 2: Confusability Controlled ===\\\")\\n        exp2_results = load_eval(str(exp2_path))\\n        full_summary[\\\"exp2\\\"] = analyze_exp2(\\n            exp2_results, output_dir, solo_f1=solo_f1,\\n            eval_mode=args.eval_mode)\\n\\n        if args.predictions_path:\\n            logger.info(\\\"=== Confusion Analysis ===\\\")\\n            full_summary[\\\"confusion\\\"] = analyze_confusion(\\n                args.predictions_path, args.data_dir,\\n                exp2_results, output_dir)\\n    else:\\n        logger.info(\\\"No exp2 results at %s\\\", exp2_path)\\n\\n    # ── Dry run ──\\n    dry_path = results_dir / \\\"eval_dry_run.json\\\"\\n    if dry_path.exists():\\n        logger.info(\\\"=== Dry Run ===\\\")\\n        dry_results = load_eval(str(dry_path))\\n        full_summary[\\\"dry_run\\\"] = analyze_exp2(\\n            dry_results, output_dir, solo_f1=solo_f1,\\n            eval_mode=args.eval_mode)\\n\\n    # ── Save summary ──\\n    summary_path = output_dir / \\\"analysis_summary.json\\\"\\n    with open(summary_path, \\\"w\\\") as f:\\n        json.dump(full_summary, f, indent=2,\\n                  default=lambda x: (None if isinstance(x, float)\\n                                     and np.isnan(x) else x))\\n    logger.info(\\\"Saved analysis summary to %s\\\", summary_path)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+1. **reeval data** (`results/exp2_reeval_results.json`): 54 batches, dict format with keys like `count_12_high_bcs`. Each batch has `exact`, `relaxed`, `text_match` metrics + `fp_breakdown` + `bcs`, `count_key`, `num_types`.
+
+2. **old data** (`artifacts/eval_exp2.json`): 54 batches, dict format with similar keys like `count_6_low_bcs`. 
+
+The old data has `exact` and `relaxed` metrics but lacks `text_match`, and it includes `per_type_f1` instead of `fp_breakdown`. Looking at the structure, the reeval data is essentially an enhanced version of the old data—same batch organization and core fields, just with additional metrics like `text_match` and `fp_breakdown` added. The `analyze_results.py` script already handles this since it reads from the results directory and supports the `text_match` evaluation mode through its `_get_metrics()` function.
+
+The issue is that the reeval results are stored at `results/exp2_reeval_results.json` but the script expects `eval_exp2.json` in the results directory. The quickest solution is to symlink the reeval file to the expected location so the script can find and process it with the `--eval_mode text_match` flag.
+
+Now I need to look at the `analyze_exp2` function to understand what it's doing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "9f050c30-706e-4eb6-920b-7edfc8205696",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NfkPXzXjqZ7JNzS1ngFua",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5249,
+      "cache_read_input_tokens": 29808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+数据格式兼容。reeval 数据有 54 batches，结构相同且包含 `text_match` metrics。需要看被截断的 `analyze_exp2` 函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "ba2a8e56-fbd3-4fbe-be54-0b2d0ac85da3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NfkPXzXjqZ7JNzS1ngFua",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5249,
+      "cache_read_input_tokens": 29808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NUXNnNTJMoewkSJGjW5hxC`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -n 300 /root/schema-dag-extraction/src/analyze_results.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "6229fd18-b310-4bb8-83f4-f6ff5237ea82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NfkPXzXjqZ7JNzS1ngFua",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5249,
+      "cache_read_input_tokens": 29808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5249
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T02:37:52.761Z_
+
+<details><summary>↩ Tool result · `toolu_01NUXNnNTJMoewkSJGjW5hxC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Statistical analysis and visualization of experiment results.\\n\\nInput: eval_exp1.json, eval_exp2.json from evaluate.py\\nOutput: Figures (PDF/PNG), statistical summary\\nDependencies: matplotlib, scipy, numpy\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport sys\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom scipy import stats\\n\\nlogger = logging.getLogger(__name__)\\n\\nplt.rcParams.update({\\n    \\\"font.family\\\": \\\"serif\\\",\\n    \\\"font.size\\\": 11,\\n    \\\"axes.labelsize\\\": 12,\\n    \\\"axes.titlesize\\\": 13,\\n    \\\"xtick.labelsize\\\": 10,\\n    \\\"ytick.labelsize\\\": 10,\\n    \\\"figure.facecolor\\\": \\\"white\\\",\\n    \\\"axes.facecolor\\\": \\\"white\\\",\\n    \\\"axes.edgecolor\\\": \\\"black\\\",\\n    \\\"axes.linewidth\\\": 0.8,\\n    \\\"legend.fontsize\\\": 10,\\n})\\n\\nCOUNT_COLORS = {\\n    \\\"count_3\\\": \\\"#2ca02c\\\",\\n    \\\"count_6\\\": \\\"#1f77b4\\\",\\n    \\\"count_12\\\": \\\"#ff7f0e\\\",\\n    \\\"count_24\\\": \\\"#d62728\\\",\\n}\\n\\n\\ndef load_eval(path: str) -> dict:\\n    \\\"\\\"\\\"Load evaluation JSON.\\\"\\\"\\\"\\n    with open(path, \\\"r\\\") as f:\\n        return json.load(f)\\n\\n\\ndef _get_metrics(batch_metrics: dict, eval_mode: str) -> dict:\\n    \\\"\\\"\\\"Get metrics dict for eval_mode with fallback.\\\"\\\"\\\"\\n    result = batch_metrics.get(eval_mode)\\n    if result is not None:\\n        return result\\n    if eval_mode == \\\"text_match\\\":\\n        logger.debug(\\\"text_match not available, falling back to relaxed\\\")\\n        return batch_metrics.get(\\\"relaxed\\\", batch_metrics.get(\\\"exact\\\", {}))\\n    return batch_metrics.get(\\\"exact\\\", {})\\n\\n\\ndef pearson_ci(r: float, n: int, alpha: float = 0.05) -> tuple:\\n    \\\"\\\"\\\"95% confidence interval for Pearson r via Fisher z-transform.\\\"\\\"\\\"\\n    if n < 4 or np.isnan(r):\\n        return (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n    z = np.arctanh(r)\\n    se = 1.0 / math.sqrt(n - 3)\\n    z_crit = stats.norm.ppf(1 - alpha / 2)\\n    return (float(np.tanh(z - z_crit * se)), float(np.tanh(z + z_crit * se)))\\n\\n\\ndef partial_corr(x, y, z):\\n    \\\"\\\"\\\"Partial correlation r(x, y | z). Returns (r, p).\\\"\\\"\\\"\\n    x = np.asarray(x, dtype=float)\\n    y = np.asarray(y, dtype=float)\\n    z = np.asarray(z, dtype=float)\\n    if len(x) < 4:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    def _resid(a, b):\\n        slope, intercept = np.polyfit(b, a, 1)\\n        return a - (slope * b + intercept)\\n    return stats.pearsonr(_resid(x, z), _resid(y, z))\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Exp 1: Count-Quality\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef analyze_exp1(eval_results: dict, output_dir: Path,\\n                 eval_mode: str = \\\"relaxed\\\"):\\n    \\\"\\\"\\\"Count-Quality analysis: how does # types affect F1?\\\"\\\"\\\"\\n    count_f1s = {}\\n    for bid, metrics in eval_results.items():\\n        count_key = metrics.get(\\\"count_key\\\", bid.split(\\\"_random\\\")[0])\\n        count = int(count_key.replace(\\\"count_\\\", \\\"\\\"))\\n        f1 = _get_metrics(metrics, eval_mode).get(\\\"f1\\\", 0.0)\\n        count_f1s.setdefault(count, []).append(f1)\\n\\n    counts = sorted(count_f1s.keys())\\n    means = [np.mean(count_f1s[c]) for c in counts]\\n    stds = [np.std(count_f1s[c]) for c in counts]\\n\\n    logger.info(\\\"Count-Quality Table (%s):\\\", eval_mode)\\n    logger.info(\\\"  %-8s %-10s %-10s %-5s\\\", \\\"Count\\\", \\\"Mean F1\\\", \\\"Std F1\\\", \\\"N\\\")\\n    for c, m, s in zip(counts, means, stds):\\n        logger.info(\\\"  %-8d %-10.4f %-10.4f %-5d\\\", c, m, s, len(count_f1s[c]))\\n\\n    mode_label = eval_mode.replace(\\\"_\\\", \\\" \\\").title()\\n    fig, ax = plt.subplots(figsize=(6, 4))\\n    ax.errorbar(counts, means, yerr=stds, marker=\\\"o\\\", capsize=4,\\n                linewidth=1.5, markersize=6, color=\\\"#2c7bb6\\\")\\n    ax.set_xlabel(\\\"Number of Types in Batch\\\")\\n    ax.set_ylabel(f\\\"{mode_label} F1 Score\\\")\\n    ax.set_title(\\\"Count–Quality Curve\\\")\\n    ax.set_xticks(counts)\\n    ax.grid(True, alpha=0.3)\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"fig_count_quality.pdf\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"fig_count_quality.png\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close()\\n    logger.info(\\\"Saved Count-Quality figure\\\")\\n\\n    return {\\n      \\n\\n... [截断: 输出过长，省略 2839 字符] ...\\n\\n       # t-test on top/bottom third by BCS (random batches only)\\n        rand = sorted([e for e in entries if \\\"random\\\" in e[\\\"bid\\\"]],\\n                      key=lambda x: x[\\\"bcs\\\"])\\n        k = max(1, len(rand) // 3)\\n        if k >= 2 and len(rand) >= 2 * k:\\n            t_stat, t_p = stats.ttest_ind(\\n                [e[\\\"f1\\\"] for e in rand[-k:]],\\n                [e[\\\"f1\\\"] for e in rand[:k]])\\n        else:\\n            t_stat, t_p = float(\\\"nan\\\"), float(\\\"nan\\\")\\n\\n        # Supplementary: delta (solo - batch) correlation\\n        delta_sup = {}\\n        de = [e for e in entries if e[\\\"delta_f1\\\"] is not None]\\n        if len(de) >= 3:\\n            r_d, p_d = stats.pearsonr([e[\\\"bcs\\\"] for e in de],\\n                                      [e[\\\"delta_f1\\\"] for e in de])\\n            delta_sup = {\\\"pearson_r\\\": r_d, \\\"pearson_p\\\": p_d, \\\"n\\\": len(de)}\\n\\n        summary[count_key] = {\\n            \\\"f1_vs_bcs\\\": {\\n                \\\"pearson_r\\\": r_f1, \\\"pearson_p\\\": p_f1,\\n                \\\"ci_95\\\": list(ci_f1), \\\"n\\\": n,\\n                \\\"pass_fail\\\": pass_f1, \\\"role\\\": \\\"supplementary\\\",\\n            },\\n            \\\"recall_vs_bcs\\\": {\\n                \\\"pearson_r\\\": r_rec, \\\"pearson_p\\\": p_rec,\\n                \\\"ci_95\\\": list(ci_rec), \\\"n\\\": n,\\n                \\\"pass_fail\\\": pass_recall, \\\"role\\\": \\\"primary\\\",\\n            },\\n            \\\"ttest_top_bottom_third\\\": {\\\"t\\\": t_stat, \\\"p\\\": t_p},\\n            \\\"delta_supplementary\\\": delta_sup,\\n            \\\"n_batches\\\": n,\\n        }\\n\\n        logger.info(\\n            \\\"%s: [PRIMARY] r(recall,BCS)=%.4f (p=%.4f, CI=[%.3f,%.3f], n=%d) -> %s\\\",\\n            count_key, r_rec, p_rec, ci_rec[0], ci_rec[1], n, pass_recall)\\n        logger.info(\\n            \\\"  [supplementary] r(F1,BCS)=%.4f (p=%.4f) -> %s\\\",\\n            r_f1, p_f1, pass_f1)\\n\\n    # Partial correlation across counts\\n    if len(set(all_counts)) >= 2 and len(all_bcs) >= 6:\\n        pr_f1, pp_f1 = partial_corr(all_bcs, all_f1, all_counts)\\n        pr_rec, pp_rec = partial_corr(all_bcs, all_recall, all_counts)\\n        n_all = len(all_bcs)\\n        summary[\\\"partial_corr\\\"] = {\\n            \\\"f1_vs_bcs_controlling_count\\\": {\\n                \\\"r\\\": pr_f1, \\\"p\\\": pp_f1, \\\"n\\\": n_all,\\n                \\\"ci_95\\\": list(pearson_ci(pr_f1, n_all)),\\n            },\\n            \\\"recall_vs_bcs_controlling_count\\\": {\\n                \\\"r\\\": pr_rec, \\\"p\\\": pp_rec, \\\"n\\\": n_all,\\n                \\\"ci_95\\\": list(pearson_ci(pr_rec, n_all)),\\n            },\\n        }\\n        logger.info(\\\"Partial r(F1,BCS|count)=%.4f (p=%.4f, n=%d)\\\",\\n                     pr_f1, pp_f1, n_all)\\n        logger.info(\\\"Partial r(recall,BCS|count)=%.4f (p=%.4f, n=%d)\\\",\\n                     pr_rec, pp_rec, n_all)\\n\\n    # Visualization\\n    _plot_scatter(by_count, summary, output_dir, \\\"f1\\\",\\n                  f\\\"{mode_label} F1\\\", \\\"exp2_analysis_f1\\\")\\n    _plot_scatter(by_count, summary, output_dir, \\\"recall\\\",\\n                  f\\\"{mode_label} Recall\\\", \\\"exp2_analysis_recall\\\")\\n\\n    return summary\\n\\n\\ndef _plot_scatter(by_count, summary, output_dir, y_field, y_label, fname):\\n    \\\"\\\"\\\"BCS vs y_field scatter with regression, per count + combined.\\\"\\\"\\\"\\n    n_counts = len(by_count)\\n    if n_counts == 0:\\n        return\\n\\n    fig, axes = plt.subplots(1, n_counts, figsize=(6 * n_counts, 4.5),\\n                             squeeze=False)\\n    fig2, ax2 = plt.subplots(figsize=(6, 4.5))\\n\\n    for idx, (ck, entries) in enumerate(sorted(by_count.items())):\\n        ax = axes[0, idx]\\n        bcs = np.array([e[\\\"bcs\\\"] for e in entries])\\n        yv = np.array([e[y_field] for e in entries])\\n\\n        for e in entries:\\n            if \\\"low_bcs\\\" in e[\\\"bid\\\"]:\\n                ax.scatter(e[\\\"bcs\\\"], e[y_field], c=\\\"#2ca02c\\\", s=80,\\n                           zorder=5, label=\\\"Low BCS\\\", marker=\\\"^\\\")\\n            elif \\\"high_bcs\\\" in e[\\\"bid\\\"]:\\n                ax.scatter(e[\\\"bcs\\\"], e[y_field], c=\\\"#d62728\\\", s=80,\\n                           zorder=5, label=\\\"High BCS\\\", marker=\\\"v\\\")\\n            else:\\n                ax.scatter(e[\\\"bcs\\\"], e[y_field], c=\\\"#1f77b4\\\", s=40,\\n                           zorder=4, alpha=0.7)\\n\\n        slope = intercept = None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "385fd0eb-76e6-44ee-93d1-050f62619d0b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Statistical analysis and visualization of experiment results.\\\\n\\\\nInput: eval_exp1.json, eval_exp2.json from evaluate.py\\\\nOutput: Figures (PDF/PNG), statistical summary\\\\nDependencies: matplotlib, scipy, numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nplt.rcParams.update({\\\\n    \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n    \\\\\\\"font.size\\\\\\\": 11,\\\\n    \\\\\\\"axes.labelsize\\\\\\\": 12,\\\\n    \\\\\\\"axes.titlesize\\\\\\\": 13,\\\\n    \\\\\\\"xtick.labelsize\\\\\\\": 10,\\\\n    \\\\\\\"ytick.labelsize\\\\\\\": 10,\\\\n    \\\\\\\"figure.facecolor\\\\\\\": \\\\\\\"white\\\\\\\",\\\\n    \\\\\\\"axes.facecolor\\\\\\\": \\\\\\\"white\\\\\\\",\\\\n    \\\\\\\"axes.edgecolor\\\\\\\": \\\\\\\"black\\\\\\\",\\\\n    \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n    \\\\\\\"legend.fontsize\\\\\\\": 10,\\\\n})\\\\n\\\\nCOUNT_COLORS = {\\\\n    \\\\\\\"count_3\\\\\\\": \\\\\\\"#2ca02c\\\\\\\",\\\\n    \\\\\\\"count_6\\\\\\\": \\\\\\\"#1f77b4\\\\\\\",\\\\n    \\\\\\\"count_12\\\\\\\": \\\\\\\"#ff7f0e\\\\\\\",\\\\n    \\\\\\\"count_24\\\\\\\": \\\\\\\"#d62728\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef load_eval(path: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load evaluation JSON.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(path, \\\\\\\"r\\\\\\\") as f:\\\\n        return json.load(f)\\\\n\\\\n\\\\ndef _get_metrics(batch_metrics: dict, eval_mode: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Get metrics dict for eval_mode with fallback.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result = batch_metrics.get(eval_mode)\\\\n    if result is not None:\\\\n        return result\\\\n    if eval_mode == \\\\\\\"text_match\\\\\\\":\\\\n        logger.debug(\\\\\\\"text_match not available, falling back to relaxed\\\\\\\")\\\\n        return batch_metrics.get(\\\\\\\"relaxed\\\\\\\", batch_metrics.get(\\\\\\\"exact\\\\\\\", {}))\\\\n    return batch_metrics.get(\\\\\\\"exact\\\\\\\", {})\\\\n\\\\n\\\\ndef pearson_ci(r: float, n: int, alpha: float = 0.05) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"95% confidence interval for Pearson r via Fisher z-transform.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if n < 4 or np.isnan(r):\\\\n        return (float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"))\\\\n    z = np.arctanh(r)\\\\n    se = 1.0 / math.sqrt(n - 3)\\\\n    z_crit = stats.norm.ppf(1 - alpha / 2)\\\\n    return (float(np.tanh(z - z_crit * se)), float(np.tanh(z + z_crit * se)))\\\\n\\\\n\\\\ndef partial_corr(x, y, z):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Partial correlation r(x, y | z). Returns (r, p).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    x = np.asarray(x, dtype=float)\\\\n    y = np.asarray(y, dtype=float)\\\\n    z = np.asarray(z, dtype=float)\\\\n    if len(x) < 4:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    def _resid(a, b):\\\\n        slope, intercept = np.polyfit(b, a, 1)\\\\n        return a - (slope * b + intercept)\\\\n    return stats.pearsonr(_resid(x, z), _resid(y, z))\\\\n\\\\n\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n# Exp 1: Count-Quality\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n\\\\ndef analyze_exp1(eval_results: dict, output_dir: Path,\\\\n                 eval_mode: str = \\\\\\\"relaxed\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Count-Quality analysis: how does # types affect F1?\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    count_f1s = {}\\\\n    for bid, metrics in eval_results.items():\\\\n        count_key = metrics.get(\\\\\\\"count_key\\\\\\\", bid.split(\\\\\\\"_random\\\\\\\")[0])\\\\n        count = int(count_key.replace(\\\\\\\"count_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        f1 = _get_metrics(metrics, eval_mode).get(\\\\\\\"f1\\\\\\\", 0.0)\\\\n        count_f1s.setdefault(count, []).append(f1)\\\\n\\\\n    counts = sorted(count_f1s.keys())\\\\n    means = [np.mean(count_f1s[c]) for c in counts]\\\\n    stds = [np.std(count_f1s[c]) for c in counts]\\\\n\\\\n    logger.info(\\\\\\\"Count-Quality Table (%s):\\\\\\\", eval_mode)\\\\n    logger.info(\\\\\\\"  %-8s %-10s %-10s %-5s\\\\\\\", \\\\\\\"Count\\\\\\\", \\\\\\\"Mean F1\\\\\\\", \\\\\\\"Std F1\\\\\\\", \\\\\\\"N\\\\\\\")\\\\n    for c, m, s in zip(counts, means, stds):\\\\n        logger.info(\\\\\\\"  %-8d %-10.4f %-10.4f %-5d\\\\\\\", c, m, s, len(count_f1s[c]))\\\\n\\\\n    mode_label = eval_mode.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\").title()\\\\n    fig, ax = plt.subplots(figsize=(6, 4))\\\\n    ax.errorbar(counts, means, yerr=stds, marker=\\\\\\\"o\\\\\\\", capsize=4,\\\\n                linewidth=1.5, markersize=6, color=\\\\\\\"#2c7bb6\\\\\\\")\\\\n    ax.set_xlabel(\\\\\\\"Number of Types in Batch\\\\\\\")\\\\n    ax.set_ylabel(f\\\\\\\"{mode_label} F1 Score\\\\\\\")\\\\n    ax.set_title(\\\\\\\"Count–Quality Curve\\\\\\\")\\\\n    ax.set_xticks(counts)\\\\n    ax.grid(True, alpha=0.3)\\\\n    plt.tight_layout()\\\\n    fig.savefig(output_dir / \\\\\\\"fig_count_quality.pdf\\\\\\\", dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(output_dir / \\\\\\\"fig_count_quality.png\\\\\\\", dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close()\\\\n    logger.info(\\\\\\\"Saved Count-Quality figure\\\\\\\")\\\\n\\\\n    return {\\\\n      \\\\n\\\\n... [截断: 输出过长，省略 2839 字符] ...\\\\n\\\\n       # t-test on top/bottom third by BCS (random batches only)\\\\n        rand = sorted([e for e in entries if \\\\\\\"random\\\\\\\" in e[\\\\\\\"bid\\\\\\\"]],\\\\n                      key=lambda x: x[\\\\\\\"bcs\\\\\\\"])\\\\n        k = max(1, len(rand) // 3)\\\\n        if k >= 2 and len(rand) >= 2 * k:\\\\n            t_stat, t_p = stats.ttest_ind(\\\\n                [e[\\\\\\\"f1\\\\\\\"] for e in rand[-k:]],\\\\n                [e[\\\\\\\"f1\\\\\\\"] for e in rand[:k]])\\\\n        else:\\\\n            t_stat, t_p = float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        # Supplementary: delta (solo - batch) correlation\\\\n        delta_sup = {}\\\\n        de = [e for e in entries if e[\\\\\\\"delta_f1\\\\\\\"] is not None]\\\\n        if len(de) >= 3:\\\\n            r_d, p_d = stats.pearsonr([e[\\\\\\\"bcs\\\\\\\"] for e in de],\\\\n                                      [e[\\\\\\\"delta_f1\\\\\\\"] for e in de])\\\\n            delta_sup = {\\\\\\\"pearson_r\\\\\\\": r_d, \\\\\\\"pearson_p\\\\\\\": p_d, \\\\\\\"n\\\\\\\": len(de)}\\\\n\\\\n        summary[count_key] = {\\\\n            \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n                \\\\\\\"pearson_r\\\\\\\": r_f1, \\\\\\\"pearson_p\\\\\\\": p_f1,\\\\n                \\\\\\\"ci_95\\\\\\\": list(ci_f1), \\\\\\\"n\\\\\\\": n,\\\\n                \\\\\\\"pass_fail\\\\\\\": pass_f1, \\\\\\\"role\\\\\\\": \\\\\\\"supplementary\\\\\\\",\\\\n            },\\\\n            \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n                \\\\\\\"pearson_r\\\\\\\": r_rec, \\\\\\\"pearson_p\\\\\\\": p_rec,\\\\n                \\\\\\\"ci_95\\\\\\\": list(ci_rec), \\\\\\\"n\\\\\\\": n,\\\\n                \\\\\\\"pass_fail\\\\\\\": pass_recall, \\\\\\\"role\\\\\\\": \\\\\\\"primary\\\\\\\",\\\\n            },\\\\n            \\\\\\\"ttest_top_bottom_third\\\\\\\": {\\\\\\\"t\\\\\\\": t_stat, \\\\\\\"p\\\\\\\": t_p},\\\\n            \\\\\\\"delta_supplementary\\\\\\\": delta_sup,\\\\n            \\\\\\\"n_batches\\\\\\\": n,\\\\n        }\\\\n\\\\n        logger.info(\\\\n            \\\\\\\"%s: [PRIMARY] r(recall,BCS)=%.4f (p=%.4f, CI=[%.3f,%.3f], n=%d) -> %s\\\\\\\",\\\\n            count_key, r_rec, p_rec, ci_rec[0], ci_rec[1], n, pass_recall)\\\\n        logger.info(\\\\n            \\\\\\\"  [supplementary] r(F1,BCS)=%.4f (p=%.4f) -> %s\\\\\\\",\\\\n            r_f1, p_f1, pass_f1)\\\\n\\\\n    # Partial correlation across counts\\\\n    if len(set(all_counts)) >= 2 and len(all_bcs) >= 6:\\\\n        pr_f1, pp_f1 = partial_corr(all_bcs, all_f1, all_counts)\\\\n        pr_rec, pp_rec = partial_corr(all_bcs, all_recall, all_counts)\\\\n        n_all = len(all_bcs)\\\\n        summary[\\\\\\\"partial_corr\\\\\\\"] = {\\\\n            \\\\\\\"f1_vs_bcs_controlling_count\\\\\\\": {\\\\n                \\\\\\\"r\\\\\\\": pr_f1, \\\\\\\"p\\\\\\\": pp_f1, \\\\\\\"n\\\\\\\": n_all,\\\\n                \\\\\\\"ci_95\\\\\\\": list(pearson_ci(pr_f1, n_all)),\\\\n            },\\\\n            \\\\\\\"recall_vs_bcs_controlling_count\\\\\\\": {\\\\n                \\\\\\\"r\\\\\\\": pr_rec, \\\\\\\"p\\\\\\\": pp_rec, \\\\\\\"n\\\\\\\": n_all,\\\\n                \\\\\\\"ci_95\\\\\\\": list(pearson_ci(pr_rec, n_all)),\\\\n            },\\\\n        }\\\\n        logger.info(\\\\\\\"Partial r(F1,BCS|count)=%.4f (p=%.4f, n=%d)\\\\\\\",\\\\n                     pr_f1, pp_f1, n_all)\\\\n        logger.info(\\\\\\\"Partial r(recall,BCS|count)=%.4f (p=%.4f, n=%d)\\\\\\\",\\\\n                     pr_rec, pp_rec, n_all)\\\\n\\\\n    # Visualization\\\\n    _plot_scatter(by_count, summary, output_dir, \\\\\\\"f1\\\\\\\",\\\\n                  f\\\\\\\"{mode_label} F1\\\\\\\", \\\\\\\"exp2_analysis_f1\\\\\\\")\\\\n    _plot_scatter(by_count, summary, output_dir, \\\\\\\"recall\\\\\\\",\\\\n                  f\\\\\\\"{mode_label} Recall\\\\\\\", \\\\\\\"exp2_analysis_recall\\\\\\\")\\\\n\\\\n    return summary\\\\n\\\\n\\\\ndef _plot_scatter(by_count, summary, output_dir, y_field, y_label, fname):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"BCS vs y_field scatter with regression, per count + combined.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_counts = len(by_count)\\\\n    if n_counts == 0:\\\\n        return\\\\n\\\\n    fig, axes = plt.subplots(1, n_counts, figsize=(6 * n_counts, 4.5),\\\\n                             squeeze=False)\\\\n    fig2, ax2 = plt.subplots(figsize=(6, 4.5))\\\\n\\\\n    for idx, (ck, entries) in enumerate(sorted(by_count.items())):\\\\n        ax = axes[0, idx]\\\\n        bcs = np.array([e[\\\\\\\"bcs\\\\\\\"] for e in entries])\\\\n        yv = np.array([e[y_field] for e in entries])\\\\n\\\\n        for e in entries:\\\\n            if \\\\\\\"low_bcs\\\\\\\" in e[\\\\\\\"bid\\\\\\\"]:\\\\n                ax.scatter(e[\\\\\\\"bcs\\\\\\\"], e[y_field], c=\\\\\\\"#2ca02c\\\\\\\", s=80,\\\\n                           zorder=5, label=\\\\\\\"Low BCS\\\\\\\", marker=\\\\\\\"^\\\\\\\")\\\\n            elif \\\\\\\"high_bcs\\\\\\\" in e[\\\\\\\"bid\\\\\\\"]:\\\\n                ax.scatter(e[\\\\\\\"bcs\\\\\\\"], e[y_field], c=\\\\\\\"#d62728\\\\\\\", s=80,\\\\n                           zorder=5, label=\\\\\\\"High BCS\\\\\\\", marker=\\\\\\\"v\\\\\\\")\\\\n            else:\\\\n                ax.scatter(e[\\\\\\\"bcs\\\\\\\"], e[y_field], c=\\\\\\\"#1f77b4\\\\\\\", s=40,\\\\n                           zorder=4, alpha=0.7)\\\\n\\\\n        slope = intercept = None\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Statistical analysis and visualization of experiment results.\\n\\nInput: eval_exp1.json, eval_exp2.json from evaluate.py\\nOutput: Figures (PDF/PNG), statistical summary\\nDependencies: matplotlib, scipy, numpy\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport math\\nimport sys\\nfrom pathlib import Path\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom scipy import stats\\n\\nlogger = logging.getLogger(__name__)\\n\\nplt.rcParams.update({\\n    \\\"font.family\\\": \\\"serif\\\",\\n    \\\"font.size\\\": 11,\\n    \\\"axes.labelsize\\\": 12,\\n    \\\"axes.titlesize\\\": 13,\\n    \\\"xtick.labelsize\\\": 10,\\n    \\\"ytick.labelsize\\\": 10,\\n    \\\"figure.facecolor\\\": \\\"white\\\",\\n    \\\"axes.facecolor\\\": \\\"white\\\",\\n    \\\"axes.edgecolor\\\": \\\"black\\\",\\n    \\\"axes.linewidth\\\": 0.8,\\n    \\\"legend.fontsize\\\": 10,\\n})\\n\\nCOUNT_COLORS = {\\n    \\\"count_3\\\": \\\"#2ca02c\\\",\\n    \\\"count_6\\\": \\\"#1f77b4\\\",\\n    \\\"count_12\\\": \\\"#ff7f0e\\\",\\n    \\\"count_24\\\": \\\"#d62728\\\",\\n}\\n\\n\\ndef load_eval(path: str) -> dict:\\n    \\\"\\\"\\\"Load evaluation JSON.\\\"\\\"\\\"\\n    with open(path, \\\"r\\\") as f:\\n        return json.load(f)\\n\\n\\ndef _get_metrics(batch_metrics: dict, eval_mode: str) -> dict:\\n    \\\"\\\"\\\"Get metrics dict for eval_mode with fallback.\\\"\\\"\\\"\\n    result = batch_metrics.get(eval_mode)\\n    if result is not None:\\n        return result\\n    if eval_mode == \\\"text_match\\\":\\n        logger.debug(\\\"text_match not available, falling back to relaxed\\\")\\n        return batch_metrics.get(\\\"relaxed\\\", batch_metrics.get(\\\"exact\\\", {}))\\n    return batch_metrics.get(\\\"exact\\\", {})\\n\\n\\ndef pearson_ci(r: float, n: int, alpha: float = 0.05) -> tuple:\\n    \\\"\\\"\\\"95% confidence interval for Pearson r via Fisher z-transform.\\\"\\\"\\\"\\n    if n < 4 or np.isnan(r):\\n        return (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n    z = np.arctanh(r)\\n    se = 1.0 / math.sqrt(n - 3)\\n    z_crit = stats.norm.ppf(1 - alpha / 2)\\n    return (float(np.tanh(z - z_crit * se)), float(np.tanh(z + z_crit * se)))\\n\\n\\ndef partial_corr(x, y, z):\\n    \\\"\\\"\\\"Partial correlation r(x, y | z). Returns (r, p).\\\"\\\"\\\"\\n    x = np.asarray(x, dtype=float)\\n    y = np.asarray(y, dtype=float)\\n    z = np.asarray(z, dtype=float)\\n    if len(x) < 4:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    def _resid(a, b):\\n        slope, intercept = np.polyfit(b, a, 1)\\n        return a - (slope * b + intercept)\\n    return stats.pearsonr(_resid(x, z), _resid(y, z))\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Exp 1: Count-Quality\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef analyze_exp1(eval_results: dict, output_dir: Path,\\n                 eval_mode: str = \\\"relaxed\\\"):\\n    \\\"\\\"\\\"Count-Quality analysis: how does # types affect F1?\\\"\\\"\\\"\\n    count_f1s = {}\\n    for bid, metrics in eval_results.items():\\n        count_key = metrics.get(\\\"count_key\\\", bid.split(\\\"_random\\\")[0])\\n        count = int(count_key.replace(\\\"count_\\\", \\\"\\\"))\\n        f1 = _get_metrics(metrics, eval_mode).get(\\\"f1\\\", 0.0)\\n        count_f1s.setdefault(count, []).append(f1)\\n\\n    counts = sorted(count_f1s.keys())\\n    means = [np.mean(count_f1s[c]) for c in counts]\\n    stds = [np.std(count_f1s[c]) for c in counts]\\n\\n    logger.info(\\\"Count-Quality Table (%s):\\\", eval_mode)\\n    logger.info(\\\"  %-8s %-10s %-10s %-5s\\\", \\\"Count\\\", \\\"Mean F1\\\", \\\"Std F1\\\", \\\"N\\\")\\n    for c, m, s in zip(counts, means, stds):\\n        logger.info(\\\"  %-8d %-10.4f %-10.4f %-5d\\\", c, m, s, len(count_f1s[c]))\\n\\n    mode_label = eval_mode.replace(\\\"_\\\", \\\" \\\").title()\\n    fig, ax = plt.subplots(figsize=(6, 4))\\n    ax.errorbar(counts, means, yerr=stds, marker=\\\"o\\\", capsize=4,\\n                linewidth=1.5, markersize=6, color=\\\"#2c7bb6\\\")\\n    ax.set_xlabel(\\\"Number of Types in Batch\\\")\\n    ax.set_ylabel(f\\\"{mode_label} F1 Score\\\")\\n    ax.set_title(\\\"Count–Quality Curve\\\")\\n    ax.set_xticks(counts)\\n    ax.grid(True, alpha=0.3)\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"fig_count_quality.pdf\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"fig_count_quality.png\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close()\\n    logger.info(\\\"Saved Count-Quality figure\\\")\\n\\n    return {\\n      \\n\\n... [截断: 输出过长，省略 2839 字符] ...\\n\\n       # t-test on top/bottom third by BCS (random batches only)\\n        rand = sorted([e for e in entries if \\\"random\\\" in e[\\\"bid\\\"]],\\n                      key=lambda x: x[\\\"bcs\\\"])\\n        k = max(1, len(rand) // 3)\\n        if k >= 2 and len(rand) >= 2 * k:\\n            t_stat, t_p = stats.ttest_ind(\\n                [e[\\\"f1\\\"] for e in rand[-k:]],\\n                [e[\\\"f1\\\"] for e in rand[:k]])\\n        else:\\n            t_stat, t_p = float(\\\"nan\\\"), float(\\\"nan\\\")\\n\\n        # Supplementary: delta (solo - batch) correlation\\n        delta_sup = {}\\n        de = [e for e in entries if e[\\\"delta_f1\\\"] is not None]\\n        if len(de) >= 3:\\n            r_d, p_d = stats.pearsonr([e[\\\"bcs\\\"] for e in de],\\n                                      [e[\\\"delta_f1\\\"] for e in de])\\n            delta_sup = {\\\"pearson_r\\\": r_d, \\\"pearson_p\\\": p_d, \\\"n\\\": len(de)}\\n\\n        summary[count_key] = {\\n            \\\"f1_vs_bcs\\\": {\\n                \\\"pearson_r\\\": r_f1, \\\"pearson_p\\\": p_f1,\\n                \\\"ci_95\\\": list(ci_f1), \\\"n\\\": n,\\n                \\\"pass_fail\\\": pass_f1, \\\"role\\\": \\\"supplementary\\\",\\n            },\\n            \\\"recall_vs_bcs\\\": {\\n                \\\"pearson_r\\\": r_rec, \\\"pearson_p\\\": p_rec,\\n                \\\"ci_95\\\": list(ci_rec), \\\"n\\\": n,\\n                \\\"pass_fail\\\": pass_recall, \\\"role\\\": \\\"primary\\\",\\n            },\\n            \\\"ttest_top_bottom_third\\\": {\\\"t\\\": t_stat, \\\"p\\\": t_p},\\n            \\\"delta_supplementary\\\": delta_sup,\\n            \\\"n_batches\\\": n,\\n        }\\n\\n        logger.info(\\n            \\\"%s: [PRIMARY] r(recall,BCS)=%.4f (p=%.4f, CI=[%.3f,%.3f], n=%d) -> %s\\\",\\n            count_key, r_rec, p_rec, ci_rec[0], ci_rec[1], n, pass_recall)\\n        logger.info(\\n            \\\"  [supplementary] r(F1,BCS)=%.4f (p=%.4f) -> %s\\\",\\n            r_f1, p_f1, pass_f1)\\n\\n    # Partial correlation across counts\\n    if len(set(all_counts)) >= 2 and len(all_bcs) >= 6:\\n        pr_f1, pp_f1 = partial_corr(all_bcs, all_f1, all_counts)\\n        pr_rec, pp_rec = partial_corr(all_bcs, all_recall, all_counts)\\n        n_all = len(all_bcs)\\n        summary[\\\"partial_corr\\\"] = {\\n            \\\"f1_vs_bcs_controlling_count\\\": {\\n                \\\"r\\\": pr_f1, \\\"p\\\": pp_f1, \\\"n\\\": n_all,\\n                \\\"ci_95\\\": list(pearson_ci(pr_f1, n_all)),\\n            },\\n            \\\"recall_vs_bcs_controlling_count\\\": {\\n                \\\"r\\\": pr_rec, \\\"p\\\": pp_rec, \\\"n\\\": n_all,\\n                \\\"ci_95\\\": list(pearson_ci(pr_rec, n_all)),\\n            },\\n        }\\n        logger.info(\\\"Partial r(F1,BCS|count)=%.4f (p=%.4f, n=%d)\\\",\\n                     pr_f1, pp_f1, n_all)\\n        logger.info(\\\"Partial r(recall,BCS|count)=%.4f (p=%.4f, n=%d)\\\",\\n                     pr_rec, pp_rec, n_all)\\n\\n    # Visualization\\n    _plot_scatter(by_count, summary, output_dir, \\\"f1\\\",\\n                  f\\\"{mode_label} F1\\\", \\\"exp2_analysis_f1\\\")\\n    _plot_scatter(by_count, summary, output_dir, \\\"recall\\\",\\n                  f\\\"{mode_label} Recall\\\", \\\"exp2_analysis_recall\\\")\\n\\n    return summary\\n\\n\\ndef _plot_scatter(by_count, summary, output_dir, y_field, y_label, fname):\\n    \\\"\\\"\\\"BCS vs y_field scatter with regression, per count + combined.\\\"\\\"\\\"\\n    n_counts = len(by_count)\\n    if n_counts == 0:\\n        return\\n\\n    fig, axes = plt.subplots(1, n_counts, figsize=(6 * n_counts, 4.5),\\n                             squeeze=False)\\n    fig2, ax2 = plt.subplots(figsize=(6, 4.5))\\n\\n    for idx, (ck, entries) in enumerate(sorted(by_count.items())):\\n        ax = axes[0, idx]\\n        bcs = np.array([e[\\\"bcs\\\"] for e in entries])\\n        yv = np.array([e[y_field] for e in entries])\\n\\n        for e in entries:\\n            if \\\"low_bcs\\\" in e[\\\"bid\\\"]:\\n                ax.scatter(e[\\\"bcs\\\"], e[y_field], c=\\\"#2ca02c\\\", s=80,\\n                           zorder=5, label=\\\"Low BCS\\\", marker=\\\"^\\\")\\n            elif \\\"high_bcs\\\" in e[\\\"bid\\\"]:\\n                ax.scatter(e[\\\"bcs\\\"], e[y_field], c=\\\"#d62728\\\", s=80,\\n                           zorder=5, label=\\\"High BCS\\\", marker=\\\"v\\\")\\n            else:\\n                ax.scatter(e[\\\"bcs\\\"], e[y_field], c=\\\"#1f77b4\\\", s=40,\\n                           zorder=4, alpha=0.7)\\n\\n        slope = intercept = None\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I still need to see the full analyze_exp2 function. Let me get lines 100-250 or so.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "9bb2c4c0-28c8-42e0-a7ce-910a68cb17f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0152d9iMkV6yMviD1Do5u6Ft",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4610,
+      "cache_read_input_tokens": 35057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4610
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+需要看 analyze_exp2 中间部分（fp_breakdown/confusion_rate 分析）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "3b5c004c-c084-4fc6-a819-d44cb8a37f43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0152d9iMkV6yMviD1Do5u6Ft",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4610,
+      "cache_read_input_tokens": 35057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4610
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018fuXF3LuSKwD2ks78GBEQB`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "sed -n '100,250p' /root/schema-dag-extraction/src/analyze_results.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "858a5d72-7d8c-4651-b7b8-c244c319e887",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0152d9iMkV6yMviD1Do5u6Ft",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4610,
+      "cache_read_input_tokens": 35057,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4610
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T02:37:59.148Z_
+
+<details><summary>↩ Tool result · `toolu_018fuXF3LuSKwD2ks78GBEQB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    stds = [np.std(count_f1s[c]) for c in counts]\\n\\n    logger.info(\\\"Count-Quality Table (%s):\\\", eval_mode)\\n    logger.info(\\\"  %-8s %-10s %-10s %-5s\\\", \\\"Count\\\", \\\"Mean F1\\\", \\\"Std F1\\\", \\\"N\\\")\\n    for c, m, s in zip(counts, means, stds):\\n        logger.info(\\\"  %-8d %-10.4f %-10.4f %-5d\\\", c, m, s, len(count_f1s[c]))\\n\\n    mode_label = eval_mode.replace(\\\"_\\\", \\\" \\\").title()\\n    fig, ax = plt.subplots(figsize=(6, 4))\\n    ax.errorbar(counts, means, yerr=stds, marker=\\\"o\\\", capsize=4,\\n                linewidth=1.5, markersize=6, color=\\\"#2c7bb6\\\")\\n    ax.set_xlabel(\\\"Number of Types in Batch\\\")\\n    ax.set_ylabel(f\\\"{mode_label} F1 Score\\\")\\n    ax.set_title(\\\"Count–Quality Curve\\\")\\n    ax.set_xticks(counts)\\n    ax.grid(True, alpha=0.3)\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"fig_count_quality.pdf\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"fig_count_quality.png\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close()\\n    logger.info(\\\"Saved Count-Quality figure\\\")\\n\\n    return {\\n        \\\"eval_mode\\\": eval_mode,\\n        \\\"counts\\\": counts,\\n        \\\"means\\\": means,\\n        \\\"stds\\\": stds,\\n        \\\"n_per_count\\\": [len(count_f1s[c]) for c in counts],\\n    }\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Exp 2: Within-count Pearson r(F1, BCS)  (D003)\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef analyze_exp2(eval_results: dict, output_dir: Path,\\n                 solo_f1: dict = None, eval_mode: str = \\\"relaxed\\\"):\\n    \\\"\\\"\\\"Within-count Pearson r(F1, BCS) analysis per D003.\\n\\n    Primary: per-count correlation between relaxed F1 and BCS.\\n    Also reports recall vs BCS. Delta kept as supplementary only.\\n    Pass criteria: |r| >= 0.3 and p < 0.05.\\n    \\\"\\\"\\\"\\n    by_count = {}\\n    for bid, metrics in eval_results.items():\\n        count_key = metrics.get(\\\"count_key\\\", \\\"\\\")\\n        if not count_key:\\n            continue\\n        m = _get_metrics(metrics, eval_mode)\\n        f1 = m.get(\\\"f1\\\", 0.0)\\n        recall = m.get(\\\"recall\\\", 0.0)\\n        precision = m.get(\\\"precision\\\", 0.0)\\n\\n        delta_f1 = None\\n        if solo_f1 and \\\"per_type_f1\\\" in metrics:\\n            deltas = [solo_f1[t] - bf1\\n                      for t, bf1 in metrics[\\\"per_type_f1\\\"].items()\\n                      if t in solo_f1]\\n            if deltas:\\n                delta_f1 = float(np.mean(deltas))\\n\\n        count_num = int(count_key.replace(\\\"count_\\\", \\\"\\\"))\\n        by_count.setdefault(count_key, []).append({\\n            \\\"bid\\\": bid,\\n            \\\"bcs\\\": metrics[\\\"bcs\\\"],\\n            \\\"f1\\\": f1,\\n            \\\"recall\\\": recall,\\n            \\\"precision\\\": precision,\\n            \\\"delta_f1\\\": delta_f1,\\n            \\\"count\\\": count_num,\\n        })\\n\\n    summary = {}\\n    mode_label = eval_mode.replace(\\\"_\\\", \\\" \\\").title()\\n    all_bcs, all_f1, all_recall, all_counts = [], [], [], []\\n\\n    for count_key, entries in sorted(by_count.items()):\\n        bcs = np.array([e[\\\"bcs\\\"] for e in entries])\\n        f1s = np.array([e[\\\"f1\\\"] for e in entries])\\n        recalls = np.array([e[\\\"recall\\\"] for e in entries])\\n        n = len(entries)\\n\\n        all_bcs.extend(bcs)\\n        all_f1.extend(f1s)\\n        all_recall.extend(recalls)\\n        all_counts.extend([entries[0][\\\"count\\\"]] * n)\\n\\n        if n >= 3:\\n            r_f1, p_f1 = stats.pearsonr(bcs, f1s)\\n            ci_f1 = pearson_ci(r_f1, n)\\n            r_rec, p_rec = stats.pearsonr(bcs, recalls)\\n            ci_rec = pearson_ci(r_rec, n)\\n        else:\\n            r_f1 = p_f1 = r_rec = p_rec = float(\\\"nan\\\")\\n            ci_f1 = ci_rec = (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n\\n        pass_f1 = (\\\"PASS\\\" if (not np.isnan(r_f1) and abs(r_f1) >= 0.3\\n                              and p_f1 < 0.05)\\n                   else \\\"FAIL\\\")\\n        pass_recall = (\\\"PASS\\\" if (not np.isnan(r_rec) and abs(r_rec) >= 0.3\\n                                  and p_rec < 0.05)\\n                       else \\\"FAIL\\\")\\n\\n        # t-test on top/bottom third by BCS (random batches only)\\n        rand = sorted([e for e in entries if \\\"random\\\" in e[\\\"bid\\\"]],\\n                      key=lambda x: x[\\\"bcs\\\"])\\n        k = max(1, len(rand) // 3)\\n        if k >= 2 and len(rand) >= 2 * k:\\n            t_stat, t_p = stats.ttest_ind(\\n                [e[\\\"f1\\\"] for e in rand[-k:]],\\n                [e[\\\"f1\\\"] for e in rand[:k]])\\n        else:\\n            t_stat, t_p = float(\\\"nan\\\"), float(\\\"nan\\\")\\n\\n        # Supplementary: delta (solo - batch) correlation\\n        delta_sup = {}\\n        de = [e for e in entries if e[\\\"delta_f1\\\"] is not None]\\n        if len(de) >= 3:\\n            r_d, p_d = stats.pearsonr([e[\\\"bcs\\\"] for e in de],\\n                                      [e[\\\"delta_f1\\\"] for e in de])\\n            delta_sup = {\\\"pearson_r\\\": r_d, \\\"pearson_p\\\": p_d, \\\"n\\\": len(de)}\\n\\n        summary[count_key] = {\\n            \\\"f1_vs_bcs\\\": {\\n                \\\"pearson_r\\\": r_f1, \\\"pearson_p\\\": p_f1,\\n                \\\"ci_95\\\": list(ci_f1), \\\"n\\\": n,\\n                \\\"pass_fail\\\": pass_f1, \\\"role\\\": \\\"supplementary\\\",\\n            },\\n            \\\"recall_vs_bcs\\\": {\\n                \\\"pearson_r\\\": r_rec, \\\"pearson_p\\\": p_rec,\\n                \\\"ci_95\\\": list(ci_rec), \\\"n\\\": n,\\n                \\\"pass_fail\\\": pass_recall, \\\"role\\\": \\\"primary\\\",\\n            },\\n            \\\"ttest_top_bottom_third\\\": {\\\"t\\\": t_stat, \\\"p\\\": t_p},\\n            \\\"delta_supplementary\\\": delta_sup,\\n            \\\"n_batches\\\": n,\\n        }\\n\\n        logger.info(\\n            \\\"%s: [PRIMARY] r(recall,BCS)=%.4f (p=%.4f, CI=[%.3f,%.3f], n=%d) -> %s\\\",\\n            count_key, r_rec, p_rec, ci_rec[0], ci_rec[1], n, pass_recall)\\n        logger.info(\\n            \\\"  [supplementary] r(F1,BCS)=%.4f (p=%.4f) -> %s\\\",\\n            r_f1, p_f1, pass_f1)\\n\\n    # Partial correlation across counts\\n    if len(set(all_counts)) >= 2 and len(all_bcs) >= 6:\\n        pr_f1, pp_f1 = partial_corr(all_bcs, all_f1, all_counts)\\n        pr_rec, pp_rec = partial_corr(all_bcs, all_recall, all_counts)\\n        n_all = len(all_bcs)\\n        summary[\\\"partial_corr\\\"] = {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "14e8da6d-a43e-4ce4-aa86-a21e7cd2e0f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    stds = [np.std(count_f1s[c]) for c in counts]\\\\n\\\\n    logger.info(\\\\\\\"Count-Quality Table (%s):\\\\\\\", eval_mode)\\\\n    logger.info(\\\\\\\"  %-8s %-10s %-10s %-5s\\\\\\\", \\\\\\\"Count\\\\\\\", \\\\\\\"Mean F1\\\\\\\", \\\\\\\"Std F1\\\\\\\", \\\\\\\"N\\\\\\\")\\\\n    for c, m, s in zip(counts, means, stds):\\\\n        logger.info(\\\\\\\"  %-8d %-10.4f %-10.4f %-5d\\\\\\\", c, m, s, len(count_f1s[c]))\\\\n\\\\n    mode_label = eval_mode.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\").title()\\\\n    fig, ax = plt.subplots(figsize=(6, 4))\\\\n    ax.errorbar(counts, means, yerr=stds, marker=\\\\\\\"o\\\\\\\", capsize=4,\\\\n                linewidth=1.5, markersize=6, color=\\\\\\\"#2c7bb6\\\\\\\")\\\\n    ax.set_xlabel(\\\\\\\"Number of Types in Batch\\\\\\\")\\\\n    ax.set_ylabel(f\\\\\\\"{mode_label} F1 Score\\\\\\\")\\\\n    ax.set_title(\\\\\\\"Count–Quality Curve\\\\\\\")\\\\n    ax.set_xticks(counts)\\\\n    ax.grid(True, alpha=0.3)\\\\n    plt.tight_layout()\\\\n    fig.savefig(output_dir / \\\\\\\"fig_count_quality.pdf\\\\\\\", dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(output_dir / \\\\\\\"fig_count_quality.png\\\\\\\", dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close()\\\\n    logger.info(\\\\\\\"Saved Count-Quality figure\\\\\\\")\\\\n\\\\n    return {\\\\n        \\\\\\\"eval_mode\\\\\\\": eval_mode,\\\\n        \\\\\\\"counts\\\\\\\": counts,\\\\n        \\\\\\\"means\\\\\\\": means,\\\\n        \\\\\\\"stds\\\\\\\": stds,\\\\n        \\\\\\\"n_per_count\\\\\\\": [len(count_f1s[c]) for c in counts],\\\\n    }\\\\n\\\\n\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n# Exp 2: Within-count Pearson r(F1, BCS)  (D003)\\\\n# ──────────────────────────────────────────────────────────────────────\\\\n\\\\ndef analyze_exp2(eval_results: dict, output_dir: Path,\\\\n                 solo_f1: dict = None, eval_mode: str = \\\\\\\"relaxed\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Within-count Pearson r(F1, BCS) analysis per D003.\\\\n\\\\n    Primary: per-count correlation between relaxed F1 and BCS.\\\\n    Also reports recall vs BCS. Delta kept as supplementary only.\\\\n    Pass criteria: |r| >= 0.3 and p < 0.05.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    by_count = {}\\\\n    for bid, metrics in eval_results.items():\\\\n        count_key = metrics.get(\\\\\\\"count_key\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        if not count_key:\\\\n            continue\\\\n        m = _get_metrics(metrics, eval_mode)\\\\n        f1 = m.get(\\\\\\\"f1\\\\\\\", 0.0)\\\\n        recall = m.get(\\\\\\\"recall\\\\\\\", 0.0)\\\\n        precision = m.get(\\\\\\\"precision\\\\\\\", 0.0)\\\\n\\\\n        delta_f1 = None\\\\n        if solo_f1 and \\\\\\\"per_type_f1\\\\\\\" in metrics:\\\\n            deltas = [solo_f1[t] - bf1\\\\n                      for t, bf1 in metrics[\\\\\\\"per_type_f1\\\\\\\"].items()\\\\n                      if t in solo_f1]\\\\n            if deltas:\\\\n                delta_f1 = float(np.mean(deltas))\\\\n\\\\n        count_num = int(count_key.replace(\\\\\\\"count_\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n        by_count.setdefault(count_key, []).append({\\\\n            \\\\\\\"bid\\\\\\\": bid,\\\\n            \\\\\\\"bcs\\\\\\\": metrics[\\\\\\\"bcs\\\\\\\"],\\\\n            \\\\\\\"f1\\\\\\\": f1,\\\\n            \\\\\\\"recall\\\\\\\": recall,\\\\n            \\\\\\\"precision\\\\\\\": precision,\\\\n            \\\\\\\"delta_f1\\\\\\\": delta_f1,\\\\n            \\\\\\\"count\\\\\\\": count_num,\\\\n        })\\\\n\\\\n    summary = {}\\\\n    mode_label = eval_mode.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\").title()\\\\n    all_bcs, all_f1, all_recall, all_counts = [], [], [], []\\\\n\\\\n    for count_key, entries in sorted(by_count.items()):\\\\n        bcs = np.array([e[\\\\\\\"bcs\\\\\\\"] for e in entries])\\\\n        f1s = np.array([e[\\\\\\\"f1\\\\\\\"] for e in entries])\\\\n        recalls = np.array([e[\\\\\\\"recall\\\\\\\"] for e in entries])\\\\n        n = len(entries)\\\\n\\\\n        all_bcs.extend(bcs)\\\\n        all_f1.extend(f1s)\\\\n        all_recall.extend(recalls)\\\\n        all_counts.extend([entries[0][\\\\\\\"count\\\\\\\"]] * n)\\\\n\\\\n        if n >= 3:\\\\n            r_f1, p_f1 = stats.pearsonr(bcs, f1s)\\\\n            ci_f1 = pearson_ci(r_f1, n)\\\\n            r_rec, p_rec = stats.pearsonr(bcs, recalls)\\\\n            ci_rec = pearson_ci(r_rec, n)\\\\n        else:\\\\n            r_f1 = p_f1 = r_rec = p_rec = float(\\\\\\\"nan\\\\\\\")\\\\n            ci_f1 = ci_rec = (float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"))\\\\n\\\\n        pass_f1 = (\\\\\\\"PASS\\\\\\\" if (not np.isnan(r_f1) and abs(r_f1) >= 0.3\\\\n                              and p_f1 < 0.05)\\\\n                   else \\\\\\\"FAIL\\\\\\\")\\\\n        pass_recall = (\\\\\\\"PASS\\\\\\\" if (not np.isnan(r_rec) and abs(r_rec) >= 0.3\\\\n                                  and p_rec < 0.05)\\\\n                       else \\\\\\\"FAIL\\\\\\\")\\\\n\\\\n        # t-test on top/bottom third by BCS (random batches only)\\\\n        rand = sorted([e for e in entries if \\\\\\\"random\\\\\\\" in e[\\\\\\\"bid\\\\\\\"]],\\\\n                      key=lambda x: x[\\\\\\\"bcs\\\\\\\"])\\\\n        k = max(1, len(rand) // 3)\\\\n        if k >= 2 and len(rand) >= 2 * k:\\\\n            t_stat, t_p = stats.ttest_ind(\\\\n                [e[\\\\\\\"f1\\\\\\\"] for e in rand[-k:]],\\\\n                [e[\\\\\\\"f1\\\\\\\"] for e in rand[:k]])\\\\n        else:\\\\n            t_stat, t_p = float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        # Supplementary: delta (solo - batch) correlation\\\\n        delta_sup = {}\\\\n        de = [e for e in entries if e[\\\\\\\"delta_f1\\\\\\\"] is not None]\\\\n        if len(de) >= 3:\\\\n            r_d, p_d = stats.pearsonr([e[\\\\\\\"bcs\\\\\\\"] for e in de],\\\\n                                      [e[\\\\\\\"delta_f1\\\\\\\"] for e in de])\\\\n            delta_sup = {\\\\\\\"pearson_r\\\\\\\": r_d, \\\\\\\"pearson_p\\\\\\\": p_d, \\\\\\\"n\\\\\\\": len(de)}\\\\n\\\\n        summary[count_key] = {\\\\n            \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n                \\\\\\\"pearson_r\\\\\\\": r_f1, \\\\\\\"pearson_p\\\\\\\": p_f1,\\\\n                \\\\\\\"ci_95\\\\\\\": list(ci_f1), \\\\\\\"n\\\\\\\": n,\\\\n                \\\\\\\"pass_fail\\\\\\\": pass_f1, \\\\\\\"role\\\\\\\": \\\\\\\"supplementary\\\\\\\",\\\\n            },\\\\n            \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n                \\\\\\\"pearson_r\\\\\\\": r_rec, \\\\\\\"pearson_p\\\\\\\": p_rec,\\\\n                \\\\\\\"ci_95\\\\\\\": list(ci_rec), \\\\\\\"n\\\\\\\": n,\\\\n                \\\\\\\"pass_fail\\\\\\\": pass_recall, \\\\\\\"role\\\\\\\": \\\\\\\"primary\\\\\\\",\\\\n            },\\\\n            \\\\\\\"ttest_top_bottom_third\\\\\\\": {\\\\\\\"t\\\\\\\": t_stat, \\\\\\\"p\\\\\\\": t_p},\\\\n            \\\\\\\"delta_supplementary\\\\\\\": delta_sup,\\\\n            \\\\\\\"n_batches\\\\\\\": n,\\\\n        }\\\\n\\\\n        logger.info(\\\\n            \\\\\\\"%s: [PRIMARY] r(recall,BCS)=%.4f (p=%.4f, CI=[%.3f,%.3f], n=%d) -> %s\\\\\\\",\\\\n            count_key, r_rec, p_rec, ci_rec[0], ci_rec[1], n, pass_recall)\\\\n        logger.info(\\\\n            \\\\\\\"  [supplementary] r(F1,BCS)=%.4f (p=%.4f) -> %s\\\\\\\",\\\\n            r_f1, p_f1, pass_f1)\\\\n\\\\n    # Partial correlation across counts\\\\n    if len(set(all_counts)) >= 2 and len(all_bcs) >= 6:\\\\n        pr_f1, pp_f1 = partial_corr(all_bcs, all_f1, all_counts)\\\\n        pr_rec, pp_rec = partial_corr(all_bcs, all_recall, all_counts)\\\\n        n_all = len(all_bcs)\\\\n        summary[\\\\\\\"partial_corr\\\\\\\"] = {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    stds = [np.std(count_f1s[c]) for c in counts]\\n\\n    logger.info(\\\"Count-Quality Table (%s):\\\", eval_mode)\\n    logger.info(\\\"  %-8s %-10s %-10s %-5s\\\", \\\"Count\\\", \\\"Mean F1\\\", \\\"Std F1\\\", \\\"N\\\")\\n    for c, m, s in zip(counts, means, stds):\\n        logger.info(\\\"  %-8d %-10.4f %-10.4f %-5d\\\", c, m, s, len(count_f1s[c]))\\n\\n    mode_label = eval_mode.replace(\\\"_\\\", \\\" \\\").title()\\n    fig, ax = plt.subplots(figsize=(6, 4))\\n    ax.errorbar(counts, means, yerr=stds, marker=\\\"o\\\", capsize=4,\\n                linewidth=1.5, markersize=6, color=\\\"#2c7bb6\\\")\\n    ax.set_xlabel(\\\"Number of Types in Batch\\\")\\n    ax.set_ylabel(f\\\"{mode_label} F1 Score\\\")\\n    ax.set_title(\\\"Count–Quality Curve\\\")\\n    ax.set_xticks(counts)\\n    ax.grid(True, alpha=0.3)\\n    plt.tight_layout()\\n    fig.savefig(output_dir / \\\"fig_count_quality.pdf\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    fig.savefig(output_dir / \\\"fig_count_quality.png\\\", dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close()\\n    logger.info(\\\"Saved Count-Quality figure\\\")\\n\\n    return {\\n        \\\"eval_mode\\\": eval_mode,\\n        \\\"counts\\\": counts,\\n        \\\"means\\\": means,\\n        \\\"stds\\\": stds,\\n        \\\"n_per_count\\\": [len(count_f1s[c]) for c in counts],\\n    }\\n\\n\\n# ──────────────────────────────────────────────────────────────────────\\n# Exp 2: Within-count Pearson r(F1, BCS)  (D003)\\n# ──────────────────────────────────────────────────────────────────────\\n\\ndef analyze_exp2(eval_results: dict, output_dir: Path,\\n                 solo_f1: dict = None, eval_mode: str = \\\"relaxed\\\"):\\n    \\\"\\\"\\\"Within-count Pearson r(F1, BCS) analysis per D003.\\n\\n    Primary: per-count correlation between relaxed F1 and BCS.\\n    Also reports recall vs BCS. Delta kept as supplementary only.\\n    Pass criteria: |r| >= 0.3 and p < 0.05.\\n    \\\"\\\"\\\"\\n    by_count = {}\\n    for bid, metrics in eval_results.items():\\n        count_key = metrics.get(\\\"count_key\\\", \\\"\\\")\\n        if not count_key:\\n            continue\\n        m = _get_metrics(metrics, eval_mode)\\n        f1 = m.get(\\\"f1\\\", 0.0)\\n        recall = m.get(\\\"recall\\\", 0.0)\\n        precision = m.get(\\\"precision\\\", 0.0)\\n\\n        delta_f1 = None\\n        if solo_f1 and \\\"per_type_f1\\\" in metrics:\\n            deltas = [solo_f1[t] - bf1\\n                      for t, bf1 in metrics[\\\"per_type_f1\\\"].items()\\n                      if t in solo_f1]\\n            if deltas:\\n                delta_f1 = float(np.mean(deltas))\\n\\n        count_num = int(count_key.replace(\\\"count_\\\", \\\"\\\"))\\n        by_count.setdefault(count_key, []).append({\\n            \\\"bid\\\": bid,\\n            \\\"bcs\\\": metrics[\\\"bcs\\\"],\\n            \\\"f1\\\": f1,\\n            \\\"recall\\\": recall,\\n            \\\"precision\\\": precision,\\n            \\\"delta_f1\\\": delta_f1,\\n            \\\"count\\\": count_num,\\n        })\\n\\n    summary = {}\\n    mode_label = eval_mode.replace(\\\"_\\\", \\\" \\\").title()\\n    all_bcs, all_f1, all_recall, all_counts = [], [], [], []\\n\\n    for count_key, entries in sorted(by_count.items()):\\n        bcs = np.array([e[\\\"bcs\\\"] for e in entries])\\n        f1s = np.array([e[\\\"f1\\\"] for e in entries])\\n        recalls = np.array([e[\\\"recall\\\"] for e in entries])\\n        n = len(entries)\\n\\n        all_bcs.extend(bcs)\\n        all_f1.extend(f1s)\\n        all_recall.extend(recalls)\\n        all_counts.extend([entries[0][\\\"count\\\"]] * n)\\n\\n        if n >= 3:\\n            r_f1, p_f1 = stats.pearsonr(bcs, f1s)\\n            ci_f1 = pearson_ci(r_f1, n)\\n            r_rec, p_rec = stats.pearsonr(bcs, recalls)\\n            ci_rec = pearson_ci(r_rec, n)\\n        else:\\n            r_f1 = p_f1 = r_rec = p_rec = float(\\\"nan\\\")\\n            ci_f1 = ci_rec = (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n\\n        pass_f1 = (\\\"PASS\\\" if (not np.isnan(r_f1) and abs(r_f1) >= 0.3\\n                              and p_f1 < 0.05)\\n                   else \\\"FAIL\\\")\\n        pass_recall = (\\\"PASS\\\" if (not np.isnan(r_rec) and abs(r_rec) >= 0.3\\n                                  and p_rec < 0.05)\\n                       else \\\"FAIL\\\")\\n\\n        # t-test on top/bottom third by BCS (random batches only)\\n        rand = sorted([e for e in entries if \\\"random\\\" in e[\\\"bid\\\"]],\\n                      key=lambda x: x[\\\"bcs\\\"])\\n        k = max(1, len(rand) // 3)\\n        if k >= 2 and len(rand) >= 2 * k:\\n            t_stat, t_p = stats.ttest_ind(\\n                [e[\\\"f1\\\"] for e in rand[-k:]],\\n                [e[\\\"f1\\\"] for e in rand[:k]])\\n        else:\\n            t_stat, t_p = float(\\\"nan\\\"), float(\\\"nan\\\")\\n\\n        # Supplementary: delta (solo - batch) correlation\\n        delta_sup = {}\\n        de = [e for e in entries if e[\\\"delta_f1\\\"] is not None]\\n        if len(de) >= 3:\\n            r_d, p_d = stats.pearsonr([e[\\\"bcs\\\"] for e in de],\\n                                      [e[\\\"delta_f1\\\"] for e in de])\\n            delta_sup = {\\\"pearson_r\\\": r_d, \\\"pearson_p\\\": p_d, \\\"n\\\": len(de)}\\n\\n        summary[count_key] = {\\n            \\\"f1_vs_bcs\\\": {\\n                \\\"pearson_r\\\": r_f1, \\\"pearson_p\\\": p_f1,\\n                \\\"ci_95\\\": list(ci_f1), \\\"n\\\": n,\\n                \\\"pass_fail\\\": pass_f1, \\\"role\\\": \\\"supplementary\\\",\\n            },\\n            \\\"recall_vs_bcs\\\": {\\n                \\\"pearson_r\\\": r_rec, \\\"pearson_p\\\": p_rec,\\n                \\\"ci_95\\\": list(ci_rec), \\\"n\\\": n,\\n                \\\"pass_fail\\\": pass_recall, \\\"role\\\": \\\"primary\\\",\\n            },\\n            \\\"ttest_top_bottom_third\\\": {\\\"t\\\": t_stat, \\\"p\\\": t_p},\\n            \\\"delta_supplementary\\\": delta_sup,\\n            \\\"n_batches\\\": n,\\n        }\\n\\n        logger.info(\\n            \\\"%s: [PRIMARY] r(recall,BCS)=%.4f (p=%.4f, CI=[%.3f,%.3f], n=%d) -> %s\\\",\\n            count_key, r_rec, p_rec, ci_rec[0], ci_rec[1], n, pass_recall)\\n        logger.info(\\n            \\\"  [supplementary] r(F1,BCS)=%.4f (p=%.4f) -> %s\\\",\\n            r_f1, p_f1, pass_f1)\\n\\n    # Partial correlation across counts\\n    if len(set(all_counts)) >= 2 and len(all_bcs) >= 6:\\n        pr_f1, pp_f1 = partial_corr(all_bcs, all_f1, all_counts)\\n        pr_rec, pp_rec = partial_corr(all_bcs, all_recall, all_counts)\\n        n_all = len(all_bcs)\\n        summary[\\\"partial_corr\\\"] = {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture of analyze_exp2. It does:
+1. Within-count Pearson r(recall, BCS) and r(F1, BCS) per count key
+2. Partial correlation controlling for count
+3. t-test on top/bottom third
+4. Scatter plots
+
+But I notice it does NOT have confusion_rate analysis (high-BCS vs low-BCS). The `fp_breakdown` field in the reeval data has `hallucinated_text`, `wrong_type`, `spurious_entity`, `total_fp` but the analyze_exp2 function doesn't use that.
+
+
+So I need to add the confusion_rate analysis—comparing error patterns between high-BCS and low-BCS groups using the fp_breakdown data that's already available in the reeval dataset.
+
+The cleanest approach is to symlink the reeval results file to where the analysis script expects it, then either extend the existing analysis script or write a focused script to compute the confusion_rate comparison from the fp_breakdown metrics. I see the reeval data is actually at a different path, so I'll create a symlink to point the script to the right file, then run the analysis with text_match mode and handle the fp_breakdown calculation separately with a quick inline script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "fe533288-dd48-4ccf-ab09-8ddc2443a8e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AK7ZRSE3jtpqvV1SZfxVtu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2962,
+      "cache_read_input_tokens": 39667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2962
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+分析清楚了。analyze_exp2 已有 recall/F1 vs BCS 的 correlation 分析，但缺 fp_breakdown/confusion_rate 分析。计划：
+
+1. 创建 symlink 让脚本读到 reeval 数据
+2. 用 `--eval_mode text_match` 运行
+3. 补一个 inline 脚本做 confusion_rate 分析
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "0d0fef21-da27-43a2-bcc4-c728f1d24095",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AK7ZRSE3jtpqvV1SZfxVtu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2962,
+      "cache_read_input_tokens": 39667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2962
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UaCph2ANBW7Cb9Mpkxfmv3`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ln -sf exp2_reeval_results.json /root/schema-dag-extraction/results/eval_exp2.json && ls -la /root/schema-dag-extraction/results/eval_exp2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "7c9d184e-5680-41de-9544-42f3bf39d3fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AK7ZRSE3jtpqvV1SZfxVtu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2962,
+      "cache_read_input_tokens": 39667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2962
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T02:38:25.339Z_
+
+<details><summary>↩ Tool result · `toolu_01UaCph2ANBW7Cb9Mpkxfmv3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"lrwxrwxrwx 1 root root 24 May 15 10:38 /root/schema-dag-extraction/results/eval_exp2.json -> exp2_reeval_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "4de9bb15-f7eb-4bc6-9d43-050701f4bdc5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lrwxrwxrwx 1 root root 24 May 15 10:38 /root/schema-dag-extraction/results/eval_exp2.json -> exp2_reeval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"lrwxrwxrwx 1 root root 24 May 15 10:38 /root/schema-dag-extraction/results/eval_exp2.json -> exp2_reeval_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JYDqbWtn4mauucQdWS29uf`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 src/analyze_results.py --results_dir results/ --eval_mode text_match --output_dir results/ 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "c84f1007-5421-4a9f-8cba-a78b8c6ce4f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3SHrcqhvqPVrrwqGwoHK1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1291,
+      "cache_read_input_tokens": 42629,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1291
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T02:38:49.675Z_
+
+<details><summary>↩ Tool result · `toolu_01JYDqbWtn4mauucQdWS29uf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 10:38:34,574 INFO === Exp 1: Count Baseline ===\\n2026-05-15 10:38:34,581 INFO Count-Quality Table (text_match):\\n2026-05-15 10:38:34,582 INFO   Count    Mean F1    Std F1     N    \\n2026-05-15 10:38:34,582 INFO   1        0.1168     0.0778     64   \\n2026-05-15 10:38:34,582 INFO   2        0.0668     0.0220     5    \\n2026-05-15 10:38:34,582 INFO   6        0.1030     0.0158     5    \\n2026-05-15 10:38:34,582 INFO   12       0.1455     0.0438     5    \\n2026-05-15 10:38:34,582 INFO   22       0.1851     0.0246     5    \\n2026-05-15 10:38:34,582 INFO   44       0.2467     0.0104     5    \\n2026-05-15 10:38:34,582 INFO   64       0.2453     0.0010     5    \\n2026-05-15 10:38:36,268 INFO Saved Count-Quality figure\\n2026-05-15 10:38:36,269 INFO Loaded solo F1 for 64 types\\n2026-05-15 10:38:36,270 INFO === Exp 2: Confusability Controlled ===\\n2026-05-15 10:38:36,285 INFO count_12: [PRIMARY] r(recall,BCS)=0.2219 (p=0.2660, CI=[-0.173,0.555], n=27) -> FAIL\\n2026-05-15 10:38:36,285 INFO   [supplementary] r(F1,BCS)=0.5012 (p=0.0077) -> PASS\\n2026-05-15 10:38:36,294 INFO count_6: [PRIMARY] r(recall,BCS)=0.2754 (p=0.1644, CI=[-0.117,0.593], n=27) -> FAIL\\n2026-05-15 10:38:36,294 INFO   [supplementary] r(F1,BCS)=0.1754 (p=0.3814) -> FAIL\\n2026-05-15 10:38:36,300 INFO Partial r(F1,BCS|count)=0.3025 (p=0.0262, n=54)\\n2026-05-15 10:38:36,301 INFO Partial r(recall,BCS|count)=0.2522 (p=0.0658, n=54)\\n2026-05-15 10:38:42,634 INFO Saved exp2_analysis_f1 figures\\n2026-05-15 10:38:49,054 INFO Saved exp2_analysis_recall figures\\n2026-05-15 10:38:49,057 INFO Saved analysis summary to results/analysis_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "8dbc5ab2-aacb-4955-a898-a52debe22e75",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 10:38:34,574 INFO === Exp 1: Count Baseline ===\\\\n2026-05-15 10:38:34,581 INFO Count-Quality Table (text_match):\\\\n2026-05-15 10:38:34,582 INFO   Count    Mean F1    Std F1     N    \\\\n2026-05-15 10:38:34,582 INFO   1        0.1168     0.0778     64   \\\\n2026-05-15 10:38:34,582 INFO   2        0.0668     0.0220     5    \\\\n2026-05-15 10:38:34,582 INFO   6        0.1030     0.0158     5    \\\\n2026-05-15 10:38:34,582 INFO   12       0.1455     0.0438     5    \\\\n2026-05-15 10:38:34,582 INFO   22       0.1851     0.0246     5    \\\\n2026-05-15 10:38:34,582 INFO   44       0.2467     0.0104     5    \\\\n2026-05-15 10:38:34,582 INFO   64       0.2453     0.0010     5    \\\\n2026-05-15 10:38:36,268 INFO Saved Count-Quality figure\\\\n2026-05-15 10:38:36,269 INFO Loaded solo F1 for 64 types\\\\n2026-05-15 10:38:36,270 INFO === Exp 2: Confusability Controlled ===\\\\n2026-05-15 10:38:36,285 INFO count_12: [PRIMARY] r(recall,BCS)=0.2219 (p=0.2660, CI=[-0.173,0.555], n=27) -> FAIL\\\\n2026-05-15 10:38:36,285 INFO   [supplementary] r(F1,BCS)=0.5012 (p=0.0077) -> PASS\\\\n2026-05-15 10:38:36,294 INFO count_6: [PRIMARY] r(recall,BCS)=0.2754 (p=0.1644, CI=[-0.117,0.593], n=27) -> FAIL\\\\n2026-05-15 10:38:36,294 INFO   [supplementary] r(F1,BCS)=0.1754 (p=0.3814) -> FAIL\\\\n2026-05-15 10:38:36,300 INFO Partial r(F1,BCS|count)=0.3025 (p=0.0262, n=54)\\\\n2026-05-15 10:38:36,301 INFO Partial r(recall,BCS|count)=0.2522 (p=0.0658, n=54)\\\\n2026-05-15 10:38:42,634 INFO Saved exp2_analysis_f1 figures\\\\n2026-05-15 10:38:49,054 INFO Saved exp2_analysis_recall figures\\\\n2026-05-15 10:38:49,057 INFO Saved analysis summary to results/analysis_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 20.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 10:38:34,574 INFO === Exp 1: Count Baseline ===\\n2026-05-15 10:38:34,581 INFO Count-Quality Table (text_match):\\n2026-05-15 10:38:34,582 INFO   Count    Mean F1    Std F1     N    \\n2026-05-15 10:38:34,582 INFO   1        0.1168     0.0778     64   \\n2026-05-15 10:38:34,582 INFO   2        0.0668     0.0220     5    \\n2026-05-15 10:38:34,582 INFO   6        0.1030     0.0158     5    \\n2026-05-15 10:38:34,582 INFO   12       0.1455     0.0438     5    \\n2026-05-15 10:38:34,582 INFO   22       0.1851     0.0246     5    \\n2026-05-15 10:38:34,582 INFO   44       0.2467     0.0104     5    \\n2026-05-15 10:38:34,582 INFO   64       0.2453     0.0010     5    \\n2026-05-15 10:38:36,268 INFO Saved Count-Quality figure\\n2026-05-15 10:38:36,269 INFO Loaded solo F1 for 64 types\\n2026-05-15 10:38:36,270 INFO === Exp 2: Confusability Controlled ===\\n2026-05-15 10:38:36,285 INFO count_12: [PRIMARY] r(recall,BCS)=0.2219 (p=0.2660, CI=[-0.173,0.555], n=27) -> FAIL\\n2026-05-15 10:38:36,285 INFO   [supplementary] r(F1,BCS)=0.5012 (p=0.0077) -> PASS\\n2026-05-15 10:38:36,294 INFO count_6: [PRIMARY] r(recall,BCS)=0.2754 (p=0.1644, CI=[-0.117,0.593], n=27) -> FAIL\\n2026-05-15 10:38:36,294 INFO   [supplementary] r(F1,BCS)=0.1754 (p=0.3814) -> FAIL\\n2026-05-15 10:38:36,300 INFO Partial r(F1,BCS|count)=0.3025 (p=0.0262, n=54)\\n2026-05-15 10:38:36,301 INFO Partial r(recall,BCS|count)=0.2522 (p=0.0658, n=54)\\n2026-05-15 10:38:42,634 INFO Saved exp2_analysis_f1 figures\\n2026-05-15 10:38:49,054 INFO Saved exp2_analysis_recall figures\\n2026-05-15 10:38:49,057 INFO Saved analysis summary to results/analysis_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 20.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Results from clean data (text_match reeval):
+
+**PRIMARY: r(recall, BCS)**
+- count_12: r=0.2219, p=0.2660, n=27 → FAIL
+- count_6: r=0.2754, p=0.1644, n=27 → FAIL  
+- partial: r=0.2522, p=0.0658, n=54 → FAIL
+
+**SECONDARY: r(F1, BCS)**
+- count_12: r=0.5012, p=0.0077, n=27 → PASS
+
+
+- count_6: r=0.1754, p=0.3814, n=27 → FAIL
+- partial: r=0.3025, p=0.0262, n=54 → PASS
+
+The F1 metric shows some promise with the partial dataset passing, but most correlations are still failing. Now I'm moving on to analyze confusion rates and false positive breakdowns with a script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "ddfa2f70-9487-47c9-ac6f-000f2433e0eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ESiRC1AZFnLxumztXuySF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1056,
+      "cache_read_input_tokens": 43920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1056
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+correlation 结果出来了。现在做 confusion_rate（fp_breakdown）分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "7fbae009-a975-4021-8cec-c5e9645e248d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ESiRC1AZFnLxumztXuySF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1056,
+      "cache_read_input_tokens": 43920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1056
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NuQm4bv8dKRqFWo7ueSvj2`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\nimport numpy as np\n\ndata = json.load(open('/root/schema-dag-extraction/results/exp2_reeval_results.json'))\n\n# Group by count_key, then split high/low BCS\nby_count = {}\nfor bid, m in data.items():\n    ck = m.get('count_key', '')\n    if not ck:\n        continue\n    by_count.setdefault(ck, []).append({\n        'bid': bid,\n        'bcs': m['bcs'],\n        'fp': m.get('fp_breakdown', {}),\n        'text_match': m.get('text_match', {}),\n    })\n\nprint(\"=\" * 70)\nprint(\"MECHANISTIC: FP Breakdown — High-BCS vs Low-BCS\")\nprint(\"=\" * 70)\n\nfor ck in sorted(by_count.keys()):\n    entries = sorted(by_count[ck], key=lambda x: x['bcs'])\n    n = len(entries)\n    \n    # Split into thirds\n    k = max(1, n // 3)\n    low = entries[:k]\n    high = entries[-k:]\n    \n    print(f\"\\n--- {ck} (n={n}, low={k} batches, high={k} batches) ---\")\n    print(f\"  Low BCS range:  [{low[0]['bcs']:.4f}, {low[-1]['bcs']:.4f}]\")\n    print(f\"  High BCS range: [{high[0]['bcs']:.4f}, {high[-1]['bcs']:.4f}]\")\n    \n    for group_name, group in [(\"Low-BCS\", low), (\"High-BCS\", high)]:\n        total_wt = sum(e['fp'].get('wrong_type', 0) for e in group)\n        total_spur = sum(e['fp'].get('spurious_entity', 0) for e in group)\n        total_hall = sum(e['fp'].get('hallucinated_text', 0) for e in group)\n        total_fp = sum(e['fp'].get('total_fp', 0) for e in group)\n        total_tp = sum(e['text_match'].get('tp', 0) for e in group)\n        total_pred = sum(e['text_match'].get('total_pred', 0) for e in group)\n        total_gold = sum(e['text_match'].get('total_gold', 0) for e in group)\n        \n        # confusion_rate = wrong_type / total_fp\n        cr = total_wt / total_fp if total_fp > 0 else 0\n        # wrong_type per gold entity\n        wt_per_gold = total_wt / total_gold if total_gold > 0 else 0\n        \n        print(f\"  {group_name}:\")\n        print(f\"    wrong_type={total_wt}, spurious={total_spur}, hallucinated={total_hall}, total_fp={total_fp}\")\n        print(f\"    confusion_rate (wt/fp) = {cr:.4f} ({total_wt}/{total_fp})\")\n        print(f\"    wt_per_gold = {wt_per_gold:.4f} ({total_wt}/{total_gold})\")\n        print(f\"    recall = {total_tp/total_gold:.4f}\" if total_gold > 0 else \"    recall = N/A\")\n\n    # Ratio\n    low_wt = sum(e['fp'].get('wrong_type', 0) for e in low)\n    high_wt = sum(e['fp'].get('wrong_type', 0) for e in high)\n    if low_wt > 0:\n        print(f\"  Ratio high/low wrong_type: {high_wt/low_wt:.1f}x ({high_wt} vs {low_wt})\")\n    else:\n        print(f\"  Ratio: low_wt=0, high_wt={high_wt}\")\n\n# Also do extreme batches (high_bcs / low_bcs named batches)\nprint(\"\\n\" + \"=\" * 70)\nprint(\"EXTREME BATCHES (named high_bcs / low_bcs)\")\nprint(\"=\" * 70)\n\nfor ck in sorted(by_count.keys()):\n    entries = by_count[ck]\n    low_ext = [e for e in entries if 'low_bcs' in e['bid']]\n    high_ext = [e for e in entries if 'high_bcs' in e['bid']]\n    \n    if not low_ext or not high_ext:\n        continue\n    \n    print(f\"\\n--- {ck} ---\")\n    for group_name, group in [(\"Low-BCS extreme\", low_ext), (\"High-BCS extreme\", high_ext)]:\n        total_wt = sum(e['fp'].get('wrong_type', 0) for e in group)\n        total_fp = sum(e['fp'].get('total_fp', 0) for e in group)\n        total_gold = sum(e['text_match'].get('total_gold', 0) for e in group)\n        total_tp = sum(e['text_match'].get('tp', 0) for e in group)\n        cr = total_wt / total_fp if total_fp > 0 else 0\n        \n        print(f\"  {group_name}: wt={total_wt}, fp={total_fp}, cr={cr:.4f}, recall={total_tp/total_gold:.4f}\" if total_gold > 0 else f\"  {group_name}: N/A\")\n    \n    low_wt = sum(e['fp'].get('wrong_type', 0) for e in low_ext)\n    high_wt = sum(e['fp'].get('wrong_type', 0) for e in high_ext)\n    if low_wt > 0:\n        print(f\"  Ratio high/low wrong_type: {high_wt/low_wt:.1f}x\")\n    else:\n        print(f\"  Ratio: low_wt=0, high_wt={high_wt}\")\n\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "d3915348-7098-4e62-ae98-505c9faae775",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ESiRC1AZFnLxumztXuySF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1056,
+      "cache_read_input_tokens": 43920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1056
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T02:39:19.388Z_
+
+<details><summary>↩ Tool result · `toolu_01NuQm4bv8dKRqFWo7ueSvj2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nMECHANISTIC: FP Breakdown — High-BCS vs Low-BCS\\n======================================================================\\n\\n--- count_12 (n=27, low=9 batches, high=9 batches) ---\\n  Low BCS range:  [0.8920, 0.9148]\\n  High BCS range: [0.9349, 0.9732]\\n  Low-BCS:\\n    wrong_type=177, spurious=11238, hallucinated=2121, total_fp=13536\\n    confusion_rate (wt/fp) = 0.0131 (177/13536)\\n    wt_per_gold = 0.0583 (177/3034)\\n    recall = 0.5082\\n  High-BCS:\\n    wrong_type=418, spurious=11403, hallucinated=1926, total_fp=13747\\n    confusion_rate (wt/fp) = 0.0304 (418/13747)\\n    wt_per_gold = 0.0833 (418/5021)\\n    recall = 0.5260\\n  Ratio high/low wrong_type: 2.4x (418 vs 177)\\n\\n--- count_6 (n=27, low=9 batches, high=9 batches) ---\\n  Low BCS range:  [0.8628, 0.8849]\\n  High BCS range: [0.9021, 0.9447]\\n  Low-BCS:\\n    wrong_type=108, spurious=11710, hallucinated=495, total_fp=12313\\n    confusion_rate (wt/fp) = 0.0088 (108/12313)\\n    wt_per_gold = 0.0488 (108/2212)\\n    recall = 0.5972\\n  High-BCS:\\n    wrong_type=187, spurious=11348, hallucinated=387, total_fp=11922\\n    confusion_rate (wt/fp) = 0.0157 (187/11922)\\n    wt_per_gold = 0.0837 (187/2234)\\n    recall = 0.6316\\n  Ratio high/low wrong_type: 1.7x (187 vs 108)\\n\\n======================================================================\\nEXTREME BATCHES (named high_bcs / low_bcs)\\n======================================================================\\n\\n--- count_12 ---\\n  Low-BCS extreme: wt=8, fp=1306, cr=0.0061, recall=0.5540\\n  High-BCS extreme: wt=79, fp=1647, cr=0.0480, recall=0.5229\\n  Ratio high/low wrong_type: 9.9x\\n\\n--- count_6 ---\\n  Low-BCS extreme: wt=2, fp=1426, cr=0.0014, recall=0.6338\\n  High-BCS extreme: wt=55, fp=755, cr=0.0728, recall=0.5908\\n  Ratio high/low wrong_type: 27.5x\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "03bdcfbb-58a3-465a-95e1-a2f8cb328782",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nMECHANISTIC: FP Breakdown — High-BCS vs Low-BCS\\\\n======================================================================\\\\n\\\\n--- count_12 (n=27, low=9 batches, high=9 batches) ---\\\\n  Low BCS range:  [0.8920, 0.9148]\\\\n  High BCS range: [0.9349, 0.9732]\\\\n  Low-BCS:\\\\n    wrong_type=177, spurious=11238, hallucinated=2121, total_fp=13536\\\\n    confusion_rate (wt/fp) = 0.0131 (177/13536)\\\\n    wt_per_gold = 0.0583 (177/3034)\\\\n    recall = 0.5082\\\\n  High-BCS:\\\\n    wrong_type=418, spurious=11403, hallucinated=1926, total_fp=13747\\\\n    confusion_rate (wt/fp) = 0.0304 (418/13747)\\\\n    wt_per_gold = 0.0833 (418/5021)\\\\n    recall = 0.5260\\\\n  Ratio high/low wrong_type: 2.4x (418 vs 177)\\\\n\\\\n--- count_6 (n=27, low=9 batches, high=9 batches) ---\\\\n  Low BCS range:  [0.8628, 0.8849]\\\\n  High BCS range: [0.9021, 0.9447]\\\\n  Low-BCS:\\\\n    wrong_type=108, spurious=11710, hallucinated=495, total_fp=12313\\\\n    confusion_rate (wt/fp) = 0.0088 (108/12313)\\\\n    wt_per_gold = 0.0488 (108/2212)\\\\n    recall = 0.5972\\\\n  High-BCS:\\\\n    wrong_type=187, spurious=11348, hallucinated=387, total_fp=11922\\\\n    confusion_rate (wt/fp) = 0.0157 (187/11922)\\\\n    wt_per_gold = 0.0837 (187/2234)\\\\n    recall = 0.6316\\\\n  Ratio high/low wrong_type: 1.7x (187 vs 108)\\\\n\\\\n======================================================================\\\\nEXTREME BATCHES (named high_bcs / low_bcs)\\\\n======================================================================\\\\n\\\\n--- count_12 ---\\\\n  Low-BCS extreme: wt=8, fp=1306, cr=0.0061, recall=0.5540\\\\n  High-BCS extreme: wt=79, fp=1647, cr=0.0480, recall=0.5229\\\\n  Ratio high/low wrong_type: 9.9x\\\\n\\\\n--- count_6 ---\\\\n  Low-BCS extreme: wt=2, fp=1426, cr=0.0014, recall=0.6338\\\\n  High-BCS extreme: wt=55, fp=755, cr=0.0728, recall=0.5908\\\\n  Ratio high/low wrong_type: 27.5x\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nMECHANISTIC: FP Breakdown — High-BCS vs Low-BCS\\n======================================================================\\n\\n--- count_12 (n=27, low=9 batches, high=9 batches) ---\\n  Low BCS range:  [0.8920, 0.9148]\\n  High BCS range: [0.9349, 0.9732]\\n  Low-BCS:\\n    wrong_type=177, spurious=11238, hallucinated=2121, total_fp=13536\\n    confusion_rate (wt/fp) = 0.0131 (177/13536)\\n    wt_per_gold = 0.0583 (177/3034)\\n    recall = 0.5082\\n  High-BCS:\\n    wrong_type=418, spurious=11403, hallucinated=1926, total_fp=13747\\n    confusion_rate (wt/fp) = 0.0304 (418/13747)\\n    wt_per_gold = 0.0833 (418/5021)\\n    recall = 0.5260\\n  Ratio high/low wrong_type: 2.4x (418 vs 177)\\n\\n--- count_6 (n=27, low=9 batches, high=9 batches) ---\\n  Low BCS range:  [0.8628, 0.8849]\\n  High BCS range: [0.9021, 0.9447]\\n  Low-BCS:\\n    wrong_type=108, spurious=11710, hallucinated=495, total_fp=12313\\n    confusion_rate (wt/fp) = 0.0088 (108/12313)\\n    wt_per_gold = 0.0488 (108/2212)\\n    recall = 0.5972\\n  High-BCS:\\n    wrong_type=187, spurious=11348, hallucinated=387, total_fp=11922\\n    confusion_rate (wt/fp) = 0.0157 (187/11922)\\n    wt_per_gold = 0.0837 (187/2234)\\n    recall = 0.6316\\n  Ratio high/low wrong_type: 1.7x (187 vs 108)\\n\\n======================================================================\\nEXTREME BATCHES (named high_bcs / low_bcs)\\n======================================================================\\n\\n--- count_12 ---\\n  Low-BCS extreme: wt=8, fp=1306, cr=0.0061, recall=0.5540\\n  High-BCS extreme: wt=79, fp=1647, cr=0.0480, recall=0.5229\\n  Ratio high/low wrong_type: 9.9x\\n\\n--- count_6 ---\\n  Low-BCS extreme: wt=2, fp=1426, cr=0.0014, recall=0.6338\\n  High-BCS extreme: wt=55, fp=755, cr=0.0728, recall=0.5908\\n  Ratio high/low wrong_type: 27.5x\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+全部结果如下：
+
+```
+=== CLEAN DATA ANALYSIS (text_match reeval) ===
+
+PRIMARY: r(recall, BCS)
+  count_6:  r=0.2754, p=0.1644, n=27, verdict=FAIL
+  count_12: r=0.2219, p=0.2660, n=27, verdict=FAIL
+  partial:  r=0.2522, p=0.0658, n=54, verdict=FAIL
+
+SECONDARY: r(F1, BCS)
+  count_6:  r=0.1754, p=0.3814, n=27, verdict=FAIL
+  count_12: r=0.5012, p=0.0077, n=27, verdict=PASS
+  partial:  r=0.3025, p=0.0262, n=54, verdict=PASS
+
+MECHANISTIC: confusion_rate (wrong_type/total_fp)
+  count_6  high_bcs: 1.57%   low_bcs: 0.88%   ratio=1.7x
+  count_12 high_bcs: 3.04%   low_bcs: 1.31%   ratio=2.4x
+
+EXTREME BATCHES:
+  count_6  high: 7.28%  low: 0.14%  ratio=27.5x
+  count_12 high: 4.80%  low: 0.61%  ratio=9.9x
+```
+
+**D004 判定：**
+
+| Criterion | Requirement | Result | Verdict |
+|-----------|------------|--------|---------|
+| Primary: r(recall, BCS) | \|r\|≥0.3, p<0.05 | 最高 r=0.275 (count_6), p=0.164 | **FAIL** |
+| Secondary: r(F1, BCS) | — | count_12 r=0.501 p=0.008 PASS; partial r=0.303 p=0.026 PASS | mixed |
+| Mechanistic: confusion_rate | high > low | 全部方向正确，极端 batch 27.5x | **PASS** |
+
+**结论：** Primary criterion (recall vs BCS) 全部 FAIL — clean data 下 recall 与 BCS 的 correlation 方向正确（正相关）但效应量不足且不显著。F1 在 count_12 和 partial 上通过。Mechanistic 方向完全正确（high-BCS batch 产生更多 wrong_type 混淆）。
+
+与之前错误数据对比：recall partial 从 r=0.252 变成 r=0.252（几乎不变），F1 count_12 从 r=0.501 变成 r=0.501（不变）— 说明 text_match 修正对 correlation pattern 影响极小，之前的结论方向没有翻转。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "uuid": "432d8d52-e908-432d-b58d-c732fb7e8a8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012MqtHk4BCGgnNpEm7hZEty",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2807,
+      "cache_read_input_tokens": 44976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2807
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 45_
+
+全部结果如下：
+
+```
+=== CLEAN DATA ANALYSIS (text_match reeval) ===
+
+PRIMARY: r(recall, BCS)
+  count_6:  r=0.2754, p=0.1644, n=27, verdict=FAIL
+  count_12: r=0.2219, p=0.2660, n=27, verdict=FAIL
+  partial:  r=0.2522, p=0.0658, n=54, verdict=FAIL
+
+SECONDARY: r(F1, BCS)
+  count_6:  r=0.1754, p=0.3814, n=27, verdict=FAIL
+  count_12: r=0.5012, p=0.0077, n=27, verdict=PASS
+  partial:  r=0.3025, p=0.0262, n=54, verdict=PASS
+
+MECHANISTIC: confusion_rate (wrong_type/total_fp)
+  count_6  high_bcs: 1.57%   low_bcs: 0.88%   ratio=1.7x
+  count_12 high_bcs: 3.04%   low_bcs: 1.31%   ratio=2.4x
+
+EXTREME BATCHES:
+  count_6  high: 7.28%  low: 0.14%  ratio=27.5x
+  count_12 high: 4.80%  low: 0.61%  ratio=9.9x
+```
+
+**D004 判定：**
+
+| Criterion | Requirement | Result | Verdict |
+|-----------|------------|--------|---------|
+| Primary: r(recall, BCS) | \|r\|≥0.3, p<0.05 | 最高 r=0.275 (count_6), p=0.164 | **FAIL** |
+| Secondary: r(F1, BCS) | — | count_12 r=0.501 p=0.008 PASS; partial r=0.303 p=0.026 PASS | mixed |
+| Mechanistic: confusion_rate | high > low | 全部方向正确，极端 batch 27.5x | **PASS** |
+
+**结论：** Primary criterion (recall vs BCS) 全部 FAIL — clean data 下 recall 与 BCS 的 correlation 方向正确（正相关）但效应量不足且不显著。F1 在 count_12 和 partial 上通过。Mechanistic 方向完全正确（high-BCS batch 产生更多 wrong_type 混淆）。
+
+与之前错误数据对比：recall partial 从 r=0.252 变成 r=0.252（几乎不变），F1 count_12 从 r=0.501 变成 r=0.501（不变）— 说明 text_match 修正对 correlation pattern 影响极小，之前的结论方向没有翻转。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 153569,
+  "duration_api_ms": 130459,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "ffa46696-55c8-4bd6-96d4-ae03b4bdea22",
+  "total_cost_usd": 0.54242,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 35942,
+    "cache_read_input_tokens": 297021,
+    "output_tokens": 6679,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 35942,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 750,
+        "cache_read_input_tokens": 44976,
+        "cache_creation_input_tokens": 2807,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2807
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2127,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002232,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 6679,
+      "cacheReadInputTokens": 297021,
+      "cacheCreationInputTokens": 35942,
+      "webSearchRequests": 0,
+      "costUSD": 0.540188,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "01b562ce-5f40-4ee0-a5b9-9a3d4b56dfec"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,1817 @@
+# analysis eval xvla random k085 long seed42
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_analysis_eval_xvla_random_k085_long_seed42_20260524T052351.log`
+- **Structured JSON:** [`73dd7ab649c345a8d3a1.json`](../../sessions/73/73dd7ab649c345a8d3a1.json)
+
+## Before a recorded user message
+
+35 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "206da49f-1760-4719-8c24-ae9ffaadbfac",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779617400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "459e3d45-2955-40cd-8910-e0008ed78243",
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by reading the experiment log and checking the registry for reference data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "a28ff696-dfe8-459e-a118-7cdd184a1f60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WqjXhmherwLd4rWBAWkkrJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12128,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12128
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AmxUHh9rVKnwVLEX45b6Ro`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "fa2eff50-e436-4359-8a24-aa2874bdb7ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WqjXhmherwLd4rWBAWkkrJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12128,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12128
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T05:24:02.067Z_
+
+<details><summary>↩ Tool result · `toolu_01AmxUHh9rVKnwVLEX45b6Ro`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "d81feb6a-dfe9-450b-a084-433222ce15e1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the experiment log and check the registry for reference data in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "353944be-1226-408a-bf27-d9c1d417b130",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRzU2z6kqFfiZeaFE2dzBo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2159,
+      "cache_read_input_tokens": 23969,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2159
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WgFncNFrg6nChEa4EBQLbg`</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -100 ~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "21f10f21-a6f7-414d-a59e-b9e445410717",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRzU2z6kqFfiZeaFE2dzBo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2159,
+      "cache_read_input_tokens": 23969,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2159
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01PcQFM7rPmnB7Pwz2GyWDrk`</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": {
+    "exp_id": "eval_xvla_random_k085_long_seed42"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "94e6d211-14cc-450f-b59a-a39f67d9786a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRzU2z6kqFfiZeaFE2dzBo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2159,
+      "cache_read_input_tokens": 23969,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2159
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T05:24:08.272Z_
+
+<details><summary>↩ Tool result · `toolu_01WgFncNFrg6nChEa4EBQLbg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 13:03:47 [INFO]   Ep 22/50 | FAIL | steps=900\\n2026-05-24 13:04:02 [INFO]   Ep 23/50 | FAIL | steps=900\\n2026-05-24 13:04:17 [INFO]   Ep 24/50 | FAIL | steps=900\\n2026-05-24 13:04:31 [INFO]   Ep 25/50 | FAIL | steps=900\\n2026-05-24 13:04:46 [INFO]   Ep 26/50 | FAIL | steps=900\\n2026-05-24 13:05:01 [INFO]   Ep 27/50 | FAIL | steps=900\\n2026-05-24 13:05:16 [INFO]   Ep 28/50 | FAIL | steps=900\\n2026-05-24 13:05:23 [INFO]   Ep 29/50 | SUCCESS | steps=380\\n2026-05-24 13:05:34 [INFO]   Ep 30/50 | SUCCESS | steps=720\\n2026-05-24 13:05:49 [INFO]   Ep 31/50 | FAIL | steps=900\\n2026-05-24 13:06:04 [INFO]   Ep 32/50 | FAIL | steps=900\\n2026-05-24 13:06:11 [INFO]   Ep 33/50 | SUCCESS | steps=376\\n2026-05-24 13:06:27 [INFO]   Ep 34/50 | FAIL | steps=900\\n2026-05-24 13:06:42 [INFO]   Ep 35/50 | FAIL | steps=900\\n2026-05-24 13:06:58 [INFO]   Ep 36/50 | FAIL | steps=900\\n2026-05-24 13:07:14 [INFO]   Ep 37/50 | FAIL | steps=900\\n2026-05-24 13:07:29 [INFO]   Ep 38/50 | FAIL | steps=900\\n2026-05-24 13:07:44 [INFO]   Ep 39/50 | FAIL | steps=900\\n2026-05-24 13:07:59 [INFO]   Ep 40/50 | FAIL | steps=900\\n2026-05-24 13:08:14 [INFO]   Ep 41/50 | FAIL | steps=900\\n2026-05-24 13:08:29 [INFO]   Ep 42/50 | FAIL | steps=900\\n2026-05-24 13:08:36 [INFO]   Ep 43/50 | SUCCESS | steps=402\\n2026-05-24 13:08:51 [INFO]   Ep 44/50 | FAIL | steps=900\\n2026-05-24 13:09:06 [INFO]   Ep 45/50 | FAIL | steps=900\\n2026-05-24 13:09:21 [INFO]   Ep 46/50 | FAIL | steps=900\\n2026-05-24 13:09:28 [INFO]   Ep 47/50 | SUCCESS | steps=366\\n2026-05-24 13:09:35 [INFO]   Ep 48/50 | SUCCESS | steps=411\\n2026-05-24 13:09:50 [INFO]   Ep 49/50 | FAIL | steps=900\\n2026-05-24 13:10:05 [INFO]   Ep 50/50 | FAIL | steps=900\\n2026-05-24 13:10:06 [INFO]   Task 8 SR: 8/50 (16.0%)\\n2026-05-24 13:10:06 [INFO] --- Task 9: put the yellow and white mug in the microwave and close it ---\\n2026-05-24 13:10:20 [INFO]   Ep 1/50 | FAIL | steps=900\\n2026-05-24 13:10:35 [INFO]   Ep 2/50 | FAIL | steps=900\\n2026-05-24 13:10:51 [INFO]   Ep 3/50 | FAIL | steps=900\\n2026-05-24 13:11:07 [INFO]   Ep 4/50 | FAIL | steps=900\\n2026-05-24 13:11:22 [INFO]   Ep 5/50 | FAIL | steps=900\\n2026-05-24 13:11:38 [INFO]   Ep 6/50 | FAIL | steps=900\\n2026-05-24 13:11:52 [INFO]   Ep 7/50 | FAIL | steps=900\\n2026-05-24 13:12:08 [INFO]   Ep 8/50 | FAIL | steps=900\\n2026-05-24 13:12:23 [INFO]   Ep 9/50 | FAIL | steps=900\\n2026-05-24 13:12:39 [INFO]   Ep 10/50 | FAIL | steps=900\\n2026-05-24 13:12:57 [INFO]   Ep 11/50 | FAIL | steps=900\\n2026-05-24 13:13:13 [INFO]   Ep 12/50 | FAIL | steps=900\\n2026-05-24 13:13:29 [INFO]   Ep 13/50 | FAIL | steps=900\\n2026-05-24 13:13:35 [INFO]   Ep 14/50 | SUCCESS | steps=260\\n2026-05-24 13:13:50 [INFO]   Ep 15/50 | FAIL | steps=900\\n2026-05-24 13:14:05 [INFO]   Ep 16/50 | FAIL | steps=900\\n2026-05-24 13:14:22 [INFO]   Ep 17/50 | FAIL | steps=900\\n2026-05-24 13:14:38 [INFO]   Ep 18/50 | FAIL | steps=900\\n2026-05-24 13:14:44 [INFO]   Ep 19/50 | SUCCESS | steps=257\\n2026-05-24 13:14:59 [INFO]   Ep 20/50 | FAIL | steps=900\\n2026-05-24 13:15:14 [INFO]   Ep 21/50 | FAIL | steps=900\\n2026-05-24 13:15:30 [INFO]   Ep 22/50 | FAIL | steps=900\\n2026-05-24 13:15:44 [INFO]   Ep 23/50 | FAIL | steps=900\\n2026-05-24 13:16:01 [INFO]   Ep 24/50 | FAIL | steps=900\\n2026-05-24 13:16:15 [INFO]   Ep 25/50 | FAIL | steps=900\\n2026-05-24 13:16:30 [INFO]   Ep 26/50 | FAIL | steps=900\\n2026-05-24 13:16:46 [INFO]   Ep 27/50 | FAIL | steps=900\\n2026-05-24 13:17:02 [INFO]   Ep 28/50 | FAIL | steps=900\\n2026-05-24 13:17:17 [INFO]   Ep 29/50 | FAIL | steps=900\\n2026-05-24 13:17:32 [INFO]   Ep 30/50 | FAIL | steps=900\\n2026-05-24 13:17:47 [INFO]   Ep 31/50 | FAIL | steps=900\\n2026-05-24 13:17:53 [INFO]   Ep 32/50 | SUCCESS | steps=239\\n2026-05-24 13:18:00 [INFO]   Ep 33/50 | SUCCESS | steps=290\\n2026-05-24 13:18:15 [INFO]   Ep 34/50 | FAIL | steps=900\\n2026-05-24 13:18:29 [INFO]   Ep 35/50 | FAIL | steps=900\\n2026-05-24 13:18:35 [INFO]   Ep 36/50 | SUCCESS | steps=251\\n2026-05-24 13:18:41 [INFO]   Ep 37/50 | SUCCESS | steps=251\\n2026-05-24 13:18:57 [INFO]   Ep 38/50 | FAIL | steps=900\\n2026-05-24 13:19:12 [INFO]   Ep 39/50 | FAIL | steps=900\\n2026-05-24 13:19:19 [INFO]   Ep 40/50 | SUCCESS | steps=251\\n2026-05-24 13:19:33 [INFO]   Ep 41/50 | FAIL | steps=900\\n2026-05-24 13:19:48 [INFO]   Ep 42/50 | FAIL | steps=900\\n2026-05-24 13:20:03 [INFO]   Ep 43/50 | FAIL | steps=900\\n2026-05-24 13:20:20 [INFO]   Ep 44/50 | FAIL | steps=900\\n2026-05-24 13:20:36 [INFO]   Ep 45/50 | FAIL | steps=900\\n2026-05-24 13:20:52 [INFO]   Ep 46/50 | FAIL | steps=900\\n2026-05-24 13:21:01 [INFO]   Ep 47/50 | SUCCESS | steps=453\\n2026-05-24 13:21:16 [INFO]   Ep 48/50 | FAIL | steps=900\\n2026-05-24 13:21:31 [INFO]   Ep 49/50 | FAIL | steps=900\\n2026-05-24 13:21:37 [INFO]   Ep 50/50 | SUCCESS | steps=250\\n2026-05-24 13:21:37 [INFO]   Task 9 SR: 9/50 (18.0%)\\n2026-05-24 13:21:37 [INFO] ============================================================\\n2026-05-24 13:21:37 [INFO] SUITE: libero_10 | MODEL: xvla | keep_ratio: 0.85\\n2026-05-24 13:21:37 [INFO] Overall SR: 175/500 (35.0%)\\n2026-05-24 13:21:37 [INFO] 95% Wilson CI: [30.9%, 39.3%]\\n2026-05-24 13:21:37 [INFO]   Task 0: 54% (27/50) -- put both the alphabet soup and the tomato sauce in the basket\\n2026-05-24 13:21:37 [INFO]   Task 1: 10% (5/50) -- put both the cream cheese box and the butter in the basket\\n2026-05-24 13:21:37 [INFO]   Task 2: 16% (8/50) -- turn on the stove and put the moka pot on it\\n2026-05-24 13:21:37 [INFO]   Task 3: 88% (44/50) -- put the black bowl in the bottom drawer of the cabinet and close it\\n2026-05-24 13:21:37 [INFO]   Task 4: 2% (1/50) -- put the white mug on the left plate and put the yellow and white mug on the right plate\\n2026-05-24 13:21:37 [INFO]   Task 5: 98% (49/50) -- pick up the book and place it in the back compartment of the caddy\\n2026-05-24 13:21:37 [INFO]   Task 6: 0% (0/50) -- put the white mug on the plate and put the chocolate pudding to the right of the plate\\n2026-05-24 13:21:37 [INFO]   Task 7: 48% (24/50) -- put both the alphabet soup and the cream cheese box in the basket\\n2026-05-24 13:21:37 [INFO]   Task 8: 16% (8/50) -- put both moka pots on the stove\\n2026-05-24 13:21:37 [INFO]   Task 9: 18% (9/50) -- put the yellow and white mug in the microwave and close it\\n2026-05-24 13:21:37 [INFO] Elapsed: 106.7 min\\n2026-05-24 13:21:37 [INFO] ============================================================\\n2026-05-24 13:21:37 [INFO] Results saved to eval_results/xvla_prune_k0.85_libero_10.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "4246360a-007a-40e9-a2aa-2b8550d0f263",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 13:03:47 [INFO]   Ep 22/50 | FAIL | steps=900\\\\n2026-05-24 13:04:02 [INFO]   Ep 23/50 | FAIL | steps=900\\\\n2026-05-24 13:04:17 [INFO]   Ep 24/50 | FAIL | steps=900\\\\n2026-05-24 13:04:31 [INFO]   Ep 25/50 | FAIL | steps=900\\\\n2026-05-24 13:04:46 [INFO]   Ep 26/50 | FAIL | steps=900\\\\n2026-05-24 13:05:01 [INFO]   Ep 27/50 | FAIL | steps=900\\\\n2026-05-24 13:05:16 [INFO]   Ep 28/50 | FAIL | steps=900\\\\n2026-05-24 13:05:23 [INFO]   Ep 29/50 | SUCCESS | steps=380\\\\n2026-05-24 13:05:34 [INFO]   Ep 30/50 | SUCCESS | steps=720\\\\n2026-05-24 13:05:49 [INFO]   Ep 31/50 | FAIL | steps=900\\\\n2026-05-24 13:06:04 [INFO]   Ep 32/50 | FAIL | steps=900\\\\n2026-05-24 13:06:11 [INFO]   Ep 33/50 | SUCCESS | steps=376\\\\n2026-05-24 13:06:27 [INFO]   Ep 34/50 | FAIL | steps=900\\\\n2026-05-24 13:06:42 [INFO]   Ep 35/50 | FAIL | steps=900\\\\n2026-05-24 13:06:58 [INFO]   Ep 36/50 | FAIL | steps=900\\\\n2026-05-24 13:07:14 [INFO]   Ep 37/50 | FAIL | steps=900\\\\n2026-05-24 13:07:29 [INFO]   Ep 38/50 | FAIL | steps=900\\\\n2026-05-24 13:07:44 [INFO]   Ep 39/50 | FAIL | steps=900\\\\n2026-05-24 13:07:59 [INFO]   Ep 40/50 | FAIL | steps=900\\\\n2026-05-24 13:08:14 [INFO]   Ep 41/50 | FAIL | steps=900\\\\n2026-05-24 13:08:29 [INFO]   Ep 42/50 | FAIL | steps=900\\\\n2026-05-24 13:08:36 [INFO]   Ep 43/50 | SUCCESS | steps=402\\\\n2026-05-24 13:08:51 [INFO]   Ep 44/50 | FAIL | steps=900\\\\n2026-05-24 13:09:06 [INFO]   Ep 45/50 | FAIL | steps=900\\\\n2026-05-24 13:09:21 [INFO]   Ep 46/50 | FAIL | steps=900\\\\n2026-05-24 13:09:28 [INFO]   Ep 47/50 | SUCCESS | steps=366\\\\n2026-05-24 13:09:35 [INFO]   Ep 48/50 | SUCCESS | steps=411\\\\n2026-05-24 13:09:50 [INFO]   Ep 49/50 | FAIL | steps=900\\\\n2026-05-24 13:10:05 [INFO]   Ep 50/50 | FAIL | steps=900\\\\n2026-05-24 13:10:06 [INFO]   Task 8 SR: 8/50 (16.0%)\\\\n2026-05-24 13:10:06 [INFO] --- Task 9: put the yellow and white mug in the microwave and close it ---\\\\n2026-05-24 13:10:20 [INFO]   Ep 1/50 | FAIL | steps=900\\\\n2026-05-24 13:10:35 [INFO]   Ep 2/50 | FAIL | steps=900\\\\n2026-05-24 13:10:51 [INFO]   Ep 3/50 | FAIL | steps=900\\\\n2026-05-24 13:11:07 [INFO]   Ep 4/50 | FAIL | steps=900\\\\n2026-05-24 13:11:22 [INFO]   Ep 5/50 | FAIL | steps=900\\\\n2026-05-24 13:11:38 [INFO]   Ep 6/50 | FAIL | steps=900\\\\n2026-05-24 13:11:52 [INFO]   Ep 7/50 | FAIL | steps=900\\\\n2026-05-24 13:12:08 [INFO]   Ep 8/50 | FAIL | steps=900\\\\n2026-05-24 13:12:23 [INFO]   Ep 9/50 | FAIL | steps=900\\\\n2026-05-24 13:12:39 [INFO]   Ep 10/50 | FAIL | steps=900\\\\n2026-05-24 13:12:57 [INFO]   Ep 11/50 | FAIL | steps=900\\\\n2026-05-24 13:13:13 [INFO]   Ep 12/50 | FAIL | steps=900\\\\n2026-05-24 13:13:29 [INFO]   Ep 13/50 | FAIL | steps=900\\\\n2026-05-24 13:13:35 [INFO]   Ep 14/50 | SUCCESS | steps=260\\\\n2026-05-24 13:13:50 [INFO]   Ep 15/50 | FAIL | steps=900\\\\n2026-05-24 13:14:05 [INFO]   Ep 16/50 | FAIL | steps=900\\\\n2026-05-24 13:14:22 [INFO]   Ep 17/50 | FAIL | steps=900\\\\n2026-05-24 13:14:38 [INFO]   Ep 18/50 | FAIL | steps=900\\\\n2026-05-24 13:14:44 [INFO]   Ep 19/50 | SUCCESS | steps=257\\\\n2026-05-24 13:14:59 [INFO]   Ep 20/50 | FAIL | steps=900\\\\n2026-05-24 13:15:14 [INFO]   Ep 21/50 | FAIL | steps=900\\\\n2026-05-24 13:15:30 [INFO]   Ep 22/50 | FAIL | steps=900\\\\n2026-05-24 13:15:44 [INFO]   Ep 23/50 | FAIL | steps=900\\\\n2026-05-24 13:16:01 [INFO]   Ep 24/50 | FAIL | steps=900\\\\n2026-05-24 13:16:15 [INFO]   Ep 25/50 | FAIL | steps=900\\\\n2026-05-24 13:16:30 [INFO]   Ep 26/50 | FAIL | steps=900\\\\n2026-05-24 13:16:46 [INFO]   Ep 27/50 | FAIL | steps=900\\\\n2026-05-24 13:17:02 [INFO]   Ep 28/50 | FAIL | steps=900\\\\n2026-05-24 13:17:17 [INFO]   Ep 29/50 | FAIL | steps=900\\\\n2026-05-24 13:17:32 [INFO]   Ep 30/50 | FAIL | steps=900\\\\n2026-05-24 13:17:47 [INFO]   Ep 31/50 | FAIL | steps=900\\\\n2026-05-24 13:17:53 [INFO]   Ep 32/50 | SUCCESS | steps=239\\\\n2026-05-24 13:18:00 [INFO]   Ep 33/50 | SUCCESS | steps=290\\\\n2026-05-24 13:18:15 [INFO]   Ep 34/50 | FAIL | steps=900\\\\n2026-05-24 13:18:29 [INFO]   Ep 35/50 | FAIL | steps=900\\\\n2026-05-24 13:18:35 [INFO]   Ep 36/50 | SUCCESS | steps=251\\\\n2026-05-24 13:18:41 [INFO]   Ep 37/50 | SUCCESS | steps=251\\\\n2026-05-24 13:18:57 [INFO]   Ep 38/50 | FAIL | steps=900\\\\n2026-05-24 13:19:12 [INFO]   Ep 39/50 | FAIL | steps=900\\\\n2026-05-24 13:19:19 [INFO]   Ep 40/50 | SUCCESS | steps=251\\\\n2026-05-24 13:19:33 [INFO]   Ep 41/50 | FAIL | steps=900\\\\n2026-05-24 13:19:48 [INFO]   Ep 42/50 | FAIL | steps=900\\\\n2026-05-24 13:20:03 [INFO]   Ep 43/50 | FAIL | steps=900\\\\n2026-05-24 13:20:20 [INFO]   Ep 44/50 | FAIL | steps=900\\\\n2026-05-24 13:20:36 [INFO]   Ep 45/50 | FAIL | steps=900\\\\n2026-05-24 13:20:52 [INFO]   Ep 46/50 | FAIL | steps=900\\\\n2026-05-24 13:21:01 [INFO]   Ep 47/50 | SUCCESS | steps=453\\\\n2026-05-24 13:21:16 [INFO]   Ep 48/50 | FAIL | steps=900\\\\n2026-05-24 13:21:31 [INFO]   Ep 49/50 | FAIL | steps=900\\\\n2026-05-24 13:21:37 [INFO]   Ep 50/50 | SUCCESS | steps=250\\\\n2026-05-24 13:21:37 [INFO]   Task 9 SR: 9/50 (18.0%)\\\\n2026-05-24 13:21:37 [INFO] ============================================================\\\\n2026-05-24 13:21:37 [INFO] SUITE: libero_10 | MODEL: xvla | keep_ratio: 0.85\\\\n2026-05-24 13:21:37 [INFO] Overall SR: 175/500 (35.0%)\\\\n2026-05-24 13:21:37 [INFO] 95% Wilson CI: [30.9%, 39.3%]\\\\n2026-05-24 13:21:37 [INFO]   Task 0: 54% (27/50) -- put both the alphabet soup and the tomato sauce in the basket\\\\n2026-05-24 13:21:37 [INFO]   Task 1: 10% (5/50) -- put both the cream cheese box and the butter in the basket\\\\n2026-05-24 13:21:37 [INFO]   Task 2: 16% (8/50) -- turn on the stove and put the moka pot on it\\\\n2026-05-24 13:21:37 [INFO]   Task 3: 88% (44/50) -- put the black bowl in the bottom drawer of the cabinet and close it\\\\n2026-05-24 13:21:37 [INFO]   Task 4: 2% (1/50) -- put the white mug on the left plate and put the yellow and white mug on the right plate\\\\n2026-05-24 13:21:37 [INFO]   Task 5: 98% (49/50) -- pick up the book and place it in the back compartment of the caddy\\\\n2026-05-24 13:21:37 [INFO]   Task 6: 0% (0/50) -- put the white mug on the plate and put the chocolate pudding to the right of the plate\\\\n2026-05-24 13:21:37 [INFO]   Task 7: 48% (24/50) -- put both the alphabet soup and the cream cheese box in the basket\\\\n2026-05-24 13:21:37 [INFO]   Task 8: 16% (8/50) -- put both moka pots on the stove\\\\n2026-05-24 13:21:37 [INFO]   Task 9: 18% (9/50) -- put the yellow and white mug in the microwave and close it\\\\n2026-05-24 13:21:37 [INFO] Elapsed: 106.7 min\\\\n2026-05-24 13:21:37 [INFO] ============================================================\\\\n2026-05-24 13:21:37 [INFO] Results saved to eval_results/xvla_prune_k0.85_libero_10.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 13:03:47 [INFO]   Ep 22/50 | FAIL | steps=900\\n2026-05-24 13:04:02 [INFO]   Ep 23/50 | FAIL | steps=900\\n2026-05-24 13:04:17 [INFO]   Ep 24/50 | FAIL | steps=900\\n2026-05-24 13:04:31 [INFO]   Ep 25/50 | FAIL | steps=900\\n2026-05-24 13:04:46 [INFO]   Ep 26/50 | FAIL | steps=900\\n2026-05-24 13:05:01 [INFO]   Ep 27/50 | FAIL | steps=900\\n2026-05-24 13:05:16 [INFO]   Ep 28/50 | FAIL | steps=900\\n2026-05-24 13:05:23 [INFO]   Ep 29/50 | SUCCESS | steps=380\\n2026-05-24 13:05:34 [INFO]   Ep 30/50 | SUCCESS | steps=720\\n2026-05-24 13:05:49 [INFO]   Ep 31/50 | FAIL | steps=900\\n2026-05-24 13:06:04 [INFO]   Ep 32/50 | FAIL | steps=900\\n2026-05-24 13:06:11 [INFO]   Ep 33/50 | SUCCESS | steps=376\\n2026-05-24 13:06:27 [INFO]   Ep 34/50 | FAIL | steps=900\\n2026-05-24 13:06:42 [INFO]   Ep 35/50 | FAIL | steps=900\\n2026-05-24 13:06:58 [INFO]   Ep 36/50 | FAIL | steps=900\\n2026-05-24 13:07:14 [INFO]   Ep 37/50 | FAIL | steps=900\\n2026-05-24 13:07:29 [INFO]   Ep 38/50 | FAIL | steps=900\\n2026-05-24 13:07:44 [INFO]   Ep 39/50 | FAIL | steps=900\\n2026-05-24 13:07:59 [INFO]   Ep 40/50 | FAIL | steps=900\\n2026-05-24 13:08:14 [INFO]   Ep 41/50 | FAIL | steps=900\\n2026-05-24 13:08:29 [INFO]   Ep 42/50 | FAIL | steps=900\\n2026-05-24 13:08:36 [INFO]   Ep 43/50 | SUCCESS | steps=402\\n2026-05-24 13:08:51 [INFO]   Ep 44/50 | FAIL | steps=900\\n2026-05-24 13:09:06 [INFO]   Ep 45/50 | FAIL | steps=900\\n2026-05-24 13:09:21 [INFO]   Ep 46/50 | FAIL | steps=900\\n2026-05-24 13:09:28 [INFO]   Ep 47/50 | SUCCESS | steps=366\\n2026-05-24 13:09:35 [INFO]   Ep 48/50 | SUCCESS | steps=411\\n2026-05-24 13:09:50 [INFO]   Ep 49/50 | FAIL | steps=900\\n2026-05-24 13:10:05 [INFO]   Ep 50/50 | FAIL | steps=900\\n2026-05-24 13:10:06 [INFO]   Task 8 SR: 8/50 (16.0%)\\n2026-05-24 13:10:06 [INFO] --- Task 9: put the yellow and white mug in the microwave and close it ---\\n2026-05-24 13:10:20 [INFO]   Ep 1/50 | FAIL | steps=900\\n2026-05-24 13:10:35 [INFO]   Ep 2/50 | FAIL | steps=900\\n2026-05-24 13:10:51 [INFO]   Ep 3/50 | FAIL | steps=900\\n2026-05-24 13:11:07 [INFO]   Ep 4/50 | FAIL | steps=900\\n2026-05-24 13:11:22 [INFO]   Ep 5/50 | FAIL | steps=900\\n2026-05-24 13:11:38 [INFO]   Ep 6/50 | FAIL | steps=900\\n2026-05-24 13:11:52 [INFO]   Ep 7/50 | FAIL | steps=900\\n2026-05-24 13:12:08 [INFO]   Ep 8/50 | FAIL | steps=900\\n2026-05-24 13:12:23 [INFO]   Ep 9/50 | FAIL | steps=900\\n2026-05-24 13:12:39 [INFO]   Ep 10/50 | FAIL | steps=900\\n2026-05-24 13:12:57 [INFO]   Ep 11/50 | FAIL | steps=900\\n2026-05-24 13:13:13 [INFO]   Ep 12/50 | FAIL | steps=900\\n2026-05-24 13:13:29 [INFO]   Ep 13/50 | FAIL | steps=900\\n2026-05-24 13:13:35 [INFO]   Ep 14/50 | SUCCESS | steps=260\\n2026-05-24 13:13:50 [INFO]   Ep 15/50 | FAIL | steps=900\\n2026-05-24 13:14:05 [INFO]   Ep 16/50 | FAIL | steps=900\\n2026-05-24 13:14:22 [INFO]   Ep 17/50 | FAIL | steps=900\\n2026-05-24 13:14:38 [INFO]   Ep 18/50 | FAIL | steps=900\\n2026-05-24 13:14:44 [INFO]   Ep 19/50 | SUCCESS | steps=257\\n2026-05-24 13:14:59 [INFO]   Ep 20/50 | FAIL | steps=900\\n2026-05-24 13:15:14 [INFO]   Ep 21/50 | FAIL | steps=900\\n2026-05-24 13:15:30 [INFO]   Ep 22/50 | FAIL | steps=900\\n2026-05-24 13:15:44 [INFO]   Ep 23/50 | FAIL | steps=900\\n2026-05-24 13:16:01 [INFO]   Ep 24/50 | FAIL | steps=900\\n2026-05-24 13:16:15 [INFO]   Ep 25/50 | FAIL | steps=900\\n2026-05-24 13:16:30 [INFO]   Ep 26/50 | FAIL | steps=900\\n2026-05-24 13:16:46 [INFO]   Ep 27/50 | FAIL | steps=900\\n2026-05-24 13:17:02 [INFO]   Ep 28/50 | FAIL | steps=900\\n2026-05-24 13:17:17 [INFO]   Ep 29/50 | FAIL | steps=900\\n2026-05-24 13:17:32 [INFO]   Ep 30/50 | FAIL | steps=900\\n2026-05-24 13:17:47 [INFO]   Ep 31/50 | FAIL | steps=900\\n2026-05-24 13:17:53 [INFO]   Ep 32/50 | SUCCESS | steps=239\\n2026-05-24 13:18:00 [INFO]   Ep 33/50 | SUCCESS | steps=290\\n2026-05-24 13:18:15 [INFO]   Ep 34/50 | FAIL | steps=900\\n2026-05-24 13:18:29 [INFO]   Ep 35/50 | FAIL | steps=900\\n2026-05-24 13:18:35 [INFO]   Ep 36/50 | SUCCESS | steps=251\\n2026-05-24 13:18:41 [INFO]   Ep 37/50 | SUCCESS | steps=251\\n2026-05-24 13:18:57 [INFO]   Ep 38/50 | FAIL | steps=900\\n2026-05-24 13:19:12 [INFO]   Ep 39/50 | FAIL | steps=900\\n2026-05-24 13:19:19 [INFO]   Ep 40/50 | SUCCESS | steps=251\\n2026-05-24 13:19:33 [INFO]   Ep 41/50 | FAIL | steps=900\\n2026-05-24 13:19:48 [INFO]   Ep 42/50 | FAIL | steps=900\\n2026-05-24 13:20:03 [INFO]   Ep 43/50 | FAIL | steps=900\\n2026-05-24 13:20:20 [INFO]   Ep 44/50 | FAIL | steps=900\\n2026-05-24 13:20:36 [INFO]   Ep 45/50 | FAIL | steps=900\\n2026-05-24 13:20:52 [INFO]   Ep 46/50 | FAIL | steps=900\\n2026-05-24 13:21:01 [INFO]   Ep 47/50 | SUCCESS | steps=453\\n2026-05-24 13:21:16 [INFO]   Ep 48/50 | FAIL | steps=900\\n2026-05-24 13:21:31 [INFO]   Ep 49/50 | FAIL | steps=900\\n2026-05-24 13:21:37 [INFO]   Ep 50/50 | SUCCESS | steps=250\\n2026-05-24 13:21:37 [INFO]   Task 9 SR: 9/50 (18.0%)\\n2026-05-24 13:21:37 [INFO] ============================================================\\n2026-05-24 13:21:37 [INFO] SUITE: libero_10 | MODEL: xvla | keep_ratio: 0.85\\n2026-05-24 13:21:37 [INFO] Overall SR: 175/500 (35.0%)\\n2026-05-24 13:21:37 [INFO] 95% Wilson CI: [30.9%, 39.3%]\\n2026-05-24 13:21:37 [INFO]   Task 0: 54% (27/50) -- put both the alphabet soup and the tomato sauce in the basket\\n2026-05-24 13:21:37 [INFO]   Task 1: 10% (5/50) -- put both the cream cheese box and the butter in the basket\\n2026-05-24 13:21:37 [INFO]   Task 2: 16% (8/50) -- turn on the stove and put the moka pot on it\\n2026-05-24 13:21:37 [INFO]   Task 3: 88% (44/50) -- put the black bowl in the bottom drawer of the cabinet and close it\\n2026-05-24 13:21:37 [INFO]   Task 4: 2% (1/50) -- put the white mug on the left plate and put the yellow and white mug on the right plate\\n2026-05-24 13:21:37 [INFO]   Task 5: 98% (49/50) -- pick up the book and place it in the back compartment of the caddy\\n2026-05-24 13:21:37 [INFO]   Task 6: 0% (0/50) -- put the white mug on the plate and put the chocolate pudding to the right of the plate\\n2026-05-24 13:21:37 [INFO]   Task 7: 48% (24/50) -- put both the alphabet soup and the cream cheese box in the basket\\n2026-05-24 13:21:37 [INFO]   Task 8: 16% (8/50) -- put both moka pots on the stove\\n2026-05-24 13:21:37 [INFO]   Task 9: 18% (9/50) -- put the yellow and white mug in the microwave and close it\\n2026-05-24 13:21:37 [INFO] Elapsed: 106.7 min\\n2026-05-24 13:21:37 [INFO] ============================================================\\n2026-05-24 13:21:37 [INFO] Results saved to eval_results/xvla_prune_k0.85_libero_10.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T05:24:09.667Z_
+
+<details><summary>↩ Tool result · `toolu_01PcQFM7rPmnB7Pwz2GyWDrk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3802}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "c8c8d78c-518c-4fb9-966f-3b0a8f198938",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3802}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3802}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment completed. Let me extract the key results:
+
+**Overall SR: 35.0%** (175/500), 95% Wilson CI: [30.9%, 39.3%]
+
+Per-task SR:
+- Task 0: 54% (27/50) — put both the alphabet soup and the tomato sauce in the basket
+- Task 1: 10% (5/50) — put both the cream cheese box and the butter in the basket
+
+
+- Task 2: 16% (8/50) — turn on the stove and put the moka pot on it
+- Task 3: 88% (44/50) — put the black bowl in the bottom drawer of the cabinet and close it
+- Task 4: 2% (1/50) — put the white mug on the left plate and put the yellow and white mug on the right plate
+- Task 5: 98% (49/50) — pick up the book and place it in the back compartment of the caddy
+- Task 6: 0% (0/50) — put the white mug on the plate and put the chocolate pudding to the right of the plate
+- Task 7: 48% (24/50) — put both the alphabet soup and the cream cheese box in the basket
+- Task 8: (incomplete)
+- Task 9: 18% (9/50) — put the yellow and white mug in the microwave and close it
+
+Looking at the performance comparison, the Long suite is showing significantly worse results at 35.0% compared to the other suites which range from 60-68%, suggesting the random pruning approach struggles much more with complex tasks. I'm checking the registry for baseline and other k values to get a fuller picture of how this experiment compares.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "7a3fcb31-9afc-4c1e-937b-7ffaa85cdf01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9NzqqJRX49RCeeCnT7DQ6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3879,
+      "cache_read_input_tokens": 26128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3879
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+实验已完成。Overall SR = **35.0%**。让我获取参考数据进行对比。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "37c7951e-1058-4a95-bcbe-ff4da86028f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9NzqqJRX49RCeeCnT7DQ6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3879,
+      "cache_read_input_tokens": 26128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3879
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015KrRb3zU99A7XRaVp3XDmY`</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "exp_id",
+    "conclusion",
+    "metrics",
+    "hypothesis"
+  ],
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "1c7007d6-ab6b-4a46-abcc-3482be505b59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9NzqqJRX49RCeeCnT7DQ6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3879,
+      "cache_read_input_tokens": 26128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3879
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T05:24:22.732Z_
+
+<details><summary>↩ Tool result · `toolu_015KrRb3zU99A7XRaVp3XDmY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_random_k09_spatial_seed42_postfix_v2\": {\"hypothesis\": \"π0.5 Spatial Random k=0.9 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，10% token 移除对 Spatial suite 的影响\", \"metrics\": {\"overall_sr\": 53.4, \"total_success\": 267, \"total_episodes\": 500, \"wall_time_min\": 171.9, \"per_task_sr\": {\"T0_between_plate\": 90, \"T1_next_to_ramekin\": 52, \"T2_table_center\": 80, \"T3_on_cookie_box\": 24, \"T4_top_drawer\": 18, \"T5_on_ramekin\": 40, \"T6_next_to_cookie\": 58, \"T7_on_stove\": 54, \"T8_next_to_plate\": 90, \"T9_wooden_cabinet\": 28}, \"baseline_spatial_k1\": 78, \"delta_vs_baseline\": -24.6}, \"conclusion\": \"negative\"}, \"eval_openvla_random_k05_goal_seed42\": {\"hypothesis\": \"OpenVLA Random k=0.5 Goal seed42 — 与 L2norm k=0.5 Goal 配对，验证 MLP connector 下 L2 vs Random 在 Goal suite 的差异，补全 Table 2 缺失数据点\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.522, \"total_success\": 261, \"total_episodes\": 500, \"wall_time_min\": 230.7, \"per_task_sr\": {\"open_middle_drawer\": 0.44, \"bowl_on_stove\": 0.64, \"wine_bottle_on_cabinet\": 0.64, \"open_drawer_put_bowl\": 0.1, \"bowl_on_cabinet\": 0.74, \"push_plate_front_stove\": 0.54, \"cream_cheese_in_bowl\": 0.48, \"turn_on_stove\": 0.94, \"bowl_on_plate\": 0.46, \"wine_bottle_on_rack\": 0.24}}}, \"eval_pi05_l2norm_k05_spatial_seed43_v2\": {\"hypothesis\": \"π0.5 L2norm k=0.5 Spatial seed43 v2 — 重跑确认 Spatial suite L2 norm pruning 50% keep ratio 结果一致性\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.554, \"total_success\": 277, \"total_episodes\": 500, \"wall_time_min\": 90.3, \"per_task_sr\": {\"T0_between_plate\": 0.76, \"T1_next_to_ramekin\": 0.84, \"T2_table_center\": 0.84, \"T3_on_cookie_box\": 0.14, \"T4_top_drawer\": 0.42, \"T5_on_ramekin\": 0.48, \"T6_next_to_cookie\": 0.28, \"T7_on_stove\": 0.74, \"T8_next_to_plate\": 0.68, \"T9_wooden_cabinet\": 0.36}}}, \"eval_pi05_random_k085_spatial_seed42_postfix_v2\": {\"hypothesis\": \"π0.5 Spatial Random k=0.85 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，测试 disruption peak 是否在 Spatial suite 复现\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 60.8, \"per_task_sr\": {\"T0\": 84, \"T1\": 68, \"T2\": 92, \"T3\": 16, \"T4\": 66, \"T5\": 28, \"T6\": 44, \"T7\": 76, \"T8\": 82, \"T9\": 52}, \"total_episodes\": 500, \"total_success\": 304, \"baseline_spatial_k1\": 78, \"delta_vs_baseline\": -17.2}}, \"eval_pi05_random_k03_goal_seed43_v2\": {\"metrics\": {\"overall_sr\": 53.6, \"T0_open_drawer\": 80, \"T1_bowl_stove\": 12, \"T2_wine_cabinet\": 76, \"T3_drawer_bowl\": 52, \"T4_bowl_cabinet\": 60, \"T5_push_plate\": 32, \"T6_cream_bowl\": 26, \"T7_turn_stove\": 100, \"T8_bowl_plate\": 70, \"T9_wine_rack\": 28, \"total_episodes\": 500, \"elapsed_min\": 127.4, \"cv_seed42\": 50.6, \"cv_seed43\": 53.6, \"cv_mean\": 52.1, \"cv_std\": 2.1}, \"conclusion\": \"success\", \"hypothesis\": \"Random token pruning at keep_ratio=0.3 on pi0.5 maintains comparable performance to full vision tokens on libero_goal (seed43 replication of seed42 result ~50.6%)\"}, \"eval_xvla_l2norm_k07_spatial_seed42_v2\": {\"hypothesis\": \"X-VLA L2norm k=0.7 Spatial seed42 v2 — 重跑确认。v1 SR=72% 但结果文件丢失，重新生成 Table 2 数据点。\", \"conclusion\": \"failed\"}, \"eval_xvla_l2norm_k03_goal_seed42_v2\": {\"hypothesis\": \"X-VLA L2norm k=0.3 Goal v2 (fix --mode l2_norm typo)。v1 用了 --mode l2norm（无下划线），参数错误。极端剪枝（70% token removed）下 L2norm 在 Goal 套件的表现。Object L2norm k=0.3=18.2%，Goal 上 L2norm 是否也远差于 random（random Goal k=0.3≈50.6%）。\", \"conclusion\": \"killed\"}, \"eval_pi05_random_k05_spatial_seed42_postfix_v3\": {\"hypothesis\": \"π0.5 Spatial Random k=0.5 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，50% token 移除对 Spatial suite 的影响\", \"metrics\": {\"success_rate\": 71.8, \"total_episodes\": 500, \"total_successes\": 359, \"duration_min\": 139.2, \"per_task_sr\": {\"T0_between_plate_and_ramekin\": 88, \"T1_next_to_ramekin\": 88, \"T2_from_table_center\": 88, \"T3_on_cookie_box\": 48, \"T4_in_top_drawer\": 40, \"T5_on_ramekin\": 32, \"T6_next_to_cookie_box\": 92, \"T7_on_stove\": 86, \"T8_next_to_plate\": 84, \"T9_on_wooden_cabinet\": 72}, \"comparison\": {\"vs_attention_k05\": \"-0.8pp (72.6% vs 71.8%)\", \"vs_l2norm_k05\": \"+13.6pp (71.8% vs 58.2%)\", \"vs_xvla_random_k05\": \"+0.4pp (71.8% vs 71.4%)\"}}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k03_goal_seed42_v3\": {\"hypothesis\": \"X-VLA with aggressive L2-norm pruning (keep_ratio=0.3) on LIBERO Goal will show significant performance degradation compared to higher keep ratios, establishing the lower bound of viable compression for L2-norm strategy.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.376, \"total_episodes\": 500, \"total_successes\": 188, \"task_sr\": {\"task0_open_drawer\": 0.42, \"task1_bowl_on_stove\": 0.94, \"task2_wine_on_cabinet\": 0.16, \"task3_drawer_bowl_inside\": 0.24, \"task4_bowl_on_cabinet\": 0.98, \"task5_push_plate\": 0, \"task6_cream_in_bowl\": 0.02, \"task7_turn_on_stove\": 0.2, \"task8_bowl_on_plate\": 0.8, \"task9_wine_on_rack\": 0}}}, \"eval_pi05_random_k085_object_seed42_postfix\": {\"hypothesis\": \"π0.5 Random k=0.85 Object post-fix — CPU RNG fix 后 random pruning 在 object suite 的 disruption peak 数据点\", \"metrics\": {\"success_rate\": 5.6, \"total_episodes\": 500, \"total_successes\": 28, \"per_task_sr\": {\"T0_alphabet_soup\": 6, \"T1_cream_cheese\": 2, \"T2_salad_dressing\": 2, \"T3_bbq_sauce\": 2, \"T4_ketchup\": 12, \"T5_tomato_sauce\": 8, \"T6_butter\": 4, \"T7_milk\": 8, \"T8_chocolate_pudding\": 4, \"T9_orange_juice\": 8}}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k05_long_seed42_v3\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Long (libero_10) v3 — fix --mode l2_norm。Object L2norm k=0.5=43.7% 远差于 random，验证 Long 是否同样反常。\", \"conclusion\": \"killed\"}, \"eval_xvla_l2norm_k05_spatial_seed42_v2\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Spatial seed42 — L2 norm pruning vs random pruning (72.6%) 在 Spatial suite 的对比，补全 Table 2 数据\", \"conclusion\": \"killed\"}, \"eval_xvla_l2norm_k07_spatial_seed42\": {\"hypothesis\": \"X-VLA L2norm k=0.7 Spatial seed42 — 补全 Table 2 缺失数据点。Spatial 已有 L2norm k=0.3/0.5/0.85，唯缺 k=0.7。Object k=0.7 L2norm 已有数据，Spatial k=0.7 Random=? 待对比。\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.72, \"num_success\": 360, \"num_episodes\": 500, \"suite\": \"libero_spatial\", \"seed\": 42}}, \"eval_xvla_l2norm_k05_goal_seed42_v2\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Goal seed42 — L2 norm pruning vs random pruning (68.6%) 在 Goal suite 的对比，补全 Table 2 数据\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.59, \"total_successes\": 295, \"total_episodes\": 500, \"suite\": \"libero_goal\", \"model\": \"X-VLA\", \"prune_mode\": \"l2_norm\", \"keep_ratio\": 0.5, \"seed\": 42, \"per_task_sr\": {\"T0_open_middle_drawer\": 80, \"T1_put_bowl_on_stove\": 92, \"T2_put_wine_bottle_on_cabinet\": 98, \"T3_open_top_drawer_put_bowl\": 34, \"T4_put_bowl_on_cabinet\": 100, \"T5_push_plate_to_stove\": 0, \"T6_put_cream_cheese_in_bowl\": 24, \"T7_turn_on_stove\": 72, \"T8_put_bowl_on_plate\": 90, \"T9_put_wine_bottle_on_rack\": 0}}}, \"eval_pi05_l2norm_k05_spatial_seed43\": {\"hypothesis\": \"π0.5 L2norm k=0.5 Spatial seed43 — L2 norm pruning 在 50% keep ratio 下 Spatial suite 的评估，补全 Table 2 缺失数据点\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.582, \"total_successes\": 291, \"total_episodes\": 500}}, \"eval_pi05_random_k085_goal_seed43\": {\"hypothesis\": \"π0.5 Random k=0.85 Goal seed43 — seed 重复验证 random pruning 在 85% keep ratio 下 Goal suite 的 disruption peak 现象\", \"metrics\": {\"success_rate\": 0.522, \"total_successes\": 261, \"total_episodes\": 500, \"suite\": \"libero_goal\", \"model\": \"pi0.5\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 43, \"per_task_sr\": {\"T0_open_middle_drawer\": 80, \"T1_put_bowl_on_stove\": 4, \"T2_put_wine_bottle_on_cabinet\": 20, \"T3_open_top_drawer_put_bowl\": 46, \"T4_put_bowl_on_cabinet\": 58, \"T5_push_plate_to_stove\": 82, \"T6_put_cream_cheese_in_bowl\": 74, \"T7_turn_on_stove\": 90, \"T8_put_bowl_on_plate\": 58, \"T9_put_wine_bottle_on_rack\": 10}, \"note\": \"completed via direct tmux May24 10:24\"}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k095_goal_seed43\": {\"metrics\": {\"success_rate\": 0.834, \"total_successes\": 417, \"total_episodes\": 500, \"suite\": \"libero_goal\", \"model\": \"pi0.5\", \"prune_mode\": \"random\", \"keep_ratio\": 0.95, \"seed\": 43, \"per_task_sr\": {\"T0_open_middle_drawer\": 86, \"T1_put_bowl_on_stove\": 94, \"T2_put_wine_bottle_on_cabinet\": 74, \"T3_open_top_drawer_put_bowl\": 80, \"T4_put_bowl_on_cabinet\": 100, \"T5_push_plate_to_stove\": 96, \"T6_put_cream_cheese_in_bowl\": 90, \"T7_turn_on_stove\": 100, \"T8_put_bowl_on_plate\": 96, \"T9_put_wine_bottle_on_rack\": 18}, \"note\": \"re-run with HF_HUB_OFFLINE=1, result file May24 10:54\"}, \"conclusion\": \"success\", \"hypothesis\": \"π0.5 Random k=0.95 Goal seed43 — seed 重复验证 random pruning 在 95% keep ratio 下 Goal suite 的高性能保持\"}, \"eval_xvla_random_k05_spatial_seed43\": {\"hypothesis\": \"X-VLA Random k=0.5 Spatial seed43 — random pruning 在 50% keep ratio 下 Spatial suite 的 seed 重复验证，与 L2norm 对照\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.726, \"total_successes\": 363, \"total_episodes\": 500, \"wilson_ci_95\": [0.685, 0.763], \"per_task\": {\"T0_bowl_between_plate_ramekin\": 1, \"T1_bowl_next_ramekin\": 0.38, \"T2_bowl_table_center\": 0.88, \"T3_bowl_cookie_box\": 0.92, \"T4_bowl_top_drawer\": 0.88, \"T5_bowl_on_ramekin\": 0, \"T6_bowl_next_cookie_box\": 0.94, \"T7_bowl_stove\": 0.68, \"T8_bowl_next_plate\": 0.92, \"T9_bowl_wooden_cabinet\": 0.66}}}, \"eval_xvla_l2norm_k05_goal_seed43\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Goal seed43 — seed 重复验证 L2 norm pruning 在 50% keep ratio 下 Goal suite 的性能，与 seed42 配对\", \"metrics\": {\"overall_SR\": 0.602, \"total_successes\": 301, \"total_episodes\": 500, \"wilson_ci_95\": [0.5585, 0.644], \"seed\": 43, \"per_task_SR\": [0.84, 1, 0.98, 0.3, 1, 0, 0.22, 0.74, 0.9, 0.04]}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k05_goal_seed42_v2\": {\"hypothesis\": \"CPU RNG 修复后 π0.5 Random k=0.5 Goal。v1=74.4%(pre-fix, westd-41074)。修复后验证 Random k=0.5 的真实 Goal SR——k=0.7=78.2%, k=0.3=50.6%，k=0.5 应介于两者之间（如果单调递减）或异常（非单调）。\", \"metrics\": {\"overall_SR\": 73.6, \"total_successes\": 368, \"total_episodes\": 500, \"duration_min\": 109.7, \"per_task_SR\": {\"T0_open_drawer\": 78, \"T1_bowl_stove\": 44, \"T2_wine_cabinet\": 86, \"T3_bowl_drawer\": 76, \"T4_bowl_cabinet\": 92, \"T5_plate_stove\": 70, \"T6_cream_bowl\": 62, \"T7_turn_stove\": 100, \"T8_bowl_plate\": 86, \"T9_wine_rack\": 42}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_goal_seed43_v2\": {\"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k085_goal_seed43\": {\"hypothesis\": \"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 87, \"total_episodes\": 500, \"total_successes\": 435, \"elapsed_min\": 86.5, \"per_task\": {\"open the middle drawer of the cabinet\": 88, \"put the bowl on the stove\": 94, \"put the wine bottle on top of the cabinet\": 96, \"open the top drawer and put the bowl inside\": 80, \"put the bowl on top of the cabinet\": 96, \"push the plate to the front of the stove\": 94, \"put the cream cheese in the bowl\": 86, \"turn on the stove\": 96, \"put the bowl on the plate\": 94, \"put the wine bottle on the rack\": 46}}}, \"eval_pi05_random_k085_spatial_seed42_postfix\": {\"hypothesis\": \"π0.5 Random k=0.85 Spatial post-fix — 测试 D191 disruption peak（Goal k=0.85 Random=52.4%）是否跨 suite 复现。CPU RNG 修复后 random pruning 应产生可复现的结果。\", \"conclusion\": \"failed\"}, \"eval_xvla_random_k085_object_seed42\": {\"hypothesis\": \"X-VLA Random k=0.85 Object — 测试 BART connector（无 RoPE）在 Object suite 是否出现 disruption peak\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.65, \"total_episodes\": 500, \"total_successes\": 325, \"wilson_ci_95\": [0.6072, 0.6905], \"per_task_sr\": [0.98, 0.14, 1, 0.88, 0.36, 0.96, 0, 0.94, 0.24, 1], \"elapsed_seconds\": 3572.9}}, \"eval_xvla_random_k085_spatial_seed42\": {\"hypothesis\": \"X-VLA Random k=0.85 Spatial — 测试 BART connector（无 RoPE）是否出现 disruption peak（π0.5 Spatial k=0.85=56.6%）\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.682, \"total_episodes\": 500, \"wilson_ci_95\": [0.6399, 0.7213], \"per_task\": {\"0\": 1, \"1\": 0.06, \"2\": 0.98, \"3\": 0.98, \"4\": 0.82, \"5\": 0.06, \"6\": 1, \"7\": 0.04, \"8\": 0.92, \"9\": 0.96}}}, \"eval_xvla_random_k085_goal_seed42\": {\"hypothesis\": \"X-VLA Random k=0.85 Goal — 测试 BART connector（无 RoPE）是否出现 disruption peak（π0.5 Goal k=0.85=52.4%）\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.604, \"total_episodes\": 500, \"wilson_ci_95\": [0.5605, 0.6459], \"per_task\": {\"0\": 1, \"1\": 0.42, \"2\": 0.7, \"3\": 0.78, \"4\": 0.98, \"5\": 0, \"6\": 0.02, \"7\": 0.88, \"8\": 0.98, \"9\": 0.28}}}, \"eval_pi05_random_k095_object_seed42_v2\": {\"hypothesis\": \"π0.5 Random k=0.95 Object post-fix — fig_method_gap 阻塞项，替换可能受 CPU RNG bug 影响的 pre-fix 数据\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 74, \"num_episodes\": 500, \"duration_min\": 119.6, \"per_task\": [0.82, 0.86, 0.66, 0.68, 0.64, 0.74, 0.76, 0.56, 0.86, 0.82]}}, \"eval_pi05_random_k07_object_seed42_v4\": {\"hypothesis\": \"π0.5 Random k=0.7 Object seed42 — post-fix random pruning 基线，验证 30% token 移除对 Object suite 的影响\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 74, \"num_episodes\": 500, \"duration_min\": 120.7, \"per_task\": [0.86, 0.86, 0.7, 0.76, 0.72, 0.3, 0.88, 0.76, 0.88, 0.68]}}, \"eval_openvla_l2norm_k05_goal_seed42_v2\": {\"hypothesis\": \"OpenVLA L2norm k=0.5 Goal v2 — 修复 conda 激活问题后重试\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k09_object_seed42_v2\": {\"hypothesis\": \"π0.5 Random k=0.9 Object post-fix — pre-fix 值可能受 CPU RNG bug 影响，需确认 post-fix 基线\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.09, \"total_episodes\": 500, \"seed\": 42, \"per_task_sr\": {\"T0\": 14, \"T1\": 20, \"T2\": 4, \"T3\": 6, \"T4\": 2, \"T5\": 20, \"T6\": 6, \"T7\": 2, \"T8\": 6, \"T9\": 10}, \"postfix_confirmed\": true, \"postfix_sr\": 9, \"prefix_v2_sr\": 9, \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.90_libero_object_seed42.json\"}}, \"eval_pi05_random_k05_object_seed42_v2\": {\"hypothesis\": \"π0.5 Object Random k=0.5 post-fix 结果可能与 pre-fix (69.4%) 有显著差异，类似 Goal 的 26pp 偏移\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.682, \"total_episodes\": 500, \"seed\": 42}}, \"eval_pi05_random_k07_object_seed42_v3\": {\"hypothesis\": \"π0.5 Random k=0.7 Object post-fix v3 — v2 tokenizer 网络崩溃后重试，当前正常运行中\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.74, \"total_episodes\": 500, \"seed\": 42}}, \"eval_xvla_l2norm_k05_long_seed43\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Long seed43 CV — 验证 L2 在 Long 上的表现跨 seed 一致性\", \"metrics\": {\"overall_SR\": 43.8, \"total_successes\": 219, \"total_episodes\": 500, \"wilson_ci_95\": [39.5, 48.2], \"per_task_sr\": {\"T0\": 26, \"T1\": 0, \"T2\": 52, \"T3\": 78, \"T4\": 38, \"T5\": 86, \"T6\": 56, \"T7\": 76, \"T8\": 24, \"T9\": 2}, \"elapsed_min\": 94, \"result_json\": \"eval_results/xvla_prune_k0.5_libero_10.json\"}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k05_long_seed43\": {\"hypothesis\": \"π0.5 L2norm k=0.5 Long seed43: seed42=50.2%。双种子验证\", \"metrics\": {\"sr\": 0.54, \"total_episodes\": 500, \"total_successes\": 270}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_goal_seed43\": {\"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43: seed42=71.8%。双种子验证\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k05_spatial_seed42_postfix_v2\": {\"hypothesis\": \"π0.5 Random k=0.5 Spatial post-fix v2 — 前次崩溃重试\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k09_spatial_seed42_postfix\": {\"hypothesis\": \"π0.5 Random k=0.9 Spatial post-fix — Table 2 数据验证\", \"conclusion\": \"failed\"}, \"eval_xvla_l2norm_k05_long_seed42\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Long seed42 CV — 补充 seed42 数据点，seed43 RUNNING。验证 L2 在 Long 上的跨 seed 一致性。\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 45, \"wilson_ci_95\": [40.7, 49.4], \"per_task_sr\": {\"task_0_alphabet_soup_tomato_sauce\": 26, \"task_1_cream_cheese_butter\": 0, \"task_2_stove_moka_pot\": 46, \"task_3_black_bowl_drawer\": 82, \"task_4_white_mug_yellow_mug\": 42, \"task_5_book_caddy\": 92, \"task_6_white_mug_chocolate_pudding\": 54, \"task_7_alphabet_soup_cream_cheese\": 70, \"task_8_both_moka_pots\": 34, \"task_9_mug_microwave\": 4}, \"episodes\": 500, \"elapsed_min\": 94.6}}, \"eval_xvla_random_k05_object_seed42\": {\"hypothesis\": \"X-VLA Random k=0.5 Object seed42 CV — 补充 seed42 数据点，seed43=71.0%。验证 Random 在 Object 上的跨 seed 一致性。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 70.6, \"num_episodes\": 500, \"wilson_ci_95\": [0.665, 0.744], \"per_task\": [0.96, 0.46, 0.98, 0.8, 1.0, 0.76, 0.02, 0.82, 0.26, 1.0], \"duration_min\": 76.0}}, \"eval_pi05_random_k09_object_seed43\": {\"hypothesis\": \"π0.5 Random k=0.9 Object seed43 — Reviewer 怀疑 s42=9.2% 是 seed artifact，审计显示是 RoPE 交互真实效应\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.096, \"total_successes\": 48, \"total_episodes\": 500, \"elapsed_min\": 119.5, \"per_task_sr\": {\"T0_alphabet_soup\": 0.16, \"T1_cream_cheese\": 0.16, \"T2_salad_dressing\": 0.1, \"T3_bbq_sauce\": 0.02, \"T4_ketchup\": 0.06, \"T5_tomato_sauce\": 0.14, \"T6_butter\": 0.14, \"T7_milk\": 0.02, \"T8_chocolate_pudding\": 0.08, \"T9_orange_juice\": 0.08}}}, \"eval_xvla_random_k05_spatial_seed42\": {\"hypothesis\": \"X-VLA Random k=0.5 Spatial seed42 CV — 补充 seed42 数据点，seed43=72.6%。验证 Random 在 Spatial 上的跨 seed 一致性。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 71.4, \"num_episodes\": 500, \"wilson_ci_95\": [0.673, 0.752], \"per_task\": [0.98, 0.26, 0.98, 0.9, 0.86, 0, 0.92, 0.66, 0.92, 0.66], \"duration_min\": 92.1, \"suite\": \"libero_spatial\"}}, \"eval_xvla_random_k05_long_seed42\": {\"hypothesis\": \"X-VLA Random k=0.5 Long seed42 CV — 补充 seed42 数据点，seed43=58.2%。验证 Random 在 Long 上的跨 seed 一致性。\", \"metrics\": {\"success_rate\": 61.6, \"total_successes\": 308, \"total_episodes\": 500, \"wilson_ci_95\": [57.3, 65.8], \"per_task_sr\": [68, 0, 64, 94, 70, 90, 84, 86, 46, 14], \"prune_method\": \"random\", \"keep_ratio\": 0.5, \"tokens_kept\": \"25/50\", \"suite\": \"libero_10\", \"seed\": 42, \"wall_time_min\": 82.6}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k05_object_seed42\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Object seed42 CV — 补充 seed42 数据点，seed43=43.0%。验证 L2 在 Object 上的跨 seed 一致性。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.434, \"total_successes\": 217, \"total_episodes\": 500}}, \"eval_xvla_l2norm_k05_spatial_seed43\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Spatial seed43 CV — 验证 L2 在 Spatial 上的表现是否跨 seed 一致\", \"metrics\": {\"success_rate\": 59, \"total_successes\": 295, \"total_episodes\": 500, \"wilson_ci_95\": [54.6, 63.2], \"elapsed_min\": 79.1, \"seed\": 43, \"per_task_SR\": {\"T0_bowl_between_plate_ramekin\": 98, \"T1_bowl_next_ramekin\": 20, \"T2_bowl_from_table_center\": 92, \"T3_bowl_on_cookie_box\": 72, \"T4_bowl_in_top_drawer\": 76, \"T5_bowl_on_ramekin\": 0, \"T6_bowl_next_cookie_box\": 76, \"T7_bowl_on_stove\": 38, \"T8_bowl_next_plate\": 66, \"T9_bowl_on_wooden_cabinet\": 52}, \"vs_random_k05_spatial_seed43\": {\"random_sr\": 72.6, \"l2norm_sr\": 59, \"delta_pp\": -13.6, \"verdict\": \"L2norm worse than random on Spatial\"}, \"vs_l2norm_spatial_seed42\": {\"seed42_sr\": 58.8, \"seed43_sr\": 59, \"mean\": 58.9, \"diff_pp\": 0.2}}, \"conclusion\": \"negative\"}, \"eval_xvla_random_k05_goal_seed43_v4\": {\"hypothesis\": \"X-VLA Random k=0.5 Goal seed43 v4 — tmux 包装防 SIGHUP。v1/v2/v3 均因 SSH 断连崩溃。R6-C1 CV 最后缺口。\", \"metrics\": {\"success_rate\": 68.6, \"total_successes\": 343, \"total_episodes\": 500, \"wilson_ci_95\": [64.4, 72.5], \"elapsed_min\": 56.1, \"per_task_sr\": {\"T0_open_middle_drawer\": 100, \"T1_bowl_on_stove\": 94, \"T2_wine_on_cabinet\": 96, \"T3_open_drawer_bowl_inside\": 68, \"T4_bowl_on_cabinet\": 98, \"T5_push_plate\": 0, \"T6_cream_cheese_in_bowl\": 38, \"T7_turn_on_stove\": 96, \"T8_bowl_on_plate\": 96, \"T9_wine_on_rack\": 0}, \"cv_with_seed42\": {\"seed42\": 67.2, \"seed43\": 68.6, \"mean\": 67.9, \"diff_pp\": 1.4}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k05_spatial_seed42_postfix\": {\"hypothesis\": \"π0.5 Random k=0.5 Spatial post-fix — Table 2 数据验证，CPU RNG 修复后的 baseline\", \"conclusion\": \"failed\"}, \"eval_pi05_attention_k05_long_seed42\": {\"hypothesis\": \"π0.5 attention k=0.5 Long (libero_10) seed42。Goal attention=70.2%(< Random)。Long baseline=91.6%，Random k=0.5 Long=46.8%。若 attention Long 也 ≤46.8%，attention 在 MLP connector 上全 suite 失效。\", \"conclusion\": \"negative\", \"metrics\": {\"result_sr\": 49.4, \"episodes\": 500}}, \"eval_openvla_baseline_long_seed42\": {\"hypothesis\": \"OpenVLA Long (libero_10) baseline。E2 Must-Fix R6-W5 要求 OpenVLA 覆盖 Goal/Long 套件。Long 套件任务更复杂（520 步），需要建立 OpenVLA 在此套件的 baseline SR，作为后续 pruning 对比基准。\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.528, \"total_episodes\": 500, \"total_success\": 264, \"time_min\": 483.3, \"task_sr\": {\"task01_alphabet_soup_tomato_sauce_basket\": 0.62, \"task02_cream_cheese_butter_basket\": 0.7, \"task03_stove_moka_pot\": 0.5, \"task04_black_bowl_drawer\": 0.48, \"task05_white_mug_left_yellow_mug_right\": 0.4, \"task06_book_caddy\": 0.7, \"task07_white_mug_plate_chocolate_pudding\": 0.5, \"task08_alphabet_soup_cream_cheese_basket\": 0.6, \"task09_both_moka_pots_stove\": 0.24, \"task10_yellow_white_mug_microwave\": 0.54}}}, \"eval_pi05_random_k03_goal_seed42\": {\"hypothesis\": \"π0.5 Random k=0.3 Goal seed42。极端剪枝 baseline——Random Goal curve: k=0.95=83.8%, k=0.925=71.2%, k=0.9=62.2%, k=0.85=52.4%, k=0.7=78.2%, k=0.5 running。k=0.3 预测继续下降。与 L2norm k=0.3 Goal (cqa1 GPU 2 同时跑) 对比 importance margin。\", \"metrics\": {\"overall_SR\": 0.51, \"total_successes\": 255, \"total_episodes\": 500, \"per_task\": {\"T0_open_drawer\": 0.82, \"T1_bowl_stove\": 0.22, \"T2_wine_cabinet\": 0.76, \"T3_drawer_bowl\": 0.34, \"T4_bowl_cabinet\": 0.64, \"T5_plate_stove\": 0.26, \"T6_cream_cheese_bowl\": 0.26, \"T7_turn_stove\": 1, \"T8_bowl_plate\": 0.54, \"T9_wine_rack\": 0.26}}, \"conclusion\": \"success\"}, \"eval_pi05_attention_k05_object_seed42\": {\"hypothesis\": \"π0.5 attention k=0.5 Object seed42。已有 attention Object curve (k=0.95=98.4%, k=0.85=92.2%, k=0.7=0.6% cliff)。k=0.5 预测 ≤Random(70.6%)？若如此，attention 在 MLP connector 上跨 suite 无效。\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.378, \"total_successes\": 189, \"total_episodes\": 500, \"per_task\": {\"T0_alphabet_soup\": 0.94, \"T1_cream_cheese\": 0.26, \"T2_salad_dressing\": 0.32, \"T3_bbq_sauce\": 0.18, \"T4_ketchup\": 0.4, \"T5_tomato_sauce\": 0.12, \"T6_butter\": 0.38, \"T7_milk\": 0.6, \"T8_chocolate_pudding\": 0.36, \"T9_orange_juice\": 0.22}}}}, \"count\": 50, \"total\": 530, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3116}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "09174375-353e-4f9d-adda-85b780064b2d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_random_k09_spatial_seed42_postfix_v2\\\": {\\\"hypothesis\\\": \\\"π0.5 Spatial Random k=0.9 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，10% token 移除对 Spatial suite 的影响\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 53.4, \\\"total_success\\\": 267, \\\"total_episodes\\\": 500, \\\"wall_time_min\\\": 171.9, \\\"per_task_sr\\\": {\\\"T0_between_plate\\\": 90, \\\"T1_next_to_ramekin\\\": 52, \\\"T2_table_center\\\": 80, \\\"T3_on_cookie_box\\\": 24, \\\"T4_top_drawer\\\": 18, \\\"T5_on_ramekin\\\": 40, \\\"T6_next_to_cookie\\\": 58, \\\"T7_on_stove\\\": 54, \\\"T8_next_to_plate\\\": 90, \\\"T9_wooden_cabinet\\\": 28}, \\\"baseline_spatial_k1\\\": 78, \\\"delta_vs_baseline\\\": -24.6}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_openvla_random_k05_goal_seed42\\\": {\\\"hypothesis\\\": \\\"OpenVLA Random k=0.5 Goal seed42 — 与 L2norm k=0.5 Goal 配对，验证 MLP connector 下 L2 vs Random 在 Goal suite 的差异，补全 Table 2 缺失数据点\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.522, \\\"total_success\\\": 261, \\\"total_episodes\\\": 500, \\\"wall_time_min\\\": 230.7, \\\"per_task_sr\\\": {\\\"open_middle_drawer\\\": 0.44, \\\"bowl_on_stove\\\": 0.64, \\\"wine_bottle_on_cabinet\\\": 0.64, \\\"open_drawer_put_bowl\\\": 0.1, \\\"bowl_on_cabinet\\\": 0.74, \\\"push_plate_front_stove\\\": 0.54, \\\"cream_cheese_in_bowl\\\": 0.48, \\\"turn_on_stove\\\": 0.94, \\\"bowl_on_plate\\\": 0.46, \\\"wine_bottle_on_rack\\\": 0.24}}}, \\\"eval_pi05_l2norm_k05_spatial_seed43_v2\\\": {\\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 Spatial seed43 v2 — 重跑确认 Spatial suite L2 norm pruning 50% keep ratio 结果一致性\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.554, \\\"total_success\\\": 277, \\\"total_episodes\\\": 500, \\\"wall_time_min\\\": 90.3, \\\"per_task_sr\\\": {\\\"T0_between_plate\\\": 0.76, \\\"T1_next_to_ramekin\\\": 0.84, \\\"T2_table_center\\\": 0.84, \\\"T3_on_cookie_box\\\": 0.14, \\\"T4_top_drawer\\\": 0.42, \\\"T5_on_ramekin\\\": 0.48, \\\"T6_next_to_cookie\\\": 0.28, \\\"T7_on_stove\\\": 0.74, \\\"T8_next_to_plate\\\": 0.68, \\\"T9_wooden_cabinet\\\": 0.36}}}, \\\"eval_pi05_random_k085_spatial_seed42_postfix_v2\\\": {\\\"hypothesis\\\": \\\"π0.5 Spatial Random k=0.85 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，测试 disruption peak 是否在 Spatial suite 复现\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 60.8, \\\"per_task_sr\\\": {\\\"T0\\\": 84, \\\"T1\\\": 68, \\\"T2\\\": 92, \\\"T3\\\": 16, \\\"T4\\\": 66, \\\"T5\\\": 28, \\\"T6\\\": 44, \\\"T7\\\": 76, \\\"T8\\\": 82, \\\"T9\\\": 52}, \\\"total_episodes\\\": 500, \\\"total_success\\\": 304, \\\"baseline_spatial_k1\\\": 78, \\\"delta_vs_baseline\\\": -17.2}}, \\\"eval_pi05_random_k03_goal_seed43_v2\\\": {\\\"metrics\\\": {\\\"overall_sr\\\": 53.6, \\\"T0_open_drawer\\\": 80, \\\"T1_bowl_stove\\\": 12, \\\"T2_wine_cabinet\\\": 76, \\\"T3_drawer_bowl\\\": 52, \\\"T4_bowl_cabinet\\\": 60, \\\"T5_push_plate\\\": 32, \\\"T6_cream_bowl\\\": 26, \\\"T7_turn_stove\\\": 100, \\\"T8_bowl_plate\\\": 70, \\\"T9_wine_rack\\\": 28, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 127.4, \\\"cv_seed42\\\": 50.6, \\\"cv_seed43\\\": 53.6, \\\"cv_mean\\\": 52.1, \\\"cv_std\\\": 2.1}, \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"Random token pruning at keep_ratio=0.3 on pi0.5 maintains comparable performance to full vision tokens on libero_goal (seed43 replication of seed42 result ~50.6%)\\\"}, \\\"eval_xvla_l2norm_k07_spatial_seed42_v2\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.7 Spatial seed42 v2 — 重跑确认。v1 SR=72% 但结果文件丢失，重新生成 Table 2 数据点。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_xvla_l2norm_k03_goal_seed42_v2\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.3 Goal v2 (fix --mode l2_norm typo)。v1 用了 --mode l2norm（无下划线），参数错误。极端剪枝（70% token removed）下 L2norm 在 Goal 套件的表现。Object L2norm k=0.3=18.2%，Goal 上 L2norm 是否也远差于 random（random Goal k=0.3≈50.6%）。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_pi05_random_k05_spatial_seed42_postfix_v3\\\": {\\\"hypothesis\\\": \\\"π0.5 Spatial Random k=0.5 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，50% token 移除对 Spatial suite 的影响\\\", \\\"metrics\\\": {\\\"success_rate\\\": 71.8, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 359, \\\"duration_min\\\": 139.2, \\\"per_task_sr\\\": {\\\"T0_between_plate_and_ramekin\\\": 88, \\\"T1_next_to_ramekin\\\": 88, \\\"T2_from_table_center\\\": 88, \\\"T3_on_cookie_box\\\": 48, \\\"T4_in_top_drawer\\\": 40, \\\"T5_on_ramekin\\\": 32, \\\"T6_next_to_cookie_box\\\": 92, \\\"T7_on_stove\\\": 86, \\\"T8_next_to_plate\\\": 84, \\\"T9_on_wooden_cabinet\\\": 72}, \\\"comparison\\\": {\\\"vs_attention_k05\\\": \\\"-0.8pp (72.6% vs 71.8%)\\\", \\\"vs_l2norm_k05\\\": \\\"+13.6pp (71.8% vs 58.2%)\\\", \\\"vs_xvla_random_k05\\\": \\\"+0.4pp (71.8% vs 71.4%)\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_xvla_l2norm_k03_goal_seed42_v3\\\": {\\\"hypothesis\\\": \\\"X-VLA with aggressive L2-norm pruning (keep_ratio=0.3) on LIBERO Goal will show significant performance degradation compared to higher keep ratios, establishing the lower bound of viable compression for L2-norm strategy.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.376, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 188, \\\"task_sr\\\": {\\\"task0_open_drawer\\\": 0.42, \\\"task1_bowl_on_stove\\\": 0.94, \\\"task2_wine_on_cabinet\\\": 0.16, \\\"task3_drawer_bowl_inside\\\": 0.24, \\\"task4_bowl_on_cabinet\\\": 0.98, \\\"task5_push_plate\\\": 0, \\\"task6_cream_in_bowl\\\": 0.02, \\\"task7_turn_on_stove\\\": 0.2, \\\"task8_bowl_on_plate\\\": 0.8, \\\"task9_wine_on_rack\\\": 0}}}, \\\"eval_pi05_random_k085_object_seed42_postfix\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.85 Object post-fix — CPU RNG fix 后 random pruning 在 object suite 的 disruption peak 数据点\\\", \\\"metrics\\\": {\\\"success_rate\\\": 5.6, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 28, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup\\\": 6, \\\"T1_cream_cheese\\\": 2, \\\"T2_salad_dressing\\\": 2, \\\"T3_bbq_sauce\\\": 2, \\\"T4_ketchup\\\": 12, \\\"T5_tomato_sauce\\\": 8, \\\"T6_butter\\\": 4, \\\"T7_milk\\\": 8, \\\"T8_chocolate_pudding\\\": 4, \\\"T9_orange_juice\\\": 8}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_xvla_l2norm_k05_long_seed42_v3\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.5 Long (libero_10) v3 — fix --mode l2_norm。Object L2norm k=0.5=43.7% 远差于 random，验证 Long 是否同样反常。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_xvla_l2norm_k05_spatial_seed42_v2\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.5 Spatial seed42 — L2 norm pruning vs random pruning (72.6%) 在 Spatial suite 的对比，补全 Table 2 数据\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_xvla_l2norm_k07_spatial_seed42\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.7 Spatial seed42 — 补全 Table 2 缺失数据点。Spatial 已有 L2norm k=0.3/0.5/0.85，唯缺 k=0.7。Object k=0.7 L2norm 已有数据，Spatial k=0.7 Random=? 待对比。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.72, \\\"num_success\\\": 360, \\\"num_episodes\\\": 500, \\\"suite\\\": \\\"libero_spatial\\\", \\\"seed\\\": 42}}, \\\"eval_xvla_l2norm_k05_goal_seed42_v2\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.5 Goal seed42 — L2 norm pruning vs random pruning (68.6%) 在 Goal suite 的对比，补全 Table 2 数据\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.59, \\\"total_successes\\\": 295, \\\"total_episodes\\\": 500, \\\"suite\\\": \\\"libero_goal\\\", \\\"model\\\": \\\"X-VLA\\\", \\\"prune_mode\\\": \\\"l2_norm\\\", \\\"keep_ratio\\\": 0.5, \\\"seed\\\": 42, \\\"per_task_sr\\\": {\\\"T0_open_middle_drawer\\\": 80, \\\"T1_put_bowl_on_stove\\\": 92, \\\"T2_put_wine_bottle_on_cabinet\\\": 98, \\\"T3_open_top_drawer_put_bowl\\\": 34, \\\"T4_put_bowl_on_cabinet\\\": 100, \\\"T5_push_plate_to_stove\\\": 0, \\\"T6_put_cream_cheese_in_bowl\\\": 24, \\\"T7_turn_on_stove\\\": 72, \\\"T8_put_bowl_on_plate\\\": 90, \\\"T9_put_wine_bottle_on_rack\\\": 0}}}, \\\"eval_pi05_l2norm_k05_spatial_seed43\\\": {\\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 Spatial seed43 — L2 norm pruning 在 50% keep ratio 下 Spatial suite 的评估，补全 Table 2 缺失数据点\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.582, \\\"total_successes\\\": 291, \\\"total_episodes\\\": 500}}, \\\"eval_pi05_random_k085_goal_seed43\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.85 Goal seed43 — seed 重复验证 random pruning 在 85% keep ratio 下 Goal suite 的 disruption peak 现象\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.522, \\\"total_successes\\\": 261, \\\"total_episodes\\\": 500, \\\"suite\\\": \\\"libero_goal\\\", \\\"model\\\": \\\"pi0.5\\\", \\\"prune_mode\\\": \\\"random\\\", \\\"keep_ratio\\\": 0.85, \\\"seed\\\": 43, \\\"per_task_sr\\\": {\\\"T0_open_middle_drawer\\\": 80, \\\"T1_put_bowl_on_stove\\\": 4, \\\"T2_put_wine_bottle_on_cabinet\\\": 20, \\\"T3_open_top_drawer_put_bowl\\\": 46, \\\"T4_put_bowl_on_cabinet\\\": 58, \\\"T5_push_plate_to_stove\\\": 82, \\\"T6_put_cream_cheese_in_bowl\\\": 74, \\\"T7_turn_on_stove\\\": 90, \\\"T8_put_bowl_on_plate\\\": 58, \\\"T9_put_wine_bottle_on_rack\\\": 10}, \\\"note\\\": \\\"completed via direct tmux May24 10:24\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_pi05_random_k095_goal_seed43\\\": {\\\"metrics\\\": {\\\"success_rate\\\": 0.834, \\\"total_successes\\\": 417, \\\"total_episodes\\\": 500, \\\"suite\\\": \\\"libero_goal\\\", \\\"model\\\": \\\"pi0.5\\\", \\\"prune_mode\\\": \\\"random\\\", \\\"keep_ratio\\\": 0.95, \\\"seed\\\": 43, \\\"per_task_sr\\\": {\\\"T0_open_middle_drawer\\\": 86, \\\"T1_put_bowl_on_stove\\\": 94, \\\"T2_put_wine_bottle_on_cabinet\\\": 74, \\\"T3_open_top_drawer_put_bowl\\\": 80, \\\"T4_put_bowl_on_cabinet\\\": 100, \\\"T5_push_plate_to_stove\\\": 96, \\\"T6_put_cream_cheese_in_bowl\\\": 90, \\\"T7_turn_on_stove\\\": 100, \\\"T8_put_bowl_on_plate\\\": 96, \\\"T9_put_wine_bottle_on_rack\\\": 18}, \\\"note\\\": \\\"re-run with HF_HUB_OFFLINE=1, result file May24 10:54\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.95 Goal seed43 — seed 重复验证 random pruning 在 95% keep ratio 下 Goal suite 的高性能保持\\\"}, \\\"eval_xvla_random_k05_spatial_seed43\\\": {\\\"hypothesis\\\": \\\"X-VLA Random k=0.5 Spatial seed43 — random pruning 在 50% keep ratio 下 Spatial suite 的 seed 重复验证，与 L2norm 对照\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.726, \\\"total_successes\\\": 363, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [0.685, 0.763], \\\"per_task\\\": {\\\"T0_bowl_between_plate_ramekin\\\": 1, \\\"T1_bowl_next_ramekin\\\": 0.38, \\\"T2_bowl_table_center\\\": 0.88, \\\"T3_bowl_cookie_box\\\": 0.92, \\\"T4_bowl_top_drawer\\\": 0.88, \\\"T5_bowl_on_ramekin\\\": 0, \\\"T6_bowl_next_cookie_box\\\": 0.94, \\\"T7_bowl_stove\\\": 0.68, \\\"T8_bowl_next_plate\\\": 0.92, \\\"T9_bowl_wooden_cabinet\\\": 0.66}}}, \\\"eval_xvla_l2norm_k05_goal_seed43\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.5 Goal seed43 — seed 重复验证 L2 norm pruning 在 50% keep ratio 下 Goal suite 的性能，与 seed42 配对\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.602, \\\"total_successes\\\": 301, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [0.5585, 0.644], \\\"seed\\\": 43, \\\"per_task_SR\\\": [0.84, 1, 0.98, 0.3, 1, 0, 0.22, 0.74, 0.9, 0.04]}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_pi05_random_k05_goal_seed42_v2\\\": {\\\"hypothesis\\\": \\\"CPU RNG 修复后 π0.5 Random k=0.5 Goal。v1=74.4%(pre-fix, westd-41074)。修复后验证 Random k=0.5 的真实 Goal SR——k=0.7=78.2%, k=0.3=50.6%，k=0.5 应介于两者之间（如果单调递减）或异常（非单调）。\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 73.6, \\\"total_successes\\\": 368, \\\"total_episodes\\\": 500, \\\"duration_min\\\": 109.7, \\\"per_task_SR\\\": {\\\"T0_open_drawer\\\": 78, \\\"T1_bowl_stove\\\": 44, \\\"T2_wine_cabinet\\\": 86, \\\"T3_bowl_drawer\\\": 76, \\\"T4_bowl_cabinet\\\": 92, \\\"T5_plate_stove\\\": 70, \\\"T6_cream_bowl\\\": 62, \\\"T7_turn_stove\\\": 100, \\\"T8_bowl_plate\\\": 86, \\\"T9_wine_rack\\\": 42}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pi05_l2norm_k07_goal_seed43_v2\\\": {\\\"hypothesis\\\": \\\"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 72.2, \\\"total_successes\\\": 361, \\\"total_episodes\\\": 500, \\\"duration_min\\\": 71.3, \\\"per_task_SR\\\": {\\\"T0_open_middle_drawer\\\": 78, \\\"T1_put_bowl_on_stove\\\": 76, \\\"T2_wine_bottle_on_cabinet\\\": 68, \\\"T3_open_drawer_put_bowl\\\": 48, \\\"T4_bowl_on_cabinet\\\": 90, \\\"T5_push_plate_front_stove\\\": 80, \\\"T6_cream_cheese_in_bowl\\\": 66, \\\"T7_turn_on_stove\\\": 98, \\\"T8_bowl_on_plate\\\": 68, \\\"T9_wine_bottle_on_rack\\\": 50}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pi05_l2norm_k085_goal_seed43\\\": {\\\"hypothesis\\\": \\\"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 87, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 435, \\\"elapsed_min\\\": 86.5, \\\"per_task\\\": {\\\"open the middle drawer of the cabinet\\\": 88, \\\"put the bowl on the stove\\\": 94, \\\"put the wine bottle on top of the cabinet\\\": 96, \\\"open the top drawer and put the bowl inside\\\": 80, \\\"put the bowl on top of the cabinet\\\": 96, \\\"push the plate to the front of the stove\\\": 94, \\\"put the cream cheese in the bowl\\\": 86, \\\"turn on the stove\\\": 96, \\\"put the bowl on the plate\\\": 94, \\\"put the wine bottle on the rack\\\": 46}}}, \\\"eval_pi05_random_k085_spatial_seed42_postfix\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.85 Spatial post-fix — 测试 D191 disruption peak（Goal k=0.85 Random=52.4%）是否跨 suite 复现。CPU RNG 修复后 random pruning 应产生可复现的结果。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_xvla_random_k085_object_seed42\\\": {\\\"hypothesis\\\": \\\"X-VLA Random k=0.85 Object — 测试 BART connector（无 RoPE）在 Object suite 是否出现 disruption peak\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.65, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 325, \\\"wilson_ci_95\\\": [0.6072, 0.6905], \\\"per_task_sr\\\": [0.98, 0.14, 1, 0.88, 0.36, 0.96, 0, 0.94, 0.24, 1], \\\"elapsed_seconds\\\": 3572.9}}, \\\"eval_xvla_random_k085_spatial_seed42\\\": {\\\"hypothesis\\\": \\\"X-VLA Random k=0.85 Spatial — 测试 BART connector（无 RoPE）是否出现 disruption peak（π0.5 Spatial k=0.85=56.6%）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.682, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [0.6399, 0.7213], \\\"per_task\\\": {\\\"0\\\": 1, \\\"1\\\": 0.06, \\\"2\\\": 0.98, \\\"3\\\": 0.98, \\\"4\\\": 0.82, \\\"5\\\": 0.06, \\\"6\\\": 1, \\\"7\\\": 0.04, \\\"8\\\": 0.92, \\\"9\\\": 0.96}}}, \\\"eval_xvla_random_k085_goal_seed42\\\": {\\\"hypothesis\\\": \\\"X-VLA Random k=0.85 Goal — 测试 BART connector（无 RoPE）是否出现 disruption peak（π0.5 Goal k=0.85=52.4%）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.604, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [0.5605, 0.6459], \\\"per_task\\\": {\\\"0\\\": 1, \\\"1\\\": 0.42, \\\"2\\\": 0.7, \\\"3\\\": 0.78, \\\"4\\\": 0.98, \\\"5\\\": 0, \\\"6\\\": 0.02, \\\"7\\\": 0.88, \\\"8\\\": 0.98, \\\"9\\\": 0.28}}}, \\\"eval_pi05_random_k095_object_seed42_v2\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.95 Object post-fix — fig_method_gap 阻塞项，替换可能受 CPU RNG bug 影响的 pre-fix 数据\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 74, \\\"num_episodes\\\": 500, \\\"duration_min\\\": 119.6, \\\"per_task\\\": [0.82, 0.86, 0.66, 0.68, 0.64, 0.74, 0.76, 0.56, 0.86, 0.82]}}, \\\"eval_pi05_random_k07_object_seed42_v4\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.7 Object seed42 — post-fix random pruning 基线，验证 30% token 移除对 Object suite 的影响\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 74, \\\"num_episodes\\\": 500, \\\"duration_min\\\": 120.7, \\\"per_task\\\": [0.86, 0.86, 0.7, 0.76, 0.72, 0.3, 0.88, 0.76, 0.88, 0.68]}}, \\\"eval_openvla_l2norm_k05_goal_seed42_v2\\\": {\\\"hypothesis\\\": \\\"OpenVLA L2norm k=0.5 Goal v2 — 修复 conda 激活问题后重试\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_pi05_random_k09_object_seed42_v2\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.9 Object post-fix — pre-fix 值可能受 CPU RNG bug 影响，需确认 post-fix 基线\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.09, \\\"total_episodes\\\": 500, \\\"seed\\\": 42, \\\"per_task_sr\\\": {\\\"T0\\\": 14, \\\"T1\\\": 20, \\\"T2\\\": 4, \\\"T3\\\": 6, \\\"T4\\\": 2, \\\"T5\\\": 20, \\\"T6\\\": 6, \\\"T7\\\": 2, \\\"T8\\\": 6, \\\"T9\\\": 10}, \\\"postfix_confirmed\\\": true, \\\"postfix_sr\\\": 9, \\\"prefix_v2_sr\\\": 9, \\\"result_json\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.90_libero_object_seed42.json\\\"}}, \\\"eval_pi05_random_k05_object_seed42_v2\\\": {\\\"hypothesis\\\": \\\"π0.5 Object Random k=0.5 post-fix 结果可能与 pre-fix (69.4%) 有显著差异，类似 Goal 的 26pp 偏移\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.682, \\\"total_episodes\\\": 500, \\\"seed\\\": 42}}, \\\"eval_pi05_random_k07_object_seed42_v3\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.7 Object post-fix v3 — v2 tokenizer 网络崩溃后重试，当前正常运行中\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.74, \\\"total_episodes\\\": 500, \\\"seed\\\": 42}}, \\\"eval_xvla_l2norm_k05_long_seed43\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.5 Long seed43 CV — 验证 L2 在 Long 上的表现跨 seed 一致性\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 43.8, \\\"total_successes\\\": 219, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [39.5, 48.2], \\\"per_task_sr\\\": {\\\"T0\\\": 26, \\\"T1\\\": 0, \\\"T2\\\": 52, \\\"T3\\\": 78, \\\"T4\\\": 38, \\\"T5\\\": 86, \\\"T6\\\": 56, \\\"T7\\\": 76, \\\"T8\\\": 24, \\\"T9\\\": 2}, \\\"elapsed_min\\\": 94, \\\"result_json\\\": \\\"eval_results/xvla_prune_k0.5_libero_10.json\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pi05_l2norm_k05_long_seed43\\\": {\\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 Long seed43: seed42=50.2%。双种子验证\\\", \\\"metrics\\\": {\\\"sr\\\": 0.54, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 270}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pi05_l2norm_k07_goal_seed43\\\": {\\\"hypothesis\\\": \\\"π0.5 L2norm k=0.7 Goal seed43: seed42=71.8%。双种子验证\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_pi05_random_k05_spatial_seed42_postfix_v2\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Spatial post-fix v2 — 前次崩溃重试\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_pi05_random_k09_spatial_seed42_postfix\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.9 Spatial post-fix — Table 2 数据验证\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_xvla_l2norm_k05_long_seed42\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.5 Long seed42 CV — 补充 seed42 数据点，seed43 RUNNING。验证 L2 在 Long 上的跨 seed 一致性。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 45, \\\"wilson_ci_95\\\": [40.7, 49.4], \\\"per_task_sr\\\": {\\\"task_0_alphabet_soup_tomato_sauce\\\": 26, \\\"task_1_cream_cheese_butter\\\": 0, \\\"task_2_stove_moka_pot\\\": 46, \\\"task_3_black_bowl_drawer\\\": 82, \\\"task_4_white_mug_yellow_mug\\\": 42, \\\"task_5_book_caddy\\\": 92, \\\"task_6_white_mug_chocolate_pudding\\\": 54, \\\"task_7_alphabet_soup_cream_cheese\\\": 70, \\\"task_8_both_moka_pots\\\": 34, \\\"task_9_mug_microwave\\\": 4}, \\\"episodes\\\": 500, \\\"elapsed_min\\\": 94.6}}, \\\"eval_xvla_random_k05_object_seed42\\\": {\\\"hypothesis\\\": \\\"X-VLA Random k=0.5 Object seed42 CV — 补充 seed42 数据点，seed43=71.0%。验证 Random 在 Object 上的跨 seed 一致性。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 70.6, \\\"num_episodes\\\": 500, \\\"wilson_ci_95\\\": [0.665, 0.744], \\\"per_task\\\": [0.96, 0.46, 0.98, 0.8, 1.0, 0.76, 0.02, 0.82, 0.26, 1.0], \\\"duration_min\\\": 76.0}}, \\\"eval_pi05_random_k09_object_seed43\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.9 Object seed43 — Reviewer 怀疑 s42=9.2% 是 seed artifact，审计显示是 RoPE 交互真实效应\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.096, \\\"total_successes\\\": 48, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 119.5, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup\\\": 0.16, \\\"T1_cream_cheese\\\": 0.16, \\\"T2_salad_dressing\\\": 0.1, \\\"T3_bbq_sauce\\\": 0.02, \\\"T4_ketchup\\\": 0.06, \\\"T5_tomato_sauce\\\": 0.14, \\\"T6_butter\\\": 0.14, \\\"T7_milk\\\": 0.02, \\\"T8_chocolate_pudding\\\": 0.08, \\\"T9_orange_juice\\\": 0.08}}}, \\\"eval_xvla_random_k05_spatial_seed42\\\": {\\\"hypothesis\\\": \\\"X-VLA Random k=0.5 Spatial seed42 CV — 补充 seed42 数据点，seed43=72.6%。验证 Random 在 Spatial 上的跨 seed 一致性。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 71.4, \\\"num_episodes\\\": 500, \\\"wilson_ci_95\\\": [0.673, 0.752], \\\"per_task\\\": [0.98, 0.26, 0.98, 0.9, 0.86, 0, 0.92, 0.66, 0.92, 0.66], \\\"duration_min\\\": 92.1, \\\"suite\\\": \\\"libero_spatial\\\"}}, \\\"eval_xvla_random_k05_long_seed42\\\": {\\\"hypothesis\\\": \\\"X-VLA Random k=0.5 Long seed42 CV — 补充 seed42 数据点，seed43=58.2%。验证 Random 在 Long 上的跨 seed 一致性。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 61.6, \\\"total_successes\\\": 308, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [57.3, 65.8], \\\"per_task_sr\\\": [68, 0, 64, 94, 70, 90, 84, 86, 46, 14], \\\"prune_method\\\": \\\"random\\\", \\\"keep_ratio\\\": 0.5, \\\"tokens_kept\\\": \\\"25/50\\\", \\\"suite\\\": \\\"libero_10\\\", \\\"seed\\\": 42, \\\"wall_time_min\\\": 82.6}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_xvla_l2norm_k05_object_seed42\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.5 Object seed42 CV — 补充 seed42 数据点，seed43=43.0%。验证 L2 在 Object 上的跨 seed 一致性。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.434, \\\"total_successes\\\": 217, \\\"total_episodes\\\": 500}}, \\\"eval_xvla_l2norm_k05_spatial_seed43\\\": {\\\"hypothesis\\\": \\\"X-VLA L2norm k=0.5 Spatial seed43 CV — 验证 L2 在 Spatial 上的表现是否跨 seed 一致\\\", \\\"metrics\\\": {\\\"success_rate\\\": 59, \\\"total_successes\\\": 295, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [54.6, 63.2], \\\"elapsed_min\\\": 79.1, \\\"seed\\\": 43, \\\"per_task_SR\\\": {\\\"T0_bowl_between_plate_ramekin\\\": 98, \\\"T1_bowl_next_ramekin\\\": 20, \\\"T2_bowl_from_table_center\\\": 92, \\\"T3_bowl_on_cookie_box\\\": 72, \\\"T4_bowl_in_top_drawer\\\": 76, \\\"T5_bowl_on_ramekin\\\": 0, \\\"T6_bowl_next_cookie_box\\\": 76, \\\"T7_bowl_on_stove\\\": 38, \\\"T8_bowl_next_plate\\\": 66, \\\"T9_bowl_on_wooden_cabinet\\\": 52}, \\\"vs_random_k05_spatial_seed43\\\": {\\\"random_sr\\\": 72.6, \\\"l2norm_sr\\\": 59, \\\"delta_pp\\\": -13.6, \\\"verdict\\\": \\\"L2norm worse than random on Spatial\\\"}, \\\"vs_l2norm_spatial_seed42\\\": {\\\"seed42_sr\\\": 58.8, \\\"seed43_sr\\\": 59, \\\"mean\\\": 58.9, \\\"diff_pp\\\": 0.2}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval_xvla_random_k05_goal_seed43_v4\\\": {\\\"hypothesis\\\": \\\"X-VLA Random k=0.5 Goal seed43 v4 — tmux 包装防 SIGHUP。v1/v2/v3 均因 SSH 断连崩溃。R6-C1 CV 最后缺口。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 68.6, \\\"total_successes\\\": 343, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [64.4, 72.5], \\\"elapsed_min\\\": 56.1, \\\"per_task_sr\\\": {\\\"T0_open_middle_drawer\\\": 100, \\\"T1_bowl_on_stove\\\": 94, \\\"T2_wine_on_cabinet\\\": 96, \\\"T3_open_drawer_bowl_inside\\\": 68, \\\"T4_bowl_on_cabinet\\\": 98, \\\"T5_push_plate\\\": 0, \\\"T6_cream_cheese_in_bowl\\\": 38, \\\"T7_turn_on_stove\\\": 96, \\\"T8_bowl_on_plate\\\": 96, \\\"T9_wine_on_rack\\\": 0}, \\\"cv_with_seed42\\\": {\\\"seed42\\\": 67.2, \\\"seed43\\\": 68.6, \\\"mean\\\": 67.9, \\\"diff_pp\\\": 1.4}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pi05_random_k05_spatial_seed42_postfix\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Spatial post-fix — Table 2 数据验证，CPU RNG 修复后的 baseline\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_pi05_attention_k05_long_seed42\\\": {\\\"hypothesis\\\": \\\"π0.5 attention k=0.5 Long (libero_10) seed42。Goal attention=70.2%(< Random)。Long baseline=91.6%，Random k=0.5 Long=46.8%。若 attention Long 也 ≤46.8%，attention 在 MLP connector 上全 suite 失效。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"result_sr\\\": 49.4, \\\"episodes\\\": 500}}, \\\"eval_openvla_baseline_long_seed42\\\": {\\\"hypothesis\\\": \\\"OpenVLA Long (libero_10) baseline。E2 Must-Fix R6-W5 要求 OpenVLA 覆盖 Goal/Long 套件。Long 套件任务更复杂（520 步），需要建立 OpenVLA 在此套件的 baseline SR，作为后续 pruning 对比基准。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.528, \\\"total_episodes\\\": 500, \\\"total_success\\\": 264, \\\"time_min\\\": 483.3, \\\"task_sr\\\": {\\\"task01_alphabet_soup_tomato_sauce_basket\\\": 0.62, \\\"task02_cream_cheese_butter_basket\\\": 0.7, \\\"task03_stove_moka_pot\\\": 0.5, \\\"task04_black_bowl_drawer\\\": 0.48, \\\"task05_white_mug_left_yellow_mug_right\\\": 0.4, \\\"task06_book_caddy\\\": 0.7, \\\"task07_white_mug_plate_chocolate_pudding\\\": 0.5, \\\"task08_alphabet_soup_cream_cheese_basket\\\": 0.6, \\\"task09_both_moka_pots_stove\\\": 0.24, \\\"task10_yellow_white_mug_microwave\\\": 0.54}}}, \\\"eval_pi05_random_k03_goal_seed42\\\": {\\\"hypothesis\\\": \\\"π0.5 Random k=0.3 Goal seed42。极端剪枝 baseline——Random Goal curve: k=0.95=83.8%, k=0.925=71.2%, k=0.9=62.2%, k=0.85=52.4%, k=0.7=78.2%, k=0.5 running。k=0.3 预测继续下降。与 L2norm k=0.3 Goal (cqa1 GPU 2 同时跑) 对比 importance margin。\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.51, \\\"total_successes\\\": 255, \\\"total_episodes\\\": 500, \\\"per_task\\\": {\\\"T0_open_drawer\\\": 0.82, \\\"T1_bowl_stove\\\": 0.22, \\\"T2_wine_cabinet\\\": 0.76, \\\"T3_drawer_bowl\\\": 0.34, \\\"T4_bowl_cabinet\\\": 0.64, \\\"T5_plate_stove\\\": 0.26, \\\"T6_cream_cheese_bowl\\\": 0.26, \\\"T7_turn_stove\\\": 1, \\\"T8_bowl_plate\\\": 0.54, \\\"T9_wine_rack\\\": 0.26}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pi05_attention_k05_object_seed42\\\": {\\\"hypothesis\\\": \\\"π0.5 attention k=0.5 Object seed42。已有 attention Object curve (k=0.95=98.4%, k=0.85=92.2%, k=0.7=0.6% cliff)。k=0.5 预测 ≤Random(70.6%)？若如此，attention 在 MLP connector 上跨 suite 无效。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_SR\\\": 0.378, \\\"total_successes\\\": 189, \\\"total_episodes\\\": 500, \\\"per_task\\\": {\\\"T0_alphabet_soup\\\": 0.94, \\\"T1_cream_cheese\\\": 0.26, \\\"T2_salad_dressing\\\": 0.32, \\\"T3_bbq_sauce\\\": 0.18, \\\"T4_ketchup\\\": 0.4, \\\"T5_tomato_sauce\\\": 0.12, \\\"T6_butter\\\": 0.38, \\\"T7_milk\\\": 0.6, \\\"T8_chocolate_pudding\\\": 0.36, \\\"T9_orange_juice\\\": 0.22}}}}, \\\"count\\\": 50, \\\"total\\\": 530, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3116}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_random_k09_spatial_seed42_postfix_v2\": {\"hypothesis\": \"π0.5 Spatial Random k=0.9 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，10% token 移除对 Spatial suite 的影响\", \"metrics\": {\"overall_sr\": 53.4, \"total_success\": 267, \"total_episodes\": 500, \"wall_time_min\": 171.9, \"per_task_sr\": {\"T0_between_plate\": 90, \"T1_next_to_ramekin\": 52, \"T2_table_center\": 80, \"T3_on_cookie_box\": 24, \"T4_top_drawer\": 18, \"T5_on_ramekin\": 40, \"T6_next_to_cookie\": 58, \"T7_on_stove\": 54, \"T8_next_to_plate\": 90, \"T9_wooden_cabinet\": 28}, \"baseline_spatial_k1\": 78, \"delta_vs_baseline\": -24.6}, \"conclusion\": \"negative\"}, \"eval_openvla_random_k05_goal_seed42\": {\"hypothesis\": \"OpenVLA Random k=0.5 Goal seed42 — 与 L2norm k=0.5 Goal 配对，验证 MLP connector 下 L2 vs Random 在 Goal suite 的差异，补全 Table 2 缺失数据点\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.522, \"total_success\": 261, \"total_episodes\": 500, \"wall_time_min\": 230.7, \"per_task_sr\": {\"open_middle_drawer\": 0.44, \"bowl_on_stove\": 0.64, \"wine_bottle_on_cabinet\": 0.64, \"open_drawer_put_bowl\": 0.1, \"bowl_on_cabinet\": 0.74, \"push_plate_front_stove\": 0.54, \"cream_cheese_in_bowl\": 0.48, \"turn_on_stove\": 0.94, \"bowl_on_plate\": 0.46, \"wine_bottle_on_rack\": 0.24}}}, \"eval_pi05_l2norm_k05_spatial_seed43_v2\": {\"hypothesis\": \"π0.5 L2norm k=0.5 Spatial seed43 v2 — 重跑确认 Spatial suite L2 norm pruning 50% keep ratio 结果一致性\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.554, \"total_success\": 277, \"total_episodes\": 500, \"wall_time_min\": 90.3, \"per_task_sr\": {\"T0_between_plate\": 0.76, \"T1_next_to_ramekin\": 0.84, \"T2_table_center\": 0.84, \"T3_on_cookie_box\": 0.14, \"T4_top_drawer\": 0.42, \"T5_on_ramekin\": 0.48, \"T6_next_to_cookie\": 0.28, \"T7_on_stove\": 0.74, \"T8_next_to_plate\": 0.68, \"T9_wooden_cabinet\": 0.36}}}, \"eval_pi05_random_k085_spatial_seed42_postfix_v2\": {\"hypothesis\": \"π0.5 Spatial Random k=0.85 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，测试 disruption peak 是否在 Spatial suite 复现\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 60.8, \"per_task_sr\": {\"T0\": 84, \"T1\": 68, \"T2\": 92, \"T3\": 16, \"T4\": 66, \"T5\": 28, \"T6\": 44, \"T7\": 76, \"T8\": 82, \"T9\": 52}, \"total_episodes\": 500, \"total_success\": 304, \"baseline_spatial_k1\": 78, \"delta_vs_baseline\": -17.2}}, \"eval_pi05_random_k03_goal_seed43_v2\": {\"metrics\": {\"overall_sr\": 53.6, \"T0_open_drawer\": 80, \"T1_bowl_stove\": 12, \"T2_wine_cabinet\": 76, \"T3_drawer_bowl\": 52, \"T4_bowl_cabinet\": 60, \"T5_push_plate\": 32, \"T6_cream_bowl\": 26, \"T7_turn_stove\": 100, \"T8_bowl_plate\": 70, \"T9_wine_rack\": 28, \"total_episodes\": 500, \"elapsed_min\": 127.4, \"cv_seed42\": 50.6, \"cv_seed43\": 53.6, \"cv_mean\": 52.1, \"cv_std\": 2.1}, \"conclusion\": \"success\", \"hypothesis\": \"Random token pruning at keep_ratio=0.3 on pi0.5 maintains comparable performance to full vision tokens on libero_goal (seed43 replication of seed42 result ~50.6%)\"}, \"eval_xvla_l2norm_k07_spatial_seed42_v2\": {\"hypothesis\": \"X-VLA L2norm k=0.7 Spatial seed42 v2 — 重跑确认。v1 SR=72% 但结果文件丢失，重新生成 Table 2 数据点。\", \"conclusion\": \"failed\"}, \"eval_xvla_l2norm_k03_goal_seed42_v2\": {\"hypothesis\": \"X-VLA L2norm k=0.3 Goal v2 (fix --mode l2_norm typo)。v1 用了 --mode l2norm（无下划线），参数错误。极端剪枝（70% token removed）下 L2norm 在 Goal 套件的表现。Object L2norm k=0.3=18.2%，Goal 上 L2norm 是否也远差于 random（random Goal k=0.3≈50.6%）。\", \"conclusion\": \"killed\"}, \"eval_pi05_random_k05_spatial_seed42_postfix_v3\": {\"hypothesis\": \"π0.5 Spatial Random k=0.5 post-fix — CPU RNG bug 修复后重跑 Spatial 基线，50% token 移除对 Spatial suite 的影响\", \"metrics\": {\"success_rate\": 71.8, \"total_episodes\": 500, \"total_successes\": 359, \"duration_min\": 139.2, \"per_task_sr\": {\"T0_between_plate_and_ramekin\": 88, \"T1_next_to_ramekin\": 88, \"T2_from_table_center\": 88, \"T3_on_cookie_box\": 48, \"T4_in_top_drawer\": 40, \"T5_on_ramekin\": 32, \"T6_next_to_cookie_box\": 92, \"T7_on_stove\": 86, \"T8_next_to_plate\": 84, \"T9_on_wooden_cabinet\": 72}, \"comparison\": {\"vs_attention_k05\": \"-0.8pp (72.6% vs 71.8%)\", \"vs_l2norm_k05\": \"+13.6pp (71.8% vs 58.2%)\", \"vs_xvla_random_k05\": \"+0.4pp (71.8% vs 71.4%)\"}}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k03_goal_seed42_v3\": {\"hypothesis\": \"X-VLA with aggressive L2-norm pruning (keep_ratio=0.3) on LIBERO Goal will show significant performance degradation compared to higher keep ratios, establishing the lower bound of viable compression for L2-norm strategy.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.376, \"total_episodes\": 500, \"total_successes\": 188, \"task_sr\": {\"task0_open_drawer\": 0.42, \"task1_bowl_on_stove\": 0.94, \"task2_wine_on_cabinet\": 0.16, \"task3_drawer_bowl_inside\": 0.24, \"task4_bowl_on_cabinet\": 0.98, \"task5_push_plate\": 0, \"task6_cream_in_bowl\": 0.02, \"task7_turn_on_stove\": 0.2, \"task8_bowl_on_plate\": 0.8, \"task9_wine_on_rack\": 0}}}, \"eval_pi05_random_k085_object_seed42_postfix\": {\"hypothesis\": \"π0.5 Random k=0.85 Object post-fix — CPU RNG fix 后 random pruning 在 object suite 的 disruption peak 数据点\", \"metrics\": {\"success_rate\": 5.6, \"total_episodes\": 500, \"total_successes\": 28, \"per_task_sr\": {\"T0_alphabet_soup\": 6, \"T1_cream_cheese\": 2, \"T2_salad_dressing\": 2, \"T3_bbq_sauce\": 2, \"T4_ketchup\": 12, \"T5_tomato_sauce\": 8, \"T6_butter\": 4, \"T7_milk\": 8, \"T8_chocolate_pudding\": 4, \"T9_orange_juice\": 8}}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k05_long_seed42_v3\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Long (libero_10) v3 — fix --mode l2_norm。Object L2norm k=0.5=43.7% 远差于 random，验证 Long 是否同样反常。\", \"conclusion\": \"killed\"}, \"eval_xvla_l2norm_k05_spatial_seed42_v2\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Spatial seed42 — L2 norm pruning vs random pruning (72.6%) 在 Spatial suite 的对比，补全 Table 2 数据\", \"conclusion\": \"killed\"}, \"eval_xvla_l2norm_k07_spatial_seed42\": {\"hypothesis\": \"X-VLA L2norm k=0.7 Spatial seed42 — 补全 Table 2 缺失数据点。Spatial 已有 L2norm k=0.3/0.5/0.85，唯缺 k=0.7。Object k=0.7 L2norm 已有数据，Spatial k=0.7 Random=? 待对比。\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.72, \"num_success\": 360, \"num_episodes\": 500, \"suite\": \"libero_spatial\", \"seed\": 42}}, \"eval_xvla_l2norm_k05_goal_seed42_v2\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Goal seed42 — L2 norm pruning vs random pruning (68.6%) 在 Goal suite 的对比，补全 Table 2 数据\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.59, \"total_successes\": 295, \"total_episodes\": 500, \"suite\": \"libero_goal\", \"model\": \"X-VLA\", \"prune_mode\": \"l2_norm\", \"keep_ratio\": 0.5, \"seed\": 42, \"per_task_sr\": {\"T0_open_middle_drawer\": 80, \"T1_put_bowl_on_stove\": 92, \"T2_put_wine_bottle_on_cabinet\": 98, \"T3_open_top_drawer_put_bowl\": 34, \"T4_put_bowl_on_cabinet\": 100, \"T5_push_plate_to_stove\": 0, \"T6_put_cream_cheese_in_bowl\": 24, \"T7_turn_on_stove\": 72, \"T8_put_bowl_on_plate\": 90, \"T9_put_wine_bottle_on_rack\": 0}}}, \"eval_pi05_l2norm_k05_spatial_seed43\": {\"hypothesis\": \"π0.5 L2norm k=0.5 Spatial seed43 — L2 norm pruning 在 50% keep ratio 下 Spatial suite 的评估，补全 Table 2 缺失数据点\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.582, \"total_successes\": 291, \"total_episodes\": 500}}, \"eval_pi05_random_k085_goal_seed43\": {\"hypothesis\": \"π0.5 Random k=0.85 Goal seed43 — seed 重复验证 random pruning 在 85% keep ratio 下 Goal suite 的 disruption peak 现象\", \"metrics\": {\"success_rate\": 0.522, \"total_successes\": 261, \"total_episodes\": 500, \"suite\": \"libero_goal\", \"model\": \"pi0.5\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 43, \"per_task_sr\": {\"T0_open_middle_drawer\": 80, \"T1_put_bowl_on_stove\": 4, \"T2_put_wine_bottle_on_cabinet\": 20, \"T3_open_top_drawer_put_bowl\": 46, \"T4_put_bowl_on_cabinet\": 58, \"T5_push_plate_to_stove\": 82, \"T6_put_cream_cheese_in_bowl\": 74, \"T7_turn_on_stove\": 90, \"T8_put_bowl_on_plate\": 58, \"T9_put_wine_bottle_on_rack\": 10}, \"note\": \"completed via direct tmux May24 10:24\"}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k095_goal_seed43\": {\"metrics\": {\"success_rate\": 0.834, \"total_successes\": 417, \"total_episodes\": 500, \"suite\": \"libero_goal\", \"model\": \"pi0.5\", \"prune_mode\": \"random\", \"keep_ratio\": 0.95, \"seed\": 43, \"per_task_sr\": {\"T0_open_middle_drawer\": 86, \"T1_put_bowl_on_stove\": 94, \"T2_put_wine_bottle_on_cabinet\": 74, \"T3_open_top_drawer_put_bowl\": 80, \"T4_put_bowl_on_cabinet\": 100, \"T5_push_plate_to_stove\": 96, \"T6_put_cream_cheese_in_bowl\": 90, \"T7_turn_on_stove\": 100, \"T8_put_bowl_on_plate\": 96, \"T9_put_wine_bottle_on_rack\": 18}, \"note\": \"re-run with HF_HUB_OFFLINE=1, result file May24 10:54\"}, \"conclusion\": \"success\", \"hypothesis\": \"π0.5 Random k=0.95 Goal seed43 — seed 重复验证 random pruning 在 95% keep ratio 下 Goal suite 的高性能保持\"}, \"eval_xvla_random_k05_spatial_seed43\": {\"hypothesis\": \"X-VLA Random k=0.5 Spatial seed43 — random pruning 在 50% keep ratio 下 Spatial suite 的 seed 重复验证，与 L2norm 对照\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.726, \"total_successes\": 363, \"total_episodes\": 500, \"wilson_ci_95\": [0.685, 0.763], \"per_task\": {\"T0_bowl_between_plate_ramekin\": 1, \"T1_bowl_next_ramekin\": 0.38, \"T2_bowl_table_center\": 0.88, \"T3_bowl_cookie_box\": 0.92, \"T4_bowl_top_drawer\": 0.88, \"T5_bowl_on_ramekin\": 0, \"T6_bowl_next_cookie_box\": 0.94, \"T7_bowl_stove\": 0.68, \"T8_bowl_next_plate\": 0.92, \"T9_bowl_wooden_cabinet\": 0.66}}}, \"eval_xvla_l2norm_k05_goal_seed43\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Goal seed43 — seed 重复验证 L2 norm pruning 在 50% keep ratio 下 Goal suite 的性能，与 seed42 配对\", \"metrics\": {\"overall_SR\": 0.602, \"total_successes\": 301, \"total_episodes\": 500, \"wilson_ci_95\": [0.5585, 0.644], \"seed\": 43, \"per_task_SR\": [0.84, 1, 0.98, 0.3, 1, 0, 0.22, 0.74, 0.9, 0.04]}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k05_goal_seed42_v2\": {\"hypothesis\": \"CPU RNG 修复后 π0.5 Random k=0.5 Goal。v1=74.4%(pre-fix, westd-41074)。修复后验证 Random k=0.5 的真实 Goal SR——k=0.7=78.2%, k=0.3=50.6%，k=0.5 应介于两者之间（如果单调递减）或异常（非单调）。\", \"metrics\": {\"overall_SR\": 73.6, \"total_successes\": 368, \"total_episodes\": 500, \"duration_min\": 109.7, \"per_task_SR\": {\"T0_open_drawer\": 78, \"T1_bowl_stove\": 44, \"T2_wine_cabinet\": 86, \"T3_bowl_drawer\": 76, \"T4_bowl_cabinet\": 92, \"T5_plate_stove\": 70, \"T6_cream_bowl\": 62, \"T7_turn_stove\": 100, \"T8_bowl_plate\": 86, \"T9_wine_rack\": 42}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_goal_seed43_v2\": {\"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k085_goal_seed43\": {\"hypothesis\": \"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 87, \"total_episodes\": 500, \"total_successes\": 435, \"elapsed_min\": 86.5, \"per_task\": {\"open the middle drawer of the cabinet\": 88, \"put the bowl on the stove\": 94, \"put the wine bottle on top of the cabinet\": 96, \"open the top drawer and put the bowl inside\": 80, \"put the bowl on top of the cabinet\": 96, \"push the plate to the front of the stove\": 94, \"put the cream cheese in the bowl\": 86, \"turn on the stove\": 96, \"put the bowl on the plate\": 94, \"put the wine bottle on the rack\": 46}}}, \"eval_pi05_random_k085_spatial_seed42_postfix\": {\"hypothesis\": \"π0.5 Random k=0.85 Spatial post-fix — 测试 D191 disruption peak（Goal k=0.85 Random=52.4%）是否跨 suite 复现。CPU RNG 修复后 random pruning 应产生可复现的结果。\", \"conclusion\": \"failed\"}, \"eval_xvla_random_k085_object_seed42\": {\"hypothesis\": \"X-VLA Random k=0.85 Object — 测试 BART connector（无 RoPE）在 Object suite 是否出现 disruption peak\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.65, \"total_episodes\": 500, \"total_successes\": 325, \"wilson_ci_95\": [0.6072, 0.6905], \"per_task_sr\": [0.98, 0.14, 1, 0.88, 0.36, 0.96, 0, 0.94, 0.24, 1], \"elapsed_seconds\": 3572.9}}, \"eval_xvla_random_k085_spatial_seed42\": {\"hypothesis\": \"X-VLA Random k=0.85 Spatial — 测试 BART connector（无 RoPE）是否出现 disruption peak（π0.5 Spatial k=0.85=56.6%）\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.682, \"total_episodes\": 500, \"wilson_ci_95\": [0.6399, 0.7213], \"per_task\": {\"0\": 1, \"1\": 0.06, \"2\": 0.98, \"3\": 0.98, \"4\": 0.82, \"5\": 0.06, \"6\": 1, \"7\": 0.04, \"8\": 0.92, \"9\": 0.96}}}, \"eval_xvla_random_k085_goal_seed42\": {\"hypothesis\": \"X-VLA Random k=0.85 Goal — 测试 BART connector（无 RoPE）是否出现 disruption peak（π0.5 Goal k=0.85=52.4%）\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.604, \"total_episodes\": 500, \"wilson_ci_95\": [0.5605, 0.6459], \"per_task\": {\"0\": 1, \"1\": 0.42, \"2\": 0.7, \"3\": 0.78, \"4\": 0.98, \"5\": 0, \"6\": 0.02, \"7\": 0.88, \"8\": 0.98, \"9\": 0.28}}}, \"eval_pi05_random_k095_object_seed42_v2\": {\"hypothesis\": \"π0.5 Random k=0.95 Object post-fix — fig_method_gap 阻塞项，替换可能受 CPU RNG bug 影响的 pre-fix 数据\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 74, \"num_episodes\": 500, \"duration_min\": 119.6, \"per_task\": [0.82, 0.86, 0.66, 0.68, 0.64, 0.74, 0.76, 0.56, 0.86, 0.82]}}, \"eval_pi05_random_k07_object_seed42_v4\": {\"hypothesis\": \"π0.5 Random k=0.7 Object seed42 — post-fix random pruning 基线，验证 30% token 移除对 Object suite 的影响\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 74, \"num_episodes\": 500, \"duration_min\": 120.7, \"per_task\": [0.86, 0.86, 0.7, 0.76, 0.72, 0.3, 0.88, 0.76, 0.88, 0.68]}}, \"eval_openvla_l2norm_k05_goal_seed42_v2\": {\"hypothesis\": \"OpenVLA L2norm k=0.5 Goal v2 — 修复 conda 激活问题后重试\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k09_object_seed42_v2\": {\"hypothesis\": \"π0.5 Random k=0.9 Object post-fix — pre-fix 值可能受 CPU RNG bug 影响，需确认 post-fix 基线\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.09, \"total_episodes\": 500, \"seed\": 42, \"per_task_sr\": {\"T0\": 14, \"T1\": 20, \"T2\": 4, \"T3\": 6, \"T4\": 2, \"T5\": 20, \"T6\": 6, \"T7\": 2, \"T8\": 6, \"T9\": 10}, \"postfix_confirmed\": true, \"postfix_sr\": 9, \"prefix_v2_sr\": 9, \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.90_libero_object_seed42.json\"}}, \"eval_pi05_random_k05_object_seed42_v2\": {\"hypothesis\": \"π0.5 Object Random k=0.5 post-fix 结果可能与 pre-fix (69.4%) 有显著差异，类似 Goal 的 26pp 偏移\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.682, \"total_episodes\": 500, \"seed\": 42}}, \"eval_pi05_random_k07_object_seed42_v3\": {\"hypothesis\": \"π0.5 Random k=0.7 Object post-fix v3 — v2 tokenizer 网络崩溃后重试，当前正常运行中\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.74, \"total_episodes\": 500, \"seed\": 42}}, \"eval_xvla_l2norm_k05_long_seed43\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Long seed43 CV — 验证 L2 在 Long 上的表现跨 seed 一致性\", \"metrics\": {\"overall_SR\": 43.8, \"total_successes\": 219, \"total_episodes\": 500, \"wilson_ci_95\": [39.5, 48.2], \"per_task_sr\": {\"T0\": 26, \"T1\": 0, \"T2\": 52, \"T3\": 78, \"T4\": 38, \"T5\": 86, \"T6\": 56, \"T7\": 76, \"T8\": 24, \"T9\": 2}, \"elapsed_min\": 94, \"result_json\": \"eval_results/xvla_prune_k0.5_libero_10.json\"}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k05_long_seed43\": {\"hypothesis\": \"π0.5 L2norm k=0.5 Long seed43: seed42=50.2%。双种子验证\", \"metrics\": {\"sr\": 0.54, \"total_episodes\": 500, \"total_successes\": 270}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_goal_seed43\": {\"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43: seed42=71.8%。双种子验证\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k05_spatial_seed42_postfix_v2\": {\"hypothesis\": \"π0.5 Random k=0.5 Spatial post-fix v2 — 前次崩溃重试\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k09_spatial_seed42_postfix\": {\"hypothesis\": \"π0.5 Random k=0.9 Spatial post-fix — Table 2 数据验证\", \"conclusion\": \"failed\"}, \"eval_xvla_l2norm_k05_long_seed42\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Long seed42 CV — 补充 seed42 数据点，seed43 RUNNING。验证 L2 在 Long 上的跨 seed 一致性。\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 45, \"wilson_ci_95\": [40.7, 49.4], \"per_task_sr\": {\"task_0_alphabet_soup_tomato_sauce\": 26, \"task_1_cream_cheese_butter\": 0, \"task_2_stove_moka_pot\": 46, \"task_3_black_bowl_drawer\": 82, \"task_4_white_mug_yellow_mug\": 42, \"task_5_book_caddy\": 92, \"task_6_white_mug_chocolate_pudding\": 54, \"task_7_alphabet_soup_cream_cheese\": 70, \"task_8_both_moka_pots\": 34, \"task_9_mug_microwave\": 4}, \"episodes\": 500, \"elapsed_min\": 94.6}}, \"eval_xvla_random_k05_object_seed42\": {\"hypothesis\": \"X-VLA Random k=0.5 Object seed42 CV — 补充 seed42 数据点，seed43=71.0%。验证 Random 在 Object 上的跨 seed 一致性。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 70.6, \"num_episodes\": 500, \"wilson_ci_95\": [0.665, 0.744], \"per_task\": [0.96, 0.46, 0.98, 0.8, 1.0, 0.76, 0.02, 0.82, 0.26, 1.0], \"duration_min\": 76.0}}, \"eval_pi05_random_k09_object_seed43\": {\"hypothesis\": \"π0.5 Random k=0.9 Object seed43 — Reviewer 怀疑 s42=9.2% 是 seed artifact，审计显示是 RoPE 交互真实效应\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.096, \"total_successes\": 48, \"total_episodes\": 500, \"elapsed_min\": 119.5, \"per_task_sr\": {\"T0_alphabet_soup\": 0.16, \"T1_cream_cheese\": 0.16, \"T2_salad_dressing\": 0.1, \"T3_bbq_sauce\": 0.02, \"T4_ketchup\": 0.06, \"T5_tomato_sauce\": 0.14, \"T6_butter\": 0.14, \"T7_milk\": 0.02, \"T8_chocolate_pudding\": 0.08, \"T9_orange_juice\": 0.08}}}, \"eval_xvla_random_k05_spatial_seed42\": {\"hypothesis\": \"X-VLA Random k=0.5 Spatial seed42 CV — 补充 seed42 数据点，seed43=72.6%。验证 Random 在 Spatial 上的跨 seed 一致性。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 71.4, \"num_episodes\": 500, \"wilson_ci_95\": [0.673, 0.752], \"per_task\": [0.98, 0.26, 0.98, 0.9, 0.86, 0, 0.92, 0.66, 0.92, 0.66], \"duration_min\": 92.1, \"suite\": \"libero_spatial\"}}, \"eval_xvla_random_k05_long_seed42\": {\"hypothesis\": \"X-VLA Random k=0.5 Long seed42 CV — 补充 seed42 数据点，seed43=58.2%。验证 Random 在 Long 上的跨 seed 一致性。\", \"metrics\": {\"success_rate\": 61.6, \"total_successes\": 308, \"total_episodes\": 500, \"wilson_ci_95\": [57.3, 65.8], \"per_task_sr\": [68, 0, 64, 94, 70, 90, 84, 86, 46, 14], \"prune_method\": \"random\", \"keep_ratio\": 0.5, \"tokens_kept\": \"25/50\", \"suite\": \"libero_10\", \"seed\": 42, \"wall_time_min\": 82.6}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k05_object_seed42\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Object seed42 CV — 补充 seed42 数据点，seed43=43.0%。验证 L2 在 Object 上的跨 seed 一致性。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.434, \"total_successes\": 217, \"total_episodes\": 500}}, \"eval_xvla_l2norm_k05_spatial_seed43\": {\"hypothesis\": \"X-VLA L2norm k=0.5 Spatial seed43 CV — 验证 L2 在 Spatial 上的表现是否跨 seed 一致\", \"metrics\": {\"success_rate\": 59, \"total_successes\": 295, \"total_episodes\": 500, \"wilson_ci_95\": [54.6, 63.2], \"elapsed_min\": 79.1, \"seed\": 43, \"per_task_SR\": {\"T0_bowl_between_plate_ramekin\": 98, \"T1_bowl_next_ramekin\": 20, \"T2_bowl_from_table_center\": 92, \"T3_bowl_on_cookie_box\": 72, \"T4_bowl_in_top_drawer\": 76, \"T5_bowl_on_ramekin\": 0, \"T6_bowl_next_cookie_box\": 76, \"T7_bowl_on_stove\": 38, \"T8_bowl_next_plate\": 66, \"T9_bowl_on_wooden_cabinet\": 52}, \"vs_random_k05_spatial_seed43\": {\"random_sr\": 72.6, \"l2norm_sr\": 59, \"delta_pp\": -13.6, \"verdict\": \"L2norm worse than random on Spatial\"}, \"vs_l2norm_spatial_seed42\": {\"seed42_sr\": 58.8, \"seed43_sr\": 59, \"mean\": 58.9, \"diff_pp\": 0.2}}, \"conclusion\": \"negative\"}, \"eval_xvla_random_k05_goal_seed43_v4\": {\"hypothesis\": \"X-VLA Random k=0.5 Goal seed43 v4 — tmux 包装防 SIGHUP。v1/v2/v3 均因 SSH 断连崩溃。R6-C1 CV 最后缺口。\", \"metrics\": {\"success_rate\": 68.6, \"total_successes\": 343, \"total_episodes\": 500, \"wilson_ci_95\": [64.4, 72.5], \"elapsed_min\": 56.1, \"per_task_sr\": {\"T0_open_middle_drawer\": 100, \"T1_bowl_on_stove\": 94, \"T2_wine_on_cabinet\": 96, \"T3_open_drawer_bowl_inside\": 68, \"T4_bowl_on_cabinet\": 98, \"T5_push_plate\": 0, \"T6_cream_cheese_in_bowl\": 38, \"T7_turn_on_stove\": 96, \"T8_bowl_on_plate\": 96, \"T9_wine_on_rack\": 0}, \"cv_with_seed42\": {\"seed42\": 67.2, \"seed43\": 68.6, \"mean\": 67.9, \"diff_pp\": 1.4}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k05_spatial_seed42_postfix\": {\"hypothesis\": \"π0.5 Random k=0.5 Spatial post-fix — Table 2 数据验证，CPU RNG 修复后的 baseline\", \"conclusion\": \"failed\"}, \"eval_pi05_attention_k05_long_seed42\": {\"hypothesis\": \"π0.5 attention k=0.5 Long (libero_10) seed42。Goal attention=70.2%(< Random)。Long baseline=91.6%，Random k=0.5 Long=46.8%。若 attention Long 也 ≤46.8%，attention 在 MLP connector 上全 suite 失效。\", \"conclusion\": \"negative\", \"metrics\": {\"result_sr\": 49.4, \"episodes\": 500}}, \"eval_openvla_baseline_long_seed42\": {\"hypothesis\": \"OpenVLA Long (libero_10) baseline。E2 Must-Fix R6-W5 要求 OpenVLA 覆盖 Goal/Long 套件。Long 套件任务更复杂（520 步），需要建立 OpenVLA 在此套件的 baseline SR，作为后续 pruning 对比基准。\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.528, \"total_episodes\": 500, \"total_success\": 264, \"time_min\": 483.3, \"task_sr\": {\"task01_alphabet_soup_tomato_sauce_basket\": 0.62, \"task02_cream_cheese_butter_basket\": 0.7, \"task03_stove_moka_pot\": 0.5, \"task04_black_bowl_drawer\": 0.48, \"task05_white_mug_left_yellow_mug_right\": 0.4, \"task06_book_caddy\": 0.7, \"task07_white_mug_plate_chocolate_pudding\": 0.5, \"task08_alphabet_soup_cream_cheese_basket\": 0.6, \"task09_both_moka_pots_stove\": 0.24, \"task10_yellow_white_mug_microwave\": 0.54}}}, \"eval_pi05_random_k03_goal_seed42\": {\"hypothesis\": \"π0.5 Random k=0.3 Goal seed42。极端剪枝 baseline——Random Goal curve: k=0.95=83.8%, k=0.925=71.2%, k=0.9=62.2%, k=0.85=52.4%, k=0.7=78.2%, k=0.5 running。k=0.3 预测继续下降。与 L2norm k=0.3 Goal (cqa1 GPU 2 同时跑) 对比 importance margin。\", \"metrics\": {\"overall_SR\": 0.51, \"total_successes\": 255, \"total_episodes\": 500, \"per_task\": {\"T0_open_drawer\": 0.82, \"T1_bowl_stove\": 0.22, \"T2_wine_cabinet\": 0.76, \"T3_drawer_bowl\": 0.34, \"T4_bowl_cabinet\": 0.64, \"T5_plate_stove\": 0.26, \"T6_cream_cheese_bowl\": 0.26, \"T7_turn_stove\": 1, \"T8_bowl_plate\": 0.54, \"T9_wine_rack\": 0.26}}, \"conclusion\": \"success\"}, \"eval_pi05_attention_k05_object_seed42\": {\"hypothesis\": \"π0.5 attention k=0.5 Object seed42。已有 attention Object curve (k=0.95=98.4%, k=0.85=92.2%, k=0.7=0.6% cliff)。k=0.5 预测 ≤Random(70.6%)？若如此，attention 在 MLP connector 上跨 suite 无效。\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.378, \"total_successes\": 189, \"total_episodes\": 500, \"per_task\": {\"T0_alphabet_soup\": 0.94, \"T1_cream_cheese\": 0.26, \"T2_salad_dressing\": 0.32, \"T3_bbq_sauce\": 0.18, \"T4_ketchup\": 0.4, \"T5_tomato_sauce\": 0.12, \"T6_butter\": 0.38, \"T7_milk\": 0.6, \"T8_chocolate_pudding\": 0.36, \"T9_orange_juice\": 0.22}}}}, \"count\": 50, \"total\": 530, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3116}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SMmx8foWsV7U6q1fJPjEAe`</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "head -30 ~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "b1ccc054-bc80-4592-b6a1-c2c396ab77b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9NzqqJRX49RCeeCnT7DQ6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3879,
+      "cache_read_input_tokens": 26128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3879
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T05:24:23.628Z_
+
+<details><summary>↩ Tool result · `toolu_01SMmx8foWsV7U6q1fJPjEAe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 11:34:42 [INFO] Suite: libero_10 | Device: cuda:0 | keep_ratio=0.85 | Episodes/task: 50 | Max steps: 900\\n2026-05-24 11:34:46 [INFO] Loading X-VLA from /root/autodl-tmp/X-VLA-Libero\\nFlorence2ForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n`XVLAProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\n2026-05-24 11:34:56 [INFO] Model loaded: 879.5M params, dtype=torch.float32\\n2026-05-24 11:34:56 [INFO] Model loaded in 14.1s\\n2026-05-24 11:34:57 [INFO] Vision tokens: 50 total, keeping 42 (85%)\\n2026-05-24 11:34:57 [INFO] Vision pruning installed: keep_ratio=0.85, mode=random\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-24 11:34:57 [WARNING] No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-24 11:34:57 [WARNING] It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 11:34:57 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 11:34:57 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 11:34:57 [INFO] --- Task 0: put both the alphabet soup and the tomato sauce in the basket ---\\n`use_return_dict` is deprecated! Use `return_dict` instead!\\n/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:464: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.\\n  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)\\n2026-05-24 11:35:06 [INFO]   Ep 1/50 | SUCCESS | steps=301\\n2026-05-24 11:35:23 [INFO]   Ep 2/50 | FAIL | steps=900\\n2026-05-24 11:35:41 [INFO]   Ep 3/50 | FAIL | steps=900\\n2026-05-24 11:35:59 [INFO]   Ep 4/50 | FAIL | steps=900\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "e740bf0e-f63c-43c0-8fb2-77d7bc698784",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 11:34:42 [INFO] Suite: libero_10 | Device: cuda:0 | keep_ratio=0.85 | Episodes/task: 50 | Max steps: 900\\\\n2026-05-24 11:34:46 [INFO] Loading X-VLA from /root/autodl-tmp/X-VLA-Libero\\\\nFlorence2ForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\\\n`XVLAProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\\\n2026-05-24 11:34:56 [INFO] Model loaded: 879.5M params, dtype=torch.float32\\\\n2026-05-24 11:34:56 [INFO] Model loaded in 14.1s\\\\n2026-05-24 11:34:57 [INFO] Vision tokens: 50 total, keeping 42 (85%)\\\\n2026-05-24 11:34:57 [INFO] Vision pruning installed: keep_ratio=0.85, mode=random\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-24 11:34:57 [WARNING] No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-24 11:34:57 [WARNING] It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-24 11:34:57 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-24 11:34:57 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-24 11:34:57 [INFO] --- Task 0: put both the alphabet soup and the tomato sauce in the basket ---\\\\n`use_return_dict` is deprecated! Use `return_dict` instead!\\\\n/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:464: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.\\\\n  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)\\\\n2026-05-24 11:35:06 [INFO]   Ep 1/50 | SUCCESS | steps=301\\\\n2026-05-24 11:35:23 [INFO]   Ep 2/50 | FAIL | steps=900\\\\n2026-05-24 11:35:41 [INFO]   Ep 3/50 | FAIL | steps=900\\\\n2026-05-24 11:35:59 [INFO]   Ep 4/50 | FAIL | steps=900\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 11:34:42 [INFO] Suite: libero_10 | Device: cuda:0 | keep_ratio=0.85 | Episodes/task: 50 | Max steps: 900\\n2026-05-24 11:34:46 [INFO] Loading X-VLA from /root/autodl-tmp/X-VLA-Libero\\nFlorence2ForConditionalGeneration has generative capabilities, as `prepare_inputs_for_generation` is explicitly defined. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.\\n  - If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes\\n  - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).\\n  - If you are not the owner of the model architecture class, please contact the model code owner to update it.\\n`XVLAProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\n2026-05-24 11:34:56 [INFO] Model loaded: 879.5M params, dtype=torch.float32\\n2026-05-24 11:34:56 [INFO] Model loaded in 14.1s\\n2026-05-24 11:34:57 [INFO] Vision tokens: 50 total, keeping 42 (85%)\\n2026-05-24 11:34:57 [INFO] Vision pruning installed: keep_ratio=0.85, mode=random\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-24 11:34:57 [WARNING] No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-24 11:34:57 [WARNING] It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 11:34:57 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 11:34:57 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 11:34:57 [INFO] --- Task 0: put both the alphabet soup and the tomato sauce in the basket ---\\n`use_return_dict` is deprecated! Use `return_dict` instead!\\n/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:464: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.\\n  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)\\n2026-05-24 11:35:06 [INFO]   Ep 1/50 | SUCCESS | steps=301\\n2026-05-24 11:35:23 [INFO]   Ep 2/50 | FAIL | steps=900\\n2026-05-24 11:35:41 [INFO]   Ep 3/50 | FAIL | steps=900\\n2026-05-24 11:35:59 [INFO]   Ep 4/50 | FAIL | steps=900\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me compile the analysis:
+
+**Experiment Results:**
+- Overall SR: 35.0% (175/500)
+- 95% Wilson CI: [30.9%, 39.3%]
+- Elapsed: 106.7 min
+
+**Per-task SR:**
+| Task | SR | Description |
+|------|-----|-------------|
+| T0 | 54% (27/50) | put both the alphabet soup and the tomato sauce in the basket |
+| T1 | 10% (5/50) | put both the cream cheese box and the butter in the basket |
+
+
+| T2 | 16% (8/50) | turn on the stove and put the moka pot on it |
+| T3 | 88% (44/50) | put the black bowl in the bottom drawer of the cabinet and close it |
+| T4 | 2% (1/50) | put the white mug on the left plate and put the yellow and white mug on the right plate |
+| T5 | 98% (49/50) | pick up the book and place it in the back compartment of the caddy |
+| T6 | 0% (0/50) | put the white mug on the plate and put the chocolate pudding to |
+
+The results show a wide range of performance across tasks, from perfect execution on T5 to complete failure on T6, with most tasks clustering in the lower to mid-range success rates.
+
+Looking at the performance comparison across different evaluation suites at k=0.85, the Long suite is significantly underperforming at 35.0% compared to Object at 65.0%, Spatial at 68.2%, and Goal at 60.4%. When I check the historical performance of the Long suite at different k values, I see it achieved 61.6% at k=0.5, suggesting the model's performance degrades substantially as the k value increases. The Long suite shows the most dramatic degradation at k=0.85, which is striking because it contains the most complex multi-step tasks. What's particularly puzzling is that this disruption peak appears in X-VLA, which uses a BART connector rather than RoPE, so the effect isn't tied to the RoPE disruption hypothesis—it's happening across all evaluation suites but hits Long the hardest. Looking at the Long suite results, the 35.0% success rate is dramatically lower than the other suites, confirming that task complexity significantly amplifies the disruption effect at k=0.85. The sharp drop from 61.6% at k=0.5 to 35.0% at k=0.85 demonstrates strong non-monotonic behavior, which validates the core finding. Now I need to register this experiment and document the results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "83e1e8f7-c477-4f7b-8c91-1d0ffecb4dcd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6NrqbfQtSCSMhEJp43TUF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13543,
+      "cache_read_input_tokens": 30007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+关键发现：**Long SR = 35.0%**，远低于其他 suite (Object 65.0%, Spatial 68.2%, Goal 60.4%)，且低于 k=0.5 Long (61.6%)，呈现强非单调效应。
+
+更新 registry 并写报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "f70dabca-90eb-404d-b945-1f3fc070765d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6NrqbfQtSCSMhEJp43TUF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13543,
+      "cache_read_input_tokens": 30007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FGo7mhUKm6YXyhcqHcRdci`</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k085_long_seed42",
+  "field": "metrics",
+  "value": {
+    "overall_sr": 35,
+    "total_success": 175,
+    "total_episodes": 500,
+    "wilson_ci_95": [
+      30.9,
+      39.3
+    ],
+    "elapsed_min": 106.7,
+    "per_task_sr": {
+      "T0_alphabet_soup_tomato_sauce_basket": 54,
+      "T1_cream_cheese_butter_basket": 10,
+      "T2_stove_moka_pot": 16,
+      "T3_black_bowl_drawer": 88,
+      "T4_white_mug_left_yellow_mug_right": 2,
+      "T5_book_caddy": 98,
+      "T6_white_mug_chocolate_pudding": 0,
+      "T7_alphabet_soup_cream_cheese_basket": 48,
+      "T8_both_moka_pots_stove": 16,
+      "T9_mug_microwave": 18
+    },
+    "suite": "libero_10",
+    "model": "X-VLA",
+    "prune_mode": "random",
+    "keep_ratio": 0.85,
+    "seed": 42,
+    "cross_suite_k085": {
+      "object": 65,
+      "spatial": 68.2,
+      "goal": 60.4,
+      "long": 35
+    },
+    "vs_k05_long": {
+      "k05_sr": 61.6,
+      "k085_sr": 35,
+      "delta_pp": -26.6,
+      "non_monotonic": true
+    }
+  },
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "4e7958a6-ff10-45b4-85df-24c45ae23503",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6NrqbfQtSCSMhEJp43TUF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13543,
+      "cache_read_input_tokens": 30007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-24T05:25:25.482Z_
+
+<details><summary>↩ Tool result · `toolu_01FGo7mhUKm6YXyhcqHcRdci`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:34:42.927Z\", \"updated_at\": \"2026-05-24T05:25:24.517Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"316561\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"submitted_at\": \"2026-05-24T03:34:41.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO libero_10 (Long)\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 42}, \"hypothesis\": \"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\", \"reproduce\": {\"finished_at\": \"2026-05-24T05:22:15.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T05:22:28.283496+00:00\"}]}, \"metrics\": {\"overall_sr\": 35, \"total_success\": 175, \"total_episodes\": 500, \"wilson_ci_95\": [30.9, 39.3], \"elapsed_min\": 106.7, \"per_task_sr\": {\"T0_alphabet_soup_tomato_sauce_basket\": 54, \"T1_cream_cheese_butter_basket\": 10, \"T2_stove_moka_pot\": 16, \"T3_black_bowl_drawer\": 88, \"T4_white_mug_left_yellow_mug_right\": 2, \"T5_book_caddy\": 98, \"T6_white_mug_chocolate_pudding\": 0, \"T7_alphabet_soup_cream_cheese_basket\": 48, \"T8_both_moka_pots_stove\": 16, \"T9_mug_microwave\": 18}, \"suite\": \"libero_10\", \"model\": \"X-VLA\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42, \"cross_suite_k085\": {\"object\": 65, \"spatial\": 68.2, \"goal\": 60.4, \"long\": 35}, \"vs_k05_long\": {\"k05_sr\": 61.6, \"k085_sr\": 35, \"delta_pp\": -26.6, \"non_monotonic\": true}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4731}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "c691bb23-d224-408b-87ed-53a5d9ab6fc1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_xvla_random_k085_long_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T03:34:42.927Z\\\", \\\"updated_at\\\": \\\"2026-05-24T05:25:24.517Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316561\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T03:34:41.532Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO libero_10 (Long)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"X-VLA-Libero\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T05:22:15.912Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T05:22:28.283496+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 35, \\\"total_success\\\": 175, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [30.9, 39.3], \\\"elapsed_min\\\": 106.7, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup_tomato_sauce_basket\\\": 54, \\\"T1_cream_cheese_butter_basket\\\": 10, \\\"T2_stove_moka_pot\\\": 16, \\\"T3_black_bowl_drawer\\\": 88, \\\"T4_white_mug_left_yellow_mug_right\\\": 2, \\\"T5_book_caddy\\\": 98, \\\"T6_white_mug_chocolate_pudding\\\": 0, \\\"T7_alphabet_soup_cream_cheese_basket\\\": 48, \\\"T8_both_moka_pots_stove\\\": 16, \\\"T9_mug_microwave\\\": 18}, \\\"suite\\\": \\\"libero_10\\\", \\\"model\\\": \\\"X-VLA\\\", \\\"prune_mode\\\": \\\"random\\\", \\\"keep_ratio\\\": 0.85, \\\"seed\\\": 42, \\\"cross_suite_k085\\\": {\\\"object\\\": 65, \\\"spatial\\\": 68.2, \\\"goal\\\": 60.4, \\\"long\\\": 35}, \\\"vs_k05_long\\\": {\\\"k05_sr\\\": 61.6, \\\"k085_sr\\\": 35, \\\"delta_pp\\\": -26.6, \\\"non_monotonic\\\": true}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4731}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:34:42.927Z\", \"updated_at\": \"2026-05-24T05:25:24.517Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"316561\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"submitted_at\": \"2026-05-24T03:34:41.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO libero_10 (Long)\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 42}, \"hypothesis\": \"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\", \"reproduce\": {\"finished_at\": \"2026-05-24T05:22:15.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T05:22:28.283496+00:00\"}]}, \"metrics\": {\"overall_sr\": 35, \"total_success\": 175, \"total_episodes\": 500, \"wilson_ci_95\": [30.9, 39.3], \"elapsed_min\": 106.7, \"per_task_sr\": {\"T0_alphabet_soup_tomato_sauce_basket\": 54, \"T1_cream_cheese_butter_basket\": 10, \"T2_stove_moka_pot\": 16, \"T3_black_bowl_drawer\": 88, \"T4_white_mug_left_yellow_mug_right\": 2, \"T5_book_caddy\": 98, \"T6_white_mug_chocolate_pudding\": 0, \"T7_alphabet_soup_cream_cheese_basket\": 48, \"T8_both_moka_pots_stove\": 16, \"T9_mug_microwave\": 18}, \"suite\": \"libero_10\", \"model\": \"X-VLA\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42, \"cross_suite_k085\": {\"object\": 65, \"spatial\": 68.2, \"goal\": 60.4, \"long\": 35}, \"vs_k05_long\": {\"k05_sr\": 61.6, \"k085_sr\": 35, \"delta_pp\": -26.6, \"non_monotonic\": true}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4731}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SmzRee8mKsSJHBw1mJcVpQ`</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k085_long_seed42",
+  "field": "log_path",
+  "value": "~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "0c8baa92-7eb6-4d23-8c76-15c35247fae7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6NrqbfQtSCSMhEJp43TUF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13543,
+      "cache_read_input_tokens": 30007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01E9rASsLtqqZhhbgcH4HMkH`</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k085_long_seed42",
+  "field": "checkpoint_path",
+  "value": "N/A",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "793443af-726e-4b9a-8cc3-3c32d896b0ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6NrqbfQtSCSMhEJp43TUF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13543,
+      "cache_read_input_tokens": 30007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T05:25:28.166Z_
+
+<details><summary>↩ Tool result · `toolu_01SmzRee8mKsSJHBw1mJcVpQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:34:42.927Z\", \"updated_at\": \"2026-05-24T05:25:27.151Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"316561\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"submitted_at\": \"2026-05-24T03:34:41.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO libero_10 (Long)\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 42}, \"hypothesis\": \"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\", \"reproduce\": {\"finished_at\": \"2026-05-24T05:22:15.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T05:22:28.283496+00:00\"}]}, \"metrics\": {\"overall_sr\": 35, \"total_success\": 175, \"total_episodes\": 500, \"wilson_ci_95\": [30.9, 39.3], \"elapsed_min\": 106.7, \"per_task_sr\": {\"T0_alphabet_soup_tomato_sauce_basket\": 54, \"T1_cream_cheese_butter_basket\": 10, \"T2_stove_moka_pot\": 16, \"T3_black_bowl_drawer\": 88, \"T4_white_mug_left_yellow_mug_right\": 2, \"T5_book_caddy\": 98, \"T6_white_mug_chocolate_pudding\": 0, \"T7_alphabet_soup_cream_cheese_basket\": 48, \"T8_both_moka_pots_stove\": 16, \"T9_mug_microwave\": 18}, \"suite\": \"libero_10\", \"model\": \"X-VLA\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42, \"cross_suite_k085\": {\"object\": 65, \"spatial\": 68.2, \"goal\": 60.4, \"long\": 35}, \"vs_k05_long\": {\"k05_sr\": 61.6, \"k085_sr\": 35, \"delta_pp\": -26.6, \"non_monotonic\": true}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4224}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "b9d2eecb-ca76-408a-9e65-d0b58d6f890e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_xvla_random_k085_long_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T03:34:42.927Z\\\", \\\"updated_at\\\": \\\"2026-05-24T05:25:27.151Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316561\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T03:34:41.532Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO libero_10 (Long)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"X-VLA-Libero\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T05:22:15.912Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T05:22:28.283496+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 35, \\\"total_success\\\": 175, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [30.9, 39.3], \\\"elapsed_min\\\": 106.7, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup_tomato_sauce_basket\\\": 54, \\\"T1_cream_cheese_butter_basket\\\": 10, \\\"T2_stove_moka_pot\\\": 16, \\\"T3_black_bowl_drawer\\\": 88, \\\"T4_white_mug_left_yellow_mug_right\\\": 2, \\\"T5_book_caddy\\\": 98, \\\"T6_white_mug_chocolate_pudding\\\": 0, \\\"T7_alphabet_soup_cream_cheese_basket\\\": 48, \\\"T8_both_moka_pots_stove\\\": 16, \\\"T9_mug_microwave\\\": 18}, \\\"suite\\\": \\\"libero_10\\\", \\\"model\\\": \\\"X-VLA\\\", \\\"prune_mode\\\": \\\"random\\\", \\\"keep_ratio\\\": 0.85, \\\"seed\\\": 42, \\\"cross_suite_k085\\\": {\\\"object\\\": 65, \\\"spatial\\\": 68.2, \\\"goal\\\": 60.4, \\\"long\\\": 35}, \\\"vs_k05_long\\\": {\\\"k05_sr\\\": 61.6, \\\"k085_sr\\\": 35, \\\"delta_pp\\\": -26.6, \\\"non_monotonic\\\": true}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4224}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:34:42.927Z\", \"updated_at\": \"2026-05-24T05:25:27.151Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"316561\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"submitted_at\": \"2026-05-24T03:34:41.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO libero_10 (Long)\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 42}, \"hypothesis\": \"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\", \"reproduce\": {\"finished_at\": \"2026-05-24T05:22:15.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T05:22:28.283496+00:00\"}]}, \"metrics\": {\"overall_sr\": 35, \"total_success\": 175, \"total_episodes\": 500, \"wilson_ci_95\": [30.9, 39.3], \"elapsed_min\": 106.7, \"per_task_sr\": {\"T0_alphabet_soup_tomato_sauce_basket\": 54, \"T1_cream_cheese_butter_basket\": 10, \"T2_stove_moka_pot\": 16, \"T3_black_bowl_drawer\": 88, \"T4_white_mug_left_yellow_mug_right\": 2, \"T5_book_caddy\": 98, \"T6_white_mug_chocolate_pudding\": 0, \"T7_alphabet_soup_cream_cheese_basket\": 48, \"T8_both_moka_pots_stove\": 16, \"T9_mug_microwave\": 18}, \"suite\": \"libero_10\", \"model\": \"X-VLA\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42, \"cross_suite_k085\": {\"object\": 65, \"spatial\": 68.2, \"goal\": 60.4, \"long\": 35}, \"vs_k05_long\": {\"k05_sr\": 61.6, \"k085_sr\": 35, \"delta_pp\": -26.6, \"non_monotonic\": true}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4224}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T05:25:30.511Z_
+
+<details><summary>↩ Tool result · `toolu_01E9rASsLtqqZhhbgcH4HMkH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:34:42.927Z\", \"updated_at\": \"2026-05-24T05:25:29.548Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"316561\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"submitted_at\": \"2026-05-24T03:34:41.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO libero_10 (Long)\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 42}, \"hypothesis\": \"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\", \"reproduce\": {\"finished_at\": \"2026-05-24T05:22:15.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T05:22:28.283496+00:00\"}]}, \"metrics\": {\"overall_sr\": 35, \"total_success\": 175, \"total_episodes\": 500, \"wilson_ci_95\": [30.9, 39.3], \"elapsed_min\": 106.7, \"per_task_sr\": {\"T0_alphabet_soup_tomato_sauce_basket\": 54, \"T1_cream_cheese_butter_basket\": 10, \"T2_stove_moka_pot\": 16, \"T3_black_bowl_drawer\": 88, \"T4_white_mug_left_yellow_mug_right\": 2, \"T5_book_caddy\": 98, \"T6_white_mug_chocolate_pudding\": 0, \"T7_alphabet_soup_cream_cheese_basket\": 48, \"T8_both_moka_pots_stove\": 16, \"T9_mug_microwave\": 18}, \"suite\": \"libero_10\", \"model\": \"X-VLA\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42, \"cross_suite_k085\": {\"object\": 65, \"spatial\": 68.2, \"goal\": 60.4, \"long\": 35}, \"vs_k05_long\": {\"k05_sr\": 61.6, \"k085_sr\": 35, \"delta_pp\": -26.6, \"non_monotonic\": true}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3292}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "bf842c6a-d685-456e-a2e3-87073ad8bd25",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_xvla_random_k085_long_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T03:34:42.927Z\\\", \\\"updated_at\\\": \\\"2026-05-24T05:25:29.548Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316561\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T03:34:41.532Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO libero_10 (Long)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"X-VLA-Libero\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T05:22:15.912Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T05:22:28.283496+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 35, \\\"total_success\\\": 175, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [30.9, 39.3], \\\"elapsed_min\\\": 106.7, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup_tomato_sauce_basket\\\": 54, \\\"T1_cream_cheese_butter_basket\\\": 10, \\\"T2_stove_moka_pot\\\": 16, \\\"T3_black_bowl_drawer\\\": 88, \\\"T4_white_mug_left_yellow_mug_right\\\": 2, \\\"T5_book_caddy\\\": 98, \\\"T6_white_mug_chocolate_pudding\\\": 0, \\\"T7_alphabet_soup_cream_cheese_basket\\\": 48, \\\"T8_both_moka_pots_stove\\\": 16, \\\"T9_mug_microwave\\\": 18}, \\\"suite\\\": \\\"libero_10\\\", \\\"model\\\": \\\"X-VLA\\\", \\\"prune_mode\\\": \\\"random\\\", \\\"keep_ratio\\\": 0.85, \\\"seed\\\": 42, \\\"cross_suite_k085\\\": {\\\"object\\\": 65, \\\"spatial\\\": 68.2, \\\"goal\\\": 60.4, \\\"long\\\": 35}, \\\"vs_k05_long\\\": {\\\"k05_sr\\\": 61.6, \\\"k085_sr\\\": 35, \\\"delta_pp\\\": -26.6, \\\"non_monotonic\\\": true}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3292}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:34:42.927Z\", \"updated_at\": \"2026-05-24T05:25:29.548Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"316561\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"submitted_at\": \"2026-05-24T03:34:41.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO libero_10 (Long)\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 42}, \"hypothesis\": \"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\", \"reproduce\": {\"finished_at\": \"2026-05-24T05:22:15.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T05:22:28.283496+00:00\"}]}, \"metrics\": {\"overall_sr\": 35, \"total_success\": 175, \"total_episodes\": 500, \"wilson_ci_95\": [30.9, 39.3], \"elapsed_min\": 106.7, \"per_task_sr\": {\"T0_alphabet_soup_tomato_sauce_basket\": 54, \"T1_cream_cheese_butter_basket\": 10, \"T2_stove_moka_pot\": 16, \"T3_black_bowl_drawer\": 88, \"T4_white_mug_left_yellow_mug_right\": 2, \"T5_book_caddy\": 98, \"T6_white_mug_chocolate_pudding\": 0, \"T7_alphabet_soup_cream_cheese_basket\": 48, \"T8_both_moka_pots_stove\": 16, \"T9_mug_microwave\": 18}, \"suite\": \"libero_10\", \"model\": \"X-VLA\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42, \"cross_suite_k085\": {\"object\": 65, \"spatial\": 68.2, \"goal\": 60.4, \"long\": 35}, \"vs_k05_long\": {\"k05_sr\": 61.6, \"k085_sr\": 35, \"delta_pp\": -26.6, \"non_monotonic\": true}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3292}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me set the conclusion and status to DONE, and write the analysis report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "72de42c5-d6de-46b8-a392-38aa7a61ec64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bi6NKCeRPfqfPjr1V5zdTm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5669,
+      "cache_read_input_tokens": 43550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5669
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TKXPczYpb8mhSrEXycZ59Z`</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k085_long_seed42",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "845d2199-9a22-40a4-af07-38b22b163c39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bi6NKCeRPfqfPjr1V5zdTm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5669,
+      "cache_read_input_tokens": 43550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5669
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BsSv3fySh1YtKEEv6T1E5b`</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k085_long_seed42",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "e5b2a9cb-b1b4-42d8-aed3-513a41efbf89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bi6NKCeRPfqfPjr1V5zdTm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5669,
+      "cache_read_input_tokens": 43550,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5669
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-24T05:25:38.648Z_
+
+<details><summary>↩ Tool result · `toolu_01TKXPczYpb8mhSrEXycZ59Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:34:42.927Z\", \"updated_at\": \"2026-05-24T05:25:37.619Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"316561\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"submitted_at\": \"2026-05-24T03:34:41.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO libero_10 (Long)\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 42}, \"hypothesis\": \"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\", \"reproduce\": {\"finished_at\": \"2026-05-24T05:22:15.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T05:22:28.283496+00:00\"}]}, \"metrics\": {\"overall_sr\": 35, \"total_success\": 175, \"total_episodes\": 500, \"wilson_ci_95\": [30.9, 39.3], \"elapsed_min\": 106.7, \"per_task_sr\": {\"T0_alphabet_soup_tomato_sauce_basket\": 54, \"T1_cream_cheese_butter_basket\": 10, \"T2_stove_moka_pot\": 16, \"T3_black_bowl_drawer\": 88, \"T4_white_mug_left_yellow_mug_right\": 2, \"T5_book_caddy\": 98, \"T6_white_mug_chocolate_pudding\": 0, \"T7_alphabet_soup_cream_cheese_basket\": 48, \"T8_both_moka_pots_stove\": 16, \"T9_mug_microwave\": 18}, \"suite\": \"libero_10\", \"model\": \"X-VLA\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42, \"cross_suite_k085\": {\"object\": 65, \"spatial\": 68.2, \"goal\": 60.4, \"long\": 35}, \"vs_k05_long\": {\"k05_sr\": 61.6, \"k085_sr\": 35, \"delta_pp\": -26.6, \"non_monotonic\": true}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"checkpoint_path\": \"N/A\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4426}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "e4d624c3-3593-4263-a826-1161cb383d90",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_xvla_random_k085_long_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T03:34:42.927Z\\\", \\\"updated_at\\\": \\\"2026-05-24T05:25:37.619Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316561\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T03:34:41.532Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO libero_10 (Long)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"X-VLA-Libero\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T05:22:15.912Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T05:22:28.283496+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 35, \\\"total_success\\\": 175, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [30.9, 39.3], \\\"elapsed_min\\\": 106.7, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup_tomato_sauce_basket\\\": 54, \\\"T1_cream_cheese_butter_basket\\\": 10, \\\"T2_stove_moka_pot\\\": 16, \\\"T3_black_bowl_drawer\\\": 88, \\\"T4_white_mug_left_yellow_mug_right\\\": 2, \\\"T5_book_caddy\\\": 98, \\\"T6_white_mug_chocolate_pudding\\\": 0, \\\"T7_alphabet_soup_cream_cheese_basket\\\": 48, \\\"T8_both_moka_pots_stove\\\": 16, \\\"T9_mug_microwave\\\": 18}, \\\"suite\\\": \\\"libero_10\\\", \\\"model\\\": \\\"X-VLA\\\", \\\"prune_mode\\\": \\\"random\\\", \\\"keep_ratio\\\": 0.85, \\\"seed\\\": 42, \\\"cross_suite_k085\\\": {\\\"object\\\": 65, \\\"spatial\\\": 68.2, \\\"goal\\\": 60.4, \\\"long\\\": 35}, \\\"vs_k05_long\\\": {\\\"k05_sr\\\": 61.6, \\\"k085_sr\\\": 35, \\\"delta_pp\\\": -26.6, \\\"non_monotonic\\\": true}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4426}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:34:42.927Z\", \"updated_at\": \"2026-05-24T05:25:37.619Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"316561\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"submitted_at\": \"2026-05-24T03:34:41.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO libero_10 (Long)\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 42}, \"hypothesis\": \"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\", \"reproduce\": {\"finished_at\": \"2026-05-24T05:22:15.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T05:22:28.283496+00:00\"}]}, \"metrics\": {\"overall_sr\": 35, \"total_success\": 175, \"total_episodes\": 500, \"wilson_ci_95\": [30.9, 39.3], \"elapsed_min\": 106.7, \"per_task_sr\": {\"T0_alphabet_soup_tomato_sauce_basket\": 54, \"T1_cream_cheese_butter_basket\": 10, \"T2_stove_moka_pot\": 16, \"T3_black_bowl_drawer\": 88, \"T4_white_mug_left_yellow_mug_right\": 2, \"T5_book_caddy\": 98, \"T6_white_mug_chocolate_pudding\": 0, \"T7_alphabet_soup_cream_cheese_basket\": 48, \"T8_both_moka_pots_stove\": 16, \"T9_mug_microwave\": 18}, \"suite\": \"libero_10\", \"model\": \"X-VLA\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42, \"cross_suite_k085\": {\"object\": 65, \"spatial\": 68.2, \"goal\": 60.4, \"long\": 35}, \"vs_k05_long\": {\"k05_sr\": 61.6, \"k085_sr\": 35, \"delta_pp\": -26.6, \"non_monotonic\": true}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"checkpoint_path\": \"N/A\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4426}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T05:25:42.745Z_
+
+<details><summary>↩ Tool result · `toolu_01BsSv3fySh1YtKEEv6T1E5b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:34:42.927Z\", \"updated_at\": \"2026-05-24T05:25:40.044Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"316561\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"submitted_at\": \"2026-05-24T03:34:41.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO libero_10 (Long)\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 42, \"wall_clock_seconds\": 6658.5, \"gpu_hours\": 1.85}, \"hypothesis\": \"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\", \"reproduce\": {\"finished_at\": \"2026-05-24T05:22:15.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T05:22:28.283496+00:00\"}]}, \"metrics\": {\"overall_sr\": 35, \"total_success\": 175, \"total_episodes\": 500, \"wilson_ci_95\": [30.9, 39.3], \"elapsed_min\": 106.7, \"per_task_sr\": {\"T0_alphabet_soup_tomato_sauce_basket\": 54, \"T1_cream_cheese_butter_basket\": 10, \"T2_stove_moka_pot\": 16, \"T3_black_bowl_drawer\": 88, \"T4_white_mug_left_yellow_mug_right\": 2, \"T5_book_caddy\": 98, \"T6_white_mug_chocolate_pudding\": 0, \"T7_alphabet_soup_cream_cheese_basket\": 48, \"T8_both_moka_pots_stove\": 16, \"T9_mug_microwave\": 18}, \"suite\": \"libero_10\", \"model\": \"X-VLA\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42, \"cross_suite_k085\": {\"object\": 65, \"spatial\": 68.2, \"goal\": 60.4, \"long\": 35}, \"vs_k05_long\": {\"k05_sr\": 61.6, \"k085_sr\": 35, \"delta_pp\": -26.6, \"non_monotonic\": true}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"checkpoint_path\": \"N/A\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T05:25:40.044Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.0804}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "d9ee4f88-c68c-4501-a34e-1c7f9c5398fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_xvla_random_k085_long_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T03:34:42.927Z\\\", \\\"updated_at\\\": \\\"2026-05-24T05:25:40.044Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"316561\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T03:34:41.532Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO libero_10 (Long)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"X-VLA-Libero\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 6658.5, \\\"gpu_hours\\\": 1.85}, \\\"hypothesis\\\": \\\"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T05:22:15.912Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T05:22:28.283496+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 35, \\\"total_success\\\": 175, \\\"total_episodes\\\": 500, \\\"wilson_ci_95\\\": [30.9, 39.3], \\\"elapsed_min\\\": 106.7, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup_tomato_sauce_basket\\\": 54, \\\"T1_cream_cheese_butter_basket\\\": 10, \\\"T2_stove_moka_pot\\\": 16, \\\"T3_black_bowl_drawer\\\": 88, \\\"T4_white_mug_left_yellow_mug_right\\\": 2, \\\"T5_book_caddy\\\": 98, \\\"T6_white_mug_chocolate_pudding\\\": 0, \\\"T7_alphabet_soup_cream_cheese_basket\\\": 48, \\\"T8_both_moka_pots_stove\\\": 16, \\\"T9_mug_microwave\\\": 18}, \\\"suite\\\": \\\"libero_10\\\", \\\"model\\\": \\\"X-VLA\\\", \\\"prune_mode\\\": \\\"random\\\", \\\"keep_ratio\\\": 0.85, \\\"seed\\\": 42, \\\"cross_suite_k085\\\": {\\\"object\\\": 65, \\\"spatial\\\": 68.2, \\\"goal\\\": 60.4, \\\"long\\\": 35}, \\\"vs_k05_long\\\": {\\\"k05_sr\\\": 61.6, \\\"k085_sr\\\": 35, \\\"delta_pp\\\": -26.6, \\\"non_monotonic\\\": true}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-24T05:25:40.044Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.0804}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:34:42.927Z\", \"updated_at\": \"2026-05-24T05:25:40.044Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.85 --mode random --num_episodes 50 --seed 42 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"316561\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"submitted_at\": \"2026-05-24T03:34:41.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO libero_10 (Long)\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 42, \"wall_clock_seconds\": 6658.5, \"gpu_hours\": 1.85}, \"hypothesis\": \"X-VLA Random k=0.85 Long seed42 — 补全 k=0.85 Random 跨 suite 数据（Object=65.0%, Spatial=68.2%, Goal=60.4%, Long=?），验证 RoPE disruption hypothesis (D196) 在 Long (最复杂 suite) 上的表现\", \"reproduce\": {\"finished_at\": \"2026-05-24T05:22:15.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T05:22:28.283496+00:00\"}]}, \"metrics\": {\"overall_sr\": 35, \"total_success\": 175, \"total_episodes\": 500, \"wilson_ci_95\": [30.9, 39.3], \"elapsed_min\": 106.7, \"per_task_sr\": {\"T0_alphabet_soup_tomato_sauce_basket\": 54, \"T1_cream_cheese_butter_basket\": 10, \"T2_stove_moka_pot\": 16, \"T3_black_bowl_drawer\": 88, \"T4_white_mug_left_yellow_mug_right\": 2, \"T5_book_caddy\": 98, \"T6_white_mug_chocolate_pudding\": 0, \"T7_alphabet_soup_cream_cheese_basket\": 48, \"T8_both_moka_pots_stove\": 16, \"T9_mug_microwave\": 18}, \"suite\": \"libero_10\", \"model\": \"X-VLA\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42, \"cross_suite_k085\": {\"object\": 65, \"spatial\": 68.2, \"goal\": 60.4, \"long\": 35}, \"vs_k05_long\": {\"k05_sr\": 61.6, \"k085_sr\": 35, \"delta_pp\": -26.6, \"non_monotonic\": true}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\", \"checkpoint_path\": \"N/A\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T05:25:40.044Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.0804}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Registry 更新完成。现在写分析报告并注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "3e462435-fff0-418d-94a6-577abebaa5bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LKMjSgjpQUEsdivm5yjTj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2584,
+      "cache_read_input_tokens": 49219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2584
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_013PXg6pNcWTKeMfjKJjhE1u`</summary>
+
+```json
+{
+  "name": "analysis_eval_xvla_random_k085_long_seed42",
+  "type": "report",
+  "description": "X-VLA Random k=0.85 Long suite eval analysis — disruption peak most severe on Long (35.0% vs 61.6% at k=0.5)",
+  "project": "importance_margin_vla_compress",
+  "exp_id": "eval_xvla_random_k085_long_seed42",
+  "content_filename": "analysis_eval_xvla_random_k085_long_seed42.md",
+  "content": "# Analysis: eval_xvla_random_k085_long_seed42\n\n## Experiment Parameters\n- **Model**: X-VLA-Libero (BART connector, 879.5M params)\n- **Suite**: libero_10 (Long)\n- **Pruning**: Random, keep_ratio=0.85 (42/50 vision tokens)\n- **Episodes**: 50 per task × 10 tasks = 500 total\n- **Seed**: 42\n- **Server**: westd-38929\n- **Runtime**: 106.7 min\n\n## Results\n\n**Overall SR: 35.0% (175/500), 95% Wilson CI: [30.9%, 39.3%]**\n\n| Task | SR | Description |\n|------|-----|-------------|\n| T0 | 54% | put both the alphabet soup and the tomato sauce in the basket |\n| T1 | 10% | put both the cream cheese box and the butter in the basket |\n| T2 | 16% | turn on the stove and put the moka pot on it |\n| T3 | 88% | put the black bowl in the bottom drawer of the cabinet and close it |\n| T4 | 2% | put the white mug on the left plate and put the yellow and white mug on the right plate |\n| T5 | 98% | pick up the book and place it in the back compartment of the caddy |\n| T6 | 0% | put the white mug on the plate and put the chocolate pudding to the right of the plate |\n| T7 | 48% | put both the alphabet soup and the cream cheese box in the basket |\n| T8 | 16% | put both moka pots on the stove |\n| T9 | 18% | put the yellow and white mug in the microwave and close it |\n\nExtreme bimodal distribution: T5 (98%) and T3 (88%) near-perfect, while T6 (0%), T4 (2%), T1 (10%) near-zero.\n\n## Cross-Suite Comparison (X-VLA Random k=0.85)\n\n| Suite | SR | \n|-------|-----|\n| Spatial | 68.2% |\n| Object | 65.0% |\n| Goal | 60.4% |\n| **Long** | **35.0%** |\n\nLong shows by far the worst performance at k=0.85, with a 25-33pp gap below the other suites. The Long suite's multi-step, multi-object tasks are most vulnerable to the disruption effect.\n\n## Non-Monotonic Behavior on Long\n\n| keep_ratio | Long SR | Tokens kept |\n|------------|---------|-------------|\n| k=0.5 | 61.6% | 25/50 |\n| k=0.85 | **35.0%** | 42/50 |\n\nKeeping MORE tokens (k=0.85) yields 26.6pp WORSE performance than keeping fewer (k=0.5). This is the strongest non-monotonic effect observed across all X-VLA suite × k combinations, confirming the disruption peak is amplified by task complexity.\n\nFor comparison, the disruption peak magnitude across suites:\n- Long: k=0.85 (35%) vs k=0.5 (61.6%) → -26.6pp non-monotonic gap\n- Object: k=0.85 (65%) — moderate, need k=0.5 (70.6%) for comparison → -5.6pp\n- Spatial: k=0.85 (68.2%) vs k=0.5 (71.4%) → -3.2pp  \n- Goal: k=0.85 (60.4%) vs k=0.5 (67.2%) → -6.8pp\n\n## RoPE Disruption Hypothesis (D196) Verification\n\nThe disruption peak at k=0.85 is confirmed on Long and is the most severe across all suites. Key observations:\n\n1. **X-VLA uses BART connector (no RoPE)**, yet still shows a disruption peak. This means the disruption is NOT exclusively a RoPE phenomenon — it's a more general positional/structural sensitivity in vision-language connectors.\n\n2. **Task complexity amplifies the disruption**: Long (most complex, multi-step) shows 26.6pp non-monotonic gap, while simpler suites show 3-7pp gaps.\n\n3. **Per-task variance is extreme on Long**: T5 (single object pick-place) is unaffected (98%), while T6 (two-object spatial arrangement) collapses to 0%. The disruption selectively destroys tasks requiring precise spatial reasoning with multiple objects.\n\n## Conclusion\n\n**SUCCESS** — The experiment completes the k=0.85 Random cross-suite profile for X-VLA and reveals that the disruption peak is dramatically amplified on Long (35.0%), the most complex suite. This is the strongest non-monotonic effect observed (-26.6pp vs k=0.5) and provides evidence that the disruption mechanism disproportionately affects multi-step, multi-object tasks regardless of connector architecture (BART vs MLP+RoPE).\n",
+  "tags": [
+    "xvla",
+    "random_pruning",
+    "k085",
+    "long",
+    "disruption_peak",
+    "non_monotonic"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "3fefc154-e8cd-4e60-9e4b-8fc3af9b91a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LKMjSgjpQUEsdivm5yjTj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2584,
+      "cache_read_input_tokens": 49219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2584
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-24T05:26:13.982Z_
+
+<details><summary>↩ Tool result · `toolu_013PXg6pNcWTKeMfjKJjhE1u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_d62937\", \"name\": \"analysis_eval_xvla_random_k085_long_seed42\", \"type\": \"report\", \"description\": \"X-VLA Random k=0.85 Long suite eval analysis — disruption peak most severe on Long (35.0% vs 61.6% at k=0.5)\", \"path\": \"projects/importance_margin_vla_compress/artifacts/eval_xvla_random_k085_long_seed42/report/analysis_eval_xvla_random_k085_long_seed42.md\", \"url\": null, \"project\": \"importance_margin_vla_compress\", \"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"skill\": \"\", \"created_at\": \"2026-05-24T05:26:13.805584+00:00\", \"tags\": [\"xvla\", \"random_pruning\", \"k085\", \"long\", \"disruption_peak\", \"non_monotonic\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "4c0ed193-2192-4348-9c5b-fdc8727e5782",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260524_d62937\\\", \\\"name\\\": \\\"analysis_eval_xvla_random_k085_long_seed42\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"X-VLA Random k=0.85 Long suite eval analysis — disruption peak most severe on Long (35.0% vs 61.6% at k=0.5)\\\", \\\"path\\\": \\\"projects/importance_margin_vla_compress/artifacts/eval_xvla_random_k085_long_seed42/report/analysis_eval_xvla_random_k085_long_seed42.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"importance_margin_vla_compress\\\", \\\"exp_id\\\": \\\"eval_xvla_random_k085_long_seed42\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-24T05:26:13.805584+00:00\\\", \\\"tags\\\": [\\\"xvla\\\", \\\"random_pruning\\\", \\\"k085\\\", \\\"long\\\", \\\"disruption_peak\\\", \\\"non_monotonic\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260524_d62937\", \"name\": \"analysis_eval_xvla_random_k085_long_seed42\", \"type\": \"report\", \"description\": \"X-VLA Random k=0.85 Long suite eval analysis — disruption peak most severe on Long (35.0% vs 61.6% at k=0.5)\", \"path\": \"projects/importance_margin_vla_compress/artifacts/eval_xvla_random_k085_long_seed42/report/analysis_eval_xvla_random_k085_long_seed42.md\", \"url\": null, \"project\": \"importance_margin_vla_compress\", \"exp_id\": \"eval_xvla_random_k085_long_seed42\", \"skill\": \"\", \"created_at\": \"2026-05-24T05:26:13.805584+00:00\", \"tags\": [\"xvla\", \"random_pruning\", \"k085\", \"long\", \"disruption_peak\", \"non_monotonic\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+完成。
+
+## 结果摘要
+
+**X-VLA Random k=0.85 Long: 35.0%** (175/500), CI [30.9%, 39.3%]
+
+**核心发现**：Long 是 k=0.85 disruption peak 最严重的 suite：
+
+| Suite | k=0.85 SR | k=0.5 SR | 非单调 gap |
+|-------|-----------|----------|-----------|
+| Spatial | 68.2% | 71.4% | -3.2pp |
+| Object | 65.0% | 70.6% | -5.6pp |
+| Goal | 60.4% | 67.2% | -6.8pp |
+| **Long** | **35.0%** | **61.6%** | **-26.6pp** |
+
+- 保留更多 token (k=0.85) 反而比保留更少 (k=0.5) 差 26.6pp，非单调效应在 Long 上最为剧烈
+- 任务粒度上极度两极化：T5 (98%)、T3 (88%) 几乎不受影响，T6 (0%)、T4 (2%) 完全崩溃
+- X-VLA 用 BART connector（无 RoPE），仍出现 disruption peak → 该效应不限于 RoPE 架构，是更通用的位置/结构敏感性
+- 任务复杂度放大 disruption：多步多物体任务受影响最大
+
+Registry 已更新为 DONE/success，报告已注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "uuid": "06bb8d73-9c72-4290-8ec0-64980064c836",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KM7n6hxi88jFB9xPcz8or",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1925,
+      "cache_read_input_tokens": 51803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1925
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 35_
+
+完成。
+
+## 结果摘要
+
+**X-VLA Random k=0.85 Long: 35.0%** (175/500), CI [30.9%, 39.3%]
+
+**核心发现**：Long 是 k=0.85 disruption peak 最严重的 suite：
+
+| Suite | k=0.85 SR | k=0.5 SR | 非单调 gap |
+|-------|-----------|----------|-----------|
+| Spatial | 68.2% | 71.4% | -3.2pp |
+| Object | 65.0% | 70.6% | -5.6pp |
+| Goal | 60.4% | 67.2% | -6.8pp |
+| **Long** | **35.0%** | **61.6%** | **-26.6pp** |
+
+- 保留更多 token (k=0.85) 反而比保留更少 (k=0.5) 差 26.6pp，非单调效应在 Long 上最为剧烈
+- 任务粒度上极度两极化：T5 (98%)、T3 (88%) 几乎不受影响，T6 (0%)、T4 (2%) 完全崩溃
+- X-VLA 用 BART connector（无 RoPE），仍出现 disruption peak → 该效应不限于 RoPE 架构，是更通用的位置/结构敏感性
+- 任务复杂度放大 disruption：多步多物体任务受影响最大
+
+Registry 已更新为 DONE/success，报告已注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 153640,
+  "duration_api_ms": 141762,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "cceb3ab3-e071-400a-90de-32217157d197",
+  "total_cost_usd": 0.53069225,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 41887,
+    "cache_read_input_tokens": 236517,
+    "output_tokens": 5947,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 41887,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 429,
+        "cache_read_input_tokens": 51803,
+        "cache_creation_input_tokens": 1925,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1925
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1790,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00191,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 5947,
+      "cacheReadInputTokens": 236517,
+      "cacheCreationInputTokens": 41887,
+      "webSearchRequests": 0,
+      "costUSD": 0.52878225,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3885fe9e-517f-4c77-a0c1-ecfcf8608c77"
+}
+```
+
+</details>
+
+---

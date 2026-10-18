@@ -2307,5 +2307,6 @@
       ],
       "message_count": 55
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/gpu-mistral-hires-bf16-retry.md"
 }

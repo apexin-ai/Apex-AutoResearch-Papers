@@ -1,0 +1,41 @@
+# ops cqa1 cliff localization full status
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_cqa1-cliff-localization-full-status_20260520T213648_result.json`
+- **Structured JSON:** [`62ad422747f157df1b38.json`](../../sessions/62/62ad422747f157df1b38.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+汇总如下：
+
+## 实验状态（全部 RUNNING，无结果文件）
+
+| GPU | 实验 | 进度 | 已完成 Task SR | GPU 利用率 |
+|-----|------|------|---------------|-----------|
+| **0** | k=0.8 seed42 | Task 5 done, **Ep 38/50 on Task 6** | T0:100%, T1:98%, T2:100%, T3:88%, T4:80%, T5:98% | 1% (波动) |
+| **1** | k=0.8 seed43 | Task 8 done, **Ep 2/50 on Task 9** | T0:100%, T1:98%, T2:100%, T3:82%, T4:78%, T5:98%, T6:58%, T7:84%, T8:88% | 58% |
+| **2** | k=0.85 seed42 | Task 7 done, **Ep 6/50 on Task 8** | T0:100%, T1:46%, T2:100%, T3:86%, T4:26%, T5:92%, T6:0%, T7:96% | 14% |
+| **3** | k=0.85 seed43 | Task 5 done, **Ep 45/50 on Task 6** | T0:100%, T1:44%, T2:100%, T3:88%, T4:28%, T5:90% | 0% (波动) |
+
+**关键发现：**
+
+1. **GPU 0 确认在跑 k=0.8 seed42**（不是 k=0.1 残留），命令行参数 `--keep_ratio 0.8 --seed 42`，PID 335130，04:56 启动。
+2. **GPU 1 的 k=0.8 seed43 最快**，已到 Task 9（共 10 个 task），预计 ~30-40 分钟完成。
+3. **k=0.85 两组的 Task 1/4/6 成绩明显低于 k=0.8**（T1: 46%/44% vs 98%, T4: 26%/28% vs 80%/78%, T6: 0%），k=0.85 的剪枝过于激进导致部分 task 性能崩溃。
+4. GPU 利用率低是正常的——评估时 GPU 主要在推理间歇空闲，4 张卡各占 ~4.5GB 显存。
+
+---

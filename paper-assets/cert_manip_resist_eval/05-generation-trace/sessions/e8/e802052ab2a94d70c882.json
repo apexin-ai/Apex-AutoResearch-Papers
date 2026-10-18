@@ -83,5 +83,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/infra-deploy-code.md"
 }

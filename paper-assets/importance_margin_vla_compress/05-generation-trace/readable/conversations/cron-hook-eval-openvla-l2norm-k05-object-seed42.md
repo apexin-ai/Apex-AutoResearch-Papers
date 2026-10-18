@@ -1,0 +1,1714 @@
+# cron hook eval openvla l2norm k05 object seed42
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 1
+- **Tool calls:** 28
+- **Original source:** `logs/chats/cron_hook_eval_openvla_l2norm_k05_object_seed42.jsonl`
+- **Structured JSON:** [`defea529faf677dc9c92.json`](../../sessions/de/defea529faf677dc9c92.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+57 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T23:09:02.394494+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #12。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-27271(cuda:0-1), cqa1-33015(cuda:0-3), westd-41074(cuda:0-3), westd-38929(cuda:0-3)，共 14 张。白名单外的 GPU 即使 Director 指令也必须 push back
+- westd-38929 刚发生 4 实验批量崩溃，3 个诊断 Worker 正在调查。**在诊断结果返回前不要盲目重提交到该服务器**
+- M128 eval 有 LoRA bug（291 missing + 419 unexpected keys → 0% SR），westd-27271:cuda:0 被占但产出无效，需 kill + 修 adapter merge 后重跑
+- eval 脚本 `eval_openvla_l2norm_libero.py` 在 westd-38929 上系统性失败，重试前必须等 root cause 确认
+- CoRL 2026 Abstract: May 26（5天），Paper: May 29（8天）——时间极紧，GPU 空闲即失职
+
+### 2. 🖥️ 基础设施快照
+- **westd-27271**: 项目路径 `/root/autodl-tmp/importance_margin_vla_compress`，磁盘 819G/879G 可用
+- **westd-38929**: 同上路径，磁盘 645G/879G 可用(23%)，4×GPU 全空闲（实验刚失败）
+- **westd-41074**: 同上路径，磁盘 812G/879G 可用
+- **cqa1-33015**: 同上路径，`/autodl-pub` 554G/7.0T(93%⚠️)，数据盘 1.5T/4.0T
+- 所有服务器 account=root，conda 环境（aml-train 镜像）：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 活跃训练进程：
+  - train_openvla_sc_m32_vtconly_seed42: westd-27271:cuda:1, PID=921279
+  - train_openvla_sc_m96_seed42_v3: westd-41074:cuda:2, PID=68539
+  - train_openvla_sc_m64_seed42_v4: westd-41074:cuda:3, PID=738642
+- 活跃 eval：eval_pi05_l2norm_k05(westd-41074,PID=838823), eval_xvla_random_k07(cqa1,PID=223594), eval_openvla_sc_m128_v2(westd-27271,PID=188248), eval_xvla_l2norm_k07_v2(cqa1), eval_xvla_random_k05_seed43(cqa1)
+
+### 3. 📊 当前状态
+**刚做完**：收到 eval_openvla_l2norm_k05_object_seed42 的 cron 失败回调。发现 westd-38929 上 4 个 OpenVLA eval 全部以相同模式死亡（process dead 5× no W&B）。已更新 registry notes，已向 Director 汇报批量失败 + GPU 空闲状况。
+
+**等待中的回调**：
+- 3 个诊断 Worker（worker_diagnose_openvla_batch_fail_westd38929_20260521T070441 等）→ 会返回 westd-38929 批量失败的 root cause
+- 多个 eval cron 在跑：pi05_l2norm_k05, xvla_random_k07_seed43, openvla_sc_m128_v2, xvla_l2norm_k07_v2, xvla_random_k05_seed43
+- 3 个 VTC 训练 cron：M32(44650步), M96(45750步), M64v4(5400步)
+
+**Registry 摘要**：252 实验，RUNNING 10，PREPARING 24，DONE 211（success 129, negative 25, failed 41）
+
+### 4. 📋 待办（条件触发式）
+- 诊断 Worker 返回 root cause → 修复问题 → 重提交 4 个 OpenVLA eval 到 westd-38929（L2norm k=0.3/0.5/0.7 + random k=0.3）
+- 诊断结果是 infra 问题且可自修 → spawn worker 修复后自动重提交（限 1 次重试）
+- 诊断结果是脚本 bug → spawn worker 修代码 + dry-run 验证 → 重提交
+- eval_xvla_random_k05_seed43 完成 → 验证 D132 second non-monotonicity 是否跨 seed 可复现（seed42=70.6%，若 seed43 也 >60% 则确认）
+- eval_xvla_l2norm_k07_v2 完成 → 填 D132 crossover 表 X-VLA L2norm k=0.7 数据点（预期~56%）
+- VTC M32/M96/M64 训练完成 → 50K gate eval
+- M128 LoRA bug 修复 → 重跑 eval_openvla_sc_m128_object_seed42
+- westd-41074:cuda:0 和 cuda:1 空闲 → 应立即分配 PREPARING 队列中的实验
+
+### 5. 🎯 战略上下文
+- **核心发现 D132**：CV（coefficient of variation）不仅预测剪枝容忍度，还预测最优剪枝策略。Crossover at k≈0.8：低 CV + k≤0.7 → random 优于 L2norm（+9pp@k=0.7, +28pp@k=0.5）；高 CV → L2norm 全程有效
+- **42-token cliff**：k=0.85(42tok) 性能悬崖，k=0.8(40tok) 恢复——BART encoder 架构性质，方法无关
+- **D137**：X-VLA random k=0.3=62.8% vs L2norm=22.8%（+40pp），D132 crossover 在极端剪枝率下差异更大
+- **论文 framing**：7 模型 × 3 connector families 的 connector-determined compressibility 分析 + Predict-then-Compress 框架
+- **易错点**：
+  - westd-38929 批量失败的 root cause 未知——不要假设是 OOM 或随机故障，等 Worker 诊断
+  - cqa1 磁盘 93% 满，提交新实验前必须检查磁盘
+  - eval 实验在 registry 中可能没记录 GPU ID，导致资源追踪显示"空闲"但实际在用
+  - GPU 利用率 3/14 = 21% 极低，Director 已被告知，需要尽快填满空闲卡
+
+## 项目硬约束 (memory.md 节选)
+
+## 失败模式记录
+
+- [2026-05-21] **π0.5 自定义 eval 脚本 bug**: `eval_pi05_pruning_libero.py` 的 `patched_embed_image` 函数导致 0% SR，而官方 eval 脚本在同一 checkpoint 上 ~100% SR。→ 新模型接入时，必须先用官方 eval 脚本验证 checkpoint 可用性，确认后再写自定义 pruning eval 脚本。不要假设自定义 patch 正确。
+
+- [2026-05-21] **OpenVLA eval 4 实验批量失败 (westd-38929)**:
+  - **失败实验**: eval_openvla_l2norm_k05_object_seed42 (PID 568225), eval_openvla_random_k03_object_seed42 (PID 568905), eval_openvla_l2norm_k07_object_seed42 (PID 569611), eval_openvla_l2norm_k03_object_seed42 (PID 570309)
+  - **根因**: **AutoDL 容器 GPU 缩配**。主机有 9 块 NVIDIA RTX PRO 6000 Blackwell (各 97GB)，但容器当前只挂载了 `/dev/nvidia2` 一块 GPU。4 个实验分别在 CUDA_VISIBLE_DEVICES=0/1/2/3 启动，运行 ~1h43m 后 GPU 设备被平台回收，进程收到 SIGKILL 无任何 traceback。
+  - **证据**:
+    - `nvidia-smi -L` 只显示 1 块 GPU (Device Minor 2)，而 `/proc/driver/nvidia/gpus/` 显示主机有 9 块
+    - 4 个日志文件在 14:45-14:49 间依次停止写入（3 分钟跨度，非瞬时），末尾均为正常进度输出无 error
+    - 各实验完成了 Task 1-3，在 Task 4/10 中被杀（~30% 完成度）
+    - 系统 RAM 充足（1TB 中仅用 46GB），排除 CPU OOM
+    - 无 tmux session，进程通过 nohup 方式运行
+  - **修复建议**:
+    1. 在 AutoDL 控制台恢复实例到 4 GPU 配置（或至少确认 GPU 分配稳定）
+    2. 重新启动 4 个实验，建议使用 tmux 以防 SSH 断连
+    3. 如果无法恢复多 GPU，可在单 GPU 上顺序运行（每个实验约 5.5h，共 ~22h）
+    4. 启动命令参考（单 GPU 顺序）:
+       ```bash
+       tmux new -s openvla_eval
+       source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+       cd /root/autodl-tmp/importance_margin_vla_compress
+       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k05_seed42.log 2>&1
+       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_random_k03_seed42.log 2>&1
+       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.7 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k07_seed42.log 2>&1
+       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k03_seed42.log 2>&1
+       ```
+
+---
+
+## 可查的历史
+前 27 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T23:09:18.470625+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T23:09:18.623418+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T23:09:21.639550+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T23:09:22.045345+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T23:09:22.045870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_smolvla_official_l2norm_k090_object_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:56:15.396Z\", \"updated_at\": \"2026-05-21T15:56:50.323Z\", \"hypothesis\": \"SmolVLA official L2norm k=0.9; sanity check 显示 k=0.95 已 0% SR，k=0.9 极可能也崩溃，确认 cliff boundary\", \"parent\": \"eval_smolvla_official_baseline_object_seed42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u eval_official_libero.py --mode l2_norm --k_ratio 0.9 --suite libero_object --num_episodes 50 --gpu 0 --seed 42\", \"server\": \"cqa1-33015\", \"gpu_id\": 0, \"model_name\": \"SmolVLA-LIBERO-official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"HuggingFaceVLA/smolvla_libero\", \"eval_data\": \"libero_object\"}}, \"eval_smart_compress_m32_official\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T09:24:23.708Z\", \"updated_at\": \"2026-05-19T09:24:56.952Z\", \"hypothesis\": \"Smart Compress M=32 trained from official SmolVLA checkpoint (baseline SR=59.2%) should yield higher SR than M=32 from smolvla_base (61.6% SR, baseline 44.8%), because official checkpoint has stronger pretrained features.\", \"parent\": \"train_smart_compress_m32_official\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_smart_compress_libero.py --n_queries 32 --checkpoint_path checkpoints/smart_compress_m32_official/checkpoint.pt --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --output eval_results/eval_smart_compress_m32_official.json\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"smolvla_official + VisionTokenCompressor(M=32)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m32_official/checkpoint.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 50 episodes)\", \"checkpoint_p
+…[truncated 320 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 406
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T23:09:22.475562+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T23:09:22.475981+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T23:10:19.409067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 12, \"results\": [{\"exp_id\": \"train_openvla_sc_m96_seed42\", \"success\": true, \"actions\": [\"Job still running (pid=68539)\"]}, {\"exp_id\": \"train_openvla_sc_m32_vtconly_seed42\", \"success\": true, \"actions\": [\"Job still running (pid=921279)\"]}, {\"exp_id\": \"train_openvla_sc_m64_seed42_v6\", \"success\": true, \"actions\": [\"Job still running (pid=59671)\"]}, {\"exp_id\": \"eval_pi05_random_k085_object_seed43\", \"success\": true, \"actions\": [\"Job still running (pid=719435)\"]}, {\"exp_id\": \"eval_pi05_random_k085_object_seed42_v2\", \"success\": true, \"actions\": [\"Job still running (pid=824147)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k07_spatial_seed42\", \"success\": true, \"actions\": [\"Skipped — pending escalation retry\"]}, {\"exp_id\": \"eval_pi05_l2norm_k085_object_seed42\", \"success\": true, \"actions\": [\"Job still running (pid=716056)\"]}, {\"exp_id\": \"eval_pi05_random_k03_object_seed43\", \"success\": true, \"actions\": [\"Job still running (pid=716134)\"]}, {\"exp_id\": \"eval_openvla_baseline_spatial_seed42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=369092)\"]}, {\"exp_id\": \"eval_pi05_random_k0925_object_seed42\", \"success\": true, \"actions\": [\"Job still running (pid=715307)\"]}, {\"exp_id\": \"eval_pi05_random_k095_object_seed43\", \"success\": true, \"actions\": [\"Job still running (pid=730309)\"]}, {\"exp_id\": \"eval_pi05_l2norm_k0925_object_seed42\", \"success\": true, \"actions\": [\"Job still running (pid=985039)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 57363
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T23:10:19.409933+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_openvla_baseline_spatial_seed42_v3 | OpenVLA baseline on LIBERO-Spatial v3 (新脚本，env.seed 已修复，--model_path 支持)。建立 cross-suite anchor，验证 pruning tolerance 是模型内在属性而非 task-specific。 | — | — | — |\\n| eval_pi05_random_k095_object_seed43 | π0.5 random k=0.95 Object seed43: V-dip 入口点 seed 验证。seed42=69.4%。dual-seed 给论文 figure 加 error bar。 | — | — | — |\\n| eval_pi05_random_k085_object_seed43 | π0.5 random k=0.85 Object seed43: seed 验证。seed42 v2 正在 westd-38929 跑（早期数据 ~8% SR）。如果 seed43 也崩→确认 cliff 在 k=0.7-0.85 之间。 | — | — | — |\\n\\n## 待处理\\n- eval_pi05_l2norm_k0925_object_seed42: π0.5 L2norm k=0.925 Object seed42: 与 random k=0.925 配对。L2norm k=0.9=98.2%（near baseline）。如果 L2norm k=0.925 仍 >90% 而 random k=0.925 崩→证明 cliff 是 random-specific，L2norm 保持 monotonic degradation。n_keep=237/256。（准备中）\\n- eval_oft_baseline_goal_seed42（准备中）\\n- eval_oft_object_std_v3（准备中）\\n- eval_oft_object_nolora_v2（准备中）\\n- eval_openvla_sc_m64_50k_seed42（准备中）\\n- openvla-spatial-maxsteps600-quick（准备中）\\n- openvla-spatial-maxsteps600-test（准备中）\\n- eval_openvla_prune_random_k03_seed42: OpenVLA random pruning k=0.3 seed42 provides 3rd seed for MF-3 validation at 70% pruning. seed7=20.6%. Auto-queued by Director to start when current seed42 batch completes.（准备中）\\n- eval_openvla_prune_seed43_sweep: OpenVLA-OFT random pruning seed=43 sweep (k=0.7, k=0.5) to verify reproducibility of seed=7 results. If seed43 results match seed=7 (k=0.7→49%, k=0.5→37.4%), confirms graded degradation pattern is robust across seeds.（准备中）\\n- eval_openvla_prune_l2norm_sweep: OpenVLA L2 norm pruning eval (k=0.7/0.5/0.3) on LIBERO-Object. Unifies pruning method with X-VLA (both use L2 norm-based tok
+…[truncated 4911 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 56934
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T23:10:19.412346+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/ROADMAP.md\", \"content\": \"# importance_margin_vla_compress — Research Dashboard\\n\\n> 最后更新: 2026-05-21 10:47 UTC | 更新原因: Post-context-compaction: reconcile overview vs actual GPU state, update task status\\n\\n> 详见 paper_framing.md。\\n\\n## 核心方向\\nVLA vision token compressibility 的 connector-determined 分析 + Predict-then-Compress 框架。7 模型 × 3 connector families。\\n\\n**D139 CONFIRMED: CV Scaling Law validated across 3 models.**\\n| Model | CV | L2norm k=0.5 | Random k=0.5 | Δ |\\n|-------|-----|-------------|-------------|-----|\\n| π0.5 | 0.055 | 33.4% | **69.4%** | **+36.0pp** |\\n| X-VLA | 0.151 | 43.4% (3-seed) | 70.3% (3-seed) | +26.9pp |\\n| OpenVLA | 0.215 | 39.2% | 35.8% | -3.4pp |\\n\\n**D140: k=0.3 method preference reversal** — π0.5 L2norm=51.0% > random=36.4% (reversed). X-VLA random=62.8% >> L2norm=22.2% (no reversal).\\n\\n## 当前阶段\\n🔬 Research (scaling law 数据收集收尾) + ✍️ Paper Agent writing (Step 2 figures) + 📝 Review pending\\n\\n## GPU 状态\\n**14 GPU — 14/14 active (confirmed 10:34 UTC)**\\n\\n| 服务器 | GPU | 实验 | 备注 |\\n|--------|-----|------|------|\\n| westd-41074 | 0 | π0.5 L2norm k=0.7 | P0 scaling law |\\n| westd-41074 | 1 | π0.5 random k=0.5 seed43 | D139 multi-seed |\\n| westd-41074 | 2 | VTC M96 train (54%+) | |\\n| westd-41074 | 3 | π0.5 random k=0.7 + M64v6 | P0 scaling law |\\n| westd-38929 | 0 | OpenVLA L2norm k=0.7 | P1 |\\n| westd-38929 | 1 | OpenVLA random k=0.3 | P1 |\\n| westd-38929 | 2 | OpenVLA random k=0.7 | P1 |\\n| westd-38929 | 3 | OpenVLA L2norm k=0.5 v3 | P1 |\\n| cqa1 | 0 | X-VLA L2norm k=0.3 s43 | multi-seed |\\n| cqa1 | 1 | X-VLA random k=0.3 s43 | multi-seed |\\n| cqa1 | 2 | X-VLA random k=0.7 s44 | multi-seed |\\n| cqa1 | 3 | X-VLA L2norm k=0.7 s43 | multi-seed |\\n| westd-27271 | 0 | OpenVLA L2norm k=0.3 rerun | P1 |\\n| westd-27271 | 1 | VTC M32 train (54%) | |\\n\\n## ⭐ 任务优先级\\
+…[truncated 3071 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 56936
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T23:10:45.704204+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__load_project_config",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__load_project_config",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T23:10:45.805019+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T23:10:49.472745+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['status', 'spec', 'hypothesis', 'updated_at']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['status', 'spec', 'hypothesis', 'updated_at']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T23:10:49.975705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_smolvla_official_l2norm_k090_object_seed42\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-21T15:56:50.323Z\", \"hypothesis\": \"SmolVLA official L2norm k=0.9; sanity check 显示 k=0.95 已 0% SR，k=0.9 极可能也崩溃，确认 cliff boundary\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u eval_official_libero.py --mode l2_norm --k_ratio 0.9 --suite libero_object --num_episodes 50 --gpu 0 --seed 42\", \"server\": \"cqa1-33015\", \"gpu_id\": 0, \"model_name\": \"SmolVLA-LIBERO-official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"HuggingFaceVLA/smolvla_libero\", \"eval_data\": \"libero_object\"}}, \"eval_smart_compress_m32_official\": {\"status\": \"RUNNING\", \"updated_at\": \"2026-05-19T09:24:56.952Z\", \"hypothesis\": \"Smart Compress M=32 trained from official SmolVLA checkpoint (baseline SR=59.2%) should yield higher SR than M=32 from smolvla_base (61.6% SR, baseline 44.8%), because official checkpoint has stronger pretrained features.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_smart_compress_libero.py --n_queries 32 --checkpoint_path checkpoints/smart_compress_m32_official/checkpoint.pt --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --output eval_results/eval_smart_compress_m32_official.json\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"smolvla_official + VisionTokenCompressor(M=32)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m32_official/checkpoint.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 50 episodes)\", \"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m32_official.log\", \"gpu_ids\": [\"cuda:3\"], \"tmux_session\": \"eval_m32_official\"}}}, \"count\": 2, \"total\": 2, \"baselin
+…[truncated 75 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T23:10:50.428153+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ALLOCATED'}",
+  "fields": "['status', 'spec', 'hypothesis', 'updated_at']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ALLOCATED'}",
+    "fields": "['status', 'spec', 'hypothesis', 'updated_at']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T23:10:50.879703+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_smolvla_official_l2norm_k070_object_seed42\": {\"status\": \"ALLOCATED\", \"updated_at\": \"2026-05-21T15:56:33.895Z\", \"hypothesis\": \"SmolVLA official L2norm k=0.7; 如果 k=0.9 也是 0%，k=0.7 确认全 k 值下 pixel-shuffle 的完全不可压缩性\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0241}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T23:10:51.331293+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "status": "running",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "status": "running",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T23:10:51.833054+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_diagnose_cqa1-checkpoint-v2_20260521T230750\", \"task_type\": \"diagnose:cqa1-checkpoint-v2\", \"project\": \"importance_margin_vla_compress\", \"status\": \"running\", \"started_at\": \"2026-05-21T23:07:50.643187+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 501
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T23:10:52.335332+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "status": "done",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "status": "done",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T23:10:52.335774+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "importance_margin_vla_compress",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "importance_margin_vla_compress",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T23:10:52.436648+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analyze_eval_pi05_random_k07_spatial_seed42_20260521T222809\", \"task_type\": \"analyze:eval_pi05_random_k07_spatial_seed42\", \"project\": \"importance_margin_vla_compress\", \"status\": \"done\", \"started_at\": \"2026-05-21T22:28:09.523098+00:00\", \"ended_at\": \"2026-05-21T22:35:14.513279+00:00\"}, {\"worker_id\": \"worker_ops_verify-running-register-crons_20260521T223320\", \"task_type\": \"ops:verify-running-register-crons\", \"project\": \"importance_margin_vla_compress\", \"status\": \"done\", \"started_at\": \"2026-05-21T22:33:21.062967+00:00\", \"ended_at\": \"2026-05-21T22:34:37.842991+00:00\"}, {\"worker_id\": \"worker_ops_process-analyzing-experiments_20260521T223348\", \"task_type\": \"ops:process-analyzing-experiments\", \"project\": \"importance_margin_vla_compress\", \"status\": \"done\", \"started_at\": \"2026-05-21T22:33:48.341486+00:00\", \"ended_at\": \"2026-05-21T22:37:26.751909+00:00\"}, {\"worker_id\": \"worker_probe_westd-38929-gpu-status_20260521T224109\", \"task_type\": \"probe:westd-38929-gpu-status\", \"project\": \"importance_margin_vla_compress\", \"status\": \"done\", \"started_at\": \"2026-05-21T22:41:09.492811+00:00\", \"ended_at\": \"2026-05-21T22:42:11.120625+00:00\"}, {\"worker_id\": \"worker_probe_cqa1-gpu-status_20260521T224115\", \"task_type\": \"probe:cqa1-gpu-status\", \"project\": \"importance_margin_vla_compress\", \"status\": \"done\", \"started_at\": \"2026-05-21T22:41:15.432099+00:00\", \"ended_at\": \"2026-05-21T22:42:13.494989+00:00\"}, {\"worker_id\": \"worker_probe_cqa1-dead-experiments_20260521T225749\", \"task_type\": \"probe:cqa1-dead-experiments\", \"project\": \"importance_margin_vla_compress\", \"status\": \"done\", \"started_at\": \"2026-05-21T22:57:49.735700+00:00\", \"ended_at\": \"2026-05-21T22:58:50.881471+00:00\"}, {\"worker_id\": \"worker_analyze_eval_pi05_random_k03_spatial_seed42_20260521T225821\", \"task_type\": \"analy
+…[truncated 1187 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T23:10:52.437026+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"importance_margin_vla_compress\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"servers\": [\"westd-27271\", {\"account\": \"root\", \"server\": \"cqa1-33015\"}, {\"account\": \"root\", \"server\": \"westd-41074\"}, {\"account\": \"root\", \"server\": \"westd-38929\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T23:11:27.463243+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'spec']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'spec']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T23:11:28.007611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"train_smart_compress_m32_official\": {\"status\": \"ANALYZING\", \"updated_at\": \"2026-05-19T09:24:10.146Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u train_smart_compress.py --config configs/smart_compress_m32_official.yaml --wandb_run smart_compress_m32_official --seed 42 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"HuggingFaceVLA/libero\", \"data_count\": -1, \"model_name\": \"smolvla_official + VisionTokenCompressor(M=32)\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m32_official/checkpoint.pt\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/train_smart_compress_m32_official.log\", \"checkpoint_source\": \"HuggingFaceVLA/smolvla_libero (official)\"}}, \"mvp_imm_v8b_twostage\": {\"status\": \"ANALYZING\", \"updated_at\": \"2026-05-16T06:59:38.284Z\", \"spec\": {\"pid\": \"136367\", \"command\": \"bash run_v8b_twostage_train.sh\", \"server\": \"westd-27271\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress/data\", \"data_count\": 0, \"model_name\": \"SmolVLA-v8b-twostage\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/imm_anchor_v8b_twostage/final\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0379}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 544
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T23:11:28.008058+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_diagnose_cqa1-checkpoint-v2_20260521T230750",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_diagnose_cqa1-checkpoint-v2_20260521T230750",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T23:11:28.372404+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_cqa1-checkpoint-v2_20260521T230750\", \"status\": \"running\", \"task_type\": \"diagnose:cqa1-checkpoint-v2\", \"project\": \"importance_margin_vla_compress\", \"started_at\": \"2026-05-21T23:07:50.643187+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\", \"ssh_execute\"], \"last_text\": \"输出被截断了。让我查看被截断的中间部分。\", \"turn_count\": 13}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 364
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T23:11:28.372836+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_deploy_l2norm-k0925-westd38929-gpu2_20260521T230344"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_deploy_l2norm-k0925-westd38929-gpu2_20260521T230344"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T23:11:28.824673+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_deploy_l2norm-k0925-westd38929-gpu2_20260521T230344\", \"status\": \"done\", \"task_type\": \"deploy:l2norm-k0925-westd38929-gpu2\", \"project\": \"importance_margin_vla_compress\", \"started_at\": \"2026-05-21T23:03:44.859818+00:00\", \"ended_at\": \"2026-05-21T23:04:51.004313+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"部署完成。\\n\\n- **实验**: `eval_pi05_l2norm_k0925_object_seed42`\\n- **服务器**: westd-38929 GPU2\\n- **PID**: 985039，进程已运行 14 秒，状态正常\\n- **日志**: `~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k0925_object_seed42.log`\\n\\nGPU2 上 python 进程正在启动（模型加载阶段，尚未在 nvidia-smi 中显示显存占用，预计 1-2 分钟后出现）。其他 GPU 上的实验未受影响。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-21T23:11:28.877315+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_probe_westd-38929-gpu-status_20260521T224109"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_probe_westd-38929-gpu-status_20260521T224109"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T23:11:29.178859+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_probe_westd-38929-gpu-status_20260521T224109\", \"status\": \"done\", \"task_type\": \"probe:westd-38929-gpu-status\", \"project\": \"importance_margin_vla_compress\", \"started_at\": \"2026-05-21T22:41:09.492811+00:00\", \"ended_at\": \"2026-05-21T22:42:11.120625+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## GPU 状态汇报 — westd-38929\\n\\n| GPU | 状态 | PID | 进程 | 运行时间 |\\n|-----|------|-----|------|---------|\\n| **GPU0** | 占用 (10.2/95.6 GB, 22%) | 788122 | `eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.3 --suite libero_spatial --seed 42` | 1h46m |\\n| **GPU1** | 占用 (10.3/95.6 GB, 30%) | 829120 | `eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_spatial --seed 42` | 1h16m |\\n| **GPU2** | **空闲** (1 MiB, 0%) | — | — | — |\\n| **GPU3** | 占用 (10.3/95.6 GB, 40%) | 824152 | `eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_object --seed 42` | 1h20m |\\n\\n**注意**：用户提到的 PID 788113 (GPU0) 和 824147 (GPU3) 与实际 PID 略有偏差（实际为 788122 和 824152），可能是 registry 记录的是父进程。三个任务都活着。\\n\\n**Tmux sessions**: 仅 1 个 — `eval_pi05_random_k03_spatial_seed42`\\n\\n### L2norm k=0.7 Spatial 进度\\n\\n仍在运行，当前进度到 **Task 7**（共 10 个 task），已完成 6 个 task：\\n\\n| Task | SR |\\n|------|----|\\n| T1 | 82% |\\n| T2 | 94% |\\n| T3 | 36% |\\n| T4 | 40% |\\n| T5 | 50% |\\n| T6 | 82% |\\n| T7 | 进行中 (ep20: 80%) |\\n\\n累计 SR: 235/350 = **67.1%**（前 7 个 task 中已完成 6 个）。T7 当前 16/20 = 80%。预计还需约 20-25 分钟完成剩余 task。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-21T23:11:29.179361+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_probe_cqa1-gpu-status_20260521T224115"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_probe_cqa1-gpu-status_20260521T224115"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T23:11:29.280108+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_probe_cqa1-gpu-status_20260521T224115\", \"status\": \"done\", \"task_type\": \"probe:cqa1-gpu-status\", \"project\": \"importance_margin_vla_compress\", \"started_at\": \"2026-05-21T22:41:15.432099+00:00\", \"ended_at\": \"2026-05-21T22:42:13.494989+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## GPU 状态汇报 — cqa1-33015\\n\\n| GPU | 状态 | PID | 实验 | 运行时间 | 显存 |\\n|-----|------|-----|------|----------|------|\\n| **GPU0** | 占用 | 719440 | `random k=0.85 object seed43` | 39min | 10243/24564 MiB |\\n| **GPU1** | 占用 | 725484 | `l2norm k=0.3 object seed43` | 33min | 10115/24564 MiB |\\n| **GPU2** | 占用 | 716056 | `l2norm k=0.85 object seed42` | 45min | 10243/24564 MiB |\\n| **GPU3** | 占用 | 716134 | `random k=0.3 object seed43` | 45min | 10115/24564 MiB |\\n\\n**空闲 GPU：0 个，全部占满。**\\n\\n关注项：\\n- **GPU0**: `eval_pi05_random_k085_object_seed43` (PID 719440) — 活着，运行 ~40min\\n- **GPU1**: 之前 L2norm k=0.7 seed43 部署失败后，GPU1 现被 **l2norm k=0.3 seed43** (PID 725484) 占用，运行 ~33min。**不空闲**\\n- **GPU2**: `eval_pi05_l2norm_k085_object_seed42` (PID 716056) — 活着，~45min\\n- **GPU3**: `eval_pi05_random_k03_object_seed43` (PID 716134) — 活着，~45min\\n- **eval_smolvla_official_l2norm_k090_object_seed42** — 未在运行\\n- **eval_smart_compress_m32_official** — 未在运行\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-21T23:11:55.689083+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_probe_westd-41074-pids_20260521T225904"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_probe_westd-41074-pids_20260521T225904"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T23:11:55.689529+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_probe_cqa1-dead-experiments_20260521T225749"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_probe_cqa1-dead-experiments_20260521T225749"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T23:11:56.342420+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_probe_westd-41074-pids_20260521T225904\", \"status\": \"done\", \"task_type\": \"probe:westd-41074-pids\", \"project\": \"importance_margin_vla_compress\", \"started_at\": \"2026-05-21T22:59:04.891091+00:00\", \"ended_at\": \"2026-05-21T23:00:32.444607+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"结果：\\n\\n| 实验 | PID | GPU | 显存占用 | GPU 利用率 |\\n|------|-----|-----|---------|-----------|\\n| `eval_pi05_random_k0925_object_seed42` (keep_ratio=0.925, seed=42) | **715307** | GPU 0 | 10052 MiB | 9% |\\n| `eval_pi05_random_k095_object_seed43` (keep_ratio=0.95, seed=43) | **730309** | GPU 1 | 10545 MiB | 36% |\\n\\nGPU 2/3 上还有其他进程（PID 68539 占 28546 MiB，PID 59671 占 27526 MiB），不属于这两个 eval 实验。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 653
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T23:11:56.343060+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_probe_cqa1-dead-experiments_20260521T225749\", \"status\": \"done\", \"task_type\": \"probe:cqa1-dead-experiments\", \"project\": \"importance_margin_vla_compress\", \"started_at\": \"2026-05-21T22:57:49.735700+00:00\", \"ended_at\": \"2026-05-21T22:58:50.881471+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"两个实验均已正常完成（非崩溃），结果如下：\\n\\n**实验 1: eval_smolvla_official_l2norm_k090_object_seed42**\\n- 状态：**Completed**\\n- SR = **0.0%** (0/500)\\n- 所有 10 个 task 成功率均为 0%，mean_steps 全部 280（跑满上限）\\n- L2-norm pruning k=0.9 在 SmolVLA official 上完全失效\\n\\n**实验 2: eval_smart_compress_m32_official**\\n- 状态：**Completed**\\n- SR = **53.4%** (267/500)，95% Wilson CI [49.0%, 57.7%]\\n- 各 task SR: 64%, 48%, 56%, 46%, 46%, 28%, 78%, 42%, 66%, 60%\\n- 结果已保存至 `eval_results/eval_smart_compress_m32_official.json`\\n\\n两个实验的 registry 状态应从 RUNNING 更新为 COMPLETED。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 653
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-21T23:11:56.393564+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_diagnose_cqa1-checkpoint-integrity_20260521T230226"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_diagnose_cqa1-checkpoint-integrity_20260521T230226"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T23:11:56.845398+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_cqa1-checkpoint-integrity_20260521T230226\", \"status\": \"done\", \"task_type\": \"diagnose:cqa1-checkpoint-integrity\", \"project\": \"importance_margin_vla_compress\", \"started_at\": \"2026-05-21T23:02:27.052923+00:00\", \"ended_at\": \"2026-05-21T23:05:51.180797+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"诊断完成。以下是完整报告：\\n\\n---\\n\\n## 诊断报告：π0.5 Checkpoint 状态\\n\\n### 1. 服务器状态修正\\n\\n**任务描述与实际状态严重不符：**\\n- π0.5 实验在 **westd-38929**，不在 westd-27271（cqa1）\\n- 原始 4 个 PID (719440, 725484, 716056, 716134) **全部不存在**\\n- westd-27271 上无任何 π0.5 文件，当前跑的是 OpenVLA 实验\\n\\n### 2. westd-38929 当前状态\\n\\n| GPU | PID | 实验 |\\n|-----|-----|------|\\n| GPU0 | — | 空闲 |\\n| GPU1 | 829120 | `l2norm k=0.7 spatial seed42`（运行中） |\\n| GPU2 | — | 空闲 |\\n| GPU3 | 824152 | `random k=0.85 object seed42`（运行中，非 seed43） |\\n\\n### 3. Checkpoint 校验：**正常，未损坏**\\n\\nCheckpoint 位于 `/root/autodl-tmp/pi05_libero_finetuned/`，今天刚下载（7.47GB），文件完整。\\n\\n**Baseline spatial seed42 SR = 97.2%** (486/500) — checkpoint 完全健康。\\n\\n### 4. 已完成 π0.5 结果（全部 libero_spatial, seed42）\\n\\n| Mode | keep_ratio | Overall SR |\\n|------|-----------|------------|\\n| **baseline (none)** | **1.0** | **97.2%** |\\n| random | 0.7 | 74.4% |\\n| random | 0.5 | 71.6% |\\n| random | 0.3 | 49.6% |\\n| l2norm | 0.5 | 55.6% |\\n| l2norm | 0.3 | 57.2% |\\n\\n降级曲线平滑合理，进一步证实 checkpoint 正常。\\n\\n### 5. \\\"k=0.85 全部 0%\\\" 的真实原因\\n\\n当前跑的 `random k=0.85 object seed42` 进度（9/10 tasks done）：\\n\\n| Task | SR |\\n|------|----|\\n| T0 | 6% |\\n| T1 | 10% |\\n| T2 | 2% |\\n| T3 | 4% |\\n| T4 | 12% |\\n| T5 | 0% |\\n| T6 | 0% |\\n| T7 | 0% |\\n| T8 | 6% |\\n| **Running total** | **4.4%** (20/450) |\\n\\n**根因：π0.5 模型只在 `libero_spatial` 上微调过（训练配置来自 `pepijn223/pi05_libero_31_9_non_q`），在 `libero_object` 上属于 out-of-distribution 评测。** 即使保留 85% 的 token，模型在 object 任务上本来就不行——这不是 pruning 造成的 cliff，是模型本身不具备 object 能力。\\n\\n### 6. 结论\\n\\
+…[truncated 456 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-21T23:11:56.897366+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_ops_process-analyzing-experiments_20260521T223348"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_ops_process-analyzing-experiments_20260521T223348"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T23:11:57.298930+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_process-analyzing-experiments_20260521T223348\", \"status\": \"done\", \"task_type\": \"ops:process-analyzing-experiments\", \"project\": \"importance_margin_vla_compress\", \"started_at\": \"2026-05-21T22:33:48.341486+00:00\", \"ended_at\": \"2026-05-21T22:37:26.751909+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"8/8 全部转 DONE。汇总：\\n\\n| exp_id | conclusion | key metrics | 操作 |\\n|--------|-----------|-------------|------|\\n| train_smart_compress_m128_resume | success | loss=0.054, steps=99999 | 直接→DONE |\\n| train_smart_compress_m128_seed43 | success | loss=0.056, eval=0.061, steps=99999 | 补metrics→DONE |\\n| train_smart_compress_m16_seed43 | success | loss=0.077, eval=0.062, steps=99999 | 补metrics→DONE |\\n| train_smart_compress_m16_seed44_v3 | success | loss=0.068, eval=0.050, steps=99999 | 补checkpoint_path+log_path+metrics→DONE |\\n| train_smart_compress_m64_seed44 | success | loss=0.031, eval=0.070, steps=99999 | 补conclusion+metrics→DONE |\\n| train_smart_compress_m32_seed44 | success | loss=0.041, eval=0.064, steps=99999 | 补conclusion+metrics→DONE |\\n| train_smart_compress_m96_seed44 | success | loss=0.047, eval=0.053, steps=99999 | 补conclusion+metrics→DONE |\\n| **eval_pi05_random_k09_fixedmask_object_seed42_v2** | **negative** | **SR=17.0% (85/500)** | 补conclusion+metrics→DONE |\\n\\n**fixedmask v2 关键结论**：per-episode 固定 random mask (k=0.9) SR=17.0%，与 stochastic random k=0.9 的 ~10-12% SR 相比仅微幅提升，远未恢复到 baseline (~90%)。**temporal inconsistency 不是 k=0.9 cliff 的根因，specific tokens are critical** — 即使只丢弃 10% 的 token，如果丢掉了关键 token，性能就会崩塌。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-21T23:11:57.449845+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_analyze_eval_pi05_random_k07_spatial_seed42_20260521T222809"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_analyze_eval_pi05_random_k07_spatial_seed42_20260521T222809"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T23:11:57.550894+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analyze_eval_pi05_random_k07_spatial_seed42_20260521T222809\", \"status\": \"done\", \"task_type\": \"analyze:eval_pi05_random_k07_spatial_seed42\", \"project\": \"importance_margin_vla_compress\", \"started_at\": \"2026-05-21T22:28:09.523098+00:00\", \"ended_at\": \"2026-05-21T22:35:14.513279+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。总结：\\n\\n**eval_pi05_random_k07_spatial_seed42** — SR = **74.4%** (372/500), DONE/success\\n\\n**Per-task**: T0=90%, T1=96%, T2=94%, T3=52%, T4=60%, T5=42%, T6=58%, T7=76%, T8=80%, T9=96%\\n\\n**Cross-suite 一致性**: Random k=0.7 在 Object(75.5%) 和 Spatial(74.4%) 上仅差 1.1pp，极高一致性。\\n\\n**Hypothesis 状态**: 部分验证。Random k=0.7 Spatial 数据已到位(74.4%)。完整验证（random > L2norm 是否跨 suite 成立）需等 `eval_pi05_l2norm_k07_spatial_seed42` 完成。Object 上差距为 +19.1pp (random 75.5% vs L2norm 56.4%)。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-21T23:12:57.699980+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T23:12:57.800773+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-21T23:13:31.751657+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_smolvla_official_l2norm_k090_object_seed42",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_smolvla_official_l2norm_k090_object_seed42",
+    "field": "conclusion",
+    "value": "negative",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T23:13:33.158360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_smolvla_official_l2norm_k090_object_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:18.958Z\", \"updated_at\": \"2026-05-21T23:13:32.572Z\", \"hypothesis\": \"SmolVLA L2-norm k=0.9 on official checkpoint. Expected ~0% SR given cliff at k=0.95.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0, \"total_episodes\": 500, \"seed\": 42}, \"spec\": {\"checkpoint_path\": \"N/A\", \"log_path\": \"cqa1:/root/autodl-tmp/importance_margin_vla_compress/eval_results/\"}, \"completed_at\": \"2026-05-21T18:13:38.608Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3385}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1406
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-21T23:13:33.158817+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_smolvla_official_l2norm_k090_object_seed42",
+  "field": "metrics",
+  "value": "{'SR': 0, 'episodes': 500, 'note': 'all 10 tasks 0% SR, mean_steps=280 (max)'}",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_smolvla_official_l2norm_k090_object_seed42",
+    "field": "metrics",
+    "value": "{'SR': 0, 'episodes': 500, 'note': 'all 10 tasks 0% SR, mean_steps=280 (max)'}",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T23:13:34.313304+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_smart_compress_m32_official",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_smart_compress_m32_official",
+    "field": "conclusion",
+    "value": "success",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T23:13:35.520617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_smolvla_official_l2norm_k090_object_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:18.958Z\", \"updated_at\": \"2026-05-21T23:13:33.884Z\", \"hypothesis\": \"SmolVLA L2-norm k=0.9 on official checkpoint. Expected ~0% SR given cliff at k=0.95.\", \"conclusion\": \"negative\", \"metrics\": {\"SR\": 0, \"episodes\": 500, \"note\": \"all 10 tasks 0% SR, mean_steps=280 (max)\"}, \"spec\": {\"checkpoint_path\": \"N/A\", \"log_path\": \"cqa1:/root/autodl-tmp/importance_margin_vla_compress/eval_results/\"}, \"completed_at\": \"2026-05-21T18:13:38.608Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3186}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 2361
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T23:13:36.072852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_smart_compress_m32_official\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T10:06:45.019Z\", \"updated_at\": \"2026-05-21T23:13:35.210Z\", \"hypothesis\": \"Smart Compress M=32 trained from official SmolVLA checkpoint (baseline SR=59.2%) eval on LIBERO-Object (50 episodes/task). If official checkpoint yields higher SR than smolvla_base M=32 (seed42=61.6%), confirms stronger pretrained features improve compression performance.\", \"parent\": \"train_smart_compress_m32_official\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python eval_smart_compress_libero.py --n_queries 32 --checkpoint_path checkpoints/smart_compress_m32_official/checkpoint.pt --suite libero_object --num_episodes 50 --gpu 0 --seed 42\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 50, \"model_name\": \"smolvla_official + VisionTokenCompressor(M=32)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/smart_compress_m32_official/checkpoint.pt\", \"eval_data\": \"libero_object (50 episodes/task)\", \"pid\": 160116, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m32_official.log\", \"gpu_ids\": [\"cuda:3\"], \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m32_official/checkpoint.pt\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 53.4, \"ci_95_lower\": 49, \"ci_95_upper\": 57.7, \"n_episodes\": 500, \"seed\": 42, \"per_task\": {\"alphabet_soup\": 64, \"cream_cheese\": 48, \"salad_dressing\": 56, \"bbq_sauce\": 46, \"ketchup\": 46, \"tomato_sauce\": 28, \"butter\": 78, \"milk\": 42, \"chocolate_pudding\": 66, \"orange_juice\": 60}}, \"completed_at\": \"2026-05-19T11:08:55.783Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2722}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1759
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-21T23:13:36.123446+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_smart_compress_m32_official",
+  "field": "metrics",
+  "value": "{'SR': 53.4, 'episodes': 500, 'CI_95_wilson': '49.0-57.7', 'per_task_SR': [64, 48, 56, 46, 46, 28, 78, 42, 66, 60]}",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_smart_compress_m32_official",
+    "field": "metrics",
+    "value": "{'SR': 53.4, 'episodes': 500, 'CI_95_wilson': '49.0-57.7', 'per_task_SR': [64, 48, 56, 46, 46, 28, 78, 42, 66, 60]}",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T23:13:43.099076+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_smart_compress_m32_official\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T10:06:45.019Z\", \"updated_at\": \"2026-05-21T23:13:36.832Z\", \"hypothesis\": \"Smart Compress M=32 trained from official SmolVLA checkpoint (baseline SR=59.2%) eval on LIBERO-Object (50 episodes/task). If official checkpoint yields higher SR than smolvla_base M=32 (seed42=61.6%), confirms stronger pretrained features improve compression performance.\", \"parent\": \"train_smart_compress_m32_official\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python eval_smart_compress_libero.py --n_queries 32 --checkpoint_path checkpoints/smart_compress_m32_official/checkpoint.pt --suite libero_object --num_episodes 50 --gpu 0 --seed 42\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 50, \"model_name\": \"smolvla_official + VisionTokenCompressor(M=32)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/smart_compress_m32_official/checkpoint.pt\", \"eval_data\": \"libero_object (50 episodes/task)\", \"pid\": 160116, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m32_official.log\", \"gpu_ids\": [\"cuda:3\"], \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m32_official/checkpoint.pt\"}, \"conclusion\": \"success\", \"metrics\": {\"SR\": 53.4, \"episodes\": 500, \"CI_95_wilson\": \"49.0-57.7\", \"per_task_SR\": [64, 48, 56, 46, 46, 28, 78, 42, 66, 60]}, \"completed_at\": \"2026-05-19T11:08:55.783Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3955}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 6975
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-21T23:13:43.149880+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "probe:westd-27271-gpu-status",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "SSH 到 westd-27271 检查当前 GPU 状态和运行中的实验。\n\n目标：\n1. 运行 `nvidia-smi` 查看 4 块 GPU 的占用情况（显存、进程 PID、GPU 利用率）\n2. 对每个有进程的 GPU，用 `ps aux | grep &lt;PID>` 确认进程身份（实验名、命令行）\n3. 检查 tmux sessions: `tmux ls`\n4. 检查项目目录下的活跃日志: `ls -lt /root/autodl-tmp/importance_margin_vla_compress/logs/ | head -10`\n5. 确认 train_openvla_sc_m32_vtconly_seed42 (PID 921279) 是否还在运行\n\n服务器信息：\n- 服务器: westd-27271, account: root\n- 项目路径: /root/autodl-tmp/importance_margin_vla_compress\n- conda 环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- 该服务器只有 2 个 GPU (cuda:0, cuda:1)\n\n输出格式：\n| GPU | 状态 | PID | 实验 | 显存占用 | GPU 利用率 |\n然后列出空闲 GPU。",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "probe:westd-27271-gpu-status",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "SSH 到 westd-27271 检查当前 GPU 状态和运行中的实验。\n\n目标：\n1. 运行 `nvidia-smi` 查看 4 块 GPU 的占用情况（显存、进程 PID、GPU 利用率）\n2. 对每个有进程的 GPU，用 `ps aux | grep &lt;PID>` 确认进程身份（实验名、命令行）\n3. 检查 tmux sessions: `tmux ls`\n4. 检查项目目录下的活跃日志: `ls -lt /root/autodl-tmp/importance_margin_vla_compress/logs/ | head -10`\n5. 确认 train_openvla_sc_m32_vtconly_seed42 (PID 921279) 是否还在运行\n\n服务器信息：\n- 服务器: westd-27271, account: root\n- 项目路径: /root/autodl-tmp/importance_margin_vla_compress\n- conda 环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- 该服务器只有 2 个 GPU (cuda:0, cuda:1)\n\n输出格式：\n| GPU | 状态 | PID | 实验 | 显存占用 | GPU 利用率 |\n然后列出空闲 GPU。",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T23:13:49.304590+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_probe_westd-27271-gpu-status_20260521T231343\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/logs/workers/worker_probe_westd-27271-gpu-status_20260521T231343.log\", \"setup_data\": {}, \"message\": \"Worker worker_probe_westd-27271-gpu-status_20260521T231343 started. Use get_worker_status('worker_probe_westd-27271-gpu-status_20260521T231343') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 6154
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-21T23:13:49.477550+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "probe:westd-38929-gpu-update",
+  "project": "importance_margin_vla_compress",
+  "task_prompt": "SSH 到 westd-38929 检查当前 GPU 状态。上次探测（约 30 分钟前）显示：\n- GPU0: 空闲\n- GPU1: eval_pi05_l2norm_k07_spatial_seed42 (PID 829120)，当时在 task 7/10\n- GPU2: eval_pi05_l2norm_k0925_object_seed42 (PID 985039)，刚部署\n- GPU3: eval_pi05_random_k085_object_seed42_v2 (PID 824152)\n\n目标：\n1. 运行 `nvidia-smi` 查看 4 块 GPU 当前状态\n2. 对每个有进程的 GPU，`ps aux | grep &lt;PID>` 确认进程还活着\n3. 特别检查 GPU1 的 l2norm k=0.7 spatial 是否已完成（之前在 task 7/10）\n4. 如果有实验完成，读取其日志尾部获取最终结果: `tail -50 /root/autodl-tmp/importance_margin_vla_compress/logs/&lt;logfile>`\n5. 列出所有 tmux sessions: `tmux ls`\n\n服务器信息：\n- 服务器: westd-38929, account: root\n- 项目路径: /root/autodl-tmp/importance_margin_vla_compress\n- 该服务器有 4 个 GPU\n\n输出格式：\n| GPU | 状态 | PID | 实验 | 显存占用 |\n列出空闲 GPU 和刚完成的实验结果。",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "probe:westd-38929-gpu-update",
+    "project": "importance_margin_vla_compress",
+    "task_prompt": "SSH 到 westd-38929 检查当前 GPU 状态。上次探测（约 30 分钟前）显示：\n- GPU0: 空闲\n- GPU1: eval_pi05_l2norm_k07_spatial_seed42 (PID 829120)，当时在 task 7/10\n- GPU2: eval_pi05_l2norm_k0925_object_seed42 (PID 985039)，刚部署\n- GPU3: eval_pi05_random_k085_object_seed42_v2 (PID 824152)\n\n目标：\n1. 运行 `nvidia-smi` 查看 4 块 GPU 当前状态\n2. 对每个有进程的 GPU，`ps aux | grep &lt;PID>` 确认进程还活着\n3. 特别检查 GPU1 的 l2norm k=0.7 spatial 是否已完成（之前在 task 7/10）\n4. 如果有实验完成，读取其日志尾部获取最终结果: `tail -50 /root/autodl-tmp/importance_margin_vla_compress/logs/&lt;logfile>`\n5. 列出所有 tmux sessions: `tmux ls`\n\n服务器信息：\n- 服务器: westd-38929, account: root\n- 项目路径: /root/autodl-tmp/importance_margin_vla_compress\n- 该服务器有 4 个 GPU\n\n输出格式：\n| GPU | 状态 | PID | 实验 | 显存占用 |\n列出空闲 GPU 和刚完成的实验结果。",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-21T23:29:03.616639+00:00_
+
+更新 registry 和 probe westd-27271。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_openvla_l2norm_k05_object_seed42"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,626 @@
+# ops results summary and citation check
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/chats/worker_ops_results_summary_and_citation_check_20260517T191933.jsonl`
+- **Structured JSON:** [`61598ada450c010a9a59.json`](../../sessions/61/61598ada450c010a9a59.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+19 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T19:23:56.089099+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,WebSearch,WebFetch",
+  "max_results": "7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,WebSearch,WebFetch",
+    "max_results": "7"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T19:23:56.089456+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T19:23:56.089679+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T19:23:56.089853+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "recursive_gen_depth_est"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T19:23:56.090813+00:00_
+
+Error: result (194,822 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/467469ab-23d1-4a23-90b5-33e40e7f9709/tool-results/mcp-agent-ml-research-read_registry-1779045595222.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/467469ab-23d1-4a23-90b5-33e40e7f9709/tool-results/mcp-agent-ml-research-read_registry-1779045595222.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/467469ab-23d1-4a23-90b5-33e40e7f9709/tool-results/mcp-agent-ml-research-read_registry-1779045595222.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T19:23:56.091605+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001a\", \"claim\": 1, \"description\": \"Pythia-1.4B recursive chain — nucleus p=0.95 (MVP)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"status\": \"DONE\", \"notes\": \"4 depths × 1 strategy. 78.2% 4-class acc, d1v2 AUC 0.861. Content-type control: 81.6%.\", \"registry_id\": \"mvp_pipeline_pythia_002\", \"conclusion\": \"success\", \"metrics\": {\"full_4class_acc\": 0.782, \"full_4class_acc_ci\": [0.769, 0.794], \"full_4class_acc_stratified\": 0.781, \"full_mae\": 0.2367, \"full_auc_0v1\": 0.9975, \"full_auc_1v2\": 0.8607, \"full_auc_2v3\": 0.8005, \"filtered_4class_acc\": 0.816, \"filtered_4class_acc_ci\": [0.803, 0.829], \"filtered_mae\": 0.1995, \"filtered_auc_0v1\": 0.9977, \"filtered_auc_1v2\": 0.8782, \"filtered_auc_2v3\": 0.8323, \"filtered_sample_count\": 16993, \"three_class_acc\": 0.708, \"three_class_acc_ci\": [0.692, 0.725], \"three_class_mae\": 0.3203, \"three_class_auc_1v2\": 0.854, \"three_class_auc_1v3\": 0.9569, \"three_class_auc_2v3\": 0.7931, \"three_class_recall_d1\": 0.79, \"three_class_recall_d2\": 0.607, \"three_class_recall_d3\": 0.728, \"three_class_precision_d1\": 0.852, \"three_class_precision_d2\": 0.605, \"three_class_precision_d3\": 0.68, \"three_class_f1_d1\": 0.82, \"three_class_f1_d2\": 0.606, \"three_class_f1_d3\": 0.703, \"three_class_lr_acc\": 0.671, \"filtered_three_class_acc\": 0.747, \"filtered_three_class_acc_ci\": [0.727, 0.764], \"filtered_three_class_mae\": 0.2759, \"filtered_three_class_recall_d1\": 0.862, \"filtered_three_class_recall_d2\": 0.635, \"filtered_three_class_recall_d3\": 0.735, \"filtered_three_class_precision_d1\": 0.867, \"filtered_three_class_precision_d2\": 0.659, \"filtered_three_class_precision_d3\": 0.704, \"filtered_three_class_f1_d1\": 0.864, \"filtered_three_class_f1_d2\": 0.647, \"filtered_three_class_f1_d3\": 0.719, \"filtered_three_class_auc_1v2\": 0.8926, \"filtered_three_class_auc_1v3\": 0.9769, \"f
+…[truncated 35733 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T19:23:56.091798+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Pareek Sanghavi \"Understanding Gains\" \"Repeated Self-Distillation\" NeurIPS 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Pareek Sanghavi \"Understanding Gains\" \"Repeated Self-Distillation\" NeurIPS 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T19:23:56.091965+00:00_
+
+Web search results for query: "Pareek Sanghavi "Understanding Gains" "Repeated Self-Distillation" NeurIPS 2024"
+
+No links found.
+
+I wasn't able to find results for that exact search query combination. This could mean:
+
+1. The paper might use slightly different phrasing in its title or authors
+2. It may not yet be widely indexed on the web
+3. The specific combination of terms might be too restrictive
+
+Would you like me to try a broader search? For example, I could search for:
+- Just "Repeated Self-Distillation NeurIPS 2024"
+- Just "Pareek Sanghavi NeurIPS 2024"
+- "Understanding Gains Self-Distillation"
+
+Let me know which approach would be most helpful, or if you have any additional information about the paper (like the institution or alternative keywords).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T19:23:56.092133+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Pareek Sanghavi \"self-distillation\" NeurIPS 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Pareek Sanghavi \"self-distillation\" NeurIPS 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T19:23:56.092260+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"repeated self-distillation\" \"understanding\" NeurIPS 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"repeated self-distillation\" \"understanding\" NeurIPS 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T19:23:56.092378+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Pareek Sanghavi machine learning 2024 paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Pareek Sanghavi machine learning 2024 paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T19:23:56.092526+00:00_
+
+Web search results for query: "Pareek Sanghavi "self-distillation" NeurIPS 2024"
+
+Links: [{"title":"Understanding the Gains from Repeated Self-Distillation Divyansh Pareek","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/0eb1ac7551ddbae575415aa5183a88be-Paper-Conference.pdf"},{"title":"Understanding the Gains from Repeated Self-Distillation Divyansh Pareek","url":"https://papers.nips.cc/paper_files/paper/2024/file/0eb1ac7551ddbae575415aa5183a88be-Paper-Conference.pdf"},{"title":"Understanding the Gains from Repeated Self-Distillation","url":"https://proceedings.neurips.cc/paper_files/paper/2024/hash/0eb1ac7551ddbae575415aa5183a88be-Abstract-Conference.html"},{"title":"The Effect of Optimal Self-Distillation in Noisy Gaussian Mixture Model","url":"https://openreview.net/pdf/307fc6d68801e9b8e03aee48632b3c416f762daa.pdf"},{"title":"NeurIPS Poster Understanding the Gains from Repeated Self-Distillation","url":"https://neurips.cc/virtual/2024/poster/94147"},{"title":"About me - Rudrajit Das","url":"https://rudrajit15.github.io/"},{"title":"Simon Shaolei Du Paul G. Allen School of Computer Science & Engineering","url":"https://simonshaoleidu.com/Simon_Du_CV.pdf"},{"title":"NeurIPS Poster How to build a consistency model: Learning flow maps via self-distillation","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/119201"},{"title":"NeurIPS Poster The Effect of Optimal Self-Distillation in Noisy Gaussian Mixture Model","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/116415"},{"title":"A Comprehensive Survey on Knowledge Distillation","url":"https://openreview.net/pdf?id=3cbJzdR78B"}]
+
+I found relevant information about Pareek and self-distillation at NeurIPS 2024. Here are the key findings:
+
+Divyansh Pareek, along with Simon S. Du and Sewoong Oh, presented a paper titled "Understanding the Gains from Repeated Self-Distillation" at NeurIPS 2024's main conference track.
+
+Self-Distillation is a special type of knowledge distillation where
+…[truncated 1195 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T19:23:56.092721+00:00_
+
+Web search results for query: "Pareek Sanghavi machine learning 2024 paper"
+
+Links: [{"title":"Chandra Shekhar Pareek, Enhancing Quality Assurance in Annuities : A Risk Management Approach with AI and Machine Learning - PhilArchive","url":"https://philarchive.org/rec/PAREQA"},{"title":"Machine Learning with Applications | Vol 15, March 2024 | ScienceDirect.com by Elsevier","url":"https://www.sciencedirect.com/journal/machine-learning-with-applications/vol/15/suppl/C"},{"title":"ICML 2024 Papers","url":"https://icml.cc/virtual/2024/papers.html"},{"title":"Machine Learning Oct 2024","url":"https://arxiv.org/list/cs.LG/2024-10?skip=325&show=2000"},{"title":"Machine learning/artificial intelligence in sports medicine: state of the art and future directions - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/38336099/"},{"title":"5 of the Most Influential Machine Learning Papers of 2024 - MachineLearningMastery.com","url":"https://machinelearningmastery.com/5-most-influential-machine-learning-papers-2024/"},{"title":"5 Machine Learning Papers to Read in 2024 - KDnuggets","url":"https://www.kdnuggets.com/5-machine-learning-papers-to-read-in-2024"},{"title":"Journal of Machine Learning Research","url":"https://www.jmlr.org/"},{"title":"Machine Learning Nov 2024","url":"https://arxiv.org/list/cs.LG/2024-11?skip=550&show=2000"},{"title":"GitHub - dair-ai/AI-Papers-of-the-Week: 🔥Highlighting the top ML papers every week.","url":"https://github.com/dair-ai/AI-Papers-of-the-Week"}]
+
+Based on the search results, I found a few relevant matches:
+
+1. **Chandra Shekhar Pareek (2024)**: A paper titled "Enhancing Quality Assurance in Annuities: A Risk Management Approach with AI and Machine Learning" published in the International Journal of Science and Research in 2024. The paper investigates the application of AI and Machine Learning to enhance risk mitigation across critical testing domains, including compliance automation, financial accuracy, data security, and performance optimizati
+…[truncated 937 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T19:23:56.092930+00:00_
+
+Web search results for query: ""repeated self-distillation" "understanding" NeurIPS 2024"
+
+Links: [{"title":"NeurIPS Poster Understanding the Gains from Repeated Self-Distillation","url":"https://neurips.cc/virtual/2024/poster/94147"},{"title":"Understanding the Gains from Repeated Self-Distillation","url":"https://proceedings.neurips.cc/paper_files/paper/2024/hash/0eb1ac7551ddbae575415aa5183a88be-Abstract-Conference.html"},{"title":"Understanding the Gains from Repeated Self-Distillation Divyansh Pareek","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/0eb1ac7551ddbae575415aa5183a88be-Paper-Conference.pdf"},{"title":"Understanding the Gains from Repeated Self-Distillation Divyansh Pareek","url":"https://papers.nips.cc/paper_files/paper/2024/file/0eb1ac7551ddbae575415aa5183a88be-Paper-Conference.pdf"},{"title":"Understanding the Gains from Repeated Self-Distillation","url":"https://neurips.cc/media/neurips-2024/Slides/94147.pdf"},{"title":"Understanding the Gains from Repeated Self-Distillation | OpenReview","url":"https://openreview.net/forum?id=gMqaKJCOCB"},{"title":"Machine Learning Jul 2024","url":"https://web3.arxiv.org/list/cs.LG/2024-07?skip=330&show=50"},{"title":"Compact Language Models via Pruning and Knowledge Distillation","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/4822991365c962105b1b95b1107d30e5-Paper-Conference.pdf"},{"title":"NeurIPS Poster DistillNeRF: Perceiving 3D Scenes from Single-Glance Images by Distilling Neural Fields and Foundation Model Features","url":"https://neurips.cc/virtual/2024/poster/96431"},{"title":"Track: Poster Session 5 East","url":"https://neurips.cc/virtual/2024/session/108370"}]
+
+I found the paper! Here's what I found about "Understanding the Gains from Repeated Self-Distillation" from NeurIPS 2024:
+
+## Overview
+
+The paper is part of the NeurIPS 2024 Main Conference Track and was authored by Divyansh Pareek, Simon S. Du, and Sewoong Oh.
+
+## Main Contributions
+
+Despite using the same a
+…[truncated 1058 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T19:23:56.093228+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/results_summary.json",
+  "content": "{\n  \"core_matrix_3x3\": {\n    \"pythia_nucleus\": {\"rf_4class_acc\": 0.7812, \"ci\": [0.7677, 0.7935], \"d1v2_auc\": 0.868, \"d2v3_auc\": 0.804},\n    \"pythia_temp09\": {\"rf_4class_acc\": 0.7605, \"ci\": [0.7475, 0.7738], \"d1v2_auc\": 0.835, \"d2v3_auc\": 0.796},\n    \"pythia_topk50\": {\"rf_4class_acc\": 0.6943, \"ci\": [0.6805, 0.708], \"d1v2_auc\": 0.761, \"d2v3_auc\": 0.695},\n    \"gpt2xl_nucleus\": {\"rf_4class_acc\": 0.8393, \"ci\": [0.8283, 0.8502], \"d1v2_auc\": 0.916, \"d2v3_auc\": 0.885},\n    \"gpt2xl_temp09\": {\"rf_4class_acc\": 0.8552, \"ci\": [0.844, 0.866], \"d1v2_auc\": 0.939, \"d2v3_auc\": 0.886},\n    \"gpt2xl_topk50\": {\"rf_4class_acc\": 0.757, \"ci\": [0.743, 0.7702], \"d1v2_auc\": 0.824, \"d2v3_auc\": 0.762},\n    \"olmo_nucleus\": {\"rf_4class_acc\": 0.7897, \"ci\": [0.7772, 0.8027], \"d1v2_auc\": 0.87, \"d2v3_auc\": 0.816},\n    \"olmo_temp09\": {\"rf_4class_acc\": 0.8263, \"ci\": [0.8147, 0.8385], \"d1v2_auc\": 0.903, \"d2v3_auc\": 0.828},\n    \"olmo_topk50\": {\"rf_4class_acc\": 0.7435, \"ci\": [0.73, 0.758], \"d1v2_auc\": 0.831, \"d2v3_auc\": 0.738},\n    \"_source\": \"plan_012 granularity_ablation_rf_001 (standardized evaluation across all 9 cells)\"\n  },\n  \"instruct_model\": {\n    \"qwen25_1.5b_instruct\": {\n      \"rf_4class_acc\": 0.4742,\n      \"ci\": [0.467, 0.4811],\n      \"d0v1_auc\": 0.653,\n      \"d1v2_auc\": 0.620,\n      \"d2v3_auc\": 0.664,\n      \"top_features\": [\"surprisal_range\", \"surprisal_position_corr\", \"prob_std\", \"surprisal_first_half_minus_second\", \"surprisal_std\"],\n      \"_source\": \"plan_021 qwen25-1p5b-instruct-001\"\n    }\n  },\n  \"learned_estimator_120k\": {\n    \"xgboost\": {\"pythia\": 63.72, \"olmo\": 69.76, \"gpt2xl\": 68.05, \"mean\": 67.18},\n    \"ordinal_mlp\": {\"pythia\": 62.52, \"olmo\": 69.69, \"gpt2xl\": 67.9, \"mean\": 66.7},\n    \"prototypical\": {\"pythia\": 61.55, \"olmo\": 70.01, \"gpt2xl\": 68.35, \"mean\": 66.64},\n    \"rf_baseline\": {\"mean\": 66.4},\n    \"_source\": \"plan_025 learned_estimator_001\"\n  },\n  \"baseline_comparison\": {\n    \"rf\": 78.2,\n    \"combined_binoculars_fdgpt\": 74.2,\n    \"coral\": 78.07,\n    \"diveye\": 78.17,\n    \"ce_mlp\": 74.9,\n    \"deberta\": 58.3,\n    \"_source\": \"plan_009 baseline_battery_001 + plan_008 deberta\"\n  },\n  \"prompted_gen\": {\n    \"gpt2xl_prompted\": {\"rf_4class_acc\": 69.5},\n    \"_source\": \"plan_016 prompted_gen_gpt2xl_001 (conclusion: failed, signal degraded from 83.3 to 69.5)\"\n  },\n  \"wild_data_fpr\": {\n    \"c4_fpr\": 0.34,\n    \"fineweb_fpr\": 0.17,\n    \"note\": \"OOD false positive rate, NOT contamination. C4 is pre-LLM (2019), d1+ predictions are distribution shift artifacts. See constraint C004.\",\n    \"_source\": \"wild_data_features analysis\"\n  },\n  \"downstream_train_loss\": {\n    \"d0\": 2.558,\n    \"d1\": 1.920,\n    \"d2\": 1.286,\n    \"note\": \"monotonically decreasing, supports information loss hypothesis\"\n  },\n  \"theory_auc_values\": {\n    \"d0v1\": 0.922,\n    \"d1v2\": 0.802,\n    \"d2v3\": 0.712,\n    \"d3v4\": [0.750, 0.784],\n    \"d4v5\": [0.681, 0.684],\n    \"note\": \"d3v4 and d4v5 are cross-model ranges [GPT2XL, Pythia]; from binary pairwise classifiers in depth extension experiments\",\n    \"_source\": \"plan_011/011b/011c depth_extension experiments\"\n  },\n  \"cross_model_loo\": {\n    \"pythia_holdout\": 62.4,\n    \"olmo_holdout\": 69.2,\n    \"gpt2xl_holdout\": 67.6,\n    \"mean\": 66.4,\n    \"_source\": \"plan_005 cross_model_loo_v1\"\n  },\n  \"depth_extension_edd\": {\n    \"pythia\": 4,\n    \"gpt2xl\": 4,\n    \"olmo\": 4,\n    \"threshold\": 0.75,\n    \"note\": \"All 3 models converge to EDD=4 at AUC threshold 0.75\",\n    \"_source\": \"plan_011/011b/011c\"\n  },\n  \"supplementary\": {\n    \"cross_strategy_loo\": {\n      \"mean_4class_acc\": 0.5908,\n      \"pipeline_depth_acc\": 0.7053,\n      \"_source\": \"plan_007 + plan_017\"\n    },\n    \"granularity_ablation\": {\n      \"binary_acc_mean\": 0.995,\n      \"4class_acc_mean\": 0.783,\n      \"6class_acc\": 0.629,\n      \"_source\": \"plan_012\"\n    },\n    \"mlp_19feat\": {\n      \"best_acc\": 0.7906,\n      \"best_delta_vs_rf\": 0.0086,\n      \"_source\": \"plan_019\"\n    },\n    \"finetune_losses_by_model\": {\n      \"pythia_nucleus\": {\"d0\": 2.222, \"d1\": 1.37, \"d2\": 1.006},\n      \"olmo_nucleus\": {\"d0\": 2.269, \"d1\": 1.65, \"d2\": 1.226},\n      \"gpt2xl_nucleus\": {\"d0\": 2.55, \"d1\": 1.715, \"d2\": 1.342},\n      \"_source\": \"plan_001b/002/003\"\n    },\n    \"depth_extension_binary_pairwise\": {\n      \"pythia\": {\"d1v2\": 0.925, \"d2v3\": 0.8225, \"d3v4\": 0.7837, \"d4v5\": 0.6832},\n      \"gpt2xl\": {\"d1v2\": 0.966, \"d2v3\": 0.919, \"d3v4\": 0.750, \"d4v5\": 0.681},\n      \"olmo\": {\"d1v2\": 0.968, \"d2v3\": 0.843, \"d3v4\": 0.765, \"d4v5\": 0.684},\n      \"_source\": \"plan_011/011b/011c\"\n    }\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/results_summary.json",
+    "content": "{\n  \"core_matrix_3x3\": {\n    \"pythia_nucleus\": {\"rf_4class_acc\": 0.7812, \"ci\": [0.7677, 0.7935], \"d1v2_auc\": 0.868, \"d2v3_auc\": 0.804},\n    \"pythia_temp09\": {\"rf_4class_acc\": 0.7605, \"ci\": [0.7475, 0.7738], \"d1v2_auc\": 0.835, \"d2v3_auc\": 0.796},\n    \"pythia_topk50\": {\"rf_4class_acc\": 0.6943, \"ci\": [0.6805, 0.708], \"d1v2_auc\": 0.761, \"d2v3_auc\": 0.695},\n    \"gpt2xl_nucleus\": {\"rf_4class_acc\": 0.8393, \"ci\": [0.8283, 0.8502], \"d1v2_auc\": 0.916, \"d2v3_auc\": 0.885},\n    \"gpt2xl_temp09\": {\"rf_4class_acc\": 0.8552, \"ci\": [0.844, 0.866], \"d1v2_auc\": 0.939, \"d2v3_auc\": 0.886},\n    \"gpt2xl_topk50\": {\"rf_4class_acc\": 0.757, \"ci\": [0.743, 0.7702], \"d1v2_auc\": 0.824, \"d2v3_auc\": 0.762},\n    \"olmo_nucleus\": {\"rf_4class_acc\": 0.7897, \"ci\": [0.7772, 0.8027], \"d1v2_auc\": 0.87, \"d2v3_auc\": 0.816},\n    \"olmo_temp09\": {\"rf_4class_acc\": 0.8263, \"ci\": [0.8147, 0.8385], \"d1v2_auc\": 0.903, \"d2v3_auc\": 0.828},\n    \"olmo_topk50\": {\"rf_4class_acc\": 0.7435, \"ci\": [0.73, 0.758], \"d1v2_auc\": 0.831, \"d2v3_auc\": 0.738},\n    \"_source\": \"plan_012 granularity_ablation_rf_001 (standardized evaluation across all 9 cells)\"\n  },\n  \"instruct_model\": {\n    \"qwen25_1.5b_instruct\": {\n      \"rf_4class_acc\": 0.4742,\n      \"ci\": [0.467, 0.4811],\n      \"d0v1_auc\": 0.653,\n      \"d1v2_auc\": 0.620,\n      \"d2v3_auc\": 0.664,\n      \"top_features\": [\"surprisal_range\", \"surprisal_position_corr\", \"prob_std\", \"surprisal_first_half_minus_second\", \"surprisal_std\"],\n      \"_source\": \"plan_021 qwen25-1p5b-instruct-001\"\n    }\n  },\n  \"learned_estimator_120k\": {\n    \"xgboost\": {\"pythia\": 63.72, \"olmo\": 69.76, \"gpt2xl\": 68.05, \"mean\": 67.18},\n    \"ordinal_mlp\": {\"pythia\": 62.52, \"olmo\": 69.69, \"gpt2xl\": 67.9, \"mean\": 66.7},\n    \"prototypical\": {\"pythia\": 61.55, \"olmo\": 70.01, \"gpt2xl\": 68.35, \"mean\": 66.64},\n    \"rf_baseline\": {\"mean\": 66.4},\n    \"_source\": \"plan_025 learned_estimator_001\"\n  },\n  \"baseline_comparison\": {\n    \"rf\": 78.2,\n    \"combined_binoculars_fdgpt\": 74.2,\n    \"coral\": 78.07,\n    \"diveye\": 78.17,\n    \"ce_mlp\": 74.9,\n    \"deberta\": 58.3,\n    \"_source\": \"plan_009 baseline_battery_001 + plan_008 deberta\"\n  },\n  \"prompted_gen\": {\n    \"gpt2xl_prompted\": {\"rf_4class_acc\": 69.5},\n    \"_source\": \"plan_016 prompted_gen_gpt2xl_001 (conclusion: failed, signal degraded from 83.3 to 69.5)\"\n  },\n  \"wild_data_fpr\": {\n    \"c4_fpr\": 0.34,\n    \"fineweb_fpr\": 0.17,\n    \"note\": \"OOD false positive rate, NOT contamination. C4 is pre-LLM (2019), d1+ predictions are distribution shift artifacts. See constraint C004.\",\n    \"_source\": \"wild_data_features analysis\"\n  },\n  \"downstream_train_loss\": {\n    \"d0\": 2.558,\n    \"d1\": 1.920,\n    \"d2\": 1.286,\n    \"note\": \"monotonically decreasing, supports information loss hypothesis\"\n  },\n  \"theory_auc_values\": {\n    \"d0v1\": 0.922,\n    \"d1v2\": 0.802,\n    \"d2v3\": 0.712,\n    \"d3v4\": [0.750, 0.784],\n    \"d4v5\": [0.681, 0.684],\n    \"note\": \"d3v4 and d4v5 are cross-model ranges [GPT2XL, Pythia]; from binary pairwise classifiers in depth extension experiments\",\n    \"_source\": \"plan_011/011b/011c depth_extension experiments\"\n  },\n  \"cross_model_loo\": {\n    \"pythia_holdout\": 62.4,\n    \"olmo_holdout\": 69.2,\n    \"gpt2xl_holdout\": 67.6,\n    \"mean\": 66.4,\n    \"_source\": \"plan_005 cross_model_loo_v1\"\n  },\n  \"depth_extension_edd\": {\n    \"pythia\": 4,\n    \"gpt2xl\": 4,\n    \"olmo\": 4,\n    \"threshold\": 0.75,\n    \"note\": \"All 3 models converge to EDD=4 at AUC threshold 0.75\",\n    \"_source\": \"plan_011/011b/011c\"\n  },\n  \"supplementary\": {\n    \"cross_strategy_loo\": {\n      \"mean_4class_acc\": 0.5908,\n      \"pipeline_depth_acc\": 0.7053,\n      \"_source\": \"plan_007 + plan_017\"\n    },\n    \"granularity_ablation\": {\n      \"binary_acc_mean\": 0.995,\n      \"4class_acc_mean\": 0.783,\n      \"6class_acc\": 0.629,\n      \"_source\": \"plan_012\"\n    },\n    \"mlp_19feat\": {\n      \"best_acc\": 0.7906,\n      \"best_delta_vs_rf\": 0.0086,\n      \"_source\": \"plan_019\"\n    },\n    \"finetune_losses_by_model\": {\n      \"pythia_nucleus\": {\"d0\": 2.222, \"d1\": 1.37, \"d2\": 1.006},\n      \"olmo_nucleus\": {\"d0\": 2.269, \"d1\": 1.65, \"d2\": 1.226},\n      \"gpt2xl_nucleus\": {\"d0\": 2.55, \"d1\": 1.715, \"d2\": 1.342},\n      \"_source\": \"plan_001b/002/003\"\n    },\n    \"depth_extension_binary_pairwise\": {\n      \"pythia\": {\"d1v2\": 0.925, \"d2v3\": 0.8225, \"d3v4\": 0.7837, \"d4v5\": 0.6832},\n      \"gpt2xl\": {\"d1v2\": 0.966, \"d2v3\": 0.919, \"d3v4\": 0.750, \"d4v5\": 0.681},\n      \"olmo\": {\"d1v2\": 0.968, \"d2v3\": 0.843, \"d3v4\": 0.765, \"d4v5\": 0.684},\n      \"_source\": \"plan_011/011b/011c\"\n    }\n  }\n}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T19:23:56.093437+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/results_summary.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T19:23:56.093599+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "results_summary",
+  "type": "data",
+  "description": "Paper data summary: all experiment results organized by section (core 3x3 matrix, baselines, cross-model, depth extension, etc.)",
+  "project": "recursive_gen_depth_est",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/results_summary.json",
+  "tags": "['paper', 'results', 'summary']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "results_summary",
+    "type": "data",
+    "description": "Paper data summary: all experiment results organized by section (core 3x3 matrix, baselines, cross-model, depth extension, etc.)",
+    "project": "recursive_gen_depth_est",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/results_summary.json",
+    "tags": "['paper', 'results', 'summary']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T19:23:56.093754+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_1d43f5\", \"name\": \"results_summary\", \"type\": \"data\", \"description\": \"Paper data summary: all experiment results organized by section (core 3x3 matrix, baselines, cross-model, depth extension, etc.)\", \"path\": \"projects/recursive_gen_depth_est/artifacts/_project/data/results_summary.json\", \"url\": null, \"project\": \"recursive_gen_depth_est\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T19:23:35.671062+00:00\", \"tags\": [\"paper\", \"results\", \"summary\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-17T19:23:56.093946+00:00_
+
+完成。
+
+---
+
+### 任务 A：results_summary.json
+
+已写入 `/artifacts/results_summary.json`，包含 12 个 section：
+- **core_matrix_3x3**：9 cells 均来自 plan_012 标准化评估（RF 4-class acc + CI + d1v2/d2v3 AUC）
+- **instruct_model / learned_estimator_120k / baseline_comparison / prompted_gen / wild_data_fpr / downstream_train_loss / theory_auc_values / cross_model_loo / depth_extension_edd**：按模板填入
+- **supplementary**：额外收录了 cross_strategy_loo、granularity_ablation、mlp_19feat、per-model finetune losses、depth extension binary pairwise 的详细数据
+
+注意 core_matrix_3x3 数据与原始实验存在微小差异（如 GPT-2 XL nucleus 0.8393 vs 原始 0.833），因为 plan_012 是统一重评估。
+
+---
+
+### 任务 B：Pareek & Sanghavi (2024) 引用核实
+
+**论文真实存在，但作者名有误。**
+
+- **正确标题**：*Understanding the Gains from Repeated Self-Distillation*
+- **正确作者**：**Divyansh Pareek, Simon S. Du, Sewoong Oh**（非 Sanghavi）
+- **Venue**：NeurIPS 2024 Main Conference（确认）
+- **问题**："Sanghavi" 不是本文作者。Sanghavi（Sujay Sanghavi）出现在 Das & Sanghavi 的 **prior work** 中（研究 one-step self-distillation），Pareek et al. 的论文引用并扩展了他们的结果，可能导致混淆。
+
+**修正建议**：引用改为 `Pareek et al. (2024)` 或 `Pareek, Du, & Oh (2024)`。
+
+Sources:
+- [NeurIPS 2024 Proceedings](https://proceedings.neurips.cc/paper_files/paper/2024/hash/0eb1ac7551ddbae575415aa5183a88be-Abstract-Conference.html)
+- [NeurIPS 2024 Poster](https://neurips.cc/virtual/2024/poster/94147)
+- [OpenReview](https://openreview.net/forum?id=gMqaKJCOCB)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_results_summary_and_citation_check_20260517T191933"
+}
+```
+
+</details>
+
+---

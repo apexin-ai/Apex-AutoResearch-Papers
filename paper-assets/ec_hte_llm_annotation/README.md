@@ -6,7 +6,7 @@ Project directory: `ec_hte_llm_annotation`
 
 [Visual browser](../../traces/index.html?project=ec_hte_llm_annotation) · [Offline preview](../../traces/demo.html?project=ec_hte_llm_annotation) · [GitHub trace guide](05-generation-trace/README.md) · [JSON catalogue](05-generation-trace/catalog.json)
 
-Includes 434 source files and 75,488 recorded messages/events. Use the trace guide for session JSON and the browser for per-round inspection and downloads. Counts include overlapping source snapshots.
+Includes 434 source files and 75,488 recorded messages/events. Use the trace guide's Readable Markdown pages for human review; the adjacent JSON links and browser provide structured and per-round inspection. Counts include overlapping source snapshots.
 
 ## Asset review matrix
 

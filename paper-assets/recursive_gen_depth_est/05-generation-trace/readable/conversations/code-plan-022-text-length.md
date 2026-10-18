@@ -1,0 +1,2017 @@
+# code plan 022 text length
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/chats/worker_code_plan_022_text_length_20260517T124748.jsonl`
+- **Structured JSON:** [`057d58509d0dc88bb332.json`](../../sessions/05/057d58509d0dc88bb332.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+71 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T12:56:58.613023+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T12:56:58.613414+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T12:56:58.613608+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T12:56:58.613746+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T12:56:58.613959+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nadd_seed_id.py\\natlas_analysis.py\\natlas_v2_analysis.py\\natlas_v2_complete.py\\natlas_v2_heavy_plots.py\\natlas_v2_plots.py\\nbaseline_ce_classification.py\\nbaseline_coral.py\\nbaseline_diveye_ordinal.py\\nbaseline_ppl_regression.py\\nbaseline_utils.py\\nbaseline_zeroshot_llm.py\\nbatch_feature_extraction.sh\\ncross_seed_transfer.py\\ncross_strategy_pipeline.py\\ndcol_train_standalone_deprecated.py\\ndcol_trainer_v4.py\\ndetection_baselines.py\\ndownload_qwen25_14b.sh\\neval_d1d3.py\\neval_lora_rank_ablation.py\\neval_second_seed.py\\nextract_features.py\\nfeature_ablation.py\\nfilter_code.py\\nfilter_features_d1d3.py\\ngen_length_ablation.py\\ngenerate_next_depth.py\\ngpt2xl_c4_calibration.py\\nllama3_eval.py\\nlora_finetune.py\\nlr_cross_strategy_zscore.py\\nmixed_depth_corpus_eval.py\\nmlp_baseline.py\\nmulti_tau_eval.py\\nplan_015_wild_data.py\\nprepare_arxiv_seeds.py\\nprepare_seed_data.py\\nprompted_generation_eval.py\\nqwen25_14b_scale_validation.py\\nqwen7b_eval.py\\nqwen7b_generate.py\\nqwen7b_lora_finetune.py\\nref_model_ablation.py\\nreference_free_baseline.py\\nresume_olmo_step5.sh\\nrun_atlas_analysis.sh\\nrun_cross_model_chain.sh\\nrun_dcol_training.sh\\nrun_depth_extension.sh\\nrun_depth_extension_gpt2xl.sh\\nrun_depth_extension_olmo.sh\\nrun_domain_extension_arxiv.sh\\nrun_eval_gpt2xl_temp09.sh\\nrun_eval_gpt2xl_topk50.sh\\nrun_eval_olmo_topk50.sh\\nrun_eval_pythia_topk50.sh\\nrun_evaluation.sh\\nrun_gen_length_ablation.sh\\nrun_llama3_8b_pipeline.sh\\nrun_llama3_8b_pipeline_002.sh\\nrun_llama3_8b_pipeline_003.sh\\nrun_llama3_base_pipeline.sh\\nrun_lora_rank_ablation.sh\\nrun_multi_tau_pipeline.sh\\nrun_pipeline.sh\\nrun_pipeline_base.sh\\nrun_pipeline_gpt2xl.sh\\nrun_pipeline_gpt2xl_temp09.sh\\nrun_pipeline_gpt2xl_topk50.sh\\nrun_pipeline_olmo.sh\\nrun_pipeline_olmo_temp09.sh\\nrun_pipeline_olmo_topk50.sh\\nrun_pipeline_pythia_temp07.sh\\nrun_pipeline_pythia_temp09.sh\\nrun_pi
+…[truncated 556 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T12:56:58.614176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross_model_chain\\ncuration_poc\\ndepth_0.jsonl\\ndepth_0_features.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\ndomain_extension\\nfeatures_3class.jsonl\\nfeatures_all.jsonl\\nfeatures_d4d5.jsonl\\nfeatures_depth_4.jsonl\\nfeatures_depth_5.jsonl\\nfeatures_filtered.jsonl\\ngpt2xl\\ngpt2xl_temp09\\ngpt2xl_topk50\\nllama3_8b_nucleus\\nllama3_base_nucleus\\nolmo\\nolmo_temp09\\nolmo_topk50\\nprompted_gen\\npythia_temp05\\npythia_temp07\\npythia_temp09\\npythia_temp11\\npythia_topk50\\nqwen7b_nucleus\\nredpajama_en_head.json.gz\\nreverse_chain\\nwikitext103_test.txt\\nwild_data\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T12:56:58.614355+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "head -100 /root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "head -100 /root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T12:56:58.614496+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T12:56:58.614930+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nExtract statistical features from depth-level JSONL files using frozen Pythia-1.4B.\\n\\nInput:  data/depth_{0,1,2,3}.jsonl — each line: {\\\"text\\\": \\\"...\\\", \\\"depth\\\": N, ...}\\nOutput: data/features.jsonl — each line: {\\\"depth\\\": N, \\\"sample_id\\\": M, \\\"mean_ppl\\\": ..., ...}\\n\\nDependencies: torch, transformers, scipy, numpy, tqdm\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport numpy as np\\nimport torch\\nfrom collections import Counter\\nfrom scipy.stats import skew, kurtosis, entropy\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\nfrom tqdm import tqdm\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Extract statistical features from depth JSONL files.\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"data/\\\")\\n    p.add_argument(\\\"--model_path\\\", default=\\\"/root/autodl-tmp/models/pythia-1.4b\\\")\\n    p.add_argument(\\\"--output_path\\\", default=\\\"data/features.jsonl\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=1)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n    p.add_argument(\\\"--max_samples\\\", type=int, default=0, help=\\\"Max samples per depth (0=all)\\\")\\n    p.add_argument(\\\"--max_depth\\\", type=int, default=3, help=\\\"Maximum depth index to load (default: 3 for depth_0..depth_3)\\\")\\n    return p.parse_args()\\n\\n\\ndef load_depth_data(data_dir, max_samples, max_depth=3):\\n    depth_data = {}\\n    for d in range(max_depth + 1):\\n        fpath = os.path.join(data_dir, f\\\"depth_{d}.jsonl\\\")\\n        if not os.path.exists(fpath):\\n            print(f\\\"[WARN] {fpath} not found, skipping\\\")\\n            continue\\n        records = []\\n        with open(fpath) as f:\\n            for line in f:\\n                line = line.strip()\\n                if not line:\\n                    continue\\n                try:\\
+…[truncated 2364 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T12:56:58.615305+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"baseline_battery_9cell\\nbaselines\\nbaselines_coral100\\nbinary_pairwise\\nclassification_report.txt\\nconfusion_matrix.png\\ncross_model_loo.json\\ncross_model_loo_detailed.json\\ncross_model_recursive_chain_001\\ncross_scale_llama3_8b_001\\ncross_scale_llama3_8b_002\\ncross_scale_llama3_8b_003\\ncross_scale_llama3_base\\ncross_scale_qwen7b\\ncross_seed_transfer\\ncross_seed_transfer_log.txt\\ncross_strategy_loo.json\\ncross_strategy_loo_zscore.json\\ncross_strategy_pipeline\\ncross_strategy_pipeline_log.txt\\ncuration_poc\\nd23_edd_bootstrap.json\\ndetection_baselines\\ndomain_extension_001\\nensemble_reference\\nfeature_ablation\\nfeature_importance.json\\ngen_length_ablation\\ngpt2xl\\ngpt2xl_depth_extension\\ngpt2xl_ref_model\\ngpt2xl_temp09\\ngpt2xl_topk50\\ngranularity_ablation\\nlora_rank_ablation\\nlr_cross_strategy_zscore\\nlr_zscore_cross_strategy.json\\nmixed_depth_corpus\\nmlp_baseline\\nmlp_baseline_stdout.log\\nmulti_tau_ablation\\nmulti_tau_ablation_001_analysis.json\\nn2_deberta_finetune\\nn2_feature_overlap\\nn2_roberta_feature_overlap\\nn2_roberta_finetune\\nn3_bootstrap_significance.json\\nn3_fold_metrics.json\\nolmo\\nolmo_depth_extension\\nolmo_temp09\\nolmo_topk50\\npairwise_auc.json\\nplan_015_wild_data\\nplan_015_wild_data_v2\\npythia_depth_extension\\npythia_temp09\\npythia_topk50\\nr3_n5_cross_strategy_curation\\nr3w5_baselines\\nr3w5_baselines_log.txt\\nref_model_ablation_001\\nref_model_ablation_001.log\\nreference_free_baseline\\nreverse_chain_n4\\nsecond_seed_replication\\nshap_analysis\\ntemp07_pilot\\ntwo_stage_pipeline_results.json\\nw1_correlation_matrix.json\\nw1_permutation_importance_9cell.json\\nw2_domain_bias\\nw6_cross_strategy_per_class_recall.json\\nwild_data_calibration_005\\nwild_data_v3\\nwild_data_v4\\nxgb_lgbm_3cell\\nzeroshot_llm_500\\nzeroshot_qwen7b_500\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T12:56:58.615506+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -n +100 /root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -n +100 /root/autodl-tmp/recursive_gen_depth_est/scripts/extract_features.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T12:56:58.615646+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "head -100 /root/autodl-tmp/recursive_gen_depth_est/scripts/train_classifier.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "head -100 /root/autodl-tmp/recursive_gen_depth_est/scripts/train_classifier.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T12:56:58.616045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        bg_freq /= bg_freq.sum()\\n        bg_ent = float(entropy(bg_freq))\\n    else:\\n        bg_ent = 0.0\\n\\n    trigrams = [tuple(token_ids[i:i+3]) for i in range(total - 2)]\\n    if trigrams:\\n        tg_counts = Counter(trigrams)\\n        tg_freq = np.array(list(tg_counts.values()), dtype=np.float64)\\n        tg_freq /= tg_freq.sum()\\n        tg_ent = float(entropy(tg_freq))\\n    else:\\n        tg_ent = 0.0\\n\\n    return {\\n        \\\"type_token_ratio\\\": ttr,\\n        \\\"hapax_ratio\\\": hapax_ratio,\\n        \\\"bigram_entropy\\\": bg_ent,\\n        \\\"trigram_entropy\\\": tg_ent,\\n        \\\"rep_2gram\\\": compute_repetition(token_ids, 2),\\n        \\\"rep_3gram\\\": compute_repetition(token_ids, 3),\\n        \\\"rep_4gram\\\": compute_repetition(token_ids, 4),\\n    }\\n\\n\\ndef compute_perplexity_features(losses_np):\\n    if len(losses_np) == 0:\\n        return {k: 0.0 for k in [\\n            \\\"mean_ppl\\\", \\\"var_ppl\\\", \\\"skewness_ppl\\\", \\\"kurtosis_ppl\\\",\\n            \\\"p10_ppl\\\", \\\"p25_ppl\\\", \\\"p50_ppl\\\", \\\"p75_ppl\\\", \\\"p90_ppl\\\",\\n            \\\"mean_surprisal\\\", \\\"var_surprisal\\\", \\\"entropy_of_surprisal\\\"]}\\n\\n    ppl = np.exp(losses_np)\\n    result = {\\n        \\\"mean_ppl\\\": float(np.mean(ppl)),\\n        \\\"var_ppl\\\": float(np.var(ppl)),\\n        \\\"skewness_ppl\\\": float(skew(ppl)) if len(ppl) > 2 else 0.0,\\n        \\\"kurtosis_ppl\\\": float(kurtosis(ppl)) if len(ppl) > 3 else 0.0,\\n        \\\"p10_ppl\\\": float(np.percentile(ppl, 10)),\\n        \\\"p25_ppl\\\": float(np.percentile(ppl, 25)),\\n        \\\"p50_ppl\\\": float(np.percentile(ppl, 50)),\\n        \\\"p75_ppl\\\": float(np.percentile(ppl, 75)),\\n        \\\"p90_ppl\\\": float(np.percentile(ppl, 90)),\\n    }\\n\\n    surprisal = losses_np\\n    result[\\\"mean_surprisal\\\"] = float(np.mean(surprisal))\\n    result[\\\"var_surprisal\\\"]
+…[truncated 5186 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T12:56:58.616298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nTrain depth classifiers on extracted features and output MVP results.\\n\\nInput:  data/features.jsonl\\nOutput: results/classification_report.txt, confusion_matrix.png, pairwise_auc.json, feature_importance.json\\n\\nDependencies: numpy, scipy, sklearn, matplotlib\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.preprocessing import StandardScaler\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.ensemble import RandomForestClassifier\\nfrom sklearn.metrics import (accuracy_score, roc_auc_score,\\n                             confusion_matrix, classification_report)\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"Train depth classifiers on extracted features.\\\")\\n    p.add_argument(\\\"--features_path\\\", default=\\\"data/features.jsonl\\\")\\n    p.add_argument(\\\"--output_dir\\\", default=\\\"results/\\\")\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--test_size\\\", type=float, default=0.2)\\n    return p.parse_args()\\n\\n\\ndef load_features(path):\\n    records = []\\n    with open(path) as f:\\n        for i, line in enumerate(f):\\n            line = line.strip()\\n            if not line:\\n                continue\\n            try:\\n                records.append(json.loads(line))\\n            except json.JSONDecodeError as e:\\n                print(f'WARNING: Skipping line {i+1} in {path}: {e}')\\n    exclude = {\\\"depth\\\", \\\"sample_id\\\"}\\n    feature_names = [k for k in records[0].keys() if k not in exclude]\\n    X = np.array([[r[k] for k in feature_names] for r in records], dtype=np.float64)\\n    y = np.array([r[\\\"depth\\\"] for r in records], dtype=np.int64)\\n    X = np.nan_to_num(X, nan=0.0
+…[truncated 1827 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T12:56:58.616490+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "head -80 /root/autodl-tmp/recursive_gen_depth_est/scripts/gen_length_ablation.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "head -80 /root/autodl-tmp/recursive_gen_depth_est/scripts/gen_length_ablation.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T12:56:58.616637+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "head -5 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "head -5 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T12:56:58.616856+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nGeneration Length Ablation (Experiment C)\\nTests whether depth signal strength varies with passage length (128, 256, 512 tokens).\\n\\nFor each target length:\\n1. Subsample depth_0 (seed data) to 1000 passages\\n2. Generate depths 1-3 using existing LoRA checkpoints (1000 passages each, max_new_tokens=target_length)\\n3. Extract 19-dim features with fixed truncation at target_length\\n4. Run 5-fold CV Random Forest (n_estimators=200)\\n5. Output accuracy, CI, and d1v2 AUC\\n\\nOutput: results/gen_length_ablation/summary.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time\\nimport numpy as np\\nimport torch\\nfrom collections import Counter\\nfrom scipy.stats import skew, kurtosis, entropy\\nfrom sklearn.ensemble import RandomForestClassifier\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom sklearn.metrics import accuracy_score, roc_auc_score\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom peft import PeftModel\\nfrom tqdm import tqdm\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--project_dir\\\", default=\\\"/root/autodl-tmp/recursive_gen_depth_est\\\")\\n    p.add_argument(\\\"--model_path\\\", default=\\\"/root/autodl-tmp/models/pythia-1.4b\\\")\\n    p.add_argument(\\\"--lengths\\\", type=int, nargs=\\\"+\\\", default=[128, 256, 512])\\n    p.add_argument(\\\"--num_samples\\\", type=int, default=1000)\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n    p.add_argument(\\\"--n_folds\\\", type=int, default=5)\\n    p.add_argument(\\\"--n_estimators\\\", type=int, default=200)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--skip_generate\\\", action=\\\"store_true\\\", help=\\\"Skip generation, use existing data\\\")\\n    return p.parse_args()\\n\\n\\n# ─── Generatio
+…[truncated 1321 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T12:56:58.617100+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"depth\\\": 0, \\\"sample_id\\\": 0, \\\"mean_ppl\\\": 1607.154718291221, \\\"var_ppl\\\": 158779688.72304317, \\\"skewness_ppl\\\": 10.406051089379453, \\\"kurtosis_ppl\\\": 114.01617768762445, \\\"p10_ppl\\\": 1.0253935757537525, \\\"p25_ppl\\\": 1.4685526791140988, \\\"p50_ppl\\\": 4.352294272371119, \\\"p75_ppl\\\": 39.40245503911115, \\\"p90_ppl\\\": 369.16657551683574, \\\"mean_surprisal\\\": 2.372938156607645, \\\"var_surprisal\\\": 6.239684146274182, \\\"entropy_of_surprisal\\\": 3.1822611603270903, \\\"type_token_ratio\\\": 0.570281124497992, \\\"hapax_ratio\\\": 0.7922535211267606, \\\"bigram_entropy\\\": 6.013228236535451, \\\"trigram_entropy\\\": 6.165336778855558, \\\"rep_2gram\\\": 0.11066398390342047, \\\"rep_3gram\\\": 0.028225806451612878, \\\"rep_4gram\\\": 0.014141414141414121}\\n{\\\"depth\\\": 0, \\\"sample_id\\\": 1, \\\"mean_ppl\\\": 54002.03770697733, \\\"var_ppl\\\": 1413175348996.3547, \\\"skewness_ppl\\\": 22.22576987428103, \\\"kurtosis_ppl\\\": 491.99058066317076, \\\"p10_ppl\\\": 1.0160609078135314, \\\"p25_ppl\\\": 1.3728577706965877, \\\"p50_ppl\\\": 4.021285238082237, \\\"p75_ppl\\\": 27.293282919182133, \\\"p90_ppl\\\": 357.73944974520754, \\\"mean_surprisal\\\": 2.2523334503653545, \\\"var_surprisal\\\": 6.201062234123705, \\\"entropy_of_surprisal\\\": 2.7942398797704473, \\\"type_token_ratio\\\": 0.46987951807228917, \\\"hapax_ratio\\\": 0.6965811965811965, \\\"bigram_entropy\\\": 5.875689416994851, \\\"trigram_entropy\\\": 6.089798063352047, \\\"rep_2gram\\\": 0.17907444668008043, \\\"rep_3gram\\\": 0.06451612903225812, \\\"rep_4gram\\\": 0.02020202020202022}\\n{\\\"depth\\\": 0, \\\"sample_id\\\": 2, \\\"mean_ppl\\\": 1231.937376189517, \\\"var_ppl\\\": 103276797.70463558, \\\"skewness_ppl\\\": 11.808569952051542, \\\"kurtosis_ppl\\\": 153.99156162606673, \\\"p10_ppl\\\": 1.1139743181210084, \\\"p25_ppl\\\": 1.8428773456351897, \\\"p50_ppl\\\": 5.280720253169033, \\\"p7
+…[truncated 2222 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T12:56:58.617287+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "head -80 /root/autodl-tmp/recursive_gen_depth_est/scripts/cross_strategy_pipeline.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "head -80 /root/autodl-tmp/recursive_gen_depth_est/scripts/cross_strategy_pipeline.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T12:56:58.617418+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/cross_strategy_pipeline/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/cross_strategy_pipeline/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T12:56:58.617918+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# Cross-strategy two-stage pipeline: strategy classification + conditional depth classification.\\n# plan_017: Convert cross-strategy 59.1% accuracy from limitation to solved contribution.\\n# CPU only.\\n\\nimport json\\nimport os\\nimport sys\\nimport time\\nimport numpy as np\\nfrom sklearn.ensemble import RandomForestClassifier\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.preprocessing import StandardScaler\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom sklearn.metrics import (\\n    accuracy_score, confusion_matrix, roc_auc_score\\n)\\n\\nBASE = '/root/autodl-tmp/recursive_gen_depth_est'\\nOUT_DIR = os.path.join(BASE, 'results', 'cross_strategy_pipeline')\\n\\nCELLS = {\\n    'pythia_nucleus':  'data/features_all.jsonl',\\n    'pythia_temp09':   'data/pythia_temp09/features.jsonl',\\n    'pythia_topk50':   'results/pythia_topk50/features.jsonl',\\n    'olmo_nucleus':    'data/olmo/features.jsonl',\\n    'olmo_temp09':     'results/olmo_temp09/features.jsonl',\\n    'olmo_topk50':     'results/olmo_topk50/features.jsonl',\\n    'gpt2xl_nucleus':  'data/gpt2xl/features.jsonl',\\n    'gpt2xl_temp09':   'results/gpt2xl_temp09/features.jsonl',\\n    'gpt2xl_topk50':   'results/gpt2xl_topk50/features.jsonl',\\n}\\n\\nMODELS = {\\n    'Pythia-1.4B': ['pythia_nucleus', 'pythia_temp09', 'pythia_topk50'],\\n    'OLMo-1B':     ['olmo_nucleus',  'olmo_temp09',  'olmo_topk50'],\\n    'GPT-2 XL':    ['gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50'],\\n}\\n\\nSTRATEGY_NAMES = ['nucleus', 'temp09', 'topk50']\\nDEPTH_LABELS = [0, 1, 2, 3]\\n\\nFEATURE_COLS = [\\n    'mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl',\\n    'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl',\\n    'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal',\\n    'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy',\\n    'rep_2gram', 'rep_3gram', 'rep_4
+…[truncated 1209 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T12:56:58.618149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T12:56:58.618415+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/olmo/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/olmo/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T12:56:58.618576+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T12:56:58.618718+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "head -1 /root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "head -1 /root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T12:56:58.618892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"depth_0.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\nfeatures.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T12:56:58.619041+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"depth_0.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\nfeatures.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T12:56:58.619197+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\"Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typically including nation-states, and capitalism. Anarchism advocates for the replacement of the state with stateless societies and voluntary free associations. As a historically left-wing movement, this reading of anarchism is placed on the farthest left of the political spectrum, usually described as the libertarian wing of the socialist movement (libertarian socialism).\\\\n\\\\nHumans have lived in societies without formal hierarchies long before the establishment of states, realms, or empires. With the rise of organised hierarchical bodies, scepticism toward authority also rose. Although traces of anarchist ideas are found all throughout history, modern anarchism emerged from the Enlightenment. During the latter half of the 19th and the first decades of the 20th century, the anarchist movement flourished in most parts of the world and had a significant role in workers' struggles for emancipation. Various anarchist schools of thought formed during this period. Anarchists have taken part in several revolutions, most notably in the Paris Commune, the Russian Civil War and the Spanish Civil War, whose end marked the end of the classical era of anarchism. In the last decades of the 20th and into the 21st century, the anarchist movement has been resurgent once more, growing in popularity and influence within anti-capitalist, anti-war and anti-globalisation movements.\\\\n\\\\nAnarchists employ diverse approaches, which may be generally divided into revolutionary and evolutionary strategies; there is significant overlap between the two. Evolutionary methods try to simulate what an anarchist society might be like, but revolutionary tactics, which have historically taken a violent turn, aim to overthrow
+…[truncated 1010 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T12:56:58.619391+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/depth_1.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/depth_2.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/depth_3.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/depth_1.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/depth_2.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/depth_3.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T12:56:58.619530+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/ 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T12:56:58.619654+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T12:56:58.619785+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    5000 /root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\\n    5000 /root/autodl-tmp/recursive_gen_depth_est/data/depth_1.jsonl\\n    5000 /root/autodl-tmp/recursive_gen_depth_est/data/depth_2.jsonl\\n    5000 /root/autodl-tmp/recursive_gen_depth_est/data/depth_3.jsonl\\n   20000 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T12:56:58.619934+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T12:56:58.620094+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"length_128\\\": {\\n    \\\"4class_acc\\\": 0.6835,\\n    \\\"ci_95\\\": [\\n      0.6765,\\n      0.6905\\n    ],\\n    \\\"d1v2_auc\\\": 0.7543,\\n    \\\"fold_accs\\\": [\\n      0.685,\\n      0.6963,\\n      0.6763,\\n      0.6875,\\n      0.6725\\n    ]\\n  },\\n  \\\"length_256\\\": {\\n    \\\"4class_acc\\\": 0.738,\\n    \\\"ci_95\\\": [\\n      0.7248,\\n      0.7512\\n    ],\\n    \\\"d1v2_auc\\\": 0.8198,\\n    \\\"fold_accs\\\": [\\n      0.715,\\n      0.7312,\\n      0.7475,\\n      0.7325,\\n      0.7638\\n    ]\\n  },\\n  \\\"length_512\\\": {\\n    \\\"4class_acc\\\": 0.7782,\\n    \\\"ci_95\\\": [\\n      0.768,\\n      0.7885\\n    ],\\n    \\\"d1v2_auc\\\": 0.8683,\\n    \\\"fold_accs\\\": [\\n      0.7825,\\n      0.7963,\\n      0.7837,\\n      0.76,\\n      0.7688\\n    ]\\n  },\\n  \\\"spread_pp\\\": 9.47,\\n  \\\"conclusion\\\": \\\"Cross-length spread 9.47pp > 5pp threshold. Passage length significantly affects depth detection accuracy.\\\",\\n  \\\"config\\\": {\\n    \\\"num_samples_per_depth\\\": 1000,\\n    \\\"n_folds\\\": 5,\\n    \\\"n_estimators\\\": 200,\\n    \\\"seed\\\": 42,\\n    \\\"model\\\": \\\"EleutherAI/pythia-1.4b\\\",\\n    \\\"decoding\\\": \\\"nucleus (top_p=0.95, temp=1.0)\\\"\\n  },\\n  \\\"elapsed_minutes\\\": 33.1\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.92}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T12:56:58.620287+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/olmo/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/olmo/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T12:56:58.620430+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   20000 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\n   20000 /root/autodl-tmp/recursive_gen_depth_est/data/olmo/features.jsonl\\n   20000 /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl\\n   60000 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T12:56:58.620562+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"features.jsonl\" -path \"*temp09*\" -o -name \"features.jsonl\" -path \"*topk50*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"features.jsonl\" -path \"*temp09*\" -o -name \"features.jsonl\" -path \"*topk50*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T12:56:58.620697+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/features.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T12:56:58.620825+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/features.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/features.jsonl /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/features.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-17T12:56:58.620989+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09 -name \"depth_*.jsonl\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09 -name \"depth_*.jsonl\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T12:56:58.621131+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   20000 /root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features.jsonl\\n   20000 /root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/features.jsonl\\n   20000 /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/features.jsonl\\n   20000 /root/autodl-tmp/recursive_gen_depth_est/results/olmo_temp09/features.jsonl\\n   20000 /root/autodl-tmp/recursive_gen_depth_est/results/olmo_topk50/features.jsonl\\n   20000 /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_topk50/features.jsonl\\n  120000 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T12:56:58.621274+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/depth_1.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/depth_2.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/depth_3.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T12:56:58.621477+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"depth_0.jsonl\" -not -path \"*/domain_extension/*\" -not -path \"*/curation_poc/*\" -not -path \"*/wild_data/*\" -not -path \"*/reverse_chain/*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"depth_0.jsonl\" -not -path \"*/domain_extension/*\" -not -path \"*/curation_poc/*\" -not -path \"*/wild_data/*\" -not -path \"*/reverse_chain/*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T12:56:58.621633+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_topk50/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo_temp09/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo_topk50/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp07/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp05/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp11/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/qwen7b_nucleus/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/cross_model_chain/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/llama3_8b_nucleus/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/llama3_base_nucleus/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/prompted_gen/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/lora_rank_ablation/rank_4/data/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/lora_rank_ablation/rank_16/data/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/lora_rank_ablation/rank_64/data/depth_0.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/second_seed_replication/data/depth_0.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T12:56:58.621909+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'SCRIPT' > /root/autodl-tmp/recursive_gen_depth_est/scripts/text_length_sensitivity.py\n\"\"\"\nText Length Sensitivity Analysis (CPU-only)\n\nTruncates texts to 50/100/200/500 tokens, re-extracts 19 features, runs RF classification.\nMeasures how text length affects depth detection accuracy across the 3x3 grid.\n\nStrategy: compute per-token losses once at max_len=500, then derive features\nfor shorter truncations by slicing arrays. This avoids redundant model forward passes.\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nimport time\nimport numpy as np\nfrom collections import Counter\nfrom scipy.stats import skew, kurtosis, entropy\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, recall_score\nfrom tqdm import tqdm\n\nBASE = '/root/autodl-tmp/recursive_gen_depth_est'\n\nCELLS = {\n    'pythia_nucleus':  'data',\n    'pythia_temp09':   'data/pythia_temp09',\n    'pythia_topk50':   'data/pythia_topk50',\n    'olmo_nucleus':    'data/olmo',\n    'olmo_temp09':     'data/olmo_temp09',\n    'olmo_topk50':     'data/olmo_topk50',\n    'gpt2xl_nucleus':  'data/gpt2xl',\n    'gpt2xl_temp09':   'data/gpt2xl_temp09',\n    'gpt2xl_topk50':   'data/gpt2xl_topk50',\n}\n\nTRUNCATION_LENGTHS = [50, 100, 200, 500]\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Text length sensitivity analysis (CPU-only)\")\n    p.add_argument(\"--model_path\", default=\"/root/autodl-tmp/models/pythia-1.4b\")\n    p.add_argument(\"--samples_per_depth\", type=int, default=50,\n                   help=\"Samples per depth per cell (default: 50, total = 50*4*9=1800)\")\n    p.add_argument(\"--max_depth\", type=int, default=3)\n    p.add_argument(\"--n_folds\", type=int, default=5)\n    p.add_argument(\"--n_estimators\", type=int, default=200)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--dry_run\", action=\"store_true\", help=\"Only process 2 samples per depth per cell\")\n    p.add_argument(\"--output_dir\", default=os.path.join(BASE, \"results/text_length_sensitivity\"))\n    return p.parse_args()\n\n\n# ─── Data Loading ───\n\ndef load_cell_texts(cell_dir, max_depth, samples_per_depth, rng):\n    \"\"\"Load raw text data from a cell directory, subsample.\"\"\"\n    texts_by_depth = {}\n    for d in range(max_depth + 1):\n        fpath = os.path.join(BASE, cell_dir, f\"depth_{d}.jsonl\")\n        if not os.path.exists(fpath):\n            continue\n        records = []\n        with open(fpath) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                records.append(obj[\"text\"])\n        if samples_per_depth > 0 and len(records) > samples_per_depth:\n            idx = rng.choice(len(records), samples_per_depth, replace=False)\n            records = [records[i] for i in sorted(idx)]\n        texts_by_depth[d] = records\n    return texts_by_depth\n\n\n# ─── Feature Computation ───\n\ndef compute_repetition(token_ids, n):\n    if len(token_ids) < n:\n        return 0.0\n    ngrams = [tuple(token_ids[i:i+n]) for i in range(len(token_ids) - n + 1)]\n    total = len(ngrams)\n    unique = len(set(ngrams))\n    return 1.0 - unique / total if total > 0 else 0.0\n\n\ndef compute_lexical_features(token_ids):\n    total = len(token_ids)\n    if total == 0:\n        return {k: 0.0 for k in [\n            \"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\",\n            \"rep_2gram\", \"rep_3gram\", \"rep_4gram\"]}\n\n    counts = Counter(token_ids)\n    unique = len(counts)\n    ttr = unique / total\n    hapax = sum(1 for c in counts.values() if c == 1)\n    hapax_ratio = hapax / unique if unique > 0 else 0.0\n\n    bigrams = [tuple(token_ids[i:i+2]) for i in range(total - 1)]\n    if bigrams:\n        bg_counts = Counter(bigrams)\n        bg_freq = np.array(list(bg_counts.values()), dtype=np.float64)\n        bg_freq /= bg_freq.sum()\n        bg_ent = float(entropy(bg_freq))\n    else:\n        bg_ent = 0.0\n\n    trigrams = [tuple(token_ids[i:i+3]) for i in range(total - 2)]\n    if trigrams:\n        tg_counts = Counter(trigrams)\n        tg_freq = np.array(list(tg_counts.values()), dtype=np.float64)\n        tg_freq /= tg_freq.sum()\n        tg_ent = float(entropy(tg_freq))\n    else:\n        tg_ent = 0.0\n\n    return {\n        \"type_token_ratio\": ttr,\n        \"hapax_ratio\": hapax_ratio,\n        \"bigram_entropy\": bg_ent,\n        \"trigram_entropy\": tg_ent,\n        \"rep_2gram\": compute_repetition(token_ids, 2),\n        \"rep_3gram\": compute_repetition(token_ids, 3),\n        \"rep_4gram\": compute_repetition(token_ids, 4),\n    }\n\n\ndef compute_perplexity_features(losses_np):\n    if len(losses_np) == 0:\n        return {k: 0.0 for k in [\n            \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n            \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n            \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"]}\n\n    ppl = np.exp(losses_np)\n    result = {\n        \"mean_ppl\": float(np.mean(ppl)),\n        \"var_ppl\": float(np.var(ppl)),\n        \"skewness_ppl\": float(skew(ppl)) if len(ppl) > 2 else 0.0,\n        \"kurtosis_ppl\": float(kurtosis(ppl)) if len(ppl) > 3 else 0.0,\n        \"p10_ppl\": float(np.percentile(ppl, 10)),\n        \"p25_ppl\": float(np.percentile(ppl, 25)),\n        \"p50_ppl\": float(np.percentile(ppl, 50)),\n        \"p75_ppl\": float(np.percentile(ppl, 75)),\n        \"p90_ppl\": float(np.percentile(ppl, 90)),\n    }\n\n    surprisal = losses_np\n    result[\"mean_surprisal\"] = float(np.mean(surprisal))\n    result[\"var_surprisal\"] = float(np.var(surprisal))\n\n    if len(surprisal) > 1 and surprisal.max() > surprisal.min():\n        n_bins = min(50, max(10, len(surprisal) // 5))\n        hist, _ = np.histogram(surprisal, bins=n_bins, density=True)\n        bin_width = (surprisal.max() - surprisal.min()) / n_bins\n        probs = hist * bin_width\n        probs = probs / probs.sum() if probs.sum() > 0 else probs\n        result[\"entropy_of_surprisal\"] = float(entropy(probs[probs > 0]))\n    else:\n        result[\"entropy_of_surprisal\"] = 0.0\n\n    return result\n\n\n# ─── Model Inference (CPU) ───\n\ndef compute_per_token_losses_cpu(model, tokenizer, texts, max_len):\n    \"\"\"Compute per-token cross-entropy losses on CPU. Returns list of loss arrays.\"\"\"\n    import torch\n\n    all_losses = []\n    pad_id = tokenizer.pad_token_id\n\n    for text in tqdm(texts, desc=\"Computing losses (CPU)\", unit=\"sample\"):\n        ids = tokenizer.encode(text, add_special_tokens=False)[:max_len]\n        if len(ids) <= 1:\n            all_losses.append(np.array([0.0]))\n            continue\n\n        input_ids = torch.tensor([ids], dtype=torch.long)\n        with torch.no_grad():\n            outputs = model(input_ids=input_ids)\n        logits = outputs.logits\n\n        shift_logits = logits[:, :-1, :].contiguous()\n        shift_labels = input_ids[:, 1:].contiguous()\n        loss_fn = torch.nn.CrossEntropyLoss(reduction=\"none\")\n        per_token_loss = loss_fn(\n            shift_logits.view(-1, shift_logits.size(-1)),\n            shift_labels.view(-1)\n        )\n        all_losses.append(per_token_loss.numpy().astype(np.float64))\n\n    return all_losses\n\n\ndef derive_features_at_length(token_ids_list, losses_list, trunc_len):\n    \"\"\"Derive 19 features from pre-computed losses by truncating to trunc_len.\"\"\"\n    features = []\n    for token_ids, losses in zip(token_ids_list, losses_list):\n        trunc_ids = token_ids[:trunc_len]\n        trunc_losses = losses[:max(0, trunc_len - 1)]\n\n        feats = {}\n        feats.update(compute_perplexity_features(trunc_losses))\n        feats.update(compute_lexical_features(trunc_ids))\n        features.append(feats)\n    return features\n\n\n# ─── Classification ───\n\nFEATURE_COLS = [\n    'mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl',\n    'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl',\n    'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal',\n    'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy',\n    'rep_2gram', 'rep_3gram', 'rep_4gram'\n]\n\n\ndef run_rf_cv(features_dicts, labels, n_folds, n_estimators, seed):\n    \"\"\"Run stratified k-fold RF and return metrics.\"\"\"\n    X = np.array([[f[c] for c in FEATURE_COLS] for f in features_dicts], dtype=np.float64)\n    X = np.nan_to_num(X, nan=0.0, posinf=0.0, neginf=0.0)\n    fmax = float(np.finfo(np.float32).max)\n    X = np.clip(X, -fmax, fmax)\n    y = np.array(labels, dtype=int)\n\n    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)\n    fold_accs = []\n    all_preds = np.zeros(len(y), dtype=int)\n\n    for train_idx, test_idx in skf.split(X, y):\n        clf = RandomForestClassifier(n_estimators=n_estimators, random_state=seed, n_jobs=-1)\n        clf.fit(X[train_idx], y[train_idx])\n        preds = clf.predict(X[test_idx])\n        all_preds[test_idx] = preds\n        fold_accs.append(accuracy_score(y[test_idx], preds))\n\n    acc_4class = accuracy_score(y, all_preds)\n\n    # 3-class: merge depth 2&3\n    y_3 = np.where(y >= 2, 2, y)\n    p_3 = np.where(all_preds >= 2, 2, all_preds)\n    acc_3class = accuracy_score(y_3, p_3)\n\n    per_class_recall = {}\n    for d in sorted(np.unique(y)):\n        mask = y == d\n        per_class_recall[f\"depth_{d}\"] = float(np.mean(all_preds[mask] == d))\n\n    return {\n        \"acc_4class\": round(acc_4class, 4),\n        \"acc_3class\": round(acc_3class, 4),\n        \"per_class_recall\": {k: round(v, 4) for k, v in per_class_recall.items()},\n        \"fold_accs\": [round(a, 4) for a in fold_accs],\n    }\n\n\n# ─── Main ───\n\ndef main():\n    args = parse_args()\n    rng = np.random.RandomState(args.seed)\n    t0 = time.time()\n\n    if args.dry_run:\n        args.samples_per_depth = 2\n        print(\"[DRY RUN] Using 2 samples per depth per cell\")\n\n    # Step 1: Load texts from all 9 cells\n    print(f\"Loading texts from {len(CELLS)} cells, {args.samples_per_depth} samples/depth/cell...\")\n    all_texts = []\n    all_depths = []\n    for cell_name, cell_dir in CELLS.items():\n        texts_by_depth = load_cell_texts(cell_dir, args.max_depth, args.samples_per_depth, rng)\n        for d, texts in sorted(texts_by_depth.items()):\n            all_texts.extend(texts)\n            all_depths.extend([d] * len(texts))\n        n_cell = sum(len(t) for t in texts_by_depth.values())\n        print(f\"  {cell_name}: {n_cell} samples\")\n\n    total = len(all_texts)\n    print(f\"Total: {total} samples\")\n    if total == 0:\n        print(\"ERROR: No data loaded\")\n        return\n\n    # Step 2: Load model and tokenizer (CPU only)\n    print(f\"\\nLoading tokenizer from {args.model_path}...\")\n    import torch\n    from transformers import AutoTokenizer, AutoModelForCausalLM\n\n    os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"\"  # force CPU\n\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    # Step 3: Tokenize all texts\n    print(\"Tokenizing...\")\n    max_trunc = max(TRUNCATION_LENGTHS)\n    all_token_ids = []\n    for text in tqdm(all_texts, desc=\"Tokenizing\", unit=\"sample\"):\n        ids = tokenizer.encode(text, add_special_tokens=False)[:max_trunc]\n        all_token_ids.append(ids)\n\n    # Check how many samples have enough tokens for each length\n    for tl in TRUNCATION_LENGTHS:\n        n_sufficient = sum(1 for ids in all_token_ids if len(ids) >= tl)\n        print(f\"  Samples with >= {tl} tokens: {n_sufficient}/{total} ({100*n_sufficient/total:.1f}%)\")\n\n    # Step 4: Compute per-token losses on CPU\n    print(f\"\\nLoading model {args.model_path} on CPU (float32)...\")\n    model = AutoModelForCausalLM.from_pretrained(args.model_path, torch_dtype=torch.float32)\n    model.eval()\n    print(f\"Model loaded. Computing per-token losses for {total} samples at max_len={max_trunc}...\")\n\n    all_losses = compute_per_token_losses_cpu(model, tokenizer, all_texts, max_trunc)\n\n    # Free model memory\n    del model\n    import gc\n    gc.collect()\n    print(\"Model freed from memory.\")\n\n    # Step 5: For each truncation length, derive features and run RF\n    print(f\"\\nRunning RF classification for truncation lengths: {TRUNCATION_LENGTHS}\")\n    results = {}\n\n    for tl in TRUNCATION_LENGTHS:\n        print(f\"\\n{'='*60}\")\n        print(f\"Truncation length: {tl} tokens\")\n\n        # Filter samples that have at least `tl` tokens\n        valid_mask = [len(ids) >= tl for ids in all_token_ids]\n        valid_ids = [ids for ids, v in zip(all_token_ids, valid_mask) if v]\n        valid_losses = [l for l, v in zip(all_losses, valid_mask) if v]\n        valid_depths = [d for d, v in zip(all_depths, valid_mask) if v]\n\n        if len(valid_ids) < 50:\n            print(f\"  WARNING: Only {len(valid_ids)} valid samples, skipping\")\n            results[str(tl)] = {\"acc_4class\": None, \"note\": \"insufficient samples\"}\n            continue\n\n        print(f\"  Valid samples: {len(valid_ids)}\")\n\n        # Derive features at this truncation length\n        features = derive_features_at_length(valid_ids, valid_losses, tl)\n\n        # Run RF CV\n        metrics = run_rf_cv(features, valid_depths, args.n_folds, args.n_estimators, args.seed)\n        results[str(tl)] = metrics\n        print(f\"  4-class acc: {metrics['acc_4class']}\")\n        print(f\"  3-class acc: {metrics['acc_3class']}\")\n        print(f\"  Per-class recall: {metrics['per_class_recall']}\")\n\n    # Step 6: Summary\n    elapsed = (time.time() - t0) / 60\n    results[\"config\"] = {\n        \"samples_per_depth_per_cell\": args.samples_per_depth,\n        \"total_samples\": total,\n        \"n_cells\": len(CELLS),\n        \"truncation_lengths\": TRUNCATION_LENGTHS,\n        \"n_folds\": args.n_folds,\n        \"n_estimators\": args.n_estimators,\n        \"model\": args.model_path,\n        \"seed\": args.seed,\n    }\n    results[\"elapsed_minutes\"] = round(elapsed, 1)\n\n    os.makedirs(args.output_dir, exist_ok=True)\n    out_path = os.path.join(args.output_dir, \"summary.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {out_path}\")\n    print(f\"Elapsed: {elapsed:.1f} minutes\")\n\n    # Print summary table\n    print(f\"\\n{'Trunc':>6} | {'4-class':>8} | {'3-class':>8} | {'d0':>6} {'d1':>6} {'d2':>6} {'d3':>6}\")\n    print(\"-\" * 60)\n    for tl in TRUNCATION_LENGTHS:\n        m = results.get(str(tl), {})\n        if m.get(\"acc_4class\") is None:\n            print(f\"{tl:>6} | {'N/A':>8} |\")\n            continue\n        rc = m[\"per_class_recall\"]\n        print(f\"{tl:>6} | {m['acc_4class']:>8.4f} | {m['acc_3class']:>8.4f} | \"\n              f\"{rc.get('depth_0',0):>6.4f} {rc.get('depth_1',0):>6.4f} \"\n              f\"{rc.get('depth_2',0):>6.4f} {rc.get('depth_3',0):>6.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\necho \"Script written successfully\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat << 'SCRIPT' > /root/autodl-tmp/recursive_gen_depth_est/scripts/text_length_sensitivity.py\n\"\"\"\nText Length Sensitivity Analysis (CPU-only)\n\nTruncates texts to 50/100/200/500 tokens, re-extracts 19 features, runs RF classification.\nMeasures how text length affects depth detection accuracy across the 3x3 grid.\n\nStrategy: compute per-token losses once at max_len=500, then derive features\nfor shorter truncations by slicing arrays. This avoids redundant model forward passes.\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nimport time\nimport numpy as np\nfrom collections import Counter\nfrom scipy.stats import skew, kurtosis, entropy\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, recall_score\nfrom tqdm import tqdm\n\nBASE = '/root/autodl-tmp/recursive_gen_depth_est'\n\nCELLS = {\n    'pythia_nucleus':  'data',\n    'pythia_temp09':   'data/pythia_temp09',\n    'pythia_topk50':   'data/pythia_topk50',\n    'olmo_nucleus':    'data/olmo',\n    'olmo_temp09':     'data/olmo_temp09',\n    'olmo_topk50':     'data/olmo_topk50',\n    'gpt2xl_nucleus':  'data/gpt2xl',\n    'gpt2xl_temp09':   'data/gpt2xl_temp09',\n    'gpt2xl_topk50':   'data/gpt2xl_topk50',\n}\n\nTRUNCATION_LENGTHS = [50, 100, 200, 500]\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"Text length sensitivity analysis (CPU-only)\")\n    p.add_argument(\"--model_path\", default=\"/root/autodl-tmp/models/pythia-1.4b\")\n    p.add_argument(\"--samples_per_depth\", type=int, default=50,\n                   help=\"Samples per depth per cell (default: 50, total = 50*4*9=1800)\")\n    p.add_argument(\"--max_depth\", type=int, default=3)\n    p.add_argument(\"--n_folds\", type=int, default=5)\n    p.add_argument(\"--n_estimators\", type=int, default=200)\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--dry_run\", action=\"store_true\", help=\"Only process 2 samples per depth per cell\")\n    p.add_argument(\"--output_dir\", default=os.path.join(BASE, \"results/text_length_sensitivity\"))\n    return p.parse_args()\n\n\n# ─── Data Loading ───\n\ndef load_cell_texts(cell_dir, max_depth, samples_per_depth, rng):\n    \"\"\"Load raw text data from a cell directory, subsample.\"\"\"\n    texts_by_depth = {}\n    for d in range(max_depth + 1):\n        fpath = os.path.join(BASE, cell_dir, f\"depth_{d}.jsonl\")\n        if not os.path.exists(fpath):\n            continue\n        records = []\n        with open(fpath) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                records.append(obj[\"text\"])\n        if samples_per_depth > 0 and len(records) > samples_per_depth:\n            idx = rng.choice(len(records), samples_per_depth, replace=False)\n            records = [records[i] for i in sorted(idx)]\n        texts_by_depth[d] = records\n    return texts_by_depth\n\n\n# ─── Feature Computation ───\n\ndef compute_repetition(token_ids, n):\n    if len(token_ids) < n:\n        return 0.0\n    ngrams = [tuple(token_ids[i:i+n]) for i in range(len(token_ids) - n + 1)]\n    total = len(ngrams)\n    unique = len(set(ngrams))\n    return 1.0 - unique / total if total > 0 else 0.0\n\n\ndef compute_lexical_features(token_ids):\n    total = len(token_ids)\n    if total == 0:\n        return {k: 0.0 for k in [\n            \"type_token_ratio\", \"hapax_ratio\", \"bigram_entropy\", \"trigram_entropy\",\n            \"rep_2gram\", \"rep_3gram\", \"rep_4gram\"]}\n\n    counts = Counter(token_ids)\n    unique = len(counts)\n    ttr = unique / total\n    hapax = sum(1 for c in counts.values() if c == 1)\n    hapax_ratio = hapax / unique if unique > 0 else 0.0\n\n    bigrams = [tuple(token_ids[i:i+2]) for i in range(total - 1)]\n    if bigrams:\n        bg_counts = Counter(bigrams)\n        bg_freq = np.array(list(bg_counts.values()), dtype=np.float64)\n        bg_freq /= bg_freq.sum()\n        bg_ent = float(entropy(bg_freq))\n    else:\n        bg_ent = 0.0\n\n    trigrams = [tuple(token_ids[i:i+3]) for i in range(total - 2)]\n    if trigrams:\n        tg_counts = Counter(trigrams)\n        tg_freq = np.array(list(tg_counts.values()), dtype=np.float64)\n        tg_freq /= tg_freq.sum()\n        tg_ent = float(entropy(tg_freq))\n    else:\n        tg_ent = 0.0\n\n    return {\n        \"type_token_ratio\": ttr,\n        \"hapax_ratio\": hapax_ratio,\n        \"bigram_entropy\": bg_ent,\n        \"trigram_entropy\": tg_ent,\n        \"rep_2gram\": compute_repetition(token_ids, 2),\n        \"rep_3gram\": compute_repetition(token_ids, 3),\n        \"rep_4gram\": compute_repetition(token_ids, 4),\n    }\n\n\ndef compute_perplexity_features(losses_np):\n    if len(losses_np) == 0:\n        return {k: 0.0 for k in [\n            \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n            \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n            \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"]}\n\n    ppl = np.exp(losses_np)\n    result = {\n        \"mean_ppl\": float(np.mean(ppl)),\n        \"var_ppl\": float(np.var(ppl)),\n        \"skewness_ppl\": float(skew(ppl)) if len(ppl) > 2 else 0.0,\n        \"kurtosis_ppl\": float(kurtosis(ppl)) if len(ppl) > 3 else 0.0,\n        \"p10_ppl\": float(np.percentile(ppl, 10)),\n        \"p25_ppl\": float(np.percentile(ppl, 25)),\n        \"p50_ppl\": float(np.percentile(ppl, 50)),\n        \"p75_ppl\": float(np.percentile(ppl, 75)),\n        \"p90_ppl\": float(np.percentile(ppl, 90)),\n    }\n\n    surprisal = losses_np\n    result[\"mean_surprisal\"] = float(np.mean(surprisal))\n    result[\"var_surprisal\"] = float(np.var(surprisal))\n\n    if len(surprisal) > 1 and surprisal.max() > surprisal.min():\n        n_bins = min(50, max(10, len(surprisal) // 5))\n        hist, _ = np.histogram(surprisal, bins=n_bins, density=True)\n        bin_width = (surprisal.max() - surprisal.min()) / n_bins\n        probs = hist * bin_width\n        probs = probs / probs.sum() if probs.sum() > 0 else probs\n        result[\"entropy_of_surprisal\"] = float(entropy(probs[probs > 0]))\n    else:\n        result[\"entropy_of_surprisal\"] = 0.0\n\n    return result\n\n\n# ─── Model Inference (CPU) ───\n\ndef compute_per_token_losses_cpu(model, tokenizer, texts, max_len):\n    \"\"\"Compute per-token cross-entropy losses on CPU. Returns list of loss arrays.\"\"\"\n    import torch\n\n    all_losses = []\n    pad_id = tokenizer.pad_token_id\n\n    for text in tqdm(texts, desc=\"Computing losses (CPU)\", unit=\"sample\"):\n        ids = tokenizer.encode(text, add_special_tokens=False)[:max_len]\n        if len(ids) <= 1:\n            all_losses.append(np.array([0.0]))\n            continue\n\n        input_ids = torch.tensor([ids], dtype=torch.long)\n        with torch.no_grad():\n            outputs = model(input_ids=input_ids)\n        logits = outputs.logits\n\n        shift_logits = logits[:, :-1, :].contiguous()\n        shift_labels = input_ids[:, 1:].contiguous()\n        loss_fn = torch.nn.CrossEntropyLoss(reduction=\"none\")\n        per_token_loss = loss_fn(\n            shift_logits.view(-1, shift_logits.size(-1)),\n            shift_labels.view(-1)\n        )\n        all_losses.append(per_token_loss.numpy().astype(np.float64))\n\n    return all_losses\n\n\ndef derive_features_at_length(token_ids_list, losses_list, trunc_len):\n    \"\"\"Derive 19 features from pre-computed losses by truncating to trunc_len.\"\"\"\n    features = []\n    for token_ids, losses in zip(token_ids_list, losses_list):\n        trunc_ids = token_ids[:trunc_len]\n        trunc_losses = losses[:max(0, trunc_len - 1)]\n\n        feats = {}\n        feats.update(compute_perplexity_features(trunc_losses))\n        feats.update(compute_lexical_features(trunc_ids))\n        features.append(feats)\n    return features\n\n\n# ─── Classification ───\n\nFEATURE_COLS = [\n    'mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl',\n    'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl',\n    'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal',\n    'type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy',\n    'rep_2gram', 'rep_3gram', 'rep_4gram'\n]\n\n\ndef run_rf_cv(features_dicts, labels, n_folds, n_estimators, seed):\n    \"\"\"Run stratified k-fold RF and return metrics.\"\"\"\n    X = np.array([[f[c] for c in FEATURE_COLS] for f in features_dicts], dtype=np.float64)\n    X = np.nan_to_num(X, nan=0.0, posinf=0.0, neginf=0.0)\n    fmax = float(np.finfo(np.float32).max)\n    X = np.clip(X, -fmax, fmax)\n    y = np.array(labels, dtype=int)\n\n    skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)\n    fold_accs = []\n    all_preds = np.zeros(len(y), dtype=int)\n\n    for train_idx, test_idx in skf.split(X, y):\n        clf = RandomForestClassifier(n_estimators=n_estimators, random_state=seed, n_jobs=-1)\n        clf.fit(X[train_idx], y[train_idx])\n        preds = clf.predict(X[test_idx])\n        all_preds[test_idx] = preds\n        fold_accs.append(accuracy_score(y[test_idx], preds))\n\n    acc_4class = accuracy_score(y, all_preds)\n\n    # 3-class: merge depth 2&3\n    y_3 = np.where(y >= 2, 2, y)\n    p_3 = np.where(all_preds >= 2, 2, all_preds)\n    acc_3class = accuracy_score(y_3, p_3)\n\n    per_class_recall = {}\n    for d in sorted(np.unique(y)):\n        mask = y == d\n        per_class_recall[f\"depth_{d}\"] = float(np.mean(all_preds[mask] == d))\n\n    return {\n        \"acc_4class\": round(acc_4class, 4),\n        \"acc_3class\": round(acc_3class, 4),\n        \"per_class_recall\": {k: round(v, 4) for k, v in per_class_recall.items()},\n        \"fold_accs\": [round(a, 4) for a in fold_accs],\n    }\n\n\n# ─── Main ───\n\ndef main():\n    args = parse_args()\n    rng = np.random.RandomState(args.seed)\n    t0 = time.time()\n\n    if args.dry_run:\n        args.samples_per_depth = 2\n        print(\"[DRY RUN] Using 2 samples per depth per cell\")\n\n    # Step 1: Load texts from all 9 cells\n    print(f\"Loading texts from {len(CELLS)} cells, {args.samples_per_depth} samples/depth/cell...\")\n    all_texts = []\n    all_depths = []\n    for cell_name, cell_dir in CELLS.items():\n        texts_by_depth = load_cell_texts(cell_dir, args.max_depth, args.samples_per_depth, rng)\n        for d, texts in sorted(texts_by_depth.items()):\n            all_texts.extend(texts)\n            all_depths.extend([d] * len(texts))\n        n_cell = sum(len(t) for t in texts_by_depth.values())\n        print(f\"  {cell_name}: {n_cell} samples\")\n\n    total = len(all_texts)\n    print(f\"Total: {total} samples\")\n    if total == 0:\n        print(\"ERROR: No data loaded\")\n        return\n\n    # Step 2: Load model and tokenizer (CPU only)\n    print(f\"\\nLoading tokenizer from {args.model_path}...\")\n    import torch\n    from transformers import AutoTokenizer, AutoModelForCausalLM\n\n    os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"\"  # force CPU\n\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    # Step 3: Tokenize all texts\n    print(\"Tokenizing...\")\n    max_trunc = max(TRUNCATION_LENGTHS)\n    all_token_ids = []\n    for text in tqdm(all_texts, desc=\"Tokenizing\", unit=\"sample\"):\n        ids = tokenizer.encode(text, add_special_tokens=False)[:max_trunc]\n        all_token_ids.append(ids)\n\n    # Check how many samples have enough tokens for each length\n    for tl in TRUNCATION_LENGTHS:\n        n_sufficient = sum(1 for ids in all_token_ids if len(ids) >= tl)\n        print(f\"  Samples with >= {tl} tokens: {n_sufficient}/{total} ({100*n_sufficient/total:.1f}%)\")\n\n    # Step 4: Compute per-token losses on CPU\n    print(f\"\\nLoading model {args.model_path} on CPU (float32)...\")\n    model = AutoModelForCausalLM.from_pretrained(args.model_path, torch_dtype=torch.float32)\n    model.eval()\n    print(f\"Model loaded. Computing per-token losses for {total} samples at max_len={max_trunc}...\")\n\n    all_losses = compute_per_token_losses_cpu(model, tokenizer, all_texts, max_trunc)\n\n    # Free model memory\n    del model\n    import gc\n    gc.collect()\n    print(\"Model freed from memory.\")\n\n    # Step 5: For each truncation length, derive features and run RF\n    print(f\"\\nRunning RF classification for truncation lengths: {TRUNCATION_LENGTHS}\")\n    results = {}\n\n    for tl in TRUNCATION_LENGTHS:\n        print(f\"\\n{'='*60}\")\n        print(f\"Truncation length: {tl} tokens\")\n\n        # Filter samples that have at least `tl` tokens\n        valid_mask = [len(ids) >= tl for ids in all_token_ids]\n        valid_ids = [ids for ids, v in zip(all_token_ids, valid_mask) if v]\n        valid_losses = [l for l, v in zip(all_losses, valid_mask) if v]\n        valid_depths = [d for d, v in zip(all_depths, valid_mask) if v]\n\n        if len(valid_ids) < 50:\n            print(f\"  WARNING: Only {len(valid_ids)} valid samples, skipping\")\n            results[str(tl)] = {\"acc_4class\": None, \"note\": \"insufficient samples\"}\n            continue\n\n        print(f\"  Valid samples: {len(valid_ids)}\")\n\n        # Derive features at this truncation length\n        features = derive_features_at_length(valid_ids, valid_losses, tl)\n\n        # Run RF CV\n        metrics = run_rf_cv(features, valid_depths, args.n_folds, args.n_estimators, args.seed)\n        results[str(tl)] = metrics\n        print(f\"  4-class acc: {metrics['acc_4class']}\")\n        print(f\"  3-class acc: {metrics['acc_3class']}\")\n        print(f\"  Per-class recall: {metrics['per_class_recall']}\")\n\n    # Step 6: Summary\n    elapsed = (time.time() - t0) / 60\n    results[\"config\"] = {\n        \"samples_per_depth_per_cell\": args.samples_per_depth,\n        \"total_samples\": total,\n        \"n_cells\": len(CELLS),\n        \"truncation_lengths\": TRUNCATION_LENGTHS,\n        \"n_folds\": args.n_folds,\n        \"n_estimators\": args.n_estimators,\n        \"model\": args.model_path,\n        \"seed\": args.seed,\n    }\n    results[\"elapsed_minutes\"] = round(elapsed, 1)\n\n    os.makedirs(args.output_dir, exist_ok=True)\n    out_path = os.path.join(args.output_dir, \"summary.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Results saved to {out_path}\")\n    print(f\"Elapsed: {elapsed:.1f} minutes\")\n\n    # Print summary table\n    print(f\"\\n{'Trunc':>6} | {'4-class':>8} | {'3-class':>8} | {'d0':>6} {'d1':>6} {'d2':>6} {'d3':>6}\")\n    print(\"-\" * 60)\n    for tl in TRUNCATION_LENGTHS:\n        m = results.get(str(tl), {})\n        if m.get(\"acc_4class\") is None:\n            print(f\"{tl:>6} | {'N/A':>8} |\")\n            continue\n        rc = m[\"per_class_recall\"]\n        print(f\"{tl:>6} | {m['acc_4class']:>8.4f} | {m['acc_3class']:>8.4f} | \"\n              f\"{rc.get('depth_0',0):>6.4f} {rc.get('depth_1',0):>6.4f} \"\n              f\"{rc.get('depth_2',0):>6.4f} {rc.get('depth_3',0):>6.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\necho \"Script written successfully\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T12:56:58.622282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T12:56:58.622518+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=\"\" python scripts/text_length_sensitivity.py --dry_run 2>&1 | tail -60",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=\"\" python scripts/text_length_sensitivity.py --dry_run 2>&1 | tail -60",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T12:56:58.622680+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=\\\"\\\" python scripts/text_length_sensitivity.py --dry_run 2>&1 | tail -60'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-17T12:56:58.622840+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && python -c \"\nimport sys\nsys.path.insert(0, 'scripts')\nfrom text_length_sensitivity import *\nimport numpy as np\n\nrng = np.random.RandomState(42)\n# Test loading 2 cells\nfor name in ['pythia_nucleus', 'olmo_nucleus']:\n    data = load_cell_texts(CELLS[name], 3, 5, rng)\n    for d, texts in sorted(data.items()):\n        print(f'{name} depth {d}: {len(texts)} samples, first 50 chars: {texts[0][:50]}')\nprint('Data loading OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && python -c \"\nimport sys\nsys.path.insert(0, 'scripts')\nfrom text_length_sensitivity import *\nimport numpy as np\n\nrng = np.random.RandomState(42)\n# Test loading 2 cells\nfor name in ['pythia_nucleus', 'olmo_nucleus']:\n    data = load_cell_texts(CELLS[name], 3, 5, rng)\n    for d, texts in sorted(data.items()):\n        print(f'{name} depth {d}: {len(texts)} samples, first 50 chars: {texts[0][:50]}')\nprint('Data loading OK')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T12:56:58.623055+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"pythia_nucleus depth 0: 5 samples, first 50 chars: Apollo 12 (November 14–24, 1969) was the sixth cre\\npythia_nucleus depth 1: 5 samples, first 50 chars: This invention relates generally to communications\\npythia_nucleus depth 2: 5 samples, first 50 chars: An outbreak of dengue haemorrhagic fever in northe\\npythia_nucleus depth 3: 5 samples, first 50 chars: Toward a universal definition of human immunodefic\\nolmo_nucleus depth 0: 5 samples, first 50 chars: In Mexican politics and labor, a charro or líder c\\nolmo_nucleus depth 1: 5 samples, first 50 chars: The T-36 was a Soviet heavy fighter built during t\\nolmo_nucleus depth 2: 5 samples, first 50 chars: A great deal of effort is invested into understand\\nolmo_nucleus depth 3: 5 samples, first 50 chars: With a stay in Müllheim an der Halle, you're in th\\nData loading OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T12:56:58.623215+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && python -c \"\nimport sys, numpy as np\nsys.path.insert(0, 'scripts')\nfrom text_length_sensitivity import *\n\n# Test feature computation\ntoken_ids = list(range(100))\nlosses = np.random.rand(99).astype(np.float64)\n\nlex = compute_lexical_features(token_ids)\nppl = compute_perplexity_features(losses)\nprint(f'Lexical features ({len(lex)}): {list(lex.keys())}')\nprint(f'PPL features ({len(ppl)}): {list(ppl.keys())}')\nprint(f'Total: {len(lex) + len(ppl)} features')\n\n# Test truncation derivation\nfeatures = derive_features_at_length([token_ids], [losses], 50)\nprint(f'Derived features at trunc=50: {len(features[0])} features')\nprint('Feature computation OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && python -c \"\nimport sys, numpy as np\nsys.path.insert(0, 'scripts')\nfrom text_length_sensitivity import *\n\n# Test feature computation\ntoken_ids = list(range(100))\nlosses = np.random.rand(99).astype(np.float64)\n\nlex = compute_lexical_features(token_ids)\nppl = compute_perplexity_features(losses)\nprint(f'Lexical features ({len(lex)}): {list(lex.keys())}')\nprint(f'PPL features ({len(ppl)}): {list(ppl.keys())}')\nprint(f'Total: {len(lex) + len(ppl)} features')\n\n# Test truncation derivation\nfeatures = derive_features_at_length([token_ids], [losses], 50)\nprint(f'Derived features at trunc=50: {len(features[0])} features')\nprint('Feature computation OK')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T12:56:58.623360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Lexical features (7): ['type_token_ratio', 'hapax_ratio', 'bigram_entropy', 'trigram_entropy', 'rep_2gram', 'rep_3gram', 'rep_4gram']\\nPPL features (12): ['mean_ppl', 'var_ppl', 'skewness_ppl', 'kurtosis_ppl', 'p10_ppl', 'p25_ppl', 'p50_ppl', 'p75_ppl', 'p90_ppl', 'mean_surprisal', 'var_surprisal', 'entropy_of_surprisal']\\nTotal: 19 features\\nDerived features at trunc=50: 19 features\\nFeature computation OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T12:56:58.623526+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && python -c \"\nimport sys, numpy as np\nsys.path.insert(0, 'scripts')\nfrom text_length_sensitivity import *\nfrom sklearn.ensemble import RandomForestClassifier\n\n# Test RF CV with synthetic data\nnp.random.seed(42)\nfake_features = [dict(zip(FEATURE_COLS, np.random.rand(19))) for _ in range(200)]\nfake_labels = [i % 4 for i in range(200)]\nmetrics = run_rf_cv(fake_features, fake_labels, 5, 50, 42)\nprint(f'RF CV OK: acc={metrics[\\\"acc_4class\\\"]}, 3class={metrics[\\\"acc_3class\\\"]}')\nprint(f'Recall: {metrics[\\\"per_class_recall\\\"]}')\nprint('Classification pipeline OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && python -c \"\nimport sys, numpy as np\nsys.path.insert(0, 'scripts')\nfrom text_length_sensitivity import *\nfrom sklearn.ensemble import RandomForestClassifier\n\n# Test RF CV with synthetic data\nnp.random.seed(42)\nfake_features = [dict(zip(FEATURE_COLS, np.random.rand(19))) for _ in range(200)]\nfake_labels = [i % 4 for i in range(200)]\nmetrics = run_rf_cv(fake_features, fake_labels, 5, 50, 42)\nprint(f'RF CV OK: acc={metrics[\\\"acc_4class\\\"]}, 3class={metrics[\\\"acc_3class\\\"]}')\nprint(f'Recall: {metrics[\\\"per_class_recall\\\"]}')\nprint('Classification pipeline OK')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T12:56:58.623664+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"RF CV OK: acc=0.33, 3class=0.435\\nRecall: {'depth_0': 0.36, 'depth_1': 0.2, 'depth_2': 0.4, 'depth_3': 0.36}\\nClassification pipeline OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T12:56:58.623816+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && nohup bash -c 'CUDA_VISIBLE_DEVICES=\"\" python scripts/text_length_sensitivity.py --samples_per_depth 50 2>&1' > results/text_length_sensitivity_log.txt 2>&1 & echo \"PID: $!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && nohup bash -c 'CUDA_VISIBLE_DEVICES=\"\" python scripts/text_length_sensitivity.py --samples_per_depth 50 2>&1' > results/text_length_sensitivity_log.txt 2>&1 & echo \"PID: $!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T12:56:58.623979+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/bin/activate && nohup bash -c \\\\'CUDA_VISIBLE_DEVICES=\\\"\\\" python scripts/text_length_sensitivity.py --samples_per_depth 50 2>&1\\\\' > results/text_length_sensitivity_log.txt 2>&1 & echo \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 710970\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T12:56:58.624130+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "head -30 /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "head -30 /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T12:56:58.624316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading texts from 9 cells, 50 samples/depth/cell...\\n  pythia_nucleus: 200 samples\\n  pythia_temp09: 200 samples\\n  pythia_topk50: 200 samples\\n  olmo_nucleus: 200 samples\\n  olmo_temp09: 200 samples\\n  olmo_topk50: 200 samples\\n  gpt2xl_nucleus: 200 samples\\n  gpt2xl_temp09: 200 samples\\n  gpt2xl_topk50: 200 samples\\nTotal: 1800 samples\\n\\nLoading tokenizer from /root/autodl-tmp/models/pythia-1.4b...\\nTokenizing...\\n\\rTokenizing:   0%|          | 0/1800 [00:00<?, ?sample/s]\\rTokenizing:   3%|▎         | 47/1800 [00:00<00:03, 468.22sample/s]\\rTokenizing:   6%|▋         | 116/1800 [00:00<00:02, 596.15sample/s]\\rTokenizing:  10%|▉         | 177/1800 [00:00<00:02, 601.77sample/s]\\rTokenizing:  15%|█▍        | 262/1800 [00:00<00:02, 698.81sample/s]\\rTokenizing:  18%|█▊        | 333/1800 [00:00<00:02, 701.40sample/s]\\rTokenizing:  22%|██▏       | 404/1800 [00:00<00:02, 690.41sample/s]\\rTokenizing:  26%|██▋       | 474/1800 [00:00<00:01, 671.73sample/s]\\rTokenizing:  30%|███       | 542/1800 [00:00<00:01, 660.12sample/s]\\rTokenizing:  34%|███▍      | 609/1800 [00:00<00:01, 651.04sample/s]\\rTokenizing:  38%|███▊      | 675/1800 [00:01<00:02, 549.24sample/s]\\rTokenizing:  41%|████      | 733/1800 [00:01<00:01, 546.97sample/s]\\rTokenizing:  44%|████▍     | 790/1800 [00:01<00:01, 549.68sample/s]\\rTokenizing:  47%|████▋     | 847/1800 [00:01<00:01, 547.94sample/s]\\rTokenizing:  50%|█████     | 903/1800 [00:01<00:01, 547.00sample/s]\\rTokenizing:  53%|█████▎    | 959/1800 [00:01<00:01, 537.71sample/s]\\rTokenizing:  56%|█████▋    | 1014/1800 [00:01<00:01, 539.07sample/s]\\rTokenizing:  61%|██████    | 1096/1800 [00:01<00:01, 618.29sample/s]\\rTokenizing:  64%|██████▍   | 1159/1800 [00:01<00:01, 604.42sample/s]\\rTokenizing:  68%|██████▊   | 1220/1800 [00:02<00:01, 515.41sample/s]\\rTokenizing:  71%|███████   | 1274/1800 [00:02<00:01, 519.56sample/s]\\rTokenizing:  74%|███████▍  | 1328/1800 [00
+…[truncated 3058 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-17T12:56:58.624512+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ps aux --no-headers -p 710970"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ps aux --no-headers -p 710970"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T12:56:58.624689+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  2080 ?        Ss   May14   0:00 bash /init/boot/boot.sh\\nroot        893  1.6  0.0 724384 21868 ?        Sl   May14  78:07 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        910  0.0  0.0  15444  7776 ?        S    May14   0:01 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        912  0.0  0.0 3574328 69240 ?       Sl   May14   1:41 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        914  0.0  0.0 191560 103632 ?       S    May14   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        916  0.2  0.0 7043324 106000 ?      Sl   May14  13:44 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        917  0.0  0.0 3904572 18844 ?       Sl   May14   3:30 proxy -c /init/proxy/proxy.ini\\nroot        918  0.0  0.0 3609900 17280 ?       Sl   May14   1:12 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1012  0.0  0.0 28341068 8004 ?       Sl   May14   3:40 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_ob18jr7g/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_ob18jr7g/startup_error\\nroot     695546  0.0  0.0   4364  1832 ?        S    17:02   0:00 bash -c cd /root/autodl-tmp/recursive_gen_depth_est && nohup bash -c 'source /root/miniconda3/bin/activate && python scripts/prompted_generation_eval.py --gpu 1' > logs/prompted_gen_gpt2xl_001.log 2>&1 & echo \\\"PID: $!\\\" mkdir -p logs\\nroot     695547  101  0.8 85118448 8928016 ?    Rl   17:02 237:15 python scripts/prompted_generation_eval.py --gpu 1\\nroot     704687  0.0  0.0   6904  4568 ?        Ss   19:43   0:00 tmux new-session -d -s qwen25_14b_scale export AML_E
+…[truncated 3223 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-17T12:56:58.624907+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "kill 709251 709252 709246 2>/dev/null; echo \"killed stale dry-run\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "kill 709251 709252 709246 2>/dev/null; echo \"killed stale dry-run\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T12:56:58.625053+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed stale dry-run\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-17T12:56:58.625178+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -5 /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -5 /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-17T12:56:58.625345+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nLoading model /root/autodl-tmp/models/pythia-1.4b on CPU (float32)...\\n\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\rLoading weights:   1%|          | 2/292 [00:00<00:14, 19.99it/s]\\rLoading weights:   2%|▏         | 6/292 [00:00<00:13, 21.62it/s]\\rLoading weights:   5%|▌         | 15/292 [00:00<00:06, 45.67it/s]\\rLoading weights:  14%|█▍        | 41/292 [00:00<00:02, 117.27it/s]\\rLoading weights:  19%|█▉        | 55/292 [00:00<00:02, 97.79it/s] \\rLoading weights:  23%|██▎       | 67/292 [00:00<00:02, 81.17it/s]\\rLoading weights:  27%|██▋       | 80/292 [00:01<00:02, 87.10it/s]\\rLoading weights:  32%|███▏      | 92/292 [00:01<00:02, 79.97it/s]\\rLoading weights:  35%|███▍      | 102/292 [00:01<00:02, 83.87it/s]\\rLoading weights:  38%|███▊      | 112/292 [00:01<00:02, 72.70it/s]\\rLoading weights:  44%|████▍     | 128/292 [00:01<00:01, 85.43it/s]\\rLoading weights:  48%|████▊     | 140/292 [00:01<00:01, 80.82it/s]\\rLoading weights:  51%|█████     | 149/292 [00:01<00:01, 81.66it/s]\\rLoading weights:  54%|█████▍    | 158/292 [00:02<00:01, 79.92it/s]\\rLoading weights:  58%|█████▊    | 169/292 [00:02<00:01, 87.20it/s]\\rLoading weights:  66%|██████▌   | 192/292 [00:02<00:00, 103.59it/s]\\rLoading weights:  71%|███████   | 206/292 [00:02<00:00, 100.69it/s]\\rLoading weights:  77%|███████▋  | 224/292 [00:02<00:00, 100.98it/s]\\rLoading weights:  80%|████████  | 235/292 [00:02<00:00, 101.30it/s]\\rLoading weights:  84%|████████▍ | 246/292 [00:02<00:00, 99.17it/s] \\rLoading weights:  88%|████████▊ | 256/292 [00:02<00:00, 99.09it/s]\\rLoading weights:  91%|█████████ | 266/292 [00:03<00:00, 77.81it/s]\\rLoading weights:  96%|█████████▌| 280/292 [00:03<00:00, 91.31it/s]\\rLoading weights: 100%|██████████| 292/292 [00:03<00:00, 86.11it/s]\\nModel loaded. Computing per-token losses for 1800 samples at max_len=500...\\n\\rComputing losses (CPU):   0%|          | 0/1800 [00:00<?, ?sample/s]\\rCo
+…[truncated 1872 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-17T12:56:58.625542+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -3 /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -3 /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-17T12:56:58.625723+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\rLoading weights:   1%|          | 2/292 [00:00<00:14, 19.99it/s]\\rLoading weights:   2%|▏         | 6/292 [00:00<00:13, 21.62it/s]\\rLoading weights:   5%|▌         | 15/292 [00:00<00:06, 45.67it/s]\\rLoading weights:  14%|█▍        | 41/292 [00:00<00:02, 117.27it/s]\\rLoading weights:  19%|█▉        | 55/292 [00:00<00:02, 97.79it/s] \\rLoading weights:  23%|██▎       | 67/292 [00:00<00:02, 81.17it/s]\\rLoading weights:  27%|██▋       | 80/292 [00:01<00:02, 87.10it/s]\\rLoading weights:  32%|███▏      | 92/292 [00:01<00:02, 79.97it/s]\\rLoading weights:  35%|███▍      | 102/292 [00:01<00:02, 83.87it/s]\\rLoading weights:  38%|███▊      | 112/292 [00:01<00:02, 72.70it/s]\\rLoading weights:  44%|████▍     | 128/292 [00:01<00:01, 85.43it/s]\\rLoading weights:  48%|████▊     | 140/292 [00:01<00:01, 80.82it/s]\\rLoading weights:  51%|█████     | 149/292 [00:01<00:01, 81.66it/s]\\rLoading weights:  54%|█████▍    | 158/292 [00:02<00:01, 79.92it/s]\\rLoading weights:  58%|█████▊    | 169/292 [00:02<00:01, 87.20it/s]\\rLoading weights:  66%|██████▌   | 192/292 [00:02<00:00, 103.59it/s]\\rLoading weights:  71%|███████   | 206/292 [00:02<00:00, 100.69it/s]\\rLoading weights:  77%|███████▋  | 224/292 [00:02<00:00, 100.98it/s]\\rLoading weights:  80%|████████  | 235/292 [00:02<00:00, 101.30it/s]\\rLoading weights:  84%|████████▍ | 246/292 [00:02<00:00, 99.17it/s] \\rLoading weights:  88%|████████▊ | 256/292 [00:02<00:00, 99.09it/s]\\rLoading weights:  91%|█████████ | 266/292 [00:03<00:00, 77.81it/s]\\rLoading weights:  96%|█████████▌| 280/292 [00:03<00:00, 91.31it/s]\\rLoading weights: 100%|██████████| 292/292 [00:03<00:00, 86.11it/s]\\nModel loaded. Computing per-token losses for 1800 samples at max_len=500...\\n\\rComputing losses (CPU):   0%|          | 0/1800 [00:00<?, ?sample/s]\\rComputing losses (CPU):   0%|          | 1/1800 [00:04<2:10:14,  4.34s/sample
+…[truncated 2597 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-17T12:56:58.625932+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -2 /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -2 /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-17T12:56:58.626116+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model loaded. Computing per-token losses for 1800 samples at max_len=500...\\n\\rComputing losses (CPU):   0%|          | 0/1800 [00:00<?, ?sample/s]\\rComputing losses (CPU):   0%|          | 1/1800 [00:04<2:10:14,  4.34s/sample]\\rComputing losses (CPU):   0%|          | 2/1800 [00:09<2:24:55,  4.84s/sample]\\rComputing losses (CPU):   0%|          | 3/1800 [00:11<1:39:49,  3.33s/sample]\\rComputing losses (CPU):   0%|          | 4/1800 [00:12<1:17:26,  2.59s/sample]\\rComputing losses (CPU):   0%|          | 5/1800 [00:13<1:04:36,  2.16s/sample]\\rComputing losses (CPU):   0%|          | 6/1800 [00:15<55:16,  1.85s/sample]  \\rComputing losses (CPU):   0%|          | 7/1800 [00:17<59:35,  1.99s/sample]\\rComputing losses (CPU):   0%|          | 8/1800 [00:20<1:07:16,  2.25s/sample]\\rComputing losses (CPU):   0%|          | 9/1800 [00:22<1:11:08,  2.38s/sample]\\rComputing losses (CPU):   1%|          | 10/1800 [00:24<1:04:54,  2.18s/sample]\\rComputing losses (CPU):   1%|          | 11/1800 [00:26<1:04:09,  2.15s/sample]\\rComputing losses (CPU):   1%|          | 12/1800 [00:28<57:22,  1.93s/sample]  \\rComputing losses (CPU):   1%|          | 13/1800 [00:29<51:51,  1.74s/sample]\\rComputing losses (CPU):   1%|          | 14/1800 [00:30<48:03,  1.61s/sample]\\rComputing losses (CPU):   1%|          | 15/1800 [00:32<44:33,  1.50s/sample]\\rComputing losses (CPU):   1%|          | 16/1800 [00:33<42:46,  1.44s/sample]\\rComputing losses (CPU):   1%|          | 17/1800 [00:34<41:57,  1.41s/sample]\\rComputing losses (CPU):   1%|          | 18/1800 [00:35<34:36,  1.17s/sample]\\rComputing losses (CPU):   1%|          | 19/1800 [00:36<35:47,  1.21s/sample]\\rComputing losses (CPU):   1%|          | 20/1800 [00:37<36:38,  1.24s/sample]\\rComputing losses (CPU):   1%|          | 21/1800 [00:39<42:28,  1.43s/sample]\\rComputing losses (CPU):   1%|          | 22/1800 [00:41<41:46,  1.41s/sample]\\rComputing losses (C
+…[truncated 1602 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-17T12:56:58.626317+00:00_
+
+called ScheduleWakeup
+
+<details open><summary>🔧 Tool call — ScheduleWakeup</summary>
+
+```json
+{
+  "delaySeconds": "1200",
+  "reason": "Checking text_length_sensitivity.py CPU job (~40 min total runtime, should be near completion)",
+  "prompt": "Check the status of the text_length_sensitivity.py job running on gpu-6000pro-2 (PID 710976). Look at the tail of the log file at /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt. If it's done, read and report the results from results/text_length_sensitivity/summary.json. If still running, check progress and wait more."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "ScheduleWakeup",
+  "tool_args": {
+    "delaySeconds": "1200",
+    "reason": "Checking text_length_sensitivity.py CPU job (~40 min total runtime, should be near completion)",
+    "prompt": "Check the status of the text_length_sensitivity.py job running on gpu-6000pro-2 (PID 710976). Look at the tail of the log file at /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt. If it's done, read and report the results from results/text_length_sensitivity/summary.json. If still running, check progress and wait more."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-17T12:56:58.626468+00:00_
+
+Next wakeup scheduled for 13:17:00 (in 1206s).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_022_text_length_20260517T124748",
+  "tool": "ScheduleWakeup",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-17T12:56:58.626623+00:00_
+
+Job is running at ~1.3s/sample. Estimated completion in ~38 minutes. I'll check back in 20 minutes to capture results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_plan_022_text_length_20260517T124748"
+}
+```
+
+</details>
+
+---

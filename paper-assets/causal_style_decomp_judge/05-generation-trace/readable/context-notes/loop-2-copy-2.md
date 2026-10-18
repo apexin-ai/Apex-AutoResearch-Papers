@@ -1,0 +1,76 @@
+# reviewer / loop_2.md
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_2.md`
+- **Structured JSON:** [`1bda843aa82dd5d6595e.json`](../../sessions/1b/1bda843aa82dd5d6595e.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 2
+reason: max_wall_time
+updated: '2026-05-22T18:34:04+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目是 measurement/analysis 论文，无 GPU 训练实验。westb-29275 的 4×RTX PRO 6000 Blackwell 96GB 空闲，Reviewer #108 书面确认无值得跑的 GPU 实验。不要建议跑新 GPU 实验。
+- 所有实验使用 API-based judges（GPT-4o、Qwen3-32B、Llama-70B、Gemini-2.5-Flash、Claude Sonnet 4），不涉及本地模型推理。
+- 论文 DDL: **May 25, 2026 AoE**（EMNLP 2026 ARR）。8 页正文限制 + unlimited references。
+- Reviewer 是只读角色：不修改文件、不执行实验，唯一输出渠道 `reviewer_post_to_director`。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westb-29275 (root)，远程代码目录 `/root/causal_style_decomp_judge`
+- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/`
+- 论文源文件：`docs/paper/sections/*.tex` + `docs/paper/main.tex`
+- Registry：`registry.yaml`（54 experiments, 53 done, 1 blocked）
+- 活跃进程：无（所有实验已完成）
+- 标注数据：两位标注者均已完成 50 pairs，数据已集成论文
+
+### 3. 📊 当前状态
+**我的 Report 序列：#83-#115（Loop #3）。**
+
+刚完成 **Report #115**：R12 Action Matrix 独立审查。R12 fresh review 评分 3.0（从 R11 的 3.5 下降）。核心判断：
+- 下降原因：D069 hedging 过度（正文 hedge 但标题没改→内部矛盾加剧）+ reviewer 噪声
+- **改了我 #114 的立场**：现在支持改副标题（"Detecting Hidden Style Bias" → 中性描述）
+- MF2（formality confound）是关键杠杆：正确处理 = MF3（novelty）的解药
+- 给出 P0-P4 优先级排序（~7.5h Paper Agent 工作量）
+- WARNING: hedging 过度风险——区分 "agnostic about mechanism" vs "uncertain about findings"
+
+Registry: 全部 DONE/blocked，无 RUNNING 实验。
+等待：Director 对 R12 action matrix 的决策（标题是否改、MF2+MF3 联合处理方案）。
+
+### 4. 📋 待办
+- Director 确认标题改动 → 审查新标题是否 neutral（不要又预设方向）
+- Paper Agent 完成 R12 修复 → Mode B 对抗审查（重点检查：hedging 是否重新平衡、formality claim 是否正确降级、GEE novelty 是否升格）
+- R13 审稿返回 → 独立评估是否突破 3.5
+- 标注者 2 如果有 issue → 已到手，κ=0.44/AC1=0.65 已集成
+- 提交前最终 check → 数字一致性 grep（上次 42→50 更新时做过，如果又改数字需要再做一轮）
+
+### 5. 🎯 战略上下文
+**Score trajectory**: R1 2.5 → R2-R4 3.0 → R5-R10 3.5 → R11 3.5 → R12 3.0 → Target 4.0
+
+**核心瓶颈**：pairwise > Likert 的 novelty 天花板（Thurstone 1927 domain transfer）。这是结构性问题，不可通过写作 reframe 完全解决。真正 novel 的是 C2b（per-axis GEE confound structure）但一直没被充分 marketing。
+
+**最容易判断错的事**：
+1. **不要继续加 hedge**。D069 加了大量 hedge 后分反而下降了。论文对 phenomenon（divergence exists）应该 confident，对 mechanism（attenuation vs amplification）应该 agnostic。
+2. **Formality ≠ verbosity**。Verbosity 是 clean style bias（GEE Style OR 8-13, Orig NS），formality 是 quality-confounded conditional effect。不能把两轴放在同一个 "bias" 框架下——这正是 R12 MF2 的攻击点，也是 C2b novelty 的来源。
+3. **合成实验不值得做**（Report #114 论证过）。设计需要 ground-truth bias oracle → 循环论证。24h 内执行风险太高。
+4. **κ=0.44 不是弱点**。pass precision 100%（majority vote）/ 84-100%（per annotator）才是 precision-oriented gate 的正确指标。Appendix S 已有 Feinstein + AC1 preemptive framing。
+5. **Cross-axis d=-0.23**：Appendix R caption 说 "d<0.20 negligible" 但自己数据 0.23。改 caption 阈值为 Cohen's "small"（0.20-0.50）即可，不需要新分析。
+
+
+---

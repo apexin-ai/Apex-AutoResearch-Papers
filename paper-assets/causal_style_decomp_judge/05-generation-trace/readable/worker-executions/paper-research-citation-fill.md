@@ -1,0 +1,4513 @@
+# paper research citation fill
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 64
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/workers/worker_paper_research_citation_fill_20260521T101219.log`
+- **Structured JSON:** [`eea8ad98a8adefe51385.json`](../../sessions/ee/eea8ad98a8adefe51385.json)
+
+## Before a recorded user message
+
+64 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge",
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__auto_build_provenance",
+    "mcp__agent-ml-research__bootstrap_provenance",
+    "mcp__agent-ml-research__check_figures_and_layout",
+    "mcp__agent-ml-research__check_paper_consistency",
+    "mcp__agent-ml-research__check_provenance_completeness",
+    "mcp__agent-ml-research__cleanup_pdf_images",
+    "mcp__agent-ml-research__compute_coverage_matrix",
+    "mcp__agent-ml-research__edit_paper_section",
+    "mcp__agent-ml-research__get_image_info",
+    "mcp__agent-ml-research__get_worker_status",
+    "mcp__agent-ml-research__list_artifacts",
+    "mcp__agent-ml-research__list_workers",
+    "mcp__agent-ml-research__load_project_config",
+    "mcp__agent-ml-research__overleaf_init",
+    "mcp__agent-ml-research__overleaf_pull",
+    "mcp__agent-ml-research__overleaf_push",
+    "mcp__agent-ml-research__overleaf_status",
+    "mcp__agent-ml-research__overleaf_sync",
+    "mcp__agent-ml-research__paper_agent_post_to_director",
+    "mcp__agent-ml-research__paper_agent_request_review",
+    "mcp__agent-ml-research__paper_compile_and_check",
+    "mcp__agent-ml-research__pdf_to_images",
+    "mcp__agent-ml-research__read_experiment_plan_with_status",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__read_roadmap",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__send_progress",
+    "mcp__agent-ml-research__spawn_worker",
+    "mcp__agent-ml-research__verify_references",
+    "mcp__agent-ml-research__write_paper_section"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0e95e9f6-21ca-48ff-8c81-cde9abbecd33",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779363600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f5fa13ad-6a01-4448-a217-6c4ae5520ec4",
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by reading the existing references.bib, then search for each paper to verify bibliographic details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "c730b634-32ee-4e8f-91a0-e34b330f7303",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ByUhyxKQx1tgvDfjdxktDm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13275,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13275
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Fin6gf4k4nqX6g8zLSCJUz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "8ced274a-f812-4d77-9625-09bd777290c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ByUhyxKQx1tgvDfjdxktDm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13275,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13275
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T10:12:32.281Z_
+
+<details><summary>↩ Tool result · `toolu_01Fin6gf4k4nqX6g8zLSCJUz`</summary>
+
+```text
+1	@inproceedings{murugadoss2025sos,
+2	  title={Style Over Substance: Failure Modes of {LLM} Judges in Alignment Benchmarking},
+3	  author={Murugadoss, Aakanksha and others},
+4	  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},
+5	  year={2025},
+6	  url={https://arxiv.org/abs/2409.15268}
+7	}
+8	
+9	@inproceedings{li2026preference,
+10	  title={Preference Leakage: A Contamination Problem in {LLM}-as-a-Judge},
+11	  author={Li, Dawei and others},
+12	  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},
+13	  year={2026},
+14	  url={https://arxiv.org/abs/2502.01534}
+15	}
+16	
+17	@article{wang2026fairjudge,
+18	  title={{FairJudge}: An Adaptive, Debiased, and Consistent {LLM}-as-a-Judge},
+19	  author={Yang, Bo and Feng, Lanfei and Chen, Yunkui and Zhang, Yu and Xu, Xiao and Li, Shijian},
+20	  journal={arXiv preprint arXiv:2602.06625},
+21	  year={2026},
+22	  url={https://arxiv.org/abs/2602.06625}
+23	}
+24	
+25	
+26	@inproceedings{dubois2025lc,
+27	  title={Length-Controlled {AlpacaEval}: A Simple Way to Debias Automatic Evaluators},
+28	  author={Dubois, Yann and others},
+29	  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},
+30	  year={2025},
+31	  url={https://arxiv.org/abs/2404.04475}
+32	}
+33	
+34	@article{casse2026concise,
+35	  title={A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents},
+36	  author={Cho, Young-Min and Yuan, Yuan and Guntuku, Sharath Chandra and Ungar, Lyle},
+37	  journal={arXiv preprint arXiv:2601.10809},
+38	  year={2026},
+39	  url={https://arxiv.org/abs/2601.10809}
+40	}
+41	
+42	@article{counterfactual2025rhetorical,
+43	  title={Counterfactual {LLM}-based Framework for Measuring Rhetorical Style},
+44	  author={Qiu, Jingyi and Chen, Hong and Li, Zongyi},
+45	  journal={arXiv preprint arXiv:2512.19908},
+46	  year={2025},
+47	  url={https://arxiv.org/abs/2512.19908}
+48	}
+49	
+50	@article{soumik2026judging,
+51	  title={Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in {LLM}-as-a-Judge Pipelines},
+52	  author={Soumik, Mohammad and others},
+53	  journal={arXiv preprint arXiv:2604.23178},
+54	  year={2026},
+55	  url={https://arxiv.org/abs/2604.23178}
+56	}
+57	
+58	@inproceedings{reber2025rate,
+59	  title={{RATE}: Causal Explainability of Reward Models with Imperfect Counterfactuals},
+60	  author={Reber, David and Richardson, Sean and Nief, Todd and Garbacea, Cristina and Veitch, Victor},
+61	  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},
+62	  year={2025},
+63	  url={https://arxiv.org/abs/2410.11348}
+64	}
+65	
+66	@inproceedings{kiritchenko2017bws,
+67	  title={Best-Worst Scaling More Reliable than Rating Scales: A Case Study on Sentiment Intensity Annotation},
+68	  author={Kiritchenko, Svetlana and Mohammad, Saif},
+69	  booktitle={Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)},
+70	  pages={465--470},
+71	  year={2017},
+72	  url={https://aclanthology.org/P17-2074/}
+73	}
+74	
+75	@inproceedings{novikova2018rankme,
+76	  title={{RankME}: Reliable Human Ratings for Natural Language Generation},
+77	  author={Novikova, Jekaterina and Du{\v{s}}ek, Ond{\v{r}}ej and Rieser, Verena},
+78	  booktitle={Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 2: Short Papers)},
+79	  year={2018},
+80	  url={https://aclanthology.org/N18-2012/}
+81	}
+82	
+83	@article{stevens1946theory,
+84	  title={On the Theory of Scales of Measurement},
+85	  author={Stevens, Stanley Smith},
+86	  journal={Science},
+87	  volume={103},
+88	  number={2684},
+89	  pages={677--680},
+90	  year={1946}
+91	}
+92	
+93	@article{thurstone1927law,
+94	  title={A Law of Comparative Judgment},
+95	  author={Thurstone, Louis Leon},
+96	  journal={Psychological Review},
+97	  volume={34},
+98	  number={4},
+99	  pages={273--286},
+100	  year={1927}
+101	}
+102	
+103	@article{decoster2011median,
+104	  title={Best Practices for Using Median Splits, Artificial Categorization, and Their Continuous Alternatives},
+105	  author={DeCoster, Jamie and Gallucci, Marcello and Iselin, Anne-Marie R.},
+106	  journal={Journal of Experimental Psychopathology},
+107	  volume={2},
+108	  number={2},
+109	  pages={197--209},
+110	  year={2011},
+111	  doi={10.5127/jep.008310}
+112	}
+113	
+114	@inproceedings{zheng2023judging,
+115	  title={Judging {LLM}-as-a-Judge with {MT-Bench} and {Chatbot Arena}},
+116	  author={Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and Li, Dacheng and Xing, Eric P. and Zhang, Hao and Gonzalez, Joseph E. and Stoica, Ion},
+117	  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+118	  year={2023},
+119	  url={https://arxiv.org/abs/2306.05685}
+120	}
+121	
+122	@inproceedings{dubois2023alpacafarm,
+123	  title={{AlpacaFarm}: A Simulation Framework for Methods that Learn from Human Feedback},
+124	  author={Dubois, Yann and Li, Xuechen and Taori, Rohan and Zhang, Tianyi and Gulrajani, Ishaan and Ba, Jimmy and Guestrin, Carlos and Liang, Percy and Hashimoto, Tatsunori B.},
+125	  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+126	  year={2023},
+127	  url={https://arxiv.org/abs/2305.14387}
+128	}
+129	
+130	@article{bradley1952rank,
+131	  title={Rank Analysis of Incomplete Block Designs: {I}. {T}he Method of Paired Comparisons},
+132	  author={Bradley, Ralph Allan and Terry, Milton E.},
+133	  journal={Biometrika},
+134	  volume={39},
+135	  number={3/4},
+136	  pages={324--345},
+137	  year={1952}
+138	}
+139	
+140	@article{feinstein1990kappa,
+141	  title={High Agreement but Low Kappa: {I}. {T}he Problems of Two Paradoxes},
+142	  author={Feinstein, Alvan R. and Cicchetti, Domenic V.},
+143	  journal={Journal of Clinical Epidemiology},
+144	  volume={43},
+145	  number={6},
+146	  pages={543--549},
+147	  year={1990}
+148	}
+149	
+150	
+151	@article{wang2023faireval,
+152	  title={Large Language Models are not Fair Evaluators},
+153	  author={Wang, Peiyi and Li, Lei and Chen, Liang and Cai, Zefan and Zhu, Dawei and Lin, Binghuai and Cao, Yunbo and Liu, Qi and Liu, Tianyu and Sui, Zhifang},
+154	  journal={arXiv preprint arXiv:2305.17926},
+155	  year={2023},
+156	  url={https://arxiv.org/abs/2305.17926}
+157	}
+158	
+159	@article{li2024calibraeval,
+160	  title={{CalibraEval}: Calibrating Prediction Distribution to Mitigate Selection Bias in {LLMs}-as-Judges},
+161	  author={Li, Haitao and Chen, Junjie and Ai, Qingyao and Chu, Zhumin and Zhou, Yujia and Dong, Qian and Liu, Yiqun},
+162	  journal={arXiv preprint arXiv:2410.15393},
+163	  year={2024},
+164	  url={https://arxiv.org/abs/2410.15393}
+165	}
+166	
+167	@article{hoenig2001abuse,
+168	  title={The Abuse of Power: The Pervasive Fallacy of Power Calculations for Data Analysis},
+169	  author={Hoenig, John M. and Heisey, Dennis M.},
+170	  journal={The American Statistician},
+171	  volume={55},
+172	  number={1},
+173	  pages={19--24},
+174	  year={2001}
+175	}
+176	
+177	@inproceedings{zeng2023llmbar,
+178	  title={Evaluating Large Language Models at Evaluating Instruction Following},
+179	  author={Zeng, Zhiyuan and Yu, Jiatong and Gao, Tianyu and Meng, Yu and Goyal, Tanya and Chen, Danqi},
+180	  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},
+181	  year={2024},
+182	  url={https://arxiv.org/abs/2310.07641}
+183	}
+184	
+185	@inproceedings{veitch2020adapting,
+186	  title={Adapting Text Embeddings for Causal Inference},
+187	  author={Veitch, Victor and Sridhar, Dhanya and Blei, David},
+188	  booktitle={Proceedings of the Conference on Uncertainty in Artificial Intelligence (UAI)},
+189	  year={2020},
+190	  url={https://arxiv.org/abs/1905.12741}
+191	}
+192	
+193	@inproceedings{tan2025judgebench,
+194	  title={{JudgeBench}: A Benchmark for Evaluating {LLM}-based Judges},
+195	  author={Tan, Sijun and Zhuang, Siyuan and Montgomery, Kyle and Tang, William and others},
+196	  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},
+197	  year={2025},
+198	  url={https://arxiv.org/abs/2410.12784}
+199	}
+200	
+201	@book{louviere2015bws,
+202	  title={Best-Worst Scaling: Theory, Methods and Applications},
+203	  author={Louviere, Jordan J. and Flynn, Terry N. and Marley, A. A. J.},
+204	  publisher={Cambridge University Press},
+205	  year={2015},
+206	  isbn={9781107043152}
+207	}
+208	
+209	@inproceedings{chiang2024chatbot,
+210	  title={Chatbot Arena: An Open Platform for Evaluating {LLM}s by Human Preference},
+211	  author={Chiang, Wei-Lin and Zheng, Lianmin and Sheng, Ying and Angelopoulos, Anastasios Nikolas and Li, Tianle and Li, Dacheng and Zhu, Banghua and Zhang, Hao and Jordan, Michael I. and Gonzalez, Joseph E. and Stoica, Ion},
+212	  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},
+213	  year={2024},
+214	  url={https://arxiv.org/abs/2403.04132}
+215	}
+216	
+217	@article{hunter2004mm,
+218	  title={{MM} Algorithms for Generalized {Bradley-Terry} Models},
+219	  author={Hunter, David R.},
+220	  journal={The Annals of Statistics},
+221	  volume={32},
+222	  number={1},
+223	  pages={384--406},
+224	  year={2004},
+225	  doi={10.1214/aos/1079120141}
+226	}
+227	
+228	@article{ye2024justice,
+229	  title={Justice or Prejudice? Quantifying Biases in {LLM}-as-a-Judge},
+230	  author={Ye, Jiayi and Wang, Yanbo and Huang, Yue and Chen, Dongping and Zhang, Qihui and Moniz, Nuno and Gao, Tian and Geyer, Werner and Huang, Chao and Chen, Pin-Yu},
+231	  journal={arXiv preprint arXiv:2410.02736},
+232	  year={2024},
+233	  url={https://arxiv.org/abs/2410.02736}
+234	}
+235	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "c8708036-4467-4030-a456-d6b6e69753ed",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib",
+      "content": "@inproceedings{murugadoss2025sos,\n  title={Style Over Substance: Failure Modes of {LLM} Judges in Alignment Benchmarking},\n  author={Murugadoss, Aakanksha and others},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2025},\n  url={https://arxiv.org/abs/2409.15268}\n}\n\n@inproceedings{li2026preference,\n  title={Preference Leakage: A Contamination Problem in {LLM}-as-a-Judge},\n  author={Li, Dawei and others},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2026},\n  url={https://arxiv.org/abs/2502.01534}\n}\n\n@article{wang2026fairjudge,\n  title={{FairJudge}: An Adaptive, Debiased, and Consistent {LLM}-as-a-Judge},\n  author={Yang, Bo and Feng, Lanfei and Chen, Yunkui and Zhang, Yu and Xu, Xiao and Li, Shijian},\n  journal={arXiv preprint arXiv:2602.06625},\n  year={2026},\n  url={https://arxiv.org/abs/2602.06625}\n}\n\n\n@inproceedings{dubois2025lc,\n  title={Length-Controlled {AlpacaEval}: A Simple Way to Debias Automatic Evaluators},\n  author={Dubois, Yann and others},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2025},\n  url={https://arxiv.org/abs/2404.04475}\n}\n\n@article{casse2026concise,\n  title={A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents},\n  author={Cho, Young-Min and Yuan, Yuan and Guntuku, Sharath Chandra and Ungar, Lyle},\n  journal={arXiv preprint arXiv:2601.10809},\n  year={2026},\n  url={https://arxiv.org/abs/2601.10809}\n}\n\n@article{counterfactual2025rhetorical,\n  title={Counterfactual {LLM}-based Framework for Measuring Rhetorical Style},\n  author={Qiu, Jingyi and Chen, Hong and Li, Zongyi},\n  journal={arXiv preprint arXiv:2512.19908},\n  year={2025},\n  url={https://arxiv.org/abs/2512.19908}\n}\n\n@article{soumik2026judging,\n  title={Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in {LLM}-as-a-Judge Pipelines},\n  author={Soumik, Mohammad and others},\n  journal={arXiv preprint arXiv:2604.23178},\n  year={2026},\n  url={https://arxiv.org/abs/2604.23178}\n}\n\n@inproceedings{reber2025rate,\n  title={{RATE}: Causal Explainability of Reward Models with Imperfect Counterfactuals},\n  author={Reber, David and Richardson, Sean and Nief, Todd and Garbacea, Cristina and Veitch, Victor},\n  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},\n  year={2025},\n  url={https://arxiv.org/abs/2410.11348}\n}\n\n@inproceedings{kiritchenko2017bws,\n  title={Best-Worst Scaling More Reliable than Rating Scales: A Case Study on Sentiment Intensity Annotation},\n  author={Kiritchenko, Svetlana and Mohammad, Saif},\n  booktitle={Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)},\n  pages={465--470},\n  year={2017},\n  url={https://aclanthology.org/P17-2074/}\n}\n\n@inproceedings{novikova2018rankme,\n  title={{RankME}: Reliable Human Ratings for Natural Language Generation},\n  author={Novikova, Jekaterina and Du{\\v{s}}ek, Ond{\\v{r}}ej and Rieser, Verena},\n  booktitle={Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 2: Short Papers)},\n  year={2018},\n  url={https://aclanthology.org/N18-2012/}\n}\n\n@article{stevens1946theory,\n  title={On the Theory of Scales of Measurement},\n  author={Stevens, Stanley Smith},\n  journal={Science},\n  volume={103},\n  number={2684},\n  pages={677--680},\n  year={1946}\n}\n\n@article{thurstone1927law,\n  title={A Law of Comparative Judgment},\n  author={Thurstone, Louis Leon},\n  journal={Psychological Review},\n  volume={34},\n  number={4},\n  pages={273--286},\n  year={1927}\n}\n\n@article{decoster2011median,\n  title={Best Practices for Using Median Splits, Artificial Categorization, and Their Continuous Alternatives},\n  author={DeCoster, Jamie and Gallucci, Marcello and Iselin, Anne-Marie R.},\n  journal={Journal of Experimental Psychopathology},\n  volume={2},\n  number={2},\n  pages={197--209},\n  year={2011},\n  doi={10.5127/jep.008310}\n}\n\n@inproceedings{zheng2023judging,\n  title={Judging {LLM}-as-a-Judge with {MT-Bench} and {Chatbot Arena}},\n  author={Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and Li, Dacheng and Xing, Eric P. and Zhang, Hao and Gonzalez, Joseph E. and Stoica, Ion},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023},\n  url={https://arxiv.org/abs/2306.05685}\n}\n\n@inproceedings{dubois2023alpacafarm,\n  title={{AlpacaFarm}: A Simulation Framework for Methods that Learn from Human Feedback},\n  author={Dubois, Yann and Li, Xuechen and Taori, Rohan and Zhang, Tianyi and Gulrajani, Ishaan and Ba, Jimmy and Guestrin, Carlos and Liang, Percy and Hashimoto, Tatsunori B.},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023},\n  url={https://arxiv.org/abs/2305.14387}\n}\n\n@article{bradley1952rank,\n  title={Rank Analysis of Incomplete Block Designs: {I}. {T}he Method of Paired Comparisons},\n  author={Bradley, Ralph Allan and Terry, Milton E.},\n  journal={Biometrika},\n  volume={39},\n  number={3/4},\n  pages={324--345},\n  year={1952}\n}\n\n@article{feinstein1990kappa,\n  title={High Agreement but Low Kappa: {I}. {T}he Problems of Two Paradoxes},\n  author={Feinstein, Alvan R. and Cicchetti, Domenic V.},\n  journal={Journal of Clinical Epidemiology},\n  volume={43},\n  number={6},\n  pages={543--549},\n  year={1990}\n}\n\n\n@article{wang2023faireval,\n  title={Large Language Models are not Fair Evaluators},\n  author={Wang, Peiyi and Li, Lei and Chen, Liang and Cai, Zefan and Zhu, Dawei and Lin, Binghuai and Cao, Yunbo and Liu, Qi and Liu, Tianyu and Sui, Zhifang},\n  journal={arXiv preprint arXiv:2305.17926},\n  year={2023},\n  url={https://arxiv.org/abs/2305.17926}\n}\n\n@article{li2024calibraeval,\n  title={{CalibraEval}: Calibrating Prediction Distribution to Mitigate Selection Bias in {LLMs}-as-Judges},\n  author={Li, Haitao and Chen, Junjie and Ai, Qingyao and Chu, Zhumin and Zhou, Yujia and Dong, Qian and Liu, Yiqun},\n  journal={arXiv preprint arXiv:2410.15393},\n  year={2024},\n  url={https://arxiv.org/abs/2410.15393}\n}\n\n@article{hoenig2001abuse,\n  title={The Abuse of Power: The Pervasive Fallacy of Power Calculations for Data Analysis},\n  author={Hoenig, John M. and Heisey, Dennis M.},\n  journal={The American Statistician},\n  volume={55},\n  number={1},\n  pages={19--24},\n  year={2001}\n}\n\n@inproceedings{zeng2023llmbar,\n  title={Evaluating Large Language Models at Evaluating Instruction Following},\n  author={Zeng, Zhiyuan and Yu, Jiatong and Gao, Tianyu and Meng, Yu and Goyal, Tanya and Chen, Danqi},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2024},\n  url={https://arxiv.org/abs/2310.07641}\n}\n\n@inproceedings{veitch2020adapting,\n  title={Adapting Text Embeddings for Causal Inference},\n  author={Veitch, Victor and Sridhar, Dhanya and Blei, David},\n  booktitle={Proceedings of the Conference on Uncertainty in Artificial Intelligence (UAI)},\n  year={2020},\n  url={https://arxiv.org/abs/1905.12741}\n}\n\n@inproceedings{tan2025judgebench,\n  title={{JudgeBench}: A Benchmark for Evaluating {LLM}-based Judges},\n  author={Tan, Sijun and Zhuang, Siyuan and Montgomery, Kyle and Tang, William and others},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2025},\n  url={https://arxiv.org/abs/2410.12784}\n}\n\n@book{louviere2015bws,\n  title={Best-Worst Scaling: Theory, Methods and Applications},\n  author={Louviere, Jordan J. and Flynn, Terry N. and Marley, A. A. J.},\n  publisher={Cambridge University Press},\n  year={2015},\n  isbn={9781107043152}\n}\n\n@inproceedings{chiang2024chatbot,\n  title={Chatbot Arena: An Open Platform for Evaluating {LLM}s by Human Preference},\n  author={Chiang, Wei-Lin and Zheng, Lianmin and Sheng, Ying and Angelopoulos, Anastasios Nikolas and Li, Tianle and Li, Dacheng and Zhu, Banghua and Zhang, Hao and Jordan, Michael I. and Gonzalez, Joseph E. and Stoica, Ion},\n  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},\n  year={2024},\n  url={https://arxiv.org/abs/2403.04132}\n}\n\n@article{hunter2004mm,\n  title={{MM} Algorithms for Generalized {Bradley-Terry} Models},\n  author={Hunter, David R.},\n  journal={The Annals of Statistics},\n  volume={32},\n  number={1},\n  pages={384--406},\n  year={2004},\n  doi={10.1214/aos/1079120141}\n}\n\n@article{ye2024justice,\n  title={Justice or Prejudice? Quantifying Biases in {LLM}-as-a-Judge},\n  author={Ye, Jiayi and Wang, Yanbo and Huang, Yue and Chen, Dongping and Zhang, Qihui and Moniz, Nuno and Gao, Tian and Geyer, Werner and Huang, Chao and Chen, Pin-Yu},\n  journal={arXiv preprint arXiv:2410.02736},\n  year={2024},\n  url={https://arxiv.org/abs/2410.02736}\n}\n",
+      "numLines": 235,
+      "startLine": 1,
+      "totalLines": 235
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+Now let me search for all the specified papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "89161e5b-e965-4ed7-84ff-669a62031a06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2G4tSgEmy1QBcDDKRENtV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3930,
+      "cache_read_input_tokens": 24722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3930
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016UnyxvTfsM3aPgUifBk4F7`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "807ff0d1-5c6f-42ef-aa29-e0608da09cf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2G4tSgEmy1QBcDDKRENtV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3930,
+      "cache_read_input_tokens": 24722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3930
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T10:12:36.259Z_
+
+<details><summary>↩ Tool result · `toolu_016UnyxvTfsM3aPgUifBk4F7`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "87142292-829a-43cd-bedd-5cf88b4ce592",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 51
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for all the specified papers in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "c419e503-84e0-419e-89f0-a006f14ac48c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CxMDJdNw3W7xCpVLJPfJw3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 28652,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 615
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Searching for all 6 specified papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "af220a8a-9726-4977-8b4c-92d59b4395f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CxMDJdNw3W7xCpVLJPfJw3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 28652,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 615
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HtTZEQDaBbCBH3btxVAXbL`</summary>
+
+```json
+{
+  "query": "CausaLM Feder 2021 counterfactual text generation causal reasoning Computational Linguistics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "0cb7405d-87a3-45af-8799-6c62b0d0f1ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CxMDJdNw3W7xCpVLJPfJw3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 28652,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 615
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T10:12:45.121Z_
+
+<details><summary>↩ Tool result · `toolu_01HtTZEQDaBbCBH3btxVAXbL`</summary>
+
+```text
+Web search results for query: "CausaLM Feder 2021 counterfactual text generation causal reasoning Computational Linguistics"
+
+Links: [{"title":"CausaLM: Causal Model Explanation Through Counterfactual Language Models - ACL Anthology","url":"https://aclanthology.org/2021.cl-2.13/"},{"title":"Quantifying Symptom Causality in Clinical Decision Making: An Exploration Using CausaLM","url":"https://arxiv.org/html/2503.19394"},{"title":"Causalm: Causal model explanation through counterfactual language models - Technion - Israel Institute of Technology","url":"https://cris.technion.ac.il/en/publications/causalm-causal-model-explanation-through-counterfactual-language-/"},{"title":"CausaLM: Causal Model Explanation Through Counterfactual Language Models | Computational Linguistics | MIT Press","url":"https://direct.mit.edu/coli/article/47/2/333/98518/CausaLM-Causal-Model-Explanation-Through"},{"title":"Causalm: Causal model explanation through counterfactual language models - Tel Aviv University","url":"https://cris.tau.ac.il/en/publications/causalm-causal-model-explanation-through-counterfactual-language-/"},{"title":"(PDF) CausaLM: Causal Model Explanation Through Counterfactual Language Models","url":"https://www.researchgate.net/publication/350482062_CausaLM_Causal_Model_Explanation_Through_Counterfactual_Language_Models"},{"title":"CausaLM: Causal Model Explanation Through Counterfactual Language Models","url":"https://dev.datascienceassn.org/sites/default/files/pdf_files/CausaLM%20Causal%20Model%20Explanation%20Through%20Counterfactual%20Language%20Models.pdf"},{"title":"GitHub - amirfeder/CausaLM: CausaLM: Causal Model Explanation Through Counterfactual Language Models","url":"https://github.com/amirfeder/CausaLM"},{"title":"[PDF] CausaLM: Causal Model Explanation Through Counterfactual Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CausaLM:-Causal-Model-Explanation-Through-Language-Feder-Oved/4f0318290bc75294338fdeb450e4365929b3aa0c"}]
+
+Based on the search results, here's what I found about CausaLM:
+
+## Overview
+
+CausaLM is a paper by Feder, Oved, Shalit, and Reichart published in Computational Linguistics in June 2021.
+
+## Main Contribution
+
+CausaLM is a framework for producing causal model explanations using counterfactual language representation models. The approach is based on fine-tuning deep contextualized embedding models with auxiliary adversarial tasks derived from the causal graph of the problem.
+
+## Key Problem Addressed
+
+Existing tools do not distinguish between correlation and causation and might be ill-suited for text-based models and reasoning about high-level language concepts. A key problem is that estimating the causal effect of a concept requires generating counterfactual examples, which is challenging with existing generation technology.
+
+## Technical Approach
+
+By carefully choosing auxiliary adversarial pre-training tasks, language representation models such as BERT can effectively learn a counterfactual representation for a given concept of interest and be used to estimate its true causal effect on model performance.
+
+## Additional Benefit
+
+A byproduct of the method is a language representation model that is unaffected by the tested concept, which can be useful in mitigating unwanted bias ingrained in the data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "aea9aea8-2f84-45db-a3f3-67db052e569a",
+  "tool_use_result": {
+    "query": "CausaLM Feder 2021 counterfactual text generation causal reasoning Computational Linguistics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018PiJDGsF8UnNausvD3xQL6",
+        "content": [
+          {
+            "title": "CausaLM: Causal Model Explanation Through Counterfactual Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2021.cl-2.13/"
+          },
+          {
+            "title": "Quantifying Symptom Causality in Clinical Decision Making: An Exploration Using CausaLM",
+            "url": "https://arxiv.org/html/2503.19394"
+          },
+          {
+            "title": "Causalm: Causal model explanation through counterfactual language models - Technion - Israel Institute of Technology",
+            "url": "https://cris.technion.ac.il/en/publications/causalm-causal-model-explanation-through-counterfactual-language-/"
+          },
+          {
+            "title": "CausaLM: Causal Model Explanation Through Counterfactual Language Models | Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/coli/article/47/2/333/98518/CausaLM-Causal-Model-Explanation-Through"
+          },
+          {
+            "title": "Causalm: Causal model explanation through counterfactual language models - Tel Aviv University",
+            "url": "https://cris.tau.ac.il/en/publications/causalm-causal-model-explanation-through-counterfactual-language-/"
+          },
+          {
+            "title": "(PDF) CausaLM: Causal Model Explanation Through Counterfactual Language Models",
+            "url": "https://www.researchgate.net/publication/350482062_CausaLM_Causal_Model_Explanation_Through_Counterfactual_Language_Models"
+          },
+          {
+            "title": "CausaLM: Causal Model Explanation Through Counterfactual Language Models",
+            "url": "https://dev.datascienceassn.org/sites/default/files/pdf_files/CausaLM%20Causal%20Model%20Explanation%20Through%20Counterfactual%20Language%20Models.pdf"
+          },
+          {
+            "title": "GitHub - amirfeder/CausaLM: CausaLM: Causal Model Explanation Through Counterfactual Language Models",
+            "url": "https://github.com/amirfeder/CausaLM"
+          },
+          {
+            "title": "[PDF] CausaLM: Causal Model Explanation Through Counterfactual Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CausaLM:-Causal-Model-Explanation-Through-Language-Feder-Oved/4f0318290bc75294338fdeb450e4365929b3aa0c"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CausaLM:\n\n## Overview\n\nCausaLM is a paper by Feder, Oved, Shalit, and Reichart published in Computational Linguistics in June 2021.\n\n## Main Contribution\n\nCausaLM is a framework for producing causal model explanations using counterfactual language representation models. The approach is based on fine-tuning deep contextualized embedding models with auxiliary adversarial tasks derived from the causal graph of the problem.\n\n## Key Problem Addressed\n\nExisting tools do not distinguish between correlation and causation and might be ill-suited for text-based models and reasoning about high-level language concepts. A key problem is that estimating the causal effect of a concept requires generating counterfactual examples, which is challenging with existing generation technology.\n\n## Technical Approach\n\nBy carefully choosing auxiliary adversarial pre-training tasks, language representation models such as BERT can effectively learn a counterfactual representation for a given concept of interest and be used to estimate its true causal effect on model performance.\n\n## Additional Benefit\n\nA byproduct of the method is a language representation model that is unaffected by the tested concept, which can be useful in mitigating unwanted bias ingrained in the data."
+    ],
+    "durationSeconds": 5.545025231999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VkrTDALGb3ktiAXecU2MVH`</summary>
+
+```json
+{
+  "query": "Polyjuice Wu 2021 counterfactual text edits ACL 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "09236e13-245c-4bad-ab48-676ab231e4bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018zhEr4EbB7Q2hNzc5Msimb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1085,
+      "cache_read_input_tokens": 29267,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1085
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T10:12:52.759Z_
+
+<details><summary>↩ Tool result · `toolu_01VkrTDALGb3ktiAXecU2MVH`</summary>
+
+```text
+Web search results for query: "Polyjuice Wu 2021 counterfactual text edits ACL 2021"
+
+Links: [{"title":"Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models - ACL Anthology","url":"https://aclanthology.org/2021.acl-long.523/"},{"title":"Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models","url":"https://idl.uw.edu/papers/polyjuice"},{"title":"polyjuice-nlp · PyPI","url":"https://pypi.org/project/polyjuice-nlp/"},{"title":"uw-hai/polyjuice · Hugging Face","url":"https://huggingface.co/uw-hai/polyjuice"},{"title":"GitHub - tongshuangwu/polyjuice · GitHub","url":"https://github.com/tongshuangwu/polyjuice"},{"title":"Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models | Request PDF","url":"https://www.researchgate.net/publication/353484822_Polyjuice_Generating_Counterfactuals_for_Explaining_Evaluating_and_Improving_Models"},{"title":"ACL-IJCNLP 2021","url":"https://2021.aclweb.org/program/accept/"},{"title":"Explaining NLP Models via Minimal Contrastive Editing ( ...","url":"https://aclanthology.org/2021.findings-acl.336.pdf"},{"title":"[2101.00288] Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models","url":"https://arxiv.org/abs/2101.00288"}]
+
+Based on the search results, here's what I found about Polyjuice:
+
+Polyjuice is a general-purpose counterfactual generator that allows for control over perturbation types and locations, trained by finetuning GPT-2 on multiple datasets of paired sentences.
+
+While counterfactual examples are useful for analysis and training of NLP models, current generation methods either rely on manual labor to create very few counterfactuals, or only instantiate limited types of perturbations such as paraphrases or word substitutions.
+
+Polyjuice produces diverse sets of realistic counterfactuals, which in turn are useful in various distinct applications: improving training and evaluation on three different tasks (with around 70% less annotation effort than manual generation), augmenting state-of-the-art explanation techniques, and supporting systematic counterfactual error analysis by revealing behaviors easily missed by human experts.
+
+The paper was published in the Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing in August 2021 by authors Wu, Tongshuang, Ribeiro, Marco Tulio, Heer, Jeffrey, and Weld, Daniel.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "e4133721-a23e-4a41-b31f-efa1527e4664",
+  "tool_use_result": {
+    "query": "Polyjuice Wu 2021 counterfactual text edits ACL 2021",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mh35hmzYE8CWbaTw3B4mFv",
+        "content": [
+          {
+            "title": "Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models - ACL Anthology",
+            "url": "https://aclanthology.org/2021.acl-long.523/"
+          },
+          {
+            "title": "Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models",
+            "url": "https://idl.uw.edu/papers/polyjuice"
+          },
+          {
+            "title": "polyjuice-nlp · PyPI",
+            "url": "https://pypi.org/project/polyjuice-nlp/"
+          },
+          {
+            "title": "uw-hai/polyjuice · Hugging Face",
+            "url": "https://huggingface.co/uw-hai/polyjuice"
+          },
+          {
+            "title": "GitHub - tongshuangwu/polyjuice · GitHub",
+            "url": "https://github.com/tongshuangwu/polyjuice"
+          },
+          {
+            "title": "Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/353484822_Polyjuice_Generating_Counterfactuals_for_Explaining_Evaluating_and_Improving_Models"
+          },
+          {
+            "title": "ACL-IJCNLP 2021",
+            "url": "https://2021.aclweb.org/program/accept/"
+          },
+          {
+            "title": "Explaining NLP Models via Minimal Contrastive Editing ( ...",
+            "url": "https://aclanthology.org/2021.findings-acl.336.pdf"
+          },
+          {
+            "title": "[2101.00288] Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models",
+            "url": "https://arxiv.org/abs/2101.00288"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Polyjuice:\n\nPolyjuice is a general-purpose counterfactual generator that allows for control over perturbation types and locations, trained by finetuning GPT-2 on multiple datasets of paired sentences.\n\nWhile counterfactual examples are useful for analysis and training of NLP models, current generation methods either rely on manual labor to create very few counterfactuals, or only instantiate limited types of perturbations such as paraphrases or word substitutions.\n\nPolyjuice produces diverse sets of realistic counterfactuals, which in turn are useful in various distinct applications: improving training and evaluation on three different tasks (with around 70% less annotation effort than manual generation), augmenting state-of-the-art explanation techniques, and supporting systematic counterfactual error analysis by revealing behaviors easily missed by human experts.\n\nThe paper was published in the Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing in August 2021 by authors Wu, Tongshuang, Ribeiro, Marco Tulio, Heer, Jeffrey, and Weld, Daniel."
+    ],
+    "durationSeconds": 5.236427605000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lcz4dLJj73Jp9isemoL6Cj`</summary>
+
+```json
+{
+  "query": "Clark 2021 \"All That's Human Is Not Gold\" evaluating human evaluation generated text ACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "972427cf-86fc-4574-9f0e-18b773bd9533",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012V3B7VB5DDrTKRU5EDRtWL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 842,
+      "cache_read_input_tokens": 30352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 842
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T10:13:03.085Z_
+
+<details><summary>↩ Tool result · `toolu_01Lcz4dLJj73Jp9isemoL6Cj`</summary>
+
+```text
+Web search results for query: "Clark 2021 "All That's Human Is Not Gold" evaluating human evaluation generated text ACL"
+
+Links: [{"title":"Language, Logic and Information | [Reminder] NLP RG Thu-11-Nov at 15:00: All That's Human Is Not Gold (hosted)","url":"https://uilotslli.sites.uu.nl/2021/11/10/reminder-nlp-rg-thu-11-nov-at-1500-all-thats-human-is-not-gold-hosted/"},{"title":"Language, Logic and Information | NLP RG Thu-11-Nov at 15:00: All That's Human Is Not Gold (hosted)","url":"https://uilotslli.sites.uu.nl/2021/11/08/nlp-rg-thu-11-nov-at-1500-all-thats-human-is-not-gold-hosted/"},{"title":"All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated   Text","url":"https://arxiv.org/pdf/2107.00061"},{"title":"The Authenticity Gap in Human Evaluation","url":"https://arxiv.org/pdf/2205.11930"},{"title":"A Gold Standard Methodology for Evaluating Accuracy in Data-To-Text   Systems","url":"https://arxiv.org/pdf/2011.03992"},{"title":"Statistical Multicriteria Evaluation of LLM-Generated Text","url":"https://arxiv.org/pdf/2506.18082"},{"title":"Dynamic Human Evaluation for Relative Model Comparisons","url":"https://arxiv.org/pdf/2112.08048"}]
+
+Based on the search results, I found the paper you're looking for:
+
+"All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated Text" by Elizabeth Clark, Tal August, Sofia Serrano, Nikita Haduong, Suchin Gururangan, and Noah A. Smith was published at ACL 2021.
+
+The paper addresses an important question: as models' fluency improves, how well can evaluators detect and judge machine-generated text?
+
+Key findings from the study include:
+
+- The researchers assessed nonexperts' ability to distinguish between human- and machine-authored text (GPT2 and GPT3) in three domains (stories, news articles, and recipes).
+
+- Without training, evaluators distinguished between GPT3- and human-authored text at random chance level.
+
+- While evaluators' accuracy improved up to 55% with training approaches (detailed instructions, annotated examples, and paired examples), it did not significantly improve across the three domains.
+
+- Given the inconsistent results across text domains and the often contradictory reasons evaluators gave for their judgments, the authors examine the role untrained human evaluations play in NLG evaluation and provide recommendations to NLG researchers for improving human evaluations of text generated from state-of-the-art models.
+
+The paper is available at https://aclanthology.org/2021.acl-long.565/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "ad33b7cf-d1c5-4495-b2d0-237c071b1f78",
+  "tool_use_result": {
+    "query": "Clark 2021 \"All That's Human Is Not Gold\" evaluating human evaluation generated text ACL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YNwZKYxnCW3SaxkL5Fjt84",
+        "content": [
+          {
+            "title": "Language, Logic and Information | [Reminder] NLP RG Thu-11-Nov at 15:00: All That's Human Is Not Gold (hosted)",
+            "url": "https://uilotslli.sites.uu.nl/2021/11/10/reminder-nlp-rg-thu-11-nov-at-1500-all-thats-human-is-not-gold-hosted/"
+          },
+          {
+            "title": "Language, Logic and Information | NLP RG Thu-11-Nov at 15:00: All That's Human Is Not Gold (hosted)",
+            "url": "https://uilotslli.sites.uu.nl/2021/11/08/nlp-rg-thu-11-nov-at-1500-all-thats-human-is-not-gold-hosted/"
+          },
+          {
+            "title": "All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated   Text",
+            "url": "https://arxiv.org/pdf/2107.00061"
+          },
+          {
+            "title": "The Authenticity Gap in Human Evaluation",
+            "url": "https://arxiv.org/pdf/2205.11930"
+          },
+          {
+            "title": "A Gold Standard Methodology for Evaluating Accuracy in Data-To-Text   Systems",
+            "url": "https://arxiv.org/pdf/2011.03992"
+          },
+          {
+            "title": "Statistical Multicriteria Evaluation of LLM-Generated Text",
+            "url": "https://arxiv.org/pdf/2506.18082"
+          },
+          {
+            "title": "Dynamic Human Evaluation for Relative Model Comparisons",
+            "url": "https://arxiv.org/pdf/2112.08048"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n\"All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated Text\" by Elizabeth Clark, Tal August, Sofia Serrano, Nikita Haduong, Suchin Gururangan, and Noah A. Smith was published at ACL 2021.\n\nThe paper addresses an important question: as models' fluency improves, how well can evaluators detect and judge machine-generated text?\n\nKey findings from the study include:\n\n- The researchers assessed nonexperts' ability to distinguish between human- and machine-authored text (GPT2 and GPT3) in three domains (stories, news articles, and recipes).\n\n- Without training, evaluators distinguished between GPT3- and human-authored text at random chance level.\n\n- While evaluators' accuracy improved up to 55% with training approaches (detailed instructions, annotated examples, and paired examples), it did not significantly improve across the three domains.\n\n- Given the inconsistent results across text domains and the often contradictory reasons evaluators gave for their judgments, the authors examine the role untrained human evaluations play in NLG evaluation and provide recommendations to NLG researchers for improving human evaluations of text generated from state-of-the-art models.\n\nThe paper is available at https://aclanthology.org/2021.acl-long.565/"
+    ],
+    "durationSeconds": 7.232320442999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0117y2U4TXXgfDReo3GCG4Fc`</summary>
+
+```json
+{
+  "query": "Amidei 2019 Likert scales NLG evaluation INLG"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "2163841a-c5b4-480b-81bb-6f4022c0887d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTEzUYbmBfywEYbxZY5BwF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 824,
+      "cache_read_input_tokens": 31194,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 824
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T10:13:11.732Z_
+
+<details><summary>↩ Tool result · `toolu_0117y2U4TXXgfDReo3GCG4Fc`</summary>
+
+```text
+Web search results for query: "Amidei 2019 Likert scales NLG evaluation INLG"
+
+Links: [{"title":"The use of rating and Likert scales in Natural Language Generation human evaluation tasks: A review and some recommendations - ACL Anthology","url":"https://aclanthology.org/W19-8648/"},{"title":"The use of rating and Likert scales in Natural Language Generation human evaluation tasks: A review and some recommendations | Request PDF","url":"https://www.researchgate.net/publication/338053074_The_use_of_rating_and_Likert_scales_in_Natural_Language_Generation_human_evaluation_tasks_A_review_and_some_recommendations"},{"title":"Best practices for the human evaluation of automatically ...","url":"https://aclanthology.org/W19-8643.pdf"},{"title":"Best practices for the human evaluation of automatically generated text","url":"https://www.inlg2019.com/assets/papers/98_Paper.pdf"},{"title":"GitHub - jacopoamidei/Supplementary-material-INLG-2019","url":"https://github.com/jacopoamidei/Supplementary-material-INLG-2019"},{"title":"A Survey of Obstacles in Evaluation Practices for ...","url":"https://www.jair.org/index.php/jair/article/download/13715/26927/34555"},{"title":"[PDF] The use of rating and Likert scales in Natural Language Generation human evaluation tasks: A review and some recommendations | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-use-of-rating-and-Likert-scales-in-Natural-A-Amidei-Piwek/73b6a65b283c9c0602822420b11b260925a4cff1"},{"title":"The use of rating and Likert scales in Natural Language","url":"https://oro.open.ac.uk/67963/"},{"title":"The use of rating and Likert scales in Natural Language ...","url":"https://aclanthology.org/W19-8648.pdf"},{"title":"The use of rating and Likert scales in Natural Language ...","url":"https://www.inlg2019.com/assets/papers/57_Paper.pdf"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper "The use of rating and Likert scales in Natural Language Generation human evaluation tasks: A review and some recommendations" was published by Jacopo Amidei, Paul Piwek, and Alistair Willis in 2019 in Proceedings of the 12th International Conference on Natural Language Generation (INLG).
+
+The paper reviews the use of rating and Likert scales for NLG evaluation tasks published in NLG specialized conferences over the last ten years (135 papers in total). The analysis brings to light a number of deviations from good practice in their use, and the authors conclude with some recommendations about the use of such scales.
+
+One key finding from the work is that 31 of 38 papers using Likert scales took an interval-based interpretation of them, but only 1 paper provided justification for this interpretation.
+
+The paper and supplementary materials are available through the ACL Anthology and on the authors' GitHub repository.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "018af56c-d123-411b-bd3a-a48a2469642f",
+  "tool_use_result": {
+    "query": "Amidei 2019 Likert scales NLG evaluation INLG",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014Z7FkLNnmF9icNtoNHoMnu",
+        "content": [
+          {
+            "title": "The use of rating and Likert scales in Natural Language Generation human evaluation tasks: A review and some recommendations - ACL Anthology",
+            "url": "https://aclanthology.org/W19-8648/"
+          },
+          {
+            "title": "The use of rating and Likert scales in Natural Language Generation human evaluation tasks: A review and some recommendations | Request PDF",
+            "url": "https://www.researchgate.net/publication/338053074_The_use_of_rating_and_Likert_scales_in_Natural_Language_Generation_human_evaluation_tasks_A_review_and_some_recommendations"
+          },
+          {
+            "title": "Best practices for the human evaluation of automatically ...",
+            "url": "https://aclanthology.org/W19-8643.pdf"
+          },
+          {
+            "title": "Best practices for the human evaluation of automatically generated text",
+            "url": "https://www.inlg2019.com/assets/papers/98_Paper.pdf"
+          },
+          {
+            "title": "GitHub - jacopoamidei/Supplementary-material-INLG-2019",
+            "url": "https://github.com/jacopoamidei/Supplementary-material-INLG-2019"
+          },
+          {
+            "title": "A Survey of Obstacles in Evaluation Practices for ...",
+            "url": "https://www.jair.org/index.php/jair/article/download/13715/26927/34555"
+          },
+          {
+            "title": "[PDF] The use of rating and Likert scales in Natural Language Generation human evaluation tasks: A review and some recommendations | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/The-use-of-rating-and-Likert-scales-in-Natural-A-Amidei-Piwek/73b6a65b283c9c0602822420b11b260925a4cff1"
+          },
+          {
+            "title": "The use of rating and Likert scales in Natural Language",
+            "url": "https://oro.open.ac.uk/67963/"
+          },
+          {
+            "title": "The use of rating and Likert scales in Natural Language ...",
+            "url": "https://aclanthology.org/W19-8648.pdf"
+          },
+          {
+            "title": "The use of rating and Likert scales in Natural Language ...",
+            "url": "https://www.inlg2019.com/assets/papers/57_Paper.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper \"The use of rating and Likert scales in Natural Language Generation human evaluation tasks: A review and some recommendations\" was published by Jacopo Amidei, Paul Piwek, and Alistair Willis in 2019 in Proceedings of the 12th International Conference on Natural Language Generation (INLG).\n\nThe paper reviews the use of rating and Likert scales for NLG evaluation tasks published in NLG specialized conferences over the last ten years (135 papers in total). The analysis brings to light a number of deviations from good practice in their use, and the authors conclude with some recommendations about the use of such scales.\n\nOne key finding from the work is that 31 of 38 papers using Likert scales took an interval-based interpretation of them, but only 1 paper provided justification for this interpretation.\n\nThe paper and supplementary materials are available through the ACL Anthology and on the authors' GitHub repository."
+    ],
+    "durationSeconds": 5.8362686749999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FDxemGqkug3GJRFKpsasqY`</summary>
+
+```json
+{
+  "query": "Boubdir 2023 \"Elo Uncovered\" robustness LLM evaluation Bradley-Terry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "c9715277-5ddc-47d8-ae36-d779c730876f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JEi9tMvycZXfk9Fjv5UZ2C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 32018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 887
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T10:13:22.396Z_
+
+<details><summary>↩ Tool result · `toolu_01FDxemGqkug3GJRFKpsasqY`</summary>
+
+```text
+Web search results for query: "Boubdir 2023 "Elo Uncovered" robustness LLM evaluation Bradley-Terry"
+
+Links: [{"title":"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation | Request PDF","url":"https://www.researchgate.net/publication/397197352_Elo_Uncovered_Robustness_and_Best_Practices_in_Language_Model_Evaluation"},{"title":"[2311.17295v1] Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"http://export.arxiv.org/abs/2311.17295v1"},{"title":"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"https://surrealyz.github.io/classes/llmsec-fall24/slides/22-ELO.pdf"},{"title":"[2311.17295] Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"https://arxiv.org/abs/2311.17295"},{"title":"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"http://paperreading.club/page?id=196556"},{"title":"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation - ACL Anthology","url":"https://aclanthology.org/2023.gem-1.28/"},{"title":"Elo Uncovered: Robustness and Best Practices in Language Model   Evaluation","url":"https://arxiv.org/pdf/2311.17295"},{"title":"Paper page - Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"https://huggingface.co/papers/2311.17295"},{"title":"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"https://proceedings.neurips.cc/paper_files/paper/2024/hash/bfba8efb806a970455b83b852c9cf846-Abstract-Conference.html"},{"title":"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"https://arxiv.org/html/2311.17295"}]
+
+Based on the search results, I found information about the paper "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation" by Boubdir and colleagues.
+
+## Overview
+
+The paper examines the Elo rating system, originally designed for ranking players in dynamic games such as chess, which is increasingly being used to evaluate Large Language Models (LLMs) through "A vs B" paired comparisons.
+
+## Key Focus
+
+The study examines two fundamental axioms that evaluation methods should adhere to: reliability and transitivity. The researchers conduct extensive evaluation of Elo behavior, illustrating that individual Elo computations exhibit volatility and delving into the impact of varying the Elo rating system's hyperparameters.
+
+## Main Findings
+
+The researchers show that these axioms are not always satisfied, raising questions about the reliability of current comparative evaluations of LLMs. More specifically, Elo ratings for LLMs stabilize with 100 or more comparison permutations, and a lower K-factor is preferable for closely matched models, whereas a higher K-factor better distinguishes models with clear performance differences.
+
+## Practical Implications
+
+Guided by the axioms, their findings offer concrete guidelines for enhancing the reliability of LLM evaluation methods, suggesting a need for reassessment of existing comparative approaches.
+
+The paper was published in November 2023 and appeared in the Proceedings of the Third Workshop on Natural Language Generation, Evaluation, and Metrics (GEM 2023), as well as being presented at NeurIPS 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "0d2b2968-cb12-4077-9ccb-9f2600950eb1",
+  "tool_use_result": {
+    "query": "Boubdir 2023 \"Elo Uncovered\" robustness LLM evaluation Bradley-Terry",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GuUw9WYHVnes5LYoeYg3BV",
+        "content": [
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation | Request PDF",
+            "url": "https://www.researchgate.net/publication/397197352_Elo_Uncovered_Robustness_and_Best_Practices_in_Language_Model_Evaluation"
+          },
+          {
+            "title": "[2311.17295v1] Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "http://export.arxiv.org/abs/2311.17295v1"
+          },
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "https://surrealyz.github.io/classes/llmsec-fall24/slides/22-ELO.pdf"
+          },
+          {
+            "title": "[2311.17295] Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "https://arxiv.org/abs/2311.17295"
+          },
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "http://paperreading.club/page?id=196556"
+          },
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2023.gem-1.28/"
+          },
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model   Evaluation",
+            "url": "https://arxiv.org/pdf/2311.17295"
+          },
+          {
+            "title": "Paper page - Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "https://huggingface.co/papers/2311.17295"
+          },
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/bfba8efb806a970455b83b852c9cf846-Abstract-Conference.html"
+          },
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "https://arxiv.org/html/2311.17295"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper \"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation\" by Boubdir and colleagues.\n\n## Overview\n\nThe paper examines the Elo rating system, originally designed for ranking players in dynamic games such as chess, which is increasingly being used to evaluate Large Language Models (LLMs) through \"A vs B\" paired comparisons.\n\n## Key Focus\n\nThe study examines two fundamental axioms that evaluation methods should adhere to: reliability and transitivity. The researchers conduct extensive evaluation of Elo behavior, illustrating that individual Elo computations exhibit volatility and delving into the impact of varying the Elo rating system's hyperparameters.\n\n## Main Findings\n\nThe researchers show that these axioms are not always satisfied, raising questions about the reliability of current comparative evaluations of LLMs. More specifically, Elo ratings for LLMs stabilize with 100 or more comparison permutations, and a lower K-factor is preferable for closely matched models, whereas a higher K-factor better distinguishes models with clear performance differences.\n\n## Practical Implications\n\nGuided by the axioms, their findings offer concrete guidelines for enhancing the reliability of LLM evaluation methods, suggesting a need for reassessment of existing comparative approaches.\n\nThe paper was published in November 2023 and appeared in the Proceedings of the Third Workshop on Natural Language Generation, Evaluation, and Metrics (GEM 2023), as well as being presented at NeurIPS 2024."
+    ],
+    "durationSeconds": 7.725340743999994
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013a18hMaJD34W4PLM5KAXXD`</summary>
+
+```json
+{
+  "query": "Wu Aji 2023 style evaluation bias LLM judges"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "09f12a8b-28c6-4f4e-9c45-cf504691f1b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMN1nSRvPeekBaxzMuP4TF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1122,
+      "cache_read_input_tokens": 32905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1122
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T10:13:30.268Z_
+
+<details><summary>↩ Tool result · `toolu_013a18hMaJD34W4PLM5KAXXD`</summary>
+
+```text
+Web search results for query: "Wu Aji 2023 style evaluation bias LLM judges"
+
+Links: [{"title":"(PDF) Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge","url":"https://www.researchgate.net/publication/384630680_Justice_or_Prejudice_Quantifying_Biases_in_LLM-as-a-Judge"},{"title":"Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines","url":"https://arxiv.org/html/2604.23178v1"},{"title":"LLM Evaluators Recognize and Favor Their Own Generations","url":"https://www.researchgate.net/publication/397200002_LLM_Evaluators_Recognize_and_Favor_Their_Own_Generations"},{"title":"Grading Scale Impact on LLM-as-a-Judge: Human-LLM Alignment Is Highest on 0-5 Grading Scale","url":"https://arxiv.org/html/2601.03444v1"},{"title":"Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge","url":"https://arxiv.org/html/2410.02736v1"},{"title":"Humans or LLMs as the Judge? A Study on Judgement Bias","url":"https://arxiv.org/html/2402.10669"},{"title":"Humans or LLMs as the Judge? A Study on Judgement Biases","url":"https://arxiv.org/html/2402.10669v2"},{"title":"Judging the Judges: A Systematic Evaluation of Bias Miti-","url":"https://arxiv.org/pdf/2604.23178"},{"title":"Humans or LLMs as the Judge? A Study on Judgement Bias Anonymous ACL submission","url":"https://openreview.net/pdf/11860ac4da20a2218eb96b78c49f43912297949f.pdf"}]
+
+Based on the search results, I found information about Wu & Aji's work on evaluation biases in LLM judges:
+
+Wu & Aji (2024) documented style bias as one of the systematic biases in LLM judges, along with other biases like position bias and verbosity bias. Their research found that LLM judges prioritize stylistic fluency over factual accuracy.
+
+Wu & Aji (2023) demonstrated that the limited size and scope of test data increase the risk of random interference, potentially obscuring the true extent of bias in LLM judgments. This points to an important methodological consideration in studying LLM evaluation biases.
+
+The research appears under the title "Style over substance: Evaluation biases for large language models," and their findings have become influential in the field, with multiple subsequent studies referencing their work on how LLM judges exhibit biases toward stylistic elements over substantive content quality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "3e97f3f6-f5ed-4a9d-a002-2df73d3df392",
+  "tool_use_result": {
+    "query": "Wu Aji 2023 style evaluation bias LLM judges",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NsHpW9n4aWMzka4P7HRd5y",
+        "content": [
+          {
+            "title": "(PDF) Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge",
+            "url": "https://www.researchgate.net/publication/384630680_Justice_or_Prejudice_Quantifying_Biases_in_LLM-as-a-Judge"
+          },
+          {
+            "title": "Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines",
+            "url": "https://arxiv.org/html/2604.23178v1"
+          },
+          {
+            "title": "LLM Evaluators Recognize and Favor Their Own Generations",
+            "url": "https://www.researchgate.net/publication/397200002_LLM_Evaluators_Recognize_and_Favor_Their_Own_Generations"
+          },
+          {
+            "title": "Grading Scale Impact on LLM-as-a-Judge: Human-LLM Alignment Is Highest on 0-5 Grading Scale",
+            "url": "https://arxiv.org/html/2601.03444v1"
+          },
+          {
+            "title": "Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge",
+            "url": "https://arxiv.org/html/2410.02736v1"
+          },
+          {
+            "title": "Humans or LLMs as the Judge? A Study on Judgement Bias",
+            "url": "https://arxiv.org/html/2402.10669"
+          },
+          {
+            "title": "Humans or LLMs as the Judge? A Study on Judgement Biases",
+            "url": "https://arxiv.org/html/2402.10669v2"
+          },
+          {
+            "title": "Judging the Judges: A Systematic Evaluation of Bias Miti-",
+            "url": "https://arxiv.org/pdf/2604.23178"
+          },
+          {
+            "title": "Humans or LLMs as the Judge? A Study on Judgement Bias Anonymous ACL submission",
+            "url": "https://openreview.net/pdf/11860ac4da20a2218eb96b78c49f43912297949f.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Wu & Aji's work on evaluation biases in LLM judges:\n\nWu & Aji (2024) documented style bias as one of the systematic biases in LLM judges, along with other biases like position bias and verbosity bias. Their research found that LLM judges prioritize stylistic fluency over factual accuracy.\n\nWu & Aji (2023) demonstrated that the limited size and scope of test data increase the risk of random interference, potentially obscuring the true extent of bias in LLM judgments. This points to an important methodological consideration in studying LLM evaluation biases.\n\nThe research appears under the title \"Style over substance: Evaluation biases for large language models,\" and their findings have become influential in the field, with multiple subsequent studies referencing their work on how LLM judges exhibit biases toward stylistic elements over substantive content quality."
+    ],
+    "durationSeconds": 5.176241535999994
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LiN2BB1NhPJC3ooCpozM5r`</summary>
+
+```json
+{
+  "query": "Wu Aji 2023 \"style over substance\" evaluation biases large language models arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "2bd1adef-aed1-4bce-a259-735907ac5996",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MDTzAv8toNw7FWkinTRjBj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 808,
+      "cache_read_input_tokens": 34027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 808
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T10:13:39.949Z_
+
+<details><summary>↩ Tool result · `toolu_01LiN2BB1NhPJC3ooCpozM5r`</summary>
+
+```text
+Web search results for query: "Wu Aji 2023 "style over substance" evaluation biases large language models arxiv"
+
+Links: [{"title":"[PDF] Style Over Substance: Evaluation Biases for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Style-Over-Substance:-Evaluation-Biases-for-Large-Wu-Aji/7ace46ab8e71c4304682ab126b1212deb54b9b03"},{"title":"Large Language Models are Inconsistent and Biased Evaluators","url":"https://arxiv.org/html/2405.01724v1"},{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators","url":"https://arxiv.org/html/2309.17012v3"},{"title":"LLMs are Biased Evaluators But Not Biased for Retrieval Augmented Generation","url":"https://arxiv.org/html/2410.20833v1"},{"title":"[2307.03025] Style Over Substance: Evaluation Biases for Large Language Models","url":"https://arxiv.org/abs/2307.03025"},{"title":"From Lists to Emojis: How Format Bias Affects Model Alignment","url":"https://arxiv.org/html/2409.11704"},{"title":"Style Over Substance: Evaluation Biases for Large Language Models","url":"https://www.researchgate.net/publication/372163436_Style_Over_Substance_Evaluation_Biases_for_Large_Language_Models"},{"title":"Style Over Substance: Evaluation Biases for Large Language Models","url":"https://arxiv.org/pdf/2307.03025"},{"title":"Large Language Models are Inconsistent and Biased Evaluators - arXiv.gg","url":"https://arxiv.gg/abs/2405.01724"}]
+
+I've found the paper you're looking for. "Style Over Substance: Evaluation Biases for Large Language Models" is a 2023 paper by Minghao Wu and Alham Fikri Aji, published on arXiv (2307.03025).
+
+The study investigates the behavior of crowd-sourced and expert annotators, as well as LLMs, when comparing outputs from different models, using a dataset of intentionally flawed machine-generated answers.
+
+The research proposes independently evaluating machine-generated text across multiple dimensions, resulting in the Multi-Elo Rating System (MERS). Their empirical results show that this proposed approach significantly enhances the quality of LLM-based evaluations, particularly in terms of factual accuracy, though there is no significant improvement in crowd-sourced-based evaluations.
+
+The paper has become influential in the field, with subsequent research examining LLM evaluators' inherent biases including style-over-substance judgments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "53ea50b8-a74c-4b7a-8dea-17831cbe5e5a",
+  "tool_use_result": {
+    "query": "Wu Aji 2023 \"style over substance\" evaluation biases large language models arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BSrWLXPgNSk7ZJrjKwyXSz",
+        "content": [
+          {
+            "title": "[PDF] Style Over Substance: Evaluation Biases for Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Style-Over-Substance:-Evaluation-Biases-for-Large-Wu-Aji/7ace46ab8e71c4304682ab126b1212deb54b9b03"
+          },
+          {
+            "title": "Large Language Models are Inconsistent and Biased Evaluators",
+            "url": "https://arxiv.org/html/2405.01724v1"
+          },
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators",
+            "url": "https://arxiv.org/html/2309.17012v3"
+          },
+          {
+            "title": "LLMs are Biased Evaluators But Not Biased for Retrieval Augmented Generation",
+            "url": "https://arxiv.org/html/2410.20833v1"
+          },
+          {
+            "title": "[2307.03025] Style Over Substance: Evaluation Biases for Large Language Models",
+            "url": "https://arxiv.org/abs/2307.03025"
+          },
+          {
+            "title": "From Lists to Emojis: How Format Bias Affects Model Alignment",
+            "url": "https://arxiv.org/html/2409.11704"
+          },
+          {
+            "title": "Style Over Substance: Evaluation Biases for Large Language Models",
+            "url": "https://www.researchgate.net/publication/372163436_Style_Over_Substance_Evaluation_Biases_for_Large_Language_Models"
+          },
+          {
+            "title": "Style Over Substance: Evaluation Biases for Large Language Models",
+            "url": "https://arxiv.org/pdf/2307.03025"
+          },
+          {
+            "title": "Large Language Models are Inconsistent and Biased Evaluators - arXiv.gg",
+            "url": "https://arxiv.gg/abs/2405.01724"
+          }
+        ]
+      },
+      "I've found the paper you're looking for. \"Style Over Substance: Evaluation Biases for Large Language Models\" is a 2023 paper by Minghao Wu and Alham Fikri Aji, published on arXiv (2307.03025).\n\nThe study investigates the behavior of crowd-sourced and expert annotators, as well as LLMs, when comparing outputs from different models, using a dataset of intentionally flawed machine-generated answers.\n\nThe research proposes independently evaluating machine-generated text across multiple dimensions, resulting in the Multi-Elo Rating System (MERS). Their empirical results show that this proposed approach significantly enhances the quality of LLM-based evaluations, particularly in terms of factual accuracy, though there is no significant improvement in crowd-sourced-based evaluations.\n\nThe paper has become influential in the field, with subsequent research examining LLM evaluators' inherent biases including style-over-substance judgments."
+    ],
+    "durationSeconds": 6.148697008999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Good, I found all 6 specified papers. Now let me search for the additional 3-4 papers to reach 35+.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "5a90b0c7-a673-4d9b-b4b9-9d445f690a8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QShBhJSGnagGB4FvKx4mFy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 785,
+      "cache_read_input_tokens": 34835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 785
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LYpCf9vtf7Y3PaQEdqk2Pf`</summary>
+
+```json
+{
+  "query": "pairwise comparison vs Likert rating LLM evaluation NLG 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "03bd68f1-8b1a-4a8a-ad7f-bdaf2c655452",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QShBhJSGnagGB4FvKx4mFy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 785,
+      "cache_read_input_tokens": 34835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 785
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T10:13:53.377Z_
+
+<details><summary>↩ Tool result · `toolu_01LYpCf9vtf7Y3PaQEdqk2Pf`</summary>
+
+```text
+Web search results for query: "pairwise comparison vs Likert rating LLM evaluation NLG 2024 2025"
+
+Links: [{"title":"PRePair: Pointwise Reasoning Enhance Pairwise Evaluating for Robust Instruction-Following Assessments","url":"https://arxiv.org/html/2406.12319v1"},{"title":"LLM-based NLG Evaluation: Current Status and Challenges | Computational Linguistics | MIT Press","url":"https://direct.mit.edu/coli/article/51/2/661/128807/LLM-based-NLG-Evaluation-Current-Status-and"},{"title":"The Comparative Trap: Pairwise Comparisons Amplifies Biased Preferences   of LLM Evaluators","url":"https://arxiv.org/pdf/2406.12319"},{"title":"Direct-Scoring NLG Evaluators Can Use Pairwise Comparisons Too","url":"https://arxiv.org/html/2509.05440v1"},{"title":"A reliable LLM-as-a-Judge framework for evaluating text ...","url":"https://aclanthology.org/2025.emnlp-main.796.pdf"},{"title":"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.eacl-long.8/"},{"title":"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise   Comparisons using Large Language Models","url":"https://arxiv.org/pdf/2307.07889"},{"title":"Reference-Free Rating of LLM Responses via Latent Information","url":"https://hcai-munich.com/pubs/Girrbach2025Reference.pdf"}]
+
+Based on the web search results, here's what recent research shows about pairwise comparison versus Likert rating for LLM-based NLG evaluation:
+
+## Key Differences
+
+In the pairwise approach, an LLM receives an instruction and two model-generated outputs and then chooses a higher-quality output, while in the pointwise approach, an LLM assigns a single score on a Likert scale to each generated output independently.
+
+## Alignment with Human Preferences
+
+The pairwise approach aligns closely with human preferences, achieving levels of agreement comparable to those among human annotators. Comparison-based approaches have seen considerable attention in recent work, owing largely to their demonstrated superior alignment with human judgment.
+
+## Limitations and Challenges
+
+However, there are important tradeoffs:
+
+- Pairwise evaluation amplifies biases of LLM evaluators, increasing adversarial vulnerability.
+- The relative judgment of comparison-based approaches limits their applicability to threshold-based scenarios that require an absolute score for filtering and sorting.
+- Pairwise comparisons scale poorly to listwise rankings due to context limits, order bias, and non-transitivity.
+
+## Recent Developments (2024-2025)
+
+Recent work has explored hybrid approaches. One study proposes a direct-scoring evaluator which uses pairwise comparisons with synthetic samples and shows that it performs comparably to comparison-based approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "c16b3e77-4ebf-46bd-a53b-6ea60c8bee88",
+  "tool_use_result": {
+    "query": "pairwise comparison vs Likert rating LLM evaluation NLG 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QBt7VA6PKopxebdNCBVzL8",
+        "content": [
+          {
+            "title": "PRePair: Pointwise Reasoning Enhance Pairwise Evaluating for Robust Instruction-Following Assessments",
+            "url": "https://arxiv.org/html/2406.12319v1"
+          },
+          {
+            "title": "LLM-based NLG Evaluation: Current Status and Challenges | Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/coli/article/51/2/661/128807/LLM-based-NLG-Evaluation-Current-Status-and"
+          },
+          {
+            "title": "The Comparative Trap: Pairwise Comparisons Amplifies Biased Preferences   of LLM Evaluators",
+            "url": "https://arxiv.org/pdf/2406.12319"
+          },
+          {
+            "title": "Direct-Scoring NLG Evaluators Can Use Pairwise Comparisons Too",
+            "url": "https://arxiv.org/html/2509.05440v1"
+          },
+          {
+            "title": "A reliable LLM-as-a-Judge framework for evaluating text ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.796.pdf"
+          },
+          {
+            "title": "LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2024.eacl-long.8/"
+          },
+          {
+            "title": "LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise   Comparisons using Large Language Models",
+            "url": "https://arxiv.org/pdf/2307.07889"
+          },
+          {
+            "title": "Reference-Free Rating of LLM Responses via Latent Information",
+            "url": "https://hcai-munich.com/pubs/Girrbach2025Reference.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, here's what recent research shows about pairwise comparison versus Likert rating for LLM-based NLG evaluation:\n\n## Key Differences\n\nIn the pairwise approach, an LLM receives an instruction and two model-generated outputs and then chooses a higher-quality output, while in the pointwise approach, an LLM assigns a single score on a Likert scale to each generated output independently.\n\n## Alignment with Human Preferences\n\nThe pairwise approach aligns closely with human preferences, achieving levels of agreement comparable to those among human annotators. Comparison-based approaches have seen considerable attention in recent work, owing largely to their demonstrated superior alignment with human judgment.\n\n## Limitations and Challenges\n\nHowever, there are important tradeoffs:\n\n- Pairwise evaluation amplifies biases of LLM evaluators, increasing adversarial vulnerability.\n- The relative judgment of comparison-based approaches limits their applicability to threshold-based scenarios that require an absolute score for filtering and sorting.\n- Pairwise comparisons scale poorly to listwise rankings due to context limits, order bias, and non-transitivity.\n\n## Recent Developments (2024-2025)\n\nRecent work has explored hybrid approaches. One study proposes a direct-scoring evaluator which uses pairwise comparisons with synthetic samples and shows that it performs comparably to comparison-based approaches."
+    ],
+    "durationSeconds": 9.831638355000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P5cqJ8fysvHJ81EUPiL7KM`</summary>
+
+```json
+{
+  "query": "Liusie 2024 \"LLM Comparative Assessment\" pairwise comparisons NLG evaluation EACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "9009f28e-c5d7-4ad9-a0a2-77e7a54b4aec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S5ZcHAY3ngZdDyZCLCUYKq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 35620,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 891
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T10:14:02.093Z_
+
+<details><summary>↩ Tool result · `toolu_01P5cqJ8fysvHJ81EUPiL7KM`</summary>
+
+```text
+Web search results for query: "Liusie 2024 "LLM Comparative Assessment" pairwise comparisons NLG evaluation EACL"
+
+Links: [{"title":"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.eacl-long.8/"},{"title":"dblp: LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models.","url":"https://dblp.dagstuhl.de/rec/conf/eacl/LiusieMG24.html"},{"title":"Efficient LLM Comparative Assessment: a Product of Experts Framework for Pairwise Comparisons","url":"https://arxiv.org/html/2405.05894v2"},{"title":"Efficient LLM Comparative Assessment: A Product of Experts Framework for Pairwise Comparisons - ACL Anthology","url":"https://aclanthology.org/2024.emnlp-main.389/"},{"title":"Efficient LLM Comparative Assessment: a Product of","url":"https://scispace.com/pdf/efficient-llm-comparative-assessment-a-product-of-experts-3a4gdmipeh.pdf"},{"title":"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/393020372_LLM_Comparative_Assessment_Zero-shot_NLG_Evaluation_through_Pairwise_Comparisons_using_Large_Language_Models"},{"title":"[2307.07889v3] LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models","url":"https://arxiv.org/abs/2307.07889v3"},{"title":"Efficient LLM Comparative Assessment: a Product of Experts Framework for   Pairwise Comparisons","url":"https://arxiv.org/pdf/2405.05894"}]
+
+Based on the search results, I found the paper you're looking for:
+
+"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models" by Adian Liusie, Potsawee Manakul, and Mark Gales, published at the 18th Conference of the European Chapter of the Association for Computational Linguistics (EACL 2024) in St. Julian's, Malta.
+
+The paper explores two options for exploiting the emergent abilities of LLMs for zero-shot NLG assessment: absolute score prediction, and comparative assessment which uses relative comparisons between pairs of candidates. The work examines comparative assessment from multiple perspectives: performance compared to absolute grading; positional biases in the prompt; and efficient ranking in terms of the number of comparisons.
+
+The paper is available on the ACL Anthology at https://aclanthology.org/2024.eacl-long.8/ and on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "e51c5583-3438-4bfd-8da2-93d48abadaa5",
+  "tool_use_result": {
+    "query": "Liusie 2024 \"LLM Comparative Assessment\" pairwise comparisons NLG evaluation EACL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JMUrf21ne7TvFEjuzPNik1",
+        "content": [
+          {
+            "title": "LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2024.eacl-long.8/"
+          },
+          {
+            "title": "dblp: LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models.",
+            "url": "https://dblp.dagstuhl.de/rec/conf/eacl/LiusieMG24.html"
+          },
+          {
+            "title": "Efficient LLM Comparative Assessment: a Product of Experts Framework for Pairwise Comparisons",
+            "url": "https://arxiv.org/html/2405.05894v2"
+          },
+          {
+            "title": "Efficient LLM Comparative Assessment: A Product of Experts Framework for Pairwise Comparisons - ACL Anthology",
+            "url": "https://aclanthology.org/2024.emnlp-main.389/"
+          },
+          {
+            "title": "Efficient LLM Comparative Assessment: a Product of",
+            "url": "https://scispace.com/pdf/efficient-llm-comparative-assessment-a-product-of-experts-3a4gdmipeh.pdf"
+          },
+          {
+            "title": "LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/393020372_LLM_Comparative_Assessment_Zero-shot_NLG_Evaluation_through_Pairwise_Comparisons_using_Large_Language_Models"
+          },
+          {
+            "title": "[2307.07889v3] LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models",
+            "url": "https://arxiv.org/abs/2307.07889v3"
+          },
+          {
+            "title": "Efficient LLM Comparative Assessment: a Product of Experts Framework for   Pairwise Comparisons",
+            "url": "https://arxiv.org/pdf/2405.05894"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n\"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models\" by Adian Liusie, Potsawee Manakul, and Mark Gales, published at the 18th Conference of the European Chapter of the Association for Computational Linguistics (EACL 2024) in St. Julian's, Malta.\n\nThe paper explores two options for exploiting the emergent abilities of LLMs for zero-shot NLG assessment: absolute score prediction, and comparative assessment which uses relative comparisons between pairs of candidates. The work examines comparative assessment from multiple perspectives: performance compared to absolute grading; positional biases in the prompt; and efficient ranking in terms of the number of comparisons.\n\nThe paper is available on the ACL Anthology at https://aclanthology.org/2024.eacl-long.8/ and on arXiv."
+    ],
+    "durationSeconds": 5.836617132
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HejbmzPHjqW6JHyYTxDKo4`</summary>
+
+```json
+{
+  "query": "counterfactual interventional text analysis causal inference NLP 2024 2025 style confounding"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "7a696bf2-68e9-4874-ad85-30edd1d304ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E6ZyGnNjm3c6cccrNr5247",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 36511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 858
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T10:14:13.033Z_
+
+<details><summary>↩ Tool result · `toolu_01HejbmzPHjqW6JHyYTxDKo4`</summary>
+
+```text
+Web search results for query: "counterfactual interventional text analysis causal inference NLP 2024 2025 style confounding"
+
+Links: [{"title":"Counterfactual Causal Inference in Natural Language with Large Language Models","url":"https://arxiv.org/html/2410.06392v1"},{"title":"[Literature Review] Counterfactual Causal Inference in Natural Language with Large Language Models","url":"https://www.themoonlight.io/en/review/counterfactual-causal-inference-in-natural-language-with-large-language-models"},{"title":"GitHub - zhijing-jin/CausalNLP_Papers: A reading list for papers on causality for natural language processing (NLP) · GitHub","url":"https://github.com/zhijing-jin/CausalNLP_Papers"},{"title":"Estimating Causal Effects of Text Interventions Leveraging LLMs","url":"https://arxiv.org/pdf/2410.21474"},{"title":"Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00511/113490/Causal-Inference-in-Natural-Language-Processing"},{"title":"Counterfactual Causal Inference in Natural Language with Large Language   Models","url":"https://arxiv.org/pdf/2410.06392"},{"title":"Counterfactual Interventions Reveal the Causal Effect of Relative Clause   Representations on Agreement Prediction","url":"https://arxiv.org/pdf/2105.06965"}]
+
+Based on the search results, here's what I found regarding counterfactual interventional text analysis and causal inference in NLP for 2024-2025:
+
+## Recent Work on Counterfactual Causal Inference in NLP
+
+Recent research proposes end-to-end causal structure discovery and counterfactual inference methods from unstructured natural language text data. One approach uses LLMs to generate causal graphs describing relationships between events in text, then performs atomic interventions on sequences of events to infer consequences in counterfactual scenarios.
+
+## Handling Confounding Effects
+
+Methods employ LLMs to handle probabilistic assessments in causal inference while accounting for potential confounding effects. Research aims to estimate effects from treatment to outcome while accounting for confounding and non-confounding covariates.
+
+## Key Challenges and Recent Papers
+
+Causal structure discovery from text requires solving multiple open research problems, including the inability to directly apply traditional methods since causal variables must be discovered from text, and handling real-world events with latent variables and feedback loops.
+
+Recent notable work includes:
+- 2024 ACL paper on "Competition of Mechanisms: Tracing How Language Models Handle Facts and Counterfactuals"
+- 2024 arXiv work showing "LLMs Are Prone to Fallacies in Causal Inference"
+- 2024 arXiv paper on "Evaluating Interventional Reasoning Capabilities of Large Language Models"
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "539e2898-18f3-41e7-b87b-ca1e93ae81a2",
+  "tool_use_result": {
+    "query": "counterfactual interventional text analysis causal inference NLP 2024 2025 style confounding",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T94riG3yZeA4EGSXuRrZJh",
+        "content": [
+          {
+            "title": "Counterfactual Causal Inference in Natural Language with Large Language Models",
+            "url": "https://arxiv.org/html/2410.06392v1"
+          },
+          {
+            "title": "[Literature Review] Counterfactual Causal Inference in Natural Language with Large Language Models",
+            "url": "https://www.themoonlight.io/en/review/counterfactual-causal-inference-in-natural-language-with-large-language-models"
+          },
+          {
+            "title": "GitHub - zhijing-jin/CausalNLP_Papers: A reading list for papers on causality for natural language processing (NLP) · GitHub",
+            "url": "https://github.com/zhijing-jin/CausalNLP_Papers"
+          },
+          {
+            "title": "Estimating Causal Effects of Text Interventions Leveraging LLMs",
+            "url": "https://arxiv.org/pdf/2410.21474"
+          },
+          {
+            "title": "Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00511/113490/Causal-Inference-in-Natural-Language-Processing"
+          },
+          {
+            "title": "Counterfactual Causal Inference in Natural Language with Large Language   Models",
+            "url": "https://arxiv.org/pdf/2410.06392"
+          },
+          {
+            "title": "Counterfactual Interventions Reveal the Causal Effect of Relative Clause   Representations on Agreement Prediction",
+            "url": "https://arxiv.org/pdf/2105.06965"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding counterfactual interventional text analysis and causal inference in NLP for 2024-2025:\n\n## Recent Work on Counterfactual Causal Inference in NLP\n\nRecent research proposes end-to-end causal structure discovery and counterfactual inference methods from unstructured natural language text data. One approach uses LLMs to generate causal graphs describing relationships between events in text, then performs atomic interventions on sequences of events to infer consequences in counterfactual scenarios.\n\n## Handling Confounding Effects\n\nMethods employ LLMs to handle probabilistic assessments in causal inference while accounting for potential confounding effects. Research aims to estimate effects from treatment to outcome while accounting for confounding and non-confounding covariates.\n\n## Key Challenges and Recent Papers\n\nCausal structure discovery from text requires solving multiple open research problems, including the inability to directly apply traditional methods since causal variables must be discovered from text, and handling real-world events with latent variables and feedback loops.\n\nRecent notable work includes:\n- 2024 ACL paper on \"Competition of Mechanisms: Tracing How Language Models Handle Facts and Counterfactuals\"\n- 2024 arXiv work showing \"LLMs Are Prone to Fallacies in Causal Inference\"\n- 2024 arXiv paper on \"Evaluating Interventional Reasoning Capabilities of Large Language Models\""
+    ],
+    "durationSeconds": 7.247012946000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GmUAsSXJiWrasLV4feKvZL`</summary>
+
+```json
+{
+  "query": "Feder Causal Inference NLP survey 2022 TACL \"Causal Inference in Natural Language Processing\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "fcf67adc-5fd0-4733-abf2-ed28afb50a60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQ3DjoyiLo1VuPN4wb8rLq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 37369,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 846
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T10:14:21.844Z_
+
+<details><summary>↩ Tool result · `toolu_01GmUAsSXJiWrasLV4feKvZL`</summary>
+
+```text
+Web search results for query: "Feder Causal Inference NLP survey 2022 TACL "Causal Inference in Natural Language Processing""
+
+Links: [{"title":"Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond - ACL Anthology","url":"https://aclanthology.org/2022.tacl-1.66/"},{"title":"GitHub - zhijing-jin/CausalNLP_Papers: A reading list for papers on causality for natural language processing (NLP) · GitHub","url":"https://github.com/zhijing-jin/CausalNLP_Papers"},{"title":"Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond - Princeton University","url":"https://collaborate.princeton.edu/en/publications/causal-inference-in-natural-language-processing-estimation-predic/"},{"title":"Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond","url":"https://ouci.dntb.gov.ua/en/works/leREMaJ9/"},{"title":"[2109.00725v1] Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond","url":"https://arxiv.org/abs/2109.00725v1"},{"title":"[2109.00725] Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond","url":"https://arxiv.org/abs/2109.00725"},{"title":"Causal Inference in Natural Language Processing:","url":"https://aclanthology.org/2022.tacl-1.66.pdf"},{"title":"Causal Inference with Large Language Model: A Survey","url":"https://arxiv.org/pdf/2409.09822"},{"title":"dblp: Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond.","url":"https://dblp.org/rec/journals/tacl/FederKMPSWEGRRS22.html"}]
+
+I found the paper you were looking for! Here are the key details:
+
+**Title:** Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond
+
+**Authors:** Amir Feder, Katherine A. Keith, Emaad Manzoor, Reid Pryzant, Dhanya Sridhar, Zach Wood-Doughty, Jacob Eisenstein, Justin Grimmer, Roi Reichart, Margaret E. Roberts, Brandon M. Stewart, Victor Veitch, and Diyi Yang
+
+**Publication:** Transactions of the Association for Computational Linguistics, 10:1138–1158 (2022)
+
+**Summary:** The survey consolidates research across academic areas and situates it in the broader NLP landscape. It introduces the statistical challenge of estimating causal effects with text, encompassing settings where text is used as an outcome, treatment, or to address confounding. In addition, it explores potential uses of causal inference to improve the robustness, fairness, and interpretability of NLP models.
+
+The paper is available on the ACL Anthology and has also been posted on arXiv (arxiv.org/abs/2109.00725).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "1087600d-57b2-4953-8009-ab6bea94505d",
+  "tool_use_result": {
+    "query": "Feder Causal Inference NLP survey 2022 TACL \"Causal Inference in Natural Language Processing\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VuGa3jPL1oxG17FnXZXf53",
+        "content": [
+          {
+            "title": "Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond - ACL Anthology",
+            "url": "https://aclanthology.org/2022.tacl-1.66/"
+          },
+          {
+            "title": "GitHub - zhijing-jin/CausalNLP_Papers: A reading list for papers on causality for natural language processing (NLP) · GitHub",
+            "url": "https://github.com/zhijing-jin/CausalNLP_Papers"
+          },
+          {
+            "title": "Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond - Princeton University",
+            "url": "https://collaborate.princeton.edu/en/publications/causal-inference-in-natural-language-processing-estimation-predic/"
+          },
+          {
+            "title": "Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond",
+            "url": "https://ouci.dntb.gov.ua/en/works/leREMaJ9/"
+          },
+          {
+            "title": "[2109.00725v1] Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond",
+            "url": "https://arxiv.org/abs/2109.00725v1"
+          },
+          {
+            "title": "[2109.00725] Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond",
+            "url": "https://arxiv.org/abs/2109.00725"
+          },
+          {
+            "title": "Causal Inference in Natural Language Processing:",
+            "url": "https://aclanthology.org/2022.tacl-1.66.pdf"
+          },
+          {
+            "title": "Causal Inference with Large Language Model: A Survey",
+            "url": "https://arxiv.org/pdf/2409.09822"
+          },
+          {
+            "title": "dblp: Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond.",
+            "url": "https://dblp.org/rec/journals/tacl/FederKMPSWEGRRS22.html"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here are the key details:\n\n**Title:** Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond\n\n**Authors:** Amir Feder, Katherine A. Keith, Emaad Manzoor, Reid Pryzant, Dhanya Sridhar, Zach Wood-Doughty, Jacob Eisenstein, Justin Grimmer, Roi Reichart, Margaret E. Roberts, Brandon M. Stewart, Victor Veitch, and Diyi Yang\n\n**Publication:** Transactions of the Association for Computational Linguistics, 10:1138–1158 (2022)\n\n**Summary:** The survey consolidates research across academic areas and situates it in the broader NLP landscape. It introduces the statistical challenge of estimating causal effects with text, encompassing settings where text is used as an outcome, treatment, or to address confounding. In addition, it explores potential uses of causal inference to improve the robustness, fairness, and interpretability of NLP models.\n\nThe paper is available on the ACL Anthology and has also been posted on arXiv (arxiv.org/abs/2109.00725)."
+    ],
+    "durationSeconds": 5.992150716000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WG4MHcrjzKNxioA2agpmgn`</summary>
+
+```json
+{
+  "query": "Koo 2024 \"benchmarking cognitive biases\" LLM evaluators pairwise scoring"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "0438f429-e8d1-4e95-a75a-296e2261f2cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TXmSPF8G8QZP6YstaiN8uQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 38215,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 879
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T10:14:32.145Z_
+
+<details><summary>↩ Tool result · `toolu_01WG4MHcrjzKNxioA2agpmgn`</summary>
+
+```text
+Web search results for query: "Koo 2024 "benchmarking cognitive biases" LLM evaluators pairwise scoring"
+
+Links: [{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators - ACL Anthology","url":"https://aclanthology.org/2024.findings-acl.29/"},{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators | Request PDF","url":"https://www.researchgate.net/publication/384209612_Benchmarking_Cognitive_Biases_in_Large_Language_Models_as_Evaluators"},{"title":"LLM Evaluators Recognize and Favor Their Own Generations Arjun Panickssery1","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/7f1f0218e45f5414c79c0679633e47bc-Paper-Conference.pdf"},{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators - Experts@Minnesota","url":"https://experts.umn.edu/en/publications/benchmarking-cognitive-biases-in-large-language-models-as-evaluat/"},{"title":"[2309.17012] Benchmarking Cognitive Biases in Large Language Models as Evaluators","url":"https://arxiv.org/abs/2309.17012"},{"title":"The Comparative Trap: Pairwise Comparisons Amplifies Biased Preferences   of LLM Evaluators","url":"https://arxiv.org/pdf/2406.12319"},{"title":"Pairwise or Pointwise? Evaluating Feedback Protocols for ...","url":"https://arxiv.org/pdf/2504.14716"},{"title":"GitHub - minnesotanlp/cobbler: Code and data for Koo et al's ACL 2024 paper \"Benchmarking Cognitive Biases in Large Language Models as Evaluators\" · GitHub","url":"https://github.com/minnesotanlp/cobbler"},{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators","url":"https://arxiv.org/html/2309.17012v3"}]
+
+Based on the search results, here's what I found about the Koo et al. 2024 paper on benchmarking cognitive biases in LLM evaluators:
+
+## Overview
+
+The paper "Benchmarking Cognitive Biases in Large Language Models as Evaluators" was published in the Findings of the Association for Computational Linguistics: ACL 2024.
+
+## Methodology
+
+The work assembles 16 LLMs encompassing four different size ranges and evaluates their output responses by preference ranking from the other LLMs as evaluators, such as System Star is better than System Square. This represents a pairwise scoring approach where LLMs evaluate other LLM outputs.
+
+## Key Findings
+
+The researchers found that LLMs are biased text quality evaluators, exhibiting strong indications on their bias benchmark (40% of comparisons made by all models) within each of their evaluations that question their robustness as evaluators.
+
+Additionally, they examined the correlation between human and machine preferences and calculated the average Rank-Biased Overlap (RBO) score to be 44%, indicating that machine preferences are misaligned with humans.
+
+## The COBBLER Benchmark
+
+The researchers introduced the COgnitive Bias Benchmark for LLMs as EvaluatoRs (COBBLER), a benchmark to measure six different cognitive biases.
+
+The research highlights significant concerns about using LLMs as automatic evaluators for text quality assessment, particularly regarding their reliability and alignment with human judgment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "7ac647ef-7706-4db5-bf25-3604da8d788b",
+  "tool_use_result": {
+    "query": "Koo 2024 \"benchmarking cognitive biases\" LLM evaluators pairwise scoring",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DpAkjMWyT3NPA7oUhmPLU2",
+        "content": [
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators - ACL Anthology",
+            "url": "https://aclanthology.org/2024.findings-acl.29/"
+          },
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators | Request PDF",
+            "url": "https://www.researchgate.net/publication/384209612_Benchmarking_Cognitive_Biases_in_Large_Language_Models_as_Evaluators"
+          },
+          {
+            "title": "LLM Evaluators Recognize and Favor Their Own Generations Arjun Panickssery1",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/7f1f0218e45f5414c79c0679633e47bc-Paper-Conference.pdf"
+          },
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators - Experts@Minnesota",
+            "url": "https://experts.umn.edu/en/publications/benchmarking-cognitive-biases-in-large-language-models-as-evaluat/"
+          },
+          {
+            "title": "[2309.17012] Benchmarking Cognitive Biases in Large Language Models as Evaluators",
+            "url": "https://arxiv.org/abs/2309.17012"
+          },
+          {
+            "title": "The Comparative Trap: Pairwise Comparisons Amplifies Biased Preferences   of LLM Evaluators",
+            "url": "https://arxiv.org/pdf/2406.12319"
+          },
+          {
+            "title": "Pairwise or Pointwise? Evaluating Feedback Protocols for ...",
+            "url": "https://arxiv.org/pdf/2504.14716"
+          },
+          {
+            "title": "GitHub - minnesotanlp/cobbler: Code and data for Koo et al's ACL 2024 paper \"Benchmarking Cognitive Biases in Large Language Models as Evaluators\" · GitHub",
+            "url": "https://github.com/minnesotanlp/cobbler"
+          },
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators",
+            "url": "https://arxiv.org/html/2309.17012v3"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Koo et al. 2024 paper on benchmarking cognitive biases in LLM evaluators:\n\n## Overview\n\nThe paper \"Benchmarking Cognitive Biases in Large Language Models as Evaluators\" was published in the Findings of the Association for Computational Linguistics: ACL 2024.\n\n## Methodology\n\nThe work assembles 16 LLMs encompassing four different size ranges and evaluates their output responses by preference ranking from the other LLMs as evaluators, such as System Star is better than System Square. This represents a pairwise scoring approach where LLMs evaluate other LLM outputs.\n\n## Key Findings\n\nThe researchers found that LLMs are biased text quality evaluators, exhibiting strong indications on their bias benchmark (40% of comparisons made by all models) within each of their evaluations that question their robustness as evaluators.\n\nAdditionally, they examined the correlation between human and machine preferences and calculated the average Rank-Biased Overlap (RBO) score to be 44%, indicating that machine preferences are misaligned with humans.\n\n## The COBBLER Benchmark\n\nThe researchers introduced the COgnitive Bias Benchmark for LLMs as EvaluatoRs (COBBLER), a benchmark to measure six different cognitive biases.\n\nThe research highlights significant concerns about using LLMs as automatic evaluators for text quality assessment, particularly regarding their reliability and alignment with human judgment."
+    ],
+    "durationSeconds": 7.891408083000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QK7kX3zQFpFEjJs1GgyfE6`</summary>
+
+```json
+{
+  "query": "Panickssery 2024 \"LLM Evaluators Recognize and Favor Their Own Generations\" NeurIPS self-preference bias"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "b2011d6e-dd2c-484b-9b14-b8198e332dbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QzUdZwfWhYo9fk8ai1CYoZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 39094,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 978
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T10:14:41.187Z_
+
+<details><summary>↩ Tool result · `toolu_01QK7kX3zQFpFEjJs1GgyfE6`</summary>
+
+```text
+Web search results for query: "Panickssery 2024 "LLM Evaluators Recognize and Favor Their Own Generations" NeurIPS self-preference bias"
+
+Links: [{"title":"LLM Evaluators Recognize and Favor Their Own Generations [Quick Review]","url":"https://liner.com/review/llm-evaluators-recognize-and-favor-their-own-generations"},{"title":"NeurIPS Poster LLM Evaluators Recognize and Favor Their Own Generations","url":"https://neurips.cc/virtual/2024/poster/96672"},{"title":"LLM Evaluators Recognize and Favor Their Own Generations","url":"https://proceedings.neurips.cc/paper_files/paper/2024/hash/7f1f0218e45f5414c79c0679633e47bc-Abstract-Conference.html"},{"title":"LLM Evaluators Recognize and Favor Their Own Generations","url":"https://papers.nips.cc/paper_files/paper/2024/hash/7f1f0218e45f5414c79c0679633e47bc-Abstract-Conference.html"},{"title":"LLM Evaluators Recognize and Favor Their Own Generations Arjun Panickssery1","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/7f1f0218e45f5414c79c0679633e47bc-Paper-Conference.pdf"},{"title":"[2404.13076] LLM Evaluators Recognize and Favor Their Own Generations","url":"https://arxiv.org/abs/2404.13076"},{"title":"Do LLM Evaluators Prefer Themselves for a Reason?","url":"https://arxiv.org/pdf/2504.03846"},{"title":"Self-Preference Bias in LLM-as-a-Judge","url":"https://arxiv.org/html/2410.21819v2"},{"title":"Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations","url":"https://arxiv.org/pdf/2601.22548"},{"title":"NeurIPS Self-Preference Bias in LLM-as-a-Judge","url":"https://neurips.cc/virtual/2024/106181"}]
+
+I found the research you were looking for. Here's what I found about Panickssery et al.'s 2024 NeurIPS paper on LLM self-preference bias:
+
+## Overview
+
+Arjun Panickssery, Samuel R. Bowman, and Shi Feng published this work at NeurIPS 2024. The paper was also published on arXiv in April 2024.
+
+## Main Findings
+
+The research identifies self-preference bias, where an LLM evaluator scores its own outputs higher than others' while human annotators consider them of equal quality.
+
+The authors discovered that, out of the box, LLMs such as GPT-4 and Llama 2 have non-trivial accuracy at distinguishing themselves from other LLMs and humans. By fine-tuning LLMs, they discovered a linear correlation between self-recognition capability and the strength of self-preference bias.
+
+## Key Definitions
+
+Self-preference is when an LLM favors its own outputs over texts by human or other LLMs, while self-recognition is an LLM's ability to distinguish its outputs from texts by humans or other LLMs.
+
+The paper explores whether LLMs' tendency to favor their own outputs is due to their actual capability to recognize their own text, which has been a significant question in the field.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "2965557b-a21f-43d0-b9d9-2c2afc4a910e",
+  "tool_use_result": {
+    "query": "Panickssery 2024 \"LLM Evaluators Recognize and Favor Their Own Generations\" NeurIPS self-preference bias",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XpUrxKvdH2Q6VabDA7mLrD",
+        "content": [
+          {
+            "title": "LLM Evaluators Recognize and Favor Their Own Generations [Quick Review]",
+            "url": "https://liner.com/review/llm-evaluators-recognize-and-favor-their-own-generations"
+          },
+          {
+            "title": "NeurIPS Poster LLM Evaluators Recognize and Favor Their Own Generations",
+            "url": "https://neurips.cc/virtual/2024/poster/96672"
+          },
+          {
+            "title": "LLM Evaluators Recognize and Favor Their Own Generations",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7f1f0218e45f5414c79c0679633e47bc-Abstract-Conference.html"
+          },
+          {
+            "title": "LLM Evaluators Recognize and Favor Their Own Generations",
+            "url": "https://papers.nips.cc/paper_files/paper/2024/hash/7f1f0218e45f5414c79c0679633e47bc-Abstract-Conference.html"
+          },
+          {
+            "title": "LLM Evaluators Recognize and Favor Their Own Generations Arjun Panickssery1",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/7f1f0218e45f5414c79c0679633e47bc-Paper-Conference.pdf"
+          },
+          {
+            "title": "[2404.13076] LLM Evaluators Recognize and Favor Their Own Generations",
+            "url": "https://arxiv.org/abs/2404.13076"
+          },
+          {
+            "title": "Do LLM Evaluators Prefer Themselves for a Reason?",
+            "url": "https://arxiv.org/pdf/2504.03846"
+          },
+          {
+            "title": "Self-Preference Bias in LLM-as-a-Judge",
+            "url": "https://arxiv.org/html/2410.21819v2"
+          },
+          {
+            "title": "Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations",
+            "url": "https://arxiv.org/pdf/2601.22548"
+          },
+          {
+            "title": "NeurIPS Self-Preference Bias in LLM-as-a-Judge",
+            "url": "https://neurips.cc/virtual/2024/106181"
+          }
+        ]
+      },
+      "I found the research you were looking for. Here's what I found about Panickssery et al.'s 2024 NeurIPS paper on LLM self-preference bias:\n\n## Overview\n\nArjun Panickssery, Samuel R. Bowman, and Shi Feng published this work at NeurIPS 2024. The paper was also published on arXiv in April 2024.\n\n## Main Findings\n\nThe research identifies self-preference bias, where an LLM evaluator scores its own outputs higher than others' while human annotators consider them of equal quality.\n\nThe authors discovered that, out of the box, LLMs such as GPT-4 and Llama 2 have non-trivial accuracy at distinguishing themselves from other LLMs and humans. By fine-tuning LLMs, they discovered a linear correlation between self-recognition capability and the strength of self-preference bias.\n\n## Key Definitions\n\nSelf-preference is when an LLM favors its own outputs over texts by human or other LLMs, while self-recognition is an LLM's ability to distinguish its outputs from texts by humans or other LLMs.\n\nThe paper explores whether LLMs' tendency to favor their own outputs is due to their actual capability to recognize their own text, which has been a significant question in the field."
+    ],
+    "durationSeconds": 6.452982950000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011gWKW1dY91G8gEXk53s5rx`</summary>
+
+```json
+{
+  "query": "Boubdir \"Elo Uncovered\" full author list 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "ea0c1b86-4d5a-41d5-a17b-dbc23279cdc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kz3CXNbFkkBwCGzYPdtd9U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 981,
+      "cache_read_input_tokens": 40072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 981
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T10:14:47.632Z_
+
+<details><summary>↩ Tool result · `toolu_011gWKW1dY91G8gEXk53s5rx`</summary>
+
+```text
+Web search results for query: "Boubdir "Elo Uncovered" full author list 2023"
+
+Links: [{"title":"[2311.17295] Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"https://arxiv.org/abs/2311.17295"},{"title":"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation - ACL Anthology","url":"https://aclanthology.org/2023.gem-1.28/"},{"title":"[2311.17295v1] Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"http://export.arxiv.org/abs/2311.17295v1"},{"title":"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"https://arxiv.org/html/2311.17295"},{"title":"Published as a conference paper at ICLR 2025 UNICBE: AN UNIFORMITY-DRIVEN","url":"https://www.arxiv.org/pdf/2502.11454"},{"title":"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"https://proceedings.neurips.cc/paper_files/paper/2024/hash/bfba8efb806a970455b83b852c9cf846-Abstract-Conference.html"},{"title":"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation | Request PDF","url":"https://www.researchgate.net/publication/397197352_Elo_Uncovered_Robustness_and_Best_Practices_in_Language_Model_Evaluation"},{"title":"NeurIPS Poster Elo Uncovered: Robustness and Best Practices in Language Model Evaluation","url":"https://neurips.cc/virtual/2024/poster/95297"}]
+
+Based on the search results, the full author list for "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation" from 2023 is: Meriem Boubdir, Edward Kim, Beyza Ermis, Sara Hooker, and Marzieh Fadaee.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "e91faa9d-fcc8-4728-954c-f83b470489c6",
+  "tool_use_result": {
+    "query": "Boubdir \"Elo Uncovered\" full author list 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GR73QmNMhiw9YuAuuh92oi",
+        "content": [
+          {
+            "title": "[2311.17295] Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "https://arxiv.org/abs/2311.17295"
+          },
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2023.gem-1.28/"
+          },
+          {
+            "title": "[2311.17295v1] Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "http://export.arxiv.org/abs/2311.17295v1"
+          },
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "https://arxiv.org/html/2311.17295"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 UNICBE: AN UNIFORMITY-DRIVEN",
+            "url": "https://www.arxiv.org/pdf/2502.11454"
+          },
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/bfba8efb806a970455b83b852c9cf846-Abstract-Conference.html"
+          },
+          {
+            "title": "Elo Uncovered: Robustness and Best Practices in Language Model Evaluation | Request PDF",
+            "url": "https://www.researchgate.net/publication/397197352_Elo_Uncovered_Robustness_and_Best_Practices_in_Language_Model_Evaluation"
+          },
+          {
+            "title": "NeurIPS Poster Elo Uncovered: Robustness and Best Practices in Language Model Evaluation",
+            "url": "https://neurips.cc/virtual/2024/poster/95297"
+          }
+        ]
+      },
+      "Based on the search results, the full author list for \"Elo Uncovered: Robustness and Best Practices in Language Model Evaluation\" from 2023 is: Meriem Boubdir, Edward Kim, Beyza Ermis, Sara Hooker, and Marzieh Fadaee."
+    ],
+    "durationSeconds": 3.595197824999981
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Now let me get exact details for the CausaLM and Clark papers, and verify the Amidei author list.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "c1ce69f8-0cea-4144-83bc-47dae93bda18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UXhV77yrhF8z4RV6xNWdx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 746,
+      "cache_read_input_tokens": 41053,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 746
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E4UzdVSe4tys675nsbavJ3`</summary>
+
+```json
+{
+  "query": "site:aclanthology.org \"CausaLM\" Feder Oved Shalit Reichart 2021 Computational Linguistics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "070e5b06-30c4-4522-9cd6-997f1eedb321",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UXhV77yrhF8z4RV6xNWdx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 746,
+      "cache_read_input_tokens": 41053,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 746
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T10:14:56.306Z_
+
+<details><summary>↩ Tool result · `toolu_01E4UzdVSe4tys675nsbavJ3`</summary>
+
+```text
+Web search results for query: "site:aclanthology.org "CausaLM" Feder Oved Shalit Reichart 2021 Computational Linguistics"
+
+Links: [{"title":"CausaLM: Causal Model Explanation Through Counterfactual Language Models | Computational Linguistics | MIT Press","url":"https://direct.mit.edu/coli/article/47/2/333/98518/"},{"title":"CausaLM: Causal Model Explanation Through Counterfactual Language Models - ACL Anthology","url":"https://aclanthology.org/2021.cl-2.13/"},{"title":"References – CORTEX","url":"https://cortex.gplsi.es/en/references/"},{"title":"(PDF) CausaLM: Causal Model Explanation Through Counterfactual Language Models","url":"https://www.researchgate.net/publication/350482062_CausaLM_Causal_Model_Explanation_Through_Counterfactual_Language_Models"},{"title":"Causalm: Causal model explanation through counterfactual language models - Technion - Israel Institute of Technology","url":"https://cris.technion.ac.il/en/publications/causalm-causal-model-explanation-through-counterfactual-language-/"},{"title":"Causalm: Causal model explanation through counterfactual language models - Tel Aviv University","url":"https://cris.tau.ac.il/en/publications/causalm-causal-model-explanation-through-counterfactual-language-/"},{"title":"[PDF] Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Causal-Inference-in-Natural-Language-Processing:-Feder-Keith/130d432ccbc836380a212bea618f84ff094a6a52"},{"title":"[PDF] CausaLM: Causal Model Explanation Through Counterfactual Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CausaLM:-Causal-Model-Explanation-Through-Language-Feder-Oved/4f0318290bc75294338fdeb450e4365929b3aa0c"},{"title":"Publications - Amir Feder","url":"https://amirfeder.github.io/publications/"},{"title":"CausaLM: Causal Model Explanation Through Counterfactual Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2020arXiv200513407F/abstract"}]
+
+The search successfully found the paper you're looking for. Here are the results:
+
+CausaLM: Causal Model Explanation Through Counterfactual Language Models by Amir Feder, Nadav Oved, Uri Shalit, and Roi Reichart was published in 2021 in Computational Linguistics, volume 47, issue 2, pages 333–386.
+
+The paper is available on the ACL Anthology at: https://aclanthology.org/2021.cl-2.13/
+
+The paper proposes CausaLM, a framework for producing causal model explanations using counterfactual language representation models based on fine-tuning of deep contextualized embedding models with auxiliary adversarial tasks derived from the causal graph of the problem.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "bf73fbfa-0f5a-4a7e-b828-74c628efb598",
+  "tool_use_result": {
+    "query": "site:aclanthology.org \"CausaLM\" Feder Oved Shalit Reichart 2021 Computational Linguistics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FTMU3LaDSCLRyJvV858ihJ",
+        "content": [
+          {
+            "title": "CausaLM: Causal Model Explanation Through Counterfactual Language Models | Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/coli/article/47/2/333/98518/"
+          },
+          {
+            "title": "CausaLM: Causal Model Explanation Through Counterfactual Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2021.cl-2.13/"
+          },
+          {
+            "title": "References – CORTEX",
+            "url": "https://cortex.gplsi.es/en/references/"
+          },
+          {
+            "title": "(PDF) CausaLM: Causal Model Explanation Through Counterfactual Language Models",
+            "url": "https://www.researchgate.net/publication/350482062_CausaLM_Causal_Model_Explanation_Through_Counterfactual_Language_Models"
+          },
+          {
+            "title": "Causalm: Causal model explanation through counterfactual language models - Technion - Israel Institute of Technology",
+            "url": "https://cris.technion.ac.il/en/publications/causalm-causal-model-explanation-through-counterfactual-language-/"
+          },
+          {
+            "title": "Causalm: Causal model explanation through counterfactual language models - Tel Aviv University",
+            "url": "https://cris.tau.ac.il/en/publications/causalm-causal-model-explanation-through-counterfactual-language-/"
+          },
+          {
+            "title": "[PDF] Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Causal-Inference-in-Natural-Language-Processing:-Feder-Keith/130d432ccbc836380a212bea618f84ff094a6a52"
+          },
+          {
+            "title": "[PDF] CausaLM: Causal Model Explanation Through Counterfactual Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CausaLM:-Causal-Model-Explanation-Through-Language-Feder-Oved/4f0318290bc75294338fdeb450e4365929b3aa0c"
+          },
+          {
+            "title": "Publications - Amir Feder",
+            "url": "https://amirfeder.github.io/publications/"
+          },
+          {
+            "title": "CausaLM: Causal Model Explanation Through Counterfactual Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2020arXiv200513407F/abstract"
+          }
+        ]
+      },
+      "The search successfully found the paper you're looking for. Here are the results:\n\nCausaLM: Causal Model Explanation Through Counterfactual Language Models by Amir Feder, Nadav Oved, Uri Shalit, and Roi Reichart was published in 2021 in Computational Linguistics, volume 47, issue 2, pages 333–386.\n\nThe paper is available on the ACL Anthology at: https://aclanthology.org/2021.cl-2.13/\n\nThe paper proposes CausaLM, a framework for producing causal model explanations using counterfactual language representation models based on fine-tuning of deep contextualized embedding models with auxiliary adversarial tasks derived from the causal graph of the problem."
+    ],
+    "durationSeconds": 4.3112667329999965
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014h2q71urCiTkZZqqSJGWdu`</summary>
+
+```json
+{
+  "query": "site:aclanthology.org Clark August Serrano \"All That's Human Is Not Gold\" ACL 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "cff5902d-9871-4083-a9a8-679e8748cef7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pb3DyJbdcXNygSTfuVLobQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 980,
+      "cache_read_input_tokens": 41799,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 980
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T10:15:04.942Z_
+
+<details><summary>↩ Tool result · `toolu_014h2q71urCiTkZZqqSJGWdu`</summary>
+
+```text
+Web search results for query: "site:aclanthology.org Clark August Serrano "All That's Human Is Not Gold" ACL 2021"
+
+Links: [{"title":"All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text - ACL Anthology","url":"https://aclanthology.org/2021.acl-long.565/"},{"title":"Language, Logic and Information | [Reminder] NLP RG Thu-11-Nov at 15:00: All That's Human Is Not Gold (hosted)","url":"https://uilotslli.sites.uu.nl/2021/11/10/reminder-nlp-rg-thu-11-nov-at-1500-all-thats-human-is-not-gold-hosted/"},{"title":"Language, Logic and Information | NLP RG Thu-11-Nov at 15:00: All That's Human Is Not Gold (hosted)","url":"https://uilotslli.sites.uu.nl/2021/11/08/nlp-rg-thu-11-nov-at-1500-all-thats-human-is-not-gold-hosted/"},{"title":"[2021] All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated Text · Issue #139 · cfiken/paper-reading","url":"https://github.com/cfiken/paper-reading/issues/139"},{"title":"Aclanthology","url":"https://aclanthology.org/2025.acl-long.267.pdf"},{"title":"ACL-IJCNLP 2021","url":"https://2021.aclweb.org/program/accept/"},{"title":"[PDF] All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text | Semantic Scholar","url":"https://www.semanticscholar.org/paper/All-That%E2%80%99s-%E2%80%98Human%E2%80%99-Is-Not-Gold:-Evaluating-Human-of-Clark-August/a16ae67070de155789a871cb27ecbf9eaa98b379"},{"title":"Grounding Summarization Evaluation with Robust Human ...","url":"https://aclanthology.org/2023.acl-long.228.pdf"},{"title":"All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated   Text","url":"https://arxiv.org/pdf/2107.00061"}]
+
+I found the paper you were searching for! The paper "All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated Text" examines the role untrained human evaluations play in NLG evaluation and provides recommendations to NLG researchers for improving human evaluations of text generated from state-of-the-art models.
+
+The authors are Elizabeth Clark, Tal August, Sofia Serrano, Nikita Haduong, Suchin Gururangan, and Noah A. Smith. It was published in the Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers), pages 7282–7296, Online.
+
+The paper is available at: https://aclanthology.org/2021.acl-long.565/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "5bbfa47e-ea6d-4f63-99c0-e2d6162f4c0c",
+  "tool_use_result": {
+    "query": "site:aclanthology.org Clark August Serrano \"All That's Human Is Not Gold\" ACL 2021",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DLFZTBjYX29XUkqMAm7fEn",
+        "content": [
+          {
+            "title": "All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text - ACL Anthology",
+            "url": "https://aclanthology.org/2021.acl-long.565/"
+          },
+          {
+            "title": "Language, Logic and Information | [Reminder] NLP RG Thu-11-Nov at 15:00: All That's Human Is Not Gold (hosted)",
+            "url": "https://uilotslli.sites.uu.nl/2021/11/10/reminder-nlp-rg-thu-11-nov-at-1500-all-thats-human-is-not-gold-hosted/"
+          },
+          {
+            "title": "Language, Logic and Information | NLP RG Thu-11-Nov at 15:00: All That's Human Is Not Gold (hosted)",
+            "url": "https://uilotslli.sites.uu.nl/2021/11/08/nlp-rg-thu-11-nov-at-1500-all-thats-human-is-not-gold-hosted/"
+          },
+          {
+            "title": "[2021] All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated Text · Issue #139 · cfiken/paper-reading",
+            "url": "https://github.com/cfiken/paper-reading/issues/139"
+          },
+          {
+            "title": "Aclanthology",
+            "url": "https://aclanthology.org/2025.acl-long.267.pdf"
+          },
+          {
+            "title": "ACL-IJCNLP 2021",
+            "url": "https://2021.aclweb.org/program/accept/"
+          },
+          {
+            "title": "[PDF] All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/All-That%E2%80%99s-%E2%80%98Human%E2%80%99-Is-Not-Gold:-Evaluating-Human-of-Clark-August/a16ae67070de155789a871cb27ecbf9eaa98b379"
+          },
+          {
+            "title": "Grounding Summarization Evaluation with Robust Human ...",
+            "url": "https://aclanthology.org/2023.acl-long.228.pdf"
+          },
+          {
+            "title": "All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated   Text",
+            "url": "https://arxiv.org/pdf/2107.00061"
+          }
+        ]
+      },
+      "I found the paper you were searching for! The paper \"All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated Text\" examines the role untrained human evaluations play in NLG evaluation and provides recommendations to NLG researchers for improving human evaluations of text generated from state-of-the-art models.\n\nThe authors are Elizabeth Clark, Tal August, Sofia Serrano, Nikita Haduong, Suchin Gururangan, and Noah A. Smith. It was published in the Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers), pages 7282–7296, Online.\n\nThe paper is available at: https://aclanthology.org/2021.acl-long.565/"
+    ],
+    "durationSeconds": 5.8357821869999755
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019ZVo9hSySERuWNnQ1kPmBp`</summary>
+
+```json
+{
+  "query": "Koo Ryan Kim Kang \"Benchmarking Cognitive Biases\" LLM evaluators ACL 2024 full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "6c614b80-f7cc-4fb8-820e-f0c189f0bfbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kvp5cucqQCbRNv3DXmQtwJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 904,
+      "cache_read_input_tokens": 42779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 904
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T10:15:17.040Z_
+
+<details><summary>↩ Tool result · `toolu_019ZVo9hSySERuWNnQ1kPmBp`</summary>
+
+```text
+Web search results for query: "Koo Ryan Kim Kang "Benchmarking Cognitive Biases" LLM evaluators ACL 2024 full author list"
+
+Links: [{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators - Experts@Minnesota","url":"https://experts.umn.edu/en/publications/benchmarking-cognitive-biases-in-large-language-models-as-evaluat/"},{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators - ACL Anthology","url":"https://aclanthology.org/2024.findings-acl.29/"},{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/benchmarking-cognitive-biases-large-language-models-as"},{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators","url":"https://aclanthology.org/2024.findings-acl.29.xml"},{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators","url":"https://arxiv.org/html/2309.17012v3"},{"title":"Accepted Findings Papers - ACL 2024","url":"https://2024.aclweb.org/program/finding_papers/"},{"title":"[2309.17012] Benchmarking Cognitive Biases in Large Language Models as Evaluators","url":"https://arxiv.org/abs/2309.17012"},{"title":"Benchmarking Cognitive Biases in Large Language ...","url":"https://aclanthology.org/2024.findings-acl.29.pdf"},{"title":"Benchmarking Cognitive Biases in Large Language Models as Evaluators","url":"https://arxiv.org/pdf/2309.17012"}]
+
+Based on the search results, here is the full author list for the paper "Benchmarking Cognitive Biases in Large Language Models as Evaluators" presented at ACL 2024:
+
+Ryan Koo, Minhwa Lee, Vipul Raheja, Jong Inn Park, Zae Myung Kim, and Dongyeop Kang.
+
+The authors are affiliated with the University of Minnesota and Grammarly, with Vipul Raheja at Grammarly and the other five authors at the University of Minnesota.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "6913b44a-1031-4924-afaf-4a68eab2fb93",
+  "tool_use_result": {
+    "query": "Koo Ryan Kim Kang \"Benchmarking Cognitive Biases\" LLM evaluators ACL 2024 full author list",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LDZWtad1giqgWM8BKNnqSi",
+        "content": [
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators - Experts@Minnesota",
+            "url": "https://experts.umn.edu/en/publications/benchmarking-cognitive-biases-in-large-language-models-as-evaluat/"
+          },
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators - ACL Anthology",
+            "url": "https://aclanthology.org/2024.findings-acl.29/"
+          },
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/benchmarking-cognitive-biases-large-language-models-as"
+          },
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators",
+            "url": "https://aclanthology.org/2024.findings-acl.29.xml"
+          },
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators",
+            "url": "https://arxiv.org/html/2309.17012v3"
+          },
+          {
+            "title": "Accepted Findings Papers - ACL 2024",
+            "url": "https://2024.aclweb.org/program/finding_papers/"
+          },
+          {
+            "title": "[2309.17012] Benchmarking Cognitive Biases in Large Language Models as Evaluators",
+            "url": "https://arxiv.org/abs/2309.17012"
+          },
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language ...",
+            "url": "https://aclanthology.org/2024.findings-acl.29.pdf"
+          },
+          {
+            "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators",
+            "url": "https://arxiv.org/pdf/2309.17012"
+          }
+        ]
+      },
+      "Based on the search results, here is the full author list for the paper \"Benchmarking Cognitive Biases in Large Language Models as Evaluators\" presented at ACL 2024:\n\nRyan Koo, Minhwa Lee, Vipul Raheja, Jong Inn Park, Zae Myung Kim, and Dongyeop Kang.\n\nThe authors are affiliated with the University of Minnesota and Grammarly, with Vipul Raheja at Grammarly and the other five authors at the University of Minnesota."
+    ],
+    "durationSeconds": 4.209137484000006
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+Now let me verify the Feder et al. 2022 TACL survey and Liusie et al. EACL 2024 author lists precisely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "3bf77aae-14e1-4ceb-b44e-18fcf0e2b571",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UBtiTabiNgyQZ4xSahaEyz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 43683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 704
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Aa3XHMxsQULZawNn2Q4WqL`</summary>
+
+```json
+{
+  "query": "Liusie Manakul Gales EACL 2024 \"LLM Comparative Assessment\" pages"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "2f53e224-963e-4880-8707-a2927cc84b8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UBtiTabiNgyQZ4xSahaEyz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 43683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 704
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T10:15:25.168Z_
+
+<details><summary>↩ Tool result · `toolu_01Aa3XHMxsQULZawNn2Q4WqL`</summary>
+
+```text
+Web search results for query: "Liusie Manakul Gales EACL 2024 "LLM Comparative Assessment" pages"
+
+Links: [{"title":"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.eacl-long.8/"},{"title":"Efficient LLM Comparative Assessment: a Product of Experts Framework for Pairwise Comparisons","url":"https://arxiv.org/html/2405.05894v2"},{"title":"Efficient LLM Comparative Assessment: a Product of","url":"https://scispace.com/pdf/efficient-llm-comparative-assessment-a-product-of-experts-3a4gdmipeh.pdf"},{"title":"Efficient LLM Comparative Assessment: A Product of Experts Framework for Pairwise Comparisons - ACL Anthology","url":"https://aclanthology.org/2024.emnlp-main.389/"},{"title":"LLM Comparative Assessment","url":"https://github.com/adianliusie/comparative-assessment"},{"title":"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/393020372_LLM_Comparative_Assessment_Zero-shot_NLG_Evaluation_through_Pairwise_Comparisons_using_Large_Language_Models"},{"title":"dblp: LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models.","url":"https://dblp.dagstuhl.de/rec/conf/eacl/LiusieMG24.html"},{"title":"[2307.07889v3] LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models","url":"https://arxiv.org/abs/2307.07889v3"},{"title":"[2307.07889] LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models","url":"https://arxiv.org/abs/2307.07889"},{"title":"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise   Comparisons using Large Language Models","url":"https://arxiv.org/pdf/2307.07889"}]
+
+Based on the search results, I found the paper you're looking for:
+
+"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models" by Adian Liusie, Potsawee Manakul, and Mark Gales was published at EACL 2024, appearing in the proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers), pages 139–151, St. Julian's, Malta.
+
+You can access the paper through the ACL Anthology at: https://aclanthology.org/2024.eacl-long.8/
+
+The paper is also available on arXiv: https://arxiv.org/abs/2307.07889
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "73894ac1-557d-4673-8866-bfff74648f6c",
+  "tool_use_result": {
+    "query": "Liusie Manakul Gales EACL 2024 \"LLM Comparative Assessment\" pages",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ScwByRxmAF8KJaXv9GT3VF",
+        "content": [
+          {
+            "title": "LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2024.eacl-long.8/"
+          },
+          {
+            "title": "Efficient LLM Comparative Assessment: a Product of Experts Framework for Pairwise Comparisons",
+            "url": "https://arxiv.org/html/2405.05894v2"
+          },
+          {
+            "title": "Efficient LLM Comparative Assessment: a Product of",
+            "url": "https://scispace.com/pdf/efficient-llm-comparative-assessment-a-product-of-experts-3a4gdmipeh.pdf"
+          },
+          {
+            "title": "Efficient LLM Comparative Assessment: A Product of Experts Framework for Pairwise Comparisons - ACL Anthology",
+            "url": "https://aclanthology.org/2024.emnlp-main.389/"
+          },
+          {
+            "title": "LLM Comparative Assessment",
+            "url": "https://github.com/adianliusie/comparative-assessment"
+          },
+          {
+            "title": "LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/393020372_LLM_Comparative_Assessment_Zero-shot_NLG_Evaluation_through_Pairwise_Comparisons_using_Large_Language_Models"
+          },
+          {
+            "title": "dblp: LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models.",
+            "url": "https://dblp.dagstuhl.de/rec/conf/eacl/LiusieMG24.html"
+          },
+          {
+            "title": "[2307.07889v3] LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models",
+            "url": "https://arxiv.org/abs/2307.07889v3"
+          },
+          {
+            "title": "[2307.07889] LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models",
+            "url": "https://arxiv.org/abs/2307.07889"
+          },
+          {
+            "title": "LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise   Comparisons using Large Language Models",
+            "url": "https://arxiv.org/pdf/2307.07889"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n\"LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons using Large Language Models\" by Adian Liusie, Potsawee Manakul, and Mark Gales was published at EACL 2024, appearing in the proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers), pages 139–151, St. Julian's, Malta.\n\nYou can access the paper through the ACL Anthology at: https://aclanthology.org/2024.eacl-long.8/\n\nThe paper is also available on arXiv: https://arxiv.org/abs/2307.07889"
+    ],
+    "durationSeconds": 4.064415321000007
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TLQApMMDs18nx12DVDDi9b`</summary>
+
+```json
+{
+  "query": "Panickssery Bowman Feng \"LLM Evaluators Recognize Favor Own Generations\" arxiv 2404.13076 full authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "99681f38-cafc-480d-9673-134579e982b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012GXrF2DekoYffLcVR3TCzb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 44387,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 941
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T10:15:31.649Z_
+
+<details><summary>↩ Tool result · `toolu_01TLQApMMDs18nx12DVDDi9b`</summary>
+
+```text
+Web search results for query: "Panickssery Bowman Feng "LLM Evaluators Recognize Favor Own Generations" arxiv 2404.13076 full authors"
+
+Links: [{"title":"[2404.13076] LLM Evaluators Recognize and Favor Their Own Generations","url":"https://arxiv.org/abs/2404.13076"},{"title":"[2404.13076v1] LLM Evaluators Recognize and Favor Their Own Generations","url":"https://arxiv.org/abs/2404.13076v1"},{"title":"[PDF] LLM Evaluators Recognize and Favor Their Own Generations | Semantic Scholar","url":"https://www.semanticscholar.org/paper/LLM-Evaluators-Recognize-and-Favor-Their-Own-Panickssery-Bowman/5c7f465d162aade4a4c0eefb02fd7aadeebdaf58"},{"title":"LLMs are Biased Evaluators But Not Biased for Retrieval Augmented Generation","url":"https://arxiv.org/html/2410.20833v1"},{"title":"LLM Evaluators Recognize and Favor Their Own Generations","url":"https://proceedings.neurips.cc/paper_files/paper/2024/hash/7f1f0218e45f5414c79c0679633e47bc-Abstract-Conference.html"},{"title":"Preference Leakage: A Contamination Problem in LLM-as- ...","url":"https://arxiv.org/pdf/2502.01534"},{"title":"LLM Evaluators Recognize and Favor Their Own Generations","url":"https://arxiv.org/pdf/2404.13076"},{"title":"LLM evaluators recognize and favor their own generations | Proceedings of the 38th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3737916.3740113"},{"title":"LLM Evaluators Recognize and Favor Their Own Generations | alphaXiv","url":"https://www.alphaxiv.org/abs/2404.13076"}]
+
+The full authors of the paper arxiv 2404.13076 "LLM Evaluators Recognize and Favor Their Own Generations" are Arjun Panickssery, Samuel R. Bowman, and Shi Feng.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "6c146ae8-8e32-4a14-96d2-0e89f76e2574",
+  "tool_use_result": {
+    "query": "Panickssery Bowman Feng \"LLM Evaluators Recognize Favor Own Generations\" arxiv 2404.13076 full authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N4BudjXATr9WniXmqZv6un",
+        "content": [
+          {
+            "title": "[2404.13076] LLM Evaluators Recognize and Favor Their Own Generations",
+            "url": "https://arxiv.org/abs/2404.13076"
+          },
+          {
+            "title": "[2404.13076v1] LLM Evaluators Recognize and Favor Their Own Generations",
+            "url": "https://arxiv.org/abs/2404.13076v1"
+          },
+          {
+            "title": "[PDF] LLM Evaluators Recognize and Favor Their Own Generations | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/LLM-Evaluators-Recognize-and-Favor-Their-Own-Panickssery-Bowman/5c7f465d162aade4a4c0eefb02fd7aadeebdaf58"
+          },
+          {
+            "title": "LLMs are Biased Evaluators But Not Biased for Retrieval Augmented Generation",
+            "url": "https://arxiv.org/html/2410.20833v1"
+          },
+          {
+            "title": "LLM Evaluators Recognize and Favor Their Own Generations",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7f1f0218e45f5414c79c0679633e47bc-Abstract-Conference.html"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as- ...",
+            "url": "https://arxiv.org/pdf/2502.01534"
+          },
+          {
+            "title": "LLM Evaluators Recognize and Favor Their Own Generations",
+            "url": "https://arxiv.org/pdf/2404.13076"
+          },
+          {
+            "title": "LLM evaluators recognize and favor their own generations | Proceedings of the 38th International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3737916.3740113"
+          },
+          {
+            "title": "LLM Evaluators Recognize and Favor Their Own Generations | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2404.13076"
+          }
+        ]
+      },
+      "The full authors of the paper arxiv 2404.13076 \"LLM Evaluators Recognize and Favor Their Own Generations\" are Arjun Panickssery, Samuel R. Bowman, and Shi Feng."
+    ],
+    "durationSeconds": 3.2923171590000275
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me compile the BibTeX entries:
+
+1. **CausaLM (Feder et al., 2021)** — Computational Linguistics, vol 47, issue 2, pages 333-386
+   - Authors: Amir Feder, Nadav Oved, Uri Shalit, Roi Reichart
+   - Key: feder2021causalm
+
+2. **Polyjuice (Wu et al., 2021)** — ACL-IJCNLP 2021
+   - Authors: Tongshuang Wu, Marco Tulio Ribeiro, Jeffrey Heer, Daniel Weld
+   - Key: wu2021polyjuice
+
+3. **Clark et al. (2021)** — ACL 2021, pages 7282-7296
+   - Authors: Elizabeth Clark, Tal August, Sofia Serrano, Nikita Haduong, Suchin Gururangan, Noah A. Smith
+   - Key: clark2021human
+
+4. **Amidei et al. (2019)** — INLG 2019
+   - Authors: Jacopo Amidei, Paul Piwek, Alistair Willis
+   - Key: amidei2019likert
+
+5. **Boubdir et al. (2023)** — Still gathering the remaining publication details... I'm confirming that Wu & Aji's paper is just an arXiv preprint without a conference venue. Now I'm adding a couple more papers to the list: Liusie et al. from EACL 2024 and Feder et al. from TACL. That brings the total to 37 entries, which surpasses the 35 needed. Now I'm checking the new keys against the existing ones to make sure there's no overlap.
+
+The new additions don't conflict with what's already there. For the Boubdir paper, I need to decide on the venue—it appeared at the GEM 2023 workshop during EMNLP and later at NeurIPS 2024, with the arxiv preprint from November 2023. Since the suggested key uses 2023, I'll stick with that while noting the NeurIPS 2024 publication.
+
+Now I'm formatting the BibTeX entries and need to verify the Wu & Aji 2023 paper. From what I can find, it looks like an arxiv preprint from July 2023 without a major conference publication, so I'll record it as such.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "a11e8afc-368d-4c99-870d-54e81f92f45b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PY7GRw4Hy2Ncz3xYU9oXKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 45328,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 705
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+Let me verify the Wu & Aji paper venue and the Boubdir NeurIPS publication details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "5dd3c571-837f-4848-bcb0-cdad18b4a8ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PY7GRw4Hy2Ncz3xYU9oXKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 45328,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 705
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QYWAPtochkdihBSrQzMgqv`</summary>
+
+```json
+{
+  "query": "Wu Aji \"Style Over Substance: Evaluation Biases\" 2307.03025 conference venue EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "86089ba7-39bd-4807-8279-63abea4640f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PY7GRw4Hy2Ncz3xYU9oXKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 705,
+      "cache_read_input_tokens": 45328,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 705
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T10:16:12.538Z_
+
+<details><summary>↩ Tool result · `toolu_01QYWAPtochkdihBSrQzMgqv`</summary>
+
+```text
+Web search results for query: "Wu Aji "Style Over Substance: Evaluation Biases" 2307.03025 conference venue EMNLP"
+
+Links: [{"title":"[2307.03025] Style Over Substance: Evaluation Biases for Large Language Models","url":"https://arxiv.org/abs/2307.03025"},{"title":"Large Language Models are Inconsistent and Biased Evaluators","url":"https://arxiv.org/html/2405.01724v1"},{"title":"Humans or LLMs as the Judge? A Study on Judgement Bias","url":"https://arxiv.org/html/2402.10669v3"},{"title":"Finding Blind Spots in Evaluator LLMs with Interpretable ...","url":"https://aclanthology.org/2024.emnlp-main.911.pdf"},{"title":"Style Over Substance: Evaluation Biases for Large Language Models","url":"https://www.researchgate.net/publication/372163436_Style_Over_Substance_Evaluation_Biases_for_Large_Language_Models"},{"title":"[PDF] Style Over Substance: Evaluation Biases for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Style-Over-Substance:-Evaluation-Biases-for-Large-Wu-Aji/7ace46ab8e71c4304682ab126b1212deb54b9b03"},{"title":"Humans or LLMs as the Judge? A Study on Judgement Bias","url":"https://aclanthology.org/2024.emnlp-main.474.pdf"},{"title":"arXiv Comp. Linguistics📚: \"📝 Style Over Substance: Evaluation Biases for Lar…\" - creative.ai (fediverse)","url":"https://creative.ai/@arxiv_cl/110676555372271258"},{"title":"Style Over Substance: Evaluation Biases for Large Language Models | OpenReview","url":"https://openreview.net/forum?id=UnstiBOfnv"},{"title":"Style Over Substance: Evaluation Biases for Large Language Models","url":"https://arxiv.org/pdf/2307.03025"}]
+
+Based on the search results, I found information about the paper "Style Over Substance: Evaluation Biases for Large Language Models" with arXiv ID 2307.03025 by Wu and Aji.
+
+The paper was authored by Minghao Wu and Alham Fikri Aji and submitted to arXiv on July 6, 2023.
+
+However, the search results show that this paper appears to be an arXiv preprint rather than a conference paper. While I found references to it being cited in EMNLP papers (such as in the 2024 EMNLP conference proceedings), the search results do not explicitly confirm that this particular paper was published at or presented at EMNLP. The paper is primarily indexed as an arXiv preprint (arXiv:2307.03025) rather than showing a specific conference venue for the original "Style Over Substance" paper itself.
+
+The study investigates the behavior of crowd-sourced and expert annotators, as well as LLMs, when comparing outputs from different models, and found a concerning bias in the evaluation process, as answers with factual errors are rated more favorably than answers that are too short or contained grammatical errors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "7fa37567-3545-4b05-ab50-524bed44782a",
+  "tool_use_result": {
+    "query": "Wu Aji \"Style Over Substance: Evaluation Biases\" 2307.03025 conference venue EMNLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VBYAtDqV3c9oGXt3NHiyjs",
+        "content": [
+          {
+            "title": "[2307.03025] Style Over Substance: Evaluation Biases for Large Language Models",
+            "url": "https://arxiv.org/abs/2307.03025"
+          },
+          {
+            "title": "Large Language Models are Inconsistent and Biased Evaluators",
+            "url": "https://arxiv.org/html/2405.01724v1"
+          },
+          {
+            "title": "Humans or LLMs as the Judge? A Study on Judgement Bias",
+            "url": "https://arxiv.org/html/2402.10669v3"
+          },
+          {
+            "title": "Finding Blind Spots in Evaluator LLMs with Interpretable ...",
+            "url": "https://aclanthology.org/2024.emnlp-main.911.pdf"
+          },
+          {
+            "title": "Style Over Substance: Evaluation Biases for Large Language Models",
+            "url": "https://www.researchgate.net/publication/372163436_Style_Over_Substance_Evaluation_Biases_for_Large_Language_Models"
+          },
+          {
+            "title": "[PDF] Style Over Substance: Evaluation Biases for Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Style-Over-Substance:-Evaluation-Biases-for-Large-Wu-Aji/7ace46ab8e71c4304682ab126b1212deb54b9b03"
+          },
+          {
+            "title": "Humans or LLMs as the Judge? A Study on Judgement Bias",
+            "url": "https://aclanthology.org/2024.emnlp-main.474.pdf"
+          },
+          {
+            "title": "arXiv Comp. Linguistics📚: \"📝 Style Over Substance: Evaluation Biases for Lar…\" - creative.ai (fediverse)",
+            "url": "https://creative.ai/@arxiv_cl/110676555372271258"
+          },
+          {
+            "title": "Style Over Substance: Evaluation Biases for Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=UnstiBOfnv"
+          },
+          {
+            "title": "Style Over Substance: Evaluation Biases for Large Language Models",
+            "url": "https://arxiv.org/pdf/2307.03025"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper \"Style Over Substance: Evaluation Biases for Large Language Models\" with arXiv ID 2307.03025 by Wu and Aji.\n\nThe paper was authored by Minghao Wu and Alham Fikri Aji and submitted to arXiv on July 6, 2023.\n\nHowever, the search results show that this paper appears to be an arXiv preprint rather than a conference paper. While I found references to it being cited in EMNLP papers (such as in the 2024 EMNLP conference proceedings), the search results do not explicitly confirm that this particular paper was published at or presented at EMNLP. The paper is primarily indexed as an arXiv preprint (arXiv:2307.03025) rather than showing a specific conference venue for the original \"Style Over Substance\" paper itself.\n\nThe study investigates the behavior of crowd-sourced and expert annotators, as well as LLMs, when comparing outputs from different models, and found a concerning bias in the evaluation process, as answers with factual errors are rated more favorably than answers that are too short or contained grammatical errors."
+    ],
+    "durationSeconds": 5.632918226999988
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G2XvpqyqCr9d1d1dSrizAm`</summary>
+
+```json
+{
+  "query": "site:aclanthology.org \"Style Over Substance\" Wu Aji evaluation biases"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "e60e3a24-6837-4fb5-9d6c-ca8595d29bb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013VXaXDjdex9FPCSPr6UpBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2542,
+      "cache_read_input_tokens": 46033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2542
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T10:16:22.511Z_
+
+<details><summary>↩ Tool result · `toolu_01G2XvpqyqCr9d1d1dSrizAm`</summary>
+
+```text
+Web search results for query: "site:aclanthology.org "Style Over Substance" Wu Aji evaluation biases"
+
+Links: [{"title":"Style Over Substance: Evaluation Biases for Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.coling-main.21/"},{"title":"Evaluation Biases for Large Language Models","url":"https://aclanthology.org/2025.coling-main.21.pdf"},{"title":"Style Over Substance: Evaluation Biases for Large Language Models","url":"https://arxiv.org/pdf/2307.03025"},{"title":"Everyone prefers human writers, including AI","url":"https://arxiv.org/pdf/2510.08831"},{"title":"Style Outweighs Substance: Failure Modes of LLM Judges in Alignment   Benchmarking","url":"https://arxiv.org/pdf/2409.15268"}]
+
+I found the paper! Here are the search results for the ACL Anthology paper by Wu and Aji:
+
+"Style Over Substance: Evaluation Biases for Large Language Models" is a paper by Minghao Wu and Alham Fikri Aji, published in the Proceedings of the 31st International Conference on Computational Linguistics in 2025.
+
+**Key Findings:**
+
+The paper reveals a concerning bias in the evaluation process, as answers with factual errors are rated more favorably than answers that are too short or contained grammatical errors.
+
+**Proposed Solution:**
+
+To address this issue, the authors propose independently evaluating machine-generated text across multiple dimensions, rather than merging all the evaluation aspects into a single score, instantiating this idea with the Elo rating system to create the Multi-Elo Rating System (MERS).
+
+**Results:**
+
+Empirical results reveal that this proposed approach significantly enhances the quality of LLM-based evaluations, particularly in terms of factual accuracy, though there is no significant improvement in crowd-sourced evaluations.
+
+The paper is available at: https://aclanthology.org/2025.coling-main.21/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "0823f33b-df9d-4fd2-98cf-1fc4aee91a1b",
+  "tool_use_result": {
+    "query": "site:aclanthology.org \"Style Over Substance\" Wu Aji evaluation biases",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q3L3WvyifS314UYHQSpQhh",
+        "content": [
+          {
+            "title": "Style Over Substance: Evaluation Biases for Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2025.coling-main.21/"
+          },
+          {
+            "title": "Evaluation Biases for Large Language Models",
+            "url": "https://aclanthology.org/2025.coling-main.21.pdf"
+          },
+          {
+            "title": "Style Over Substance: Evaluation Biases for Large Language Models",
+            "url": "https://arxiv.org/pdf/2307.03025"
+          },
+          {
+            "title": "Everyone prefers human writers, including AI",
+            "url": "https://arxiv.org/pdf/2510.08831"
+          },
+          {
+            "title": "Style Outweighs Substance: Failure Modes of LLM Judges in Alignment   Benchmarking",
+            "url": "https://arxiv.org/pdf/2409.15268"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for the ACL Anthology paper by Wu and Aji:\n\n\"Style Over Substance: Evaluation Biases for Large Language Models\" is a paper by Minghao Wu and Alham Fikri Aji, published in the Proceedings of the 31st International Conference on Computational Linguistics in 2025.\n\n**Key Findings:**\n\nThe paper reveals a concerning bias in the evaluation process, as answers with factual errors are rated more favorably than answers that are too short or contained grammatical errors.\n\n**Proposed Solution:**\n\nTo address this issue, the authors propose independently evaluating machine-generated text across multiple dimensions, rather than merging all the evaluation aspects into a single score, instantiating this idea with the Elo rating system to create the Multi-Elo Rating System (MERS).\n\n**Results:**\n\nEmpirical results reveal that this proposed approach significantly enhances the quality of LLM-based evaluations, particularly in terms of factual accuracy, though there is no significant improvement in crowd-sourced evaluations.\n\nThe paper is available at: https://aclanthology.org/2025.coling-main.21/"
+    ],
+    "durationSeconds": 6.879731734000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So Wu & Aji's paper was published at COLING 2025. The ACL Anthology shows it as `2025.coling-main.21`. The suggested key is `wu2023style` but the actual conference publication is in 2025. The arXiv preprint is from 2023. I'll keep the suggested key `wu2023style` since the director specified it, but I'll use the COLING 2025 venue since that's where it was officially published.
+
+Actually, re-reading the task, the director specified `wu2023style` as the key. The paper was first on arxiv in 2023, and published at COLING 2025. 
+
+The key is just an identifier and doesn't need to match the year field, so I can keep `wu2023style` while setting year to 2025 for the official publication date. Looking at the existing entries, they all match their keys to their years, so I should be consistent and use 2025 as the year since that's when it was formally published at COLING. I'm settling on using the suggested keys as directed while citing the actual publication venues—wu2023style for the COLING 2025 paper and boubdir2023elo for the NeurIPS 2024 paper, since conference publications are more authoritative than preprints. Now I need to compile all the citation details together. I'm verifying the publication details for the Boubdir paper—NeurIPS 2024 is the primary venue, so I'll use that over the earlier workshop version. Now I'm compiling the full list of ten entries with their correct citations, bringing the total count to 37 references. Let me write out the BibTeX entries for each one.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "e16a6765-92da-4c9d-b8b2-74bec183490a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1pJD7f3ScmeSSqc3PtU8K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 48575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+I have all the information I need. Now I'll append 10 new BibTeX entries to the file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "4302f481-ff8c-4cd5-84d2-a4a03a9c0642",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1pJD7f3ScmeSSqc3PtU8K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 48575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01GLkyCj4zW4CKgrmYdFjQ8b`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib",
+  "old_string": "@article{ye2024justice,\n  title={Justice or Prejudice? Quantifying Biases in {LLM}-as-a-Judge},\n  author={Ye, Jiayi and Wang, Yanbo and Huang, Yue and Chen, Dongping and Zhang, Qihui and Moniz, Nuno and Gao, Tian and Geyer, Werner and Huang, Chao and Chen, Pin-Yu},\n  journal={arXiv preprint arXiv:2410.02736},\n  year={2024},\n  url={https://arxiv.org/abs/2410.02736}\n}",
+  "new_string": "@article{ye2024justice,\n  title={Justice or Prejudice? Quantifying Biases in {LLM}-as-a-Judge},\n  author={Ye, Jiayi and Wang, Yanbo and Huang, Yue and Chen, Dongping and Zhang, Qihui and Moniz, Nuno and Gao, Tian and Geyer, Werner and Huang, Chao and Chen, Pin-Yu},\n  journal={arXiv preprint arXiv:2410.02736},\n  year={2024},\n  url={https://arxiv.org/abs/2410.02736}\n}\n\n@article{feder2021causalm,\n  title={{CausaLM}: Causal Model Explanation Through Counterfactual Language Models},\n  author={Feder, Amir and Oved, Nadav and Shalit, Uri and Reichart, Roi},\n  journal={Computational Linguistics},\n  volume={47},\n  number={2},\n  pages={333--386},\n  year={2021},\n  url={https://aclanthology.org/2021.cl-2.13/}\n}\n\n@inproceedings{wu2021polyjuice,\n  title={Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models},\n  author={Wu, Tongshuang and Ribeiro, Marco Tulio and Heer, Jeffrey and Weld, Daniel},\n  booktitle={Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},\n  year={2021},\n  url={https://aclanthology.org/2021.acl-long.523/}\n}\n\n@inproceedings{clark2021human,\n  title={All That's `Human' Is Not Gold: Evaluating Human Evaluation of Generated Text},\n  author={Clark, Elizabeth and August, Tal and Serrano, Sofia and Haduong, Nikita and Gururangan, Suchin and Smith, Noah A.},\n  booktitle={Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},\n  pages={7282--7296},\n  year={2021},\n  url={https://aclanthology.org/2021.acl-long.565/}\n}\n\n@inproceedings{amidei2019likert,\n  title={The Use of Rating and {Likert} Scales in Natural Language Generation Human Evaluation Tasks: A Review and Some Recommendations},\n  author={Amidei, Jacopo and Piwek, Paul and Willis, Alistair},\n  booktitle={Proceedings of the 12th International Conference on Natural Language Generation (INLG)},\n  year={2019},\n  url={https://aclanthology.org/W19-8648/}\n}\n\n@inproceedings{boubdir2023elo,\n  title={Elo Uncovered: Robustness and Best Practices in Language Model Evaluation},\n  author={Boubdir, Meriem and Kim, Edward and Ermis, Beyza and Hooker, Sara and Fadaee, Marzieh},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2024},\n  url={https://arxiv.org/abs/2311.17295}\n}\n\n@inproceedings{wu2023style,\n  title={Style Over Substance: Evaluation Biases for Large Language Models},\n  author={Wu, Minghao and Aji, Alham Fikri},\n  booktitle={Proceedings of the 31st International Conference on Computational Linguistics (COLING)},\n  year={2025},\n  url={https://aclanthology.org/2025.coling-main.21/}\n}\n\n@inproceedings{liusie2024comparative,\n  title={{LLM} Comparative Assessment: Zero-shot {NLG} Evaluation through Pairwise Comparisons using Large Language Models},\n  author={Liusie, Adian and Manakul, Potsawee and Gales, Mark},\n  booktitle={Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages={139--151},\n  year={2024},\n  url={https://aclanthology.org/2024.eacl-long.8/}\n}\n\n@article{feder2022causal,\n  title={Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond},\n  author={Feder, Amir and Keith, Katherine A. and Manzoor, Emaad and Pryzant, Reid and Sridhar, Dhanya and Wood-Doughty, Zach and Eisenstein, Jacob and Grimmer, Justin and Reichart, Roi and Roberts, Margaret E. and Stewart, Brandon M. and Veitch, Victor and Yang, Diyi},\n  journal={Transactions of the Association for Computational Linguistics},\n  volume={10},\n  pages={1138--1158},\n  year={2022},\n  url={https://aclanthology.org/2022.tacl-1.66/}\n}\n\n@inproceedings{koo2024cobbler,\n  title={Benchmarking Cognitive Biases in Large Language Models as Evaluators},\n  author={Koo, Ryan and Lee, Minhwa and Raheja, Vipul and Park, Jong Inn and Kim, Zae Myung and Kang, Dongyeop},\n  booktitle={Findings of the Association for Computational Linguistics: ACL 2024},\n  year={2024},\n  url={https://aclanthology.org/2024.findings-acl.29/}\n}\n\n@inproceedings{panickssery2024selfpreference,\n  title={{LLM} Evaluators Recognize and Favor Their Own Generations},\n  author={Panickssery, Arjun and Bowman, Samuel R. and Feng, Shi},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2024},\n  url={https://arxiv.org/abs/2404.13076}\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "61fc107e-2a4e-4d0e-a04b-e4f11e08e5a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1pJD7f3ScmeSSqc3PtU8K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 48575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T10:17:10.664Z_
+
+<details><summary>↩ Tool result · `toolu_01GLkyCj4zW4CKgrmYdFjQ8b`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "8a973a46-2155-40b6-b035-1bf977bd63d1",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/references.bib",
+    "oldString": "@article{ye2024justice,\n  title={Justice or Prejudice? Quantifying Biases in {LLM}-as-a-Judge},\n  author={Ye, Jiayi and Wang, Yanbo and Huang, Yue and Chen, Dongping and Zhang, Qihui and Moniz, Nuno and Gao, Tian and Geyer, Werner and Huang, Chao and Chen, Pin-Yu},\n  journal={arXiv preprint arXiv:2410.02736},\n  year={2024},\n  url={https://arxiv.org/abs/2410.02736}\n}",
+    "newString": "@article{ye2024justice,\n  title={Justice or Prejudice? Quantifying Biases in {LLM}-as-a-Judge},\n  author={Ye, Jiayi and Wang, Yanbo and Huang, Yue and Chen, Dongping and Zhang, Qihui and Moniz, Nuno and Gao, Tian and Geyer, Werner and Huang, Chao and Chen, Pin-Yu},\n  journal={arXiv preprint arXiv:2410.02736},\n  year={2024},\n  url={https://arxiv.org/abs/2410.02736}\n}\n\n@article{feder2021causalm,\n  title={{CausaLM}: Causal Model Explanation Through Counterfactual Language Models},\n  author={Feder, Amir and Oved, Nadav and Shalit, Uri and Reichart, Roi},\n  journal={Computational Linguistics},\n  volume={47},\n  number={2},\n  pages={333--386},\n  year={2021},\n  url={https://aclanthology.org/2021.cl-2.13/}\n}\n\n@inproceedings{wu2021polyjuice,\n  title={Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models},\n  author={Wu, Tongshuang and Ribeiro, Marco Tulio and Heer, Jeffrey and Weld, Daniel},\n  booktitle={Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},\n  year={2021},\n  url={https://aclanthology.org/2021.acl-long.523/}\n}\n\n@inproceedings{clark2021human,\n  title={All That's `Human' Is Not Gold: Evaluating Human Evaluation of Generated Text},\n  author={Clark, Elizabeth and August, Tal and Serrano, Sofia and Haduong, Nikita and Gururangan, Suchin and Smith, Noah A.},\n  booktitle={Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},\n  pages={7282--7296},\n  year={2021},\n  url={https://aclanthology.org/2021.acl-long.565/}\n}\n\n@inproceedings{amidei2019likert,\n  title={The Use of Rating and {Likert} Scales in Natural Language Generation Human Evaluation Tasks: A Review and Some Recommendations},\n  author={Amidei, Jacopo and Piwek, Paul and Willis, Alistair},\n  booktitle={Proceedings of the 12th International Conference on Natural Language Generation (INLG)},\n  year={2019},\n  url={https://aclanthology.org/W19-8648/}\n}\n\n@inproceedings{boubdir2023elo,\n  title={Elo Uncovered: Robustness and Best Practices in Language Model Evaluation},\n  author={Boubdir, Meriem and Kim, Edward and Ermis, Beyza and Hooker, Sara and Fadaee, Marzieh},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2024},\n  url={https://arxiv.org/abs/2311.17295}\n}\n\n@inproceedings{wu2023style,\n  title={Style Over Substance: Evaluation Biases for Large Language Models},\n  author={Wu, Minghao and Aji, Alham Fikri},\n  booktitle={Proceedings of the 31st International Conference on Computational Linguistics (COLING)},\n  year={2025},\n  url={https://aclanthology.org/2025.coling-main.21/}\n}\n\n@inproceedings{liusie2024comparative,\n  title={{LLM} Comparative Assessment: Zero-shot {NLG} Evaluation through Pairwise Comparisons using Large Language Models},\n  author={Liusie, Adian and Manakul, Potsawee and Gales, Mark},\n  booktitle={Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages={139--151},\n  year={2024},\n  url={https://aclanthology.org/2024.eacl-long.8/}\n}\n\n@article{feder2022causal,\n  title={Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond},\n  author={Feder, Amir and Keith, Katherine A. and Manzoor, Emaad and Pryzant, Reid and Sridhar, Dhanya and Wood-Doughty, Zach and Eisenstein, Jacob and Grimmer, Justin and Reichart, Roi and Roberts, Margaret E. and Stewart, Brandon M. and Veitch, Victor and Yang, Diyi},\n  journal={Transactions of the Association for Computational Linguistics},\n  volume={10},\n  pages={1138--1158},\n  year={2022},\n  url={https://aclanthology.org/2022.tacl-1.66/}\n}\n\n@inproceedings{koo2024cobbler,\n  title={Benchmarking Cognitive Biases in Large Language Models as Evaluators},\n  author={Koo, Ryan and Lee, Minhwa and Raheja, Vipul and Park, Jong Inn and Kim, Zae Myung and Kang, Dongyeop},\n  booktitle={Findings of the Association for Computational Linguistics: ACL 2024},\n  year={2024},\n  url={https://aclanthology.org/2024.findings-acl.29/}\n}\n\n@inproceedings{panickssery2024selfpreference,\n  title={{LLM} Evaluators Recognize and Favor Their Own Generations},\n  author={Panickssery, Arjun and Bowman, Samuel R. and Feng, Shi},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2024},\n  url={https://arxiv.org/abs/2404.13076}\n}",
+    "originalFile": "@inproceedings{murugadoss2025sos,\n  title={Style Over Substance: Failure Modes of {LLM} Judges in Alignment Benchmarking},\n  author={Murugadoss, Aakanksha and others},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2025},\n  url={https://arxiv.org/abs/2409.15268}\n}\n\n@inproceedings{li2026preference,\n  title={Preference Leakage: A Contamination Problem in {LLM}-as-a-Judge},\n  author={Li, Dawei and others},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2026},\n  url={https://arxiv.org/abs/2502.01534}\n}\n\n@article{wang2026fairjudge,\n  title={{FairJudge}: An Adaptive, Debiased, and Consistent {LLM}-as-a-Judge},\n  author={Yang, Bo and Feng, Lanfei and Chen, Yunkui and Zhang, Yu and Xu, Xiao and Li, Shijian},\n  journal={arXiv preprint arXiv:2602.06625},\n  year={2026},\n  url={https://arxiv.org/abs/2602.06625}\n}\n\n\n@inproceedings{dubois2025lc,\n  title={Length-Controlled {AlpacaEval}: A Simple Way to Debias Automatic Evaluators},\n  author={Dubois, Yann and others},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2025},\n  url={https://arxiv.org/abs/2404.04475}\n}\n\n@article{casse2026concise,\n  title={A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents},\n  author={Cho, Young-Min and Yuan, Yuan and Guntuku, Sharath Chandra and Ungar, Lyle},\n  journal={arXiv preprint arXiv:2601.10809},\n  year={2026},\n  url={https://arxiv.org/abs/2601.10809}\n}\n\n@article{counterfactual2025rhetorical,\n  title={Counterfactual {LLM}-based Framework for Measuring Rhetorical Style},\n  author={Qiu, Jingyi and Chen, Hong and Li, Zongyi},\n  journal={arXiv preprint arXiv:2512.19908},\n  year={2025},\n  url={https://arxiv.org/abs/2512.19908}\n}\n\n@article{soumik2026judging,\n  title={Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in {LLM}-as-a-Judge Pipelines},\n  author={Soumik, Mohammad and others},\n  journal={arXiv preprint arXiv:2604.23178},\n  year={2026},\n  url={https://arxiv.org/abs/2604.23178}\n}\n\n@inproceedings{reber2025rate,\n  title={{RATE}: Causal Explainability of Reward Models with Imperfect Counterfactuals},\n  author={Reber, David and Richardson, Sean and Nief, Todd and Garbacea, Cristina and Veitch, Victor},\n  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},\n  year={2025},\n  url={https://arxiv.org/abs/2410.11348}\n}\n\n@inproceedings{kiritchenko2017bws,\n  title={Best-Worst Scaling More Reliable than Rating Scales: A Case Study on Sentiment Intensity Annotation},\n  author={Kiritchenko, Svetlana and Mohammad, Saif},\n  booktitle={Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)},\n  pages={465--470},\n  year={2017},\n  url={https://aclanthology.org/P17-2074/}\n}\n\n@inproceedings{novikova2018rankme,\n  title={{RankME}: Reliable Human Ratings for Natural Language Generation},\n  author={Novikova, Jekaterina and Du{\\v{s}}ek, Ond{\\v{r}}ej and Rieser, Verena},\n  booktitle={Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 2: Short Papers)},\n  year={2018},\n  url={https://aclanthology.org/N18-2012/}\n}\n\n@article{stevens1946theory,\n  title={On the Theory of Scales of Measurement},\n  author={Stevens, Stanley Smith},\n  journal={Science},\n  volume={103},\n  number={2684},\n  pages={677--680},\n  year={1946}\n}\n\n@article{thurstone1927law,\n  title={A Law of Comparative Judgment},\n  author={Thurstone, Louis Leon},\n  journal={Psychological Review},\n  volume={34},\n  number={4},\n  pages={273--286},\n  year={1927}\n}\n\n@article{decoster2011median,\n  title={Best Practices for Using Median Splits, Artificial Categorization, and Their Continuous Alternatives},\n  author={DeCoster, Jamie and Gallucci, Marcello and Iselin, Anne-Marie R.},\n  journal={Journal of Experimental Psychopathology},\n  volume={2},\n  number={2},\n  pages={197--209},\n  year={2011},\n  doi={10.5127/jep.008310}\n}\n\n@inproceedings{zheng2023judging,\n  title={Judging {LLM}-as-a-Judge with {MT-Bench} and {Chatbot Arena}},\n  author={Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and Li, Dacheng and Xing, Eric P. and Zhang, Hao and Gonzalez, Joseph E. and Stoica, Ion},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023},\n  url={https://arxiv.org/abs/2306.05685}\n}\n\n@inproceedings{dubois2023alpacafarm,\n  title={{AlpacaFarm}: A Simulation Framework for Methods that Learn from Human Feedback},\n  author={Dubois, Yann and Li, Xuechen and Taori, Rohan and Zhang, Tianyi and Gulrajani, Ishaan and Ba, Jimmy and Guestrin, Carlos and Liang, Percy and Hashimoto, Tatsunori B.},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023},\n  url={https://arxiv.org/abs/2305.14387}\n}\n\n@article{bradley1952rank,\n  title={Rank Analysis of Incomplete Block Designs: {I}. {T}he Method of Paired Comparisons},\n  author={Bradley, Ralph Allan and Terry, Milton E.},\n  journal={Biometrika},\n  volume={39},\n  number={3/4},\n  pages={324--345},\n  year={1952}\n}\n\n@article{feinstein1990kappa,\n  title={High Agreement but Low Kappa: {I}. {T}he Problems of Two Paradoxes},\n  author={Feinstein, Alvan R. and Cicchetti, Domenic V.},\n  journal={Journal of Clinical Epidemiology},\n  volume={43},\n  number={6},\n  pages={543--549},\n  year={1990}\n}\n\n\n@article{wang2023faireval,\n  title={Large Language Models are not Fair Evaluators},\n  author={Wang, Peiyi and Li, Lei and Chen, Liang and Cai, Zefan and Zhu, Dawei and Lin, Binghuai and Cao, Yunbo and Liu, Qi and Liu, Tianyu and Sui, Zhifang},\n  journal={arXiv preprint arXiv:2305.17926},\n  year={2023},\n  url={https://arxiv.org/abs/2305.17926}\n}\n\n@article{li2024calibraeval,\n  title={{CalibraEval}: Calibrating Prediction Distribution to Mitigate Selection Bias in {LLMs}-as-Judges},\n  author={Li, Haitao and Chen, Junjie and Ai, Qingyao and Chu, Zhumin and Zhou, Yujia and Dong, Qian and Liu, Yiqun},\n  journal={arXiv preprint arXiv:2410.15393},\n  year={2024},\n  url={https://arxiv.org/abs/2410.15393}\n}\n\n@article{hoenig2001abuse,\n  title={The Abuse of Power: The Pervasive Fallacy of Power Calculations for Data Analysis},\n  author={Hoenig, John M. and Heisey, Dennis M.},\n  journal={The American Statistician},\n  volume={55},\n  number={1},\n  pages={19--24},\n  year={2001}\n}\n\n@inproceedings{zeng2023llmbar,\n  title={Evaluating Large Language Models at Evaluating Instruction Following},\n  author={Zeng, Zhiyuan and Yu, Jiatong and Gao, Tianyu and Meng, Yu and Goyal, Tanya and Chen, Danqi},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2024},\n  url={https://arxiv.org/abs/2310.07641}\n}\n\n@inproceedings{veitch2020adapting,\n  title={Adapting Text Embeddings for Causal Inference},\n  author={Veitch, Victor and Sridhar, Dhanya and Blei, David},\n  booktitle={Proceedings of the Conference on Uncertainty in Artificial Intelligence (UAI)},\n  year={2020},\n  url={https://arxiv.org/abs/1905.12741}\n}\n\n@inproceedings{tan2025judgebench,\n  title={{JudgeBench}: A Benchmark for Evaluating {LLM}-based Judges},\n  author={Tan, Sijun and Zhuang, Siyuan and Montgomery, Kyle and Tang, William and others},\n  booktitle={Proceedings of the International Conference on Learning Representations (ICLR)},\n  year={2025},\n  url={https://arxiv.org/abs/2410.12784}\n}\n\n@book{louviere2015bws,\n  title={Best-Worst Scaling: Theory, Methods and Applications},\n  author={Louviere, Jordan J. and Flynn, Terry N. and Marley, A. A. J.},\n  publisher={Cambridge University Press},\n  year={2015},\n  isbn={9781107043152}\n}\n\n@inproceedings{chiang2024chatbot,\n  title={Chatbot Arena: An Open Platform for Evaluating {LLM}s by Human Preference},\n  author={Chiang, Wei-Lin and Zheng, Lianmin and Sheng, Ying and Angelopoulos, Anastasios Nikolas and Li, Tianle and Li, Dacheng and Zhu, Banghua and Zhang, Hao and Jordan, Michael I. and Gonzalez, Joseph E. and Stoica, Ion},\n  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},\n  year={2024},\n  url={https://arxiv.org/abs/2403.04132}\n}\n\n@article{hunter2004mm,\n  title={{MM} Algorithms for Generalized {Bradley-Terry} Models},\n  author={Hunter, David R.},\n  journal={The Annals of Statistics},\n  volume={32},\n  number={1},\n  pages={384--406},\n  year={2004},\n  doi={10.1214/aos/1079120141}\n}\n\n@article{ye2024justice,\n  title={Justice or Prejudice? Quantifying Biases in {LLM}-as-a-Judge},\n  author={Ye, Jiayi and Wang, Yanbo and Huang, Yue and Chen, Dongping and Zhang, Qihui and Moniz, Nuno and Gao, Tian and Geyer, Werner and Huang, Chao and Chen, Pin-Yu},\n  journal={arXiv preprint arXiv:2410.02736},\n  year={2024},\n  url={https://arxiv.org/abs/2410.02736}\n}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 232,
+        "oldLines": 3,
+        "newStart": 232,
+        "newLines": 90,
+        "lines": [
+          "   year={2024},",
+          "   url={https://arxiv.org/abs/2410.02736}",
+          " }",
+          "+",
+          "+@article{feder2021causalm,",
+          "+  title={{CausaLM}: Causal Model Explanation Through Counterfactual Language Models},",
+          "+  author={Feder, Amir and Oved, Nadav and Shalit, Uri and Reichart, Roi},",
+          "+  journal={Computational Linguistics},",
+          "+  volume={47},",
+          "+  number={2},",
+          "+  pages={333--386},",
+          "+  year={2021},",
+          "+  url={https://aclanthology.org/2021.cl-2.13/}",
+          "+}",
+          "+",
+          "+@inproceedings{wu2021polyjuice,",
+          "+  title={Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models},",
+          "+  author={Wu, Tongshuang and Ribeiro, Marco Tulio and Heer, Jeffrey and Weld, Daniel},",
+          "+  booktitle={Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},",
+          "+  year={2021},",
+          "+  url={https://aclanthology.org/2021.acl-long.523/}",
+          "+}",
+          "+",
+          "+@inproceedings{clark2021human,",
+          "+  title={All That's `Human' Is Not Gold: Evaluating Human Evaluation of Generated Text},",
+          "+  author={Clark, Elizabeth and August, Tal and Serrano, Sofia and Haduong, Nikita and Gururangan, Suchin and Smith, Noah A.},",
+          "+  booktitle={Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},",
+          "+  pages={7282--7296},",
+          "+  year={2021},",
+          "+  url={https://aclanthology.org/2021.acl-long.565/}",
+          "+}",
+          "+",
+          "+@inproceedings{amidei2019likert,",
+          "+  title={The Use of Rating and {Likert} Scales in Natural Language Generation Human Evaluation Tasks: A Review and Some Recommendations},",
+          "+  author={Amidei, Jacopo and Piwek, Paul and Willis, Alistair},",
+          "+  booktitle={Proceedings of the 12th International Conference on Natural Language Generation (INLG)},",
+          "+  year={2019},",
+          "+  url={https://aclanthology.org/W19-8648/}",
+          "+}",
+          "+",
+          "+@inproceedings{boubdir2023elo,",
+          "+  title={Elo Uncovered: Robustness and Best Practices in Language Model Evaluation},",
+          "+  author={Boubdir, Meriem and Kim, Edward and Ermis, Beyza and Hooker, Sara and Fadaee, Marzieh},",
+          "+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},",
+          "+  year={2024},",
+          "+  url={https://arxiv.org/abs/2311.17295}",
+          "+}",
+          "+",
+          "+@inproceedings{wu2023style,",
+          "+  title={Style Over Substance: Evaluation Biases for Large Language Models},",
+          "+  author={Wu, Minghao and Aji, Alham Fikri},",
+          "+  booktitle={Proceedings of the 31st International Conference on Computational Linguistics (COLING)},",
+          "+  year={2025},",
+          "+  url={https://aclanthology.org/2025.coling-main.21/}",
+          "+}",
+          "+",
+          "+@inproceedings{liusie2024comparative,",
+          "+  title={{LLM} Comparative Assessment: Zero-shot {NLG} Evaluation through Pairwise Comparisons using Large Language Models},",
+          "+  author={Liusie, Adian and Manakul, Potsawee and Gales, Mark},",
+          "+  booktitle={Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)},",
+          "+  pages={139--151},",
+          "+  year={2024},",
+          "+  url={https://aclanthology.org/2024.eacl-long.8/}",
+          "+}",
+          "+",
+          "+@article{feder2022causal,",
+          "+  title={Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond},",
+          "+  author={Feder, Amir and Keith, Katherine A. and Manzoor, Emaad and Pryzant, Reid and Sridhar, Dhanya and Wood-Doughty, Zach and Eisenstein, Jacob and Grimmer, Justin and Reichart, Roi and Roberts, Margaret E. and Stewart, Brandon M. and Veitch, Victor and Yang, Diyi},",
+          "+  journal={Transactions of the Association for Computational Linguistics},",
+          "+  volume={10},",
+          "+  pages={1138--1158},",
+          "+  year={2022},",
+          "+  url={https://aclanthology.org/2022.tacl-1.66/}",
+          "+}",
+          "+",
+          "+@inproceedings{koo2024cobbler,",
+          "+  title={Benchmarking Cognitive Biases in Large Language Models as Evaluators},",
+          "+  author={Koo, Ryan and Lee, Minhwa and Raheja, Vipul and Park, Jong Inn and Kim, Zae Myung and Kang, Dongyeop},",
+          "+  booktitle={Findings of the Association for Computational Linguistics: ACL 2024},",
+          "+  year={2024},",
+          "+  url={https://aclanthology.org/2024.findings-acl.29/}",
+          "+}",
+          "+",
+          "+@inproceedings{panickssery2024selfpreference,",
+          "+  title={{LLM} Evaluators Recognize and Favor Their Own Generations},",
+          "+  author={Panickssery, Arjun and Bowman, Samuel R. and Feng, Shi},",
+          "+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},",
+          "+  year={2024},",
+          "+  url={https://arxiv.org/abs/2404.13076}",
+          "+}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+Appended 10 new BibTeX entries. Total references: 37 (27 existing + 10 new).
+
+**Director-specified (6):**
+| Key | Paper | Venue |
+|-----|-------|-------|
+| `feder2021causalm` | CausaLM: Causal Model Explanation Through Counterfactual Language Models | Computational Linguistics 2021 |
+| `wu2021polyjuice` | Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models | ACL 2021 |
+| `clark2021human` | All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated Text | ACL 2021 |
+| `amidei2019likert` | The Use of Rating and Likert Scales in NLG Human Evaluation Tasks | INLG 2019 |
+| `boubdir2023elo` | Elo Uncovered: Robustness and Best Practices in Language Model Evaluation | NeurIPS 2024 |
+| `wu2023style` | Style Over Substance: Evaluation Biases for Large Language Models | COLING 2025 |
+
+**Additional (4):**
+| Key | Paper | Venue |
+|-----|-------|-------|
+| `liusie2024comparative` | LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons | EACL 2024 |
+| `feder2022causal` | Causal Inference in NLP: Estimation, Prediction, Interpretation and Beyond | TACL 2022 |
+| `koo2024cobbler` | Benchmarking Cognitive Biases in Large Language Models as Evaluators | Findings of ACL 2024 |
+| `panickssery2024selfpreference` | LLM Evaluators Recognize and Favor Their Own Generations | NeurIPS 2024 |
+
+All entries verified via web search — no fabricated details. Existing entries left untouched.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "uuid": "7cb92afc-d35e-4901-ad78-0307d910d5f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DzCF7hJyyNEaABT7V3zq58",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3159,
+      "cache_read_input_tokens": 49279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3159
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 64_
+
+Appended 10 new BibTeX entries. Total references: 37 (27 existing + 10 new).
+
+**Director-specified (6):**
+| Key | Paper | Venue |
+|-----|-------|-------|
+| `feder2021causalm` | CausaLM: Causal Model Explanation Through Counterfactual Language Models | Computational Linguistics 2021 |
+| `wu2021polyjuice` | Polyjuice: Generating Counterfactuals for Explaining, Evaluating, and Improving Models | ACL 2021 |
+| `clark2021human` | All That's 'Human' Is Not Gold: Evaluating Human Evaluation of Generated Text | ACL 2021 |
+| `amidei2019likert` | The Use of Rating and Likert Scales in NLG Human Evaluation Tasks | INLG 2019 |
+| `boubdir2023elo` | Elo Uncovered: Robustness and Best Practices in Language Model Evaluation | NeurIPS 2024 |
+| `wu2023style` | Style Over Substance: Evaluation Biases for Large Language Models | COLING 2025 |
+
+**Additional (4):**
+| Key | Paper | Venue |
+|-----|-------|-------|
+| `liusie2024comparative` | LLM Comparative Assessment: Zero-shot NLG Evaluation through Pairwise Comparisons | EACL 2024 |
+| `feder2022causal` | Causal Inference in NLP: Estimation, Prediction, Interpretation and Beyond | TACL 2022 |
+| `koo2024cobbler` | Benchmarking Cognitive Biases in Large Language Models as Evaluators | Findings of ACL 2024 |
+| `panickssery2024selfpreference` | LLM Evaluators Recognize and Favor Their Own Generations | NeurIPS 2024 |
+
+All entries verified via web search — no fabricated details. Existing entries left untouched.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 289062,
+  "duration_api_ms": 291090,
+  "num_turns": 25,
+  "stop_reason": "end_turn",
+  "session_id": "8528fe5c-e1f0-4be8-9f39-a46996d197c8",
+  "total_cost_usd": 1.3747157500000005,
+  "usage": {
+    "input_tokens": 29,
+    "cache_creation_input_tokens": 40991,
+    "cache_read_input_tokens": 919216,
+    "output_tokens": 7159,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 40991,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 501,
+        "cache_read_input_tokens": 49279,
+        "cache_creation_input_tokens": 3159,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3159
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 231489,
+      "outputTokens": 7661,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 21,
+      "costUSD": 0.47979400000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 29,
+      "outputTokens": 7159,
+      "cacheReadInputTokens": 919216,
+      "cacheCreationInputTokens": 40991,
+      "webSearchRequests": 0,
+      "costUSD": 0.8949217500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f4e72200-e2ca-42fa-8965-7eeff85083d0"
+}
+```
+
+</details>
+
+---

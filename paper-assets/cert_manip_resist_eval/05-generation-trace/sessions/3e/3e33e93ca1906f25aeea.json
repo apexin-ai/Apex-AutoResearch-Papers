@@ -56,5 +56,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/infra-ssh-diagnose-and-download.md"
 }

@@ -1,0 +1,1792 @@
+# diagnose w41 full gpu check
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/chats/worker_diagnose_w41_full_gpu_check_20260528T043624.jsonl`
+- **Structured JSON:** [`62a3e3cd2bc94d234958.json`](../../sessions/62/62a3e3cd2bc94d234958.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+59 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-28T04:39:56.369468+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-28T04:39:56.369940+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-28T04:39:56.370170+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-28T04:39:56.370328+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-28T04:39:56.370482+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 1 MiB, 97887 MiB\\n1, 43 %, 10600 MiB, 97887 MiB\\n2, 0 %, 1 MiB, 97887 MiB\\n3, 0 %, 1 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T04:39:56.370611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"570805, GPU-b927bd9e-efa6-c56c-2068-1fc57e9147c6, 10581 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-28T04:39:56.370734+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "for pid in 471047 570796 471390 459963; do ps -p $pid -o pid,etime,pcpu,rss,args --no-headers 2>/dev/null || echo \"PID $pid NOT FOUND\"; done",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "for pid in 471047 570796 471390 459963; do ps -p $pid -o pid,etime,pcpu,rss,args --no-headers 2>/dev/null || echo \"PID $pid NOT FOUND\"; done",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-28T04:39:56.370870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID 471047 NOT FOUND\\n570796    02:06:19  0.0  3580 bash -c rm -f /tmp/agent-ml-exit/eval_pi05_random_k05_long_seed45_strict_w41.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed45_strict_w41.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval_pi05_random_k05_long_seed45_strict_w41.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/importance_margin_vla_compress && export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"'; } > ~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed45_strict_w41.log 2>&1\\nPID 471390 NOT FOUND\\nPID 459963 NOT FOUND\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-28T04:39:56.371029+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -40 ~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "tail -40 ~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T04:39:56.371220+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 10:35:46,111   T4 [put the white mug on the left plate and ] ep=40: 2/40=5%\\n2026-05-28 10:40:02,581   T4 [put the white mug on the left plate and ] ep=50: 4/50=8%\\n2026-05-28 10:40:02,581 Task 4: SR=8.0% | Total: 82/250=32.8% | Time: 92.0min\\n2026-05-28 10:44:10,065   T5 [pick up the book and place it in the bac] ep=10: 4/10=40%\\n2026-05-28 10:48:17,741   T5 [pick up the book and place it in the bac] ep=20: 7/20=35%\\n2026-05-28 10:52:30,232   T5 [pick up the book and place it in the bac] ep=30: 9/30=30%\\n2026-05-28 10:55:14,235   T5 [pick up the book and place it in the bac] ep=40: 14/40=35%\\n2026-05-28 10:57:53,030   T5 [pick up the book and place it in the bac] ep=50: 20/50=40%\\n2026-05-28 10:57:53,031 Task 5: SR=40.0% | Total: 102/300=34.0% | Time: 109.8min\\n2026-05-28 11:01:50,237   T6 [put the white mug on the plate and put t] ep=10: 1/10=10%\\n2026-05-28 11:05:39,698   T6 [put the white mug on the plate and put t] ep=20: 2/20=10%\\n2026-05-28 11:09:39,578   T6 [put the white mug on the plate and put t] ep=30: 3/30=10%\\n2026-05-28 11:13:40,717   T6 [put the white mug on the plate and put t] ep=40: 3/40=8%\\n2026-05-28 11:17:16,716   T6 [put the white mug on the plate and put t] ep=50: 6/50=12%\\n2026-05-28 11:17:16,716 Task 6: SR=12.0% | Total: 108/350=30.9% | Time: 129.2min\\n2026-05-28 11:21:06,356   T7 [put both the alphabet soup and the cream] ep=10: 2/10=20%\\n2026-05-28 11:24:45,367   T7 [put both the alphabet soup and the cream] ep=20: 4/20=20%\\n2026-05-28 11:28:08,268   T7 [put both the alphabet soup and the cream] ep=30: 8/30=27%\\n2026-05-28 11:31:30,715   T7 [put both the alphabet soup and the cream] ep=40: 13/40=32%\\n2026-05-28 11:35:08,479   T7 [put both the alphabet soup and the cream] ep=50: 16/50=32%\\n2026-05-28 11:35:08,479 Task 7: SR=32.0% | Total: 124/400=31.0% | Time: 147.1min\\n2026-05-28 11:39:02,954   T8 [put both moka pots on the stove] ep=10: 0/10=0%\\n2026
+…[truncated 1521 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-28T04:39:56.371383+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -40 ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "tail -40 ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-28T04:39:56.371539+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 10:21:17,220   T4 [put the white mug on the left plate and ] ep=40: 25/40=62%\\n2026-05-28 10:24:24,724   T4 [put the white mug on the left plate and ] ep=50: 30/50=60%\\n2026-05-28 10:24:24,725 Task 4: SR=60.0% | Total: 163/250=65.2% | Time: 76.1min\\n2026-05-28 10:26:26,819   T5 [pick up the book and place it in the bac] ep=10: 9/10=90%\\n2026-05-28 10:28:44,368   T5 [pick up the book and place it in the bac] ep=20: 16/20=80%\\n2026-05-28 10:30:33,209   T5 [pick up the book and place it in the bac] ep=30: 25/30=83%\\n2026-05-28 10:33:15,508   T5 [pick up the book and place it in the bac] ep=40: 31/40=78%\\n2026-05-28 10:35:48,368   T5 [pick up the book and place it in the bac] ep=50: 38/50=76%\\n2026-05-28 10:35:48,369 Task 5: SR=76.0% | Total: 201/300=67.0% | Time: 87.5min\\n2026-05-28 10:39:07,072   T6 [put the white mug on the plate and put t] ep=10: 6/10=60%\\n2026-05-28 10:43:18,108   T6 [put the white mug on the plate and put t] ep=20: 10/20=50%\\n2026-05-28 10:47:07,843   T6 [put the white mug on the plate and put t] ep=30: 15/30=50%\\n2026-05-28 10:51:04,362   T6 [put the white mug on the plate and put t] ep=40: 21/40=52%\\n2026-05-28 10:54:32,396   T6 [put the white mug on the plate and put t] ep=50: 25/50=50%\\n2026-05-28 10:54:32,396 Task 6: SR=50.0% | Total: 226/350=64.6% | Time: 106.2min\\n2026-05-28 10:57:16,967   T7 [put both the alphabet soup and the cream] ep=10: 9/10=90%\\n2026-05-28 11:00:32,482   T7 [put both the alphabet soup and the cream] ep=20: 14/20=70%\\n2026-05-28 11:03:25,295   T7 [put both the alphabet soup and the cream] ep=30: 20/30=67%\\n2026-05-28 11:06:29,126   T7 [put both the alphabet soup and the cream] ep=40: 26/40=65%\\n2026-05-28 11:09:29,420   T7 [put both the alphabet soup and the cream] ep=50: 32/50=64%\\n2026-05-28 11:09:29,420 Task 7: SR=64.0% | Total: 258/400=64.5% | Time: 121.2min\\n2026-05-28 11:13:24,120   T8 [put both moka pots on the stove] ep=10: 
+…[truncated 1541 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-28T04:39:56.371688+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -40 ~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "tail -40 ~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-28T04:39:56.371841+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 10:10:34,797   T4 [put the white mug on the left plate and ] ep=40: 16/40=40%\\n2026-05-28 10:14:02,692   T4 [put the white mug on the left plate and ] ep=50: 21/50=42%\\n2026-05-28 10:14:02,692 Task 4: SR=42.0% | Total: 142/250=56.8% | Time: 78.0min\\n2026-05-28 10:17:25,423   T5 [pick up the book and place it in the bac] ep=10: 2/10=20%\\n2026-05-28 10:19:37,394   T5 [pick up the book and place it in the bac] ep=20: 9/20=45%\\n2026-05-28 10:22:18,976   T5 [pick up the book and place it in the bac] ep=30: 14/30=47%\\n2026-05-28 10:25:12,620   T5 [pick up the book and place it in the bac] ep=40: 18/40=45%\\n2026-05-28 10:27:18,250   T5 [pick up the book and place it in the bac] ep=50: 26/50=52%\\n2026-05-28 10:27:18,250 Task 5: SR=52.0% | Total: 168/300=56.0% | Time: 91.3min\\n2026-05-28 10:30:03,287   T6 [put the white mug on the plate and put t] ep=10: 7/10=70%\\n2026-05-28 10:32:50,309   T6 [put the white mug on the plate and put t] ep=20: 14/20=70%\\n2026-05-28 10:35:54,693   T6 [put the white mug on the plate and put t] ep=30: 22/30=73%\\n2026-05-28 10:39:15,587   T6 [put the white mug on the plate and put t] ep=40: 28/40=70%\\n2026-05-28 10:42:37,691   T6 [put the white mug on the plate and put t] ep=50: 36/50=72%\\n2026-05-28 10:42:37,692 Task 6: SR=72.0% | Total: 204/350=58.3% | Time: 106.6min\\n2026-05-28 10:46:48,246   T7 [put both the alphabet soup and the cream] ep=10: 5/10=50%\\n2026-05-28 10:51:16,221   T7 [put both the alphabet soup and the cream] ep=20: 8/20=40%\\n2026-05-28 10:55:24,719   T7 [put both the alphabet soup and the cream] ep=30: 9/30=30%\\n2026-05-28 10:59:28,549   T7 [put both the alphabet soup and the cream] ep=40: 10/40=25%\\n2026-05-28 11:02:53,422   T7 [put both the alphabet soup and the cream] ep=50: 15/50=30%\\n2026-05-28 11:02:53,422 Task 7: SR=30.0% | Total: 219/400=54.8% | Time: 126.8min\\n2026-05-28 11:07:02,602   T8 [put both moka pots on the stove] ep=10: 1/1
+…[truncated 1543 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-28T04:39:56.371987+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tmux list-sessions 2>/dev/null || echo \"NO_TMUX_SESSIONS\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "tmux list-sessions 2>/dev/null || echo \"NO_TMUX_SESSIONS\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-28T04:39:56.372114+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_pi05_attention_k0925_long_seed42: 1 windows (created Tue May 26 05:04:39 2026)\\neval_pi05_random_k05_long_seed45_strict_w41: 1 windows (created Thu May 28 10:30:36 2026)\\nprofiling_pi05_latency_westd41074: 1 windows (created Tue May 26 05:04:39 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-28T04:39:56.372301+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep \"^2026.*Task [0-9]:\" ~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep \"^2026.*Task [0-9]:\" ~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-28T04:39:56.372439+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 09:27:20,692 Task 0: SR=28.0% | Total: 14/50=28.0% | Time: 19.3min\\n2026-05-28 09:45:06,289 Task 1: SR=38.0% | Total: 33/100=33.0% | Time: 37.0min\\n2026-05-28 10:01:46,070 Task 2: SR=36.0% | Total: 51/150=34.0% | Time: 53.7min\\n2026-05-28 10:19:16,851 Task 3: SR=54.0% | Total: 78/200=39.0% | Time: 71.2min\\n2026-05-28 10:40:02,581 Task 4: SR=8.0% | Total: 82/250=32.8% | Time: 92.0min\\n2026-05-28 10:57:53,031 Task 5: SR=40.0% | Total: 102/300=34.0% | Time: 109.8min\\n2026-05-28 11:17:16,716 Task 6: SR=12.0% | Total: 108/350=30.9% | Time: 129.2min\\n2026-05-28 11:35:08,479 Task 7: SR=32.0% | Total: 124/400=31.0% | Time: 147.1min\\n2026-05-28 11:54:36,212 Task 8: SR=0.0% | Total: 124/450=27.6% | Time: 166.5min\\n2026-05-28 12:08:08,571 Task 9: SR=86.0% | Total: 167/500=33.4% | Time: 180.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-28T04:39:56.372565+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep \"^2026.*Task [0-9]:\" ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep \"^2026.*Task [0-9]:\" ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-28T04:39:56.372695+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 09:24:14,082 Task 0: SR=72.0% | Total: 36/50=72.0% | Time: 15.9min\\n2026-05-28 09:36:57,284 Task 1: SR=86.0% | Total: 79/100=79.0% | Time: 28.7min\\n2026-05-28 09:50:48,524 Task 2: SR=64.0% | Total: 111/150=74.0% | Time: 42.5min\\n2026-05-28 10:09:41,421 Task 3: SR=44.0% | Total: 133/200=66.5% | Time: 61.4min\\n2026-05-28 10:24:24,725 Task 4: SR=60.0% | Total: 163/250=65.2% | Time: 76.1min\\n2026-05-28 10:35:48,369 Task 5: SR=76.0% | Total: 201/300=67.0% | Time: 87.5min\\n2026-05-28 10:54:32,396 Task 6: SR=50.0% | Total: 226/350=64.6% | Time: 106.2min\\n2026-05-28 11:09:29,420 Task 7: SR=64.0% | Total: 258/400=64.5% | Time: 121.2min\\n2026-05-28 11:29:02,210 Task 8: SR=10.0% | Total: 263/450=58.4% | Time: 140.7min\\n2026-05-28 11:41:54,018 Task 9: SR=90.0% | Total: 308/500=61.6% | Time: 153.6min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-28T04:39:56.372825+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep \"^2026.*Task [0-9]:\" ~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "grep \"^2026.*Task [0-9]:\" ~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-28T04:39:56.372957+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 09:11:55,509 Task 0: SR=68.0% | Total: 34/50=68.0% | Time: 15.9min\\n2026-05-28 09:26:06,643 Task 1: SR=74.0% | Total: 71/100=71.0% | Time: 30.1min\\n2026-05-28 09:39:16,441 Task 2: SR=66.0% | Total: 104/150=69.3% | Time: 43.2min\\n2026-05-28 09:57:11,265 Task 3: SR=34.0% | Total: 121/200=60.5% | Time: 61.1min\\n2026-05-28 10:14:02,692 Task 4: SR=42.0% | Total: 142/250=56.8% | Time: 78.0min\\n2026-05-28 10:27:18,250 Task 5: SR=52.0% | Total: 168/300=56.0% | Time: 91.3min\\n2026-05-28 10:42:37,692 Task 6: SR=72.0% | Total: 204/350=58.3% | Time: 106.6min\\n2026-05-28 11:02:53,422 Task 7: SR=30.0% | Total: 219/400=54.8% | Time: 126.8min\\n2026-05-28 11:23:29,056 Task 8: SR=10.0% | Total: 224/450=49.8% | Time: 147.4min\\n2026-05-28 11:37:18,700 Task 9: SR=82.0% | Total: 265/500=53.0% | Time: 161.3min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-28T04:39:56.373119+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+  "field": "log_path",
+  "value": "~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+    "field": "log_path",
+    "value": "~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-28T04:39:56.373269+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+  "field": "log_path",
+  "value": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+    "field": "log_path",
+    "value": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-28T04:39:56.373389+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+  "field": "log_path",
+  "value": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+    "field": "log_path",
+    "value": "~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-28T04:39:56.373542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k09_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T00:48:25.632Z\", \"updated_at\": \"2026-05-28T04:37:43.316Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"471047\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T01:06:24.324Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 45, \"model_name\": \"pi05_libero_finetuned\", \"checkpoint_source\": \"eval_pi05_random_k09_long_seed44_strict_w41\", \"eval_data\": \"libero_10\", \"data_path\": \"libero_10\", \"data_count\": 500}, \"hypothesis\": \"π0.5 Random k=0.9 Long strict seed45 — peak margin Random 侧第四 seed (s42=34.2%, s43=35.0%, s44=31.8%, mean≈33.7%±1.3pp)。加固 headline inverted-U peak margin\", \"parent\": \"eval_pi05_random_k09_long_seed44_strict_w41\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.7422}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T04:39:56.373713+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T01:06:39.779Z\", \"updated_at\": \"2026-05-28T04:37:49.519Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:2\"], \"pid\": \"471390\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T01:06:35.625Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 45, \"model_name\": \"pi05_libero_finetuned\", \"checkpoint_source\": \"eval_pi05_l2norm_k07_long_seed44_strict_w27\", \"eval_data\": \"libero_10\", \"data_path\": \"libero_10\", \"data_count\": 500}, \"hypothesis\": \"π0.5 L2norm k=0.7 Long strict seed45 — crossover point 第四 seed (s42=63.2%, s43=65.4%, s44=待确认)。加固 crossover 区 L2norm 侧数据\", \"parent\": \"eval_pi05_l2norm_k07_long_seed44_strict_w27\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.1952}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-28T04:39:56.373877+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_attn_k075_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T00:53:54.123Z\", \"updated_at\": \"2026-05-28T04:37:56.469Z\", \"hypothesis\": \"π0.5 Attention scoring k=0.75 Long strict seed45 — 跨服务器验证点第四 seed (D293 discrepancy: w27v2=49.0% vs cqa1=52.0%)。w41 提供第三独立服务器数据点\", \"parent\": \"eval_pi05_attn_k075_long_seed44_strict_w41\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:3\"], \"pid\": \"459963\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T00:54:22.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 45, \"checkpoint_source\": \"pi0.5 pretrained (no finetune)\", \"eval_data\": \"libero_10 (10 tasks x 50 episodes)\"}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.8497}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-28T04:39:56.374024+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+  "field": "metrics",
+  "value": "{'success_rate': 33.4, 'per_task': [28, 38, 36, 54, 8, 40, 12, 32, 0, 86], 'duration_min': 180.1, 'suite': 'libero_10', 'n_episodes': 50, 'seed': 45}",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+    "field": "metrics",
+    "value": "{'success_rate': 33.4, 'per_task': [28, 38, 36, 54, 8, 40, 12, 32, 0, 86], 'duration_min': 180.1, 'suite': 'libero_10', 'n_episodes': 50, 'seed': 45}",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-28T04:39:56.374187+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+  "field": "metrics",
+  "value": "{'success_rate': 61.6, 'per_task': [72, 86, 64, 44, 60, 76, 50, 64, 10, 90], 'duration_min': 153.6, 'suite': 'libero_10', 'n_episodes': 50, 'seed': 45}",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+    "field": "metrics",
+    "value": "{'success_rate': 61.6, 'per_task': [72, 86, 64, 44, 60, 76, 50, 64, 10, 90], 'duration_min': 153.6, 'suite': 'libero_10', 'n_episodes': 50, 'seed': 45}",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-28T04:39:56.374326+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+  "field": "metrics",
+  "value": "{'success_rate': 53, 'per_task': [68, 74, 66, 34, 42, 52, 72, 30, 10, 82], 'duration_min': 161.3, 'suite': 'libero_10', 'n_episodes': 50, 'seed': 45}",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+    "field": "metrics",
+    "value": "{'success_rate': 53, 'per_task': [68, 74, 66, 34, 42, 52, 72, 30, 10, 82], 'duration_min': 161.3, 'suite': 'libero_10', 'n_episodes': 50, 'seed': 45}",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T04:39:56.374514+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k09_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T00:48:25.632Z\", \"updated_at\": \"2026-05-28T04:38:06.987Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"471047\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T01:06:24.324Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 45, \"model_name\": \"pi05_libero_finetuned\", \"checkpoint_source\": \"eval_pi05_random_k09_long_seed44_strict_w41\", \"eval_data\": \"libero_10\", \"data_path\": \"libero_10\", \"data_count\": 500}, \"hypothesis\": \"π0.5 Random k=0.9 Long strict seed45 — peak margin Random 侧第四 seed (s42=34.2%, s43=35.0%, s44=31.8%, mean≈33.7%±1.3pp)。加固 headline inverted-U peak margin\", \"parent\": \"eval_pi05_random_k09_long_seed44_strict_w41\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 33.4, \"per_task\": [28, 38, 36, 54, 8, 40, 12, 32, 0, 86], \"duration_min\": 180.1, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.1059}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-28T04:39:56.374694+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T01:06:39.779Z\", \"updated_at\": \"2026-05-28T04:38:14.500Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:2\"], \"pid\": \"471390\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T01:06:35.625Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 45, \"model_name\": \"pi05_libero_finetuned\", \"checkpoint_source\": \"eval_pi05_l2norm_k07_long_seed44_strict_w27\", \"eval_data\": \"libero_10\", \"data_path\": \"libero_10\", \"data_count\": 500}, \"hypothesis\": \"π0.5 L2norm k=0.7 Long strict seed45 — crossover point 第四 seed (s42=63.2%, s43=65.4%, s44=待确认)。加固 crossover 区 L2norm 侧数据\", \"parent\": \"eval_pi05_l2norm_k07_long_seed44_strict_w27\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 61.6, \"per_task\": [72, 86, 64, 44, 60, 76, 50, 64, 10, 90], \"duration_min\": 153.6, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.3506}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-28T04:39:56.374864+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_attn_k075_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T00:53:54.123Z\", \"updated_at\": \"2026-05-28T04:38:18.706Z\", \"hypothesis\": \"π0.5 Attention scoring k=0.75 Long strict seed45 — 跨服务器验证点第四 seed (D293 discrepancy: w27v2=49.0% vs cqa1=52.0%)。w41 提供第三独立服务器数据点\", \"parent\": \"eval_pi05_attn_k075_long_seed44_strict_w41\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:3\"], \"pid\": \"459963\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T00:54:22.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 45, \"checkpoint_source\": \"pi0.5 pretrained (no finetune)\", \"eval_data\": \"libero_10 (10 tasks x 50 episodes)\"}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 53, \"per_task\": [68, 74, 66, 34, 42, 52, 72, 30, 10, 82], \"duration_min\": 161.3, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.2182}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-28T04:39:56.375008+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+    "field": "conclusion",
+    "value": "success",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-28T04:39:56.375148+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+    "field": "conclusion",
+    "value": "success",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-28T04:39:56.375274+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+    "field": "conclusion",
+    "value": "success",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-28T04:39:56.375430+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k09_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T00:48:25.632Z\", \"updated_at\": \"2026-05-28T04:38:27.305Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"471047\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T01:06:24.324Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 45, \"model_name\": \"pi05_libero_finetuned\", \"checkpoint_source\": \"eval_pi05_random_k09_long_seed44_strict_w41\", \"eval_data\": \"libero_10\", \"data_path\": \"libero_10\", \"data_count\": 500}, \"hypothesis\": \"π0.5 Random k=0.9 Long strict seed45 — peak margin Random 侧第四 seed (s42=34.2%, s43=35.0%, s44=31.8%, mean≈33.7%±1.3pp)。加固 headline inverted-U peak margin\", \"parent\": \"eval_pi05_random_k09_long_seed44_strict_w41\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 33.4, \"per_task\": [28, 38, 36, 54, 8, 40, 12, 32, 0, 86], \"duration_min\": 180.1, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.7821}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-28T04:39:56.375607+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T01:06:39.779Z\", \"updated_at\": \"2026-05-28T04:38:31.027Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:2\"], \"pid\": \"471390\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T01:06:35.625Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 45, \"model_name\": \"pi05_libero_finetuned\", \"checkpoint_source\": \"eval_pi05_l2norm_k07_long_seed44_strict_w27\", \"eval_data\": \"libero_10\", \"data_path\": \"libero_10\", \"data_count\": 500}, \"hypothesis\": \"π0.5 L2norm k=0.7 Long strict seed45 — crossover point 第四 seed (s42=63.2%, s43=65.4%, s44=待确认)。加固 crossover 区 L2norm 侧数据\", \"parent\": \"eval_pi05_l2norm_k07_long_seed44_strict_w27\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 61.6, \"per_task\": [72, 86, 64, 44, 60, 76, 50, 64, 10, 90], \"duration_min\": 153.6, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.7648}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-28T04:39:56.375773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_attn_k075_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T00:53:54.123Z\", \"updated_at\": \"2026-05-28T04:38:40.458Z\", \"hypothesis\": \"π0.5 Attention scoring k=0.75 Long strict seed45 — 跨服务器验证点第四 seed (D293 discrepancy: w27v2=49.0% vs cqa1=52.0%)。w41 提供第三独立服务器数据点\", \"parent\": \"eval_pi05_attn_k075_long_seed44_strict_w41\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:3\"], \"pid\": \"459963\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T00:54:22.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 45, \"checkpoint_source\": \"pi0.5 pretrained (no finetune)\", \"eval_data\": \"libero_10 (10 tasks x 50 episodes)\"}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 53, \"per_task\": [68, 74, 66, 34, 42, 52, 72, 30, 10, 82], \"duration_min\": 161.3, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.2217}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-28T04:39:56.375930+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+    "field": "status",
+    "value": "DONE",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-28T04:39:56.376054+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+    "field": "status",
+    "value": "DONE",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-28T04:39:56.376189+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+    "field": "status",
+    "value": "DONE",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-28T04:39:56.376312+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 4.4413}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-28T04:39:56.376429+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 2.4177}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-28T04:39:56.376542+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 2.1911}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-28T04:39:56.376655+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.90_libero_10_seed45.json",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.90_libero_10_seed45.json",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-28T04:39:56.376776+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.70_libero_10_seed45.json",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.70_libero_10_seed45.json",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-28T04:39:56.376891+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.75_libero_10_seed45.json",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.75_libero_10_seed45.json",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-28T04:39:56.377043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k09_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T00:48:25.632Z\", \"updated_at\": \"2026-05-28T04:39:04.336Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"471047\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T01:06:24.324Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 45, \"model_name\": \"pi05_libero_finetuned\", \"checkpoint_source\": \"eval_pi05_random_k09_long_seed44_strict_w41\", \"eval_data\": \"libero_10\", \"data_path\": \"libero_10\", \"data_count\": 500}, \"hypothesis\": \"π0.5 Random k=0.9 Long strict seed45 — peak margin Random 侧第四 seed (s42=34.2%, s43=35.0%, s44=31.8%, mean≈33.7%±1.3pp)。加固 headline inverted-U peak margin\", \"parent\": \"eval_pi05_random_k09_long_seed44_strict_w41\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 33.4, \"per_task\": [28, 38, 36, 54, 8, 40, 12, 32, 0, 86], \"duration_min\": 180.1, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.90_libero_10_seed45.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.4986}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-28T04:39:56.377233+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T01:06:39.779Z\", \"updated_at\": \"2026-05-28T04:39:11.753Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:2\"], \"pid\": \"471390\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T01:06:35.625Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 45, \"model_name\": \"pi05_libero_finetuned\", \"checkpoint_source\": \"eval_pi05_l2norm_k07_long_seed44_strict_w27\", \"eval_data\": \"libero_10\", \"data_path\": \"libero_10\", \"data_count\": 500}, \"hypothesis\": \"π0.5 L2norm k=0.7 Long strict seed45 — crossover point 第四 seed (s42=63.2%, s43=65.4%, s44=待确认)。加固 crossover 区 L2norm 侧数据\", \"parent\": \"eval_pi05_l2norm_k07_long_seed44_strict_w27\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 61.6, \"per_task\": [72, 86, 64, 44, 60, 76, 50, 64, 10, 90], \"duration_min\": 153.6, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.70_libero_10_seed45.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.2899}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-28T04:39:56.377408+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_attn_k075_long_seed45_strict_w41\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-28T00:53:54.123Z\", \"updated_at\": \"2026-05-28T04:39:15.417Z\", \"hypothesis\": \"π0.5 Attention scoring k=0.75 Long strict seed45 — 跨服务器验证点第四 seed (D293 discrepancy: w27v2=49.0% vs cqa1=52.0%)。w41 提供第三独立服务器数据点\", \"parent\": \"eval_pi05_attn_k075_long_seed44_strict_w41\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:3\"], \"pid\": \"459963\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T00:54:22.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 45, \"checkpoint_source\": \"pi0.5 pretrained (no finetune)\", \"eval_data\": \"libero_10 (10 tasks x 50 episodes)\"}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 53, \"per_task\": [68, 74, 66, 34, 42, 52, 72, 30, 10, 82], \"duration_min\": 161.3, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.75_libero_10_seed45.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.6871}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-28T04:39:56.377553+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_random_k09_long_seed45_strict_w41",
+    "field": "status",
+    "value": "DONE",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-28T04:39:56.377676+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_l2norm_k07_long_seed45_strict_w41",
+    "field": "status",
+    "value": "DONE",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-28T04:39:56.377792+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_pi05_attn_k075_long_seed45_strict_w41",
+    "field": "status",
+    "value": "DONE",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-28T04:39:56.377965+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k09_long_seed45_strict_w41\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-28T00:48:25.632Z\", \"updated_at\": \"2026-05-28T04:39:22.187Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"471047\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T01:06:24.324Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 45, \"model_name\": \"pi05_libero_finetuned\", \"checkpoint_source\": \"eval_pi05_random_k09_long_seed44_strict_w41\", \"eval_data\": \"libero_10\", \"data_path\": \"libero_10\", \"data_count\": 500, \"wall_clock_seconds\": 12777.9, \"gpu_hours\": 3.55}, \"hypothesis\": \"π0.5 Random k=0.9 Long strict seed45 — peak margin Random 侧第四 seed (s42=34.2%, s43=35.0%, s44=31.8%, mean≈33.7%±1.3pp)。加固 headline inverted-U peak margin\", \"parent\": \"eval_pi05_random_k09_long_seed44_strict_w41\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k09_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 33.4, \"per_task\": [28, 38, 36, 54, 8, 40, 12, 32, 0, 86], \"duration_min\": 180.1, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.90_libero_10_seed45.json\", \"completed_at\": \"2026-05-28T04:39:22.187Z\"}, \"hint\": \"💡 建议将成功经验写入 memory
+…[truncated 86 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-28T04:39:56.378182+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_long_seed45_strict_w41\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-28T01:06:39.779Z\", \"updated_at\": \"2026-05-28T04:39:32.010Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:2\"], \"pid\": \"471390\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T01:06:35.625Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 45, \"model_name\": \"pi05_libero_finetuned\", \"checkpoint_source\": \"eval_pi05_l2norm_k07_long_seed44_strict_w27\", \"eval_data\": \"libero_10\", \"data_path\": \"libero_10\", \"data_count\": 500, \"wall_clock_seconds\": 12776.4, \"gpu_hours\": 3.55}, \"hypothesis\": \"π0.5 L2norm k=0.7 Long strict seed45 — crossover point 第四 seed (s42=63.2%, s43=65.4%, s44=待确认)。加固 crossover 区 L2norm 侧数据\", \"parent\": \"eval_pi05_l2norm_k07_long_seed44_strict_w27\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 61.6, \"per_task\": [72, 86, 64, 44, 60, 76, 50, 64, 10, 90], \"duration_min\": 153.6, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.70_libero_10_seed45.json\", \"completed_at\": \"2026-05-28T04:39:32.010Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\"
+…[truncated 52 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-28T04:39:56.378443+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_attn_k075_long_seed45_strict_w41\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-28T00:53:54.123Z\", \"updated_at\": \"2026-05-28T04:39:39.064Z\", \"hypothesis\": \"π0.5 Attention scoring k=0.75 Long strict seed45 — 跨服务器验证点第四 seed (D293 discrepancy: w27v2=49.0% vs cqa1=52.0%)。w41 提供第三独立服务器数据点\", \"parent\": \"eval_pi05_attn_k075_long_seed44_strict_w41\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode attention --keep_ratio 0.75 --suite libero_10 --n_episodes 50 --seed 45 --gpu 0\\\"\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:3\"], \"pid\": \"459963\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log\", \"submitted_at\": \"2026-05-28T00:54:22.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": \"10 tasks x 50 episodes\", \"model_name\": \"pi0.5\", \"seed\": 45, \"checkpoint_source\": \"pi0.5 pretrained (no finetune)\", \"eval_data\": \"libero_10 (10 tasks x 50 episodes)\", \"wall_clock_seconds\": 13516.1, \"gpu_hours\": 3.75}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_attn_k075_long_seed45_strict_w41.log\", \"metrics\": {\"success_rate\": 53, \"per_task\": [68, 74, 66, 34, 42, 52, 72, 30, 10, 82], \"duration_min\": 161.3, \"suite\": \"libero_10\", \"n_episodes\": 50, \"seed\": 45}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.75_libero_10_seed45.json\", \"completed_at\": \"2026-05-28T04:39:39.065Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.2075}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-28T04:39:56.378665+00:00_
+
+Registry 更新完成。汇总：
+
+## westd-41074 GPU 状态汇总
+
+| GPU | 实验 | 状态 | SR% | per-task | 耗时 |
+|-----|------|------|-----|----------|------|
+| **cuda:0** | pi05_random_k09_long_s45 | **已完成** ✓ | **33.4%** | 28,38,36,54,8,40,12,32,0,86 | 180min |
+| **cuda:1** | pi05_random_k05_long_s45 | **运行中** | — | 正在跑，43% GPU利用率，10.6GB显存 | 已跑2h06m |
+| **cuda:2** | pi05_l2norm_k07_long_s45 | **已完成** ✓ | **61.6%** | 72,86,64,44,60,76,50,64,10,90 | 154min |
+| **cuda:3** | pi05_attn_k075_long_s45 | **已完成** ✓ | **53.0%** | 68,74,66,34,42,52,72,30,10,82 | 161min |
+
+**空闲原因**：cuda:0/2/3 的实验已正常完成（EXIT_CODE=0），不是挂起或崩溃。Director 报告的"空闲"就是实验跑完后 GPU 释放了。
+
+**cuda:1** 是唯一还在跑的实验（random k=0.5），预计还需 ~1h 完成。
+
+**3 张空闲卡可立即部署新实验。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_w41_full_gpu_check_20260528T043624"
+}
+```
+
+</details>
+
+---

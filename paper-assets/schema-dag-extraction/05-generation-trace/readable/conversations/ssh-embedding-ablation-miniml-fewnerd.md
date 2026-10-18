@@ -1,0 +1,2056 @@
+# ssh embedding ablation miniml fewnerd
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 69
+- **Recorded user turns:** 0
+- **Tool calls:** 34
+- **Original source:** `logs/chats/worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628.jsonl`
+- **Structured JSON:** [`1a823a04007f6b1547d8.json`](../../sessions/1a/1a823a04007f6b1547d8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+69 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T08:04:29.183979+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T08:04:29.184421+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T08:04:29.184622+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/configs/few_nerd_types.json /root/schema-dag-extraction/artifacts/sim_matrix.pt /root/schema-dag-extraction/artifacts/predictions_exp2.json 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/schema-dag-extraction/configs/few_nerd_types.json /root/schema-dag-extraction/artifacts/sim_matrix.pt /root/schema-dag-extraction/artifacts/predictions_exp2.json 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T08:04:29.184767+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T08:04:29.184977+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/configs/few_nerd_types.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/configs/few_nerd_types.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T08:04:29.185244+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"person-actor\\\": \\\"A person who performs in movies, TV shows, theater, or other entertainment productions.\\\",\\n  \\\"person-artist/author\\\": \\\"A person who creates artistic or literary works, including writers, painters, sculptors, musicians as creators, and other creative professionals.\\\",\\n  \\\"person-athlete\\\": \\\"A person who competes in sports or athletic events, whether professional or amateur.\\\",\\n  \\\"person-director\\\": \\\"A person who directs movies, TV shows, theater productions, or other media content.\\\",\\n  \\\"person-other\\\": \\\"A person who does not fit into the other specific person subcategories, such as historical figures, activists, or ordinary individuals mentioned by name.\\\",\\n  \\\"person-politician\\\": \\\"A person who holds or campaigns for political office, or is primarily known for political activities.\\\",\\n  \\\"person-scholar\\\": \\\"A person primarily known for academic or scientific work, including professors, researchers, and intellectuals.\\\",\\n  \\\"person-soldier\\\": \\\"A person who serves or served in a military or armed force, including officers, generals, and enlisted personnel.\\\",\\n  \\\"organization-company\\\": \\\"A commercial business entity, corporation, or firm engaged in trade, manufacturing, or services for profit.\\\",\\n  \\\"organization-education\\\": \\\"An educational institution such as a university, college, school, or research institute.\\\",\\n  \\\"organization-government/governmentagency\\\": \\\"A government body, department, ministry, or agency that exercises governmental authority or provides public services.\\\",\\n  \\\"organization-media/newspaper\\\": \\\"A media organization, news outlet, newspaper, magazine, broadcasting network, or publishing house.\\\",\\n  \\\"organization-other\\\": \\\"An organization that does not fit into the other specific organization subcategories, such as NGOs, fou
+…[truncated 7094 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T08:04:29.185419+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import sentence_transformers; print(sentence_transformers.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "python3 -c \"import sentence_transformers; print(sentence_transformers.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T08:04:29.185556+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T08:04:29.185683+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/schema-dag-extraction/artifacts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T08:04:29.185818+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"batch_config_dry_run.json\\nbatch_config_exp1.json\\nbatch_config_exp2.json\\nbatch_config_maven_dry_run.json\\neval_dry_run.json\\neval_exp1.json\\neval_exp2.json\\neval_maven_dry_run.json\\nexp004\\nexp004_exp1.log\\nexp004_exp2.log\\nexp008\\nexp008_dryrun\\nexp008_run.log\\nfewrel_pilot\\nmaven_bcs_matrix_qwen3.pt\\nmaven_type_embeddings_qwen3.pt\\npredictions_dry_run.json\\npredictions_exp1.json\\npredictions_exp2.json\\npredictions_maven_dry_run.json\\nsim_matrix.pt\\ntype_embeddings.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T08:04:29.186056+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import sentence_transformers; print(sentence_transformers.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "python3 -c \"import sentence_transformers; print(sentence_transformers.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T08:04:29.186196+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T08:04:29.186318+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import torch; d=torch.load('artifacts/sim_matrix.pt',map_location='cpu',weights_only=False); print(type(d),list(d.keys()) if isinstance(d,dict) else d.shape)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "python3 -c \"import torch; d=torch.load('artifacts/sim_matrix.pt',map_location='cpu',weights_only=False); print(type(d),list(d.keys()) if isinstance(d,dict) else d.shape)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T08:04:29.186441+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T08:04:29.186567+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import json; d=json.load(open('artifacts/predictions_exp2.json')); print(type(d),len(d)); print(list(d[0].keys()) if isinstance(d,list) else list(d.keys())[:10])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "python3 -c \"import json; d=json.load(open('artifacts/predictions_exp2.json')); print(type(d),len(d)); print(list(d[0].keys()) if isinstance(d,list) else list(d.keys())[:10])\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T08:04:29.186689+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T08:04:29.186806+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import torch; d=torch.load('artifacts/sim_matrix.pt',map_location='cpu',weights_only=False); print(d['similarity_matrix'].shape); print('keys:',list(d.keys()))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "python3 -c \"import torch; d=torch.load('artifacts/sim_matrix.pt',map_location='cpu',weights_only=False); print(d['similarity_matrix'].shape); print('keys:',list(d.keys()))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T08:04:29.186952+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T08:04:29.187104+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && python3 -c \"\nimport sentence_transformers; print('st:', sentence_transformers.__version__)\nimport torch; d=torch.load('artifacts/sim_matrix.pt',map_location='cpu',weights_only=False)\nprint('sim_matrix keys:', list(d.keys()))\nprint('sim_matrix shape:', d['similarity_matrix'].shape)\nif 'type_names' in d: print('type_names sample:', d['type_names'][:3])\nimport json; preds=json.load(open('artifacts/predictions_exp2.json'))\nprint('predictions type:', type(preds), 'len:', len(preds))\nif isinstance(preds, list): print('pred keys:', list(preds[0].keys()))\nelif isinstance(preds, dict): print('pred keys:', list(preds.keys())[:10])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cd /root/schema-dag-extraction && python3 -c \"\nimport sentence_transformers; print('st:', sentence_transformers.__version__)\nimport torch; d=torch.load('artifacts/sim_matrix.pt',map_location='cpu',weights_only=False)\nprint('sim_matrix keys:', list(d.keys()))\nprint('sim_matrix shape:', d['similarity_matrix'].shape)\nif 'type_names' in d: print('type_names sample:', d['type_names'][:3])\nimport json; preds=json.load(open('artifacts/predictions_exp2.json'))\nprint('predictions type:', type(preds), 'len:', len(preds))\nif isinstance(preds, list): print('pred keys:', list(preds[0].keys()))\nelif isinstance(preds, dict): print('pred keys:', list(preds.keys())[:10])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T08:04:29.187248+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/schema-dag-extraction && python3 -c \\\"\\\\nimport sentence_transformers; print(\\\\'st:\\\\', sentence_transformers.__version__)\\\\nimport torch; d=torch.load(\\\\'artifacts/sim_matrix.pt\\\\',map_location=\\\\'cpu\\\\',weights_only=False)\\\\nprint(\\\\'sim_matrix keys:\\\\', list(d.keys()))\\\\nprint(\\\\'sim_matrix shape:\\\\', d[\\\\'similarity_matrix\\\\'].shape)\\\\nif \\\\'type_names\\\\' in d: print(\\\\'type_names sample:\\\\', d[\\\\'type_names\\\\'][:3])\\\\nimport json; preds=json.load(open(\\\\'artifacts/predictions_exp2.json\\\\'))\\\\nprint(\\\\'predictions type:\\\\', type(preds), \\\\'len:\\\\', len(preds))\\\\nif isinstance(preds, list): print(\\\\'pred keys:\\\\', list(preds[0].keys()))\\\\nelif isinstance(preds, dict): print(\\\\'pred keys:\\\\', list(preds.keys())[:10])\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T08:04:29.187379+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/eval_exp2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/schema-dag-extraction/artifacts/eval_exp2.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T08:04:29.187503+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/eval_exp2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T08:04:29.187652+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport sentence_transformers; print('st:', sentence_transformers.__version__)\nimport torch; d=torch.load('artifacts/sim_matrix.pt',map_location='cpu',weights_only=False)\nprint('sim_matrix keys:', list(d.keys()))\nprint('sim_matrix shape:', d['similarity_matrix'].shape)\nif 'type_names' in d: print('type_names sample:', d['type_names'][:3])\nimport json; preds=json.load(open('artifacts/predictions_exp2.json'))\nprint('predictions type:', type(preds), 'len:', len(preds))\nif isinstance(preds, list): print('pred keys:', list(preds[0].keys()))\nelif isinstance(preds, dict): print('pred keys:', list(preds.keys())[:10])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport sentence_transformers; print('st:', sentence_transformers.__version__)\nimport torch; d=torch.load('artifacts/sim_matrix.pt',map_location='cpu',weights_only=False)\nprint('sim_matrix keys:', list(d.keys()))\nprint('sim_matrix shape:', d['similarity_matrix'].shape)\nif 'type_names' in d: print('type_names sample:', d['type_names'][:3])\nimport json; preds=json.load(open('artifacts/predictions_exp2.json'))\nprint('predictions type:', type(preds), 'len:', len(preds))\nif isinstance(preds, list): print('pred keys:', list(preds[0].keys()))\nelif isinstance(preds, dict): print('pred keys:', list(preds.keys())[:10])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T08:04:29.187797+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \\\"\\\\nimport sentence_transformers; print(\\\\'st:\\\\', sentence_transformers.__version__)\\\\nimport torch; d=torch.load(\\\\'artifacts/sim_matrix.pt\\\\',map_location=\\\\'cpu\\\\',weights_only=False)\\\\nprint(\\\\'sim_matrix keys:\\\\', list(d.keys()))\\\\nprint(\\\\'sim_matrix shape:\\\\', d[\\\\'similarity_matrix\\\\'].shape)\\\\nif \\\\'type_names\\\\' in d: print(\\\\'type_names sample:\\\\', d[\\\\'type_names\\\\'][:3])\\\\nimport json; preds=json.load(open(\\\\'artifacts/predictions_exp2.json\\\\'))\\\\nprint(\\\\'predictions type:\\\\', type(preds), \\\\'len:\\\\', len(preds))\\\\nif isinstance(preds, list): print(\\\\'pred keys:\\\\', list(preds[0].keys()))\\\\nelif isinstance(preds, dict): print(\\\\'pred keys:\\\\', list(preds.keys())[:10])\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nst: 5.4.1\\nsim_matrix keys: ['sim_matrix', 'type_names', 'type_to_idx']\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 5, in &lt;module>\\nKeyError: 'similarity_matrix'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 27.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T08:04:29.187989+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport torch; d=torch.load('artifacts/sim_matrix.pt',map_location='cpu',weights_only=False)\nprint('keys:', list(d.keys()))\nprint('shape:', d['sim_matrix'].shape)\nprint('type_names[:5]:', d['type_names'][:5])\nprint('n_types:', len(d['type_names']))\nimport json; preds=json.load(open('artifacts/predictions_exp2.json'))\nprint('preds type:', type(preds), 'len:', len(preds))\nif isinstance(preds, list): print('pred[0] keys:', list(preds[0].keys()))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport torch; d=torch.load('artifacts/sim_matrix.pt',map_location='cpu',weights_only=False)\nprint('keys:', list(d.keys()))\nprint('shape:', d['sim_matrix'].shape)\nprint('type_names[:5]:', d['type_names'][:5])\nprint('n_types:', len(d['type_names']))\nimport json; preds=json.load(open('artifacts/predictions_exp2.json'))\nprint('preds type:', type(preds), 'len:', len(preds))\nif isinstance(preds, list): print('pred[0] keys:', list(preds[0].keys()))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T08:04:29.188123+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport json; d=json.load(open('artifacts/eval_exp2.json'))\nprint(type(d))\nif isinstance(d, dict):\n    print('keys:', list(d.keys())[:20])\n    for k in ['per_type_metrics', 'per_type_f1', 'type_metrics', 'results']:\n        if k in d:\n            v = d[k]\n            if isinstance(v, dict):\n                sample = list(v.items())[:3]\n                print(f'{k} sample:', sample)\n            else:\n                print(f'{k}:', type(v))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport json; d=json.load(open('artifacts/eval_exp2.json'))\nprint(type(d))\nif isinstance(d, dict):\n    print('keys:', list(d.keys())[:20])\n    for k in ['per_type_metrics', 'per_type_f1', 'type_metrics', 'results']:\n        if k in d:\n            v = d[k]\n            if isinstance(v, dict):\n                sample = list(v.items())[:3]\n                print(f'{k} sample:', sample)\n            else:\n                print(f'{k}:', type(v))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T08:04:29.188254+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"keys: ['sim_matrix', 'type_names', 'type_to_idx']\\nshape: torch.Size([66, 66])\\ntype_names[:5]: ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting']\\nn_types: 66\\npreds type: &lt;class 'list'> len: 54000\\npred[0] keys: ['sample_id', 'batch_id', 'count_key', 'batch_types', 'batch_bcs', 'predictions', 'prompt_tokens', 'gen_tokens', 'latency_s', 'prompt_version']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T08:04:29.188378+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"&lt;class 'dict'>\\nkeys: ['count_6_low_bcs', 'count_6_high_bcs', 'count_6_random_0', 'count_6_random_1', 'count_6_random_2', 'count_6_random_3', 'count_6_random_4', 'count_6_random_5', 'count_6_random_6', 'count_6_random_7', 'count_6_random_8', 'count_6_random_9', 'count_6_random_10', 'count_6_random_11', 'count_6_random_12', 'count_6_random_13', 'count_6_random_14', 'count_6_random_15', 'count_6_random_16', 'count_6_random_17']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T08:04:29.188531+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport json\nd=json.load(open('artifacts/eval_exp2.json'))\nk0 = list(d.keys())[0]\nprint('first group:', k0)\nv0 = d[k0]\nprint('group type:', type(v0))\nif isinstance(v0, dict):\n    print('group keys:', list(v0.keys())[:20])\n    for kk in v0:\n        vv = v0[kk]\n        if isinstance(vv, dict):\n            print(f'  {kk} keys:', list(vv.keys())[:10])\n            break\n        elif isinstance(vv, (float,int,str)):\n            print(f'  {kk}:', vv)\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport json\nd=json.load(open('artifacts/eval_exp2.json'))\nk0 = list(d.keys())[0]\nprint('first group:', k0)\nv0 = d[k0]\nprint('group type:', type(v0))\nif isinstance(v0, dict):\n    print('group keys:', list(v0.keys())[:20])\n    for kk in v0:\n        vv = v0[kk]\n        if isinstance(vv, dict):\n            print(f'  {kk} keys:', list(vv.keys())[:10])\n            break\n        elif isinstance(vv, (float,int,str)):\n            print(f'  {kk}:', vv)\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T08:04:29.188671+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"first group: count_6_low_bcs\\ngroup type: &lt;class 'dict'>\\ngroup keys: ['bcs', 'count_key', 'num_types', 'num_samples', 'text_match']\\n  bcs: 0.8708932995796204\\n  count_key: count_6\\n  num_types: 6\\n  num_samples: 1000\\n  text_match keys: ['precision', 'recall', 'f1', 'tp', 'total_pred', 'total_gold']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T08:04:29.188813+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport json\npreds=json.load(open('artifacts/predictions_exp2.json'))\np = preds[0]\nprint('sample_id:', p['sample_id'])\nprint('batch_types:', p['batch_types'][:3])\nprint('batch_bcs:', round(p['batch_bcs'],4) if isinstance(p['batch_bcs'], float) else p['batch_bcs'])\npred = p['predictions']\nprint('predictions type:', type(pred))\nif isinstance(pred, list):\n    print('n predictions:', len(pred))\n    if len(pred)>0:\n        pp = pred[0]\n        print('pred[0] type:', type(pp))\n        if isinstance(pp, dict): print('pred[0] keys:', list(pp.keys()))\n        else: print('pred[0]:', str(pp)[:200])\nelif isinstance(pred, dict):\n    print('pred keys:', list(pred.keys())[:10])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport json\npreds=json.load(open('artifacts/predictions_exp2.json'))\np = preds[0]\nprint('sample_id:', p['sample_id'])\nprint('batch_types:', p['batch_types'][:3])\nprint('batch_bcs:', round(p['batch_bcs'],4) if isinstance(p['batch_bcs'], float) else p['batch_bcs'])\npred = p['predictions']\nprint('predictions type:', type(pred))\nif isinstance(pred, list):\n    print('n predictions:', len(pred))\n    if len(pred)>0:\n        pp = pred[0]\n        print('pred[0] type:', type(pp))\n        if isinstance(pp, dict): print('pred[0] keys:', list(pp.keys()))\n        else: print('pred[0]:', str(pp)[:200])\nelif isinstance(pred, dict):\n    print('pred keys:', list(pred.keys())[:10])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T08:04:29.189001+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sample_id: 0\\nbatch_types: ['organization-politicalparty', 'person-actor', 'location-bodiesofwater']\\nbatch_bcs: 0.8709\\npredictions type: &lt;class 'list'>\\nn predictions: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T08:04:29.189154+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport json\npreds=json.load(open('artifacts/predictions_exp2.json'))\n# find a sample with actual predictions\nfor p in preds[:100]:\n    if len(p['predictions']) > 0:\n        print('sample_id:', p['sample_id'])\n        print('batch_types:', p['batch_types'])\n        print('n_preds:', len(p['predictions']))\n        pp = p['predictions'][0]\n        print('pred type:', type(pp))\n        if isinstance(pp, dict):\n            print('pred keys:', list(pp.keys()))\n            print('pred sample:', {k: str(v)[:100] for k,v in pp.items()})\n        else:\n            print('pred:', str(pp)[:300])\n        break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport json\npreds=json.load(open('artifacts/predictions_exp2.json'))\n# find a sample with actual predictions\nfor p in preds[:100]:\n    if len(p['predictions']) > 0:\n        print('sample_id:', p['sample_id'])\n        print('batch_types:', p['batch_types'])\n        print('n_preds:', len(p['predictions']))\n        pp = p['predictions'][0]\n        print('pred type:', type(pp))\n        if isinstance(pp, dict):\n            print('pred keys:', list(pp.keys()))\n            print('pred sample:', {k: str(v)[:100] for k,v in pp.items()})\n        else:\n            print('pred:', str(pp)[:300])\n        break\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T08:04:29.189282+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/src/analyze_maven_results.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/schema-dag-extraction/src/analyze_maven_results.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T08:04:29.189408+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/src -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/src -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T08:04:29.189535+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sample_id: 3\\nbatch_types: ['organization-politicalparty', 'person-actor', 'location-bodiesofwater', 'other-disease', 'organization-education', 'art-film']\\nn_preds: 1\\npred type: &lt;class 'dict'>\\npred keys: ['text', 'type']\\npred sample: {'text': 'Larry G. Messinger', 'type': 'person-actor'}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T08:04:29.189656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/analyze_maven_results.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T08:04:29.189784+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/few_nerd_utils.py\\n/root/schema-dag-extraction/src/compute_type_embeddings.py\\n/root/schema-dag-extraction/src/compute_bcs.py\\n/root/schema-dag-extraction/src/select_type_batches.py\\n/root/schema-dag-extraction/src/run_extraction.py\\n/root/schema-dag-extraction/src/evaluate.py\\n/root/schema-dag-extraction/src/run_experiment.py\\n/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/diagnose_eval.py\\n/root/schema-dag-extraction/src/text_match_reeval.py\\n/root/schema-dag-extraction/src/reeval_text_match.py\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\n/root/schema-dag-extraction/src/preprocess_maven.py\\n/root/schema-dag-extraction/src/build_re_prompt.py\\n/root/schema-dag-extraction/src/preprocess_fewrel.py\\n/root/schema-dag-extraction/src/compute_maven_scs.py\\n/root/schema-dag-extraction/src/per_type_analysis.py\\n/root/schema-dag-extraction/src/maven_utils.py\\n/root/schema-dag-extraction/src/fewrel_utils.py\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\n/root/schema-dag-extraction/src/sdgd/similarity.py\\n/root/schema-dag-extraction/src/sdgd/graph.py\\n/root/schema-dag-extraction/src/sdgd/merge.py\\n/root/schema-dag-extraction/src/sdgd/evaluate.py\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\n/root/schema-dag-extraction/src/sdgd/__init__.py\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T08:04:29.189968+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat /root/schema-dag-extraction/src/per_type_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat /root/schema-dag-extraction/src/per_type_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T08:04:29.190257+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Per-type F1 vs BCS analysis, controlling for type frequency.\\n\\nFor each entity type:\\n  - F1: averaged across all batches containing that type (text_match eval)\\n  - mean_BCS: mean cosine similarity with all other types (from embeddings)\\n  - frequency: gold entity count in test set\\n\\nThen: Pearson, Spearman, partial correlation (controlling freq), quartile comparison.\\n\\\"\\\"\\\"\\nimport json\\nimport sys\\nimport logging\\nfrom pathlib import Path\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nsys.path.insert(0, str(Path(__file__).parent))\\nfrom few_nerd_utils import load_few_nerd\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nROOT = Path(\\\"/root/schema-dag-extraction\\\")\\n\\n\\ndef text_match(pred, gold, source_text=\\\"\\\"):\\n    if pred.get(\\\"type\\\") != gold[\\\"type\\\"]:\\n        return False\\n    pt = pred.get(\\\"text\\\", \\\"\\\").strip()\\n    gt = gold.get(\\\"text\\\", \\\"\\\").strip()\\n    if not pt or not gt:\\n        return False\\n    if source_text and pt.lower() not in source_text.lower():\\n        return False\\n    pl, gl = pt.lower(), gt.lower()\\n    return pl == gl or pl in gl or gl in pl\\n\\n\\ndef compute_per_type_metrics(predictions, samples, batch_types):\\n    \\\"\\\"\\\"Compute TP/FP/FN per type for a single batch.\\\"\\\"\\\"\\n    type_stats = {t: {\\\"tp\\\": 0, \\\"fp\\\": 0, \\\"fn\\\": 0} for t in batch_types}\\n\\n    pred_by_sample = defaultdict(list)\\n    for p in predictions:\\n        pred_by_sample[p[\\\"sample_id\\\"]].append(p)\\n\\n    for sid, pred_entries in pred_by_sample.items():\\n        if sid >= len(samples):\\n            continue\\n        sample = samples[sid]\\n        source_text = sample.get(\\\"text\\\", \\\"\\\")\\n        gold_entities = [e for e in s
+…[truncated 7346 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T08:04:29.190440+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport torch\nd = torch.load('artifacts/type_embeddings.pt', map_location='cpu', weights_only=False)\nprint('type:', type(d))\nif isinstance(d, dict):\n    keys = list(d.keys())\n    print('n_keys:', len(keys))\n    print('first 3 keys:', keys[:3])\n    v0 = d[keys[0]]\n    print('val type:', type(v0), 'shape:', v0.shape if hasattr(v0,'shape') else 'N/A')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python -c \"\nimport torch\nd = torch.load('artifacts/type_embeddings.pt', map_location='cpu', weights_only=False)\nprint('type:', type(d))\nif isinstance(d, dict):\n    keys = list(d.keys())\n    print('n_keys:', len(keys))\n    print('first 3 keys:', keys[:3])\n    v0 = d[keys[0]]\n    print('val type:', type(v0), 'shape:', v0.shape if hasattr(v0,'shape') else 'N/A')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T08:04:29.190573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/results/per_type_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/schema-dag-extraction/results/per_type_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T08:04:29.190701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"type: &lt;class 'dict'>\\nn_keys: 66\\nfirst 3 keys: ['person-actor', 'person-artist/author', 'person-athlete']\\nval type: &lt;class 'torch.Tensor'> shape: torch.Size([5120])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.21}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T08:04:29.190831+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/results/per_type_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T08:04:29.191070+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /root/schema-dag-extraction/src/embedding_ablation_fewnerd.py << 'PYEOF'\n\"\"\"MiniLM embedding ablation for Few-NERD: compute BCS matrix + compare with Qwen3.\"\"\"\nimport json\nimport sys\nfrom pathlib import Path\nfrom collections import defaultdict\n\nimport numpy as np\nimport torch\nfrom scipy import stats\n\nsys.path.insert(0, str(Path(__file__).parent))\nfrom few_nerd_utils import load_few_nerd\n\nROOT = Path(\"/root/schema-dag-extraction\")\n\n\ndef text_match(pred, gold, source_text=\"\"):\n    if pred.get(\"type\") != gold[\"type\"]:\n        return False\n    pt = pred.get(\"text\", \"\").strip()\n    gt = gold.get(\"text\", \"\").strip()\n    if not pt or not gt:\n        return False\n    if source_text and pt.lower() not in source_text.lower():\n        return False\n    pl, gl = pt.lower(), gt.lower()\n    return pl == gl or pl in gl or gl in pl\n\n\ndef main():\n    # --- Step 1: Load types ---\n    with open(ROOT / \"configs\" / \"few_nerd_types.json\") as f:\n        type_dict = json.load(f)\n    type_names_config = list(type_dict.keys())\n    print(f\"[1] Loaded {len(type_names_config)} types from config\")\n\n    # --- Step 2: Compute MiniLM embeddings ---\n    from sentence_transformers import SentenceTransformer\n    model = SentenceTransformer('all-MiniLM-L6-v2')\n    readable_names = [t.replace('-', ' ').replace('/', ' / ') for t in type_names_config]\n    embeddings = model.encode(readable_names, convert_to_tensor=True, device='cpu')\n    print(f\"[2] MiniLM embeddings shape: {embeddings.shape}\")\n\n    # Cosine similarity matrix\n    embs_norm = embeddings / embeddings.norm(dim=1, keepdim=True)\n    sim_minilm = embs_norm @ embs_norm.T\n    print(f\"[2] MiniLM sim matrix shape: {sim_minilm.shape}\")\n\n    # Save - match format of sim_matrix.pt\n    type_to_idx = {t: i for i, t in enumerate(type_names_config)}\n    torch.save({\n        'sim_matrix': sim_minilm.cpu(),\n        'type_names': type_names_config,\n        'type_to_idx': type_to_idx,\n        'model': 'all-MiniLM-L6-v2',\n        'embeddings': embeddings.cpu(),\n    }, ROOT / \"artifacts\" / \"fewnerd_bcs_matrix_minilm.pt\")\n    print(\"[2] Saved artifacts/fewnerd_bcs_matrix_minilm.pt\")\n\n    # --- Step 3: Load Qwen3 sim matrix ---\n    qwen3_data = torch.load(ROOT / \"artifacts\" / \"sim_matrix.pt\", map_location='cpu', weights_only=False)\n    sim_qwen3 = qwen3_data['sim_matrix']\n    qwen3_types = qwen3_data['type_names']\n    print(f\"[3] Qwen3 sim matrix: {sim_qwen3.shape}, {len(qwen3_types)} types\")\n\n    # Align type ordering: MiniLM uses config order, Qwen3 uses its own order\n    # Build aligned MiniLM matrix in Qwen3 type order for comparison\n    minilm_idx_map = {t: i for i, t in enumerate(type_names_config)}\n    qwen3_to_minilm = [minilm_idx_map[t] for t in qwen3_types]\n    sim_minilm_aligned = sim_minilm[qwen3_to_minilm][:, qwen3_to_minilm]\n\n    # --- Step 4: Compare BCS distributions ---\n    n = len(qwen3_types)\n    mask = ~torch.eye(n, dtype=torch.bool)\n    q3_off = sim_qwen3[mask].numpy()\n    ml_off = sim_minilm_aligned[mask].numpy()\n\n    print(\"\\n=== BCS Distribution Comparison ===\")\n    print(f\"{'Metric':<20} {'Qwen3':>10} {'MiniLM':>10}\")\n    print(\"-\" * 42)\n    for name, func in [('mean', np.mean), ('std', np.std), ('min', np.min),\n                        ('max', np.max), ('median', np.median)]:\n        print(f\"{name:<20} {func(q3_off):>10.4f} {func(ml_off):>10.4f}\")\n\n    # Correlation between the two matrices (off-diagonal)\n    matrix_corr, matrix_p = stats.pearsonr(q3_off, ml_off)\n    matrix_spearman, matrix_sp = stats.spearmanr(q3_off, ml_off)\n    print(f\"\\nMatrix correlation (off-diag pairs):\")\n    print(f\"  Pearson r={matrix_corr:.4f}, p={matrix_p:.2e}\")\n    print(f\"  Spearman ρ={matrix_spearman:.4f}, p={matrix_sp:.2e}\")\n\n    # Top-10 most similar pairs for each\n    pairs = []\n    for i in range(n):\n        for j in range(i+1, n):\n            pairs.append((qwen3_types[i], qwen3_types[j], sim_qwen3[i,j].item(), sim_minilm_aligned[i,j].item()))\n\n    top10_q3 = sorted(pairs, key=lambda x: x[2], reverse=True)[:10]\n    top10_ml = sorted(pairs, key=lambda x: x[3], reverse=True)[:10]\n\n    print(\"\\n--- Top-10 highest BCS pairs (Qwen3) ---\")\n    for t1, t2, bq, bm in top10_q3:\n        print(f\"  {t1} <-> {t2}: Qwen3={bq:.4f}, MiniLM={bm:.4f}\")\n\n    print(\"\\n--- Top-10 highest BCS pairs (MiniLM) ---\")\n    for t1, t2, bq, bm in top10_ml:\n        print(f\"  {t1} <-> {t2}: MiniLM={bm:.4f}, Qwen3={bq:.4f}\")\n\n    # Overlap in top-10\n    q3_set = set((p[0], p[1]) for p in top10_q3)\n    ml_set = set((p[0], p[1]) for p in top10_ml)\n    overlap = q3_set & ml_set\n    print(f\"\\nTop-10 overlap: {len(overlap)}/10 pairs\")\n\n    # --- Step 5: Per-type F1 vs mean_BCS (MiniLM) ---\n    print(\"\\n=== Per-type F1 vs BCS (MiniLM) ===\")\n\n    # Compute mean_BCS for each type (MiniLM)\n    mean_bcs_minilm = {}\n    for i, t in enumerate(type_names_config):\n        sims = [sim_minilm[i, j].item() for j in range(len(type_names_config)) if j != i]\n        mean_bcs_minilm[t] = np.mean(sims)\n\n    # Also compute mean_BCS for Qwen3 for comparison\n    mean_bcs_qwen3 = {}\n    qwen3_idx_map = {t: i for i, t in enumerate(qwen3_types)}\n    for t in qwen3_types:\n        i = qwen3_idx_map[t]\n        sims = [sim_qwen3[i, j].item() for j in range(n) if j != i]\n        mean_bcs_qwen3[t] = np.mean(sims)\n\n    # Load predictions and test data\n    preds = json.load(open(ROOT / \"artifacts\" / \"predictions_exp2.json\"))\n    samples = load_few_nerd(\"test\")\n    print(f\"Loaded {len(preds)} prediction entries, {len(samples)} test samples\")\n\n    # Compute per-type TP/FP/FN across all batches\n    type_stats = defaultdict(lambda: {\"tp\": 0, \"fp\": 0, \"fn\": 0, \"batch_f1s\": [], \"n_batches\": 0})\n\n    for entry in preds:\n        batch_types = entry[\"batch_types\"]\n        sid = entry[\"sample_id\"]\n        if sid >= len(samples):\n            continue\n        sample = samples[sid]\n        source_text = sample.get(\"text\", \"\")\n        gold_entities = [e for e in sample[\"entities\"] if e[\"type\"] in batch_types]\n        pred_entities = [p for p in entry.get(\"predictions\", []) if p.get(\"type\") in batch_types]\n\n        matched_gold = set()\n        matched_pred = set()\n        for pi, pred in enumerate(pred_entities):\n            for gi, gold in enumerate(gold_entities):\n                if gi not in matched_gold and text_match(pred, gold, source_text):\n                    matched_gold.add(gi)\n                    matched_pred.add(pi)\n                    type_stats[gold[\"type\"]][\"tp\"] += 1\n                    break\n\n        for pi, pred in enumerate(pred_entities):\n            if pi not in matched_pred:\n                t = pred.get(\"type\")\n                if t in type_stats or t in set(batch_types):\n                    type_stats[t][\"fp\"] += 1\n\n        for gi, gold in enumerate(gold_entities):\n            if gi not in matched_gold:\n                type_stats[gold[\"type\"]][\"fn\"] += 1\n\n    # Compute per-type F1 and correlations\n    rows = []\n    for t in type_names_config:\n        if t not in type_stats:\n            continue\n        s = type_stats[t]\n        tp, fp, fn = s[\"tp\"], s[\"fp\"], s[\"fn\"]\n        freq = tp + fn\n        if freq < 5:\n            continue\n        p = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n        r = tp / (tp + fn) if (tp + fn) > 0 else 0.0\n        f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0.0\n        rows.append({\n            \"type\": t,\n            \"f1\": f1,\n            \"precision\": p,\n            \"recall\": r,\n            \"freq\": freq,\n            \"mean_bcs_minilm\": mean_bcs_minilm.get(t, 0),\n            \"mean_bcs_qwen3\": mean_bcs_qwen3.get(t, 0),\n        })\n\n    print(f\"Types with freq>=5: {len(rows)}\")\n\n    f1_arr = np.array([r[\"f1\"] for r in rows])\n    bcs_ml_arr = np.array([r[\"mean_bcs_minilm\"] for r in rows])\n    bcs_q3_arr = np.array([r[\"mean_bcs_qwen3\"] for r in rows])\n    freq_arr = np.array([r[\"freq\"] for r in rows])\n    log_freq = np.log1p(freq_arr)\n\n    # Correlations: MiniLM\n    sp_ml, sp_ml_p = stats.spearmanr(bcs_ml_arr, f1_arr)\n    pr_ml, pr_ml_p = stats.pearsonr(bcs_ml_arr, f1_arr)\n    print(f\"\\nMiniLM: Spearman ρ(mean_BCS, F1) = {sp_ml:.4f}, p={sp_ml_p:.4f}\")\n    print(f\"MiniLM: Pearson  r(mean_BCS, F1) = {pr_ml:.4f}, p={pr_ml_p:.4f}\")\n\n    # Correlations: Qwen3 (re-computed for validation)\n    sp_q3, sp_q3_p = stats.spearmanr(bcs_q3_arr, f1_arr)\n    pr_q3, pr_q3_p = stats.pearsonr(bcs_q3_arr, f1_arr)\n    print(f\"\\nQwen3:  Spearman ρ(mean_BCS, F1) = {sp_q3:.4f}, p={sp_q3_p:.4f}\")\n    print(f\"Qwen3:  Pearson  r(mean_BCS, F1) = {pr_q3:.4f}, p={pr_q3_p:.4f}\")\n\n    # Correlation between MiniLM and Qwen3 mean_BCS per type\n    bcs_corr, bcs_corr_p = stats.pearsonr(bcs_ml_arr, bcs_q3_arr)\n    bcs_sp, bcs_sp_p = stats.spearmanr(bcs_ml_arr, bcs_q3_arr)\n    print(f\"\\nmean_BCS correlation (MiniLM vs Qwen3):\")\n    print(f\"  Pearson r={bcs_corr:.4f}, p={bcs_corr_p:.2e}\")\n    print(f\"  Spearman ρ={bcs_sp:.4f}, p={bcs_sp_p:.2e}\")\n\n    # Partial correlation (controlling log_freq) for MiniLM\n    from numpy.linalg import lstsq\n    Z = np.column_stack([log_freq, np.ones(len(log_freq))])\n    res_bcs_ml = bcs_ml_arr - Z @ lstsq(Z, bcs_ml_arr, rcond=None)[0]\n    res_f1 = f1_arr - Z @ lstsq(Z, f1_arr, rcond=None)[0]\n    partial_r_ml, partial_p_ml = stats.pearsonr(res_bcs_ml, res_f1)\n    print(f\"\\nMiniLM partial r(BCS, F1 | log_freq) = {partial_r_ml:.4f}, p={partial_p_ml:.4f}\")\n\n    res_bcs_q3 = bcs_q3_arr - Z @ lstsq(Z, bcs_q3_arr, rcond=None)[0]\n    partial_r_q3, partial_p_q3 = stats.pearsonr(res_bcs_q3, res_f1)\n    print(f\"Qwen3  partial r(BCS, F1 | log_freq) = {partial_r_q3:.4f}, p={partial_p_q3:.4f}\")\n\n    # Confound checks\n    r_bcs_freq_ml, _ = stats.pearsonr(bcs_ml_arr, log_freq)\n    r_bcs_freq_q3, _ = stats.pearsonr(bcs_q3_arr, log_freq)\n    print(f\"\\nConfound r(mean_BCS, log_freq): MiniLM={r_bcs_freq_ml:.4f}, Qwen3={r_bcs_freq_q3:.4f}\")\n\n    # --- Step 6: Save results ---\n    output = {\n        \"n_types_analyzed\": len(rows),\n        \"min_freq_threshold\": 5,\n        \"bcs_distribution\": {\n            \"qwen3\": {\"mean\": float(np.mean(q3_off)), \"std\": float(np.std(q3_off)),\n                       \"min\": float(np.min(q3_off)), \"max\": float(np.max(q3_off))},\n            \"minilm\": {\"mean\": float(np.mean(ml_off)), \"std\": float(np.std(ml_off)),\n                        \"min\": float(np.min(ml_off)), \"max\": float(np.max(ml_off))},\n            \"matrix_pearson_r\": float(matrix_corr),\n            \"matrix_spearman_rho\": float(matrix_spearman),\n        },\n        \"top10_overlap\": len(overlap),\n        \"per_type_correlations\": {\n            \"minilm\": {\n                \"spearman\": {\"rho\": float(sp_ml), \"p\": float(sp_ml_p)},\n                \"pearson\": {\"r\": float(pr_ml), \"p\": float(pr_ml_p)},\n                \"partial_controlling_log_freq\": {\"r\": float(partial_r_ml), \"p\": float(partial_p_ml)},\n            },\n            \"qwen3\": {\n                \"spearman\": {\"rho\": float(sp_q3), \"p\": float(sp_q3_p)},\n                \"pearson\": {\"r\": float(pr_q3), \"p\": float(pr_q3_p)},\n                \"partial_controlling_log_freq\": {\"r\": float(partial_r_q3), \"p\": float(partial_p_q3)},\n            },\n        },\n        \"mean_bcs_cross_embedding_corr\": {\n            \"pearson_r\": float(bcs_corr),\n            \"spearman_rho\": float(bcs_sp),\n        },\n        \"per_type_table\": sorted(\n            [{k: (float(v) if isinstance(v, (np.floating, float)) else v) for k, v in r.items()} for r in rows],\n            key=lambda x: x[\"mean_bcs_minilm\"], reverse=True\n        ),\n    }\n    out_path = ROOT / \"artifacts\" / \"embedding_ablation_fewnerd.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\n[6] Saved {out_path}\")\n    print(\"\\nDONE.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /root/schema-dag-extraction/src/embedding_ablation_fewnerd.py << 'PYEOF'\n\"\"\"MiniLM embedding ablation for Few-NERD: compute BCS matrix + compare with Qwen3.\"\"\"\nimport json\nimport sys\nfrom pathlib import Path\nfrom collections import defaultdict\n\nimport numpy as np\nimport torch\nfrom scipy import stats\n\nsys.path.insert(0, str(Path(__file__).parent))\nfrom few_nerd_utils import load_few_nerd\n\nROOT = Path(\"/root/schema-dag-extraction\")\n\n\ndef text_match(pred, gold, source_text=\"\"):\n    if pred.get(\"type\") != gold[\"type\"]:\n        return False\n    pt = pred.get(\"text\", \"\").strip()\n    gt = gold.get(\"text\", \"\").strip()\n    if not pt or not gt:\n        return False\n    if source_text and pt.lower() not in source_text.lower():\n        return False\n    pl, gl = pt.lower(), gt.lower()\n    return pl == gl or pl in gl or gl in pl\n\n\ndef main():\n    # --- Step 1: Load types ---\n    with open(ROOT / \"configs\" / \"few_nerd_types.json\") as f:\n        type_dict = json.load(f)\n    type_names_config = list(type_dict.keys())\n    print(f\"[1] Loaded {len(type_names_config)} types from config\")\n\n    # --- Step 2: Compute MiniLM embeddings ---\n    from sentence_transformers import SentenceTransformer\n    model = SentenceTransformer('all-MiniLM-L6-v2')\n    readable_names = [t.replace('-', ' ').replace('/', ' / ') for t in type_names_config]\n    embeddings = model.encode(readable_names, convert_to_tensor=True, device='cpu')\n    print(f\"[2] MiniLM embeddings shape: {embeddings.shape}\")\n\n    # Cosine similarity matrix\n    embs_norm = embeddings / embeddings.norm(dim=1, keepdim=True)\n    sim_minilm = embs_norm @ embs_norm.T\n    print(f\"[2] MiniLM sim matrix shape: {sim_minilm.shape}\")\n\n    # Save - match format of sim_matrix.pt\n    type_to_idx = {t: i for i, t in enumerate(type_names_config)}\n    torch.save({\n        'sim_matrix': sim_minilm.cpu(),\n        'type_names': type_names_config,\n        'type_to_idx': type_to_idx,\n        'model': 'all-MiniLM-L6-v2',\n        'embeddings': embeddings.cpu(),\n    }, ROOT / \"artifacts\" / \"fewnerd_bcs_matrix_minilm.pt\")\n    print(\"[2] Saved artifacts/fewnerd_bcs_matrix_minilm.pt\")\n\n    # --- Step 3: Load Qwen3 sim matrix ---\n    qwen3_data = torch.load(ROOT / \"artifacts\" / \"sim_matrix.pt\", map_location='cpu', weights_only=False)\n    sim_qwen3 = qwen3_data['sim_matrix']\n    qwen3_types = qwen3_data['type_names']\n    print(f\"[3] Qwen3 sim matrix: {sim_qwen3.shape}, {len(qwen3_types)} types\")\n\n    # Align type ordering: MiniLM uses config order, Qwen3 uses its own order\n    # Build aligned MiniLM matrix in Qwen3 type order for comparison\n    minilm_idx_map = {t: i for i, t in enumerate(type_names_config)}\n    qwen3_to_minilm = [minilm_idx_map[t] for t in qwen3_types]\n    sim_minilm_aligned = sim_minilm[qwen3_to_minilm][:, qwen3_to_minilm]\n\n    # --- Step 4: Compare BCS distributions ---\n    n = len(qwen3_types)\n    mask = ~torch.eye(n, dtype=torch.bool)\n    q3_off = sim_qwen3[mask].numpy()\n    ml_off = sim_minilm_aligned[mask].numpy()\n\n    print(\"\\n=== BCS Distribution Comparison ===\")\n    print(f\"{'Metric':<20} {'Qwen3':>10} {'MiniLM':>10}\")\n    print(\"-\" * 42)\n    for name, func in [('mean', np.mean), ('std', np.std), ('min', np.min),\n                        ('max', np.max), ('median', np.median)]:\n        print(f\"{name:<20} {func(q3_off):>10.4f} {func(ml_off):>10.4f}\")\n\n    # Correlation between the two matrices (off-diagonal)\n    matrix_corr, matrix_p = stats.pearsonr(q3_off, ml_off)\n    matrix_spearman, matrix_sp = stats.spearmanr(q3_off, ml_off)\n    print(f\"\\nMatrix correlation (off-diag pairs):\")\n    print(f\"  Pearson r={matrix_corr:.4f}, p={matrix_p:.2e}\")\n    print(f\"  Spearman ρ={matrix_spearman:.4f}, p={matrix_sp:.2e}\")\n\n    # Top-10 most similar pairs for each\n    pairs = []\n    for i in range(n):\n        for j in range(i+1, n):\n            pairs.append((qwen3_types[i], qwen3_types[j], sim_qwen3[i,j].item(), sim_minilm_aligned[i,j].item()))\n\n    top10_q3 = sorted(pairs, key=lambda x: x[2], reverse=True)[:10]\n    top10_ml = sorted(pairs, key=lambda x: x[3], reverse=True)[:10]\n\n    print(\"\\n--- Top-10 highest BCS pairs (Qwen3) ---\")\n    for t1, t2, bq, bm in top10_q3:\n        print(f\"  {t1} <-> {t2}: Qwen3={bq:.4f}, MiniLM={bm:.4f}\")\n\n    print(\"\\n--- Top-10 highest BCS pairs (MiniLM) ---\")\n    for t1, t2, bq, bm in top10_ml:\n        print(f\"  {t1} <-> {t2}: MiniLM={bm:.4f}, Qwen3={bq:.4f}\")\n\n    # Overlap in top-10\n    q3_set = set((p[0], p[1]) for p in top10_q3)\n    ml_set = set((p[0], p[1]) for p in top10_ml)\n    overlap = q3_set & ml_set\n    print(f\"\\nTop-10 overlap: {len(overlap)}/10 pairs\")\n\n    # --- Step 5: Per-type F1 vs mean_BCS (MiniLM) ---\n    print(\"\\n=== Per-type F1 vs BCS (MiniLM) ===\")\n\n    # Compute mean_BCS for each type (MiniLM)\n    mean_bcs_minilm = {}\n    for i, t in enumerate(type_names_config):\n        sims = [sim_minilm[i, j].item() for j in range(len(type_names_config)) if j != i]\n        mean_bcs_minilm[t] = np.mean(sims)\n\n    # Also compute mean_BCS for Qwen3 for comparison\n    mean_bcs_qwen3 = {}\n    qwen3_idx_map = {t: i for i, t in enumerate(qwen3_types)}\n    for t in qwen3_types:\n        i = qwen3_idx_map[t]\n        sims = [sim_qwen3[i, j].item() for j in range(n) if j != i]\n        mean_bcs_qwen3[t] = np.mean(sims)\n\n    # Load predictions and test data\n    preds = json.load(open(ROOT / \"artifacts\" / \"predictions_exp2.json\"))\n    samples = load_few_nerd(\"test\")\n    print(f\"Loaded {len(preds)} prediction entries, {len(samples)} test samples\")\n\n    # Compute per-type TP/FP/FN across all batches\n    type_stats = defaultdict(lambda: {\"tp\": 0, \"fp\": 0, \"fn\": 0, \"batch_f1s\": [], \"n_batches\": 0})\n\n    for entry in preds:\n        batch_types = entry[\"batch_types\"]\n        sid = entry[\"sample_id\"]\n        if sid >= len(samples):\n            continue\n        sample = samples[sid]\n        source_text = sample.get(\"text\", \"\")\n        gold_entities = [e for e in sample[\"entities\"] if e[\"type\"] in batch_types]\n        pred_entities = [p for p in entry.get(\"predictions\", []) if p.get(\"type\") in batch_types]\n\n        matched_gold = set()\n        matched_pred = set()\n        for pi, pred in enumerate(pred_entities):\n            for gi, gold in enumerate(gold_entities):\n                if gi not in matched_gold and text_match(pred, gold, source_text):\n                    matched_gold.add(gi)\n                    matched_pred.add(pi)\n                    type_stats[gold[\"type\"]][\"tp\"] += 1\n                    break\n\n        for pi, pred in enumerate(pred_entities):\n            if pi not in matched_pred:\n                t = pred.get(\"type\")\n                if t in type_stats or t in set(batch_types):\n                    type_stats[t][\"fp\"] += 1\n\n        for gi, gold in enumerate(gold_entities):\n            if gi not in matched_gold:\n                type_stats[gold[\"type\"]][\"fn\"] += 1\n\n    # Compute per-type F1 and correlations\n    rows = []\n    for t in type_names_config:\n        if t not in type_stats:\n            continue\n        s = type_stats[t]\n        tp, fp, fn = s[\"tp\"], s[\"fp\"], s[\"fn\"]\n        freq = tp + fn\n        if freq < 5:\n            continue\n        p = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n        r = tp / (tp + fn) if (tp + fn) > 0 else 0.0\n        f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0.0\n        rows.append({\n            \"type\": t,\n            \"f1\": f1,\n            \"precision\": p,\n            \"recall\": r,\n            \"freq\": freq,\n            \"mean_bcs_minilm\": mean_bcs_minilm.get(t, 0),\n            \"mean_bcs_qwen3\": mean_bcs_qwen3.get(t, 0),\n        })\n\n    print(f\"Types with freq>=5: {len(rows)}\")\n\n    f1_arr = np.array([r[\"f1\"] for r in rows])\n    bcs_ml_arr = np.array([r[\"mean_bcs_minilm\"] for r in rows])\n    bcs_q3_arr = np.array([r[\"mean_bcs_qwen3\"] for r in rows])\n    freq_arr = np.array([r[\"freq\"] for r in rows])\n    log_freq = np.log1p(freq_arr)\n\n    # Correlations: MiniLM\n    sp_ml, sp_ml_p = stats.spearmanr(bcs_ml_arr, f1_arr)\n    pr_ml, pr_ml_p = stats.pearsonr(bcs_ml_arr, f1_arr)\n    print(f\"\\nMiniLM: Spearman ρ(mean_BCS, F1) = {sp_ml:.4f}, p={sp_ml_p:.4f}\")\n    print(f\"MiniLM: Pearson  r(mean_BCS, F1) = {pr_ml:.4f}, p={pr_ml_p:.4f}\")\n\n    # Correlations: Qwen3 (re-computed for validation)\n    sp_q3, sp_q3_p = stats.spearmanr(bcs_q3_arr, f1_arr)\n    pr_q3, pr_q3_p = stats.pearsonr(bcs_q3_arr, f1_arr)\n    print(f\"\\nQwen3:  Spearman ρ(mean_BCS, F1) = {sp_q3:.4f}, p={sp_q3_p:.4f}\")\n    print(f\"Qwen3:  Pearson  r(mean_BCS, F1) = {pr_q3:.4f}, p={pr_q3_p:.4f}\")\n\n    # Correlation between MiniLM and Qwen3 mean_BCS per type\n    bcs_corr, bcs_corr_p = stats.pearsonr(bcs_ml_arr, bcs_q3_arr)\n    bcs_sp, bcs_sp_p = stats.spearmanr(bcs_ml_arr, bcs_q3_arr)\n    print(f\"\\nmean_BCS correlation (MiniLM vs Qwen3):\")\n    print(f\"  Pearson r={bcs_corr:.4f}, p={bcs_corr_p:.2e}\")\n    print(f\"  Spearman ρ={bcs_sp:.4f}, p={bcs_sp_p:.2e}\")\n\n    # Partial correlation (controlling log_freq) for MiniLM\n    from numpy.linalg import lstsq\n    Z = np.column_stack([log_freq, np.ones(len(log_freq))])\n    res_bcs_ml = bcs_ml_arr - Z @ lstsq(Z, bcs_ml_arr, rcond=None)[0]\n    res_f1 = f1_arr - Z @ lstsq(Z, f1_arr, rcond=None)[0]\n    partial_r_ml, partial_p_ml = stats.pearsonr(res_bcs_ml, res_f1)\n    print(f\"\\nMiniLM partial r(BCS, F1 | log_freq) = {partial_r_ml:.4f}, p={partial_p_ml:.4f}\")\n\n    res_bcs_q3 = bcs_q3_arr - Z @ lstsq(Z, bcs_q3_arr, rcond=None)[0]\n    partial_r_q3, partial_p_q3 = stats.pearsonr(res_bcs_q3, res_f1)\n    print(f\"Qwen3  partial r(BCS, F1 | log_freq) = {partial_r_q3:.4f}, p={partial_p_q3:.4f}\")\n\n    # Confound checks\n    r_bcs_freq_ml, _ = stats.pearsonr(bcs_ml_arr, log_freq)\n    r_bcs_freq_q3, _ = stats.pearsonr(bcs_q3_arr, log_freq)\n    print(f\"\\nConfound r(mean_BCS, log_freq): MiniLM={r_bcs_freq_ml:.4f}, Qwen3={r_bcs_freq_q3:.4f}\")\n\n    # --- Step 6: Save results ---\n    output = {\n        \"n_types_analyzed\": len(rows),\n        \"min_freq_threshold\": 5,\n        \"bcs_distribution\": {\n            \"qwen3\": {\"mean\": float(np.mean(q3_off)), \"std\": float(np.std(q3_off)),\n                       \"min\": float(np.min(q3_off)), \"max\": float(np.max(q3_off))},\n            \"minilm\": {\"mean\": float(np.mean(ml_off)), \"std\": float(np.std(ml_off)),\n                        \"min\": float(np.min(ml_off)), \"max\": float(np.max(ml_off))},\n            \"matrix_pearson_r\": float(matrix_corr),\n            \"matrix_spearman_rho\": float(matrix_spearman),\n        },\n        \"top10_overlap\": len(overlap),\n        \"per_type_correlations\": {\n            \"minilm\": {\n                \"spearman\": {\"rho\": float(sp_ml), \"p\": float(sp_ml_p)},\n                \"pearson\": {\"r\": float(pr_ml), \"p\": float(pr_ml_p)},\n                \"partial_controlling_log_freq\": {\"r\": float(partial_r_ml), \"p\": float(partial_p_ml)},\n            },\n            \"qwen3\": {\n                \"spearman\": {\"rho\": float(sp_q3), \"p\": float(sp_q3_p)},\n                \"pearson\": {\"r\": float(pr_q3), \"p\": float(pr_q3_p)},\n                \"partial_controlling_log_freq\": {\"r\": float(partial_r_q3), \"p\": float(partial_p_q3)},\n            },\n        },\n        \"mean_bcs_cross_embedding_corr\": {\n            \"pearson_r\": float(bcs_corr),\n            \"spearman_rho\": float(bcs_sp),\n        },\n        \"per_type_table\": sorted(\n            [{k: (float(v) if isinstance(v, (np.floating, float)) else v) for k, v in r.items()} for r in rows],\n            key=lambda x: x[\"mean_bcs_minilm\"], reverse=True\n        ),\n    }\n    out_path = ROOT / \"artifacts\" / \"embedding_ablation_fewnerd.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\n[6] Saved {out_path}\")\n    print(\"\\nDONE.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T08:04:29.191341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T08:04:29.191476+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && CUDA_VISIBLE_DEVICES=\"\" python src/embedding_ablation_fewnerd.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && CUDA_VISIBLE_DEVICES=\"\" python src/embedding_ablation_fewnerd.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T08:04:29.191611+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && CUDA_VISIBLE_DEVICES=\\\"\\\" python src/embedding_ablation_fewnerd.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n'(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')), '(Request ID: 37286072-805e-4059-9178-c37e545b4395)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json\\nRetrying in 1s [Retry 1/5].\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T08:04:29.191768+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root -path \"*MiniLM*\" -type d 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root -path \"*MiniLM*\" -type d 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T08:04:29.191918+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T08:04:29.192044+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/autodl-tmp -path \"*MiniLM*\" -type d 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/autodl-tmp -path \"*MiniLM*\" -type d 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T08:04:29.192172+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T08:04:29.192291+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root -path \"*MiniLM*\" -type d 2>/dev/null; find /root/autodl-tmp -path \"*sentence*\" -type d 2>/dev/null; ls /root/.cache/huggingface/ 2>/dev/null; ls /root/autodl-tmp/.hf_cache/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root -path \"*MiniLM*\" -type d 2>/dev/null; find /root/autodl-tmp -path \"*sentence*\" -type d 2>/dev/null; ls /root/.cache/huggingface/ 2>/dev/null; ls /root/autodl-tmp/.hf_cache/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T08:04:29.192444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/.locks/models--sentence-transformers--all-MiniLM-L6-v2\\n/root/autodl-tmp/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2\\n/root/autodl-tmp/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist\\n/root/autodl-tmp/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\n/root/autodl-tmp/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/refs\\n/root/autodl-tmp/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs\\n/root/autodl-tmp/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots\\n/root/autodl-tmp/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\n/root/autodl-tmp/.hf_cache/.locks/models--sentence-transformers--all-MiniLM-L6-v2\\n/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2\\n/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/blobs\\n/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots\\n/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\n/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling\\n/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/refs\\n/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist\\n/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\n/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2\\n/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist\\n/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/c9745ed
+…[truncated 2219 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T08:04:29.192614+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=\"\" python src/embedding_ablation_fewnerd.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=\"\" python src/embedding_ablation_fewnerd.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T08:04:29.192755+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=\\\"\\\" python src/embedding_ablation_fewnerd.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n[1] Loaded 66 types from config\\n\\nStderr:\\n\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/configuration_utils.py\\\", line 721, in _get_config_dict\\n    resolved_config_file = cached_file(\\n                           ^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 322, in cached_file\\n    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 553, in cached_files\\n    raise OSError(\\nOSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.\\n\\n\", \"metadata\": {\"elapsed_seconds\": 27.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T08:04:29.192981+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T08:04:29.193124+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1_Pooling\\nREADME.md\\nconfig.json\\nconfig_sentence_transformers.json\\nmodel.safetensors\\nmodules.json\\nsentence_bert_config.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\nvocab.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T08:04:29.193266+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && sed -i \"s|SentenceTransformer('all-MiniLM-L6-v2')|SentenceTransformer('/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf')|\" src/embedding_ablation_fewnerd.py && CUDA_VISIBLE_DEVICES=\"\" python src/embedding_ablation_fewnerd.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && sed -i \"s|SentenceTransformer('all-MiniLM-L6-v2')|SentenceTransformer('/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf')|\" src/embedding_ablation_fewnerd.py && CUDA_VISIBLE_DEVICES=\"\" python src/embedding_ablation_fewnerd.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T08:04:29.193401+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && sed -i \\\"s|SentenceTransformer(\\\\'all-MiniLM-L6-v2\\\\')|SentenceTransformer(\\\\'/root/autodl-tmp/.hf_cache/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf\\\\')|\\\" src/embedding_ablation_fewnerd.py && CUDA_VISIBLE_DEVICES=\\\"\\\" python src/embedding_ablation_fewnerd.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T08:04:29.193559+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && nohup bash -c 'CUDA_VISIBLE_DEVICES=\"\" python src/embedding_ablation_fewnerd.py' > /tmp/ablation_fewnerd.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && nohup bash -c 'CUDA_VISIBLE_DEVICES=\"\" python src/embedding_ablation_fewnerd.py' > /tmp/ablation_fewnerd.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T08:04:29.193694+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && nohup bash -c \\\\'CUDA_VISIBLE_DEVICES=\\\"\\\" python src/embedding_ablation_fewnerd.py\\\\' > /tmp/ablation_fewnerd.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=243129\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T08:04:29.193861+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "sleep 30 && cat /tmp/ablation_fewnerd.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "sleep 30 && cat /tmp/ablation_fewnerd.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T08:04:29.193998+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 30 && cat /tmp/ablation_fewnerd.log'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T08:04:29.194118+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /tmp/ablation_fewnerd.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /tmp/ablation_fewnerd.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T08:04:29.194277+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[1] Loaded 66 types from config\\n[2] MiniLM embeddings shape: torch.Size([66, 384])\\n[2] MiniLM sim matrix shape: torch.Size([66, 66])\\n[2] Saved artifacts/fewnerd_bcs_matrix_minilm.pt\\n[3] Qwen3 sim matrix: torch.Size([66, 66]), 66 types\\n\\n=== BCS Distribution Comparison ===\\nMetric                    Qwen3     MiniLM\\n------------------------------------------\\nmean                     0.8077     0.1952\\nstd                      0.0599     0.1441\\nmin                      0.4422    -0.0497\\nmax                      0.9732     0.8560\\nmedian                   0.8149     0.1547\\n\\nMatrix correlation (off-diag pairs):\\n  Pearson r=0.3553, p=0.00e+00\\n  Spearman ρ=0.3346, p=9.57e-113\\n\\n--- Top-10 highest BCS pairs (Qwen3) ---\\n  person-actor <-> person-director: Qwen3=0.9732, MiniLM=0.6926\\n  organization-sportsleague <-> organization-sportsteam: Qwen3=0.9604, MiniLM=0.8560\\n  product-airplane <-> product-car: Qwen3=0.9555, MiniLM=0.5716\\n  building-other <-> location-other: Qwen3=0.9526, MiniLM=0.4123\\n  person-athlete <-> person-politician: Qwen3=0.9447, MiniLM=0.4791\\n  person-artist/author <-> person-scholar: Qwen3=0.9396, MiniLM=0.6015\\n  person-actor <-> person-artist/author: Qwen3=0.9379, MiniLM=0.5508\\n  organization-sportsteam <-> person-athlete: Qwen3=0.9375, MiniLM=0.4418\\n  building-hotel <-> building-restaurant: Qwen3=0.9356, MiniLM=0.6778\\n  organization-other <-> person-other: Qwen3=0.9349, MiniLM=0.4103\\n\\n--- Top-10 highest BCS pairs (MiniLM) ---\\n  organization-sportsleague <-> organization-sportsteam: MiniLM=0.8560, Qwen3=0.9604\\n  art-film <-> art-painting: MiniLM=0.7618, Qwen3=0.8608\\n  organization-company <-> organization-education: MiniLM=0.7399, Qwen3=0.9086\\n  art-other <-> art-painting: MiniLM=0.7357, Qwen3=0.9080\\n  other-disease <-> other-medical: MiniLM=0.7080, Qwen3=0.9148\\n  organization-government/governmentagency <-> organization-politicalpa
+…[truncated 1178 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T08:04:29.194444+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt /root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls -la /root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt /root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T08:04:29.194575+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  17694 May 15 16:03 /root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json\\n-rw-r--r-- 1 root root 122805 May 15 16:03 /root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-15T08:04:29.194737+00:00_
+
+两个产出文件已生成。汇报结果：
+
+---
+
+## Embedding Ablation: Qwen3 vs MiniLM on Few-NERD
+
+### BCS 分布差异
+
+| 指标 | Qwen3 | MiniLM |
+|------|-------|--------|
+| mean | 0.808 | 0.195 |
+| std | 0.060 | 0.144 |
+| range | [0.44, 0.97] | [-0.05, 0.86] |
+
+MiniLM 的 BCS 分布远比 Qwen3 分散（std 更大、均值更低）。Qwen3 embeddings 普遍高相似度（mean 0.81），MiniLM 区分度更好。
+
+### 矩阵级相关
+
+- 两个矩阵 off-diagonal 元素 Pearson r=0.355, Spearman ρ=0.335 — **弱正相关**，整体排序不一致
+- Top-10 最高 BCS pairs 仅 **2/10 重叠**（sportsleague-sportsteam, actor-director）
+
+### Per-type F1 vs mean_BCS 相关（n=63 types, freq≥5）
+
+| Embedding | Spearman ρ | p-value | Pearson r | p-value |
+|-----------|-----------|---------|-----------|---------|
+| **Qwen3** | **-0.281** | **0.026** | -0.181 | 0.157 |
+| MiniLM | 0.005 | 0.969 | -0.112 | 0.383 |
+
+- **Qwen3 的 BCS 与 per-type F1 显著负相关**（ρ=-0.281, p=0.026），符合之前的发现（ρ=-0.293）
+- **MiniLM 完全无相关**（ρ≈0, p=0.97）
+- 两种 embedding 的 mean_BCS per type 几乎不相关（r=0.188, p=0.14）
+
+### 解读
+
+Embedding 选择**显著影响** BCS-F1 关联方向和强度。Qwen3（与抽取模型同源的 LLM embedding）能捕捉到"语义混淆 → F1 下降"的信号，而通用 sentence encoder MiniLM 不能。这**支持**使用 Qwen3 作为 BCS 计算模型的方法论一致性论点：extraction model 的内部语义空间才是 confusion 的真正来源。
+
+### 产出文件
+- `artifacts/fewnerd_bcs_matrix_minilm.pt` — MiniLM 66×66 similarity matrix
+- `artifacts/embedding_ablation_fewnerd.json` — 完整对比分析数据
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628"
+}
+```
+
+</details>
+
+---

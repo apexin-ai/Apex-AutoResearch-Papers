@@ -52,5 +52,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ssh-gpt2xl-topk50-eval.md"
 }

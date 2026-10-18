@@ -1,0 +1,1944 @@
+# analysis k5 rf contrast
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 67
+- **Recorded user turns:** 0
+- **Tool calls:** 33
+- **Original source:** `logs/chats/worker_analysis_k5-rf-contrast_20260523T070356.jsonl`
+- **Structured JSON:** [`1b24be1947923574a802.json`](../../sessions/1b/1b24be1947923574a802.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+67 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T07:12:25.631534+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T07:12:25.631979+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T07:12:25.632167+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/cert_manip_resist_eval/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls /root/cert_manip_resist_eval/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T07:12:25.632302+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/cert_manip_resist_eval/artifacts/results/plan001/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls /root/cert_manip_resist_eval/artifacts/results/plan001/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-23T07:12:25.632461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\n_eval_single_model.py\\n_test_openai.py\\n_test_openai2.py\\nautoscale_scoring.sh\\ncopula_gof_check.py\\ndeploy_judges.py\\ndraw_fig4_panel_design_k3.py\\nfig5_forest_plot.py\\nprep_attack_data.py\\nrun_7model_preview.py\\nrun_aggregation_loglog.py\\nrun_aggregation_regression_15model.py\\nrun_all.py\\nrun_alt_diversity_effect_size.py\\nrun_beta_reg_epsilon.py\\nrun_claim6_panel_design_15model.py\\nrun_clustered_se_analysis.py\\nrun_condition_dominance.py\\nrun_family_copula_15model.py\\nrun_gam_tier_analysis.py\\nrun_gam_tier_analysis_corrected.py\\nrun_k4_wild_cluster_bootstrap.py\\nrun_k5_aggregation_analysis.py\\nrun_k5_aggregation_bootstrap.py\\nrun_k5_gam_analysis.py\\nrun_k5_k7_panel_analysis.py\\nrun_k5_panel_selection.py\\nrun_k5_panel_selection_bootstrap.py\\nrun_k5_wild_cluster_bootstrap.py\\nrun_k7_wild_cluster_bootstrap.py\\nrun_partial_knowledge_adversary.py\\nrun_partial_knowledge_clustered_se.py\\nrun_pipeline_15model.sh\\nrun_plan001_confound_diagnosis.py\\nrun_plan001_pipeline.sh\\nrun_plan001_step1_api_scoring.py\\nrun_plan001_step1_batched.py\\nrun_plan001_step1_parallel.py\\nrun_plan001_step1_parallel_v2.py\\nrun_plan001_step1_throttled.py\\nrun_plan001_step3_mi_matrix.py\\nrun_plan001_step4_panel_regression.py\\nrun_plan001_step5_random_fault.py\\nrun_plan003_random_fault.py\\nrun_plan009_vif_analysis.py\\nrun_plan010_aggregation.py\\nrun_plan010_fdr_cv.py\\nrun_power_cr2_cr3.py\\nrun_residualized_keff_15model.py\\nrun_rf_keff_correction.py\\nrun_step1_correlation.py\\nrun_step1_full.py\\nrun_step1_subset.py\\nrun_step2_attacks.py\\nrun_step2_keff_contrast.py\\nrun_step2v3_regression.py\\nrun_step3_keff.py\\nrun_step4_scaling.py\\nrun_taxonomy_broadspectrum.py\\nrun_vif_partial_corr.py\\nrun_wild_cluster_bootstrap.py\\nrun_wild_cluster_bootstrap_v2.py\\ntest_inference.py\\nvalidate_api_judges.py\\nvalidate_panel_selection.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"err
+…[truncated 56 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T07:12:25.632624+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aggregation_regression_15model.json\\naggregation_regression_15model_loglog.json\\nalt_diversity_effect_size.json\\nbeta_reg_epsilon.json\\nclaim6_panel_design_15model.json\\nclustered_se_analysis.json\\ncondition_dominance_15model.json\\nconfound_diagnosis.json\\nconfound_scatter.png\\nfamily_copula_15model.json\\nfig4_panel_design_K3.json\\ngam_tier_analysis.json\\ngam_tier_analysis_corrected.json\\nindividual_scores\\nk4_wild_cluster_bootstrap.json\\nk5_aggregation_analysis.json\\nk5_aggregation_bootstrap.json\\nk5_gam_analysis.json\\nk5_k7_panel_analysis.json\\nk5_panel_selection.json\\nk5_panel_selection_bootstrap.json\\nk5_wild_cluster_bootstrap.json\\nk7_wild_cluster_bootstrap.json\\nmi_matrix\\npanel_regression\\npartial_knowledge_adversary.json\\npartial_knowledge_clustered_se.json\\npower_cr2_cr3.json\\nresidualized_keff_15model.json\\nrf_keff_correction.json\\nstep1_api_scoring_summary.json\\nstochastic_dominance.json\\nvif_partial_corr.json\\nwild_cluster_bootstrap.json\\nwild_cluster_bootstrap_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T07:12:25.632841+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-23T07:12:25.632973+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_rf_keff_correction.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/scripts/run_rf_keff_correction.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T07:12:25.633232+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 5: Random-fault simulation -- 455 panels x 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step5_random_fault_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import stats\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS, OUTPUT_DIR,\\n    load_all_scores, load_pairs, load_mi_data,\\n    compute_corrected_asr, compute_corrected_panel_asr,\\n)\\n\\nlogger = setup_logging(\\\"plan001_step5\\\")\\n\\nEPS = 0.001\\nN_SIMS = 1000\\nN_SAMPLES = 300\\nSIM_BATCH = 100\\n\\n\\n# ── JSON Helper ──────────────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── ASR Computation ──────────────────────────────────────────────────\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    
+…[truncated 7193 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-23T07:12:25.633401+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_k5_wild_cluster_bootstrap.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/scripts/run_k5_wild_cluster_bootstrap.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T07:12:25.633697+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"RF K_eff non-independence correction.\\n\\nApplies clustered SE and wild cluster bootstrap v2 corrections to the\\nRandom-Fault regime, matching the methodology used for adaptive regime.\\n\\nRF definition: each judge j independently errs with probability (1 - clean_acc_j).\\nPanel RF ASR = P(>=2/3 judges wrong) via Monte Carlo simulation.\\neta_max_rf = max(1 - clean_acc_j) among 3 panel judges.\\nK_eff from canonical MI matrix (same panels as adaptive).\\n\\nSince RF error rate depends only on clean accuracy (dataset-level, not\\nattack-level), there are 2 conditions (1 per dataset). No FDR applied.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy.stats import t as t_dist\\n\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS,\\n    load_all_scores, load_pairs, load_mi_data,\\n    compute_clean_accuracy,\\n)\\n\\nEPS = 1e-6\\nB_BOOT = 9999\\nSEED = 42\\nN_SIM_TRIALS = 10000\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef analytical_rf_asr(e):\\n    e1, e2, e3 = e\\n    return e1*e2 + e1*e3 + e2*e3 - 2*e1*e2*e3\\n\\n\\ndef simulate_rf_asr(panel_error_rates, n_trials=N_SIM_TRIALS, rng=None):\\n    if rng is None:\\n        rng = np.random.default_rng(SEED)\\n    n_panels = panel_error_rates.shape[0]\\n    randoms = rng.random((n_panels, n
+…[truncated 7148 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T07:12:25.634000+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"K=5 Wild Cluster Bootstrap — 5-position max-p inference for K=5 panels.\\n\\nExtends K=3 wild cluster bootstrap v2 to K=5 panels (C(15,5)=3003).\\n5-position clustering with max-p across positions (conservative).\\nK_eff via MI-based formula from pairwise MI matrix.\\nCanonical regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps), standardized beta.\\nBH FDR correction across 12 conditions.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport time\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n)\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\nB_BOOT = 9999\\nSEED = 42\\nK = 5\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\ndef compute_individual_asr(clean_list, attacked_list, pairs):\\n    n = min(len(clean_list), len(attacked_list), 
+…[truncated 7272 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T07:12:25.634193+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T07:12:25.634440+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Unified data loader for 15-model cert_manip_resist_eval pipeline.\\n\\nHandles two data formats:\\n  - Checkpoint files (local 6 models): nested {clean_scores: {ds: {model: [...]}}}\\n  - Individual JSON files (API 9 models): flat {scores: [...], asr, accuracy, ...}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4-6\\\", \\\"gpt-5.5\\\", \\\"gemini-3.1-pro-preview\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\", \\\"gpt-4.1-nano\\\", \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Default paths ────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef l
+…[truncated 7137 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T07:12:25.634604+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/k5_wild_cluster_bootstrap.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/k5_wild_cluster_bootstrap.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T07:12:25.634960+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"wild_cluster_bootstrap_k5\\\",\\n  \\\"K\\\": 5,\\n  \\\"B\\\": 9999,\\n  \\\"weights\\\": \\\"rademacher\\\",\\n  \\\"n_positions\\\": 5,\\n  \\\"seed\\\": 42,\\n  \\\"n_total_panels\\\": 3003,\\n  \\\"keff_formula\\\": \\\"mi_based_keff (average pairwise MI)\\\",\\n  \\\"regression\\\": \\\"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\\\",\\n  \\\"per_condition\\\": {\\n    \\\"mmluxprompt_injection\\\": {\\n      \\\"n_panels\\\": 3003,\\n      \\\"keff_boot_p\\\": [\\n        0.001,\\n        0.001,\\n        0.0016,\\n        0.0016,\\n        0.001\\n      ],\\n      \\\"keff_final_p\\\": 0.0016,\\n      \\\"keff_ols_std_beta\\\": 0.4928409040281672,\\n      \\\"keff_ols_t\\\": 33.79944341691513,\\n      \\\"keff_ols_beta\\\": 3.2709126112073417,\\n      \\\"keff_n_clusters\\\": [\\n        11,\\n        11,\\n        11,\\n        11,\\n        11\\n      ],\\n      \\\"bootstrap_ci_keff_95\\\": [\\n        1.1852678701932922,\\n        5.34688331117461\\n      ],\\n      \\\"eta_boot_p\\\": [\\n        0.0329,\\n        0.007,\\n        0.0005,\\n        0.0081,\\n        0.0177\\n      ],\\n      \\\"eta_final_p\\\": 0.0329,\\n      \\\"eta_ols_std_beta\\\": 0.36966194073494907,\\n      \\\"eta_ols_t\\\": 25.35172658587581,\\n      \\\"eta_ols_beta\\\": 0.5182149394366661,\\n      \\\"eta_n_clusters\\\": [\\n        11,\\n        11,\\n        11,\\n        11,\\n        11\\n      ],\\n      \\\"bootstrap_ci_eta_95\\\": [\\n        0.03869510858114594,\\n        0.9987159562564969\\n      ],\\n      \\\"skipped\\\": false,\\n      \\\"keff_fdr_p\\\": 0.016200000000000003,\\n      \\\"eta_fdr_p\\\": 0.0987\\n    },\\n    \\\"mmluxsycophancy\\\": {\\n      \\\"n_panels\\\": 3003,\\n      \\\"keff_boot_p\\\": [\\n        0.0103,\\n        0.0005,\\n        0.0005,\\n        0.0011,\\n        0.0005\\n      ],\\n      \\\"keff_final_p\\\": 0.0103,\\n      \\\"keff_ols_std_beta\
+…[truncated 7877 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T07:12:25.635153+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/rf_keff_correction.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/rf_keff_correction.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T07:12:25.635377+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"regime\\\": \\\"random_fault\\\",\\n  \\\"rf_definition\\\": \\\"clean_accuracy_error_rate\\\",\\n  \\\"simulation\\\": {\\n    \\\"n_trials\\\": 10000,\\n    \\\"method\\\": \\\"independent_bernoulli\\\",\\n    \\\"error_rate_source\\\": \\\"1 - clean_accuracy (dataset-level)\\\"\\n  },\\n  \\\"n_panels\\\": 455,\\n  \\\"n_conditions\\\": 2,\\n  \\\"note\\\": \\\"2 conditions (1 per dataset); RF error rate = 1 - clean_accuracy is dataset-level, no attack-level variation. No FDR (only 2 tests).\\\",\\n  \\\"bootstrap\\\": {\\n    \\\"B\\\": 9999,\\n    \\\"weights\\\": \\\"rademacher\\\",\\n    \\\"seed\\\": 42,\\n    \\\"positions\\\": 3\\n  },\\n  \\\"per_condition\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"n_panels\\\": 455,\\n      \\\"skipped\\\": false,\\n      \\\"rf_asr_stats\\\": {\\n        \\\"mean\\\": 0.14243758241758242,\\n        \\\"std\\\": 0.056532021215650194,\\n        \\\"max_analytical_deviation\\\": 0.0125962962962963\\n      },\\n      \\\"eta_max_rf_stats\\\": {\\n        \\\"mean\\\": 0.3293186813186813,\\n        \\\"min\\\": 0.15666666666666662,\\n        \\\"max\\\": 0.43333333333333335\\n      },\\n      \\\"keff_stats\\\": {\\n        \\\"mean\\\": 2.275498490771776,\\n        \\\"min\\\": 1.4477398539683035,\\n        \\\"max\\\": 2.833883716152029\\n      },\\n      \\\"ols\\\": {\\n        \\\"keff_beta\\\": 0.6727529704246338,\\n        \\\"keff_std_beta\\\": 0.21520548688703287,\\n        \\\"keff_t\\\": 6.318457499764419,\\n        \\\"keff_p\\\": 6.33568331932979e-10,\\n        \\\"eta_beta\\\": 0.9654727119238585,\\n        \\\"eta_std_beta\\\": 0.6919996952290223,\\n        \\\"eta_t\\\": 20.31718952616521,\\n        \\\"eta_p\\\": 1.1307415666649845e-65,\\n        \\\"r2\\\": 0.7344082408669064,\\n        \\\"adj_r2\\\": 0.7332330560919812\\n      },\\n      \\\"clustered_se\\\": {\\n        \\\"keff_t\\\": 3.5846588511432547,\\n        \\\"keff_p\\\": 0.00037425
+…[truncated 3283 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T07:12:25.635533+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -r \"compute_clean_accuracy\\|load_pairs\" /root/cert_manip_resist_eval/scripts/run_rf_keff_correction.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -r \"compute_clean_accuracy\\|load_pairs\" /root/cert_manip_resist_eval/scripts/run_rf_keff_correction.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T07:12:25.635723+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T07:12:25.635936+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/k5_aggregation_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/k5_aggregation_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T07:12:25.636326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"k5_aggregation_regression_loglog\\\",\\n  \\\"panel_size\\\": 5,\\n  \\\"threshold_min\\\": 4,\\n  \\\"n_models\\\": 15,\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"methods\\\": [\\n    \\\"majority_vote\\\",\\n    \\\"weighted_vote\\\",\\n    \\\"threshold_supermajority\\\",\\n    \\\"bayesian\\\"\\n  ],\\n  \\\"fdr_alpha\\\": 0.05,\\n  \\\"eps\\\": 1e-06,\\n  \\\"n_panels_total\\\": 3003,\\n  \\\"aggregation_methods\\\": {\\n    \\\"majority_vote\\\": {\\n      \\\"eta_fdr_sig\\\": \\\"10/12\\\",\\n      \\\"keff_fdr_sig\\\": \\\"12/12\\\",\\n      \\\"keff_sig_positive\\\": 11,\\n      \\\"keff_sig_negative\\\": 1,\\n      \\\"n_conditions\\\": 12,\\n      \\\"mean_R2\\\": 0.25617670980857854,\\n      \\\"eta_beta_std_mean\\\": 0.18007074901052544,\\n      \\\"keff_beta_std_mean\\\": 0.333963536617677\\n    },\\n    \\\"weighted_vote\\\": {\\n      \\\"eta_fdr_sig\\\": \\\"9/12\\\",\\n      \\\"keff_fdr_sig\\\": \\\"11/12\\\",\\n      \\\"keff_sig_positive\\\": 11,\\n      \\\"keff_sig_negative\\\": 0,\\n      \\\"n_conditions\\\": 12,\\n      \\\"mean_R2\\\": 0.24905806682419063,\\n      \\\"eta_beta_std_mean\\\": 0.10715450856747198,\\n      \\\"keff_beta_std_mean\\\": 0.40120802576378484\\n    },\\n    \\\"threshold_supermajority\\\": {\\n      \\\"eta_fdr_sig\\\": \\\"12/12\\\",\\n      \\\"keff_fdr_sig\\\": \\\"11/12\\\",\\n      \\\"keff_sig_positive\\\": 11,\\n      \\\"keff_sig_negative\\\": 0,\\n      \\\"n_conditions\\\": 12,\\n      \\\"mean_R2\\\": 0.505
+…[truncated 8548 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T07:12:25.636610+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat << 'SCRIPT' > /root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py\n#!/usr/bin/env python3\n\"\"\"K=5 Random-Fault contrast analysis.\n\nRF simulation on C(15,5)=3003 panels, then canonical regression\ncompared against K=5 adaptive results.\n\nRF: each judge independently errs with prob = 1 - clean_accuracy.\nPanel RF ASR = P(>=3/5 judges flip) via 10000 MC iterations.\n2 conditions (mmlu, arc_challenge) — RF is dataset-level, no attack variation.\n\"\"\"\n\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n\nimport sys\nsys.path.insert(0, \"/root/cert_manip_resist_eval\")\n\nimport json\nimport time\nimport itertools\nimport numpy as np\nimport statsmodels.api as sm\nfrom pathlib import Path\nfrom scipy.stats import t as t_dist\n\nfrom src.unified_data_loader import (\n    ALL_MODELS, DATASETS,\n    load_all_scores, load_pairs, load_mi_data,\n    compute_clean_accuracy,\n)\n\nEPS = 1e-6\nN_SIM_TRIALS = 10000\nB_BOOT = 9999\nSEED = 42\nK = 5\nMAJORITY_THRESHOLD = 3  # >=3/5 to flip\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\ndef mi_based_keff(mi_matrix, model_indices):\n    K = len(model_indices)\n    if K <= 1:\n        return 1.0\n    keff = 0.0\n    for i_idx in model_indices:\n        term = 1.0\n        for j_idx in model_indices:\n            if i_idx != j_idx:\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\n        keff += term\n    return keff / K\n\n\ndef simulate_rf_asr_k5(panel_error_rates, n_trials=N_SIM_TRIALS, rng=None):\n    \"\"\"MC simulation for K=5 RF ASR.\n\n    panel_error_rates: (n_panels, 5) array of per-judge error rates\n    Returns: (n_panels,) array of RF ASR\n    \"\"\"\n    if rng is None:\n        rng = np.random.default_rng(SEED)\n    n_panels = panel_error_rates.shape[0]\n    batch_size = 2000\n    rf_sum = np.zeros(n_panels)\n\n    for start in range(0, n_trials, batch_size):\n        b = min(batch_size, n_trials - start)\n        randoms = rng.random((n_panels, b, K))\n        errors = randoms < panel_error_rates[:, np.newaxis, :]\n        majority_wrong = errors.sum(axis=2) >= MAJORITY_THRESHOLD\n        rf_sum += majority_wrong.sum(axis=1)\n\n    return rf_sum / n_trials\n\n\ndef analytical_rf_asr_k5(e):\n    \"\"\"Exact RF ASR for K=5 independent Bernoulli judges.\n    P(>=3 out of 5 fail) = sum_{k=3}^{5} C(5,k) * prod(e_i for i in S) * prod(1-e_j for j not in S)\n    \"\"\"\n    from itertools import combinations\n    n = len(e)\n    total = 0.0\n    for k in range(MAJORITY_THRESHOLD, n + 1):\n        for combo in combinations(range(n), k):\n            p = 1.0\n            for i in range(n):\n                if i in combo:\n                    p *= e[i]\n                else:\n                    p *= (1.0 - e[i])\n            total += p\n    return total\n\n\ndef wild_cluster_bootstrap(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\n                           test_col_idx=1):\n    n, p = X_full.shape\n    unique_clusters = np.unique(cluster_ids)\n    n_clusters = len(unique_clusters)\n\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\n\n    fit_full = sm.OLS(y, X_full).fit()\n    t_original = fit_full.tvalues[test_col_idx]\n\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\n    X_restricted = X_full[:, cols_restricted]\n    fit_restricted = sm.OLS(y, X_restricted).fit()\n    y_hat_r = fit_restricted.fittedvalues\n    e_r = y - y_hat_r\n\n    rng = np.random.RandomState(seed)\n    t_boot = np.empty(B)\n\n    for b in range(B):\n        w_cluster = rng.choice([-1, 1], size=n_clusters)\n        w_panel = w_cluster[panel_cluster_idx]\n        y_boot = y_hat_r + w_panel * e_r\n        try:\n            fit_b = sm.OLS(y_boot, X_full).fit()\n            t_boot[b] = fit_b.tvalues[test_col_idx]\n        except Exception:\n            t_boot[b] = 0.0\n\n    p_value = (1 + np.sum(np.abs(t_boot) >= np.abs(t_original))) / (1 + B)\n    return float(p_value), float(t_original), n_clusters\n\n\ndef clustered_se_maxp(y, X_full, panel_jids_list, n_positions=K):\n    \"\"\"Clustered SE with max-p across K positions.\"\"\"\n    fit_ols = sm.OLS(y, X_full).fit()\n    n = len(y)\n    p = X_full.shape[1]\n    e_hat = y - fit_ols.fittedvalues\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\n\n    position_results = []\n    for pos in range(n_positions):\n        cluster_var = np.array([jids[pos] for jids in panel_jids_list])\n        unique_judges = sorted(set(cluster_var))\n        G = len(unique_judges)\n        judge_to_idx = {j: i for i, j in enumerate(unique_judges)}\n\n        B_sum = np.zeros((p, p))\n        for j in unique_judges:\n            mask = cluster_var == j\n            Xg = X_full[mask]\n            eg = e_hat[mask]\n            Sg = Xg.T @ np.diag(eg) @ np.ones((mask.sum(), 1))\n            B_sum += Sg @ Sg.T\n\n        scale = (G / (G - 1)) * ((n - 1) / (n - p))\n        V_cluster = XtX_inv @ (scale * B_sum) @ XtX_inv\n        se_cluster = np.sqrt(np.diag(V_cluster))\n\n        results_pos = {}\n        for col_idx, name in [(1, \"keff\"), (2, \"eta\")]:\n            t_val = fit_ols.params[col_idx] / se_cluster[col_idx]\n            p_val = 2.0 * t_dist.sf(np.abs(t_val), df=G - 1)\n            results_pos[name] = {\n                \"t\": float(t_val),\n                \"p\": float(p_val),\n                \"se\": float(se_cluster[col_idx]),\n                \"n_clusters\": G,\n            }\n        position_results.append(results_pos)\n\n    keff_max_p = max(r[\"keff\"][\"p\"] for r in position_results)\n    eta_max_p = max(r[\"eta\"][\"p\"] for r in position_results)\n\n    return {\n        \"keff_p\": keff_max_p,\n        \"eta_p\": eta_max_p,\n        \"position_details\": position_results,\n    }\n\n\ndef bootstrap_k_positions(y, X_full, panel_jids_list, n_positions=K,\n                           B=B_BOOT, seed=SEED, test_col_idx=1):\n    \"\"\"Wild cluster bootstrap with max-p across K positions.\"\"\"\n    position_ps = []\n    position_n_clusters = []\n    for pos in range(n_positions):\n        cluster_ids = np.array([jids[pos] for jids in panel_jids_list])\n        p_val, _, n_cl = wild_cluster_bootstrap(\n            y, X_full, cluster_ids, B=B, seed=seed,\n            test_col_idx=test_col_idx\n        )\n        position_ps.append(p_val)\n        position_n_clusters.append(n_cl)\n    max_p = max(position_ps)\n    return position_ps, max_p, position_n_clusters\n\n\ndef main(B=B_BOOT):\n    t_start = time.time()\n    rng = np.random.default_rng(SEED)\n\n    print(\"Loading data...\")\n    clean, attacked = load_all_scores()\n    pairs = load_pairs()\n    mi_data = load_mi_data()\n\n    mi_matrix = np.array(mi_data[\"mi_matrix\"])\n    mi_model_list = mi_data[\"models\"]\n    mi_idx = {m: i for i, m in enumerate(mi_model_list)}\n\n    clean_acc = compute_clean_accuracy(clean, pairs)\n    print(f\"Clean accuracy computed for {len(clean_acc)} (model, dataset) pairs\")\n\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), K))\n    n_panels = len(all_combos)\n    print(f\"K={K} panels: {n_panels}\")\n\n    panel_jids_list = []\n    for combo in all_combos:\n        panel_jids_list.append(tuple(ALL_MODELS[i] for i in combo))\n\n    panel_mi_indices = []\n    for combo in all_combos:\n        mi_idxs = [mi_idx[ALL_MODELS[i]] for i in combo]\n        panel_mi_indices.append(mi_idxs)\n\n    keffs = np.array([mi_based_keff(mi_matrix, idxs) for idxs in panel_mi_indices])\n    print(f\"K_eff: mean={keffs.mean():.3f}, min={keffs.min():.3f}, max={keffs.max():.3f}\")\n\n    # Load adaptive R² for comparison (majority_vote from k5_aggregation)\n    k5_agg_path = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001/k5_aggregation_analysis.json\")\n    with open(k5_agg_path) as f:\n        k5_agg = json.load(f)\n    adaptive_r2_by_cond = {}\n    for entry in k5_agg.get(\"detail\", []):\n        if entry.get(\"method\") == \"majority_vote\":\n            adaptive_r2_by_cond[entry[\"condition\"]] = entry[\"R2\"]\n\n    condition_keys = [\"mmlu\", \"arc_challenge\"]\n    results = {}\n\n    for ds in condition_keys:\n        print(f\"\\n{'='*60}\")\n        print(f\"Dataset: {ds}\")\n        print(f\"{'='*60}\")\n\n        error_rates = {}\n        for mid in ALL_MODELS:\n            acc = clean_acc.get((mid, ds))\n            if acc is None:\n                print(f\"  WARNING: no clean accuracy for {mid} on {ds}\")\n                error_rates[mid] = 0.5\n            else:\n                error_rates[mid] = 1.0 - acc\n\n        print(f\"  Error rates: min={min(error_rates.values()):.3f}, \"\n              f\"max={max(error_rates.values()):.3f}, \"\n              f\"mean={np.mean(list(error_rates.values())):.3f}\")\n\n        panel_error_array = np.zeros((n_panels, K))\n        eta_max_rf = np.zeros(n_panels)\n        for pi, combo in enumerate(all_combos):\n            for j, idx in enumerate(combo):\n                panel_error_array[pi, j] = error_rates[ALL_MODELS[idx]]\n            eta_max_rf[pi] = max(error_rates[ALL_MODELS[idx]] for idx in combo)\n\n        print(f\"  Simulating RF ASR (n_trials={N_SIM_TRIALS})...\")\n        t_sim = time.time()\n        rf_asr = simulate_rf_asr_k5(panel_error_array, n_trials=N_SIM_TRIALS, rng=rng)\n        print(f\"  Simulation done in {time.time()-t_sim:.1f}s\")\n        print(f\"  RF ASR: mean={rf_asr.mean():.4f}, std={rf_asr.std():.4f}, \"\n              f\"min={rf_asr.min():.4f}, max={rf_asr.max():.4f}\")\n\n        # Analytical check on a few panels\n        n_check = min(20, n_panels)\n        analytical_asrs = np.array([analytical_rf_asr_k5(panel_error_array[i])\n                                     for i in range(n_check)])\n        max_dev = np.max(np.abs(rf_asr[:n_check] - analytical_asrs))\n        print(f\"  Analytical check (first {n_check}): max deviation = {max_dev:.6f}\")\n\n        # Canonical regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps)\n        y = np.log(rf_asr + EPS)\n        x_keff = np.log(keffs)\n        x_eta = np.log(eta_max_rf + EPS)\n\n        x_keff_std = (x_keff - x_keff.mean()) / x_keff.std()\n        x_eta_std = (x_eta - x_eta.mean()) / x_eta.std()\n\n        X = np.column_stack([np.ones(n_panels), x_keff_std, x_eta_std])\n        fit = sm.OLS(y, X).fit()\n\n        ols_result = {\n            \"r2\": float(fit.rsquared),\n            \"adj_r2\": float(fit.rsquared_adj),\n            \"keff_beta\": float(fit.params[1]),\n            \"keff_std_beta\": float(fit.params[1]),\n            \"keff_t\": float(fit.tvalues[1]),\n            \"keff_p\": float(fit.pvalues[1]),\n            \"eta_beta\": float(fit.params[2]),\n            \"eta_std_beta\": float(fit.params[2]),\n            \"eta_t\": float(fit.tvalues[2]),\n            \"eta_p\": float(fit.pvalues[2]),\n        }\n\n        print(f\"  OLS: R²={ols_result['r2']:.4f}\")\n        print(f\"    K_eff: β={ols_result['keff_std_beta']:.4f}, \"\n              f\"t={ols_result['keff_t']:.2f}, p={ols_result['keff_p']:.2e}\")\n        print(f\"    eta_max: β={ols_result['eta_std_beta']:.4f}, \"\n              f\"t={ols_result['eta_t']:.2f}, p={ols_result['eta_p']:.2e}\")\n\n        # Clustered SE (5-position max-p)\n        print(f\"  Computing clustered SE (5 positions)...\")\n        cl_result = clustered_se_maxp(y, X, panel_jids_list)\n        print(f\"  Clustered SE: K_eff max-p={cl_result['keff_p']:.4f}, \"\n              f\"eta max-p={cl_result['eta_p']:.4f}\")\n\n        # Wild cluster bootstrap (5 positions) for K_eff\n        print(f\"  Bootstrap K_eff (B={B}, 5 positions)...\")\n        t_boot = time.time()\n        keff_pos_ps, keff_final_p, keff_n_clusters = bootstrap_k_positions(\n            y, X, panel_jids_list, test_col_idx=1, B=B, seed=SEED\n        )\n        print(f\"    K_eff position p-values: {[f'{p:.4f}' for p in keff_pos_ps]}\")\n        print(f\"    K_eff max-p: {keff_final_p:.4f}\")\n\n        # Bootstrap for eta_max\n        print(f\"  Bootstrap eta_max (B={B}, 5 positions)...\")\n        eta_pos_ps, eta_final_p, eta_n_clusters = bootstrap_k_positions(\n            y, X, panel_jids_list, test_col_idx=2, B=B, seed=SEED\n        )\n        print(f\"    eta position p-values: {[f'{p:.4f}' for p in eta_pos_ps]}\")\n        print(f\"    eta max-p: {eta_final_p:.4f}\")\n        print(f\"  Bootstrap done in {time.time()-t_boot:.1f}s\")\n\n        # Adaptive comparison: average R² across conditions for this dataset\n        ds_prefix = ds.replace(\"_challenge\", \"_challenge\")\n        adaptive_r2s = [v for k, v in adaptive_r2_by_cond.items()\n                        if k.startswith(ds.replace(\"_challenge\", \"_challenge\") + \"x\")]\n        adaptive_mean_r2 = np.mean(adaptive_r2s) if adaptive_r2s else None\n\n        results[ds] = {\n            \"n_panels\": n_panels,\n            \"rf_asr_stats\": {\n                \"mean\": float(rf_asr.mean()),\n                \"std\": float(rf_asr.std()),\n                \"min\": float(rf_asr.min()),\n                \"max\": float(rf_asr.max()),\n                \"max_analytical_deviation\": float(max_dev),\n            },\n            \"eta_max_rf_stats\": {\n                \"mean\": float(eta_max_rf.mean()),\n                \"min\": float(eta_max_rf.min()),\n                \"max\": float(eta_max_rf.max()),\n            },\n            \"keff_stats\": {\n                \"mean\": float(keffs.mean()),\n                \"min\": float(keffs.min()),\n                \"max\": float(keffs.max()),\n            },\n            \"ols\": ols_result,\n            \"clustered_se\": {\n                \"keff_p\": cl_result[\"keff_p\"],\n                \"eta_p\": cl_result[\"eta_p\"],\n            },\n            \"bootstrap_v2\": {\n                \"keff_boot_p_positions\": [float(p) for p in keff_pos_ps],\n                \"keff_final_p\": float(keff_final_p),\n                \"keff_n_clusters\": keff_n_clusters,\n                \"eta_boot_p_positions\": [float(p) for p in eta_pos_ps],\n                \"eta_final_p\": float(eta_final_p),\n                \"eta_n_clusters\": eta_n_clusters,\n            },\n        }\n\n    # Build output\n    rf_ols = {ds: results[ds][\"ols\"] for ds in condition_keys}\n    rf_clustered_se = {ds: results[ds][\"clustered_se\"] for ds in condition_keys}\n\n    adaptive_comparison = {}\n    for ds in condition_keys:\n        ds_prefix = ds.replace(\"_challenge\", \"_challenge\")\n        adaptive_r2s = [v for k, v in adaptive_r2_by_cond.items()\n                        if k.startswith(ds_prefix + \"x\")]\n        rf_r2 = results[ds][\"ols\"][\"r2\"]\n        adap_mean = np.mean(adaptive_r2s) if adaptive_r2s else None\n        adaptive_comparison[ds] = {\n            \"rf_r2\": rf_r2,\n            \"adaptive_mean_r2\": adap_mean,\n            \"gap\": rf_r2 - adap_mean if adap_mean is not None else None,\n            \"adaptive_per_condition\": {k: v for k, v in adaptive_r2_by_cond.items()\n                                       if k.startswith(ds_prefix + \"x\")},\n        }\n\n    # Summary\n    keff_sig_ols = sum(1 for ds in condition_keys\n                       if results[ds][\"ols\"][\"keff_p\"] < 0.05)\n    keff_sig_boot = sum(1 for ds in condition_keys\n                        if results[ds][\"bootstrap_v2\"][\"keff_final_p\"] < 0.05)\n    keff_sig_cl = sum(1 for ds in condition_keys\n                      if results[ds][\"clustered_se\"][\"keff_p\"] < 0.05)\n    eta_sig_ols = sum(1 for ds in condition_keys\n                      if results[ds][\"ols\"][\"eta_p\"] < 0.05)\n    eta_sig_boot = sum(1 for ds in condition_keys\n                       if results[ds][\"bootstrap_v2\"][\"eta_final_p\"] < 0.05)\n\n    rf_mean_r2 = np.mean([results[ds][\"ols\"][\"r2\"] for ds in condition_keys])\n    adap_overall_mean_r2 = np.mean(list(adaptive_r2_by_cond.values())) if adaptive_r2_by_cond else None\n\n    summary_text = (\n        f\"K=5 RF: OLS K_eff sig {keff_sig_ols}/2, bootstrap K_eff sig {keff_sig_boot}/2, \"\n        f\"clustered SE K_eff sig {keff_sig_cl}/2. \"\n        f\"RF mean R²={rf_mean_r2:.4f} vs adaptive mean R²={adap_overall_mean_r2:.4f} \"\n        f\"(gap={rf_mean_r2 - adap_overall_mean_r2:+.4f}). \"\n        f\"RF consistently explains more variance than adaptive, matching K=3 pattern.\"\n        if rf_mean_r2 > adap_overall_mean_r2 else\n        f\"K=5 RF: OLS K_eff sig {keff_sig_ols}/2, bootstrap K_eff sig {keff_sig_boot}/2, \"\n        f\"clustered SE K_eff sig {keff_sig_cl}/2. \"\n        f\"RF mean R²={rf_mean_r2:.4f} vs adaptive mean R²={adap_overall_mean_r2:.4f} \"\n        f\"(gap={rf_mean_r2 - adap_overall_mean_r2:+.4f}).\"\n    )\n\n    print(f\"\\n{'='*60}\")\n    print(\"K=5 RF CONTRAST SUMMARY\")\n    print(f\"{'='*60}\")\n    print(f\"  RF mean R²: {rf_mean_r2:.4f}\")\n    print(f\"  Adaptive mean R² (majority_vote): {adap_overall_mean_r2:.4f}\")\n    print(f\"  Gap: {rf_mean_r2 - adap_overall_mean_r2:+.4f}\")\n    print(f\"\\n  {'Method':<20} {'K_eff sig':>10} {'eta_max sig':>12}\")\n    print(f\"  {'-'*20} {'-'*10} {'-'*12}\")\n    print(f\"  {'OLS':<20} {f'{keff_sig_ols}/2':>10} {f'{eta_sig_ols}/2':>12}\")\n    print(f\"  {'Clustered SE':<20} {f'{keff_sig_cl}/2':>10}\")\n    print(f\"  {'Bootstrap v2':<20} {f'{keff_sig_boot}/2':>10} {f'{eta_sig_boot}/2':>12}\")\n\n    print(f\"\\n  K=3 RF reference: mmlu R²=0.734, arc R²=0.813\")\n    for ds in condition_keys:\n        r = results[ds]\n        print(f\"\\n  {ds}:\")\n        print(f\"    RF R²={r['ols']['r2']:.4f}, \"\n              f\"K_eff β={r['ols']['keff_std_beta']:.4f} (OLS p={r['ols']['keff_p']:.2e})\")\n        print(f\"    Clustered SE K_eff p={r['clustered_se']['keff_p']:.4f}\")\n        print(f\"    Bootstrap K_eff max-p={r['bootstrap_v2']['keff_final_p']:.4f}\")\n\n    elapsed = time.time() - t_start\n    print(f\"\\nTotal time: {elapsed:.0f}s\")\n\n    output = {\n        \"rf_ols\": rf_ols,\n        \"rf_clustered_se\": rf_clustered_se,\n        \"adaptive_comparison\": adaptive_comparison,\n        \"per_condition_detail\": results,\n        \"summary\": summary_text,\n        \"meta\": {\n            \"K\": K,\n            \"n_panels\": n_panels,\n            \"n_sim_trials\": N_SIM_TRIALS,\n            \"bootstrap_B\": B,\n            \"seed\": SEED,\n            \"majority_threshold\": MAJORITY_THRESHOLD,\n            \"rf_definition\": \"1 - clean_accuracy (dataset-level)\",\n            \"regression\": \"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6), standardized beta\",\n            \"clustering\": \"5-position max-p (conservative)\",\n            \"n_conditions\": 2,\n            \"note\": \"RF is dataset-level, no attack variation. No FDR (only 2 tests).\",\n            \"k3_reference\": {\n                \"mmlu_r2\": 0.7344,\n                \"arc_r2\": 0.8133,\n                \"keff_sig_bootstrap\": \"2/2\",\n            },\n        },\n        \"comparison_table\": {\n            \"k3_rf\": {\"mmlu_r2\": 0.7344, \"arc_r2\": 0.8133, \"keff_boot_sig\": \"2/2\"},\n            \"k5_rf\": {\n                \"mmlu_r2\": results[\"mmlu\"][\"ols\"][\"r2\"],\n                \"arc_r2\": results[\"arc_challenge\"][\"ols\"][\"r2\"],\n                \"keff_boot_sig\": f\"{keff_sig_boot}/2\",\n            },\n            \"k5_adaptive_mean_r2\": adap_overall_mean_r2,\n        },\n    }\n\n    out_path = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json\")\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    import argparse\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--B\", type=int, default=B_BOOT)\n    args = parser.parse_args()\n    main(B=args.B)\nSCRIPT\necho \"Script written successfully\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat << 'SCRIPT' > /root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py\n#!/usr/bin/env python3\n\"\"\"K=5 Random-Fault contrast analysis.\n\nRF simulation on C(15,5)=3003 panels, then canonical regression\ncompared against K=5 adaptive results.\n\nRF: each judge independently errs with prob = 1 - clean_accuracy.\nPanel RF ASR = P(>=3/5 judges flip) via 10000 MC iterations.\n2 conditions (mmlu, arc_challenge) — RF is dataset-level, no attack variation.\n\"\"\"\n\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n\nimport sys\nsys.path.insert(0, \"/root/cert_manip_resist_eval\")\n\nimport json\nimport time\nimport itertools\nimport numpy as np\nimport statsmodels.api as sm\nfrom pathlib import Path\nfrom scipy.stats import t as t_dist\n\nfrom src.unified_data_loader import (\n    ALL_MODELS, DATASETS,\n    load_all_scores, load_pairs, load_mi_data,\n    compute_clean_accuracy,\n)\n\nEPS = 1e-6\nN_SIM_TRIALS = 10000\nB_BOOT = 9999\nSEED = 42\nK = 5\nMAJORITY_THRESHOLD = 3  # >=3/5 to flip\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\ndef mi_based_keff(mi_matrix, model_indices):\n    K = len(model_indices)\n    if K <= 1:\n        return 1.0\n    keff = 0.0\n    for i_idx in model_indices:\n        term = 1.0\n        for j_idx in model_indices:\n            if i_idx != j_idx:\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\n        keff += term\n    return keff / K\n\n\ndef simulate_rf_asr_k5(panel_error_rates, n_trials=N_SIM_TRIALS, rng=None):\n    \"\"\"MC simulation for K=5 RF ASR.\n\n    panel_error_rates: (n_panels, 5) array of per-judge error rates\n    Returns: (n_panels,) array of RF ASR\n    \"\"\"\n    if rng is None:\n        rng = np.random.default_rng(SEED)\n    n_panels = panel_error_rates.shape[0]\n    batch_size = 2000\n    rf_sum = np.zeros(n_panels)\n\n    for start in range(0, n_trials, batch_size):\n        b = min(batch_size, n_trials - start)\n        randoms = rng.random((n_panels, b, K))\n        errors = randoms < panel_error_rates[:, np.newaxis, :]\n        majority_wrong = errors.sum(axis=2) >= MAJORITY_THRESHOLD\n        rf_sum += majority_wrong.sum(axis=1)\n\n    return rf_sum / n_trials\n\n\ndef analytical_rf_asr_k5(e):\n    \"\"\"Exact RF ASR for K=5 independent Bernoulli judges.\n    P(>=3 out of 5 fail) = sum_{k=3}^{5} C(5,k) * prod(e_i for i in S) * prod(1-e_j for j not in S)\n    \"\"\"\n    from itertools import combinations\n    n = len(e)\n    total = 0.0\n    for k in range(MAJORITY_THRESHOLD, n + 1):\n        for combo in combinations(range(n), k):\n            p = 1.0\n            for i in range(n):\n                if i in combo:\n                    p *= e[i]\n                else:\n                    p *= (1.0 - e[i])\n            total += p\n    return total\n\n\ndef wild_cluster_bootstrap(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\n                           test_col_idx=1):\n    n, p = X_full.shape\n    unique_clusters = np.unique(cluster_ids)\n    n_clusters = len(unique_clusters)\n\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\n\n    fit_full = sm.OLS(y, X_full).fit()\n    t_original = fit_full.tvalues[test_col_idx]\n\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\n    X_restricted = X_full[:, cols_restricted]\n    fit_restricted = sm.OLS(y, X_restricted).fit()\n    y_hat_r = fit_restricted.fittedvalues\n    e_r = y - y_hat_r\n\n    rng = np.random.RandomState(seed)\n    t_boot = np.empty(B)\n\n    for b in range(B):\n        w_cluster = rng.choice([-1, 1], size=n_clusters)\n        w_panel = w_cluster[panel_cluster_idx]\n        y_boot = y_hat_r + w_panel * e_r\n        try:\n            fit_b = sm.OLS(y_boot, X_full).fit()\n            t_boot[b] = fit_b.tvalues[test_col_idx]\n        except Exception:\n            t_boot[b] = 0.0\n\n    p_value = (1 + np.sum(np.abs(t_boot) >= np.abs(t_original))) / (1 + B)\n    return float(p_value), float(t_original), n_clusters\n\n\ndef clustered_se_maxp(y, X_full, panel_jids_list, n_positions=K):\n    \"\"\"Clustered SE with max-p across K positions.\"\"\"\n    fit_ols = sm.OLS(y, X_full).fit()\n    n = len(y)\n    p = X_full.shape[1]\n    e_hat = y - fit_ols.fittedvalues\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\n\n    position_results = []\n    for pos in range(n_positions):\n        cluster_var = np.array([jids[pos] for jids in panel_jids_list])\n        unique_judges = sorted(set(cluster_var))\n        G = len(unique_judges)\n        judge_to_idx = {j: i for i, j in enumerate(unique_judges)}\n\n        B_sum = np.zeros((p, p))\n        for j in unique_judges:\n            mask = cluster_var == j\n            Xg = X_full[mask]\n            eg = e_hat[mask]\n            Sg = Xg.T @ np.diag(eg) @ np.ones((mask.sum(), 1))\n            B_sum += Sg @ Sg.T\n\n        scale = (G / (G - 1)) * ((n - 1) / (n - p))\n        V_cluster = XtX_inv @ (scale * B_sum) @ XtX_inv\n        se_cluster = np.sqrt(np.diag(V_cluster))\n\n        results_pos = {}\n        for col_idx, name in [(1, \"keff\"), (2, \"eta\")]:\n            t_val = fit_ols.params[col_idx] / se_cluster[col_idx]\n            p_val = 2.0 * t_dist.sf(np.abs(t_val), df=G - 1)\n            results_pos[name] = {\n                \"t\": float(t_val),\n                \"p\": float(p_val),\n                \"se\": float(se_cluster[col_idx]),\n                \"n_clusters\": G,\n            }\n        position_results.append(results_pos)\n\n    keff_max_p = max(r[\"keff\"][\"p\"] for r in position_results)\n    eta_max_p = max(r[\"eta\"][\"p\"] for r in position_results)\n\n    return {\n        \"keff_p\": keff_max_p,\n        \"eta_p\": eta_max_p,\n        \"position_details\": position_results,\n    }\n\n\ndef bootstrap_k_positions(y, X_full, panel_jids_list, n_positions=K,\n                           B=B_BOOT, seed=SEED, test_col_idx=1):\n    \"\"\"Wild cluster bootstrap with max-p across K positions.\"\"\"\n    position_ps = []\n    position_n_clusters = []\n    for pos in range(n_positions):\n        cluster_ids = np.array([jids[pos] for jids in panel_jids_list])\n        p_val, _, n_cl = wild_cluster_bootstrap(\n            y, X_full, cluster_ids, B=B, seed=seed,\n            test_col_idx=test_col_idx\n        )\n        position_ps.append(p_val)\n        position_n_clusters.append(n_cl)\n    max_p = max(position_ps)\n    return position_ps, max_p, position_n_clusters\n\n\ndef main(B=B_BOOT):\n    t_start = time.time()\n    rng = np.random.default_rng(SEED)\n\n    print(\"Loading data...\")\n    clean, attacked = load_all_scores()\n    pairs = load_pairs()\n    mi_data = load_mi_data()\n\n    mi_matrix = np.array(mi_data[\"mi_matrix\"])\n    mi_model_list = mi_data[\"models\"]\n    mi_idx = {m: i for i, m in enumerate(mi_model_list)}\n\n    clean_acc = compute_clean_accuracy(clean, pairs)\n    print(f\"Clean accuracy computed for {len(clean_acc)} (model, dataset) pairs\")\n\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), K))\n    n_panels = len(all_combos)\n    print(f\"K={K} panels: {n_panels}\")\n\n    panel_jids_list = []\n    for combo in all_combos:\n        panel_jids_list.append(tuple(ALL_MODELS[i] for i in combo))\n\n    panel_mi_indices = []\n    for combo in all_combos:\n        mi_idxs = [mi_idx[ALL_MODELS[i]] for i in combo]\n        panel_mi_indices.append(mi_idxs)\n\n    keffs = np.array([mi_based_keff(mi_matrix, idxs) for idxs in panel_mi_indices])\n    print(f\"K_eff: mean={keffs.mean():.3f}, min={keffs.min():.3f}, max={keffs.max():.3f}\")\n\n    # Load adaptive R² for comparison (majority_vote from k5_aggregation)\n    k5_agg_path = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001/k5_aggregation_analysis.json\")\n    with open(k5_agg_path) as f:\n        k5_agg = json.load(f)\n    adaptive_r2_by_cond = {}\n    for entry in k5_agg.get(\"detail\", []):\n        if entry.get(\"method\") == \"majority_vote\":\n            adaptive_r2_by_cond[entry[\"condition\"]] = entry[\"R2\"]\n\n    condition_keys = [\"mmlu\", \"arc_challenge\"]\n    results = {}\n\n    for ds in condition_keys:\n        print(f\"\\n{'='*60}\")\n        print(f\"Dataset: {ds}\")\n        print(f\"{'='*60}\")\n\n        error_rates = {}\n        for mid in ALL_MODELS:\n            acc = clean_acc.get((mid, ds))\n            if acc is None:\n                print(f\"  WARNING: no clean accuracy for {mid} on {ds}\")\n                error_rates[mid] = 0.5\n            else:\n                error_rates[mid] = 1.0 - acc\n\n        print(f\"  Error rates: min={min(error_rates.values()):.3f}, \"\n              f\"max={max(error_rates.values()):.3f}, \"\n              f\"mean={np.mean(list(error_rates.values())):.3f}\")\n\n        panel_error_array = np.zeros((n_panels, K))\n        eta_max_rf = np.zeros(n_panels)\n        for pi, combo in enumerate(all_combos):\n            for j, idx in enumerate(combo):\n                panel_error_array[pi, j] = error_rates[ALL_MODELS[idx]]\n            eta_max_rf[pi] = max(error_rates[ALL_MODELS[idx]] for idx in combo)\n\n        print(f\"  Simulating RF ASR (n_trials={N_SIM_TRIALS})...\")\n        t_sim = time.time()\n        rf_asr = simulate_rf_asr_k5(panel_error_array, n_trials=N_SIM_TRIALS, rng=rng)\n        print(f\"  Simulation done in {time.time()-t_sim:.1f}s\")\n        print(f\"  RF ASR: mean={rf_asr.mean():.4f}, std={rf_asr.std():.4f}, \"\n              f\"min={rf_asr.min():.4f}, max={rf_asr.max():.4f}\")\n\n        # Analytical check on a few panels\n        n_check = min(20, n_panels)\n        analytical_asrs = np.array([analytical_rf_asr_k5(panel_error_array[i])\n                                     for i in range(n_check)])\n        max_dev = np.max(np.abs(rf_asr[:n_check] - analytical_asrs))\n        print(f\"  Analytical check (first {n_check}): max deviation = {max_dev:.6f}\")\n\n        # Canonical regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps)\n        y = np.log(rf_asr + EPS)\n        x_keff = np.log(keffs)\n        x_eta = np.log(eta_max_rf + EPS)\n\n        x_keff_std = (x_keff - x_keff.mean()) / x_keff.std()\n        x_eta_std = (x_eta - x_eta.mean()) / x_eta.std()\n\n        X = np.column_stack([np.ones(n_panels), x_keff_std, x_eta_std])\n        fit = sm.OLS(y, X).fit()\n\n        ols_result = {\n            \"r2\": float(fit.rsquared),\n            \"adj_r2\": float(fit.rsquared_adj),\n            \"keff_beta\": float(fit.params[1]),\n            \"keff_std_beta\": float(fit.params[1]),\n            \"keff_t\": float(fit.tvalues[1]),\n            \"keff_p\": float(fit.pvalues[1]),\n            \"eta_beta\": float(fit.params[2]),\n            \"eta_std_beta\": float(fit.params[2]),\n            \"eta_t\": float(fit.tvalues[2]),\n            \"eta_p\": float(fit.pvalues[2]),\n        }\n\n        print(f\"  OLS: R²={ols_result['r2']:.4f}\")\n        print(f\"    K_eff: β={ols_result['keff_std_beta']:.4f}, \"\n              f\"t={ols_result['keff_t']:.2f}, p={ols_result['keff_p']:.2e}\")\n        print(f\"    eta_max: β={ols_result['eta_std_beta']:.4f}, \"\n              f\"t={ols_result['eta_t']:.2f}, p={ols_result['eta_p']:.2e}\")\n\n        # Clustered SE (5-position max-p)\n        print(f\"  Computing clustered SE (5 positions)...\")\n        cl_result = clustered_se_maxp(y, X, panel_jids_list)\n        print(f\"  Clustered SE: K_eff max-p={cl_result['keff_p']:.4f}, \"\n              f\"eta max-p={cl_result['eta_p']:.4f}\")\n\n        # Wild cluster bootstrap (5 positions) for K_eff\n        print(f\"  Bootstrap K_eff (B={B}, 5 positions)...\")\n        t_boot = time.time()\n        keff_pos_ps, keff_final_p, keff_n_clusters = bootstrap_k_positions(\n            y, X, panel_jids_list, test_col_idx=1, B=B, seed=SEED\n        )\n        print(f\"    K_eff position p-values: {[f'{p:.4f}' for p in keff_pos_ps]}\")\n        print(f\"    K_eff max-p: {keff_final_p:.4f}\")\n\n        # Bootstrap for eta_max\n        print(f\"  Bootstrap eta_max (B={B}, 5 positions)...\")\n        eta_pos_ps, eta_final_p, eta_n_clusters = bootstrap_k_positions(\n            y, X, panel_jids_list, test_col_idx=2, B=B, seed=SEED\n        )\n        print(f\"    eta position p-values: {[f'{p:.4f}' for p in eta_pos_ps]}\")\n        print(f\"    eta max-p: {eta_final_p:.4f}\")\n        print(f\"  Bootstrap done in {time.time()-t_boot:.1f}s\")\n\n        # Adaptive comparison: average R² across conditions for this dataset\n        ds_prefix = ds.replace(\"_challenge\", \"_challenge\")\n        adaptive_r2s = [v for k, v in adaptive_r2_by_cond.items()\n                        if k.startswith(ds.replace(\"_challenge\", \"_challenge\") + \"x\")]\n        adaptive_mean_r2 = np.mean(adaptive_r2s) if adaptive_r2s else None\n\n        results[ds] = {\n            \"n_panels\": n_panels,\n            \"rf_asr_stats\": {\n                \"mean\": float(rf_asr.mean()),\n                \"std\": float(rf_asr.std()),\n                \"min\": float(rf_asr.min()),\n                \"max\": float(rf_asr.max()),\n                \"max_analytical_deviation\": float(max_dev),\n            },\n            \"eta_max_rf_stats\": {\n                \"mean\": float(eta_max_rf.mean()),\n                \"min\": float(eta_max_rf.min()),\n                \"max\": float(eta_max_rf.max()),\n            },\n            \"keff_stats\": {\n                \"mean\": float(keffs.mean()),\n                \"min\": float(keffs.min()),\n                \"max\": float(keffs.max()),\n            },\n            \"ols\": ols_result,\n            \"clustered_se\": {\n                \"keff_p\": cl_result[\"keff_p\"],\n                \"eta_p\": cl_result[\"eta_p\"],\n            },\n            \"bootstrap_v2\": {\n                \"keff_boot_p_positions\": [float(p) for p in keff_pos_ps],\n                \"keff_final_p\": float(keff_final_p),\n                \"keff_n_clusters\": keff_n_clusters,\n                \"eta_boot_p_positions\": [float(p) for p in eta_pos_ps],\n                \"eta_final_p\": float(eta_final_p),\n                \"eta_n_clusters\": eta_n_clusters,\n            },\n        }\n\n    # Build output\n    rf_ols = {ds: results[ds][\"ols\"] for ds in condition_keys}\n    rf_clustered_se = {ds: results[ds][\"clustered_se\"] for ds in condition_keys}\n\n    adaptive_comparison = {}\n    for ds in condition_keys:\n        ds_prefix = ds.replace(\"_challenge\", \"_challenge\")\n        adaptive_r2s = [v for k, v in adaptive_r2_by_cond.items()\n                        if k.startswith(ds_prefix + \"x\")]\n        rf_r2 = results[ds][\"ols\"][\"r2\"]\n        adap_mean = np.mean(adaptive_r2s) if adaptive_r2s else None\n        adaptive_comparison[ds] = {\n            \"rf_r2\": rf_r2,\n            \"adaptive_mean_r2\": adap_mean,\n            \"gap\": rf_r2 - adap_mean if adap_mean is not None else None,\n            \"adaptive_per_condition\": {k: v for k, v in adaptive_r2_by_cond.items()\n                                       if k.startswith(ds_prefix + \"x\")},\n        }\n\n    # Summary\n    keff_sig_ols = sum(1 for ds in condition_keys\n                       if results[ds][\"ols\"][\"keff_p\"] < 0.05)\n    keff_sig_boot = sum(1 for ds in condition_keys\n                        if results[ds][\"bootstrap_v2\"][\"keff_final_p\"] < 0.05)\n    keff_sig_cl = sum(1 for ds in condition_keys\n                      if results[ds][\"clustered_se\"][\"keff_p\"] < 0.05)\n    eta_sig_ols = sum(1 for ds in condition_keys\n                      if results[ds][\"ols\"][\"eta_p\"] < 0.05)\n    eta_sig_boot = sum(1 for ds in condition_keys\n                       if results[ds][\"bootstrap_v2\"][\"eta_final_p\"] < 0.05)\n\n    rf_mean_r2 = np.mean([results[ds][\"ols\"][\"r2\"] for ds in condition_keys])\n    adap_overall_mean_r2 = np.mean(list(adaptive_r2_by_cond.values())) if adaptive_r2_by_cond else None\n\n    summary_text = (\n        f\"K=5 RF: OLS K_eff sig {keff_sig_ols}/2, bootstrap K_eff sig {keff_sig_boot}/2, \"\n        f\"clustered SE K_eff sig {keff_sig_cl}/2. \"\n        f\"RF mean R²={rf_mean_r2:.4f} vs adaptive mean R²={adap_overall_mean_r2:.4f} \"\n        f\"(gap={rf_mean_r2 - adap_overall_mean_r2:+.4f}). \"\n        f\"RF consistently explains more variance than adaptive, matching K=3 pattern.\"\n        if rf_mean_r2 > adap_overall_mean_r2 else\n        f\"K=5 RF: OLS K_eff sig {keff_sig_ols}/2, bootstrap K_eff sig {keff_sig_boot}/2, \"\n        f\"clustered SE K_eff sig {keff_sig_cl}/2. \"\n        f\"RF mean R²={rf_mean_r2:.4f} vs adaptive mean R²={adap_overall_mean_r2:.4f} \"\n        f\"(gap={rf_mean_r2 - adap_overall_mean_r2:+.4f}).\"\n    )\n\n    print(f\"\\n{'='*60}\")\n    print(\"K=5 RF CONTRAST SUMMARY\")\n    print(f\"{'='*60}\")\n    print(f\"  RF mean R²: {rf_mean_r2:.4f}\")\n    print(f\"  Adaptive mean R² (majority_vote): {adap_overall_mean_r2:.4f}\")\n    print(f\"  Gap: {rf_mean_r2 - adap_overall_mean_r2:+.4f}\")\n    print(f\"\\n  {'Method':<20} {'K_eff sig':>10} {'eta_max sig':>12}\")\n    print(f\"  {'-'*20} {'-'*10} {'-'*12}\")\n    print(f\"  {'OLS':<20} {f'{keff_sig_ols}/2':>10} {f'{eta_sig_ols}/2':>12}\")\n    print(f\"  {'Clustered SE':<20} {f'{keff_sig_cl}/2':>10}\")\n    print(f\"  {'Bootstrap v2':<20} {f'{keff_sig_boot}/2':>10} {f'{eta_sig_boot}/2':>12}\")\n\n    print(f\"\\n  K=3 RF reference: mmlu R²=0.734, arc R²=0.813\")\n    for ds in condition_keys:\n        r = results[ds]\n        print(f\"\\n  {ds}:\")\n        print(f\"    RF R²={r['ols']['r2']:.4f}, \"\n              f\"K_eff β={r['ols']['keff_std_beta']:.4f} (OLS p={r['ols']['keff_p']:.2e})\")\n        print(f\"    Clustered SE K_eff p={r['clustered_se']['keff_p']:.4f}\")\n        print(f\"    Bootstrap K_eff max-p={r['bootstrap_v2']['keff_final_p']:.4f}\")\n\n    elapsed = time.time() - t_start\n    print(f\"\\nTotal time: {elapsed:.0f}s\")\n\n    output = {\n        \"rf_ols\": rf_ols,\n        \"rf_clustered_se\": rf_clustered_se,\n        \"adaptive_comparison\": adaptive_comparison,\n        \"per_condition_detail\": results,\n        \"summary\": summary_text,\n        \"meta\": {\n            \"K\": K,\n            \"n_panels\": n_panels,\n            \"n_sim_trials\": N_SIM_TRIALS,\n            \"bootstrap_B\": B,\n            \"seed\": SEED,\n            \"majority_threshold\": MAJORITY_THRESHOLD,\n            \"rf_definition\": \"1 - clean_accuracy (dataset-level)\",\n            \"regression\": \"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6), standardized beta\",\n            \"clustering\": \"5-position max-p (conservative)\",\n            \"n_conditions\": 2,\n            \"note\": \"RF is dataset-level, no attack variation. No FDR (only 2 tests).\",\n            \"k3_reference\": {\n                \"mmlu_r2\": 0.7344,\n                \"arc_r2\": 0.8133,\n                \"keff_sig_bootstrap\": \"2/2\",\n            },\n        },\n        \"comparison_table\": {\n            \"k3_rf\": {\"mmlu_r2\": 0.7344, \"arc_r2\": 0.8133, \"keff_boot_sig\": \"2/2\"},\n            \"k5_rf\": {\n                \"mmlu_r2\": results[\"mmlu\"][\"ols\"][\"r2\"],\n                \"arc_r2\": results[\"arc_challenge\"][\"ols\"][\"r2\"],\n                \"keff_boot_sig\": f\"{keff_sig_boot}/2\",\n            },\n            \"k5_adaptive_mean_r2\": adap_overall_mean_r2,\n        },\n    }\n\n    out_path = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json\")\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    import argparse\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--B\", type=int, default=B_BOOT)\n    args = parser.parse_args()\n    main(B=args.B)\nSCRIPT\necho \"Script written successfully\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T07:12:25.637041+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T07:12:25.637199+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/run_k5_rf_contrast.py --B 99 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/run_k5_rf_contrast.py --B 99 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T07:12:25.637343+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"Loading data...\\nClean accuracy computed for 30 (model, dataset) pairs\\nK=5 panels: 3003\\nTraceback (most recent call last):\\n  File \\\"/root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py\\\", line 504, in &lt;module>\\n    main(B=args.B)\\n  File \\\"/root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py\\\", line 238, in main\\n    keffs = np.array([mi_based_keff(mi_matrix, idxs) for idxs in panel_mi_indices])\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py\\\", line 62, in mi_based_keff\\n    term += np.exp(-2 * mi_matrix[i_idx, j_idx])\\n                        ~~~~~~~~~^^^^^^^^^^^^^^\\nIndexError: too many indices for array: array is 0-dimensional, but 2 were indexed\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T07:12:25.637500+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -30 /root/cert_manip_resist_eval/artifacts/results/plan001/mi_matrix/mi_matrix_15models.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -30 /root/cert_manip_resist_eval/artifacts/results/plan001/mi_matrix/mi_matrix_15models.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T07:12:25.637667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"mi_matrix\\\": {\\n    \\\"mmlu\\\": [\\n      [\\n        0.0,\\n        0.2962205170426407,\\n        0.26675251098957503,\\n        0.3470669052814603,\\n        0.27125804258663433,\\n        0.036010036882308916,\\n        0.28731888801126415,\\n        0.3191362352253263,\\n        0.35168587132015827,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T07:12:25.637838+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -A 30 \"def load_mi_data\" /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -A 30 \"def load_mi_data\" /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T07:12:25.637982+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def load_mi_data(mi_path=None):\\n    \\\"\\\"\\\"Load MI matrix from Step 3 output.\\\"\\\"\\\"\\n    mi_path = Path(mi_path or MI_PATH)\\n    if not mi_path.exists():\\n        raise FileNotFoundError(\\n            f\\\"MI matrix not found: {mi_path}. Run Step 3 first.\\\"\\n        )\\n    with open(mi_path) as f:\\n        data = json.load(f)\\n    logger.info(f\\\"Loaded MI matrix: {len(data['models'])} models\\\")\\n    return data\\n\\n\\ndef load_api_asr(individual_dir=None, datasets=None, attacks=None, api_models=None):\\n    \\\"\\\"\\\"Load pre-computed ASR for API models from individual score files.\\n\\n    Returns: {ds: {atk: {model_id: asr}}}\\n    \\\"\\\"\\\"\\n    individual_dir = Path(individual_dir or SCORES_DIR)\\n    datasets = datasets or DATASETS\\n    attacks = attacks or ATTACKS\\n    api_models = api_models or API_MODELS\\n\\n    asr_data = {}\\n    for model_id in api_models:\\n        for ds in datasets:\\n            if ds not in asr_data:\\n                asr_data[ds] = {}\\n            clean_path = individual_dir / f\\\"{model_id}__{ds}__clean.json\\\"\\n            if not clean_path.exists():\\n                continue\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T07:12:25.638151+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "python3 -c \"import json; d=json.load(open('/root/cert_manip_resist_eval/artifacts/results/plan001/mi_matrix/mi_matrix_15models.json')); print(type(d['mi_matrix'])); print(list(d['mi_matrix'].keys()) if isinstance(d['mi_matrix'], dict) else 'list')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "python3 -c \"import json; d=json.load(open('/root/cert_manip_resist_eval/artifacts/results/plan001/mi_matrix/mi_matrix_15models.json')); print(type(d['mi_matrix'])); print(list(d['mi_matrix'].keys()) if isinstance(d['mi_matrix'], dict) else 'list')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T07:12:25.638278+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T07:12:25.638397+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nd = json.load(open('artifacts/results/plan001/mi_matrix/mi_matrix_15models.json'))\nmi = d['mi_matrix']\nprint('type:', type(mi))\nif isinstance(mi, dict):\n    print('keys:', list(mi.keys()))\n    for k in mi:\n        arr = np.array(mi[k])\n        print(f'{k}: shape={arr.shape}')\nelse:\n    arr = np.array(mi)\n    print('shape:', arr.shape)\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nd = json.load(open('artifacts/results/plan001/mi_matrix/mi_matrix_15models.json'))\nmi = d['mi_matrix']\nprint('type:', type(mi))\nif isinstance(mi, dict):\n    print('keys:', list(mi.keys()))\n    for k in mi:\n        arr = np.array(mi[k])\n        print(f'{k}: shape={arr.shape}')\nelse:\n    arr = np.array(mi)\n    print('shape:', arr.shape)\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T07:12:25.638523+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"type: &lt;class 'dict'>\\nkeys: ['mmlu', 'arc_challenge']\\nmmlu: shape=(15, 15)\\narc_challenge: shape=(15, 15)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T07:12:25.638754+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat << 'SCRIPT' > /root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py\n#!/usr/bin/env python3\n\"\"\"K=5 Random-Fault contrast analysis.\n\nRF simulation on C(15,5)=3003 panels, then canonical regression\ncompared against K=5 adaptive results.\n\nRF: each judge independently errs with prob = 1 - clean_accuracy.\nPanel RF ASR = P(>=3/5 judges flip) via 10000 MC iterations.\n2 conditions (mmlu, arc_challenge) — RF is dataset-level, no attack variation.\n\"\"\"\n\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n\nimport sys\nsys.path.insert(0, \"/root/cert_manip_resist_eval\")\n\nimport json\nimport time\nimport itertools\nimport numpy as np\nimport statsmodels.api as sm\nfrom pathlib import Path\nfrom scipy.stats import t as t_dist\n\nfrom src.unified_data_loader import (\n    ALL_MODELS, DATASETS,\n    load_all_scores, load_pairs, load_mi_data,\n    compute_clean_accuracy,\n)\n\nEPS = 1e-6\nN_SIM_TRIALS = 10000\nB_BOOT = 9999\nSEED = 42\nK = 5\nMAJORITY_THRESHOLD = 3\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\ndef mi_based_keff(mi_matrix, model_indices):\n    K = len(model_indices)\n    if K <= 1:\n        return 1.0\n    keff = 0.0\n    for i_idx in model_indices:\n        term = 1.0\n        for j_idx in model_indices:\n            if i_idx != j_idx:\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\n        keff += term\n    return keff / K\n\n\ndef simulate_rf_asr_k5(panel_error_rates, n_trials=N_SIM_TRIALS, rng=None):\n    if rng is None:\n        rng = np.random.default_rng(SEED)\n    n_panels = panel_error_rates.shape[0]\n    batch_size = 2000\n    rf_sum = np.zeros(n_panels)\n\n    for start in range(0, n_trials, batch_size):\n        b = min(batch_size, n_trials - start)\n        randoms = rng.random((n_panels, b, K))\n        errors = randoms < panel_error_rates[:, np.newaxis, :]\n        majority_wrong = errors.sum(axis=2) >= MAJORITY_THRESHOLD\n        rf_sum += majority_wrong.sum(axis=1)\n\n    return rf_sum / n_trials\n\n\ndef analytical_rf_asr_k5(e):\n    from itertools import combinations as _comb\n    total = 0.0\n    for k in range(MAJORITY_THRESHOLD, len(e) + 1):\n        for combo in _comb(range(len(e)), k):\n            p = 1.0\n            for i in range(len(e)):\n                p *= e[i] if i in combo else (1.0 - e[i])\n            total += p\n    return total\n\n\ndef wild_cluster_bootstrap(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\n                           test_col_idx=1):\n    n, p = X_full.shape\n    unique_clusters = np.unique(cluster_ids)\n    n_clusters = len(unique_clusters)\n\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\n\n    fit_full = sm.OLS(y, X_full).fit()\n    t_original = fit_full.tvalues[test_col_idx]\n\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\n    X_restricted = X_full[:, cols_restricted]\n    fit_restricted = sm.OLS(y, X_restricted).fit()\n    y_hat_r = fit_restricted.fittedvalues\n    e_r = y - y_hat_r\n\n    rng = np.random.RandomState(seed)\n    t_boot = np.empty(B)\n\n    for b in range(B):\n        w_cluster = rng.choice([-1, 1], size=n_clusters)\n        w_panel = w_cluster[panel_cluster_idx]\n        y_boot = y_hat_r + w_panel * e_r\n        try:\n            fit_b = sm.OLS(y_boot, X_full).fit()\n            t_boot[b] = fit_b.tvalues[test_col_idx]\n        except Exception:\n            t_boot[b] = 0.0\n\n    p_value = (1 + np.sum(np.abs(t_boot) >= np.abs(t_original))) / (1 + B)\n    return float(p_value), float(t_original), n_clusters\n\n\ndef clustered_se_maxp(y, X_full, panel_jids_list, n_positions=K):\n    fit_ols = sm.OLS(y, X_full).fit()\n    n = len(y)\n    p = X_full.shape[1]\n    e_hat = y - fit_ols.fittedvalues\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\n\n    position_results = []\n    for pos in range(n_positions):\n        cluster_var = np.array([jids[pos] for jids in panel_jids_list])\n        unique_judges = sorted(set(cluster_var))\n        G = len(unique_judges)\n\n        B_sum = np.zeros((p, p))\n        for j in unique_judges:\n            mask = cluster_var == j\n            Xg = X_full[mask]\n            eg = e_hat[mask]\n            Sg = Xg.T @ np.diag(eg) @ np.ones((mask.sum(), 1))\n            B_sum += Sg @ Sg.T\n\n        scale = (G / (G - 1)) * ((n - 1) / (n - p))\n        V_cluster = XtX_inv @ (scale * B_sum) @ XtX_inv\n        se_cluster = np.sqrt(np.diag(V_cluster))\n\n        results_pos = {}\n        for col_idx, name in [(1, \"keff\"), (2, \"eta\")]:\n            t_val = fit_ols.params[col_idx] / se_cluster[col_idx]\n            p_val = 2.0 * t_dist.sf(np.abs(t_val), df=G - 1)\n            results_pos[name] = {\n                \"t\": float(t_val), \"p\": float(p_val),\n                \"se\": float(se_cluster[col_idx]), \"n_clusters\": G,\n            }\n        position_results.append(results_pos)\n\n    return {\n        \"keff_p\": max(r[\"keff\"][\"p\"] for r in position_results),\n        \"eta_p\": max(r[\"eta\"][\"p\"] for r in position_results),\n        \"position_details\": position_results,\n    }\n\n\ndef bootstrap_k_positions(y, X_full, panel_jids_list, n_positions=K,\n                           B=B_BOOT, seed=SEED, test_col_idx=1):\n    position_ps = []\n    position_n_clusters = []\n    for pos in range(n_positions):\n        cluster_ids = np.array([jids[pos] for jids in panel_jids_list])\n        p_val, _, n_cl = wild_cluster_bootstrap(\n            y, X_full, cluster_ids, B=B, seed=seed,\n            test_col_idx=test_col_idx\n        )\n        position_ps.append(p_val)\n        position_n_clusters.append(n_cl)\n    return position_ps, max(position_ps), position_n_clusters\n\n\ndef main(B=B_BOOT):\n    t_start = time.time()\n    rng = np.random.default_rng(SEED)\n\n    print(\"Loading data...\")\n    clean, attacked = load_all_scores()\n    pairs = load_pairs()\n    mi_data = load_mi_data()\n\n    mi_model_list = mi_data[\"models\"]\n    mi_idx = {m: i for i, m in enumerate(mi_model_list)}\n\n    # Per-dataset MI matrices\n    mi_matrices = {}\n    for ds_key in mi_data[\"mi_matrix\"]:\n        mi_matrices[ds_key] = np.array(mi_data[\"mi_matrix\"][ds_key])\n\n    clean_acc = compute_clean_accuracy(clean, pairs)\n    print(f\"Clean accuracy: {len(clean_acc)} (model, dataset) pairs\")\n\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), K))\n    n_panels = len(all_combos)\n    print(f\"K={K} panels: {n_panels}\")\n\n    panel_jids_list = [tuple(ALL_MODELS[i] for i in combo) for combo in all_combos]\n\n    panel_mi_indices = []\n    for combo in all_combos:\n        panel_mi_indices.append([mi_idx[ALL_MODELS[i]] for i in combo])\n\n    # Load adaptive R² (majority_vote)\n    k5_agg_path = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001/\"\n                       \"k5_aggregation_analysis.json\")\n    with open(k5_agg_path) as f:\n        k5_agg = json.load(f)\n    adaptive_r2_by_cond = {}\n    for entry in k5_agg.get(\"detail\", []):\n        if entry.get(\"method\") == \"majority_vote\":\n            adaptive_r2_by_cond[entry[\"condition\"]] = entry[\"R2\"]\n\n    ds_map = {\"mmlu\": \"mmlu\", \"arc_challenge\": \"arc_challenge\"}\n    condition_keys = list(ds_map.keys())\n    results = {}\n\n    for ds in condition_keys:\n        print(f\"\\n{'='*60}\")\n        print(f\"Dataset: {ds}\")\n        print(f\"{'='*60}\")\n\n        mi_matrix = mi_matrices[ds]\n        keffs = np.array([mi_based_keff(mi_matrix, idxs) for idxs in panel_mi_indices])\n        print(f\"  K_eff: mean={keffs.mean():.3f}, range=[{keffs.min():.3f}, {keffs.max():.3f}]\")\n\n        error_rates = {}\n        for mid in ALL_MODELS:\n            acc = clean_acc.get((mid, ds))\n            if acc is None:\n                print(f\"  WARNING: no clean accuracy for {mid} on {ds}\")\n                error_rates[mid] = 0.5\n            else:\n                error_rates[mid] = 1.0 - acc\n\n        print(f\"  Error rates: [{min(error_rates.values()):.3f}, \"\n              f\"{max(error_rates.values()):.3f}], \"\n              f\"mean={np.mean(list(error_rates.values())):.3f}\")\n\n        panel_error_array = np.zeros((n_panels, K))\n        eta_max_rf = np.zeros(n_panels)\n        for pi, combo in enumerate(all_combos):\n            for j, idx in enumerate(combo):\n                panel_error_array[pi, j] = error_rates[ALL_MODELS[idx]]\n            eta_max_rf[pi] = max(error_rates[ALL_MODELS[idx]] for idx in combo)\n\n        print(f\"  Simulating RF ASR (n_trials={N_SIM_TRIALS})...\")\n        t_sim = time.time()\n        rf_asr = simulate_rf_asr_k5(panel_error_array, n_trials=N_SIM_TRIALS, rng=rng)\n        print(f\"  Done in {time.time()-t_sim:.1f}s\")\n        print(f\"  RF ASR: mean={rf_asr.mean():.4f}, std={rf_asr.std():.4f}\")\n\n        n_check = min(20, n_panels)\n        analytical_asrs = np.array([analytical_rf_asr_k5(panel_error_array[i])\n                                     for i in range(n_check)])\n        max_dev = np.max(np.abs(rf_asr[:n_check] - analytical_asrs))\n        print(f\"  Analytical check: max deviation = {max_dev:.6f}\")\n\n        # Canonical regression\n        y = np.log(rf_asr + EPS)\n        x_keff = np.log(keffs)\n        x_eta = np.log(eta_max_rf + EPS)\n\n        x_keff_std = (x_keff - x_keff.mean()) / x_keff.std()\n        x_eta_std = (x_eta - x_eta.mean()) / x_eta.std()\n\n        X = np.column_stack([np.ones(n_panels), x_keff_std, x_eta_std])\n        fit = sm.OLS(y, X).fit()\n\n        ols_result = {\n            \"r2\": float(fit.rsquared),\n            \"adj_r2\": float(fit.rsquared_adj),\n            \"keff_beta\": float(fit.params[1]),\n            \"keff_std_beta\": float(fit.params[1]),\n            \"keff_t\": float(fit.tvalues[1]),\n            \"keff_p\": float(fit.pvalues[1]),\n            \"eta_beta\": float(fit.params[2]),\n            \"eta_std_beta\": float(fit.params[2]),\n            \"eta_t\": float(fit.tvalues[2]),\n            \"eta_p\": float(fit.pvalues[2]),\n        }\n\n        print(f\"  OLS R²={ols_result['r2']:.4f}\")\n        print(f\"    K_eff: β={ols_result['keff_std_beta']:.4f}, p={ols_result['keff_p']:.2e}\")\n        print(f\"    eta:   β={ols_result['eta_std_beta']:.4f}, p={ols_result['eta_p']:.2e}\")\n\n        # Clustered SE\n        print(f\"  Clustered SE (5 positions)...\")\n        cl_result = clustered_se_maxp(y, X, panel_jids_list)\n        print(f\"    K_eff max-p={cl_result['keff_p']:.4f}, eta max-p={cl_result['eta_p']:.4f}\")\n\n        # Wild cluster bootstrap\n        print(f\"  Bootstrap (B={B})...\")\n        t_boot = time.time()\n        keff_pos_ps, keff_final_p, keff_n_clusters = bootstrap_k_positions(\n            y, X, panel_jids_list, test_col_idx=1, B=B, seed=SEED\n        )\n        eta_pos_ps, eta_final_p, eta_n_clusters = bootstrap_k_positions(\n            y, X, panel_jids_list, test_col_idx=2, B=B, seed=SEED\n        )\n        print(f\"    K_eff positions: {[f'{p:.4f}' for p in keff_pos_ps]}, max-p={keff_final_p:.4f}\")\n        print(f\"    eta positions:   {[f'{p:.4f}' for p in eta_pos_ps]}, max-p={eta_final_p:.4f}\")\n        print(f\"    Done in {time.time()-t_boot:.1f}s\")\n\n        # Adaptive comparison\n        ds_prefix = ds + \"x\" if ds == \"mmlu\" else ds + \"x\"\n        adaptive_r2s = [v for k, v in adaptive_r2_by_cond.items()\n                        if k.startswith(ds_prefix)]\n        adaptive_mean_r2 = float(np.mean(adaptive_r2s)) if adaptive_r2s else None\n\n        results[ds] = {\n            \"n_panels\": n_panels,\n            \"rf_asr_stats\": {\n                \"mean\": float(rf_asr.mean()), \"std\": float(rf_asr.std()),\n                \"max_analytical_deviation\": float(max_dev),\n            },\n            \"eta_max_rf_stats\": {\n                \"mean\": float(eta_max_rf.mean()),\n                \"min\": float(eta_max_rf.min()), \"max\": float(eta_max_rf.max()),\n            },\n            \"keff_stats\": {\n                \"mean\": float(keffs.mean()),\n                \"min\": float(keffs.min()), \"max\": float(keffs.max()),\n            },\n            \"ols\": ols_result,\n            \"clustered_se\": {\"keff_p\": cl_result[\"keff_p\"], \"eta_p\": cl_result[\"eta_p\"]},\n            \"bootstrap_v2\": {\n                \"keff_boot_p_positions\": [float(p) for p in keff_pos_ps],\n                \"keff_final_p\": float(keff_final_p),\n                \"keff_n_clusters\": keff_n_clusters,\n                \"eta_boot_p_positions\": [float(p) for p in eta_pos_ps],\n                \"eta_final_p\": float(eta_final_p),\n                \"eta_n_clusters\": eta_n_clusters,\n            },\n        }\n\n    # Build output\n    rf_ols = {ds: results[ds][\"ols\"] for ds in condition_keys}\n    rf_clustered_se = {ds: results[ds][\"clustered_se\"] for ds in condition_keys}\n\n    adaptive_comparison = {}\n    for ds in condition_keys:\n        ds_prefix = ds + \"x\"\n        adaptive_r2s = {k: v for k, v in adaptive_r2_by_cond.items()\n                        if k.startswith(ds_prefix)}\n        rf_r2 = results[ds][\"ols\"][\"r2\"]\n        adap_mean = float(np.mean(list(adaptive_r2s.values()))) if adaptive_r2s else None\n        adaptive_comparison[ds] = {\n            \"rf_r2\": rf_r2,\n            \"adaptive_mean_r2\": adap_mean,\n            \"gap\": rf_r2 - adap_mean if adap_mean is not None else None,\n            \"adaptive_per_condition\": adaptive_r2s,\n        }\n\n    keff_sig_ols = sum(1 for ds in condition_keys if results[ds][\"ols\"][\"keff_p\"] < 0.05)\n    keff_sig_boot = sum(1 for ds in condition_keys\n                        if results[ds][\"bootstrap_v2\"][\"keff_final_p\"] < 0.05)\n    keff_sig_cl = sum(1 for ds in condition_keys\n                      if results[ds][\"clustered_se\"][\"keff_p\"] < 0.05)\n    eta_sig_ols = sum(1 for ds in condition_keys if results[ds][\"ols\"][\"eta_p\"] < 0.05)\n    eta_sig_boot = sum(1 for ds in condition_keys\n                       if results[ds][\"bootstrap_v2\"][\"eta_final_p\"] < 0.05)\n\n    rf_mean_r2 = np.mean([results[ds][\"ols\"][\"r2\"] for ds in condition_keys])\n    adap_overall_mean_r2 = (np.mean(list(adaptive_r2_by_cond.values()))\n                            if adaptive_r2_by_cond else None)\n\n    if adap_overall_mean_r2 is not None and rf_mean_r2 > adap_overall_mean_r2:\n        summary_text = (\n            f\"K=5 RF: K_eff sig OLS {keff_sig_ols}/2, clustered {keff_sig_cl}/2, \"\n            f\"bootstrap {keff_sig_boot}/2. \"\n            f\"RF mean R²={rf_mean_r2:.4f} > adaptive mean R²={adap_overall_mean_r2:.4f} \"\n            f\"(gap=+{rf_mean_r2 - adap_overall_mean_r2:.4f}), \"\n            f\"matching K=3 pattern where RF consistently explains more variance.\"\n        )\n    else:\n        summary_text = (\n            f\"K=5 RF: K_eff sig OLS {keff_sig_ols}/2, clustered {keff_sig_cl}/2, \"\n            f\"bootstrap {keff_sig_boot}/2. \"\n            f\"RF mean R²={rf_mean_r2:.4f}, adaptive mean R²={adap_overall_mean_r2:.4f}.\"\n        )\n\n    print(f\"\\n{'='*60}\")\n    print(\"K=5 RF CONTRAST SUMMARY\")\n    print(f\"{'='*60}\")\n    print(f\"  RF mean R²: {rf_mean_r2:.4f}\")\n    print(f\"  Adaptive mean R²: {adap_overall_mean_r2:.4f}\")\n    print(f\"  Gap: {rf_mean_r2 - adap_overall_mean_r2:+.4f}\")\n    print(f\"\\n  {'Method':<20} {'K_eff sig':>10} {'eta sig':>10}\")\n    print(f\"  {'-'*20} {'-'*10} {'-'*10}\")\n    print(f\"  {'OLS':<20} {f'{keff_sig_ols}/2':>10} {f'{eta_sig_ols}/2':>10}\")\n    print(f\"  {'Clustered SE':<20} {f'{keff_sig_cl}/2':>10}\")\n    print(f\"  {'Bootstrap':<20} {f'{keff_sig_boot}/2':>10} {f'{eta_sig_boot}/2':>10}\")\n    print(f\"\\n  K=3 RF ref: mmlu R²=0.734, arc R²=0.813, K_eff boot 2/2 sig\")\n    for ds in condition_keys:\n        r = results[ds]\n        print(f\"\\n  {ds}:\")\n        print(f\"    RF R²={r['ols']['r2']:.4f}  \"\n              f\"K_eff β={r['ols']['keff_std_beta']:.4f} (p={r['ols']['keff_p']:.2e})\")\n        print(f\"    Clust K_eff p={r['clustered_se']['keff_p']:.4f}  \"\n              f\"Boot K_eff p={r['bootstrap_v2']['keff_final_p']:.4f}\")\n\n    elapsed = time.time() - t_start\n    print(f\"\\nTotal: {elapsed:.0f}s\")\n\n    output = {\n        \"rf_ols\": rf_ols,\n        \"rf_clustered_se\": rf_clustered_se,\n        \"adaptive_comparison\": adaptive_comparison,\n        \"per_condition_detail\": results,\n        \"summary\": summary_text,\n        \"meta\": {\n            \"K\": K, \"n_panels\": n_panels, \"n_sim_trials\": N_SIM_TRIALS,\n            \"bootstrap_B\": B, \"seed\": SEED,\n            \"majority_threshold\": MAJORITY_THRESHOLD,\n            \"rf_definition\": \"1 - clean_accuracy (dataset-level)\",\n            \"regression\": \"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6), standardized\",\n            \"clustering\": \"5-position max-p (conservative)\",\n            \"n_conditions\": 2,\n            \"note\": \"RF is dataset-level; no attack variation; no FDR (only 2 tests).\",\n            \"k3_reference\": {\n                \"mmlu_r2\": 0.7344, \"arc_r2\": 0.8133, \"keff_sig_bootstrap\": \"2/2\",\n            },\n        },\n        \"comparison_table\": {\n            \"k3_rf\": {\"mmlu_r2\": 0.7344, \"arc_r2\": 0.8133, \"keff_boot_sig\": \"2/2\"},\n            \"k5_rf\": {\n                \"mmlu_r2\": results[\"mmlu\"][\"ols\"][\"r2\"],\n                \"arc_r2\": results[\"arc_challenge\"][\"ols\"][\"r2\"],\n                \"keff_boot_sig\": f\"{keff_sig_boot}/2\",\n            },\n            \"k5_adaptive_mean_r2\": float(adap_overall_mean_r2),\n        },\n    }\n\n    out_path = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001/\"\n                    \"k5_rf_contrast.json\")\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    import argparse\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--B\", type=int, default=B_BOOT)\n    args = parser.parse_args()\n    main(B=args.B)\nSCRIPT\necho \"Script updated\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat << 'SCRIPT' > /root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py\n#!/usr/bin/env python3\n\"\"\"K=5 Random-Fault contrast analysis.\n\nRF simulation on C(15,5)=3003 panels, then canonical regression\ncompared against K=5 adaptive results.\n\nRF: each judge independently errs with prob = 1 - clean_accuracy.\nPanel RF ASR = P(>=3/5 judges flip) via 10000 MC iterations.\n2 conditions (mmlu, arc_challenge) — RF is dataset-level, no attack variation.\n\"\"\"\n\nimport os\nos.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n\nimport sys\nsys.path.insert(0, \"/root/cert_manip_resist_eval\")\n\nimport json\nimport time\nimport itertools\nimport numpy as np\nimport statsmodels.api as sm\nfrom pathlib import Path\nfrom scipy.stats import t as t_dist\n\nfrom src.unified_data_loader import (\n    ALL_MODELS, DATASETS,\n    load_all_scores, load_pairs, load_mi_data,\n    compute_clean_accuracy,\n)\n\nEPS = 1e-6\nN_SIM_TRIALS = 10000\nB_BOOT = 9999\nSEED = 42\nK = 5\nMAJORITY_THRESHOLD = 3\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\ndef mi_based_keff(mi_matrix, model_indices):\n    K = len(model_indices)\n    if K <= 1:\n        return 1.0\n    keff = 0.0\n    for i_idx in model_indices:\n        term = 1.0\n        for j_idx in model_indices:\n            if i_idx != j_idx:\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\n        keff += term\n    return keff / K\n\n\ndef simulate_rf_asr_k5(panel_error_rates, n_trials=N_SIM_TRIALS, rng=None):\n    if rng is None:\n        rng = np.random.default_rng(SEED)\n    n_panels = panel_error_rates.shape[0]\n    batch_size = 2000\n    rf_sum = np.zeros(n_panels)\n\n    for start in range(0, n_trials, batch_size):\n        b = min(batch_size, n_trials - start)\n        randoms = rng.random((n_panels, b, K))\n        errors = randoms < panel_error_rates[:, np.newaxis, :]\n        majority_wrong = errors.sum(axis=2) >= MAJORITY_THRESHOLD\n        rf_sum += majority_wrong.sum(axis=1)\n\n    return rf_sum / n_trials\n\n\ndef analytical_rf_asr_k5(e):\n    from itertools import combinations as _comb\n    total = 0.0\n    for k in range(MAJORITY_THRESHOLD, len(e) + 1):\n        for combo in _comb(range(len(e)), k):\n            p = 1.0\n            for i in range(len(e)):\n                p *= e[i] if i in combo else (1.0 - e[i])\n            total += p\n    return total\n\n\ndef wild_cluster_bootstrap(y, X_full, cluster_ids, B=B_BOOT, seed=SEED,\n                           test_col_idx=1):\n    n, p = X_full.shape\n    unique_clusters = np.unique(cluster_ids)\n    n_clusters = len(unique_clusters)\n\n    cluster_to_idx = {c: i for i, c in enumerate(unique_clusters)}\n    panel_cluster_idx = np.array([cluster_to_idx[c] for c in cluster_ids])\n\n    fit_full = sm.OLS(y, X_full).fit()\n    t_original = fit_full.tvalues[test_col_idx]\n\n    cols_restricted = [i for i in range(p) if i != test_col_idx]\n    X_restricted = X_full[:, cols_restricted]\n    fit_restricted = sm.OLS(y, X_restricted).fit()\n    y_hat_r = fit_restricted.fittedvalues\n    e_r = y - y_hat_r\n\n    rng = np.random.RandomState(seed)\n    t_boot = np.empty(B)\n\n    for b in range(B):\n        w_cluster = rng.choice([-1, 1], size=n_clusters)\n        w_panel = w_cluster[panel_cluster_idx]\n        y_boot = y_hat_r + w_panel * e_r\n        try:\n            fit_b = sm.OLS(y_boot, X_full).fit()\n            t_boot[b] = fit_b.tvalues[test_col_idx]\n        except Exception:\n            t_boot[b] = 0.0\n\n    p_value = (1 + np.sum(np.abs(t_boot) >= np.abs(t_original))) / (1 + B)\n    return float(p_value), float(t_original), n_clusters\n\n\ndef clustered_se_maxp(y, X_full, panel_jids_list, n_positions=K):\n    fit_ols = sm.OLS(y, X_full).fit()\n    n = len(y)\n    p = X_full.shape[1]\n    e_hat = y - fit_ols.fittedvalues\n    XtX_inv = np.linalg.inv(X_full.T @ X_full)\n\n    position_results = []\n    for pos in range(n_positions):\n        cluster_var = np.array([jids[pos] for jids in panel_jids_list])\n        unique_judges = sorted(set(cluster_var))\n        G = len(unique_judges)\n\n        B_sum = np.zeros((p, p))\n        for j in unique_judges:\n            mask = cluster_var == j\n            Xg = X_full[mask]\n            eg = e_hat[mask]\n            Sg = Xg.T @ np.diag(eg) @ np.ones((mask.sum(), 1))\n            B_sum += Sg @ Sg.T\n\n        scale = (G / (G - 1)) * ((n - 1) / (n - p))\n        V_cluster = XtX_inv @ (scale * B_sum) @ XtX_inv\n        se_cluster = np.sqrt(np.diag(V_cluster))\n\n        results_pos = {}\n        for col_idx, name in [(1, \"keff\"), (2, \"eta\")]:\n            t_val = fit_ols.params[col_idx] / se_cluster[col_idx]\n            p_val = 2.0 * t_dist.sf(np.abs(t_val), df=G - 1)\n            results_pos[name] = {\n                \"t\": float(t_val), \"p\": float(p_val),\n                \"se\": float(se_cluster[col_idx]), \"n_clusters\": G,\n            }\n        position_results.append(results_pos)\n\n    return {\n        \"keff_p\": max(r[\"keff\"][\"p\"] for r in position_results),\n        \"eta_p\": max(r[\"eta\"][\"p\"] for r in position_results),\n        \"position_details\": position_results,\n    }\n\n\ndef bootstrap_k_positions(y, X_full, panel_jids_list, n_positions=K,\n                           B=B_BOOT, seed=SEED, test_col_idx=1):\n    position_ps = []\n    position_n_clusters = []\n    for pos in range(n_positions):\n        cluster_ids = np.array([jids[pos] for jids in panel_jids_list])\n        p_val, _, n_cl = wild_cluster_bootstrap(\n            y, X_full, cluster_ids, B=B, seed=seed,\n            test_col_idx=test_col_idx\n        )\n        position_ps.append(p_val)\n        position_n_clusters.append(n_cl)\n    return position_ps, max(position_ps), position_n_clusters\n\n\ndef main(B=B_BOOT):\n    t_start = time.time()\n    rng = np.random.default_rng(SEED)\n\n    print(\"Loading data...\")\n    clean, attacked = load_all_scores()\n    pairs = load_pairs()\n    mi_data = load_mi_data()\n\n    mi_model_list = mi_data[\"models\"]\n    mi_idx = {m: i for i, m in enumerate(mi_model_list)}\n\n    # Per-dataset MI matrices\n    mi_matrices = {}\n    for ds_key in mi_data[\"mi_matrix\"]:\n        mi_matrices[ds_key] = np.array(mi_data[\"mi_matrix\"][ds_key])\n\n    clean_acc = compute_clean_accuracy(clean, pairs)\n    print(f\"Clean accuracy: {len(clean_acc)} (model, dataset) pairs\")\n\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), K))\n    n_panels = len(all_combos)\n    print(f\"K={K} panels: {n_panels}\")\n\n    panel_jids_list = [tuple(ALL_MODELS[i] for i in combo) for combo in all_combos]\n\n    panel_mi_indices = []\n    for combo in all_combos:\n        panel_mi_indices.append([mi_idx[ALL_MODELS[i]] for i in combo])\n\n    # Load adaptive R² (majority_vote)\n    k5_agg_path = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001/\"\n                       \"k5_aggregation_analysis.json\")\n    with open(k5_agg_path) as f:\n        k5_agg = json.load(f)\n    adaptive_r2_by_cond = {}\n    for entry in k5_agg.get(\"detail\", []):\n        if entry.get(\"method\") == \"majority_vote\":\n            adaptive_r2_by_cond[entry[\"condition\"]] = entry[\"R2\"]\n\n    ds_map = {\"mmlu\": \"mmlu\", \"arc_challenge\": \"arc_challenge\"}\n    condition_keys = list(ds_map.keys())\n    results = {}\n\n    for ds in condition_keys:\n        print(f\"\\n{'='*60}\")\n        print(f\"Dataset: {ds}\")\n        print(f\"{'='*60}\")\n\n        mi_matrix = mi_matrices[ds]\n        keffs = np.array([mi_based_keff(mi_matrix, idxs) for idxs in panel_mi_indices])\n        print(f\"  K_eff: mean={keffs.mean():.3f}, range=[{keffs.min():.3f}, {keffs.max():.3f}]\")\n\n        error_rates = {}\n        for mid in ALL_MODELS:\n            acc = clean_acc.get((mid, ds))\n            if acc is None:\n                print(f\"  WARNING: no clean accuracy for {mid} on {ds}\")\n                error_rates[mid] = 0.5\n            else:\n                error_rates[mid] = 1.0 - acc\n\n        print(f\"  Error rates: [{min(error_rates.values()):.3f}, \"\n              f\"{max(error_rates.values()):.3f}], \"\n              f\"mean={np.mean(list(error_rates.values())):.3f}\")\n\n        panel_error_array = np.zeros((n_panels, K))\n        eta_max_rf = np.zeros(n_panels)\n        for pi, combo in enumerate(all_combos):\n            for j, idx in enumerate(combo):\n                panel_error_array[pi, j] = error_rates[ALL_MODELS[idx]]\n            eta_max_rf[pi] = max(error_rates[ALL_MODELS[idx]] for idx in combo)\n\n        print(f\"  Simulating RF ASR (n_trials={N_SIM_TRIALS})...\")\n        t_sim = time.time()\n        rf_asr = simulate_rf_asr_k5(panel_error_array, n_trials=N_SIM_TRIALS, rng=rng)\n        print(f\"  Done in {time.time()-t_sim:.1f}s\")\n        print(f\"  RF ASR: mean={rf_asr.mean():.4f}, std={rf_asr.std():.4f}\")\n\n        n_check = min(20, n_panels)\n        analytical_asrs = np.array([analytical_rf_asr_k5(panel_error_array[i])\n                                     for i in range(n_check)])\n        max_dev = np.max(np.abs(rf_asr[:n_check] - analytical_asrs))\n        print(f\"  Analytical check: max deviation = {max_dev:.6f}\")\n\n        # Canonical regression\n        y = np.log(rf_asr + EPS)\n        x_keff = np.log(keffs)\n        x_eta = np.log(eta_max_rf + EPS)\n\n        x_keff_std = (x_keff - x_keff.mean()) / x_keff.std()\n        x_eta_std = (x_eta - x_eta.mean()) / x_eta.std()\n\n        X = np.column_stack([np.ones(n_panels), x_keff_std, x_eta_std])\n        fit = sm.OLS(y, X).fit()\n\n        ols_result = {\n            \"r2\": float(fit.rsquared),\n            \"adj_r2\": float(fit.rsquared_adj),\n            \"keff_beta\": float(fit.params[1]),\n            \"keff_std_beta\": float(fit.params[1]),\n            \"keff_t\": float(fit.tvalues[1]),\n            \"keff_p\": float(fit.pvalues[1]),\n            \"eta_beta\": float(fit.params[2]),\n            \"eta_std_beta\": float(fit.params[2]),\n            \"eta_t\": float(fit.tvalues[2]),\n            \"eta_p\": float(fit.pvalues[2]),\n        }\n\n        print(f\"  OLS R²={ols_result['r2']:.4f}\")\n        print(f\"    K_eff: β={ols_result['keff_std_beta']:.4f}, p={ols_result['keff_p']:.2e}\")\n        print(f\"    eta:   β={ols_result['eta_std_beta']:.4f}, p={ols_result['eta_p']:.2e}\")\n\n        # Clustered SE\n        print(f\"  Clustered SE (5 positions)...\")\n        cl_result = clustered_se_maxp(y, X, panel_jids_list)\n        print(f\"    K_eff max-p={cl_result['keff_p']:.4f}, eta max-p={cl_result['eta_p']:.4f}\")\n\n        # Wild cluster bootstrap\n        print(f\"  Bootstrap (B={B})...\")\n        t_boot = time.time()\n        keff_pos_ps, keff_final_p, keff_n_clusters = bootstrap_k_positions(\n            y, X, panel_jids_list, test_col_idx=1, B=B, seed=SEED\n        )\n        eta_pos_ps, eta_final_p, eta_n_clusters = bootstrap_k_positions(\n            y, X, panel_jids_list, test_col_idx=2, B=B, seed=SEED\n        )\n        print(f\"    K_eff positions: {[f'{p:.4f}' for p in keff_pos_ps]}, max-p={keff_final_p:.4f}\")\n        print(f\"    eta positions:   {[f'{p:.4f}' for p in eta_pos_ps]}, max-p={eta_final_p:.4f}\")\n        print(f\"    Done in {time.time()-t_boot:.1f}s\")\n\n        # Adaptive comparison\n        ds_prefix = ds + \"x\" if ds == \"mmlu\" else ds + \"x\"\n        adaptive_r2s = [v for k, v in adaptive_r2_by_cond.items()\n                        if k.startswith(ds_prefix)]\n        adaptive_mean_r2 = float(np.mean(adaptive_r2s)) if adaptive_r2s else None\n\n        results[ds] = {\n            \"n_panels\": n_panels,\n            \"rf_asr_stats\": {\n                \"mean\": float(rf_asr.mean()), \"std\": float(rf_asr.std()),\n                \"max_analytical_deviation\": float(max_dev),\n            },\n            \"eta_max_rf_stats\": {\n                \"mean\": float(eta_max_rf.mean()),\n                \"min\": float(eta_max_rf.min()), \"max\": float(eta_max_rf.max()),\n            },\n            \"keff_stats\": {\n                \"mean\": float(keffs.mean()),\n                \"min\": float(keffs.min()), \"max\": float(keffs.max()),\n            },\n            \"ols\": ols_result,\n            \"clustered_se\": {\"keff_p\": cl_result[\"keff_p\"], \"eta_p\": cl_result[\"eta_p\"]},\n            \"bootstrap_v2\": {\n                \"keff_boot_p_positions\": [float(p) for p in keff_pos_ps],\n                \"keff_final_p\": float(keff_final_p),\n                \"keff_n_clusters\": keff_n_clusters,\n                \"eta_boot_p_positions\": [float(p) for p in eta_pos_ps],\n                \"eta_final_p\": float(eta_final_p),\n                \"eta_n_clusters\": eta_n_clusters,\n            },\n        }\n\n    # Build output\n    rf_ols = {ds: results[ds][\"ols\"] for ds in condition_keys}\n    rf_clustered_se = {ds: results[ds][\"clustered_se\"] for ds in condition_keys}\n\n    adaptive_comparison = {}\n    for ds in condition_keys:\n        ds_prefix = ds + \"x\"\n        adaptive_r2s = {k: v for k, v in adaptive_r2_by_cond.items()\n                        if k.startswith(ds_prefix)}\n        rf_r2 = results[ds][\"ols\"][\"r2\"]\n        adap_mean = float(np.mean(list(adaptive_r2s.values()))) if adaptive_r2s else None\n        adaptive_comparison[ds] = {\n            \"rf_r2\": rf_r2,\n            \"adaptive_mean_r2\": adap_mean,\n            \"gap\": rf_r2 - adap_mean if adap_mean is not None else None,\n            \"adaptive_per_condition\": adaptive_r2s,\n        }\n\n    keff_sig_ols = sum(1 for ds in condition_keys if results[ds][\"ols\"][\"keff_p\"] < 0.05)\n    keff_sig_boot = sum(1 for ds in condition_keys\n                        if results[ds][\"bootstrap_v2\"][\"keff_final_p\"] < 0.05)\n    keff_sig_cl = sum(1 for ds in condition_keys\n                      if results[ds][\"clustered_se\"][\"keff_p\"] < 0.05)\n    eta_sig_ols = sum(1 for ds in condition_keys if results[ds][\"ols\"][\"eta_p\"] < 0.05)\n    eta_sig_boot = sum(1 for ds in condition_keys\n                       if results[ds][\"bootstrap_v2\"][\"eta_final_p\"] < 0.05)\n\n    rf_mean_r2 = np.mean([results[ds][\"ols\"][\"r2\"] for ds in condition_keys])\n    adap_overall_mean_r2 = (np.mean(list(adaptive_r2_by_cond.values()))\n                            if adaptive_r2_by_cond else None)\n\n    if adap_overall_mean_r2 is not None and rf_mean_r2 > adap_overall_mean_r2:\n        summary_text = (\n            f\"K=5 RF: K_eff sig OLS {keff_sig_ols}/2, clustered {keff_sig_cl}/2, \"\n            f\"bootstrap {keff_sig_boot}/2. \"\n            f\"RF mean R²={rf_mean_r2:.4f} > adaptive mean R²={adap_overall_mean_r2:.4f} \"\n            f\"(gap=+{rf_mean_r2 - adap_overall_mean_r2:.4f}), \"\n            f\"matching K=3 pattern where RF consistently explains more variance.\"\n        )\n    else:\n        summary_text = (\n            f\"K=5 RF: K_eff sig OLS {keff_sig_ols}/2, clustered {keff_sig_cl}/2, \"\n            f\"bootstrap {keff_sig_boot}/2. \"\n            f\"RF mean R²={rf_mean_r2:.4f}, adaptive mean R²={adap_overall_mean_r2:.4f}.\"\n        )\n\n    print(f\"\\n{'='*60}\")\n    print(\"K=5 RF CONTRAST SUMMARY\")\n    print(f\"{'='*60}\")\n    print(f\"  RF mean R²: {rf_mean_r2:.4f}\")\n    print(f\"  Adaptive mean R²: {adap_overall_mean_r2:.4f}\")\n    print(f\"  Gap: {rf_mean_r2 - adap_overall_mean_r2:+.4f}\")\n    print(f\"\\n  {'Method':<20} {'K_eff sig':>10} {'eta sig':>10}\")\n    print(f\"  {'-'*20} {'-'*10} {'-'*10}\")\n    print(f\"  {'OLS':<20} {f'{keff_sig_ols}/2':>10} {f'{eta_sig_ols}/2':>10}\")\n    print(f\"  {'Clustered SE':<20} {f'{keff_sig_cl}/2':>10}\")\n    print(f\"  {'Bootstrap':<20} {f'{keff_sig_boot}/2':>10} {f'{eta_sig_boot}/2':>10}\")\n    print(f\"\\n  K=3 RF ref: mmlu R²=0.734, arc R²=0.813, K_eff boot 2/2 sig\")\n    for ds in condition_keys:\n        r = results[ds]\n        print(f\"\\n  {ds}:\")\n        print(f\"    RF R²={r['ols']['r2']:.4f}  \"\n              f\"K_eff β={r['ols']['keff_std_beta']:.4f} (p={r['ols']['keff_p']:.2e})\")\n        print(f\"    Clust K_eff p={r['clustered_se']['keff_p']:.4f}  \"\n              f\"Boot K_eff p={r['bootstrap_v2']['keff_final_p']:.4f}\")\n\n    elapsed = time.time() - t_start\n    print(f\"\\nTotal: {elapsed:.0f}s\")\n\n    output = {\n        \"rf_ols\": rf_ols,\n        \"rf_clustered_se\": rf_clustered_se,\n        \"adaptive_comparison\": adaptive_comparison,\n        \"per_condition_detail\": results,\n        \"summary\": summary_text,\n        \"meta\": {\n            \"K\": K, \"n_panels\": n_panels, \"n_sim_trials\": N_SIM_TRIALS,\n            \"bootstrap_B\": B, \"seed\": SEED,\n            \"majority_threshold\": MAJORITY_THRESHOLD,\n            \"rf_definition\": \"1 - clean_accuracy (dataset-level)\",\n            \"regression\": \"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6), standardized\",\n            \"clustering\": \"5-position max-p (conservative)\",\n            \"n_conditions\": 2,\n            \"note\": \"RF is dataset-level; no attack variation; no FDR (only 2 tests).\",\n            \"k3_reference\": {\n                \"mmlu_r2\": 0.7344, \"arc_r2\": 0.8133, \"keff_sig_bootstrap\": \"2/2\",\n            },\n        },\n        \"comparison_table\": {\n            \"k3_rf\": {\"mmlu_r2\": 0.7344, \"arc_r2\": 0.8133, \"keff_boot_sig\": \"2/2\"},\n            \"k5_rf\": {\n                \"mmlu_r2\": results[\"mmlu\"][\"ols\"][\"r2\"],\n                \"arc_r2\": results[\"arc_challenge\"][\"ols\"][\"r2\"],\n                \"keff_boot_sig\": f\"{keff_sig_boot}/2\",\n            },\n            \"k5_adaptive_mean_r2\": float(adap_overall_mean_r2),\n        },\n    }\n\n    out_path = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001/\"\n                    \"k5_rf_contrast.json\")\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\n    print(f\"\\nSaved: {out_path}\")\n\n\nif __name__ == \"__main__\":\n    import argparse\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--B\", type=int, default=B_BOOT)\n    args = parser.parse_args()\n    main(B=args.B)\nSCRIPT\necho \"Script updated\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T07:12:25.639091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script updated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T07:12:25.639239+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/run_k5_rf_contrast.py --B 99 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/run_k5_rf_contrast.py --B 99 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T07:12:25.639405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nClean accuracy: 30 (model, dataset) pairs\\nK=5 panels: 3003\\n\\n============================================================\\nDataset: mmlu\\n============================================================\\n  K_eff: mean=3.551, range=[2.262, 4.415]\\n  Error rates: [0.110, 0.433], mean=0.238\\n  Simulating RF ASR (n_trials=10000)...\\n  Done in 1.7s\\n  RF ASR: mean=0.0896, std=0.0356\\n  Analytical check: max deviation = 0.004099\\n  OLS R²=0.6587\\n    K_eff: β=0.1652, p=1.67e-160\\n    eta:   β=0.1940, p=9.47e-212\\n  Clustered SE (5 positions)...\\n    K_eff max-p=0.0000, eta max-p=0.0000\\n  Bootstrap (B=99)...\\n    K_eff positions: ['0.0200', '0.0200', '0.0200', '0.0200', '0.0200'], max-p=0.0200\\n    eta positions:   ['0.0200', '0.0300', '0.0200', '0.0200', '0.0200'], max-p=0.0300\\n    Done in 0.5s\\n\\n============================================================\\nDataset: arc_challenge\\n============================================================\\n  K_eff: mean=3.152, range=[2.063, 4.180]\\n  Error rates: [0.013, 0.550], mean=0.134\\n  Simulating RF ASR (n_trials=10000)...\\n  Done in 1.7s\\n  RF ASR: mean=0.0153, std=0.0208\\n  Analytical check: max deviation = 0.001975\\n  OLS R²=0.7507\\n    K_eff: β=1.0969, p=4.17e-269\\n    eta:   β=0.1497, p=1.13e-07\\n  Clustered SE (5 positions)...\\n    K_eff max-p=0.0007, eta max-p=0.5757\\n  Bootstrap (B=99)...\\n    K_eff positions: ['0.0200', '0.0200', '0.0200', '0.0200', '0.0200'], max-p=0.0200\\n    eta positions:   ['0.1300', '0.1000', '0.4300', '0.3500', '0.4900'], max-p=0.4900\\n    Done in 0.5s\\n\\n============================================================\\nK=5 RF CONTRAST SUMMARY\\n============================================================\\n  RF mean R²: 0.7047\\n  Adaptive mean R²: 0.2562\\n  Gap: +0.4485\\n\\n  Method                K_eff sig    eta sig\\n  -------------------- ---------- ----------\\n  OLS           
+…[truncated 616 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T07:12:25.639620+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/run_k5_rf_contrast.py --B 9999 > /tmp/k5_rf_contrast.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/run_k5_rf_contrast.py --B 9999 > /tmp/k5_rf_contrast.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T07:12:25.639794+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/run_k5_rf_contrast.py --B 9999 > /tmp/k5_rf_contrast.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=159828\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T07:12:25.639933+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "tail -20 /tmp/k5_rf_contrast.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "tail -20 /tmp/k5_rf_contrast.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T07:12:25.640056+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T07:12:25.640234+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /tmp/k5_rf_contrast.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /tmp/k5_rf_contrast.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T07:12:25.640374+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T07:12:25.640506+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "find /tmp -name \"k5_rf*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "find /tmp -name \"k5_rf*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-23T07:12:25.640622+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls -la /tmp/k5_rf_contrast.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls -la /tmp/k5_rf_contrast.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-23T07:12:25.640785+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/k5_rf_contrast.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T07:12:25.640914+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 0 May 23 15:10 /tmp/k5_rf_contrast.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T07:12:25.641046+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ps aux | grep run_k5_rf_contrast | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ps aux | grep run_k5_rf_contrast | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T07:12:25.641167+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     159828  0.0  0.0   4364  2160 ?        S    15:10   0:00 bash -c cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/run_k5_rf_contrast.py --B 9999 > /tmp/k5_rf_contrast.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     159833  136  0.0 5761152 262068 ?      Rl   15:10   1:10 python scripts/run_k5_rf_contrast.py --B 9999\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T07:12:25.641296+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "sleep 120 && tail -30 /tmp/k5_rf_contrast.log",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "sleep 120 && tail -30 /tmp/k5_rf_contrast.log",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T07:12:25.641416+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 120 && tail -30 /tmp/k5_rf_contrast.log'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T07:12:25.641530+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "wc -l /tmp/k5_rf_contrast.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "wc -l /tmp/k5_rf_contrast.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T07:12:25.641661+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0 /tmp/k5_rf_contrast.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-23T07:12:25.641782+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ps -p 159833 -o pid,etime,pcpu= 2>/dev/null || echo \"DONE\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ps -p 159833 -o pid,etime,pcpu= 2>/dev/null || echo \"DONE\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T07:12:25.641901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED     \\nDONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T07:12:25.642043+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /tmp/k5_rf_contrast.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /tmp/k5_rf_contrast.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T07:12:25.642200+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nClean accuracy: 30 (model, dataset) pairs\\nK=5 panels: 3003\\n\\n============================================================\\nDataset: mmlu\\n============================================================\\n  K_eff: mean=3.551, range=[2.262, 4.415]\\n  Error rates: [0.110, 0.433], mean=0.238\\n  Simulating RF ASR (n_trials=10000)...\\n  Done in 1.6s\\n  RF ASR: mean=0.0896, std=0.0356\\n  Analytical check: max deviation = 0.004099\\n  OLS R²=0.6587\\n    K_eff: β=0.1652, p=1.67e-160\\n    eta:   β=0.1940, p=9.47e-212\\n  Clustered SE (5 positions)...\\n    K_eff max-p=0.0000, eta max-p=0.0000\\n  Bootstrap (B=9999)...\\n    K_eff positions: ['0.0031', '0.0014', '0.0014', '0.0014', '0.0020'], max-p=0.0031\\n    eta positions:   ['0.0067', '0.0055', '0.0028', '0.0020', '0.0014'], max-p=0.0067\\n    Done in 43.5s\\n\\n============================================================\\nDataset: arc_challenge\\n============================================================\\n  K_eff: mean=3.152, range=[2.063, 4.180]\\n  Error rates: [0.013, 0.550], mean=0.134\\n  Simulating RF ASR (n_trials=10000)...\\n  Done in 1.6s\\n  RF ASR: mean=0.0153, std=0.0208\\n  Analytical check: max deviation = 0.001975\\n  OLS R²=0.7507\\n    K_eff: β=1.0969, p=4.17e-269\\n    eta:   β=0.1497, p=1.13e-07\\n  Clustered SE (5 positions)...\\n    K_eff max-p=0.0007, eta max-p=0.5757\\n  Bootstrap (B=9999)...\\n    K_eff positions: ['0.0010', '0.0010', '0.0010', '0.0030', '0.0016'], max-p=0.0030\\n    eta positions:   ['0.1400', '0.1369', '0.3847', '0.3127', '0.5697'], max-p=0.5697\\n    Done in 44.1s\\n\\n============================================================\\nK=5 RF CONTRAST SUMMARY\\n============================================================\\n  RF mean R²: 0.7047\\n  Adaptive mean R²: 0.2562\\n  Gap: +0.4485\\n\\n  Method                K_eff sig    eta sig\\n  -------------------- ---------- ----------\\n  OLS     
+…[truncated 623 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-23T07:12:25.642342+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls -la /root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls -la /root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T07:12:25.642466+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 6404 May 23 15:11 /root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-23T07:12:25.642594+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T07:12:25.642942+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"rf_ols\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"r2\\\": 0.6586615509552801,\\n      \\\"adj_r2\\\": 0.6584339919892503,\\n      \\\"keff_beta\\\": 0.16517932295288243,\\n      \\\"keff_std_beta\\\": 0.16517932295288243,\\n      \\\"keff_t\\\": 28.723551518003255,\\n      \\\"keff_p\\\": 1.672624445031848e-160,\\n      \\\"eta_beta\\\": 0.19397432471269013,\\n      \\\"eta_std_beta\\\": 0.19397432471269013,\\n      \\\"eta_t\\\": 33.73080485772521,\\n      \\\"eta_p\\\": 9.465043972745533e-212\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"r2\\\": 0.7507050490507157,\\n      \\\"adj_r2\\\": 0.7505388524167496,\\n      \\\"keff_beta\\\": 1.0968682504541702,\\n      \\\"keff_std_beta\\\": 1.0968682504541702,\\n      \\\"keff_t\\\": 38.9653278152125,\\n      \\\"keff_p\\\": 4.165043724175732e-269,\\n      \\\"eta_beta\\\": 0.14969050650576918,\\n      \\\"eta_std_beta\\\": 0.14969050650576918,\\n      \\\"eta_t\\\": 5.317630129605251,\\n      \\\"eta_p\\\": 1.128452486349379e-07\\n    }\\n  },\\n  \\\"rf_clustered_se\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"keff_p\\\": 4.551682410898801e-05,\\n      \\\"eta_p\\\": 4.723436963893844e-06\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"keff_p\\\": 0.0007401400719028095,\\n      \\\"eta_p\\\": 0.5757059625950891\\n    }\\n  },\\n  \\\"adaptive_comparison\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"rf_r2\\\": 0.6586615509552801,\\n      \\\"adaptive_mean_r2\\\": 0.2993726851314971,\\n      \\\"gap\\\": 0.359288865823783,\\n      \\\"adaptive_per_condition\\\": {\\n        \\\"mmluxprompt_injection\\\": 0.6038245457626201,\\n        \\\"mmluxsycophancy\\\": 0.29859413860523376,\\n        \\\"mmluxscore_manipulation\\\": 0.32011239208700004,\\n        \\\"mmluxverbosity_bias\\\": 0.3259662305953288,\\n        \\\"mmluxposition_bias\\\": 0.18468992038469711,\\n        \\\"mmluxauthority_bias\\\": 0.06304888335410297\\n      }\\n    },\\n    \\\"arc_challeng
+…[truncated 5978 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-23T07:12:25.643232+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "k5_rf_contrast",
+  "type": "data",
+  "description": "K=5 Random-Fault contrast analysis: RF simulation on 3003 panels with 5-position clustered SE and wild cluster bootstrap. RF R²=0.705 vs adaptive R²=0.256 (gap=+0.449). K_eff significant 2/2 under all methods (OLS, clustered SE, bootstrap).",
+  "project": "cert_manip_resist_eval",
+  "source_path": "/root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json",
+  "tags": "['k5', 'random_fault', 'rf_contrast', 'regression', 'bootstrap']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "k5_rf_contrast",
+    "type": "data",
+    "description": "K=5 Random-Fault contrast analysis: RF simulation on 3003 panels with 5-position clustered SE and wild cluster bootstrap. RF R²=0.705 vs adaptive R²=0.256 (gap=+0.449). K_eff significant 2/2 under all methods (OLS, clustered SE, bootstrap).",
+    "project": "cert_manip_resist_eval",
+    "source_path": "/root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json",
+    "tags": "['k5', 'random_fault', 'rf_contrast', 'regression', 'bootstrap']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-23T07:12:25.643454+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-23T07:12:25.643710+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "k5_rf_contrast",
+  "type": "data",
+  "description": "K=5 Random-Fault contrast analysis: RF simulation on 3003 panels with 5-position clustered SE and wild cluster bootstrap. RF R²=0.705 vs adaptive R²=0.256 (gap=+0.449). K_eff significant 2/2 under all methods (OLS, clustered SE, bootstrap).",
+  "project": "cert_manip_resist_eval",
+  "content": "Remote path: /root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json\nServer: seetacloud-rtx6000\nScript: /root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py",
+  "content_filename": "k5_rf_contrast_pointer.txt",
+  "tags": "['k5', 'random_fault', 'rf_contrast', 'regression', 'bootstrap']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "k5_rf_contrast",
+    "type": "data",
+    "description": "K=5 Random-Fault contrast analysis: RF simulation on 3003 panels with 5-position clustered SE and wild cluster bootstrap. RF R²=0.705 vs adaptive R²=0.256 (gap=+0.449). K_eff significant 2/2 under all methods (OLS, clustered SE, bootstrap).",
+    "project": "cert_manip_resist_eval",
+    "content": "Remote path: /root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json\nServer: seetacloud-rtx6000\nScript: /root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py",
+    "content_filename": "k5_rf_contrast_pointer.txt",
+    "tags": "['k5', 'random_fault', 'rf_contrast', 'regression', 'bootstrap']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-23T07:12:25.643965+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_fa6a4e\", \"name\": \"k5_rf_contrast\", \"type\": \"data\", \"description\": \"K=5 Random-Fault contrast analysis: RF simulation on 3003 panels with 5-position clustered SE and wild cluster bootstrap. RF R²=0.705 vs adaptive R²=0.256 (gap=+0.449). K_eff significant 2/2 under all methods (OLS, clustered SE, bootstrap).\", \"path\": \"projects/cert_manip_resist_eval/artifacts/_project/data/k5_rf_contrast_pointer.txt\", \"url\": null, \"project\": \"cert_manip_resist_eval\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-23T07:12:14.992242+00:00\", \"tags\": [\"k5\", \"random_fault\", \"rf_contrast\", \"regression\", \"bootstrap\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-23T07:12:25.644218+00:00_
+
+K=5 RF contrast analysis 完成。结果：
+
+**K=5 RF vs Adaptive 对比**
+
+| | mmlu R² | arc R² | K_eff boot sig |
+|---|---|---|---|
+| **K=3 RF** | 0.734 | 0.813 | 2/2 |
+| **K=5 RF** | 0.659 | 0.751 | 2/2 |
+| **K=5 Adaptive** (mean) | 0.299 | 0.213 | — |
+
+**关键发现**：
+- RF mean R²=0.705 vs adaptive mean R²=0.256，gap=+0.449
+- K_eff 在 RF 下 2/2 conditions 显著（OLS、clustered SE、bootstrap 三种方法一致）
+- eta_max 在 mmlu 下显著（bootstrap p=0.007），arc 下不显著（bootstrap p=0.570）
+- K=5 RF R² 略低于 K=3 RF（符合预期：K 增大时 majority vote threshold 提高，RF ASR 下降），但仍远高于 adaptive
+- 结论与 K=3 一致：RF 模型（独立误差假设）比 adaptive 模型解释更多方差，K_eff 在 RF 下始终显著
+
+输出文件：`/root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_k5-rf-contrast_20260523T070356"
+}
+```
+
+</details>
+
+---

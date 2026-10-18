@@ -4865,5 +4865,6 @@
       ],
       "message_count": 123
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/code-fix-fewshot-bcs-v2.md"
 }

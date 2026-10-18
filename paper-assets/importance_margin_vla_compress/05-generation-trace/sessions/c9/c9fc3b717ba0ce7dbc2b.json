@@ -1659,5 +1659,6 @@
       ],
       "message_count": 40
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ssh-gpu-check-deploy.md"
 }

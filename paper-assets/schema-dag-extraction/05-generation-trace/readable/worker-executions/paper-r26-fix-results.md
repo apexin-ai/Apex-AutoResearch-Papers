@@ -1,0 +1,2539 @@
+# paper r26 fix results
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_paper_r26_fix_results_20260522T043732.log`
+- **Structured JSON:** [`82e3555464ba7cfec72e.json`](../../sessions/82/82e3555464ba7cfec72e.json)
+
+## Before a recorded user message
+
+49 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "13b0d63e-430d-431b-a1df-34d671400730",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779438000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "73311118-fd52-4b82-8d33-59a3cbefb96a",
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先读取相关文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "938ee71a-97c5-4453-a12f-8bd8dc164329",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRCbjquYqKsQA2FhHbG4xh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12281,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12281
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01J6gANghxqrXkKUrMFLHdBe`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "6ebd3385-31b1-4ddc-9e40-6f88fe050787",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRCbjquYqKsQA2FhHbG4xh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12281,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12281
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T04:37:42.139Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01J6gANghxqrXkKUrMFLHdBe`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "c407afac-7425-436d-a667-fcbd9ba3e65f",
+  "tool_use_result": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0121aNeEE9GU5oWHtZEKMSar`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "fa7351f3-c9b2-4359-883c-40cf930365fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRCbjquYqKsQA2FhHbG4xh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12281,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12281
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T04:37:42.578Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0121aNeEE9GU5oWHtZEKMSar`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "471a372b-e179-4a4f-90de-2e5fd946d4bc",
+  "tool_use_result": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Sv5phXSL2WTw738QB5BevV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "984844bc-c8ef-4bc7-bdab-f975d301ff8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRCbjquYqKsQA2FhHbG4xh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12281,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12281
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T04:37:42.981Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Sv5phXSL2WTw738QB5BevV`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "8cf3ff32-0b65-4e76-af49-5b342e45344a",
+  "tool_use_result": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01AfASvpeQHHpzrJXpkheHDo`</summary>
+
+```json
+{
+  "pattern": "paper/**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "22c89a31-c0e4-4155-bd85-3fd0127461ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018JybG7Z8k3gY4TRBbo8HYX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 432,
+      "cache_read_input_tokens": 24122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 432
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T04:37:45.693Z_
+
+<details><summary>↩ Tool result · `toolu_01AfASvpeQHHpzrJXpkheHDo`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "bcf7eeac-3929-4400-86be-e8f05d8022e7",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 76,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01R8VS53nNJyWSWbLodvPYpi`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper/ 2>/dev/null || echo \"NO_PAPER_DIR\"; find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction -name \"*.tex\" -type f 2>/dev/null | head -30",
+  "description": "Find tex files in project"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "dc9bb5dd-ba74-459a-8fe9-46825ff03c88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018JybG7Z8k3gY4TRBbo8HYX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 432,
+      "cache_read_input_tokens": 24122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 432
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T04:37:47.363Z_
+
+<details><summary>↩ Tool result · `toolu_01R8VS53nNJyWSWbLodvPYpi`</summary>
+
+```text
+NO_PAPER_DIR
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/sdgd_negative.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/results.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/dataset_stats.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/experimental_setup.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/acknowledgements_draft.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/best/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/best/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/best/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/best/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper/tables/dataset_stats.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "a377105e-0e70-40af-9ba5-e946214f8381",
+  "tool_use_result": {
+    "stdout": "NO_PAPER_DIR\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/supplementary.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/sdgd_negative.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/dataset_stats.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/experimental_setup.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/acknowledgements_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260516T073533/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/paper/tables/dataset_stats.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+论文在 `docs/paper/` 目录下。读取相关文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "a630b7e0-fe2d-4b15-91cb-1f84d773667a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RB9Qmo8axEEvBYEL7pKsqc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1587,
+      "cache_read_input_tokens": 24554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1587
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012dsDoFcrvw8Sx8ADRpLaJE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "42f344e2-2ec6-44a7-848e-611fbd4c637e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RB9Qmo8axEEvBYEL7pKsqc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1587,
+      "cache_read_input_tokens": 24554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1587
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T04:37:52.341Z_
+
+<details><summary>↩ Tool result · `toolu_012dsDoFcrvw8Sx8ADRpLaJE`</summary>
+
+```text
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	All experiments use Qwen3-32B and the v1 prompt (\S\ref{sec:model}; Appendix~\ref{sec:appendix_prompts}) unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, TOST) remain single-model.
+5	
+6	\subsection{Count-Degradation Curves}
+7	\label{sec:count_curves}
+8	
+9	Figure~\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\to$0.50 for FewRel). NER recall declines through intermediate counts (0.51$\to$0.27, plateauing across counts 22--44) before partial recovery at full-schema (0.41), where eliminating type-filtering overhead restores extraction performance. DocRED replicates the monotonic RE pattern (88.0\%$\to$38.7\%, $-$56\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\S\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\,pp on Few-NERD; per-batch $r = 0.725$; Table~\ref{tab:cross_model}). The pattern is stable across three seeds (max $\Delta = 10.7$\,pp, within 1\,SD; intra-batch variance exceeds inter-seed variance by ${>}$5$\times$; Appendix~\ref{app:variance-decomposition}). Formal trend analysis confirms monotonic RE decline (Jonckheere-Terpstra $J = 109{,}707$, $p < 0.001$). Count decline replicates on LLaMA-70B with comparable magnitude and on Gemini Flash (Appendix~\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\S\ref{sec:bcs_controlled}).
+10	
+11	\subsection{Pairwise Confusability and Type Confusion}
+12	\label{sec:pairwise}
+13	
+14	We test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate (the fraction of $t_i$ gold instances misclassified as $t_j$) and correlate it with $\text{SCS}(t_i, t_j)$. Table~\ref{tab:pairwise} reports Pearson correlations with bootstrap 95\% CIs.
+15	
+16	\begin{table}[t]
+17	\centering
+18	\small
+19	\resizebox{\columnwidth}{!}{%
+20	\begin{tabular}{llrrrrr}
+21	\toprule
+22	\textbf{Dataset} & \textbf{Embed.} & \textbf{$n$ pairs} & \textbf{$r$} & \textbf{$r^2$} & \textbf{95\% CI} & \textbf{$p$} \\
+23	\midrule
+24	Few-NERD & Qwen3 & 1{,}953 & 0.112 & 0.013 & {[}0.076, 0.156{]} & ${<}\,0.001$ \\
+25	MAVEN & MiniLM & 11{,}026 & 0.129 & 0.017 & {[}0.104, 0.156{]} & ${<}\,0.001$ \\
+26	\bottomrule
+27	\end{tabular}}
+28	\caption{Pairwise SCS--confusion correlation. Confusion rate is bidirectional $C(t_i{\to}t_j) + C(t_j{\to}t_i)$ divided by gold frequency sum; CIs are percentile bootstrap ($B{=}10{,}000$). FewRel ($r = 0.187$; \S\ref{sec:scs-validation}) excluded (per-instance RE format). Type-level cluster bootstrap CIs exclude zero (Few-NERD [0.069, 0.219]; MAVEN [0.081, 0.185]).}
+29	\label{tab:pairwise}
+30	\end{table}
+31	
+32	The correlations are statistically significant but modest: $r^2 \approx 1.3\text{--}1.7\%$. Type-level cluster bootstrap yields wider but still significant CIs (Few-NERD: [0.069, 0.219]; MAVEN: [0.081, 0.185]; $B = 10{,}000$). Spearman correlations corroborate: $\rho = 0.144\text{--}0.227$ across all pairs, strengthening to $\rho = 0.27\text{--}0.31$ among pairs with nonzero confusion (though conditioning on the dependent variable may inflate this).
+33	
+34	The remaining variance reflects entity frequency, prompt position \citep{lost-in-middle-2024}, mention ambiguity, and definition quality. While pairwise $r^2$ is modest, correlated type pairs within batches compound this signal: batch-level BCS explains ${\sim}$22\% of RE accuracy variance on FewRel (\S\ref{sec:bcs_controlled}). The independent MiniLM embedding yields a \emph{stronger} SCS--confusion correlation on Few-NERD ($r = 0.172$ vs.\ Qwen3 $r = 0.138$; Appendix), indicating that shared-representation bias is conservative. SCS outperforms simpler baselines (Levenshtein, WordNet Wu-Palmer, same-parent; Appendix~\ref{app:scs-baselines}). Appendix~\ref{app:error-analysis} lists the most confusable type pairs with concrete examples.
+35	
+36	\begin{figure*}[t]
+37	\centering
+38	\includegraphics[width=\textwidth]{../../figures/paper/fig_error_taxonomy.pdf}
+39	\caption{Error taxonomy decomposition (Few-NERD NER and FewRel RE). IntraSub scales monotonically with BCS across all evaluated datasets ($\rho = 0.84\text{--}1.0$; Table~\ref{tab:error_taxonomy} includes DocRED). RE missed rates remain flat (10--16\%), but NER missed rates are substantially higher (43--65\%) and non-monotonic.}
+40	\label{fig:error_taxonomy}
+41	\end{figure*}
+42	
+43	\subsection{BCS-Controlled Experiments}
+44	\label{sec:bcs_controlled}
+45	
+46	\looseness=-1
+47	On FewRel, BCS explains ${\sim}$22\% of cross-batch RE accuracy variance; confusability is a substantial predictor alongside count. We fix type count and vary BCS to isolate this effect. FewRel's balanced design (700 instances per type) eliminates type frequency as a confound;\footnote{Partial correlation controlling for degree centrality: FewRel $r_{\text{partial}} = -0.537$ ($p < 0.001$, VIF${}\,=\,1.18$). DocRED partial correlation ($r_{\text{partial}} = -0.348$, $p < 0.001$) is reported for completeness, but VIF${}\,=\,50.9$ (BCS--centrality $r = 0.99$) renders the estimate unstable; the clean evidence for BCS's independent contribution comes from FewRel (Appendix~\ref{sec:appendix_partial_corr}, Table~\ref{tab:partial_corr}).} the within-pool analysis (\S\ref{sec:within_pool}) controls for pool composition.
+48	
+49	In BCS-controlled FewRel subsets, the high-BCS quartile shows $\Delta=-5.3$\,pp lower accuracy than low-BCS (quartile comparison on 100 random batches; based on a single extreme batch per BCS level at 16-rel scale; full data in Appendix~\ref{app:bcs-controlled-table}). At 80 relations, extreme-batch construction amplifies this to $-$31.2\,pp (95\% CI [17.7, 42.7]), stable across count levels. An intermediate count${}\,=\,40$ evaluation (40-relation subsets sampled from the 80-relation pool) yields consistent gaps ($-$33.3\,pp at count 8, $-$31.8\,pp at count 16) and confirms monotonic decline.
+50	
+51	\paragraph{Document-level RE (DocRED).}
+52	The effect replicates on DocRED's 96-relation schema ($n{=}55$ per count level;\footnote{DocRED uses 5 batches per count level (vs.\ 25 for FewRel) due to higher per-batch evaluation cost; CIs are correspondingly wider.}): extreme-BCS gap $-$25.0\,pp at count 16 ($\rho = -0.762$, 95\% CI [$-$0.88, $-$0.58]) and $-$15.7\,pp at count 32 ($\rho = -0.693$, 95\% CI [$-$0.83, $-$0.50]; both $p < 0.001$). Pooled across counts, $R^2 = 0.578$ ($n = 110$; 95\% CI [0.46, 0.68]; per-count: $R^2 = 0.653$ at count 16, $0.614$ at count 32). The substantially higher $R^2$ relative to FewRel (0.218) largely reflects BCS--centrality collinearity (VIF${}\,=\,50.9$): semipartial $R^2_{\text{BCS}} = 0.056$ after partialing degree centrality, confirming that 90\% of the explained variance is shared with centrality. The clean evidence for BCS's independent contribution comes from FewRel (semipartial $R^2 = 0.273$, VIF${}\,=\,1.18$).
+53	
+54	\paragraph{Within-pool controlled comparison.}
+55	\label{sec:within_pool}
+56	Within-pool analysis confirms slope consistency across pools (permutation $p \approx 0.60$; Appendix~\ref{app:within-pool-method}). The 80-relation extreme-batch gap (\S\ref{sec:bcs_controlled}) reflects wider BCS range, not stronger per-unit sensitivity.
+57	
+58	\paragraph{Practical magnitude.}
+59	\label{sec:practical_magnitude}
+60	\looseness=-1
+61	Direct regression on 100 random 16-type batches from the 80-relation pool shows BCS explains 22\% of cross-batch accuracy variance ($R^2 = 0.218$, $p < 0.001$). DocRED pooled $R^2 = 0.578$ ($n = 110$; semipartial $R^2_{\text{BCS}} = 0.056$ after centrality; Appendix~\ref{sec:appendix_partial_corr}). The typical BCS span (IQR = 0.054) yields an expected accuracy gap of 2.2\,pp (95\% CI [0.4, 4.0]). Quartile comparison confirms: bottom-quartile BCS batches average 82.8\% vs.\ 78.9\% for top-quartile ($\Delta = 3.9$\,pp). The amplification from pairwise $r^2 \approx 1.5\%$ to batch-level $R^2 \approx 22\%$ is not a statistical artifact but the operative mechanism. Correlated confusable-type interactions compound within shared prompts \citep{robinson-1950-ecological,baan-2023-ecological}, producing the batch-level signal that makes BCS practically predictive (${\sim}3\times$ amplification illustrated by Monte Carlo simulation; Appendix~\ref{app:aggregation-sim}).
+62	
+63	\paragraph{Cross-model validation.}
+64	\looseness=-1
+65	The effect replicates on Meta-Llama-3.1-8B-Instruct: extreme-BCS gaps of $-$27.1\,pp (count 8) and $-$23.9\,pp (count 16), reaching 77--87\% of Qwen3-32B's gap (Table~\ref{tab:cross_model_bcs}). All three open-weight families (Qwen3-32B, LLaMA-70B, LLaMA-8B) show consistent negative BCS slopes on FewRel RE. Gemini 2.5 Flash provides partial but fragile corroboration ($\Delta = -17.6$\,pp at count 8) with substantial leverage sensitivity (leave-one-out Pearson: $r = -0.80 \to -0.42$, $p = 0.22$; Spearman: $\rho = -0.40 \to -0.18$, $p = 0.64$; Appendix~\ref{sec:appendix_cross_model_gemini}). LLaMA-8B and LLaMA-70B both show no NER BCS signal ($r{=}{-}0.13$, $p{=}0.36$ for 70B), confirming the task asymmetry across three models (Table~\ref{tab:cross_model_ner_null}).
+66	
+67	\paragraph{Prompt sensitivity.}
+68	\looseness=-1
+69	Under the v2 prompt, the extreme-batch BCS gap is $-$25.5\,pp ($r = -0.919$, $p < 0.001$; $n{=}25$), modestly attenuated from v1 but highly significant. NER shows no batch-level BCS--F1 correlation under either prompt ($r \approx 0$, $n = 450$; \S\ref{sec:multi_channel}). The effect holds across four structurally distinct prompt variants at count 32 (all $r \leq -0.47$; Appendix~\ref{sec:appendix_prompt_variants}), ruling out prompt design as the source. Few-shot demonstrations widen the confusability gap (+4.3\,pp under 5-shot), though this finding is limited to a single dataset and count level (Appendix~\ref{sec:appendix_fewshot_bcs}).
+70	
+71	\subsection{Multi-Dimensional Degradation}
+72	\label{sec:multi_channel}
+73	
+74	\looseness=-1
+75	Error taxonomy decomposition (Table~\ref{tab:error_taxonomy} and Figure~\ref{fig:error_taxonomy}) shows intra-batch substitution (IntraSub) scales monotonically with BCS across all three datasets: $\rho = 1.0$ ($p < 0.001$) for Few-NERD NER, $\rho = 0.954$ ($p < 0.001$) for FewRel sentence-level RE, and $\rho = 0.843$ ($p < 10^{-30}$, $n = 110$) for DocRED document-level RE. The slightly lower DocRED correlation reflects additional noise from document-level context and cross-sentence reasoning. In NER, missed rates are higher (43--65\%) and non-monotonic; confusable types impair entity detection itself. In DocRED, IntraSub accounts for 72\% of errors in high-BCS batches vs.\ 15\% in low-BCS batches; ExtraSub is zero (forced-choice format). Extreme-BCS batches produce $9.9\text{--}27.5\times$ more confusion than low-BCS batches. Cross-model replication confirms the IntraSub--BCS correlation on FewRel RE: Gemini~2.5~Flash ($\rho = 0.821$, $p < 0.001$, $n = 60$) and LLaMA-3.1-8B ($\rho = 0.430$, $p = 0.001$, $n = 54$; Table~\ref{tab:cross_model_error_taxonomy}).
+76	
+77	\looseness=-1
+78	These results establish two dimensions: \textbf{Dimension~1} (count predicts recall decline) and \textbf{Dimension~2} (confusability predicts type confusion). The full-range regression ($n = 69$, five count levels) serves as the primary separability test; the $2 \times 2$ factorial ($n = 54$) as a sensitivity check. We select the equivalence margin via convergent evidence: (i)~an interaction exceeding the main effect magnitude would undermine dimensional separability; (ii)~Cohen's $d = 0.5$ \citep{cohen-1988-statistical} (medium effect) at the within-cell SD of 4.6\,pp yields $\pm 2.3$\,pp. Both converge on $\pm 2\text{--}3$\,pp.\footnote{Margin sensitivity (Table~\ref{tab:tost_sensitivity}) confirms equivalence from $\pm 2$\,pp ($p = 0.047$) through $\pm 5$\,pp.} On the linear scale, TOST \citep{lakens-2017-equivalence,schuirmann-1987-tost} bounds the FewRel interaction within $\pm 3$\,pp ($p = 0.003$); at $\pm 2$\,pp, equivalence is marginal ($p = 0.047$). Probability-scale TOST is the primary analysis because accuracy values (0.37--0.86) remain in the mid-range where logit and linear scales yield similar inference; the logit-scale result is inconclusive ($p = 0.209$; regression-based TOST: $p = 0.050$ at $\pm 3$\,pp; Appendix~\ref{sec:appendix_factorial}). On DocRED, the raw factorial interaction ($-$9.4\,pp) is confounded by narrower BCS ranges at count 32; range-matched analysis reduces it to 0.93\,pp, consistent with bounded interaction (Appendix~\ref{sec:appendix_factorial}). In NER, batch-level BCS signal is not detected at current power (\S\ref{sec:bcs_controlled}). Two factors explain the asymmetry: (1)~NER errors distribute across miss, boundary, and type modes rather than concentrating in type substitution (relaxed matching confirms this is not a metric artifact; Appendix~\ref{app:relaxed-matching}), and (2)~BCS range restriction (SD ratio 19\%) limits statistical detection power to 65\% (Appendix~\ref{sec:appendix_ner_power}). The factorial test is inconclusive ($p = 0.50$). At $n{=}450$ with BCS SD${}\,=\,0.027$, the minimum detectable correlation is $|r| \approx 0.132$ ($\alpha = 0.05$, power${}\,=\,0.80$), while FewRel's $r = -0.57$ would attenuate to $r \approx -0.11$ under this SD compression. Current evidence cannot distinguish absence of a BCS$\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence. Post-hoc mitigation attempts---type renaming to reduce SCS and few-shot prompting---fail to close the confusability gap (Appendices~\ref{app:renaming},~\ref{sec:appendix_fewshot_bcs}), confirming that BCS captures a structural property of the schema--model interaction rather than a surface-level naming artifact.
+79	
+80	\subsection{Centrality as a Potential Confound on Homogeneous Schemas}
+81	\label{sec:centrality_confound}
+82	\looseness=-1
+83	Per-type analysis on MAVEN reveals an anomalous \emph{positive} BCS--F1 correlation ($\rho = +0.184\text{--}0.208$, $p < 0.03$): FrameNet-derived types cluster tightly \citep{cai-isotropy-clusters-2021}, conflating confusability with centrality. Controlling for log frequency and degree centrality, the correlation vanishes ($p > 0.2$; Appendix~\ref{sec:appendix_residualized_bcs}), though the pairwise SCS signal remains intact ($r = 0.129$, $p < 0.001$). Few-NERD's cross-domain schema shows the expected negative direction ($\rho = -0.293$, $p = 0.02$); mean BCS is reliable only for cross-domain schemas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "fabe8af2-2352-4db5-ae35-5296b70f89a5",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+      "content": "\\section{Results}\n\\label{sec:results}\n\nAll experiments use Qwen3-32B and the v1 prompt (\\S\\ref{sec:model}; Appendix~\\ref{sec:appendix_prompts}) unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, TOST) remain single-model.\n\n\\subsection{Count-Degradation Curves}\n\\label{sec:count_curves}\n\nFigure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall declines through intermediate counts (0.51$\\to$0.27, plateauing across counts 22--44) before partial recovery at full-schema (0.41), where eliminating type-filtering overhead restores extraction performance. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}). The pattern is stable across three seeds (max $\\Delta = 10.7$\\,pp, within 1\\,SD; intra-batch variance exceeds inter-seed variance by ${>}$5$\\times$; Appendix~\\ref{app:variance-decomposition}). Formal trend analysis confirms monotonic RE decline (Jonckheere-Terpstra $J = 109{,}707$, $p < 0.001$). Count decline replicates on LLaMA-70B with comparable magnitude and on Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n\n\\subsection{Pairwise Confusability and Type Confusion}\n\\label{sec:pairwise}\n\nWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate (the fraction of $t_i$ gold instances misclassified as $t_j$) and correlate it with $\\text{SCS}(t_i, t_j)$. Table~\\ref{tab:pairwise} reports Pearson correlations with bootstrap 95\\% CIs.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrrrr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Embed.} & \\textbf{$n$ pairs} & \\textbf{$r$} & \\textbf{$r^2$} & \\textbf{95\\% CI} & \\textbf{$p$} \\\\\n\\midrule\nFew-NERD & Qwen3 & 1{,}953 & 0.112 & 0.013 & {[}0.076, 0.156{]} & ${<}\\,0.001$ \\\\\nMAVEN & MiniLM & 11{,}026 & 0.129 & 0.017 & {[}0.104, 0.156{]} & ${<}\\,0.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Pairwise SCS--confusion correlation. Confusion rate is bidirectional $C(t_i{\\to}t_j) + C(t_j{\\to}t_i)$ divided by gold frequency sum; CIs are percentile bootstrap ($B{=}10{,}000$). FewRel ($r = 0.187$; \\S\\ref{sec:scs-validation}) excluded (per-instance RE format). Type-level cluster bootstrap CIs exclude zero (Few-NERD [0.069, 0.219]; MAVEN [0.081, 0.185]).}\n\\label{tab:pairwise}\n\\end{table}\n\nThe correlations are statistically significant but modest: $r^2 \\approx 1.3\\text{--}1.7\\%$. Type-level cluster bootstrap yields wider but still significant CIs (Few-NERD: [0.069, 0.219]; MAVEN: [0.081, 0.185]; $B = 10{,}000$). Spearman correlations corroborate: $\\rho = 0.144\\text{--}0.227$ across all pairs, strengthening to $\\rho = 0.27\\text{--}0.31$ among pairs with nonzero confusion (though conditioning on the dependent variable may inflate this).\n\nThe remaining variance reflects entity frequency, prompt position \\citep{lost-in-middle-2024}, mention ambiguity, and definition quality. While pairwise $r^2$ is modest, correlated type pairs within batches compound this signal: batch-level BCS explains ${\\sim}$22\\% of RE accuracy variance on FewRel (\\S\\ref{sec:bcs_controlled}). The independent MiniLM embedding yields a \\emph{stronger} SCS--confusion correlation on Few-NERD ($r = 0.172$ vs.\\ Qwen3 $r = 0.138$; Appendix), indicating that shared-representation bias is conservative. SCS outperforms simpler baselines (Levenshtein, WordNet Wu-Palmer, same-parent; Appendix~\\ref{app:scs-baselines}). Appendix~\\ref{app:error-analysis} lists the most confusable type pairs with concrete examples.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{../../figures/paper/fig_error_taxonomy.pdf}\n\\caption{Error taxonomy decomposition (Few-NERD NER and FewRel RE). IntraSub scales monotonically with BCS across all evaluated datasets ($\\rho = 0.84\\text{--}1.0$; Table~\\ref{tab:error_taxonomy} includes DocRED). RE missed rates remain flat (10--16\\%), but NER missed rates are substantially higher (43--65\\%) and non-monotonic.}\n\\label{fig:error_taxonomy}\n\\end{figure*}\n\n\\subsection{BCS-Controlled Experiments}\n\\label{sec:bcs_controlled}\n\n\\looseness=-1\nOn FewRel, BCS explains ${\\sim}$22\\% of cross-batch RE accuracy variance; confusability is a substantial predictor alongside count. We fix type count and vary BCS to isolate this effect. FewRel's balanced design (700 instances per type) eliminates type frequency as a confound;\\footnote{Partial correlation controlling for degree centrality: FewRel $r_{\\text{partial}} = -0.537$ ($p < 0.001$, VIF${}\\,=\\,1.18$). DocRED partial correlation ($r_{\\text{partial}} = -0.348$, $p < 0.001$) is reported for completeness, but VIF${}\\,=\\,50.9$ (BCS--centrality $r = 0.99$) renders the estimate unstable; the clean evidence for BCS's independent contribution comes from FewRel (Appendix~\\ref{sec:appendix_partial_corr}, Table~\\ref{tab:partial_corr}).} the within-pool analysis (\\S\\ref{sec:within_pool}) controls for pool composition.\n\nIn BCS-controlled FewRel subsets, the high-BCS quartile shows $\\Delta=-5.3$\\,pp lower accuracy than low-BCS (quartile comparison on 100 random batches; based on a single extreme batch per BCS level at 16-rel scale; full data in Appendix~\\ref{app:bcs-controlled-table}). At 80 relations, extreme-batch construction amplifies this to $-$31.2\\,pp (95\\% CI [17.7, 42.7]), stable across count levels. An intermediate count${}\\,=\\,40$ evaluation (40-relation subsets sampled from the 80-relation pool) yields consistent gaps ($-$33.3\\,pp at count 8, $-$31.8\\,pp at count 16) and confirms monotonic decline.\n\n\\paragraph{Document-level RE (DocRED).}\nThe effect replicates on DocRED's 96-relation schema ($n{=}55$ per count level;\\footnote{DocRED uses 5 batches per count level (vs.\\ 25 for FewRel) due to higher per-batch evaluation cost; CIs are correspondingly wider.}): extreme-BCS gap $-$25.0\\,pp at count 16 ($\\rho = -0.762$, 95\\% CI [$-$0.88, $-$0.58]) and $-$15.7\\,pp at count 32 ($\\rho = -0.693$, 95\\% CI [$-$0.83, $-$0.50]; both $p < 0.001$). Pooled across counts, $R^2 = 0.578$ ($n = 110$; 95\\% CI [0.46, 0.68]; per-count: $R^2 = 0.653$ at count 16, $0.614$ at count 32). The substantially higher $R^2$ relative to FewRel (0.218) largely reflects BCS--centrality collinearity (VIF${}\\,=\\,50.9$): semipartial $R^2_{\\text{BCS}} = 0.056$ after partialing degree centrality, confirming that 90\\% of the explained variance is shared with centrality. The clean evidence for BCS's independent contribution comes from FewRel (semipartial $R^2 = 0.273$, VIF${}\\,=\\,1.18$).\n\n\\paragraph{Within-pool controlled comparison.}\n\\label{sec:within_pool}\nWithin-pool analysis confirms slope consistency across pools (permutation $p \\approx 0.60$; Appendix~\\ref{app:within-pool-method}). The 80-relation extreme-batch gap (\\S\\ref{sec:bcs_controlled}) reflects wider BCS range, not stronger per-unit sensitivity.\n\n\\paragraph{Practical magnitude.}\n\\label{sec:practical_magnitude}\n\\looseness=-1\nDirect regression on 100 random 16-type batches from the 80-relation pool shows BCS explains 22\\% of cross-batch accuracy variance ($R^2 = 0.218$, $p < 0.001$). DocRED pooled $R^2 = 0.578$ ($n = 110$; semipartial $R^2_{\\text{BCS}} = 0.056$ after centrality; Appendix~\\ref{sec:appendix_partial_corr}). The typical BCS span (IQR = 0.054) yields an expected accuracy gap of 2.2\\,pp (95\\% CI [0.4, 4.0]). Quartile comparison confirms: bottom-quartile BCS batches average 82.8\\% vs.\\ 78.9\\% for top-quartile ($\\Delta = 3.9$\\,pp). The amplification from pairwise $r^2 \\approx 1.5\\%$ to batch-level $R^2 \\approx 22\\%$ is not a statistical artifact but the operative mechanism. Correlated confusable-type interactions compound within shared prompts \\citep{robinson-1950-ecological,baan-2023-ecological}, producing the batch-level signal that makes BCS practically predictive (${\\sim}3\\times$ amplification illustrated by Monte Carlo simulation; Appendix~\\ref{app:aggregation-sim}).\n\n\\paragraph{Cross-model validation.}\n\\looseness=-1\nThe effect replicates on Meta-Llama-3.1-8B-Instruct: extreme-BCS gaps of $-$27.1\\,pp (count 8) and $-$23.9\\,pp (count 16), reaching 77--87\\% of Qwen3-32B's gap (Table~\\ref{tab:cross_model_bcs}). All three open-weight families (Qwen3-32B, LLaMA-70B, LLaMA-8B) show consistent negative BCS slopes on FewRel RE. Gemini 2.5 Flash provides partial but fragile corroboration ($\\Delta = -17.6$\\,pp at count 8) with substantial leverage sensitivity (leave-one-out Pearson: $r = -0.80 \\to -0.42$, $p = 0.22$; Spearman: $\\rho = -0.40 \\to -0.18$, $p = 0.64$; Appendix~\\ref{sec:appendix_cross_model_gemini}). LLaMA-8B and LLaMA-70B both show no NER BCS signal ($r{=}{-}0.13$, $p{=}0.36$ for 70B), confirming the task asymmetry across three models (Table~\\ref{tab:cross_model_ner_null}).\n\n\\paragraph{Prompt sensitivity.}\n\\looseness=-1\nUnder the v2 prompt, the extreme-batch BCS gap is $-$25.5\\,pp ($r = -0.919$, $p < 0.001$; $n{=}25$), modestly attenuated from v1 but highly significant. NER shows no batch-level BCS--F1 correlation under either prompt ($r \\approx 0$, $n = 450$; \\S\\ref{sec:multi_channel}). The effect holds across four structurally distinct prompt variants at count 32 (all $r \\leq -0.47$; Appendix~\\ref{sec:appendix_prompt_variants}), ruling out prompt design as the source. Few-shot demonstrations widen the confusability gap (+4.3\\,pp under 5-shot), though this finding is limited to a single dataset and count level (Appendix~\\ref{sec:appendix_fewshot_bcs}).\n\n\\subsection{Multi-Dimensional Degradation}\n\\label{sec:multi_channel}\n\n\\looseness=-1\nError taxonomy decomposition (Table~\\ref{tab:error_taxonomy} and Figure~\\ref{fig:error_taxonomy}) shows intra-batch substitution (IntraSub) scales monotonically with BCS across all three datasets: $\\rho = 1.0$ ($p < 0.001$) for Few-NERD NER, $\\rho = 0.954$ ($p < 0.001$) for FewRel sentence-level RE, and $\\rho = 0.843$ ($p < 10^{-30}$, $n = 110$) for DocRED document-level RE. The slightly lower DocRED correlation reflects additional noise from document-level context and cross-sentence reasoning. In NER, missed rates are higher (43--65\\%) and non-monotonic; confusable types impair entity detection itself. In DocRED, IntraSub accounts for 72\\% of errors in high-BCS batches vs.\\ 15\\% in low-BCS batches; ExtraSub is zero (forced-choice format). Extreme-BCS batches produce $9.9\\text{--}27.5\\times$ more confusion than low-BCS batches. Cross-model replication confirms the IntraSub--BCS correlation on FewRel RE: Gemini~2.5~Flash ($\\rho = 0.821$, $p < 0.001$, $n = 60$) and LLaMA-3.1-8B ($\\rho = 0.430$, $p = 0.001$, $n = 54$; Table~\\ref{tab:cross_model_error_taxonomy}).\n\n\\looseness=-1\nThese results establish two dimensions: \\textbf{Dimension~1} (count predicts recall decline) and \\textbf{Dimension~2} (confusability predicts type confusion). The full-range regression ($n = 69$, five count levels) serves as the primary separability test; the $2 \\times 2$ factorial ($n = 54$) as a sensitivity check. We select the equivalence margin via convergent evidence: (i)~an interaction exceeding the main effect magnitude would undermine dimensional separability; (ii)~Cohen's $d = 0.5$ \\citep{cohen-1988-statistical} (medium effect) at the within-cell SD of 4.6\\,pp yields $\\pm 2.3$\\,pp. Both converge on $\\pm 2\\text{--}3$\\,pp.\\footnote{Margin sensitivity (Table~\\ref{tab:tost_sensitivity}) confirms equivalence from $\\pm 2$\\,pp ($p = 0.047$) through $\\pm 5$\\,pp.} On the linear scale, TOST \\citep{lakens-2017-equivalence,schuirmann-1987-tost} bounds the FewRel interaction within $\\pm 3$\\,pp ($p = 0.003$); at $\\pm 2$\\,pp, equivalence is marginal ($p = 0.047$). Probability-scale TOST is the primary analysis because accuracy values (0.37--0.86) remain in the mid-range where logit and linear scales yield similar inference; the logit-scale result is inconclusive ($p = 0.209$; regression-based TOST: $p = 0.050$ at $\\pm 3$\\,pp; Appendix~\\ref{sec:appendix_factorial}). On DocRED, the raw factorial interaction ($-$9.4\\,pp) is confounded by narrower BCS ranges at count 32; range-matched analysis reduces it to 0.93\\,pp, consistent with bounded interaction (Appendix~\\ref{sec:appendix_factorial}). In NER, batch-level BCS signal is not detected at current power (\\S\\ref{sec:bcs_controlled}). Two factors explain the asymmetry: (1)~NER errors distribute across miss, boundary, and type modes rather than concentrating in type substitution (relaxed matching confirms this is not a metric artifact; Appendix~\\ref{app:relaxed-matching}), and (2)~BCS range restriction (SD ratio 19\\%) limits statistical detection power to 65\\% (Appendix~\\ref{sec:appendix_ner_power}). The factorial test is inconclusive ($p = 0.50$). At $n{=}450$ with BCS SD${}\\,=\\,0.027$, the minimum detectable correlation is $|r| \\approx 0.132$ ($\\alpha = 0.05$, power${}\\,=\\,0.80$), while FewRel's $r = -0.57$ would attenuate to $r \\approx -0.11$ under this SD compression. Current evidence cannot distinguish absence of a BCS$\\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence. Post-hoc mitigation attempts---type renaming to reduce SCS and few-shot prompting---fail to close the confusability gap (Appendices~\\ref{app:renaming},~\\ref{sec:appendix_fewshot_bcs}), confirming that BCS captures a structural property of the schema--model interaction rather than a surface-level naming artifact.\n\n\\subsection{Centrality as a Potential Confound on Homogeneous Schemas}\n\\label{sec:centrality_confound}\n\\looseness=-1\nPer-type analysis on MAVEN reveals an anomalous \\emph{positive} BCS--F1 correlation ($\\rho = +0.184\\text{--}0.208$, $p < 0.03$): FrameNet-derived types cluster tightly \\citep{cai-isotropy-clusters-2021}, conflating confusability with centrality. Controlling for log frequency and degree centrality, the correlation vanishes ($p > 0.2$; Appendix~\\ref{sec:appendix_residualized_bcs}), though the pairwise SCS signal remains intact ($r = 0.129$, $p < 0.001$). Few-NERD's cross-domain schema shows the expected negative direction ($\\rho = -0.293$, $p = 0.02$); mean BCS is reliable only for cross-domain schemas.",
+      "numLines": 83,
+      "startLine": 1,
+      "totalLines": 83
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01X2MzgxQE7aXh1ataJEu5JD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "e65fab6a-6ca4-49e0-a752-2c513bfffa8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RB9Qmo8axEEvBYEL7pKsqc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1587,
+      "cache_read_input_tokens": 24554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1587
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T04:37:52.637Z_
+
+<details><summary>↩ Tool result · `toolu_01X2MzgxQE7aXh1ataJEu5JD`</summary>
+
+```text
+1	\section{Discussion and Conclusion}
+2	\label{sec:discussion}
+3	
+4	\paragraph{Boundary conditions and mechanisms.}
+5	\looseness=-1
+6	The decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\S\ref{sec:centrality_confound}). RE effects replicate across three open-weight models (8B--70B), two formats, five prompts, and two datasets; no NER BCS effect detected across three models (8B--70B). At the type-pair level, confusability explains ${\sim}$1.3\% of variance---individually modest---but practitioners deploy full schemas as batches, where correlated pairwise effects compound. Batch-level $R^2 {\approx}\, 22\%$ on FewRel corresponds to a ${\sim}$31\,pp gap between extreme batches, the relevant practical construct for real-world zero-shot IE. The NER--RE asymmetry reflects different error-mode structures (\S\ref{sec:multi_channel}) and compressed BCS variance (Appendix~\ref{sec:appendix_ner_power}).
+7	
+8	\paragraph{Practical implications and conclusion.}
+9	\label{sec:conclusion}
+10	\looseness=-1
+11	For NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\,>\,0.85$ pairs; $R^2 {\approx}\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\S\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\% vs.\ 50.4\%), confirming that count and confusability are independently addressable.
+12	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "7daa7cda-9d1a-4dc3-b791-5c522830419f",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+      "content": "\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\n\\paragraph{Boundary conditions and mechanisms.}\n\\looseness=-1\nThe decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). RE effects replicate across three open-weight models (8B--70B), two formats, five prompts, and two datasets; no NER BCS effect detected across three models (8B--70B). At the type-pair level, confusability explains ${\\sim}$1.3\\% of variance---individually modest---but practitioners deploy full schemas as batches, where correlated pairwise effects compound. Batch-level $R^2 {\\approx}\\, 22\\%$ on FewRel corresponds to a ${\\sim}$31\\,pp gap between extreme batches, the relevant practical construct for real-world zero-shot IE. The NER--RE asymmetry reflects different error-mode structures (\\S\\ref{sec:multi_channel}) and compressed BCS variance (Appendix~\\ref{sec:appendix_ner_power}).\n\n\\paragraph{Practical implications and conclusion.}\n\\label{sec:conclusion}\n\\looseness=-1\nFor NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs; $R^2 {\\approx}\\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\\% vs.\\ 50.4\\%), confirming that count and confusability are independently addressable.\n",
+      "numLines": 12,
+      "startLine": 1,
+      "totalLines": 12
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PEkw5NZYP5fSczRW82hCeN`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "34ce49f1-fa62-42ca-b74a-3a60fabefac8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RB9Qmo8axEEvBYEL7pKsqc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1587,
+      "cache_read_input_tokens": 24554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1587
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T04:37:53.558Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01PEkw5NZYP5fSczRW82hCeN`</summary>
+
+```text
+File content (26055 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "8e3f485a-9fbb-4ec3-b4e3-7b718f50f2fd",
+  "tool_use_result": "Error: File content (26055 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for the limitations section in main.tex.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "f0de86d4-97e8-4aaf-8ce0-942870d735af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHgbGrVwoSXkNM2Yxwdj8S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6226,
+      "cache_read_input_tokens": 26141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6226
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01XgyLq1aqpFQ5mZQ9DbBzgk`</summary>
+
+```json
+{
+  "pattern": "\\\\section\\{|\\\\subsection\\{|Limitation|limitation",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "60308812-17e7-4d2c-92e4-d4fd739acd71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHgbGrVwoSXkNM2Yxwdj8S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6226,
+      "cache_read_input_tokens": 26141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6226
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T04:37:58.951Z_
+
+<details><summary>↩ Tool result · `toolu_01XgyLq1aqpFQ5mZQ9DbBzgk`</summary>
+
+```text
+38:\section*{Limitations}
+60:\section{Additional Figures}
+155:\section{SDGD Full Protocol and Results}
+199:\subsection{Practical Routing Strategies on RE}
+226:\section{Factorial Analysis and Separability Test}
+262:\section{Within-Pool CI Details}
+267:\section{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}
+308:\subsection{Partial Correlation: Controlling for Degree Centrality}
+330:\subsection{NER BCS-Null Power Analysis}
+335:\section{Batch Composition Results}
+359:\section{Prompt Version Sensitivity Analysis}
+373:\subsection{Cross-Prompt-Variant BCS Correlation}
+401:\section{BCS Aggregation Sensitivity}
+427:\section{BCS-Controlled Detailed Results}
+450:\section{Format Independence: Paired Constrained vs.\ Unconstrained Comparison}
+520:\section{Within-Pool Analysis Methodology}
+551:\section{SCS Embedding Ablation: Name-Only vs. Name+Definition}
+578:\section{Pair-to-Batch Aggregation Simulation}
+596:\section{BCS Independence from Type Composition}
+601:\section{SCS vs.\ Simple Baselines}
+629:\section{Split-Origin Covariate Analysis}
+632:FewRel combines 64 train-split and 16 val-split relation types into a single 80-type pool.  Train-origin types show numerically lower accuracy ($-8.8$\,pp, $p = 0.06$; see Limitations), raising the question of whether differential pre-training exposure confounds the BCS--accuracy relationship.  We test this by adding a per-batch \emph{train-origin ratio} (fraction of relation types drawn from the train split) as a covariate in the BCS--accuracy regression.
+643:\section{Cross-Seed Variance Decomposition}
+668:\section{Cross-Domain Connections}
+673:\section{Cross-Model Validation with LLaMA-3.1-70B-Instruct (FP8)}
+713:\section{Cross-Model Validation with Gemini 2.5 Flash (API)}
+764:\section{Few-Shot Prompting and Confusability}
+789:\section{Qualitative Error Analysis}
+858:\section{Schema Label Renaming Experiment}
+880:\section{Relaxed Matching Evaluation (NER)}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "6712407b-c666-4bcb-a480-09c14fa3e052",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "38:\\section*{Limitations}\n60:\\section{Additional Figures}\n155:\\section{SDGD Full Protocol and Results}\n199:\\subsection{Practical Routing Strategies on RE}\n226:\\section{Factorial Analysis and Separability Test}\n262:\\section{Within-Pool CI Details}\n267:\\section{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}\n308:\\subsection{Partial Correlation: Controlling for Degree Centrality}\n330:\\subsection{NER BCS-Null Power Analysis}\n335:\\section{Batch Composition Results}\n359:\\section{Prompt Version Sensitivity Analysis}\n373:\\subsection{Cross-Prompt-Variant BCS Correlation}\n401:\\section{BCS Aggregation Sensitivity}\n427:\\section{BCS-Controlled Detailed Results}\n450:\\section{Format Independence: Paired Constrained vs.\\ Unconstrained Comparison}\n520:\\section{Within-Pool Analysis Methodology}\n551:\\section{SCS Embedding Ablation: Name-Only vs. Name+Definition}\n578:\\section{Pair-to-Batch Aggregation Simulation}\n596:\\section{BCS Independence from Type Composition}\n601:\\section{SCS vs.\\ Simple Baselines}\n629:\\section{Split-Origin Covariate Analysis}\n632:FewRel combines 64 train-split and 16 val-split relation types into a single 80-type pool.  Train-origin types show numerically lower accuracy ($-8.8$\\,pp, $p = 0.06$; see Limitations), raising the question of whether differential pre-training exposure confounds the BCS--accuracy relationship.  We test this by adding a per-batch \\emph{train-origin ratio} (fraction of relation types drawn from the train split) as a covariate in the BCS--accuracy regression.\n643:\\section{Cross-Seed Variance Decomposition}\n668:\\section{Cross-Domain Connections}\n673:\\section{Cross-Model Validation with LLaMA-3.1-70B-Instruct (FP8)}\n713:\\section{Cross-Model Validation with Gemini 2.5 Flash (API)}\n764:\\section{Few-Shot Prompting and Confusability}\n789:\\section{Qualitative Error Analysis}\n858:\\section{Schema Label Renaming Experiment}\n880:\\section{Relaxed Matching Evaluation (NER)}",
+    "numLines": 30
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01XqYiEQQt9YufM5EnKMEfXB`</summary>
+
+```json
+{
+  "pattern": "app:relaxed-matching|appendix_relaxed_matching|relaxed.matching",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "9e1a9ef2-8677-427c-849a-d665a4280d17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHgbGrVwoSXkNM2Yxwdj8S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6226,
+      "cache_read_input_tokens": 26141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6226
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T04:38:00.090Z_
+
+<details><summary>↩ Tool result · `toolu_01XqYiEQQt9YufM5EnKMEfXB`</summary>
+
+```text
+docs/paper/main.tex:44:[Omitted long matching line]
+docs/paper/main.tex:881:\label{app:relaxed-matching}
+docs/paper/main.tex:883:To test whether exact-match F1 masks the BCS signal in NER by conflating boundary errors with type errors, we evaluate three progressively relaxed matching criteria on the full Few-NERD NER dataset ($n = 450$ batches: 6 count levels $\times$ 25 batches $\times$ 3 seeds; Table~\ref{tab:relaxed_matching}).
+docs/paper/main.tex:889:\label{tab:relaxed_matching}
+docs/paper/results.tex:78:[Omitted long matching line]
+docs/paper/main.aux:2415:\newlabel{app:relaxed-matching}{{Y}{25}{Relaxed Matching Evaluation (NER)}{appendix.Y}{}}
+docs/paper/main.aux:2439:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "cc8eb8c4-370c-4e40-882f-4c4328bacaab",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/main.tex:44:[Omitted long matching line]\ndocs/paper/main.tex:881:\\label{app:relaxed-matching}\ndocs/paper/main.tex:883:To test whether exact-match F1 masks the BCS signal in NER by conflating boundary errors with type errors, we evaluate three progressively relaxed matching criteria on the full Few-NERD NER dataset ($n = 450$ batches: 6 count levels $\\times$ 25 batches $\\times$ 3 seeds; Table~\\ref{tab:relaxed_matching}).\ndocs/paper/main.tex:889:\\label{tab:relaxed_matching}\ndocs/paper/results.tex:78:[Omitted long matching line]\ndocs/paper/main.aux:2415:\\newlabel{app:relaxed-matching}{{Y}{25}{Relaxed Matching Evaluation (NER)}{appendix.Y}{}}\ndocs/paper/main.aux:2439:[Omitted long matching line]",
+    "numLines": 7
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014aGTPnbkiZ3rRGdSbPk8FF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "offset": 38,
+  "limit": 25
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "a922db2f-2fba-4e00-b9a9-b9eee04850b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017oK3scFpSWgtVJzqePiGSL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1162,
+      "cache_read_input_tokens": 32367,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1162
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T04:38:02.449Z_
+
+<details><summary>↩ Tool result · `toolu_014aGTPnbkiZ3rRGdSbPk8FF`</summary>
+
+```text
+38	\section*{Limitations}
+39	\begin{enumerate}[leftmargin=*,itemsep=2pt]
+40	\item \textbf{Model coverage.} Primary experiments use Qwen3-32B; cross-model validation (LLaMA-8B, LLaMA-70B, Gemini Flash) covers Dimensions~1--2 (count curves, BCS-controlled extremes) but does not replicate secondary analyses (error taxonomy, prompt sensitivity, TOST equivalence). Specifically, TOST factorial interaction (\S\ref{sec:multi_channel}) and SDGD failure analysis (\S\ref{sec:sdgd}) are established on Qwen3-32B alone; error taxonomy replicates on two additional models (Table~\ref{tab:cross_model_error_taxonomy}), but TOST and SDGD cross-model replication remains the most pressing extension. Gemini provides only partial, leverage-sensitive corroboration (leave-one-out $r{:}\;{-}0.80 \to {-}0.42$; Appendix~\ref{sec:appendix_cross_model_gemini}); proprietary-model generalization remains open.
+41	
+42	\item \textbf{Effect size and statistical design.} Pairwise SCS explains a small fraction of type confusion variance; entity frequency, prompt position, and mention ambiguity likely account for the remainder. The count $\times$ BCS interaction is bounded on FewRel but nonzero on DocRED, partially confounded by BCS range restriction at higher counts (Appendix~\ref{sec:appendix_factorial}); logit-scale evidence remains inconclusive. DocRED count curves use 5 batches per level due to higher per-batch evaluation cost. BCS-controlled experiments use a single seed with greedy decoding; residual variance is small (Appendix~\ref{app:variance-decomposition}) but precise magnitudes may vary. Greedy decoding (temperature${}\,=\,0$) yields residual SD${}\,=\,0.88$\,pp, approximately 18--44\% of the observed BCS effect size, suggesting effect detection is robust but point estimates carry meaningful uncertainty; the factorial interaction point estimate (0.47\,pp) is far inside the $\pm 3$\,pp equivalence margin.
+43	
+44	\item \textbf{Task scope.} Format independence is confirmed via paired constrained/unconstrained comparison (Appendix~\ref{app:format-independence}). BCS batch-level prediction is task-dependent: significant in RE but not detected in NER at current power, where errors scatter across miss, boundary, and type modes rather than concentrating in type substitution. A post-hoc relaxed-matching evaluation confirms that relaxing the span criterion does not recover the BCS signal (Appendix~\ref{app:relaxed-matching}), ruling out evaluation stringency as the explanation. The NER batch-level BCS null is observed on three models (8B, 32B, 70B; Table~\ref{tab:cross_model_ner_null}) but not validated on Gemini; the null could in principle differ for proprietary models.
+45	
+46	\item \textbf{Causal mechanism and data contamination.} The study establishes correlational evidence with controlled stratification; mechanistic analysis at the attention or logit level is needed to confirm the causal pathway. A post-hoc renaming experiment (Appendix~\ref{app:renaming}) suggests SCS may proxy deeper conceptual overlap rather than surface similarity. FewRel (2018) may appear in pretraining corpora, but train-origin relations show lower accuracy than val-origin, opposite to the contamination hypothesis; DocRED (2019) provides a lower-contamination-risk replication (Appendix~\ref{app:split-origin}).
+47	\item \textbf{Domain and language scope.} All evaluations use English-language datasets derived from Wikipedia or knowledge bases (Wikidata, FrameNet). Whether confusability effects hold for domain-specific schemas (e.g., biomedical NER, legal RE) or languages with different naming conventions is untested. BCS-controlled batches inherit the domain distribution of the source schema; domain-specific type subsets may shift the confusability--accuracy relationship. Sample sizes (1{,}000 instances per dataset) are sufficient for our primary effects but the pairwise SCS correlation approaches the detection floor.
+48	\end{enumerate}
+49	
+50	\paragraph{Across-batch correlation.} Batches share prompt template and LLM, introducing potential across-batch correlation; however, type composition is independently sampled per batch, and bootstrap CIs are computed over this independent unit of variation.
+51	
+52	\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \citep{dror-2018-significance,card-2020-power}.
+53	
+54	% \input{checklist}  % EMNLP 2026: checklist goes in OpenReview form, not PDF
+55	
+56	\bibliography{references}
+57	
+58	\appendix
+59	
+60	\section{Additional Figures}
+61	\label{sec:appendix_figures}
+62	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "97e91ac6-f168-4b2b-b54d-56901c9f3b04",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+      "content": "\\section*{Limitations}\n\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n\\item \\textbf{Model coverage.} Primary experiments use Qwen3-32B; cross-model validation (LLaMA-8B, LLaMA-70B, Gemini Flash) covers Dimensions~1--2 (count curves, BCS-controlled extremes) but does not replicate secondary analyses (error taxonomy, prompt sensitivity, TOST equivalence). Specifically, TOST factorial interaction (\\S\\ref{sec:multi_channel}) and SDGD failure analysis (\\S\\ref{sec:sdgd}) are established on Qwen3-32B alone; error taxonomy replicates on two additional models (Table~\\ref{tab:cross_model_error_taxonomy}), but TOST and SDGD cross-model replication remains the most pressing extension. Gemini provides only partial, leverage-sensitive corroboration (leave-one-out $r{:}\\;{-}0.80 \\to {-}0.42$; Appendix~\\ref{sec:appendix_cross_model_gemini}); proprietary-model generalization remains open.\n\n\\item \\textbf{Effect size and statistical design.} Pairwise SCS explains a small fraction of type confusion variance; entity frequency, prompt position, and mention ambiguity likely account for the remainder. The count $\\times$ BCS interaction is bounded on FewRel but nonzero on DocRED, partially confounded by BCS range restriction at higher counts (Appendix~\\ref{sec:appendix_factorial}); logit-scale evidence remains inconclusive. DocRED count curves use 5 batches per level due to higher per-batch evaluation cost. BCS-controlled experiments use a single seed with greedy decoding; residual variance is small (Appendix~\\ref{app:variance-decomposition}) but precise magnitudes may vary. Greedy decoding (temperature${}\\,=\\,0$) yields residual SD${}\\,=\\,0.88$\\,pp, approximately 18--44\\% of the observed BCS effect size, suggesting effect detection is robust but point estimates carry meaningful uncertainty; the factorial interaction point estimate (0.47\\,pp) is far inside the $\\pm 3$\\,pp equivalence margin.\n\n\\item \\textbf{Task scope.} Format independence is confirmed via paired constrained/unconstrained comparison (Appendix~\\ref{app:format-independence}). BCS batch-level prediction is task-dependent: significant in RE but not detected in NER at current power, where errors scatter across miss, boundary, and type modes rather than concentrating in type substitution. A post-hoc relaxed-matching evaluation confirms that relaxing the span criterion does not recover the BCS signal (Appendix~\\ref{app:relaxed-matching}), ruling out evaluation stringency as the explanation. The NER batch-level BCS null is observed on three models (8B, 32B, 70B; Table~\\ref{tab:cross_model_ner_null}) but not validated on Gemini; the null could in principle differ for proprietary models.\n\n\\item \\textbf{Causal mechanism and data contamination.} The study establishes correlational evidence with controlled stratification; mechanistic analysis at the attention or logit level is needed to confirm the causal pathway. A post-hoc renaming experiment (Appendix~\\ref{app:renaming}) suggests SCS may proxy deeper conceptual overlap rather than surface similarity. FewRel (2018) may appear in pretraining corpora, but train-origin relations show lower accuracy than val-origin, opposite to the contamination hypothesis; DocRED (2019) provides a lower-contamination-risk replication (Appendix~\\ref{app:split-origin}).\n\\item \\textbf{Domain and language scope.} All evaluations use English-language datasets derived from Wikipedia or knowledge bases (Wikidata, FrameNet). Whether confusability effects hold for domain-specific schemas (e.g., biomedical NER, legal RE) or languages with different naming conventions is untested. BCS-controlled batches inherit the domain distribution of the source schema; domain-specific type subsets may shift the confusability--accuracy relationship. Sample sizes (1{,}000 instances per dataset) are sufficient for our primary effects but the pairwise SCS correlation approaches the detection floor.\n\\end{enumerate}\n\n\\paragraph{Across-batch correlation.} Batches share prompt template and LLM, introducing potential across-batch correlation; however, type composition is independently sampled per batch, and bootstrap CIs are computed over this independent unit of variation.\n\n\\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \\citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \\citep{dror-2018-significance,card-2020-power}.\n\n% \\input{checklist}  % EMNLP 2026: checklist goes in OpenReview form, not PDF\n\n\\bibliography{references}\n\n\\appendix\n\n\\section{Additional Figures}\n\\label{sec:appendix_figures}\n",
+      "numLines": 25,
+      "startLine": 38,
+      "totalLines": 905
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of all files and locations. Let me now plan the edits:
+
+**Task 3: DocRED caveat 加强**
+- File: `results.tex`, line 52
+- After "semipartial R²=0.056" → after "confirming that 90\% of the explained variance is shared with centrality."
+- Insert the new sentence about VIF=50.9, inflated standard errors, etc.
+
+**Task 4: TOST "independently addressable" 弱化**
+- File: `discussion.tex`, line 11
+- "independently addressable" → replace with the new text
+
+
+- Add a sentence about logit scale
+
+**Task 7: NER null 平衡解释**
+- File: `results.tex`, line 78 (the long paragraph in §4.4)
+- Find the NER null explanation, add the new sentence
+- Label `app:relaxed-matching` exists (confirmed at main.tex:881)
+
+**Task 8: 多重比较注释**
+- main.tex line 52 has the "Multiple comparisons" paragraph - that's a natural place
+- Or at the end of §4.4 in results.tex
+
+Now I need to re-examine the specific locations more carefully, particularly around results.tex line 52 where the DocRED caveat needs to go. I'm working through the edits needed across multiple sections of the paper. For Task 4, I need to replace "independently addressable" in discussion.tex with new text about the logit scale. For Task 7, I'm locating the NER null paragraph in results.tex that explains why the BCS signal isn't detected—it comes down to how NER errors distribute across different error types rather than concentrating in one mode, combined with the range restriction on BCS values that limits statistical power to around 65%.
+
+The power analysis shows that with the current sample size and BCS standard deviation, we can only detect correlations of about |r| ≈ 0.132, whereas FewRel's much stronger effect would be substantially weakened under this compression. So we can't tell if there's truly no effect or just an effect too small for us to detect given our constraints. For Task 8, the limitations section already has a multiple comparisons paragraph where I should add the new sentence about multiple testing corrections.
+
+Now I'm moving to Task 3 and need to locate the exact insertion point in results.tex—it should go right after the semipartial R² statement about shared variance with centrality, before the next sentence begins.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "694e5e4a-9d04-4ff5-becd-caef72087e3f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01As9PXcPTLhoUGRW9RQpNpo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1478,
+      "cache_read_input_tokens": 33529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1478
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+现在定位到所有修改点，执行四处编辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "fa35e98a-2e26-4c53-9715-410fab8e1565",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01As9PXcPTLhoUGRW9RQpNpo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1478,
+      "cache_read_input_tokens": 33529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1478
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01V6sDkzvRNSFZPcfUWNCtfq`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+  "old_string": "confirming that 90\\% of the explained variance is shared with centrality. The clean evidence for BCS's independent contribution comes from FewRel",
+  "new_string": "confirming that 90\\% of the explained variance is shared with centrality. Given VIF${}\\,=\\,50.9$, the partial correlation standard errors are inflated approximately 7-fold; this result serves as directional evidence that the BCS--accuracy relationship extends beyond FewRel's schema, not as independent quantitative support. Ridge regression confirms the negative direction under regularization (Appendix~\\ref{sec:appendix_partial_corr}). The clean evidence for BCS's independent contribution comes from FewRel"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "866d1c09-59bf-4d16-89ca-5da873cba110",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01As9PXcPTLhoUGRW9RQpNpo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1478,
+      "cache_read_input_tokens": 33529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1478
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T04:38:37.515Z_
+
+<details><summary>↩ Tool result · `toolu_01V6sDkzvRNSFZPcfUWNCtfq`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "d751a55d-9f10-4ad7-bec4-1e78c2ff9ad0",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+    "oldString": "confirming that 90\\% of the explained variance is shared with centrality. The clean evidence for BCS's independent contribution comes from FewRel",
+    "newString": "confirming that 90\\% of the explained variance is shared with centrality. Given VIF${}\\,=\\,50.9$, the partial correlation standard errors are inflated approximately 7-fold; this result serves as directional evidence that the BCS--accuracy relationship extends beyond FewRel's schema, not as independent quantitative support. Ridge regression confirms the negative direction under regularization (Appendix~\\ref{sec:appendix_partial_corr}). The clean evidence for BCS's independent contribution comes from FewRel",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\nAll experiments use Qwen3-32B and the v1 prompt (\\S\\ref{sec:model}; Appendix~\\ref{sec:appendix_prompts}) unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, TOST) remain single-model.\n\n\\subsection{Count-Degradation Curves}\n\\label{sec:count_curves}\n\nFigure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall declines through intermediate counts (0.51$\\to$0.27, plateauing across counts 22--44) before partial recovery at full-schema (0.41), where eliminating type-filtering overhead restores extraction performance. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}). The pattern is stable across three seeds (max $\\Delta = 10.7$\\,pp, within 1\\,SD; intra-batch variance exceeds inter-seed variance by ${>}$5$\\times$; Appendix~\\ref{app:variance-decomposition}). Formal trend analysis confirms monotonic RE decline (Jonckheere-Terpstra $J = 109{,}707$, $p < 0.001$). Count decline replicates on LLaMA-70B with comparable magnitude and on Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n\n\\subsection{Pairwise Confusability and Type Confusion}\n\\label{sec:pairwise}\n\nWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate (the fraction of $t_i$ gold instances misclassified as $t_j$) and correlate it with $\\text{SCS}(t_i, t_j)$. Table~\\ref{tab:pairwise} reports Pearson correlations with bootstrap 95\\% CIs.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrrrr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Embed.} & \\textbf{$n$ pairs} & \\textbf{$r$} & \\textbf{$r^2$} & \\textbf{95\\% CI} & \\textbf{$p$} \\\\\n\\midrule\nFew-NERD & Qwen3 & 1{,}953 & 0.112 & 0.013 & {[}0.076, 0.156{]} & ${<}\\,0.001$ \\\\\nMAVEN & MiniLM & 11{,}026 & 0.129 & 0.017 & {[}0.104, 0.156{]} & ${<}\\,0.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Pairwise SCS--confusion correlation. Confusion rate is bidirectional $C(t_i{\\to}t_j) + C(t_j{\\to}t_i)$ divided by gold frequency sum; CIs are percentile bootstrap ($B{=}10{,}000$). FewRel ($r = 0.187$; \\S\\ref{sec:scs-validation}) excluded (per-instance RE format). Type-level cluster bootstrap CIs exclude zero (Few-NERD [0.069, 0.219]; MAVEN [0.081, 0.185]).}\n\\label{tab:pairwise}\n\\end{table}\n\nThe correlations are statistically significant but modest: $r^2 \\approx 1.3\\text{--}1.7\\%$. Type-level cluster bootstrap yields wider but still significant CIs (Few-NERD: [0.069, 0.219]; MAVEN: [0.081, 0.185]; $B = 10{,}000$). Spearman correlations corroborate: $\\rho = 0.144\\text{--}0.227$ across all pairs, strengthening to $\\rho = 0.27\\text{--}0.31$ among pairs with nonzero confusion (though conditioning on the dependent variable may inflate this).\n\nThe remaining variance reflects entity frequency, prompt position \\citep{lost-in-middle-2024}, mention ambiguity, and definition quality. While pairwise $r^2$ is modest, correlated type pairs within batches compound this signal: batch-level BCS explains ${\\sim}$22\\% of RE accuracy variance on FewRel (\\S\\ref{sec:bcs_controlled}). The independent MiniLM embedding yields a \\emph{stronger} SCS--confusion correlation on Few-NERD ($r = 0.172$ vs.\\ Qwen3 $r = 0.138$; Appendix), indicating that shared-representation bias is conservative. SCS outperforms simpler baselines (Levenshtein, WordNet Wu-Palmer, same-parent; Appendix~\\ref{app:scs-baselines}). Appendix~\\ref{app:error-analysis} lists the most confusable type pairs with concrete examples.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{../../figures/paper/fig_error_taxonomy.pdf}\n\\caption{Error taxonomy decomposition (Few-NERD NER and FewRel RE). IntraSub scales monotonically with BCS across all evaluated datasets ($\\rho = 0.84\\text{--}1.0$; Table~\\ref{tab:error_taxonomy} includes DocRED). RE missed rates remain flat (10--16\\%), but NER missed rates are substantially higher (43--65\\%) and non-monotonic.}\n\\label{fig:error_taxonomy}\n\\end{figure*}\n\n\\subsection{BCS-Controlled Experiments}\n\\label{sec:bcs_controlled}\n\n\\looseness=-1\nOn FewRel, BCS explains ${\\sim}$22\\% of cross-batch RE accuracy variance; confusability is a substantial predictor alongside count. We fix type count and vary BCS to isolate this effect. FewRel's balanced design (700 instances per type) eliminates type frequency as a confound;\\footnote{Partial correlation controlling for degree centrality: FewRel $r_{\\text{partial}} = -0.537$ ($p < 0.001$, VIF${}\\,=\\,1.18$). DocRED partial correlation ($r_{\\text{partial}} = -0.348$, $p < 0.001$) is reported for completeness, but VIF${}\\,=\\,50.9$ (BCS--centrality $r = 0.99$) renders the estimate unstable; the clean evidence for BCS's independent contribution comes from FewRel (Appendix~\\ref{sec:appendix_partial_corr}, Table~\\ref{tab:partial_corr}).} the within-pool analysis (\\S\\ref{sec:within_pool}) controls for pool composition.\n\nIn BCS-controlled FewRel subsets, the high-BCS quartile shows $\\Delta=-5.3$\\,pp lower accuracy than low-BCS (quartile comparison on 100 random batches; based on a single extreme batch per BCS level at 16-rel scale; full data in Appendix~\\ref{app:bcs-controlled-table}). At 80 relations, extreme-batch construction amplifies this to $-$31.2\\,pp (95\\% CI [17.7, 42.7]), stable across count levels. An intermediate count${}\\,=\\,40$ evaluation (40-relation subsets sampled from the 80-relation pool) yields consistent gaps ($-$33.3\\,pp at count 8, $-$31.8\\,pp at count 16) and confirms monotonic decline.\n\n\\paragraph{Document-level RE (DocRED).}\nThe effect replicates on DocRED's 96-relation schema ($n{=}55$ per count level;\\footnote{DocRED uses 5 batches per count level (vs.\\ 25 for FewRel) due to higher per-batch evaluation cost; CIs are correspondingly wider.}): extreme-BCS gap $-$25.0\\,pp at count 16 ($\\rho = -0.762$, 95\\% CI [$-$0.88, $-$0.58]) and $-$15.7\\,pp at count 32 ($\\rho = -0.693$, 95\\% CI [$-$0.83, $-$0.50]; both $p < 0.001$). Pooled across counts, $R^2 = 0.578$ ($n = 110$; 95\\% CI [0.46, 0.68]; per-count: $R^2 = 0.653$ at count 16, $0.614$ at count 32). The substantially higher $R^2$ relative to FewRel (0.218) largely reflects BCS--centrality collinearity (VIF${}\\,=\\,50.9$): semipartial $R^2_{\\text{BCS}} = 0.056$ after partialing degree centrality, confirming that 90\\% of the explained variance is shared with centrality. The clean evidence for BCS's independent contribution comes from FewRel (semipartial $R^2 = 0.273$, VIF${}\\,=\\,1.18$).\n\n\\paragraph{Within-pool controlled comparison.}\n\\label{sec:within_pool}\nWithin-pool analysis confirms slope consistency across pools (permutation $p \\approx 0.60$; Appendix~\\ref{app:within-pool-method}). The 80-relation extreme-batch gap (\\S\\ref{sec:bcs_controlled}) reflects wider BCS range, not stronger per-unit sensitivity.\n\n\\paragraph{Practical magnitude.}\n\\label{sec:practical_magnitude}\n\\looseness=-1\nDirect regression on 100 random 16-type batches from the 80-relation pool shows BCS explains 22\\% of cross-batch accuracy variance ($R^2 = 0.218$, $p < 0.001$). DocRED pooled $R^2 = 0.578$ ($n = 110$; semipartial $R^2_{\\text{BCS}} = 0.056$ after centrality; Appendix~\\ref{sec:appendix_partial_corr}). The typical BCS span (IQR = 0.054) yields an expected accuracy gap of 2.2\\,pp (95\\% CI [0.4, 4.0]). Quartile comparison confirms: bottom-quartile BCS batches average 82.8\\% vs.\\ 78.9\\% for top-quartile ($\\Delta = 3.9$\\,pp). The amplification from pairwise $r^2 \\approx 1.5\\%$ to batch-level $R^2 \\approx 22\\%$ is not a statistical artifact but the operative mechanism. Correlated confusable-type interactions compound within shared prompts \\citep{robinson-1950-ecological,baan-2023-ecological}, producing the batch-level signal that makes BCS practically predictive (${\\sim}3\\times$ amplification illustrated by Monte Carlo simulation; Appendix~\\ref{app:aggregation-sim}).\n\n\\paragraph{Cross-model validation.}\n\\looseness=-1\nThe effect replicates on Meta-Llama-3.1-8B-Instruct: extreme-BCS gaps of $-$27.1\\,pp (count 8) and $-$23.9\\,pp (count 16), reaching 77--87\\% of Qwen3-32B's gap (Table~\\ref{tab:cross_model_bcs}). All three open-weight families (Qwen3-32B, LLaMA-70B, LLaMA-8B) show consistent negative BCS slopes on FewRel RE. Gemini 2.5 Flash provides partial but fragile corroboration ($\\Delta = -17.6$\\,pp at count 8) with substantial leverage sensitivity (leave-one-out Pearson: $r = -0.80 \\to -0.42$, $p = 0.22$; Spearman: $\\rho = -0.40 \\to -0.18$, $p = 0.64$; Appendix~\\ref{sec:appendix_cross_model_gemini}). LLaMA-8B and LLaMA-70B both show no NER BCS signal ($r{=}{-}0.13$, $p{=}0.36$ for 70B), confirming the task asymmetry across three models (Table~\\ref{tab:cross_model_ner_null}).\n\n\\paragraph{Prompt sensitivity.}\n\\looseness=-1\nUnder the v2 prompt, the extreme-batch BCS gap is $-$25.5\\,pp ($r = -0.919$, $p < 0.001$; $n{=}25$), modestly attenuated from v1 but highly significant. NER shows no batch-level BCS--F1 correlation under either prompt ($r \\approx 0$, $n = 450$; \\S\\ref{sec:multi_channel}). The effect holds across four structurally distinct prompt variants at count 32 (all $r \\leq -0.47$; Appendix~\\ref{sec:appendix_prompt_variants}), ruling out prompt design as the source. Few-shot demonstrations widen the confusability gap (+4.3\\,pp under 5-shot), though this finding is limited to a single dataset and count level (Appendix~\\ref{sec:appendix_fewshot_bcs}).\n\n\\subsection{Multi-Dimensional Degradation}\n\\label{sec:multi_channel}\n\n\\looseness=-1\nError taxonomy decomposition (Table~\\ref{tab:error_taxonomy} and Figure~\\ref{fig:error_taxonomy}) shows intra-batch substitution (IntraSub) scales monotonically with BCS across all three datasets: $\\rho = 1.0$ ($p < 0.001$) for Few-NERD NER, $\\rho = 0.954$ ($p < 0.001$) for FewRel sentence-level RE, and $\\rho = 0.843$ ($p < 10^{-30}$, $n = 110$) for DocRED document-level RE. The slightly lower DocRED correlation reflects additional noise from document-level context and cross-sentence reasoning. In NER, missed rates are higher (43--65\\%) and non-monotonic; confusable types impair entity detection itself. In DocRED, IntraSub accounts for 72\\% of errors in high-BCS batches vs.\\ 15\\% in low-BCS batches; ExtraSub is zero (forced-choice format). Extreme-BCS batches produce $9.9\\text{--}27.5\\times$ more confusion than low-BCS batches. Cross-model replication confirms the IntraSub--BCS correlation on FewRel RE: Gemini~2.5~Flash ($\\rho = 0.821$, $p < 0.001$, $n = 60$) and LLaMA-3.1-8B ($\\rho = 0.430$, $p = 0.001$, $n = 54$; Table~\\ref{tab:cross_model_error_taxonomy}).\n\n\\looseness=-1\nThese results establish two dimensions: \\textbf{Dimension~1} (count predicts recall decline) and \\textbf{Dimension~2} (confusability predicts type confusion). The full-range regression ($n = 69$, five count levels) serves as the primary separability test; the $2 \\times 2$ factorial ($n = 54$) as a sensitivity check. We select the equivalence margin via convergent evidence: (i)~an interaction exceeding the main effect magnitude would undermine dimensional separability; (ii)~Cohen's $d = 0.5$ \\citep{cohen-1988-statistical} (medium effect) at the within-cell SD of 4.6\\,pp yields $\\pm 2.3$\\,pp. Both converge on $\\pm 2\\text{--}3$\\,pp.\\footnote{Margin sensitivity (Table~\\ref{tab:tost_sensitivity}) confirms equivalence from $\\pm 2$\\,pp ($p = 0.047$) through $\\pm 5$\\,pp.} On the linear scale, TOST \\citep{lakens-2017-equivalence,schuirmann-1987-tost} bounds the FewRel interaction within $\\pm 3$\\,pp ($p = 0.003$); at $\\pm 2$\\,pp, equivalence is marginal ($p = 0.047$). Probability-scale TOST is the primary analysis because accuracy values (0.37--0.86) remain in the mid-range where logit and linear scales yield similar inference; the logit-scale result is inconclusive ($p = 0.209$; regression-based TOST: $p = 0.050$ at $\\pm 3$\\,pp; Appendix~\\ref{sec:appendix_factorial}). On DocRED, the raw factorial interaction ($-$9.4\\,pp) is confounded by narrower BCS ranges at count 32; range-matched analysis reduces it to 0.93\\,pp, consistent with bounded interaction (Appendix~\\ref{sec:appendix_factorial}). In NER, batch-level BCS signal is not detected at current power (\\S\\ref{sec:bcs_controlled}). Two factors explain the asymmetry: (1)~NER errors distribute across miss, boundary, and type modes rather than concentrating in type substitution (relaxed matching confirms this is not a metric artifact; Appendix~\\ref{app:relaxed-matching}), and (2)~BCS range restriction (SD ratio 19\\%) limits statistical detection power to 65\\% (Appendix~\\ref{sec:appendix_ner_power}). The factorial test is inconclusive ($p = 0.50$). At $n{=}450$ with BCS SD${}\\,=\\,0.027$, the minimum detectable correlation is $|r| \\approx 0.132$ ($\\alpha = 0.05$, power${}\\,=\\,0.80$), while FewRel's $r = -0.57$ would attenuate to $r \\approx -0.11$ under this SD compression. Current evidence cannot distinguish absence of a BCS$\\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence. Post-hoc mitigation attempts---type renaming to reduce SCS and few-shot prompting---fail to close the confusability gap (Appendices~\\ref{app:renaming},~\\ref{sec:appendix_fewshot_bcs}), confirming that BCS captures a structural property of the schema--model interaction rather than a surface-level naming artifact.\n\n\\subsection{Centrality as a Potential Confound on Homogeneous Schemas}\n\\label{sec:centrality_confound}\n\\looseness=-1\nPer-type analysis on MAVEN reveals an anomalous \\emph{positive} BCS--F1 correlation ($\\rho = +0.184\\text{--}0.208$, $p < 0.03$): FrameNet-derived types cluster tightly \\citep{cai-isotropy-clusters-2021}, conflating confusability with centrality. Controlling for log frequency and degree centrality, the correlation vanishes ($p > 0.2$; Appendix~\\ref{sec:appendix_residualized_bcs}), though the pairwise SCS signal remains intact ($r = 0.129$, $p < 0.001$). Few-NERD's cross-domain schema shows the expected negative direction ($\\rho = -0.293$, $p = 0.02$); mean BCS is reliable only for cross-domain schemas.",
+    "structuredPatch": [
+      {
+        "oldStart": 49,
+        "oldLines": 7,
+        "newStart": 49,
+        "newLines": 7,
+        "lines": [
+          " In BCS-controlled FewRel subsets, the high-BCS quartile shows $\\Delta=-5.3$\\,pp lower accuracy than low-BCS (quartile comparison on 100 random batches; based on a single extreme batch per BCS level at 16-rel scale; full data in Appendix~\\ref{app:bcs-controlled-table}). At 80 relations, extreme-batch construction amplifies this to $-$31.2\\,pp (95\\% CI [17.7, 42.7]), stable across count levels. An intermediate count${}\\,=\\,40$ evaluation (40-relation subsets sampled from the 80-relation pool) yields consistent gaps ($-$33.3\\,pp at count 8, $-$31.8\\,pp at count 16) and confirms monotonic decline.",
+          " ",
+          " \\paragraph{Document-level RE (DocRED).}",
+          "-The effect replicates on DocRED's 96-relation schema ($n{=}55$ per count level;\\footnote{DocRED uses 5 batches per count level (vs.\\ 25 for FewRel) due to higher per-batch evaluation cost; CIs are correspondingly wider.}): extreme-BCS gap $-$25.0\\,pp at count 16 ($\\rho = -0.762$, 95\\% CI [$-$0.88, $-$0.58]) and $-$15.7\\,pp at count 32 ($\\rho = -0.693$, 95\\% CI [$-$0.83, $-$0.50]; both $p < 0.001$). Pooled across counts, $R^2 = 0.578$ ($n = 110$; 95\\% CI [0.46, 0.68]; per-count: $R^2 = 0.653$ at count 16, $0.614$ at count 32). The substantially higher $R^2$ relative to FewRel (0.218) largely reflects BCS--centrality collinearity (VIF${}\\,=\\,50.9$): semipartial $R^2_{\\text{BCS}} = 0.056$ after partialing degree centrality, confirming that 90\\% of the explained variance is shared with centrality. The clean evidence for BCS's independent contribution comes from FewRel (semipartial $R^2 = 0.273$, VIF${}\\,=\\,1.18$).",
+          "+The effect replicates on DocRED's 96-relation schema ($n{=}55$ per count level;\\footnote{DocRED uses 5 batches per count level (vs.\\ 25 for FewRel) due to higher per-batch evaluation cost; CIs are correspondingly wider.}): extreme-BCS gap $-$25.0\\,pp at count 16 ($\\rho = -0.762$, 95\\% CI [$-$0.88, $-$0.58]) and $-$15.7\\,pp at count 32 ($\\rho = -0.693$, 95\\% CI [$-$0.83, $-$0.50]; both $p < 0.001$). Pooled across counts, $R^2 = 0.578$ ($n = 110$; 95\\% CI [0.46, 0.68]; per-count: $R^2 = 0.653$ at count 16, $0.614$ at count 32). The substantially higher $R^2$ relative to FewRel (0.218) largely reflects BCS--centrality collinearity (VIF${}\\,=\\,50.9$): semipartial $R^2_{\\text{BCS}} = 0.056$ after partialing degree centrality, confirming that 90\\% of the explained variance is shared with centrality. Given VIF${}\\,=\\,50.9$, the partial correlation standard errors are inflated approximately 7-fold; this result serves as directional evidence that the BCS--accuracy relationship extends beyond FewRel's schema, not as independent quantitative support. Ridge regression confirms the negative direction under regularization (Appendix~\\ref{sec:appendix_partial_corr}). The clean evidence for BCS's independent contribution comes from FewRel (semipartial $R^2 = 0.273$, VIF${}\\,=\\,1.18$).",
+          " ",
+          " \\paragraph{Within-pool controlled comparison.}",
+          " \\label{sec:within_pool}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_0194NmwojRur4CbjJ15iQF9N`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+  "old_string": "confirming that count and confusability are independently addressable.",
+  "new_string": "confirming that count and confusability are approximately additive on the probability scale within the observed accuracy range (0.37--0.86). On the logit scale, which is theoretically preferred for bounded metrics, equivalence is inconclusive ($p = 0.209$); dimensional separability is thus supported on the linear scale but remains an open question on the logit scale."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "8109d0d9-a293-4bc4-8cee-93857c705a48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01As9PXcPTLhoUGRW9RQpNpo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1478,
+      "cache_read_input_tokens": 33529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1478
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T04:38:40.049Z_
+
+<details><summary>↩ Tool result · `toolu_0194NmwojRur4CbjJ15iQF9N`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "7e85ee23-bcb5-431e-9d8c-b58942197689",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+    "oldString": "confirming that count and confusability are independently addressable.",
+    "newString": "confirming that count and confusability are approximately additive on the probability scale within the observed accuracy range (0.37--0.86). On the logit scale, which is theoretically preferred for bounded metrics, equivalence is inconclusive ($p = 0.209$); dimensional separability is thus supported on the linear scale but remains an open question on the logit scale.",
+    "originalFile": "\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\n\\paragraph{Boundary conditions and mechanisms.}\n\\looseness=-1\nThe decomposition applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\\S\\ref{sec:centrality_confound}). RE effects replicate across three open-weight models (8B--70B), two formats, five prompts, and two datasets; no NER BCS effect detected across three models (8B--70B). At the type-pair level, confusability explains ${\\sim}$1.3\\% of variance---individually modest---but practitioners deploy full schemas as batches, where correlated pairwise effects compound. Batch-level $R^2 {\\approx}\\, 22\\%$ on FewRel corresponds to a ${\\sim}$31\\,pp gap between extreme batches, the relevant practical construct for real-world zero-shot IE. The NER--RE asymmetry reflects different error-mode structures (\\S\\ref{sec:multi_channel}) and compressed BCS variance (Appendix~\\ref{sec:appendix_ner_power}).\n\n\\paragraph{Practical implications and conclusion.}\n\\label{sec:conclusion}\n\\looseness=-1\nFor NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs; $R^2 {\\approx}\\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\\% vs.\\ 50.4\\%), confirming that count and confusability are independently addressable.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 8,
+        "oldLines": 4,
+        "newStart": 8,
+        "newLines": 4,
+        "lines": [
+          " \\paragraph{Practical implications and conclusion.}",
+          " \\label{sec:conclusion}",
+          " \\looseness=-1",
+          "-For NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs; $R^2 {\\approx}\\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\\% vs.\\ 50.4\\%), confirming that count and confusability are independently addressable.",
+          "+For NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs; $R^2 {\\approx}\\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\\% vs.\\ 50.4\\%), confirming that count and confusability are approximately additive on the probability scale within the observed accuracy range (0.37--0.86). On the logit scale, which is theoretically preferred for bounded metrics, equivalence is inconclusive ($p = 0.209$); dimensional separability is thus supported on the linear scale but remains an open question on the logit scale."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_013dHuZT2cPqS2ncqrD9E69R`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+  "old_string": "Current evidence cannot distinguish absence of a BCS$\\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence.",
+  "new_string": "Current evidence cannot distinguish absence of a BCS$\\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence. The null is equally consistent with NER's error-mode structure, where degradation distributes across miss, boundary, and type channels rather than concentrating in type substitution---a pattern confirmed by relaxed matching (Appendix~\\ref{app:relaxed-matching})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "3cfa0452-ca95-42dc-adb2-6b47a81bf942",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01As9PXcPTLhoUGRW9RQpNpo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1478,
+      "cache_read_input_tokens": 33529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1478
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T04:38:42.373Z_
+
+<details><summary>↩ Tool result · `toolu_013dHuZT2cPqS2ncqrD9E69R`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "6801683a-c897-4913-b976-52877750770f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+    "oldString": "Current evidence cannot distinguish absence of a BCS$\\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence.",
+    "newString": "Current evidence cannot distinguish absence of a BCS$\\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence. The null is equally consistent with NER's error-mode structure, where degradation distributes across miss, boundary, and type channels rather than concentrating in type substitution---a pattern confirmed by relaxed matching (Appendix~\\ref{app:relaxed-matching}).",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\nAll experiments use Qwen3-32B and the v1 prompt (\\S\\ref{sec:model}; Appendix~\\ref{sec:appendix_prompts}) unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, TOST) remain single-model.\n\n\\subsection{Count-Degradation Curves}\n\\label{sec:count_curves}\n\nFigure~\\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (0.86$\\to$0.50 for FewRel). NER recall declines through intermediate counts (0.51$\\to$0.27, plateauing across counts 22--44) before partial recovery at full-schema (0.41), where eliminating type-filtering overhead restores extraction performance. DocRED replicates the monotonic RE pattern (88.0\\%$\\to$38.7\\%, $-$56\\%; Appendix). MAVEN exhibits a reversed trend attributable to centrality confounding (\\S\\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\\,pp on Few-NERD; per-batch $r = 0.725$; Table~\\ref{tab:cross_model}). The pattern is stable across three seeds (max $\\Delta = 10.7$\\,pp, within 1\\,SD; intra-batch variance exceeds inter-seed variance by ${>}$5$\\times$; Appendix~\\ref{app:variance-decomposition}). Formal trend analysis confirms monotonic RE decline (Jonckheere-Terpstra $J = 109{,}707$, $p < 0.001$). Count decline replicates on LLaMA-70B with comparable magnitude and on Gemini Flash (Appendix~\\ref{sec:appendix_cross_model_gemini}). Count curves establish trend direction; magnitude estimation relies on the higher-powered BCS-controlled experiments (\\S\\ref{sec:bcs_controlled}).\n\n\\subsection{Pairwise Confusability and Type Confusion}\n\\label{sec:pairwise}\n\nWe test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate (the fraction of $t_i$ gold instances misclassified as $t_j$) and correlate it with $\\text{SCS}(t_i, t_j)$. Table~\\ref{tab:pairwise} reports Pearson correlations with bootstrap 95\\% CIs.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrrrr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Embed.} & \\textbf{$n$ pairs} & \\textbf{$r$} & \\textbf{$r^2$} & \\textbf{95\\% CI} & \\textbf{$p$} \\\\\n\\midrule\nFew-NERD & Qwen3 & 1{,}953 & 0.112 & 0.013 & {[}0.076, 0.156{]} & ${<}\\,0.001$ \\\\\nMAVEN & MiniLM & 11{,}026 & 0.129 & 0.017 & {[}0.104, 0.156{]} & ${<}\\,0.001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Pairwise SCS--confusion correlation. Confusion rate is bidirectional $C(t_i{\\to}t_j) + C(t_j{\\to}t_i)$ divided by gold frequency sum; CIs are percentile bootstrap ($B{=}10{,}000$). FewRel ($r = 0.187$; \\S\\ref{sec:scs-validation}) excluded (per-instance RE format). Type-level cluster bootstrap CIs exclude zero (Few-NERD [0.069, 0.219]; MAVEN [0.081, 0.185]).}\n\\label{tab:pairwise}\n\\end{table}\n\nThe correlations are statistically significant but modest: $r^2 \\approx 1.3\\text{--}1.7\\%$. Type-level cluster bootstrap yields wider but still significant CIs (Few-NERD: [0.069, 0.219]; MAVEN: [0.081, 0.185]; $B = 10{,}000$). Spearman correlations corroborate: $\\rho = 0.144\\text{--}0.227$ across all pairs, strengthening to $\\rho = 0.27\\text{--}0.31$ among pairs with nonzero confusion (though conditioning on the dependent variable may inflate this).\n\nThe remaining variance reflects entity frequency, prompt position \\citep{lost-in-middle-2024}, mention ambiguity, and definition quality. While pairwise $r^2$ is modest, correlated type pairs within batches compound this signal: batch-level BCS explains ${\\sim}$22\\% of RE accuracy variance on FewRel (\\S\\ref{sec:bcs_controlled}). The independent MiniLM embedding yields a \\emph{stronger} SCS--confusion correlation on Few-NERD ($r = 0.172$ vs.\\ Qwen3 $r = 0.138$; Appendix), indicating that shared-representation bias is conservative. SCS outperforms simpler baselines (Levenshtein, WordNet Wu-Palmer, same-parent; Appendix~\\ref{app:scs-baselines}). Appendix~\\ref{app:error-analysis} lists the most confusable type pairs with concrete examples.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{../../figures/paper/fig_error_taxonomy.pdf}\n\\caption{Error taxonomy decomposition (Few-NERD NER and FewRel RE). IntraSub scales monotonically with BCS across all evaluated datasets ($\\rho = 0.84\\text{--}1.0$; Table~\\ref{tab:error_taxonomy} includes DocRED). RE missed rates remain flat (10--16\\%), but NER missed rates are substantially higher (43--65\\%) and non-monotonic.}\n\\label{fig:error_taxonomy}\n\\end{figure*}\n\n\\subsection{BCS-Controlled Experiments}\n\\label{sec:bcs_controlled}\n\n\\looseness=-1\nOn FewRel, BCS explains ${\\sim}$22\\% of cross-batch RE accuracy variance; confusability is a substantial predictor alongside count. We fix type count and vary BCS to isolate this effect. FewRel's balanced design (700 instances per type) eliminates type frequency as a confound;\\footnote{Partial correlation controlling for degree centrality: FewRel $r_{\\text{partial}} = -0.537$ ($p < 0.001$, VIF${}\\,=\\,1.18$). DocRED partial correlation ($r_{\\text{partial}} = -0.348$, $p < 0.001$) is reported for completeness, but VIF${}\\,=\\,50.9$ (BCS--centrality $r = 0.99$) renders the estimate unstable; the clean evidence for BCS's independent contribution comes from FewRel (Appendix~\\ref{sec:appendix_partial_corr}, Table~\\ref{tab:partial_corr}).} the within-pool analysis (\\S\\ref{sec:within_pool}) controls for pool composition.\n\nIn BCS-controlled FewRel subsets, the high-BCS quartile shows $\\Delta=-5.3$\\,pp lower accuracy than low-BCS (quartile comparison on 100 random batches; based on a single extreme batch per BCS level at 16-rel scale; full data in Appendix~\\ref{app:bcs-controlled-table}). At 80 relations, extreme-batch construction amplifies this to $-$31.2\\,pp (95\\% CI [17.7, 42.7]), stable across count levels. An intermediate count${}\\,=\\,40$ evaluation (40-relation subsets sampled from the 80-relation pool) yields consistent gaps ($-$33.3\\,pp at count 8, $-$31.8\\,pp at count 16) and confirms monotonic decline.\n\n\\paragraph{Document-level RE (DocRED).}\nThe effect replicates on DocRED's 96-relation schema ($n{=}55$ per count level;\\footnote{DocRED uses 5 batches per count level (vs.\\ 25 for FewRel) due to higher per-batch evaluation cost; CIs are correspondingly wider.}): extreme-BCS gap $-$25.0\\,pp at count 16 ($\\rho = -0.762$, 95\\% CI [$-$0.88, $-$0.58]) and $-$15.7\\,pp at count 32 ($\\rho = -0.693$, 95\\% CI [$-$0.83, $-$0.50]; both $p < 0.001$). Pooled across counts, $R^2 = 0.578$ ($n = 110$; 95\\% CI [0.46, 0.68]; per-count: $R^2 = 0.653$ at count 16, $0.614$ at count 32). The substantially higher $R^2$ relative to FewRel (0.218) largely reflects BCS--centrality collinearity (VIF${}\\,=\\,50.9$): semipartial $R^2_{\\text{BCS}} = 0.056$ after partialing degree centrality, confirming that 90\\% of the explained variance is shared with centrality. Given VIF${}\\,=\\,50.9$, the partial correlation standard errors are inflated approximately 7-fold; this result serves as directional evidence that the BCS--accuracy relationship extends beyond FewRel's schema, not as independent quantitative support. Ridge regression confirms the negative direction under regularization (Appendix~\\ref{sec:appendix_partial_corr}). The clean evidence for BCS's independent contribution comes from FewRel (semipartial $R^2 = 0.273$, VIF${}\\,=\\,1.18$).\n\n\\paragraph{Within-pool controlled comparison.}\n\\label{sec:within_pool}\nWithin-pool analysis confirms slope consistency across pools (permutation $p \\approx 0.60$; Appendix~\\ref{app:within-pool-method}). The 80-relation extreme-batch gap (\\S\\ref{sec:bcs_controlled}) reflects wider BCS range, not stronger per-unit sensitivity.\n\n\\paragraph{Practical magnitude.}\n\\label{sec:practical_magnitude}\n\\looseness=-1\nDirect regression on 100 random 16-type batches from the 80-relation pool shows BCS explains 22\\% of cross-batch accuracy variance ($R^2 = 0.218$, $p < 0.001$). DocRED pooled $R^2 = 0.578$ ($n = 110$; semipartial $R^2_{\\text{BCS}} = 0.056$ after centrality; Appendix~\\ref{sec:appendix_partial_corr}). The typical BCS span (IQR = 0.054) yields an expected accuracy gap of 2.2\\,pp (95\\% CI [0.4, 4.0]). Quartile comparison confirms: bottom-quartile BCS batches average 82.8\\% vs.\\ 78.9\\% for top-quartile ($\\Delta = 3.9$\\,pp). The amplification from pairwise $r^2 \\approx 1.5\\%$ to batch-level $R^2 \\approx 22\\%$ is not a statistical artifact but the operative mechanism. Correlated confusable-type interactions compound within shared prompts \\citep{robinson-1950-ecological,baan-2023-ecological}, producing the batch-level signal that makes BCS practically predictive (${\\sim}3\\times$ amplification illustrated by Monte Carlo simulation; Appendix~\\ref{app:aggregation-sim}).\n\n\\paragraph{Cross-model validation.}\n\\looseness=-1\nThe effect replicates on Meta-Llama-3.1-8B-Instruct: extreme-BCS gaps of $-$27.1\\,pp (count 8) and $-$23.9\\,pp (count 16), reaching 77--87\\% of Qwen3-32B's gap (Table~\\ref{tab:cross_model_bcs}). All three open-weight families (Qwen3-32B, LLaMA-70B, LLaMA-8B) show consistent negative BCS slopes on FewRel RE. Gemini 2.5 Flash provides partial but fragile corroboration ($\\Delta = -17.6$\\,pp at count 8) with substantial leverage sensitivity (leave-one-out Pearson: $r = -0.80 \\to -0.42$, $p = 0.22$; Spearman: $\\rho = -0.40 \\to -0.18$, $p = 0.64$; Appendix~\\ref{sec:appendix_cross_model_gemini}). LLaMA-8B and LLaMA-70B both show no NER BCS signal ($r{=}{-}0.13$, $p{=}0.36$ for 70B), confirming the task asymmetry across three models (Table~\\ref{tab:cross_model_ner_null}).\n\n\\paragraph{Prompt sensitivity.}\n\\looseness=-1\nUnder the v2 prompt, the extreme-batch BCS gap is $-$25.5\\,pp ($r = -0.919$, $p < 0.001$; $n{=}25$), modestly attenuated from v1 but highly significant. NER shows no batch-level BCS--F1 correlation under either prompt ($r \\approx 0$, $n = 450$; \\S\\ref{sec:multi_channel}). The effect holds across four structurally distinct prompt variants at count 32 (all $r \\leq -0.47$; Appendix~\\ref{sec:appendix_prompt_variants}), ruling out prompt design as the source. Few-shot demonstrations widen the confusability gap (+4.3\\,pp under 5-shot), though this finding is limited to a single dataset and count level (Appendix~\\ref{sec:appendix_fewshot_bcs}).\n\n\\subsection{Multi-Dimensional Degradation}\n\\label{sec:multi_channel}\n\n\\looseness=-1\nError taxonomy decomposition (Table~\\ref{tab:error_taxonomy} and Figure~\\ref{fig:error_taxonomy}) shows intra-batch substitution (IntraSub) scales monotonically with BCS across all three datasets: $\\rho = 1.0$ ($p < 0.001$) for Few-NERD NER, $\\rho = 0.954$ ($p < 0.001$) for FewRel sentence-level RE, and $\\rho = 0.843$ ($p < 10^{-30}$, $n = 110$) for DocRED document-level RE. The slightly lower DocRED correlation reflects additional noise from document-level context and cross-sentence reasoning. In NER, missed rates are higher (43--65\\%) and non-monotonic; confusable types impair entity detection itself. In DocRED, IntraSub accounts for 72\\% of errors in high-BCS batches vs.\\ 15\\% in low-BCS batches; ExtraSub is zero (forced-choice format). Extreme-BCS batches produce $9.9\\text{--}27.5\\times$ more confusion than low-BCS batches. Cross-model replication confirms the IntraSub--BCS correlation on FewRel RE: Gemini~2.5~Flash ($\\rho = 0.821$, $p < 0.001$, $n = 60$) and LLaMA-3.1-8B ($\\rho = 0.430$, $p = 0.001$, $n = 54$; Table~\\ref{tab:cross_model_error_taxonomy}).\n\n\\looseness=-1\nThese results establish two dimensions: \\textbf{Dimension~1} (count predicts recall decline) and \\textbf{Dimension~2} (confusability predicts type confusion). The full-range regression ($n = 69$, five count levels) serves as the primary separability test; the $2 \\times 2$ factorial ($n = 54$) as a sensitivity check. We select the equivalence margin via convergent evidence: (i)~an interaction exceeding the main effect magnitude would undermine dimensional separability; (ii)~Cohen's $d = 0.5$ \\citep{cohen-1988-statistical} (medium effect) at the within-cell SD of 4.6\\,pp yields $\\pm 2.3$\\,pp. Both converge on $\\pm 2\\text{--}3$\\,pp.\\footnote{Margin sensitivity (Table~\\ref{tab:tost_sensitivity}) confirms equivalence from $\\pm 2$\\,pp ($p = 0.047$) through $\\pm 5$\\,pp.} On the linear scale, TOST \\citep{lakens-2017-equivalence,schuirmann-1987-tost} bounds the FewRel interaction within $\\pm 3$\\,pp ($p = 0.003$); at $\\pm 2$\\,pp, equivalence is marginal ($p = 0.047$). Probability-scale TOST is the primary analysis because accuracy values (0.37--0.86) remain in the mid-range where logit and linear scales yield similar inference; the logit-scale result is inconclusive ($p = 0.209$; regression-based TOST: $p = 0.050$ at $\\pm 3$\\,pp; Appendix~\\ref{sec:appendix_factorial}). On DocRED, the raw factorial interaction ($-$9.4\\,pp) is confounded by narrower BCS ranges at count 32; range-matched analysis reduces it to 0.93\\,pp, consistent with bounded interaction (Appendix~\\ref{sec:appendix_factorial}). In NER, batch-level BCS signal is not detected at current power (\\S\\ref{sec:bcs_controlled}). Two factors explain the asymmetry: (1)~NER errors distribute across miss, boundary, and type modes rather than concentrating in type substitution (relaxed matching confirms this is not a metric artifact; Appendix~\\ref{app:relaxed-matching}), and (2)~BCS range restriction (SD ratio 19\\%) limits statistical detection power to 65\\% (Appendix~\\ref{sec:appendix_ner_power}). The factorial test is inconclusive ($p = 0.50$). At $n{=}450$ with BCS SD${}\\,=\\,0.027$, the minimum detectable correlation is $|r| \\approx 0.132$ ($\\alpha = 0.05$, power${}\\,=\\,0.80$), while FewRel's $r = -0.57$ would attenuate to $r \\approx -0.11$ under this SD compression. Current evidence cannot distinguish absence of a BCS$\\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence. Post-hoc mitigation attempts---type renaming to reduce SCS and few-shot prompting---fail to close the confusability gap (Appendices~\\ref{app:renaming},~\\ref{sec:appendix_fewshot_bcs}), confirming that BCS captures a structural property of the schema--model interaction rather than a surface-level naming artifact.\n\n\\subsection{Centrality as a Potential Confound on Homogeneous Schemas}\n\\label{sec:centrality_confound}\n\\looseness=-1\nPer-type analysis on MAVEN reveals an anomalous \\emph{positive} BCS--F1 correlation ($\\rho = +0.184\\text{--}0.208$, $p < 0.03$): FrameNet-derived types cluster tightly \\citep{cai-isotropy-clusters-2021}, conflating confusability with centrality. Controlling for log frequency and degree centrality, the correlation vanishes ($p > 0.2$; Appendix~\\ref{sec:appendix_residualized_bcs}), though the pairwise SCS signal remains intact ($r = 0.129$, $p < 0.001$). Few-NERD's cross-domain schema shows the expected negative direction ($\\rho = -0.293$, $p = 0.02$); mean BCS is reliable only for cross-domain schemas.",
+    "structuredPatch": [
+      {
+        "oldStart": 75,
+        "oldLines": 7,
+        "newStart": 75,
+        "newLines": 7,
+        "lines": [
+          " Error taxonomy decomposition (Table~\\ref{tab:error_taxonomy} and Figure~\\ref{fig:error_taxonomy}) shows intra-batch substitution (IntraSub) scales monotonically with BCS across all three datasets: $\\rho = 1.0$ ($p < 0.001$) for Few-NERD NER, $\\rho = 0.954$ ($p < 0.001$) for FewRel sentence-level RE, and $\\rho = 0.843$ ($p < 10^{-30}$, $n = 110$) for DocRED document-level RE. The slightly lower DocRED correlation reflects additional noise from document-level context and cross-sentence reasoning. In NER, missed rates are higher (43--65\\%) and non-monotonic; confusable types impair entity detection itself. In DocRED, IntraSub accounts for 72\\% of errors in high-BCS batches vs.\\ 15\\% in low-BCS batches; ExtraSub is zero (forced-choice format). Extreme-BCS batches produce $9.9\\text{--}27.5\\times$ more confusion than low-BCS batches. Cross-model replication confirms the IntraSub--BCS correlation on FewRel RE: Gemini~2.5~Flash ($\\rho = 0.821$, $p < 0.001$, $n = 60$) and LLaMA-3.1-8B ($\\rho = 0.430$, $p = 0.001$, $n = 54$; Table~\\ref{tab:cross_model_error_taxonomy}).",
+          " ",
+          " \\looseness=-1",
+          "-These results establish two dimensions: \\textbf{Dimension~1} (count predicts recall decline) and \\textbf{Dimension~2} (confusability predicts type confusion). The full-range regression ($n = 69$, five count levels) serves as the primary separability test; the $2 \\times 2$ factorial ($n = 54$) as a sensitivity check. We select the equivalence margin via convergent evidence: (i)~an interaction exceeding the main effect magnitude would undermine dimensional separability; (ii)~Cohen's $d = 0.5$ \\citep{cohen-1988-statistical} (medium effect) at the within-cell SD of 4.6\\,pp yields $\\pm 2.3$\\,pp. Both converge on $\\pm 2\\text{--}3$\\,pp.\\footnote{Margin sensitivity (Table~\\ref{tab:tost_sensitivity}) confirms equivalence from $\\pm 2$\\,pp ($p = 0.047$) through $\\pm 5$\\,pp.} On the linear scale, TOST \\citep{lakens-2017-equivalence,schuirmann-1987-tost} bounds the FewRel interaction within $\\pm 3$\\,pp ($p = 0.003$); at $\\pm 2$\\,pp, equivalence is marginal ($p = 0.047$). Probability-scale TOST is the primary analysis because accuracy values (0.37--0.86) remain in the mid-range where logit and linear scales yield similar inference; the logit-scale result is inconclusive ($p = 0.209$; regression-based TOST: $p = 0.050$ at $\\pm 3$\\,pp; Appendix~\\ref{sec:appendix_factorial}). On DocRED, the raw factorial interaction ($-$9.4\\,pp) is confounded by narrower BCS ranges at count 32; range-matched analysis reduces it to 0.93\\,pp, consistent with bounded interaction (Appendix~\\ref{sec:appendix_factorial}). In NER, batch-level BCS signal is not detected at current power (\\S\\ref{sec:bcs_controlled}). Two factors explain the asymmetry: (1)~NER errors distribute across miss, boundary, and type modes rather than concentrating in type substitution (relaxed matching confirms this is not a metric artifact; Appendix~\\ref{app:relaxed-matching}), and (2)~BCS range restriction (SD ratio 19\\%) limits statistical detection power to 65\\% (Appendix~\\ref{sec:appendix_ner_power}). The factorial test is inconclusive ($p = 0.50$). At $n{=}450$ with BCS SD${}\\,=\\,0.027$, the minimum detectable correlation is $|r| \\approx 0.132$ ($\\alpha = 0.05$, power${}\\,=\\,0.80$), while FewRel's $r = -0.57$ would attenuate to $r \\approx -0.11$ under this SD compression. Current evidence cannot distinguish absence of a BCS$\\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence. Post-hoc mitigation attempts---type renaming to reduce SCS and few-shot prompting---fail to close the confusability gap (Appendices~\\ref{app:renaming},~\\ref{sec:appendix_fewshot_bcs}), confirming that BCS captures a structural property of the schema--model interaction rather than a surface-level naming artifact.",
+          "+These results establish two dimensions: \\textbf{Dimension~1} (count predicts recall decline) and \\textbf{Dimension~2} (confusability predicts type confusion). The full-range regression ($n = 69$, five count levels) serves as the primary separability test; the $2 \\times 2$ factorial ($n = 54$) as a sensitivity check. We select the equivalence margin via convergent evidence: (i)~an interaction exceeding the main effect magnitude would undermine dimensional separability; (ii)~Cohen's $d = 0.5$ \\citep{cohen-1988-statistical} (medium effect) at the within-cell SD of 4.6\\,pp yields $\\pm 2.3$\\,pp. Both converge on $\\pm 2\\text{--}3$\\,pp.\\footnote{Margin sensitivity (Table~\\ref{tab:tost_sensitivity}) confirms equivalence from $\\pm 2$\\,pp ($p = 0.047$) through $\\pm 5$\\,pp.} On the linear scale, TOST \\citep{lakens-2017-equivalence,schuirmann-1987-tost} bounds the FewRel interaction within $\\pm 3$\\,pp ($p = 0.003$); at $\\pm 2$\\,pp, equivalence is marginal ($p = 0.047$). Probability-scale TOST is the primary analysis because accuracy values (0.37--0.86) remain in the mid-range where logit and linear scales yield similar inference; the logit-scale result is inconclusive ($p = 0.209$; regression-based TOST: $p = 0.050$ at $\\pm 3$\\,pp; Appendix~\\ref{sec:appendix_factorial}). On DocRED, the raw factorial interaction ($-$9.4\\,pp) is confounded by narrower BCS ranges at count 32; range-matched analysis reduces it to 0.93\\,pp, consistent with bounded interaction (Appendix~\\ref{sec:appendix_factorial}). In NER, batch-level BCS signal is not detected at current power (\\S\\ref{sec:bcs_controlled}). Two factors explain the asymmetry: (1)~NER errors distribute across miss, boundary, and type modes rather than concentrating in type substitution (relaxed matching confirms this is not a metric artifact; Appendix~\\ref{app:relaxed-matching}), and (2)~BCS range restriction (SD ratio 19\\%) limits statistical detection power to 65\\% (Appendix~\\ref{sec:appendix_ner_power}). The factorial test is inconclusive ($p = 0.50$). At $n{=}450$ with BCS SD${}\\,=\\,0.027$, the minimum detectable correlation is $|r| \\approx 0.132$ ($\\alpha = 0.05$, power${}\\,=\\,0.80$), while FewRel's $r = -0.57$ would attenuate to $r \\approx -0.11$ under this SD compression. Current evidence cannot distinguish absence of a BCS$\\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence. The null is equally consistent with NER's error-mode structure, where degradation distributes across miss, boundary, and type channels rather than concentrating in type substitution---a pattern confirmed by relaxed matching (Appendix~\\ref{app:relaxed-matching}). Post-hoc mitigation attempts---type renaming to reduce SCS and few-shot prompting---fail to close the confusability gap (Appendices~\\ref{app:renaming},~\\ref{sec:appendix_fewshot_bcs}), confirming that BCS captures a structural property of the schema--model interaction rather than a surface-level naming artifact.",
+          " ",
+          " \\subsection{Centrality as a Potential Confound on Homogeneous Schemas}",
+          " \\label{sec:centrality_confound}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01DpPeafFMPxmp6uT3Wbt5jV`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "old_string": "\\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \\citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \\citep{dror-2018-significance,card-2020-power}.",
+  "new_string": "\\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \\citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \\citep{dror-2018-significance,card-2020-power}. The core claims (count decline, BCS--accuracy correlation) are robust to Bonferroni correction (all $p < 0.001$); the logit-scale interaction ($p = 0.047$) is the only result near the threshold and is already characterized as marginal."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "1e2c89cf-db5a-4ed0-81be-732b2ca9b20c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01As9PXcPTLhoUGRW9RQpNpo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1478,
+      "cache_read_input_tokens": 33529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1478
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T04:38:47.026Z_
+
+<details><summary>↩ Tool result · `toolu_01DpPeafFMPxmp6uT3Wbt5jV`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "3782de4a-36a8-445a-a3ad-f7c9a17cbef8",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "oldString": "\\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \\citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \\citep{dror-2018-significance,card-2020-power}.",
+    "newString": "\\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \\citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \\citep{dror-2018-significance,card-2020-power}. The core claims (count decline, BCS--accuracy correlation) are robust to Bonferroni correction (all $p < 0.001$); the logit-scale interaction ($p = 0.047$) is the only result near the threshold and is already characterized as marginal.",
+    "originalFile": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{enumitem}\n\\usepackage[normalem]{ulem}\n\\usepackage{listings}\n\n\\title{How Does Schema Complexity Predict Performance\\\\in Training-Free LLM Information Extraction?}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\n\\input{introduction}\n\n\\input{related_work}\n\n\\input{experimental_setup}\n\n\\input{results}\n\n\\input{sdgd_negative}\n\n\\input{discussion}\n\n\\section*{Limitations}\n\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n\\item \\textbf{Model coverage.} Primary experiments use Qwen3-32B; cross-model validation (LLaMA-8B, LLaMA-70B, Gemini Flash) covers Dimensions~1--2 (count curves, BCS-controlled extremes) but does not replicate secondary analyses (error taxonomy, prompt sensitivity, TOST equivalence). Specifically, TOST factorial interaction (\\S\\ref{sec:multi_channel}) and SDGD failure analysis (\\S\\ref{sec:sdgd}) are established on Qwen3-32B alone; error taxonomy replicates on two additional models (Table~\\ref{tab:cross_model_error_taxonomy}), but TOST and SDGD cross-model replication remains the most pressing extension. Gemini provides only partial, leverage-sensitive corroboration (leave-one-out $r{:}\\;{-}0.80 \\to {-}0.42$; Appendix~\\ref{sec:appendix_cross_model_gemini}); proprietary-model generalization remains open.\n\n\\item \\textbf{Effect size and statistical design.} Pairwise SCS explains a small fraction of type confusion variance; entity frequency, prompt position, and mention ambiguity likely account for the remainder. The count $\\times$ BCS interaction is bounded on FewRel but nonzero on DocRED, partially confounded by BCS range restriction at higher counts (Appendix~\\ref{sec:appendix_factorial}); logit-scale evidence remains inconclusive. DocRED count curves use 5 batches per level due to higher per-batch evaluation cost. BCS-controlled experiments use a single seed with greedy decoding; residual variance is small (Appendix~\\ref{app:variance-decomposition}) but precise magnitudes may vary. Greedy decoding (temperature${}\\,=\\,0$) yields residual SD${}\\,=\\,0.88$\\,pp, approximately 18--44\\% of the observed BCS effect size, suggesting effect detection is robust but point estimates carry meaningful uncertainty; the factorial interaction point estimate (0.47\\,pp) is far inside the $\\pm 3$\\,pp equivalence margin.\n\n\\item \\textbf{Task scope.} Format independence is confirmed via paired constrained/unconstrained comparison (Appendix~\\ref{app:format-independence}). BCS batch-level prediction is task-dependent: significant in RE but not detected in NER at current power, where errors scatter across miss, boundary, and type modes rather than concentrating in type substitution. A post-hoc relaxed-matching evaluation confirms that relaxing the span criterion does not recover the BCS signal (Appendix~\\ref{app:relaxed-matching}), ruling out evaluation stringency as the explanation. The NER batch-level BCS null is observed on three models (8B, 32B, 70B; Table~\\ref{tab:cross_model_ner_null}) but not validated on Gemini; the null could in principle differ for proprietary models.\n\n\\item \\textbf{Causal mechanism and data contamination.} The study establishes correlational evidence with controlled stratification; mechanistic analysis at the attention or logit level is needed to confirm the causal pathway. A post-hoc renaming experiment (Appendix~\\ref{app:renaming}) suggests SCS may proxy deeper conceptual overlap rather than surface similarity. FewRel (2018) may appear in pretraining corpora, but train-origin relations show lower accuracy than val-origin, opposite to the contamination hypothesis; DocRED (2019) provides a lower-contamination-risk replication (Appendix~\\ref{app:split-origin}).\n\\item \\textbf{Domain and language scope.} All evaluations use English-language datasets derived from Wikipedia or knowledge bases (Wikidata, FrameNet). Whether confusability effects hold for domain-specific schemas (e.g., biomedical NER, legal RE) or languages with different naming conventions is untested. BCS-controlled batches inherit the domain distribution of the source schema; domain-specific type subsets may shift the confusability--accuracy relationship. Sample sizes (1{,}000 instances per dataset) are sufficient for our primary effects but the pairwise SCS correlation approaches the detection floor.\n\\end{enumerate}\n\n\\paragraph{Across-batch correlation.} Batches share prompt template and LLM, introducing potential across-batch correlation; however, type composition is independently sampled per batch, and bootstrap CIs are computed over this independent unit of variation.\n\n\\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \\citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \\citep{dror-2018-significance,card-2020-power}.\n\n% \\input{checklist}  % EMNLP 2026: checklist goes in OpenReview form, not PDF\n\n\\bibliography{references}\n\n\\appendix\n\n\\section{Additional Figures}\n\\label{sec:appendix_figures}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model count-curve replication on Few-NERD (text-match recall). Both models show a general declining trend in recall with schema size. Per-batch correlation $r = 0.725$. Qwen3-32B values use the v2 prompt (\\S\\ref{sec:model}) for fair cross-model comparison; the count-curve results in \\S\\ref{sec:count_curves} use the v1 prompt, yielding higher absolute recall (0.72 vs.\\ 0.64 at count${}\\,=\\,1$) due to over-prediction under v1.}\n\\label{tab:cross_model}\n\\begin{tabular}{lrr}\n\\toprule\n\\textbf{Count} & \\textbf{Llama-3.1-8B} & \\textbf{Qwen3-32B} \\\\\n\\midrule\n1 & 0.702 & 0.640 \\\\\n64 & 0.273 & 0.304 \\\\\n\\midrule\nDecline & $-$43\\,pp & $-$34\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model BCS-controlled FewRel accuracy.  High-BCS accuracy converges to $\\approx$51\\% regardless of model, while low-BCS accuracy reflects model capacity differences.  The confusability gap ($\\Delta$, in pp) is 77--87\\% as large on Llama-3.1-8B as on Qwen3-32B.}\n\\label{tab:cross_model_bcs}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{crrrrrr}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{Llama-3.1-8B}} & \\multicolumn{3}{c}{\\textbf{Qwen3-32B}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Count} & \\textbf{Low} & \\textbf{High} & \\textbf{$\\Delta$} & \\textbf{Low} & \\textbf{High} & \\textbf{$\\Delta$} \\\\\n\\midrule\n8 & 78.1\\% & 51.0\\% & $-$27.1 & 82.3\\% & 51.0\\% & $-$31.2 \\\\\n16 & 75.5\\% & 51.6\\% & $-$23.9 & 82.8\\% & 51.6\\% & $-$31.2 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{NER batch-level BCS--F1 correlation across models. $^\\dagger$Partial correlation controlling for type frequency. $^\\ddagger$LLaMA-70B count\\_12 shows $r{=}{-}0.42$ ($p{=}0.034$, uncorrected; Bonferroni $p{=}0.069$); pooled and count\\_6 are null, consistent with sampling noise at $n{=}25$. The null is observed on three models; Gemini remains untested.}\n\\label{tab:cross_model_ner_null}\n\\begin{tabular}{lcl}\n\\toprule\n\\textbf{Model} & \\textbf{NER BCS--F1 $r$} & \\textbf{Status} \\\\\n\\midrule\nQwen3-32B & $0.004$ ($p = 0.94$) & Null \\\\\nLLaMA-3.1-8B & $-0.12$ ($p = 0.29$)\\rlap{$^\\dagger$} & Null \\\\\nLLaMA-3.1-70B & $-0.13$ ($p = 0.36$)\\rlap{$^\\ddagger$} & Null \\\\\nGemini 2.5 Flash & --- & Not tested \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Intra-batch substitution (IntraSub) and missed-entity rates by BCS bin. Spearman $\\rho$ computed over $n=148$ batches (NER), $n=154$ (RE), and $n=110$ (DocRE). IntraSub scales monotonically with BCS across all three datasets. DocRE missed rates decrease with BCS, indicating high-confusability errors shift from omission to substitution.}\n\\label{tab:error_taxonomy}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrrrrrr}\n\\toprule\n & & \\multicolumn{5}{c}{\\textbf{BCS Bin}} & & \\\\\n\\cmidrule(lr){3-7}\n\\textbf{Task} & \\textbf{Error} & \\textbf{Solo} & \\textbf{Low} & \\textbf{Mid} & \\textbf{High} & \\textbf{V.High} & \\textbf{$\\rho$} & \\textbf{$p$} \\\\\n\\midrule\nNER & IntraSub & 0\\% & 1.6\\% & 10.6\\% & 49.4\\% & --- & 1.000 & ${<}0.001$ \\\\\nRE  & IntraSub & 0\\% & 4.2\\% & 13.0\\% & 20.3\\% & 32.3\\% & 0.954 & ${<}\\,0.001$ \\\\\nDocRE & IntraSub & --- & 4.8\\% & 22.4\\% & 37.0\\% & 41.9\\% & 0.843 & ${<}\\,0.001$ \\\\\n\\midrule\nNER & Missed & --- & 42.8\\% & 64.8\\% & 49.9\\% & --- & --- & --- \\\\\nRE  & Missed & --- & 10.4\\% & 11.3\\% & 13.1\\% & 15.7\\% & --- & --- \\\\\nDocRE & Missed & --- & 28.1\\% & 22.6\\% & 21.6\\% & 16.2\\% & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model replication of IntraSub--BCS Spearman correlation on FewRel RE. $^\\dagger$LLaMA-70B has only 20 batches with 17.4\\% missed rate; the null is attributable to insufficient power rather than absence of the effect.}\n\\label{tab:cross_model_error_taxonomy}\n\\begin{tabular}{lrcc}\n\\toprule\n\\textbf{Model} & $n$ & $\\rho$ & $p$ \\\\\n\\midrule\nQwen3-32B & 154 & 0.954 & ${<}\\,0.001$ \\\\\nGemini 2.5 Flash & 60 & 0.821 & ${<}\\,0.001$ \\\\\nLLaMA-3.1-8B & 54 & 0.430 & 0.001 \\\\\nLLaMA-3.1-70B$^\\dagger$ & 20 & $-$0.086 & 0.719 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{SDGD Full Protocol and Results}\n\\label{sec:appendix_sdgd}\n\nWe construct a thresholded confusability graph $G = (V, E)$ where each type is a vertex and an edge connects types $t_i, t_j$ whenever $\\text{SCS}(t_i, t_j) > \\tau$. Greedy graph coloring (\\textsc{largest\\_first}) assigns each type to a color such that no two adjacent (i.e., highly confusable) types share a color. Each color class forms one extraction batch, and predictions are merged via set union.\n\n\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n\\item Compute pairwise SCS matrix $S_{ij} = \\cos(\\text{embed}(t_i), \\text{embed}(t_j))$.\n\\item Construct graph $G$: add edge $(t_i, t_j)$ iff $S_{ij} > \\tau$.\n\\item Apply greedy graph coloring (\\textsc{largest\\_first}) to assign each type a color $c(t)$.\n\\item For each color $k$, form batch $B_k = \\{t : c(t) = k\\}$ and run extraction on all test instances.\n\\item Merge: union of per-batch predictions (v1) or confidence-gated selection (v2).\n\\end{enumerate}\nOracle routing (Table~\\ref{tab:routing_strategies}) recovers substantial accuracy (72.4\\% vs.\\ 50.4\\% single-pass), confirming the sub-schemas contain correct predictions; the failure lies in routing, not decomposition quality.\n\nWe compare four modes: (i)~\\textbf{single\\_pass}, the undecomposed baseline; (ii)~\\textbf{sdgd\\_zero}, SCS-guided partitioning; (iii)~\\textbf{random\\_batch}, random partitioning with matched batch sizes; and (iv)~\\textbf{per\\_type}, the extreme case where each type is extracted in isolation.\n\nSingle-pass extraction achieves F1\\,=\\,0.445 (P\\,=\\,0.563, R\\,=\\,0.368). SDGD obtains F1\\,=\\,0.251 (P\\,=\\,0.210, R\\,=\\,0.314), a 44\\% relative drop. Random batching reaches F1\\,=\\,0.320 (P\\,=\\,0.249, R\\,=\\,0.446), and per-type extraction yields F1\\,=\\,0.292 (P\\,=\\,0.194, R\\,=\\,0.586). Every decomposition mode falls below the single-pass baseline (Table~\\ref{tab:sdgd_results}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Few-NERD extraction under decomposition modes. V1 uses union merge; v2 uses confidence-gated merge with \\texttt{min\\_batch\\_size=8} (reducing 8$\\to$4 batches for sdgd\\_zero). All decomposition modes produce lower F1 than the single-pass baseline. All modes use the v1 prompt.}\n\\label{tab:sdgd_results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrccc}\n\\toprule\n\\textbf{Mode} & \\textbf{\\# Batches} & \\textbf{Precision} & \\textbf{Recall} & \\textbf{F1} \\\\\n\\midrule\nsingle\\_pass & 1 & 0.563 & 0.368 & 0.445 \\\\\n\\midrule\nsdgd\\_zero (v1) & 8 & 0.210 & 0.314 & 0.251 \\\\\nrandom\\_batch (v1) & 8 & 0.249 & 0.446 & 0.320 \\\\\nper\\_type & 66 & 0.194 & 0.586 & 0.292 \\\\\n\\midrule\nsdgd\\_zero (v2) & 4 & 0.324 & 0.191 & 0.241 \\\\\nrandom\\_batch (v2) & 8 & 0.331 & 0.276 & 0.301 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nDecomposition boosts recall (per-type recall reaches 0.586 versus single-pass 0.368) but devastates precision (0.194 versus 0.563). When the same text is presented to the model $k$ times with different type subsets, each pass independently generates entity predictions. Because LLM outputs are not calibrated across passes, the union merge step accumulates overlapping and contradictory predictions and inflates false positives.\n\nOur v2 merge ranks competing predictions by the LLM's self-reported confidence and retains only the highest-scoring candidate for each span. Confidence gating improves precision (sdgd\\_zero: 0.210$\\to$0.324; random\\_batch: 0.249$\\to$0.331), but at the cost of disproportionate recall loss (0.314$\\to$0.191; 0.446$\\to$0.276), and both modes produce lower F1 (sdgd\\_zero: 0.251$\\to$0.241; random\\_batch: 0.320$\\to$0.301).\n\n\\subsection{Practical Routing Strategies on RE}\n\\label{sec:appendix_routing}\n\nWe evaluate five non-oracle routing strategies on FewRel 80-relation RE using graph-coloring sub-schema decomposition (same grouping as Table~\\ref{tab:batch_composition}). Each strategy selects a single sub-schema for each test instance and returns that sub-schema's prediction.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Routing strategy comparison on FewRel 80-relation RE with graph-coloring sub-schema decomposition. Oracle requires gold labels. All practical (non-oracle) strategies perform below the single-pass baseline. The failure stems from constrained decoding (enum constraint), which forces confident predictions in every sub-schema: 73.4\\% of instances receive positive predictions from 3--5 sub-schemas simultaneously, with per-sub-schema none-rates of only 20--40\\%.}\n\\label{tab:routing_strategies}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{@{}lrr@{}}\n\\toprule\n\\textbf{Strategy} & \\textbf{Accuracy} & \\textbf{$\\Delta$ vs.\\ Single-Pass} \\\\\n\\midrule\nOracle (gold label) & 72.4\\% & +22.0\\,pp \\\\\n\\midrule\nMax-conf (positive only) & 36.5\\% & $-$14.0\\,pp \\\\\nNone-aware & 36.5\\% & $-$14.0\\,pp \\\\\nMargin (positive only) & 35.9\\% & $-$14.5\\,pp \\\\\nMax-conf (all) & 27.7\\% & $-$22.7\\,pp \\\\\nRandom & 14.7\\% & $-$35.7\\,pp \\\\\n\\midrule\nSingle-pass (no decomposition) & 50.4\\% & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\section{Factorial Analysis and Separability Test}\n\\label{sec:appendix_factorial}\n\nTo formally test whether count and confusability effects are additive, we fit a multiple regression (accuracy $\\sim$ $\\log_2$\\,count $+$ BCS $+$ count$\\times$BCS) across 69 batches from FewRel spanning five count levels ($k \\in \\{4, 8, 16, 32, 40\\}$). Both main effects are significant (count: $p = 0.008$; BCS: $p = 0.0002$; $R^2 = 0.52$), but the interaction term is negligible (0.47\\,pp). A TOST equivalence test with a $\\pm 3$\\,pp margin confirms that the interaction is bounded well below practical significance ($p_{\\text{TOST}} = 0.003$); this supports bounded interaction between count and confusability effects.\n\nA $2 \\times 2$ factorial sensitivity check on FewRel (count $\\in \\{8, 16\\}$, BCS low/high; $n = 54$) was inconclusive ($p_{\\text{TOST}} = 0.56$) due to limited power; this does not contradict the primary finding but limits generalization beyond the regression framework. The Few-NERD factorial (\\S\\ref{sec:multi_channel}) similarly did not reach significance ($p = 0.50$). The regression approach provides the stronger test by leveraging the full count range.\n\n\\paragraph{Equivalence margin justification.}\nWe set the $\\pm 3$\\,pp margin based on three converging anchors. \\emph{External}: evaluation variance in IE benchmarks typically spans 2--5\\,pp across random seeds, prompt variations, and data splits \\citep{card-2020-power,dror-2018-significance}; a within-margin interaction would be indistinguishable from routine evaluation noise. \\emph{Internal}: $0.5 \\times$ within-cell SD ($= 2.3$\\,pp) corresponds to Cohen's $d \\approx 0.5$ (medium effect threshold; \\citealt{lakens-2017-equivalence}), cross-validated against the IQR-predicted confusability main effect of 2.2\\,pp (\\S\\ref{sec:practical_magnitude})---an interaction exceeding 3\\,pp would represent ${>}130\\%$ amplification. \\emph{Sensitivity}: Table~\\ref{tab:tost_sensitivity} shows equivalence holds from $\\pm 2$\\,pp ($p = 0.047$) through $\\pm 5$\\,pp ($p < 0.001$) on the probability scale; the conclusion is not margin-dependent.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{TOST sensitivity analysis across equivalence margins. The interaction effect (0.47\\,pp, 90\\% CI [$-$1.0, 2.0]\\,pp) is bounded below 2\\,pp at marginal significance ($p = 0.047$); the $\\pm 3$\\,pp choice does not drive the equivalence conclusion. At $\\pm 1$\\,pp, equivalence is inconclusive ($p = 0.278$), meaning interaction could reach approximately half the main effect magnitude.}\n\\label{tab:tost_sensitivity}\n\\begin{tabular}{crrl}\n\\toprule\n\\textbf{Margin (pp)} & \\textbf{$t_{\\text{upper}}$} & \\textbf{$p_{\\text{TOST}}$} & \\textbf{Conclusion} \\\\\n\\midrule\n$\\pm 1$ & $-0.59$ & $0.278$ & Inconclusive \\\\\n$\\pm 2$ & $-1.70$ & $0.047$ & Equivalent \\\\\n$\\pm 3$ & $-2.81$ & $0.003$ & Equivalent \\\\\n$\\pm 5$ & $-5.02$ & ${<}\\,0.001$ & Equivalent \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Logit-scale sensitivity.}\nBecause accuracy near 50\\% compresses interaction effects on the linear scale, we refit the regression on logit-transformed accuracy. The logit-scale interaction (0.111 logit units, $p = 0.047$, 90\\% CI [0.019, 0.203]) is marginally significant, and TOST at the equivalent $\\pm 3$\\,pp margin ($\\pm 0.156$ logit at median accuracy) is inconclusive ($p_{\\text{TOST}} = 0.209$). However, back-transforming the interaction to the probability scale at the observed floor ($p = 0.51$) yields 2.78\\,pp, still within the $\\pm 3$\\,pp margin; at the median baseline ($p = 0.65$), the back-transformed effect is 2.53\\,pp. The logit TOST is inconclusive due to limited power ($n = 69$, wide CI) rather than a large effect size: the point estimate remains below the equivalence bound at all observed baselines. We retain the linear-scale TOST as the primary test and report this logit analysis as a sensitivity check. A regression-based TOST ($n = 375$, five count levels with continuous BCS) yields $p = 0.050$ at $\\pm 3$\\,pp and $p = 0.026$ at $\\pm 3.5$\\,pp on the logit scale, confirming the borderline status with substantially greater power than the factorial design.\n\n\\paragraph{DocRED factorial (expanded).}\nWith expanded batches ($n{=}55$ per count level, up from $n{=}5$), the DocRED $2 \\times 2$ factorial (count $\\in \\{16, 32\\}$, BCS median split) yields an apparent interaction ($-$9.4\\,pp, 95\\% CI [$-$12.9, $-$6.0]): the BCS effect is $-$25.0\\,pp at count 16 but $-$15.7\\,pp at count 32. However, this attenuation is confounded by BCS range restriction: higher-count batches have narrower BCS ranges (spread 0.26 vs.\\ 0.38), limiting achievable extremes.\n\n\\paragraph{Range-matched robustness check.}\nTo control for the BCS range confound, we restrict both count levels to the overlapping BCS range [0.43, 0.70]. This retains 29 of 55 batches at count 16 (all 55 at count 32 fall within the range). Within this matched range, the BCS effect at count 16 shrinks from 15.95\\,pp to 9.37\\,pp (reflecting the narrower BCS span), while count 32 remains at 8.44\\,pp. The interaction drops from 7.52\\,pp (95\\% CI [1.49, 12.83]) to 0.93\\,pp (95\\% CI [$-$7.13, 7.44])---the CI spans zero, consistent with no interaction. Spearman correlations remain comparable ($\\rho = -0.65$ at count 16, $\\rho = -0.69$ at count 32), confirming that the underlying BCS--accuracy relationship is robust across counts while the raw interaction magnitude was an artifact of differing achievable BCS ranges. This result aligns with the FewRel TOST equivalence finding and supports bounded association as the cross-dataset pattern. The reduced sample ($n = 29{+}55$) yields a minimum detectable effect of 5.5\\,pp at 80\\% power, consistent with insufficient power to distinguish a true null from a small ($<$5\\,pp) interaction.\n\n\\section{Within-Pool CI Details}\n\\label{sec:appendix_within_pool}\n\nThe quartile $\\Delta$ for 80-pool 16-relation subsets ($-$3.92\\,pp, 95\\% CI [$-$8.17, $+$0.38]) crosses zero, reflecting the compressed BCS range within that pool (0.46--0.68 vs.\\ 0.48--0.71 for the independent pool). Within this narrow band, the quartile contrast lacks statistical power to detect the effect that the regression identifies. The full 80-relation condition ($n = 25$) is underpowered for both the slope (95\\% CI [$-$1.303, $+$1.695]) and quartile analyses; we include it in Table~\\ref{tab:within_pool} for completeness but do not draw inferential conclusions from it.\n\n\\section{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}\n\\label{sec:appendix_residualized_bcs}\n\nSection~\\ref{sec:centrality_confound} identifies a centrality confound in MAVEN's per-type BCS--F1 correlation: both embeddings show a \\emph{positive} raw correlation, opposite to the expected direction. Here we formalize this analysis by identifying specific confounders for each embedding and testing whether the BCS--F1 relationship survives partial correlation controlling for these confounders.\n\n\\paragraph{Confound identification.}\nFor each embedding, we computed the correlation between mean BCS and candidate confounders (type frequency, degree centrality at threshold 0.7) across MAVEN's 149 active event types. The dominant confound differs by embedding:\n\\begin{itemize}[itemsep=2pt,leftmargin=*]\n\\item \\textbf{MiniLM}: BCS correlates with log type frequency ($r = 0.201$). Frequent types have more training signal and are extracted more reliably, which produces the positive BCS--F1 association.\n\\item \\textbf{Qwen3}: BCS correlates strongly with degree centrality ($r = 0.854$). In the Qwen3 embedding space, high-BCS types are those with many semantic neighbors, central, well-represented types that the model extracts well.\n\\end{itemize}\n\n\\paragraph{Partial correlation results.}\nTable~\\ref{tab:residualized_bcs} reports raw Spearman $\\rho$ and partial Pearson $r$ after controlling for the identified confounders. Under single-variable control, both correlations weaken to non-significance. Under joint control (log frequency $+$ degree centrality simultaneously), neither embedding retains a significant BCS--F1 association.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{MAVEN per-type BCS--F1 correlation before and after controlling for centrality confounders. Raw correlations are Spearman $\\rho$; partial correlations are Pearson $r$ from residualized regression. Degree centrality is computed on the SCS graph at threshold 0.7. All values from experiment \\texttt{exp\\_maven\\_residualized\\_bcs}.}\n\\label{tab:residualized_bcs}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Embedding} & \\textbf{Control} & \\textbf{Raw $\\rho$} & \\textbf{Raw $p$} & \\textbf{Partial $r$} & \\textbf{Partial $p$} \\\\\n\\midrule\nMiniLM & --- & $+$0.208 & $0.011$ & --- & --- \\\\\nMiniLM & log freq & --- & --- & $+$0.133 & $0.11$ \\\\\nMiniLM & log freq $+$ degree & --- & --- & --- & $0.23$ \\\\\n\\midrule\nQwen3 & --- & $+$0.184 & $0.025$ & --- & --- \\\\\nQwen3 & degree centrality & --- & --- & $+$0.063 & $0.44$ \\\\\nQwen3 & log freq $+$ degree & --- & --- & --- & $0.44$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Interpretation.}\nThe two embeddings encode different aspects of the same underlying confound. MiniLM, a smaller sentence encoder, produces a tighter embedding cluster for MAVEN's FrameNet-derived types; here, type frequency is the primary confounder because frequent types accumulate higher mean similarity to the dense cluster. Qwen3, with a larger representation space, differentiates types enough that frequency is not the dominant factor, but degree centrality (the count of strong semantic neighbors) becomes the confound instead. In both cases, the positive raw correlation reflects a centrality artifact: types that are semantically central are both high-BCS and easy to extract.\n\nUnder joint control, both embeddings yield $p > 0.2$; the raw positive BCS--F1 correlation on MAVEN is thus fully attributable to centrality-related confounders. This does not invalidate the confusability hypothesis; the pairwise SCS--confusion correlation on MAVEN remains significant (MiniLM $r = 0.129$, $p < 0.001$; Table~\\ref{tab:pairwise}). Rather, it demonstrates that per-type aggregation (mean BCS) conflates confusability with centrality in semantically homogeneous schemas, and that pairwise analysis or explicit confound adjustment is required in such settings.\n\n\\subsection{Partial Correlation: Controlling for Degree Centrality}\n\\label{sec:appendix_partial_corr}\n\nTo rule out degree centrality as a confound in cross-domain datasets, we compute partial correlations between BCS and accuracy controlling for batch mean degree centrality (mean off-diagonal SCS per type, averaged across batch members).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{BCS--accuracy partial correlation controlling for degree centrality. FewRel shows minimal attenuation (VIF${}\\,=\\,1.18$, low collinearity). DocRED shows high BCS--centrality collinearity (VIF${}\\,=\\,50.9$, $r = 0.99$), but the partial correlation remains highly significant.}\n\\label{tab:partial_corr}\n\\begin{tabular}{lrrrrr}\n\\toprule\n\\textbf{Dataset} & \\textbf{$n$} & \\textbf{$r_{\\text{zero}}$} & \\textbf{$r_{\\text{partial}}$} & \\textbf{$p_{\\text{partial}}$} & \\textbf{VIF} \\\\\n\\midrule\nFewRel & 204 & $-$0.570 & $-$0.537 & ${<}\\,0.001$ & 1.18 \\\\\nDocRED & 110 & $-$0.760 & $-$0.348 & ${<}\\,0.001$ & 50.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAs Table~\\ref{tab:partial_corr} shows, on FewRel, BCS and degree centrality are only moderately correlated ($r = 0.39$), and the BCS effect survives nearly intact after partialling ($r_{\\text{partial}} = -0.537$ vs.\\ $r_{\\text{zero}} = -0.570$; semipartial $R^2 = 0.273$). On DocRED, the near-perfect BCS--centrality correlation ($r = 0.99$) makes it impossible to fully separate the two predictors; the significant partial correlation ($p < 0.001$) indicates BCS retains predictive value but does not uniquely identify the causal channel. This contrasts with MAVEN (\\S\\ref{sec:appendix_residualized_bcs}), where the BCS signal vanishes after controlling for centrality.\n\n\\subsection{NER BCS-Null Power Analysis}\n\\label{sec:appendix_ner_power}\n\nThe Few-NERD BCS-null may reflect insufficient BCS variance rather than a genuine absence of the BCS--accuracy relationship. Few-NERD's BCS standard deviation (0.027) is only 19\\% of FewRel's (0.141); FewRel's observed $r = -0.570$ would attenuate to $r = -0.111$ under this restricted range, yielding 65\\% power at $n = 450$ (below the conventional 80\\% threshold). The minimum detectable $|r|$ at 80\\% power is 0.132. This analysis characterizes the NER result as absence of evidence (insufficient power at the attenuated effect size) rather than evidence of absence.\n\n\\section{Batch Composition Results}\n\\label{sec:appendix_batch_composition}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Batch composition on FewRel 80-relation RE with oracle routing. $^\\dagger$Mean $\\pm$ SD across 15 random seeds.}\n\\label{tab:batch_composition}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Condition} & \\textbf{Accuracy} & \\textbf{Mean BCS} \\\\\n\\midrule\nSingle-pass (80 types) & 0.504 & 0.557 \\\\\nRandom batching (15 seeds)$^\\dagger$ & 0.788\\,$\\pm$\\,0.018 & 0.559 \\\\\nConfus.-aware (graph coloring) & \\textbf{0.802} & 0.552 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nSee the accompanying discussion in \\S\\ref{sec:sdgd}.\n\n\\input{prompt_appendix}\n\n\\section{Prompt Version Sensitivity Analysis}\n\\label{sec:appendix_prompt_sensitivity}\n\nWe assess whether the confusability effects reported in \\S\\ref{sec:bcs_controlled}--\\ref{sec:multi_channel} are robust to prompt design by replicating key experiments under the v2 prompt (\\S\\ref{sec:model}; full templates in Appendix~\\ref{sec:appendix_prompts}).\n\n\\paragraph{RE (FewRel).}\nUnder the v1 prompt, the extreme-batch BCS gap (Table~\\ref{tab:bcs_controlled}) is substantial. Under v2, with $n{=}25$ batches per group and wider BCS contrast (low-BCS range [0.356, 0.367]; high-BCS range [0.791, 0.811]), the gap is $-$25.5\\,pp (low-BCS 85.2\\% vs.\\ high-BCS 59.7\\%; 95\\% CI [22.4, 28.6]; $p < 0.001$; Pearson $r = -0.919$). The effect is significant, directionally consistent with v1, and only modestly attenuated in magnitude ($-$5.7\\,pp reduction). An earlier $n{=}5$ evaluation with narrower BCS contrast (0.21) yielded a smaller gap of $-$7.9\\,pp (95\\% CI [$-$5.2, $+$21.5]), illustrating how limited statistical power and restricted BCS range can obscure the underlying signal, a cautionary note for small-sample prompt sensitivity studies.\n\n\\paragraph{NER (Few-NERD).}\nThe batch-level BCS--F1 correlation is null under both prompt versions. Pooling across three seeds and all count levels ($n = 450$), the correlation is $r = 0.004$ ($p = 0.94$). An earlier small-sample analysis ($n = 27$, single seed) had reported positive correlations ($r = +0.50$/$+0.58$), but these were driven by an accidental BCS--type-frequency confound: those 27 batches exhibited $r(\\text{BCS}, \\text{freq}) = 0.53$, creating a spurious path through frequency to F1. After controlling for type frequency, the partial correlation is non-significant in both the small ($r = 0.28$, $p = 0.16$) and large ($r = -0.12$, $p = 0.29$) samples. The pairwise SCS--confusion analysis (\\S\\ref{sec:pairwise}), which is immune to this batch-level aggregation artifact, remains the primary evidence for the NER confusability dimension.\n\n\\paragraph{Interpretation.}\nThe $n{=}25$ v2 result confirms that the confusability effect is directionally consistent across prompt designs, with attenuated magnitude: the gap narrows ($-$5.7\\,pp) but remains highly significant ($p < 0.001$, $r = -0.919$). The earlier $n{=}5$ non-significance reflected insufficient power and narrow BCS contrast, not absence of the effect. V2's stricter format constraints raise the baseline accuracy (low-BCS 85.2\\% vs.\\ 82.3\\%), but type confusion under high confusability persists (59.7\\% vs.\\ 51.0\\%). Prompt design modulates the practical magnitude of the confusability effect but does not eliminate it, ruling out prompt-specific confounding as the primary source. The underlying confusability signal (pairwise SCS--confusion correlation and the directional BCS--accuracy relationship) persists across both prompt versions.\n\n\\subsection{Cross-Prompt-Variant BCS Correlation}\n\\label{sec:appendix_prompt_variants}\n\nTo verify that the BCS--accuracy relationship is not an artifact of a specific prompt template, we evaluate four structurally distinct prompt variants on FewRel 80-relation RE at two count levels (8 and 32), with 10 random batches per condition (Table~\\ref{tab:prompt_variants}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{BCS--accuracy Pearson correlation across four prompt variants. At count 32, all four variants show negative BCS--accuracy correlations ($r \\leq -0.47$), with two reaching $p < 0.05$. At count 8, the narrower BCS range reduces statistical power.}\n\\label{tab:prompt_variants}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{lrrrr}\n\\toprule\n\\textbf{Variant} & \\textbf{Count} & \\textbf{Mean Acc} & \\textbf{$r$} & \\textbf{$p$} \\\\\n\\midrule\nV2 (definition-first) & 8 & 0.769 & $-$0.333 & 0.348 \\\\\nV2 (definition-first) & 32 & 0.564 & $-$0.648 & 0.043 \\\\\nInstruction-rewrite & 8 & 0.847 & $-$0.223 & 0.536 \\\\\nInstruction-rewrite & 32 & 0.662 & $-$0.469 & 0.171 \\\\\nChain-of-thought & 8 & 0.749 & $+$0.254 & 0.478 \\\\\nChain-of-thought & 32 & 0.617 & $-$0.566 & 0.088 \\\\\nMinimal & 8 & 0.852 & $-$0.170 & 0.638 \\\\\nMinimal & 32 & 0.615 & $-$0.771 & 0.009 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nAt count 32, all four variants produce negative BCS--accuracy correlations ($r$ ranges from $-$0.47 to $-$0.77), with V2 ($p = 0.043$) and Minimal ($p = 0.009$) reaching significance and Chain-of-thought approaching it ($p = 0.088$). At count 8, correlations are weaker and nonsignificant across all variants, consistent with the narrower BCS range at lower schema complexity reducing the detectable effect size. Rather than applying Bonferroni correction, which assumes independent hypotheses inappropriate for correlated prompt variants testing the same underlying signal, we note directional consistency: 7 of 8 conditions show negative BCS--accuracy slopes, consistent with the primary finding \\citep{rothman-1990}. These results confirm that the confusability effect arises from schema composition, not prompt-specific phrasing.\n\n\\section{BCS Aggregation Sensitivity}\n\\label{sec:appendix_bcs_sensitivity}\n\nWe define Batch Confusability Score (BCS) as the \\emph{mean} pairwise SCS across all type pairs in a batch (\\S\\ref{sec:bcs_controlled}). An alternative definition takes the \\emph{maximum} pairwise SCS within each batch to capture the single most confusable pair. Here we compare both aggregation methods to verify that core conclusions are robust to this choice (Table~\\ref{tab:bcs_aggregation}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{BCS--accuracy regression under mean vs.\\ max pairwise SCS aggregation (FewRel, 16-relation batches). Permutation test for slope equivalence across pools: MEAN $p \\approx 0.60$; MAX $p \\approx 0.44$. The 80-pool row is identical under both definitions because these batches were collected using mean-aggregated BCS; the MAX column reflects the same data for completeness.}\n\\label{tab:bcs_aggregation}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Aggregation} & \\textbf{Condition} & \\textbf{Slope} & \\textbf{95\\% CI} & \\textbf{$r$} & \\textbf{$p$} \\\\\n\\midrule\nMEAN (primary) & 16-rel & $-$0.509 & [$-$0.686, $-$0.336] & $-$0.467 & ${<}\\,0.001$ \\\\\nMEAN & 80-pool 16-sub & $-$0.401 & [$-$0.701, $-$0.069] & $-$0.221 & 0.027 \\\\\n\\midrule\nMAX & 16-rel & $-$0.449 & [$-$0.552, $-$0.346] & $-$0.637 & ${<}\\,0.001$ \\\\\nMAX & 80-pool 16-sub & $-$0.401 & [$-$0.701, $-$0.069] & $-$0.221 & 0.027 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nMAX aggregation yields stronger correlations ($r = -0.637$ vs.\\ $-0.467$ for 16-rel), consistent with the hypothesis that the single most confusable pair in a batch predicts substitution errors. Both definitions produce significant negative slopes across all conditions, and the permutation tests confirm no significant difference between independent and sampled pools under either definition. We adopt MEAN as the primary definition because it better represents average pairwise difficulty across all schema combinations, while MAX may overweight a single outlier pair. The choice does not affect any paper conclusion.\n\n\\section{BCS-Controlled Detailed Results}\n\\label{app:bcs-controlled-table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar types; high-BCS batches contain maximally similar types. The 80-relation extreme-batch gap reflects the wider BCS range; regression slopes are consistent across pools ($p = 0.60$; Table~\\ref{tab:within_pool}; see \\S\\ref{sec:practical_magnitude} for typical-batch magnitudes). The 16-relation condition used a single extreme batch per BCS level; bootstrap CIs require multiple batches.}\n\\label{tab:bcs_controlled}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcrrrr}\n\\toprule\n\\textbf{Schema} & \\textbf{Count} & \\textbf{Low-BCS} & \\textbf{High-BCS} & \\textbf{$\\Delta$ (pp)} & \\textbf{95\\% CI} \\\\\n\\midrule\n16-rel & 8 & 88.9\\% & 79.8\\% & $-$9.1 & --- \\\\\n80-rel & 8 & 82.3\\% & 51.0\\% & $-$31.2 & {[}17.7, 42.7{]} \\\\\n80-rel & 16 & 82.8\\% & 51.6\\% & $-$31.2 & {[}22.9, 39.6{]} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Adjusted $R^2$ and confidence intervals.}\nDocRED regressions (\\S\\ref{sec:bcs_controlled}) use OLS on $n = 55$ batches (15 high-BCS + 15 low-BCS + 25 random) per count level, with one predictor. At count 16, adjusted $R^2 = 0.646$ (unadjusted: 0.653; 95\\% CI [0.53, 0.77]); at count 32, adjusted $R^2 = 0.606$ (unadjusted: 0.614; 95\\% CI [0.47, 0.75]). The small shrinkage ($\\Delta R^2 \\leq 0.01$) indicates the unadjusted values are not inflated by the predictor-to-sample ratio.\n\n\\section{Format Independence: Paired Constrained vs.\\ Unconstrained Comparison}\n\\label{app:format-independence}\n\nTo test whether the BCS--accuracy relationship depends on the output format, we run both constrained (enum-based) and unconstrained (free-text) decoding on the same 25 batch type sets from the FewRel 80-relation pool (13 low-BCS, 12 high-BCS; count 8). Each batch uses identical instances and type sets; only the decoding format differs (Table~\\ref{tab:format_independence}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Paired comparison of constrained vs.\\ unconstrained decoding on 25 identical FewRel batch type sets. Both formats yield virtually identical BCS--accuracy correlations (Fisher $z \\approx 0$), confirming the confusability effect is format-independent. Mean accuracy is also unchanged ($\\Delta = -0.08$\\,pp), ruling out a format-driven accuracy shift.}\n\\label{tab:format_independence}\n\\begin{tabular}{lrr}\n\\toprule\n\\textbf{Metric} & \\textbf{Constrained} & \\textbf{Unconstrained} \\\\\n\\midrule\nMean accuracy & 79.5\\% & 79.6\\% \\\\\nPearson $r$ (BCS vs.\\ acc) & $-$0.448 ($p = 0.025$) & $-$0.439 ($p = 0.028$) \\\\\nSpearman $\\rho$ (BCS vs.\\ acc) & $-$0.157 ($p = 0.455$) & $-$0.144 ($p = 0.492$) \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{Paired Fisher $z$-test for correlation equality}} \\\\\n\\quad Pearson $z$ & \\multicolumn{2}{c}{$-$0.04 ($p = 0.97$)} \\\\\n\\quad Spearman $z$ & \\multicolumn{2}{c}{$-$0.04 ($p = 0.97$)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe near-zero Fisher $z$ statistics ($|z| < 0.05$, $p > 0.96$) confirm that the BCS--accuracy correlation is indistinguishable between formats. Both Pearson $r$ values are significant ($p < 0.03$), reflecting the bimodal BCS distribution of extreme batches (13 low + 12 high); the monotonic Spearman $\\rho$ is modest and non-significant under both formats, consistent with the typical-batch BCS effect size (${\\sim}2$\\,pp; \\S\\ref{sec:practical_magnitude}). This result establishes that the confusability-associated degradation pattern is robust across output formats, not an artifact of forced-choice decoding.\n\n\\paragraph{Per-batch paired results.}\nTable~\\ref{tab:format_perbatch} reports per-batch accuracy under both formats. Of 25 batches, 23 yield \\emph{identical} accuracy; the two exceptions (high\\_5, high\\_11) differ by a single sample (1/96 $\\approx$ 1.04\\,pp). Only 2 out-of-vocabulary predictions occur in unconstrained decoding (OOV rate 0.08\\%), confirming that the model generates valid type labels even without format constraints.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-batch accuracy (\\%) under constrained and unconstrained decoding on 25 identical FewRel batch type sets (count 8, 96 instances each). 23/25 batches yield identical accuracy; the two exceptions differ by exactly one sample ($\\Delta = -1.04$\\,pp). L = low-BCS, H = high-BCS.}\n\\label{tab:format_perbatch}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcrrrr}\n\\toprule\n\\textbf{Batch} & \\textbf{Group} & \\textbf{BCS} & \\textbf{Constr.} & \\textbf{Unconstr.} & \\textbf{$\\Delta$} \\\\\n\\midrule\nlow\\_0  & L & 0.472 & 83.3 & 83.3 & 0.0 \\\\\nlow\\_1  & L & 0.647 & 81.3 & 81.3 & 0.0 \\\\\nlow\\_2  & L & 0.665 & 87.5 & 87.5 & 0.0 \\\\\nlow\\_3  & L & 0.672 & 82.3 & 82.3 & 0.0 \\\\\nlow\\_4  & L & 0.674 & 67.7 & 67.7 & 0.0 \\\\\nlow\\_5  & L & 0.678 & 72.9 & 72.9 & 0.0 \\\\\nlow\\_6  & L & 0.679 & 80.2 & 80.2 & 0.0 \\\\\nlow\\_7  & L & 0.687 & 87.5 & 87.5 & 0.0 \\\\\nlow\\_8  & L & 0.692 & 77.1 & 77.1 & 0.0 \\\\\nlow\\_9  & L & 0.692 & 91.7 & 91.7 & 0.0 \\\\\nlow\\_10 & L & 0.692 & 87.5 & 87.5 & 0.0 \\\\\nlow\\_11 & L & 0.709 & 84.4 & 84.4 & 0.0 \\\\\nlow\\_12 & L & 0.709 & 68.8 & 68.8 & 0.0 \\\\\n\\midrule\nhigh\\_0  & H & 0.712 & 91.7 & 91.7 & 0.0 \\\\\nhigh\\_1  & H & 0.724 & 77.1 & 77.1 & 0.0 \\\\\nhigh\\_2  & H & 0.735 & 67.7 & 67.7 & 0.0 \\\\\nhigh\\_3  & H & 0.742 & 86.5 & 86.5 & 0.0 \\\\\nhigh\\_4  & H & 0.742 & 86.5 & 86.5 & 0.0 \\\\\nhigh\\_5  & H & 0.747 & 81.3 & 82.3 & $-$1.0 \\\\\nhigh\\_6  & H & 0.768 & 83.3 & 83.3 & 0.0 \\\\\nhigh\\_7  & H & 0.778 & 77.1 & 77.1 & 0.0 \\\\\nhigh\\_8  & H & 0.791 & 71.9 & 71.9 & 0.0 \\\\\nhigh\\_9  & H & 0.820 & 70.8 & 70.8 & 0.0 \\\\\nhigh\\_10 & H & 0.823 & 92.7 & 92.7 & 0.0 \\\\\nhigh\\_11 & H & 0.971 & 49.0 & 50.0 & $-$1.0 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\section{Within-Pool Analysis Methodology}\n\\label{app:within-pool-method}\n\nA potential confound in the cross-scale comparison is that the 16-relation and 80-relation pools contain different types, so the observed gap could reflect pool composition rather than confusability. To control for this, we draw 100 random 16-relation subsets from the 80-relation pool and evaluate under the same BCS-controlled protocol.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Three-way BCS--accuracy analysis on FewRel. Slope: OLS of batch accuracy on BCS (bootstrap CIs, $B{=}10{,}000$). $\\Delta$: accuracy gap between top- and bottom-quartile BCS batches. See Appendix~\\ref{sec:appendix_within_pool} for CI interpretation.}\n\\label{tab:within_pool}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrrrrrr}\n\\toprule\n& \\multicolumn{4}{c}{\\textbf{Regression (BCS $\\to$ Accuracy)}} & \\multicolumn{2}{c}{\\textbf{Quartile $\\Delta$}} \\\\\n\\cmidrule(lr){2-5} \\cmidrule(lr){6-7}\n\\textbf{Setting} & \\textbf{Slope} & \\textbf{95\\% CI} & \\textbf{$r$} & \\textbf{$p$} & \\textbf{$\\Delta$ (pp)} & \\textbf{95\\% CI} \\\\\n\\midrule\nIndependent 16-rel ($n{=}100$) & $-$0.509 & [$-$0.686, $-$0.336] & $-$0.467 & ${<}\\,0.001$ & $-$5.31 & [$-$7.44, $-$3.19] \\\\\n80-pool $\\to$ 16-sub ($n{=}100$) & $-$0.401 & [$-$0.701, $-$0.069] & $-$0.221 & $0.027$ & $-$3.92 & [$-$8.17, $+$0.38] \\\\\nFull 80-rel ($n{=}25$)$^\\dagger$ & $+$0.221 & [$-$1.303, $+$1.695] & $+$0.064 & $0.76$ & $-$1.04 & [$-$10.12, $+$8.04] \\\\\n\\midrule\n\\multicolumn{7}{l}{\\footnotesize Permutation test (16-rel vs.\\ 80-pool slopes): $p \\approx 0.60$ (5{,}000 permutations)} \\\\\n\\multicolumn{7}{l}{\\footnotesize $^\\dagger$BCS range (IQR\\,=\\,0.033) insufficient for regression; slope not interpretable.} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nThe within-pool slope ($-$0.401, CI excludes zero) is statistically indistinguishable from the independent 16-relation pool ($-$0.509; permutation $p \\approx 0.60$). The smaller quartile gap ($-$3.92\\,pp vs.\\ $-$5.31\\,pp) reflects the narrower BCS range within the 80-relation pool (Appendix~\\ref{sec:appendix_within_pool}).\n\nIn the full 80-relation condition, natural BCS variation is insufficient (IQR${}=0.033$) to yield a detectable effect ($n=25$, slope${}=+0.221$, $p \\approx 0.76$). This does not invalidate the confusability effect; the within-pool slope is significant ($p=0.027$) when BCS is deliberately varied, but establishes that natural schema sampling at this scale does not produce sufficient BCS contrast for detection.\n\n\\section{SCS Embedding Ablation: Name-Only vs. Name+Definition}\n\\label{app:scs-ablation}\n\nTable~\\ref{tab:scs-ablation} compares predictive accuracy of name-only SCS against name+definition SCS across three datasets.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Pearson correlation between SCS and empirical confusion rate. ``Def'' concatenates type name with definition before embedding. All correlations significant ($p < 0.001$). The inconsistent direction of $\\Delta r$ indicates that definitions provide no systematic benefit.}\n\\label{tab:scs-ablation}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{lcccc}\n\\toprule\nDataset & SCS$_\\text{name}$ $r$ & SCS$_\\text{def}$ $r$ & $\\Delta r$ & Matrix corr. \\\\\n\\midrule\nFew-NERD & 0.172 & 0.149 & $-$0.023 & 0.894 \\\\\nMAVEN & 0.129 & 0.164 & +0.035 & 0.656 \\\\\nFewRel & 0.178 & 0.193 & +0.015 & 0.848 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nFew-NERD is the only dataset whose prompts include type definitions; for MAVEN and FewRel, prompts use type names alone, so name-only SCS directly matches model input. The high matrix correlation (0.66--0.89) confirms that type names capture the dominant semantic structure.\n\n\\paragraph{Held-out validation.}\n\\label{app:scs-heldout-validation}\nFrom the 80-type confusion matrix, we extract the $\\binom{16}{2} = 120$ pairs among the 16 validation-origin types (fully disjoint from the 64 training-pool types). The SCS--confusion Spearman correlation remains positive and significant ($\\rho = 0.216$, $p = 0.018$), nearly identical to the full 80-type pool ($\\rho = 0.218$, $p < 0.001$, $n = 3{,}160$ pairs), ruling out training-set contamination as the driver of the observed relationship.\n\n\\section{Pair-to-Batch Aggregation Simulation}\n\\label{app:aggregation-sim}\n\nThe following simulation provides an illustrative explanatory model for how pair-level effects aggregate to batch-level variance. It is not the evidence base for our claims; the observed batch-level $R^2 = 0.218$ (\\S\\ref{sec:practical_magnitude}) is a direct empirical measurement independent of this simulation.\n\n\\paragraph{Setup.} We examine whether the pair-level $R^2 \\approx 7\\%$ (computed over non-zero confusion pairs) can aggregate to the observed batch-level $R^2 \\approx 22\\%$ via a Monte Carlo simulation. From the FewRel 16-relation experiment, we estimate the inter-pair SCS correlation for pairs sharing a common type ($\\rho_\\text{SCS} = 0.35$). For batches of $k=8$ types ($\\binom{8}{2}=28$ pairs), we simulate 10{,}000 iterations: (1) generate 28 correlated pair-level effects with individual $R^2 = 0.074$; (2) average to obtain batch-level signals; (3) compute batch-level $R^2$.\n\n\\paragraph{Results.} Simulated batch $R^2 = 0.219$ (95\\% CI [0.092, 0.361]), matching the observed value of 0.218. The effective amplification factor is $\\sim$3$\\times$, explained by signal correlation within batches preserving variance while independent noise averages out (effective degrees of freedom $\\approx 3.4$, not 28).\n\n\\paragraph{Unconditional baseline.}\nWhen the simulation uses the unconditional pairwise $r^2 = 0.013$ (computed over all type pairs including zero-confusion pairs; Table~\\ref{tab:pairwise}), the simulated batch-level $R^2$ drops to $0.044$ (95\\% CI [0.001, 0.151]), well below the observed $R^2 = 0.218$. The analytical formula confirms: $\\text{SNR} \\times \\text{EF} / (\\text{SNR} \\times \\text{EF} + 1) = 0.042$ with the same effective factor $\\text{EF} = 3.35$. This ${\\sim}5\\times$ gap reflects the dilution from zero-confusion pairs: approximately 89\\% of type pairs never exhibit mutual confusion, contributing only noise to the unconditional correlation. The conditional model ($R^2 = 0.074 \\to 0.219$) matches the observed value because it isolates the minority of semantically proximate pairs that actually compete during type resolution; BCS predicts batch accuracy through the density of \\emph{active} confusable pairs, not uniform contributions from all pairs.\n\n\\paragraph{Sensitivity to $\\rho$.}\nThe inter-pair SCS correlation $\\rho = 0.35$ is estimated from pairs sharing a common type. At $\\rho = 0.20$ (halved correlation), a parallel simulation yields batch $R^2 \\approx 0.22$, still matching the observed value; at $\\rho = 0.50$, the correlation structure approaches the positive-definiteness boundary; $\\rho = 0.35$ thus sits in a stable regime. The simulation is illustrative; the observed batch $R^2 = 0.218$ is the primary evidence.\n\n\\paragraph{Non-independence and ecological inference.}\nTypes within a batch share prompt context, so their extraction outcomes are not independent---a form of ecological correlation \\citep{robinson-1950-ecological}. This non-independence is built into the design: BCS measures batch-level confusability precisely because co-present types interact during type resolution. The core batch-level $R^2 = 0.218\\text{--}0.578$ (\\S\\ref{sec:practical_magnitude}) is a direct empirical observation from regressing batch accuracy on BCS, not derived from the simulation above. The inter-pair SCS correlation $\\rho = 0.35$ used in the simulation was estimated from the SCS correlation matrix independently of batch-level accuracy data.\n\n\\section{BCS Independence from Type Composition}\n\\label{app:bcs-composition}\n\nFewRel's balanced design (700 instances per type) makes type frequency invariant across batches, ruling out frequency-driven confounding. To test whether BCS captures information beyond type composition effects, we decompose the explained variance in a joint model (accuracy $\\sim$ BCS $+$ mean type difficulty), where type difficulty is the per-type solo-baseline accuracy averaged across batch members. On 100 random 8-type batches from the 16-relation pool, the joint model explains $R^2 = 0.704$. Variance decomposition yields: BCS unique $R^2 = 0.259$ (36.8\\% of explained variance), composition unique $R^2 = 0.298$ (42.3\\%), and shared $R^2 = 0.147$ (20.9\\%). The near-orthogonality of predictors (VIF${}\\,=\\,1.06$, $r(\\text{BCS}, \\text{difficulty}) = -0.21$) confirms that BCS captures confusability-specific signal rather than a proxy for type difficulty.\n\n\\section{SCS vs.\\ Simple Baselines}\n\\label{app:scs-baselines}\n\nTable~\\ref{tab:scs_baselines} compares SCS against simple baselines for pairwise confusion prediction.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Pairwise confusion prediction: SCS vs.\\ simple baselines. Spearman $\\rho$ between each metric and the empirical confusion rate. SCS outperforms all baselines on FewRel; the margin is smaller on Few-NERD, where hierarchical naming conventions provide partial signal to string-based metrics. $^\\dagger$42\\% of pairs lack WordNet coverage.}\n\\label{tab:scs_baselines}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrr}\n\\toprule\n\\textbf{Dataset} & \\textbf{Metric} & \\textbf{Spearman $\\rho$} & \\textbf{$p$} \\\\\n\\midrule\nFewRel & SCS (embedding) & \\textbf{0.218} & $< 0.001$ \\\\\n(3{,}160 pairs) & Same-parent (WordNet) & 0.097 & $< 0.001$ \\\\\n& WordNet Wu-Palmer & 0.073 & $< 0.001$ \\\\\n& Levenshtein & 0.016 & 0.363 (n.s.) \\\\\n\\midrule\nFew-NERD & SCS (embedding) & \\textbf{0.166} & $< 0.001$ \\\\\n(1{,}953 pairs) & Levenshtein & 0.152 & $< 0.001$ \\\\\n& Same-parent (prefix) & 0.146 & $< 0.001$ \\\\\n& WordNet Wu-Palmer & 0.054 & 0.070 (n.s.)$^\\dagger$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\section{Split-Origin Covariate Analysis}\n\\label{app:split-origin}\n\nFewRel combines 64 train-split and 16 val-split relation types into a single 80-type pool.  Train-origin types show numerically lower accuracy ($-8.8$\\,pp, $p = 0.06$; see Limitations), raising the question of whether differential pre-training exposure confounds the BCS--accuracy relationship.  We test this by adding a per-batch \\emph{train-origin ratio} (fraction of relation types drawn from the train split) as a covariate in the BCS--accuracy regression.\n\n\\paragraph{Method.}  Across 213 multi-type batches ($k \\geq 2$) from the batch-composition experiment (\\S\\ref{sec:sdgd}) and the factorial design (\\S\\ref{sec:bcs_controlled}), we compute $\\texttt{train\\_origin\\_ratio} = n_{\\text{train}} / k$ for each batch.  The ratio ranges from 0.40 to 1.00 (mean 0.80, consistent with the 64/80 base rate).  We fit:\n{\\small\\begin{equation*}\n\\text{acc} = \\beta_0 + \\beta_{\\text{BCS}} \\!\\cdot\\! \\text{BCS} + \\beta_{\\text{orig}} \\!\\cdot\\! \\text{train\\_origin\\_ratio} + \\varepsilon\n\\end{equation*}}\n\n\\paragraph{Results.}  The BCS partial effect is unchanged after controlling for split-origin: $\\beta_{\\text{BCS}} = -0.416$, $p < 0.001$ (vs.\\ $\\beta = -0.412$, $p < 0.001$ without the covariate).  Train-origin ratio is not independently significant ($\\beta_{\\text{origin}} = -0.057$, $p = 0.245$), and $\\Delta R^2 = 0.005$.  The BCS--accuracy relationship is therefore not confounded by differential pre-training exposure at the batch level.\n\nPairwise SCS distributions do not differ significantly between train-origin (64 types, mean\\,=\\,0.880) and val-origin (16 types, mean\\,=\\,0.874) subsets (Mann-Whitney $p = 0.754$, Cohen's $d = 0.081$); the train/val split does not introduce systematic confusability bias.\n\n\\section{Cross-Seed Variance Decomposition}\n\\label{app:variance-decomposition}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Variance decomposition on FewRel (3 seeds $\\times$ 25 batches per count level). Batch SD: root-mean intra-seed variance averaged over seeds. Seed SD: standard deviation of per-seed means. Ratio = batch variance / seed variance. At count 80, only one batch composition exists, so batch variance vanishes by construction.}\n\\label{tab:variance_decomposition}\n\\begin{tabular}{rrrr}\n\\toprule\n\\textbf{Count} & \\textbf{Batch SD} & \\textbf{Seed SD} & \\textbf{Ratio} \\\\\n\\midrule\n4 & 0.0889 & 0.0122 & 53.5 \\\\\n8 & 0.0820 & 0.0098 & 70.0 \\\\\n16 & 0.0626 & 0.0270 & 5.4 \\\\\n32 & 0.0462 & 0.0091 & 26.0 \\\\\n40 & 0.0421 & 0.0019 & 474.4 \\\\\n64 & 0.0245 & 0.0022 & 119.8 \\\\\n80 & 0.0001 & 0.0088 & $<$0.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:variance_decomposition} shows that intra-batch variance dominates inter-seed variance by 5--474$\\times$ across count levels 4--64 (mean 125$\\times$); random batch composition is the primary source of performance variability. Under greedy decoding (temperature${}\\,=\\,0$), model inference is nearly deterministic; the inter-seed variance reflects differences in which random batch compositions each seed generates, not inference stochasticity. At count 80, the full schema admits only one composition, leaving residual model-level noise as the sole variance source (seed SD = 0.88\\,pp, likely attributable to FP8 quantization non-determinism).\n\n\\section{Cross-Domain Connections}\n\\label{app:cross-domain}\n\nThe schema-associated degradation documented here is not unique to information extraction. Schema-Guided Dialogue systems (SGD/SGD-X; \\citealt{rastogi2020towards}) face an analogous challenge: as the number of intent and slot types grows, dialogue state tracking accuracy declines. \\citet{li2023evaluating} observed count-dependent degradation in ChatGPT-based IE, attributing it to prompt overload. Our two-dimensional decomposition offers a more refined explanation: schema size per se is not the sole predictor; rather, larger schemas increase the probability of including high-SCS pairs, which contribute disproportionately to confusion. This distinction has practical implications: a schema of 80 types with low mutual confusability may outperform a 40-type schema with clustered semantics, and suggests that confusability-aware design principles may generalize to any task where an LLM must discriminate among a prompt-specified label inventory.\n\n\\section{Cross-Model Validation with LLaMA-3.1-70B-Instruct (FP8)}\n\\label{sec:appendix_cross_model_70b}\n\nTo test whether the two-dimensional degradation pattern generalizes across models, we replicate the count-curve and BCS-controlled experiments on Meta-LLaMA-3.1-70B-Instruct (FP8 quantization). All batch compositions, type pools, and test samples are identical to those used for Qwen3-32B (\\S\\ref{sec:count_curves}, \\S\\ref{sec:bcs_controlled}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model count curves for LLaMA-3.1-70B-Instruct (FP8) and Qwen3-32B. RE decline (count 8$\\to$80): $-$30.7\\,pp (70B) vs.\\ $-$30.1\\,pp (32B). NER decline (count 2$\\to$22): $-$7.1\\,pp (70B) vs.\\ $-$23.6\\,pp (32B); both models exhibit a U-shaped rebound at higher counts. 25 batches per count level, same samples and batch compositions across models (seed 42). All metrics are micro-averaged across batches.}\n\\label{tab:cross_model_70b}\n\\begin{tabular}{lrr}\n\\toprule\n\\textbf{Count} & \\textbf{LLaMA-70B} & \\textbf{Qwen3-32B} \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{RE (FewRel, Classification Accuracy)}} \\\\\n8  & 0.757 & 0.805 \\\\\n16 & 0.685 & 0.719 \\\\\n32 & 0.601 & 0.652 \\\\\n64 & 0.504 & 0.539 \\\\\n80 & 0.450 & 0.504 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{NER (Few-NERD, Text+Type Match Recall)}} \\\\\n2  & 0.323 & 0.515 \\\\\n6  & 0.300 & 0.399 \\\\\n12 & 0.278 & 0.318 \\\\\n22 & 0.252 & 0.279 \\\\\n44 & 0.297 & 0.309 \\\\\n66 & 0.273 & 0.407 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:cross_model_70b} shows that RE degradation slopes are near-identical: $-$30.7\\,pp (70B) versus $-$30.1\\,pp (32B) from count 8 to count 80, with the 70B model approximately 4\\,pp lower in absolute accuracy at each count level. This quantitative match provides strong evidence that Dimension~1 (count-related decline) is directionally consistent across architectures for RE.\n\nOn NER, the count-related decline direction is consistent across models: both 70B and Qwen3 show a recall decline from count 2 to count 22 (70B: 0.323$\\to$0.252, $-$7.1\\,pp; Qwen3: 0.515$\\to$0.279, $-$23.6\\,pp). Both models also exhibit a U-shaped rebound at higher counts (70B: 0.252 at count 22 $\\to$ 0.297 at count 44; Qwen3: 0.279 at count 22 $\\to$ 0.407 at count 66), which cross-validates the U-shape phenomenon. The magnitude difference reflects a precision-recall tradeoff: 70B operates more conservatively (higher precision, lower recall), while Qwen3 over-predicts (higher recall, lower precision, especially at low counts).\n\nFor the confusability dimension (Dimension 2), at count 16 on FewRel, LLaMA-70B achieves low-BCS accuracy of 0.708 versus high-BCS accuracy of 0.599 ($\\Delta = +10.9$\\,pp, 95\\% CI [$+$3.0, $+$20.1]). The confidence interval excludes zero; the confusability effect is thus confirmed at the 70B scale.\n\nIn summary, FewRel RE provides a quantitative match across models (near-identical slopes for Dimension~1 and a significant Dimension~2 effect). NER provides directional consistency: the count-related decline direction is preserved and the U-shaped rebound replicates, though magnitudes vary with each model's precision-recall operating point. Together, these results indicate that the degradation pattern is directionally consistent across architectures.\n\n\\section{Cross-Model Validation with Gemini 2.5 Flash (API)}\n\\label{sec:appendix_cross_model_gemini}\n\nWe validate both dimensions on a proprietary model, Gemini 2.5 Flash \\citep{gemini-2025}, accessed via API. This extends the cross-model evidence from open-weight families (Qwen, LLaMA) to a proprietary architecture with unknown training details. We replicate the FewRel count-curve and BCS-controlled experiments using the same 960 balanced samples, batch compositions, and evaluation protocol as Qwen3-32B.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model count curves for Gemini 2.5 Flash (API) and Qwen3-32B on FewRel RE (classification accuracy). 25 batches per count level, same samples and batch compositions (seed 42). Gemini's count-1 result is included for completeness; Qwen3 count-1 was not collected. Both models show monotonic decline from count 4 onward ($\\rho = -1.0$ for both on counts 4--32). $^\\dagger$Count 64: Gemini based on 11/25 batches (partial).}\n\\label{tab:cross_model_gemini}\n\\begin{tabular}{lrr}\n\\toprule\n\\textbf{Count} & \\textbf{Gemini Flash} & \\textbf{Qwen3-32B} \\\\\n\\midrule\n1  & 0.827 & --- \\\\\n4  & 0.873 & 0.870 \\\\\n8  & 0.820 & 0.805 \\\\\n16 & 0.787 & 0.719 \\\\\n32 & 0.739 & 0.652 \\\\\n64$^\\dagger$ & 0.637 & 0.539 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:cross_model_gemini} confirms that the count-related accuracy decline replicates on Gemini 2.5 Flash. From count 4 to count 32, both models show perfectly monotonic decline (Spearman $\\rho = -1.0$). Including count 1, the Gemini count curve yields $\\rho = -0.900$ ($p = 0.037$); including partial count-64 data (11/25 batches), $\\rho = -0.943$ ($p = 0.005$). The decline magnitude is smaller for Gemini ($-$13.3\\,pp from count 4 to 32) than for Qwen3 ($-$21.8\\,pp), consistent with Gemini's higher absolute accuracy providing more headroom before degradation saturates. At each count level, Gemini matches or exceeds Qwen3, with the gap widening at higher counts (0.3\\,pp at count 4 vs.\\ 8.7\\,pp at count 32, 9.8\\,pp at partial count 64); Gemini appears more robust to schema scaling but not immune.\n\n\\paragraph{Dimension~2: BCS-controlled confusability.}\nWe replicate the BCS-controlled experiment on Gemini 2.5 Flash using extreme-BCS batches at count 8 ($n = 50$; 25 low-BCS, 25 high-BCS) and count 16 ($n = 10$; 5+5).\n\nAt count 8, low-BCS batches achieve 90.5\\% vs.\\ high-BCS 72.9\\% ($\\Delta = -17.6$\\,pp, 95\\% CI [15.1, 20.1]). At count 16, the gap narrows to $-$8.7\\,pp, but one high-BCS outlier (BCS${}=0.97$, accuracy 59.9\\%) inflates Pearson $r$; leave-one-out excluding this point drops $r$ from $-$0.80 to $-$0.42 ($p = 0.22$) and $\\rho$ from $-$0.40 to $-$0.18 ($p = 0.64$), confirming the count-16 correlation is driven by this single leverage point. The count-8 gap is smaller than Qwen3-32B's ($-$31.2\\,pp), consistent with ceiling compression: Gemini's higher baseline (90.5\\% vs.\\ 82.3\\%) leaves less room for degradation.\n\nTable~\\ref{tab:cross_model_bcs_summary} summarizes BCS-controlled results across all validated models. Both dimensions thus replicate on a proprietary architecture with unknown training details.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-model BCS-controlled FewRel RE summary. All models show significant low-vs-high BCS accuracy gaps. Gap magnitude varies with model capacity (ceiling compression), but the direction is consistent across open-weight (8B--70B) and proprietary architectures.}\n\\label{tab:cross_model_bcs_summary}\n\\begin{tabular}{llrrrr}\n\\toprule\n\\textbf{Model} & \\textbf{Count} & \\textbf{Low BCS} & \\textbf{High BCS} & \\textbf{$\\Delta$} & \\textbf{95\\% CI} \\\\\n\\midrule\nQwen3-32B     & 8  & 82.3\\% & 51.0\\% & $-$31.2\\,pp & --- \\\\\nQwen3-32B     & 16 & 82.8\\% & 51.6\\% & $-$31.2\\,pp & --- \\\\\nLlama-8B      & 8  & 78.1\\% & 51.0\\% & $-$27.1\\,pp & --- \\\\\nLlama-70B FP8 & 16 & ---    & ---    & $-$10.9\\,pp & {[}3.0, 20.1{]} \\\\\nGemini Flash  & 8  & 90.5\\% & 72.9\\% & $-$17.6\\,pp & {[}15.1, 20.1{]} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Few-Shot Prompting and Confusability}\n\\label{sec:appendix_fewshot_bcs}\n\nTo test whether in-context demonstrations mitigate the BCS-associated confusability effect, we evaluate 0-shot, 1-shot, and 5-shot prompting on FewRel 80-relation RE at count 8 using the same extreme-BCS batch design as \\S\\ref{sec:bcs_controlled}. Each condition uses 50 batches (25 low-BCS, mean $\\approx 0.36$; 25 high-BCS, mean $\\approx 0.80$), drawn from the pre-constructed batch pool of \\S\\ref{sec:bcs_controlled}. Few-shot examples are sampled from the FewRel training split for each target type (Table~\\ref{tab:fewshot_bcs}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{BCS gap under few-shot prompting (FewRel, count 8). Demonstrations improve absolute accuracy on low-BCS batches (+3.3--7.2\\,pp over 0-shot) but provide inconsistent benefit on high-BCS batches (+5.6\\,pp at 1-shot, $-$1.0\\,pp at 5-shot). The confusability gap widens from +18.5\\,pp (0-shot) to +22.8\\,pp (5-shot). All metrics are micro-averaged across batches.}\n\\label{tab:fewshot_bcs}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{lrrrl}\n\\toprule\n\\textbf{Condition} & \\textbf{Low-BCS} & \\textbf{High-BCS} & \\textbf{$\\Delta$ (pp)} & \\textbf{95\\% CI} \\\\\n\\midrule\n0-shot & 0.682 & 0.498 & +18.5 & {[}+14.3, +22.7{]} \\\\\n1-shot & 0.754 & 0.554 & +20.0 & {[}+16.3, +23.5{]} \\\\\n5-shot & 0.715 & 0.488 & +22.8 & {[}+18.9, +26.8{]} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nDemonstrations improve absolute accuracy primarily on low-BCS (easy) batches, where type boundaries are already distinct and examples reinforce correct mappings. On high-BCS batches, where types are semantically confusable, demonstrations provide inconsistent benefit (+5.6\\,pp at 1-shot, $-$1.0\\,pp at 5-shot): the model still substitutes similar types at comparable rates. The net effect is that the confusability gap widens under few-shot prompting (+4.3\\,pp from 0-shot to 5-shot, bootstrap $p = 0.014$), with all three confidence intervals excluding zero. This indicates that BCS-associated type confusion is a structural property of the schema composition rather than a deficit addressable through prompt engineering. The non-monotonic low-BCS pattern (0.754 at 1-shot vs.\\ 0.715 at 5-shot) may reflect lost-in-middle effects from increased prompt length \\citep{lost-in-middle-2024}.\n\nThe 0-shot gap (+18.5\\,pp) is smaller than the extreme-batch gap reported in \\S\\ref{sec:bcs_controlled} (+25.5\\,pp) because the two experiments use different test splits and batch sampling seeds; direct magnitude comparison across experiments is not appropriate.\n\n\\section{Qualitative Error Analysis}\n\\label{app:error-analysis}\n\nTables~\\ref{tab:top10_re} and~\\ref{tab:top10_ner} list the ten most frequently confused type pairs on FewRel 80-relation RE and Few-NERD NER. Confusion counts are aggregated bidirectionally across three random seeds (72{,}000 predictions per seed for RE; single-seed 66-type extraction for NER). Table~\\ref{tab:error_examples} provides illustrative confusion instances with SCS values.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Top-10 confused relation pairs on FewRel 80-relation RE. $N$: bidirectional confusion count aggregated over 3 seeds $\\times$ 25 batches. SCS: pairwise Schema Confusability Score (Qwen3 embedding cosine similarity). High-SCS pairs (e.g., \\textit{followed by}/\\textit{follows}, SCS\\,=\\,0.90) and family-relation pairs (\\textit{child}/\\textit{father}, \\textit{child}/\\textit{mother}) dominate. Some low-SCS pairs (\\textit{instance of}/\\textit{taxon rank}, SCS\\,=\\,0.53) reflect domain-specific co-occurrence rather than semantic similarity.}\n\\label{tab:top10_re}\n\\begin{tabular}{cllrr}\n\\toprule\n\\textbf{\\#} & \\textbf{Type A} & \\textbf{Type B} & \\textbf{SCS} & \\textbf{$N$} \\\\\n\\midrule\n1 & instance of & taxon rank & 0.53 & 875 \\\\\n2 & child & father & 0.84 & 700 \\\\\n3 & participant of & participating team & 0.75 & 675 \\\\\n4 & mountain range & part of & 0.57 & 575 \\\\\n5 & mouth of watercourse & tributary & 0.65 & 549 \\\\\n6 & child & mother & 0.84 & 500 \\\\\n7 & league & member of & 0.66 & 450 \\\\\n8 & country of citizenship & country of origin & 0.76 & 400 \\\\\n9 & followed by & follows & 0.90 & 400 \\\\\n10 & occupation & voice type & 0.57 & 400 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Top-10 confused entity type pairs on Few-NERD NER. $N$: bidirectional confusion count from 66-type full-schema extraction. SCS: pairwise Schema Confusability Score (Qwen3 embedding cosine similarity). Intra-category confusions (e.g., \\textit{person-other}/\\textit{person-politician}, SCS\\,=\\,0.93) and cross-category pairs sharing referent overlap (\\textit{building-other}/\\textit{location-GPE}, SCS\\,=\\,0.85) are most frequent. The ``other'' subtypes absorb diverse entities and confuse with more specific siblings.}\n\\label{tab:top10_ner}\n\\begin{tabular}{cllrr}\n\\toprule\n\\textbf{\\#} & \\textbf{Type A} & \\textbf{Type B} & \\textbf{SCS} & \\textbf{$N$} \\\\\n\\midrule\n1 & person-other & person-politician & 0.93 & 121 \\\\\n2 & location-GPE & organization-other & 0.83 & 81 \\\\\n3 & art-film & location-GPE & 0.69 & 57 \\\\\n4 & building-other & location-GPE & 0.85 & 56 \\\\\n5 & building-other & person-other & 0.90 & 43 \\\\\n6 & location-GPE & product-other & 0.69 & 39 \\\\\n7 & org-gov/agency & person-other & 0.85 & 34 \\\\\n8 & person-actor & person-other & 0.90 & 34 \\\\\n9 & building-other & location-road/transit & 0.76 & 32 \\\\\n10 & location-GPE & org-sportsleague & 0.81 & 30 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Illustrative confusion instances from FewRel 80-rel RE. All gold-predicted pairs have SCS\\,$>$\\,0.90: \\textit{participant} vs.\\ \\textit{participant of} reverses directionality; \\textit{contains} vs.\\ \\textit{located in} inverts containment; \\textit{part of} vs.\\ \\textit{member of} conflates meronymy with membership. a.t.e.\\ = admin.\\ territorial entity.}\n\\label{tab:error_examples}\n\\begin{tabular}{p{8cm}llc}\n\\toprule\n\\textbf{Sentence} & \\textbf{Gold} & \\textbf{Pred.} & \\textbf{SCS} \\\\\n\\midrule\n\\ldots\\ played for \\textbf{Valencia} \\ldots\\ [\\textbf{EuroLeague}] & participant & participant of & 0.97 \\\\\n\\addlinespace\n\\textbf{Pilões} is a municipality in \\textbf{Rio Grande do Norte} \\ldots & contains a.t.e. & located in a.t.e. & 0.92 \\\\\n\\addlinespace\nDavies \\ldots\\ appointed to \\textbf{Cabinet} as \\textbf{Sec.\\ of State} & part of & member of & 0.90 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\section{Schema Label Renaming Experiment}\n\\label{app:renaming}\n\nTo test whether reducing pairwise SCS through label renaming improves accuracy, we conducted a controlled intervention on FewRel 80-relation RE (count 8, Qwen3-32B). We identified 14 high-SCS relation pairs (covering 12 unique relation types, as two types each appear in multiple pairs; mean SCS = 0.87) and replaced one label in each pair with a semantically distinct paraphrase chosen to minimize embedding cosine similarity (all-MiniLM-L6-v2). Examples: \\textit{participant of} $\\to$ \\textit{event involvement} (SCS: 0.97 $\\to$ 0.72), \\textit{follows} $\\to$ \\textit{prior entry} (0.90 $\\to$ 0.69), \\textit{part of} $\\to$ \\textit{integral segment of} (0.90 $\\to$ 0.64). The renaming reduced mean pairwise SCS from 0.87 to 0.67 ($\\Delta = -0.20$). We ran the same 50 BCS-controlled batches (25 low-BCS, 25 high-BCS; 96 samples each) under both original (control) and renamed (treatment) label sets (Table~\\ref{tab:renaming}).\n\n\\begin{table}[h!]\n\\centering\n\\small\n\\caption{Accuracy (\\%) under original vs.\\ renamed labels on FewRel count-8 batches. Renaming reduced embedding similarity but decreased accuracy in both groups, with a larger drop on high-BCS batches (Cohen's $d = -2.92$) than low-BCS ($d = -1.09$). Interaction: $\\Delta_{\\text{high}} - \\Delta_{\\text{low}} = -5.9$\\,pp ($t = -7.23$, $p < 0.001$).}\n\\label{tab:renaming}\n\\begin{tabular}{lccc}\n\\toprule\n& \\textbf{Control} & \\textbf{Treatment} & \\textbf{$\\Delta$\\,(pp)} \\\\\n\\midrule\nLow-BCS ($n=25$)  & 90.1 & 87.1 & $-$3.0 \\\\\nHigh-BCS ($n=25$) & 69.3 & 60.5 & $-$8.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nRenaming hurt accuracy uniformly: both groups showed significant declines (paired $t$-test, both $p < 0.001$). The number of renamed types per batch correlated negatively with accuracy change ($r = -0.625$, $p < 0.001$). A solo sanity check confirmed that 11 of 12 renamed labels were individually recognizable (accuracy $\\geq$ original $-5$\\,pp). The results indicate that replacing familiar Wikidata labels with unfamiliar paraphrases disrupts the model's type semantics; this label unfamiliarity effect outweighs any benefit from reduced confusability.\n\n\\section{Relaxed Matching Evaluation (NER)}\n\\label{app:relaxed-matching}\n\nTo test whether exact-match F1 masks the BCS signal in NER by conflating boundary errors with type errors, we evaluate three progressively relaxed matching criteria on the full Few-NERD NER dataset ($n = 450$ batches: 6 count levels $\\times$ 25 batches $\\times$ 3 seeds; Table~\\ref{tab:relaxed_matching}).\n\n\\begin{table}[h!]\n\\centering\n\\small\n\\caption{BCS--F1 correlation under progressively relaxed NER matching. Relaxed span credits a match if the predicted span overlaps the gold span and the type is correct; token overlap uses token-level intersection; type-ignored drops the type constraint entirely. Relaxed matching improves mean F1 by 4.2\\,pp (98.4\\% of batches improve), but Pearson $r$ remains near zero across all modes (bootstrap 95\\% CI crosses zero in all cases). Boundary errors affect all batches uniformly and do not mask a BCS signal.}\n\\label{tab:relaxed_matching}\n\\begin{tabular}{lrrrrr}\n\\toprule\n\\textbf{Match mode} & \\textbf{$r$} & \\textbf{$p$} & \\textbf{$\\rho$} & \\textbf{$p$} & \\textbf{F1} \\\\\n\\midrule\nExact        & 0.014 & 0.760 & $-$0.101 & 0.033 & 0.304 \\\\\nRelaxed span & 0.003 & 0.946 & $-$0.110 & 0.020 & 0.346 \\\\\nToken overlap & 0.004 & 0.936 & $-$0.113 & 0.017 & 0.349 \\\\\nType-ignored & 0.023 & 0.621 & $-$0.097 & 0.039 & 0.425 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nA per-error-mode analysis confirms this null extends to all individual categories: miss ($\\rho = 0.017$), boundary ($\\rho = -0.043$), and type substitution ($\\rho = -0.010$) rates show no BCS association (all $p > 0.3$, $n = 450$). The null holds within each count level (count 2: $r = 0.022$; count 6: $r = 0.110$; count 12: $r = 0.028$; all $p > 0.3$), ruling out count as a confound.\n\n\\end{document}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 49,
+        "oldLines": 7,
+        "newStart": 49,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\paragraph{Across-batch correlation.} Batches share prompt template and LLM, introducing potential across-batch correlation; however, type composition is independently sampled per batch, and bootstrap CIs are computed over this independent unit of variation.",
+          " ",
+          "-\\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \\citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \\citep{dror-2018-significance,card-2020-power}.",
+          "+\\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \\citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \\citep{dror-2018-significance,card-2020-power}. The core claims (count decline, BCS--accuracy correlation) are robust to Bonferroni correction (all $p < 0.001$); the logit-scale interaction ($p = 0.047$) is the only result near the threshold and is already characterized as marginal.",
+          " ",
+          " % \\input{checklist}  % EMNLP 2026: checklist goes in OpenReview form, not PDF",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+验证修改结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "28d47293-4e6b-4b55-87a0-a4dfa377da33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QvY2iDumrx1nWqC4uN7vYJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2654,
+      "cache_read_input_tokens": 35007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2654
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0121KayKaC6xRmPfiZiZXAxT`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+  "offset": 51,
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "ebc0a68f-9d8c-4dca-80a4-c3978d0209bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QvY2iDumrx1nWqC4uN7vYJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2654,
+      "cache_read_input_tokens": 35007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2654
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-22T04:38:49.787Z_
+
+<details><summary>↩ Tool result · `toolu_0121KayKaC6xRmPfiZiZXAxT`</summary>
+
+```text
+51	\paragraph{Document-level RE (DocRED).}
+52	The effect replicates on DocRED's 96-relation schema ($n{=}55$ per count level;\footnote{DocRED uses 5 batches per count level (vs.\ 25 for FewRel) due to higher per-batch evaluation cost; CIs are correspondingly wider.}): extreme-BCS gap $-$25.0\,pp at count 16 ($\rho = -0.762$, 95\% CI [$-$0.88, $-$0.58]) and $-$15.7\,pp at count 32 ($\rho = -0.693$, 95\% CI [$-$0.83, $-$0.50]; both $p < 0.001$). Pooled across counts, $R^2 = 0.578$ ($n = 110$; 95\% CI [0.46, 0.68]; per-count: $R^2 = 0.653$ at count 16, $0.614$ at count 32). The substantially higher $R^2$ relative to FewRel (0.218) largely reflects BCS--centrality collinearity (VIF${}\,=\,50.9$): semipartial $R^2_{\text{BCS}} = 0.056$ after partialing degree centrality, confirming that 90\% of the explained variance is shared with centrality. Given VIF${}\,=\,50.9$, the partial correlation standard errors are inflated approximately 7-fold; this result serves as directional evidence that the BCS--accuracy relationship extends beyond FewRel's schema, not as independent quantitative support. Ridge regression confirms the negative direction under regularization (Appendix~\ref{sec:appendix_partial_corr}). The clean evidence for BCS's independent contribution comes from FewRel (semipartial $R^2 = 0.273$, VIF${}\,=\,1.18$).
+53	
+54	\paragraph{Within-pool controlled comparison.}
+55	\label{sec:within_pool}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "588a6ce9-eb16-49e7-9f9f-41edf3a3b006",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+      "content": "\\paragraph{Document-level RE (DocRED).}\nThe effect replicates on DocRED's 96-relation schema ($n{=}55$ per count level;\\footnote{DocRED uses 5 batches per count level (vs.\\ 25 for FewRel) due to higher per-batch evaluation cost; CIs are correspondingly wider.}): extreme-BCS gap $-$25.0\\,pp at count 16 ($\\rho = -0.762$, 95\\% CI [$-$0.88, $-$0.58]) and $-$15.7\\,pp at count 32 ($\\rho = -0.693$, 95\\% CI [$-$0.83, $-$0.50]; both $p < 0.001$). Pooled across counts, $R^2 = 0.578$ ($n = 110$; 95\\% CI [0.46, 0.68]; per-count: $R^2 = 0.653$ at count 16, $0.614$ at count 32). The substantially higher $R^2$ relative to FewRel (0.218) largely reflects BCS--centrality collinearity (VIF${}\\,=\\,50.9$): semipartial $R^2_{\\text{BCS}} = 0.056$ after partialing degree centrality, confirming that 90\\% of the explained variance is shared with centrality. Given VIF${}\\,=\\,50.9$, the partial correlation standard errors are inflated approximately 7-fold; this result serves as directional evidence that the BCS--accuracy relationship extends beyond FewRel's schema, not as independent quantitative support. Ridge regression confirms the negative direction under regularization (Appendix~\\ref{sec:appendix_partial_corr}). The clean evidence for BCS's independent contribution comes from FewRel (semipartial $R^2 = 0.273$, VIF${}\\,=\\,1.18$).\n\n\\paragraph{Within-pool controlled comparison.}\n\\label{sec:within_pool}",
+      "numLines": 5,
+      "startLine": 51,
+      "totalLines": 83
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RFtSfJtAbndJhijED1egpd`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+  "offset": 78,
+  "limit": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "445fdd20-763d-4ee2-83c8-3990cea9d23e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QvY2iDumrx1nWqC4uN7vYJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2654,
+      "cache_read_input_tokens": 35007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2654
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-22T04:38:50.582Z_
+
+<details><summary>↩ Tool result · `toolu_01RFtSfJtAbndJhijED1egpd`</summary>
+
+```text
+78	These results establish two dimensions: \textbf{Dimension~1} (count predicts recall decline) and \textbf{Dimension~2} (confusability predicts type confusion). The full-range regression ($n = 69$, five count levels) serves as the primary separability test; the $2 \times 2$ factorial ($n = 54$) as a sensitivity check. We select the equivalence margin via convergent evidence: (i)~an interaction exceeding the main effect magnitude would undermine dimensional separability; (ii)~Cohen's $d = 0.5$ \citep{cohen-1988-statistical} (medium effect) at the within-cell SD of 4.6\,pp yields $\pm 2.3$\,pp. Both converge on $\pm 2\text{--}3$\,pp.\footnote{Margin sensitivity (Table~\ref{tab:tost_sensitivity}) confirms equivalence from $\pm 2$\,pp ($p = 0.047$) through $\pm 5$\,pp.} On the linear scale, TOST \citep{lakens-2017-equivalence,schuirmann-1987-tost} bounds the FewRel interaction within $\pm 3$\,pp ($p = 0.003$); at $\pm 2$\,pp, equivalence is marginal ($p = 0.047$). Probability-scale TOST is the primary analysis because accuracy values (0.37--0.86) remain in the mid-range where logit and linear scales yield similar inference; the logit-scale result is inconclusive ($p = 0.209$; regression-based TOST: $p = 0.050$ at $\pm 3$\,pp; Appendix~\ref{sec:appendix_factorial}). On DocRED, the raw factorial interaction ($-$9.4\,pp) is confounded by narrower BCS ranges at count 32; range-matched analysis reduces it to 0.93\,pp, consistent with bounded interaction (Appendix~\ref{sec:appendix_factorial}). In NER, batch-level BCS signal is not detected at current power (\S\ref{sec:bcs_controlled}). Two factors explain the asymmetry: (1)~NER errors distribute across miss, boundary, and type modes rather than concentrating in type substitution (relaxed matching confirms this is not a metric artifact; Appendix~\ref{app:relaxed-matching}), and (2)~BCS range restriction (SD ratio 19\%) limits statistical detection power to 65\% (Appendix~\ref{sec:appendix_ner_power}). The factorial test is inconclusive ($p = 0.50$). At $n{=}450$ with BCS SD${}\,=\,0.027$, the minimum detectable correlation is $|r| \approx 0.132$ ($\alpha = 0.05$, power${}\,=\,0.80$), while FewRel's $r = -0.57$ would attenuate to $r \approx -0.11$ under this SD compression. Current evidence cannot distinguish absence of a BCS$\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence. The null is equally consistent with NER's error-mode structure, where degradation distributes across miss, boundary, and type channels rather than concentrating in type substitution---a pattern confirmed by relaxed matching (Appendix~\ref{app:relaxed-matching}). Post-hoc mitigation attempts---type renaming to reduce SCS and few-shot prompting---fail to close the confusability gap (Appendices~\ref{app:renaming},~\ref{sec:appendix_fewshot_bcs}), confirming that BCS captures a structural property of the schema--model interaction rather than a surface-level naming artifact.
+79	
+80	\subsection{Centrality as a Potential Confound on Homogeneous Schemas}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "d33ba8a7-0697-478c-9dcf-ec32f694bb13",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+      "content": "These results establish two dimensions: \\textbf{Dimension~1} (count predicts recall decline) and \\textbf{Dimension~2} (confusability predicts type confusion). The full-range regression ($n = 69$, five count levels) serves as the primary separability test; the $2 \\times 2$ factorial ($n = 54$) as a sensitivity check. We select the equivalence margin via convergent evidence: (i)~an interaction exceeding the main effect magnitude would undermine dimensional separability; (ii)~Cohen's $d = 0.5$ \\citep{cohen-1988-statistical} (medium effect) at the within-cell SD of 4.6\\,pp yields $\\pm 2.3$\\,pp. Both converge on $\\pm 2\\text{--}3$\\,pp.\\footnote{Margin sensitivity (Table~\\ref{tab:tost_sensitivity}) confirms equivalence from $\\pm 2$\\,pp ($p = 0.047$) through $\\pm 5$\\,pp.} On the linear scale, TOST \\citep{lakens-2017-equivalence,schuirmann-1987-tost} bounds the FewRel interaction within $\\pm 3$\\,pp ($p = 0.003$); at $\\pm 2$\\,pp, equivalence is marginal ($p = 0.047$). Probability-scale TOST is the primary analysis because accuracy values (0.37--0.86) remain in the mid-range where logit and linear scales yield similar inference; the logit-scale result is inconclusive ($p = 0.209$; regression-based TOST: $p = 0.050$ at $\\pm 3$\\,pp; Appendix~\\ref{sec:appendix_factorial}). On DocRED, the raw factorial interaction ($-$9.4\\,pp) is confounded by narrower BCS ranges at count 32; range-matched analysis reduces it to 0.93\\,pp, consistent with bounded interaction (Appendix~\\ref{sec:appendix_factorial}). In NER, batch-level BCS signal is not detected at current power (\\S\\ref{sec:bcs_controlled}). Two factors explain the asymmetry: (1)~NER errors distribute across miss, boundary, and type modes rather than concentrating in type substitution (relaxed matching confirms this is not a metric artifact; Appendix~\\ref{app:relaxed-matching}), and (2)~BCS range restriction (SD ratio 19\\%) limits statistical detection power to 65\\% (Appendix~\\ref{sec:appendix_ner_power}). The factorial test is inconclusive ($p = 0.50$). At $n{=}450$ with BCS SD${}\\,=\\,0.027$, the minimum detectable correlation is $|r| \\approx 0.132$ ($\\alpha = 0.05$, power${}\\,=\\,0.80$), while FewRel's $r = -0.57$ would attenuate to $r \\approx -0.11$ under this SD compression. Current evidence cannot distinguish absence of a BCS$\\to$NER effect from an effect too small to detect---absence of evidence rather than evidence of absence. The null is equally consistent with NER's error-mode structure, where degradation distributes across miss, boundary, and type channels rather than concentrating in type substitution---a pattern confirmed by relaxed matching (Appendix~\\ref{app:relaxed-matching}). Post-hoc mitigation attempts---type renaming to reduce SCS and few-shot prompting---fail to close the confusability gap (Appendices~\\ref{app:renaming},~\\ref{sec:appendix_fewshot_bcs}), confirming that BCS captures a structural property of the schema--model interaction rather than a surface-level naming artifact.\n\n\\subsection{Centrality as a Potential Confound on Homogeneous Schemas}",
+      "numLines": 3,
+      "startLine": 78,
+      "totalLines": 83
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UAmMXu3Kxw9YHRN3i1K222`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+  "offset": 10,
+  "limit": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "d9336e8c-ce51-47e6-9c06-076cea999c05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QvY2iDumrx1nWqC4uN7vYJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2654,
+      "cache_read_input_tokens": 35007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2654
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-22T04:38:51.518Z_
+
+<details><summary>↩ Tool result · `toolu_01UAmMXu3Kxw9YHRN3i1K222`</summary>
+
+```text
+10	\looseness=-1
+11	For NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\,>\,0.85$ pairs; $R^2 {\approx}\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\S\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\% vs.\ 50.4\%), confirming that count and confusability are approximately additive on the probability scale within the observed accuracy range (0.37--0.86). On the logit scale, which is theoretically preferred for bounded metrics, equivalence is inconclusive ($p = 0.209$); dimensional separability is thus supported on the linear scale but remains an open question on the logit scale.
+12	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "b59d6301-1312-4492-afdc-bc80b29aa7bc",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+      "content": "\\looseness=-1\nFor NER, reducing candidate types is the primary lever. For RE, BCS enables pre-hoc diagnostics (flag SCS${}\\,>\\,0.85$ pairs; $R^2 {\\approx}\\, 0.22$ on FewRel); high-SCS pairs dominate type substitution errors (Appendix~\\ref{app:error-analysis}). Practitioners can pre-compute SCS to identify high-risk type pairs before deployment, enabling schema-aware pool selection as a preprocessing step. Decompose-then-merge fails (\\S\\ref{sec:sdgd}), but oracle routing recovers accuracy (72.4\\% vs.\\ 50.4\\%), confirming that count and confusability are approximately additive on the probability scale within the observed accuracy range (0.37--0.86). On the logit scale, which is theoretically preferred for bounded metrics, equivalence is inconclusive ($p = 0.209$); dimensional separability is thus supported on the linear scale but remains an open question on the logit scale.\n",
+      "numLines": 3,
+      "startLine": 10,
+      "totalLines": 12
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DwMLhyiUJQkzXDbviJRF7H`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "offset": 52,
+  "limit": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "3a6cf487-0834-49a4-8785-8b5f2a276f2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QvY2iDumrx1nWqC4uN7vYJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2654,
+      "cache_read_input_tokens": 35007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2654
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-22T04:38:52.146Z_
+
+<details><summary>↩ Tool result · `toolu_01DwMLhyiUJQkzXDbviJRF7H`</summary>
+
+```text
+52	\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \citep{dror-2018-significance,card-2020-power}. The core claims (count decline, BCS--accuracy correlation) are robust to Bonferroni correction (all $p < 0.001$); the logit-scale interaction ($p = 0.047$) is the only result near the threshold and is already characterized as marginal.
+53	
+54	% \input{checklist}  % EMNLP 2026: checklist goes in OpenReview form, not PDF
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "09f38733-d94d-489f-919a-7950257cc67c",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+      "content": "\\paragraph{Multiple comparisons.} Few-NERD, FewRel, and DocRED draw from overlapping knowledge bases (Wikipedia, Wikidata), limiting dataset independence; we treat cross-dataset consistency as converging evidence rather than independent statistical replication \\citep{rothman-1990} (noting that within-study prompt comparisons involve correlated observations rather than independent tests). Within-dataset secondary analyses involve multiple looks; we report individual $p$-values and note that core claims rest on $p < 0.001$ \\citep{dror-2018-significance,card-2020-power}. The core claims (count decline, BCS--accuracy correlation) are robust to Bonferroni correction (all $p < 0.001$); the logit-scale interaction ($p = 0.047$) is the only result near the threshold and is already characterized as marginal.\n\n% \\input{checklist}  % EMNLP 2026: checklist goes in OpenReview form, not PDF",
+      "numLines": 3,
+      "startLine": 52,
+      "totalLines": 905
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+四处修改全部完成。修改摘要：
+
+| Task | 文件 | 行号 | 修改内容 |
+|------|------|------|----------|
+| 3 | `results.tex:52` | §4.3 DocRED段 "shared with centrality." 之后 | 插入 VIF=50.9 标准误膨胀 ~7 倍 caveat + Ridge regression 方向确认 + Appendix ref |
+| 4 | `discussion.tex:11` | §Discussion "independently addressable" | 替换为 "approximately additive on the probability scale within the observed accuracy range (0.37–0.86)" + 新增 logit scale inconclusive 句 |
+| 7 | `results.tex:78` | §4.4 NER null "absence of evidence rather than evidence of absence." 之后 | 插入 NER error-mode structure 解释（miss/boundary/type channels）+ `\ref{app:relaxed-matching}` (label 已验证存在) |
+| 8 | `main.tex:52` | Limitations → Multiple comparisons 段末 | 插入 Bonferroni robustness 声明，标注 logit-scale interaction p=0.047 为唯一临界值结果 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "uuid": "d80b3b34-6625-44c7-b844-43557154033a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012UHn3UQv5wu6KgNYnddf3J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2599,
+      "cache_read_input_tokens": 37661,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2599
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 49_
+
+四处修改全部完成。修改摘要：
+
+| Task | 文件 | 行号 | 修改内容 |
+|------|------|------|----------|
+| 3 | `results.tex:52` | §4.3 DocRED段 "shared with centrality." 之后 | 插入 VIF=50.9 标准误膨胀 ~7 倍 caveat + Ridge regression 方向确认 + Appendix ref |
+| 4 | `discussion.tex:11` | §Discussion "independently addressable" | 替换为 "approximately additive on the probability scale within the observed accuracy range (0.37–0.86)" + 新增 logit scale inconclusive 句 |
+| 7 | `results.tex:78` | §4.4 NER null "absence of evidence rather than evidence of absence." 之后 | 插入 NER error-mode structure 解释（miss/boundary/type channels）+ `\ref{app:relaxed-matching}` (label 已验证存在) |
+| 8 | `main.tex:52` | Limitations → Multiple comparisons 段末 | 插入 Bonferroni robustness 声明，标注 logit-scale interaction p=0.047 为唯一临界值结果 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 84313,
+  "duration_api_ms": 84937,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "b80503b1-72c6-4c6e-b227-e80cf01c72b2",
+  "total_cost_usd": 0.3974527500000001,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 28419,
+    "cache_read_input_tokens": 225222,
+    "output_tokens": 4220,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28419,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 337,
+        "cache_read_input_tokens": 37661,
+        "cache_creation_input_tokens": 2599,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2599
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1578,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001678,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 4220,
+      "cacheReadInputTokens": 225222,
+      "cacheCreationInputTokens": 28419,
+      "webSearchRequests": 0,
+      "costUSD": 0.39577475,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "5ee60189-3e38-4dbe-a064-7f3155d2d2d5"
+}
+```
+
+</details>
+
+---

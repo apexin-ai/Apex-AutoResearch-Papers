@@ -44,5 +44,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/fix-roberta-download-modelscope.md"
 }

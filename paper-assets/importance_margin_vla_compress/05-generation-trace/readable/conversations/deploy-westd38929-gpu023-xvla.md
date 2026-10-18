@@ -1,0 +1,1905 @@
+# deploy westd38929 gpu023 xvla
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 31
+- **Original source:** `logs/chats/worker_deploy-westd38929-gpu023-xvla_20260523T235350.jsonl`
+- **Structured JSON:** [`c6a1f6340a73868850b0.json`](../../sessions/c6/c6a1f6340a73868850b0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+63 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T23:58:32.791358+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T23:58:32.791872+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T23:58:32.792130+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T23:58:32.792542+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tmux list-sessions 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tmux list-sessions 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-23T23:58:32.792777+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"330589, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 4362 MiB\\n432791, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 5061 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T23:58:32.792984+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T23:58:32.793206+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T23:58:32.793431+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 4938 MiB, 97887 MiB, 35 %\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 5080 MiB, 97887 MiB, 1 %\\n2, NVIDIA RTX PRO 6000 Blackwell Server Edition, 1 MiB, 97887 MiB, 0 %\\n3, NVIDIA RTX PRO 6000 Blackwell Server Edition, 1 MiB, 97887 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T23:58:32.793649+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T23:58:32.793996+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_xvla_l2norm_k05_long_seed43\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:36:15.994Z\", \"updated_at\": \"2026-05-23T23:36:39.181Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Long seed43 CV — 验证 L2 在 Long 上的表现跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python eval_xvla_pruning_libero.py --mode l2_norm --keep_ratio 0.5 --suite libero_10 --domain_id 3 --seed 43 --model_path /root/autodl-tmp/X-VLA-Libero\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"xvla\", \"seed\": 43}}, \"eval_pi05_random_k085_spatial_seed42_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:11:42.724Z\", \"updated_at\": \"2026-05-23T23:17:54.459Z\", \"hypothesis\": \"π0.5 Random k=0.85 Spatial post-fix — 测试 D191 disruption peak（Goal k=0.85 Random=52.4%）是否跨 suite 复现。CPU RNG 修复后 random pruning 应产生可复现的结果。\", \"spec\": {\"command\": \"export CUDA_VISIBLE_DEVICES=2 && export MUJOCO_GL=egl && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp/importance_margin_vla_compress && python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --seed 42 --gpu 0\", \"server\": \"westd-41074\", \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"log_path\": \"/tmp/eval_pi05_random_k085_spatial_seed42_postfix.log\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\"}}, \"eval_xvla_l2norm_k05_spatial_seed43\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:02:46.599Z\", \"updated_at\": \"2026-05-23T23:03:08.556Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Spatial seed43 CV — 验证 L2 在 Spatial 上的表现是否跨 seed 一致\", \"spe
+…[truncated 3357 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T23:58:32.794350+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['spec', 'hypothesis', 'metrics']",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['spec', 'hypothesis', 'metrics']",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-23T23:58:32.794571+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T23:58:32.795262+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_openvla_baseline_long_seed42\": {\"spec\": {\"command\": \"python -u eval_openvla_l2norm_libero.py --mode baseline --suite libero_10 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-10 --unnorm_key libero_10 --num_episodes 50 --seed 42\", \"server\": \"westd-27271\", \"gpu\": [\"cuda:1\"], \"pid\": \"291093\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_openvla_baseline_long_seed42.log\", \"submitted_at\": \"2026-05-23T15:39:47.133Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-10\", \"seed\": 42, \"checkpoint_source\": \"openvla-7b-finetuned-libero-10\", \"eval_data\": \"libero_10\", \"wall_clock_seconds\": 29235.6, \"gpu_hours\": 8.12}, \"hypothesis\": \"OpenVLA Long (libero_10) baseline。E2 Must-Fix R6-W5 要求 OpenVLA 覆盖 Goal/Long 套件。Long 套件任务更复杂（520 步），需要建立 OpenVLA 在此套件的 baseline SR，作为后续 pruning 对比基准。\", \"metrics\": {\"overall_sr\": 0.528, \"total_episodes\": 500, \"total_success\": 264, \"time_min\": 483.3, \"task_sr\": {\"task01_alphabet_soup_tomato_sauce_basket\": 0.62, \"task02_cream_cheese_butter_basket\": 0.7, \"task03_stove_moka_pot\": 0.5, \"task04_black_bowl_drawer\": 0.48, \"task05_white_mug_left_yellow_mug_right\": 0.4, \"task06_book_caddy\": 0.7, \"task07_white_mug_plate_chocolate_pudding\": 0.5, \"task08_alphabet_soup_cream_cheese_basket\": 0.6, \"task09_both_moka_pots_stove\": 0.24, \"task10_yellow_white_mug_microwave\": 0.54}}}, \"eval_xvla_random_k05_spatial_seed43\": {\"hypothesis\": \"X-VLA Random k=0.5 Spatial seed43 — R6-C1 CV 复现，替代三连崩溃的 Goal seed43\", \"spec\": {\"command\": \"python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_spatial --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0 --output eval_results/eval_xvla_random_k05_spatial_seed
+…[truncated 19101 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T23:58:32.795562+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T23:58:32.795841+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "submit_training_job",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "submit_training_job",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T23:58:32.796043+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T23:58:32.796288+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "training job submit",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "training job submit",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T23:58:32.796490+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T23:58:32.796729+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tmux list-sessions",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T23:58:32.796930+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T23:58:32.797125+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-gpu=index,gpu_uuid --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "nvidia-smi --query-gpu=index,gpu_uuid --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T23:58:32.797373+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4\\n1, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516\\n2, GPU-d885bcad-4630-ef20-b2bc-2499c5aca08e\\n3, GPU-acf987b3-a60e-876a-773b-3e72756138ce\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T23:58:32.797639+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls /root/autodl-tmp/importance_margin_vla_compress/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls /root/autodl-tmp/importance_margin_vla_compress/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T23:58:32.797893+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"e3_cosine_openvla.log\\ne3_cosine_xvla.log\\neval_l2norm_k09_seed43.log\\neval_l2norm_k09_seed43_v2.log\\neval_oft_baseline_object_seed42.log\\neval_openvla_baseline_object_seed42.log\\neval_openvla_l2norm_k03_object_seed43.log\\neval_openvla_l2norm_k03_seed42.log\\neval_openvla_l2norm_k05_seed42.log\\neval_openvla_l2norm_k05_seed42_v4.log\\neval_openvla_l2norm_k07_seed42.log\\neval_openvla_random_k03_seed42.log\\neval_openvla_random_k07_object_seed43.log\\neval_openvla_sc_m128_vtconly_20k_seed42.log\\neval_pi05_baseline_goal_seed42.log\\neval_pi05_baseline_long_seed42.log\\neval_pi05_l2norm_k05_long_seed42.log\\neval_pi05_l2norm_k07_spatial_seed42.log\\neval_pi05_l2norm_k085_spatial_seed42.log\\neval_pi05_l2norm_k095_long_seed42.log\\neval_pi05_l2norm_k09_goal_seed42.log\\neval_pi05_random_k03_long_seed42.log\\neval_pi05_random_k05_long_seed42.log\\neval_pi05_random_k05_long_seed43.log\\neval_pi05_random_k085_goal_seed42.log\\neval_pi05_random_k085_goal_seed42_v3.log\\neval_pi05_random_k09_goal_seed42.log\\neval_pi05_random_k09_long_seed42.log\\neval_pi05_random_k09_long_seed43.log\\neval_random_k03_seed43.log\\neval_random_k07_seed42.log\\neval_random_k07_seed42_v2.log\\neval_random_k095_seed42.log\\neval_random_k095_seed42_v2.log\\neval_random_k095_seed43.log\\neval_random_k09_seed43.log\\neval_smolvla_baseline_object_seed43.log\\neval_smolvla_random_k095_object_seed43.log\\neval_xvla_l2norm_k05_goal_seed43.log\\neval_xvla_l2norm_k05_long_seed42.log\\neval_xvla_l2norm_k05_object_seed43.log\\neval_xvla_l2norm_k07_long_seed42.log\\neval_xvla_l2norm_k07_long_seed42_v2.log\\neval_xvla_random_k05_goal_seed42_v2.log\\neval_xvla_random_k05_goal_seed43.log\\neval_xvla_random_k05_goal_seed43_v2.log\\neval_xvla_random_k05_long_seed42.log\\neval_xvla_random_k05_long_seed43.log\\neval_xvla_random_k05_object_seed43.log\\neval_xvla_random_k05_spatial_seed43.log\\neval_xvla_random_k07_long_seed42.log\\npi05_l2norm_k07_goal
+…[truncated 797 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T23:58:32.798123+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "head -50 /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "head -50 /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T23:58:32.798392+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"X-VLA Vision Token Pruning Evaluation on LIBERO.\\n\\nPrunes vision tokens by L2 norm after Florence2's image encoder + linear projection,\\nbefore they enter the Florence2 language encoder. Evaluates on LIBERO suites.\\n\\nFollows official X-VLA evaluation protocol:\\n  - Absolute EEF control (use_delta=False)\\n  - 20D action space: [arm1: pos(3)+rot6d(6)+grip(1)] + [arm2: zeros(10)]\\n  - 20D proprio: [pos(3)+rot6d(6)+0.0] + zeros(10)\\n  - domain_id=3 for LIBERO\\n  - Closed-loop proprio update from last predicted action\\n\\nUsage:\\n    CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python eval_xvla_pruning_libero.py \\\\\\n        --model_path /path/to/X-VLA-Libero \\\\\\n        --suite libero_object \\\\\\n        --keep_ratio 0.5 \\\\\\n        --num_episodes 50 \\\\\\n        --gpu 0\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time as time_mod\\nfrom pathlib import Path\\nfrom functools import wraps\\n\\nos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 800,\\n    \\\"libero_object\\\": 800,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T23:58:32.798675+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['hypothesis', 'metrics', 'conclusion']",
+  "limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['hypothesis', 'metrics', 'conclusion']",
+    "limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-23T23:58:32.798884+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -20 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_object_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -20 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_object_seed43.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T23:58:32.799671+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_openvla_baseline_long_seed42\": {\"hypothesis\": \"OpenVLA Long (libero_10) baseline。E2 Must-Fix R6-W5 要求 OpenVLA 覆盖 Goal/Long 套件。Long 套件任务更复杂（520 步），需要建立 OpenVLA 在此套件的 baseline SR，作为后续 pruning 对比基准。\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.528, \"total_episodes\": 500, \"total_success\": 264, \"time_min\": 483.3, \"task_sr\": {\"task01_alphabet_soup_tomato_sauce_basket\": 0.62, \"task02_cream_cheese_butter_basket\": 0.7, \"task03_stove_moka_pot\": 0.5, \"task04_black_bowl_drawer\": 0.48, \"task05_white_mug_left_yellow_mug_right\": 0.4, \"task06_book_caddy\": 0.7, \"task07_white_mug_plate_chocolate_pudding\": 0.5, \"task08_alphabet_soup_cream_cheese_basket\": 0.6, \"task09_both_moka_pots_stove\": 0.24, \"task10_yellow_white_mug_microwave\": 0.54}}}, \"eval_xvla_random_k05_spatial_seed43\": {\"hypothesis\": \"X-VLA Random k=0.5 Spatial seed43 — R6-C1 CV 复现，替代三连崩溃的 Goal seed43\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.726, \"total_successes\": 363, \"total_episodes\": 500, \"wilson_ci_95\": [0.685, 0.763], \"per_task\": {\"T0_bowl_between_plate_ramekin\": 1, \"T1_bowl_next_ramekin\": 0.38, \"T2_bowl_table_center\": 0.88, \"T3_bowl_cookie_box\": 0.92, \"T4_bowl_top_drawer\": 0.88, \"T5_bowl_on_ramekin\": 0, \"T6_bowl_next_cookie_box\": 0.94, \"T7_bowl_stove\": 0.68, \"T8_bowl_next_plate\": 0.92, \"T9_bowl_wooden_cabinet\": 0.66}}}, \"eval_pi05_random_k03_goal_seed42\": {\"hypothesis\": \"π0.5 Random k=0.3 Goal seed42。极端剪枝 baseline——Random Goal curve: k=0.95=83.8%, k=0.925=71.2%, k=0.9=62.2%, k=0.85=52.4%, k=0.7=78.2%, k=0.5 running。k=0.3 预测继续下降。与 L2norm k=0.3 Goal (cqa1 GPU 2 同时跑) 对比 importance margin。\", \"metrics\": {\"overall_SR\": 0.51, \"total_successes\": 255, \"total_episodes\": 500, \"per_task\": {\"T0_open_drawer\": 0.82, \"T1_bowl_stove\": 0.22, \"T2_wine_cabinet\": 0.76, \"T3_drawer_bowl\": 0.34, \"T4_bowl_cabinet\": 0.64, \"T5_plate_stove\": 0.26,
+…[truncated 24603 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T23:58:32.799981+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 05:47:38 [INFO]   Ep 49/50 | SUCCESS | steps=129\\n2026-05-24 05:47:41 [INFO]   Ep 50/50 | SUCCESS | steps=129\\n2026-05-24 05:47:42 [INFO]   Task 9 SR: 50/50 (100.0%)\\n2026-05-24 05:47:42 [INFO] ============================================================\\n2026-05-24 05:47:42 [INFO] SUITE: libero_object | MODEL: xvla | keep_ratio: 0.50\\n2026-05-24 05:47:42 [INFO] Overall SR: 358/500 (71.6%)\\n2026-05-24 05:47:42 [INFO] 95% Wilson CI: [67.5%, 75.4%]\\n2026-05-24 05:47:42 [INFO]   Task 0: 98% (49/50) -- pick up the alphabet soup and place it in the basket\\n2026-05-24 05:47:42 [INFO]   Task 1: 44% (22/50) -- pick up the cream cheese and place it in the basket\\n2026-05-24 05:47:42 [INFO]   Task 2: 100% (50/50) -- pick up the salad dressing and place it in the basket\\n2026-05-24 05:47:42 [INFO]   Task 3: 82% (41/50) -- pick up the bbq sauce and place it in the basket\\n2026-05-24 05:47:42 [INFO]   Task 4: 100% (50/50) -- pick up the ketchup and place it in the basket\\n2026-05-24 05:47:42 [INFO]   Task 5: 74% (37/50) -- pick up the tomato sauce and place it in the basket\\n2026-05-24 05:47:42 [INFO]   Task 6: 2% (1/50) -- pick up the butter and place it in the basket\\n2026-05-24 05:47:42 [INFO]   Task 7: 84% (42/50) -- pick up the milk and place it in the basket\\n2026-05-24 05:47:42 [INFO]   Task 8: 32% (16/50) -- pick up the chocolate pudding and place it in the basket\\n2026-05-24 05:47:42 [INFO]   Task 9: 100% (50/50) -- pick up the orange juice and place it in the basket\\n2026-05-24 05:47:42 [INFO] Elapsed: 53.4 min\\n2026-05-24 05:47:42 [INFO] ============================================================\\n2026-05-24 05:47:42 [INFO] Results saved to eval_results/xvla_prune_k0.5_libero_object.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T23:58:32.800303+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": "{}",
+  "fields": "['status', 'hypothesis', 'conclusion']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "filters": "{}",
+    "fields": "['status', 'hypothesis', 'conclusion']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T23:58:32.801699+00:00_
+
+Error: result (160,893 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/29b3c3fe-1c6b-4dba-a74a-be81046641bb/tool-results/mcp-agent-ml-research-read_registry-1779580557337.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/29b3c3fe-1c6b-4dba-a74a-be81046641bb/tool-results/mcp-agent-ml-research-read_registry-1779580557337.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T23:58:32.802020+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/29b3c3fe-1c6b-4dba-a74a-be81046641bb/tool-results/mcp-agent-ml-research-read_registry-1779580557337.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n# Find all xvla experiments\nfor k, v in exps.items():\n    if 'xvla' in k.lower():\n        print(f\\\"{k}: status={v.get('status')}, conclusion={v.get('conclusion','')}\\\")\n\"",
+  "description": "Filter X-VLA experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/29b3c3fe-1c6b-4dba-a74a-be81046641bb/tool-results/mcp-agent-ml-research-read_registry-1779580557337.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n# Find all xvla experiments\nfor k, v in exps.items():\n    if 'xvla' in k.lower():\n        print(f\\\"{k}: status={v.get('status')}, conclusion={v.get('conclusion','')}\\\")\n\"",
+    "description": "Filter X-VLA experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T23:58:32.802337+00:00_
+
+eval_xvla_random_k05_spatial_seed43: status=DONE, conclusion=success
+eval_xvla_l2norm_k05_long_seed43: status=RUNNING, conclusion=
+eval_xvla_random_k05_long_seed43: status=DONE, conclusion=success
+eval_xvla_l2norm_k05_object_seed43: status=DONE, conclusion=negative
+eval_xvla_l2norm_k05_spatial_seed43: status=RUNNING, conclusion=
+eval_xvla_l2norm_k05_goal_seed43: status=DONE, conclusion=negative
+eval_xvla_random_k05_goal_seed43_v3: status=DONE, conclusion=killed
+eval_xvla_random_k05_goal_seed43_v2: status=DONE, conclusion=failed
+eval_xvla_random_k05_goal_seed43: status=DONE, conclusion=failed
+eval_xvla_l2norm_k03_goal_seed42_v4: status=DONE, conclusion=negative
+eval_xvla_random_k05_goal_seed42_v2: status=DONE, conclusion=success
+eval_xvla_random_k05_object_seed43: status=DONE, conclusion=success
+eval_xvla_l2norm_k03_spatial_seed42: status=DONE, conclusion=negative
+eval_xvla_l2norm_k07_goal_seed42_v2: status=DONE, conclusion=killed
+eval_xvla_l2norm_k05_goal_seed42_v3: status=DONE, conclusion=negative
+eval_xvla_l2norm_k05_spatial_seed42_v3: status=DONE, conclusion=negative
+eval_xvla_l2norm_k07_goal_seed42: status=DONE, conclusion=negative
+eval_xvla_l2norm_k05_long_seed42_v3: status=PREPARING, conclusion=killed
+eval_e5_xvla_attn_last_goal_k03: status=DONE, conclusion=killed
+eval_e5_xvla_attn_mean_goal_k03: status=DONE, conclusion=killed
+eval_xvla_l2norm_k03_goal_seed42_v3: status=PREPARING, conclusion=failed
+eval_xvla_l2norm_k03_goal_seed42_v2: status=PREPARING, conclusion=failed
+eval_xvla_l2norm_k03_goal_seed42: status=PREPARING, conclusion=killed
+eval_xvla_l2norm_k05_long_seed42_v2: status=PREPARING, conclusion=killed
+eval_xvla_l2norm_k05_goal_seed42_v2: status=PREPARING, conclusion=killed
+eval_xvla_l2norm_k05_spatial_seed42_v2: status=PREPARING, conclusion=killed
+eval_xvla_random_k05_goal_seed42: status=DONE, conclusion=failed
+eval_xvla_random_k05_long_seed42: status=DONE, conclusion=success
+eval_e5_xvla_attn_rollout_goal_k05_v2: status=DONE, conclusion=success
+eval_
+…[truncated 6882 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T23:58:32.802644+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "grep -n \"mode\" /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "grep -n \"mode\" /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T23:58:32.802924+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"15:        --model_path /path/to/X-VLA-Libero \\\\\\n61:    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"2toINF/X-VLA-Libero\\\",\\n62:                   help=\\\"HuggingFace model path or local dir\\\")\\n76:    p.add_argument(\\\"--mode\\\", type=str, default=\\\"l2_norm\\\",\\n86:def install_vision_pruning(model, keep_ratio: float, mode: str = \\\"l2_norm\\\"):\\n91:    original_encode = model.vlm._encode_image\\n100:        if mode == \\\"l2_norm\\\":\\n103:        elif mode == \\\"random\\\":\\n114:    model.vlm._encode_image = pruned_encode\\n115:    log.info(\\\"Vision pruning installed: keep_ratio=%.2f, mode=%s\\\", keep_ratio, mode)\\n122:def load_model(model_path: str, device: torch.device):\\n123:    model_dir = str(Path(model_path).resolve())\\n124:    sys.path.insert(0, model_dir)\\n127:    from modeling_xvla import XVLA\\n131:    log.info(\\\"Loading X-VLA from %s\\\", model_dir)\\n132:    config = XVLAConfig.from_pretrained(model_dir)\\n133:    model = XVLA(config)\\n135:    safetensors_path = Path(model_dir) / \\\"model.safetensors\\\"\\n140:        state_dict = _torch.load(Path(model_dir) / \\\"pytorch_model.bin\\\", map_location=\\\"cpu\\\")\\n141:    model.load_state_dict(state_dict, strict=False)\\n142:    model = model.to(device).eval()\\n144:    processor = XVLAProcessor.from_pretrained(model_dir, trust_remote_code=True)\\n149:    n_params = sum(p.numel() for p in model.parameters())\\n150:    log.info(\\\"Model loaded: %.1fM params, dtype=%s\\\", n_params / 1e6, model.dtype)\\n151:    return model, processor\\n255:def predict_actions(model, processor, images, task_desc, proprio_20d, domain_id,\\n269:    actions = model.generate_actions(\\n312:    model, processor = load_model(args.model_path, device)\\n317:        dummy_feats = model.vlm._encode_image(dummy_img)\\n323:    install_vision_pruning(model, args.keep_ratio, args.mode)\\n325:    num_actions_per_chunk = model.num_ac
+…[truncated 331 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T23:58:32.803275+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tmux new-session -d -s xvla_random_goal_s43_v4 \"CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0 2>&1 | tee /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_goal_seed43_v4.log\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tmux new-session -d -s xvla_random_goal_s43_v4 \"CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0 2>&1 | tee /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_goal_seed43_v4.log\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T23:58:32.803505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T23:58:32.803753+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-23T23:58:32.803974+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_goal_seed43_v4.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_goal_seed43_v4.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T23:58:32.804208+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"330589, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 4920 MiB\\n432791, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 5061 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T23:58:32.804419+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T23:58:32.804686+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "which python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "which python3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T23:58:32.804890+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T23:58:32.805086+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls /root/miniconda3/bin/python",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls /root/miniconda3/bin/python",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T23:58:32.805312+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T23:58:32.805564+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tmux kill-session -t xvla_random_goal_s43_v4 2>/dev/null; tmux new-session -d -s xvla_random_goal_s43_v4 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0 2>&1 | tee logs/eval_xvla_random_k05_goal_seed43_v4.log\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tmux kill-session -t xvla_random_goal_s43_v4 2>/dev/null; tmux new-session -d -s xvla_random_goal_s43_v4 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0 2>&1 | tee logs/eval_xvla_random_k05_goal_seed43_v4.log\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T23:58:32.805775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T23:58:32.806005+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sleep 10 && echo \"done\"",
+  "description": "Wait for model loading"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sleep 10 && echo \"done\"",
+    "description": "Wait for model loading"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T23:58:32.806244+00:00_
+
+done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T23:58:32.806440+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -10 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_goal_seed43_v4.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -10 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_goal_seed43_v4.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T23:58:32.806659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 07:57:36 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 07:57:36 [INFO] No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 07:57:36 [INFO] --- Task 0: open the middle drawer of the cabinet ---\\n`use_return_dict` is deprecated! Use `return_dict` instead!\\n/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:464: FutureWarning: The attention mask API under `transformers.modeling_attn_mask_utils` (`AttentionMaskConverter`) is deprecated and will be removed in Transformers v5.10. Please use the new API in `transformers.masking_utils`.\\n  warnings.warn(DEPRECATION_MESSAGE, FutureWarning)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T23:58:32.806867+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T23:58:32.807069+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"330589, GPU-b42ecc48-a1b8-31df-0560-c07e0b23fda4, 4920 MiB\\n432791, GPU-2b25bd52-0dc0-9bcf-0356-fa747af59516, 5061 MiB\\n469773, GPU-acf987b3-a60e-876a-773b-3e72756138ce, 4362 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-23T23:58:32.807351+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k05_goal_seed43_v4",
+  "field": "hypothesis",
+  "value": "X-VLA Random k=0.5 Goal seed43 v4 — tmux 包装防 SIGHUP。v1/v2/v3 均因 SSH 断连崩溃。R6-C1 CV 最后缺口。",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_xvla_random_k05_goal_seed43_v4",
+    "field": "hypothesis",
+    "value": "X-VLA Random k=0.5 Goal seed43 v4 — tmux 包装防 SIGHUP。v1/v2/v3 均因 SSH 断连崩溃。R6-C1 CV 最后缺口。",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T23:58:32.807601+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k05_goal_seed43_v4\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:57:54.246Z\", \"updated_at\": \"2026-05-23T23:57:54.247Z\", \"hypothesis\": \"X-VLA Random k=0.5 Goal seed43 v4 — tmux 包装防 SIGHUP。v1/v2/v3 均因 SSH 断连崩溃。R6-C1 CV 最后缺口。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3166}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T23:58:32.807818+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k05_goal_seed43_v4",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": "{'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0', 'server': 'westd-38929', 'data_path': 'libero_goal', 'data_count': 500, 'model_name': 'X-VLA-Libero', 'seed': 43, 'log_path': 'logs/eval_xvla_random_k05_goal_seed43_v4.log', 'checkpoint_source': '/root/autodl-tmp/X-VLA-Libero', 'eval_data': 'libero_goal'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_xvla_random_k05_goal_seed43_v4",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "importance_margin_vla_compress",
+    "spec": "{'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0', 'server': 'westd-38929', 'data_path': 'libero_goal', 'data_count': 500, 'model_name': 'X-VLA-Libero', 'seed': 43, 'log_path': 'logs/eval_xvla_random_k05_goal_seed43_v4.log', 'checkpoint_source': '/root/autodl-tmp/X-VLA-Libero', 'eval_data': 'libero_goal'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T23:58:32.808049+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.3008}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-23T23:58:32.808278+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k05_goal_seed43_v4",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_xvla_random_k05_goal_seed43_v4",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T23:58:32.808499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k05_goal_seed43_v4\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:57:54.246Z\", \"updated_at\": \"2026-05-23T23:58:07.864Z\", \"hypothesis\": \"X-VLA Random k=0.5 Goal seed43 v4 — tmux 包装防 SIGHUP。v1/v2/v3 均因 SSH 断连崩溃。R6-C1 CV 最后缺口。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.8382}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-23T23:58:32.808722+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k05_goal_seed43_v4",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": "{'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0', 'server': 'westd-38929', 'data_path': 'libero_goal', 'data_count': 500, 'model_name': 'X-VLA-Libero', 'seed': 43, 'log_path': 'logs/eval_xvla_random_k05_goal_seed43_v4.log', 'checkpoint_source': '/root/autodl-tmp/X-VLA-Libero', 'eval_data': 'libero_goal'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_xvla_random_k05_goal_seed43_v4",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "importance_margin_vla_compress",
+    "spec": "{'command': 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0', 'server': 'westd-38929', 'data_path': 'libero_goal', 'data_count': 500, 'model_name': 'X-VLA-Libero', 'seed': 43, 'log_path': 'logs/eval_xvla_random_k05_goal_seed43_v4.log', 'checkpoint_source': '/root/autodl-tmp/X-VLA-Libero', 'eval_data': 'libero_goal'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T23:58:32.808986+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k05_goal_seed43_v4\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:57:54.246Z\", \"updated_at\": \"2026-05-23T23:58:16.159Z\", \"hypothesis\": \"X-VLA Random k=0.5 Goal seed43 v4 — tmux 包装防 SIGHUP。v1/v2/v3 均因 SSH 断连崩溃。R6-C1 CV 最后缺口。\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_goal --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"data_path\": \"libero_goal\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 43, \"log_path\": \"logs/eval_xvla_random_k05_goal_seed43_v4.log\", \"checkpoint_source\": \"/root/autodl-tmp/X-VLA-Libero\", \"eval_data\": \"libero_goal\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.5375}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-23T23:58:32.809287+00:00_
+
+部署完成。汇总：
+
+## westd-38929 GPU 状态
+
+| GPU | 实验 | 状态 |
+|-----|------|------|
+| 0 | eval_xvla_l2norm_k05_spatial_seed43 | 🔄 运行中 (PID 330589) |
+| 1 | eval_xvla_l2norm_k05_long_seed43 | 🔄 运行中 (PID 432791, 另一 Worker) |
+| 2 | — | 空闲 |
+| 3 | **eval_xvla_random_k05_goal_seed43_v4** | ✅ 刚启动 (PID 469773, tmux: xvla_random_goal_s43_v4) |
+
+## GPU 2 情况说明
+
+任务指定的两个 fallback 都无法执行：
+1. **`eval_xvla_random_k05_object_seed43`** — 已完成 (SR=71.0%)，无需重跑
+2. **`eval_xvla_attention_k05_goal_seed43`** — X-VLA 脚本只支持 `l2_norm` 和 `random`，不支持 `attention` 模式
+
+R6-C1 X-VLA CV seed43 实验已全部覆盖（4 running/done + Goal v4 刚部署），GPU 2 暂无明确的 X-VLA CV 实验可部署。需要指示。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_deploy-westd38929-gpu023-xvla_20260523T235350"
+}
+```
+
+</details>
+
+---

@@ -2367,5 +2367,6 @@
       ],
       "message_count": 57
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/fix-westd41074-gpu23-correct-deploy.md"
 }

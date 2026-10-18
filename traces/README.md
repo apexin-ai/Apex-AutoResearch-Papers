@@ -1,8 +1,8 @@
 # Research Trace Atlas
 
-Inspect how each paper was produced: recorded tasks, conversations, tool calls, results, and loop notes. All eight released trace archives have readable JSON counterparts.
+Inspect how each paper was produced: recorded tasks, conversations, tool calls, results, and loop notes. All eight released trace archives have GitHub-friendly Markdown transcripts and complete JSON counterparts.
 
-**Start here:** download the repository and open [the offline preview](demo.html), or run `python3 scripts/serve_traces.py --open` from the repository root for the complete browser. On GitHub, use the paper guides below to browse JSON directly.
+**Start here:** download the repository and open [the offline preview](demo.html), or run `python3 scripts/serve_traces.py --open` from the repository root for the complete browser. On GitHub, use the paper guides below and open **Readable Markdown** for the clearest transcript view; JSON links remain beside each transcript.
 
 You can also send `demo.html` on its own: it embeds all eight sample rounds and its interface resources, and can export each sample round as JSON without a server.
 

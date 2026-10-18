@@ -70,5 +70,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/sync-degradation-curve-latest.md"
 }

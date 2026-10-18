@@ -67,5 +67,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/gpu-gemma2-kill-and-debug.md"
 }

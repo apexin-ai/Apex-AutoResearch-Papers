@@ -1,0 +1,76 @@
+# reviewer / loop_3.md
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_3.md`
+- **Structured JSON:** [`07e34b28e553cabf2251.json`](../../sessions/07/07e34b28e553cabf2251.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 3
+reason: max_wall_time
+updated: '2026-05-15T16:20:06+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:0（单卡 RTX PRO 6000 Blackwell 98GB，服务器 cqa1-38874）
+- exp012_llama_fewnerd_r3 registry 显示 RUNNING 但实际已 crash（flashinfer sm_120 JIT 失败）——不要信 registry 状态，必须 SSH 验证
+- Llama-3.3-70B-FP8 在此服务器上无法运行（quantization=modelopt → FlashInferFP8ScaledMMLinearKernel → sm_120 gemm JIT 编译失败，Blackwell GPU 不兼容）。只有 AWQ-INT4 路径可行
+- /root/miniconda3 下有损坏的 `~orch` 分发目录，pip resolver 会 TypeError。需 `rm -rf /root/miniconda3/lib/python3.12/site-packages/~orch*` 修复
+
+### 2. 🖥️ 基础设施快照
+- 服务器：cqa1-38874(root)，工作目录 /root/schema-dag-extraction
+- Python：/root/miniconda3/bin/python3（conda base 环境）
+- 模型：Qwen3-32B-FP8 → /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/；Llama-3.3-70B-FP8 → /root/autodl-tmp/.hf_cache/llama-3.3-70b-instruct-fp8/（不可用）
+- /root/schema-dag-extraction/models/ 为空（AWQ 模型未下载）
+- 数据：Few-NERD /root/schema-dag-extraction/data/parquet/test.parquet；FewRel /root/schema-dag-extraction/data/fewrel_parquet/
+- 活跃进程：PID 290420 (VLLM::EngineCore, 94GB, Qwen3-32B for fewrel_40rel)
+- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/
+- 图表输出：figures/paper/fig_count_curves.{pdf,png}（本地）；results/fig_count_quality.{pdf,png}（远程）
+
+### 3. 📊 当前状态
+**我刚完成但尚未发送报告**（context 在发送前被重置）。以下发现需要立即 post 给 Director：
+
+1. **[CRITICAL] Figure fig_count_curves (c) MAVEN 面板**：Relaxed F1 随 type count 递增（0.12→0.25），与 Few-NERD/FewRel 的 count degradation 趋势相反。论文若声称 "count degradation 是普遍现象"，MAVEN 直接打脸。必须在论文中解释或限定 claim 范围。
+2. **[WARNING] exp012_llama_fewnerd_r3 registry 不一致**：registry=RUNNING，实际 crash（/tmp/exp012_r3.log 尾部 = RuntimeError: Engine core initialization failed）。需更新 registry 为 FAILED。
+3. **[INFO] exp_fewrel_40rel 正常运行中**：当前处理到 count_32 batch，Qwen3-32B 推理正常（~4000-6000 toks/s input）。
+4. **[INFO] 文献综述 v2 通过审查**：30 篇论文，覆盖 4 个新方向（结构化解码/标签歧义/评估方法/置信度校准），之前标注的 #19-21 作者信息已补全。
+
+Registry 状态：
+- exp_fewrel_40rel: RUNNING — FewRel 40-rel 中间点，exp1 count curve 进行中
+- exp012_llama_fewnerd_r3: RUNNING（实际已 crash）
+- exp012_llama_awq: PREPARING — AWQ 模型未下载
+- exp012_llama_8b: PREPARING — 8B 模型未下载
+
+### 4. 📋 待办（条件触发式）
+- **立即** → 用 reviewer_post_to_director 发送上述 4 条发现（特别是 MAVEN 图表 CRITICAL）
+- exp_fewrel_40rel 完成通知到达 → 审查结果：40-rel 是否在 16-rel 和 80-rel 之间单调递减（确认 scaling claim）
+- exp012_llama_awq 开始运行 → 核查 GPU 合规 + 模型路径 + quantization 类型
+- Paper Agent 提交章节审查 → 按 5.1/5.2 维度审查，特别关注 MAVEN count curve 是否被合理解释
+- Bootstrap CI 差异（0.112 vs 0.156 for Few-NERD pairwise r）仍未解决 → 论文若引用此数据必须用 0.112（当前值），不能用 0.156（旧值）
+
+### 5. 🎯 战略上下文
+- 项目核心：2-claim analysis paper（Claim 1: confusability independence + scaling; Claim 2: multi-channel degradation）→ EMNLP 2026 ARR May 25（还剩 10 天）
+- D019: SDGD v2 confirmed negative → Claim 3 dropped，SDGD 作为 negative result 放 future work
+- D020: Paper Agent 已启动写作阶段
+- **最大风险**：MAVEN count curve 反向趋势。如果论文不 qualify claim 范围（只限 NER/RE），审稿人会直接 reject。建议分拆讨论：NER/RE 确认 count degradation，ED 因 trigger-level evaluation + extreme class imbalance 表现不同
+- **易判断错的事**：不要假设 Llama FP8 能在 Blackwell 上跑——3 次尝试全失败，根因是 modelopt quantization 触发 flashinfer ScaledMM kernel。只有 AWQ-INT4 可行
+- **exp012_r3 日志在 /tmp/**：重启会丢失，但此实验已确认不可行，不需要保留
+- 文献综述 30 篇够用，不需要再扩展
+
+
+---

@@ -29,6 +29,7 @@
       "preview": "[PROJECT BOOTSTRAP] 项目: causal_style_decomp_judge | Loop #1 | 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDEA_BRIEF.md **立刻 Read `workspace://projects/causal_style_decomp_judge/docs/IDEA_BRIEF.md`**。 这份文档是 Idea 阶段立项时自动生成的正式交接，包含 Core Problem / Op",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-20260521-225051.md",
       "path": "sessions/90/90cb9f0362908543977d.json"
     },
     {
@@ -46,6 +47,7 @@
       "preview": "[PROJECT BOOTSTRAP] 项目: causal_style_decomp_judge | Loop #1 | 阶段: MVP 验证 你刚立项，这是一个新项目的首次启动。 ## 必读: IDEA_BRIEF.md **立刻 Read `workspace://projects/causal_style_decomp_judge/docs/IDEA_BRIEF.md`**。 这份文档是 Idea 阶段立项时自动生成的正式交接，包含 Core Problem / Op",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260521-015828.md",
       "path": "sessions/db/db4cc3ca35c639438cc1.json"
     },
     {
@@ -63,6 +65,7 @@
       "preview": "[Director 指令] **新项目 causal_style_decomp_judge — MVP 代码准备** 项目核心：用因果推断方法分离 LLM judge 评分中的 style bias。详细方案见 `docs/IDEA_BRIEF.md`。 **现在要做的（不需要 GPU，本地完成）**： ### 1. 项目代码框架搭建 在 `projects/causal_style_decomp_judge/artifacts/` 下创建以下代码文件： **`csd_pip",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/coordination-coordination-20260522-003153.md",
       "path": "sessions/f2/f25d182908b733a703fc.json"
     },
     {
@@ -80,6 +83,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/infra-model-download-v2.md",
       "path": "sessions/41/4129b2639657e5832ee7.json"
     },
     {
@@ -97,6 +101,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/infra-quick-setup.md",
       "path": "sessions/e6/e6749427a9ef85e484e8.json"
     },
     {
@@ -114,6 +119,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/dryrun-content-verification.md",
       "path": "sessions/ca/ca43bafeb227179b63c2.json"
     },
     {
@@ -131,6 +137,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/dryrun-ate-analysis.md",
       "path": "sessions/db/db714c04b31ae40297cb.json"
     },
     {
@@ -148,6 +155,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/dryrun-judge-scoring.md",
       "path": "sessions/f7/f7ff44bd101179007868.json"
     },
     {
@@ -165,6 +173,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/ops-organize-8b-results-and-monitor-32b.md",
       "path": "sessions/a5/a5e0aafdbc925b0b34c6.json"
     },
     {
@@ -182,6 +191,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/exec-pairwise-scoring-32b.md",
       "path": "sessions/b3/b37ad9e2ca2e069a8a7f.json"
     },
     {
@@ -199,6 +209,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/exp-verbosity-32b-steps3to7.md",
       "path": "sessions/68/683f9bd1923ee0251207.json"
     },
     {
@@ -216,6 +227,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/ops-kill-vllm.md",
       "path": "sessions/54/54b9977e6e99e1884dda.json"
     },
     {
@@ -233,6 +245,7 @@
       "preview": "[Director 指令] **[Partial Draft] 启动 Intro + Figure 1 设计 — EMNLP 2026 ARR** API 等待窗口，先推进不依赖完整实验数据的写作。 **投稿目标**: EMNLP 2026 Main via ARR, Long paper (8 pages), Deadline: ARR June cycle (~June 15) **Core Claims** (详见 `paper_framing.md`): - C1 (",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-agent-coordination.md",
       "path": "sessions/d0/d0b83187a59df9ff7664.json"
     },
     {
@@ -250,6 +263,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-introduction.md",
       "path": "sessions/7e/7e10d5db84c2460ebcf5.json"
     },
     {
@@ -267,6 +281,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-register-nli-only-gating.md",
       "path": "sessions/8b/8b9c61aedaa9fb8d8534.json"
     },
     {
@@ -284,6 +299,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing.md",
       "path": "sessions/b6/b61627ebe2d23ddea65a.json"
     },
     {
@@ -301,6 +317,7 @@
       "preview": "[Round 1 审稿请求]: ## Review Assignment — R1: Methods & Experiments You are reviewing the paper **\"The Likert Blindspot: Detecting Hidden Style Bias in LLM Judges via Counterfactual Pairwise Comparison\"** for a top ML venue (acceptance rate ~2",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-1-coordination.md",
       "path": "sessions/d5/d51689b3494032df15ac.json"
     },
     {
@@ -318,6 +335,7 @@
       "preview": "[Round 1 审稿请求]: ## Review Assignment — R2: Novelty & Related Work You are reviewing the paper **\"The Likert Blindspot: Detecting Hidden Style Bias in LLM Judges via Counterfactual Pairwise Comparison\"** for a top ML venue (acceptance rate ~",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-2-coordination.md",
       "path": "sessions/fe/fe1bbde7623f8449bd9a.json"
     },
     {
@@ -335,6 +353,7 @@
       "preview": "[Reviewer 2 审稿意见]: ## R2 审稿报告：Novelty & Related Work **论文**: \"The Likert Blindspot: Detecting Hidden Style Bias in LLM Judges via Counterfactual Pairwise Comparison\" **Venue**: EMNLP 2026 (via ACL Rolling Review) **审稿维度**: Novelty, Related ",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-copy-2.md",
       "path": "sessions/9d/9db2d5c10f518e51ec86.json"
     },
     {
@@ -352,6 +371,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单 cuda:0/1/2/3（config 确认），cuda:3 是 driver anomaly（100% compute, 0 MiB memory, 无进程）——不要往 cuda:3 调度任务 - Formality axis 的 content_verification.py **代码",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260522-183404.md",
       "path": "sessions/e3/e347a2407583df85188d.json"
     },
     {
@@ -369,6 +389,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/ops-kill-vllm-fix-gate.md",
       "path": "sessions/8e/8e52e94469b904ecf133.json"
     },
     {
@@ -386,6 +407,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-analysis.md",
       "path": "sessions/ec/ecda3c38a2c6e0714be1.json"
     },
     {
@@ -403,6 +425,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-batch1-scoring-v3.md",
       "path": "sessions/00/000f88e9b15e720de575.json"
     },
     {
@@ -420,6 +443,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-figure.md",
       "path": "sessions/14/14b6abe568382347de41.json"
     },
     {
@@ -437,6 +461,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-scoring-register-gpt4o.md",
       "path": "sessions/14/14a01877166d5a9b11a2.json"
     },
     {
@@ -454,6 +479,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-scoring-verbosity-gpt4o.md",
       "path": "sessions/f6/f679d460e2e37e299719.json"
     },
     {
@@ -471,6 +497,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-writing-method.md",
       "path": "sessions/02/02d5f566f6cc4145c7a0.json"
     },
     {
@@ -488,6 +515,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/ops-exp006-diagnosis.md",
       "path": "sessions/68/6844cd8d5f70cb64da73.json"
     },
     {
@@ -505,6 +533,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-figure-pipeline-diagram.md",
       "path": "sessions/5d/5d2e3138c5c2c4d1aebb.json"
     },
     {
@@ -522,6 +551,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-figure-forest-plot.md",
       "path": "sessions/04/04381aa2400e539afd4d.json"
     },
     {
@@ -539,6 +569,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-figure-sync-figures.md",
       "path": "sessions/c4/c4fe50cabd4331ed2fab.json"
     },
     {
@@ -556,6 +587,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-figure-forest-plot-sync.md",
       "path": "sessions/b5/b5b672dde2a7aea4e009.json"
     },
     {
@@ -573,6 +605,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-gee-verbosity-length-confound.md",
       "path": "sessions/fd/fd47f72d8d6df90fe796.json"
     },
     {
@@ -590,6 +623,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/ops-exp006-gpu-status-check.md",
       "path": "sessions/21/21d6bf2c9c760c7e20b6.json"
     },
     {
@@ -607,6 +641,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/ops-cleanup-deploy-vllm-alpacaeval.md",
       "path": "sessions/ce/ce6471b0440b42f98a28.json"
     },
     {
@@ -624,6 +659,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-bootstrap-10k-holm-cohensd.md",
       "path": "sessions/e8/e8ddf3858d1130ff2c71.json"
     },
     {
@@ -641,6 +677,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-mtbench-qwen32b-scoring.md",
       "path": "sessions/3d/3de28443fe5c422caea6.json"
     },
     {
@@ -658,6 +695,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-gpt4o-crossbenchmark-scoring.md",
       "path": "sessions/17/17195fdcb000a746846c.json"
     },
     {
@@ -675,6 +713,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-nli-gate-gpt4o-spotcheck.md",
       "path": "sessions/24/24d6e5f1fa299c729fea.json"
     },
     {
@@ -692,6 +731,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-direction-aware-vs-strict-gate.md",
       "path": "sessions/f9/f9bbd8047b2b620366c5.json"
     },
     {
@@ -709,6 +749,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/paper-research-citation-fill.md",
       "path": "sessions/97/97104a9652a70a398be1.json"
     },
     {
@@ -726,6 +767,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-nli-gate-fn-selection-bias.md",
       "path": "sessions/fb/fb52cce50b938d38ef89.json"
     },
     {
@@ -743,6 +785,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-claude-tost-equivalence.md",
       "path": "sessions/d4/d4661de1af9f53c2a021.json"
     },
     {
@@ -760,6 +803,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-bt-model-diagnostics.md",
       "path": "sessions/53/5339c6ef10a41017d32e.json"
     },
     {
@@ -777,6 +821,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-originality-minimal-subset.md",
       "path": "sessions/e4/e4e41da5634b362c8b4d.json"
     },
     {
@@ -794,6 +839,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/code-cf-vs-dr-qwen32b.md",
       "path": "sessions/a4/a477ec1b6bd5e0e18210.json"
     },
     {
@@ -811,6 +857,7 @@
       "preview": "[HANDOFF] 你是 Director，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无本地 GPU 分配（纯 API 实验项目），不要尝试 `director_allocate_gpus` - Gemini API 走 OpenRouter 代理：base_url=`http://47.94.22.126/v1`，key 已存储为 secret - EMNLP 2026 主文本严格 8 页限制，Li",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-20260522-182957.md",
       "path": "sessions/b7/b7d231640182a2ab7b9e.json"
     },
     {
@@ -828,6 +875,7 @@
       "preview": "[HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 分配：cuda:0,1 = Qwen3-32B vLLM (port 8000)，cuda:2,3 = Llama-70B vLLM (port 8003)。不可挪用、不可停 vLLM - OpenRouter API key = `tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiog",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/coordination-coordination-20260525-061331.md",
       "path": "sessions/43/43ad69658e71d6e38757.json"
     },
     {
@@ -845,6 +893,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-tost-delta.md",
       "path": "sessions/0c/0c4d16f417845da37aa7.json"
     },
     {
@@ -862,6 +911,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-verbosity-bt-split.md",
       "path": "sessions/fe/fee66f7732f14811935d.json"
     },
     {
@@ -879,6 +929,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/research-missing-refs.md",
       "path": "sessions/cf/cf9b5aacc4d40ee9a9d9.json"
     },
     {
@@ -896,6 +947,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/infra-check-annotation-upload.md",
       "path": "sessions/4b/4ba67b230c913b9cf774.json"
     },
     {
@@ -913,6 +965,7 @@
       "preview": "[HANDOFF] 你是 Director，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 实验（纯 LLM API 调用 + 论文写作），无设备号限制 - 标注数据路径：A1 `data/annotation_sheet_1.csv`（latin-1 编码），A2 `data/annotation_sheet_2.csv.xlsx`（Excel 格式，需 openpyxl，venv 在 `/t",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination-20260525-061332.md",
       "path": "sessions/c5/c5d36ac078cfed2f58c8.json"
     },
     {
@@ -930,6 +983,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目是 measurement/analysis 论文，无 GPU 训练实验。westb-29275 的 4×RTX PRO 6000 Blackwell 96GB 空闲，Reviewer #108 书面确认无值得跑的 GPU 实验。不要建议跑新 GPU 实验。 - 所有实验使用 API-based j",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination-20260525-061337.md",
       "path": "sessions/b2/b253a3c7e87c745e9e25.json"
     },
     {
@@ -947,6 +1001,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-nli-bias-extended.md",
       "path": "sessions/e9/e99b97064c8afb5583a2.json"
     },
     {
@@ -964,6 +1019,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/bugfix-gee-and-data-discrepancy.md",
       "path": "sessions/0d/0d0683e4a538f67e2e00.json"
     },
     {
@@ -981,6 +1037,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/bugfix-claude-pipeline-diagnosis.md",
       "path": "sessions/54/549d475197fdcfd7f209.json"
     },
     {
@@ -998,6 +1055,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-r15-mf3-gee-n355.md",
       "path": "sessions/f4/f482b9e3a5df8ca05158.json"
     },
     {
@@ -1015,6 +1073,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/analysis-r15-sf4-fk-length-control.md",
       "path": "sessions/2c/2cce9b8c5960286f7f79.json"
     },
     {
@@ -1032,6 +1091,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/exp-r15-mf2-claude-tost-pool.md",
       "path": "sessions/a5/a59f24ea742106d99dca.json"
     },
     {
@@ -1049,6 +1109,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/exp-r15-sf3-100pt-likert-multi.md",
       "path": "sessions/f8/f846f030681017461e91.json"
     },
     {
@@ -1066,6 +1127,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/verify-table23-bt-values.md",
       "path": "sessions/78/78adf41ad6e608954f7b.json"
     },
     {
@@ -1083,6 +1145,7 @@
       "preview": "[HANDOFF] 你是 Main Agent，这是 Loop #3。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 论文已于 2026-05-25 提交 EMNLP 2026 ARR，OpenReview 由运维人工完成。**任何对 `docs/paper/` 的修改不会影响已提交版本**，仅用于 rebuttal/camera-ready 准备 - GPU 白名单：westb-29275 的 gpu_ids 需查 `get_pro",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/coordination-coordination.md",
       "path": "sessions/6e/6e918aa4e8cdc64d944e.json"
     },
     {
@@ -1100,6 +1163,7 @@
       "preview": "[HANDOFF] 你是 Director，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目无 GPU 实验，纯论文写作项目（CSD = Controlled Style Decomposition，LLM judge style bias 分析论文） - 匿名 repo 路径：`/tmp/anon_repo`，remote：`https://github.com/anonymous-nlp-2026-2/",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/director-coordination.md",
       "path": "sessions/82/82efd14fef289dd3eed9.json"
     },
     {
@@ -1117,6 +1181,7 @@
       "preview": "[HANDOFF] 你是 Research Reviewer，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 论文 DDL: May 27 AoE（非 May 25，之前误判过） - Table T1 AEval×Llama-70B×Form BT=.756 已被 Agent 确认为 all-trials 方法，与 Table 1 一致（`build_bt_comparisons()` 遍历 trial1+tri",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/reviewer-coordination.md",
       "path": "sessions/86/8651ca716d2542a9e0e5.json"
     },
     {
@@ -1134,6 +1199,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/audit-paper-internal-consistency.md",
       "path": "sessions/59/59bdf4a1274b184da777.json"
     },
     {
@@ -1151,6 +1217,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/audit-ref-check-a.md",
       "path": "sessions/ec/ecbaf1d6454a2f5994e5.json"
     },
     {
@@ -1168,6 +1235,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/audit-ref-check-b.md",
       "path": "sessions/87/87f52bd265fbcba4f9cd.json"
     },
     {
@@ -1185,6 +1253,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/conversations/audit-ref-check-c.md",
       "path": "sessions/ed/edf048ac53f60021ae88.json"
     },
     {
@@ -1202,6 +1271,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-mvp-pipeline.md",
       "path": "sessions/d9/d925a189430b72bd051e.json"
     },
     {
@@ -1219,6 +1289,7 @@
       "preview": "I need to find: 1. The resources.yaml file used by the agent-ml-research MCP server to configure SSH servers. Search in /home/ubuntu/.agent-ml-research-idea_gen_0514_5/ and /home/ubuntu/agent-ml-research/ directories. 2. Any project config ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-env-setup.md",
       "path": "sessions/50/50ccdcfb8647f7096589.json"
     },
     {
@@ -1236,6 +1307,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-model-download.md",
       "path": "sessions/cc/cccfb1d025ba6f1d763a.json"
     },
     {
@@ -1253,6 +1325,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested a full server environment set",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-env-setup-v2.md",
       "path": "sessions/df/df9c1ea39558929d8b78.json"
     },
     {
@@ -1270,6 +1343,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-model-download-v2.md",
       "path": "sessions/4b/4ba23c3828e5a1baad3a.json"
     },
     {
@@ -1287,6 +1361,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-model-redownload.md",
       "path": "sessions/c6/c6a082a4a8d209577872.json"
     },
     {
@@ -1304,6 +1379,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-diagnose-and-complete.md",
       "path": "sessions/06/06e83819907df961a258.json"
     },
     {
@@ -1321,6 +1397,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-quick-setup.md",
       "path": "sessions/53/532b20df1a11f5383f23.json"
     },
     {
@@ -1338,6 +1415,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-quick-fixes.md",
       "path": "sessions/cb/cb45609836d66179639a.json"
     },
     {
@@ -1355,6 +1433,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-dual-model-download.md",
       "path": "sessions/b0/b06fccc043eca6c86335.json"
     },
     {
@@ -1372,6 +1451,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-status-check.md",
       "path": "sessions/b2/b29d437100a8d923f5b4.json"
     },
     {
@@ -1389,6 +1469,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-download-progress-check.md",
       "path": "sessions/98/98faad8cf7a0c8ff2554.json"
     },
     {
@@ -1406,6 +1487,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-8b-readiness-check.md",
       "path": "sessions/fd/fd9be92ea2485c08b5f0.json"
     },
     {
@@ -1423,6 +1505,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/dryrun-content-verification.md",
       "path": "sessions/90/90c42645b60439c67716.json"
     },
     {
@@ -1440,6 +1523,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/dryrun-ate-analysis.md",
       "path": "sessions/23/236d6976a31a80c35cc7.json"
     },
     {
@@ -1457,6 +1541,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/dryrun-judge-scoring.md",
       "path": "sessions/05/05aaf7a2b9194d4c6680.json"
     },
     {
@@ -1474,6 +1559,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-8b-progress-and-bertscore.md",
       "path": "sessions/20/20679d33db39d973fff4.json"
     },
     {
@@ -1491,6 +1577,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-code-sync-and-status.md",
       "path": "sessions/68/68ce03391995cea667dc.json"
     },
     {
@@ -1508,6 +1595,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/dryrun-judge-scoring-v2.md",
       "path": "sessions/16/161ad13c608ab1d19d7a.json"
     },
     {
@@ -1525,6 +1613,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-fix-bertscore-download.md",
       "path": "sessions/d6/d6de7b58562bc4894298.json"
     },
     {
@@ -1542,6 +1631,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/mvp-check-8b-and-launch.md",
       "path": "sessions/86/8667a11f85d6ca1c524c.json"
     },
     {
@@ -1559,6 +1649,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/mvp-launch-pipeline.md",
       "path": "sessions/45/45e661d4960acb5e15ea.json"
     },
     {
@@ -1576,6 +1667,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/mvp-fix-thinking-and-restart.md",
       "path": "sessions/fb/fb5113614e9dd1403e97.json"
     },
     {
@@ -1593,6 +1685,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/mvp-sync-and-restart-cf.md",
       "path": "sessions/7a/7aa7d22bfd48960f0f1d.json"
     },
     {
@@ -1610,6 +1703,7 @@
       "preview": "Search the project directory /home/ubuntu/.agent-ml-research-idea_gen_0514_5/ for any OPENAI_API_KEY, API key, or credentials configuration. Look in: 1. Any .env files 2. Any config.yaml / config.json / settings files 3. Any secrets files 4",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/mvp-urgent-status-and-launch.md",
       "path": "sessions/ca/ca2887864a0506dad8e2.json"
     },
     {
@@ -1627,6 +1721,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-sync-cv-fix-to-local.md",
       "path": "sessions/23/234ccec67777c3d52fec.json"
     },
     {
@@ -1644,6 +1739,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/mvp-quality-check-and-code-sync.md",
       "path": "sessions/11/11b3c95c34501c8574f3.json"
     },
     {
@@ -1661,6 +1757,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/mvp-nli-count-and-sync.md",
       "path": "sessions/97/97dff7da375c0a744948.json"
     },
     {
@@ -1678,6 +1775,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/mvp-32b-progress-and-nli-investigate.md",
       "path": "sessions/00/00ce28414ab842e74ead.json"
     },
     {
@@ -1695,6 +1793,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/mvp-kill-zombie-and-verify.md",
       "path": "sessions/e0/e0dbb0d67831fd0a014e.json"
     },
     {
@@ -1712,6 +1811,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/mvp-resume-scoring-and-ate.md",
       "path": "sessions/af/afb262ced7d22cb6eed1.json"
     },
     {
@@ -1729,6 +1829,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/check-mvp-status-20260520.md",
       "path": "sessions/66/66ed140eafabefdddfd0.json"
     },
     {
@@ -1746,6 +1847,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/run-ate-analysis-20260520.md",
       "path": "sessions/be/bed0949270bdfa3612df.json"
     },
     {
@@ -1763,6 +1865,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/run-ate-final-20260520.md",
       "path": "sessions/85/858f346af171ccf0b37d.json"
     },
     {
@@ -1780,6 +1883,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-organize-8b-results-and-monitor-32b.md",
       "path": "sessions/41/412e88a6531451a610d5.json"
     },
     {
@@ -1797,6 +1901,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-32b-monitor-and-prep.md",
       "path": "sessions/c5/c5e3e31480de45468d0b.json"
     },
     {
@@ -1814,6 +1919,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-32b-prep-and-vllm-start.md",
       "path": "sessions/3a/3a0e6c6ed6b1dcb50100.json"
     },
     {
@@ -1831,6 +1937,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-32b-wait-and-launch.md",
       "path": "sessions/1d/1d56a4fb2dbdafe72e6c.json"
     },
     {
@@ -1848,6 +1955,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exec-32b-full-setup.md",
       "path": "sessions/2f/2f2d7e61f223d3f6e3a3.json"
     },
     {
@@ -1865,6 +1973,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exec-32b-counterfactual-gen.md",
       "path": "sessions/3b/3b1327e4701ab19ac804.json"
     },
     {
@@ -1882,6 +1991,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exec-32b-full-pipeline.md",
       "path": "sessions/64/64551568ddbbfc2d5ba7.json"
     },
     {
@@ -1899,6 +2009,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exec-pairwise-scoring-32b.md",
       "path": "sessions/d7/d723228678e4fc7bf37f.json"
     },
     {
@@ -1916,6 +2027,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exec-pairwise-dual-32b.md",
       "path": "sessions/8d/8da868ef7b7b3d7a2ecd.json"
     },
     {
@@ -1933,6 +2045,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested execution of a complete \"verb",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-verbosity-32b-full-pipeline.md",
       "path": "sessions/6f/6f3e4497ed4c3e33102b.json"
     },
     {
@@ -1950,6 +2063,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-verbosity-32b-continue.md",
       "path": "sessions/bb/bbf3d1d0fbaceb4d30ba.json"
     },
     {
@@ -1967,6 +2081,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-verbosity-32b-steps3to7.md",
       "path": "sessions/ff/ff7f1bb788573487602c.json"
     },
     {
@@ -1984,6 +2099,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-kill-vllm.md",
       "path": "sessions/19/19a02b3f141ffad0acd6.json"
     },
     {
@@ -2001,6 +2117,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-verbosity-nli-rerun.md",
       "path": "sessions/fc/fcbab2a57ccde260ee4f.json"
     },
     {
@@ -2018,6 +2135,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-verbosity-nli-only-gate.md",
       "path": "sessions/ec/ecb16b7d2f8ca356637b.json"
     },
     {
@@ -2035,6 +2153,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-verbosity-scoring-pipeline.md",
       "path": "sessions/4f/4fb5d2a32e5de696b0d9.json"
     },
     {
@@ -2052,6 +2171,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested execution of \"exp-004 Tone ax",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-tone-pilot-exp004.md",
       "path": "sessions/46/46cf1ae3a1e991bd6379.json"
     },
     {
@@ -2069,6 +2189,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-exp005-prep-and-cleanup.md",
       "path": "sessions/5c/5c7fbad9b0ca192f4fa1.json"
     },
     {
@@ -2086,6 +2207,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-exp002-benchmark-data.md",
       "path": "sessions/7a/7af908d4b324228d0e24.json"
     },
     {
@@ -2103,6 +2225,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-introduction.md",
       "path": "sessions/94/945c17f07dd60fde5211.json"
     },
     {
@@ -2120,6 +2243,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested a \"Register axis pilot (20 sa",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/worker-executions/ops-register-pilot.md",
       "path": "sessions/b6/b69bc45a5b9b9b267d49.json"
     },
     {
@@ -2137,6 +2261,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-exp010-binarized-likert.md",
       "path": "sessions/c0/c0a512e0de2098aa3e87.json"
     },
     {
@@ -2154,6 +2279,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-reanalysis-batch.md",
       "path": "sessions/2e/2e20c8208393f5d86fd2.json"
     },
     {
@@ -2171,6 +2297,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-verify-rerun-exp012-014.md",
       "path": "sessions/b6/b6f1f2f8c53fbcf12dd1.json"
     },
     {
@@ -2188,6 +2315,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-exp014-fixed-rerun.md",
       "path": "sessions/2b/2b7069ce93b3561c8c71.json"
     },
     {
@@ -2205,6 +2333,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-exp014-server-fix-verified.md",
       "path": "sessions/26/26d21a751567422a7b27.json"
     },
     {
@@ -2222,6 +2351,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-register-nli-only-gating.md",
       "path": "sessions/4b/4b0c899d7c2be8890a59.json"
     },
     {
@@ -2239,6 +2369,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-register-counterfactual-gen-100.md",
       "path": "sessions/07/07c7ebc0b72a7c31ac46.json"
     },
     {
@@ -2256,6 +2387,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested execution of **exp-002 Multi-",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp002-benchmark-cf-gen.md",
       "path": "sessions/7e/7e260dc36ca1cf99b920.json"
     },
     {
@@ -2273,6 +2405,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing.md",
       "path": "sessions/ae/aed53167ed68bdea035d.json"
     },
     {
@@ -2290,6 +2423,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp013-nli-validation.md",
       "path": "sessions/6b/6b66c4d7b0bf4cfdeb6a.json"
     },
     {
@@ -2307,6 +2441,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-gpu-progress-check.md",
       "path": "sessions/21/21da42e881fcddf232ec.json"
     },
     {
@@ -2324,6 +2459,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-mtbench-cf-gen-cuda2.md",
       "path": "sessions/30/3075eebcc25e42944e74.json"
     },
     {
@@ -2341,6 +2477,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-exp013-direction-bias.md",
       "path": "sessions/5d/5dad29dcf81a09979809.json"
     },
     {
@@ -2358,6 +2495,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-register-content-verification.md",
       "path": "sessions/68/682114607912a10282da.json"
     },
     {
@@ -2375,6 +2513,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-kill-vllm-fix-gate.md",
       "path": "sessions/9c/9cfb42c4ff63fdd98820.json"
     },
     {
@@ -2392,6 +2531,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-analysis.md",
       "path": "sessions/aa/aad7f561e53389a698be.json"
     },
     {
@@ -2409,6 +2549,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-clmm-bt-spotcheck.md",
       "path": "sessions/c5/c5e5257fe74d16dcac2d.json"
     },
     {
@@ -2426,6 +2567,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-figure.md",
       "path": "sessions/5d/5d786bae8724d18a8f57.json"
     },
     {
@@ -2443,6 +2585,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-batch1-scoring-v3.md",
       "path": "sessions/f0/f0a122ac4328bf50a39c.json"
     },
     {
@@ -2460,6 +2603,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-scoring-register-gpt4o.md",
       "path": "sessions/80/80babb24fa202f242579.json"
     },
     {
@@ -2477,6 +2621,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-scoring-verbosity-gpt4o.md",
       "path": "sessions/f4/f456b4fc6f8beb9eb7cd.json"
     },
     {
@@ -2494,6 +2639,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-writing-method.md",
       "path": "sessions/41/41b1234b550e4e7e4bd9.json"
     },
     {
@@ -2511,6 +2657,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/worker-executions/code-power-curve-bt-fix.md",
       "path": "sessions/bb/bb394f5375a84d59856e.json"
     },
     {
@@ -2528,6 +2675,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-bt-discrepancy-investigation.md",
       "path": "sessions/04/045526b8c5f1976ebe47.json"
     },
     {
@@ -2545,6 +2693,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-power-curve-d031-alignment.md",
       "path": "sessions/11/1122f8f661f40fa01094.json"
     },
     {
@@ -2562,6 +2711,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-qwen32b-local-judge-scoring.md",
       "path": "sessions/06/065c591d776380b4b094.json"
     },
     {
@@ -2579,6 +2729,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested execution of \"exp-006 Scaled ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp006-scaled-cf-gen.md",
       "path": "sessions/b9/b90dbc9e9461eafb7e25.json"
     },
     {
@@ -2596,6 +2747,7 @@
       "preview": "Read the following two files completely and report their full contents: 1. /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/exp016_bradley_terry.py 2. /home/ubuntu/.agent-ml-research-idea_gen_0",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-qwen32b-bt-and-decomp.md",
       "path": "sessions/f0/f0a8c6e0179bbf348dc7.json"
     },
     {
@@ -2613,6 +2765,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-exp006-diagnosis.md",
       "path": "sessions/90/90d36e808eaabf11701d.json"
     },
     {
@@ -2630,6 +2783,7 @@
       "preview": "Read the file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py and find the `_build_trial_data` function and any GEE-related code (functions that run GEE decomposition for f",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-verbosity-gee-decomposition.md",
       "path": "sessions/5a/5ab400528fe4260b8074.json"
     },
     {
@@ -2647,6 +2801,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-api-test-and-scoring.md",
       "path": "sessions/c5/c55607fb5ec9e3b9b96c.json"
     },
     {
@@ -2664,6 +2819,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-kill-vllm-residual.md",
       "path": "sessions/1e/1ea419ebed2a4837feef.json"
     },
     {
@@ -2681,6 +2837,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-figure-pipeline-diagram.md",
       "path": "sessions/97/972b93fea0270816a414.json"
     },
     {
@@ -2698,6 +2855,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gpt4o-full-statistical-analysis.md",
       "path": "sessions/84/843ffe7375a2de674903.json"
     },
     {
@@ -2715,6 +2873,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-figure-forest-plot.md",
       "path": "sessions/2a/2ad31d725de40a7014d9.json"
     },
     {
@@ -2732,6 +2891,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-figure-sync-figures.md",
       "path": "sessions/50/502d75df849c8acb16d4.json"
     },
     {
@@ -2749,6 +2909,7 @@
       "preview": "Read the file /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py in full. I need to understand the Bradley-Terry analysis logic, especially the pair-level bootstrap implementa",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-qwen32b-register-bt-and-forest-plot.md",
       "path": "sessions/9b/9bfce0800f79922fc55a.json"
     },
     {
@@ -2766,6 +2927,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-exp006-vllm-restart-cfgen.md",
       "path": "sessions/5a/5ad02ff320146e8311b8.json"
     },
     {
@@ -2783,6 +2945,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-api-proxy-investigation.md",
       "path": "sessions/a3/a327d7d5481f67c400a8.json"
     },
     {
@@ -2800,6 +2963,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-sync-forest-plot.md",
       "path": "sessions/e0/e09e9f56892930461b17.json"
     },
     {
@@ -2817,6 +2981,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-figure-forest-plot-sync.md",
       "path": "sessions/9b/9b64ecb201741dd7738e.json"
     },
     {
@@ -2834,6 +2999,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-api-proxy-detailed-check.md",
       "path": "sessions/28/2876eea8cc966b1794eb.json"
     },
     {
@@ -2851,6 +3017,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-forest-plot-data-fix.md",
       "path": "sessions/b8/b8fafcae5f192a134ff0.json"
     },
     {
@@ -2868,6 +3035,7 @@
       "preview": "In /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/, find all GEE-related scripts. List files matching: - csd_pipeline/*gee* - csd_pipeline/*analysis* - csd_pipeline/*decomp* - csd_pipeline/verbosity* - cs",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gee-model-diagnostics.md",
       "path": "sessions/ff/ff00d62a592547ebbf43.json"
     },
     {
@@ -2885,6 +3053,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gee-verbosity-length-confound.md",
       "path": "sessions/bb/bb13235c6addf8e94b0a.json"
     },
     {
@@ -2902,6 +3071,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-exp006-gpu-status-check.md",
       "path": "sessions/0f/0fd3e999911f2ab17133.json"
     },
     {
@@ -2919,6 +3089,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-cleanup-deploy-vllm-alpacaeval.md",
       "path": "sessions/11/11911f08eba4f813fe79.json"
     },
     {
@@ -2936,6 +3107,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-bootstrap-10k-holm-cohensd.md",
       "path": "sessions/b3/b3cd725347dd73d8a7b3.json"
     },
     {
@@ -2953,6 +3125,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-alpacaeval-qwen32b-scoring.md",
       "path": "sessions/a9/a9715561d33b61103b76.json"
     },
     {
@@ -2970,6 +3143,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-mtbench-qwen32b-scoring.md",
       "path": "sessions/bf/bf6251cc4770debcbe69.json"
     },
     {
@@ -2987,6 +3161,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested a full pipeline execution on ",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-exp006-n400-scoring.md",
       "path": "sessions/40/407c50f0f1e7b101bc67.json"
     },
     {
@@ -3004,6 +3179,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-alpacaeval-verbosity-qwen32b.md",
       "path": "sessions/1e/1e128b790c27c7db7907.json"
     },
     {
@@ -3021,6 +3197,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-claude-judge-lmbar-scoring.md",
       "path": "sessions/5c/5c19b7f507b83b0227df.json"
     },
     {
@@ -3038,6 +3215,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gpt4o-crossbenchmark-scoring.md",
       "path": "sessions/fa/fa92b942cfa535829757.json"
     },
     {
@@ -3055,6 +3233,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user wants to run a full experiment pipeline",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-gpt4o-rewriter-verbosity.md",
       "path": "sessions/e8/e86461d8b741cd875dc8.json"
     },
     {
@@ -3072,6 +3251,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-correction-poc-debiased-prompt.md",
       "path": "sessions/f4/f437b7112e63951fb1e2.json"
     },
     {
@@ -3089,6 +3269,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested creating and running a **Form",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-formality-rewriter-independence.md",
       "path": "sessions/b8/b8d0cf060bce46d40bb0.json"
     },
     {
@@ -3106,6 +3287,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-nli-gate-gpt4o-spotcheck.md",
       "path": "sessions/8f/8ff2a9cf6f24896fc7b7.json"
     },
     {
@@ -3123,6 +3305,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-direction-aware-vs-strict-gate.md",
       "path": "sessions/4e/4e530dbbf853f4281a36.json"
     },
     {
@@ -3140,6 +3323,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-research-citation-fill.md",
       "path": "sessions/ee/eea8ad98a8adefe51385.json"
     },
     {
@@ -3157,6 +3341,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-nli-gate-fn-selection-bias.md",
       "path": "sessions/f0/f0b98e727432b11f9370.json"
     },
     {
@@ -3174,6 +3359,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-nli-gate-fn-selection-bias-copy-2.md",
       "path": "sessions/ef/ef5e3c0bdb7d1d513ddf.json"
     },
     {
@@ -3191,6 +3377,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-formality-rewriter-independence-harvest.md",
       "path": "sessions/f7/f7aecbcea919c862bad7.json"
     },
     {
@@ -3208,6 +3395,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-formality-rewriter-bt-fix.md",
       "path": "sessions/38/38477790c9db104a1781.json"
     },
     {
@@ -3225,6 +3413,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-bt-model-diagnostics.md",
       "path": "sessions/ff/ff820812a52a25da7cee.json"
     },
     {
@@ -3242,6 +3431,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-originality-minimal-subset.md",
       "path": "sessions/24/242376dd109006fede9f.json"
     },
     {
@@ -3259,6 +3449,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-claude-tost-equivalence.md",
       "path": "sessions/1a/1a3c58b625fe192f87e4.json"
     },
     {
@@ -3276,6 +3467,7 @@
       "preview": "Read these files from the remote server via SSH. Use ssh_read_only with the SSH alias `causal_style_decomp_judge`. Every command must be prefixed with `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && `. Read these f",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-nli-gate-full-validation.md",
       "path": "sessions/e2/e2edd0ac217c774e2ccc.json"
     },
     {
@@ -3293,6 +3485,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-fix-originality-subset-formality.md",
       "path": "sessions/d2/d2795085ac38efb44419.json"
     },
     {
@@ -3310,6 +3503,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-verbosity-7method-sensitivity.md",
       "path": "sessions/9f/9f39fd89a36d8acd7c52.json"
     },
     {
@@ -3327,6 +3521,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama70b-third-judge.md",
       "path": "sessions/f4/f4cf9c43cf3c469ea090.json"
     },
     {
@@ -3344,6 +3539,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-double-rewrite-placebo-qwen.md",
       "path": "sessions/c0/c03b7528767e75a624ce.json"
     },
     {
@@ -3361,6 +3557,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-double-rewrite-placebo-gpt4o.md",
       "path": "sessions/3a/3a2eda9aef3405c1a6af.json"
     },
     {
@@ -3378,6 +3575,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-nli-ablation-cross-axis.md",
       "path": "sessions/32/32c310cd23db15c1b16c.json"
     },
     {
@@ -3395,6 +3593,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-cf-vs-dr-qwen32b.md",
       "path": "sessions/d8/d8046d8f4225fec52d8e.json"
     },
     {
@@ -3412,6 +3611,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-cf-vs-dr-gpt4o.md",
       "path": "sessions/54/540bbd61b4ae8f15d5ff.json"
     },
     {
@@ -3429,6 +3629,7 @@
       "preview": "Read the following files from the project at /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/ and return their full contents: 1. csd_pipeline/double_rewrite_placebo.py 2. Any other scoring/analysis scripts",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama70b-continuation.md",
       "path": "sessions/41/41275820c1b4c180bac3.json"
     },
     {
@@ -3446,6 +3647,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-placebo-bt-fix.md",
       "path": "sessions/68/685d8083f7113044a92e.json"
     },
     {
@@ -3463,6 +3665,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama70b-poll.md",
       "path": "sessions/5a/5a6a32df0eea59be76ec.json"
     },
     {
@@ -3480,6 +3683,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama70b-poll-2.md",
       "path": "sessions/ee/ee1796943be58ba760eb.json"
     },
     {
@@ -3497,6 +3701,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama70b-poll-3.md",
       "path": "sessions/8a/8a27220bb7b3ad39b246.json"
     },
     {
@@ -3514,6 +3719,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama70b-poll-4.md",
       "path": "sessions/ac/acdc2f22bf38eab09208.json"
     },
     {
@@ -3531,6 +3737,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-gemini-flash-scoring.md",
       "path": "sessions/c9/c9cf457f71bf97f70135.json"
     },
     {
@@ -3548,6 +3755,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/data-figure1-candidates.md",
       "path": "sessions/fb/fbdf682a51e1fcc75311.json"
     },
     {
@@ -3565,6 +3773,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-gemini-flash-monitor.md",
       "path": "sessions/26/2663eaa3a0f05f423a32.json"
     },
     {
@@ -3582,6 +3791,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-gemini-flash-resume.md",
       "path": "sessions/81/81a1d622175c4b17c23e.json"
     },
     {
@@ -3599,6 +3809,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/viz-forest-plot-v2.md",
       "path": "sessions/69/6956cccb4a580687ac18.json"
     },
     {
@@ -3616,6 +3827,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fig-forest-plot-gemini.md",
       "path": "sessions/ca/ca898657b3a5cad0581a.json"
     },
     {
@@ -3633,6 +3845,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-gpu-check.md",
       "path": "sessions/2c/2c07690f7ab567dc5213.json"
     },
     {
@@ -3650,6 +3863,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/paper-reference-audit.md",
       "path": "sessions/c2/c2676f923569235ff565.json"
     },
     {
@@ -3667,6 +3881,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-tost-delta.md",
       "path": "sessions/44/4459da3fc35fbb0b9fc3.json"
     },
     {
@@ -3684,6 +3899,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-verbosity-bt-split.md",
       "path": "sessions/a0/a0d10cc30c16a2ee237a.json"
     },
     {
@@ -3701,6 +3917,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-missing-refs.md",
       "path": "sessions/3a/3a3e6e443ad1e9d3388e.json"
     },
     {
@@ -3718,6 +3935,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-gee-interaction.md",
       "path": "sessions/ed/edd8de9512422704e67f.json"
     },
     {
@@ -3735,6 +3953,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-cross-axis-contamination.md",
       "path": "sessions/d7/d7a6e5201d38fc7a6bd8.json"
     },
     {
@@ -3752,6 +3971,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-ref-verification-r10.md",
       "path": "sessions/35/3500cefb2e3377e4e041.json"
     },
     {
@@ -3769,6 +3989,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-check-annotation-upload.md",
       "path": "sessions/34/34419d6290f21d1abf4c.json"
     },
     {
@@ -3786,6 +4007,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-tost-sensitivity.md",
       "path": "sessions/8f/8f5a912fb510b73f1af9.json"
     },
     {
@@ -3803,6 +4025,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-formality-wc-covariate.md",
       "path": "sessions/7e/7e257b5dcb8a04275ee9.json"
     },
     {
@@ -3820,6 +4043,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-nli-selection-bias.md",
       "path": "sessions/7a/7a2e17a46673f1a36d97.json"
     },
     {
@@ -3837,6 +4061,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-nli-bias-extended.md",
       "path": "sessions/f2/f20c46babd7ef3799221.json"
     },
     {
@@ -3854,6 +4079,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-da-gate-quality.md",
       "path": "sessions/a5/a5c59f64c20de145b49a.json"
     },
     {
@@ -3871,6 +4097,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/data-annotation-prep.md",
       "path": "sessions/c4/c4e6ceb3380926caa0ed.json"
     },
     {
@@ -3888,6 +4115,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-construct-divergence.md",
       "path": "sessions/ee/ee6b94282a085e701cbc.json"
     },
     {
@@ -3905,6 +4133,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-vllm-check-restart.md",
       "path": "sessions/7b/7b8564562beadf7811ea.json"
     },
     {
@@ -3922,6 +4151,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/pipeline-crossbench-local.md",
       "path": "sessions/7c/7c13116f793f40e41076.json"
     },
     {
@@ -3939,6 +4169,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/infra-pull-annotation.md",
       "path": "sessions/e9/e92a6e918ca4a19ebfee.json"
     },
     {
@@ -3956,6 +4187,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/pipeline-claude-expanded.md",
       "path": "sessions/78/78b88f5fa7ba6bf54037.json"
     },
     {
@@ -3973,6 +4205,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/pipeline-crossbench-gpt4o.md",
       "path": "sessions/84/84b03cbaf8a8a906683b.json"
     },
     {
@@ -3990,6 +4223,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/pipeline-claude-expanded-v2.md",
       "path": "sessions/c0/c078293acd8d5a3a410a.json"
     },
     {
@@ -4007,6 +4241,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/pipeline-crossbench-gpt4o-v2.md",
       "path": "sessions/34/34668428ce91ed58ebaf.json"
     },
     {
@@ -4024,6 +4259,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/bugfix-gee-and-data-discrepancy.md",
       "path": "sessions/3a/3a51227a62b0515956e7.json"
     },
     {
@@ -4041,6 +4277,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/bugfix-claude-pipeline-diagnosis.md",
       "path": "sessions/4d/4d1664314e9ccc63b3f6.json"
     },
     {
@@ -4058,6 +4295,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/pipeline-claude-crossbench-scoring.md",
       "path": "sessions/c4/c4302b4edbb526094cbb.json"
     },
     {
@@ -4075,6 +4313,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/bugfix-claude-bt-recalc.md",
       "path": "sessions/e9/e9fad7166109e462e396.json"
     },
     {
@@ -4092,6 +4331,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/worker-executions/bugfix-claude-bt-pvalue-twosided.md",
       "path": "sessions/eb/ebe72f6c458eff390b43.json"
     },
     {
@@ -4109,6 +4349,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-gpt4o-aeval-gee-artifact.md",
       "path": "sessions/4e/4ebe9f485b7100dc3077.json"
     },
     {
@@ -4126,6 +4367,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-r15-mf3-gee-n355.md",
       "path": "sessions/d3/d3ff77fca41f644a334e.json"
     },
     {
@@ -4143,6 +4385,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-r15-sf4-fk-length-control-20260523t061120-retry1.md",
       "path": "sessions/2c/2cf62885220f99d72fdb.json"
     },
     {
@@ -4160,6 +4403,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/worker-executions/analysis-r15-sf4-fk-length-control-20260523t061120-retry2.md",
       "path": "sessions/8e/8e9a8b6d3ec31fde3812.json"
     },
     {
@@ -4177,6 +4421,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-r15-sf4-fk-persist.md",
       "path": "sessions/92/92ab4cfd38e485e56b25.json"
     },
     {
@@ -4194,6 +4439,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-r15-sf4-sobel-audit.md",
       "path": "sessions/f0/f0821e181eabd8b22fbd.json"
     },
     {
@@ -4211,6 +4457,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-r15-sf4-fk-datasource.md",
       "path": "sessions/35/35999d60e114d04a7f90.json"
     },
     {
@@ -4228,6 +4475,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-r15-claude-likert-discrepancy.md",
       "path": "sessions/5c/5c289a3136963b32cc89.json"
     },
     {
@@ -4245,6 +4493,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-r15-sf4-fk-nli-filter.md",
       "path": "sessions/45/45bca436d02ae18af5a1.json"
     },
     {
@@ -4262,6 +4511,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-r15-mf2-claude-tost-pool.md",
       "path": "sessions/e5/e56c8d2af9b851a543fd.json"
     },
     {
@@ -4279,6 +4529,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/exp-r15-sf3-100pt-likert-multi.md",
       "path": "sessions/4b/4b0333e27350ff63a302.json"
     },
     {
@@ -4296,6 +4547,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-table1-likert-verify.md",
       "path": "sessions/11/11f2dd0e4a3163535a9a.json"
     },
     {
@@ -4313,6 +4565,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested running Llama-3.3-70B-Instruc",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-formality-scaled-n300.md",
       "path": "sessions/6b/6b6de077722e062d58bc.json"
     },
     {
@@ -4330,6 +4583,7 @@
       "preview": "This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation. Summary: 1. Primary Request and Intent: The user requested running a complete \"Llama-70B",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-formality-llama-rewriter.md",
       "path": "sessions/9c/9c21546cdedf71676907.json"
     },
     {
@@ -4347,6 +4601,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-llama70b-crossbench.md",
       "path": "sessions/58/5879a723763f8fe07137.json"
     },
     {
@@ -4364,6 +4619,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-table-t1-audit.md",
       "path": "sessions/bb/bbba3f3069852b863b0f.json"
     },
     {
@@ -4381,6 +4637,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-table-t1-full-audit.md",
       "path": "sessions/87/87fc21225d9c181b4c64.json"
     },
     {
@@ -4398,6 +4655,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-table-t1-t2-fix.md",
       "path": "sessions/ba/bac0a0e82f00f6ec42ff.json"
     },
     {
@@ -4415,6 +4673,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/research-figure-opt-review.md",
       "path": "sessions/96/960bbf62aed433e3f912.json"
     },
     {
@@ -4432,6 +4691,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/code-final-compile-push.md",
       "path": "sessions/4a/4a4e2358050e32d690fe.json"
     },
     {
@@ -4449,6 +4709,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/verify-table23-bt-values.md",
       "path": "sessions/a3/a3863263e262eab0ffb1.json"
     },
     {
@@ -4466,6 +4727,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-paper-internal-consistency.md",
       "path": "sessions/df/dff1fabf457ce71b8c72.json"
     },
     {
@@ -4483,6 +4745,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-anon-repo-push.md",
       "path": "sessions/e0/e0c2570c2463081188f2.json"
     },
     {
@@ -4500,6 +4763,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-paper-number-bugs.md",
       "path": "sessions/16/16d6b2439ccba5a24c4f.json"
     },
     {
@@ -4517,6 +4781,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-appendix-references.md",
       "path": "sessions/59/59cff26058d4fdadcdb3.json"
     },
     {
@@ -4534,6 +4799,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-table2-width.md",
       "path": "sessions/8c/8c318cd20d21ba5da8ef.json"
     },
     {
@@ -4551,6 +4817,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/push-anon-repo.md",
       "path": "sessions/55/55cd8932258536053d93.json"
     },
     {
@@ -4568,6 +4835,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/push-abstract-footnote-fix.md",
       "path": "sessions/5e/5e35401abc5d331380bb.json"
     },
     {
@@ -4585,6 +4853,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/push-conclusion-fix.md",
       "path": "sessions/eb/eb8251fc86ad6e6564f3.json"
     },
     {
@@ -4602,6 +4871,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/push-abstract-anon-link.md",
       "path": "sessions/d5/d5880228d62cbf351b99.json"
     },
     {
@@ -4619,6 +4889,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/push-abstract-abbrev-expand.md",
       "path": "sessions/12/120c8f3888cb8c453781.json"
     },
     {
@@ -4636,6 +4907,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/worker-executions/push-noindent-fix.md",
       "path": "sessions/bb/bb02ef756562895a1985.json"
     },
     {
@@ -4653,6 +4925,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/push-limitations-noindent.md",
       "path": "sessions/14/14b136fd368f9373c345.json"
     },
     {
@@ -4670,6 +4943,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/fix-acl-template-align.md",
       "path": "sessions/f8/f86b6919f3fa290d96cc.json"
     },
     {
@@ -4687,6 +4961,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/worker-executions/push-acl-template-align.md",
       "path": "sessions/97/97fe89746dcbbeee702c.json"
     },
     {
@@ -4704,6 +4979,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/push-limitations-compress.md",
       "path": "sessions/8c/8c92c810ae08d1abd444.json"
     },
     {
@@ -4721,6 +4997,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-data-truth-maintext.md",
       "path": "sessions/db/dbaf75b11563831d87a3.json"
     },
     {
@@ -4738,6 +5015,7 @@
       "preview": "Parse the experiment registry JSON at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_re",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-data-truth-experiments.md",
       "path": "sessions/6b/6bc2e10ad121329c1a03.json"
     },
     {
@@ -4755,6 +5033,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-data-truth-appendix.md",
       "path": "sessions/ad/ad26ef6e6d6598e1a13c.json"
     },
     {
@@ -4772,6 +5051,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/investigate-h1h2-fk-mediation.md",
       "path": "sessions/38/38b5f9e24ce9ccc49233.json"
     },
     {
@@ -4789,6 +5069,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/investigate-h3-llama-alpacaeval-or.md",
       "path": "sessions/79/793c0d3d38be833424c1.json"
     },
     {
@@ -4806,6 +5087,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/ops-s3-backup.md",
       "path": "sessions/51/5164152bf60033553b90.json"
     },
     {
@@ -4823,6 +5105,7 @@
       "preview": "Read the following tex files and find ALL occurrences of these citation keys. For each key, extract the surrounding sentence/paragraph so we can verify the citation context is correct. Citation keys to find: cohen1988statistical, pearl2009c",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-ref-check-a.md",
       "path": "sessions/93/93fd1fc39ab8fa2f6520.json"
     },
     {
@@ -4840,6 +5123,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-ref-check-b-20260526t110655-retry1.md",
       "path": "sessions/95/952e81af65719c24bf64.json"
     },
     {
@@ -4857,6 +5141,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-ref-check-c-20260526t110724-retry1.md",
       "path": "sessions/db/db0b07d618534ffb493b.json"
     },
     {
@@ -4874,6 +5159,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/worker-executions/audit-ref-check-b-20260526t110655-retry2.md",
       "path": "sessions/d4/d4a6556821836247ff78.json"
     },
     {
@@ -4891,6 +5177,7 @@
       "preview": "Search all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/ for every occurrence of these cite keys. For each key, report the surrounding sentence/context (about 1-2 lines aroun",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/worker-executions/audit-ref-check-c-20260526t110724-retry2.md",
       "path": "sessions/34/34f03a743b4d5062f8d8.json"
     },
     {
@@ -4908,6 +5195,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-construct-divergence.md",
       "path": "sessions/10/10ee0bf5430ad621dd7e.json"
     },
     {
@@ -4925,6 +5213,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-cross-axis-contamination.md",
       "path": "sessions/f1/f183211afee27072e492.json"
     },
     {
@@ -4942,6 +5231,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-da-gate-quality.md",
       "path": "sessions/42/42a8a83ead127d60098e.json"
     },
     {
@@ -4959,6 +5249,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-formality-wc-covariate.md",
       "path": "sessions/6a/6ad617d6f5fc2427da50.json"
     },
     {
@@ -4976,6 +5267,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-gee-interaction.md",
       "path": "sessions/94/9459d7a4e59514b79c8b.json"
     },
     {
@@ -4993,6 +5285,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-gpt4o-aeval-gee-artifact.md",
       "path": "sessions/28/280e3eeacdad3bd051e5.json"
     },
     {
@@ -5010,6 +5303,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-nli-bias-extended.md",
       "path": "sessions/70/703b481dc0f5ee194c5d.json"
     },
     {
@@ -5027,6 +5321,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-nli-selection-bias.md",
       "path": "sessions/1f/1f70192286a648d6c2fc.json"
     },
     {
@@ -5044,6 +5339,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-r15-mf3-gee-n355.md",
       "path": "sessions/18/18b76d13222db3e91619.json"
     },
     {
@@ -5061,6 +5357,7 @@
       "preview": "",
       "reported_errors": 1,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/analysis-r15-sf4-fk-length-control.md",
       "path": "sessions/8f/8f12253d8b8d868a7ca3.json"
     },
     {
@@ -5078,6 +5375,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-r15-sf4-fk-length-control.md",
       "path": "sessions/39/39ee94e97eb00ad70cf0.json"
     },
     {
@@ -5095,6 +5393,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-tost-delta.md",
       "path": "sessions/a7/a7c5160db50be628ac5c.json"
     },
     {
@@ -5112,6 +5411,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-tost-sensitivity.md",
       "path": "sessions/5e/5eecd87d9df3e3a525c1.json"
     },
     {
@@ -5129,6 +5429,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/analysis-verbosity-bt-split.md",
       "path": "sessions/56/566402c32123b40bd51d.json"
     },
     {
@@ -5146,6 +5447,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-anon-repo-push.md",
       "path": "sessions/be/beb3ac251619752d0266.json"
     },
     {
@@ -5163,6 +5465,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-appendix-references.md",
       "path": "sessions/99/9936b7c6c43b6522c1bf.json"
     },
     {
@@ -5180,6 +5483,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-data-truth-appendix.md",
       "path": "sessions/1f/1fcaae9388512e10ff9a.json"
     },
     {
@@ -5197,6 +5501,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-data-truth-experiments.md",
       "path": "sessions/83/83c5dbd7efd029f5d970.json"
     },
     {
@@ -5214,6 +5519,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-data-truth-maintext.md",
       "path": "sessions/9c/9c1628406d4c52c74c37.json"
     },
     {
@@ -5231,6 +5537,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-paper-internal-consistency.md",
       "path": "sessions/f4/f4aafe791279539dda74.json"
     },
     {
@@ -5248,6 +5555,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-ref-check-a.md",
       "path": "sessions/75/750db65cbc4211dd6484.json"
     },
     {
@@ -5265,6 +5573,7 @@
       "preview": "",
       "reported_errors": 1,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-ref-check-b.md",
       "path": "sessions/fa/fa9113c905e51865db52.json"
     },
     {
@@ -5282,6 +5591,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-ref-check-b.md",
       "path": "sessions/f4/f40ecb82224bd032aee8.json"
     },
     {
@@ -5299,6 +5609,7 @@
       "preview": "",
       "reported_errors": 1,
       "unparsed_lines": 1,
+      "readable_path": "readable/worker-executions/audit-ref-check-c.md",
       "path": "sessions/fa/faf9b3f9b4210229357b.json"
     },
     {
@@ -5316,6 +5627,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/audit-ref-check-c.md",
       "path": "sessions/cb/cb2751cd3ddad3500721.json"
     },
     {
@@ -5333,6 +5645,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/bugfix-claude-bt-pvalue-twosided.md",
       "path": "sessions/c1/c1a8ed7359b1eea76048.json"
     },
     {
@@ -5350,6 +5663,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/bugfix-claude-bt-recalc.md",
       "path": "sessions/5a/5acff9c9213443fd531d.json"
     },
     {
@@ -5367,6 +5681,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/bugfix-claude-pipeline-diagnosis.md",
       "path": "sessions/80/80e9a57a492c0b3972c8.json"
     },
     {
@@ -5384,6 +5699,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/bugfix-gee-and-data-discrepancy.md",
       "path": "sessions/6d/6d37292898a5a74e072b.json"
     },
     {
@@ -5401,6 +5717,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/check-mvp-status-20260520.md",
       "path": "sessions/5b/5bbced727a3ba3573db4.json"
     },
     {
@@ -5418,6 +5735,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-alpacaeval-qwen32b-scoring.md",
       "path": "sessions/f2/f25cb36755c0375ce110.json"
     },
     {
@@ -5435,6 +5753,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-alpacaeval-verbosity-qwen32b.md",
       "path": "sessions/d5/d528d1cfbdaf98ce7a24.json"
     },
     {
@@ -5452,6 +5771,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-api-test-and-scoring.md",
       "path": "sessions/db/db7c4d270a466e14c121.json"
     },
     {
@@ -5469,6 +5789,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-batch1-scoring-v3.md",
       "path": "sessions/04/04078e2a535ebbad4663.json"
     },
     {
@@ -5486,6 +5807,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-bootstrap-10k-holm-cohensd.md",
       "path": "sessions/2d/2d8a85e14ddddfb84e0b.json"
     },
     {
@@ -5503,6 +5825,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-bt-model-diagnostics.md",
       "path": "sessions/fd/fd8d40104f753607384d.json"
     },
     {
@@ -5520,6 +5843,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-cf-vs-dr-qwen32b.md",
       "path": "sessions/fd/fd168b47fc3e4d29fce5.json"
     },
     {
@@ -5537,6 +5861,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-claude-judge-lmbar-scoring.md",
       "path": "sessions/c5/c5c9b4702f5968409428.json"
     },
     {
@@ -5554,6 +5879,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-claude-tost-equivalence.md",
       "path": "sessions/5e/5e39b68122bfdc2b42c2.json"
     },
     {
@@ -5571,6 +5897,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-clmm-bt-spotcheck.md",
       "path": "sessions/b8/b8a3fcaadb6cc5c3a87a.json"
     },
     {
@@ -5588,6 +5915,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-correction-poc-debiased-prompt.md",
       "path": "sessions/fe/fe0b38e8e872f6515c31.json"
     },
     {
@@ -5605,6 +5933,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-direction-aware-vs-strict-gate.md",
       "path": "sessions/09/09a949a3f565e57b496d.json"
     },
     {
@@ -5622,6 +5951,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-double-rewrite-placebo-gpt4o.md",
       "path": "sessions/1b/1b8a38006620d16ceae6.json"
     },
     {
@@ -5639,6 +5969,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-double-rewrite-placebo-qwen.md",
       "path": "sessions/67/67bc46c0791e1c97ad35.json"
     },
     {
@@ -5656,6 +5987,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp002-benchmark-cf-gen.md",
       "path": "sessions/99/999ee3c77e42a9eaa987.json"
     },
     {
@@ -5673,6 +6005,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp006-n400-scoring.md",
       "path": "sessions/36/3689b99cf9bca5d41def.json"
     },
     {
@@ -5690,6 +6023,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp006-scaled-cf-gen.md",
       "path": "sessions/23/23b26f86fdfdf9301d0c.json"
     },
     {
@@ -5707,6 +6041,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-exp013-nli-validation.md",
       "path": "sessions/ac/acbd8093a4ba69d90d66.json"
     },
     {
@@ -5724,6 +6059,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-figure-forest-plot.md",
       "path": "sessions/e1/e110cb1d00c683853379.json"
     },
     {
@@ -5741,6 +6077,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-figure-pipeline-diagram.md",
       "path": "sessions/53/535ce99cb90d45f1c9a9.json"
     },
     {
@@ -5758,6 +6095,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-final-compile-push.md",
       "path": "sessions/52/52bc2945cb8d6c92e537.json"
     },
     {
@@ -5775,6 +6113,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-fix-originality-subset-formality.md",
       "path": "sessions/cd/cd20bbdcf0d9568d73f9.json"
     },
     {
@@ -5792,6 +6131,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-formality-llama-rewriter.md",
       "path": "sessions/7c/7cef1da52f3c0e825a84.json"
     },
     {
@@ -5809,6 +6149,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-formality-rewriter-bt-fix.md",
       "path": "sessions/66/668971842be8695bb8fa.json"
     },
     {
@@ -5826,6 +6167,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-formality-rewriter-independence.md",
       "path": "sessions/d1/d189bccc593d7968b1e5.json"
     },
     {
@@ -5843,6 +6185,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-formality-rewriter-independence-harvest.md",
       "path": "sessions/1a/1a0afb835a8925cbb2e8.json"
     },
     {
@@ -5860,6 +6203,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-formality-scaled-n300.md",
       "path": "sessions/18/189b9e95d9ef3e2139d9.json"
     },
     {
@@ -5877,6 +6221,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gee-model-diagnostics.md",
       "path": "sessions/90/905274e9e67c969a4f27.json"
     },
     {
@@ -5894,6 +6239,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gee-verbosity-length-confound.md",
       "path": "sessions/fc/fce6a78fbe743781c0e5.json"
     },
     {
@@ -5911,6 +6257,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gpt4o-crossbenchmark-scoring.md",
       "path": "sessions/6d/6d292fc6b036e1590319.json"
     },
     {
@@ -5928,6 +6275,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gpt4o-full-statistical-analysis.md",
       "path": "sessions/f1/f18ebfe9a21fa4034a40.json"
     },
     {
@@ -5945,6 +6293,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-gpt4o-rewriter-verbosity.md",
       "path": "sessions/a0/a0209ee4df2ae39e6b1d.json"
     },
     {
@@ -5962,6 +6311,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama70b-continuation.md",
       "path": "sessions/1c/1c3d4ef8255962822fba.json"
     },
     {
@@ -5979,6 +6329,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama70b-crossbench.md",
       "path": "sessions/19/198881b3c215171c697d.json"
     },
     {
@@ -5996,6 +6347,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama70b-poll.md",
       "path": "sessions/cd/cde00f12fba866d64506.json"
     },
     {
@@ -6013,6 +6365,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama70b-poll-2.md",
       "path": "sessions/c7/c7105e25a0b5ba9543ab.json"
     },
     {
@@ -6030,6 +6383,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama70b-poll-3.md",
       "path": "sessions/44/44336b15b4470c101e76.json"
     },
     {
@@ -6047,6 +6401,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama70b-poll-4.md",
       "path": "sessions/5b/5b576261d914319fcc72.json"
     },
     {
@@ -6064,6 +6419,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-llama70b-third-judge.md",
       "path": "sessions/11/112c2a2394ac2bc9887f.json"
     },
     {
@@ -6081,6 +6437,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-mtbench-cf-gen-cuda2.md",
       "path": "sessions/bf/bf5d768fc749be482148.json"
     },
     {
@@ -6098,6 +6455,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-mtbench-qwen32b-scoring.md",
       "path": "sessions/d6/d6d62a7b3e9faa7db8d8.json"
     },
     {
@@ -6115,6 +6473,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-mvp-pipeline.md",
       "path": "sessions/2c/2c53bef4b08e7ece4fae.json"
     },
     {
@@ -6132,6 +6491,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-nli-ablation-cross-axis.md",
       "path": "sessions/dd/ddc510c95287ab97c3e5.json"
     },
     {
@@ -6149,6 +6509,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-nli-gate-fn-selection-bias.md",
       "path": "sessions/38/386b1f896a5640aa2044.json"
     },
     {
@@ -6166,6 +6527,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-nli-gate-fn-selection-bias-copy-2.md",
       "path": "sessions/c1/c1f3505781886f273d9e.json"
     },
     {
@@ -6183,6 +6545,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-nli-gate-full-validation.md",
       "path": "sessions/2b/2b981203faf31179c5fd.json"
     },
     {
@@ -6200,6 +6563,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-nli-gate-gpt4o-spotcheck.md",
       "path": "sessions/fe/fe294dd9394e7bb59fda.json"
     },
     {
@@ -6217,6 +6581,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-originality-minimal-subset.md",
       "path": "sessions/bd/bdf3568a1d0e73fc8b70.json"
     },
     {
@@ -6234,6 +6599,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-placebo-bt-fix.md",
       "path": "sessions/30/30bc8ad21975500626a0.json"
     },
     {
@@ -6251,6 +6617,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-power-curve-bt-fix.md",
       "path": "sessions/86/86d93aace373d8f6ae6d.json"
     },
     {
@@ -6268,6 +6635,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-power-curve-d031-alignment.md",
       "path": "sessions/e6/e60974e03b471e6dced3.json"
     },
     {
@@ -6285,6 +6653,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-qwen32b-bt-and-decomp.md",
       "path": "sessions/aa/aa43f643279fd4b0278b.json"
     },
     {
@@ -6302,6 +6671,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-qwen32b-local-judge-scoring.md",
       "path": "sessions/fb/fb633d5e4782f0c279e0.json"
     },
     {
@@ -6319,6 +6689,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-qwen32b-register-bt-and-forest-plot.md",
       "path": "sessions/50/5056b0425c193996bcf1.json"
     },
     {
@@ -6336,6 +6707,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-register-content-verification.md",
       "path": "sessions/05/05a649027d4b1392f1cb.json"
     },
     {
@@ -6353,6 +6725,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-register-counterfactual-gen-100.md",
       "path": "sessions/1c/1c978cc7e922bb1acc2f.json"
     },
     {
@@ -6370,6 +6743,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-register-nli-only-gating.md",
       "path": "sessions/3f/3f837f81cd2a95816a2b.json"
     },
     {
@@ -6387,6 +6761,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-scoring-register-gpt4o.md",
       "path": "sessions/0f/0f85d1e77a4fb8cad80f.json"
     },
     {
@@ -6404,6 +6779,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-scoring-verbosity-gpt4o.md",
       "path": "sessions/3f/3f0100d9e35c16489df9.json"
     },
     {
@@ -6421,6 +6797,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-table1-likert-verify.md",
       "path": "sessions/c9/c9559be129248fff8c3b.json"
     },
     {
@@ -6438,6 +6815,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-table-t1-t2-fix.md",
       "path": "sessions/b3/b366af6dd085983074e1.json"
     },
     {
@@ -6455,6 +6833,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-verbosity-7method-sensitivity.md",
       "path": "sessions/88/8877dc7eaa093eba6c2e.json"
     },
     {
@@ -6472,6 +6851,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/code-verbosity-gee-decomposition.md",
       "path": "sessions/c7/c7926df17d42ee518c3c.json"
     },
     {
@@ -6489,6 +6869,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/data-annotation-prep.md",
       "path": "sessions/b7/b79bfe50584fda71ada6.json"
     },
     {
@@ -6506,6 +6887,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/data-figure1-candidates.md",
       "path": "sessions/c9/c9c56fc77c1765cd3227.json"
     },
     {
@@ -6523,6 +6905,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/dryrun-ate-analysis.md",
       "path": "sessions/2e/2e230dc068d5f8984a26.json"
     },
     {
@@ -6540,6 +6923,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/dryrun-content-verification.md",
       "path": "sessions/9f/9f85d1510ebdf5b0719f.json"
     },
     {
@@ -6557,6 +6941,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/dryrun-judge-scoring.md",
       "path": "sessions/74/744c98efa248f0065300.json"
     },
     {
@@ -6574,6 +6959,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/dryrun-judge-scoring-v2.md",
       "path": "sessions/5e/5e92eee17d01051ee348.json"
     },
     {
@@ -6591,6 +6977,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exec-32b-counterfactual-gen.md",
       "path": "sessions/dd/dd14715e75192a5f390d.json"
     },
     {
@@ -6608,6 +6995,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exec-32b-full-pipeline.md",
       "path": "sessions/cc/cc4df617b6cda9a15d0c.json"
     },
     {
@@ -6625,6 +7013,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exec-32b-full-setup.md",
       "path": "sessions/ec/ecf75dd78555b7812414.json"
     },
     {
@@ -6642,6 +7031,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exec-pairwise-dual-32b.md",
       "path": "sessions/64/64575c7b7c0d4fe9c053.json"
     },
     {
@@ -6659,6 +7049,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exec-pairwise-scoring-32b.md",
       "path": "sessions/e6/e6d631b14997e3b5fddf.json"
     },
     {
@@ -6676,6 +7067,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-gemini-flash-monitor.md",
       "path": "sessions/06/067835adab0004c6554c.json"
     },
     {
@@ -6693,6 +7085,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-gemini-flash-resume.md",
       "path": "sessions/a2/a2575cc095464bd9705e.json"
     },
     {
@@ -6710,6 +7103,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-gemini-flash-scoring.md",
       "path": "sessions/8e/8e141cc6e0e3514988d6.json"
     },
     {
@@ -6727,6 +7121,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-r15-mf2-claude-tost-pool.md",
       "path": "sessions/1e/1ee309a7408399f2b822.json"
     },
     {
@@ -6744,6 +7139,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-r15-sf3-100pt-likert-multi.md",
       "path": "sessions/ac/acf7c66d662bdfe3b95f.json"
     },
     {
@@ -6761,6 +7157,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-verbosity-32b-continue.md",
       "path": "sessions/45/45977190dc36ef4dbaf8.json"
     },
     {
@@ -6778,6 +7175,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-verbosity-32b-full-pipeline.md",
       "path": "sessions/22/2260e67563bb664ab687.json"
     },
     {
@@ -6795,6 +7193,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/exp-verbosity-32b-steps3to7.md",
       "path": "sessions/35/354a0e17b5a1825d3f06.json"
     },
     {
@@ -6812,6 +7211,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fig-forest-plot-gemini.md",
       "path": "sessions/87/877c0c085eb116643632.json"
     },
     {
@@ -6829,6 +7229,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-acl-template-align.md",
       "path": "sessions/b1/b1e6bcc42bfe0e6b92d4.json"
     },
     {
@@ -6846,6 +7247,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-paper-number-bugs.md",
       "path": "sessions/f3/f3c1639af2737db2f499.json"
     },
     {
@@ -6863,6 +7265,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-r15-claude-likert-discrepancy.md",
       "path": "sessions/e7/e7023fcb92e0baac96e7.json"
     },
     {
@@ -6880,6 +7283,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-r15-sf4-fk-datasource.md",
       "path": "sessions/83/83eec4533bcafd831530.json"
     },
     {
@@ -6897,6 +7301,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-r15-sf4-fk-nli-filter.md",
       "path": "sessions/05/05d7ca97987c7ed07cad.json"
     },
     {
@@ -6914,6 +7319,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-r15-sf4-fk-persist.md",
       "path": "sessions/84/84f78582813ceb4519d5.json"
     },
     {
@@ -6931,6 +7337,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-r15-sf4-sobel-audit.md",
       "path": "sessions/db/db7caf6aff6cdb4e022d.json"
     },
     {
@@ -6948,6 +7355,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/fix-table2-width.md",
       "path": "sessions/88/88d77f2f8c022bea0484.json"
     },
     {
@@ -6965,6 +7373,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-8b-progress-and-bertscore.md",
       "path": "sessions/f4/f4f33b3abbbe83e77d46.json"
     },
     {
@@ -6982,6 +7391,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-8b-readiness-check.md",
       "path": "sessions/24/248fd771b967e58d4f31.json"
     },
     {
@@ -6999,6 +7409,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-check-annotation-upload.md",
       "path": "sessions/aa/aa9ef81056b43a302ecb.json"
     },
     {
@@ -7016,6 +7427,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-code-sync-and-status.md",
       "path": "sessions/cb/cb969e6d0f4cdafa5cdf.json"
     },
     {
@@ -7033,6 +7445,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-download-progress-check.md",
       "path": "sessions/2a/2a1ac86e0241ac297899.json"
     },
     {
@@ -7050,6 +7463,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-dual-model-download.md",
       "path": "sessions/a8/a8fd28527d1ef10ffb71.json"
     },
     {
@@ -7067,6 +7481,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-env-setup.md",
       "path": "sessions/2b/2b2172aa8ba5f59e5bf8.json"
     },
     {
@@ -7084,6 +7499,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-fix-bertscore-download.md",
       "path": "sessions/bb/bb1c36ca09f3233d853d.json"
     },
     {
@@ -7101,6 +7517,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-gpu-check.md",
       "path": "sessions/4b/4b36313178268af43b2d.json"
     },
     {
@@ -7118,6 +7535,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-model-download.md",
       "path": "sessions/ac/ac9d76ef8ccd1de0fd05.json"
     },
     {
@@ -7135,6 +7553,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-model-download-v2.md",
       "path": "sessions/66/661802f9bff4d5ca8c7d.json"
     },
     {
@@ -7152,6 +7571,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-pull-annotation.md",
       "path": "sessions/ce/ce1afcfe8a550654aa74.json"
     },
     {
@@ -7169,6 +7589,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-quick-fixes.md",
       "path": "sessions/f4/f4541014214ef77f8f3b.json"
     },
     {
@@ -7186,6 +7607,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-quick-setup.md",
       "path": "sessions/b0/b082e36f71d430408b7f.json"
     },
     {
@@ -7203,6 +7625,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-status-check.md",
       "path": "sessions/da/daed04577c8ccf847d3d.json"
     },
     {
@@ -7220,6 +7643,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-sync-cv-fix-to-local.md",
       "path": "sessions/c5/c5338375c5a138c9d62d.json"
     },
     {
@@ -7237,6 +7661,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/infra-vllm-check-restart.md",
       "path": "sessions/bf/bf6cf2d0b2c8c061b13c.json"
     },
     {
@@ -7254,6 +7679,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/investigate-h1h2-fk-mediation.md",
       "path": "sessions/6b/6b944d2c26c01c4e45de.json"
     },
     {
@@ -7271,6 +7697,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/investigate-h3-llama-alpacaeval-or.md",
       "path": "sessions/32/32ecd5c8bf55435e52bc.json"
     },
     {
@@ -7288,6 +7715,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/mvp-32b-progress-and-nli-investigate.md",
       "path": "sessions/a1/a1f8ef2b2fefb6ee2ddc.json"
     },
     {
@@ -7305,6 +7733,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/mvp-check-8b-and-launch.md",
       "path": "sessions/5f/5fa5af19e8152151bc3c.json"
     },
     {
@@ -7322,6 +7751,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/mvp-fix-thinking-and-restart.md",
       "path": "sessions/e0/e00e35c3ccdeff7dae8d.json"
     },
     {
@@ -7339,6 +7769,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/mvp-kill-zombie-and-verify.md",
       "path": "sessions/85/854e5216a430bdd3d2e9.json"
     },
     {
@@ -7356,6 +7787,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/mvp-launch-pipeline.md",
       "path": "sessions/46/46f6cb53821adc959d5b.json"
     },
     {
@@ -7373,6 +7805,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/mvp-nli-count-and-sync.md",
       "path": "sessions/a8/a85d110ae6415a07c58e.json"
     },
     {
@@ -7390,6 +7823,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/mvp-quality-check-and-code-sync.md",
       "path": "sessions/c4/c46a2261ebed491be22b.json"
     },
     {
@@ -7407,6 +7841,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/mvp-resume-scoring-and-ate.md",
       "path": "sessions/16/163380b701d2438ff0bf.json"
     },
     {
@@ -7424,6 +7859,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/mvp-sync-and-restart-cf.md",
       "path": "sessions/6c/6c769a0eacb5c52854d3.json"
     },
     {
@@ -7441,6 +7877,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/mvp-urgent-status-and-launch.md",
       "path": "sessions/44/449996af0ae4dbaf2c45.json"
     },
     {
@@ -7458,6 +7895,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-32b-monitor-and-prep.md",
       "path": "sessions/00/00ef66da90941b60d1a9.json"
     },
     {
@@ -7475,6 +7913,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-32b-prep-and-vllm-start.md",
       "path": "sessions/bd/bd70f65c88086f578465.json"
     },
     {
@@ -7492,6 +7931,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-32b-wait-and-launch.md",
       "path": "sessions/b9/b9b66f6b80f477683945.json"
     },
     {
@@ -7509,6 +7949,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-api-proxy-detailed-check.md",
       "path": "sessions/77/77654aebbe7230099ee6.json"
     },
     {
@@ -7526,6 +7967,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 1,
+      "readable_path": "readable/task-results/ops-api-proxy-investigation.md",
       "path": "sessions/2b/2bdc11562207a66a8a02.json"
     },
     {
@@ -7543,6 +7985,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-bt-discrepancy-investigation.md",
       "path": "sessions/67/678628b03c9da6efc495.json"
     },
     {
@@ -7560,6 +8003,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-cleanup-deploy-vllm-alpacaeval.md",
       "path": "sessions/5d/5d7c5dc99b42c290c21c.json"
     },
     {
@@ -7577,6 +8021,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-exp002-benchmark-data.md",
       "path": "sessions/61/61727421dec463448d30.json"
     },
     {
@@ -7594,6 +8039,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-exp005-prep-and-cleanup.md",
       "path": "sessions/d4/d47a2b33bc06349a88b4.json"
     },
     {
@@ -7611,6 +8057,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-exp006-diagnosis.md",
       "path": "sessions/0a/0a645938ff1152e57957.json"
     },
     {
@@ -7628,6 +8075,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-exp006-gpu-status-check.md",
       "path": "sessions/52/52b2b45f56f86c5f722b.json"
     },
     {
@@ -7645,6 +8093,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-exp006-vllm-restart-cfgen.md",
       "path": "sessions/43/431155f1172b91a96464.json"
     },
     {
@@ -7662,6 +8111,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-exp010-binarized-likert.md",
       "path": "sessions/73/73c1076986216c3dd3b0.json"
     },
     {
@@ -7679,6 +8129,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-exp013-direction-bias.md",
       "path": "sessions/09/09034eae4cc207097e02.json"
     },
     {
@@ -7696,6 +8147,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-exp014-fixed-rerun.md",
       "path": "sessions/d5/d505d7476e629df08ff9.json"
     },
     {
@@ -7713,6 +8165,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-exp014-server-fix-verified.md",
       "path": "sessions/fa/faf9bf60f9f52ceede05.json"
     },
     {
@@ -7730,6 +8183,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-forest-plot-data-fix.md",
       "path": "sessions/04/04acde12355a7cb97fb2.json"
     },
     {
@@ -7747,6 +8201,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-gpu-progress-check.md",
       "path": "sessions/e9/e98ba3b9630dbee172a9.json"
     },
     {
@@ -7764,6 +8219,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-kill-vllm.md",
       "path": "sessions/62/62c8483a73a83f12a936.json"
     },
     {
@@ -7781,6 +8237,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-kill-vllm-fix-gate.md",
       "path": "sessions/60/607d488bc37a21017452.json"
     },
     {
@@ -7798,6 +8255,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-kill-vllm-residual.md",
       "path": "sessions/df/dfc5be404ce27b460694.json"
     },
     {
@@ -7815,6 +8273,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-organize-8b-results-and-monitor-32b.md",
       "path": "sessions/ec/ec585e8ead1f0ecafe9a.json"
     },
     {
@@ -7832,6 +8291,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-reanalysis-batch.md",
       "path": "sessions/15/155d90adeddeafd10c49.json"
     },
     {
@@ -7849,6 +8309,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-register-pilot.md",
       "path": "sessions/da/dab3382e84314526614c.json"
     },
     {
@@ -7866,6 +8327,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-s3-backup.md",
       "path": "sessions/93/93ad8f21fa5dc039e2f2.json"
     },
     {
@@ -7883,6 +8345,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-sync-forest-plot.md",
       "path": "sessions/ad/ad786ad0e7a1e00eba3b.json"
     },
     {
@@ -7900,6 +8363,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-tone-pilot-exp004.md",
       "path": "sessions/61/615113a1291e7c184786.json"
     },
     {
@@ -7917,6 +8381,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-verbosity-nli-only-gate.md",
       "path": "sessions/12/1219b7bd21f1fb471083.json"
     },
     {
@@ -7934,6 +8399,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-verbosity-nli-rerun.md",
       "path": "sessions/76/76386ed50b2f03e10d9f.json"
     },
     {
@@ -7951,6 +8417,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-verbosity-scoring-pipeline.md",
       "path": "sessions/11/1101f318e0ad3b40a2e0.json"
     },
     {
@@ -7968,6 +8435,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/ops-verify-rerun-exp012-014.md",
       "path": "sessions/0e/0ec6e08bc80ec8236fcb.json"
     },
     {
@@ -7985,6 +8453,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-figure.md",
       "path": "sessions/5f/5f212f699985558a27f6.json"
     },
     {
@@ -8002,6 +8471,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-figure-forest-plot-sync.md",
       "path": "sessions/0e/0ed45dd65cd857da6770.json"
     },
     {
@@ -8019,6 +8489,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-figure-sync-figures.md",
       "path": "sessions/e4/e4e908018d75fa1a00a1.json"
     },
     {
@@ -8036,6 +8507,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-reference-audit.md",
       "path": "sessions/b7/b7fd3a7988a04d78aab2.json"
     },
     {
@@ -8053,6 +8525,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-research-citation-fill.md",
       "path": "sessions/f0/f04948e43fef33d1e879.json"
     },
     {
@@ -8070,6 +8543,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing.md",
       "path": "sessions/19/194905111f7a0ce7be42.json"
     },
     {
@@ -8087,6 +8561,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-analysis.md",
       "path": "sessions/0e/0e5cbab18eb4e24180f7.json"
     },
     {
@@ -8104,6 +8579,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-introduction.md",
       "path": "sessions/00/0069832c3a395b4fe9ae.json"
     },
     {
@@ -8121,6 +8597,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/paper-writing-method.md",
       "path": "sessions/dc/dc36c81ea4587ee7f733.json"
     },
     {
@@ -8138,6 +8615,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/pipeline-claude-crossbench-scoring.md",
       "path": "sessions/a5/a53b96c74344a80865a9.json"
     },
     {
@@ -8155,6 +8633,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/pipeline-claude-expanded-v2.md",
       "path": "sessions/3f/3f91341b64f9874ca068.json"
     },
     {
@@ -8172,6 +8651,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/pipeline-claude-expanded.md",
       "path": "sessions/60/608e8deb504480ab9554.json"
     },
     {
@@ -8189,6 +8669,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/pipeline-crossbench-gpt4o-v2.md",
       "path": "sessions/49/493776cf38ec5905facf.json"
     },
     {
@@ -8206,6 +8687,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/pipeline-crossbench-gpt4o.md",
       "path": "sessions/dd/dd476b0c3506fa37d7a6.json"
     },
     {
@@ -8223,6 +8705,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/pipeline-crossbench-local.md",
       "path": "sessions/76/7625d3bad3e9dc944a4e.json"
     },
     {
@@ -8240,6 +8723,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/push-abstract-abbrev-expand.md",
       "path": "sessions/1b/1b72e956dde4a719f958.json"
     },
     {
@@ -8257,6 +8741,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/push-abstract-anon-link.md",
       "path": "sessions/fa/fa01925900b5680d1294.json"
     },
     {
@@ -8274,6 +8759,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/push-abstract-footnote-fix.md",
       "path": "sessions/a2/a228ed0212872a316c3b.json"
     },
     {
@@ -8291,6 +8777,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/push-acl-template-align.md",
       "path": "sessions/99/9994f953a3de9c6f6ace.json"
     },
     {
@@ -8308,6 +8795,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/push-anon-repo.md",
       "path": "sessions/c5/c57fe28785a101e2ec77.json"
     },
     {
@@ -8325,6 +8813,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/push-conclusion-fix.md",
       "path": "sessions/3b/3beca6dbd9273d45c29f.json"
     },
     {
@@ -8342,6 +8831,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/push-limitations-compress.md",
       "path": "sessions/57/574ac22a12111b1d48f0.json"
     },
     {
@@ -8359,6 +8849,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/push-limitations-noindent.md",
       "path": "sessions/21/21a72ace4ba66ee553e5.json"
     },
     {
@@ -8376,6 +8867,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/push-noindent-fix.md",
       "path": "sessions/6e/6eb30c32260fc4f88f9d.json"
     },
     {
@@ -8393,6 +8885,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-figure-opt-review.md",
       "path": "sessions/cd/cdbe40f70c1f65eb08eb.json"
     },
     {
@@ -8410,6 +8903,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-missing-refs.md",
       "path": "sessions/e5/e582ba19250cdf210859.json"
     },
     {
@@ -8427,6 +8921,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-ref-verification-r10.md",
       "path": "sessions/21/214e1c5671e4bd0074aa.json"
     },
     {
@@ -8444,6 +8939,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-table-t1-audit.md",
       "path": "sessions/c2/c28c9b8d9212e6c82cf3.json"
     },
     {
@@ -8461,6 +8957,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/research-table-t1-full-audit.md",
       "path": "sessions/53/538b6eb30da250d45f8a.json"
     },
     {
@@ -8478,6 +8975,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/run-ate-analysis-20260520.md",
       "path": "sessions/77/77409764e676ead76c1d.json"
     },
     {
@@ -8495,6 +8993,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/run-ate-final-20260520.md",
       "path": "sessions/90/90d6544cbd7ba69967e6.json"
     },
     {
@@ -8512,6 +9011,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/verify-table23-bt-values.md",
       "path": "sessions/6b/6b392f09d752b7cd6866.json"
     },
     {
@@ -8529,6 +9029,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/task-results/viz-forest-plot-v2.md",
       "path": "sessions/c3/c39531f2f9ede574c59e.json"
     },
     {
@@ -8546,6 +9047,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-1-copy-2.md",
       "path": "sessions/a3/a327a990081ae26cad59.json"
     },
     {
@@ -8563,6 +9065,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-1.md",
       "path": "sessions/40/40fd55f05a1ae629d597.json"
     },
     {
@@ -8580,6 +9083,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-2.md",
       "path": "sessions/5e/5ea6af1aa84a509212a7.json"
     },
     {
@@ -8597,6 +9101,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-1-copy-3.md",
       "path": "sessions/b9/b97f1f96795ddfb2e7ff.json"
     },
     {
@@ -8614,6 +9119,7 @@
       "preview": "",
       "reported_errors": 0,
       "unparsed_lines": 0,
+      "readable_path": "readable/context-notes/loop-2-copy-2.md",
       "path": "sessions/1b/1bda843aa82dd5d6595e.json"
     }
   ]

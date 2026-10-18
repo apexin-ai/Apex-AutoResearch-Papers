@@ -1,0 +1,41 @@
+# research embedding anisotropy lit
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_research_embedding-anisotropy-lit_20260515T075641_result.json`
+- **Structured JSON:** [`7de049058d6d8f153d6f.json`](../../sessions/7d/7de049058d6d8f153d6f.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+5 篇文献已追加到 `literature_map.yaml`，在新的 `EMBEDDING ANISOTROPY / REPRESENTATION DEGENERATION` section 下。
+
+汇总：
+
+| ID | 论文 | Venue | 与 MAVEN 发现的关系 |
+|---|---|---|---|
+| `gao-repr-degen-2019` | Representation Degeneration Problem | ICLR 2019 | **根因机制**：likelihood + weight tying → embeddings 塌缩到窄锥，cosine sim 普遍偏高 |
+| `ethayarajh-contextual-2019` | How Contextual are Contextualized Word Representations | EMNLP 2019 | **普遍性**：BERT/ELMo/GPT-2 所有层均 anisotropic，不是 Qwen 特例 |
+| `cai-isotropy-clusters-2021` | Isotropy in the Contextual Embedding Space: Clusters and Manifolds | ICLR 2021 | **⭐ 最直接相关**：全局 anisotropy 来自 cross-cluster 混合；within-cluster 方差低。MAVEN 168 types 同属一个 cluster → cosine ≥ 0.90 是必然结果 |
+| `godey-anisotropy-inherent-2024` | Anisotropy Is Inherent to Self-Attention | EACL 2024 | **不可避免性**：anisotropy 是 self-attention 的固有属性，非训练目标副产物 |
+| `rajaee-cluster-isotropy-2021` | Cluster-based Isotropy in Contextual Embedding Space | ACL 2021 | **局部机制**：同 cluster 内 dominant directions 编码 domain 级特征而非细粒度类型区分 |
+
+**没有发现任何论文做过完全相同的事**（same-domain type embedding compression in IE）。我们的发现是上述 representation degeneration 理论在 IE schema 场景的首次实证验证。
+
+**论文中建议的引用策略**：在讨论 BCS proxy 的 domain boundary limitation 时，引用 Cai et al. (2021) 作为主要理论支撑，辅以 Gao et al. (2019) 解释根因，Godey et al. (2024) 论证不可修复性。一句话版本：
+
+> *The compression of type embeddings within a single semantic domain is a direct consequence of the well-documented representation degeneration problem (Gao et al., 2019), where embeddings from the same semantic cluster exhibit minimal angular separation (Cai et al., 2021) — a property recently shown to be inherent to self-attention (Godey et al., 2024).*
+
+---

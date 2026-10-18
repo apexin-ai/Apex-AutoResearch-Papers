@@ -1,0 +1,960 @@
+# code step3 mi filter and sensitivity
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/chats/worker_code_step3-mi-filter-and-sensitivity_20260522T163508.jsonl`
+- **Structured JSON:** [`8c8f1a698eadf4455fa8.json`](../../sessions/8c/8c8f1a698eadf4455fa8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+33 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T16:39:05.597520+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T16:39:05.597882+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T16:39:05.598052+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T16:39:05.598186+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T16:39:05.598308+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/scripts/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T16:39:05.598529+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 3: Compute 15-model pairwise MI matrix and K_eff for all C(15,3) panels.\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nfrom pathlib import Path\\nfrom sklearn.metrics import mutual_info_score\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, PLAN001_DIR, load_all_scores,\\n)\\n\\nlogger = setup_logging(\\\"plan001_step3_mi\\\")\\n\\nMI_DIR = PLAN001_DIR / \\\"mi_matrix\\\"\\n\\n\\ndef extract_winner_vector(score_list):\\n    winners = []\\n    for s in score_list:\\n        w = s.get(\\\"winner\\\", \\\"tie\\\") if isinstance(s, dict) else \\\"tie\\\"\\n        winners.append(w)\\n    return winners\\n\\n\\ndef compute_pairwise_mi(winners_i, winners_j):\\n    n = min(len(winners_i), len(winners_j))\\n    if n == 0:\\n        return 0.0\\n    return mutual_info_score(winners_i[:n], winners_j[:n])\\n\\n\\ndef build_mi_matrix(clean_scores, dataset):\\n    ds_scores = clean_scores.get(dataset, {})\\n    n_models = len(ALL_MODELS)\\n    mi_mat = np.zeros((n_models, n_models))\\n\\n    winner_vectors = {}\\n    for i, model_id in enumerate(ALL_MODELS):\\n        if model_id in ds_scores:\\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\\n        else:\\n            logger.warning(f\\\"No clean scores for {model_id} on {dataset}\\\")\\n\\n    for i in range(n_models):\\n        for j in range(i + 1, n_models):\\n            if i in winner_vectors and j in winner_vectors:\\n                mi = compute_pairwise_mi(winner_vectors[i], winner_vectors[j])\\n                mi_mat[i, j] = mi\\n                mi_mat[j, i] = mi\\n\\n    return mi_mat\\n\\n\\ndef mi_based_keff(mi_matrix, model_indices):\\n    K 
+…[truncated 4687 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T16:39:05.598870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 4: Panel regression -- 455 panels x 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\nOptional: pingouin (for partial_corr; manual fallback included)\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import optimize, stats, special\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS, OUTPUT_DIR,\\n    load_all_scores, load_pairs, load_mi_data,\\n    compute_corrected_asr, compute_corrected_panel_asr,\\n)\\n\\nlogger = setup_logging(\\\"plan001_step4\\\")\\n\\nEPS = 0.001\\n\\n\\n# ── JSON Helper ──────────────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── ASR Computation ──────────────────────────────────────────────────\\n\\n
+…[truncated 7274 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T16:39:05.599045+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/cert_manip_resist_eval/scripts/unified_data_loader.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T16:39:05.599205+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T16:39:05.599460+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Unified data loader for 15-model cert_manip_resist_eval pipeline.\\n\\nHandles two data formats:\\n  - Checkpoint files (local 6 models): nested {clean_scores: {ds: {model: [...]}}}\\n  - Individual JSON files (API 9 models): flat {scores: [...], asr, accuracy, ...}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Default paths ────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores(\\n 
+…[truncated 7190 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T16:39:05.599680+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -250 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -250 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T16:39:05.599967+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 4: Panel regression -- 455 panels x 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\nOptional: pingouin (for partial_corr; manual fallback included)\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import optimize, stats, special\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS, OUTPUT_DIR,\\n    load_all_scores, load_pairs, load_mi_data,\\n    compute_corrected_asr, compute_corrected_panel_asr,\\n)\\n\\nlogger = setup_logging(\\\"plan001_step4\\\")\\n\\nEPS = 0.001\\n\\n\\n# ── JSON Helper ──────────────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── ASR Computation ──────────────────────────────────────────────────\\n\\n
+…[truncated 6954 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T16:39:05.600163+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "tail -n 200 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "tail -n 200 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T16:39:05.600293+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "wc -l /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "wc -l /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T16:39:05.600554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    if br is not None:\\n        results[\\\"beta_reg_keff_beta\\\"] = float(br[\\\"beta\\\"][1])\\n        results[\\\"beta_reg_keff_p\\\"] = float(br[\\\"p\\\"][1])\\n        results[\\\"beta_reg_eta_max_beta\\\"] = float(br[\\\"beta\\\"][2])\\n        results[\\\"beta_reg_eta_max_p\\\"] = float(br[\\\"p\\\"][2])\\n    else:\\n        results[\\\"beta_reg_keff_p\\\"] = None\\n        results[\\\"beta_reg_eta_max_p\\\"] = None\\n\\n    return results\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────\\n\\ndef main():\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Plan 001 Step 4: Panel Regression (455 panels x 12 conditions)\\\")\\n    logger.info(\\\"=\\\" * 60)\\n\\n    mi_data = load_mi_data()\\n    pairs = load_pairs()\\n    clean, attacked = load_all_scores()\\n\\n    logger.info(\\\"\\\\nPrecomputing individual ASR...\\\")\\n    ind_asr = {}\\n    for ds in DATASETS:\\n        for atk in ATTACKS:\\n            for mid in ALL_MODELS:\\n                if mid in clean[ds] and mid in attacked[ds][atk]:\\n                    ind_asr[(ds, atk, mid)] = compute_corrected_asr(\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\n                    )[0]\\n    logger.info(f\\\"  Computed {len(ind_asr)} individual ASR values\\\")\\n\\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), 3))\\n    logger.info(f\\\"  Total panels: {len(all_combos)}\\\")\\n\\n    condition_results = {}\\n    raw_eta_ps = []\\n    raw_keff_ps = []\\n    valid_cond_keys = []\\n\\n    for ds in DATASETS:\\n        keff_data = mi_data[\\\"keff_per_panel\\\"].get(ds, {})\\n        for atk in ATTACKS:\\n            cond = f\\\"{ds}x{atk}\\\"\\n            logger.info(f\\\"\\\\n--- {cond} ---\\\")\\n\\n            p_asrs, p_keffs, p_etas = [], [], []\\n            skipped = 0\\n\\n            for combo in all_combos:\\n                jids = [ALL_MODELS[i] for i 
+…[truncated 6954 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T16:39:05.600744+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"424 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T16:39:05.600904+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "wc -l /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "wc -l /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T16:39:05.601031+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"333 /root/cert_manip_resist_eval/src/unified_data_loader.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T16:39:05.601150+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -n 175 /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -n 175 /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T16:39:05.601376+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Unified data loader for 15-model cert_manip_resist_eval pipeline.\\n\\nHandles two data formats:\\n  - Checkpoint files (local 6 models): nested {clean_scores: {ds: {model: [...]}}}\\n  - Individual JSON files (API 9 models): flat {scores: [...], asr, accuracy, ...}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Default paths ────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores(\\n 
+…[truncated 5153 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T16:39:05.601628+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat > /tmp/patch_step3.py << 'PYEOF'\nimport re\n\npath = '/root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py'\nwith open(path) as f:\n    content = f.read()\n\n# 1. Replace extract_winner_vector\nold = '''def extract_winner_vector(score_list):\n    winners = []\n    for s in score_list:\n        w = s.get(\"winner\", \"tie\") if isinstance(s, dict) else \"tie\"\n        winners.append(w)\n    return winners'''\n\nnew = '''def extract_winner_vector(score_list):\n    \"\"\"Extract winner vector, returning None for error/invalid entries.\"\"\"\n    winners = []\n    for s in score_list:\n        if isinstance(s, dict) and not s.get(\"error\"):\n            w = s.get(\"winner\")\n            winners.append(w)\n        else:\n            winners.append(None)\n    return winners'''\n\nassert old in content, \"extract_winner_vector not found\"\ncontent = content.replace(old, new)\n\n# 2. Replace compute_pairwise_mi\nold = '''def compute_pairwise_mi(winners_i, winners_j):\n    n = min(len(winners_i), len(winners_j))\n    if n == 0:\n        return 0.0\n    return mutual_info_score(winners_i[:n], winners_j[:n])'''\n\nnew = '''def compute_pairwise_mi(winners_i, winners_j):\n    \"\"\"Compute MI, filtering pairs where either entry is None (error).\"\"\"\n    n = min(len(winners_i), len(winners_j))\n    if n == 0:\n        return 0.0, 0, True\n    filtered_i, filtered_j = [], []\n    for idx in range(n):\n        if winners_i[idx] is not None and winners_j[idx] is not None:\n            filtered_i.append(winners_i[idx])\n            filtered_j.append(winners_j[idx])\n    n_valid = len(filtered_i)\n    if n_valid < 10:\n        return 0.0, n_valid, True\n    mi = mutual_info_score(filtered_i, filtered_j)\n    warning = n_valid < 150\n    return mi, n_valid, warning'''\n\nassert old in content, \"compute_pairwise_mi not found\"\ncontent = content.replace(old, new)\n\n# 3. Replace build_mi_matrix\nold = '''def build_mi_matrix(clean_scores, dataset):\n    ds_scores = clean_scores.get(dataset, {})\n    n_models = len(ALL_MODELS)\n    mi_mat = np.zeros((n_models, n_models))\n\n    winner_vectors = {}\n    for i, model_id in enumerate(ALL_MODELS):\n        if model_id in ds_scores:\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\n        else:\n            logger.warning(f\"No clean scores for {model_id} on {dataset}\")\n\n    for i in range(n_models):\n        for j in range(i + 1, n_models):\n            if i in winner_vectors and j in winner_vectors:\n                mi = compute_pairwise_mi(winner_vectors[i], winner_vectors[j])\n                mi_mat[i, j] = mi\n                mi_mat[j, i] = mi\n\n    return mi_mat'''\n\nnew = '''def build_mi_matrix(clean_scores, dataset):\n    ds_scores = clean_scores.get(dataset, {})\n    n_models = len(ALL_MODELS)\n    mi_mat = np.zeros((n_models, n_models))\n    valid_counts = np.zeros((n_models, n_models), dtype=int)\n    warnings_list = []\n\n    winner_vectors = {}\n    for i, model_id in enumerate(ALL_MODELS):\n        if model_id in ds_scores:\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\n            n_none = sum(1 for w in winner_vectors[i] if w is None)\n            if n_none > 0:\n                logger.warning(\n                    f\"  {model_id} on {dataset}: {n_none}/{len(winner_vectors[i])} \"\n                    f\"error/invalid entries filtered\"\n                )\n        else:\n            logger.warning(f\"No clean scores for {model_id} on {dataset}\")\n\n    for i in range(n_models):\n        for j in range(i + 1, n_models):\n            if i in winner_vectors and j in winner_vectors:\n                mi, n_valid, warn = compute_pairwise_mi(\n                    winner_vectors[i], winner_vectors[j]\n                )\n                mi_mat[i, j] = mi\n                mi_mat[j, i] = mi\n                valid_counts[i, j] = n_valid\n                valid_counts[j, i] = n_valid\n                if warn:\n                    warnings_list.append(\n                        f\"{ALL_MODELS[i]}|{ALL_MODELS[j]}: only {n_valid} valid samples\"\n                    )\n\n    if warnings_list:\n        for w in warnings_list:\n            logger.warning(f\"  Low valid samples: {w}\")\n\n    return mi_mat, valid_counts'''\n\nassert old in content, \"build_mi_matrix not found\"\ncontent = content.replace(old, new)\n\n# 4. Update main() callers\nassert 'mi_mat = build_mi_matrix(clean_scores, ds)' in content\ncontent = content.replace(\n    'mi_mat = build_mi_matrix(clean_scores, ds)',\n    'mi_mat, valid_cnt = build_mi_matrix(clean_scores, ds)'\n)\n\n# 5. Collect valid_counts_all\nassert 'mi_matrices = {}' in content\ncontent = content.replace(\n    'mi_matrices = {}\\n    keff_per_panel = {}',\n    'mi_matrices = {}\\n    valid_counts_all = {}\\n    keff_per_panel = {}'\n)\n\nassert 'mi_matrices[ds] = mi_mat.tolist()' in content\ncontent = content.replace(\n    'mi_matrices[ds] = mi_mat.tolist()',\n    'mi_matrices[ds] = mi_mat.tolist()\\n        valid_counts_all[ds] = valid_cnt.tolist()'\n)\n\n# 6. Add valid_counts to output JSON\nassert '\"mi_matrix\": mi_matrices,' in content\ncontent = content.replace(\n    '\"mi_matrix\": mi_matrices,',\n    '\"mi_matrix\": mi_matrices,\\n        \"valid_counts\": valid_counts_all,'\n)\n\nwith open(path, 'w') as f:\n    f.write(content)\n\nprint(\"Step 3 patch applied: 6 changes\")\nPYEOF\npython3 /tmp/patch_step3.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat > /tmp/patch_step3.py << 'PYEOF'\nimport re\n\npath = '/root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py'\nwith open(path) as f:\n    content = f.read()\n\n# 1. Replace extract_winner_vector\nold = '''def extract_winner_vector(score_list):\n    winners = []\n    for s in score_list:\n        w = s.get(\"winner\", \"tie\") if isinstance(s, dict) else \"tie\"\n        winners.append(w)\n    return winners'''\n\nnew = '''def extract_winner_vector(score_list):\n    \"\"\"Extract winner vector, returning None for error/invalid entries.\"\"\"\n    winners = []\n    for s in score_list:\n        if isinstance(s, dict) and not s.get(\"error\"):\n            w = s.get(\"winner\")\n            winners.append(w)\n        else:\n            winners.append(None)\n    return winners'''\n\nassert old in content, \"extract_winner_vector not found\"\ncontent = content.replace(old, new)\n\n# 2. Replace compute_pairwise_mi\nold = '''def compute_pairwise_mi(winners_i, winners_j):\n    n = min(len(winners_i), len(winners_j))\n    if n == 0:\n        return 0.0\n    return mutual_info_score(winners_i[:n], winners_j[:n])'''\n\nnew = '''def compute_pairwise_mi(winners_i, winners_j):\n    \"\"\"Compute MI, filtering pairs where either entry is None (error).\"\"\"\n    n = min(len(winners_i), len(winners_j))\n    if n == 0:\n        return 0.0, 0, True\n    filtered_i, filtered_j = [], []\n    for idx in range(n):\n        if winners_i[idx] is not None and winners_j[idx] is not None:\n            filtered_i.append(winners_i[idx])\n            filtered_j.append(winners_j[idx])\n    n_valid = len(filtered_i)\n    if n_valid < 10:\n        return 0.0, n_valid, True\n    mi = mutual_info_score(filtered_i, filtered_j)\n    warning = n_valid < 150\n    return mi, n_valid, warning'''\n\nassert old in content, \"compute_pairwise_mi not found\"\ncontent = content.replace(old, new)\n\n# 3. Replace build_mi_matrix\nold = '''def build_mi_matrix(clean_scores, dataset):\n    ds_scores = clean_scores.get(dataset, {})\n    n_models = len(ALL_MODELS)\n    mi_mat = np.zeros((n_models, n_models))\n\n    winner_vectors = {}\n    for i, model_id in enumerate(ALL_MODELS):\n        if model_id in ds_scores:\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\n        else:\n            logger.warning(f\"No clean scores for {model_id} on {dataset}\")\n\n    for i in range(n_models):\n        for j in range(i + 1, n_models):\n            if i in winner_vectors and j in winner_vectors:\n                mi = compute_pairwise_mi(winner_vectors[i], winner_vectors[j])\n                mi_mat[i, j] = mi\n                mi_mat[j, i] = mi\n\n    return mi_mat'''\n\nnew = '''def build_mi_matrix(clean_scores, dataset):\n    ds_scores = clean_scores.get(dataset, {})\n    n_models = len(ALL_MODELS)\n    mi_mat = np.zeros((n_models, n_models))\n    valid_counts = np.zeros((n_models, n_models), dtype=int)\n    warnings_list = []\n\n    winner_vectors = {}\n    for i, model_id in enumerate(ALL_MODELS):\n        if model_id in ds_scores:\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\n            n_none = sum(1 for w in winner_vectors[i] if w is None)\n            if n_none > 0:\n                logger.warning(\n                    f\"  {model_id} on {dataset}: {n_none}/{len(winner_vectors[i])} \"\n                    f\"error/invalid entries filtered\"\n                )\n        else:\n            logger.warning(f\"No clean scores for {model_id} on {dataset}\")\n\n    for i in range(n_models):\n        for j in range(i + 1, n_models):\n            if i in winner_vectors and j in winner_vectors:\n                mi, n_valid, warn = compute_pairwise_mi(\n                    winner_vectors[i], winner_vectors[j]\n                )\n                mi_mat[i, j] = mi\n                mi_mat[j, i] = mi\n                valid_counts[i, j] = n_valid\n                valid_counts[j, i] = n_valid\n                if warn:\n                    warnings_list.append(\n                        f\"{ALL_MODELS[i]}|{ALL_MODELS[j]}: only {n_valid} valid samples\"\n                    )\n\n    if warnings_list:\n        for w in warnings_list:\n            logger.warning(f\"  Low valid samples: {w}\")\n\n    return mi_mat, valid_counts'''\n\nassert old in content, \"build_mi_matrix not found\"\ncontent = content.replace(old, new)\n\n# 4. Update main() callers\nassert 'mi_mat = build_mi_matrix(clean_scores, ds)' in content\ncontent = content.replace(\n    'mi_mat = build_mi_matrix(clean_scores, ds)',\n    'mi_mat, valid_cnt = build_mi_matrix(clean_scores, ds)'\n)\n\n# 5. Collect valid_counts_all\nassert 'mi_matrices = {}' in content\ncontent = content.replace(\n    'mi_matrices = {}\\n    keff_per_panel = {}',\n    'mi_matrices = {}\\n    valid_counts_all = {}\\n    keff_per_panel = {}'\n)\n\nassert 'mi_matrices[ds] = mi_mat.tolist()' in content\ncontent = content.replace(\n    'mi_matrices[ds] = mi_mat.tolist()',\n    'mi_matrices[ds] = mi_mat.tolist()\\n        valid_counts_all[ds] = valid_cnt.tolist()'\n)\n\n# 6. Add valid_counts to output JSON\nassert '\"mi_matrix\": mi_matrices,' in content\ncontent = content.replace(\n    '\"mi_matrix\": mi_matrices,',\n    '\"mi_matrix\": mi_matrices,\\n        \"valid_counts\": valid_counts_all,'\n)\n\nwith open(path, 'w') as f:\n    f.write(content)\n\nprint(\"Step 3 patch applied: 6 changes\")\nPYEOF\npython3 /tmp/patch_step3.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T16:39:05.601923+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/patch_step3.py << \\\\'PYEOF\\\\'\\\\nimport re\\\\n\\\\npath = \\\\'/root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py\\\\'\\\\nwith open(path) as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Replace extract_winner_vector\\\\nold = \\\\'\\\\'\\\\'def extract_winner_vector(score_list):\\\\n    winners = []\\\\n    for s in score_list:\\\\n        w = s.get(\\\"winner\\\", \\\"tie\\\") if isinstance(s, dict) else \\\"tie\\\"\\\\n        winners.append(w)\\\\n    return winners\\\\'\\\\'\\\\'\\\\n\\\\nnew = \\\\'\\\\'\\\\'def extract_winner_vector(score_list):\\\\n    \\\"\\\"\\\"Extract winner vector, returning None for error/invalid entries.\\\"\\\"\\\"\\\\n    winners = []\\\\n    for s in score_list:\\\\n        if isinstance(s, dict) and not s.get(\\\"error\\\"):\\\\n            w = s.get(\\\"winner\\\")\\\\n            winners.append(w)\\\\n        else:\\\\n            winners.append(None)\\\\n    return winners\\\\'\\\\'\\\\'\\\\n\\\\nassert old in content, \\\"extract_winner_vector not found\\\"\\\\ncontent = content.replace(old, new)\\\\n\\\\n# 2. Replace compute_pairwise_mi\\\\nold = \\\\'\\\\'\\\\'def compute_pairwise_mi(winners_i, winners_j):\\\\n    n = min(len(winners_i), len(winners_j))\\\\n    if n == 0:\\\\n        return 0.0\\\\n    return mutual_info_score(winners_i[:n], winners_j[:n])\\\\'\\\\'\\\\'\\\\n\\\\nnew = \\\\'\\\\'\\\\'def compute_pairwise_mi(winners_i, winners_j):\\\\n    \\\"\\\"\\\"Compute MI, filtering pairs where either entry is None (error).\\\"\\\"\\\"\\\\n    n = min(len(winners_i), len(winners_j))\\\\n    if n == 0:\\\\n        return 0.0, 0, True\\\\n    filtered_i, filtered_j = [], []\\\\n    for idx in range(n):\\\\n        if winners_i[idx] is not None and winners_j[idx] is not None:\\\\n            filtered_i.append(winners_i[idx])\\\\n            filtered_j.append(winners_j[idx])\\\\n   
+…[truncated 4585 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T16:39:05.602093+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat >> /root/cert_manip_resist_eval/src/unified_data_loader.py << 'PYEOF'\n\n\ndef compute_clean_accuracy(clean_scores, pairs, datasets=None, all_models=None):\n    \"\"\"Compute clean accuracy for each (model, dataset).\n\n    Returns: {(model_id, ds): float}\n    \"\"\"\n    datasets = datasets or DATASETS\n    all_models = all_models or ALL_MODELS\n    acc = {}\n    for ds in datasets:\n        ds_pairs = pairs.get(ds, [])\n        for mid in all_models:\n            if mid not in clean_scores.get(ds, {}):\n                continue\n            scores = clean_scores[ds][mid]\n            n = min(len(scores), len(ds_pairs))\n            if n == 0:\n                continue\n            n_correct = 0\n            for i in range(n):\n                gt = ds_pairs[i][\"ground_truth_winner\"]\n                w = scores[i].get(\"winner\") if isinstance(scores[i], dict) else None\n                if w == gt:\n                    n_correct += 1\n            acc[(mid, ds)] = n_correct / n\n    return acc\n\n\ndef flag_low_accuracy_conditions(clean_scores, pairs, threshold=0.5,\n                                  datasets=None, all_models=None):\n    \"\"\"Flag (model, dataset) combos where clean accuracy < threshold.\n\n    Returns: set of (model_id, dataset)\n    \"\"\"\n    acc = compute_clean_accuracy(clean_scores, pairs, datasets, all_models)\n    flagged = set()\n    for (mid, ds), a in acc.items():\n        if a < threshold:\n            logger.warning(f\"Low clean accuracy: {mid} on {ds} = {a:.3f} < {threshold}\")\n            flagged.add((mid, ds))\n    return flagged\nPYEOF\necho \"unified_data_loader patched\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat >> /root/cert_manip_resist_eval/src/unified_data_loader.py << 'PYEOF'\n\n\ndef compute_clean_accuracy(clean_scores, pairs, datasets=None, all_models=None):\n    \"\"\"Compute clean accuracy for each (model, dataset).\n\n    Returns: {(model_id, ds): float}\n    \"\"\"\n    datasets = datasets or DATASETS\n    all_models = all_models or ALL_MODELS\n    acc = {}\n    for ds in datasets:\n        ds_pairs = pairs.get(ds, [])\n        for mid in all_models:\n            if mid not in clean_scores.get(ds, {}):\n                continue\n            scores = clean_scores[ds][mid]\n            n = min(len(scores), len(ds_pairs))\n            if n == 0:\n                continue\n            n_correct = 0\n            for i in range(n):\n                gt = ds_pairs[i][\"ground_truth_winner\"]\n                w = scores[i].get(\"winner\") if isinstance(scores[i], dict) else None\n                if w == gt:\n                    n_correct += 1\n            acc[(mid, ds)] = n_correct / n\n    return acc\n\n\ndef flag_low_accuracy_conditions(clean_scores, pairs, threshold=0.5,\n                                  datasets=None, all_models=None):\n    \"\"\"Flag (model, dataset) combos where clean accuracy < threshold.\n\n    Returns: set of (model_id, dataset)\n    \"\"\"\n    acc = compute_clean_accuracy(clean_scores, pairs, datasets, all_models)\n    flagged = set()\n    for (mid, ds), a in acc.items():\n        if a < threshold:\n            logger.warning(f\"Low clean accuracy: {mid} on {ds} = {a:.3f} < {threshold}\")\n            flagged.add((mid, ds))\n    return flagged\nPYEOF\necho \"unified_data_loader patched\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T16:39:05.602238+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"unified_data_loader patched\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T16:39:05.602412+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\npath = '/root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py'\nwith open(path) as f:\n    content = f.read()\n\n# 1. Replace extract_winner_vector\nold = 'def extract_winner_vector(score_list):\\n    winners = []\\n    for s in score_list:\\n        w = s.get(\"winner\", \"tie\") if isinstance(s, dict) else \"tie\"\\n        winners.append(w)\\n    return winners'\n\nnew = 'def extract_winner_vector(score_list):\\n    \"\"\"Extract winner vector, returning None for error/invalid entries.\"\"\"\\n    winners = []\\n    for s in score_list:\\n        if isinstance(s, dict) and not s.get(\"error\"):\\n            w = s.get(\"winner\")\\n            winners.append(w)\\n        else:\\n            winners.append(None)\\n    return winners'\n\nassert old in content, \"extract_winner_vector not found\"\ncontent = content.replace(old, new)\n\n# 2. Replace compute_pairwise_mi\nold = 'def compute_pairwise_mi(winners_i, winners_j):\\n    n = min(len(winners_i), len(winners_j))\\n    if n == 0:\\n        return 0.0\\n    return mutual_info_score(winners_i[:n], winners_j[:n])'\n\nnew = 'def compute_pairwise_mi(winners_i, winners_j):\\n    \"\"\"Compute MI, filtering pairs where either entry is None (error).\"\"\"\\n    n = min(len(winners_i), len(winners_j))\\n    if n == 0:\\n        return 0.0, 0, True\\n    filtered_i, filtered_j = [], []\\n    for idx in range(n):\\n        if winners_i[idx] is not None and winners_j[idx] is not None:\\n            filtered_i.append(winners_i[idx])\\n            filtered_j.append(winners_j[idx])\\n    n_valid = len(filtered_i)\\n    if n_valid < 10:\\n        return 0.0, n_valid, True\\n    mi = mutual_info_score(filtered_i, filtered_j)\\n    warning = n_valid < 150\\n    return mi, n_valid, warning'\n\nassert old in content, \"compute_pairwise_mi not found\"\ncontent = content.replace(old, new)\n\n# 3. Replace build_mi_matrix\nold = 'def build_mi_matrix(clean_scores, dataset):\\n    ds_scores = clean_scores.get(dataset, {})\\n    n_models = len(ALL_MODELS)\\n    mi_mat = np.zeros((n_models, n_models))\\n\\n    winner_vectors = {}\\n    for i, model_id in enumerate(ALL_MODELS):\\n        if model_id in ds_scores:\\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\\n        else:\\n            logger.warning(f\"No clean scores for {model_id} on {dataset}\")\\n\\n    for i in range(n_models):\\n        for j in range(i + 1, n_models):\\n            if i in winner_vectors and j in winner_vectors:\\n                mi = compute_pairwise_mi(winner_vectors[i], winner_vectors[j])\\n                mi_mat[i, j] = mi\\n                mi_mat[j, i] = mi\\n\\n    return mi_mat'\n\nnew = 'def build_mi_matrix(clean_scores, dataset):\\n    ds_scores = clean_scores.get(dataset, {})\\n    n_models = len(ALL_MODELS)\\n    mi_mat = np.zeros((n_models, n_models))\\n    valid_counts = np.zeros((n_models, n_models), dtype=int)\\n    warnings_list = []\\n\\n    winner_vectors = {}\\n    for i, model_id in enumerate(ALL_MODELS):\\n        if model_id in ds_scores:\\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\\n            n_none = sum(1 for w in winner_vectors[i] if w is None)\\n            if n_none > 0:\\n                logger.warning(\\n                    f\"  {model_id} on {dataset}: {n_none}/{len(winner_vectors[i])} \"\\n                    f\"error/invalid entries filtered\"\\n                )\\n        else:\\n            logger.warning(f\"No clean scores for {model_id} on {dataset}\")\\n\\n    for i in range(n_models):\\n        for j in range(i + 1, n_models):\\n            if i in winner_vectors and j in winner_vectors:\\n                mi, n_valid, warn = compute_pairwise_mi(\\n                    winner_vectors[i], winner_vectors[j]\\n                )\\n                mi_mat[i, j] = mi\\n                mi_mat[j, i] = mi\\n                valid_counts[i, j] = n_valid\\n                valid_counts[j, i] = n_valid\\n                if warn:\\n                    warnings_list.append(\\n                        f\"{ALL_MODELS[i]}|{ALL_MODELS[j]}: only {n_valid} valid samples\"\\n                    )\\n\\n    if warnings_list:\\n        for w in warnings_list:\\n            logger.warning(f\"  Low valid samples: {w}\")\\n\\n    return mi_mat, valid_counts'\n\nassert old in content, \"build_mi_matrix not found\"\ncontent = content.replace(old, new)\n\n# 4. Update main() callers\nassert 'mi_mat = build_mi_matrix(clean_scores, ds)' in content\ncontent = content.replace(\n    'mi_mat = build_mi_matrix(clean_scores, ds)',\n    'mi_mat, valid_cnt = build_mi_matrix(clean_scores, ds)')\n\n# 5. Collect valid_counts_all\nassert 'mi_matrices = {}\\n    keff_per_panel = {}' in content\ncontent = content.replace(\n    'mi_matrices = {}\\n    keff_per_panel = {}',\n    'mi_matrices = {}\\n    valid_counts_all = {}\\n    keff_per_panel = {}')\n\nassert 'mi_matrices[ds] = mi_mat.tolist()' in content\ncontent = content.replace(\n    'mi_matrices[ds] = mi_mat.tolist()',\n    'mi_matrices[ds] = mi_mat.tolist()\\n        valid_counts_all[ds] = valid_cnt.tolist()')\n\n# 6. Add valid_counts to output JSON\nassert '\"mi_matrix\": mi_matrices,' in content\ncontent = content.replace(\n    '\"mi_matrix\": mi_matrices,',\n    '\"mi_matrix\": mi_matrices,\\n        \"valid_counts\": valid_counts_all,')\n\nwith open(path, 'w') as f:\n    f.write(content)\n\nprint(\"Step 3 patch applied: 6 changes OK\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\npath = '/root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py'\nwith open(path) as f:\n    content = f.read()\n\n# 1. Replace extract_winner_vector\nold = 'def extract_winner_vector(score_list):\\n    winners = []\\n    for s in score_list:\\n        w = s.get(\"winner\", \"tie\") if isinstance(s, dict) else \"tie\"\\n        winners.append(w)\\n    return winners'\n\nnew = 'def extract_winner_vector(score_list):\\n    \"\"\"Extract winner vector, returning None for error/invalid entries.\"\"\"\\n    winners = []\\n    for s in score_list:\\n        if isinstance(s, dict) and not s.get(\"error\"):\\n            w = s.get(\"winner\")\\n            winners.append(w)\\n        else:\\n            winners.append(None)\\n    return winners'\n\nassert old in content, \"extract_winner_vector not found\"\ncontent = content.replace(old, new)\n\n# 2. Replace compute_pairwise_mi\nold = 'def compute_pairwise_mi(winners_i, winners_j):\\n    n = min(len(winners_i), len(winners_j))\\n    if n == 0:\\n        return 0.0\\n    return mutual_info_score(winners_i[:n], winners_j[:n])'\n\nnew = 'def compute_pairwise_mi(winners_i, winners_j):\\n    \"\"\"Compute MI, filtering pairs where either entry is None (error).\"\"\"\\n    n = min(len(winners_i), len(winners_j))\\n    if n == 0:\\n        return 0.0, 0, True\\n    filtered_i, filtered_j = [], []\\n    for idx in range(n):\\n        if winners_i[idx] is not None and winners_j[idx] is not None:\\n            filtered_i.append(winners_i[idx])\\n            filtered_j.append(winners_j[idx])\\n    n_valid = len(filtered_i)\\n    if n_valid < 10:\\n        return 0.0, n_valid, True\\n    mi = mutual_info_score(filtered_i, filtered_j)\\n    warning = n_valid < 150\\n    return mi, n_valid, warning'\n\nassert old in content, \"compute_pairwise_mi not found\"\ncontent = content.replace(old, new)\n\n# 3. Replace build_mi_matrix\nold = 'def build_mi_matrix(clean_scores, dataset):\\n    ds_scores = clean_scores.get(dataset, {})\\n    n_models = len(ALL_MODELS)\\n    mi_mat = np.zeros((n_models, n_models))\\n\\n    winner_vectors = {}\\n    for i, model_id in enumerate(ALL_MODELS):\\n        if model_id in ds_scores:\\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\\n        else:\\n            logger.warning(f\"No clean scores for {model_id} on {dataset}\")\\n\\n    for i in range(n_models):\\n        for j in range(i + 1, n_models):\\n            if i in winner_vectors and j in winner_vectors:\\n                mi = compute_pairwise_mi(winner_vectors[i], winner_vectors[j])\\n                mi_mat[i, j] = mi\\n                mi_mat[j, i] = mi\\n\\n    return mi_mat'\n\nnew = 'def build_mi_matrix(clean_scores, dataset):\\n    ds_scores = clean_scores.get(dataset, {})\\n    n_models = len(ALL_MODELS)\\n    mi_mat = np.zeros((n_models, n_models))\\n    valid_counts = np.zeros((n_models, n_models), dtype=int)\\n    warnings_list = []\\n\\n    winner_vectors = {}\\n    for i, model_id in enumerate(ALL_MODELS):\\n        if model_id in ds_scores:\\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\\n            n_none = sum(1 for w in winner_vectors[i] if w is None)\\n            if n_none > 0:\\n                logger.warning(\\n                    f\"  {model_id} on {dataset}: {n_none}/{len(winner_vectors[i])} \"\\n                    f\"error/invalid entries filtered\"\\n                )\\n        else:\\n            logger.warning(f\"No clean scores for {model_id} on {dataset}\")\\n\\n    for i in range(n_models):\\n        for j in range(i + 1, n_models):\\n            if i in winner_vectors and j in winner_vectors:\\n                mi, n_valid, warn = compute_pairwise_mi(\\n                    winner_vectors[i], winner_vectors[j]\\n                )\\n                mi_mat[i, j] = mi\\n                mi_mat[j, i] = mi\\n                valid_counts[i, j] = n_valid\\n                valid_counts[j, i] = n_valid\\n                if warn:\\n                    warnings_list.append(\\n                        f\"{ALL_MODELS[i]}|{ALL_MODELS[j]}: only {n_valid} valid samples\"\\n                    )\\n\\n    if warnings_list:\\n        for w in warnings_list:\\n            logger.warning(f\"  Low valid samples: {w}\")\\n\\n    return mi_mat, valid_counts'\n\nassert old in content, \"build_mi_matrix not found\"\ncontent = content.replace(old, new)\n\n# 4. Update main() callers\nassert 'mi_mat = build_mi_matrix(clean_scores, ds)' in content\ncontent = content.replace(\n    'mi_mat = build_mi_matrix(clean_scores, ds)',\n    'mi_mat, valid_cnt = build_mi_matrix(clean_scores, ds)')\n\n# 5. Collect valid_counts_all\nassert 'mi_matrices = {}\\n    keff_per_panel = {}' in content\ncontent = content.replace(\n    'mi_matrices = {}\\n    keff_per_panel = {}',\n    'mi_matrices = {}\\n    valid_counts_all = {}\\n    keff_per_panel = {}')\n\nassert 'mi_matrices[ds] = mi_mat.tolist()' in content\ncontent = content.replace(\n    'mi_matrices[ds] = mi_mat.tolist()',\n    'mi_matrices[ds] = mi_mat.tolist()\\n        valid_counts_all[ds] = valid_cnt.tolist()')\n\n# 6. Add valid_counts to output JSON\nassert '\"mi_matrix\": mi_matrices,' in content\ncontent = content.replace(\n    '\"mi_matrix\": mi_matrices,',\n    '\"mi_matrix\": mi_matrices,\\n        \"valid_counts\": valid_counts_all,')\n\nwith open(path, 'w') as f:\n    f.write(content)\n\nprint(\"Step 3 patch applied: 6 changes OK\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T16:39:05.602588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Step 3 patch applied: 6 changes OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T16:39:05.602787+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\npath = '/root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py'\nwith open(path) as f:\n    content = f.read()\n\n# 1. Add imports from unified_data_loader\nold_import = \"\"\"from src.unified_data_loader import (\n    ALL_MODELS, DATASETS, ATTACKS, OUTPUT_DIR,\n    load_all_scores, load_pairs, load_mi_data,\n    compute_corrected_asr, compute_corrected_panel_asr,\n)\"\"\"\nnew_import = \"\"\"from src.unified_data_loader import (\n    ALL_MODELS, DATASETS, ATTACKS, OUTPUT_DIR,\n    load_all_scores, load_pairs, load_mi_data,\n    compute_corrected_asr, compute_corrected_panel_asr,\n    flag_low_accuracy_conditions,\n)\"\"\"\nassert old_import in content, \"import block not found\"\ncontent = content.replace(old_import, new_import)\n\n# 2. Add sensitivity analysis before the output block.\n# Insert before: \"    output = {\"\nsensitivity_block = '''\n    # ── Sensitivity: exclude (model, dataset) with clean ACC < 0.5 ──\n    logger.info(\"\\\\n\" + \"=\" * 60)\n    logger.info(\"SENSITIVITY ANALYSIS: exclude clean ACC < 0.5\")\n    logger.info(\"=\" * 60)\n\n    low_acc_flags = flag_low_accuracy_conditions(clean, pairs, threshold=0.5)\n    logger.info(f\"  Flagged (model, dataset) pairs: {len(low_acc_flags)}\")\n    for mid, ds in sorted(low_acc_flags):\n        logger.info(f\"    {mid} on {ds}\")\n\n    sens_results = {}\n    sens_raw_eta_ps = []\n    sens_raw_keff_ps = []\n    sens_valid_cond_keys = []\n\n    for ds in DATASETS:\n        keff_data = mi_data[\"keff_per_panel\"].get(ds, {})\n        flagged_models_ds = {mid for (mid, fds) in low_acc_flags if fds == ds}\n\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n            p_asrs, p_keffs, p_etas = [], [], []\n            skipped = 0\n            excluded_low_acc = 0\n\n            for combo in all_combos:\n                jids = [ALL_MODELS[i] for i in combo]\n\n                if any(j in flagged_models_ds for j in jids):\n                    excluded_low_acc += 1\n                    continue\n\n                if not all((ds, atk, j) in ind_asr for j in jids):\n                    skipped += 1\n                    continue\n                pk = \"|\".join(jids)\n                if pk not in keff_data:\n                    skipped += 1\n                    continue\n\n                keff = keff_data[pk][\"keff\"]\n                etas = [ind_asr[(ds, atk, j)] for j in jids]\n                eta_max = max(etas)\n\n                cs = {j: clean[ds][j] for j in jids}\n                ats = {j: attacked[ds][atk][j] for j in jids}\n                p_asr = compute_corrected_panel_asr(jids, cs, ats, pairs[ds])[0]\n\n                p_asrs.append(p_asr)\n                p_keffs.append(keff)\n                p_etas.append(eta_max)\n\n            n_panels = len(p_asrs)\n            logger.info(f\"  {cond}: {n_panels} panels (excluded {excluded_low_acc} low-acc)\")\n\n            if n_panels < 10 or (n_panels > 0 and np.std(np.array(p_asrs)) < 1e-10):\n                sens_results[cond] = {\"n_panels\": n_panels, \"skipped\": True,\n                                       \"excluded_low_acc\": excluded_low_acc}\n                continue\n\n            p_asrs = np.array(p_asrs)\n            p_keffs = np.array(p_keffs)\n            p_etas = np.array(p_etas)\n\n            cond_res = run_condition_analysis(p_asrs, p_keffs, p_etas)\n            cond_res[\"n_panels\"] = n_panels\n            cond_res[\"excluded_low_acc\"] = excluded_low_acc\n            cond_res[\"skipped\"] = False\n            sens_results[cond] = cond_res\n\n            sens_raw_eta_ps.append(cond_res[\"ols\"][\"eta_max_p\"])\n            sens_raw_keff_ps.append(cond_res[\"ols\"][\"keff_p\"])\n            sens_valid_cond_keys.append(cond)\n\n            ols = cond_res[\"ols\"]\n            sig_k = \"***\" if ols[\"keff_p\"] < 0.001 else \"**\" if ols[\"keff_p\"] < 0.01 else \"*\" if ols[\"keff_p\"] < 0.05 else \"ns\"\n            sig_e = \"***\" if ols[\"eta_max_p\"] < 0.001 else \"**\" if ols[\"eta_max_p\"] < 0.01 else \"*\" if ols[\"eta_max_p\"] < 0.05 else \"ns\"\n            logger.info(\n                f\"    OLS R2={ols['R2']:.4f}  \"\n                f\"K_eff: B={ols['keff_beta']:+.4f} p={ols['keff_p']:.4f} {sig_k}  \"\n                f\"eta_max: B={ols['eta_max_beta']:+.4f} p={ols['eta_max_p']:.4f} {sig_e}\"\n            )\n\n    if sens_raw_eta_ps:\n        _, bonf_eta_s, _, _ = multipletests(sens_raw_eta_ps, method=\"bonferroni\")\n        _, fdr_eta_s, _, _ = multipletests(sens_raw_eta_ps, method=\"fdr_bh\")\n        _, bonf_keff_s, _, _ = multipletests(sens_raw_keff_ps, method=\"bonferroni\")\n        _, fdr_keff_s, _, _ = multipletests(sens_raw_keff_ps, method=\"fdr_bh\")\n        for i, ck in enumerate(sens_valid_cond_keys):\n            sens_results[ck][\"eta_max_bonferroni_p\"] = float(bonf_eta_s[i])\n            sens_results[ck][\"eta_max_fdr_p\"] = float(fdr_eta_s[i])\n            sens_results[ck][\"keff_bonferroni_p\"] = float(bonf_keff_s[i])\n            sens_results[ck][\"keff_fdr_p\"] = float(fdr_keff_s[i])\n\n    # Comparison table\n    logger.info(\"\\\\n\" + \"=\" * 60)\n    logger.info(\"MAIN vs SENSITIVITY comparison\")\n    logger.info(\"=\" * 60)\n    logger.info(f\"{'Condition':<35} {'Main K_eff':>12} {'Sens K_eff':>12} {'Main eta':>12} {'Sens eta':>12}\")\n    logger.info(\"-\" * 90)\n    for ck in valid_cond_keys:\n        m = condition_results[ck]\n        s = sens_results.get(ck, {})\n        if m.get(\"skipped\") or s.get(\"skipped\"):\n            continue\n        mo = m[\"ols\"]\n        so = s[\"ols\"]\n        def _sig(p):\n            return \"***\" if p < 0.001 else \"**\" if p < 0.01 else \"*\" if p < 0.05 else \"ns\"\n        logger.info(\n            f\"  {ck:<33} {mo['keff_p']:>8.4f} {_sig(mo['keff_p']):>3s} \"\n            f\"{so['keff_p']:>8.4f} {_sig(so['keff_p']):>3s} \"\n            f\"{mo['eta_max_p']:>8.4f} {_sig(mo['eta_max_p']):>3s} \"\n            f\"{so['eta_max_p']:>8.4f} {_sig(so['eta_max_p']):>3s}\"\n        )\n\n    sensitivity_output = {\n        \"threshold\": 0.5,\n        \"flagged_pairs\": [{\"model\": m, \"dataset\": d} for m, d in sorted(low_acc_flags)],\n        \"conditions\": sens_results,\n    }\n\n'''\n\n# Find the insertion point: just before \"    output = {\"\ninsert_marker = '\\n    output = {'\nassert insert_marker in content, f\"insert marker not found\"\ncontent = content.replace(insert_marker, sensitivity_block + insert_marker)\n\n# 3. Add sensitivity_output to the output dict\nold_output = '''    output = {\n        \"n_panels\": 455,\n        \"n_models\": len(ALL_MODELS),\n        \"models\": ALL_MODELS,\n        \"datasets\": DATASETS,\n        \"attacks\": ATTACKS,\n        \"conditions\": condition_results,\n        \"summary\": summary,\n    }'''\n\nnew_output = '''    output = {\n        \"n_panels\": 455,\n        \"n_models\": len(ALL_MODELS),\n        \"models\": ALL_MODELS,\n        \"datasets\": DATASETS,\n        \"attacks\": ATTACKS,\n        \"conditions\": condition_results,\n        \"summary\": summary,\n        \"sensitivity_exclude_low_acc\": sensitivity_output,\n    }'''\n\nassert old_output in content, \"output dict not found\"\ncontent = content.replace(old_output, new_output)\n\nwith open(path, 'w') as f:\n    f.write(content)\n\nprint(\"Step 4 patch applied: 3 changes OK\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\npath = '/root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py'\nwith open(path) as f:\n    content = f.read()\n\n# 1. Add imports from unified_data_loader\nold_import = \"\"\"from src.unified_data_loader import (\n    ALL_MODELS, DATASETS, ATTACKS, OUTPUT_DIR,\n    load_all_scores, load_pairs, load_mi_data,\n    compute_corrected_asr, compute_corrected_panel_asr,\n)\"\"\"\nnew_import = \"\"\"from src.unified_data_loader import (\n    ALL_MODELS, DATASETS, ATTACKS, OUTPUT_DIR,\n    load_all_scores, load_pairs, load_mi_data,\n    compute_corrected_asr, compute_corrected_panel_asr,\n    flag_low_accuracy_conditions,\n)\"\"\"\nassert old_import in content, \"import block not found\"\ncontent = content.replace(old_import, new_import)\n\n# 2. Add sensitivity analysis before the output block.\n# Insert before: \"    output = {\"\nsensitivity_block = '''\n    # ── Sensitivity: exclude (model, dataset) with clean ACC < 0.5 ──\n    logger.info(\"\\\\n\" + \"=\" * 60)\n    logger.info(\"SENSITIVITY ANALYSIS: exclude clean ACC < 0.5\")\n    logger.info(\"=\" * 60)\n\n    low_acc_flags = flag_low_accuracy_conditions(clean, pairs, threshold=0.5)\n    logger.info(f\"  Flagged (model, dataset) pairs: {len(low_acc_flags)}\")\n    for mid, ds in sorted(low_acc_flags):\n        logger.info(f\"    {mid} on {ds}\")\n\n    sens_results = {}\n    sens_raw_eta_ps = []\n    sens_raw_keff_ps = []\n    sens_valid_cond_keys = []\n\n    for ds in DATASETS:\n        keff_data = mi_data[\"keff_per_panel\"].get(ds, {})\n        flagged_models_ds = {mid for (mid, fds) in low_acc_flags if fds == ds}\n\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n            p_asrs, p_keffs, p_etas = [], [], []\n            skipped = 0\n            excluded_low_acc = 0\n\n            for combo in all_combos:\n                jids = [ALL_MODELS[i] for i in combo]\n\n                if any(j in flagged_models_ds for j in jids):\n                    excluded_low_acc += 1\n                    continue\n\n                if not all((ds, atk, j) in ind_asr for j in jids):\n                    skipped += 1\n                    continue\n                pk = \"|\".join(jids)\n                if pk not in keff_data:\n                    skipped += 1\n                    continue\n\n                keff = keff_data[pk][\"keff\"]\n                etas = [ind_asr[(ds, atk, j)] for j in jids]\n                eta_max = max(etas)\n\n                cs = {j: clean[ds][j] for j in jids}\n                ats = {j: attacked[ds][atk][j] for j in jids}\n                p_asr = compute_corrected_panel_asr(jids, cs, ats, pairs[ds])[0]\n\n                p_asrs.append(p_asr)\n                p_keffs.append(keff)\n                p_etas.append(eta_max)\n\n            n_panels = len(p_asrs)\n            logger.info(f\"  {cond}: {n_panels} panels (excluded {excluded_low_acc} low-acc)\")\n\n            if n_panels < 10 or (n_panels > 0 and np.std(np.array(p_asrs)) < 1e-10):\n                sens_results[cond] = {\"n_panels\": n_panels, \"skipped\": True,\n                                       \"excluded_low_acc\": excluded_low_acc}\n                continue\n\n            p_asrs = np.array(p_asrs)\n            p_keffs = np.array(p_keffs)\n            p_etas = np.array(p_etas)\n\n            cond_res = run_condition_analysis(p_asrs, p_keffs, p_etas)\n            cond_res[\"n_panels\"] = n_panels\n            cond_res[\"excluded_low_acc\"] = excluded_low_acc\n            cond_res[\"skipped\"] = False\n            sens_results[cond] = cond_res\n\n            sens_raw_eta_ps.append(cond_res[\"ols\"][\"eta_max_p\"])\n            sens_raw_keff_ps.append(cond_res[\"ols\"][\"keff_p\"])\n            sens_valid_cond_keys.append(cond)\n\n            ols = cond_res[\"ols\"]\n            sig_k = \"***\" if ols[\"keff_p\"] < 0.001 else \"**\" if ols[\"keff_p\"] < 0.01 else \"*\" if ols[\"keff_p\"] < 0.05 else \"ns\"\n            sig_e = \"***\" if ols[\"eta_max_p\"] < 0.001 else \"**\" if ols[\"eta_max_p\"] < 0.01 else \"*\" if ols[\"eta_max_p\"] < 0.05 else \"ns\"\n            logger.info(\n                f\"    OLS R2={ols['R2']:.4f}  \"\n                f\"K_eff: B={ols['keff_beta']:+.4f} p={ols['keff_p']:.4f} {sig_k}  \"\n                f\"eta_max: B={ols['eta_max_beta']:+.4f} p={ols['eta_max_p']:.4f} {sig_e}\"\n            )\n\n    if sens_raw_eta_ps:\n        _, bonf_eta_s, _, _ = multipletests(sens_raw_eta_ps, method=\"bonferroni\")\n        _, fdr_eta_s, _, _ = multipletests(sens_raw_eta_ps, method=\"fdr_bh\")\n        _, bonf_keff_s, _, _ = multipletests(sens_raw_keff_ps, method=\"bonferroni\")\n        _, fdr_keff_s, _, _ = multipletests(sens_raw_keff_ps, method=\"fdr_bh\")\n        for i, ck in enumerate(sens_valid_cond_keys):\n            sens_results[ck][\"eta_max_bonferroni_p\"] = float(bonf_eta_s[i])\n            sens_results[ck][\"eta_max_fdr_p\"] = float(fdr_eta_s[i])\n            sens_results[ck][\"keff_bonferroni_p\"] = float(bonf_keff_s[i])\n            sens_results[ck][\"keff_fdr_p\"] = float(fdr_keff_s[i])\n\n    # Comparison table\n    logger.info(\"\\\\n\" + \"=\" * 60)\n    logger.info(\"MAIN vs SENSITIVITY comparison\")\n    logger.info(\"=\" * 60)\n    logger.info(f\"{'Condition':<35} {'Main K_eff':>12} {'Sens K_eff':>12} {'Main eta':>12} {'Sens eta':>12}\")\n    logger.info(\"-\" * 90)\n    for ck in valid_cond_keys:\n        m = condition_results[ck]\n        s = sens_results.get(ck, {})\n        if m.get(\"skipped\") or s.get(\"skipped\"):\n            continue\n        mo = m[\"ols\"]\n        so = s[\"ols\"]\n        def _sig(p):\n            return \"***\" if p < 0.001 else \"**\" if p < 0.01 else \"*\" if p < 0.05 else \"ns\"\n        logger.info(\n            f\"  {ck:<33} {mo['keff_p']:>8.4f} {_sig(mo['keff_p']):>3s} \"\n            f\"{so['keff_p']:>8.4f} {_sig(so['keff_p']):>3s} \"\n            f\"{mo['eta_max_p']:>8.4f} {_sig(mo['eta_max_p']):>3s} \"\n            f\"{so['eta_max_p']:>8.4f} {_sig(so['eta_max_p']):>3s}\"\n        )\n\n    sensitivity_output = {\n        \"threshold\": 0.5,\n        \"flagged_pairs\": [{\"model\": m, \"dataset\": d} for m, d in sorted(low_acc_flags)],\n        \"conditions\": sens_results,\n    }\n\n'''\n\n# Find the insertion point: just before \"    output = {\"\ninsert_marker = '\\n    output = {'\nassert insert_marker in content, f\"insert marker not found\"\ncontent = content.replace(insert_marker, sensitivity_block + insert_marker)\n\n# 3. Add sensitivity_output to the output dict\nold_output = '''    output = {\n        \"n_panels\": 455,\n        \"n_models\": len(ALL_MODELS),\n        \"models\": ALL_MODELS,\n        \"datasets\": DATASETS,\n        \"attacks\": ATTACKS,\n        \"conditions\": condition_results,\n        \"summary\": summary,\n    }'''\n\nnew_output = '''    output = {\n        \"n_panels\": 455,\n        \"n_models\": len(ALL_MODELS),\n        \"models\": ALL_MODELS,\n        \"datasets\": DATASETS,\n        \"attacks\": ATTACKS,\n        \"conditions\": condition_results,\n        \"summary\": summary,\n        \"sensitivity_exclude_low_acc\": sensitivity_output,\n    }'''\n\nassert old_output in content, \"output dict not found\"\ncontent = content.replace(old_output, new_output)\n\nwith open(path, 'w') as f:\n    f.write(content)\n\nprint(\"Step 4 patch applied: 3 changes OK\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T16:39:05.603006+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Step 4 patch applied: 3 changes OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T16:39:05.603154+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python3 -c \"\nfrom scripts.run_plan001_step3_mi_matrix import extract_winner_vector, compute_pairwise_mi, build_mi_matrix\nprint('Step 3 import OK')\n\n# Test extract_winner_vector\ntest = [{'winner': 'A'}, {'winner': 'B', 'error': True}, {'winner': None}, {}, 'bad']\nvec = extract_winner_vector(test)\nprint(f'  extract_winner_vector test: {vec}')\nassert vec == ['A', None, None, None, None], f'Unexpected: {vec}'\n\n# Test compute_pairwise_mi\nv1 = ['A', 'B', None, 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A']\nv2 = ['A', 'B', 'A',  None, 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A']\nmi, n_valid, warn = compute_pairwise_mi(v1, v2)\nprint(f'  compute_pairwise_mi test: mi={mi:.4f}, n_valid={n_valid}, warn={warn}')\nassert n_valid == 10, f'Expected 10 valid, got {n_valid}'\nprint('Step 3 tests PASSED')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python3 -c \"\nfrom scripts.run_plan001_step3_mi_matrix import extract_winner_vector, compute_pairwise_mi, build_mi_matrix\nprint('Step 3 import OK')\n\n# Test extract_winner_vector\ntest = [{'winner': 'A'}, {'winner': 'B', 'error': True}, {'winner': None}, {}, 'bad']\nvec = extract_winner_vector(test)\nprint(f'  extract_winner_vector test: {vec}')\nassert vec == ['A', None, None, None, None], f'Unexpected: {vec}'\n\n# Test compute_pairwise_mi\nv1 = ['A', 'B', None, 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A']\nv2 = ['A', 'B', 'A',  None, 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A']\nmi, n_valid, warn = compute_pairwise_mi(v1, v2)\nprint(f'  compute_pairwise_mi test: mi={mi:.4f}, n_valid={n_valid}, warn={warn}')\nassert n_valid == 10, f'Expected 10 valid, got {n_valid}'\nprint('Step 3 tests PASSED')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T16:39:05.603290+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Step 3 import OK\\n  extract_winner_vector test: ['A', None, None, None, None]\\n  compute_pairwise_mi test: mi=0.6931, n_valid=10, warn=True\\nStep 3 tests PASSED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T16:39:05.603416+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python3 -c \"\nfrom scripts.run_plan001_step4_panel_regression import main, run_condition_analysis\nprint('Step 4 import OK')\n\nfrom src.unified_data_loader import flag_low_accuracy_conditions, compute_clean_accuracy\nprint('unified_data_loader imports OK')\n\n# Quick test flag_low_accuracy_conditions with mock data\nmock_clean = {'mmlu': {'model_a': [{'winner': 'A'}] * 10}}\nmock_pairs = {'mmlu': [{'ground_truth_winner': 'A'}] * 10}\nacc = compute_clean_accuracy(mock_clean, mock_pairs, ['mmlu'], ['model_a'])\nprint(f'  clean accuracy test: {acc}')\nassert acc[('model_a', 'mmlu')] == 1.0\n\nflags = flag_low_accuracy_conditions(mock_clean, mock_pairs, 0.5, ['mmlu'], ['model_a'])\nprint(f'  flags (should be empty): {flags}')\nassert len(flags) == 0\n\nmock_clean2 = {'mmlu': {'model_b': [{'winner': 'B'}] * 10}}\nflags2 = flag_low_accuracy_conditions(mock_clean2, mock_pairs, 0.5, ['mmlu'], ['model_b'])\nprint(f'  flags (should have model_b): {flags2}')\nassert ('model_b', 'mmlu') in flags2\nprint('Step 4 tests PASSED')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python3 -c \"\nfrom scripts.run_plan001_step4_panel_regression import main, run_condition_analysis\nprint('Step 4 import OK')\n\nfrom src.unified_data_loader import flag_low_accuracy_conditions, compute_clean_accuracy\nprint('unified_data_loader imports OK')\n\n# Quick test flag_low_accuracy_conditions with mock data\nmock_clean = {'mmlu': {'model_a': [{'winner': 'A'}] * 10}}\nmock_pairs = {'mmlu': [{'ground_truth_winner': 'A'}] * 10}\nacc = compute_clean_accuracy(mock_clean, mock_pairs, ['mmlu'], ['model_a'])\nprint(f'  clean accuracy test: {acc}')\nassert acc[('model_a', 'mmlu')] == 1.0\n\nflags = flag_low_accuracy_conditions(mock_clean, mock_pairs, 0.5, ['mmlu'], ['model_a'])\nprint(f'  flags (should be empty): {flags}')\nassert len(flags) == 0\n\nmock_clean2 = {'mmlu': {'model_b': [{'winner': 'B'}] * 10}}\nflags2 = flag_low_accuracy_conditions(mock_clean2, mock_pairs, 0.5, ['mmlu'], ['model_b'])\nprint(f'  flags (should have model_b): {flags2}')\nassert ('model_b', 'mmlu') in flags2\nprint('Step 4 tests PASSED')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T16:39:05.603614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[00:38:50 INFO] plan001_step4: Using pingouin for partial correlation\\nStep 4 import OK\\nunified_data_loader imports OK\\n  clean accuracy test: {('model_a', 'mmlu'): 1.0}\\n  flags (should be empty): set()\\n  flags (should have model_b): {('model_b', 'mmlu')}\\nStep 4 tests PASSED\\n\", \"stderr\": \"Low clean accuracy: model_b on mmlu = 0.000 < 0.5\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-22T16:39:05.603845+00:00_
+
+两个修复都已通过语法和逻辑验证。
+
+## 汇报
+
+### 修复 1：Step 3 MI 过滤
+- **`extract_winner_vector`** — 改为返回 `None`（而非 `"tie"`）表示 error/invalid。检查 `s.get("error")` 和 `s.get("winner")` 为 None 两种情况
+- **`compute_pairwise_mi`** — 新增 pairwise valid-sample intersection：过滤任一方为 None 的 pair，返回 `(mi, n_valid, warning)`；n_valid < 10 返回 MI=0；n_valid < 150 标记 warning
+- **`build_mi_matrix`** — 返回 `(mi_mat, valid_counts)` 二元组，记录每对模型 valid sample count，日志打印 error 过滤数和低样本量警告
+- **输出 JSON** — 新增 `"valid_counts"` 字段，per-dataset 15x15 矩阵
+
+### 修复 2：Clean ACC < 0.5 Sensitivity Analysis
+- **`flag_low_accuracy_conditions`** — 新增于 `src/unified_data_loader.py`（末尾），遍历所有 (model, dataset) 计算 clean accuracy，返回低于 threshold 的 set
+- **Step 4 sensitivity 块** — 在 main regression 后、output 写入前插入。排除含 flagged model 的 panel，重跑 OLS regression + multiple testing correction，输出 main vs sensitivity 对比表
+- **输出 JSON** — 新增 `"sensitivity_exclude_low_acc"` key，含 threshold、flagged pairs 列表、per-condition regression 结果
+
+### 语法验证
+- Step 3：import OK，`extract_winner_vector` 正确过滤 error 条目（5 个测试样本 → `['A', None, None, None, None]`），`compute_pairwise_mi` 正确计算 valid count
+- Step 4：import OK，`flag_low_accuracy_conditions` 正确标记低准确率模型
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_step3-mi-filter-and-sensitivity_20260522T163508"
+}
+```
+
+</details>
+
+---

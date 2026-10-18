@@ -1,0 +1,4071 @@
+# analysis exp003a logs
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 83
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/workers/worker_analysis_exp003a_logs_20260515T050603.log`
+- **Structured JSON:** [`033d9820c26f819c92c9.json`](../../sessions/03/033d9820c26f819c92c9.json)
+
+## Before a recorded user message
+
+83 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3703ac6e-c0b6-4cab-8fd7-2f31f40bf9b2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778836200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "87e4b3f2-18b1-482e-b5bc-57def6a48ebf",
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the experiment logs and checking results on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "4b5dab8c-c189-4315-8c9f-ba5148c2617f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011z53RuxitvzFsnk1ZYLJVD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11534,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11534
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FKjGYzFyZqstboTnm4FB1u`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "512a4168-8bfd-430e-a8df-66ad55e8a4ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011z53RuxitvzFsnk1ZYLJVD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11534,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11534
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T05:06:14.381Z_
+
+<details><summary>↩ Tool result · `toolu_01FKjGYzFyZqstboTnm4FB1u`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "2960aa0b-9978-46dc-bc79-28011411e292",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the log and checking the results directory in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "b8615b23-6980-407e-8d76-69fd0eec9c3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oRbY6ihegMbNTrGAebPk9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1211,
+      "cache_read_input_tokens": 23375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1211
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WYK7V4aJfogcN3vGgkGh8v`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "tail -200 /root/schema-dag-extraction/logs/exp3a.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "4bccfff4-2555-49fd-a2fb-5a7c9657307b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oRbY6ihegMbNTrGAebPk9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1211,
+      "cache_read_input_tokens": 23375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1211
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X7VJKjGUN9NGjwYZJxLyrs`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "216142d3-6fb0-458c-b65e-ad0ff3644e22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oRbY6ihegMbNTrGAebPk9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1211,
+      "cache_read_input_tokens": 23375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1211
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Es6iCCwrQ1yCbwFy7U5dpe`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "exp003a_prompt_v2_rerun"
+  },
+  "project": "schema-dag-extraction",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "76cab9b8-ce1c-4470-aec5-62f16706a1ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oRbY6ihegMbNTrGAebPk9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1211,
+      "cache_read_input_tokens": 23375,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1211
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T05:06:19.713Z_
+
+<details><summary>↩ Tool result · `toolu_01WYK7V4aJfogcN3vGgkGh8v`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/schema-dag-extraction/logs/exp3a.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "ade5ec9e-cc57-4b69-a0f1-0445f7426118",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/schema-dag-extraction/logs/exp3a.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/schema-dag-extraction/logs/exp3a.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T05:06:20.470Z_
+
+<details><summary>↩ Tool result · `toolu_01X7VJKjGUN9NGjwYZJxLyrs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 2036\\ndrwxr-xr-x  5 root root   4096 May 15 10:39 .\\ndrwxr-xr-x 10 root root    183 May 15 03:41 ..\\ndrwxr-xr-x  2 root root     10 May 15 02:12 analysis\\n-rw-r--r--  1 root root   2640 May 15 10:38 analysis_summary.json\\n-rw-r--r--  1 root root  32484 May 15 02:32 batch_config_exp1.json\\n-rw-r--r--  1 root root   2257 May 15 10:29 confusion_analysis.json\\n-rw-r--r--  1 root root   8273 May 15 07:15 eval_diagnosis.md\\n-rw-r--r--  1 root root  79010 May 15 10:28 eval_exp1.json\\nlrwxrwxrwx  1 root root     24 May 15 10:38 eval_exp2.json -> exp2_reeval_results.json\\ndrwxr-xr-x  2 root root     10 May 15 02:12 exp1\\n-rw-r--r--  1 root root  97965 May 15 07:29 exp1_overprediction_analysis.json\\n-rw-r--r--  1 root root  68265 May 15 09:18 exp1_reeval_results.json\\n-rw-r--r--  1 root root   6288 May 15 09:18 exp1_reeval_summary.json\\n-rw-r--r--  1 root root 202301 May 15 07:29 exp1_text_match_reeval.json\\n-rw-r--r--  1 root root   3242 May 15 07:29 exp1_text_match_summary.json\\ndrwxr-xr-x  2 root root     10 May 15 02:12 exp2\\n-rw-r--r--  1 root root  29015 May 15 10:38 exp2_analysis_f1.pdf\\n-rw-r--r--  1 root root 237050 May 15 10:38 exp2_analysis_f1.png\\n-rw-r--r--  1 root root  18654 May 15 10:38 exp2_analysis_f1_combined.pdf\\n-rw-r--r--  1 root root 166047 May 15 10:38 exp2_analysis_f1_combined.png\\n-rw-r--r--  1 root root  29308 May 15 10:38 exp2_analysis_recall.pdf\\n-rw-r--r--  1 root root 240227 May 15 10:38 exp2_analysis_recall.png\\n-rw-r--r--  1 root root  18963 May 15 10:38 exp2_analysis_recall_combined.pdf\\n-rw-r--r--  1 root root 174189 May 15 10:38 exp2_analysis_recall_combined.png\\n-rw-r--r--  1 root root  40530 May 15 10:28 exp2_reeval_results.json\\n-rw-r--r--  1 root root   1814 May 15 10:28 exp2_reeval_summary.json\\n-rw-r--r--  1 root root  16016 May 15 10:38 fig_count_quality.pdf\\n-rw-r--r--  1 root root  95444 May 15 10:38 fig_count_quality.png\\n-rw-r--r--  1 root root 158926 May 15 10:39 pairwise_confusion_analysis.png\\n-rw-r--r--  1 root root   1340 May 15 10:39 pairwise_confusion_correlation.json\\n-rw-r--r--  1 root root 150186 May 15 10:39 pairwise_confusion_count12.png\\n-rw-r--r--  1 root root 127796 May 15 10:39 pairwise_confusion_count6.png\\n-rw-r--r--  1 root root  20926 May 15 02:14 sim_matrix.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "b55f1346-ff12-4690-8d3a-1d53fee0809c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 2036\\\\ndrwxr-xr-x  5 root root   4096 May 15 10:39 .\\\\ndrwxr-xr-x 10 root root    183 May 15 03:41 ..\\\\ndrwxr-xr-x  2 root root     10 May 15 02:12 analysis\\\\n-rw-r--r--  1 root root   2640 May 15 10:38 analysis_summary.json\\\\n-rw-r--r--  1 root root  32484 May 15 02:32 batch_config_exp1.json\\\\n-rw-r--r--  1 root root   2257 May 15 10:29 confusion_analysis.json\\\\n-rw-r--r--  1 root root   8273 May 15 07:15 eval_diagnosis.md\\\\n-rw-r--r--  1 root root  79010 May 15 10:28 eval_exp1.json\\\\nlrwxrwxrwx  1 root root     24 May 15 10:38 eval_exp2.json -> exp2_reeval_results.json\\\\ndrwxr-xr-x  2 root root     10 May 15 02:12 exp1\\\\n-rw-r--r--  1 root root  97965 May 15 07:29 exp1_overprediction_analysis.json\\\\n-rw-r--r--  1 root root  68265 May 15 09:18 exp1_reeval_results.json\\\\n-rw-r--r--  1 root root   6288 May 15 09:18 exp1_reeval_summary.json\\\\n-rw-r--r--  1 root root 202301 May 15 07:29 exp1_text_match_reeval.json\\\\n-rw-r--r--  1 root root   3242 May 15 07:29 exp1_text_match_summary.json\\\\ndrwxr-xr-x  2 root root     10 May 15 02:12 exp2\\\\n-rw-r--r--  1 root root  29015 May 15 10:38 exp2_analysis_f1.pdf\\\\n-rw-r--r--  1 root root 237050 May 15 10:38 exp2_analysis_f1.png\\\\n-rw-r--r--  1 root root  18654 May 15 10:38 exp2_analysis_f1_combined.pdf\\\\n-rw-r--r--  1 root root 166047 May 15 10:38 exp2_analysis_f1_combined.png\\\\n-rw-r--r--  1 root root  29308 May 15 10:38 exp2_analysis_recall.pdf\\\\n-rw-r--r--  1 root root 240227 May 15 10:38 exp2_analysis_recall.png\\\\n-rw-r--r--  1 root root  18963 May 15 10:38 exp2_analysis_recall_combined.pdf\\\\n-rw-r--r--  1 root root 174189 May 15 10:38 exp2_analysis_recall_combined.png\\\\n-rw-r--r--  1 root root  40530 May 15 10:28 exp2_reeval_results.json\\\\n-rw-r--r--  1 root root   1814 May 15 10:28 exp2_reeval_summary.json\\\\n-rw-r--r--  1 root root  16016 May 15 10:38 fig_count_quality.pdf\\\\n-rw-r--r--  1 root root  95444 May 15 10:38 fig_count_quality.png\\\\n-rw-r--r--  1 root root 158926 May 15 10:39 pairwise_confusion_analysis.png\\\\n-rw-r--r--  1 root root   1340 May 15 10:39 pairwise_confusion_correlation.json\\\\n-rw-r--r--  1 root root 150186 May 15 10:39 pairwise_confusion_count12.png\\\\n-rw-r--r--  1 root root 127796 May 15 10:39 pairwise_confusion_count6.png\\\\n-rw-r--r--  1 root root  20926 May 15 02:14 sim_matrix.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 2036\\ndrwxr-xr-x  5 root root   4096 May 15 10:39 .\\ndrwxr-xr-x 10 root root    183 May 15 03:41 ..\\ndrwxr-xr-x  2 root root     10 May 15 02:12 analysis\\n-rw-r--r--  1 root root   2640 May 15 10:38 analysis_summary.json\\n-rw-r--r--  1 root root  32484 May 15 02:32 batch_config_exp1.json\\n-rw-r--r--  1 root root   2257 May 15 10:29 confusion_analysis.json\\n-rw-r--r--  1 root root   8273 May 15 07:15 eval_diagnosis.md\\n-rw-r--r--  1 root root  79010 May 15 10:28 eval_exp1.json\\nlrwxrwxrwx  1 root root     24 May 15 10:38 eval_exp2.json -> exp2_reeval_results.json\\ndrwxr-xr-x  2 root root     10 May 15 02:12 exp1\\n-rw-r--r--  1 root root  97965 May 15 07:29 exp1_overprediction_analysis.json\\n-rw-r--r--  1 root root  68265 May 15 09:18 exp1_reeval_results.json\\n-rw-r--r--  1 root root   6288 May 15 09:18 exp1_reeval_summary.json\\n-rw-r--r--  1 root root 202301 May 15 07:29 exp1_text_match_reeval.json\\n-rw-r--r--  1 root root   3242 May 15 07:29 exp1_text_match_summary.json\\ndrwxr-xr-x  2 root root     10 May 15 02:12 exp2\\n-rw-r--r--  1 root root  29015 May 15 10:38 exp2_analysis_f1.pdf\\n-rw-r--r--  1 root root 237050 May 15 10:38 exp2_analysis_f1.png\\n-rw-r--r--  1 root root  18654 May 15 10:38 exp2_analysis_f1_combined.pdf\\n-rw-r--r--  1 root root 166047 May 15 10:38 exp2_analysis_f1_combined.png\\n-rw-r--r--  1 root root  29308 May 15 10:38 exp2_analysis_recall.pdf\\n-rw-r--r--  1 root root 240227 May 15 10:38 exp2_analysis_recall.png\\n-rw-r--r--  1 root root  18963 May 15 10:38 exp2_analysis_recall_combined.pdf\\n-rw-r--r--  1 root root 174189 May 15 10:38 exp2_analysis_recall_combined.png\\n-rw-r--r--  1 root root  40530 May 15 10:28 exp2_reeval_results.json\\n-rw-r--r--  1 root root   1814 May 15 10:28 exp2_reeval_summary.json\\n-rw-r--r--  1 root root  16016 May 15 10:38 fig_count_quality.pdf\\n-rw-r--r--  1 root root  95444 May 15 10:38 fig_count_quality.png\\n-rw-r--r--  1 root root 158926 May 15 10:39 pairwise_confusion_analysis.png\\n-rw-r--r--  1 root root   1340 May 15 10:39 pairwise_confusion_correlation.json\\n-rw-r--r--  1 root root 150186 May 15 10:39 pairwise_confusion_count12.png\\n-rw-r--r--  1 root root 127796 May 15 10:39 pairwise_confusion_count6.png\\n-rw-r--r--  1 root root  20926 May 15 02:14 sim_matrix.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T05:06:20.499Z_
+
+<details><summary>↩ Tool result · `toolu_01Es6iCCwrQ1yCbwFy7U5dpe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0148}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "246fa579-660b-43e4-9102-417bd2e5d5c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0148}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0148}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log file doesn't exist at the expected path. Let me search for it. The results directory has many files. Let me look at the key result files - especially the reeval summaries. Also, the registry doesn't have an entry for "exp003a_prompt_v2_rerun" - let me check what entries exist.
+
+Let me:
+1. Find the actual log file
+2. Read the key summary JSONs (exp1_reeval_summary.json and exp2_reeval_summary.json)
+3. Check registry entries
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "864f6c8b-a2df-4703-b356-074ba4c4284e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KR6BoxmXnBPtnP8CVTvVFW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 24586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+日志文件路径不存在，结果目录有大量文件。读取关键 summary 文件和查找日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "a04040c6-44f5-4e16-bcec-e7a0fcf40bdb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KR6BoxmXnBPtnP8CVTvVFW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 24586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VuJu86oms1zzt9ZEmeHSnN`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/logs/ -name \"*exp3*\" -o -name \"*exp003*\" -o -name \"*.log\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "8885a1c6-0fb6-4ce2-899f-893035ba3f07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KR6BoxmXnBPtnP8CVTvVFW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 24586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T05:06:27.876Z_
+
+<details><summary>↩ Tool result · `toolu_01VuJu86oms1zzt9ZEmeHSnN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/logs/embeddings.log\\n/root/schema-dag-extraction/logs/exp1.log\\n/root/schema-dag-extraction/logs/dry_run.log\\n/root/schema-dag-extraction/logs/dry_run_plain.log\\n/root/schema-dag-extraction/logs/dry_run_triton.log\\n/root/schema-dag-extraction/logs/dry_run_v0.log\\n/root/schema-dag-extraction/logs/cuda_test.log\\n/root/schema-dag-extraction/logs/transformers_test.log\\n/root/schema-dag-extraction/logs/dry_run_v0_020.log\\n/root/schema-dag-extraction/logs/dry_run_structured.log\\n/root/schema-dag-extraction/logs/test_structured.log\\n/root/schema-dag-extraction/logs/dry_run_pipeline.log\\n/root/schema-dag-extraction/logs/exp2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "ed38a8fa-c97d-4014-a366-178f36154fea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/logs/embeddings.log\\\\n/root/schema-dag-extraction/logs/exp1.log\\\\n/root/schema-dag-extraction/logs/dry_run.log\\\\n/root/schema-dag-extraction/logs/dry_run_plain.log\\\\n/root/schema-dag-extraction/logs/dry_run_triton.log\\\\n/root/schema-dag-extraction/logs/dry_run_v0.log\\\\n/root/schema-dag-extraction/logs/cuda_test.log\\\\n/root/schema-dag-extraction/logs/transformers_test.log\\\\n/root/schema-dag-extraction/logs/dry_run_v0_020.log\\\\n/root/schema-dag-extraction/logs/dry_run_structured.log\\\\n/root/schema-dag-extraction/logs/test_structured.log\\\\n/root/schema-dag-extraction/logs/dry_run_pipeline.log\\\\n/root/schema-dag-extraction/logs/exp2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/logs/embeddings.log\\n/root/schema-dag-extraction/logs/exp1.log\\n/root/schema-dag-extraction/logs/dry_run.log\\n/root/schema-dag-extraction/logs/dry_run_plain.log\\n/root/schema-dag-extraction/logs/dry_run_triton.log\\n/root/schema-dag-extraction/logs/dry_run_v0.log\\n/root/schema-dag-extraction/logs/cuda_test.log\\n/root/schema-dag-extraction/logs/transformers_test.log\\n/root/schema-dag-extraction/logs/dry_run_v0_020.log\\n/root/schema-dag-extraction/logs/dry_run_structured.log\\n/root/schema-dag-extraction/logs/test_structured.log\\n/root/schema-dag-extraction/logs/dry_run_pipeline.log\\n/root/schema-dag-extraction/logs/exp2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AHqwgmuHw7f7MGCq1XzooQ`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/results/exp1_reeval_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "5236a3d4-ffc2-47e2-9bb6-424c120a2dff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KR6BoxmXnBPtnP8CVTvVFW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 24586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T05:06:28.753Z_
+
+<details><summary>↩ Tool result · `toolu_01AHqwgmuHw7f7MGCq1XzooQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_12\\\": {\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.156482,\\n      \\\"recall\\\": 0.529067,\\n      \\\"f1\\\": 0.241527,\\n      \\\"tp\\\": 1265,\\n      \\\"total_pred\\\": 8084,\\n      \\\"total_gold\\\": 2391,\\n      \\\"macro_f1\\\": 0.228383\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.180727,\\n      \\\"recall\\\": 0.611041,\\n      \\\"f1\\\": 0.27895,\\n      \\\"tp\\\": 1461,\\n      \\\"total_pred\\\": 8084,\\n      \\\"total_gold\\\": 2391,\\n      \\\"macro_f1\\\": 0.266007\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.159451,\\n      \\\"recall\\\": 0.539105,\\n      \\\"f1\\\": 0.24611,\\n      \\\"tp\\\": 1289,\\n      \\\"total_pred\\\": 8084,\\n      \\\"total_gold\\\": 2391,\\n      \\\"macro_f1\\\": 0.232545\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 917,\\n      \\\"wrong_type\\\": 199,\\n      \\\"spurious_entity\\\": 5675,\\n      \\\"total_fp\\\": 6791\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 1616.8,\\n    \\\"avg_gold\\\": 478.2,\\n    \\\"pred_gold_ratio\\\": 3.38\\n  },\\n  \\\"count_1\\\": {\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.102732,\\n      \\\"recall\\\": 0.703243,\\n      \\\"f1\\\": 0.179275,\\n      \\\"tp\\\": 1865,\\n      \\\"total_pred\\\": 18154,\\n      \\\"total_gold\\\": 2652,\\n      \\\"macro_f1\\\": 0.171087\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.11452,\\n      \\\"recall\\\": 0.783937,\\n      \\\"f1\\\": 0.199846,\\n      \\\"tp\\\": 2079,\\n      \\\"total_pred\\\": 18154,\\n      \\\"total_gold\\\": 2652,\\n      \\\"macro_f1\\\": 0.200474\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.105156,\\n      \\\"recall\\\": 0.719834,\\n      \\\"f1\\\": 0.183505,\\n      \\\"tp\\\": 1909,\\n      \\\"total_pred\\\": 18154,\\n      \\\"total_gold\\\": 2652,\\n      \\\"macro_f1\\\": 0.17459\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 283,\\n      \\\"wrong_type\\\": 0,\\n      \\\"spurious_entity\\\": 15949,\\n      \\\"total_fp\\\": 16232\\n    },\\n    \\\"num_batches\\\": 64,\\n    \\\"avg_pred\\\": 283.7,\\n    \\\"avg_gold\\\": 41.4,\\n    \\\"pred_gold_ratio\\\": 6.85\\n  },\\n  \\\"count_22\\\": {\\n    \\\"count_key\\\": \\\"count_22\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.228625,\\n      \\\"recall\\\": 0.519566,\\n      \\\"f1\\\": 0.317528,\\n      \\\"tp\\\": 2297,\\n      \\\"total_pred\\\": 10047,\\n      \\\"total_gold\\\": 4421,\\n      \\\"macro_f1\\\": 0.314198\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.256594,\\n      \\\"recall\\\": 0.583126,\\n      \\\"f1\\\": 0.356373,\\n      \\\"tp\\\": 2578,\\n      \\\"total_pred\\\": 10047,\\n      \\\"total_gold\\\": 4421,\\n      \\\"macro_f1\\\": 0.352759\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.23181,\\n      \\\"recall\\\": 0.526804,\\n      \\\"f1\\\": 0.321952,\\n      \\\"tp\\\": 2329,\\n      \\\"total_pred\\\": 10047,\\n      \\\"total_gold\\\": 4421,\\n      \\\"macro_f1\\\": 0.318419\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 357,\\n      \\\"wrong_type\\\": 541,\\n      \\\"spurious_entity\\\": 6814,\\n      \\\"total_fp\\\": 7712\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 2009.4,\\n    \\\"avg_gold\\\": 884.2,\\n    \\\"pred_gold_ratio\\\": 2.27\\n  },\\n  \\\"count_2\\\": {\\n    \\\"count_key\\\": \\\"count_2\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.067153,\\n      \\\"recall\\\": 0.693966,\\n      \\\"f1\\\": 0.122457,\\n      \\\"tp\\\": 322,\\n      \\\"total_pred\\\": 4795,\\n      \\\"total_gold\\\": 464,\\n      \\\"macro_f1\\\": 0.115483\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.074244,\\n      \\\"recall\\\": 0.767241,\\n      \\\"f1\\\": 0.135387,\\n      \\\"tp\\\": 356,\\n      \\\"total_pred\\\": 4795,\\n      \\\"total_gold\\\": 464,\\n      \\\"macro_f1\\\": 0.128728\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.06757,\\n      \\\"recall\\\": 0.698276,\\n      \\\"f1\\\": 0.123217,\\n      \\\"tp\\\": 324,\\n      \\\"total_pred\\\": 4795,\\n      \\\"total_gold\\\": 464,\\n      \\\"macro_f1\\\": 0.116459\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 81,\\n      \\\"wrong_type\\\": 8,\\n      \\\"spurious_entity\\\": 4382,\\n      \\\"total_fp\\\": 4471\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 959.0,\\n    \\\"avg_gold\\\": 92.8,\\n    \\\"pred_gold_ratio\\\": 10.33\\n  },\\n  \\\"count_44\\\": {\\n    \\\"count_key\\\": \\\"count_44\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.405608,\\n      \\\"recall\\\": 0.54064,\\n      \\\"f1\\\": 0.463489,\\n      \\\"tp\\\": 5135,\\n      \\\"total_pred\\\": 12660,\\n      \\\"total_gold\\\": 9498,\\n      \\\"macro_f1\\\": 0.461262\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.453712,\\n      \\\"recall\\\": 0.604759,\\n      \\\"f1\\\": 0.518458,\\n      \\\"tp\\\": 5744,\\n      \\\"total_pred\\\": 12660,\\n      \\\"total_gold\\\": 9498,\\n      \\\"macro_f1\\\": 0.516109\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.413507,\\n      \\\"recall\\\": 0.551169,\\n      \\\"f1\\\": 0.472516,\\n      \\\"tp\\\": 5235,\\n      \\\"total_pred\\\": 12660,\\n      \\\"total_gold\\\": 9498,\\n      \\\"macro_f1\\\": 0.470174\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 199,\\n      \\\"wrong_type\\\": 1563,\\n      \\\"spurious_entity\\\": 5637,\\n      \\\"total_fp\\\": 7399\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 2532.0,\\n    \\\"avg_gold\\\": 1899.6,\\n    \\\"pred_gold_ratio\\\": 1.33\\n  },\\n  \\\"count_64\\\": {\\n    \\\"count_key\\\": \\\"count_64\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.509469,\\n      \\\"recall\\\": 0.409804,\\n      \\\"f1\\\": 0.454234,\\n      \\\"tp\\\": 5434,\\n      \\\"total_pred\\\": 10666,\\n      \\\"total_gold\\\": 13260,\\n      \\\"macro_f1\\\": 0.454231\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.573223,\\n      \\\"recall\\\": 0.461086,\\n      \\\"f1\\\": 0.511076,\\n      \\\"tp\\\": 6114,\\n      \\\"total_pred\\\": 10666,\\n      \\\"total_gold\\\": 13260,\\n      \\\"macro_f1\\\": 0.511073\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.519501,\\n      \\\"recall\\\": 0.417873,\\n      \\\"f1\\\": 0.463178,\\n      \\\"tp\\\": 5541,\\n      \\\"total_pred\\\": 10666,\\n      \\\"total_gold\\\": 13260,\\n      \\\"macro_f1\\\": 0.463175\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 175,\\n      \\\"wrong_type\\\": 2434,\\n      \\\"spurious_entity\\\": 2495,\\n      \\\"total_fp\\\": 5104\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 2133.2,\\n    \\\"avg_gold\\\": 2652.0,\\n    \\\"pred_gold_ratio\\\": 0.8\\n  },\\n  \\\"count_6\\\": {\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.087649,\\n      \\\"recall\\\": 0.614907,\\n      \\\"f1\\\": 0.153429,\\n      \\\"tp\\\": 594,\\n      \\\"total_pred\\\": 6777,\\n      \\\"total_gold\\\": 966,\\n      \\\"macro_f1\\\": 0.148678\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.098126,\\n      \\\"recall\\\": 0.688406,\\n      \\\"f1\\\": 0.171768,\\n      \\\"tp\\\": 665,\\n      \\\"total_pred\\\": 6777,\\n      \\\"total_gold\\\": 966,\\n      \\\"macro_f1\\\": 0.168219\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.088387,\\n      \\\"recall\\\": 0.620083,\\n      \\\"f1\\\": 0.15472,\\n      \\\"tp\\\": 599,\\n      \\\"total_pred\\\": 6777,\\n      \\\"total_gold\\\": 966,\\n      \\\"macro_f1\\\": 0.150104\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 229,\\n      \\\"wrong_type\\\": 44,\\n      \\\"spurious_entity\\\": 5901,\\n      \\\"total_fp\\\": 6174\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 1355.4,\\n    \\\"avg_gold\\\": 193.2,\\n    \\\"pred_gold_ratio\\\": 7.02\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "012c4da6-9dbb-47bb-b645-948b19301069",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_12\\\\\\\": {\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"micro_exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.156482,\\\\n      \\\\\\\"recall\\\\\\\": 0.529067,\\\\n      \\\\\\\"f1\\\\\\\": 0.241527,\\\\n      \\\\\\\"tp\\\\\\\": 1265,\\\\n      \\\\\\\"total_pred\\\\\\\": 8084,\\\\n      \\\\\\\"total_gold\\\\\\\": 2391,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.228383\\\\n    },\\\\n    \\\\\\\"micro_relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.180727,\\\\n      \\\\\\\"recall\\\\\\\": 0.611041,\\\\n      \\\\\\\"f1\\\\\\\": 0.27895,\\\\n      \\\\\\\"tp\\\\\\\": 1461,\\\\n      \\\\\\\"total_pred\\\\\\\": 8084,\\\\n      \\\\\\\"total_gold\\\\\\\": 2391,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.266007\\\\n    },\\\\n    \\\\\\\"micro_text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.159451,\\\\n      \\\\\\\"recall\\\\\\\": 0.539105,\\\\n      \\\\\\\"f1\\\\\\\": 0.24611,\\\\n      \\\\\\\"tp\\\\\\\": 1289,\\\\n      \\\\\\\"total_pred\\\\\\\": 8084,\\\\n      \\\\\\\"total_gold\\\\\\\": 2391,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.232545\\\\n    },\\\\n    \\\\\\\"fp_breakdown\\\\\\\": {\\\\n      \\\\\\\"hallucinated_text\\\\\\\": 917,\\\\n      \\\\\\\"wrong_type\\\\\\\": 199,\\\\n      \\\\\\\"spurious_entity\\\\\\\": 5675,\\\\n      \\\\\\\"total_fp\\\\\\\": 6791\\\\n    },\\\\n    \\\\\\\"num_batches\\\\\\\": 5,\\\\n    \\\\\\\"avg_pred\\\\\\\": 1616.8,\\\\n    \\\\\\\"avg_gold\\\\\\\": 478.2,\\\\n    \\\\\\\"pred_gold_ratio\\\\\\\": 3.38\\\\n  },\\\\n  \\\\\\\"count_1\\\\\\\": {\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"micro_exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.102732,\\\\n      \\\\\\\"recall\\\\\\\": 0.703243,\\\\n      \\\\\\\"f1\\\\\\\": 0.179275,\\\\n      \\\\\\\"tp\\\\\\\": 1865,\\\\n      \\\\\\\"total_pred\\\\\\\": 18154,\\\\n      \\\\\\\"total_gold\\\\\\\": 2652,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.171087\\\\n    },\\\\n    \\\\\\\"micro_relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.11452,\\\\n      \\\\\\\"recall\\\\\\\": 0.783937,\\\\n      \\\\\\\"f1\\\\\\\": 0.199846,\\\\n      \\\\\\\"tp\\\\\\\": 2079,\\\\n      \\\\\\\"total_pred\\\\\\\": 18154,\\\\n      \\\\\\\"total_gold\\\\\\\": 2652,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.200474\\\\n    },\\\\n    \\\\\\\"micro_text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.105156,\\\\n      \\\\\\\"recall\\\\\\\": 0.719834,\\\\n      \\\\\\\"f1\\\\\\\": 0.183505,\\\\n      \\\\\\\"tp\\\\\\\": 1909,\\\\n      \\\\\\\"total_pred\\\\\\\": 18154,\\\\n      \\\\\\\"total_gold\\\\\\\": 2652,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.17459\\\\n    },\\\\n    \\\\\\\"fp_breakdown\\\\\\\": {\\\\n      \\\\\\\"hallucinated_text\\\\\\\": 283,\\\\n      \\\\\\\"wrong_type\\\\\\\": 0,\\\\n      \\\\\\\"spurious_entity\\\\\\\": 15949,\\\\n      \\\\\\\"total_fp\\\\\\\": 16232\\\\n    },\\\\n    \\\\\\\"num_batches\\\\\\\": 64,\\\\n    \\\\\\\"avg_pred\\\\\\\": 283.7,\\\\n    \\\\\\\"avg_gold\\\\\\\": 41.4,\\\\n    \\\\\\\"pred_gold_ratio\\\\\\\": 6.85\\\\n  },\\\\n  \\\\\\\"count_22\\\\\\\": {\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_22\\\\\\\",\\\\n    \\\\\\\"micro_exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.228625,\\\\n      \\\\\\\"recall\\\\\\\": 0.519566,\\\\n      \\\\\\\"f1\\\\\\\": 0.317528,\\\\n      \\\\\\\"tp\\\\\\\": 2297,\\\\n      \\\\\\\"total_pred\\\\\\\": 10047,\\\\n      \\\\\\\"total_gold\\\\\\\": 4421,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.314198\\\\n    },\\\\n    \\\\\\\"micro_relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.256594,\\\\n      \\\\\\\"recall\\\\\\\": 0.583126,\\\\n      \\\\\\\"f1\\\\\\\": 0.356373,\\\\n      \\\\\\\"tp\\\\\\\": 2578,\\\\n      \\\\\\\"total_pred\\\\\\\": 10047,\\\\n      \\\\\\\"total_gold\\\\\\\": 4421,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.352759\\\\n    },\\\\n    \\\\\\\"micro_text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.23181,\\\\n      \\\\\\\"recall\\\\\\\": 0.526804,\\\\n      \\\\\\\"f1\\\\\\\": 0.321952,\\\\n      \\\\\\\"tp\\\\\\\": 2329,\\\\n      \\\\\\\"total_pred\\\\\\\": 10047,\\\\n      \\\\\\\"total_gold\\\\\\\": 4421,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.318419\\\\n    },\\\\n    \\\\\\\"fp_breakdown\\\\\\\": {\\\\n      \\\\\\\"hallucinated_text\\\\\\\": 357,\\\\n      \\\\\\\"wrong_type\\\\\\\": 541,\\\\n      \\\\\\\"spurious_entity\\\\\\\": 6814,\\\\n      \\\\\\\"total_fp\\\\\\\": 7712\\\\n    },\\\\n    \\\\\\\"num_batches\\\\\\\": 5,\\\\n    \\\\\\\"avg_pred\\\\\\\": 2009.4,\\\\n    \\\\\\\"avg_gold\\\\\\\": 884.2,\\\\n    \\\\\\\"pred_gold_ratio\\\\\\\": 2.27\\\\n  },\\\\n  \\\\\\\"count_2\\\\\\\": {\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\",\\\\n    \\\\\\\"micro_exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.067153,\\\\n      \\\\\\\"recall\\\\\\\": 0.693966,\\\\n      \\\\\\\"f1\\\\\\\": 0.122457,\\\\n      \\\\\\\"tp\\\\\\\": 322,\\\\n      \\\\\\\"total_pred\\\\\\\": 4795,\\\\n      \\\\\\\"total_gold\\\\\\\": 464,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.115483\\\\n    },\\\\n    \\\\\\\"micro_relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.074244,\\\\n      \\\\\\\"recall\\\\\\\": 0.767241,\\\\n      \\\\\\\"f1\\\\\\\": 0.135387,\\\\n      \\\\\\\"tp\\\\\\\": 356,\\\\n      \\\\\\\"total_pred\\\\\\\": 4795,\\\\n      \\\\\\\"total_gold\\\\\\\": 464,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.128728\\\\n    },\\\\n    \\\\\\\"micro_text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.06757,\\\\n      \\\\\\\"recall\\\\\\\": 0.698276,\\\\n      \\\\\\\"f1\\\\\\\": 0.123217,\\\\n      \\\\\\\"tp\\\\\\\": 324,\\\\n      \\\\\\\"total_pred\\\\\\\": 4795,\\\\n      \\\\\\\"total_gold\\\\\\\": 464,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.116459\\\\n    },\\\\n    \\\\\\\"fp_breakdown\\\\\\\": {\\\\n      \\\\\\\"hallucinated_text\\\\\\\": 81,\\\\n      \\\\\\\"wrong_type\\\\\\\": 8,\\\\n      \\\\\\\"spurious_entity\\\\\\\": 4382,\\\\n      \\\\\\\"total_fp\\\\\\\": 4471\\\\n    },\\\\n    \\\\\\\"num_batches\\\\\\\": 5,\\\\n    \\\\\\\"avg_pred\\\\\\\": 959.0,\\\\n    \\\\\\\"avg_gold\\\\\\\": 92.8,\\\\n    \\\\\\\"pred_gold_ratio\\\\\\\": 10.33\\\\n  },\\\\n  \\\\\\\"count_44\\\\\\\": {\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_44\\\\\\\",\\\\n    \\\\\\\"micro_exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.405608,\\\\n      \\\\\\\"recall\\\\\\\": 0.54064,\\\\n      \\\\\\\"f1\\\\\\\": 0.463489,\\\\n      \\\\\\\"tp\\\\\\\": 5135,\\\\n      \\\\\\\"total_pred\\\\\\\": 12660,\\\\n      \\\\\\\"total_gold\\\\\\\": 9498,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.461262\\\\n    },\\\\n    \\\\\\\"micro_relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.453712,\\\\n      \\\\\\\"recall\\\\\\\": 0.604759,\\\\n      \\\\\\\"f1\\\\\\\": 0.518458,\\\\n      \\\\\\\"tp\\\\\\\": 5744,\\\\n      \\\\\\\"total_pred\\\\\\\": 12660,\\\\n      \\\\\\\"total_gold\\\\\\\": 9498,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.516109\\\\n    },\\\\n    \\\\\\\"micro_text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.413507,\\\\n      \\\\\\\"recall\\\\\\\": 0.551169,\\\\n      \\\\\\\"f1\\\\\\\": 0.472516,\\\\n      \\\\\\\"tp\\\\\\\": 5235,\\\\n      \\\\\\\"total_pred\\\\\\\": 12660,\\\\n      \\\\\\\"total_gold\\\\\\\": 9498,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.470174\\\\n    },\\\\n    \\\\\\\"fp_breakdown\\\\\\\": {\\\\n      \\\\\\\"hallucinated_text\\\\\\\": 199,\\\\n      \\\\\\\"wrong_type\\\\\\\": 1563,\\\\n      \\\\\\\"spurious_entity\\\\\\\": 5637,\\\\n      \\\\\\\"total_fp\\\\\\\": 7399\\\\n    },\\\\n    \\\\\\\"num_batches\\\\\\\": 5,\\\\n    \\\\\\\"avg_pred\\\\\\\": 2532.0,\\\\n    \\\\\\\"avg_gold\\\\\\\": 1899.6,\\\\n    \\\\\\\"pred_gold_ratio\\\\\\\": 1.33\\\\n  },\\\\n  \\\\\\\"count_64\\\\\\\": {\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_64\\\\\\\",\\\\n    \\\\\\\"micro_exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.509469,\\\\n      \\\\\\\"recall\\\\\\\": 0.409804,\\\\n      \\\\\\\"f1\\\\\\\": 0.454234,\\\\n      \\\\\\\"tp\\\\\\\": 5434,\\\\n      \\\\\\\"total_pred\\\\\\\": 10666,\\\\n      \\\\\\\"total_gold\\\\\\\": 13260,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.454231\\\\n    },\\\\n    \\\\\\\"micro_relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.573223,\\\\n      \\\\\\\"recall\\\\\\\": 0.461086,\\\\n      \\\\\\\"f1\\\\\\\": 0.511076,\\\\n      \\\\\\\"tp\\\\\\\": 6114,\\\\n      \\\\\\\"total_pred\\\\\\\": 10666,\\\\n      \\\\\\\"total_gold\\\\\\\": 13260,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.511073\\\\n    },\\\\n    \\\\\\\"micro_text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.519501,\\\\n      \\\\\\\"recall\\\\\\\": 0.417873,\\\\n      \\\\\\\"f1\\\\\\\": 0.463178,\\\\n      \\\\\\\"tp\\\\\\\": 5541,\\\\n      \\\\\\\"total_pred\\\\\\\": 10666,\\\\n      \\\\\\\"total_gold\\\\\\\": 13260,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.463175\\\\n    },\\\\n    \\\\\\\"fp_breakdown\\\\\\\": {\\\\n      \\\\\\\"hallucinated_text\\\\\\\": 175,\\\\n      \\\\\\\"wrong_type\\\\\\\": 2434,\\\\n      \\\\\\\"spurious_entity\\\\\\\": 2495,\\\\n      \\\\\\\"total_fp\\\\\\\": 5104\\\\n    },\\\\n    \\\\\\\"num_batches\\\\\\\": 5,\\\\n    \\\\\\\"avg_pred\\\\\\\": 2133.2,\\\\n    \\\\\\\"avg_gold\\\\\\\": 2652.0,\\\\n    \\\\\\\"pred_gold_ratio\\\\\\\": 0.8\\\\n  },\\\\n  \\\\\\\"count_6\\\\\\\": {\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"micro_exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.087649,\\\\n      \\\\\\\"recall\\\\\\\": 0.614907,\\\\n      \\\\\\\"f1\\\\\\\": 0.153429,\\\\n      \\\\\\\"tp\\\\\\\": 594,\\\\n      \\\\\\\"total_pred\\\\\\\": 6777,\\\\n      \\\\\\\"total_gold\\\\\\\": 966,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.148678\\\\n    },\\\\n    \\\\\\\"micro_relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.098126,\\\\n      \\\\\\\"recall\\\\\\\": 0.688406,\\\\n      \\\\\\\"f1\\\\\\\": 0.171768,\\\\n      \\\\\\\"tp\\\\\\\": 665,\\\\n      \\\\\\\"total_pred\\\\\\\": 6777,\\\\n      \\\\\\\"total_gold\\\\\\\": 966,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.168219\\\\n    },\\\\n    \\\\\\\"micro_text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.088387,\\\\n      \\\\\\\"recall\\\\\\\": 0.620083,\\\\n      \\\\\\\"f1\\\\\\\": 0.15472,\\\\n      \\\\\\\"tp\\\\\\\": 599,\\\\n      \\\\\\\"total_pred\\\\\\\": 6777,\\\\n      \\\\\\\"total_gold\\\\\\\": 966,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.150104\\\\n    },\\\\n    \\\\\\\"fp_breakdown\\\\\\\": {\\\\n      \\\\\\\"hallucinated_text\\\\\\\": 229,\\\\n      \\\\\\\"wrong_type\\\\\\\": 44,\\\\n      \\\\\\\"spurious_entity\\\\\\\": 5901,\\\\n      \\\\\\\"total_fp\\\\\\\": 6174\\\\n    },\\\\n    \\\\\\\"num_batches\\\\\\\": 5,\\\\n    \\\\\\\"avg_pred\\\\\\\": 1355.4,\\\\n    \\\\\\\"avg_gold\\\\\\\": 193.2,\\\\n    \\\\\\\"pred_gold_ratio\\\\\\\": 7.02\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_12\\\": {\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.156482,\\n      \\\"recall\\\": 0.529067,\\n      \\\"f1\\\": 0.241527,\\n      \\\"tp\\\": 1265,\\n      \\\"total_pred\\\": 8084,\\n      \\\"total_gold\\\": 2391,\\n      \\\"macro_f1\\\": 0.228383\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.180727,\\n      \\\"recall\\\": 0.611041,\\n      \\\"f1\\\": 0.27895,\\n      \\\"tp\\\": 1461,\\n      \\\"total_pred\\\": 8084,\\n      \\\"total_gold\\\": 2391,\\n      \\\"macro_f1\\\": 0.266007\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.159451,\\n      \\\"recall\\\": 0.539105,\\n      \\\"f1\\\": 0.24611,\\n      \\\"tp\\\": 1289,\\n      \\\"total_pred\\\": 8084,\\n      \\\"total_gold\\\": 2391,\\n      \\\"macro_f1\\\": 0.232545\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 917,\\n      \\\"wrong_type\\\": 199,\\n      \\\"spurious_entity\\\": 5675,\\n      \\\"total_fp\\\": 6791\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 1616.8,\\n    \\\"avg_gold\\\": 478.2,\\n    \\\"pred_gold_ratio\\\": 3.38\\n  },\\n  \\\"count_1\\\": {\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.102732,\\n      \\\"recall\\\": 0.703243,\\n      \\\"f1\\\": 0.179275,\\n      \\\"tp\\\": 1865,\\n      \\\"total_pred\\\": 18154,\\n      \\\"total_gold\\\": 2652,\\n      \\\"macro_f1\\\": 0.171087\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.11452,\\n      \\\"recall\\\": 0.783937,\\n      \\\"f1\\\": 0.199846,\\n      \\\"tp\\\": 2079,\\n      \\\"total_pred\\\": 18154,\\n      \\\"total_gold\\\": 2652,\\n      \\\"macro_f1\\\": 0.200474\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.105156,\\n      \\\"recall\\\": 0.719834,\\n      \\\"f1\\\": 0.183505,\\n      \\\"tp\\\": 1909,\\n      \\\"total_pred\\\": 18154,\\n      \\\"total_gold\\\": 2652,\\n      \\\"macro_f1\\\": 0.17459\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 283,\\n      \\\"wrong_type\\\": 0,\\n      \\\"spurious_entity\\\": 15949,\\n      \\\"total_fp\\\": 16232\\n    },\\n    \\\"num_batches\\\": 64,\\n    \\\"avg_pred\\\": 283.7,\\n    \\\"avg_gold\\\": 41.4,\\n    \\\"pred_gold_ratio\\\": 6.85\\n  },\\n  \\\"count_22\\\": {\\n    \\\"count_key\\\": \\\"count_22\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.228625,\\n      \\\"recall\\\": 0.519566,\\n      \\\"f1\\\": 0.317528,\\n      \\\"tp\\\": 2297,\\n      \\\"total_pred\\\": 10047,\\n      \\\"total_gold\\\": 4421,\\n      \\\"macro_f1\\\": 0.314198\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.256594,\\n      \\\"recall\\\": 0.583126,\\n      \\\"f1\\\": 0.356373,\\n      \\\"tp\\\": 2578,\\n      \\\"total_pred\\\": 10047,\\n      \\\"total_gold\\\": 4421,\\n      \\\"macro_f1\\\": 0.352759\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.23181,\\n      \\\"recall\\\": 0.526804,\\n      \\\"f1\\\": 0.321952,\\n      \\\"tp\\\": 2329,\\n      \\\"total_pred\\\": 10047,\\n      \\\"total_gold\\\": 4421,\\n      \\\"macro_f1\\\": 0.318419\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 357,\\n      \\\"wrong_type\\\": 541,\\n      \\\"spurious_entity\\\": 6814,\\n      \\\"total_fp\\\": 7712\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 2009.4,\\n    \\\"avg_gold\\\": 884.2,\\n    \\\"pred_gold_ratio\\\": 2.27\\n  },\\n  \\\"count_2\\\": {\\n    \\\"count_key\\\": \\\"count_2\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.067153,\\n      \\\"recall\\\": 0.693966,\\n      \\\"f1\\\": 0.122457,\\n      \\\"tp\\\": 322,\\n      \\\"total_pred\\\": 4795,\\n      \\\"total_gold\\\": 464,\\n      \\\"macro_f1\\\": 0.115483\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.074244,\\n      \\\"recall\\\": 0.767241,\\n      \\\"f1\\\": 0.135387,\\n      \\\"tp\\\": 356,\\n      \\\"total_pred\\\": 4795,\\n      \\\"total_gold\\\": 464,\\n      \\\"macro_f1\\\": 0.128728\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.06757,\\n      \\\"recall\\\": 0.698276,\\n      \\\"f1\\\": 0.123217,\\n      \\\"tp\\\": 324,\\n      \\\"total_pred\\\": 4795,\\n      \\\"total_gold\\\": 464,\\n      \\\"macro_f1\\\": 0.116459\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 81,\\n      \\\"wrong_type\\\": 8,\\n      \\\"spurious_entity\\\": 4382,\\n      \\\"total_fp\\\": 4471\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 959.0,\\n    \\\"avg_gold\\\": 92.8,\\n    \\\"pred_gold_ratio\\\": 10.33\\n  },\\n  \\\"count_44\\\": {\\n    \\\"count_key\\\": \\\"count_44\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.405608,\\n      \\\"recall\\\": 0.54064,\\n      \\\"f1\\\": 0.463489,\\n      \\\"tp\\\": 5135,\\n      \\\"total_pred\\\": 12660,\\n      \\\"total_gold\\\": 9498,\\n      \\\"macro_f1\\\": 0.461262\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.453712,\\n      \\\"recall\\\": 0.604759,\\n      \\\"f1\\\": 0.518458,\\n      \\\"tp\\\": 5744,\\n      \\\"total_pred\\\": 12660,\\n      \\\"total_gold\\\": 9498,\\n      \\\"macro_f1\\\": 0.516109\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.413507,\\n      \\\"recall\\\": 0.551169,\\n      \\\"f1\\\": 0.472516,\\n      \\\"tp\\\": 5235,\\n      \\\"total_pred\\\": 12660,\\n      \\\"total_gold\\\": 9498,\\n      \\\"macro_f1\\\": 0.470174\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 199,\\n      \\\"wrong_type\\\": 1563,\\n      \\\"spurious_entity\\\": 5637,\\n      \\\"total_fp\\\": 7399\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 2532.0,\\n    \\\"avg_gold\\\": 1899.6,\\n    \\\"pred_gold_ratio\\\": 1.33\\n  },\\n  \\\"count_64\\\": {\\n    \\\"count_key\\\": \\\"count_64\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.509469,\\n      \\\"recall\\\": 0.409804,\\n      \\\"f1\\\": 0.454234,\\n      \\\"tp\\\": 5434,\\n      \\\"total_pred\\\": 10666,\\n      \\\"total_gold\\\": 13260,\\n      \\\"macro_f1\\\": 0.454231\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.573223,\\n      \\\"recall\\\": 0.461086,\\n      \\\"f1\\\": 0.511076,\\n      \\\"tp\\\": 6114,\\n      \\\"total_pred\\\": 10666,\\n      \\\"total_gold\\\": 13260,\\n      \\\"macro_f1\\\": 0.511073\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.519501,\\n      \\\"recall\\\": 0.417873,\\n      \\\"f1\\\": 0.463178,\\n      \\\"tp\\\": 5541,\\n      \\\"total_pred\\\": 10666,\\n      \\\"total_gold\\\": 13260,\\n      \\\"macro_f1\\\": 0.463175\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 175,\\n      \\\"wrong_type\\\": 2434,\\n      \\\"spurious_entity\\\": 2495,\\n      \\\"total_fp\\\": 5104\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 2133.2,\\n    \\\"avg_gold\\\": 2652.0,\\n    \\\"pred_gold_ratio\\\": 0.8\\n  },\\n  \\\"count_6\\\": {\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.087649,\\n      \\\"recall\\\": 0.614907,\\n      \\\"f1\\\": 0.153429,\\n      \\\"tp\\\": 594,\\n      \\\"total_pred\\\": 6777,\\n      \\\"total_gold\\\": 966,\\n      \\\"macro_f1\\\": 0.148678\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.098126,\\n      \\\"recall\\\": 0.688406,\\n      \\\"f1\\\": 0.171768,\\n      \\\"tp\\\": 665,\\n      \\\"total_pred\\\": 6777,\\n      \\\"total_gold\\\": 966,\\n      \\\"macro_f1\\\": 0.168219\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.088387,\\n      \\\"recall\\\": 0.620083,\\n      \\\"f1\\\": 0.15472,\\n      \\\"tp\\\": 599,\\n      \\\"total_pred\\\": 6777,\\n      \\\"total_gold\\\": 966,\\n      \\\"macro_f1\\\": 0.150104\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 229,\\n      \\\"wrong_type\\\": 44,\\n      \\\"spurious_entity\\\": 5901,\\n      \\\"total_fp\\\": 6174\\n    },\\n    \\\"num_batches\\\": 5,\\n    \\\"avg_pred\\\": 1355.4,\\n    \\\"avg_gold\\\": 193.2,\\n    \\\"pred_gold_ratio\\\": 7.02\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KipoGa2mL9Hugu9VxHo8EF`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/results/exp2_reeval_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "b3087ee8-3ddd-4aa4-b99f-3d49253426a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KR6BoxmXnBPtnP8CVTvVFW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 24586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T05:06:29.673Z_
+
+<details><summary>↩ Tool result · `toolu_01KipoGa2mL9Hugu9VxHo8EF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_12\\\": {\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.144854,\\n      \\\"recall\\\": 0.51658,\\n      \\\"f1\\\": 0.226262,\\n      \\\"tp\\\": 7244,\\n      \\\"total_pred\\\": 50009,\\n      \\\"total_gold\\\": 14023,\\n      \\\"macro_f1\\\": 0.219465\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.16389,\\n      \\\"recall\\\": 0.584468,\\n      \\\"f1\\\": 0.255997,\\n      \\\"tp\\\": 8196,\\n      \\\"total_pred\\\": 50009,\\n      \\\"total_gold\\\": 14023,\\n      \\\"macro_f1\\\": 0.249243\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.147134,\\n      \\\"recall\\\": 0.524709,\\n      \\\"f1\\\": 0.229823,\\n      \\\"tp\\\": 7358,\\n      \\\"total_pred\\\": 50009,\\n      \\\"total_gold\\\": 14023,\\n      \\\"macro_f1\\\": 0.222864\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 5771,\\n      \\\"wrong_type\\\": 1216,\\n      \\\"spurious_entity\\\": 35639,\\n      \\\"total_fp\\\": 42626\\n    },\\n    \\\"num_batches\\\": 27,\\n    \\\"avg_pred\\\": 1852.2,\\n    \\\"avg_gold\\\": 519.4,\\n    \\\"pred_gold_ratio\\\": 3.57\\n  },\\n  \\\"count_6\\\": {\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.116328,\\n      \\\"recall\\\": 0.615821,\\n      \\\"f1\\\": 0.19569,\\n      \\\"tp\\\": 4772,\\n      \\\"total_pred\\\": 41022,\\n      \\\"total_gold\\\": 7749,\\n      \\\"macro_f1\\\": 0.181164\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.130978,\\n      \\\"recall\\\": 0.69338,\\n      \\\"f1\\\": 0.220336,\\n      \\\"tp\\\": 5373,\\n      \\\"total_pred\\\": 41022,\\n      \\\"total_gold\\\": 7749,\\n      \\\"macro_f1\\\": 0.204704\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.118863,\\n      \\\"recall\\\": 0.629242,\\n      \\\"f1\\\": 0.199955,\\n      \\\"tp\\\": 4876,\\n      \\\"total_pred\\\": 41022,\\n      \\\"total_gold\\\": 7749,\\n      \\\"macro_f1\\\": 0.184665\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 1417,\\n      \\\"wrong_type\\\": 426,\\n      \\\"spurious_entity\\\": 34273,\\n      \\\"total_fp\\\": 36116\\n    },\\n    \\\"num_batches\\\": 27,\\n    \\\"avg_pred\\\": 1519.3,\\n    \\\"avg_gold\\\": 287.0,\\n    \\\"pred_gold_ratio\\\": 5.29\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "9daa74a6-bc87-4dc5-b4db-52dd1e1d0c1a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_12\\\\\\\": {\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"micro_exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.144854,\\\\n      \\\\\\\"recall\\\\\\\": 0.51658,\\\\n      \\\\\\\"f1\\\\\\\": 0.226262,\\\\n      \\\\\\\"tp\\\\\\\": 7244,\\\\n      \\\\\\\"total_pred\\\\\\\": 50009,\\\\n      \\\\\\\"total_gold\\\\\\\": 14023,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.219465\\\\n    },\\\\n    \\\\\\\"micro_relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.16389,\\\\n      \\\\\\\"recall\\\\\\\": 0.584468,\\\\n      \\\\\\\"f1\\\\\\\": 0.255997,\\\\n      \\\\\\\"tp\\\\\\\": 8196,\\\\n      \\\\\\\"total_pred\\\\\\\": 50009,\\\\n      \\\\\\\"total_gold\\\\\\\": 14023,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.249243\\\\n    },\\\\n    \\\\\\\"micro_text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.147134,\\\\n      \\\\\\\"recall\\\\\\\": 0.524709,\\\\n      \\\\\\\"f1\\\\\\\": 0.229823,\\\\n      \\\\\\\"tp\\\\\\\": 7358,\\\\n      \\\\\\\"total_pred\\\\\\\": 50009,\\\\n      \\\\\\\"total_gold\\\\\\\": 14023,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.222864\\\\n    },\\\\n    \\\\\\\"fp_breakdown\\\\\\\": {\\\\n      \\\\\\\"hallucinated_text\\\\\\\": 5771,\\\\n      \\\\\\\"wrong_type\\\\\\\": 1216,\\\\n      \\\\\\\"spurious_entity\\\\\\\": 35639,\\\\n      \\\\\\\"total_fp\\\\\\\": 42626\\\\n    },\\\\n    \\\\\\\"num_batches\\\\\\\": 27,\\\\n    \\\\\\\"avg_pred\\\\\\\": 1852.2,\\\\n    \\\\\\\"avg_gold\\\\\\\": 519.4,\\\\n    \\\\\\\"pred_gold_ratio\\\\\\\": 3.57\\\\n  },\\\\n  \\\\\\\"count_6\\\\\\\": {\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"micro_exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.116328,\\\\n      \\\\\\\"recall\\\\\\\": 0.615821,\\\\n      \\\\\\\"f1\\\\\\\": 0.19569,\\\\n      \\\\\\\"tp\\\\\\\": 4772,\\\\n      \\\\\\\"total_pred\\\\\\\": 41022,\\\\n      \\\\\\\"total_gold\\\\\\\": 7749,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.181164\\\\n    },\\\\n    \\\\\\\"micro_relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.130978,\\\\n      \\\\\\\"recall\\\\\\\": 0.69338,\\\\n      \\\\\\\"f1\\\\\\\": 0.220336,\\\\n      \\\\\\\"tp\\\\\\\": 5373,\\\\n      \\\\\\\"total_pred\\\\\\\": 41022,\\\\n      \\\\\\\"total_gold\\\\\\\": 7749,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.204704\\\\n    },\\\\n    \\\\\\\"micro_text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.118863,\\\\n      \\\\\\\"recall\\\\\\\": 0.629242,\\\\n      \\\\\\\"f1\\\\\\\": 0.199955,\\\\n      \\\\\\\"tp\\\\\\\": 4876,\\\\n      \\\\\\\"total_pred\\\\\\\": 41022,\\\\n      \\\\\\\"total_gold\\\\\\\": 7749,\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.184665\\\\n    },\\\\n    \\\\\\\"fp_breakdown\\\\\\\": {\\\\n      \\\\\\\"hallucinated_text\\\\\\\": 1417,\\\\n      \\\\\\\"wrong_type\\\\\\\": 426,\\\\n      \\\\\\\"spurious_entity\\\\\\\": 34273,\\\\n      \\\\\\\"total_fp\\\\\\\": 36116\\\\n    },\\\\n    \\\\\\\"num_batches\\\\\\\": 27,\\\\n    \\\\\\\"avg_pred\\\\\\\": 1519.3,\\\\n    \\\\\\\"avg_gold\\\\\\\": 287.0,\\\\n    \\\\\\\"pred_gold_ratio\\\\\\\": 5.29\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_12\\\": {\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.144854,\\n      \\\"recall\\\": 0.51658,\\n      \\\"f1\\\": 0.226262,\\n      \\\"tp\\\": 7244,\\n      \\\"total_pred\\\": 50009,\\n      \\\"total_gold\\\": 14023,\\n      \\\"macro_f1\\\": 0.219465\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.16389,\\n      \\\"recall\\\": 0.584468,\\n      \\\"f1\\\": 0.255997,\\n      \\\"tp\\\": 8196,\\n      \\\"total_pred\\\": 50009,\\n      \\\"total_gold\\\": 14023,\\n      \\\"macro_f1\\\": 0.249243\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.147134,\\n      \\\"recall\\\": 0.524709,\\n      \\\"f1\\\": 0.229823,\\n      \\\"tp\\\": 7358,\\n      \\\"total_pred\\\": 50009,\\n      \\\"total_gold\\\": 14023,\\n      \\\"macro_f1\\\": 0.222864\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 5771,\\n      \\\"wrong_type\\\": 1216,\\n      \\\"spurious_entity\\\": 35639,\\n      \\\"total_fp\\\": 42626\\n    },\\n    \\\"num_batches\\\": 27,\\n    \\\"avg_pred\\\": 1852.2,\\n    \\\"avg_gold\\\": 519.4,\\n    \\\"pred_gold_ratio\\\": 3.57\\n  },\\n  \\\"count_6\\\": {\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"micro_exact\\\": {\\n      \\\"precision\\\": 0.116328,\\n      \\\"recall\\\": 0.615821,\\n      \\\"f1\\\": 0.19569,\\n      \\\"tp\\\": 4772,\\n      \\\"total_pred\\\": 41022,\\n      \\\"total_gold\\\": 7749,\\n      \\\"macro_f1\\\": 0.181164\\n    },\\n    \\\"micro_relaxed\\\": {\\n      \\\"precision\\\": 0.130978,\\n      \\\"recall\\\": 0.69338,\\n      \\\"f1\\\": 0.220336,\\n      \\\"tp\\\": 5373,\\n      \\\"total_pred\\\": 41022,\\n      \\\"total_gold\\\": 7749,\\n      \\\"macro_f1\\\": 0.204704\\n    },\\n    \\\"micro_text_match\\\": {\\n      \\\"precision\\\": 0.118863,\\n      \\\"recall\\\": 0.629242,\\n      \\\"f1\\\": 0.199955,\\n      \\\"tp\\\": 4876,\\n      \\\"total_pred\\\": 41022,\\n      \\\"total_gold\\\": 7749,\\n      \\\"macro_f1\\\": 0.184665\\n    },\\n    \\\"fp_breakdown\\\": {\\n      \\\"hallucinated_text\\\": 1417,\\n      \\\"wrong_type\\\": 426,\\n      \\\"spurious_entity\\\": 34273,\\n      \\\"total_fp\\\": 36116\\n    },\\n    \\\"num_batches\\\": 27,\\n    \\\"avg_pred\\\": 1519.3,\\n    \\\"avg_gold\\\": 287.0,\\n    \\\"pred_gold_ratio\\\": 5.29\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AxALQtHJziUHM7DmXim53C`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/results/analysis_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "a7dc17c5-0e54-42be-8a9b-7824c12d5cbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KR6BoxmXnBPtnP8CVTvVFW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 24586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_017UxNDbzb11whaSP1AZ9LtG`</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "limit": 10,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "8526f72d-fca4-4127-a55e-8043850fe6c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KR6BoxmXnBPtnP8CVTvVFW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 24586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T05:06:30.218Z_
+
+<details><summary>↩ Tool result · `toolu_01AxALQtHJziUHM7DmXim53C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp1\\\": {\\n    \\\"eval_mode\\\": \\\"text_match\\\",\\n    \\\"counts\\\": [\\n      1,\\n      2,\\n      6,\\n      12,\\n      22,\\n      44,\\n      64\\n    ],\\n    \\\"means\\\": [\\n      0.11681294263922064,\\n      0.0668453021666847,\\n      0.1029985691083132,\\n      0.14550970400741334,\\n      0.1850765115199023,\\n      0.2467229060189661,\\n      0.24525567928879485\\n    ],\\n    \\\"stds\\\": [\\n      0.07783198671813603,\\n      0.02201272312949461,\\n      0.01583313427705362,\\n      0.04382540778693515,\\n      0.02456635148218442,\\n      0.010423558154732256,\\n      0.0010205080692099818\\n    ],\\n    \\\"n_per_count\\\": [\\n      64,\\n      5,\\n      5,\\n      5,\\n      5,\\n      5,\\n      5\\n    ]\\n  },\\n  \\\"exp2\\\": {\\n    \\\"count_12\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.5011714310864865,\\n        \\\"pearson_p\\\": 0.007745016392402469,\\n        \\\"ci_95\\\": [\\n          0.14966065835877998,\\n          0.740210685532561\\n        ],\\n        \\\"n\\\": 27,\\n        \\\"pass_fail\\\": \\\"PASS\\\",\\n        \\\"role\\\": \\\"supplementary\\\"\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.22188598277254198,\\n        \\\"pearson_p\\\": 0.2659946227248565,\\n        \\\"ci_95\\\": [\\n          -0.17268908762036023,\\n          0.555094506260429\\n        ],\\n        \\\"n\\\": 27,\\n        \\\"pass_fail\\\": \\\"FAIL\\\",\\n        \\\"role\\\": \\\"primary\\\"\\n      },\\n      \\\"ttest_top_bottom_third\\\": {\\n        \\\"t\\\": 2.2194813363503973,\\n        \\\"p\\\": 0.04348123033622634\\n      },\\n      \\\"delta_supplementary\\\": {},\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"count_6\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.17543835136429828,\\n        \\\"pearson_p\\\": 0.3814186228758168,\\n        \\\"ci_95\\\": [\\n          -0.2191887119062144,\\n          0.5207353967267562\\n        ],\\n        \\\"n\\\": 27,\\n        \\\"pass_fail\\\": \\\"FAIL\\\",\\n        \\\"role\\\": \\\"supplementary\\\"\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.27538771111014876,\\n        \\\"pearson_p\\\": 0.16443771839741309,\\n        \\\"ci_95\\\": [\\n          -0.11685529925713929,\\n          0.5933109845475919\\n        ],\\n        \\\"n\\\": 27,\\n        \\\"pass_fail\\\": \\\"FAIL\\\",\\n        \\\"role\\\": \\\"primary\\\"\\n      },\\n      \\\"ttest_top_bottom_third\\\": {\\n        \\\"t\\\": 0.01437785734037645,\\n        \\\"p\\\": 0.9887314121114283\\n      },\\n      \\\"delta_supplementary\\\": {},\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"partial_corr\\\": {\\n      \\\"f1_vs_bcs_controlling_count\\\": {\\n        \\\"r\\\": 0.3025111081625609,\\n        \\\"p\\\": 0.026191803123684385,\\n        \\\"n\\\": 54,\\n        \\\"ci_95\\\": [\\n          0.03781346561653812,\\n          0.5275405884100162\\n        ]\\n      },\\n      \\\"recall_vs_bcs_controlling_count\\\": {\\n        \\\"r\\\": 0.2522333571336169,\\n        \\\"p\\\": 0.06576316591187761,\\n        \\\"n\\\": 54,\\n        \\\"ci_95\\\": [\\n          -0.016651830319761345,\\n          0.48709632916423173\\n        ]\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "ae7670e6-1d0c-4433-a74b-649f7b3f5523",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp1\\\\\\\": {\\\\n    \\\\\\\"eval_mode\\\\\\\": \\\\\\\"text_match\\\\\\\",\\\\n    \\\\\\\"counts\\\\\\\": [\\\\n      1,\\\\n      2,\\\\n      6,\\\\n      12,\\\\n      22,\\\\n      44,\\\\n      64\\\\n    ],\\\\n    \\\\\\\"means\\\\\\\": [\\\\n      0.11681294263922064,\\\\n      0.0668453021666847,\\\\n      0.1029985691083132,\\\\n      0.14550970400741334,\\\\n      0.1850765115199023,\\\\n      0.2467229060189661,\\\\n      0.24525567928879485\\\\n    ],\\\\n    \\\\\\\"stds\\\\\\\": [\\\\n      0.07783198671813603,\\\\n      0.02201272312949461,\\\\n      0.01583313427705362,\\\\n      0.04382540778693515,\\\\n      0.02456635148218442,\\\\n      0.010423558154732256,\\\\n      0.0010205080692099818\\\\n    ],\\\\n    \\\\\\\"n_per_count\\\\\\\": [\\\\n      64,\\\\n      5,\\\\n      5,\\\\n      5,\\\\n      5,\\\\n      5,\\\\n      5\\\\n    ]\\\\n  },\\\\n  \\\\\\\"exp2\\\\\\\": {\\\\n    \\\\\\\"count_12\\\\\\\": {\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.5011714310864865,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.007745016392402469,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.14966065835877998,\\\\n          0.740210685532561\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 27,\\\\n        \\\\\\\"pass_fail\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n        \\\\\\\"role\\\\\\\": \\\\\\\"supplementary\\\\\\\"\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.22188598277254198,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.2659946227248565,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          -0.17268908762036023,\\\\n          0.555094506260429\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 27,\\\\n        \\\\\\\"pass_fail\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n        \\\\\\\"role\\\\\\\": \\\\\\\"primary\\\\\\\"\\\\n      },\\\\n      \\\\\\\"ttest_top_bottom_third\\\\\\\": {\\\\n        \\\\\\\"t\\\\\\\": 2.2194813363503973,\\\\n        \\\\\\\"p\\\\\\\": 0.04348123033622634\\\\n      },\\\\n      \\\\\\\"delta_supplementary\\\\\\\": {},\\\\n      \\\\\\\"n_batches\\\\\\\": 27\\\\n    },\\\\n    \\\\\\\"count_6\\\\\\\": {\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.17543835136429828,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.3814186228758168,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          -0.2191887119062144,\\\\n          0.5207353967267562\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 27,\\\\n        \\\\\\\"pass_fail\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n        \\\\\\\"role\\\\\\\": \\\\\\\"supplementary\\\\\\\"\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.27538771111014876,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.16443771839741309,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          -0.11685529925713929,\\\\n          0.5933109845475919\\\\n        ],\\\\n        \\\\\\\"n\\\\\\\": 27,\\\\n        \\\\\\\"pass_fail\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n        \\\\\\\"role\\\\\\\": \\\\\\\"primary\\\\\\\"\\\\n      },\\\\n      \\\\\\\"ttest_top_bottom_third\\\\\\\": {\\\\n        \\\\\\\"t\\\\\\\": 0.01437785734037645,\\\\n        \\\\\\\"p\\\\\\\": 0.9887314121114283\\\\n      },\\\\n      \\\\\\\"delta_supplementary\\\\\\\": {},\\\\n      \\\\\\\"n_batches\\\\\\\": 27\\\\n    },\\\\n    \\\\\\\"partial_corr\\\\\\\": {\\\\n      \\\\\\\"f1_vs_bcs_controlling_count\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": 0.3025111081625609,\\\\n        \\\\\\\"p\\\\\\\": 0.026191803123684385,\\\\n        \\\\\\\"n\\\\\\\": 54,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.03781346561653812,\\\\n          0.5275405884100162\\\\n        ]\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs_controlling_count\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": 0.2522333571336169,\\\\n        \\\\\\\"p\\\\\\\": 0.06576316591187761,\\\\n        \\\\\\\"n\\\\\\\": 54,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          -0.016651830319761345,\\\\n          0.48709632916423173\\\\n        ]\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp1\\\": {\\n    \\\"eval_mode\\\": \\\"text_match\\\",\\n    \\\"counts\\\": [\\n      1,\\n      2,\\n      6,\\n      12,\\n      22,\\n      44,\\n      64\\n    ],\\n    \\\"means\\\": [\\n      0.11681294263922064,\\n      0.0668453021666847,\\n      0.1029985691083132,\\n      0.14550970400741334,\\n      0.1850765115199023,\\n      0.2467229060189661,\\n      0.24525567928879485\\n    ],\\n    \\\"stds\\\": [\\n      0.07783198671813603,\\n      0.02201272312949461,\\n      0.01583313427705362,\\n      0.04382540778693515,\\n      0.02456635148218442,\\n      0.010423558154732256,\\n      0.0010205080692099818\\n    ],\\n    \\\"n_per_count\\\": [\\n      64,\\n      5,\\n      5,\\n      5,\\n      5,\\n      5,\\n      5\\n    ]\\n  },\\n  \\\"exp2\\\": {\\n    \\\"count_12\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.5011714310864865,\\n        \\\"pearson_p\\\": 0.007745016392402469,\\n        \\\"ci_95\\\": [\\n          0.14966065835877998,\\n          0.740210685532561\\n        ],\\n        \\\"n\\\": 27,\\n        \\\"pass_fail\\\": \\\"PASS\\\",\\n        \\\"role\\\": \\\"supplementary\\\"\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.22188598277254198,\\n        \\\"pearson_p\\\": 0.2659946227248565,\\n        \\\"ci_95\\\": [\\n          -0.17268908762036023,\\n          0.555094506260429\\n        ],\\n        \\\"n\\\": 27,\\n        \\\"pass_fail\\\": \\\"FAIL\\\",\\n        \\\"role\\\": \\\"primary\\\"\\n      },\\n      \\\"ttest_top_bottom_third\\\": {\\n        \\\"t\\\": 2.2194813363503973,\\n        \\\"p\\\": 0.04348123033622634\\n      },\\n      \\\"delta_supplementary\\\": {},\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"count_6\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.17543835136429828,\\n        \\\"pearson_p\\\": 0.3814186228758168,\\n        \\\"ci_95\\\": [\\n          -0.2191887119062144,\\n          0.5207353967267562\\n        ],\\n        \\\"n\\\": 27,\\n        \\\"pass_fail\\\": \\\"FAIL\\\",\\n        \\\"role\\\": \\\"supplementary\\\"\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.27538771111014876,\\n        \\\"pearson_p\\\": 0.16443771839741309,\\n        \\\"ci_95\\\": [\\n          -0.11685529925713929,\\n          0.5933109845475919\\n        ],\\n        \\\"n\\\": 27,\\n        \\\"pass_fail\\\": \\\"FAIL\\\",\\n        \\\"role\\\": \\\"primary\\\"\\n      },\\n      \\\"ttest_top_bottom_third\\\": {\\n        \\\"t\\\": 0.01437785734037645,\\n        \\\"p\\\": 0.9887314121114283\\n      },\\n      \\\"delta_supplementary\\\": {},\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"partial_corr\\\": {\\n      \\\"f1_vs_bcs_controlling_count\\\": {\\n        \\\"r\\\": 0.3025111081625609,\\n        \\\"p\\\": 0.026191803123684385,\\n        \\\"n\\\": 54,\\n        \\\"ci_95\\\": [\\n          0.03781346561653812,\\n          0.5275405884100162\\n        ]\\n      },\\n      \\\"recall_vs_bcs_controlling_count\\\": {\\n        \\\"r\\\": 0.2522333571336169,\\n        \\\"p\\\": 0.06576316591187761,\\n        \\\"n\\\": 54,\\n        \\\"ci_95\\\": [\\n          -0.016651830319761345,\\n          0.48709632916423173\\n        ]\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T05:06:30.248Z_
+
+<details><summary>↩ Tool result · `toolu_017UxNDbzb11whaSP1AZ9LtG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp002_confusability_controlled\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:13:42.626Z\", \"updated_at\": \"2026-05-15T05:06:06.154Z\", \"spec\": {\"hypothesis\": \"固定 type count 时，高 BCS batch 的 recall 显著低于低 BCS batch（confusability 独立驱动质量下降）\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"design\": \"count=6,12 × 25 random + 1 low-BCS + 1 high-BCS = 54 batches\", \"pass_criteria\": {\"primary\": \"within-count |r(recall, BCS)| >= 0.3, p < 0.05\", \"secondary\": \"within-count |r(F1, BCS)|\", \"mechanistic\": \"confusion_rate(high-BCS pairs) > confusion_rate(low-BCS pairs)\"}, \"command\": \"nohup python3 run_experiment.py --mode exp2 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 197321}, \"log_path\": \"/root/schema-dag-extraction/logs/exp2.log\", \"metrics\": {\"data_source\": \"exp2_reeval_results.json (text_match, CLEAN)\", \"primary_recall_vs_bcs\": {\"count_6\": {\"r\": 0.2754, \"p\": 0.1644, \"n\": 27, \"verdict\": \"FAIL\"}, \"count_12\": {\"r\": 0.2219, \"p\": 0.266, \"n\": 27, \"verdict\": \"FAIL\"}, \"partial\": {\"r\": 0.2522, \"p\": 0.0658, \"n\": 54, \"verdict\": \"FAIL\"}}, \"secondary_f1_vs_bcs\": {\"count_6\": {\"r\": 0.1754, \"p\": 0.3814, \"n\": 27, \"verdict\": \"FAIL\"}, \"count_12\": {\"r\": 0.5012, \"p\": 0.0077, \"n\": 27, \"verdict\": \"PASS\"}, \"partial\": {\"r\": 0.3025, \"p\": 0.0262, \"n\": 54, \"verdict\": \"PASS\"}}, \"mechanistic_confusion_rate\": {\"random_batches\": {\"count_6_high\": 0.0157, \"count_6_low\": 0.0088, \"ratio_6\": 1.7, \"count_12_high\": 0.0304, \"count_12_low\": 0.0131, \"ratio_12\": 2.4}, \"extreme_batches\": {\"count_6_high\": 0.0728, \"count_6_low\": 0.0014, \"ratio_6\": 27.5, \"count_12_high\": 0.048, \"count_12_low\": 0.0061, \"ratio_12\": 9.9}, \"verdict\": \"PASS\"}, \"pairwise_confusion_analysis\": {\"all\": {\"n_pairs\": 1953, \"pearson_r\": 0.156, \"pearson_p\": 4.6e-12, \"spearman_rho\": 0.16, \"spearman_p\": 1.3e-12}, \"count_6\": {\"n_pairs\": 1770, \"pearson_r\": 0.078, \"pearson_p\": 0.001}, \"count_12\": {\"n_pairs\": 1953, \"pearson_r\": 0.147, \"pearson_p\": 6.7e-11}, \"nonzero_only\": {\"all_spearman_rho\": 0.254, \"all_spearman_p\": 1.1e-06, \"count_12_pearson_r\": 0.212, \"count_12_p\": 0.00034}, \"top_confused_pair\": \"person-other <-> person-politician (BCS=0.934, confusion=156)\"}, \"overall_verdict\": \"PRIMARY FAIL, SECONDARY PARTIAL PASS, MECHANISTIC PASS, PAIRWISE STRONG PASS\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (inference experiment)\"}, \"exp001_count_baseline\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:13:40.180Z\", \"updated_at\": \"2026-05-15T05:06:06.113Z\", \"spec\": {\"hypothesis\": \"F1 随 type count 增加而下降（复现已知现象，验证 setup 正确性）\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"design\": \"count=[1,2,6,12,22,44,66]，每档 5 random samples，count=1 = solo baseline\", \"command\": \"nohup python3 run_experiment.py --mode exp1 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 188307, \"vllm_version\": \"0.20.2\", \"max_model_len\": 4096, \"gpu_memory_utilization\": 0.95}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log\", \"metrics\": {\"diagnosis\": \"char offset 96.5% fabricated by model\", \"text_match_reeval\": {\"count_1\": {\"f1\": 0.184, \"precision\": 0.105, \"recall\": 0.72, \"pred_gold_ratio\": 6.85}, \"count_2\": {\"f1\": 0.123, \"precision\": 0.068, \"recall\": 0.698, \"pred_gold_ratio\": 10.33}, \"count_6\": {\"f1\": 0.155, \"precision\": 0.088, \"recall\": 0.62, \"pred_gold_ratio\": 7.02}, \"count_12\": {\"f1\": 0.246, \"precision\": 0.16, \"recall\": 0.539, \"pred_gold_ratio\": 3.38}, \"count_22\": {\"f1\": 0.322, \"precision\": 0.232, \"recall\": 0.527, \"pred_gold_ratio\": 2.27}, \"count_44\": {\"f1\": 0.473, \"precision\": 0.414, \"recall\": 0.551, \"pred_gold_ratio\": 1.33}, \"count_64\": {\"f1\": 0.463, \"precision\": 0.52, \"recall\": 0.418, \"pred_gold_ratio\": 0.8}}, \"key_finding\": \"recall monotonically decreases (0.72→0.42), precision monotonically increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at count_44\", \"wrong_type_trend\": \"type confusion increases with count: 0→2434, supports confusability hypothesis\", \"spurious_dominant\": \"spurious FPs (text in source but not entity) dominate at low count, not hallucination\", \"conclusion_text_match\": \"F1 curve inversion caused by over-prediction confound, NOT absence of confusability effect. Recall curve + type confusion pattern support hypothesis.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (inference experiment)\"}, \"exp003a_prompt_v2_rerun\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:04:24.882Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.018}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "ae4a9a78-02af-4433-aefb-0c5c64b61649",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp002_confusability_controlled\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:13:42.626Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:06:06.154Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"固定 type count 时，高 BCS batch 的 recall 显著低于低 BCS batch（confusability 独立驱动质量下降）\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-32B-FP8\\\", \\\"design\\\": \\\"count=6,12 × 25 random + 1 low-BCS + 1 high-BCS = 54 batches\\\", \\\"pass_criteria\\\": {\\\"primary\\\": \\\"within-count |r(recall, BCS)| >= 0.3, p < 0.05\\\", \\\"secondary\\\": \\\"within-count |r(F1, BCS)|\\\", \\\"mechanistic\\\": \\\"confusion_rate(high-BCS pairs) > confusion_rate(low-BCS pairs)\\\"}, \\\"command\\\": \\\"nohup python3 run_experiment.py --mode exp2 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 197321}, \\\"log_path\\\": \\\"/root/schema-dag-extraction/logs/exp2.log\\\", \\\"metrics\\\": {\\\"data_source\\\": \\\"exp2_reeval_results.json (text_match, CLEAN)\\\", \\\"primary_recall_vs_bcs\\\": {\\\"count_6\\\": {\\\"r\\\": 0.2754, \\\"p\\\": 0.1644, \\\"n\\\": 27, \\\"verdict\\\": \\\"FAIL\\\"}, \\\"count_12\\\": {\\\"r\\\": 0.2219, \\\"p\\\": 0.266, \\\"n\\\": 27, \\\"verdict\\\": \\\"FAIL\\\"}, \\\"partial\\\": {\\\"r\\\": 0.2522, \\\"p\\\": 0.0658, \\\"n\\\": 54, \\\"verdict\\\": \\\"FAIL\\\"}}, \\\"secondary_f1_vs_bcs\\\": {\\\"count_6\\\": {\\\"r\\\": 0.1754, \\\"p\\\": 0.3814, \\\"n\\\": 27, \\\"verdict\\\": \\\"FAIL\\\"}, \\\"count_12\\\": {\\\"r\\\": 0.5012, \\\"p\\\": 0.0077, \\\"n\\\": 27, \\\"verdict\\\": \\\"PASS\\\"}, \\\"partial\\\": {\\\"r\\\": 0.3025, \\\"p\\\": 0.0262, \\\"n\\\": 54, \\\"verdict\\\": \\\"PASS\\\"}}, \\\"mechanistic_confusion_rate\\\": {\\\"random_batches\\\": {\\\"count_6_high\\\": 0.0157, \\\"count_6_low\\\": 0.0088, \\\"ratio_6\\\": 1.7, \\\"count_12_high\\\": 0.0304, \\\"count_12_low\\\": 0.0131, \\\"ratio_12\\\": 2.4}, \\\"extreme_batches\\\": {\\\"count_6_high\\\": 0.0728, \\\"count_6_low\\\": 0.0014, \\\"ratio_6\\\": 27.5, \\\"count_12_high\\\": 0.048, \\\"count_12_low\\\": 0.0061, \\\"ratio_12\\\": 9.9}, \\\"verdict\\\": \\\"PASS\\\"}, \\\"pairwise_confusion_analysis\\\": {\\\"all\\\": {\\\"n_pairs\\\": 1953, \\\"pearson_r\\\": 0.156, \\\"pearson_p\\\": 4.6e-12, \\\"spearman_rho\\\": 0.16, \\\"spearman_p\\\": 1.3e-12}, \\\"count_6\\\": {\\\"n_pairs\\\": 1770, \\\"pearson_r\\\": 0.078, \\\"pearson_p\\\": 0.001}, \\\"count_12\\\": {\\\"n_pairs\\\": 1953, \\\"pearson_r\\\": 0.147, \\\"pearson_p\\\": 6.7e-11}, \\\"nonzero_only\\\": {\\\"all_spearman_rho\\\": 0.254, \\\"all_spearman_p\\\": 1.1e-06, \\\"count_12_pearson_r\\\": 0.212, \\\"count_12_p\\\": 0.00034}, \\\"top_confused_pair\\\": \\\"person-other <-> person-politician (BCS=0.934, confusion=156)\\\"}, \\\"overall_verdict\\\": \\\"PRIMARY FAIL, SECONDARY PARTIAL PASS, MECHANISTIC PASS, PAIRWISE STRONG PASS\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference experiment)\\\"}, \\\"exp001_count_baseline\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:13:40.180Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:06:06.113Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"F1 随 type count 增加而下降（复现已知现象，验证 setup 正确性）\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-32B-FP8\\\", \\\"design\\\": \\\"count=[1,2,6,12,22,44,66]，每档 5 random samples，count=1 = solo baseline\\\", \\\"command\\\": \\\"nohup python3 run_experiment.py --mode exp1 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 188307, \\\"vllm_version\\\": \\\"0.20.2\\\", \\\"max_model_len\\\": 4096, \\\"gpu_memory_utilization\\\": 0.95}, \\\"log_path\\\": \\\"/root/schema-dag-extraction/logs/exp1.log\\\", \\\"metrics\\\": {\\\"diagnosis\\\": \\\"char offset 96.5% fabricated by model\\\", \\\"text_match_reeval\\\": {\\\"count_1\\\": {\\\"f1\\\": 0.184, \\\"precision\\\": 0.105, \\\"recall\\\": 0.72, \\\"pred_gold_ratio\\\": 6.85}, \\\"count_2\\\": {\\\"f1\\\": 0.123, \\\"precision\\\": 0.068, \\\"recall\\\": 0.698, \\\"pred_gold_ratio\\\": 10.33}, \\\"count_6\\\": {\\\"f1\\\": 0.155, \\\"precision\\\": 0.088, \\\"recall\\\": 0.62, \\\"pred_gold_ratio\\\": 7.02}, \\\"count_12\\\": {\\\"f1\\\": 0.246, \\\"precision\\\": 0.16, \\\"recall\\\": 0.539, \\\"pred_gold_ratio\\\": 3.38}, \\\"count_22\\\": {\\\"f1\\\": 0.322, \\\"precision\\\": 0.232, \\\"recall\\\": 0.527, \\\"pred_gold_ratio\\\": 2.27}, \\\"count_44\\\": {\\\"f1\\\": 0.473, \\\"precision\\\": 0.414, \\\"recall\\\": 0.551, \\\"pred_gold_ratio\\\": 1.33}, \\\"count_64\\\": {\\\"f1\\\": 0.463, \\\"precision\\\": 0.52, \\\"recall\\\": 0.418, \\\"pred_gold_ratio\\\": 0.8}}, \\\"key_finding\\\": \\\"recall monotonically decreases (0.72→0.42), precision monotonically increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at count_44\\\", \\\"wrong_type_trend\\\": \\\"type confusion increases with count: 0→2434, supports confusability hypothesis\\\", \\\"spurious_dominant\\\": \\\"spurious FPs (text in source but not entity) dominate at low count, not hallucination\\\", \\\"conclusion_text_match\\\": \\\"F1 curve inversion caused by over-prediction confound, NOT absence of confusability effect. Recall curve + type confusion pattern support hypothesis.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A (inference experiment)\\\"}, \\\"exp003a_prompt_v2_rerun\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T02:35:23.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:04:24.882Z\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T05:04:24.855Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"completed_at\\\": \\\"2026-05-15T02:44:53.625Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T02:44:54.463106+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T05:04:25.636142+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\"}}, \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Prompt v2 rerun - fixed script path and added --types_file\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-32B-FP8\\\", \\\"command\\\": \\\"bash -c \\\\\\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 209542}}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.018}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp002_confusability_controlled\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:13:42.626Z\", \"updated_at\": \"2026-05-15T05:06:06.154Z\", \"spec\": {\"hypothesis\": \"固定 type count 时，高 BCS batch 的 recall 显著低于低 BCS batch（confusability 独立驱动质量下降）\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"design\": \"count=6,12 × 25 random + 1 low-BCS + 1 high-BCS = 54 batches\", \"pass_criteria\": {\"primary\": \"within-count |r(recall, BCS)| >= 0.3, p < 0.05\", \"secondary\": \"within-count |r(F1, BCS)|\", \"mechanistic\": \"confusion_rate(high-BCS pairs) > confusion_rate(low-BCS pairs)\"}, \"command\": \"nohup python3 run_experiment.py --mode exp2 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 197321}, \"log_path\": \"/root/schema-dag-extraction/logs/exp2.log\", \"metrics\": {\"data_source\": \"exp2_reeval_results.json (text_match, CLEAN)\", \"primary_recall_vs_bcs\": {\"count_6\": {\"r\": 0.2754, \"p\": 0.1644, \"n\": 27, \"verdict\": \"FAIL\"}, \"count_12\": {\"r\": 0.2219, \"p\": 0.266, \"n\": 27, \"verdict\": \"FAIL\"}, \"partial\": {\"r\": 0.2522, \"p\": 0.0658, \"n\": 54, \"verdict\": \"FAIL\"}}, \"secondary_f1_vs_bcs\": {\"count_6\": {\"r\": 0.1754, \"p\": 0.3814, \"n\": 27, \"verdict\": \"FAIL\"}, \"count_12\": {\"r\": 0.5012, \"p\": 0.0077, \"n\": 27, \"verdict\": \"PASS\"}, \"partial\": {\"r\": 0.3025, \"p\": 0.0262, \"n\": 54, \"verdict\": \"PASS\"}}, \"mechanistic_confusion_rate\": {\"random_batches\": {\"count_6_high\": 0.0157, \"count_6_low\": 0.0088, \"ratio_6\": 1.7, \"count_12_high\": 0.0304, \"count_12_low\": 0.0131, \"ratio_12\": 2.4}, \"extreme_batches\": {\"count_6_high\": 0.0728, \"count_6_low\": 0.0014, \"ratio_6\": 27.5, \"count_12_high\": 0.048, \"count_12_low\": 0.0061, \"ratio_12\": 9.9}, \"verdict\": \"PASS\"}, \"pairwise_confusion_analysis\": {\"all\": {\"n_pairs\": 1953, \"pearson_r\": 0.156, \"pearson_p\": 4.6e-12, \"spearman_rho\": 0.16, \"spearman_p\": 1.3e-12}, \"count_6\": {\"n_pairs\": 1770, \"pearson_r\": 0.078, \"pearson_p\": 0.001}, \"count_12\": {\"n_pairs\": 1953, \"pearson_r\": 0.147, \"pearson_p\": 6.7e-11}, \"nonzero_only\": {\"all_spearman_rho\": 0.254, \"all_spearman_p\": 1.1e-06, \"count_12_pearson_r\": 0.212, \"count_12_p\": 0.00034}, \"top_confused_pair\": \"person-other <-> person-politician (BCS=0.934, confusion=156)\"}, \"overall_verdict\": \"PRIMARY FAIL, SECONDARY PARTIAL PASS, MECHANISTIC PASS, PAIRWISE STRONG PASS\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (inference experiment)\"}, \"exp001_count_baseline\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:13:40.180Z\", \"updated_at\": \"2026-05-15T05:06:06.113Z\", \"spec\": {\"hypothesis\": \"F1 随 type count 增加而下降（复现已知现象，验证 setup 正确性）\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"design\": \"count=[1,2,6,12,22,44,66]，每档 5 random samples，count=1 = solo baseline\", \"command\": \"nohup python3 run_experiment.py --mode exp1 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 188307, \"vllm_version\": \"0.20.2\", \"max_model_len\": 4096, \"gpu_memory_utilization\": 0.95}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log\", \"metrics\": {\"diagnosis\": \"char offset 96.5% fabricated by model\", \"text_match_reeval\": {\"count_1\": {\"f1\": 0.184, \"precision\": 0.105, \"recall\": 0.72, \"pred_gold_ratio\": 6.85}, \"count_2\": {\"f1\": 0.123, \"precision\": 0.068, \"recall\": 0.698, \"pred_gold_ratio\": 10.33}, \"count_6\": {\"f1\": 0.155, \"precision\": 0.088, \"recall\": 0.62, \"pred_gold_ratio\": 7.02}, \"count_12\": {\"f1\": 0.246, \"precision\": 0.16, \"recall\": 0.539, \"pred_gold_ratio\": 3.38}, \"count_22\": {\"f1\": 0.322, \"precision\": 0.232, \"recall\": 0.527, \"pred_gold_ratio\": 2.27}, \"count_44\": {\"f1\": 0.473, \"precision\": 0.414, \"recall\": 0.551, \"pred_gold_ratio\": 1.33}, \"count_64\": {\"f1\": 0.463, \"precision\": 0.52, \"recall\": 0.418, \"pred_gold_ratio\": 0.8}}, \"key_finding\": \"recall monotonically decreases (0.72→0.42), precision monotonically increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at count_44\", \"wrong_type_trend\": \"type confusion increases with count: 0→2434, supports confusability hypothesis\", \"spurious_dominant\": \"spurious FPs (text in source but not entity) dominate at low count, not hallucination\", \"conclusion_text_match\": \"F1 curve inversion caused by over-prediction confound, NOT absence of confusability effect. Recall curve + type confusion pattern support hypothesis.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (inference experiment)\"}, \"exp003a_prompt_v2_rerun\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:04:24.882Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.018}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze what I've found:
+
+1. **Log file**: The expected log path `/root/schema-dag-extraction/logs/exp3a.log` doesn't exist. The available logs are `exp1.log` and `exp2.log`. The registry shows the experiment used `src/run_experiment.py` - so the retry used a different path.
+
+2. **Registry entry for exp003a_prompt_v2_rerun**:
+   - Status: ANALYZING
+   - retry_count: 1
+   - First run failed (EXIT_CODE=2, run_experiment.py not found)
+   - Second run completed at 2026-05-15T05:04:24, though the old failure metadata still lingers in the registry
+
+3. **Results**: I'm checking which results correspond to the v2 prompt rerun versus the original experiments. The summary files show `exp1_reeval_summary.json` with metrics across count_1 through count_64, `exp2_reeval_summary.json` with count_6 and count_12, and `analysis_summary.json` containing analysis for both exp1 and exp2.
+
+But the metrics in exp1_reeval_summary.json match the baseline results exactly—count_1 F1 is 0.183505, count_44 is 0.472516—so these are the original results, not the v2 rerun. I need to locate the actual v2-specific output files, likely by searching for files with "v2" in the name or checking for recently modified files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "eafffb6f-a989-4106-aeab-38a7fd762cd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pwh6Ld82LXMTfNnDVDJLqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11341,
+      "cache_read_input_tokens": 26434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11341
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+需要找 v2 prompt 的结果文件，当前看到的 reeval 文件似乎是旧实验的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "b12cd572-0ad6-4bab-a9a5-57a500d40457",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pwh6Ld82LXMTfNnDVDJLqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11341,
+      "cache_read_input_tokens": 26434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11341
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VPNCDHPgkGkis4ufELGWYq`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/results/ -name \"*v2*\" -o -name \"*prompt*\" -o -name \"*003*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "02fec457-2e49-437c-9551-bebc8a2833f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pwh6Ld82LXMTfNnDVDJLqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11341,
+      "cache_read_input_tokens": 26434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11341
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T05:06:46.653Z_
+
+<details><summary>↩ Tool result · `toolu_01VPNCDHPgkGkis4ufELGWYq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "38f0baf4-2cb3-4d92-b3b3-b01e6aee10c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013Y1gqxPqboMz5BPEZxsQep`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/ -name \"*.json\" -newer /root/schema-dag-extraction/results/exp1_reeval_summary.json -not -path \"*/node_modules/*\" -not -path \"*/.git/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "1f82bd96-7ce3-4048-9839-0406b8f38d8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pwh6Ld82LXMTfNnDVDJLqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11341,
+      "cache_read_input_tokens": 26434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11341
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T05:06:48.100Z_
+
+<details><summary>↩ Tool result · `toolu_013Y1gqxPqboMz5BPEZxsQep`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/data/maven/docid2topic.json\\n/root/schema-dag-extraction/data/fewrel/train_wiki.json\\n/root/schema-dag-extraction/data/fewrel/val_wiki.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/eval_exp2.json\\n/root/schema-dag-extraction/configs/fewrel_relation_types.json\\n/root/schema-dag-extraction/results/exp2_reeval_results.json\\n/root/schema-dag-extraction/results/exp2_reeval_summary.json\\n/root/schema-dag-extraction/results/eval_exp2.json\\n/root/schema-dag-extraction/results/eval_exp1.json\\n/root/schema-dag-extraction/results/confusion_analysis.json\\n/root/schema-dag-extraction/results/analysis_summary.json\\n/root/schema-dag-extraction/results/pairwise_confusion_correlation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "18ad011e-f939-4328-926f-867156786f03",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/data/maven/docid2topic.json\\\\n/root/schema-dag-extraction/data/fewrel/train_wiki.json\\\\n/root/schema-dag-extraction/data/fewrel/val_wiki.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/eval_exp1.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\\\n/root/schema-dag-extraction/artifacts/eval_exp2.json\\\\n/root/schema-dag-extraction/configs/fewrel_relation_types.json\\\\n/root/schema-dag-extraction/results/exp2_reeval_results.json\\\\n/root/schema-dag-extraction/results/exp2_reeval_summary.json\\\\n/root/schema-dag-extraction/results/eval_exp2.json\\\\n/root/schema-dag-extraction/results/eval_exp1.json\\\\n/root/schema-dag-extraction/results/confusion_analysis.json\\\\n/root/schema-dag-extraction/results/analysis_summary.json\\\\n/root/schema-dag-extraction/results/pairwise_confusion_correlation.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/data/maven/docid2topic.json\\n/root/schema-dag-extraction/data/fewrel/train_wiki.json\\n/root/schema-dag-extraction/data/fewrel/val_wiki.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/eval_exp2.json\\n/root/schema-dag-extraction/configs/fewrel_relation_types.json\\n/root/schema-dag-extraction/results/exp2_reeval_results.json\\n/root/schema-dag-extraction/results/exp2_reeval_summary.json\\n/root/schema-dag-extraction/results/eval_exp2.json\\n/root/schema-dag-extraction/results/eval_exp1.json\\n/root/schema-dag-extraction/results/confusion_analysis.json\\n/root/schema-dag-extraction/results/analysis_summary.json\\n/root/schema-dag-extraction/results/pairwise_confusion_correlation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PzyqgoPYYbsp8XpjB3nm2o`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "tail -100 /root/schema-dag-extraction/logs/exp1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "3993d412-238e-47c7-96f5-9b223b2f1592",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pwh6Ld82LXMTfNnDVDJLqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11341,
+      "cache_read_input_tokens": 26434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11341
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T05:06:48.616Z_
+
+<details><summary>↩ Tool result · `toolu_01PzyqgoPYYbsp8XpjB3nm2o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 07:01:08,124 INFO Evaluating...\\n2026-05-15 07:01:12,263 INFO ============================================================\\n2026-05-15 07:01:12,264 INFO EXPERIMENT SUMMARY (exp1)\\n2026-05-15 07:01:12,264 INFO ============================================================\\n2026-05-15 07:01:12,264 INFO   count_12_random_0              exact_F1=0.0033  relaxed_F1=0.1418  BCS=0.9122\\n2026-05-15 07:01:12,264 INFO   count_12_random_1              exact_F1=0.0079  relaxed_F1=0.1224  BCS=0.9184\\n2026-05-15 07:01:12,264 INFO   count_12_random_2              exact_F1=0.0180  relaxed_F1=0.2311  BCS=0.9604\\n2026-05-15 07:01:12,264 INFO   count_12_random_3              exact_F1=0.0042  relaxed_F1=0.1153  BCS=0.9100\\n2026-05-15 07:01:12,265 INFO   count_12_random_4              exact_F1=0.0071  relaxed_F1=0.1170  BCS=0.9123\\n2026-05-15 07:01:12,265 INFO   count_1_random_0               exact_F1=0.0206  relaxed_F1=0.1031  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_1               exact_F1=0.0254  relaxed_F1=0.0678  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_10              exact_F1=0.0000  relaxed_F1=0.1538  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_11              exact_F1=0.0000  relaxed_F1=0.1194  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_12              exact_F1=0.0000  relaxed_F1=0.1842  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_13              exact_F1=0.0000  relaxed_F1=0.0432  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_14              exact_F1=0.0435  relaxed_F1=0.2174  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_15              exact_F1=0.0033  relaxed_F1=0.0458  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_16              exact_F1=0.0000  relaxed_F1=0.0702  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_17              exact_F1=0.0000  relaxed_F1=0.2878  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_18              exact_F1=0.0221  relaxed_F1=0.1900  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_19              exact_F1=0.0189  relaxed_F1=0.1199  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_2               exact_F1=0.0000  relaxed_F1=0.1695  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_20              exact_F1=0.0000  relaxed_F1=0.0366  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_21              exact_F1=0.0113  relaxed_F1=0.1356  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_22              exact_F1=0.0067  relaxed_F1=0.0684  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_23              exact_F1=0.0000  relaxed_F1=0.0729  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_24              exact_F1=0.0000  relaxed_F1=0.2167  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_25              exact_F1=0.0143  relaxed_F1=0.1404  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_26              exact_F1=0.0050  relaxed_F1=0.1634  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_27              exact_F1=0.0000  relaxed_F1=0.0752  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_28              exact_F1=0.0000  relaxed_F1=0.0693  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_29              exact_F1=0.0074  relaxed_F1=0.1013  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_3               exact_F1=0.0000  relaxed_F1=0.0438  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_30              exact_F1=0.0000  relaxed_F1=0.0791  BCS=0.0000\\n2026-05-15 07:01:12,267 INFO   count_1_random_31              exact_F1=0.0000  relaxed_F1=0.1546  BCS=0.0000\\n2026-05-15 07:01:12,267 INFO   count_1_random_32              exact_F1=0.0062  relaxed_F1=0.0436  BCS=0.0000\\n2026-05-15 07:01:12,267 INFO   count_1_random_33              exact_F1=0.0000  relaxed_F1=0.0585  BCS=0.0000\\n2026-05-15 07:01:12,267 INFO   count_1_random_34              exact_F1=0.0154  relaxed_F1=0.2000  BCS=0.0000\\n2026-05-15 07:01\\n\\n... [截断: 输出过长，省略 2645 字符] ...\\n\\n_57              exact_F1=0.0000  relaxed_F1=0.0976  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_58              exact_F1=0.0179  relaxed_F1=0.1071  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_59              exact_F1=0.0081  relaxed_F1=0.0611  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_6               exact_F1=0.0000  relaxed_F1=0.1538  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_60              exact_F1=0.0000  relaxed_F1=0.1111  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_61              exact_F1=0.0150  relaxed_F1=0.0752  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_62              exact_F1=0.0000  relaxed_F1=0.0606  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_63              exact_F1=0.0000  relaxed_F1=0.1067  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_7               exact_F1=0.0000  relaxed_F1=0.0000  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_8               exact_F1=0.0000  relaxed_F1=0.1260  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_9               exact_F1=0.0066  relaxed_F1=0.0926  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_22_random_0              exact_F1=0.0152  relaxed_F1=0.2181  BCS=0.9375\\n2026-05-15 07:01:12,270 INFO   count_22_random_1              exact_F1=0.0193  relaxed_F1=0.2111  BCS=0.9177\\n2026-05-15 07:01:12,270 INFO   count_22_random_2              exact_F1=0.0099  relaxed_F1=0.1693  BCS=0.9349\\n2026-05-15 07:01:12,270 INFO   count_22_random_3              exact_F1=0.0136  relaxed_F1=0.1581  BCS=0.9356\\n2026-05-15 07:01:12,270 INFO   count_22_random_4              exact_F1=0.0055  relaxed_F1=0.1687  BCS=0.9379\\n2026-05-15 07:01:12,270 INFO   count_2_random_0               exact_F1=0.0158  relaxed_F1=0.0919  BCS=0.7695\\n2026-05-15 07:01:12,270 INFO   count_2_random_1               exact_F1=0.0110  relaxed_F1=0.0942  BCS=0.8441\\n2026-05-15 07:01:12,270 INFO   count_2_random_2               exact_F1=0.0051  relaxed_F1=0.0564  BCS=0.5953\\n2026-05-15 07:01:12,270 INFO   count_2_random_3               exact_F1=0.0000  relaxed_F1=0.0407  BCS=0.5727\\n2026-05-15 07:01:12,270 INFO   count_2_random_4               exact_F1=0.0139  relaxed_F1=0.0509  BCS=0.7290\\n2026-05-15 07:01:12,270 INFO   count_44_random_0              exact_F1=0.0194  relaxed_F1=0.2497  BCS=0.9732\\n2026-05-15 07:01:12,270 INFO   count_44_random_1              exact_F1=0.0156  relaxed_F1=0.2305  BCS=0.9732\\n2026-05-15 07:01:12,270 INFO   count_44_random_2              exact_F1=0.0164  relaxed_F1=0.2522  BCS=0.9555\\n2026-05-15 07:01:12,270 INFO   count_44_random_3              exact_F1=0.0178  relaxed_F1=0.2609  BCS=0.9604\\n2026-05-15 07:01:12,271 INFO   count_44_random_4              exact_F1=0.0194  relaxed_F1=0.2403  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_64_random_0              exact_F1=0.0126  relaxed_F1=0.2441  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_64_random_1              exact_F1=0.0133  relaxed_F1=0.2444  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_64_random_2              exact_F1=0.0134  relaxed_F1=0.2451  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_64_random_3              exact_F1=0.0134  relaxed_F1=0.2457  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_64_random_4              exact_F1=0.0134  relaxed_F1=0.2470  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_6_random_0               exact_F1=0.0049  relaxed_F1=0.1293  BCS=0.9021\\n2026-05-15 07:01:12,271 INFO   count_6_random_1               exact_F1=0.0047  relaxed_F1=0.1128  BCS=0.8868\\n2026-05-15 07:01:12,271 INFO   count_6_random_2               exact_F1=0.0027  relaxed_F1=0.0949  BCS=0.8684\\n2026-05-15 07:01:12,271 INFO   count_6_random_3               exact_F1=0.0031  relaxed_F1=0.0868  BCS=0.9163\\n2026-05-15 07:01:12,271 INFO   count_6_random_4               exact_F1=0.0000  relaxed_F1=0.0912  BCS=0.8878\\n2026-05-15 07:01:12,271 INFO Total extraction time: 12475.5s\\n2026-05-15 07:01:12,277 INFO Results saved to: ../artifacts\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "5cf99858-6c12-4bd7-a37d-07a8b143d0d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 07:01:08,124 INFO Evaluating...\\\\n2026-05-15 07:01:12,263 INFO ============================================================\\\\n2026-05-15 07:01:12,264 INFO EXPERIMENT SUMMARY (exp1)\\\\n2026-05-15 07:01:12,264 INFO ============================================================\\\\n2026-05-15 07:01:12,264 INFO   count_12_random_0              exact_F1=0.0033  relaxed_F1=0.1418  BCS=0.9122\\\\n2026-05-15 07:01:12,264 INFO   count_12_random_1              exact_F1=0.0079  relaxed_F1=0.1224  BCS=0.9184\\\\n2026-05-15 07:01:12,264 INFO   count_12_random_2              exact_F1=0.0180  relaxed_F1=0.2311  BCS=0.9604\\\\n2026-05-15 07:01:12,264 INFO   count_12_random_3              exact_F1=0.0042  relaxed_F1=0.1153  BCS=0.9100\\\\n2026-05-15 07:01:12,265 INFO   count_12_random_4              exact_F1=0.0071  relaxed_F1=0.1170  BCS=0.9123\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_0               exact_F1=0.0206  relaxed_F1=0.1031  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_1               exact_F1=0.0254  relaxed_F1=0.0678  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_10              exact_F1=0.0000  relaxed_F1=0.1538  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_11              exact_F1=0.0000  relaxed_F1=0.1194  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_12              exact_F1=0.0000  relaxed_F1=0.1842  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_13              exact_F1=0.0000  relaxed_F1=0.0432  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_14              exact_F1=0.0435  relaxed_F1=0.2174  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_15              exact_F1=0.0033  relaxed_F1=0.0458  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_16              exact_F1=0.0000  relaxed_F1=0.0702  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_17              exact_F1=0.0000  relaxed_F1=0.2878  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_18              exact_F1=0.0221  relaxed_F1=0.1900  BCS=0.0000\\\\n2026-05-15 07:01:12,265 INFO   count_1_random_19              exact_F1=0.0189  relaxed_F1=0.1199  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_2               exact_F1=0.0000  relaxed_F1=0.1695  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_20              exact_F1=0.0000  relaxed_F1=0.0366  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_21              exact_F1=0.0113  relaxed_F1=0.1356  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_22              exact_F1=0.0067  relaxed_F1=0.0684  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_23              exact_F1=0.0000  relaxed_F1=0.0729  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_24              exact_F1=0.0000  relaxed_F1=0.2167  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_25              exact_F1=0.0143  relaxed_F1=0.1404  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_26              exact_F1=0.0050  relaxed_F1=0.1634  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_27              exact_F1=0.0000  relaxed_F1=0.0752  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_28              exact_F1=0.0000  relaxed_F1=0.0693  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_29              exact_F1=0.0074  relaxed_F1=0.1013  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_3               exact_F1=0.0000  relaxed_F1=0.0438  BCS=0.0000\\\\n2026-05-15 07:01:12,266 INFO   count_1_random_30              exact_F1=0.0000  relaxed_F1=0.0791  BCS=0.0000\\\\n2026-05-15 07:01:12,267 INFO   count_1_random_31              exact_F1=0.0000  relaxed_F1=0.1546  BCS=0.0000\\\\n2026-05-15 07:01:12,267 INFO   count_1_random_32              exact_F1=0.0062  relaxed_F1=0.0436  BCS=0.0000\\\\n2026-05-15 07:01:12,267 INFO   count_1_random_33              exact_F1=0.0000  relaxed_F1=0.0585  BCS=0.0000\\\\n2026-05-15 07:01:12,267 INFO   count_1_random_34              exact_F1=0.0154  relaxed_F1=0.2000  BCS=0.0000\\\\n2026-05-15 07:01\\\\n\\\\n... [截断: 输出过长，省略 2645 字符] ...\\\\n\\\\n_57              exact_F1=0.0000  relaxed_F1=0.0976  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_1_random_58              exact_F1=0.0179  relaxed_F1=0.1071  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_1_random_59              exact_F1=0.0081  relaxed_F1=0.0611  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_1_random_6               exact_F1=0.0000  relaxed_F1=0.1538  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_1_random_60              exact_F1=0.0000  relaxed_F1=0.1111  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_1_random_61              exact_F1=0.0150  relaxed_F1=0.0752  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_1_random_62              exact_F1=0.0000  relaxed_F1=0.0606  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_1_random_63              exact_F1=0.0000  relaxed_F1=0.1067  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_1_random_7               exact_F1=0.0000  relaxed_F1=0.0000  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_1_random_8               exact_F1=0.0000  relaxed_F1=0.1260  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_1_random_9               exact_F1=0.0066  relaxed_F1=0.0926  BCS=0.0000\\\\n2026-05-15 07:01:12,269 INFO   count_22_random_0              exact_F1=0.0152  relaxed_F1=0.2181  BCS=0.9375\\\\n2026-05-15 07:01:12,270 INFO   count_22_random_1              exact_F1=0.0193  relaxed_F1=0.2111  BCS=0.9177\\\\n2026-05-15 07:01:12,270 INFO   count_22_random_2              exact_F1=0.0099  relaxed_F1=0.1693  BCS=0.9349\\\\n2026-05-15 07:01:12,270 INFO   count_22_random_3              exact_F1=0.0136  relaxed_F1=0.1581  BCS=0.9356\\\\n2026-05-15 07:01:12,270 INFO   count_22_random_4              exact_F1=0.0055  relaxed_F1=0.1687  BCS=0.9379\\\\n2026-05-15 07:01:12,270 INFO   count_2_random_0               exact_F1=0.0158  relaxed_F1=0.0919  BCS=0.7695\\\\n2026-05-15 07:01:12,270 INFO   count_2_random_1               exact_F1=0.0110  relaxed_F1=0.0942  BCS=0.8441\\\\n2026-05-15 07:01:12,270 INFO   count_2_random_2               exact_F1=0.0051  relaxed_F1=0.0564  BCS=0.5953\\\\n2026-05-15 07:01:12,270 INFO   count_2_random_3               exact_F1=0.0000  relaxed_F1=0.0407  BCS=0.5727\\\\n2026-05-15 07:01:12,270 INFO   count_2_random_4               exact_F1=0.0139  relaxed_F1=0.0509  BCS=0.7290\\\\n2026-05-15 07:01:12,270 INFO   count_44_random_0              exact_F1=0.0194  relaxed_F1=0.2497  BCS=0.9732\\\\n2026-05-15 07:01:12,270 INFO   count_44_random_1              exact_F1=0.0156  relaxed_F1=0.2305  BCS=0.9732\\\\n2026-05-15 07:01:12,270 INFO   count_44_random_2              exact_F1=0.0164  relaxed_F1=0.2522  BCS=0.9555\\\\n2026-05-15 07:01:12,270 INFO   count_44_random_3              exact_F1=0.0178  relaxed_F1=0.2609  BCS=0.9604\\\\n2026-05-15 07:01:12,271 INFO   count_44_random_4              exact_F1=0.0194  relaxed_F1=0.2403  BCS=0.9732\\\\n2026-05-15 07:01:12,271 INFO   count_64_random_0              exact_F1=0.0126  relaxed_F1=0.2441  BCS=0.9732\\\\n2026-05-15 07:01:12,271 INFO   count_64_random_1              exact_F1=0.0133  relaxed_F1=0.2444  BCS=0.9732\\\\n2026-05-15 07:01:12,271 INFO   count_64_random_2              exact_F1=0.0134  relaxed_F1=0.2451  BCS=0.9732\\\\n2026-05-15 07:01:12,271 INFO   count_64_random_3              exact_F1=0.0134  relaxed_F1=0.2457  BCS=0.9732\\\\n2026-05-15 07:01:12,271 INFO   count_64_random_4              exact_F1=0.0134  relaxed_F1=0.2470  BCS=0.9732\\\\n2026-05-15 07:01:12,271 INFO   count_6_random_0               exact_F1=0.0049  relaxed_F1=0.1293  BCS=0.9021\\\\n2026-05-15 07:01:12,271 INFO   count_6_random_1               exact_F1=0.0047  relaxed_F1=0.1128  BCS=0.8868\\\\n2026-05-15 07:01:12,271 INFO   count_6_random_2               exact_F1=0.0027  relaxed_F1=0.0949  BCS=0.8684\\\\n2026-05-15 07:01:12,271 INFO   count_6_random_3               exact_F1=0.0031  relaxed_F1=0.0868  BCS=0.9163\\\\n2026-05-15 07:01:12,271 INFO   count_6_random_4               exact_F1=0.0000  relaxed_F1=0.0912  BCS=0.8878\\\\n2026-05-15 07:01:12,271 INFO Total extraction time: 12475.5s\\\\n2026-05-15 07:01:12,277 INFO Results saved to: ../artifacts\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 07:01:08,124 INFO Evaluating...\\n2026-05-15 07:01:12,263 INFO ============================================================\\n2026-05-15 07:01:12,264 INFO EXPERIMENT SUMMARY (exp1)\\n2026-05-15 07:01:12,264 INFO ============================================================\\n2026-05-15 07:01:12,264 INFO   count_12_random_0              exact_F1=0.0033  relaxed_F1=0.1418  BCS=0.9122\\n2026-05-15 07:01:12,264 INFO   count_12_random_1              exact_F1=0.0079  relaxed_F1=0.1224  BCS=0.9184\\n2026-05-15 07:01:12,264 INFO   count_12_random_2              exact_F1=0.0180  relaxed_F1=0.2311  BCS=0.9604\\n2026-05-15 07:01:12,264 INFO   count_12_random_3              exact_F1=0.0042  relaxed_F1=0.1153  BCS=0.9100\\n2026-05-15 07:01:12,265 INFO   count_12_random_4              exact_F1=0.0071  relaxed_F1=0.1170  BCS=0.9123\\n2026-05-15 07:01:12,265 INFO   count_1_random_0               exact_F1=0.0206  relaxed_F1=0.1031  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_1               exact_F1=0.0254  relaxed_F1=0.0678  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_10              exact_F1=0.0000  relaxed_F1=0.1538  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_11              exact_F1=0.0000  relaxed_F1=0.1194  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_12              exact_F1=0.0000  relaxed_F1=0.1842  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_13              exact_F1=0.0000  relaxed_F1=0.0432  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_14              exact_F1=0.0435  relaxed_F1=0.2174  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_15              exact_F1=0.0033  relaxed_F1=0.0458  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_16              exact_F1=0.0000  relaxed_F1=0.0702  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_17              exact_F1=0.0000  relaxed_F1=0.2878  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_18              exact_F1=0.0221  relaxed_F1=0.1900  BCS=0.0000\\n2026-05-15 07:01:12,265 INFO   count_1_random_19              exact_F1=0.0189  relaxed_F1=0.1199  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_2               exact_F1=0.0000  relaxed_F1=0.1695  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_20              exact_F1=0.0000  relaxed_F1=0.0366  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_21              exact_F1=0.0113  relaxed_F1=0.1356  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_22              exact_F1=0.0067  relaxed_F1=0.0684  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_23              exact_F1=0.0000  relaxed_F1=0.0729  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_24              exact_F1=0.0000  relaxed_F1=0.2167  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_25              exact_F1=0.0143  relaxed_F1=0.1404  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_26              exact_F1=0.0050  relaxed_F1=0.1634  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_27              exact_F1=0.0000  relaxed_F1=0.0752  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_28              exact_F1=0.0000  relaxed_F1=0.0693  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_29              exact_F1=0.0074  relaxed_F1=0.1013  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_3               exact_F1=0.0000  relaxed_F1=0.0438  BCS=0.0000\\n2026-05-15 07:01:12,266 INFO   count_1_random_30              exact_F1=0.0000  relaxed_F1=0.0791  BCS=0.0000\\n2026-05-15 07:01:12,267 INFO   count_1_random_31              exact_F1=0.0000  relaxed_F1=0.1546  BCS=0.0000\\n2026-05-15 07:01:12,267 INFO   count_1_random_32              exact_F1=0.0062  relaxed_F1=0.0436  BCS=0.0000\\n2026-05-15 07:01:12,267 INFO   count_1_random_33              exact_F1=0.0000  relaxed_F1=0.0585  BCS=0.0000\\n2026-05-15 07:01:12,267 INFO   count_1_random_34              exact_F1=0.0154  relaxed_F1=0.2000  BCS=0.0000\\n2026-05-15 07:01\\n\\n... [截断: 输出过长，省略 2645 字符] ...\\n\\n_57              exact_F1=0.0000  relaxed_F1=0.0976  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_58              exact_F1=0.0179  relaxed_F1=0.1071  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_59              exact_F1=0.0081  relaxed_F1=0.0611  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_6               exact_F1=0.0000  relaxed_F1=0.1538  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_60              exact_F1=0.0000  relaxed_F1=0.1111  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_61              exact_F1=0.0150  relaxed_F1=0.0752  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_62              exact_F1=0.0000  relaxed_F1=0.0606  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_63              exact_F1=0.0000  relaxed_F1=0.1067  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_7               exact_F1=0.0000  relaxed_F1=0.0000  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_8               exact_F1=0.0000  relaxed_F1=0.1260  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_1_random_9               exact_F1=0.0066  relaxed_F1=0.0926  BCS=0.0000\\n2026-05-15 07:01:12,269 INFO   count_22_random_0              exact_F1=0.0152  relaxed_F1=0.2181  BCS=0.9375\\n2026-05-15 07:01:12,270 INFO   count_22_random_1              exact_F1=0.0193  relaxed_F1=0.2111  BCS=0.9177\\n2026-05-15 07:01:12,270 INFO   count_22_random_2              exact_F1=0.0099  relaxed_F1=0.1693  BCS=0.9349\\n2026-05-15 07:01:12,270 INFO   count_22_random_3              exact_F1=0.0136  relaxed_F1=0.1581  BCS=0.9356\\n2026-05-15 07:01:12,270 INFO   count_22_random_4              exact_F1=0.0055  relaxed_F1=0.1687  BCS=0.9379\\n2026-05-15 07:01:12,270 INFO   count_2_random_0               exact_F1=0.0158  relaxed_F1=0.0919  BCS=0.7695\\n2026-05-15 07:01:12,270 INFO   count_2_random_1               exact_F1=0.0110  relaxed_F1=0.0942  BCS=0.8441\\n2026-05-15 07:01:12,270 INFO   count_2_random_2               exact_F1=0.0051  relaxed_F1=0.0564  BCS=0.5953\\n2026-05-15 07:01:12,270 INFO   count_2_random_3               exact_F1=0.0000  relaxed_F1=0.0407  BCS=0.5727\\n2026-05-15 07:01:12,270 INFO   count_2_random_4               exact_F1=0.0139  relaxed_F1=0.0509  BCS=0.7290\\n2026-05-15 07:01:12,270 INFO   count_44_random_0              exact_F1=0.0194  relaxed_F1=0.2497  BCS=0.9732\\n2026-05-15 07:01:12,270 INFO   count_44_random_1              exact_F1=0.0156  relaxed_F1=0.2305  BCS=0.9732\\n2026-05-15 07:01:12,270 INFO   count_44_random_2              exact_F1=0.0164  relaxed_F1=0.2522  BCS=0.9555\\n2026-05-15 07:01:12,270 INFO   count_44_random_3              exact_F1=0.0178  relaxed_F1=0.2609  BCS=0.9604\\n2026-05-15 07:01:12,271 INFO   count_44_random_4              exact_F1=0.0194  relaxed_F1=0.2403  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_64_random_0              exact_F1=0.0126  relaxed_F1=0.2441  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_64_random_1              exact_F1=0.0133  relaxed_F1=0.2444  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_64_random_2              exact_F1=0.0134  relaxed_F1=0.2451  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_64_random_3              exact_F1=0.0134  relaxed_F1=0.2457  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_64_random_4              exact_F1=0.0134  relaxed_F1=0.2470  BCS=0.9732\\n2026-05-15 07:01:12,271 INFO   count_6_random_0               exact_F1=0.0049  relaxed_F1=0.1293  BCS=0.9021\\n2026-05-15 07:01:12,271 INFO   count_6_random_1               exact_F1=0.0047  relaxed_F1=0.1128  BCS=0.8868\\n2026-05-15 07:01:12,271 INFO   count_6_random_2               exact_F1=0.0027  relaxed_F1=0.0949  BCS=0.8684\\n2026-05-15 07:01:12,271 INFO   count_6_random_3               exact_F1=0.0031  relaxed_F1=0.0868  BCS=0.9163\\n2026-05-15 07:01:12,271 INFO   count_6_random_4               exact_F1=0.0000  relaxed_F1=0.0912  BCS=0.8878\\n2026-05-15 07:01:12,271 INFO Total extraction time: 12475.5s\\n2026-05-15 07:01:12,277 INFO Results saved to: ../artifacts\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very interesting. The exp1.log shows results from the v2 rerun with very low exact F1 scores. The log was written on 2026-05-15 07:01 which aligns with the experiment timeline. However, the exact_F1 values are extremely low (0.01-0.02 range) compared to the reeval_summary (0.18-0.47 range).
+
+Wait - I see the exp1.log shows exact_F1 and relaxed_F1, while the reeval files show text_match evaluation. The log's "exact_F1" refers to char-offset exact matching which we know was broken (96.5% fabricated offsets), while "relaxed_F1" appears to be different.
+ 
+But I'm not finding any v2-specific result files in the search. Looking at the artifacts directory though, I see it contains both exp1 and exp2 prediction and evaluation files that are newer than the reeval_summary, so the v2 rerun likely wrote its outputs there before the evaluation step completed.
+
+Checking the metrics in exp1_reeval_summary.json more closely, the F1 scores match exp001's known results almost exactly - so that file contains the original exp001 results, not the v2 rerun. The actual v2 results are in the artifacts directory with those newer timestamps. The exp1.log tail shows much lower exact_F1 scores though, which suggests the v2 run performed worse than the original.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "d3c5deb9-85bd-4eda-a33e-508e89f048be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEsgNt5YY24CSGMmDmycXL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5509,
+      "cache_read_input_tokens": 37775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+日志显示 v2 实验确实运行了，但 exact_F1 极低（~0.01-0.02）。需要检查 artifacts 目录中的最新结果以及是否做了 text_match 重评估。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "2b47ae11-9d12-4962-9709-df88df83cf4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEsgNt5YY24CSGMmDmycXL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5509,
+      "cache_read_input_tokens": 37775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RWz4XA6NNuZ96SnV1xYPFr`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "200cd32f-53ac-4a5a-b968-82f0745ae9a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEsgNt5YY24CSGMmDmycXL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5509,
+      "cache_read_input_tokens": 37775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T05:07:08.437Z_
+
+<details><summary>↩ Tool result · `toolu_01RWz4XA6NNuZ96SnV1xYPFr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 83816\\ndrwxr-xr-x  2 root root     4096 May 15 10:52 .\\ndrwxr-xr-x 10 root root      183 May 15 03:41 ..\\n-rw-r--r--  1 root root      821 May 15 03:26 batch_config_dry_run.json\\n-rw-r--r--  1 root root    32311 May 15 10:54 batch_config_exp1.json\\n-rw-r--r--  1 root root    19664 May 15 12:13 batch_config_exp2.json\\n-rw-r--r--  1 root root     2185 May 15 03:31 eval_dry_run.json\\n-rw-r--r--  1 root root    29774 May 15 12:13 eval_exp1.json\\n-rw-r--r--  1 root root    18069 May 15 13:02 eval_exp2.json\\n-rw-r--r--  1 root root   187675 May 15 03:31 predictions_dry_run.json\\n-rw-r--r--  1 root root 51775521 May 15 12:13 predictions_exp1.json\\n-rw-r--r--  1 root root 31905763 May 15 13:02 predictions_exp2.json\\n-rw-r--r--  1 root root    20926 May 15 03:20 sim_matrix.pt\\n-rw-r--r--  1 root root   684417 May 15 10:52 type_embeddings.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "37904476-4d79-418c-8a7b-12775f899324",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 83816\\\\ndrwxr-xr-x  2 root root     4096 May 15 10:52 .\\\\ndrwxr-xr-x 10 root root      183 May 15 03:41 ..\\\\n-rw-r--r--  1 root root      821 May 15 03:26 batch_config_dry_run.json\\\\n-rw-r--r--  1 root root    32311 May 15 10:54 batch_config_exp1.json\\\\n-rw-r--r--  1 root root    19664 May 15 12:13 batch_config_exp2.json\\\\n-rw-r--r--  1 root root     2185 May 15 03:31 eval_dry_run.json\\\\n-rw-r--r--  1 root root    29774 May 15 12:13 eval_exp1.json\\\\n-rw-r--r--  1 root root    18069 May 15 13:02 eval_exp2.json\\\\n-rw-r--r--  1 root root   187675 May 15 03:31 predictions_dry_run.json\\\\n-rw-r--r--  1 root root 51775521 May 15 12:13 predictions_exp1.json\\\\n-rw-r--r--  1 root root 31905763 May 15 13:02 predictions_exp2.json\\\\n-rw-r--r--  1 root root    20926 May 15 03:20 sim_matrix.pt\\\\n-rw-r--r--  1 root root   684417 May 15 10:52 type_embeddings.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 83816\\ndrwxr-xr-x  2 root root     4096 May 15 10:52 .\\ndrwxr-xr-x 10 root root      183 May 15 03:41 ..\\n-rw-r--r--  1 root root      821 May 15 03:26 batch_config_dry_run.json\\n-rw-r--r--  1 root root    32311 May 15 10:54 batch_config_exp1.json\\n-rw-r--r--  1 root root    19664 May 15 12:13 batch_config_exp2.json\\n-rw-r--r--  1 root root     2185 May 15 03:31 eval_dry_run.json\\n-rw-r--r--  1 root root    29774 May 15 12:13 eval_exp1.json\\n-rw-r--r--  1 root root    18069 May 15 13:02 eval_exp2.json\\n-rw-r--r--  1 root root   187675 May 15 03:31 predictions_dry_run.json\\n-rw-r--r--  1 root root 51775521 May 15 12:13 predictions_exp1.json\\n-rw-r--r--  1 root root 31905763 May 15 13:02 predictions_exp2.json\\n-rw-r--r--  1 root root    20926 May 15 03:20 sim_matrix.pt\\n-rw-r--r--  1 root root   684417 May 15 10:52 type_embeddings.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014UdNmiGAqLhobMdZVPdDby`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "tail -50 /root/schema-dag-extraction/logs/exp2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "daae9bce-9437-41f9-9805-54d68b6ac432",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEsgNt5YY24CSGMmDmycXL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5509,
+      "cache_read_input_tokens": 37775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T05:07:09.377Z_
+
+<details><summary>↩ Tool result · `toolu_014UdNmiGAqLhobMdZVPdDby`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 10:21:18,437 INFO   count_12_random_12             exact_F1=0.0096  relaxed_F1=0.1236  BCS=0.9447\\n2026-05-15 10:21:18,437 INFO   count_12_random_13             exact_F1=0.0143  relaxed_F1=0.1739  BCS=0.9242\\n2026-05-15 10:21:18,437 INFO   count_12_random_14             exact_F1=0.0050  relaxed_F1=0.0969  BCS=0.8920\\n2026-05-15 10:21:18,437 INFO   count_12_random_15             exact_F1=0.0155  relaxed_F1=0.1363  BCS=0.9327\\n2026-05-15 10:21:18,437 INFO   count_12_random_16             exact_F1=0.0054  relaxed_F1=0.0928  BCS=0.9555\\n2026-05-15 10:21:18,437 INFO   count_12_random_17             exact_F1=0.0054  relaxed_F1=0.1389  BCS=0.9356\\n2026-05-15 10:21:18,437 INFO   count_12_random_18             exact_F1=0.0051  relaxed_F1=0.0911  BCS=0.8955\\n2026-05-15 10:21:18,437 INFO   count_12_random_19             exact_F1=0.0081  relaxed_F1=0.1362  BCS=0.9261\\n2026-05-15 10:21:18,437 INFO   count_12_random_2              exact_F1=0.0180  relaxed_F1=0.2311  BCS=0.9604\\n2026-05-15 10:21:18,437 INFO   count_12_random_20             exact_F1=0.0082  relaxed_F1=0.1475  BCS=0.9356\\n2026-05-15 10:21:18,438 INFO   count_12_random_21             exact_F1=0.0051  relaxed_F1=0.1307  BCS=0.9396\\n2026-05-15 10:21:18,438 INFO   count_12_random_22             exact_F1=0.0066  relaxed_F1=0.1527  BCS=0.9148\\n2026-05-15 10:21:18,438 INFO   count_12_random_23             exact_F1=0.0077  relaxed_F1=0.1260  BCS=0.8942\\n2026-05-15 10:21:18,438 INFO   count_12_random_24             exact_F1=0.0152  relaxed_F1=0.1796  BCS=0.9327\\n2026-05-15 10:21:18,438 INFO   count_12_random_3              exact_F1=0.0042  relaxed_F1=0.1153  BCS=0.9100\\n2026-05-15 10:21:18,438 INFO   count_12_random_4              exact_F1=0.0071  relaxed_F1=0.1170  BCS=0.9123\\n2026-05-15 10:21:18,438 INFO   count_12_random_5              exact_F1=0.0071  relaxed_F1=0.1201  BCS=0.9115\\n2026-05-15 10:21:18,438 INFO   count_12_random_6              exact_F1=0.0104  relaxed_F1=0.1330  BCS=0.9086\\n2026-05-15 10:21:18,438 INFO   count_12_random_7              exact_F1=0.0118  relaxed_F1=0.1535  BCS=0.9292\\n2026-05-15 10:21:18,438 INFO   count_12_random_8              exact_F1=0.0086  relaxed_F1=0.1170  BCS=0.9283\\n2026-05-15 10:21:18,438 INFO   count_12_random_9              exact_F1=0.0150  relaxed_F1=0.1632  BCS=0.9212\\n2026-05-15 10:21:18,438 INFO   count_6_high_bcs               exact_F1=0.0354  relaxed_F1=0.2110  BCS=0.9447\\n2026-05-15 10:21:18,439 INFO   count_6_low_bcs                exact_F1=0.0068  relaxed_F1=0.0890  BCS=0.8709\\n2026-05-15 10:21:18,439 INFO   count_6_random_0               exact_F1=0.0049  relaxed_F1=0.1279  BCS=0.9021\\n2026-05-15 10:21:18,439 INFO   count_6_random_1               exact_F1=0.0047  relaxed_F1=0.1128  BCS=0.8868\\n2026-05-15 10:21:18,439 INFO   count_6_random_10              exact_F1=0.0141  relaxed_F1=0.1750  BCS=0.8909\\n2026-05-15 10:21:18,439 INFO   count_6_random_11              exact_F1=0.0086  relaxed_F1=0.0766  BCS=0.8787\\n2026-05-15 10:21:18,439 INFO   count_6_random_12              exact_F1=0.0067  relaxed_F1=0.1079  BCS=0.9195\\n2026-05-15 10:21:18,439 INFO   count_6_random_13              exact_F1=0.0066  relaxed_F1=0.0824  BCS=0.9135\\n2026-05-15 10:21:18,439 INFO   count_6_random_14              exact_F1=0.0021  relaxed_F1=0.0779  BCS=0.8887\\n2026-05-15 10:21:18,439 INFO   count_6_random_15              exact_F1=0.0126  relaxed_F1=0.1502  BCS=0.9163\\n2026-05-15 10:21:18,439 INFO   count_6_random_16              exact_F1=0.0049  relaxed_F1=0.0859  BCS=0.8868\\n2026-05-15 10:21:18,439 INFO   count_6_random_17              exact_F1=0.0044  relaxed_F1=0.0761  BCS=0.8628\\n2026-05-15 10:21:18,439 INFO   count_6_random_18              exact_F1=0.0050  relaxed_F1=0.1020  BCS=0.8652\\n2026-05-15 10:21:18,439 INFO   count_6_random_19              exact_F1=0.0091  relaxed_F1=0.1148  BCS=0.8772\\n2026-05-15 10:21:18,439 INFO   count_6_random_2               exact_F1=0.0027  relaxed_F1=0.0943  BCS=0.8684\\n2026-05-15 10:21:18,440 INFO   count_6_random_20              exact_F1=0.0067  relaxed_F1=0.0750  BCS=0.9141\\n2026-05-15 10:21:18,440 INFO   count_6_random_21              exact_F1=0.0153  relaxed_F1=0.1556  BCS=0.8941\\n2026-05-15 10:21:18,440 INFO   count_6_random_22              exact_F1=0.0020  relaxed_F1=0.0653  BCS=0.8887\\n2026-05-15 10:21:18,440 INFO   count_6_random_23              exact_F1=0.0105  relaxed_F1=0.1097  BCS=0.8931\\n2026-05-15 10:21:18,440 INFO   count_6_random_24              exact_F1=0.0042  relaxed_F1=0.0514  BCS=0.9119\\n2026-05-15 10:21:18,440 INFO   count_6_random_3               exact_F1=0.0021  relaxed_F1=0.0870  BCS=0.9163\\n2026-05-15 10:21:18,440 INFO   count_6_random_4               exact_F1=0.0000  relaxed_F1=0.0914  BCS=0.8878\\n2026-05-15 10:21:18,440 INFO   count_6_random_5               exact_F1=0.0175  relaxed_F1=0.1567  BCS=0.8673\\n2026-05-15 10:21:18,440 INFO   count_6_random_6               exact_F1=0.0026  relaxed_F1=0.0621  BCS=0.8690\\n2026-05-15 10:21:18,440 INFO   count_6_random_7               exact_F1=0.0160  relaxed_F1=0.1575  BCS=0.8919\\n2026-05-15 10:21:18,440 INFO   count_6_random_8               exact_F1=0.0037  relaxed_F1=0.1000  BCS=0.8849\\n2026-05-15 10:21:18,440 INFO   count_6_random_9               exact_F1=0.0160  relaxed_F1=0.1299  BCS=0.9327\\n2026-05-15 10:21:18,441 INFO Total extraction time: 11732.5s\\n2026-05-15 10:21:18,444 INFO Results saved to: ../artifacts\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "f4497524-419e-4e55-b4bf-57e77c306d28",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 10:21:18,437 INFO   count_12_random_12             exact_F1=0.0096  relaxed_F1=0.1236  BCS=0.9447\\\\n2026-05-15 10:21:18,437 INFO   count_12_random_13             exact_F1=0.0143  relaxed_F1=0.1739  BCS=0.9242\\\\n2026-05-15 10:21:18,437 INFO   count_12_random_14             exact_F1=0.0050  relaxed_F1=0.0969  BCS=0.8920\\\\n2026-05-15 10:21:18,437 INFO   count_12_random_15             exact_F1=0.0155  relaxed_F1=0.1363  BCS=0.9327\\\\n2026-05-15 10:21:18,437 INFO   count_12_random_16             exact_F1=0.0054  relaxed_F1=0.0928  BCS=0.9555\\\\n2026-05-15 10:21:18,437 INFO   count_12_random_17             exact_F1=0.0054  relaxed_F1=0.1389  BCS=0.9356\\\\n2026-05-15 10:21:18,437 INFO   count_12_random_18             exact_F1=0.0051  relaxed_F1=0.0911  BCS=0.8955\\\\n2026-05-15 10:21:18,437 INFO   count_12_random_19             exact_F1=0.0081  relaxed_F1=0.1362  BCS=0.9261\\\\n2026-05-15 10:21:18,437 INFO   count_12_random_2              exact_F1=0.0180  relaxed_F1=0.2311  BCS=0.9604\\\\n2026-05-15 10:21:18,437 INFO   count_12_random_20             exact_F1=0.0082  relaxed_F1=0.1475  BCS=0.9356\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_21             exact_F1=0.0051  relaxed_F1=0.1307  BCS=0.9396\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_22             exact_F1=0.0066  relaxed_F1=0.1527  BCS=0.9148\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_23             exact_F1=0.0077  relaxed_F1=0.1260  BCS=0.8942\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_24             exact_F1=0.0152  relaxed_F1=0.1796  BCS=0.9327\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_3              exact_F1=0.0042  relaxed_F1=0.1153  BCS=0.9100\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_4              exact_F1=0.0071  relaxed_F1=0.1170  BCS=0.9123\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_5              exact_F1=0.0071  relaxed_F1=0.1201  BCS=0.9115\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_6              exact_F1=0.0104  relaxed_F1=0.1330  BCS=0.9086\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_7              exact_F1=0.0118  relaxed_F1=0.1535  BCS=0.9292\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_8              exact_F1=0.0086  relaxed_F1=0.1170  BCS=0.9283\\\\n2026-05-15 10:21:18,438 INFO   count_12_random_9              exact_F1=0.0150  relaxed_F1=0.1632  BCS=0.9212\\\\n2026-05-15 10:21:18,438 INFO   count_6_high_bcs               exact_F1=0.0354  relaxed_F1=0.2110  BCS=0.9447\\\\n2026-05-15 10:21:18,439 INFO   count_6_low_bcs                exact_F1=0.0068  relaxed_F1=0.0890  BCS=0.8709\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_0               exact_F1=0.0049  relaxed_F1=0.1279  BCS=0.9021\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_1               exact_F1=0.0047  relaxed_F1=0.1128  BCS=0.8868\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_10              exact_F1=0.0141  relaxed_F1=0.1750  BCS=0.8909\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_11              exact_F1=0.0086  relaxed_F1=0.0766  BCS=0.8787\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_12              exact_F1=0.0067  relaxed_F1=0.1079  BCS=0.9195\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_13              exact_F1=0.0066  relaxed_F1=0.0824  BCS=0.9135\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_14              exact_F1=0.0021  relaxed_F1=0.0779  BCS=0.8887\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_15              exact_F1=0.0126  relaxed_F1=0.1502  BCS=0.9163\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_16              exact_F1=0.0049  relaxed_F1=0.0859  BCS=0.8868\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_17              exact_F1=0.0044  relaxed_F1=0.0761  BCS=0.8628\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_18              exact_F1=0.0050  relaxed_F1=0.1020  BCS=0.8652\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_19              exact_F1=0.0091  relaxed_F1=0.1148  BCS=0.8772\\\\n2026-05-15 10:21:18,439 INFO   count_6_random_2               exact_F1=0.0027  relaxed_F1=0.0943  BCS=0.8684\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_20              exact_F1=0.0067  relaxed_F1=0.0750  BCS=0.9141\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_21              exact_F1=0.0153  relaxed_F1=0.1556  BCS=0.8941\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_22              exact_F1=0.0020  relaxed_F1=0.0653  BCS=0.8887\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_23              exact_F1=0.0105  relaxed_F1=0.1097  BCS=0.8931\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_24              exact_F1=0.0042  relaxed_F1=0.0514  BCS=0.9119\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_3               exact_F1=0.0021  relaxed_F1=0.0870  BCS=0.9163\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_4               exact_F1=0.0000  relaxed_F1=0.0914  BCS=0.8878\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_5               exact_F1=0.0175  relaxed_F1=0.1567  BCS=0.8673\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_6               exact_F1=0.0026  relaxed_F1=0.0621  BCS=0.8690\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_7               exact_F1=0.0160  relaxed_F1=0.1575  BCS=0.8919\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_8               exact_F1=0.0037  relaxed_F1=0.1000  BCS=0.8849\\\\n2026-05-15 10:21:18,440 INFO   count_6_random_9               exact_F1=0.0160  relaxed_F1=0.1299  BCS=0.9327\\\\n2026-05-15 10:21:18,441 INFO Total extraction time: 11732.5s\\\\n2026-05-15 10:21:18,444 INFO Results saved to: ../artifacts\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 10:21:18,437 INFO   count_12_random_12             exact_F1=0.0096  relaxed_F1=0.1236  BCS=0.9447\\n2026-05-15 10:21:18,437 INFO   count_12_random_13             exact_F1=0.0143  relaxed_F1=0.1739  BCS=0.9242\\n2026-05-15 10:21:18,437 INFO   count_12_random_14             exact_F1=0.0050  relaxed_F1=0.0969  BCS=0.8920\\n2026-05-15 10:21:18,437 INFO   count_12_random_15             exact_F1=0.0155  relaxed_F1=0.1363  BCS=0.9327\\n2026-05-15 10:21:18,437 INFO   count_12_random_16             exact_F1=0.0054  relaxed_F1=0.0928  BCS=0.9555\\n2026-05-15 10:21:18,437 INFO   count_12_random_17             exact_F1=0.0054  relaxed_F1=0.1389  BCS=0.9356\\n2026-05-15 10:21:18,437 INFO   count_12_random_18             exact_F1=0.0051  relaxed_F1=0.0911  BCS=0.8955\\n2026-05-15 10:21:18,437 INFO   count_12_random_19             exact_F1=0.0081  relaxed_F1=0.1362  BCS=0.9261\\n2026-05-15 10:21:18,437 INFO   count_12_random_2              exact_F1=0.0180  relaxed_F1=0.2311  BCS=0.9604\\n2026-05-15 10:21:18,437 INFO   count_12_random_20             exact_F1=0.0082  relaxed_F1=0.1475  BCS=0.9356\\n2026-05-15 10:21:18,438 INFO   count_12_random_21             exact_F1=0.0051  relaxed_F1=0.1307  BCS=0.9396\\n2026-05-15 10:21:18,438 INFO   count_12_random_22             exact_F1=0.0066  relaxed_F1=0.1527  BCS=0.9148\\n2026-05-15 10:21:18,438 INFO   count_12_random_23             exact_F1=0.0077  relaxed_F1=0.1260  BCS=0.8942\\n2026-05-15 10:21:18,438 INFO   count_12_random_24             exact_F1=0.0152  relaxed_F1=0.1796  BCS=0.9327\\n2026-05-15 10:21:18,438 INFO   count_12_random_3              exact_F1=0.0042  relaxed_F1=0.1153  BCS=0.9100\\n2026-05-15 10:21:18,438 INFO   count_12_random_4              exact_F1=0.0071  relaxed_F1=0.1170  BCS=0.9123\\n2026-05-15 10:21:18,438 INFO   count_12_random_5              exact_F1=0.0071  relaxed_F1=0.1201  BCS=0.9115\\n2026-05-15 10:21:18,438 INFO   count_12_random_6              exact_F1=0.0104  relaxed_F1=0.1330  BCS=0.9086\\n2026-05-15 10:21:18,438 INFO   count_12_random_7              exact_F1=0.0118  relaxed_F1=0.1535  BCS=0.9292\\n2026-05-15 10:21:18,438 INFO   count_12_random_8              exact_F1=0.0086  relaxed_F1=0.1170  BCS=0.9283\\n2026-05-15 10:21:18,438 INFO   count_12_random_9              exact_F1=0.0150  relaxed_F1=0.1632  BCS=0.9212\\n2026-05-15 10:21:18,438 INFO   count_6_high_bcs               exact_F1=0.0354  relaxed_F1=0.2110  BCS=0.9447\\n2026-05-15 10:21:18,439 INFO   count_6_low_bcs                exact_F1=0.0068  relaxed_F1=0.0890  BCS=0.8709\\n2026-05-15 10:21:18,439 INFO   count_6_random_0               exact_F1=0.0049  relaxed_F1=0.1279  BCS=0.9021\\n2026-05-15 10:21:18,439 INFO   count_6_random_1               exact_F1=0.0047  relaxed_F1=0.1128  BCS=0.8868\\n2026-05-15 10:21:18,439 INFO   count_6_random_10              exact_F1=0.0141  relaxed_F1=0.1750  BCS=0.8909\\n2026-05-15 10:21:18,439 INFO   count_6_random_11              exact_F1=0.0086  relaxed_F1=0.0766  BCS=0.8787\\n2026-05-15 10:21:18,439 INFO   count_6_random_12              exact_F1=0.0067  relaxed_F1=0.1079  BCS=0.9195\\n2026-05-15 10:21:18,439 INFO   count_6_random_13              exact_F1=0.0066  relaxed_F1=0.0824  BCS=0.9135\\n2026-05-15 10:21:18,439 INFO   count_6_random_14              exact_F1=0.0021  relaxed_F1=0.0779  BCS=0.8887\\n2026-05-15 10:21:18,439 INFO   count_6_random_15              exact_F1=0.0126  relaxed_F1=0.1502  BCS=0.9163\\n2026-05-15 10:21:18,439 INFO   count_6_random_16              exact_F1=0.0049  relaxed_F1=0.0859  BCS=0.8868\\n2026-05-15 10:21:18,439 INFO   count_6_random_17              exact_F1=0.0044  relaxed_F1=0.0761  BCS=0.8628\\n2026-05-15 10:21:18,439 INFO   count_6_random_18              exact_F1=0.0050  relaxed_F1=0.1020  BCS=0.8652\\n2026-05-15 10:21:18,439 INFO   count_6_random_19              exact_F1=0.0091  relaxed_F1=0.1148  BCS=0.8772\\n2026-05-15 10:21:18,439 INFO   count_6_random_2               exact_F1=0.0027  relaxed_F1=0.0943  BCS=0.8684\\n2026-05-15 10:21:18,440 INFO   count_6_random_20              exact_F1=0.0067  relaxed_F1=0.0750  BCS=0.9141\\n2026-05-15 10:21:18,440 INFO   count_6_random_21              exact_F1=0.0153  relaxed_F1=0.1556  BCS=0.8941\\n2026-05-15 10:21:18,440 INFO   count_6_random_22              exact_F1=0.0020  relaxed_F1=0.0653  BCS=0.8887\\n2026-05-15 10:21:18,440 INFO   count_6_random_23              exact_F1=0.0105  relaxed_F1=0.1097  BCS=0.8931\\n2026-05-15 10:21:18,440 INFO   count_6_random_24              exact_F1=0.0042  relaxed_F1=0.0514  BCS=0.9119\\n2026-05-15 10:21:18,440 INFO   count_6_random_3               exact_F1=0.0021  relaxed_F1=0.0870  BCS=0.9163\\n2026-05-15 10:21:18,440 INFO   count_6_random_4               exact_F1=0.0000  relaxed_F1=0.0914  BCS=0.8878\\n2026-05-15 10:21:18,440 INFO   count_6_random_5               exact_F1=0.0175  relaxed_F1=0.1567  BCS=0.8673\\n2026-05-15 10:21:18,440 INFO   count_6_random_6               exact_F1=0.0026  relaxed_F1=0.0621  BCS=0.8690\\n2026-05-15 10:21:18,440 INFO   count_6_random_7               exact_F1=0.0160  relaxed_F1=0.1575  BCS=0.8919\\n2026-05-15 10:21:18,440 INFO   count_6_random_8               exact_F1=0.0037  relaxed_F1=0.1000  BCS=0.8849\\n2026-05-15 10:21:18,440 INFO   count_6_random_9               exact_F1=0.0160  relaxed_F1=0.1299  BCS=0.9327\\n2026-05-15 10:21:18,441 INFO Total extraction time: 11732.5s\\n2026-05-15 10:21:18,444 INFO Results saved to: ../artifacts\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PeaKjrbpMXCsxeY8Lm53pN`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -5 /root/schema-dag-extraction/logs/exp1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "8274f94c-bc63-4a44-bcbb-b7c9ad65cea0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEsgNt5YY24CSGMmDmycXL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5509,
+      "cache_read_input_tokens": 37775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T05:07:10.184Z_
+
+<details><summary>↩ Tool result · `toolu_01PeaKjrbpMXCsxeY8Lm53pN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 03:33:02,367 INFO Loading Few-NERD test data...\\n2026-05-15 03:33:02,367 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\n2026-05-15 03:33:04,576 INFO Loaded 1000 samples from Few-NERD test split\\n2026-05-15 03:33:04,579 INFO Data loaded: 1000 samples, 64 active types\\n2026-05-15 03:33:04,580 INFO Loading embeddings from ../data/type_embeddings.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "3bc27374-2d57-4140-8bf5-dd7acf722cb8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:33:02,367 INFO Loading Few-NERD test data...\\\\n2026-05-15 03:33:02,367 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\\\n2026-05-15 03:33:04,576 INFO Loaded 1000 samples from Few-NERD test split\\\\n2026-05-15 03:33:04,579 INFO Data loaded: 1000 samples, 64 active types\\\\n2026-05-15 03:33:04,580 INFO Loading embeddings from ../data/type_embeddings.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 03:33:02,367 INFO Loading Few-NERD test data...\\n2026-05-15 03:33:02,367 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\n2026-05-15 03:33:04,576 INFO Loaded 1000 samples from Few-NERD test split\\n2026-05-15 03:33:04,579 INFO Data loaded: 1000 samples, 64 active types\\n2026-05-15 03:33:04,580 INFO Loading embeddings from ../data/type_embeddings.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the full picture:
+
+1. **exp1.log**: Started at 03:33 UTC, finished at 07:01 UTC (v2 rerun exp1 mode)
+2. **exp2.log**: Finished at 10:21 UTC (v2 rerun exp2 mode)
+3. **artifacts/**: Latest files timestamped May 15 10:52-13:02 (the v2 results)
+
+The v2 experiment results are in the artifacts directory. The log shows both exp1 and exp2 completed successfully.
+
+But the key question is: the v2 prompt results look **dramatically worse** than v1. Let me look at the eval files in artifacts to get the text_match metrics.
+
+
+The exact_F1 scores are extremely low (0.01-0.02), and v2's relaxed_F1 is also significantly lower than v1's text_match results. I need to check the eval files in artifacts to see the actual text_match metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "5f28817b-31ef-4d63-b6ae-c167dfeced87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017W5qovPNi5Qy2UY9NaeE95",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 43284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+实验 exp1 和 exp2 都成功完成。v2 日志中 exact_F1 极低（~0.01），需要检查 text_match 评估结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "4b388bd1-b182-46dc-9a36-e432d5e9804b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017W5qovPNi5Qy2UY9NaeE95",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 43284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QwgxQMoa43S9ztkE32gbsi`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import json; d=json.load(open('/root/schema-dag-extraction/artifacts/eval_exp1.json')); [print(k, json.dumps({m: round(v,4) for m,v in d[k].items() if isinstance(v,(int,float))})) for k in sorted(d.keys()) if isinstance(d[k],dict)]\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "60009fc7-a3a2-468a-9b4f-13ca5cd3913b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017W5qovPNi5Qy2UY9NaeE95",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 43284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T05:07:19.851Z_
+
+<details><summary>↩ Tool result · `toolu_01QwgxQMoa43S9ztkE32gbsi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "d2a03ab1-e712-46a5-a724-43c9292a96e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BysGc5eXtCkv3iEWzmWfME`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -100 /root/schema-dag-extraction/artifacts/eval_exp1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "83e61f23-9ee9-4d19-ae53-291e3b7e722d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017W5qovPNi5Qy2UY9NaeE95",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4658,
+      "cache_read_input_tokens": 43284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4658
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T05:07:20.778Z_
+
+<details><summary>↩ Tool result · `toolu_01BysGc5eXtCkv3iEWzmWfME`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_1_random_0\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.125,\\n      \\\"recall\\\": 0.5454545454545454,\\n      \\\"f1\\\": 0.20338983050847456,\\n      \\\"tp\\\": 12,\\n      \\\"total_pred\\\": 96,\\n      \\\"total_gold\\\": 22\\n    }\\n  },\\n  \\\"count_1_random_1\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.18556701030927836,\\n      \\\"recall\\\": 0.8571428571428571,\\n      \\\"f1\\\": 0.3050847457627119,\\n      \\\"tp\\\": 18,\\n      \\\"total_pred\\\": 97,\\n      \\\"total_gold\\\": 21\\n    }\\n  },\\n  \\\"count_1_random_2\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2916666666666667,\\n      \\\"recall\\\": 0.6086956521739131,\\n      \\\"f1\\\": 0.39436619718309857,\\n      \\\"tp\\\": 14,\\n      \\\"total_pred\\\": 48,\\n      \\\"total_gold\\\": 23\\n    }\\n  },\\n  \\\"count_1_random_3\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.012345679012345678,\\n      \\\"recall\\\": 0.058823529411764705,\\n      \\\"f1\\\": 0.020408163265306124,\\n      \\\"tp\\\": 1,\\n      \\\"total_pred\\\": 81,\\n      \\\"total_gold\\\": 17\\n    }\\n  },\\n  \\\"count_1_random_4\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1368421052631579,\\n      \\\"recall\\\": 0.7647058823529411,\\n      \\\"f1\\\": 0.23214285714285718,\\n      \\\"tp\\\": 26,\\n      \\\"total_pred\\\": 190,\\n      \\\"total_gold\\\": 34\\n    }\\n  },\\n  \\\"count_1_random_5\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2631578947368421,\\n      \\\"recall\\\": 0.8333333333333334,\\n      \\\"f1\\\": 0.39999999999999997,\\n      \\\"tp\\\": 10,\\n      \\\"total_pred\\\": 38,\\n      \\\"total_gold\\\": 12\\n    }\\n  },\\n  \\\"count_1_random_6\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2727272727272727,\\n      \\\"recall\\\": 0.8571428571428571,\\n      \\\"f1\\\": 0.41379310344827586,\\n      \\\"tp\\\": 6,\\n      \\\"total_pred\\\": 22,\\n      \\\"total_gold\\\": 7\\n    }\\n  },\\n  \\\"count_1_random_7\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "ace50a3f-87af-4b9b-bbe4-b4d33a566928",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_1_random_0\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 1,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.125,\\\\n      \\\\\\\"recall\\\\\\\": 0.5454545454545454,\\\\n      \\\\\\\"f1\\\\\\\": 0.20338983050847456,\\\\n      \\\\\\\"tp\\\\\\\": 12,\\\\n      \\\\\\\"total_pred\\\\\\\": 96,\\\\n      \\\\\\\"total_gold\\\\\\\": 22\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_1_random_1\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 1,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.18556701030927836,\\\\n      \\\\\\\"recall\\\\\\\": 0.8571428571428571,\\\\n      \\\\\\\"f1\\\\\\\": 0.3050847457627119,\\\\n      \\\\\\\"tp\\\\\\\": 18,\\\\n      \\\\\\\"total_pred\\\\\\\": 97,\\\\n      \\\\\\\"total_gold\\\\\\\": 21\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_1_random_2\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 1,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.2916666666666667,\\\\n      \\\\\\\"recall\\\\\\\": 0.6086956521739131,\\\\n      \\\\\\\"f1\\\\\\\": 0.39436619718309857,\\\\n      \\\\\\\"tp\\\\\\\": 14,\\\\n      \\\\\\\"total_pred\\\\\\\": 48,\\\\n      \\\\\\\"total_gold\\\\\\\": 23\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_1_random_3\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 1,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.012345679012345678,\\\\n      \\\\\\\"recall\\\\\\\": 0.058823529411764705,\\\\n      \\\\\\\"f1\\\\\\\": 0.020408163265306124,\\\\n      \\\\\\\"tp\\\\\\\": 1,\\\\n      \\\\\\\"total_pred\\\\\\\": 81,\\\\n      \\\\\\\"total_gold\\\\\\\": 17\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_1_random_4\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 1,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.1368421052631579,\\\\n      \\\\\\\"recall\\\\\\\": 0.7647058823529411,\\\\n      \\\\\\\"f1\\\\\\\": 0.23214285714285718,\\\\n      \\\\\\\"tp\\\\\\\": 26,\\\\n      \\\\\\\"total_pred\\\\\\\": 190,\\\\n      \\\\\\\"total_gold\\\\\\\": 34\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_1_random_5\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 1,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.2631578947368421,\\\\n      \\\\\\\"recall\\\\\\\": 0.8333333333333334,\\\\n      \\\\\\\"f1\\\\\\\": 0.39999999999999997,\\\\n      \\\\\\\"tp\\\\\\\": 10,\\\\n      \\\\\\\"total_pred\\\\\\\": 38,\\\\n      \\\\\\\"total_gold\\\\\\\": 12\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_1_random_6\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 1,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.2727272727272727,\\\\n      \\\\\\\"recall\\\\\\\": 0.8571428571428571,\\\\n      \\\\\\\"f1\\\\\\\": 0.41379310344827586,\\\\n      \\\\\\\"tp\\\\\\\": 6,\\\\n      \\\\\\\"total_pred\\\\\\\": 22,\\\\n      \\\\\\\"total_gold\\\\\\\": 7\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_1_random_7\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_1_random_0\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.125,\\n      \\\"recall\\\": 0.5454545454545454,\\n      \\\"f1\\\": 0.20338983050847456,\\n      \\\"tp\\\": 12,\\n      \\\"total_pred\\\": 96,\\n      \\\"total_gold\\\": 22\\n    }\\n  },\\n  \\\"count_1_random_1\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.18556701030927836,\\n      \\\"recall\\\": 0.8571428571428571,\\n      \\\"f1\\\": 0.3050847457627119,\\n      \\\"tp\\\": 18,\\n      \\\"total_pred\\\": 97,\\n      \\\"total_gold\\\": 21\\n    }\\n  },\\n  \\\"count_1_random_2\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2916666666666667,\\n      \\\"recall\\\": 0.6086956521739131,\\n      \\\"f1\\\": 0.39436619718309857,\\n      \\\"tp\\\": 14,\\n      \\\"total_pred\\\": 48,\\n      \\\"total_gold\\\": 23\\n    }\\n  },\\n  \\\"count_1_random_3\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.012345679012345678,\\n      \\\"recall\\\": 0.058823529411764705,\\n      \\\"f1\\\": 0.020408163265306124,\\n      \\\"tp\\\": 1,\\n      \\\"total_pred\\\": 81,\\n      \\\"total_gold\\\": 17\\n    }\\n  },\\n  \\\"count_1_random_4\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1368421052631579,\\n      \\\"recall\\\": 0.7647058823529411,\\n      \\\"f1\\\": 0.23214285714285718,\\n      \\\"tp\\\": 26,\\n      \\\"total_pred\\\": 190,\\n      \\\"total_gold\\\": 34\\n    }\\n  },\\n  \\\"count_1_random_5\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2631578947368421,\\n      \\\"recall\\\": 0.8333333333333334,\\n      \\\"f1\\\": 0.39999999999999997,\\n      \\\"tp\\\": 10,\\n      \\\"total_pred\\\": 38,\\n      \\\"total_gold\\\": 12\\n    }\\n  },\\n  \\\"count_1_random_6\\\": {\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2727272727272727,\\n      \\\"recall\\\": 0.8571428571428571,\\n      \\\"f1\\\": 0.41379310344827586,\\n      \\\"tp\\\": 6,\\n      \\\"total_pred\\\": 22,\\n      \\\"total_gold\\\": 7\\n    }\\n  },\\n  \\\"count_1_random_7\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The eval_exp1.json contains text_match metrics for each batch. I need to aggregate these. Let me use a python command to extract aggregate stats by count_key. I can't use semicolons in ssh_read_only, so let me use ssh_execute or find another way.
+
+Actually, wait - I can use `grep` to extract the key metrics, or I could use `python3 -c` with no semicolons (all on one line with proper syntax).
+
+Let me try a different approach - read the eval files more carefully to extract the aggregate text_match metrics.
+
+
+Looking at the analysis_summary.json I already have, the exp1 means by count are [0.117, 0.067, 0.103, 0.146, 0.185, 0.247, 0.245] for counts [1, 2, 6, 12, 22, 44, 64]. But these don't match what I'm seeing in exp001's individual metrics - exp001 shows count_1 F1=0.184 and count_44 F1=0.473, while the v2 rerun shows count_1 F1=0.117 and count_44 F1=0.247. There's a discrepancy here I need to investigate.
+
+The timestamps are key - analysis_summary.json was updated at 10:38, but the artifact files are from 10:52-13:02, which means the analysis_summary might be showing older v2 results while the artifacts contain newer data. Looking more carefully at the JSON structure, exp1 has the text_match eval mode with those specific count values, and exp2 appears to have the BCS correlation analysis. I need to figure out which file is actually the most recent version. I'm noticing a timing issue here—the experiment logs finished much earlier than when these evaluation files were created, suggesting there was a re-evaluation run at 12:13. The results/ directory likely contains the original v2 evaluations, while the artifacts/ directory has the newer versions with the text_match metrics I need. Since analysis_summary.json already has the aggregated v2 metrics compiled, I can pull the text_match F1 scores directly from there rather than trying to untangle which file is which.
+
+The performance drop is stark—v2 degraded across every count level, with the largest hits at count_44 and count_64 dropping nearly 50%. But I should double-check this by looking at the actual eval_exp1.json file in artifacts to verify the aggregate scores, since I can see individual batch results there ranging from 0.02 to 0.41 for count_1.
+
+Extracting aggregates from the eval file...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "28594951-e863-46da-9928-60c606fa2bf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ahp35xhFzCZxEoanuruSq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 47942,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H1jP6UeANqgWT1vLyH8qtM`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -c \"count_key\" /root/schema-dag-extraction/artifacts/eval_exp1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "8b06c4ae-868c-46bd-815c-ad4f8b8a0634",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ahp35xhFzCZxEoanuruSq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 47942,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GAu6MHH2smP7kQ7BZzw2Qd`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/eval_exp2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "fd580554-0322-40ae-9563-9f1223dc4db9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ahp35xhFzCZxEoanuruSq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 47942,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2432
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T05:07:46.333Z_
+
+<details><summary>↩ Tool result · `toolu_01H1jP6UeANqgWT1vLyH8qtM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"94\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "bd277af5-1007-40cc-abda-fb93b6112353",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"94\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"94\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T05:07:46.854Z_
+
+<details><summary>↩ Tool result · `toolu_01GAu6MHH2smP7kQ7BZzw2Qd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_6_low_bcs\\\": {\\n    \\\"bcs\\\": 0.8708932995796204,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1925925925925926,\\n      \\\"recall\\\": 0.36619718309859156,\\n      \\\"f1\\\": 0.2524271844660194,\\n      \\\"tp\\\": 78,\\n      \\\"total_pred\\\": 405,\\n      \\\"total_gold\\\": 213\\n    }\\n  },\\n  \\\"count_6_high_bcs\\\": {\\n    \\\"bcs\\\": 0.9446906447410583,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.45726495726495725,\\n      \\\"recall\\\": 0.5181598062953995,\\n      \\\"f1\\\": 0.48581157775255385,\\n      \\\"tp\\\": 214,\\n      \\\"total_pred\\\": 468,\\n      \\\"total_gold\\\": 413\\n    }\\n  },\\n  \\\"count_6_random_0\\\": {\\n    \\\"bcs\\\": 0.9021296501159668,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4472049689440994,\\n      \\\"recall\\\": 0.36180904522613067,\\n      \\\"f1\\\": 0.4000000000000001,\\n      \\\"tp\\\": 72,\\n      \\\"total_pred\\\": 161,\\n      \\\"total_gold\\\": 199\\n    }\\n  },\\n  \\\"count_6_random_1\\\": {\\n    \\\"bcs\\\": 0.8867964744567871,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.20303030303030303,\\n      \\\"recall\\\": 0.6547231270358306,\\n      \\\"f1\\\": 0.3099460292983809,\\n      \\\"tp\\\": 201,\\n      \\\"total_pred\\\": 990,\\n      \\\"total_gold\\\": 307\\n    }\\n  },\\n  \\\"count_6_random_2\\\": {\\n    \\\"bcs\\\": 0.8683533072471619,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.17167381974248927,\\n      \\\"recall\\\": 0.23668639053254437,\\n      \\\"f1\\\": 0.1990049751243781,\\n      \\\"tp\\\": 40,\\n      \\\"total_pred\\\": 233,\\n      \\\"total_gold\\\": 169\\n    }\\n  },\\n  \\\"count_6_random_3\\\": {\\n    \\\"bcs\\\": 0.9162936210632324,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.19814814814814816,\\n      \\\"recall\\\": 0.5323383084577115,\\n      \\\"f1\\\": 0.28879892037786775,\\n      \\\"tp\\\": 107,\\n      \\\"total_pred\\\": 540,\\n      \\\"total_gold\\\": 201\\n    }\\n  },\\n  \\\"count_6_random_4\\\": {\\n    \\\"bcs\\\": 0.8878266215324402,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.36792452830188677,\\n      \\\"recall\\\": 0.43333333333333335,\\n      \\\"f1\\\": 0.39795918367346933,\\n      \\\"tp\\\": 39,\\n      \\\"total_pred\\\": 106,\\n      \\\"total_gold\\\": 90\\n    }\\n  },\\n  \\\"count_6_random_5\\\": {\\n    \\\"bcs\\\": 0.867279052734375,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4470314318975553,\\n      \\\"recall\\\": 0.5655375552282769,\\n      \\\"f1\\\": 0.49934980494148246,\\n      \\\"tp\\\": 384,\\n      \\\"total_pred\\\": 859,\\n      \\\"total_gold\\\": 679\\n    }\\n  },\\n  \\\"count_6_random_6\\\": {\\n    \\\"bcs\\\": 0.8690363168716431,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.11388888888888889,\\n      \\\"recall\\\": 0.37272727272727274,\\n      \\\"f1\\\": 0.17446808510638298,\\n      \\\"tp\\\": 41,\\n      \\\"total_pred\\\": 360,\\n      \\\"total_gold\\\": 110\\n    }\\n  },\\n  \\\"count_6_random_7\\\": {\\n    \\\"bcs\\\": 0.8919055461883545,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.41708542713567837,\\n      \\\"recall\\\": 0.3547008547008547,\\n      \\\"f1\\\": 0.3833718244803695,\\n      \\\"tp\\\": 249,\\n      \\\"total_pred\\\": 597,\\n      \\\"total_gold\\\": 702\\n    }\\n  },\\n  \\\"count_6_random_8\\\": {\\n    \\\"bcs\\\": 0.8849315643310547,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1791907514450867,\\n      \\\"recall\\\": 0.27927927927927926,\\n      \\\"f1\\\": 0.21830985915492954,\\n      \\\"tp\\\": 62,\\n      \\\"total_pred\\\": 346,\\n      \\\"total_gold\\\": 222\\n    }\\n  },\\n  \\\"count_6_random_9\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.3292929292929293,\\n      \\\"recall\\\": 0.42118863049095606,\\n      \\\"f1\\\": 0.36961451247165533,\\n      \\\"tp\\\": 163,\\n      \\\"total_pred\\\": 495,\\n      \\\"total_gold\\\": 387\\n    }\\n  },\\n  \\n\\n... [截断: 输出过长，省略 10069 字符] ...\\n\\n,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.49731182795698925,\\n      \\\"recall\\\": 0.20624303232998886,\\n      \\\"f1\\\": 0.2915681639085895,\\n      \\\"tp\\\": 185,\\n      \\\"total_pred\\\": 372,\\n      \\\"total_gold\\\": 897\\n    }\\n  },\\n  \\\"count_12_random_14\\\": {\\n    \\\"bcs\\\": 0.8920300006866455,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.23863636363636365,\\n      \\\"recall\\\": 0.15328467153284672,\\n      \\\"f1\\\": 0.18666666666666668,\\n      \\\"tp\\\": 42,\\n      \\\"total_pred\\\": 176,\\n      \\\"total_gold\\\": 274\\n    }\\n  },\\n  \\\"count_12_random_15\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.21742881794650562,\\n      \\\"recall\\\": 0.38239757207890746,\\n      \\\"f1\\\": 0.27722772277227725,\\n      \\\"tp\\\": 252,\\n      \\\"total_pred\\\": 1159,\\n      \\\"total_gold\\\": 659\\n    }\\n  },\\n  \\\"count_12_random_16\\\": {\\n    \\\"bcs\\\": 0.9554502367973328,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.22573363431151242,\\n      \\\"recall\\\": 0.234192037470726,\\n      \\\"f1\\\": 0.22988505747126436,\\n      \\\"tp\\\": 100,\\n      \\\"total_pred\\\": 443,\\n      \\\"total_gold\\\": 427\\n    }\\n  },\\n  \\\"count_12_random_17\\\": {\\n    \\\"bcs\\\": 0.9356369376182556,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.24821428571428572,\\n      \\\"recall\\\": 0.3619791666666667,\\n      \\\"f1\\\": 0.2944915254237288,\\n      \\\"tp\\\": 139,\\n      \\\"total_pred\\\": 560,\\n      \\\"total_gold\\\": 384\\n    }\\n  },\\n  \\\"count_12_random_18\\\": {\\n    \\\"bcs\\\": 0.8955389857292175,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.18256130790190736,\\n      \\\"recall\\\": 0.19822485207100593,\\n      \\\"f1\\\": 0.1900709219858156,\\n      \\\"tp\\\": 67,\\n      \\\"total_pred\\\": 367,\\n      \\\"total_gold\\\": 338\\n    }\\n  },\\n  \\\"count_12_random_19\\\": {\\n    \\\"bcs\\\": 0.9260712265968323,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.27790432801822323,\\n      \\\"recall\\\": 0.270509977827051,\\n      \\\"f1\\\": 0.2741573033707866,\\n      \\\"tp\\\": 122,\\n      \\\"total_pred\\\": 439,\\n      \\\"total_gold\\\": 451\\n    }\\n  },\\n  \\\"count_12_random_20\\\": {\\n    \\\"bcs\\\": 0.9356369376182556,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.26476578411405294,\\n      \\\"recall\\\": 0.21922428330522767,\\n      \\\"f1\\\": 0.2398523985239852,\\n      \\\"tp\\\": 130,\\n      \\\"total_pred\\\": 491,\\n      \\\"total_gold\\\": 593\\n    }\\n  },\\n  \\\"count_12_random_21\\\": {\\n    \\\"bcs\\\": 0.9395749568939209,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.3448275862068966,\\n      \\\"recall\\\": 0.3333333333333333,\\n      \\\"f1\\\": 0.33898305084745767,\\n      \\\"tp\\\": 110,\\n      \\\"total_pred\\\": 319,\\n      \\\"total_gold\\\": 330\\n    }\\n  },\\n  \\\"count_12_random_22\\\": {\\n    \\\"bcs\\\": 0.9147809743881226,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.25644028103044497,\\n      \\\"recall\\\": 0.38898756660746003,\\n      \\\"f1\\\": 0.30910374029640086,\\n      \\\"tp\\\": 219,\\n      \\\"total_pred\\\": 854,\\n      \\\"total_gold\\\": 563\\n    }\\n  },\\n  \\\"count_12_random_23\\\": {\\n    \\\"bcs\\\": 0.8941828608512878,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2274436090225564,\\n      \\\"recall\\\": 0.36555891238670696,\\n      \\\"f1\\\": 0.28041714947856317,\\n      \\\"tp\\\": 121,\\n      \\\"total_pred\\\": 532,\\n      \\\"total_gold\\\": 331\\n    }\\n  },\\n  \\\"count_12_random_24\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.33363719234275296,\\n      \\\"recall\\\": 0.45018450184501846,\\n      \\\"f1\\\": 0.38324607329842936,\\n      \\\"tp\\\": 366,\\n      \\\"total_pred\\\": 1097,\\n      \\\"total_gold\\\": 813\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "e65a4abf-f52f-4b79-82c1-de7a51446fd8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_6_low_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8708932995796204,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.1925925925925926,\\\\n      \\\\\\\"recall\\\\\\\": 0.36619718309859156,\\\\n      \\\\\\\"f1\\\\\\\": 0.2524271844660194,\\\\n      \\\\\\\"tp\\\\\\\": 78,\\\\n      \\\\\\\"total_pred\\\\\\\": 405,\\\\n      \\\\\\\"total_gold\\\\\\\": 213\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_high_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9446906447410583,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.45726495726495725,\\\\n      \\\\\\\"recall\\\\\\\": 0.5181598062953995,\\\\n      \\\\\\\"f1\\\\\\\": 0.48581157775255385,\\\\n      \\\\\\\"tp\\\\\\\": 214,\\\\n      \\\\\\\"total_pred\\\\\\\": 468,\\\\n      \\\\\\\"total_gold\\\\\\\": 413\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_0\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9021296501159668,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.4472049689440994,\\\\n      \\\\\\\"recall\\\\\\\": 0.36180904522613067,\\\\n      \\\\\\\"f1\\\\\\\": 0.4000000000000001,\\\\n      \\\\\\\"tp\\\\\\\": 72,\\\\n      \\\\\\\"total_pred\\\\\\\": 161,\\\\n      \\\\\\\"total_gold\\\\\\\": 199\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_1\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8867964744567871,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.20303030303030303,\\\\n      \\\\\\\"recall\\\\\\\": 0.6547231270358306,\\\\n      \\\\\\\"f1\\\\\\\": 0.3099460292983809,\\\\n      \\\\\\\"tp\\\\\\\": 201,\\\\n      \\\\\\\"total_pred\\\\\\\": 990,\\\\n      \\\\\\\"total_gold\\\\\\\": 307\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_2\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8683533072471619,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.17167381974248927,\\\\n      \\\\\\\"recall\\\\\\\": 0.23668639053254437,\\\\n      \\\\\\\"f1\\\\\\\": 0.1990049751243781,\\\\n      \\\\\\\"tp\\\\\\\": 40,\\\\n      \\\\\\\"total_pred\\\\\\\": 233,\\\\n      \\\\\\\"total_gold\\\\\\\": 169\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_3\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9162936210632324,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.19814814814814816,\\\\n      \\\\\\\"recall\\\\\\\": 0.5323383084577115,\\\\n      \\\\\\\"f1\\\\\\\": 0.28879892037786775,\\\\n      \\\\\\\"tp\\\\\\\": 107,\\\\n      \\\\\\\"total_pred\\\\\\\": 540,\\\\n      \\\\\\\"total_gold\\\\\\\": 201\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_4\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8878266215324402,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.36792452830188677,\\\\n      \\\\\\\"recall\\\\\\\": 0.43333333333333335,\\\\n      \\\\\\\"f1\\\\\\\": 0.39795918367346933,\\\\n      \\\\\\\"tp\\\\\\\": 39,\\\\n      \\\\\\\"total_pred\\\\\\\": 106,\\\\n      \\\\\\\"total_gold\\\\\\\": 90\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_5\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.867279052734375,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.4470314318975553,\\\\n      \\\\\\\"recall\\\\\\\": 0.5655375552282769,\\\\n      \\\\\\\"f1\\\\\\\": 0.49934980494148246,\\\\n      \\\\\\\"tp\\\\\\\": 384,\\\\n      \\\\\\\"total_pred\\\\\\\": 859,\\\\n      \\\\\\\"total_gold\\\\\\\": 679\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_6\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8690363168716431,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.11388888888888889,\\\\n      \\\\\\\"recall\\\\\\\": 0.37272727272727274,\\\\n      \\\\\\\"f1\\\\\\\": 0.17446808510638298,\\\\n      \\\\\\\"tp\\\\\\\": 41,\\\\n      \\\\\\\"total_pred\\\\\\\": 360,\\\\n      \\\\\\\"total_gold\\\\\\\": 110\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_7\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8919055461883545,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.41708542713567837,\\\\n      \\\\\\\"recall\\\\\\\": 0.3547008547008547,\\\\n      \\\\\\\"f1\\\\\\\": 0.3833718244803695,\\\\n      \\\\\\\"tp\\\\\\\": 249,\\\\n      \\\\\\\"total_pred\\\\\\\": 597,\\\\n      \\\\\\\"total_gold\\\\\\\": 702\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_8\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8849315643310547,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.1791907514450867,\\\\n      \\\\\\\"recall\\\\\\\": 0.27927927927927926,\\\\n      \\\\\\\"f1\\\\\\\": 0.21830985915492954,\\\\n      \\\\\\\"tp\\\\\\\": 62,\\\\n      \\\\\\\"total_pred\\\\\\\": 346,\\\\n      \\\\\\\"total_gold\\\\\\\": 222\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_9\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9326926469802856,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.3292929292929293,\\\\n      \\\\\\\"recall\\\\\\\": 0.42118863049095606,\\\\n      \\\\\\\"f1\\\\\\\": 0.36961451247165533,\\\\n      \\\\\\\"tp\\\\\\\": 163,\\\\n      \\\\\\\"total_pred\\\\\\\": 495,\\\\n      \\\\\\\"total_gold\\\\\\\": 387\\\\n    }\\\\n  },\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 10069 字符] ...\\\\n\\\\n,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.49731182795698925,\\\\n      \\\\\\\"recall\\\\\\\": 0.20624303232998886,\\\\n      \\\\\\\"f1\\\\\\\": 0.2915681639085895,\\\\n      \\\\\\\"tp\\\\\\\": 185,\\\\n      \\\\\\\"total_pred\\\\\\\": 372,\\\\n      \\\\\\\"total_gold\\\\\\\": 897\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_14\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8920300006866455,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.23863636363636365,\\\\n      \\\\\\\"recall\\\\\\\": 0.15328467153284672,\\\\n      \\\\\\\"f1\\\\\\\": 0.18666666666666668,\\\\n      \\\\\\\"tp\\\\\\\": 42,\\\\n      \\\\\\\"total_pred\\\\\\\": 176,\\\\n      \\\\\\\"total_gold\\\\\\\": 274\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_15\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9326926469802856,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.21742881794650562,\\\\n      \\\\\\\"recall\\\\\\\": 0.38239757207890746,\\\\n      \\\\\\\"f1\\\\\\\": 0.27722772277227725,\\\\n      \\\\\\\"tp\\\\\\\": 252,\\\\n      \\\\\\\"total_pred\\\\\\\": 1159,\\\\n      \\\\\\\"total_gold\\\\\\\": 659\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_16\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9554502367973328,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.22573363431151242,\\\\n      \\\\\\\"recall\\\\\\\": 0.234192037470726,\\\\n      \\\\\\\"f1\\\\\\\": 0.22988505747126436,\\\\n      \\\\\\\"tp\\\\\\\": 100,\\\\n      \\\\\\\"total_pred\\\\\\\": 443,\\\\n      \\\\\\\"total_gold\\\\\\\": 427\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_17\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9356369376182556,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.24821428571428572,\\\\n      \\\\\\\"recall\\\\\\\": 0.3619791666666667,\\\\n      \\\\\\\"f1\\\\\\\": 0.2944915254237288,\\\\n      \\\\\\\"tp\\\\\\\": 139,\\\\n      \\\\\\\"total_pred\\\\\\\": 560,\\\\n      \\\\\\\"total_gold\\\\\\\": 384\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_18\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8955389857292175,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.18256130790190736,\\\\n      \\\\\\\"recall\\\\\\\": 0.19822485207100593,\\\\n      \\\\\\\"f1\\\\\\\": 0.1900709219858156,\\\\n      \\\\\\\"tp\\\\\\\": 67,\\\\n      \\\\\\\"total_pred\\\\\\\": 367,\\\\n      \\\\\\\"total_gold\\\\\\\": 338\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_19\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9260712265968323,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.27790432801822323,\\\\n      \\\\\\\"recall\\\\\\\": 0.270509977827051,\\\\n      \\\\\\\"f1\\\\\\\": 0.2741573033707866,\\\\n      \\\\\\\"tp\\\\\\\": 122,\\\\n      \\\\\\\"total_pred\\\\\\\": 439,\\\\n      \\\\\\\"total_gold\\\\\\\": 451\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_20\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9356369376182556,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.26476578411405294,\\\\n      \\\\\\\"recall\\\\\\\": 0.21922428330522767,\\\\n      \\\\\\\"f1\\\\\\\": 0.2398523985239852,\\\\n      \\\\\\\"tp\\\\\\\": 130,\\\\n      \\\\\\\"total_pred\\\\\\\": 491,\\\\n      \\\\\\\"total_gold\\\\\\\": 593\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_21\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9395749568939209,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.3448275862068966,\\\\n      \\\\\\\"recall\\\\\\\": 0.3333333333333333,\\\\n      \\\\\\\"f1\\\\\\\": 0.33898305084745767,\\\\n      \\\\\\\"tp\\\\\\\": 110,\\\\n      \\\\\\\"total_pred\\\\\\\": 319,\\\\n      \\\\\\\"total_gold\\\\\\\": 330\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_22\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9147809743881226,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.25644028103044497,\\\\n      \\\\\\\"recall\\\\\\\": 0.38898756660746003,\\\\n      \\\\\\\"f1\\\\\\\": 0.30910374029640086,\\\\n      \\\\\\\"tp\\\\\\\": 219,\\\\n      \\\\\\\"total_pred\\\\\\\": 854,\\\\n      \\\\\\\"total_gold\\\\\\\": 563\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_23\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8941828608512878,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.2274436090225564,\\\\n      \\\\\\\"recall\\\\\\\": 0.36555891238670696,\\\\n      \\\\\\\"f1\\\\\\\": 0.28041714947856317,\\\\n      \\\\\\\"tp\\\\\\\": 121,\\\\n      \\\\\\\"total_pred\\\\\\\": 532,\\\\n      \\\\\\\"total_gold\\\\\\\": 331\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_24\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9326926469802856,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.33363719234275296,\\\\n      \\\\\\\"recall\\\\\\\": 0.45018450184501846,\\\\n      \\\\\\\"f1\\\\\\\": 0.38324607329842936,\\\\n      \\\\\\\"tp\\\\\\\": 366,\\\\n      \\\\\\\"total_pred\\\\\\\": 1097,\\\\n      \\\\\\\"total_gold\\\\\\\": 813\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_6_low_bcs\\\": {\\n    \\\"bcs\\\": 0.8708932995796204,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1925925925925926,\\n      \\\"recall\\\": 0.36619718309859156,\\n      \\\"f1\\\": 0.2524271844660194,\\n      \\\"tp\\\": 78,\\n      \\\"total_pred\\\": 405,\\n      \\\"total_gold\\\": 213\\n    }\\n  },\\n  \\\"count_6_high_bcs\\\": {\\n    \\\"bcs\\\": 0.9446906447410583,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.45726495726495725,\\n      \\\"recall\\\": 0.5181598062953995,\\n      \\\"f1\\\": 0.48581157775255385,\\n      \\\"tp\\\": 214,\\n      \\\"total_pred\\\": 468,\\n      \\\"total_gold\\\": 413\\n    }\\n  },\\n  \\\"count_6_random_0\\\": {\\n    \\\"bcs\\\": 0.9021296501159668,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4472049689440994,\\n      \\\"recall\\\": 0.36180904522613067,\\n      \\\"f1\\\": 0.4000000000000001,\\n      \\\"tp\\\": 72,\\n      \\\"total_pred\\\": 161,\\n      \\\"total_gold\\\": 199\\n    }\\n  },\\n  \\\"count_6_random_1\\\": {\\n    \\\"bcs\\\": 0.8867964744567871,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.20303030303030303,\\n      \\\"recall\\\": 0.6547231270358306,\\n      \\\"f1\\\": 0.3099460292983809,\\n      \\\"tp\\\": 201,\\n      \\\"total_pred\\\": 990,\\n      \\\"total_gold\\\": 307\\n    }\\n  },\\n  \\\"count_6_random_2\\\": {\\n    \\\"bcs\\\": 0.8683533072471619,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.17167381974248927,\\n      \\\"recall\\\": 0.23668639053254437,\\n      \\\"f1\\\": 0.1990049751243781,\\n      \\\"tp\\\": 40,\\n      \\\"total_pred\\\": 233,\\n      \\\"total_gold\\\": 169\\n    }\\n  },\\n  \\\"count_6_random_3\\\": {\\n    \\\"bcs\\\": 0.9162936210632324,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.19814814814814816,\\n      \\\"recall\\\": 0.5323383084577115,\\n      \\\"f1\\\": 0.28879892037786775,\\n      \\\"tp\\\": 107,\\n      \\\"total_pred\\\": 540,\\n      \\\"total_gold\\\": 201\\n    }\\n  },\\n  \\\"count_6_random_4\\\": {\\n    \\\"bcs\\\": 0.8878266215324402,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.36792452830188677,\\n      \\\"recall\\\": 0.43333333333333335,\\n      \\\"f1\\\": 0.39795918367346933,\\n      \\\"tp\\\": 39,\\n      \\\"total_pred\\\": 106,\\n      \\\"total_gold\\\": 90\\n    }\\n  },\\n  \\\"count_6_random_5\\\": {\\n    \\\"bcs\\\": 0.867279052734375,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4470314318975553,\\n      \\\"recall\\\": 0.5655375552282769,\\n      \\\"f1\\\": 0.49934980494148246,\\n      \\\"tp\\\": 384,\\n      \\\"total_pred\\\": 859,\\n      \\\"total_gold\\\": 679\\n    }\\n  },\\n  \\\"count_6_random_6\\\": {\\n    \\\"bcs\\\": 0.8690363168716431,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.11388888888888889,\\n      \\\"recall\\\": 0.37272727272727274,\\n      \\\"f1\\\": 0.17446808510638298,\\n      \\\"tp\\\": 41,\\n      \\\"total_pred\\\": 360,\\n      \\\"total_gold\\\": 110\\n    }\\n  },\\n  \\\"count_6_random_7\\\": {\\n    \\\"bcs\\\": 0.8919055461883545,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.41708542713567837,\\n      \\\"recall\\\": 0.3547008547008547,\\n      \\\"f1\\\": 0.3833718244803695,\\n      \\\"tp\\\": 249,\\n      \\\"total_pred\\\": 597,\\n      \\\"total_gold\\\": 702\\n    }\\n  },\\n  \\\"count_6_random_8\\\": {\\n    \\\"bcs\\\": 0.8849315643310547,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1791907514450867,\\n      \\\"recall\\\": 0.27927927927927926,\\n      \\\"f1\\\": 0.21830985915492954,\\n      \\\"tp\\\": 62,\\n      \\\"total_pred\\\": 346,\\n      \\\"total_gold\\\": 222\\n    }\\n  },\\n  \\\"count_6_random_9\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.3292929292929293,\\n      \\\"recall\\\": 0.42118863049095606,\\n      \\\"f1\\\": 0.36961451247165533,\\n      \\\"tp\\\": 163,\\n      \\\"total_pred\\\": 495,\\n      \\\"total_gold\\\": 387\\n    }\\n  },\\n  \\n\\n... [截断: 输出过长，省略 10069 字符] ...\\n\\n,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.49731182795698925,\\n      \\\"recall\\\": 0.20624303232998886,\\n      \\\"f1\\\": 0.2915681639085895,\\n      \\\"tp\\\": 185,\\n      \\\"total_pred\\\": 372,\\n      \\\"total_gold\\\": 897\\n    }\\n  },\\n  \\\"count_12_random_14\\\": {\\n    \\\"bcs\\\": 0.8920300006866455,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.23863636363636365,\\n      \\\"recall\\\": 0.15328467153284672,\\n      \\\"f1\\\": 0.18666666666666668,\\n      \\\"tp\\\": 42,\\n      \\\"total_pred\\\": 176,\\n      \\\"total_gold\\\": 274\\n    }\\n  },\\n  \\\"count_12_random_15\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.21742881794650562,\\n      \\\"recall\\\": 0.38239757207890746,\\n      \\\"f1\\\": 0.27722772277227725,\\n      \\\"tp\\\": 252,\\n      \\\"total_pred\\\": 1159,\\n      \\\"total_gold\\\": 659\\n    }\\n  },\\n  \\\"count_12_random_16\\\": {\\n    \\\"bcs\\\": 0.9554502367973328,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.22573363431151242,\\n      \\\"recall\\\": 0.234192037470726,\\n      \\\"f1\\\": 0.22988505747126436,\\n      \\\"tp\\\": 100,\\n      \\\"total_pred\\\": 443,\\n      \\\"total_gold\\\": 427\\n    }\\n  },\\n  \\\"count_12_random_17\\\": {\\n    \\\"bcs\\\": 0.9356369376182556,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.24821428571428572,\\n      \\\"recall\\\": 0.3619791666666667,\\n      \\\"f1\\\": 0.2944915254237288,\\n      \\\"tp\\\": 139,\\n      \\\"total_pred\\\": 560,\\n      \\\"total_gold\\\": 384\\n    }\\n  },\\n  \\\"count_12_random_18\\\": {\\n    \\\"bcs\\\": 0.8955389857292175,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.18256130790190736,\\n      \\\"recall\\\": 0.19822485207100593,\\n      \\\"f1\\\": 0.1900709219858156,\\n      \\\"tp\\\": 67,\\n      \\\"total_pred\\\": 367,\\n      \\\"total_gold\\\": 338\\n    }\\n  },\\n  \\\"count_12_random_19\\\": {\\n    \\\"bcs\\\": 0.9260712265968323,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.27790432801822323,\\n      \\\"recall\\\": 0.270509977827051,\\n      \\\"f1\\\": 0.2741573033707866,\\n      \\\"tp\\\": 122,\\n      \\\"total_pred\\\": 439,\\n      \\\"total_gold\\\": 451\\n    }\\n  },\\n  \\\"count_12_random_20\\\": {\\n    \\\"bcs\\\": 0.9356369376182556,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.26476578411405294,\\n      \\\"recall\\\": 0.21922428330522767,\\n      \\\"f1\\\": 0.2398523985239852,\\n      \\\"tp\\\": 130,\\n      \\\"total_pred\\\": 491,\\n      \\\"total_gold\\\": 593\\n    }\\n  },\\n  \\\"count_12_random_21\\\": {\\n    \\\"bcs\\\": 0.9395749568939209,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.3448275862068966,\\n      \\\"recall\\\": 0.3333333333333333,\\n      \\\"f1\\\": 0.33898305084745767,\\n      \\\"tp\\\": 110,\\n      \\\"total_pred\\\": 319,\\n      \\\"total_gold\\\": 330\\n    }\\n  },\\n  \\\"count_12_random_22\\\": {\\n    \\\"bcs\\\": 0.9147809743881226,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.25644028103044497,\\n      \\\"recall\\\": 0.38898756660746003,\\n      \\\"f1\\\": 0.30910374029640086,\\n      \\\"tp\\\": 219,\\n      \\\"total_pred\\\": 854,\\n      \\\"total_gold\\\": 563\\n    }\\n  },\\n  \\\"count_12_random_23\\\": {\\n    \\\"bcs\\\": 0.8941828608512878,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2274436090225564,\\n      \\\"recall\\\": 0.36555891238670696,\\n      \\\"f1\\\": 0.28041714947856317,\\n      \\\"tp\\\": 121,\\n      \\\"total_pred\\\": 532,\\n      \\\"total_gold\\\": 331\\n    }\\n  },\\n  \\\"count_12_random_24\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.33363719234275296,\\n      \\\"recall\\\": 0.45018450184501846,\\n      \\\"f1\\\": 0.38324607329842936,\\n      \\\"tp\\\": 366,\\n      \\\"total_pred\\\": 1097,\\n      \\\"total_gold\\\": 813\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the v2 exp2 results with text_match metrics. These are for count_6 and count_12 batches with 27 random + 2 extreme batches.
+
+Let me now try to compute aggregate stats. The v2 artifacts eval files have text_match metrics that look significantly different from the analysis_summary.json means.
+
+Looking at individual v2 exp2 batch results, the text_match F1 values range quite widely:
+- count_6: from 0.17 to 0.50
+
+
+- count_12: from 0.19 to 0.38
+
+These are much higher than what the analysis_summary.json showed (count_6 mean=0.103, count_12 mean=0.146). So the analysis_summary.json might be using a different eval mode or different data. Let me check the analysis_summary.json more carefully to see what's actually being measured there, since it claims to use text_match eval mode but the numbers are substantially lower.
+
+Looking at the structure, I'm realizing exp1 and exp2 are separate experiments entirely—exp1 covers count_1 through count_64 with 5 batches each, while exp2 focuses on count_6 and count_12 with 27 random batches. The analysis_summary means come from exp1's smaller batch set, whereas exp2 has much more data per count level, which explains the discrepancy. But when I look at the actual eval_exp1.json file, it contains 94 batch entries, which doesn't match the expected structure.
+
+The real issue is comparing the two prompt versions directly: v1 achieved text_match F1 scores around 0.18 for count_1, 0.47 for count_44, and 0.46 for count_64, while v2's means are roughly half those values at 0.12, 0.25, and 0.25. That's a significant performance drop, though I need to double-check whether the analysis_summary is computing these means in a way that's actually comparable to v1's results.
+
+Looking at the per-batch breakdown for v2 exp2's count_6 F1 scores across different batch types, I'm seeing values that range from 0.17 to 0.50, with the random batches averaging around 0.32—which is way higher than the 0.10 mean reported in the analysis_summary for exp1. There's a real inconsistency here that I need to resolve.
+
+The timestamps are throwing me off: the analysis_summary was generated at 10:38, but the eval artifacts are from later (12:13 for exp2, 10:28 for exp1). It's possible the analysis was run on outdated data before the latest evaluations completed. Let me check the original eval_exp1.json file to see if it matches what the analysis_summary is actually reporting.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "2ea7865c-249f-418e-90a3-41a9e198c671",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KoJRvVFeUU8NM2Ttgi5LBt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6777,
+      "cache_read_input_tokens": 50374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6777
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+v2 exp2 的 text_match 结果已拿到。exp2 count_6 F1 从 0.17-0.50 变化很大。需要确认 exp1 的聚合 text_match 指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "d9541b0b-7996-43b5-813e-019c1d235229",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KoJRvVFeUU8NM2Ttgi5LBt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6777,
+      "cache_read_input_tokens": 50374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6777
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G1KiptNpxj5CSEAkZVcJfS`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -80 /root/schema-dag-extraction/results/eval_exp1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "2d0b96f8-62aa-46de-b55e-20020b16f547",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KoJRvVFeUU8NM2Ttgi5LBt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6777,
+      "cache_read_input_tokens": 50374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6777
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MMeoXtyA5ELsvK2GqXmcg6`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -c \"count_key\" /root/schema-dag-extraction/results/eval_exp1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "854a6527-9cf6-42e1-8e02-04c5c227c549",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KoJRvVFeUU8NM2Ttgi5LBt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6777,
+      "cache_read_input_tokens": 50374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6777
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T05:08:16.007Z_
+
+<details><summary>↩ Tool result · `toolu_01G1KiptNpxj5CSEAkZVcJfS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_1_random_0\\\": {\\n    \\\"exact\\\": {\\n      \\\"precision\\\": 0.011627906976744186,\\n      \\\"recall\\\": 0.09090909090909091,\\n      \\\"f1\\\": 0.02061855670103093,\\n      \\\"tp\\\": 2,\\n      \\\"total_pred\\\": 172,\\n      \\\"total_gold\\\": 22\\n    },\\n    \\\"relaxed\\\": {\\n      \\\"precision\\\": 0.05813953488372093,\\n      \\\"recall\\\": 0.45454545454545453,\\n      \\\"f1\\\": 0.10309278350515462,\\n      \\\"tp\\\": 10,\\n      \\\"total_pred\\\": 172,\\n      \\\"total_gold\\\": 22\\n    },\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"per_type_f1\\\": {\\n      \\\"art-broadcastprogram\\\": 0.02061855670103093\\n    }\\n  },\\n  \\\"count_1_random_1\\\": {\\n    \\\"exact\\\": {\\n      \\\"precision\\\": 0.013953488372093023,\\n      \\\"recall\\\": 0.14285714285714285,\\n      \\\"f1\\\": 0.025423728813559317,\\n      \\\"tp\\\": 3,\\n      \\\"total_pred\\\": 215,\\n      \\\"total_gold\\\": 21\\n    },\\n    \\\"relaxed\\\": {\\n      \\\"precision\\\": 0.037209302325581395,\\n      \\\"recall\\\": 0.38095238095238093,\\n      \\\"f1\\\": 0.06779661016949153,\\n      \\\"tp\\\": 8,\\n      \\\"total_pred\\\": 215,\\n      \\\"total_gold\\\": 21\\n    },\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"per_type_f1\\\": {\\n      \\\"art-film\\\": 0.025423728813559317\\n    }\\n  },\\n  \\\"count_1_random_2\\\": {\\n    \\\"exact\\\": {\\n      \\\"precision\\\": 0.0,\\n      \\\"recall\\\": 0.0,\\n      \\\"f1\\\": 0.0,\\n      \\\"tp\\\": 0,\\n      \\\"total_pred\\\": 95,\\n      \\\"total_gold\\\": 23\\n    },\\n    \\\"relaxed\\\": {\\n      \\\"precision\\\": 0.10526315789473684,\\n      \\\"recall\\\": 0.43478260869565216,\\n      \\\"f1\\\": 0.1694915254237288,\\n      \\\"tp\\\": 10,\\n      \\\"total_pred\\\": 95,\\n      \\\"total_gold\\\": 23\\n    },\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"per_type_f1\\\": {\\n      \\\"art-music\\\": 0.0\\n    }\\n  },\\n  \\\"count_1_random_3\\\": {\\n    \\\"exact\\\": {\\n      \\\"precision\\\": 0.0,\\n      \\\"recall\\\": 0.0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "b74dfdc7-c638-4227-8321-3a8bac57fe8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_1_random_0\\\\\\\": {\\\\n    \\\\\\\"exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.011627906976744186,\\\\n      \\\\\\\"recall\\\\\\\": 0.09090909090909091,\\\\n      \\\\\\\"f1\\\\\\\": 0.02061855670103093,\\\\n      \\\\\\\"tp\\\\\\\": 2,\\\\n      \\\\\\\"total_pred\\\\\\\": 172,\\\\n      \\\\\\\"total_gold\\\\\\\": 22\\\\n    },\\\\n    \\\\\\\"relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.05813953488372093,\\\\n      \\\\\\\"recall\\\\\\\": 0.45454545454545453,\\\\n      \\\\\\\"f1\\\\\\\": 0.10309278350515462,\\\\n      \\\\\\\"tp\\\\\\\": 10,\\\\n      \\\\\\\"total_pred\\\\\\\": 172,\\\\n      \\\\\\\"total_gold\\\\\\\": 22\\\\n    },\\\\n    \\\\\\\"bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 1,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"per_type_f1\\\\\\\": {\\\\n      \\\\\\\"art-broadcastprogram\\\\\\\": 0.02061855670103093\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_1_random_1\\\\\\\": {\\\\n    \\\\\\\"exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.013953488372093023,\\\\n      \\\\\\\"recall\\\\\\\": 0.14285714285714285,\\\\n      \\\\\\\"f1\\\\\\\": 0.025423728813559317,\\\\n      \\\\\\\"tp\\\\\\\": 3,\\\\n      \\\\\\\"total_pred\\\\\\\": 215,\\\\n      \\\\\\\"total_gold\\\\\\\": 21\\\\n    },\\\\n    \\\\\\\"relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.037209302325581395,\\\\n      \\\\\\\"recall\\\\\\\": 0.38095238095238093,\\\\n      \\\\\\\"f1\\\\\\\": 0.06779661016949153,\\\\n      \\\\\\\"tp\\\\\\\": 8,\\\\n      \\\\\\\"total_pred\\\\\\\": 215,\\\\n      \\\\\\\"total_gold\\\\\\\": 21\\\\n    },\\\\n    \\\\\\\"bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 1,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"per_type_f1\\\\\\\": {\\\\n      \\\\\\\"art-film\\\\\\\": 0.025423728813559317\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_1_random_2\\\\\\\": {\\\\n    \\\\\\\"exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.0,\\\\n      \\\\\\\"recall\\\\\\\": 0.0,\\\\n      \\\\\\\"f1\\\\\\\": 0.0,\\\\n      \\\\\\\"tp\\\\\\\": 0,\\\\n      \\\\\\\"total_pred\\\\\\\": 95,\\\\n      \\\\\\\"total_gold\\\\\\\": 23\\\\n    },\\\\n    \\\\\\\"relaxed\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.10526315789473684,\\\\n      \\\\\\\"recall\\\\\\\": 0.43478260869565216,\\\\n      \\\\\\\"f1\\\\\\\": 0.1694915254237288,\\\\n      \\\\\\\"tp\\\\\\\": 10,\\\\n      \\\\\\\"total_pred\\\\\\\": 95,\\\\n      \\\\\\\"total_gold\\\\\\\": 23\\\\n    },\\\\n    \\\\\\\"bcs\\\\\\\": 0.0,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 1,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"per_type_f1\\\\\\\": {\\\\n      \\\\\\\"art-music\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_1_random_3\\\\\\\": {\\\\n    \\\\\\\"exact\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.0,\\\\n      \\\\\\\"recall\\\\\\\": 0.0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_1_random_0\\\": {\\n    \\\"exact\\\": {\\n      \\\"precision\\\": 0.011627906976744186,\\n      \\\"recall\\\": 0.09090909090909091,\\n      \\\"f1\\\": 0.02061855670103093,\\n      \\\"tp\\\": 2,\\n      \\\"total_pred\\\": 172,\\n      \\\"total_gold\\\": 22\\n    },\\n    \\\"relaxed\\\": {\\n      \\\"precision\\\": 0.05813953488372093,\\n      \\\"recall\\\": 0.45454545454545453,\\n      \\\"f1\\\": 0.10309278350515462,\\n      \\\"tp\\\": 10,\\n      \\\"total_pred\\\": 172,\\n      \\\"total_gold\\\": 22\\n    },\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"per_type_f1\\\": {\\n      \\\"art-broadcastprogram\\\": 0.02061855670103093\\n    }\\n  },\\n  \\\"count_1_random_1\\\": {\\n    \\\"exact\\\": {\\n      \\\"precision\\\": 0.013953488372093023,\\n      \\\"recall\\\": 0.14285714285714285,\\n      \\\"f1\\\": 0.025423728813559317,\\n      \\\"tp\\\": 3,\\n      \\\"total_pred\\\": 215,\\n      \\\"total_gold\\\": 21\\n    },\\n    \\\"relaxed\\\": {\\n      \\\"precision\\\": 0.037209302325581395,\\n      \\\"recall\\\": 0.38095238095238093,\\n      \\\"f1\\\": 0.06779661016949153,\\n      \\\"tp\\\": 8,\\n      \\\"total_pred\\\": 215,\\n      \\\"total_gold\\\": 21\\n    },\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"per_type_f1\\\": {\\n      \\\"art-film\\\": 0.025423728813559317\\n    }\\n  },\\n  \\\"count_1_random_2\\\": {\\n    \\\"exact\\\": {\\n      \\\"precision\\\": 0.0,\\n      \\\"recall\\\": 0.0,\\n      \\\"f1\\\": 0.0,\\n      \\\"tp\\\": 0,\\n      \\\"total_pred\\\": 95,\\n      \\\"total_gold\\\": 23\\n    },\\n    \\\"relaxed\\\": {\\n      \\\"precision\\\": 0.10526315789473684,\\n      \\\"recall\\\": 0.43478260869565216,\\n      \\\"f1\\\": 0.1694915254237288,\\n      \\\"tp\\\": 10,\\n      \\\"total_pred\\\": 95,\\n      \\\"total_gold\\\": 23\\n    },\\n    \\\"bcs\\\": 0.0,\\n    \\\"count_key\\\": \\\"count_1\\\",\\n    \\\"num_types\\\": 1,\\n    \\\"num_samples\\\": 1000,\\n    \\\"per_type_f1\\\": {\\n      \\\"art-music\\\": 0.0\\n    }\\n  },\\n  \\\"count_1_random_3\\\": {\\n    \\\"exact\\\": {\\n      \\\"precision\\\": 0.0,\\n      \\\"recall\\\": 0.0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lu4t64xgyehTxEtVxjQx6H`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "stat /root/schema-dag-extraction/results/eval_exp1.json /root/schema-dag-extraction/artifacts/eval_exp1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "39c3428d-13c8-478f-8897-78a0c73a3a5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KoJRvVFeUU8NM2Ttgi5LBt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6777,
+      "cache_read_input_tokens": 50374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6777
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-15T05:08:16.467Z_
+
+<details><summary>↩ Tool result · `toolu_01MMeoXtyA5ELsvK2GqXmcg6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"94\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "ed05f5eb-b889-422d-9b8d-e4f9de0d80f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"94\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"94\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T05:08:17.219Z_
+
+<details><summary>↩ Tool result · `toolu_01Lu4t64xgyehTxEtVxjQx6H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/schema-dag-extraction/results/eval_exp1.json\\n  Size: 79010     \\tBlocks: 160        IO Block: 4096   regular file\\nDevice: 3eh/62d\\tInode: 20429245649  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-15 10:28:44.097242561 +0800\\nModify: 2026-05-15 10:28:38.741257883 +0800\\nChange: 2026-05-15 10:28:38.741257883 +0800\\n Birth: 2026-05-15 10:28:38.741257883 +0800\\n  File: /root/schema-dag-extraction/artifacts/eval_exp1.json\\n  Size: 29774     \\tBlocks: 64         IO Block: 4096   regular file\\nDevice: 3eh/62d\\tInode: 4308505454  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-15 13:04:52.167398534 +0800\\nModify: 2026-05-15 12:13:18.268290805 +0800\\nChange: 2026-05-15 12:13:18.268290805 +0800\\n Birth: 2026-05-15 07:01:12.242078332 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "ec5e806a-86c3-4ec2-9a73-570bfff12297",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/schema-dag-extraction/results/eval_exp1.json\\\\n  Size: 79010     \\\\tBlocks: 160        IO Block: 4096   regular file\\\\nDevice: 3eh/62d\\\\tInode: 20429245649  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-15 10:28:44.097242561 +0800\\\\nModify: 2026-05-15 10:28:38.741257883 +0800\\\\nChange: 2026-05-15 10:28:38.741257883 +0800\\\\n Birth: 2026-05-15 10:28:38.741257883 +0800\\\\n  File: /root/schema-dag-extraction/artifacts/eval_exp1.json\\\\n  Size: 29774     \\\\tBlocks: 64         IO Block: 4096   regular file\\\\nDevice: 3eh/62d\\\\tInode: 4308505454  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-15 13:04:52.167398534 +0800\\\\nModify: 2026-05-15 12:13:18.268290805 +0800\\\\nChange: 2026-05-15 12:13:18.268290805 +0800\\\\n Birth: 2026-05-15 07:01:12.242078332 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  File: /root/schema-dag-extraction/results/eval_exp1.json\\n  Size: 79010     \\tBlocks: 160        IO Block: 4096   regular file\\nDevice: 3eh/62d\\tInode: 20429245649  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-15 10:28:44.097242561 +0800\\nModify: 2026-05-15 10:28:38.741257883 +0800\\nChange: 2026-05-15 10:28:38.741257883 +0800\\n Birth: 2026-05-15 10:28:38.741257883 +0800\\n  File: /root/schema-dag-extraction/artifacts/eval_exp1.json\\n  Size: 29774     \\tBlocks: 64         IO Block: 4096   regular file\\nDevice: 3eh/62d\\tInode: 4308505454  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-15 13:04:52.167398534 +0800\\nModify: 2026-05-15 12:13:18.268290805 +0800\\nChange: 2026-05-15 12:13:18.268290805 +0800\\n Birth: 2026-05-15 07:01:12.242078332 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clearer picture:
+
+1. **results/eval_exp1.json** (79KB, modified 10:28) - has `exact`, `relaxed` metrics (OLD eval format, char-offset based). This is the ORIGINAL v2 run output.
+2. **artifacts/eval_exp1.json** (30KB, modified 12:13) - has `text_match` metrics (NEWER re-evaluation). This is the text_match re-evaluation of the v2 predictions.
+
+So there are TWO versions of the eval:
+- The original run produced results with exact/relaxed matching (char-offset based) → stored in results/eval_exp1.json
+
+
+- A re-evaluation was done later with text_match → stored in artifacts/eval_exp1.json
+
+The artifacts/eval_exp1.json is the definitive v2 result with text_match metrics. Now I need to compute the aggregate v2 metrics using a Python script, since the analysis_summary.json might have been computed from the original eval without text_match metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "e8bab7a0-dd35-4b73-bdcf-26537de24045",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AD8fu1FstHeXwkBui1vT4J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3371,
+      "cache_read_input_tokens": 57151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3371
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+需要聚合 v2 的 text_match 指标。results/eval_exp1.json 是原始 char-offset 评估，artifacts/eval_exp1.json 是 text_match 重评估。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "8914a700-1967-4d7b-a982-1235c5ab1163",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AD8fu1FstHeXwkBui1vT4J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3371,
+      "cache_read_input_tokens": 57151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3371
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LRkyVSyCVZrYgLCKMH7U5N`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "a003b1b2-3ed0-4442-9242-240847ba5c24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AD8fu1FstHeXwkBui1vT4J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3371,
+      "cache_read_input_tokens": 57151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3371
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T05:08:28.955Z_
+
+<details><summary>↩ Tool result · `toolu_01LRkyVSyCVZrYgLCKMH7U5N`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "c79750e9-2778-43fe-b09b-85dee6e5f690",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MF2DhPiiERKxhNfoxEmH62`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"\nimport json, collections\n\n# V2 exp1 text_match results\nd = json.load(open('/root/schema-dag-extraction/artifacts/eval_exp1.json'))\nby_count = collections.defaultdict(list)\nfor k, v in d.items():\n    ck = v['count_key']\n    tm = v['text_match']\n    by_count[ck].append({'f1': tm['f1'], 'precision': tm['precision'], 'recall': tm['recall'], 'tp': tm['tp'], 'total_pred': tm['total_pred'], 'total_gold': tm['total_gold']})\n\nprint('=== V2 EXP1 TEXT_MATCH (per-count micro aggregate) ===')\nfor ck in sorted(by_count.keys(), key=lambda x: int(x.split('_')[1])):\n    items = by_count[ck]\n    tp = sum(x['tp'] for x in items)\n    pred = sum(x['total_pred'] for x in items)\n    gold = sum(x['total_gold'] for x in items)\n    p = tp/pred if pred else 0\n    r = tp/gold if gold else 0\n    f1 = 2*p*r/(p+r) if (p+r) else 0\n    mean_f1 = sum(x['f1'] for x in items)/len(items)\n    print(f'{ck}: micro_F1={f1:.4f} micro_P={p:.4f} micro_R={r:.4f} macro_F1={mean_f1:.4f} pred/gold={pred/gold:.2f} n_batches={len(items)}')\n\n# V2 exp2 text_match results  \nd2 = json.load(open('/root/schema-dag-extraction/artifacts/eval_exp2.json'))\nby_count2 = collections.defaultdict(list)\nfor k, v in d2.items():\n    ck = v['count_key']\n    tm = v['text_match']\n    by_count2[ck].append({'f1': tm['f1'], 'precision': tm['precision'], 'recall': tm['recall'], 'tp': tm['tp'], 'total_pred': tm['total_pred'], 'total_gold': tm['total_gold'], 'name': k})\n\nprint()\nprint('=== V2 EXP2 TEXT_MATCH (per-count micro aggregate) ===')\nfor ck in sorted(by_count2.keys(), key=lambda x: int(x.split('_')[1])):\n    items = by_count2[ck]\n    tp = sum(x['tp'] for x in items)\n    pred = sum(x['total_pred'] for x in items)\n    gold = sum(x['total_gold'] for x in items)\n    p = tp/pred if pred else 0\n    r = tp/gold if gold else 0\n    f1 = 2*p*r/(p+r) if (p+r) else 0\n    mean_f1 = sum(x['f1'] for x in items)/len(items)\n    print(f'{ck}: micro_F1={f1:.4f} micro_P={p:.4f} micro_R={r:.4f} macro_F1={mean_f1:.4f} pred/gold={pred/gold:.2f} n_batches={len(items)}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "5afb9a4c-8605-4e45-9c8a-b91584818c0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oNbUwPvoitWQVhB1ib4Jq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 60522,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 849
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T05:08:40.587Z_
+
+<details><summary>↩ Tool result · `toolu_01MF2DhPiiERKxhNfoxEmH62`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json, collections\\\\n\\\\n# V2 exp1 text_match results\\\\nd = json.load(open(\\\\'/root/schema-dag-extraction/artifacts/eval_exp1.json\\\\'))\\\\nby_count = collections.defaultdict(list)\\\\nfor k, v in d.items():\\\\n    ck = v[\\\\'count_key\\\\']\\\\n    tm = v[\\\\'text_match\\\\']\\\\n    by_count[ck].append({\\\\'f1\\\\': tm[\\\\'f1\\\\'], \\\\'precision\\\\': tm[\\\\'precision\\\\'], \\\\'recall\\\\': tm[\\\\'recall\\\\'], \\\\'tp\\\\': tm[\\\\'tp\\\\'], \\\\'total_pred\\\\': tm[\\\\'total_pred\\\\'], \\\\'total_gold\\\\': tm[\\\\'total_gold\\\\']})\\\\n\\\\nprint(\\\\'=== V2 EXP1 TEXT_MATCH (per-count micro aggregate) ===\\\\')\\\\nfor ck in sorted(by_count.keys(), key=lambda x: int(x.split(\\\\'_\\\\')[1])):\\\\n    items = by_count[ck]\\\\n    tp = sum(x[\\\\'tp\\\\'] for x in items)\\\\n    pred = sum(x[\\\\'total_pred\\\\'] for x in items)\\\\n    gold = sum(x[\\\\'total_gold\\\\'] for x in items)\\\\n    p = tp/pred if pred else 0\\\\n    r = tp/gold if gold else 0\\\\n    f1 = 2*p*r/(p+r) if (p+r) else 0\\\\n    mean_f1 = sum(x[\\\\'f1\\\\'] for x in items)/len(items)\\\\n    print(f\\\\'{ck}: micro_F1={f1:.4f} micro_P={p:.4f} micro_R={r:.4f} macro_F1={mean_f1:.4f} pred/gold={pred/gold:.2f} n_batches={len(items)}\\\\')\\\\n\\\\n# V2 exp2 text_match results  \\\\nd2 = json.load(open(\\\\'/root/schema-dag-extraction/artifacts/eval_exp2.json\\\\'))\\\\nby_count2 = collections.defaultdict(list)\\\\nfor k, v in d2.items():\\\\n    ck = v[\\\\'count_key\\\\']\\\\n    tm = v[\\\\'text_match\\\\']\\\\n    by_count2[ck].append({\\\\'f1\\\\': tm[\\\\'f1\\\\'], \\\\'precision\\\\': tm[\\\\'precision\\\\'], \\\\'recall\\\\': tm[\\\\'recall\\\\'], \\\\'tp\\\\': tm[\\\\'tp\\\\'], \\\\'total_pred\\\\': tm[\\\\'total_pred\\\\'], \\\\'total_gold\\\\': tm[\\\\'total_gold\\\\'], \\\\'name\\\\': k})\\\\n\\\\nprint()\\\\nprint(\\\\'=== V2 EXP2 TEXT_MATCH (per-count micro aggregate) ===\\\\')\\\\nfor ck in sorted(by_count2.keys(), key=lambda x: int(x.split(\\\\'_\\\\')[1])):\\\\n    items = by_count2[ck]\\\\n    tp = sum(x[\\\\'tp\\\\'] for x in items)\\\\n    pred = sum(x[\\\\'total_pred\\\\'] for x in items)\\\\n    gold = sum(x[\\\\'total_gold\\\\'] for x in items)\\\\n    p = tp/pred if pred else 0\\\\n    r = tp/gold if gold else 0\\\\n    f1 = 2*p*r/(p+r) if (p+r) else 0\\\\n    mean_f1 = sum(x[\\\\'f1\\\\'] for x in items)/len(items)\\\\n    print(f\\\\'{ck}: micro_F1={f1:.4f} micro_P={p:.4f} micro_R={r:.4f} macro_F1={mean_f1:.4f} pred/gold={pred/gold:.2f} n_batches={len(items)}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "e0a0e057-a893-48a9-8616-c467787b109b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json, collections\\\\\\\\n\\\\\\\\n# V2 exp1 text_match results\\\\\\\\nd = json.load(open(\\\\\\\\'/root/schema-dag-extraction/artifacts/eval_exp1.json\\\\\\\\'))\\\\\\\\nby_count = collections.defaultdict(list)\\\\\\\\nfor k, v in d.items():\\\\\\\\n    ck = v[\\\\\\\\'count_key\\\\\\\\']\\\\\\\\n    tm = v[\\\\\\\\'text_match\\\\\\\\']\\\\\\\\n    by_count[ck].append({\\\\\\\\'f1\\\\\\\\': tm[\\\\\\\\'f1\\\\\\\\'], \\\\\\\\'precision\\\\\\\\': tm[\\\\\\\\'precision\\\\\\\\'], \\\\\\\\'recall\\\\\\\\': tm[\\\\\\\\'recall\\\\\\\\'], \\\\\\\\'tp\\\\\\\\': tm[\\\\\\\\'tp\\\\\\\\'], \\\\\\\\'total_pred\\\\\\\\': tm[\\\\\\\\'total_pred\\\\\\\\'], \\\\\\\\'total_gold\\\\\\\\': tm[\\\\\\\\'total_gold\\\\\\\\']})\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'=== V2 EXP1 TEXT_MATCH (per-count micro aggregate) ===\\\\\\\\')\\\\\\\\nfor ck in sorted(by_count.keys(), key=lambda x: int(x.split(\\\\\\\\'_\\\\\\\\')[1])):\\\\\\\\n    items = by_count[ck]\\\\\\\\n    tp = sum(x[\\\\\\\\'tp\\\\\\\\'] for x in items)\\\\\\\\n    pred = sum(x[\\\\\\\\'total_pred\\\\\\\\'] for x in items)\\\\\\\\n    gold = sum(x[\\\\\\\\'total_gold\\\\\\\\'] for x in items)\\\\\\\\n    p = tp/pred if pred else 0\\\\\\\\n    r = tp/gold if gold else 0\\\\\\\\n    f1 = 2*p*r/(p+r) if (p+r) else 0\\\\\\\\n    mean_f1 = sum(x[\\\\\\\\'f1\\\\\\\\'] for x in items)/len(items)\\\\\\\\n    print(f\\\\\\\\'{ck}: micro_F1={f1:.4f} micro_P={p:.4f} micro_R={r:.4f} macro_F1={mean_f1:.4f} pred/gold={pred/gold:.2f} n_batches={len(items)}\\\\\\\\')\\\\\\\\n\\\\\\\\n# V2 exp2 text_match results  \\\\\\\\nd2 = json.load(open(\\\\\\\\'/root/schema-dag-extraction/artifacts/eval_exp2.json\\\\\\\\'))\\\\\\\\nby_count2 = collections.defaultdict(list)\\\\\\\\nfor k, v in d2.items():\\\\\\\\n    ck = v[\\\\\\\\'count_key\\\\\\\\']\\\\\\\\n    tm = v[\\\\\\\\'text_match\\\\\\\\']\\\\\\\\n    by_count2[ck].append({\\\\\\\\'f1\\\\\\\\': tm[\\\\\\\\'f1\\\\\\\\'], \\\\\\\\'precision\\\\\\\\': tm[\\\\\\\\'precision\\\\\\\\'], \\\\\\\\'recall\\\\\\\\': tm[\\\\\\\\'recall\\\\\\\\'], \\\\\\\\'tp\\\\\\\\': tm[\\\\\\\\'tp\\\\\\\\'], \\\\\\\\'total_pred\\\\\\\\': tm[\\\\\\\\'total_pred\\\\\\\\'], \\\\\\\\'total_gold\\\\\\\\': tm[\\\\\\\\'total_gold\\\\\\\\'], \\\\\\\\'name\\\\\\\\': k})\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'=== V2 EXP2 TEXT_MATCH (per-count micro aggregate) ===\\\\\\\\')\\\\\\\\nfor ck in sorted(by_count2.keys(), key=lambda x: int(x.split(\\\\\\\\'_\\\\\\\\')[1])):\\\\\\\\n    items = by_count2[ck]\\\\\\\\n    tp = sum(x[\\\\\\\\'tp\\\\\\\\'] for x in items)\\\\\\\\n    pred = sum(x[\\\\\\\\'total_pred\\\\\\\\'] for x in items)\\\\\\\\n    gold = sum(x[\\\\\\\\'total_gold\\\\\\\\'] for x in items)\\\\\\\\n    p = tp/pred if pred else 0\\\\\\\\n    r = tp/gold if gold else 0\\\\\\\\n    f1 = 2*p*r/(p+r) if (p+r) else 0\\\\\\\\n    mean_f1 = sum(x[\\\\\\\\'f1\\\\\\\\'] for x in items)/len(items)\\\\\\\\n    print(f\\\\\\\\'{ck}: micro_F1={f1:.4f} micro_P={p:.4f} micro_R={r:.4f} macro_F1={mean_f1:.4f} pred/gold={pred/gold:.2f} n_batches={len(items)}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json, collections\\\\n\\\\n# V2 exp1 text_match results\\\\nd = json.load(open(\\\\'/root/schema-dag-extraction/artifacts/eval_exp1.json\\\\'))\\\\nby_count = collections.defaultdict(list)\\\\nfor k, v in d.items():\\\\n    ck = v[\\\\'count_key\\\\']\\\\n    tm = v[\\\\'text_match\\\\']\\\\n    by_count[ck].append({\\\\'f1\\\\': tm[\\\\'f1\\\\'], \\\\'precision\\\\': tm[\\\\'precision\\\\'], \\\\'recall\\\\': tm[\\\\'recall\\\\'], \\\\'tp\\\\': tm[\\\\'tp\\\\'], \\\\'total_pred\\\\': tm[\\\\'total_pred\\\\'], \\\\'total_gold\\\\': tm[\\\\'total_gold\\\\']})\\\\n\\\\nprint(\\\\'=== V2 EXP1 TEXT_MATCH (per-count micro aggregate) ===\\\\')\\\\nfor ck in sorted(by_count.keys(), key=lambda x: int(x.split(\\\\'_\\\\')[1])):\\\\n    items = by_count[ck]\\\\n    tp = sum(x[\\\\'tp\\\\'] for x in items)\\\\n    pred = sum(x[\\\\'total_pred\\\\'] for x in items)\\\\n    gold = sum(x[\\\\'total_gold\\\\'] for x in items)\\\\n    p = tp/pred if pred else 0\\\\n    r = tp/gold if gold else 0\\\\n    f1 = 2*p*r/(p+r) if (p+r) else 0\\\\n    mean_f1 = sum(x[\\\\'f1\\\\'] for x in items)/len(items)\\\\n    print(f\\\\'{ck}: micro_F1={f1:.4f} micro_P={p:.4f} micro_R={r:.4f} macro_F1={mean_f1:.4f} pred/gold={pred/gold:.2f} n_batches={len(items)}\\\\')\\\\n\\\\n# V2 exp2 text_match results  \\\\nd2 = json.load(open(\\\\'/root/schema-dag-extraction/artifacts/eval_exp2.json\\\\'))\\\\nby_count2 = collections.defaultdict(list)\\\\nfor k, v in d2.items():\\\\n    ck = v[\\\\'count_key\\\\']\\\\n    tm = v[\\\\'text_match\\\\']\\\\n    by_count2[ck].append({\\\\'f1\\\\': tm[\\\\'f1\\\\'], \\\\'precision\\\\': tm[\\\\'precision\\\\'], \\\\'recall\\\\': tm[\\\\'recall\\\\'], \\\\'tp\\\\': tm[\\\\'tp\\\\'], \\\\'total_pred\\\\': tm[\\\\'total_pred\\\\'], \\\\'total_gold\\\\': tm[\\\\'total_gold\\\\'], \\\\'name\\\\': k})\\\\n\\\\nprint()\\\\nprint(\\\\'=== V2 EXP2 TEXT_MATCH (per-count micro aggregate) ===\\\\')\\\\nfor ck in sorted(by_count2.keys(), key=lambda x: int(x.split(\\\\'_\\\\')[1])):\\\\n    items = by_count2[ck]\\\\n    tp = sum(x[\\\\'tp\\\\'] for x in items)\\\\n    pred = sum(x[\\\\'total_pred\\\\'] for x in items)\\\\n    gold = sum(x[\\\\'total_gold\\\\'] for x in items)\\\\n    p = tp/pred if pred else 0\\\\n    r = tp/gold if gold else 0\\\\n    f1 = 2*p*r/(p+r) if (p+r) else 0\\\\n    mean_f1 = sum(x[\\\\'f1\\\\'] for x in items)/len(items)\\\\n    print(f\\\\'{ck}: micro_F1={f1:.4f} micro_P={p:.4f} micro_R={r:.4f} macro_F1={mean_f1:.4f} pred/gold={pred/gold:.2f} n_batches={len(items)}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Python3 not found, likely need to activate conda first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "87189578-1ac0-43cc-a10e-51a92b003e2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ELnyH3jzf3S5BS7gCwKQC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2190,
+      "cache_read_input_tokens": 61371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FgHEnMp97d7c4kYW6KEFZe`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json, collections\n\nd = json.load(open('/root/schema-dag-extraction/artifacts/eval_exp1.json'))\nby_count = collections.defaultdict(list)\nfor k, v in d.items():\n    ck = v['count_key']\n    tm = v['text_match']\n    by_count[ck].append({'f1': tm['f1'], 'p': tm['precision'], 'r': tm['recall'], 'tp': tm['tp'], 'pred': tm['total_pred'], 'gold': tm['total_gold']})\n\nprint('=== V2 EXP1 TEXT_MATCH ===')\nfor ck in sorted(by_count.keys(), key=lambda x: int(x.split('_')[1])):\n    items = by_count[ck]\n    tp = sum(x['tp'] for x in items)\n    pred = sum(x['pred'] for x in items)\n    gold = sum(x['gold'] for x in items)\n    p = tp/pred if pred else 0\n    r = tp/gold if gold else 0\n    f1 = 2*p*r/(p+r) if (p+r) else 0\n    mean_f1 = sum(x['f1'] for x in items)/len(items)\n    print(f'{ck}: micro_F1={f1:.4f} P={p:.4f} R={r:.4f} macro_F1={mean_f1:.4f} pred/gold={pred/gold:.2f} n={len(items)}')\n\nd2 = json.load(open('/root/schema-dag-extraction/artifacts/eval_exp2.json'))\nby_count2 = collections.defaultdict(list)\nfor k, v in d2.items():\n    ck = v['count_key']\n    tm = v['text_match']\n    by_count2[ck].append({'f1': tm['f1'], 'p': tm['precision'], 'r': tm['recall'], 'tp': tm['tp'], 'pred': tm['total_pred'], 'gold': tm['total_gold']})\n\nprint('\\n=== V2 EXP2 TEXT_MATCH ===')\nfor ck in sorted(by_count2.keys(), key=lambda x: int(x.split('_')[1])):\n    items = by_count2[ck]\n    tp = sum(x['tp'] for x in items)\n    pred = sum(x['pred'] for x in items)\n    gold = sum(x['gold'] for x in items)\n    p = tp/pred if pred else 0\n    r = tp/gold if gold else 0\n    f1 = 2*p*r/(p+r) if (p+r) else 0\n    mean_f1 = sum(x['f1'] for x in items)/len(items)\n    print(f'{ck}: micro_F1={f1:.4f} P={p:.4f} R={r:.4f} macro_F1={mean_f1:.4f} pred/gold={pred/gold:.2f} n={len(items)}')\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "bd2a05f7-ab04-4f8f-bbe3-d9ab5ecd5555",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ELnyH3jzf3S5BS7gCwKQC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2190,
+      "cache_read_input_tokens": 61371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-15T05:08:52.234Z_
+
+<details><summary>↩ Tool result · `toolu_01FgHEnMp97d7c4kYW6KEFZe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== V2 EXP1 TEXT_MATCH ===\\ncount_1: micro_F1=0.3231 P=0.2160 R=0.6410 macro_F1=0.3324 pred/gold=2.97 n=64\\ncount_2: micro_F1=0.2728 P=0.1803 R=0.5603 macro_F1=0.3213 pred/gold=3.11 n=5\\ncount_6: micro_F1=0.3064 P=0.2261 R=0.4752 macro_F1=0.3191 pred/gold=2.10 n=5\\ncount_12: micro_F1=0.3472 P=0.3672 R=0.3292 macro_F1=0.3150 pred/gold=0.90 n=5\\ncount_22: micro_F1=0.2986 P=0.3391 R=0.2667 macro_F1=0.2917 pred/gold=0.79 n=5\\ncount_44: micro_F1=0.4446 P=0.5063 R=0.3963 macro_F1=0.4352 pred/gold=0.78 n=5\\ncount_64: micro_F1=0.4135 P=0.6481 R=0.3035 macro_F1=0.4135 pred/gold=0.47 n=5\\n\\n=== V2 EXP2 TEXT_MATCH ===\\ncount_6: micro_F1=0.3200 P=0.2600 R=0.4161 macro_F1=0.3026 pred/gold=1.60 n=27\\ncount_12: micro_F1=0.3061 P=0.2910 R=0.3228 macro_F1=0.2914 pred/gold=1.11 n=27\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "6de8a8d9-0e9e-4680-ac79-0f37bfb67aa6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== V2 EXP1 TEXT_MATCH ===\\\\ncount_1: micro_F1=0.3231 P=0.2160 R=0.6410 macro_F1=0.3324 pred/gold=2.97 n=64\\\\ncount_2: micro_F1=0.2728 P=0.1803 R=0.5603 macro_F1=0.3213 pred/gold=3.11 n=5\\\\ncount_6: micro_F1=0.3064 P=0.2261 R=0.4752 macro_F1=0.3191 pred/gold=2.10 n=5\\\\ncount_12: micro_F1=0.3472 P=0.3672 R=0.3292 macro_F1=0.3150 pred/gold=0.90 n=5\\\\ncount_22: micro_F1=0.2986 P=0.3391 R=0.2667 macro_F1=0.2917 pred/gold=0.79 n=5\\\\ncount_44: micro_F1=0.4446 P=0.5063 R=0.3963 macro_F1=0.4352 pred/gold=0.78 n=5\\\\ncount_64: micro_F1=0.4135 P=0.6481 R=0.3035 macro_F1=0.4135 pred/gold=0.47 n=5\\\\n\\\\n=== V2 EXP2 TEXT_MATCH ===\\\\ncount_6: micro_F1=0.3200 P=0.2600 R=0.4161 macro_F1=0.3026 pred/gold=1.60 n=27\\\\ncount_12: micro_F1=0.3061 P=0.2910 R=0.3228 macro_F1=0.2914 pred/gold=1.11 n=27\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== V2 EXP1 TEXT_MATCH ===\\ncount_1: micro_F1=0.3231 P=0.2160 R=0.6410 macro_F1=0.3324 pred/gold=2.97 n=64\\ncount_2: micro_F1=0.2728 P=0.1803 R=0.5603 macro_F1=0.3213 pred/gold=3.11 n=5\\ncount_6: micro_F1=0.3064 P=0.2261 R=0.4752 macro_F1=0.3191 pred/gold=2.10 n=5\\ncount_12: micro_F1=0.3472 P=0.3672 R=0.3292 macro_F1=0.3150 pred/gold=0.90 n=5\\ncount_22: micro_F1=0.2986 P=0.3391 R=0.2667 macro_F1=0.2917 pred/gold=0.79 n=5\\ncount_44: micro_F1=0.4446 P=0.5063 R=0.3963 macro_F1=0.4352 pred/gold=0.78 n=5\\ncount_64: micro_F1=0.4135 P=0.6481 R=0.3035 macro_F1=0.4135 pred/gold=0.47 n=5\\n\\n=== V2 EXP2 TEXT_MATCH ===\\ncount_6: micro_F1=0.3200 P=0.2600 R=0.4161 macro_F1=0.3026 pred/gold=1.60 n=27\\ncount_12: micro_F1=0.3061 P=0.2910 R=0.3228 macro_F1=0.2914 pred/gold=1.11 n=27\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have clear v2 text_match metrics. Let me compare with exp001 (v1):
+
+**exp001 (v1 prompt) text_match:**
+- count_1: F1=0.184, P=0.105, R=0.720, pred/gold=6.85
+- count_2: F1=0.123, P=0.068, R=0.698, pred/gold=10.33
+- count_6: F1=0.155, P=0.088, R=0.620, pred/gold=7.02
+
+
+- count_12: F1=0.246, P=0.160, R=0.539, pred/gold=3.38
+- count_22: F1=0.322, P=0.232, R=0.527, pred/gold=2.27
+- count_44: F1=0.473, P=0.414, R=0.551, pred/gold=1.33
+- count_64: F1=0.463, P=0.520, R=0.418, pred/gold=0.80
+
+**exp003a (v2 prompt) text_match:**
+- count_1: F1=0.323,
+
+Looking at the text_match results for exp003a, I'm seeing the performance metrics continue across different count values, with F1 scores ranging from 0.273 to 0.445 and notable variation in precision-recall tradeoffs depending on the prediction-to-gold ratio. interesting! Let me analyze the comparison:
+
+1. **Precision improved dramatically at low counts:**
+   - count_1: P 0.105 → 0.216 (+106%)
+   - count_2: P 0.068 → 0.180 (+165%)
+   - count_6: P 0.088 → 0.226 (+157%)
+   - count_12: P 0.160 → 0.367 (+129%)
+
+2. **Over-prediction greatly reduced:**
+   - count_1: pred/gold 6.85 → 2.97 (-57%)
+   - count_2: pred/gold 10.33 → 3.11 (-70%)
+   - count_6: pred/gold 7.02 → 2.10 (-70%)
+   - count_12: pred/gold 3.38 → 0.90 (-73%)
+
+3. **F1 improved at low counts, slightly worse at high counts:**
+   - count_1: 0.184 → 0.323 (+76%)
+   - count_2: 0.123 → 0.273 (+122%)
+   - count_6: 0.155 → 0.306 (+97%)
+   - count_12: 0.246 → 0.347 (+41%)
+   - count_22: 0.322 → 0.299 (-7%)
+   - count_44: 0.473 → 0.445 (-6%)
+   - count_64: 0.463 → 0.414 (-11%)
+
+4. **Recall dropped across the board:**
+   - count_1: 0.720 → 0.641 (-11%)
+   - count_6: 0.620 → 0.475 (-23%)
+   - count_12: continuing to decline...
+
+The trade-off is clear: v2 fixed the over-prediction problem at low counts but sacrificed recall in the process. At higher counts, the model now under-predicts, which hurts both recall and F1. The F1 curve still peaks at count_44 but is flatter overall, with steeper drops at the extremes. So v2 successfully reined in the over-prediction (pred/gold ratio dropped from 6.85x to 2.97x at count_1), boosting precision significantly, though this came at the expense of recall.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "7059671a-8a2a-40a2-a38f-79d3b46d2b6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WZNzixFAx4Q4oHLv1DdaB9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1607,
+      "cache_read_input_tokens": 63561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1607
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+数据已清楚。v2 对比 v1 的结果出来了。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "a2ca40bd-884e-42c2-ad82-fc2a12348d6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WZNzixFAx4Q4oHLv1DdaB9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1607,
+      "cache_read_input_tokens": 63561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1607
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Qgo4WhtUDFw1erNRgpQMUm`</summary>
+
+```json
+{
+  "exp_id": "exp003a_prompt_v2_rerun",
+  "field": "metrics",
+  "value": {
+    "eval_mode": "text_match",
+    "exp1_text_match": {
+      "count_1": {
+        "f1": 0.323,
+        "precision": 0.216,
+        "recall": 0.641,
+        "pred_gold_ratio": 2.97,
+        "n_batches": 64
+      },
+      "count_2": {
+        "f1": 0.273,
+        "precision": 0.18,
+        "recall": 0.56,
+        "pred_gold_ratio": 3.11,
+        "n_batches": 5
+      },
+      "count_6": {
+        "f1": 0.306,
+        "precision": 0.226,
+        "recall": 0.475,
+        "pred_gold_ratio": 2.1,
+        "n_batches": 5
+      },
+      "count_12": {
+        "f1": 0.347,
+        "precision": 0.367,
+        "recall": 0.329,
+        "pred_gold_ratio": 0.9,
+        "n_batches": 5
+      },
+      "count_22": {
+        "f1": 0.299,
+        "precision": 0.339,
+        "recall": 0.267,
+        "pred_gold_ratio": 0.79,
+        "n_batches": 5
+      },
+      "count_44": {
+        "f1": 0.445,
+        "precision": 0.506,
+        "recall": 0.396,
+        "pred_gold_ratio": 0.78,
+        "n_batches": 5
+      },
+      "count_64": {
+        "f1": 0.414,
+        "precision": 0.648,
+        "recall": 0.304,
+        "pred_gold_ratio": 0.47,
+        "n_batches": 5
+      }
+    },
+    "exp2_text_match": {
+      "count_6": {
+        "f1": 0.32,
+        "precision": 0.26,
+        "recall": 0.416,
+        "pred_gold_ratio": 1.6,
+        "n_batches": 27
+      },
+      "count_12": {
+        "f1": 0.306,
+        "precision": 0.291,
+        "recall": 0.323,
+        "pred_gold_ratio": 1.11,
+        "n_batches": 27
+      }
+    },
+    "vs_exp001_delta": {
+      "count_1": {
+        "f1_delta": "+0.139 (+76%)",
+        "precision_delta": "+0.111 (+106%)",
+        "recall_delta": "-0.079 (-11%)",
+        "overpred_fix": "6.85→2.97"
+      },
+      "count_6": {
+        "f1_delta": "+0.151 (+97%)",
+        "precision_delta": "+0.138 (+157%)",
+        "recall_delta": "-0.145 (-23%)"
+      },
+      "count_12": {
+        "f1_delta": "+0.101 (+41%)",
+        "precision_delta": "+0.207 (+129%)",
+        "recall_delta": "-0.210 (-39%)"
+      },
+      "count_44": {
+        "f1_delta": "-0.028 (-6%)",
+        "precision_delta": "+0.092 (+22%)",
+        "recall_delta": "-0.155 (-28%)"
+      },
+      "count_64": {
+        "f1_delta": "-0.049 (-11%)",
+        "precision_delta": "+0.128 (+25%)",
+        "recall_delta": "-0.114 (-27%)"
+      }
+    },
+    "key_finding": "V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64."
+  },
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "2e10102c-cfbe-4d0d-b895-5997a9962263",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WZNzixFAx4Q4oHLv1DdaB9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1607,
+      "cache_read_input_tokens": 63561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1607
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T05:09:23.629Z_
+
+<details><summary>↩ Tool result · `toolu_01Qgo4WhtUDFw1erNRgpQMUm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:09:23.534Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}, \"metrics\": {\"eval_mode\": \"text_match\", \"exp1_text_match\": {\"count_1\": {\"f1\": 0.323, \"precision\": 0.216, \"recall\": 0.641, \"pred_gold_ratio\": 2.97, \"n_batches\": 64}, \"count_2\": {\"f1\": 0.273, \"precision\": 0.18, \"recall\": 0.56, \"pred_gold_ratio\": 3.11, \"n_batches\": 5}, \"count_6\": {\"f1\": 0.306, \"precision\": 0.226, \"recall\": 0.475, \"pred_gold_ratio\": 2.1, \"n_batches\": 5}, \"count_12\": {\"f1\": 0.347, \"precision\": 0.367, \"recall\": 0.329, \"pred_gold_ratio\": 0.9, \"n_batches\": 5}, \"count_22\": {\"f1\": 0.299, \"precision\": 0.339, \"recall\": 0.267, \"pred_gold_ratio\": 0.79, \"n_batches\": 5}, \"count_44\": {\"f1\": 0.445, \"precision\": 0.506, \"recall\": 0.396, \"pred_gold_ratio\": 0.78, \"n_batches\": 5}, \"count_64\": {\"f1\": 0.414, \"precision\": 0.648, \"recall\": 0.304, \"pred_gold_ratio\": 0.47, \"n_batches\": 5}}, \"exp2_text_match\": {\"count_6\": {\"f1\": 0.32, \"precision\": 0.26, \"recall\": 0.416, \"pred_gold_ratio\": 1.6, \"n_batches\": 27}, \"count_12\": {\"f1\": 0.306, \"precision\": 0.291, \"recall\": 0.323, \"pred_gold_ratio\": 1.11, \"n_batches\": 27}}, \"vs_exp001_delta\": {\"count_1\": {\"f1_delta\": \"+0.139 (+76%)\", \"precision_delta\": \"+0.111 (+106%)\", \"recall_delta\": \"-0.079 (-11%)\", \"overpred_fix\": \"6.85→2.97\"}, \"count_6\": {\"f1_delta\": \"+0.151 (+97%)\", \"precision_delta\": \"+0.138 (+157%)\", \"recall_delta\": \"-0.145 (-23%)\"}, \"count_12\": {\"f1_delta\": \"+0.101 (+41%)\", \"precision_delta\": \"+0.207 (+129%)\", \"recall_delta\": \"-0.210 (-39%)\"}, \"count_44\": {\"f1_delta\": \"-0.028 (-6%)\", \"precision_delta\": \"+0.092 (+22%)\", \"recall_delta\": \"-0.155 (-28%)\"}, \"count_64\": {\"f1_delta\": \"-0.049 (-11%)\", \"precision_delta\": \"+0.128 (+25%)\", \"recall_delta\": \"-0.114 (-27%)\"}}, \"key_finding\": \"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1274}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "b0b3242e-7207-4d2e-8512-5b8ce71854c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp003a_prompt_v2_rerun\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T02:35:23.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:09:23.534Z\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T05:04:24.855Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"completed_at\\\": \\\"2026-05-15T02:44:53.625Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T02:44:54.463106+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T05:04:25.636142+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\"}}, \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Prompt v2 rerun - fixed script path and added --types_file\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-32B-FP8\\\", \\\"command\\\": \\\"bash -c \\\\\\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 209542}, \\\"metrics\\\": {\\\"eval_mode\\\": \\\"text_match\\\", \\\"exp1_text_match\\\": {\\\"count_1\\\": {\\\"f1\\\": 0.323, \\\"precision\\\": 0.216, \\\"recall\\\": 0.641, \\\"pred_gold_ratio\\\": 2.97, \\\"n_batches\\\": 64}, \\\"count_2\\\": {\\\"f1\\\": 0.273, \\\"precision\\\": 0.18, \\\"recall\\\": 0.56, \\\"pred_gold_ratio\\\": 3.11, \\\"n_batches\\\": 5}, \\\"count_6\\\": {\\\"f1\\\": 0.306, \\\"precision\\\": 0.226, \\\"recall\\\": 0.475, \\\"pred_gold_ratio\\\": 2.1, \\\"n_batches\\\": 5}, \\\"count_12\\\": {\\\"f1\\\": 0.347, \\\"precision\\\": 0.367, \\\"recall\\\": 0.329, \\\"pred_gold_ratio\\\": 0.9, \\\"n_batches\\\": 5}, \\\"count_22\\\": {\\\"f1\\\": 0.299, \\\"precision\\\": 0.339, \\\"recall\\\": 0.267, \\\"pred_gold_ratio\\\": 0.79, \\\"n_batches\\\": 5}, \\\"count_44\\\": {\\\"f1\\\": 0.445, \\\"precision\\\": 0.506, \\\"recall\\\": 0.396, \\\"pred_gold_ratio\\\": 0.78, \\\"n_batches\\\": 5}, \\\"count_64\\\": {\\\"f1\\\": 0.414, \\\"precision\\\": 0.648, \\\"recall\\\": 0.304, \\\"pred_gold_ratio\\\": 0.47, \\\"n_batches\\\": 5}}, \\\"exp2_text_match\\\": {\\\"count_6\\\": {\\\"f1\\\": 0.32, \\\"precision\\\": 0.26, \\\"recall\\\": 0.416, \\\"pred_gold_ratio\\\": 1.6, \\\"n_batches\\\": 27}, \\\"count_12\\\": {\\\"f1\\\": 0.306, \\\"precision\\\": 0.291, \\\"recall\\\": 0.323, \\\"pred_gold_ratio\\\": 1.11, \\\"n_batches\\\": 27}}, \\\"vs_exp001_delta\\\": {\\\"count_1\\\": {\\\"f1_delta\\\": \\\"+0.139 (+76%)\\\", \\\"precision_delta\\\": \\\"+0.111 (+106%)\\\", \\\"recall_delta\\\": \\\"-0.079 (-11%)\\\", \\\"overpred_fix\\\": \\\"6.85→2.97\\\"}, \\\"count_6\\\": {\\\"f1_delta\\\": \\\"+0.151 (+97%)\\\", \\\"precision_delta\\\": \\\"+0.138 (+157%)\\\", \\\"recall_delta\\\": \\\"-0.145 (-23%)\\\"}, \\\"count_12\\\": {\\\"f1_delta\\\": \\\"+0.101 (+41%)\\\", \\\"precision_delta\\\": \\\"+0.207 (+129%)\\\", \\\"recall_delta\\\": \\\"-0.210 (-39%)\\\"}, \\\"count_44\\\": {\\\"f1_delta\\\": \\\"-0.028 (-6%)\\\", \\\"precision_delta\\\": \\\"+0.092 (+22%)\\\", \\\"recall_delta\\\": \\\"-0.155 (-28%)\\\"}, \\\"count_64\\\": {\\\"f1_delta\\\": \\\"-0.049 (-11%)\\\", \\\"precision_delta\\\": \\\"+0.128 (+25%)\\\", \\\"recall_delta\\\": \\\"-0.114 (-27%)\\\"}}, \\\"key_finding\\\": \\\"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1274}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:09:23.534Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}, \"metrics\": {\"eval_mode\": \"text_match\", \"exp1_text_match\": {\"count_1\": {\"f1\": 0.323, \"precision\": 0.216, \"recall\": 0.641, \"pred_gold_ratio\": 2.97, \"n_batches\": 64}, \"count_2\": {\"f1\": 0.273, \"precision\": 0.18, \"recall\": 0.56, \"pred_gold_ratio\": 3.11, \"n_batches\": 5}, \"count_6\": {\"f1\": 0.306, \"precision\": 0.226, \"recall\": 0.475, \"pred_gold_ratio\": 2.1, \"n_batches\": 5}, \"count_12\": {\"f1\": 0.347, \"precision\": 0.367, \"recall\": 0.329, \"pred_gold_ratio\": 0.9, \"n_batches\": 5}, \"count_22\": {\"f1\": 0.299, \"precision\": 0.339, \"recall\": 0.267, \"pred_gold_ratio\": 0.79, \"n_batches\": 5}, \"count_44\": {\"f1\": 0.445, \"precision\": 0.506, \"recall\": 0.396, \"pred_gold_ratio\": 0.78, \"n_batches\": 5}, \"count_64\": {\"f1\": 0.414, \"precision\": 0.648, \"recall\": 0.304, \"pred_gold_ratio\": 0.47, \"n_batches\": 5}}, \"exp2_text_match\": {\"count_6\": {\"f1\": 0.32, \"precision\": 0.26, \"recall\": 0.416, \"pred_gold_ratio\": 1.6, \"n_batches\": 27}, \"count_12\": {\"f1\": 0.306, \"precision\": 0.291, \"recall\": 0.323, \"pred_gold_ratio\": 1.11, \"n_batches\": 27}}, \"vs_exp001_delta\": {\"count_1\": {\"f1_delta\": \"+0.139 (+76%)\", \"precision_delta\": \"+0.111 (+106%)\", \"recall_delta\": \"-0.079 (-11%)\", \"overpred_fix\": \"6.85→2.97\"}, \"count_6\": {\"f1_delta\": \"+0.151 (+97%)\", \"precision_delta\": \"+0.138 (+157%)\", \"recall_delta\": \"-0.145 (-23%)\"}, \"count_12\": {\"f1_delta\": \"+0.101 (+41%)\", \"precision_delta\": \"+0.207 (+129%)\", \"recall_delta\": \"-0.210 (-39%)\"}, \"count_44\": {\"f1_delta\": \"-0.028 (-6%)\", \"precision_delta\": \"+0.092 (+22%)\", \"recall_delta\": \"-0.155 (-28%)\"}, \"count_64\": {\"f1_delta\": \"-0.049 (-11%)\", \"precision_delta\": \"+0.128 (+25%)\", \"recall_delta\": \"-0.114 (-27%)\"}}, \"key_finding\": \"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1274}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013P2PopCU23XQfoByBiSVu2`</summary>
+
+```json
+{
+  "exp_id": "exp003a_prompt_v2_rerun",
+  "field": "log_path",
+  "value": "/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "d3956832-1de0-48b4-bce3-b09a032068e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WZNzixFAx4Q4oHLv1DdaB9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1607,
+      "cache_read_input_tokens": 63561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1607
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-15T05:09:24.681Z_
+
+<details><summary>↩ Tool result · `toolu_013P2PopCU23XQfoByBiSVu2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:09:24.588Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}, \"metrics\": {\"eval_mode\": \"text_match\", \"exp1_text_match\": {\"count_1\": {\"f1\": 0.323, \"precision\": 0.216, \"recall\": 0.641, \"pred_gold_ratio\": 2.97, \"n_batches\": 64}, \"count_2\": {\"f1\": 0.273, \"precision\": 0.18, \"recall\": 0.56, \"pred_gold_ratio\": 3.11, \"n_batches\": 5}, \"count_6\": {\"f1\": 0.306, \"precision\": 0.226, \"recall\": 0.475, \"pred_gold_ratio\": 2.1, \"n_batches\": 5}, \"count_12\": {\"f1\": 0.347, \"precision\": 0.367, \"recall\": 0.329, \"pred_gold_ratio\": 0.9, \"n_batches\": 5}, \"count_22\": {\"f1\": 0.299, \"precision\": 0.339, \"recall\": 0.267, \"pred_gold_ratio\": 0.79, \"n_batches\": 5}, \"count_44\": {\"f1\": 0.445, \"precision\": 0.506, \"recall\": 0.396, \"pred_gold_ratio\": 0.78, \"n_batches\": 5}, \"count_64\": {\"f1\": 0.414, \"precision\": 0.648, \"recall\": 0.304, \"pred_gold_ratio\": 0.47, \"n_batches\": 5}}, \"exp2_text_match\": {\"count_6\": {\"f1\": 0.32, \"precision\": 0.26, \"recall\": 0.416, \"pred_gold_ratio\": 1.6, \"n_batches\": 27}, \"count_12\": {\"f1\": 0.306, \"precision\": 0.291, \"recall\": 0.323, \"pred_gold_ratio\": 1.11, \"n_batches\": 27}}, \"vs_exp001_delta\": {\"count_1\": {\"f1_delta\": \"+0.139 (+76%)\", \"precision_delta\": \"+0.111 (+106%)\", \"recall_delta\": \"-0.079 (-11%)\", \"overpred_fix\": \"6.85→2.97\"}, \"count_6\": {\"f1_delta\": \"+0.151 (+97%)\", \"precision_delta\": \"+0.138 (+157%)\", \"recall_delta\": \"-0.145 (-23%)\"}, \"count_12\": {\"f1_delta\": \"+0.101 (+41%)\", \"precision_delta\": \"+0.207 (+129%)\", \"recall_delta\": \"-0.210 (-39%)\"}, \"count_44\": {\"f1_delta\": \"-0.028 (-6%)\", \"precision_delta\": \"+0.092 (+22%)\", \"recall_delta\": \"-0.155 (-28%)\"}, \"count_64\": {\"f1_delta\": \"-0.049 (-11%)\", \"precision_delta\": \"+0.128 (+25%)\", \"recall_delta\": \"-0.114 (-27%)\"}}, \"key_finding\": \"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\"}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1239}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "cf3d1da3-61f1-452f-80db-6e396511eef1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp003a_prompt_v2_rerun\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T02:35:23.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:09:24.588Z\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T05:04:24.855Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"completed_at\\\": \\\"2026-05-15T02:44:53.625Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T02:44:54.463106+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T05:04:25.636142+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\"}}, \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Prompt v2 rerun - fixed script path and added --types_file\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-32B-FP8\\\", \\\"command\\\": \\\"bash -c \\\\\\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 209542}, \\\"metrics\\\": {\\\"eval_mode\\\": \\\"text_match\\\", \\\"exp1_text_match\\\": {\\\"count_1\\\": {\\\"f1\\\": 0.323, \\\"precision\\\": 0.216, \\\"recall\\\": 0.641, \\\"pred_gold_ratio\\\": 2.97, \\\"n_batches\\\": 64}, \\\"count_2\\\": {\\\"f1\\\": 0.273, \\\"precision\\\": 0.18, \\\"recall\\\": 0.56, \\\"pred_gold_ratio\\\": 3.11, \\\"n_batches\\\": 5}, \\\"count_6\\\": {\\\"f1\\\": 0.306, \\\"precision\\\": 0.226, \\\"recall\\\": 0.475, \\\"pred_gold_ratio\\\": 2.1, \\\"n_batches\\\": 5}, \\\"count_12\\\": {\\\"f1\\\": 0.347, \\\"precision\\\": 0.367, \\\"recall\\\": 0.329, \\\"pred_gold_ratio\\\": 0.9, \\\"n_batches\\\": 5}, \\\"count_22\\\": {\\\"f1\\\": 0.299, \\\"precision\\\": 0.339, \\\"recall\\\": 0.267, \\\"pred_gold_ratio\\\": 0.79, \\\"n_batches\\\": 5}, \\\"count_44\\\": {\\\"f1\\\": 0.445, \\\"precision\\\": 0.506, \\\"recall\\\": 0.396, \\\"pred_gold_ratio\\\": 0.78, \\\"n_batches\\\": 5}, \\\"count_64\\\": {\\\"f1\\\": 0.414, \\\"precision\\\": 0.648, \\\"recall\\\": 0.304, \\\"pred_gold_ratio\\\": 0.47, \\\"n_batches\\\": 5}}, \\\"exp2_text_match\\\": {\\\"count_6\\\": {\\\"f1\\\": 0.32, \\\"precision\\\": 0.26, \\\"recall\\\": 0.416, \\\"pred_gold_ratio\\\": 1.6, \\\"n_batches\\\": 27}, \\\"count_12\\\": {\\\"f1\\\": 0.306, \\\"precision\\\": 0.291, \\\"recall\\\": 0.323, \\\"pred_gold_ratio\\\": 1.11, \\\"n_batches\\\": 27}}, \\\"vs_exp001_delta\\\": {\\\"count_1\\\": {\\\"f1_delta\\\": \\\"+0.139 (+76%)\\\", \\\"precision_delta\\\": \\\"+0.111 (+106%)\\\", \\\"recall_delta\\\": \\\"-0.079 (-11%)\\\", \\\"overpred_fix\\\": \\\"6.85→2.97\\\"}, \\\"count_6\\\": {\\\"f1_delta\\\": \\\"+0.151 (+97%)\\\", \\\"precision_delta\\\": \\\"+0.138 (+157%)\\\", \\\"recall_delta\\\": \\\"-0.145 (-23%)\\\"}, \\\"count_12\\\": {\\\"f1_delta\\\": \\\"+0.101 (+41%)\\\", \\\"precision_delta\\\": \\\"+0.207 (+129%)\\\", \\\"recall_delta\\\": \\\"-0.210 (-39%)\\\"}, \\\"count_44\\\": {\\\"f1_delta\\\": \\\"-0.028 (-6%)\\\", \\\"precision_delta\\\": \\\"+0.092 (+22%)\\\", \\\"recall_delta\\\": \\\"-0.155 (-28%)\\\"}, \\\"count_64\\\": {\\\"f1_delta\\\": \\\"-0.049 (-11%)\\\", \\\"precision_delta\\\": \\\"+0.128 (+25%)\\\", \\\"recall_delta\\\": \\\"-0.114 (-27%)\\\"}}, \\\"key_finding\\\": \\\"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\\\"}, \\\"log_path\\\": \\\"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1239}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:09:24.588Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}, \"metrics\": {\"eval_mode\": \"text_match\", \"exp1_text_match\": {\"count_1\": {\"f1\": 0.323, \"precision\": 0.216, \"recall\": 0.641, \"pred_gold_ratio\": 2.97, \"n_batches\": 64}, \"count_2\": {\"f1\": 0.273, \"precision\": 0.18, \"recall\": 0.56, \"pred_gold_ratio\": 3.11, \"n_batches\": 5}, \"count_6\": {\"f1\": 0.306, \"precision\": 0.226, \"recall\": 0.475, \"pred_gold_ratio\": 2.1, \"n_batches\": 5}, \"count_12\": {\"f1\": 0.347, \"precision\": 0.367, \"recall\": 0.329, \"pred_gold_ratio\": 0.9, \"n_batches\": 5}, \"count_22\": {\"f1\": 0.299, \"precision\": 0.339, \"recall\": 0.267, \"pred_gold_ratio\": 0.79, \"n_batches\": 5}, \"count_44\": {\"f1\": 0.445, \"precision\": 0.506, \"recall\": 0.396, \"pred_gold_ratio\": 0.78, \"n_batches\": 5}, \"count_64\": {\"f1\": 0.414, \"precision\": 0.648, \"recall\": 0.304, \"pred_gold_ratio\": 0.47, \"n_batches\": 5}}, \"exp2_text_match\": {\"count_6\": {\"f1\": 0.32, \"precision\": 0.26, \"recall\": 0.416, \"pred_gold_ratio\": 1.6, \"n_batches\": 27}, \"count_12\": {\"f1\": 0.306, \"precision\": 0.291, \"recall\": 0.323, \"pred_gold_ratio\": 1.11, \"n_batches\": 27}}, \"vs_exp001_delta\": {\"count_1\": {\"f1_delta\": \"+0.139 (+76%)\", \"precision_delta\": \"+0.111 (+106%)\", \"recall_delta\": \"-0.079 (-11%)\", \"overpred_fix\": \"6.85→2.97\"}, \"count_6\": {\"f1_delta\": \"+0.151 (+97%)\", \"precision_delta\": \"+0.138 (+157%)\", \"recall_delta\": \"-0.145 (-23%)\"}, \"count_12\": {\"f1_delta\": \"+0.101 (+41%)\", \"precision_delta\": \"+0.207 (+129%)\", \"recall_delta\": \"-0.210 (-39%)\"}, \"count_44\": {\"f1_delta\": \"-0.028 (-6%)\", \"precision_delta\": \"+0.092 (+22%)\", \"recall_delta\": \"-0.155 (-28%)\"}, \"count_64\": {\"f1_delta\": \"-0.049 (-11%)\", \"precision_delta\": \"+0.128 (+25%)\", \"recall_delta\": \"-0.114 (-27%)\"}}, \"key_finding\": \"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\"}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1239}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01LSJrt61BExvubfc6C22z4k`</summary>
+
+```json
+{
+  "exp_id": "exp003a_prompt_v2_rerun",
+  "field": "checkpoint_path",
+  "value": "N/A (inference experiment)",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "ad37014c-0050-406a-8a24-2f81fd73dd21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WZNzixFAx4Q4oHLv1DdaB9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1607,
+      "cache_read_input_tokens": 63561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1607
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-15T05:09:25.490Z_
+
+<details><summary>↩ Tool result · `toolu_01LSJrt61BExvubfc6C22z4k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:09:25.457Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}, \"metrics\": {\"eval_mode\": \"text_match\", \"exp1_text_match\": {\"count_1\": {\"f1\": 0.323, \"precision\": 0.216, \"recall\": 0.641, \"pred_gold_ratio\": 2.97, \"n_batches\": 64}, \"count_2\": {\"f1\": 0.273, \"precision\": 0.18, \"recall\": 0.56, \"pred_gold_ratio\": 3.11, \"n_batches\": 5}, \"count_6\": {\"f1\": 0.306, \"precision\": 0.226, \"recall\": 0.475, \"pred_gold_ratio\": 2.1, \"n_batches\": 5}, \"count_12\": {\"f1\": 0.347, \"precision\": 0.367, \"recall\": 0.329, \"pred_gold_ratio\": 0.9, \"n_batches\": 5}, \"count_22\": {\"f1\": 0.299, \"precision\": 0.339, \"recall\": 0.267, \"pred_gold_ratio\": 0.79, \"n_batches\": 5}, \"count_44\": {\"f1\": 0.445, \"precision\": 0.506, \"recall\": 0.396, \"pred_gold_ratio\": 0.78, \"n_batches\": 5}, \"count_64\": {\"f1\": 0.414, \"precision\": 0.648, \"recall\": 0.304, \"pred_gold_ratio\": 0.47, \"n_batches\": 5}}, \"exp2_text_match\": {\"count_6\": {\"f1\": 0.32, \"precision\": 0.26, \"recall\": 0.416, \"pred_gold_ratio\": 1.6, \"n_batches\": 27}, \"count_12\": {\"f1\": 0.306, \"precision\": 0.291, \"recall\": 0.323, \"pred_gold_ratio\": 1.11, \"n_batches\": 27}}, \"vs_exp001_delta\": {\"count_1\": {\"f1_delta\": \"+0.139 (+76%)\", \"precision_delta\": \"+0.111 (+106%)\", \"recall_delta\": \"-0.079 (-11%)\", \"overpred_fix\": \"6.85→2.97\"}, \"count_6\": {\"f1_delta\": \"+0.151 (+97%)\", \"precision_delta\": \"+0.138 (+157%)\", \"recall_delta\": \"-0.145 (-23%)\"}, \"count_12\": {\"f1_delta\": \"+0.101 (+41%)\", \"precision_delta\": \"+0.207 (+129%)\", \"recall_delta\": \"-0.210 (-39%)\"}, \"count_44\": {\"f1_delta\": \"-0.028 (-6%)\", \"precision_delta\": \"+0.092 (+22%)\", \"recall_delta\": \"-0.155 (-28%)\"}, \"count_64\": {\"f1_delta\": \"-0.049 (-11%)\", \"precision_delta\": \"+0.128 (+25%)\", \"recall_delta\": \"-0.114 (-27%)\"}}, \"key_finding\": \"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\"}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\", \"checkpoint_path\": \"N/A (inference experiment)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0599}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "536a0de3-3099-4b13-b9b6-b774f08017f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp003a_prompt_v2_rerun\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T02:35:23.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:09:25.457Z\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T05:04:24.855Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"completed_at\\\": \\\"2026-05-15T02:44:53.625Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T02:44:54.463106+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T05:04:25.636142+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\"}}, \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Prompt v2 rerun - fixed script path and added --types_file\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-32B-FP8\\\", \\\"command\\\": \\\"bash -c \\\\\\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 209542}, \\\"metrics\\\": {\\\"eval_mode\\\": \\\"text_match\\\", \\\"exp1_text_match\\\": {\\\"count_1\\\": {\\\"f1\\\": 0.323, \\\"precision\\\": 0.216, \\\"recall\\\": 0.641, \\\"pred_gold_ratio\\\": 2.97, \\\"n_batches\\\": 64}, \\\"count_2\\\": {\\\"f1\\\": 0.273, \\\"precision\\\": 0.18, \\\"recall\\\": 0.56, \\\"pred_gold_ratio\\\": 3.11, \\\"n_batches\\\": 5}, \\\"count_6\\\": {\\\"f1\\\": 0.306, \\\"precision\\\": 0.226, \\\"recall\\\": 0.475, \\\"pred_gold_ratio\\\": 2.1, \\\"n_batches\\\": 5}, \\\"count_12\\\": {\\\"f1\\\": 0.347, \\\"precision\\\": 0.367, \\\"recall\\\": 0.329, \\\"pred_gold_ratio\\\": 0.9, \\\"n_batches\\\": 5}, \\\"count_22\\\": {\\\"f1\\\": 0.299, \\\"precision\\\": 0.339, \\\"recall\\\": 0.267, \\\"pred_gold_ratio\\\": 0.79, \\\"n_batches\\\": 5}, \\\"count_44\\\": {\\\"f1\\\": 0.445, \\\"precision\\\": 0.506, \\\"recall\\\": 0.396, \\\"pred_gold_ratio\\\": 0.78, \\\"n_batches\\\": 5}, \\\"count_64\\\": {\\\"f1\\\": 0.414, \\\"precision\\\": 0.648, \\\"recall\\\": 0.304, \\\"pred_gold_ratio\\\": 0.47, \\\"n_batches\\\": 5}}, \\\"exp2_text_match\\\": {\\\"count_6\\\": {\\\"f1\\\": 0.32, \\\"precision\\\": 0.26, \\\"recall\\\": 0.416, \\\"pred_gold_ratio\\\": 1.6, \\\"n_batches\\\": 27}, \\\"count_12\\\": {\\\"f1\\\": 0.306, \\\"precision\\\": 0.291, \\\"recall\\\": 0.323, \\\"pred_gold_ratio\\\": 1.11, \\\"n_batches\\\": 27}}, \\\"vs_exp001_delta\\\": {\\\"count_1\\\": {\\\"f1_delta\\\": \\\"+0.139 (+76%)\\\", \\\"precision_delta\\\": \\\"+0.111 (+106%)\\\", \\\"recall_delta\\\": \\\"-0.079 (-11%)\\\", \\\"overpred_fix\\\": \\\"6.85→2.97\\\"}, \\\"count_6\\\": {\\\"f1_delta\\\": \\\"+0.151 (+97%)\\\", \\\"precision_delta\\\": \\\"+0.138 (+157%)\\\", \\\"recall_delta\\\": \\\"-0.145 (-23%)\\\"}, \\\"count_12\\\": {\\\"f1_delta\\\": \\\"+0.101 (+41%)\\\", \\\"precision_delta\\\": \\\"+0.207 (+129%)\\\", \\\"recall_delta\\\": \\\"-0.210 (-39%)\\\"}, \\\"count_44\\\": {\\\"f1_delta\\\": \\\"-0.028 (-6%)\\\", \\\"precision_delta\\\": \\\"+0.092 (+22%)\\\", \\\"recall_delta\\\": \\\"-0.155 (-28%)\\\"}, \\\"count_64\\\": {\\\"f1_delta\\\": \\\"-0.049 (-11%)\\\", \\\"precision_delta\\\": \\\"+0.128 (+25%)\\\", \\\"recall_delta\\\": \\\"-0.114 (-27%)\\\"}}, \\\"key_finding\\\": \\\"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\\\"}, \\\"log_path\\\": \\\"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\\\", \\\"checkpoint_path\\\": \\\"N/A (inference experiment)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0599}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:09:25.457Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}, \"metrics\": {\"eval_mode\": \"text_match\", \"exp1_text_match\": {\"count_1\": {\"f1\": 0.323, \"precision\": 0.216, \"recall\": 0.641, \"pred_gold_ratio\": 2.97, \"n_batches\": 64}, \"count_2\": {\"f1\": 0.273, \"precision\": 0.18, \"recall\": 0.56, \"pred_gold_ratio\": 3.11, \"n_batches\": 5}, \"count_6\": {\"f1\": 0.306, \"precision\": 0.226, \"recall\": 0.475, \"pred_gold_ratio\": 2.1, \"n_batches\": 5}, \"count_12\": {\"f1\": 0.347, \"precision\": 0.367, \"recall\": 0.329, \"pred_gold_ratio\": 0.9, \"n_batches\": 5}, \"count_22\": {\"f1\": 0.299, \"precision\": 0.339, \"recall\": 0.267, \"pred_gold_ratio\": 0.79, \"n_batches\": 5}, \"count_44\": {\"f1\": 0.445, \"precision\": 0.506, \"recall\": 0.396, \"pred_gold_ratio\": 0.78, \"n_batches\": 5}, \"count_64\": {\"f1\": 0.414, \"precision\": 0.648, \"recall\": 0.304, \"pred_gold_ratio\": 0.47, \"n_batches\": 5}}, \"exp2_text_match\": {\"count_6\": {\"f1\": 0.32, \"precision\": 0.26, \"recall\": 0.416, \"pred_gold_ratio\": 1.6, \"n_batches\": 27}, \"count_12\": {\"f1\": 0.306, \"precision\": 0.291, \"recall\": 0.323, \"pred_gold_ratio\": 1.11, \"n_batches\": 27}}, \"vs_exp001_delta\": {\"count_1\": {\"f1_delta\": \"+0.139 (+76%)\", \"precision_delta\": \"+0.111 (+106%)\", \"recall_delta\": \"-0.079 (-11%)\", \"overpred_fix\": \"6.85→2.97\"}, \"count_6\": {\"f1_delta\": \"+0.151 (+97%)\", \"precision_delta\": \"+0.138 (+157%)\", \"recall_delta\": \"-0.145 (-23%)\"}, \"count_12\": {\"f1_delta\": \"+0.101 (+41%)\", \"precision_delta\": \"+0.207 (+129%)\", \"recall_delta\": \"-0.210 (-39%)\"}, \"count_44\": {\"f1_delta\": \"-0.028 (-6%)\", \"precision_delta\": \"+0.092 (+22%)\", \"recall_delta\": \"-0.155 (-28%)\"}, \"count_64\": {\"f1_delta\": \"-0.049 (-11%)\", \"precision_delta\": \"+0.128 (+25%)\", \"recall_delta\": \"-0.114 (-27%)\"}}, \"key_finding\": \"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\"}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\", \"checkpoint_path\": \"N/A (inference experiment)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0599}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011PmVsB3GuZyCcYHPK7FWyP`</summary>
+
+```json
+{
+  "exp_id": "exp003a_prompt_v2_rerun",
+  "field": "conclusion",
+  "value": "success",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "c6b61c64-e7c3-4bb8-8b15-c55ea130d4cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015aqK44wMpFASWmVR2gFG7P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8432,
+      "cache_read_input_tokens": 65168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8432
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T05:09:28.985Z_
+
+<details><summary>↩ Tool result · `toolu_011PmVsB3GuZyCcYHPK7FWyP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:09:28.956Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}, \"metrics\": {\"eval_mode\": \"text_match\", \"exp1_text_match\": {\"count_1\": {\"f1\": 0.323, \"precision\": 0.216, \"recall\": 0.641, \"pred_gold_ratio\": 2.97, \"n_batches\": 64}, \"count_2\": {\"f1\": 0.273, \"precision\": 0.18, \"recall\": 0.56, \"pred_gold_ratio\": 3.11, \"n_batches\": 5}, \"count_6\": {\"f1\": 0.306, \"precision\": 0.226, \"recall\": 0.475, \"pred_gold_ratio\": 2.1, \"n_batches\": 5}, \"count_12\": {\"f1\": 0.347, \"precision\": 0.367, \"recall\": 0.329, \"pred_gold_ratio\": 0.9, \"n_batches\": 5}, \"count_22\": {\"f1\": 0.299, \"precision\": 0.339, \"recall\": 0.267, \"pred_gold_ratio\": 0.79, \"n_batches\": 5}, \"count_44\": {\"f1\": 0.445, \"precision\": 0.506, \"recall\": 0.396, \"pred_gold_ratio\": 0.78, \"n_batches\": 5}, \"count_64\": {\"f1\": 0.414, \"precision\": 0.648, \"recall\": 0.304, \"pred_gold_ratio\": 0.47, \"n_batches\": 5}}, \"exp2_text_match\": {\"count_6\": {\"f1\": 0.32, \"precision\": 0.26, \"recall\": 0.416, \"pred_gold_ratio\": 1.6, \"n_batches\": 27}, \"count_12\": {\"f1\": 0.306, \"precision\": 0.291, \"recall\": 0.323, \"pred_gold_ratio\": 1.11, \"n_batches\": 27}}, \"vs_exp001_delta\": {\"count_1\": {\"f1_delta\": \"+0.139 (+76%)\", \"precision_delta\": \"+0.111 (+106%)\", \"recall_delta\": \"-0.079 (-11%)\", \"overpred_fix\": \"6.85→2.97\"}, \"count_6\": {\"f1_delta\": \"+0.151 (+97%)\", \"precision_delta\": \"+0.138 (+157%)\", \"recall_delta\": \"-0.145 (-23%)\"}, \"count_12\": {\"f1_delta\": \"+0.101 (+41%)\", \"precision_delta\": \"+0.207 (+129%)\", \"recall_delta\": \"-0.210 (-39%)\"}, \"count_44\": {\"f1_delta\": \"-0.028 (-6%)\", \"precision_delta\": \"+0.092 (+22%)\", \"recall_delta\": \"-0.155 (-28%)\"}, \"count_64\": {\"f1_delta\": \"-0.049 (-11%)\", \"precision_delta\": \"+0.128 (+25%)\", \"recall_delta\": \"-0.114 (-27%)\"}}, \"key_finding\": \"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\"}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\", \"checkpoint_path\": \"N/A (inference experiment)\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0445}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "64f848ef-9ea8-4e63-a48a-8a4eb75e6222",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp003a_prompt_v2_rerun\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T02:35:23.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:09:28.956Z\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T05:04:24.855Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"completed_at\\\": \\\"2026-05-15T02:44:53.625Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T02:44:54.463106+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T05:04:25.636142+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\"}}, \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Prompt v2 rerun - fixed script path and added --types_file\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-32B-FP8\\\", \\\"command\\\": \\\"bash -c \\\\\\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 209542}, \\\"metrics\\\": {\\\"eval_mode\\\": \\\"text_match\\\", \\\"exp1_text_match\\\": {\\\"count_1\\\": {\\\"f1\\\": 0.323, \\\"precision\\\": 0.216, \\\"recall\\\": 0.641, \\\"pred_gold_ratio\\\": 2.97, \\\"n_batches\\\": 64}, \\\"count_2\\\": {\\\"f1\\\": 0.273, \\\"precision\\\": 0.18, \\\"recall\\\": 0.56, \\\"pred_gold_ratio\\\": 3.11, \\\"n_batches\\\": 5}, \\\"count_6\\\": {\\\"f1\\\": 0.306, \\\"precision\\\": 0.226, \\\"recall\\\": 0.475, \\\"pred_gold_ratio\\\": 2.1, \\\"n_batches\\\": 5}, \\\"count_12\\\": {\\\"f1\\\": 0.347, \\\"precision\\\": 0.367, \\\"recall\\\": 0.329, \\\"pred_gold_ratio\\\": 0.9, \\\"n_batches\\\": 5}, \\\"count_22\\\": {\\\"f1\\\": 0.299, \\\"precision\\\": 0.339, \\\"recall\\\": 0.267, \\\"pred_gold_ratio\\\": 0.79, \\\"n_batches\\\": 5}, \\\"count_44\\\": {\\\"f1\\\": 0.445, \\\"precision\\\": 0.506, \\\"recall\\\": 0.396, \\\"pred_gold_ratio\\\": 0.78, \\\"n_batches\\\": 5}, \\\"count_64\\\": {\\\"f1\\\": 0.414, \\\"precision\\\": 0.648, \\\"recall\\\": 0.304, \\\"pred_gold_ratio\\\": 0.47, \\\"n_batches\\\": 5}}, \\\"exp2_text_match\\\": {\\\"count_6\\\": {\\\"f1\\\": 0.32, \\\"precision\\\": 0.26, \\\"recall\\\": 0.416, \\\"pred_gold_ratio\\\": 1.6, \\\"n_batches\\\": 27}, \\\"count_12\\\": {\\\"f1\\\": 0.306, \\\"precision\\\": 0.291, \\\"recall\\\": 0.323, \\\"pred_gold_ratio\\\": 1.11, \\\"n_batches\\\": 27}}, \\\"vs_exp001_delta\\\": {\\\"count_1\\\": {\\\"f1_delta\\\": \\\"+0.139 (+76%)\\\", \\\"precision_delta\\\": \\\"+0.111 (+106%)\\\", \\\"recall_delta\\\": \\\"-0.079 (-11%)\\\", \\\"overpred_fix\\\": \\\"6.85→2.97\\\"}, \\\"count_6\\\": {\\\"f1_delta\\\": \\\"+0.151 (+97%)\\\", \\\"precision_delta\\\": \\\"+0.138 (+157%)\\\", \\\"recall_delta\\\": \\\"-0.145 (-23%)\\\"}, \\\"count_12\\\": {\\\"f1_delta\\\": \\\"+0.101 (+41%)\\\", \\\"precision_delta\\\": \\\"+0.207 (+129%)\\\", \\\"recall_delta\\\": \\\"-0.210 (-39%)\\\"}, \\\"count_44\\\": {\\\"f1_delta\\\": \\\"-0.028 (-6%)\\\", \\\"precision_delta\\\": \\\"+0.092 (+22%)\\\", \\\"recall_delta\\\": \\\"-0.155 (-28%)\\\"}, \\\"count_64\\\": {\\\"f1_delta\\\": \\\"-0.049 (-11%)\\\", \\\"precision_delta\\\": \\\"+0.128 (+25%)\\\", \\\"recall_delta\\\": \\\"-0.114 (-27%)\\\"}}, \\\"key_finding\\\": \\\"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\\\"}, \\\"log_path\\\": \\\"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\\\", \\\"checkpoint_path\\\": \\\"N/A (inference experiment)\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0445}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:09:28.956Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}, \"metrics\": {\"eval_mode\": \"text_match\", \"exp1_text_match\": {\"count_1\": {\"f1\": 0.323, \"precision\": 0.216, \"recall\": 0.641, \"pred_gold_ratio\": 2.97, \"n_batches\": 64}, \"count_2\": {\"f1\": 0.273, \"precision\": 0.18, \"recall\": 0.56, \"pred_gold_ratio\": 3.11, \"n_batches\": 5}, \"count_6\": {\"f1\": 0.306, \"precision\": 0.226, \"recall\": 0.475, \"pred_gold_ratio\": 2.1, \"n_batches\": 5}, \"count_12\": {\"f1\": 0.347, \"precision\": 0.367, \"recall\": 0.329, \"pred_gold_ratio\": 0.9, \"n_batches\": 5}, \"count_22\": {\"f1\": 0.299, \"precision\": 0.339, \"recall\": 0.267, \"pred_gold_ratio\": 0.79, \"n_batches\": 5}, \"count_44\": {\"f1\": 0.445, \"precision\": 0.506, \"recall\": 0.396, \"pred_gold_ratio\": 0.78, \"n_batches\": 5}, \"count_64\": {\"f1\": 0.414, \"precision\": 0.648, \"recall\": 0.304, \"pred_gold_ratio\": 0.47, \"n_batches\": 5}}, \"exp2_text_match\": {\"count_6\": {\"f1\": 0.32, \"precision\": 0.26, \"recall\": 0.416, \"pred_gold_ratio\": 1.6, \"n_batches\": 27}, \"count_12\": {\"f1\": 0.306, \"precision\": 0.291, \"recall\": 0.323, \"pred_gold_ratio\": 1.11, \"n_batches\": 27}}, \"vs_exp001_delta\": {\"count_1\": {\"f1_delta\": \"+0.139 (+76%)\", \"precision_delta\": \"+0.111 (+106%)\", \"recall_delta\": \"-0.079 (-11%)\", \"overpred_fix\": \"6.85→2.97\"}, \"count_6\": {\"f1_delta\": \"+0.151 (+97%)\", \"precision_delta\": \"+0.138 (+157%)\", \"recall_delta\": \"-0.145 (-23%)\"}, \"count_12\": {\"f1_delta\": \"+0.101 (+41%)\", \"precision_delta\": \"+0.207 (+129%)\", \"recall_delta\": \"-0.210 (-39%)\"}, \"count_44\": {\"f1_delta\": \"-0.028 (-6%)\", \"precision_delta\": \"+0.092 (+22%)\", \"recall_delta\": \"-0.155 (-28%)\"}, \"count_64\": {\"f1_delta\": \"-0.049 (-11%)\", \"precision_delta\": \"+0.128 (+25%)\", \"recall_delta\": \"-0.114 (-27%)\"}}, \"key_finding\": \"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\"}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\", \"checkpoint_path\": \"N/A (inference experiment)\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0445}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014XS7FcxwFYxzgdR4muKZNr`</summary>
+
+```json
+{
+  "exp_id": "exp003a_prompt_v2_rerun",
+  "field": "notes",
+  "value": "V2 prompt partial success: over-prediction大幅减少（count_1 pred/gold 6.85→2.97），低count F1提升76-97%，但高count出现under-prediction导致recall下降27-39%，F1微降6-11%。实验首次失败(script path错误)，retry成功。exp1+exp2均正常完成。",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "0ce1755f-34ca-4145-bdda-0d9676b10bf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015aqK44wMpFASWmVR2gFG7P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8432,
+      "cache_read_input_tokens": 65168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8432
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T05:09:31.513Z_
+
+<details><summary>↩ Tool result · `toolu_014XS7FcxwFYxzgdR4muKZNr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:09:31.484Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"V2 prompt partial success: over-prediction大幅减少（count_1 pred/gold 6.85→2.97），低count F1提升76-97%，但高count出现under-prediction导致recall下降27-39%，F1微降6-11%。实验首次失败(script path错误)，retry成功。exp1+exp2均正常完成。\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}, \"metrics\": {\"eval_mode\": \"text_match\", \"exp1_text_match\": {\"count_1\": {\"f1\": 0.323, \"precision\": 0.216, \"recall\": 0.641, \"pred_gold_ratio\": 2.97, \"n_batches\": 64}, \"count_2\": {\"f1\": 0.273, \"precision\": 0.18, \"recall\": 0.56, \"pred_gold_ratio\": 3.11, \"n_batches\": 5}, \"count_6\": {\"f1\": 0.306, \"precision\": 0.226, \"recall\": 0.475, \"pred_gold_ratio\": 2.1, \"n_batches\": 5}, \"count_12\": {\"f1\": 0.347, \"precision\": 0.367, \"recall\": 0.329, \"pred_gold_ratio\": 0.9, \"n_batches\": 5}, \"count_22\": {\"f1\": 0.299, \"precision\": 0.339, \"recall\": 0.267, \"pred_gold_ratio\": 0.79, \"n_batches\": 5}, \"count_44\": {\"f1\": 0.445, \"precision\": 0.506, \"recall\": 0.396, \"pred_gold_ratio\": 0.78, \"n_batches\": 5}, \"count_64\": {\"f1\": 0.414, \"precision\": 0.648, \"recall\": 0.304, \"pred_gold_ratio\": 0.47, \"n_batches\": 5}}, \"exp2_text_match\": {\"count_6\": {\"f1\": 0.32, \"precision\": 0.26, \"recall\": 0.416, \"pred_gold_ratio\": 1.6, \"n_batches\": 27}, \"count_12\": {\"f1\": 0.306, \"precision\": 0.291, \"recall\": 0.323, \"pred_gold_ratio\": 1.11, \"n_batches\": 27}}, \"vs_exp001_delta\": {\"count_1\": {\"f1_delta\": \"+0.139 (+76%)\", \"precision_delta\": \"+0.111 (+106%)\", \"recall_delta\": \"-0.079 (-11%)\", \"overpred_fix\": \"6.85→2.97\"}, \"count_6\": {\"f1_delta\": \"+0.151 (+97%)\", \"precision_delta\": \"+0.138 (+157%)\", \"recall_delta\": \"-0.145 (-23%)\"}, \"count_12\": {\"f1_delta\": \"+0.101 (+41%)\", \"precision_delta\": \"+0.207 (+129%)\", \"recall_delta\": \"-0.210 (-39%)\"}, \"count_44\": {\"f1_delta\": \"-0.028 (-6%)\", \"precision_delta\": \"+0.092 (+22%)\", \"recall_delta\": \"-0.155 (-28%)\"}, \"count_64\": {\"f1_delta\": \"-0.049 (-11%)\", \"precision_delta\": \"+0.128 (+25%)\", \"recall_delta\": \"-0.114 (-27%)\"}}, \"key_finding\": \"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\"}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\", \"checkpoint_path\": \"N/A (inference experiment)\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0454}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "57ef1a22-73ee-4d96-8c7c-40bfafcf6ff9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp003a_prompt_v2_rerun\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T02:35:23.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:09:31.484Z\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T05:04:24.855Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"completed_at\\\": \\\"2026-05-15T02:44:53.625Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T02:44:54.463106+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T05:04:25.636142+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\\\"}}, \\\"notes\\\": \\\"V2 prompt partial success: over-prediction大幅减少（count_1 pred/gold 6.85→2.97），低count F1提升76-97%，但高count出现under-prediction导致recall下降27-39%，F1微降6-11%。实验首次失败(script path错误)，retry成功。exp1+exp2均正常完成。\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Prompt v2 rerun - fixed script path and added --types_file\\\", \\\"dataset\\\": \\\"Few-NERD\\\", \\\"model\\\": \\\"Qwen3-32B-FP8\\\", \\\"command\\\": \\\"bash -c \\\\\\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"data_path\\\": \\\"/root/schema-dag-extraction/data/parquet/test.parquet\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"Qwen3-32B-FP8\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 209542}, \\\"metrics\\\": {\\\"eval_mode\\\": \\\"text_match\\\", \\\"exp1_text_match\\\": {\\\"count_1\\\": {\\\"f1\\\": 0.323, \\\"precision\\\": 0.216, \\\"recall\\\": 0.641, \\\"pred_gold_ratio\\\": 2.97, \\\"n_batches\\\": 64}, \\\"count_2\\\": {\\\"f1\\\": 0.273, \\\"precision\\\": 0.18, \\\"recall\\\": 0.56, \\\"pred_gold_ratio\\\": 3.11, \\\"n_batches\\\": 5}, \\\"count_6\\\": {\\\"f1\\\": 0.306, \\\"precision\\\": 0.226, \\\"recall\\\": 0.475, \\\"pred_gold_ratio\\\": 2.1, \\\"n_batches\\\": 5}, \\\"count_12\\\": {\\\"f1\\\": 0.347, \\\"precision\\\": 0.367, \\\"recall\\\": 0.329, \\\"pred_gold_ratio\\\": 0.9, \\\"n_batches\\\": 5}, \\\"count_22\\\": {\\\"f1\\\": 0.299, \\\"precision\\\": 0.339, \\\"recall\\\": 0.267, \\\"pred_gold_ratio\\\": 0.79, \\\"n_batches\\\": 5}, \\\"count_44\\\": {\\\"f1\\\": 0.445, \\\"precision\\\": 0.506, \\\"recall\\\": 0.396, \\\"pred_gold_ratio\\\": 0.78, \\\"n_batches\\\": 5}, \\\"count_64\\\": {\\\"f1\\\": 0.414, \\\"precision\\\": 0.648, \\\"recall\\\": 0.304, \\\"pred_gold_ratio\\\": 0.47, \\\"n_batches\\\": 5}}, \\\"exp2_text_match\\\": {\\\"count_6\\\": {\\\"f1\\\": 0.32, \\\"precision\\\": 0.26, \\\"recall\\\": 0.416, \\\"pred_gold_ratio\\\": 1.6, \\\"n_batches\\\": 27}, \\\"count_12\\\": {\\\"f1\\\": 0.306, \\\"precision\\\": 0.291, \\\"recall\\\": 0.323, \\\"pred_gold_ratio\\\": 1.11, \\\"n_batches\\\": 27}}, \\\"vs_exp001_delta\\\": {\\\"count_1\\\": {\\\"f1_delta\\\": \\\"+0.139 (+76%)\\\", \\\"precision_delta\\\": \\\"+0.111 (+106%)\\\", \\\"recall_delta\\\": \\\"-0.079 (-11%)\\\", \\\"overpred_fix\\\": \\\"6.85→2.97\\\"}, \\\"count_6\\\": {\\\"f1_delta\\\": \\\"+0.151 (+97%)\\\", \\\"precision_delta\\\": \\\"+0.138 (+157%)\\\", \\\"recall_delta\\\": \\\"-0.145 (-23%)\\\"}, \\\"count_12\\\": {\\\"f1_delta\\\": \\\"+0.101 (+41%)\\\", \\\"precision_delta\\\": \\\"+0.207 (+129%)\\\", \\\"recall_delta\\\": \\\"-0.210 (-39%)\\\"}, \\\"count_44\\\": {\\\"f1_delta\\\": \\\"-0.028 (-6%)\\\", \\\"precision_delta\\\": \\\"+0.092 (+22%)\\\", \\\"recall_delta\\\": \\\"-0.155 (-28%)\\\"}, \\\"count_64\\\": {\\\"f1_delta\\\": \\\"-0.049 (-11%)\\\", \\\"precision_delta\\\": \\\"+0.128 (+25%)\\\", \\\"recall_delta\\\": \\\"-0.114 (-27%)\\\"}}, \\\"key_finding\\\": \\\"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\\\"}, \\\"log_path\\\": \\\"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\\\", \\\"checkpoint_path\\\": \\\"N/A (inference experiment)\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0454}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp003a_prompt_v2_rerun\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T02:35:23.425Z\", \"updated_at\": \"2026-05-15T05:09:31.484Z\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"server\": \"cqa1-38874\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\\\"\", \"finished_at\": \"2026-05-15T05:04:24.855Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-15T02:44:53.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:44:54.463106+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:04:25.636142+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复\"}}, \"notes\": \"V2 prompt partial success: over-prediction大幅减少（count_1 pred/gold 6.85→2.97），低count F1提升76-97%，但高count出现under-prediction导致recall下降27-39%，F1微降6-11%。实验首次失败(script path错误)，retry成功。exp1+exp2均正常完成。\", \"spec\": {\"hypothesis\": \"Prompt v2 rerun - fixed script path and added --types_file\", \"dataset\": \"Few-NERD\", \"model\": \"Qwen3-32B-FP8\", \"command\": \"bash -c \\\"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\\\"\", \"server\": \"cqa1-38874\", \"data_path\": \"/root/schema-dag-extraction/data/parquet/test.parquet\", \"data_count\": 1000, \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": 209542}, \"metrics\": {\"eval_mode\": \"text_match\", \"exp1_text_match\": {\"count_1\": {\"f1\": 0.323, \"precision\": 0.216, \"recall\": 0.641, \"pred_gold_ratio\": 2.97, \"n_batches\": 64}, \"count_2\": {\"f1\": 0.273, \"precision\": 0.18, \"recall\": 0.56, \"pred_gold_ratio\": 3.11, \"n_batches\": 5}, \"count_6\": {\"f1\": 0.306, \"precision\": 0.226, \"recall\": 0.475, \"pred_gold_ratio\": 2.1, \"n_batches\": 5}, \"count_12\": {\"f1\": 0.347, \"precision\": 0.367, \"recall\": 0.329, \"pred_gold_ratio\": 0.9, \"n_batches\": 5}, \"count_22\": {\"f1\": 0.299, \"precision\": 0.339, \"recall\": 0.267, \"pred_gold_ratio\": 0.79, \"n_batches\": 5}, \"count_44\": {\"f1\": 0.445, \"precision\": 0.506, \"recall\": 0.396, \"pred_gold_ratio\": 0.78, \"n_batches\": 5}, \"count_64\": {\"f1\": 0.414, \"precision\": 0.648, \"recall\": 0.304, \"pred_gold_ratio\": 0.47, \"n_batches\": 5}}, \"exp2_text_match\": {\"count_6\": {\"f1\": 0.32, \"precision\": 0.26, \"recall\": 0.416, \"pred_gold_ratio\": 1.6, \"n_batches\": 27}, \"count_12\": {\"f1\": 0.306, \"precision\": 0.291, \"recall\": 0.323, \"pred_gold_ratio\": 1.11, \"n_batches\": 27}}, \"vs_exp001_delta\": {\"count_1\": {\"f1_delta\": \"+0.139 (+76%)\", \"precision_delta\": \"+0.111 (+106%)\", \"recall_delta\": \"-0.079 (-11%)\", \"overpred_fix\": \"6.85→2.97\"}, \"count_6\": {\"f1_delta\": \"+0.151 (+97%)\", \"precision_delta\": \"+0.138 (+157%)\", \"recall_delta\": \"-0.145 (-23%)\"}, \"count_12\": {\"f1_delta\": \"+0.101 (+41%)\", \"precision_delta\": \"+0.207 (+129%)\", \"recall_delta\": \"-0.210 (-39%)\"}, \"count_44\": {\"f1_delta\": \"-0.028 (-6%)\", \"precision_delta\": \"+0.092 (+22%)\", \"recall_delta\": \"-0.155 (-28%)\"}, \"count_64\": {\"f1_delta\": \"-0.049 (-11%)\", \"precision_delta\": \"+0.128 (+25%)\", \"recall_delta\": \"-0.114 (-27%)\"}}, \"key_finding\": \"V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64.\"}, \"log_path\": \"/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log\", \"checkpoint_path\": \"N/A (inference experiment)\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0454}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+Registry 已更新。总结如下：
+
+## exp003a_prompt_v2_rerun 分析结果
+
+**状态**: 两个 mode (exp1 + exp2) 均成功完成。首次运行因 script path 错误失败，retry 修复后正常。
+
+**V2 vs V1 (exp001) text_match 对比**:
+
+| count | v1 F1 | v2 F1 | delta | v1 pred/gold | v2 pred/gold |
+|-------|-------|-------|-------|-------------|-------------|
+| 1     | 0.184 | **0.323** | **+76%** | 6.85 | 2.97 |
+| 6     | 0.155 | **0.306** | **+97%** | 7.02 | 2.10 |
+| 12    | 0.246 | **0.347** | **+41%** | 3.38 | 0.90 |
+| 22    | 0.322 | 0.299 | -7%  | 2.27 | 0.79 |
+| 44    | 0.473 | 0.445 | -6%  | 1.33 | 0.78 |
+| 64    | 0.463 | 0.414 | -11% | 0.80 | 0.47 |
+
+**核心发现**: Prompt v2 成功解决了 over-prediction 问题（count_1 pred/gold 从 6.85x 降至 2.97x），precision 全面提升（+22%~+157%），低 count 段 F1 大幅改善。但矫枉过正：高 count 段出现 under-prediction（pred/gold<1），recall 下降 27-39%，F1 微降。整体判定 **partial success** —— v2 作为 over-prediction 的修复有效，但需要进一步调优以平衡高 count 段的 recall。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "uuid": "e6866907-d257-4031-94c4-b8028452e0d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KoNsgKYdPbkYrTWySYe9AB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4372,
+      "cache_read_input_tokens": 73600,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4372
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 83_
+
+Registry 已更新。总结如下：
+
+## exp003a_prompt_v2_rerun 分析结果
+
+**状态**: 两个 mode (exp1 + exp2) 均成功完成。首次运行因 script path 错误失败，retry 修复后正常。
+
+**V2 vs V1 (exp001) text_match 对比**:
+
+| count | v1 F1 | v2 F1 | delta | v1 pred/gold | v2 pred/gold |
+|-------|-------|-------|-------|-------------|-------------|
+| 1     | 0.184 | **0.323** | **+76%** | 6.85 | 2.97 |
+| 6     | 0.155 | **0.306** | **+97%** | 7.02 | 2.10 |
+| 12    | 0.246 | **0.347** | **+41%** | 3.38 | 0.90 |
+| 22    | 0.322 | 0.299 | -7%  | 2.27 | 0.79 |
+| 44    | 0.473 | 0.445 | -6%  | 1.33 | 0.78 |
+| 64    | 0.463 | 0.414 | -11% | 0.80 | 0.47 |
+
+**核心发现**: Prompt v2 成功解决了 over-prediction 问题（count_1 pred/gold 从 6.85x 降至 2.97x），precision 全面提升（+22%~+157%），低 count 段 F1 大幅改善。但矫枉过正：高 count 段出现 under-prediction（pred/gold<1），recall 下降 27-39%，F1 微降。整体判定 **partial success** —— v2 作为 over-prediction 的修复有效，但需要进一步调优以平衡高 count 段的 recall。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 214157,
+  "duration_api_ms": 209335,
+  "num_turns": 31,
+  "stop_reason": "end_turn",
+  "session_id": "23f5ec25-c92b-4949-8923-b85cd059f930",
+  "total_cost_usd": 1.05303875,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 66131,
+    "cache_read_input_tokens": 646984,
+    "output_tokens": 12587,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 66131,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 528,
+        "cache_read_input_tokens": 73600,
+        "cache_creation_input_tokens": 4372,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4372
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1353,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001453,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 12587,
+      "cacheReadInputTokens": 646984,
+      "cacheCreationInputTokens": 66131,
+      "webSearchRequests": 0,
+      "costUSD": 1.0515857499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "58d047af-57b6-4bf1-9788-8b0782a023dd"
+}
+```
+
+</details>
+
+---

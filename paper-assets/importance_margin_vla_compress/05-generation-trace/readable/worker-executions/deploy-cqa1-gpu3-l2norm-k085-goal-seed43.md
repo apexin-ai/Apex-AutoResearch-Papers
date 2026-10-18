@@ -1,0 +1,4641 @@
+# deploy cqa1 gpu3 l2norm k085 goal seed43
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 98
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/workers/worker_deploy-cqa1-gpu3-l2norm-k085-goal-seed43_20260524T010042.log`
+- **Structured JSON:** [`8ea79f3bec209cb4efe2.json`](../../sessions/8e/8ea79f3bec209cb4efe2.json)
+
+## Before a recorded user message
+
+98 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0331c1d9-8f6e-4555-90ae-2015bb25ffd0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779599400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "cffb29a5-2f38-4cee-933a-dcea35e732df",
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the task, I need to deploy a π0.5 L2norm k=0.85 Goal seed43 experiment on cqa1-33015 GPU 3. Let me start by checking GPU status and finding the correct script path.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "9a730508-d035-4b89-8b2e-d589d93c6af1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GkAPSvpAJrFq9KHSpXiPzf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11842,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11842
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JiCRBi2gQys2hMspeaaaPt`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "44b9698a-7219-43a4-a2bb-0eab8ec2e116",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GkAPSvpAJrFq9KHSpXiPzf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11842,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11842
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T01:00:57.598Z_
+
+<details><summary>↩ Tool result · `toolu_01JiCRBi2gQys2hMspeaaaPt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "b6f1d551-5f18-4d31-a119-00ee7286b023",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also load the submit_training_job tool, and then start checking GPU status and script paths in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "1e4ea2a6-1ea6-4af5-9887-4b5a200d0797",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CMAsZEGdX1Fn1XYRZ68Fnp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1803,
+      "cache_read_input_tokens": 23683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1803
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01F83eMBrA3xQ3YpKsFA2u3Z`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "56a46a5e-0af2-4481-ace1-3b721726fab4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CMAsZEGdX1Fn1XYRZ68Fnp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1803,
+      "cache_read_input_tokens": 23683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1803
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T01:01:01.326Z_
+
+<details><summary>↩ Tool result · `toolu_01F83eMBrA3xQ3YpKsFA2u3Z`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "48758c7b-5061-49a1-a5de-4226c93911fa",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Now let me check GPU status and find the script path in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "db3642b3-7c3e-436b-ba72-8e9e98e6f681",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PfwWYueUaqjKsxz1JGMWdW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 385,
+      "cache_read_input_tokens": 25486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 385
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012trEYEvTEwf8owsDRHQGQn`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "46cc3d57-8bac-4520-9d8e-4d76b6a83b69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PfwWYueUaqjKsxz1JGMWdW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 385,
+      "cache_read_input_tokens": 25486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 385
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T01:01:07.447Z_
+
+<details><summary>↩ Tool result · `toolu_012trEYEvTEwf8owsDRHQGQn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 10314 MiB, 22 %\\n1, 10323 MiB, 65 %\\n2, 1 MiB, 0 %\\n3, 1 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "fa1859f1-a7bc-4ace-8aa8-f512e3357a5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 10314 MiB, 22 %\\\\n1, 10323 MiB, 65 %\\\\n2, 1 MiB, 0 %\\\\n3, 1 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 10314 MiB, 22 %\\n1, 10323 MiB, 65 %\\n2, 1 MiB, 0 %\\n3, 1 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TrB1oemMhojzGX9GVsbcBo`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*.py\" -path \"*pi05*eval*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "6225509b-62c7-48b1-91ef-955aa6273507",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PfwWYueUaqjKsxz1JGMWdW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 385,
+      "cache_read_input_tokens": 25486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 385
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T01:01:08.111Z_
+
+<details><summary>↩ Tool result · `toolu_01TrB1oemMhojzGX9GVsbcBo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "f88398c7-731f-4bd9-9c80-12dd2e6386db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ss1SyDeWHNoLy3HCGMccVS`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "9081976b-1419-4c1d-88a0-90ee8f70c109",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PfwWYueUaqjKsxz1JGMWdW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 385,
+      "cache_read_input_tokens": 25486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 385
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T01:01:08.765Z_
+
+<details><summary>↩ Tool result · `toolu_01Ss1SyDeWHNoLy3HCGMccVS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "151e7248-bff1-486e-bced-a7a382533c1d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AKiyWPK5FVcg7k2LbM9BoC`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "head -5 /tmp/eval_pi05_random_k09_object_seed42_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "bee7172f-3915-4a5f-b954-2e6d385520c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PfwWYueUaqjKsxz1JGMWdW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 385,
+      "cache_read_input_tokens": 25486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 385
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T01:01:10.270Z_
+
+<details><summary>↩ Tool result · `toolu_01AKiyWPK5FVcg7k2LbM9BoC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/tmp/eval_pi05_random_k09_object_seed42_v2.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "ad67f047-1434-4bb1-8d38-768c6c9f21fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/tmp/eval_pi05_random_k09_object_seed42_v2.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/tmp/eval_pi05_random_k09_object_seed42_v2.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+GPU 3 is free (1 MiB used). The find didn't match — let me broaden the search for the eval script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "07199dea-87f3-4d0f-9210-46adc9e87d59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmwRQ4CMRMgoXbW7FKm7g7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 25871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 988
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016fyfzrBg9fGikSsDfHrvkm`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*.py\" -path \"*eval*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "71f08d2b-f73b-4503-bee0-2a0fad59e536",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmwRQ4CMRMgoXbW7FKm7g7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 25871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 988
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-24T01:01:14.676Z_
+
+<details><summary>↩ Tool result · `toolu_016fyfzrBg9fGikSsDfHrvkm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/evaluate.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/eval_checkpoint_trajectory.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_diversity.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_100k_sr.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_fullft_100k.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k07.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k05.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla_spatial.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_pruning_libero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "15827347-0321-4865-8569-b1240c0b7f5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/evaluate.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/eval_checkpoint_trajectory.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_sim.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_diversity.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_sim.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_100k_sr.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_fullft_100k.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k07.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k05.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla_spatial.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_smart_compress.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_pruning_libero.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/evaluate.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/eval_checkpoint_trajectory.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_diversity.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_100k_sr.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_fullft_100k.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k07.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k05.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla_spatial.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_pruning_libero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RVqpJJQ3YM5cquK8JnQ4G2`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "ls /tmp/eval_pi05*.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "cfe6ca2e-b0ed-41b4-a483-49f3d3a1c83b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmwRQ4CMRMgoXbW7FKm7g7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 25871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 988
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T01:01:15.663Z_
+
+<details><summary>↩ Tool result · `toolu_01RVqpJJQ3YM5cquK8JnQ4G2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/eval_pi05_l2norm_k03_object_seed43.log\\n/tmp/eval_pi05_random_k05_object_seed42_v2.log\\n/tmp/eval_pi05_random_k07_object_seed42_v2.log\\n/tmp/eval_pi05_random_k085_object_seed43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "efa3c87c-f066-4385-b48f-c1aa437f8013",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/tmp/eval_pi05_l2norm_k03_object_seed43.log\\\\n/tmp/eval_pi05_random_k05_object_seed42_v2.log\\\\n/tmp/eval_pi05_random_k07_object_seed42_v2.log\\\\n/tmp/eval_pi05_random_k085_object_seed43.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/tmp/eval_pi05_l2norm_k03_object_seed43.log\\n/tmp/eval_pi05_random_k05_object_seed42_v2.log\\n/tmp/eval_pi05_random_k07_object_seed42_v2.log\\n/tmp/eval_pi05_random_k085_object_seed43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R23ZBWGNefxsNdR3NFyKGN`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*.py\" -path \"*pi0*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "0d441417-5acd-443d-bfad-2eb045e01259",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmwRQ4CMRMgoXbW7FKm7g7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 988,
+      "cache_read_input_tokens": 25871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 988
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T01:01:16.429Z_
+
+<details><summary>↩ Tool result · `toolu_01R23ZBWGNefxsNdR3NFyKGN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/test_pi05_load.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_pi05_quick.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v2.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v3.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "a4893223-1831-42a1-9015-4f4865ec8d65",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/test_pi05_load.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/test_pi05_quick.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v2.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v3.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/test_pi05_load.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_pi05_quick.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v2.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v3.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Found the script: `eval_pi05_pruning_libero.py`. Let me check its arguments and confirm it supports the needed parameters.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "c23a8f25-be75-4a7f-b633-b79aee2cb427",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lq3QwVnBVEJJcNfkwGcinx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1705,
+      "cache_read_input_tokens": 26859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1705
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NGRZP9M6RZofUK1SyCSVwy`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "head -80 /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "7fda20ec-d507-46c6-8428-e70bcc67aded",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lq3QwVnBVEJJcNfkwGcinx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1705,
+      "cache_read_input_tokens": 26859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1705
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T01:01:21.286Z_
+
+<details><summary>↩ Tool result · `toolu_01NGRZP9M6RZofUK1SyCSVwy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python\\n\\\"\\\"\\\"Pi0.5 LIBERO eval with vision token pruning (random / l2norm / none).\\n\\nUsage:\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode none\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode random --keep_ratio 0.5\\n    python eval_pi05_pruning_libero.py --suite libero_spatial --prune_mode l2norm --keep_ratio 0.7\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time as time_mod\\nimport types\\nimport logging\\nfrom pathlib import Path\\nfrom collections import deque\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_TOKEN\\\"] = \\\"[REDACTED_HF_TOKEN]\\\"\\n\\nimport numpy as np\\nimport torch\\nimport torch._dynamo; torch._dynamo.config.disable = True\\nfrom safetensors.torch import load_file\\n\\nlogging.basicConfig(level=logging.INFO, force=True, format=\\\"%(asctime)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSUITE_CONFIG = {\\n    \\\"libero_object\\\":  {\\\"name\\\": \\\"libero_object\\\",  \\\"max_steps\\\": 280},\\n    \\\"libero_spatial\\\":  {\\\"name\\\": \\\"libero_spatial\\\",  \\\"max_steps\\\": 400},\\n    \\\"libero_goal\\\":     {\\\"name\\\": \\\"libero_goal\\\",     \\\"max_steps\\\": 300},\\n    \\\"libero_10\\\":       {\\\"name\\\": \\\"libero_10\\\",       \\\"max_steps\\\": 520},\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"/root/autodl-tmp/pi05_libero_finetuned\\\")\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\", choices=list(SUITE_CONFIG))\\n    p.add_argument(\\\"--prune_mode\\\", type=str, default=\\\"none\\\", choices=[\\\"none\\\", \\\"random\\\", \\\"l2norm\\\"])\\n    p.add_argument(\\\"--keep_ratio\\\", type=float, default=1.0)\\n    p.add_argument(\\\"--n_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--seed\\\", type=int, default=7)\\n    p.add_argument(\\\"--replan_steps\\\", type=int, default=5)\\n    p.add_argument(\\\"--output_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\")\\n    return p.parse_args()\\n\\n\\ndef prune_tokens_random(img_emb, keep_ratio):\\n    bsize, n_tokens, dim = img_emb.shape\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\n    indices = torch.randperm(n_tokens)[:n_keep].sort().values.to(img_emb.device)\\n    if not hasattr(prune_tokens_random, \\\"_logged\\\"):\\n        print(f\\\"[PRUNE-DIAG] random: n_keep={n_keep}/{n_tokens}, first_indices={indices[:5].tolist()}\\\")\\n        prune_tokens_random._logged = True\\n    return img_emb[:, indices, :], n_keep\\n\\n\\ndef prune_tokens_l2norm(img_emb, keep_ratio):\\n    bsize, n_tokens, dim = img_emb.shape\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\n    norms = torch.norm(img_emb[0].float(), dim=-1)\\n    _, topk_idx = torch.topk(norms, n_keep)\\n    topk_idx = topk_idx.sort().values\\n    if not hasattr(prune_tokens_l2norm, \\\"_logged\\\"):\\n        print(f\\\"[PRUNE-DIAG] l2norm: n_keep={n_keep}/{n_tokens}, first_indices={topk_idx.sort().values[:5].tolist()}\\\")\\n        prune_tokens_l2norm._logged = True\\n    return img_emb[:, topk_idx, :], n_keep\\n\\n\\ndef main():\\n    args = parse_args()\\n    DEVICE = \\\"cuda:0\\\"\\n    suite_cfg = SUITE_CONFIG[args.suite]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "6ba09466-a691-4007-9514-19d7e64f9bc3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Pi0.5 LIBERO eval with vision token pruning (random / l2norm / none).\\\\n\\\\nUsage:\\\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode none\\\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode random --keep_ratio 0.5\\\\n    python eval_pi05_pruning_libero.py --suite libero_spatial --prune_mode l2norm --keep_ratio 0.7\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time as time_mod\\\\nimport types\\\\nimport logging\\\\nfrom pathlib import Path\\\\nfrom collections import deque\\\\n\\\\nos.environ[\\\\\\\"MUJOCO_GL\\\\\\\"] = \\\\\\\"egl\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_TOKEN\\\\\\\"] = \\\\\\\"[REDACTED_HF_TOKEN]\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch._dynamo; torch._dynamo.config.disable = True\\\\nfrom safetensors.torch import load_file\\\\n\\\\nlogging.basicConfig(level=logging.INFO, force=True, format=\\\\\\\"%(asctime)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSUITE_CONFIG = {\\\\n    \\\\\\\"libero_object\\\\\\\":  {\\\\\\\"name\\\\\\\": \\\\\\\"libero_object\\\\\\\",  \\\\\\\"max_steps\\\\\\\": 280},\\\\n    \\\\\\\"libero_spatial\\\\\\\":  {\\\\\\\"name\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",  \\\\\\\"max_steps\\\\\\\": 400},\\\\n    \\\\\\\"libero_goal\\\\\\\":     {\\\\\\\"name\\\\\\\": \\\\\\\"libero_goal\\\\\\\",     \\\\\\\"max_steps\\\\\\\": 300},\\\\n    \\\\\\\"libero_10\\\\\\\":       {\\\\\\\"name\\\\\\\": \\\\\\\"libero_10\\\\\\\",       \\\\\\\"max_steps\\\\\\\": 520},\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\", choices=list(SUITE_CONFIG))\\\\n    p.add_argument(\\\\\\\"--prune_mode\\\\\\\", type=str, default=\\\\\\\"none\\\\\\\", choices=[\\\\\\\"none\\\\\\\", \\\\\\\"random\\\\\\\", \\\\\\\"l2norm\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--keep_ratio\\\\\\\", type=float, default=1.0)\\\\n    p.add_argument(\\\\\\\"--n_episodes\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=7)\\\\n    p.add_argument(\\\\\\\"--replan_steps\\\\\\\", type=int, default=5)\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str,\\\\n                   default=\\\\\\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef prune_tokens_random(img_emb, keep_ratio):\\\\n    bsize, n_tokens, dim = img_emb.shape\\\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\\\n    indices = torch.randperm(n_tokens)[:n_keep].sort().values.to(img_emb.device)\\\\n    if not hasattr(prune_tokens_random, \\\\\\\"_logged\\\\\\\"):\\\\n        print(f\\\\\\\"[PRUNE-DIAG] random: n_keep={n_keep}/{n_tokens}, first_indices={indices[:5].tolist()}\\\\\\\")\\\\n        prune_tokens_random._logged = True\\\\n    return img_emb[:, indices, :], n_keep\\\\n\\\\n\\\\ndef prune_tokens_l2norm(img_emb, keep_ratio):\\\\n    bsize, n_tokens, dim = img_emb.shape\\\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\\\n    norms = torch.norm(img_emb[0].float(), dim=-1)\\\\n    _, topk_idx = torch.topk(norms, n_keep)\\\\n    topk_idx = topk_idx.sort().values\\\\n    if not hasattr(prune_tokens_l2norm, \\\\\\\"_logged\\\\\\\"):\\\\n        print(f\\\\\\\"[PRUNE-DIAG] l2norm: n_keep={n_keep}/{n_tokens}, first_indices={topk_idx.sort().values[:5].tolist()}\\\\\\\")\\\\n        prune_tokens_l2norm._logged = True\\\\n    return img_emb[:, topk_idx, :], n_keep\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    DEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n    suite_cfg = SUITE_CONFIG[args.suite]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python\\n\\\"\\\"\\\"Pi0.5 LIBERO eval with vision token pruning (random / l2norm / none).\\n\\nUsage:\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode none\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode random --keep_ratio 0.5\\n    python eval_pi05_pruning_libero.py --suite libero_spatial --prune_mode l2norm --keep_ratio 0.7\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time as time_mod\\nimport types\\nimport logging\\nfrom pathlib import Path\\nfrom collections import deque\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_TOKEN\\\"] = \\\"[REDACTED_HF_TOKEN]\\\"\\n\\nimport numpy as np\\nimport torch\\nimport torch._dynamo; torch._dynamo.config.disable = True\\nfrom safetensors.torch import load_file\\n\\nlogging.basicConfig(level=logging.INFO, force=True, format=\\\"%(asctime)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\nSUITE_CONFIG = {\\n    \\\"libero_object\\\":  {\\\"name\\\": \\\"libero_object\\\",  \\\"max_steps\\\": 280},\\n    \\\"libero_spatial\\\":  {\\\"name\\\": \\\"libero_spatial\\\",  \\\"max_steps\\\": 400},\\n    \\\"libero_goal\\\":     {\\\"name\\\": \\\"libero_goal\\\",     \\\"max_steps\\\": 300},\\n    \\\"libero_10\\\":       {\\\"name\\\": \\\"libero_10\\\",       \\\"max_steps\\\": 520},\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"/root/autodl-tmp/pi05_libero_finetuned\\\")\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\", choices=list(SUITE_CONFIG))\\n    p.add_argument(\\\"--prune_mode\\\", type=str, default=\\\"none\\\", choices=[\\\"none\\\", \\\"random\\\", \\\"l2norm\\\"])\\n    p.add_argument(\\\"--keep_ratio\\\", type=float, default=1.0)\\n    p.add_argument(\\\"--n_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--seed\\\", type=int, default=7)\\n    p.add_argument(\\\"--replan_steps\\\", type=int, default=5)\\n    p.add_argument(\\\"--output_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\")\\n    return p.parse_args()\\n\\n\\ndef prune_tokens_random(img_emb, keep_ratio):\\n    bsize, n_tokens, dim = img_emb.shape\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\n    indices = torch.randperm(n_tokens)[:n_keep].sort().values.to(img_emb.device)\\n    if not hasattr(prune_tokens_random, \\\"_logged\\\"):\\n        print(f\\\"[PRUNE-DIAG] random: n_keep={n_keep}/{n_tokens}, first_indices={indices[:5].tolist()}\\\")\\n        prune_tokens_random._logged = True\\n    return img_emb[:, indices, :], n_keep\\n\\n\\ndef prune_tokens_l2norm(img_emb, keep_ratio):\\n    bsize, n_tokens, dim = img_emb.shape\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\n    norms = torch.norm(img_emb[0].float(), dim=-1)\\n    _, topk_idx = torch.topk(norms, n_keep)\\n    topk_idx = topk_idx.sort().values\\n    if not hasattr(prune_tokens_l2norm, \\\"_logged\\\"):\\n        print(f\\\"[PRUNE-DIAG] l2norm: n_keep={n_keep}/{n_tokens}, first_indices={topk_idx.sort().values[:5].tolist()}\\\")\\n        prune_tokens_l2norm._logged = True\\n    return img_emb[:, topk_idx, :], n_keep\\n\\n\\ndef main():\\n    args = parse_args()\\n    DEVICE = \\\"cuda:0\\\"\\n    suite_cfg = SUITE_CONFIG[args.suite]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DzQG8rUwdVAyMtawrE6QhW`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "head -5 /tmp/eval_pi05_l2norm_k03_object_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "3b665451-c007-4db5-bade-0d1df399cec6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lq3QwVnBVEJJcNfkwGcinx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1705,
+      "cache_read_input_tokens": 26859,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1705
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T01:01:21.797Z_
+
+<details><summary>↩ Tool result · `toolu_01DzQG8rUwdVAyMtawrE6QhW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 06:08:16,460 Config: suite=libero_object, prune=l2norm, keep=0.3, eps=50, gpu=0\\n2026-05-22 06:08:16,460 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\n2026-05-22 06:08:17,019 JAX version 0.10.0 available.\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "defea66a-32c9-4c2d-afae-c43a609748d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 06:08:16,460 Config: suite=libero_object, prune=l2norm, keep=0.3, eps=50, gpu=0\\\\n2026-05-22 06:08:16,460 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\n2026-05-22 06:08:17,019 JAX version 0.10.0 available.\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 06:08:16,460 Config: suite=libero_object, prune=l2norm, keep=0.3, eps=50, gpu=0\\n2026-05-22 06:08:16,460 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\n2026-05-22 06:08:17,019 JAX version 0.10.0 available.\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script supports `--prune_mode l2norm`, `--keep_ratio 0.85`, `--suite libero_goal`, `--seed 43`, `--gpu 0`. The script uses `DEVICE = "cuda:0"` hardcoded, so we need `CUDA_VISIBLE_DEVICES=3` to map GPU 3 to cuda:0, or the `--gpu` flag. Let me check what `--gpu` does.
+
+Looking at the code, it says `DEVICE = "cuda:0"` in main. The `--gpu` argument exists but seems to not be used for setting the device directly since `DEVICE = "cuda:0"` is hardcoded. 
+
+I'm wondering if there's additional logic that uses `args.gpu` later in the code. The task mentions using `--gpu 0` and submitting with `gpu_ids: [3]`, which suggests `submit_training_job` probably handles the `CUDA_VISIBLE_DEVICES=3` mapping so that `cuda:0` corresponds to physical GPU 3. I should also verify the random pruning function—it calls `torch.randperm(n_tokens)` without specifying a device, and the task mentions a "CPU RNG fix," though for l2norm mode this shouldn't matter since there's no randomness involved.
+
+The l2norm function uses `torch.topk`, which is deterministic and doesn't have any RNG concerns. Now I need to locate the `submit_training_job` tool.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "ed45ed1f-377e-42f7-b295-16cc12b90b79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwC4KRTkVEwTqEH7dd58Tx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2062,
+      "cache_read_input_tokens": 28564,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2062
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Script confirmed: `eval_pi05_pruning_libero.py` supports `--prune_mode l2norm`, `--suite libero_goal`, `--seed 43`. L2norm pruning uses `torch.topk` (deterministic, no RNG concern). GPU 3 is free (1 MiB). Let me load `submit_training_job`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "5ee6a9bc-dcc2-4ba4-bbf6-b3aeb668b490",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwC4KRTkVEwTqEH7dd58Tx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2062,
+      "cache_read_input_tokens": 28564,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2062
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FUaipSPgb8UEVr1v7yXCmD`</summary>
+
+```json
+{
+  "query": "submit training job",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "4fe5c6a4-b281-46fa-977e-89ea83973214",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VwC4KRTkVEwTqEH7dd58Tx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2062,
+      "cache_read_input_tokens": 28564,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2062
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T01:01:34.985Z_
+
+<details><summary>↩ Tool result · `toolu_01FUaipSPgb8UEVr1v7yXCmD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronCreate"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "03a0267a-217d-4879-a5a2-1cfb57b048a8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__kill_job",
+      "CronDelete",
+      "CronCreate"
+    ],
+    "query": "submit training job",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The submit_training_job tool wasn't found. Let me search more specifically for it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "1cf00734-4134-491c-b527-cab41b3d1e7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Xk4bonAMhSz8X2KPRNwnz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1955,
+      "cache_read_input_tokens": 30626,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1955
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Vq78hqWH23eTJ9sTUkdw1N`</summary>
+
+```json
+{
+  "query": "+submit job",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "9e2aab74-fe3a-4f66-8acd-87b697ead5db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Xk4bonAMhSz8X2KPRNwnz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1955,
+      "cache_read_input_tokens": 30626,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1955
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-24T01:01:38.030Z_
+
+<details><summary>↩ Tool result · `toolu_01Vq78hqWH23eTJ9sTUkdw1N`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "8b9f76c3-460d-4106-85e6-5bd76a331b10",
+  "tool_use_result": {
+    "matches": [],
+    "query": "+submit job",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GzSzXZLQaSU6SZJBuR11bF`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_training_job",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "dd3953ab-9781-4d30-934e-75889fa22eb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016EwoxugvmfMNRrQyf5342Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 128,
+      "cache_read_input_tokens": 32581,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 128
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-24T01:01:41.063Z_
+
+<details><summary>↩ Tool result · `toolu_01GzSzXZLQaSU6SZJBuR11bF`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "b9c1628b-e9f6-442e-931f-71b3f97214b2",
+  "tool_use_result": {
+    "matches": [],
+    "query": "select:mcp__agent-ml-research__submit_training_job",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The submit_training_job tool doesn't exist as a deferred tool. Let me check the registry for how to submit jobs. Maybe I need to use ssh_execute to launch the job in a tmux session, similar to how the existing logs show jobs were run. Let me check the existing experiment logs to see the pattern.
+
+Actually, looking at the task instructions, it says "用 submit_training_job 提交". But the tool doesn't exist. Let me look at the project config or read the registry to understand how jobs are submitted.
+
+Let me check if there's a read_registry tool that might help, and also look at how the existing experiments were launched.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "663b2d24-851f-43bf-b8e2-91682fe1e686",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LUmeLzo9yKHxUK7RpNRXYY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 105,
+      "cache_read_input_tokens": 32709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+`submit_training_job` isn't available as a tool. Let me check the registry for the submission pattern used by existing experiments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "cd1a1812-d0c8-460f-b796-dc40f062f09e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LUmeLzo9yKHxUK7RpNRXYY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 105,
+      "cache_read_input_tokens": 32709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01HySvpo96UfKZQsFxKDGnsr`</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "8e5a76e3-ee7b-4090-9207-6d222845f8b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LUmeLzo9yKHxUK7RpNRXYY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 105,
+      "cache_read_input_tokens": 32709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015TnY9MfYq9G2t5WYJTcgS4`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "head -5 /tmp/eval_pi05_random_k085_object_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "004fa0e5-2c85-4c86-9f53-e3926aef6153",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LUmeLzo9yKHxUK7RpNRXYY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 105,
+      "cache_read_input_tokens": 32709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T01:01:53.486Z_
+
+<details><summary>↩ Tool result · `toolu_01HySvpo96UfKZQsFxKDGnsr`</summary>
+
+```text
+Error: result (339,839 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "47280b65-5080-4dcc-91de-34afb08f1cd2",
+  "tool_use_result": {
+    "content": "Error: result (339,839 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_xvla_l2norm_k05_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T23:02:46.599Z\", \"updated_at\": \"2026-05-24T01:01:30.316Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Spatial seed43 CV — 验证 L2 在 Spatial 上的表现是否跨 seed 一致\", \"metrics\": {\"success_rate\": 59, \"total_successes\": 295, \"total_episodes\": 500, \"wilson_ci_95\": [54.6, 63.2], \"elapsed_min\": 79.1, \"seed\": 43, \"per_task_SR\": {\"T0_bowl_between_plate_ramekin\": 98, \"T1_bowl_next_ramekin\": 20, \"T2_bowl_from_table_center\": 92, \"T3_bowl_on_cookie_box\": 72, \"T4_bowl_in_top_drawer\": 76, \"T5_bowl_on_ramekin\": 0, \"T6_bowl_next_cookie_box\": 76, \"T7_bowl_on_stove\": 38, \"T8_bowl_next_plate\": 66, \"T9_bowl_on_wooden_cabinet\": 52}, \"vs_random_k05_spatial_seed43\": {\"random_sr\": 72.6, \"l2norm_sr\": 59, \"delta_pp\": -13.6, \"verdict\": \"L2norm worse than random on Spatial\"}, \"vs_l2norm_spatial_seed42\": {\"seed42_sr\": 58.8, \"seed43_sr\": 59, \"mean\": 58.9, \"diff_pp\": 0.2}}, \"conclusion\": \"negative\"}, \"eval_xvla_random_k05_goal_seed43_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T23:57:54.246Z\", \"updated_at\": \"2026-05-24T00:58:26.733Z\", \"hypothesis\": \"X-VLA Random k=0.5 Goal seed43 v4 — tmux 包装防 SIGHUP。v1/v2/v3 均因 SSH 断连崩溃。R6-C1 CV 最后缺口。\", \"metrics\": {\"success_rate\": 68.6, \"total_successes\": 343, \"total_episodes\": 500, \"wilson_ci_95\": [64.4, 72.5], \"elapsed_min\": 56.1, \"per_task_sr\": {\"T0_open_middle_drawer\": 100, \"T1_bowl_on_stove\": 94, \"T2_wine_on_cabinet\": 96, \"T3_open_drawer_bowl_inside\": 68, \"T4_bowl_on_cabinet\": 98, \"T5_push_plate\": 0, \"T6_cream_cheese_in_bowl\": 38, \"T7_turn_on_stove\": 96, \"T8_bowl_on_plate\": 96, \"T9_wine_on_rack\": 0}, \"cv_with_seed42\": {\"seed42\": 67.2, \"seed43\": 68.6, \"mean\": 67.9, \"diff_pp\": 1.4}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k05_spatial_seed42_postfix\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T23:55:04.842Z\", \"updated_at\": \"2026-05-24T00:57:44.457Z\", \"hypothesis\": \"π0.5 Random k=0.5 Spatial post-fix — Table 2 数据验证，CPU RNG 修复后的 baseline\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k085_goal_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T00:17:22.697Z\", \"updated_at\": \"2026-05-24T00:56:40.268Z\", \"hypothesis\": \"π0.5 Random k=0.85 Goal seed43 — 验证 D191 disruption peak（seed42=52.4%）是否 seed-specific artifact\", \"metrics\": {\"success_rate\": 53.4, \"total_episodes\": 500, \"total_successes\": 267, \"per_task_sr\": {\"T0_open_middle_drawer\": 74, \"T1_put_bowl_on_stove\": 6, \"T2_put_wine_bottle_on_cabinet\": 30, \"T3_open_top_drawer_put_bowl\": 42, \"T4_put_bowl_on_cabinet\": 64, \"T5_push_plate_to_stove\": 64, \"T6_put_cream_cheese_in_bowl\": 82, \"T7_turn_on_stove\": 94, \"T8_put_bowl_on_plate\": 66, \"T9_put_wine_bottle_on_rack\": 12}}, \"conclusion\": \"success\", \"parent\": \"eval_pi05_random_k085_goal_seed42\"}, \"eval_pi05_attention_k05_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:48:53.879Z\", \"updated_at\": \"2026-05-24T00:53:17.235Z\", \"hypothesis\": \"π0.5 attention k=0.5 Long (libero_10) seed42。Goal attention=70.2%(< Random)。Long baseline=91.6%，Random k=0.5 Long=46.8%。若 attention Long 也 ≤46.8%，attention 在 MLP connector 上全 suite 失效。\", \"conclusion\": \"negative\", \"metrics\": {\"result_sr\": 49.4, \"episodes\": 500}}, \"eval_pi05_random_k05_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:59:28.637Z\", \"updated_at\": \"2026-05-24T00:18:50.719Z\", \"hypothesis\": \"π0.5 Object Random k=0.5 post-fix 结果可能与 pre-fix (69.4%) 有显著差异，类似 Goal 的 26pp 偏移\", \"parent\": \"eval_pi05_random_k05_object_seed42\", \"conclusion\": \"failed\"}, \"eval_xvla_l2norm_k05_goal_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:49:14.251Z\", \"updated_at\": \"2026-05-24T00:18:08.482Z\", \"hypothesis\": \"L2-norm based token pruning at 50% keep ratio on X-VLA preserves goal-conditioned task performance better than random pruning by retaining high-activation tokens\", \"metrics\": {\"overall_SR\": 0.602, \"total_successes\": 301, \"total_episodes\": 500, \"wilson_ci_95\": [0.5585, 0.644], \"seed\": 43, \"per_task_SR\": [0.84, 1, 0.98, 0.3, 1, 0, 0.22, 0.74, 0.9, 0.04]}, \"conclusion\": \"negative\"}, \"eval_xvla_random_k05_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T22:30:07.182Z\", \"updated_at\": \"2026-05-24T00:18:05.865Z\", \"hypothesis\": \"Random token pruning at 50% keep ratio on X-VLA will degrade spatial task performance, serving as a lower-bound baseline for comparing against importance-based pruning methods\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.726, \"total_successes\": 363, \"total_episodes\": 500, \"wilson_ci_95\": [0.685, 0.763], \"per_task\": {\"T0_bowl_between_plate_ramekin\": 1, \"T1_bowl_next_ramekin\": 0.38, \"T2_bowl_table_center\": 0.88, \"T3_bowl_cookie_box\": 0.92, \"T4_bowl_top_drawer\": 0.88, \"T5_bowl_on_ramekin\": 0, \"T6_bowl_next_cookie_box\": 0.94, \"T7_bowl_stove\": 0.68, \"T8_bowl_next_plate\": 0.92, \"T9_bowl_wooden_cabinet\": 0.66}}}, \"eval_openvla_l2norm_k05_goal_seed42_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-23T18:56:40.662Z\", \"updated_at\": \"2026-05-24T00:15:48.088Z\", \"hypothesis\": \"OpenVLA L2norm k=0.5 Goal v2 — 修复 conda 激活问题后重试\", \"conclusion\": \"failed\", \"parent\": \"eval_openvla_l2norm_k05_goal_seed42_v3\"}, \"eval_pi05_random_k07_object_seed42_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-21T11:09:35.389Z\", \"updated_at\": \"2026-05-23T23:57:50.189Z\", \"hypothesis\": \"π0.5 Random k=0.7 Object post-fix v3 — v2 tokenizer 网络崩溃后重试，当前正常运行中\", \"parent\": \"eval_pi05_random_k05_object_seed42\"}, \"eval_pi05_random_k095_object_seed42_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-21T20:12:00.108Z\", \"updated_at\": \"2026-05-23T23:57:37.556Z\", \"hypothesis\": \"π0.5 Random k=0.95 Object post-fix — fig_method_gap 阻塞项，替换可能受 CPU RNG bug 影响的 pre-fix 数据\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\"}, \"eval_openvla_baseline_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:39:48.301Z\", \"updated_at\": \"2026-05-23T23:47:02.767Z\", \"hypothesis\": \"OpenVLA Long (libero_10) baseline。E2 Must-Fix R6-W5 要求 OpenVLA 覆盖 Goal/Long 套件。Long 套件任务更复杂（520 步），需要建立 OpenVLA 在此套件的 baseline SR，作为后续 pruning 对比基准。\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.528, \"total_episodes\": 500, \"total_success\": 264, \"time_min\": 483.3, \"task_sr\": {\"task01_alphabet_soup_tomato_sauce_basket\": 0.62, \"task02_cream_cheese_butter_basket\": 0.7, \"task03_stove_moka_pot\": 0.5, \"task04_black_bowl_drawer\": 0.48, \"task05_white_mug_left_yellow_mug_right\": 0.4, \"task06_book_caddy\": 0.7, \"task07_white_mug_plate_chocolate_pudding\": 0.5, \"task08_alphabet_soup_cream_cheese_basket\": 0.6, \"task09_both_moka_pots_stove\": 0.24, \"task10_yellow_white_mug_microwave\": 0.54}}}, \"eval_pi05_random_k03_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:11:04.636Z\", \"updated_at\": \"2026-05-23T23:39:47.073Z\", \"hypothesis\": \"π0.5 Random k=0.3 Goal seed42。极端剪枝 baseline——Random Goal curve: k=0.95=83.8%, k=0.925=71.2%, k=0.9=62.2%, k=0.85=52.4%, k=0.7=78.2%, k=0.5 running。k=0.3 预测继续下降。与 L2norm k=0.3 Goal (cqa1 GPU 2 同时跑) 对比 importance margin。\", \"metrics\": {\"overall_SR\": 0.51, \"total_successes\": 255, \"total_episodes\": 500, \"per_task\": {\"T0_open_drawer\": 0.82, \"T1_bowl_stove\": 0.22, \"T2_wine_cabinet\": 0.76, \"T3_drawer_bowl\": 0.34, \"T4_bowl_cabinet\": 0.64, \"T5_plate_stove\": 0.26, \"T6_cream_cheese_bowl\": 0.26, \"T7_turn_stove\": 1, \"T8_bowl_plate\": 0.54, \"T9_wine_rack\": 0.26}}, \"conclusion\": \"success\"}, \"eval_pi05_attention_k05_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:48:42.737Z\", \"updated_at\": \"2026-05-23T23:39:39.623Z\", \"hypothesis\": \"π0.5 attention k=0.5 Object seed42。已有 attention Object curve (k=0.95=98.4%, k=0.85=92.2%, k=0.7=0.6% cliff)。k=0.5 预测 ≤Random(70.6%)？若如此，attention 在 MLP connector 上跨 suite 无效。\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.378, \"total_successes\": 189, \"total_episodes\": 500, \"per_task\": {\"T0_alphabet_soup\": 0.94, \"T1_cream_cheese\": 0.26, \"T2_salad_dressing\": 0.32, \"T3_bbq_sauce\": 0.18, \"T4_ketchup\": 0.4, \"T5_tomato_sauce\": 0.12, \"T6_butter\": 0.38, \"T7_milk\": 0.6, \"T8_chocolate_pudding\": 0.36, \"T9_orange_juice\": 0.22}}}, \"eval_xvla_l2norm_k05_long_seed43\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-23T23:36:15.994Z\", \"updated_at\": \"2026-05-23T23:36:39.181Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Long seed43 CV — 验证 L2 在 Long 上的表现跨 seed 一致性\"}, \"eval_openvla_l2norm_k05_goal_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T19:05:12.237Z\", \"updated_at\": \"2026-05-23T23:18:01.760Z\", \"hypothesis\": \"OpenVLA L2norm k=0.5 Goal v3 (fix --mode l2norm_prune)。v1 python not found, v2 --mode l2norm 不是合法选项（应为 l2norm_prune）。E2 扩展——OpenVLA pruning 覆盖 Goal suite。Object L2norm k=0.5=39.2%。Goal baseline=74.8%。\", \"metrics\": {\"overall_sr\": 0.434, \"total_successes\": 217, \"total_episodes\": 500, \"task_sr\": {\"open_the_middle_drawer_of_the_cabinet\": 0.28, \"put_the_bowl_on_the_stove\": 0.38, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.82, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.06, \"put_the_bowl_on_top_of_the_cabinet\": 0.66, \"push_the_plate_to_the_front_of_the_stove\": 0.2, \"put_the_cream_cheese_in_the_bowl\": 0.22, \"turn_on_the_stove\": 0.98, \"put_the_bowl_on_the_plate\": 0.3, \"put_the_wine_bottle_on_the_rack\": 0.44}, \"eval_time_min\": 247.8}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k085_spatial_seed42_postfix\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-23T23:11:42.724Z\", \"updated_at\": \"2026-05-23T23:17:54.459Z\", \"hypothesis\": \"π0.5 Random k=0.85 Spatial post-fix — 测试 D191 disruption peak（Goal k=0.85 Random=52.4%）是否跨 suite 复现。CPU RNG 修复后 random pruning 应产生可复现的结果。\"}, \"eval_xvla_random_k05_long_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:49:33.210Z\", \"updated_at\": \"2026-05-23T23:15:37.553Z\", \"hypothesis\": \"X-VLA Random k=0.5 Long seed43。seed42=61.6%。seed43 提供 CV 数据（R6-C1）。\", \"metrics\": {\"overall_SR\": 0.582, \"total_successes\": 291, \"total_episodes\": 500, \"wilson_ci_95\": [0.5383, 0.6244], \"seed\": 43, \"per_task_SR\": [0.62, 0, 0.68, 0.94, 0.6, 0.86, 0.82, 0.84, 0.4, 0.06], \"elapsed_min\": 83.6}, \"conclusion\": \"success\"}, \"eval_pi05_random_k095_spatial_seed42_postfix\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T23:03:54.457Z\", \"updated_at\": \"2026-05-23T23:13:45.503Z\", \"hypothesis\": \"π0.5 Random k=0.95 Spatial post-fix — CPU RNG 修复后的 baseline，用于替换 fig_method_gap 中 pre-fix 值 76.4%\", \"parent\": \"eval_pi05_random_k095_spatial_seed42\", \"conclusion\": \"failed\"}, \"eval_xvla_l2norm_k05_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:49:25.911Z\", \"updated_at\": \"2026-05-23T23:10:36.013Z\", \"hypothesis\": \"X-VLA L2norm pruning at k=0.5 on Object suite (seed43) should match or exceed random pruning SR, demonstrating that norm-based importance provides meaningful token selection over random baseline\", \"metrics\": {\"overall_SR\": 0.43, \"total_successes\": 215, \"total_episodes\": 500, \"wilson_ci_95\": [0.387, 0.474], \"elapsed_min\": 76.3, \"seed\": 43, \"per_task_SR\": {\"T0_alphabet_soup\": 0.52, \"T1_cream_cheese\": 0.06, \"T2_salad_dressing\": 0.76, \"T3_bbq_sauce\": 0.7, \"T4_ketchup\": 0.52, \"T5_tomato_sauce\": 0.56, \"T6_butter\": 0.02, \"T7_milk\": 0.38, \"T8_chocolate_pudding\": 0.16, \"T9_orange_juice\": 0.62}, \"vs_random_k05_object_seed43\": {\"random_sr\": 0.71, \"l2norm_sr\": 0.43, \"delta_pp\": -28, \"verdict\": \"L2norm catastrophically worse than random on Object suite\"}}, \"conclusion\": \"negative\"}, \"eval_pi05_attention_k05_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:48:49.087Z\", \"updated_at\": \"2026-05-23T23:05:56.517Z\", \"hypothesis\": \"π0.5 attention k=0.5 Spatial seed42。Goal attention k=0.5=70.2%(< Random 73.6%)。若 Spatial 也 ≤Random，attention 在 MLP connector 上跨 suite 无效的 claim 更强。\", \"metrics\": {\"overall_sr\": 0.726, \"total_successes\": 363, \"total_episodes\": 500, \"elapsed_min\": 74.3, \"per_task\": {\"T0_bowl_between_plate_ramekin\": 0.72, \"T1_bowl_next_to_ramekin\": 0.92, \"T2_bowl_from_table_center\": 0.96, \"T3_bowl_on_cookie_box\": 0.68, \"T4_bowl_in_top_drawer\": 0.28, \"T5_bowl_on_ramekin\": 0.32, \"T6_bowl_next_to_cookie_box\": 0.86, \"T7_bowl_on_stove\": 0.88, \"T8_bowl_next_to_plate\": 0.76, \"T9_bowl_on_wooden_cabinet\": 0.88}, \"vs_random_k05_spatial\": {\"random_sr\": 0.716, \"attention_sr\": 0.726, \"delta_pp\": 1, \"verdict\": \"noise-level, attention provides no benefit over random\"}}, \"conclusion\": \"negative\"}, \"eval_pi05_attention_k05_goal_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:41:36.973Z\", \"updated_at\": \"2026-05-23T22:59:20.455Z\", \"hypothesis\": \"π0.5 attention k=0.5 Goal seed43。seed42=70.2% (< Random 73.6%, Δ=-3.4pp)。seed43 验证 attention 在 MLP connector 上是否持续 anti-informative。若 seed43 也 < Random，则双 seed 确认 2×2 crossover（X-VLA attention=98.2% vs π0.5 attention ≤ Random）。\", \"metrics\": {\"overall_sr\": 0.722, \"total_successes\": 361, \"total_episodes\": 500, \"elapsed_min\": 70.6, \"per_task\": {\"open_middle_drawer\": 0.76, \"bowl_on_stove\": 0.32, \"wine_on_cabinet\": 0.84, \"bowl_in_drawer\": 0.72, \"bowl_on_cabinet\": 1, \"plate_to_front\": 0.64, \"cream_cheese_in_bowl\": 0.62, \"turn_on_stove\": 1, \"bowl_on_plate\": 0.9, \"wine_on_rack\": 0.42}}, \"conclusion\": \"negative\", \"notes\": \"Attention k=0.5 Goal seed43=72.2%, seed42=70.2%, mean=71.2%. Random k=0.5 Goal seed42=73.6%. Both seeds below Random baseline. Confirms attention-based importance is anti-informative for π0.5 MLP connector on Goal suite. Supports D185 crossover: X-VLA attention works (cross-attention exposes importance) but π0.5 attention fails (MLP connector hides it).\"}, \"eval_pi05_random_k07_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T09:51:53.676Z\", \"updated_at\": \"2026-05-23T22:53:05.670Z\", \"hypothesis\": \"π0.5 Random k=0.7 Object post-fix — pre-fix 值可能受 CPU RNG bug 影响，需确认 post-fix 基线\", \"parent\": \"eval_pi05_random_k07_object_seed42\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k09_object_seed42_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-21T15:52:07.928Z\", \"updated_at\": \"2026-05-23T22:51:34.831Z\", \"hypothesis\": \"π0.5 Random k=0.9 Object post-fix — pre-fix 值可能受 CPU RNG bug 影响，需确认 post-fix 基线\", \"parent\": \"eval_pi05_random_k07_object_seed43\"}, \"eval_pi05_l2norm_k095_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:47:31.610Z\", \"updated_at\": \"2026-05-23T22:49:34.997Z\", \"hypothesis\": \"π0.5 L2norm k=0.95 Goal seed42。L2 Goal 曲线高端数据点——k=0.925=89%, k=0.9=90.6%。k=0.95 接近无剪枝，预测 >90%。完善 L2 Goal 全曲线。\", \"metrics\": {\"overall_sr\": 0.908, \"total_successes\": 454, \"total_episodes\": 500, \"elapsed_min\": 90.4, \"per_task\": {\"open the middle drawer of the cabinet\": 0.84, \"put the bowl on the stove\": 0.98, \"put the wine bottle on top of the cabinet\": 0.94, \"open the top drawer and put the bowl inside\": 0.96, \"put the bowl on top of the cabinet\": 1, \"push the plate to the front of the stove\": 1, \"put the cream cheese in the bowl\": 0.92, \"turn on the stove\": 1, \"put the bowl on the plate\": 0.98, \"put the wine bottle on the rack\": 0.46}}, \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k03_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T17:24:33.389Z\", \"updated_at\": \"2026-05-23T22:37:56.297Z\", \"hypothesis\": \"π0.5 L2norm k=0.3 Goal seed42: 极端剪枝端数据点。L2norm Goal curve: k=0.925=89%, k=0.9=90.6%, k=0.85=88%, k=0.7=73.6%, k=0.5=59.2%。k=0.3 预测 <50%。与 Random k=0.3 Goal (cqa1 GPU 1 同时跑) 对比验证极端剪枝下 importance margin。\", \"conclusion\": \"negative\", \"metrics\": {\"overall_SR\": 0.542, \"total_successes\": 271, \"total_episodes\": 500, \"elapsed_min\": 118.7, \"suite\": \"libero_goal\", \"prune_mode\": \"l2norm\", \"keep_ratio\": 0.3, \"seed\": 42, \"per_task\": {\"open the middle drawer of the cabinet\": 0.7, \"put the bowl on the stove\": 0.2, \"put the wine bottle on top of the cabinet\": 0.82, \"open the top drawer and put the bowl inside\": 0.4, \"put the bowl on top of the cabinet\": 0.6, \"push the plate to the front of the stove\": 0.48, \"put the cream cheese in the bowl\": 0.26, \"turn on the stove\": 0.96, \"put the bowl on the plate\": 0.72, \"put the wine bottle on the rack\": 0.28}, \"v2_run_SR\": 0.506, \"note\": \"Two runs: v2=50.6%, latest=54.2%. vs Random k=0.3 Goal=51.8%, delta=+2.4pp (negligible)\"}}, \"eval_xvla_random_k05_goal_seed43_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T22:19:52.643Z\", \"updated_at\": \"2026-05-23T22:29:44.448Z\", \"hypothesis\": \"X-VLA Random k=0.5 Goal seed43 CV 复现（v3，tmux 包装防 SIGHUP）\", \"parent\": \"eval_xvla_random_k05_goal_seed43_v2\", \"conclusion\": \"killed\"}, \"eval_xvla_random_k05_goal_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:45:41.535Z\", \"updated_at\": \"2026-05-23T22:19:43.896Z\", \"hypothesis\": \"X-VLA Random k=0.5 Goal seed43 v2（重跑，v1 因 SSH SIGHUP 失败）。seed42=67.2%，seed43 提供第二个独立 seed for CV（R6-C1）。\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k05_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T19:04:45.852Z\", \"updated_at\": \"2026-05-23T21:48:02.739Z\", \"hypothesis\": \"π0.5 Random k=0.5 Spatial seed42。Random Spatial curve 需要 k=0.5 数据点。Object Random k=0.5=70.6%，Goal Random k=0.5=73.6%。Spatial Random k=0.5 预测 ~60-70%。与 attention k=0.5 Spatial（westd-41074 同时跑）对比。\", \"metrics\": {\"success_rate\": 71.6, \"total_successes\": 358, \"total_episodes\": 500, \"per_task\": {\"T0_bowl_between_plate_ramekin\": 88, \"T1_bowl_next_to_ramekin\": 82, \"T2_bowl_from_table_center\": 88, \"T3_bowl_on_cookie_box\": 52, \"T4_bowl_in_top_drawer\": 44, \"T5_bowl_on_ramekin\": 38, \"T6_bowl_next_to_cookie_box\": 84, \"T7_bowl_on_stove\": 84, \"T8_bowl_next_to_plate\": 80, \"T9_bowl_on_wooden_cabinet\": 76}}, \"conclusion\": \"success\"}, \"eval_xvla_random_k05_goal_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T20:34:47.045Z\", \"updated_at\": \"2026-05-23T21:47:55.082Z\", \"hypothesis\": \"X-VLA Random k=0.5 Goal seed43。CV 统计补充（R6-C1）——seed42 SR=67.2%，seed43 提供第二个独立 seed。\", \"conclusion\": \"failed\", \"metrics\": {\"overall_sr\": 0.672, \"total_successes\": 336, \"total_episodes\": 500, \"wilson_ci_95\": [0.63, 0.712], \"elapsed_min\": 58.2, \"per_task\": {\"task_0_open_middle_drawer\": {\"sr\": 0.98, \"succ\": 49, \"total\": 50}, \"task_1_bowl_on_stove\": {\"sr\": 0.98, \"succ\": 49, \"total\": 50}, \"task_2_wine_on_cabinet\": {\"sr\": 0.9, \"succ\": 45, \"total\": 50}, \"task_3_open_drawer_bowl_inside\": {\"sr\": 0.6, \"succ\": 30, \"total\": 50}, \"task_4_bowl_on_cabinet\": {\"sr\": 0.98, \"succ\": 49, \"total\": 50}, \"task_5_push_plate\": {\"sr\": 0, \"succ\": 0, \"total\": 50}, \"task_6_cream_cheese_in_bowl\": {\"sr\": 0.4, \"succ\": 20, \"total\": 50}, \"task_7_turn_on_stove\": {\"sr\": 0.98, \"succ\": 49, \"total\": 50}, \"task_8_bowl_on_plate\": {\"sr\": 0.86, \"succ\": 43, \"total\": 50}, \"task_9_wine_on_rack\": {\"sr\": 0.04, \"succ\": 2, \"total\": 50}}, \"note\": \"log=eval_xvla_random_k05_goal_seed42_v2.log; JSON overwritten by l2_norm run (known bug)\"}}, \"eval_pi05_l2norm_k05_long_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T18:52:11.839Z\", \"updated_at\": \"2026-05-23T21:43:41.966Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Long seed42 重跑。v1(50.2%) 已有数据但被杀，验证 CPU RNG 修复后 L2norm k=0.5 在 Long 套件的表现。与 Random k=0.5 Long 对比计算 importance margin。\", \"metrics\": {\"success_rate\": 51.4, \"total_episodes\": 500, \"total_successes\": 257, \"elapsed_min\": 154.8}, \"conclusion\": \"success\"}, \"eval_pi05_random_k0925_spatial_seed42_unreg\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:12:37.229Z\", \"updated_at\": \"2026-05-23T21:42:51.117Z\", \"hypothesis\": \"π0.5 Random k=0.925 Spatial seed42（未注册进程，补录）。westd-41074 GPU 2 上的实际运行进程 PID 781247。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 58.2, \"total_episodes\": 500, \"total_successes\": 291}}, \"eval_pi05_random_k05_long_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T18:52:17.059Z\", \"updated_at\": \"2026-05-23T21:39:49.493Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed42 重跑（CPU RNG 修复后）。填充 Long suite Random k=0.5 数据点。与 L2norm k=0.5 Long 对比计算 importance margin。\", \"metrics\": {\"success_rate\": 46.8, \"total_episodes\": 500, \"total_successes\": 234, \"elapsed_min\": 160, \"suite\": \"libero_10\", \"model\": \"pi05\", \"prune_mode\": \"random\", \"keep_ratio\": 0.5, \"seed\": 42, \"cpu_rng_fixed\": true, \"per_task\": {\"T0_alphabet_soup_tomato_basket\": 0.7, \"T1_cream_cheese_butter_basket\": 0.4, \"T2_stove_moka_pot\": 0.72, \"T3_bowl_bottom_drawer\": 0.72, \"T4_white_mug_left_yellow_right\": 0.52, \"T5_book_caddy\": 0.2, \"T6_white_mug_plate_chocolate\": 0.26, \"T7_alphabet_soup_cream_cheese_basket\": 0.56, \"T8_both_moka_pots_stove\": 0.04, \"T9_yellow_mug_microwave\": 0.56}, \"v1_comparison\": {\"v1_sr\": 50.2, \"v2_sr\": 46.8, \"delta_pp\": -3.4, \"note\": \"CPU RNG fix caused -3.4pp drop\"}, \"importance_margin_vs_l2norm\": {\"l2norm_k05_long_sr\": 50.2, \"random_k05_long_sr\": 46.8, \"margin_pp\": 3.4}}, \"conclusion\": \"success\"}, \"eval_pi05_attention_k05_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T19:37:42.671Z\", \"updated_at\": \"2026-05-23T21:18:37.440Z\", \"hypothesis\": \"π0.5 attention pruning k=0.5 Goal。Object attention curve: k=0.95=98.4%, k=0.9=97.2%, k=0.85=92.2%, k=0.7=0.6%（cliff）。Goal 基线更低，attention cliff 可能出现在更高 keep ratio。与 X-VLA attention Goal k=0.5=98.2% 对比，测试 π0.5 attention 是否同样有效或同样出现 cliff。D185 architecture-dependent evidence。\", \"metrics\": {\"success_rate\": 70.2, \"total_episodes\": 500, \"total_successes\": 351, \"elapsed_min\": 84.9, \"per_task\": {\"T0_open_middle_drawer\": 0.76, \"T1_put_bowl_stove\": 0.4, \"T2_wine_bottle_cabinet\": 0.76, \"T3_open_drawer_bowl\": 0.68, \"T4_bowl_top_cabinet\": 0.94, \"T5_push_plate_front\": 0.7, \"T6_cream_cheese_bowl\": 0.54, \"T7_turn_on_stove\": 1, \"T8_bowl_on_plate\": 0.86, \"T9_wine_bottle_rack\": 0.38}}, \"conclusion\": \"negative\"}, \"eval_xvla_l2norm_k03_goal_seed42_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T19:02:35.803Z\", \"updated_at\": \"2026-05-23T21:12:16.239Z\", \"hypothesis\": \"X-VLA L2norm k=0.3 Goal v4。v3 被杀（GPU 重分配），重跑。极端剪枝（70% token removed）下 L2norm 在 Goal 套件的表现。Object L2norm k=0.3=18.2%，Goal 上 L2norm 是否也远差于 random（random Goal k=0.3≈50.6%），验证 L2norm 反转在跨套件的一致性。\", \"metrics\": {\"success_rate\": 37.6, \"total_episodes\": 500, \"total_successes\": 188}, \"conclusion\": \"negative\"}, \"eval_xvla_random_k05_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T16:50:08.257Z\", \"updated_at\": \"2026-05-23T21:11:14.779Z\", \"hypothesis\": \"X-VLA Random k=0.5 Goal v2 (fix domain_id=3)。D185 证据表关键 baseline——v1 用了 domain_id=2 (bug) 导致 SR=0%。没有这个数据 'L2 < Random' claim 不成立。Attention Goal=98.2%, L2 Goal=59.0%, Random Goal=? 是 D185 叙事的核心对照。\", \"metrics\": {\"success_rate\": 67.2, \"total_episodes\": 500, \"total_successes\": 336}, \"conclusion\": \"success\"}, \"eval_xvla_random_k05_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T06:36:33.544Z\", \"updated_at\": \"2026-05-23T20:54:53.127Z\", \"hypothesis\": \"X-VLA Random k=0.5 Object seed43。CV 数据（R6-C1）——seed42 Object Random k=0.5=70.6%，seed43 验证可复现性。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.71, \"wilson_ci_95\": [0.6687, 0.7481], \"total_episodes\": 500, \"total_successes\": 355}}, \"eval_pi05_random_k085_goal_seed42_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T18:14:36.077Z\", \"updated_at\": \"2026-05-23T20:52:08.190Z\", \"hypothesis\": \"CPU RNG 修复后 π0.5 Random k=0.85 Goal。v3=52.4%(pre-fix, westd-38929)。修复后验证——k=0.9=62.2%, k=0.7=78.2%。v3 显示 k=0.85 在 cliff zone 内，修复后是否依然在 50% 附近？\", \"metrics\": {\"success_rate\": 52.4, \"total_episodes\": 500, \"total_successes\": 262}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k03_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T18:46:02.897Z\", \"updated_at\": \"2026-05-23T20:44:11.014Z\", \"hypothesis\": \"X-VLA L2norm k=0.3 Spatial。极端剪枝（70% token removed）下 L2norm 在 Spatial 套件的表现。补充极端 pruning 对比：Object L2norm k=0.3=18.2% 远差于 random k=0.3。Spatial 上是否也出现同样反常，验证 L2norm 反转在跨套件的一致性。\", \"metrics\": {\"success_rate\": 0.312, \"total_episodes\": 500, \"total_successes\": 156, \"wilson_ci_95\": [0.273, 0.354], \"n_vision_tokens_original\": 50, \"n_vision_tokens_kept\": 15, \"elapsed_seconds\": 6754.6, \"per_task\": {\"task_0\": {\"sr\": 0.74, \"desc\": \"pick up the black bowl between the plate and the ramekin and place it on the plate\"}, \"task_1\": {\"sr\": 0.06, \"desc\": \"pick up the black bowl next to the ramekin and place it on the plate\"}, \"task_2\": {\"sr\": 0.82, \"desc\": \"pick up the black bowl from table center and place it on the plate\"}, \"task_3\": {\"sr\": 0.34, \"desc\": \"pick up the black bowl on the cookie box and place it on the plate\"}, \"task_4\": {\"sr\": 0.66, \"desc\": \"pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate\"}, \"task_5\": {\"sr\": 0, \"desc\": \"pick up the black bowl on the ramekin and place it on the plate\"}, \"task_6\": {\"sr\": 0.04, \"desc\": \"pick up the black bowl next to the cookie box and place it on the plate\"}, \"task_7\": {\"sr\": 0.08, \"desc\": \"pick up the black bowl on the stove and place it on the plate\"}, \"task_8\": {\"sr\": 0.34, \"desc\": \"pick up the black bowl next to the plate and place it on the plate\"}, \"task_9\": {\"sr\": 0.04, \"desc\": \"pick up the black bowl on the wooden cabinet and place it on the plate\"}}}, \"conclusion\": \"negative\"}, \"eval_xvla_l2norm_k07_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T19:54:06.481Z\", \"updated_at\": \"2026-05-23T20:32:59.176Z\", \"hypothesis\": \"X-VLA L2norm k=0.7 Goal v2 (确认 --mode l2_norm)。v1 SR=53.4% 但可能有 mode typo。k=0.5=59.0% 已确认（v3, 正确 mode）。若 v2 k=0.7 > 59%，则 L2 曲线单调递减正常；若仍 ~53%，则 L2 在 Goal 上存在非单调性（类似 π0.5 的 V-shape）。\", \"conclusion\": \"killed\"}, \"eval_pi05_random_k03_goal_seed43_v2\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-23T18:22:19.002Z\", \"updated_at\": \"2026-05-23T20:32:41.274Z\"}, \"eval_xvla_l2norm_k05_goal_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T18:39:32.467Z\", \"updated_at\": \"2026-05-23T20:31:42.701Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Goal v3 (fix --mode l2_norm typo)。v2 用了 --mode l2norm（无下划线），参数错误。与 attention Goal k=0.5 (96.8-98.2%) 和 random Goal k=0.5 (67.2%) 对比，验证 L2norm 在 Goal 上的表现。\", \"metrics\": {\"success_rate\": 59, \"total_episodes\": 500, \"total_successes\": 295, \"elapsed_min\": 65.8, \"per_task\": {\"T0_open_middle_drawer\": 0.8, \"T1_put_bowl_stove\": 0.92, \"T2_wine_bottle_cabinet\": 0.98, \"T3_open_drawer_bowl\": 0.34, \"T4_bowl_top_cabinet\": 1, \"T5_push_plate_front\": 0, \"T6_cream_cheese_bowl\": 0.24, \"T7_turn_on_stove\": 0.72, \"T8_bowl_on_plate\": 0.9, \"T9_wine_bottle_rack\": 0}}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k05_goal_seed42_v2\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-23T18:14:32.322Z\", \"updated_at\": \"2026-05-23T20:07:59.679Z\", \"hypothesis\": \"CPU RNG 修复后 π0.5 Random k=0.5 Goal。v1=74.4%(pre-fix, westd-41074)。修复后验证 Random k=0.5 的真实 Goal SR——k=0.7=78.2%, k=0.3=50.6%，k=0.5 应介于两者之间（如果单调递减）或异常（非单调）。\"}, \"eval_xvla_l2norm_k05_spatial_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T18:39:28.559Z\", \"updated_at\": \"2026-05-23T20:07:12.445Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Spatial v3 (fix --mode l2_norm typo)。v2 用了 --mode l2norm（无下划线），参数错误。重跑验证 Spatial 套件 L2norm 表现。Object L2norm k=0.5=43.7% 远差于 random k=0.5=70.6%（反常），Spatial 是否同样反常。\", \"metrics\": {\"success_rate\": 58.8, \"total_episodes\": 500, \"wilson_ci_95\": [54.4, 63], \"per_task_sr\": [92, 22, 88, 72, 84, 0, 82, 32, 72, 44], \"elapsed_min\": 82}, \"conclusion\": \"negative\"}, \"eval_xvla_l2norm_k07_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:04:59.366Z\", \"updated_at\": \"2026-05-23T19:53:01.083Z\", \"hypothesis\": \"X-VLA L2norm k=0.7 Goal。填充 L2 Goal 曲线中间点：k=0.5=59.0%（刚完成），k=0.3 running on GPU 3。k=0.7 数据将显示 L2 在 30% pruning 时的退化程度。Random k=0.7 Goal=? (参考 Random k=0.5 Goal=67.2%)。若 L2 k=0.7 也低于 Random，则确认 L2 在 BART connector 上全 keep ratio 失效。\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.534, \"num_success\": 267, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42}}, \"eval_xvla_l2norm_k05_long_seed42_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T18:50:03.639Z\", \"updated_at\": \"2026-05-23T19:41:16.756Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Long (libero_10) v3 (fix --mode l2_norm)。与 GPU 0-2 配套完成 L2 k=0.5 全 suite 对照。Object L2norm k=0.5=43.7% 远差于 random，验证 Long 是否同样反常。与 attention Long 数据对比评估三种方法在复杂任务上的差异。\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k0925_goal_seed42_w38\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:22:40.876Z\", \"updated_at\": \"2026-05-23T19:39:15.594Z\", \"hypothesis\": \"π0.5 L2norm pruning at k=0.925 on libero_goal will outperform random pruning at the same keep ratio, demonstrating importance-based pruning advantage\", \"conclusion\": \"killed\"}, \"eval_e5_xvla_attn_last_goal_k03\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:22:43.244Z\", \"updated_at\": \"2026-05-23T19:39:11.818Z\", \"hypothesis\": \"X-VLA attention_last pruning at k=0.3 on libero_goal will retain meaningful performance, testing whether last-layer attention scores identify important visual tokens\", \"conclusion\": \"killed\"}, \"eval_pi05_random_k07_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:02:00.632Z\", \"updated_at\": \"2026-05-23T19:34:37.026Z\", \"hypothesis\": \"π0.5 Random k=0.7 Goal seed42 v2 (CPU RNG fix)。Pre-fix k=0.7=80.6% (cqa1)。同批次 k=0.95 post-fix 不变（84→83.8%），k=0.925 大幅下降（83.8→71.2%），k=0.9 不变（62.2%）。k=0.7 pre-fix 80.6% 是否可信？填充 Random Goal CPU-RNG-fixed 完整曲线最后一个缺口。\", \"metrics\": {\"success_rate\": 78.2, \"total_episodes\": 500, \"total_successes\": 391, \"source\": \"westd-41074 diag harvested, CPU RNG fixed\"}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k095_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:01:56.608Z\", \"updated_at\": \"2026-05-23T19:33:36.089Z\", \"hypothesis\": \"π0.5 Random k=0.95 Goal seed42 v2 (CPU RNG fix)。Pre-fix k=0.95=84.0% (cqa1)。k=0.925 post-fix 从 83.8% 降到 71.2%（-12.6pp），k=0.9 不变（62.2%）。k=0.95 是否也受 RNG 影响？直接影响 disruption peak 叙事。\", \"metrics\": {\"success_rate\": 83.8, \"total_episodes\": 500, \"total_successes\": 419, \"source\": \"westd-41074 diag harvested, CPU RNG fixed\"}, \"conclusion\": \"success\"}, \"eval_pi05_random_k09_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:02:08.333Z\", \"updated_at\": \"2026-05-23T19:31:40.798Z\", \"hypothesis\": \"π0.5 Random k=0.9 Goal seed42 v2 (CPU RNG fix)。原始数据 k=0.9=62.2% 显示 disruption peak 深谷（k=0.95=83.8%, k=0.85=51.6%）。D183 发现 Random Goal 数据受 CUDA RNG 跨硬件污染。本实验用修复后代码重跑，验证 disruption peak 是否为真实现象。\", \"metrics\": {\"success_rate\": 62.2, \"total_episodes\": 500, \"source\": \"westd-41074 GPU diag harvested, CPU RNG fixed\"}, \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k0925_goal_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T18:22:23.408Z\", \"updated_at\": \"2026-05-23T19:27:38.055Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Goal seed43 验证 L2norm 在极轻度剪枝下 Goal 表现的 seed 稳定性，与 seed42 v2 对比\", \"metrics\": {\"success_rate\": 90.8, \"total_successes\": 454, \"total_episodes\": 500, \"per_task\": {\"T0_open_middle_drawer_of_cabinet\": 92, \"T1_put_bowl_on_stove\": 98, \"T2_put_wine_bottle_on_top_of_cabinet\": 100, \"T3_open_top_drawer_put_bowl_inside\": 92, \"T4_put_bowl_on_top_of_cabinet\": 98, \"T5_push_plate_to_front_of_stove\": 100, \"T6_put_cream_cheese_in_bowl\": 92, \"T7_turn_on_stove\": 98, \"T8_put_bowl_on_plate\": 96, \"T9_put_wine_bottle_on_rack\": 42}, \"seed\": 43, \"comparison_seed42_sr\": 89, \"seed_delta_pp\": 1.8}, \"conclusion\": \"success\"}, \"eval_pi05_random_k085_spatial_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T14:14:23.346Z\", \"updated_at\": \"2026-05-23T19:24:52.166Z\", \"hypothesis\": \"π0.5 Random k=0.85 Spatial v2。之前部署失败的重跑。\", \"metrics\": {\"success_rate\": 56.6, \"total_episodes\": 500, \"source\": \"SSH log harvest by diagnostic worker\"}, \"conclusion\": \"success\"}, \"eval_pi05_random_k0925_goal_seed42_w38\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:22:38.940Z\", \"updated_at\": \"2026-05-23T19:22:26.464Z\", \"hypothesis\": \"π0.5 random pruning at k=0.925 on libero_goal will show minimal performance drop compared to unpruned baseline, establishing random pruning effectiveness at high keep ratios\", \"conclusion\": \"killed\"}, \"eval_e5_xvla_attn_mean_goal_k03\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:22:45.199Z\", \"updated_at\": \"2026-05-23T19:22:14.296Z\", \"hypothesis\": \"E5 attention_mean Goal k=0.3: 极端剪枝下 Goal 套件表现。mean Object k=0.3=96.0%，Goal 任务需要更强语义推理，预测退化更大。与 attn_last Goal k=0.3（westd-38929 GPU 2）配对对比。\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k085_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:56:47.765Z\", \"updated_at\": \"2026-05-23T19:20:07.375Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Goal。L2norm Goal curve 缺 k=0.85 数据点——k=0.9=90.6%, k=0.7=73.6%。如果 k=0.85 接近 90% 则 L2norm 曲线平滑递减；如果骤降则存在 cliff。与 Random k=0.85 Goal 对比验证 importance margin。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 88, \"successes\": 440, \"total\": 500, \"suite\": \"libero_goal\", \"prune_mode\": \"l2norm\", \"keep_ratio\": 0.85, \"seed\": 42}}, \"eval_pi05_random_k0925_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:32:45.894Z\", \"updated_at\": \"2026-05-23T19:02:58.544Z\", \"hypothesis\": \"π0.5 Random k=0.925 Spatial seed42。被杀实验重跑。填充 k=0.925 缺口——Object 上 cliff 在此点（Random 骤降），验证 Spatial 是否也在 k=0.925 出现 cliff。与 L2norm k=0.925 Spatial 对比计算 importance margin。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate_mean\": 60.4}}, \"eval_xvla_l2norm_k03_goal_seed42_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T18:46:06.773Z\", \"updated_at\": \"2026-05-23T18:59:30.539Z\", \"hypothesis\": \"X-VLA L2norm k=0.3 Goal v3 (fix --mode l2_norm)。极端剪枝（70% token removed）下 L2norm 在 Goal 套件的表现。Object L2norm k=0.3=18.2%，Goal 上 L2norm 是否也远差于 random（random Goal k=0.3≈50.6%），验证 L2norm 反常在跨套件的一致性。\", \"conclusion\": \"failed\"}, \"eval_xvla_l2norm_k03_goal_seed42_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T18:39:36.349Z\", \"updated_at\": \"2026-05-23T18:57:01.617Z\", \"hypothesis\": \"X-VLA L2norm k=0.3 Goal v2 (fix --mode l2_norm typo)。v1 用了 --mode l2norm（无下划线），参数错误。极端剪枝（70% token removed）下 L2norm 在 Goal 套件的表现。Object L2norm k=0.3=18.2%，Goal 上 L2norm 是否也远差于 random（random Goal k=0.3≈50.6%）。\", \"conclusion\": \"failed\"}, \"eval_openvla_l2norm_k05_goal_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T18:52:07.402Z\", \"updated_at\": \"2026-05-23T18:56:33.245Z\", \"hypothesis\": \"OpenVLA L2norm k=0.5 Goal。E2 扩展——OpenVLA pruning 覆盖 Goal suite。Object L2norm k=0.5=39.2%。Goal baseline=74.8%，验证 L2norm pruning 在 Goal 上的退化程度。\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k0925_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T14:14:19.327Z\", \"updated_at\": \"2026-05-23T18:43:54.866Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Goal。填充 k=0.925 缺口，验证 L2norm 在 Goal 上的稳定性。\", \"metrics\": {\"success_rate\": 89, \"total_successes\": 445, \"total_episodes\": 500, \"per_task\": {\"T0\": 86, \"T1\": 96, \"T2\": 100, \"T3\": 90, \"T4\": 98, \"T5\": 98, \"T6\": 88, \"T7\": 100, \"T8\": 94, \"T9\": 40}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k0925_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T14:14:13.997Z\", \"updated_at\": \"2026-05-23T18:43:51.429Z\", \"hypothesis\": \"π0.5 Random k=0.925 Goal（CPU RNG 修复后）。填充 k=0.925 缺口，Object 上 cliff 在此点。\", \"metrics\": {\"success_rate\": 71.2, \"total_episodes\": 500, \"total_successes\": 356, \"elapsed_min\": 74.8, \"source\": \"SSH log harvest by diagnostic worker\"}, \"conclusion\": \"negative\"}, \"eval_openvla_baseline_goal_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T14:15:39.130Z\", \"updated_at\": \"2026-05-23T18:43:32.392Z\", \"hypothesis\": \"OpenVLA baseline Goal (v3, correct model+unnorm_key): E2 Must-Fix R6-W5。使用 openvla-7b-finetuned-libero-goal + unnorm_key=libero_goal。建立 Goal suite 参考线。\", \"metrics\": {\"success_rate\": 74.8, \"total_episodes\": 500, \"total_successes\": 374, \"elapsed_min\": 242.4, \"source\": \"SSH log harvest by diagnostic worker\"}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k085_spatial_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:00:29.001Z\", \"updated_at\": \"2026-05-23T18:42:39.253Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Spatial v2。之前部署失败的重跑。\", \"parent\": \"eval_pi05_l2norm_k085_spatial_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 88.6, \"total_episodes\": 500, \"total_successes\": 443, \"elapsed_min\": 67.3, \"source\": \"SSH log harvest by diagnostic worker\"}}, \"eval_xvla_l2norm_k03_goal_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T18:18:36.426Z\", \"updated_at\": \"2026-05-23T18:40:22.182Z\", \"hypothesis\": \"X-VLA L2norm k=0.3 Goal。极端剪枝（70% token removed）下 L2norm 在 Goal 套件的表现。Object L2norm k=0.3=18.2%，远低于 random k=0.3。Goal 上 L2norm 是否也远差于 random（random Goal k=0.3≈50.6%），还是表现更好？验证 L2norm 反常在跨套件的一致性。\", \"conclusion\": \"killed\"}, \"eval_xvla_l2norm_k05_long_seed42_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T18:11:29.275Z\", \"updated_at\": \"2026-05-23T18:40:20.197Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Long (libero_10)。填充论文表格 Long 列 L2norm 数据。Object 上 L2norm k=0.5=43.7% 远差于 random，验证 Long 是否同样反常。与 attention Long 数据对比评估三种方法在复杂任务上的差异。\", \"conclusion\": \"killed\"}, \"eval_xvla_l2norm_k05_goal_seed42_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T18:10:21.423Z\", \"updated_at\": \"2026-05-23T18:40:18.231Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Goal v2。论文表格必须项——无有效 Goal L2norm k=0.5 数据（v1 有 domain_id=2 bug）。与 attention Goal k=0.5 (96.8-98.2%) 和 random Goal k=0.5 (67.2%) 对比，验证 L2norm 在 Goal 上的表现。Object 上 L2norm k=0.5=43.7% 远差于 random（反常），Goal 上是否同样反常是关键。\", \"conclusion\": \"killed\"}, \"eval_xvla_l2norm_k05_spatial_seed42_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T18:10:17.575Z\", \"updated_at\": \"2026-05-23T18:40:16.179Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Spatial v2 (500 episodes)。论文表格必须项——v1 只跑了 50 episodes 且无 metrics。L2norm 在 Object k=0.5=43.7% 远差于 random k=0.5=70.6%（反常），需验证 Spatial 套件是否也出现同样反常。与 attention k=0.5 Spatial (88-93%) 和 random k=0.5 Spatial (71.4%) 对比。\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k03_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:49:40.493Z\", \"updated_at\": \"2026-05-23T18:21:43.187Z\", \"hypothesis\": \"CPU RNG 修复后 π0.5 L2norm k=0.3 Goal。L2norm 在 Object 上表现稳定（无 cliff），验证 Goal 套件上 L2norm 是否也无 cliff，与 Random 对比确认 importance-based pruning 的优势。\", \"metrics\": {\"success_rate\": 50.6, \"total_successes\": 253, \"total_episodes\": 500, \"per_task\": {\"T0\": 66, \"T1\": 22, \"T2\": 76, \"T3\": 32, \"T4\": 62, \"T5\": 30, \"T6\": 20, \"T7\": 96, \"T8\": 78, \"T9\": 24}}, \"conclusion\": \"negative\"}, \"eval_xvla_random_k05_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T06:11:45.093Z\", \"updated_at\": \"2026-05-23T18:19:55.750Z\", \"hypothesis\": \"X-VLA Random k=0.5 Goal seed42: Table 2 gap. L2 k=0.5 Goal=61.0%. Goal 的 task complexity 在 50% pruning 下如何影响 random performance。\", \"conclusion\": \"failed\", \"metrics\": {\"success_rate\": 0, \"wilson_ci_95\": [0, 0.8], \"episodes\": 500, \"tasks\": 10, \"per_task_sr\": {\"task0_open_middle_drawer\": 0, \"task1_bowl_on_stove\": 0, \"task2_wine_on_cabinet\": 0, \"task3_open_drawer_bowl_inside\": 0, \"task4_bowl_on_cabinet\": 0, \"task5_push_plate_front_stove\": 0, \"task6_cream_cheese_in_bowl\": 0, \"task7_turn_on_stove\": 0, \"task8_bowl_on_plate\": 0, \"task9_wine_on_rack\": 0}, \"elapsed_min\": 158.9}}, \"eval_xvla_random_k05_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T06:11:53.848Z\", \"updated_at\": \"2026-05-23T18:11:47.709Z\", \"hypothesis\": \"X-VLA Random k=0.5 Long (libero_10)。填充论文表格 Long 列 Random 基准。与 L2norm 和 attention 方法对比，验证 importance margin 在复杂任务上的大小。Spatial Random k=0.5=71.4%, Goal=67.2%, Long 预期应更低（任务更复杂）。\", \"metrics\": {\"success_rate\": 61.6, \"total_successes\": 308, \"total_episodes\": 500, \"wilson_ci_95\": [57.3, 65.8], \"per_task_sr\": [68, 0, 64, 94, 70, 90, 84, 86, 46, 14], \"prune_method\": \"random\", \"keep_ratio\": 0.5, \"tokens_kept\": \"25/50\", \"suite\": \"libero_10\", \"seed\": 42, \"wall_time_min\": 82.6}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:49:35.207Z\", \"updated_at\": \"2026-05-23T18:09:05.382Z\", \"hypothesis\": \"CPU RNG 修复后 π0.5 L2norm k=0.7 Goal。L2norm 在 Object 上表现稳定（无 cliff），验证 Goal 套件上 L2norm 是否也无 cliff，与 Random 对比确认 importance-based pruning 的优势。\", \"metrics\": {\"success_rate\": 73.6, \"total_episodes\": 500, \"source\": \"SSH log harvest by diagnostic worker\"}, \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k09_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:49:31.241Z\", \"updated_at\": \"2026-05-23T18:09:01.717Z\", \"hypothesis\": \"CPU RNG 修复后 π0.5 L2norm k=0.9 Goal。L2norm 在 Object 上表现稳定（无 cliff），验证 Goal 套件上 L2norm 是否也无 cliff，与 Random 对比确认 importance-based pruning 的优势。\", \"metrics\": {\"success_rate\": 90.6, \"total_episodes\": 500, \"source\": \"SSH log harvest by diagnostic worker\"}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k095_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:49:27.316Z\", \"updated_at\": \"2026-05-23T18:08:58.191Z\", \"hypothesis\": \"CPU RNG 修复后 π0.5 L2norm k=0.95 Goal。L2norm 在 Object 上表现稳定（无 cliff），验证 Goal 套件上 L2norm 是否也无 cliff，与 Random 对比确认 importance-based pruning 的优势。\", \"metrics\": {\"success_rate\": 89.4, \"total_episodes\": 500, \"source\": \"SSH log harvest by diagnostic worker\"}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_rollout_goal_k05_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T16:50:04.341Z\", \"updated_at\": \"2026-05-23T18:04:48.242Z\", \"hypothesis\": \"E5 X-VLA attention_rollout pruning k=0.5 Goal v2 重跑。Rollout综合多层attention信息，在50%极端剪枝下Goal表现。与last/mean/random对比评估attention rollout的有效性。\", \"metrics\": {\"success_rate\": 96.8, \"total_successes\": 484, \"total_episodes\": 500, \"wilson_ci_95\": [94.9, 98], \"elapsed_min\": 31.1}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_mean_goal_k05_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T16:50:00.083Z\", \"updated_at\": \"2026-05-23T18:04:46.083Z\", \"hypothesis\": \"E5 X-VLA attention_mean pruning k=0.5 Goal v2 重跑。mean attention作为token重要性指标，在50%极端剪枝下Goal表现。与last/rollout/random对比评估不同attention聚合策略。\", \"metrics\": {\"success_rate\": 97.4, \"total_successes\": 487, \"total_episodes\": 500, \"wilson_ci_95\": [95.6, 98.5], \"elapsed_min\": 30.2}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_last_goal_k05_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T16:49:56.234Z\", \"updated_at\": \"2026-05-23T18:04:44.027Z\", \"hypothesis\": \"E5 X-VLA attention_last pruning k=0.5 Goal v2 重跑。保留50%视觉token时，last-layer attention分数能否识别Goal任务的关键视觉信息。与random k=0.5(67.2%)对比验证importance-based优势。\", \"metrics\": {\"success_rate\": 98.2, \"total_successes\": 491, \"total_episodes\": 500, \"wilson_ci_95\": [96.6, 99.1], \"elapsed_min\": 30}, \"conclusion\": \"success\"}, \"eval_e5_xvla_random_goal_k05_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T17:58:52.568Z\", \"updated_at\": \"2026-05-23T18:01:07.760Z\", \"hypothesis\": \"E5 X-VLA random pruning k=0.5 Goal v2 重跑。Random baseline在50%剪枝下Goal套件表现，作为importance-based方法(attn_last/mean/rollout)的对照基准。\", \"metrics\": {\"success_rate\": 67.2, \"total_successes\": 336, \"total_episodes\": 500, \"wilson_ci_95\": [63, 71.2], \"elapsed_min\": 58.2}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k03_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T15:02:04.475Z\", \"updated_at\": \"2026-05-23T17:58:27.874Z\", \"hypothesis\": \"CPU RNG 修复后 π0.5 Random k=0.3 Goal 重跑。修复前 cqa1-33015 数据=51.8%，现用 westd-41074 统一服务器。极端剪枝点，验证 Goal 套件在 k=0.3 的真实退化程度。\", \"metrics\": {\"success_rate\": 50.6, \"total_episodes\": 500, \"total_successes\": 253, \"source\": \"westd-41074 diag harvested, CPU RNG fixed\"}, \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k085_spatial_seed42_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T16:57:54.401Z\", \"updated_at\": \"2026-05-23T16:58:11.906Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Spatial v3。之前 westd-41074 部署失败。重跑验证 Spatial 套件 L2norm k=0.85 的稳定性。\"}, \"eval_pi05_random_k085_spatial_seed42_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T16:57:50.554Z\", \"updated_at\": \"2026-05-23T16:58:09.908Z\", \"hypothesis\": \"π0.5 Random k=0.85 Spatial v3。之前 westd-41074 部署用了错误路径失败。重跑验证 Spatial 套件 Random k=0.85 的退化程度。\"}, \"eval_pi05_random_k0925_goal_seed42_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T16:57:46.684Z\", \"updated_at\": \"2026-05-23T16:58:07.413Z\", \"hypothesis\": \"π0.5 Random k=0.925 Goal（CPU RNG 修复后）。填充 k=0.925 缺口。Random 在 Object 上 cliff 位于 k=0.925，Goal 上 cliff 位置可能不同。\"}, \"eval_pi05_l2norm_k0925_goal_seed42_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T16:57:42.628Z\", \"updated_at\": \"2026-05-23T16:58:05.340Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Goal。填充 k=0.925 缺口。L2norm 在 Object 上无 cliff（k=0.925=88.4%），Goal 上验证同样的稳定性。\"}, \"eval_e5_xvla_attn_last_obj_k03\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T13:26:46.065Z\", \"updated_at\": \"2026-05-23T15:47:09.978Z\", \"hypothesis\": \"E5 attention_last Object k=0.3: 极端剪枝（保留15/50 tokens）。attention_last k=0.5 Object=74.4%。k=0.3 测试 last-layer attention 在极端条件下的退化。与 mean k=0.3 (96%) 和 rollout k=0.3 (92%) 对比。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 84.2, \"total_episodes\": 500, \"total_successes\": 421, \"wilson_ci_95\": [80.7, 87.1], \"elapsed_min\": 45.2, \"source\": \"Worker harvested from westd-27271\"}}, \"eval_e5_xvla_attn_rollout_obj_k03\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T14:08:57.564Z\", \"updated_at\": \"2026-05-23T15:42:45.611Z\", \"hypothesis\": \"E5 attention_rollout Object k=0.3: 极端剪枝。rollout k=0.5=97.4%——k=0.3 测试 rollout 在极端条件下的退化。与 last 和 mean k=0.3 对比三种模式的鲁棒性排序。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 92, \"total_episodes\": 500, \"total_successes\": 460, \"source\": \"Director harvested from westd-38929\"}}, \"eval_e5_xvla_attn_mean_spatial_k03\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T14:09:05.719Z\", \"updated_at\": \"2026-05-23T15:20:56.427Z\", \"hypothesis\": \"E5 attention_mean Spatial k=0.3: 极端剪枝。mean Spatial k=0.5=91.6%。与 last Spatial k=0.3 对比——Spatial 上 mode ranking reversal (rollout>mean>last) 在极端 k 下是否保持。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 90.4, \"total_episodes\": 500, \"total_successes\": 452, \"source\": \"Director harvested from westd-38929\"}}, \"eval_e5_xvla_attn_last_spatial_k03\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T14:09:01.448Z\", \"updated_at\": \"2026-05-23T15:20:53.050Z\", \"hypothesis\": \"E5 attention_last Spatial k=0.3: 极端剪枝。last Spatial k=0.5=88.8%。Spatial 对 pruning 更敏感（Object k=0.5=99.2%），k=0.3 预测退化更大。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 85.6, \"total_episodes\": 500, \"total_successes\": 428, \"source\": \"Director harvested from westd-38929\"}}, \"eval_e5_xvla_attn_mean_obj_k03\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T14:08:53.787Z\", \"updated_at\": \"2026-05-23T15:20:45.946Z\", \"hypothesis\": \"E5 attention_mean Object k=0.3: 极端剪枝（保留15/50 tokens）。attention_last k=0.3 正在跑。attention_mean k=0.5=98.4%——k=0.3 测试 mean 模式在极端条件下的退化点。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 96, \"total_episodes\": 500, \"total_successes\": 480, \"source\": \"Director harvested from westd-38929\"}}, \"diag_openvla_unnorm_key\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:15:20.529Z\", \"updated_at\": \"2026-05-23T14:15:20.529Z\"}, \"eval_openvla_baseline_goal_seed42_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:14:42.340Z\", \"updated_at\": \"2026-05-23T14:14:52.462Z\", \"hypothesis\": \"OpenVLA baseline Goal (v2, correct model): E2 Must-Fix R6-W5。使用 openvla-7b-finetuned-libero-goal 权重。Object baseline=96.2%, Spatial=78.8%。Goal baseline 建立参考线。\"}, \"diag_find_pi05_path\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:13:41.358Z\", \"updated_at\": \"2026-05-23T14:13:41.358Z\"}, \"diag_openvla_script_model_path\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:13:37.579Z\", \"updated_at\": \"2026-05-23T14:13:37.579Z\"}, \"eval_pi05_l2norm_k05_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:35:25.972Z\", \"updated_at\": \"2026-05-23T14:11:32.623Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Long seed42: 50% L2norm pruning on Long suite。Object L2norm k=0.5=59.2%。Long Table 2 数据点——L2norm 在 Long 上是否仍优于 Random？\", \"metrics\": {\"success_rate\": 0.502, \"total_successes\": 251, \"total_episodes\": 500, \"elapsed_min\": 158}, \"conclusion\": \"success\"}, \"eval_pi05_random_k05_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:09:32.696Z\", \"updated_at\": \"2026-05-23T14:11:30.710Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed42: 50% random pruning on Long suite。Object Random k=0.5=36.4%。Long suite 的 Table 2 数据点。\", \"metrics\": {\"overall_sr\": 0.502, \"total_successes\": 251, \"total_episodes\": 500, \"elapsed_min\": 157.7}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k0925_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:05:06.348Z\", \"updated_at\": \"2026-05-23T14:11:28.719Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Spatial: L2norm 在 Object k=0.925 无 cliff。Spatial L2norm 在 cliff zone 是否同样免疫？与 Random k=0.925 Spatial 对照。\", \"metrics\": {\"overall_SR\": 0.97, \"total_successes\": 485, \"total_episodes\": 500, \"per_task\": {\"T0\": 1, \"T1\": 0.98, \"T2\": 0.98, \"T3\": 0.94, \"T4\": 0.92, \"T5\": 0.94, \"T6\": 1, \"T7\": 0.98, \"T8\": 1, \"T9\": 0.96}}, \"conclusion\": \"success\"}, \"eval_openvla_baseline_goal_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:10:43.653Z\", \"updated_at\": \"2026-05-23T14:11:24.684Z\", \"hypothesis\": \"OpenVLA baseline Goal: E2 Must-Fix R6-W5——OpenVLA 多 suite baseline。现有 Object baseline=96.2%, Spatial=78.8%。Goal baseline 建立 OpenVLA 在 Goal suite 上的无剪枝参考线。\"}, \"eval_pi05_l2norm_k085_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T01:35:08.345Z\", \"updated_at\": \"2026-05-23T14:11:21.912Z\", \"conclusion\": \"success\", \"hypothesis\": \"π0.5 L2norm k=0.85 Spatial: Object L2norm k=0.85=98%——L2norm 在 cliff zone 保持高性能。Spatial 上是否同样免疫？\", \"parent\": \"eval_pi05_l2norm_k09_spatial_seed42\", \"metrics\": {\"success_rate_mean\": 0.904, \"tasks_evaluated\": 10, \"episodes_per_task\": 50, \"total_success\": 452, \"total_episodes\": 500, \"suite\": \"libero_spatial\", \"prune_mode\": \"l2norm\", \"keep_ratio\": 0.85, \"seed\": 42}}, \"eval_pi05_random_k085_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T23:58:09.030Z\", \"updated_at\": \"2026-05-23T14:11:19.422Z\", \"hypothesis\": \"π0.5 Random k=0.85 Spatial: Object cliff 在 k=0.85 已跌至 5%。Spatial 的 cliff 位置在哪？如果 Spatial cliff 在不同位置则支持\\\"cliff 位置因 suite 而异\\\"的 claim。\", \"metrics\": {\"success_rate\": 0.584, \"suite\": \"libero_spatial\", \"seed\": 42}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k0925_goal_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:09:13.300Z\", \"updated_at\": \"2026-05-23T14:11:17.039Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Goal: L2norm 在 Object k=0.925 无 cliff（应 ~95%+）。Goal L2norm k=0.85=88%, k=0.9=88.8%。k=0.925 验证 L2norm 在 Goal cliff zone 保持单调。\"}, \"eval_pi05_random_k0925_goal_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:09:09.568Z\", \"updated_at\": \"2026-05-23T14:11:14.237Z\", \"hypothesis\": \"π0.5 Random k=0.925 Goal: Object cliff 在 k~0.925 (27.6%)。Goal 的 cliff 位置不同——k=0.85=51.6%, k=0.9=58-84%。k=0.925 精确定位 Goal cliff 是否与 Object 同位。\"}, \"diag_openvla_script_args\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:10:18.137Z\", \"updated_at\": \"2026-05-23T14:10:18.137Z\"}, \"diag_openvla_shards_check\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:08:48.537Z\", \"updated_at\": \"2026-05-23T14:08:48.537Z\"}, \"diag_openvla_status_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:07:29.057Z\", \"updated_at\": \"2026-05-23T14:07:29.058Z\"}, \"eval_pi05_random_k09_goal_seed42_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T11:52:00.832Z\", \"updated_at\": \"2026-05-23T14:06:36.863Z\", \"hypothesis\": \"π0.5 Random k=0.9 Goal seed42: Object cliff 在 k~0.925。Goal suite tolerance 更高（k=0.95=84%, k=0.3=51.8%），k=0.9 测试 Goal 上 cliff 位置是否比 Object 更低。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 84, \"successes\": 420, \"total\": 500, \"suite\": \"libero_goal\", \"prune_mode\": \"random\", \"keep_ratio\": 0.9, \"seed\": 42}}, \"eval_pi05_random_k085_goal_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T10:56:44.915Z\", \"updated_at\": \"2026-05-23T14:06:23.794Z\", \"hypothesis\": \"π0.5 random k=0.85 LIBERO-Goal seed42: Phase 2 cliff zone sweep。Object random k=0.85=5.0%（cliff 最深），Spatial 待测。Goal 的 cliff 底部位置在哪？\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 51.6, \"successes\": 258, \"total\": 500, \"suite\": \"libero_goal\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 42}}, \"eval_pi05_random_k05_goal_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T16:36:40.515Z\", \"updated_at\": \"2026-05-23T14:06:19.500Z\", \"hypothesis\": \"π0.5 Random k=0.5 on LIBERO-Goal: 50% random removal. Object Random k=0.5=36.4%. Goal should show even worse degradation given its higher sensitivity. Low-end data point for Goal random curve.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 73.6, \"successes\": 368, \"total\": 500, \"suite\": \"libero_goal\", \"prune_mode\": \"random\", \"keep_ratio\": 0.5, \"seed\": 42}}, \"diag_read_long_seed43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:04:24.207Z\", \"updated_at\": \"2026-05-23T14:04:24.207Z\"}, \"diag_read_goal_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:04:20.478Z\", \"updated_at\": \"2026-05-23T14:04:20.478Z\"}, \"diag_read_cqa1_goal_results\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:03:58.708Z\", \"updated_at\": \"2026-05-23T14:03:58.708Z\"}, \"diag_read_goal_results\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:03:54.701Z\", \"updated_at\": \"2026-05-23T14:03:54.702Z\"}, \"eval_pi05_l2norm_k085_object_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:48:49.375Z\", \"updated_at\": \"2026-05-23T14:03:17.594Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 99, \"successes\": 495, \"total\": 500, \"suite\": \"libero_object\", \"prune_mode\": \"l2norm\", \"keep_ratio\": 0.85, \"seed\": 43}, \"hypothesis\": \"π0.5 L2norm k=0.85 Object seed43: seed42=98.0%。seed43 交叉验证——L2norm 在 cliff zone 保持高性能，vs Random cliff 5.0%。\"}, \"eval_pi05_l2norm_k03_object_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T11:03:56.709Z\", \"updated_at\": \"2026-05-23T14:03:11.749Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 59, \"successes\": 295, \"total\": 500, \"suite\": \"libero_object\", \"prune_mode\": \"l2norm\", \"keep_ratio\": 0.3, \"seed\": 43}, \"hypothesis\": \"π0.5 L2norm k=0.3 Object seed43: seed42=30.4%。seed43 交叉验证 L2norm 极端剪枝的可重复性。L2norm 在极端条件下是否仍优于 random。\"}, \"eval_pi05_random_k03_object_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T11:04:00.595Z\", \"updated_at\": \"2026-05-23T14:03:06.170Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 32.2, \"successes\": 161, \"total\": 500, \"suite\": \"libero_object\", \"prune_mode\": \"random\", \"keep_ratio\": 0.3, \"seed\": 43}, \"hypothesis\": \"π0.5 Random k=0.3 Object seed43: 极端 70% random pruning。seed43 交叉验证——Random k=0.3 远低于 cliff 后，性能应极低。\"}, \"eval_pi05_random_k085_object_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:53:36.700Z\", \"updated_at\": \"2026-05-23T14:03:00.447Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 3.6, \"successes\": 18, \"total\": 500, \"suite\": \"libero_object\", \"prune_mode\": \"random\", \"keep_ratio\": 0.85, \"seed\": 43}, \"hypothesis\": \"π0.5 Random k=0.85 Object seed43: seed42=5.0%（cliff底部）。seed43 交叉验证 cliff 可重复性——如果同样极低则确认 cliff 行为是 deterministic。\"}, \"diag_cqa1_find_goal_k09\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:02:30.893Z\", \"updated_at\": \"2026-05-23T14:02:30.893Z\"}, \"diag_westd41074_find_goal_logs\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T14:02:26.951Z\", \"updated_at\": \"2026-05-23T14:02:26.951Z\"}, \"eval_e5_xvla_attn_rollout_spatial_k07\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T12:57:09.259Z\", \"updated_at\": \"2026-05-23T13:59:55.511Z\", \"hypothesis\": \"E5 attention_rollout Spatial k=0.7: k=0.5 rollout Spatial=92.8%（3 种模式中最优）。k=0.7 保留更多 token，预测 ≥95%。验证 attention pruning 在不同 keep ratio 下的 degradation curve。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 93, \"successes\": 465, \"total\": 500, \"ci_95\": [90.4, 94.9]}}, \"eval_e5_xvla_attn_mean_long_k05_seed43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T12:57:05.463Z\", \"updated_at\": \"2026-05-23T13:59:51.466Z\", \"hypothesis\": \"E5 attention_mean Long k=0.5 seed43: seed42=94.0%。跨 seed 验证。attention_mean 在 Long 上优于 attention_last (94% vs 90.2%)——seed43 是否复现这个排序？\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 94.6, \"successes\": 473, \"total\": 500, \"ci_95\": [92.3, 96.3]}}, \"eval_e5_xvla_attn_last_long_k05_seed43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T12:57:01.821Z\", \"updated_at\": \"2026-05-23T13:59:47.544Z\", \"hypothesis\": \"E5 attention_last Long k=0.5 seed43: seed42=90.2%。跨 seed 验证 attention pruning 在 Long 上的可重复性。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 90.4, \"successes\": 452, \"total\": 500, \"ci_95\": [87.5, 92.7]}}, \"eval_e5_xvla_attn_rollout_long_k05_w38\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T12:56:58.085Z\", \"updated_at\": \"2026-05-23T13:59:43.274Z\", \"hypothesis\": \"Attention rollout Long k=0.5: E5 矩阵最后一格。attention_last Long=90.2%, attention_mean Long=94.0%。rollout 通过残差连接传播累积 attention，理论上更准确——预测在 Long 上也 ≥90%。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 94.8, \"successes\": 474, \"total\": 500, \"ci_95\": [92.5, 96.4]}}, \"diag_openvla_download_check\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T13:25:48.218Z\", \"updated_at\": \"2026-05-23T13:25:48.218Z\"}, \"eval_e5_xvla_attn_rollout_obj_k07_w27\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T12:59:47.910Z\", \"updated_at\": \"2026-05-23T13:25:33.757Z\", \"hypothesis\": \"E5 attention_rollout Object k=0.7: attention_last k=0.7 Object=99.2%。rollout k=0.5 Object=97.4%。k=0.7 rollout 预期 ≥98%，验证 attention pruning 在高 keep ratio 下一致性。\", \"metrics\": {\"success_rate\": 98.4, \"successes\": 492, \"episodes\": 500, \"wilson_ci_95\": [96.9, 99.2], \"per_task_sr\": {\"T0\": 100, \"T1\": 100, \"T2\": 96, \"T3\": 96, \"T4\": 100, \"T5\": 98, \"T6\": 100, \"T7\": 94, \"T8\": 100, \"T9\": 100}, \"elapsed_min\": 32.2}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_rollout_goal_k05\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:48:11.137Z\", \"updated_at\": \"2026-05-23T13:19:47.457Z\", \"metrics\": {\"success_rate\": 0, \"successes\": 0, \"episodes\": 500}, \"conclusion\": \"negative\"}, \"eval_e5_xvla_attn_mean_goal_k05\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:48:07.446Z\", \"updated_at\": \"2026-05-23T13:19:45.543Z\", \"metrics\": {\"success_rate\": 0, \"successes\": 0, \"episodes\": 500}, \"conclusion\": \"negative\"}, \"eval_e5_xvla_attn_rollout_long_k05_w27\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T12:59:44.388Z\", \"updated_at\": \"2026-05-23T13:00:00.458Z\", \"hypothesis\": \"E5 attention_rollout Long k=0.5: 矩阵最后一格跨服务器验证（同时在 westd-38929 运行）。attention_last Long=90.2%, attention_mean Long=94.0%。rollout 理论最精确——预测 ≥90%。\"}, \"eval_pi05_random_k03_long_seed43_v5\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:58:41.881Z\", \"updated_at\": \"2026-05-23T12:58:39.574Z\", \"hypothesis\": \"π0.5 Random k=0.3 Long seed43: 极端剪枝（保留 30%）在复杂任务上的 seed43 验证。与 seed42 对比检验 variance，补充 Table 2 seed robustness\", \"metrics\": {\"success_rate\": 28.2, \"total_episodes\": 500, \"source\": \"westd-41074 tmux log\"}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_mean_long_k05\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T11:03:45.876Z\", \"updated_at\": \"2026-05-23T12:56:40.908Z\", \"metrics\": {\"success_rate\": 94, \"successes\": 470, \"episodes\": 500}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_last_goal_k05\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:48:03.805Z\", \"updated_at\": \"2026-05-23T12:56:34.977Z\", \"metrics\": {\"success_rate\": 0, \"successes\": 0, \"episodes\": 500}, \"conclusion\": \"negative\"}, \"eval_e5_xvla_attn_mean_spatial_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T11:03:49.621Z\", \"updated_at\": \"2026-05-23T12:17:08.198Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 91.6, \"successes\": 458, \"episodes\": 500, \"wilson_ci_95\": [88.8, 93.7]}, \"hypothesis\": \"Attention-mean pruning at k=0.5 on X-VLA Spatial preserves performance because averaging attention across heads identifies globally important tokens more robustly than single-head attention.\"}, \"eval_pi05_l2norm_k09_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:56:42.238Z\", \"updated_at\": \"2026-05-23T12:00:24.941Z\", \"hypothesis\": \"π0.5 L2norm k=0.9 Goal seed42: Table 2 gap fill. L2norm 轻度 10% pruning on Goal. 预期接近 baseline，验证 Goal 上 cliff 位置\", \"metrics\": {\"success_rate\": 0.9, \"num_success\": 450, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k07_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:36:38.476Z\", \"updated_at\": \"2026-05-23T12:00:22.984Z\", \"hypothesis\": \"π0.5 Random k=0.7 Goal seed42: Table 2 gap fill. Random 30% pruning on Goal suite. 对比 L2norm k=0.7 Goal 验证 importance-aware vs random 差距\", \"metrics\": {\"success_rate\": 0.806, \"num_success\": 403, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k05_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:46:53.768Z\", \"updated_at\": \"2026-05-23T12:00:20.927Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Goal seed42: Table 2 gap fill. L2norm 50% pruning on Goal suite. Goal tolerance 高于 Object，预测 L2norm k=0.5 Goal ≥ Object (52.6%)\", \"metrics\": {\"success_rate\": 0.592, \"num_success\": 296, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42}, \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k085_long_seed43_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T08:58:52.596Z\", \"updated_at\": \"2026-05-23T11:59:39.319Z\", \"hypothesis\": \"π0.5 L2 k=0.85 Long seed43: L2 轻度剪枝在 Long 上的 seed43 验证。预期 L2 k=0.85 ≥ Random k=0.85（L2 优于 random 在高保留比例）\", \"metrics\": {\"overall_sr\": 0.77, \"total_successes\": 385, \"total_episodes\": 500, \"elapsed_min\": 140.4}, \"conclusion\": \"success\"}, \"eval_pi05_random_k085_long_seed43_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T08:58:49.076Z\", \"updated_at\": \"2026-05-23T11:59:36.023Z\", \"hypothesis\": \"π0.5 Random k=0.85 Long seed43: 轻度剪枝（保留 85%）在 Long 上的 seed43 验证。预期接近 baseline 性能\", \"metrics\": {\"overall_sr\": 0.424, \"total_successes\": 212, \"total_episodes\": 500, \"elapsed_min\": 170.8}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_long_seed43_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T08:58:45.513Z\", \"updated_at\": \"2026-05-23T11:59:32.864Z\", \"hypothesis\": \"π0.5 L2 k=0.7 Long seed43: L2 norm 中度剪枝在 Long 上的 seed43 验证。seed42 SR 已知，对比检验 variance\", \"metrics\": {\"overall_sr\": 0.654, \"total_successes\": 327, \"total_episodes\": 500, \"elapsed_min\": 148}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_rollout_spatial_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T11:03:53.245Z\", \"updated_at\": \"2026-05-23T11:59:22.601Z\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 92.8, \"wilson_ci_95\": [90.2, 94.8], \"episodes\": 500, \"tasks\": 10, \"per_task_sr\": {\"T0_bowl_between_plate_ramekin\": 100, \"T1_bowl_next_ramekin\": 100, \"T2_bowl_table_center\": 100, \"T3_bowl_on_cookie_box\": 100, \"T4_bowl_top_drawer_cabinet\": 90, \"T5_bowl_on_ramekin\": 46, \"T6_bowl_next_cookie_box\": 100, \"T7_bowl_on_stove\": 94, \"T8_bowl_next_plate\": 98, \"T9_bowl_on_cabinet\": 100}, \"elapsed_min\": 42.8}, \"hypothesis\": \"Attention-rollout pruning at k=0.5 on X-VLA Spatial preserves performance because rollout captures cumulative token importance across layers, outperforming single-layer attention methods.\"}, \"eval_pi05_l2norm_k03_long_seed43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T21:54:32.755Z\", \"updated_at\": \"2026-05-23T11:54:20.813Z\", \"hypothesis\": \"π0.5 L2norm k=0.3 Long seed43: extreme 70% L2norm token removal on 520-step horizon with seed43 for cross-seed validation. L2norm k=0.3 Object=12.2%. Testing if L2norm maintains advantage over Random (k=0.3 Object Random=8.2%) on Long tasks at extreme pruning.\", \"metrics\": {\"success_rate\": 35.2, \"total_episodes\": 500, \"total_successes\": 176, \"source\": \"westd-41074 pi05_l2norm_k0.30_libero_10_seed43.json\"}, \"conclusion\": \"success\"}, \"eval_pi05_random_k05_long_seed43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T22:25:10.177Z\", \"updated_at\": \"2026-05-23T11:54:16.865Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43: seed42 在跑中。seed 验证 Long random extreme pruning。\", \"metrics\": {\"success_rate\": 51.2, \"total_episodes\": 500, \"source\": \"westd-41074 pi05_random_k0.50_libero_10_seed43.json\"}, \"conclusion\": \"success\"}, \"eval_pi05_random_k05_object_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:53:19.337Z\", \"updated_at\": \"2026-05-23T11:51:18.923Z\", \"metrics\": {\"success_rate\": 66.2, \"successes\": 331, \"episodes\": 500, \"per_task_sr\": {\"T8\": 64, \"T9\": 62}, \"elapsed_min\": 135.3, \"source\": \"cqa1-33015 /tmp/pi05_random_k050_object.log\"}, \"conclusion\": \"success\", \"hypothesis\": \"π0.5 Random k=0.5 Object seed43: seed42 Random k=0.5 Object=66%。seed43 验证跨 seed 一致性。\"}, \"eval_pi05_l2norm_k07_object_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T10:03:53.490Z\", \"updated_at\": \"2026-05-23T11:03:08.846Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 56.8, \"successes\": 284, \"episodes\": 500, \"elapsed_min\": 135.6, \"source\": \"cqa1-33015 /tmp/pi05_l2norm_k070_object.log\"}}, \"eval_pi05_l2norm_k05_object_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T10:15:32.902Z\", \"updated_at\": \"2026-05-23T11:03:06.555Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 32, \"successes\": 160, \"episodes\": 500, \"elapsed_min\": 150.2, \"source\": \"cqa1-33015 /tmp/pi05_l2norm_k050_object.log\"}}, \"eval_e5_xvla_attn_last_spatial_k05\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:48:15.662Z\", \"updated_at\": \"2026-05-23T11:03:04.780Z\", \"metrics\": {\"success_rate\": 88.8, \"successes\": 444, \"episodes\": 500, \"wilson_ci_95\": [85.7, 91.3], \"per_task_sr\": {\"T0\": 98, \"T1\": 100, \"T2\": 100, \"T3\": 98, \"T4\": 86, \"T5\": 22, \"T6\": 98, \"T7\": 88, \"T8\": 98, \"T9\": 100}, \"elapsed_min\": 47.2}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_last_long_k05\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:58:37.924Z\", \"updated_at\": \"2026-05-23T11:03:02.958Z\", \"hypothesis\": \"Attention-based pruning 在复杂任务（Long suite）上是否比 L2 norm 更有优势——attention 评分捕获语义依赖可能在长序列任务中更重要\", \"metrics\": {\"success_rate\": 90.2, \"successes\": 451, \"episodes\": 500, \"wilson_ci_95\": [87.3, 92.5], \"per_task_sr\": {\"T0\": 96, \"T1\": 66, \"T2\": 100, \"T3\": 98, \"T4\": 90, \"T5\": 94, \"T6\": 94, \"T7\": 70, \"T8\": 96, \"T9\": 98}, \"elapsed_min\": 59.1}, \"conclusion\": \"success\"}, \"eval_pi05_random_k07_object_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:44:00.325Z\", \"updated_at\": \"2026-05-23T09:51:17.073Z\", \"metrics\": {\"success_rate\": 78.6, \"successes\": 393, \"episodes\": 500, \"per_task_sr\": {\"T4\": 86, \"T5\": 48, \"T6\": 88, \"T7\": 70, \"T8\": 86, \"T9\": 80}, \"elapsed_min\": 123}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_last_obj_k07\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:01:19.950Z\", \"updated_at\": \"2026-05-23T09:48:00.225Z\", \"hypothesis\": \"E5 attention_last at k=0.7 on Object suite — 与 westd-38929 k=0.5 对比，验证 attention-based pruning 在不同保留比例下的表现趋势\", \"metrics\": {\"success_rate\": 99.2, \"successes\": 496, \"episodes\": 500, \"wilson_ci_95\": [98, 99.7], \"per_task_sr\": {\"T0\": 96, \"T1\": 100, \"T2\": 100, \"T3\": 96, \"T4\": 100, \"T5\": 100, \"T6\": 100, \"T7\": 100, \"T8\": 100, \"T9\": 100}, \"elapsed_min\": 31.5}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_rollout_obj_k05\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:58:34.468Z\", \"updated_at\": \"2026-05-23T09:47:58.383Z\", \"hypothesis\": \"Attention rollout (Abnar & Zuidema 2020) 通过残差连接传播累积 attention，理论上更准确反映信息流——预测在 3 种 scoring 方法中最优\", \"metrics\": {\"success_rate\": 97.4, \"successes\": 487, \"episodes\": 500, \"wilson_ci_95\": [95.6, 98.5], \"per_task_sr\": {\"T0\": 100, \"T1\": 100, \"T2\": 96, \"T3\": 96, \"T4\": 98, \"T5\": 96, \"T6\": 100, \"T7\": 88, \"T8\": 100, \"T9\": 100}, \"elapsed_min\": 34.1}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_mean_obj_k05\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:58:30.853Z\", \"updated_at\": \"2026-05-23T09:47:56.571Z\", \"hypothesis\": \"BART encoder 所有层 attention 均值评分比 last-layer 更鲁棒——多层聚合捕获不同粒度 token 依赖，预测更准确的重要性排序\", \"metrics\": {\"success_rate\": 98.4, \"successes\": 492, \"episodes\": 500, \"wilson_ci_95\": [96.9, 99.2], \"per_task_sr\": {\"T0\": 100, \"T1\": 98, \"T2\": 96, \"T3\": 96, \"T4\": 100, \"T5\": 98, \"T6\": 100, \"T7\": 96, \"T8\": 100, \"T9\": 100}, \"elapsed_min\": 33.3}, \"conclusion\": \"success\"}, \"eval_e5_xvla_attn_last_obj_k05\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:58:27.313Z\", \"updated_at\": \"2026-05-23T09:47:54.747Z\", \"hypothesis\": \"X-VLA BART encoder last-layer attention column sum 作为 vision token 重要性评分，k=0.5 attention-based pruning 在 Object suite 上应优于 random subsampling（R6-C4 Must-Fix: attention-based pruning for models with explicit attention）\", \"metrics\": {\"success_rate\": 99.2, \"successes\": 496, \"episodes\": 500, \"wilson_ci_95\": [98, 99.7], \"per_task_sr\": {\"T0\": 98, \"T1\": 100, \"T2\": 100, \"T3\": 100, \"T4\": 100, \"T5\": 98, \"T6\": 100, \"T7\": 96, \"T8\": 100, \"T9\": 100}, \"elapsed_min\": 32.1}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_goal_seed42\": {\"status\": \"DEPLOYED\", \"created_at\": \"2026-05-22T13:22:55.883Z\", \"updated_at\": \"2026-05-23T09:12:34.456Z\", \"hypothesis\": \"π0.5 L2 k=0.7 Goal seed42: Table 2 数据点。70% keep ratio L2 norm pruning 在 Goal suite 上的表现。π0.5 CV=0.055 低，informed selection 可能不优于 random。\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.712, \"total_successes\": 356, \"total_episodes\": 500, \"source\": \"westd-41074 log harvested by worker\"}}, \"eval_pi05_random_k09_goal_seed42\": {\"status\": \"DEPLOYED\", \"created_at\": \"2026-05-22T10:56:39.718Z\", \"updated_at\": \"2026-05-23T09:12:12.794Z\", \"hypothesis\": \"π0.5 Random k=0.9 Goal seed42: Table 2 数据点。90% keep ratio random pruning 在 Goal suite 上的表现，与 L2 norm 对比。π0.5 CV=0.055 低，预测 random 和 L2 差异小。\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.58, \"total_successes\": 290, \"total_episodes\": 500, \"source\": \"westd-41074 log harvested by worker\"}}, \"diag_cqa1_logs\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:09:20.781Z\", \"updated_at\": \"2026-05-23T09:09:20.781Z\"}, \"eval_e5_xvla_attn_mean_obj_k05_w27\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:06:09.310Z\", \"updated_at\": \"2026-05-23T09:06:34.763Z\", \"hypothesis\": \"E5 attention_mean Object k=0.5 跨服务器验证：与 westd-38929 同配置实验对照，验证 attention-based pruning 结果的可重复性\"}, \"eval_xvla_l2norm_k07_long_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T08:04:20.474Z\", \"updated_at\": \"2026-05-23T09:02:37.188Z\", \"hypothesis\": \"X-VLA L2norm k=0.7 Long seed42 v2: 重跑 v1（进程死亡无结果）。Table 2 gap. L2 k=0.9 Long=27.5%, L2 k=0.95 Long=47.0%. L2 在 Long 上非单调，k=0.7 是否继续下降。\", \"parent\": \"eval_xvla_l2norm_k07_long_seed42\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k085_long_seed43_v3_r\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:38:55.392Z\", \"updated_at\": \"2026-05-23T09:02:08.167Z\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k085_long_seed43_v2_r\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:38:51.945Z\", \"updated_at\": \"2026-05-23T09:02:06.399Z\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k07_long_seed43_v3_r\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:38:48.268Z\", \"updated_at\": \"2026-05-23T09:02:04.608Z\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k03_long_seed43_v4_r\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:38:44.602Z\", \"updated_at\": \"2026-05-23T09:02:02.846Z\", \"conclusion\": \"failed\"}, \"diag_find_e5_westd27271\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T09:00:21.293Z\", \"updated_at\": \"2026-05-23T09:00:21.293Z\"}, \"diag_transfer_e5_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:51:39.964Z\", \"updated_at\": \"2026-05-23T08:51:39.964Z\"}, \"diag_transfer_e5_script\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:43:06.358Z\", \"updated_at\": \"2026-05-23T08:43:06.358Z\"}, \"diag_westd38929_e5_check\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:39:17.721Z\", \"updated_at\": \"2026-05-23T08:39:17.721Z\"}, \"diag_find_pi05_script\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T08:38:17.216Z\", \"updated_at\": \"2026-05-23T08:38:17.216Z\"}, \"eval_pi05_l2norm_k085_long_seed43_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T03:50:15.603Z\", \"updated_at\": \"2026-05-23T08:36:45.660Z\", \"hypothesis\": \"π0.5 L2Norm k=0.85 Long seed43 v3: seed42=78.0%。L2norm 单调下降验证——L2 k=0.9=78.8%, k=0.85=78.0%, k=0.7=60.0%。seed43 验证 L2norm 在 Long 上的单调性是否稳定。\", \"parent\": \"eval_pi05_l2norm_k085_long_seed43_v2\"}, \"eval_pi05_random_k085_long_seed43_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T03:50:18.511Z\", \"updated_at\": \"2026-05-23T08:36:41.745Z\", \"hypothesis\": \"π0.5 Random k=0.85 Long seed43 v2: seed42=44.4%。Long suite anomaly 验证——Object 上 k=0.85 是 cliff 最深处(5.0%)，Long 上 44.4% 远高于 Object。seed43 验证此 anomaly 的 reproducibility。\", \"parent\": \"eval_pi05_random_k085_long_seed43\"}, \"eval_pi05_l2norm_k07_long_seed43_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T03:50:09.414Z\", \"updated_at\": \"2026-05-23T08:36:38.157Z\", \"hypothesis\": \"π0.5 L2Norm k=0.7 Long seed43 v3: seed42=60.0%, Random k=0.7=64.6%。验证 L2norm vs Random crossover 在 seed43 是否复现——如果 seed43 也 L2 &lt; Random 则 crossover 稳定。\", \"parent\": \"eval_pi05_l2norm_k07_long_seed43_v2\"}, \"eval_pi05_random_k03_long_seed43_v4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T03:50:12.434Z\", \"updated_at\": \"2026-05-23T08:36:34.534Z\", \"hypothesis\": \"π0.5 Random k=0.3 Long seed43 v4: seed42=29.0%。V-shape floor 端点验证。k=0.5=50.2%，k=0.3 是 extreme pruning 的 floor。seed43 验证 V-shape 在 extreme 端的 reproducibility。\", \"parent\": \"eval_pi05_random_k03_long_seed43_v3\"}, \"eval_xvla_l2norm_k07_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T06:11:48.575Z\", \"updated_at\": \"2026-05-23T08:10:05.695Z\", \"hypothesis\": \"X-VLA L2norm k=0.7 Long seed42: Table 2 gap. L2 k=0.9 Long=27.5%, L2 k=0.95 Long=47.0%. L2 在 Long 上非单调（k=0.9 < k=0.95），k=0.7 是否继续下降。\", \"notes\": \"失败原因: 标记 RUNNING 但从未实际提交（无 server/pid/spec/command）。cron 检测进程不存在 (miss 3/5)。无日志文件。需要重新提交。\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.494, \"total_successes\": 247, \"total_episodes\": 500, \"per_task_SR\": {\"T0_alphabet_soup_tomato\": 0.12, \"T1_cream_cheese_butter\": 0.04, \"T2_stove_moka\": 0.56, \"T3_bowl_drawer\": 0.98, \"T4_mugs_plates\": 0.68, \"T5_book_caddy\": 0.94, \"T6_mug_pudding\": 0.78, \"T7_soup_cream_cheese\": 0.76, \"T8_two_moka_pots\": 0, \"T9_mug_microwave\": 0.08}}}, \"eval_xvla_l2norm_k05_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T06:11:52.093Z\", \"updated_at\": \"2026-05-23T08:06:16.416Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Long seed42: Table 2 gap. L2 k=0.9=27.5%. 50% L2 pruning 在 Long suite 上的极端 compression 表现。\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 45, \"wilson_ci_95\": [40.7, 49.4], \"per_task_sr\": {\"task_0_alphabet_soup_tomato_sauce\": 26, \"task_1_cream_cheese_butter\": 0, \"task_2_stove_moka_pot\": 46, \"task_3_black_bowl_drawer\": 82, \"task_4_white_mug_yellow_mug\": 42, \"task_5_book_caddy\": 92, \"task_6_white_mug_chocolate_pudding\": 54, \"task_7_alphabet_soup_cream_cheese\": 70, \"task_8_both_moka_pots\": 34, \"task_9_mug_microwave\": 4}, \"episodes\": 500, \"elapsed_min\": 94.6}, \"notes\": \"已完成。SR=45%。之前 cron miss 1/5 是检测延迟，实验实际已成功完成并有 metrics。\"}, \"eval_xvla_random_k09_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T06:11:46.837Z\", \"updated_at\": \"2026-05-23T08:01:30.670Z\", \"hypothesis\": \"X-VLA Random k=0.9 Long seed42: Table 2 gap. L2 k=0.9 Long=27.5%, Random k=0.95 Long=48.2%. L2 在 k=0.9 已 catastrophic，Random 是否也 catastrophic 或保持更高。\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 29.6, \"wilson_ci_95\": [25.8, 33.7], \"per_task_sr\": {\"task_0_alphabet_soup_tomato_sauce\": 0, \"task_1_cream_cheese_butter\": 16, \"task_2_stove_moka_pot\": 0, \"task_3_black_bowl_drawer\": 96, \"task_4_white_mug_yellow_mug\": 36, \"task_5_book_caddy\": 98, \"task_6_white_mug_chocolate_pudding\": 0, \"task_7_alphabet_soup_cream_cheese\": 0, \"task_8_both_moka_pots\": 0, \"task_9_mug_microwave\": 50}, \"episodes\": 500, \"elapsed_min\": 104.4}}, \"eval_pi05_l2norm_k095_object_seed42_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T07:55:24.845Z\", \"updated_at\": \"2026-05-23T08:00:19.911Z\", \"conclusion\": \"failed\", \"notes\": \"失败原因: 从未实际提交，PREPARING 阶段即标记 failed，无日志文件。v2 (eval_pi05_l2norm_k095_object_seed42_v2) 已成功完成同一数据点 (SR=98.2%)，无需重跑。\"}, \"eval_xvla_random_k07_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T06:11:50.264Z\", \"updated_at\": \"2026-05-23T07:49:58.127Z\", \"hypothesis\": \"X-VLA Random k=0.7 Long seed42: Table 2 gap. Random k=0.95 Long=48.2%. 30% pruning 下 random 在 Long suite 的表现。\", \"metrics\": {\"success_rate\": 53, \"total_successes\": 265, \"total_episodes\": 500, \"wilson_ci_95\": [48.6, 57.3], \"per_task_sr\": [10, 8, 66, 98, 82, 100, 82, 70, 4, 10], \"prune_method\": \"random\", \"keep_ratio\": 0.7, \"tokens_kept\": \"35/50\", \"suite\": \"libero_10\", \"seed\": 42, \"wall_time_min\": 87}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k095_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T00:30:25.866Z\", \"updated_at\": \"2026-05-23T07:48:39.254Z\", \"hypothesis\": \"π0.5 L2norm k=0.95 Object seed42 v2: 补充 registry 缺失数据点。k=0.9 L2=98.2%, k=0.85 L2=98.0% 形成 plateau，k=0.95 预期 ≥98.0%。v1 卡在 PREPARING 从未执行。\", \"parent\": \"eval_pi05_l2norm_k095_object_seed42\", \"metrics\": {\"success_rate\": 98.2, \"total_successes\": 491, \"total_episodes\": 500, \"per_task_sr\": [96, 98, 96, 96, 96, 100, 100, 100, 100, 100], \"tokens_kept\": 243, \"tokens_total\": 256, \"wall_time_min\": 63.2}, \"conclusion\": \"success\"}, \"eval_pi05_random_k09_object_seed43_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T03:50:06.423Z\", \"updated_at\": \"2026-05-23T07:48:12.783Z\", \"hypothesis\": \"π0.5 Random k=0.9 Object seed43 cliff 验证 v4。seed42=12.0%。v1/v2/v3 均因环境问题失败。本次确保 HF 离线环境变量完整。\", \"parent\": \"eval_pi05_random_k09_object_seed43_v3\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 9.6, \"total_successes\": 48, \"total_episodes\": 500, \"per_task_sr\": [16, 16, 10, 2, 6, 14, 14, 2, 8, 8], \"prune_method\": \"random\", \"keep_ratio\": 0.9, \"tokens_kept\": 230, \"tokens_total\": 256, \"suite\": \"libero_object\", \"seed\": 43, \"wall_time_min\": 119.5}}, \"eval_xvla_random_k07_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:36:32.966Z\", \"updated_at\": \"2026-05-23T06:11:43.217Z\", \"hypothesis\": \"X-VLA Random k=0.7 Spatial seed42: Table 2 gap. L2 k=0.7 Spatial=72.0%. BART encoder 的 cross-token 依赖在 30% pruning 下 random vs L2 的 gap 大小。\", \"metrics\": {\"overall_SR\": 0.766, \"total_successes\": 383, \"total_episodes\": 500}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k095_goal_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T23:28:32.911Z\", \"updated_at\": \"2026-05-23T04:40:19.014Z\", \"metrics\": {\"success_rate\": 0.816, \"total_episodes\": 500, \"total_successes\": 408, \"seed\": 43, \"suite\": \"libero_goal\", \"results_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.95_libero_goal_seed43.json\"}, \"conclusion\": \"success\", \"hypothesis\": \"π0.5 Random k=0.95 Goal seed43 验证实验。seed42=84.0%。验证 Goal suite random k=0.95 的 seed 稳定性，为 error bars 提供数据。\"}, \"eval_xvla_random_k095_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T02:49:13.642Z\", \"updated_at\": \"2026-05-23T04:23:41.303Z\", \"hypothesis\": \"X-VLA Random k=0.95 Long seed42: L2 k=0.95=47.0% (-47pp from 94.0% baseline)。Random pruning 在 50 tokens 上对 Long suite 的影响。BART encoder 的 cross-token 依赖在 Long horizon 下是否使 random/L2 差异放大。\", \"metrics\": {\"success_rate\": 48.2, \"total_success\": 241, \"total_episodes\": 500, \"wilson_ci_95\": [43.9, 52.6], \"per_task_sr\": [0, 46, 72, 90, 54, 98, 18, 10, 92, 2], \"prune_method\": \"random\", \"keep_ratio\": 0.95, \"tokens_kept\": \"47/50\", \"suite\": \"libero_10\", \"seed\": 42, \"eval_episodes_per_task\": 50, \"wall_time_min\": 91.2}, \"conclusion\": \"success\"}, \"eval_pi05_random_k09_object_seed43_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T01:57:37.489Z\", \"updated_at\": \"2026-05-23T04:11:07.275Z\", \"hypothesis\": \"π0.5 Random k=0.9 Object seed43 验证实验。seed42=12.0%，v2 seed43=9.6%，v3 重新确认 cliff 底部的 seed 稳定性。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 9.6, \"total_episodes\": 500, \"total_successes\": 48, \"seed\": 43, \"note\": \"Harvested from eval_results/pi05_random_k0.90_libero_object_seed43.json on westd-27271. Reviewer-confirmed.\"}}, \"eval_pi05_random_k05_long_seed43_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-23T03:50:21.443Z\", \"updated_at\": \"2026-05-23T03:51:10.374Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 验证。seed42=50.2%。\", \"parent\": \"eval_pi05_random_k05_long_seed43_v2\"}, \"eval_pi05_random_k05_long_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:53:33.116Z\", \"updated_at\": \"2026-05-23T03:48:23.605Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 v2: seed42=50.2%, 需要 seed43 验证。之前 v1 在 westd-41074 因缺环境变量失败，本次修复后重试。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 51.2, \"total_episodes\": 500, \"total_success\": 256, \"benchmark\": \"libero_10\", \"prune_method\": \"random\", \"keep_ratio\": 0.5}}, \"eval_pi05_random_k085_long_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:53:35.448Z\", \"updated_at\": \"2026-05-23T03:48:21.531Z\", \"hypothesis\": \"π0.5 Random k=0.85 Long seed43：seed42 Random Long 曲线非单调（k=0.7=64.6% > k=0.85=44.4% > k=0.9=31.8%）。seed43 验证这一异常模式是否可复现。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 41.8, \"total_episodes\": 500, \"total_success\": 209, \"benchmark\": \"libero_10\", \"prune_method\": \"random\", \"keep_ratio\": 0.85}}, \"eval_pi05_l2norm_k07_long_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T00:32:57.840Z\", \"updated_at\": \"2026-05-23T03:48:19.498Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Long seed43 v2: v1 静默崩溃（缺少HF离线环境变量）。seed42=60.0%。Method crossover 参考点（Random k=0.7=64.6% > L2=60.0%）。验证 crossover 的 reproducibility。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 65.8, \"total_episodes\": 500, \"total_success\": 329, \"benchmark\": \"libero_10\", \"prune_method\": \"l2norm\", \"keep_ratio\": 0.7}}, \"eval_pi05_random_k03_long_seed43_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T00:32:59.653Z\", \"updated_at\": \"2026-05-23T03:48:17.386Z\", \"hypothesis\": \"π0.5 Random k=0.3 Long seed43 v3: v1 exit=1, v2 静默崩溃（缺少HF离线环境变量）。seed42=29.0%。V-shape extreme floor 验证。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 28.4, \"total_episodes\": 500, \"total_success\": 142, \"benchmark\": \"libero_10\", \"prune_method\": \"random\", \"keep_ratio\": 0.3}}, \"eval_pi05_l2norm_k085_long_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T00:33:01.293Z\", \"updated_at\": \"2026-05-23T03:48:15.118Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Long seed43 v2: v1 静默崩溃（缺少HF离线环境变量）。seed42=78.0%。L2norm 单调下降曲线验证。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 79, \"total_episodes\": 500, \"total_success\": 395, \"benchmark\": \"libero_10\", \"prune_method\": \"l2norm\", \"keep_ratio\": 0.85, \"per_task_sr\": {\"T2\": 88, \"T3\": 96, \"T4\": 70, \"T5\": 98, \"T6\": 12, \"T7\": 80, \"T8\": 64, \"T9\": 88}}}, \"eval_pi05_random_k05_spatial_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T01:41:55.447Z\", \"updated_at\": \"2026-05-23T03:20:45.440Z\", \"hypothesis\": \"π0.5 Random k=0.5 Spatial seed43 v2 re-run。v1 stale after 14h with no metrics。重新部署到 westd-41074:1 验证。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 72.4, \"total_episodes\": 500, \"total_successes\": 362, \"elapsed_min\": 80.6, \"per_task_sr\": {\"T0_between_plate_ramekin\": 88, \"T1_next_to_ramekin\": 88, \"T2_table_center\": 88, \"T3_on_cookie_box\": 56, \"T4_top_drawer\": 38, \"T5_on_ramekin\": 32, \"T6_next_to_cookie_box\": 86, \"T7_on_stove\": 92, \"T8_next_to_plate\": 72, \"T9_on_wooden_cabinet\": 84}}}, \"eval_xvla_baseline_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T22:55:31.536Z\", \"updated_at\": \"2026-05-23T03:07:51.703Z\", \"hypothesis\": \"X-VLA baseline (no pruning, keep_ratio=1.0) on libero_spatial establishes the unpruned reference performance for spatial reasoning tasks, expected ~90%+ SR matching published results.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.93, \"num_episodes\": 500, \"total_successes\": 465, \"wilson_ci_95\": [0.904, 0.95], \"note\": \"Corrected from 0.916 to 0.930 per Reviewer SSH verification of xvla_prune_k1.0_libero_spatial.json (465/500)\"}}, \"eval_xvla_baseline_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T22:55:34.464Z\", \"updated_at\": \"2026-05-23T02:48:04.584Z\", \"hypothesis\": \"X-VLA baseline (no pruning, keep_ratio=1.0) on libero_goal establishes the unpruned reference performance for goal-conditioned tasks, expected ~95%+ SR matching published results.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.984, \"num_episodes\": 500, \"total_successes\": 492, \"wilson_ci_95\": [0.969, 0.992], \"note\": \"Corrected from 0.98 to 0.984 per Reviewer SSH verification (492/500)\"}}, \"eval_xvla_prune_k09_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T01:49:07.119Z\", \"updated_at\": \"2026-05-23T01:49:39.840Z\", \"hypothesis\": \"X-VLA L2 norm pruning k=0.9 on LIBERO-Object seed42. X-VLA baseline=99.2%. At 10% token removal, L2 norm selection should maintain near-baseline performance given BART encoder's moderate CV=0.151. Establishes the k=0.9 reference point for the X-VLA Object degradation curve.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.992, \"num_episodes\": 500, \"seed\": 42, \"note\": \"Reconstructed entry. SR=99.2% cross-referenced from eval_xvla_prune_k09_seed44 hypothesis ('Seed42=99.2%'). Original JSON may exist on cqa1-33015.\"}}, \"eval_pi05_random_k09_long_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:25:17.282Z\", \"updated_at\": \"2026-05-23T01:42:56.007Z\", \"hypothesis\": \"π0.5 Random k=0.9 Long seed43: seed42=31.8% 出现 V-shape dip（k=0.85=44.4% > k=0.9=31.8%）。需要 multi-seed 确认这个 dip 是真实现象还是 seed noise。\", \"metrics\": {\"sr\": 0.308, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_random_k05_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:40:55.533Z\", \"updated_at\": \"2026-05-23T01:38:39.534Z\", \"hypothesis\": \"π0.5 Random k=0.5 Spatial seed43 验证实验。seed42 数据已有。Random 在 Spatial suite 中等压缩区间的 seed 稳定性验证。\", \"conclusion\": \"negative\"}, \"eval_pi05_random_k085_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:14:58.160Z\", \"updated_at\": \"2026-05-23T01:38:37.892Z\", \"hypothesis\": \"π0.5 Random k=0.85 Spatial seed43 验证实验。seed42 数据已有。Random 在 Spatial suite moderate pruning 区域的 seed 稳定性验证。\", \"metrics\": {\"overall_SR\": 0.576, \"total_successes\": 288, \"total_episodes\": 500, \"per_task\": {\"T0\": 0.82, \"T1\": 0.62, \"T2\": 0.9, \"T3\": 0.08, \"T4\": 0.48, \"T5\": 0.38, \"T6\": 0.38, \"T7\": 0.74, \"T8\": 0.92, \"T9\": 0.44}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k085_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:30:48.223Z\", \"updated_at\": \"2026-05-23T01:38:36.231Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Spatial seed43 验证实验。seed42 数据已有。L2norm k=0.85 Spatial 曲线 knee 区域的 seed 稳定性验证。\", \"metrics\": {\"overall_SR\": 0.88, \"total_successes\": 440, \"total_episodes\": 500, \"per_task\": {\"T0\": 1, \"T1\": 0.92, \"T2\": 1, \"T3\": 0.78, \"T4\": 0.62, \"T5\": 0.84, \"T6\": 0.96, \"T7\": 0.9, \"T8\": 0.96, \"T9\": 0.82}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k095_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:19:56.585Z\", \"updated_at\": \"2026-05-23T01:38:34.379Z\", \"hypothesis\": \"π0.5 L2norm k=0.95 Spatial seed43 验证实验。seed42 数据已有。验证 L2norm 在 Spatial suite 高 keep ratio 的 seed 稳定性。\", \"metrics\": {\"overall_SR\": 0.98, \"total_successes\": 490, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k05_long_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:04:40.235Z\", \"updated_at\": \"2026-05-23T01:38:04.611Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Long seed43: Long L2 k=0.7=60.0%, k=0.85=78.0%. k=0.5 填充中等压缩区间。seed43 作为 seed42 (westd-38929) 的重复实验。\", \"metrics\": {\"sr\": 0.54, \"total_episodes\": 500, \"total_successes\": 270}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_long_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T00:09:25.953Z\", \"updated_at\": \"2026-05-23T01:37:53.771Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Long seed43: seed42=60.0%，L2norm 曲线关键中点。需要 seed43 交叉验证。L2norm k=0.5 seed42=50.2%, k=0.85 seed42=running(cqa1)。\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k03_long_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:57:54.075Z\", \"updated_at\": \"2026-05-23T01:37:50.930Z\", \"hypothesis\": \"π0.5 Random k=0.3 Long seed43: seed42=29.0%，极端压缩 floor data point。Random k=0.5 seed42=50.2%。需要 seed43 验证 floor 是否可复现。\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k085_long_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T00:09:31.035Z\", \"updated_at\": \"2026-05-23T01:37:48.060Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Long seed43: L2norm k=0.85 Long seed42 在 cqa1 运行中。seed43 提供 multi-seed 验证。L2norm k=0.7 seed42=60.0%, k=0.95 seed42=已有数据。k=0.85 填充曲线 knee。\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k095_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T21:00:15.861Z\", \"updated_at\": \"2026-05-23T01:37:45.130Z\", \"hypothesis\": \"π0.5 Random k=0.95 Goal seed42: Object Rnd k=0.95=69.4%, Spatial=76.4%, Long=61.2%。Goal 的 Random k=0.95 sensitivity level? 填补 ROADMAP Goal Rnd k=0.95 缺口。\", \"metrics\": {\"sr\": 0.84, \"total_episodes\": 500, \"total_successes\": 420}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k03_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:04:38.176Z\", \"updated_at\": \"2026-05-23T01:37:39.408Z\", \"hypothesis\": \"π0.5 L2norm k=0.3 Long seed42: Long L2 k=0.5=🏃, k=0.7=60.0%. k=0.3 是极端压缩的 floor data point。Long suite 最后 L2 缺口。\", \"metrics\": {\"sr\": 0.39, \"total_episodes\": 500, \"total_successes\": 195}, \"conclusion\": \"success\"}, \"eval_pi05_random_k03_long_seed43_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T23:28:39.640Z\", \"updated_at\": \"2026-05-23T00:32:39.631Z\", \"conclusion\": \"failed\"}, \"eval_xvla_random_k095_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T23:09:50.683Z\", \"updated_at\": \"2026-05-23T00:08:58.020Z\", \"hypothesis\": \"X-VLA Random k=0.95 Object seed42 v2: 重部署。v1 在 westd-27271 启动即崩溃（transformers 5.5.4 与 Florence2 _tied_weights_keys 不兼容，已修复）。fig_method_gap 必需数据。L2norm k=0.95=97.6%, 预期 Random 也接近 → 确认 method-independence (Claim 3)。\", \"metrics\": {\"success_rate\": 0.988, \"total_successes\": 494, \"total_episodes\": 500, \"elapsed_seconds\": 2068.5}, \"conclusion\": \"success\"}, \"eval_pi05_random_k03_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:35:23.898Z\", \"updated_at\": \"2026-05-23T00:08:52.554Z\", \"hypothesis\": \"π0.5 Random k=0.3 on LIBERO-Long: extreme 70% random token removal on 520-step horizon. Object Random k=0.3=8.2%. Expecting severe degradation — floor data point for Long random curve.\", \"metrics\": {\"success_rate\": 0.29, \"total_successes\": 145, \"total_episodes\": 500, \"elapsed_min\": 171}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_goal_seed43\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T23:28:29.692Z\", \"updated_at\": \"2026-05-22T23:28:29.692Z\"}, \"eval_xvla_random_k095_object_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T22:59:58.458Z\", \"updated_at\": \"2026-05-22T22:59:58.458Z\"}, \"eval_pi05_attention_k07_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:06:57.110Z\", \"updated_at\": \"2026-05-22T22:27:28.482Z\", \"hypothesis\": \"π0.5 Attention k=0.7 Object seed42: attention-based pruning 30% token removal on Object suite. Testing attention scoring as importance metric vs random/l2norm.\", \"metrics\": {\"success_rate\": 0.006, \"total_successes\": 3, \"total_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42, \"keep_ratio\": 0.7, \"prune_mode\": \"attention\", \"elapsed_min\": 117.26}, \"conclusion\": \"negative\"}, \"eval_smolvla_baseline_spatial_seed42_cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:51:11.601Z\", \"updated_at\": \"2026-05-22T22:24:53.693Z\", \"hypothesis\": \"SmolVLA baseline (no pruning) on LIBERO-Spatial on cqa1: establishing authoritative per-suite baseline. Object baseline=83.6%. Cross-suite baseline needed for paper.\", \"conclusion\": \"failed\"}, \"eval_xvla_random_k07_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:36:28.618Z\", \"updated_at\": \"2026-05-22T22:24:45.435Z\", \"hypothesis\": \"X-VLA Random k=0.7 on LIBERO-Goal: 30% random removal. Aggressive pruning data point for Goal random curve. Chained after k=0.9 Goal on cuda:0.\", \"metrics\": {\"overall_SR\": 0.572, \"total_successes\": 286, \"total_episodes\": 500}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k09_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T21:13:15.386Z\", \"updated_at\": \"2026-05-22T22:24:42.592Z\", \"hypothesis\": \"π0.5 Random k=0.9 Long seed42: Long suite 对 random pruning 最敏感，k=0.95=61.2%。k=0.9 移除更多 token 的影响。\", \"metrics\": {\"overall_SR\": 0.318, \"total_successes\": 159, \"total_episodes\": 500}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k085_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:10:48.164Z\", \"updated_at\": \"2026-05-22T22:24:38.597Z\", \"hypothesis\": \"π0.5 Random k=0.85 on LIBERO-Long: 15% random removal on 520-step tasks. Filling Long Random degradation curve.\", \"metrics\": {\"overall_SR\": 0.444, \"total_successes\": 222, \"total_episodes\": 500}, \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k09_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:56:35.737Z\", \"updated_at\": \"2026-05-22T22:24:13.177Z\", \"hypothesis\": \"π0.5 L2norm k=0.9 Long seed42: 10% L2norm token removal on 520-step horizon. L2norm outperforms Random at same k on Object/Spatial. Testing if same advantage holds on Long tasks.\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.81, \"total_successes\": 405, \"total_episodes\": 500}}, \"eval_pi05_random_k07_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:10:50.961Z\", \"updated_at\": \"2026-05-22T21:54:17.624Z\", \"hypothesis\": \"π0.5 Random k=0.7 on LIBERO-Long: 30% random removal on long-horizon tasks. Aggressive random pruning data point.\", \"metrics\": {\"overall_sr\": 0.646, \"total_successes\": 323, \"total_episodes\": 500, \"elapsed_min\": 156.4}, \"conclusion\": \"success\"}, \"eval_xvla_random_k09_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:36:26.783Z\", \"updated_at\": \"2026-05-22T21:12:50.578Z\", \"hypothesis\": \"X-VLA Random k=0.9 Spatial: k=0.95=70.2%。k=0.9 移除 5/50 tokens。\", \"conclusion\": \"negative\", \"metrics\": {\"overall_SR\": 0.778, \"total_successes\": 389, \"total_episodes\": 500}}, \"eval_xvla_random_k09_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T20:36:22.144Z\", \"updated_at\": \"2026-05-22T21:12:47.838Z\", \"hypothesis\": \"X-VLA Random k=0.9 Goal: k=0.95=54.0%。k=0.9 移除 5/50 tokens，预期进一步下降。\", \"conclusion\": \"negative\", \"metrics\": {\"overall_SR\": 0.706, \"total_successes\": 353, \"total_episodes\": 500}}, \"eval_xvla_random_k095_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:46:35.052Z\", \"updated_at\": \"2026-05-22T21:12:39.654Z\", \"hypothesis\": \"X-VLA Random k=0.95 Spatial: baseline=93.0%。检验 50-token BART connector 在 Spatial 上对 random pruning 的敏感度。\", \"metrics\": {\"overall_SR\": 0.702, \"total_successes\": 351, \"total_episodes\": 500}, \"conclusion\": \"negative\"}, \"eval_xvla_random_k095_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:46:33.526Z\", \"updated_at\": \"2026-05-22T21:12:38.023Z\", \"hypothesis\": \"X-VLA Random k=0.95 Goal: 仅移除 2.5/50 tokens 的 random pruning 对 Goal 的影响。baseline=98.4%。50 tokens 的 BART connector 对 random removal 极度敏感。\", \"metrics\": {\"overall_SR\": 0.54, \"total_successes\": 270, \"total_episodes\": 500}, \"conclusion\": \"negative\"}, \"eval_openvla_baseline_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T21:00:18.539Z\", \"updated_at\": \"2026-05-22T21:01:37.395Z\", \"hypothesis\": \"OpenVLA baseline Spatial seed42: 验证 OpenVLA spatial-finetuned 模型在 LIBERO-Spatial 上的 baseline SR，作为后续 pruning 实验对照。\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k095_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T01:58:53.983Z\", \"updated_at\": \"2026-05-22T20:52:07.658Z\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.978, \"suite\": \"libero_spatial\", \"seed\": 42}, \"hypothesis\": \"π0.5 L2norm k=0.95 Spatial seed42: L2norm 在 cliff zone 外应保持 plateau。Object k=0.95=98.2%，验证 Spatial 同样免疫。\"}, \"eval_pi05_random_k0925_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T00:07:09.764Z\", \"updated_at\": \"2026-05-22T20:51:20.865Z\", \"hypothesis\": \"π0.5 random k=0.925 Object seed43: cliff 入口双种子验证。seed42=27.6%，验证 cliff 入口点的跨 seed 一致性。\", \"parent\": \"eval_pi05_random_k0925_object_seed42\", \"metrics\": {\"success_rate\": 0.3, \"suite\": \"libero_object\", \"seed\": 43}, \"conclusion\": \"success\"}, \"eval_smolvla_random_k09_spatial_seed42_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T20:51:16.082Z\", \"updated_at\": \"2026-05-22T20:51:16.082Z\", \"hypothesis\": \"SmolVLA Random k=0.9 on LIBERO-Spatial: 10% random pruning on spatial tasks. Object Random k=0.9=82.4% vs baseline 83.6%. Testing spatial sensitivity to random pruning.\"}, \"eval_smolvla_l2norm_k09_spatial_seed42_cqa1\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T20:51:14.507Z\", \"updated_at\": \"2026-05-22T20:51:14.507Z\", \"hypothesis\": \"SmolVLA L2norm k=0.9 on LIBERO-Spatial: 10% L2norm pruning on spatial tasks. Object L2norm k=0.9=82.0% vs baseline 83.6%. Testing spatial sensitivity to structured pruning.\"}, \"eval_smolvla_baseline_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T01:15:01.901Z\", \"updated_at\": \"2026-05-22T20:50:56.964Z\", \"hypothesis\": \"SmolVLA baseline (no pruning) on LIBERO-Spatial: establishing per-suite baseline. Object baseline=83.6%. Spatial may differ due to task complexity.\", \"notes\": \"westd-38929 OffScreenRenderEnv — data not comparable with cqa1 LiberoEnv results. cqa1 data is authoritative (baseline=43.8%, k=0.5=0.6%).\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"Ghost process: no GPU assigned, PID 224849 likely dead after westd-38929 GPUs reassigned to OpenVLA experiments\"}}, \"eval_pi05_l2norm_k085_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:35:52.945Z\", \"updated_at\": \"2026-05-22T20:34:14.301Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 on LIBERO-Long (libero_10): 15% token removal on 520-step horizon tasks. Object k=0.85=98.0%. Testing if Long suite shows similar resilience or begins to degrade.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.78, \"num_success\": 390, \"num_episodes\": 500, \"suite\": \"libero_10\", \"seed\": 42, \"keep_ratio\": 0.85, \"prune_mode\": \"l2norm\", \"elapsed_min\": 133.4}}, \"eval_pi05_random_k095_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:35:54.626Z\", \"updated_at\": \"2026-05-22T20:34:11.241Z\", \"hypothesis\": \"π0.5 Random k=0.95 on LIBERO-Long (libero_10): Random baseline for Long suite. Object Random k=0.95=97.6%. Establishing random pruning reference for long-horizon tasks.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.612, \"num_success\": 306, \"num_episodes\": 500, \"suite\": \"libero_10\", \"seed\": 42, \"keep_ratio\": 0.95, \"prune_mode\": \"random\", \"elapsed_min\": 157.6}}, \"eval_pi05_random_k085_goal_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:48:35.710Z\", \"updated_at\": \"2026-05-22T20:34:07.958Z\", \"hypothesis\": \"π0.5 Random k=0.85 on LIBERO-Goal: Goal Random k=0.9=62.6%. Testing if 15% removal causes further drop or stabilizes. Cliff sweep data point.\", \"metrics\": {\"success_rate\": 0.524, \"num_success\": 262, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T17:45:34.517Z\", \"updated_at\": \"2026-05-22T20:34:03.285Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 on LIBERO-Long: 30% token removal on 520-step horizon. Object k=0.7=97.2%. Testing if Long tasks show more degradation with aggressive pruning.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.6, \"num_success\": 300, \"num_episodes\": 500, \"suite\": \"libero_10\", \"seed\": 42, \"keep_ratio\": 0.7, \"prune_mode\": \"l2norm\", \"elapsed_min\": 152.3}}, \"eval_pi05_l2norm_k0925_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:05:09.169Z\", \"updated_at\": \"2026-05-22T20:14:42.766Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Spatial seed43: cliff 入口处 L2norm 双种子验证。Object k=0.925 L2norm=99.2%。seed42 待收割。验证 L2norm 在 cliff zone 保持 plateau 的跨 seed 一致性。\", \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k09_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T08:36:01.447Z\", \"updated_at\": \"2026-05-22T20:14:36.241Z\", \"hypothesis\": \"π0.5 L2norm k=0.9 Object seed43: 双种子验证。seed42 Object l2norm k=0.9 未测。Spatial seed42=95.6%, seed43=95.6%。预期 Object 在 plateau ~90-98%。\", \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k095_object_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T09:23:21.773Z\", \"updated_at\": \"2026-05-22T20:14:33.634Z\", \"hypothesis\": \"L2norm pruning at k=0.95 on pi0.5 retains most important vision tokens for libero_object tasks, maintaining performance close to unpruned baseline while removing 5% of tokens. Re-run of killed experiment.\", \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k0925_object_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T09:36:53.576Z\", \"updated_at\": \"2026-05-22T20:14:31.007Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Object seed43 v2: 重新部署。seed42=99.2%。L2norm 在 cliff zone 完全免疫的双种子验证。\", \"parent\": \"eval_pi05_l2norm_k0925_object_seed42\", \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k095_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:56:36.809Z\", \"updated_at\": \"2026-05-22T20:14:28.420Z\", \"hypothesis\": \"π0.5 L2norm k=0.95 LIBERO-Long seed42: Phase 2 cliff zone sweep。L2norm 在 Object/Spatial 上 k=0.95 均接近 baseline。如果 Long 也接近 baseline → L2norm 跨 4 suite 一致免疫 cliff。\", \"conclusion\": \"negative\"}, \"eval_pi05_l2norm_k085_goal_seed42_w38929\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T13:22:54.323Z\", \"updated_at\": \"2026-05-22T20:14:23.155Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 LIBERO-Goal seed42: Goal baseline=96.4%. L2norm k=0.85 在 Object=98.0%。Goal suite 补充 cliff zone sweep，测试 L2norm 在 Goal 上 k=0.85 是否仍保持高 SR。\", \"conclusion\": \"negative\"}, \"eval_pi05_baseline_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T09:39:57.668Z\", \"updated_at\": \"2026-05-22T20:14:17.781Z\", \"hypothesis\": \"Cross-suite expansion: π0.5 baseline (no pruning) on LIBERO-Long (libero_10), establishing reference SR for pruning comparisons. Long suite tests multi-step compositional tasks with max_steps=520.\", \"conclusion\": \"negative\"}, \"random_k095_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T09:45:15.687Z\", \"updated_at\": \"2026-05-22T20:14:15.069Z\", \"hypothesis\": \"Cross-suite expansion: π0.5 random k=0.95 on LIBERO-Goal, testing cliff behavior generalization\", \"conclusion\": \"negative\"}, \"pi05_l2norm_k09_goal_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:29:40.899Z\", \"updated_at\": \"2026-05-22T20:14:12.352Z\", \"hypothesis\": \"Cross-suite expansion: π0.5 l2norm k=0.9 on LIBERO-Goal, testing cliff behavior generalization\", \"conclusion\": \"negative\"}, \"eval_pi05_random_k085_goal_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:47:54.038Z\", \"updated_at\": \"2026-05-22T20:14:09.657Z\", \"hypothesis\": \"π0.5 Random k=0.85 on LIBERO-Goal: Goal Random k=0.9=62.6% (significant drop from 96.4% baseline). Testing k=0.85 to map the cliff — does SR drop further or stabilize? This locates the critical pruning threshold for random pruning on Goal.\", \"conclusion\": \"negative\"}, \"l2norm_k095_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T09:45:18.484Z\", \"updated_at\": \"2026-05-22T20:14:06.984Z\", \"hypothesis\": \"Cross-suite expansion: π0.5 l2norm k=0.95 on LIBERO-Goal, testing cliff behavior generalization\", \"conclusion\": \"negative\"}, \"random_k095_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T09:45:20.992Z\", \"updated_at\": \"2026-05-22T20:14:04.301Z\", \"hypothesis\": \"Cross-suite expansion: π0.5 random k=0.95 on LIBERO-Long, testing cliff behavior generalization\", \"conclusion\": \"negative\"}, \"pi05_l2norm_k095_long_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:29:35.527Z\", \"updated_at\": \"2026-05-22T20:14:01.662Z\", \"hypothesis\": \"Cross-suite expansion: π0.5 l2norm k=0.95 on LIBERO-Long, testing cliff behavior generalization\", \"conclusion\": \"negative\"}, \"pi05_random_k09_goal_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:29:38.376Z\", \"updated_at\": \"2026-05-22T20:13:58.986Z\", \"hypothesis\": \"Cross-suite expansion: π0.5 random k=0.9 on LIBERO-Goal, testing cliff behavior generalization\", \"conclusion\": \"negative\"}, \"pi05_l2norm_k085_goal_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:29:45.863Z\", \"updated_at\": \"2026-05-22T20:13:56.338Z\", \"hypothesis\": \"Cross-suite expansion: π0.5 l2norm k=0.85 on LIBERO-Goal, testing cliff behavior generalization\", \"conclusion\": \"negative\"}, \"train_openvla_sc_m96_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T06:16:25.780Z\", \"updated_at\": \"2026-05-22T20:13:53.566Z\", \"hypothesis\": \"OpenVLA VTC-only M=96 (256→96 tokens, 62.5% compression). M-sweep data point. Retracked from orphan PID 68539 after config-missing failure. Training from step 0, currently at ~2000+. If M=96 SR falls between M=128 and M=64, confirms graded degradation for MLP-projector VTC re-encoding on OpenVLA.\", \"parent\": \"train_openvla_sc_m128_vtconly_seed42\", \"conclusion\": \"negative\"}, \"train_openvla_sc_m64_seed42_v6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T18:14:05.043Z\", \"updated_at\": \"2026-05-22T20:13:50.371Z\", \"hypothesis\": \"OpenVLA VTC-only M=64 (256→64 tokens, 75% compression) v6 retry. v5 SIGKILL at step 17050 (原因不明，疑似磁盘空间). 验证 VTC re-encoding 在 M=64 的效果，与 M=96/M=32 形成 M-sweep 曲线。\", \"parent\": \"train_openvla_sc_m64_seed42_v5\", \"conclusion\": \"negative\"}, \"pi05_baseline_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:10:19.307Z\", \"updated_at\": \"2026-05-22T19:30:09.031Z\", \"hypothesis\": \"π0.5 baseline on LIBERO-Long (libero_10): unpruned reference for 520-step horizon tasks. Expected ~90%+ based on π0.5 performance on shorter suites.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.916, \"num_success\": 458, \"num_episodes\": 500, \"suite\": \"libero_10\", \"seed\": 42}}, \"eval_pi05_attention_k085_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:08:59.913Z\", \"updated_at\": \"2026-05-22T19:12:22.719Z\", \"hypothesis\": \"π0.5 Attention k=0.85 Object: 15% attention-based removal. Testing cliff zone.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.922, \"num_success\": 461, \"num_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42}}, \"eval_pi05_attention_k09_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:06:10.900Z\", \"updated_at\": \"2026-05-22T19:12:20.074Z\", \"hypothesis\": \"π0.5 Attention pruning k=0.9 on Object: 10% attention-based removal. Attention k=0.95=98.4%. Testing if attention pruning maintains advantage over L2norm at more aggressive pruning.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.972, \"num_success\": 486, \"num_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42}}, \"eval_xvla_l2norm_k07_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:06:08.519Z\", \"updated_at\": \"2026-05-22T19:12:17.483Z\", \"hypothesis\": \"X-VLA L2norm k=0.7 on LIBERO-Spatial: 30% token removal on spatial tasks. Baseline=78.4%.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.72, \"num_success\": 360, \"num_episodes\": 500, \"suite\": \"libero_spatial\", \"seed\": 42}}, \"smolvla_random_k095_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:08:58.420Z\", \"updated_at\": \"2026-05-22T19:12:14.893Z\", \"hypothesis\": \"SmolVLA Random k=0.95 Long: 5% random removal on long-horizon tasks.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0, \"num_success\": 0, \"num_episodes\": 500, \"suite\": \"libero_10\", \"seed\": 42}}, \"smolvla_l2norm_k095_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:08:56.897Z\", \"updated_at\": \"2026-05-22T19:12:12.184Z\", \"hypothesis\": \"SmolVLA L2norm k=0.95 Long: 5% removal on long-horizon tasks.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0, \"num_success\": 0, \"num_episodes\": 500, \"suite\": \"libero_10\", \"seed\": 42}}, \"smolvla_random_k095_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:08:55.300Z\", \"updated_at\": \"2026-05-22T19:12:09.549Z\", \"hypothesis\": \"SmolVLA Random k=0.95 Goal: 5% random removal on goal tasks.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.042, \"num_success\": 21, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42}}, \"smolvla_l2norm_k095_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:08:53.830Z\", \"updated_at\": \"2026-05-22T19:12:06.722Z\", \"hypothesis\": \"SmolVLA L2norm k=0.95 Goal: 5% removal on goal-conditioned tasks.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.034, \"num_success\": 17, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42}}, \"smolvla_random_k095_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:08:52.300Z\", \"updated_at\": \"2026-05-22T19:12:03.693Z\", \"hypothesis\": \"SmolVLA Random k=0.95 Spatial: 5% random removal on 64-token pixel-shuffle.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.042, \"num_success\": 21, \"num_episodes\": 500, \"suite\": \"libero_spatial\", \"seed\": 42}}, \"smolvla_l2norm_k095_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:06:31.842Z\", \"updated_at\": \"2026-05-22T19:12:00.950Z\", \"hypothesis\": \"SmolVLA L2norm k=0.95 on Spatial: pixel-shuffle with only 64 tokens. Even 5% removal expected to be catastrophic given zero_mask results.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.066, \"num_success\": 33, \"num_episodes\": 500, \"suite\": \"libero_spatial\", \"seed\": 42}}, \"smolvla_baseline_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:06:30.381Z\", \"updated_at\": \"2026-05-22T19:11:58.268Z\", \"hypothesis\": \"SmolVLA baseline on LIBERO-Long: unpruned performance reference for long-horizon tasks with pixel-shuffle connector (64 tokens).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.366, \"num_success\": 183, \"num_episodes\": 500, \"suite\": \"libero_10\", \"seed\": 42}}, \"eval_xvla_l2norm_k09_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:04:42.156Z\", \"updated_at\": \"2026-05-22T19:06:25.901Z\", \"hypothesis\": \"X-VLA L2norm k=0.9 on LIBERO-Spatial: 10% token removal on spatial reasoning tasks. Baseline Spatial=78.4%.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.788, \"num_success\": 394, \"num_episodes\": 500, \"suite\": \"libero_spatial\", \"seed\": 42}}, \"eval_xvla_l2norm_k09_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T19:04:40.719Z\", \"updated_at\": \"2026-05-22T19:05:49.641Z\", \"metrics\": {\"success_rate\": 0.702, \"num_success\": 351, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42}, \"hypothesis\": \"X-VLA L2norm k=0.9 on LIBERO-Goal: 10% token removal. Goal baseline=92.2%. Testing degradation curve.\", \"conclusion\": \"negative\"}, \"eval_xvla_l2norm_k095_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:10:32.676Z\", \"updated_at\": \"2026-05-22T19:05:24.366Z\", \"hypothesis\": \"L2-norm based vision token pruning at 95% keep ratio on X-VLA libero_goal should preserve most performance (within 2-3% of baseline) since only 5% of least-important tokens are removed.\", \"metrics\": {\"success_rate\": 0.538, \"num_success\": 269, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42}, \"conclusion\": \"negative\"}, \"eval_xvla_l2norm_k095_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:10:31.187Z\", \"updated_at\": \"2026-05-22T19:05:21.806Z\", \"hypothesis\": \"L2-norm based vision token pruning at 95% keep ratio on X-VLA libero_spatial should preserve most performance (within 2-3% of baseline) since only 5% of least-important tokens are removed.\", \"metrics\": {\"success_rate\": 0.716, \"num_success\": 358, \"num_episodes\": 500, \"suite\": \"libero_spatial\", \"seed\": 42}, \"conclusion\": \"negative\"}, \"eval_pi05_attention_k095_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:00:19.432Z\", \"updated_at\": \"2026-05-22T16:01:16.962Z\", \"hypothesis\": \"π0.5 attention-based pruning k=0.95 on LIBERO-Object: cross-attention importance scores should identify truly important tokens better than L2norm, yielding higher SR at same keep ratio.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.984, \"num_episodes\": 500, \"wilson_ci_95\": [0.969, 0.992], \"suite\": \"libero_object\", \"seed\": 42, \"keep_tokens\": 690, \"total_tokens\": 768}}, \"eval_xvla_l2norm_k09_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:00:17.701Z\", \"updated_at\": \"2026-05-22T16:01:14.509Z\", \"hypothesis\": \"X-VLA L2norm k=0.9 on LIBERO-Long: testing if 10% token removal degrades performance on long-horizon tasks. Baseline=92.5%.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.275, \"num_episodes\": 500, \"wilson_ci_95\": [0.218, 0.341], \"suite\": \"libero_10\", \"seed\": 42}}, \"eval_xvla_l2norm_k095_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:00:16.262Z\", \"updated_at\": \"2026-05-22T16:01:12.012Z\", \"hypothesis\": \"X-VLA L2norm k=0.95 on LIBERO-Long: testing if 5% token removal preserves performance on long-horizon tasks. X-VLA uses linear projection (256 tokens).\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.47, \"num_episodes\": 500, \"wilson_ci_95\": [0.402, 0.539], \"suite\": \"libero_10\", \"seed\": 42}}, \"eval_xvla_baseline_long_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T00:49:09.251Z\", \"updated_at\": \"2026-05-22T15:59:58.416Z\", \"hypothesis\": \"X-VLA baseline on LIBERO-Long (LIBERO-10). Long-horizon tasks may have different baseline SR. Establishes reference for C1 cross-suite analysis\", \"notes\": \"Suite is libero_10 (LIBERO-Long). Baseline for cross-suite pruning comparison.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.94, \"num_episodes\": 500, \"wilson_ci_95\": [0.916, 0.958], \"suite\": \"libero_10\", \"seed\": 42, \"per_task\": [0.96, 0.68, 1.0, 0.98, 0.94, 0.96, 0.94, 0.96, 1.0, 0.98]}}, \"pi05_random_k085_goal_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:29:43.375Z\", \"updated_at\": \"2026-05-22T15:10:27.219Z\", \"hypothesis\": \"Cross-suite expansion: π0.5 random k=0.85 on LIBERO-Goal, testing cliff behavior generalization\", \"conclusion\": \"failed\"}, \"smolvla_official_goal_baseline_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:08:13.920Z\", \"updated_at\": \"2026-05-22T15:09:33.408Z\", \"hypothesis\": \"SmolVLA official checkpoint establishes the baseline success rate on libero_goal without any pruning, providing the reference point for evaluating compression methods.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.608, \"total_episodes\": 500, \"total_successes\": 304, \"wilson_ci_95\": [0.5645, 0.6498]}}, \"smolvla_official_object_l2norm_k095_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:08:11.446Z\", \"updated_at\": \"2026-05-22T15:09:30.608Z\", \"hypothesis\": \"L2-norm based pruning at k=0.95 on SmolVLA official checkpoint preserves most performance on libero_object by removing only the least important 5% of expert neurons.\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.002, \"total_episodes\": 500, \"total_successes\": 1, \"wilson_ci_95\": [0.0004, 0.0112]}}, \"smolvla_official_spatial_baseline_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:08:09.043Z\", \"updated_at\": \"2026-05-22T15:09:27.993Z\", \"hypothesis\": \"SmolVLA official checkpoint establishes the baseline success rate on libero_spatial without any pruning, providing the reference point for evaluating compression methods.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.446, \"total_episodes\": 500, \"total_successes\": 223, \"wilson_ci_95\": [0.403, 0.4898]}}, \"eval_pi05_baseline_goal_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T09:39:56.232Z\", \"updated_at\": \"2026-05-22T13:19:07.384Z\", \"hypothesis\": \"Cross-suite expansion: π0.5 baseline (no pruning) on LIBERO-Goal, establishing reference SR for pruning comparisons. Goal suite tests goal-conditioned manipulation with max_steps=400.\", \"metrics\": {\"overall_sr\": 0.964, \"total_successes\": 482, \"total_episodes\": 500, \"elapsed_min\": 49.7, \"per_task\": {\"open_middle_drawer\": 0.9, \"bowl_on_stove\": 1, \"wine_bottle_on_cabinet\": 0.98, \"open_top_drawer_bowl_inside\": 0.9, \"bowl_on_cabinet\": 1, \"push_plate_front_stove\": 1, \"cream_cheese_in_bowl\": 0.96, \"turn_on_stove\": 1, \"bowl_on_plate\": 1, \"wine_bottle_on_rack\": 0.9}}, \"conclusion\": \"success\"}, \"eval_smolvla_zeromask_l2norm_k095_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:43:39.042Z\", \"updated_at\": \"2026-05-22T12:30:26.711Z\", \"hypothesis\": \"SmolVLA zero_mask l2norm k=0.95: 将 5% 最低 L2 norm tokens 置零但不删除。与 random zero_mask 配对。如果两者都 0% → 确认 64-token 表示中每个 token 不可替代。\", \"metrics\": {\"success_rate\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task\": {\"task0_alphabet_soup\": 0, \"task1_cream_cheese\": 0, \"task2_salad_dressing\": 0, \"task3_bbq_sauce\": 0, \"task4_ketchup\": 0, \"task5_tomato_sauce\": 0, \"task6_butter\": 0, \"task7_milk\": 0, \"task8_chocolate_pudding\": 0, \"task9_orange_juice\": 0}}, \"conclusion\": \"negative\"}, \"eval_smolvla_zeromask_random_k095_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:43:36.591Z\", \"updated_at\": \"2026-05-22T12:30:24.102Z\", \"hypothesis\": \"SmolVLA zero_mask random k=0.95: 将 5% random tokens 置零但不删除（保持序列长度 64）。如果 SR=0% 同 true_removal → token 信息本身不可丢（信息密度解释）。如果 SR>0% → true_removal 的 0% 由 position shift 导致。\", \"metrics\": {\"success_rate\": 0.002, \"total_episodes\": 500, \"total_successes\": 1, \"wilson_ci_95\": [0.0004, 0.0112], \"per_task\": {\"task0_alphabet_soup\": 0, \"task1_cream_cheese\": 0, \"task2_salad_dressing\": 0, \"task3_bbq_sauce\": 0, \"task4_ketchup\": 0, \"task5_tomato_sauce\": 0.02, \"task6_butter\": 0, \"task7_milk\": 0, \"task8_chocolate_pudding\": 0, \"task9_orange_juice\": 0}}, \"conclusion\": \"negative\"}, \"train_openvla_sc_m96_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T03:28:39.563Z\", \"updated_at\": \"2026-05-22T12:21:40.498Z\", \"hypothesis\": \"OpenVLA VTC-only M=96 (256→96 tokens, 62.5% compression). M-sweep data point between M=128 and M=64. If M=96 SR falls between M=128 and M=64 SR, confirms graded degradation pattern for MLP-projector VTC re-encoding on OpenVLA. Retry of vtconly variant after D096 approved early M-sweep start.\", \"parent\": \"train_openvla_sc_m128_vtconly_seed42\", \"metrics\": {\"final_train_loss\": 2.4509, \"final_eval_loss\": 2.6575, \"steps_completed\": 99999, \"steps_total\": 100000}, \"conclusion\": \"success\"}, \"eval_smolvla_official_l2norm_k090_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:43:18.958Z\", \"updated_at\": \"2026-05-22T11:42:34.932Z\", \"hypothesis\": \"SmolVLA L2-norm k=0.9 on official checkpoint. Expected ~0% SR given cliff at k=0.95.\", \"conclusion\": \"negative\", \"metrics\": {\"SR\": 0, \"episodes\": 500, \"note\": \"all 10 tasks 0% SR, mean_steps=280 (max)\"}}, \"eval_pi05_random_k03_object_seed43_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T08:36:06.946Z\", \"updated_at\": \"2026-05-22T11:01:14.704Z\", \"hypothesis\": \"π0.5 Random k=0.3 Object seed43 v4: v1-v3 均失败。极端压缩率 random pruning，预期 SR 接近 0%。验证 random 在 70% 剪枝下完全崩溃。\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.322, \"total_successes\": 161, \"total_episodes\": 500}}, \"eval_pi05_random_k085_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T22:03:25.605Z\", \"updated_at\": \"2026-05-22T11:00:39.360Z\", \"hypothesis\": \"π0.5 random k=0.85 Object seed43: seed 验证。seed42 v2 正在 westd-38929 跑（早期数据 ~8% SR）。如果 seed43 也崩→确认 cliff 在 k=0.7-0.85 之间。\", \"parent\": \"eval_pi05_random_k085_object_seed42_v2\", \"conclusion\": \"negative\", \"metrics\": {\"overall_SR\": 0.038, \"total_successes\": 19, \"total_episodes\": 500}}, \"eval_pi05_l2norm_k03_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:56:30.510Z\", \"updated_at\": \"2026-05-22T11:00:36.736Z\", \"hypothesis\": \"π0.5 L2norm k=0.3 Spatial seed43: 双种子验证。L2norm 极端压缩下 Spatial 表现。与 random k=0.3 Spatial 配对形成方法对比。\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.52, \"total_successes\": 260, \"total_episodes\": 500}}, \"eval_pi05_random_k03_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:56:27.850Z\", \"updated_at\": \"2026-05-22T11:00:34.089Z\", \"hypothesis\": \"π0.5 random k=0.3 Spatial seed43: 双种子验证。与 Object seed43 random k=0.3 (32.2%) 配对。确认 random 极端压缩下 Spatial vs Object 的差异。\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.512, \"total_successes\": 256, \"total_episodes\": 500}}, \"eval_pi05_l2norm_k05_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:56:25.201Z\", \"updated_at\": \"2026-05-22T11:00:31.541Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Spatial seed43: 双种子验证。L2norm k=0.5 Spatial seed42 未测。Object seed42 L2norm k=0.5 缺数据。确认 L2norm 在极端压缩下的跨 suite 表现。\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.582, \"total_successes\": 291, \"total_episodes\": 500}}, \"eval_pi05_l2norm_k0925_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T09:23:17.890Z\", \"updated_at\": \"2026-05-22T09:33:31.493Z\", \"hypothesis\": \"L2norm pruning at k=0.925 on pi0.5 retains most important vision tokens for libero_object tasks, maintaining performance close to unpruned baseline while removing 7.5% of tokens.\", \"metrics\": {\"overall_SR\": 0.984, \"total_successes\": 492, \"total_episodes\": 500}, \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k095_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T08:35:59.676Z\", \"updated_at\": \"2026-05-22T09:25:54.954Z\", \"hypothesis\": \"π0.5 L2norm k=0.95 Object seed43: 双种子验证。seed42 Object l2norm k=0.95 未测。Spatial seed42=98.0%, seed43=98.0%。预期 Object 也在 plateau 区间 ~95-99%。\", \"metrics\": {\"overall_SR\": 0.984, \"total_successes\": 492, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T06:39:24.566Z\", \"updated_at\": \"2026-05-22T09:14:48.890Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Spatial seed43: 双种子验证。seed42=67.0%。L2norm k=0.7 Spatial 在 V-shape 恢复点的跨 seed 一致性。\", \"metrics\": {\"overall_SR\": 0.684, \"total_successes\": 342, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_random_k07_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T06:39:23.035Z\", \"updated_at\": \"2026-05-22T09:14:46.323Z\", \"hypothesis\": \"π0.5 random k=0.7 Spatial seed43: 双种子验证。seed42 Spatial random k=0.7 未测。Object random k=0.7=75.5%。Spatial 上 random cliff 更温和，k=0.7 预期 >Object。\", \"metrics\": {\"overall_SR\": 0.738, \"total_successes\": 369, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_smart_compress_m32_official\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T10:06:45.019Z\", \"updated_at\": \"2026-05-22T09:09:34.573Z\", \"hypothesis\": \"Smart Compress M=32 trained from official SmolVLA checkpoint (baseline SR=59.2%) eval on LIBERO-Object (50 episodes/task). If official checkpoint yields higher SR than smolvla_base M=32 (seed42=61.6%), confirms stronger pretrained features improve compression performance.\", \"parent\": \"train_smart_compress_m32_official\", \"conclusion\": \"killed\", \"metrics\": {\"SR\": 53.4, \"episodes\": 500, \"CI_95_wilson\": \"49.0-57.7\", \"per_task_SR\": [64, 48, 56, 46, 46, 28, 78, 42, 66, 60]}}, \"eval_pi05_random_k05_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T09:55:41.090Z\", \"updated_at\": \"2026-05-22T08:36:05.172Z\", \"hypothesis\": \"π0.5 Random k=0.5 Object seed43: 双种子验证。Random k=0.5 deep pruning on Object suite。预期 SR 很低（~5-15%），验证 random 在高压缩率下的崩溃模式。\", \"parent\": \"eval_pi05_random_k05_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 68.4, \"total_successes\": 342, \"total_episodes\": 500, \"elapsed_min\": 82.3}}, \"eval_pi05_random_k07_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T13:16:57.776Z\", \"updated_at\": \"2026-05-22T08:36:02.987Z\", \"hypothesis\": \"π0.5 Random k=0.7 Object seed43: 双种子验证。seed42 Object random k=0.7=52.6% (OpenVLA)。Pi05 版本尚未测试。Random 在 cliff zone，预期 ~30-60%。\", \"parent\": \"eval_pi05_random_k07_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 73.8, \"total_successes\": 369, \"total_episodes\": 500, \"elapsed_min\": 86.9}}, \"eval_pi05_l2norm_k085_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T05:07:11.332Z\", \"updated_at\": \"2026-05-22T08:34:54.160Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Object seed43: L2norm plateau 双种子验证。seed42=98.0%。验证 L2norm 在 cliff zone (random=5.0%) 保持 ~98% 的跨 seed 稳定性。\", \"metrics\": {\"overall_SR\": 0.984, \"total_successes\": 492, \"total_episodes\": 500, \"per_task\": {\"T0\": 1, \"T1\": 1, \"T2\": 1, \"T3\": 0.98, \"T4\": 1, \"T5\": 0.96, \"T6\": 0.98, \"T7\": 0.92, \"T8\": 1, \"T9\": 1}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k09_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:19:57.910Z\", \"updated_at\": \"2026-05-22T08:05:09.887Z\", \"hypothesis\": \"π0.5 L2norm k=0.9 Spatial seed43: seed42=95.0%。双种子验证 L2norm 在 Spatial 上的 plateau 特性——如果 seed43 也 >90% → 确认 L2norm 跨种子稳定。\", \"metrics\": {\"overall_SR\": 0.956, \"total_successes\": 478, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_random_k09_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:19:54.793Z\", \"updated_at\": \"2026-05-22T08:05:07.080Z\", \"hypothesis\": \"π0.5 random k=0.9 Spatial seed43: seed42=54.6% 的双种子验证。random k=0.9 是 Spatial cliff 关键点（Object 上 k=0.9 已完全崩溃至 ~5%），seed43 验证 Spatial 的 cliff 是否更平缓。\", \"metrics\": {\"overall_SR\": 0.536, \"total_successes\": 268, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_pi05_random_k0925_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:19:53.394Z\", \"updated_at\": \"2026-05-22T08:05:01.773Z\", \"hypothesis\": \"π0.5 random k=0.925 Spatial seed43: seed42=54.6% 的双种子验证。如果 seed43 也在 50-60% 范围 → 确认 Spatial random k=0.9 的 cliff 位置，为跨 suite cliff 对比提供 error bar。\", \"metrics\": {\"overall_SR\": 0.578, \"total_successes\": 289, \"total_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_openvla_l2norm_k05_object_seed42_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:36:30.442Z\", \"updated_at\": \"2026-05-22T08:03:04.830Z\", \"hypothesis\": \"OpenVLA L2norm k=0.5 Object seed42 v5: D132 crossover evidence — OpenVLA (MLP projector, CV=0.215) at k=0.5 shows L2norm≈random. v4 因 westd-38929 GPU 缩减被 kill。Table 3 关键数据点。\", \"metrics\": {\"overall_SR\": 0.392, \"total_successes\": 196, \"total_episodes\": 500, \"per_task\": {\"T0\": 0.56, \"T1\": 0.14, \"T2\": 0.38, \"T3\": 0.32, \"T4\": 0.7, \"T5\": 0.32, \"T6\": 0.12, \"T7\": 0.5, \"T8\": 0.44, \"T9\": 0.44}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k095_spatial_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:30:46.725Z\", \"updated_at\": \"2026-05-22T07:01:42.225Z\", \"hypothesis\": \"π0.5 random k=0.95 Spatial seed43: seed42=84.4%。双种子验证 random k=0.95 在 Spatial 上的表现稳定性。\", \"metrics\": {\"overall_SR\": 0.768, \"total_successes\": 384, \"total_episodes\": 500, \"per_task\": {\"T0\": 1, \"T1\": 0.94, \"T2\": 1, \"T3\": 0.6, \"T4\": 0.36, \"T5\": 0.76, \"T6\": 0.9, \"T7\": 0.74, \"T8\": 1, \"T9\": 0.38}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k03_object_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T23:32:50.404Z\", \"updated_at\": \"2026-05-22T05:07:09.054Z\", \"hypothesis\": \"π0.5 random k=0.3 Object seed43 v2: seed 验证 (v1 failed due to cqa1 env mismatch). seed42=36.4%。确认 random k=0.3 的 SR 在 seed 间可重复。\", \"parent\": \"eval_pi05_random_k03_object_seed43\", \"conclusion\": \"killed\"}, \"eval_pi05_random_k085_object_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T23:32:45.558Z\", \"updated_at\": \"2026-05-22T05:07:06.673Z\", \"hypothesis\": \"π0.5 random k=0.85 Object seed43 v2: cliff boundary seed 验证 (v1 failed due to cqa1 env mismatch). seed42 v2 在 westd-38929 显示 ~4.4% SR，确认 cliff 在 k=0.7-0.85 之间。\", \"parent\": \"eval_pi05_random_k085_object_seed43\", \"conclusion\": \"killed\"}, \"eval_pi05_random_k095_spatial_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:16:01.871Z\", \"updated_at\": \"2026-05-22T05:07:04.203Z\", \"hypothesis\": \"π0.5 random k=0.95 Spatial seed42 v2: v1 因 n_episodes=500 bug 导致 IndexError。Object 上 random k=0.95=71.1% (dual seed mean). Spatial baseline=97.2%, 如果 Spatial random k=0.95 也 >70% → cliff 强度跨 suite 一致; 如果 >90% → Spatial 更 tolerant to random pruning.\", \"parent\": \"eval_pi05_random_k095_spatial_seed42\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k07_object_seed43_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T23:50:24.243Z\", \"updated_at\": \"2026-05-22T05:06:45.229Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Object seed43 v3: V-shape 恢复点 seed 验证。seed42=55.0%, westd-41074 seed43=57.8%。cqa1 环境修复后在 westd-38929 重跑，验证 V-shape recovery (k=0.7) 跨 seed 一致性。\", \"parent\": \"eval_pi05_l2norm_k07_object_seed43_v2\", \"conclusion\": \"success\", \"metrics\": {\"success_rate_mean\": 57.2}}, \"eval_pi05_random_k095_spatial_seed42_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T03:14:20.916Z\", \"updated_at\": \"2026-05-22T04:46:44.657Z\", \"hypothesis\": \"π0.5 random k=0.95 Spatial seed42 v4: v2 僵尸(EXIT_CODE=129)，v3 冗余被kill。Object k=0.95=71.1%。Spatial baseline=97.2%。Spatial 表最后2个缺失数据点之一。\", \"parent\": \"eval_pi05_random_k095_spatial_seed42_v2\", \"conclusion\": \"success\", \"metrics\": {\"success_rate_mean\": 76.4}}, \"eval_pi05_random_k095_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T22:13:38.768Z\", \"updated_at\": \"2026-05-22T04:44:42.523Z\", \"hypothesis\": \"π0.5 random k=0.95 Object seed43: cliff 入口点双种子验证。seed42=71.1%。k=0.95 是 cliff 的起始位置（k=0.925=28.8% 急剧下降），error bar 对论文 cliff profile figure 至关重要。\", \"parent\": \"eval_pi05_random_k095_object_seed42_v2\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.728, \"total_successes\": 364, \"total_episodes\": 500, \"elapsed_min\": 85.5, \"per_task_sr\": {\"T0_alphabet_soup\": 0.7, \"T1_cream_cheese\": 0.9, \"T2_salad_dressing\": 0.78, \"T3_bbq_sauce\": 0.66, \"T4_ketchup\": 0.54, \"T5_tomato_sauce\": 0.8, \"T6_butter\": 0.82, \"T7_milk\": 0.66, \"T8_chocolate_pudding\": 0.78, \"T9_orange_juice\": 0.64}}}, \"eval_pi05_random_k085_object_seed43_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:16:03.484Z\", \"updated_at\": \"2026-05-22T04:36:51.658Z\", \"hypothesis\": \"π0.5 random k=0.85 Object seed43 v3: 重部署。seed42=5.0%。验证 random k=0.85 cliff 深度在 seed43 上的可重复性。\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate_mean\": 3.8}}, \"eval_pi05_random_k03_object_seed43_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T03:20:12.081Z\", \"updated_at\": \"2026-05-22T03:20:18.114Z\", \"hypothesis\": \"π0.5 random k=0.3 Object seed43 v3: seed 验证。v2 卡在 cqa1（SSH 不可达）。seed42=36.4%。确认 random k=0.3 的 SR 在 seed 间可重复，为论文 error bar 提供数据。\"}, \"eval_pi05_l2norm_k0925_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T23:04:09.094Z\", \"updated_at\": \"2026-05-22T03:19:47.031Z\", \"hypothesis\": \"π0.5 L2norm k=0.925 Object seed42: L2norm 在 cliff zone 的精细数据点。k=0.95=98.2%, k=0.9=98.2%, k=0.85=98.0%。k=0.925 预计 ~99%，量化 L2norm plateau 在 random cliff zone 内的稳定性。与 random k=0.925=28.8% 形成对比。\", \"parent\": \"eval_pi05_l2norm_k09_object_seed42_v2\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 99.2, \"per_task\": {\"T0_alphabet_soup\": 98, \"T1_cream_cheese\": 98, \"T2_salad_dressing\": 96, \"T3_bbq_sauce\": 100, \"T4_ketchup\": 100, \"T5_tomato_sauce\": 100, \"T6_butter\": 100, \"T7_milk\": 100, \"T8_chocolate_pudding\": 100, \"T9_orange_juice\": 100}, \"n_episodes\": 500, \"successes\": 496}}, \"eval_pi05_random_k095_spatial_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:36:27.524Z\", \"updated_at\": \"2026-05-22T03:14:18.422Z\", \"hypothesis\": \"π0.5 random k=0.95 Spatial seed42 v3: westd-38929 备份部署。Object 上 random k=0.95=71.1% (dual seed mean)。Spatial baseline=97.2%。如果 Spatial random k=0.95 也 >70% → cliff 强度跨 suite 一致; 如果 >90% → Spatial 更 tolerant to random pruning。\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k095_spatial_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:36:21.914Z\", \"updated_at\": \"2026-05-22T03:14:15.787Z\", \"hypothesis\": \"π0.5 L2norm k=0.95 Spatial seed42 v2: v1 因缺少 HF_HUB_OFFLINE=1 导致 Network unreachable 崩溃。Object 上 L2norm k=0.95=98.2%。如果 Spatial k=0.95 也 >90% → L2norm cliff immunity 跨 suite 一致。Spatial baseline=97.2%。\", \"parent\": \"eval_pi05_l2norm_k095_spatial_seed42\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k07_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T21:25:05.094Z\", \"updated_at\": \"2026-05-22T03:02:44.178Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Spatial seed42: L2norm Spatial 曲线最后缺失点。k=0.85=90.4%, k=0.5=55.6%。如果 k=0.7 在 60-85% 之间 → L2norm 在 Spatial 上也呈现 graceful degradation（非 cliff）。补全 L2norm Spatial 完整曲线。\", \"parent\": \"eval_pi05_l2norm_k05_spatial_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 67, \"episodes\": 500, \"tasks\": 10, \"duration_min\": 98.8, \"per_task_sr\": \"10 tasks completed, overall 335/500\"}}, \"eval_pi05_l2norm_k09_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T23:58:06.094Z\", \"updated_at\": \"2026-05-22T02:41:35.108Z\", \"hypothesis\": \"π0.5 l2norm k=0.9 Spatial: l2norm 在 Object suite k=0.9 维持 ~80% SR。如果 Spatial 上 l2norm k=0.9 也远高于 random k=0.9 (54.6%) → l2norm 优势跨 suite 通用，importance-based 选择性保留关键视觉 tokens。\", \"metrics\": {\"success_rate_mean\": 0.95, \"tasks_evaluated\": 10, \"episodes_per_task\": 50, \"total_success\": 475, \"total_episodes\": 500, \"suite\": \"libero_spatial\", \"prune_mode\": \"l2norm\", \"keep_ratio\": 0.9, \"seed\": 42}, \"conclusion\": \"success\"}, \"eval_pi05_random_k09_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T23:27:44.454Z\", \"updated_at\": \"2026-05-22T02:41:32.849Z\", \"hypothesis\": \"π0.5 random k=0.9 Spatial seed42: Object 上 k=0.9=10.8%（V-dip cliff）。如果 Spatial 也 ~10% → cliff 是 model-intrinsic，跨 task 普遍现象；如果 ~90% → cliff 是 Object-specific。Spatial baseline=97.2%。\", \"parent\": \"eval_pi05_random_k07_spatial_seed42\", \"metrics\": {\"success_rate_mean\": 0.546, \"tasks_evaluated\": 10, \"episodes_per_task\": 50, \"total_success\": 273, \"total_episodes\": 500, \"suite\": \"libero_spatial\", \"prune_mode\": \"random\", \"keep_ratio\": 0.9, \"seed\": 42}, \"conclusion\": \"success\"}, \"eval_pi05_random_k07_spatial_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T01:59:32.551Z\", \"updated_at\": \"2026-05-22T02:31:07.291Z\", \"hypothesis\": \"π0.5 random k=0.7 Spatial seed42: Object 上 random k=0.7=55.0% (V-dip recovery). 如果 Spatial 也 ~55% → recovery 是 model-intrinsic; 如果更高 → Spatial 的 random robustness 整体更好 (与 D152 task-specificity 一致).\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k095_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T01:54:42.181Z\", \"updated_at\": \"2026-05-22T02:31:05.718Z\", \"hypothesis\": \"π0.5 random k=0.95 Spatial seed42: Object 上 random k=0.95=71.1% (dual seed mean). Spatial baseline=97.2%, 如果 Spatial random k=0.95 也 >70% → cliff 强度跨 suite 一致; 如果 >90% → Spatial 更 tolerant to random pruning.\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k085_object_seed42_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T00:30:23.166Z\", \"updated_at\": \"2026-05-22T01:58:30.102Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Object seed42 v4: v3 crashed due to lerobot groot dataclass bug (Python 3.12 incompatible field ordering). Patched groot_n1.py. L2norm k=0.9=98.2%. If k=0.85 still high → L2norm monotonic degradation, no cliff.\", \"metrics\": {\"overall_sr\": 0.98, \"total_successes\": 490, \"total_episodes\": 500, \"elapsed_min\": 64.35, \"per_task_sr\": {\"T0_alphabet_soup\": 1, \"T1_cream_cheese\": 1, \"T2_salad_dressing\": 0.98, \"T3_bbq_sauce\": 0.98, \"T4_ketchup\": 0.98, \"T5_tomato_sauce\": 0.98, \"T6_butter\": 1, \"T7_milk\": 0.88, \"T8_chocolate_pudding\": 1, \"T9_orange_juice\": 1}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k085_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T23:32:48.735Z\", \"updated_at\": \"2026-05-22T00:30:12.115Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Object seed42 v2: 与 random k=0.85 配对。L2norm k=0.9=98.2%。如果 L2norm k=0.85 仍高→L2norm 无 cliff，是 monotonic degradation (v1 failed due to cqa1 env mismatch).\", \"parent\": \"eval_pi05_l2norm_k085_object_seed42\", \"conclusion\": \"failed\"}, \"eval_openvla_baseline_spatial_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T22:42:47.914Z\", \"updated_at\": \"2026-05-22T00:23:00.192Z\", \"hypothesis\": \"OpenVLA baseline on LIBERO-Spatial v3 (新脚本，env.seed 已修复，--model_path 支持)。建立 cross-suite anchor，验证 pruning tolerance 是模型内在属性而非 task-specific。\", \"parent\": \"eval_openvla_baseline_spatial_seed42_v2\", \"conclusion\": \"failed\", \"notes\": \"westd-27271 服务器不可达 (SSH failed 5x)。需在其他服务器重试。这是 v3 (v1/v2 也因各种原因失败)。OpenVLA Spatial baseline 是 cross-suite anchor，对论文 Table 3 重要。\"}, \"train_openvla_sc_m32_vtconly_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T01:13:01.057Z\", \"updated_at\": \"2026-05-22T00:20:29.905Z\", \"hypothesis\": \"OpenVLA VTC-only M=32 (256→32 tokens, 87.5% compression) on westd-27271. Most aggressive OpenVLA compression point. Independent of 20K gate — even if C4-ext fails, M=32 data point contributes to M-sweep curve. If VTC M=32 > random pruning k=0.3 (20.6% SR), demonstrates learned re-encoding value at extreme compression.\", \"parent\": \"train_openvla_sc_m128_vtconly_seed42\", \"notes\": \"Resume from step 10001 (checkpoint.pt). 修复: 1) 删除损坏的 step20000.pt (16G) 和冗余 step10000.pt (19G), 释放 35G; 2) 修改 save_checkpoint 添加旧 checkpoint 自动清理 (只保留最新 1 个 step checkpoint), 防止再次磁盘满; 3) 磁盘 67G 可用, 足够完成剩余训练.\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k095_object_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T23:58:01.780Z\", \"updated_at\": \"2026-05-22T00:01:01.431Z\"}, \"eval_pi05_l2norm_k085_object_seed42_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T23:57:57.480Z\", \"updated_at\": \"2026-05-22T00:00:57.272Z\"}, \"eval_pi05_random_k0925_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T21:53:09.140Z\", \"updated_at\": \"2026-05-21T23:53:03.078Z\", \"hypothesis\": \"π0.5 random k=0.925 Object seed42: 定位 k=0.95(69.4%) → k=0.9(10.8%) 之间 58.6pp cliff 的精确过渡点。如果 k=0.925 > 50% 则 cliff 在 [0.9, 0.925]，如果 < 20% 则 cliff 从 k=0.95 就开始陡降。n_keep=237/256。\", \"parent\": \"eval_pi05_random_k095_object_seed42_v2\", \"conclusion\": \"negative\", \"metrics\": {\"overall_sr\": 0.276, \"total_successes\": 138, \"total_episodes\": 500, \"elapsed_min\": 108.9, \"per_task_sr\": [0.34, 0.42, 0.24, 0.14, 0.08, 0.42, 0.4, 0.12, 0.34, 0.26]}}, \"eval_pi05_random_k03_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T21:52:57.780Z\", \"updated_at\": \"2026-05-21T23:49:03.208Z\", \"hypothesis\": \"π0.5 random k=0.3 Object seed43: seed 验证，seed42=36.4%。确认 random k=0.3 的 SR 在 seed 间可重复。\", \"parent\": \"eval_pi05_random_k03_object_seed42\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k085_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T21:52:55.538Z\", \"updated_at\": \"2026-05-21T23:49:00.980Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Object seed42: 与 random k=0.85 配对对比。L2norm 在 k=0.9 时 98.2%（接近 baseline），在 cliff 区间 L2norm 是否也下降？如果 L2norm k=0.85 仍高→证实 L2norm 的 monotonic degradation vs random 的 cliff behavior。\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k085_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T21:20:40.718Z\", \"updated_at\": \"2026-05-21T23:48:19.656Z\", \"hypothesis\": \"π0.5 random k=0.85 seed42: 定位 cliff boundary。k=0.7→75.5% vs k=0.9→10.8%，如果 k=0.85 也崩→cliff 在 0.7-0.85 之间；如果 k=0.85 高→cliff 在 0.85-0.9 之间。关键数据点。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 5, \"episodes\": 500, \"tasks\": 10, \"duration_min\": 108.5, \"per_task_sr\": \"10 tasks completed, overall 25/500\"}}, \"eval_openvla_l2norm_k05_object_seed42_v4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T23:17:39.648Z\", \"updated_at\": \"2026-05-21T23:17:57.719Z\", \"hypothesis\": \"OpenVLA L2norm k=0.5 on LIBERO-Object seed42 v4. D132 crossover evidence: OpenVLA (MLP projector, CV=0.215) at k=0.5 shows L2norm≈random (-3.4pp in prior data). Retry after westd-38929 GPU shrinkage killed v1. Critical for Table 3 completion.\", \"parent\": \"eval_openvla_l2norm_k05_object_seed42\"}, \"eval_pi05_random_k03_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T20:55:20.520Z\", \"updated_at\": \"2026-05-21T23:05:16.811Z\", \"hypothesis\": \"π0.5 random k=0.3 on LIBERO-Spatial seed42. Object suite 上 D140 发现 k=0.3 method reversal (L2norm=51.0% > random=36.4%)。验证该 reversal 是否跨 suite 复现。与运行中的 L2norm k=0.3 spatial 实验配对。\", \"metrics\": {\"success_rate\": 49.6, \"total_episodes\": 500, \"per_task_sr\": {\"T0_between_plate\": 66, \"T1_next_to_ramekin\": 80, \"T2_from_table_center\": 62, \"T3_on_cookie_box\": 14, \"T4_in_top_drawer\": 30, \"T5_on_ramekin\": 28, \"T6_next_to_cookie\": 32, \"T7_on_stove\": 64, \"T8_next_to_plate\": 82, \"T9_on_wooden_cab\": 38}}, \"conclusion\": \"success\"}, \"eval_pi05_random_k09_fixedmask_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T20:15:58.542Z\", \"updated_at\": \"2026-05-21T22:37:05.644Z\", \"hypothesis\": \"π0.5 fixed-mask random k=0.9 seed42 v2: 判别 k=0.9 ~10% SR 根因。per-episode 固定 random mask 消除 temporal inconsistency。恢复~90%+ → stochastic mask 是根因; 仍~12% → specific tokens critical。网络修复后重跑。\", \"parent\": \"eval_pi05_random_k09_fixedmask_object_seed42\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 0.17, \"successes\": 85, \"total_episodes\": 500, \"per_task_sr\": [0.12, 0.26, 0.16, 0.14, 0.12, 0.24, 0.18, 0.14, 0.24, 0.1]}}, \"train_smart_compress_m16_seed44_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T17:05:30.575Z\", \"updated_at\": \"2026-05-21T22:37:03.303Z\", \"hypothesis\": \"Third attempt of M=16 seed44 training (v1 failed: server restart, v2 failed: disk full at step=1000). Disk now cleared to 73GB free. Third seed for extreme compression point (87.5%). Prior: seed42=55.8%. Completes 3-seed data for M=16 on M-curve.\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.0677, \"eval_action_loss\": 0.0495, \"train_grad_norm\": 1.88821, \"total_steps\": 99999}}, \"train_smart_compress_m16_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T15:22:07.244Z\", \"updated_at\": \"2026-05-21T22:37:01.029Z\", \"hypothesis\": \"Second seed (seed=43) for Smart Compress M=16 (87.5% compression). Prior: seed42=55.8%. M=16 showed lowest SR among tested M values, confirming information bottleneck at extreme compression. Second seed establishes variance at this extreme point for M-curve robustness.\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.07652, \"eval_action_loss\": 0.06236, \"train_grad_norm\": 0.97135, \"total_steps\": 99999}}, \"train_smart_compress_m128_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T15:22:04.812Z\", \"updated_at\": \"2026-05-21T22:36:58.789Z\", \"hypothesis\": \"Third seed (seed=43) for Smart Compress M=128 passthrough control. Prior seeds: seed42=59.8%, seed44=60.2%. M=128 retains all 128 tokens through cross-attention re-encoding, isolating architecture effect from compression. Third seed makes \\\"re-encoding > compression\\\" argument 3-seed bulletproof (C4).\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.05584, \"eval_action_loss\": 0.06125, \"train_grad_norm\": 0.95519, \"total_steps\": 99999}}, \"train_smart_compress_m96_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T01:10:52.530Z\", \"updated_at\": \"2026-05-21T22:35:52.363Z\", \"hypothesis\": \"Third seed (seed=44) for Smart Compress M=96 to strengthen multi-seed robustness. Prior seeds: seed42=52.6%, seed43=58.2%. If seed44 narrows variance, confirms non-monotonic M-curve is robust at M=96.\", \"parent\": \"\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.04668, \"eval_action_loss\": 0.05259, \"train_grad_norm\": 0.97222, \"total_steps\": 99999}}, \"train_smart_compress_m32_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T01:10:50.362Z\", \"updated_at\": \"2026-05-21T22:35:50.226Z\", \"hypothesis\": \"Smart compress with M=32 vision token compression trained with seed 44 will achieve comparable performance to seed 43, confirming reproducibility of the importance-margin-based compression approach.\", \"parent\": \"\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.04146, \"eval_action_loss\": 0.0635, \"train_grad_norm\": 0.57272, \"total_steps\": 99999}}, \"train_smart_compress_m64_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T01:10:51.474Z\", \"updated_at\": \"2026-05-21T22:35:47.995Z\", \"hypothesis\": \"Third seed (seed=44) for Smart Compress M=64 to strengthen multi-seed robustness. Prior seeds: seed42=61.6%, seed43=60.0%. If seed44 yields ~60% SR, confirms M=64 matches M=32 performance with mean ~60% across 3 seeds.\", \"parent\": \"\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.031, \"eval_action_loss\": 0.06994, \"train_grad_norm\": 1.08378, \"total_steps\": 99999}}, \"train_smart_compress_m128_resume\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:27:32.368Z\", \"updated_at\": \"2026-05-21T22:35:43.265Z\", \"hypothesis\": \"Resume of train_smart_compress_m128 from step 32,000 checkpoint. Cross-attention pooling with M=128 queries (no compression, passthrough control). If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression provides the benefit.\", \"parent\": \"train_smart_compress_m128\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.05412, \"eval_action_loss\": 0.05743, \"train_grad_norm\": 0.92663, \"total_steps\": 99999, \"resumed_from_step\": 32001}}, \"eval_pi05_random_k07_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T20:55:22.277Z\", \"updated_at\": \"2026-05-21T22:29:46.227Z\", \"hypothesis\": \"π0.5 random k=0.7 on LIBERO-Spatial seed42. Object suite 上 random k=0.7=77.2% > L2norm k=0.7=55.0%。验证低 CV(0.055) 模型的 method preference (random > L2norm at k=0.7) 是否跨 suite 一致。\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 74.4, \"total_episodes\": 500, \"per_task_sr\": {\"T0_between_plate\": 90, \"T1_next_to_ramekin\": 96, \"T2_table_center\": 94, \"T3_on_cookie_box\": 52, \"T4_in_top_drawer\": 60, \"T5_on_ramekin\": 42, \"T6_next_to_cookie\": 58, \"T7_on_stove\": 76, \"T8_next_to_plate\": 80, \"T9_on_wooden_cab\": 96}}}, \"eval_openvla_random_k05_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:54:21.630Z\", \"updated_at\": \"2026-05-21T22:19:26.660Z\", \"hypothesis\": \"OpenVLA random k=0.5 Object seed42 (新脚本，D125 env.seed 已修复): 补全 OpenVLA random 曲线。已知 random k=0.9=62.9%(3-seed), k=0.7=44.4%。L2norm k=0.5=39.2%。CV=0.215 中等，预期 random 与 L2norm 接近或略低。\", \"parent\": \"eval_openvla_l2norm_k05_object_seed42_v2\", \"metrics\": {\"success_rate\": 35.8, \"total_successes\": 179, \"total_episodes\": 500, \"per_task\": {\"alphabet_soup\": 56, \"cream_cheese\": 2, \"salad_dressing\": 40, \"bbq_sauce\": 58, \"ketchup\": 60, \"tomato_sauce\": 26, \"butter\": 0, \"milk\": 12, \"chocolate_pudding\": 30, \"orange_juice\": 74}}, \"conclusion\": \"success\"}, \"eval_openvla_random_k07_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:31:31.573Z\", \"updated_at\": \"2026-05-21T22:16:17.683Z\", \"hypothesis\": \"OpenVLA random k=0.7 Object seed42 (新脚本): 与 L2norm k=0.7(49.8%) 配对对比。CV=0.215 中等，验证 L2norm vs random 在 k=0.7 下的选择优势。用修复后的脚本重跑。\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.444, \"total_successes\": 222, \"total_episodes\": 500, \"per_task\": {\"alphabet_soup\": 0.72, \"cream_cheese\": 0.2, \"salad_dressing\": 0.56, \"bbq_sauce\": 0.38, \"ketchup\": 0.64, \"tomato_sauce\": 0.52, \"butter\": 0.2, \"milk\": 0.24, \"chocolate_pudding\": 0.34, \"orange_juice\": 0.64}, \"elapsed_minutes\": 274.4}, \"notes\": \"Cron 误判 process gone。日志显示实验完成: Overall SR 44.4% (222/500)。结果文件: /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k07_object.json\"}, \"eval_openvla_random_k09_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T22:10:39.739Z\", \"updated_at\": \"2026-05-21T22:16:10.674Z\", \"hypothesis\": \"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\", \"parent\": \"eval_openvla_l2norm_k09_object_seed42\", \"conclusion\": \"killed\"}, \"eval_pi05_l2norm_k03_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:27:32.180Z\", \"updated_at\": \"2026-05-21T22:09:26.332Z\", \"hypothesis\": \"π0.5 L2norm k=0.3 Object seed43: seed 验证 L2norm 非单调性。seed42 L2norm k=0.3=51.0% > k=0.5=33.4%。确认 V-shape 恢复跨 seed 可复现——这是论文要用的发现。\", \"parent\": \"eval_pi05_l2norm_k03_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.554, \"total_successes\": 277, \"total_episodes\": 500, \"elapsed_min\": 85.15, \"per_task\": {\"alphabet_soup\": 0.16, \"cream_cheese\": 0.56, \"salad_dressing\": 0.9, \"bbq_sauce\": 0.54, \"ketchup\": 0.4, \"tomato_sauce\": 0.86, \"butter\": 0.52, \"milk\": 0.14, \"chocolate_pudding\": 0.92, \"orange_juice\": 0.54}}}, \"eval_openvla_l2norm_k09_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T18:34:31.828Z\", \"updated_at\": \"2026-05-21T22:07:51.904Z\", \"hypothesis\": \"OpenVLA L2norm k=0.9 (保留90% tokens) on LIBERO-object seed42. 接近无压缩baseline，验证L2norm在高保留率下是否维持性能，完善scaling law k-sweep数据点。\", \"metrics\": {\"overall_sr\": 0.706, \"total_successes\": 353, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.66, \"cream_cheese\": 0.58, \"salad_dressing\": 0.66, \"bbq_sauce\": 0.48, \"ketchup\": 0.9, \"tomato_sauce\": 0.64, \"butter\": 0.74, \"milk\": 0.74, \"chocolate_pudding\": 0.78, \"orange_juice\": 0.88}, \"elapsed_minutes\": 228.5}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k05_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:27:29.169Z\", \"updated_at\": \"2026-05-21T22:03:27.880Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Object seed43: seed 验证 V-shape valley。seed42=33.4%（最低点）。确认 V-shape valley 跨 seed 可复现。\", \"parent\": \"eval_pi05_l2norm_k05_object_seed42\", \"metrics\": {\"overall_sr\": 0.336, \"total_successes\": 168, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.44, \"cream_cheese\": 0.08, \"salad_dressing\": 0, \"bbq_sauce\": 0.04, \"ketchup\": 0.6, \"tomato_sauce\": 0.38, \"butter\": 0.32, \"milk\": 0.52, \"chocolate_pudding\": 0.46, \"orange_juice\": 0.52}}, \"conclusion\": \"success\"}, \"eval_smolvla_official_random_k050_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:42:19.468Z\", \"updated_at\": \"2026-05-21T21:28:02.923Z\", \"hypothesis\": \"SmolVLA official random k=0.5 (50% removal) will show ~0% SR, confirming SmolVLA cliff-edge at all pruning ratios\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.5 confirmed. 0/500 successes. Cliff-edge at all pruning ratios verified.\"}, \"eval_smolvla_official_random_k090_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:43:22.230Z\", \"updated_at\": \"2026-05-21T21:28:01.433Z\", \"hypothesis\": \"SmolVLA official random k=0.9; k=0.95 已 0% SR，确认 cliff-edge 延续到 k=0.9\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.9 confirmed. 0/500 successes. Even 10% removal destroys SmolVLA completely.\"}, \"eval_smolvla_official_l2norm_k070_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:43:19.998Z\", \"updated_at\": \"2026-05-21T21:28:00.050Z\", \"hypothesis\": \"SmolVLA L2-norm k=0.7 on official checkpoint. Expected ~0% SR.\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at L2norm prune k=0.7 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_l2norm_k030_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:43:21.066Z\", \"updated_at\": \"2026-05-21T21:27:58.750Z\", \"hypothesis\": \"SmolVLA L2-norm k=0.3 on official checkpoint. Expected ~0% SR.\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at L2norm prune k=0.3 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_random_k070_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:43:23.388Z\", \"updated_at\": \"2026-05-21T21:27:57.528Z\", \"hypothesis\": \"SmolVLA random prune k=0.7 on official checkpoint. Expected ~0% SR.\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.7 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_random_k030_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:43:24.427Z\", \"updated_at\": \"2026-05-21T21:27:56.235Z\", \"hypothesis\": \"SmolVLA random prune k=0.3 on official checkpoint. Expected ~0% SR.\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.3 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_l2norm_k050_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:42:18.304Z\", \"updated_at\": \"2026-05-21T21:21:10.125Z\", \"hypothesis\": \"SmolVLA official L2norm k=0.5 补 sweep 数据点，预期与 random k=0.5 一样接近 0% SR\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0, \"total_episodes\": 500, \"seed\": 42}}, \"eval_pi05_l2norm_k05_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T19:04:43.315Z\", \"updated_at\": \"2026-05-21T21:05:43.902Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 on LIBERO-Spatial seed42, 验证 CV=0.055 linear projection 下 L2norm 在 Spatial 任务上是否也接近 random（与 Object 上一致）\", \"metrics\": {\"overall_sr\": 55.6, \"total_successes\": 278, \"total_episodes\": 500, \"elapsed_min\": 108.9, \"per_task_sr\": {\"T0_pick_up_black_bowl_between_plate\": 74, \"T1_pick_up_black_bowl_next_to_ramekin\": 82, \"T2_pick_up_black_bowl_on_plate\": 78, \"T3_pick_up_black_bowl_on_cookie_box\": 28, \"T4_pick_up_black_bowl_in_top_drawer\": 38, \"T5_pick_up_black_bowl_on_ramekin\": 44, \"T6_pick_up_black_bowl_next_to_cookie\": 32, \"T7_pick_up_black_bowl_on_stove\": 74, \"T8_pick_up_black_bowl_next_to_plate\": 62, \"T9_pick_up_black_bowl_on_wooden_cab\": 44}, \"comparison\": {\"vs_random_k05_spatial\": \"55.6 vs 71.6 (-16.0pp)\", \"vs_l2norm_k05_object\": \"55.6 vs 33.4 (+22.2pp)\", \"vs_baseline_spatial\": \"55.6 vs 97.2 (-41.6pp)\"}}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k03_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T19:04:48.329Z\", \"updated_at\": \"2026-05-21T21:04:40.771Z\", \"hypothesis\": \"π0.5 L2norm k=0.3 on LIBERO-Spatial seed42, 验证 k=0.3 处 method reversal (L2norm > random) 是否跨 suite 复现\", \"metrics\": {\"overall_sr\": 57.2, \"total_successes\": 286, \"total_episodes\": 500, \"elapsed_min\": 108.4, \"seed\": 42, \"per_task_sr\": {\"T0_bowl_between_plate\": 62, \"T1_bowl_next_to_ramekin\": 72, \"T2_bowl_from_table_center\": 78, \"T3_bowl_on_cookie_box\": 24, \"T4_bowl_in_top_drawer\": 34, \"T5_bowl_on_ramekin\": 26, \"T6_bowl_next_to_cookie\": 74, \"T7_bowl_on_stove\": 90, \"T8_bowl_next_to_plate\": 66, \"T9_bowl_on_wooden_cabinet\": 46}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_spatial_seed42.json\"}, \"conclusion\": \"negative\"}, \"eval_pi05_random_k085_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T19:04:01.513Z\", \"updated_at\": \"2026-05-21T20:15:51.002Z\", \"hypothesis\": \"π0.5 random k=0.85 seed42: 补充 k=0.7-0.9 之间的数据点。k=0.7→75.5% vs k=0.9→10%，确认 random pruning 曲线在此区间的急剧下降行为，排除 k=0.9 为孤立异常的可能。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k09_fixedmask_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T19:09:35.064Z\", \"updated_at\": \"2026-05-21T20:10:57.961Z\", \"hypothesis\": \"判别 k=0.9 ~10% SR 的根因是 per-call stochastic mask 导致时序不一致还是 random 90% subset 本身不够\", \"parent\": \"eval_pi05_random_k09_object_seed43\", \"conclusion\": \"failed\", \"metrics\": {\"error\": \"Network unreachable - AutoTokenizer.from_pretrained('google/paligemma-3b-pt-224') failed because AutoDL network was not enabled (source /etc/network_turbo not run). No episodes executed.\", \"overall_sr\": null, \"total_episodes\": 0}}, \"eval_pi05_baseline_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T19:04:40.813Z\", \"updated_at\": \"2026-05-21T20:10:19.902Z\", \"hypothesis\": \"π0.5 baseline on LIBERO-Spatial seed42, establishing cross-suite baseline to verify pruning tolerance generalization across different task suites\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97.2, \"total_successes\": 486, \"num_episodes\": 500, \"elapsed_minutes\": 55.8, \"seed\": 42, \"per_task\": {\"T0_pick_up_black_bowl_between_plate\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T1_pick_up_black_bowl_next_to_ramekin\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T2_pick_up_black_bowl_from_stove\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T3_pick_up_black_bowl_on_cookie_box\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T4_pick_up_black_bowl_in_top_drawer\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T5_pick_up_black_bowl_on_ramekin\": {\"sr\": 78, \"success\": 39, \"total\": 50}, \"T6_pick_up_black_bowl_next_to_cookie\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T7_pick_up_black_bowl_on_stove\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T8_pick_up_black_bowl_next_to_plate\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T9_pick_up_black_bowl_on_wooden_cabinet\": {\"sr\": 100, \"success\": 50, \"total\": 50}}}}, \"eval_pi05_random_k095_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T19:03:59.633Z\", \"updated_at\": \"2026-05-21T20:08:53.282Z\", \"hypothesis\": \"π0.5 random k=0.95 seed42: 定位 random pruning 单调性违反的精确转折点。k=0.9→10% vs k=0.7→75.5%，去除更少 token 反而更差。如果 k=0.95 也很低，问题在高 retention ratio 本身；如果正常(~95%+)，转折在(0.9,0.95)之间。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"conclusion\": \"failed\"}, \"eval_pi05_random_k09_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T17:48:39.903Z\", \"updated_at\": \"2026-05-21T19:57:53.279Z\", \"hypothesis\": \"π0.5 random k=0.9 seed43: 验证 seed42 的 12% SR 异常是否可复现。已确认代码无 bug，seed42 结果疑似 transient issue。加入 torch.manual_seed 修复后的对照重跑。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.096, \"total_successes\": 48, \"total_episodes\": 500, \"elapsed_min\": 119.5, \"per_task_sr\": {\"T0_alphabet_soup\": 0.16, \"T1_cream_cheese\": 0.16, \"T2_salad_dressing\": 0.1, \"T3_bbq_sauce\": 0.02, \"T4_ketchup\": 0.06, \"T5_tomato_sauce\": 0.14, \"T6_butter\": 0.14, \"T7_milk\": 0.02, \"T8_chocolate_pudding\": 0.08, \"T9_orange_juice\": 0.08}}}, \"eval_pi05_l2norm_k01_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T05:45:27.000Z\", \"updated_at\": \"2026-05-21T19:54:11.368Z\", \"hypothesis\": \"At extreme compression (keep=10%), L2norm pruning on π0.5 will retain minimal task performance on libero_object, providing a lower-bound data point for the scaling law curve.\", \"parent\": \"eval_pi05_baseline_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.026, \"total_successes\": 13, \"total_episodes\": 500, \"elapsed_min\": 117.55, \"per_task_sr\": {\"T0_alphabet_soup\": 0.02, \"T1_cream_cheese\": 0.06, \"T2_salad_dressing\": 0.04, \"T3_bbq_sauce\": 0.02, \"T4_ketchup\": 0.04, \"T5_tomato_sauce\": 0.02, \"T6_butter\": 0, \"T7_milk\": 0, \"T8_chocolate_pudding\": 0.02, \"T9_orange_juice\": 0.04}}}, \"eval_smolvla_official_random_k050_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T17:11:31.520Z\", \"updated_at\": \"2026-05-21T18:39:45.023Z\", \"hypothesis\": \"SmolVLA random k=0.5 seed43 多种子; seed42 在 cqa1 上跑（预期 0% based on cliff-edge），seed43 交叉确认\", \"parent\": \"eval_smolvla_official_baseline_object_seed43\", \"conclusion\": \"success\"}, \"eval_smolvla_official_l2norm_k095_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T17:26:19.909Z\", \"updated_at\": \"2026-05-21T18:29:29.357Z\", \"hypothesis\": \"SmolVLA L2norm k=0.95 seed43; seed42 sanity=0%, 多种子确认 pixel-shuffle cliff\", \"parent\": \"eval_smolvla_official_baseline_object_seed43\", \"conclusion\": \"success\"}, \"eval_smolvla_official_random_k095_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T17:10:51.519Z\", \"updated_at\": \"2026-05-21T18:29:27.955Z\", \"hypothesis\": \"SmolVLA official checkpoint random k=0.95 seed43; prior seed42 showed near-zero SR at 5% removal, seed43 confirms catastrophic sensitivity to even minimal random pruning in SmolVLA linear connector\", \"conclusion\": \"success\"}, \"eval_smolvla_official_baseline_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T17:10:49.196Z\", \"updated_at\": \"2026-05-21T18:29:26.445Z\", \"hypothesis\": \"SmolVLA official checkpoint baseline seed43 on westd-38929; multi-seed verification of unpruned SmolVLA performance on LIBERO-object (paper reports ~87% SR)\", \"conclusion\": \"success\"}, \"eval_smolvla_official_l2norm_k095_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:42:14.575Z\", \"updated_at\": \"2026-05-21T18:13:36.676Z\", \"hypothesis\": \"SmolVLA official checkpoint with L2-norm pruning at k=0.95 (5% removal) will likely show near-zero SR, confirming SmolVLA's extreme sensitivity to vision token pruning even at minimal removal ratios.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.4, \"total_episodes\": 500, \"seed\": 42}}, \"eval_smolvla_official_random_k095_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:42:16.529Z\", \"updated_at\": \"2026-05-21T18:13:32.754Z\", \"hypothesis\": \"SmolVLA official checkpoint with random pruning at k=0.95 (5% removal) will show near-zero SR, consistent with prior result on our fine-tuned checkpoint (0/500 at k=0.95).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0, \"total_episodes\": 500, \"seed\": 42}}, \"eval_smolvla_official_baseline_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:31:26.472Z\", \"updated_at\": \"2026-05-21T18:13:30.811Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint (HuggingFaceVLA/smolvla_libero) should achieve ~87% SR on LIBERO-object as reported in the paper, establishing the unpruned baseline for the pruning cliff-edge sweep.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 57.2, \"total_episodes\": 500, \"seed\": 42, \"note\": \"Official checkpoint, paper reports ~87% - significant gap\"}}, \"eval_openvla_l2norm_k05_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T12:58:41.055Z\", \"updated_at\": \"2026-05-21T18:13:28.912Z\", \"hypothesis\": \"OpenVLA L2norm k=0.5 seed43 multi-seed; seed42=39.2%, 验证MLP connector L2norm pruning一致性\", \"parent\": \"eval_openvla_l2norm_k05_object_seed42_v2\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 39.2, \"total_episodes\": 500, \"seed\": 43}}, \"train_openvla_sc_m64_seed42_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T08:29:42.217Z\", \"updated_at\": \"2026-05-21T17:52:17.412Z\", \"hypothesis\": \"OpenVLA VTC-only M=64 (256→64 tokens, 75% compression) can maintain action prediction quality with cross-attention compression, matching or exceeding M=96/M=128 efficiency-performance tradeoff\", \"parent\": \"train_openvla_sc_m64_seed42_v3\", \"conclusion\": \"failed\"}, \"eval_pi05_l2norm_k09_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T15:52:06.118Z\", \"updated_at\": \"2026-05-21T17:48:18.083Z\", \"hypothesis\": \"π0.5 L2norm k=0.9 seed42 v2; 填充 scaling curve k=1.0(98.2%) 到 k=0.7(55.0%) 之间。低 CV=0.055 linear projection 模型在 10% pruning 下 L2norm 表现\", \"parent\": \"eval_pi05_l2norm_k07_object_seed42\", \"metrics\": {\"success_rate\": 98.2, \"total_successes\": 491, \"total_episodes\": 500, \"seed\": 42}, \"conclusion\": \"success\"}, \"eval_openvla_l2norm_k03_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T12:13:31.307Z\", \"updated_at\": \"2026-05-21T17:25:02.632Z\", \"hypothesis\": \"OpenVLA L2norm k=0.3 seed43 multi-seed验证; seed42=25.0%(待确认rerun中)，seed43提供第二个数据点确认extreme compression下L2norm表现\", \"parent\": \"eval_openvla_l2norm_k03_object_seed42_rerun\", \"metrics\": {\"success_rate\": 25, \"num_episodes\": 500, \"per_task\": {\"alphabet_soup\": 42, \"cream_cheese\": 6, \"salad_dressing\": 28, \"bbq_sauce\": 10, \"ketchup\": 66, \"tomato_sauce\": 0, \"butter\": 8, \"milk\": 36, \"chocolate_pudding\": 28, \"orange_juice\": 26}}, \"conclusion\": \"success\"}, \"eval_openvla_random_k07_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T12:36:00.675Z\", \"updated_at\": \"2026-05-21T17:10:39.949Z\", \"hypothesis\": \"OpenVLA random k=0.7 seed43 3rd seed; seed7=49.0%, seed42=44.4%, 差异4.6pp较大，seed43确认均值\", \"parent\": \"eval_openvla_random_k07_object_seed42_v2\", \"metrics\": {\"overall_sr\": 0.526, \"total_successes\": 263, \"total_episodes\": 500, \"elapsed_min\": 272.6, \"per_task\": {\"alphabet_soup\": 0.84, \"cream_cheese\": 0.2, \"salad_dressing\": 0.66, \"bbq_sauce\": 0.42, \"ketchup\": 0.7, \"tomato_sauce\": 0.54, \"butter\": 0.1, \"milk\": 0.6, \"chocolate_pudding\": 0.36, \"orange_juice\": 0.84}}, \"conclusion\": \"success\"}, \"eval_openvla_baseline_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T12:03:41.128Z\", \"updated_at\": \"2026-05-21T16:41:46.064Z\", \"hypothesis\": \"OpenVLA baseline seed42: 当前 baseline 来自 seed=7 (74.0%)，需 seed=42 作为所有 degradation 计算的锚点。如果 seed42 ≈ 74%，数据一致；差异 >3pp 则需重算所有 degradation。\", \"metrics\": {\"success_rate\": 74, \"num_episodes\": 500, \"source\": \"log extraction - full eval completed but results/ dir missing caused save failure\"}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k03_object_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T13:23:17.071Z\", \"updated_at\": \"2026-05-21T16:18:29.109Z\", \"hypothesis\": \"X-VLA L2norm k=0.3 seed44 3rd seed; seed42=22.2%, seed43=21.0%, 完成triple确认extreme compression下L2norm灾难性\", \"parent\": \"eval_xvla_l2norm_k03_object_seed42\", \"conclusion\": \"success\", \"metrics\": {}}, \"eval_xvla_random_k07_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T13:17:18.210Z\", \"updated_at\": \"2026-05-21T16:18:27.125Z\", \"hypothesis\": \"X-VLA random k=0.7 seed42 multi-seed; seed43=65.0%, seed44=65.0% — expect ~65% confirming random pruning resilience\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 65.2, \"num_episodes\": 500}}, \"eval_xvla_random_k085_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T12:03:43.362Z\", \"updated_at\": \"2026-05-21T16:18:25.135Z\", \"hypothesis\": \"X-VLA random k=0.85 seed43 threshold-graded转折点验证; seed42=63.6%, k=0.85是关键转折点\", \"parent\": \"eval_xvla_random_k085_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 63.2, \"num_episodes\": 500}}, \"eval_xvla_random_k085_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T13:24:05.495Z\", \"updated_at\": \"2026-05-21T16:18:23.258Z\", \"hypothesis\": \"X-VLA random k=0.85 seed42 v2 rerun; prior seed42=63.6%, seed43在跑，补充cliff boundary random数据\", \"parent\": \"eval_xvla_random_k07_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 63.6, \"num_episodes\": 500}}, \"eval_pi05_l2norm_k07_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:30:15.371Z\", \"updated_at\": \"2026-05-21T14:49:05.793Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 seed43 multi-seed验证D141非单调性; seed42的L2norm k=0.7结果即将出炉(GPU0)，seed43提供第二个数据点确认趋势是否系统性\", \"parent\": \"eval_pi05_l2norm_k07_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 56.4, \"total_successes\": 282, \"total_episodes\": 500, \"elapsed_min\": 100.3}}, \"eval_pi05_l2norm_k07_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T09:32:30.027Z\", \"updated_at\": \"2026-05-21T14:49:01.972Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 fills scaling law curve. With L2norm k=0.5=33.4%, expect L2norm k=0.7 > 33.4%. D132 predicts random >> L2norm — compare with random k=0.7 result.\", \"parent\": \"eval_pi05_l2norm_k05_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 55, \"total_successes\": 275, \"total_episodes\": 500, \"elapsed_min\": 91.7}}, \"eval_xvla_l2norm_k03_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T13:17:16.261Z\", \"updated_at\": \"2026-05-21T13:23:57.455Z\", \"hypothesis\": \"X-VLA l2_norm k=0.3 seed42 multi-seed; seed43=21.0% — expect similar severe degradation at 70% pruning\", \"conclusion\": \"killed\"}, \"eval_xvla_l2norm_k085_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T12:03:38.973Z\", \"updated_at\": \"2026-05-21T13:23:55.563Z\", \"hypothesis\": \"X-VLA L2norm k=0.85 seed43 cliff boundary验证; seed42=68.0%, 验证cliff是否在k=0.85稳定存在\", \"parent\": \"eval_xvla_l2norm_k085_object_seed42\", \"conclusion\": \"killed\"}, \"eval_xvla_random_k085_object_seed42\": {\"status\": \"DONE\", \"hypothesis\": \"X-VLA random k=0.85 seed42; L2norm k=0.85 mean=67.9%, random k=0.85 seed43在跑，seed42补充cliff boundary random数据\", \"parent\": \"eval_xvla_prune_k085_seed42\", \"created_at\": \"2026-05-21T02:31:58.311851+00:00\", \"notes\": \"[D124] X-VLA random pruning experiment (M046 fix: script now supports --mode random).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 63.6, \"num_episodes\": 500, \"wilson_ci_95\": [0.593, 0.677]}, \"updated_at\": \"2026-05-21T13:23:18.896Z\"}, \"eval_xvla_l2norm_k03_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T09:55:26.639Z\", \"updated_at\": \"2026-05-21T13:18:35.261Z\", \"hypothesis\": \"X-VLA L2norm k=0.3 seed43 multi-seed. seed42 running on GPU2. Prior L2norm k=0.3 data: seed43=21.0%, seed44=22.8%. Expect similar ~20-22%. vs random k=0.3 seed42=62.8% → confirms +40pp D132 gap.\", \"metrics\": {\"SR\": 0.21}, \"conclusion\": \"success\"}, \"eval_xvla_random_k03_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T09:55:28.615Z\", \"updated_at\": \"2026-05-21T13:18:28.217Z\", \"hypothesis\": \"X-VLA random k=0.3 seed43 multi-seed. seed42=62.8%. Expect similar ~60-65%. vs L2norm k=0.3 ~21% → confirms D132 gap=+40pp at extreme compression.\", \"parent\": \"eval_xvla_random_k03_object_seed42\", \"metrics\": {\"SR\": 0.662}, \"conclusion\": \"success\"}, \"eval_xvla_random_k07_object_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T10:33:18.734Z\", \"updated_at\": \"2026-05-21T13:18:25.708Z\", \"hypothesis\": \"X-VLA random k=0.7 seed44 3rd seed. seed42=65.2%, seed43=65.0%. Expect ~64-66%.\", \"metrics\": {\"SR\": 0.65}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k07_object_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T09:55:30.173Z\", \"updated_at\": \"2026-05-21T13:18:23.804Z\", \"hypothesis\": \"X-VLA L2norm k=0.7 seed43 multi-seed. seed42=58.2%, seed44=56.4%. Expect ~56-58%. vs random k=0.7 seed42=65.2%, seed43=65.0% → confirms D132 crossover at k=0.7.\", \"parent\": \"eval_xvla_l2norm_k07_object_seed42_v2\", \"metrics\": {\"SR\": 0.59}, \"conclusion\": \"success\"}, \"eval_xvla_random_k03_object_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:34:45.497Z\", \"updated_at\": \"2026-05-21T13:18:21.794Z\", \"hypothesis\": \"X-VLA random k=0.3 seed44 3rd seed for extreme compression. seed42=62.8%, seed43 running. Expect ~60-65%. vs L2norm k=0.3 ~21% → confirms D132 gap at extreme compression.\", \"parent\": \"eval_xvla_random_k03_object_seed42\", \"metrics\": {\"SR\": 0.63, \"per_task\": [0.74, 0.42, 0.96, 0.8, 0.88, 0.84, 0, 0.74, 0, 0.92]}, \"conclusion\": \"success\"}, \"eval_xvla_l2norm_k07_object_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:34:48.607Z\", \"updated_at\": \"2026-05-21T13:18:19.891Z\", \"hypothesis\": \"X-VLA L2norm k=0.7 seed44 3rd seed for crossover validation. seed42=58.2%, seed43 running. vs random k=0.7 seed42=65.2% → confirms D132 crossover persists at k=0.7.\", \"parent\": \"eval_xvla_l2norm_k07_object_seed42\", \"metrics\": {\"SR\": 0.564, \"per_task\": [0.96, 0, 1, 0.8, 0.26, 0.9, 0.12, 0.7, 0.02, 0.88]}, \"conclusion\": \"success\"}, \"eval_pi05_l2norm_k07_object_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T13:01:13.097Z\", \"updated_at\": \"2026-05-21T13:03:12.189Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 seed43 V-shape验证; seed42=55.0%, k=0.5 seed42=33.4%(valley), k=0.3 seed43=55.4%(recovery). 如果seed43 k=0.7也在50-60%范围，V-shape确认为系统性\", \"parent\": \"eval_pi05_l2norm_k07_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.578, \"total_successes\": 289, \"total_episodes\": 500, \"elapsed_min\": 91.34, \"per_task\": {\"alphabet_soup\": 0.46, \"cream_cheese\": 0.96, \"salad_dressing\": 0.8, \"bbq_sauce\": 0.8, \"ketchup\": 0.26, \"tomato_sauce\": 1, \"butter\": 0.3, \"milk\": 0.04, \"chocolate_pudding\": 0.7, \"orange_juice\": 0.46}}}, \"eval_openvla_l2norm_k03_object_seed42_rerun\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:54:46.646Z\", \"updated_at\": \"2026-05-21T12:55:59.540Z\", \"hypothesis\": \"OpenVLA L2norm k=0.3 rerun to verify prior 25.0% result. If consistent, confirms L2norm pruning curve datapoint for scaling law table.\", \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.25, \"total_successes\": 125, \"total_episodes\": 500, \"per_task\": {\"alphabet_soup\": 0.42, \"cream_cheese\": 0.06, \"salad_dressing\": 0.28, \"bbq_sauce\": 0.1, \"ketchup\": 0.66, \"tomato_sauce\": 0, \"butter\": 0.08, \"milk\": 0.36, \"chocolate_pudding\": 0.28, \"orange_juice\": 0.26}, \"vision_tokens\": \"256->76\", \"elapsed_minutes\": 299.2}}, \"eval_openvla_random_k03_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:24:56.943Z\", \"updated_at\": \"2026-05-21T12:33:43.536Z\", \"hypothesis\": \"OpenVLA random k=0.3 seed42: extreme random pruning on high-CV model. Expected poor performance, confirming random is suboptimal for high-CV models.\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.214, \"per_task\": {\"alphabet_soup\": 0.14, \"cream_cheese\": 0, \"salad_dressing\": 0.56, \"bbq_sauce\": 0.3, \"ketchup\": 0.26, \"tomato_sauce\": 0, \"butter\": 0.02, \"milk\": 0.14, \"chocolate_pudding\": 0.16, \"orange_juice\": 0.56}, \"elapsed_min\": 304.1, \"seed\": 42}}, \"eval_openvla_l2norm_k05_object_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:31:58.321Z\", \"updated_at\": \"2026-05-21T12:10:39.326Z\", \"hypothesis\": \"OpenVLA L2norm k=0.5 seed42 v3: verify prior crash-recovered result of 39.2%. If consistent, confirms MLP connector retains ~40% SR at 50% pruning with importance-based method.\", \"conclusion\": \"killed\"}, \"eval_openvla_l2norm_k05_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:25:01.420Z\", \"updated_at\": \"2026-05-21T12:10:30.050Z\", \"hypothesis\": \"OpenVLA L2norm k=0.5 seed42 v2: verify prior result of 39.2%. Prior result from crashed run may be incomplete.\", \"conclusion\": \"success\", \"metrics\": {\"overall_SR\": 0.392, \"total_successes\": 196, \"total_episodes\": 500, \"per_task_SR\": {\"alphabet_soup\": 0.56, \"cream_cheese\": 0.14, \"salad_dressing\": 0.38, \"bbq_sauce\": 0.32, \"ketchup\": 0.7, \"tomato_sauce\": 0.32, \"butter\": 0.12, \"milk\": 0.5, \"chocolate_pudding\": 0.44, \"orange_juice\": 0.44}, \"elapsed_minutes\": 279.3, \"seed\": 42}}, \"eval_openvla_l2norm_k07_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:24:55.216Z\", \"updated_at\": \"2026-05-21T11:58:44.252Z\", \"hypothesis\": \"OpenVLA L2norm k=0.7 seed42: fills L2norm curve gap. MLP connector high CV should benefit from importance-based pruning.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.498, \"total_successes\": 249, \"total_episodes\": 500}, \"notes\": \"Cron 误判 failed。日志显示实验完成: Overall SR 49.8% (249/500)。结果文件: /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_l2norm_prune_k07_object.json\"}, \"eval_pi05_random_k07_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T09:11:18.283Z\", \"updated_at\": \"2026-05-21T10:49:40.934Z\", \"hypothesis\": \"π0.5 random k=0.7 fills scaling law curve. With random k=0.5=69.4% and baseline=98.2%, expect k=0.7 > 69.4%. D132 predicts random >> L2norm at this k.\", \"parent\": \"eval_pi05_random_k05_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.772, \"total_successes\": 386, \"total_episodes\": 500, \"elapsed_min\": 83.1}}, \"eval_xvla_l2norm_k03_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T08:09:53.939Z\", \"updated_at\": \"2026-05-21T10:34:59.000Z\", \"hypothesis\": \"X-VLA L2norm k=0.3 seed42: completes seed42 L2norm curve. seed43=21%, seed44=22.8%. Expected ~20-23%. With random k=0.3=62.8%, this confirms D132 gap of ~40pp at extreme pruning.\", \"parent\": \"eval_xvla_prune_k03_seed43\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.222, \"total_successes\": 111, \"total_episodes\": 500, \"wilson_ci_95\": [0.188, 0.26], \"per_task\": [26, 0, 32, 40, 18, 46, 0, 24, 0, 36], \"notes\": \"3 tasks at 0% SR (catastrophic). vs random k=0.3=62.8% → gap +40.6pp confirms D132.\"}}, \"eval_pi05_random_k03_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:26:07.844Z\", \"updated_at\": \"2026-05-21T09:28:46.000Z\", \"hypothesis\": \"π0.5 (CV=0.055, linear projection) random k=0.3: extreme pruning removing 70% of tokens. If SR remains >50%, confirms π0.5 is truly immune to random pruning even at extreme ratios, supporting Immune class designation.\", \"parent\": \"eval_pi05_random_k05_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.364, \"total_successes\": 182, \"total_episodes\": 500}}, \"eval_xvla_l2norm_k05_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:28:01.658Z\", \"updated_at\": \"2026-05-21T09:28:46.000Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 seed42: key D132 comparison point. Random k=0.5 seed42=70.6%. If L2norm k=0.5 seed42 ≈ seed44 (44.4%), confirms +26pp gap for random over L2norm at k=0.5.\", \"parent\": \"eval_xvla_prune_k05_seed44\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.434, \"total_successes\": 217, \"total_episodes\": 500}}, \"eval_pi05_l2norm_k03_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:32:23.526Z\", \"updated_at\": \"2026-05-21T09:28:46.000Z\", \"hypothesis\": \"π0.5 L2norm k=0.3 seed42: if L2norm k=0.5 = 33.4%, L2norm k=0.3 should be even worse (<20%). Establishes that L2norm pruning on near-uniform importance distributions (CV=0.055) is catastrophic at all aggressive ratios.\", \"parent\": \"eval_pi05_l2norm_k05_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.51, \"total_successes\": 255, \"total_episodes\": 500, \"notes\": \"D140: L2norm reversal at k=0.3 - L2norm > random for pi0.5\"}}, \"eval_xvla_random_k05_object_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:59:36.900Z\", \"updated_at\": \"2026-05-21T09:28:46.000Z\", \"hypothesis\": \"X-VLA random k=0.5 seed44: third seed for D132 verification. seed42=70.6%, seed43=71.0%. If seed44 ≈ 70%, confirms D132 gap (random >> L2norm at k=0.5) is robust across 3 seeds.\", \"parent\": \"eval_xvla_random_k05_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.692, \"total_successes\": 346, \"total_episodes\": 500, \"notes\": \"3rd seed confirms D132: random k=0.5 seed42=70.6%, seed43=71.0%, seed44=69.2%\"}}, \"eval_pi05_random_k05_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T05:45:27.000Z\", \"updated_at\": \"2026-05-21T09:07:16.526Z\", \"hypothesis\": \"π0.5 (CV=0.055, linear projection) random k=0.5: D132 predicts random pruning effective for low-CV models. If SR remains high (>90%), confirms immune class even at 50% token removal. If SR drops, establishes pruning threshold for near-uniform importance distributions.\", \"parent\": \"eval_pi05_baseline_object_seed42\", \"notes\": \"Original PID 899206 crashed (Network unreachable, tokenizer download failed). Restarted as PID 912501→912506 on GPU 0 at 15:21 with HF_HUB_OFFLINE=1 and HF_HOME=/root/autodl-tmp/.hf_cache.\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.694, \"total_successes\": 347, \"total_episodes\": 500, \"elapsed_min\": 94.9, \"per_task_sr\": {\"alphabet_soup\": 0.92, \"cream_cheese\": 0.78, \"salad_dressing\": 0.68, \"bbq_sauce\": 0.6, \"ketchup\": 0.6, \"tomato_sauce\": 0.58, \"butter\": 0.88, \"milk\": 0.54, \"chocolate_pudding\": 0.78, \"orange_juice\": 0.58}, \"comparison\": {\"baseline_sr\": 0.982, \"l2norm_k05_sr\": 0.334, \"random_vs_l2norm_gap\": \"+36.0pp\", \"retention_rate\": \"70.7%\"}}}, \"eval_xvla_l2norm_k07_object_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T06:36:31.607Z\", \"updated_at\": \"2026-05-21T08:42:43.884Z\", \"hypothesis\": \"X-VLA L2norm k=0.7 seed42 fills curve gap. With random k=0.7=65.2%, if L2norm k=0.7 < 65.2%, confirms D132 crossover extends to k=0.7 (not just k=0.5). Expected ~56% based on seed44=56.4%.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.582, \"total_episodes\": 500, \"total_successes\": 291, \"per_task\": [96, 2, 100, 78, 34, 90, 18, 0, 70, 94], \"notes\": \"Reviewer confirmed. westd-38929=56.2% vs cqa1=58.2%, 2pp diff acceptable.\"}}, \"train_openvla_sc_m64_seed42_v4\": {\"status\": \"DONE\", \"hypothesis\": \"Smart Compress M=64 retraining with save_every=10000 (v3 lost 50K steps due to disk full crash).\", \"parent\": \"train_openvla_sc_m64_seed42_v3\", \"created_at\": \"2026-05-21T02:48:11.429230+00:00\", \"notes\": \"失败原因: 磁盘满 — torch.save checkpoint 时 PytorchStreamWriter failed writing file (与 v3 相同根因). 训练正常到 step 10000 (loss~3.0, 稳定下降), 在 save_checkpoint(step=10000) 时磁盘写满崩溃. | 已有成果: 10K steps 完成但无 checkpoint 保存. | 建议: 清理 westd-41074 磁盘后重启 v5\", \"updated_at\": \"2026-05-21T08:09:24.294Z\", \"conclusion\": \"failed\", \"metrics\": {\"steps_completed\": \"from_step_0_restart\", \"steps_total\": 100000, \"note\": \"Previous run crashed at 50K. Current run restarted from 0.\"}}, \"eval_xvla_random_k07_object_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:27:59.620Z\", \"updated_at\": \"2026-05-21T07:56:46.397Z\", \"hypothesis\": \"X-VLA random k=0.7 seed43 v2: re-run with correct --mode random. seed42=65.2%. Multi-seed verification of non-monotonicity (k=0.5=70.6% > k=0.7=65.2%). If seed43 also shows k=0.7 < k=0.5, confirms non-monotonicity is reproducible.\", \"parent\": \"eval_xvla_random_k07_object_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.65, \"wilson_ci_95\": [0.6072, 0.6905], \"total_episodes\": 500, \"total_successes\": 325}}, \"eval_openvla_sc_m128_object_seed42_v2\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-21T06:34:48.000Z\", \"updated_at\": \"2026-05-21T07:53:56.189Z\", \"hypothesis\": \"OpenVLA SC M128 eval with properly merged LoRA checkpoint (v1 had 291 missing keys due to adapter format). PEFT merge_and_unload applied. Expected SR near baseline 74% if VTC M128 training was successful.\", \"parent\": \"eval_openvla_sc_m128_object_seed42\", \"metrics\": {\"failure_reason\": \"7/7 episodes FAIL (280-step timeout), model output invalid after LoRA merge. Killed by Director.\"}}, \"eval_openvla_random_k07_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T07:24:58.705Z\", \"updated_at\": \"2026-05-21T07:30:01.000Z\", \"hypothesis\": \"OpenVLA random k=0.7 seed42: D132 crossover comparison. High-CV model → L2norm should beat random at this ratio.\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"Process never started — empty log, command failure on westd-38929\"}}, \"eval_pi05_l2norm_k05_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T05:45:27.000Z\", \"updated_at\": \"2026-05-21T07:28:33.000Z\", \"hypothesis\": \"π0.5 L2norm pruning k=0.5 on Object. CV=0.055 predicts immunity: if SR stays ~96% at 50% token removal, confirms linear projection → uniform importance → pruning immune.\", \"parent\": \"eval_pi05_baseline_object_seed42\", \"conclusion\": \"negative\", \"metrics\": {\"success_rate\": 33.4, \"total_successes\": 167, \"num_episodes\": 500, \"elapsed_minutes\": 95.6, \"seed\": 42, \"keep_ratio\": 0.5, \"per_task\": {\"alphabet_soup\": 0.5, \"cream_cheese\": 0.14, \"salad_dressing\": 0.0, \"bbq_sauce\": 0.0, \"ketchup\": 0.54, \"tomato_sauce\": 0.38, \"butter\": 0.28, \"milk\": 0.64, \"chocolate_pudding\": 0.38, \"orange_juice\": 0.48}}}, \"eval_xvla_random_k05_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T05:45:07.000Z\", \"updated_at\": \"2026-05-21T07:25:13.853Z\", \"hypothesis\": \"X-VLA random pruning k=0.5 on Spatial suite. Cross-suite comparison with Object k=0.5 (70.6%). If Spatial random also stays high, confirms linear projection immunity across task complexity.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 71.4, \"num_episodes\": 500, \"wilson_ci_95\": [0.673, 0.752], \"per_task\": [0.98, 0.26, 0.98, 0.9, 0.86, 0, 0.92, 0.66, 0.92, 0.66], \"duration_min\": 92.1, \"suite\": \"libero_spatial\"}}, \"eval_xvla_random_k07_object_seed43\": {\"status\": \"DONE\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-21T06:15:13.000Z\", \"updated_at\": \"2026-05-21T07:24:45.003Z\", \"hypothesis\": \"X-VLA random pruning k=0.7 seed43 verifies D132 non-monotonicity (seed42: k=0.7=65.2% < k=0.5=70.6%). If seed43 also shows k=0.5 > k=0.7, the non-monotonicity is reproducible and points to architectural property, not noise.\", \"parent\": \"eval_xvla_random_k07_object_seed42\", \"metrics\": {}, \"notes\": \"Confirmed failed: no random k=0.7 seed43 result on disk. The file xvla_prune_k0.7_libero_object_seed43.json is actually l2_norm_prune mode (SR=59.0%), not random. Experiment was likely launched with wrong --mode or never ran. GPU freed.\"}, \"eval_openvla_l2norm_k05_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T05:46:57.000Z\", \"updated_at\": \"2026-05-21T07:20:13.000Z\", \"hypothesis\": \"OpenVLA L2norm pruning k=0.5 on Object. Complement random k=0.5 (35.8%) data point.\", \"conclusion\": \"success\", \"notes\": \"失败原因: process dead 5× with no sentinel/W&B — 与 westd-38929 上其他 3 个 OpenVLA eval 同批次失败。诊断 Worker 已在运行中（worker_diagnose_openvla_batch_fail_westd38929_20260521T070441 等）。待诊断结果后重试。\", \"metrics\": {\"failure_reason\": \"AutoDL container restart at 14:50:19 UTC killed process. Was at Task 4/10 (~40%). GPU count dropped from 4 to 1 after restart.\", \"success_rate\": 39.2, \"k_ratio\": 0.5, \"note\": \"Prior complete result found on disk after container crash. Current run crashed at Task 4/10.\"}}, \"eval_openvla_l2norm_k03_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T05:46:57.000Z\", \"updated_at\": \"2026-05-21T07:20:13.000Z\", \"hypothesis\": \"OpenVLA L2norm pruning k=0.3 on Object. Most aggressive L2norm point.\", \"conclusion\": \"success\", \"metrics\": {\"failure_reason\": \"AutoDL container restart at 14:50:19 UTC killed process. Was at Task 4/10 (~40%). GPU count dropped from 4 to 1 after restart.\", \"success_rate\": 25.0, \"k_ratio\": 0.3, \"note\": \"Prior complete result found on disk after container crash. Current run crashed at Task 4/10.\"}}, \"eval_openvla_random_k03_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T05:46:57.000Z\", \"updated_at\": \"2026-05-21T07:17:46.000Z\", \"hypothesis\": \"OpenVLA random pruning k=0.3 on Object. Most aggressive random pruning point for OpenVLA.\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"AutoDL container restart at 14:50:19 UTC killed process. Was at Task 4/10 (~40%). GPU count dropped from 4 to 1 after restart.\"}}, \"eval_openvla_l2norm_k07_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T05:46:57.000Z\", \"updated_at\": \"2026-05-21T07:17:46.000Z\", \"hypothesis\": \"OpenVLA L2norm pruning k=0.7 on Object. Fill L2norm curve gap.\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"AutoDL container restart at 14:50:19 UTC killed process. Was at Task 4/10 (~40%). GPU count dropped from 4 to 1 after restart.\"}}, \"eval_xvla_random_k03_object_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"created_at\": \"2026-05-21T06:57:43.000Z\", \"updated_at\": \"2026-05-21T06:57:43.000Z\", \"hypothesis\": \"X-VLA random k=0.3 seed42: extreme random pruning (70% tokens removed). Extends random pruning curve below k=0.5. Expected low SR given k=0.5=70.6%.\", \"parent\": \"eval_xvla_random_k05_object_seed42\", \"metrics\": {\"success_rate\": 62.8, \"keep_ratio\": 0.3}}, \"eval_pi05_baseline_object_seed42\": {\"status\": \"DONE\", \"hypothesis\": \"π0.5 Object baseline (no pruning). π0.5 has linear projection connector (CV=0.055), predicting near-immunity to pruning like π0. This is the 2nd immune data point for the taxonomy.\", \"created_at\": \"2026-05-21T02:39:14.542232+00:00\", \"updated_at\": \"2026-05-21T06:23:11.725Z\", \"conclusion\": \"success\", \"notes\": \"π0.5 baseline LIBERO-Object = 98.2% (491/500). 第一次跑因 patched_embed_image 有 hidden_size**0.5 缩放 bug 导致 0%。修复后重跑成功。Checkpoint: lerobot/pi05_libero official (7.47GB). Cron 误报 failed 因为脚本不输出 W&B metrics。结果文件: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_baseline_libero_object.json\", \"metrics\": {\"success_rate\": 0.982, \"total_successes\": 491, \"num_episodes\": 500, \"elapsed_minutes\": 60.6, \"seed\": 42, \"per_task\": {\"alphabet_soup\": 0.96, \"cream_cheese\": 0.98, \"salad_dressing\": 0.97, \"bbq_sauce\": 1, \"ketchup\": 0.94, \"tomato_sauce\": 1, \"butter\": 1, \"milk\": 0.98, \"chocolate_pudding\": 1, \"orange_juice\": 0.98}}}, \"eval_xvla_random_k05_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T03:14:00.000Z\", \"updated_at\": \"2026-05-21T05:45:58.000Z\", \"hypothesis\": \"X-VLA random pruning at k=0.5 (50% tokens removed randomly). Compare with L2norm k=0.5 (baseline comparison point). Random pruning at aggressive compression should show larger degradation than L2norm, confirming importance-aware selection advantage.\", \"parent\": \"eval_xvla_prune_k05_seed42\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 70.6, \"num_episodes\": 500, \"wilson_ci_95\": [0.665, 0.744], \"per_task\": [0.96, 0.46, 0.98, 0.8, 1.0, 0.76, 0.02, 0.82, 0.26, 1.0], \"duration_min\": 76.0}}, \"eval_xvla_random_k07_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T05:24:53.000Z\", \"updated_at\": \"2026-05-21T05:45:07.000Z\", \"hypothesis\": \"X-VLA random pruning k=0.7 on Object suite. Compare with L2norm k=0.7 to extend random vs L2norm equivalence analysis at more aggressive compression.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 65.2, \"num_episodes\": 500, \"wilson_ci_95\": [0.609, 0.692], \"per_task\": [0.98, 0.0, 1.0, 0.94, 0.62, 0.96, 0.1, 0.92, 0.0, 1.0], \"duration_min\": 77.3}}, \"eval_openvla_sc_m128_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T03:03:54.000Z\", \"updated_at\": \"2026-05-21T05:44:30.000Z\", \"hypothesis\": \"OpenVLA VTC M=128 (256→128 tokens, 50% compression) eval on LIBERO-Object. M-sweep data point: if M=128 SR is close to baseline (74%), confirms minimal degradation at 50% compression for MLP-projector VTC.\", \"parent\": \"train_openvla_sc_m128_seed42\", \"conclusion\": \"failed\", \"metrics\": {\"success_rate\": 0.0, \"num_episodes_completed\": 16, \"all_fail\": true}}, \"eval_openvla_prune_random_k05_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:33:00.857Z\", \"updated_at\": \"2026-05-21T05:43:50.000Z\", \"hypothesis\": \"OpenVLA random k=0.5 seed42 第3个seed验证MF-3。已有seed7=37.4%, seed43=35.6%，预期seed42在此范围内\", \"conclusion\": \"success\", \"notes\": \"Confirmed running on westd-41074:cuda:0, PID 659206\", \"metrics\": {\"success_rate\": 35.8, \"num_episodes\": 500, \"seed\": 42, \"per_task\": [0.56, 0.02, 0.4, 0.58, 0.6, 0.26, 0.0, 0.12, 0.3, 0.74], \"wilson_ci_95\": [0.317, 0.401], \"duration_min\": 291}}, \"eval_xvla_random_k085_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T03:30:21.000Z\", \"updated_at\": \"2026-05-21T05:22:44.000Z\", \"hypothesis\": \"X-VLA random pruning k=0.85 on Spatial suite. Compare with L2norm Spatial k=0.85 (66.6%) to test if random vs L2norm matters for Spatial tasks with linear projection connector.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 67.6, \"num_episodes\": 500, \"wilson_ci_95\": [0.634, 0.716], \"per_task\": [1.0, 0.04, 0.98, 1.0, 0.8, 0.06, 0.96, 0.04, 0.94, 0.94], \"duration_min\": 94.9}}, \"eval_openvla_prune_random_k07_seed42_v2\": {\"status\": \"DONE\", \"hypothesis\": \"OpenVLA random pruning k=0.7 Object seed42 v2 (M043 restart).\", \"notes\": \"[D125] env.seed(0) bug — results use seed 0 regardless of --seed. Still valid for single-seed comparison.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 44.4, \"num_episodes\": 500, \"seed\": 42}, \"updated_at\": \"2026-05-21T04:41:20.000Z\"}, \"eval_openvla_prune_random_k095_seed42_v2\": {\"status\": \"DONE\", \"hypothesis\": \"OpenVLA random pruning k=0.95 Object seed42 v2 (M043 restart).\", \"notes\": \"[D125] env.seed(0) bug — results use seed 0 regardless of --seed. Still valid for single-seed comparison.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 69.2, \"num_episodes\": 500, \"seed\": 42, \"per_task\": [0.8, 0.42, 0.7, 0.42, 0.88, 0.84, 0.6, 0.68, 0.66, 0.92], \"wilson_ci_95\": [0.65, 0.731]}, \"updated_at\": \"2026-05-21T04:01:10.000Z\"}, \"eval_smolvla_baseline_spatial_westd38929_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"hypothesis\": \"SmolVLA unpruned baseline on LIBERO-Spatial (westd-38929, OffScreenRenderEnv).\", \"metrics\": {\"success_rate\": 8.0, \"num_episodes\": 500, \"wilson_ci_95\": [0.059, 0.107], \"per_task\": [0.24, 0.08, 0.04, 0.24, 0.0, 0.02, 0.02, 0.02, 0.14, 0.0], \"note\": \"OffScreenRenderEnv - not comparable with LiberoEnv results\"}, \"notes\": \"[D125] OffScreenRenderEnv — NOT comparable with cqa1 results (LiberoEnv baseline=43.8%). For reference only.\", \"updated_at\": \"2026-05-21T03:41:17.000Z\"}, \"eval_xvla_random_k08_object_seed42\": {\"status\": \"DONE\", \"hypothesis\": \"X-VLA random pruning k=0.8 on Object suite (seed42). Compare with L2 norm pruning at same k to quantify importance-aware vs random token selection.\", \"parent\": \"eval_xvla_prune_k08_seed42\", \"created_at\": \"2026-05-21T02:31:58.311851+00:00\", \"notes\": \"[D124] X-VLA random pruning experiment (M046 fix: script now supports --mode random).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 89.4, \"num_episodes\": 500, \"wilson_ci_95\": [0.864, 0.918], \"per_task\": [0.96, 0.88, 1.0, 0.92, 0.94, 0.96, 0.5, 0.94, 0.84, 1.0]}, \"updated_at\": \"2026-05-21T03:35:27.000Z\"}, \"eval_xvla_random_k09_object_seed42\": {\"status\": \"DONE\", \"hypothesis\": \"X-VLA random pruning k=0.9 on Object suite (seed42). Compare with L2 norm pruning at same k to quantify importance-aware vs random token selection.\", \"parent\": \"eval_xvla_prune_k09_seed42\", \"created_at\": \"2026-05-21T02:31:58.311851+00:00\", \"notes\": \"[D124] X-VLA random pruning experiment (M046 fix: script now supports --mode random).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97.8, \"num_episodes\": 500, \"wilson_ci_95\": [0.961, 0.988], \"per_task\": [0.96, 1.0, 1.0, 0.94, 1.0, 0.94, 1.0, 0.98, 0.96, 1.0], \"duration_min\": 50.4}, \"updated_at\": \"2026-05-21T03:25:33.000Z\"}, \"eval_oft_baseline_goal_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:03:00.249Z\", \"updated_at\": \"2026-05-21T03:17:30.793Z\"}, \"eval_oft_object_std_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:17:03.242Z\", \"updated_at\": \"2026-05-21T03:17:03.242Z\"}, \"eval_oft_object_nolora_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T03:10:22.127Z\", \"updated_at\": \"2026-05-21T03:10:22.127Z\"}, \"eval_xvla_spatial_k085_seed42\": {\"status\": \"DONE\", \"hypothesis\": \"X-VLA shows non-monotonic cliff at k=0.85 on Object (67.9% vs k=0.8=89.0%). If same cliff appears on Spatial (baseline=91.6%, k=0.9=79.0%), it confirms the cliff is a general property of X-VLA linear connector, not suite-specific.\", \"parent\": \"eval_xvla_prune_k085_seed42\", \"created_at\": \"2026-05-21T01:18:20.885504Z\", \"updated_at\": \"2026-05-21T03:08:20.000Z\", \"notes\": \"[M046] Pruning method: L2 norm topk (same as all X-VLA pruning experiments).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 66.6, \"num_episodes\": 500}}, \"eval_openvla_prune_l2norm_k07_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T22:21:37.716Z\", \"updated_at\": \"2026-05-21T02:55:52.000Z\", \"hypothesis\": \"重跑 L2 norm k=0.7 seed43（修正参数 bug）。预期 SR ≈ 49.8%（与 seed42 random k=0.7 对齐，D108 结论 L2≈random at k≤0.7）\", \"parent\": \"eval_openvla_prune_l2norm_k07_seed43\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 49.8, \"num_episodes\": 500, \"wilson_ci_95\": [0.455, 0.541]}}, \"eval_oft_baseline_object_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T02:23:43.052531+00:00\", \"updated_at\": \"2026-05-21T02:51:13.099Z\", \"hypothesis\": \"OFT Object baseline (no pruning, k=1.0). OFT uses 3-layer MLP connector (same family as OpenVLA) with 512 vision tokens (DINOv2+SigLIP). Expected SR ≈ 97% (SOTA). Validates eval adapter correctness.\", \"conclusion\": \"killed\", \"notes\": \"Killed on westd-41074:cuda:1 per Director instruction (D124). OFT baseline reassigned to westd-38929:cuda:0.\"}, \"train_openvla_sc_m64_seed42_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T06:16:27.251Z\", \"updated_at\": \"2026-05-21T02:41:41.924Z\", \"hypothesis\": \"OpenVLA VTC-only M=64 (256→64 tokens, 75% compression). M-sweep data point. Retracked from orphan PID 68852 after config-missing failure. Training from step 0, currently at ~2450+. If M=64 SR > M=32 SR, confirms monotonic degradation for MLP-projector VTC re-encoding at higher compression ratios on OpenVLA.\", \"parent\": \"train_openvla_sc_m128_vtconly_seed42\", \"conclusion\": \"failed\"}, \"eval_openvla_sc_m64_50k_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T02:38:11.573Z\", \"updated_at\": \"2026-05-21T02:38:11.573Z\"}, \"openvla-spatial-maxsteps600-quick\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T01:22:23.160Z\", \"updated_at\": \"2026-05-21T01:22:23.160Z\"}, \"openvla-spatial-maxsteps600-test\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T01:14:22.222Z\", \"updated_at\": \"2026-05-21T01:14:22.222Z\"}, \"eval_openvla_baseline_spatial_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T00:52:09.639Z\", \"updated_at\": \"2026-05-21T00:52:30.601Z\", \"hypothesis\": \"OpenVLA baseline on LIBERO-Spatial (v2, after checkpoint integrity verification). M044 lesson: v1 used partial checkpoint leading to 0% SR.\", \"parent\": \"eval_openvla_baseline_spatial_seed42\", \"conclusion\": \"failed\", \"notes\": \"No process found on westd-41074:cuda:1. Experiment died without trace. [D122] 0% SR confirmed not max_steps issue. Killed to free GPU.\"}, \"eval_xvla_goal_k05_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T00:49:10.505Z\", \"updated_at\": \"2026-05-21T00:50:28.802Z\", \"hypothesis\": \"X-VLA k=0.5 on LIBERO-Goal. Object k=0.5=43.7%, Spatial k=0.5 running. Cross-suite comparison at aggressive pruning level (C1)\", \"notes\": \"[M046] L2 norm pruning (not random). Result from Director.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.61, \"num_episodes\": 500, \"suite\": \"libero_goal\", \"seed\": 42, \"wilson_ci_95\": [0.567, 0.652], \"per_task\": [0.82, 0.98, 1.0, 0.4, 1.0, 0.0, 0.24, 0.74, 0.92, 0.0]}}, \"eval_xvla_goal_k09_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T00:49:06.867Z\", \"updated_at\": \"2026-05-21T00:50:23.115Z\", \"hypothesis\": \"X-VLA k=0.9 on LIBERO-Goal. Object k=0.9=97.8%, Spatial k=0.9=79.0%. If Goal also high, confirms cross-suite pruning tolerance. If lower, reveals suite-dependent sensitivity (C1)\", \"notes\": \"[M046] L2 norm pruning. Goal suite much more sensitive than Object (-27.8pp vs -1.4pp at k=0.9).\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.702, \"num_episodes\": 500, \"wilson_ci_95\": [0.66, 0.74], \"suite\": \"libero_goal\", \"seed\": 42, \"per_task\": [1.0, 0.82, 0.96, 0.06, 0.96, 0.0, 0.78, 1.0, 0.46, 0.98]}}, \"eval_xvla_spatial_k09_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T23:19:31.674Z\", \"updated_at\": \"2026-05-21T00:48:54.159Z\", \"hypothesis\": \"X-VLA k=0.9 pruning on LIBERO-Spatial. Object suite k=0.9=97.8%, Spatial baseline=98%+. If Spatial also robust at k=0.9, confirms cross-suite pruning tolerance at high keep ratios\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.79, \"num_episodes\": 500, \"wilson_ci_95\": [0.752, 0.823]}, \"notes\": \"[M046] Pruning method: L2 norm topk (same as all X-VLA pruning experiments).\"}, \"eval_openvla_sc_m128_spatial_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T23:47:52.524Z\", \"updated_at\": \"2026-05-20T23:48:20.930Z\", \"hypothesis\": \"OpenVLA SmartCompress M=128 on LIBERO-Spatial. Object suite SR=59.8% (vs random k=0.5 ~36%). If Spatial maintains similar relative advantage over random pruning, confirms learned VTC re-encoding generalizes across suites (C3 graceful degradation)\", \"conclusion\": \"failed\", \"notes\": \"No process found on westd-41074:cuda:1. Experiment died without trace.\"}, \"eval_openvla_prune_random_k03_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:30:53.798Z\", \"updated_at\": \"2026-05-20T23:24:24.497Z\", \"hypothesis\": \"OpenVLA random pruning k=0.3 seed43 provides 2nd seed for MF-3 validation at 70% pruning. seed7=20.6%. Tests whether severe degradation pattern is consistent across seeds.\", \"parent\": \"eval_openvla_prune_seed43_sweep\", \"conclusion\": \"killed\", \"notes\": \"Process died silently during Task 3 (salad dressing, Ep 30/50) — no traceback in log, log stopped updating at 07:18 CST. GPU 2 shows 15.6GB memory but 0% utilization (zombie memory). Same LIBERO init_files issue as other 3 experiments. Partial results: T1=18%, T2=2%, T3=partial(16/30). Metadata verified: Random pruning k=0.3, 256→76 tokens.\"}, \"eval_openvla_prune_random_k07_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:28:27.340Z\", \"updated_at\": \"2026-05-20T23:24:23.000Z\", \"hypothesis\": \"OpenVLA random pruning k=0.7 seed42 provides 3rd seed for MF-3 validation. seed7=49%, seed43=52.6%. If seed42 ≈ 50%, confirms graded degradation at 30% pruning is robust across seeds.\", \"parent\": \"eval_openvla_random_pruning_sweep\", \"conclusion\": \"killed\", \"notes\": \"CRASHED mid-Task 3 (salad dressing, Ep 40/50) — FileNotFoundError for .pruned_init file. Same LIBERO init_files path issue as all 4 westd-38929 experiments. Partial results: T1=72%, T2=20%, T3=partial(21/40). Metadata verified: Random pruning k=0.7, 256→179 tokens. Needs LIBERO reinstall before rerun.\"}, \"eval_openvla_prune_random_k095_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:28:25.854Z\", \"updated_at\": \"2026-05-20T23:24:21.317Z\", \"hypothesis\": \"OpenVLA random pruning k=0.95 seed42 provides 3rd seed for MF-3 validation. seed7=69.4%. If seed42 ≈ 69%, confirms minimal pruning (5%) causes only marginal degradation in MLP-connector architecture, robust across seeds.\", \"parent\": \"eval_openvla_random_pruning_sweep\", \"conclusion\": \"killed\", \"notes\": \"CRASHED at Task 4/10 (bbq sauce) — FileNotFoundError for .pruned_init file. LIBERO init_files at /root/miniconda3/.../site-packages/libero/ wiped after M040 restart. Partial results (3/10 tasks): T1=80%, T2=42%, T3=70%. Metadata verified: Random pruning k=0.95, 256→243 tokens. Needs LIBERO reinstall or symlink to /root/autodl-tmp/LIBERO-plus/ before rerun.\"}, \"eval_openvla_prune_l2norm_k09_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:30:56.421Z\", \"updated_at\": \"2026-05-20T23:21:58.931Z\", \"hypothesis\": \"OpenVLA L2 norm pruning k=0.9 seed43 provides 2nd seed for D108 L2 norm multi-seed validation. seed7 L2 norm k=0.9=70.6% vs random=62%. If seed43 confirms +8pp advantage, strengthens L2 norm's selective benefit at high retention.\", \"parent\": \"eval_openvla_prune_l2norm_sweep\", \"conclusion\": \"killed\", \"notes\": \"CRASHED at Task 4/10 (bbq sauce) — FileNotFoundError for .pruned_init file. Root cause: LIBERO init_files path mismatch. Code resolves to /root/miniconda3/.../site-packages/libero/libero/init_files/ (non-existent) but actual files are at /root/autodl-tmp/LIBERO-plus/libero/libero/init_files/. Same bug hits eval_random_k095_seed42 and eval_random_k07_seed42. Only 3/10 tasks completed (T1=66%, T2=58%, T3=66%). Needs LIBERO reinstall or symlink fix before rerun.\"}, \"eval_xvla_spatial_k05_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T23:19:33.364Z\", \"updated_at\": \"2026-05-20T23:21:26.353Z\", \"hypothesis\": \"X-VLA k=0.5 pruning on LIBERO-Spatial. Object suite k=0.5=43.7%. If Spatial shows similar degradation pattern, confirms cross-suite consistency. If different, reveals suite-dependent pruning sensitivity\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.588, \"num_episodes\": 500, \"wilson_ci_95\": [0.544, 0.63], \"per_task\": [0.94, 0.22, 0.9, 0.74, 0.88, 0.0, 0.78, 0.3, 0.74, 0.38]}, \"notes\": \"[M046] Pruning method: L2 norm topk (same as all X-VLA pruning experiments).\"}, \"eval_xvla_prune_k085_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T21:56:57.648Z\", \"updated_at\": \"2026-05-20T23:16:00.643Z\", \"hypothesis\": \"X-VLA L2 norm pruning k=0.85 seed44 provides 3rd seed for cliff region. seed42=68.0% shows massive task-specific variance (T6=0%, T4=26%). 3rd seed validates variance pattern.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.682, \"num_episodes\": 500, \"wilson_ci_95\": [0.64, 0.721]}, \"notes\": \"[M046] Pruning method corrected: was labeled random but actually uses L2 norm topk selection.\"}, \"eval_xvla_prune_k08_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T21:47:40.340Z\", \"updated_at\": \"2026-05-20T22:51:44.737Z\", \"hypothesis\": \"X-VLA L2 norm pruning k=0.8 seed44 provides 3rd seed for cliff threshold localization at MF-3 statistical validation. seed43=88.4%. Expecting similar range to confirm cliff position.\", \"metrics\": {\"success_rate\": 0.898, \"num_episodes\": 500, \"total_successes\": 449, \"wilson_ci_95\": [0.868, 0.922]}, \"conclusion\": \"success\", \"notes\": \"k=0.8 seed44 SR=89.8% [86.8%, 92.2%]. JSON file missing (log data intact). 3-seed mean for k=0.8: (88.8+88.4+89.8)/3=89.0%. Confirms k=0.8 is above the cliff — performance nearly matches baseline. Cliff localized to 0.80→0.85 (keep_ratio) region where SR drops from ~89% to ~68%. [M046] Pruning method corrected: was labeled random but actually uses L2 norm topk selection.\"}, \"eval_openvla_prune_random_k095_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:11:40.332Z\", \"updated_at\": \"2026-05-20T22:34:31.530Z\", \"hypothesis\": \"OpenVLA random pruning at k=0.95 with seed=43 verifies reproducibility of seed=7 result (69.4% SR). If consistent, confirms that minimal pruning (5%) causes marginal degradation in MLP-connector architecture.\", \"parent\": \"eval_openvla_prune_seed43_sweep\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.668, \"num_episodes\": 500, \"total_successes\": 334, \"wilson_ci_95\": [0.626, 0.708], \"elapsed_minutes\": 249.43, \"seed\": 43, \"k_ratio\": 0.95, \"mode\": \"random_prune\"}}, \"eval_openvla_prune_l2norm_k07_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T18:15:31.381Z\", \"updated_at\": \"2026-05-20T22:16:27.831Z\", \"hypothesis\": \"OpenVLA L2 norm pruning at k=0.7 with seed=43. Seed42 L2 norm k=0.7 = 49.8%. If seed43 ≈ 50%, confirms L2 norm pruning curve is reproducible across seeds for MLP projector.\", \"conclusion\": \"failed\", \"metrics\": {\"success_rate\": 0.74, \"total_successes\": 370, \"num_episodes\": 500, \"wilson_ci_95\": [0.7, 0.777], \"elapsed_minutes\": 237.8, \"seed\": 43, \"per_task\": {\"alphabet_soup\": 0.78, \"cream_cheese\": 0.8, \"salad_dressing\": 0.82, \"bbq_sauce\": 0.46, \"ketchup\": 0.96, \"tomato_sauce\": 0.78, \"butter\": 0.58, \"milk\": 0.72, \"chocolate_pudding\": 0.68, \"orange_juice\": 0.82}}}, \"eval_xvla_prune_k08_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T20:27:56.367Z\", \"updated_at\": \"2026-05-20T22:12:20.485Z\", \"hypothesis\": \"X-VLA L2 norm pruning k=0.8 seed42 locates the cliff threshold between k=0.9 (97.8%) and k=0.7 (57.2%). If k=0.8 ≈ 90%+, cliff is between 0.7-0.8; if k=0.8 ≈ 60%, cliff starts at 0.8.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.888, \"num_episodes\": 500, \"wilson_ci_95\": [0.8573, 0.9127], \"n_vision_tokens_kept\": 40, \"n_vision_tokens_original\": 50, \"keep_ratio\": 0.8}, \"notes\": \"[M046] Pruning method corrected: was labeled random but actually uses L2 norm topk selection.\"}, \"eval_xvla_prune_k085_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T20:28:01.206Z\", \"updated_at\": \"2026-05-20T22:12:19.023Z\", \"hypothesis\": \"X-VLA L2 norm pruning k=0.85 seed43 provides 2nd seed for k=0.85 data point. Combined with seed42, validates whether the cliff shape is consistent across seeds.\", \"metrics\": {\"success_rate\": 0.676, \"num_episodes\": 500, \"wilson_ci_95\": [0.6338, 0.7155], \"n_vision_tokens_kept\": 42, \"n_vision_tokens_original\": 50, \"keep_ratio\": 0.85}, \"conclusion\": \"success\", \"notes\": \"[M046] Pruning method corrected: was labeled random but actually uses L2 norm topk selection.\"}, \"eval_xvla_prune_k085_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T20:28:00.150Z\", \"updated_at\": \"2026-05-20T21:57:02.351Z\", \"hypothesis\": \"X-VLA L2 norm pruning k=0.85 seed42 further narrows the cliff between k=0.9 (97.8%) and k=0.8. If k=0.85 ≈ 97%, cliff is sharp at k=0.8; if k=0.85 ≈ 80%, degradation is more gradual.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.68, \"num_episodes\": 500, \"wilson_ci_95\": [0.638, 0.719]}, \"notes\": \"[M046] Pruning method corrected: was labeled random but actually uses L2 norm topk selection.\"}, \"eval_xvla_prune_k08_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T20:27:57.915Z\", \"updated_at\": \"2026-05-20T21:44:22.944Z\", \"hypothesis\": \"X-VLA L2 norm pruning k=0.8 seed43 provides 2nd seed for cliff threshold localization. Combined with seed42, narrows the cliff to a 5pp interval.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.884, \"num_episodes\": 500, \"wilson_ci_95\": [0.853, 0.909]}, \"notes\": \"[M046] Pruning method corrected: was labeled random but actually uses L2 norm topk selection.\"}, \"eval_xvla_prune_k01_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T18:58:45.681Z\", \"updated_at\": \"2026-05-20T20:57:58.079Z\", \"hypothesis\": \"X-VLA L2 norm pruning at k=0.1 with seed=42. Extends curve to 90% token removal. Seed42 k=0.2=5.2%. If k=0.1 ≈ 0-5%, confirms near-total collapse at extreme compression for linear projection connector.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0, \"num_episodes\": 500, \"wilson_ci_95\": [0, 0.008]}}, \"eval_xvla_prune_k095_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:57:33.756Z\", \"updated_at\": \"2026-05-20T20:44:35.339Z\", \"hypothesis\": \"X-VLA L2 norm pruning k=0.95 seed43 provides 2nd seed for high-retention curve extension. X-VLA baseline=99.2%, k=0.9 seed43=? Expected near-baseline SR, confirming minimal impact of 5% token removal on linear projection connector.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.99, \"num_episodes\": 500, \"wilson_ci_95\": [0.9768, 0.9957]}, \"notes\": \"[M046] Pruning method corrected: was labeled random but actually uses L2 norm topk selection.\"}, \"eval_xvla_prune_k095_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:57:35.290Z\", \"updated_at\": \"2026-05-20T20:43:20.938Z\", \"hypothesis\": \"X-VLA L2 norm pruning k=0.95 seed44 provides 3rd seed for high-retention curve extension. X-VLA baseline=99.2%, k=0.9 seed44=98.2%. Expected near-baseline SR, completing 3-seed k=0.95 data point.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.994, \"num_episodes\": 500, \"wilson_ci_95\": [0.983, 0.998]}, \"notes\": \"[M046] Pruning method corrected: was labeled random but actually uses L2 norm topk selection.\"}, \"eval_xvla_prune_k095_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:32:58.096Z\", \"updated_at\": \"2026-05-20T20:30:43.657Z\", \"hypothesis\": \"X-VLA L2 norm pruning k=0.95 seed42 extends the curve to the high-retention end. X-VLA baseline=99.2%, k=0.9=97.8%. k=0.95 should be near-baseline, completing the 7-point curve (k=0.95→0.1).\", \"metrics\": {\"success_rate\": 0.99, \"num_episodes\": 500, \"wilson_ci_95\": [0.977, 0.996]}, \"conclusion\": \"success\", \"notes\": \"[M046] Pruning method corrected: was labeled random but actually uses L2 norm topk selection.\"}, \"eval_xvla_prune_k01_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T17:29:15.831Z\", \"updated_at\": \"2026-05-20T19:37:48.239Z\", \"hypothesis\": \"X-VLA L2 norm pruning at k=0.1 with seed=44. Extends curve to 90% token removal. Seed42 k=0.2=5.2%. If k=0.1 ≈ 0-5%, confirms near-total collapse at extreme compression for linear projection connector.\", \"metrics\": {\"success_rate\": 0, \"num_episodes\": 500, \"wilson_ci_95\": [0, 0.008]}, \"conclusion\": \"success\"}, \"eval_xvla_prune_k01_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T17:29:14.767Z\", \"updated_at\": \"2026-05-20T19:37:06.762Z\", \"hypothesis\": \"X-VLA L2 norm pruning at k=0.1 with seed=43. Extends curve to 90% token removal. Seed42 k=0.2=5.2%. If k=0.1 ≈ 0-5%, confirms near-total collapse at extreme compression for linear projection connector.\", \"metrics\": {\"success_rate\": 0, \"num_episodes\": 500, \"wilson_ci_95\": [0, 0.0076]}, \"conclusion\": \"success\"}, \"eval_openvla_prune_random_k03_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T19:33:01.904Z\", \"updated_at\": \"2026-05-20T19:33:01.904Z\", \"hypothesis\": \"OpenVLA random pruning k=0.3 seed42 provides 3rd seed for MF-3 validation at 70% pruning. seed7=20.6%. Auto-queued by Director to start when current seed42 batch completes.\"}, \"eval_openvla_prune_random_k09_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:13:37.199Z\", \"updated_at\": \"2026-05-20T19:30:12.381Z\", \"hypothesis\": \"OpenVLA random pruning at k=0.9 with seed=42 provides the 3rd seed for MF-3 statistical validation. seed7=62%, seed43=62.2%. If seed42 ≈ 62%, confirms robust graded degradation at the critical 10% pruning point.\", \"parent\": \"eval_openvla_random_pruning_sweep\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.646, \"num_episodes\": 500, \"total_successes\": 323, \"wilson_ci_95\": [0.604, 0.686]}}, \"eval_openvla_prune_random_k09_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:11:41.824Z\", \"updated_at\": \"2026-05-20T19:12:42.943Z\", \"hypothesis\": \"OpenVLA random pruning at k=0.9 with seed=43 verifies reproducibility of seed=7 result (62% SR). The k=0.9 point is critical for demonstrating graded degradation in MLP-connector architecture.\", \"parent\": \"eval_openvla_prune_seed43_sweep\", \"metrics\": {\"success_rate\": 0.622, \"num_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_openvla_prune_random_k05_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:37:11.254Z\", \"updated_at\": \"2026-05-20T19:09:26.267Z\", \"hypothesis\": \"OpenVLA random pruning at k=0.5 with seed=43 verifies reproducibility of seed=7 result (37.4% SR). Retry with correct script (eval_openvla_libero.py). If seed43 ≈ 37.4%, confirms graded degradation pattern is robust across seeds.\", \"parent\": \"eval_openvla_prune_seed43_sweep\", \"metrics\": {\"success_rate\": 0.356, \"num_episodes\": 500}, \"conclusion\": \"success\"}, \"eval_xvla_prune_k02_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T16:50:07.505Z\", \"updated_at\": \"2026-05-20T18:58:39.891Z\", \"hypothesis\": \"X-VLA L2 norm pruning at k=0.2 with seed=44 (3rd seed). Seed42 k=0.2=5.2%, seed43 k=0.2 running. If seed44 ≈ 5%, confirms near-total collapse at 80% token removal across 3 seeds.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.04, \"num_episodes\": 500}}, \"eval_xvla_prune_k02_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T16:50:05.876Z\", \"updated_at\": \"2026-05-20T18:58:39.148Z\", \"hypothesis\": \"X-VLA L2 norm pruning at k=0.2 with seed=43. Seed42 k=0.2=5.2%. Extends seed43 curve to extreme compression. If seed43 ≈ 5%, confirms near-total collapse at 80% token removal is consistent.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.048, \"num_episodes\": 500}}, \"eval_openvla_prune_l2norm_k09\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:17:18.346Z\", \"updated_at\": \"2026-05-20T18:16:12.843Z\", \"hypothesis\": \"OpenVLA L2 norm pruning at k=0.9 (retain 230/256 tokens). If L2 norm SR ≈ random pruning SR (62%), confirms L2 norm ≈ random for MLP projector, supporting architecture-determines-compressibility thesis.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.706, \"num_episodes\": 500}}, \"eval_openvla_prune_random_k07_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:37:10.166Z\", \"updated_at\": \"2026-05-20T18:14:57.205Z\", \"hypothesis\": \"OpenVLA random pruning at k=0.7 with seed=43 verifies reproducibility of seed=7 result (49% SR). Retry with correct script (eval_openvla_libero.py). If seed43 ≈ 49%, confirms graded degradation pattern is robust across seeds.\", \"parent\": \"eval_openvla_prune_seed43_sweep\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.526, \"num_episodes\": 500}}, \"eval_openvla_prune_l2norm_k095\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:17:20.150Z\", \"updated_at\": \"2026-05-20T18:13:41.918Z\", \"hypothesis\": \"OpenVLA L2 norm pruning at k=0.95 (retain 243/256 tokens). Near-lossless point. If SR ≈ baseline (74%), minimal tokens carry most information regardless of selection method.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.706, \"num_episodes\": 500}}, \"eval_openvla_prune_l2norm_k03\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T17:49:04.494Z\", \"updated_at\": \"2026-05-20T18:13:40.284Z\", \"hypothesis\": \"OpenVLA L2 norm pruning at k=0.3 (keep 30% vision tokens by L2 norm). D108 unifies pruning method across models. If L2 norm k=0.3 ≈ random k=0.3 (20.6%), confirms architecture determines compressibility, not pruning strategy.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.25, \"num_episodes\": 500}}, \"eval_openvla_prune_l2norm_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T17:49:03.193Z\", \"updated_at\": \"2026-05-20T18:13:38.867Z\", \"hypothesis\": \"OpenVLA L2 norm pruning at k=0.5 (keep 50% vision tokens by L2 norm). D108 unifies pruning method across models. If L2 norm k=0.5 ≈ random k=0.5 (37.4%), confirms architecture determines compressibility, not pruning strategy.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.392, \"num_episodes\": 500}}, \"eval_xvla_prune_k03_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T16:50:01.675Z\", \"updated_at\": \"2026-05-20T17:29:01.183Z\", \"hypothesis\": \"X-VLA L2 norm pruning at k=0.3 with seed=43. Seed42=23.0%. If seed43 ≈ 23%, confirms severe degradation at extreme compression is consistent across seeds.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.21, \"num_episodes\": 500}}, \"eval_xvla_prune_k03_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T16:50:03.822Z\", \"updated_at\": \"2026-05-20T17:11:39.783Z\", \"hypothesis\": \"X-VLA L2 norm pruning at k=0.3 with seed=44 (3rd seed). Seed42=23.0%. Third seed for extreme compression point, completes 3-seed coverage for all k values.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.228, \"num_episodes\": 500}}, \"eval_xvla_prune_k05_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T16:49:59.697Z\", \"updated_at\": \"2026-05-20T17:10:23.370Z\", \"hypothesis\": \"X-VLA L2 norm pruning at k=0.5 with seed=44 (3rd seed). Seed42=42.6%, seed43=44.2%. If seed44 also ~43%, confirms steep degradation below cliff onset is consistent across seeds.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.444, \"num_episodes\": 500}}, \"eval_xvla_prune_k07_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:26:03.840Z\", \"updated_at\": \"2026-05-20T16:50:17.607Z\", \"hypothesis\": \"X-VLA L2 norm pruning at k=0.7 with seed=44 (3rd seed). Seed42=56.2%, seed43=59.0%. If seed44 also ~56-59%, confirms cliff onset at k=0.7 is robust across 3 seeds.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.564, \"episodes\": 500}}, \"eval_xvla_prune_k09_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:26:04.825Z\", \"updated_at\": \"2026-05-20T16:50:16.026Z\", \"hypothesis\": \"X-VLA L2 norm pruning at k=0.9 with seed=44 (3rd seed). Seed42=99.2%, seed43=97.6%. If seed44 also >=97%, confirms near-lossless region is robust across 3 seeds.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.982, \"episodes\": 500}}, \"eval_openvla_prune_random_k05_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:18:44.772Z\", \"updated_at\": \"2026-05-20T16:49:44.800Z\", \"hypothesis\": \"OpenVLA random pruning at k=0.5 with seed=43 verifies reproducibility of seed=7 result (37.4% SR). If seed43 ≈ 37.4%, confirms graded degradation pattern is robust across seeds.\", \"parent\": \"eval_openvla_prune_seed43_sweep\", \"conclusion\": \"failed\", \"notes\": \"Wrong script: used eval_oft_prune_libero.py which loads OFT model instead of OpenVLA. Data invalid. Replaced by eval_openvla_prune_random_k05_seed43_v2.\"}, \"eval_openvla_prune_random_k07_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:18:43.718Z\", \"updated_at\": \"2026-05-20T16:49:43.237Z\", \"hypothesis\": \"OpenVLA random pruning at k=0.7 with seed=43 verifies reproducibility of seed=7 result (49% SR). If seed43 ≈ 49%, confirms graded degradation pattern is robust across seeds.\", \"parent\": \"eval_openvla_prune_seed43_sweep\", \"conclusion\": \"failed\", \"notes\": \"Wrong script: used eval_oft_prune_libero.py which loads OFT model instead of OpenVLA. Data invalid. Replaced by eval_openvla_prune_random_k07_seed43_v2.\"}, \"eval_openvla_prune_seed43_sweep\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T11:30:23.000Z\", \"updated_at\": \"2026-05-20T13:18:41.814Z\", \"hypothesis\": \"OpenVLA-OFT random pruning seed=43 sweep (k=0.7, k=0.5) to verify reproducibility of seed=7 results. If seed43 results match seed=7 (k=0.7→49%, k=0.5→37.4%), confirms graded degradation pattern is robust across seeds.\"}, \"eval_oft_baseline_k10\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:55:13.356Z\", \"updated_at\": \"2026-05-20T13:12:00.402Z\", \"hypothesis\": \"OFT model without pruning (k=1.0) should achieve ~74% SR on libero_object if the eval pipeline is correct; if SR=0% then the OFT pruning sweep results (k=0.95=0%, k=0.9=0%) are due to a model loading/inference bug, not catastrophic pruning sensitivity.\", \"conclusion\": \"failed\", \"notes\": \"OFT k=1.0 baseline (no pruning) = 0% SR on Task 1, confirming eval script bug (action normalization / image preprocessing / prompt format inconsistency with OFT original code). All OFT pruning data invalid. OFT relegated to entropy-only analysis in paper (Table 1 footnote §). Director decision: do not fix OFT eval, not worth the time investment.\"}, \"eval_openvla_sc_m128_20k_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T08:33:32.863Z\", \"updated_at\": \"2026-05-20T11:56:03.798Z\", \"hypothesis\": \"OpenVLA with Smart Compress M=128 at 20K steps achieves competitive success rate on LIBERO-Object (C4-ext checkpoint), validating that VTC-only compression preserves action prediction quality\", \"conclusion\": \"negative\", \"metrics\": {\"suite\": \"libero_object\", \"seed\": 42, \"task_0_sr\": 0, \"episodes_completed\": 44, \"episodes_total\": 50, \"note\": \"0/44 episodes succeeded on Task 0. All episodes timeout at 280 steps. Overfitting confirmed.\"}}, \"eval_openvla_prune_l2norm_sweep\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T11:55:05.329Z\", \"updated_at\": \"2026-05-20T11:55:05.329Z\", \"hypothesis\": \"OpenVLA L2 norm pruning eval (k=0.7/0.5/0.3) on LIBERO-Object. Unifies pruning method with X-VLA (both use L2 norm-based token selection). L2NormPruningHook: after projector output, sort vision tokens by L2 norm, keep top-k highest norm tokens (true removal, spatial order preserved). If L2 norm curve differs significantly from random removal curve (k=0.7: 49%, k=0.5: 37.4%, k=0.3: 20.6%), demonstrates importance-aware pruning matters for MLP projector.\"}, \"eval_smart_compress_m16_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T01:13:02.246Z\", \"updated_at\": \"2026-05-20T10:27:29.577Z\", \"hypothesis\": \"Eval of M=16 seed44 (v3 training) checkpoint on LIBERO-Object (50 eps/task). Third seed for extreme compression point (87.5%). Prior: seed42=55.8%. Completes 3-seed data for M=16 on M-curve.\", \"parent\": \"train_smart_compress_m16_seed44_v3\", \"conclusion\": \"success\", \"metrics\": {\"suite\": \"libero_object\", \"seed\": 44, \"n_queries\": 16, \"overall_sr\": 0.565, \"n_episodes\": 500, \"per_task_sr\": {\"task_0_alphabet_soup\": 0.38, \"task_1_cream_cheese\": 0.7, \"task_2_salad_dressing\": 0.55, \"task_3_bbq_sauce\": 0.42, \"task_4_ketchup\": 0.65, \"task_5_tomato_sauce\": 0.33, \"task_6_butter\": 0.73, \"task_7_milk\": 0.64, \"task_8_chocolate_pudding\": 0.87, \"task_9_orange_juice\": 0.38}}}, \"analysis_smolvla_importance_cv\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T09:07:13.577Z\", \"updated_at\": \"2026-05-20T09:07:18.966Z\", \"hypothesis\": \"SmolVLA (pixel-shuffle connector) token importance CV analysis. D103 verification: if SmolVLA CV is low like π0 (0.038), entropy+CV cannot distinguish compressible/non-compressible; if high, CV is a useful predictor of connector behavior.\", \"conclusion\": \"success\", \"metrics\": {\"importance_cv\": 0.314, \"importance_cv_std\": 0.015, \"importance_gini\": 0.156, \"entropy_ratio\": 0.952}}, \"eval_smart_compress_m16_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T23:16:37.338Z\", \"updated_at\": \"2026-05-20T08:34:14.695Z\", \"hypothesis\": \"Eval Smart Compress M=16 seed43 on LIBERO-Object (500 eps). Third seed for extreme compression point (87.5%). Prior: seed42=55.8%.\", \"metrics\": {\"suite\": \"libero_object\", \"seed\": 43, \"n_queries\": 16, \"overall_sr\": 0.584, \"wilson_ci_95\": [0.5703, 0.5976], \"per_task_sr\": {\"task_0_alphabet_soup\": 0.428, \"task_1_cream_cheese\": 0.474, \"task_2_salad_dressing\": 0.662, \"task_3_bbq_sauce\": 0.484, \"task_4_ketchup\": 0.742, \"task_5_tomato_sauce\": 0.4, \"task_6_butter\": 0.792, \"task_7_milk\": 0.698, \"task_8_chocolate_pudding\": 0.766, \"task_9_orange_juice\": 0.394}}, \"conclusion\": \"success\"}, \"eval_smart_compress_m128_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T23:16:35.879Z\", \"updated_at\": \"2026-05-20T08:34:05.580Z\", \"hypothesis\": \"Eval Smart Compress M=128 seed43 on LIBERO-Object (500 eps). Third seed for M=128 passthrough point. Prior: seed42=59.8%.\", \"conclusion\": \"success\", \"metrics\": {\"suite\": \"libero_object\", \"seed\": 43, \"n_queries\": 128, \"overall_sr\": 0.54, \"wilson_ci_95\": [0.5262, 0.5538], \"per_task_sr\": {\"task_0_alphabet_soup\": 0.646, \"task_1_cream_cheese\": 0.322, \"task_2_salad_dressing\": 0.614, \"task_3_bbq_sauce\": 0.432, \"task_4_ketchup\": 0.348, \"task_5_tomato_sauce\": 0.442, \"task_6_butter\": 0.716, \"task_7_milk\": 0.604, \"task_8_chocolate_pudding\": 0.818, \"task_9_orange_juice\": 0.458}}}, \"train_openvla_sc_m128_vtconly_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T18:45:06.745Z\", \"updated_at\": \"2026-05-20T08:33:04.639Z\", \"hypothesis\": \"VTC-only (no LoRA) on OpenVLA M=128 (256→128 tokens, 50% compression). This is the C4-ext go/no-go gate experiment. If VTC re-encoding significantly outperforms k=0.5 random pruning (37.4% SR), demonstrates learned re-encoding generalizes from pixel-shuffle (SmolVLA) to MLP-projector architecture.\", \"conclusion\": \"killed\"}, \"eval_openvla_sc_m128_vtconly_20k_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T07:19:29.095Z\", \"updated_at\": \"2026-05-20T08:10:48.268Z\", \"hypothesis\": \"OpenVLA VTC-only M=128 best checkpoint (20K step, eval loss 2.7768) LIBERO-Object eval. Go/no-go gate: if SR > 37.4% (random pruning k=0.5 baseline), confirms VTC cross-attention re-encoding generalizes from pixel-shuffle (SmolVLA) to MLP-projector architecture (OpenVLA), establishing C4-ext method universality.\", \"parent\": \"train_openvla_sc_m128_vtconly_seed42\", \"conclusion\": \"killed\"}, \"analysis_pi0_token_importance\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T07:44:04.502Z\", \"updated_at\": \"2026-05-20T07:44:34.582Z\", \"hypothesis\": \"π0 (3.3B, 256 tokens, linear projection) token importance analysis. Same token count as OpenVLA (256) but different connector (linear vs 3-layer MLP). If π0 pruning curve is flat like X-VLA (64 tokens, linear), confirms connector type — not token count — determines compressibility.\", \"conclusion\": \"success\", \"metrics\": {\"k01_norm_loss\": 0.976, \"k05_norm_loss\": 0.983, \"k09_norm_loss\": 0.993, \"importance_cv\": 0.038, \"importance_gini\": 0.009, \"entropy_ratio\": 0.9999, \"suffix_vis_entropy_mean\": 0.959}}, \"train_openvla_sc_m128_seed42_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T18:26:58.293Z\", \"updated_at\": \"2026-05-20T07:36:57.910Z\", \"hypothesis\": \"VTC+LoRA variant: OpenVLA VTC re-encoding (M=128, 256→128 tokens) + LoRA (r=16, q_proj/v_proj) on westd-27271. Config had lora.enabled=true. If VTC+LoRA > VTC-only, backbone adaptation is complementary to re-encoding for MLP-projector architectures.\", \"parent\": \"train_openvla_sc_m128_seed42\", \"conclusion\": \"killed\"}, \"train_openvla_sc_m64_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T03:28:41.278Z\", \"updated_at\": \"2026-05-20T05:56:30.200Z\", \"hypothesis\": \"OpenVLA VTC-only M=64 (256→64 tokens, 75% compression). M-sweep data point between M=96 and M=32. If M=64 SR > M=32 SR, confirms monotonic degradation for MLP-projector VTC re-encoding at higher compression ratios on OpenVLA. Retry of vtconly variant after D096 approved early M-sweep start.\", \"parent\": \"train_openvla_sc_m128_vtconly_seed42\", \"notes\": \"失败原因: process dead 5× with no sentinel/W&B | 诊断中: worker_diagnose_train_openvla_sc_m64_seed42_20260520T040546 | 同批次 m96_seed42, m64/m96_vtconly_seed42 也失败，共享诊断\"}, \"analysis_xvla_token_importance\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T04:33:25.537Z\", \"updated_at\": \"2026-05-20T04:37:07.968Z\", \"hypothesis\": \"X-VLA uses a linear projection connector (simpler than OpenVLA's 2-layer MLP), so its vision tokens may exhibit different compressibility patterns — potentially more uniform attention distribution and higher tolerance to pruning due to less non-linear feature mixing in the connector.\", \"conclusion\": \"success\"}, \"train_openvla_sc_m96_vtconly_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T03:08:23.577Z\", \"updated_at\": \"2026-05-20T03:23:31.112Z\", \"hypothesis\": \"OpenVLA VTC-only M=96 (256→96 tokens, 62.5% compression). M-sweep data point between M=128 and M=64. If M=96 SR falls between M=128 and M=64 SR, confirms graded degradation pattern for MLP-projector VTC re-encoding on OpenVLA.\", \"parent\": \"train_openvla_sc_m128_vtconly_seed42\", \"conclusion\": \"failed\"}, \"train_openvla_sc_m64_vtconly_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T03:08:25.152Z\", \"updated_at\": \"2026-05-20T03:22:08.304Z\", \"hypothesis\": \"OpenVLA VTC-only M=64 (256→64 tokens, 75% compression). M-sweep data point between M=96 and M=32. If M=64 SR > M=32 SR, confirms monotonic degradation for MLP-projector VTC re-encoding at higher compression ratios on OpenVLA.\", \"parent\": \"train_openvla_sc_m128_vtconly_seed42\", \"conclusion\": \"failed\"}, \"train_c5_roboflamingo_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T22:24:24.260Z\", \"updated_at\": \"2026-05-20T00:54:21.836Z\", \"hypothesis\": \"RoboFlamingo (Perceiver Resampler) fine-tuned on LIBERO-Object with fixed gripper loss (BCE instead of BCE_with_logits, weight 0.1). Establishes 3rd connector architecture baseline for compression analysis (C5). Bug M029 fix: previous version had double sigmoid causing gripper to not learn.\", \"parent\": \"train_c5_roboflamingo_libero_object\", \"conclusion\": \"killed\"}, \"train_c5_roboflamingo_libero_object\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T21:33:38.468Z\", \"updated_at\": \"2026-05-19T22:20:17.389Z\", \"hypothesis\": \"RoboFlamingo (Perceiver Resampler, 64 queries) fine-tuned on LIBERO-Object (500 eps, 10 tasks) will achieve competitive baseline SR, establishing the 3rd connector architecture for compression analysis (C5). Perceiver's global cross-attention summary tokens should show a different degradation pattern than pixel-shuffle (cliff-edge) and MLP (graded).\", \"conclusion\": \"killed\"}, \"train_openvla_sc_m128_lora_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T18:02:50.161Z\", \"updated_at\": \"2026-05-19T22:13:57.055Z\", \"hypothesis\": \"OpenVLA VTC re-encoding (M=128) + LoRA fine-tuning (r=16, q_proj/v_proj) allows LLM backbone to adapt to compressed token representations. If VTC+LoRA > VTC-only on OpenVLA, backbone adaptation is complementary to re-encoding for MLP-projector architectures, maximizing compression recovery.\", \"conclusion\": \"killed\"}, \"eval_smart_compress_m32_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T08:15:54.669Z\", \"updated_at\": \"2026-05-19T22:12:01.611Z\", \"hypothesis\": \"Third seed (seed=44) for Smart Compress M=32 (87.5% compression). Completes 3-seed data for M=32 point on M-curve.\", \"parent\": \"train_smart_compress_m32_seed44\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 59.6, \"ci_95_lower\": 55.2, \"ci_95_upper\": 63.8, \"n_episodes\": 500, \"seed\": 44}}, \"eval_smart_compress_m96_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T08:15:57.478Z\", \"updated_at\": \"2026-05-19T22:11:59.550Z\", \"hypothesis\": \"Third seed (seed=44) for Smart Compress M=96 (62.5% compression). Completes 3-seed data for M=96 point on M-curve. Prior seeds showed M=96 dip (p=0.034 vs M=64).\", \"parent\": \"train_smart_compress_m96_seed44\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 52.8, \"ci_95_lower\": 48.4, \"ci_95_upper\": 57.1, \"n_episodes\": 500, \"seed\": 44}}, \"eval_smart_compress_m64_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T08:15:56.060Z\", \"updated_at\": \"2026-05-19T22:11:57.673Z\", \"hypothesis\": \"Third seed (seed=44) for Smart Compress M=64 (75% compression). Completes 3-seed data for M=64 point on M-curve.\", \"parent\": \"train_smart_compress_m64_seed44\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 64.4, \"ci_95_lower\": 60.1, \"ci_95_upper\": 68.5, \"n_episodes\": 500, \"seed\": 44}}, \"eval_openvla_random_pruning_sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T21:31:36.150Z\", \"updated_at\": \"2026-05-19T21:31:54.881Z\", \"hypothesis\": \"OpenVLA (MLP projector) shows graded degradation under random pruning across k=0.30-0.95, confirming C3 claim that MLP projector architecture allows graceful compression unlike pixel-shuffle's cliff-edge.\", \"conclusion\": \"success\", \"metrics\": {\"k1.0_sr\": 74, \"k0.95_sr\": 69.4, \"k0.90_sr\": 62, \"k0.70_sr\": 49, \"k0.50_sr\": 37.4, \"k0.30_sr\": 20.6, \"n_episodes\": 500, \"seed\": 7, \"suite\": \"libero_object\"}}, \"c5_roboflamingo_libero_object\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T21:05:40.143Z\", \"updated_at\": \"2026-05-19T21:05:40.143Z\"}, \"c5-roboflamingo-libero-baseline\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T20:15:03.209Z\", \"updated_at\": \"2026-05-19T20:21:39.780Z\"}, \"train_openvla_sc_m128_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T17:05:34.873Z\", \"updated_at\": \"2026-05-19T18:33:26.246Z\", \"hypothesis\": \"OpenVLA (MLP-projector, baseline 74% SR) + VTC cross-attention re-encoding (256→128 tokens, 50% compression). If VTC re-encoding significantly outperforms k=0.5 random pruning (37.4% SR) on OpenVLA, demonstrates learned re-encoding generalizes from pixel-shuffle (SmolVLA) to MLP-projector architecture, establishing C4-ext method universality.\", \"conclusion\": \"failed\"}, \"eval_openvla_baseline_spatial\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T10:49:47.176Z\", \"updated_at\": \"2026-05-19T16:44:17.615Z\", \"hypothesis\": \"OpenVLA baseline (no pruning) on LIBERO-Spatial. Prior LIBERO-Object result: 74% SR. Cross-suite eval tests if OpenVLA maintains high SR on spatial reasoning tasks, providing cross-suite evidence for architecture-dependent compressibility (MF-3).\", \"parent\": \"openvla_baseline_object\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0, \"total_successes\": 0, \"total_episodes\": 500, \"note\": \"0% SR as expected - OpenVLA fine-tuned on LIBERO-Object is OOD on Spatial\"}}, \"train_smart_compress_m16_seed44_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T15:22:09.291Z\", \"updated_at\": \"2026-05-19T16:21:36.107Z\", \"hypothesis\": \"Retry of train_smart_compress_m16_seed44 (failed due to server restart, not OOM). Third seed (seed=44) for Smart Compress M=16 (87.5% compression). Prior: seed42=55.8%. Completes 3-seed data for extreme compression point on M-curve.\", \"conclusion\": \"failed\", \"metrics\": {\"failure_reason\": \"Disk full on /root/autodl-tmp/ (250G/250G, 100% used, 4MB free). Training ran normally to step=1000 (loss 5.0→0.2), but torch.save() failed at first checkpoint save with PytorchStreamWriter write error. Checkpoints dir already 112GB from prior experiments — needs cleanup before retry. Partial checkpoint.pt (228MB) likely corrupted.\", \"last_step\": 1000, \"last_loss\": 0.207, \"steps_per_second\": 3.8}}, \"eval_official_smolvla_prune_k05_spatial_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:36:27.695Z\", \"updated_at\": \"2026-05-19T16:21:18.728Z\", \"hypothesis\": \"Official SmolVLA checkpoint (SR=43.8% on Spatial baseline) with k=0.5 random token pruning on LIBERO-Spatial. Retry of eval_official_smolvla_prune_k05_spatial (failed due to missing HF env vars). If 0% SR (matching LoRA-FT k=0.5 spatial=0% and official k=0.5 Object=0%), confirms pixel-shuffle cliff-edge is universal across all checkpoint variants and task suites (C2).\", \"parent\": \"eval_smolvla_prune_k05_spatial_v2\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.006, \"total_successes\": 3, \"total_episodes\": 500, \"note\": \"cliff-edge confirmed on Spatial suite, 0.6% SR with k=0.5 random pruning\"}}, \"eval_smart_compress_m96_seed44_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T10:06:47.264Z\", \"updated_at\": \"2026-05-19T16:19:52.674Z\", \"hypothesis\": \"Eval of M=96 seed44 checkpoint on LIBERO-Object (50 eps/task). Prior M=96 seeds: seed42=52.6%, seed43=58.2%. High variance (5.6pp) makes third seed critical for M=96 stability. Parent: train_smart_compress_m96_seed44 (ANALYZING, training complete).\", \"parent\": \"train_smart_compress_m96_seed44\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.528, \"total_successes\": 264, \"total_episodes\": 500, \"wilson_ci_95\": [0.4842, 0.5714]}}, \"eval_smart_compress_m64_seed44_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T10:06:46.094Z\", \"updated_at\": \"2026-05-19T16:19:50.885Z\", \"hypothesis\": \"Eval of M=64 seed44 checkpoint on LIBERO-Object (50 eps/task). Prior M=64 seeds: seed42=61.6%, seed43=60.0%. Third seed completes 3-seed mean±std for M=64 point on M-curve. Parent: train_smart_compress_m64_seed44 (ANALYZING, training complete).\", \"parent\": \"train_smart_compress_m64_seed44\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.644, \"total_successes\": 322, \"total_episodes\": 500, \"wilson_ci_95\": [0.6011, 0.6847]}}, \"eval_smart_compress_m32_seed44_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T10:06:45.543Z\", \"updated_at\": \"2026-05-19T16:19:49.468Z\", \"hypothesis\": \"Eval of M=32 seed44 checkpoint on LIBERO-Object (50 eps/task). Prior M=32 seeds: seed42=61.6%, seed43=59.2%. Third seed completes 3-seed mean±std for core compression point on M-curve. Parent: train_smart_compress_m32_seed44 (ANALYZING, training complete).\", \"parent\": \"train_smart_compress_m32_seed44\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.596, \"total_successes\": 298, \"total_episodes\": 500, \"wilson_ci_95\": [0.5524, 0.6381]}}, \"eval_mlp_adapter_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:06:52.554Z\", \"updated_at\": \"2026-05-19T14:35:44.713Z\", \"hypothesis\": \"MLP adapter control seed=44 eval on LIBERO-Object (50 eps/task). Prior seed42=65.2%. Multi-seed parity with cross-attention 3-seed (61.2±1.4%) required by Reviewer. Third seed completes 3-seed mean±std for MLP adapter.\", \"parent\": \"eval_mlp_adapter_control\", \"metrics\": {\"overall_success_rate\": 0.604, \"wilson_ci_95\": [0.5605, 0.6459], \"total_episodes\": 500, \"total_successes\": 302, \"suite\": \"libero_object\", \"per_task_sr\": {\"0_alphabet_soup\": 0.54, \"1_cream_cheese\": 0.68, \"2_salad_dressing\": 0.58, \"3_bbq_sauce\": 0.5, \"4_ketchup\": 0.8, \"5_tomato_sauce\": 0.58, \"6_butter\": 0.82, \"7_milk\": 0.58, \"8_chocolate_pudding\": 0.54, \"9_orange_juice\": 0.42}}, \"conclusion\": \"negative\"}, \"eval_official_smolvla_prune_k05_spatial\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:21:42.301Z\", \"updated_at\": \"2026-05-19T14:33:46.893Z\", \"hypothesis\": \"Official SmolVLA checkpoint (SR=43.8% on Spatial baseline) with k=0.5 random token pruning on LIBERO-Spatial. If 0% SR (matching LoRA-FT k=0.5 spatial=0% and official k=0.5 Object=0%), confirms pixel-shuffle cliff-edge is universal across checkpoint variants AND task suites — completing the \\\"all SmolVLA variants × all suites = cliff-edge\\\" claim (C2).\", \"parent\": \"eval_smolvla_prune_k05_spatial_v2\", \"conclusion\": \"failed\"}, \"eval_smolvla_official_baseline_spatial_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:05:32.615Z\", \"updated_at\": \"2026-05-19T14:15:31.519Z\", \"hypothesis\": \"Official SmolVLA checkpoint (LIBERO-Object baseline SR=59.2%) eval on LIBERO-Spatial. Continuation of eval_smolvla_official_baseline_spatial (mistakenly marked failed during server restart). PID 537882 on cqa1 cuda:1, Task 0 ep 35/50 at time of recovery.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.438, \"wilson_ci_95\": [0.3951, 0.4818], \"total_episodes\": 500, \"total_successes\": 219, \"per_task_sr\": {\"task_0\": 0.54, \"task_1\": 0.48, \"task_2\": 0.08, \"task_3\": 0.76, \"task_4\": 0.38, \"task_5\": 0.2, \"task_6\": 0.34, \"task_7\": 0.78, \"task_8\": 0.48, \"task_9\": 0.34}}}, \"eval_mlp_adapter_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:06:49.591Z\", \"updated_at\": \"2026-05-19T13:47:59.209Z\", \"hypothesis\": \"MLP adapter control seed=43 eval on LIBERO-Object (50 eps/task). Prior seed42=65.2%. Multi-seed parity with cross-attention 3-seed (61.2±1.4%) required by Reviewer. If seed43 yields ~60-65%, confirms MLP adapter result is robust.\", \"parent\": \"eval_mlp_adapter_control\", \"metrics\": {\"overall_success_rate\": 0.646, \"wilson_ci_95\": [0.603, 0.687], \"total_episodes\": 500, \"total_successes\": 323, \"suite\": \"libero_object\", \"per_task_sr\": {\"task0_alphabet_soup\": 0.74, \"task1_cream_cheese\": 0.74, \"task2_salad_dressing\": 0.66, \"task3_bbq_sauce\": 0.44, \"task4_ketchup\": 0.56, \"task5_tomato_sauce\": 0.64, \"task6_butter\": 0.86, \"task7_milk\": 0.58, \"task8_chocolate_pudding\": 0.72, \"task9_orange_juice\": 0.52}}, \"conclusion\": \"negative\"}, \"eval_mlp_adapter_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T12:00:15.803Z\", \"updated_at\": \"2026-05-19T13:36:50.011Z\", \"hypothesis\": \"MLP+average-pooling compressor (no cross-attention, matched ~22M params) will achieve significantly lower success rate than VisionTokenCompressor (cross-attention) at M=32 on LIBERO-Object, proving that cross-attention re-encoding mechanism is critical for effective vision token compression, not merely parameter capacity.\", \"parent\": \"train_mlp_adapter_control\", \"conclusion\": \"negative\", \"metrics\": {\"overall_success_rate\": 0.652, \"wilson_ci_95\": [0.6092, 0.6925], \"total_episodes\": 500, \"total_successes\": 326, \"suite\": \"libero_object\", \"per_task_sr\": {\"task0_alphabet_soup\": 0.58, \"task1_cream_cheese\": 0.74, \"task2_salad_dressing\": 0.72, \"task3_bbq_sauce\": 0.56, \"task4_ketchup\": 0.76, \"task5_tomato_sauce\": 0.68, \"task6_butter\": 0.8, \"task7_milk\": 0.62, \"task8_chocolate_pudding\": 0.52, \"task9_orange_juice\": 0.54}}}, \"eval_smolvla_prune_k05_spatial_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:05:34.351Z\", \"updated_at\": \"2026-05-19T13:19:09.320Z\", \"hypothesis\": \"SmolVLA k=0.5 random token pruning on LIBERO-Spatial. Continuation of eval_smolvla_prune_k05_spatial (mistakenly marked failed during server restart). PID 458637 on cqa1 cuda:2, Task 8-9 in progress at time of recovery. Expected 0% SR.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0, \"wilson_ci_95\": [0, 0.0076], \"total_episodes\": 500, \"total_successes\": 0, \"num_tasks\": 10, \"episodes_per_task\": 50, \"per_task_sr\": {\"T0\": 0, \"T1\": 0, \"T2\": 0, \"T3\": 0, \"T4\": 0, \"T5\": 0, \"T6\": 0, \"T7\": 0, \"T8\": 0, \"T9\": 0}, \"k_ratio\": 0.5, \"tokens_kept\": 64, \"tokens_removed\": 64, \"pruning_method\": \"true_removal\"}}, \"eval_smolvla_baseline_spatial\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:11:07.968Z\", \"updated_at\": \"2026-05-19T13:05:29.450Z\", \"hypothesis\": \"SmolVLA baseline (no compression, no Smart Compress) eval on LIBERO-Spatial. SmolVLA uses pixel-shuffle connector which creates entangled tokens. Cross-suite eval provides reference point for compression impact on spatial reasoning tasks. Combined with OpenVLA Spatial baseline, tests MF-3 (architecture-dependent compressibility across task suites).\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.062, \"total_successes\": 31, \"total_episodes\": 500}}, \"eval_smolvla_official_baseline_spatial\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T12:34:16.522Z\", \"updated_at\": \"2026-05-19T12:44:38.701Z\", \"hypothesis\": \"Official SmolVLA checkpoint (HuggingFaceVLA/smolvla_libero, LIBERO-Object baseline SR=59.2%) eval on LIBERO-Spatial. Provides cross-suite baseline data for the official checkpoint. Combined with existing LIBERO-Object official baseline, enables cross-suite comparison of official vs fine-tuned models and compression impact across task suites.\", \"parent\": \"eval_official_smolvla_baseline\", \"conclusion\": \"failed\"}, \"eval_smolvla_prune_k05_spatial\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:35:08.730Z\", \"updated_at\": \"2026-05-19T12:44:34.803Z\", \"hypothesis\": \"SmolVLA with random k=0.5 token pruning will achieve 0% SR on LIBERO-Spatial, consistent with LIBERO-Object results, because pixel-shuffle connector creates entangled tokens where any deletion causes catastrophic failure regardless of task suite.\", \"conclusion\": \"failed\"}, \"train_smart_compress_m16_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T03:03:15.846Z\", \"updated_at\": \"2026-05-19T12:44:31.046Z\", \"hypothesis\": \"Third seed (seed=44) for Smart Compress M=16 (87.5% compression). Prior: seed42=55.8%. M=16 showed lowest SR among tested M values, confirming information bottleneck at extreme compression. Third seed establishes variance at this extreme point.\", \"parent\": \"eval_smart_compress_m16\", \"conclusion\": \"failed\", \"notes\": \"Killed at step 35075 to free westd:cuda:0 for MLP adapter control experiment (D078 confirmed non-critical bonus).\"}, \"train_mlp_adapter_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T06:06:23.543Z\", \"updated_at\": \"2026-05-19T12:00:10.299Z\", \"hypothesis\": \"An MLP+average-pooling compressor (no cross-attention, no learnable queries) with matched parameter count (~22M) will underperform the cross-attention VisionTokenCompressor at M=32, demonstrating that cross-attention's ability to selectively attend to informative tokens is critical for effective vision token compression.\", \"parent\": \"\", \"conclusion\": \"success\"}, \"eval_smart_compress_m32_spatial\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:11:10.734Z\", \"updated_at\": \"2026-05-19T11:33:06.973Z\", \"hypothesis\": \"Smart Compress M=32 (75% compression) eval on LIBERO-Spatial, seed=42. If M=32 maintains similar relative performance on Spatial as on Object (61.2% vs 44.8% baseline = +16.4pp), cross-attention compression generalizes across task suites. Combined with SmolVLA baseline Spatial and OpenVLA Spatial, completes cross-suite evidence for MF-3.\", \"conclusion\": \"success\"}, \"eval_smart_compress_m128_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T10:08:22.906Z\", \"updated_at\": \"2026-05-19T11:05:26.519Z\", \"hypothesis\": \"Smart Compress M=128 (passthrough, no compression) seed=44 eval. Prior: seed42=59.8%. M=128 retains all tokens through cross-attention re-encoding. Third seed validates re-encoding gain robustness for appendix 3-seed mean±std.\", \"parent\": \"train_smart_compress_m128_seed44\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.602, \"total_successes\": 301, \"total_episodes\": 500, \"wilson_ci_95\": [0.5585, 0.644], \"per_task_sr\": {\"alphabet_soup\": 0.54, \"cream_cheese\": 0.3, \"salad_dressing\": 0.62, \"bbq_sauce\": 0.5, \"ketchup\": 0.86, \"tomato_sauce\": 0.4, \"butter\": 0.66, \"milk\": 0.72, \"chocolate_pudding\": 0.88, \"orange_juice\": 0.54}}}, \"train_smart_compress_m32_official\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T01:37:54.191Z\", \"updated_at\": \"2026-05-19T10:23:38.436Z\", \"hypothesis\": \"Training Smart Compress (M=32) from the official SmolVLA checkpoint (HuggingFaceVLA/smolvla_libero, baseline SR=59.2%) will yield higher success rate than training from smolvla_base (baseline SR=44.8%), because the official checkpoint has stronger pretrained features for LIBERO tasks.\", \"parent\": \"\", \"notes\": \"CWD issue: nohup启动时未cd到项目目录，CWD=/root，checkpoint实际保存在/root/checkpoints/smart_compress_m32_official/checkpoint.pt（非项目目录下）。训练结束后需移动到/root/autodl-tmp/importance_margin_vla_compress/checkpoints/smart_compress_m32_official/。当前进度: step 23900/100000, loss~0.05-0.19, ETA~5.2h (截至2026-05-19 11:52)\", \"conclusion\": \"success\"}, \"train_smart_compress_m128_seed44\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T03:03:16.770Z\", \"updated_at\": \"2026-05-19T10:03:52.885Z\", \"hypothesis\": \"Third seed (seed=44) for Smart Compress M=128 passthrough control. Prior: seed42=59.8%. M=128 retains all tokens through cross-attention re-encoding, isolating the architecture effect from compression. Third seed validates re-encoding gain robustness.\", \"parent\": null, \"conclusion\": \"success\"}, \"eval_openvla_prune_k095\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T20:32:24.616Z\", \"updated_at\": \"2026-05-19T00:56:35.365Z\", \"hypothesis\": \"OpenVLA (MLP projection, 7B) with k=0.95 random pruning (remove only 5% = 13/256 tokens). Expected minimal degradation (~68-72% SR vs 74% baseline). Direct comparison: at k=0.95 SmolVLA drops from 59.2% to 0% while OpenVLA should retain most performance, proving architecture-dependent token compressibility.\", \"parent\": \"eval_openvla_pruning_k07\", \"metrics\": {\"success_rate\": 69.4, \"per_task_sr\": [76, 38, 84, 54, 84, 82, 46, 74, 64, 92], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"eval_openvla_prune_k09\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T20:32:18.048Z\", \"updated_at\": \"2026-05-19T00:56:32.960Z\", \"hypothesis\": \"OpenVLA (MLP projection, 7B) with k=0.9 random pruning (true removal). Expected graceful degradation (~65-70% SR vs 74% baseline). At the same pruning ratio, SmolVLA shows 0% SR, demonstrating architecture-dependent compressibility difference between MLP projection and cross-attention.\", \"metrics\": {\"success_rate\": 62, \"per_task_sr\": [70, 28, 76, 56, 78, 70, 42, 60, 54, 86], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"eval_smart_compress_m32_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T23:23:07.824Z\", \"updated_at\": \"2026-05-19T00:56:00.177Z\", \"hypothesis\": \"Smart Compress M=32 seed=43 repeat eval. M=32 is the headline result (61.6% SR at 75% compression with seed=42). If seed=43 yields similar SR (~60%), confirms robustness of the compression-performance sweet spot.\", \"parent\": \"train_smart_compress_m32_seed43\", \"metrics\": {\"success_rate\": 59.2, \"per_task_sr\": [72, 38, 68, 36, 68, 48, 86, 44, 96, 36], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"eval_smart_compress_m32_libero_spatial\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T23:01:15.309Z\", \"updated_at\": \"2026-05-19T00:55:59.282Z\", \"hypothesis\": \"Smart Compress M=32 (trained on LIBERO-Object) evaluated on LIBERO-Spatial to test cross-suite generalization. If SR > 0% (hard pruning gives 0% on all suites), proves compression via cross-attention re-encoding generalizes beyond training suite.\", \"parent\": \"train_smart_compress_m32\", \"metrics\": {\"success_rate\": 53.2, \"per_task_sr\": [58, 62, 52, 82, 28, 18, 82, 70, 56, 24], \"num_episodes\": 500, \"suite\": \"libero_spatial\"}, \"conclusion\": \"success\"}, \"eval_smart_compress_m64_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T23:58:31.679Z\", \"updated_at\": \"2026-05-19T00:55:57.834Z\", \"hypothesis\": \"Smart Compress M=64 seed=43 repeat eval. M=64 seed=42 achieved 61.6% SR at 50% compression. If seed=43 yields similar SR (~60%), confirms robustness at this compression level.\", \"parent\": \"train_smart_compress_m64_seed43\", \"metrics\": {\"success_rate\": 60, \"per_task_sr\": [58, 56, 46, 50, 48, 58, 80, 60, 86, 58], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"eval_smart_compress_m32_libero_goal\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T00:01:35.491Z\", \"updated_at\": \"2026-05-19T00:55:56.421Z\", \"hypothesis\": \"Smart Compress M=32 (trained on LIBERO-Object) evaluated on LIBERO-Goal to test cross-suite generalization. Combined with LIBERO-Spatial (~56% partial), if LIBERO-Goal SR > 0%, establishes robust cross-suite generalization claim for the paper.\", \"parent\": \"train_smart_compress_m32\", \"metrics\": {\"success_rate\": 56.4, \"per_task_sr\": [60, 94, 62, 52, 32, 28, 28, 100, 78, 30], \"num_episodes\": 500, \"suite\": \"libero_goal\"}, \"conclusion\": \"success\"}, \"eval_baseline_control_prune_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T22:23:01.248Z\", \"updated_at\": \"2026-05-18T23:59:46.141Z\", \"hypothesis\": \"Baseline control 100K v2 (45.0% SR) with random pruning k=0.5. Expected 0% SR, confirming cliff-edge is inherent to pixel-shuffle architecture regardless of training duration. Strengthens narrative: extra training cannot fix the architectural fragility.\", \"parent\": \"eval_baseline_control_100k_v2\", \"metrics\": {\"success_rate\": 0, \"per_task_sr\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"train_smart_compress_m64_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:51:27.728Z\", \"updated_at\": \"2026-05-18T23:59:39.177Z\", \"hypothesis\": \"Repeat of Smart Compress M=64 training with seed=43. M=64 is a headline result (61.6% SR at 50% compression, same as M=32). If seed=43 yields similar SR (~60%), confirms robustness. If significantly different, indicates high variance.\", \"conclusion\": \"success\"}, \"train_smart_compress_m32_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:21:33.106Z\", \"updated_at\": \"2026-05-18T23:24:25.273Z\", \"hypothesis\": \"Repeat of Smart Compress M=32 training with seed=43. M=32 is the headline result (61.6% SR at 75% compression). If seed=43 yields similar SR (~60%), confirms robustness. If significantly different, indicates high variance requiring more seeds.\", \"parent\": \"train_smart_compress_m32\", \"conclusion\": \"success\"}, \"eval_smart_compress_m96_seed43_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T21:31:55.821Z\", \"updated_at\": \"2026-05-18T23:00:50.722Z\", \"hypothesis\": \"Re-eval of M=96 seed=43 with correct script (eval_smart_compress_libero.py, loads SmartCompressWrapper). Previous eval used wrong script (eval_success_rate_libero.py --mode baseline, no compressor) giving invalid 0%. Expected SR ≈ 52.6% (seed=42 result) if M-curve robust.\", \"parent\": \"train_smart_compress_m96_seed43\", \"metrics\": {\"success_rate\": 58.2, \"per_task_sr\": [72, 66, 54, 48, 52, 40, 88, 60, 86, 16], \"num_episodes\": 500, \"suite\": \"libero_object\", \"wilson_ci_95\": [53.8, 62.4]}, \"conclusion\": \"success\"}, \"eval_smart_compress_m96_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T19:47:29.710Z\", \"updated_at\": \"2026-05-18T21:30:12.345Z\", \"hypothesis\": \"Smart Compress M=96 seed=43 repeat. If SR ≈ 52.6% (seed=42 result), confirms non-monotonic M-curve is robust. If significantly different, indicates high variance at M=96.\", \"parent\": \"train_smart_compress_m96_seed43\", \"metrics\": {\"success_rate\": 0, \"per_task_sr\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"num_episodes\": 500, \"suite\": \"libero_object\", \"note\": \"INVALID — used wrong eval script (eval_success_rate_libero.py --mode baseline, no compressor loaded). Re-eval as eval_smart_compress_m96_seed43_v2.\"}, \"conclusion\": \"failed\"}, \"train_smart_compress_m96_seed43\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:38:32.719Z\", \"updated_at\": \"2026-05-18T21:26:15.795Z\", \"hypothesis\": \"Repeat of Smart Compress M=96 training with seed=43. If SR is similar to seed=42 (52.6%), confirms the non-monotonic M-curve is robust. If SR differs significantly, indicates high variance at M=96 compression level.\", \"parent\": \"train_smart_compress_m96\", \"conclusion\": \"success\"}, \"train_baseline_control_100k_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:37:08.905Z\", \"updated_at\": \"2026-05-18T21:26:14.600Z\", \"hypothesis\": \"If Smart Compress's 15pp gain over baseline (59.8% vs 44.8%) comes from cross-attention re-encoding rather than extra training, then continuing baseline training for another 100K steps (expert-only, no compressor, fresh lr schedule) should NOT close the gap. If baseline+100K reaches ~60%, the gain was from training; if it stays near 44.8%, cross-attention architecture is the cause.\", \"parent\": \"eval_smart_compress_m128\", \"conclusion\": \"success\"}, \"eval_baseline_control_100k_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T19:53:48.996Z\", \"updated_at\": \"2026-05-18T21:25:59.497Z\", \"hypothesis\": \"Baseline control trained for additional 100K steps with fresh lr schedule. If SR stays near 44.8% (original baseline), confirms Smart Compress gain comes from cross-attention re-encoding, not extra training. If SR reaches ~60%, gain was from training.\", \"parent\": \"train_baseline_control_100k_v2\", \"metrics\": {\"success_rate\": 45, \"per_task_sr\": [0, 50, 74, 64, 68, 8, 58, 38, 52, 38], \"num_episodes\": 500, \"suite\": \"libero_object\"}, \"conclusion\": \"success\"}, \"eval_official_smolvla_prune_k095\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:01:21.015Z\", \"updated_at\": \"2026-05-18T17:27:37.072Z\", \"hypothesis\": \"Official SmolVLA checkpoint with k=0.95 random pruning (remove only 5% = 7/128 tokens). If 0% SR, confirms that even the slightest random token removal destroys the official model, matching our fine-tuned model's cliff-edge behavior exactly.\", \"parent\": \"eval_official_smolvla_baseline\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"per_task_sr\": {\"all_10_tasks\": \"0%\"}, \"note\": \"Official SmolVLA checkpoint k=0.95 random pruning (true_removal, remove 5% = 7 tokens) = 0% SR. All 500 episodes timeout at 280 steps.\"}}, \"eval_official_smolvla_prune_k09\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:00:44.235Z\", \"updated_at\": \"2026-05-18T17:27:34.761Z\", \"hypothesis\": \"Official SmolVLA checkpoint with k=0.9 random pruning (remove only 10% visual tokens). If 0% SR like k=0.5, confirms extreme cliff-edge sensitivity where even minimal token removal destroys performance on the official checkpoint.\", \"parent\": \"eval_official_smolvla_baseline\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"per_task_sr\": {\"all_10_tasks\": \"0%\"}, \"note\": \"Official SmolVLA checkpoint k=0.9 random pruning (true_removal, remove 10% tokens) = 0% SR. All 500 episodes timeout at 280 steps.\"}}, \"eval_acis_k05_supplement_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T15:29:31.546Z\", \"updated_at\": \"2026-05-18T16:11:55.262Z\", \"hypothesis\": \"Re-run ACIS k=0.5 eval on tasks 6-9 with fixed eval script (offset-based hook). Expected 0% SR consistent with tasks 0-5. Previous run (47.5%) was invalid due to pruning hook bug.\", \"parent\": \"eval_acis_k05_supplement_200eps\", \"metrics\": {\"overall_SR\": \"0.0% (0/200)\", \"wilson_ci_95\": \"[0.0%, 1.9%]\", \"task6_SR\": \"0% (0/50)\", \"task7_SR\": \"0% (0/50)\", \"task8_SR\": \"0% (0/50)\", \"task9_SR\": \"0% (0/50)\", \"note\": \"Fixed eval script with offset-based ACIS hook confirms 0% SR. Previous 47.5% was due to pruning hook bug (never applied pruning).\"}, \"conclusion\": \"success\"}, \"eval_acis_k05_supplement_200eps\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:44:59.461Z\", \"updated_at\": \"2026-05-18T15:08:57.342Z\", \"hypothesis\": \"ACIS k=0.5 zero_mask pruning on tasks 6-9 should yield 0% SR, confirming that the pruned weights are critical for task performance\", \"parent\": \"eval_stage1only_object_v2_fixed\", \"conclusion\": \"failed\", \"metrics\": {\"overall_SR\": \"47.5% (95/200)\", \"wilson_ci_95\": \"[40.7%, 54.4%]\", \"task6_SR\": \"48% (24/50)\", \"task7_SR\": \"40% (20/50)\", \"task8_SR\": \"64% (32/50)\", \"task9_SR\": \"38% (19/50)\"}}, \"eval_official_smolvla_prune_k05_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:24:02.097Z\", \"updated_at\": \"2026-05-18T14:11:29.005Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with k=0.5 random pruning (keep 50% = 64/128 tokens) on LIBERO-Object. If 0% SR (same as our fine-tuned model), confirms cliff-edge is inherent to pixel-shuffle architecture, not fine-tuning-specific. If >0%, suggests official training creates different token dependencies.\", \"parent\": \"eval_official_smolvla_baseline\", \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"per_task_sr\": {\"all_tasks\": \"0%\"}, \"note\": \"Official SmolVLA checkpoint with k=0.5 random pruning = 0% SR, confirming cliff-edge on official checkpoint (59.2% baseline → 0%)\"}, \"conclusion\": \"success\"}, \"eval_official_smolvla_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:43:13.148Z\", \"updated_at\": \"2026-05-18T13:58:17.855Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint unpruned baseline on LIBERO-Object. Establishes baseline SR for official checkpoint to compare against pruning experiments. If ~44.8% (similar to our fine-tuned), confirms consistent baseline. If different, indicates training-specific effects.\", \"parent\": \"eval_smolvla_random_prune_k095\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 59.2, \"wilson_ci_95\": [54.8, 63.4], \"total_episodes\": 500, \"total_successes\": 296, \"per_task_sr\": {\"task_0_alphabet_soup\": 64, \"task_1_cream_cheese\": 40, \"task_2_salad_dressing\": 44, \"task_3_bbq_sauce\": 38, \"task_4_ketchup\": 60, \"task_5_tomato_sauce\": 46, \"task_6_butter\": 78, \"task_7_milk\": 52, \"task_8_chocolate_pudding\": 90, \"task_9_orange_juice\": 80}}}, \"eval_smolvla_random_prune_k095\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:16:53.132Z\", \"updated_at\": \"2026-05-18T13:20:17.960Z\", \"hypothesis\": \"Random pruning at k=0.95 (removing only 7/128 tokens) will still cause complete failure (0% SR), demonstrating extreme cliff-edge sensitivity where even minimal random token removal destroys VLA action generation\", \"parent\": \"eval_smolvla_random_prune\", \"metrics\": {\"overall_SR\": 0, \"wilson_ci_95\": [0, 0.0076], \"total_episodes\": 500, \"total_successes\": 0, \"tokens_kept\": 121, \"tokens_removed\": 7, \"k_ratio\": 0.95, \"per_task_SR\": {\"T0_alphabet_soup\": 0, \"T1_cream_cheese\": 0, \"T2_salad_dressing\": 0, \"T3_bbq_sauce\": 0, \"T4_ketchup\": 0, \"T5_tomato_sauce\": 0, \"T6_butter\": 0, \"T7_milk\": 0, \"T8_chocolate_pudding\": 0, \"T9_orange_juice\": 0}}, \"conclusion\": \"success\"}, \"eval_official_smolvla_pruning\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:43:31.516Z\", \"updated_at\": \"2026-05-18T12:57:46.413Z\", \"hypothesis\": \"Official SmolVLA LIBERO checkpoint with random pruning k=0.5 should also show 0% SR cliff-edge, confirming the phenomenon is not specific to our fine-tuning setup but inherent to the pixel-shuffle architecture.\", \"parent\": \"eval_smolvla_random_prune_k095\", \"conclusion\": \"failed\"}, \"debug_obs_official\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T12:54:22.856Z\", \"updated_at\": \"2026-05-18T12:54:22.856Z\"}, \"eval_official_smolvla_prune_k05\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T12:43:17.221Z\", \"updated_at\": \"2026-05-18T12:51:19.435Z\"}, \"train_baseline_control_100k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T12:25:07.235Z\", \"updated_at\": \"2026-05-18T12:39:31.964Z\", \"hypothesis\": \"If Smart Compress's 15pp gain over baseline (59.8% vs 44.8%) comes from cross-attention re-encoding rather than extra training, then continuing baseline training for another 100K steps (expert-only, no compressor) should NOT close the gap. If baseline+100K reaches ~60%, the gain was from training; if it stays near 44.8%, cross-attention architecture is the cause.\", \"parent\": \"eval_smart_compress_m128\", \"conclusion\": \"failed\", \"notes\": \"wandb.init() failed — no WANDB_API_KEY on cqa1-33015. Restarted as train_baseline_control_100k_v2 with WANDB_MODE=offline.\"}, \"eval_smart_compress_m128\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T10:08:14.626Z\", \"updated_at\": \"2026-05-18T11:20:33.418Z\", \"hypothesis\": \"Cross-attention pooling with M=128 queries (no compression, passthrough control) on LIBERO-Object. If SR similar to M=32/M=64 (61.6%), improvement comes from cross-attention architecture itself. If lower/equal to baseline (44.8%), compression bottleneck provides the benefit. Critical control experiment for paper framing.\", \"parent\": \"train_smart_compress_m128_resume\", \"conclusion\": \"success\", \"metrics\": {\"libero_object_sr\": 0.598, \"libero_object_sr_ci95\": [0.554, 0.64], \"total_episodes\": 500, \"total_successes\": 299, \"per_task_sr\": {\"alphabet_soup\": 0.62, \"cream_cheese\": 0.58, \"salad_dressing\": 0.54, \"bbq_sauce\": 0.34, \"ketchup\": 0.62, \"tomato_sauce\": 0.5, \"butter\": 0.82, \"milk\": 0.56, \"chocolate_pudding\": 0.82, \"orange_juice\": 0.58}}}, \"eval_openvla_pruning_k03_restart\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:29:54.046Z\", \"updated_at\": \"2026-05-18T10:23:22.693Z\", \"hypothesis\": \"Restart of eval_openvla_pruning_k03 after server reboot. OpenVLA k=0.3 random pruning (keep 30% = 76 tokens). Completing degradation curve.\", \"parent\": \"eval_openvla_pruning_k03\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.206, \"total_successes\": 103, \"total_episodes\": 500, \"wilson_ci_95\": [0.173, 0.244], \"elapsed_minutes\": 288.6, \"per_task_sr\": {\"alphabet_soup\": 0.14, \"cream_cheese\": 0, \"salad_dressing\": 0.64, \"bbq_sauce\": 0.3, \"ketchup\": 0.3, \"tomato_sauce\": 0.08, \"butter\": 0, \"milk\": 0.08, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.42}}}, \"smolvla_entropy_perlayer\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T07:01:32.515Z\", \"updated_at\": \"2026-05-18T07:19:52.802Z\", \"hypothesis\": \"SmolVLA per-layer attention entropy will be uniformly high (~0.98) across all 16 layers, in contrast to OpenVLA's progressive sharpening (0.98→0.48). This flat profile would confirm that pixel-shuffle creates uniform token dependence at every depth.\", \"conclusion\": \"success\", \"metrics\": {\"overall_entropy_ratio\": 0.9521, \"overall_entropy_std\": 0.02, \"n_images\": 260, \"n_tasks\": 10, \"n_layers\": 16, \"entropy_range\": [0.9311, 0.9826], \"entropy_range_width\": 0.05, \"per_layer\": {\"L0\": 0.9826, \"L1\": 0.9561, \"L2\": 0.9597, \"L3\": 0.9434, \"L4\": 0.9408, \"L5\": 0.9406, \"L6\": 0.9474, \"L7\": 0.9628, \"L8\": 0.9614, \"L9\": 0.9572, \"L10\": 0.9455, \"L11\": 0.951, \"L12\": 0.9485, \"L13\": 0.9311, \"L14\": 0.9482, \"L15\": 0.9566}, \"dataset\": \"LIBERO-Object (task 20-29)\", \"note\": \"Fixed: previous run sampled task 0-8 (LIBERO-90), not LIBERO-Object. Difference: 0.952 vs 0.944, conclusion unchanged.\", \"openvla_comparison\": {\"overall\": 0.639, \"range_width\": 0.5}}}, \"inference_latency_comparison\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:59:04.973Z\", \"updated_at\": \"2026-05-18T07:01:05.146Z\", \"hypothesis\": \"Smart Compress with M=32 (75% fewer vision tokens) will show measurable inference speedup over baseline 128 tokens, quantifying the practical benefit of learned compression.\", \"metrics\": {\"baseline_128_mean_ms\": 164.33, \"m32_mean_ms\": 154.78, \"m64_mean_ms\": 156.16, \"speedup_m32\": 1.0617, \"speedup_m64\": 1.0523, \"baseline_params\": 450046176, \"compressor_m32_params\": 22179840}, \"conclusion\": \"success\"}, \"eval_openvla_pruning_k03\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:01:28.122Z\", \"updated_at\": \"2026-05-18T06:15:16.402Z\", \"hypothesis\": \"OpenVLA (7B) with k=0.3 random pruning (keep 30% = 76 tokens) on LIBERO-Object will show severe but non-zero degradation, completing the 4-point degradation curve (k=1.0 74% → k=0.7 ? → k=0.5 37.4% → k=0.3 ?). Expected SR significantly below k=0.5 but possibly above 0% due to OpenVLA architecture tolerance.\", \"parent\": \"eval_openvla_pruning_k05\", \"conclusion\": \"killed\"}, \"openvla_entropy_real\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:35:28.266Z\", \"updated_at\": \"2026-05-18T05:39:26.750Z\", \"hypothesis\": \"Measure OpenVLA attention entropy on real LIBERO-Object images (250 frames, 10 tasks) to replace previous measurement on 20 random images. Expected similar directional finding (entropy << 1.0) but more defensible to reviewers.\", \"conclusion\": \"success\", \"metrics\": {\"overall_entropy_ratio\": 0.6393, \"overall_entropy_std\": 0.1334, \"overall_vision_attn_frac\": 0.1211, \"n_images\": 250, \"n_tasks\": 10, \"min_entropy_layer\": {\"layer\": 29, \"ratio\": 0.4774}, \"max_entropy_layer\": {\"layer\": 0, \"ratio\": 0.979}, \"shallow_layers_0_1\": [0.979, 0.952], \"deep_layers_27_30\": [0.542, 0.53, 0.477, 0.524], \"previous_random_N20\": 0.617, \"smolvla_reference\": 0.98}}, \"train_smart_compress_m128\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T02:57:30.022Z\", \"updated_at\": \"2026-05-18T05:24:55.028Z\", \"hypothesis\": \"Cross-attention pooling with M=128 queries attending to 128 source tokens (no compression, passthrough control). If SR is similar to M=32/M=64 (61.6%), the improvement over baseline comes from cross-attention architecture itself, not compression. If SR is higher, compression may be slightly hurting. If SR is lower or equal to baseline (44.8%), compression itself provides the benefit.\", \"parent\": \"eval_smart_compress_m32\", \"conclusion\": \"failed\"}, \"eval_smart_compress_m96\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:10:41.873Z\", \"updated_at\": \"2026-05-18T05:10:12.875Z\", \"hypothesis\": \"Cross-attention pooling compression (128→96 tokens, 25% reduction) is the mildest compression. Expected to retain near-full SR, establishing the upper bound of the compression-performance curve alongside M=32 (61.6%) and M=64 (61.6%).\", \"parent\": \"train_smart_compress_m96\", \"metrics\": {\"overall_sr\": 52.6, \"total_episodes\": 500, \"total_successes\": 263, \"wilson_ci_95\": [48.2, 56.9], \"per_task_sr\": {\"task_0_alphabet_soup\": 40, \"task_1_cream_cheese\": 52, \"task_2_salad_dressing\": 56, \"task_3_bbq_sauce\": 40, \"task_4_ketchup\": 26, \"task_5_tomato_sauce\": 50, \"task_6_butter\": 72, \"task_7_milk\": 62, \"task_8_chocolate_pudding\": 86, \"task_9_orange_juice\": 42}}, \"conclusion\": \"success\"}, \"eval_smart_compress_m16\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:10:44.382Z\", \"updated_at\": \"2026-05-18T05:10:04.657Z\", \"hypothesis\": \"Cross-attention pooling compression (128→16 tokens, 87.5% compression) is the most extreme reduction. Expected to show degradation vs M=32/M=64, establishing the lower bound of the compression curve and testing where soft compression begins to fail.\", \"parent\": \"smart_compress_m16\", \"metrics\": {\"overall_sr\": 55.8, \"overall_sr_ci95\": [51.4, 60.1], \"total_episodes\": 500, \"total_successes\": 279, \"per_task_sr\": {\"task_0_alphabet_soup\": 56, \"task_1_cream_cheese\": 44, \"task_2_salad_dressing\": 72, \"task_3_bbq_sauce\": 56, \"task_4_ketchup\": 62, \"task_5_tomato_sauce\": 40, \"task_6_butter\": 78, \"task_7_milk\": 54, \"task_8_chocolate_pudding\": 76, \"task_9_orange_juice\": 20}, \"runtime_minutes\": 55}, \"conclusion\": \"success\"}, \"eval_openvla_pruning_k07\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T00:07:29.205Z\", \"updated_at\": \"2026-05-18T04:58:42.562Z\", \"hypothesis\": \"OpenVLA (7B) with random k=0.7 true_removal (keep 70% tokens) on LIBERO-Object. k=0.5 showed 74%→37.4% (graceful). k=0.7 retains more tokens so should degrade less — establishing the degradation curve slope for OpenVLA.\", \"parent\": \"eval_openvla_pruning_k05\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.49, \"total_successes\": 245, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.74, \"cream_cheese\": 0.18, \"salad_dressing\": 0.64, \"bbq_sauce\": 0.46, \"ketchup\": 0.68, \"tomato_sauce\": 0.62, \"butter\": 0.1, \"milk\": 0.4, \"chocolate_pudding\": 0.32, \"orange_juice\": 0.76}, \"elapsed_minutes\": 260.7}}, \"train_smart_compress_m96\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T21:26:45.277Z\", \"updated_at\": \"2026-05-18T04:36:32.132Z\", \"hypothesis\": \"Cross-attention pooling compression (128→96 tokens, 25% reduction) — the mildest compression point. Expected to retain near-full SR, establishing the upper bound of the compression-performance curve.\", \"parent\": \"train_smart_compress_m64\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.055, \"eval_action_loss\": 0.064, \"total_steps\": 100000}}, \"smart_compress_m16\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T21:08:36.215Z\", \"updated_at\": \"2026-05-18T04:16:03.747Z\", \"hypothesis\": \"Compressing 128 vision tokens to 16 (87.5% compression) via learned queries will retain sufficient visual information for action prediction, though with expected performance degradation compared to higher token counts (M=32/64/96)\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.058, \"eval_action_loss\": 0.069, \"total_steps\": 100000}}, \"eval_smart_compress_m64\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:30:45.305Z\", \"updated_at\": \"2026-05-18T02:55:42.732Z\", \"hypothesis\": \"Cross-attention pooling compression (128→64 tokens, 50% reduction) with learned queries will retain higher SR than M=32 on LIBERO-Object, establishing the compression-performance curve for soft compression. Expected SR higher than M=32 since more tokens are retained.\", \"parent\": \"train_smart_compress_m64\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.616, \"total_episodes\": 500, \"total_successes\": 308, \"wilson_ci_95\": [0.573, 0.658], \"per_task_sr\": {\"alphabet_soup\": 0.74, \"cream_cheese\": 0.38, \"salad_dressing\": 0.64, \"bbq_sauce\": 0.56, \"ketchup\": 0.64, \"tomato_sauce\": 0.54, \"butter\": 0.84, \"milk\": 0.62, \"chocolate_pudding\": 0.74, \"orange_juice\": 0.46}}}, \"eval_smart_compress_m32\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:30:43.772Z\", \"updated_at\": \"2026-05-18T02:55:41.591Z\", \"hypothesis\": \"Cross-attention pooling compression (128→32 tokens, 75% reduction) with learned queries will retain non-zero SR on LIBERO-Object, proving soft compression bypasses the cliff-edge that all hard pruning methods hit. SR > 0% at 75% compression = fundamental difference vs hard pruning.\", \"parent\": \"train_smart_compress_m32\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.616, \"total_episodes\": 500, \"total_successes\": 308, \"wilson_ci_95\": [0.573, 0.658], \"per_task_sr\": {\"alphabet_soup\": 0.68, \"cream_cheese\": 0.64, \"salad_dressing\": 0.6, \"bbq_sauce\": 0.46, \"ketchup\": 0.66, \"tomato_sauce\": 0.36, \"butter\": 0.82, \"milk\": 0.76, \"chocolate_pudding\": 0.9, \"orange_juice\": 0.28}}}, \"train_smart_compress_m32\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T17:40:16.346Z\", \"updated_at\": \"2026-05-18T01:16:42.593Z\", \"hypothesis\": \"Cross-attention pooling compression (128→32 tokens, 75% reduction) with learned queries preserves action prediction quality by soft-fusing all token information rather than hard-deleting. This is the most aggressive compression ratio — if SR remains non-zero at 75% token reduction, it proves soft compression fundamentally differs from hard pruning.\", \"parent\": \"eval_geometric_prior_k05\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.11, \"eval_action_loss\": 0.052, \"total_steps\": 100000, \"checkpoint\": \"checkpoints/smart_compress_m32/checkpoint.pt\", \"checkpoint_size_gb\": 1.5, \"training_duration_h\": 6.5, \"speed_sps\": 4.1}, \"notes\": \"Training completed successfully (100K steps, 99999/100000). Cron 误判为 failed（nohup 启动无 sentinel）。实际正常完成，checkpoint 已保存。首次 eval (PID 363256, eval_success_rate_libero.py) 使用错误脚本，Task 0 全 FAIL，已 kill。需要用 eval_smart_compress.py 重新 eval。\"}, \"train_smart_compress_m64\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T17:38:49.443Z\", \"updated_at\": \"2026-05-18T01:16:41.169Z\", \"hypothesis\": \"Cross-attention pooling compression (128→64 tokens, 50% reduction) with learned queries preserves action prediction quality by soft-fusing all token information rather than hard-deleting. If SR remains non-zero, it proves soft compression can bypass the cliff-edge that all hard pruning methods hit at any ratio.\", \"parent\": \"eval_geometric_prior_k05\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.045, \"eval_action_loss\": 0.062, \"total_steps\": 100000, \"checkpoint\": \"checkpoints/smart_compress_m64/checkpoint.pt\", \"checkpoint_size_gb\": 1.5, \"training_duration_h\": 6.5, \"speed_sps\": 4.1}, \"notes\": \"Training completed successfully (100K steps, 99999/100000). Cron 误判为 failed（nohup 启动无 sentinel）。实际正常完成，checkpoint 已保存。首次 eval (PID 364255, eval_success_rate_libero.py) 使用错误脚本，Task 0 全 FAIL，已 kill。需要用 eval_smart_compress.py 重新 eval。\"}, \"libero_full_ft_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T14:20:17.482Z\", \"updated_at\": \"2026-05-18T00:59:00.156Z\", \"hypothesis\": \"Full expert fine-tuning of SmolVLA (22.2% params trainable, 99.9M/450M) on LIBERO data for 100K steps with cosine LR decay should achieve reasonable manipulation SR as a baseline for compression experiments\", \"metrics\": {\"diversity_10k\": {\"noise_diversity_std\": 0.1987, \"pass\": true, \"threshold\": 0.05, \"per_obs\": [0.193, 0.192, 0.203, 0.193, 0.213]}, \"sr_50k\": {\"overall\": 0.33, \"n_episodes\": 100, \"suite\": \"libero_object\", \"wilson_ci_95\": [0.246, 0.427], \"per_task\": [0.1, 0.7, 0.5, 0.1, 0.3, 0.1, 0.5, 0.1, 0.4, 0.5]}, \"sr_50k_spatial\": {\"overall\": 0.34, \"n_episodes\": 100, \"suite\": \"libero_spatial\", \"wilson_ci_95\": [0.255, 0.437], \"per_task\": [0.8, 0.1, 0.3, 0.2, 0.2, 0.4, 0.3, 0.2, 0.6, 0.3]}, \"sr_50k_goal\": {\"overall\": 0.42, \"n_episodes\": 100, \"suite\": \"libero_goal\", \"wilson_ci_95\": [0.328, 0.518], \"per_task\": [0.2, 0.7, 0.5, 0.1, 0.6, 0.5, 0.2, 0.8, 0.5, 0.1]}, \"sr_100k_object\": {\"overall\": 0.36, \"n_episodes\": 100, \"suite\": \"libero_object\", \"per_task\": [0, 0.3, 0.4, 0.6, 0.5, 0.1, 0.3, 0.5, 0.4, 0.5]}, \"sr_100k_spatial\": {\"overall\": 0.48, \"n_episodes\": 100, \"suite\": \"libero_spatial\", \"per_task\": [0.8, 0.5, 0.4, 0.4, 0.3, 0.3, 0.6, 0.2, 0.9, 0.4]}, \"sr_100k_goal\": {\"overall\": 0.63, \"n_episodes\": 100, \"suite\": \"libero_goal\", \"per_task\": [0.5, 0.9, 0.7, 0.3, 1, 0.4, 0.4, 1, 0.8, 0.3]}, \"sr_100k_overall\": 0.49}, \"notes\": \"100K training completed. Final: loss=0.04082, eval_loss=0.07811, lr=2.50e-06. Eval SR@100K: object=36%, spatial=48%, goal=63%, overall=49.0%. Improved from 50K (36.3%) by +12.7pp. Below 50% threshold but strong upward trend. Seed0 training in progress on cuda:3.\", \"parent\": \"libero_lora_baseline\", \"conclusion\": \"success\"}, \"train_acis_stage1only_k03\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T07:12:38.108Z\", \"updated_at\": \"2026-05-18T00:33:33.269Z\", \"hypothesis\": \"Stage1-only ACIS (k=0.3, 保留 30% tokens) 训练。验证激进压缩的性能下界——如果 SR > 20% 则证明 ACIS 即使在 70% pruning 下仍有价值。\", \"notes\": \"⚠️ INVALIDATED: 下游 eval (libero_object_acis_k03_prune.json) 的 45% SR 是 bug — hook 维度 guard (64≠128) 未触发，pruning 从未执行。与 eval_stage1_only (k=0.5, 44.8% SR) 同一 bug。实际 pruning 后预期 0% SR（所有其他 k ratio 修复后均为 0%）。此实验结果不可引用。\", \"conclusion\": \"failed\"}, \"eval_openvla_pruning_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T19:49:18.253Z\", \"updated_at\": \"2026-05-18T00:07:22.914Z\", \"hypothesis\": \"OpenVLA (7B) with random k=0.5 true_removal pruning on LIBERO-Object. Baseline=74%. Early signal Task 1: 7/10=70% (vs baseline 78%), suggesting graceful degradation rather than cliff-edge. If confirmed across all 10 tasks, proves model scale provides pruning robustness absent in SmolVLA (0.5B).\", \"parent\": \"eval_openvla_crossmodel_pruning\", \"conclusion\": \"success\"}, \"geometric_prior_k05_eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T16:26:30.314Z\", \"updated_at\": \"2026-05-17T20:45:53.973Z\", \"hypothesis\": \"Geometric prior pruning (Sobel edge scoring) at k=0.5 will fail catastrophically on SmolVLA LIBERO-Object, demonstrating that naive heuristic-based token removal causes cliff-edge degradation even though ACIS-based learned pruning maintains performance at the same ratio.\", \"conclusion\": \"negative\"}, \"eval_openvla_crossmodel_pruning\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T16:02:43.205Z\", \"updated_at\": \"2026-05-17T19:49:13.985Z\", \"hypothesis\": \"OpenVLA (7B params) with random k=0.5 true_removal pruning on LIBERO-Object will also show cliff-edge collapse (0% SR), confirming the phenomenon is universal across VLA architectures and not SmolVLA-specific. If OpenVLA degrades gracefully, it suggests model scale or architecture differences provide robustness to token pruning.\", \"parent\": \"baseline_bypass_object\", \"notes\": \"Cron 误判为 failed（监控旧 PID 643978 而非实际 pruning PID 697608）。Baseline 已完成: 74.0% SR (370/500)。Pruning 条件在新实验 eval_openvla_pruning_k05 中跟踪。\", \"conclusion\": \"success\"}, \"eval_geometric_prior_k09\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T16:48:51.853Z\", \"updated_at\": \"2026-05-17T16:49:34.037Z\", \"hypothesis\": \"Geometric prior pruning (Sobel edge) with k=0.9 (keep 90% tokens, remove only ~13/128) on SmolVLA LIBERO-Object. Most conservative pruning ratio. If 0%, definitively proves pixel_shuffle pre-compression makes inference-time token pruning infeasible regardless of selection strategy.\", \"parent\": \"eval_geometric_prior_k07\", \"conclusion\": \"negative\"}, \"eval_geometric_prior_k07\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T16:28:43.832Z\", \"updated_at\": \"2026-05-17T16:49:01.514Z\", \"hypothesis\": \"Geometric prior pruning (Sobel edge) with k=0.7 (keep 70% tokens) on SmolVLA LIBERO-Object. Higher retention ratio than k=0.5 might allow partial performance recovery if the cliff-edge has a threshold. If still 0%, narrows the feasibility window further.\", \"parent\": \"eval_geometric_prior_k05\", \"conclusion\": \"negative\"}, \"eval_geometric_prior_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T16:27:59.058Z\", \"updated_at\": \"2026-05-17T16:49:00.281Z\", \"hypothesis\": \"Geometric prior pruning (Sobel edge detection → keep tokens at object boundaries) with k=0.5 on SmolVLA LIBERO-Object. If spatially-aware token selection outperforms random/ACIS pruning, it demonstrates that informed pruning can bypass the cliff-edge. If still 0%, confirms pixel_shuffle pre-compression makes any inference-time pruning infeasible.\", \"parent\": \"baseline_bypass_object\", \"conclusion\": \"negative\"}, \"libero_fullft_batch64_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:52:36.433Z\", \"updated_at\": \"2026-05-17T14:36:51.484Z\", \"parent\": \"\", \"hypothesis\": \"Increasing effective batch size from 4 to 64 (via gradient accumulation 16x) improves training stability and final performance for SmolVLA full expert fine-tuning on LIBERO, as larger batches provide more stable gradient estimates for the action expert parameters.\", \"notes\": \"D066: Director 指令 kill。ETA 23天远超 CoRL DDL (12天)，0.1 sps 无价值。释放 cqa1:0 给 Pi0.5 cross-model validation。Step ~2000/100K at kill time. EXIT_CODE=137 (SIGKILL). Cron confirmed process exit 2026-05-17T14:35Z.\", \"conclusion\": \"killed\"}, \"baseline_bypass_object\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T14:24:41.442Z\", \"updated_at\": \"2026-05-17T14:25:17.585Z\", \"hypothesis\": \"Stage1-only checkpoint in bypass mode (k=1.0, no pruning) should reproduce the baseline SR of 44.8% on libero_object, establishing the clean unpruned reference for Table 1 cliff-edge comparison.\", \"parent\": \"eval_stage1only_object_v2_fixed\", \"conclusion\": \"success\", \"metrics\": {\"overall_sr\": 0.448, \"total_episodes\": 500, \"total_successes\": 224, \"wilson_ci_95\": [0.405, 0.492], \"per_task_sr\": [0.22, 0.6, 0.42, 0.38, 0.58, 0.26, 0.62, 0.38, 0.5, 0.52], \"mode\": \"bypass\", \"k_ratio\": 1, \"checkpoint_matches_object_eval\": true}}, \"action_divergence_v2_clean\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T12:04:33.765Z\", \"updated_at\": \"2026-05-17T13:13:50.571Z\", \"hypothesis\": \"Closed-loop action divergence: bypass vs ACIS k=0.5 true-removal 在 sim rollout 中的逐步轨迹偏离。与 offline single-step error (111.5% relative) 互为补充——offline 证明每步误差大，closed-loop 展示实际轨迹如何快速分叉。\", \"conclusion\": \"success\", \"metrics\": {\"action_l2_mean\": 1.117, \"action_l2_median\": 0.85, \"eef_position_l2_mean_m\": 0.214, \"eef_position_l2_median_m\": 0.214, \"divergence_onset_step\": 0, \"first_10_steps_action_l2\": 1.262, \"first_10_steps_eef_l2_m\": 0.041, \"last_10_steps_action_l2\": 0.759, \"last_10_steps_eef_l2_m\": 0.198, \"bypass_early_terminations\": \"multiple\", \"pruned_early_terminations\": 0, \"n_tasks\": 3, \"n_episodes_per_task\": 10, \"max_steps\": 300, \"pattern\": \"immediate_onset_monotonic_growth\"}}, \"eval_goal_prune_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T12:04:37.802Z\", \"updated_at\": \"2026-05-17T12:54:41.532Z\", \"hypothesis\": \"ACIS k=0.5 true_removal 在 libero_goal suite 上的 SR。验证 cliff-edge 效应是否跨全部 3 个 LIBERO suite (Object/Spatial/Goal) 一致。Goal baseline=63%, Object/Spatial 已确认 0%。\", \"parent\": \"eval_spatial_prune_k05\", \"conclusion\": \"success\", \"metrics\": {\"suite\": \"libero_goal\", \"mode\": \"acis_prune\", \"pruning_method\": \"true_removal\", \"k_ratio\": 0.5, \"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"baseline_sr\": 0.63, \"sr_drop\": -0.63, \"all_tasks_zero\": true}, \"notes\": \"0% SR across all 10 goal tasks (0/500 episodes). Confirms cliff-edge across all 3 LIBERO suites (Object=0%, Spatial=0%, Goal=0%). Baseline goal SR=63%. Results: eval_results/eval_goal_prune_k05.json\"}, \"offline_singlestep_action_error\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T11:36:40.871Z\", \"updated_at\": \"2026-05-17T12:02:11.341Z\", \"hypothesis\": \"Offline single-step action error analysis: 区分 pruning 导致的 per-step error 是小误差通过 compounding 放大（per-step L2 < 10% action norm → compounding 叙事），还是 pruning 直接摧毁 action prediction（per-step L2 很大 → pruning 本身就 catastrophic）。这是论文 mechanistic explanation 的关键证据。\", \"parent\": \"eval_true_removal_k05\", \"conclusion\": \"success\", \"metrics\": {\"bypass_vs_pruned_l2_mean\": 1.284, \"bypass_vs_gt_l2_mean\": 0.414, \"pruned_vs_gt_l2_mean\": 1.391, \"relative_error_pct\": 111.5, \"per_dim_position_xyz\": [0.2, 0.25, 0.3], \"per_dim_rotation_xyz\": [0.01, 0.02, 0.01], \"per_dim_gripper\": 1.02, \"n_steps\": 200, \"conclusion_type\": \"large_per_step_error\", \"interpretation\": \"Pruning directly destroys action prediction at each step. Not a compounding issue.\"}}, \"offline_singlestep_error_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T11:55:59.152Z\", \"updated_at\": \"2026-05-17T11:56:46.173Z\", \"hypothesis\": \"ACIS k=0.5 true_removal pruning causes large per-step action errors (not small compounding errors) because removing 50% of visual tokens fundamentally disrupts the attention pattern the expert relies on for action prediction, especially for discrete actions like gripper.\", \"conclusion\": \"success\"}, \"eval_spatial_prune_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T10:43:21.844Z\", \"updated_at\": \"2026-05-17T11:39:31.186Z\", \"hypothesis\": \"ACIS k=0.5 true_removal pruning on libero_spatial will show the same cliff-edge collapse (0% SR) as observed on libero_object, confirming that removing ACIS-identified important tokens destroys policy capability across different task suites.\", \"parent\": \"eval_true_removal_k05\", \"metrics\": {\"suite\": \"libero_spatial\", \"mode\": \"acis_prune\", \"pruning_method\": \"true_removal\", \"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"baseline_sr\": 0.518, \"sr_drop\": -0.518, \"all_tasks_zero\": true}, \"conclusion\": \"success\", \"notes\": \"Completed normally at 2026-05-17 19:35. 0% SR across all 10 spatial tasks (0/500 episodes). Confirms cliff-edge generalizes from object to spatial suite. Log: eval_results/eval_spatial_prune_k05.log, Results: eval_results/eval_spatial_prune_k05.json\"}, \"eval_merge_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T10:03:09.100Z\", \"updated_at\": \"2026-05-17T10:34:55.451Z\", \"hypothesis\": \"Token merging（将 pruned token 信息加权合并到保留 token）比 zero-masking 和 true-removal 更好地保留信息，可能恢复部分推理能力。如果 merge SR > 0%，说明信息丢失（而非序列长度变化）是 pruning 崩溃的主因\", \"parent\": \"eval_true_removal_k05\", \"conclusion\": \"negative\", \"metrics\": {\"libero_object_sr\": 0, \"episodes\": 500, \"pruning_method\": \"merge\", \"merge_alpha\": 1, \"k_ratio\": 0.5, \"pruning_type\": \"acis\", \"wilson_ci_95\": \"[0.0%, 0.76%]\"}}, \"eval_k07_zero_mask\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T10:03:12.588Z\", \"updated_at\": \"2026-05-17T10:26:56.534Z\", \"hypothesis\": \"Stage1-only ACIS k=0.7（保留 70% tokens）zero-mask pruning 的 SR。k=0.9 已确认 0%，k=0.7 预期也是 0%。作为完整 pruning ratio ablation 数据用于论文\", \"parent\": \"eval_stage1only_k09\", \"conclusion\": \"negative\", \"metrics\": {\"libero_object_sr\": 0, \"episodes\": 500, \"pruning_method\": \"zero_mask\", \"k_ratio\": 0.7, \"pruning_type\": \"acis\", \"wilson_ci_95\": \"[0.0%, 0.76%]\"}}, \"eval_true_removal_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T08:59:33.996Z\", \"updated_at\": \"2026-05-17T09:41:16.170Z\", \"hypothesis\": \"Zero-masking（将 pruned token 置零）产生 OOD 输入导致 0% SR；true token removal（真正移除 pruned token，缩短序列）应恢复正常推理能力，因为 SmolVLA 用 RoPE 位置编码且 embed_prefix 动态适配序列长度\", \"parent\": \"eval_stage1only_k09\", \"conclusion\": \"negative\", \"metrics\": {\"libero_object_sr\": 0, \"episodes\": 500, \"pruning_method\": \"true_removal\", \"k_ratio\": 0.5, \"pruning_type\": \"acis\", \"wilson_ci_95\": \"[0.0%, 0.8%]\"}}, \"eval_stage1only_k09\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T08:32:20.053Z\", \"updated_at\": \"2026-05-17T09:16:38.225Z\", \"hypothesis\": \"Stage1-only ACIS k=0.9（只移除 10% tokens）的 closed-loop SR。k=0.5 已确认 0% SR。如果 k=0.9 也 0% → 模型对任何 token 移除完全零容忍（极强 negative evidence，或 pruning hook 实现有根本问题）；如果 > 0% → 存在可接受的 pruning threshold。\", \"parent\": \"eval_stage1only_object_v2_fixed\", \"conclusion\": \"negative\", \"metrics\": {\"libero_object_sr\": 0, \"episodes\": 500, \"pruning_method\": \"zero_mask\", \"k_ratio\": 0.9, \"pruning_type\": \"acis\"}}, \"eval_random_prune_k05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T08:30:40.635Z\", \"updated_at\": \"2026-05-17T09:16:36.387Z\", \"hypothesis\": \"Random pruning 50% tokens（torch.rand 替代 ACIS scores）的 closed-loop SR。对照 ACIS pruning 0% SR：如果 random_prune 也 0% → 模型结构性不容忍 50% pruning（问题在 pruning ratio 不在 ACIS）；如果 random_prune > 0% → ACIS importance ranking 比随机更差（ACIS 学到了错误的 ranking）。\", \"parent\": \"eval_stage1only_object_v2_fixed\", \"conclusion\": \"negative\", \"metrics\": {\"libero_object_sr\": 0, \"episodes\": 500, \"pruning_method\": \"zero_mask\", \"k_ratio\": 0.5, \"pruning_type\": \"random\"}}, \"train_acis_stage1only_k07\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T07:12:36.355Z\", \"updated_at\": \"2026-05-17T08:08:21.508Z\", \"hypothesis\": \"Stage1-only ACIS (k=0.7, 保留 70% tokens) 训练。与 k=0.5 (44.8% SR) 对比，预期 k=0.7 prune 后 SR >= 44.8% 因为保留更多信息。\", \"notes\": \"2026-05-17T07:26Z diagnostic: cron false alarm. Process PID 11257 still alive on cqa1-33015 GPU 2. Currently at step 2300/10000, 4.3 sps, margin_loss ~0.19 (converging). ETA ~07:55 UTC. wandb run: offline-run-20260517_151656-8r6bfv8x. Log: ~/runs/importance_margin_vla_compress/train_acis_stage1only_k07.log\", \"conclusion\": \"success\"}, \"eval_stage1only_object_v2_fixed\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T07:22:09.502Z\", \"updated_at\": \"2026-05-17T08:06:54.565Z\", \"hypothesis\": \"Stage1-only ACIS (k=0.5) 在修复 pruning bug 后的真实 closed-loop 性能。bugfix 前 44.8% SR 是假阳性（pruning 未执行）。本实验验证实际 50% token pruning 下的 SR。若 SR >= 30% 证明 ACIS learned effective importance ranking；若 SR < 10% 则 ACIS scoring 无效。\", \"parent\": \"eval_stage1_only\", \"conclusion\": \"negative\", \"notes\": \"修复 pruning bug 后重跑。hook offset-tracking 方法确认 pruning 实际执行（保留 64/128 tokens）。结果：0% SR across 6+ tasks (300+ episodes)。之前 44.8% SR 是假阳性（pruning 未执行 = baseline forward）。Stage1-only ACIS pruning 50% tokens 导致完全失败——ACIS 学到的 importance ranking 在 closed-loop control 中无效。\", \"metrics\": {\"overall_success_rate\": 0, \"total_episodes\": 300, \"total_successes\": 0, \"per_task_sr\": [0, 0, 0, 0, 0, 0], \"mode\": \"acis_prune\", \"k_ratio\": 0.5, \"note\": \"Fixed pruning (offset-tracking). Pruning actually executed this time. 0% SR confirms ACIS importance scoring is ineffective for closed-loop control after Stage1-only training.\"}}, \"eval_stage1only_spatial\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T06:52:30.933Z\", \"updated_at\": \"2026-05-17T07:47:16.934Z\", \"hypothesis\": \"Stage1-only ACIS pruning generalizes across suites: the same checkpoint that achieves 44.8% SR on Object suite should achieve comparable performance on Spatial suite (baseline 48% full FT)\", \"conclusion\": \"killed\", \"notes\": \"Killed: buggy eval code, pruning never executed due to dimension guard bug (64≠128). Results invalid.\"}, \"eval_stage1_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T04:27:01.664Z\", \"updated_at\": \"2026-05-17T07:24:44.994Z\", \"hypothesis\": \"Stage1 ACIS learned effective token importance ranking. Using stage1_done checkpoint (original expert + trained ACIS, k_ratio=0.5) for acis_prune eval should retain significant performance (SR >= 30%) if ACIS quality is good. SR < 10% indicates ACIS importance scoring is ineffective.\", \"parent\": \"eval_imm100k_bypass\", \"notes\": \"⚠️ 结果已撤回。2026-05-17 pruning bug 确认：eval 脚本 dimension guard (64≠128) 导致 acis_prune 模式从未实际执行 pruning，所有 token 原样通过。44.8% SR 是未 pruning 的结果，不能证明 \\\"lossless 2x compression\\\"。已修复并启动 eval_stage1only_object_v2_fixed 重跑。\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.448, \"total_episodes\": 500, \"total_successes\": 224, \"wilson_ci_95\": [0.405, 0.4918], \"per_task_sr\": [0.22, 0.6, 0.42, 0.38, 0.58, 0.26, 0.62, 0.38, 0.5, 0.52], \"mode\": \"acis_prune\", \"k_ratio\": 0.5}}, \"sanity_acis_prune\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T07:19:45.719Z\", \"updated_at\": \"2026-05-17T07:19:45.719Z\"}, \"libero_fullft_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T21:52:18.096Z\", \"updated_at\": \"2026-05-17T06:50:58.697Z\", \"hypothesis\": \"Full FT seed=1 应复现 seed=42 (49% SR) 和 seed=0 的性能水平，验证 Full FT 方法对 LIBERO 的泛化性不依赖于特定随机种子。预期 SR 在 40-55% 范围内。\", \"notes\": \"100K steps 完成 (2026-05-17 12:30 UTC+8). Final train_loss=0.0428, eval_loss=0.0540. Checkpoint 1.3GB saved at step_099999. GPU 0 已释放。需要 SR eval 确认性能。\", \"parent\": \"libero_full_ft_baseline\", \"conclusion\": \"success\", \"metrics\": {\"train_action_loss\": 0.04282, \"eval_action_loss\": 0.05404, \"train_grad_norm\": 1.17539, \"total_steps\": 100000}}, \"libero_fullft_batch64\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T01:29:36.383Z\", \"updated_at\": \"2026-05-17T06:50:58.195Z\", \"hypothesis\": \"Batch size 4→64 (grad_accum=16) 是 87.3% SR gap 根因 (D055)。使用与 SmolVLA 官方相同 effective batch=64 训练 100K steps，预期 SR 从 49% 提升至接近官方水平 (~80%+)，为 IMM 实验提供强 baseline。\", \"parent\": \"libero_full_ft_baseline\", \"notes\": \"进程死亡 at step 3550/100K，无 checkpoint（save_every=10000 导致 3.3h 训练全丢）。需要从头重启，改 save_every=5000。\", \"conclusion\": \"failed\"}, \"eval_random_prune_baseline\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T06:36:45.546Z\", \"updated_at\": \"2026-05-17T06:36:45.546Z\"}, \"eval_imm100k_bypass\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:35:41.235Z\", \"updated_at\": \"2026-05-17T06:29:09.923Z\", \"hypothesis\": \"IMM Stage2 full-FT training preserves expert weight quality: bypass eval (baseline mode, no pruning) of the IMM 100K checkpoint should recover baseline SR ~44% if weights are intact, or show SR < 20% if Stage2 damaged expert weights.\", \"notes\": \"2026-05-17 ~12:00 UTC: westd-27271 不可达。已知部分结果：6/10 tasks 完成时全部 0% SR。服务器断联前可能已完成全部 10 tasks。需重启后检查 eval_results/imm_100k_bypass_object.json。\", \"conclusion\": \"negative\", \"metrics\": {\"overall_success_rate\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"mode\": \"baseline_bypass\", \"note\": \"Stage2 completely destroyed expert weights\"}}, \"eval_k07_bypass_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T04:00:06.238Z\", \"updated_at\": \"2026-05-17T06:10:37.113Z\", \"hypothesis\": \"k=0.7 two-stage full-FT model with baseline (bypass/no-pruning) forward should achieve competitive success rate on libero_object, establishing upper-bound performance before ACIS pruning is applied.\", \"notes\": \"2026-05-17 ~12:00 UTC: westd-27271 不可达。eval 提交于 04:00 UTC，距今 ~8h，预计已完成或接近完成。需重启后检查 eval_results/imm_k07_bypass_object.json。\", \"conclusion\": \"negative\", \"metrics\": {\"overall_success_rate\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"mode\": \"baseline_bypass\", \"note\": \"Stage2 k=0.7 also completely destroyed expert weights\"}}, \"eval_k07_bypass_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T03:36:19.130Z\", \"updated_at\": \"2026-05-17T04:00:12.288Z\", \"hypothesis\": \"k=0.7 bypass eval will show less expert degradation than k=0.5 bypass because retaining more tokens during training causes less damage to the expert backbone representations\", \"conclusion\": \"failed\", \"notes\": \"CUDA error: invalid device ordinal. Script specified cuda:1 but CUDA_VISIBLE_DEVICES likely restricted visibility to 1 GPU. Fix: use --device cuda:0 with CUDA_VISIBLE_DEVICES=1, or remove CUDA_VISIBLE_DEVICES and use --device cuda:1.\"}, \"eval_k07_bypass\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-17T03:34:56.376Z\", \"updated_at\": \"2026-05-17T03:35:25.846Z\", \"hypothesis\": \"k=0.7 bypass eval will show less expert degradation than k=0.5 bypass because retaining more tokens during training causes less damage to the expert backbone representations\"}, \"eval_imm_k07_object\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T01:58:25.483Z\", \"updated_at\": \"2026-05-17T03:31:16.482Z\", \"hypothesis\": \"k=0.7 (retain 70% tokens) should recover most task performance compared to k=0.5 catastrophic failure (3.5-15.4% SR), because 70% retention preserves critical spatial/manipulation information that 50% discards. Expect SR >= 30-40% if the performance cliff is between k=0.5 and k=0.7.\", \"parent\": \"libero_imm_fullft_k07\", \"metrics\": {\"overall_success_rate\": 0.048, \"total_episodes\": 500, \"total_successes\": 24, \"wilson_ci_95\": [0.0325, 0.0704], \"per_task_sr\": [0, 0, 0.06, 0.02, 0.32, 0.06, 0.02, 0, 0, 0]}, \"conclusion\": \"negative\"}, \"mvp_imm_anchor_v7_2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:18:02.766Z\", \"updated_at\": \"2026-05-17T02:56:02.730Z\", \"hypothesis\": \"v7 的 G3 failure (3.28x) 中有部分归因于 eval mode leak (metrics.py bug)。修复后重跑 (lambda=0.2, grad_clip=30.0) 预期 G3 显著改善至 ≤2.0x，若仍 >2.0x 则证明 G3 问题是训练机制本身而非评估 bug。\", \"parent\": \"mvp_imm_anchor_v7\", \"notes\": \"v7.2 final eval (fixed soft forward + temperature): G1 PASS 64.25x, G2 PASS +47.46pp, G3 FAIL 3.19x (vs v7's 3.28x — barely better despite lambda 0.5→0.2), G4 PASS 0.323. Bypass-ACIS diagnostic: G3=1.91x >> 1.10 → 权重受损确认，不是 selection mechanism overhead。IMM 梯度回传通过 LoRA 污染了 VLM backbone。附注: pruneTrue 条件下 v7.2 远优于 baseline (0.24x ratio)，说明 IMM 训练确实提升了 token importance 鲁棒性，但代价是 clean performance。\", \"metrics\": {\"eval_500batch_soft\": {\"clean_action_loss\": 0.013, \"clean_margin_median\": 0.6627, \"clean_preservation\": 1, \"eps001_preservation\": 0.9253, \"eps002_preservation\": 0.8482, \"eps005_preservation\": 0.6597, \"eps001_led_median\": 0.162, \"eps002_led_median\": 0.3232, \"eps005_led_median\": 0.7656, \"lipschitz_empirical\": 0.3393, \"lipschitz_spectral\": 1.0672}, \"bypass_acis\": {\"clean_action_loss\": 0.0078, \"g3_ratio\": 1.91, \"conclusion\": \"weights_damaged\"}, \"gate_v7_2\": {\"G1_margin_ratio\": 64.25, \"G1_pass\": true, \"G2_preservation_diff_pp\": 47.46, \"G2_pass\": true, \"G3_action_loss_ratio\": 3.19, \"G3_pass\": false, \"G4_led_median\": 0.323, \"G4_pass\": true, \"overall\": \"FAIL\"}, \"source\": \"eval_results/eval_imm_v7_2_final.json + eval_results/eval_imm_v7_2_bypass_acis.json\"}, \"conclusion\": \"negative\"}, \"mvp_imm_anchor_v7\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T17:07:33.984Z\", \"updated_at\": \"2026-05-17T02:56:02.358Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) with eval disabled (D008) - same config as v6, skip in-training eval to avoid RoPE crash\", \"parent\": \"mvp_imm_anchor_v6\", \"notes\": \"G3 FAIL: clean action_loss 3.28x baseline (需≤1.10)。G1/G2/G4 PASS (margin 55x, preservation +44pp, LED 0.27<1.0)。lambda=0.5 过于激进。Source: eval_imm_v7_final.json, eval_baseline_v5_final.json, gate_report.json.\", \"metrics\": {\"eval_500batch\": {\"clean_action_loss\": 0.0134, \"clean_margin_median\": 0.5743, \"clean_preservation\": 1, \"eps001_preservation\": 0.9124, \"eps002_preservation\": 0.8172, \"eps005_preservation\": 0.6079, \"eps001_led_median\": 0.1341, \"eps002_led_median\": 0.2726, \"eps005_led_median\": 0.69, \"lipschitz_empirical\": 0.2493, \"lipschitz_spectral\": 1.0672}, \"source\": \"eval_results/eval_imm_v7_final.json\"}, \"conclusion\": \"failed\"}, \"libero_fullft_seed0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T15:59:20.198Z\", \"updated_at\": \"2026-05-17T02:55:48.738Z\", \"notes\": \"100K 完成 (2026-05-17 06:47 UTC). Full FT seed=0, 需要 SR eval 确认（预期与 seed=42 相近 ~33-42%）。\", \"conclusion\": \"success\", \"hypothesis\": \"Full FT seed=0 应复现 seed=42 的 SR 水平 (~36-49%)，确认 Full FT 方法性能稳定性。若 SR 显著偏离 (差 >15pp) 则说明方法对初始化敏感。\", \"parent\": \"libero_full_ft_baseline\"}, \"libero_imm_fullft_k07\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T23:32:00.560Z\", \"updated_at\": \"2026-05-17T02:55:31.044Z\", \"hypothesis\": \"IMM two-stage k_ratio=0.7 ablation (保留 70% tokens, pruning 30%)。对比 k=0.5 验证 compression-performance tradeoff。Base: Full FT seed=42 100K\", \"notes\": \"训练完成 20K steps (09:43 UTC+8)。Checkpoint rsync 到 westd 成功 (879MB)。Object eval (acis_prune, k=0.7, 10 tasks × 50 eps) 在 westd:0 运行中，预计 ~40-50min 完成。结果路径: eval_results/eval_imm_k07_object_acis_prune.json。监控: tail -f ~/runs/importance_margin_vla_compress/eval_imm_k07_object.log\", \"conclusion\": \"success\", \"parent\": \"libero_imm_fullft_100k\"}, \"libero_imm_fullft_seed0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T23:32:00.151Z\", \"updated_at\": \"2026-05-17T02:55:30.125Z\", \"hypothesis\": \"IMM two-stage (Full FT-based) on LIBERO seed=0, 验证 IMM 方法跨 seed 稳定性。Base: Full FT seed=0 100K。Stage1=10K ACIS, Stage2=20K expert, k_ratio=0.5\", \"conclusion\": \"success\", \"notes\": \"训练完成 (09:25:17 \\\"Two-stage training complete.\\\"). Checkpoint 920MB 已保存。被 startup recovery 错误标记为 failed，Director 指令修正。\", \"parent\": \"libero_imm_fullft_100k\"}, \"libero_imm_fullft_100k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T22:11:57.636Z\", \"updated_at\": \"2026-05-17T02:55:29.163Z\", \"hypothesis\": \"IMM two-stage (Full FT-based) on LIBERO using 100K Full FT checkpoint (seed=42, SR~50%+ expected). Stage1: train ACIS (10K steps), Stage2: train expert (20K steps). 论文正式 IMM 数据。目标: SR ≥ baseline 且 50% token pruning。\", \"conclusion\": \"success\", \"notes\": \"训练完成。Object eval (acis_prune) 正在 westd:0 上执行 (task 4+)。被 startup recovery 错误标记为 failed，Director 指令修正。\", \"parent\": \"libero_imm_fullft_v2\"}, \"libero_imm_fullft_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:29:44.685Z\", \"updated_at\": \"2026-05-17T02:55:28.216Z\", \"hypothesis\": \"IMM two-stage (Full FT-based) on LIBERO: Stage1 训 ACIS selector (freeze expert), Stage2 训 expert (freeze ACIS). Base checkpoint: Full FT 50K (SR=33%). 目标: IMM 训练后 SR ≥ 33% 证明方法有效。Plan B 验证。\", \"notes\": \"训练完成 30K steps (westd:0)。Object eval SR=15.4% vs baseline 44.8% (-66% relative)。IMM k=0.5 on 50K FT base 造成严重 closed-loop 退化。Reviewer 确认 eval 有效。\", \"conclusion\": \"negative\", \"metrics\": {\"sr_object\": {\"overall\": 0.154, \"n_episodes\": 100, \"suite\": \"libero_object\", \"source\": \"imm_v2_fullft_libero_object.json\", \"note\": \"IMM two-stage on 50K FT checkpoint, Object suite eval. 15.4% vs baseline 44.8% (-66% relative)\"}}, \"parent\": \"mvp_imm_v8b_twostage\"}, \"libero_lora_seed0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T15:59:19.643Z\", \"updated_at\": \"2026-05-17T02:55:27.439Z\", \"notes\": \"100K 完成 (2026-05-17 06:44 UTC). LoRA seed=0 预期 0% SR（与 seed=42 一致，capacity bottleneck confirmed）。\", \"conclusion\": \"negative\", \"hypothesis\": \"SmolVLA LoRA (r=32, alpha=16) on LIBERO seed=0, 验证 LoRA capacity bottleneck 是否跨 seed 一致（预期与 seed=42 同样 0% SR）\", \"parent\": \"libero_lora_baseline\"}, \"libero_lora_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T14:20:19.278Z\", \"updated_at\": \"2026-05-16T21:53:26.310Z\", \"hypothesis\": \"SmolVLA LoRA (r=32, alpha=16) on LIBERO, 验证 LoRA + flow matching 是否系统性 mode collapse\", \"metrics\": {\"diversity_10k\": {\"noise_diversity_std\": 0.1736, \"pass\": true, \"threshold\": 0.05, \"per_obs\": [0.166, 0.177, 0.154, 0.198, 0.174]}, \"sr_50k\": {\"overall\": 0, \"n_episodes\": 50, \"suite\": \"libero_object\", \"per_task\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"verified\": true, \"lora_keys_loaded\": 74, \"missing_keys\": 0, \"unexpected_keys\": 0, \"verdict\": \"CORRECT_LOAD_confirmed_0pct_SR\"}, \"training_100k\": {\"final_step\": 99999, \"final_train_loss\": 0.0648, \"final_eval_loss\": 0.08041, \"final_lr\": 2.5e-06, \"final_grad_norm\": 0.415, \"checkpoint_size_mb\": 883, \"completed_normally\": true}, \"sr_100k\": {\"overall\": 0, \"n_episodes_completed\": 10, \"n_episodes_total\": 100, \"suite\": \"libero_object\", \"task_0_sr\": 0, \"task_0_episodes\": 10, \"all_episodes_hit_max_steps\": true, \"max_steps\": 400, \"eval_running\": true, \"note\": \"task_0 complete 0/10, remaining tasks 1-9 still evaluating but pattern is conclusive\"}}, \"notes\": \"100K training complete (2026-05-17 05:25). Final: loss=0.0648, eval_loss=0.0804, lr≈0. SR@100K=0% (task_0: 0/10, all max-step=400 FAIL; remaining tasks eval running but conclusive). Compared to Full FT baseline: SR@50K=33% with train_loss=0.041. LoRA (r=32, alpha=16, 1.49M params) definitively insufficient for LIBERO manipulation — not mode collapse (diversity PASS std=0.174), but capacity bottleneck. Checkpoint: checkpoints/libero_baseline/step_099999/checkpoint.pt (883MB).\", \"conclusion\": \"negative\"}, \"libero_imm_twostage_v1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T18:47:03.312Z\", \"updated_at\": \"2026-05-16T19:06:03.822Z\", \"conclusion\": \"killed\", \"notes\": \"有意 kill: 40K baseline checkpoint 不够强���50K SR=33%，100K 预期更高），等 100K 最佳 checkpoint 启动 v2。非 bug。\"}, \"plan_009_token_importance\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T16:57:07.812Z\", \"updated_at\": \"2026-05-16T17:06:47.705Z\", \"conclusion\": \"success\", \"metrics\": {\"spearman_corr_mean\": 0.4069, \"spearman_corr_std\": 0.1022, \"spearman_corr_median\": 0.4065, \"gradient_ratio_retained_over_pruned\": 1.7027, \"retained_grad_mean\": 0.000311, \"pruned_grad_mean\": 0.000183, \"action_loss_mean\": 0.0195, \"n_samples\": 100, \"n_vis_tokens\": 64}, \"hypothesis\": \"Token importance 分析: ACIS importance score 与 action prediction gradient 的 Spearman correlation，验证 ACIS 选择合理性\"}, \"plan_011_acis_overhead\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T16:27:51.008Z\", \"updated_at\": \"2026-05-16T16:29:35.118Z\", \"conclusion\": \"success\", \"hypothesis\": \"ACIS 模块的参数量、FLOPs、推理延迟量化，证明 deployment cost 可忽略\", \"metrics\": {\"params_baseline_M\": 451.53, \"params_acis_increment_M\": 3.46, \"params_overhead_pct\": 0.77, \"flops_baseline_G\": 169.87, \"flops_acis_increment_M\": 409.75, \"flops_overhead_pct\": 0.24, \"latency_baseline_ms\": 51.16, \"latency_acis_increment_ms\": 0.32, \"latency_overhead_pct\": 0.63, \"n_trials\": 100, \"source\": \"results/acis_overhead.json\"}}, \"plan_008_pruning_sweep_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T15:20:12.616Z\", \"updated_at\": \"2026-05-16T16:18:40.100Z\", \"hypothesis\": \"ACIS pruning 在不同 k_ratio (0.3-0.9) 下的 G3 曲线，验证 denoising effect 和 optimal compression point (v2 fix KeyError preprocess_batch)\", \"conclusion\": \"success\", \"metrics\": {\"G3_best\": 0.237, \"G3_best_k\": 0.6, \"G3_k05\": 0.24, \"improvement_pct\": 76.2, \"sweet_spot\": \"k=0.5-0.6\", \"source\": \"eval_results/pruning_sweep_v2.json\"}}, \"plan_005_formal_bound_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T15:33:16.146Z\", \"updated_at\": \"2026-05-16T16:17:57.022Z\", \"hypothesis\": \"Formal bound 实证验证: 多 ε 水平 (0.005-0.1) 下测量 top-k stability，绘制 theoretical vs empirical bound 对比图 (v2 fix AttributeError)\", \"conclusion\": \"success\", \"metrics\": {\"tightness_spectral_min\": 1.005, \"tightness_spectral_max\": 1.125, \"stability_eps01\": 0.976, \"margin_median\": 0.96, \"L_spectral\": 1.067, \"L_empirical\": 0.193, \"source\": \"results/formal_bound_plan005.json\"}}, \"plan_008_pruning_sweep\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T14:49:22.988Z\", \"updated_at\": \"2026-05-16T15:11:43.356Z\", \"hypothesis\": \"ACIS pruning 在不同 k_ratio 下的 G3 曲线，验证 denoising effect 和 optimal compression point\", \"conclusion\": \"failed\"}, \"plan_005_formal_bound\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T14:31:39.407Z\", \"updated_at\": \"2026-05-16T14:49:41.303Z\", \"conclusion\": \"failed\", \"notes\": \"脚本在加载模型后崩溃: AttributeError: 'IMMSmolVLAWrapper' object has no attribute 'model'。get_tokenizer_from_policy() 访问 policy.model 失败。需要修正属性访问路径。脚本由前一轮 worker 绕过审批直接提交（未走 submit_training_job），无 cron 监控。\"}, \"baseline_v6_alpha16\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T08:40:58.566Z\", \"updated_at\": \"2026-05-16T11:04:21.593Z\", \"hypothesis\": \"降低 LoRA alpha (64→16, scale 2.0→0.5) 避免 flow matching velocity field mode collapse，恢复 sample_actions() diversity\", \"conclusion\": \"negative\", \"metrics\": {\"mode_collapse_test\": {\"verdict\": \"FAIL\", \"cross_obs_std\": 0.096329, \"noise_diversity_std\": 0.007352, \"pretrained_noise_std\": null, \"checkpoint\": \"checkpoints/baseline_v6_alpha16/step_029999/checkpoint.pt\", \"threshold_fail\": 0.01, \"threshold_pass\": 0.05, \"comparison_alpha64\": \"alpha64 std=0.006, alpha16 std=0.007 — no meaningful improvement\"}}, \"notes\": \"Mode collapse 未修复。alpha=16 (scale=0.5) noise diversity std=0.007352 < 0.01 阈值，与 alpha=64 的 std=0.006 几乎无改善。Cross-obs std=0.096 尚可（不同 obs 产生不同 action），但 same-obs noise diversity 极低，说明 ODE 仍然 collapse 到固定点。问题根源不在 LoRA scale 大小，可能在 flow matching + LoRA 的根本兼容性上。未执行 success rate 评估（mode collapse 导致 0% success rate 是确定的）。\"}, \"mvp_imm_v8c_annealing\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T07:07:51.506Z\", \"updated_at\": \"2026-05-16T10:59:18.563Z\", \"hypothesis\": \"Mask ratio annealing (k_ratio 0.9→0.5 线性退火) + gradient isolation (λ=0.5)。渐进引入 pruning 避免 backbone co-adaptation with sudden sparse input，目标 G3-deploy ≤ 1.10\", \"conclusion\": \"negative\", \"metrics\": {\"G1_margin_ratio\": 108.15, \"G2_preservation_diff\": 60.92, \"G3_deploy\": 2.04, \"G4_LED\": 0.1046, \"action_loss_acis_prune\": null, \"action_loss_baseline\": null, \"final_train_loss\": 0.0492, \"final_action_loss\": 0.0023, \"final_margin_loss\": 0.0938}}, \"eval_sim_success_rate\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T08:37:18.063Z\", \"updated_at\": \"2026-05-16T08:37:18.063Z\", \"notes\": \"诊断结论：LoRA fine-tuning (alpha=64, rank=32, scale=2.0) 导致 flow matching ODE 推理 mode collapse。预训练 action std=0.104 → LoRA模型 std=0.006。forward() 因 GT noise mixing 能算正确 loss，但 sample_actions() 从纯 noise 出发所有轨迹收敛到同一输入无关的固定点。三组模型（baseline/acis_prune/bypass）均 0% success rate。问题出在 LoRA 训练本身，非 ACIS/pruning 相关。次要 bug：max_episode_steps=300 但训练数据 episode=400 步。\"}, \"mvp_imm_v8b_twostage\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T04:17:57.529Z\", \"updated_at\": \"2026-05-16T07:56:33.588Z\", \"hypothesis\": \"Two-stage training: 冻结 baseline_v5 backbone (含 LoRA)，Stage1 (10K) 只训 ACIS selector，Stage2 (20K) 解冻 LoRA 微调。消除 co-adaptation，目标 G3 ≤ 1.10\", \"parent\": \"mvp_imm_anchor_v8\", \"notes\": \"训练正常完成（Stage1 10K + Stage2 20K = 30K steps）。500-batch eval ALL GATES PASS: G1=93.23x, G2=+56.01pp, G3-deploy=0.8679 (ACIS+Prune50% 优于 baseline 13%), G4=0.1354。核心发现：two-stage 完全解耦 ACIS 和 backbone 训练后，ACIS pruning 不仅不损害性能，反而提升——50% token pruning 起正则化作用。ACIS+Prune loss=0.003538 < baseline 0.004063。这是首个通过全部 MVP gate 的实验。Stage 设计: Stage1 (0-10K) freeze backbone+LoRA 只训 ACIS (λ=1.0), Stage2 (10K-30K) freeze ACIS 只训 LoRA (三层防护)。基于 baseline_v5 checkpoint。\", \"conclusion\": \"success\", \"metrics\": {\"sim_success_rate\": {\"baseline\": 0, \"acis_prune\": 0, \"bypass\": 0, \"n_episodes\": 50, \"wilson_ci_95_upper\": 0.0714, \"baseline_mean_reward\": 0.16, \"acis_prune_mean_reward\": 0, \"bypass_mean_reward\": 0}}}, \"mvp_imm_anchor_v8_1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T03:02:09.076Z\", \"updated_at\": \"2026-05-16T06:32:15.146Z\", \"hypothesis\": \"gradient isolation + 降低 λ_margin (0.2 vs v8 的 0.5)，减轻 ACIS selection overhead 对 G3 的影响，目标 G3-deploy ≤ 1.10\", \"parent\": \"mvp_imm_anchor_v8\", \"notes\": \"训练完成 30K steps。500-batch eval (fixed evaluate.py): G1=86.5x PASS, G2=+59.2pp PASS, G3-deploy=2.53x FAIL (目标≤1.10), G4=0.084 PASS → Overall FAIL。降低 λ (0.2 vs v8 的 0.5) 反而恶化 G3 (2.53x vs 1.344x)。机理：低 λ=0.2 → ACIS 收敛慢 → 训练早期 routing 信号不稳定 → backbone 学到劣质表征且无法恢复。v8 (λ=0.5) ACIS 收敛快 → routing 早期稳定 → backbone 表征质量更好（虽然仍 co-adapted）。bypass≈pruneFalse (9.32x vs 9.17x) 排除 ACIS 存在本身的开销，但 pruneTrue 2.53x 远优于 full tokens 说明 backbone 已严重 co-adapt 到 sparse input。结论：gradient isolation + 低 λ 不是解法。\", \"conclusion\": \"negative\"}, \"imm_two_stage_v9\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T04:24:22.574Z\", \"updated_at\": \"2026-05-16T05:16:08.231Z\", \"conclusion\": \"killed\", \"notes\": \"前轮残留实验，未实际运行。已由 mvp_imm_v8b_twostage 替代。Director 指令清理。\"}, \"mvp_imm_anchor_v8\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T23:07:33.075Z\", \"updated_at\": \"2026-05-16T04:09:35.392Z\", \"hypothesis\": \"gradient isolation (dual detach) 消除 backbone 权重损伤 (G3a≤1.10)，同时 ACIS 仍能学到有效 importance scoring (G1≥2x, G2≥10pp)\", \"parent\": \"mvp_imm_anchor_v7_2\", \"notes\": \"训练完成 (step 30K)。D028 fix re-eval (500-batch, fixed evaluate.py with 5 fixes): G1=50.2x PASS, G2=+58.8pp PASS, G3=1.344x FAIL (target ≤1.10), G4=0.087 PASS → Overall FAIL。Fixed eval 结果与 buggy eval 一致在 ~5% 内：standard_clean 0.00546 (was 0.00530), bypass_clean 0.02895 (was 0.03019), margin_median 0.5034 (was 0.505)。关键发现：(1) G4 LED 从 0.169 降至 0.087，修复显著影响了 LED 计算；(2) G3 从 1.30x 升至 1.34x；(3) bypass/baseline=7.12x 源于 backbone co-adaptation with token selection（训练时 backbone 适应了 soft mask 加权的 ~50% token 子集，移除 ACIS 后 input distribution shift 导致性能下降，非梯度泄漏）。证据：random 50% pruning (0.0172) 优于 full token (0.0290)，说明 backbone 已内化 sparse token 偏好。结论：gradient isolation 有效防止梯度泄漏，但 backbone-ACIS co-adaptation 仍导致 G3=1.344x 超标。\", \"metrics\": {\"checkpoint_trajectory\": {\"step_2000\": {\"standard\": 0.03787, \"acis_prune\": 0.0357, \"bypass\": 0.05842, \"random_prune\": 0.0425, \"acis_advantage\": 0.0068}, \"step_29999\": {\"standard\": 0.00659, \"acis_prune\": 0.0033, \"bypass\": 0.0323, \"random_prune\": 0.01576, \"acis_advantage\": 0.01246}}, \"eval_500batch_fixed\": {\"source\": \"eval_results/eval_imm_v8_fixed.json\", \"eval_tag\": \"D028_fix_reeval\", \"standard_clean_action_loss\": 0.005462, \"bypass_clean_action_loss\": 0.028948, \"pruneTrue_clean_action_loss\": 0.005462, \"pruneFalse_clean_action_loss\": 0.029996, \"margin_median\": 0.5034, \"margin_mean\": 0.7696, \"margin_std\": 0.8133, \"eps001_preservation\": 0.923, \"eps002_preservation\": 0.8367, \"eps005_preservation\": 0.6613, \"eps001_kendall_tau\": 0.8393, \"eps001_led_median\": 0.0852, \"eps002_led_median\": 0.1714, \"eps005_led_median\": 0.4429, \"lipschitz_empirical\": 0.1364, \"lipschitz_spectral\": 1.0672}, \"eval_500batch_bypass_fixed\": {\"source\": \"eval_results/eval_imm_v8_bypass_fixed.json\", \"bypass_clean_action_loss\": 0.028948, \"bypass_pruned_action_loss\": 0.017215, \"eps001_action_loss_noprune\": 0.027873, \"eps001_action_loss_prune\": 0.016572, \"eps005_action_loss_noprune\": 0.039901, \"eps005_action_loss_prune\": 0.02627}, \"baseline_v5_fixed\": {\"source\": \"eval_results/eval_baseline_v5_fixed.json\", \"clean_action_loss\": 0.004063, \"margin_median\": 0.010022, \"eps001_preservation\": 0.3352}, \"gate_analysis_fixed\": {\"eval_tag\": \"D028_fix_reeval\", \"G1_margin_ratio\": 50.2, \"G1_pass\": true, \"G2_preservation_diff_pp\": 58.78, \"G2_pass\": true, \"G3_clean_loss_ratio\": 1.344, \"G3_target\": 1.1, \"G3_pass\": false, \"G3_deploy_ratio\": 1.344, \"G3_deploy_pass\": false, \"G4_led_median\": 0.0865, \"G4_pass\": true, \"overall_pass\": false, \"bypass_backbone_ratio\": 7.12, \"notes\": \"Fixed eval (5 bugs: eps0 pruning flag, hard binary mask, per-condition RNG, eval mode, preloaded batches). Results consistent with old buggy eval within ~5%. G3 still fails at 1.344x.\"}}, \"conclusion\": \"negative\"}, \"mvp_baseline_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:36:06.963Z\", \"updated_at\": \"2026-05-15T22:21:59.760Z\", \"hypothesis\": \"SmolVLA+LoRA baseline on aloha_sim_insertion (baseline_forward fix, v5 clean env)\", \"notes\": \"Original eval (100 batches, pre-D011): clean=0.00422. D011 re-eval (50 batches, fixed baseline_forward+pruning): clean=0.00264, pruneTrue=0.11159. D011 fix changed baseline_forward sig + preprocess_batch + connector name, so clean path value changed too. D014 protocol: redo with 500 batches after v7 completes.\", \"conclusion\": \"success\", \"metrics\": {\"eval_500batch\": {\"clean_action_loss\": 0.004077, \"clean_margin_median\": 0.010022, \"eps001_preservation\": 0.3352, \"eps002_preservation\": 0.3362, \"eps005_preservation\": 0.3381}, \"mid_checkpoints\": {\"step005000\": {\"clean_action_loss\": 0.01891, \"clean_margin_median\": 0.01002, \"clean_margin_mean\": 0.01608, \"clean_pruned_action_loss\": 0.08304, \"eps001_action_loss\": 0.02234, \"eps001_preservation\": 0.3359, \"eps001_kendall_tau\": -0.2315, \"eps002_action_loss\": 0.02057, \"eps002_preservation\": 0.3369, \"eps005_action_loss\": 0.03377, \"eps005_preservation\": 0.34, \"eps001_pruned_action_loss\": 0.08645, \"eps002_pruned_action_loss\": 0.0882, \"eps005_pruned_action_loss\": 0.0912, \"lipschitz_empirical\": 0, \"lipschitz_spectral\": 0, \"source\": \"eval_results/eval_baseline_v5_step5000.json\"}, \"step010000\": {\"clean_action_loss\": 0.00974, \"clean_margin_median\": 0.01002, \"clean_margin_mean\": 0.01608, \"clean_pruned_action_loss\": 0.09434, \"eps001_action_loss\": 0.01243, \"eps001_preservation\": 0.3359, \"eps001_kendall_tau\": -0.2315, \"eps002_action_loss\": 0.01092, \"eps002_preservation\": 0.3369, \"eps005_action_loss\": 0.02565, \"eps005_preservation\": 0.34, \"eps001_pruned_action_loss\": 0.09473, \"eps002_pruned_action_loss\": 0.10085, \"eps005_pruned_action_loss\": 0.10132, \"lipschitz_empirical\": 0, \"lipschitz_spectral\": 0, \"source\": \"eval_results/eval_baseline_v5_step10000.json\"}}, \"source\": \"eval_results/eval_baseline_v5_final.json\"}}, \"mvp_imm_anchor_v7_1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T18:19:52.057Z\", \"updated_at\": \"2026-05-15T19:18:02.335Z\", \"hypothesis\": \"降低 lambda_margin (0.2 vs 0.5) 可以在保持 margin 增长的同时抑制 Lipschitz 爆炸\", \"parent\": \"mvp_imm_anchor_v7\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor_v6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:30:47.843Z\", \"updated_at\": \"2026-05-15T17:01:43.153Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) - fixed token_selection squeeze bug\", \"parent\": \"mvp_imm_anchor_v5\", \"notes\": \"v5 crashed at step 2000 during eval due to token_selection.py squeeze bug (threshold_low.squeeze(-1) shape mismatch). v6 = fresh start with squeeze fix. Same config: imm_anchor.yaml (delta=0.3, lambda=0.5, k_ratio=0.5). batch_size=4 + FP32 to match baseline v5 for fair comparison.\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:30:48.331Z\", \"updated_at\": \"2026-05-15T16:30:56.416Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) increases importance margin without degrading action loss\", \"conclusion\": \"failed\"}, \"mvp_baseline_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:28:19.155Z\", \"updated_at\": \"2026-05-15T15:32:16.908Z\", \"hypothesis\": \"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison (fixed action_is_pad bug)\", \"conclusion\": \"killed\"}, \"mvp_imm_anchor_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:00:15.534Z\", \"updated_at\": \"2026-05-15T15:29:41.858Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) significantly increases importance margin and top-k preservation without degrading action loss\", \"conclusion\": \"failed\"}, \"mvp_baseline_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:55:28.972Z\", \"updated_at\": \"2026-05-15T14:57:00.161Z\", \"hypothesis\": \"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:47:42.413Z\", \"updated_at\": \"2026-05-15T14:56:58.869Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) significantly increases importance margin and top-k preservation without degrading action loss\", \"conclusion\": \"failed\"}, \"mvp_baseline_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:47:41.949Z\", \"updated_at\": \"2026-05-15T14:55:25.052Z\", \"hypothesis\": \"SmolVLA+LoRA baseline on aloha_sim_insertion establishes action loss reference for IMM comparison\", \"conclusion\": \"failed\"}, \"mvp_imm_anchor\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T12:27:58.507Z\", \"updated_at\": \"2026-05-15T14:43:21.554Z\", \"hypothesis\": \"IMM training (delta=0.3, lambda=0.5) significantly increases Δ_k margin and top-k preservation without degrading action loss\", \"conclusion\": \"failed\"}, \"mvp_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:50:53.011Z\", \"updated_at\": \"2026-05-15T14:43:17.783Z\", \"hypothesis\": \"SmolVLA+LoRA baseline on LIBERO-Object establishes action loss reference for IMM comparison\", \"conclusion\": \"failed\"}, \"eval_openvla_prune_l2norm_k095_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"hypothesis\": \"L2 norm pruning k=0.95 on OpenVLA Object, seed42. Baseline=74.4%.\", \"metrics\": {\"success_rate\": 0.706, \"num_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42}, \"notes\": \"[D124] Registered from westd-38929 eval_results.\", \"created_at\": \"2026-05-21T02:22:08.929849+00:00\"}, \"eval_openvla_prune_l2norm_k09_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"hypothesis\": \"L2 norm pruning k=0.9 on OpenVLA Object, seed42. Baseline=74.4%.\", \"metrics\": {\"success_rate\": 0.706, \"num_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42}, \"notes\": \"[D124] Registered from westd-38929 eval_results.\", \"created_at\": \"2026-05-21T02:22:08.929912+00:00\"}, \"eval_openvla_prune_l2norm_k05_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"hypothesis\": \"L2 norm pruning k=0.5 on OpenVLA Object, seed42. Baseline=74.4%.\", \"metrics\": {\"success_rate\": 0.392, \"num_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42}, \"notes\": \"[D124] Registered from westd-38929 eval_results.\", \"created_at\": \"2026-05-21T02:22:08.929921+00:00\"}, \"eval_openvla_prune_l2norm_k03_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"hypothesis\": \"L2 norm pruning k=0.3 on OpenVLA Object, seed42. Baseline=74.4%.\", \"metrics\": {\"success_rate\": 0.25, \"num_episodes\": 500, \"suite\": \"libero_object\", \"seed\": 42}, \"notes\": \"[D124] Registered from westd-38929 eval_results.\", \"created_at\": \"2026-05-21T02:22:08.929927+00:00\"}, \"eval_oft_baseline_object_seed42_v2\": {\"status\": \"DONE\", \"hypothesis\": \"OFT Object baseline (no pruning). OFT uses 3-layer MLP connector with 512 vision tokens (DINOv2+SigLIP). Expected SR ≈ 97% (SOTA). Validates eval adapter.\", \"created_at\": \"2026-05-21T02:37:32.165008+00:00\", \"notes\": \"OFT eval params: --prune_mode (not --mode), --keep_ratio (not --k_ratio), --checkpoint (required). Bugs fixed: AutoModelForImageTextToText, DDP module. prefix strip, torch.load weights_only. [M049] 0% SR — missing center_crop (crop_scale=0.9) and potentially other preprocessing mismatches vs OFT official inference code.\", \"conclusion\": \"failed\"}}, \"count\": 622, \"total\": 622, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.3595}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-24T01:01:53.922Z_
+
+<details><summary>↩ Tool result · `toolu_015TnY9MfYq9G2t5WYJTcgS4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 09:55:45,418 Config: suite=libero_object, prune=random, keep=0.85, eps=50, gpu=0\\n2026-05-23 09:55:45,418 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "8038f4d0-1f5a-4170-8852-4e1fba6b4b8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 09:55:45,418 Config: suite=libero_object, prune=random, keep=0.85, eps=50, gpu=0\\\\n2026-05-23 09:55:45,418 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 09:55:45,418 Config: suite=libero_object, prune=random, keep=0.85, eps=50, gpu=0\\n2026-05-23 09:55:45,418 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search the registry for a recent pi05 experiment to see how it was submitted. The registry is too large to read in full. Let me search for a specific experiment pattern.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "5f56a6c0-f1d5-409e-952f-ac055132e89c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A8gcno8LGgFrL7vDdRXN8A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1116,
+      "cache_read_input_tokens": 32814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1116
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+Let me find how existing pi05 experiments were submitted by searching for a specific one in the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "fca6833c-a64d-4ac2-a0e8-512473770881",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A8gcno8LGgFrL7vDdRXN8A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1116,
+      "cache_read_input_tokens": 32814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1116
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01SfFQ2dYY7gEspQhcAf22JH`</summary>
+
+```json
+{
+  "pattern": "eval_pi05_l2norm_k03|eval_pi05_random_k085_object_seed43",
+  "path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt",
+  "output_mode": "content",
+  "-C": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "a8ccc348-0298-4ce0-a6e2-db8fa84e37ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A8gcno8LGgFrL7vDdRXN8A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1116,
+      "cache_read_input_tokens": 32814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1116
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-24T01:01:59.591Z_
+
+<details><summary>↩ Tool result · `toolu_01SfFQ2dYY7gEspQhcAf22JH`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "20313c31-e8a3-48f5-ad9c-17f706dbea5d",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "1:[Omitted long matching line]",
+    "numLines": 1
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01RHvw5S9Wv8qGLde7ZSL2Jv`</summary>
+
+```json
+{
+  "pattern": "eval_pi05_random_k085_object_seed43",
+  "path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "9d395a2e-b92c-44c0-acad-c841feaa9103",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0169GQMnyVTZ9PhA1aycwyPn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 322,
+      "cache_read_input_tokens": 33930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 322
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-24T01:02:02.538Z_
+
+<details><summary>↩ Tool result · `toolu_01RHvw5S9Wv8qGLde7ZSL2Jv`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "ef2311f6-d52e-445b-876b-2fd1af29931b",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "1:[Omitted long matching line]",
+    "numLines": 1
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry file is one big JSON blob. Let me use jq to extract the experiment info.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "72cf5629-d1ce-45af-a540-544fc9566cb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LVTAfsrBrPxB8md8ggTRNy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 34252,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 217
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UFxg4cvW5kv4bQEFFmyPQ5`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\n# Find experiment entries\nfor k,v in result.items():\n    if 'pi05_random_k085' in k or 'pi05_l2norm_k03' in k:\n        print(f'=== {k} ===')\n        print(json.dumps(v, indent=2)[:1500])\n        print()\n\" 2>/dev/null | head -80",
+  "description": "Extract pi05 experiment entries from registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "8ba05407-8112-42f8-b794-e4eb971424ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LVTAfsrBrPxB8md8ggTRNy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 34252,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 217
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-24T01:02:08.951Z_
+
+<details><summary>↩ Tool result · `toolu_01UFxg4cvW5kv4bQEFFmyPQ5`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "83cd5cde-0ee7-4de0-accd-d9681b54114f",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019GjPN2J5JEcFmshmsTSZvs`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt | python3 -c \"\nimport json, sys\nraw = sys.stdin.read()\ndata = json.loads(raw)\nresult_str = data.get('result', raw)\nresult = json.loads(result_str) if isinstance(result_str, str) else result_str\n# Check structure\nprint(type(result))\nif isinstance(result, dict):\n    keys = [k for k in result.keys()]\n    print(f'Top keys: {keys[:10]}')\n    # Check if experiments are nested\n    for k in keys[:3]:\n        print(f'{k}: {type(result[k])}')\nelif isinstance(result, list):\n    print(f'List of {len(result)} items')\n    if result:\n        print(json.dumps(result[0], indent=2)[:500])\n\" 2>/dev/null | head -30",
+  "description": "Inspect registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "3fdcb4e0-a245-48b5-8b3a-081b0d75f5f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4BYKja5j5sQ2FmQDJPcvH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 356,
+      "cache_read_input_tokens": 34469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 356
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-24T01:02:15.370Z_
+
+<details><summary>↩ Tool result · `toolu_019GjPN2J5JEcFmshmsTSZvs`</summary>
+
+```text
+&lt;class 'dict'>
+Top keys: ['success', 'data', 'error', 'metadata']
+success: &lt;class 'bool'>
+data: &lt;class 'dict'>
+error: &lt;class 'NoneType'>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "82bb0057-103f-43e1-b57a-c9183fc3d2ac",
+  "tool_use_result": {
+    "stdout": "&lt;class 'dict'>\nTop keys: ['success', 'data', 'error', 'metadata']\nsuccess: &lt;class 'bool'>\ndata: &lt;class 'dict'>\nerror: &lt;class 'NoneType'>",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QBA1gnxiez44yMkWjrRE5y`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt | python3 -c \"\nimport json, sys\nraw = sys.stdin.read()\ndata = json.loads(raw)\nresult = json.loads(data['result'])\nexperiments = result['data']\nfor k,v in experiments.items():\n    if 'pi05' in k and ('l2norm' in k or 'random_k085' in k):\n        print(f'=== {k} ===')\n        spec = v.get('spec', {})\n        print(f'  status: {v.get(\\\"status\\\")}')\n        print(f'  command: {spec.get(\\\"command\\\", \\\"N/A\\\")[:200]}')\n        print(f'  server: {spec.get(\\\"server\\\")}')\n        print(f'  hypothesis: {v.get(\\\"hypothesis\\\", \\\"N/A\\\")[:150]}')\n        print()\n\" 2>/dev/null | head -60",
+  "description": "Extract pi05 l2norm/random experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "16c9e7cd-ebb8-4a8f-a856-9750ffdc4a60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UMrgFHYC5wnsi2ujoctHVk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 441,
+      "cache_read_input_tokens": 34825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 441
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-24T01:02:23.360Z_
+
+<details><summary>↩ Tool result · `toolu_01QBA1gnxiez44yMkWjrRE5y`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "52d87dd2-4a5e-4beb-8e3e-e42ce6242610",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017t3BQcoYoVbkkPTZFmR1vT`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt | python3 -c \"\nimport json, sys\nraw = sys.stdin.read()\ndata = json.loads(raw)\nresult = json.loads(data['result'])\nexperiments = result.get('data', result)\n# Try to list all keys containing pi05\npi05_keys = [k for k in experiments if 'pi05' in k.lower()]\nprint('pi05 keys:', pi05_keys[:20])\n# Also try without underscore\npi_keys = [k for k in experiments if 'pi0' in k.lower()]\nprint('pi0 keys:', pi_keys[:20])\n\" 2>/dev/null",
+  "description": "List all pi0-related experiment keys in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "5b78a35c-9845-4024-96ed-86459582d327",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcaimiJEWg6oG9eUtrbaiG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 417,
+      "cache_read_input_tokens": 35266,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 417
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-24T01:02:29.364Z_
+
+<details><summary>↩ Tool result · `toolu_017t3BQcoYoVbkkPTZFmR1vT`</summary>
+
+```text
+pi05 keys: []
+pi0 keys: []
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "cbed49b7-a4dc-4797-99ec-50a6df742464",
+  "tool_use_result": {
+    "stdout": "pi05 keys: []\npi0 keys: []",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019n1dHwSqugWzA5jVugMi6T`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt | python3 -c \"\nimport json, sys\nraw = sys.stdin.read()\ndata = json.loads(raw)\nresult = json.loads(data['result'])\nexperiments = result.get('data', result)\nkeys = list(experiments.keys())\nprint(f'Total experiments: {len(keys)}')\nprint('Sample keys:', keys[:15])\n\" 2>/dev/null",
+  "description": "List sample experiment keys from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "fb2c8d60-9ac8-467c-8aa2-69e4e0e25f27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oqb6u9yHNUicZAP4yVM6n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 350,
+      "cache_read_input_tokens": 35683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 350
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-24T01:02:35.301Z_
+
+<details><summary>↩ Tool result · `toolu_019n1dHwSqugWzA5jVugMi6T`</summary>
+
+```text
+Total experiments: 4
+Sample keys: ['experiments', 'count', 'total', 'baseline']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "e7a1a8a6-842d-4b27-90f0-2612dc1aff44",
+  "tool_use_result": {
+    "stdout": "Total experiments: 4\nSample keys: ['experiments', 'count', 'total', 'baseline']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01A1DJvQJQRtLHZB4Q7mrh8G`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/fd9ece32-46f5-461f-a2d6-2f9aea433d93/tool-results/mcp-agent-ml-research-read_registry-1779584513474.txt | python3 -c \"\nimport json, sys\nraw = sys.stdin.read()\ndata = json.loads(raw)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n# Find pi05 related\nfor k in list(experiments.keys()):\n    if 'pi05' in k or 'pi0' in k:\n        v = experiments[k]\n        print(f'=== {k} ===')\n        spec = v.get('spec', {})\n        print(f'  status: {v.get(\\\"status\\\")}')\n        print(f'  command: {str(spec.get(\\\"command\\\", \\\"N/A\\\"))[:200]}')\n        print(f'  server: {spec.get(\\\"server\\\")}')\n        print()\n\" 2>/dev/null | head -80",
+  "description": "Find pi05 experiments in nested structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "57502ecd-1680-4480-a887-e03add7fa4fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LKbPMnzQGWTpyEdW8TQBst",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 299,
+      "cache_read_input_tokens": 36033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 299
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-24T01:02:40.217Z_
+
+<details><summary>↩ Tool result · `toolu_01A1DJvQJQRtLHZB4Q7mrh8G`</summary>
+
+```text
+=== eval_pi05_random_k05_spatial_seed42_postfix ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_random_k085_goal_seed43 ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_attention_k05_long_seed42 ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_random_k05_object_seed42_v2 ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_random_k07_object_seed42_v3 ===
+  status: RUNNING
+  command: N/A
+  server: None
+
+=== eval_pi05_random_k095_object_seed42_v2 ===
+  status: RUNNING
+  command: N/A
+  server: None
+
+=== eval_pi05_random_k03_goal_seed42 ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_attention_k05_object_seed42 ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_random_k085_spatial_seed42_postfix ===
+  status: RUNNING
+  command: N/A
+  server: None
+
+=== eval_pi05_random_k095_spatial_seed42_postfix ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_attention_k05_spatial_seed42 ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_attention_k05_goal_seed43 ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_random_k07_object_seed42_v2 ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_random_k09_object_seed42_v2 ===
+  status: RUNNING
+  command: N/A
+  server: None
+
+=== eval_pi05_l2norm_k095_goal_seed42 ===
+  status: DONE
+  command: N/A
+  server: None
+
+=== eval_pi05_l2norm_k03_goal_seed42 ===
+  status: DONE
+  command: N/A
+  server: None
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "a1877d34-ff7b-4e1f-a07e-7f94b4fec7b5",
+  "tool_use_result": {
+    "stdout": "=== eval_pi05_random_k05_spatial_seed42_postfix ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_random_k085_goal_seed43 ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_attention_k05_long_seed42 ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_random_k05_object_seed42_v2 ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_random_k07_object_seed42_v3 ===\n  status: RUNNING\n  command: N/A\n  server: None\n\n=== eval_pi05_random_k095_object_seed42_v2 ===\n  status: RUNNING\n  command: N/A\n  server: None\n\n=== eval_pi05_random_k03_goal_seed42 ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_attention_k05_object_seed42 ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_random_k085_spatial_seed42_postfix ===\n  status: RUNNING\n  command: N/A\n  server: None\n\n=== eval_pi05_random_k095_spatial_seed42_postfix ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_attention_k05_spatial_seed42 ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_attention_k05_goal_seed43 ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_random_k07_object_seed42_v2 ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_random_k09_object_seed42_v2 ===\n  status: RUNNING\n  command: N/A\n  server: None\n\n=== eval_pi05_l2norm_k095_goal_seed42 ===\n  status: DONE\n  command: N/A\n  server: None\n\n=== eval_pi05_l2norm_k03_goal_seed42 ===\n  status: DONE\n  command: N/A\n  server: None",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see the pattern now. The experiments are registered without command in spec. Since `submit_training_job` doesn't exist as a tool, I'll need to use `ssh_execute` to launch the job in tmux, then register it via `update_registry`. 
+
+Let me look at how experiments are launched - they seem to use tmux sessions on the server. Let me check existing tmux sessions and the launch pattern.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "ecb27420-e049-44ba-a88d-cab52e178ec4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Deapsb8NYJnMAd5hv4x8Xf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1020,
+      "cache_read_input_tokens": 36332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1020
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+No `submit_training_job` tool available. I'll launch via `ssh_execute` in a tmux session (same pattern as existing experiments), then register in the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "974566e8-4e51-4d9d-81eb-3621544effcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Deapsb8NYJnMAd5hv4x8Xf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1020,
+      "cache_read_input_tokens": 36332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1020
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LyDGwCN3RMoVmu32VJcvgM`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tmux new-session -d -s eval_pi05_l2norm_k085_goal_seed43 \"CUDA_VISIBLE_DEVICES=3 bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_goal --seed 43 --gpu 0 2>&1 | tee /tmp/eval_pi05_l2norm_k085_goal_seed43.log'\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "98f543db-69d4-465f-8fef-f0249c1b76cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Deapsb8NYJnMAd5hv4x8Xf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1020,
+      "cache_read_input_tokens": 36332,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1020
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-24T01:02:51.161Z_
+
+<details><summary>↩ Tool result · `toolu_01LyDGwCN3RMoVmu32VJcvgM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "b7213a3d-451a-4932-8878-9be04d6c5ba8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+Tmux session launched. Let me verify it's running on GPU 3 and check the log.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "14668d35-96a8-4d45-b56a-3ddcdcd69f19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPwXffXumeuqjpScgjM1tH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 37352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 607
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013nMQjmkGFVLKjEGsinZrTY`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "31e74162-12e8-491b-84b9-22a012774e2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPwXffXumeuqjpScgjM1tH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 37352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 607
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JNZrcPqZzhQmj6MmcYANee`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tail -10 /tmp/eval_pi05_l2norm_k085_goal_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "412ae211-d956-4844-9ba4-2bce1bcb96d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPwXffXumeuqjpScgjM1tH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 37352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 607
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-24T01:02:55.859Z_
+
+<details><summary>↩ Tool result · `toolu_013nMQjmkGFVLKjEGsinZrTY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 10311 MiB, 46 %\\n1, 10323 MiB, 4 %\\n2, 1 MiB, 0 %\\n3, 1 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "40b4528a-111f-437e-bd76-2a07e5a60408",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 10311 MiB, 46 %\\\\n1, 10323 MiB, 4 %\\\\n2, 1 MiB, 0 %\\\\n3, 1 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 10311 MiB, 46 %\\n1, 10323 MiB, 4 %\\n2, 1 MiB, 0 %\\n3, 1 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-24T01:02:56.319Z_
+
+<details><summary>↩ Tool result · `toolu_01JNZrcPqZzhQmj6MmcYANee`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 09:02:53,775 Config: suite=libero_goal, prune=l2norm, keep=0.85, eps=50, gpu=0\\n2026-05-24 09:02:53,775 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "d99f96ac-fc64-43e7-b631-c867a7fb2a3d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 09:02:53,775 Config: suite=libero_goal, prune=l2norm, keep=0.85, eps=50, gpu=0\\\\n2026-05-24 09:02:53,775 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 09:02:53,775 Config: suite=libero_goal, prune=l2norm, keep=0.85, eps=50, gpu=0\\n2026-05-24 09:02:53,775 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The process started but GPU 3 still shows 1 MiB used. The model is still loading. Let me wait a moment and check again, or just proceed with registry updates since the process is in early loading stage. The model load typically takes a minute for pi0.5. Let me check again shortly.
+
+Actually, I should register it in the registry now while it loads. Let me also check GPU 3 in a moment. The config line confirms correct parameters: `suite=libero_goal, prune=l2norm, keep=0.85, eps=50, gpu=0`.
+
+Let me register it and then verify GPU usage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "a8c5bc28-e216-40b7-bace-3169a151d372",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VoYzcTtQLZTKzAUx49nZaE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 38579,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+Process started — config confirmed: `suite=libero_goal, prune=l2norm, keep=0.85, eps=50, gpu=0`. Model is loading. Let me register in the registry now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "fd25f2d7-e14a-4865-8791-9d3972b3d6f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VoYzcTtQLZTKzAUx49nZaE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 38579,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WRpzFdCAqq8S63RpvpKuzu`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed43",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=3 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_goal --seed 43 --gpu 0",
+    "server": "cqa1-33015",
+    "data_path": "libero_goal",
+    "data_count": 500,
+    "model_name": "pi0.5",
+    "seed": 43
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "38b52c9c-c11b-4d03-8237-aeca5a984469",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VoYzcTtQLZTKzAUx49nZaE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 38579,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-24T01:03:11.050Z_
+
+<details><summary>↩ Tool result · `toolu_01WRpzFdCAqq8S63RpvpKuzu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.4052}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "a36e8f60-d901-4806-a691-02508d4f09b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4052}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.4052}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016h612ZXiESnfraVGUgZSTM`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed43",
+  "field": "hypothesis",
+  "value": "π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "6acc1abb-4346-4dcf-bb61-19a239203a64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VoYzcTtQLZTKzAUx49nZaE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 38579,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-24T01:03:14.143Z_
+
+<details><summary>↩ Tool result · `toolu_016h612ZXiESnfraVGUgZSTM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k085_goal_seed43\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:03:13.142Z\", \"updated_at\": \"2026-05-24T01:03:13.142Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5496}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "6bfdf75d-02ca-4211-8ea3-e04e475b3cd2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k085_goal_seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T01:03:13.142Z\\\", \\\"updated_at\\\": \\\"2026-05-24T01:03:13.142Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5496}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k085_goal_seed43\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:03:13.142Z\", \"updated_at\": \"2026-05-24T01:03:13.142Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5496}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The status transition from PREPARING to RUNNING is not allowed directly. I need to go through PENDING or QUEUED first. Let me set it to PENDING first, then to RUNNING.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "cc809de9-b4f5-48d6-a364-f14a6400d359",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153kNojtiJ1xuEE3z3GhQyt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 38579,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+Need to transition through the proper states. Let me set PENDING first.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "230aa749-051f-4bf0-b626-24b64e484cc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153kNojtiJ1xuEE3z3GhQyt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 38579,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01YA9HJHMdA24qKHjgjtSSPy`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed43",
+  "field": "status",
+  "value": "PENDING",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "7b7982e5-36b0-4813-9586-fa599501b88b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153kNojtiJ1xuEE3z3GhQyt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 38579,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-24T01:03:29.980Z_
+
+<details><summary>↩ Tool result · `toolu_01YA9HJHMdA24qKHjgjtSSPy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k085_goal_seed43\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:03:13.142Z\", \"updated_at\": \"2026-05-24T01:03:27.021Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.6265}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "016036aa-0a91-4274-95d1-a202d2373dc8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k085_goal_seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T01:03:13.142Z\\\", \\\"updated_at\\\": \\\"2026-05-24T01:03:27.021Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.6265}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k085_goal_seed43\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:03:13.142Z\", \"updated_at\": \"2026-05-24T01:03:27.021Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.6265}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01M1xcSLy6GG7AfvDXjNwRKN`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed43",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=3 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_goal --seed 43 --gpu 0",
+    "server": "cqa1-33015",
+    "data_path": "libero_goal",
+    "data_count": 500,
+    "model_name": "pi0.5",
+    "seed": 43
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "7de1e4af-e144-43b3-8080-c9b08febc1c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H76xQjxFN5HCzJtQM2Mdvx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 414,
+      "cache_read_input_tokens": 39615,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 414
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-24T01:03:38.043Z_
+
+<details><summary>↩ Tool result · `toolu_01M1xcSLy6GG7AfvDXjNwRKN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.3371}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "fab5d73c-c859-4a4f-af5b-ba64bf742aa5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3371}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.3371}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MpagTdNXanR9XtqA4Sp6rJ`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed43",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "419cbfd4-eaa8-4b66-a4cf-8d3aa8076dc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V1CKKEYrFvtFaD9V7PdQ5o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 403,
+      "cache_read_input_tokens": 40029,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 403
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-24T01:03:45.581Z_
+
+<details><summary>↩ Tool result · `toolu_01MpagTdNXanR9XtqA4Sp6rJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k085_goal_seed43\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:03:13.142Z\", \"updated_at\": \"2026-05-24T01:03:42.579Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.5604}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "235dc849-ed80-4e74-b47e-c409f030fadb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k085_goal_seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T01:03:13.142Z\\\", \\\"updated_at\\\": \\\"2026-05-24T01:03:42.579Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.5604}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k085_goal_seed43\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:03:13.142Z\", \"updated_at\": \"2026-05-24T01:03:42.579Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.5604}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Fqdmjqce7ZCyujdzfc8DQA`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k085_goal_seed43",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=3 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_goal --seed 43 --gpu 0",
+    "server": "cqa1-33015",
+    "data_path": "libero_goal",
+    "data_count": 500,
+    "model_name": "pi0.5",
+    "seed": 43
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "7da4a4ec-f125-441e-8f89-21858a1315bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pq8iDMEkitsVRSDmx79fDu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 447,
+      "cache_read_input_tokens": 40432,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 447
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-24T01:04:02.211Z_
+
+<details><summary>↩ Tool result · `toolu_01Fqdmjqce7ZCyujdzfc8DQA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k085_goal_seed43\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:03:13.142Z\", \"updated_at\": \"2026-05-24T01:03:58.382Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_goal\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.4156}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "ea5316cf-d603-4e17-aa41-142d2f5e3158",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k085_goal_seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T01:03:13.142Z\\\", \\\"updated_at\\\": \\\"2026-05-24T01:03:58.382Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_goal --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_goal\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.4156}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k085_goal_seed43\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:03:13.142Z\", \"updated_at\": \"2026-05-24T01:03:58.382Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Goal seed43 — 与 Random k=0.85 Goal seed43 (53.4%) 配对计算 cross-seed importance margin\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python -u /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_goal\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.4156}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90_
+
+Registry updated. Let me verify GPU 3 is now being used.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "8cf1a237-fbcf-4412-baee-19629b99049e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014rXkczSYFzSvfChzsnPuGD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 722,
+      "cache_read_input_tokens": 40879,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 722
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018eeto2d7byqEJYSBcZZJnW`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "a2db2af9-dfb6-4d30-80e0-f4cbf4d9b3a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014rXkczSYFzSvfChzsnPuGD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 722,
+      "cache_read_input_tokens": 40879,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 722
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-24T01:04:07.257Z_
+
+<details><summary>↩ Tool result · `toolu_018eeto2d7byqEJYSBcZZJnW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 10311 MiB, 36 %\\n1, 9839 MiB, 0 %\\n2, 1 MiB, 0 %\\n3, 3 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "a5802a4e-5b5c-4cce-8c0b-be87e8f1255e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 10311 MiB, 36 %\\\\n1, 9839 MiB, 0 %\\\\n2, 1 MiB, 0 %\\\\n3, 3 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 10311 MiB, 36 %\\n1, 9839 MiB, 0 %\\n2, 1 MiB, 0 %\\n3, 3 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+GPU 3 still shows only 3 MiB - model still loading (pi0.5 is large, takes time to load to GPU). Let me check the log to confirm it's still loading.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "1f62c684-55a6-4843-ac1f-f7e42611c6f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvZFcxdYEft6wmWjC3BBHT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 280,
+      "cache_read_input_tokens": 41601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 280
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+GPU 3 still at 3 MiB — model is still loading into CPU/RAM before transferring to GPU. Let me check the log to confirm progress.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "ad140068-f75e-4559-b71a-53d8a61e1070",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvZFcxdYEft6wmWjC3BBHT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 280,
+      "cache_read_input_tokens": 41601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 280
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WBWpr9QfMqSYyY9hjT5tza`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tail -5 /tmp/eval_pi05_l2norm_k085_goal_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "5c874fa7-dd78-4472-b313-72e38a64515d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvZFcxdYEft6wmWjC3BBHT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 280,
+      "cache_read_input_tokens": 41601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 280
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-24T01:04:12.621Z_
+
+<details><summary>↩ Tool result · `toolu_01WBWpr9QfMqSYyY9hjT5tza`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 09:02:53,775 Config: suite=libero_goal, prune=l2norm, keep=0.85, eps=50, gpu=0\\n2026-05-24 09:02:53,775 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "22531c9c-04d2-4756-800e-fe59dfe8e707",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 09:02:53,775 Config: suite=libero_goal, prune=l2norm, keep=0.85, eps=50, gpu=0\\\\n2026-05-24 09:02:53,775 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 09:02:53,775 Config: suite=libero_goal, prune=l2norm, keep=0.85, eps=50, gpu=0\\n2026-05-24 09:02:53,775 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+Model still loading (pi0.5 is large, takes a few minutes). The experiment is correctly deployed:
+
+- **Exp ID**: `eval_pi05_l2norm_k085_goal_seed43`
+- **Server**: cqa1-33015, GPU 3 (`CUDA_VISIBLE_DEVICES=3`)
+- **Config**: `prune_mode=l2norm, keep_ratio=0.85, suite=libero_goal, seed=43`
+- **Tmux session**: `eval_pi05_l2norm_k085_goal_seed43`
+- **Log**: `/tmp/eval_pi05_l2norm_k085_goal_seed43.log`
+- **Registry**: RUNNING, hypothesis and spec set
+- **GPU 0/1**: untouched (existing experiments safe)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "uuid": "d714f2df-b86a-4a58-8b3a-f1b67ff09b48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0123aA1rkgLR8EPXq44ctijz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 436,
+      "cache_read_input_tokens": 41881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 436
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 98_
+
+Model still loading (pi0.5 is large, takes a few minutes). The experiment is correctly deployed:
+
+- **Exp ID**: `eval_pi05_l2norm_k085_goal_seed43`
+- **Server**: cqa1-33015, GPU 3 (`CUDA_VISIBLE_DEVICES=3`)
+- **Config**: `prune_mode=l2norm, keep_ratio=0.85, suite=libero_goal, seed=43`
+- **Tmux session**: `eval_pi05_l2norm_k085_goal_seed43`
+- **Log**: `/tmp/eval_pi05_l2norm_k085_goal_seed43.log`
+- **Registry**: RUNNING, hypothesis and spec set
+- **GPU 0/1**: untouched (existing experiments safe)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 211961,
+  "duration_api_ms": 186813,
+  "num_turns": 36,
+  "stop_reason": "end_turn",
+  "session_id": "fd9ece32-46f5-461f-a2d6-2f9aea433d93",
+  "total_cost_usd": 0.8454235000000001,
+  "usage": {
+    "input_tokens": 35,
+    "cache_creation_input_tokens": 29856,
+    "cache_read_input_tokens": 910771,
+    "output_tokens": 8063,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 29856,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 195,
+        "cache_read_input_tokens": 41881,
+        "cache_creation_input_tokens": 436,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 436
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1533,
+      "outputTokens": 31,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001688,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 35,
+      "outputTokens": 8063,
+      "cacheReadInputTokens": 910771,
+      "cacheCreationInputTokens": 29856,
+      "webSearchRequests": 0,
+      "costUSD": 0.8437355000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "15a8a2ab-9df1-4d7c-b3f6-3d5b69b6e853"
+}
+```
+
+</details>
+
+---

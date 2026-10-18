@@ -56,5 +56,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/exp-llama-downstream-eval.md"
 }

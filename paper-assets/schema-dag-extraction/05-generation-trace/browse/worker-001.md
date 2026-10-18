@@ -1,156 +1,156 @@
 # Worker execution logs
 
-[Back to trace guide](../README.md)
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
 
-| Source record | Events | User turns | JSON |
-|---|---:|---:|---|
-| `logs/workers/worker_ssh_env-setup_20260514T161431.log` (occurrence 1) | 491 | 0 | [Open](../sessions/81/81e5351478d33476744f.json) |
-| `logs/workers/worker_code_mvp-pipeline_20260514T161549.log` (occurrence 1) | 82 | 0 | [Open](../sessions/6f/6fc02539abef57cb5570.json) |
-| `logs/workers/worker_code_fix-reviewer-critical_20260514T163331.log` (occurrence 1) | 100 | 0 | [Open](../sessions/e8/e8cdcf3f2dec2fcb1f3c.json) |
-| `logs/workers/worker_ssh_env-setup-and-data_20260514T163452.log` (occurrence 1) | 156 | 0 | [Open](../sessions/05/059e3f1f54f121c9b77e.json) |
-| `logs/workers/worker_ssh_disk-cleanup-and-model-download_20260514T164727.log` (occurrence 1) | 510 | 0 | [Open](../sessions/9a/9a7c406aca4e72032c64.json) |
-| `logs/workers/worker_ssh_code-preflight_20260514T173030.log` (occurrence 1) | 56 | 0 | [Open](../sessions/8e/8e686ebd5c50949f62d7.json) |
-| `logs/workers/worker_code_fix-few-nerd-loader_20260514T173444.log` (occurrence 1) | 26 | 0 | [Open](../sessions/2d/2daa7e975699ce0b55a3.json) |
-| `logs/workers/worker_ssh_verify-and-run-experiments_20260514T180940.log` (occurrence 1) | 743 | 1 | [Open](../sessions/23/234a8af5e2d221a8b423.json) |
-| `logs/workers/worker_ssh_rollback-and-run-all_20260514T184153.log` (occurrence 1) | 1155 | 1 | [Open](../sessions/ab/ab3a5a3bb3e28468f03c.json) |
-| `logs/workers/worker_ssh_exp1-status-check_20260514T193750.log` (occurrence 1) | 46 | 0 | [Open](../sessions/44/44e14bbf56a6257a127f.json) |
-| `logs/workers/worker_ssh_alt-embeddings-bcs_20260514T194037.log` (occurrence 1) | 123 | 0 | [Open](../sessions/54/54ab3883fb5d88291131.json) |
-| `logs/workers/worker_ssh_exp1-check-and-launch-exp2_20260514T215328.log` (occurrence 1) | 24 | 0 | [Open](../sessions/3c/3cb06b72e1e7d2f0969b.json) |
-| `logs/workers/worker_ssh_exp1-diagnose-and-launch-exp2_20260514T230254.log` (occurrence 1) | 110 | 0 | [Open](../sessions/b8/b815e6657eee57f1fd24.json) |
-| `logs/workers/worker_ssh_eval-diagnosis-b2_20260514T231026.log` (occurrence 1) | 50 | 0 | [Open](../sessions/b3/b32756384909fc2bcee1.json) |
-| `logs/workers/worker_ssh_exp2-analysis-prep_20260514T231253.log` (occurrence 1) | 86 | 0 | [Open](../sessions/21/2130aabf2064615eef32.json) |
-| `logs/workers/worker_ssh_exp1-text-reeval_20260514T231942.log` (occurrence 1) | 212 | 2 | [Open](../sessions/d8/d81745c2ebc79b4a60a2.json) |
-| `logs/workers/worker_ssh_prompt-v2-prep_20260514T231959.log` (occurrence 1) | 64 | 0 | [Open](../sessions/d7/d78af9d2c54d49514d1c.json) |
-| `logs/workers/worker_ssh_exp2-analysis-update_20260514T232020.log` (occurrence 1) | 67 | 0 | [Open](../sessions/e2/e237e64cefa9483be4ac.json) |
-| `logs/workers/worker_ssh_fix-pass-criteria_20260514T233645.log` (occurrence 1) | 32 | 0 | [Open](../sessions/36/36f89f0f65bb3b86c88d.json) |
-| `logs/workers/worker_ssh_fix-nameerror_20260514T234103.log` (occurrence 1) | 46 | 0 | [Open](../sessions/ac/ace36293d4043f3bf3ca.json) |
-| `logs/workers/worker_ssh_reeval-script-prep_20260515T005614.log` (occurrence 1) | 74 | 0 | [Open](../sessions/7a/7af097d659a0cad10279.json) |
-| `logs/workers/worker_ssh_exp2-progress-check_20260515T011705.log` (occurrence 1) | 28 | 0 | [Open](../sessions/d1/d1b25205b7385c324c47.json) |
-| `logs/workers/worker_ssh_exp2-log-check_20260515T022358.log` (occurrence 1) | 43 | 0 | [Open](../sessions/d6/d6c50643dca21d1ca88a.json) |
-| `logs/workers/worker_ssh_exp2-full-analysis_20260515T022540.log` (occurrence 1) | 111 | 0 | [Open](../sessions/96/96db8c36bb7fae953651.json) |
-| `logs/workers/worker_ssh_exp3c-pairwise-confusion_20260515T023600.log` (occurrence 1) | 57 | 0 | [Open](../sessions/b1/b18de2086286bb730085.json) |
-| `logs/workers/worker_ssh_fix-rerun-analysis_20260515T023655.log` (occurrence 1) | 45 | 0 | [Open](../sessions/e8/e880ddaf07f5f7ed9fc7.json) |
-| `logs/workers/worker_ssh_exp3a-diagnose-fix_20260515T024903.log` (occurrence 1) | 104 | 0 | [Open](../sessions/88/884da1d6acdd71280042.json) |
-| `logs/workers/worker_research_ace05-data-prep_20260515T025909.log` (occurrence 1) | 167 | 1 | [Open](../sessions/9b/9bf0751f97eac413cd1c.json) |
-| `logs/workers/worker_code_sdgd-framework-design_20260515T025924.log` (occurrence 1) | 237 | 2 | [Open](../sessions/bd/bd4c68dc8f936290bf97.json) |
-| `logs/workers/worker_diagnose_exp003a_prompt_v2_rerun_20260515T024627.log` (occurrence 1) | 30 | 0 | [Open](../sessions/5b/5bae4379669e2c5d790a.json) |
-| `logs/workers/worker_code_ace05-preprocess-scripts_20260515T030622.log` (occurrence 1) | 129 | 1 | [Open](../sessions/65/654ccf16dc5e117da1d9.json) |
-| `logs/workers/worker_research_literature-map-update_20260515T030636.log` (occurrence 1) | 86 | 0 | [Open](../sessions/0d/0d417b2108e81d13c6e4.json) |
-| `logs/workers/worker_research_maven-dataset-study_20260515T030839.log` (occurrence 1) | 172 | 21 | [Open](../sessions/02/027c830d2fa3c5e2c1f3.json) |
-| `logs/workers/worker_research_crossagentie-analysis_20260515T031205.log` (occurrence 1) | 54 | 10 | [Open](../sessions/32/326e0e9e7382592e8d24.json) |
-| `logs/workers/worker_research_maven-dataset-v2_20260515T031646.log` (occurrence 1) | 36 | 0 | [Open](../sessions/cb/cb6fd793c87e90112171.json) |
-| `logs/workers/worker_research_multi-model-candidates_20260515T031845.log` (occurrence 1) | 38 | 0 | [Open](../sessions/cc/cca3bb73645ff75e6c5c.json) |
-| `logs/workers/worker_code_maven-data-prep_20260515T032102.log` (occurrence 1) | 133 | 0 | [Open](../sessions/4c/4cbc6a8334d12c4113bf.json) |
-| `logs/workers/worker_ssh_exp3a-progress-check_20260515T032930.log` (occurrence 1) | 26 | 0 | [Open](../sessions/fc/fc16591bc7484b778956.json) |
-| `logs/workers/worker_ssh_maven-data-download_20260515T032939.log` (occurrence 1) | 47 | 0 | [Open](../sessions/04/04c481cfc2e98dea426c.json) |
-| `logs/workers/worker_ssh_maven-preprocess_20260515T033306.log` (occurrence 1) | 43 | 0 | [Open](../sessions/37/3720d7c7108ba8ec9c31.json) |
-| `logs/workers/worker_writing_method-relatedwork-draft_20260515T035316.log` (occurrence 1) | 34 | 0 | [Open](../sessions/4e/4e2ac159da5d52cc4250.json) |
-| `logs/workers/worker_research_third-task-type-eval_20260515T041309.log` (occurrence 1) | 42 | 0 | [Open](../sessions/a8/a8014333284fc278fc39.json) |
-| `logs/workers/worker_code_fewrel-data-prep_20260515T043437.log` (occurrence 1) | 54 | 0 | [Open](../sessions/c8/c86fef83c5c9efdadc5f.json) |
-| `logs/workers/worker_writing_method-fix-section32_20260515T043451.log` (occurrence 1) | 14 | 0 | [Open](../sessions/7e/7e900604c71f699d73a1.json) |
-| `logs/workers/worker_analysis_exp003a_logs_20260515T050603.log` (occurrence 1) | 83 | 0 | [Open](../sessions/03/033d9820c26f819c92c9.json) |
-| `logs/workers/worker_research_maven_data_prep_20260515T050740.log` (occurrence 1) | 226 | 0 | [Open](../sessions/bd/bd3aed0ea738722e378c.json) |
-| `logs/workers/worker_ssh_exp3a-analysis-pipeline_20260515T050851.log` (occurrence 1) | 118 | 0 | [Open](../sessions/a9/a910130476ef9dae2104.json) |
-| `logs/workers/worker_ssh_maven-type-embeddings_20260515T052912.log` (occurrence 1) | 11 | 0 | [Open](../sessions/a9/a9792e03a14fb831308f.json) |
-| `logs/workers/worker_ssh_per-type-f1-analysis_20260515T052927.log` (occurrence 1) | 6 | 0 | [Open](../sessions/27/27ec72373448ca7be21c.json) |
-| `logs/workers/worker_ssh_maven-qwen3-embeddings-v2_20260515T053208.log` (occurrence 1) | 125 | 0 | [Open](../sessions/93/931b186383f15a57e0f2.json) |
-| `logs/workers/worker_ssh_per-type-f1-analysis-v2_20260515T055130.log` (occurrence 1) | 85 | 0 | [Open](../sessions/d7/d7544863d111af95daad.json) |
-| `logs/workers/worker_ssh_exp004-code-prep_20260515T055256.log` (occurrence 1) | 174 | 0 | [Open](../sessions/5b/5b9588e3d24c55e40363.json) |
-| `logs/workers/worker_ssh_exp004-maven-launch_20260515T060057.log` (occurrence 1) | 110 | 0 | [Open](../sessions/4a/4a6c04f6bcae691ab2a8.json) |
-| `logs/workers/worker_ssh_fewrel-pilot-prep_20260515T062022.log` (occurrence 1) | 137 | 0 | [Open](../sessions/cd/cdb1404fda63903ced9c.json) |
-| `logs/workers/worker_ssh_maven-analysis-scripts_20260515T062257.log` (occurrence 1) | 185 | 1 | [Open](../sessions/6d/6dace42ba36f2fda6b02.json) |
-| `logs/workers/worker_ssh_llama-model-check_20260515T063112.log` (occurrence 1) | 26 | 0 | [Open](../sessions/df/df6f697395b25ef19c96.json) |
-| `logs/workers/worker_ssh_disk-usage-audit_20260515T063235.log` (occurrence 1) | 61 | 0 | [Open](../sessions/90/90fe4de013bb11cca72b.json) |
-| `logs/workers/worker_ssh_sdgd-framework-impl_20260515T063409.log` (occurrence 1) | 71 | 0 | [Open](../sessions/39/39a8a3a7c951144f77ce.json) |
-| `logs/workers/worker_ssh_disk-cleanup-llama-download_20260515T063558.log` (occurrence 1) | 41 | 0 | [Open](../sessions/94/94764d64bef3c57a260b.json) |
-| `logs/workers/worker_ssh_fewrel-re-prompt-fix_20260515T063640.log` (occurrence 1) | 31 | 0 | [Open](../sessions/2a/2a21295eae03915e0198.json) |
-| `logs/workers/worker_ssh_disk-cleanup-llama-download_20260515T063826.log` (occurrence 1) | 129 | 0 | [Open](../sessions/54/54a46e2b6c61f6450d4a.json) |
-| `logs/workers/worker_ssh_sdgd-framework-impl_20260515T065822.log` (occurrence 1) | 77 | 0 | [Open](../sessions/52/52941d27fd3a6899ec30.json) |
-| `logs/workers/worker_ssh_fewrel-re-prompt-fix_20260515T065836.log` (occurrence 1) | 69 | 0 | [Open](../sessions/b4/b49087a20f5a9500e5ee.json) |
-| `logs/workers/worker_ssh_sdgd-bugfix-verify_20260515T070346.log` (occurrence 1) | 39 | 0 | [Open](../sessions/ea/ea39c212cd5631b6e6ee.json) |
-| `logs/workers/worker_ssh_sdgd-3bug-fix_20260515T070619.log` (occurrence 1) | 93 | 0 | [Open](../sessions/f3/f3f87f01e1674e2153f5.json) |
-| `logs/workers/worker_ssh_exp004-result-check_20260515T070804.log` (occurrence 1) | 87 | 0 | [Open](../sessions/93/9362b42f23a16da44919.json) |
-| `logs/workers/worker_ssh_maven-analysis-run_20260515T071416.log` (occurrence 1) | 69 | 0 | [Open](../sessions/8e/8e7b23947406468c1607.json) |
-| `logs/workers/worker_ssh_fewrel-pilot-launch_20260515T071432.log` (occurrence 1) | 500 | 0 | [Open](../sessions/9f/9f44d4f8bd27befbafa5.json) |
-| `logs/workers/worker_ssh_exp008-sdgd-launch_20260515T074315.log` (occurrence 1) | 59 | 0 | [Open](../sessions/5e/5ef48451fb16014ca7f0.json) |
-| `logs/workers/worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628.log` (occurrence 1) | 102 | 0 | [Open](../sessions/c1/c1d60bac6ee09e0bd9f6.json) |
-| `logs/workers/worker_research_embedding-anisotropy-lit_20260515T075641.log` (occurrence 1) | 59 | 0 | [Open](../sessions/b7/b7fa82780dfe9c426c7e.json) |
-| `logs/workers/worker_ssh_llama-download-check_20260515T081427.log` (occurrence 1) | 181 | 0 | [Open](../sessions/f8/f828158a87ff590a9d5b.json) |
-| `logs/workers/worker_ssh_sdgd-cal-impl_20260515T082408.log` (occurrence 1) | 70 | 0 | [Open](../sessions/7b/7bfe0ecb7bb40fb4c47f.json) |
-| `logs/workers/worker_ssh_exp012-llama-prep_20260515T082428.log` (occurrence 1) | 112 | 0 | [Open](../sessions/d0/d058a48337ee2d51cebe.json) |
-| `logs/workers/worker_ssh_llama-download-resume_20260515T082848.log` (occurrence 1) | 37 | 0 | [Open](../sessions/bf/bf48b46996fc10c7bbf4.json) |
-| `logs/workers/worker_ssh_fewrel-formal-prep_20260515T083006.log` (occurrence 1) | 286 | 2 | [Open](../sessions/4d/4dc6546c2b4ca1823639.json) |
-| `logs/workers/worker_ssh_llama-download-fix_20260515T083106.log` (occurrence 1) | 945 | 1 | [Open](../sessions/7f/7f0fd041252f0a255105.json) |
-| `logs/workers/worker_ssh_maven-minilm-pertype_20260515T090030.log` (occurrence 1) | 54 | 0 | [Open](../sessions/b5/b5e29ec3a79f93bcb8fe.json) |
-| `logs/workers/worker_ssh_qwen3-embedding-metadata-check_20260515T090746.log` (occurrence 1) | 79 | 0 | [Open](../sessions/fd/fd8a2cadee77b25777aa.json) |
-| `logs/workers/worker_ssh_exp008-health-check_20260515T094541.log` (occurrence 1) | 35 | 0 | [Open](../sessions/e7/e7a31a878056ff830c9a.json) |
-| `logs/workers/worker_ssh_exp008-fix-relaunch_20260515T100611.log` (occurrence 1) | 289 | 0 | [Open](../sessions/0e/0e9d1a2636cccc36c25c.json) |
-| `logs/workers/worker_ssh_exp012-launch-script_20260515T102532.log` (occurrence 1) | 78 | 0 | [Open](../sessions/19/198a6a240ca12c4bbcf1.json) |
-| `logs/workers/worker_diagnose_exp008_sdgd_zero_fewnerd_20260515T103240.log` (occurrence 1) | 51 | 0 | [Open](../sessions/0b/0bfdec215b32504180d6.json) |
-| `logs/workers/worker_ssh_fewrel-calibrate-bugfix_20260515T104553.log` (occurrence 1) | 90 | 1 | [Open](../sessions/38/388860f839a2d93e1b2b.json) |
-| `logs/workers/worker_ssh_exp012-launch-script_20260515T104630.log` (occurrence 1) | 144 | 1 | [Open](../sessions/1d/1d4561939a263089a971.json) |
-| `logs/workers/worker_ssh_sdgd-maven-minilm-prep_20260515T105359.log` (occurrence 1) | 158 | 0 | [Open](../sessions/9f/9fc9816728ed2f91f313.json) |
-| `logs/workers/worker_ssh_exp008-analysis-prep_20260515T111102.log` (occurrence 1) | 292 | 1 | [Open](../sessions/27/2748d128214548d239f7.json) |
-| `logs/workers/worker_ssh_fewrel-data-verify_20260515T111910.log` (occurrence 1) | 90 | 0 | [Open](../sessions/30/30b8868690dcd2687f21.json) |
-| `logs/workers/worker_ssh_fewrel-qwen3-embeddings_20260515T113947.log` (occurrence 1) | 120 | 0 | [Open](../sessions/05/05b59930e1a17853435e.json) |
-| `logs/workers/worker_ssh_exp008-diagnosis_20260515T114006.log` (occurrence 1) | 49 | 0 | [Open](../sessions/71/714ce4e3e9062aa8d86e.json) |
-| `logs/workers/worker_ssh_merge-strategy-design_20260515T120300.log` (occurrence 1) | 76 | 0 | [Open](../sessions/f4/f4091f9bb8f0c50c4618.json) |
-| `logs/workers/worker_ssh_sdgd-v2-integration_20260515T120937.log` (occurrence 1) | 61 | 0 | [Open](../sessions/c5/c58c1196d04456ef87b6.json) |
-| `logs/workers/worker_ssh_fewrel-formal-health-check_20260515T120947.log` (occurrence 1) | 27 | 0 | [Open](../sessions/4d/4da9b381b1e43fbfa0fc.json) |
-| `logs/workers/worker_ssh_fewrel-formal-status_20260515T121548.log` (occurrence 1) | 85 | 0 | [Open](../sessions/35/35e5d7d1de063af970f5.json) |
-| `logs/workers/worker_ssh_fewrel-80rel-launch_20260515T125537.log` (occurrence 1) | 29 | 0 | [Open](../sessions/08/083c8e679a00b1e7226a.json) |
-| `logs/workers/worker_ssh_fewrel-80rel-status-check_20260515T125957.log` (occurrence 1) | 33 | 0 | [Open](../sessions/7a/7a725723df69f4200d87.json) |
-| `logs/workers/worker_ssh_exp012-llama-preflight_20260515T130030.log` (occurrence 1) | 87 | 0 | [Open](../sessions/ca/ca5e1442178ede17d7a7.json) |
-| `logs/workers/worker_ssh_fewrel-80rel-diagnosis_20260515T130210.log` (occurrence 1) | 56 | 0 | [Open](../sessions/3b/3bddfc5c72a3b24d26f4.json) |
-| `logs/workers/worker_verify_exp_fewrel_formal_80rel_gpu_20260515T130529.log` (occurrence 1) | 19 | 0 | [Open](../sessions/8e/8ef2e4a13ed8215fef85.json) |
-| `logs/workers/worker_code_exp012-multi-model-prep_20260515T131112.log` (occurrence 1) | 76 | 0 | [Open](../sessions/9b/9be54feffe22592a4a67.json) |
-| `logs/workers/worker_diagnose_exp_fewrel_formal_80rel_20260515T133657.log` (occurrence 1) | 23 | 0 | [Open](../sessions/8d/8d3300d87ad4ea765649.json) |
-| `logs/workers/worker_analysis_fewrel-80rel-results_20260515T133830.log` (occurrence 1) | 31 | 0 | [Open](../sessions/35/35cbaf972f6ec776c081.json) |
-| `logs/workers/worker_analysis_exp007-error-taxonomy_20260515T131936.log` (occurrence 1) | 86 | 0 | [Open](../sessions/d5/d55319516eb596e027f8.json) |
-| `logs/workers/worker_code_sdgd-v2-validation_20260515T133921.log` (occurrence 1) | 87 | 0 | [Open](../sessions/a2/a206640d8a22086241fe.json) |
-| `logs/workers/worker_diag_fewrel_80rel_sighup_20260515T134010.log` (occurrence 1) | 39 | 0 | [Open](../sessions/9e/9e8b434f5db1d69a846e.json) |
-| `logs/workers/worker_ops_read_eval_metrics_20260515T134025.log` (occurrence 1) | 637 | 5 | [Open](../sessions/a4/a49083effc1709ad9423.json) |
-| `logs/workers/worker_ops_locate_sdgd_v2_script_20260515T134131.log` (occurrence 1) | 28 | 0 | [Open](../sessions/3b/3b8c6468283ff8b39c38.json) |
-| `logs/workers/worker_ops_read_eval_fast_20260515T134441.log` (occurrence 1) | 11 | 0 | [Open](../sessions/3f/3f52f541a8f0a4252d27.json) |
-| `logs/workers/worker_ops_extract_80rel_metrics_20260515T135955.log` (occurrence 1) | 87 | 0 | [Open](../sessions/f6/f6b4ad97ec3c44506f4a.json) |
-| `logs/workers/worker_ops_verify_exp012_20260515T140828.log` (occurrence 1) | 18 | 0 | [Open](../sessions/9b/9b80f0699d143611375b.json) |
-| `logs/workers/worker_diag_exp012_crash_20260515T141936.log` (occurrence 1) | 75 | 0 | [Open](../sessions/fe/fe63eeae458076b660b4.json) |
-| `logs/workers/worker_ops_fix_exp012_script_20260515T141943.log` (occurrence 1) | 14 | 0 | [Open](../sessions/54/54ef9795b4b4fede1f8c.json) |
-| `logs/workers/worker_diag_exp012_r2_status_20260515T145431.log` (occurrence 1) | 23 | 0 | [Open](../sessions/02/023040983fa4c6734134.json) |
-| `logs/workers/worker_fix_exp012_flashinfer_20260515T145622.log` (occurrence 1) | 139 | 0 | [Open](../sessions/80/80e662d1a4cd6a078f2d.json) |
-| `logs/workers/worker_analysis_bootstrap_ci_20260515T150128.log` (occurrence 1) | 157 | 0 | [Open](../sessions/77/774abc43818f44de400f.json) |
-| `logs/workers/worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702.log` (occurrence 1) | 55 | 0 | [Open](../sessions/13/1392a9b5d47aa1f70523.json) |
-| `logs/workers/worker_analysis_exp015_scs_validation_20260515T152134.log` (occurrence 1) | 80 | 0 | [Open](../sessions/c1/c1da2f4017b3587637a5.json) |
-| `logs/workers/worker_analysis_maven_confused_pairs_case_study_20260515T152151.log` (occurrence 1) | 96 | 0 | [Open](../sessions/d3/d35d7760c2e79416f386.json) |
-| `logs/workers/worker_analysis_bootstrap_reconcile_20260515T152233.log` (occurrence 1) | 109 | 0 | [Open](../sessions/f2/f2614c6b2e5edc4b39d7.json) |
-| `logs/workers/worker_check_sdgd_v2_status_20260515T153409.log` (occurrence 1) | 25 | 0 | [Open](../sessions/1a/1a7f7dd3409e96670bdd.json) |
-| `logs/workers/worker_prep_exp012_model_check_20260515T153754.log` (occurrence 1) | 223 | 0 | [Open](../sessions/19/19618b08e0c1b031daea.json) |
-| `logs/workers/worker_check_sdgd_v2_kill_or_wait_20260515T154656.log` (occurrence 1) | 43 | 0 | [Open](../sessions/18/180e59d89c1ac34ad31e.json) |
-| `logs/workers/worker_exec_kill_sdgd_submit_exp012_20260515T154758.log` (occurrence 1) | 54 | 0 | [Open](../sessions/ab/ab3c98120c70b55e3ef4.json) |
-| `logs/workers/worker_exec_fix_flashinfer_submit_exp012_r3_20260515T154922.log` (occurrence 1) | 58 | 0 | [Open](../sessions/3c/3c370927b713eb7016d1.json) |
-| `logs/workers/worker_diagnose_exp012_r3_log_20260515T155436.log` (occurrence 1) | 45 | 0 | [Open](../sessions/45/450c5b704eaddd7c1a24.json) |
-| `logs/workers/worker_code_exp012_r4_llama_switch_20260515T155808.log` (occurrence 1) | 709 | 1 | [Open](../sessions/28/282282b037a6d04df2c9.json) |
-| `logs/workers/worker_code_exp012_awq_20260515T160358.log` (occurrence 1) | 386 | 0 | [Open](../sessions/6b/6b37b5bcc0e6cd5f4f86.json) |
-| `logs/workers/worker_research_literature_survey_20260515T160417.log` (occurrence 1) | 102 | 0 | [Open](../sessions/2a/2ac09e4ab850dc57248a.json) |
-| `logs/workers/worker_code_fewrel_40rel_20260515T160555.log` (occurrence 1) | 201 | 0 | [Open](../sessions/d3/d334cc08576afee9e98f.json) |
-| `logs/workers/worker_paper_figure_fig_count_curves_20260515T161008.log` (occurrence 1) | 27 | 0 | [Open](../sessions/33/33aec10219dca0f10158.json) |
-| `logs/workers/worker_research_literature_survey_v2_20260515T161104.log` (occurrence 1) | 91 | 0 | [Open](../sessions/e7/e76d843320d7b1831071.json) |
-| `logs/workers/worker_diagnose_gpu_status_check_20260515T161941.log` (occurrence 1) | 88 | 0 | [Open](../sessions/d1/d1becc9adfc4c2a50654.json) |
-| `logs/workers/worker_code_exp012_8b_cleanup_and_submit_20260515T162406.log` (occurrence 1) | 109 | 0 | [Open](../sessions/9c/9ca0d799abf881f6b1be.json) |
-| `logs/workers/worker_diagnose_gpu_conflict_resolve_20260515T162855.log` (occurrence 1) | 46 | 0 | [Open](../sessions/9a/9a8c7b72e297343afc2f.json) |
-| `logs/workers/worker_paper_figure_fig_error_taxonomy_20260515T162946.log` (occurrence 1) | 26 | 0 | [Open](../sessions/f8/f832e53cadf6c0ca819c.json) |
-| `logs/workers/worker_paper_figure_fig_bcs_scaling_20260515T163141.log` (occurrence 1) | 32 | 0 | [Open](../sessions/bd/bdb13f5ddc250276cc98.json) |
-| `logs/workers/worker_code_fewrel_40rel_incremental_20260515T163151.log` (occurrence 1) | 51 | 0 | [Open](../sessions/d7/d797b05adb4a20eb22f1.json) |
-| `logs/workers/worker_diagnose_exp012_r4_result_20260515T164114.log` (occurrence 1) | 65 | 0 | [Open](../sessions/28/287f03b32863715c7697.json) |
-| `logs/workers/worker_ssh_check-exp012-status_20260515T164226.log` (occurrence 1) | 37 | 0 | [Open](../sessions/27/2747f828366b7f83373f.json) |
-| `logs/workers/worker_paper_experimental-setup_20260515T164246.log` (occurrence 1) | 48 | 0 | [Open](../sessions/3c/3c3975fbabee1fc50700.json) |
-| `logs/workers/worker_ssh_exp012-recover-and-restart_20260515T164517.log` (occurrence 1) | 72 | 0 | [Open](../sessions/03/03898ceb004a02b1b8a3.json) |
-| `logs/workers/worker_ssh_diagnose-r4-and-prep-fewrel_20260515T164612.log` (occurrence 1) | 106 | 0 | [Open](../sessions/66/669054abd4377bc67aae.json) |
-| `logs/workers/worker_ssh_kill-and-prep-fewrel_20260515T164746.log` (occurrence 1) | 55 | 0 | [Open](../sessions/4f/4f262748d96c38f23f2a.json) |
-| `logs/workers/worker_code_8b-freeform-diagnostic_20260515T164805.log` (occurrence 1) | 64 | 0 | [Open](../sessions/3f/3fe09b480cb3138bc282.json) |
-| `logs/workers/worker_paper_figure_fig_sdgd_comparison_20260515T164931.log` (occurrence 1) | 25 | 0 | [Open](../sessions/c0/c02411a74efa174e897e.json) |
-| `logs/workers/worker_ssh_vllm-log-analysis_20260515T164947.log` (occurrence 1) | 114 | 0 | [Open](../sessions/57/575737def053cf4f7485.json) |
-| `logs/workers/worker_ssh_check-fewrel-r2-status_20260515T165333.log` (occurrence 1) | 36 | 0 | [Open](../sessions/cb/cb631494100ae869898a.json) |
-| `logs/workers/worker_code_fix-diagnostic-chat-template_20260515T165520.log` (occurrence 1) | 38 | 0 | [Open](../sessions/99/991692a13166ea278c5b.json) |
-| `logs/workers/worker_code_chat-template-fix_20260515T165850.log` (occurrence 1) | 90 | 0 | [Open](../sessions/0e/0e87f9c0c15351aa90f3.json) |
-| `logs/workers/worker_ssh_critical-fix-and-check_20260515T170417.log` (occurrence 1) | 42 | 0 | [Open](../sessions/d2/d2bf21579171c0ac49f5.json) |
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/workers/worker_ssh_env-setup_20260514T161431.log` (occurrence 1) | 491 | 0 | [Read transcript](../readable/worker-executions/ssh-env-setup.md) | [Open JSON](../sessions/81/81e5351478d33476744f.json) |
+| `logs/workers/worker_code_mvp-pipeline_20260514T161549.log` (occurrence 1) | 82 | 0 | [Read transcript](../readable/worker-executions/code-mvp-pipeline.md) | [Open JSON](../sessions/6f/6fc02539abef57cb5570.json) |
+| `logs/workers/worker_code_fix-reviewer-critical_20260514T163331.log` (occurrence 1) | 100 | 0 | [Read transcript](../readable/worker-executions/code-fix-reviewer-critical.md) | [Open JSON](../sessions/e8/e8cdcf3f2dec2fcb1f3c.json) |
+| `logs/workers/worker_ssh_env-setup-and-data_20260514T163452.log` (occurrence 1) | 156 | 0 | [Read transcript](../readable/worker-executions/ssh-env-setup-and-data.md) | [Open JSON](../sessions/05/059e3f1f54f121c9b77e.json) |
+| `logs/workers/worker_ssh_disk-cleanup-and-model-download_20260514T164727.log` (occurrence 1) | 510 | 0 | [Read transcript](../readable/worker-executions/ssh-disk-cleanup-and-model-download.md) | [Open JSON](../sessions/9a/9a7c406aca4e72032c64.json) |
+| `logs/workers/worker_ssh_code-preflight_20260514T173030.log` (occurrence 1) | 56 | 0 | [Read transcript](../readable/worker-executions/ssh-code-preflight.md) | [Open JSON](../sessions/8e/8e686ebd5c50949f62d7.json) |
+| `logs/workers/worker_code_fix-few-nerd-loader_20260514T173444.log` (occurrence 1) | 26 | 0 | [Read transcript](../readable/worker-executions/code-fix-few-nerd-loader.md) | [Open JSON](../sessions/2d/2daa7e975699ce0b55a3.json) |
+| `logs/workers/worker_ssh_verify-and-run-experiments_20260514T180940.log` (occurrence 1) | 743 | 1 | [Read transcript](../readable/worker-executions/ssh-verify-and-run-experiments.md) | [Open JSON](../sessions/23/234a8af5e2d221a8b423.json) |
+| `logs/workers/worker_ssh_rollback-and-run-all_20260514T184153.log` (occurrence 1) | 1,155 | 1 | [Read transcript](../readable/worker-executions/ssh-rollback-and-run-all.md) | [Open JSON](../sessions/ab/ab3a5a3bb3e28468f03c.json) |
+| `logs/workers/worker_ssh_exp1-status-check_20260514T193750.log` (occurrence 1) | 46 | 0 | [Read transcript](../readable/worker-executions/ssh-exp1-status-check.md) | [Open JSON](../sessions/44/44e14bbf56a6257a127f.json) |
+| `logs/workers/worker_ssh_alt-embeddings-bcs_20260514T194037.log` (occurrence 1) | 123 | 0 | [Read transcript](../readable/worker-executions/ssh-alt-embeddings-bcs.md) | [Open JSON](../sessions/54/54ab3883fb5d88291131.json) |
+| `logs/workers/worker_ssh_exp1-check-and-launch-exp2_20260514T215328.log` (occurrence 1) | 24 | 0 | [Read transcript](../readable/worker-executions/ssh-exp1-check-and-launch-exp2.md) | [Open JSON](../sessions/3c/3cb06b72e1e7d2f0969b.json) |
+| `logs/workers/worker_ssh_exp1-diagnose-and-launch-exp2_20260514T230254.log` (occurrence 1) | 110 | 0 | [Read transcript](../readable/worker-executions/ssh-exp1-diagnose-and-launch-exp2.md) | [Open JSON](../sessions/b8/b815e6657eee57f1fd24.json) |
+| `logs/workers/worker_ssh_eval-diagnosis-b2_20260514T231026.log` (occurrence 1) | 50 | 0 | [Read transcript](../readable/worker-executions/ssh-eval-diagnosis-b2.md) | [Open JSON](../sessions/b3/b32756384909fc2bcee1.json) |
+| `logs/workers/worker_ssh_exp2-analysis-prep_20260514T231253.log` (occurrence 1) | 86 | 0 | [Read transcript](../readable/worker-executions/ssh-exp2-analysis-prep.md) | [Open JSON](../sessions/21/2130aabf2064615eef32.json) |
+| `logs/workers/worker_ssh_exp1-text-reeval_20260514T231942.log` (occurrence 1) | 212 | 2 | [Read transcript](../readable/worker-executions/ssh-exp1-text-reeval.md) | [Open JSON](../sessions/d8/d81745c2ebc79b4a60a2.json) |
+| `logs/workers/worker_ssh_prompt-v2-prep_20260514T231959.log` (occurrence 1) | 64 | 0 | [Read transcript](../readable/worker-executions/ssh-prompt-v2-prep.md) | [Open JSON](../sessions/d7/d78af9d2c54d49514d1c.json) |
+| `logs/workers/worker_ssh_exp2-analysis-update_20260514T232020.log` (occurrence 1) | 67 | 0 | [Read transcript](../readable/worker-executions/ssh-exp2-analysis-update.md) | [Open JSON](../sessions/e2/e237e64cefa9483be4ac.json) |
+| `logs/workers/worker_ssh_fix-pass-criteria_20260514T233645.log` (occurrence 1) | 32 | 0 | [Read transcript](../readable/worker-executions/ssh-fix-pass-criteria.md) | [Open JSON](../sessions/36/36f89f0f65bb3b86c88d.json) |
+| `logs/workers/worker_ssh_fix-nameerror_20260514T234103.log` (occurrence 1) | 46 | 0 | [Read transcript](../readable/worker-executions/ssh-fix-nameerror.md) | [Open JSON](../sessions/ac/ace36293d4043f3bf3ca.json) |
+| `logs/workers/worker_ssh_reeval-script-prep_20260515T005614.log` (occurrence 1) | 74 | 0 | [Read transcript](../readable/worker-executions/ssh-reeval-script-prep.md) | [Open JSON](../sessions/7a/7af097d659a0cad10279.json) |
+| `logs/workers/worker_ssh_exp2-progress-check_20260515T011705.log` (occurrence 1) | 28 | 0 | [Read transcript](../readable/worker-executions/ssh-exp2-progress-check.md) | [Open JSON](../sessions/d1/d1b25205b7385c324c47.json) |
+| `logs/workers/worker_ssh_exp2-log-check_20260515T022358.log` (occurrence 1) | 43 | 0 | [Read transcript](../readable/worker-executions/ssh-exp2-log-check.md) | [Open JSON](../sessions/d6/d6c50643dca21d1ca88a.json) |
+| `logs/workers/worker_ssh_exp2-full-analysis_20260515T022540.log` (occurrence 1) | 111 | 0 | [Read transcript](../readable/worker-executions/ssh-exp2-full-analysis.md) | [Open JSON](../sessions/96/96db8c36bb7fae953651.json) |
+| `logs/workers/worker_ssh_exp3c-pairwise-confusion_20260515T023600.log` (occurrence 1) | 57 | 0 | [Read transcript](../readable/worker-executions/ssh-exp3c-pairwise-confusion.md) | [Open JSON](../sessions/b1/b18de2086286bb730085.json) |
+| `logs/workers/worker_ssh_fix-rerun-analysis_20260515T023655.log` (occurrence 1) | 45 | 0 | [Read transcript](../readable/worker-executions/ssh-fix-rerun-analysis.md) | [Open JSON](../sessions/e8/e880ddaf07f5f7ed9fc7.json) |
+| `logs/workers/worker_ssh_exp3a-diagnose-fix_20260515T024903.log` (occurrence 1) | 104 | 0 | [Read transcript](../readable/worker-executions/ssh-exp3a-diagnose-fix.md) | [Open JSON](../sessions/88/884da1d6acdd71280042.json) |
+| `logs/workers/worker_research_ace05-data-prep_20260515T025909.log` (occurrence 1) | 167 | 1 | [Read transcript](../readable/worker-executions/research-ace05-data-prep.md) | [Open JSON](../sessions/9b/9bf0751f97eac413cd1c.json) |
+| `logs/workers/worker_code_sdgd-framework-design_20260515T025924.log` (occurrence 1) | 237 | 2 | [Read transcript](../readable/worker-executions/code-sdgd-framework-design.md) | [Open JSON](../sessions/bd/bd4c68dc8f936290bf97.json) |
+| `logs/workers/worker_diagnose_exp003a_prompt_v2_rerun_20260515T024627.log` (occurrence 1) | 30 | 0 | [Read transcript](../readable/worker-executions/diagnose-exp003a-prompt-v2-rerun.md) | [Open JSON](../sessions/5b/5bae4379669e2c5d790a.json) |
+| `logs/workers/worker_code_ace05-preprocess-scripts_20260515T030622.log` (occurrence 1) | 129 | 1 | [Read transcript](../readable/worker-executions/code-ace05-preprocess-scripts.md) | [Open JSON](../sessions/65/654ccf16dc5e117da1d9.json) |
+| `logs/workers/worker_research_literature-map-update_20260515T030636.log` (occurrence 1) | 86 | 0 | [Read transcript](../readable/worker-executions/research-literature-map-update.md) | [Open JSON](../sessions/0d/0d417b2108e81d13c6e4.json) |
+| `logs/workers/worker_research_maven-dataset-study_20260515T030839.log` (occurrence 1) | 172 | 21 | [Read transcript](../readable/worker-executions/research-maven-dataset-study.md) | [Open JSON](../sessions/02/027c830d2fa3c5e2c1f3.json) |
+| `logs/workers/worker_research_crossagentie-analysis_20260515T031205.log` (occurrence 1) | 54 | 10 | [Read transcript](../readable/worker-executions/research-crossagentie-analysis.md) | [Open JSON](../sessions/32/326e0e9e7382592e8d24.json) |
+| `logs/workers/worker_research_maven-dataset-v2_20260515T031646.log` (occurrence 1) | 36 | 0 | [Read transcript](../readable/worker-executions/research-maven-dataset-v2.md) | [Open JSON](../sessions/cb/cb6fd793c87e90112171.json) |
+| `logs/workers/worker_research_multi-model-candidates_20260515T031845.log` (occurrence 1) | 38 | 0 | [Read transcript](../readable/worker-executions/research-multi-model-candidates.md) | [Open JSON](../sessions/cc/cca3bb73645ff75e6c5c.json) |
+| `logs/workers/worker_code_maven-data-prep_20260515T032102.log` (occurrence 1) | 133 | 0 | [Read transcript](../readable/worker-executions/code-maven-data-prep.md) | [Open JSON](../sessions/4c/4cbc6a8334d12c4113bf.json) |
+| `logs/workers/worker_ssh_exp3a-progress-check_20260515T032930.log` (occurrence 1) | 26 | 0 | [Read transcript](../readable/worker-executions/ssh-exp3a-progress-check.md) | [Open JSON](../sessions/fc/fc16591bc7484b778956.json) |
+| `logs/workers/worker_ssh_maven-data-download_20260515T032939.log` (occurrence 1) | 47 | 0 | [Read transcript](../readable/worker-executions/ssh-maven-data-download.md) | [Open JSON](../sessions/04/04c481cfc2e98dea426c.json) |
+| `logs/workers/worker_ssh_maven-preprocess_20260515T033306.log` (occurrence 1) | 43 | 0 | [Read transcript](../readable/worker-executions/ssh-maven-preprocess.md) | [Open JSON](../sessions/37/3720d7c7108ba8ec9c31.json) |
+| `logs/workers/worker_writing_method-relatedwork-draft_20260515T035316.log` (occurrence 1) | 34 | 0 | [Read transcript](../readable/worker-executions/writing-method-relatedwork-draft.md) | [Open JSON](../sessions/4e/4e2ac159da5d52cc4250.json) |
+| `logs/workers/worker_research_third-task-type-eval_20260515T041309.log` (occurrence 1) | 42 | 0 | [Read transcript](../readable/worker-executions/research-third-task-type-eval.md) | [Open JSON](../sessions/a8/a8014333284fc278fc39.json) |
+| `logs/workers/worker_code_fewrel-data-prep_20260515T043437.log` (occurrence 1) | 54 | 0 | [Read transcript](../readable/worker-executions/code-fewrel-data-prep.md) | [Open JSON](../sessions/c8/c86fef83c5c9efdadc5f.json) |
+| `logs/workers/worker_writing_method-fix-section32_20260515T043451.log` (occurrence 1) | 14 | 0 | [Read transcript](../readable/worker-executions/writing-method-fix-section32.md) | [Open JSON](../sessions/7e/7e900604c71f699d73a1.json) |
+| `logs/workers/worker_analysis_exp003a_logs_20260515T050603.log` (occurrence 1) | 83 | 0 | [Read transcript](../readable/worker-executions/analysis-exp003a-logs.md) | [Open JSON](../sessions/03/033d9820c26f819c92c9.json) |
+| `logs/workers/worker_research_maven_data_prep_20260515T050740.log` (occurrence 1) | 226 | 0 | [Read transcript](../readable/worker-executions/research-maven-data-prep.md) | [Open JSON](../sessions/bd/bd3aed0ea738722e378c.json) |
+| `logs/workers/worker_ssh_exp3a-analysis-pipeline_20260515T050851.log` (occurrence 1) | 118 | 0 | [Read transcript](../readable/worker-executions/ssh-exp3a-analysis-pipeline.md) | [Open JSON](../sessions/a9/a910130476ef9dae2104.json) |
+| `logs/workers/worker_ssh_maven-type-embeddings_20260515T052912.log` (occurrence 1) | 11 | 0 | [Read transcript](../readable/worker-executions/ssh-maven-type-embeddings.md) | [Open JSON](../sessions/a9/a9792e03a14fb831308f.json) |
+| `logs/workers/worker_ssh_per-type-f1-analysis_20260515T052927.log` (occurrence 1) | 6 | 0 | [Read transcript](../readable/worker-executions/ssh-per-type-f1-analysis.md) | [Open JSON](../sessions/27/27ec72373448ca7be21c.json) |
+| `logs/workers/worker_ssh_maven-qwen3-embeddings-v2_20260515T053208.log` (occurrence 1) | 125 | 0 | [Read transcript](../readable/worker-executions/ssh-maven-qwen3-embeddings-v2.md) | [Open JSON](../sessions/93/931b186383f15a57e0f2.json) |
+| `logs/workers/worker_ssh_per-type-f1-analysis-v2_20260515T055130.log` (occurrence 1) | 85 | 0 | [Read transcript](../readable/worker-executions/ssh-per-type-f1-analysis-v2.md) | [Open JSON](../sessions/d7/d7544863d111af95daad.json) |
+| `logs/workers/worker_ssh_exp004-code-prep_20260515T055256.log` (occurrence 1) | 174 | 0 | [Read transcript](../readable/worker-executions/ssh-exp004-code-prep.md) | [Open JSON](../sessions/5b/5b9588e3d24c55e40363.json) |
+| `logs/workers/worker_ssh_exp004-maven-launch_20260515T060057.log` (occurrence 1) | 110 | 0 | [Read transcript](../readable/worker-executions/ssh-exp004-maven-launch.md) | [Open JSON](../sessions/4a/4a6c04f6bcae691ab2a8.json) |
+| `logs/workers/worker_ssh_fewrel-pilot-prep_20260515T062022.log` (occurrence 1) | 137 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-pilot-prep.md) | [Open JSON](../sessions/cd/cdb1404fda63903ced9c.json) |
+| `logs/workers/worker_ssh_maven-analysis-scripts_20260515T062257.log` (occurrence 1) | 185 | 1 | [Read transcript](../readable/worker-executions/ssh-maven-analysis-scripts.md) | [Open JSON](../sessions/6d/6dace42ba36f2fda6b02.json) |
+| `logs/workers/worker_ssh_llama-model-check_20260515T063112.log` (occurrence 1) | 26 | 0 | [Read transcript](../readable/worker-executions/ssh-llama-model-check.md) | [Open JSON](../sessions/df/df6f697395b25ef19c96.json) |
+| `logs/workers/worker_ssh_disk-usage-audit_20260515T063235.log` (occurrence 1) | 61 | 0 | [Read transcript](../readable/worker-executions/ssh-disk-usage-audit.md) | [Open JSON](../sessions/90/90fe4de013bb11cca72b.json) |
+| `logs/workers/worker_ssh_sdgd-framework-impl_20260515T063409.log` (occurrence 1) | 71 | 0 | [Read transcript](../readable/worker-executions/ssh-sdgd-framework-impl-copy-2.md) | [Open JSON](../sessions/39/39a8a3a7c951144f77ce.json) |
+| `logs/workers/worker_ssh_disk-cleanup-llama-download_20260515T063558.log` (occurrence 1) | 41 | 0 | [Read transcript](../readable/worker-executions/ssh-disk-cleanup-llama-download.md) | [Open JSON](../sessions/94/94764d64bef3c57a260b.json) |
+| `logs/workers/worker_ssh_fewrel-re-prompt-fix_20260515T063640.log` (occurrence 1) | 31 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-re-prompt-fix.md) | [Open JSON](../sessions/2a/2a21295eae03915e0198.json) |
+| `logs/workers/worker_ssh_disk-cleanup-llama-download_20260515T063826.log` (occurrence 1) | 129 | 0 | [Read transcript](../readable/worker-executions/ssh-disk-cleanup-llama-download-copy-2.md) | [Open JSON](../sessions/54/54a46e2b6c61f6450d4a.json) |
+| `logs/workers/worker_ssh_sdgd-framework-impl_20260515T065822.log` (occurrence 1) | 77 | 0 | [Read transcript](../readable/worker-executions/ssh-sdgd-framework-impl.md) | [Open JSON](../sessions/52/52941d27fd3a6899ec30.json) |
+| `logs/workers/worker_ssh_fewrel-re-prompt-fix_20260515T065836.log` (occurrence 1) | 69 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-re-prompt-fix-copy-2.md) | [Open JSON](../sessions/b4/b49087a20f5a9500e5ee.json) |
+| `logs/workers/worker_ssh_sdgd-bugfix-verify_20260515T070346.log` (occurrence 1) | 39 | 0 | [Read transcript](../readable/worker-executions/ssh-sdgd-bugfix-verify.md) | [Open JSON](../sessions/ea/ea39c212cd5631b6e6ee.json) |
+| `logs/workers/worker_ssh_sdgd-3bug-fix_20260515T070619.log` (occurrence 1) | 93 | 0 | [Read transcript](../readable/worker-executions/ssh-sdgd-3bug-fix.md) | [Open JSON](../sessions/f3/f3f87f01e1674e2153f5.json) |
+| `logs/workers/worker_ssh_exp004-result-check_20260515T070804.log` (occurrence 1) | 87 | 0 | [Read transcript](../readable/worker-executions/ssh-exp004-result-check.md) | [Open JSON](../sessions/93/9362b42f23a16da44919.json) |
+| `logs/workers/worker_ssh_maven-analysis-run_20260515T071416.log` (occurrence 1) | 69 | 0 | [Read transcript](../readable/worker-executions/ssh-maven-analysis-run.md) | [Open JSON](../sessions/8e/8e7b23947406468c1607.json) |
+| `logs/workers/worker_ssh_fewrel-pilot-launch_20260515T071432.log` (occurrence 1) | 500 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-pilot-launch.md) | [Open JSON](../sessions/9f/9f44d4f8bd27befbafa5.json) |
+| `logs/workers/worker_ssh_exp008-sdgd-launch_20260515T074315.log` (occurrence 1) | 59 | 0 | [Read transcript](../readable/worker-executions/ssh-exp008-sdgd-launch.md) | [Open JSON](../sessions/5e/5ef48451fb16014ca7f0.json) |
+| `logs/workers/worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628.log` (occurrence 1) | 102 | 0 | [Read transcript](../readable/worker-executions/ssh-embedding-ablation-miniml-fewnerd.md) | [Open JSON](../sessions/c1/c1d60bac6ee09e0bd9f6.json) |
+| `logs/workers/worker_research_embedding-anisotropy-lit_20260515T075641.log` (occurrence 1) | 59 | 0 | [Read transcript](../readable/worker-executions/research-embedding-anisotropy-lit.md) | [Open JSON](../sessions/b7/b7fa82780dfe9c426c7e.json) |
+| `logs/workers/worker_ssh_llama-download-check_20260515T081427.log` (occurrence 1) | 181 | 0 | [Read transcript](../readable/worker-executions/ssh-llama-download-check.md) | [Open JSON](../sessions/f8/f828158a87ff590a9d5b.json) |
+| `logs/workers/worker_ssh_sdgd-cal-impl_20260515T082408.log` (occurrence 1) | 70 | 0 | [Read transcript](../readable/worker-executions/ssh-sdgd-cal-impl.md) | [Open JSON](../sessions/7b/7bfe0ecb7bb40fb4c47f.json) |
+| `logs/workers/worker_ssh_exp012-llama-prep_20260515T082428.log` (occurrence 1) | 112 | 0 | [Read transcript](../readable/worker-executions/ssh-exp012-llama-prep.md) | [Open JSON](../sessions/d0/d058a48337ee2d51cebe.json) |
+| `logs/workers/worker_ssh_llama-download-resume_20260515T082848.log` (occurrence 1) | 37 | 0 | [Read transcript](../readable/worker-executions/ssh-llama-download-resume.md) | [Open JSON](../sessions/bf/bf48b46996fc10c7bbf4.json) |
+| `logs/workers/worker_ssh_fewrel-formal-prep_20260515T083006.log` (occurrence 1) | 286 | 2 | [Read transcript](../readable/worker-executions/ssh-fewrel-formal-prep.md) | [Open JSON](../sessions/4d/4dc6546c2b4ca1823639.json) |
+| `logs/workers/worker_ssh_llama-download-fix_20260515T083106.log` (occurrence 1) | 945 | 1 | [Read transcript](../readable/worker-executions/ssh-llama-download-fix.md) | [Open JSON](../sessions/7f/7f0fd041252f0a255105.json) |
+| `logs/workers/worker_ssh_maven-minilm-pertype_20260515T090030.log` (occurrence 1) | 54 | 0 | [Read transcript](../readable/worker-executions/ssh-maven-minilm-pertype.md) | [Open JSON](../sessions/b5/b5e29ec3a79f93bcb8fe.json) |
+| `logs/workers/worker_ssh_qwen3-embedding-metadata-check_20260515T090746.log` (occurrence 1) | 79 | 0 | [Read transcript](../readable/worker-executions/ssh-qwen3-embedding-metadata-check.md) | [Open JSON](../sessions/fd/fd8a2cadee77b25777aa.json) |
+| `logs/workers/worker_ssh_exp008-health-check_20260515T094541.log` (occurrence 1) | 35 | 0 | [Read transcript](../readable/worker-executions/ssh-exp008-health-check.md) | [Open JSON](../sessions/e7/e7a31a878056ff830c9a.json) |
+| `logs/workers/worker_ssh_exp008-fix-relaunch_20260515T100611.log` (occurrence 1) | 289 | 0 | [Read transcript](../readable/worker-executions/ssh-exp008-fix-relaunch.md) | [Open JSON](../sessions/0e/0e9d1a2636cccc36c25c.json) |
+| `logs/workers/worker_ssh_exp012-launch-script_20260515T102532.log` (occurrence 1) | 78 | 0 | [Read transcript](../readable/worker-executions/ssh-exp012-launch-script-copy-2.md) | [Open JSON](../sessions/19/198a6a240ca12c4bbcf1.json) |
+| `logs/workers/worker_diagnose_exp008_sdgd_zero_fewnerd_20260515T103240.log` (occurrence 1) | 51 | 0 | [Read transcript](../readable/worker-executions/diagnose-exp008-sdgd-zero-fewnerd.md) | [Open JSON](../sessions/0b/0bfdec215b32504180d6.json) |
+| `logs/workers/worker_ssh_fewrel-calibrate-bugfix_20260515T104553.log` (occurrence 1) | 90 | 1 | [Read transcript](../readable/worker-executions/ssh-fewrel-calibrate-bugfix.md) | [Open JSON](../sessions/38/388860f839a2d93e1b2b.json) |
+| `logs/workers/worker_ssh_exp012-launch-script_20260515T104630.log` (occurrence 1) | 144 | 1 | [Read transcript](../readable/worker-executions/ssh-exp012-launch-script.md) | [Open JSON](../sessions/1d/1d4561939a263089a971.json) |
+| `logs/workers/worker_ssh_sdgd-maven-minilm-prep_20260515T105359.log` (occurrence 1) | 158 | 0 | [Read transcript](../readable/worker-executions/ssh-sdgd-maven-minilm-prep.md) | [Open JSON](../sessions/9f/9fc9816728ed2f91f313.json) |
+| `logs/workers/worker_ssh_exp008-analysis-prep_20260515T111102.log` (occurrence 1) | 292 | 1 | [Read transcript](../readable/worker-executions/ssh-exp008-analysis-prep.md) | [Open JSON](../sessions/27/2748d128214548d239f7.json) |
+| `logs/workers/worker_ssh_fewrel-data-verify_20260515T111910.log` (occurrence 1) | 90 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-data-verify.md) | [Open JSON](../sessions/30/30b8868690dcd2687f21.json) |
+| `logs/workers/worker_ssh_fewrel-qwen3-embeddings_20260515T113947.log` (occurrence 1) | 120 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-qwen3-embeddings.md) | [Open JSON](../sessions/05/05b59930e1a17853435e.json) |
+| `logs/workers/worker_ssh_exp008-diagnosis_20260515T114006.log` (occurrence 1) | 49 | 0 | [Read transcript](../readable/worker-executions/ssh-exp008-diagnosis.md) | [Open JSON](../sessions/71/714ce4e3e9062aa8d86e.json) |
+| `logs/workers/worker_ssh_merge-strategy-design_20260515T120300.log` (occurrence 1) | 76 | 0 | [Read transcript](../readable/worker-executions/ssh-merge-strategy-design.md) | [Open JSON](../sessions/f4/f4091f9bb8f0c50c4618.json) |
+| `logs/workers/worker_ssh_sdgd-v2-integration_20260515T120937.log` (occurrence 1) | 61 | 0 | [Read transcript](../readable/worker-executions/ssh-sdgd-v2-integration.md) | [Open JSON](../sessions/c5/c58c1196d04456ef87b6.json) |
+| `logs/workers/worker_ssh_fewrel-formal-health-check_20260515T120947.log` (occurrence 1) | 27 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-formal-health-check.md) | [Open JSON](../sessions/4d/4da9b381b1e43fbfa0fc.json) |
+| `logs/workers/worker_ssh_fewrel-formal-status_20260515T121548.log` (occurrence 1) | 85 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-formal-status.md) | [Open JSON](../sessions/35/35e5d7d1de063af970f5.json) |
+| `logs/workers/worker_ssh_fewrel-80rel-launch_20260515T125537.log` (occurrence 1) | 29 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-80rel-launch.md) | [Open JSON](../sessions/08/083c8e679a00b1e7226a.json) |
+| `logs/workers/worker_ssh_fewrel-80rel-status-check_20260515T125957.log` (occurrence 1) | 33 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-80rel-status-check.md) | [Open JSON](../sessions/7a/7a725723df69f4200d87.json) |
+| `logs/workers/worker_ssh_exp012-llama-preflight_20260515T130030.log` (occurrence 1) | 87 | 0 | [Read transcript](../readable/worker-executions/ssh-exp012-llama-preflight.md) | [Open JSON](../sessions/ca/ca5e1442178ede17d7a7.json) |
+| `logs/workers/worker_ssh_fewrel-80rel-diagnosis_20260515T130210.log` (occurrence 1) | 56 | 0 | [Read transcript](../readable/worker-executions/ssh-fewrel-80rel-diagnosis.md) | [Open JSON](../sessions/3b/3bddfc5c72a3b24d26f4.json) |
+| `logs/workers/worker_verify_exp_fewrel_formal_80rel_gpu_20260515T130529.log` (occurrence 1) | 19 | 0 | [Read transcript](../readable/worker-executions/verify-exp-fewrel-formal-80rel-gpu.md) | [Open JSON](../sessions/8e/8ef2e4a13ed8215fef85.json) |
+| `logs/workers/worker_code_exp012-multi-model-prep_20260515T131112.log` (occurrence 1) | 76 | 0 | [Read transcript](../readable/worker-executions/code-exp012-multi-model-prep.md) | [Open JSON](../sessions/9b/9be54feffe22592a4a67.json) |
+| `logs/workers/worker_diagnose_exp_fewrel_formal_80rel_20260515T133657.log` (occurrence 1) | 23 | 0 | [Read transcript](../readable/worker-executions/diagnose-exp-fewrel-formal-80rel.md) | [Open JSON](../sessions/8d/8d3300d87ad4ea765649.json) |
+| `logs/workers/worker_analysis_fewrel-80rel-results_20260515T133830.log` (occurrence 1) | 31 | 0 | [Read transcript](../readable/worker-executions/analysis-fewrel-80rel-results.md) | [Open JSON](../sessions/35/35cbaf972f6ec776c081.json) |
+| `logs/workers/worker_analysis_exp007-error-taxonomy_20260515T131936.log` (occurrence 1) | 86 | 0 | [Read transcript](../readable/worker-executions/analysis-exp007-error-taxonomy.md) | [Open JSON](../sessions/d5/d55319516eb596e027f8.json) |
+| `logs/workers/worker_code_sdgd-v2-validation_20260515T133921.log` (occurrence 1) | 87 | 0 | [Read transcript](../readable/worker-executions/code-sdgd-v2-validation.md) | [Open JSON](../sessions/a2/a206640d8a22086241fe.json) |
+| `logs/workers/worker_diag_fewrel_80rel_sighup_20260515T134010.log` (occurrence 1) | 39 | 0 | [Read transcript](../readable/worker-executions/diag-fewrel-80rel-sighup.md) | [Open JSON](../sessions/9e/9e8b434f5db1d69a846e.json) |
+| `logs/workers/worker_ops_read_eval_metrics_20260515T134025.log` (occurrence 1) | 637 | 5 | [Read transcript](../readable/worker-executions/ops-read-eval-metrics.md) | [Open JSON](../sessions/a4/a49083effc1709ad9423.json) |
+| `logs/workers/worker_ops_locate_sdgd_v2_script_20260515T134131.log` (occurrence 1) | 28 | 0 | [Read transcript](../readable/worker-executions/ops-locate-sdgd-v2-script.md) | [Open JSON](../sessions/3b/3b8c6468283ff8b39c38.json) |
+| `logs/workers/worker_ops_read_eval_fast_20260515T134441.log` (occurrence 1) | 11 | 0 | [Read transcript](../readable/worker-executions/ops-read-eval-fast.md) | [Open JSON](../sessions/3f/3f52f541a8f0a4252d27.json) |
+| `logs/workers/worker_ops_extract_80rel_metrics_20260515T135955.log` (occurrence 1) | 87 | 0 | [Read transcript](../readable/worker-executions/ops-extract-80rel-metrics.md) | [Open JSON](../sessions/f6/f6b4ad97ec3c44506f4a.json) |
+| `logs/workers/worker_ops_verify_exp012_20260515T140828.log` (occurrence 1) | 18 | 0 | [Read transcript](../readable/worker-executions/ops-verify-exp012.md) | [Open JSON](../sessions/9b/9b80f0699d143611375b.json) |
+| `logs/workers/worker_diag_exp012_crash_20260515T141936.log` (occurrence 1) | 75 | 0 | [Read transcript](../readable/worker-executions/diag-exp012-crash.md) | [Open JSON](../sessions/fe/fe63eeae458076b660b4.json) |
+| `logs/workers/worker_ops_fix_exp012_script_20260515T141943.log` (occurrence 1) | 14 | 0 | [Read transcript](../readable/worker-executions/ops-fix-exp012-script.md) | [Open JSON](../sessions/54/54ef9795b4b4fede1f8c.json) |
+| `logs/workers/worker_diag_exp012_r2_status_20260515T145431.log` (occurrence 1) | 23 | 0 | [Read transcript](../readable/worker-executions/diag-exp012-r2-status.md) | [Open JSON](../sessions/02/023040983fa4c6734134.json) |
+| `logs/workers/worker_fix_exp012_flashinfer_20260515T145622.log` (occurrence 1) | 139 | 0 | [Read transcript](../readable/worker-executions/fix-exp012-flashinfer.md) | [Open JSON](../sessions/80/80e662d1a4cd6a078f2d.json) |
+| `logs/workers/worker_analysis_bootstrap_ci_20260515T150128.log` (occurrence 1) | 157 | 0 | [Read transcript](../readable/worker-executions/analysis-bootstrap-ci.md) | [Open JSON](../sessions/77/774abc43818f44de400f.json) |
+| `logs/workers/worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702.log` (occurrence 1) | 55 | 0 | [Read transcript](../readable/worker-executions/analysis-fewrel-80rel-error-taxonomy.md) | [Open JSON](../sessions/13/1392a9b5d47aa1f70523.json) |
+| `logs/workers/worker_analysis_exp015_scs_validation_20260515T152134.log` (occurrence 1) | 80 | 0 | [Read transcript](../readable/worker-executions/analysis-exp015-scs-validation.md) | [Open JSON](../sessions/c1/c1da2f4017b3587637a5.json) |
+| `logs/workers/worker_analysis_maven_confused_pairs_case_study_20260515T152151.log` (occurrence 1) | 96 | 0 | [Read transcript](../readable/worker-executions/analysis-maven-confused-pairs-case-study.md) | [Open JSON](../sessions/d3/d35d7760c2e79416f386.json) |
+| `logs/workers/worker_analysis_bootstrap_reconcile_20260515T152233.log` (occurrence 1) | 109 | 0 | [Read transcript](../readable/worker-executions/analysis-bootstrap-reconcile.md) | [Open JSON](../sessions/f2/f2614c6b2e5edc4b39d7.json) |
+| `logs/workers/worker_check_sdgd_v2_status_20260515T153409.log` (occurrence 1) | 25 | 0 | [Read transcript](../readable/worker-executions/check-sdgd-v2-status.md) | [Open JSON](../sessions/1a/1a7f7dd3409e96670bdd.json) |
+| `logs/workers/worker_prep_exp012_model_check_20260515T153754.log` (occurrence 1) | 223 | 0 | [Read transcript](../readable/worker-executions/prep-exp012-model-check.md) | [Open JSON](../sessions/19/19618b08e0c1b031daea.json) |
+| `logs/workers/worker_check_sdgd_v2_kill_or_wait_20260515T154656.log` (occurrence 1) | 43 | 0 | [Read transcript](../readable/worker-executions/check-sdgd-v2-kill-or-wait.md) | [Open JSON](../sessions/18/180e59d89c1ac34ad31e.json) |
+| `logs/workers/worker_exec_kill_sdgd_submit_exp012_20260515T154758.log` (occurrence 1) | 54 | 0 | [Read transcript](../readable/worker-executions/exec-kill-sdgd-submit-exp012.md) | [Open JSON](../sessions/ab/ab3c98120c70b55e3ef4.json) |
+| `logs/workers/worker_exec_fix_flashinfer_submit_exp012_r3_20260515T154922.log` (occurrence 1) | 58 | 0 | [Read transcript](../readable/worker-executions/exec-fix-flashinfer-submit-exp012-r3.md) | [Open JSON](../sessions/3c/3c370927b713eb7016d1.json) |
+| `logs/workers/worker_diagnose_exp012_r3_log_20260515T155436.log` (occurrence 1) | 45 | 0 | [Read transcript](../readable/worker-executions/diagnose-exp012-r3-log.md) | [Open JSON](../sessions/45/450c5b704eaddd7c1a24.json) |
+| `logs/workers/worker_code_exp012_r4_llama_switch_20260515T155808.log` (occurrence 1) | 709 | 1 | [Read transcript](../readable/worker-executions/code-exp012-r4-llama-switch.md) | [Open JSON](../sessions/28/282282b037a6d04df2c9.json) |
+| `logs/workers/worker_code_exp012_awq_20260515T160358.log` (occurrence 1) | 386 | 0 | [Read transcript](../readable/worker-executions/code-exp012-awq.md) | [Open JSON](../sessions/6b/6b37b5bcc0e6cd5f4f86.json) |
+| `logs/workers/worker_research_literature_survey_20260515T160417.log` (occurrence 1) | 102 | 0 | [Read transcript](../readable/worker-executions/research-literature-survey.md) | [Open JSON](../sessions/2a/2ac09e4ab850dc57248a.json) |
+| `logs/workers/worker_code_fewrel_40rel_20260515T160555.log` (occurrence 1) | 201 | 0 | [Read transcript](../readable/worker-executions/code-fewrel-40rel.md) | [Open JSON](../sessions/d3/d334cc08576afee9e98f.json) |
+| `logs/workers/worker_paper_figure_fig_count_curves_20260515T161008.log` (occurrence 1) | 27 | 0 | [Read transcript](../readable/worker-executions/paper-figure-fig-count-curves.md) | [Open JSON](../sessions/33/33aec10219dca0f10158.json) |
+| `logs/workers/worker_research_literature_survey_v2_20260515T161104.log` (occurrence 1) | 91 | 0 | [Read transcript](../readable/worker-executions/research-literature-survey-v2.md) | [Open JSON](../sessions/e7/e76d843320d7b1831071.json) |
+| `logs/workers/worker_diagnose_gpu_status_check_20260515T161941.log` (occurrence 1) | 88 | 0 | [Read transcript](../readable/worker-executions/diagnose-gpu-status-check.md) | [Open JSON](../sessions/d1/d1becc9adfc4c2a50654.json) |
+| `logs/workers/worker_code_exp012_8b_cleanup_and_submit_20260515T162406.log` (occurrence 1) | 109 | 0 | [Read transcript](../readable/worker-executions/code-exp012-8b-cleanup-and-submit.md) | [Open JSON](../sessions/9c/9ca0d799abf881f6b1be.json) |
+| `logs/workers/worker_diagnose_gpu_conflict_resolve_20260515T162855.log` (occurrence 1) | 46 | 0 | [Read transcript](../readable/worker-executions/diagnose-gpu-conflict-resolve.md) | [Open JSON](../sessions/9a/9a8c7b72e297343afc2f.json) |
+| `logs/workers/worker_paper_figure_fig_error_taxonomy_20260515T162946.log` (occurrence 1) | 26 | 0 | [Read transcript](../readable/worker-executions/paper-figure-fig-error-taxonomy.md) | [Open JSON](../sessions/f8/f832e53cadf6c0ca819c.json) |
+| `logs/workers/worker_paper_figure_fig_bcs_scaling_20260515T163141.log` (occurrence 1) | 32 | 0 | [Read transcript](../readable/worker-executions/paper-figure-fig-bcs-scaling.md) | [Open JSON](../sessions/bd/bdb13f5ddc250276cc98.json) |
+| `logs/workers/worker_code_fewrel_40rel_incremental_20260515T163151.log` (occurrence 1) | 51 | 0 | [Read transcript](../readable/worker-executions/code-fewrel-40rel-incremental.md) | [Open JSON](../sessions/d7/d797b05adb4a20eb22f1.json) |
+| `logs/workers/worker_diagnose_exp012_r4_result_20260515T164114.log` (occurrence 1) | 65 | 0 | [Read transcript](../readable/worker-executions/diagnose-exp012-r4-result.md) | [Open JSON](../sessions/28/287f03b32863715c7697.json) |
+| `logs/workers/worker_ssh_check-exp012-status_20260515T164226.log` (occurrence 1) | 37 | 0 | [Read transcript](../readable/worker-executions/ssh-check-exp012-status.md) | [Open JSON](../sessions/27/2747f828366b7f83373f.json) |
+| `logs/workers/worker_paper_experimental-setup_20260515T164246.log` (occurrence 1) | 48 | 0 | [Read transcript](../readable/worker-executions/paper-experimental-setup.md) | [Open JSON](../sessions/3c/3c3975fbabee1fc50700.json) |
+| `logs/workers/worker_ssh_exp012-recover-and-restart_20260515T164517.log` (occurrence 1) | 72 | 0 | [Read transcript](../readable/worker-executions/ssh-exp012-recover-and-restart.md) | [Open JSON](../sessions/03/03898ceb004a02b1b8a3.json) |
+| `logs/workers/worker_ssh_diagnose-r4-and-prep-fewrel_20260515T164612.log` (occurrence 1) | 106 | 0 | [Read transcript](../readable/worker-executions/ssh-diagnose-r4-and-prep-fewrel.md) | [Open JSON](../sessions/66/669054abd4377bc67aae.json) |
+| `logs/workers/worker_ssh_kill-and-prep-fewrel_20260515T164746.log` (occurrence 1) | 55 | 0 | [Read transcript](../readable/worker-executions/ssh-kill-and-prep-fewrel.md) | [Open JSON](../sessions/4f/4f262748d96c38f23f2a.json) |
+| `logs/workers/worker_code_8b-freeform-diagnostic_20260515T164805.log` (occurrence 1) | 64 | 0 | [Read transcript](../readable/worker-executions/code-8b-freeform-diagnostic.md) | [Open JSON](../sessions/3f/3fe09b480cb3138bc282.json) |
+| `logs/workers/worker_paper_figure_fig_sdgd_comparison_20260515T164931.log` (occurrence 1) | 25 | 0 | [Read transcript](../readable/worker-executions/paper-figure-fig-sdgd-comparison.md) | [Open JSON](../sessions/c0/c02411a74efa174e897e.json) |
+| `logs/workers/worker_ssh_vllm-log-analysis_20260515T164947.log` (occurrence 1) | 114 | 0 | [Read transcript](../readable/worker-executions/ssh-vllm-log-analysis.md) | [Open JSON](../sessions/57/575737def053cf4f7485.json) |
+| `logs/workers/worker_ssh_check-fewrel-r2-status_20260515T165333.log` (occurrence 1) | 36 | 0 | [Read transcript](../readable/worker-executions/ssh-check-fewrel-r2-status.md) | [Open JSON](../sessions/cb/cb631494100ae869898a.json) |
+| `logs/workers/worker_code_fix-diagnostic-chat-template_20260515T165520.log` (occurrence 1) | 38 | 0 | [Read transcript](../readable/worker-executions/code-fix-diagnostic-chat-template.md) | [Open JSON](../sessions/99/991692a13166ea278c5b.json) |
+| `logs/workers/worker_code_chat-template-fix_20260515T165850.log` (occurrence 1) | 90 | 0 | [Read transcript](../readable/worker-executions/code-chat-template-fix.md) | [Open JSON](../sessions/0e/0e87f9c0c15351aa90f3.json) |
+| `logs/workers/worker_ssh_critical-fix-and-check_20260515T170417.log` (occurrence 1) | 42 | 0 | [Read transcript](../readable/worker-executions/ssh-critical-fix-and-check.md) | [Open JSON](../sessions/d2/d2bf21579171c0ac49f5.json) |

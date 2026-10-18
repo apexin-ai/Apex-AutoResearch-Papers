@@ -1209,5 +1209,6 @@
       ],
       "message_count": 28
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ops-kill-dual-gpu-llama3.md"
 }

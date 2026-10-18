@@ -1384,5 +1384,6 @@
       ],
       "message_count": 33
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/infra-check-gpu-status.md"
 }

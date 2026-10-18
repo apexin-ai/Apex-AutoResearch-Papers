@@ -1,129 +1,129 @@
 # Worker execution logs
 
-[Back to trace guide](../README.md)
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
 
-| Source record | Events | User turns | JSON |
-|---|---:|---:|---|
-| `logs/workers/worker_ops_harvest-w41-final-s46_20260528T113728.log` (occurrence 1) | 75 | 0 | [Open](../sessions/bd/bdaca4140d9bfda38c82.json) |
-| `logs/workers/worker_analysis_final-data-consolidation_20260528T113816.log` (occurrence 1) | 246 | 2 | [Open](../sessions/91/91c75e80fa0dfc93626c.json) |
-| `logs/workers/worker_analyze_eval_pi05_random_k095_long_seed46_strict_w41_20260528T113857.log` (occurrence 1) | 10 | 0 | [Open](../sessions/22/22ab7d2e561c8b27dc9a.json) |
-| `logs/workers/worker_analysis_eval_pi05_random_k05_long_seed46_strict_w41_20260528T114733.log` (occurrence 1) | 27 | 0 | [Open](../sessions/a5/a5ea7a3d9815ab22d267.json) |
-| `logs/workers/worker_analyze_eval_pi05_l2norm_k07_long_seed46_strict_w41_20260528T120152.log` (occurrence 1) | 43 | 0 | [Open](../sessions/15/159d13c7f794bc3c0e18.json) |
-| `logs/workers/worker_ssh_check_l2norm_k07_s46_and_s47_20260528T120704.log` (occurrence 1) | 52 | 0 | [Open](../sessions/d5/d53b976b1555f7f0bed2.json) |
-| `logs/workers/worker_ops_check_running_s46_20260528T120713.log` (occurrence 1) | 34 | 0 | [Open](../sessions/08/08f5a9d7a4a9d8018d5f.json) |
-| `logs/workers/worker_paper_figure_architecture_v2_paperbanana_20260528T130129.log` (occurrence 1) | 141 | 0 | [Open](../sessions/dd/dd238ad4f94995d7d108.json) |
-| `logs/workers/worker_paper_figure_architecture_v2_paperbanana_retry_20260528T131819.log` (occurrence 1) | 116 | 0 | [Open](../sessions/b6/b6b756ab09cd88201bd0.json) |
-| `logs/workers/worker_paper_fig2_architecture_paperbanana_20260528T133007.log` (occurrence 1) | 208 | 0 | [Open](../sessions/4a/4a8b13f48d9b56535744.json) |
-| `logs/workers/worker_paper_fig4_pixel_shuffle_fix_20260528T134353.log` (occurrence 1) | 60 | 0 | [Open](../sessions/28/2882ddfc82c6f1e61b8c.json) |
-| `logs/workers/worker_paper_fig5_method_gap_redraw_20260528T140851.log` (occurrence 1) | 43 | 0 | [Open](../sessions/7f/7f73953036daa52aeeb3.json) |
-| `logs/workers/worker_paper_fig2_architecture_paperbanana_v3_20260528T155811.log` (occurrence 1) | 213 | 0 | [Open](../sessions/3a/3a93eaec83f902a2f9bd.json) |
-| `logs/workers/worker_ops_gpu_health_check_all_servers_20260528T161819.log` (occurrence 1) | 30 | 0 | [Open](../sessions/8f/8f1f0ec361db0337f801.json) |
-| `logs/workers/worker_exp_deploy_pi05_k07_seed46_w38_20260528T161831.log` (occurrence 1) | 36 | 0 | [Open](../sessions/4f/4f00fef66c1a35ff6d18.json) |
-| `logs/workers/worker_paper_fig2_architecture_v4_paperbanana_20260528T163613.log` (occurrence 1) | 33 | 0 | [Open](../sessions/ba/ba8d619e30484986c1e5.json) |
-| `logs/workers/worker_exp_deploy_openvla_random_k095_goal_cqa1_20260528T163727.log` (occurrence 1) | 46 | 0 | [Open](../sessions/0a/0adf245a59c800b93d70.json) |
-| `logs/workers/worker_paper_fig2_architecture_v4_paperbanana_v2_20260528T164153.log` (occurrence 1) | 64 | 0 | [Open](../sessions/41/41b299f140fdcf3300d7.json) |
-| `logs/workers/worker_diag_check_w27_connectivity_20260528T164453.log` (occurrence 1) | 10 | 0 | [Open](../sessions/81/81faca648af0e38d7d0c.json) |
-| `logs/workers/worker_deploy_bonus_seed47_cqa1_batch_20260528T164736.log` (occurrence 1) | 54 | 0 | [Open](../sessions/e9/e9c82d76b9e3d9c4b212.json) |
-| `logs/workers/worker_audit_reference_audit_submission_20260528T170501.log` (occurrence 1) | 92 | 0 | [Open](../sessions/3f/3f74054b35d2ef605274.json) |
-| `logs/workers/worker_deploy_bonus_seed47_w41_20260528T170510.log` (occurrence 1) | 31 | 0 | [Open](../sessions/90/9002ef19eab5fca00f4f.json) |
-| `logs/workers/worker_fix_bib_audit_fixes_20260528T171451.log` (occurrence 1) | 116 | 1 | [Open](../sessions/11/116b2e79cc1110ddb1bf.json) |
-| `logs/workers/worker_fix_xvla_author_order_urgent_20260528T172455.log` (occurrence 1) | 17 | 0 | [Open](../sessions/73/73f39b6f67a372f4257e.json) |
-| `logs/workers/worker_fix_bib_critical_3items_urgent_20260528T172544.log` (occurrence 1) | 23 | 0 | [Open](../sessions/35/35116d5a773b05ce52be.json) |
-| `logs/workers/worker_fix_figure2_v4_latex_ref_20260528T174620.log` (occurrence 1) | 26 | 0 | [Open](../sessions/99/999ed5836db7c9ae80bf.json) |
-| `logs/workers/worker_paper_expand_method_section_20260528T174644.log` (occurrence 1) | 43 | 0 | [Open](../sessions/6e/6e8c9c8624b443138823.json) |
-| `logs/workers/worker_paper_expand_experiments_with_reviewer_fixes_20260528T180603.log` (occurrence 1) | 84 | 0 | [Open](../sessions/35/35b8aab7f5bbaec494bd.json) |
-| `logs/workers/worker_fix_method_reviewer_5items_20260528T180655.log` (occurrence 1) | 184 | 0 | [Open](../sessions/7a/7a93eb66b740eb345f83.json) |
-| `logs/workers/worker_fix_reviewer_visual_W1_W2_W3_20260528T180916.log` (occurrence 1) | 31 | 0 | [Open](../sessions/d8/d8d4047ed4f9649f057d.json) |
-| `logs/workers/worker_fix_reviewer_pdf_w1w2w3_20260528T181019.log` (occurrence 1) | 31 | 0 | [Open](../sessions/3b/3bc26add5c0207b15e0b.json) |
-| `logs/workers/worker_fix_c2_crossref_and_compile_20260528T181333.log` (occurrence 1) | 31 | 0 | [Open](../sessions/c6/c6d7bcc703c5f48f2854.json) |
-| `logs/workers/worker_fix_section_ref_and_equation_overflow_20260528T181422.log` (occurrence 1) | 34 | 0 | [Open](../sessions/09/0969186e38b47cd6cb33.json) |
-| `logs/workers/worker_fix_undefined_refs_final_20260528T181802.log` (occurrence 1) | 55 | 0 | [Open](../sessions/be/be91a334dabd0532b731.json) |
-| `logs/workers/worker_fix_method_refs_final_compile_20260528T181945.log` (occurrence 1) | 24 | 0 | [Open](../sessions/3c/3c5755eaf53571d3618a.json) |
-| `logs/workers/worker_paper_page_count_surgery_20260528T182642.log` (occurrence 1) | 165 | 0 | [Open](../sessions/20/208cad122005e588288d.json) |
-| `logs/workers/worker_ops_kill_ghost_process_cqa1_20260528T182708.log` (occurrence 1) | 20 | 0 | [Open](../sessions/67/67e16b73f3cc68b1ada4.json) |
-| `logs/workers/worker_log-check_seed46_w41_20260528T213949.log` (occurrence 1) | 25 | 0 | [Open](../sessions/6d/6d4826ef1d8250947732.json) |
-| `logs/workers/worker_check_seed47_cqa1_status_20260528T215931.log` (occurrence 1) | 16 | 0 | [Open](../sessions/81/8107d5ea4472a18c2175.json) |
-| `logs/workers/worker_check_seed47_harvest_cqa1_20260528T221102.log` (occurrence 1) | 58 | 0 | [Open](../sessions/b5/b5ffb406a8e4ef210eab.json) |
-| `logs/workers/worker_deploy_eval_pi05_l2norm_k07_long_seed47_cqa1_20260528T222235.log` (occurrence 1) | 57 | 0 | [Open](../sessions/28/28d70c573b44e505d14f.json) |
-| `logs/workers/worker_deploy_seed47_batch_cqa1_20260528T222910.log` (occurrence 1) | 139 | 1 | [Open](../sessions/cb/cb2ae482e4d29bb9ea1c.json) |
-| `logs/workers/worker_deploy_seed47_batch_w27_20260528T222919.log` (occurrence 1) | 46 | 0 | [Open](../sessions/b8/b87fbb05c42f43851b3a.json) |
-| `logs/workers/worker_ops_cleanup_stale_running_s46_20260528T223033.log` (occurrence 1) | 96 | 0 | [Open](../sessions/3c/3c92df697629b9f9b707.json) |
-| `logs/workers/worker_ops_cleanup_stale_and_monitor_s47_20260528T223130.log` (occurrence 1) | 50 | 0 | [Open](../sessions/22/2224967ab04fb18c9077.json) |
-| `logs/workers/worker_harvest_s47_cqa1_results_20260528T234651.log` (occurrence 1) | 69 | 0 | [Open](../sessions/24/245061742a2dcdb3a1a5.json) |
-| `logs/workers/worker_check_seed47_status_20260529T015751.log` (occurrence 1) | 35 | 0 | [Open](../sessions/5b/5b3d59f141fd749a7744.json) |
-| `logs/workers/worker_harvest_s47_direct_ssh_check_20260529T015833.log` (occurrence 1) | 42 | 0 | [Open](../sessions/0f/0f7789a79806ebb31178.json) |
-| `logs/workers/worker_check_seed47_status_20260529T015749.log` (occurrence 1) | 72 | 0 | [Open](../sessions/9b/9b242bfb00b6233a04e7.json) |
-| `logs/workers/worker_harvest_s47_final_check_20260529T021513.log` (occurrence 1) | 22 | 0 | [Open](../sessions/90/90d388a855f05a360969.json) |
-| `logs/workers/worker_deploy_s47_batch_w41_w38_20260529T021726.log` (occurrence 1) | 84 | 0 | [Open](../sessions/8c/8cb092134ba8c3363f24.json) |
-| `logs/workers/worker_deploy_s47_remaining_gpus_20260529T022240.log` (occurrence 1) | 20 | 0 | [Open](../sessions/01/014b47dd80bc606daf8c.json) |
-| `logs/workers/worker_harvest_l2norm_k07_s47_final_20260529T022450.log` (occurrence 1) | 28 | 0 | [Open](../sessions/00/0021ad92c5b422070db0.json) |
-| `logs/workers/worker_deploy_s47_cqa1_cuda0_refill_20260529T022632.log` (occurrence 1) | 36 | 0 | [Open](../sessions/8e/8ef6b1bd3ce9bddecf55.json) |
-| `logs/workers/worker_diagnose_eval_pi05_l2norm_k07_long_seed47_w41_20260529T023205.log` (occurrence 1) | 40 | 0 | [Open](../sessions/90/9001ace59ce15de6a609.json) |
-| `logs/workers/worker_harvest_attn_k07_l2norm_k05_s47_20260529T024940.log` (occurrence 1) | 24 | 0 | [Open](../sessions/09/09f7cc1a10676251f2df.json) |
-| `logs/workers/worker_diagnose_dead_s47_cqa1_20260529T025224.log` (occurrence 1) | 51 | 0 | [Open](../sessions/da/dad05cb1bd5d2cc6cf78.json) |
-| `logs/workers/worker_diagnose_dead_s47_attn_k095_v2_deploy_20260529T025236.log` (occurrence 1) | 62 | 0 | [Open](../sessions/3b/3bfcbaf033caffa1e252.json) |
-| `logs/workers/worker_ops_kill_duplicate_attn_k095_20260529T025332.log` (occurrence 1) | 15 | 0 | [Open](../sessions/55/55a90b656a7d19117e46.json) |
-| `logs/workers/worker_harvest_attn_k075_s47_20260529T025824.log` (occurrence 1) | 22 | 0 | [Open](../sessions/1d/1daf1da95afd221fcd84.json) |
-| `logs/workers/worker_verify_s47_running_check_20260529T032617.log` (occurrence 1) | 55 | 0 | [Open](../sessions/3c/3c2101f9112b8d415cf9.json) |
-| `logs/workers/worker_ops_kill_and_probe_cqa1_20260529T033729.log` (occurrence 1) | 33 | 0 | [Open](../sessions/af/af72d53eb1878b9fc152.json) |
-| `logs/workers/worker_ops_probe_w27_20260529T033741.log` (occurrence 1) | 14 | 0 | [Open](../sessions/e7/e76a335426ff2dc01942.json) |
-| `logs/workers/worker_ops_gpu_probe_kill_deploy_s47_20260529T035751.log` (occurrence 1) | 59 | 0 | [Open](../sessions/fa/fa6d3928c7bac63be120.json) |
-| `logs/workers/worker_ops_check_random_k09_s47_status_20260529T040425.log` (occurrence 1) | 44 | 0 | [Open](../sessions/c6/c6a5499b8af8e51d8c77.json) |
-| `logs/workers/worker_ops_harvest_and_deploy_s47_batch2_20260529T040515.log` (occurrence 1) | 55 | 0 | [Open](../sessions/6e/6eb1b362bb5b3275ead2.json) |
-| `logs/workers/worker_ops_harvest3_deploy4_s47_20260529T041242.log` (occurrence 1) | 26 | 0 | [Open](../sessions/dc/dce7816b9a7f4cea7b41.json) |
-| `logs/workers/worker_ops_check_random_k095_deploy_l2norm_k085_20260529T041420.log` (occurrence 1) | 20 | 0 | [Open](../sessions/e4/e49d5df6579f1c4b2391.json) |
-| `logs/workers/worker_harvest_attn_k085_s47_w38_then_deploy_20260529T050212.log` (occurrence 1) | 45 | 0 | [Open](../sessions/9c/9c3e1cbfd512375fa9ca.json) |
-| `logs/workers/worker_paper_compile_verify_audit_20260529T052139.log` (occurrence 1) | 89 | 0 | [Open](../sessions/ef/ef7eceb4fa388664402e.json) |
-| `logs/workers/worker_harvest_attn_k05_s47_w41_then_deploy_20260529T054143.log` (occurrence 1) | 57 | 0 | [Open](../sessions/26/26c0f74b5f5d10cae3ef.json) |
-| `logs/workers/worker_ops_probe_and_deploy_s47_pending_20260529T060229.log` (occurrence 1) | 28 | 0 | [Open](../sessions/18/182123c3b6f6df00b764.json) |
-| `logs/workers/worker_ops_batch_kill_preparing_20260529T062725.log` (occurrence 1) | 807 | 1 | [Open](../sessions/f9/f9196f751278b4e6870a.json) |
-| `logs/workers/worker_audit_ref_verify_worker_A_20260529T062907.log` (occurrence 1) | 405 | 6 | [Open](../sessions/72/72b475ba133bd74f70dd.json) |
-| `logs/workers/worker_audit_ref_verify_worker_B_20260529T062918.log` (occurrence 1) | 207 | 0 | [Open](../sessions/ff/ffd8f90c3749f068f5b8.json) |
-| `logs/workers/worker_audit_ref_verify_worker_C_20260529T064855.log` (occurrence 1) | 475 | 6 | [Open](../sessions/69/699cdd636c701a61426f.json) |
-| `logs/workers/worker_analyze_eval_pi05_attn_k09_long_seed47_cqa1_20260529T070159.log` (occurrence 1) | 23 | 0 | [Open](../sessions/54/5425d26cb5e61ac1aeff.json) |
-| `logs/workers/worker_audit_ref_tiebreak_verify_20260529T070204.log` (occurrence 1) | 48 | 0 | [Open](../sessions/c0/c025bba8781af8808e11.json) |
-| `logs/workers/worker_analyze_eval_pi05_l2norm_k085_long_seed47_w38_20260529T071810.log` (occurrence 1) | 10 | 0 | [Open](../sessions/f9/f9ba549249dc7afa80bf.json) |
-| `logs/workers/worker_analysis_eval_pi05_random_k085_long_seed47_cqa1_20260529T073956.log` (occurrence 1) | 10 | 0 | [Open](../sessions/77/77865191f82fcd5e86d4.json) |
-| `logs/workers/worker_analysis_eval_pi05_seed47_cqa1_20260529T075715.log` (occurrence 1) | 12 | 0 | [Open](../sessions/0a/0a464ff23e0e7664b8c0.json) |
-| `logs/workers/worker_analysis_eval_pi05_l2norm_k085_seed47_w38_20260529T075719.log` (occurrence 1) | 10 | 0 | [Open](../sessions/b2/b2247e2d11cd95184bb2.json) |
-| `logs/workers/worker_analysis_seed47_batch_analyzing_20260529T081508.log` (occurrence 1) | 54 | 0 | [Open](../sessions/fc/fc2e13ad545a447712a5.json) |
-| `logs/workers/worker_analysis_l2norm_k09_s47_w41_20260529T081926.log` (occurrence 1) | 26 | 0 | [Open](../sessions/68/68a1f5f61cd664363807.json) |
-| `logs/workers/worker_analysis_eval_pi05_l2norm_k09_seed47_w41_20260529T082005.log` (occurrence 1) | 38 | 0 | [Open](../sessions/db/db6dd501386f330dc2f9.json) |
-| `logs/workers/worker_analyze_eval_pi05_random_k05_long_seed47_w38_20260529T100219.log` (occurrence 1) | 30 | 0 | [Open](../sessions/21/21c89d50f7efc8d6dcb5.json) |
-| `logs/workers/worker_analyze_eval_pi05_l2norm_k095_long_seed47_cqa1_20260529T102200.log` (occurrence 1) | 12 | 0 | [Open](../sessions/69/69076d2fc5fae5edbaf1.json) |
-| `logs/workers/worker_harvest_eval_pi05_l2norm_k095_long_seed47_cqa1_20260529T141521.log` (occurrence 1) | 11 | 0 | [Open](../sessions/bf/bf2e630c1035ac45783c.json) |
-| `logs/workers/worker_analyze_eval_pi05_attention_k07_long_seed42_v2_20260526T225334.log` (occurrence 1) | 0 | 0 | [Open](../sessions/e2/e2410f0f3c9287c0db12.json) |
-| `logs/workers/worker_check_westd41074_gpu2_random_k085_goal_s43_20260524T230022.log` (occurrence 1) | 5 | 0 | [Open](../sessions/d8/d812102800bcf8607207.json) |
-| `logs/workers/worker_code_fix-openvla-attention-rotary_20260524T063834.log` (occurrence 1) | 5 | 0 | [Open](../sessions/56/56b34328078c71e958db.json) |
-| `logs/workers/worker_code_profiling_script_prep_20260525T154407.log` (occurrence 1) | 5 | 0 | [Open](../sessions/8b/8b0124163fac0b4b0fa8.json) |
-| `logs/workers/worker_code_zeromask_ablation_prep_20260525T154421.log` (occurrence 1) | 5 | 0 | [Open](../sessions/9f/9fa48a1ee0aede2213fe.json) |
-| `logs/workers/worker_deploy-westd38929-gpu3-spatial-seed43_20260523T222059.log` (occurrence 1) | 5 | 0 | [Open](../sessions/ae/ae558c219549ab088d37.json) |
-| `logs/workers/worker_deploy_redeploy_crashed_v2_20260524T145208.log` (occurrence 1) | 5 | 0 | [Open](../sessions/fc/fc73a8f3440e75ceca38.json) |
-| `logs/workers/worker_diag_batch64_v2_fix_20260517T120756.log` (occurrence 1) | 1 | 0 | [Open](../sessions/2c/2cd7bef2467f3baaaf66.json) |
-| `logs/workers/worker_diag_cqa1_gpu_check_20260525T070304.log` (occurrence 1) | 5 | 0 | [Open](../sessions/75/751ef36443466015fa64.json) |
-| `logs/workers/worker_diag_eval_pi05_random_k09_long_seed42_postfix_20260524T144605.log` (occurrence 1) | 5 | 0 | [Open](../sessions/f0/f009e55a53b8537f9049.json) |
-| `logs/workers/worker_diagnose-xvla-random-goal-seed43-crash_20260523T222112.log` (occurrence 1) | 5 | 0 | [Open](../sessions/4e/4e63ba345e4e0edc0f2e.json) |
-| `logs/workers/worker_diagnose_cqa1_random_k03_long_s43_20260525T160516.log` (occurrence 1) | 5 | 0 | [Open](../sessions/8b/8b147898f555b5a92af2.json) |
-| `logs/workers/worker_diagnose_cqa1_random_k03_long_s43_20260525T160516_retry1.log` (occurrence 1) | 4 | 0 | [Open](../sessions/ee/eefc8aa226cbbc021133.json) |
-| `logs/workers/worker_diagnose_cqa1_random_k03_long_s43_20260525T160516_retry1_retry2.log` (occurrence 1) | 4 | 0 | [Open](../sessions/ce/cec9ef85f669d82c0dae.json) |
-| `logs/workers/worker_diagnose_cqa1_random_k03_long_s43_20260525T160516_retry1_retry2_retry3.log` (occurrence 1) | 4 | 0 | [Open](../sessions/03/031d441f903f86598cfe.json) |
-| `logs/workers/worker_diagnose_eval_openvla_attn_k085_object_seed42_v3_20260524T224947.log` (occurrence 1) | 4 | 0 | [Open](../sessions/8f/8f7fbc0be3c18449d413.json) |
-| `logs/workers/worker_diagnose_eval_openvla_attn_k09_object_seed42_v3_20260524T224910.log` (occurrence 1) | 5 | 0 | [Open](../sessions/02/02b922596bb49f4674e1.json) |
-| `logs/workers/worker_diagnose_eval_openvla_attn_k09_spatial_seed42_20260524T225823.log` (occurrence 1) | 5 | 0 | [Open](../sessions/bd/bd5c8592fb8490d7d26c.json) |
-| `logs/workers/worker_diagnose_eval_openvla_attn_object_v3_20260524T225306.log` (occurrence 1) | 5 | 0 | [Open](../sessions/fc/fc06a12ee8715de7cfb1.json) |
-| `logs/workers/worker_diagnose_eval_openvla_attn_object_v3_20260524T225306_retry2.log` (occurrence 1) | 4 | 0 | [Open](../sessions/70/70201e0ae424c6bda7ec.json) |
-| `logs/workers/worker_diagnose_eval_openvla_attn_object_v3_20260524T225306_retry2_retry3.log` (occurrence 1) | 4 | 0 | [Open](../sessions/eb/eb1beede8ff3f1815d19.json) |
-| `logs/workers/worker_diagnose_eval_pi05_random_k05_long_seed43_postfix_20260524T230053.log` (occurrence 1) | 5 | 0 | [Open](../sessions/81/8125798d39c81c56bb19.json) |
-| `logs/workers/worker_fix-westd38929-gpu3-redeploy-v3_20260523T221708.log` (occurrence 1) | 5 | 0 | [Open](../sessions/9b/9bffd603e958f45c325b.json) |
-| `logs/workers/worker_healthcheck-westd27271-gpu0-stall_20260523T221725.log` (occurrence 1) | 5 | 0 | [Open](../sessions/18/183a3a42c15aa7323b20.json) |
-| `logs/workers/worker_monitor_attn_object_final_check_20260525T160449.log` (occurrence 1) | 5 | 0 | [Open](../sessions/0c/0c4f743f3371c00e0cf3.json) |
-| `logs/workers/worker_monitor_attn_object_final_check_20260525T160449_retry1.log` (occurrence 1) | 4 | 0 | [Open](../sessions/73/732e9ebf5fb1ca9d97dc.json) |
-| `logs/workers/worker_monitor_attn_object_final_check_20260525T160449_retry1_retry2.log` (occurrence 1) | 4 | 0 | [Open](../sessions/97/9773b14ade7f96ae96e1.json) |
-| `logs/workers/worker_monitor_attn_object_final_check_20260525T160449_retry1_retry2_retry3.log` (occurrence 1) | 4 | 0 | [Open](../sessions/53/53f3e2220243b536f757.json) |
-| `logs/workers/worker_monitor_openvla-ready_20260523T132038.log` (occurrence 1) | 5 | 0 | [Open](../sessions/c0/c07443bef9e425926315.json) |
-| `logs/workers/worker_monitor_openvla-ready_20260523T132038_retry2.log` (occurrence 1) | 4 | 0 | [Open](../sessions/1c/1c18dc608a9deac142de.json) |
-| `logs/workers/worker_monitor_openvla-ready_20260523T132038_retry2_retry3.log` (occurrence 1) | 4 | 0 | [Open](../sessions/19/194f29c96de3bf39f31f.json) |
-| `logs/workers/worker_spotcheck_all-servers_20260523T132049.log` (occurrence 1) | 5 | 0 | [Open](../sessions/ef/efbda60fc1bb3b76c283.json) |
-| `logs/workers/worker_spotcheck_all-servers_20260523T132049_retry2.log` (occurrence 1) | 4 | 0 | [Open](../sessions/8d/8db52d874db023920e15.json) |
-| `logs/workers/worker_spotcheck_all-servers_20260523T132049_retry2_retry3.log` (occurrence 1) | 4 | 0 | [Open](../sessions/b2/b201d89a09d30db69cbc.json) |
-| `logs/workers/worker_submit_openvla_random_k09_goal_spatial_20260524T230009.log` (occurrence 1) | 5 | 0 | [Open](../sessions/ab/ab3df8a9726a9df9f17d.json) |
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/workers/worker_ops_harvest-w41-final-s46_20260528T113728.log` (occurrence 1) | 75 | 0 | [Read transcript](../readable/worker-executions/ops-harvest-w41-final-s46.md) | [Open JSON](../sessions/bd/bdaca4140d9bfda38c82.json) |
+| `logs/workers/worker_analysis_final-data-consolidation_20260528T113816.log` (occurrence 1) | 246 | 2 | [Read transcript](../readable/worker-executions/analysis-final-data-consolidation.md) | [Open JSON](../sessions/91/91c75e80fa0dfc93626c.json) |
+| `logs/workers/worker_analyze_eval_pi05_random_k095_long_seed46_strict_w41_20260528T113857.log` (occurrence 1) | 10 | 0 | [Read transcript](../readable/worker-executions/analyze-eval-pi05-random-k095-long-seed46-strict-w41.md) | [Open JSON](../sessions/22/22ab7d2e561c8b27dc9a.json) |
+| `logs/workers/worker_analysis_eval_pi05_random_k05_long_seed46_strict_w41_20260528T114733.log` (occurrence 1) | 27 | 0 | [Read transcript](../readable/worker-executions/analysis-eval-pi05-random-k05-long-seed46-strict-w41.md) | [Open JSON](../sessions/a5/a5ea7a3d9815ab22d267.json) |
+| `logs/workers/worker_analyze_eval_pi05_l2norm_k07_long_seed46_strict_w41_20260528T120152.log` (occurrence 1) | 43 | 0 | [Read transcript](../readable/worker-executions/analyze-eval-pi05-l2norm-k07-long-seed46-strict-w41.md) | [Open JSON](../sessions/15/159d13c7f794bc3c0e18.json) |
+| `logs/workers/worker_ssh_check_l2norm_k07_s46_and_s47_20260528T120704.log` (occurrence 1) | 52 | 0 | [Read transcript](../readable/worker-executions/ssh-check-l2norm-k07-s46-and-s47.md) | [Open JSON](../sessions/d5/d53b976b1555f7f0bed2.json) |
+| `logs/workers/worker_ops_check_running_s46_20260528T120713.log` (occurrence 1) | 34 | 0 | [Read transcript](../readable/worker-executions/ops-check-running-s46.md) | [Open JSON](../sessions/08/08f5a9d7a4a9d8018d5f.json) |
+| `logs/workers/worker_paper_figure_architecture_v2_paperbanana_20260528T130129.log` (occurrence 1) | 141 | 0 | [Read transcript](../readable/worker-executions/paper-figure-architecture-v2-paperbanana.md) | [Open JSON](../sessions/dd/dd238ad4f94995d7d108.json) |
+| `logs/workers/worker_paper_figure_architecture_v2_paperbanana_retry_20260528T131819.log` (occurrence 1) | 116 | 0 | [Read transcript](../readable/worker-executions/paper-figure-architecture-v2-paperbanana-retry.md) | [Open JSON](../sessions/b6/b6b756ab09cd88201bd0.json) |
+| `logs/workers/worker_paper_fig2_architecture_paperbanana_20260528T133007.log` (occurrence 1) | 208 | 0 | [Read transcript](../readable/worker-executions/paper-fig2-architecture-paperbanana.md) | [Open JSON](../sessions/4a/4a8b13f48d9b56535744.json) |
+| `logs/workers/worker_paper_fig4_pixel_shuffle_fix_20260528T134353.log` (occurrence 1) | 60 | 0 | [Read transcript](../readable/worker-executions/paper-fig4-pixel-shuffle-fix.md) | [Open JSON](../sessions/28/2882ddfc82c6f1e61b8c.json) |
+| `logs/workers/worker_paper_fig5_method_gap_redraw_20260528T140851.log` (occurrence 1) | 43 | 0 | [Read transcript](../readable/worker-executions/paper-fig5-method-gap-redraw.md) | [Open JSON](../sessions/7f/7f73953036daa52aeeb3.json) |
+| `logs/workers/worker_paper_fig2_architecture_paperbanana_v3_20260528T155811.log` (occurrence 1) | 213 | 0 | [Read transcript](../readable/worker-executions/paper-fig2-architecture-paperbanana-v3.md) | [Open JSON](../sessions/3a/3a93eaec83f902a2f9bd.json) |
+| `logs/workers/worker_ops_gpu_health_check_all_servers_20260528T161819.log` (occurrence 1) | 30 | 0 | [Read transcript](../readable/worker-executions/ops-gpu-health-check-all-servers.md) | [Open JSON](../sessions/8f/8f1f0ec361db0337f801.json) |
+| `logs/workers/worker_exp_deploy_pi05_k07_seed46_w38_20260528T161831.log` (occurrence 1) | 36 | 0 | [Read transcript](../readable/worker-executions/exp-deploy-pi05-k07-seed46-w38.md) | [Open JSON](../sessions/4f/4f00fef66c1a35ff6d18.json) |
+| `logs/workers/worker_paper_fig2_architecture_v4_paperbanana_20260528T163613.log` (occurrence 1) | 33 | 0 | [Read transcript](../readable/worker-executions/paper-fig2-architecture-v4-paperbanana.md) | [Open JSON](../sessions/ba/ba8d619e30484986c1e5.json) |
+| `logs/workers/worker_exp_deploy_openvla_random_k095_goal_cqa1_20260528T163727.log` (occurrence 1) | 46 | 0 | [Read transcript](../readable/worker-executions/exp-deploy-openvla-random-k095-goal-cqa1.md) | [Open JSON](../sessions/0a/0adf245a59c800b93d70.json) |
+| `logs/workers/worker_paper_fig2_architecture_v4_paperbanana_v2_20260528T164153.log` (occurrence 1) | 64 | 0 | [Read transcript](../readable/worker-executions/paper-fig2-architecture-v4-paperbanana-v2.md) | [Open JSON](../sessions/41/41b299f140fdcf3300d7.json) |
+| `logs/workers/worker_diag_check_w27_connectivity_20260528T164453.log` (occurrence 1) | 10 | 0 | [Read transcript](../readable/worker-executions/diag-check-w27-connectivity.md) | [Open JSON](../sessions/81/81faca648af0e38d7d0c.json) |
+| `logs/workers/worker_deploy_bonus_seed47_cqa1_batch_20260528T164736.log` (occurrence 1) | 54 | 0 | [Read transcript](../readable/worker-executions/deploy-bonus-seed47-cqa1-batch.md) | [Open JSON](../sessions/e9/e9c82d76b9e3d9c4b212.json) |
+| `logs/workers/worker_audit_reference_audit_submission_20260528T170501.log` (occurrence 1) | 92 | 0 | [Read transcript](../readable/worker-executions/audit-reference-audit-submission.md) | [Open JSON](../sessions/3f/3f74054b35d2ef605274.json) |
+| `logs/workers/worker_deploy_bonus_seed47_w41_20260528T170510.log` (occurrence 1) | 31 | 0 | [Read transcript](../readable/worker-executions/deploy-bonus-seed47-w41.md) | [Open JSON](../sessions/90/9002ef19eab5fca00f4f.json) |
+| `logs/workers/worker_fix_bib_audit_fixes_20260528T171451.log` (occurrence 1) | 116 | 1 | [Read transcript](../readable/worker-executions/fix-bib-audit-fixes.md) | [Open JSON](../sessions/11/116b2e79cc1110ddb1bf.json) |
+| `logs/workers/worker_fix_xvla_author_order_urgent_20260528T172455.log` (occurrence 1) | 17 | 0 | [Read transcript](../readable/worker-executions/fix-xvla-author-order-urgent.md) | [Open JSON](../sessions/73/73f39b6f67a372f4257e.json) |
+| `logs/workers/worker_fix_bib_critical_3items_urgent_20260528T172544.log` (occurrence 1) | 23 | 0 | [Read transcript](../readable/worker-executions/fix-bib-critical-3items-urgent.md) | [Open JSON](../sessions/35/35116d5a773b05ce52be.json) |
+| `logs/workers/worker_fix_figure2_v4_latex_ref_20260528T174620.log` (occurrence 1) | 26 | 0 | [Read transcript](../readable/worker-executions/fix-figure2-v4-latex-ref.md) | [Open JSON](../sessions/99/999ed5836db7c9ae80bf.json) |
+| `logs/workers/worker_paper_expand_method_section_20260528T174644.log` (occurrence 1) | 43 | 0 | [Read transcript](../readable/worker-executions/paper-expand-method-section.md) | [Open JSON](../sessions/6e/6e8c9c8624b443138823.json) |
+| `logs/workers/worker_paper_expand_experiments_with_reviewer_fixes_20260528T180603.log` (occurrence 1) | 84 | 0 | [Read transcript](../readable/worker-executions/paper-expand-experiments-with-reviewer-fixes.md) | [Open JSON](../sessions/35/35b8aab7f5bbaec494bd.json) |
+| `logs/workers/worker_fix_method_reviewer_5items_20260528T180655.log` (occurrence 1) | 184 | 0 | [Read transcript](../readable/worker-executions/fix-method-reviewer-5items.md) | [Open JSON](../sessions/7a/7a93eb66b740eb345f83.json) |
+| `logs/workers/worker_fix_reviewer_visual_W1_W2_W3_20260528T180916.log` (occurrence 1) | 31 | 0 | [Read transcript](../readable/worker-executions/fix-reviewer-visual-w1-w2-w3.md) | [Open JSON](../sessions/d8/d8d4047ed4f9649f057d.json) |
+| `logs/workers/worker_fix_reviewer_pdf_w1w2w3_20260528T181019.log` (occurrence 1) | 31 | 0 | [Read transcript](../readable/worker-executions/fix-reviewer-pdf-w1w2w3.md) | [Open JSON](../sessions/3b/3bc26add5c0207b15e0b.json) |
+| `logs/workers/worker_fix_c2_crossref_and_compile_20260528T181333.log` (occurrence 1) | 31 | 0 | [Read transcript](../readable/worker-executions/fix-c2-crossref-and-compile.md) | [Open JSON](../sessions/c6/c6d7bcc703c5f48f2854.json) |
+| `logs/workers/worker_fix_section_ref_and_equation_overflow_20260528T181422.log` (occurrence 1) | 34 | 0 | [Read transcript](../readable/worker-executions/fix-section-ref-and-equation-overflow.md) | [Open JSON](../sessions/09/0969186e38b47cd6cb33.json) |
+| `logs/workers/worker_fix_undefined_refs_final_20260528T181802.log` (occurrence 1) | 55 | 0 | [Read transcript](../readable/worker-executions/fix-undefined-refs-final.md) | [Open JSON](../sessions/be/be91a334dabd0532b731.json) |
+| `logs/workers/worker_fix_method_refs_final_compile_20260528T181945.log` (occurrence 1) | 24 | 0 | [Read transcript](../readable/worker-executions/fix-method-refs-final-compile.md) | [Open JSON](../sessions/3c/3c5755eaf53571d3618a.json) |
+| `logs/workers/worker_paper_page_count_surgery_20260528T182642.log` (occurrence 1) | 165 | 0 | [Read transcript](../readable/worker-executions/paper-page-count-surgery.md) | [Open JSON](../sessions/20/208cad122005e588288d.json) |
+| `logs/workers/worker_ops_kill_ghost_process_cqa1_20260528T182708.log` (occurrence 1) | 20 | 0 | [Read transcript](../readable/worker-executions/ops-kill-ghost-process-cqa1.md) | [Open JSON](../sessions/67/67e16b73f3cc68b1ada4.json) |
+| `logs/workers/worker_log-check_seed46_w41_20260528T213949.log` (occurrence 1) | 25 | 0 | [Read transcript](../readable/worker-executions/log-check-seed46-w41.md) | [Open JSON](../sessions/6d/6d4826ef1d8250947732.json) |
+| `logs/workers/worker_check_seed47_cqa1_status_20260528T215931.log` (occurrence 1) | 16 | 0 | [Read transcript](../readable/worker-executions/check-seed47-cqa1-status.md) | [Open JSON](../sessions/81/8107d5ea4472a18c2175.json) |
+| `logs/workers/worker_check_seed47_harvest_cqa1_20260528T221102.log` (occurrence 1) | 58 | 0 | [Read transcript](../readable/worker-executions/check-seed47-harvest-cqa1.md) | [Open JSON](../sessions/b5/b5ffb406a8e4ef210eab.json) |
+| `logs/workers/worker_deploy_eval_pi05_l2norm_k07_long_seed47_cqa1_20260528T222235.log` (occurrence 1) | 57 | 0 | [Read transcript](../readable/worker-executions/deploy-eval-pi05-l2norm-k07-long-seed47-cqa1.md) | [Open JSON](../sessions/28/28d70c573b44e505d14f.json) |
+| `logs/workers/worker_deploy_seed47_batch_cqa1_20260528T222910.log` (occurrence 1) | 139 | 1 | [Read transcript](../readable/worker-executions/deploy-seed47-batch-cqa1.md) | [Open JSON](../sessions/cb/cb2ae482e4d29bb9ea1c.json) |
+| `logs/workers/worker_deploy_seed47_batch_w27_20260528T222919.log` (occurrence 1) | 46 | 0 | [Read transcript](../readable/worker-executions/deploy-seed47-batch-w27.md) | [Open JSON](../sessions/b8/b87fbb05c42f43851b3a.json) |
+| `logs/workers/worker_ops_cleanup_stale_running_s46_20260528T223033.log` (occurrence 1) | 96 | 0 | [Read transcript](../readable/worker-executions/ops-cleanup-stale-running-s46.md) | [Open JSON](../sessions/3c/3c92df697629b9f9b707.json) |
+| `logs/workers/worker_ops_cleanup_stale_and_monitor_s47_20260528T223130.log` (occurrence 1) | 50 | 0 | [Read transcript](../readable/worker-executions/ops-cleanup-stale-and-monitor-s47.md) | [Open JSON](../sessions/22/2224967ab04fb18c9077.json) |
+| `logs/workers/worker_harvest_s47_cqa1_results_20260528T234651.log` (occurrence 1) | 69 | 0 | [Read transcript](../readable/worker-executions/harvest-s47-cqa1-results.md) | [Open JSON](../sessions/24/245061742a2dcdb3a1a5.json) |
+| `logs/workers/worker_check_seed47_status_20260529T015751.log` (occurrence 1) | 35 | 0 | [Read transcript](../readable/worker-executions/check-seed47-status.md) | [Open JSON](../sessions/5b/5b3d59f141fd749a7744.json) |
+| `logs/workers/worker_harvest_s47_direct_ssh_check_20260529T015833.log` (occurrence 1) | 42 | 0 | [Read transcript](../readable/worker-executions/harvest-s47-direct-ssh-check.md) | [Open JSON](../sessions/0f/0f7789a79806ebb31178.json) |
+| `logs/workers/worker_check_seed47_status_20260529T015749.log` (occurrence 1) | 72 | 0 | [Read transcript](../readable/worker-executions/check-seed47-status-copy-2.md) | [Open JSON](../sessions/9b/9b242bfb00b6233a04e7.json) |
+| `logs/workers/worker_harvest_s47_final_check_20260529T021513.log` (occurrence 1) | 22 | 0 | [Read transcript](../readable/worker-executions/harvest-s47-final-check.md) | [Open JSON](../sessions/90/90d388a855f05a360969.json) |
+| `logs/workers/worker_deploy_s47_batch_w41_w38_20260529T021726.log` (occurrence 1) | 84 | 0 | [Read transcript](../readable/worker-executions/deploy-s47-batch-w41-w38.md) | [Open JSON](../sessions/8c/8cb092134ba8c3363f24.json) |
+| `logs/workers/worker_deploy_s47_remaining_gpus_20260529T022240.log` (occurrence 1) | 20 | 0 | [Read transcript](../readable/worker-executions/deploy-s47-remaining-gpus.md) | [Open JSON](../sessions/01/014b47dd80bc606daf8c.json) |
+| `logs/workers/worker_harvest_l2norm_k07_s47_final_20260529T022450.log` (occurrence 1) | 28 | 0 | [Read transcript](../readable/worker-executions/harvest-l2norm-k07-s47-final.md) | [Open JSON](../sessions/00/0021ad92c5b422070db0.json) |
+| `logs/workers/worker_deploy_s47_cqa1_cuda0_refill_20260529T022632.log` (occurrence 1) | 36 | 0 | [Read transcript](../readable/worker-executions/deploy-s47-cqa1-cuda0-refill.md) | [Open JSON](../sessions/8e/8ef6b1bd3ce9bddecf55.json) |
+| `logs/workers/worker_diagnose_eval_pi05_l2norm_k07_long_seed47_w41_20260529T023205.log` (occurrence 1) | 40 | 0 | [Read transcript](../readable/worker-executions/diagnose-eval-pi05-l2norm-k07-long-seed47-w41.md) | [Open JSON](../sessions/90/9001ace59ce15de6a609.json) |
+| `logs/workers/worker_harvest_attn_k07_l2norm_k05_s47_20260529T024940.log` (occurrence 1) | 24 | 0 | [Read transcript](../readable/worker-executions/harvest-attn-k07-l2norm-k05-s47.md) | [Open JSON](../sessions/09/09f7cc1a10676251f2df.json) |
+| `logs/workers/worker_diagnose_dead_s47_cqa1_20260529T025224.log` (occurrence 1) | 51 | 0 | [Read transcript](../readable/worker-executions/diagnose-dead-s47-cqa1.md) | [Open JSON](../sessions/da/dad05cb1bd5d2cc6cf78.json) |
+| `logs/workers/worker_diagnose_dead_s47_attn_k095_v2_deploy_20260529T025236.log` (occurrence 1) | 62 | 0 | [Read transcript](../readable/worker-executions/diagnose-dead-s47-attn-k095-v2-deploy.md) | [Open JSON](../sessions/3b/3bfcbaf033caffa1e252.json) |
+| `logs/workers/worker_ops_kill_duplicate_attn_k095_20260529T025332.log` (occurrence 1) | 15 | 0 | [Read transcript](../readable/worker-executions/ops-kill-duplicate-attn-k095.md) | [Open JSON](../sessions/55/55a90b656a7d19117e46.json) |
+| `logs/workers/worker_harvest_attn_k075_s47_20260529T025824.log` (occurrence 1) | 22 | 0 | [Read transcript](../readable/worker-executions/harvest-attn-k075-s47.md) | [Open JSON](../sessions/1d/1daf1da95afd221fcd84.json) |
+| `logs/workers/worker_verify_s47_running_check_20260529T032617.log` (occurrence 1) | 55 | 0 | [Read transcript](../readable/worker-executions/verify-s47-running-check.md) | [Open JSON](../sessions/3c/3c2101f9112b8d415cf9.json) |
+| `logs/workers/worker_ops_kill_and_probe_cqa1_20260529T033729.log` (occurrence 1) | 33 | 0 | [Read transcript](../readable/worker-executions/ops-kill-and-probe-cqa1.md) | [Open JSON](../sessions/af/af72d53eb1878b9fc152.json) |
+| `logs/workers/worker_ops_probe_w27_20260529T033741.log` (occurrence 1) | 14 | 0 | [Read transcript](../readable/worker-executions/ops-probe-w27.md) | [Open JSON](../sessions/e7/e76a335426ff2dc01942.json) |
+| `logs/workers/worker_ops_gpu_probe_kill_deploy_s47_20260529T035751.log` (occurrence 1) | 59 | 0 | [Read transcript](../readable/worker-executions/ops-gpu-probe-kill-deploy-s47.md) | [Open JSON](../sessions/fa/fa6d3928c7bac63be120.json) |
+| `logs/workers/worker_ops_check_random_k09_s47_status_20260529T040425.log` (occurrence 1) | 44 | 0 | [Read transcript](../readable/worker-executions/ops-check-random-k09-s47-status.md) | [Open JSON](../sessions/c6/c6a5499b8af8e51d8c77.json) |
+| `logs/workers/worker_ops_harvest_and_deploy_s47_batch2_20260529T040515.log` (occurrence 1) | 55 | 0 | [Read transcript](../readable/worker-executions/ops-harvest-and-deploy-s47-batch2.md) | [Open JSON](../sessions/6e/6eb1b362bb5b3275ead2.json) |
+| `logs/workers/worker_ops_harvest3_deploy4_s47_20260529T041242.log` (occurrence 1) | 26 | 0 | [Read transcript](../readable/worker-executions/ops-harvest3-deploy4-s47.md) | [Open JSON](../sessions/dc/dce7816b9a7f4cea7b41.json) |
+| `logs/workers/worker_ops_check_random_k095_deploy_l2norm_k085_20260529T041420.log` (occurrence 1) | 20 | 0 | [Read transcript](../readable/worker-executions/ops-check-random-k095-deploy-l2norm-k085.md) | [Open JSON](../sessions/e4/e49d5df6579f1c4b2391.json) |
+| `logs/workers/worker_harvest_attn_k085_s47_w38_then_deploy_20260529T050212.log` (occurrence 1) | 45 | 0 | [Read transcript](../readable/worker-executions/harvest-attn-k085-s47-w38-then-deploy.md) | [Open JSON](../sessions/9c/9c3e1cbfd512375fa9ca.json) |
+| `logs/workers/worker_paper_compile_verify_audit_20260529T052139.log` (occurrence 1) | 89 | 0 | [Read transcript](../readable/worker-executions/paper-compile-verify-audit.md) | [Open JSON](../sessions/ef/ef7eceb4fa388664402e.json) |
+| `logs/workers/worker_harvest_attn_k05_s47_w41_then_deploy_20260529T054143.log` (occurrence 1) | 57 | 0 | [Read transcript](../readable/worker-executions/harvest-attn-k05-s47-w41-then-deploy.md) | [Open JSON](../sessions/26/26c0f74b5f5d10cae3ef.json) |
+| `logs/workers/worker_ops_probe_and_deploy_s47_pending_20260529T060229.log` (occurrence 1) | 28 | 0 | [Read transcript](../readable/worker-executions/ops-probe-and-deploy-s47-pending.md) | [Open JSON](../sessions/18/182123c3b6f6df00b764.json) |
+| `logs/workers/worker_ops_batch_kill_preparing_20260529T062725.log` (occurrence 1) | 807 | 1 | [Read transcript](../readable/worker-executions/ops-batch-kill-preparing.md) | [Open JSON](../sessions/f9/f9196f751278b4e6870a.json) |
+| `logs/workers/worker_audit_ref_verify_worker_A_20260529T062907.log` (occurrence 1) | 405 | 6 | [Read transcript](../readable/worker-executions/audit-ref-verify-worker-a.md) | [Open JSON](../sessions/72/72b475ba133bd74f70dd.json) |
+| `logs/workers/worker_audit_ref_verify_worker_B_20260529T062918.log` (occurrence 1) | 207 | 0 | [Read transcript](../readable/worker-executions/audit-ref-verify-worker-b.md) | [Open JSON](../sessions/ff/ffd8f90c3749f068f5b8.json) |
+| `logs/workers/worker_audit_ref_verify_worker_C_20260529T064855.log` (occurrence 1) | 475 | 6 | [Read transcript](../readable/worker-executions/audit-ref-verify-worker-c.md) | [Open JSON](../sessions/69/699cdd636c701a61426f.json) |
+| `logs/workers/worker_analyze_eval_pi05_attn_k09_long_seed47_cqa1_20260529T070159.log` (occurrence 1) | 23 | 0 | [Read transcript](../readable/worker-executions/analyze-eval-pi05-attn-k09-long-seed47-cqa1.md) | [Open JSON](../sessions/54/5425d26cb5e61ac1aeff.json) |
+| `logs/workers/worker_audit_ref_tiebreak_verify_20260529T070204.log` (occurrence 1) | 48 | 0 | [Read transcript](../readable/worker-executions/audit-ref-tiebreak-verify.md) | [Open JSON](../sessions/c0/c025bba8781af8808e11.json) |
+| `logs/workers/worker_analyze_eval_pi05_l2norm_k085_long_seed47_w38_20260529T071810.log` (occurrence 1) | 10 | 0 | [Read transcript](../readable/worker-executions/analyze-eval-pi05-l2norm-k085-long-seed47-w38.md) | [Open JSON](../sessions/f9/f9ba549249dc7afa80bf.json) |
+| `logs/workers/worker_analysis_eval_pi05_random_k085_long_seed47_cqa1_20260529T073956.log` (occurrence 1) | 10 | 0 | [Read transcript](../readable/worker-executions/analysis-eval-pi05-random-k085-long-seed47-cqa1.md) | [Open JSON](../sessions/77/77865191f82fcd5e86d4.json) |
+| `logs/workers/worker_analysis_eval_pi05_seed47_cqa1_20260529T075715.log` (occurrence 1) | 12 | 0 | [Read transcript](../readable/worker-executions/analysis-eval-pi05-seed47-cqa1.md) | [Open JSON](../sessions/0a/0a464ff23e0e7664b8c0.json) |
+| `logs/workers/worker_analysis_eval_pi05_l2norm_k085_seed47_w38_20260529T075719.log` (occurrence 1) | 10 | 0 | [Read transcript](../readable/worker-executions/analysis-eval-pi05-l2norm-k085-seed47-w38.md) | [Open JSON](../sessions/b2/b2247e2d11cd95184bb2.json) |
+| `logs/workers/worker_analysis_seed47_batch_analyzing_20260529T081508.log` (occurrence 1) | 54 | 0 | [Read transcript](../readable/worker-executions/analysis-seed47-batch-analyzing.md) | [Open JSON](../sessions/fc/fc2e13ad545a447712a5.json) |
+| `logs/workers/worker_analysis_l2norm_k09_s47_w41_20260529T081926.log` (occurrence 1) | 26 | 0 | [Read transcript](../readable/worker-executions/analysis-l2norm-k09-s47-w41.md) | [Open JSON](../sessions/68/68a1f5f61cd664363807.json) |
+| `logs/workers/worker_analysis_eval_pi05_l2norm_k09_seed47_w41_20260529T082005.log` (occurrence 1) | 38 | 0 | [Read transcript](../readable/worker-executions/analysis-eval-pi05-l2norm-k09-seed47-w41.md) | [Open JSON](../sessions/db/db6dd501386f330dc2f9.json) |
+| `logs/workers/worker_analyze_eval_pi05_random_k05_long_seed47_w38_20260529T100219.log` (occurrence 1) | 30 | 0 | [Read transcript](../readable/worker-executions/analyze-eval-pi05-random-k05-long-seed47-w38.md) | [Open JSON](../sessions/21/21c89d50f7efc8d6dcb5.json) |
+| `logs/workers/worker_analyze_eval_pi05_l2norm_k095_long_seed47_cqa1_20260529T102200.log` (occurrence 1) | 12 | 0 | [Read transcript](../readable/worker-executions/analyze-eval-pi05-l2norm-k095-long-seed47-cqa1.md) | [Open JSON](../sessions/69/69076d2fc5fae5edbaf1.json) |
+| `logs/workers/worker_harvest_eval_pi05_l2norm_k095_long_seed47_cqa1_20260529T141521.log` (occurrence 1) | 11 | 0 | [Read transcript](../readable/worker-executions/harvest-eval-pi05-l2norm-k095-long-seed47-cqa1.md) | [Open JSON](../sessions/bf/bf2e630c1035ac45783c.json) |
+| `logs/workers/worker_analyze_eval_pi05_attention_k07_long_seed42_v2_20260526T225334.log` (occurrence 1) | 0 | 0 | [Read transcript](../readable/worker-executions/analyze-eval-pi05-attention-k07-long-seed42-v2-copy-2.md) | [Open JSON](../sessions/e2/e2410f0f3c9287c0db12.json) |
+| `logs/workers/worker_check_westd41074_gpu2_random_k085_goal_s43_20260524T230022.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/check-westd41074-gpu2-random-k085-goal-s43.md) | [Open JSON](../sessions/d8/d812102800bcf8607207.json) |
+| `logs/workers/worker_code_fix-openvla-attention-rotary_20260524T063834.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/code-fix-openvla-attention-rotary.md) | [Open JSON](../sessions/56/56b34328078c71e958db.json) |
+| `logs/workers/worker_code_profiling_script_prep_20260525T154407.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/code-profiling-script-prep.md) | [Open JSON](../sessions/8b/8b0124163fac0b4b0fa8.json) |
+| `logs/workers/worker_code_zeromask_ablation_prep_20260525T154421.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/code-zeromask-ablation-prep.md) | [Open JSON](../sessions/9f/9fa48a1ee0aede2213fe.json) |
+| `logs/workers/worker_deploy-westd38929-gpu3-spatial-seed43_20260523T222059.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/deploy-westd38929-gpu3-spatial-seed43.md) | [Open JSON](../sessions/ae/ae558c219549ab088d37.json) |
+| `logs/workers/worker_deploy_redeploy_crashed_v2_20260524T145208.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/deploy-redeploy-crashed-v2.md) | [Open JSON](../sessions/fc/fc73a8f3440e75ceca38.json) |
+| `logs/workers/worker_diag_batch64_v2_fix_20260517T120756.log` (occurrence 1) | 1 | 0 | [Read transcript](../readable/worker-executions/diag-batch64-v2-fix.md) | [Open JSON](../sessions/2c/2cd7bef2467f3baaaf66.json) |
+| `logs/workers/worker_diag_cqa1_gpu_check_20260525T070304.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/diag-cqa1-gpu-check.md) | [Open JSON](../sessions/75/751ef36443466015fa64.json) |
+| `logs/workers/worker_diag_eval_pi05_random_k09_long_seed42_postfix_20260524T144605.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/diag-eval-pi05-random-k09-long-seed42-postfix.md) | [Open JSON](../sessions/f0/f009e55a53b8537f9049.json) |
+| `logs/workers/worker_diagnose-xvla-random-goal-seed43-crash_20260523T222112.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/diagnose-xvla-random-goal-seed43-crash.md) | [Open JSON](../sessions/4e/4e63ba345e4e0edc0f2e.json) |
+| `logs/workers/worker_diagnose_cqa1_random_k03_long_s43_20260525T160516.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/diagnose-cqa1-random-k03-long-s43.md) | [Open JSON](../sessions/8b/8b147898f555b5a92af2.json) |
+| `logs/workers/worker_diagnose_cqa1_random_k03_long_s43_20260525T160516_retry1.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/diagnose-cqa1-random-k03-long-s43-20260525t160516-retry1.md) | [Open JSON](../sessions/ee/eefc8aa226cbbc021133.json) |
+| `logs/workers/worker_diagnose_cqa1_random_k03_long_s43_20260525T160516_retry1_retry2.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/diagnose-cqa1-random-k03-long-s43-20260525t160516-retry1-retry2.md) | [Open JSON](../sessions/ce/cec9ef85f669d82c0dae.json) |
+| `logs/workers/worker_diagnose_cqa1_random_k03_long_s43_20260525T160516_retry1_retry2_retry3.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/diagnose-cqa1-random-k03-long-s43-20260525t160516-retry1-retry2-retry3.md) | [Open JSON](../sessions/03/031d441f903f86598cfe.json) |
+| `logs/workers/worker_diagnose_eval_openvla_attn_k085_object_seed42_v3_20260524T224947.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/diagnose-eval-openvla-attn-k085-object-seed42-v3.md) | [Open JSON](../sessions/8f/8f7fbc0be3c18449d413.json) |
+| `logs/workers/worker_diagnose_eval_openvla_attn_k09_object_seed42_v3_20260524T224910.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/diagnose-eval-openvla-attn-k09-object-seed42-v3.md) | [Open JSON](../sessions/02/02b922596bb49f4674e1.json) |
+| `logs/workers/worker_diagnose_eval_openvla_attn_k09_spatial_seed42_20260524T225823.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/diagnose-eval-openvla-attn-k09-spatial-seed42.md) | [Open JSON](../sessions/bd/bd5c8592fb8490d7d26c.json) |
+| `logs/workers/worker_diagnose_eval_openvla_attn_object_v3_20260524T225306.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/diagnose-eval-openvla-attn-object-v3.md) | [Open JSON](../sessions/fc/fc06a12ee8715de7cfb1.json) |
+| `logs/workers/worker_diagnose_eval_openvla_attn_object_v3_20260524T225306_retry2.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/diagnose-eval-openvla-attn-object-v3-20260524t225306-retry2.md) | [Open JSON](../sessions/70/70201e0ae424c6bda7ec.json) |
+| `logs/workers/worker_diagnose_eval_openvla_attn_object_v3_20260524T225306_retry2_retry3.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/diagnose-eval-openvla-attn-object-v3-20260524t225306-retry2-retry3.md) | [Open JSON](../sessions/eb/eb1beede8ff3f1815d19.json) |
+| `logs/workers/worker_diagnose_eval_pi05_random_k05_long_seed43_postfix_20260524T230053.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/diagnose-eval-pi05-random-k05-long-seed43-postfix.md) | [Open JSON](../sessions/81/8125798d39c81c56bb19.json) |
+| `logs/workers/worker_fix-westd38929-gpu3-redeploy-v3_20260523T221708.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/fix-westd38929-gpu3-redeploy-v3.md) | [Open JSON](../sessions/9b/9bffd603e958f45c325b.json) |
+| `logs/workers/worker_healthcheck-westd27271-gpu0-stall_20260523T221725.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/healthcheck-westd27271-gpu0-stall.md) | [Open JSON](../sessions/18/183a3a42c15aa7323b20.json) |
+| `logs/workers/worker_monitor_attn_object_final_check_20260525T160449.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/monitor-attn-object-final-check.md) | [Open JSON](../sessions/0c/0c4f743f3371c00e0cf3.json) |
+| `logs/workers/worker_monitor_attn_object_final_check_20260525T160449_retry1.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/monitor-attn-object-final-check-20260525t160449-retry1.md) | [Open JSON](../sessions/73/732e9ebf5fb1ca9d97dc.json) |
+| `logs/workers/worker_monitor_attn_object_final_check_20260525T160449_retry1_retry2.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/monitor-attn-object-final-check-20260525t160449-retry1-retry2.md) | [Open JSON](../sessions/97/9773b14ade7f96ae96e1.json) |
+| `logs/workers/worker_monitor_attn_object_final_check_20260525T160449_retry1_retry2_retry3.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/monitor-attn-object-final-check-20260525t160449-retry1-retry2-retry3.md) | [Open JSON](../sessions/53/53f3e2220243b536f757.json) |
+| `logs/workers/worker_monitor_openvla-ready_20260523T132038.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/monitor-openvla-ready.md) | [Open JSON](../sessions/c0/c07443bef9e425926315.json) |
+| `logs/workers/worker_monitor_openvla-ready_20260523T132038_retry2.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/monitor-openvla-ready-20260523t132038-retry2.md) | [Open JSON](../sessions/1c/1c18dc608a9deac142de.json) |
+| `logs/workers/worker_monitor_openvla-ready_20260523T132038_retry2_retry3.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/monitor-openvla-ready-20260523t132038-retry2-retry3.md) | [Open JSON](../sessions/19/194f29c96de3bf39f31f.json) |
+| `logs/workers/worker_spotcheck_all-servers_20260523T132049.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/spotcheck-all-servers.md) | [Open JSON](../sessions/ef/efbda60fc1bb3b76c283.json) |
+| `logs/workers/worker_spotcheck_all-servers_20260523T132049_retry2.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/spotcheck-all-servers-20260523t132049-retry2.md) | [Open JSON](../sessions/8d/8db52d874db023920e15.json) |
+| `logs/workers/worker_spotcheck_all-servers_20260523T132049_retry2_retry3.log` (occurrence 1) | 4 | 0 | [Read transcript](../readable/worker-executions/spotcheck-all-servers-20260523t132049-retry2-retry3.md) | [Open JSON](../sessions/b2/b201d89a09d30db69cbc.json) |
+| `logs/workers/worker_submit_openvla_random_k09_goal_spatial_20260524T230009.log` (occurrence 1) | 5 | 0 | [Read transcript](../readable/worker-executions/submit-openvla-random-k09-goal-spatial.md) | [Open JSON](../sessions/ab/ab3df8a9726a9df9f17d.json) |

@@ -1,0 +1,73 @@
+# agent / loop_8.md
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_8.md`
+- **Structured JSON:** [`221ac2d88bdab524502d.json`](../../sessions/22/221ac2d88bdab524502d.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 8
+reason: idle_timeout
+updated: '2026-05-17T09:39:47+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目 GPU 白名单：westd-27271:cuda:0, westd-27271:cuda:1, cqa1-33015:cuda:0-3（共 6 张）
+- cqa1-33015 当前完全不可达（58.144.141.28:33015 SSH failed），在 Director 确认恢复前禁止向该服务器提交任何任务
+- batch64 baseline 实验（libero_fullft_batch64）必须等 Director 决策后才能重新提交（恢复 cqa1 或分配新 GPU）
+- westd-27271 上 3 个 eval 正在跑，不要中断它们（eval_imm100k_bypass, eval_k07_bypass_v3, eval_stage1_only）——这是 D056/D057/D058 诊断的最后窗口
+
+### 2. 🖥️ 基础设施快照
+- **westd-27271**: 工作目录 ~/runs/importance_margin_vla_compress/，Python 路径需 SSH 确认（预置镜像 aml-train）
+- **cqa1-33015**: 离线，58.144.141.28:33015，4x RTX 4090。工作目录含 logs/fullft_batch64.log、configs/libero_full_ft_batch64.yaml
+- 活跃进程（westd-27271）:
+  - eval_imm100k_bypass: PID 882658, cuda:0
+  - eval_k07_bypass_v3: PID 905921, cuda:1
+  - eval_stage1_only: PID 961179, cuda:0
+- 模型：smolvla_base（HuggingFace），数据：HuggingFaceVLA/libero (273K samples)
+- Worker 池：0（全部已完成）
+
+### 3. 📊 当前状态
+刚处理 libero_fullft_batch64 的 cron 失败回调。诊断结论：cqa1-33015 服务器不可达（非代码问题）。已更新 registry + 向 Director 汇报，等待 Director 决策（恢复实例 or 分配替代 GPU）。
+
+**Registry 状态**:
+- RUNNING: eval_imm100k_bypass, eval_k07_bypass_v3, eval_stage1_only（全在 westd-27271）
+- PREPARING: eval_k07_bypass, plan_005_formal_bound, eval_sim_success_rate, imm_two_stage_v9
+- DONE(failed): libero_fullft_batch64（本次处理）
+
+**等待中**:
+- 3 个 eval 的 cron 完成回调（~30min 内应出结果）
+- Director 对 cqa1-33015 故障的决策回复
+- libero_fullft_seed1 标记为 success 但 cron 描述为 "process dead 5× with no sentinel/W&B — auto-resolved as failed"——存在矛盾，需要验证
+
+### 4. 📋 待办
+- eval_imm100k_bypass 完成 → 判断 Story 分支：bypass SR ≥ 40% → Story A/B（expert 未损坏）；SR < 20% → Story C（Stage2 彻底损坏 expert weights，D058 已初步确认）
+- eval_k07_bypass_v3 完成 → 对比 k=0.7 bypass vs k=0.5 bypass，判断 token retention ratio 对 expert 损伤的影响
+- eval_stage1_only 完成 → 判断 Stage1 ACIS 学到的 importance ranking 质量（SR ≥ 30% = 有效）
+- Director 回复 cqa1-33015 决策 → 立即重新提交 libero_fullft_batch64（在恢复的 cqa1 或新 GPU 上）
+- 3 个 eval 全部完成 → 综合判断 paper story 走 A/B/C 哪条路，汇报 Director 做最终 framing 决策
+
+### 5. 🎯 战略上下文
+- **核心危机（D056-D058）**: IMM k=0.5 closed-loop 灾难性失败（SR 3.5% vs baseline 51.8%）。k=0.7 也仅 4.8%。D058 初步判断 Story C：Stage2 训练彻底摧毁 expert weights。当前 3 个 eval 是最终确认窗口
+- **batch64 baseline（D055）**: 确认 SR gap 来自 batch size 4 vs 64。这个实验不管 story 走哪条路都需要（作为 strong baseline）。CoRL deadline May 29，训练 ~3.8 天，最迟 May 21 前必须开跑
+- **易错点**: libero_fullft_seed1 的 conclusion=success 可能是误标（cron 描述说 "process dead 5× auto-resolved as failed"）——下一个"你"需要验证这个实验的真实结果
+- **决策链**: D055(batch gap) → D056(IMM k=0.5 崩溃) → D057(k=0.7 也崩) → D058(Story C: Stage2 摧毁 expert) → 等 bypass eval 最终确认
+- **CoRL 时间线**: 12 天。如果 Story C 确认，paper 需要 pivot（可能变 analysis paper 或重新设计 Stage2）。Director 尚未做最终决策
+
+
+---

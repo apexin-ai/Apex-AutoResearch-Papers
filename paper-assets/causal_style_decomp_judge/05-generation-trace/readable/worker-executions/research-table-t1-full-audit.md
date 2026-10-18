@@ -1,0 +1,6765 @@
+# research table t1 full audit
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 135
+- **Recorded user turns:** 0
+- **Tool calls:** 44
+- **Original source:** `logs/workers/worker_research_table_t1_full_audit_20260524T083928.log`
+- **Structured JSON:** [`87fc21225d9c181b4c64.json`](../../sessions/87/87fc21225d9c181b4c64.json)
+
+## Before a recorded user message
+
+135 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge",
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "368b8fd0-ace1-41ef-82e6-75258a38310d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779626400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0b1bc526-04f9-45b2-829f-d37ef7f98ec7",
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a comprehensive audit task for Table T1 in a research paper. I need to systematically check every row of the table to verify whether the reported Cohen's d values are actually Cohen's d (from Likert scoring) or Cohen's h (from pairwise fallback). Let me start by reading the relevant files.
+
+Let me begin by loading the necessary MCP tools and then executing the steps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "05a460c6-3cbe-4bdf-9bed-255dce98a545",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SgMbM1b6xUaFWVypHFV37",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13200,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13200
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始审计 Table T1 的全行指标来源。先读取核心源码和 LaTeX 表格。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "445d63a5-b19e-4aa6-9104-b73c4bbbac3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SgMbM1b6xUaFWVypHFV37",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13200,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13200
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0166afaEc4toMFCqWtoR5KTj`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "12205002-3649-43a9-ac5e-1521601e6d0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SgMbM1b6xUaFWVypHFV37",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13200,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13200
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-24T08:39:44.540Z_
+
+<details><summary>↩ Tool result · `toolu_0166afaEc4toMFCqWtoR5KTj`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "e2da7f05-e72d-4b47-a624-b55ab6f00ed6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me start the audit. I'll read the cross_benchmark_analysis.py source code and find the Table T1 LaTeX source in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "243479c7-dfcf-458d-8dc4-3a8df96951c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWKroen5uLnJst3GxGC4du",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1138,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1138
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01No3tLo9gQ4UAZz4tfJpmSV`</summary>
+
+```json
+{
+  "server": "causal_style_decomp_judge",
+  "command": "cat /root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "7c263e28-390f-4490-89e5-0c66f80776c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWKroen5uLnJst3GxGC4du",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1138,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1138
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T08:39:49.188Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01No3tLo9gQ4UAZz4tfJpmSV`</summary>
+
+```text
+Error executing tool ssh_read_only: Unknown server 'causal_style_decomp_judge'. Available: ['westb-29275']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "1dd89333-6464-478d-b1ba-134978a83ac5",
+  "tool_use_result": "Error: Error executing tool ssh_read_only: Unknown server 'causal_style_decomp_judge'. Available: ['westb-29275']"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ARt9GkBRTQVWZVrpLBNEGg`</summary>
+
+```json
+{
+  "server": "causal_style_decomp_judge",
+  "command": "grep -rn \"1.120\\|crossbench\\|tab:cross\\|Table T1\\|tab:t1\\|cross.benchmark\" /root/causal_style_decomp_judge/docs/paper/ --include=\"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "b0e1ef46-a9ee-47d3-980e-4ef34d5fc025",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWKroen5uLnJst3GxGC4du",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1138,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1138
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T08:39:51.940Z_
+
+<details><summary>↩ Tool result · `toolu_01ARt9GkBRTQVWZVrpLBNEGg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "30492890-855b-4373-be79-df8a91443780",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UoYWAvkFHsLBDDEn3ZynJS`</summary>
+
+```json
+{
+  "server": "causal_style_decomp_judge",
+  "command": "ls -la /root/causal_style_decomp_judge/data/scored_*.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "f7e162a6-d58a-4814-9eb2-a32ce0e4a9a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWKroen5uLnJst3GxGC4du",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1138,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1138
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T08:39:52.949Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01UoYWAvkFHsLBDDEn3ZynJS`</summary>
+
+```text
+Error executing tool ssh_read_only: Unknown server 'causal_style_decomp_judge'. Available: ['westb-29275']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "d52135e0-161d-41fd-a1e4-b8ea5a536c03",
+  "tool_use_result": "Error: Error executing tool ssh_read_only: Unknown server 'causal_style_decomp_judge'. Available: ['westb-29275']"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GdJLh6i6GH7bWV3EicwkHD`</summary>
+
+```json
+{
+  "server": "causal_style_decomp_judge",
+  "command": "ls -la /root/causal_style_decomp_judge/data/pairwise_results_*.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "fdf90069-ae39-4530-a6a7-34edb7c21d6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWKroen5uLnJst3GxGC4du",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1138,
+      "cache_read_input_tokens": 25041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1138
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T08:39:53.534Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01GdJLh6i6GH7bWV3EicwkHD`</summary>
+
+```text
+Error executing tool ssh_read_only: Unknown server 'causal_style_decomp_judge'. Available: ['westb-29275']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "1914b357-48fa-4cd2-a63c-6321aa599186",
+  "tool_use_result": "Error: Error executing tool ssh_read_only: Unknown server 'causal_style_decomp_judge'. Available: ['westb-29275']"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+服务器名是 `westb-29275`，且 `ssh_read_only` 不允许 `|` 管道。修正后重新执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "b06cc387-a65d-4a9c-94f3-1d69441a8708",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iVWqhF5u4PjVU7Mfncq4Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 26179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 887
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017zUrpRzpbhbfcSHMNL8nh4`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "ecac1635-91ff-4393-8ee3-398eb944776b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iVWqhF5u4PjVU7Mfncq4Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 26179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 887
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MqoP3x5EWiu1RdyHqZoP2U`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "grep -rn \"1.120\\|crossbench\\|tab:cross\\|cross.benchmark\" /root/causal_style_decomp_judge/docs/paper/ --include=\"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "e7186bad-9b98-4da2-b13d-84aad884e1f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iVWqhF5u4PjVU7Mfncq4Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 26179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 887
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Yc9d23gWE52Azv7etWyiy4`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls -la /root/causal_style_decomp_judge/data/scored_*.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "09ff47a0-2a5e-4204-8e1e-863b4ed1a474",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iVWqhF5u4PjVU7Mfncq4Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 26179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 887
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JJinmxJGMMJCH8sWq7Yfm5`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls -la /root/causal_style_decomp_judge/data/pairwise_results_*.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "8e9c8ba3-b873-41d1-ac78-a527ca81f0a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iVWqhF5u4PjVU7Mfncq4Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 887,
+      "cache_read_input_tokens": 26179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 887
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T08:40:00.413Z_
+
+<details><summary>↩ Tool result · `toolu_017zUrpRzpbhbfcSHMNL8nh4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-benchmark BT + GEE analysis for R6-SF3 local vLLM configs.\\\"\\\"\\\"\\n\\nimport json, os, sys\\nimport numpy as np\\nimport pandas as pd\\nimport choix\\nfrom scipy import stats\\nimport statsmodels.api as sm\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\nfrom statsmodels.genmod.families import Binomial\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\n\\nFORMAL, CASUAL = 0, 1\\nN_BOOT = 10000\\nSEED = 42\\nNLI_THRESHOLD = 0.90\\nDATA_DIR = \\\"/root/causal_style_decomp_judge/data\\\"\\nOUT_DIR = \\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\"\\n\\nCONFIGS = [\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Llama-70B × formality\\\",\\n        \\\"pairwise_file\\\": \\\"scored_alpacaeval_llama70b_formality.jsonl\\\",\\n        \\\"likert_file\\\": None,\\n        \\\"judge\\\": \\\"Llama-3.3-70B\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"MT-Bench × Qwen3-32B × formality\\\",\\n        \\\"pairwise_file\\\": \\\"scored_mtbench_qwen32b_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_mtbench_qwen32b.jsonl\\\",\\n        \\\"judge\\\": \\\"Qwen3-32B\\\",\\n        \\\"benchmark\\\": \\\"MT-Bench\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Claude Sonnet 4 × formality\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_alpacaeval_formality.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Claude Sonnet 4 × verbosity\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_alpacaeval_verbosity.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"verbosity\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"MT-Bench × Claude Sonnet 4 × formality\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_mtbench_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_mtbench_formality.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"MT-Bench\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n]\\n\\n\\ndef load_pairwise(path):\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\n    recs = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= NLI_THRESHOLD]\\n    comparisons = []\\n    pair_groups = {}\\n    for rec in recs:\\n        pid = rec[\\\"id\\\"]\\n        pcomps = []\\n        t1 = rec.get(\\\"trial1_choice\\\")\\n        if t1 in (\\\"A\\\", \\\"B\\\"):\\n            pcomps.append((FORMAL, CASUAL) if t1 == \\\"A\\\" else (CASUAL, FORMAL))\\n        t2 = rec.get(\\\"trial2_choice\\\")\\n        if t2 in (\\\"A\\\", \\\"B\\\"):\\n            pcomps.append((CASUAL, FORMAL) if t2 == \\\"A\\\" else (FORMAL, CASUAL))\\n        comparisons.extend(pcomps)\\n        pair_groups[pid] = pcomps\\n    return recs, comparisons, pair_groups\\n\\n\\ndef bt_analysis(comparisons, pair_groups):\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\n    diff = params[FORMAL] - params[CASUAL]\\n    p_formal = 1.0 / (1.0 + np.exp(-diff))\\n\\n    rng = np.random.RandomState(SEED)\\n    pair_ids = list(pair_groups.keys())\\n    n_pairs = len(pair_ids)\\n    boot_probs = []\\n    for _ in range(N_BOOT):\\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\n        boot = []\\n        for i in idx:\\n            boot.extend(pair_groups[pair_ids[i]])\\n        try:\\n            bp = choix.ilsr_pairwise(2, boot, alpha=0.01)\\n            boot_probs.append(1.0 / (1.0 + np.exp(-(bp[FORMAL] - bp[CASUAL]))))\\n        except Exception:\\n            pass\\n\\n    boot_probs = np.array(boot_probs)\\n    ci_lo, ci_hi = np.percentile(boot_probs, [2.5, 97.5])\\n    p_val = 2 * min(np.mean(boot_probs < 0.5), np.mean(boot_probs > 0.5))\\n    p_val = max(p_val, 1.0 / N_BOOT)\\n    return {\\n        \\\"bt_win_prob\\\": round(float(p_formal), 4),\\n        \\\"bt_ci\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\n        \\\"bt_p\\\": round(float(p_val), 6),\\n        \\\"bt_sig\\\": p_val < 0.05,\\n    }\\n\\n\\ndef likert_from_pairwise(recs):\\n    consistent = [r for r in recs if r[\\\"consistent\\\"]]\\n    n = len(consistent)\\n    if n == 0:\\n        return {\\\"likert_ate\\\": None, \\\"lik\\n\\n... [截断: 输出过长，省略 2042 字符] ...\\n\\nrmal\\\")\\n        t1 = r.get(\\\"trial1_choice\\\")\\n        t2 = r.get(\\\"trial2_choice\\\")\\n        if t1 in (\\\"A\\\", \\\"B\\\"):\\n            rows.append({\\n                \\\"pair_id\\\": i,\\n                \\\"is_style_in_A\\\": 1.0,\\n                \\\"is_original_in_A\\\": 1.0 if orig == \\\"formal\\\" else 0.0,\\n                \\\"chose_A\\\": 1.0 if t1 == \\\"A\\\" else 0.0,\\n            })\\n        if t2 in (\\\"A\\\", \\\"B\\\"):\\n            rows.append({\\n                \\\"pair_id\\\": i,\\n                \\\"is_style_in_A\\\": 0.0,\\n                \\\"is_original_in_A\\\": 1.0 if orig == \\\"casual\\\" else 0.0,\\n                \\\"chose_A\\\": 1.0 if t2 == \\\"A\\\" else 0.0,\\n            })\\n\\n    df = pd.DataFrame(rows)\\n    exog = sm.add_constant(df[[\\\"is_style_in_A\\\", \\\"is_original_in_A\\\"]])\\n    model = GEE(df[\\\"chose_A\\\"], exog, groups=df[\\\"pair_id\\\"],\\n                family=Binomial(), cov_struct=Exchangeable())\\n    res = model.fit()\\n\\n    def extract_or(result, name):\\n        coef = result.params[name]\\n        se = result.bse[name]\\n        p = result.pvalues[name]\\n        or_val = np.exp(coef)\\n        ci_lo = np.exp(coef - 1.96 * se)\\n        ci_hi = np.exp(coef + 1.96 * se)\\n        return round(float(or_val), 4), [round(float(ci_lo), 4), round(float(ci_hi), 4)], round(float(p), 6)\\n\\n    style_or, style_ci, style_p = extract_or(res, \\\"is_style_in_A\\\")\\n    orig_or, orig_ci, orig_p = extract_or(res, \\\"is_original_in_A\\\")\\n\\n    r_corr = float(df[\\\"is_style_in_A\\\"].corr(df[\\\"is_original_in_A\\\"]))\\n    from statsmodels.stats.outliers_influence import variance_inflation_factor\\n    vif = variance_inflation_factor(exog.values, 1)\\n\\n    return {\\n        \\\"gee_style_or\\\": style_or,\\n        \\\"gee_style_ci\\\": style_ci,\\n        \\\"gee_style_p\\\": style_p,\\n        \\\"gee_orig_or\\\": orig_or,\\n        \\\"gee_orig_ci\\\": orig_ci,\\n        \\\"gee_orig_p\\\": orig_p,\\n        \\\"gee_n_obs\\\": len(df),\\n        \\\"gee_n_pairs\\\": df[\\\"pair_id\\\"].nunique(),\\n        \\\"gee_style_orig_corr\\\": round(r_corr, 4),\\n        \\\"gee_vif\\\": round(float(vif), 4),\\n    }\\n\\n\\ndef analyze_config(cfg):\\n    pw_path = os.path.join(DATA_DIR, cfg[\\\"pairwise_file\\\"])\\n    recs, comps, pairs = load_pairwise(pw_path)\\n\\n    result = {\\\"config\\\": cfg[\\\"name\\\"], \\\"judge\\\": cfg[\\\"judge\\\"], \\\"benchmark\\\": cfg[\\\"benchmark\\\"], \\\"axis\\\": cfg[\\\"axis\\\"]}\\n    result[\\\"n_total\\\"] = len(recs)\\n    result[\\\"n_consistent\\\"] = sum(1 for r in recs if r[\\\"consistent\\\"])\\n    result[\\\"n_inconsistent\\\"] = sum(1 for r in recs if not r[\\\"consistent\\\"])\\n    result[\\\"consistency_rate\\\"] = round(result[\\\"n_consistent\\\"] / result[\\\"n_total\\\"], 4) if result[\\\"n_total\\\"] > 0 else 0\\n\\n    bt = bt_analysis(comps, pairs)\\n    result.update(bt)\\n\\n    if cfg[\\\"likert_file\\\"]:\\n        likert = likert_from_scores(os.path.join(DATA_DIR, cfg[\\\"likert_file\\\"]))\\n    else:\\n        likert = likert_from_pairwise(recs)\\n    result.update(likert)\\n\\n    gee = gee_analysis(recs)\\n    result.update(gee)\\n\\n    result[\\\"blindspot\\\"] = bt[\\\"bt_sig\\\"] and not likert[\\\"likert_sig\\\"]\\n\\n    return result\\n\\n\\ndef main():\\n    os.makedirs(OUT_DIR, exist_ok=True)\\n    results = []\\n    for cfg in CONFIGS:\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  {cfg['name']}\\\")\\n        print(f\\\"{'='*60}\\\")\\n        r = analyze_config(cfg)\\n        results.append(r)\\n\\n        print(f\\\"  N={r['n_total']}, consistent={r['n_consistent']} ({r['consistency_rate']*100:.1f}%)\\\")\\n        print(f\\\"\\\\n  BT: win_prob={r['bt_win_prob']:.4f}, CI={r['bt_ci']}, p={r['bt_p']:.6f}, sig={r['bt_sig']}\\\")\\n        print(f\\\"  Likert: ATE={r['likert_ate']}, d={r['likert_d']}, p={r['likert_p']}, sig={r['likert_sig']} ({r.get('likert_note','')})\\\")\\n        print(f\\\"  GEE: style_OR={r['gee_style_or']:.4f} {r['gee_style_ci']} p={r['gee_style_p']:.6f}\\\")\\n        print(f\\\"       orig_OR={r['gee_orig_or']:.4f} {r['gee_orig_ci']} p={r['gee_orig_p']:.6f}\\\")\\n        print(f\\\"  Blindspot: {r['blindspot']}\\\")\\n\\n    out_path = os.path.join(OUT_DIR, \\\"cross_benchmark_local.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False, default=lambda x: bool(x) if isinstance(x, (np.bool_,)) else x)\\n    print(f\\\"\\\\nSaved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "ce0aaa6e-1f01-4a27-baf8-50d9870d170a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-benchmark BT + GEE analysis for R6-SF3 local vLLM configs.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, sys\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport choix\\\\nfrom scipy import stats\\\\nimport statsmodels.api as sm\\\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\\\nfrom statsmodels.genmod.families import Binomial\\\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\\\n\\\\nFORMAL, CASUAL = 0, 1\\\\nN_BOOT = 10000\\\\nSEED = 42\\\\nNLI_THRESHOLD = 0.90\\\\nDATA_DIR = \\\\\\\"/root/causal_style_decomp_judge/data\\\\\\\"\\\\nOUT_DIR = \\\\\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\\\\\"\\\\n\\\\nCONFIGS = [\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"AlpacaEval × Llama-70B × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"scored_alpacaeval_llama70b_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": None,\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-3.3-70B\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"MT-Bench × Qwen3-32B × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"scored_mtbench_qwen32b_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": \\\\\\\"scored_mtbench_qwen32b.jsonl\\\\\\\",\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"AlpacaEval × Claude Sonnet 4 × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": \\\\\\\"scored_claude_alpacaeval_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Claude Sonnet 4\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"AlpacaEval × Claude Sonnet 4 × verbosity\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": \\\\\\\"scored_claude_alpacaeval_verbosity.jsonl\\\\\\\",\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Claude Sonnet 4\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"MT-Bench × Claude Sonnet 4 × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"pairwise_results_claude_mtbench_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": \\\\\\\"scored_claude_mtbench_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Claude Sonnet 4\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef load_pairwise(path):\\\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\\\n    recs = [r for r in recs if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= NLI_THRESHOLD]\\\\n    comparisons = []\\\\n    pair_groups = {}\\\\n    for rec in recs:\\\\n        pid = rec[\\\\\\\"id\\\\\\\"]\\\\n        pcomps = []\\\\n        t1 = rec.get(\\\\\\\"trial1_choice\\\\\\\")\\\\n        if t1 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            pcomps.append((FORMAL, CASUAL) if t1 == \\\\\\\"A\\\\\\\" else (CASUAL, FORMAL))\\\\n        t2 = rec.get(\\\\\\\"trial2_choice\\\\\\\")\\\\n        if t2 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            pcomps.append((CASUAL, FORMAL) if t2 == \\\\\\\"A\\\\\\\" else (FORMAL, CASUAL))\\\\n        comparisons.extend(pcomps)\\\\n        pair_groups[pid] = pcomps\\\\n    return recs, comparisons, pair_groups\\\\n\\\\n\\\\ndef bt_analysis(comparisons, pair_groups):\\\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\\\n    diff = params[FORMAL] - params[CASUAL]\\\\n    p_formal = 1.0 / (1.0 + np.exp(-diff))\\\\n\\\\n    rng = np.random.RandomState(SEED)\\\\n    pair_ids = list(pair_groups.keys())\\\\n    n_pairs = len(pair_ids)\\\\n    boot_probs = []\\\\n    for _ in range(N_BOOT):\\\\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\\\n        boot = []\\\\n        for i in idx:\\\\n            boot.extend(pair_groups[pair_ids[i]])\\\\n        try:\\\\n            bp = choix.ilsr_pairwise(2, boot, alpha=0.01)\\\\n            boot_probs.append(1.0 / (1.0 + np.exp(-(bp[FORMAL] - bp[CASUAL]))))\\\\n        except Exception:\\\\n            pass\\\\n\\\\n    boot_probs = np.array(boot_probs)\\\\n    ci_lo, ci_hi = np.percentile(boot_probs, [2.5, 97.5])\\\\n    p_val = 2 * min(np.mean(boot_probs < 0.5), np.mean(boot_probs > 0.5))\\\\n    p_val = max(p_val, 1.0 / N_BOOT)\\\\n    return {\\\\n        \\\\\\\"bt_win_prob\\\\\\\": round(float(p_formal), 4),\\\\n        \\\\\\\"bt_ci\\\\\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\\\n        \\\\\\\"bt_p\\\\\\\": round(float(p_val), 6),\\\\n        \\\\\\\"bt_sig\\\\\\\": p_val < 0.05,\\\\n    }\\\\n\\\\n\\\\ndef likert_from_pairwise(recs):\\\\n    consistent = [r for r in recs if r[\\\\\\\"consistent\\\\\\\"]]\\\\n    n = len(consistent)\\\\n    if n == 0:\\\\n        return {\\\\\\\"likert_ate\\\\\\\": None, \\\\\\\"lik\\\\n\\\\n... [截断: 输出过长，省略 2042 字符] ...\\\\n\\\\nrmal\\\\\\\")\\\\n        t1 = r.get(\\\\\\\"trial1_choice\\\\\\\")\\\\n        t2 = r.get(\\\\\\\"trial2_choice\\\\\\\")\\\\n        if t1 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            rows.append({\\\\n                \\\\\\\"pair_id\\\\\\\": i,\\\\n                \\\\\\\"is_style_in_A\\\\\\\": 1.0,\\\\n                \\\\\\\"is_original_in_A\\\\\\\": 1.0 if orig == \\\\\\\"formal\\\\\\\" else 0.0,\\\\n                \\\\\\\"chose_A\\\\\\\": 1.0 if t1 == \\\\\\\"A\\\\\\\" else 0.0,\\\\n            })\\\\n        if t2 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            rows.append({\\\\n                \\\\\\\"pair_id\\\\\\\": i,\\\\n                \\\\\\\"is_style_in_A\\\\\\\": 0.0,\\\\n                \\\\\\\"is_original_in_A\\\\\\\": 1.0 if orig == \\\\\\\"casual\\\\\\\" else 0.0,\\\\n                \\\\\\\"chose_A\\\\\\\": 1.0 if t2 == \\\\\\\"A\\\\\\\" else 0.0,\\\\n            })\\\\n\\\\n    df = pd.DataFrame(rows)\\\\n    exog = sm.add_constant(df[[\\\\\\\"is_style_in_A\\\\\\\", \\\\\\\"is_original_in_A\\\\\\\"]])\\\\n    model = GEE(df[\\\\\\\"chose_A\\\\\\\"], exog, groups=df[\\\\\\\"pair_id\\\\\\\"],\\\\n                family=Binomial(), cov_struct=Exchangeable())\\\\n    res = model.fit()\\\\n\\\\n    def extract_or(result, name):\\\\n        coef = result.params[name]\\\\n        se = result.bse[name]\\\\n        p = result.pvalues[name]\\\\n        or_val = np.exp(coef)\\\\n        ci_lo = np.exp(coef - 1.96 * se)\\\\n        ci_hi = np.exp(coef + 1.96 * se)\\\\n        return round(float(or_val), 4), [round(float(ci_lo), 4), round(float(ci_hi), 4)], round(float(p), 6)\\\\n\\\\n    style_or, style_ci, style_p = extract_or(res, \\\\\\\"is_style_in_A\\\\\\\")\\\\n    orig_or, orig_ci, orig_p = extract_or(res, \\\\\\\"is_original_in_A\\\\\\\")\\\\n\\\\n    r_corr = float(df[\\\\\\\"is_style_in_A\\\\\\\"].corr(df[\\\\\\\"is_original_in_A\\\\\\\"]))\\\\n    from statsmodels.stats.outliers_influence import variance_inflation_factor\\\\n    vif = variance_inflation_factor(exog.values, 1)\\\\n\\\\n    return {\\\\n        \\\\\\\"gee_style_or\\\\\\\": style_or,\\\\n        \\\\\\\"gee_style_ci\\\\\\\": style_ci,\\\\n        \\\\\\\"gee_style_p\\\\\\\": style_p,\\\\n        \\\\\\\"gee_orig_or\\\\\\\": orig_or,\\\\n        \\\\\\\"gee_orig_ci\\\\\\\": orig_ci,\\\\n        \\\\\\\"gee_orig_p\\\\\\\": orig_p,\\\\n        \\\\\\\"gee_n_obs\\\\\\\": len(df),\\\\n        \\\\\\\"gee_n_pairs\\\\\\\": df[\\\\\\\"pair_id\\\\\\\"].nunique(),\\\\n        \\\\\\\"gee_style_orig_corr\\\\\\\": round(r_corr, 4),\\\\n        \\\\\\\"gee_vif\\\\\\\": round(float(vif), 4),\\\\n    }\\\\n\\\\n\\\\ndef analyze_config(cfg):\\\\n    pw_path = os.path.join(DATA_DIR, cfg[\\\\\\\"pairwise_file\\\\\\\"])\\\\n    recs, comps, pairs = load_pairwise(pw_path)\\\\n\\\\n    result = {\\\\\\\"config\\\\\\\": cfg[\\\\\\\"name\\\\\\\"], \\\\\\\"judge\\\\\\\": cfg[\\\\\\\"judge\\\\\\\"], \\\\\\\"benchmark\\\\\\\": cfg[\\\\\\\"benchmark\\\\\\\"], \\\\\\\"axis\\\\\\\": cfg[\\\\\\\"axis\\\\\\\"]}\\\\n    result[\\\\\\\"n_total\\\\\\\"] = len(recs)\\\\n    result[\\\\\\\"n_consistent\\\\\\\"] = sum(1 for r in recs if r[\\\\\\\"consistent\\\\\\\"])\\\\n    result[\\\\\\\"n_inconsistent\\\\\\\"] = sum(1 for r in recs if not r[\\\\\\\"consistent\\\\\\\"])\\\\n    result[\\\\\\\"consistency_rate\\\\\\\"] = round(result[\\\\\\\"n_consistent\\\\\\\"] / result[\\\\\\\"n_total\\\\\\\"], 4) if result[\\\\\\\"n_total\\\\\\\"] > 0 else 0\\\\n\\\\n    bt = bt_analysis(comps, pairs)\\\\n    result.update(bt)\\\\n\\\\n    if cfg[\\\\\\\"likert_file\\\\\\\"]:\\\\n        likert = likert_from_scores(os.path.join(DATA_DIR, cfg[\\\\\\\"likert_file\\\\\\\"]))\\\\n    else:\\\\n        likert = likert_from_pairwise(recs)\\\\n    result.update(likert)\\\\n\\\\n    gee = gee_analysis(recs)\\\\n    result.update(gee)\\\\n\\\\n    result[\\\\\\\"blindspot\\\\\\\"] = bt[\\\\\\\"bt_sig\\\\\\\"] and not likert[\\\\\\\"likert_sig\\\\\\\"]\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    os.makedirs(OUT_DIR, exist_ok=True)\\\\n    results = []\\\\n    for cfg in CONFIGS:\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"  {cfg['name']}\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n        r = analyze_config(cfg)\\\\n        results.append(r)\\\\n\\\\n        print(f\\\\\\\"  N={r['n_total']}, consistent={r['n_consistent']} ({r['consistency_rate']*100:.1f}%)\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\n  BT: win_prob={r['bt_win_prob']:.4f}, CI={r['bt_ci']}, p={r['bt_p']:.6f}, sig={r['bt_sig']}\\\\\\\")\\\\n        print(f\\\\\\\"  Likert: ATE={r['likert_ate']}, d={r['likert_d']}, p={r['likert_p']}, sig={r['likert_sig']} ({r.get('likert_note','')})\\\\\\\")\\\\n        print(f\\\\\\\"  GEE: style_OR={r['gee_style_or']:.4f} {r['gee_style_ci']} p={r['gee_style_p']:.6f}\\\\\\\")\\\\n        print(f\\\\\\\"       orig_OR={r['gee_orig_or']:.4f} {r['gee_orig_ci']} p={r['gee_orig_p']:.6f}\\\\\\\")\\\\n        print(f\\\\\\\"  Blindspot: {r['blindspot']}\\\\\\\")\\\\n\\\\n    out_path = os.path.join(OUT_DIR, \\\\\\\"cross_benchmark_local.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2, ensure_ascii=False, default=lambda x: bool(x) if isinstance(x, (np.bool_,)) else x)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-benchmark BT + GEE analysis for R6-SF3 local vLLM configs.\\\"\\\"\\\"\\n\\nimport json, os, sys\\nimport numpy as np\\nimport pandas as pd\\nimport choix\\nfrom scipy import stats\\nimport statsmodels.api as sm\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\nfrom statsmodels.genmod.families import Binomial\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\n\\nFORMAL, CASUAL = 0, 1\\nN_BOOT = 10000\\nSEED = 42\\nNLI_THRESHOLD = 0.90\\nDATA_DIR = \\\"/root/causal_style_decomp_judge/data\\\"\\nOUT_DIR = \\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\"\\n\\nCONFIGS = [\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Llama-70B × formality\\\",\\n        \\\"pairwise_file\\\": \\\"scored_alpacaeval_llama70b_formality.jsonl\\\",\\n        \\\"likert_file\\\": None,\\n        \\\"judge\\\": \\\"Llama-3.3-70B\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"MT-Bench × Qwen3-32B × formality\\\",\\n        \\\"pairwise_file\\\": \\\"scored_mtbench_qwen32b_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_mtbench_qwen32b.jsonl\\\",\\n        \\\"judge\\\": \\\"Qwen3-32B\\\",\\n        \\\"benchmark\\\": \\\"MT-Bench\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Claude Sonnet 4 × formality\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_alpacaeval_formality.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Claude Sonnet 4 × verbosity\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_alpacaeval_verbosity.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"verbosity\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"MT-Bench × Claude Sonnet 4 × formality\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_mtbench_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_mtbench_formality.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"MT-Bench\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n]\\n\\n\\ndef load_pairwise(path):\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\n    recs = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= NLI_THRESHOLD]\\n    comparisons = []\\n    pair_groups = {}\\n    for rec in recs:\\n        pid = rec[\\\"id\\\"]\\n        pcomps = []\\n        t1 = rec.get(\\\"trial1_choice\\\")\\n        if t1 in (\\\"A\\\", \\\"B\\\"):\\n            pcomps.append((FORMAL, CASUAL) if t1 == \\\"A\\\" else (CASUAL, FORMAL))\\n        t2 = rec.get(\\\"trial2_choice\\\")\\n        if t2 in (\\\"A\\\", \\\"B\\\"):\\n            pcomps.append((CASUAL, FORMAL) if t2 == \\\"A\\\" else (FORMAL, CASUAL))\\n        comparisons.extend(pcomps)\\n        pair_groups[pid] = pcomps\\n    return recs, comparisons, pair_groups\\n\\n\\ndef bt_analysis(comparisons, pair_groups):\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\n    diff = params[FORMAL] - params[CASUAL]\\n    p_formal = 1.0 / (1.0 + np.exp(-diff))\\n\\n    rng = np.random.RandomState(SEED)\\n    pair_ids = list(pair_groups.keys())\\n    n_pairs = len(pair_ids)\\n    boot_probs = []\\n    for _ in range(N_BOOT):\\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\n        boot = []\\n        for i in idx:\\n            boot.extend(pair_groups[pair_ids[i]])\\n        try:\\n            bp = choix.ilsr_pairwise(2, boot, alpha=0.01)\\n            boot_probs.append(1.0 / (1.0 + np.exp(-(bp[FORMAL] - bp[CASUAL]))))\\n        except Exception:\\n            pass\\n\\n    boot_probs = np.array(boot_probs)\\n    ci_lo, ci_hi = np.percentile(boot_probs, [2.5, 97.5])\\n    p_val = 2 * min(np.mean(boot_probs < 0.5), np.mean(boot_probs > 0.5))\\n    p_val = max(p_val, 1.0 / N_BOOT)\\n    return {\\n        \\\"bt_win_prob\\\": round(float(p_formal), 4),\\n        \\\"bt_ci\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\n        \\\"bt_p\\\": round(float(p_val), 6),\\n        \\\"bt_sig\\\": p_val < 0.05,\\n    }\\n\\n\\ndef likert_from_pairwise(recs):\\n    consistent = [r for r in recs if r[\\\"consistent\\\"]]\\n    n = len(consistent)\\n    if n == 0:\\n        return {\\\"likert_ate\\\": None, \\\"lik\\n\\n... [截断: 输出过长，省略 2042 字符] ...\\n\\nrmal\\\")\\n        t1 = r.get(\\\"trial1_choice\\\")\\n        t2 = r.get(\\\"trial2_choice\\\")\\n        if t1 in (\\\"A\\\", \\\"B\\\"):\\n            rows.append({\\n                \\\"pair_id\\\": i,\\n                \\\"is_style_in_A\\\": 1.0,\\n                \\\"is_original_in_A\\\": 1.0 if orig == \\\"formal\\\" else 0.0,\\n                \\\"chose_A\\\": 1.0 if t1 == \\\"A\\\" else 0.0,\\n            })\\n        if t2 in (\\\"A\\\", \\\"B\\\"):\\n            rows.append({\\n                \\\"pair_id\\\": i,\\n                \\\"is_style_in_A\\\": 0.0,\\n                \\\"is_original_in_A\\\": 1.0 if orig == \\\"casual\\\" else 0.0,\\n                \\\"chose_A\\\": 1.0 if t2 == \\\"A\\\" else 0.0,\\n            })\\n\\n    df = pd.DataFrame(rows)\\n    exog = sm.add_constant(df[[\\\"is_style_in_A\\\", \\\"is_original_in_A\\\"]])\\n    model = GEE(df[\\\"chose_A\\\"], exog, groups=df[\\\"pair_id\\\"],\\n                family=Binomial(), cov_struct=Exchangeable())\\n    res = model.fit()\\n\\n    def extract_or(result, name):\\n        coef = result.params[name]\\n        se = result.bse[name]\\n        p = result.pvalues[name]\\n        or_val = np.exp(coef)\\n        ci_lo = np.exp(coef - 1.96 * se)\\n        ci_hi = np.exp(coef + 1.96 * se)\\n        return round(float(or_val), 4), [round(float(ci_lo), 4), round(float(ci_hi), 4)], round(float(p), 6)\\n\\n    style_or, style_ci, style_p = extract_or(res, \\\"is_style_in_A\\\")\\n    orig_or, orig_ci, orig_p = extract_or(res, \\\"is_original_in_A\\\")\\n\\n    r_corr = float(df[\\\"is_style_in_A\\\"].corr(df[\\\"is_original_in_A\\\"]))\\n    from statsmodels.stats.outliers_influence import variance_inflation_factor\\n    vif = variance_inflation_factor(exog.values, 1)\\n\\n    return {\\n        \\\"gee_style_or\\\": style_or,\\n        \\\"gee_style_ci\\\": style_ci,\\n        \\\"gee_style_p\\\": style_p,\\n        \\\"gee_orig_or\\\": orig_or,\\n        \\\"gee_orig_ci\\\": orig_ci,\\n        \\\"gee_orig_p\\\": orig_p,\\n        \\\"gee_n_obs\\\": len(df),\\n        \\\"gee_n_pairs\\\": df[\\\"pair_id\\\"].nunique(),\\n        \\\"gee_style_orig_corr\\\": round(r_corr, 4),\\n        \\\"gee_vif\\\": round(float(vif), 4),\\n    }\\n\\n\\ndef analyze_config(cfg):\\n    pw_path = os.path.join(DATA_DIR, cfg[\\\"pairwise_file\\\"])\\n    recs, comps, pairs = load_pairwise(pw_path)\\n\\n    result = {\\\"config\\\": cfg[\\\"name\\\"], \\\"judge\\\": cfg[\\\"judge\\\"], \\\"benchmark\\\": cfg[\\\"benchmark\\\"], \\\"axis\\\": cfg[\\\"axis\\\"]}\\n    result[\\\"n_total\\\"] = len(recs)\\n    result[\\\"n_consistent\\\"] = sum(1 for r in recs if r[\\\"consistent\\\"])\\n    result[\\\"n_inconsistent\\\"] = sum(1 for r in recs if not r[\\\"consistent\\\"])\\n    result[\\\"consistency_rate\\\"] = round(result[\\\"n_consistent\\\"] / result[\\\"n_total\\\"], 4) if result[\\\"n_total\\\"] > 0 else 0\\n\\n    bt = bt_analysis(comps, pairs)\\n    result.update(bt)\\n\\n    if cfg[\\\"likert_file\\\"]:\\n        likert = likert_from_scores(os.path.join(DATA_DIR, cfg[\\\"likert_file\\\"]))\\n    else:\\n        likert = likert_from_pairwise(recs)\\n    result.update(likert)\\n\\n    gee = gee_analysis(recs)\\n    result.update(gee)\\n\\n    result[\\\"blindspot\\\"] = bt[\\\"bt_sig\\\"] and not likert[\\\"likert_sig\\\"]\\n\\n    return result\\n\\n\\ndef main():\\n    os.makedirs(OUT_DIR, exist_ok=True)\\n    results = []\\n    for cfg in CONFIGS:\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  {cfg['name']}\\\")\\n        print(f\\\"{'='*60}\\\")\\n        r = analyze_config(cfg)\\n        results.append(r)\\n\\n        print(f\\\"  N={r['n_total']}, consistent={r['n_consistent']} ({r['consistency_rate']*100:.1f}%)\\\")\\n        print(f\\\"\\\\n  BT: win_prob={r['bt_win_prob']:.4f}, CI={r['bt_ci']}, p={r['bt_p']:.6f}, sig={r['bt_sig']}\\\")\\n        print(f\\\"  Likert: ATE={r['likert_ate']}, d={r['likert_d']}, p={r['likert_p']}, sig={r['likert_sig']} ({r.get('likert_note','')})\\\")\\n        print(f\\\"  GEE: style_OR={r['gee_style_or']:.4f} {r['gee_style_ci']} p={r['gee_style_p']:.6f}\\\")\\n        print(f\\\"       orig_OR={r['gee_orig_or']:.4f} {r['gee_orig_ci']} p={r['gee_orig_p']:.6f}\\\")\\n        print(f\\\"  Blindspot: {r['blindspot']}\\\")\\n\\n    out_path = os.path.join(OUT_DIR, \\\"cross_benchmark_local.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False, default=lambda x: bool(x) if isinstance(x, (np.bool_,)) else x)\\n    print(f\\\"\\\\nSaved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T08:40:00.425Z_
+
+<details><summary>↩ Tool result · `toolu_01MqoP3x5EWiu1RdyHqZoP2U`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "c9178f84-4fcf-49f0-8194-dc47b60060f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T08:40:02.099Z_
+
+<details><summary>↩ Tool result · `toolu_01Yc9d23gWE52Azv7etWyiy4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root   25144 May 21 23:49 /root/causal_style_decomp_judge/data/scored_100pt_gpt4o_formality.jsonl\\n-rw-r--r-- 1 root root   25058 May 21 23:49 /root/causal_style_decomp_judge/data/scored_100pt_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root  314743 May 21 01:28 /root/causal_style_decomp_judge/data/scored_32b.jsonl\\n-rw-r--r-- 1 root root  276902 May 21 16:36 /root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o.jsonl\\n-rw-r--r-- 1 root root  380105 May 23 07:44 /root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root   28703 May 24 16:22 /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root   27256 May 24 16:23 /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_verbosity.jsonl\\n-rw-r--r-- 1 root root  279608 May 21 16:05 /root/causal_style_decomp_judge/data/scored_alpacaeval_qwen32b.jsonl\\n-rw-r--r-- 1 root root  381429 May 21 16:59 /root/causal_style_decomp_judge/data/scored_alpacaeval_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root   34915 May 23 09:18 /root/causal_style_decomp_judge/data/scored_claude_alpacaeval_formality.jsonl\\n-rw-r--r-- 1 root root   33648 May 23 09:18 /root/causal_style_decomp_judge/data/scored_claude_alpacaeval_verbosity.jsonl\\n-rw-r--r-- 1 root root  275939 May 21 16:40 /root/causal_style_decomp_judge/data/scored_claude_formality.jsonl\\n-rw-r--r-- 1 root root   39047 May 23 09:18 /root/causal_style_decomp_judge/data/scored_claude_mtbench_formality.jsonl\\n-rw-r--r-- 1 root root  331530 May 21 16:46 /root/causal_style_decomp_judge/data/scored_claude_verbosity.jsonl\\n-rw-r--r-- 1 root root  275958 May 22 06:19 /root/causal_style_decomp_judge/data/scored_gemini_flash_formality.jsonl\\n-rw-r--r-- 1 root root  331547 May 22 06:21 /root/causal_style_decomp_judge/data/scored_gemini_flash_verbosity.jsonl\\n-rw-r--r-- 1 root root  326527 May 21 13:13 /root/causal_style_decomp_judge/data/scored_gpt4o_register.jsonl\\n-rw-r--r-- 1 root root  274688 May 21 18:45 /root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root  363014 May 21 17:10 /root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root  384551 May 21 13:12 /root/causal_style_decomp_judge/data/scored_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root  275940 May 22 00:00 /root/causal_style_decomp_judge/data/scored_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root  300568 May 22 01:06 /root/causal_style_decomp_judge/data/scored_llama70b_register.jsonl\\n-rw-r--r-- 1 root root  331532 May 22 00:00 /root/causal_style_decomp_judge/data/scored_llama70b_verbosity.jsonl\\n-rw-r--r-- 1 root root  333337 May 24 15:39 /root/causal_style_decomp_judge/data/scored_llama_rewriter_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root  432079 May 21 16:42 /root/causal_style_decomp_judge/data/scored_mtbench_gpt4o.jsonl\\n-rw-r--r-- 1 root root   34061 May 24 16:24 /root/causal_style_decomp_judge/data/scored_mtbench_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root  434276 May 21 16:18 /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b.jsonl\\n-rw-r--r-- 1 root root   47053 May 23 07:18 /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl\\n-rw-r--r-- 1 root root  314726 May 21 12:17 /root/causal_style_decomp_judge/data/scored_qwen32b_formality.jsonl\\n-rw-r--r-- 1 root root  326509 May 21 12:21 /root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\n-rw-r--r-- 1 root root  384534 May 21 12:19 /root/causal_style_decomp_judge/data/scored_qwen32b_verbosity.jsonl\\n-rw-r--r-- 1 root root 1182717 May 24 15:02 /root/causal_style_decomp_judge/data/scored_scaled_formality_llama70b.jsonl\\n-rw-r--r-- 1 root root 1186747 May 21 17:07 /root/causal_style_decomp_judge/data/scored_scaled_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root 1351093 May 23 20:40 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_claude.jsonl\\n-rw-r--r-- 1 root root 1351300 May 23 20:38 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_gemini.jsonl\\n-rw-r--r-- 1 root root  194851 May 23 20:16 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt4o.jsonl\\n-rw-r--r-- 1 root root 1351177 May 23 20:38 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt54.jsonl\\n-rw-r--r-- 1 root root 1351111 May 23 20:33 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_llama70b.jsonl\\n-rw-r--r-- 1 root root 1351087 May 23 20:27 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root       0 May 21 06:43 /root/causal_style_decomp_judge/data/scored_verbosity.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "84c0b708-e739-4232-97e7-0ddf67f13c2f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root   25144 May 21 23:49 /root/causal_style_decomp_judge/data/scored_100pt_gpt4o_formality.jsonl\\\\n-rw-r--r-- 1 root root   25058 May 21 23:49 /root/causal_style_decomp_judge/data/scored_100pt_gpt4o_verbosity.jsonl\\\\n-rw-r--r-- 1 root root  314743 May 21 01:28 /root/causal_style_decomp_judge/data/scored_32b.jsonl\\\\n-rw-r--r-- 1 root root  276902 May 21 16:36 /root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o.jsonl\\\\n-rw-r--r-- 1 root root  380105 May 23 07:44 /root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o_verbosity.jsonl\\\\n-rw-r--r-- 1 root root   28703 May 24 16:22 /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl\\\\n-rw-r--r-- 1 root root   27256 May 24 16:23 /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_verbosity.jsonl\\\\n-rw-r--r-- 1 root root  279608 May 21 16:05 /root/causal_style_decomp_judge/data/scored_alpacaeval_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root  381429 May 21 16:59 /root/causal_style_decomp_judge/data/scored_alpacaeval_verbosity_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root   34915 May 23 09:18 /root/causal_style_decomp_judge/data/scored_claude_alpacaeval_formality.jsonl\\\\n-rw-r--r-- 1 root root   33648 May 23 09:18 /root/causal_style_decomp_judge/data/scored_claude_alpacaeval_verbosity.jsonl\\\\n-rw-r--r-- 1 root root  275939 May 21 16:40 /root/causal_style_decomp_judge/data/scored_claude_formality.jsonl\\\\n-rw-r--r-- 1 root root   39047 May 23 09:18 /root/causal_style_decomp_judge/data/scored_claude_mtbench_formality.jsonl\\\\n-rw-r--r-- 1 root root  331530 May 21 16:46 /root/causal_style_decomp_judge/data/scored_claude_verbosity.jsonl\\\\n-rw-r--r-- 1 root root  275958 May 22 06:19 /root/causal_style_decomp_judge/data/scored_gemini_flash_formality.jsonl\\\\n-rw-r--r-- 1 root root  331547 May 22 06:21 /root/causal_style_decomp_judge/data/scored_gemini_flash_verbosity.jsonl\\\\n-rw-r--r-- 1 root root  326527 May 21 13:13 /root/causal_style_decomp_judge/data/scored_gpt4o_register.jsonl\\\\n-rw-r--r-- 1 root root  274688 May 21 18:45 /root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_formality_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root  363014 May 21 17:10 /root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_verbosity_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root  384551 May 21 13:12 /root/causal_style_decomp_judge/data/scored_gpt4o_verbosity.jsonl\\\\n-rw-r--r-- 1 root root  275940 May 22 00:00 /root/causal_style_decomp_judge/data/scored_llama70b_formality.jsonl\\\\n-rw-r--r-- 1 root root  300568 May 22 01:06 /root/causal_style_decomp_judge/data/scored_llama70b_register.jsonl\\\\n-rw-r--r-- 1 root root  331532 May 22 00:00 /root/causal_style_decomp_judge/data/scored_llama70b_verbosity.jsonl\\\\n-rw-r--r-- 1 root root  333337 May 24 15:39 /root/causal_style_decomp_judge/data/scored_llama_rewriter_formality_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root  432079 May 21 16:42 /root/causal_style_decomp_judge/data/scored_mtbench_gpt4o.jsonl\\\\n-rw-r--r-- 1 root root   34061 May 24 16:24 /root/causal_style_decomp_judge/data/scored_mtbench_llama70b_formality.jsonl\\\\n-rw-r--r-- 1 root root  434276 May 21 16:18 /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root   47053 May 23 07:18 /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl\\\\n-rw-r--r-- 1 root root  314726 May 21 12:17 /root/causal_style_decomp_judge/data/scored_qwen32b_formality.jsonl\\\\n-rw-r--r-- 1 root root  326509 May 21 12:21 /root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\\\n-rw-r--r-- 1 root root  384534 May 21 12:19 /root/causal_style_decomp_judge/data/scored_qwen32b_verbosity.jsonl\\\\n-rw-r--r-- 1 root root 1182717 May 24 15:02 /root/causal_style_decomp_judge/data/scored_scaled_formality_llama70b.jsonl\\\\n-rw-r--r-- 1 root root 1186747 May 21 17:07 /root/causal_style_decomp_judge/data/scored_scaled_formality_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root 1351093 May 23 20:40 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_claude.jsonl\\\\n-rw-r--r-- 1 root root 1351300 May 23 20:38 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_gemini.jsonl\\\\n-rw-r--r-- 1 root root  194851 May 23 20:16 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt4o.jsonl\\\\n-rw-r--r-- 1 root root 1351177 May 23 20:38 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt54.jsonl\\\\n-rw-r--r-- 1 root root 1351111 May 23 20:33 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_llama70b.jsonl\\\\n-rw-r--r-- 1 root root 1351087 May 23 20:27 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root       0 May 21 06:43 /root/causal_style_decomp_judge/data/scored_verbosity.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root   25144 May 21 23:49 /root/causal_style_decomp_judge/data/scored_100pt_gpt4o_formality.jsonl\\n-rw-r--r-- 1 root root   25058 May 21 23:49 /root/causal_style_decomp_judge/data/scored_100pt_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root  314743 May 21 01:28 /root/causal_style_decomp_judge/data/scored_32b.jsonl\\n-rw-r--r-- 1 root root  276902 May 21 16:36 /root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o.jsonl\\n-rw-r--r-- 1 root root  380105 May 23 07:44 /root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root   28703 May 24 16:22 /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root   27256 May 24 16:23 /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_verbosity.jsonl\\n-rw-r--r-- 1 root root  279608 May 21 16:05 /root/causal_style_decomp_judge/data/scored_alpacaeval_qwen32b.jsonl\\n-rw-r--r-- 1 root root  381429 May 21 16:59 /root/causal_style_decomp_judge/data/scored_alpacaeval_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root   34915 May 23 09:18 /root/causal_style_decomp_judge/data/scored_claude_alpacaeval_formality.jsonl\\n-rw-r--r-- 1 root root   33648 May 23 09:18 /root/causal_style_decomp_judge/data/scored_claude_alpacaeval_verbosity.jsonl\\n-rw-r--r-- 1 root root  275939 May 21 16:40 /root/causal_style_decomp_judge/data/scored_claude_formality.jsonl\\n-rw-r--r-- 1 root root   39047 May 23 09:18 /root/causal_style_decomp_judge/data/scored_claude_mtbench_formality.jsonl\\n-rw-r--r-- 1 root root  331530 May 21 16:46 /root/causal_style_decomp_judge/data/scored_claude_verbosity.jsonl\\n-rw-r--r-- 1 root root  275958 May 22 06:19 /root/causal_style_decomp_judge/data/scored_gemini_flash_formality.jsonl\\n-rw-r--r-- 1 root root  331547 May 22 06:21 /root/causal_style_decomp_judge/data/scored_gemini_flash_verbosity.jsonl\\n-rw-r--r-- 1 root root  326527 May 21 13:13 /root/causal_style_decomp_judge/data/scored_gpt4o_register.jsonl\\n-rw-r--r-- 1 root root  274688 May 21 18:45 /root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root  363014 May 21 17:10 /root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root  384551 May 21 13:12 /root/causal_style_decomp_judge/data/scored_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root  275940 May 22 00:00 /root/causal_style_decomp_judge/data/scored_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root  300568 May 22 01:06 /root/causal_style_decomp_judge/data/scored_llama70b_register.jsonl\\n-rw-r--r-- 1 root root  331532 May 22 00:00 /root/causal_style_decomp_judge/data/scored_llama70b_verbosity.jsonl\\n-rw-r--r-- 1 root root  333337 May 24 15:39 /root/causal_style_decomp_judge/data/scored_llama_rewriter_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root  432079 May 21 16:42 /root/causal_style_decomp_judge/data/scored_mtbench_gpt4o.jsonl\\n-rw-r--r-- 1 root root   34061 May 24 16:24 /root/causal_style_decomp_judge/data/scored_mtbench_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root  434276 May 21 16:18 /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b.jsonl\\n-rw-r--r-- 1 root root   47053 May 23 07:18 /root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl\\n-rw-r--r-- 1 root root  314726 May 21 12:17 /root/causal_style_decomp_judge/data/scored_qwen32b_formality.jsonl\\n-rw-r--r-- 1 root root  326509 May 21 12:21 /root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\n-rw-r--r-- 1 root root  384534 May 21 12:19 /root/causal_style_decomp_judge/data/scored_qwen32b_verbosity.jsonl\\n-rw-r--r-- 1 root root 1182717 May 24 15:02 /root/causal_style_decomp_judge/data/scored_scaled_formality_llama70b.jsonl\\n-rw-r--r-- 1 root root 1186747 May 21 17:07 /root/causal_style_decomp_judge/data/scored_scaled_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root 1351093 May 23 20:40 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_claude.jsonl\\n-rw-r--r-- 1 root root 1351300 May 23 20:38 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_gemini.jsonl\\n-rw-r--r-- 1 root root  194851 May 23 20:16 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt4o.jsonl\\n-rw-r--r-- 1 root root 1351177 May 23 20:38 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt54.jsonl\\n-rw-r--r-- 1 root root 1351111 May 23 20:33 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_llama70b.jsonl\\n-rw-r--r-- 1 root root 1351087 May 23 20:27 /root/causal_style_decomp_judge/data/scored_scaled_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root       0 May 21 06:43 /root/causal_style_decomp_judge/data/scored_verbosity.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T08:40:03.784Z_
+
+<details><summary>↩ Tool result · `toolu_01JJinmxJGMMJCH8sWq7Yfm5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root   40593 May 21 02:11 /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\\n-rw-r--r-- 1 root root  287197 May 21 16:33 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_gpt4o.jsonl\\n-rw-r--r-- 1 root root  389705 May 23 07:34 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root   35745 May 24 16:22 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root   34014 May 24 16:23 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_verbosity.jsonl\\n-rw-r--r-- 1 root root   44939 May 21 15:59 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_qwen32b.jsonl\\n-rw-r--r-- 1 root root   43903 May 21 16:54 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root   44922 May 23 09:17 /root/causal_style_decomp_judge/data/pairwise_results_claude_alpacaeval_formality.jsonl\\n-rw-r--r-- 1 root root   43958 May 23 09:18 /root/causal_style_decomp_judge/data/pairwise_results_claude_alpacaeval_verbosity.jsonl\\n-rw-r--r-- 1 root root   36180 May 21 16:33 /root/causal_style_decomp_judge/data/pairwise_results_claude_formality.jsonl\\n-rw-r--r-- 1 root root   47032 May 23 09:18 /root/causal_style_decomp_judge/data/pairwise_results_claude_mtbench_formality.jsonl\\n-rw-r--r-- 1 root root   36110 May 21 16:43 /root/causal_style_decomp_judge/data/pairwise_results_claude_verbosity.jsonl\\n-rw-r--r-- 1 root root   32751 May 21 17:04 /root/causal_style_decomp_judge/data/pairwise_results_debiased_gpt4o_formality.jsonl\\n-rw-r--r-- 1 root root   32747 May 21 23:36 /root/causal_style_decomp_judge/data/pairwise_results_debiased_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root   33003 May 22 00:52 /root/causal_style_decomp_judge/data/pairwise_results_debiased_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root   32989 May 22 00:52 /root/causal_style_decomp_judge/data/pairwise_results_debiased_llama70b_verbosity.jsonl\\n-rw-r--r-- 1 root root   32745 May 21 17:01 /root/causal_style_decomp_judge/data/pairwise_results_debiased_qwen32b_formality.jsonl\\n-rw-r--r-- 1 root root   33019 May 22 06:18 /root/causal_style_decomp_judge/data/pairwise_results_gemini_flash_formality.jsonl\\n-rw-r--r-- 1 root root   32979 May 22 06:20 /root/causal_style_decomp_judge/data/pairwise_results_gemini_flash_verbosity.jsonl\\n-rw-r--r-- 1 root root   41576 May 21 13:10 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_register.jsonl\\n-rw-r--r-- 1 root root   33942 May 21 18:40 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_rewriter_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root   39549 May 21 17:09 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_rewriter_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root   40930 May 21 13:09 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root   36146 May 21 23:59 /root/causal_style_decomp_judge/data/pairwise_results_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root   35984 May 22 01:06 /root/causal_style_decomp_judge/data/pairwise_results_llama70b_register.jsonl\\n-rw-r--r-- 1 root root   36056 May 22 00:00 /root/causal_style_decomp_judge/data/pairwise_results_llama70b_verbosity.jsonl\\n-rw-r--r-- 1 root root   56916 May 24 15:33 /root/causal_style_decomp_judge/data/pairwise_results_llama_rewriter_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root  440297 May 21 16:39 /root/causal_style_decomp_judge/data/pairwise_results_mtbench_gpt4o.jsonl\\n-rw-r--r-- 1 root root   40033 May 24 16:23 /root/causal_style_decomp_judge/data/pairwise_results_mtbench_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root   47036 May 21 16:13 /root/causal_style_decomp_judge/data/pairwise_results_mtbench_qwen32b.jsonl\\n-rw-r--r-- 1 root root   40580 May 21 12:16 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl\\n-rw-r--r-- 1 root root   41575 May 21 12:20 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_register.jsonl\\n-rw-r--r-- 1 root root   40929 May 21 12:18 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl\\n-rw-r--r-- 1 root root  160997 May 24 14:44 /root/causal_style_decomp_judge/data/pairwise_results_scaled_formality_llama70b.jsonl\\n-rw-r--r-- 1 root root 3249146 May 21 17:01 /root/causal_style_decomp_judge/data/pairwise_results_scaled_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root  149978 May 23 20:40 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_claude.jsonl\\n-rw-r--r-- 1 root root  149901 May 23 20:38 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_gemini.jsonl\\n-rw-r--r-- 1 root root       0 May 23 20:17 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_gpt4o.jsonl\\n-rw-r--r-- 1 root root  149981 May 23 20:38 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_gpt54.jsonl\\n-rw-r--r-- 1 root root  149826 May 23 20:28 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_llama70b.jsonl\\n-rw-r--r-- 1 root root  149843 May 23 20:28 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root   35887 May 21 10:46 /root/causal_style_decomp_judge/data/pairwise_results_verbosity.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "37ef3858-4144-47ce-b3a4-ed14bb0f46af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root   40593 May 21 02:11 /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\\\\n-rw-r--r-- 1 root root  287197 May 21 16:33 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_gpt4o.jsonl\\\\n-rw-r--r-- 1 root root  389705 May 23 07:34 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_gpt4o_verbosity.jsonl\\\\n-rw-r--r-- 1 root root   35745 May 24 16:22 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_formality.jsonl\\\\n-rw-r--r-- 1 root root   34014 May 24 16:23 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_verbosity.jsonl\\\\n-rw-r--r-- 1 root root   44939 May 21 15:59 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root   43903 May 21 16:54 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_verbosity_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root   44922 May 23 09:17 /root/causal_style_decomp_judge/data/pairwise_results_claude_alpacaeval_formality.jsonl\\\\n-rw-r--r-- 1 root root   43958 May 23 09:18 /root/causal_style_decomp_judge/data/pairwise_results_claude_alpacaeval_verbosity.jsonl\\\\n-rw-r--r-- 1 root root   36180 May 21 16:33 /root/causal_style_decomp_judge/data/pairwise_results_claude_formality.jsonl\\\\n-rw-r--r-- 1 root root   47032 May 23 09:18 /root/causal_style_decomp_judge/data/pairwise_results_claude_mtbench_formality.jsonl\\\\n-rw-r--r-- 1 root root   36110 May 21 16:43 /root/causal_style_decomp_judge/data/pairwise_results_claude_verbosity.jsonl\\\\n-rw-r--r-- 1 root root   32751 May 21 17:04 /root/causal_style_decomp_judge/data/pairwise_results_debiased_gpt4o_formality.jsonl\\\\n-rw-r--r-- 1 root root   32747 May 21 23:36 /root/causal_style_decomp_judge/data/pairwise_results_debiased_gpt4o_verbosity.jsonl\\\\n-rw-r--r-- 1 root root   33003 May 22 00:52 /root/causal_style_decomp_judge/data/pairwise_results_debiased_llama70b_formality.jsonl\\\\n-rw-r--r-- 1 root root   32989 May 22 00:52 /root/causal_style_decomp_judge/data/pairwise_results_debiased_llama70b_verbosity.jsonl\\\\n-rw-r--r-- 1 root root   32745 May 21 17:01 /root/causal_style_decomp_judge/data/pairwise_results_debiased_qwen32b_formality.jsonl\\\\n-rw-r--r-- 1 root root   33019 May 22 06:18 /root/causal_style_decomp_judge/data/pairwise_results_gemini_flash_formality.jsonl\\\\n-rw-r--r-- 1 root root   32979 May 22 06:20 /root/causal_style_decomp_judge/data/pairwise_results_gemini_flash_verbosity.jsonl\\\\n-rw-r--r-- 1 root root   41576 May 21 13:10 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_register.jsonl\\\\n-rw-r--r-- 1 root root   33942 May 21 18:40 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_rewriter_formality_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root   39549 May 21 17:09 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_rewriter_verbosity_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root   40930 May 21 13:09 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_verbosity.jsonl\\\\n-rw-r--r-- 1 root root   36146 May 21 23:59 /root/causal_style_decomp_judge/data/pairwise_results_llama70b_formality.jsonl\\\\n-rw-r--r-- 1 root root   35984 May 22 01:06 /root/causal_style_decomp_judge/data/pairwise_results_llama70b_register.jsonl\\\\n-rw-r--r-- 1 root root   36056 May 22 00:00 /root/causal_style_decomp_judge/data/pairwise_results_llama70b_verbosity.jsonl\\\\n-rw-r--r-- 1 root root   56916 May 24 15:33 /root/causal_style_decomp_judge/data/pairwise_results_llama_rewriter_formality_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root  440297 May 21 16:39 /root/causal_style_decomp_judge/data/pairwise_results_mtbench_gpt4o.jsonl\\\\n-rw-r--r-- 1 root root   40033 May 24 16:23 /root/causal_style_decomp_judge/data/pairwise_results_mtbench_llama70b_formality.jsonl\\\\n-rw-r--r-- 1 root root   47036 May 21 16:13 /root/causal_style_decomp_judge/data/pairwise_results_mtbench_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root   40580 May 21 12:16 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl\\\\n-rw-r--r-- 1 root root   41575 May 21 12:20 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_register.jsonl\\\\n-rw-r--r-- 1 root root   40929 May 21 12:18 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl\\\\n-rw-r--r-- 1 root root  160997 May 24 14:44 /root/causal_style_decomp_judge/data/pairwise_results_scaled_formality_llama70b.jsonl\\\\n-rw-r--r-- 1 root root 3249146 May 21 17:01 /root/causal_style_decomp_judge/data/pairwise_results_scaled_formality_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root  149978 May 23 20:40 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_claude.jsonl\\\\n-rw-r--r-- 1 root root  149901 May 23 20:38 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_gemini.jsonl\\\\n-rw-r--r-- 1 root root       0 May 23 20:17 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_gpt4o.jsonl\\\\n-rw-r--r-- 1 root root  149981 May 23 20:38 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_gpt54.jsonl\\\\n-rw-r--r-- 1 root root  149826 May 23 20:28 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_llama70b.jsonl\\\\n-rw-r--r-- 1 root root  149843 May 23 20:28 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_qwen32b.jsonl\\\\n-rw-r--r-- 1 root root   35887 May 21 10:46 /root/causal_style_decomp_judge/data/pairwise_results_verbosity.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root   40593 May 21 02:11 /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\\n-rw-r--r-- 1 root root  287197 May 21 16:33 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_gpt4o.jsonl\\n-rw-r--r-- 1 root root  389705 May 23 07:34 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root   35745 May 24 16:22 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root   34014 May 24 16:23 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_verbosity.jsonl\\n-rw-r--r-- 1 root root   44939 May 21 15:59 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_qwen32b.jsonl\\n-rw-r--r-- 1 root root   43903 May 21 16:54 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root   44922 May 23 09:17 /root/causal_style_decomp_judge/data/pairwise_results_claude_alpacaeval_formality.jsonl\\n-rw-r--r-- 1 root root   43958 May 23 09:18 /root/causal_style_decomp_judge/data/pairwise_results_claude_alpacaeval_verbosity.jsonl\\n-rw-r--r-- 1 root root   36180 May 21 16:33 /root/causal_style_decomp_judge/data/pairwise_results_claude_formality.jsonl\\n-rw-r--r-- 1 root root   47032 May 23 09:18 /root/causal_style_decomp_judge/data/pairwise_results_claude_mtbench_formality.jsonl\\n-rw-r--r-- 1 root root   36110 May 21 16:43 /root/causal_style_decomp_judge/data/pairwise_results_claude_verbosity.jsonl\\n-rw-r--r-- 1 root root   32751 May 21 17:04 /root/causal_style_decomp_judge/data/pairwise_results_debiased_gpt4o_formality.jsonl\\n-rw-r--r-- 1 root root   32747 May 21 23:36 /root/causal_style_decomp_judge/data/pairwise_results_debiased_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root   33003 May 22 00:52 /root/causal_style_decomp_judge/data/pairwise_results_debiased_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root   32989 May 22 00:52 /root/causal_style_decomp_judge/data/pairwise_results_debiased_llama70b_verbosity.jsonl\\n-rw-r--r-- 1 root root   32745 May 21 17:01 /root/causal_style_decomp_judge/data/pairwise_results_debiased_qwen32b_formality.jsonl\\n-rw-r--r-- 1 root root   33019 May 22 06:18 /root/causal_style_decomp_judge/data/pairwise_results_gemini_flash_formality.jsonl\\n-rw-r--r-- 1 root root   32979 May 22 06:20 /root/causal_style_decomp_judge/data/pairwise_results_gemini_flash_verbosity.jsonl\\n-rw-r--r-- 1 root root   41576 May 21 13:10 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_register.jsonl\\n-rw-r--r-- 1 root root   33942 May 21 18:40 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_rewriter_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root   39549 May 21 17:09 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_rewriter_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root   40930 May 21 13:09 /root/causal_style_decomp_judge/data/pairwise_results_gpt4o_verbosity.jsonl\\n-rw-r--r-- 1 root root   36146 May 21 23:59 /root/causal_style_decomp_judge/data/pairwise_results_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root   35984 May 22 01:06 /root/causal_style_decomp_judge/data/pairwise_results_llama70b_register.jsonl\\n-rw-r--r-- 1 root root   36056 May 22 00:00 /root/causal_style_decomp_judge/data/pairwise_results_llama70b_verbosity.jsonl\\n-rw-r--r-- 1 root root   56916 May 24 15:33 /root/causal_style_decomp_judge/data/pairwise_results_llama_rewriter_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root  440297 May 21 16:39 /root/causal_style_decomp_judge/data/pairwise_results_mtbench_gpt4o.jsonl\\n-rw-r--r-- 1 root root   40033 May 24 16:23 /root/causal_style_decomp_judge/data/pairwise_results_mtbench_llama70b_formality.jsonl\\n-rw-r--r-- 1 root root   47036 May 21 16:13 /root/causal_style_decomp_judge/data/pairwise_results_mtbench_qwen32b.jsonl\\n-rw-r--r-- 1 root root   40580 May 21 12:16 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_formality.jsonl\\n-rw-r--r-- 1 root root   41575 May 21 12:20 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_register.jsonl\\n-rw-r--r-- 1 root root   40929 May 21 12:18 /root/causal_style_decomp_judge/data/pairwise_results_qwen32b_verbosity.jsonl\\n-rw-r--r-- 1 root root  160997 May 24 14:44 /root/causal_style_decomp_judge/data/pairwise_results_scaled_formality_llama70b.jsonl\\n-rw-r--r-- 1 root root 3249146 May 21 17:01 /root/causal_style_decomp_judge/data/pairwise_results_scaled_formality_qwen32b.jsonl\\n-rw-r--r-- 1 root root  149978 May 23 20:40 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_claude.jsonl\\n-rw-r--r-- 1 root root  149901 May 23 20:38 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_gemini.jsonl\\n-rw-r--r-- 1 root root       0 May 23 20:17 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_gpt4o.jsonl\\n-rw-r--r-- 1 root root  149981 May 23 20:38 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_gpt54.jsonl\\n-rw-r--r-- 1 root root  149826 May 23 20:28 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_llama70b.jsonl\\n-rw-r--r-- 1 root root  149843 May 23 20:28 /root/causal_style_decomp_judge/data/pairwise_results_scaled_verbosity_qwen32b.jsonl\\n-rw-r--r-- 1 root root   35887 May 21 10:46 /root/causal_style_decomp_judge/data/pairwise_results_verbosity.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I got the source code and file listings. The output was truncated - I need to see the `likert_from_pairwise` and `likert_from_scores` functions. Let me also find the LaTeX table. Let me note what I've learned so far:
+
+**CONFIGS in cross_benchmark_analysis.py:**
+1. AlpacaEval × Llama-70B × formality → `likert_file: None` → fallback to `likert_from_pairwise()` 
+2. MT-Bench × Qwen3-32B × formality → `likert_file: "scored_mtbench_qwen32b.jsonl"` → true Likert
+
+
+3. AlpacaEval × Claude Sonnet 4 × formality → `likert_file: "scored_claude_alpacaeval_formality.jsonl"` → true Likert
+4. AlpacaEval × Claude Sonnet 4 × verbosity → `likert_file: "scored_claude_alpacaeval_verbosity.jsonl"` → true Likert
+5. MT-Bench × Claude Sonnet 4 × formality → `likert_file: "scored_claude_mtbench_formality.jsonl"` → true Likert
+
+So only config #1 uses the fallback conversion function since it's missing a Likert file.
+
+Wait, I just noticed there's a new file `scored_alpacaeval_llama70b_formality.jsonl` from May 24, so config #1 actually has a Likert file now. I need to look at the full implementations of `likert_from_pairwise` and `likert_from_scores` in the script, find the LaTeX table output, and check what the script actually produced in cross_benchmark_local.json.
+
+I'm realizing config #1 is using `scored_alpacaeval_llama70b_formality.jsonl` as its pairwise file, which is odd since it's a scored file—maybe it contains both pairwise comparisons and scores? Let me dig into the truncated code and find that LaTeX table.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "53a191be-6a5f-4f90-9d8f-94fed2309041",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T248FLXMnMvEhwfAd72v9s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9788,
+      "cache_read_input_tokens": 27066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9788
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+源码被截断了，需要读取 `likert_from_pairwise` 和 `likert_from_scores` 函数。同时搜索 LaTeX 表格。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "4e254422-a4f5-4736-a8be-a47297d4316d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T248FLXMnMvEhwfAd72v9s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9788,
+      "cache_read_input_tokens": 27066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9788
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01941gDgLU5Kk5UykwYp5ZsZ`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "grep -rn \"crossbench\\|cross_bench\\|cross-bench\\|tab:t1\\|Table T1\\|1.120\" /root/causal_style_decomp_judge/docs/paper/ --include=\"*.tex\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "d147cc03-7423-4183-a5eb-c451a4de47bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T248FLXMnMvEhwfAd72v9s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9788,
+      "cache_read_input_tokens": 27066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9788
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-24T08:40:23.524Z_
+
+<details><summary>↩ Tool result · `toolu_01941gDgLU5Kk5UykwYp5ZsZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "7040a8f1-4052-42de-90b4-90bb0e0fed24",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Brh6KKYTXRPi4ADzUZHBEZ`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "grep -n \"def likert_from\" /root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "82d99b7b-02ee-4776-95e1-e3069d0420aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T248FLXMnMvEhwfAd72v9s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9788,
+      "cache_read_input_tokens": 27066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9788
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JTLnBrBZeLu8TJKT9X1FaB`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "0636a6c5-59a0-4307-a469-ed143cce99f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T248FLXMnMvEhwfAd72v9s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9788,
+      "cache_read_input_tokens": 27066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9788
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T08:40:25.853Z_
+
+<details><summary>↩ Tool result · `toolu_01Brh6KKYTXRPi4ADzUZHBEZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"115:def likert_from_pairwise(recs):\\n135:def likert_from_scores(path):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "6fd6a137-0f47-4af7-b8fa-8a8c32ecb656",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"115:def likert_from_pairwise(recs):\\\\n135:def likert_from_scores(path):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"115:def likert_from_pairwise(recs):\\n135:def likert_from_scores(path):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-24T08:40:27.541Z_
+
+<details><summary>↩ Tool result · `toolu_01JTLnBrBZeLu8TJKT9X1FaB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"config\\\": \\\"AlpacaEval × Llama-70B × formality\\\",\\n    \\\"judge\\\": \\\"Llama-3.3-70B\\\",\\n    \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n    \\\"axis\\\": \\\"formality\\\",\\n    \\\"n_total\\\": 86,\\n    \\\"n_consistent\\\": 48,\\n    \\\"n_inconsistent\\\": 38,\\n    \\\"consistency_rate\\\": 0.5581,\\n    \\\"bt_win_prob\\\": 0.7558,\\n    \\\"bt_ci\\\": [\\n      0.6976,\\n      0.8139\\n    ],\\n    \\\"bt_p\\\": 0.0001,\\n    \\\"bt_sig\\\": true,\\n    \\\"likert_ate\\\": 0.4583,\\n    \\\"likert_d\\\": 1.1597,\\n    \\\"likert_p\\\": 0.0,\\n    \\\"likert_n\\\": 48,\\n    \\\"likert_sig\\\": true,\\n    \\\"likert_note\\\": \\\"sign-test (pairwise-derived)\\\",\\n    \\\"gee_style_or\\\": 7.6361,\\n    \\\"gee_style_ci\\\": [\\n      3.3546,\\n      17.3823\\n    ],\\n    \\\"gee_style_p\\\": 1e-06,\\n    \\\"gee_orig_or\\\": 2.2609,\\n    \\\"gee_orig_ci\\\": [\\n      1.0232,\\n      4.9961\\n    ],\\n    \\\"gee_orig_p\\\": 0.043736,\\n    \\\"gee_n_obs\\\": 172,\\n    \\\"gee_n_pairs\\\": 86,\\n    \\\"gee_style_orig_corr\\\": 0.5814,\\n    \\\"gee_vif\\\": 1.5106,\\n    \\\"blindspot\\\": false\\n  },\\n  {\\n    \\\"config\\\": \\\"MT-Bench × Qwen3-32B × formality\\\",\\n    \\\"judge\\\": \\\"Qwen3-32B\\\",\\n    \\\"benchmark\\\": \\\"MT-Bench\\\",\\n    \\\"axis\\\": \\\"formality\\\",\\n    \\\"n_total\\\": 73,\\n    \\\"n_consistent\\\": 37,\\n    \\\"n_inconsistent\\\": 36,\\n    \\\"consistency_rate\\\": 0.5068,\\n    \\\"bt_win_prob\\\": 0.6986,\\n    \\\"bt_ci\\\": [\\n      0.6301,\\n      0.7602\\n    ],\\n    \\\"bt_p\\\": 0.0001,\\n    \\\"bt_sig\\\": true,\\n    \\\"likert_ate\\\": 0.3014,\\n    \\\"likert_d\\\": 0.1493,\\n    \\\"likert_p\\\": 0.006799,\\n    \\\"likert_n\\\": 73,\\n    \\\"likert_sig\\\": true,\\n    \\\"likert_note\\\": \\\"Wilcoxon signed-rank (Likert scores)\\\",\\n    \\\"gee_style_or\\\": 4.6227,\\n    \\\"gee_style_ci\\\": [\\n      1.2337,\\n      17.3209\\n    ],\\n    \\\"gee_style_p\\\": 0.023109,\\n    \\\"gee_orig_or\\\": 4.6227,\\n    \\\"gee_orig_ci\\\": [\\n      1.2337,\\n      17.3209\\n    ],\\n    \\\"gee_orig_p\\\": 0.023109,\\n    \\\"gee_n_obs\\\": 146,\\n    \\\"gee_n_pairs\\\": 73,\\n    \\\"gee_style_orig_corr\\\": 0.6986,\\n    \\\"gee_vif\\\": 1.9534,\\n    \\\"blindspot\\\": false\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "a785ee0e-6f72-469d-b586-473fb76bfb5e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"AlpacaEval × Llama-70B × formality\\\\\\\",\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-3.3-70B\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 86,\\\\n    \\\\\\\"n_consistent\\\\\\\": 48,\\\\n    \\\\\\\"n_inconsistent\\\\\\\": 38,\\\\n    \\\\\\\"consistency_rate\\\\\\\": 0.5581,\\\\n    \\\\\\\"bt_win_prob\\\\\\\": 0.7558,\\\\n    \\\\\\\"bt_ci\\\\\\\": [\\\\n      0.6976,\\\\n      0.8139\\\\n    ],\\\\n    \\\\\\\"bt_p\\\\\\\": 0.0001,\\\\n    \\\\\\\"bt_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_ate\\\\\\\": 0.4583,\\\\n    \\\\\\\"likert_d\\\\\\\": 1.1597,\\\\n    \\\\\\\"likert_p\\\\\\\": 0.0,\\\\n    \\\\\\\"likert_n\\\\\\\": 48,\\\\n    \\\\\\\"likert_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_note\\\\\\\": \\\\\\\"sign-test (pairwise-derived)\\\\\\\",\\\\n    \\\\\\\"gee_style_or\\\\\\\": 7.6361,\\\\n    \\\\\\\"gee_style_ci\\\\\\\": [\\\\n      3.3546,\\\\n      17.3823\\\\n    ],\\\\n    \\\\\\\"gee_style_p\\\\\\\": 1e-06,\\\\n    \\\\\\\"gee_orig_or\\\\\\\": 2.2609,\\\\n    \\\\\\\"gee_orig_ci\\\\\\\": [\\\\n      1.0232,\\\\n      4.9961\\\\n    ],\\\\n    \\\\\\\"gee_orig_p\\\\\\\": 0.043736,\\\\n    \\\\\\\"gee_n_obs\\\\\\\": 172,\\\\n    \\\\\\\"gee_n_pairs\\\\\\\": 86,\\\\n    \\\\\\\"gee_style_orig_corr\\\\\\\": 0.5814,\\\\n    \\\\\\\"gee_vif\\\\\\\": 1.5106,\\\\n    \\\\\\\"blindspot\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"config\\\\\\\": \\\\\\\"MT-Bench × Qwen3-32B × formality\\\\\\\",\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    \\\\\\\"n_total\\\\\\\": 73,\\\\n    \\\\\\\"n_consistent\\\\\\\": 37,\\\\n    \\\\\\\"n_inconsistent\\\\\\\": 36,\\\\n    \\\\\\\"consistency_rate\\\\\\\": 0.5068,\\\\n    \\\\\\\"bt_win_prob\\\\\\\": 0.6986,\\\\n    \\\\\\\"bt_ci\\\\\\\": [\\\\n      0.6301,\\\\n      0.7602\\\\n    ],\\\\n    \\\\\\\"bt_p\\\\\\\": 0.0001,\\\\n    \\\\\\\"bt_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_ate\\\\\\\": 0.3014,\\\\n    \\\\\\\"likert_d\\\\\\\": 0.1493,\\\\n    \\\\\\\"likert_p\\\\\\\": 0.006799,\\\\n    \\\\\\\"likert_n\\\\\\\": 73,\\\\n    \\\\\\\"likert_sig\\\\\\\": true,\\\\n    \\\\\\\"likert_note\\\\\\\": \\\\\\\"Wilcoxon signed-rank (Likert scores)\\\\\\\",\\\\n    \\\\\\\"gee_style_or\\\\\\\": 4.6227,\\\\n    \\\\\\\"gee_style_ci\\\\\\\": [\\\\n      1.2337,\\\\n      17.3209\\\\n    ],\\\\n    \\\\\\\"gee_style_p\\\\\\\": 0.023109,\\\\n    \\\\\\\"gee_orig_or\\\\\\\": 4.6227,\\\\n    \\\\\\\"gee_orig_ci\\\\\\\": [\\\\n      1.2337,\\\\n      17.3209\\\\n    ],\\\\n    \\\\\\\"gee_orig_p\\\\\\\": 0.023109,\\\\n    \\\\\\\"gee_n_obs\\\\\\\": 146,\\\\n    \\\\\\\"gee_n_pairs\\\\\\\": 73,\\\\n    \\\\\\\"gee_style_orig_corr\\\\\\\": 0.6986,\\\\n    \\\\\\\"gee_vif\\\\\\\": 1.9534,\\\\n    \\\\\\\"blindspot\\\\\\\": false\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"config\\\": \\\"AlpacaEval × Llama-70B × formality\\\",\\n    \\\"judge\\\": \\\"Llama-3.3-70B\\\",\\n    \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n    \\\"axis\\\": \\\"formality\\\",\\n    \\\"n_total\\\": 86,\\n    \\\"n_consistent\\\": 48,\\n    \\\"n_inconsistent\\\": 38,\\n    \\\"consistency_rate\\\": 0.5581,\\n    \\\"bt_win_prob\\\": 0.7558,\\n    \\\"bt_ci\\\": [\\n      0.6976,\\n      0.8139\\n    ],\\n    \\\"bt_p\\\": 0.0001,\\n    \\\"bt_sig\\\": true,\\n    \\\"likert_ate\\\": 0.4583,\\n    \\\"likert_d\\\": 1.1597,\\n    \\\"likert_p\\\": 0.0,\\n    \\\"likert_n\\\": 48,\\n    \\\"likert_sig\\\": true,\\n    \\\"likert_note\\\": \\\"sign-test (pairwise-derived)\\\",\\n    \\\"gee_style_or\\\": 7.6361,\\n    \\\"gee_style_ci\\\": [\\n      3.3546,\\n      17.3823\\n    ],\\n    \\\"gee_style_p\\\": 1e-06,\\n    \\\"gee_orig_or\\\": 2.2609,\\n    \\\"gee_orig_ci\\\": [\\n      1.0232,\\n      4.9961\\n    ],\\n    \\\"gee_orig_p\\\": 0.043736,\\n    \\\"gee_n_obs\\\": 172,\\n    \\\"gee_n_pairs\\\": 86,\\n    \\\"gee_style_orig_corr\\\": 0.5814,\\n    \\\"gee_vif\\\": 1.5106,\\n    \\\"blindspot\\\": false\\n  },\\n  {\\n    \\\"config\\\": \\\"MT-Bench × Qwen3-32B × formality\\\",\\n    \\\"judge\\\": \\\"Qwen3-32B\\\",\\n    \\\"benchmark\\\": \\\"MT-Bench\\\",\\n    \\\"axis\\\": \\\"formality\\\",\\n    \\\"n_total\\\": 73,\\n    \\\"n_consistent\\\": 37,\\n    \\\"n_inconsistent\\\": 36,\\n    \\\"consistency_rate\\\": 0.5068,\\n    \\\"bt_win_prob\\\": 0.6986,\\n    \\\"bt_ci\\\": [\\n      0.6301,\\n      0.7602\\n    ],\\n    \\\"bt_p\\\": 0.0001,\\n    \\\"bt_sig\\\": true,\\n    \\\"likert_ate\\\": 0.3014,\\n    \\\"likert_d\\\": 0.1493,\\n    \\\"likert_p\\\": 0.006799,\\n    \\\"likert_n\\\": 73,\\n    \\\"likert_sig\\\": true,\\n    \\\"likert_note\\\": \\\"Wilcoxon signed-rank (Likert scores)\\\",\\n    \\\"gee_style_or\\\": 4.6227,\\n    \\\"gee_style_ci\\\": [\\n      1.2337,\\n      17.3209\\n    ],\\n    \\\"gee_style_p\\\": 0.023109,\\n    \\\"gee_orig_or\\\": 4.6227,\\n    \\\"gee_orig_ci\\\": [\\n      1.2337,\\n      17.3209\\n    ],\\n    \\\"gee_orig_p\\\": 0.023109,\\n    \\\"gee_n_obs\\\": 146,\\n    \\\"gee_n_pairs\\\": 73,\\n    \\\"gee_style_orig_corr\\\": 0.6986,\\n    \\\"gee_vif\\\": 1.9534,\\n    \\\"blindspot\\\": false\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The cross_benchmark_local.json only has 2 entries. This seems old or incomplete. Maybe the script was run before all configs were added, or there's a newer output file. Let me check the function implementations and find the LaTeX table.
+
+Also I notice the grep with `|` is blocked. Let me use separate grep calls.
+
+Let me read lines 115-175 of cross_benchmark_analysis.py to see the likert functions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "7b9c5824-d602-4854-a314-efadace59cdd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pavzj8j7pCYsEwrCAktJyR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2716,
+      "cache_read_input_tokens": 36854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2716
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+JSON 输出只有 2 行——可能是旧结果。继续读取被截断的函数和查找 LaTeX 表。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "bd92c78b-886e-4a7b-81b7-7b95402e7c13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pavzj8j7pCYsEwrCAktJyR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2716,
+      "cache_read_input_tokens": 36854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2716
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EU9hEE59yqsTVruyR3EPR7`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -200 /root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "abf8ef9a-e3b1-4773-90bc-ae127ca6836f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pavzj8j7pCYsEwrCAktJyR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2716,
+      "cache_read_input_tokens": 36854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2716
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K4KarWGTtMNnsqt87FDLM3`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/docs/paper/ -name \"*.tex\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "2f066cf4-e0a5-4517-a50f-e6765162a525",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pavzj8j7pCYsEwrCAktJyR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2716,
+      "cache_read_input_tokens": 36854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2716
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T08:40:38.649Z_
+
+<details><summary>↩ Tool result · `toolu_01EU9hEE59yqsTVruyR3EPR7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-benchmark BT + GEE analysis for R6-SF3 local vLLM configs.\\\"\\\"\\\"\\n\\nimport json, os, sys\\nimport numpy as np\\nimport pandas as pd\\nimport choix\\nfrom scipy import stats\\nimport statsmodels.api as sm\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\nfrom statsmodels.genmod.families import Binomial\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\n\\nFORMAL, CASUAL = 0, 1\\nN_BOOT = 10000\\nSEED = 42\\nNLI_THRESHOLD = 0.90\\nDATA_DIR = \\\"/root/causal_style_decomp_judge/data\\\"\\nOUT_DIR = \\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\"\\n\\nCONFIGS = [\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Llama-70B × formality\\\",\\n        \\\"pairwise_file\\\": \\\"scored_alpacaeval_llama70b_formality.jsonl\\\",\\n        \\\"likert_file\\\": None,\\n        \\\"judge\\\": \\\"Llama-3.3-70B\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"MT-Bench × Qwen3-32B × formality\\\",\\n        \\\"pairwise_file\\\": \\\"scored_mtbench_qwen32b_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_mtbench_qwen32b.jsonl\\\",\\n        \\\"judge\\\": \\\"Qwen3-32B\\\",\\n        \\\"benchmark\\\": \\\"MT-Bench\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Claude Sonnet 4 × formality\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_alpacaeval_formality.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Claude Sonnet 4 × verbosity\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_alpacaeval_verbosity.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"verbosity\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"MT-Bench × Claude Sonnet 4 × formality\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_mtbench_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_mtbench_formality.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"MT-Bench\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n]\\n\\n\\ndef load_pairwise(path):\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\n    recs = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= NLI_THRESHOLD]\\n    comparisons = []\\n    pair_groups = {}\\n    for rec in recs:\\n        pid = rec[\\\"id\\\"]\\n        pcomps = []\\n        t1 = rec.get(\\\"trial1_choice\\\")\\n        if t1 in (\\\"A\\\", \\\"B\\\"):\\n            pcomps.append((FORMAL, CASUAL) if t1 == \\\"A\\\" else (CASUAL, FORMAL))\\n        t2 = rec.get(\\\"trial2_choice\\\")\\n        if t2 in (\\\"A\\\", \\\"B\\\"):\\n            pcomps.append((CASUAL, FORMAL) if t2 == \\\"A\\\" else (FORMAL, CASUAL))\\n        comparisons.extend(pcomps)\\n        pair_groups[pid] = pcomps\\n    return recs, comparisons, pair_groups\\n\\n\\ndef bt_analysis(comparisons, pair_groups):\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\n    diff = params[FORMAL] - params[CASUAL]\\n    p_formal = 1.0 / (1.0 + np.exp(-diff))\\n\\n    rng = np.random.RandomState(SEED)\\n    pair_ids = list(pair_groups.keys())\\n    n_pairs = len(pair_ids)\\n    boot_probs = []\\n    for _ in range(N_BOOT):\\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\n        boot = []\\n        for i in idx:\\n            boot.extend(pair_groups[pair_ids[i]])\\n        try:\\n            bp = choix.ilsr_pairwise(2, boot, alpha=0.01)\\n            boot_probs.append(1.0 / (1.0 + np.exp(-(bp[FORMAL] - bp[CASUAL]))))\\n        except Exception:\\n            pass\\n\\n    boot_probs = np.array(boot_probs)\\n    ci_lo, ci_hi = np.percentile(boot_probs, [2.5, 97.5])\\n    p_val = 2 * min(np.mean(boot_probs < 0.5), np.mean(boot_probs > 0.5))\\n    p_val = max(p_val, 1.0 / N_BOOT)\\n    return {\\n        \\\"bt_win_prob\\\": round(float(p_formal), 4),\\n        \\\"bt_ci\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\n        \\\"bt_p\\\": round(float(p_val), 6),\\n        \\\"bt_sig\\\": p_val < 0.05,\\n    }\\n\\n\\ndef likert_from_pairwise(recs):\\n    consistent = [r for r in recs if r[\\\"consistent\\\"]]\\n    n = len(consistent)\\n    if n == 0:\\n        return {\\\"likert_ate\\\": None, \\\"likert_d\\\": None, \\\"likert_p\\\": None, \\\"likert_sig\\\": None, \\\"likert_note\\\": \\\"no consistent pairs\\\"}\\n    fw = sum(1 for r in consistent if r.get(\\\"formal_wins\\\"))\\n    win_rate = fw / n\\n    ate = win_rate - 0.5\\n    h = 2 * np.arcsin(np.sqrt(win_rate)) - 2 * np.arcsin(np.sqrt(0.5))\\n    p_val = stats.binomtest(fw, n, 0.5).pvalue\\n    return {\\n        \\\"likert_ate\\\": round(float(ate), 4),\\n        \\\"likert_d\\\": round(float(h), 4),\\n        \\\"likert_p\\\": round(float(p_val), 6),\\n        \\\"likert_n\\\": n,\\n        \\\"likert_sig\\\": p_val < 0.05,\\n        \\\"likert_note\\\": \\\"sign-test (pairwise-derived)\\\",\\n    }\\n\\n\\ndef likert_from_scores(path):\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\n    recs = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= NLI_THRESHOLD]\\n    formal_s, casual_s = [], []\\n    for r in recs:\\n        so = r.get(\\\"score_original\\\")\\n        sc = r.get(\\\"score_counterfactual\\\")\\n        if so is not None and sc is not None:\\n            orig = r.get(\\\"original_formality\\\", \\\"formal\\\")\\n            if orig == \\\"formal\\\":\\n                formal_s.append(so)\\n                casual_s.append(sc)\\n            else:\\n                formal_s.append(sc)\\n                casual_s.append(so)\\n    formal_s = np.array(formal_s, dtype=float)\\n    casual_s = np.array(casual_s, dtype=float)\\n    n = len(formal_s)\\n    if n == 0:\\n        return {\\\"likert_ate\\\": None, \\\"likert_d\\\": None, \\\"likert_p\\\": None, \\\"likert_sig\\\": None}\\n    ate = float(np.mean(formal_s) - np.mean(casual_s))\\n    pooled_std = np.sqrt((np.var(formal_s, ddof=1) + np.var(casual_s, ddof=1)) / 2)\\n    d = ate / pooled_std if pooled_std > 0 else 0.0\\n    _, p_val = stats.wilcoxon(formal_s, casual_s, alternative=\\\"two-sided\\\")\\n    return {\\n        \\\"likert_ate\\\": round(float(ate), 4),\\n        \\\"likert_d\\\": round(float(d), 4),\\n        \\\"likert_p\\\": round(float(p_val), 6),\\n        \\\"likert_n\\\": n,\\n        \\\"likert_sig\\\": p_val < 0.05,\\n        \\\"likert_note\\\": \\\"Wilcoxon signed-rank (Likert scores)\\\",\\n    }\\n\\n\\ndef gee_analysis(recs):\\n    rows = []\\n    for i, r in enumerate(recs):\\n        orig = r.get(\\\"original_formality\\\", \\\"formal\\\")\\n        t1 = r.get(\\\"trial1_choice\\\")\\n        t2 = r.get(\\\"trial2_choice\\\")\\n        if t1 in (\\\"A\\\", \\\"B\\\"):\\n            rows.append({\\n                \\\"pair_id\\\": i,\\n                \\\"is_style_in_A\\\": 1.0,\\n                \\\"is_original_in_A\\\": 1.0 if orig == \\\"formal\\\" else 0.0,\\n                \\\"chose_A\\\": 1.0 if t1 == \\\"A\\\" else 0.0,\\n            })\\n        if t2 in (\\\"A\\\", \\\"B\\\"):\\n            rows.append({\\n                \\\"pair_id\\\": i,\\n                \\\"is_style_in_A\\\": 0.0,\\n                \\\"is_original_in_A\\\": 1.0 if orig == \\\"casual\\\" else 0.0,\\n                \\\"chose_A\\\": 1.0 if t2 == \\\"A\\\" else 0.0,\\n            })\\n\\n    df = pd.DataFrame(rows)\\n    exog = sm.add_constant(df[[\\\"is_style_in_A\\\", \\\"is_original_in_A\\\"]])\\n    model = GEE(df[\\\"chose_A\\\"], exog, groups=df[\\\"pair_id\\\"],\\n                family=Binomial(), cov_struct=Exchangeable())\\n    res = model.fit()\\n\\n    def extract_or(result, name):\\n        coef = result.params[name]\\n        se = result.bse[name]\\n        p = result.pvalues[name]\\n        or_val = np.exp(coef)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "ce7a7f00-0ceb-4bcf-93d0-6000f0bd079e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-benchmark BT + GEE analysis for R6-SF3 local vLLM configs.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, sys\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport choix\\\\nfrom scipy import stats\\\\nimport statsmodels.api as sm\\\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\\\nfrom statsmodels.genmod.families import Binomial\\\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\\\n\\\\nFORMAL, CASUAL = 0, 1\\\\nN_BOOT = 10000\\\\nSEED = 42\\\\nNLI_THRESHOLD = 0.90\\\\nDATA_DIR = \\\\\\\"/root/causal_style_decomp_judge/data\\\\\\\"\\\\nOUT_DIR = \\\\\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\\\\\"\\\\n\\\\nCONFIGS = [\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"AlpacaEval × Llama-70B × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"scored_alpacaeval_llama70b_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": None,\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-3.3-70B\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"MT-Bench × Qwen3-32B × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"scored_mtbench_qwen32b_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": \\\\\\\"scored_mtbench_qwen32b.jsonl\\\\\\\",\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"AlpacaEval × Claude Sonnet 4 × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": \\\\\\\"scored_claude_alpacaeval_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Claude Sonnet 4\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"AlpacaEval × Claude Sonnet 4 × verbosity\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": \\\\\\\"scored_claude_alpacaeval_verbosity.jsonl\\\\\\\",\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Claude Sonnet 4\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"MT-Bench × Claude Sonnet 4 × formality\\\\\\\",\\\\n        \\\\\\\"pairwise_file\\\\\\\": \\\\\\\"pairwise_results_claude_mtbench_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"likert_file\\\\\\\": \\\\\\\"scored_claude_mtbench_formality.jsonl\\\\\\\",\\\\n        \\\\\\\"judge\\\\\\\": \\\\\\\"Claude Sonnet 4\\\\\\\",\\\\n        \\\\\\\"benchmark\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n        \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef load_pairwise(path):\\\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\\\n    recs = [r for r in recs if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= NLI_THRESHOLD]\\\\n    comparisons = []\\\\n    pair_groups = {}\\\\n    for rec in recs:\\\\n        pid = rec[\\\\\\\"id\\\\\\\"]\\\\n        pcomps = []\\\\n        t1 = rec.get(\\\\\\\"trial1_choice\\\\\\\")\\\\n        if t1 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            pcomps.append((FORMAL, CASUAL) if t1 == \\\\\\\"A\\\\\\\" else (CASUAL, FORMAL))\\\\n        t2 = rec.get(\\\\\\\"trial2_choice\\\\\\\")\\\\n        if t2 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            pcomps.append((CASUAL, FORMAL) if t2 == \\\\\\\"A\\\\\\\" else (FORMAL, CASUAL))\\\\n        comparisons.extend(pcomps)\\\\n        pair_groups[pid] = pcomps\\\\n    return recs, comparisons, pair_groups\\\\n\\\\n\\\\ndef bt_analysis(comparisons, pair_groups):\\\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\\\n    diff = params[FORMAL] - params[CASUAL]\\\\n    p_formal = 1.0 / (1.0 + np.exp(-diff))\\\\n\\\\n    rng = np.random.RandomState(SEED)\\\\n    pair_ids = list(pair_groups.keys())\\\\n    n_pairs = len(pair_ids)\\\\n    boot_probs = []\\\\n    for _ in range(N_BOOT):\\\\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\\\n        boot = []\\\\n        for i in idx:\\\\n            boot.extend(pair_groups[pair_ids[i]])\\\\n        try:\\\\n            bp = choix.ilsr_pairwise(2, boot, alpha=0.01)\\\\n            boot_probs.append(1.0 / (1.0 + np.exp(-(bp[FORMAL] - bp[CASUAL]))))\\\\n        except Exception:\\\\n            pass\\\\n\\\\n    boot_probs = np.array(boot_probs)\\\\n    ci_lo, ci_hi = np.percentile(boot_probs, [2.5, 97.5])\\\\n    p_val = 2 * min(np.mean(boot_probs < 0.5), np.mean(boot_probs > 0.5))\\\\n    p_val = max(p_val, 1.0 / N_BOOT)\\\\n    return {\\\\n        \\\\\\\"bt_win_prob\\\\\\\": round(float(p_formal), 4),\\\\n        \\\\\\\"bt_ci\\\\\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\\\n        \\\\\\\"bt_p\\\\\\\": round(float(p_val), 6),\\\\n        \\\\\\\"bt_sig\\\\\\\": p_val < 0.05,\\\\n    }\\\\n\\\\n\\\\ndef likert_from_pairwise(recs):\\\\n    consistent = [r for r in recs if r[\\\\\\\"consistent\\\\\\\"]]\\\\n    n = len(consistent)\\\\n    if n == 0:\\\\n        return {\\\\\\\"likert_ate\\\\\\\": None, \\\\\\\"likert_d\\\\\\\": None, \\\\\\\"likert_p\\\\\\\": None, \\\\\\\"likert_sig\\\\\\\": None, \\\\\\\"likert_note\\\\\\\": \\\\\\\"no consistent pairs\\\\\\\"}\\\\n    fw = sum(1 for r in consistent if r.get(\\\\\\\"formal_wins\\\\\\\"))\\\\n    win_rate = fw / n\\\\n    ate = win_rate - 0.5\\\\n    h = 2 * np.arcsin(np.sqrt(win_rate)) - 2 * np.arcsin(np.sqrt(0.5))\\\\n    p_val = stats.binomtest(fw, n, 0.5).pvalue\\\\n    return {\\\\n        \\\\\\\"likert_ate\\\\\\\": round(float(ate), 4),\\\\n        \\\\\\\"likert_d\\\\\\\": round(float(h), 4),\\\\n        \\\\\\\"likert_p\\\\\\\": round(float(p_val), 6),\\\\n        \\\\\\\"likert_n\\\\\\\": n,\\\\n        \\\\\\\"likert_sig\\\\\\\": p_val < 0.05,\\\\n        \\\\\\\"likert_note\\\\\\\": \\\\\\\"sign-test (pairwise-derived)\\\\\\\",\\\\n    }\\\\n\\\\n\\\\ndef likert_from_scores(path):\\\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\\\n    recs = [r for r in recs if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= NLI_THRESHOLD]\\\\n    formal_s, casual_s = [], []\\\\n    for r in recs:\\\\n        so = r.get(\\\\\\\"score_original\\\\\\\")\\\\n        sc = r.get(\\\\\\\"score_counterfactual\\\\\\\")\\\\n        if so is not None and sc is not None:\\\\n            orig = r.get(\\\\\\\"original_formality\\\\\\\", \\\\\\\"formal\\\\\\\")\\\\n            if orig == \\\\\\\"formal\\\\\\\":\\\\n                formal_s.append(so)\\\\n                casual_s.append(sc)\\\\n            else:\\\\n                formal_s.append(sc)\\\\n                casual_s.append(so)\\\\n    formal_s = np.array(formal_s, dtype=float)\\\\n    casual_s = np.array(casual_s, dtype=float)\\\\n    n = len(formal_s)\\\\n    if n == 0:\\\\n        return {\\\\\\\"likert_ate\\\\\\\": None, \\\\\\\"likert_d\\\\\\\": None, \\\\\\\"likert_p\\\\\\\": None, \\\\\\\"likert_sig\\\\\\\": None}\\\\n    ate = float(np.mean(formal_s) - np.mean(casual_s))\\\\n    pooled_std = np.sqrt((np.var(formal_s, ddof=1) + np.var(casual_s, ddof=1)) / 2)\\\\n    d = ate / pooled_std if pooled_std > 0 else 0.0\\\\n    _, p_val = stats.wilcoxon(formal_s, casual_s, alternative=\\\\\\\"two-sided\\\\\\\")\\\\n    return {\\\\n        \\\\\\\"likert_ate\\\\\\\": round(float(ate), 4),\\\\n        \\\\\\\"likert_d\\\\\\\": round(float(d), 4),\\\\n        \\\\\\\"likert_p\\\\\\\": round(float(p_val), 6),\\\\n        \\\\\\\"likert_n\\\\\\\": n,\\\\n        \\\\\\\"likert_sig\\\\\\\": p_val < 0.05,\\\\n        \\\\\\\"likert_note\\\\\\\": \\\\\\\"Wilcoxon signed-rank (Likert scores)\\\\\\\",\\\\n    }\\\\n\\\\n\\\\ndef gee_analysis(recs):\\\\n    rows = []\\\\n    for i, r in enumerate(recs):\\\\n        orig = r.get(\\\\\\\"original_formality\\\\\\\", \\\\\\\"formal\\\\\\\")\\\\n        t1 = r.get(\\\\\\\"trial1_choice\\\\\\\")\\\\n        t2 = r.get(\\\\\\\"trial2_choice\\\\\\\")\\\\n        if t1 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            rows.append({\\\\n                \\\\\\\"pair_id\\\\\\\": i,\\\\n                \\\\\\\"is_style_in_A\\\\\\\": 1.0,\\\\n                \\\\\\\"is_original_in_A\\\\\\\": 1.0 if orig == \\\\\\\"formal\\\\\\\" else 0.0,\\\\n                \\\\\\\"chose_A\\\\\\\": 1.0 if t1 == \\\\\\\"A\\\\\\\" else 0.0,\\\\n            })\\\\n        if t2 in (\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\"):\\\\n            rows.append({\\\\n                \\\\\\\"pair_id\\\\\\\": i,\\\\n                \\\\\\\"is_style_in_A\\\\\\\": 0.0,\\\\n                \\\\\\\"is_original_in_A\\\\\\\": 1.0 if orig == \\\\\\\"casual\\\\\\\" else 0.0,\\\\n                \\\\\\\"chose_A\\\\\\\": 1.0 if t2 == \\\\\\\"A\\\\\\\" else 0.0,\\\\n            })\\\\n\\\\n    df = pd.DataFrame(rows)\\\\n    exog = sm.add_constant(df[[\\\\\\\"is_style_in_A\\\\\\\", \\\\\\\"is_original_in_A\\\\\\\"]])\\\\n    model = GEE(df[\\\\\\\"chose_A\\\\\\\"], exog, groups=df[\\\\\\\"pair_id\\\\\\\"],\\\\n                family=Binomial(), cov_struct=Exchangeable())\\\\n    res = model.fit()\\\\n\\\\n    def extract_or(result, name):\\\\n        coef = result.params[name]\\\\n        se = result.bse[name]\\\\n        p = result.pvalues[name]\\\\n        or_val = np.exp(coef)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-benchmark BT + GEE analysis for R6-SF3 local vLLM configs.\\\"\\\"\\\"\\n\\nimport json, os, sys\\nimport numpy as np\\nimport pandas as pd\\nimport choix\\nfrom scipy import stats\\nimport statsmodels.api as sm\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\nfrom statsmodels.genmod.families import Binomial\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\n\\nFORMAL, CASUAL = 0, 1\\nN_BOOT = 10000\\nSEED = 42\\nNLI_THRESHOLD = 0.90\\nDATA_DIR = \\\"/root/causal_style_decomp_judge/data\\\"\\nOUT_DIR = \\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\"\\n\\nCONFIGS = [\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Llama-70B × formality\\\",\\n        \\\"pairwise_file\\\": \\\"scored_alpacaeval_llama70b_formality.jsonl\\\",\\n        \\\"likert_file\\\": None,\\n        \\\"judge\\\": \\\"Llama-3.3-70B\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"MT-Bench × Qwen3-32B × formality\\\",\\n        \\\"pairwise_file\\\": \\\"scored_mtbench_qwen32b_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_mtbench_qwen32b.jsonl\\\",\\n        \\\"judge\\\": \\\"Qwen3-32B\\\",\\n        \\\"benchmark\\\": \\\"MT-Bench\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Claude Sonnet 4 × formality\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_alpacaeval_formality.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"AlpacaEval × Claude Sonnet 4 × verbosity\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_alpacaeval_verbosity.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"AlpacaEval\\\",\\n        \\\"axis\\\": \\\"verbosity\\\",\\n    },\\n    {\\n        \\\"name\\\": \\\"MT-Bench × Claude Sonnet 4 × formality\\\",\\n        \\\"pairwise_file\\\": \\\"pairwise_results_claude_mtbench_formality.jsonl\\\",\\n        \\\"likert_file\\\": \\\"scored_claude_mtbench_formality.jsonl\\\",\\n        \\\"judge\\\": \\\"Claude Sonnet 4\\\",\\n        \\\"benchmark\\\": \\\"MT-Bench\\\",\\n        \\\"axis\\\": \\\"formality\\\",\\n    },\\n]\\n\\n\\ndef load_pairwise(path):\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\n    recs = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= NLI_THRESHOLD]\\n    comparisons = []\\n    pair_groups = {}\\n    for rec in recs:\\n        pid = rec[\\\"id\\\"]\\n        pcomps = []\\n        t1 = rec.get(\\\"trial1_choice\\\")\\n        if t1 in (\\\"A\\\", \\\"B\\\"):\\n            pcomps.append((FORMAL, CASUAL) if t1 == \\\"A\\\" else (CASUAL, FORMAL))\\n        t2 = rec.get(\\\"trial2_choice\\\")\\n        if t2 in (\\\"A\\\", \\\"B\\\"):\\n            pcomps.append((CASUAL, FORMAL) if t2 == \\\"A\\\" else (FORMAL, CASUAL))\\n        comparisons.extend(pcomps)\\n        pair_groups[pid] = pcomps\\n    return recs, comparisons, pair_groups\\n\\n\\ndef bt_analysis(comparisons, pair_groups):\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\n    diff = params[FORMAL] - params[CASUAL]\\n    p_formal = 1.0 / (1.0 + np.exp(-diff))\\n\\n    rng = np.random.RandomState(SEED)\\n    pair_ids = list(pair_groups.keys())\\n    n_pairs = len(pair_ids)\\n    boot_probs = []\\n    for _ in range(N_BOOT):\\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\\n        boot = []\\n        for i in idx:\\n            boot.extend(pair_groups[pair_ids[i]])\\n        try:\\n            bp = choix.ilsr_pairwise(2, boot, alpha=0.01)\\n            boot_probs.append(1.0 / (1.0 + np.exp(-(bp[FORMAL] - bp[CASUAL]))))\\n        except Exception:\\n            pass\\n\\n    boot_probs = np.array(boot_probs)\\n    ci_lo, ci_hi = np.percentile(boot_probs, [2.5, 97.5])\\n    p_val = 2 * min(np.mean(boot_probs < 0.5), np.mean(boot_probs > 0.5))\\n    p_val = max(p_val, 1.0 / N_BOOT)\\n    return {\\n        \\\"bt_win_prob\\\": round(float(p_formal), 4),\\n        \\\"bt_ci\\\": [round(float(ci_lo), 4), round(float(ci_hi), 4)],\\n        \\\"bt_p\\\": round(float(p_val), 6),\\n        \\\"bt_sig\\\": p_val < 0.05,\\n    }\\n\\n\\ndef likert_from_pairwise(recs):\\n    consistent = [r for r in recs if r[\\\"consistent\\\"]]\\n    n = len(consistent)\\n    if n == 0:\\n        return {\\\"likert_ate\\\": None, \\\"likert_d\\\": None, \\\"likert_p\\\": None, \\\"likert_sig\\\": None, \\\"likert_note\\\": \\\"no consistent pairs\\\"}\\n    fw = sum(1 for r in consistent if r.get(\\\"formal_wins\\\"))\\n    win_rate = fw / n\\n    ate = win_rate - 0.5\\n    h = 2 * np.arcsin(np.sqrt(win_rate)) - 2 * np.arcsin(np.sqrt(0.5))\\n    p_val = stats.binomtest(fw, n, 0.5).pvalue\\n    return {\\n        \\\"likert_ate\\\": round(float(ate), 4),\\n        \\\"likert_d\\\": round(float(h), 4),\\n        \\\"likert_p\\\": round(float(p_val), 6),\\n        \\\"likert_n\\\": n,\\n        \\\"likert_sig\\\": p_val < 0.05,\\n        \\\"likert_note\\\": \\\"sign-test (pairwise-derived)\\\",\\n    }\\n\\n\\ndef likert_from_scores(path):\\n    recs = [json.loads(l) for l in open(path) if l.strip()]\\n    recs = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= NLI_THRESHOLD]\\n    formal_s, casual_s = [], []\\n    for r in recs:\\n        so = r.get(\\\"score_original\\\")\\n        sc = r.get(\\\"score_counterfactual\\\")\\n        if so is not None and sc is not None:\\n            orig = r.get(\\\"original_formality\\\", \\\"formal\\\")\\n            if orig == \\\"formal\\\":\\n                formal_s.append(so)\\n                casual_s.append(sc)\\n            else:\\n                formal_s.append(sc)\\n                casual_s.append(so)\\n    formal_s = np.array(formal_s, dtype=float)\\n    casual_s = np.array(casual_s, dtype=float)\\n    n = len(formal_s)\\n    if n == 0:\\n        return {\\\"likert_ate\\\": None, \\\"likert_d\\\": None, \\\"likert_p\\\": None, \\\"likert_sig\\\": None}\\n    ate = float(np.mean(formal_s) - np.mean(casual_s))\\n    pooled_std = np.sqrt((np.var(formal_s, ddof=1) + np.var(casual_s, ddof=1)) / 2)\\n    d = ate / pooled_std if pooled_std > 0 else 0.0\\n    _, p_val = stats.wilcoxon(formal_s, casual_s, alternative=\\\"two-sided\\\")\\n    return {\\n        \\\"likert_ate\\\": round(float(ate), 4),\\n        \\\"likert_d\\\": round(float(d), 4),\\n        \\\"likert_p\\\": round(float(p_val), 6),\\n        \\\"likert_n\\\": n,\\n        \\\"likert_sig\\\": p_val < 0.05,\\n        \\\"likert_note\\\": \\\"Wilcoxon signed-rank (Likert scores)\\\",\\n    }\\n\\n\\ndef gee_analysis(recs):\\n    rows = []\\n    for i, r in enumerate(recs):\\n        orig = r.get(\\\"original_formality\\\", \\\"formal\\\")\\n        t1 = r.get(\\\"trial1_choice\\\")\\n        t2 = r.get(\\\"trial2_choice\\\")\\n        if t1 in (\\\"A\\\", \\\"B\\\"):\\n            rows.append({\\n                \\\"pair_id\\\": i,\\n                \\\"is_style_in_A\\\": 1.0,\\n                \\\"is_original_in_A\\\": 1.0 if orig == \\\"formal\\\" else 0.0,\\n                \\\"chose_A\\\": 1.0 if t1 == \\\"A\\\" else 0.0,\\n            })\\n        if t2 in (\\\"A\\\", \\\"B\\\"):\\n            rows.append({\\n                \\\"pair_id\\\": i,\\n                \\\"is_style_in_A\\\": 0.0,\\n                \\\"is_original_in_A\\\": 1.0 if orig == \\\"casual\\\" else 0.0,\\n                \\\"chose_A\\\": 1.0 if t2 == \\\"A\\\" else 0.0,\\n            })\\n\\n    df = pd.DataFrame(rows)\\n    exog = sm.add_constant(df[[\\\"is_style_in_A\\\", \\\"is_original_in_A\\\"]])\\n    model = GEE(df[\\\"chose_A\\\"], exog, groups=df[\\\"pair_id\\\"],\\n                family=Binomial(), cov_struct=Exchangeable())\\n    res = model.fit()\\n\\n    def extract_or(result, name):\\n        coef = result.params[name]\\n        se = result.bse[name]\\n        p = result.pvalues[name]\\n        or_val = np.exp(coef)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014Mw33fZj3LHNADTfK7X2fk`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "grep -rn \"1.120\" /root/causal_style_decomp_judge/docs/paper/ --include=\"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "0a37b7ec-715a-43b2-b3dd-c800e228c1bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pavzj8j7pCYsEwrCAktJyR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2716,
+      "cache_read_input_tokens": 36854,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2716
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T08:40:40.341Z_
+
+<details><summary>↩ Tool result · `toolu_01K4KarWGTtMNnsqt87FDLM3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/causal_style_decomp_judge/docs/paper/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "6c5c0b49-c308-4a91-8664-4c81b74f98af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/causal_style_decomp_judge/docs/paper/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/causal_style_decomp_judge/docs/paper/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-24T08:40:42.024Z_
+
+<details><summary>↩ Tool result · `toolu_014Mw33fZj3LHNADTfK7X2fk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/causal_style_decomp_judge/docs/paper/: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "d979524a-904f-4e71-b397-633883e87caf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/causal_style_decomp_judge/docs/paper/: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/causal_style_decomp_judge/docs/paper/: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, the `docs/paper/` directory doesn't exist. I need to find where the LaTeX files are. Also I now have the full `likert_from_pairwise` function. Let me analyze it:
+
+**`likert_from_pairwise(recs)`**:
+- Filters to only consistent pairs
+- Counts formal wins among consistent pairs
+- Computes `win_rate = fw / n`
+- Computes `ate = win_rate - 0.5`
+- Computes **Cohen's h** = `2 * arcsin(sqrt(win_rate)) - 2 * arcsin(sqrt(0.5))`
+
+
+- Labels this as `likert_d` in the output with a note about sign-test derivation from pairwise comparisons
+
+**`likert_from_scores(path)`** takes a different approach:
+- Reads actual Likert scores directly
+- Computes ATE as the difference in means between formal and casual
+- Calculates true Cohen's d using the pooled standard deviation
+- Reports this with a Wilcoxon signed-rank test note
+
+The key finding is confirmed: Config 1 (AlpacaEval × Llama-70B × formality) has `likert_file=None`.
+
+For Config 1, the pairwise-derived Cohen's h is reported as `likert_d=1.1597` (which might correspond to the ≈1.120 value in the paper). Configs 2-5 all have `likert_file` values, so they use the true Cohen's d from actual Likert scores.
+
+Now I'm looking for the LaTeX table to see how these values are presented.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "0111bc93-0c1b-44cc-a341-03209df38838",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDeMm8frHSKfcyKvxz4BJV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4352,
+      "cache_read_input_tokens": 39570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4352
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+`docs/paper/` 不存在。搜索 LaTeX 文件位置和已有的运行结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "107697ae-d577-4bc6-b7a0-2a1940b0eb7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDeMm8frHSKfcyKvxz4BJV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4352,
+      "cache_read_input_tokens": 39570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4352
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S9BG3CumUXvXYEyMuHA9FY`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/ -name \"*.tex\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "4d4c0f9a-cfca-4494-861e-128c42eaa6db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDeMm8frHSKfcyKvxz4BJV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4352,
+      "cache_read_input_tokens": 39570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4352
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N6VSfnFrRMwxs1FrXSSRSu`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/artifacts/ -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "cd260fd4-65b0-49fb-bf38-5ad77cbfcc78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDeMm8frHSKfcyKvxz4BJV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4352,
+      "cache_read_input_tokens": 39570,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4352
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T08:40:57.334Z_
+
+<details><summary>↩ Tool result · `toolu_01S9BG3CumUXvXYEyMuHA9FY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "9eccdf79-6b7a-4c24-8c95-59ed103ebf07",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-24T08:40:59.022Z_
+
+<details><summary>↩ Tool result · `toolu_01N6VSfnFrRMwxs1FrXSSRSu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/nli_gate_gpt4o_spotcheck.json\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/tost_sensitivity.json\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/formality_wordcount_covariate.json\\n/root/causal_style_decomp_judge/artifacts/r13_fixes/nli_selection_bias.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/nli_selection_bias_extended.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/direction_aware_quality.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/construct_divergence_test.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gee_bug_report.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_pipeline_diagnosis.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_crossbench_results.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gpt4o_crossbench_results.json\\n/root/causal_style_decomp_judge/artifacts/r16_analysis/construct_divergence_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "d7b91bb2-712c-41b9-81e8-611a06aa049f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/nli_gate_gpt4o_spotcheck.json\\\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/tost_sensitivity.json\\\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/formality_wordcount_covariate.json\\\\n/root/causal_style_decomp_judge/artifacts/r13_fixes/nli_selection_bias.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/nli_selection_bias_extended.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/direction_aware_quality.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/construct_divergence_test.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gee_bug_report.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_pipeline_diagnosis.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_crossbench_results.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gpt4o_crossbench_results.json\\\\n/root/causal_style_decomp_judge/artifacts/r16_analysis/construct_divergence_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/nli_gate_gpt4o_spotcheck.json\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/tost_sensitivity.json\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/formality_wordcount_covariate.json\\n/root/causal_style_decomp_judge/artifacts/r13_fixes/nli_selection_bias.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/nli_selection_bias_extended.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/direction_aware_quality.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/construct_divergence_test.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gee_bug_report.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_pipeline_diagnosis.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_crossbench_results.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gpt4o_crossbench_results.json\\n/root/causal_style_decomp_judge/artifacts/r16_analysis/construct_divergence_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No `.tex` files found on the server. The LaTeX is likely on the local machine or in a different location. Let me check locally for the table, and also read the other JSON results files that look relevant (claude_crossbench_results.json, gpt4o_crossbench_results.json).
+
+Let me also check if there's a paper directory elsewhere, and read the cross-benchmark JSON results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "ba2a11ff-abb3-439a-8e4d-7e3956a2cb39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N7rXck9BzNcAopUmrKy77j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 43922,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+没有 `.tex` 文件在服务器上。先读取所有 cross-benchmark 结果 JSON，同时在本地查找 LaTeX 表。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "6a84261c-b749-4168-a843-bbe8de00deff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N7rXck9BzNcAopUmrKy77j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 43922,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TkfieZtFc2cuPNmJXLWeYu`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/artifacts/r14_fixes/claude_crossbench_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "06e92a2a-0b5b-4772-8dc9-cc853f9a10fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N7rXck9BzNcAopUmrKy77j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 43922,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CjbKSnFVMsamUqA1uBtFdb`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/artifacts/r14_fixes/gpt4o_crossbench_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "2ed8454d-337e-427b-ba17-bbde5f4413de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N7rXck9BzNcAopUmrKy77j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 43922,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-24T08:41:06.525Z_
+
+<details><summary>↩ Tool result · `toolu_01TkfieZtFc2cuPNmJXLWeYu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_config\\\": [\\n    {\\n      \\\"label\\\": \\\"LLMBar\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.5624857986821177,\\n        \\\"ci_lo\\\": 0.48849693251533755,\\n        \\\"ci_hi\\\": 0.6363326516700749,\\n        \\\"p_val\\\": 0.1234,\\n        \\\"n_pairs\\\": 88,\\n        \\\"n_comparisons\\\": 176,\\n        \\\"n_filtered\\\": 88,\\n        \\\"pole_a_wins\\\": 99,\\n        \\\"pole_b_wins\\\": 77\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": -0.045454545454545456,\\n        \\\"cohen_d\\\": -0.02086142621178841,\\n        \\\"wilcoxon_p\\\": 0.7206622374950493,\\n        \\\"tie_rate\\\": 0.6818181818181818,\\n        \\\"n\\\": 88,\\n        \\\"mean_pole\\\": 4.875,\\n        \\\"mean_anti\\\": 4.920454545454546\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 1.4692601741317384,\\n        \\\"style_ci\\\": [\\n          0.7356151616811347,\\n          2.934585326322248\\n        ],\\n        \\\"style_p\\\": 0.27567633487327836,\\n        \\\"orig_or\\\": 6.6644013472752075,\\n        \\\"orig_ci\\\": [\\n          3.2139714877073158,\\n          13.8191161581357\\n        ],\\n        \\\"orig_p\\\": 3.436173249919321e-07\\n      },\\n      \\\"blindspot\\\": false\\n    },\\n    {\\n      \\\"label\\\": \\\"LLMBar\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.5406882120437109,\\n        \\\"ci_lo\\\": 0.4593117879562892,\\n        \\\"ci_hi\\\": 0.6220646361311323,\\n        \\\"p_val\\\": 0.3538,\\n        \\\"n_pairs\\\": 86,\\n        \\\"n_comparisons\\\": 172,\\n        \\\"n_filtered\\\": 86,\\n        \\\"pole_a_wins\\\": 93,\\n        \\\"pole_b_wins\\\": 79\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": -0.08139534883720931,\\n        \\\"cohen_d\\\": -0.03949716665762953,\\n        \\\"wilcoxon_p\\\": 0.7427442509126547,\\n        \\\"tie_rate\\\": 0.6744186046511628,\\n        \\\"n\\\": 86,\\n        \\\"mean_pole\\\": 4.709302325581396,\\n        \\\"mean_anti\\\": 4.790697674418604\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 1.517443456054821,\\n        \\\"style_ci\\\": [\\n          0.7056052407486227,\\n          3.263346853660813\\n        ],\\n        \\\"style_p\\\": 0.28576967372505546,\\n        \\\"orig_or\\\": 0.7980764851846712,\\n        \\\"orig_ci\\\": [\\n          0.3718801642858219,\\n          1.7127186050052037\\n        ],\\n        \\\"orig_p\\\": 0.5626454873103037\\n      },\\n      \\\"blindspot\\\": false\\n    },\\n    {\\n      \\\"label\\\": \\\"AlpacaEval\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.6976284584980237,\\n        \\\"ci_lo\\\": 0.6278772378516625,\\n        \\\"ci_hi\\\": 0.7673796791443851,\\n        \\\"p_val\\\": 0.0,\\n        \\\"n_pairs\\\": 86,\\n        \\\"n_comparisons\\\": 172,\\n        \\\"n_filtered\\\": 86,\\n        \\\"pole_a_wins\\\": 120,\\n        \\\"pole_b_wins\\\": 52\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": 0.13953488372093023,\\n        \\\"cohen_d\\\": 0.08113225589605724,\\n        \\\"wilcoxon_p\\\": 0.08987560200743173,\\n        \\\"tie_rate\\\": 0.7325581395348837,\\n        \\\"n\\\": 86,\\n        \\\"mean_pole\\\": 5.953488372093023,\\n        \\\"mean_anti\\\": 5.813953488372093\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 1.9866543292882117,\\n        \\\"style_ci\\\": [\\n          0.9162046431433672,\\n          4.3077662328131225\\n        ],\\n        \\\"style_p\\\": 0.08214473344456363,\\n        \\\"orig_or\\\": 9.325959855261793,\\n        \\\"orig_ci\\\": [\\n          4.234061304707844,\\n          20.541395356096725\\n        ],\\n        \\\"orig_p\\\": 2.988081913325501e-08\\n      },\\n      \\\"blindspot\\\": true\\n    },\\n    {\\n      \\\"label\\\": \\\"AlpacaEval\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.682882223847842,\\n        \\\"ci_lo\\\": 0.5975371860521823,\\n        \\\"ci_hi\\\": 0.7621311875152402,\\n        \\\"p_val\\\": 0.0,\\n        \\\"n_pairs\\\": 82,\\n        \\\"n_comparisons\\\": 164,\\n        \\\"n_filtered\\\": 82,\\n        \\\"pole_a_wins\\\": 112,\\n        \\\"pole_b_wins\\\": 52\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": 0.5365853658536586,\\n        \\\"cohen_d\\\": 0.29806891017067516,\\n        \\\"wilcoxon_p\\\": 0.00044110580677276964,\\n        \\\"tie_rate\\\": 0.4634146341463415,\\n        \\\"n\\\": 82,\\n        \\\"mean_pole\\\": 6.353658536585366,\\n        \\\"mean_anti\\\": 5.817073170731708\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 4.7578804856223815,\\n        \\\"style_ci\\\": [\\n          2.153716475745937,\\n          10.510866667176247\\n        ],\\n        \\\"style_p\\\": 0.00011471259405980918,\\n        \\\"orig_or\\\": 0.8709164923599982,\\n        \\\"orig_ci\\\": [\\n          0.3945779740495073,\\n          1.922295684374605\\n        ],\\n        \\\"orig_p\\\": 0.7322381921262724\\n      },\\n      \\\"blindspot\\\": false\\n    },\\n    {\\n      \\\"label\\\": \\\"MT-Bench\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.7328129279649411,\\n        \\\"ci_lo\\\": 0.6574910983292249,\\n        \\\"ci_hi\\\": 0.8081347576006574,\\n        \\\"p_val\\\": 0.0,\\n        \\\"n_pairs\\\": 73,\\n        \\\"n_comparisons\\\": 146,\\n        \\\"n_filtered\\\": 73,\\n        \\\"pole_a_wins\\\": 107,\\n        \\\"pole_b_wins\\\": 39\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": 0.3561643835616438,\\n        \\\"cohen_d\\\": 0.19866068160492462,\\n        \\\"wilcoxon_p\\\": 0.00015758015385710465,\\n        \\\"tie_rate\\\": 0.5753424657534246,\\n        \\\"n\\\": 73,\\n        \\\"mean_pole\\\": 7.534246575342466,\\n        \\\"mean_anti\\\": 7.178082191780822\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 1.6407802238999178,\\n        \\\"style_ci\\\": [\\n          0.5627905365421916,\\n          4.783590995829115\\n        ],\\n        \\\"style_p\\\": 0.36439243661489906,\\n        \\\"orig_or\\\": 11.849349326535863,\\n        \\\"orig_ci\\\": [\\n          4.084542131860273,\\n          34.37523103680867\\n        ],\\n        \\\"orig_p\\\": 5.373769682563567e-06\\n      },\\n      \\\"blindspot\\\": false\\n    }\\n  ],\\n  \\\"merged_tost\\\": {\\n    \\\"formality\\\": {\\n      \\\"n_total\\\": 145,\\n      \\\"n_pole_a_wins\\\": 112,\\n      \\\"p_hat\\\": 0.7724137931034483,\\n      \\\"se\\\": 0.034818814308378195,\\n      \\\"ci_90\\\": [\\n        0.7151368435661661,\\n        0.8296907426407304\\n      ],\\n      \\\"tost\\\": {\\n        \\\"delta_5pp\\\": {\\n          \\\"delta\\\": 0.05,\\n          \\\"p_value\\\": 0.9999999999158264,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_10pp\\\": {\\n          \\\"delta\\\": 0.1,\\n          \\\"p_value\\\": 0.9999996322400396,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_12pp\\\": {\\n          \\\"delta\\\": 0.12,\\n          \\\"p_value\\\": 0.9999939931789559,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_15pp\\\": {\\n          \\\"delta\\\": 0.15,\\n          \\\"p_value\\\": 0.9997807324038096,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_20pp\\\": {\\n          \\\"delta\\\": 0.2,\\n          \\\"p_value\\\": 0.9812249272253002,\\n          \\\"significant\\\": false\\n        }\\n      },\\n      \\\"equivalence_confirmed_at\\\": null\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"n_total\\\": 109,\\n      \\\"n_pole_a_wins\\\": 73,\\n      \\\"p_hat\\\": 0.6697247706422018,\\n      \\\"se\\\": 0.0450477323025308,\\n      \\\"ci_90\\\": [\\n        0.5956212510045387,\\n        0.743828290279865\\n      ],\\n      \\\"tost\\\": {\\n        \\\"delta_5pp\\\": {\\n          \\\"delta\\\": 0.05,\\n          \\\"p_value\\\": 0.9960665713021487,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_10pp\\\": {\\n          \\\"delta\\\": 0.1,\\n          \\\"p_value\\\": 0.9391644792607646,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_12pp\\\": {\\n          \\\"delta\\\": 0.12,\\n          \\\"p_value\\\": 0.8651652665325952,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_15pp\\\": {\\n          \\\"delta\\\": 0.15,\\n          \\\"p_value\\\": 0.6692574858483457,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_20pp\\\": {\\n          \\\"delta\\\": 0.2,\\n          \\\"p_value\\\": 0.25076956764774727,\\n          \\\"significant\\\": false\\n        }\\n      },\\n      \\\"equivalence_confirmed_at\\\": null\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "22bf69dd-4049-4c62-b679-4f00b0f0458f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_config\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"LLMBar\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"bt\\\\\\\": {\\\\n        \\\\\\\"p_pole_a\\\\\\\": 0.5624857986821177,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.48849693251533755,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6363326516700749,\\\\n        \\\\\\\"p_val\\\\\\\": 0.1234,\\\\n        \\\\\\\"n_pairs\\\\\\\": 88,\\\\n        \\\\\\\"n_comparisons\\\\\\\": 176,\\\\n        \\\\\\\"n_filtered\\\\\\\": 88,\\\\n        \\\\\\\"pole_a_wins\\\\\\\": 99,\\\\n        \\\\\\\"pole_b_wins\\\\\\\": 77\\\\n      },\\\\n      \\\\\\\"likert\\\\\\\": {\\\\n        \\\\\\\"ate\\\\\\\": -0.045454545454545456,\\\\n        \\\\\\\"cohen_d\\\\\\\": -0.02086142621178841,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.7206622374950493,\\\\n        \\\\\\\"tie_rate\\\\\\\": 0.6818181818181818,\\\\n        \\\\\\\"n\\\\\\\": 88,\\\\n        \\\\\\\"mean_pole\\\\\\\": 4.875,\\\\n        \\\\\\\"mean_anti\\\\\\\": 4.920454545454546\\\\n      },\\\\n      \\\\\\\"gee\\\\\\\": {\\\\n        \\\\\\\"style_or\\\\\\\": 1.4692601741317384,\\\\n        \\\\\\\"style_ci\\\\\\\": [\\\\n          0.7356151616811347,\\\\n          2.934585326322248\\\\n        ],\\\\n        \\\\\\\"style_p\\\\\\\": 0.27567633487327836,\\\\n        \\\\\\\"orig_or\\\\\\\": 6.6644013472752075,\\\\n        \\\\\\\"orig_ci\\\\\\\": [\\\\n          3.2139714877073158,\\\\n          13.8191161581357\\\\n        ],\\\\n        \\\\\\\"orig_p\\\\\\\": 3.436173249919321e-07\\\\n      },\\\\n      \\\\\\\"blindspot\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"LLMBar\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"bt\\\\\\\": {\\\\n        \\\\\\\"p_pole_a\\\\\\\": 0.5406882120437109,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.4593117879562892,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6220646361311323,\\\\n        \\\\\\\"p_val\\\\\\\": 0.3538,\\\\n        \\\\\\\"n_pairs\\\\\\\": 86,\\\\n        \\\\\\\"n_comparisons\\\\\\\": 172,\\\\n        \\\\\\\"n_filtered\\\\\\\": 86,\\\\n        \\\\\\\"pole_a_wins\\\\\\\": 93,\\\\n        \\\\\\\"pole_b_wins\\\\\\\": 79\\\\n      },\\\\n      \\\\\\\"likert\\\\\\\": {\\\\n        \\\\\\\"ate\\\\\\\": -0.08139534883720931,\\\\n        \\\\\\\"cohen_d\\\\\\\": -0.03949716665762953,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.7427442509126547,\\\\n        \\\\\\\"tie_rate\\\\\\\": 0.6744186046511628,\\\\n        \\\\\\\"n\\\\\\\": 86,\\\\n        \\\\\\\"mean_pole\\\\\\\": 4.709302325581396,\\\\n        \\\\\\\"mean_anti\\\\\\\": 4.790697674418604\\\\n      },\\\\n      \\\\\\\"gee\\\\\\\": {\\\\n        \\\\\\\"style_or\\\\\\\": 1.517443456054821,\\\\n        \\\\\\\"style_ci\\\\\\\": [\\\\n          0.7056052407486227,\\\\n          3.263346853660813\\\\n        ],\\\\n        \\\\\\\"style_p\\\\\\\": 0.28576967372505546,\\\\n        \\\\\\\"orig_or\\\\\\\": 0.7980764851846712,\\\\n        \\\\\\\"orig_ci\\\\\\\": [\\\\n          0.3718801642858219,\\\\n          1.7127186050052037\\\\n        ],\\\\n        \\\\\\\"orig_p\\\\\\\": 0.5626454873103037\\\\n      },\\\\n      \\\\\\\"blindspot\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"bt\\\\\\\": {\\\\n        \\\\\\\"p_pole_a\\\\\\\": 0.6976284584980237,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6278772378516625,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7673796791443851,\\\\n        \\\\\\\"p_val\\\\\\\": 0.0,\\\\n        \\\\\\\"n_pairs\\\\\\\": 86,\\\\n        \\\\\\\"n_comparisons\\\\\\\": 172,\\\\n        \\\\\\\"n_filtered\\\\\\\": 86,\\\\n        \\\\\\\"pole_a_wins\\\\\\\": 120,\\\\n        \\\\\\\"pole_b_wins\\\\\\\": 52\\\\n      },\\\\n      \\\\\\\"likert\\\\\\\": {\\\\n        \\\\\\\"ate\\\\\\\": 0.13953488372093023,\\\\n        \\\\\\\"cohen_d\\\\\\\": 0.08113225589605724,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.08987560200743173,\\\\n        \\\\\\\"tie_rate\\\\\\\": 0.7325581395348837,\\\\n        \\\\\\\"n\\\\\\\": 86,\\\\n        \\\\\\\"mean_pole\\\\\\\": 5.953488372093023,\\\\n        \\\\\\\"mean_anti\\\\\\\": 5.813953488372093\\\\n      },\\\\n      \\\\\\\"gee\\\\\\\": {\\\\n        \\\\\\\"style_or\\\\\\\": 1.9866543292882117,\\\\n        \\\\\\\"style_ci\\\\\\\": [\\\\n          0.9162046431433672,\\\\n          4.3077662328131225\\\\n        ],\\\\n        \\\\\\\"style_p\\\\\\\": 0.08214473344456363,\\\\n        \\\\\\\"orig_or\\\\\\\": 9.325959855261793,\\\\n        \\\\\\\"orig_ci\\\\\\\": [\\\\n          4.234061304707844,\\\\n          20.541395356096725\\\\n        ],\\\\n        \\\\\\\"orig_p\\\\\\\": 2.988081913325501e-08\\\\n      },\\\\n      \\\\\\\"blindspot\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"bt\\\\\\\": {\\\\n        \\\\\\\"p_pole_a\\\\\\\": 0.682882223847842,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.5975371860521823,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7621311875152402,\\\\n        \\\\\\\"p_val\\\\\\\": 0.0,\\\\n        \\\\\\\"n_pairs\\\\\\\": 82,\\\\n        \\\\\\\"n_comparisons\\\\\\\": 164,\\\\n        \\\\\\\"n_filtered\\\\\\\": 82,\\\\n        \\\\\\\"pole_a_wins\\\\\\\": 112,\\\\n        \\\\\\\"pole_b_wins\\\\\\\": 52\\\\n      },\\\\n      \\\\\\\"likert\\\\\\\": {\\\\n        \\\\\\\"ate\\\\\\\": 0.5365853658536586,\\\\n        \\\\\\\"cohen_d\\\\\\\": 0.29806891017067516,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.00044110580677276964,\\\\n        \\\\\\\"tie_rate\\\\\\\": 0.4634146341463415,\\\\n        \\\\\\\"n\\\\\\\": 82,\\\\n        \\\\\\\"mean_pole\\\\\\\": 6.353658536585366,\\\\n        \\\\\\\"mean_anti\\\\\\\": 5.817073170731708\\\\n      },\\\\n      \\\\\\\"gee\\\\\\\": {\\\\n        \\\\\\\"style_or\\\\\\\": 4.7578804856223815,\\\\n        \\\\\\\"style_ci\\\\\\\": [\\\\n          2.153716475745937,\\\\n          10.510866667176247\\\\n        ],\\\\n        \\\\\\\"style_p\\\\\\\": 0.00011471259405980918,\\\\n        \\\\\\\"orig_or\\\\\\\": 0.8709164923599982,\\\\n        \\\\\\\"orig_ci\\\\\\\": [\\\\n          0.3945779740495073,\\\\n          1.922295684374605\\\\n        ],\\\\n        \\\\\\\"orig_p\\\\\\\": 0.7322381921262724\\\\n      },\\\\n      \\\\\\\"blindspot\\\\\\\": false\\\\n    },\\\\n    {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"bt\\\\\\\": {\\\\n        \\\\\\\"p_pole_a\\\\\\\": 0.7328129279649411,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.6574910983292249,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.8081347576006574,\\\\n        \\\\\\\"p_val\\\\\\\": 0.0,\\\\n        \\\\\\\"n_pairs\\\\\\\": 73,\\\\n        \\\\\\\"n_comparisons\\\\\\\": 146,\\\\n        \\\\\\\"n_filtered\\\\\\\": 73,\\\\n        \\\\\\\"pole_a_wins\\\\\\\": 107,\\\\n        \\\\\\\"pole_b_wins\\\\\\\": 39\\\\n      },\\\\n      \\\\\\\"likert\\\\\\\": {\\\\n        \\\\\\\"ate\\\\\\\": 0.3561643835616438,\\\\n        \\\\\\\"cohen_d\\\\\\\": 0.19866068160492462,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.00015758015385710465,\\\\n        \\\\\\\"tie_rate\\\\\\\": 0.5753424657534246,\\\\n        \\\\\\\"n\\\\\\\": 73,\\\\n        \\\\\\\"mean_pole\\\\\\\": 7.534246575342466,\\\\n        \\\\\\\"mean_anti\\\\\\\": 7.178082191780822\\\\n      },\\\\n      \\\\\\\"gee\\\\\\\": {\\\\n        \\\\\\\"style_or\\\\\\\": 1.6407802238999178,\\\\n        \\\\\\\"style_ci\\\\\\\": [\\\\n          0.5627905365421916,\\\\n          4.783590995829115\\\\n        ],\\\\n        \\\\\\\"style_p\\\\\\\": 0.36439243661489906,\\\\n        \\\\\\\"orig_or\\\\\\\": 11.849349326535863,\\\\n        \\\\\\\"orig_ci\\\\\\\": [\\\\n          4.084542131860273,\\\\n          34.37523103680867\\\\n        ],\\\\n        \\\\\\\"orig_p\\\\\\\": 5.373769682563567e-06\\\\n      },\\\\n      \\\\\\\"blindspot\\\\\\\": false\\\\n    }\\\\n  ],\\\\n  \\\\\\\"merged_tost\\\\\\\": {\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n      \\\\\\\"n_total\\\\\\\": 145,\\\\n      \\\\\\\"n_pole_a_wins\\\\\\\": 112,\\\\n      \\\\\\\"p_hat\\\\\\\": 0.7724137931034483,\\\\n      \\\\\\\"se\\\\\\\": 0.034818814308378195,\\\\n      \\\\\\\"ci_90\\\\\\\": [\\\\n        0.7151368435661661,\\\\n        0.8296907426407304\\\\n      ],\\\\n      \\\\\\\"tost\\\\\\\": {\\\\n        \\\\\\\"delta_5pp\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.05,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9999999999158264,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"delta_10pp\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.1,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9999996322400396,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"delta_12pp\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.12,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9999939931789559,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"delta_15pp\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.15,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9997807324038096,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"delta_20pp\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.2,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9812249272253002,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        }\\\\n      },\\\\n      \\\\\\\"equivalence_confirmed_at\\\\\\\": null\\\\n    },\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n      \\\\\\\"n_total\\\\\\\": 109,\\\\n      \\\\\\\"n_pole_a_wins\\\\\\\": 73,\\\\n      \\\\\\\"p_hat\\\\\\\": 0.6697247706422018,\\\\n      \\\\\\\"se\\\\\\\": 0.0450477323025308,\\\\n      \\\\\\\"ci_90\\\\\\\": [\\\\n        0.5956212510045387,\\\\n        0.743828290279865\\\\n      ],\\\\n      \\\\\\\"tost\\\\\\\": {\\\\n        \\\\\\\"delta_5pp\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.05,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9960665713021487,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"delta_10pp\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.1,\\\\n          \\\\\\\"p_value\\\\\\\": 0.9391644792607646,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"delta_12pp\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.12,\\\\n          \\\\\\\"p_value\\\\\\\": 0.8651652665325952,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"delta_15pp\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.15,\\\\n          \\\\\\\"p_value\\\\\\\": 0.6692574858483457,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"delta_20pp\\\\\\\": {\\\\n          \\\\\\\"delta\\\\\\\": 0.2,\\\\n          \\\\\\\"p_value\\\\\\\": 0.25076956764774727,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        }\\\\n      },\\\\n      \\\\\\\"equivalence_confirmed_at\\\\\\\": null\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_config\\\": [\\n    {\\n      \\\"label\\\": \\\"LLMBar\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.5624857986821177,\\n        \\\"ci_lo\\\": 0.48849693251533755,\\n        \\\"ci_hi\\\": 0.6363326516700749,\\n        \\\"p_val\\\": 0.1234,\\n        \\\"n_pairs\\\": 88,\\n        \\\"n_comparisons\\\": 176,\\n        \\\"n_filtered\\\": 88,\\n        \\\"pole_a_wins\\\": 99,\\n        \\\"pole_b_wins\\\": 77\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": -0.045454545454545456,\\n        \\\"cohen_d\\\": -0.02086142621178841,\\n        \\\"wilcoxon_p\\\": 0.7206622374950493,\\n        \\\"tie_rate\\\": 0.6818181818181818,\\n        \\\"n\\\": 88,\\n        \\\"mean_pole\\\": 4.875,\\n        \\\"mean_anti\\\": 4.920454545454546\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 1.4692601741317384,\\n        \\\"style_ci\\\": [\\n          0.7356151616811347,\\n          2.934585326322248\\n        ],\\n        \\\"style_p\\\": 0.27567633487327836,\\n        \\\"orig_or\\\": 6.6644013472752075,\\n        \\\"orig_ci\\\": [\\n          3.2139714877073158,\\n          13.8191161581357\\n        ],\\n        \\\"orig_p\\\": 3.436173249919321e-07\\n      },\\n      \\\"blindspot\\\": false\\n    },\\n    {\\n      \\\"label\\\": \\\"LLMBar\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.5406882120437109,\\n        \\\"ci_lo\\\": 0.4593117879562892,\\n        \\\"ci_hi\\\": 0.6220646361311323,\\n        \\\"p_val\\\": 0.3538,\\n        \\\"n_pairs\\\": 86,\\n        \\\"n_comparisons\\\": 172,\\n        \\\"n_filtered\\\": 86,\\n        \\\"pole_a_wins\\\": 93,\\n        \\\"pole_b_wins\\\": 79\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": -0.08139534883720931,\\n        \\\"cohen_d\\\": -0.03949716665762953,\\n        \\\"wilcoxon_p\\\": 0.7427442509126547,\\n        \\\"tie_rate\\\": 0.6744186046511628,\\n        \\\"n\\\": 86,\\n        \\\"mean_pole\\\": 4.709302325581396,\\n        \\\"mean_anti\\\": 4.790697674418604\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 1.517443456054821,\\n        \\\"style_ci\\\": [\\n          0.7056052407486227,\\n          3.263346853660813\\n        ],\\n        \\\"style_p\\\": 0.28576967372505546,\\n        \\\"orig_or\\\": 0.7980764851846712,\\n        \\\"orig_ci\\\": [\\n          0.3718801642858219,\\n          1.7127186050052037\\n        ],\\n        \\\"orig_p\\\": 0.5626454873103037\\n      },\\n      \\\"blindspot\\\": false\\n    },\\n    {\\n      \\\"label\\\": \\\"AlpacaEval\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.6976284584980237,\\n        \\\"ci_lo\\\": 0.6278772378516625,\\n        \\\"ci_hi\\\": 0.7673796791443851,\\n        \\\"p_val\\\": 0.0,\\n        \\\"n_pairs\\\": 86,\\n        \\\"n_comparisons\\\": 172,\\n        \\\"n_filtered\\\": 86,\\n        \\\"pole_a_wins\\\": 120,\\n        \\\"pole_b_wins\\\": 52\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": 0.13953488372093023,\\n        \\\"cohen_d\\\": 0.08113225589605724,\\n        \\\"wilcoxon_p\\\": 0.08987560200743173,\\n        \\\"tie_rate\\\": 0.7325581395348837,\\n        \\\"n\\\": 86,\\n        \\\"mean_pole\\\": 5.953488372093023,\\n        \\\"mean_anti\\\": 5.813953488372093\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 1.9866543292882117,\\n        \\\"style_ci\\\": [\\n          0.9162046431433672,\\n          4.3077662328131225\\n        ],\\n        \\\"style_p\\\": 0.08214473344456363,\\n        \\\"orig_or\\\": 9.325959855261793,\\n        \\\"orig_ci\\\": [\\n          4.234061304707844,\\n          20.541395356096725\\n        ],\\n        \\\"orig_p\\\": 2.988081913325501e-08\\n      },\\n      \\\"blindspot\\\": true\\n    },\\n    {\\n      \\\"label\\\": \\\"AlpacaEval\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.682882223847842,\\n        \\\"ci_lo\\\": 0.5975371860521823,\\n        \\\"ci_hi\\\": 0.7621311875152402,\\n        \\\"p_val\\\": 0.0,\\n        \\\"n_pairs\\\": 82,\\n        \\\"n_comparisons\\\": 164,\\n        \\\"n_filtered\\\": 82,\\n        \\\"pole_a_wins\\\": 112,\\n        \\\"pole_b_wins\\\": 52\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": 0.5365853658536586,\\n        \\\"cohen_d\\\": 0.29806891017067516,\\n        \\\"wilcoxon_p\\\": 0.00044110580677276964,\\n        \\\"tie_rate\\\": 0.4634146341463415,\\n        \\\"n\\\": 82,\\n        \\\"mean_pole\\\": 6.353658536585366,\\n        \\\"mean_anti\\\": 5.817073170731708\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 4.7578804856223815,\\n        \\\"style_ci\\\": [\\n          2.153716475745937,\\n          10.510866667176247\\n        ],\\n        \\\"style_p\\\": 0.00011471259405980918,\\n        \\\"orig_or\\\": 0.8709164923599982,\\n        \\\"orig_ci\\\": [\\n          0.3945779740495073,\\n          1.922295684374605\\n        ],\\n        \\\"orig_p\\\": 0.7322381921262724\\n      },\\n      \\\"blindspot\\\": false\\n    },\\n    {\\n      \\\"label\\\": \\\"MT-Bench\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.7328129279649411,\\n        \\\"ci_lo\\\": 0.6574910983292249,\\n        \\\"ci_hi\\\": 0.8081347576006574,\\n        \\\"p_val\\\": 0.0,\\n        \\\"n_pairs\\\": 73,\\n        \\\"n_comparisons\\\": 146,\\n        \\\"n_filtered\\\": 73,\\n        \\\"pole_a_wins\\\": 107,\\n        \\\"pole_b_wins\\\": 39\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": 0.3561643835616438,\\n        \\\"cohen_d\\\": 0.19866068160492462,\\n        \\\"wilcoxon_p\\\": 0.00015758015385710465,\\n        \\\"tie_rate\\\": 0.5753424657534246,\\n        \\\"n\\\": 73,\\n        \\\"mean_pole\\\": 7.534246575342466,\\n        \\\"mean_anti\\\": 7.178082191780822\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 1.6407802238999178,\\n        \\\"style_ci\\\": [\\n          0.5627905365421916,\\n          4.783590995829115\\n        ],\\n        \\\"style_p\\\": 0.36439243661489906,\\n        \\\"orig_or\\\": 11.849349326535863,\\n        \\\"orig_ci\\\": [\\n          4.084542131860273,\\n          34.37523103680867\\n        ],\\n        \\\"orig_p\\\": 5.373769682563567e-06\\n      },\\n      \\\"blindspot\\\": false\\n    }\\n  ],\\n  \\\"merged_tost\\\": {\\n    \\\"formality\\\": {\\n      \\\"n_total\\\": 145,\\n      \\\"n_pole_a_wins\\\": 112,\\n      \\\"p_hat\\\": 0.7724137931034483,\\n      \\\"se\\\": 0.034818814308378195,\\n      \\\"ci_90\\\": [\\n        0.7151368435661661,\\n        0.8296907426407304\\n      ],\\n      \\\"tost\\\": {\\n        \\\"delta_5pp\\\": {\\n          \\\"delta\\\": 0.05,\\n          \\\"p_value\\\": 0.9999999999158264,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_10pp\\\": {\\n          \\\"delta\\\": 0.1,\\n          \\\"p_value\\\": 0.9999996322400396,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_12pp\\\": {\\n          \\\"delta\\\": 0.12,\\n          \\\"p_value\\\": 0.9999939931789559,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_15pp\\\": {\\n          \\\"delta\\\": 0.15,\\n          \\\"p_value\\\": 0.9997807324038096,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_20pp\\\": {\\n          \\\"delta\\\": 0.2,\\n          \\\"p_value\\\": 0.9812249272253002,\\n          \\\"significant\\\": false\\n        }\\n      },\\n      \\\"equivalence_confirmed_at\\\": null\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"n_total\\\": 109,\\n      \\\"n_pole_a_wins\\\": 73,\\n      \\\"p_hat\\\": 0.6697247706422018,\\n      \\\"se\\\": 0.0450477323025308,\\n      \\\"ci_90\\\": [\\n        0.5956212510045387,\\n        0.743828290279865\\n      ],\\n      \\\"tost\\\": {\\n        \\\"delta_5pp\\\": {\\n          \\\"delta\\\": 0.05,\\n          \\\"p_value\\\": 0.9960665713021487,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_10pp\\\": {\\n          \\\"delta\\\": 0.1,\\n          \\\"p_value\\\": 0.9391644792607646,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_12pp\\\": {\\n          \\\"delta\\\": 0.12,\\n          \\\"p_value\\\": 0.8651652665325952,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_15pp\\\": {\\n          \\\"delta\\\": 0.15,\\n          \\\"p_value\\\": 0.6692574858483457,\\n          \\\"significant\\\": false\\n        },\\n        \\\"delta_20pp\\\": {\\n          \\\"delta\\\": 0.2,\\n          \\\"p_value\\\": 0.25076956764774727,\\n          \\\"significant\\\": false\\n        }\\n      },\\n      \\\"equivalence_confirmed_at\\\": null\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01LCMrrUPDo9hUz55NCYfcVA`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "f8dc64a8-762d-4bae-957b-e98a0c1a88a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N7rXck9BzNcAopUmrKy77j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 43922,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-24T08:41:08.209Z_
+
+<details><summary>↩ Tool result · `toolu_01CjbKSnFVMsamUqA1uBtFdb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_config\\\": [\\n    {\\n      \\\"label\\\": \\\"AlpacaEval\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.7266914671006742,\\n        \\\"ci_lo\\\": 0.662752848174843,\\n        \\\"ci_hi\\\": 0.7848174843059752,\\n        \\\"p_val\\\": 0.0,\\n        \\\"n_pairs\\\": 86,\\n        \\\"n_comparisons\\\": 172,\\n        \\\"n_filtered\\\": 86,\\n        \\\"pole_a_wins\\\": 125,\\n        \\\"pole_b_wins\\\": 47\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": 0.011627906976744186,\\n        \\\"cohen_d\\\": 0.005379902702731777,\\n        \\\"wilcoxon_p\\\": 0.9090482609542799,\\n        \\\"tie_rate\\\": 0.6627906976744186,\\n        \\\"n\\\": 86,\\n        \\\"mean_orig\\\": 7.232558139534884,\\n        \\\"mean_cf\\\": 7.22093023255814\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 4.906342123197387,\\n        \\\"style_ci\\\": [\\n          2.5866320760334975,\\n          9.3063846431437\\n        ],\\n        \\\"style_p\\\": 1.1177611959532505e-06,\\n        \\\"orig_or\\\": 1.986575989770355,\\n        \\\"orig_ci\\\": [\\n          1.0473763271903258,\\n          3.767971511938634\\n        ],\\n        \\\"orig_p\\\": 0.03557689838718621,\\n        \\\"vif\\\": 1.5106209150326795\\n      },\\n      \\\"blindspot\\\": true\\n    },\\n    {\\n      \\\"label\\\": \\\"MT-Bench\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.6917282936181869,\\n        \\\"ci_lo\\\": 0.623253903040263,\\n        \\\"ci_hi\\\": 0.7602026841961106,\\n        \\\"p_val\\\": 0.0,\\n        \\\"n_pairs\\\": 73,\\n        \\\"n_comparisons\\\": 146,\\n        \\\"n_filtered\\\": 73,\\n        \\\"pole_a_wins\\\": 101,\\n        \\\"pole_b_wins\\\": 45\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": 0.1917808219178082,\\n        \\\"cohen_d\\\": 0.1351028062105957,\\n        \\\"wilcoxon_p\\\": 0.007475499243062483,\\n        \\\"tie_rate\\\": 0.6986301369863014,\\n        \\\"n\\\": 73,\\n        \\\"mean_orig\\\": 8.780821917808218,\\n        \\\"mean_cf\\\": 8.58904109589041\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 2.282588843583659,\\n        \\\"style_ci\\\": [\\n          0.840244979995013,\\n          6.2008247033900865\\n        ],\\n        \\\"style_p\\\": 0.10552807416569512,\\n        \\\"orig_or\\\": 6.236260383084604,\\n        \\\"orig_ci\\\": [\\n          2.22142014949153,\\n          17.507243541719223\\n        ],\\n        \\\"orig_p\\\": 0.0005098708846357201,\\n        \\\"vif\\\": 1.9534457478005864\\n      },\\n      \\\"blindspot\\\": false\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "e5f2c944-1023-41d3-8778-8fe28e068845",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_config\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"bt\\\\\\\": {\\\\n        \\\\\\\"p_pole_a\\\\\\\": 0.7266914671006742,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.662752848174843,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7848174843059752,\\\\n        \\\\\\\"p_val\\\\\\\": 0.0,\\\\n        \\\\\\\"n_pairs\\\\\\\": 86,\\\\n        \\\\\\\"n_comparisons\\\\\\\": 172,\\\\n        \\\\\\\"n_filtered\\\\\\\": 86,\\\\n        \\\\\\\"pole_a_wins\\\\\\\": 125,\\\\n        \\\\\\\"pole_b_wins\\\\\\\": 47\\\\n      },\\\\n      \\\\\\\"likert\\\\\\\": {\\\\n        \\\\\\\"ate\\\\\\\": 0.011627906976744186,\\\\n        \\\\\\\"cohen_d\\\\\\\": 0.005379902702731777,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.9090482609542799,\\\\n        \\\\\\\"tie_rate\\\\\\\": 0.6627906976744186,\\\\n        \\\\\\\"n\\\\\\\": 86,\\\\n        \\\\\\\"mean_orig\\\\\\\": 7.232558139534884,\\\\n        \\\\\\\"mean_cf\\\\\\\": 7.22093023255814\\\\n      },\\\\n      \\\\\\\"gee\\\\\\\": {\\\\n        \\\\\\\"style_or\\\\\\\": 4.906342123197387,\\\\n        \\\\\\\"style_ci\\\\\\\": [\\\\n          2.5866320760334975,\\\\n          9.3063846431437\\\\n        ],\\\\n        \\\\\\\"style_p\\\\\\\": 1.1177611959532505e-06,\\\\n        \\\\\\\"orig_or\\\\\\\": 1.986575989770355,\\\\n        \\\\\\\"orig_ci\\\\\\\": [\\\\n          1.0473763271903258,\\\\n          3.767971511938634\\\\n        ],\\\\n        \\\\\\\"orig_p\\\\\\\": 0.03557689838718621,\\\\n        \\\\\\\"vif\\\\\\\": 1.5106209150326795\\\\n      },\\\\n      \\\\\\\"blindspot\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"MT-Bench\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"bt\\\\\\\": {\\\\n        \\\\\\\"p_pole_a\\\\\\\": 0.6917282936181869,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.623253903040263,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7602026841961106,\\\\n        \\\\\\\"p_val\\\\\\\": 0.0,\\\\n        \\\\\\\"n_pairs\\\\\\\": 73,\\\\n        \\\\\\\"n_comparisons\\\\\\\": 146,\\\\n        \\\\\\\"n_filtered\\\\\\\": 73,\\\\n        \\\\\\\"pole_a_wins\\\\\\\": 101,\\\\n        \\\\\\\"pole_b_wins\\\\\\\": 45\\\\n      },\\\\n      \\\\\\\"likert\\\\\\\": {\\\\n        \\\\\\\"ate\\\\\\\": 0.1917808219178082,\\\\n        \\\\\\\"cohen_d\\\\\\\": 0.1351028062105957,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.007475499243062483,\\\\n        \\\\\\\"tie_rate\\\\\\\": 0.6986301369863014,\\\\n        \\\\\\\"n\\\\\\\": 73,\\\\n        \\\\\\\"mean_orig\\\\\\\": 8.780821917808218,\\\\n        \\\\\\\"mean_cf\\\\\\\": 8.58904109589041\\\\n      },\\\\n      \\\\\\\"gee\\\\\\\": {\\\\n        \\\\\\\"style_or\\\\\\\": 2.282588843583659,\\\\n        \\\\\\\"style_ci\\\\\\\": [\\\\n          0.840244979995013,\\\\n          6.2008247033900865\\\\n        ],\\\\n        \\\\\\\"style_p\\\\\\\": 0.10552807416569512,\\\\n        \\\\\\\"orig_or\\\\\\\": 6.236260383084604,\\\\n        \\\\\\\"orig_ci\\\\\\\": [\\\\n          2.22142014949153,\\\\n          17.507243541719223\\\\n        ],\\\\n        \\\\\\\"orig_p\\\\\\\": 0.0005098708846357201,\\\\n        \\\\\\\"vif\\\\\\\": 1.9534457478005864\\\\n      },\\\\n      \\\\\\\"blindspot\\\\\\\": false\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_config\\\": [\\n    {\\n      \\\"label\\\": \\\"AlpacaEval\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.7266914671006742,\\n        \\\"ci_lo\\\": 0.662752848174843,\\n        \\\"ci_hi\\\": 0.7848174843059752,\\n        \\\"p_val\\\": 0.0,\\n        \\\"n_pairs\\\": 86,\\n        \\\"n_comparisons\\\": 172,\\n        \\\"n_filtered\\\": 86,\\n        \\\"pole_a_wins\\\": 125,\\n        \\\"pole_b_wins\\\": 47\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": 0.011627906976744186,\\n        \\\"cohen_d\\\": 0.005379902702731777,\\n        \\\"wilcoxon_p\\\": 0.9090482609542799,\\n        \\\"tie_rate\\\": 0.6627906976744186,\\n        \\\"n\\\": 86,\\n        \\\"mean_orig\\\": 7.232558139534884,\\n        \\\"mean_cf\\\": 7.22093023255814\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 4.906342123197387,\\n        \\\"style_ci\\\": [\\n          2.5866320760334975,\\n          9.3063846431437\\n        ],\\n        \\\"style_p\\\": 1.1177611959532505e-06,\\n        \\\"orig_or\\\": 1.986575989770355,\\n        \\\"orig_ci\\\": [\\n          1.0473763271903258,\\n          3.767971511938634\\n        ],\\n        \\\"orig_p\\\": 0.03557689838718621,\\n        \\\"vif\\\": 1.5106209150326795\\n      },\\n      \\\"blindspot\\\": true\\n    },\\n    {\\n      \\\"label\\\": \\\"MT-Bench\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"p_pole_a\\\": 0.6917282936181869,\\n        \\\"ci_lo\\\": 0.623253903040263,\\n        \\\"ci_hi\\\": 0.7602026841961106,\\n        \\\"p_val\\\": 0.0,\\n        \\\"n_pairs\\\": 73,\\n        \\\"n_comparisons\\\": 146,\\n        \\\"n_filtered\\\": 73,\\n        \\\"pole_a_wins\\\": 101,\\n        \\\"pole_b_wins\\\": 45\\n      },\\n      \\\"likert\\\": {\\n        \\\"ate\\\": 0.1917808219178082,\\n        \\\"cohen_d\\\": 0.1351028062105957,\\n        \\\"wilcoxon_p\\\": 0.007475499243062483,\\n        \\\"tie_rate\\\": 0.6986301369863014,\\n        \\\"n\\\": 73,\\n        \\\"mean_orig\\\": 8.780821917808218,\\n        \\\"mean_cf\\\": 8.58904109589041\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 2.282588843583659,\\n        \\\"style_ci\\\": [\\n          0.840244979995013,\\n          6.2008247033900865\\n        ],\\n        \\\"style_p\\\": 0.10552807416569512,\\n        \\\"orig_or\\\": 6.236260383084604,\\n        \\\"orig_ci\\\": [\\n          2.22142014949153,\\n          17.507243541719223\\n        ],\\n        \\\"orig_p\\\": 0.0005098708846357201,\\n        \\\"vif\\\": 1.9534457478005864\\n      },\\n      \\\"blindspot\\\": false\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-24T08:41:08.254Z_
+
+<details><summary>↩ Tool result · `toolu_01LCMrrUPDo9hUz55NCYfcVA`</summary>
+
+```text
+artifacts/dream_reports/dream_20260520T211832/best/paper.tex
+artifacts/dream_reports/dream_20260520T211832/median/paper.tex
+artifacts/dream_reports/dream_20260520T211832/worst/paper.tex
+artifacts/_project/paper/introduction.tex
+artifacts/dream_reports/dream_20260520T233719/best/paper.tex
+artifacts/dream_reports/dream_20260520T233719/median/paper.tex
+artifacts/dream_reports/dream_20260520T233719/worst/paper.tex
+artifacts/dream_reports/dream_20260521T010111/best/paper.tex
+artifacts/dream_reports/dream_20260521T010111/median/paper.tex
+artifacts/dream_reports/dream_20260521T010111/worst/paper.tex
+artifacts/dream_reports/dream_20260521T052420/best/paper.tex
+artifacts/dream_reports/dream_20260521T052420/median/paper.tex
+artifacts/dream_reports/dream_20260521T052420/worst/paper.tex
+artifacts/dream_reports/dream_20260521T132932/best/paper.tex
+artifacts/dream_reports/dream_20260521T132932/median/paper.tex
+artifacts/dream_reports/dream_20260521T132932/worst/paper.tex
+artifacts/dream_reports/dream_20260521T152517/best/paper.tex
+artifacts/dream_reports/dream_20260521T152517/median/paper.tex
+docs/paper/main.tex
+docs/paper/sections/conclusion.tex
+docs/paper/sections/appendix.tex
+docs/paper/sections/related_work.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/abstract.tex
+docs/paper/sections/experiments.tex
+docs/paper/sections/method.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "7a50faa3-175c-4bc8-bd26-3f33cd1cc8eb",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260520T211832/best/paper.tex",
+      "artifacts/dream_reports/dream_20260520T211832/median/paper.tex",
+      "artifacts/dream_reports/dream_20260520T211832/worst/paper.tex",
+      "artifacts/_project/paper/introduction.tex",
+      "artifacts/dream_reports/dream_20260520T233719/best/paper.tex",
+      "artifacts/dream_reports/dream_20260520T233719/median/paper.tex",
+      "artifacts/dream_reports/dream_20260520T233719/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260521T010111/best/paper.tex",
+      "artifacts/dream_reports/dream_20260521T010111/median/paper.tex",
+      "artifacts/dream_reports/dream_20260521T010111/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260521T052420/best/paper.tex",
+      "artifacts/dream_reports/dream_20260521T052420/median/paper.tex",
+      "artifacts/dream_reports/dream_20260521T052420/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260521T132932/best/paper.tex",
+      "artifacts/dream_reports/dream_20260521T132932/median/paper.tex",
+      "artifacts/dream_reports/dream_20260521T132932/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260521T152517/best/paper.tex",
+      "artifacts/dream_reports/dream_20260521T152517/median/paper.tex",
+      "docs/paper/main.tex",
+      "docs/paper/sections/conclusion.tex",
+      "docs/paper/sections/appendix.tex",
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/abstract.tex",
+      "docs/paper/sections/experiments.tex",
+      "docs/paper/sections/method.tex"
+    ],
+    "durationMs": 38,
+    "numFiles": 26,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The LaTeX files are in the local project directory. Let me search for Table T1 in the appendix or experiments tex files locally.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "245b3473-3bb6-49d2-af5c-052b33f71c52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MPFcZvFk4irzcnMGQC6v5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6290,
+      "cache_read_input_tokens": 45338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6290
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+LaTeX 文件在本地。搜索 Table T1 和 1.120 值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "98b1a973-5759-40ae-8d1e-17feed15962e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MPFcZvFk4irzcnMGQC6v5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6290,
+      "cache_read_input_tokens": 45338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6290
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0175bicFEJpUwv1TKdwSNRiy`</summary>
+
+```json
+{
+  "pattern": "1\\.120|crossbench|tab:cross|Table T1|cross.benchmark",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "b0518077-3502-4bb7-9a78-e54c652dc772",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MPFcZvFk4irzcnMGQC6v5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6290,
+      "cache_read_input_tokens": 45338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6290
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-24T08:41:19.697Z_
+
+<details><summary>↩ Tool result · `toolu_0175bicFEJpUwv1TKdwSNRiy`</summary>
+
+```text
+docs/paper/main.fls:430:INPUT ./figures/cross_benchmark_heatmap.pdf
+docs/paper/main.fls:431:INPUT ./figures/cross_benchmark_heatmap.pdf
+docs/paper/main.fls:432:INPUT ./figures/cross_benchmark_heatmap.pdf
+docs/paper/main.fls:433:INPUT ./figures/cross_benchmark_heatmap.pdf
+docs/paper/main.fls:434:INPUT ./figures/cross_benchmark_heatmap.pdf
+docs/paper/sections/experiments.tex:78:Post hoc, attenuation follows a severity spectrum: complete at moderate bias ($d \to 0$, BT 63--67\%) and partial at stronger effects (${>}60\%$ loss, BT ${>}70\%$)---explaining three cross-benchmark exceptions ($\ddagger$, Table~\ref{tab:cross_bench}).
+docs/paper/sections/experiments.tex:167:These per-axis patterns selectively replicate across benchmarks (6/24 possible cells; Figure~\ref{fig:cross_bench_heatmap}), targeting the strongest effects: Llama-70B formality on AlpacaEval (BT 75.6\%, Style OR $= 7.64$) is strong enough for Likert detection ($\ddagger$ rows), confirming the severity spectrum.
+docs/paper/sections/experiments.tex:171:\includegraphics[width=\columnwidth]{figures/cross_benchmark_heatmap.pdf}
+docs/paper/sections/experiments.tex:172:\caption{Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\times$: not tested. Claude cross-benchmark effects are quality-driven (\S\ref{sec:cross_judge}; Appendix~\ref{app:claude_crossbench}). Full results in Table~\ref{tab:cross_bench}.}
+docs/paper/sections/conclusion.tex:4:CSD yields two findings: the \emph{Likert Blindspot}---divergent pairwise/Likert verdicts (8/8 primary, 6/24 cross-benchmark cells; $d \to 0$ at $n{=}355$)---and per-axis confound structures via GEE (verbosity style-dominated, formality conditional, register judge-dependent); non-tie concordance (76.6\%, $p < .001$) favors attenuation over construct divergence.
+docs/paper/sections/appendix.tex:3:\noindent\emph{Organization: design rationale (A$^*$), confound analysis (A--B), model diagnostics (C), independence tests (D), gate validation (E--F), equivalence testing (G), statistical details (H--K), sensitivity analyses (L--N), artifact controls (O), implementation (P), multiplicity (Q), cross-axis contamination (R), FK length-control (R$'$), human annotation agreement (S), cross-benchmark replication (T), Claude cross-benchmark (U), rewriting prompts (V), non-tie concordance (W).}
+docs/paper/sections/appendix.tex:605:\label{tab:cross_axis}
+docs/paper/sections/appendix.tex:629:The elevated FK grade shift for verbosity rewrites ($d = 0.50$; Table~\ref{tab:cross_axis}) could reflect genuine formality contamination or simply FK's structural dependence on sentence length.
+docs/paper/sections/appendix.tex:690:Table~\ref{tab:cross_bench} reports cross-benchmark replication results on AlpacaEval and MT-Bench.
+docs/paper/sections/appendix.tex:698:\label{tab:cross_bench}
+docs/paper/sections/appendix.tex:706: & Llama-70B & Form.\ & .756$^{***}$ & 1.120 (${<}.001$) & $\ddagger$ \\
+docs/paper/sections/appendix.tex:716:\label{app:claude_crossbench}
+docs/paper/sections/appendix.tex:720:Table~\ref{tab:claude_crossbench} reports results across all five tested configurations.
+docs/paper/sections/appendix.tex:725:\caption{Claude Sonnet~4 cross-benchmark results with GEE decomposition. Formality Style OR is non-significant across all three benchmarks; elevated BT on AEval/MT-Bench is driven by Orig OR (quality detection). AEval verbosity is the sole genuine style effect.}
+docs/paper/sections/appendix.tex:726:\label{tab:claude_crossbench}
+docs/paper/sections/introduction.tex:23:    \item \textbf{Empirical finding:} the first systematic demonstration that pairwise and Likert formats yield qualitatively divergent style sensitivity profiles across four judges, three benchmarks, and two axes with position control, with selective cross-benchmark validation targeting the strongest effects (Table~\ref{tab:main_results}).
+docs/paper/_figure_backups/20260524_082949/manifest.yaml:15:  backup_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_figure_backups/20260524_082949/cross_benchmark_heatmap.pdf
+docs/paper/_figure_backups/20260524_082949/manifest.yaml:16:  original_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/cross_benchmark_heatmap.pdf
+docs/paper/_figure_backups/20260524_082949/manifest.yaml:17:  script_backup: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_figure_backups/20260524_082949/cross_benchmark_heatmap.py
+docs/paper/_figure_backups/20260524_082949/manifest.yaml:18:  script_original: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/cross_benchmark_heatmap.py
+docs/paper/_figure_backups/20260524_082949/cross_benchmark_heatmap.py:3:Output: cross_benchmark_heatmap.pdf (publication-quality, column-width figure)
+docs/paper/_figure_backups/20260524_082949/cross_benchmark_heatmap.py:128:out_path = '/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/cross_benchmark_heatmap.pdf'
+docs/paper/main.fdb_latexmk:226:  "figures/cross_benchmark_heatmap.pdf" 1779541573.14077 24690 87b01894fad81c923004170120a04969 ""
+docs/paper/main.aux:743:\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\times $: not tested. Claude cross-benchmark effects are quality-driven (\S  \ref {sec:cross_judge}; Appendix~\ref {app:claude_crossbench}). Full results in Table~\ref {tab:cross_bench}.}}{8}{figure.caption.18}\protected@file@percent }
+docs/paper/main.aux:744:\newlabel{fig:cross_bench_heatmap}{{6}{8}{Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\times $: not tested. Claude cross-benchmark effects are quality-driven (\S \ref {sec:cross_judge}; Appendix~\ref {app:claude_crossbench}). Full results in Table~\ref {tab:cross_bench}}{figure.caption.18}{}}
+docs/paper/main.aux:1691:\newlabel{tab:cross_axis}{{21}{18}{Cross-axis contamination: effect of rewriting along one style axis on surface proxies of the other axis. Cohen's $d$: $|d| < 0.20$ negligible, $0.20$--$0.50$ small contamination \citep {cohen1988statistical}}{table.caption.53}{}}
+docs/paper/main.aux:1825:\newlabel{tab:cross_bench}{{23}{19}{Cross-benchmark replication on AlpacaEval (AEval) and MT-Bench (MTB). $\ddagger $: both BT and Likert significant; $\dagger $: Blindspot (BT significant, Likert not)}{table.caption.62}{}}
+docs/paper/main.aux:1828:\newlabel{app:claude_crossbench}{{X}{19}{Claude Cross-Benchmark Analysis}{appendix.X}{}}
+docs/paper/main.aux:1843:\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Claude Sonnet~4 cross-benchmark results with GEE decomposition. Formality Style OR is non-significant across all three benchmarks; elevated BT on AEval/MT-Bench is driven by Orig OR (quality detection). AEval verbosity is the sole genuine style effect.}}{20}{table.caption.63}\protected@file@percent }
+docs/paper/main.aux:1844:\newlabel{tab:claude_crossbench}{{24}{20}{Claude Sonnet~4 cross-benchmark results with GEE decomposition. Formality Style OR is non-significant across all three benchmarks; elevated BT on AEval/MT-Bench is driven by Orig OR (quality detection). AEval verbosity is the sole genuine style effect}{table.caption.63}{}}
+docs/paper/figures/gen_cross_benchmark_heatmap_v2.py:2:Optimized cross-benchmark heatmap: BT win probability significance matrix.
+docs/paper/figures/gen_cross_benchmark_heatmap_v2.py:3:Narrative: Style bias is reproducible across benchmarks; Claude shows
+docs/paper/figures/gen_cross_benchmark_heatmap_v2.py:123:fig.savefig(f'{out_dir}/cross_benchmark_heatmap.pdf', dpi=300,
+docs/paper/figures/gen_cross_benchmark_heatmap_v2.py:125:fig.savefig(f'{out_dir}/cross_benchmark_heatmap.png', dpi=300,
+docs/paper/figures/gen_cross_benchmark_heatmap_v2.py:128:print('Saved: cross_benchmark_heatmap.pdf + .png')
+docs/paper/figures/cross_benchmark_heatmap.py:3:Output: cross_benchmark_heatmap.pdf (publication-quality, column-width figure)
+docs/paper/figures/cross_benchmark_heatmap.py:128:out_path = '/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/cross_benchmark_heatmap.pdf'
+docs/paper/main.log:934:&lt;figures/cross_benchmark_heatmap.pdf, id=831, 310.47745pt x 115.86983pt>
+docs/paper/main.log:935:File: figures/cross_benchmark_heatmap.pdf Graphic file (type pdf)
+docs/paper/main.log:936:&lt;use figures/cross_benchmark_heatmap.pdf>
+docs/paper/main.log:937:Package pdftex.def Info: figures/cross_benchmark_heatmap.pdf  used on input lin
+docs/paper/main.log:948: [8 <./figures/gee_decomposition.pdf> <./figures/cross_benchmark_heatmap.pdf>]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "555ea456-ea89-4561-be78-fb6fe8c60367",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/main.fls:430:INPUT ./figures/cross_benchmark_heatmap.pdf\ndocs/paper/main.fls:431:INPUT ./figures/cross_benchmark_heatmap.pdf\ndocs/paper/main.fls:432:INPUT ./figures/cross_benchmark_heatmap.pdf\ndocs/paper/main.fls:433:INPUT ./figures/cross_benchmark_heatmap.pdf\ndocs/paper/main.fls:434:INPUT ./figures/cross_benchmark_heatmap.pdf\ndocs/paper/sections/experiments.tex:78:Post hoc, attenuation follows a severity spectrum: complete at moderate bias ($d \\to 0$, BT 63--67\\%) and partial at stronger effects (${>}60\\%$ loss, BT ${>}70\\%$)---explaining three cross-benchmark exceptions ($\\ddagger$, Table~\\ref{tab:cross_bench}).\ndocs/paper/sections/experiments.tex:167:These per-axis patterns selectively replicate across benchmarks (6/24 possible cells; Figure~\\ref{fig:cross_bench_heatmap}), targeting the strongest effects: Llama-70B formality on AlpacaEval (BT 75.6\\%, Style OR $= 7.64$) is strong enough for Likert detection ($\\ddagger$ rows), confirming the severity spectrum.\ndocs/paper/sections/experiments.tex:171:\\includegraphics[width=\\columnwidth]{figures/cross_benchmark_heatmap.pdf}\ndocs/paper/sections/experiments.tex:172:\\caption{Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\\times$: not tested. Claude cross-benchmark effects are quality-driven (\\S\\ref{sec:cross_judge}; Appendix~\\ref{app:claude_crossbench}). Full results in Table~\\ref{tab:cross_bench}.}\ndocs/paper/sections/conclusion.tex:4:CSD yields two findings: the \\emph{Likert Blindspot}---divergent pairwise/Likert verdicts (8/8 primary, 6/24 cross-benchmark cells; $d \\to 0$ at $n{=}355$)---and per-axis confound structures via GEE (verbosity style-dominated, formality conditional, register judge-dependent); non-tie concordance (76.6\\%, $p < .001$) favors attenuation over construct divergence.\ndocs/paper/sections/appendix.tex:3:\\noindent\\emph{Organization: design rationale (A$^*$), confound analysis (A--B), model diagnostics (C), independence tests (D), gate validation (E--F), equivalence testing (G), statistical details (H--K), sensitivity analyses (L--N), artifact controls (O), implementation (P), multiplicity (Q), cross-axis contamination (R), FK length-control (R$'$), human annotation agreement (S), cross-benchmark replication (T), Claude cross-benchmark (U), rewriting prompts (V), non-tie concordance (W).}\ndocs/paper/sections/appendix.tex:605:\\label{tab:cross_axis}\ndocs/paper/sections/appendix.tex:629:The elevated FK grade shift for verbosity rewrites ($d = 0.50$; Table~\\ref{tab:cross_axis}) could reflect genuine formality contamination or simply FK's structural dependence on sentence length.\ndocs/paper/sections/appendix.tex:690:Table~\\ref{tab:cross_bench} reports cross-benchmark replication results on AlpacaEval and MT-Bench.\ndocs/paper/sections/appendix.tex:698:\\label{tab:cross_bench}\ndocs/paper/sections/appendix.tex:706: & Llama-70B & Form.\\ & .756$^{***}$ & 1.120 (${<}.001$) & $\\ddagger$ \\\\\ndocs/paper/sections/appendix.tex:716:\\label{app:claude_crossbench}\ndocs/paper/sections/appendix.tex:720:Table~\\ref{tab:claude_crossbench} reports results across all five tested configurations.\ndocs/paper/sections/appendix.tex:725:\\caption{Claude Sonnet~4 cross-benchmark results with GEE decomposition. Formality Style OR is non-significant across all three benchmarks; elevated BT on AEval/MT-Bench is driven by Orig OR (quality detection). AEval verbosity is the sole genuine style effect.}\ndocs/paper/sections/appendix.tex:726:\\label{tab:claude_crossbench}\ndocs/paper/sections/introduction.tex:23:    \\item \\textbf{Empirical finding:} the first systematic demonstration that pairwise and Likert formats yield qualitatively divergent style sensitivity profiles across four judges, three benchmarks, and two axes with position control, with selective cross-benchmark validation targeting the strongest effects (Table~\\ref{tab:main_results}).\ndocs/paper/_figure_backups/20260524_082949/manifest.yaml:15:  backup_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_figure_backups/20260524_082949/cross_benchmark_heatmap.pdf\ndocs/paper/_figure_backups/20260524_082949/manifest.yaml:16:  original_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/cross_benchmark_heatmap.pdf\ndocs/paper/_figure_backups/20260524_082949/manifest.yaml:17:  script_backup: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/_figure_backups/20260524_082949/cross_benchmark_heatmap.py\ndocs/paper/_figure_backups/20260524_082949/manifest.yaml:18:  script_original: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/cross_benchmark_heatmap.py\ndocs/paper/_figure_backups/20260524_082949/cross_benchmark_heatmap.py:3:Output: cross_benchmark_heatmap.pdf (publication-quality, column-width figure)\ndocs/paper/_figure_backups/20260524_082949/cross_benchmark_heatmap.py:128:out_path = '/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/cross_benchmark_heatmap.pdf'\ndocs/paper/main.fdb_latexmk:226:  \"figures/cross_benchmark_heatmap.pdf\" 1779541573.14077 24690 87b01894fad81c923004170120a04969 \"\"\ndocs/paper/main.aux:743:\\@writefile{lof}{\\contentsline {figure}{\\numberline {6}{\\ignorespaces Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\\times $: not tested. Claude cross-benchmark effects are quality-driven (\\S  \\ref {sec:cross_judge}; Appendix~\\ref {app:claude_crossbench}). Full results in Table~\\ref {tab:cross_bench}.}}{8}{figure.caption.18}\\protected@file@percent }\ndocs/paper/main.aux:744:\\newlabel{fig:cross_bench_heatmap}{{6}{8}{Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\\times $: not tested. Claude cross-benchmark effects are quality-driven (\\S \\ref {sec:cross_judge}; Appendix~\\ref {app:claude_crossbench}). Full results in Table~\\ref {tab:cross_bench}}{figure.caption.18}{}}\ndocs/paper/main.aux:1691:\\newlabel{tab:cross_axis}{{21}{18}{Cross-axis contamination: effect of rewriting along one style axis on surface proxies of the other axis. Cohen's $d$: $|d| < 0.20$ negligible, $0.20$--$0.50$ small contamination \\citep {cohen1988statistical}}{table.caption.53}{}}\ndocs/paper/main.aux:1825:\\newlabel{tab:cross_bench}{{23}{19}{Cross-benchmark replication on AlpacaEval (AEval) and MT-Bench (MTB). $\\ddagger $: both BT and Likert significant; $\\dagger $: Blindspot (BT significant, Likert not)}{table.caption.62}{}}\ndocs/paper/main.aux:1828:\\newlabel{app:claude_crossbench}{{X}{19}{Claude Cross-Benchmark Analysis}{appendix.X}{}}\ndocs/paper/main.aux:1843:\\@writefile{lot}{\\contentsline {table}{\\numberline {24}{\\ignorespaces Claude Sonnet~4 cross-benchmark results with GEE decomposition. Formality Style OR is non-significant across all three benchmarks; elevated BT on AEval/MT-Bench is driven by Orig OR (quality detection). AEval verbosity is the sole genuine style effect.}}{20}{table.caption.63}\\protected@file@percent }\ndocs/paper/main.aux:1844:\\newlabel{tab:claude_crossbench}{{24}{20}{Claude Sonnet~4 cross-benchmark results with GEE decomposition. Formality Style OR is non-significant across all three benchmarks; elevated BT on AEval/MT-Bench is driven by Orig OR (quality detection). AEval verbosity is the sole genuine style effect}{table.caption.63}{}}\ndocs/paper/figures/gen_cross_benchmark_heatmap_v2.py:2:Optimized cross-benchmark heatmap: BT win probability significance matrix.\ndocs/paper/figures/gen_cross_benchmark_heatmap_v2.py:3:Narrative: Style bias is reproducible across benchmarks; Claude shows\ndocs/paper/figures/gen_cross_benchmark_heatmap_v2.py:123:fig.savefig(f'{out_dir}/cross_benchmark_heatmap.pdf', dpi=300,\ndocs/paper/figures/gen_cross_benchmark_heatmap_v2.py:125:fig.savefig(f'{out_dir}/cross_benchmark_heatmap.png', dpi=300,\ndocs/paper/figures/gen_cross_benchmark_heatmap_v2.py:128:print('Saved: cross_benchmark_heatmap.pdf + .png')\ndocs/paper/figures/cross_benchmark_heatmap.py:3:Output: cross_benchmark_heatmap.pdf (publication-quality, column-width figure)\ndocs/paper/figures/cross_benchmark_heatmap.py:128:out_path = '/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/cross_benchmark_heatmap.pdf'\ndocs/paper/main.log:934:&lt;figures/cross_benchmark_heatmap.pdf, id=831, 310.47745pt x 115.86983pt>\ndocs/paper/main.log:935:File: figures/cross_benchmark_heatmap.pdf Graphic file (type pdf)\ndocs/paper/main.log:936:&lt;use figures/cross_benchmark_heatmap.pdf>\ndocs/paper/main.log:937:Package pdftex.def Info: figures/cross_benchmark_heatmap.pdf  used on input lin\ndocs/paper/main.log:948: [8 <./figures/gee_decomposition.pdf> <./figures/cross_benchmark_heatmap.pdf>]",
+    "numLines": 47
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found it. The table is in `appendix.tex` at line 698 with label `tab:cross_bench`. Let me read that section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "c4ae7288-22ea-4f4a-a6ad-742f477f76d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019G5QVWhw3dmR6zW4WSGTJ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3220,
+      "cache_read_input_tokens": 51628,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3220
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+找到了 `tab:cross_bench` 在 `appendix.tex` 第 698 行附近。读取完整表格。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "c45b58ff-384c-417d-aa14-43376304e748",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019G5QVWhw3dmR6zW4WSGTJ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3220,
+      "cache_read_input_tokens": 51628,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3220
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Mi6FZcTLtHBbfV6VLZGxBg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
+  "offset": 685,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "27b2f685-a793-40da-8292-4ab9140ca105",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019G5QVWhw3dmR6zW4WSGTJ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3220,
+      "cache_read_input_tokens": 51628,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3220
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-24T08:41:29.541Z_
+
+<details><summary>↩ Tool result · `toolu_01Mi6FZcTLtHBbfV6VLZGxBg`</summary>
+
+```text
+685	This does not affect the primary validation target, which concerns content preservation rather than style detection.
+686	
+687	\section{Cross-Benchmark Replication}
+688	\label{app:cross_bench}
+689	
+690	Table~\ref{tab:cross_bench} reports cross-benchmark replication results on AlpacaEval and MT-Bench.
+691	Selection criterion: we targeted the six judge$\times$axis cells with the largest LLMBar BT effects (BT $\geq .63$, all $p < .001$), prioritizing cells where the Blindspot was strongest.
+692	The remaining 18/24 cells (3 benchmarks $\times$ 4 target judges $\times$ 2 axes, minus 6 tested) were not evaluated; generalization to weaker-effect configurations remains open.
+693	
+694	\begin{table}[h]
+695	\centering
+696	\small
+697	\caption{Cross-benchmark replication on AlpacaEval (AEval) and MT-Bench (MTB). $\ddagger$: both BT and Likert significant; $\dagger$: Blindspot (BT significant, Likert not).}
+698	\label{tab:cross_bench}
+699	\begin{tabular}{@{}lllccc@{}}
+700	\toprule
+701	Bench & Judge & Axis & BT $P$ & Likert $d$ ($p$) & Cat.\ \\
+702	\midrule
+703	AEval & GPT-4o & Form.\ & .727$^{***}$ & .005 (.909) & $\dagger$ \\
+704	 & Qwen3 & Form.\ & .657$^{***}$ & .081 (.198) & $\dagger$ \\
+705	 & Qwen3 & Verb.\ & .841$^{***}$ & .375 (.0003) & $\ddagger$ \\
+706	 & Llama-70B & Form.\ & .756$^{***}$ & 1.120 (${<}.001$) & $\ddagger$ \\
+707	\midrule
+708	MTB & GPT-4o & Form.\ & .692$^{***}$ & .167 (.016) & $\ddagger$ \\
+709	 & Qwen3 & Form.\ & .712$^{***}$ & .149 (.007) & $\ddagger$ \\
+710	\bottomrule
+711	\multicolumn{6}{l}{\footnotesize $^{***}$ $p < 0.001$. $\ddagger$: both sig.;\; $\dagger$: Blindspot.}
+712	\end{tabular}
+713	\end{table}
+714	
+715	\section{Claude Cross-Benchmark Analysis}
+716	\label{app:claude_crossbench}
+717	
+718	Claude Sonnet~4 exhibits near-null style sensitivity on LLMBar (\S\ref{sec:amplification}; Appendix~\ref{app:claude_tost}).
+719	Cross-benchmark GEE decomposition reveals that Claude's elevated aggregate BT on AEval/MT-Bench reflects quality detection rather than style preference.
+720	Table~\ref{tab:claude_crossbench} reports results across all five tested configurations.
+721	
+722	\begin{table}[h]
+723	\centering
+724	\small
+725	\caption{Claude Sonnet~4 cross-benchmark results with GEE decomposition. Formality Style OR is non-significant across all three benchmarks; elevated BT on AEval/MT-Bench is driven by Orig OR (quality detection). AEval verbosity is the sole genuine style effect.}
+726	\label{tab:claude_crossbench}
+727	\resizebox{\columnwidth}{!}{%
+728	\begin{tabular}{@{}llccccc@{}}
+729	\toprule
+730	Bench & Axis & BT $P$ & Likert $d$ ($p$) & Style OR ($p$) & Orig OR ($p$) \\
+731	\midrule
+732	LLMBar & Form.\ & .562 & $-$.021 (.721) & 1.47 (.276) & 6.66 (${<}.001$) \\
+733	LLMBar & Verb.\ & .541 & $-$.039 (.743) & 1.52 (.286) & 0.80 (.563) \\
+734	\midrule
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "d5170e1d-d5ea-4b9c-97e1-18fce04b0499",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
+      "content": "This does not affect the primary validation target, which concerns content preservation rather than style detection.\n\n\\section{Cross-Benchmark Replication}\n\\label{app:cross_bench}\n\nTable~\\ref{tab:cross_bench} reports cross-benchmark replication results on AlpacaEval and MT-Bench.\nSelection criterion: we targeted the six judge$\\times$axis cells with the largest LLMBar BT effects (BT $\\geq .63$, all $p < .001$), prioritizing cells where the Blindspot was strongest.\nThe remaining 18/24 cells (3 benchmarks $\\times$ 4 target judges $\\times$ 2 axes, minus 6 tested) were not evaluated; generalization to weaker-effect configurations remains open.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-benchmark replication on AlpacaEval (AEval) and MT-Bench (MTB). $\\ddagger$: both BT and Likert significant; $\\dagger$: Blindspot (BT significant, Likert not).}\n\\label{tab:cross_bench}\n\\begin{tabular}{@{}lllccc@{}}\n\\toprule\nBench & Judge & Axis & BT $P$ & Likert $d$ ($p$) & Cat.\\ \\\\\n\\midrule\nAEval & GPT-4o & Form.\\ & .727$^{***}$ & .005 (.909) & $\\dagger$ \\\\\n & Qwen3 & Form.\\ & .657$^{***}$ & .081 (.198) & $\\dagger$ \\\\\n & Qwen3 & Verb.\\ & .841$^{***}$ & .375 (.0003) & $\\ddagger$ \\\\\n & Llama-70B & Form.\\ & .756$^{***}$ & 1.120 (${<}.001$) & $\\ddagger$ \\\\\n\\midrule\nMTB & GPT-4o & Form.\\ & .692$^{***}$ & .167 (.016) & $\\ddagger$ \\\\\n & Qwen3 & Form.\\ & .712$^{***}$ & .149 (.007) & $\\ddagger$ \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^{***}$ $p < 0.001$. $\\ddagger$: both sig.;\\; $\\dagger$: Blindspot.}\n\\end{tabular}\n\\end{table}\n\n\\section{Claude Cross-Benchmark Analysis}\n\\label{app:claude_crossbench}\n\nClaude Sonnet~4 exhibits near-null style sensitivity on LLMBar (\\S\\ref{sec:amplification}; Appendix~\\ref{app:claude_tost}).\nCross-benchmark GEE decomposition reveals that Claude's elevated aggregate BT on AEval/MT-Bench reflects quality detection rather than style preference.\nTable~\\ref{tab:claude_crossbench} reports results across all five tested configurations.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Claude Sonnet~4 cross-benchmark results with GEE decomposition. Formality Style OR is non-significant across all three benchmarks; elevated BT on AEval/MT-Bench is driven by Orig OR (quality detection). AEval verbosity is the sole genuine style effect.}\n\\label{tab:claude_crossbench}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccccc@{}}\n\\toprule\nBench & Axis & BT $P$ & Likert $d$ ($p$) & Style OR ($p$) & Orig OR ($p$) \\\\\n\\midrule\nLLMBar & Form.\\ & .562 & $-$.021 (.721) & 1.47 (.276) & 6.66 (${<}.001$) \\\\\nLLMBar & Verb.\\ & .541 & $-$.039 (.743) & 1.52 (.286) & 0.80 (.563) \\\\\n\\midrule",
+      "numLines": 50,
+      "startLine": 685,
+      "totalLines": 821
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XU7bb39htnqBHxF3V4f5PA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
+  "offset": 734,
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "08725d7e-89ad-4d74-a358-78d7a530acf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DgFZgVafhJTrb9EiX5hXqp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1357,
+      "cache_read_input_tokens": 54848,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1357
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-24T08:41:34.308Z_
+
+<details><summary>↩ Tool result · `toolu_01XU7bb39htnqBHxF3V4f5PA`</summary>
+
+```text
+734	\midrule
+735	AEval & Form.\ & .698$^{***}$ & .081 (.090) & 1.99 (.082) & 9.33 (${<}.001$) \\
+736	AEval & Verb.\ & .683$^{***}$ & $-$.243 (.005) & \textbf{4.76} (${<}.001$) & 0.87 (.732) \\
+737	\midrule
+738	MTB & Form.\ & .733$^{***}$ & .245 (${<}.001$) & 1.64 (.364) & 11.85 (${<}.001$) \\
+739	\bottomrule
+740	\multicolumn{6}{l}{\footnotesize $^{***}$ $p < 0.001$. All Style ORs except AEval verbosity are non-significant.}\\
+741	\multicolumn{6}{l}{\footnotesize Negative $d$: styled variant scored lower.}
+742	\end{tabular}}
+743	\end{table}
+744	
+745	\paragraph{Formality.}
+746	Claude's formality Style OR is non-significant across all three benchmarks ($1.47$/$1.99$/$1.64$, all $p > .08$), indicating consistently low formality sensitivity regardless of benchmark.
+747	The elevated BT on AEval (69.8\%) and MT-Bench (73.3\%) is driven entirely by Orig OR ($9.33$/$11.85$, both $p < .001$): Claude detects quality differences between original and counterfactual texts without exhibiting formality preference.
+748	AEval formality produces a Blindspot (BT significant, Likert n.s.), but GEE decomposition reveals this as quality detection rather than style sensitivity---illustrating why aggregate BT alone is insufficient for bias attribution.
+749	
+750	\paragraph{Verbosity.}
+751	AEval verbosity is the sole configuration where Claude exhibits genuine style sensitivity (Style OR $= 4.76$, $p < .001$; Orig OR $= 0.87$, n.s.), a style-dominated pattern.
+752	LLMBar verbosity remains null (Style OR $= 1.52$, n.s.), confirming benchmark-dependent sensitivity.
+753	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "780742cd-e728-4701-8abf-6ad5ae210561",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/appendix.tex",
+      "content": "\\midrule\nAEval & Form.\\ & .698$^{***}$ & .081 (.090) & 1.99 (.082) & 9.33 (${<}.001$) \\\\\nAEval & Verb.\\ & .683$^{***}$ & $-$.243 (.005) & \\textbf{4.76} (${<}.001$) & 0.87 (.732) \\\\\n\\midrule\nMTB & Form.\\ & .733$^{***}$ & .245 (${<}.001$) & 1.64 (.364) & 11.85 (${<}.001$) \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^{***}$ $p < 0.001$. All Style ORs except AEval verbosity are non-significant.}\\\\\n\\multicolumn{6}{l}{\\footnotesize Negative $d$: styled variant scored lower.}\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Formality.}\nClaude's formality Style OR is non-significant across all three benchmarks ($1.47$/$1.99$/$1.64$, all $p > .08$), indicating consistently low formality sensitivity regardless of benchmark.\nThe elevated BT on AEval (69.8\\%) and MT-Bench (73.3\\%) is driven entirely by Orig OR ($9.33$/$11.85$, both $p < .001$): Claude detects quality differences between original and counterfactual texts without exhibiting formality preference.\nAEval formality produces a Blindspot (BT significant, Likert n.s.), but GEE decomposition reveals this as quality detection rather than style sensitivity---illustrating why aggregate BT alone is insufficient for bias attribution.\n\n\\paragraph{Verbosity.}\nAEval verbosity is the sole configuration where Claude exhibits genuine style sensitivity (Style OR $= 4.76$, $p < .001$; Orig OR $= 0.87$, n.s.), a style-dominated pattern.\nLLMBar verbosity remains null (Style OR $= 1.52$, n.s.), confirming benchmark-dependent sensitivity.\n",
+      "numLines": 20,
+      "startLine": 734,
+      "totalLines": 821
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have both tables. Let me compile the full picture.
+
+## Table `tab:cross_bench` (Table 23, Appendix T) — 6 rows:
+
+| Row | Bench | Judge | Axis | BT P | Likert d (p) | Cat |
+|-----|-------|-------|------|------|---------------|-----|
+| 1 | AEval | GPT-4o | Form. | .727*** | .005 (.909) | † |
+| 2 | AEval | Qwen3 | Form. | .657*** | .081 (.198) | † |
+
+
+| 3 | AEval | Qwen3 | Verb. | .841*** | .375 (.0003) | ‡ |
+| 4 | AEval | Llama-70B | Form. | .756*** | 1.120 (<.001) | ‡ |
+| 5 | MTB | GPT-4o | Form. | .692*** | .167 (.016) | ‡ |
+| 6 | MTB | Qwen3 | Form. | .712*** | .149 (.007) | ‡ |
+
+Generating markdown table... Generating markdown table...
+
+Now I'm tracing back through the code to see which configuration produced each row in the table. The CONFIGS list has 5 entries but the table shows 6 rows, so I need to figure out which script generated which results and whether there's a mismatch or if one config produced multiple rows. Qwen3-32B × formality → `likert_file="scored_mtbench_qwen32b.jsonl"` → **true d** → Row 6 in table (d=.149)
+3. AlpacaEval × Claude Sonnet 4 × formality → true d → This is in Table 24, not Table 23
+4. AlpacaEval × Claude Sonnet 4 × verbosity → true d → This is in Table 24, not Table 23
+5. MT-Bench × Claude Sonnet 4 × formality → true d → This is in Table 24, not Table 23
+
+Wait, configs 3-5 are Claude configs, which go into Table 24. So the cross_benchmark_analysis.py only produced 2 rows for Table 23 (rows 4 and 6 perhaps?).
+
+But Table 23 has 6 rows total, so I need to figure out where the other four came from. Looking at the GPT-4o results, I can see AlpacaEval × formality with a cohen_d of 0.005, which matches Row 1, and MT-Bench × formality with a cohen_d of 0.135. Let me trace through which JSON files contributed to each row in the table. I'm noticing the JSON files use different key structures — the GPT-4o data has `mean_orig` and `mean_cf` while Claude's uses `mean_pole` and `mean_anti`, suggesting they came from separate analysis pipelines. Looking at the Qwen entries in the local JSON, the effect sizes don't quite match what's in the paper either — the Llama-70B formality result shows 1.1597 in the data but rounds to 1.120 in the paper, which seems off.
+
+Now I'm cross-referencing the Claude results against Table 24, and the LLMBar metrics are checking out so far — the formality and verbosity Cohen's d values match the published numbers.
+
+But there's a problem with AlpacaEval verbosity: the JSON shows cohen_d = 0.298, yet the table lists -.243. That's a substantial difference, not a rounding error. Let me verify what's actually in the source data. Rounding differences explain most of the matches, but there are real discrepancies with the AlpacaEval verbosity and MT-Bench formality entries—the JSON shows different effect sizes and p-values than what appears in the paper. I'm looking at the raw JSON data for MT-Bench formality to understand where the mismatch originates.
+
+Let me step back and focus on the actual question: which effect size metric is used for each row in Table 23, particularly whether it's Cohen's h or Cohen's d. I should search for other analysis scripts that might have generated the values for the specific rows in that table.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "45e44130-ff35-4eff-a319-ad51467b7d7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5aVmfMyfsXyJdSF2fzkMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 56205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 715
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+现在需要找到 Table 23 其余行（GPT-4o, Qwen3）的数据来源脚本，以及确认 Llama-70B 行现在是否有 Likert 文件可用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "13f95ad7-0876-4492-9d88-3cbde8ec0b26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5aVmfMyfsXyJdSF2fzkMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 56205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 715
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TRiCp1zCoJqgD6w2s8xGr1`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/csd_pipeline/ -name \"*cross*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "457d4663-668d-4859-9887-8d95729103f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5aVmfMyfsXyJdSF2fzkMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 56205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 715
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QEMxM7wfsASUWZEW7UMeVu`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/csd_pipeline/ -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "add46bb6-9005-445a-ad20-14c3681bde8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5aVmfMyfsXyJdSF2fzkMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 56205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 715
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-24T08:42:25.405Z_
+
+<details><summary>↩ Tool result · `toolu_01TRiCp1zCoJqgD6w2s8xGr1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/csd_pipeline/__pycache__/gpt4o_crossbenchmark_scoring.cpython-312.pyc\\n/root/causal_style_decomp_judge/csd_pipeline/__pycache__/claude_crossbenchmark_scoring.cpython-312.pyc\\n/root/causal_style_decomp_judge/csd_pipeline/__pycache__/claude_crossbench_analysis.cpython-312.pyc\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbenchmark_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_ablation_cross_axis.py\\n/root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbenchmark_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbench_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "11b258d8-56c3-411f-8d33-dcf457599042",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/csd_pipeline/__pycache__/gpt4o_crossbenchmark_scoring.cpython-312.pyc\\\\n/root/causal_style_decomp_judge/csd_pipeline/__pycache__/claude_crossbenchmark_scoring.cpython-312.pyc\\\\n/root/causal_style_decomp_judge/csd_pipeline/__pycache__/claude_crossbench_analysis.cpython-312.pyc\\\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbenchmark_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/nli_ablation_cross_axis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbenchmark_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbench_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/csd_pipeline/__pycache__/gpt4o_crossbenchmark_scoring.cpython-312.pyc\\n/root/causal_style_decomp_judge/csd_pipeline/__pycache__/claude_crossbenchmark_scoring.cpython-312.pyc\\n/root/causal_style_decomp_judge/csd_pipeline/__pycache__/claude_crossbench_analysis.cpython-312.pyc\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbenchmark_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_ablation_cross_axis.py\\n/root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbenchmark_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbench_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QqfAc5JLoZepwVDiqxscmz`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -5 /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "3667dbf6-51b5-421c-b60b-4be0e880b8d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5aVmfMyfsXyJdSF2fzkMr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 56205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 715
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-24T08:42:27.089Z_
+
+<details><summary>↩ Tool result · `toolu_01QEMxM7wfsASUWZEW7UMeVu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/csd_pipeline/__init__.py\\n/root/causal_style_decomp_judge/csd_pipeline/data_prep.py\\n/root/causal_style_decomp_judge/csd_pipeline/counterfactual_gen.py\\n/root/causal_style_decomp_judge/csd_pipeline/content_verification.py\\n/root/causal_style_decomp_judge/csd_pipeline/judge_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/ate_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/pairwise_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp010_binarized_likert.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp011_nli_sensitivity.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp012_consistency_bias.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp014_logistic_decomposition.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp013_nli_validation.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp015_clmm_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp016_bradley_terry.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp013_spotcheck.py\\n/root/causal_style_decomp_judge/csd_pipeline/gen_power_curve.py\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_gee.py\\n/root/causal_style_decomp_judge/csd_pipeline/gen_pipeline_figure.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/gen_forest_plot.py\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_register_bt.py\\n/root/causal_style_decomp_judge/csd_pipeline/gee_diagnostics.py\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_length_confound.py\\n/root/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py\\n/root/causal_style_decomp_judge/csd_pipeline/alpacaeval_qwen32b_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/alpacaeval_verbosity_qwen32b.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_judge_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbenchmark_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_only_verify.py\\n/root/causal_style_decomp_judge/csd_pipeline/correction_poc.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_gate_gpt4o_spotcheck.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_rewriter_formality_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_gate_fn_selection_bias.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_fn_selection_bias.py\\n/root/causal_style_decomp_judge/csd_pipeline/fix_formality_rewriter_bt.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py\\n/root/causal_style_decomp_judge/csd_pipeline/bt_model_diagnostics.py\\n/root/causal_style_decomp_judge/csd_pipeline/originality_minimal_subset.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_gate_full_validation.py\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_7method_sensitivity.py\\n/root/causal_style_decomp_judge/csd_pipeline/double_rewrite_placebo_gpt4o.py\\n/root/causal_style_decomp_judge/csd_pipeline/double_rewrite_placebo.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_ablation_cross_axis.py\\n/root/causal_style_decomp_judge/csd_pipeline/cf_vs_dr_comparison_gpt4o.py\\n/root/causal_style_decomp_judge/csd_pipeline/cf_vs_dr_comparison.py\\n/root/causal_style_decomp_judge/csd_pipeline/placebo_bt_reanalysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/llama70b_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/debiased_verbosity_gpt4o.py\\n/root/causal_style_decomp_judge/csd_pipeline/finegrained_likert_100pt.py\\n/root/causal_style_decomp_judge/csd_pipeline/llama70b_debiased.py\\n/root/causal_style_decomp_judge/csd_pipeline/gee_interaction_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/llama70b_register_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/gemini_flash_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_alpacaeval_verbosity.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbenchmark_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbench_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/sensitivity_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "9a71c030-41a4-4783-abc1-24456cb28ff6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/csd_pipeline/__init__.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/data_prep.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/counterfactual_gen.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/content_verification.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/judge_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/ate_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/pairwise_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp010_binarized_likert.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp011_nli_sensitivity.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp012_consistency_bias.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp014_logistic_decomposition.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp013_nli_validation.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp015_clmm_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp016_bradley_terry.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/exp013_spotcheck.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gen_power_curve.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_gee.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gen_pipeline_figure.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gen_forest_plot.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_register_bt.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gee_diagnostics.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_length_confound.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/alpacaeval_qwen32b_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/alpacaeval_verbosity_qwen32b.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/claude_judge_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbenchmark_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/nli_only_verify.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/correction_poc.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/nli_gate_gpt4o_spotcheck.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_rewriter_formality_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/nli_gate_fn_selection_bias.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/nli_fn_selection_bias.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/fix_formality_rewriter_bt.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/bt_model_diagnostics.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/originality_minimal_subset.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/nli_gate_full_validation.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_7method_sensitivity.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/double_rewrite_placebo_gpt4o.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/double_rewrite_placebo.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/nli_ablation_cross_axis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/cf_vs_dr_comparison_gpt4o.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/cf_vs_dr_comparison.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/placebo_bt_reanalysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/llama70b_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/debiased_verbosity_gpt4o.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/finegrained_likert_100pt.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/llama70b_debiased.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gee_interaction_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/llama70b_register_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gemini_flash_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_alpacaeval_verbosity.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbenchmark_scoring.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbench_analysis.py\\\\n/root/causal_style_decomp_judge/csd_pipeline/sensitivity_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/csd_pipeline/__init__.py\\n/root/causal_style_decomp_judge/csd_pipeline/data_prep.py\\n/root/causal_style_decomp_judge/csd_pipeline/counterfactual_gen.py\\n/root/causal_style_decomp_judge/csd_pipeline/content_verification.py\\n/root/causal_style_decomp_judge/csd_pipeline/judge_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/ate_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/pairwise_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp010_binarized_likert.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp011_nli_sensitivity.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp012_consistency_bias.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp014_logistic_decomposition.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp013_nli_validation.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp015_clmm_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp016_bradley_terry.py\\n/root/causal_style_decomp_judge/csd_pipeline/exp013_spotcheck.py\\n/root/causal_style_decomp_judge/csd_pipeline/gen_power_curve.py\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_gee.py\\n/root/causal_style_decomp_judge/csd_pipeline/gen_pipeline_figure.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/gen_forest_plot.py\\n/root/causal_style_decomp_judge/csd_pipeline/qwen32b_register_bt.py\\n/root/causal_style_decomp_judge/csd_pipeline/gee_diagnostics.py\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_length_confound.py\\n/root/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py\\n/root/causal_style_decomp_judge/csd_pipeline/alpacaeval_qwen32b_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/mtbench_qwen32b_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/alpacaeval_verbosity_qwen32b.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_judge_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbenchmark_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_only_verify.py\\n/root/causal_style_decomp_judge/csd_pipeline/correction_poc.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_gate_gpt4o_spotcheck.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_rewriter_formality_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/gate_comparison_bt.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_gate_fn_selection_bias.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_fn_selection_bias.py\\n/root/causal_style_decomp_judge/csd_pipeline/fix_formality_rewriter_bt.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_tost_equivalence.py\\n/root/causal_style_decomp_judge/csd_pipeline/bt_model_diagnostics.py\\n/root/causal_style_decomp_judge/csd_pipeline/originality_minimal_subset.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_gate_full_validation.py\\n/root/causal_style_decomp_judge/csd_pipeline/verbosity_7method_sensitivity.py\\n/root/causal_style_decomp_judge/csd_pipeline/double_rewrite_placebo_gpt4o.py\\n/root/causal_style_decomp_judge/csd_pipeline/double_rewrite_placebo.py\\n/root/causal_style_decomp_judge/csd_pipeline/nli_ablation_cross_axis.py\\n/root/causal_style_decomp_judge/csd_pipeline/cf_vs_dr_comparison_gpt4o.py\\n/root/causal_style_decomp_judge/csd_pipeline/cf_vs_dr_comparison.py\\n/root/causal_style_decomp_judge/csd_pipeline/placebo_bt_reanalysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/llama70b_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/debiased_verbosity_gpt4o.py\\n/root/causal_style_decomp_judge/csd_pipeline/finegrained_likert_100pt.py\\n/root/causal_style_decomp_judge/csd_pipeline/llama70b_debiased.py\\n/root/causal_style_decomp_judge/csd_pipeline/gee_interaction_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/llama70b_register_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/gemini_flash_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/cross_benchmark_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_alpacaeval_verbosity.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbenchmark_scoring.py\\n/root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbench_analysis.py\\n/root/causal_style_decomp_judge/csd_pipeline/sensitivity_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-24T08:42:28.772Z_
+
+<details><summary>↩ Tool result · `toolu_01QqfAc5JLoZepwVDiqxscmz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"alpacaeval_000\\\", \\\"instruction\\\": \\\"Create a short, concise summary of the paper based on its abstract.\\\\n\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9907892346382141, \\\"score_formal\\\": 8, \\\"score_casual\\\": 8, \\\"raw_a\\\": \\\"8\\\", \\\"raw_b\\\": \\\"8\\\"}\\n{\\\"id\\\": \\\"alpacaeval_001\\\", \\\"instruction\\\": \\\"Is there a meaning for Christmas wreaths?\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9986660480499268, \\\"score_formal\\\": 8, \\\"score_casual\\\": 8, \\\"raw_a\\\": \\\"8\\\", \\\"raw_b\\\": \\\"8\\\"}\\n{\\\"id\\\": \\\"alpacaeval_002\\\", \\\"instruction\\\": \\\"What are some species of bears that are now extinct?\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9987397789955139, \\\"score_formal\\\": 9, \\\"score_casual\\\": 9, \\\"raw_a\\\": \\\"9\\\", \\\"raw_b\\\": \\\"9\\\"}\\n{\\\"id\\\": \\\"alpacaeval_004\\\", \\\"instruction\\\": \\\"I have competencies in remote sensing, machine learning, and water resource knowledge, what are the possible jobs I can occupy? What are the possible projects I can do? What companies I can work at?\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.997441291809082, \\\"score_formal\\\": 8, \\\"score_casual\\\": 8, \\\"raw_a\\\": \\\"8\\\", \\\"raw_b\\\": \\\"8\\\"}\\n{\\\"id\\\": \\\"alpacaeval_006\\\", \\\"instruction\\\": \\\"write a detailed business plan for fatherhood training based on Dwayne Meeks book Pieces never missing in a childs life\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9876930117607117, \\\"score_formal\\\": 8, \\\"score_casual\\\": 7, \\\"raw_a\\\": \\\"8\\\", \\\"raw_b\\\": \\\"7\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "97251e40-e782-4288-b295-a29cd046339f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_000\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Create a short, concise summary of the paper based on its abstract.\\\\\\\\n\\\\\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9907892346382141, \\\\\\\"score_formal\\\\\\\": 8, \\\\\\\"score_casual\\\\\\\": 8, \\\\\\\"raw_a\\\\\\\": \\\\\\\"8\\\\\\\", \\\\\\\"raw_b\\\\\\\": \\\\\\\"8\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_001\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Is there a meaning for Christmas wreaths?\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9986660480499268, \\\\\\\"score_formal\\\\\\\": 8, \\\\\\\"score_casual\\\\\\\": 8, \\\\\\\"raw_a\\\\\\\": \\\\\\\"8\\\\\\\", \\\\\\\"raw_b\\\\\\\": \\\\\\\"8\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_002\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"What are some species of bears that are now extinct?\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9987397789955139, \\\\\\\"score_formal\\\\\\\": 9, \\\\\\\"score_casual\\\\\\\": 9, \\\\\\\"raw_a\\\\\\\": \\\\\\\"9\\\\\\\", \\\\\\\"raw_b\\\\\\\": \\\\\\\"9\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_004\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"I have competencies in remote sensing, machine learning, and water resource knowledge, what are the possible jobs I can occupy? What are the possible projects I can do? What companies I can work at?\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.997441291809082, \\\\\\\"score_formal\\\\\\\": 8, \\\\\\\"score_casual\\\\\\\": 8, \\\\\\\"raw_a\\\\\\\": \\\\\\\"8\\\\\\\", \\\\\\\"raw_b\\\\\\\": \\\\\\\"8\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_006\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"write a detailed business plan for fatherhood training based on Dwayne Meeks book Pieces never missing in a childs life\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9876930117607117, \\\\\\\"score_formal\\\\\\\": 8, \\\\\\\"score_casual\\\\\\\": 7, \\\\\\\"raw_a\\\\\\\": \\\\\\\"8\\\\\\\", \\\\\\\"raw_b\\\\\\\": \\\\\\\"7\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"alpacaeval_000\\\", \\\"instruction\\\": \\\"Create a short, concise summary of the paper based on its abstract.\\\\n\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9907892346382141, \\\"score_formal\\\": 8, \\\"score_casual\\\": 8, \\\"raw_a\\\": \\\"8\\\", \\\"raw_b\\\": \\\"8\\\"}\\n{\\\"id\\\": \\\"alpacaeval_001\\\", \\\"instruction\\\": \\\"Is there a meaning for Christmas wreaths?\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9986660480499268, \\\"score_formal\\\": 8, \\\"score_casual\\\": 8, \\\"raw_a\\\": \\\"8\\\", \\\"raw_b\\\": \\\"8\\\"}\\n{\\\"id\\\": \\\"alpacaeval_002\\\", \\\"instruction\\\": \\\"What are some species of bears that are now extinct?\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9987397789955139, \\\"score_formal\\\": 9, \\\"score_casual\\\": 9, \\\"raw_a\\\": \\\"9\\\", \\\"raw_b\\\": \\\"9\\\"}\\n{\\\"id\\\": \\\"alpacaeval_004\\\", \\\"instruction\\\": \\\"I have competencies in remote sensing, machine learning, and water resource knowledge, what are the possible jobs I can occupy? What are the possible projects I can do? What companies I can work at?\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.997441291809082, \\\"score_formal\\\": 8, \\\"score_casual\\\": 8, \\\"raw_a\\\": \\\"8\\\", \\\"raw_b\\\": \\\"8\\\"}\\n{\\\"id\\\": \\\"alpacaeval_006\\\", \\\"instruction\\\": \\\"write a detailed business plan for fatherhood training based on Dwayne Meeks book Pieces never missing in a childs life\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9876930117607117, \\\"score_formal\\\": 8, \\\"score_casual\\\": 7, \\\"raw_a\\\": \\\"8\\\", \\\"raw_b\\\": \\\"7\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key finding: `scored_alpacaeval_llama70b_formality.jsonl` has actual Likert scores (`score_formal`, `score_casual`), not just pairwise comparisons. The file has proper Likert data now! This means we can compute true Cohen's d.
+
+But wait - the file has fields `score_formal` and `score_casual` rather than `score_original` and `score_counterfactual`. The `likert_from_scores` function expects `score_original` and `score_counterfactual`. Let me check the Qwen file for comparison.
+
+
+I should look at how the GPT-4o and Claude cross-benchmark analysis scripts handle this to understand the broader pipeline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "b1b03bc1-e0b4-4df7-a30d-f47648eccc74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDGoLnGVcuuWXLUXq7g1ND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6622,
+      "cache_read_input_tokens": 56920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6622
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+发现 `scored_alpacaeval_llama70b_formality.jsonl` 有独立 Likert 评分（`score_formal`/`score_casual`），可以计算真 Cohen's d。继续读取其他分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "ca81697e-316d-4a8e-9e7a-d5e9fb636c5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDGoLnGVcuuWXLUXq7g1ND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6622,
+      "cache_read_input_tokens": 56920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6622
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0178DXBrYxXiT4RqPSzc9o5K`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/csd_pipeline/gpt4o_crossbench_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "067b1aae-d59a-4f4b-ac5d-5f5af2940728",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDGoLnGVcuuWXLUXq7g1ND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6622,
+      "cache_read_input_tokens": 56920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6622
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HMK8g26SxbBs6jP1QjComg`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "8d8651cb-5ec3-43b2-9376-89199465a5d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDGoLnGVcuuWXLUXq7g1ND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6622,
+      "cache_read_input_tokens": 56920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6622
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-24T08:42:41.054Z_
+
+<details><summary>↩ Tool result · `toolu_0178DXBrYxXiT4RqPSzc9o5K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"GPT-4o cross-benchmark analysis: BT/Likert/GEE per config.\\\"\\\"\\\"\\n\\nimport json, sys\\nimport numpy as np\\nimport pandas as pd\\nimport choix\\nfrom scipy import stats\\nimport statsmodels.api as sm\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\nfrom statsmodels.genmod.families import Binomial\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\n\\nNLI_THRESHOLD = 0.90\\nN_BOOT = 10000\\nSEED = 42\\nDATA_DIR = \\\"/root/causal_style_decomp_judge/data\\\"\\nOUT_DIR = \\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\"\\n\\nCONFIGS = [\\n    {\\n        \\\"label\\\": \\\"AlpacaEval\\\", \\\"axis\\\": \\\"formality\\\",\\n        \\\"pw\\\": f\\\"{DATA_DIR}/pairwise_results_alpacaeval_gpt4o.jsonl\\\",\\n        \\\"sc\\\": f\\\"{DATA_DIR}/scored_alpacaeval_gpt4o.jsonl\\\",\\n        \\\"orig_field\\\": \\\"original_formality\\\",\\n        \\\"pole_a\\\": \\\"formal\\\",\\n    },\\n    {\\n        \\\"label\\\": \\\"MT-Bench\\\", \\\"axis\\\": \\\"formality\\\",\\n        \\\"pw\\\": f\\\"{DATA_DIR}/pairwise_results_mtbench_gpt4o.jsonl\\\",\\n        \\\"sc\\\": f\\\"{DATA_DIR}/scored_mtbench_gpt4o.jsonl\\\",\\n        \\\"orig_field\\\": \\\"original_formality\\\",\\n        \\\"pole_a\\\": \\\"formal\\\",\\n    },\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef bt_pair_bootstrap(recs, nli_thresh=NLI_THRESHOLD):\\n    filtered = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= nli_thresh]\\n\\n    pairs_data = []\\n    for r in filtered:\\n        t1 = r.get(\\\"trial1_prefers_formal\\\")\\n        t2 = r.get(\\\"trial2_prefers_formal\\\")\\n        pairs_data.append((t1, t2))\\n\\n    def build_comparisons(plist):\\n        comps = []\\n        for t1, t2 in plist:\\n            if t1 is True:\\n                comps.append((0, 1))  # formal wins\\n            elif t1 is False:\\n                comps.append((1, 0))  # casual wins\\n            if t2 is True:\\n                comps.append((0, 1))\\n            elif t2 is False:\\n                comps.append((1, 0))\\n        return comps\\n\\n    comparisons = build_comparisons(pairs_data)\\n    n_pairs = len(pairs_data)\\n\\n    if len(comparisons) < 3:\\n        return {\\\"p_pole_a\\\": None, \\\"ci_lo\\\": None, \\\"ci_hi\\\": None, \\\"p_val\\\": None,\\n                \\\"n_pairs\\\": n_pairs, \\\"n_comparisons\\\": len(comparisons)}\\n\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\n    p_a = np.exp(params[0]) / np.sum(np.exp(params))\\n\\n    rng = np.random.default_rng(SEED)\\n    boots = []\\n    for _ in range(N_BOOT):\\n        idx = rng.integers(0, n_pairs, size=n_pairs)\\n        boot_pairs = [pairs_data[i] for i in idx]\\n        boot_comps = build_comparisons(boot_pairs)\\n        if len(boot_comps) < 2:\\n            continue\\n        try:\\n            bp = choix.ilsr_pairwise(2, boot_comps, alpha=0.01)\\n            boots.append(np.exp(bp[0]) / np.sum(np.exp(bp)))\\n        except Exception:\\n            continue\\n\\n    boots = np.array(boots)\\n    ci_lo, ci_hi = np.percentile(boots, [2.5, 97.5])\\n    p_val = float(min(2 * min(np.mean(boots <= 0.5), np.mean(boots >= 0.5)), 1.0))\\n\\n    a_wins = sum(1 for c in comparisons if c == (0, 1))\\n    b_wins = sum(1 for c in comparisons if c == (1, 0))\\n\\n    return {\\n        \\\"p_pole_a\\\": float(p_a), \\\"ci_lo\\\": float(ci_lo), \\\"ci_hi\\\": float(ci_hi),\\n        \\\"p_val\\\": p_val, \\\"n_pairs\\\": n_pairs, \\\"n_comparisons\\\": len(comparisons),\\n        \\\"n_filtered\\\": len(filtered), \\\"pole_a_wins\\\": int(a_wins), \\\"pole_b_wins\\\": int(b_wins),\\n    }\\n\\n\\ndef likert_analysis(sc_recs, nli_thresh=NLI_THRESHOLD):\\n    filtered = [r for r in sc_recs if r.get(\\\"nli_cf\\\", 0) >= nli_thresh]\\n    filtered = [r for r in filtered\\n                if r.get(\\\"score_original\\\") is not None and r.get(\\\"score_counterfactual\\\") is not None]\\n\\n    if len(filtered) < 3:\\n        return {\\\"ate\\\": None, \\\"cohen_d\\\": None, \\\"wilcoxon_p\\\": None, \\\"tie_rate\\\": None, \\\"n\\\": 0}\\n\\n    orig_scores = np.array([r[\\\"score_original\\\"] for r in filtered], dtype=float)\\n    cf_scores = np.array([r[\\\"score_counterfactual\\\"] for r in filtered], dtype=float)\\n    diffs = orig_scores - cf_scores\\n\\n    ate = float(np.mean(diffs))\\n    pooled_sd = float(np.sqrt((np.var(orig_scores, dd\\n\\n... [截断: 输出过长，省略 1137 字符] ...\\n\\ns_style_in_A\\\": 0.0,\\n                \\\"is_original_in_A\\\": 1.0 if orig == \\\"casual\\\" else 0.0,\\n                \\\"chose_A\\\": 1.0 if t2 == \\\"A\\\" else 0.0,\\n            })\\n\\n    if len(rows) < 5:\\n        return {\\\"style_or\\\": None, \\\"style_ci\\\": None, \\\"style_p\\\": None,\\n                \\\"orig_or\\\": None, \\\"orig_ci\\\": None, \\\"orig_p\\\": None, \\\"vif\\\": None}\\n\\n    df = pd.DataFrame(rows)\\n    exog = sm.add_constant(df[[\\\"is_style_in_A\\\", \\\"is_original_in_A\\\"]])\\n    model = GEE(df[\\\"chose_A\\\"], exog, groups=df[\\\"pair_id\\\"],\\n                family=Binomial(), cov_struct=Exchangeable())\\n    res = model.fit()\\n\\n    def extract_or(result, name):\\n        coef = result.params[name]\\n        se = result.bse[name]\\n        p = result.pvalues[name]\\n        or_val = np.exp(coef)\\n        ci_lo = np.exp(coef - 1.96 * se)\\n        ci_hi = np.exp(coef + 1.96 * se)\\n        return float(or_val), [float(ci_lo), float(ci_hi)], float(p)\\n\\n    style_or, style_ci, style_p = extract_or(res, \\\"is_style_in_A\\\")\\n    orig_or, orig_ci, orig_p = extract_or(res, \\\"is_original_in_A\\\")\\n    vif = float(variance_inflation_factor(exog.values, 1))\\n\\n    return {\\n        \\\"style_or\\\": style_or, \\\"style_ci\\\": style_ci, \\\"style_p\\\": style_p,\\n        \\\"orig_or\\\": orig_or, \\\"orig_ci\\\": orig_ci, \\\"orig_p\\\": orig_p,\\n        \\\"vif\\\": vif,\\n    }\\n\\n\\ndef main():\\n    import os\\n    os.makedirs(OUT_DIR, exist_ok=True)\\n\\n    results = {\\\"per_config\\\": []}\\n\\n    for cfg in CONFIGS:\\n        label = f\\\"{cfg['label']}×{cfg['axis']}\\\"\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  GPT-4o × {label}\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        pw_recs = load_jsonl(cfg[\\\"pw\\\"])\\n        print(f\\\"  Total records: {len(pw_recs)}\\\")\\n\\n        # BT\\n        bt = bt_pair_bootstrap(pw_recs)\\n        if bt[\\\"p_pole_a\\\"] is not None:\\n            print(f\\\"  BT: P(formal)={bt['p_pole_a']:.4f} [{bt['ci_lo']:.4f}, {bt['ci_hi']:.4f}], \\\"\\n                  f\\\"p={bt['p_val']:.6f}, n_pairs={bt['n_pairs']}, n_comps={bt['n_comparisons']}\\\")\\n        else:\\n            print(f\\\"  BT: insufficient data\\\")\\n\\n        # Likert\\n        sc_recs = load_jsonl(cfg[\\\"sc\\\"])\\n        lk = likert_analysis(sc_recs)\\n        if lk[\\\"ate\\\"] is not None:\\n            print(f\\\"  Likert: ATE={lk['ate']:.4f}, d={lk['cohen_d']:.4f}, \\\"\\n                  f\\\"wilcoxon_p={lk['wilcoxon_p']:.6f}, tie={lk['tie_rate']:.4f}, n={lk['n']}\\\")\\n        else:\\n            print(f\\\"  Likert: insufficient data\\\")\\n\\n        # GEE\\n        gee = gee_analysis(pw_recs)\\n        if gee[\\\"style_or\\\"] is not None:\\n            print(f\\\"  GEE: Style OR={gee['style_or']:.4f} {gee['style_ci']} p={gee['style_p']:.6f}\\\")\\n            print(f\\\"       Orig  OR={gee['orig_or']:.4f} {gee['orig_ci']} p={gee['orig_p']:.6f}\\\")\\n            print(f\\\"       VIF={gee['vif']:.4f}\\\")\\n        else:\\n            print(f\\\"  GEE: insufficient data\\\")\\n\\n        # Blindspot\\n        bt_sig = bt[\\\"p_val\\\"] is not None and bt[\\\"p_val\\\"] < 0.05\\n        lk_sig = lk.get(\\\"wilcoxon_p\\\") is not None and lk[\\\"wilcoxon_p\\\"] < 0.05\\n        blindspot = bt_sig and not lk_sig\\n        print(f\\\"  Blindspot: {'YES' if blindspot else 'NO'}\\\")\\n\\n        results[\\\"per_config\\\"].append({\\n            \\\"label\\\": cfg[\\\"label\\\"], \\\"axis\\\": cfg[\\\"axis\\\"],\\n            \\\"bt\\\": bt, \\\"likert\\\": lk, \\\"gee\\\": gee, \\\"blindspot\\\": blindspot,\\n        })\\n\\n    # Save\\n    out_path = f\\\"{OUT_DIR}/gpt4o_crossbench_results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False,\\n                  default=lambda x: bool(x) if isinstance(x, np.bool_) else\\n                  float(x) if isinstance(x, (np.floating, np.integer)) else x)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n    # Verification\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"  VERIFICATION vs expected\\\")\\n    print(f\\\"{'='*60}\\\")\\n    aeval = results[\\\"per_config\\\"][0]\\n    if aeval[\\\"bt\\\"][\\\"p_pole_a\\\"] is not None:\\n        print(f\\\"  AEval BT: {aeval['bt']['p_pole_a']:.3f} (expect ~0.727)\\\")\\n        print(f\\\"  AEval Style OR: {aeval['gee']['style_or']:.2f} (expect ~4.91)\\\")\\n        print(f\\\"  AEval Orig OR: {aeval['gee']['orig_or']:.2f} (expect ~1.99)\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "64ea9105-7de8-4d87-892d-fcd7dff9e676",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"GPT-4o cross-benchmark analysis: BT/Likert/GEE per config.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, sys\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport choix\\\\nfrom scipy import stats\\\\nimport statsmodels.api as sm\\\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\\\nfrom statsmodels.genmod.families import Binomial\\\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\\\n\\\\nNLI_THRESHOLD = 0.90\\\\nN_BOOT = 10000\\\\nSEED = 42\\\\nDATA_DIR = \\\\\\\"/root/causal_style_decomp_judge/data\\\\\\\"\\\\nOUT_DIR = \\\\\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\\\\\"\\\\n\\\\nCONFIGS = [\\\\n    {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n        \\\\\\\"pw\\\\\\\": f\\\\\\\"{DATA_DIR}/pairwise_results_alpacaeval_gpt4o.jsonl\\\\\\\",\\\\n        \\\\\\\"sc\\\\\\\": f\\\\\\\"{DATA_DIR}/scored_alpacaeval_gpt4o.jsonl\\\\\\\",\\\\n        \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_formality\\\\\\\",\\\\n        \\\\\\\"pole_a\\\\\\\": \\\\\\\"formal\\\\\\\",\\\\n    },\\\\n    {\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"MT-Bench\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n        \\\\\\\"pw\\\\\\\": f\\\\\\\"{DATA_DIR}/pairwise_results_mtbench_gpt4o.jsonl\\\\\\\",\\\\n        \\\\\\\"sc\\\\\\\": f\\\\\\\"{DATA_DIR}/scored_mtbench_gpt4o.jsonl\\\\\\\",\\\\n        \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_formality\\\\\\\",\\\\n        \\\\\\\"pole_a\\\\\\\": \\\\\\\"formal\\\\\\\",\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(l) for l in f if l.strip()]\\\\n\\\\n\\\\ndef bt_pair_bootstrap(recs, nli_thresh=NLI_THRESHOLD):\\\\n    filtered = [r for r in recs if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= nli_thresh]\\\\n\\\\n    pairs_data = []\\\\n    for r in filtered:\\\\n        t1 = r.get(\\\\\\\"trial1_prefers_formal\\\\\\\")\\\\n        t2 = r.get(\\\\\\\"trial2_prefers_formal\\\\\\\")\\\\n        pairs_data.append((t1, t2))\\\\n\\\\n    def build_comparisons(plist):\\\\n        comps = []\\\\n        for t1, t2 in plist:\\\\n            if t1 is True:\\\\n                comps.append((0, 1))  # formal wins\\\\n            elif t1 is False:\\\\n                comps.append((1, 0))  # casual wins\\\\n            if t2 is True:\\\\n                comps.append((0, 1))\\\\n            elif t2 is False:\\\\n                comps.append((1, 0))\\\\n        return comps\\\\n\\\\n    comparisons = build_comparisons(pairs_data)\\\\n    n_pairs = len(pairs_data)\\\\n\\\\n    if len(comparisons) < 3:\\\\n        return {\\\\\\\"p_pole_a\\\\\\\": None, \\\\\\\"ci_lo\\\\\\\": None, \\\\\\\"ci_hi\\\\\\\": None, \\\\\\\"p_val\\\\\\\": None,\\\\n                \\\\\\\"n_pairs\\\\\\\": n_pairs, \\\\\\\"n_comparisons\\\\\\\": len(comparisons)}\\\\n\\\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\\\n    p_a = np.exp(params[0]) / np.sum(np.exp(params))\\\\n\\\\n    rng = np.random.default_rng(SEED)\\\\n    boots = []\\\\n    for _ in range(N_BOOT):\\\\n        idx = rng.integers(0, n_pairs, size=n_pairs)\\\\n        boot_pairs = [pairs_data[i] for i in idx]\\\\n        boot_comps = build_comparisons(boot_pairs)\\\\n        if len(boot_comps) < 2:\\\\n            continue\\\\n        try:\\\\n            bp = choix.ilsr_pairwise(2, boot_comps, alpha=0.01)\\\\n            boots.append(np.exp(bp[0]) / np.sum(np.exp(bp)))\\\\n        except Exception:\\\\n            continue\\\\n\\\\n    boots = np.array(boots)\\\\n    ci_lo, ci_hi = np.percentile(boots, [2.5, 97.5])\\\\n    p_val = float(min(2 * min(np.mean(boots <= 0.5), np.mean(boots >= 0.5)), 1.0))\\\\n\\\\n    a_wins = sum(1 for c in comparisons if c == (0, 1))\\\\n    b_wins = sum(1 for c in comparisons if c == (1, 0))\\\\n\\\\n    return {\\\\n        \\\\\\\"p_pole_a\\\\\\\": float(p_a), \\\\\\\"ci_lo\\\\\\\": float(ci_lo), \\\\\\\"ci_hi\\\\\\\": float(ci_hi),\\\\n        \\\\\\\"p_val\\\\\\\": p_val, \\\\\\\"n_pairs\\\\\\\": n_pairs, \\\\\\\"n_comparisons\\\\\\\": len(comparisons),\\\\n        \\\\\\\"n_filtered\\\\\\\": len(filtered), \\\\\\\"pole_a_wins\\\\\\\": int(a_wins), \\\\\\\"pole_b_wins\\\\\\\": int(b_wins),\\\\n    }\\\\n\\\\n\\\\ndef likert_analysis(sc_recs, nli_thresh=NLI_THRESHOLD):\\\\n    filtered = [r for r in sc_recs if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= nli_thresh]\\\\n    filtered = [r for r in filtered\\\\n                if r.get(\\\\\\\"score_original\\\\\\\") is not None and r.get(\\\\\\\"score_counterfactual\\\\\\\") is not None]\\\\n\\\\n    if len(filtered) < 3:\\\\n        return {\\\\\\\"ate\\\\\\\": None, \\\\\\\"cohen_d\\\\\\\": None, \\\\\\\"wilcoxon_p\\\\\\\": None, \\\\\\\"tie_rate\\\\\\\": None, \\\\\\\"n\\\\\\\": 0}\\\\n\\\\n    orig_scores = np.array([r[\\\\\\\"score_original\\\\\\\"] for r in filtered], dtype=float)\\\\n    cf_scores = np.array([r[\\\\\\\"score_counterfactual\\\\\\\"] for r in filtered], dtype=float)\\\\n    diffs = orig_scores - cf_scores\\\\n\\\\n    ate = float(np.mean(diffs))\\\\n    pooled_sd = float(np.sqrt((np.var(orig_scores, dd\\\\n\\\\n... [截断: 输出过长，省略 1137 字符] ...\\\\n\\\\ns_style_in_A\\\\\\\": 0.0,\\\\n                \\\\\\\"is_original_in_A\\\\\\\": 1.0 if orig == \\\\\\\"casual\\\\\\\" else 0.0,\\\\n                \\\\\\\"chose_A\\\\\\\": 1.0 if t2 == \\\\\\\"A\\\\\\\" else 0.0,\\\\n            })\\\\n\\\\n    if len(rows) < 5:\\\\n        return {\\\\\\\"style_or\\\\\\\": None, \\\\\\\"style_ci\\\\\\\": None, \\\\\\\"style_p\\\\\\\": None,\\\\n                \\\\\\\"orig_or\\\\\\\": None, \\\\\\\"orig_ci\\\\\\\": None, \\\\\\\"orig_p\\\\\\\": None, \\\\\\\"vif\\\\\\\": None}\\\\n\\\\n    df = pd.DataFrame(rows)\\\\n    exog = sm.add_constant(df[[\\\\\\\"is_style_in_A\\\\\\\", \\\\\\\"is_original_in_A\\\\\\\"]])\\\\n    model = GEE(df[\\\\\\\"chose_A\\\\\\\"], exog, groups=df[\\\\\\\"pair_id\\\\\\\"],\\\\n                family=Binomial(), cov_struct=Exchangeable())\\\\n    res = model.fit()\\\\n\\\\n    def extract_or(result, name):\\\\n        coef = result.params[name]\\\\n        se = result.bse[name]\\\\n        p = result.pvalues[name]\\\\n        or_val = np.exp(coef)\\\\n        ci_lo = np.exp(coef - 1.96 * se)\\\\n        ci_hi = np.exp(coef + 1.96 * se)\\\\n        return float(or_val), [float(ci_lo), float(ci_hi)], float(p)\\\\n\\\\n    style_or, style_ci, style_p = extract_or(res, \\\\\\\"is_style_in_A\\\\\\\")\\\\n    orig_or, orig_ci, orig_p = extract_or(res, \\\\\\\"is_original_in_A\\\\\\\")\\\\n    vif = float(variance_inflation_factor(exog.values, 1))\\\\n\\\\n    return {\\\\n        \\\\\\\"style_or\\\\\\\": style_or, \\\\\\\"style_ci\\\\\\\": style_ci, \\\\\\\"style_p\\\\\\\": style_p,\\\\n        \\\\\\\"orig_or\\\\\\\": orig_or, \\\\\\\"orig_ci\\\\\\\": orig_ci, \\\\\\\"orig_p\\\\\\\": orig_p,\\\\n        \\\\\\\"vif\\\\\\\": vif,\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    import os\\\\n    os.makedirs(OUT_DIR, exist_ok=True)\\\\n\\\\n    results = {\\\\\\\"per_config\\\\\\\": []}\\\\n\\\\n    for cfg in CONFIGS:\\\\n        label = f\\\\\\\"{cfg['label']}×{cfg['axis']}\\\\\\\"\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"  GPT-4o × {label}\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n        pw_recs = load_jsonl(cfg[\\\\\\\"pw\\\\\\\"])\\\\n        print(f\\\\\\\"  Total records: {len(pw_recs)}\\\\\\\")\\\\n\\\\n        # BT\\\\n        bt = bt_pair_bootstrap(pw_recs)\\\\n        if bt[\\\\\\\"p_pole_a\\\\\\\"] is not None:\\\\n            print(f\\\\\\\"  BT: P(formal)={bt['p_pole_a']:.4f} [{bt['ci_lo']:.4f}, {bt['ci_hi']:.4f}], \\\\\\\"\\\\n                  f\\\\\\\"p={bt['p_val']:.6f}, n_pairs={bt['n_pairs']}, n_comps={bt['n_comparisons']}\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"  BT: insufficient data\\\\\\\")\\\\n\\\\n        # Likert\\\\n        sc_recs = load_jsonl(cfg[\\\\\\\"sc\\\\\\\"])\\\\n        lk = likert_analysis(sc_recs)\\\\n        if lk[\\\\\\\"ate\\\\\\\"] is not None:\\\\n            print(f\\\\\\\"  Likert: ATE={lk['ate']:.4f}, d={lk['cohen_d']:.4f}, \\\\\\\"\\\\n                  f\\\\\\\"wilcoxon_p={lk['wilcoxon_p']:.6f}, tie={lk['tie_rate']:.4f}, n={lk['n']}\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"  Likert: insufficient data\\\\\\\")\\\\n\\\\n        # GEE\\\\n        gee = gee_analysis(pw_recs)\\\\n        if gee[\\\\\\\"style_or\\\\\\\"] is not None:\\\\n            print(f\\\\\\\"  GEE: Style OR={gee['style_or']:.4f} {gee['style_ci']} p={gee['style_p']:.6f}\\\\\\\")\\\\n            print(f\\\\\\\"       Orig  OR={gee['orig_or']:.4f} {gee['orig_ci']} p={gee['orig_p']:.6f}\\\\\\\")\\\\n            print(f\\\\\\\"       VIF={gee['vif']:.4f}\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"  GEE: insufficient data\\\\\\\")\\\\n\\\\n        # Blindspot\\\\n        bt_sig = bt[\\\\\\\"p_val\\\\\\\"] is not None and bt[\\\\\\\"p_val\\\\\\\"] < 0.05\\\\n        lk_sig = lk.get(\\\\\\\"wilcoxon_p\\\\\\\") is not None and lk[\\\\\\\"wilcoxon_p\\\\\\\"] < 0.05\\\\n        blindspot = bt_sig and not lk_sig\\\\n        print(f\\\\\\\"  Blindspot: {'YES' if blindspot else 'NO'}\\\\\\\")\\\\n\\\\n        results[\\\\\\\"per_config\\\\\\\"].append({\\\\n            \\\\\\\"label\\\\\\\": cfg[\\\\\\\"label\\\\\\\"], \\\\\\\"axis\\\\\\\": cfg[\\\\\\\"axis\\\\\\\"],\\\\n            \\\\\\\"bt\\\\\\\": bt, \\\\\\\"likert\\\\\\\": lk, \\\\\\\"gee\\\\\\\": gee, \\\\\\\"blindspot\\\\\\\": blindspot,\\\\n        })\\\\n\\\\n    # Save\\\\n    out_path = f\\\\\\\"{OUT_DIR}/gpt4o_crossbench_results.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2, ensure_ascii=False,\\\\n                  default=lambda x: bool(x) if isinstance(x, np.bool_) else\\\\n                  float(x) if isinstance(x, (np.floating, np.integer)) else x)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n    # Verification\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"  VERIFICATION vs expected\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    aeval = results[\\\\\\\"per_config\\\\\\\"][0]\\\\n    if aeval[\\\\\\\"bt\\\\\\\"][\\\\\\\"p_pole_a\\\\\\\"] is not None:\\\\n        print(f\\\\\\\"  AEval BT: {aeval['bt']['p_pole_a']:.3f} (expect ~0.727)\\\\\\\")\\\\n        print(f\\\\\\\"  AEval Style OR: {aeval['gee']['style_or']:.2f} (expect ~4.91)\\\\\\\")\\\\n        print(f\\\\\\\"  AEval Orig OR: {aeval['gee']['orig_or']:.2f} (expect ~1.99)\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"GPT-4o cross-benchmark analysis: BT/Likert/GEE per config.\\\"\\\"\\\"\\n\\nimport json, sys\\nimport numpy as np\\nimport pandas as pd\\nimport choix\\nfrom scipy import stats\\nimport statsmodels.api as sm\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\nfrom statsmodels.genmod.families import Binomial\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\n\\nNLI_THRESHOLD = 0.90\\nN_BOOT = 10000\\nSEED = 42\\nDATA_DIR = \\\"/root/causal_style_decomp_judge/data\\\"\\nOUT_DIR = \\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\"\\n\\nCONFIGS = [\\n    {\\n        \\\"label\\\": \\\"AlpacaEval\\\", \\\"axis\\\": \\\"formality\\\",\\n        \\\"pw\\\": f\\\"{DATA_DIR}/pairwise_results_alpacaeval_gpt4o.jsonl\\\",\\n        \\\"sc\\\": f\\\"{DATA_DIR}/scored_alpacaeval_gpt4o.jsonl\\\",\\n        \\\"orig_field\\\": \\\"original_formality\\\",\\n        \\\"pole_a\\\": \\\"formal\\\",\\n    },\\n    {\\n        \\\"label\\\": \\\"MT-Bench\\\", \\\"axis\\\": \\\"formality\\\",\\n        \\\"pw\\\": f\\\"{DATA_DIR}/pairwise_results_mtbench_gpt4o.jsonl\\\",\\n        \\\"sc\\\": f\\\"{DATA_DIR}/scored_mtbench_gpt4o.jsonl\\\",\\n        \\\"orig_field\\\": \\\"original_formality\\\",\\n        \\\"pole_a\\\": \\\"formal\\\",\\n    },\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef bt_pair_bootstrap(recs, nli_thresh=NLI_THRESHOLD):\\n    filtered = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= nli_thresh]\\n\\n    pairs_data = []\\n    for r in filtered:\\n        t1 = r.get(\\\"trial1_prefers_formal\\\")\\n        t2 = r.get(\\\"trial2_prefers_formal\\\")\\n        pairs_data.append((t1, t2))\\n\\n    def build_comparisons(plist):\\n        comps = []\\n        for t1, t2 in plist:\\n            if t1 is True:\\n                comps.append((0, 1))  # formal wins\\n            elif t1 is False:\\n                comps.append((1, 0))  # casual wins\\n            if t2 is True:\\n                comps.append((0, 1))\\n            elif t2 is False:\\n                comps.append((1, 0))\\n        return comps\\n\\n    comparisons = build_comparisons(pairs_data)\\n    n_pairs = len(pairs_data)\\n\\n    if len(comparisons) < 3:\\n        return {\\\"p_pole_a\\\": None, \\\"ci_lo\\\": None, \\\"ci_hi\\\": None, \\\"p_val\\\": None,\\n                \\\"n_pairs\\\": n_pairs, \\\"n_comparisons\\\": len(comparisons)}\\n\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\n    p_a = np.exp(params[0]) / np.sum(np.exp(params))\\n\\n    rng = np.random.default_rng(SEED)\\n    boots = []\\n    for _ in range(N_BOOT):\\n        idx = rng.integers(0, n_pairs, size=n_pairs)\\n        boot_pairs = [pairs_data[i] for i in idx]\\n        boot_comps = build_comparisons(boot_pairs)\\n        if len(boot_comps) < 2:\\n            continue\\n        try:\\n            bp = choix.ilsr_pairwise(2, boot_comps, alpha=0.01)\\n            boots.append(np.exp(bp[0]) / np.sum(np.exp(bp)))\\n        except Exception:\\n            continue\\n\\n    boots = np.array(boots)\\n    ci_lo, ci_hi = np.percentile(boots, [2.5, 97.5])\\n    p_val = float(min(2 * min(np.mean(boots <= 0.5), np.mean(boots >= 0.5)), 1.0))\\n\\n    a_wins = sum(1 for c in comparisons if c == (0, 1))\\n    b_wins = sum(1 for c in comparisons if c == (1, 0))\\n\\n    return {\\n        \\\"p_pole_a\\\": float(p_a), \\\"ci_lo\\\": float(ci_lo), \\\"ci_hi\\\": float(ci_hi),\\n        \\\"p_val\\\": p_val, \\\"n_pairs\\\": n_pairs, \\\"n_comparisons\\\": len(comparisons),\\n        \\\"n_filtered\\\": len(filtered), \\\"pole_a_wins\\\": int(a_wins), \\\"pole_b_wins\\\": int(b_wins),\\n    }\\n\\n\\ndef likert_analysis(sc_recs, nli_thresh=NLI_THRESHOLD):\\n    filtered = [r for r in sc_recs if r.get(\\\"nli_cf\\\", 0) >= nli_thresh]\\n    filtered = [r for r in filtered\\n                if r.get(\\\"score_original\\\") is not None and r.get(\\\"score_counterfactual\\\") is not None]\\n\\n    if len(filtered) < 3:\\n        return {\\\"ate\\\": None, \\\"cohen_d\\\": None, \\\"wilcoxon_p\\\": None, \\\"tie_rate\\\": None, \\\"n\\\": 0}\\n\\n    orig_scores = np.array([r[\\\"score_original\\\"] for r in filtered], dtype=float)\\n    cf_scores = np.array([r[\\\"score_counterfactual\\\"] for r in filtered], dtype=float)\\n    diffs = orig_scores - cf_scores\\n\\n    ate = float(np.mean(diffs))\\n    pooled_sd = float(np.sqrt((np.var(orig_scores, dd\\n\\n... [截断: 输出过长，省略 1137 字符] ...\\n\\ns_style_in_A\\\": 0.0,\\n                \\\"is_original_in_A\\\": 1.0 if orig == \\\"casual\\\" else 0.0,\\n                \\\"chose_A\\\": 1.0 if t2 == \\\"A\\\" else 0.0,\\n            })\\n\\n    if len(rows) < 5:\\n        return {\\\"style_or\\\": None, \\\"style_ci\\\": None, \\\"style_p\\\": None,\\n                \\\"orig_or\\\": None, \\\"orig_ci\\\": None, \\\"orig_p\\\": None, \\\"vif\\\": None}\\n\\n    df = pd.DataFrame(rows)\\n    exog = sm.add_constant(df[[\\\"is_style_in_A\\\", \\\"is_original_in_A\\\"]])\\n    model = GEE(df[\\\"chose_A\\\"], exog, groups=df[\\\"pair_id\\\"],\\n                family=Binomial(), cov_struct=Exchangeable())\\n    res = model.fit()\\n\\n    def extract_or(result, name):\\n        coef = result.params[name]\\n        se = result.bse[name]\\n        p = result.pvalues[name]\\n        or_val = np.exp(coef)\\n        ci_lo = np.exp(coef - 1.96 * se)\\n        ci_hi = np.exp(coef + 1.96 * se)\\n        return float(or_val), [float(ci_lo), float(ci_hi)], float(p)\\n\\n    style_or, style_ci, style_p = extract_or(res, \\\"is_style_in_A\\\")\\n    orig_or, orig_ci, orig_p = extract_or(res, \\\"is_original_in_A\\\")\\n    vif = float(variance_inflation_factor(exog.values, 1))\\n\\n    return {\\n        \\\"style_or\\\": style_or, \\\"style_ci\\\": style_ci, \\\"style_p\\\": style_p,\\n        \\\"orig_or\\\": orig_or, \\\"orig_ci\\\": orig_ci, \\\"orig_p\\\": orig_p,\\n        \\\"vif\\\": vif,\\n    }\\n\\n\\ndef main():\\n    import os\\n    os.makedirs(OUT_DIR, exist_ok=True)\\n\\n    results = {\\\"per_config\\\": []}\\n\\n    for cfg in CONFIGS:\\n        label = f\\\"{cfg['label']}×{cfg['axis']}\\\"\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  GPT-4o × {label}\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        pw_recs = load_jsonl(cfg[\\\"pw\\\"])\\n        print(f\\\"  Total records: {len(pw_recs)}\\\")\\n\\n        # BT\\n        bt = bt_pair_bootstrap(pw_recs)\\n        if bt[\\\"p_pole_a\\\"] is not None:\\n            print(f\\\"  BT: P(formal)={bt['p_pole_a']:.4f} [{bt['ci_lo']:.4f}, {bt['ci_hi']:.4f}], \\\"\\n                  f\\\"p={bt['p_val']:.6f}, n_pairs={bt['n_pairs']}, n_comps={bt['n_comparisons']}\\\")\\n        else:\\n            print(f\\\"  BT: insufficient data\\\")\\n\\n        # Likert\\n        sc_recs = load_jsonl(cfg[\\\"sc\\\"])\\n        lk = likert_analysis(sc_recs)\\n        if lk[\\\"ate\\\"] is not None:\\n            print(f\\\"  Likert: ATE={lk['ate']:.4f}, d={lk['cohen_d']:.4f}, \\\"\\n                  f\\\"wilcoxon_p={lk['wilcoxon_p']:.6f}, tie={lk['tie_rate']:.4f}, n={lk['n']}\\\")\\n        else:\\n            print(f\\\"  Likert: insufficient data\\\")\\n\\n        # GEE\\n        gee = gee_analysis(pw_recs)\\n        if gee[\\\"style_or\\\"] is not None:\\n            print(f\\\"  GEE: Style OR={gee['style_or']:.4f} {gee['style_ci']} p={gee['style_p']:.6f}\\\")\\n            print(f\\\"       Orig  OR={gee['orig_or']:.4f} {gee['orig_ci']} p={gee['orig_p']:.6f}\\\")\\n            print(f\\\"       VIF={gee['vif']:.4f}\\\")\\n        else:\\n            print(f\\\"  GEE: insufficient data\\\")\\n\\n        # Blindspot\\n        bt_sig = bt[\\\"p_val\\\"] is not None and bt[\\\"p_val\\\"] < 0.05\\n        lk_sig = lk.get(\\\"wilcoxon_p\\\") is not None and lk[\\\"wilcoxon_p\\\"] < 0.05\\n        blindspot = bt_sig and not lk_sig\\n        print(f\\\"  Blindspot: {'YES' if blindspot else 'NO'}\\\")\\n\\n        results[\\\"per_config\\\"].append({\\n            \\\"label\\\": cfg[\\\"label\\\"], \\\"axis\\\": cfg[\\\"axis\\\"],\\n            \\\"bt\\\": bt, \\\"likert\\\": lk, \\\"gee\\\": gee, \\\"blindspot\\\": blindspot,\\n        })\\n\\n    # Save\\n    out_path = f\\\"{OUT_DIR}/gpt4o_crossbench_results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False,\\n                  default=lambda x: bool(x) if isinstance(x, np.bool_) else\\n                  float(x) if isinstance(x, (np.floating, np.integer)) else x)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n    # Verification\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"  VERIFICATION vs expected\\\")\\n    print(f\\\"{'='*60}\\\")\\n    aeval = results[\\\"per_config\\\"][0]\\n    if aeval[\\\"bt\\\"][\\\"p_pole_a\\\"] is not None:\\n        print(f\\\"  AEval BT: {aeval['bt']['p_pole_a']:.3f} (expect ~0.727)\\\")\\n        print(f\\\"  AEval Style OR: {aeval['gee']['style_or']:.2f} (expect ~4.91)\\\")\\n        print(f\\\"  AEval Orig OR: {aeval['gee']['orig_or']:.2f} (expect ~1.99)\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-24T08:42:43.000Z_
+
+<details><summary>↩ Tool result · `toolu_01HMK8g26SxbBs6jP1QjComg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Claude cross-benchmark analysis: BT/Likert/GEE per config + merged TOST.\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport choix\\nimport numpy as np\\nimport pandas as pd\\nimport statsmodels.api as sm\\nfrom scipy import stats\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\nfrom statsmodels.genmod.families import Binomial\\n\\nNLI_THRESHOLD = 0.90\\nN_BOOTSTRAP = 10000\\nSEED = 42\\n\\nDATA_DIR = Path(\\\"/root/causal_style_decomp_judge/data\\\")\\nOUT_DIR = Path(\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\")\\n\\nAXIS_CONFIG = {\\n    \\\"formality\\\": {\\n        \\\"orig_field\\\": \\\"original_formality\\\",\\n        \\\"pole_a\\\": \\\"formal\\\", \\\"pole_b\\\": \\\"casual\\\",\\n        \\\"pref_key\\\": \\\"prefers_formal\\\",\\n        \\\"wins_key\\\": \\\"formal_wins\\\",\\n    },\\n    \\\"verbosity\\\": {\\n        \\\"orig_field\\\": \\\"original_verbosity\\\",\\n        \\\"pole_a\\\": \\\"verbose\\\", \\\"pole_b\\\": \\\"concise\\\",\\n        \\\"pref_key\\\": \\\"prefers_verbose\\\",\\n        \\\"wins_key\\\": \\\"verbose_wins\\\",\\n    },\\n}\\n\\nCONFIGS = [\\n    {\\\"label\\\": \\\"LLMBar\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_formality.jsonl\\\"},\\n    {\\\"label\\\": \\\"LLMBar\\\", \\\"axis\\\": \\\"verbosity\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_verbosity.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_verbosity.jsonl\\\"},\\n    {\\\"label\\\": \\\"AlpacaEval\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_alpacaeval_formality.jsonl\\\"},\\n    {\\\"label\\\": \\\"AlpacaEval\\\", \\\"axis\\\": \\\"verbosity\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_alpacaeval_verbosity.jsonl\\\"},\\n    {\\\"label\\\": \\\"MT-Bench\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_mtbench_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_mtbench_formality.jsonl\\\"},\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef get_wins(rec, axis):\\n    cfg = AXIS_CONFIG[axis]\\n    for key in [cfg[\\\"wins_key\\\"], cfg[\\\"pref_key\\\"]]:\\n        if key in rec:\\n            return rec[key]\\n    return None\\n\\n\\ndef bt_pair_bootstrap(recs, axis, nli_thresh=NLI_THRESHOLD):\\n    cfg = AXIS_CONFIG[axis]\\n    filtered = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= nli_thresh]\\n\\n    pref_key = cfg[\\\"pref_key\\\"]\\n    t1_key = f\\\"trial1_{pref_key}\\\"\\n    t2_key = f\\\"trial2_{pref_key}\\\"\\n\\n    pairs_data = []\\n    for r in filtered:\\n        t1 = r.get(t1_key)\\n        t2 = r.get(t2_key)\\n        pairs_data.append((t1, t2))\\n\\n    def build_comparisons(plist):\\n        comps = []\\n        for t1, t2 in plist:\\n            if t1 is True:\\n                comps.append((0, 1))\\n            elif t1 is False:\\n                comps.append((1, 0))\\n            if t2 is True:\\n                comps.append((0, 1))\\n            elif t2 is False:\\n                comps.append((1, 0))\\n        return comps\\n\\n    comparisons = build_comparisons(pairs_data)\\n    n_pairs = len(pairs_data)\\n\\n    if len(comparisons) < 3:\\n        return {\\\"p_pole_a\\\": None, \\\"ci_lo\\\": None, \\\"ci_hi\\\": None, \\\"p_val\\\": None,\\n                \\\"n_pairs\\\": n_pairs, \\\"n_comparisons\\\": len(comparisons), \\\"n_filtered\\\": len(filtered)}\\n\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\n    p_a = np.exp(params[0]) / np.sum(np.exp(params))\\n\\n    rng = np.random.default_rng(SEED)\\n    boots = []\\n    for _ in range(N_BOOTSTRAP):\\n        idx = rng.integers(0, n_pairs, size=n_pairs)\\n        boot_pairs = [pairs_data[i] for i in idx]\\n        boot_comps = build_comparisons(boot_pairs)\\n        try:\\n            bp = choix.ilsr_pairwise(2, boot_comps, alpha=0.01)\\n            boots.append(np.exp(bp[0]) / np.sum(np.exp(bp)))\\n        except Exception:\\n            continue\\n\\n    boots = np.array(boots)\\n    ci_lo, ci_hi = np.percentile(boots, [2.5, 97.5])\\n    p_val = float(min(2 * min(np.mean(boots <= 0.5), np.mean(boots >= 0.5)), 1.0))\\n\\n    a_wins = sum(1 for c in comparisons if c == (0, 1))\\n\\n    r\\n\\n... [截断: 输出过长，省略 5513 字符] ...\\n\\n        \\\"n_pole_a_wins\\\": int(n_pole_a_wins),\\n        \\\"p_hat\\\": float(p_hat),\\n        \\\"se\\\": float(se),\\n        \\\"ci_90\\\": [float(ci90_lo), float(ci90_hi)],\\n        \\\"tost\\\": tost_results,\\n    }\\n\\n\\ndef main():\\n    OUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n    results = {\\\"per_config\\\": [], \\\"merged_tost\\\": {}}\\n\\n    # Per-config analysis\\n    for cfg in CONFIGS:\\n        label = f\\\"{cfg['label']}×{cfg['axis']}\\\"\\n        pw_path = cfg[\\\"pw\\\"]\\n        sc_path = cfg[\\\"sc\\\"]\\n\\n        if not pw_path.exists():\\n            print(f\\\"SKIP {label}: {pw_path} not found\\\")\\n            continue\\n\\n        pw_recs = load_jsonl(pw_path)\\n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  {label} (Claude Sonnet 4)\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        bt = bt_pair_bootstrap(pw_recs, cfg[\\\"axis\\\"])\\n        print(f\\\"  BT: P({AXIS_CONFIG[cfg['axis']]['pole_a']})={bt['p_pole_a']*100:.1f}% \\\"\\n              f\\\"[{bt['ci_lo']*100:.1f}, {bt['ci_hi']*100:.1f}], p={bt['p_val']:.4f}, \\\"\\n              f\\\"n={bt['n_pairs']}\\\" if bt[\\\"p_pole_a\\\"] else f\\\"  BT: insufficient data\\\")\\n\\n        lk = {\\\"ate\\\": None}\\n        if sc_path.exists():\\n            sc_recs = load_jsonl(sc_path)\\n            lk = likert_analysis(sc_recs, cfg[\\\"axis\\\"])\\n            if lk[\\\"ate\\\"] is not None:\\n                print(f\\\"  Likert: ATE={lk['ate']:.3f}, d={lk['cohen_d']:.3f}, \\\"\\n                      f\\\"p_wilcoxon={lk['wilcoxon_p']:.4f}, tie_rate={lk['tie_rate']*100:.1f}%\\\")\\n\\n        gee = gee_analysis(pw_recs, cfg[\\\"axis\\\"])\\n        if gee[\\\"style_or\\\"] is not None:\\n            print(f\\\"  GEE: Style OR={gee['style_or']:.3f} p={gee['style_p']:.4f}, \\\"\\n                  f\\\"Orig OR={gee['orig_or']:.3f} p={gee['orig_p']:.4f}\\\")\\n\\n        bt_sig = bt[\\\"p_val\\\"] is not None and bt[\\\"p_val\\\"] < 0.05\\n        lk_sig = lk.get(\\\"wilcoxon_p\\\") is not None and lk[\\\"wilcoxon_p\\\"] < 0.05\\n        blindspot = bt_sig and not lk_sig\\n        print(f\\\"  Blindspot: {'YES' if blindspot else 'NO'}\\\")\\n\\n        results[\\\"per_config\\\"].append({\\n            \\\"label\\\": cfg[\\\"label\\\"], \\\"axis\\\": cfg[\\\"axis\\\"],\\n            \\\"bt\\\": bt, \\\"likert\\\": lk, \\\"gee\\\": gee, \\\"blindspot\\\": blindspot,\\n        })\\n\\n    # Merged TOST\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"  MERGED TOST ANALYSIS\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    for axis in [\\\"formality\\\", \\\"verbosity\\\"]:\\n        all_pw = []\\n        sources = []\\n        for cfg in CONFIGS:\\n            if cfg[\\\"axis\\\"] != axis:\\n                continue\\n            if cfg[\\\"pw\\\"].exists():\\n                recs = load_jsonl(cfg[\\\"pw\\\"])\\n                all_pw.extend(recs)\\n                sources.append(f\\\"{cfg['label']}({len(recs)})\\\")\\n\\n        print(f\\\"\\\\n  {axis}: merged from {' + '.join(sources)} = {len(all_pw)} total records\\\")\\n\\n        mt = merged_tost(all_pw, axis)\\n        print(f\\\"  P_hat={mt['p_hat']:.4f}, n={mt['n_total']}, \\\"\\n              f\\\"90%CI=[{mt['ci_90'][0]:.4f}, {mt['ci_90'][1]:.4f}]\\\")\\n\\n        equiv_at = None\\n        for dk, dv in mt[\\\"tost\\\"].items():\\n            sig_str = \\\"***\\\" if dv[\\\"significant\\\"] else \\\"ns\\\"\\n            print(f\\\"    {dk}: p={dv['p_value']:.6f} {sig_str}\\\")\\n            if dv[\\\"significant\\\"] and equiv_at is None:\\n                equiv_at = dk\\n\\n        mt[\\\"equivalence_confirmed_at\\\"] = equiv_at\\n        results[\\\"merged_tost\\\"][axis] = mt\\n\\n    # Summary conclusion\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"  CONCLUSION\\\")\\n    print(f\\\"{'='*60}\\\")\\n    for axis in [\\\"formality\\\", \\\"verbosity\\\"]:\\n        mt = results[\\\"merged_tost\\\"].get(axis, {})\\n        eq = mt.get(\\\"equivalence_confirmed_at\\\")\\n        if eq:\\n            print(f\\\"  {axis}: Claude confirmed as negative control (equiv at {eq})\\\")\\n        else:\\n            print(f\\\"  {axis}: Claude NOT confirmed as negative control at any tested Δ\\\")\\n\\n    # Save\\n    out_path = OUT_DIR / \\\"claude_crossbench_results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False,\\n                  default=lambda x: bool(x) if isinstance(x, np.bool_) else\\n                  float(x) if isinstance(x, (np.floating, np.integer)) else x)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "d688292d-dbfa-4b21-9297-017acaeb3395",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Claude cross-benchmark analysis: BT/Likert/GEE per config + merged TOST.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport choix\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport statsmodels.api as sm\\\\nfrom scipy import stats\\\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\\\nfrom statsmodels.genmod.families import Binomial\\\\n\\\\nNLI_THRESHOLD = 0.90\\\\nN_BOOTSTRAP = 10000\\\\nSEED = 42\\\\n\\\\nDATA_DIR = Path(\\\\\\\"/root/causal_style_decomp_judge/data\\\\\\\")\\\\nOUT_DIR = Path(\\\\\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\\\\\")\\\\n\\\\nAXIS_CONFIG = {\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n        \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_formality\\\\\\\",\\\\n        \\\\\\\"pole_a\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"pole_b\\\\\\\": \\\\\\\"casual\\\\\\\",\\\\n        \\\\\\\"pref_key\\\\\\\": \\\\\\\"prefers_formal\\\\\\\",\\\\n        \\\\\\\"wins_key\\\\\\\": \\\\\\\"formal_wins\\\\\\\",\\\\n    },\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n        \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_verbosity\\\\\\\",\\\\n        \\\\\\\"pole_a\\\\\\\": \\\\\\\"verbose\\\\\\\", \\\\\\\"pole_b\\\\\\\": \\\\\\\"concise\\\\\\\",\\\\n        \\\\\\\"pref_key\\\\\\\": \\\\\\\"prefers_verbose\\\\\\\",\\\\n        \\\\\\\"wins_key\\\\\\\": \\\\\\\"verbose_wins\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\nCONFIGS = [\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"LLMBar\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n     \\\\\\\"pw\\\\\\\": DATA_DIR / \\\\\\\"pairwise_results_claude_formality.jsonl\\\\\\\",\\\\n     \\\\\\\"sc\\\\\\\": DATA_DIR / \\\\\\\"scored_claude_formality.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"LLMBar\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n     \\\\\\\"pw\\\\\\\": DATA_DIR / \\\\\\\"pairwise_results_claude_verbosity.jsonl\\\\\\\",\\\\n     \\\\\\\"sc\\\\\\\": DATA_DIR / \\\\\\\"scored_claude_verbosity.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n     \\\\\\\"pw\\\\\\\": DATA_DIR / \\\\\\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\\\\\",\\\\n     \\\\\\\"sc\\\\\\\": DATA_DIR / \\\\\\\"scored_claude_alpacaeval_formality.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n     \\\\\\\"pw\\\\\\\": DATA_DIR / \\\\\\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\\\\\",\\\\n     \\\\\\\"sc\\\\\\\": DATA_DIR / \\\\\\\"scored_claude_alpacaeval_verbosity.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"MT-Bench\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n     \\\\\\\"pw\\\\\\\": DATA_DIR / \\\\\\\"pairwise_results_claude_mtbench_formality.jsonl\\\\\\\",\\\\n     \\\\\\\"sc\\\\\\\": DATA_DIR / \\\\\\\"scored_claude_mtbench_formality.jsonl\\\\\\\"},\\\\n]\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(l) for l in f if l.strip()]\\\\n\\\\n\\\\ndef get_wins(rec, axis):\\\\n    cfg = AXIS_CONFIG[axis]\\\\n    for key in [cfg[\\\\\\\"wins_key\\\\\\\"], cfg[\\\\\\\"pref_key\\\\\\\"]]:\\\\n        if key in rec:\\\\n            return rec[key]\\\\n    return None\\\\n\\\\n\\\\ndef bt_pair_bootstrap(recs, axis, nli_thresh=NLI_THRESHOLD):\\\\n    cfg = AXIS_CONFIG[axis]\\\\n    filtered = [r for r in recs if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= nli_thresh]\\\\n\\\\n    pref_key = cfg[\\\\\\\"pref_key\\\\\\\"]\\\\n    t1_key = f\\\\\\\"trial1_{pref_key}\\\\\\\"\\\\n    t2_key = f\\\\\\\"trial2_{pref_key}\\\\\\\"\\\\n\\\\n    pairs_data = []\\\\n    for r in filtered:\\\\n        t1 = r.get(t1_key)\\\\n        t2 = r.get(t2_key)\\\\n        pairs_data.append((t1, t2))\\\\n\\\\n    def build_comparisons(plist):\\\\n        comps = []\\\\n        for t1, t2 in plist:\\\\n            if t1 is True:\\\\n                comps.append((0, 1))\\\\n            elif t1 is False:\\\\n                comps.append((1, 0))\\\\n            if t2 is True:\\\\n                comps.append((0, 1))\\\\n            elif t2 is False:\\\\n                comps.append((1, 0))\\\\n        return comps\\\\n\\\\n    comparisons = build_comparisons(pairs_data)\\\\n    n_pairs = len(pairs_data)\\\\n\\\\n    if len(comparisons) < 3:\\\\n        return {\\\\\\\"p_pole_a\\\\\\\": None, \\\\\\\"ci_lo\\\\\\\": None, \\\\\\\"ci_hi\\\\\\\": None, \\\\\\\"p_val\\\\\\\": None,\\\\n                \\\\\\\"n_pairs\\\\\\\": n_pairs, \\\\\\\"n_comparisons\\\\\\\": len(comparisons), \\\\\\\"n_filtered\\\\\\\": len(filtered)}\\\\n\\\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\\\n    p_a = np.exp(params[0]) / np.sum(np.exp(params))\\\\n\\\\n    rng = np.random.default_rng(SEED)\\\\n    boots = []\\\\n    for _ in range(N_BOOTSTRAP):\\\\n        idx = rng.integers(0, n_pairs, size=n_pairs)\\\\n        boot_pairs = [pairs_data[i] for i in idx]\\\\n        boot_comps = build_comparisons(boot_pairs)\\\\n        try:\\\\n            bp = choix.ilsr_pairwise(2, boot_comps, alpha=0.01)\\\\n            boots.append(np.exp(bp[0]) / np.sum(np.exp(bp)))\\\\n        except Exception:\\\\n            continue\\\\n\\\\n    boots = np.array(boots)\\\\n    ci_lo, ci_hi = np.percentile(boots, [2.5, 97.5])\\\\n    p_val = float(min(2 * min(np.mean(boots <= 0.5), np.mean(boots >= 0.5)), 1.0))\\\\n\\\\n    a_wins = sum(1 for c in comparisons if c == (0, 1))\\\\n\\\\n    r\\\\n\\\\n... [截断: 输出过长，省略 5513 字符] ...\\\\n\\\\n        \\\\\\\"n_pole_a_wins\\\\\\\": int(n_pole_a_wins),\\\\n        \\\\\\\"p_hat\\\\\\\": float(p_hat),\\\\n        \\\\\\\"se\\\\\\\": float(se),\\\\n        \\\\\\\"ci_90\\\\\\\": [float(ci90_lo), float(ci90_hi)],\\\\n        \\\\\\\"tost\\\\\\\": tost_results,\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    OUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    results = {\\\\\\\"per_config\\\\\\\": [], \\\\\\\"merged_tost\\\\\\\": {}}\\\\n\\\\n    # Per-config analysis\\\\n    for cfg in CONFIGS:\\\\n        label = f\\\\\\\"{cfg['label']}×{cfg['axis']}\\\\\\\"\\\\n        pw_path = cfg[\\\\\\\"pw\\\\\\\"]\\\\n        sc_path = cfg[\\\\\\\"sc\\\\\\\"]\\\\n\\\\n        if not pw_path.exists():\\\\n            print(f\\\\\\\"SKIP {label}: {pw_path} not found\\\\\\\")\\\\n            continue\\\\n\\\\n        pw_recs = load_jsonl(pw_path)\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"  {label} (Claude Sonnet 4)\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n        bt = bt_pair_bootstrap(pw_recs, cfg[\\\\\\\"axis\\\\\\\"])\\\\n        print(f\\\\\\\"  BT: P({AXIS_CONFIG[cfg['axis']]['pole_a']})={bt['p_pole_a']*100:.1f}% \\\\\\\"\\\\n              f\\\\\\\"[{bt['ci_lo']*100:.1f}, {bt['ci_hi']*100:.1f}], p={bt['p_val']:.4f}, \\\\\\\"\\\\n              f\\\\\\\"n={bt['n_pairs']}\\\\\\\" if bt[\\\\\\\"p_pole_a\\\\\\\"] else f\\\\\\\"  BT: insufficient data\\\\\\\")\\\\n\\\\n        lk = {\\\\\\\"ate\\\\\\\": None}\\\\n        if sc_path.exists():\\\\n            sc_recs = load_jsonl(sc_path)\\\\n            lk = likert_analysis(sc_recs, cfg[\\\\\\\"axis\\\\\\\"])\\\\n            if lk[\\\\\\\"ate\\\\\\\"] is not None:\\\\n                print(f\\\\\\\"  Likert: ATE={lk['ate']:.3f}, d={lk['cohen_d']:.3f}, \\\\\\\"\\\\n                      f\\\\\\\"p_wilcoxon={lk['wilcoxon_p']:.4f}, tie_rate={lk['tie_rate']*100:.1f}%\\\\\\\")\\\\n\\\\n        gee = gee_analysis(pw_recs, cfg[\\\\\\\"axis\\\\\\\"])\\\\n        if gee[\\\\\\\"style_or\\\\\\\"] is not None:\\\\n            print(f\\\\\\\"  GEE: Style OR={gee['style_or']:.3f} p={gee['style_p']:.4f}, \\\\\\\"\\\\n                  f\\\\\\\"Orig OR={gee['orig_or']:.3f} p={gee['orig_p']:.4f}\\\\\\\")\\\\n\\\\n        bt_sig = bt[\\\\\\\"p_val\\\\\\\"] is not None and bt[\\\\\\\"p_val\\\\\\\"] < 0.05\\\\n        lk_sig = lk.get(\\\\\\\"wilcoxon_p\\\\\\\") is not None and lk[\\\\\\\"wilcoxon_p\\\\\\\"] < 0.05\\\\n        blindspot = bt_sig and not lk_sig\\\\n        print(f\\\\\\\"  Blindspot: {'YES' if blindspot else 'NO'}\\\\\\\")\\\\n\\\\n        results[\\\\\\\"per_config\\\\\\\"].append({\\\\n            \\\\\\\"label\\\\\\\": cfg[\\\\\\\"label\\\\\\\"], \\\\\\\"axis\\\\\\\": cfg[\\\\\\\"axis\\\\\\\"],\\\\n            \\\\\\\"bt\\\\\\\": bt, \\\\\\\"likert\\\\\\\": lk, \\\\\\\"gee\\\\\\\": gee, \\\\\\\"blindspot\\\\\\\": blindspot,\\\\n        })\\\\n\\\\n    # Merged TOST\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"  MERGED TOST ANALYSIS\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    for axis in [\\\\\\\"formality\\\\\\\", \\\\\\\"verbosity\\\\\\\"]:\\\\n        all_pw = []\\\\n        sources = []\\\\n        for cfg in CONFIGS:\\\\n            if cfg[\\\\\\\"axis\\\\\\\"] != axis:\\\\n                continue\\\\n            if cfg[\\\\\\\"pw\\\\\\\"].exists():\\\\n                recs = load_jsonl(cfg[\\\\\\\"pw\\\\\\\"])\\\\n                all_pw.extend(recs)\\\\n                sources.append(f\\\\\\\"{cfg['label']}({len(recs)})\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n  {axis}: merged from {' + '.join(sources)} = {len(all_pw)} total records\\\\\\\")\\\\n\\\\n        mt = merged_tost(all_pw, axis)\\\\n        print(f\\\\\\\"  P_hat={mt['p_hat']:.4f}, n={mt['n_total']}, \\\\\\\"\\\\n              f\\\\\\\"90%CI=[{mt['ci_90'][0]:.4f}, {mt['ci_90'][1]:.4f}]\\\\\\\")\\\\n\\\\n        equiv_at = None\\\\n        for dk, dv in mt[\\\\\\\"tost\\\\\\\"].items():\\\\n            sig_str = \\\\\\\"***\\\\\\\" if dv[\\\\\\\"significant\\\\\\\"] else \\\\\\\"ns\\\\\\\"\\\\n            print(f\\\\\\\"    {dk}: p={dv['p_value']:.6f} {sig_str}\\\\\\\")\\\\n            if dv[\\\\\\\"significant\\\\\\\"] and equiv_at is None:\\\\n                equiv_at = dk\\\\n\\\\n        mt[\\\\\\\"equivalence_confirmed_at\\\\\\\"] = equiv_at\\\\n        results[\\\\\\\"merged_tost\\\\\\\"][axis] = mt\\\\n\\\\n    # Summary conclusion\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"  CONCLUSION\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    for axis in [\\\\\\\"formality\\\\\\\", \\\\\\\"verbosity\\\\\\\"]:\\\\n        mt = results[\\\\\\\"merged_tost\\\\\\\"].get(axis, {})\\\\n        eq = mt.get(\\\\\\\"equivalence_confirmed_at\\\\\\\")\\\\n        if eq:\\\\n            print(f\\\\\\\"  {axis}: Claude confirmed as negative control (equiv at {eq})\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"  {axis}: Claude NOT confirmed as negative control at any tested Δ\\\\\\\")\\\\n\\\\n    # Save\\\\n    out_path = OUT_DIR / \\\\\\\"claude_crossbench_results.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2, ensure_ascii=False,\\\\n                  default=lambda x: bool(x) if isinstance(x, np.bool_) else\\\\n                  float(x) if isinstance(x, (np.floating, np.integer)) else x)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Claude cross-benchmark analysis: BT/Likert/GEE per config + merged TOST.\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport choix\\nimport numpy as np\\nimport pandas as pd\\nimport statsmodels.api as sm\\nfrom scipy import stats\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\nfrom statsmodels.genmod.families import Binomial\\n\\nNLI_THRESHOLD = 0.90\\nN_BOOTSTRAP = 10000\\nSEED = 42\\n\\nDATA_DIR = Path(\\\"/root/causal_style_decomp_judge/data\\\")\\nOUT_DIR = Path(\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\")\\n\\nAXIS_CONFIG = {\\n    \\\"formality\\\": {\\n        \\\"orig_field\\\": \\\"original_formality\\\",\\n        \\\"pole_a\\\": \\\"formal\\\", \\\"pole_b\\\": \\\"casual\\\",\\n        \\\"pref_key\\\": \\\"prefers_formal\\\",\\n        \\\"wins_key\\\": \\\"formal_wins\\\",\\n    },\\n    \\\"verbosity\\\": {\\n        \\\"orig_field\\\": \\\"original_verbosity\\\",\\n        \\\"pole_a\\\": \\\"verbose\\\", \\\"pole_b\\\": \\\"concise\\\",\\n        \\\"pref_key\\\": \\\"prefers_verbose\\\",\\n        \\\"wins_key\\\": \\\"verbose_wins\\\",\\n    },\\n}\\n\\nCONFIGS = [\\n    {\\\"label\\\": \\\"LLMBar\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_formality.jsonl\\\"},\\n    {\\\"label\\\": \\\"LLMBar\\\", \\\"axis\\\": \\\"verbosity\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_verbosity.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_verbosity.jsonl\\\"},\\n    {\\\"label\\\": \\\"AlpacaEval\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_alpacaeval_formality.jsonl\\\"},\\n    {\\\"label\\\": \\\"AlpacaEval\\\", \\\"axis\\\": \\\"verbosity\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_alpacaeval_verbosity.jsonl\\\"},\\n    {\\\"label\\\": \\\"MT-Bench\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_mtbench_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_mtbench_formality.jsonl\\\"},\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef get_wins(rec, axis):\\n    cfg = AXIS_CONFIG[axis]\\n    for key in [cfg[\\\"wins_key\\\"], cfg[\\\"pref_key\\\"]]:\\n        if key in rec:\\n            return rec[key]\\n    return None\\n\\n\\ndef bt_pair_bootstrap(recs, axis, nli_thresh=NLI_THRESHOLD):\\n    cfg = AXIS_CONFIG[axis]\\n    filtered = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= nli_thresh]\\n\\n    pref_key = cfg[\\\"pref_key\\\"]\\n    t1_key = f\\\"trial1_{pref_key}\\\"\\n    t2_key = f\\\"trial2_{pref_key}\\\"\\n\\n    pairs_data = []\\n    for r in filtered:\\n        t1 = r.get(t1_key)\\n        t2 = r.get(t2_key)\\n        pairs_data.append((t1, t2))\\n\\n    def build_comparisons(plist):\\n        comps = []\\n        for t1, t2 in plist:\\n            if t1 is True:\\n                comps.append((0, 1))\\n            elif t1 is False:\\n                comps.append((1, 0))\\n            if t2 is True:\\n                comps.append((0, 1))\\n            elif t2 is False:\\n                comps.append((1, 0))\\n        return comps\\n\\n    comparisons = build_comparisons(pairs_data)\\n    n_pairs = len(pairs_data)\\n\\n    if len(comparisons) < 3:\\n        return {\\\"p_pole_a\\\": None, \\\"ci_lo\\\": None, \\\"ci_hi\\\": None, \\\"p_val\\\": None,\\n                \\\"n_pairs\\\": n_pairs, \\\"n_comparisons\\\": len(comparisons), \\\"n_filtered\\\": len(filtered)}\\n\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\n    p_a = np.exp(params[0]) / np.sum(np.exp(params))\\n\\n    rng = np.random.default_rng(SEED)\\n    boots = []\\n    for _ in range(N_BOOTSTRAP):\\n        idx = rng.integers(0, n_pairs, size=n_pairs)\\n        boot_pairs = [pairs_data[i] for i in idx]\\n        boot_comps = build_comparisons(boot_pairs)\\n        try:\\n            bp = choix.ilsr_pairwise(2, boot_comps, alpha=0.01)\\n            boots.append(np.exp(bp[0]) / np.sum(np.exp(bp)))\\n        except Exception:\\n            continue\\n\\n    boots = np.array(boots)\\n    ci_lo, ci_hi = np.percentile(boots, [2.5, 97.5])\\n    p_val = float(min(2 * min(np.mean(boots <= 0.5), np.mean(boots >= 0.5)), 1.0))\\n\\n    a_wins = sum(1 for c in comparisons if c == (0, 1))\\n\\n    r\\n\\n... [截断: 输出过长，省略 5513 字符] ...\\n\\n        \\\"n_pole_a_wins\\\": int(n_pole_a_wins),\\n        \\\"p_hat\\\": float(p_hat),\\n        \\\"se\\\": float(se),\\n        \\\"ci_90\\\": [float(ci90_lo), float(ci90_hi)],\\n        \\\"tost\\\": tost_results,\\n    }\\n\\n\\ndef main():\\n    OUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n    results = {\\\"per_config\\\": [], \\\"merged_tost\\\": {}}\\n\\n    # Per-config analysis\\n    for cfg in CONFIGS:\\n        label = f\\\"{cfg['label']}×{cfg['axis']}\\\"\\n        pw_path = cfg[\\\"pw\\\"]\\n        sc_path = cfg[\\\"sc\\\"]\\n\\n        if not pw_path.exists():\\n            print(f\\\"SKIP {label}: {pw_path} not found\\\")\\n            continue\\n\\n        pw_recs = load_jsonl(pw_path)\\n\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"  {label} (Claude Sonnet 4)\\\")\\n        print(f\\\"{'='*60}\\\")\\n\\n        bt = bt_pair_bootstrap(pw_recs, cfg[\\\"axis\\\"])\\n        print(f\\\"  BT: P({AXIS_CONFIG[cfg['axis']]['pole_a']})={bt['p_pole_a']*100:.1f}% \\\"\\n              f\\\"[{bt['ci_lo']*100:.1f}, {bt['ci_hi']*100:.1f}], p={bt['p_val']:.4f}, \\\"\\n              f\\\"n={bt['n_pairs']}\\\" if bt[\\\"p_pole_a\\\"] else f\\\"  BT: insufficient data\\\")\\n\\n        lk = {\\\"ate\\\": None}\\n        if sc_path.exists():\\n            sc_recs = load_jsonl(sc_path)\\n            lk = likert_analysis(sc_recs, cfg[\\\"axis\\\"])\\n            if lk[\\\"ate\\\"] is not None:\\n                print(f\\\"  Likert: ATE={lk['ate']:.3f}, d={lk['cohen_d']:.3f}, \\\"\\n                      f\\\"p_wilcoxon={lk['wilcoxon_p']:.4f}, tie_rate={lk['tie_rate']*100:.1f}%\\\")\\n\\n        gee = gee_analysis(pw_recs, cfg[\\\"axis\\\"])\\n        if gee[\\\"style_or\\\"] is not None:\\n            print(f\\\"  GEE: Style OR={gee['style_or']:.3f} p={gee['style_p']:.4f}, \\\"\\n                  f\\\"Orig OR={gee['orig_or']:.3f} p={gee['orig_p']:.4f}\\\")\\n\\n        bt_sig = bt[\\\"p_val\\\"] is not None and bt[\\\"p_val\\\"] < 0.05\\n        lk_sig = lk.get(\\\"wilcoxon_p\\\") is not None and lk[\\\"wilcoxon_p\\\"] < 0.05\\n        blindspot = bt_sig and not lk_sig\\n        print(f\\\"  Blindspot: {'YES' if blindspot else 'NO'}\\\")\\n\\n        results[\\\"per_config\\\"].append({\\n            \\\"label\\\": cfg[\\\"label\\\"], \\\"axis\\\": cfg[\\\"axis\\\"],\\n            \\\"bt\\\": bt, \\\"likert\\\": lk, \\\"gee\\\": gee, \\\"blindspot\\\": blindspot,\\n        })\\n\\n    # Merged TOST\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"  MERGED TOST ANALYSIS\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    for axis in [\\\"formality\\\", \\\"verbosity\\\"]:\\n        all_pw = []\\n        sources = []\\n        for cfg in CONFIGS:\\n            if cfg[\\\"axis\\\"] != axis:\\n                continue\\n            if cfg[\\\"pw\\\"].exists():\\n                recs = load_jsonl(cfg[\\\"pw\\\"])\\n                all_pw.extend(recs)\\n                sources.append(f\\\"{cfg['label']}({len(recs)})\\\")\\n\\n        print(f\\\"\\\\n  {axis}: merged from {' + '.join(sources)} = {len(all_pw)} total records\\\")\\n\\n        mt = merged_tost(all_pw, axis)\\n        print(f\\\"  P_hat={mt['p_hat']:.4f}, n={mt['n_total']}, \\\"\\n              f\\\"90%CI=[{mt['ci_90'][0]:.4f}, {mt['ci_90'][1]:.4f}]\\\")\\n\\n        equiv_at = None\\n        for dk, dv in mt[\\\"tost\\\"].items():\\n            sig_str = \\\"***\\\" if dv[\\\"significant\\\"] else \\\"ns\\\"\\n            print(f\\\"    {dk}: p={dv['p_value']:.6f} {sig_str}\\\")\\n            if dv[\\\"significant\\\"] and equiv_at is None:\\n                equiv_at = dk\\n\\n        mt[\\\"equivalence_confirmed_at\\\"] = equiv_at\\n        results[\\\"merged_tost\\\"][axis] = mt\\n\\n    # Summary conclusion\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"  CONCLUSION\\\")\\n    print(f\\\"{'='*60}\\\")\\n    for axis in [\\\"formality\\\", \\\"verbosity\\\"]:\\n        mt = results[\\\"merged_tost\\\"].get(axis, {})\\n        eq = mt.get(\\\"equivalence_confirmed_at\\\")\\n        if eq:\\n            print(f\\\"  {axis}: Claude confirmed as negative control (equiv at {eq})\\\")\\n        else:\\n            print(f\\\"  {axis}: Claude NOT confirmed as negative control at any tested Δ\\\")\\n\\n    # Save\\n    out_path = OUT_DIR / \\\"claude_crossbench_results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False,\\n                  default=lambda x: bool(x) if isinstance(x, np.bool_) else\\n                  float(x) if isinstance(x, (np.floating, np.integer)) else x)\\n    print(f\\\"\\\\nSaved: {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me also check where the Qwen3 rows come from.
+
+Looking at Table 23:
+- Row 1: AEval × GPT-4o × Form → from `gpt4o_crossbench_analysis.py`, uses `scored_alpacaeval_gpt4o.jsonl` (true Likert), d=.005
+- Row 2: AEval × Qwen3 × Form → need to find source
+- Row 3: AEval × Qwen3 × Verb → need to find source
+- Row 4: AEval × Llama-70B × Form → from `cross_benchmark_analysis.py`, `likert_file=None` → **Cohen's h fallback**, d=1.120
+
+
+- Row 5: MTB × GPT-4o × Form → from `gpt4o_crossbench_analysis.py`, uses `scored_mtbench_gpt4o.jsonl` (true Likert), d=.167
+- Row 6: MTB × Qwen3 × Form → from `cross_benchmark_analysis.py`, uses `scored_mtbench_qwen32b.jsonl` (true Likert), d=.149
+
+Now I need to trace back the Qwen3 AlpacaEval rows by checking the configuration in `cross_benchmark_analysis.py`.
+
+Looking at the available scored and pairwise files for Qwen3 on AlpacaEval, I see separate datasets for formality and verbosity dimensions, which suggests rows 2 and 3 might be pulling from different scoring files or an earlier pipeline stage. I'm noticing a discrepancy between the JSON results and the paper values for MTB GPT-4o—the computed Cohen's d is 0.135 but the paper reports 0.167, which suggests they might be using different data or analysis versions. Let me verify this against the actual JSON file to see where the mismatch originates. I see the issue now — the analysis computes the difference as original minus counterfactual without accounting for which direction represents formal versus casual styling, so the sign of the effect depends entirely on whether the style change improved or hurt the scores rather than reflecting a directional comparison between formality levels.
+
+But the paper's own function in `cross_benchmark_analysis.py` explicitly aligns results by direction, sorting scores into formal and casual buckets based on the original style, which means it's computing a true directional Cohen's d (formal minus casual) rather than the raw original-minus-counterfactual metric. These are fundamentally different calculations.
+
+Now I need to figure out which rows in Table 23 actually use Cohen's h versus Cohen's d, and whether there's a more recent analysis run that might explain the current values.
+
+Let me check what data's available for the Qwen3 × AlpacaEval rows—I can see both the formality and verbosity scored files exist with actual Likert scores, so those should be using true Cohen's d. The key question is whether the LLaMA results have `score_formal` and `score_casual` fields or the `score_original` and `score_counterfactual` naming convention.
+
+Looking at the sample data, it's using `score_formal` and `score_casual`, which are direction-aligned Likert scores—exactly what I need for computing true Cohen's d. Interestingly, this file was created today (May 24 16:22), even though the config had `likert_file=None` when the analysis last ran. Now I need to compute the true Cohen's d for this file and check the Qwen3 AlpacaEval file structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "04f787df-a63b-4f81-88d5-f103886acd03",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TzC437cY2nMvAczB6pY88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8400,
+      "cache_read_input_tokens": 63542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8400
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+现在需要确认 Qwen3 × AlpacaEval 行的数据来源，以及 Llama-70B Likert 文件的字段结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "d7061e8e-6088-4925-9a39-0c65a21ffcde",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TzC437cY2nMvAczB6pY88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8400,
+      "cache_read_input_tokens": 63542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8400
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WkitK1p4QixEMRGbREggyy`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -3 /root/causal_style_decomp_judge/data/scored_alpacaeval_qwen32b.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "db38dcb5-136c-4b22-9336-3ba181a856dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TzC437cY2nMvAczB6pY88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8400,
+      "cache_read_input_tokens": 63542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8400
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CCbepGb2L5dzpyraYDv8du`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -3 /root/causal_style_decomp_judge/data/scored_alpacaeval_verbosity_qwen32b.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "a8c19e7c-5ca6-451d-934a-de661f26cbe8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TzC437cY2nMvAczB6pY88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8400,
+      "cache_read_input_tokens": 63542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8400
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-24T08:43:28.868Z_
+
+<details><summary>↩ Tool result · `toolu_01WkitK1p4QixEMRGbREggyy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"alpacaeval_036\\\", \\\"instruction\\\": \\\"Do you know something about the book  ＂the art of thinking clearly\\\\\\\" wrote by Rolf Dobelli?\\\", \\\"response\\\": \\\"Yes, \\\\\\\"The Art of Thinking Clearly\\\\\\\" by Rolf Dobelli is an international bestseller that explains the pitfalls of human thinking in a simple and entertaining way. The book is broken down into 99 short chapters, each one tackling an individual cognitive bias or mistake. The book also teaches readers how to develop a clearer and more rational thought process.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Yes, \\\\\\\"The Art of Thinking Clearly\\\\\\\" by Rolf Dobelli is an international bestseller that explains the pitfalls of human thinking in a simple and entertaining way. The book is broken down into 99 short chapters, each one tackling an individual cognitive bias or mistake. The book also teaches readers how to develop a clearer and more rational thought process.\\\", \\\"counterfactual_text\\\": \\\"Yeah, \\\\\\\"The Art of Thinking Clearly\\\\\\\" by Rolf Dobelli is a popular international bestseller that breaks down the mistakes people often make in their thinking in a fun and easy-to-understand way. It's divided into 99 short chapters, each one focusing on a different cognitive bias or common error in judgment. The book also helps readers learn how to think more clearly and rationally.\\\", \\\"double_rewrite_text\\\": \\\"Yes, *The Art of Thinking Clearly* by Rolf Dobelli is a widely acclaimed international bestseller that examines the common errors individuals make in their reasoning in an engaging and accessible manner. The book is structured into 99 concise chapters, each addressing a distinct cognitive bias or typical misjudgment. It also aims to equip readers with the tools to enhance their clarity and rationality in thought.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.9012513756752014, \\\"bertscore_dr\\\": 0.8834500312805176, \\\"nli_cf\\\": 0.9892668724060059, \\\"nli_dr\\\": 0.9955679774284363, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": false, \\\"passed_dr\\\": false, \\\"score_original\\\": 8, \\\"score_counterfactual\\\": 7, \\\"score_double_rewrite\\\": 8}\\n{\\\"id\\\": \\\"alpacaeval_063\\\", \\\"instruction\\\": \\\"What is the capital of Australia?\\\", \\\"response\\\": \\\"The capital of Australia is Canberra.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"The capital of Australia is Canberra.\\\", \\\"counterfactual_text\\\": \\\"The capital of Australia is Canberra.\\\", \\\"double_rewrite_text\\\": \\\"The capital of Australia is Canberra.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 1.0000001192092896, \\\"bertscore_dr\\\": 1.0000001192092896, \\\"nli_cf\\\": 0.9839045405387878, \\\"nli_dr\\\": 0.9839045405387878, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": true, \\\"passed_dr\\\": true, \\\"score_original\\\": 9, \\\"score_counterfactual\\\": 10, \\\"score_double_rewrite\\\": 9}\\n{\\\"id\\\": \\\"alpacaeval_001\\\", \\\"instruction\\\": \\\"Is there a meaning for Christmas wreaths?\\\", \\\"response\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"counterfactual_text\\\": \\\"Yep, Christmas wreaths have a few different meanings. In Christianity, the round shape stands for eternity, and the holly and other green stuff symbolize everlasting life. For some people, the wreath is also a reminder of the holiday gifts—like joy, peace, and love.\\\", \\\"double_rewrite_text\\\": \\\"Indeed, Christmas wreaths carry several distinct meanings. In Christianity, the circular shape represents eternity, while the holly and other evergreen elements symbolize eternal life. For some individuals, the wreath also serves as a reminder of the holiday's associated gifts—such as joy, peace, and love.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.9085590243339539, \\\"bertscore_dr\\\": 0.888994038105011, \\\"nli_cf\\\": 0.9986660480499268, \\\"nli_dr\\\": 0.9987026453018188, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": false, \\\"passed_dr\\\": false, \\\"score_original\\\": 7, \\\"score_counterfactual\\\": 7, \\\"score_double_rewrite\\\": 8}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "7f1251f9-e8b6-411c-8846-0780d3aa2f63",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_036\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Do you know something about the book  ＂the art of thinking clearly\\\\\\\\\\\\\\\" wrote by Rolf Dobelli?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"Yes, \\\\\\\\\\\\\\\"The Art of Thinking Clearly\\\\\\\\\\\\\\\" by Rolf Dobelli is an international bestseller that explains the pitfalls of human thinking in a simple and entertaining way. The book is broken down into 99 short chapters, each one tackling an individual cognitive bias or mistake. The book also teaches readers how to develop a clearer and more rational thought process.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpacaeval\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"Yes, \\\\\\\\\\\\\\\"The Art of Thinking Clearly\\\\\\\\\\\\\\\" by Rolf Dobelli is an international bestseller that explains the pitfalls of human thinking in a simple and entertaining way. The book is broken down into 99 short chapters, each one tackling an individual cognitive bias or mistake. The book also teaches readers how to develop a clearer and more rational thought process.\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"Yeah, \\\\\\\\\\\\\\\"The Art of Thinking Clearly\\\\\\\\\\\\\\\" by Rolf Dobelli is a popular international bestseller that breaks down the mistakes people often make in their thinking in a fun and easy-to-understand way. It's divided into 99 short chapters, each one focusing on a different cognitive bias or common error in judgment. The book also helps readers learn how to think more clearly and rationally.\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"Yes, *The Art of Thinking Clearly* by Rolf Dobelli is a widely acclaimed international bestseller that examines the common errors individuals make in their reasoning in an engaging and accessible manner. The book is structured into 99 concise chapters, each addressing a distinct cognitive bias or typical misjudgment. It also aims to equip readers with the tools to enhance their clarity and rationality in thought.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": 0.9012513756752014, \\\\\\\"bertscore_dr\\\\\\\": 0.8834500312805176, \\\\\\\"nli_cf\\\\\\\": 0.9892668724060059, \\\\\\\"nli_dr\\\\\\\": 0.9955679774284363, \\\\\\\"nli_mode_cf\\\\\\\": \\\\\\\"both\\\\\\\", \\\\\\\"passed_cf\\\\\\\": false, \\\\\\\"passed_dr\\\\\\\": false, \\\\\\\"score_original\\\\\\\": 8, \\\\\\\"score_counterfactual\\\\\\\": 7, \\\\\\\"score_double_rewrite\\\\\\\": 8}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_063\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"What is the capital of Australia?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"The capital of Australia is Canberra.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpacaeval\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"The capital of Australia is Canberra.\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"The capital of Australia is Canberra.\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"The capital of Australia is Canberra.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": 1.0000001192092896, \\\\\\\"bertscore_dr\\\\\\\": 1.0000001192092896, \\\\\\\"nli_cf\\\\\\\": 0.9839045405387878, \\\\\\\"nli_dr\\\\\\\": 0.9839045405387878, \\\\\\\"nli_mode_cf\\\\\\\": \\\\\\\"both\\\\\\\", \\\\\\\"passed_cf\\\\\\\": true, \\\\\\\"passed_dr\\\\\\\": true, \\\\\\\"score_original\\\\\\\": 9, \\\\\\\"score_counterfactual\\\\\\\": 10, \\\\\\\"score_double_rewrite\\\\\\\": 9}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_001\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Is there a meaning for Christmas wreaths?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpacaeval\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"Yep, Christmas wreaths have a few different meanings. In Christianity, the round shape stands for eternity, and the holly and other green stuff symbolize everlasting life. For some people, the wreath is also a reminder of the holiday gifts—like joy, peace, and love.\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"Indeed, Christmas wreaths carry several distinct meanings. In Christianity, the circular shape represents eternity, while the holly and other evergreen elements symbolize eternal life. For some individuals, the wreath also serves as a reminder of the holiday's associated gifts—such as joy, peace, and love.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": 0.9085590243339539, \\\\\\\"bertscore_dr\\\\\\\": 0.888994038105011, \\\\\\\"nli_cf\\\\\\\": 0.9986660480499268, \\\\\\\"nli_dr\\\\\\\": 0.9987026453018188, \\\\\\\"nli_mode_cf\\\\\\\": \\\\\\\"both\\\\\\\", \\\\\\\"passed_cf\\\\\\\": false, \\\\\\\"passed_dr\\\\\\\": false, \\\\\\\"score_original\\\\\\\": 7, \\\\\\\"score_counterfactual\\\\\\\": 7, \\\\\\\"score_double_rewrite\\\\\\\": 8}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"alpacaeval_036\\\", \\\"instruction\\\": \\\"Do you know something about the book  ＂the art of thinking clearly\\\\\\\" wrote by Rolf Dobelli?\\\", \\\"response\\\": \\\"Yes, \\\\\\\"The Art of Thinking Clearly\\\\\\\" by Rolf Dobelli is an international bestseller that explains the pitfalls of human thinking in a simple and entertaining way. The book is broken down into 99 short chapters, each one tackling an individual cognitive bias or mistake. The book also teaches readers how to develop a clearer and more rational thought process.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Yes, \\\\\\\"The Art of Thinking Clearly\\\\\\\" by Rolf Dobelli is an international bestseller that explains the pitfalls of human thinking in a simple and entertaining way. The book is broken down into 99 short chapters, each one tackling an individual cognitive bias or mistake. The book also teaches readers how to develop a clearer and more rational thought process.\\\", \\\"counterfactual_text\\\": \\\"Yeah, \\\\\\\"The Art of Thinking Clearly\\\\\\\" by Rolf Dobelli is a popular international bestseller that breaks down the mistakes people often make in their thinking in a fun and easy-to-understand way. It's divided into 99 short chapters, each one focusing on a different cognitive bias or common error in judgment. The book also helps readers learn how to think more clearly and rationally.\\\", \\\"double_rewrite_text\\\": \\\"Yes, *The Art of Thinking Clearly* by Rolf Dobelli is a widely acclaimed international bestseller that examines the common errors individuals make in their reasoning in an engaging and accessible manner. The book is structured into 99 concise chapters, each addressing a distinct cognitive bias or typical misjudgment. It also aims to equip readers with the tools to enhance their clarity and rationality in thought.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.9012513756752014, \\\"bertscore_dr\\\": 0.8834500312805176, \\\"nli_cf\\\": 0.9892668724060059, \\\"nli_dr\\\": 0.9955679774284363, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": false, \\\"passed_dr\\\": false, \\\"score_original\\\": 8, \\\"score_counterfactual\\\": 7, \\\"score_double_rewrite\\\": 8}\\n{\\\"id\\\": \\\"alpacaeval_063\\\", \\\"instruction\\\": \\\"What is the capital of Australia?\\\", \\\"response\\\": \\\"The capital of Australia is Canberra.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"The capital of Australia is Canberra.\\\", \\\"counterfactual_text\\\": \\\"The capital of Australia is Canberra.\\\", \\\"double_rewrite_text\\\": \\\"The capital of Australia is Canberra.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 1.0000001192092896, \\\"bertscore_dr\\\": 1.0000001192092896, \\\"nli_cf\\\": 0.9839045405387878, \\\"nli_dr\\\": 0.9839045405387878, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": true, \\\"passed_dr\\\": true, \\\"score_original\\\": 9, \\\"score_counterfactual\\\": 10, \\\"score_double_rewrite\\\": 9}\\n{\\\"id\\\": \\\"alpacaeval_001\\\", \\\"instruction\\\": \\\"Is there a meaning for Christmas wreaths?\\\", \\\"response\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"counterfactual_text\\\": \\\"Yep, Christmas wreaths have a few different meanings. In Christianity, the round shape stands for eternity, and the holly and other green stuff symbolize everlasting life. For some people, the wreath is also a reminder of the holiday gifts—like joy, peace, and love.\\\", \\\"double_rewrite_text\\\": \\\"Indeed, Christmas wreaths carry several distinct meanings. In Christianity, the circular shape represents eternity, while the holly and other evergreen elements symbolize eternal life. For some individuals, the wreath also serves as a reminder of the holiday's associated gifts—such as joy, peace, and love.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.9085590243339539, \\\"bertscore_dr\\\": 0.888994038105011, \\\"nli_cf\\\": 0.9986660480499268, \\\"nli_dr\\\": 0.9987026453018188, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": false, \\\"passed_dr\\\": false, \\\"score_original\\\": 7, \\\"score_counterfactual\\\": 7, \\\"score_double_rewrite\\\": 8}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JrxZyUvUXcfFHEykLXTzpm`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -3 /root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "f3095211-f241-4aff-9ec7-f9499ea6c847",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TzC437cY2nMvAczB6pY88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8400,
+      "cache_read_input_tokens": 63542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8400
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RQuzCxpBwFrdtpTfN4oRxc`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -3 /root/causal_style_decomp_judge/data/scored_mtbench_gpt4o.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "9e1fda5a-7de6-4a24-bc57-9923cab3fcc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TzC437cY2nMvAczB6pY88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8400,
+      "cache_read_input_tokens": 63542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8400
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-24T08:43:30.551Z_
+
+<details><summary>↩ Tool result · `toolu_01CCbepGb2L5dzpyraYDv8du`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"alpacaeval_000\\\", \\\"instruction\\\": \\\"Create a short, concise summary of the paper based on its abstract.\\\\n\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\", \\\"response\\\": \\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\", \\\"counterfactual_text\\\": \\\"This paper presents FewJoint, which is specifically designed as a benchmark to address the challenges associated with the few-shot learning (FSL) problem in the context of dialogue understanding. Dialogue understanding itself is composed of two closely related and interdependent tasks: intent detection, which involves identifying the user's purpose or goal in a given utterance, and slot filling, which entails extracting specific pieces of information from the dialogue that are relevant to the identified intent. These two sub-tasks have been shown to benefit significantly from being learned in a joint manner, as they naturally complement and inform one another during the model's training process. However, in the few-shot learning setting, where only a limited number of examples are available for each task or domain, this joint learning approach becomes particularly challenging. On one side, the scarcity of training data makes it difficult to effectively model the complex relationships between the tasks. On the other side, the general problem of how to perform multi-task learning under such data constraints remains underexplored in the literature. In response to these challenges, the authors introduce FewJoint, which marks the first benchmark specifically tailored for few-shot dialogue understanding. This benchmark includes a newly curated corpus containing 59 diverse dialogue domains sourced from real-world industrial APIs, along with a code platform that facilitates the setup and execution of few-shot learning experiments. These contributions\\n\\n... [截断: 输出过长，省略 2675 字符] ...\\n\\ninder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"counterfactual_text\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, their circular shape represents eternity, and holly and greens symbolize everlasting life. For some, they remind of holiday gifts like joy, peace, and love.\\\", \\\"double_rewrite_text\\\": \\\"Yes, Christmas wreaths carry multiple layers of meaning and significance, especially during the holiday season. In a Christian context, the wreath's circular shape is particularly symbolic, as it represents the concept of eternity and the unbroken nature of God's love and the cycle of life. Additionally, the inclusion of holly and evergreen branches in the wreath is rich with symbolism, often representing the idea of everlasting life and the promise of renewal, which are central themes in the Christmas celebration. Beyond their religious connotations, Christmas wreaths can also hold personal or cultural meaning for many individuals. For some people, the sight of a wreath hanging on a door or displayed in a home serves as a gentle reminder of the spirit of the season, evoking thoughts of holiday gifts and the values they represent, such as joy, peace, and love.\\\", \\\"original_verbosity\\\": \\\"verbose\\\", \\\"bertscore_cf\\\": null, \\\"bertscore_dr\\\": null, \\\"nli_cf\\\": 0.9972412586212158, \\\"nli_dr\\\": 0.9876769781112671, \\\"nli_mode_cf\\\": \\\"forward\\\", \\\"passed_cf\\\": true, \\\"passed_dr\\\": true, \\\"score_verbose\\\": 8, \\\"score_concise\\\": 7, \\\"score_double_rewrite\\\": 8}\\n{\\\"id\\\": \\\"alpacaeval_002\\\", \\\"instruction\\\": \\\"What are some species of bears that are now extinct?\\\", \\\"response\\\": \\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\", \\\"counterfactual_text\\\": \\\"Some species of bears that are now extinct include the Cave bear, scientifically known as *Ursus spelaeus*, which once roamed across Europe and parts of Asia during the Pleistocene epoch. Another extinct bear species is the Atlas bear, identified by the scientific name *Ursus crowtheri*, which was native to the Atlas Mountains region in North Africa and became extinct in the early 19th century. The Florida spectacled bear, or *Tremarctos floridanus*, was a species that lived in North America and is closely related to the modern spectacled bear, but it is no longer in existence. Lastly, the Giant short-faced bear, classified as *Arctodus simus*, was one of the largest terrestrial carnivores of its time and inhabited various parts of North America before going extinct.\\\", \\\"double_rewrite_text\\\": \\\"Some extinct bear species include the Cave bear (*Ursus spelaeus*), found in Europe and parts of Asia during the Pleistocene. The Atlas bear (*Ursus crowtheri*) lived in North Africa’s Atlas Mountains and went extinct in the early 1800s. The Florida spectacled bear (*Tremarctos floridanus*), related to today’s spectacled bear, once lived in North America. The Giant short-faced bear (*Arctodus simus*), one of the largest land carnivores, also inhabited North America before extinction.\\\", \\\"original_verbosity\\\": \\\"concise\\\", \\\"bertscore_cf\\\": null, \\\"bertscore_dr\\\": null, \\\"nli_cf\\\": 0.9923450350761414, \\\"nli_dr\\\": 0.0006700530648231506, \\\"nli_mode_cf\\\": \\\"backward\\\", \\\"passed_cf\\\": true, \\\"passed_dr\\\": false, \\\"score_verbose\\\": 9, \\\"score_concise\\\": 8, \\\"score_double_rewrite\\\": 9}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "2cb382ab-f431-4554-b2ac-5f77ccab61a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_000\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Create a short, concise summary of the paper based on its abstract.\\\\\\\\n\\\\\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpacaeval\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"This paper presents FewJoint, which is specifically designed as a benchmark to address the challenges associated with the few-shot learning (FSL) problem in the context of dialogue understanding. Dialogue understanding itself is composed of two closely related and interdependent tasks: intent detection, which involves identifying the user's purpose or goal in a given utterance, and slot filling, which entails extracting specific pieces of information from the dialogue that are relevant to the identified intent. These two sub-tasks have been shown to benefit significantly from being learned in a joint manner, as they naturally complement and inform one another during the model's training process. However, in the few-shot learning setting, where only a limited number of examples are available for each task or domain, this joint learning approach becomes particularly challenging. On one side, the scarcity of training data makes it difficult to effectively model the complex relationships between the tasks. On the other side, the general problem of how to perform multi-task learning under such data constraints remains underexplored in the literature. In response to these challenges, the authors introduce FewJoint, which marks the first benchmark specifically tailored for few-shot dialogue understanding. This benchmark includes a newly curated corpus containing 59 diverse dialogue domains sourced from real-world industrial APIs, along with a code platform that facilitates the setup and execution of few-shot learning experiments. These contributions\\\\n\\\\n... [截断: 输出过长，省略 2675 字符] ...\\\\n\\\\ninder of the gifts of the holiday season, such as joy, peace, and love.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpacaeval\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"Yes, Christmas wreaths have several meanings. In Christianity, their circular shape represents eternity, and holly and greens symbolize everlasting life. For some, they remind of holiday gifts like joy, peace, and love.\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"Yes, Christmas wreaths carry multiple layers of meaning and significance, especially during the holiday season. In a Christian context, the wreath's circular shape is particularly symbolic, as it represents the concept of eternity and the unbroken nature of God's love and the cycle of life. Additionally, the inclusion of holly and evergreen branches in the wreath is rich with symbolism, often representing the idea of everlasting life and the promise of renewal, which are central themes in the Christmas celebration. Beyond their religious connotations, Christmas wreaths can also hold personal or cultural meaning for many individuals. For some people, the sight of a wreath hanging on a door or displayed in a home serves as a gentle reminder of the spirit of the season, evoking thoughts of holiday gifts and the values they represent, such as joy, peace, and love.\\\\\\\", \\\\\\\"original_verbosity\\\\\\\": \\\\\\\"verbose\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": null, \\\\\\\"bertscore_dr\\\\\\\": null, \\\\\\\"nli_cf\\\\\\\": 0.9972412586212158, \\\\\\\"nli_dr\\\\\\\": 0.9876769781112671, \\\\\\\"nli_mode_cf\\\\\\\": \\\\\\\"forward\\\\\\\", \\\\\\\"passed_cf\\\\\\\": true, \\\\\\\"passed_dr\\\\\\\": true, \\\\\\\"score_verbose\\\\\\\": 8, \\\\\\\"score_concise\\\\\\\": 7, \\\\\\\"score_double_rewrite\\\\\\\": 8}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_002\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"What are some species of bears that are now extinct?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpacaeval\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"Some species of bears that are now extinct include the Cave bear, scientifically known as *Ursus spelaeus*, which once roamed across Europe and parts of Asia during the Pleistocene epoch. Another extinct bear species is the Atlas bear, identified by the scientific name *Ursus crowtheri*, which was native to the Atlas Mountains region in North Africa and became extinct in the early 19th century. The Florida spectacled bear, or *Tremarctos floridanus*, was a species that lived in North America and is closely related to the modern spectacled bear, but it is no longer in existence. Lastly, the Giant short-faced bear, classified as *Arctodus simus*, was one of the largest terrestrial carnivores of its time and inhabited various parts of North America before going extinct.\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"Some extinct bear species include the Cave bear (*Ursus spelaeus*), found in Europe and parts of Asia during the Pleistocene. The Atlas bear (*Ursus crowtheri*) lived in North Africa’s Atlas Mountains and went extinct in the early 1800s. The Florida spectacled bear (*Tremarctos floridanus*), related to today’s spectacled bear, once lived in North America. The Giant short-faced bear (*Arctodus simus*), one of the largest land carnivores, also inhabited North America before extinction.\\\\\\\", \\\\\\\"original_verbosity\\\\\\\": \\\\\\\"concise\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": null, \\\\\\\"bertscore_dr\\\\\\\": null, \\\\\\\"nli_cf\\\\\\\": 0.9923450350761414, \\\\\\\"nli_dr\\\\\\\": 0.0006700530648231506, \\\\\\\"nli_mode_cf\\\\\\\": \\\\\\\"backward\\\\\\\", \\\\\\\"passed_cf\\\\\\\": true, \\\\\\\"passed_dr\\\\\\\": false, \\\\\\\"score_verbose\\\\\\\": 9, \\\\\\\"score_concise\\\\\\\": 8, \\\\\\\"score_double_rewrite\\\\\\\": 9}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"alpacaeval_000\\\", \\\"instruction\\\": \\\"Create a short, concise summary of the paper based on its abstract.\\\\n\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\", \\\"response\\\": \\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\", \\\"counterfactual_text\\\": \\\"This paper presents FewJoint, which is specifically designed as a benchmark to address the challenges associated with the few-shot learning (FSL) problem in the context of dialogue understanding. Dialogue understanding itself is composed of two closely related and interdependent tasks: intent detection, which involves identifying the user's purpose or goal in a given utterance, and slot filling, which entails extracting specific pieces of information from the dialogue that are relevant to the identified intent. These two sub-tasks have been shown to benefit significantly from being learned in a joint manner, as they naturally complement and inform one another during the model's training process. However, in the few-shot learning setting, where only a limited number of examples are available for each task or domain, this joint learning approach becomes particularly challenging. On one side, the scarcity of training data makes it difficult to effectively model the complex relationships between the tasks. On the other side, the general problem of how to perform multi-task learning under such data constraints remains underexplored in the literature. In response to these challenges, the authors introduce FewJoint, which marks the first benchmark specifically tailored for few-shot dialogue understanding. This benchmark includes a newly curated corpus containing 59 diverse dialogue domains sourced from real-world industrial APIs, along with a code platform that facilitates the setup and execution of few-shot learning experiments. These contributions\\n\\n... [截断: 输出过长，省略 2675 字符] ...\\n\\ninder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"counterfactual_text\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, their circular shape represents eternity, and holly and greens symbolize everlasting life. For some, they remind of holiday gifts like joy, peace, and love.\\\", \\\"double_rewrite_text\\\": \\\"Yes, Christmas wreaths carry multiple layers of meaning and significance, especially during the holiday season. In a Christian context, the wreath's circular shape is particularly symbolic, as it represents the concept of eternity and the unbroken nature of God's love and the cycle of life. Additionally, the inclusion of holly and evergreen branches in the wreath is rich with symbolism, often representing the idea of everlasting life and the promise of renewal, which are central themes in the Christmas celebration. Beyond their religious connotations, Christmas wreaths can also hold personal or cultural meaning for many individuals. For some people, the sight of a wreath hanging on a door or displayed in a home serves as a gentle reminder of the spirit of the season, evoking thoughts of holiday gifts and the values they represent, such as joy, peace, and love.\\\", \\\"original_verbosity\\\": \\\"verbose\\\", \\\"bertscore_cf\\\": null, \\\"bertscore_dr\\\": null, \\\"nli_cf\\\": 0.9972412586212158, \\\"nli_dr\\\": 0.9876769781112671, \\\"nli_mode_cf\\\": \\\"forward\\\", \\\"passed_cf\\\": true, \\\"passed_dr\\\": true, \\\"score_verbose\\\": 8, \\\"score_concise\\\": 7, \\\"score_double_rewrite\\\": 8}\\n{\\\"id\\\": \\\"alpacaeval_002\\\", \\\"instruction\\\": \\\"What are some species of bears that are now extinct?\\\", \\\"response\\\": \\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\", \\\"counterfactual_text\\\": \\\"Some species of bears that are now extinct include the Cave bear, scientifically known as *Ursus spelaeus*, which once roamed across Europe and parts of Asia during the Pleistocene epoch. Another extinct bear species is the Atlas bear, identified by the scientific name *Ursus crowtheri*, which was native to the Atlas Mountains region in North Africa and became extinct in the early 19th century. The Florida spectacled bear, or *Tremarctos floridanus*, was a species that lived in North America and is closely related to the modern spectacled bear, but it is no longer in existence. Lastly, the Giant short-faced bear, classified as *Arctodus simus*, was one of the largest terrestrial carnivores of its time and inhabited various parts of North America before going extinct.\\\", \\\"double_rewrite_text\\\": \\\"Some extinct bear species include the Cave bear (*Ursus spelaeus*), found in Europe and parts of Asia during the Pleistocene. The Atlas bear (*Ursus crowtheri*) lived in North Africa’s Atlas Mountains and went extinct in the early 1800s. The Florida spectacled bear (*Tremarctos floridanus*), related to today’s spectacled bear, once lived in North America. The Giant short-faced bear (*Arctodus simus*), one of the largest land carnivores, also inhabited North America before extinction.\\\", \\\"original_verbosity\\\": \\\"concise\\\", \\\"bertscore_cf\\\": null, \\\"bertscore_dr\\\": null, \\\"nli_cf\\\": 0.9923450350761414, \\\"nli_dr\\\": 0.0006700530648231506, \\\"nli_mode_cf\\\": \\\"backward\\\", \\\"passed_cf\\\": true, \\\"passed_dr\\\": false, \\\"score_verbose\\\": 9, \\\"score_concise\\\": 8, \\\"score_double_rewrite\\\": 9}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-24T08:43:32.236Z_
+
+<details><summary>↩ Tool result · `toolu_01JrxZyUvUXcfFHEykLXTzpm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"alpacaeval_000\\\", \\\"instruction\\\": \\\"Create a short, concise summary of the paper based on its abstract.\\\\n\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\", \\\"response\\\": \\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\", \\\"counterfactual_text\\\": \\\"This paper introduces FewJoint, a benchmark for few-shot learning in dialogue understanding, which involves two tasks: intent detection and slot filling. It also brings in a trust gating mechanism and a Reptile-based meta-learning approach to boost performance. The experiments show these methods lead to top results.\\\", \\\"double_rewrite_text\\\": \\\"This paper presents FewJoint, a benchmark designed for few-shot learning in the context of dialogue understanding, which encompasses two interrelated tasks: intent detection and slot filling. Additionally, the paper introduces a trust gating mechanism and employs a Reptile-based meta-learning strategy to enhance model performance. Experimental results demonstrate that these approaches yield state-of-the-art outcomes.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.875137448310852, \\\"bertscore_dr\\\": 0.8827117085456848, \\\"nli_cf\\\": 0.9907892346382141, \\\"nli_dr\\\": 0.9961347579956055, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": false, \\\"passed_dr\\\": false, \\\"score_original\\\": 9, \\\"score_counterfactual\\\": 9}\\n{\\\"id\\\": \\\"alpacaeval_001\\\", \\\"instruction\\\": \\\"Is there a meaning for Christmas wreaths?\\\", \\\"response\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"counterfactual_text\\\": \\\"Yep, Christmas wreaths have a few different meanings. In Christianity, the round shape stands for eternity, and the holly and other green stuff symbolize everlasting life. For some people, the wreath is also a reminder of the holiday gifts—like joy, peace, and love.\\\", \\\"double_rewrite_text\\\": \\\"Indeed, Christmas wreaths carry several distinct meanings. In Christianity, the circular shape represents eternity, while the holly and other evergreen elements symbolize eternal life. For some individuals, the wreath also serves as a reminder of the holiday's associated gifts—such as joy, peace, and love.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.9085590243339539, \\\"bertscore_dr\\\": 0.888994038105011, \\\"nli_cf\\\": 0.9986660480499268, \\\"nli_dr\\\": 0.9987026453018188, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": false, \\\"passed_dr\\\": false, \\\"score_original\\\": 9, \\\"score_counterfactual\\\": 9}\\n{\\\"id\\\": \\\"alpacaeval_002\\\", \\\"instruction\\\": \\\"What are some species of bears that are now extinct?\\\", \\\"response\\\": \\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\", \\\"counterfactual_text\\\": \\\"Some extinct bear species are Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\", \\\"double_rewrite_text\\\": \\\"Several bear species that are now extinct include the Cave bear (*Ursus spelaeus*), the Atlas bear (*Ursus crowtheri*), the Florida spectacled bear (*Tremarctos floridanus*), and the Giant short-faced bear (*Arctodus simus*).\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.9786489605903625, \\\"bertscore_dr\\\": 0.9388996362686157, \\\"nli_cf\\\": 0.9987397789955139, \\\"nli_dr\\\": 0.9982061386108398, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": true, \\\"passed_dr\\\": true, \\\"score_original\\\": 9, \\\"score_counterfactual\\\": 9}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "280df57c-8882-4ab6-b018-b2f6394b08da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_000\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Create a short, concise summary of the paper based on its abstract.\\\\\\\\n\\\\\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpacaeval\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"This paper introduces FewJoint, a benchmark for few-shot learning in dialogue understanding, which involves two tasks: intent detection and slot filling. It also brings in a trust gating mechanism and a Reptile-based meta-learning approach to boost performance. The experiments show these methods lead to top results.\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"This paper presents FewJoint, a benchmark designed for few-shot learning in the context of dialogue understanding, which encompasses two interrelated tasks: intent detection and slot filling. Additionally, the paper introduces a trust gating mechanism and employs a Reptile-based meta-learning strategy to enhance model performance. Experimental results demonstrate that these approaches yield state-of-the-art outcomes.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": 0.875137448310852, \\\\\\\"bertscore_dr\\\\\\\": 0.8827117085456848, \\\\\\\"nli_cf\\\\\\\": 0.9907892346382141, \\\\\\\"nli_dr\\\\\\\": 0.9961347579956055, \\\\\\\"nli_mode_cf\\\\\\\": \\\\\\\"both\\\\\\\", \\\\\\\"passed_cf\\\\\\\": false, \\\\\\\"passed_dr\\\\\\\": false, \\\\\\\"score_original\\\\\\\": 9, \\\\\\\"score_counterfactual\\\\\\\": 9}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_001\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Is there a meaning for Christmas wreaths?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpacaeval\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"Yep, Christmas wreaths have a few different meanings. In Christianity, the round shape stands for eternity, and the holly and other green stuff symbolize everlasting life. For some people, the wreath is also a reminder of the holiday gifts—like joy, peace, and love.\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"Indeed, Christmas wreaths carry several distinct meanings. In Christianity, the circular shape represents eternity, while the holly and other evergreen elements symbolize eternal life. For some individuals, the wreath also serves as a reminder of the holiday's associated gifts—such as joy, peace, and love.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": 0.9085590243339539, \\\\\\\"bertscore_dr\\\\\\\": 0.888994038105011, \\\\\\\"nli_cf\\\\\\\": 0.9986660480499268, \\\\\\\"nli_dr\\\\\\\": 0.9987026453018188, \\\\\\\"nli_mode_cf\\\\\\\": \\\\\\\"both\\\\\\\", \\\\\\\"passed_cf\\\\\\\": false, \\\\\\\"passed_dr\\\\\\\": false, \\\\\\\"score_original\\\\\\\": 9, \\\\\\\"score_counterfactual\\\\\\\": 9}\\\\n{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_002\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"What are some species of bears that are now extinct?\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpacaeval\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"Some extinct bear species are Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"Several bear species that are now extinct include the Cave bear (*Ursus spelaeus*), the Atlas bear (*Ursus crowtheri*), the Florida spectacled bear (*Tremarctos floridanus*), and the Giant short-faced bear (*Arctodus simus*).\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": 0.9786489605903625, \\\\\\\"bertscore_dr\\\\\\\": 0.9388996362686157, \\\\\\\"nli_cf\\\\\\\": 0.9987397789955139, \\\\\\\"nli_dr\\\\\\\": 0.9982061386108398, \\\\\\\"nli_mode_cf\\\\\\\": \\\\\\\"both\\\\\\\", \\\\\\\"passed_cf\\\\\\\": true, \\\\\\\"passed_dr\\\\\\\": true, \\\\\\\"score_original\\\\\\\": 9, \\\\\\\"score_counterfactual\\\\\\\": 9}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"alpacaeval_000\\\", \\\"instruction\\\": \\\"Create a short, concise summary of the paper based on its abstract.\\\\n\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\", \\\"response\\\": \\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"This paper introduces FewJoint, a benchmark for the FSL problem of dialogue understanding composed of two tasks: intent detection and slot filling. The paper also introduces a trust gating mechanism and a Reptile-based meta-learning strategy to improve performance. Experiments show that these strategies lead to state-of-the-art performance.\\\", \\\"counterfactual_text\\\": \\\"This paper introduces FewJoint, a benchmark for few-shot learning in dialogue understanding, which involves two tasks: intent detection and slot filling. It also brings in a trust gating mechanism and a Reptile-based meta-learning approach to boost performance. The experiments show these methods lead to top results.\\\", \\\"double_rewrite_text\\\": \\\"This paper presents FewJoint, a benchmark designed for few-shot learning in the context of dialogue understanding, which encompasses two interrelated tasks: intent detection and slot filling. Additionally, the paper introduces a trust gating mechanism and employs a Reptile-based meta-learning strategy to enhance model performance. Experimental results demonstrate that these approaches yield state-of-the-art outcomes.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.875137448310852, \\\"bertscore_dr\\\": 0.8827117085456848, \\\"nli_cf\\\": 0.9907892346382141, \\\"nli_dr\\\": 0.9961347579956055, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": false, \\\"passed_dr\\\": false, \\\"score_original\\\": 9, \\\"score_counterfactual\\\": 9}\\n{\\\"id\\\": \\\"alpacaeval_001\\\", \\\"instruction\\\": \\\"Is there a meaning for Christmas wreaths?\\\", \\\"response\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Yes, Christmas wreaths have several meanings. In Christianity, the circular shape of the wreath is meant to represent eternity and the holly and other festive greens are meant to symbolize everlasting life. For some, the wreath is a reminder of the gifts of the holiday season, such as joy, peace, and love.\\\", \\\"counterfactual_text\\\": \\\"Yep, Christmas wreaths have a few different meanings. In Christianity, the round shape stands for eternity, and the holly and other green stuff symbolize everlasting life. For some people, the wreath is also a reminder of the holiday gifts—like joy, peace, and love.\\\", \\\"double_rewrite_text\\\": \\\"Indeed, Christmas wreaths carry several distinct meanings. In Christianity, the circular shape represents eternity, while the holly and other evergreen elements symbolize eternal life. For some individuals, the wreath also serves as a reminder of the holiday's associated gifts—such as joy, peace, and love.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.9085590243339539, \\\"bertscore_dr\\\": 0.888994038105011, \\\"nli_cf\\\": 0.9986660480499268, \\\"nli_dr\\\": 0.9987026453018188, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": false, \\\"passed_dr\\\": false, \\\"score_original\\\": 9, \\\"score_counterfactual\\\": 9}\\n{\\\"id\\\": \\\"alpacaeval_002\\\", \\\"instruction\\\": \\\"What are some species of bears that are now extinct?\\\", \\\"response\\\": \\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\", \\\"source\\\": \\\"alpacaeval\\\", \\\"original_text\\\": \\\"Some species of bears that are now extinct include Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\", \\\"counterfactual_text\\\": \\\"Some extinct bear species are Cave bears (Ursus spelaeus), Atlas bears (Ursus crowtheri), Florida spectacled bears (Tremarctos floridanus), and Giant short-faced bears (Arctodus simus).\\\", \\\"double_rewrite_text\\\": \\\"Several bear species that are now extinct include the Cave bear (*Ursus spelaeus*), the Atlas bear (*Ursus crowtheri*), the Florida spectacled bear (*Tremarctos floridanus*), and the Giant short-faced bear (*Arctodus simus*).\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.9786489605903625, \\\"bertscore_dr\\\": 0.9388996362686157, \\\"nli_cf\\\": 0.9987397789955139, \\\"nli_dr\\\": 0.9982061386108398, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": true, \\\"passed_dr\\\": true, \\\"score_original\\\": 9, \\\"score_counterfactual\\\": 9}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-24T08:43:34.184Z_
+
+<details><summary>↩ Tool result · `toolu_01RQuzCxpBwFrdtpTfN4oRxc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"mtbench_000\\\", \\\"instruction\\\": \\\"Compose an engaging travel blog post about a recent trip to Hawaii, highlighting cultural experiences and must-see attractions.\\\", \\\"response\\\": \\\"Title: Aloha, Hawaii! A Cultural and Natural Paradise Awaits\\\\n\\\\nSubheading: Uncovering the Rich Culture and Breathtaking Beauty of Hawaii\\\\n\\\\nAloha, fellow travelers! I recently embarked on an unforgettable journey to the heart of the Pacific Ocean, the stunning Hawaiian Islands. From the moment I stepped off the plane, I was enveloped by the welcoming spirit of Aloha, and I couldn't wait to explore the rich cultural experiences and must-see attractions that awaited me.\\\\n\\\\nMy first stop was the bustling city of Honolulu, located on the island of Oahu. As the state capital, Honolulu is the perfect starting point for any Hawaiian adventure. I immediately immersed myself in the local culture with a visit to the Bishop Museum, which houses the world's most extensive collection of Polynesian cultural artifacts. Here, I learned about the fascinating history of the Hawaiian people and marveled at the intricate craftsmanship of traditional Hawaiian quilts, feather capes, and ancient wooden carvings.\\\\n\\\\nAfter exploring the museum, I ventured to the iconic Iolani Palace, the only royal palace in the United States. The palace was the official residence of the Hawaiian monarchy from 1882 until its overthrow in 1893. The beautifully restored palace offered a unique glimpse into the lavish lifestyle of the Hawaiian royals, and I couldn't help but be captivated by the elegant architecture and lush, manicured gardens.\\\\n\\\\nThe next day, I took a short drive to the nearby Polynesian Cultural Center, where I was treated to an unforgettable luau experience. I watched in awe as skilled performers showcased traditional dances and music from various Polynesian cultures, including Hawaiian hula, Samoan fire knife dancing, and Maori poi spinning. The delicious feast that accompanied the performance featured mouthwatering kalua pig, lomi salmon, and haupia, a coconut milk-based dessert.\\\\n\\\\nAfter indulging in the cultural experiences of Oahu, it was time to explore the natural beauty of the Hawaiian Islands. I hopped on a short flight to the Big Island, where I was greeted by the awe-inspiring sight of Kilauea, one of the world's most active volcanoes. I took a guided hike through Hawaii Volcanoes National Park, where I was able to witness the raw power of nature as molten lava flowed into the sea, creating a dramatic plume of steam and ash.\\\\n\\\\nAs I continued my journey through the Big Island, I was struck by the island's diverse landscape. From the lush rainforests and cascading waterfalls of the Hamakua Coast to the black sand beaches of Punalu'u and the snow-capped peaks of Mauna Kea, there was no shortage of breathtaking scenery to discover.\\\\n\\\\nNo trip to Hawaii would be complete without visiting the enchanting island of Maui. I spent my days lounging on the pristine beaches of Ka'anapali and Wailea, snorkeling with sea turtles in the crystal-clear waters of Molokini, and driving the legendary Road to Hana, with its countless waterfalls and panoramic ocean views.\\\\n\\\\nAs my Hawaiian adventure came to a close, I couldn't help but be grateful for the incredible experiences I had encountered. From the rich cultural heritage of the Hawaiian people to the stunning natural beauty of the islands, Hawaii is truly a paradise waiting to be discovered. So, pack your bags and say \\\\\\\"Aloha\\\\\\\" to your next unforgettable journey – Hawaii is calling!\\\", \\\"source\\\": \\\"mtbench\\\", \\\"original_text\\\": \\\"Title: Aloha, Hawaii! A Cultural and Natural Paradise Awaits\\\\n\\\\nSubheading: Uncovering the Rich Culture and Breathtaking Beauty of Hawaii\\\\n\\\\nAloha, fellow travelers! I recently embarked on an unforgettable journey to the heart of the Pacific Ocean, the stunning Hawaiian Islands. From the moment I stepped off the plane, I was enveloped by the welcoming spirit of Aloha, and I couldn't wait to explore the rich\\n\\n... [截断: 输出过长，省略 18659 字符] ...\\n\\nModel 2\\\\n\\\\nIX. Conclusion\\\\n    A. Summary of key differences\\\\n    B. Recommendations for different user preferences\\\", \\\"counterfactual_text\\\": \\\"I. Intro  \\\\n    A. Quick intro to the two popular phones  \\\\n    B. Why we're comparing them  \\\\n\\\\nII. Design and Build  \\\\n    A. What they’re made of and how tough they are  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. How big and heavy they are  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. Colors you can get  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIII. Display  \\\\n    A. Screen size and clarity  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. What kind of screen tech they use  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIV. Performance  \\\\n    A. Processor power and memory  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. How long the battery lasts  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. Software and updates  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nV. Camera  \\\\n    A. Specs for the back and front cameras  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Camera features and apps  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nVI. Extra Features  \\\\n    A. What makes Phone 1 special  \\\\n    B. What makes Phone 2 special  \\\\n\\\\nVII. User Experience  \\\\n    A. How easy they are to use  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. How customizable the settings are  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. What users are saying  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nVIII. Price and Where to Buy  \\\\n    A. Cost based on storage  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Carrier options and deals  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIX. Wrap-Up  \\\\n    A. Key takeaways from the comparison  \\\\n    B. Which phone suits different needs\\\", \\\"double_rewrite_text\\\": \\\"I. Introduction  \\\\n    A. Brief overview of the two widely recognized smartphones  \\\\n    B. Rationale for conducting a comparative analysis  \\\\n\\\\nII. Design and Construction  \\\\n    A. Materials used and durability assessment  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Dimensions and weight considerations  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. Available color options  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIII. Display  \\\\n    A. Screen size and resolution  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Display technology employed  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIV. Performance  \\\\n    A. Processing capability and memory specifications  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Battery life and endurance  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. Software ecosystem and update policies  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nV. Camera  \\\\n    A. Technical specifications of rear and front cameras  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Camera functionalities and associated applications  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nVI. Additional Features  \\\\n    A. Unique attributes of Phone 1  \\\\n    B. Unique attributes of Phone 2  \\\\n\\\\nVII. User Experience  \\\\n    A. Ease of use and interface navigation  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Customization of settings and preferences  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. User feedback and reviews  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nVIII. Price and Availability  \\\\n    A. Pricing variations based on storage capacity  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Carrier partnerships and purchasing incentives  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIX. Conclusion  \\\\n    A. Summary of key comparative findings  \\\\n    B. Recommendations for different user preferences\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.8214067816734314, \\\"bertscore_dr\\\": 0.827263593673706, \\\"nli_cf\\\": 0.9880962371826172, \\\"nli_dr\\\": 0.9891614317893982, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": false, \\\"passed_dr\\\": false, \\\"score_original\\\": 9, \\\"score_counterfactual\\\": 9}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "e94739b7-58dc-470e-8907-3aa47d56cac3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"mtbench_000\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Compose an engaging travel blog post about a recent trip to Hawaii, highlighting cultural experiences and must-see attractions.\\\\\\\", \\\\\\\"response\\\\\\\": \\\\\\\"Title: Aloha, Hawaii! A Cultural and Natural Paradise Awaits\\\\\\\\n\\\\\\\\nSubheading: Uncovering the Rich Culture and Breathtaking Beauty of Hawaii\\\\\\\\n\\\\\\\\nAloha, fellow travelers! I recently embarked on an unforgettable journey to the heart of the Pacific Ocean, the stunning Hawaiian Islands. From the moment I stepped off the plane, I was enveloped by the welcoming spirit of Aloha, and I couldn't wait to explore the rich cultural experiences and must-see attractions that awaited me.\\\\\\\\n\\\\\\\\nMy first stop was the bustling city of Honolulu, located on the island of Oahu. As the state capital, Honolulu is the perfect starting point for any Hawaiian adventure. I immediately immersed myself in the local culture with a visit to the Bishop Museum, which houses the world's most extensive collection of Polynesian cultural artifacts. Here, I learned about the fascinating history of the Hawaiian people and marveled at the intricate craftsmanship of traditional Hawaiian quilts, feather capes, and ancient wooden carvings.\\\\\\\\n\\\\\\\\nAfter exploring the museum, I ventured to the iconic Iolani Palace, the only royal palace in the United States. The palace was the official residence of the Hawaiian monarchy from 1882 until its overthrow in 1893. The beautifully restored palace offered a unique glimpse into the lavish lifestyle of the Hawaiian royals, and I couldn't help but be captivated by the elegant architecture and lush, manicured gardens.\\\\\\\\n\\\\\\\\nThe next day, I took a short drive to the nearby Polynesian Cultural Center, where I was treated to an unforgettable luau experience. I watched in awe as skilled performers showcased traditional dances and music from various Polynesian cultures, including Hawaiian hula, Samoan fire knife dancing, and Maori poi spinning. The delicious feast that accompanied the performance featured mouthwatering kalua pig, lomi salmon, and haupia, a coconut milk-based dessert.\\\\\\\\n\\\\\\\\nAfter indulging in the cultural experiences of Oahu, it was time to explore the natural beauty of the Hawaiian Islands. I hopped on a short flight to the Big Island, where I was greeted by the awe-inspiring sight of Kilauea, one of the world's most active volcanoes. I took a guided hike through Hawaii Volcanoes National Park, where I was able to witness the raw power of nature as molten lava flowed into the sea, creating a dramatic plume of steam and ash.\\\\\\\\n\\\\\\\\nAs I continued my journey through the Big Island, I was struck by the island's diverse landscape. From the lush rainforests and cascading waterfalls of the Hamakua Coast to the black sand beaches of Punalu'u and the snow-capped peaks of Mauna Kea, there was no shortage of breathtaking scenery to discover.\\\\\\\\n\\\\\\\\nNo trip to Hawaii would be complete without visiting the enchanting island of Maui. I spent my days lounging on the pristine beaches of Ka'anapali and Wailea, snorkeling with sea turtles in the crystal-clear waters of Molokini, and driving the legendary Road to Hana, with its countless waterfalls and panoramic ocean views.\\\\\\\\n\\\\\\\\nAs my Hawaiian adventure came to a close, I couldn't help but be grateful for the incredible experiences I had encountered. From the rich cultural heritage of the Hawaiian people to the stunning natural beauty of the islands, Hawaii is truly a paradise waiting to be discovered. So, pack your bags and say \\\\\\\\\\\\\\\"Aloha\\\\\\\\\\\\\\\" to your next unforgettable journey – Hawaii is calling!\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"mtbench\\\\\\\", \\\\\\\"original_text\\\\\\\": \\\\\\\"Title: Aloha, Hawaii! A Cultural and Natural Paradise Awaits\\\\\\\\n\\\\\\\\nSubheading: Uncovering the Rich Culture and Breathtaking Beauty of Hawaii\\\\\\\\n\\\\\\\\nAloha, fellow travelers! I recently embarked on an unforgettable journey to the heart of the Pacific Ocean, the stunning Hawaiian Islands. From the moment I stepped off the plane, I was enveloped by the welcoming spirit of Aloha, and I couldn't wait to explore the rich\\\\n\\\\n... [截断: 输出过长，省略 18659 字符] ...\\\\n\\\\nModel 2\\\\\\\\n\\\\\\\\nIX. Conclusion\\\\\\\\n    A. Summary of key differences\\\\\\\\n    B. Recommendations for different user preferences\\\\\\\", \\\\\\\"counterfactual_text\\\\\\\": \\\\\\\"I. Intro  \\\\\\\\n    A. Quick intro to the two popular phones  \\\\\\\\n    B. Why we're comparing them  \\\\\\\\n\\\\\\\\nII. Design and Build  \\\\\\\\n    A. What they’re made of and how tough they are  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. How big and heavy they are  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    C. Colors you can get  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nIII. Display  \\\\\\\\n    A. Screen size and clarity  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. What kind of screen tech they use  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nIV. Performance  \\\\\\\\n    A. Processor power and memory  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. How long the battery lasts  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    C. Software and updates  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nV. Camera  \\\\\\\\n    A. Specs for the back and front cameras  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. Camera features and apps  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nVI. Extra Features  \\\\\\\\n    A. What makes Phone 1 special  \\\\\\\\n    B. What makes Phone 2 special  \\\\\\\\n\\\\\\\\nVII. User Experience  \\\\\\\\n    A. How easy they are to use  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. How customizable the settings are  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    C. What users are saying  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nVIII. Price and Where to Buy  \\\\\\\\n    A. Cost based on storage  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. Carrier options and deals  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nIX. Wrap-Up  \\\\\\\\n    A. Key takeaways from the comparison  \\\\\\\\n    B. Which phone suits different needs\\\\\\\", \\\\\\\"double_rewrite_text\\\\\\\": \\\\\\\"I. Introduction  \\\\\\\\n    A. Brief overview of the two widely recognized smartphones  \\\\\\\\n    B. Rationale for conducting a comparative analysis  \\\\\\\\n\\\\\\\\nII. Design and Construction  \\\\\\\\n    A. Materials used and durability assessment  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. Dimensions and weight considerations  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    C. Available color options  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nIII. Display  \\\\\\\\n    A. Screen size and resolution  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. Display technology employed  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nIV. Performance  \\\\\\\\n    A. Processing capability and memory specifications  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. Battery life and endurance  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    C. Software ecosystem and update policies  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nV. Camera  \\\\\\\\n    A. Technical specifications of rear and front cameras  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. Camera functionalities and associated applications  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nVI. Additional Features  \\\\\\\\n    A. Unique attributes of Phone 1  \\\\\\\\n    B. Unique attributes of Phone 2  \\\\\\\\n\\\\\\\\nVII. User Experience  \\\\\\\\n    A. Ease of use and interface navigation  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. Customization of settings and preferences  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    C. User feedback and reviews  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nVIII. Price and Availability  \\\\\\\\n    A. Pricing variations based on storage capacity  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n    B. Carrier partnerships and purchasing incentives  \\\\\\\\n        1. Phone 1  \\\\\\\\n        2. Phone 2  \\\\\\\\n\\\\\\\\nIX. Conclusion  \\\\\\\\n    A. Summary of key comparative findings  \\\\\\\\n    B. Recommendations for different user preferences\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"bertscore_cf\\\\\\\": 0.8214067816734314, \\\\\\\"bertscore_dr\\\\\\\": 0.827263593673706, \\\\\\\"nli_cf\\\\\\\": 0.9880962371826172, \\\\\\\"nli_dr\\\\\\\": 0.9891614317893982, \\\\\\\"nli_mode_cf\\\\\\\": \\\\\\\"both\\\\\\\", \\\\\\\"passed_cf\\\\\\\": false, \\\\\\\"passed_dr\\\\\\\": false, \\\\\\\"score_original\\\\\\\": 9, \\\\\\\"score_counterfactual\\\\\\\": 9}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"mtbench_000\\\", \\\"instruction\\\": \\\"Compose an engaging travel blog post about a recent trip to Hawaii, highlighting cultural experiences and must-see attractions.\\\", \\\"response\\\": \\\"Title: Aloha, Hawaii! A Cultural and Natural Paradise Awaits\\\\n\\\\nSubheading: Uncovering the Rich Culture and Breathtaking Beauty of Hawaii\\\\n\\\\nAloha, fellow travelers! I recently embarked on an unforgettable journey to the heart of the Pacific Ocean, the stunning Hawaiian Islands. From the moment I stepped off the plane, I was enveloped by the welcoming spirit of Aloha, and I couldn't wait to explore the rich cultural experiences and must-see attractions that awaited me.\\\\n\\\\nMy first stop was the bustling city of Honolulu, located on the island of Oahu. As the state capital, Honolulu is the perfect starting point for any Hawaiian adventure. I immediately immersed myself in the local culture with a visit to the Bishop Museum, which houses the world's most extensive collection of Polynesian cultural artifacts. Here, I learned about the fascinating history of the Hawaiian people and marveled at the intricate craftsmanship of traditional Hawaiian quilts, feather capes, and ancient wooden carvings.\\\\n\\\\nAfter exploring the museum, I ventured to the iconic Iolani Palace, the only royal palace in the United States. The palace was the official residence of the Hawaiian monarchy from 1882 until its overthrow in 1893. The beautifully restored palace offered a unique glimpse into the lavish lifestyle of the Hawaiian royals, and I couldn't help but be captivated by the elegant architecture and lush, manicured gardens.\\\\n\\\\nThe next day, I took a short drive to the nearby Polynesian Cultural Center, where I was treated to an unforgettable luau experience. I watched in awe as skilled performers showcased traditional dances and music from various Polynesian cultures, including Hawaiian hula, Samoan fire knife dancing, and Maori poi spinning. The delicious feast that accompanied the performance featured mouthwatering kalua pig, lomi salmon, and haupia, a coconut milk-based dessert.\\\\n\\\\nAfter indulging in the cultural experiences of Oahu, it was time to explore the natural beauty of the Hawaiian Islands. I hopped on a short flight to the Big Island, where I was greeted by the awe-inspiring sight of Kilauea, one of the world's most active volcanoes. I took a guided hike through Hawaii Volcanoes National Park, where I was able to witness the raw power of nature as molten lava flowed into the sea, creating a dramatic plume of steam and ash.\\\\n\\\\nAs I continued my journey through the Big Island, I was struck by the island's diverse landscape. From the lush rainforests and cascading waterfalls of the Hamakua Coast to the black sand beaches of Punalu'u and the snow-capped peaks of Mauna Kea, there was no shortage of breathtaking scenery to discover.\\\\n\\\\nNo trip to Hawaii would be complete without visiting the enchanting island of Maui. I spent my days lounging on the pristine beaches of Ka'anapali and Wailea, snorkeling with sea turtles in the crystal-clear waters of Molokini, and driving the legendary Road to Hana, with its countless waterfalls and panoramic ocean views.\\\\n\\\\nAs my Hawaiian adventure came to a close, I couldn't help but be grateful for the incredible experiences I had encountered. From the rich cultural heritage of the Hawaiian people to the stunning natural beauty of the islands, Hawaii is truly a paradise waiting to be discovered. So, pack your bags and say \\\\\\\"Aloha\\\\\\\" to your next unforgettable journey – Hawaii is calling!\\\", \\\"source\\\": \\\"mtbench\\\", \\\"original_text\\\": \\\"Title: Aloha, Hawaii! A Cultural and Natural Paradise Awaits\\\\n\\\\nSubheading: Uncovering the Rich Culture and Breathtaking Beauty of Hawaii\\\\n\\\\nAloha, fellow travelers! I recently embarked on an unforgettable journey to the heart of the Pacific Ocean, the stunning Hawaiian Islands. From the moment I stepped off the plane, I was enveloped by the welcoming spirit of Aloha, and I couldn't wait to explore the rich\\n\\n... [截断: 输出过长，省略 18659 字符] ...\\n\\nModel 2\\\\n\\\\nIX. Conclusion\\\\n    A. Summary of key differences\\\\n    B. Recommendations for different user preferences\\\", \\\"counterfactual_text\\\": \\\"I. Intro  \\\\n    A. Quick intro to the two popular phones  \\\\n    B. Why we're comparing them  \\\\n\\\\nII. Design and Build  \\\\n    A. What they’re made of and how tough they are  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. How big and heavy they are  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. Colors you can get  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIII. Display  \\\\n    A. Screen size and clarity  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. What kind of screen tech they use  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIV. Performance  \\\\n    A. Processor power and memory  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. How long the battery lasts  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. Software and updates  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nV. Camera  \\\\n    A. Specs for the back and front cameras  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Camera features and apps  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nVI. Extra Features  \\\\n    A. What makes Phone 1 special  \\\\n    B. What makes Phone 2 special  \\\\n\\\\nVII. User Experience  \\\\n    A. How easy they are to use  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. How customizable the settings are  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. What users are saying  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nVIII. Price and Where to Buy  \\\\n    A. Cost based on storage  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Carrier options and deals  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIX. Wrap-Up  \\\\n    A. Key takeaways from the comparison  \\\\n    B. Which phone suits different needs\\\", \\\"double_rewrite_text\\\": \\\"I. Introduction  \\\\n    A. Brief overview of the two widely recognized smartphones  \\\\n    B. Rationale for conducting a comparative analysis  \\\\n\\\\nII. Design and Construction  \\\\n    A. Materials used and durability assessment  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Dimensions and weight considerations  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. Available color options  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIII. Display  \\\\n    A. Screen size and resolution  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Display technology employed  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIV. Performance  \\\\n    A. Processing capability and memory specifications  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Battery life and endurance  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. Software ecosystem and update policies  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nV. Camera  \\\\n    A. Technical specifications of rear and front cameras  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Camera functionalities and associated applications  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nVI. Additional Features  \\\\n    A. Unique attributes of Phone 1  \\\\n    B. Unique attributes of Phone 2  \\\\n\\\\nVII. User Experience  \\\\n    A. Ease of use and interface navigation  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Customization of settings and preferences  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    C. User feedback and reviews  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nVIII. Price and Availability  \\\\n    A. Pricing variations based on storage capacity  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n    B. Carrier partnerships and purchasing incentives  \\\\n        1. Phone 1  \\\\n        2. Phone 2  \\\\n\\\\nIX. Conclusion  \\\\n    A. Summary of key comparative findings  \\\\n    B. Recommendations for different user preferences\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"bertscore_cf\\\": 0.8214067816734314, \\\"bertscore_dr\\\": 0.827263593673706, \\\"nli_cf\\\": 0.9880962371826172, \\\"nli_dr\\\": 0.9891614317893982, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": false, \\\"passed_dr\\\": false, \\\"score_original\\\": 9, \\\"score_counterfactual\\\": 9}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the file formats:
+
+1. **`scored_alpacaeval_qwen32b.jsonl`** (Qwen × AEval × formality): has `score_original`, `score_counterfactual` → true Likert, **true Cohen's d**
+2. **`scored_alpacaeval_verbosity_qwen32b.jsonl`** (Qwen × AEval × verbosity): has `score_verbose`, `score_concise` → true Likert, **true Cohen's d**
+3. 
+
+The remaining datasets follow the same pattern: GPT-4o evaluated on both AEval and MTBench with formality dimensions, plus Llama on AEval with formal/casual scoring—all supporting true Likert scales and Cohen's d calculations.
+
+Now I'm tracing back the specific effect sizes reported in Tables 23 and 24 to verify which datasets and scripts produced each value, starting with the cross-benchmark results. I'm checking the Qwen3 × AlpacaEval rows more carefully—the cross_benchmark_analysis.py script doesn't actually have configs for those combinations, so they must have come from separate scoring pipelines. The scoring scripts for AlpacaEval with Qwen are there, but the analysis that produced those effect size values might have been done elsewhere, possibly in a notebook or manually. What matters is whether the underlying Likert data in those scored JSONL files is real and properly structured. I can see that the three analysis scripts each produce their own results files, which map to specific rows in the tables. Rows 2 and 3 for Qwen3 with AlpacaEval remain unaccounted for—they might have been computed separately or ad-hoc. The critical finding is that Row 4 is definitely Cohen's h, and now that I have access to the Likert-scale file for Llama-70B formality, I can calculate the true Cohen's d and verify the other values.
+
+There's a discrepancy between the JSON values and what's published for MTB × GPT-4o (the JSON shows d=0.135, p=0.0075 while the paper reports d=.167, p=.016), which could indicate an older computation or different NLI thresholds, but I'll set that aside for now and focus on computing the Llama-70B row.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "6f0d5e0b-1869-4b6f-979c-6fbb2aca9a3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011w5tNam4t8FNwwEwvjcaC9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11382,
+      "cache_read_input_tokens": 71942,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11382
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+现在有足够信息做全面分析。关键发现：**Row 4（Llama-70B）是唯一走 Cohen's h fallback 的行**，且现在有 Likert 文件可计算真 d。
+
+运行计算脚本获取正确的 Cohen's d，同时验证其他行的 Qwen3 数据来源。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "f9f08ced-ce98-4123-a840-231b5a3a481e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011w5tNam4t8FNwwEwvjcaC9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11382,
+      "cache_read_input_tokens": 71942,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11382
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01F7fTMhCKZB8d1igZVb1iEu`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy import stats\n\n# === Row 4: AEval x Llama-70B x formality ===\n# This is the row with likert_file=None, currently using Cohen's h fallback\n# Now we have scored_alpacaeval_llama70b_formality.jsonl with actual Likert scores\n\npath = '/root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl'\nwith open(path) as f:\n    recs = [json.loads(l) for l in f if l.strip()]\n\nNLI_THRESHOLD = 0.90\nfiltered = [r for r in recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\nprint(f'Total records: {len(recs)}, After NLI filter: {len(filtered)}')\n\n# Check fields\nr0 = filtered[0]\nprint(f'Fields: {list(r0.keys())}')\nhas_formal_casual = 'score_formal' in r0 and 'score_casual' in r0\nhas_orig_cf = 'score_original' in r0 and 'score_counterfactual' in r0\nprint(f'Has score_formal/score_casual: {has_formal_casual}')\nprint(f'Has score_original/score_counterfactual: {has_orig_cf}')\n\nformal_s, casual_s = [], []\nfor r in filtered:\n    sf = r.get('score_formal')\n    sc = r.get('score_casual')\n    if sf is not None and sc is not None:\n        formal_s.append(float(sf))\n        casual_s.append(float(sc))\n\nformal_s = np.array(formal_s)\ncasual_s = np.array(casual_s)\nn = len(formal_s)\nprint(f'N valid pairs: {n}')\n\n# True Cohen's d\nate = float(np.mean(formal_s) - np.mean(casual_s))\npooled_sd = np.sqrt((np.var(formal_s, ddof=1) + np.var(casual_s, ddof=1)) / 2)\nd = ate / pooled_sd if pooled_sd > 0 else 0\ndiffs = formal_s - casual_s\n_, wp = stats.wilcoxon(diffs, alternative='two-sided') if not np.all(diffs == 0) else (None, 1.0)\n\nprint(f'mean_formal={np.mean(formal_s):.4f}, mean_casual={np.mean(casual_s):.4f}')\nprint(f'ATE = {ate:.4f}')\nprint(f'pooled_sd = {pooled_sd:.4f}')\nprint(f'TRUE Cohen d = {d:.4f}')\nprint(f'Wilcoxon p = {wp:.6f}')\nprint(f'tie_rate = {np.mean(diffs == 0):.4f}')\n\n# For comparison: Cohen's h from pairwise fallback\n# from cross_benchmark_analysis.py: likert_d=1.1597\n# Paper shows 1.120\n\n# Also compute what the fallback would give\npw_path = '/root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl'\nwith open(pw_path) as f:\n    pw_recs = [json.loads(l) for l in f if l.strip()]\npw_filtered = [r for r in pw_recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\n# Check if this file has pairwise data\nhas_t1 = 'trial1_choice' in pw_filtered[0] if pw_filtered else False\nhas_formal_wins = 'formal_wins' in pw_filtered[0] if pw_filtered else False\nhas_consistent = 'consistent' in pw_filtered[0] if pw_filtered else False\nprint(f'Has trial1_choice: {has_t1}')\nprint(f'Has formal_wins: {has_formal_wins}')\nprint(f'Has consistent: {has_consistent}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "508c971a-6f4c-4c19-86fc-f1f7d866caf0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011w5tNam4t8FNwwEwvjcaC9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11382,
+      "cache_read_input_tokens": 71942,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11382
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-24T08:44:28.012Z_
+
+<details><summary>↩ Tool result · `toolu_01F7fTMhCKZB8d1igZVb1iEu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total records: 86, After NLI filter: 86\\nFields: ['id', 'instruction', 'original_formality', 'nli_cf', 'score_formal', 'score_casual', 'raw_a', 'raw_b']\\nHas score_formal/score_casual: True\\nHas score_original/score_counterfactual: False\\nN valid pairs: 86\\nmean_formal=8.1395, mean_casual=7.9535\\nATE = 0.1860\\npooled_sd = 0.8816\\nTRUE Cohen d = 0.2110\\nWilcoxon p = 0.012351\\ntie_rate = 0.7907\\nHas trial1_choice: False\\nHas formal_wins: False\\nHas consistent: False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "b47802e7-3c2d-4690-89ca-c3e9ea030681",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total records: 86, After NLI filter: 86\\\\nFields: ['id', 'instruction', 'original_formality', 'nli_cf', 'score_formal', 'score_casual', 'raw_a', 'raw_b']\\\\nHas score_formal/score_casual: True\\\\nHas score_original/score_counterfactual: False\\\\nN valid pairs: 86\\\\nmean_formal=8.1395, mean_casual=7.9535\\\\nATE = 0.1860\\\\npooled_sd = 0.8816\\\\nTRUE Cohen d = 0.2110\\\\nWilcoxon p = 0.012351\\\\ntie_rate = 0.7907\\\\nHas trial1_choice: False\\\\nHas formal_wins: False\\\\nHas consistent: False\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total records: 86, After NLI filter: 86\\nFields: ['id', 'instruction', 'original_formality', 'nli_cf', 'score_formal', 'score_casual', 'raw_a', 'raw_b']\\nHas score_formal/score_casual: True\\nHas score_original/score_counterfactual: False\\nN valid pairs: 86\\nmean_formal=8.1395, mean_casual=7.9535\\nATE = 0.1860\\npooled_sd = 0.8816\\nTRUE Cohen d = 0.2110\\nWilcoxon p = 0.012351\\ntie_rate = 0.7907\\nHas trial1_choice: False\\nHas formal_wins: False\\nHas consistent: False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a critical finding. The true Cohen's d for AEval × Llama-70B × formality is **0.211** (p=0.012), not 1.120.
+
+The paper reports d=1.120 which was computed as Cohen's h from pairwise fallback. The true Cohen's d is only 0.211 — about 5× smaller! This changes the interpretation significantly.
+
+Now let me also verify the other rows by computing their Cohen's d values to confirm they match the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "d12dbe95-fc8b-474d-a1e6-30e3c2917f52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUggZTQATMoJo5ZLAM5f78",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3195,
+      "cache_read_input_tokens": 83324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3195
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+**关键发现：Row 4 的真 Cohen's d = 0.211，而非论文中的 1.120（Cohen's h）。差异约 5 倍。**
+
+继续验证其余 5 行的 d 值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "2a788ec9-1569-4db4-8f95-2e5774d3df08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUggZTQATMoJo5ZLAM5f78",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3195,
+      "cache_read_input_tokens": 83324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3195
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TNEtc8HW5vtKDb1gRM5Nrf`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy import stats\n\nNLI_THRESHOLD = 0.90\n\ndef compute_d(path, score_a_key, score_b_key, label):\n    with open(path) as f:\n        recs = [json.loads(l) for l in f if l.strip()]\n    filtered = [r for r in recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\n    \n    a_scores, b_scores = [], []\n    for r in filtered:\n        sa = r.get(score_a_key)\n        sb = r.get(score_b_key)\n        if sa is not None and sb is not None:\n            a_scores.append(float(sa))\n            b_scores.append(float(sb))\n    \n    a = np.array(a_scores)\n    b = np.array(b_scores)\n    n = len(a)\n    ate = float(np.mean(a) - np.mean(b))\n    pooled_sd = np.sqrt((np.var(a, ddof=1) + np.var(b, ddof=1)) / 2)\n    d = ate / pooled_sd if pooled_sd > 0 else 0\n    diffs = a - b\n    try:\n        _, wp = stats.wilcoxon(diffs, alternative='two-sided')\n    except:\n        wp = 1.0\n    print(f'{label}: n={n}, ATE={ate:.4f}, d={d:.4f}, p={wp:.6f}')\n\n# Table 23 verification\n# Row 1: AEval x GPT-4o x formality\n# GPT-4o scored files use score_original/score_counterfactual\n# Need to align by direction\ndef compute_d_directional(path, orig_field, pole_a, score_a_key, score_b_key, label):\n    with open(path) as f:\n        recs = [json.loads(l) for l in f if l.strip()]\n    filtered = [r for r in recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\n    \n    pole_a_scores, pole_b_scores = [], []\n    for r in filtered:\n        so = r.get(score_a_key)\n        sc = r.get(score_b_key)\n        if so is not None and sc is not None:\n            orig = r.get(orig_field, pole_a)\n            if orig == pole_a:\n                pole_a_scores.append(float(so))\n                pole_b_scores.append(float(sc))\n            else:\n                pole_a_scores.append(float(sc))\n                pole_b_scores.append(float(so))\n    \n    a = np.array(pole_a_scores)\n    b = np.array(pole_b_scores)\n    n = len(a)\n    ate = float(np.mean(a) - np.mean(b))\n    pooled_sd = np.sqrt((np.var(a, ddof=1) + np.var(b, ddof=1)) / 2)\n    d = ate / pooled_sd if pooled_sd > 0 else 0\n    diffs = a - b\n    try:\n        _, wp = stats.wilcoxon(diffs, alternative='two-sided')\n    except:\n        wp = 1.0\n    print(f'{label}: n={n}, ATE={ate:.4f}, d={d:.4f}, p={wp:.6f}')\n\nDATA = '/root/causal_style_decomp_judge/data'\n\nprint('=== Table 23 (tab:cross_bench) ===')\n# Row 1: AEval x GPT-4o x formality (paper: d=.005, p=.909)\ncompute_d_directional(f'{DATA}/scored_alpacaeval_gpt4o.jsonl', 'original_formality', 'formal', 'score_original', 'score_counterfactual', 'R1 AEval GPT4o Form')\n\n# Row 2: AEval x Qwen3 x formality (paper: d=.081, p=.198)\ncompute_d_directional(f'{DATA}/scored_alpacaeval_qwen32b.jsonl', 'original_formality', 'formal', 'score_original', 'score_counterfactual', 'R2 AEval Qwen3 Form')\n\n# Row 3: AEval x Qwen3 x verbosity (paper: d=.375, p=.0003)\ncompute_d(f'{DATA}/scored_alpacaeval_verbosity_qwen32b.jsonl', 'score_verbose', 'score_concise', 'R3 AEval Qwen3 Verb (direct)')\n# Also try score_original/score_counterfactual direction\ncompute_d_directional(f'{DATA}/scored_alpacaeval_verbosity_qwen32b.jsonl', 'original_verbosity', 'verbose', 'score_original', 'score_counterfactual', 'R3 AEval Qwen3 Verb (dir)')\n\n# Row 5: MTB x GPT-4o x formality (paper: d=.167, p=.016)\ncompute_d_directional(f'{DATA}/scored_mtbench_gpt4o.jsonl', 'original_formality', 'formal', 'score_original', 'score_counterfactual', 'R5 MTB GPT4o Form')\n\n# Row 6: MTB x Qwen3 x formality (paper: d=.149, p=.007)\ncompute_d_directional(f'{DATA}/scored_mtbench_qwen32b.jsonl', 'original_formality', 'formal', 'score_original', 'score_counterfactual', 'R6 MTB Qwen3 Form')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "3b0925ae-b49f-4468-bca5-30ffffcc2881",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUggZTQATMoJo5ZLAM5f78",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3195,
+      "cache_read_input_tokens": 83324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3195
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-24T08:45:00.506Z_
+
+<details><summary>↩ Tool result · `toolu_01TNEtc8HW5vtKDb1gRM5Nrf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Table 23 (tab:cross_bench) ===\\nR1 AEval GPT4o Form: n=86, ATE=0.1279, d=0.0592, p=0.170416\\nR2 AEval Qwen3 Form: n=86, ATE=0.1512, d=0.0809, p=0.197553\\nR3 AEval Qwen3 Verb (direct): n=82, ATE=0.7317, d=0.3747, p=0.000306\\nR3 AEval Qwen3 Verb (dir): n=0, ATE=nan, d=0.0000, p=nan\\nR5 MTB GPT4o Form: n=73, ATE=0.1644, d=0.1157, p=0.016293\\nR6 MTB Qwen3 Form: n=73, ATE=0.3014, d=0.1493, p=0.006799\\n\", \"stderr\": \"/root/miniconda3/lib/python3.12/site-packages/numpy/_core/fromnumeric.py:3860: RuntimeWarning: Mean of empty slice.\\n  return _methods._mean(a, axis=axis, dtype=dtype,\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/_methods.py:144: RuntimeWarning: invalid value encountered in scalar divide\\n  ret = ret.dtype.type(ret / rcount)\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/fromnumeric.py:4268: RuntimeWarning: Degrees of freedom <= 0 for slice\\n  return _methods._var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/_methods.py:180: RuntimeWarning: invalid value encountered in divide\\n  arrmean = um.true_divide(arrmean, div, out=arrmean,\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/_methods.py:214: RuntimeWarning: invalid value encountered in scalar divide\\n  ret = ret.dtype.type(ret / rcount)\\n/root/miniconda3/lib/python3.12/site-packages/scipy/_lib/_util.py:951: SmallSampleWarning: One or more sample arguments is too small; all returned values will be NaN. See documentation for sample size requirements.\\n  return fun(*args, **kwargs)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "b374306d-fc21-4195-a9de-7fd112b4b405",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Table 23 (tab:cross_bench) ===\\\\nR1 AEval GPT4o Form: n=86, ATE=0.1279, d=0.0592, p=0.170416\\\\nR2 AEval Qwen3 Form: n=86, ATE=0.1512, d=0.0809, p=0.197553\\\\nR3 AEval Qwen3 Verb (direct): n=82, ATE=0.7317, d=0.3747, p=0.000306\\\\nR3 AEval Qwen3 Verb (dir): n=0, ATE=nan, d=0.0000, p=nan\\\\nR5 MTB GPT4o Form: n=73, ATE=0.1644, d=0.1157, p=0.016293\\\\nR6 MTB Qwen3 Form: n=73, ATE=0.3014, d=0.1493, p=0.006799\\\\n\\\", \\\"stderr\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/numpy/_core/fromnumeric.py:3860: RuntimeWarning: Mean of empty slice.\\\\n  return _methods._mean(a, axis=axis, dtype=dtype,\\\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/_methods.py:144: RuntimeWarning: invalid value encountered in scalar divide\\\\n  ret = ret.dtype.type(ret / rcount)\\\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/fromnumeric.py:4268: RuntimeWarning: Degrees of freedom <= 0 for slice\\\\n  return _methods._var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,\\\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/_methods.py:180: RuntimeWarning: invalid value encountered in divide\\\\n  arrmean = um.true_divide(arrmean, div, out=arrmean,\\\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/_methods.py:214: RuntimeWarning: invalid value encountered in scalar divide\\\\n  ret = ret.dtype.type(ret / rcount)\\\\n/root/miniconda3/lib/python3.12/site-packages/scipy/_lib/_util.py:951: SmallSampleWarning: One or more sample arguments is too small; all returned values will be NaN. See documentation for sample size requirements.\\\\n  return fun(*args, **kwargs)\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Table 23 (tab:cross_bench) ===\\nR1 AEval GPT4o Form: n=86, ATE=0.1279, d=0.0592, p=0.170416\\nR2 AEval Qwen3 Form: n=86, ATE=0.1512, d=0.0809, p=0.197553\\nR3 AEval Qwen3 Verb (direct): n=82, ATE=0.7317, d=0.3747, p=0.000306\\nR3 AEval Qwen3 Verb (dir): n=0, ATE=nan, d=0.0000, p=nan\\nR5 MTB GPT4o Form: n=73, ATE=0.1644, d=0.1157, p=0.016293\\nR6 MTB Qwen3 Form: n=73, ATE=0.3014, d=0.1493, p=0.006799\\n\", \"stderr\": \"/root/miniconda3/lib/python3.12/site-packages/numpy/_core/fromnumeric.py:3860: RuntimeWarning: Mean of empty slice.\\n  return _methods._mean(a, axis=axis, dtype=dtype,\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/_methods.py:144: RuntimeWarning: invalid value encountered in scalar divide\\n  ret = ret.dtype.type(ret / rcount)\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/fromnumeric.py:4268: RuntimeWarning: Degrees of freedom <= 0 for slice\\n  return _methods._var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/_methods.py:180: RuntimeWarning: invalid value encountered in divide\\n  arrmean = um.true_divide(arrmean, div, out=arrmean,\\n/root/miniconda3/lib/python3.12/site-packages/numpy/_core/_methods.py:214: RuntimeWarning: invalid value encountered in scalar divide\\n  ret = ret.dtype.type(ret / rcount)\\n/root/miniconda3/lib/python3.12/site-packages/scipy/_lib/_util.py:951: SmallSampleWarning: One or more sample arguments is too small; all returned values will be NaN. See documentation for sample size requirements.\\n  return fun(*args, **kwargs)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me compare the computed values with what's in the paper:
+
+**Table 23 (tab:cross_bench) comparison:**
+
+| Row | Bench | Judge | Axis | Paper d | Paper p | Computed d | Computed p | Match? |
+|-----|-------|-------|------|---------|---------|------------|------------|--------|
+| 1 | AEval | GPT-4o | Form | .005 | .909 | 0.0592 | 0.170 | ✗ MISMATCH |
+
+
+| 2 | AEval | Qwen3 | Form | .081 | .198 | 0.0809 | 0.198 | ✓ (d matches at 2 sig figs, p matches) |
+| 3 | AEval | Qwen3 | Verb | .375 | .0003 | 0.3747 | 0.000306 | ✓ |
+| 4 | AEval | Llama-70B | Form | 1.120 | <.001 | 0.211 | 0.012 |
+
+Most of the subsequent rows are matching or very close, though row 4 shows a significant discrepancy in the d value that I need to investigate further.
+
+But wait—row 1 is completely off. The paper reports d=.005 with p=.909, but my calculations give d=0.0592 and p=.170. That's a huge difference. Let me check the source data to see what's going on, since the JSON file shows cohen_d=0.005 which aligns with the paper.
+
+Looking at the actual means in the JSON—mean_orig=7.233 and mean_cf=7.221 gives an ATE of only 0.012, yet my directional computation is showing 0.128. The issue is that the analysis script computes raw score differences without considering direction alignment, while my function specifically aligns by formality direction to compute formal minus casual. These are fundamentally different calculations.
+
+Digging into the scripts, I see that `gpt4o_crossbench_analysis.py` just takes the raw difference between original and counterfactual scores, whereas `cross_benchmark_analysis.py` aligns by the original formality level first. This means Table 23 is mixing metrics—some rows use non-directional d, others use directional d, and one uses Cohen's h entirely. For GPT-4o specifically, the non-directional approach actually makes sense as a quality preservation metric rather than a style preference measure. I see the issue now—the two analyses are computing effect sizes in fundamentally different ways. One measures whether formal versions score higher than casual (directional), while the other measures whether original versions score higher than counterfactual (non-directional). For formality tests, these aren't equivalent since the counterfactual is always the opposite style, so the direction matters. Looking at GPT-4o AEval specifically, the non-directional approach gives d=0.005 (p=0.909) while the directional approach yields d=0.059 (p=0.170)—both indicating no significant formality preference, but with notably different effect sizes that reflect what's actually being measured.
+
+For GPT-4o MTB, my JSON computation shows d=0.135 (p=0.0075) non-directionally, but when I align by direction it becomes d=0.116 (p=0.016). The paper reports d=0.167 with p=0.016, which matches my directional p-value but not the effect size. I'm wondering if the paper used a different calculation method—possibly the `original_formality` field that's computed specially in the cross-benchmark analysis script, which both the paper's data and the GPT-4o files contain. The `orig_field` parameter is only applied in the GEE analysis, not in the likert scoring where it uses the score_original and score_counterfactual values directly. Rather than getting caught up in these discrepancies, I should focus on identifying which metric type each row actually uses. Let me also double-check Table 24 and see if there's a separate MTBench-specific GPT-4o formality file that might explain where the d=.167 value comes from.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "39b099c0-f958-498d-80f8-addbf389edbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNXyTrfJ4Ueiv5bUpWU3w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2535,
+      "cache_read_input_tokens": 86519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2535
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+Row 1（AEval×GPT-4o）和 Row 5（MTB×GPT-4o）的计算值与论文有差异。需要检查 GPT-4o 分析脚本的实际 Likert 计算方式，因为它可能用的是 non-directional d（original - counterfactual）而非 directional d（formal - casual）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "b913c044-a944-4ab1-a0d8-997f6f96c21b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNXyTrfJ4Ueiv5bUpWU3w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2535,
+      "cache_read_input_tokens": 86519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2535
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XKjcJ2fM7YZoB2VnMQ8WKh`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy import stats\n\nNLI_THRESHOLD = 0.90\nDATA = '/root/causal_style_decomp_judge/data'\n\n# Replicate gpt4o_crossbench_analysis.py's likert_analysis: non-directional (orig - cf)\ndef compute_nondirectional_d(path, label):\n    with open(path) as f:\n        recs = [json.loads(l) for l in f if l.strip()]\n    filtered = [r for r in recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\n    filtered = [r for r in filtered if r.get('score_original') is not None and r.get('score_counterfactual') is not None]\n    \n    orig = np.array([r['score_original'] for r in filtered], dtype=float)\n    cf = np.array([r['score_counterfactual'] for r in filtered], dtype=float)\n    diffs = orig - cf\n    n = len(diffs)\n    ate = float(np.mean(diffs))\n    pooled_sd = float(np.sqrt((np.var(orig, ddof=1) + np.var(cf, ddof=1)) / 2))\n    d = ate / pooled_sd if pooled_sd > 0 else 0\n    nz = diffs[diffs != 0]\n    _, wp = stats.wilcoxon(nz, alternative='two-sided') if len(nz) > 0 else (None, 1.0)\n    tie_rate = float(np.mean(diffs == 0))\n    print(f'{label}: n={n}, ATE={ate:.4f}, d={d:.4f}, p={wp:.6f}, tie_rate={tie_rate:.4f}')\n    print(f'  mean_orig={np.mean(orig):.4f}, mean_cf={np.mean(cf):.4f}')\n\nprint('=== Non-directional (orig-cf) for GPT-4o ===')\ncompute_nondirectional_d(f'{DATA}/scored_alpacaeval_gpt4o.jsonl', 'R1 AEval GPT4o Form')\ncompute_nondirectional_d(f'{DATA}/scored_mtbench_gpt4o.jsonl', 'R5 MTB GPT4o Form')\n\n# Also check if Qwen3 uses score_original/score_counterfactual non-directionally\nprint()\nprint('=== Non-directional (orig-cf) for Qwen3 ===')\ncompute_nondirectional_d(f'{DATA}/scored_alpacaeval_qwen32b.jsonl', 'R2 AEval Qwen3 Form')\ncompute_nondirectional_d(f'{DATA}/scored_mtbench_qwen32b.jsonl', 'R6 MTB Qwen3 Form')\n\n# Check what cross_benchmark_analysis.py's likert_from_scores gives for Qwen3 MTB\nprint()\nprint('=== Directional (formal-casual) for Qwen3 MTB (as cross_benchmark_analysis.py does) ===')\nwith open(f'{DATA}/scored_mtbench_qwen32b.jsonl') as f:\n    recs = [json.loads(l) for l in f if l.strip()]\nfiltered = [r for r in recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\nformal_s, casual_s = [], []\nfor r in filtered:\n    so = r.get('score_original')\n    sc = r.get('score_counterfactual')\n    if so is not None and sc is not None:\n        orig = r.get('original_formality', 'formal')\n        if orig == 'formal':\n            formal_s.append(so)\n            casual_s.append(sc)\n        else:\n            formal_s.append(sc)\n            casual_s.append(so)\nformal_a = np.array(formal_s, dtype=float)\ncasual_a = np.array(casual_s, dtype=float)\nate = float(np.mean(formal_a) - np.mean(casual_a))\nps = np.sqrt((np.var(formal_a, ddof=1) + np.var(casual_a, ddof=1)) / 2)\nd = ate / ps if ps > 0 else 0\n_, wp = stats.wilcoxon(formal_a, casual_a, alternative='two-sided')\nprint(f'MTB Qwen3 Form (directional): n={len(formal_a)}, d={d:.4f}, p={wp:.6f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "3dd2bd28-32b1-4b42-a2bc-c8e65d0ce0ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNXyTrfJ4Ueiv5bUpWU3w2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2535,
+      "cache_read_input_tokens": 86519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2535
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-24T08:46:03.340Z_
+
+<details><summary>↩ Tool result · `toolu_01XKjcJ2fM7YZoB2VnMQ8WKh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Non-directional (orig-cf) for GPT-4o ===\\nR1 AEval GPT4o Form: n=86, ATE=0.0116, d=0.0054, p=0.899999, tie_rate=0.6628\\n  mean_orig=7.2326, mean_cf=7.2209\\nR5 MTB GPT4o Form: n=73, ATE=0.1918, d=0.1351, p=0.007104, tie_rate=0.6986\\n  mean_orig=8.7808, mean_cf=8.5890\\n\\n=== Non-directional (orig-cf) for Qwen3 ===\\nR2 AEval Qwen3 Form: n=86, ATE=-0.0581, d=-0.0311, p=0.584860, tie_rate=0.4767\\n  mean_orig=6.7674, mean_cf=6.8256\\nR6 MTB Qwen3 Form: n=73, ATE=0.1096, d=0.0542, p=0.131365, tie_rate=0.6027\\n  mean_orig=8.2877, mean_cf=8.1781\\n\\n=== Directional (formal-casual) for Qwen3 MTB (as cross_benchmark_analysis.py does) ===\\nMTB Qwen3 Form (directional): n=73, d=0.1493, p=0.006799\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "18cb24af-0d00-4fce-ba7d-8f87365625ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Non-directional (orig-cf) for GPT-4o ===\\\\nR1 AEval GPT4o Form: n=86, ATE=0.0116, d=0.0054, p=0.899999, tie_rate=0.6628\\\\n  mean_orig=7.2326, mean_cf=7.2209\\\\nR5 MTB GPT4o Form: n=73, ATE=0.1918, d=0.1351, p=0.007104, tie_rate=0.6986\\\\n  mean_orig=8.7808, mean_cf=8.5890\\\\n\\\\n=== Non-directional (orig-cf) for Qwen3 ===\\\\nR2 AEval Qwen3 Form: n=86, ATE=-0.0581, d=-0.0311, p=0.584860, tie_rate=0.4767\\\\n  mean_orig=6.7674, mean_cf=6.8256\\\\nR6 MTB Qwen3 Form: n=73, ATE=0.1096, d=0.0542, p=0.131365, tie_rate=0.6027\\\\n  mean_orig=8.2877, mean_cf=8.1781\\\\n\\\\n=== Directional (formal-casual) for Qwen3 MTB (as cross_benchmark_analysis.py does) ===\\\\nMTB Qwen3 Form (directional): n=73, d=0.1493, p=0.006799\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Non-directional (orig-cf) for GPT-4o ===\\nR1 AEval GPT4o Form: n=86, ATE=0.0116, d=0.0054, p=0.899999, tie_rate=0.6628\\n  mean_orig=7.2326, mean_cf=7.2209\\nR5 MTB GPT4o Form: n=73, ATE=0.1918, d=0.1351, p=0.007104, tie_rate=0.6986\\n  mean_orig=8.7808, mean_cf=8.5890\\n\\n=== Non-directional (orig-cf) for Qwen3 ===\\nR2 AEval Qwen3 Form: n=86, ATE=-0.0581, d=-0.0311, p=0.584860, tie_rate=0.4767\\n  mean_orig=6.7674, mean_cf=6.8256\\nR6 MTB Qwen3 Form: n=73, ATE=0.1096, d=0.0542, p=0.131365, tie_rate=0.6027\\n  mean_orig=8.2877, mean_cf=8.1781\\n\\n=== Directional (formal-casual) for Qwen3 MTB (as cross_benchmark_analysis.py does) ===\\nMTB Qwen3 Form (directional): n=73, d=0.1493, p=0.006799\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the full picture. Let me compile the evidence:
+
+**Table 23 value sources and verification:**
+
+| Row | Config | Paper d | Paper p | Non-directional d | Non-dir p | Directional d | Dir p | Paper matches |
+|-----|--------|---------|---------|-------------------|-----------|---------------|-------|---------------|
+| 1 | AEval×GPT-4o×Form | .005 | .909 | 0.0054 | 0.900 | 0.0592 | 0.170 | Non-directional ✓ |
+
+
+| 2 | AEval×Qwen3×Form | .081 | .198 | -0.0311 | 0.585 | 0.0809 | 0.198 | Directional ✓ |
+| 3 | AEval×Qwen3×Verb | .375 | .0003 | — | — | 0.3747 | 0.0003 | Directional ✓ (score_verbose/score_concise) |
+| 4 | AEval×Llama... | | | | | | | |
+
+Continuing to verify the remaining rows... Row 5 is puzzling—the p-value of .016 matches my directional Wilcoxon result, but the reported d of .167 doesn't align with either my non-directional or directional calculations. I'm wondering if they're using a different effect size formula, perhaps computing d from the mean of differences divided by their standard deviation rather than the pooled approach.
+
+Let me trace back through the analysis code to see if there's a variation in how the pooled standard deviation was calculated, or if the data itself was processed differently—maybe a different NLI threshold or data reprocessing step that I'm missing.
+
+Looking at the Qwen results more closely, I'm noticing something odd: the directional effect sizes are consistently larger than the non-directional ones, which makes sense mathematically, but the table seems to mix both approaches without being explicit about it. Row 1 appears to use non-directional computation while rows 2 and 6 use directional, suggesting either different analysis scripts were used or the values were computed ad-hoc with different methodologies.
+
+Let me check if there's a separate data file or processing step for the MTB GPT-4o formality scores that might explain the .167 value in the paper. I'm checking whether the paper might be using a different formula for Cohen's d based on the differences between paired observations rather than the standard approach I've been using.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "fdc2cd46-46e6-4c77-9ebf-5c9fd905eb79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2RFKdbimmju9ic3C1abYx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3787,
+      "cache_read_input_tokens": 89054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3787
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103_
+
+Row 5 的 d=.167 与两种计算都不匹配。让我检查是否有不同的效应量公式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "405360a5-f676-4d6f-8fe4-1ae36ff99670",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2RFKdbimmju9ic3C1abYx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3787,
+      "cache_read_input_tokens": 89054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3787
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0146vKBwcCksRHpP2RpYh1Jj`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy import stats\n\nNLI_THRESHOLD = 0.90\nDATA = '/root/causal_style_decomp_judge/data'\n\n# Row 5: MTB x GPT-4o x formality - try different d formulas\nwith open(f'{DATA}/scored_mtbench_gpt4o.jsonl') as f:\n    recs = [json.loads(l) for l in f if l.strip()]\nfiltered = [r for r in recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\nfiltered = [r for r in filtered if r.get('score_original') is not None and r.get('score_counterfactual') is not None]\n\n# Directional: formal - casual\nformal_s, casual_s = [], []\nfor r in filtered:\n    so = float(r['score_original'])\n    sc = float(r['score_counterfactual'])\n    orig = r.get('original_formality', 'formal')\n    if orig == 'formal':\n        formal_s.append(so)\n        casual_s.append(sc)\n    else:\n        formal_s.append(sc)\n        casual_s.append(so)\n\nfs = np.array(formal_s)\ncs = np.array(casual_s)\ndiffs = fs - cs\nn = len(diffs)\n\n# Formula 1: pooled SD\nate = np.mean(diffs)\npooled_sd = np.sqrt((np.var(fs, ddof=1) + np.var(cs, ddof=1)) / 2)\nd_pooled = ate / pooled_sd\nprint(f'd_pooled_directional = {d_pooled:.4f}')\n\n# Formula 2: diffs-based SD (Cohen's dz)\nsd_diffs = np.std(diffs, ddof=1)\nd_z = np.mean(diffs) / sd_diffs\nprint(f'd_z (diffs-based) = {d_z:.4f}')\n\n# Formula 3: non-directional with diffs-based SD\norig_scores = np.array([float(r['score_original']) for r in filtered])\ncf_scores = np.array([float(r['score_counterfactual']) for r in filtered])\ndiffs2 = orig_scores - cf_scores\nd_z_nondir = np.mean(diffs2) / np.std(diffs2, ddof=1)\nprint(f'd_z_nondir = {d_z_nondir:.4f}')\n\n# Formula 4: Glass delta\nd_glass = ate / np.std(cs, ddof=1)\nprint(f'd_glass = {d_glass:.4f}')\n\n# All Wilcoxon\n_, wp_paired = stats.wilcoxon(diffs, alternative='two-sided')\nnz = diffs[diffs != 0]\n_, wp_nz = stats.wilcoxon(nz, alternative='two-sided') if len(nz) > 0 else (None, 1.0)\nprint(f'Wilcoxon p (paired, directional) = {wp_paired:.6f}')\nprint(f'Wilcoxon p (non-zero diffs, directional) = {wp_nz:.6f}')\n\n# Check row 1 too\nprint()\nwith open(f'{DATA}/scored_alpacaeval_gpt4o.jsonl') as f:\n    recs2 = [json.loads(l) for l in f if l.strip()]\nfiltered2 = [r for r in recs2 if r.get('nli_cf', 0) >= NLI_THRESHOLD]\nfiltered2 = [r for r in filtered2 if r.get('score_original') is not None and r.get('score_counterfactual') is not None]\n\nformal_s2, casual_s2 = [], []\nfor r in filtered2:\n    so = float(r['score_original'])\n    sc = float(r['score_counterfactual'])\n    orig = r.get('original_formality', 'formal')\n    if orig == 'formal':\n        formal_s2.append(so)\n        casual_s2.append(sc)\n    else:\n        formal_s2.append(sc)\n        casual_s2.append(so)\n\nfs2 = np.array(formal_s2)\ncs2 = np.array(casual_s2)\ndiffs2b = fs2 - cs2\nprint(f'AEval GPT4o d_pooled_dir={np.mean(diffs2b)/np.sqrt((np.var(fs2,ddof=1)+np.var(cs2,ddof=1))/2):.4f}')\nprint(f'AEval GPT4o d_z_dir={np.mean(diffs2b)/np.std(diffs2b,ddof=1):.4f}')\n\n# Non-directional orig-cf\nos2 = np.array([float(r['score_original']) for r in filtered2])\ncf2 = np.array([float(r['score_counterfactual']) for r in filtered2])\nd2 = os2 - cf2\nprint(f'AEval GPT4o d_pooled_nondir={np.mean(d2)/np.sqrt((np.var(os2,ddof=1)+np.var(cf2,ddof=1))/2):.4f}')\nprint(f'AEval GPT4o d_z_nondir={np.mean(d2)/np.std(d2,ddof=1):.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "c731c8f3-f3bc-47d2-810e-759395ff77e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L2RFKdbimmju9ic3C1abYx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3787,
+      "cache_read_input_tokens": 89054,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3787
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-24T08:46:54.964Z_
+
+<details><summary>↩ Tool result · `toolu_0146vKBwcCksRHpP2RpYh1Jj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"d_pooled_directional = 0.1157\\nd_z (diffs-based) = 0.1667\\nd_z_nondir = 0.1955\\nd_glass = 0.1181\\nWilcoxon p (paired, directional) = 0.016293\\nWilcoxon p (non-zero diffs, directional) = 0.016293\\n\\nAEval GPT4o d_pooled_dir=0.0592\\nAEval GPT4o d_z_dir=0.1479\\nAEval GPT4o d_pooled_nondir=0.0054\\nAEval GPT4o d_z_nondir=0.0133\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "781195a9-3d92-4f5e-aa66-e88a6be985f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"d_pooled_directional = 0.1157\\\\nd_z (diffs-based) = 0.1667\\\\nd_z_nondir = 0.1955\\\\nd_glass = 0.1181\\\\nWilcoxon p (paired, directional) = 0.016293\\\\nWilcoxon p (non-zero diffs, directional) = 0.016293\\\\n\\\\nAEval GPT4o d_pooled_dir=0.0592\\\\nAEval GPT4o d_z_dir=0.1479\\\\nAEval GPT4o d_pooled_nondir=0.0054\\\\nAEval GPT4o d_z_nondir=0.0133\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"d_pooled_directional = 0.1157\\nd_z (diffs-based) = 0.1667\\nd_z_nondir = 0.1955\\nd_glass = 0.1181\\nWilcoxon p (paired, directional) = 0.016293\\nWilcoxon p (non-zero diffs, directional) = 0.016293\\n\\nAEval GPT4o d_pooled_dir=0.0592\\nAEval GPT4o d_z_dir=0.1479\\nAEval GPT4o d_pooled_nondir=0.0054\\nAEval GPT4o d_z_nondir=0.0133\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now it's clear!
+
+**Row 5 (MTB × GPT-4o × Form): d_z (diffs-based, directional) = 0.1667 ≈ .167**
+
+The paper uses **Cohen's d_z** (mean of paired differences / SD of paired differences) for this row, NOT pooled Cohen's d. And it's computed directionally (formal - casual).
+
+Now let me check if this is consistent:
+- Row 1 (AEval × GPT-4o × Form): Paper says d=.005
+  - d_pooled_nondir = 0.005 ✓
+  - d_z_dir = 0.148 ✗
+
+So Row 1 and Row 5 are using different formulas entirely—Row 1 appears to use non-directional pooled d while Row 5 uses directional d_z. That's a methodological inconsistency within the same table. Let me trace back to see if the source data reveals why: the `gpt4o_crossbench_results.json` file has cohen_d=0.005 for AEval, which matches the non-directional pooled calculation, and for MTB it has cohen...
+
+Now checking the paper's values against my calculations for the remaining rows. Row 2, 3, and 6 all match when I use directional pooled d, but Row 1 and Row 5 seem to follow a different formula entirely—possibly because the paper was updated after the JSON was generated, or the table values were computed independently using inconsistent methods. I'm seeing four distinct metrics mixed together in the table, which is the core issue. Let me verify whether Row 5 actually uses the d_z formula or if the scoring file was regenerated at a different time than the results file—checking the modification timestamps might clarify which version of the data is authoritative.
+
+The key finding is that Row 4 mislabels Cohen's h as "Likert d" when the actual Likert-based Cohen's d is 0.211, not 1.120, which substantially changes the effect size even though it remains significant. The other rows appear to use genuine Likert scores, though I should verify whether they're all computed consistently.
+
+Now I need to check Table 24 and examine the Bradley-Terry analysis strategy across all rows to see if they're uniformly applying the same approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "7cae52f7-6cca-445b-b1c4-54f190c293cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YRwrgmVtDfBb6q7XrPJdvC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3169,
+      "cache_read_input_tokens": 92841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3169
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 107_
+
+发现了！Row 5 的 d=.167 是 **Cohen's d_z**（paired diffs / SD of diffs），而非 pooled Cohen's d。不同行使用了不同的效应量公式。
+
+现在验证 Table 24 和 BT 计算一致性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "cfd9c9aa-2355-4f6b-83bf-f59e508f2ad9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YRwrgmVtDfBb6q7XrPJdvC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3169,
+      "cache_read_input_tokens": 92841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3169
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019dctMtedz6vQUUYGc8Qchn`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy import stats\n\nNLI_THRESHOLD = 0.90\nDATA = '/root/causal_style_decomp_judge/data'\n\ndef compute_all_d_variants(path, axis, label):\n    with open(path) as f:\n        recs = [json.loads(l) for l in f if l.strip()]\n    filtered = [r for r in recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\n    \n    # Determine score keys\n    r0 = filtered[0]\n    if axis == 'formality':\n        if 'score_formal' in r0:\n            sk_pole, sk_anti = 'score_formal', 'score_casual'\n            orig_field = 'original_formality'\n            pole_val = 'formal'\n        else:\n            sk_pole, sk_anti = 'score_original', 'score_counterfactual'\n            orig_field = 'original_formality'\n            pole_val = 'formal'\n    else:  # verbosity\n        if 'score_verbose' in r0:\n            sk_pole, sk_anti = 'score_verbose', 'score_concise'\n            orig_field = 'original_verbosity'\n            pole_val = 'verbose'\n        else:\n            sk_pole, sk_anti = 'score_original', 'score_counterfactual'\n            orig_field = 'original_verbosity'\n            pole_val = 'verbose'\n    \n    pole_s, anti_s = [], []\n    for r in filtered:\n        sa = r.get(sk_pole)\n        sb = r.get(sk_anti)\n        if sa is not None and sb is not None:\n            if sk_pole in ('score_formal', 'score_casual', 'score_verbose', 'score_concise'):\n                pole_s.append(float(sa))\n                anti_s.append(float(sb))\n            else:\n                orig = r.get(orig_field, pole_val)\n                if orig == pole_val:\n                    pole_s.append(float(sa))\n                    anti_s.append(float(sb))\n                else:\n                    pole_s.append(float(sb))\n                    anti_s.append(float(sa))\n    \n    pa = np.array(pole_s)\n    aa = np.array(anti_s)\n    diffs = pa - aa\n    n = len(diffs)\n    ate = float(np.mean(diffs))\n    pooled_sd = np.sqrt((np.var(pa, ddof=1) + np.var(aa, ddof=1)) / 2)\n    d_pooled = ate / pooled_sd if pooled_sd > 0 else 0\n    sd_diffs = np.std(diffs, ddof=1)\n    d_z = ate / sd_diffs if sd_diffs > 0 else 0\n    nz = diffs[diffs != 0]\n    _, wp = stats.wilcoxon(nz, alternative='two-sided') if len(nz) > 0 else (None, 1.0)\n    print(f'{label}: n={n}, d_pooled={d_pooled:.4f}, d_z={d_z:.4f}, p={wp:.6f}')\n\nprint('=== Table 24 (tab:claude_crossbench) ===')\ncompute_all_d_variants(f'{DATA}/scored_claude_formality.jsonl', 'formality', 'R1 LLMBar Form')\ncompute_all_d_variants(f'{DATA}/scored_claude_verbosity.jsonl', 'verbosity', 'R2 LLMBar Verb')\ncompute_all_d_variants(f'{DATA}/scored_claude_alpacaeval_formality.jsonl', 'formality', 'R3 AEval Form')\ncompute_all_d_variants(f'{DATA}/scored_claude_alpacaeval_verbosity.jsonl', 'verbosity', 'R4 AEval Verb')\ncompute_all_d_variants(f'{DATA}/scored_claude_mtbench_formality.jsonl', 'formality', 'R5 MTB Form')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "f8bedef6-35e4-4f27-8327-f040a2d42f87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YRwrgmVtDfBb6q7XrPJdvC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3169,
+      "cache_read_input_tokens": 92841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3169
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-24T08:47:44.495Z_
+
+<details><summary>↩ Tool result · `toolu_019dctMtedz6vQUUYGc8Qchn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Table 24 (tab:claude_crossbench) ===\\nR1 LLMBar Form: n=88, d_pooled=-0.0209, d_z=-0.0405, p=0.720662\\nR2 LLMBar Verb: n=86, d_pooled=-0.0395, d_z=-0.0642, p=0.742744\\nR3 AEval Form: n=86, d_pooled=0.0811, d_z=0.1932, p=0.089876\\nR4 AEval Verb: n=82, d_pooled=0.2981, d_z=0.4019, p=0.000441\\nR5 MTB Form: n=73, d_pooled=0.1987, d_z=0.4856, p=0.000158\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "736ac66d-18a1-4146-8033-29daec93ee80",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Table 24 (tab:claude_crossbench) ===\\\\nR1 LLMBar Form: n=88, d_pooled=-0.0209, d_z=-0.0405, p=0.720662\\\\nR2 LLMBar Verb: n=86, d_pooled=-0.0395, d_z=-0.0642, p=0.742744\\\\nR3 AEval Form: n=86, d_pooled=0.0811, d_z=0.1932, p=0.089876\\\\nR4 AEval Verb: n=82, d_pooled=0.2981, d_z=0.4019, p=0.000441\\\\nR5 MTB Form: n=73, d_pooled=0.1987, d_z=0.4856, p=0.000158\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Table 24 (tab:claude_crossbench) ===\\nR1 LLMBar Form: n=88, d_pooled=-0.0209, d_z=-0.0405, p=0.720662\\nR2 LLMBar Verb: n=86, d_pooled=-0.0395, d_z=-0.0642, p=0.742744\\nR3 AEval Form: n=86, d_pooled=0.0811, d_z=0.1932, p=0.089876\\nR4 AEval Verb: n=82, d_pooled=0.2981, d_z=0.4019, p=0.000441\\nR5 MTB Form: n=73, d_pooled=0.1987, d_z=0.4856, p=0.000158\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me compare Table 24:
+
+| Row | Config | Paper d | Paper p | d_pooled | d_z | p_wilcoxon | Paper matches |
+|-----|--------|---------|---------|----------|-----|------------|---------------|
+| 1 | LLMBar Form | -.021 | .721 | -0.021 | -0.041 | 0.721 | **d_pooled ✓** |
+| 2 | LLMBar Verb | -.039 | .743 | -0.040 | -0.064 | 0.743 | **d_pooled ✓** |
+
+
+| 3 | AEval Form | .081 | .090 | 0.081 | 0.193 | 0.090 | **d_pooled ✓** |
+| 4 | AEval Verb | -.243 | .005 | 0.298 | 0.402 | 0.000 | **NEITHER matches** |
+| 5 | MTB Form | .245 | <.001 | 0.199 | 0.486 | 0.000 | **NEITHER matches** |
+
+I'm noticing some inconsistencies here—rows 4 and 5 show neither the pooled nor the z-score matching the paper's reported values, which is concerning.
+
+For row 4 specifically, the paper reports a negative d of -.243 with p=.005, but my calculations are giving me a positive d of 0.298 with p essentially zero. The sign flip and magnitude difference suggest there might be a directional convention issue—my computation uses verbose minus concise, which could be inverted from what the paper uses. Let me check the axis configuration to see if that's where the discrepancy originates. Let me trace through the actual data to figure out which direction the convention is using. I need to check the field names in the verbosity file and see what the `likert_analysis` function in the analysis script is actually computing, since that's where the discrepancy might be coming from. the opposite of what my data shows. Let me reconsider the footnote definition: if negative d means the styled variant scored lower, and the styled variant here is the verbose version, then a negative d would indicate verbose scored lower than concise. But my calculations show verbose scoring higher, which would give a positive d. I'm seeing the claude_crossbench_results.json file actually reports d = 0.298, which matches my positive value, so there's an inconsistency between what the paper claims (d = -0.243) and what both my data and this results file show.
+
+Looking at the file timestamps and values more carefully, it seems the paper's numbers were manually adjusted after the JSON was generated, and with different values entirely. For Row 5 as well, the paper shows d = 0.245 while the JSON and my pooled calculation both give d = 0.199. These discrepancies in Table 24 suggest the paper was modified independently from the underlying data, though the core question about Cohen's h versus Cohen's d in Table 23 Row 4 remains the priority.
+
+Now I'm checking whether the BT and Likert analyses are consistent across the different scripts. The BT analysis uses all trials including inconsistent pairs across all three scripts, which is consistent. For Likert, the pairwise-derived version only counts consistent pairs while the true Likert approach uses all records that pass the NLI filter—this distinction makes sense methodologically.
+
+Let me also verify if there's a verbosity-scored file for Llama-70B before I finalize the audit report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "16b76582-814b-4636-aaac-1790d74169a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXpgjLYCzGAVNUTsPn2v6Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2862,
+      "cache_read_input_tokens": 96010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2862
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111_
+
+现在验证 BT 计算策略一致性，以及检查 Claude Table 24 中几个数值不一致的问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "9b5eef21-9a86-40aa-8f85-30690e57f1a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXpgjLYCzGAVNUTsPn2v6Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2862,
+      "cache_read_input_tokens": 96010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2862
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YHDzxzay6PyeQjMaDxyEYB`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy import stats\n\nNLI_THRESHOLD = 0.90\nDATA = '/root/causal_style_decomp_judge/data'\n\n# Check Claude AEval Verb direction issue\npath = f'{DATA}/scored_claude_alpacaeval_verbosity.jsonl'\nwith open(path) as f:\n    recs = [json.loads(l) for l in f if l.strip()]\nfiltered = [r for r in recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\n\n# Check what fields exist\nr0 = filtered[0]\nverb_keys = [k for k in r0 if 'score' in k.lower() or 'verbose' in k.lower() or 'concise' in k.lower()]\nprint(f'Score fields: {verb_keys}')\nprint(f'orig field: original_verbosity={r0.get(\\\"original_verbosity\\\", \\\"N/A\\\")}')\n\n# Try all combos\ncombos = [\n    ('score_verbose', 'score_concise', 'verbose - concise'),\n    ('score_concise', 'score_verbose', 'concise - verbose'),\n    ('score_original', 'score_counterfactual', 'orig - cf'),\n    ('score_counterfactual', 'score_original', 'cf - orig'),\n]\n\nfor ka, kb, desc in combos:\n    if ka in r0 and kb in r0:\n        a_scores = [float(r[ka]) for r in filtered if r.get(ka) is not None and r.get(kb) is not None]\n        b_scores = [float(r[kb]) for r in filtered if r.get(ka) is not None and r.get(kb) is not None]\n        a = np.array(a_scores)\n        b = np.array(b_scores)\n        diffs = a - b\n        ate = np.mean(diffs)\n        ps = np.sqrt((np.var(a,ddof=1)+np.var(b,ddof=1))/2)\n        d = ate/ps if ps > 0 else 0\n        sd_d = np.std(diffs, ddof=1)\n        dz = ate/sd_d if sd_d > 0 else 0\n        nz = diffs[diffs != 0]\n        _, wp = stats.wilcoxon(nz) if len(nz) > 0 else (None, 1.0)\n        print(f'{desc}: n={len(a)}, ate={ate:.4f}, d_pooled={d:.4f}, d_z={dz:.4f}, p={wp:.6f}')\n\nprint()\n\n# Check Claude MTB Form\npath2 = f'{DATA}/scored_claude_mtbench_formality.jsonl'\nwith open(path2) as f:\n    recs2 = [json.loads(l) for l in f if l.strip()]\nfiltered2 = [r for r in recs2 if r.get('nli_cf', 0) >= NLI_THRESHOLD]\nr02 = filtered2[0]\nprint(f'MTB Form Score fields: {[k for k in r02 if \\\"score\\\" in k.lower()]}')\n\nformal_s, casual_s = [], []\nfor r in filtered2:\n    so = r.get('score_original') or r.get('score_formal')\n    sc = r.get('score_counterfactual') or r.get('score_casual')\n    if so is not None and sc is not None:\n        orig = r.get('original_formality', 'formal')\n        if orig == 'formal':\n            formal_s.append(float(so))\n            casual_s.append(float(sc))\n        else:\n            formal_s.append(float(sc))\n            casual_s.append(float(so))\n\nfs = np.array(formal_s)\ncs = np.array(casual_s)\ndiffs = fs - cs\nate = np.mean(diffs)\nps = np.sqrt((np.var(fs,ddof=1)+np.var(cs,ddof=1))/2)\nd_pool = ate/ps if ps > 0 else 0\ndz = ate/np.std(diffs,ddof=1) if np.std(diffs,ddof=1)>0 else 0\nnz = diffs[diffs != 0]\n_, wp = stats.wilcoxon(nz) if len(nz)>0 else (None, 1.0)\nprint(f'MTB Form: n={len(fs)}, ate={ate:.4f}, d_pooled={d_pool:.4f}, d_z={dz:.4f}, p={wp:.6f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "25f70a73-7673-454f-837b-53b725d631df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXpgjLYCzGAVNUTsPn2v6Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2862,
+      "cache_read_input_tokens": 96010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2862
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-24T08:48:47.766Z_
+
+<details><summary>↩ Tool result · `toolu_01YHDzxzay6PyeQjMaDxyEYB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Score fields: ['bertscore_cf', 'score_original', 'score_counterfactual']\\norig field: original_verbosity=concise\\norig - cf: n=82, ate=-0.4390, d_pooled=-0.2430, d_z=-0.3203, p=0.004508\\ncf - orig: n=82, ate=0.4390, d_pooled=0.2430, d_z=0.3203, p=0.004508\\n\\nMTB Form Score fields: ['bertscore_cf', 'score_original', 'score_counterfactual']\\nMTB Form: n=73, ate=0.3562, d_pooled=0.1987, d_z=0.4856, p=0.000158\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "db076f47-0439-4fbd-9966-d36f8c17fca7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Score fields: ['bertscore_cf', 'score_original', 'score_counterfactual']\\\\norig field: original_verbosity=concise\\\\norig - cf: n=82, ate=-0.4390, d_pooled=-0.2430, d_z=-0.3203, p=0.004508\\\\ncf - orig: n=82, ate=0.4390, d_pooled=0.2430, d_z=0.3203, p=0.004508\\\\n\\\\nMTB Form Score fields: ['bertscore_cf', 'score_original', 'score_counterfactual']\\\\nMTB Form: n=73, ate=0.3562, d_pooled=0.1987, d_z=0.4856, p=0.000158\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Score fields: ['bertscore_cf', 'score_original', 'score_counterfactual']\\norig field: original_verbosity=concise\\norig - cf: n=82, ate=-0.4390, d_pooled=-0.2430, d_z=-0.3203, p=0.004508\\ncf - orig: n=82, ate=0.4390, d_pooled=0.2430, d_z=0.3203, p=0.004508\\n\\nMTB Form Score fields: ['bertscore_cf', 'score_original', 'score_counterfactual']\\nMTB Form: n=73, ate=0.3562, d_pooled=0.1987, d_z=0.4856, p=0.000158\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 114_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting findings for Table 24 Claude rows:
+
+**Row 4 (Claude AEval Verb):**
+- The scored file has `score_original` and `score_counterfactual` (NOT `score_verbose`/`score_concise`)
+- Non-directional (orig - cf): d_pooled = -0.243, p = 0.0045
+- This matches the paper: d = -.243, p = .005 ✓
+
+So the paper's d=-.243 is correct — it's computed as `score_original - score_counterfactual` WITHOUT direction alignment. 
+
+The negative d indicates the counterfactual scored higher than the original. Since the first record has `original_verbosity = "concise"`, the original is concise and the counterfactual is verbose, meaning verbose versions scored better. The paper's interpretation of "negative d: styled variant scored lower" refers to the verbose variant (pole_a) scoring lower, which aligns with this finding.
+
+Now I'm checking whether the paper's reported effect sizes match my calculations. The pooled d of -0.243 matches the paper's value, confirming the sign represents original minus counterfactual. For the Claude MTB Form row, the paper reports d = 0.245 with p < 0.001, but my directional pooled d (0.199) and d_z (0.486) don't match exactly, though the p-value aligns. Let me explore the non-directional calculation for Claude MTB to see if that yields the reported effect size.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "2cab6d6a-5a7a-4cd7-a5a6-eae6b08d59de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xCcNvd6Lw1pdBGuEbXUBU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3590,
+      "cache_read_input_tokens": 98872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3590
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XY8o38qZGZtTkvyfpmP5VY`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy import stats\n\nNLI_THRESHOLD = 0.90\nDATA = '/root/causal_style_decomp_judge/data'\n\n# Claude MTB Form - non-directional (orig - cf)\npath = f'{DATA}/scored_claude_mtbench_formality.jsonl'\nwith open(path) as f:\n    recs = [json.loads(l) for l in f if l.strip()]\nfiltered = [r for r in recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\nfiltered = [r for r in filtered if r.get('score_original') is not None and r.get('score_counterfactual') is not None]\n\norig = np.array([float(r['score_original']) for r in filtered])\ncf = np.array([float(r['score_counterfactual']) for r in filtered])\ndiffs = orig - cf\nate = np.mean(diffs)\nps = np.sqrt((np.var(orig,ddof=1)+np.var(cf,ddof=1))/2)\nd_pool = ate/ps if ps > 0 else 0\nnz = diffs[diffs != 0]\n_, wp = stats.wilcoxon(nz) if len(nz) > 0 else (None, 1.0)\nprint(f'MTB Claude Form non-dir: n={len(orig)}, ate={ate:.4f}, d_pooled={d_pool:.4f}, p={wp:.6f}')\n\n# Also try formal-casual directional\nformal_s, casual_s = [], []\nfor r in filtered:\n    so = float(r['score_original'])\n    sc = float(r['score_counterfactual'])\n    orig_f = r.get('original_formality', 'formal')\n    if orig_f == 'formal':\n        formal_s.append(so)\n        casual_s.append(sc)\n    else:\n        formal_s.append(sc)\n        casual_s.append(so)\nfs = np.array(formal_s)\ncs = np.array(casual_s)\ndiffs2 = fs - cs\nate2 = np.mean(diffs2)\nps2 = np.sqrt((np.var(fs,ddof=1)+np.var(cs,ddof=1))/2)\nd_pool2 = ate2/ps2 if ps2 > 0 else 0\nd_z2 = ate2/np.std(diffs2,ddof=1) if np.std(diffs2,ddof=1) > 0 else 0\nnz2 = diffs2[diffs2 != 0]\n_, wp2 = stats.wilcoxon(nz2) if len(nz2) > 0 else (None, 1.0)\nprint(f'MTB Claude Form dir: n={len(fs)}, ate={ate2:.4f}, d_pooled={d_pool2:.4f}, d_z={d_z2:.4f}, p={wp2:.6f}')\n\n# Check the claude_crossbench_analysis.py likert function\n# Read the truncated part\nprint()\nprint('=== Checking claude likert_analysis pattern ===')\n# For Claude, the scored files have score_original/score_counterfactual\n# The analysis uses directional alignment\n# Let me also try Cohen's d_av (average SD rather than pooled)\nsd_pool = np.sqrt((np.var(fs, ddof=1) + np.var(cs, ddof=1)) / 2)\nsd_av = (np.std(fs, ddof=1) + np.std(cs, ddof=1)) / 2\nd_av = ate2 / sd_av if sd_av > 0 else 0\nprint(f'd_av = {d_av:.4f}')\n\n# Hedges g\nfrom math import gamma\ncf_factor = gamma(n/2) / (np.sqrt(n/2) * gamma((n-1)/2))  # approximation\nn = len(fs)\nhedges_correction = 1 - 3/(4*(2*n-2)-1)\nd_hedges = d_pool2 * hedges_correction\nprint(f'd_hedges = {d_hedges:.4f}')\n\n# Try Cohen's d with just formal SD\nd_glass_formal = ate2 / np.std(fs, ddof=1)\nd_glass_casual = ate2 / np.std(cs, ddof=1)\nprint(f'd_glass_formal = {d_glass_formal:.4f}')\nprint(f'd_glass_casual = {d_glass_casual:.4f}')\n\n# Standardized mean difference with within-subjects SD\nsd_within = np.std(diffs2, ddof=1) / np.sqrt(2)\nd_rm = ate2 / sd_within\nprint(f'd_rm (repeated measures) = {d_rm:.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "764edbac-e453-41ef-ab0d-84040d6de7a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xCcNvd6Lw1pdBGuEbXUBU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3590,
+      "cache_read_input_tokens": 98872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3590
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-24T08:49:23.369Z_
+
+<details><summary>↩ Tool result · `toolu_01XY8o38qZGZtTkvyfpmP5VY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json, numpy as np\\\\nfrom scipy import stats\\\\n\\\\nNLI_THRESHOLD = 0.90\\\\nDATA = \\\\'/root/causal_style_decomp_judge/data\\\\'\\\\n\\\\n# Claude MTB Form - non-directional (orig - cf)\\\\npath = f\\\\'{DATA}/scored_claude_mtbench_formality.jsonl\\\\'\\\\nwith open(path) as f:\\\\n    recs = [json.loads(l) for l in f if l.strip()]\\\\nfiltered = [r for r in recs if r.get(\\\\'nli_cf\\\\', 0) >= NLI_THRESHOLD]\\\\nfiltered = [r for r in filtered if r.get(\\\\'score_original\\\\') is not None and r.get(\\\\'score_counterfactual\\\\') is not None]\\\\n\\\\norig = np.array([float(r[\\\\'score_original\\\\']) for r in filtered])\\\\ncf = np.array([float(r[\\\\'score_counterfactual\\\\']) for r in filtered])\\\\ndiffs = orig - cf\\\\nate = np.mean(diffs)\\\\nps = np.sqrt((np.var(orig,ddof=1)+np.var(cf,ddof=1))/2)\\\\nd_pool = ate/ps if ps > 0 else 0\\\\nnz = diffs[diffs != 0]\\\\n_, wp = stats.wilcoxon(nz) if len(nz) > 0 else (None, 1.0)\\\\nprint(f\\\\'MTB Claude Form non-dir: n={len(orig)}, ate={ate:.4f}, d_pooled={d_pool:.4f}, p={wp:.6f}\\\\')\\\\n\\\\n# Also try formal-casual directional\\\\nformal_s, casual_s = [], []\\\\nfor r in filtered:\\\\n    so = float(r[\\\\'score_original\\\\'])\\\\n    sc = float(r[\\\\'score_counterfactual\\\\'])\\\\n    orig_f = r.get(\\\\'original_formality\\\\', \\\\'formal\\\\')\\\\n    if orig_f == \\\\'formal\\\\':\\\\n        formal_s.append(so)\\\\n        casual_s.append(sc)\\\\n    else:\\\\n        formal_s.append(sc)\\\\n        casual_s.append(so)\\\\nfs = np.array(formal_s)\\\\ncs = np.array(casual_s)\\\\ndiffs2 = fs - cs\\\\nate2 = np.mean(diffs2)\\\\nps2 = np.sqrt((np.var(fs,ddof=1)+np.var(cs,ddof=1))/2)\\\\nd_pool2 = ate2/ps2 if ps2 > 0 else 0\\\\nd_z2 = ate2/np.std(diffs2,ddof=1) if np.std(diffs2,ddof=1) > 0 else 0\\\\nnz2 = diffs2[diffs2 != 0]\\\\n_, wp2 = stats.wilcoxon(nz2) if len(nz2) > 0 else (None, 1.0)\\\\nprint(f\\\\'MTB Claude Form dir: n={len(fs)}, ate={ate2:.4f}, d_pooled={d_pool2:.4f}, d_z={d_z2:.4f}, p={wp2:.6f}\\\\')\\\\n\\\\n# Check the claude_crossbench_analysis.py likert function\\\\n# Read the truncated part\\\\nprint()\\\\nprint(\\\\'=== Checking claude likert_analysis pattern ===\\\\')\\\\n# For Claude, the scored files have score_original/score_counterfactual\\\\n# The analysis uses directional alignment\\\\n# Let me also try Cohen\\\\'s d_av (average SD rather than pooled)\\\\nsd_pool = np.sqrt((np.var(fs, ddof=1) + np.var(cs, ddof=1)) / 2)\\\\nsd_av = (np.std(fs, ddof=1) + np.std(cs, ddof=1)) / 2\\\\nd_av = ate2 / sd_av if sd_av > 0 else 0\\\\nprint(f\\\\'d_av = {d_av:.4f}\\\\')\\\\n\\\\n# Hedges g\\\\nfrom math import gamma\\\\ncf_factor = gamma(n/2) / (np.sqrt(n/2) * gamma((n-1)/2))  # approximation\\\\nn = len(fs)\\\\nhedges_correction = 1 - 3/(4*(2*n-2)-1)\\\\nd_hedges = d_pool2 * hedges_correction\\\\nprint(f\\\\'d_hedges = {d_hedges:.4f}\\\\')\\\\n\\\\n# Try Cohen\\\\'s d with just formal SD\\\\nd_glass_formal = ate2 / np.std(fs, ddof=1)\\\\nd_glass_casual = ate2 / np.std(cs, ddof=1)\\\\nprint(f\\\\'d_glass_formal = {d_glass_formal:.4f}\\\\')\\\\nprint(f\\\\'d_glass_casual = {d_glass_casual:.4f}\\\\')\\\\n\\\\n# Standardized mean difference with within-subjects SD\\\\nsd_within = np.std(diffs2, ddof=1) / np.sqrt(2)\\\\nd_rm = ate2 / sd_within\\\\nprint(f\\\\'d_rm (repeated measures) = {d_rm:.4f}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nMTB Claude Form non-dir: n=73, ate=0.4384, d_pooled=0.2451, p=0.000003\\nMTB Claude Form dir: n=73, ate=0.3562, d_pooled=0.1987, d_z=0.4856, p=0.000158\\n\\n=== Checking claude likert_analysis pattern ===\\nd_av = 0.1987\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 62, in &lt;module>\\nNameError: name 'n' is not defined. Did you mean: 'np'?\\n\\n\", \"metadata\": {\"elapsed_seconds\": 2.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "105d0c70-6805-4921-ba01-8e92a8a32b21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nimport json, numpy as np\\\\\\\\nfrom scipy import stats\\\\\\\\n\\\\\\\\nNLI_THRESHOLD = 0.90\\\\\\\\nDATA = \\\\\\\\'/root/causal_style_decomp_judge/data\\\\\\\\'\\\\\\\\n\\\\\\\\n# Claude MTB Form - non-directional (orig - cf)\\\\\\\\npath = f\\\\\\\\'{DATA}/scored_claude_mtbench_formality.jsonl\\\\\\\\'\\\\\\\\nwith open(path) as f:\\\\\\\\n    recs = [json.loads(l) for l in f if l.strip()]\\\\\\\\nfiltered = [r for r in recs if r.get(\\\\\\\\'nli_cf\\\\\\\\', 0) >= NLI_THRESHOLD]\\\\\\\\nfiltered = [r for r in filtered if r.get(\\\\\\\\'score_original\\\\\\\\') is not None and r.get(\\\\\\\\'score_counterfactual\\\\\\\\') is not None]\\\\\\\\n\\\\\\\\norig = np.array([float(r[\\\\\\\\'score_original\\\\\\\\']) for r in filtered])\\\\\\\\ncf = np.array([float(r[\\\\\\\\'score_counterfactual\\\\\\\\']) for r in filtered])\\\\\\\\ndiffs = orig - cf\\\\\\\\nate = np.mean(diffs)\\\\\\\\nps = np.sqrt((np.var(orig,ddof=1)+np.var(cf,ddof=1))/2)\\\\\\\\nd_pool = ate/ps if ps > 0 else 0\\\\\\\\nnz = diffs[diffs != 0]\\\\\\\\n_, wp = stats.wilcoxon(nz) if len(nz) > 0 else (None, 1.0)\\\\\\\\nprint(f\\\\\\\\'MTB Claude Form non-dir: n={len(orig)}, ate={ate:.4f}, d_pooled={d_pool:.4f}, p={wp:.6f}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Also try formal-casual directional\\\\\\\\nformal_s, casual_s = [], []\\\\\\\\nfor r in filtered:\\\\\\\\n    so = float(r[\\\\\\\\'score_original\\\\\\\\'])\\\\\\\\n    sc = float(r[\\\\\\\\'score_counterfactual\\\\\\\\'])\\\\\\\\n    orig_f = r.get(\\\\\\\\'original_formality\\\\\\\\', \\\\\\\\'formal\\\\\\\\')\\\\\\\\n    if orig_f == \\\\\\\\'formal\\\\\\\\':\\\\\\\\n        formal_s.append(so)\\\\\\\\n        casual_s.append(sc)\\\\\\\\n    else:\\\\\\\\n        formal_s.append(sc)\\\\\\\\n        casual_s.append(so)\\\\\\\\nfs = np.array(formal_s)\\\\\\\\ncs = np.array(casual_s)\\\\\\\\ndiffs2 = fs - cs\\\\\\\\nate2 = np.mean(diffs2)\\\\\\\\nps2 = np.sqrt((np.var(fs,ddof=1)+np.var(cs,ddof=1))/2)\\\\\\\\nd_pool2 = ate2/ps2 if ps2 > 0 else 0\\\\\\\\nd_z2 = ate2/np.std(diffs2,ddof=1) if np.std(diffs2,ddof=1) > 0 else 0\\\\\\\\nnz2 = diffs2[diffs2 != 0]\\\\\\\\n_, wp2 = stats.wilcoxon(nz2) if len(nz2) > 0 else (None, 1.0)\\\\\\\\nprint(f\\\\\\\\'MTB Claude Form dir: n={len(fs)}, ate={ate2:.4f}, d_pooled={d_pool2:.4f}, d_z={d_z2:.4f}, p={wp2:.6f}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Check the claude_crossbench_analysis.py likert function\\\\\\\\n# Read the truncated part\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'=== Checking claude likert_analysis pattern ===\\\\\\\\')\\\\\\\\n# For Claude, the scored files have score_original/score_counterfactual\\\\\\\\n# The analysis uses directional alignment\\\\\\\\n# Let me also try Cohen\\\\\\\\'s d_av (average SD rather than pooled)\\\\\\\\nsd_pool = np.sqrt((np.var(fs, ddof=1) + np.var(cs, ddof=1)) / 2)\\\\\\\\nsd_av = (np.std(fs, ddof=1) + np.std(cs, ddof=1)) / 2\\\\\\\\nd_av = ate2 / sd_av if sd_av > 0 else 0\\\\\\\\nprint(f\\\\\\\\'d_av = {d_av:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Hedges g\\\\\\\\nfrom math import gamma\\\\\\\\ncf_factor = gamma(n/2) / (np.sqrt(n/2) * gamma((n-1)/2))  # approximation\\\\\\\\nn = len(fs)\\\\\\\\nhedges_correction = 1 - 3/(4*(2*n-2)-1)\\\\\\\\nd_hedges = d_pool2 * hedges_correction\\\\\\\\nprint(f\\\\\\\\'d_hedges = {d_hedges:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Try Cohen\\\\\\\\'s d with just formal SD\\\\\\\\nd_glass_formal = ate2 / np.std(fs, ddof=1)\\\\\\\\nd_glass_casual = ate2 / np.std(cs, ddof=1)\\\\\\\\nprint(f\\\\\\\\'d_glass_formal = {d_glass_formal:.4f}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'d_glass_casual = {d_glass_casual:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Standardized mean difference with within-subjects SD\\\\\\\\nsd_within = np.std(diffs2, ddof=1) / np.sqrt(2)\\\\\\\\nd_rm = ate2 / sd_within\\\\\\\\nprint(f\\\\\\\\'d_rm (repeated measures) = {d_rm:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nMTB Claude Form non-dir: n=73, ate=0.4384, d_pooled=0.2451, p=0.000003\\\\nMTB Claude Form dir: n=73, ate=0.3562, d_pooled=0.1987, d_z=0.4856, p=0.000158\\\\n\\\\n=== Checking claude likert_analysis pattern ===\\\\nd_av = 0.1987\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"&lt;string>\\\\\\\", line 62, in &lt;module>\\\\nNameError: name 'n' is not defined. Did you mean: 'np'?\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json, numpy as np\\\\nfrom scipy import stats\\\\n\\\\nNLI_THRESHOLD = 0.90\\\\nDATA = \\\\'/root/causal_style_decomp_judge/data\\\\'\\\\n\\\\n# Claude MTB Form - non-directional (orig - cf)\\\\npath = f\\\\'{DATA}/scored_claude_mtbench_formality.jsonl\\\\'\\\\nwith open(path) as f:\\\\n    recs = [json.loads(l) for l in f if l.strip()]\\\\nfiltered = [r for r in recs if r.get(\\\\'nli_cf\\\\', 0) >= NLI_THRESHOLD]\\\\nfiltered = [r for r in filtered if r.get(\\\\'score_original\\\\') is not None and r.get(\\\\'score_counterfactual\\\\') is not None]\\\\n\\\\norig = np.array([float(r[\\\\'score_original\\\\']) for r in filtered])\\\\ncf = np.array([float(r[\\\\'score_counterfactual\\\\']) for r in filtered])\\\\ndiffs = orig - cf\\\\nate = np.mean(diffs)\\\\nps = np.sqrt((np.var(orig,ddof=1)+np.var(cf,ddof=1))/2)\\\\nd_pool = ate/ps if ps > 0 else 0\\\\nnz = diffs[diffs != 0]\\\\n_, wp = stats.wilcoxon(nz) if len(nz) > 0 else (None, 1.0)\\\\nprint(f\\\\'MTB Claude Form non-dir: n={len(orig)}, ate={ate:.4f}, d_pooled={d_pool:.4f}, p={wp:.6f}\\\\')\\\\n\\\\n# Also try formal-casual directional\\\\nformal_s, casual_s = [], []\\\\nfor r in filtered:\\\\n    so = float(r[\\\\'score_original\\\\'])\\\\n    sc = float(r[\\\\'score_counterfactual\\\\'])\\\\n    orig_f = r.get(\\\\'original_formality\\\\', \\\\'formal\\\\')\\\\n    if orig_f == \\\\'formal\\\\':\\\\n        formal_s.append(so)\\\\n        casual_s.append(sc)\\\\n    else:\\\\n        formal_s.append(sc)\\\\n        casual_s.append(so)\\\\nfs = np.array(formal_s)\\\\ncs = np.array(casual_s)\\\\ndiffs2 = fs - cs\\\\nate2 = np.mean(diffs2)\\\\nps2 = np.sqrt((np.var(fs,ddof=1)+np.var(cs,ddof=1))/2)\\\\nd_pool2 = ate2/ps2 if ps2 > 0 else 0\\\\nd_z2 = ate2/np.std(diffs2,ddof=1) if np.std(diffs2,ddof=1) > 0 else 0\\\\nnz2 = diffs2[diffs2 != 0]\\\\n_, wp2 = stats.wilcoxon(nz2) if len(nz2) > 0 else (None, 1.0)\\\\nprint(f\\\\'MTB Claude Form dir: n={len(fs)}, ate={ate2:.4f}, d_pooled={d_pool2:.4f}, d_z={d_z2:.4f}, p={wp2:.6f}\\\\')\\\\n\\\\n# Check the claude_crossbench_analysis.py likert function\\\\n# Read the truncated part\\\\nprint()\\\\nprint(\\\\'=== Checking claude likert_analysis pattern ===\\\\')\\\\n# For Claude, the scored files have score_original/score_counterfactual\\\\n# The analysis uses directional alignment\\\\n# Let me also try Cohen\\\\'s d_av (average SD rather than pooled)\\\\nsd_pool = np.sqrt((np.var(fs, ddof=1) + np.var(cs, ddof=1)) / 2)\\\\nsd_av = (np.std(fs, ddof=1) + np.std(cs, ddof=1)) / 2\\\\nd_av = ate2 / sd_av if sd_av > 0 else 0\\\\nprint(f\\\\'d_av = {d_av:.4f}\\\\')\\\\n\\\\n# Hedges g\\\\nfrom math import gamma\\\\ncf_factor = gamma(n/2) / (np.sqrt(n/2) * gamma((n-1)/2))  # approximation\\\\nn = len(fs)\\\\nhedges_correction = 1 - 3/(4*(2*n-2)-1)\\\\nd_hedges = d_pool2 * hedges_correction\\\\nprint(f\\\\'d_hedges = {d_hedges:.4f}\\\\')\\\\n\\\\n# Try Cohen\\\\'s d with just formal SD\\\\nd_glass_formal = ate2 / np.std(fs, ddof=1)\\\\nd_glass_casual = ate2 / np.std(cs, ddof=1)\\\\nprint(f\\\\'d_glass_formal = {d_glass_formal:.4f}\\\\')\\\\nprint(f\\\\'d_glass_casual = {d_glass_casual:.4f}\\\\')\\\\n\\\\n# Standardized mean difference with within-subjects SD\\\\nsd_within = np.std(diffs2, ddof=1) / np.sqrt(2)\\\\nd_rm = ate2 / sd_within\\\\nprint(f\\\\'d_rm (repeated measures) = {d_rm:.4f}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nMTB Claude Form non-dir: n=73, ate=0.4384, d_pooled=0.2451, p=0.000003\\nMTB Claude Form dir: n=73, ate=0.3562, d_pooled=0.1987, d_z=0.4856, p=0.000158\\n\\n=== Checking claude likert_analysis pattern ===\\nd_av = 0.1987\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 62, in &lt;module>\\nNameError: name 'n' is not defined. Did you mean: 'np'?\\n\\n\", \"metadata\": {\"elapsed_seconds\": 2.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 117_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key finding for Table 24 Row 5 (Claude MTB Form):
+
+**Non-directional d_pooled = 0.2451** — this is very close to the paper's d=.245!
+
+So the paper's .245 comes from non-directional `score_original - score_counterfactual` pooled d, not directional d.
+
+And for Claude AEval Verb, the paper's -.243 also came from non-directional pooled d = -0.243.
+
+So Table 24's Claude rows use **non-directional** d (score_original - score_counterfactual) consistently. 
+
+This aligns with how the Claude analysis script mirrors the GPT-4o analysis script's approach. Now I'm compiling the full verification table to check all the reported effect sizes against what I'm calculating.
+
+Generating markdown table... Looking at Row 5 more carefully, the directional Cohen's d_z of 0.167 with p=0.016 matches my calculations, but this contrasts with the other rows in the same table that use the pooled d formula—so there's an inconsistency in which effect size metric was applied across the results.
+
+Let me step back and focus on what the user actually asked about: the cross-benchmark results table. I should verify the Cohen's h calculation in the likert_from_pairwise function to see if it explains the discrepancy between the paper's 1.120 and the JSON's 1.1597.
+
+Examining the Cohen's h formula...
+
+Actually, I'm noticing something important: the JSON file only contains two entries, and the paper shows 1.120, but the calculated value is 1.1597—which rounds to 1.160, not 1.120. This suggests either a typo in the paper or the analysis was run with different data than what's currently in the JSON.
+
+Let me work through the math to see what win rate would produce the paper's reported value. If I test different numbers of formal wins out of the 48 consistent entries, I can reverse-engineer what the original calculation might have been. The exact value doesn't matter much—what's important is that row 4 uses Cohen's h instead of Cohen's d, row 5 uses d_z rather than pooled d which breaks the pattern, and there's an inconsistency in whether the effect sizes are directional or non-directional across rows. Now I need to check whether the Bradley-Terry analysis is computing from all trials or just the consistent ones, and looking at the code, it appears to be pulling from all comparisons regardless of consistency.
+
+I'm also noticing something odd with the Llama-70B row—the config references a scored file as the pairwise input, but that file doesn't have the trial choice fields the loader expects...
+
+so it would return empty comparisons. Yet the output shows BT was actually computed, which doesn't add up.
+
+Looking at the file timestamps, the scored file from May 24 might be a Likert-only version that overwrote an earlier version with pairwise data. I notice there's a separate `pairwise_results_alpacaeval_llama70b_formality.jsonl` file from the same date, so the config might be pulling from that instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "3eb021d1-432d-4d91-bc7b-ff323d9ced5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EAD6DRRm9QHzj4NohvGUnn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3703,
+      "cache_read_input_tokens": 102462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3703
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 118_
+
+让我确认一个重要细节：Llama-70B 的 pairwise 文件和 scored 文件是否一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "8f04c2ff-3ca7-413b-9e2b-392d69873b6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EAD6DRRm9QHzj4NohvGUnn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3703,
+      "cache_read_input_tokens": 102462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3703
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GCsoUvJzSTEFx7gpdQN3TG`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -1 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_formality.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "416d23a5-dd62-4950-9e58-bc6f3f37edbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EAD6DRRm9QHzj4NohvGUnn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3703,
+      "cache_read_input_tokens": 102462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3703
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FT3Z6rDKw3hUzNKy475ZWV`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "wc -l /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_formality.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "1f2c0292-5cd4-4c35-bb1d-79f9fdc78665",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EAD6DRRm9QHzj4NohvGUnn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3703,
+      "cache_read_input_tokens": 102462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3703
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-24T08:50:27.754Z_
+
+<details><summary>↩ Tool result · `toolu_01GCsoUvJzSTEFx7gpdQN3TG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"alpacaeval_000\\\", \\\"instruction\\\": \\\"Create a short, concise summary of the paper based on its abstract.\\\\n\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9907892346382141, \\\"trial1_choice\\\": \\\"A\\\", \\\"trial1_prefers_formal\\\": true, \\\"trial2_choice\\\": \\\"B\\\", \\\"trial2_prefers_formal\\\": true, \\\"consistent\\\": true, \\\"formal_wins\\\": true}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "7767f73f-0e90-467c-b8a7-f9728e9eb3b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": \\\\\\\"alpacaeval_000\\\\\\\", \\\\\\\"instruction\\\\\\\": \\\\\\\"Create a short, concise summary of the paper based on its abstract.\\\\\\\\n\\\\\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\\\\\", \\\\\\\"original_formality\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"nli_cf\\\\\\\": 0.9907892346382141, \\\\\\\"trial1_choice\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"trial1_prefers_formal\\\\\\\": true, \\\\\\\"trial2_choice\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"trial2_prefers_formal\\\\\\\": true, \\\\\\\"consistent\\\\\\\": true, \\\\\\\"formal_wins\\\\\\\": true}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"alpacaeval_000\\\", \\\"instruction\\\": \\\"Create a short, concise summary of the paper based on its abstract.\\\\n\\\\nFew-shot learning (FSL) is one of the key future steps in machine learning and raises a lot of attention. In this paper, we focus on the FSL problem of dialogue understanding, which contains two closely related tasks: intent detection and slot filling. Dialogue understanding has been proven to benefit a lot from jointly learning the two sub-tasks. However, such joint learning becomes challenging in the few-shot scenarios: on the one hand, the sparsity of samples greatly magnifies the difficulty of modeling the connection between the two tasks; on the other hand, how to jointly learn multiple tasks in the few-shot setting is still less investigated. In response to this, we introduce FewJoint, the first FSL benchmark for joint dialogue understanding. FewJoint provides a new corpus with 59 different dialogue domains from real industrial API and a code platform to ease FSL experiment set-up, which are expected to advance the research of this field. Further, we find that insufficient performance of the few-shot setting often leads to noisy sharing between two sub-task and disturbs joint learning. To tackle this, we guide slot with explicit intent information and propose a novel trust gating mechanism that blocks low-confidence intent information to ensure high quality sharing. Besides, we introduce a Reptile-based meta-learning strategy to achieve better generalization in unseen few-shot domains. In the experiments, the proposed method brings significant improvements on two datasets and achieve new state-of-the-art performance.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9907892346382141, \\\"trial1_choice\\\": \\\"A\\\", \\\"trial1_prefers_formal\\\": true, \\\"trial2_choice\\\": \\\"B\\\", \\\"trial2_prefers_formal\\\": true, \\\"consistent\\\": true, \\\"formal_wins\\\": true}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-24T08:50:29.401Z_
+
+<details><summary>↩ Tool result · `toolu_01FT3Z6rDKw3hUzNKy475ZWV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   86 /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl\\n   86 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_formality.jsonl\\n  172 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "0a13cd03-37b3-45c9-be46-24c1a11d89d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   86 /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl\\\\n   86 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_formality.jsonl\\\\n  172 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   86 /root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl\\n   86 /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_llama70b_formality.jsonl\\n  172 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 123_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the full picture.
+
+The pairwise file `pairwise_results_alpacaeval_llama70b_formality.jsonl` has:
+- `trial1_choice`, `trial2_choice`, `consistent`, `formal_wins` fields
+- 86 records, same count as the scored file
+
+The scored file `scored_alpacaeval_llama70b_formality.jsonl` has:
+- `score_formal`, `score_casual` fields (Likert scores)
+- 86 records
+
+So these are two separate files for the same 86 items. 
+
+But the config in `cross_benchmark_analysis.py` is pointing the pairwise_file to the scored file instead, which won't work since the scored file lacks the `trial1_choice` and `trial2_choice` fields that the pairwise loader expects.
+
+Wait, the JSON output shows actual results with 86 total comparisons and a Bradley-Terry win probability of 0.7558, so the analysis clearly ran successfully. Looking at the file timestamps, both the scored and pairwise files were created today at the same time, which suggests either the scored file originally contained pairwise fields before being regenerated, or the config was pointing to a different pairwise file when it actually ran.
+
+The `cross_benchmark_local.json` analysis file only contains 2 entries instead of all 5 configs, indicating it was created when fewer configurations existed. The Llama entry shows it used the pairwise fallback with a sign-test, but the config path seems to reference a scored file that may have had a different structure at the time of analysis. So the old file didn't have Likert data available—`likert_file` was explicitly set to None, which is why Cohen's h was used as a fallback. Now I need to check the likert function in the analysis script to confirm that Table 24 is using the non-directional Cohen's d calculation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "63c8438a-cfdf-41ba-856d-c6878f1194fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QwkgBKRGfXy1SLHvyjV751",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3655,
+      "cache_read_input_tokens": 106165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3655
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 124_
+
+需要确认 `claude_crossbench_analysis.py` 的 `likert_analysis` 函数逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "8acc5923-dd67-42ac-b92e-0355d1675f90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QwkgBKRGfXy1SLHvyjV751",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3655,
+      "cache_read_input_tokens": 106165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3655
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EMo5djE4FLt3dkSEiJquQ1`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "grep -n \"def likert\" /root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "6044d17e-7264-4342-afda-ee449062f0b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QwkgBKRGfXy1SLHvyjV751",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3655,
+      "cache_read_input_tokens": 106165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3655
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-24T08:50:58.280Z_
+
+<details><summary>↩ Tool result · `toolu_01EMo5djE4FLt3dkSEiJquQ1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"133:def likert_analysis(recs, axis, nli_thresh=NLI_THRESHOLD):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "3c9a6f6c-98a7-4916-8c7a-f24f6b324983",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"133:def likert_analysis(recs, axis, nli_thresh=NLI_THRESHOLD):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"133:def likert_analysis(recs, axis, nli_thresh=NLI_THRESHOLD):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y8u7M4NQCn2MSGZTpGydAB`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -185 /root/causal_style_decomp_judge/csd_pipeline/claude_crossbench_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "195ee924-bfc5-4216-a85b-dc7afd2d1766",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WJyvnCiWizgu5nNphPL9ck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1311,
+      "cache_read_input_tokens": 109820,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1311
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-24T08:51:02.695Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8u7M4NQCn2MSGZTpGydAB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Claude cross-benchmark analysis: BT/Likert/GEE per config + merged TOST.\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport choix\\nimport numpy as np\\nimport pandas as pd\\nimport statsmodels.api as sm\\nfrom scipy import stats\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\nfrom statsmodels.genmod.families import Binomial\\n\\nNLI_THRESHOLD = 0.90\\nN_BOOTSTRAP = 10000\\nSEED = 42\\n\\nDATA_DIR = Path(\\\"/root/causal_style_decomp_judge/data\\\")\\nOUT_DIR = Path(\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\")\\n\\nAXIS_CONFIG = {\\n    \\\"formality\\\": {\\n        \\\"orig_field\\\": \\\"original_formality\\\",\\n        \\\"pole_a\\\": \\\"formal\\\", \\\"pole_b\\\": \\\"casual\\\",\\n        \\\"pref_key\\\": \\\"prefers_formal\\\",\\n        \\\"wins_key\\\": \\\"formal_wins\\\",\\n    },\\n    \\\"verbosity\\\": {\\n        \\\"orig_field\\\": \\\"original_verbosity\\\",\\n        \\\"pole_a\\\": \\\"verbose\\\", \\\"pole_b\\\": \\\"concise\\\",\\n        \\\"pref_key\\\": \\\"prefers_verbose\\\",\\n        \\\"wins_key\\\": \\\"verbose_wins\\\",\\n    },\\n}\\n\\nCONFIGS = [\\n    {\\\"label\\\": \\\"LLMBar\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_formality.jsonl\\\"},\\n    {\\\"label\\\": \\\"LLMBar\\\", \\\"axis\\\": \\\"verbosity\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_verbosity.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_verbosity.jsonl\\\"},\\n    {\\\"label\\\": \\\"AlpacaEval\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_alpacaeval_formality.jsonl\\\"},\\n    {\\\"label\\\": \\\"AlpacaEval\\\", \\\"axis\\\": \\\"verbosity\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_alpacaeval_verbosity.jsonl\\\"},\\n    {\\\"label\\\": \\\"MT-Bench\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_mtbench_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_mtbench_formality.jsonl\\\"},\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef get_wins(rec, axis):\\n    cfg = AXIS_CONFIG[axis]\\n    for key in [cfg[\\\"wins_key\\\"], cfg[\\\"pref_key\\\"]]:\\n        if key in rec:\\n            return rec[key]\\n    return None\\n\\n\\ndef bt_pair_bootstrap(recs, axis, nli_thresh=NLI_THRESHOLD):\\n    cfg = AXIS_CONFIG[axis]\\n    filtered = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= nli_thresh]\\n\\n    pref_key = cfg[\\\"pref_key\\\"]\\n    t1_key = f\\\"trial1_{pref_key}\\\"\\n    t2_key = f\\\"trial2_{pref_key}\\\"\\n\\n    pairs_data = []\\n    for r in filtered:\\n        t1 = r.get(t1_key)\\n        t2 = r.get(t2_key)\\n        pairs_data.append((t1, t2))\\n\\n    def build_comparisons(plist):\\n        comps = []\\n        for t1, t2 in plist:\\n            if t1 is True:\\n                comps.append((0, 1))\\n            elif t1 is False:\\n                comps.append((1, 0))\\n            if t2 is True:\\n                comps.append((0, 1))\\n            elif t2 is False:\\n                comps.append((1, 0))\\n        return comps\\n\\n    comparisons = build_comparisons(pairs_data)\\n    n_pairs = len(pairs_data)\\n\\n    if len(comparisons) < 3:\\n        return {\\\"p_pole_a\\\": None, \\\"ci_lo\\\": None, \\\"ci_hi\\\": None, \\\"p_val\\\": None,\\n                \\\"n_pairs\\\": n_pairs, \\\"n_comparisons\\\": len(comparisons), \\\"n_filtered\\\": len(filtered)}\\n\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\n    p_a = np.exp(params[0]) / np.sum(np.exp(params))\\n\\n    rng = np.random.default_rng(SEED)\\n    boots = []\\n    for _ in range(N_BOOTSTRAP):\\n        idx = rng.integers(0, n_pairs, size=n_pairs)\\n        boot_pairs = [pairs_data[i] for i in idx]\\n        boot_comps = build_comparisons(boot_pairs)\\n        try:\\n            bp = choix.ilsr_pairwise(2, boot_comps, alpha=0.01)\\n            boots.append(np.exp(bp[0]) / np.sum(np.exp(bp)))\\n        except Exception:\\n            continue\\n\\n    boots = np.array(boots)\\n    ci_lo, ci_hi = np.percentile(boots, [2.5, 97.5])\\n    p_val = float(min(2 * min(np.mean(boots <= 0.5), np.mean(boots >= 0.5)), 1.0))\\n\\n    a_wins = sum(1 for c in comparisons if c == (0, 1))\\n\\n    return {\\n        \\\"p_pole_a\\\": float(p_a), \\\"ci_lo\\\": float(ci_lo), \\\"ci_hi\\\": float(ci_hi),\\n        \\\"p_val\\\": float(p_val), \\\"n_pairs\\\": n_pairs, \\\"n_comparisons\\\": len(comparisons),\\n        \\\"n_filtered\\\": len(filtered),\\n        \\\"pole_a_wins\\\": int(a_wins), \\\"pole_b_wins\\\": int(len(comparisons) - a_wins),\\n    }\\n\\n\\ndef likert_analysis(recs, axis, nli_thresh=NLI_THRESHOLD):\\n    \\\"\\\"\\\"Pole-aligned Likert analysis: ATE = mean(style_pole) - mean(anti_pole), Wilcoxon test.\\n\\n    Style pole is the stylistically marked direction (formal / verbose).\\n    Anti-pole is the neutral direction (casual / concise).\\n    If original_formality == pole_a (e.g. 'formal'), score_original is the style-pole score;\\n    otherwise score_counterfactual is the style-pole score.\\n    \\\"\\\"\\\"\\n    cfg = AXIS_CONFIG[axis]\\n    orig_field = cfg[\\\"orig_field\\\"]   # e.g. \\\"original_formality\\\"\\n    pole_a = cfg[\\\"pole_a\\\"]           # e.g. \\\"formal\\\" or \\\"verbose\\\" (= style pole)\\n    filtered = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= nli_thresh]\\n\\n    scores_pole = []    # style-pole scores (formal / verbose)\\n    scores_anti = []    # anti-pole scores (casual / concise)\\n    for r in filtered:\\n        so = r.get(\\\"score_original\\\")\\n        sc = r.get(\\\"score_counterfactual\\\")\\n        if so is None or sc is None:\\n            continue\\n        if r.get(orig_field) == pole_a:\\n            # original is already the style pole\\n            scores_pole.append(so)\\n            scores_anti.append(sc)\\n        else:\\n            # counterfactual is the style pole\\n            scores_pole.append(sc)\\n            scores_anti.append(so)\\n\\n    n = len(scores_pole)\\n    if n < 3:\\n        return {\\\"ate\\\": None, \\\"cohen_d\\\": None, \\\"wilcoxon_p\\\": None,\\n                \\\"tie_rate\\\": None, \\\"n\\\": n}\\n\\n    pole = np.array(scores_pole, dtype=float)\\n    anti = np.array(scores_anti, dtype=float)\\n    diff = pole - anti\\n    ate = float(np.mean(diff))\\n\\n    pooled_sd = np.sqrt((np.var(pole, ddof=1) + np.var(anti, ddof=1)) / 2)\\n    cohen_d = ate / pooled_sd if pooled_sd > 0 else 0.0\\n\\n    # Wilcoxon signed-rank test (primary)\\n    nonzero = diff[diff != 0]\\n    if len(nonzero) == 0:\\n        w_p = 1.0\\n    else:\\n        try:\\n            _, w_p = stats.wilcoxon(nonzero)\\n        except Exception:\\n            w_p = 1.0\\n\\n    ties = np.sum(diff == 0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "dada03bf-442c-4c34-aaf6-6559fd72d650",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Claude cross-benchmark analysis: BT/Likert/GEE per config + merged TOST.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport choix\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport statsmodels.api as sm\\\\nfrom scipy import stats\\\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\\\nfrom statsmodels.genmod.families import Binomial\\\\n\\\\nNLI_THRESHOLD = 0.90\\\\nN_BOOTSTRAP = 10000\\\\nSEED = 42\\\\n\\\\nDATA_DIR = Path(\\\\\\\"/root/causal_style_decomp_judge/data\\\\\\\")\\\\nOUT_DIR = Path(\\\\\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\\\\\")\\\\n\\\\nAXIS_CONFIG = {\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n        \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_formality\\\\\\\",\\\\n        \\\\\\\"pole_a\\\\\\\": \\\\\\\"formal\\\\\\\", \\\\\\\"pole_b\\\\\\\": \\\\\\\"casual\\\\\\\",\\\\n        \\\\\\\"pref_key\\\\\\\": \\\\\\\"prefers_formal\\\\\\\",\\\\n        \\\\\\\"wins_key\\\\\\\": \\\\\\\"formal_wins\\\\\\\",\\\\n    },\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n        \\\\\\\"orig_field\\\\\\\": \\\\\\\"original_verbosity\\\\\\\",\\\\n        \\\\\\\"pole_a\\\\\\\": \\\\\\\"verbose\\\\\\\", \\\\\\\"pole_b\\\\\\\": \\\\\\\"concise\\\\\\\",\\\\n        \\\\\\\"pref_key\\\\\\\": \\\\\\\"prefers_verbose\\\\\\\",\\\\n        \\\\\\\"wins_key\\\\\\\": \\\\\\\"verbose_wins\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\nCONFIGS = [\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"LLMBar\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n     \\\\\\\"pw\\\\\\\": DATA_DIR / \\\\\\\"pairwise_results_claude_formality.jsonl\\\\\\\",\\\\n     \\\\\\\"sc\\\\\\\": DATA_DIR / \\\\\\\"scored_claude_formality.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"LLMBar\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n     \\\\\\\"pw\\\\\\\": DATA_DIR / \\\\\\\"pairwise_results_claude_verbosity.jsonl\\\\\\\",\\\\n     \\\\\\\"sc\\\\\\\": DATA_DIR / \\\\\\\"scored_claude_verbosity.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n     \\\\\\\"pw\\\\\\\": DATA_DIR / \\\\\\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\\\\\",\\\\n     \\\\\\\"sc\\\\\\\": DATA_DIR / \\\\\\\"scored_claude_alpacaeval_formality.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"AlpacaEval\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n     \\\\\\\"pw\\\\\\\": DATA_DIR / \\\\\\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\\\\\",\\\\n     \\\\\\\"sc\\\\\\\": DATA_DIR / \\\\\\\"scored_claude_alpacaeval_verbosity.jsonl\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"MT-Bench\\\\\\\", \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n     \\\\\\\"pw\\\\\\\": DATA_DIR / \\\\\\\"pairwise_results_claude_mtbench_formality.jsonl\\\\\\\",\\\\n     \\\\\\\"sc\\\\\\\": DATA_DIR / \\\\\\\"scored_claude_mtbench_formality.jsonl\\\\\\\"},\\\\n]\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(l) for l in f if l.strip()]\\\\n\\\\n\\\\ndef get_wins(rec, axis):\\\\n    cfg = AXIS_CONFIG[axis]\\\\n    for key in [cfg[\\\\\\\"wins_key\\\\\\\"], cfg[\\\\\\\"pref_key\\\\\\\"]]:\\\\n        if key in rec:\\\\n            return rec[key]\\\\n    return None\\\\n\\\\n\\\\ndef bt_pair_bootstrap(recs, axis, nli_thresh=NLI_THRESHOLD):\\\\n    cfg = AXIS_CONFIG[axis]\\\\n    filtered = [r for r in recs if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= nli_thresh]\\\\n\\\\n    pref_key = cfg[\\\\\\\"pref_key\\\\\\\"]\\\\n    t1_key = f\\\\\\\"trial1_{pref_key}\\\\\\\"\\\\n    t2_key = f\\\\\\\"trial2_{pref_key}\\\\\\\"\\\\n\\\\n    pairs_data = []\\\\n    for r in filtered:\\\\n        t1 = r.get(t1_key)\\\\n        t2 = r.get(t2_key)\\\\n        pairs_data.append((t1, t2))\\\\n\\\\n    def build_comparisons(plist):\\\\n        comps = []\\\\n        for t1, t2 in plist:\\\\n            if t1 is True:\\\\n                comps.append((0, 1))\\\\n            elif t1 is False:\\\\n                comps.append((1, 0))\\\\n            if t2 is True:\\\\n                comps.append((0, 1))\\\\n            elif t2 is False:\\\\n                comps.append((1, 0))\\\\n        return comps\\\\n\\\\n    comparisons = build_comparisons(pairs_data)\\\\n    n_pairs = len(pairs_data)\\\\n\\\\n    if len(comparisons) < 3:\\\\n        return {\\\\\\\"p_pole_a\\\\\\\": None, \\\\\\\"ci_lo\\\\\\\": None, \\\\\\\"ci_hi\\\\\\\": None, \\\\\\\"p_val\\\\\\\": None,\\\\n                \\\\\\\"n_pairs\\\\\\\": n_pairs, \\\\\\\"n_comparisons\\\\\\\": len(comparisons), \\\\\\\"n_filtered\\\\\\\": len(filtered)}\\\\n\\\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\\\n    p_a = np.exp(params[0]) / np.sum(np.exp(params))\\\\n\\\\n    rng = np.random.default_rng(SEED)\\\\n    boots = []\\\\n    for _ in range(N_BOOTSTRAP):\\\\n        idx = rng.integers(0, n_pairs, size=n_pairs)\\\\n        boot_pairs = [pairs_data[i] for i in idx]\\\\n        boot_comps = build_comparisons(boot_pairs)\\\\n        try:\\\\n            bp = choix.ilsr_pairwise(2, boot_comps, alpha=0.01)\\\\n            boots.append(np.exp(bp[0]) / np.sum(np.exp(bp)))\\\\n        except Exception:\\\\n            continue\\\\n\\\\n    boots = np.array(boots)\\\\n    ci_lo, ci_hi = np.percentile(boots, [2.5, 97.5])\\\\n    p_val = float(min(2 * min(np.mean(boots <= 0.5), np.mean(boots >= 0.5)), 1.0))\\\\n\\\\n    a_wins = sum(1 for c in comparisons if c == (0, 1))\\\\n\\\\n    return {\\\\n        \\\\\\\"p_pole_a\\\\\\\": float(p_a), \\\\\\\"ci_lo\\\\\\\": float(ci_lo), \\\\\\\"ci_hi\\\\\\\": float(ci_hi),\\\\n        \\\\\\\"p_val\\\\\\\": float(p_val), \\\\\\\"n_pairs\\\\\\\": n_pairs, \\\\\\\"n_comparisons\\\\\\\": len(comparisons),\\\\n        \\\\\\\"n_filtered\\\\\\\": len(filtered),\\\\n        \\\\\\\"pole_a_wins\\\\\\\": int(a_wins), \\\\\\\"pole_b_wins\\\\\\\": int(len(comparisons) - a_wins),\\\\n    }\\\\n\\\\n\\\\ndef likert_analysis(recs, axis, nli_thresh=NLI_THRESHOLD):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pole-aligned Likert analysis: ATE = mean(style_pole) - mean(anti_pole), Wilcoxon test.\\\\n\\\\n    Style pole is the stylistically marked direction (formal / verbose).\\\\n    Anti-pole is the neutral direction (casual / concise).\\\\n    If original_formality == pole_a (e.g. 'formal'), score_original is the style-pole score;\\\\n    otherwise score_counterfactual is the style-pole score.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    cfg = AXIS_CONFIG[axis]\\\\n    orig_field = cfg[\\\\\\\"orig_field\\\\\\\"]   # e.g. \\\\\\\"original_formality\\\\\\\"\\\\n    pole_a = cfg[\\\\\\\"pole_a\\\\\\\"]           # e.g. \\\\\\\"formal\\\\\\\" or \\\\\\\"verbose\\\\\\\" (= style pole)\\\\n    filtered = [r for r in recs if r.get(\\\\\\\"nli_cf\\\\\\\", 0) >= nli_thresh]\\\\n\\\\n    scores_pole = []    # style-pole scores (formal / verbose)\\\\n    scores_anti = []    # anti-pole scores (casual / concise)\\\\n    for r in filtered:\\\\n        so = r.get(\\\\\\\"score_original\\\\\\\")\\\\n        sc = r.get(\\\\\\\"score_counterfactual\\\\\\\")\\\\n        if so is None or sc is None:\\\\n            continue\\\\n        if r.get(orig_field) == pole_a:\\\\n            # original is already the style pole\\\\n            scores_pole.append(so)\\\\n            scores_anti.append(sc)\\\\n        else:\\\\n            # counterfactual is the style pole\\\\n            scores_pole.append(sc)\\\\n            scores_anti.append(so)\\\\n\\\\n    n = len(scores_pole)\\\\n    if n < 3:\\\\n        return {\\\\\\\"ate\\\\\\\": None, \\\\\\\"cohen_d\\\\\\\": None, \\\\\\\"wilcoxon_p\\\\\\\": None,\\\\n                \\\\\\\"tie_rate\\\\\\\": None, \\\\\\\"n\\\\\\\": n}\\\\n\\\\n    pole = np.array(scores_pole, dtype=float)\\\\n    anti = np.array(scores_anti, dtype=float)\\\\n    diff = pole - anti\\\\n    ate = float(np.mean(diff))\\\\n\\\\n    pooled_sd = np.sqrt((np.var(pole, ddof=1) + np.var(anti, ddof=1)) / 2)\\\\n    cohen_d = ate / pooled_sd if pooled_sd > 0 else 0.0\\\\n\\\\n    # Wilcoxon signed-rank test (primary)\\\\n    nonzero = diff[diff != 0]\\\\n    if len(nonzero) == 0:\\\\n        w_p = 1.0\\\\n    else:\\\\n        try:\\\\n            _, w_p = stats.wilcoxon(nonzero)\\\\n        except Exception:\\\\n            w_p = 1.0\\\\n\\\\n    ties = np.sum(diff == 0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Claude cross-benchmark analysis: BT/Likert/GEE per config + merged TOST.\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport choix\\nimport numpy as np\\nimport pandas as pd\\nimport statsmodels.api as sm\\nfrom scipy import stats\\nfrom statsmodels.genmod.generalized_estimating_equations import GEE\\nfrom statsmodels.genmod.cov_struct import Exchangeable\\nfrom statsmodels.genmod.families import Binomial\\n\\nNLI_THRESHOLD = 0.90\\nN_BOOTSTRAP = 10000\\nSEED = 42\\n\\nDATA_DIR = Path(\\\"/root/causal_style_decomp_judge/data\\\")\\nOUT_DIR = Path(\\\"/root/causal_style_decomp_judge/artifacts/r14_fixes\\\")\\n\\nAXIS_CONFIG = {\\n    \\\"formality\\\": {\\n        \\\"orig_field\\\": \\\"original_formality\\\",\\n        \\\"pole_a\\\": \\\"formal\\\", \\\"pole_b\\\": \\\"casual\\\",\\n        \\\"pref_key\\\": \\\"prefers_formal\\\",\\n        \\\"wins_key\\\": \\\"formal_wins\\\",\\n    },\\n    \\\"verbosity\\\": {\\n        \\\"orig_field\\\": \\\"original_verbosity\\\",\\n        \\\"pole_a\\\": \\\"verbose\\\", \\\"pole_b\\\": \\\"concise\\\",\\n        \\\"pref_key\\\": \\\"prefers_verbose\\\",\\n        \\\"wins_key\\\": \\\"verbose_wins\\\",\\n    },\\n}\\n\\nCONFIGS = [\\n    {\\\"label\\\": \\\"LLMBar\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_formality.jsonl\\\"},\\n    {\\\"label\\\": \\\"LLMBar\\\", \\\"axis\\\": \\\"verbosity\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_verbosity.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_verbosity.jsonl\\\"},\\n    {\\\"label\\\": \\\"AlpacaEval\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_alpacaeval_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_alpacaeval_formality.jsonl\\\"},\\n    {\\\"label\\\": \\\"AlpacaEval\\\", \\\"axis\\\": \\\"verbosity\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_alpacaeval_verbosity.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_alpacaeval_verbosity.jsonl\\\"},\\n    {\\\"label\\\": \\\"MT-Bench\\\", \\\"axis\\\": \\\"formality\\\",\\n     \\\"pw\\\": DATA_DIR / \\\"pairwise_results_claude_mtbench_formality.jsonl\\\",\\n     \\\"sc\\\": DATA_DIR / \\\"scored_claude_mtbench_formality.jsonl\\\"},\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef get_wins(rec, axis):\\n    cfg = AXIS_CONFIG[axis]\\n    for key in [cfg[\\\"wins_key\\\"], cfg[\\\"pref_key\\\"]]:\\n        if key in rec:\\n            return rec[key]\\n    return None\\n\\n\\ndef bt_pair_bootstrap(recs, axis, nli_thresh=NLI_THRESHOLD):\\n    cfg = AXIS_CONFIG[axis]\\n    filtered = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= nli_thresh]\\n\\n    pref_key = cfg[\\\"pref_key\\\"]\\n    t1_key = f\\\"trial1_{pref_key}\\\"\\n    t2_key = f\\\"trial2_{pref_key}\\\"\\n\\n    pairs_data = []\\n    for r in filtered:\\n        t1 = r.get(t1_key)\\n        t2 = r.get(t2_key)\\n        pairs_data.append((t1, t2))\\n\\n    def build_comparisons(plist):\\n        comps = []\\n        for t1, t2 in plist:\\n            if t1 is True:\\n                comps.append((0, 1))\\n            elif t1 is False:\\n                comps.append((1, 0))\\n            if t2 is True:\\n                comps.append((0, 1))\\n            elif t2 is False:\\n                comps.append((1, 0))\\n        return comps\\n\\n    comparisons = build_comparisons(pairs_data)\\n    n_pairs = len(pairs_data)\\n\\n    if len(comparisons) < 3:\\n        return {\\\"p_pole_a\\\": None, \\\"ci_lo\\\": None, \\\"ci_hi\\\": None, \\\"p_val\\\": None,\\n                \\\"n_pairs\\\": n_pairs, \\\"n_comparisons\\\": len(comparisons), \\\"n_filtered\\\": len(filtered)}\\n\\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\\n    p_a = np.exp(params[0]) / np.sum(np.exp(params))\\n\\n    rng = np.random.default_rng(SEED)\\n    boots = []\\n    for _ in range(N_BOOTSTRAP):\\n        idx = rng.integers(0, n_pairs, size=n_pairs)\\n        boot_pairs = [pairs_data[i] for i in idx]\\n        boot_comps = build_comparisons(boot_pairs)\\n        try:\\n            bp = choix.ilsr_pairwise(2, boot_comps, alpha=0.01)\\n            boots.append(np.exp(bp[0]) / np.sum(np.exp(bp)))\\n        except Exception:\\n            continue\\n\\n    boots = np.array(boots)\\n    ci_lo, ci_hi = np.percentile(boots, [2.5, 97.5])\\n    p_val = float(min(2 * min(np.mean(boots <= 0.5), np.mean(boots >= 0.5)), 1.0))\\n\\n    a_wins = sum(1 for c in comparisons if c == (0, 1))\\n\\n    return {\\n        \\\"p_pole_a\\\": float(p_a), \\\"ci_lo\\\": float(ci_lo), \\\"ci_hi\\\": float(ci_hi),\\n        \\\"p_val\\\": float(p_val), \\\"n_pairs\\\": n_pairs, \\\"n_comparisons\\\": len(comparisons),\\n        \\\"n_filtered\\\": len(filtered),\\n        \\\"pole_a_wins\\\": int(a_wins), \\\"pole_b_wins\\\": int(len(comparisons) - a_wins),\\n    }\\n\\n\\ndef likert_analysis(recs, axis, nli_thresh=NLI_THRESHOLD):\\n    \\\"\\\"\\\"Pole-aligned Likert analysis: ATE = mean(style_pole) - mean(anti_pole), Wilcoxon test.\\n\\n    Style pole is the stylistically marked direction (formal / verbose).\\n    Anti-pole is the neutral direction (casual / concise).\\n    If original_formality == pole_a (e.g. 'formal'), score_original is the style-pole score;\\n    otherwise score_counterfactual is the style-pole score.\\n    \\\"\\\"\\\"\\n    cfg = AXIS_CONFIG[axis]\\n    orig_field = cfg[\\\"orig_field\\\"]   # e.g. \\\"original_formality\\\"\\n    pole_a = cfg[\\\"pole_a\\\"]           # e.g. \\\"formal\\\" or \\\"verbose\\\" (= style pole)\\n    filtered = [r for r in recs if r.get(\\\"nli_cf\\\", 0) >= nli_thresh]\\n\\n    scores_pole = []    # style-pole scores (formal / verbose)\\n    scores_anti = []    # anti-pole scores (casual / concise)\\n    for r in filtered:\\n        so = r.get(\\\"score_original\\\")\\n        sc = r.get(\\\"score_counterfactual\\\")\\n        if so is None or sc is None:\\n            continue\\n        if r.get(orig_field) == pole_a:\\n            # original is already the style pole\\n            scores_pole.append(so)\\n            scores_anti.append(sc)\\n        else:\\n            # counterfactual is the style pole\\n            scores_pole.append(sc)\\n            scores_anti.append(so)\\n\\n    n = len(scores_pole)\\n    if n < 3:\\n        return {\\\"ate\\\": None, \\\"cohen_d\\\": None, \\\"wilcoxon_p\\\": None,\\n                \\\"tie_rate\\\": None, \\\"n\\\": n}\\n\\n    pole = np.array(scores_pole, dtype=float)\\n    anti = np.array(scores_anti, dtype=float)\\n    diff = pole - anti\\n    ate = float(np.mean(diff))\\n\\n    pooled_sd = np.sqrt((np.var(pole, ddof=1) + np.var(anti, ddof=1)) / 2)\\n    cohen_d = ate / pooled_sd if pooled_sd > 0 else 0.0\\n\\n    # Wilcoxon signed-rank test (primary)\\n    nonzero = diff[diff != 0]\\n    if len(nonzero) == 0:\\n        w_p = 1.0\\n    else:\\n        try:\\n            _, w_p = stats.wilcoxon(nonzero)\\n        except Exception:\\n            w_p = 1.0\\n\\n    ties = np.sum(diff == 0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 129_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I can see the Claude analysis script's `likert_analysis` function. It uses **directional, pole-aligned pooled Cohen's d**:
+
+```python
+pole = score_pole (formal/verbose)
+anti = score_anti (casual/concise)
+diff = pole - anti
+ate = mean(diff)
+pooled_sd = sqrt((var(pole) + var(anti)) / 2)
+cohen_d = ate / pooled_sd
+```
+
+And uses `Wilcoxon signed-rank on non-zero diffs`.
+
+So the Claude analysis uses the SAME formula as my `compute_all_d_variants` directional pooled d. 
+
+But the paper's Table 24 values don't match my directional pooled d for rows 4 and 5. Let me trace through this more carefully—I computed a non-directional d of -0.243 for Claude AEval Verb, which matches the paper, but my directional pooled d was 0.298. The issue is that the file I'm analyzing has `score_original` and `score_counterfactual` columns, not the `score_verbose` and `score_concise` labels the Claude script expects, so I need to figure out which column maps to which pole. The non-directional calculation gives -0.243, which matches the paper's value, so they're likely using `original - counterfactual` rather than a directional approach. Let me trace through what the data actually shows: the scored file has `original_verbosity=concise` for the first record, meaning the original text was concise, so `score_original` is the concise score and `score_counterfactual` is the verbose score. Looking at the JSON output, the directional d value is 0.298 for the verbose pole, but the paper shows -0.243, which matches the non-directional computation instead. This suggests the paper used a different calculation method than what the JSON script produced—the paper's value corresponds to the original minus counterfactual approach rather than the pole-aligned directional approach. 't change much)
+- Row 4: Paper uses non-directional d (-.243), JSON has directional d (+0.298) → **DISCREPANCY**
+- Row 5: Paper says d=.245, JSON has d=0.199 (directional pooled), non-directional pooled d=0.245 → Paper uses **non-directional** d
+
+So Table 24 rows 4-5 use non-directional d (orig - cf) while the Claude analysis script outputs directional d. The paper was likely filled with values from a different computation.
+
+Wait, but for Row 5 (MTB Form):
+- Non-directional pooled d = 0.245 ✓ (matches paper)
+- Directional pooled d = 0.199 (doesn't match paper)
+
+Yes, so Table 24 rows 4-5 use non-directional d. But rows 1-3 happen to give similar values either way because the direction effect is small. The real question is whether the balance of formal vs casual originals affects this—if the split is exactly 50/50, directional and non-directional d should be nearly identical, but if it's skewed, they'll diverge.
+
+Now I'm seeing the full pattern: the paper inconsistently mixes directional and non-directional effect sizes across different tables, and I need to document exactly which rows use which metric and flag the discrepancies. ) from now-available Likert scores
+   - Impact: Magnitude inflated by ~5×; changes interpretation (still significant but small effect, not large)
+
+2. **Row 5 (MTB × GPT-4o × Form): Formula inconsistency**
+   - Paper: d=.167 — this is directional Cohen's d_z (mean_diff / sd_diff)
+   - Other rows use pooled Cohen's d (mean_diff / pooled_sd)
+   - If using pooled d: d=0.116 (directional) or d=0.135 (non-directional)
+
+3. **Row 1 (AEval × GPT-4o × Form): Direction inconsistency**
+   - Paper: d=.005 — computed as non-directional (orig - cf) pooled d
+   - Rows 2, 3, 6 use directional (formal/verbose - casual/concise) pooled d
+   - Within the same table, identically labeled columns use different definitions
+
+4. **Table 24 (tab:claude_crossbench) direction inconsistency**
+   - Paper Row 4 (AEval Verb): d=-.243 = non-directional pooled d (orig - cf)
+   - Paper Row 5 (MTB Form): d=.245 = non-directional pooled d (orig - cf)
+   - But the Claude analysis script computes directional pooled d (pole - anti)
+   - Rows 1-3 appear consistent because the direction effect is small for those cases
+
+5. **BT Consistency**: All BT computations uniformly use ALL trials including inconsistent pairs across every row.
+
+I need to identify the critical corrective actions required to resolve these inconsistencies.
+
+Here is the next thinking:
+ 4 of Table 23 must be corrected from 1.120 (Cohen's h) to 0.211 (true Cohen's d). The category ($\ddagger$) remains correct (both BT and Likert significant at p=0.012).
+2. **Moderate**: Choose one d formula consistently across all rows (pooled d recommended) and one direction convention (directional recommended).
+3. **Minor**: Table 24 values should match the output of the Claude analysis script (directional).
+
+So the critical fix is Row 4 of Table 23—swapping out the inflated Cohen's h value for the proper Cohen's d, which drops the effect size from large to small while preserving significance. Then I need to standardize the formula and direction across both tables, with pooled directional d as the target. Table 24 should align with what the analysis script actually produces.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "c3c2c88c-570b-4419-b3fc-7f1366bcf330",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZUtcmUyhWSXNu5qkPf6HU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 111131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 130_
+
+现在有完整数据。让我做最后一项验证——确认 Table 24 中 Row 1-3 的 non-directional vs directional 一致性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "e1e5c14d-bd5f-4236-a532-b20ad7b17a58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZUtcmUyhWSXNu5qkPf6HU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 111131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FvWa8Wx9pVquPa9fUzKx83`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy import stats\n\nNLI_THRESHOLD = 0.90\nDATA = '/root/causal_style_decomp_judge/data'\n\nfiles = [\n    ('scored_claude_formality.jsonl', 'original_formality', 'formal', 'LLMBar Form'),\n    ('scored_claude_verbosity.jsonl', 'original_verbosity', 'verbose', 'LLMBar Verb'),\n    ('scored_claude_alpacaeval_formality.jsonl', 'original_formality', 'formal', 'AEval Form'),\n    ('scored_claude_alpacaeval_verbosity.jsonl', 'original_verbosity', 'verbose', 'AEval Verb'),\n    ('scored_claude_mtbench_formality.jsonl', 'original_formality', 'formal', 'MTB Form'),\n]\n\nfor fname, orig_field, pole, label in files:\n    with open(f'{DATA}/{fname}') as f:\n        recs = [json.loads(l) for l in f if l.strip()]\n    filtered = [r for r in recs if r.get('nli_cf', 0) >= NLI_THRESHOLD]\n    filtered = [r for r in filtered if r.get('score_original') is not None and r.get('score_counterfactual') is not None]\n    \n    orig_s = np.array([float(r['score_original']) for r in filtered])\n    cf_s = np.array([float(r['score_counterfactual']) for r in filtered])\n    \n    # Non-directional\n    diffs_nd = orig_s - cf_s\n    ate_nd = np.mean(diffs_nd)\n    ps_nd = np.sqrt((np.var(orig_s,ddof=1)+np.var(cf_s,ddof=1))/2)\n    d_nd = ate_nd/ps_nd if ps_nd > 0 else 0\n    nz_nd = diffs_nd[diffs_nd != 0]\n    _, wp_nd = stats.wilcoxon(nz_nd) if len(nz_nd) > 0 else (None, 1.0)\n    \n    # Directional\n    pole_s, anti_s = [], []\n    for r in filtered:\n        so = float(r['score_original'])\n        sc = float(r['score_counterfactual'])\n        if r.get(orig_field) == pole:\n            pole_s.append(so)\n            anti_s.append(sc)\n        else:\n            pole_s.append(sc)\n            anti_s.append(so)\n    pa = np.array(pole_s)\n    aa = np.array(anti_s)\n    diffs_d = pa - aa\n    ate_d = np.mean(diffs_d)\n    ps_d = np.sqrt((np.var(pa,ddof=1)+np.var(aa,ddof=1))/2)\n    d_d = ate_d/ps_d if ps_d > 0 else 0\n    nz_d = diffs_d[diffs_d != 0]\n    _, wp_d = stats.wilcoxon(nz_d) if len(nz_d) > 0 else (None, 1.0)\n    \n    # Balance check\n    n_pole = sum(1 for r in filtered if r.get(orig_field) == pole)\n    n_anti = len(filtered) - n_pole\n    \n    print(f'{label}: n={len(filtered)}, balance={n_pole}/{n_anti}')\n    print(f'  Non-dir: d={d_nd:.4f}, p={wp_nd:.6f}')\n    print(f'  Dir:     d={d_d:.4f},  p={wp_d:.6f}')\n    print()\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "37e52d0b-9c91-4bcc-9ae8-39beadece890",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZUtcmUyhWSXNu5qkPf6HU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 111131,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3105
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-24T08:52:15.137Z_
+
+<details><summary>↩ Tool result · `toolu_01FvWa8Wx9pVquPa9fUzKx83`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LLMBar Form: n=88, balance=50/38\\n  Non-dir: d=0.0417, p=0.747592\\n  Dir:     d=-0.0209,  p=0.720662\\n\\nLLMBar Verb: n=86, balance=44/42\\n  Non-dir: d=0.0169, p=0.814640\\n  Dir:     d=-0.0395,  p=0.742744\\n\\nAEval Form: n=86, balance=68/18\\n  Non-dir: d=0.0811, p=0.089876\\n  Dir:     d=0.0811,  p=0.089876\\n\\nAEval Verb: n=82, balance=28/54\\n  Non-dir: d=-0.2430, p=0.004508\\n  Dir:     d=0.2981,  p=0.000441\\n\\nMTB Form: n=73, balance=62/11\\n  Non-dir: d=0.2451, p=0.000003\\n  Dir:     d=0.1987,  p=0.000158\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "bb501c20-162e-4d9c-9ce2-be129b5756d2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LLMBar Form: n=88, balance=50/38\\\\n  Non-dir: d=0.0417, p=0.747592\\\\n  Dir:     d=-0.0209,  p=0.720662\\\\n\\\\nLLMBar Verb: n=86, balance=44/42\\\\n  Non-dir: d=0.0169, p=0.814640\\\\n  Dir:     d=-0.0395,  p=0.742744\\\\n\\\\nAEval Form: n=86, balance=68/18\\\\n  Non-dir: d=0.0811, p=0.089876\\\\n  Dir:     d=0.0811,  p=0.089876\\\\n\\\\nAEval Verb: n=82, balance=28/54\\\\n  Non-dir: d=-0.2430, p=0.004508\\\\n  Dir:     d=0.2981,  p=0.000441\\\\n\\\\nMTB Form: n=73, balance=62/11\\\\n  Non-dir: d=0.2451, p=0.000003\\\\n  Dir:     d=0.1987,  p=0.000158\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"LLMBar Form: n=88, balance=50/38\\n  Non-dir: d=0.0417, p=0.747592\\n  Dir:     d=-0.0209,  p=0.720662\\n\\nLLMBar Verb: n=86, balance=44/42\\n  Non-dir: d=0.0169, p=0.814640\\n  Dir:     d=-0.0395,  p=0.742744\\n\\nAEval Form: n=86, balance=68/18\\n  Non-dir: d=0.0811, p=0.089876\\n  Dir:     d=0.0811,  p=0.089876\\n\\nAEval Verb: n=82, balance=28/54\\n  Non-dir: d=-0.2430, p=0.004508\\n  Dir:     d=0.2981,  p=0.000441\\n\\nMTB Form: n=73, balance=62/11\\n  Non-dir: d=0.2451, p=0.000003\\n  Dir:     d=0.1987,  p=0.000158\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 133_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now the picture is crystal clear. Let me compile Table 24's source analysis:
+
+| Row | Config | Paper d | Paper p | Non-dir d | Non-dir p | Dir d | Dir p | Paper matches |
+|-----|--------|---------|---------|-----------|-----------|-------|-------|---------------|
+| 1 | LLMBar Form | -.021 | .721 | 0.042 | 0.748 | -0.021 | 0.721 | **Directional ✓** |
+| 2 | LLMBar Verb | -.039 | .743 | 0.017 | 0.815 | -0.040 | 0.743 | **Directional ✓** |
+
+
+| 3 | AEval Form | .081 | .090 | 0.081 | 0.090 | 0.081 | 0.090 | **Both match** (balanced 68/18 but same d) |
+| 4 | AEval Verb | -.243 | .005 | -0.243 | 0.005 | 0.298 | 0.000 | **Non-directional** (balance 28/54) |
+| 5 | MTB Form | .245 |
+
+Continuing through the remaining rows...
+
+Wait, I need to reconsider the first couple rows. Row 1 actually shows directional matching with d=-0.021 and p=0.721, not non-directional. Row 2 is also directional with d=-0.040 matching the -.039 value. The AEval Form row is interesting because despite the skewed 68/18 balance, the directional and non-directional approaches yield identical effect sizes and p-values, which suggests the direction distribution aligns perfectly with the effect direction.
+
+Now I'm working through the math on why this happens. The scoring scheme uses original versus counterfactual naming, so for the 68 records labeled "formal," the original score is the formal score and the counterfactual is casual, while for the other 18 it's reversed. This means the non-directional mean should be scaled by the ratio (68-18)/86 compared to the directional mean, but they're coming out the same, which points to a perfect correlation between the imbalance direction and the effect direction.
+
+Looking at Table 24 specifically, rows 1-3 appear to use directional pooled d values, but rows 4 and 5 diverge—the paper reports non-directional d values that are opposite in sign from what the Claude script would produce with directional scoring, suggesting an internal inconsistency in how the table was constructed.
+
+Now I need to verify Table 23 as well, particularly row 5 where I calculated a directional d of 0.167 for the MTB × GPT-4o × Form comparison. So Row 5 is using Cohen's d_z (the ratio of mean difference to standard deviation of differences) rather than the pooled formula like the other rows, which explains why it gets 0.167 instead of 0.135. This suggests the paper applied different effect size formulas inconsistently across Table 23, and the 0.167 value must have come from a separate calculation outside the main script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "cc3fd14b-7627-4d53-8755-a759c465209a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HuCy973ipoPi5pd3irNTiT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3860,
+      "cache_read_input_tokens": 114236,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 134_
+
+审计数据收集完毕。以下是完整的 Table T1 (tab:cross_bench) 和 Table T2 (tab:claude_crossbench) 全行核查结果。
+
+---
+
+## 审计报告：Cross-Benchmark Tables 全行指标来源核查
+
+### Table 23 (`tab:cross_bench`) — 6 行
+
+| # | Bench | Judge | Axis | 论文 d | 论文 p | 实际来源 | 正确 d (pooled) | 正确 p | 问题 |
+|---|-------|-------|------|--------|--------|----------|----------------|--------|------|
+| 1 | AEval | GPT-4o | Form | .005 | .909 | **非定向** pooled d (orig−cf) | 0.005 | 0.900 | 方向约定与 R2/R3/R6 不同 |
+| 2 | AEval | Qwen3 | Form | .081 | .198 | **定向** pooled d (formal−casual) | 0.081 | 0.198 | ✓ 真 d |
+| 3 | AEval | Qwen3 | Verb | .375 | .0003 | **定向** pooled d (verbose−concise) | 0.375 | 0.0003 | ✓ 真 d |
+| **4** | **AEval** | **Llama-70B** | **Form** | **1.120** | **<.001** | **Cohen's h (arcsine fallback)** | **0.211** | **0.012** | ⚠️ **h 错标为 d，膨胀 5×** |
+| 5 | MTB | GPT-4o | Form | .167 | .016 | **定向 Cohen's d_z** (diffs-based SD) | 0.116 (pooled) | 0.016 | 公式与其他行不一致 |
+| 6 | MTB | Qwen3 | Form | .149 | .007 | **定向** pooled d (formal−casual) | 0.149 | 0.007 | ✓ 真 d |
+
+### Table 24 (`tab:claude_crossbench`) — 5 行
+
+| # | Bench | Axis | 论文 d | 论文 p | 实际来源 | 脚本输出 d | 问题 |
+|---|-------|------|--------|--------|----------|-----------|------|
+| 1 | LLMBar | Form | −.021 | .721 | 定向 pooled d | −0.021 | ✓ |
+| 2 | LLMBar | Verb | −.039 | .743 | 定向 pooled d | −0.040 | ✓ |
+| 3 | AEval | Form | .081 | .090 | 两种算法结果一致 | 0.081 | ✓ |
+| **4** | **AEval** | **Verb** | **−.243** | **.005** | **非定向** pooled d (orig−cf) | +0.298 (定向) | ⚠️ 与脚本不一致，符号翻转 |
+| **5** | **MTB** | **Form** | **.245** | **<.001** | **非定向** pooled d (orig−cf) | 0.199 (定向) | ⚠️ 与脚本不一致，数值偏大 |
+
+---
+
+### 关键问题
+
+**1. [严重] Row 4 of Table 23: Cohen's h 错标为 Cohen's d**
+
+`cross_benchmark_analysis.py` 中 AlpacaEval × Llama-70B × formality 配置的 `likert_file=None`，走了 `likert_from_pairwise()` fallback：
+```python
+h = 2 * arcsin(sqrt(win_rate)) - 2 * arcsin(sqrt(0.5))
+```
+输出的是 **Cohen's h**（arcsine 变换效应量），论文将其标注为 Likert d。
+
+- 论文值: d = 1.120（实为 h ≈ 1.160）
+- 现在有 `scored_alpacaeval_llama70b_formality.jsonl` (May 24)，含 `score_formal`/`score_casual` 真 Likert 评分
+- **真 Cohen's d = 0.211**（n=86, ATE=0.186, pooled SD=0.882, Wilcoxon p=0.012）
+- 分类标注不变（仍为 ‡），但效应量从"大"降为"小"
+
+**2. [中等] 表内 d 公式不一致**
+
+Table 23 中至少使用了 3 种不同的 d 定义：
+- Rows 2, 3, 6: 定向 pooled Cohen's d（formal−casual / pooled SD）
+- Row 1: 非定向 pooled d（orig−cf / pooled SD）
+- Row 5: 定向 Cohen's d_z（mean_diff / SD_diff），而非 pooled d
+- Row 4: Cohen's h（与 d 完全不同的度量）
+
+Table 24 中 Rows 1-3 使用定向 d，Rows 4-5 使用非定向 d，且 Row 4 符号翻转。
+
+**3. BT 计算一致性**: 所有行均使用全部 trials（含 inconsistent pairs），**策略统一**，无问题。
+
+### 建议修正
+
+1. **Row 4**: 将 d 从 1.120 修正为 0.211 (p=0.012)，或在表中明确标注该行使用 Cohen's h
+2. **统一 d 公式**: 全表使用定向 pooled Cohen's d（formal−casual 或 verbose−concise / pooled SD）
+3. **Row 5**: 从 d_z=.167 改为 pooled d=.116，与其他行保持一致
+4. **Table 24 Rows 4-5**: 使用脚本输出的定向 d（+0.298 和 0.199），或统一使用非定向并在表注说明
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "uuid": "da8743fb-c6a8-4fd1-b672-b7530580bc4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HuCy973ipoPi5pd3irNTiT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3860,
+      "cache_read_input_tokens": 114236,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 135_
+
+审计数据收集完毕。以下是完整的 Table T1 (tab:cross_bench) 和 Table T2 (tab:claude_crossbench) 全行核查结果。
+
+---
+
+## 审计报告：Cross-Benchmark Tables 全行指标来源核查
+
+### Table 23 (`tab:cross_bench`) — 6 行
+
+| # | Bench | Judge | Axis | 论文 d | 论文 p | 实际来源 | 正确 d (pooled) | 正确 p | 问题 |
+|---|-------|-------|------|--------|--------|----------|----------------|--------|------|
+| 1 | AEval | GPT-4o | Form | .005 | .909 | **非定向** pooled d (orig−cf) | 0.005 | 0.900 | 方向约定与 R2/R3/R6 不同 |
+| 2 | AEval | Qwen3 | Form | .081 | .198 | **定向** pooled d (formal−casual) | 0.081 | 0.198 | ✓ 真 d |
+| 3 | AEval | Qwen3 | Verb | .375 | .0003 | **定向** pooled d (verbose−concise) | 0.375 | 0.0003 | ✓ 真 d |
+| **4** | **AEval** | **Llama-70B** | **Form** | **1.120** | **<.001** | **Cohen's h (arcsine fallback)** | **0.211** | **0.012** | ⚠️ **h 错标为 d，膨胀 5×** |
+| 5 | MTB | GPT-4o | Form | .167 | .016 | **定向 Cohen's d_z** (diffs-based SD) | 0.116 (pooled) | 0.016 | 公式与其他行不一致 |
+| 6 | MTB | Qwen3 | Form | .149 | .007 | **定向** pooled d (formal−casual) | 0.149 | 0.007 | ✓ 真 d |
+
+### Table 24 (`tab:claude_crossbench`) — 5 行
+
+| # | Bench | Axis | 论文 d | 论文 p | 实际来源 | 脚本输出 d | 问题 |
+|---|-------|------|--------|--------|----------|-----------|------|
+| 1 | LLMBar | Form | −.021 | .721 | 定向 pooled d | −0.021 | ✓ |
+| 2 | LLMBar | Verb | −.039 | .743 | 定向 pooled d | −0.040 | ✓ |
+| 3 | AEval | Form | .081 | .090 | 两种算法结果一致 | 0.081 | ✓ |
+| **4** | **AEval** | **Verb** | **−.243** | **.005** | **非定向** pooled d (orig−cf) | +0.298 (定向) | ⚠️ 与脚本不一致，符号翻转 |
+| **5** | **MTB** | **Form** | **.245** | **<.001** | **非定向** pooled d (orig−cf) | 0.199 (定向) | ⚠️ 与脚本不一致，数值偏大 |
+
+---
+
+### 关键问题
+
+**1. [严重] Row 4 of Table 23: Cohen's h 错标为 Cohen's d**
+
+`cross_benchmark_analysis.py` 中 AlpacaEval × Llama-70B × formality 配置的 `likert_file=None`，走了 `likert_from_pairwise()` fallback：
+```python
+h = 2 * arcsin(sqrt(win_rate)) - 2 * arcsin(sqrt(0.5))
+```
+输出的是 **Cohen's h**（arcsine 变换效应量），论文将其标注为 Likert d。
+
+- 论文值: d = 1.120（实为 h ≈ 1.160）
+- 现在有 `scored_alpacaeval_llama70b_formality.jsonl` (May 24)，含 `score_formal`/`score_casual` 真 Likert 评分
+- **真 Cohen's d = 0.211**（n=86, ATE=0.186, pooled SD=0.882, Wilcoxon p=0.012）
+- 分类标注不变（仍为 ‡），但效应量从"大"降为"小"
+
+**2. [中等] 表内 d 公式不一致**
+
+Table 23 中至少使用了 3 种不同的 d 定义：
+- Rows 2, 3, 6: 定向 pooled Cohen's d（formal−casual / pooled SD）
+- Row 1: 非定向 pooled d（orig−cf / pooled SD）
+- Row 5: 定向 Cohen's d_z（mean_diff / SD_diff），而非 pooled d
+- Row 4: Cohen's h（与 d 完全不同的度量）
+
+Table 24 中 Rows 1-3 使用定向 d，Rows 4-5 使用非定向 d，且 Row 4 符号翻转。
+
+**3. BT 计算一致性**: 所有行均使用全部 trials（含 inconsistent pairs），**策略统一**，无问题。
+
+### 建议修正
+
+1. **Row 4**: 将 d 从 1.120 修正为 0.211 (p=0.012)，或在表中明确标注该行使用 Cohen's h
+2. **统一 d 公式**: 全表使用定向 pooled Cohen's d（formal−casual 或 verbose−concise / pooled SD）
+3. **Row 5**: 从 d_z=.167 改为 pooled d=.116，与其他行保持一致
+4. **Table 24 Rows 4-5**: 使用脚本输出的定向 d（+0.298 和 0.199），或统一使用非定向并在表注说明
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 828439,
+  "duration_api_ms": 784770,
+  "num_turns": 45,
+  "stop_reason": "end_turn",
+  "session_id": "3cf03ed3-4e6a-41b4-a3c5-533bf9f65439",
+  "total_cost_usd": 2.5273577499999997,
+  "usage": {
+    "input_tokens": 28,
+    "cache_creation_input_tokens": 106255,
+    "cache_read_input_tokens": 1701330,
+    "output_tokens": 40407,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 106255,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 3364,
+        "cache_read_input_tokens": 114236,
+        "cache_creation_input_tokens": 3860,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3860
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2154,
+      "outputTokens": 26,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002284,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 28,
+      "outputTokens": 40407,
+      "cacheReadInputTokens": 1701330,
+      "cacheCreationInputTokens": 106255,
+      "webSearchRequests": 0,
+      "costUSD": 2.52507375,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8227743d-447b-46d6-b518-09b9ce71b315"
+}
+```
+
+</details>
+
+---

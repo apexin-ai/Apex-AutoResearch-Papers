@@ -1,0 +1,3839 @@
+# paper d048 text modifications
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 119
+- **Recorded user turns:** 0
+- **Tool calls:** 59
+- **Original source:** `logs/chats/worker_paper_d048_text_modifications_20260516T143117.jsonl`
+- **Structured JSON:** [`272b2248aacb3b8e74e0.json`](../../sessions/27/272b2248aacb3b8e74e0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+119 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T14:40:46.363329+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Explore paper .tex files",
+  "subagent_type": "Explore",
+  "prompt": "List all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ and search for:\n1. All occurrences of \"31.2\" or \"31\\.2\" — show file, line number, and surrounding context (5 lines)\n2. All occurrences of \"two-channel model\" or \"two-channel degradation model\" — show file, line number, context\n3. All occurrences of \"first\" that might be claiming priority (like \"first controlled\", \"first to show\", \"first study\") — show file, line number, context\n4. All occurrences of \"seed\" — show file, line number, context\n5. All occurrences of \"bootstrap\" — show file, line number, context\n6. All occurrences of \"internal project designation\" — show file, line number, context\n7. The contribution list in introduction.tex — show the full contribution section\n\nSearch breadth: very thorough"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Explore paper .tex files",
+    "subagent_type": "Explore",
+    "prompt": "List all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ and search for:\n1. All occurrences of \"31.2\" or \"31\\.2\" — show file, line number, and surrounding context (5 lines)\n2. All occurrences of \"two-channel model\" or \"two-channel degradation model\" — show file, line number, context\n3. All occurrences of \"first\" that might be claiming priority (like \"first controlled\", \"first to show\", \"first study\") — show file, line number, context\n4. All occurrences of \"seed\" — show file, line number, context\n5. All occurrences of \"bootstrap\" — show file, line number, context\n6. All occurrences of \"internal project designation\" — show file, line number, context\n7. The contribution list in introduction.tex — show the full contribution section\n\nSearch breadth: very thorough"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T14:40:46.364007+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T14:40:46.364242+00:00_
+
+docs/paper/conclusion.tex
+docs/paper/prompt_appendix.tex
+docs/paper/related_work.tex
+docs/paper/abstract.tex
+docs/paper/checklist.tex
+docs/paper/experimental_setup.tex
+docs/paper/main.tex
+docs/paper/introduction.tex
+docs/paper/discussion.tex
+docs/paper/results.tex
+docs/paper/sdgd_negative.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T14:40:46.364414+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/**/*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/**/*.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T14:40:46.364548+00:00_
+
+docs/paper/conclusion.tex
+docs/paper/prompt_appendix.tex
+docs/paper/related_work.tex
+docs/paper/abstract.tex
+docs/paper/checklist.tex
+docs/paper/experimental_setup.tex
+docs/paper/main.tex
+docs/paper/introduction.tex
+docs/paper/discussion.tex
+docs/paper/results.tex
+docs/paper/sdgd_negative.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T14:40:46.364677+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "31[.]2|31\\.2",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "output_mode": "content",
+  "context": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "31[.]2|31\\.2",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "output_mode": "content",
+    "context": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T14:40:46.364854+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-86-\toprule
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-87-& \multicolumn{3}{c}{\textbf{Llama-3.1-8B}} & \multicolumn{3}{c}{\textbf{Qwen3-32B}} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-88-\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-89-\textbf{Count} & \textbf{Low} & \textbf{High} & \textbf{$\Delta$} & \textbf{Low} & \textbf{High} & \textbf{$\Delta$} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-90-\midrule
+docs/paper/main.tex:91:8 & 78.1\% & 51.0\% & $-$27.1 & 82.3\% & 51.0\% & $-$31.2 \\
+docs/paper/main.tex:92:16 & 75.5\% & 51.6\% & $-$23.9 & 82.8\% & 51.6\% & $-$31.2 \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-93-\bottomrule
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-94-\end{tabular}}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-95-\caption{Cross-model BCS-controlled FewRel accuracy.  High-BCS accuracy converges to $\approx$51\% regardless of model, while low-BCS accuracy reflects model capacity differences.  The confusability gap ($\Delta$, in pp) is 77--87\% as large on Llama-3.1-8B as on Qwen3-32B.}
+docs/paper/main.tex-96-\label{tab:cross_model_bcs}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-97-\end{table}
+--
+docs/paper/main.tex-212-\label{sec:appendix_prompt_sensitivity}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-213-
+docs/paper/main.tex-214-We assess whether the confusability effects reported in \S\ref{sec:bcs_control
+…[truncated 13704 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T14:40:46.365027+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "two-channel (model|degradation model)",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "output_mode": "content",
+  "context": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "two-channel (model|degradation model)",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "output_mode": "content",
+    "context": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T14:40:46.365170+00:00_
+
+docs/paper/discussion.tex-2-\label{sec:discussion}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex-3-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex-4-\paragraph{Boundary conditions.}
+docs/paper/discussion.tex:5:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex-6-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex-7-\paragraph{Why does embedding similarity predict LLM confusion?}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex-8-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex-9-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex-10-\paragraph{Schema design implications.}
+docs/paper/discussion.tex:11:Our findings suggest a pre-hoc workflow for practitioners designing extraction schemas. Before deployment, one can compute all-pairs SCS across the type inventory and flag pairs exceeding a high percentile (e.g., 75th) of the corpus's SCS distribution as high-risk for mutual confusion. Three mitigation strategies follow from the two-channel model:
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex-12-(i)~\emph{Expand definitions}---for high-SCS pairs, include contrastive definitions or disambiguating examples in the prompt to increase representational separation;
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex-13-(ii)~\emph{Rename types}---replace semantically proximate labels with more descriptive alternatives (e.g., ``person-artist'' $\to$ ``visual artist (painter/sculptor)'') to reduce embedding overlap;
+docs/
+…[truncated 258 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T14:40:46.365320+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "first (controlled|to show|study|method|approach|work|technique|framework|system)",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "output_mode": "content",
+  "context": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "first (controlled|to show|study|method|approach|work|technique|framework|system)",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "output_mode": "content",
+    "context": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T14:40:46.365454+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex-1-\begin{abstract}
+docs/paper/abstract.tex:2:Training-free LLM information extraction degrades as schema complexity grows. We conduct the first controlled study isolating type confusability from type count across NER, RE (a closed-set classification task), and event detection on four datasets, introducing the Schema Confusability Score (SCS) and two paradigms: count curves varying schema size while randomizing confusability, and BCS-controlled experiments fixing size while varying confusability.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex-3-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex-4-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex-5-\end{abstract}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex-7-
+docs/paper/introduction.tex-8-We ask three questions. \textbf{RQ1}: Does type confusability independently predict extraction degradation beyond the effect of type count? \textbf{RQ2}: Through what mechanisms do count and confusability each degrade performance? \textbf{RQ3}: Can confusability-aware schema decomposition improve extraction quality?
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex-9-
+docs/paper/introduction.tex:10:We conduct the first controlled study isolating type confusability from type count across NER, RE, and event detection (ED). We operationalize confusability via the \emph{Schema Confusability Score} (SCS)---pairwise embedding cosine similarity---and its batch-level aggregation, the \emph{Batch Confusability Score} (BCS). We evaluate on Few-NERD \cite{fewnerd-2021}, FewRel \cite{fewrel-2018}, DocRED \cite{docred-2019}, and MAV
+…[truncated 433 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T14:40:46.365599+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "seed",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "output_mode": "content",
+  "context": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "seed",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "output_mode": "content",
+    "context": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T14:40:46.365738+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex-64-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex-65-\item \textbf{Did you discuss the experimental setup, including hyperparameter search and best-found values?}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex-66-
+docs/paper/checklist.tex:67:Yes. \S\ref{sec:exp_design} describes both experimental paradigms (count curves and BCS-controlled). \S\ref{sec:model} reports decoding parameters (greedy, temperature${}=0$, seed${}=42$) and prompt versions. No hyperparameter search was conducted as this is a zero-shot evaluation study.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex-68-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex-69-\item \textbf{Did you report descriptive statistics about your results?}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex-70-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex-11-This appendix reproduces the complete prompt templates used for all three extraction tasks.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex-12-All prompts are injected into a single \texttt{user} message (no system prompt); the model's chat template adds the system/assistant framing.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex-13-Both versions provide a JSON-formatted type schema to the vLLM constrained-decoding engine; the schema is \emph{not} included in the natural-language prompt itself.
+docs/paper/prompt_appendix.tex:14:We use greedy decoding (\texttt{temperature=0}, \texttt{seed=42}) thro
+…[truncated 4995 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T14:40:46.365929+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "bootstrap",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "output_mode": "content",
+  "context": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "bootstrap",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "output_mode": "content",
+    "context": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T14:40:46.366102+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-79-\subsection{Model and Inference}
+docs/paper/experimental_setup.tex-80-\label{sec:model}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-81-
+docs/paper/experimental_setup.tex:82:[Omitted long matching line]
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-264-80-rel & 16 & 82.8\% & 51.6\% & $-$31.2 & {[}22.9, 39.6{]} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-265-\bottomrule
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-266-\end{tabular}}
+docs/paper/main.tex:267:\caption{BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar types; high-BCS batches contain maximally similar types. The 80-relation extreme-batch gap (31.2\,pp) reflects the wider BCS range; regression slopes are consistent across pools ($p = 0.60$; Table~\ref{tab:within_pool}; see \S\ref{sec:practical_magnitude} for typical-batch magnitudes). The 16-relation condition used a single extreme batch per BCS level; bootstrap CIs require multiple batches.}
+docs/paper/main.tex-268-\label{tab:bcs_controlled}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-269-\end{table}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-270-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-291-\multicolumn{7}{l}{\footnotesize $^\dagger$BCS range (IQR\,=\,0.033) insufficient for regression; slope not interpretable.} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-292-\bottomrule
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extractio
+…[truncated 7494 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T14:40:46.366248+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "internal project designation",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "output_mode": "content",
+  "context": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "internal project designation",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "output_mode": "content",
+    "context": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T14:40:46.366366+00:00_
+
+docs/paper/sdgd_negative.tex-1-\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}
+docs/paper/sdgd_negative.tex-2-\label{sec:sdgd}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex-3-
+docs/paper/sdgd_negative.tex:4:A natural intervention against confusability-driven degradation is to partition the schema so that confusable types never co-occur in the same prompt. We test this idea with \textbf{Schema-DAG-Guided Decomposition} (SDGD\footnote{SDGD (Schema Decomposition and Grouping for Degradation mitigation) is an internal project designation; the graph structure is undirected.}), which uses greedy graph coloring on the pairwise SCS graph to assign types to low-confusability batches.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex-5-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex-6-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex-7-
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T14:40:46.366499+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T14:40:46.366629+00:00_
+
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	Training-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\% relative decline. On relation extraction, accuracy falls from 85.7\% with one relation to 50.4\% with 80 relations (sentence-level) and from 88.0\% to 38.7\% with 96 relations (document-level)---near or exceeding halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.
+5	
+6	What causes this degradation? Prior decomposition strategies \cite{uniner-2024,llm-pee-2025,parse-2025} conflate two mechanisms: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). None isolates which factor predicts the gains (\S\ref{sec:related_work}).
+7	
+8	We ask three questions. \textbf{RQ1}: Does type confusability independently predict extraction degradation beyond the effect of type count? \textbf{RQ2}: Through what mechanisms do count and confusability each degrade performance? \textbf{RQ3}: Can confusability-aware schema decomposition improve extraction quality?
+9	
+10	We conduct the first controlled study isolating type confusability from type count across NER, RE, and event detection (ED). We operationalize confusability via the \emph{Schema Confusability Score} (SCS)---pairwis
+…[truncated 2442 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T14:40:46.366770+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "offset": "75",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "offset": "75",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T14:40:46.366911+00:00_
+
+75	
+76	\textbf{NER}: text-match F1---a prediction is correct if the text string matches (case-insensitive) a gold entity \emph{and} the type matches. \textbf{RE}: accuracy---exact match of predicted relation label to gold. \textbf{ED}: relaxed F1---any token overlap between predicted and gold trigger spans, with correct event type.
+77	
+78	
+79	\subsection{Model and Inference}
+80	\label{sec:model}
+81	
+82	We use Qwen3-32B-FP8 \cite{qwen3-2025} served via vLLM v0.20.2 \cite{vllm-2023} on a single 96\,GB GPU with greedy decoding (temperature${}\,=\,0$, seed 42). Two NER/ED prompt versions are evaluated: v1 requests character offsets (evaluated via text matching); v2 adds format constraints, doubling precision with minimal recall loss. RE uses a single prompt version throughout. Both versions produce consistent degradation patterns; we report both where applicable to quantify formatting sensitivity \cite{sclar-sensitivity-2024} (templates in Appendix~\ref{sec:appendix_prompts}). Cross-model validation uses Meta-Llama-3.1-8B-Instruct \cite{llama3-2024}. All metrics include 95\% bootstrap CIs ($B{=}1{,}000$).
+83	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T14:40:46.367134+00:00_
+
+Perfect! Now let me compile all the findings in a comprehensive report.
+
+## Summary of Search Results
+
+Based on a very thorough search of all .tex files in `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/`, here are my findings:
+
+### 1. All Occurrences of "31.2" or "31\.2"
+
+Found in 5 locations across 4 files:
+
+**main.tex (lines 91-92, 263-264, 267):**
+- Line 91: `8 & 78.1\% & 51.0\% & $-$27.1 & 82.3\% & 51.0\% & $-$31.2 \\`
+- Line 92: `16 & 75.5\% & 51.6\% & $-$23.9 & 82.8\% & 51.6\% & $-$31.2 \\`
+- Line 263: `80-rel & 8 & 82.3\% & 51.0\% & $-$31.2 & {[}17.7, 42.7{]} \\`
+- Line 264: `80-rel & 16 & 82.8\% & 51.6\% & $-$31.2 & {[}22.9, 39.6{]} \\`
+- Line 267: Caption text: "The 80-relation extreme-batch gap (31.2\,pp) reflects the wider BCS range; regression slopes are consistent across pools ($p = 0.60$; Table~\ref{tab:within_pool}; see \S\ref{sec:practical_magnitude} for typical-batch magnitudes). The 16-relation condition used a single extreme batch per BCS level; bootstrap CIs require multiple batches."
+
+**results.tex (lines 49, 63, 73):**
+- Line 49: "Although pairwise $r^2$ is modest, the signal compounds at the batch level into quartile gaps of 3.9--5.3\,pp under typical batching, reaching 31.2\,pp under extreme-batch construction"
+- Line 63: "The 80-relation extreme-batch gap (31.2\,pp) reflects wider BCS range, not stronger per-unit sensitivity."
+- Line 73: "Under the v2 prompt, the extreme-batch BCS gap is $-$25.5\,pp (low-BCS 85.2\% vs.\ high-BCS 59.7\%; $n{=}25$; $r = -0.919$; $p < 0.001$)---modestly attenuated from v1's $-$31.2\,pp but highly significant."
+
+### 2. All Occurrences of "Two-Channel Model" or "Two-Channel Degradation Model"
+
+Found in 2 locations:
+
+**introduction.tex (line 16):**
+- "\textbf{Two-channel degradation model.} Type count and confusability separately predict extraction quality: count scaling degrades performance on cross-domain schemas (NER, RE; up to $-49$\,pp), while same-domain schemas 
+…[truncated 4111 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Agent",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T14:40:46.367338+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T14:40:46.367528+00:00_
+
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	Unless otherwise noted, all experiments in this section use the v1 prompt (\S\ref{sec:model}; full templates in Appendix~\ref{sec:appendix_prompts}).
+5	
+6	\subsection{Count-Degradation Curves}
+7	\label{sec:count_curves}
+8	
+9	\begin{figure}[t]
+10	\centering
+11	\begin{minipage}[t]{0.48\columnwidth}
+12	\centering
+13	\includegraphics[width=\linewidth]{../../figures/paper/fig_count_curves.pdf}
+14	\end{minipage}
+15	\hfill
+16	\begin{minipage}[t]{0.48\columnwidth}
+17	\centering
+18	\includegraphics[width=\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}
+19	\end{minipage}
+20	\caption{\textbf{(a)} Count-degradation curves across four datasets. NER recall generally declines and RE accuracy (both FewRel and DocRED) declines monotonically with schema size; MAVEN relaxed F1 increases (\S\ref{sec:centrality_confound}). \textbf{(b)} BCS-controlled FewRel accuracy. The BCS--accuracy slope is consistent across the independent 16-relation pool and within-pool 16-relation subsets (permutation $p = 0.60$); the wider BCS range available at 80 relations produces larger absolute gaps.}
+21	\label{fig:main_results}
+22	\end{figure}
+23	
+24	Figure~\ref{fig:main_results}a shows extraction quality degrades monotonically with schema size across three datasets: Few-NERD recall drops from 0.72 to 0.42 ($-$42\%), FewRel accuracy from 85.7\% to 50.4\% ($-$35.3\,pp), and DocRED from 88.0\% to 38.7\% ($-$56\%). MAVEN exhibits a reversed trend attributable to centrality confounding (\S\ref{sec:centrality_confound}). The effect replicates on Llama-3.1-8B-Instruct ($-$43\,pp on Few-NERD; per-batch $r = 0.725$; Table~\ref{tab:cross_model}), indicating schema configuration rather than model-specific factors predicts difficulty.
+25	
+26	\subsection{Pairwise Confusability and Type Confusion}
+27	\label{sec:pairwise}
+28	
+29	We test whether pairwise SCS predicts type-level confusion rates. For each type pair $(t_i, t_j)$, we compute the confusion rate---the fraction
+…[truncated 8556 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T14:40:46.367680+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T14:40:46.367859+00:00_
+
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	Training-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\% relative decline. On relation extraction, accuracy falls from 85.7\% with one relation to 50.4\% with 80 relations (sentence-level) and from 88.0\% to 38.7\% with 96 relations (document-level)---near or exceeding halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.
+5	
+6	What causes this degradation? Prior decomposition strategies \cite{uniner-2024,llm-pee-2025,parse-2025} conflate two mechanisms: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). None isolates which factor predicts the gains (\S\ref{sec:related_work}).
+7	
+8	We ask three questions. \textbf{RQ1}: Does type confusability independently predict extraction degradation beyond the effect of type count? \textbf{RQ2}: Through what mechanisms do count and confusability each degrade performance? \textbf{RQ3}: Can confusability-aware schema decomposition improve extraction quality?
+9	
+10	We conduct the first controlled study isolating type confusability from type count across NER, RE, and event detection (ED). We operationalize confusability via the \emph{Schema Confusability Score} (SCS)---pairwis
+…[truncated 2442 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T14:40:46.368090+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T14:40:46.368256+00:00_
+
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\paragraph{Boundary conditions.}
+5	The two-channel model applies to cross-domain schemas; same-domain schemas (e.g., MAVEN's FrameNet-derived event types) exhibit centrality confounding that obscures per-type aggregated signals, requiring pairwise SCS or centrality adjustment (\S\ref{sec:centrality_confound}). High-BCS accuracy converges to $\approx$51\% across tested models, suggesting a task-inherent difficulty ceiling. RE's clean channel separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\,pp vs.\ v1: $-$31.2\,pp; Appendix~\ref{sec:appendix_prompt_sensitivity}).
+6	
+7	\paragraph{Why does embedding similarity predict LLM confusion?}
+8	Type name embeddings capture semantic proximity in the same representational space that LLMs use for in-context type resolution. When two type names are close in embedding space, we hypothesize that the model's attention mechanism may produce overlapping key--query representations for those types, increasing the probability of substitution errors. This mechanistic link explains why a simple cosine similarity metric predicts extraction failures: high SCS directly indexes the degree of representational overlap that causes confusion during decoding. Critically, the pair-level effect is modest ($R^2 \approx 7\%$ over non-zero confusion pairs) because individual substitution events are stochastic and influenced by many factors beyond type similarity. However, pairs sharing a common type exhibit correlated SCS values ($\rho = 0.35$), so when multiple high-SCS pairs co-occur in a batch, their effects aggregate constructively: noise averages out while the confusability signal is preserved. Monte Carlo simulation confirms that this inter-pair correlation produces an effective amplification of ${\sim}3\times$, yielding batch-level $R^2 \approx 22\%$ f
+…[truncated 3252 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T14:40:46.368397+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T14:40:46.368524+00:00_
+
+1	\begin{abstract}
+2	Training-free LLM information extraction degrades as schema complexity grows. We conduct the first controlled study isolating type confusability from type count across NER, RE (a closed-set classification task), and event detection on four datasets, introducing the Schema Confusability Score (SCS) and two paradigms: count curves varying schema size while randomizing confusability, and BCS-controlled experiments fixing size while varying confusability.
+3	
+4	We identify two empirically separable degradation channels: count-driven recall decline and confusability-driven type substitution. For RE, the quartile BCS gap is $-$5.3\,pp (95\% CI: [$-$7.4, $-$3.2]); typical random batches differ by ${\approx}\,2.2$\,pp. Under extreme-batch construction (a methodological upper-bound), the gap reaches 31.2\,pp. Batch-level BCS explains $R^2 = 0.22\text{--}0.53$ of accuracy variance as an aggregated signal, while pairwise effect sizes remain modest ($r^2 = 1.3\text{--}1.7\%$). The effect is directionally consistent across prompt designs, with attenuated magnitude under improved prompts. Channel~1 replicates fully on Llama-3.1-8B; Channel~2 replicates on RE but shows floor effects on 8B NER. Count increases generally suppress extraction on cross-domain schemas; MAVEN's same-domain schema exhibits centrality confounding that reverses this trend. Schema decomposition via oracle routing recovers count-based degradation for RE (+29.8\,pp over single-pass), but confusability-aware grouping yields no significant additional gain (+1.4\,pp, $p\approx 0.19$).
+5	\end{abstract}
+6	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T14:40:46.368658+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T14:40:46.368830+00:00_
+
+1	\section{Experimental Setup}
+2	\label{sec:experimental_setup}
+3	
+4	We evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks and four datasets: named entity recognition (NER), sentence-level relation extraction (RE), document-level RE, and event detection (ED).
+5	
+6	\subsection{Tasks and Datasets}
+7	\label{sec:datasets}
+8	
+9	\paragraph{Few-NERD (NER).}
+10	Few-NERD \cite{fewnerd-2021} provides 66 fine-grained entity types organized into 8 coarse categories (person, location, organization, building, art, product, event, other). The dataset spans diverse domains, making it suitable for cross-domain evaluation. We sample 1{,}000 test instances and evaluate with token-level text matching.
+11	
+12	\paragraph{FewRel (RE).}
+13	FewRel \cite{fewrel-2018} contains 80 relation types sourced from Wikidata. Since the validation split covers only 16 relations, we combine the training and validation splits to obtain the full 80-relation pool required for schema-scale experiments, and sample 1{,}000 balanced instances (12--13 per relation type, stratified to ensure equal representation). Each instance provides a sentence with marked head and tail entities; the task is to classify the relation.
+14	
+15	\paragraph{DocRED (Document-level RE).}
+16	DocRED \cite{docred-2019} contains 96 relation types sourced from Wikidata, evaluated at the document level where entity pairs may span multiple sentences. We sample 1{,}000 instances balanced across 96 relation types ($\sim$10 per type) from the DocRED development set and formulate the task identically to FewRel: given a document with marked head and tail entities, classify the relation. DocRED extends the RE evaluation to a larger schema (96 vs.\ 80 types) and document-level context, testing whether confusability effects persist under longer input contexts and cross-sentence reasoning.
+17	
+18	\paragraph{MAVEN (ED).}
+19	MAVEN \cite{maven-2020} defines 168 event ty
+…[truncated 6514 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T14:40:46.368998+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T14:40:46.369119+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T14:40:46.369391+00:00_
+
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\usepackage{booktabs}
+12	\usepackage{amsmath}
+13	\usepackage{enumitem}
+14	\usepackage[normalem]{ulem}
+15	\usepackage{listings}
+16	
+17	\title{Does Type Confusability Shape Schema-Induced Degradation\\in Training-Free LLM Information Extraction?}
+18	
+19	\author{Anonymous}
+20	
+21	\begin{document}
+22	\maketitle
+23	
+24	\input{abstract}
+25	
+26	\input{introduction}
+27	
+28	\input{related_work}
+29	
+30	\input{experimental_setup}
+31	
+32	\input{results}
+33	
+34	\input{sdgd_negative}
+35	
+36	\input{discussion}
+37	
+38	\section*{Limitations}
+39	\begin{enumerate}[leftmargin=*,itemsep=2pt]
+40	\item \textbf{Model coverage.} Primary experiments use Qwen3-32B with cross-model validation on Llama-3.1-8B-Instruct. Whether patterns hold for proprietary models (GPT-4, Gemini) remains unverified. Channel~2 was not robustly detectable on NER at 8B scale, likely due to floor effects.
+41	
+42	\item \textbf{Modest pairwise effect size.} Pairwise SCS explains 1.3--1.7\% of type confusion variance; entity frequency, prompt position, mention ambiguity, and type definition quality likely account for the remainder.
+43	
+44	\item \textbf{Non-significant factorial test.} Within-dataset count $\times$ BCS interaction on Few-NERD did not reach significance (Appendix~\ref{sec:appendix_factorial}); cross-pool slope consistency suggests confusability sensitivity is stable rather than amplifying.
+45	
+46	\item \textbf{Decomposition and metric scope.} RE batch composition is tested on FewRel only; NER merge alternatives remain unexplored. SCS relies on embedding cosine similarity; label entropy or ontological depth may capture complementary dimensions.
+47	
+48	\item \textbf{RE format specificity.} RE's clean channel separation may reflect its closed-set classification format. FewRel combines traini
+…[truncated 24429 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T14:40:46.369581+00:00_
+
+1	\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}
+2	\label{sec:sdgd}
+3	
+4	A natural intervention against confusability-driven degradation is to partition the schema so that confusable types never co-occur in the same prompt. We test this idea with \textbf{Schema-DAG-Guided Decomposition} (SDGD\footnote{SDGD (Schema Decomposition and Grouping for Degradation mitigation) is an internal project designation; the graph structure is undirected.}), which uses greedy graph coloring on the pairwise SCS graph to assign types to low-confusability batches.
+5	
+6	We construct a thresholded confusability graph $G = (V, E)$ where each type is a vertex and an edge connects types $t_i, t_j$ whenever $\text{SCS}(t_i, t_j) > \tau$. Greedy graph coloring (\textsc{largest\_first}) assigns each type to a color such that no two adjacent---i.e., highly confusable---types share a batch. Each color class forms one extraction batch. For NER, predictions from all batches are merged via set union; for RE, each instance is routed to the batch containing its gold type (oracle routing). We test four NER modes: (i)~\textbf{single\_pass}, the undecomposed baseline; (ii)~\textbf{sdgd\_zero}, SCS-guided partitioning; (iii)~\textbf{random\_batch}, random partitioning with matched batch sizes; and (iv)~\textbf{per\_type}, each type extracted in isolation. Every mode falls below the single-pass NER baseline: SDGD obtains F1\,=\,0.251, random batching 0.320, per-type 0.292, versus 0.445 for single-pass (Table~\ref{tab:sdgd_results}, Appendix~\ref{sec:appendix_sdgd}).
+7	
+8	\paragraph{Merge amplification in NER.}
+9	The core failure mechanism is \emph{merge amplification}: presenting the same text to the model $k$ times with different type subsets causes each pass to independently generate entity predictions, and union merge accumulates all of them into a single output. Each pass produces an independent set of span predictions; because LLM outputs are not calibrated across passes \cite{llm-
+…[truncated 4314 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T14:40:46.369729+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T14:40:46.369910+00:00_
+
+1	\section*{Responsible NLP Research Checklist}
+2	
+3	For each question, the answer is \textbf{Yes}, \textbf{No}, or \textbf{N/A}. If Yes, the relevant section is indicated. If No, a justification is provided.
+4	
+5	\subsection*{A \quad For Every Submission}
+6	
+7	\begin{enumerate}[label=\textbf{A\arabic*.},leftmargin=*,itemsep=4pt]
+8	
+9	\item \textbf{Did you describe the limitations of your work?}
+10	
+11	Yes. The Limitations section (after \S\ref{sec:conclusion}) discusses single-model reliance, modest pairwise effect sizes, cross-pool slope consistency, non-significant factorial results, decomposition scope, and metric scope.
+12	
+13	\item \textbf{Did you discuss any potential risks of your work?}
+14	
+15	N/A. This is a purely analytical study of schema-induced degradation in existing LLM IE systems. It does not introduce new models, datasets, or deployment-facing artifacts. The findings characterize failure modes and are intended to inform safer schema design.
+16	
+17	\item \textbf{Do the abstract and introduction summarize the paper's main claims?}
+18	
+19	Yes. The abstract and \S\ref{sec:introduction} state the two-channel degradation pattern (count and confusability), the cross-model consistency check, and the negative SDGD result.
+20	
+21	\item \textbf{Did you use AI assistants (e.g., ChatGPT, Copilot) when working on this paper?}
+22	
+23	Yes. An AI coding assistant was used for experiment scripting and LaTeX formatting. All scientific claims, experimental design, and analysis were conducted by the authors.
+24	
+25	\end{enumerate}
+26	
+27	\subsection*{B \quad Scientific Artifacts}
+28	
+29	\begin{enumerate}[label=\textbf{B\arabic*.},leftmargin=*,itemsep=4pt]
+30	
+31	\item \textbf{Did you cite the creators of artifacts you used?}
+32	
+33	Yes. Few-NERD \cite{fewnerd-2021}, FewRel \cite{fewrel-2018}, MAVEN \cite{maven-2020}, Qwen3-32B \cite{qwen3-2025}, Meta-Llama-3.1-8B-Instruct, vLLM \cite{vllm-2023}, and all-MiniLM-L6-v2 \cite{minilm-2020} are cited in \S\ref{sec:datasets} 
+…[truncated 4372 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T14:40:46.370230+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T14:40:46.370368+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T14:40:46.370512+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'B1: 31.2pp削减 (5处替换)', 'status': 'in_progress', 'activeForm': 'Replacing 31.2pp references'}, {'content': 'B2: Contribution #1 重写 + two-channel model→decomposition', 'status': 'pending', 'activeForm': 'Rewriting contribution #1 and replacing terminology'}, {'content': 'B3: first controlled study 限定', 'status': 'pending', 'activeForm': \"Qualifying 'first' claims\"}, {'content': 'B4: Few-NERD pairwise coverage', 'status': 'pending', 'activeForm': 'Adding pairwise coverage info'}, {'content': 'B5: Seeds确认', 'status': 'pending', 'activeForm': 'Checking seed documentation'}, {'content': 'B6: r² defense in Discussion', 'status': 'pending', 'activeForm': 'Adding r² defense sentence'}, {'content': 'B7: Multiple comparisons in Limitations', 'status': 'pending', 'activeForm': 'Adding multiple comparisons paragraph'}, {'content': 'B8: Minor fixes (6项)', 'status': 'pending', 'activeForm': 'Applying minor fixes'}, {'content': '编译验证 + grep检查', 'status': 'pending', 'activeForm': 'Compiling and verifying'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'B1: 31.2pp削减 (5处替换)', 'status': 'in_progress', 'activeForm': 'Replacing 31.2pp references'}, {'content': 'B2: Contribution #1 重写 + two-channel model→decomposition', 'status': 'pending', 'activeForm': 'Rewriting contribution #1 and replacing terminology'}, {'content': 'B3: first controlled study 限定', 'status': 'pending', 'activeForm': \"Qualifying 'first' claims\"}, {'content': 'B4: Few-NERD pairwise coverage', 'status': 'pending', 'activeForm': 'Adding pairwise coverage info'}, {'content': 'B5: Seeds确认', 'status': 'pending', 'activeForm': 'Checking seed documentation'}, {'content': 'B6: r² defense in Discussion', 'status': 'pending', 'activeForm': 'Adding r² defense sentence'}, {'content': 'B7: Multiple comparisons in Limitations', 'status': 'pending', 'activeForm': 'Adding multiple comparisons paragraph'}, {'content': 'B8: Minor fixes (6项)', 'status': 'pending', 'activeForm': 'Applying minor fixes'}, {'content': '编译验证 + grep检查', 'status': 'pending', 'activeForm': 'Compiling and verifying'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T14:40:46.370687+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T14:40:46.370852+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+  "old_string": ", reaching 31.2\\,pp under extreme-batch construction (\\S\\ref{sec:practical_magnitude}).",
+  "new_string": " (\\S\\ref{sec:practical_magnitude})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+    "old_string": ", reaching 31.2\\,pp under extreme-batch construction (\\S\\ref{sec:practical_magnitude}).",
+    "new_string": " (\\S\\ref{sec:practical_magnitude})."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T14:40:46.371020+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T14:40:46.371141+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+  "old_string": "The 80-relation extreme-batch gap (31.2\\,pp) reflects wider BCS range, not stronger per-unit sensitivity.",
+  "new_string": "The 80-relation extreme-batch gap (\\S\\ref{sec:bcs_controlled}) reflects wider BCS range, not stronger per-unit sensitivity."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+    "old_string": "The 80-relation extreme-batch gap (31.2\\,pp) reflects wider BCS range, not stronger per-unit sensitivity.",
+    "new_string": "The 80-relation extreme-batch gap (\\S\\ref{sec:bcs_controlled}) reflects wider BCS range, not stronger per-unit sensitivity."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T14:40:46.371292+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T14:40:46.371411+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+  "old_string": "7\\% of the 31.2\\,pp extreme-batch gap",
+  "new_string": "7\\% of the extreme-batch gap"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+    "old_string": "7\\% of the 31.2\\,pp extreme-batch gap",
+    "new_string": "7\\% of the extreme-batch gap"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T14:40:46.371568+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T14:40:46.371686+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+  "old_string": "v1's $-$31.2\\,pp but highly significant",
+  "new_string": "v1's extreme-batch gap but highly significant"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+    "old_string": "v1's $-$31.2\\,pp but highly significant",
+    "new_string": "v1's extreme-batch gap but highly significant"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T14:40:46.371946+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T14:40:46.372124+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+  "old_string": "v1: $-$31.2\\,pp",
+  "new_string": "v1 extreme-batch gap"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+    "old_string": "v1: $-$31.2\\,pp",
+    "new_string": "v1 extreme-batch gap"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T14:40:46.372276+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T14:40:46.372398+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "True",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+  "old_string": "two-channel model",
+  "new_string": "two-channel decomposition"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "True",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+    "old_string": "two-channel model",
+    "new_string": "two-channel decomposition"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T14:40:46.372541+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated. All occurrences were successfully replaced.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T14:40:46.372668+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+  "old_string": "despite the modest pairwise signal.",
+  "new_string": "despite the modest pairwise signal. The modest pairwise effect is expected: individual substitution events are noisy and multi-causal. The practical contribution of SCS lies at the schema level, where batch-level BCS explains 22--53\\% of accuracy variance---sufficient for pre-hoc schema screening."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+    "old_string": "despite the modest pairwise signal.",
+    "new_string": "despite the modest pairwise signal. The modest pairwise effect is expected: individual substitution events are noisy and multi-causal. The practical contribution of SCS lies at the schema level, where batch-level BCS explains 22--53\\% of accuracy variance---sufficient for pre-hoc schema screening."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T14:40:46.372889+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T14:40:46.373029+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+  "old_string": "We conduct the first controlled study isolating type confusability from type count across NER, RE, and event detection (ED).",
+  "new_string": "We present the first study to formally isolate type confusability from type count via stratified controlled design in zero-shot LLM IE, spanning NER, RE, and event detection (ED)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+    "old_string": "We conduct the first controlled study isolating type confusability from type count across NER, RE, and event detection (ED).",
+    "new_string": "We present the first study to formally isolate type confusability from type count via stratified controlled design in zero-shot LLM IE, spanning NER, RE, and event detection (ED)."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T14:40:46.373232+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T14:40:46.373362+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+  "old_string": "    \\item \\textbf{Two-channel degradation model.} Type count and confusability separately predict extraction quality: count scaling degrades performance on cross-domain schemas (NER, RE; up to $-49$\\,pp), while same-domain schemas (ED) exhibit confound-driven reversal with pairwise confusability signal still detectable (\\S\\ref{sec:centrality_confound}).",
+  "new_string": "    \\item \\textbf{Controlled evidence for two degradation channels.} Count and confusability constitute mechanistically distinguishable dimensions: count predicts recall decline while confusability predicts type substitution, with differential error signatures (\\S\\ref{sec:multi_channel})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+    "old_string": "    \\item \\textbf{Two-channel degradation model.} Type count and confusability separately predict extraction quality: count scaling degrades performance on cross-domain schemas (NER, RE; up to $-49$\\,pp), while same-domain schemas (ED) exhibit confound-driven reversal with pairwise confusability signal still detectable (\\S\\ref{sec:centrality_confound}).",
+    "new_string": "    \\item \\textbf{Controlled evidence for two degradation channels.} Count and confusability constitute mechanistically distinguishable dimensions: count predicts recall decline while confusability predicts type substitution, with differential error signatures (\\S\\ref{sec:multi_channel})."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T14:40:46.373513+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T14:40:46.373633+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+  "old_string": "(confusability). None isolates",
+  "new_string": "(confusability) (hereafter Channel~1 and Channel~2). None isolates"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+    "old_string": "(confusability). None isolates",
+    "new_string": "(confusability) (hereafter Channel~1 and Channel~2). None isolates"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T14:40:46.373768+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T14:40:46.373917+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+  "old_string": "Training-free LLM information extraction",
+  "new_string": "Training-free\\footnote{We use ``training-free'' and ``zero-shot'' interchangeably to denote prompting without parameter updates.} LLM information extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+    "old_string": "Training-free LLM information extraction",
+    "new_string": "Training-free\\footnote{We use ``training-free'' and ``zero-shot'' interchangeably to denote prompting without parameter updates.} LLM information extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T14:40:46.374069+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-16T14:40:46.374187+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex",
+  "old_string": "We conduct the first controlled study isolating type confusability from type count across NER, RE (a closed-set classification task), and event detection on four datasets",
+  "new_string": "We present the first study to formally isolate type confusability from type count via stratified controlled design in zero-shot LLM IE, spanning NER, RE (a closed-set classification task), and event detection across four datasets"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex",
+    "old_string": "We conduct the first controlled study isolating type confusability from type count across NER, RE (a closed-set classification task), and event detection on four datasets",
+    "new_string": "We present the first study to formally isolate type confusability from type count via stratified controlled design in zero-shot LLM IE, spanning NER, RE (a closed-set classification task), and event detection across four datasets"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T14:40:46.374317+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T14:40:46.374434+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "old_string": "We sample 1{,}000 test instances and evaluate with token-level text matching.",
+  "new_string": "We sample 1{,}000 test instances and evaluate with token-level text matching. Pairwise analysis covers 1{,}953 type pairs with non-zero co-occurrence out of $\\binom{66}{2}=2{,}145$ possible pairs."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "old_string": "We sample 1{,}000 test instances and evaluate with token-level text matching.",
+    "new_string": "We sample 1{,}000 test instances and evaluate with token-level text matching. Pairwise analysis covers 1{,}953 type pairs with non-zero co-occurrence out of $\\binom{66}{2}=2{,}145$ possible pairs."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T14:40:46.374587+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T14:40:46.374708+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "old_string": "text-match F1---a prediction is correct if the text string matches (case-insensitive) a gold entity \\emph{and} the type matches.",
+  "new_string": "text-match F1---a prediction is correct if the exact text string matches after lowercasing and whitespace normalization, \\emph{and} the type matches; partial spans count as incorrect."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "old_string": "text-match F1---a prediction is correct if the text string matches (case-insensitive) a gold entity \\emph{and} the type matches.",
+    "new_string": "text-match F1---a prediction is correct if the exact text string matches after lowercasing and whitespace normalization, \\emph{and} the type matches; partial spans count as incorrect."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T14:40:46.374872+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T14:40:46.375000+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "old_string": "($B{=}1{,}000$).",
+  "new_string": "($B{=}10{,}000$)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "old_string": "($B{=}1{,}000$).",
+    "new_string": "($B{=}10{,}000$)."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T14:40:46.375145+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T14:40:46.375263+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+  "old_string": "is an internal project designation",
+  "new_string": "is an adopted abbreviation for schema decomposition and grouping"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+    "old_string": "is an internal project designation",
+    "new_string": "is an adopted abbreviation for schema decomposition and grouping"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T14:40:46.375404+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-16T14:40:46.375520+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex",
+  "old_string": "FewRel \\cite{fewrel-2018}, MAVEN \\cite{maven-2020}",
+  "new_string": "FewRel \\cite{fewrel-2018}, DocRED \\cite{docred-2019}, MAVEN \\cite{maven-2020}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex",
+    "old_string": "FewRel \\cite{fewrel-2018}, MAVEN \\cite{maven-2020}",
+    "new_string": "FewRel \\cite{fewrel-2018}, DocRED \\cite{docred-2019}, MAVEN \\cite{maven-2020}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T14:40:46.375661+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-16T14:40:46.375778+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex",
+  "old_string": "Meta-Llama-3.1-8B-Instruct, vLLM",
+  "new_string": "Meta-Llama-3.1-8B-Instruct \\cite{llama3-2024}, vLLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex",
+    "old_string": "Meta-Llama-3.1-8B-Instruct, vLLM",
+    "new_string": "Meta-Llama-3.1-8B-Instruct \\cite{llama3-2024}, vLLM"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T14:40:46.375986+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-16T14:40:46.376114+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex",
+  "old_string": "1{,}000 resamples",
+  "new_string": "10{,}000 resamples"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex",
+    "old_string": "1{,}000 resamples",
+    "new_string": "10{,}000 resamples"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-16T14:40:46.376253+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/checklist.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-16T14:40:46.376371+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "old_string": "\\end{enumerate}\n\n\\input{checklist}",
+  "new_string": "\\end{enumerate}\n\n\\paragraph{Multiple comparisons.} We do not apply family-wise correction across datasets, treating each as an independent replication. Within-dataset secondary analyses are reported with individual $p$-values; core claims rest on effects reaching $p < 0.001$.\n\n\\input{checklist}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "old_string": "\\end{enumerate}\n\n\\input{checklist}",
+    "new_string": "\\end{enumerate}\n\n\\paragraph{Multiple comparisons.} We do not apply family-wise correction across datasets, treating each as an independent replication. Within-dataset secondary analyses are reported with individual $p$-values; core claims rest on effects reaching $p < 0.001$.\n\n\\input{checklist}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-16T14:40:46.376562+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-16T14:40:46.376709+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+  "old_string": "pair-level percentile bootstrap ($B{=}1{,}000$)",
+  "new_string": "pair-level percentile bootstrap ($B{=}10{,}000$)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex",
+    "old_string": "pair-level percentile bootstrap ($B{=}1{,}000$)",
+    "new_string": "pair-level percentile bootstrap ($B{=}10{,}000$)"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T14:40:46.376884+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-16T14:40:46.377028+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'B1: 31.2pp削减 (5处替换)', 'status': 'completed', 'activeForm': 'Replacing 31.2pp references'}, {'content': 'B2: Contribution #1 重写 + two-channel model→decomposition', 'status': 'completed', 'activeForm': 'Rewriting contribution #1 and replacing terminology'}, {'content': 'B3: first controlled study 限定', 'status': 'completed', 'activeForm': \"Qualifying 'first' claims\"}, {'content': 'B4: Few-NERD pairwise coverage', 'status': 'completed', 'activeForm': 'Adding pairwise coverage info'}, {'content': 'B5: Seeds确认 (already present, skipped)', 'status': 'completed', 'activeForm': 'Checking seed documentation'}, {'content': 'B6: r² defense in Discussion', 'status': 'completed', 'activeForm': 'Adding r² defense sentence'}, {'content': 'B7: Multiple comparisons in Limitations', 'status': 'completed', 'activeForm': 'Adding multiple comparisons paragraph'}, {'content': 'B8: Minor fixes (6项)', 'status': 'completed', 'activeForm': 'Applying minor fixes'}, {'content': '编译验证 + grep检查', 'status': 'in_progress', 'activeForm': 'Compiling and verifying'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'B1: 31.2pp削减 (5处替换)', 'status': 'completed', 'activeForm': 'Replacing 31.2pp references'}, {'content': 'B2: Contribution #1 重写 + two-channel model→decomposition', 'status': 'completed', 'activeForm': 'Rewriting contribution #1 and replacing terminology'}, {'content': 'B3: first controlled study 限定', 'status': 'completed', 'activeForm': \"Qualifying 'first' claims\"}, {'content': 'B4: Few-NERD pairwise coverage', 'status': 'completed', 'activeForm': 'Adding pairwise coverage info'}, {'content': 'B5: Seeds确认 (already present, skipped)', 'status': 'completed', 'activeForm': 'Checking seed documentation'}, {'content': 'B6: r² defense in Discussion', 'status': 'completed', 'activeForm': 'Adding r² defense sentence'}, {'content': 'B7: Multiple comparisons in Limitations', 'status': 'completed', 'activeForm': 'Adding multiple comparisons paragraph'}, {'content': 'B8: Minor fixes (6项)', 'status': 'completed', 'activeForm': 'Applying minor fixes'}, {'content': '编译验证 + grep检查', 'status': 'in_progress', 'activeForm': 'Compiling and verifying'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-16T14:40:46.377220+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-16T14:40:46.377373+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "31\\.2",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "31\\.2",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "glob": "*.tex",
+    "output_mode": "content",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T14:40:46.377536+00:00_
+
+docs/paper/main.tex:93:8 & 78.1\% & 51.0\% & $-$27.1 & 82.3\% & 51.0\% & $-$31.2 \\
+docs/paper/main.tex:94:16 & 75.5\% & 51.6\% & $-$23.9 & 82.8\% & 51.6\% & $-$31.2 \\
+docs/paper/main.tex:219:[Omitted long matching line]
+docs/paper/main.tex:265:80-rel & 8 & 82.3\% & 51.0\% & $-$31.2 & {[}17.7, 42.7{]} \\
+docs/paper/main.tex:266:80-rel & 16 & 82.8\% & 51.6\% & $-$31.2 & {[}22.9, 39.6{]} \\
+docs/paper/main.tex:269:\caption{BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar types; high-BCS batches contain maximally similar types. The 80-relation extreme-batch gap (31.2\,pp) reflects the wider BCS range; regression slopes are consistent across pools ($p = 0.60$; Table~\ref{tab:within_pool}; see \S\ref{sec:practical_magnitude} for typical-batch magnitudes). The 16-relation condition used a single extreme batch per BCS level; bootstrap CIs require multiple batches.}
+docs/paper/abstract.tex:4:[Omitted long matching line]
+docs/paper/introduction.tex:12:[Omitted long matching line]
+docs/paper/results.tex:56:[Omitted long matching line]
+docs/paper/results.tex:67:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-16T14:40:46.377691+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "two-channel model",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "two-channel model",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "glob": "*.tex",
+    "output_mode": "content",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-16T14:40:46.377812+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-16T14:40:46.377992+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "two-channel decomposition",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "two-channel decomposition",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "glob": "*.tex",
+    "output_mode": "content",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-16T14:40:46.378124+00:00_
+
+docs/paper/main.tex:339:[Omitted long matching line]
+docs/paper/discussion.tex:5:[Omitted long matching line]
+docs/paper/discussion.tex:11:Our findings suggest a pre-hoc workflow for practitioners designing extraction schemas. Before deployment, one can compute all-pairs SCS across the type inventory and flag pairs exceeding a high percentile (e.g., 75th) of the corpus's SCS distribution as high-risk for mutual confusion. Three mitigation strategies follow from the two-channel decomposition:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-16T14:40:46.378288+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "offset": "215",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "offset": "215",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-16T14:40:46.378430+00:00_
+
+215	
+216	We assess whether the confusability effects reported in \S\ref{sec:bcs_controlled}--\ref{sec:multi_channel} are robust to prompt design by replicating key experiments under the v2 prompt (\S\ref{sec:model}; full templates in Appendix~\ref{sec:appendix_prompts}).
+217	
+218	\paragraph{RE (FewRel).}
+219	Under the v1 prompt, the extreme-batch BCS gap is $-$31.2\,pp (low-BCS 82.3\% vs.\ high-BCS 51.0\%; Table~\ref{tab:bcs_controlled}). Under v2, with $n{=}25$ batches per group and wider BCS contrast (low-BCS range [0.356, 0.367]; high-BCS range [0.791, 0.811]), the gap is $-$25.5\,pp (low-BCS 85.2\% vs.\ high-BCS 59.7\%; 95\% CI: [22.4, 28.6]; $p < 0.001$; Pearson $r = -0.919$). The effect is significant, directionally consistent with v1, and only modestly attenuated in magnitude ($-$5.7\,pp reduction). An earlier $n{=}5$ evaluation with narrower BCS contrast (0.21) yielded a smaller gap of $-$7.9\,pp (CI: [$-$5.2, $+$21.5]), illustrating how limited statistical power and restricted BCS range can obscure the underlying signal---a cautionary note for small-sample prompt sensitivity studies.
+220	
+221	\paragraph{NER (Few-NERD).}
+222	The batch-level BCS--F1 correlation under v2 is consistent with v1: at count${}\,=\,12$, $r = +0.58$ ($p = 0.002$, 95\% CI: [0.19, 0.81]) vs.\ v1 $r = +0.50$ ($p = 0.008$). As discussed in \S\ref{sec:pairwise}, this positive direction reflects a type-frequency confound at the batch level---high-BCS batches contain high-frequency entity types that models extract more reliably---rather than evidence against the confusability hypothesis. The pairwise SCS--confusion analysis (\S\ref{sec:pairwise}), which is immune to this aggregation artifact, remains the primary evidence for the NER confusability channel.
+223	
+224	\paragraph{Interpretation.}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-16T14:40:46.378565+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "old_string": "the extreme-batch BCS gap is $-$31.2\\,pp (low-BCS 82.3\\% vs.\\ high-BCS 51.0\\%; Table~\\ref{tab:bcs_controlled})",
+  "new_string": "the extreme-batch BCS gap is $-$31.2\\,pp (Table~\\ref{tab:bcs_controlled})"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "old_string": "the extreme-batch BCS gap is $-$31.2\\,pp (low-BCS 82.3\\% vs.\\ high-BCS 51.0\\%; Table~\\ref{tab:bcs_controlled})",
+    "new_string": "the extreme-batch BCS gap is $-$31.2\\,pp (Table~\\ref{tab:bcs_controlled})"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-16T14:40:46.378957+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-16T14:40:46.379149+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "old_string": "The 80-relation extreme-batch gap (31.2\\,pp) reflects the wider BCS range; regression slopes",
+  "new_string": "The 80-relation extreme-batch gap reflects the wider BCS range; regression slopes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "old_string": "The 80-relation extreme-batch gap (31.2\\,pp) reflects the wider BCS range; regression slopes",
+    "new_string": "The 80-relation extreme-batch gap reflects the wider BCS range; regression slopes"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-16T14:40:46.379358+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-16T14:40:46.379505+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "31\\.2",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "31\\.2",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "glob": "*.tex",
+    "output_mode": "content",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-16T14:40:46.379641+00:00_
+
+docs/paper/introduction.tex:12:[Omitted long matching line]
+docs/paper/results.tex:56:[Omitted long matching line]
+docs/paper/results.tex:67:[Omitted long matching line]
+docs/paper/abstract.tex:4:[Omitted long matching line]
+docs/paper/main.tex:93:8 & 78.1\% & 51.0\% & $-$27.1 & 82.3\% & 51.0\% & $-$31.2 \\
+docs/paper/main.tex:94:16 & 75.5\% & 51.6\% & $-$23.9 & 82.8\% & 51.6\% & $-$31.2 \\
+docs/paper/main.tex:219:[Omitted long matching line]
+docs/paper/main.tex:265:80-rel & 8 & 82.3\% & 51.0\% & $-$31.2 & {[}17.7, 42.7{]} \\
+docs/paper/main.tex:266:80-rel & 16 & 82.8\% & 51.6\% & $-$31.2 & {[}22.9, 39.6{]} \\
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-16T14:40:46.379803+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+  "timeout": "60000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+    "timeout": "60000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-16T14:40:46.379985+00:00_
+
+lvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p
+fb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/
+texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (18 pages, 416999 bytes).
+Transcript written on main.log.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-16T14:40:46.380106+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && bibtex main 2>&1 | tail -5",
+  "timeout": "30000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && bibtex main 2>&1 | tail -5",
+    "timeout": "30000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-16T14:40:46.380222+00:00_
+
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Database file #1: references.bib
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-16T14:40:46.380334+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "timeout": "120000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+    "timeout": "120000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-16T14:40:46.380448+00:00_
+
+pe1/urw/times/utmri8a.pfb>
+Output written on main.pdf (18 pages, 416737 bytes).
+Transcript written on main.log.
+pe1/urw/times/utmri8a.pfb>
+Output written on main.pdf (18 pages, 416737 bytes).
+Transcript written on main.log.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-16T14:40:46.380559+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && echo \"=== ERRORS ===\" && grep \"^!\" main.log | head -5 && echo \"=== UNDEFINED ===\" && grep -i \"undefined\" main.log | head -5 && echo \"=== PAGE COUNT ===\" && grep \"Output written\" main.log | tail -1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && echo \"=== ERRORS ===\" && grep \"^!\" main.log | head -5 && echo \"=== UNDEFINED ===\" && grep -i \"undefined\" main.log | head -5 && echo \"=== PAGE COUNT ===\" && grep \"Output written\" main.log | tail -1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-16T14:40:46.380671+00:00_
+
+=== ERRORS ===
+=== UNDEFINED ===
+=== PAGE COUNT ===
+Output written on main.pdf (18 pages, 416737 bytes).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-16T14:40:46.380828+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep -n \"\\\\\\\\appendix\\|\\\\\\\\bibliography\\|\\\\\\\\section\\*{Limitations}\" main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep -n \"\\\\\\\\appendix\\|\\\\\\\\bibliography\\|\\\\\\\\section\\*{Limitations}\" main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-16T14:40:46.380974+00:00_
+
+38:\section*{Limitations}
+59:\bibliography{references}
+61:\appendix
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-16T14:40:46.381086+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep \"\\\\[{[0-9]*}\" main.aux | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep \"\\\\[{[0-9]*}\" main.aux | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-16T14:40:46.381197+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-16T14:40:46.381306+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep \"newlabel{sec:appendix\" main.aux | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep \"newlabel{sec:appendix\" main.aux | head -5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-16T14:40:46.381417+00:00_
+
+\newlabel{sec:appendix_figures}{{A}{13}{Additional Figures}{appendix.A}{}}
+\newlabel{sec:appendix_sdgd}{{B}{13}{SDGD Full Protocol and Results}{appendix.B}{}}
+\newlabel{sec:appendix_factorial}{{C}{14}{Factorial Analysis}{appendix.C}{}}
+\newlabel{sec:appendix_within_pool}{{D}{14}{Within-Pool CI Details}{appendix.D}{}}
+\newlabel{sec:appendix_residualized_bcs}{{E}{14}{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}{appendix.E}{}}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-16T14:40:46.381544+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep \"newlabel{sec:conclusion\\|newlabel{sec:discussion\\|newlabel{sec:sdgd}\" main.aux"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && grep \"newlabel{sec:conclusion\\|newlabel{sec:discussion\\|newlabel{sec:sdgd}\" main.aux"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-16T14:40:46.381660+00:00_
+
+\newlabel{sec:sdgd}{{5}{6}{Schema Decomposition: Failure, Diagnosis, and Mitigation}{section.5}{}}
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-16T14:40:46.381799+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'B1: 31.2pp削减 (5处替换)', 'status': 'completed', 'activeForm': 'Replacing 31.2pp references'}, {'content': 'B2: Contribution #1 重写 + two-channel model→decomposition', 'status': 'completed', 'activeForm': 'Rewriting contribution #1 and replacing terminology'}, {'content': 'B3: first controlled study 限定', 'status': 'completed', 'activeForm': \"Qualifying 'first' claims\"}, {'content': 'B4: Few-NERD pairwise coverage', 'status': 'completed', 'activeForm': 'Adding pairwise coverage info'}, {'content': 'B5: Seeds确认 (already present, skipped)', 'status': 'completed', 'activeForm': 'Checking seed documentation'}, {'content': 'B6: r² defense in Discussion', 'status': 'completed', 'activeForm': 'Adding r² defense sentence'}, {'content': 'B7: Multiple comparisons in Limitations', 'status': 'completed', 'activeForm': 'Adding multiple comparisons paragraph'}, {'content': 'B8: Minor fixes (6项)', 'status': 'completed', 'activeForm': 'Applying minor fixes'}, {'content': '编译验证 + grep检查', 'status': 'completed', 'activeForm': 'Compiling and verifying'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'B1: 31.2pp削减 (5处替换)', 'status': 'completed', 'activeForm': 'Replacing 31.2pp references'}, {'content': 'B2: Contribution #1 重写 + two-channel model→decomposition', 'status': 'completed', 'activeForm': 'Rewriting contribution #1 and replacing terminology'}, {'content': 'B3: first controlled study 限定', 'status': 'completed', 'activeForm': \"Qualifying 'first' claims\"}, {'content': 'B4: Few-NERD pairwise coverage', 'status': 'completed', 'activeForm': 'Adding pairwise coverage info'}, {'content': 'B5: Seeds确认 (already present, skipped)', 'status': 'completed', 'activeForm': 'Checking seed documentation'}, {'content': 'B6: r² defense in Discussion', 'status': 'completed', 'activeForm': 'Adding r² defense sentence'}, {'content': 'B7: Multiple comparisons in Limitations', 'status': 'completed', 'activeForm': 'Adding multiple comparisons paragraph'}, {'content': 'B8: Minor fixes (6项)', 'status': 'completed', 'activeForm': 'Applying minor fixes'}, {'content': '编译验证 + grep检查', 'status': 'completed', 'activeForm': 'Compiling and verifying'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-16T14:40:46.382003+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_d048_text_modifications_20260516T143117",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 119 · 2026-05-16T14:40:46.382172+00:00_
+
+全部完成。
+
+## 报告
+
+### 1. 编译状态
+编译成功，无错误 (`^!` = 0)，无 undefined 引用。
+
+### 2. 正文页数
+**8 页**（Conclusion 在第 8 页，Limitations/Checklist/References 在 9-12 页，Appendix 从第 13 页开始）。
+
+### 3. "31.2" grep 结果
+- **正文 4 处**（符合要求）：abstract.tex:4, introduction.tex:12, results.tex:56, results.tex:67
+- **表格数据 4 处**（数值不可改）：main.tex:93, 94, 265, 266
+- **附录 1 处**：main.tex:219（prompt sensitivity 对比，引用表格数值）
+
+### 4. "two-channel model" grep 结果
+**0 次**，全部替换为 "two-channel decomposition"。
+
+### 各任务完成清单
+
+| 任务 | 状态 | 修改文件 |
+|------|------|----------|
+| B1: 31.2pp 削减 | ✓ 5处替换 + 2处附录/caption | results.tex, discussion.tex, main.tex |
+| B2: Contribution #1 + model→decomposition | ✓ | introduction.tex, discussion.tex (2处) |
+| B3: "first" 限定 | ✓ abstract + introduction | abstract.tex, introduction.tex |
+| B4: Few-NERD pairwise coverage | ✓ | experimental_setup.tex |
+| B5: Seeds | ✓ 已有 seed=42，跳过 | — |
+| B6: r² defense | ✓ 段末加句 | discussion.tex |
+| B7: Multiple comparisons | ✓ Limitations 末尾加段 | main.tex |
+| B8.1: Channel labels | ✓ "(hereafter Channel~1 and Channel~2)" | introduction.tex |
+| B8.2: training-free 脚注 | ✓ | introduction.tex |
+| B8.3: SDGD designation | ✓ "adopted abbreviation" | sdgd_negative.tex |
+| B8.4: DocRED/Llama citations | ✓ | checklist.tex |
+| B8.5: Bootstrap B=10,000 | ✓ 统一为 B=10,000 | experimental_setup.tex, results.tex, checklist.tex |
+| B8.6: NER metric detail | ✓ 加 lowercasing/whitespace/partial | experimental_setup.tex |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_d048_text_modifications_20260516T143117"
+}
+```
+
+</details>
+
+---

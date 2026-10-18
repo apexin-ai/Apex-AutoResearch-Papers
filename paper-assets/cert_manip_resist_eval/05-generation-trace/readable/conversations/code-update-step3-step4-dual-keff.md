@@ -1,0 +1,722 @@
+# code update step3 step4 dual keff
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/chats/worker_code_update-step3-step4-dual-keff_20260521T220444.jsonl`
+- **Structured JSON:** [`385c0a0178bd6453e6ad.json`](../../sessions/38/385c0a0178bd6453e6ad.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+25 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T22:07:02.733779+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T22:07:02.734114+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T22:07:02.734317+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_step3_keff.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/scripts/run_step3_keff.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T22:07:02.734455+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_step4_scaling.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/scripts/run_step4_scaling.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-21T22:07:02.734619+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# Step 3: Validate K_eff formula against empirical effective rank.\\n# Input: Pairwise correlation data from Step 1, panel definitions.\\n# Output: K_eff formula vs empirical comparison for each panel.\\n\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.config import ExperimentConfig\\nfrom src.keff import validate_keff\\nfrom src.panels import generate_all_panels\\nfrom src.utils import load_results, save_results, setup_logging\\n\\nlogger = setup_logging(\\\"step3\\\")\\n\\n\\ndef main():\\n    config = ExperimentConfig()\\n\\n    # Load Step 1 results\\n    results_dir = config.results_dir\\n    step1_files = sorted(results_dir.glob(\\\"results_step1_correlation_*.json\\\"))\\n    if not step1_files:\\n        logger.error(\\\"No Step 1 results found. Run step 1 first.\\\")\\n        sys.exit(1)\\n    step1_data = load_results(step1_files[-1])\\n    logger.info(f\\\"Loaded Step 1 results from {step1_files[-1]}\\\")\\n\\n    all_keff_results = {}\\n    panels = generate_all_panels()\\n\\n    # Flatten panels into list of dicts\\n    panel_defs = []\\n    for ptype, panel_list in panels.items():\\n        for panel in panel_list:\\n            panel_defs.append({\\n                \\\"judge_ids\\\": panel.judge_ids,\\n                \\\"panel_type\\\": ptype,\\n                \\\"k\\\": panel.k,\\n            })\\n\\n    for ds_name, ds_data in step1_data.items():\\n        logger.info(f\\\"=== K_eff validation for {ds_name} ===\\\")\\n        pairwise_df = pd.DataFrame(ds_data[\\\"pairwise\\\"])\\n        keff_results = validate_keff(pairwise_df, panel_defs)\\n        all_keff_results[ds_name] = keff_results\\n\\n    out = save_results(all_keff_results, config.results_dir, tag=\\\"step3_keff\\\")\\n    logger.info(f\\\"Step 3 complete. Results: {out}\\\")\\n\\n\\nif __nam
+…[truncated 144 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T22:07:02.734824+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/src/keff.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/src/keff.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T22:07:02.735010+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# Step 4: Scaling analysis — K_eff vs ASR across panel sizes.\\n# Input: K_eff data from Step 3, panel ASR from Step 2.\\n# Output: Spearman rho, log-log regression with CI.\\n\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.config import ExperimentConfig\\nfrom src.scaling import collect_scaling_data, run_scaling_analysis\\nfrom src.utils import load_results, save_results, setup_logging\\n\\nlogger = setup_logging(\\\"step4\\\")\\n\\n\\ndef main():\\n    config = ExperimentConfig()\\n    results_dir = config.results_dir\\n\\n    # Load Step 2 (attacks) and Step 3 (keff) results\\n    step2_files = sorted(results_dir.glob(\\\"results_step2_attacks_*.json\\\"))\\n    step3_files = sorted(results_dir.glob(\\\"results_step3_keff_*.json\\\"))\\n\\n    if not step2_files or not step3_files:\\n        logger.error(\\\"Need Step 2 and Step 3 results. Run those steps first.\\\")\\n        sys.exit(1)\\n\\n    step2_data = load_results(step2_files[-1])\\n    step3_data = load_results(step3_files[-1])\\n    logger.info(\\\"Loaded Step 2 and Step 3 results\\\")\\n\\n    all_scaling_results = {}\\n\\n    for ds_name in config.datasets:\\n        if ds_name not in step2_data or ds_name not in step3_data:\\n            continue\\n\\n        logger.info(f\\\"=== Scaling analysis for {ds_name} ===\\\")\\n\\n        # Collect data points across all attacks\\n        keff_results = step3_data[ds_name]\\n        panel_attacks = step2_data[ds_name][\\\"panel_attacks\\\"]\\n\\n        all_data_points = []\\n        for attack_name, panel_asr in panel_attacks.items():\\n            # Tag each ASR result with attack name and dataset\\n            for ptype, results in panel_asr.items():\\n                for r in results:\\n                    r[\\\"attack_name\\\"] = attack_name\\n                    r[\\\"dataset\\\"] =
+…[truncated 640 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T22:07:02.735464+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/src/utils.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/src/utils.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T22:07:02.735835+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# K_eff Formula Validation: compare MI-based empirical K_eff vs. analytical formula.\\n# Formula: K_eff = 1 + (K-1) * exp(-2 * I_max)  [worst-case, uses max pairwise MI]\\n# Empirical: K_eff from all pairwise copula rho   [uses full correlation structure]\\n# Supplementary: von Neumann entropy K* = 2^H(Σ)  [eigenspectrum-based diversity]\\n\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"keff\\\")\\n\\n\\ndef empirical_keff_from_rho(rho_matrix: np.ndarray) -> float:\\n    \\\"\\\"\\\"MI-based empirical K_eff from pairwise copula rho matrix.\\n    K_eff = (1/K) Σ_i [1 + Σ_{j≠i} (1 - ρ_ij²)]\\n    Under Gaussian copula, 1-ρ² = exp(-2·MI), making this consistent\\n    with formula_keff. Difference: empirical uses all pairwise ρ,\\n    formula uses only I_max (worst-case pair).\\\"\\\"\\\"\\n    K = rho_matrix.shape[0]\\n    if K <= 1:\\n        return 1.0\\n    total = 0.0\\n    for i in range(K):\\n        k_eff_i = 1.0\\n        for j in range(K):\\n            if j != i:\\n                k_eff_i += 1.0 - rho_matrix[i, j] ** 2\\n        total += k_eff_i\\n    return float(total / K)\\n\\n\\ndef von_neumann_kstar(rho_matrix: np.ndarray) -> float:\\n    \\\"\\\"\\\"Effective diversity via von Neumann entropy: K* = 2^{H(Σ)}.\\n    H(Σ) = -Σ (λ_k / tr(Σ)) · log2(λ_k / tr(Σ)).\\n    Independent validation metric from eigenspectrum.\\\"\\\"\\\"\\n    eigenvalues = np.linalg.eigvalsh(rho_matrix)\\n    eigenvalues = np.maximum(eigenvalues, 1e-12)\\n    trace = np.sum(eigenvalues)\\n    p = eigenvalues / trace\\n    entropy = -np.sum(p * np.log2(p))\\n    return float(2 ** entropy)\\n\\n\\ndef formula_keff(K: int, I_max: float) -> float:\\n    \\\"\\\"\\\"Analytical K_eff: 1 + (K-1) * exp(-2 * I_max).\\n    K: number of judges in panel.\\n    I_max: maximum pairwise mutual information among panel members.\\\"\\\"\
+…[truncated 3061 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T22:07:02.736259+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Shared utilities: logging, seeding, data I/O.\\n\\nimport json\\nimport logging\\nimport random\\nimport sys\\nfrom datetime import datetime, timezone\\nfrom pathlib import Path\\nfrom typing import Any, Dict\\n\\nimport numpy as np\\n\\n\\ndef setup_logging(name: str = \\\"cert_eval\\\", level: int = logging.INFO) -> logging.Logger:\\n    logger = logging.getLogger(name)\\n    if not logger.handlers:\\n        handler = logging.StreamHandler(sys.stdout)\\n        handler.setFormatter(\\n            logging.Formatter(\\\"[%(asctime)s %(levelname)s] %(name)s: %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\n        )\\n        logger.addHandler(handler)\\n    logger.setLevel(level)\\n    return logger\\n\\n\\ndef set_seed(seed: int) -> None:\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    try:\\n        import torch\\n        torch.manual_seed(seed)\\n        if torch.cuda.is_available():\\n            torch.cuda.manual_seed_all(seed)\\n    except ImportError:\\n        pass\\n\\n\\ndef save_results(data: Any, path: Path, tag: str = \\\"\\\") -> Path:\\n    \\\"\\\"\\\"Save dict/list to timestamped JSON.\\\"\\\"\\\"\\n    path.parent.mkdir(parents=True, exist_ok=True)\\n    ts = datetime.now(timezone.utc).strftime(\\\"%Y%m%d_%H%M%S\\\")\\n    suffix = f\\\"_{tag}\\\" if tag else \\\"\\\"\\n    out_path = path / f\\\"results{suffix}_{ts}.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(data, f, indent=2, default=str)\\n    return out_path\\n\\n\\ndef load_results(path: Path) -> Dict:\\n    with open(path) as f:\\n        return json.load(f)\\n\\n\\ndef timestamp_str() -> str:\\n    return datetime.now(timezone.utc).strftime(\\\"%Y%m%d_%H%M%S\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T22:07:02.736470+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/src/scaling.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/src/scaling.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T22:07:02.736721+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Scaling Analysis: K_eff vs ASR across panel sizes, Spearman rho, log-log regression.\\n# Core claim: higher K_eff -> lower ASR, with predictable scaling.\\n\\nfrom typing import Any, Dict, List, Tuple\\n\\nimport numpy as np\\nfrom scipy import stats\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"scaling\\\")\\n\\n\\ndef spearman_correlation(\\n    keff_values: List[float],\\n    asr_values: List[float],\\n) -> Tuple[float, float]:\\n    \\\"\\\"\\\"Spearman rank correlation between K_eff and ASR.\\n    Expects negative correlation (higher K_eff -> lower ASR).\\\"\\\"\\\"\\n    rho, p_value = stats.spearmanr(keff_values, asr_values)\\n    logger.info(f\\\"Spearman rho = {rho:.4f}, p = {p_value:.4e}\\\")\\n    return float(rho), float(p_value)\\n\\n\\ndef loglog_regression(\\n    keff_values: List[float],\\n    asr_values: List[float],\\n    n_bootstrap: int = 1000,\\n    alpha: float = 0.05,\\n    seed: int = 42,\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"Log-log regression: log(ASR) = beta * log(K_eff) + intercept.\\n    Returns slope (beta), intercept, R^2, and bootstrap CI for beta.\\\"\\\"\\\"\\n    keff = np.array(keff_values)\\n    asr = np.array(asr_values)\\n\\n    # Filter out zero/negative ASR for log transform\\n    valid = (asr > 0) & (keff > 0)\\n    if valid.sum() < 3:\\n        logger.warning(\\\"Too few valid points for log-log regression\\\")\\n        return {\\\"beta\\\": float(\\\"nan\\\"), \\\"intercept\\\": float(\\\"nan\\\"), \\\"r_squared\\\": float(\\\"nan\\\")}\\n\\n    log_keff = np.log(keff[valid])\\n    log_asr = np.log(asr[valid])\\n\\n    slope, intercept, r_value, p_value, std_err = stats.linregress(log_keff, log_asr)\\n\\n    # Bootstrap CI for slope\\n    rng = np.random.RandomState(seed)\\n    n = len(log_keff)\\n    boot_slopes = []\\n    for _ in range(n_bootstrap):\\n        idx = rng.choice(n, size=n, replace=True)\\n        s, _, _, _, _ = stat
+…[truncated 3967 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T22:07:02.736908+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/cert_manip_resist_eval/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls /root/cert_manip_resist_eval/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T22:07:02.737050+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"_eval_single_model.py\\ndeploy_judges.py\\nprep_attack_data.py\\nrun_all.py\\nrun_step1_correlation.py\\nrun_step1_full.py\\nrun_step1_subset.py\\nrun_step2_attacks.py\\nrun_step3_keff.py\\nrun_step4_scaling.py\\ntest_inference.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T22:07:02.737239+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat > /root/cert_manip_resist_eval/scripts/copula_gof_check.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Post-hoc copula goodness-of-fit check on Step 1 results.\nFor each pair, computes:\n  MI_gaussian = -0.5 * log(1 - rho^2)\n  ratio = MI_observed / MI_gaussian\nIf ratio systematically > 2, flags copula assumption violation.\"\"\"\n\nimport json, sys, math\nfrom pathlib import Path\n\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\nfrom src.utils import setup_logging\n\nlogger = setup_logging(\"copula_gof\")\n\n\ndef check_copula_gof(results_path: str):\n    with open(results_path) as f:\n        results = json.load(f)\n    \n    for ds_name, ds_data in results.items():\n        logger.info(f\"\\n{'='*60}\")\n        logger.info(f\"Copula GoF Check: {ds_name}\")\n        logger.info(f\"{'='*60}\")\n        \n        pairwise = ds_data.get(\"pairwise\", [])\n        ratios = []\n        \n        logger.info(f\"{'Pair':<40} {'MI_obs':>8} {'rho':>8} {'MI_gauss':>10} {'Ratio':>8} {'Flag':>6}\")\n        logger.info(\"-\" * 80)\n        \n        for row in pairwise:\n            mi_obs = row.get(\"mi\", 0)\n            rho = row.get(\"copula_rho\", 0)\n            \n            rho_sq = min(rho ** 2, 0.9999)\n            mi_gaussian = -0.5 * math.log(1 - rho_sq) if rho_sq > 0 else 0\n            \n            ratio = mi_obs / mi_gaussian if mi_gaussian > 1e-6 else float('inf')\n            ratios.append(ratio)\n            \n            flag = \"!!\" if ratio > 2.0 else \"\"\n            pair_name = f\"{row['judge_i']} <-> {row['judge_j']}\"\n            logger.info(f\"{pair_name:<40} {mi_obs:>8.4f} {rho:>8.4f} {mi_gaussian:>10.4f} {ratio:>8.2f} {flag:>6}\")\n        \n        valid_ratios = [r for r in ratios if r != float('inf')]\n        if valid_ratios:\n            mean_ratio = sum(valid_ratios) / len(valid_ratios)\n            n_violated = sum(1 for r in valid_ratios if r > 2.0)\n            logger.info(f\"\\nMean ratio: {mean_ratio:.2f}\")\n            logger.info(f\"Pairs with ratio > 2: {n_violated}/{len(valid_ratios)}\")\n            if n_violated > len(valid_ratios) * 0.5:\n                logger.info(\"CONCLUSION: Copula assumption systematically violated (>50% pairs ratio > 2)\")\n            else:\n                logger.info(\"Copula assumption approximately holds for majority of pairs\")\n\n\nif __name__ == \"__main__\":\n    results_dir = Path(\"/root/cert_manip_resist_eval/artifacts/results/\")\n    step1_files = sorted(results_dir.glob(\"results_step1_full_*.json\"), reverse=True)\n    if not step1_files:\n        step1_files = sorted(results_dir.glob(\"results_step1_*.json\"), reverse=True)\n    \n    if step1_files:\n        check_copula_gof(str(step1_files[0]))\n    else:\n        logger.error(\"No Step 1 results found. Run Step 1 first.\")\nPYEOF\necho \"copula_gof_check.py created: $?\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat > /root/cert_manip_resist_eval/scripts/copula_gof_check.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Post-hoc copula goodness-of-fit check on Step 1 results.\nFor each pair, computes:\n  MI_gaussian = -0.5 * log(1 - rho^2)\n  ratio = MI_observed / MI_gaussian\nIf ratio systematically > 2, flags copula assumption violation.\"\"\"\n\nimport json, sys, math\nfrom pathlib import Path\n\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\nfrom src.utils import setup_logging\n\nlogger = setup_logging(\"copula_gof\")\n\n\ndef check_copula_gof(results_path: str):\n    with open(results_path) as f:\n        results = json.load(f)\n    \n    for ds_name, ds_data in results.items():\n        logger.info(f\"\\n{'='*60}\")\n        logger.info(f\"Copula GoF Check: {ds_name}\")\n        logger.info(f\"{'='*60}\")\n        \n        pairwise = ds_data.get(\"pairwise\", [])\n        ratios = []\n        \n        logger.info(f\"{'Pair':<40} {'MI_obs':>8} {'rho':>8} {'MI_gauss':>10} {'Ratio':>8} {'Flag':>6}\")\n        logger.info(\"-\" * 80)\n        \n        for row in pairwise:\n            mi_obs = row.get(\"mi\", 0)\n            rho = row.get(\"copula_rho\", 0)\n            \n            rho_sq = min(rho ** 2, 0.9999)\n            mi_gaussian = -0.5 * math.log(1 - rho_sq) if rho_sq > 0 else 0\n            \n            ratio = mi_obs / mi_gaussian if mi_gaussian > 1e-6 else float('inf')\n            ratios.append(ratio)\n            \n            flag = \"!!\" if ratio > 2.0 else \"\"\n            pair_name = f\"{row['judge_i']} <-> {row['judge_j']}\"\n            logger.info(f\"{pair_name:<40} {mi_obs:>8.4f} {rho:>8.4f} {mi_gaussian:>10.4f} {ratio:>8.2f} {flag:>6}\")\n        \n        valid_ratios = [r for r in ratios if r != float('inf')]\n        if valid_ratios:\n            mean_ratio = sum(valid_ratios) / len(valid_ratios)\n            n_violated = sum(1 for r in valid_ratios if r > 2.0)\n            logger.info(f\"\\nMean ratio: {mean_ratio:.2f}\")\n            logger.info(f\"Pairs with ratio > 2: {n_violated}/{len(valid_ratios)}\")\n            if n_violated > len(valid_ratios) * 0.5:\n                logger.info(\"CONCLUSION: Copula assumption systematically violated (>50% pairs ratio > 2)\")\n            else:\n                logger.info(\"Copula assumption approximately holds for majority of pairs\")\n\n\nif __name__ == \"__main__\":\n    results_dir = Path(\"/root/cert_manip_resist_eval/artifacts/results/\")\n    step1_files = sorted(results_dir.glob(\"results_step1_full_*.json\"), reverse=True)\n    if not step1_files:\n        step1_files = sorted(results_dir.glob(\"results_step1_*.json\"), reverse=True)\n    \n    if step1_files:\n        check_copula_gof(str(step1_files[0]))\n    else:\n        logger.error(\"No Step 1 results found. Run Step 1 first.\")\nPYEOF\necho \"copula_gof_check.py created: $?\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T22:07:02.737409+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"copula_gof_check.py created: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T22:07:02.737552+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat > /root/cert_manip_resist_eval/scripts/run_step3_keff.py << 'PYEOF'\n#!/usr/bin/env python3\n# Step 3: Validate K_eff formula against empirical effective rank.\n# Input: Pairwise correlation data from Step 1, panel definitions.\n# Output: K_eff formula vs empirical comparison for each panel.\n# Outputs three K_eff variants per panel:\n#   k_eff_formula:       1 + (K-1)*exp(-2*I_max)  (MI-based worst-case)\n#   k_eff_empirical:     from all pairwise rho     (rho-based)\n#   k_star_von_neumann:  2^{H(Sigma)}             (eigenspectrum-based)\n\nimport json\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n\nfrom src.config import ExperimentConfig\nfrom src.keff import validate_keff\nfrom src.panels import generate_all_panels\nfrom src.utils import load_results, save_results, setup_logging\n\nlogger = setup_logging(\"step3\")\n\n\ndef main():\n    config = ExperimentConfig()\n\n    # Load Step 1 results\n    results_dir = config.results_dir\n    step1_files = sorted(results_dir.glob(\"results_step1_correlation_*.json\"))\n    if not step1_files:\n        step1_files = sorted(results_dir.glob(\"results_step1_full_*.json\"))\n    if not step1_files:\n        step1_files = sorted(results_dir.glob(\"results_step1_*.json\"))\n    if not step1_files:\n        logger.error(\"No Step 1 results found. Run step 1 first.\")\n        sys.exit(1)\n    step1_data = load_results(step1_files[-1])\n    logger.info(f\"Loaded Step 1 results from {step1_files[-1]}\")\n\n    all_keff_results = {}\n    panels = generate_all_panels()\n\n    panel_defs = []\n    for ptype, panel_list in panels.items():\n        for panel in panel_list:\n            panel_defs.append({\n                \"judge_ids\": panel.judge_ids,\n                \"panel_type\": ptype,\n                \"k\": panel.k,\n            })\n\n    for ds_name, ds_data in step1_data.items():\n        logger.info(f\"=== K_eff validation for {ds_name} ===\")\n        pairwise_df = pd.DataFrame(ds_data[\"pairwise\"])\n        keff_results = validate_keff(pairwise_df, panel_defs)\n        all_keff_results[ds_name] = keff_results\n\n        # Summary: dual K_eff comparison table\n        logger.info(f\"\\n{'Panel Type':<12} {'K':>3} {'K_eff(MI)':>10} {'K_eff(rho)':>11} {'K*(vN)':>8} {'Gap':>8}\")\n        logger.info(\"-\" * 58)\n        for entry in keff_results:\n            gap = entry[\"k_eff_formula\"] - entry[\"k_eff_empirical\"]\n            logger.info(\n                f\"{entry['panel_type']:<12} {entry['K']:>3} \"\n                f\"{entry['k_eff_formula']:>10.3f} {entry['k_eff_empirical']:>11.3f} \"\n                f\"{entry['k_star_von_neumann']:>8.3f} {gap:>+8.3f}\"\n            )\n\n        # Aggregate stats\n        formulas = [e[\"k_eff_formula\"] for e in keff_results]\n        empiricals = [e[\"k_eff_empirical\"] for e in keff_results]\n        kstars = [e[\"k_star_von_neumann\"] for e in keff_results]\n        corr_fe = float(np.corrcoef(formulas, empiricals)[0, 1]) if len(formulas) > 1 else float(\"nan\")\n        logger.info(f\"\\nCorr(K_eff_formula, K_eff_empirical) = {corr_fe:.4f}\")\n        logger.info(f\"Mean K_eff_formula={np.mean(formulas):.3f}, K_eff_empirical={np.mean(empiricals):.3f}, K*={np.mean(kstars):.3f}\")\n\n    out = save_results(all_keff_results, config.results_dir, tag=\"step3_keff\")\n    logger.info(f\"Step 3 complete. Results: {out}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"run_step3_keff.py updated: $?\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat > /root/cert_manip_resist_eval/scripts/run_step3_keff.py << 'PYEOF'\n#!/usr/bin/env python3\n# Step 3: Validate K_eff formula against empirical effective rank.\n# Input: Pairwise correlation data from Step 1, panel definitions.\n# Output: K_eff formula vs empirical comparison for each panel.\n# Outputs three K_eff variants per panel:\n#   k_eff_formula:       1 + (K-1)*exp(-2*I_max)  (MI-based worst-case)\n#   k_eff_empirical:     from all pairwise rho     (rho-based)\n#   k_star_von_neumann:  2^{H(Sigma)}             (eigenspectrum-based)\n\nimport json\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n\nfrom src.config import ExperimentConfig\nfrom src.keff import validate_keff\nfrom src.panels import generate_all_panels\nfrom src.utils import load_results, save_results, setup_logging\n\nlogger = setup_logging(\"step3\")\n\n\ndef main():\n    config = ExperimentConfig()\n\n    # Load Step 1 results\n    results_dir = config.results_dir\n    step1_files = sorted(results_dir.glob(\"results_step1_correlation_*.json\"))\n    if not step1_files:\n        step1_files = sorted(results_dir.glob(\"results_step1_full_*.json\"))\n    if not step1_files:\n        step1_files = sorted(results_dir.glob(\"results_step1_*.json\"))\n    if not step1_files:\n        logger.error(\"No Step 1 results found. Run step 1 first.\")\n        sys.exit(1)\n    step1_data = load_results(step1_files[-1])\n    logger.info(f\"Loaded Step 1 results from {step1_files[-1]}\")\n\n    all_keff_results = {}\n    panels = generate_all_panels()\n\n    panel_defs = []\n    for ptype, panel_list in panels.items():\n        for panel in panel_list:\n            panel_defs.append({\n                \"judge_ids\": panel.judge_ids,\n                \"panel_type\": ptype,\n                \"k\": panel.k,\n            })\n\n    for ds_name, ds_data in step1_data.items():\n        logger.info(f\"=== K_eff validation for {ds_name} ===\")\n        pairwise_df = pd.DataFrame(ds_data[\"pairwise\"])\n        keff_results = validate_keff(pairwise_df, panel_defs)\n        all_keff_results[ds_name] = keff_results\n\n        # Summary: dual K_eff comparison table\n        logger.info(f\"\\n{'Panel Type':<12} {'K':>3} {'K_eff(MI)':>10} {'K_eff(rho)':>11} {'K*(vN)':>8} {'Gap':>8}\")\n        logger.info(\"-\" * 58)\n        for entry in keff_results:\n            gap = entry[\"k_eff_formula\"] - entry[\"k_eff_empirical\"]\n            logger.info(\n                f\"{entry['panel_type']:<12} {entry['K']:>3} \"\n                f\"{entry['k_eff_formula']:>10.3f} {entry['k_eff_empirical']:>11.3f} \"\n                f\"{entry['k_star_von_neumann']:>8.3f} {gap:>+8.3f}\"\n            )\n\n        # Aggregate stats\n        formulas = [e[\"k_eff_formula\"] for e in keff_results]\n        empiricals = [e[\"k_eff_empirical\"] for e in keff_results]\n        kstars = [e[\"k_star_von_neumann\"] for e in keff_results]\n        corr_fe = float(np.corrcoef(formulas, empiricals)[0, 1]) if len(formulas) > 1 else float(\"nan\")\n        logger.info(f\"\\nCorr(K_eff_formula, K_eff_empirical) = {corr_fe:.4f}\")\n        logger.info(f\"Mean K_eff_formula={np.mean(formulas):.3f}, K_eff_empirical={np.mean(empiricals):.3f}, K*={np.mean(kstars):.3f}\")\n\n    out = save_results(all_keff_results, config.results_dir, tag=\"step3_keff\")\n    logger.info(f\"Step 3 complete. Results: {out}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"run_step3_keff.py updated: $?\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T22:07:02.737745+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"run_step3_keff.py updated: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T22:07:02.737915+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat > /root/cert_manip_resist_eval/scripts/run_step4_scaling.py << 'PYEOF'\n#!/usr/bin/env python3\n# Step 4: Scaling analysis — K_eff vs ASR across panel sizes.\n# Input: K_eff data from Step 3, panel ASR from Step 2.\n# Output: Dual K_eff regression (MI-based vs rho-based), R² comparison.\n\nimport json\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\n\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n\nfrom src.config import ExperimentConfig\nfrom src.scaling import (\n    collect_scaling_data,\n    loglog_regression,\n    run_scaling_analysis,\n    spearman_correlation,\n)\nfrom src.utils import load_results, save_results, setup_logging\n\nlogger = setup_logging(\"step4\")\n\n\ndef dual_keff_regression(data_points):\n    \"\"\"Run log-log regression for both K_eff variants and compare.\"\"\"\n    # Collect values for each K_eff type\n    pairs_formula = [\n        (d[\"k_eff_formula\"], d[\"asr\"])\n        for d in data_points\n        if d.get(\"k_eff_formula\") and d.get(\"asr\") and d[\"k_eff_formula\"] > 0 and d[\"asr\"] > 0\n    ]\n    pairs_empirical = [\n        (d[\"k_eff_empirical\"], d[\"asr\"])\n        for d in data_points\n        if d.get(\"k_eff_empirical\") and d.get(\"asr\") and d[\"k_eff_empirical\"] > 0 and d[\"asr\"] > 0\n    ]\n\n    result = {}\n\n    if len(pairs_formula) >= 3:\n        keff_f, asr_f = zip(*pairs_formula)\n        logger.info(\"--- log(ASR) vs log(K_eff_formula) [MI-based] ---\")\n        rho_f, p_f = spearman_correlation(list(keff_f), list(asr_f))\n        reg_f = loglog_regression(list(keff_f), list(asr_f))\n        result[\"formula\"] = {\n            \"spearman_rho\": rho_f,\n            \"spearman_p\": p_f,\n            \"regression\": reg_f,\n            \"n_points\": len(pairs_formula),\n        }\n    else:\n        logger.warning(\"Insufficient data for K_eff_formula regression\")\n        result[\"formula\"] = {\"error\": \"insufficient_data\", \"n_points\": len(pairs_formula)}\n\n    if len(pairs_empirical) >= 3:\n        keff_e, asr_e = zip(*pairs_empirical)\n        logger.info(\"--- log(ASR) vs log(K_eff_empirical) [rho-based] ---\")\n        rho_e, p_e = spearman_correlation(list(keff_e), list(asr_e))\n        reg_e = loglog_regression(list(keff_e), list(asr_e))\n        result[\"empirical\"] = {\n            \"spearman_rho\": rho_e,\n            \"spearman_p\": p_e,\n            \"regression\": reg_e,\n            \"n_points\": len(pairs_empirical),\n        }\n    else:\n        logger.warning(\"Insufficient data for K_eff_empirical regression\")\n        result[\"empirical\"] = {\"error\": \"insufficient_data\", \"n_points\": len(pairs_empirical)}\n\n    # Compare R²\n    r2_f = result.get(\"formula\", {}).get(\"regression\", {}).get(\"r_squared\", float(\"nan\"))\n    r2_e = result.get(\"empirical\", {}).get(\"regression\", {}).get(\"r_squared\", float(\"nan\"))\n    beta_f = result.get(\"formula\", {}).get(\"regression\", {}).get(\"beta\", float(\"nan\"))\n    beta_e = result.get(\"empirical\", {}).get(\"regression\", {}).get(\"beta\", float(\"nan\"))\n\n    logger.info(f\"\\n{'Metric':<25} {'MI-based (formula)':>20} {'rho-based (empirical)':>22}\")\n    logger.info(\"-\" * 70)\n    logger.info(f\"{'beta (slope)':<25} {beta_f:>20.4f} {beta_e:>22.4f}\")\n    logger.info(f\"{'R^2':<25} {r2_f:>20.4f} {r2_e:>22.4f}\")\n\n    if not (np.isnan(r2_f) or np.isnan(r2_e)):\n        if r2_f > r2_e:\n            winner = \"MI-based K_eff is better predictor\"\n        elif r2_e > r2_f:\n            winner = \"rho-based K_eff is better predictor\"\n        else:\n            winner = \"Both K_eff variants have equal R^2\"\n        result[\"comparison\"] = {\n            \"r2_formula\": r2_f,\n            \"r2_empirical\": r2_e,\n            \"r2_diff\": r2_f - r2_e,\n            \"winner\": winner,\n        }\n        logger.info(f\"\\n>> {winner} (R^2 diff = {r2_f - r2_e:+.4f})\")\n    else:\n        result[\"comparison\"] = {\"error\": \"cannot_compare\"}\n\n    return result\n\n\ndef main():\n    config = ExperimentConfig()\n    results_dir = config.results_dir\n\n    # Load Step 2 (attacks) and Step 3 (keff) results\n    step2_files = sorted(results_dir.glob(\"results_step2_attacks_*.json\"))\n    step3_files = sorted(results_dir.glob(\"results_step3_keff_*.json\"))\n\n    if not step2_files or not step3_files:\n        logger.error(\"Need Step 2 and Step 3 results. Run those steps first.\")\n        sys.exit(1)\n\n    step2_data = load_results(step2_files[-1])\n    step3_data = load_results(step3_files[-1])\n    logger.info(\"Loaded Step 2 and Step 3 results\")\n\n    all_scaling_results = {}\n\n    for ds_name in config.datasets:\n        if ds_name not in step2_data or ds_name not in step3_data:\n            continue\n\n        logger.info(f\"=== Scaling analysis for {ds_name} ===\")\n\n        keff_results = step3_data[ds_name]\n        panel_attacks = step2_data[ds_name][\"panel_attacks\"]\n\n        all_data_points = []\n        for attack_name, panel_asr in panel_attacks.items():\n            for ptype, results in panel_asr.items():\n                for r in results:\n                    r[\"attack_name\"] = attack_name\n                    r[\"dataset\"] = ds_name\n\n            data_points = collect_scaling_data(panel_asr, keff_results)\n            all_data_points.extend(data_points)\n\n        # Original single-K_eff analysis (backward compat)\n        scaling_result = run_scaling_analysis(all_data_points)\n\n        # Dual K_eff regression comparison\n        logger.info(\"\\n=== Dual K_eff Regression Comparison ===\")\n        dual_result = dual_keff_regression(all_data_points)\n\n        scaling_result[\"dual_keff_regression\"] = dual_result\n        scaling_result[\"data_points\"] = all_data_points\n        all_scaling_results[ds_name] = scaling_result\n\n    out = save_results(all_scaling_results, config.results_dir, tag=\"step4_scaling\")\n    logger.info(f\"Step 4 complete. Results: {out}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"run_step4_scaling.py updated: $?\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat > /root/cert_manip_resist_eval/scripts/run_step4_scaling.py << 'PYEOF'\n#!/usr/bin/env python3\n# Step 4: Scaling analysis — K_eff vs ASR across panel sizes.\n# Input: K_eff data from Step 3, panel ASR from Step 2.\n# Output: Dual K_eff regression (MI-based vs rho-based), R² comparison.\n\nimport json\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\n\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\n\nfrom src.config import ExperimentConfig\nfrom src.scaling import (\n    collect_scaling_data,\n    loglog_regression,\n    run_scaling_analysis,\n    spearman_correlation,\n)\nfrom src.utils import load_results, save_results, setup_logging\n\nlogger = setup_logging(\"step4\")\n\n\ndef dual_keff_regression(data_points):\n    \"\"\"Run log-log regression for both K_eff variants and compare.\"\"\"\n    # Collect values for each K_eff type\n    pairs_formula = [\n        (d[\"k_eff_formula\"], d[\"asr\"])\n        for d in data_points\n        if d.get(\"k_eff_formula\") and d.get(\"asr\") and d[\"k_eff_formula\"] > 0 and d[\"asr\"] > 0\n    ]\n    pairs_empirical = [\n        (d[\"k_eff_empirical\"], d[\"asr\"])\n        for d in data_points\n        if d.get(\"k_eff_empirical\") and d.get(\"asr\") and d[\"k_eff_empirical\"] > 0 and d[\"asr\"] > 0\n    ]\n\n    result = {}\n\n    if len(pairs_formula) >= 3:\n        keff_f, asr_f = zip(*pairs_formula)\n        logger.info(\"--- log(ASR) vs log(K_eff_formula) [MI-based] ---\")\n        rho_f, p_f = spearman_correlation(list(keff_f), list(asr_f))\n        reg_f = loglog_regression(list(keff_f), list(asr_f))\n        result[\"formula\"] = {\n            \"spearman_rho\": rho_f,\n            \"spearman_p\": p_f,\n            \"regression\": reg_f,\n            \"n_points\": len(pairs_formula),\n        }\n    else:\n        logger.warning(\"Insufficient data for K_eff_formula regression\")\n        result[\"formula\"] = {\"error\": \"insufficient_data\", \"n_points\": len(pairs_formula)}\n\n    if len(pairs_empirical) >= 3:\n        keff_e, asr_e = zip(*pairs_empirical)\n        logger.info(\"--- log(ASR) vs log(K_eff_empirical) [rho-based] ---\")\n        rho_e, p_e = spearman_correlation(list(keff_e), list(asr_e))\n        reg_e = loglog_regression(list(keff_e), list(asr_e))\n        result[\"empirical\"] = {\n            \"spearman_rho\": rho_e,\n            \"spearman_p\": p_e,\n            \"regression\": reg_e,\n            \"n_points\": len(pairs_empirical),\n        }\n    else:\n        logger.warning(\"Insufficient data for K_eff_empirical regression\")\n        result[\"empirical\"] = {\"error\": \"insufficient_data\", \"n_points\": len(pairs_empirical)}\n\n    # Compare R²\n    r2_f = result.get(\"formula\", {}).get(\"regression\", {}).get(\"r_squared\", float(\"nan\"))\n    r2_e = result.get(\"empirical\", {}).get(\"regression\", {}).get(\"r_squared\", float(\"nan\"))\n    beta_f = result.get(\"formula\", {}).get(\"regression\", {}).get(\"beta\", float(\"nan\"))\n    beta_e = result.get(\"empirical\", {}).get(\"regression\", {}).get(\"beta\", float(\"nan\"))\n\n    logger.info(f\"\\n{'Metric':<25} {'MI-based (formula)':>20} {'rho-based (empirical)':>22}\")\n    logger.info(\"-\" * 70)\n    logger.info(f\"{'beta (slope)':<25} {beta_f:>20.4f} {beta_e:>22.4f}\")\n    logger.info(f\"{'R^2':<25} {r2_f:>20.4f} {r2_e:>22.4f}\")\n\n    if not (np.isnan(r2_f) or np.isnan(r2_e)):\n        if r2_f > r2_e:\n            winner = \"MI-based K_eff is better predictor\"\n        elif r2_e > r2_f:\n            winner = \"rho-based K_eff is better predictor\"\n        else:\n            winner = \"Both K_eff variants have equal R^2\"\n        result[\"comparison\"] = {\n            \"r2_formula\": r2_f,\n            \"r2_empirical\": r2_e,\n            \"r2_diff\": r2_f - r2_e,\n            \"winner\": winner,\n        }\n        logger.info(f\"\\n>> {winner} (R^2 diff = {r2_f - r2_e:+.4f})\")\n    else:\n        result[\"comparison\"] = {\"error\": \"cannot_compare\"}\n\n    return result\n\n\ndef main():\n    config = ExperimentConfig()\n    results_dir = config.results_dir\n\n    # Load Step 2 (attacks) and Step 3 (keff) results\n    step2_files = sorted(results_dir.glob(\"results_step2_attacks_*.json\"))\n    step3_files = sorted(results_dir.glob(\"results_step3_keff_*.json\"))\n\n    if not step2_files or not step3_files:\n        logger.error(\"Need Step 2 and Step 3 results. Run those steps first.\")\n        sys.exit(1)\n\n    step2_data = load_results(step2_files[-1])\n    step3_data = load_results(step3_files[-1])\n    logger.info(\"Loaded Step 2 and Step 3 results\")\n\n    all_scaling_results = {}\n\n    for ds_name in config.datasets:\n        if ds_name not in step2_data or ds_name not in step3_data:\n            continue\n\n        logger.info(f\"=== Scaling analysis for {ds_name} ===\")\n\n        keff_results = step3_data[ds_name]\n        panel_attacks = step2_data[ds_name][\"panel_attacks\"]\n\n        all_data_points = []\n        for attack_name, panel_asr in panel_attacks.items():\n            for ptype, results in panel_asr.items():\n                for r in results:\n                    r[\"attack_name\"] = attack_name\n                    r[\"dataset\"] = ds_name\n\n            data_points = collect_scaling_data(panel_asr, keff_results)\n            all_data_points.extend(data_points)\n\n        # Original single-K_eff analysis (backward compat)\n        scaling_result = run_scaling_analysis(all_data_points)\n\n        # Dual K_eff regression comparison\n        logger.info(\"\\n=== Dual K_eff Regression Comparison ===\")\n        dual_result = dual_keff_regression(all_data_points)\n\n        scaling_result[\"dual_keff_regression\"] = dual_result\n        scaling_result[\"data_points\"] = all_data_points\n        all_scaling_results[ds_name] = scaling_result\n\n    out = save_results(all_scaling_results, config.results_dir, tag=\"step4_scaling\")\n    logger.info(f\"Step 4 complete. Results: {out}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"run_step4_scaling.py updated: $?\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T22:07:02.738156+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"run_step4_scaling.py updated: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T22:07:02.738316+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from scripts.copula_gof_check import check_copula_gof; print('copula_gof_check import OK')\" && python3 -c \"import ast; ast.parse(open('scripts/run_step3_keff.py').read()); print('Step 3 syntax OK')\" && python3 -c \"import ast; ast.parse(open('scripts/run_step4_scaling.py').read()); print('Step 4 syntax OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from scripts.copula_gof_check import check_copula_gof; print('copula_gof_check import OK')\" && python3 -c \"import ast; ast.parse(open('scripts/run_step3_keff.py').read()); print('Step 3 syntax OK')\" && python3 -c \"import ast; ast.parse(open('scripts/run_step4_scaling.py').read()); print('Step 4 syntax OK')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T22:07:02.738455+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"copula_gof_check import OK\\nStep 3 syntax OK\\nStep 4 syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T22:07:02.738607+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from scripts.run_step3_keff import main; print('Step 3 imports OK')\" && python3 -c \"from scripts.run_step4_scaling import main, dual_keff_regression; print('Step 4 imports OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cd /root/cert_manip_resist_eval && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from scripts.run_step3_keff import main; print('Step 3 imports OK')\" && python3 -c \"from scripts.run_step4_scaling import main, dual_keff_regression; print('Step 4 imports OK')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T22:07:02.738766+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Step 3 imports OK\\nStep 4 imports OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-21T22:07:02.738926+00:00_
+
+全部通过。改动总结：
+
+1. **`scripts/copula_gof_check.py`** — 新建。对 Step 1 结果做 copula GoF 后检：计算每对 judge 的 MI_obs / MI_gaussian 比值，>50% 对超过 2 则标记 copula 假设违反。
+
+2. **`scripts/run_step3_keff.py`** — 增加了更宽的 Step 1 文件匹配（`step1_full_*` / `step1_*`）；添加了双 K_eff 对比汇总表（K_eff(MI) vs K_eff(ρ) vs K*(vN) + Gap），以及聚合统计（formula-empirical 相关系数、三种均值）。`validate_keff` 本身已返回三种 K_eff，无需改动。
+
+3. **`scripts/run_step4_scaling.py`** — 新增 `dual_keff_regression()` 函数：分别对 `k_eff_formula`(MI-based) 和 `k_eff_empirical`(ρ-based) 做 log-log 回归，输出两组 β̂ + R²，对比后标注哪种是 better predictor。结果写入 `dual_keff_regression` 字段。原有 `run_scaling_analysis` 保持向后兼容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_update-step3-step4-dual-keff_20260521T220444"
+}
+```
+
+</details>
+
+---

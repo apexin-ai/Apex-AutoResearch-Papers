@@ -1,0 +1,689 @@
+# cron hook exp 005 gla pure
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/cron_hook_exp-005-gla-pure.jsonl`
+- **Structured JSON:** [`0efa255153b7d0a74d6c.json`](../../sessions/0e/0efa255153b7d0a74d6c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 1 · 2026-05-22T16:41:33.289391+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp-005-gla-pure
+- project: entrainment_gated_ft
+- server: westb-48145
+- log_path: ~/runs/entrainment_gated_ft/exp-005-gla-pure.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp-005-gla-pure",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-22T16:41:46.444190+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": "11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "max_results": "11"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-22T16:41:46.475754+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "ToolSearch",
+  "elapsed_ms": 31
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T16:41:51.246759+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T16:41:51.247175+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T16:41:51.800298+00:00_
+
+&lt;persisted-output>
+Output too large (56.8KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-agent-aa1a2296/ccd4bb6d-9c70-4ece-9e7e-8b842791a0aa/tool-results/toolu_017SjjVew7bhkJio3KNz9LNC.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-005-gla-pure\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:33:56.971Z\", \"updated_at\": \"2026-05-22T16:41:30.660Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && python /root/entrainment_gated_ft/scripts/patch_fla_eval.py --model hf --model_args pretrained=/root/entrainment_gated_ft/models/340M-20B-GLA-pure-baseline,trust_remote_code=True --tasks lambada_openai,arc_easy --device cuda:0 --batch_size auto --log_samples --output_path /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/ && echo GLA_PURE_EVAL_DONE\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"904591\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-005-gla-pure.log\", \"submitted_at\": \"2026-05-22T16:39:54.061Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T16:41:30.660Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T16:41:32.936910+00:00\"}]}}, \"exp-005-pure-v5\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:37:28.872Z\", \"updated_at\": \"2026-05-22T16:37:28.872Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_p
+…[truncated 349 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T16:41:51.800682+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-22T16:41:51.800897+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T16:41:52.303051+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-22T16:41:32Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 40 个实验 — DONE 20, PENDING 1, PREPARING 19\\n**DONE 分布**: failed 1, killed 1, negative 4, success 14\\n\\n### GPU 占用\\n- **分配**: 1 张 — westb-48145:cuda:0\\n- **空闲（分配了没跑）**: westb-48145:cuda:0\\n\\n### 💾 磁盘余量\\n- **westb-48145**:\\n  - `/autodl-pub`: 7.6T/14T 可用（已用 46%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `e4-pythia-seed-calibration` [success] — 2026-05-22T11:44:42 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp-340m-multi-bench` [success] — 2026-05-22T00:34:02\\n- `w3-winogrande-piqa-eval` [success] — 2026-05-21T10:27:33\\n- `exp-boolq-hellaswag-eval` [success] — 2026-05-21T08:53:38\\n- `exp-015` [success] — 2026-05-20T10:06:09\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-22\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp-005-eval: Cross-architecture per-example Jaccard (helped/hurt) remains ≤0.10 when expanding from 3 architectures (GDN/RetNet/HGRN2) to 6 (adding GLA/DeltaNet/HGRN), with 15 pairwise comparisons and 720 permutations providing dramatically stronger statistical power.（等待人工审批）\\n- exp-005: Cross-architecture Jaccard overlap of helped/hurt sets will remain significantly above chance when expanded from 3 to 6 linear attention architectures, indicating that attention-mediated sample sensitivity is architecture-independent.（准备中）\\n- exp-003-p2v2: Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across
+…[truncated 1648 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T16:41:52.303518+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "entrainment_gated_ft"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T16:41:52.554961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-22 10:17 UTC | 更新原因: E1/E2/E3 完成 + E4 Pythia seed 实验派发 + Paper Agent R13 修复中\\n\\n## 核心方向\\nHybrid linear recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）+ confidence-based architecture selection。详见 paper_framing.md。\\n\\n## 当前阶段\\n**目标：4.0 Conference。实验补充 + 写作修复并行推进。**\\n\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle) — 剩余 ~72h\\n\\n### 审稿历史\\n- Round 5-9: 连续 3.0 Findings\\n- Round 10-12: 逐步修复，R12 Overall 3.0 (R1=3.5, R2=3.0)\\n- Round 13: Fresh review 3.0。三个结构性问题：convergence 不显著、seed confound、novelty 有限\\n- **Post-R13**: 补 4 个实验 + 10+ 项 text fix\\n\\n### 分数瓶颈 → 对策\\n| 问题 | 对策 | 状态 |\\n|------|------|------|\\n| Seed confound (R5-W1, 13轮 Critical) | **E4 Pythia 410M 9-seed calibration** | Agent 执行中 |\\n| Novelty/Actionability (R2 Excitement 2/5) | E1 routing +5.33pp LAMBADA | ✅ done, Paper Agent 整合中 |\\n| Binary decomposition concern | E2 continuous Jaccard robust | ✅ done, Paper Agent 整合中 |\\n| Calibration confound | E3 ECE 17% vs threshold 47% | ✅ done, Paper Agent 整合中 |\\n| Convergence 叙事过重 | Paper Agent 结构重构完成 | ✅ done |\\n| Ecological Fallacy 未讨论 | Robinson (1950) + 讨论 | Paper Agent 执行中 |\\n\\n## 近期任务\\n- [ ] **E4** Pythia 410M multi-seed calibration（Agent 执行中，预计 2-4h）\\n- [ ] Paper Agent R13 text fixes + E1/E2/E3 integration（执行中，预计 2-3h）\\n- [ ] E4 结果整合到论文\\n- [ ] 编译 + Round 14 review\\n- [ ] Final polish + 提交 ARR\\n\\n## 实验成果总结\\n| ID | 结果 | 价值 |\\n|----|------|------|\\n| E1 Routing | LAMBADA +5.33pp, 36% oracle gap | 主文 §4.1 supporting |\\n| E2 Continuous J | J monotonic decrease τ=0→0.30 | Appendix + §4.1 ref |\\n| E3 Calibration | ECE 17% << threshold 47% | Appendix + §4.1 ref |\\n| E4 Pythia Seed | 执行中 | 预期：主文 §4.2 或 Appendix |\\n\
+…[truncated 1033 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-22T16:41:52.555458+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T16:41:52.657768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_fix_exp-005-download-fix_20260522T151052\", \"task_type\": \"fix:exp-005-download-fix\", \"project\": \"entrainment_gated_ft\", \"status\": \"running\", \"started_at\": \"2026-05-22T15:10:52.291078+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_exp_exp-005-pure-baselines_20260522T155641\", \"task_type\": \"exp:exp-005-pure-baselines\", \"project\": \"entrainment_gated_ft\", \"status\": \"running\", \"started_at\": \"2026-05-22T15:56:41.476588+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T16:42:14.051903+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-agent-aa1a2296/ccd4bb6d-9c70-4ece-9e7e-8b842791a0aa/tool-results/toolu_017SjjVew7bhkJio3KNz9LNC.txt",
+  "limit": "200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-agent-aa1a2296/ccd4bb6d-9c70-4ece-9e7e-8b842791a0aa/tool-results/toolu_017SjjVew7bhkJio3KNz9LNC.txt",
+    "limit": "200"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T16:42:14.052275+00:00_
+
+called mcp__agent-ml-research__read_experiment_plan_with_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "tool_args": {
+    "project": "entrainment_gated_ft"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T16:42:14.355515+00:00_
+
+1	{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-005-gla-pure\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:33:56.971Z\", \"updated_at\": \"2026-05-22T16:41:30.660Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && python /root/entrainment_gated_ft/scripts/patch_fla_eval.py --model hf --model_args pretrained=/root/entrainment_gated_ft/models/340M-20B-GLA-pure-baseline,trust_remote_code=True --tasks lambada_openai,arc_easy --device cuda:0 --batch_size auto --log_samples --output_path /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/ && echo GLA_PURE_EVAL_DONE\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"904591\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-005-gla-pure.log\", \"submitted_at\": \"2026-05-22T16:39:54.061Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T16:41:30.660Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T16:41:32.936910+00:00\"}]}}, \"exp-005-pure-v5\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:37:28.872Z\", \"updated_at\": \"2026-05-22T16:37:28.872Z\", \"spec\": {\"command\": \"bash -c \\\"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v5.sh\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"904122\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-005-pure-v5.log\", \"submitted_at\": \"2026-05-22T16:37:28.788Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-005-pure-v4\": {\"st
+…[truncated 56134 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "Read",
+  "elapsed_ms": 303
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T16:42:14.507130+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"exp-001\", \"registry_id\": \"exp-001\", \"claim\": 1, \"title\": \"Task-specificity characterization of equalizer effect\", \"description\": \"Compute cross-architecture variance (std) at each attention ratio for all 6 benchmarks. Known: only LAMBADA shows significant convergence (p<0.05). Goal: build principled task taxonomy (retrieval-dependent vs reasoning-dependent) explaining WHY convergence is task-specific. LAMBADA = last-word retrieval from context; HellaSwag/ARC = multi-step reasoning. Show the dichotomy is a feature (task-type modulation), not a limitation.\\n\", \"priority\": \"P0\", \"type\": \"analysis\", \"gpu_budget_hours\": 0, \"deps\": [], \"data_source\": \"existing summary_all_1.3b.csv + 340M results + cross_scale_convergence output\", \"pass_fail\": \"Clear task-type dichotomy with principled taxonomy; convergence correlates with retrieval demand\", \"reviewer_risk\": \"Risk A — reframed per Reviewer warning: single-task convergence → task-specificity as positive finding\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"LAMBADA\": {\"rho\": -1, \"p\": 0.0167, \"significant\": false, \"taxonomy\": \"retrieval-dependent\", \"note\": \"exact permutation two-tailed (was 0.008 one-tailed)\"}, \"HellaSwag\": {\"rho\": 0.3, \"p\": 0.6833, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"ARC-C\": {\"rho\": 0.6, \"p\": 0.35, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"Winogrande\": {\"rho\": 0.1, \"p\": 0.95, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"ARC-Easy\": {\"rho\": -0.7, \"p\": 0.2333, \"significant\": false, \"taxonomy\": \"mixed\"}, \"MMLU\": {\"rho\": -0.7, \"p\": 0.2333, \"significant\": false, \"taxonomy\": \"mixed\"}, \"significant_count\": \"0/6\", \"summary\": \"LAMBADA shows perfect negative correlation (rho=-1.0) but exact permutation two-tailed p=0.0167 (Bonferroni adj-p=0.100, not sig
+…[truncated 13799 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-22T16:42:31.631181+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T16:42:31.681769+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-22T16:42:38.618952+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': '派 Worker 读取 exp-005-gla-pure 结果日志和输出', 'status': 'in_progress', 'activeForm': '派 Worker 读取 exp-005-gla-pure 结果'}, {'content': '根据结果更新 registry (metrics, conclusion, status→DONE)', 'status': 'pending', 'activeForm': '更新 registry'}, {'content': '更新 report.md', 'status': 'pending', 'activeForm': '更新 report.md'}, {'content': '向 Director 汇报结果', 'status': 'pending', 'activeForm': '向 Director 汇报'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': '派 Worker 读取 exp-005-gla-pure 结果日志和输出', 'status': 'in_progress', 'activeForm': '派 Worker 读取 exp-005-gla-pure 结果'}, {'content': '根据结果更新 registry (metrics, conclusion, status→DONE)', 'status': 'pending', 'activeForm': '更新 registry'}, {'content': '更新 report.md', 'status': 'pending', 'activeForm': '更新 report.md'}, {'content': '向 Director 汇报结果', 'status': 'pending', 'activeForm': '向 Director 汇报'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T16:42:38.669532+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "TodoWrite",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-22T16:42:58.367143+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:exp-005-gla-pure-results",
+  "project": "entrainment_gated_ft",
+  "task_prompt": "## 任务：读取 exp-005-gla-pure 评估结果\n\nexp-005-gla-pure 已完成（进程正常退出）。你需要读取结果并汇总。\n\n### 服务器信息\n- 服务器: westb-48145\n- 日志: ~/runs/entrainment_gated_ft/exp-005-gla-pure.log\n- 结果目录: /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/\n- 模型: 340M-20B-GLA-pure-baseline\n- 任务: lambada_openai, arc_easy\n- 使用了 patch_fla_eval.py 脚本（修复 fla 0.5.0 + transformers 5.8.1 兼容问题）\n\n### 要做的事\n1. SSH 到 westb-48145，用 ssh_read_only 读取日志文件尾部（最后 50 行）\n2. 读取结果目录下的 JSON 结果文件（lm-eval 输出格式，通常是 results.json 或按模型名命名的子目录下的 results*.json）\n3. 提取关键指标：\n   - lambada_openai: acc, acc_stderr, perplexity (ppl), word_perplexity\n   - arc_easy: acc, acc_norm, acc_stderr\n4. 检查是否有 per-example log_samples 数据（用于后续 Jaccard 分析）\n5. 同时读取已有的 GLA hybrid-3-1 结果用于对比：\n   - 检查 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/ 是否有结果\n   - 如果没有，检查 exp-005 registry 中的 gla_h31_lambada_acc=0.3819, gla_h31_arc_acc=0.5673\n\n### 输出格式\n用 save_project_file 将结果写入 memory.md 的追加段落（先 read_project_file 读现有内容，再追加），格式：\n```\n## exp-005-gla-pure 结果 (2026-05-22)\n- 模型: 340M-20B-GLA-pure-baseline\n- lambada_openai: acc=X.XXXX, ppl=X.XX\n- arc_easy: acc=X.XXXX, acc_norm=X.XXXX\n- per-example log_samples: 有/无\n- 对比 GLA hybrid-3-1: lambada_acc=0.3819, arc_acc=0.5673\n```\n\n同时用 update_registry 更新 exp-005-gla-pure：\n- field=metrics, value={完整指标字典}\n- field=conclusion, value=\"success\"（如果结果正常）或 \"failed\"（如果有错误）\n- field=status, value=\"DONE\"\n\n**注意：先读日志确认是否真正成功（看最后有没有 GLA_PURE_EVAL_DONE sentinel），再决定 conclusion。**\n",
+  "tool_groups": "['ssh', 'registry', 'knowledge']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:exp-005-gla-pure-results",
+    "project": "entrainment_gated_ft",
+    "task_prompt": "## 任务：读取 exp-005-gla-pure 评估结果\n\nexp-005-gla-pure 已完成（进程正常退出）。你需要读取结果并汇总。\n\n### 服务器信息\n- 服务器: westb-48145\n- 日志: ~/runs/entrainment_gated_ft/exp-005-gla-pure.log\n- 结果目录: /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/\n- 模型: 340M-20B-GLA-pure-baseline\n- 任务: lambada_openai, arc_easy\n- 使用了 patch_fla_eval.py 脚本（修复 fla 0.5.0 + transformers 5.8.1 兼容问题）\n\n### 要做的事\n1. SSH 到 westb-48145，用 ssh_read_only 读取日志文件尾部（最后 50 行）\n2. 读取结果目录下的 JSON 结果文件（lm-eval 输出格式，通常是 results.json 或按模型名命名的子目录下的 results*.json）\n3. 提取关键指标：\n   - lambada_openai: acc, acc_stderr, perplexity (ppl), word_perplexity\n   - arc_easy: acc, acc_norm, acc_stderr\n4. 检查是否有 per-example log_samples 数据（用于后续 Jaccard 分析）\n5. 同时读取已有的 GLA hybrid-3-1 结果用于对比：\n   - 检查 /root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/ 是否有结果\n   - 如果没有，检查 exp-005 registry 中的 gla_h31_lambada_acc=0.3819, gla_h31_arc_acc=0.5673\n\n### 输出格式\n用 save_project_file 将结果写入 memory.md 的追加段落（先 read_project_file 读现有内容，再追加），格式：\n```\n## exp-005-gla-pure 结果 (2026-05-22)\n- 模型: 340M-20B-GLA-pure-baseline\n- lambada_openai: acc=X.XXXX, ppl=X.XX\n- arc_easy: acc=X.XXXX, acc_norm=X.XXXX\n- per-example log_samples: 有/无\n- 对比 GLA hybrid-3-1: lambada_acc=0.3819, arc_acc=0.5673\n```\n\n同时用 update_registry 更新 exp-005-gla-pure：\n- field=metrics, value={完整指标字典}\n- field=conclusion, value=\"success\"（如果结果正常）或 \"failed\"（如果有错误）\n- field=status, value=\"DONE\"\n\n**注意：先读日志确认是否真正成功（看最后有没有 GLA_PURE_EVAL_DONE sentinel），再决定 conclusion。**\n",
+    "tool_groups": "['ssh', 'registry', 'knowledge']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T16:43:01.382522+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp-005-gla-pure-results_20260522T164258\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_exp-005-gla-pure-results_20260522T164258.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp-005-gla-pure-results_20260522T164258 started. Use get_worker_status('worker_analysis_exp-005-gla-pure-results_20260522T164258') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-005-gla-pure",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3015
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-22T16:43:18.574385+00:00_
+
+已派 Worker `worker_analysis_exp-005-gla-pure-results` 去 westb-48145 读取 GLA pure baseline 的评估结果。
+
+当前活跃 Worker 3 个：
+1. `worker_fix_exp-005-download-fix` — 修复模型下载问题
+2. `worker_exp_exp-005-pure-baselines` — pure baseline 评估
+3. `worker_analysis_exp-005-gla-pure-results` — 刚派出，读取 GLA pure 结果
+
+等待 Worker 回调后更新 registry 并向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp-005-gla-pure"
+}
+```
+
+</details>
+
+---

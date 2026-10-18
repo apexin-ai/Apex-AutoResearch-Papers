@@ -12,6 +12,7 @@
     "bytes": 2444702,
     "sha256": "4938ca6c24cd67a181df96127343f561443f4b5581cf8cda64affc5338fd83e7"
   },
+  "readable_path": "readable/conversations/reviewer-1-coordination.md",
   "paper_title": "How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?",
   "preview_selection": {
     "round": 1,

@@ -1,0 +1,1383 @@
+# harvest eval xvla random k05 long seed43
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400.jsonl`
+- **Structured JSON:** [`a4738a75cb3f40b5b459.json`](../../sessions/a4/a4738a75cb3f40b5b459.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T23:15:59.595915+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T23:15:59.598720+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "ToolSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T23:15:59.601584+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls -la /tmp/eval_xvla_random_k05_long_seed43*.log /tmp/*random*long*seed43* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls -la /tmp/eval_xvla_random_k05_long_seed43*.log /tmp/*random*long*seed43* 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T23:15:59.601861+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T23:15:59.602066+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": "{'exp_id': 'R6-C1'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "filters": "{'exp_id': 'R6-C1'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T23:15:59.609012+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4332}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 6
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T23:15:59.609343+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "ls -la /tmp/eval_xvla_random_k05_long_seed43*.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "ls -la /tmp/eval_xvla_random_k05_long_seed43*.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-23T23:15:59.609556+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "find /tmp -name \"*random*long*seed43*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "find /tmp -name \"*random*long*seed43*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T23:15:59.609761+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "importance_margin_vla_compress",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T23:15:59.609981+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/tmp/eval_xvla_random_k05_long_seed43*.log': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T23:15:59.610251+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/agent-ml-exit/eval_pi05_random_k03_long_seed43.exit\\n/tmp/agent-ml-exit/eval_pi05_random_k03_long_seed43_v2.exit\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T23:15:59.610755+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_random_k085_spatial_seed42_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:11:42.724Z\", \"updated_at\": \"2026-05-23T23:12:06.912Z\", \"hypothesis\": \"π0.5 Random k=0.85 Spatial post-fix — 测试 D191 disruption peak（Goal k=0.85 Random=52.4%）是否跨 suite 复现。CPU RNG 修复后 random pruning 应产生可复现的结果。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --seed 42 --gpu 0\", \"server\": \"westd-41074\", \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 42, \"log_path\": \"/tmp/eval_pi05_random_k085_spatial_seed42_postfix.log\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\"}}, \"eval_xvla_l2norm_k05_spatial_seed43\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:02:46.599Z\", \"updated_at\": \"2026-05-23T23:03:08.556Z\", \"hypothesis\": \"X-VLA L2norm k=0.5 Spatial seed43 CV — 验证 L2 在 Spatial 上的表现是否跨 seed 一致\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py --mode l2_norm --keep_ratio 0.5 --suite libero_spatial --domain_id 3 --seed 43 --model_path /root/autodl-tmp/X-VLA-Libero\", \"server\": \"westd-38929\", \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"xvla\", \"seed\": 43}}, \"eval_pi05_random_k09_object_seed42_v2\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T15:52:07.928Z\", \"updated_at\": \"2026-05-23T22:51:34.831Z\", \"hypothesis\": \"π0.5 Random k=0.9 Object post-fix — pre-fix 值可能受 CPU RNG bug 影响，需确认 post-fix 基线\", \"parent\": \"eval_pi05_random_k07_object_seed43\", \"completed_at\": \"20
+…[truncated 8186 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T23:15:59.611098+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "find /tmp -name \"*xvla*random*k05*long*seed43*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "find /tmp -name \"*xvla*random*k05*long*seed43*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T23:15:59.611368+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T23:15:59.611584+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/logs -name \"*random*k05*long*seed43*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress/logs -name \"*random*k05*long*seed43*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T23:15:59.611816+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_long_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T23:15:59.612030+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*random*long*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*random*long*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T23:15:59.616461+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/smolvla_random_k095_long_s42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k03_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_long_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_long_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k07_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T23:15:59.616792+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "find /root -name \"eval_xvla*long*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "find /root -name \"eval_xvla*long*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T23:15:59.617039+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k07_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k07_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k05_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k07_long_seed42_v2.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log\\n/root/runs/importance_margin_vla_compress/eval_xvla_l2norm_k05_long_seed42_v2.log\\n/root/runs/importance_margin_vla_compress/eval_xvla_random_k05_long_seed42.log\\n/root/runs/importance_margin_vla_compress/eval_xvla_l2norm_k05_long_seed42_v3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T23:15:59.617292+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "tail -50 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "tail -50 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T23:15:59.617582+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 07:04:23 [INFO]   Ep 19/50 | FAIL | steps=900\\n2026-05-24 07:04:39 [INFO]   Ep 20/50 | FAIL | steps=900\\n2026-05-24 07:04:55 [INFO]   Ep 21/50 | FAIL | steps=900\\n2026-05-24 07:05:10 [INFO]   Ep 22/50 | FAIL | steps=900\\n2026-05-24 07:05:26 [INFO]   Ep 23/50 | FAIL | steps=900\\n2026-05-24 07:05:41 [INFO]   Ep 24/50 | FAIL | steps=900\\n2026-05-24 07:05:55 [INFO]   Ep 25/50 | FAIL | steps=900\\n2026-05-24 07:06:10 [INFO]   Ep 26/50 | FAIL | steps=900\\n2026-05-24 07:06:18 [INFO]   Ep 27/50 | SUCCESS | steps=383\\n2026-05-24 07:06:33 [INFO]   Ep 28/50 | FAIL | steps=900\\n2026-05-24 07:06:48 [INFO]   Ep 29/50 | FAIL | steps=900\\n2026-05-24 07:07:03 [INFO]   Ep 30/50 | FAIL | steps=900\\n2026-05-24 07:07:18 [INFO]   Ep 31/50 | FAIL | steps=900\\n2026-05-24 07:07:33 [INFO]   Ep 32/50 | FAIL | steps=900\\n2026-05-24 07:07:48 [INFO]   Ep 33/50 | FAIL | steps=900\\n2026-05-24 07:08:03 [INFO]   Ep 34/50 | FAIL | steps=900\\n2026-05-24 07:08:18 [INFO]   Ep 35/50 | FAIL | steps=900\\n2026-05-24 07:08:33 [INFO]   Ep 36/50 | FAIL | steps=900\\n2026-05-24 07:08:43 [INFO]   Ep 37/50 | SUCCESS | steps=530\\n2026-05-24 07:08:57 [INFO]   Ep 38/50 | FAIL | steps=900\\n2026-05-24 07:09:12 [INFO]   Ep 39/50 | FAIL | steps=900\\n2026-05-24 07:09:27 [INFO]   Ep 40/50 | FAIL | steps=900\\n2026-05-24 07:09:42 [INFO]   Ep 41/50 | FAIL | steps=900\\n2026-05-24 07:09:58 [INFO]   Ep 42/50 | FAIL | steps=900\\n2026-05-24 07:10:15 [INFO]   Ep 43/50 | FAIL | steps=900\\n2026-05-24 07:10:30 [INFO]   Ep 44/50 | FAIL | steps=900\\n2026-05-24 07:10:45 [INFO]   Ep 45/50 | FAIL | steps=900\\n2026-05-24 07:10:59 [INFO]   Ep 46/50 | FAIL | steps=900\\n2026-05-24 07:11:15 [INFO]   Ep 47/50 | FAIL | steps=900\\n2026-05-24 07:11:30 [INFO]   Ep 48/50 | FAIL | steps=900\\n2026-05-24 07:11:46 [INFO]   Ep 49/50 | FAIL | steps=900\\n2026-05-24 07:12:02 [INFO]   Ep 50/50 | FAIL | steps=900\\n2026-05-24 07:12:02 [INFO]   Task 9 SR: 3/50 (6.0%
+…[truncated 1789 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T23:15:59.617840+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results -name \"*long*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results -name \"*long*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T23:15:59.618068+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T23:15:59.624571+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.5_libero_10.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.5_libero_10.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T23:15:59.624990+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"xvla\\\",\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/X-VLA-Libero\\\",\\n  \\\"mode\\\": \\\"random\\\",\\n  \\\"suite\\\": \\\"libero_10\\\",\\n  \\\"keep_ratio\\\": 0.5,\\n  \\\"n_vision_tokens_original\\\": 50,\\n  \\\"n_vision_tokens_kept\\\": 25,\\n  \\\"total_episodes\\\": 500,\\n  \\\"total_successes\\\": 291,\\n  \\\"overall_success_rate\\\": 0.582,\\n  \\\"wilson_ci_95\\\": [\\n    0.5383,\\n    0.6244\\n  ],\\n  \\\"num_episodes_per_task\\\": 50,\\n  \\\"max_steps\\\": 900,\\n  \\\"num_actions_per_chunk\\\": 30,\\n  \\\"domain_id\\\": 3,\\n  \\\"denoise_steps\\\": 10,\\n  \\\"seed\\\": 43,\\n  \\\"elapsed_seconds\\\": 5017.3,\\n  \\\"per_task\\\": {\\n    \\\"0\\\": {\\n      \\\"task_id\\\": 0,\\n      \\\"task_description\\\": \\\"put both the alphabet soup and the tomato sauce in the basket\\\",\\n      \\\"success_count\\\": 31,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.62,\\n      \\\"mean_steps\\\": 606.9\\n    },\\n    \\\"1\\\": {\\n      \\\"task_id\\\": 1,\\n      \\\"task_description\\\": \\\"put both the cream cheese box and the butter in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 900.0\\n    },\\n    \\\"2\\\": {\\n      \\\"task_id\\\": 2,\\n      \\\"task_description\\\": \\\"turn on the stove and put the moka pot on it\\\",\\n      \\\"success_count\\\": 34,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.68,\\n      \\\"mean_steps\\\": 452.7\\n    },\\n    \\\"3\\\": {\\n      \\\"task_id\\\": 3,\\n      \\\"task_description\\\": \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\",\\n      \\\"success_count\\\": 47,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.94,\\n      \\\"mean_steps\\\": 262.1\\n    },\\n    \\\"4\\\": {\\n      \\\"task_id\\\": 4,\\n      \\
+…[truncated 1891 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T23:15:59.625461+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-38929",
+  "command": "grep -c \"SUCCESS\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-38929",
+    "command": "grep -c \"SUCCESS\" /root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T23:15:59.625728+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"291\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T23:15:59.625965+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:CronDelete",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:CronDelete",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T23:15:59.629294+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "ToolSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T23:15:59.629644+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k05_long_seed43",
+  "field": "metrics",
+  "value": "{'overall_SR': 0.582, 'total_successes': 291, 'total_episodes': 500, 'wilson_ci_95': [0.5383, 0.6244], 'seed': 43, 'per_task_SR': [0.62, 0, 0.68, 0.94, 0.6, 0.86, 0.82, 0.84, 0.4, 0.06], 'elapsed_min': 83.6}",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_xvla_random_k05_long_seed43",
+    "field": "metrics",
+    "value": "{'overall_SR': 0.582, 'total_successes': 291, 'total_episodes': 500, 'wilson_ci_95': [0.5383, 0.6244], 'seed': 43, 'per_task_SR': [0.62, 0, 0.68, 0.94, 0.6, 0.86, 0.82, 0.84, 0.4, 0.06], 'elapsed_min': 83.6}",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-23T23:15:59.629925+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k05_long_seed43",
+  "field": "log_path",
+  "value": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_xvla_random_k05_long_seed43",
+    "field": "log_path",
+    "value": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T23:15:59.630169+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k05_long_seed43",
+  "field": "checkpoint_path",
+  "value": "n/a (inference-only eval)",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_xvla_random_k05_long_seed43",
+    "field": "checkpoint_path",
+    "value": "n/a (inference-only eval)",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T23:15:59.630435+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k05_long_seed43\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T21:49:33.210Z\", \"updated_at\": \"2026-05-23T23:15:09.808Z\", \"hypothesis\": \"X-VLA Random k=0.5 Long seed43。seed42=61.6%。seed43 提供 CV 数据（R6-C1）。\", \"spec\": {\"command\": \"python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 43}, \"metrics\": {\"overall_SR\": 0.582, \"total_successes\": 291, \"total_episodes\": 500, \"wilson_ci_95\": [0.5383, 0.6244], \"seed\": 43, \"per_task_SR\": [0.62, 0, 0.68, 0.94, 0.6, 0.86, 0.82, 0.84, 0.4, 0.06], \"elapsed_min\": 83.6}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.1771}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T23:15:59.630708+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k05_long_seed43\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T21:49:33.210Z\", \"updated_at\": \"2026-05-23T23:15:15.522Z\", \"hypothesis\": \"X-VLA Random k=0.5 Long seed43。seed42=61.6%。seed43 提供 CV 数据（R6-C1）。\", \"spec\": {\"command\": \"python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 43}, \"metrics\": {\"overall_SR\": 0.582, \"total_successes\": 291, \"total_episodes\": 500, \"wilson_ci_95\": [0.5383, 0.6244], \"seed\": 43, \"per_task_SR\": [0.62, 0, 0.68, 0.94, 0.6, 0.86, 0.82, 0.84, 0.4, 0.06], \"elapsed_min\": 83.6}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.8163}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T23:15:59.630986+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k05_long_seed43\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T21:49:33.210Z\", \"updated_at\": \"2026-05-23T23:15:22.449Z\", \"hypothesis\": \"X-VLA Random k=0.5 Long seed43。seed42=61.6%。seed43 提供 CV 数据（R6-C1）。\", \"spec\": {\"command\": \"python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 43}, \"metrics\": {\"overall_SR\": 0.582, \"total_successes\": 291, \"total_episodes\": 500, \"wilson_ci_95\": [0.5383, 0.6244], \"seed\": 43, \"per_task_SR\": [0.62, 0, 0.68, 0.94, 0.6, 0.86, 0.82, 0.84, 0.4, 0.06], \"elapsed_min\": 83.6}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log\", \"checkpoint_path\": \"n/a (inference-only eval)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.8792}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T23:15:59.636367+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k05_long_seed43",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_xvla_random_k05_long_seed43",
+    "field": "conclusion",
+    "value": "success",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T23:15:59.636784+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k05_long_seed43\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T21:49:33.210Z\", \"updated_at\": \"2026-05-23T23:15:29.376Z\", \"hypothesis\": \"X-VLA Random k=0.5 Long seed43。seed42=61.6%。seed43 提供 CV 数据（R6-C1）。\", \"spec\": {\"command\": \"python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 43}, \"metrics\": {\"overall_SR\": 0.582, \"total_successes\": 291, \"total_episodes\": 500, \"wilson_ci_95\": [0.5383, 0.6244], \"seed\": 43, \"per_task_SR\": [0.62, 0, 0.68, 0.94, 0.6, 0.86, 0.82, 0.84, 0.4, 0.06], \"elapsed_min\": 83.6}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log\", \"checkpoint_path\": \"n/a (inference-only eval)\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.1031}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T23:15:59.637054+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_xvla_random_k05_long_seed43",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_xvla_random_k05_long_seed43",
+    "field": "status",
+    "value": "DONE",
+    "project": "importance_margin_vla_compress"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T23:15:59.637366+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_xvla_random_k05_long_seed43\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T21:49:33.210Z\", \"updated_at\": \"2026-05-23T23:15:37.553Z\", \"hypothesis\": \"X-VLA Random k=0.5 Long seed43。seed42=61.6%。seed43 提供 CV 数据（R6-C1）。\", \"spec\": {\"command\": \"python -u eval_xvla_pruning_libero.py --model_path /root/autodl-tmp/X-VLA-Libero --suite libero_10 --keep_ratio 0.5 --mode random --num_episodes 50 --seed 43 --domain_id 3 --gpu 0\", \"server\": \"westd-38929\", \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"X-VLA-Libero\", \"seed\": 43}, \"metrics\": {\"overall_SR\": 0.582, \"total_successes\": 291, \"total_episodes\": 500, \"wilson_ci_95\": [0.5383, 0.6244], \"seed\": 43, \"per_task_SR\": [0.62, 0, 0.68, 0.94, 0.6, 0.86, 0.82, 0.84, 0.4, 0.06], \"elapsed_min\": 83.6}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log\", \"checkpoint_path\": \"n/a (inference-only eval)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T23:15:37.553Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.4066}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T23:15:59.637665+00:00_
+
+called CronDelete
+
+<details open><summary>🔧 Tool call — CronDelete</summary>
+
+```json
+{
+  "id": "eval_xvla_random_k05_long_seed43"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "CronDelete",
+  "tool_args": {
+    "id": "eval_xvla_random_k05_long_seed43"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T23:15:59.637885+00:00_
+
+&lt;tool_use_error>No scheduled job with id 'eval_xvla_random_k05_long_seed43'&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "CronDelete",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T23:15:59.638096+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:CronList",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:CronList",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T23:15:59.640435+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "ToolSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T23:15:59.640685+00:00_
+
+called CronList
+
+<details open><summary>🔧 Tool call — CronList</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "CronList"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T23:15:59.640888+00:00_
+
+No scheduled jobs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400",
+  "tool": "CronList",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-23T23:15:59.641168+00:00_
+
+No cron jobs in this session — the cron was likely in a previous session and already expired.
+
+## 结果报告
+
+**eval_xvla_random_k05_long_seed43** — DONE (success)
+
+| | seed42 | seed43 | Δ |
+|---|---|---|---|
+| Overall SR | 61.6% | 58.2% | -3.4pp |
+| 95% CI | — | [53.8%, 62.4%] | — |
+
+**CV 一致性**：seed42 的 61.6% 落在 seed43 的 95% Wilson CI [53.8%, 62.4%] 内，两 seed 结果一致。CV 均值 = **59.9%**。
+
+**Task 级别对比**（seed43）：T1=0% 是唯一彻底失败的 task，T3=94% 最高，T9=6% 次低。模式与 seed42 一致。
+
+**westd-38929 GPU 2 现已空闲可用。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_harvest_eval_xvla_random_k05_long_seed43_20260523T231400"
+}
+```
+
+</details>
+
+---

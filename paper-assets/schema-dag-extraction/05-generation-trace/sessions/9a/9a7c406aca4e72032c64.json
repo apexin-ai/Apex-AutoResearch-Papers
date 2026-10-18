@@ -48,5 +48,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ssh-disk-cleanup-and-model-download.md"
 }

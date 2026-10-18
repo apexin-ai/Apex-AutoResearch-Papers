@@ -289,5 +289,6 @@
       ],
       "message_count": 13
     }
-  ]
+  ],
+  "readable_path": "readable/conversations/ops-kill-vllm-fix-gate.md"
 }

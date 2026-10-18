@@ -1,156 +1,156 @@
 # Task result records
 
-[Back to trace guide](../README.md)
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
 
-| Source record | Events | User turns | JSON |
-|---|---:|---:|---|
-| `logs/workers/worker_analysis_15model-aggregation-regression_20260522T181241_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/12/12ca13f1443d6e8670d8.json) |
-| `logs/workers/worker_analysis_15model-family-copula_20260522T175131_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9a/9a55fc9ca05c2d364215.json) |
-| `logs/workers/worker_analysis_8model-data-completeness_20260522T124705_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e7/e7dc2a395d270c423a1d.json) |
-| `logs/workers/worker_analysis_a1-a2-check-restart_20260524T112358_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/62/628bfc3249edd48b8982.json) |
-| `logs/workers/worker_analysis_a1-monte-carlo-collect_20260524T120609_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/51/51be6c26ba42a7b13e4a.json) |
-| `logs/workers/worker_analysis_a1-monte-carlo-wait_20260524T120834_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/27/27c90a0e210df2e22f31.json) |
-| `logs/workers/worker_analysis_a4-pool-a-mde_20260524T112417_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5c/5c80e1e536d14b901dfd.json) |
-| `logs/workers/worker_analysis_a5-crossed-re_20260524T114401_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c4/c4330fdc0385a45890e3.json) |
-| `logs/workers/worker_analysis_a6-dbei-predictor-shift_20260524T120429_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/fe/fe5a529d5e6db6267a7f.json) |
-| `logs/workers/worker_analysis_aggregation-bootstrap-v2_20260523T191130_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/94/9437ffee69501578d042.json) |
-| `logs/workers/worker_analysis_aggregation-bootstrap_20260523T171836_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5f/5fddb9affef3b023643b.json) |
-| `logs/workers/worker_analysis_aggregation-loglog-canonical_20260522T182814_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4e/4eb7ddab22c8327a5246.json) |
-| `logs/workers/worker_analysis_alt-diversity-metrics_20260522T193159_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a5/a5ce476b2e9800bff12d.json) |
-| `logs/workers/worker_analysis_alt-diversity-v2_20260523T191948_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f8/f8307d140eb7d2758e9d.json) |
-| `logs/workers/worker_analysis_api-only-diagnostic_20260523T073725_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0e/0e3221d58f900308e823.json) |
-| `logs/workers/worker_analysis_api-only-power-beta_20260524T190116_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/98/9862b900b5a7e4587349.json) |
-| `logs/workers/worker_analysis_api-only-power-betastd_20260524T190307_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/56/567c96b7667302c4f592.json) |
-| `logs/workers/worker_analysis_api-only-subset_20260523T070411_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/45/453f92e65fd6d4bbc620.json) |
-| `logs/workers/worker_analysis_appendix-v2-rerun_20260523T191113_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/03/03f2938e497d75bb497e.json) |
-| `logs/workers/worker_analysis_attacked-keff_20260523T070444_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/40/401fb686b56da6fe2ad6.json) |
-| `logs/workers/worker_analysis_bayesian-posterior-entropy_20260524T190152_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2c/2cb78b74d13968a1cc25.json) |
-| `logs/workers/worker_analysis_bayesian-posterior-entropy_20260524T192252_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bd/bd8aa3a90d44170323f5.json) |
-| `logs/workers/worker_analysis_beta-reg-epsilon_20260522T231659_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/26/26109583c30a418f935e.json) |
-| `logs/workers/worker_analysis_beta-std-trajectory_20260524T190134_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/23/23435f9965c5ed6a7697.json) |
-| `logs/workers/worker_analysis_betastd-trajectory_20260524T192235_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/71/718cbcc86e202e6e225f.json) |
-| `logs/workers/worker_analysis_capability-matched_20260523T074327_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/48/48e39a99367027baee99.json) |
-| `logs/workers/worker_analysis_cinelli-hazlett-sensitivity_20260523T080322_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f9/f9f0493968a3d6977a33.json) |
-| `logs/workers/worker_analysis_claim6-panel-design-15model_20260522T182255_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d8/d822d0d943f26d3161b4.json) |
-| `logs/workers/worker_analysis_clustered-se-consistency_20260522T210421_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/95/95024da4a2145061512e.json) |
-| `logs/workers/worker_analysis_clustered-se-mixed-effects_20260522T185951_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e5/e516c2ee633de42bce96.json) |
-| `logs/workers/worker_analysis_condition-dependent-dominance_20260522T173756_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d3/d3adf85c1a2fe0781167.json) |
-| `logs/workers/worker_analysis_controlled-regression_20260523T071753_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3d/3d1e10f8ba39344709d4.json) |
-| `logs/workers/worker_analysis_copula-gof_20260521T224845_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8a/8ae61939df6ac0b5f9ec.json) |
-| `logs/workers/worker_analysis_cross-benchmark-iv_20260523T080346_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/12/12625ef596969941d645.json) |
-| `logs/workers/worker_analysis_epsilon-sensitivity-k5-v2_20260523T191934_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2c/2cf05123e25405c33345.json) |
-| `logs/workers/worker_analysis_epsilon-sensitivity-mde_20260523T122958_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/f1/f14f46f5b3057a89fdb0.json) |
-| `logs/workers/worker_analysis_epsilon-sensitivity_20260522T032625_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0a/0a6fe085d063321c849e.json) |
-| `logs/workers/worker_analysis_fig4-k3-fix_20260522T212449_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/48/484f1c3ed1dee477f156.json) |
-| `logs/workers/worker_analysis_figure-data-prep_20260523T191154_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7d/7d52a52f8ea22e0789ce.json) |
-| `logs/workers/worker_analysis_fractional-logit-v2-audit_20260524T190248_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9e/9e36f5fb802f81b13a59.json) |
-| `logs/workers/worker_analysis_fractional-logit-v2_20260523T193141_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/63/634fca5c15db09464a5a.json) |
-| `logs/workers/worker_analysis_gam-bootstrap-ci-k3_20260523T163711_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/57/57bd66d8180930b7d9ba.json) |
-| `logs/workers/worker_analysis_gam-bootstrap-ci-k5_20260523T165749_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9d/9de051ae8aaf5c843fd6.json) |
-| `logs/workers/worker_analysis_gam-tier-fix-3-3-9_20260522T192555_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/94/94e753eba1bb814b962d.json) |
-| `logs/workers/worker_analysis_gam-tier-indicator_20260522T190014_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/35/35b6d4e1c128b0296073.json) |
-| `logs/workers/worker_analysis_k4-wild-bootstrap_20260523T063715_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2e/2e2f642f6d85f6dd9edf.json) |
-| `logs/workers/worker_analysis_k5-aggregation-bootstrap_20260523T061722_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/dd/dd08175aa520f3514fc5.json) |
-| `logs/workers/worker_analysis_k5-aggregation-code-history_20260524T070914_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/07/073385c273db93af4bfe.json) |
-| `logs/workers/worker_analysis_k5-aggregation-reinvestigate_20260524T070032_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/37/3738790e0204cde4b60d.json) |
-| `logs/workers/worker_analysis_k5-aggregation-v2-disambiguate_20260524T064548_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/1d/1dffc55936b1c579eb2a.json) |
-| `logs/workers/worker_analysis_k5-aggregation-v2-rerun-v2_20260524T061646_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/83/83288be7c8b975d73c01.json) |
-| `logs/workers/worker_analysis_k5-aggregation-v2-verify-script_20260524T065111_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5b/5b745f2717821e19e4ec.json) |
-| `logs/workers/worker_analysis_k5-aggregation_20260523T030937_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8d/8d33c32b8669b02fde11.json) |
-| `logs/workers/worker_analysis_k5-epsilon-sensitivity_20260523T140549_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/43/4370f396bf62ac8c6c41.json) |
-| `logs/workers/worker_analysis_k5-gam_20260523T012252_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/1a/1ad4319bc2aa9ad302c4.json) |
-| `logs/workers/worker_analysis_k5-k7-panels_20260523T001931_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/40/403b8f8d5a6a6068d689.json) |
-| `logs/workers/worker_analysis_k5-majority-10vs7-discrepancy_20260524T071803_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/dd/ddc2c36550a1e573962b.json) |
-| `logs/workers/worker_analysis_k5-panel-selection-bootstrap_20260523T061740_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a9/a9ead4ba376d6f351a83.json) |
-| `logs/workers/worker_analysis_k5-panel-selection_20260523T030919_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/fd/fd021a8eee1d2111a258.json) |
-| `logs/workers/worker_analysis_k5-rf-contrast_20260523T070356_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6c/6c0aec54cb417aba84f8.json) |
-| `logs/workers/worker_analysis_k5-v2-cleanup-and-r2_20260524T070750_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b8/b822d7f36c11fb627e17.json) |
-| `logs/workers/worker_analysis_k5-wild-bootstrap_20260523T004308_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/22/2262a54af011a4d1a6c2.json) |
-| `logs/workers/worker_analysis_k7-aggregation-bootstrap-v2_20260524T080423_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/73/7341529725162df6f42f.json) |
-| `logs/workers/worker_analysis_k7-bootstrap-v2-collect-results_20260524T082430_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ef/ef8b6e3091f9a681cb86.json) |
-| `logs/workers/worker_analysis_k7-keff-provenance_20260524T073610_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/55/553a52dc725c2bd247a8.json) |
-| `logs/workers/worker_analysis_k7-wild-bootstrap_20260523T010244_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/bd/bdd4b5ce43224c8f6ce9.json) |
-| `logs/workers/worker_analysis_kappa-diversity-regime-transition_20260524T031621_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/a6/a62f521aa61c0f31e341.json) |
-| `logs/workers/worker_analysis_keff-distribution-corrected_20260523T143348_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8f/8f7cf2c349d5ebf6820a.json) |
-| `logs/workers/worker_analysis_keff-distribution-stats_20260523T142835_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3c/3c3bdc0f0341340326b4.json) |
-| `logs/workers/worker_analysis_keff-stability-stochdom_20260523T123019_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/19/1954c5e2b6802f5ae203.json) |
-| `logs/workers/worker_analysis_mixed-effects-v2-rerun_20260524T055823_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7f/7f3107b76751fa00b38e.json) |
-| `logs/workers/worker_analysis_mvp-step2v3-retry2_20260522T020221_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/08/08a733383290ccc1761e.json) |
-| `logs/workers/worker_analysis_mvp-step2v3-retry_20260522T015252_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2e/2e167fa26bc9a0f84a8b.json) |
-| `logs/workers/worker_analysis_near-chance-fix_20260525T094538_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0f/0ff64ac2ccf96b50b726.json) |
-| `logs/workers/worker_analysis_near-chance-sensitivity_20260525T091028_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/52/521349227f7f447f9128.json) |
-| `logs/workers/worker_analysis_partial-knowledge-adversary_20260523T004625_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8f/8f521fafbfa464b159c2.json) |
-| `logs/workers/worker_analysis_partial-knowledge-clustered-se_20260523T012338_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/62/62bd77c0137704225cf7.json) |
-| `logs/workers/worker_analysis_pipeline-results-readout_20260522T170140_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/34/345f2baa1cfd44069b87.json) |
-| `logs/workers/worker_analysis_plan001-data-completeness-check_20260522T071204_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ac/ac76eb46f2732cc54279.json) |
-| `logs/workers/worker_analysis_plan003-random-fault-sim_20260522T070023_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/58/58594f8db400d4894747.json) |
-| `logs/workers/worker_analysis_plan006-cinelli-hazlett-v2_20260524T100043_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b8/b8d6582907af99b5d17f.json) |
-| `logs/workers/worker_analysis_plan006-cross-benchmark-v2-reverse_20260524T103516_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/cc/cce704ab642c5b0793fc.json) |
-| `logs/workers/worker_analysis_plan006-cross-benchmark-v2_20260524T102005_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e1/e1a5feee31962709acc3.json) |
-| `logs/workers/worker_analysis_plan006-judge-asr-concentration_20260524T093812_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ca/cade7b06fbf8f2d8509d.json) |
-| `logs/workers/worker_analysis_plan006-v2-data-audit_20260524T101759_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/1a/1a460f4abc17a1f1b6a4.json) |
-| `logs/workers/worker_analysis_plan009-vif-multicollinearity_20260522T070002_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9b/9b5715835ff950875a27.json) |
-| `logs/workers/worker_analysis_plan010-fdr-and-cv_20260522T121717_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d8/d835f6cae1e622a3312e.json) |
-| `logs/workers/worker_analysis_plan010-threshold-keff-positive-fdr_20260522T124552_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ce/cecc7d08bbc2b7d3c513.json) |
-| `logs/workers/worker_analysis_pool-a-cinelli-hazlett_20260523T120953_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/23/2389a6a7c3724dac33a0.json) |
-| `logs/workers/worker_analysis_power-cr2-cr3_20260522T231641_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8d/8d8dc6a9b77ae2e289f5.json) |
-| `logs/workers/worker_analysis_quant-dummy-regression_20260524T184151_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/71/71c40d462771f90bd849.json) |
-| `logs/workers/worker_analysis_r4-a3-mi-plugin-vs-closedform_20260524T110501_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8b/8b18cc3c073e9424cb84.json) |
-| `logs/workers/worker_analysis_r6-1a-kappa-diversity_20260525T064751_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/dc/dc74424e474b5321dea0.json) |
-| `logs/workers/worker_analysis_r6-1b-synthetic-validation_20260525T064809_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/46/4621a872fe824a46ee5b.json) |
-| `logs/workers/worker_analysis_r6-2a-meta-pooling_20260525T074614_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/6b/6b03f004f0d415b0a910.json) |
-| `logs/workers/worker_analysis_r6-2b-r2-bootstrap-ci_20260525T074625_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e8/e8f12bd33facf9040a69.json) |
-| `logs/workers/worker_analysis_r6-2c-eta-under-kappa_20260525T072558_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7c/7ca539fdb431e6df119e.json) |
-| `logs/workers/worker_analysis_random-fault-contrast-v2_20260523T182424_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0e/0ed0834ad32336a582fe.json) |
-| `logs/workers/worker_analysis_random-subsample-transition_20260523T073746_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/72/72108848f4fe0bee31d9.json) |
-| `logs/workers/worker_analysis_residualized-keff-15model_20260522T171634_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/06/06fab266cf29fadbd1d8.json) |
-| `logs/workers/worker_analysis_rf-keff-correction_20260522T201836_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c1/c197a91b5ea3c7390dde.json) |
-| `logs/workers/worker_analysis_step2v3-cron-resolve_20260522T031600_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/46/464c4076640eaa06352c.json) |
-| `logs/workers/worker_analysis_stochastic-dominance_20260523T001734_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/59/592daf9feb3bbbb6b118.json) |
-| `logs/workers/worker_analysis_taxonomy-check_20260522T035438_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/df/dfd31281ee4dbf3e03cd.json) |
-| `logs/workers/worker_analysis_taxonomy-status-urgent_20260522T045116_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8c/8ce0d4bdc07427bc516a.json) |
-| `logs/workers/worker_analysis_temperature-cost-estimate_20260523T080404_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9c/9c9977e5b7a79933c837.json) |
-| `logs/workers/worker_analysis_temperature-pilot-summary_20260523T142853_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e3/e3ae2b6d3e88f95bd833.json) |
-| `logs/workers/worker_analysis_theorem1-violation_20260523T071732_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8e/8eb09ebea14ebc484462.json) |
-| `logs/workers/worker_analysis_v2-corrected-files-inventory_20260523T184456_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/db/db68a4d342b07f61136b.json) |
-| `logs/workers/worker_analysis_v2-data-inventory_20260523T184626_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/33/33df2cc4eb2fcdc3ce21.json) |
-| `logs/workers/worker_analysis_v2-pattern-mining_20260523T184437_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/e3/e3f08d3f145cc33f4bcb.json) |
-| `logs/workers/worker_analysis_vif-partial-corr_20260522T233637_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/32/32957294faf868ccd3b8.json) |
-| `logs/workers/worker_analysis_vif-partial-corr_20260522T235642_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2b/2bd4bdb7b0faf8aa0cb1.json) |
-| `logs/workers/worker_analysis_wild-bootstrap-fix_20260522T195622_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/04/04f9fcf1c4f9491dc649.json) |
-| `logs/workers/worker_analysis_wild-cluster-bootstrap_20260522T194342_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ed/edcafc662319da6ac990.json) |
-| `logs/workers/worker_audit_asr-zero-rate-discrepancy_20260523T143042_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9f/9f0e2fa26cb9047c5f3b.json) |
-| `logs/workers/worker_audit_c2-c4-c5-batch_20260523T105604_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d3/d396c5ad1bd081afc8f2.json) |
-| `logs/workers/worker_audit_capability-matched-c3_20260523T103549_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/10/10bf76c2025c62b0e14d.json) |
-| `logs/workers/worker_audit_data-traceability-check_20260523T191548_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2f/2fb68ac46fde407a439a.json) |
-| `logs/workers/worker_audit_final-data-verification_20260524T042647_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8a/8a3b7b1959a4993ab6ba.json) |
-| `logs/workers/worker_audit_gam-data-version-compare_20260523T174455_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/8c/8cc7e2adfdc8ea38a4a3.json) |
-| `logs/workers/worker_audit_gam-keff-data-loading_20260523T173750_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/0e/0e3536e48c59c7a51d05.json) |
-| `logs/workers/worker_audit_k5-aggregation-v2-check_20260524T045111_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/4d/4d790fc628479b8ead6c.json) |
-| `logs/workers/worker_audit_provenance-trace-8values_20260523T111959_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/9b/9b007d65811df2d5fca1.json) |
-| `logs/workers/worker_audit_step3-mi-v1check_20260523T193125_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/47/4716d3fe24f4a893642b.json) |
-| `logs/workers/worker_audit_table1-table2-error-handling_20260523T174828_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/06/06adb37d2b377a2738a1.json) |
-| `logs/workers/worker_audit_v1v2-final-check_20260523T185223_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d1/d1c57b9cd60ea4e30a37.json) |
-| `logs/workers/worker_check_iv-exclusion-restriction_20260523T082512_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d2/d26f7a95407fc0917906.json) |
-| `logs/workers/worker_check_server-file-verification_20260523T010057_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/2c/2cd60d36c80241d6e00b.json) |
-| `logs/workers/worker_check_temperature-pilot-final_20260523T134430_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/85/85495692ed7b198110df.json) |
-| `logs/workers/worker_check_temperature-pilot-pid_20260523T092121_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b1/b1bfdb1dc805c4df1789.json) |
-| `logs/workers/worker_check_westd-connection_20260523T030940_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/01/017f02d14a520f751fde.json) |
-| `logs/workers/worker_code_anon-repo-path-cleanup_20260523T125904_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/07/077844a84d6f2d93844b.json) |
-| `logs/workers/worker_code_anonymous-repo-prep_20260523T125117_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/60/60a0655e8a7569cd4605.json) |
-| `logs/workers/worker_code_error-filter-and-pipeline-check_20260522T161449_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/7d/7d58bf387e00c2015bcb.json) |
-| `logs/workers/worker_code_fix-confound-abs-r_20260522T171054_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/01/0144ac7e7c25fcce802d.json) |
-| `logs/workers/worker_code_fix-loader-rerun-pipeline_20260522T170513_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ec/ec41d0d4d9f7148cd292.json) |
-| `logs/workers/worker_code_mini-smoke-test_20260521T190612_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3a/3ad4a077103d36eb2292.json) |
-| `logs/workers/worker_code_mvp-framework_20260521T170853_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/70/70858d634ba64e70efa3.json) |
-| `logs/workers/worker_code_mvp-step1-subset_20260521T204933_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/86/86bbf47d6137798f3ebc.json) |
-| `logs/workers/worker_code_openrouter-deploy_20260522T125604_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/3d/3d49b4faf00524625b84.json) |
-| `logs/workers/worker_code_openrouter-prep_20260522T125308_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/b3/b38c84e3c86143280425.json) |
-| `logs/workers/worker_code_panel-selection-algo_20260522T035327_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d8/d809f624dd3cfca68802.json) |
-| `logs/workers/worker_code_plan001-boost-concurrency_20260522T092026_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/d5/d5bd012d17d1df2a9b77.json) |
-| `logs/workers/worker_code_plan001-fix-concurrency-urgent_20260522T102750_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/32/32fd0bf03c583528114a.json) |
-| `logs/workers/worker_code_plan001-fix-condition-keys_20260522T082358_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/c1/c17c26d1b0a42c799930.json) |
-| `logs/workers/worker_code_plan001-gemini-fix_20260522T072340_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/ee/eee9f2655dd94a0bcae0.json) |
-| `logs/workers/worker_code_plan001-parallel-v2_20260522T094736_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/22/22f187a5382cb1f92757.json) |
-| `logs/workers/worker_code_plan001-parallel-v3-throttled_20260522T100712_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/5c/5cb69255742b79dc5b4a.json) |
-| `logs/workers/worker_code_plan001-step0-api-adapter_20260522T071153_result.json` (occurrence 1) | 1 | 0 | [Open](../sessions/77/7781b8477a18b986cf5a.json) |
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/workers/worker_analysis_15model-aggregation-regression_20260522T181241_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-15model-aggregation-regression.md) | [Open JSON](../sessions/12/12ca13f1443d6e8670d8.json) |
+| `logs/workers/worker_analysis_15model-family-copula_20260522T175131_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-15model-family-copula.md) | [Open JSON](../sessions/9a/9a55fc9ca05c2d364215.json) |
+| `logs/workers/worker_analysis_8model-data-completeness_20260522T124705_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-8model-data-completeness.md) | [Open JSON](../sessions/e7/e7dc2a395d270c423a1d.json) |
+| `logs/workers/worker_analysis_a1-a2-check-restart_20260524T112358_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-a1-a2-check-restart.md) | [Open JSON](../sessions/62/628bfc3249edd48b8982.json) |
+| `logs/workers/worker_analysis_a1-monte-carlo-collect_20260524T120609_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-a1-monte-carlo-collect.md) | [Open JSON](../sessions/51/51be6c26ba42a7b13e4a.json) |
+| `logs/workers/worker_analysis_a1-monte-carlo-wait_20260524T120834_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-a1-monte-carlo-wait.md) | [Open JSON](../sessions/27/27c90a0e210df2e22f31.json) |
+| `logs/workers/worker_analysis_a4-pool-a-mde_20260524T112417_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-a4-pool-a-mde.md) | [Open JSON](../sessions/5c/5c80e1e536d14b901dfd.json) |
+| `logs/workers/worker_analysis_a5-crossed-re_20260524T114401_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-a5-crossed-re.md) | [Open JSON](../sessions/c4/c4330fdc0385a45890e3.json) |
+| `logs/workers/worker_analysis_a6-dbei-predictor-shift_20260524T120429_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-a6-dbei-predictor-shift.md) | [Open JSON](../sessions/fe/fe5a529d5e6db6267a7f.json) |
+| `logs/workers/worker_analysis_aggregation-bootstrap-v2_20260523T191130_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-aggregation-bootstrap-v2.md) | [Open JSON](../sessions/94/9437ffee69501578d042.json) |
+| `logs/workers/worker_analysis_aggregation-bootstrap_20260523T171836_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-aggregation-bootstrap.md) | [Open JSON](../sessions/5f/5fddb9affef3b023643b.json) |
+| `logs/workers/worker_analysis_aggregation-loglog-canonical_20260522T182814_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-aggregation-loglog-canonical.md) | [Open JSON](../sessions/4e/4eb7ddab22c8327a5246.json) |
+| `logs/workers/worker_analysis_alt-diversity-metrics_20260522T193159_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-alt-diversity-metrics.md) | [Open JSON](../sessions/a5/a5ce476b2e9800bff12d.json) |
+| `logs/workers/worker_analysis_alt-diversity-v2_20260523T191948_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-alt-diversity-v2.md) | [Open JSON](../sessions/f8/f8307d140eb7d2758e9d.json) |
+| `logs/workers/worker_analysis_api-only-diagnostic_20260523T073725_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-api-only-diagnostic.md) | [Open JSON](../sessions/0e/0e3221d58f900308e823.json) |
+| `logs/workers/worker_analysis_api-only-power-beta_20260524T190116_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-api-only-power-beta.md) | [Open JSON](../sessions/98/9862b900b5a7e4587349.json) |
+| `logs/workers/worker_analysis_api-only-power-betastd_20260524T190307_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-api-only-power-betastd.md) | [Open JSON](../sessions/56/567c96b7667302c4f592.json) |
+| `logs/workers/worker_analysis_api-only-subset_20260523T070411_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-api-only-subset.md) | [Open JSON](../sessions/45/453f92e65fd6d4bbc620.json) |
+| `logs/workers/worker_analysis_appendix-v2-rerun_20260523T191113_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-appendix-v2-rerun.md) | [Open JSON](../sessions/03/03f2938e497d75bb497e.json) |
+| `logs/workers/worker_analysis_attacked-keff_20260523T070444_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-attacked-keff.md) | [Open JSON](../sessions/40/401fb686b56da6fe2ad6.json) |
+| `logs/workers/worker_analysis_bayesian-posterior-entropy_20260524T190152_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-bayesian-posterior-entropy-copy-2.md) | [Open JSON](../sessions/2c/2cb78b74d13968a1cc25.json) |
+| `logs/workers/worker_analysis_bayesian-posterior-entropy_20260524T192252_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-bayesian-posterior-entropy.md) | [Open JSON](../sessions/bd/bd8aa3a90d44170323f5.json) |
+| `logs/workers/worker_analysis_beta-reg-epsilon_20260522T231659_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-beta-reg-epsilon.md) | [Open JSON](../sessions/26/26109583c30a418f935e.json) |
+| `logs/workers/worker_analysis_beta-std-trajectory_20260524T190134_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-beta-std-trajectory.md) | [Open JSON](../sessions/23/23435f9965c5ed6a7697.json) |
+| `logs/workers/worker_analysis_betastd-trajectory_20260524T192235_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-betastd-trajectory.md) | [Open JSON](../sessions/71/718cbcc86e202e6e225f.json) |
+| `logs/workers/worker_analysis_capability-matched_20260523T074327_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-capability-matched.md) | [Open JSON](../sessions/48/48e39a99367027baee99.json) |
+| `logs/workers/worker_analysis_cinelli-hazlett-sensitivity_20260523T080322_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-cinelli-hazlett-sensitivity.md) | [Open JSON](../sessions/f9/f9f0493968a3d6977a33.json) |
+| `logs/workers/worker_analysis_claim6-panel-design-15model_20260522T182255_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-claim6-panel-design-15model.md) | [Open JSON](../sessions/d8/d822d0d943f26d3161b4.json) |
+| `logs/workers/worker_analysis_clustered-se-consistency_20260522T210421_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-clustered-se-consistency.md) | [Open JSON](../sessions/95/95024da4a2145061512e.json) |
+| `logs/workers/worker_analysis_clustered-se-mixed-effects_20260522T185951_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-clustered-se-mixed-effects.md) | [Open JSON](../sessions/e5/e516c2ee633de42bce96.json) |
+| `logs/workers/worker_analysis_condition-dependent-dominance_20260522T173756_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-condition-dependent-dominance.md) | [Open JSON](../sessions/d3/d3adf85c1a2fe0781167.json) |
+| `logs/workers/worker_analysis_controlled-regression_20260523T071753_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-controlled-regression.md) | [Open JSON](../sessions/3d/3d1e10f8ba39344709d4.json) |
+| `logs/workers/worker_analysis_copula-gof_20260521T224845_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-copula-gof.md) | [Open JSON](../sessions/8a/8ae61939df6ac0b5f9ec.json) |
+| `logs/workers/worker_analysis_cross-benchmark-iv_20260523T080346_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-cross-benchmark-iv.md) | [Open JSON](../sessions/12/12625ef596969941d645.json) |
+| `logs/workers/worker_analysis_epsilon-sensitivity-k5-v2_20260523T191934_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-epsilon-sensitivity-k5-v2.md) | [Open JSON](../sessions/2c/2cf05123e25405c33345.json) |
+| `logs/workers/worker_analysis_epsilon-sensitivity-mde_20260523T122958_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-epsilon-sensitivity-mde.md) | [Open JSON](../sessions/f1/f14f46f5b3057a89fdb0.json) |
+| `logs/workers/worker_analysis_epsilon-sensitivity_20260522T032625_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-epsilon-sensitivity.md) | [Open JSON](../sessions/0a/0a6fe085d063321c849e.json) |
+| `logs/workers/worker_analysis_fig4-k3-fix_20260522T212449_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-fig4-k3-fix.md) | [Open JSON](../sessions/48/484f1c3ed1dee477f156.json) |
+| `logs/workers/worker_analysis_figure-data-prep_20260523T191154_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-figure-data-prep.md) | [Open JSON](../sessions/7d/7d52a52f8ea22e0789ce.json) |
+| `logs/workers/worker_analysis_fractional-logit-v2-audit_20260524T190248_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-fractional-logit-v2-audit.md) | [Open JSON](../sessions/9e/9e36f5fb802f81b13a59.json) |
+| `logs/workers/worker_analysis_fractional-logit-v2_20260523T193141_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-fractional-logit-v2.md) | [Open JSON](../sessions/63/634fca5c15db09464a5a.json) |
+| `logs/workers/worker_analysis_gam-bootstrap-ci-k3_20260523T163711_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-gam-bootstrap-ci-k3.md) | [Open JSON](../sessions/57/57bd66d8180930b7d9ba.json) |
+| `logs/workers/worker_analysis_gam-bootstrap-ci-k5_20260523T165749_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-gam-bootstrap-ci-k5.md) | [Open JSON](../sessions/9d/9de051ae8aaf5c843fd6.json) |
+| `logs/workers/worker_analysis_gam-tier-fix-3-3-9_20260522T192555_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-gam-tier-fix-3-3-9.md) | [Open JSON](../sessions/94/94e753eba1bb814b962d.json) |
+| `logs/workers/worker_analysis_gam-tier-indicator_20260522T190014_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-gam-tier-indicator.md) | [Open JSON](../sessions/35/35b6d4e1c128b0296073.json) |
+| `logs/workers/worker_analysis_k4-wild-bootstrap_20260523T063715_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k4-wild-bootstrap.md) | [Open JSON](../sessions/2e/2e2f642f6d85f6dd9edf.json) |
+| `logs/workers/worker_analysis_k5-aggregation-bootstrap_20260523T061722_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-aggregation-bootstrap.md) | [Open JSON](../sessions/dd/dd08175aa520f3514fc5.json) |
+| `logs/workers/worker_analysis_k5-aggregation-code-history_20260524T070914_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-aggregation-code-history.md) | [Open JSON](../sessions/07/073385c273db93af4bfe.json) |
+| `logs/workers/worker_analysis_k5-aggregation-reinvestigate_20260524T070032_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-aggregation-reinvestigate.md) | [Open JSON](../sessions/37/3738790e0204cde4b60d.json) |
+| `logs/workers/worker_analysis_k5-aggregation-v2-disambiguate_20260524T064548_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-aggregation-v2-disambiguate.md) | [Open JSON](../sessions/1d/1dffc55936b1c579eb2a.json) |
+| `logs/workers/worker_analysis_k5-aggregation-v2-rerun-v2_20260524T061646_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-aggregation-v2-rerun-v2.md) | [Open JSON](../sessions/83/83288be7c8b975d73c01.json) |
+| `logs/workers/worker_analysis_k5-aggregation-v2-verify-script_20260524T065111_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-aggregation-v2-verify-script.md) | [Open JSON](../sessions/5b/5b745f2717821e19e4ec.json) |
+| `logs/workers/worker_analysis_k5-aggregation_20260523T030937_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-aggregation.md) | [Open JSON](../sessions/8d/8d33c32b8669b02fde11.json) |
+| `logs/workers/worker_analysis_k5-epsilon-sensitivity_20260523T140549_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-epsilon-sensitivity.md) | [Open JSON](../sessions/43/4370f396bf62ac8c6c41.json) |
+| `logs/workers/worker_analysis_k5-gam_20260523T012252_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-gam.md) | [Open JSON](../sessions/1a/1ad4319bc2aa9ad302c4.json) |
+| `logs/workers/worker_analysis_k5-k7-panels_20260523T001931_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-k7-panels.md) | [Open JSON](../sessions/40/403b8f8d5a6a6068d689.json) |
+| `logs/workers/worker_analysis_k5-majority-10vs7-discrepancy_20260524T071803_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-majority-10vs7-discrepancy.md) | [Open JSON](../sessions/dd/ddc2c36550a1e573962b.json) |
+| `logs/workers/worker_analysis_k5-panel-selection-bootstrap_20260523T061740_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-panel-selection-bootstrap.md) | [Open JSON](../sessions/a9/a9ead4ba376d6f351a83.json) |
+| `logs/workers/worker_analysis_k5-panel-selection_20260523T030919_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-panel-selection.md) | [Open JSON](../sessions/fd/fd021a8eee1d2111a258.json) |
+| `logs/workers/worker_analysis_k5-rf-contrast_20260523T070356_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-rf-contrast.md) | [Open JSON](../sessions/6c/6c0aec54cb417aba84f8.json) |
+| `logs/workers/worker_analysis_k5-v2-cleanup-and-r2_20260524T070750_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-v2-cleanup-and-r2.md) | [Open JSON](../sessions/b8/b822d7f36c11fb627e17.json) |
+| `logs/workers/worker_analysis_k5-wild-bootstrap_20260523T004308_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k5-wild-bootstrap.md) | [Open JSON](../sessions/22/2262a54af011a4d1a6c2.json) |
+| `logs/workers/worker_analysis_k7-aggregation-bootstrap-v2_20260524T080423_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k7-aggregation-bootstrap-v2.md) | [Open JSON](../sessions/73/7341529725162df6f42f.json) |
+| `logs/workers/worker_analysis_k7-bootstrap-v2-collect-results_20260524T082430_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k7-bootstrap-v2-collect-results.md) | [Open JSON](../sessions/ef/ef8b6e3091f9a681cb86.json) |
+| `logs/workers/worker_analysis_k7-keff-provenance_20260524T073610_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k7-keff-provenance.md) | [Open JSON](../sessions/55/553a52dc725c2bd247a8.json) |
+| `logs/workers/worker_analysis_k7-wild-bootstrap_20260523T010244_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-k7-wild-bootstrap.md) | [Open JSON](../sessions/bd/bdd4b5ce43224c8f6ce9.json) |
+| `logs/workers/worker_analysis_kappa-diversity-regime-transition_20260524T031621_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-kappa-diversity-regime-transition.md) | [Open JSON](../sessions/a6/a62f521aa61c0f31e341.json) |
+| `logs/workers/worker_analysis_keff-distribution-corrected_20260523T143348_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-keff-distribution-corrected.md) | [Open JSON](../sessions/8f/8f7cf2c349d5ebf6820a.json) |
+| `logs/workers/worker_analysis_keff-distribution-stats_20260523T142835_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-keff-distribution-stats.md) | [Open JSON](../sessions/3c/3c3bdc0f0341340326b4.json) |
+| `logs/workers/worker_analysis_keff-stability-stochdom_20260523T123019_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-keff-stability-stochdom.md) | [Open JSON](../sessions/19/1954c5e2b6802f5ae203.json) |
+| `logs/workers/worker_analysis_mixed-effects-v2-rerun_20260524T055823_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-mixed-effects-v2-rerun.md) | [Open JSON](../sessions/7f/7f3107b76751fa00b38e.json) |
+| `logs/workers/worker_analysis_mvp-step2v3-retry2_20260522T020221_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-mvp-step2v3-retry2.md) | [Open JSON](../sessions/08/08a733383290ccc1761e.json) |
+| `logs/workers/worker_analysis_mvp-step2v3-retry_20260522T015252_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-mvp-step2v3-retry.md) | [Open JSON](../sessions/2e/2e167fa26bc9a0f84a8b.json) |
+| `logs/workers/worker_analysis_near-chance-fix_20260525T094538_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-near-chance-fix.md) | [Open JSON](../sessions/0f/0ff64ac2ccf96b50b726.json) |
+| `logs/workers/worker_analysis_near-chance-sensitivity_20260525T091028_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-near-chance-sensitivity.md) | [Open JSON](../sessions/52/521349227f7f447f9128.json) |
+| `logs/workers/worker_analysis_partial-knowledge-adversary_20260523T004625_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-partial-knowledge-adversary.md) | [Open JSON](../sessions/8f/8f521fafbfa464b159c2.json) |
+| `logs/workers/worker_analysis_partial-knowledge-clustered-se_20260523T012338_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-partial-knowledge-clustered-se.md) | [Open JSON](../sessions/62/62bd77c0137704225cf7.json) |
+| `logs/workers/worker_analysis_pipeline-results-readout_20260522T170140_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-pipeline-results-readout.md) | [Open JSON](../sessions/34/345f2baa1cfd44069b87.json) |
+| `logs/workers/worker_analysis_plan001-data-completeness-check_20260522T071204_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-plan001-data-completeness-check.md) | [Open JSON](../sessions/ac/ac76eb46f2732cc54279.json) |
+| `logs/workers/worker_analysis_plan003-random-fault-sim_20260522T070023_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-plan003-random-fault-sim.md) | [Open JSON](../sessions/58/58594f8db400d4894747.json) |
+| `logs/workers/worker_analysis_plan006-cinelli-hazlett-v2_20260524T100043_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-plan006-cinelli-hazlett-v2.md) | [Open JSON](../sessions/b8/b8d6582907af99b5d17f.json) |
+| `logs/workers/worker_analysis_plan006-cross-benchmark-v2-reverse_20260524T103516_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-plan006-cross-benchmark-v2-reverse.md) | [Open JSON](../sessions/cc/cce704ab642c5b0793fc.json) |
+| `logs/workers/worker_analysis_plan006-cross-benchmark-v2_20260524T102005_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-plan006-cross-benchmark-v2.md) | [Open JSON](../sessions/e1/e1a5feee31962709acc3.json) |
+| `logs/workers/worker_analysis_plan006-judge-asr-concentration_20260524T093812_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-plan006-judge-asr-concentration.md) | [Open JSON](../sessions/ca/cade7b06fbf8f2d8509d.json) |
+| `logs/workers/worker_analysis_plan006-v2-data-audit_20260524T101759_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-plan006-v2-data-audit.md) | [Open JSON](../sessions/1a/1a460f4abc17a1f1b6a4.json) |
+| `logs/workers/worker_analysis_plan009-vif-multicollinearity_20260522T070002_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-plan009-vif-multicollinearity.md) | [Open JSON](../sessions/9b/9b5715835ff950875a27.json) |
+| `logs/workers/worker_analysis_plan010-fdr-and-cv_20260522T121717_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-plan010-fdr-and-cv.md) | [Open JSON](../sessions/d8/d835f6cae1e622a3312e.json) |
+| `logs/workers/worker_analysis_plan010-threshold-keff-positive-fdr_20260522T124552_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-plan010-threshold-keff-positive-fdr.md) | [Open JSON](../sessions/ce/cecc7d08bbc2b7d3c513.json) |
+| `logs/workers/worker_analysis_pool-a-cinelli-hazlett_20260523T120953_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-pool-a-cinelli-hazlett.md) | [Open JSON](../sessions/23/2389a6a7c3724dac33a0.json) |
+| `logs/workers/worker_analysis_power-cr2-cr3_20260522T231641_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-power-cr2-cr3.md) | [Open JSON](../sessions/8d/8d8dc6a9b77ae2e289f5.json) |
+| `logs/workers/worker_analysis_quant-dummy-regression_20260524T184151_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-quant-dummy-regression.md) | [Open JSON](../sessions/71/71c40d462771f90bd849.json) |
+| `logs/workers/worker_analysis_r4-a3-mi-plugin-vs-closedform_20260524T110501_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-r4-a3-mi-plugin-vs-closedform.md) | [Open JSON](../sessions/8b/8b18cc3c073e9424cb84.json) |
+| `logs/workers/worker_analysis_r6-1a-kappa-diversity_20260525T064751_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-r6-1a-kappa-diversity.md) | [Open JSON](../sessions/dc/dc74424e474b5321dea0.json) |
+| `logs/workers/worker_analysis_r6-1b-synthetic-validation_20260525T064809_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-r6-1b-synthetic-validation.md) | [Open JSON](../sessions/46/4621a872fe824a46ee5b.json) |
+| `logs/workers/worker_analysis_r6-2a-meta-pooling_20260525T074614_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-r6-2a-meta-pooling.md) | [Open JSON](../sessions/6b/6b03f004f0d415b0a910.json) |
+| `logs/workers/worker_analysis_r6-2b-r2-bootstrap-ci_20260525T074625_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-r6-2b-r2-bootstrap-ci.md) | [Open JSON](../sessions/e8/e8f12bd33facf9040a69.json) |
+| `logs/workers/worker_analysis_r6-2c-eta-under-kappa_20260525T072558_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-r6-2c-eta-under-kappa.md) | [Open JSON](../sessions/7c/7ca539fdb431e6df119e.json) |
+| `logs/workers/worker_analysis_random-fault-contrast-v2_20260523T182424_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-random-fault-contrast-v2.md) | [Open JSON](../sessions/0e/0ed0834ad32336a582fe.json) |
+| `logs/workers/worker_analysis_random-subsample-transition_20260523T073746_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-random-subsample-transition.md) | [Open JSON](../sessions/72/72108848f4fe0bee31d9.json) |
+| `logs/workers/worker_analysis_residualized-keff-15model_20260522T171634_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-residualized-keff-15model.md) | [Open JSON](../sessions/06/06fab266cf29fadbd1d8.json) |
+| `logs/workers/worker_analysis_rf-keff-correction_20260522T201836_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-rf-keff-correction.md) | [Open JSON](../sessions/c1/c197a91b5ea3c7390dde.json) |
+| `logs/workers/worker_analysis_step2v3-cron-resolve_20260522T031600_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-step2v3-cron-resolve.md) | [Open JSON](../sessions/46/464c4076640eaa06352c.json) |
+| `logs/workers/worker_analysis_stochastic-dominance_20260523T001734_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-stochastic-dominance.md) | [Open JSON](../sessions/59/592daf9feb3bbbb6b118.json) |
+| `logs/workers/worker_analysis_taxonomy-check_20260522T035438_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-taxonomy-check.md) | [Open JSON](../sessions/df/dfd31281ee4dbf3e03cd.json) |
+| `logs/workers/worker_analysis_taxonomy-status-urgent_20260522T045116_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-taxonomy-status-urgent.md) | [Open JSON](../sessions/8c/8ce0d4bdc07427bc516a.json) |
+| `logs/workers/worker_analysis_temperature-cost-estimate_20260523T080404_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-temperature-cost-estimate.md) | [Open JSON](../sessions/9c/9c9977e5b7a79933c837.json) |
+| `logs/workers/worker_analysis_temperature-pilot-summary_20260523T142853_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-temperature-pilot-summary.md) | [Open JSON](../sessions/e3/e3ae2b6d3e88f95bd833.json) |
+| `logs/workers/worker_analysis_theorem1-violation_20260523T071732_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-theorem1-violation.md) | [Open JSON](../sessions/8e/8eb09ebea14ebc484462.json) |
+| `logs/workers/worker_analysis_v2-corrected-files-inventory_20260523T184456_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-v2-corrected-files-inventory.md) | [Open JSON](../sessions/db/db68a4d342b07f61136b.json) |
+| `logs/workers/worker_analysis_v2-data-inventory_20260523T184626_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-v2-data-inventory.md) | [Open JSON](../sessions/33/33df2cc4eb2fcdc3ce21.json) |
+| `logs/workers/worker_analysis_v2-pattern-mining_20260523T184437_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-v2-pattern-mining.md) | [Open JSON](../sessions/e3/e3f08d3f145cc33f4bcb.json) |
+| `logs/workers/worker_analysis_vif-partial-corr_20260522T233637_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-vif-partial-corr.md) | [Open JSON](../sessions/32/32957294faf868ccd3b8.json) |
+| `logs/workers/worker_analysis_vif-partial-corr_20260522T235642_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-vif-partial-corr-copy-2.md) | [Open JSON](../sessions/2b/2bd4bdb7b0faf8aa0cb1.json) |
+| `logs/workers/worker_analysis_wild-bootstrap-fix_20260522T195622_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-wild-bootstrap-fix.md) | [Open JSON](../sessions/04/04f9fcf1c4f9491dc649.json) |
+| `logs/workers/worker_analysis_wild-cluster-bootstrap_20260522T194342_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/analysis-wild-cluster-bootstrap.md) | [Open JSON](../sessions/ed/edcafc662319da6ac990.json) |
+| `logs/workers/worker_audit_asr-zero-rate-discrepancy_20260523T143042_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-asr-zero-rate-discrepancy.md) | [Open JSON](../sessions/9f/9f0e2fa26cb9047c5f3b.json) |
+| `logs/workers/worker_audit_c2-c4-c5-batch_20260523T105604_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-c2-c4-c5-batch.md) | [Open JSON](../sessions/d3/d396c5ad1bd081afc8f2.json) |
+| `logs/workers/worker_audit_capability-matched-c3_20260523T103549_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-capability-matched-c3.md) | [Open JSON](../sessions/10/10bf76c2025c62b0e14d.json) |
+| `logs/workers/worker_audit_data-traceability-check_20260523T191548_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-data-traceability-check.md) | [Open JSON](../sessions/2f/2fb68ac46fde407a439a.json) |
+| `logs/workers/worker_audit_final-data-verification_20260524T042647_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-final-data-verification.md) | [Open JSON](../sessions/8a/8a3b7b1959a4993ab6ba.json) |
+| `logs/workers/worker_audit_gam-data-version-compare_20260523T174455_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-gam-data-version-compare.md) | [Open JSON](../sessions/8c/8cc7e2adfdc8ea38a4a3.json) |
+| `logs/workers/worker_audit_gam-keff-data-loading_20260523T173750_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-gam-keff-data-loading.md) | [Open JSON](../sessions/0e/0e3536e48c59c7a51d05.json) |
+| `logs/workers/worker_audit_k5-aggregation-v2-check_20260524T045111_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-k5-aggregation-v2-check.md) | [Open JSON](../sessions/4d/4d790fc628479b8ead6c.json) |
+| `logs/workers/worker_audit_provenance-trace-8values_20260523T111959_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-provenance-trace-8values.md) | [Open JSON](../sessions/9b/9b007d65811df2d5fca1.json) |
+| `logs/workers/worker_audit_step3-mi-v1check_20260523T193125_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-step3-mi-v1check.md) | [Open JSON](../sessions/47/4716d3fe24f4a893642b.json) |
+| `logs/workers/worker_audit_table1-table2-error-handling_20260523T174828_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-table1-table2-error-handling.md) | [Open JSON](../sessions/06/06adb37d2b377a2738a1.json) |
+| `logs/workers/worker_audit_v1v2-final-check_20260523T185223_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/audit-v1v2-final-check.md) | [Open JSON](../sessions/d1/d1c57b9cd60ea4e30a37.json) |
+| `logs/workers/worker_check_iv-exclusion-restriction_20260523T082512_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/check-iv-exclusion-restriction.md) | [Open JSON](../sessions/d2/d26f7a95407fc0917906.json) |
+| `logs/workers/worker_check_server-file-verification_20260523T010057_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/check-server-file-verification.md) | [Open JSON](../sessions/2c/2cd60d36c80241d6e00b.json) |
+| `logs/workers/worker_check_temperature-pilot-final_20260523T134430_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/check-temperature-pilot-final.md) | [Open JSON](../sessions/85/85495692ed7b198110df.json) |
+| `logs/workers/worker_check_temperature-pilot-pid_20260523T092121_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/check-temperature-pilot-pid.md) | [Open JSON](../sessions/b1/b1bfdb1dc805c4df1789.json) |
+| `logs/workers/worker_check_westd-connection_20260523T030940_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/check-westd-connection.md) | [Open JSON](../sessions/01/017f02d14a520f751fde.json) |
+| `logs/workers/worker_code_anon-repo-path-cleanup_20260523T125904_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-anon-repo-path-cleanup.md) | [Open JSON](../sessions/07/077844a84d6f2d93844b.json) |
+| `logs/workers/worker_code_anonymous-repo-prep_20260523T125117_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-anonymous-repo-prep.md) | [Open JSON](../sessions/60/60a0655e8a7569cd4605.json) |
+| `logs/workers/worker_code_error-filter-and-pipeline-check_20260522T161449_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-error-filter-and-pipeline-check.md) | [Open JSON](../sessions/7d/7d58bf387e00c2015bcb.json) |
+| `logs/workers/worker_code_fix-confound-abs-r_20260522T171054_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-fix-confound-abs-r.md) | [Open JSON](../sessions/01/0144ac7e7c25fcce802d.json) |
+| `logs/workers/worker_code_fix-loader-rerun-pipeline_20260522T170513_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-fix-loader-rerun-pipeline.md) | [Open JSON](../sessions/ec/ec41d0d4d9f7148cd292.json) |
+| `logs/workers/worker_code_mini-smoke-test_20260521T190612_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-mini-smoke-test.md) | [Open JSON](../sessions/3a/3ad4a077103d36eb2292.json) |
+| `logs/workers/worker_code_mvp-framework_20260521T170853_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-mvp-framework.md) | [Open JSON](../sessions/70/70858d634ba64e70efa3.json) |
+| `logs/workers/worker_code_mvp-step1-subset_20260521T204933_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-mvp-step1-subset.md) | [Open JSON](../sessions/86/86bbf47d6137798f3ebc.json) |
+| `logs/workers/worker_code_openrouter-deploy_20260522T125604_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-openrouter-deploy.md) | [Open JSON](../sessions/3d/3d49b4faf00524625b84.json) |
+| `logs/workers/worker_code_openrouter-prep_20260522T125308_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-openrouter-prep.md) | [Open JSON](../sessions/b3/b38c84e3c86143280425.json) |
+| `logs/workers/worker_code_panel-selection-algo_20260522T035327_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-panel-selection-algo.md) | [Open JSON](../sessions/d8/d809f624dd3cfca68802.json) |
+| `logs/workers/worker_code_plan001-boost-concurrency_20260522T092026_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan001-boost-concurrency.md) | [Open JSON](../sessions/d5/d5bd012d17d1df2a9b77.json) |
+| `logs/workers/worker_code_plan001-fix-concurrency-urgent_20260522T102750_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan001-fix-concurrency-urgent.md) | [Open JSON](../sessions/32/32fd0bf03c583528114a.json) |
+| `logs/workers/worker_code_plan001-fix-condition-keys_20260522T082358_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan001-fix-condition-keys.md) | [Open JSON](../sessions/c1/c17c26d1b0a42c799930.json) |
+| `logs/workers/worker_code_plan001-gemini-fix_20260522T072340_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan001-gemini-fix.md) | [Open JSON](../sessions/ee/eee9f2655dd94a0bcae0.json) |
+| `logs/workers/worker_code_plan001-parallel-v2_20260522T094736_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan001-parallel-v2.md) | [Open JSON](../sessions/22/22f187a5382cb1f92757.json) |
+| `logs/workers/worker_code_plan001-parallel-v3-throttled_20260522T100712_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan001-parallel-v3-throttled.md) | [Open JSON](../sessions/5c/5cb69255742b79dc5b4a.json) |
+| `logs/workers/worker_code_plan001-step0-api-adapter_20260522T071153_result.json` (occurrence 1) | 1 | 0 | [Read transcript](../readable/task-results/code-plan001-step0-api-adapter.md) | [Open JSON](../sessions/77/7781b8477a18b986cf5a.json) |

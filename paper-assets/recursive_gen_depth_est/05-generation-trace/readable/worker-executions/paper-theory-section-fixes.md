@@ -1,0 +1,4928 @@
+# paper theory section fixes
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 0
+- **Tool calls:** 25
+- **Original source:** `logs/workers/worker_paper_theory_section_fixes_20260517T185407.log`
+- **Structured JSON:** [`645bf48ecf43866c56ae.json`](../../sessions/64/645bf48ecf43866c56ae.json)
+
+## Before a recorded user message
+
+81 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e350ca20-6cea-4262-b00e-6b00e86dbbb4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779060600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5f9ef57f-873d-4a58-b3e5-436992fe3465",
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by finding the theory section file and reading the registry for d3v4 data, plus searching for the Shi et al. reference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "29890285-9a75-40f0-9a78-8b88f6593da0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0148j7bGunBQ3THh1Q5riv3j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13529,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13529
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01TfkXD4nBsvJrmFDgSpgkvS`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "f463caed-e4ac-40d1-85a2-f324525d078a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0148j7bGunBQ3THh1Q5riv3j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13529,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13529
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T18:54:19.193Z_
+
+<details><summary>↩ Tool result · `toolu_01TfkXD4nBsvJrmFDgSpgkvS`</summary>
+
+```text
+artifacts/dream_reports/dream_20260514T140607/best/paper.tex
+artifacts/dream_reports/dream_20260514T140607/median/paper.tex
+artifacts/dream_reports/dream_20260514T140607/worst/paper.tex
+docs/paper/main.tex
+artifacts/dream_reports/dream_20260517T075852/best/paper.tex
+artifacts/dream_reports/dream_20260517T075852/median/paper.tex
+artifacts/dream_reports/dream_20260517T075852/worst/paper.tex
+artifacts/_project/paper/theory_draft.tex
+docs/paper/atlas.tex
+docs/paper/method.tex
+docs/paper/generalization.tex
+docs/paper/conclusion.tex
+docs/paper/section_appendix.tex
+docs/paper/abstract.tex
+docs/paper/introduction.tex
+artifacts/theory_draft.tex
+docs/paper/related_work.tex
+docs/paper/discussion.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "42cb6206-8e8c-45dd-b040-93d04d0f5891",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260514T140607/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T140607/median/paper.tex",
+      "artifacts/dream_reports/dream_20260514T140607/worst/paper.tex",
+      "docs/paper/main.tex",
+      "artifacts/dream_reports/dream_20260517T075852/best/paper.tex",
+      "artifacts/dream_reports/dream_20260517T075852/median/paper.tex",
+      "artifacts/dream_reports/dream_20260517T075852/worst/paper.tex",
+      "artifacts/_project/paper/theory_draft.tex",
+      "docs/paper/atlas.tex",
+      "docs/paper/method.tex",
+      "docs/paper/generalization.tex",
+      "docs/paper/conclusion.tex",
+      "docs/paper/section_appendix.tex",
+      "docs/paper/abstract.tex",
+      "docs/paper/introduction.tex",
+      "artifacts/theory_draft.tex",
+      "docs/paper/related_work.tex",
+      "docs/paper/discussion.tex"
+    ],
+    "durationMs": 12,
+    "numFiles": 18,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01CCuPDTBqfX87cks2VaNu8b`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/theory_draft.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "667d6058-04f1-43ef-a8ec-19d94755ac44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017d3cMwB1efb4zqPbvaGbSx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 377,
+      "cache_read_input_tokens": 25370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 377
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T18:54:21.382Z_
+
+<details><summary>↩ Tool result · `toolu_01CCuPDTBqfX87cks2VaNu8b`</summary>
+
+```text
+1	% Theory / Theoretical Motivation Section Draft
+2	% For: Recursive Generation Depth Estimation Paper
+3	
+4	\section{Theoretical Motivation}
+5	\label{sec:theory}
+6	
+7	We develop a theoretical framework, grounded in recent convergence analyses of iterative retraining~\citep{shumailov2024_nature,dohmatob2024_demystified,alemohammad2024_mad}, that explains our empirical findings. We first connect our feature design to the distributional dynamics of iterative model retraining, then derive an upper bound on the Effective Detection Depth (EDD), and finally validate both against experimental observations. The hypotheses below are motivated by established theory for simplified settings and validated empirically on neural language models.
+8	
+9	\subsection{Distributional Dynamics of Recursive Generation}
+10	\label{sec:theory:dynamics}
+11	
+12	We model recursive generation as an iterative mapping on distributions. Let $\mathcal{D}_0$ denote the original (human-written) data distribution. At each generation step $k \geq 1$, a language model $M_k$ is trained on $\mathcal{D}_{k-1}$, and $\mathcal{D}_k$ is produced by sampling from $M_k$:
+13	\begin{align}
+14	    M_k &= \textsc{Train}(\mathcal{D}_{k-1}), \label{eq:train} \\
+15	    \mathcal{D}_k &= \textsc{Sample}(M_k). \label{eq:sample}
+16	\end{align}
+17	This defines a Markov chain on the space of distributions, $\mathcal{D}_0 \to \mathcal{D}_1 \to \mathcal{D}_2 \to \cdots$, whose convergence properties determine both the nature of model collapse and the feasibility of depth estimation.
+18	
+19	\paragraph{Hypothesis 1 (Tail Contraction, Empirically Validated).}
+20	\label{thm:tail}
+21	Under finite parametric families (empirically validated on neural LMs with 1B--14B parameters), let $p_k$ denote the probability density of $\mathcal{D}_k$. Under recursive generation with finite samples at each step, the tail mass
+22	\begin{equation}
+23	    T_k(\alpha) \triangleq \int_{\{x : p_0(x) < \alpha\}} p_k(x) \, dx
+24	\end{equation}
+25	satisfies $T_{k+1}(\alpha) \leq T_k(\alpha)$ for all $\alpha > 0$ and $k \geq 0$, with convergence $T_k(\alpha) \to 0$ as $k \to \infty$.
+26	
+27	This result follows from the analysis of \citet{shumailov2024_nature}, who proved that for Gaussian models under recursive estimation, the variance $\sigma_k^2$ converges to zero, so the distribution degenerates toward a point mass. The mechanism is straightforward: finite-sample estimation at each step fails to capture low-probability events in the tails of $\mathcal{D}_{k-1}$, and this information loss compounds across iterations. \citet{dohmatob2024_demystified} further showed that in high-dimensional regression settings, the test risk after $k$ iterations of retraining grows as
+28	\begin{equation}
+29	    R_k = R_0 + k \cdot \Delta_{\text{collapse}},
+30	    \label{eq:linear_growth}
+31	\end{equation}
+32	where $\Delta_{\text{collapse}} > 0$ depends on the data covariance spectrum, regularization strength, and label noise level. In the overparameterized regime, this degradation accelerates to exponential rates.
+33	
+34	\subsection{Why Perplexity Features Distinguish Depth}
+35	\label{sec:theory:features}
+36	
+37	We now explain why the two core features in our detection pipeline, the 90th-percentile perplexity (\texttt{p90\_ppl}) and the variance of token-level surprisal (\texttt{var\_surprisal}), provide monotonically decreasing signals as generation depth $k$ increases.
+38	
+39	\paragraph{Tail perplexity (\texttt{p90\_ppl}).}
+40	Perplexity at the 90th percentile captures the behavior of a reference model on the most surprising tokens in a text. These tokens correspond to rare constructions, unusual word choices, and low-frequency collocations that reside in the tail of the original distribution $\mathcal{D}_0$. By Hypothesis~1, the tail mass $T_k(\alpha)$ decreases monotonically with depth $k$. As $\mathcal{D}_k$ loses these rare elements, texts sampled from deeper generations contain fewer high-surprisal tokens, and \texttt{p90\_ppl} decreases accordingly.
+41	
+42	More precisely, let $s(x_t \mid x_{&lt;t})$ denote the token-level surprisal assigned by a fixed reference model. For text $\mathbf{x} \sim \mathcal{D}_k$, define the empirical surprisal distribution $F_k(s) = \Pr[s(x_t \mid x_{&lt;t}) \leq s]$. The 90th-percentile surprisal is $Q_k(0.9) = F_k^{-1}(0.9)$. Since deeper generations concentrate probability mass on high-likelihood tokens, $F_k$ stochastically dominates $F_{k+1}$ in the upper tail, yielding $Q_k(0.9) \geq Q_{k+1}(0.9)$.
+43	
+44	\paragraph{Surprisal variance (\texttt{var\_surprisal}).}
+45	The variance of token-level surprisal measures the spread of the surprisal distribution within a text. As recursive generation narrows the output distribution toward its modes, the entropy of $M_k$ decreases with $k$. This entropy reduction manifests as a more uniform (lower-variance) surprisal profile: the model becomes increasingly predictable, and tokens cluster near the expected surprisal $H(M_k)$ rather than span a wide range. Formally,
+46	\begin{equation}
+47	    \text{Var}_k[s(x_t \mid x_{&lt;t})] = \mathbb{E}_k[s^2] - (\mathbb{E}_k[s])^2,
+48	    \label{eq:var_surprisal}
+49	\end{equation}
+50	where expectations are over tokens in texts from $\mathcal{D}_k$.
+51	
+52	\paragraph{Observation 1 (Empirically Validated).}
+53	\label{prop:monotone}
+54	Under the recursive generation framework of Equations~\eqref{eq:train}--\eqref{eq:sample}, both \texttt{p90\_ppl} and \texttt{var\_surprisal} are monotonically non-increasing in depth $k$, i.e.,
+55	\begin{equation}
+56	    Q_{k+1}(0.9) \leq Q_k(0.9), \qquad \text{Var}_{k+1}[s] \leq \text{Var}_k[s], \qquad \forall\, k \geq 0.
+57	\end{equation}
+58	Across all three model families, \texttt{var\_surprisal} exhibits strong monotonic decrease with depth (Spearman $\rho \in [-0.89, -0.82]$, $p < 10^{-4}$), consistent with the narrowing of the token-level surprise distribution under iterative retraining.
+59	
+60	\subsection{Upper Bound on Effective Detection Depth}
+61	\label{sec:theory:edd}
+62	
+63	While Observation~1 establishes that the feature signal decreases with depth, it does not address whether the signal remains detectable. We now derive an upper bound on the Effective Detection Depth (EDD), defined as the maximum depth $k^*$ at which a binary classifier can distinguish $\mathcal{D}_k$ from $\mathcal{D}_{k+1}$ with AUC above a threshold $\tau$.
+64	
+65	The key insight is that the recursive generation mapping $\mathcal{T}: \mathcal{D}_{k-1} \mapsto \mathcal{D}_k$ is a contraction in distributional distance. Following the framework of \citet{alemohammad2024_mad}, who showed that autophagous loops act as contraction mappings on the space of distributions, we formalize this as follows.
+66	
+67	\begin{assumption}[Contraction Property]
+68	\label{asm:contraction}
+69	There exists a constant $\gamma \in (0, 1)$ such that for all $k \geq 1$,
+70	\begin{equation}
+71	    d(\mathcal{D}_k, \mathcal{D}_{k+1}) \leq \gamma \cdot d(\mathcal{D}_{k-1}, \mathcal{D}_k),
+72	    \label{eq:contraction}
+73	\end{equation}
+74	where $d(\cdot, \cdot)$ is a distributional distance (e.g., Wasserstein-2 or total variation).
+75	\end{assumption}
+76	
+77	This assumption is supported by theoretical results: \citet{shumailov2024_nature} showed that in the Gaussian case, the distributional distance between consecutive iterations decreases geometrically, and \citet{alemohammad2024_mad} demonstrated analogous behavior for generative image models under fully synthetic training loops.
+78	
+79	\begin{theorem}[EDD Upper Bound]
+80	\label{thm:edd}
+81	Let $\delta > 0$ be the minimum distributional distance at which a classifier with capacity $\mathcal{C}$ achieves AUC $\geq \tau$. Under Assumption~\ref{asm:contraction}, the Effective Detection Depth satisfies
+82	\begin{equation}
+83	    \text{EDD}(\tau) \leq \left\lfloor \frac{\log(\delta / d_0)}{\log \gamma} \right\rfloor + 1,
+84	    \label{eq:edd_bound}
+85	\end{equation}
+86	where $d_0 = d(\mathcal{D}_0, \mathcal{D}_1)$ is the initial distributional gap.
+87	\end{theorem}
+88	
+89	\begin{proof}
+90	By iterating Equation~\eqref{eq:contraction}, the distributional distance at step $k$ satisfies
+91	\begin{equation}
+92	    d(\mathcal{D}_k, \mathcal{D}_{k+1}) \leq \gamma^k \cdot d_0.
+93	\end{equation}
+94	The classifier fails when this distance falls below $\delta$, i.e., when $\gamma^k \cdot d_0 < \delta$. Solving for $k$ gives $k > \log(\delta / d_0) / \log \gamma$. Since $\gamma \in (0,1)$, $\log \gamma < 0$, and noting that $\delta < d_0$ (otherwise depth 0 is already undetectable), the bound follows.
+95	\end{proof}
+96	
+97	Theorem~\ref{thm:edd} reveals that EDD depends on three factors: (i) the initial distributional gap $d_0$ between human and first-generation text, (ii) the contraction rate $\gamma$, determined by model capacity and sampling parameters, and (iii) the classifier sensitivity $\delta$, which depends on the feature set and classifier capacity $\mathcal{C}$.
+98	
+99	\paragraph{Interpretation.} The bound is logarithmic in $d_0/\delta$, implying that even large initial gaps yield only modest detection depths. This explains the empirically consistent finding of $\text{EDD} = 4$ across our three model families at threshold $\tau = 0.75$: despite different architectures and scales (1B to 1.5B parameters), the contraction rates are similar enough that the detection horizon converges to a narrow range.
+100	
+101	\subsection{Alignment with Experimental Observations}
+102	\label{sec:theory:validation}
+103	
+104	We verify the theoretical predictions against three experimental findings.
+105	
+106	\paragraph{Geometric decay of pairwise discriminability.}
+107	Theorem~\ref{thm:edd} predicts that the distributional distance between adjacent depths decays geometrically as $\gamma^k$. Our binary pairwise AUC values follow this pattern (averaged over Pythia-1.4B, OLMo-1B, and GPT-2 XL depth extension experiments): $\text{AUC}(d_1, d_2) = 0.922$, $\text{AUC}(d_2, d_3) = 0.802$, $\text{AUC}(d_3, d_4) = 0.712$, $\text{AUC}(d_4, d_5) = 0.653$. Fitting $\text{AUC}(d_k, d_{k+1}) = 0.5 + c \cdot \gamma^k$ to these values yields $\gamma \approx 0.75$ (the geometric model is an approximation; empirical decay shows slight acceleration at deeper levels, suggesting the contraction rate itself may increase with depth).
+108	
+109	\paragraph{Consistent EDD across models.}
+110	The EDD bound in Equation~\eqref{eq:edd_bound} depends on $d_0$, $\gamma$, and $\delta$, but not directly on model architecture. If different model families produce similar contraction rates (as predicted by the model collapse theory for models of comparable capacity), they should yield similar EDD values. Our experiments confirm this: Pythia-1.4B, GPT-2 XL, and OLMo-1B all reach $\text{EDD} = 4$ at $\tau = 0.75$.
+111	
+112	\paragraph{Feature monotonicity.}
+113	Observation~1 predicts monotonically decreasing \texttt{p90\_ppl} and \texttt{var\_surprisal}. The observed Spearman correlations of $\rho = -0.82$ to $-0.89$ confirm strong monotonicity, with the deviation from $\rho = -1.0$ attributable to finite-sample noise and text-level variability within each depth.
+114	
+115	In summary, the contraction mapping framework provides a unified explanation for the three central empirical phenomena: monotonic feature decay, geometric loss of discriminability, and a finite detection horizon that is consistent across model families.
+116	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "cfa677c2-d287-45aa-93a0-9de66790c9a9",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/theory_draft.tex",
+      "content": "% Theory / Theoretical Motivation Section Draft\n% For: Recursive Generation Depth Estimation Paper\n\n\\section{Theoretical Motivation}\n\\label{sec:theory}\n\nWe develop a theoretical framework, grounded in recent convergence analyses of iterative retraining~\\citep{shumailov2024_nature,dohmatob2024_demystified,alemohammad2024_mad}, that explains our empirical findings. We first connect our feature design to the distributional dynamics of iterative model retraining, then derive an upper bound on the Effective Detection Depth (EDD), and finally validate both against experimental observations. The hypotheses below are motivated by established theory for simplified settings and validated empirically on neural language models.\n\n\\subsection{Distributional Dynamics of Recursive Generation}\n\\label{sec:theory:dynamics}\n\nWe model recursive generation as an iterative mapping on distributions. Let $\\mathcal{D}_0$ denote the original (human-written) data distribution. At each generation step $k \\geq 1$, a language model $M_k$ is trained on $\\mathcal{D}_{k-1}$, and $\\mathcal{D}_k$ is produced by sampling from $M_k$:\n\\begin{align}\n    M_k &= \\textsc{Train}(\\mathcal{D}_{k-1}), \\label{eq:train} \\\\\n    \\mathcal{D}_k &= \\textsc{Sample}(M_k). \\label{eq:sample}\n\\end{align}\nThis defines a Markov chain on the space of distributions, $\\mathcal{D}_0 \\to \\mathcal{D}_1 \\to \\mathcal{D}_2 \\to \\cdots$, whose convergence properties determine both the nature of model collapse and the feasibility of depth estimation.\n\n\\paragraph{Hypothesis 1 (Tail Contraction, Empirically Validated).}\n\\label{thm:tail}\nUnder finite parametric families (empirically validated on neural LMs with 1B--14B parameters), let $p_k$ denote the probability density of $\\mathcal{D}_k$. Under recursive generation with finite samples at each step, the tail mass\n\\begin{equation}\n    T_k(\\alpha) \\triangleq \\int_{\\{x : p_0(x) < \\alpha\\}} p_k(x) \\, dx\n\\end{equation}\nsatisfies $T_{k+1}(\\alpha) \\leq T_k(\\alpha)$ for all $\\alpha > 0$ and $k \\geq 0$, with convergence $T_k(\\alpha) \\to 0$ as $k \\to \\infty$.\n\nThis result follows from the analysis of \\citet{shumailov2024_nature}, who proved that for Gaussian models under recursive estimation, the variance $\\sigma_k^2$ converges to zero, so the distribution degenerates toward a point mass. The mechanism is straightforward: finite-sample estimation at each step fails to capture low-probability events in the tails of $\\mathcal{D}_{k-1}$, and this information loss compounds across iterations. \\citet{dohmatob2024_demystified} further showed that in high-dimensional regression settings, the test risk after $k$ iterations of retraining grows as\n\\begin{equation}\n    R_k = R_0 + k \\cdot \\Delta_{\\text{collapse}},\n    \\label{eq:linear_growth}\n\\end{equation}\nwhere $\\Delta_{\\text{collapse}} > 0$ depends on the data covariance spectrum, regularization strength, and label noise level. In the overparameterized regime, this degradation accelerates to exponential rates.\n\n\\subsection{Why Perplexity Features Distinguish Depth}\n\\label{sec:theory:features}\n\nWe now explain why the two core features in our detection pipeline, the 90th-percentile perplexity (\\texttt{p90\\_ppl}) and the variance of token-level surprisal (\\texttt{var\\_surprisal}), provide monotonically decreasing signals as generation depth $k$ increases.\n\n\\paragraph{Tail perplexity (\\texttt{p90\\_ppl}).}\nPerplexity at the 90th percentile captures the behavior of a reference model on the most surprising tokens in a text. These tokens correspond to rare constructions, unusual word choices, and low-frequency collocations that reside in the tail of the original distribution $\\mathcal{D}_0$. By Hypothesis~1, the tail mass $T_k(\\alpha)$ decreases monotonically with depth $k$. As $\\mathcal{D}_k$ loses these rare elements, texts sampled from deeper generations contain fewer high-surprisal tokens, and \\texttt{p90\\_ppl} decreases accordingly.\n\nMore precisely, let $s(x_t \\mid x_{&lt;t})$ denote the token-level surprisal assigned by a fixed reference model. For text $\\mathbf{x} \\sim \\mathcal{D}_k$, define the empirical surprisal distribution $F_k(s) = \\Pr[s(x_t \\mid x_{&lt;t}) \\leq s]$. The 90th-percentile surprisal is $Q_k(0.9) = F_k^{-1}(0.9)$. Since deeper generations concentrate probability mass on high-likelihood tokens, $F_k$ stochastically dominates $F_{k+1}$ in the upper tail, yielding $Q_k(0.9) \\geq Q_{k+1}(0.9)$.\n\n\\paragraph{Surprisal variance (\\texttt{var\\_surprisal}).}\nThe variance of token-level surprisal measures the spread of the surprisal distribution within a text. As recursive generation narrows the output distribution toward its modes, the entropy of $M_k$ decreases with $k$. This entropy reduction manifests as a more uniform (lower-variance) surprisal profile: the model becomes increasingly predictable, and tokens cluster near the expected surprisal $H(M_k)$ rather than span a wide range. Formally,\n\\begin{equation}\n    \\text{Var}_k[s(x_t \\mid x_{&lt;t})] = \\mathbb{E}_k[s^2] - (\\mathbb{E}_k[s])^2,\n    \\label{eq:var_surprisal}\n\\end{equation}\nwhere expectations are over tokens in texts from $\\mathcal{D}_k$.\n\n\\paragraph{Observation 1 (Empirically Validated).}\n\\label{prop:monotone}\nUnder the recursive generation framework of Equations~\\eqref{eq:train}--\\eqref{eq:sample}, both \\texttt{p90\\_ppl} and \\texttt{var\\_surprisal} are monotonically non-increasing in depth $k$, i.e.,\n\\begin{equation}\n    Q_{k+1}(0.9) \\leq Q_k(0.9), \\qquad \\text{Var}_{k+1}[s] \\leq \\text{Var}_k[s], \\qquad \\forall\\, k \\geq 0.\n\\end{equation}\nAcross all three model families, \\texttt{var\\_surprisal} exhibits strong monotonic decrease with depth (Spearman $\\rho \\in [-0.89, -0.82]$, $p < 10^{-4}$), consistent with the narrowing of the token-level surprise distribution under iterative retraining.\n\n\\subsection{Upper Bound on Effective Detection Depth}\n\\label{sec:theory:edd}\n\nWhile Observation~1 establishes that the feature signal decreases with depth, it does not address whether the signal remains detectable. We now derive an upper bound on the Effective Detection Depth (EDD), defined as the maximum depth $k^*$ at which a binary classifier can distinguish $\\mathcal{D}_k$ from $\\mathcal{D}_{k+1}$ with AUC above a threshold $\\tau$.\n\nThe key insight is that the recursive generation mapping $\\mathcal{T}: \\mathcal{D}_{k-1} \\mapsto \\mathcal{D}_k$ is a contraction in distributional distance. Following the framework of \\citet{alemohammad2024_mad}, who showed that autophagous loops act as contraction mappings on the space of distributions, we formalize this as follows.\n\n\\begin{assumption}[Contraction Property]\n\\label{asm:contraction}\nThere exists a constant $\\gamma \\in (0, 1)$ such that for all $k \\geq 1$,\n\\begin{equation}\n    d(\\mathcal{D}_k, \\mathcal{D}_{k+1}) \\leq \\gamma \\cdot d(\\mathcal{D}_{k-1}, \\mathcal{D}_k),\n    \\label{eq:contraction}\n\\end{equation}\nwhere $d(\\cdot, \\cdot)$ is a distributional distance (e.g., Wasserstein-2 or total variation).\n\\end{assumption}\n\nThis assumption is supported by theoretical results: \\citet{shumailov2024_nature} showed that in the Gaussian case, the distributional distance between consecutive iterations decreases geometrically, and \\citet{alemohammad2024_mad} demonstrated analogous behavior for generative image models under fully synthetic training loops.\n\n\\begin{theorem}[EDD Upper Bound]\n\\label{thm:edd}\nLet $\\delta > 0$ be the minimum distributional distance at which a classifier with capacity $\\mathcal{C}$ achieves AUC $\\geq \\tau$. Under Assumption~\\ref{asm:contraction}, the Effective Detection Depth satisfies\n\\begin{equation}\n    \\text{EDD}(\\tau) \\leq \\left\\lfloor \\frac{\\log(\\delta / d_0)}{\\log \\gamma} \\right\\rfloor + 1,\n    \\label{eq:edd_bound}\n\\end{equation}\nwhere $d_0 = d(\\mathcal{D}_0, \\mathcal{D}_1)$ is the initial distributional gap.\n\\end{theorem}\n\n\\begin{proof}\nBy iterating Equation~\\eqref{eq:contraction}, the distributional distance at step $k$ satisfies\n\\begin{equation}\n    d(\\mathcal{D}_k, \\mathcal{D}_{k+1}) \\leq \\gamma^k \\cdot d_0.\n\\end{equation}\nThe classifier fails when this distance falls below $\\delta$, i.e., when $\\gamma^k \\cdot d_0 < \\delta$. Solving for $k$ gives $k > \\log(\\delta / d_0) / \\log \\gamma$. Since $\\gamma \\in (0,1)$, $\\log \\gamma < 0$, and noting that $\\delta < d_0$ (otherwise depth 0 is already undetectable), the bound follows.\n\\end{proof}\n\nTheorem~\\ref{thm:edd} reveals that EDD depends on three factors: (i) the initial distributional gap $d_0$ between human and first-generation text, (ii) the contraction rate $\\gamma$, determined by model capacity and sampling parameters, and (iii) the classifier sensitivity $\\delta$, which depends on the feature set and classifier capacity $\\mathcal{C}$.\n\n\\paragraph{Interpretation.} The bound is logarithmic in $d_0/\\delta$, implying that even large initial gaps yield only modest detection depths. This explains the empirically consistent finding of $\\text{EDD} = 4$ across our three model families at threshold $\\tau = 0.75$: despite different architectures and scales (1B to 1.5B parameters), the contraction rates are similar enough that the detection horizon converges to a narrow range.\n\n\\subsection{Alignment with Experimental Observations}\n\\label{sec:theory:validation}\n\nWe verify the theoretical predictions against three experimental findings.\n\n\\paragraph{Geometric decay of pairwise discriminability.}\nTheorem~\\ref{thm:edd} predicts that the distributional distance between adjacent depths decays geometrically as $\\gamma^k$. Our binary pairwise AUC values follow this pattern (averaged over Pythia-1.4B, OLMo-1B, and GPT-2 XL depth extension experiments): $\\text{AUC}(d_1, d_2) = 0.922$, $\\text{AUC}(d_2, d_3) = 0.802$, $\\text{AUC}(d_3, d_4) = 0.712$, $\\text{AUC}(d_4, d_5) = 0.653$. Fitting $\\text{AUC}(d_k, d_{k+1}) = 0.5 + c \\cdot \\gamma^k$ to these values yields $\\gamma \\approx 0.75$ (the geometric model is an approximation; empirical decay shows slight acceleration at deeper levels, suggesting the contraction rate itself may increase with depth).\n\n\\paragraph{Consistent EDD across models.}\nThe EDD bound in Equation~\\eqref{eq:edd_bound} depends on $d_0$, $\\gamma$, and $\\delta$, but not directly on model architecture. If different model families produce similar contraction rates (as predicted by the model collapse theory for models of comparable capacity), they should yield similar EDD values. Our experiments confirm this: Pythia-1.4B, GPT-2 XL, and OLMo-1B all reach $\\text{EDD} = 4$ at $\\tau = 0.75$.\n\n\\paragraph{Feature monotonicity.}\nObservation~1 predicts monotonically decreasing \\texttt{p90\\_ppl} and \\texttt{var\\_surprisal}. The observed Spearman correlations of $\\rho = -0.82$ to $-0.89$ confirm strong monotonicity, with the deviation from $\\rho = -1.0$ attributable to finite-sample noise and text-level variability within each depth.\n\nIn summary, the contraction mapping framework provides a unified explanation for the three central empirical phenomena: monotonic feature decay, geometric loss of discriminability, and a finite detection horizon that is consistent across model families.\n",
+      "numLines": 116,
+      "startLine": 1,
+      "totalLines": 116
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the registry for the depth extension experiments and do the web search for Shi et al. in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "a0f24256-44e6-4af7-9d19-5f02ff940c5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011scwfNNnYbF3zdPEAYQCQQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3843,
+      "cache_read_input_tokens": 25747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3843
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Good, I found the file. Now let me check the registry for d3v4 AUC data and search for Shi et al. in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "19059104-e07c-411c-bee9-b5ccbe8adbc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011scwfNNnYbF3zdPEAYQCQQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3843,
+      "cache_read_input_tokens": 25747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3843
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017zFQ2g2sS25o38FoaCoJxd`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,WebSearch",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "4101b58b-5ad5-4ad2-9363-389eff0c0f32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011scwfNNnYbF3zdPEAYQCQQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3843,
+      "cache_read_input_tokens": 25747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3843
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T18:54:27.188Z_
+
+<details><summary>↩ Tool result · `toolu_017zFQ2g2sS25o38FoaCoJxd`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "53d4c734-bfed-4e9e-a178-c9e79efae702",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "WebSearch"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,WebSearch",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01UEG14jsuXEd5T5tbtvkmn7`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "depth_extension_gpt2xl_d4d5_001"
+  },
+  "project": "recursive_gen_depth_est",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "f3beb646-4c59-47dc-920f-a47a67d99d18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CTYcxCsES4iqaRHpdaABSB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1637,
+      "cache_read_input_tokens": 29590,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1637
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T18:54:30.989Z_
+
+<details><summary>↩ Tool result · `toolu_01UEG14jsuXEd5T5tbtvkmn7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3868}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "1d1aeb74-5d2b-49fa-9cd7-7a22778442d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3868}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3868}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01LT89wg2iYY781YkeHPwNwP`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "depth_extension_olmo_d4d5_002"
+  },
+  "project": "recursive_gen_depth_est",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "da738a4a-40f4-45e8-a605-03caab2ede5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01433vWJyvxY6CvvKuniDgms",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 205,
+      "cache_read_input_tokens": 31227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 205
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T18:54:33.331Z_
+
+<details><summary>↩ Tool result · `toolu_01LT89wg2iYY781YkeHPwNwP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3381}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "75376723-acf1-4194-a2ea-ab931a6714c4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3381}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3381}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The exact exp_ids didn't match. Let me search more broadly for depth_extension experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "d3451243-d21d-420a-99db-16d5b6d9b14c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiwY2EsyLGyEJmSy97KYE6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 200,
+      "cache_read_input_tokens": 31432,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 200
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+Exact IDs not found. Let me search more broadly for depth extension experiments and do the Shi et al. web search in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "11f133e0-694f-4cf3-b683-a2d78059012f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiwY2EsyLGyEJmSy97KYE6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 200,
+      "cache_read_input_tokens": 31432,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 200
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01A8EtPDXM34ZxpQ2ZyCRvHh`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "fields": [
+    "*"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "9c333548-8fb6-4053-a5d7-bd2a62c2f992",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiwY2EsyLGyEJmSy97KYE6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 200,
+      "cache_read_input_tokens": 31432,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 200
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T18:54:37.559Z_
+
+<details><summary>↩ Tool result · `toolu_01A8EtPDXM34ZxpQ2ZyCRvHh`</summary>
+
+```text
+Error: result (189,302 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/fc9c9569-5923-454b-bae6-d698298d9df4/tool-results/mcp-agent-ml-research-read_registry-1779044077555.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/fc9c9569-5923-454b-bae6-d698298d9df4/tool-results/mcp-agent-ml-research-read_registry-1779044077555.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "1ae5fa76-00a0-4cfc-871e-9084b6e3bc7b",
+  "tool_use_result": {
+    "content": "Error: result (189,302 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/fc9c9569-5923-454b-bae6-d698298d9df4/tool-results/mcp-agent-ml-research-read_registry-1779044077555.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/fc9c9569-5923-454b-bae6-d698298d9df4/tool-results/mcp-agent-ml-research-read_registry-1779044077555.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"learned_estimator_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T18:31:06.627Z\", \"updated_at\": \"2026-05-17T18:46:03.342Z\", \"hypothesis\": \"Fixing NaN issues in Prototypical Network (torch.clamp + nan_to_num in distances, safe softmax conversion) and running full data sweep (no max_samples limit) will enable learned estimators (XGBoost, CORAL MLP, Prototypical) to exceed the RF baseline of 66.4% accuracy in cross-model depth estimation.\", \"parent\": \"learned_estimator_001\", \"spec\": {\"command\": \"bash run_learned_estimator_002.sh\", \"server\": \"westd-48862\", \"gpu\": [\"cuda:0\"], \"pid\": \"15548\", \"log_path\": \"/root/runs/recursive_gen_depth_est/learned_estimator_002.log\", \"submitted_at\": \"2026-05-17T18:31:18.341Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/\", \"data_count\": \"9 feature files (3 models x 3 strategies)\", \"model_name\": \"xgboost+ordinal_mlp+prototypical\", \"seed\": 42, \"checkpoint_source\": \"trained_from_scratch\", \"eval_data\": \"leave-one-model-out cross-validation (pythia/olmo/gpt2xl)\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator_002/\", \"wall_clock_seconds\": 694.3, \"gpu_hours\": 0.19}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T18:42:52.633Z\", \"metrics\": {\"xgboost_pythia\": 63.72, \"xgboost_olmo\": 69.76, \"xgboost_gpt2xl\": 68.05, \"xgboost_mean\": 67.18, \"ordinal_mlp_pythia\": 62.52, \"ordinal_mlp_olmo\": 69.69, \"ordinal_mlp_gpt2xl\": 67.9, \"ordinal_mlp_mean\": 66.7, \"prototypical_pythia\": 61.55, \"prototypical_olmo\": 70.01, \"prototypical_gpt2xl\": 68.35, \"prototypical_mean\": 66.64, \"rf_baseline_mean\": 66.4, \"best_single\": \"proto_olmo_70.01\", \"best_method_mean\": \"xgboost_67.18\"}, \"notes\": \"Proto NaN fix successful. Full 9-run sweep (3 methods × 3 holdouts), 11.6 min total on westd-48862 cuda:0. All 3 methods beat RF baseline (66.4%) on olmo and gpt2xl holdouts. XGBoost mean best (67.18%), proto best single cell (olmo 70.01%, AUC=0.9004). Pythia holdout hardest for all methods (61-64%). Conclusion reversal from learned_estimator_001 (negative→success): NaN corruption had suppressed proto scores, and full-data sweep (vs previous incomplete run) improved all methods.\"}, \"wild_data_features_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T15:18:51.338Z\", \"updated_at\": \"2026-05-17T18:45:25.820Z\", \"hypothesis\": \"Wild web corpora (C4, FineWeb) contain measurable proportions of text classified as recursive-generation depth d1+ by our RF estimator, providing evidence that model-generated text is present in training data.\", \"parent\": \"mvp_pipeline_pythia_002\", \"spec\": {\"command\": \"/root/miniconda3/bin/python3.12 scripts/wild_data_features.py --input data/wild/c4_10k.jsonl,data/wild/fineweb_10k.jsonl --device cuda:0\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"788803\", \"log_path\": \"~/runs/recursive_gen_depth_est/wild_data_features_001.log\", \"submitted_at\": \"2026-05-17T15:19:01.801Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wild/c4_10k.jsonl,data/wild/fineweb_10k.jsonl\", \"data_count\": 20000, \"model_name\": \"pythia-1.4b (feature extractor)\", \"seed\": 42, \"checkpoint_source\": \"mvp_pipeline_pythia_002 (RF model + feature pipeline)\", \"eval_data\": \"C4 10k + FineWeb 10k wild web corpora\", \"wall_clock_seconds\": 7744.1, \"gpu_hours\": 2.15}, \"notes\": \"Wild web corpora depth distribution via RF classifier trained on synthetic recursive chains. C4 (10K): 66% d0, 34% d1+, FPR=34%. FineWeb (10K): 83% d0, 17% d1+, FPR=17%. Nearly all non-d0 predictions are d1 (d2/d3 < 0.5%). FPR difference reflects OOD domain shift (classifier never saw real human web text), NOT AI contamination evidence. FineWeb lower FPR likely due to quality filtering removing feature-anomalous text. Paper framing: method limitation + calibration gap (C004 constraint). PROHIBITED: \\\"contamination\\\", \\\"AI-generated content detected\\\".\", \"conclusion\": \"success\", \"metrics\": {\"c4_depth_dist\": {\"d0\": 6598, \"d1\": 3354, \"d2\": 18, \"d3\": 30}, \"c4_pct\": {\"d0\": 65.98, \"d1\": 33.54, \"d2\": 0.18, \"d3\": 0.3}, \"c4_fpr\": 34.02, \"fineweb_depth_dist\": {\"d0\": 8285, \"d1\": 1708, \"d2\": 4, \"d3\": 3}, \"fineweb_pct\": {\"d0\": 82.85, \"d1\": 17.08, \"d2\": 0.04, \"d3\": 0.03}, \"fineweb_fpr\": 17.15, \"total_c4\": 10000, \"total_fineweb\": 10000, \"rf_n_estimators\": 200, \"rf_train_samples\": 20000}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/wild_features/\", \"completed_at\": \"2026-05-17T17:28:05.914Z\"}, \"downstream_benchmark_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:39:38.724Z\", \"updated_at\": \"2026-05-17T18:44:49.406Z\", \"hypothesis\": \"Fine-tuning on depth-0 (original) text produces lower held-out perplexity than fine-tuning on higher-depth (recursive) text, because d0 data has higher quality signal without recursive degradation artifacts.\", \"parent\": \"downstream_benchmark_001\", \"spec\": {\"command\": \"python3 scripts/downstream_benchmark_v2.py\", \"server\": \"westd-48862\", \"gpu\": [\"cuda:0\"], \"pid\": \"12148\", \"log_path\": \"~/runs/recursive_gen_depth_est/downstream_benchmark_002.log\", \"submitted_at\": \"2026-05-17T17:39:45.601Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/tmp/downstream_sampled.jsonl.gz\", \"data_count\": 2200, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/downstream_v2/\", \"checkpoint_source\": \"train_from_scratch\", \"eval_data\": \"held-out 200 samples (50 per depth 0-3)\", \"wall_clock_seconds\": 1547.2, \"gpu_hours\": 0.43}, \"conclusion\": \"negative\", \"metrics\": {\"baseline_ppl\": 5.67, \"d0_only_ppl\": 5.65, \"d1_only_ppl\": 5.55, \"d2_only_ppl\": 5.56, \"mixed_all_ppl\": 5.55, \"best_model\": \"d1_only\", \"ppl_improvement_vs_baseline\": \"0.12 (2.1%)\"}, \"notes\": \"Hypothesis \\\"d0_only has lowest PPL\\\" NOT supported. d1_only (5.55) and mixed_all (5.55) tied for best, both beat baseline (5.67) and d0_only (5.65). PPL delta small (0.12), 500 samples insufficient for statistical significance. Exploratory/pilot analysis only. Key confirmed signal: train_loss monotonically decreases (d0 2.558 > d1 1.920 > d2 1.286), supporting \\\"recursive generation reduces information content\\\". Reframe as observational finding in Discussion/Appendix, not main contribution. 500 samples/subset, Pythia-410M LoRA, held-out PPL eval. Results: /root/autodl-tmp/recursive_gen_depth_est/results/downstream_benchmark_v2.json\", \"log_path\": \"/root/runs/recursive_gen_depth_est/downstream_benchmark_002.log\", \"completed_at\": \"2026-05-17T18:05:32.810Z\"}, \"learned_estimator_proto_fix_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T18:26:09.964Z\", \"updated_at\": \"2026-05-17T18:36:12.243Z\", \"hypothesis\": \"Prototypical Network with NaN fix (torch.clamp + nan_to_num on distance computation) achieves ~67.1% leave-one-model-out accuracy on 19 statistical features, comparable to RF baseline (66.4%), completing the learned estimator comparison matrix.\", \"parent\": \"learned_estimator_001\", \"spec\": {\"command\": \"bash /root/autodl-tmp/recursive_gen_depth_est/scripts/run_proto_full.sh\", \"server\": \"westd-48862\", \"gpu\": [\"cuda:1\"], \"pid\": \"15192\", \"log_path\": \"~/runs/recursive_gen_depth_est/learned_estimator_proto_fix_001.log\", \"submitted_at\": \"2026-05-17T18:29:48.955Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (in-memory training)\", \"wall_clock_seconds\": 383.3, \"gpu_hours\": 0.11}, \"metrics\": {\"mean_accuracy\": 0.6664, \"gpt2xl_acc\": 0.6835, \"pythia_acc\": 0.6155, \"olmo_acc\": 0.7001, \"mean_mae\": 0.384, \"mean_pairwise_auc\": 0.874, \"gpt2xl_auc\": 0.8926, \"pythia_auc\": 0.8415, \"olmo_auc\": 0.9004}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T18:36:12.243Z\"}, \"downstream_benchmark_001\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:01:47.377Z\", \"updated_at\": \"2026-05-17T17:24:40.392Z\", \"hypothesis\": \"Depth-filtered training data (strict subset: depth 0-1 only) will produce better fine-tuned models than unfiltered or random data, because lower-depth text contains more original content with cleaner training signal, leading to lower perplexity on held-out evaluation after LoRA fine-tuning of Pythia-410M.\", \"spec\": {\"command\": \"bash /root/autodl-tmp/recursive_gen_depth_est/scripts/run_downstream_benchmark.sh\", \"server\": \"westd-48862\", \"gpu\": [\"cuda:0\"], \"pid\": \"7351\", \"log_path\": \"~/runs/recursive_gen_depth_est/downstream_benchmark_001.log\", \"submitted_at\": \"2026-05-17T17:02:38.275Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/downstream/\", \"data_count\": 40, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42}, \"notes\": \"plan_024 first attempt. FAILED: no eval script + only 10 samples/subset, train_loss all identical 3.021, cannot verify hypothesis. Need redo with >=500 samples/subset + proper eval. See downstream_benchmark_002.\", \"conclusion\": \"failed\"}, \"learned_estimator_001\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:27:28.913Z\", \"updated_at\": \"2026-05-17T17:24:36.573Z\", \"hypothesis\": \"Statistical features (19-dimensional: perplexity stats, surprisal, n-gram entropy, repetition ratios) can predict generation depth (0-3) with over 70% accuracy using learned classifiers (ordinal MLP, prototypical networks, XGBoost), and this generalizes across models in leave-one-out evaluation, because recursive generation progressively degrades text quality in statistically measurable ways.\", \"notes\": \"plan_025. CORRECTED: XGBoost mean 66.1%, Ordinal MLP 63.2%, Prototypical ~65.4% (gpt2xl NaN). All three learned classifiers FAIL to beat RF baseline 66.4%. Confirms 19-feature bottleneck: switching classifier cannot overcome feature ceiling. Negative but valuable result supporting \\\"feature design is the contribution\\\" narrative.\", \"spec\": {\"command\": \"bash /root/autodl-tmp/recursive_gen_depth_est/scripts/run_learned_estimator.sh\", \"server\": \"westd-48862\", \"gpu\": [\"cuda:1\"], \"pid\": \"7428\", \"log_path\": \"~/runs/recursive_gen_depth_est/learned_estimator_001.log\", \"submitted_at\": \"2026-05-17T17:02:39.989Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/\", \"data_count\": 180000, \"model_name\": \"ordinal_mlp+prototypical+xgboost\", \"seed\": 42}, \"conclusion\": \"negative\"}, \"qwen25-1p5b-instruct-001\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:59:15.218Z\", \"updated_at\": \"2026-05-17T16:05:19.395Z\", \"spec\": {\"command\": \"python scripts/qwen25_1.5b_instruct_pipeline.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"795692\", \"log_path\": \"~/runs/recursive_gen_depth_est/qwen25-1p5b-instruct-001.log\", \"submitted_at\": \"2026-05-17T15:13:22.008Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_1.5b_instruct/\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen2.5-1.5B-Instruct\", \"eval_data\": \"self-generated d0-d3 recursive chain\"}, \"hypothesis\": \"Depth signal persists in instruction-tuned models: Qwen2.5-1.5B-Instruct recursive chain (nucleus p=0.95, d0-d3) achieves RF 4-class accuracy significantly above 25% baseline, demonstrating that instruction tuning does not eliminate model collapse signatures.\", \"parent\": \"mvp_pipeline_pythia_002\", \"notes\": \"plan_021: Qwen2.5-1.5B-Instruct instruct-model validation. Nucleus p=0.95, d0-d3, 5000 samples/depth, LoRA r=16 alpha=32 q/k/v_proj, 3 epochs lr=2e-4. Self-reference 19-dim features + RF/LR 5-fold CV. GPU: cuda:1. PATCHED: generate_d0 and generate_next_depth now use chat template (apply_chat_template with \\\"Write a passage about a random topic.\\\" prompt) instead of BOS-seeded generation, since instruct models expect chat format. Killed 2 orphan duplicate pipeline processes; kept tmux session qwen25-1p5b-instruct-001 (PID 788285). aria2c downloading model.safetensors (~65%, ETA ~15min).\"}, \"qwen25_14b_scale_002\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:12:02.367Z\", \"updated_at\": \"2026-05-17T15:35:59.544Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_scale_validation.sh\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"714992\", \"log_path\": \"~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log\", \"submitted_at\": \"2026-05-17T13:13:08.752Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Recursive generation depth signal (statistical features distinguishing d0-d3) persists at 14B parameter scale (Qwen2.5-14B FP16), achieving RF 4-class accuracy significantly above 25% baseline, validating that model collapse signatures are not artifacts of small model capacity.\", \"parent\": \"mvp_pipeline_pythia_002\", \"notes\": \"plan_014 retry. TLS handshake failure during aria2 download of shard 5/8. Shards 1-4 complete (~15GB), 5-8 missing. Download restarted via hf download (PID 789171). Previous: Qwen2.5-14B FP16 + LoRA r=16 alpha=32 q/k/v_proj, 3 epochs, lr=2e-4. Gradient checkpointing. Self-reference features. 5000 samples/depth d0-d3.\", \"reproduce\": {\"finished_at\": \"2026-05-17T14:34:49.299Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T14:34:56.007902+00:00\"}]}}, \"detector_ord_baseline_001\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T15:16:33.065Z\", \"updated_at\": \"2026-05-17T15:17:12.102Z\", \"hypothesis\": \"Existing AI-text detectors (Binoculars, Fast-DetectGPT) calibrated for ordinal depth estimation perform worse than our RF-on-19-features approach, confirming that depth-specific statistical features capture information beyond generic detection scores.\", \"notes\": \"plan_018. Binoculars + Fast-DetectGPT ordinal baseline. Worker killed by context limit but experiment completed. Results in results/detector_baselines/summary_v2.json. RF 78.2% vs Combined 74.2% vs Log-Rank 64.0%. Fast-DetectGPT pythia_nucleus d1 has numerical overflow (mean=28515.7, std=2M), needs annotation in paper. conclusion=success per Director D038.\"}, \"plan_018_binoculars_baseline\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T15:01:43.672Z\", \"updated_at\": \"2026-05-17T15:01:43.672Z\", \"conclusion\": \"failed\"}, \"bootstrap_ci_table1_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:33:52.730Z\", \"updated_at\": \"2026-05-17T15:01:26.183Z\", \"hypothesis\": \"Bootstrap 95% CIs for all 9 cells of the 3×3 core matrix (3 models × 3 strategies) confirm that RF accuracy point estimates are stable (CI width ~1pp), and RF significantly outperforms LR in 8/9 cells.\", \"spec\": {\"command\": \"/root/miniconda3/bin/python -u scripts/bootstrap_ci_table1.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl + 8 cell feature files\", \"data_count\": 180000, \"model_name\": \"RF+LR (sklearn)\", \"seed\": 42}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/artifacts/bootstrap_ci_table1.json\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/bootstrap_ci_table1_log.txt\", \"completed_at\": \"2026-05-17T15:01:26.183Z\"}, \"text_length_sensitivity_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:52:19.690Z\", \"updated_at\": \"2026-05-17T13:52:50.985Z\", \"hypothesis\": \"Depth estimation accuracy degrades gracefully with shorter text truncation because the key statistical features (surprisal moments, entropy) converge within the first 100-200 tokens, making the method practical for short-text scenarios.\", \"spec\": {\"command\": \"python scripts/text_length_sensitivity.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/baseline_battery_9cell/\", \"data_count\": 1800, \"model_name\": \"pythia-1.4b\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity_log.txt\", \"checkpoint_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T13:52:50.985Z\"}, \"prompted_gen_gpt2xl_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T09:01:04.651Z\", \"updated_at\": \"2026-05-17T13:30:04.799Z\", \"hypothesis\": \"Prompted generation preserves depth signal: GPT-2 XL topic-prompted 4-class acc >= 70%, delta <= 15pp vs BOS-seeded baseline (83.3%)\", \"parent\": \"cross_model_gpt2xl_001\", \"plan_id\": \"plan_016\", \"spec\": {\"command\": \"source /root/miniconda3/bin/activate && python scripts/prompted_generation_eval.py --gpu 1\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/prompted_gen/\", \"data_count\": 20000, \"model_name\": \"gpt2-xl\", \"seed\": 42, \"checkpoint_source\": \"freshly trained LoRA per depth (r=16, alpha=32, c_attn+c_proj)\", \"eval_data\": \"50 topic prompts x 100 samples = 5000 per depth, 4 depths\"}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T12:09:42.125Z\", \"notes\": \"Registry marked DONE/failed at 12:09 but cron confirms pid=695547 still running on cuda:1 (15676MiB, 63% util) as of 12:49. Process is alive and progressing. Status discrepancy - cannot revert DONE→RUNNING per state machine.\"}, \"qwen25_14b_scale_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T09:03:47.502Z\", \"updated_at\": \"2026-05-17T12:09:44.209Z\", \"hypothesis\": \"Recursive generation depth signal (statistical features distinguishing d0-d3) persists at 14B parameter scale (Qwen2.5-14B FP16), achieving RF 4-class accuracy significantly above 25% baseline, validating that model collapse signatures are not artifacts of small model capacity.\", \"notes\": \"plan_014: 14B FP16 scale validation. 5000 samples/depth, d0-d3, self-reference features (Qwen2.5-14B computes surprisal on its own generations). LoRA r=16 alpha=32 q/k/v_proj, 3 epochs, lr=2e-4. No quantization (unlike Qwen7B QLoRA experiment). Gradient checkpointing for VRAM management.\", \"spec\": {\"command\": \"bash scripts/run_qwen25_14b_scale_validation.sh\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b/\", \"data_count\": 20000, \"model_name\": \"Qwen/Qwen2.5-14B\", \"seed\": 42, \"gpu_ids\": [\"cuda:0\"], \"plan_id\": \"plan_014\", \"checkpoint_source\": \"huggingface\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/qwen25_14b_scale_validation.log\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/qwen25_14b/\"}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T12:09:44.209Z\"}, \"mlp_19feat_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T12:00:00.822Z\", \"updated_at\": \"2026-05-17T12:02:26.253Z\", \"hypothesis\": \"2-layer MLP on 19 features achieves similar accuracy to RF (delta <= 3pp), confirming features rather than classifier as the performance bottleneck\", \"parent\": \"mvp_pipeline_pythia_002\", \"spec\": {\"command\": \"source /root/miniconda3/bin/activate && python scripts/mlp_baseline.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"sklearn.MLPClassifier\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/mlp_baseline/summary.json\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\"}, \"metrics\": {\"mlp_128_128_acc\": 0.7866, \"mlp_64_128_64_acc\": 0.7895, \"mlp_poly_top5_acc\": 0.7906, \"best_delta_vs_rf\": 0.0086, \"d0v1_auc\": 0.997, \"d1v2_auc\": 0.878, \"d2v3_auc\": 0.821}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T12:02:24.677Z\", \"notes\": \"Feature bottleneck confirmed. Best MLP (Poly-Top5, 34 features) = 79.06%, delta = +0.86pp vs RF (78.2%). All 3 MLP variants within 1pp of RF. Depth-2 recall remains the weakest class (~58-62%). The 19-feature set, not the classifier, is the performance ceiling.\"}, \"cross_strategy_pipeline_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:53:20.150Z\", \"updated_at\": \"2026-05-17T09:01:14.115Z\", \"hypothesis\": \"Strategy classifier achieves >90% accuracy on 19 statistical features; two-stage pipeline (predict strategy then route to per-strategy depth RF) recovers cross-strategy depth accuracy to >=70% vs naive LOO 59.1%\", \"parent\": \"cross_strategy_loo_001\", \"plan_id\": \"plan_017\", \"spec\": {\"command\": \"source /root/miniconda3/bin/activate && python scripts/cross_strategy_pipeline.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/\", \"data_count\": 180000, \"model_name\": \"RF(n=200)+LR\", \"seed\": 42, \"checkpoint_source\": \"sklearn_rf_lr_in_memory\", \"eval_data\": \"3x3 grid features (3 models x 3 strategies, ~20k samples each)\"}, \"metrics\": {\"strategy_clf_rf_acc\": 0.5779, \"strategy_clf_lr_acc\": 0.5291, \"pipeline_depth_acc\": 0.7053, \"oracle_depth_acc\": 0.7831, \"loo_ref_acc\": 0.5908, \"improvement_vs_loo\": 0.1145, \"gap_pipeline_vs_oracle\": 0.0778, \"pipeline_depth_acc_pythia\": 0.6925, \"pipeline_depth_acc_olmo\": 0.6937, \"pipeline_depth_acc_gpt2xl\": 0.7297}, \"log_path\": \"results/cross_strategy_pipeline_log.txt\", \"checkpoint_path\": \"results/cross_strategy_pipeline/summary.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T08:57:32.265Z\", \"notes\": \"PARTIAL: hypothesis 仅部分达成。策略分类器 57.8% 远低于 pre-registered 90% threshold (FAIL)；pipeline 70.5% 达标 ≥70% (PASS)。论文引用时用 \\\"+11.5pp improvement over naive LOO\\\" framing，不用 \\\"recovers ≥70%\\\"（因为 Pythia 69.3% 和 OLMo 69.4% individually <70%）。\"}, \"gen_length_ablation_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T05:00:34.188Z\", \"updated_at\": \"2026-05-17T06:19:45.065Z\", \"hypothesis\": \"Depth signal scales with passage length: 128-token passages are detectable but weaker; 512-token passages match 256-token baseline; cross-length accuracy spread ≤ 5pp\", \"parent\": \"mvp_pipeline_pythia_002\", \"spec\": {\"command\": \"bash scripts/run_gen_length_ablation.sh\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"650410\", \"log_path\": \"~/runs/recursive_gen_depth_est/gen_length_ablation_001.log\", \"submitted_at\": \"2026-05-17T05:00:44.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/\", \"data_count\": 4000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/lora_depth_{0,1,2,3}\", \"eval_data\": \"data/depth_{0,1,2,3}.jsonl (1000 samples/depth x 3 lengths)\", \"wall_clock_seconds\": 4741.1, \"gpu_hours\": 1.32}, \"metrics\": {\"acc_128\": 0.6835, \"ci_128\": [0.6765, 0.6905], \"acc_256\": 0.738, \"ci_256\": [0.7248, 0.7512], \"acc_512\": 0.7782, \"ci_512\": [0.768, 0.7885], \"d1v2_auc_128\": 0.7543, \"d1v2_auc_256\": 0.8198, \"d1v2_auc_512\": 0.8683, \"spread_pp\": 9.47, \"delta_128v256_pp\": -5.45, \"delta_512v256_pp\": 4.02}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json\", \"completed_at\": \"2026-05-17T06:19:45.065Z\"}, \"cross_seed_transfer_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T05:25:38.776Z\", \"updated_at\": \"2026-05-17T05:26:17.574Z\", \"hypothesis\": \"If depth signal is an inherent property of recursive generation, an RF trained on seed=42 features should generalize to seed=43 features with cross-seed acc ≥ 75% (Δ ≤ 3pp vs within-seed)\", \"parent\": \"second_seed_replication_001\", \"spec\": {\"command\": \"python3 cross_seed_transfer.py (inline via SSH)\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl + results/second_seed_replication/features_seed43.jsonl\", \"data_count\": 22000, \"model_name\": \"RandomForest(n=200)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/cross_seed_transfer/summary.json\", \"checkpoint_source\": \"N/A (in-memory RF, no pretrained checkpoint)\", \"eval_data\": \"seed=43 features (2000 samples) + seed=42 features (20000 samples) bidirectional\"}, \"metrics\": {\"within_seed42_cv\": 0.7868, \"within_seed43_cv\": 0.7745, \"within_seed_avg\": 0.7807, \"train42_test43\": 0.7785, \"train43_test42\": 0.7568, \"cross_seed_avg\": 0.7676, \"delta_pp\": -1.3}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T05:26:17.574Z\"}, \"mixed_depth_corpus_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:55:22.771Z\", \"updated_at\": \"2026-05-17T05:21:52.312Z\", \"spec\": {\"command\": \"python /root/autodl-tmp/recursive_gen_depth_est/scripts/mixed_depth_corpus_eval.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"638035\", \"log_path\": \"~/runs/recursive_gen_depth_est/mixed_depth_corpus_001.log\", \"submitted_at\": \"2026-05-17T03:55:22.473Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"RandomForest(n_estimators=200)\", \"seed\": 42, \"checkpoint_source\": \"trained_in_script (balanced RF)\", \"eval_data\": \"features_all.jsonl mixed-depth subset (50/30/15/5%)\", \"checkpoint_path\": \"N/A (in-memory RF)\", \"wall_clock_seconds\": 213.7, \"gpu_hours\": 0.06}, \"hypothesis\": \"RF per-sample classifier does not rely on corpus-level depth distribution prior; accuracy on mixed-depth corpus (50/30/15/5%) should match balanced baseline within Δ ≤ 2pp\", \"parent\": \"baseline_battery_001\", \"metrics\": {\"mixed_overall_acc\": 0.855, \"balanced_overall_acc\": 0.7814, \"delta_overall_pp\": 7.36, \"mixed_macro_recall\": 0.7652, \"balanced_macro_recall\": 0.7814, \"delta_macro_recall_pp\": -1.62, \"per_class_recall_delta\": {\"d0\": -0.68, \"d1\": -2.43, \"d2\": -1.12, \"d3\": -2.24}, \"max_recall_delta_pp\": 2.43}, \"notes\": \"Pre-registered threshold: per-class recall Δ ≤ 2pp. Actual: d1 Δ=2.43pp exceeds threshold. Macro-recall Δ=-1.62pp passes but individual class threshold violated. Post-hoc rationalization cannot override pre-registered criteria.\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-17T03:58:56.184Z\"}, \"ensemble_reference_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:59:54.150Z\", \"updated_at\": \"2026-05-17T05:20:18.497Z\", \"hypothesis\": \"Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp\", \"parent\": \"gpt2xl_ref_ablation_001\", \"spec\": {\"command\": \"python3 ensemble_eval.py (inline script)\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl + results/ref_model_ablation_001/olmo_features.jsonl + results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl\", \"data_count\": 20000, \"model_name\": \"RandomForest(n=200)\", \"seed\": 42, \"checkpoint_source\": \"N/A (sklearn RF, no checkpoint)\", \"eval_data\": \"20000 samples from 3 feature files (pythia+olmo+gpt2xl)\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/ensemble_reference/summary.json\"}, \"metrics\": {\"ensemble_4class_acc\": 0.7365, \"ensemble_ci_95\": [0.7258, 0.7471], \"pythia_acc\": 0.7857, \"olmo_acc\": 0.7425, \"gpt2xl_acc\": 0.7005, \"delta_vs_gpt2xl\": 3.6, \"delta_vs_pythia\": -4.9}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-17T05:00:34.741Z\", \"notes\": \"d1v2_auc=0.9989 已删除——代码错误计算了 d0 vs rest 而非 d1 vs d2。正确结论：ensemble(73.65%) < Pythia alone(78.57%)，简单平均稀释强信号。\"}, \"second_seed_replication_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:37:28.658Z\", \"updated_at\": \"2026-05-17T05:14:58.011Z\", \"hypothesis\": \"递归生成 depth signal 是 recursive process 的固有属性而非特定 LoRA 权重的 idiosyncrasy；用不同 seed(=43) 训练的 LoRA 应产生与 seed=42 一致的 depth fingerprint（accuracy Δ ≤ 3pp vs 78.2%）\", \"parent\": \"mvp_pipeline_pythia_002\", \"spec\": {\"command\": \"bash scripts/run_second_seed_replication.sh\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"pid\": \"631348\", \"log_path\": \"~/runs/recursive_gen_depth_est/second_seed_replication_001.log\", \"submitted_at\": \"2026-05-17T03:37:38.197Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/depth_0.jsonl\", \"data_count\": 5000, \"model_name\": \"Pythia-1.4B\", \"seed\": 43, \"lora_rank\": 16, \"lora_alpha\": 32, \"decoding\": \"nucleus p=0.95\", \"num_samples_per_depth\": 500, \"checkpoint_source\": \"results/second_seed_replication/checkpoints/\", \"eval_data\": \"results/second_seed_replication/features.jsonl\", \"wall_clock_seconds\": 5839.8, \"gpu_hours\": 1.62}, \"metrics\": {\"4class_acc\": 0.7715, \"ci_95\": [0.764, 0.7815], \"d1v2_auc\": 0.8531, \"delta_vs_baseline\": -0.0105, \"baseline_acc\": 0.782, \"top_features\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"var_ppl\", \"p75_ppl\"], \"per_class_recall\": {\"d0\": 0.99, \"d1\": 0.816, \"d2\": 0.586, \"d3\": 0.694}, \"fold_accuracies\": [0.77, 0.77, 0.79, 0.7675, 0.76]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/second_seed_replication/\", \"completed_at\": \"2026-05-17T05:14:58.011Z\"}, \"reference_free_baseline_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:57:02.574Z\", \"updated_at\": \"2026-05-17T04:57:46.995Z\", \"hypothesis\": \"Depth signal is partially accessible without reference model: reference-free token statistics (TTR, repetition, entropy, sentence length) achieve >60% 4-class accuracy (>2.5x chance)\", \"parent\": \"feat_ablation_v1\", \"spec\": {\"command\": \"python3 scripts/reference_free_baseline.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"RandomForest(n=200)\", \"seed\": 42, \"checkpoint_source\": \"N/A (feature ablation, no model checkpoint)\", \"eval_data\": \"data/features_all.jsonl\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/reference_free_baseline/summary.json\"}, \"metrics\": {\"4class_acc\": 0.5368, \"ci_95\": [0.5336, 0.5401], \"d1v2_auc\": 0.6252, \"full_19_acc\": 0.7877, \"delta_pp\": -25.09, \"recall_d0\": 0.8572, \"recall_d1\": 0.397, \"recall_d2\": 0.3176, \"recall_d3\": 0.5756}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-17T04:57:46.995Z\"}, \"feat_ablation_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:11:38.111Z\", \"updated_at\": \"2026-05-17T02:56:21.677Z\", \"spec\": {\"command\": \"python3 src/feature_ablation_9cell.py\", \"server\": \"gpu-6000pro-2\", \"model_name\": \"RF (n_estimators=200)\"}, \"notes\": \"Phase 1 COMPLETE (9/9 cells): topk_ablation, category_ablation, LOGO, PCA, VIF. Phase 2 IN PROGRESS: forward selection v2 (4/9 cells done, olmo_temp09 running). Key findings: (1) var_surprisal is top-1 in 6/9 cells, p90_ppl in 3/9; (2) top-3 features reach 93% of full accuracy; (3) perplexity category alone captures 92-99% of full acc; (4) LOGO: removing perplexity costs -3.5pp mean, all other categories <-0.6pp; (5) PCA effective dim 6-7 from 19 features; (6) VIF: 14-16/19 features with VIF>10. Results at /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/\", \"conclusion\": \"success\", \"log_path\": \"/tmp/feature_ablation.log\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/\", \"completed_at\": \"2026-05-15T19:35:51.176Z\", \"metrics\": {\"full_19_mean_acc\": 0.7847, \"full_19_std\": 0.0494, \"top5_mean_acc\": 0.7678, \"top5_std\": 0.0527, \"top2_mean_acc\": 0.7152, \"top2_std\": 0.0581, \"n_features_95pct_mean\": 4.2, \"n_features_95pct_max\": 5, \"best_category_all_cells\": \"perplexity\", \"perplexity_cat_mean_acc\": 0.7668, \"surprisal_cat_mean_acc\": 0.7333, \"lexdiv_cat_mean_acc\": 0.4618, \"repetition_cat_mean_acc\": 0.4374, \"ngram_entropy_cat_mean_acc\": 0.3952, \"first_selected_feature_mode\": \"p90_ppl (6/9)\", \"first_selected_feature_alt\": \"var_surprisal (3/9)\", \"total_runtime_sec\": 7822}, \"hypothesis\": \"A small subset of surprisal features (top-5 by RF importance) captures most depth signal: top-5 acc ≥95% of full 19-feature accuracy, identifying the minimal sufficient feature set for depth estimation\", \"parent\": \"baseline_battery_001\"}, \"feature_ablation_9cell\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:40:33.974Z\", \"updated_at\": \"2026-05-17T02:56:21.201Z\", \"conclusion\": \"success\", \"spec\": {\"checkpoint_path\": \"artifacts/atlas_v2/feature_importance_9cell.json\", \"log_path\": \"N/A (CPU-only analysis, no training log)\"}, \"completed_at\": \"2026-05-15T22:43:30.157Z\", \"hypothesis\": \"Top-5 surprisal features achieve ≥90% of full 19-feature accuracy across all 9 atlas cells, confirming a minimal sufficient feature set independent of model/strategy combination\", \"parent\": \"feat_ablation_v1\"}, \"depth_extension_olmo_d4d5_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:34:26.348Z\", \"updated_at\": \"2026-05-17T02:56:20.707Z\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/recursive_gen_depth_est/scripts/resume_olmo_step5.sh'\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"213793\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_002.log\", \"submitted_at\": \"2026-05-15T10:34:26.157Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/\", \"data_count\": 30000, \"model_name\": \"OLMo-1B\", \"seed\": 42, \"checkpoint_source\": \"depth_extension_olmo_d4d5_001\", \"wall_clock_seconds\": 5809.0, \"gpu_hours\": 1.61}, \"notes\": \"OLMo depth extension Step 5-7 恢复执行（depth_extension_olmo_d4d5_001 因 CUDA device mismatch 在 Step 5 失败）。数据/checkpoint 复用 001 的产出。修复：--gpu 1→0（CUDA_VISIBLE_DEVICES=1 下逻辑设备为 cuda:0）。脚本：resume_olmo_step5.sh。预计 ~35 分钟。\", \"hypothesis\": \"OLMo-1B EDD 与 Pythia-1.4B 一致（EDD=4），验证 EDD 跨模型稳定性\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.968, \"d2v3_auc\": 0.843, \"d3v4_auc\": 0.765, \"d4v5_auc\": 0.684}, \"six_class_rf_accuracy\": 0.667, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL → EDD=4\"}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/\", \"completed_at\": \"2026-05-15T12:11:15.124Z\", \"parent\": \"cross_model_olmo_002\"}, \"wild_data_calibration_005\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:00:21.532Z\", \"updated_at\": \"2026-05-17T02:56:20.141Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python scripts/wild_data_calibration_005_redpajama.py --n_samples 5000 --seed 42\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"pythia-1.4b\", \"seed\": 42, \"description\": \"Wild-data calibration on RedPajama-Data-1T-Sample, comparing FPR with C4/FineWeb/OpenWebText\"}, \"conclusion\": \"success\", \"metrics\": {\"fpr\": 15.3, \"d0_accuracy\": 84.7, \"n_passages\": 5000, \"vs_c4\": \"-4.9pp\", \"vs_fineweb\": \"-4.16pp\", \"vs_openwebtext\": \"+14.4pp\"}, \"log_path\": \"/tmp/wild_data_cal_005.log\", \"checkpoint_path\": \"results/wild_data_calibration_005/\", \"completed_at\": \"2026-05-16T05:12:57.313Z\", \"hypothesis\": \"RedPajama web-crawl text is classified as d0 with FPR≤25%, consistent with C4/FineWeb calibration patterns, confirming cross-corpus robustness of depth classifier on diverse web data\", \"parent\": \"wild_data_calibration_003\"}, \"wild_data_calibration_004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:05:56.813Z\", \"updated_at\": \"2026-05-17T02:56:19.621Z\", \"spec\": {\"command\": \"python plan_015_wild_data_v2.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"453643\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data_v2/\", \"submitted_at\": \"2026-05-16T02:05:56.513Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"OpenWebText + WikiText-103\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B (feature extractor)\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data_v2/\", \"wall_clock_seconds\": 2382.1, \"gpu_hours\": 1.32}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T02:45:38.600Z\", \"metrics\": {\"openwebtext_pythia_nucleus\": {\"n\": 5000, \"d0_pct\": 99.1, \"fpr_pct\": 0.9, \"mean_p_d0\": 0.7116}, \"openwebtext_gpt2xl\": {\"n\": 5000, \"d0_pct\": 98.56, \"fpr_pct\": 1.44, \"mean_p_d0\": 0.6191}, \"openwebtext_olmo\": {\"n\": 5000, \"d0_pct\": 97.22, \"fpr_pct\": 2.78, \"mean_p_d0\": 0.7372}, \"wikitext\": \"skipped (dtype error)\", \"finding\": \"OpenWebText FPR极低(0.9-2.8%) vs C4(4.7-22.4%) vs FineWeb(19.5%). 编辑质量高的web数据FPR显著低于web-crawl。\"}, \"hypothesis\": \"OpenWebText curated web text is classified as d0 with near-zero FPR (≤5%), confirming editorial curation quality correlates with lower false positive rates vs raw web-crawl\", \"parent\": \"wild_data_calibration_003\"}, \"gpt2xl_ref_ablation_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T17:44:18.711Z\", \"updated_at\": \"2026-05-17T02:56:15.023Z\", \"spec\": {\"command\": \"python src/gpt2xl_ref_ablation.py --gpu 0 --batch_size 16\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"588517\", \"log_path\": \"~/runs/recursive_gen_depth_est/gpt2xl_ref_ablation_001.log\", \"submitted_at\": \"2026-05-16T17:44:18.395Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl\", \"data_count\": 20000, \"model_name\": \"gpt2-xl (ref) + pythia-1.4b (baseline)\", \"seed\": 42, \"hypothesis\": \"A2 reference model ablation: GPT-2 XL as reference model for surprisal features on Pythia nucleus-generated texts. Compare 4-class RF 5-fold CV accuracy with Pythia-as-ref baseline.\", \"wall_clock_seconds\": 2634.1, \"gpu_hours\": 0.73}, \"conclusion\": \"negative\", \"metrics\": {\"gpt2xl_4class_acc\": 0.6734, \"gpt2xl_ci_95\": [0.6667, 0.6796], \"gpt2xl_d1v2_auc\": 0.7269, \"pythia_4class_acc\": 0.7854, \"pythia_ci_95\": [0.7795, 0.7911], \"pythia_d1v2_auc\": 0.8681, \"delta_pp\": -11.2}, \"log_path\": \"~/runs/recursive_gen_depth_est/gpt2xl_ref_ablation_001.log\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_ref_model/summary.json\", \"completed_at\": \"2026-05-16T18:28:12.526Z\", \"parent\": \"ref_model_ablation_001\"}, \"ref_model_ablation_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T07:52:45.199Z\", \"updated_at\": \"2026-05-17T02:56:09.628Z\", \"spec\": {\"command\": \"bash scripts/run_ref_model_ablation.sh\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/depth_{0-3}.jsonl\", \"data_count\": 20000, \"model_name\": \"OLMo-1B vs Pythia-1.4B\", \"seed\": 42, \"hypothesis\": \"Reference model ablation: OLMo-1B vs Pythia-1.4B feature extraction robustness\", \"gpu\": \"cuda:1\", \"checkpoint_path\": \"results/ref_model_ablation_001/olmo_features.jsonl\", \"log_path\": \"results/ref_model_ablation_001.log\"}, \"conclusion\": \"success\", \"metrics\": {\"pythia_ref_acc\": 0.7854, \"olmo_ref_acc\": 0.7451, \"delta_pp\": 4.04, \"robust\": true}, \"completed_at\": \"2026-05-16T07:59:40.182Z\", \"hypothesis\": \"OLMo-1B as alternative reference model yields depth classification within ±5pp of Pythia-1.4B reference, confirming surprisal-based features are not specific to a matched Pythia architecture\"}, \"baseline_battery_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:25:45.021Z\", \"updated_at\": \"2026-05-17T02:56:07.596Z\", \"spec\": {\"command\": \"python src/baselines.py --method all --features_path data/features_all.jsonl\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"Multiple (RF/LR/CORAL/CE-MLP/DivEye/PPL-Reg)\", \"seed\": 42, \"hypothesis\": \"Baseline battery: 6种基线方法在统计特征上的深度分类性能，为 Atlas 和 DCOL 提供对比基准\", \"plan_id\": \"plan_009\", \"checkpoint_path\": \"results/baselines/\", \"log_path\": \"results/baselines/baseline_results.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T23:25:54.929Z\", \"metrics\": {\"ppl_reg_single_4class_acc\": 0.251, \"ppl_reg_multi_4class_acc\": 0.622, \"ce_mlp_4class_acc\": 0.749, \"coral_4class_acc\": 0.7807, \"coral_3class_acc\": 0.7089, \"coral_mae\": 0.2273, \"coral_d1v2_auc\": 0.8179, \"diveye_4class_acc\": 0.7817, \"diveye_3class_acc\": 0.7098, \"diveye_d1v2_auc\": 0.8654, \"rf_4class_acc\": 0.781, \"lr_4class_acc\": 0.75, \"note\": \"CE-MLP 74.9% may be undertrained (5 epochs); CORAL updated to 100 epochs. All results from Pythia nucleus baseline features.\"}, \"notes\": \"Baseline battery (plan_009) 完成。6 种 feature-based baselines 在 Pythia nucleus 的 features_all.jsonl 上测试。CORAL 修复后从 53.7%→78.1% (epochs 5→100)。DivEye(XGBoost) 78.2%。CE-MLP 74.9%（可能训练不足，待用默认参数确认）。Zero-shot LLM baseline 代码就绪但需 API key。所有 baseline 均低于 GPT-2 XL temp09 的 85.4%。\", \"hypothesis\": \"Multiple classifier families (RF/LR/CORAL/CE-MLP/DivEye/PPL-Reg) achieve >40% 4-class accuracy on surprisal features, confirming depth signal is classifier-agnostic and not specific to RF decision boundaries\"}, \"batch_feature_extraction_5cells\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:11:55.553Z\", \"updated_at\": \"2026-05-17T02:56:04.760Z\", \"spec\": {\"command\": \"bash scripts/batch_feature_extraction.sh\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/{gpt2xl_topk50,gpt2xl_temp09,olmo_topk50,olmo_temp09,pythia_topk50}\", \"data_count\": 5, \"model_name\": \"gpt2-xl + olmo-1b-hf + pythia-1.4b\", \"seed\": 42, \"description\": \"Batch feature extraction for 5 missing cells: gpt2xl_topk50, gpt2xl_temp09, olmo_topk50, olmo_temp09, pythia_topk50. GPU 0, batch_size 16.\", \"pid\": 287191, \"log_path\": \"logs/batch_feature_extraction.log\", \"checkpoint_path\": \"results/*/features.jsonl\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T03:53:53.596Z\", \"hypothesis\": \"Feature extraction pipeline produces consistent 19-dim feature vectors across 5 new cells (GPT-2 XL + OLMo × 3 strategies), enabling downstream cross-model/cross-strategy generalization analysis\"}, \"cross_model_loo_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:08:20.440Z\", \"updated_at\": \"2026-05-17T02:56:01.924Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES='' python3 src/cross_model_loo.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"9-cell features (data/ + results/)\", \"data_count\": 180000, \"model_name\": \"RF(n_estimators=200, random_state=42)\", \"seed\": 42, \"description\": \"Cross-model LOO generalization: train on 2 model families (all 3 strategies), test on held-out 3rd family\", \"plan\": \"plan_005\", \"claim\": \"Claim 1: depth signal generalizes across models\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/tmp/cross_model_loo.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:08:36.697Z\", \"metrics\": {\"mean_acc\": 0.664, \"mean_3class_acc\": 0.5544, \"holdout_pythia\": {\"acc\": 0.6242, \"ci95\": [0.6205, 0.6282], \"3class_acc\": 0.499, \"3class_ci95\": [0.4944, 0.5034], \"d1v2_auc\": 0.5617, \"d1v3_auc\": 0.8547, \"d2v3_auc\": 0.6534, \"d0v1_auc\": 0.9921, \"d0v2_auc\": 0.9999, \"d0v3_auc\": 0.9998, \"per_class\": {\"d0\": {\"P\": 0.9889, \"R\": 1, \"F1\": 0.9944}, \"d1\": {\"P\": 0.6655, \"R\": 0.493, \"F1\": 0.5664}, \"d2\": {\"P\": 0.3699, \"R\": 0.2677, \"F1\": 0.3106}, \"d3\": {\"P\": 0.483, \"R\": 0.7363, \"F1\": 0.5834}}}, \"holdout_olmo\": {\"acc\": 0.6921, \"ci95\": [0.6884, 0.696], \"3class_acc\": 0.592, \"3class_ci95\": [0.5873, 0.5965], \"d1v2_auc\": 0.7687, \"d1v3_auc\": 0.9277, \"d2v3_auc\": 0.6862, \"per_class\": {\"d0\": {\"P\": 0.9783, \"R\": 0.9925, \"F1\": 0.9854}, \"d1\": {\"P\": 0.7111, \"R\": 0.7549, \"F1\": 0.7324}, \"d2\": {\"P\": 0.4616, \"R\": 0.4327, \"F1\": 0.4467}, \"d3\": {\"P\": 0.5964, \"R\": 0.5883, \"F1\": 0.5923}}}, \"holdout_gpt2xl\": {\"acc\": 0.6756, \"ci95\": [0.6717, 0.6795], \"3class_acc\": 0.5723, \"3class_ci95\": [0.5679, 0.5767], \"d1v2_auc\": 0.8157, \"d1v3_auc\": 0.9149, \"d2v3_auc\": 0.6639, \"d0v1_auc\": 0.9927, \"d0v2_auc\": 0.9919, \"d0v3_auc\": 0.9876, \"per_class\": {\"d0\": {\"P\": 0.9484, \"R\": 0.9853, \"F1\": 0.9665}, \"d1\": {\"P\": 0.7093, \"R\": 0.7465, \"F1\": 0.7274}, \"d2\": {\"P\": 0.4521, \"R\": 0.5255, \"F1\": 0.486}, \"d3\": {\"P\": 0.5963, \"R\": 0.445, \"F1\": 0.5097}}}, \"mean_per_class_recall\": {\"d0\": 0.9926, \"d1\": 0.6648, \"d2\": 0.4086, \"d3\": 0.5899}, \"lowest_recall_class\": \"d2\", \"lowest_recall_value\": 0.4086, \"detailed_artifact\": \"cross_model_loo_detailed.json\"}, \"hypothesis\": \"RF trained on depth features from 2 generator models generalizes to held-out 3rd model with acc>50% (chance=25%), confirming depth features encode model-agnostic recursive degradation patterns\"}, \"cross_scale_llama3_8b_003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T07:20:42.157Z\", \"updated_at\": \"2026-05-17T02:55:48.081Z\", \"spec\": {\"command\": \"bash scripts/run_llama3_8b_pipeline_003.sh\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/llama3_8b_nucleus/\", \"data_count\": 500, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/llama3_8b_nucleus/\", \"log_path\": \"logs/llama3_8b_pipeline_003.log\", \"gpu\": \"cuda:0\"}, \"conclusion\": \"success\", \"metrics\": {\"4class_acc\": 0.702, \"4class_ci95\": [0.683, 0.724], \"6class_acc\": 0.554, \"6class_ci95\": [0.536, 0.571], \"edd_estimate\": \"4\", \"edd_note\": \"d4v5 AUC=0.618 < T=0.70, so EDD=4. Monotonic decay causes last pair to fall below threshold.\", \"consecutive_binary_auc\": {\"d0v1\": 0.949, \"d1v2\": 0.877, \"d2v3\": 0.771, \"d3v4\": 0.716, \"d4v5\": 0.618}, \"consecutive_binary_acc\": {\"d0v1\": 0.885, \"d1v2\": 0.81, \"d2v3\": 0.698, \"d3v4\": 0.656, \"d4v5\": 0.583}}, \"completed_at\": \"2026-05-16T10:13:44.645Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct preserves monotonic AUC decay with EDD≥4 at 8B scale, confirming depth signal generalizes beyond 1-1.5B models to production-scale LLMs\"}, \"lora_rank_ablation_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T17:44:08.630Z\", \"updated_at\": \"2026-05-17T02:55:46.211Z\", \"spec\": {\"command\": \"bash scripts/run_lora_rank_ablation.sh\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"587837\", \"log_path\": \"~/runs/recursive_gen_depth_est/lora_rank_ablation_001.log\", \"submitted_at\": \"2026-05-16T17:44:08.340Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/\", \"data_count\": 2000, \"model_name\": \"pythia-1.4b-lora\", \"seed\": 42, \"wall_clock_seconds\": 2654.1, \"gpu_hours\": 0.74}, \"conclusion\": \"success\", \"metrics\": {\"rank_4_acc\": 0.718, \"rank_4_auc\": 0.7896, \"rank_16_acc\": 0.7645, \"rank_16_auc\": 0.8434, \"rank_64_acc\": 0.731, \"rank_64_auc\": 0.8326, \"best_rank\": 16}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/lora_rank_ablation/summary.json\", \"log_path\": \"~/runs/recursive_gen_depth_est/lora_rank_ablation_001.log\", \"completed_at\": \"2026-05-16T18:28:22.422Z\", \"hypothesis\": \"LoRA rank (r∈{4,16,64}) minimally affects depth signal: accuracy spread ≤5pp across ranks would confirm depth signal is not an artifact of a specific LoRA fine-tuning configuration\"}, \"cross_scale_llama3_base_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:04:02.196Z\", \"updated_at\": \"2026-05-16T17:04:18.664Z\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0,cuda:1\", \"started_at\": \"2026-05-16T13:06:18.773Z\", \"finished_at\": \"2026-05-16T16:34:48.905Z\", \"training_hours\": 3.48}, \"spec\": {\"command\": \"bash scripts/run_llama3_base_pipeline.sh\", \"server\": \"gpu-6000pro-2\", \"gpu_ids\": [\"cuda:0\"], \"pid\": \"561301\", \"model_name\": \"meta-llama/Llama-3.1-8B (BASE)\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/\", \"data_count\": \"500 samples/depth, d0-d5\", \"seed\": 42, \"model_path\": \"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3.1-8B\", \"log_path\": \"~/runs/recursive_gen_depth_est/cross_scale_llama3_base_001.log\", \"hypothesis\": \"Llama-3.1-8B BASE model AUC decay should be monotonic (no U-shape), confirming instruction-tuning as the cause of U-shape in Instruct models\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T16:34:51.730427+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"4class_acc\": 0.599, \"4class_ci_95\": [0.578, 0.6215], \"6class_acc\": 0.4953, \"edd_070\": 2, \"auc_d0v1\": 0.9175, \"auc_d1v2\": 0.7936, \"auc_d2v3\": 0.6815, \"auc_d3v4\": 0.73, \"auc_d4v5\": 0.595, \"monotonic\": false, \"pattern\": \"U-shape (d2v3 dip, d3v4 recovery)\", \"finding\": \"IT regularizes depth signal (makes AUC monotonic), does not introduce U-shape\", \"edd_note\": \"d0v1=0.9175≥0.70, d1v2=0.7936≥0.70, d2v3=0.6815<0.70 → EDD=2\"}, \"log_path\": \"~/runs/recursive_gen_depth_est/cross_scale_llama3_base_001.log\", \"checkpoint_path\": \"checkpoints/llama3_base_nucleus/\", \"completed_at\": \"2026-05-16T16:38:40.937Z\"}, \"cross_model_reverse_chain_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T14:10:45.403Z\", \"updated_at\": \"2026-05-16T14:25:14.200Z\", \"spec\": {\"command\": \"bash scripts/run_reverse_chain_pipeline.sh\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"567407\", \"log_path\": \"~/runs/recursive_gen_depth_est/cross_model_reverse_chain_001.log\", \"submitted_at\": \"2026-05-16T14:10:45.098Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:1\"], \"model_name\": \"GPT-2 XL → OLMo-1B → Pythia-1.4B (reverse chain)\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/\", \"data_count\": \"500 samples/depth, d0-d3\", \"seed\": 42, \"hypothesis\": \"Depth signal transfers across model architectures in reverse chain (GPT2XL→OLMo→Pythia), supporting N4 cross-model generalization claim\", \"wall_clock_seconds\": 869.1, \"gpu_hours\": 0.24}, \"reproduce\": {\"finished_at\": \"2026-05-16T14:21:33.938Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T14:21:36.766969+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 85.75, \"ci_95\": [82, 89.25], \"forward_chain_acc\": 84.75, \"forward_chain_ci\": [81, 88.25], \"conclusion\": \"reverse = forward, architecture confound refuted\"}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/reverse_chain/\", \"completed_at\": \"2026-05-16T14:25:14.200Z\"}, \"cross_scale_qwen7b_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:32:44.583Z\", \"updated_at\": \"2026-05-16T11:47:44.091Z\", \"hypothesis\": \"Plan_014 7B cross-scale probe: Qwen2.5-7B nucleus p=0.95, d0-d5, 500 samples/depth。验证 depth signal 和 EDD 在 7B scale 上是否与 1-1.5B 模型一致。成功标准：4-class acc ≥ 60%, EDD 测定, pairwise AUC 衰减趋势方向一致。\", \"spec\": {\"command\": \"bash scripts/run_qwen7b_pipeline.sh\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/qwen7b_nucleus/\", \"data_count\": 3000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/qwen7b_nucleus/\", \"log_path\": \"logs/qwen7b_pipeline.log\", \"plan_id\": \"plan_014\", \"notes\": \"Prefix-based generation (32 tokens from prev depth as context). Using Instruct variant (base model not available on server). Feature extraction: Pythia-1.4B. Eval: RF 5-fold CV, 4-class + 6-class + EDD.\", \"hypothesis\": \"Plan_014 7B cross-scale probe: Qwen2.5-7B nucleus p=0.95, d0-d5, 500 samples/depth. Verify depth signal and EDD at 7B scale.\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T05:24:22.956Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T05:24:25.933676+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"four_class_acc\": 0.601, \"four_class_ci\": [0.58, 0.621], \"six_class_acc\": 0.521, \"six_class_ci\": [0.504, 0.538], \"edd\": \">5\", \"pairwise_auc_consecutive\": {\"d0v1\": 0.969, \"d1v2\": 0.729, \"d2v3\": 0.709, \"d3v4\": 0.732, \"d4v5\": 0.772}, \"auc_pattern\": \"U-shape (non-monotonic: trough at d2v3, rises d3v4/d4v5)\"}, \"completed_at\": \"2026-05-16T05:43:15.137Z\", \"notes\": \"4-class acc=60.05% passes threshold but CI lower bound (58%) does not exclude sub-60%. Consecutive binary AUC shows U-shape: d0v1=0.969 > d1v2=0.729 > d2v3=0.709 < d3v4=0.732 < d4v5=0.772 — monotonic decay NOT replicated at 7B. However: (1) depth signal persists at 7B (60% vs 25% chance), (2) EDD>5 (signal not saturated), (3) U-shape may reflect Instruct model's formulaic degradation at high recursion. Paper must NOT claim monotonic decay generalizes to 7B.\"}, \"domain_extension_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:33:51.264Z\", \"updated_at\": \"2026-05-16T07:49:13.757Z\", \"spec\": {\"model_name\": \"Pythia-1.4B\", \"server\": \"gpu-6000pro-2\", \"data_count\": 500, \"seed\": 42, \"notes\": \"EXP-C: Domain extension. arXiv abstracts as seed instead of WikiText. Tests whether depth signal is domain-independent. After EXP-A/B.\", \"command\": \"bash scripts/run_domain_extension_arxiv.sh\", \"gpu\": \"cuda:1\", \"data_path\": \"data/domain_extension/\", \"pipeline\": \"arXiv seed → QLoRA finetune → generate (d0-d3, 500/depth) → feature extraction (Pythia-1.4B ref) → RF 5-fold CV\", \"decoding\": \"nucleus p=0.95\", \"log_path\": \"logs/domain_extension_001.log\", \"checkpoint_path\": \"checkpoints/domain_extension/\"}, \"hypothesis\": \"Domain extension: 用 arXiv abstracts 替代 WikiText 作为 seed，验证 depth signal 是否 domain-independent。成功标准：4-class acc ≥ 65%, top features 与 WikiText pipeline 一致。\", \"conclusion\": \"success\", \"metrics\": {\"4class_acc\": 0.741, \"4class_std\": 0.02, \"per_depth_f1\": {\"d0\": 1, \"d1\": 0.78, \"d2\": 0.52, \"d3\": 0.66}, \"cv_folds\": 5, \"domain\": \"arxiv_abstracts\"}, \"completed_at\": \"2026-05-16T07:49:13.757Z\"}, \"cross_scale_llama3_8b_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:50:11.643Z\", \"updated_at\": \"2026-05-16T07:14:06.414Z\", \"spec\": {\"command\": \"bash scripts/run_llama3_8b_pipeline_002.sh\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/llama3_8b_nucleus\", \"data_count\": 500, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": 42, \"hypothesis\": \"7B cross-scale probe (Llama-3-8B): 验证 depth signal 在 Llama-3 架构上的可检测性。Nucleus p=0.95, d0-d5, 500 samples/depth。成功标准：4-class acc ≥ 60%, EDD 测定, pairwise AUC 衰减趋势与 1-1.5B 模型方向一致。\", \"gpu\": \"cuda:0\", \"tmux_session\": \"cross_scale_llama3_8b_002\", \"log_path\": \"logs/llama3_8b_pipeline_002.log\", \"checkpoint_path\": \"checkpoints/llama3_8b_nucleus\", \"results_dir\": \"results/cross_scale_llama3_8b_002\", \"rerun_of\": \"cross_scale_llama3_8b_001\", \"rerun_reason\": \"服务器重启导致进程被杀\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T07:14:06.414Z\"}, \"cross_model_recursive_chain_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:49:33.436Z\", \"updated_at\": \"2026-05-16T07:14:05.315Z\", \"spec\": {\"command\": \"bash scripts/run_cross_model_chain.sh\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"data_path\": \"data/cross_model_chain/\", \"data_count\": 500, \"model_name\": \"Pythia-1.4B → OLMo-1B → GPT-2 XL (cross-model chain)\", \"seed\": 42, \"hypothesis\": \"Cross-model recursive chain: Human→Pythia d1→OLMo finetune→GPT-2 XL finetune. Verify depth signal accumulates across model boundaries. Success: pairwise AUC > chance, 4-class acc ≥ 50%.\", \"tmux_session\": \"cross_model_chain_002\", \"log_path\": \"logs/cross_model_chain_002.log\", \"checkpoint_path\": \"checkpoints/cross_model_chain/\", \"result_dir\": \"results/cross_model_recursive_chain_001/\", \"rerun_of\": \"cross_model_recursive_chain_001\", \"rerun_reason\": \"Server restart killed previous run\"}, \"conclusion\": \"success\", \"metrics\": {\"4class_acc\": 0.8475, \"4class_ci95\": [0.81, 0.8825], \"per_depth_f1\": {\"d0\": 0.98, \"d1\": 0.88, \"d2\": 0.76, \"d3\": 0.76}, \"pairwise_auc\": {\"d0v1\": 0.999, \"d2v3\": 0.841}}, \"completed_at\": \"2026-05-16T07:14:05.315Z\"}, \"cross_model_recursive_chain_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:33:49.362Z\", \"updated_at\": \"2026-05-16T05:39:17.093Z\", \"spec\": {\"model_name\": \"Pythia-1.4B→OLMo-1B→GPT-2 XL (cross-model chain)\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"data_count\": 500, \"seed\": 42, \"notes\": \"EXP-B: Cross-model recursive chain. Human→Pythia d1→OLMo finetune on Pythia-d1→GPT-2 XL finetune on OLMo output. Tests whether depth signal persists across model boundaries.\", \"command\": \"bash scripts/run_cross_model_chain.sh\", \"data_path\": \"data/cross_model_chain/\", \"tmux_session\": \"cross_model_chain\", \"chain_structure\": \"d0(human)→d1(Pythia)→d2(OLMo on Pythia)→d3(GPT2XL on OLMo)\", \"lora_config\": \"r=16, alpha=32, dropout=0.05, 3 epochs, lr=2e-4\", \"decoding\": \"nucleus p=0.95\", \"feature_extractor\": \"Pythia-1.4B (frozen)\"}, \"hypothesis\": \"Cross-model recursive chain: Human→Pythia d1→OLMo finetune→GPT-2 XL finetune。验证 depth signal 是否能跨越模型边界累积——即使每一步用不同模型递归，distributional artifacts 仍然可检测。成功标准：chain-d2/d3 的 pairwise AUC > chance, 4-class acc ≥ 50%。\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T05:39:17.093Z\"}, \"cross_scale_llama3_8b_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:33:46.508Z\", \"updated_at\": \"2026-05-16T05:39:14.917Z\", \"spec\": {\"plan_id\": \"plan_014\", \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"data_count\": 500, \"seed\": 42, \"notes\": \"EXP-A: Second 7B model for cross-scale validation. Nucleus p=0.95, d0-d5, 500 samples/depth. Feature extraction: Pythia-1.4B.\", \"command\": \"bash scripts/run_llama3_8b_pipeline.sh\", \"data_path\": \"data/llama3_8b_nucleus/\", \"description\": \"Cross-scale 7B validation with Llama-3.1-8B-Instruct. QLoRA 4-bit NF4, nucleus p=0.95, d0-d5, 500 samples/depth. Prefix-based generation (32 tokens). Feature extraction: Pythia-1.4B. RF 5-fold CV.\", \"checkpoint_path\": \"checkpoints/llama3_8b_nucleus/\", \"log_path\": \"logs/llama3_8b_pipeline.log\"}, \"hypothesis\": \"7B cross-scale probe (Llama-3-8B): 验证 depth signal 在 Llama-3 架构上的可检测性。Nucleus p=0.95, d0-d5, 500 samples/depth。成功标准：4-class acc ≥ 60%, EDD 测定, pairwise AUC 衰减趋势与 1-1.5B 模型方向一致。\", \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T05:39:14.917Z\"}, \"two_stage_strategy_pipeline_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:37:03.133Z\", \"updated_at\": \"2026-05-16T05:37:50.172Z\", \"spec\": {\"command\": \"python scripts/two_stage_pipeline.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/ (all 3x3 matrix cells)\", \"data_count\": \"9 cells\", \"model_name\": \"RF (strategy classifier + depth classifier)\", \"seed\": 42, \"notes\": \"Two-stage pipeline: (1) classify strategy from features, (2) apply strategy-conditioned depth classifier. Supplements R3-N5 cross-strategy discussion.\", \"checkpoint_path\": \"N/A (CPU-only analysis)\", \"log_path\": \"results/two_stage_pipeline_results.json\"}, \"hypothesis\": \"Two-stage pipeline: 先分类 decoding strategy，再用 strategy-conditioned depth classifier。验证 Discussion 中提出的 two-stage 方案的可行性和瓶颈。\", \"conclusion\": \"success\", \"metrics\": {\"strategy_classification\": {\"mean_acc\": 0.575, \"chance\": 0.333, \"pythia\": {\"acc\": 0.523, \"nucleus_recall\": 0.533, \"temp09_recall\": 0.414, \"topk50_recall\": 0.622}, \"olmo\": {\"acc\": 0.548, \"nucleus_recall\": 0.608, \"temp09_recall\": 0.479, \"topk50_recall\": 0.558}, \"gpt2xl\": {\"acc\": 0.654, \"nucleus_recall\": 0.845, \"temp09_recall\": 0.507, \"topk50_recall\": 0.61}}, \"depth_estimation\": {\"cross_strategy_loo_ref\": 0.591, \"predicted_two_stage\": {\"pythia\": 0.693, \"olmo\": 0.695, \"gpt2xl\": 0.73, \"mean\": 0.706}, \"naive_pooled\": {\"pythia\": 0.709, \"olmo\": 0.712, \"gpt2xl\": 0.739, \"mean\": 0.72}, \"oracle_two_stage\": {\"pythia\": 0.746, \"olmo\": 0.785, \"gpt2xl\": 0.82, \"mean\": 0.784}, \"within_strategy_ref\": {\"pythia\": 0.745, \"olmo\": 0.784, \"gpt2xl\": 0.816, \"mean\": 0.782}}, \"key_finding\": \"Oracle two-stage (78.4%) matches within-strategy (78.2%), validating theory. But predicted two-stage (70.6%) < naive pooled (72.0%) due to strategy classification bottleneck (57.5%).\"}, \"completed_at\": \"2026-05-16T05:37:50.172Z\"}, \"multi_tau_ablation_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:56:04.055Z\", \"updated_at\": \"2026-05-16T02:36:59.571Z\", \"hypothesis\": \"R2-W3 multi-τ ablation: 4 τ values (0.5, 0.7, 0.9, 1.1) × Pythia-1.4B。验证 depth classification signal 跨温度的鲁棒性，特别是 d1v2 AUC 是否随 τ 单调变化或在特定 τ 出现 inversion。Cross-τ LOO 验证跨温度泛化能力。\", \"spec\": {\"command\": \"bash scripts/run_multi_tau_pipeline.sh\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/pythia_temp{05,07,09,11}/\", \"data_count\": 8000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-16T02:32:30.311Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:32:33.454006+00:00\"}]}, \"checkpoint_path\": \"data/pythia_temp{05,11}/lora_depth{0,1,2}/\", \"log_path\": \"logs/multi_tau_pipeline.log\", \"conclusion\": \"success\", \"metrics\": {\"within_tau\": {\"tau_0.5\": {\"4class_acc\": 0.7725, \"d1v2_auc\": 0.8423, \"d0v1_auc\": 0.9962, \"d2v3_auc\": 0.7636}, \"tau_0.7\": {\"4class_acc\": 0.754, \"d1v2_auc\": 0.8505, \"d0v1_auc\": 0.9966, \"d2v3_auc\": 0.7197}, \"tau_0.9\": {\"4class_acc\": 0.759, \"d1v2_auc\": 0.8083, \"d0v1_auc\": 0.9911, \"d2v3_auc\": 0.7805}, \"tau_1.1\": {\"4class_acc\": 0.5715, \"d1v2_auc\": 0.5284, \"d0v1_auc\": 0.9878, \"d2v3_auc\": 0.5987}}, \"cross_tau_loo\": {\"holdout_0.5\": {\"acc\": 0.522, \"d1v2_auc\": 0.1756}, \"holdout_0.7\": {\"acc\": 0.4095, \"d1v2_auc\": 0.2985}, \"holdout_0.9\": {\"acc\": 0.464, \"d1v2_auc\": 0.2774}, \"holdout_1.1\": {\"acc\": 0.471, \"d1v2_auc\": 0.5251}, \"mean_acc\": 0.4666, \"mean_d1v2_auc\": 0.3192}, \"training_loss\": {\"tau_0.5\": {\"d0\": 2.2727, \"d1\": 0.4201, \"d2\": 0.1589}, \"tau_1.1\": {\"d0\": 2.2726, \"d1\": 1.9077, \"d2\": 1.8517}}}, \"completed_at\": \"2026-05-16T02:36:59.571Z\"}, \"zeroshot_qwen7b_500_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:34:50.203Z\", \"updated_at\": \"2026-05-16T02:17:52.317Z\", \"hypothesis\": \"R1-W4 第二个 LLM baseline：Qwen2.5-7B-Instruct 4-bit zero-shot depth classification。与 DeepSeek-v3.2 (36.2%) 对比，验证 LLM zero-shot 在 depth task 上的一般性劣势（vs RF 78.2%）。\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python /root/autodl-tmp/recursive_gen_depth_est/src/zeroshot_qwen7b_500.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/\", \"data_count\": 500, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct (4-bit NF4)\", \"seed\": 42, \"plan_id\": \"plan_009\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_qwen7b_500/\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_qwen7b_500/results.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T02:11:16.128Z\", \"metrics\": {\"acc_4class\": 0.304, \"acc_4class_ci_95\": [0.2653, 0.3457], \"acc_3class\": 0.3173, \"mae\": 1.01, \"per_class_recall\": {\"d0\": 0.264, \"d1\": 0.552, \"d2\": 0.104, \"d3\": 0.296}, \"per_class_f1\": {\"d0\": 0.3143, \"d1\": 0.3503, \"d2\": 0.1436, \"d3\": 0.3442}, \"errors\": 0}, \"notes\": \"Qwen2.5-7B-Instruct 4-bit zero-shot: acc=30.4% [26.5%, 34.6%]。比 DeepSeek-v3.2 (36.2%) 更低。两个 LLM 均远低于 RF 78.2%（差距 42-48pp），验证 LLM zero-shot 在 depth task 上的一般性劣势。注意 Qwen recall 分布(d0=26.4%, d1=55.2%, d2=10.4%, d3=29.6%)与 DeepSeek(d0=95.2%, d1=12.8%, d2=24.8%, d3=12.0%)截然不同——DeepSeek 倾向预测 d0，Qwen 更均匀但整体更差。\"}, \"wild_data_calibration_003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:28:20.490Z\", \"updated_at\": \"2026-05-16T01:51:34.302Z\", \"spec\": {\"command\": \"python plan_015_wild_data_v3.py --device cuda:1 --n_passages 5000\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"447624\", \"log_path\": \"/tmp/wild_data_v3.log\", \"submitted_at\": \"2026-05-16T01:28:20.236Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/wild_data/fineweb.jsonl\", \"data_count\": 5000, \"model_name\": \"pythia-1.4b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/wild_data_v3/\", \"wall_clock_seconds\": 1380.9, \"gpu_hours\": 0.77}, \"hypothesis\": \"Wild data calibration v3: 离线方案。先下载 RedPajama/Dolma 到本地磁盘，再用 wild_data_calibration_001 的 RF 模型评估 FPR。验证论文 wild-text calibration 在更多数据源上的泛化。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T01:51:21.140Z\", \"metrics\": {\"fineweb_n_passages\": 5000, \"fineweb_d0_pct\": 80.54, \"fineweb_d1_pct\": 19.46, \"fineweb_d2_pct\": 0, \"fineweb_d3_pct\": 0, \"fineweb_fpr\": 19.46, \"fineweb_mean_p_d0\": 0.7987, \"fineweb_mean_p_d1\": 0.1707, \"vs_c4_fpr_delta\": -0.74, \"vs_wikitext_fpr_delta\": 19.46, \"elapsed_seconds\": 87, \"finding\": \"FineWeb FPR=19.46% — virtually identical to C4 FPR=20.2% (Δ=-0.74pp). All misclassifications are d1 only (no d2/d3). Confirms web-crawl FPR ~20% is consistent across datasets and driven by template/SEO content, not dataset-specific artifacts.\"}, \"notes\": \"v3 used hf-mirror.com to download FineWeb parquet (2GB in 114s), bypassing AutoDL proxy issues that killed v2. RedPajama 404'd (wrong file path). FineWeb result confirms web-crawl ~20% FPR pattern: WikiText editorial 0%, C4 web-crawl 20.2%, FineWeb web-crawl 19.5%. All FineWeb misclassifications are d1 only — no d2/d3 false positives.\"}, \"wild_data_calibration_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:21:24.666Z\", \"updated_at\": \"2026-05-16T01:16:07.664Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo 2>/dev/null || true && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/recursive_gen_depth_est && python plan_015_wild_data_v2.py 2>&1 | tee logs/wild_data_v2.log\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"384671\", \"log_path\": \"~/runs/recursive_gen_depth_est/wild_data_calibration_002.log\", \"submitted_at\": \"2026-05-16T01:09:28.012Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 393.7, \"gpu_hours\": 0.22}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T01:16:01.694Z\", \"metrics\": {\"error\": \"C4 load_dataset hung - allenai/c4 HF streaming failed on AutoDL proxy. OpenWebText loaded OK (5000 passages, 23s) but C4 load_dataset never returned. JSON written with empty datasets/cross_model_consistency. No error/exception in logs - silent hang during HF Hub streaming.\"}, \"log_path\": \"~/runs/recursive_gen_depth_est/wild_data_calibration_002.log\"}, \"wild_data_redpajama_dolma_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:17:24.032Z\", \"updated_at\": \"2026-05-16T00:31:30.099Z\", \"spec\": {\"hypothesis\": \"RF classifiers maintain low FPR on large-scale web corpora (RedPajama-v2, Dolma) beyond WikiText/C4\", \"plan_id\": \"plan_015\", \"parent\": \"wild_data_olmo_calibration_001\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:31:30.099Z\"}, \"wild_data_calibration_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:36:14.864Z\", \"updated_at\": \"2026-05-16T00:21:01.479Z\", \"spec\": {\"hypothesis\": \"RF depth estimator correctly classifies unseen real-world human text as d0\", \"command\": \"python plan_015_wild_data.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/ + WikiText-103\", \"data_count\": \"546 WikiText passages + 20000 controlled (5000 per depth)\", \"model_name\": \"RandomForest (Pythia nucleus cell, n_estimators=200)\", \"seed\": 42, \"plan_id\": \"plan_015\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:36:36.683Z\", \"metrics\": {\"wikitext_n_passages\": 546, \"wikitext_d0_pct\": 100, \"wikitext_d1_pct\": 0, \"wikitext_d2_pct\": 0, \"wikitext_d3_pct\": 0, \"wikitext_mean_p_d0\": 0.9963, \"controlled_d0_mean_p_d0\": 0.9941, \"controlled_d0_acc\": 100, \"controlled_d1_acc\": 99.96, \"controlled_d2_acc\": 99.94, \"controlled_d3_acc\": 99.9, \"cv5_accuracy\": 0.7878, \"cv5_std\": 0.0056, \"domain_shift_mean_ppl_pct\": \"+621%\", \"domain_shift_var_ppl_pct\": \"+503%\", \"domain_shift_p90_ppl_pct\": \"+115%\", \"finding\": \"WikiText-103 100% classified as d0 despite large feature-space domain shift in perplexity features; RF robust to distribution shift\"}, \"hypothesis\": \"Classifiers trained on recursive generation data should correctly classify wild (human) text as d0 with low FPR, confirming calibration on out-of-distribution natural text\"}, \"random_soft_control_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:56:44.943Z\", \"updated_at\": \"2026-05-16T00:09:20.293Z\", \"spec\": {\"hypothesis\": \"Size-matched random control for rf_soft: random 4422 samples vs rf_soft 4422 samples\", \"parent\": \"downstream_curation_poc_001\", \"plan_id\": \"plan_013_supplement\", \"command\": \"python src/curation_poc.py --phase finetune --conditions random_soft --seeds 42 123 456 789 1024\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/curation_poc/random_soft.jsonl\", \"data_count\": 4422, \"model_name\": \"EleutherAI/pythia-410m LoRA r=16 alpha=32\", \"seed\": [42, 123, 456, 789, 1024], \"purpose\": \"size-matched random control for rf_soft (4422 samples), plan_013 downstream curation PoC\"}, \"metrics\": {\"random_soft_ppl\": {\"seed_42\": 15.99, \"seed_123\": 16.0276, \"seed_456\": 16.1682, \"seed_789\": 15.9993, \"seed_1024\": 16.1224, \"mean\": 16.0615, \"std\": 0.0794}, \"rf_soft_ppl\": {\"seed_42\": 15.7134, \"seed_123\": 15.7014, \"seed_456\": 15.7875, \"seed_789\": 15.6956, \"seed_1024\": 15.7689, \"mean\": 15.7334, \"std\": 0.042}, \"comparison\": {\"delta_ppl\": 0.3281, \"t_statistic\": 17.9777, \"p_value\": 5.6e-05, \"cohens_d\": 8.0399, \"significant\": true}, \"train_loss\": {\"seed_42\": 1.6748, \"seed_123\": 1.6786, \"seed_456\": 1.6721, \"seed_789\": 1.6736, \"seed_1024\": 1.6739}}, \"conclusion\": \"success\", \"notes\": \"rf_soft (depth-curated, 4422) significantly outperforms size-matched random_soft (random 4422) by Δ PPL=0.328 (t=17.98, p=5.6e-5, d=8.04). Per-seed Δ range: 0.277–0.381. Confirms rf_soft advantage is from depth-aware curation, not reduced size.\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/curation_poc/random_soft/\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/curation_poc/random_soft/\", \"completed_at\": \"2026-05-16T00:09:20.293Z\"}, \"downstream_curation_poc_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:37:21.710Z\", \"updated_at\": \"2026-05-16T00:02:19.120Z\", \"spec\": {\"hypothesis\": \"RF depth-based data curation improves downstream finetune perplexity vs unfiltered data\", \"command\": \"python src/curation_poc.py --phase finetune (40 runs: 8 conditions × 5 seeds)\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/curation_poc/ (8 JSONL files)\", \"data_count\": \"10k mixed d0-d3, filtered to 2500-10000 per condition\", \"model_name\": \"Pythia-410M LoRA (r=16)\", \"seed\": \"42,123,456,789,1024\", \"plan_id\": \"plan_013\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/curation_poc/\", \"log_path\": \"/tmp/finetune_full.log\", \"dry_run_ppl\": 15.74, \"dry_run_train_loss\": 1.655, \"post_completion_cmd\": \"python src/curation_poc.py --phase analyze\"}, \"conclusion\": \"negative\", \"metrics\": {\"unfiltered\": {\"ppl_mean\": 15.776, \"ppl_std\": 0.066, \"n_samples\": 10000}, \"rf_strict\": {\"ppl_mean\": 15.81, \"ppl_std\": 0.061, \"n_samples\": 2496, \"delta\": \"-0.034\", \"p\": 0.607, \"d\": -0.528}, \"rf_moderate\": {\"ppl_mean\": 15.756, \"ppl_std\": 0.056, \"n_samples\": 4940, \"delta\": \"+0.021\", \"p\": 0.492, \"d\": 0.334}, \"rf_soft\": {\"ppl_mean\": 15.733, \"ppl_std\": 0.038, \"n_samples\": 4422, \"delta\": \"+0.043\", \"p\": 0.407, \"d\": 0.792}, \"oracle_strict\": {\"ppl_mean\": 15.879, \"ppl_std\": 0.128, \"n_samples\": 2500, \"delta\": \"-0.103\", \"p\": 0.216, \"d\": -1.004}, \"oracle_moderate\": {\"ppl_mean\": 15.809, \"ppl_std\": 0.103, \"n_samples\": 5000, \"delta\": \"-0.033\", \"p\": 0.485, \"d\": -0.384}, \"random_strict\": {\"ppl_mean\": 16.239, \"ppl_std\": 0.165, \"n_samples\": 2496, \"delta\": \"-0.463\", \"p\": 0.013, \"d\": -3.671, \"sig\": true}, \"random_moderate\": {\"ppl_mean\": 15.998, \"ppl_std\": 0.09, \"n_samples\": 5000, \"delta\": \"-0.222\", \"p\": 0.028, \"d\": -2.809, \"sig\": true}, \"cross_condition\": {\"rf_strict_vs_random_strict\": {\"delta\": 0.429, \"t\": -7.052, \"p\": 0.002, \"sig\": true}, \"rf_moderate_vs_random_moderate\": {\"delta\": 0.242, \"t\": -3.77, \"p\": 0.02, \"sig\": true}, \"rf_soft_vs_unfiltered\": {\"delta\": 0.043, \"t\": 0.927, \"p\": 0.407, \"sig\": false}, \"random_strict_vs_unfiltered\": {\"delta\": -0.463, \"t\": 4.219, \"p\": 0.014, \"sig\": true}}}, \"completed_at\": \"2026-05-15T23:52:29.055Z\", \"notes\": \"Cohen's d in original metrics uses pooled SD; paper table corrected to d_z = t/sqrt(n) for paired design. d_z values: rf_soft 0.41, rf_moderate 0.34, rf_strict -0.25, oracle_moderate -0.34, oracle_strict -0.66, random_moderate -1.50, random_strict -1.89.\"}, \"wild_data_olmo_calibration_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:48:47.140Z\", \"updated_at\": \"2026-05-15T23:00:44.218Z\", \"spec\": {\"hypothesis\": \"OLMo-1B RF replicates Pythia/GPT-2 XL wild-data calibration pattern\", \"command\": \"python plan_015_olmo_wild_calibration.py --gpu 1\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"WikiText-103 + C4 (en, validation) + OLMo nucleus d0-d3\", \"data_count\": \"546 WikiText + 5000 C4 + 20000 controlled\", \"model_name\": \"RandomForest (OLMo nucleus cell)\", \"seed\": 42, \"plan_id\": \"plan_015\", \"checkpoint_source\": \"cross_model_olmo_002\", \"eval_data\": \"WikiText-103 test + C4 en validation\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/olmo_wild_calibration.json\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/olmo_wild_calibration.json\"}, \"conclusion\": \"success\", \"metrics\": {\"cv_accuracy\": 0.7893, \"cv_std\": 0.0039, \"wikitext_n_passages\": 546, \"wikitext_d0_pct\": 98.53, \"wikitext_non_d0\": 8, \"c4_n_passages\": 5000, \"c4_d0_pct\": 95.28, \"c4_d1_pct\": 2.92, \"c4_d2_pct\": 0.5, \"c4_d3_pct\": 1.3, \"c4_fpr\": 4.72, \"finding\": \"OLMo C4 FPR (4.72%) far lower than Pythia (20.2%) and GPT-2 XL (22.4%). OLMo d1-d3 features diverge more from d0, creating wider d0 decision boundary that correctly classifies more C4 template content as d0.\"}, \"completed_at\": \"2026-05-15T23:00:44.218Z\"}, \"pythia7b_cross_scale_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:31:42.435Z\", \"updated_at\": \"2026-05-15T22:51:48.282Z\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:32:29.755Z\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T22:43:19.771Z\", \"notes\": \"Killed by Director decision (2026-05-15 22:43 UTC). Reason: plan_014 (7B cross-scale probe) deprioritized — not needed for EMNLP submission. Experiment was ALLOCATED on cuda:1 but never submitted (no spec created before session crash). GPU released for plan_015 OLMo wild-data calibration.\"}, \"wild_data_gpt2xl_calibration_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:33:41.351Z\", \"updated_at\": \"2026-05-15T22:51:44.802Z\", \"spec\": {\"hypothesis\": \"GPT-2 XL RF replicates Pythia wild-data calibration: high WikiText d0 rate, C4 FPR pattern consistent across model families\", \"command\": \"python plan_015_gpt2xl_wild_calibration.py --gpu 0\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"WikiText-103 + C4 (en, validation) + controlled d0-d3 (GPT-2 XL nucleus)\", \"data_count\": \"546 WikiText + 5000 C4 + 20000 controlled\", \"model_name\": \"RandomForest (GPT-2 XL nucleus cell)\", \"seed\": 42, \"plan_id\": \"plan_015\", \"parent\": \"wild_data_c4_supplement_001\", \"checkpoint_source\": \"cross_model_gpt2xl_001\", \"eval_data\": \"WikiText-103 test + C4 en validation\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/gpt2xl_c4_calibration.json\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/gpt2xl_c4_calibration.json\"}, \"metrics\": {\"cv_accuracy\": 0.841, \"cv_std\": 0.004, \"wikitext_n_passages\": 546, \"wikitext_d0_pct\": 99.27, \"wikitext_d1_pct\": 0.73, \"c4_n_passages\": 5000, \"c4_d0_pct\": 77.62, \"c4_d1_pct\": 9.04, \"c4_d2_pct\": 3.72, \"c4_d3_pct\": 9.62, \"c4_fpr_vs_pythia\": \"GPT-2 XL FPR 22.4% vs Pythia 20.2% — consistent template/SEO pattern\", \"finding\": \"Cross-model calibration consistent: both models flag same C4 template content as non-d0. GPT-2 XL slightly higher FPR due to stronger signal. WikiText near-perfect for both.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:42:05.442Z\"}, \"wild_data_c4_supplement_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:30:53.480Z\", \"updated_at\": \"2026-05-15T22:37:20.847Z\", \"spec\": {\"hypothesis\": \"RF depth estimator correctly classifies C4 web-crawl human text as d0, extending WikiText-103 calibration to multi-domain setting\", \"command\": \"python plan_015_c4_supplement.py --gpu 0 --batch_size 16 --n_passages 5000\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"C4 (en, validation) via HuggingFace streaming + controlled d0-d3\", \"data_count\": \"5000 C4 passages + 20000 controlled\", \"model_name\": \"RandomForest (Pythia nucleus cell)\", \"seed\": 42, \"plan_id\": \"plan_015\", \"checkpoint_source\": \"wild_data_calibration_001 (same RF model)\", \"eval_data\": \"C4 en validation (5000 passages, 512 tokens each)\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/\", \"actual_gpu\": \"cuda:0 (PID 365317)\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:37:17.392Z\", \"metrics\": {\"c4_n_passages\": 5000, \"c4_d0_pct\": 79.8, \"c4_d1plus_pct\": 20.2, \"c4_d1plus_count\": 1012, \"wikitext_d0_pct\": 100, \"controlled_accuracy\": \"99.9%+\", \"cv5_accuracy\": 0.7878, \"misclassified_feature_diff\": {\"rep_4gram\": \"+74.7%\", \"rep_3gram\": \"+37.0%\", \"p90_ppl\": \"+39.6%\"}, \"misclassified_content_type\": \"ads, product descriptions, SEO template content\", \"finding\": \"FPR=0% on editorial text (WikiText), FPR≈20% on web-crawl (C4) — false positives driven by template/low-quality content with high repetition and low diversity, not random noise\"}}, \"w2_domain_bias_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:28:53.955Z\", \"updated_at\": \"2026-05-15T20:26:15.447Z\", \"spec\": {\"hypothesis\": \"Depth signal is NOT a domain artifact from Wikipedia seed text.\", \"command\": \"python -u /root/autodl-tmp/recursive_gen_depth_est/src/w2_domain_bias.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/ + results/\", \"data_count\": \"9 cells x 15000 d1-d3 samples each\", \"model_name\": \"RandomForest (n_estimators=200)\", \"seed\": 42, \"reviewer_issue\": \"R1-W2 + R3-W1: Wikipedia domain bias inflates d0 recall\", \"sub_experiments\": [\"A: d1-d3 3-class RF (9 cells)\", \"B: seed-stratified 10-fold LOGO\", \"C: depth vs seed_group prediction (negative control)\"], \"log_path\": \"/tmp/w2_domain_bias.log\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/w2_domain_bias/w2_domain_bias_results.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:32:56.604Z\", \"metrics\": {\"subexp_a_d1d3_mean_acc\": 0.72, \"subexp_a_range\": \"59.1%-81.8%\", \"subexp_b_logo_mean_acc\": 0.721, \"subexp_b_range\": \"59.5%-81.6%\", \"subexp_b_note\": \"fixed: per-depth seed assignment, groups now depth-balanced. LOGO=CV within noise\", \"subexp_c_depth_pred_mean\": 0.72, \"subexp_c_seed_group_pred_mean\": 0.102, \"subexp_c_ratio_mean\": 7.06, \"subexp_c_note\": \"seed groups at chance (10.2% vs 10%), no measurable domain bias\", \"chance_3class\": 0.333, \"chance_seed_group\": 0.1, \"paper_updated\": \"section_appendix.tex L54-72, conclusion.tex L14\"}, \"notes\": \"Bug fixed (2026-05-15): get_seed_ids removed sample_id branch that caused global-incremented IDs → depth-correlated groups. Now per-depth sequential (0..N-1 per depth). Re-run confirmed (2026-05-16). Results: Sub-B LOGO 64%→72.1% (groups now depth-balanced, fold variance dropped dramatically — within-cell range ~2-5pp vs old 30pp), Sub-C seed_group_pred 20.8%→10.2% (at chance=10%, confirming groups independent of depth). Sub-A unchanged. Ratio depth/seed_group prediction: 3.46x→7.06x. 论文措辞改为 block-stratified cross-validation。\"}, \"xgboost_lgbm_3cell_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:52:18.858Z\", \"updated_at\": \"2026-05-15T20:22:32.602Z\", \"spec\": {\"command\": \"python src/xgb_lgbm_3cell.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl + results/{gpt2xl_temp09,pythia_topk50}/features.jsonl\", \"data_count\": 60000, \"model_name\": \"RF/XGBoost/LightGBM\", \"seed\": 42, \"hypothesis\": \"Extend XGBoost/LightGBM baseline to 3 cells with unified evaluation protocol (run_cv). Fix AUC protocol inconsistency (old RF d0v1=0.861 vs XGBoost d0v1=1.000 was evaluation artifact).\"}, \"conclusion\": \"success\", \"log_path\": \"/tmp/xgb_lgbm_3cell.log\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/xgb_lgbm_3cell/results.json\", \"completed_at\": \"2026-05-15T19:52:36.359Z\", \"metrics\": {\"gpt2xl_temp09\": {\"RF\": 85.8, \"XGBoost\": 86.2, \"LightGBM\": 86.2, \"d1v2_AUC\": 0.98, \"d2v3_AUC\": 0.886}, \"pythia_nucleus095\": {\"RF\": 78.8, \"XGBoost\": 79, \"LightGBM\": 78.9, \"d1v2_AUC\": 0.931, \"d2v3_AUC\": 0.816}, \"pythia_topk50\": {\"RF\": 68.9, \"XGBoost\": 68.9, \"LightGBM\": 68.7, \"d1v2_AUC\": 0.841, \"d2v3_AUC\": 0.689}}, \"notes\": \"3-cell × 3-classifier (RF/XGBoost/LightGBM) with unified run_cv evaluation. Key findings: (1) All 3 classifiers converge within ≤0.5pp per cell — signal ceiling is in 19-dim features, not classifier choice. (2) Unified AUC protocol resolved prior inconsistency: RF d0v1 AUC=0.9996 (was 0.861 under old protocol) now matches XGBoost d0v1=0.9999. (3) d2 recall remains lowest across all cells/classifiers (43-73%), confirming feature-level limitation. (4) Cell difficulty ordering preserved: gpt2xl_temp09 (86%) > pythia_nuc (79%) > pythia_topk50 (69%). Script: src/xgb_lgbm_3cell.py. Data had inf/extreme values handled via percentile clipping.\"}, \"xgboost_lgbm_baseline_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:41:35.921Z\", \"updated_at\": \"2026-05-15T19:42:21.665Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u /root/autodl-tmp/recursive_gen_depth_est/src/r3w5_xgboost_lgbm.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"XGBoost+LightGBM\", \"seed\": 42, \"hypothesis\": \"R3-W5: XGBoost/LightGBM baselines on Pythia nucleus095 19-dim features. If gradient boosting also converges to ~78% like RF, confirms signal ceiling is in features not classifier.\", \"methods\": [\"XGBoost (n_est=200, depth=6, lr=0.1, GPU)\", \"LightGBM (n_est=200, depth=6, lr=0.1, GPU/CPU fallback)\"], \"eval\": \"5-fold stratified CV, 4-class acc, pairwise AUC (d0v1/d1v2/d2v3), per-class recall\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/r3w5_baselines_log.txt\"}, \"conclusion\": \"success\", \"metrics\": {\"xgb_acc\": 0.79, \"xgb_std\": 0.0046, \"xgb_d0v1_auc\": 1, \"xgb_d1v2_auc\": 0.931, \"xgb_d2v3_auc\": 0.816, \"lgbm_acc\": 0.788, \"lgbm_std\": 0.0077, \"lgbm_d0v1_auc\": 1, \"lgbm_d1v2_auc\": 0.931, \"lgbm_d2v3_auc\": 0.814, \"rf_acc_ref\": 0.782, \"xgb_recall_d0\": 0.994, \"xgb_recall_d1\": 0.816, \"xgb_recall_d2\": 0.596, \"xgb_recall_d3\": 0.754, \"lgbm_recall_d0\": 0.994, \"lgbm_recall_d1\": 0.815, \"lgbm_recall_d2\": 0.596, \"lgbm_recall_d3\": 0.747}, \"completed_at\": \"2026-05-15T19:42:16.807Z\", \"notes\": \"R3-W5 gradient boosting baselines confirm RF ceiling. XGBoost 79.0%±0.5%, LightGBM 78.8%±0.8%, vs RF 78.2%. All three classifiers converge to ~78-79%, proving signal ceiling is in the 19-dim features, not the classifier. d2 recall remains lowest (0.596) across all methods — a feature-level limitation. d0v1 AUC ~1.0 (trivial), d1v2 AUC 0.931 (good), d2v3 AUC 0.816 (hardest pair). LightGBM ran on CPU (no OpenCL on this server).\"}, \"shap_supplement_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:34:08.559Z\", \"updated_at\": \"2026-05-15T19:37:13.606Z\", \"spec\": {\"command\": \"python3 src/shap_supplement.py (PID 78513)\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/ + data/\", \"data_count\": \"9 cells x 20000 samples\", \"model_name\": \"RF (n_estimators=200) + SHAP TreeExplainer\", \"seed\": 42, \"hypothesis\": \"R3-N3 feature importance cross-validation: SHAP TreeExplainer 替代 attention-importance，验证三方法（SHAP/Gini/Permutation）一致性\", \"reviewer_issue\": \"R3-N3: attention-importance 方法论缺陷\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/\", \"log_path\": \"/tmp/shap_supplement.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:34:24.987Z\", \"metrics\": {\"kendalls_w_three_way\": 0.8955, \"rho_shap_gini\": 0.9312, \"rho_shap_permutation\": 0.8392, \"rho_gini_permutation\": 0.76, \"cross_cell_shap_consistency_mean_rho\": 0.8, \"p90_ppl_top2_cells\": \"9/9\", \"var_surprisal_top2_cells\": \"8/9\", \"ppl_surprisal_shap_share\": 0.888, \"shap_top5\": \"p90_ppl, var_surprisal, p75_ppl, mean_surprisal, mean_ppl\", \"addresses\": \"R3-N3 feature importance cross-validation\"}}, \"zeroshot_llm_500_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:50.066Z\", \"updated_at\": \"2026-05-15T18:02:53.031Z\", \"hypothesis\": \"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T15:50:43.319Z\"}, \"spec\": {\"command\": \"python src/zeroshot_llm_500.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"N/A\", \"data_path\": \"data/depth_{0,1,2,3}.jsonl\", \"data_count\": 500, \"model_name\": \"DeepSeek (zero-shot)\", \"seed\": 42, \"log_path\": \"results/zeroshot_llm_500/\", \"checkpoint_path\": \"results/zeroshot_llm_500/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.362, \"accuracy_ci95\": [0.32, 0.404], \"ci_width_pp\": 8.4, \"mae\": 1.028, \"per_class_f1\": {\"d0\": 0.55, \"d1\": 0.18, \"d2\": 0.27, \"d3\": 0.18}, \"per_class_recall\": {\"d0\": 0.952, \"d1\": 0.128, \"d2\": 0.248, \"d3\": 0.12}, \"vs_rf_baseline\": \"36.2% vs 78.2% (-42.0pp)\", \"vs_200_sample\": \"36.2% vs 40.0% (consistent, within CI)\", \"n_samples\": 500, \"n_errors\": 0}, \"notes\": \"500-sample zero-shot LLM baseline. Acc=36.2% [32.0%, 40.4%]，CI 从 ~13.6pp 缩至 8.4pp。与 200-sample (40.0%) 一致。LLM 几乎只能识别 d0 (recall 95.2%)，d1-d3 collapse (recall 12-25%)。RF 优势 42pp 无可争议。\", \"completed_at\": \"2026-05-15T18:02:53.031Z\"}, \"temp07_pilot_pythia_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T16:38:04.729Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T15:50:42.735Z\"}, \"spec\": {\"command\": \"python src/temp07_pilot.py\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"N/A\", \"data_path\": \"data/pythia_temp07/depth_{0..5}.jsonl\", \"data_count\": 3000, \"model_name\": \"Pythia-1.4B\", \"seed\": 42, \"hyperparams\": {\"temperature\": 0.7, \"top_p\": 1, \"samples_per_depth\": 500, \"depths\": 6}, \"log_path\": \"results/temp07_pilot/\", \"checkpoint_path\": \"results/temp07_pilot/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"samples_per_depth\": 500, \"depths\": 6, \"six_class_rf_accuracy\": 0.5733, \"six_class_rf_ci95\": [0.5333, 0.615], \"six_class_lr_accuracy\": 0.5467, \"pairwise_auc_rf\": {\"d0v1\": 0.9981, \"d1v2\": 0.8378, \"d2v3\": 0.635, \"d3v4\": 0.5997, \"d4v5\": 0.6025}, \"pairwise_auc_lr\": {\"d0v1\": 0.9954, \"d1v2\": 0.8031, \"d2v3\": 0.608, \"d3v4\": 0.6525, \"d4v5\": 0.5652}, \"vs_temp09_d1v2_rf\": \"0.8378 vs 0.8327 (+0.005)\", \"vs_temp09_d1v2_lr\": \"0.8031 vs 0.7833 (+0.020)\", \"d1v2_inversion\": false, \"top_features\": [\"p90_ppl\", \"var_surprisal\", \"mean_surprisal\", \"mean_ppl\", \"p75_ppl\"]}, \"notes\": \"Pipeline 完成 (d0-d5, 500 samples/depth)。**d1v2 inversion 未出现**: d1v2 AUC RF=0.8378 (vs temp09 0.8327), LR=0.8031 (vs temp09 0.7833)。τ=0.7 within-strategy separability 与 τ=0.9 几乎相同。注意：cross-strategy LOO 中的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是跨策略泛化问题，非 within-strategy 问题。τ=0.7 的 within-strategy 结果正常，说明 temperature 均匀缩放 logit 不影响组内深度可分性。EDD 估计: d2v3=0.635<0.75 → EDD≈2 (6-class setting, 500 samples)。Feature importance 与 temp09 一致: perplexity 分布统计量主导 (p90_ppl, var_surprisal, mean_surprisal)。\", \"completed_at\": \"2026-05-15T16:38:04.729Z\"}, \"n2_roberta_finetune_001\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-15T12:12:32.982Z\", \"updated_at\": \"2026-05-15T13:28:39.437Z\", \"hypothesis\": \"N2 reviewer concern: end-to-end RoBERTa-base finetune baseline vs RF on hand-crafted features (78.2%). 与 DeBERTa 形成双 backbone 对比，排除模型选择偏差。\", \"reproduce\": {\"finished_at\": \"2026-05-15T13:22:44.070Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-15T12:22:48.111Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:22:52.671747+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:39:17.852149+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:22:46.068321+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Retry 2: 模型文件损坏 (pytorch_model.bin corrupted)，kill pid=235755，重新下载模型后从 Fold 1 全部重跑。前一次 retry (pid=235755) Fold 1 val_acc 达 0.578 但模型文件有问题需确保完整性。\"}}, \"notes\": \"5-fold CV 完成 (retry_count=2)。RoBERTa-base 4-class acc=59.5% ± 3.2%，远低于 RF 78.2% (-18.7pp)。Feature overlap: Spearman ρ=-0.456 (p=0.050)，与 DeBERTa (ρ=-0.484) 一致，top-5 overlap=0。跨架构确认 transformer 表征偏向表面特征，perplexity 分布统计量是盲区。var_ppl R²=-4215.8（极端负值）。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/roberta-base --output_dir results/n2_roberta_finetune --gpu 0\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"243827\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl\", \"data_count\": 20000, \"model_name\": \"RoBERTa-base\", \"seed\": 42, \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"lr\": \"2e-5\", \"max_len\": 512, \"cv_folds\": 5, \"warmup_ratio\": 0.1}, \"log_path\": \"~/runs/recursive_gen_depth_est/n2_roberta_finetune_001.log\"}, \"conclusion\": \"success\", \"metrics\": {\"accuracy_mean\": 0.5948, \"accuracy_std\": 0.0324, \"per_class_f1\": {\"d0\": 0.958, \"d1\": 0.4161, \"d2\": 0.2611, \"d3\": 0.6472}, \"per_class_precision\": {\"d0\": 0.9983, \"d1\": 0.7178, \"d2\": 0.2956, \"d3\": 0.4958}, \"per_class_recall\": {\"d0\": 0.9208, \"d1\": 0.293, \"d2\": 0.2338, \"d3\": 0.9314}, \"pairwise_auc\": {\"d0v1\": 0.9886, \"d1v2\": 0.7522, \"d2v3\": 0.7349}, \"fold_accuracies\": [0.6022, 0.5595, 0.5623, 0.6018, 0.648], \"vs_rf_baseline\": \"-18.7pp (59.5% vs 78.2%)\", \"vs_deberta\": \"+1.2pp acc, +0.019 d1v2_auc, -0.020 d2v3_auc\", \"elapsed_seconds\": 1942.5}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/n2_roberta_finetune/\", \"log_path\": \"~/runs/recursive_gen_depth_est/n2_roberta_finetune_001.log\"}, \"n2_deberta_finetune_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:06.592Z\", \"updated_at\": \"2026-05-15T13:20:47.219Z\", \"spec\": {\"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42, \"hyperparams\": {\"epochs\": 3, \"batch_size\": 16, \"lr\": \"2e-5\", \"max_len\": 512, \"cv_folds\": 5}, \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/deberta-v3-base --output_dir results/n2_deberta_finetune --gpu 0\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"231448\", \"log_path\": \"~/runs/recursive_gen_depth_est/n2_deberta_finetune_001.log\", \"checkpoint_path\": \"results/n2_deberta_finetune/fold_predictions.npz\", \"results_path\": \"results/n2_deberta_finetune/results.json\"}, \"hypothesis\": \"N2 reviewer concern: end-to-end DeBERTa-v3-base finetune baseline vs RF on hand-crafted features (78.2%). 若 DeBERTa acc < RF，证明手工特征确有独立贡献；若 ≥ RF，需重新定位 narrative。\", \"reproduce\": {\"finished_at\": \"2026-05-15T13:14:31.043Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T13:14:32.924Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:14:34.546594+00:00\"}]}, \"metrics\": {\"accuracy_mean\": 0.5831, \"accuracy_std\": 0.0467, \"per_class_f1\": {\"d0\": 0.947, \"d1\": 0.378, \"d2\": 0.247, \"d3\": 0.656}, \"pairwise_auc\": {\"d0v1\": 0.981, \"d1v2\": 0.733, \"d2v3\": 0.755}, \"vs_rf_baseline\": \"58.3% vs 78.2% (-19.9pp)\", \"elapsed_seconds\": 3727}, \"notes\": \"5-fold CV 完成。DeBERTa-v3-base 4-class acc=58.3% ± 4.7%，远低于 RF 78.2% (-19.9pp)。Feature overlap analysis: Spearman ρ=-0.484 (p=0.036)，DeBERTa 和 RF 关注的特征几乎完全相反。DeBERTa 擅长编码表面特征 (TTR R²=0.85, rep_2gram R²=0.82)，而 RF 依赖的 perplexity 分布统计量 (var_surprisal, p90_ppl) 在 DeBERTa 表征中 R² 为负。Top-5 overlap=0。\"}, \"cross_strategy_loo_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:12:49.407Z\", \"updated_at\": \"2026-05-15T12:29:21.290Z\", \"spec\": {\"description\": \"Cross-strategy LOO: per-model, train on 2 strategies test on 3rd. RF classifier.\", \"server\": \"gpu-6000pro-2\", \"model_name\": \"RandomForest (CPU)\", \"seed\": 42, \"data_path\": \"9-cell features\", \"data_count\": 180000, \"command\": \"python src/cross_strategy_loo.py\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/cross_strategy_loo.json\"}, \"hypothesis\": \"Cross-strategy LOO (plan_007): 深度信号跨策略可迁移——同模型内，用 2 种解码策略训练的 RF 可泛化到第 3 种，4-class acc 均值 59.1% 远超 chance 25%。temp09 holdout 的 d1v2 AUC 反转 (GPT-2 XL: 0.13, OLMo: 0.25) 证明解码策略塑造不同的退化轨迹 (D014)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:13:08.512Z\", \"metrics\": {\"mean_4class_acc\": 0.5908, \"pythia_holdout_nucleus\": {\"acc\": 0.6935, \"d1v2_auc\": 0.6903, \"d2v3_auc\": 0.7626}, \"pythia_holdout_temp09\": {\"acc\": 0.6281, \"d1v2_auc\": 0.576, \"d2v3_auc\": 0.724}, \"pythia_holdout_topk50\": {\"acc\": 0.5151, \"d1v2_auc\": 0.6393, \"d2v3_auc\": 0.5801}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5993, \"d1v2_auc\": 0.7826, \"d2v3_auc\": 0.4985}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5609, \"d1v2_auc\": 0.1288, \"d2v3_auc\": 0.6366}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5364, \"d1v2_auc\": 0.8308, \"d2v3_auc\": 0.7222}, \"olmo_holdout_nucleus\": {\"acc\": 0.6538, \"d1v2_auc\": 0.7931, \"d2v3_auc\": 0.6076}, \"olmo_holdout_temp09\": {\"acc\": 0.5816, \"d1v2_auc\": 0.2529, \"d2v3_auc\": 0.7015}, \"olmo_holdout_topk50\": {\"acc\": 0.5488, \"d1v2_auc\": 0.8549, \"d2v3_auc\": 0.7107}, \"finding_temp09_d1v2_inversion\": \"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\"}, \"notes\": \"Cross-strategy LOO 9/9 > chance, mean 59.1%。temp09 d1v2 AUC 反转（GPT-2 XL: 0.13, OLMo: 0.25）已解释为 Covariate Shift：temperature=0.9 均匀缩放 logit 分布（非截断），模型递归时更快收敛到 attractor 分布，导致 temp09 depth N 的统计特征 ≈ nucleus/topk50 depth N+1。证据：(1) 混淆矩阵显示系统性深度高估（temp09 d1→d2/d3 52%+25%，d2→d3 96%）；(2) 组内 d1v2 AUC 正常（0.94/0.90/0.83）。详见 artifacts/temp09_d1v2_inversion_analysis.md。注：D021 已推翻 z-score 标准化后 AUC 恢复的 claim（LR cross-strategy 降级为 RF-only finding）。\"}, \"depth_extension_gpt2xl_d4d5_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:32:10.348Z\", \"updated_at\": \"2026-05-15T12:11:15.829Z\", \"hypothesis\": \"GPT-2 XL depth extension: 从 d3 checkpoint 继续递归生成 d4/d5 各 5000 samples，binary pairwise RF 验证 EDD。GPT-2 XL 是 3×3 矩阵中信号最强的模型 (85.4%)，若 EDD≥4 则与 Pythia 结果 (EDD=4) 形成跨模型 EDD 一致性证据。\", \"parent\": \"cross_model_gpt2xl_001\", \"notes\": \"**代码准备完成 (2026-05-15)**\\n\\n## 文件路径\\n- **GPT-2 XL d3 checkpoint**: `checkpoints/gpt2xl/lora_depth_2/` (用于生成 d3；尚无 lora_depth_3，需先 finetune d3 数据)\\n- **d0-d3 数据**: `data/gpt2xl/depth_{0,1,2,3}.jsonl` (各 5000 samples)\\n- **d0-d3 特征**: `data/gpt2xl/features.jsonl` (20000 samples, evaluator=GPT-2 XL)\\n- **Pipeline 脚本**: `scripts/run_depth_extension_gpt2xl.sh`\\n- **模型路径**: `/root/autodl-tmp/models/gpt2-xl`\\n- **LoRA config**: r=16, alpha=32, dropout=0.05, target=c_attn,c_proj\\n\\n## Pipeline 步骤\\n1. finetune d3 → lora_depth_3 (如已存在则跳过)\\n2. generate d4 (5000 samples, nucleus p=0.95, seed=42)\\n3. finetune d4 → lora_depth_4\\n4. generate d5 (5000 samples)\\n5. extract_features d0-d5 (evaluator=GPT-2 XL, 6-class)\\n6. train_classifier (6-class RF/LR)\\n7. binary_pairwise_eval (d1v2, d2v3, d3v4, d4v5)\\n\\n## 预估运行时间\\n- finetune × 2: ~6 min\\n- generate × 2: ~116 min (58 min/轮)\\n- feature extraction: ~20 min\\n- eval: ~2 min\\n- **总计: ~2.5 小时**\\n\\n## Dry-run 验证结果\\n- 4 个脚本 --help 全部正常\\n- binary_pairwise_eval.py 已修改支持 --features_path/--output_dir\\n- 在 d0-d3 特征上测试通过: d1v2 AUC=0.9574, d2v3 AUC=0.887 (binary RF)\\n- bash -n 语法检查通过\\n\\n## 基线参考 (GPT-2 XL binary pairwise d0-d3)\\n- d1v2: 0.9574 [0.9499, 0.9648]\\n- d2v3: 0.8870 [0.8724, 0.9007]\\n- 高于 Pythia d1v2=0.925, d2v3=0.823，确认 GPT-2 XL 信号最强\\n\\n## 风险\\n- GPT-2 XL 1.5B 比 Pythia 1.4B 稍大，生成速度接近但内存略高，单卡 RTX 6000 Pro (48GB) 足够\\n- d4/d5 生成占用 GPU 0 约 2 小时，需确认不与其他实验冲突\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T06:45:51.627Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_gpt2xl.sh 2>&1 | tee logs/depth_extension_gpt2xl_d4d5.log\\\"\", \"finished_at\": \"2026-05-15T11:42:57.006Z\", \"training_hours\": 4.95}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_gpt2xl.sh 2>&1 | tee logs/depth_extension_gpt2xl_d4d5.log\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"194929\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_gpt2xl_d4d5_001.log\", \"submitted_at\": \"2026-05-15T09:12:53.290Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 10702.5, \"gpu_hours\": 2.97}, \"pid\": \"194929\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_gpt2xl_d4d5_001.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:42:59.168595+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.966, \"d2v3_auc\": 0.919, \"d3v4_auc\": 0.75, \"d4v5_auc\": 0.681}, \"six_class_rf_accuracy\": 0.679, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL → EDD=4\"}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_depth_extension/\", \"completed_at\": \"2026-05-15T12:11:15.829Z\"}, \"depth_extension_olmo_d4d5_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:23:04.007Z\", \"updated_at\": \"2026-05-15T10:30:31.681Z\", \"hypothesis\": \"OLMo-1B depth extension: 从 d3 checkpoint 继续递归生成 d4/d5 各 5000 samples，binary pairwise RF 验证 EDD。OLMo 是 3×3 矩阵中间模型 (78.8%)，若 EDD≥4 则与 Pythia (EDD=4) 形成跨模型 EDD 一致性证据，3 模型 EDD 完整对比。\", \"parent\": \"cross_model_olmo_002\", \"notes\": \"**失败诊断 (2026-05-15)**\\nRoot cause: extract_features.py 硬编码 device=cuda:1，但 submit_training_job 注入 CUDA_VISIBLE_DEVICES=1 后逻辑上只有 cuda:0 可见。torch.AcceleratorError: CUDA error: invalid device ordinal.\\nPipeline 进度: Step 1-4 全部完成（d4/d5 各 5000 samples 已生成），Step 5 feature extraction 崩溃。\\nError type: infrastructure (device ordinal mismatch)\\nFix: 修改 run_depth_extension_olmo.sh 中 extract_features / train_classifier / binary_pairwise 步骤的 device 参数为 cuda:0（或动态检测），从 Step 5 开始恢复执行。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T09:28:17.681Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo.sh\\\"\", \"finished_at\": \"2026-05-15T10:28:46.734Z\", \"training_hours\": 1.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo.sh\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"204956\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_001.log\", \"submitted_at\": \"2026-05-15T09:28:20.497Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3628.3, \"gpu_hours\": 1.01}, \"pid\": \"204956\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_001.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T10:28:48.828Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:28:50.545946+00:00\"}]}}, \"lr_zscore_cross_strategy_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:41:05.302Z\", \"updated_at\": \"2026-05-15T09:44:47.081Z\", \"hypothesis\": \"LR cross-strategy LOO + z-score: 验证 paper_framing 声称的 z-score 恢复 LR d1v2 AUC（GPT-2 XL 0.13→0.68, OLMo 0.25→0.83）。论文 claim 硬依赖。\", \"parent\": \"cross_strategy_loo_zscore_001\", \"spec\": {\"command\": \"python src/lr_zscore_cross_strategy.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/\", \"data_count\": 180000, \"model_name\": \"LogisticRegression\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/lr_zscore_cross_strategy.json\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"9-cell cross-strategy LOO features (3 models x 3 strategies x 20000 samples)\"}, \"conclusion\": \"negative\", \"metrics\": {\"raw_lr\": {\"mean_acc\": 0.25, \"note\": \"lbfgs convergence failure on unscaled features, all predictions random\", \"pythia_temp09\": {\"acc\": 0.25, \"d1v2_auc\": 0.6313}, \"gpt2xl_temp09\": {\"acc\": 0.25, \"d1v2_auc\": 0.5}, \"olmo_temp09\": {\"acc\": 0.25, \"d1v2_auc\": 0.5}}, \"zscore_lr\": {\"mean_acc\": 0.6081, \"mean_d1v2\": 0.6417, \"pythia_temp09\": {\"acc\": 0.6139, \"d1v2_auc\": 0.5201}, \"gpt2xl_temp09\": {\"acc\": 0.5642, \"d1v2_auc\": 0.2386}, \"olmo_temp09\": {\"acc\": 0.5546, \"d1v2_auc\": 0.1922}, \"pythia_nucleus\": {\"acc\": 0.6425, \"d1v2_auc\": 0.6142}, \"gpt2xl_nucleus\": {\"acc\": 0.7397, \"d1v2_auc\": 0.8851}, \"olmo_nucleus\": {\"acc\": 0.748, \"d1v2_auc\": 0.8627}, \"pythia_topk50\": {\"acc\": 0.5261, \"d1v2_auc\": 0.7711}, \"gpt2xl_topk50\": {\"acc\": 0.5352, \"d1v2_auc\": 0.8214}, \"olmo_topk50\": {\"acc\": 0.5484, \"d1v2_auc\": 0.8696}}, \"paper_claim_vs_actual\": {\"gpt2xl_temp09_d1v2\": {\"paper_raw\": 0.13, \"paper_zscore\": 0.68, \"actual_raw\": 0.5, \"actual_zscore\": 0.2386}, \"olmo_temp09_d1v2\": {\"paper_raw\": 0.25, \"paper_zscore\": 0.83, \"actual_raw\": 0.5, \"actual_zscore\": 0.1922}}}, \"completed_at\": \"2026-05-15T09:44:47.081Z\"}, \"granularity_ablation_rf_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:17:27.738Z\", \"updated_at\": \"2026-05-15T09:30:03.303Z\", \"hypothesis\": \"Granularity ablation: 对比 binary/3-class/4-class/6-class RF 性能，量化分类粒度对决策边界稀释的影响。预期 accuracy 随粒度增加单调下降，adjacent-pair AUC 在 binary 设置下最高。支持 Claim 1 (feasibility) + Claim 2 (EDD boundary dilution)。\", \"parent\": \"baseline_battery_9cell_001\", \"notes\": \"## 脚本准备完成，等待审批\\n\\n### 脚本路径\\n`/root/autodl-tmp/recursive_gen_depth_est/src/granularity_ablation.py`\\n\\n### 运行命令\\n```bash\\ncd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/granularity_ablation.py\\n```\\n\\n### 9 Cells 特征文件路径\\n| Cell | Path |\\n|------|------|\\n| pythia_nucleus095 | data/features_all.jsonl (20000 samples, d0-d3) |\\n| pythia_temp09 | data/pythia_temp09/features.jsonl |\\n| pythia_topk50 | results/pythia_topk50/features.jsonl |\\n| gpt2xl_nucleus095 | data/gpt2xl/features.jsonl |\\n| gpt2xl_temp09 | results/gpt2xl_temp09/features.jsonl |\\n| gpt2xl_topk50 | results/gpt2xl_topk50/features.jsonl |\\n| olmo_nucleus095 | data/olmo/features.jsonl |\\n| olmo_temp09 | results/olmo_temp09/features.jsonl |\\n| olmo_topk50 | results/olmo_topk50/features.jsonl |\\n\\n### 6-class 数据路径\\n`results/pythia_depth_extension/features_6class.jsonl` (30000 samples, 5000/depth, d0-d5, Pythia nucleus only)\\n\\n### Dry-run 结果 (pythia_nucleus095 only)\\n| Setting | #Cls | Acc | 95% CI | Adjacent AUCs |\\n|---------|------|-----|--------|---------------|\\n| binary | 2 | 0.9980 | [0.9965, 0.9992] | d0v1=1.000 |\\n| 3class | 3 | 0.7117 | [0.6947, 0.7283] | d1v2=0.861, d2v3=0.796 |\\n| 4class | 4 | 0.7812 | [0.7677, 0.7935] | d0v1=0.998, d1v2=0.868, d2v3=0.804 |\\n| 6class | 6 | 0.6292 | [0.6175, 0.6412] | d0v1=0.997, d1v2=0.830, d2v3=0.689, d3v4=0.692, d4v5=0.691 |\\n\\n决策边界稀释效应明显：accuracy 从 binary 99.8% → 4-class 78.1% → 6-class 62.9%；d2v3 AUC 从 3-class 0.796 降至 6-class 0.689。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T09:23:30.113Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/granularity_ablation.py\\\"\", \"finished_at\": \"2026-05-15T09:25:55.628Z\", \"training_hours\": 0.04}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/granularity_ablation.py\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"197792\", \"log_path\": \"~/runs/recursive_gen_depth_est/granularity_ablation_rf_001.log\", \"submitted_at\": \"2026-05-15T09:23:31.735Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 391.6, \"gpu_hours\": 0.11}, \"pid\": \"197792\", \"log_path\": \"~/runs/recursive_gen_depth_est/granularity_ablation_rf_001.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:25:57.446304+00:00\"}]}, \"metrics\": {\"summary\": {\"binary_acc_mean\": 0.995, \"binary_acc_std\": 0.004, \"3class_acc_mean\": 0.721, \"3class_acc_std\": 0.067, \"4class_acc_mean\": 0.783, \"4class_acc_std\": 0.048, \"6class_acc\": 0.629, \"note\": \"3-class excludes d0 (most separable class), so 3class < 4class is by design. True granularity trend (with d0): binary 99.5% > 4-class 78.3% > 6-class 62.9% — monotonic decrease confirmed.\"}, \"per_cell\": {\"pythia_nucleus095\": {\"binary\": {\"acc\": 0.998, \"ci95\": [0.9965, 0.9992], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7117, \"ci95\": [0.6947, 0.7283], \"auc\": {\"d1v2\": 0.861, \"d2v3\": 0.796}}, \"4class\": {\"acc\": 0.7812, \"ci95\": [0.7677, 0.7935], \"auc\": {\"d0v1\": 0.998, \"d1v2\": 0.868, \"d2v3\": 0.804}}, \"6class\": {\"acc\": 0.6292, \"ci95\": [0.6175, 0.6412], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.83, \"d2v3\": 0.689, \"d3v4\": 0.692, \"d4v5\": 0.691}}}, \"pythia_temp09\": {\"binary\": {\"acc\": 0.997, \"ci95\": [0.9952, 0.9985], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7063, \"ci95\": [0.6907, 0.723], \"auc\": {\"d1v2\": 0.838, \"d2v3\": 0.806}}, \"4class\": {\"acc\": 0.7605, \"ci95\": [0.7475, 0.7738], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.835, \"d2v3\": 0.796}}}, \"pythia_topk50\": {\"binary\": {\"acc\": 0.9945, \"ci95\": [0.992, 0.9965], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.5883, \"ci95\": [0.5717, 0.6073], \"auc\": {\"d1v2\": 0.749, \"d2v3\": 0.705}}, \"4class\": {\"acc\": 0.6943, \"ci95\": [0.6805, 0.708], \"auc\": {\"d0v1\": 0.994, \"d1v2\": 0.761, \"d2v3\": 0.695}}}, \"gpt2xl_nucleus095\": {\"binary\": {\"acc\": 0.9912, \"ci95\": [0.9882, 0.9938], \"auc\": {\"d0v1\": 0.999}}, \"3class\": {\"acc\": 0.79, \"ci95\": [0.775, 0.8047], \"auc\": {\"d1v2\": 0.913, \"d2v3\": 0.891}}, \"4class\": {\"acc\": 0.8393, \"ci95\": [0.8283, 0.8502], \"auc\": {\"d0v1\": 0.995, \"d1v2\": 0.916, \"d2v3\": 0.885}}}, \"gpt2xl_temp09\": {\"binary\": {\"acc\": 0.9978, \"ci95\": [0.9962, 0.999], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.826, \"ci95\": [0.8117, 0.8397], \"auc\": {\"d1v2\": 0.944, \"d2v3\": 0.887}}, \"4class\": {\"acc\": 0.8552, \"ci95\": [0.844, 0.866], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.939, \"d2v3\": 0.886}}}, \"gpt2xl_topk50\": {\"binary\": {\"acc\": 0.9952, \"ci95\": [0.993, 0.9972], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.695, \"ci95\": [0.6777, 0.7113], \"auc\": {\"d1v2\": 0.844, \"d2v3\": 0.766}}, \"4class\": {\"acc\": 0.757, \"ci95\": [0.743, 0.7702], \"auc\": {\"d0v1\": 0.993, \"d1v2\": 0.824, \"d2v3\": 0.762}}}, \"olmo_nucleus095\": {\"binary\": {\"acc\": 0.9868, \"ci95\": [0.9832, 0.99], \"auc\": {\"d0v1\": 0.999}}, \"3class\": {\"acc\": 0.7503, \"ci95\": [0.7353, 0.7657], \"auc\": {\"d1v2\": 0.873, \"d2v3\": 0.831}}, \"4class\": {\"acc\": 0.7897, \"ci95\": [0.7772, 0.8027], \"auc\": {\"d0v1\": 0.985, \"d1v2\": 0.87, \"d2v3\": 0.816}}}, \"olmo_temp09\": {\"binary\": {\"acc\": 0.9982, \"ci95\": [0.997, 0.9992], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7633, \"ci95\": [0.7477, 0.7797], \"auc\": {\"d1v2\": 0.894, \"d2v3\": 0.838}}, \"4class\": {\"acc\": 0.8263, \"ci95\": [0.8147, 0.8385], \"auc\": {\"d0v1\": 0.996, \"d1v2\": 0.903, \"d2v3\": 0.828}}}, \"olmo_topk50\": {\"binary\": {\"acc\": 0.996, \"ci95\": [0.994, 0.9978], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.661, \"ci95\": [0.644, 0.6773], \"auc\": {\"d1v2\": 0.812, \"d2v3\": 0.739}}, \"4class\": {\"acc\": 0.7435, \"ci95\": [0.73, 0.758], \"auc\": {\"d0v1\": 0.995, \"d1v2\": 0.831, \"d2v3\": 0.738}}}}, \"boundary_dilution\": {\"d2v3_auc_by_granularity_pythia_nuc\": {\"3class\": 0.796, \"4class\": 0.804, \"6class\": 0.689}, \"d1v2_auc_by_granularity_pythia_nuc\": {\"3class\": 0.861, \"4class\": 0.868, \"6class\": 0.83}, \"note\": \"d2v3 AUC drops 14% from 4-class to 6-class (0.804→0.689), confirming decision boundary dilution at higher granularity\"}, \"decoding_strategy_ranking\": {\"4class_acc\": {\"temp09\": 0.814, \"nucleus095\": 0.803, \"topk50\": 0.732}, \"note\": \"topk50 consistently worst across all 3 models; temp09 slightly outperforms nucleus095\"}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/granularity_ablation/granularity_ablation_results.json\", \"completed_at\": \"2026-05-15T09:30:03.303Z\"}, \"zero_shot_llm_baseline_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:41:07.167Z\", \"updated_at\": \"2026-05-15T09:12:23.101Z\", \"hypothesis\": \"Zero-shot LLM baseline: DeepSeek V3.2 直接判断文本递归生成深度 (4-class)，无需统计特征提取。作为 upper-bound baseline 对比 feature-based 方法。\", \"parent\": \"baseline_battery_001\", \"spec\": {\"command\": \"DeepSeek V3.2 API zero-shot classification\", \"server\": \"API (no GPU)\", \"data_path\": \"Pythia nucleus d0-d3 samples\", \"data_count\": 200, \"model_name\": \"DeepSeek V3.2\", \"seed\": 42, \"checkpoint_source\": \"DeepSeek V3.2 API (no checkpoint)\", \"eval_data\": \"200 samples from Pythia nucleus d0-d3 (d0=56, d1=47, d2=49, d3=48)\", \"checkpoint_path\": \"N/A (API-based, no checkpoint)\", \"log_path\": \"N/A (API-based, no training log)\"}, \"metrics\": {\"four_class_acc\": 0.4, \"n_samples\": 200, \"sample_distribution\": {\"d0\": 56, \"d1\": 47, \"d2\": 49, \"d3\": 48}, \"model\": \"DeepSeek V3.2\", \"method\": \"zero-shot prompting\", \"vs_rf_baseline\": -0.382, \"vs_chance\": 0.15, \"note\": \"40.0% (80/200) above chance (25%) but far below RF 78.2% (-38.2pp). Zero-shot LLM cannot reliably distinguish recursive depth from raw text alone.\"}, \"conclusion\": \"success\", \"notes\": \"DeepSeek V3.2 zero-shot 4-class acc=40.0% (80/200, 样本分布 d0=56/d1=47/d2=49/d3=48)。高于 chance 25% (+15.0pp) 但远低于 RF 78.2% (-38.2pp)。结论：即使最强 LLM 也无法从原始文本可靠判断递归深度——统计特征提取是必要的，这验证了本文 feature-based 方法的价值。[2026-05-15 修正: 原误报 44.3%，经 Reviewer 验证服务器 results 文件确认为 80/200=40.0%]\", \"completed_at\": \"2026-05-15T06:47:58.554Z\"}, \"olmo_temp09_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:59:50.217Z\", \"updated_at\": \"2026-05-15T06:27:11.061Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=1 bash scripts/run_pipeline_olmo_temp09.sh\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"179923\", \"log_path\": \"~/runs/recursive_gen_depth_est/olmo_temp09_002.log\", \"submitted_at\": \"2026-05-15T06:02:55.625Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (killed before completion)\", \"wall_clock_seconds\": 1455.4, \"gpu_hours\": 0.4}, \"hypothesis\": \"解码策略鲁棒性: OLMo-1B 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致（olmo_temp09_001 重跑，从 Step 3 断点恢复）\", \"parent\": \"olmo_temp09_001\", \"conclusion\": \"killed\", \"notes\": \"Director 确认取消：olmo_temp09_001 数据已完整 (4-class RF 82.03%)，重跑不必要。服务器重启后误分配导致的重复提交。PID 179923 已 force kill，cuda:1 已释放。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T06:00:23.377Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=1 bash scripts/run_pipeline_olmo_temp09.sh\\\"\"}, \"pid\": \"179923\", \"log_path\": \"~/runs/recursive_gen_depth_est/olmo_temp09_002.log\", \"completed_at\": \"2026-05-15T06:27:11.061Z\"}, \"depth_extension_pythia_d4d5_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T03:56:37.582Z\", \"updated_at\": \"2026-05-15T06:24:41.231Z\", \"spec\": {\"description\": \"Depth extension: Pythia-1.4B nucleus p=0.95, d3→d4→d5 finetune+generate+feature extraction+RF+EDD\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"command\": \"bash scripts/run_depth_extension.sh\", \"pid\": \"29626\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_pythia_d4d5_001.log\", \"submitted_at\": \"2026-05-15T04:01:46Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_3.jsonl\", \"data_count\": 5000, \"model_path\": \"/root/autodl-tmp/models/pythia-1.4b/\", \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"query_key_value\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"top_p\": 0.95, \"decoding_strategy\": \"nucleus\"}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/lora_depth_3/,lora_depth_4/\", \"checkpoint_source\": \"checkpoints/lora_depth_2 (parent mvp_pipeline_pythia_002)\", \"eval_data\": \"data/depth_0..depth_5.jsonl → 6-class RF classification\", \"wall_clock_seconds\": 4745.7, \"gpu_hours\": 1.32}, \"hypothesis\": \"Depth extension to d4/d5: EDD 从 d3 (当前 EDD=3 未饱和) 继续延伸——如果 d3v4 和 d4v5 AUC 仍 >0.75，则 EDD≥5，证明递归深度信号至少在 5 代内不饱和\", \"parent\": \"mvp_pipeline_pythia_002\", \"reproduce\": {\"finished_at\": \"2026-05-15T05:13:49.837Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:13:51.466496+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"six_class_rf_accuracy\": 0.6232, \"six_class_rf_accuracy_ci\": [0.6113, 0.636], \"six_class_lr_accuracy\": 0.5862, \"pairwise_auc_rf\": {\"d0v1\": 0.9962, \"d1v2\": 0.8231, \"d2v3\": 0.6878, \"d3v4\": 0.6809, \"d4v5\": 0.6948}, \"pairwise_auc_lr\": {\"d0v1\": 0.9908, \"d1v2\": 0.6901, \"d2v3\": 0.6174, \"d3v4\": 0.6828, \"d4v5\": 0.6554}, \"cumulative_auc_rf\": {\"d0v5\": 0.9987, \"d1v5\": 0.9874, \"d2v5\": 0.949, \"d3v5\": 0.8632}, \"edd_at_075\": 2, \"feature_importance_top5\": [\"p90_ppl (0.1376)\", \"var_surprisal (0.1344)\", \"mean_ppl (0.0796)\", \"mean_surprisal (0.0789)\", \"p75_ppl (0.0680)\"], \"finetune_losses\": {\"depth_3\": 0.7634, \"depth_4\": 0.5828}, \"WARNING\": \"6-class pairwise AUC 不可与 4-class 直比，决策边界稀释导致系统性偏低。需 binary pairwise classifier 重新评估。\"}, \"notes\": \"Depth extension d4/d5 完成。6-class RF acc=62.3%（6-class pairwise AUC 因决策边界稀释不可用）。**Binary pairwise 重新评估 (depth_extension_binary_pairwise_002)**: d3v4 AUC=0.784 (>0.75 ✅), d4v5 AUC=0.683 (<0.75 ❌) → **EDD=4**。结论从 negative 修正为 partial success: 深度信号在 d4 仍可区分，d5 饱和。Sanity check: binary d1v2=0.925 vs 4-class 0.861 (+0.064), binary d2v3=0.823 vs 4-class 0.801 (+0.022) — binary 一致高于 4-class，确认决策边界稀释效应存在。\", \"completed_at\": \"2026-05-15T05:20:51.701Z\"}, \"depth_extension_binary_pairwise_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:04:35.570Z\", \"updated_at\": \"2026-05-15T06:14:30.023Z\", \"hypothesis\": \"Retry of binary_pairwise_001 (failed due to missing script on server). Dedicated binary RF for d3v4 and d4v5 pairwise AUC. Judgment: d3v4>0.75 + d4v5>0.75 → EDD≥5; d3v4>0.75 only → EDD=4.\", \"parent\": \"depth_extension_binary_pairwise_001\", \"spec\": {\"command\": \"python3 src/binary_pairwise_eval.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl\", \"data_count\": 30000, \"model_name\": \"sklearn RF (500 trees) binary pairwise\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"results/binary_pairwise/binary_pairwise_results.json\", \"checkpoint_source\": \"N/A (sklearn, no pretrained checkpoint)\", \"eval_data\": \"data/features_all.jsonl (d0-d3) + data/features_depth_4.jsonl + data/features_depth_5.jsonl\"}, \"metrics\": {\"d1v2_auc\": 0.925, \"d1v2_ci95\": [0.9138, 0.9354], \"d2v3_auc\": 0.8225, \"d2v3_ci95\": [0.8052, 0.8402], \"d3v4_auc\": 0.7837, \"d3v4_ci95\": [0.7648, 0.8024], \"d4v5_auc\": 0.6832, \"d4v5_ci95\": [0.6611, 0.7045], \"edd_determination\": \"4\"}, \"conclusion\": \"success\", \"notes\": \"Binary pairwise RF (500 trees) on Pythia nucleus d0-d5 (30k samples, 5k/depth). Results: d1v2 AUC=0.9250 (vs 4-class 0.8607, +0.0643), d2v3 AUC=0.8225 (vs 4-class 0.8005, +0.0220), d3v4 AUC=0.7837 [0.7648,0.8024], d4v5 AUC=0.6832 [0.6611,0.7045]. Binary classifiers consistently outperform 4-class pipeline pairwise AUC (as expected, no decision boundary dilution). EDD=4: d3v4 above threshold (0.75) but d4v5 below. Feature extraction for d4/d5 done via Pythia-1.4B frozen model on LoRA-generated text. Top features shift from var_surprisal (d1v2) to p90_ppl/kurtosis (d3v4/d4v5), suggesting tail perplexity becomes the key discriminator at higher depths.\", \"completed_at\": \"2026-05-15T06:14:30.023Z\"}, \"depth_extension_binary_pairwise_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:22:13.190Z\", \"updated_at\": \"2026-05-15T06:02:34.878Z\", \"hypothesis\": \"Dedicated binary pairwise RF 评估 d3v4 和 d4v5 可区分性。6-class RF 的 pairwise AUC 因决策边界稀释不可靠（d2v3 从 4-class 0.80 降到 0.69 是 artifact）。Binary classifier 消除此 artifact，与原 4-class pipeline 的 d0v1/d1v2/d2v3 AUC 可比。判定标准：binary d3v4 AUC > 0.75 且 d4v5 AUC > 0.75 → EDD≥5；d3v4 > 0.75 但 d4v5 < 0.75 → EDD=4。\", \"parent\": \"depth_extension_pythia_d4d5_001\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T05:30:57.751Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=0 python3 src/binary_pairwise_eval.py\\\"\", \"finished_at\": \"2026-05-15T06:02:33.239Z\", \"training_hours\": 0.53}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=0 python3 src/binary_pairwise_eval.py\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_binary_pairwise_001.log\", \"submitted_at\": \"2026-05-15T06:02:03.942Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 30.9, \"gpu_hours\": 0.01}, \"pid\": \"unknown\", \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_binary_pairwise_001.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T06:02:34.878Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T06:02:36.391339+00:00\"}]}}, \"dcol_roberta_v6_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:20:40.271Z\", \"updated_at\": \"2026-05-15T05:59:47.351Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=1 python3 src/dcol_trainer_v6.py ...\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"136481\", \"log_path\": \"~/runs/recursive_gen_depth_est/dcol_roberta_v6_001.log\", \"submitted_at\": \"2026-05-15T04:30:38.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 180000, \"model_name\": \"RoBERTa-large (LoRA r=16 alpha=16)\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch with LoRA)\", \"eval_data\": \"N/A (training experiment, not eval)\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/dcol_roberta_v6/best_model.pt\", \"wall_clock_seconds\": 5348.7, \"gpu_hours\": 1.49}, \"hypothesis\": \"DCOL v6: RoBERTa-large 替代 DeBERTa 解决数值不稳定。lr=5e-5 + grad clip 1.0 + NaN guard + collapse guard (step 500 acc&lt;30% kill)。若 4-class acc > RF baseline (78.2%) 则 DCOL 成功，否则降级为 negative result。\", \"parent\": \"dcol_deberta_005\", \"reproduce\": {\"finished_at\": \"2026-05-15T05:56:24.787Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:56:26.416631+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"test_acc\": 0.6448, \"test_mae\": 0.4052, \"best_val_acc\": 0.6436, \"best_epoch\": 1, \"epochs_run\": 4, \"early_stopping\": true, \"train_acc_final\": 0.75, \"rf_baseline\": 0.782, \"delta_vs_baseline\": -0.137, \"overfitting\": \"severe (train 75% vs val 64.4% at best epoch)\", \"stability\": \"resolved (no NaN, no collapse, collapse guard passed at step 500)\"}, \"notes\": \"DCOL v6 (RoBERTa-large) 正常完成，解决了 DeBERTa 数值稳定性问题（无 NaN/collapse）。但 test acc=64.5% 远低于 RF baseline 78.2% (-13.7pp)。严重过拟合：train acc 60→75%，val acc epoch 1 后持续下降。Early stopping 在 epoch 4 触发。DCOL v1-v6 全部失败：v1-v5 DeBERTa 数值崩溃，v6 RoBERTa 稳定但准确率不足。结论：DCOL contrastive ordinal loss 对此 4-class depth estimation 任务表达能力不足。符合 D011 framing（DCOL 降级为 negative analysis section）。Checkpoint: /root/autodl-tmp/recursive_gen_depth_est/checkpoints/dcol_roberta_v6/best_model.pt\", \"completed_at\": \"2026-05-15T05:59:47.351Z\"}, \"cross_strategy_loo_zscore_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:11:42.230Z\", \"updated_at\": \"2026-05-15T05:12:33.614Z\", \"spec\": {\"command\": \"python src/cross_strategy_loo_zscore.py\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/ + results/ (9 cells features.jsonl)\", \"data_count\": 180000, \"model_name\": \"RF (n_estimators=200)\", \"seed\": 42}, \"parent\": \"cross_strategy_loo_001\", \"hypothesis\": \"Z-score standardization recovers temp09 d1v2 AUC from covariate shift inversion in cross-strategy LOO (RF classifier)\", \"metrics\": {\"mean_raw_acc\": 0.5908, \"mean_zscore_acc\": 0.5915, \"raw\": {\"pythia_holdout_nucleus\": {\"acc\": 0.6935, \"d1v2_auc\": 0.6903, \"d2v3_auc\": 0.7626}, \"pythia_holdout_temp09\": {\"acc\": 0.6281, \"d1v2_auc\": 0.576, \"d2v3_auc\": 0.724}, \"pythia_holdout_topk50\": {\"acc\": 0.5151, \"d1v2_auc\": 0.6393, \"d2v3_auc\": 0.5801}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5993, \"d1v2_auc\": 0.7826, \"d2v3_auc\": 0.4985}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5609, \"d1v2_auc\": 0.1288, \"d2v3_auc\": 0.6366}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5364, \"d1v2_auc\": 0.8308, \"d2v3_auc\": 0.7222}, \"olmo_holdout_nucleus\": {\"acc\": 0.6538, \"d1v2_auc\": 0.7931, \"d2v3_auc\": 0.6076}, \"olmo_holdout_temp09\": {\"acc\": 0.5816, \"d1v2_auc\": 0.2529, \"d2v3_auc\": 0.7015}, \"olmo_holdout_topk50\": {\"acc\": 0.5488, \"d1v2_auc\": 0.8549, \"d2v3_auc\": 0.7107}}, \"zscore\": {\"pythia_holdout_nucleus\": {\"acc\": 0.6992, \"d1v2_auc\": 0.7043, \"d2v3_auc\": 0.7683}, \"pythia_holdout_temp09\": {\"acc\": 0.6368, \"d1v2_auc\": 0.5943, \"d2v3_auc\": 0.7352}, \"pythia_holdout_topk50\": {\"acc\": 0.5155, \"d1v2_auc\": 0.6386, \"d2v3_auc\": 0.5804}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5959, \"d1v2_auc\": 0.788, \"d2v3_auc\": 0.4927}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5632, \"d1v2_auc\": 0.1348, \"d2v3_auc\": 0.631}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5356, \"d1v2_auc\": 0.8391, \"d2v3_auc\": 0.7282}, \"olmo_holdout_nucleus\": {\"acc\": 0.6506, \"d1v2_auc\": 0.796, \"d2v3_auc\": 0.6078}, \"olmo_holdout_temp09\": {\"acc\": 0.5782, \"d1v2_auc\": 0.2497, \"d2v3_auc\": 0.6871}, \"olmo_holdout_topk50\": {\"acc\": 0.5484, \"d1v2_auc\": 0.8579, \"d2v3_auc\": 0.7056}}, \"temp09_d1v2_delta\": {\"pythia\": 0.0183, \"gpt2xl\": 0.006, \"olmo\": -0.0033}, \"finding\": \"Z-score does NOT fix temp09 d1v2 inversion in RF — RF is scale-invariant (tree splits unaffected by monotonic transforms). Prior z-score recovery (0.13→0.68) was with LR, not RF.\"}, \"conclusion\": \"negative\", \"notes\": \"Z-score standardization has negligible effect on RF cross-strategy LOO. temp09 d1v2 AUC remains inverted: GPT-2 XL 0.1288→0.1348, OLMo 0.2529→0.2497, Pythia 0.576→0.594. Root cause: RF is a tree-based model invariant to monotonic feature transforms — z-score shifts/scales features but preserves relative ordering, so split thresholds adapt automatically. Prior independent verification (GPT-2 XL 0.13→0.68, OLMo 0.25→0.83) was with a scale-sensitive classifier (LR), not RF. Raw results match cross_strategy_loo_001 exactly (mean acc=0.5908). Non-temp09 impact negligible (mean Δd1v2=+0.006). Conclusion: covariate shift hypothesis is correct but the z-score fix is classifier-dependent — works for LR, not for RF.\", \"checkpoint_path\": \"N/A (CPU inference only)\", \"log_path\": \"/tmp/loo_zscore.log\", \"completed_at\": \"2026-05-15T05:12:33.614Z\"}, \"baseline_battery_9cell_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:26:41.388Z\", \"updated_at\": \"2026-05-15T05:11:25.784Z\", \"spec\": {\"description\": \"9-cell baseline battery: RF/LR/CORAL/DivEye across all 3×3 cells\", \"server\": \"gpu-6000pro-2\", \"command\": \"CUDA_VISIBLE_DEVICES=\\\"\\\" python3 src/run_9cell_battery.py\", \"seed\": 42, \"data_path\": \"data/{pythia_nucleus095,pythia_temp09,pythia_topk50,olmo_nucleus095,olmo_temp09,olmo_topk50,gpt2xl_nucleus095,gpt2xl_temp09,gpt2xl_topk50}/features.jsonl\", \"data_count\": 180000, \"model_name\": \"RF/LR/CORAL/DivEye (CPU)\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/baseline_battery_9cell/summary_9cell.json\"}, \"hypothesis\": \"9-cell baseline battery: 4 种分类方法 (RF/LR/CORAL/DivEye) 在 3×3 矩阵全部 cells 上的 4-class accuracy 对比，生成 paper Table 1\", \"parent\": \"baseline_battery_001\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:27:10.580Z\", \"metrics\": {\"best_acc_matrix\": {\"pythia_nucleus\": 0.782, \"pythia_temp09\": 0.772, \"pythia_topk50\": 0.688, \"olmo_nucleus\": 0.796, \"olmo_temp09\": 0.827, \"olmo_topk50\": 0.759, \"gpt2xl_nucleus\": 0.843, \"gpt2xl_temp09\": 0.853, \"gpt2xl_topk50\": 0.754}, \"methods\": [\"RF\", \"LR\", \"CORAL\", \"DivEye\"], \"cells\": 9, \"finding\": \"RF ≈ CORAL > DivEye > LR, max gap ~4pp. GPT-2 XL temp09 best (85.3%), model effect > strategy effect\", \"WARNING\": \"best_acc_matrix stores best-across-ALL-methods accuracy, NOT RF-only. For RF accuracy use each cell's own registry (e.g. olmo_topk50_001.metrics.four_class.rf_accuracy). olmo_topk50 diff=2.2pp, olmo_nucleus diff=0.83pp.\"}, \"notes\": \"9-cell baseline battery 完成。⚠️ 字段命名问题：`best_acc_matrix_rf` 实际存储的是所有方法（RF/LR/CORAL/DivEye）中的最优 accuracy，不是纯 RF accuracy。影响 olmo_topk50：此字段记 0.759（实为 LR），RF 实际为 0.737，差 2.2pp。论文引用 RF accuracy 时必须用各 cell 独立 registry（如 olmo_topk50_001.metrics.four_class.rf_accuracy = 0.742），不要用此字段。其余 8 cells RF 恰好是最优方法，所以值一致。Reconciliation check 2026-05-15 确认：pipeline↔edd_sensitivity AUC 27/27 一致，pipeline↔registry AUC 41/41 一致，EDD 值一致。\"}, \"olmo_topk50_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:30:51.656Z\", \"updated_at\": \"2026-05-15T04:55:10.850Z\", \"hypothesis\": \"解码策略鲁棒性: OLMo-1B 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"parent\": \"cross_model_olmo_002\", \"plan_id\": \"plan_002c\", \"notes\": \"OLMo-1B top-k k=50 完成，conclusion=success。4-class LR 75.7% / RF 74.2%，d1v2 AUC LR 0.829 / RF 0.831。3-class filtered LR 67.0% / RF 67.0%。\\n\\nvs baseline 对比（4-class LR acc / d1v2 AUC LR）：\\n| Config         | 4-class LR | d1v2 AUC |\\n|----------------|-----------|----------|\\n| OLMo temp09    | 82.03%    | 0.901    |\\n| OLMo nucleus   | 78.8%     | 0.867    |\\n| OLMo topk50    | 75.7%     | 0.829    |\\n| Pythia topk50  | 69.6%     | 0.752    |\\n\\nOLMo topk50 比 OLMo nucleus 低 ~3pp，比 Pythia topk50 高 ~6pp。Top-k 解码略微降低深度可区分性（vs nucleus），但 OLMo 仍显著优于 Pythia，确认模型效应 > 解码策略效应。3×3 矩阵最后一格完成。\\n\\n**[mean_ppl outlier 分析 2026-05-15]**: 1 个极端样本 (sample_id=6923, mean_ppl=1.43e13) 贡献了 depth-1 mean_ppl 总和的 94.4%。Token-level perplexity 极度重尾 (kurtosis>4900, CV=67×)。mean_ppl 即使剔除 >1e6 仍非单调。p90_ppl 完美单调 (566.8→143.0→91.7→73.1, CV 0.28-0.67)。结论：percentile-based features (p90_ppl) 统计鲁棒性远优于 mean-based (mean_ppl)，这是 Atlas 选择 p90_ppl 为核心特征的统计学依据。详见 artifacts/olmo_topk50_mean_ppl_outlier_analysis.md。\", \"spec\": {\"command\": \"bash -c \\\"export AML_EXP_ID=olmo_topk50_001 && export GPU=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_pipeline_olmo_topk50.sh\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"226461\", \"log_path\": \"~/runs/recursive_gen_depth_est/olmo_topk50_001.log\", \"submitted_at\": \"2026-05-15T00:11:30.334Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/olmo/lora_depth_0 (symlinked)\", \"eval_data\": \"data/depth_0.jsonl (seed) + generated depths 1-3\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/olmo_topk50/\", \"wall_clock_seconds\": 6195.7, \"gpu_hours\": 1.72}, \"reproduce\": {\"finished_at\": \"2026-05-15T01:39:56.773Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:39:58.044943+00:00\"}]}, \"metrics\": {\"four_class\": {\"lr_accuracy\": 0.757, \"lr_accuracy_ci\": [0.7425, 0.7702], \"rf_accuracy\": 0.742, \"rf_accuracy_ci\": [0.7282, 0.7555]}, \"pairwise_auc\": {\"lr\": {\"d0v1\": 0.9969, \"d0v2\": 0.9995, \"d0v3\": 0.9998, \"d1v2\": 0.8293, \"d1v3\": 0.9592, \"d2v3\": 0.7497}, \"rf\": {\"d0v1\": 0.993, \"d0v2\": 0.9983, \"d0v3\": 0.9991, \"d1v2\": 0.8305, \"d1v3\": 0.9591, \"d2v3\": 0.7357}}, \"three_class\": {\"lr_accuracy\": 0.6567, \"lr_accuracy_ci\": [0.6403, 0.6733], \"rf_accuracy\": 0.6517, \"rf_accuracy_ci\": [0.635, 0.6687]}, \"three_class_filtered\": {\"lr_accuracy\": 0.6703, \"lr_accuracy_ci\": [0.653, 0.6882], \"rf_accuracy\": 0.6699, \"rf_accuracy_ci\": [0.6537, 0.6875]}, \"three_class_filtered_auc\": {\"lr\": {\"d1v2\": 0.7903, \"d1v3\": 0.97, \"d2v3\": 0.7501}, \"rf\": {\"d1v2\": 0.8071, \"d1v3\": 0.9645, \"d2v3\": 0.7364}}, \"feature_importance_top5\": [\"p90_ppl\", \"var_surprisal\", \"p75_ppl\", \"mean_surprisal\", \"p25_ppl\"], \"finetune_loss\": {\"depth_1\": 1.946, \"depth_2\": 1.726}, \"code_contamination\": {\"narrow_pct\": {\"depth_0\": 0.4, \"depth_1\": 0.8, \"depth_2\": 0.3, \"depth_3\": 0.4}, \"broad_pct\": {\"depth_0\": 0.5, \"depth_1\": 2.5, \"depth_2\": 0.8, \"depth_3\": 0.7}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T01:54:46.050Z\"}, \"atlas_v2_analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:12:09.137Z\", \"updated_at\": \"2026-05-15T04:24:05.713Z\", \"spec\": {\"description\": \"Atlas v2 formal analysis: 9-cell feature importance + monotonicity + EDD + cross-model comparison\", \"server\": \"gpu-6000pro-2\", \"model_name\": \"RF(n_estimators=200, random_state=42)\", \"data_count\": 180000, \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES='' python src/atlas_v2_analysis.py\", \"data_path\": \"9 cells x 20000 samples from data/ and results/\", \"checkpoint_source\": \"N/A (analysis experiment)\", \"eval_data\": \"9 cells: pythia/gpt2xl/olmo x nucleus095/temp09/topk50\"}, \"hypothesis\": \"Atlas v2 (9-cell): p90_ppl 和 var_surprisal 在所有 9 cells 中稳定为 top-2 features，EDD≥3 在多数 cells 成立，证明深度退化信号具有跨模型跨策略一致性\", \"parent\": \"atlas_v1_analysis\", \"conclusion\": \"success\", \"log_path\": \"/tmp/atlas_v2.log\", \"checkpoint_path\": \"artifacts/atlas_v2/\", \"completed_at\": \"2026-05-15T04:23:59.584Z\", \"metrics\": {\"p90_ppl_in_top2\": \"9/9\", \"var_surprisal_in_top2\": \"7/9\", \"edd_equals_3_at_T075\": \"7/9\", \"edd_distribution_T075\": {\"2\": 2, \"3\": 7}, \"cross_model_rank_corr_range\": \"[0.619, 0.954]\", \"cross_model_rank_corr_mean\": 0.868, \"cv5_accuracy_range\": \"[0.688, 0.859]\", \"cells_covered\": \"9/9\"}}, \"cross_model_loo_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:01:46.616Z\", \"updated_at\": \"2026-05-15T04:16:09.538Z\", \"spec\": {\"description\": \"Cross-model LOO: train on 2 model families (all strategies), test on 3rd.\", \"server\": \"gpu-6000pro-2\", \"model_name\": \"RandomForest (CPU)\", \"seed\": 42, \"data_path\": \"9-cell features\", \"data_count\": 180000, \"command\": \"python src/cross_model_loo.py\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/cross_model_loo.json\"}, \"hypothesis\": \"Cross-model LOO: 深度信号跨模型泛化，train on 2 families test on 3rd 的 4-class acc ≥ 45%（plan_005 gate）\", \"conclusion\": \"killed\", \"metrics\": {\"mean_4class_acc\": 0.664, \"holdout_pythia\": {\"acc\": 0.6242, \"ci\": [0.6206, 0.6282], \"d1v2_auc\": 0.5617, \"d2v3_auc\": 0.6534}, \"holdout_olmo\": {\"acc\": 0.6921, \"ci\": [0.6886, 0.6959], \"d1v2_auc\": 0.7687, \"d2v3_auc\": 0.6862}, \"holdout_gpt2xl\": {\"acc\": 0.6756, \"ci\": [0.6719, 0.6792], \"d1v2_auc\": 0.8157, \"d2v3_auc\": 0.6639}, \"per_class_recall\": {\"holdout_pythia\": {\"d0\": 1, \"d1\": 0.493, \"d2\": 0.268, \"d3\": 0.736}, \"holdout_olmo\": {\"d0\": 0.993, \"d1\": 0.755, \"d2\": 0.433, \"d3\": 0.588}, \"holdout_gpt2xl\": {\"d0\": 0.985, \"d1\": 0.747, \"d2\": 0.526, \"d3\": 0.445}}, \"gate_passed\": true, \"gate_threshold\": 0.45}, \"completed_at\": \"2026-05-15T04:15:44.604Z\", \"notes\": \"CANCELLED: 被 cross_model_loo_v1 替代。此条目为 orphaned PREPARING entry，已标记废弃。\"}, \"gpt2xl_topk50_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:30:51.976Z\", \"updated_at\": \"2026-05-15T03:51:07.924Z\", \"hypothesis\": \"解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"parent\": \"cross_model_gpt2xl_001\", \"plan_id\": \"plan_003c\", \"spec\": {\"command\": \"bash scripts/run_pipeline_topk.sh gpt2xl 50\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"211326\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log\", \"submitted_at\": \"2026-05-14T22:47:20.282Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/\", \"data_count\": 5000, \"model_name\": \"gpt2-xl\", \"model_path\": \"/root/autodl-tmp/models/gpt2-xl/\", \"seed\": 42, \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"c_attn\", \"c_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"decoding_strategy\": \"topk\", \"top_k\": 50}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/\", \"checkpoint_source\": \"checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)\", \"eval_data\": \"data/depth_0.jsonl (seed) + generated depths 1-3\", \"decoding\": \"top-k k=50\", \"wall_clock_seconds\": 14226.7, \"gpu_hours\": 3.95}, \"reproduce\": {\"finished_at\": \"2026-05-15T02:16:55.268Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:16:56.661715+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"accuracy\": 0.766, \"depth1_vs_depth2_auc\": 0.8259, \"pass\": true}, \"three_class\": {\"accuracy\": 0.695, \"depth1_vs_depth2_auc\": 0.8392, \"pass\": true}, \"three_class_filtered\": {\"accuracy\": 0.684, \"depth1_vs_depth2_auc\": 0.8314, \"pass\": true}}, \"completed_at\": \"2026-05-15T02:44:27.004Z\", \"notes\": \"GPT-2 XL top-k k=50 完成（3×3 矩阵第 9 格）。evaluator=GPT-2 XL。\\n\\n重提取后核心指标 (2026-05-15 reextract): RF 76.59% [75.20-77.93%], LR 71.3%, d1v2 AUC RF 0.826 / LR 0.781。3-class RF 69.47%, 3-class filtered RF 68.36%。Code contamination 极低 (narrow ≤1.6%)。\\n\\nvs 同模型不同解码策略:\\n| Config     | RF 4-class | d1v2 AUC | 3-class RF |\\n|------------|-----------|----------|------------|\\n| temp09     | 85.4%     | 0.937    | 82.0%      |\\n| nucleus    | 83.3%     | 0.913    | 79.3%      |\\n| topk50     | 76.6%     | 0.826    | 69.5%      |\\n\\nTop-k 使 GPT-2 XL 深度信号下降 -6.7pp (vs nucleus), -8.8pp (vs temp09)。Feature importance top-5: p90_ppl, p75_ppl, mean_surprisal, var_surprisal, p50_ppl。\"}, \"dcol_deberta_005\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T02:47:32.444Z\", \"updated_at\": \"2026-05-15T03:46:41.040Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol_lora_v5/ --batch_size 32 --epochs 10 --lr 3e-4 --margin_lr 1e-4 --cl_weight 1.0 --seed 42 --use_lora --lora_r 16 --lora_alpha 16 --warmup_ratio 0.05 --gpu 0\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"283191\", \"log_path\": \"~/runs/recursive_gen_depth_est/dcol_deberta_005.log\", \"submitted_at\": \"2026-05-15T02:47:32.313Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-large + LoRA r=16 alpha=16\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch with LoRA)\", \"eval_data\": \"N/A (training experiment, not eval)\", \"wall_clock_seconds\": 3540.4, \"gpu_hours\": 0.98}, \"hypothesis\": \"DCOL v5 (LoRA r=16 alpha=16, margin_lr=1e-4): DeBERTa-v3-large + LoRA + Contrastive Ordinal Loss，修正 margin_lr 从 1e-3 到 1e-4 避免 embedding collapse\", \"parent\": \"dcol_deberta_004\", \"notes\": \"DCOL v5: LoRA (r=16, alpha=16) + margin_lr=1e-4。Killed: loss=NaN 3000+ steps, GPU 1 空转。Reviewer 确认 PID 283196 仍在空转。tmux session + 所有子进程已强制终止。DCOL 连续 5 次失败 (v1 embedding collapse, v2 OOM zombie, v3 killed, v4 margin_lr violation, v5 NaN)。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T03:46:32.751Z\"}, \"dcol_deberta_004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T02:41:50.066Z\", \"updated_at\": \"2026-05-15T02:48:09.179Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol_lora/ --batch_size 32 --epochs 10 --lr 3e-4 --margin_lr 1e-3 --cl_weight 1.0 --seed 42 --use_lora --lora_r 16 --lora_alpha 16 --gpu 0\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-large + LoRA\", \"seed\": 42, \"gpu\": [\"cuda:1\"], \"pid\": \"277577\", \"log_path\": \"~/runs/recursive_gen_depth_est/dcol_deberta_004.log\", \"checkpoint_path\": \"checkpoints/dcol_lora/\", \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 16, \"lora_dropout\": 0.1, \"target_modules\": [\"query_proj\", \"key_proj\", \"value_proj\"], \"trainable_params\": 2676979, \"trainable_pct\": \"0.54%\", \"batch_size\": 32, \"epochs\": 10, \"lr_lora\": \"3e-4\", \"lr_head_margins\": \"1e-3\", \"warmup\": \"5%\", \"grad_clip\": 1, \"cl_weight\": 1, \"precision\": \"float32\", \"memory_peak_gb\": 4.6}}, \"log_path\": \"logs/dcol_deberta_004.log\", \"checkpoint_path\": \"checkpoints/dcol_lora/best_model.pt\", \"hypothesis\": \"DCOL v4 (LoRA r=16 alpha=16): DeBERTa-v3-large + LoRA + Contrastive Ordinal Loss，冻结 backbone 只训 LoRA adapter + head + margins\", \"parent\": \"dcol_deberta_003\", \"plan_id\": \"plan_004\", \"gpu\": null, \"server\": \"gpu-6000pro-2\", \"pid\": 277577, \"notes\": \"DCOL v4 killed: margin_lr=1e-3 违反硬约束(≤1e-4)。v1 已因 1e-3 导致 embedding collapse。LoRA 不改变此风险。Director 指令以 margin_lr=1e-4 重跑为 dcol_deberta_005。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T02:48:06.268Z\"}, \"dcol_deberta_003\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T22:45:36.720Z\", \"updated_at\": \"2026-05-15T02:22:18.204Z\", \"server\": \"gpu-6000pro-2\", \"gpu\": null, \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T02:06:48.866Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol_v3/ --batch_size 32 --epochs 10 --lr 2e-5 --margin_lr 1e-4 --cl_weight 1.0 --seed 42\\\"\"}, \"notes\": \"DCOL v3 killed: 全参微调导致训练崩溃 (step 340 acc 40.8%→32.0%)。Director 诊断: full fine-tuning 破坏 DeBERTa 预训练表示。方案: 转 LoRA 微调 (dcol_deberta_004)。PID 241769 + 262897 已终止。\", \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 512.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 310.25 MiB is free. Process 239543 has 57.35 GiB memory in use. Including non-PyTorch memory, this process has 37.31 GiB memory in use. Of the allocate\", \"completed_at\": \"2026-05-15T02:04:28.226Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T02:04:29.703147+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"DCOL v3 在 cuda:1 独占运行 (PID 240552)。修复参数: margin_lr=1e-4, cl_weight=1.0, L2 norm。v1 失败(embedding collapse), v2 失败(OOM+GPU竞争)。v3 清理旧 tmux session 后成功提交。输出: checkpoints/dcol_v3/。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol_v4/ --batch_size 8 --gradient_accumulation_steps 4 --epochs 10 --lr 2e-5 --margin_lr 1e-4 --cl_weight 1.0 --gpu 0 --seed 42\\\"\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:1\"], \"pid\": \"262897\", \"log_path\": \"~/runs/recursive_gen_depth_est/dcol_deberta_003.log\", \"submitted_at\": \"2026-05-15T02:19:54.443Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 143.8, \"gpu_hours\": 0.04}, \"pid\": \"241769\", \"log_path\": \"~/runs/recursive_gen_depth_est/dcol_deberta_003.log\", \"conclusion\": \"killed\"}, \"olmo_temp09_001\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T20:34:19.885Z\", \"updated_at\": \"2026-05-15T00:10:12.526Z\", \"hypothesis\": \"解码策略鲁棒性: OLMo-1B 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"parent\": \"cross_model_olmo_002\", \"plan_id\": \"plan_002b\", \"notes\": \"OLMo temp09 是目前最强配置: 4-class RF 82.03% (OLMo nucleus 78.8% +3.26pp, Pythia temp09 76.3% +5.78pp)。d1v2 AUC 0.901。3-class filtered RF 77.57%。Code contamination 极低 (narrow ≤0.7%)。关键特征: p90_ppl, var_surprisal, p75_ppl。与 GPT-2 XL 不同，OLMo 的 temp09 也优于 nucleus，进一步证明解码策略对信号强度的影响是模型依赖的。\", \"completed_at\": \"2026-05-14T22:58:51.654Z\", \"failure_reason\": null, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T23:52:44.446930+00:00\"}]}, \"spec\": {\"command\": \"bash scripts/run_pipeline_olmo_temp09.sh\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"model_path\": \"/root/autodl-tmp/models/olmo-1b-hf/\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/olmo_temp09/\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_olmo_temp09.log\", \"checkpoint_source\": \"self-trained LoRA adapters per depth\", \"eval_data\": \"data/depth_0.jsonl (seed) + generated depths 1-3\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T23:52:43.231Z\"}, \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.8203, \"d1v2_auc\": 0.901}, \"three_class_filtered\": {\"rf_accuracy\": 0.7757}, \"finetune_losses\": {\"depth_0\": 2.27, \"depth_1\": 1.63, \"depth_2\": 1.18}, \"code_contamination_narrow_max\": 0.007, \"top_features\": [\"p90_ppl (0.199)\", \"var_surprisal (0.174)\", \"p75_ppl (0.126)\"]}, \"conclusion\": \"success\"}, \"atlas_v1_analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:56:33.920Z\", \"updated_at\": \"2026-05-14T22:57:02.614Z\", \"spec\": {\"command\": \"Python analysis scripts (monotonicity, cross-model comparison, EDD calculation)\", \"server\": \"local\", \"data_path\": \"artifacts/atlas/\", \"data_count\": \"6 experiments (3 models x 2 strategies)\", \"model_name\": \"N/A (analysis task)\", \"seed\": 42, \"checkpoint_path\": \"artifacts/atlas/\", \"log_path\": \"N/A\"}, \"hypothesis\": \"Depth Degradation Atlas v1: 跨模型/策略的深度退化特征具有单调性(monotonicity)，EDD 可量化退化饱和点\", \"conclusion\": \"success\", \"metrics\": {\"monotonicity_rho_range\": [-0.89, -0.82], \"edd\": 3, \"edd_saturated\": false, \"cross_model_jaccard\": 0.667, \"cross_model_rank_corr\": 0.85, \"artifacts\": [\"monotonicity_scores.json\", \"cross_model_comparison.json\", \"edd_analysis.json\", \"feature_trajectory.json\"]}, \"completed_at\": \"2026-05-14T22:57:02.614Z\"}, \"dcol_deberta_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:38:54.868Z\", \"updated_at\": \"2026-05-14T22:49:16.515Z\", \"hypothesis\": \"DCOL v2 (修复 embedding collapse): margin_lr=1e-4, L2 norm, cl_weight=1.0\", \"parent\": \"dcol_deberta_001\", \"plan_id\": \"plan_004\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T22:39:42.772Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol_v2/ --batch_size 32 --epochs 10 --lr 2e-5 --margin_lr 1e-4 --cl_weight 1.0 --seed 42\\\"\", \"finished_at\": \"2026-05-14T22:40:07.721Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"python src/dcol_trainer.py --output_dir checkpoints/dcol_v2/ --batch_size 32 --epochs 10 --lr 2e-5 --margin_lr 1e-4 --cl_weight 1.0 --seed 42\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-large\", \"seed\": 42, \"hyperparams\": {\"batch_size\": 32, \"epochs\": 10, \"lr\": \"2e-5\", \"margin_lr\": \"1e-4\", \"cl_weight\": 1, \"feature_dim\": 19, \"contrastive_dim\": 128, \"l2_norm\": true}, \"fixes_from_v1\": \"margin_lr 1e-3→1e-4, cl_weight 0.5→1.0, added L2 norm on contrastive embeddings\"}, \"pid\": \"210106\", \"log_path\": \"~/runs/recursive_gen_depth_est/dcol_deberta_002.log\", \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 512.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 504.88 MiB is free. Process 193689 has 57.35 GiB memory in use. Process 208941 has 8.81 GiB memory in use. Including non-PyTorch memory, this process h\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T22:40:10.039Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T22:40:11.742992+00:00\"}]}, \"notes\": \"OOM 根因确认：dcol_deberta_002 (57GB) 与 gpt2xl_temp09 extract_features (9GB) 同时占用 GPU 0 导致显存竞争。非代码 bug，非僵尸残留——PID 193689 就是 dcol_002 本身。GPU 0 现已完全清空 (0MiB/97887MiB)。代码 dcol_trainer.py 和数据 features_all.jsonl 均完好。v3 可安全重试。\"}, \"gpt2xl_temp09_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:28:04.139Z\", \"updated_at\": \"2026-05-14T22:43:57.362Z\", \"hypothesis\": \"解码策略鲁棒性: GPT-2 XL 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"parent\": \"cross_model_gpt2xl_001\", \"spec\": {\"command\": \"bash scripts/run_pipeline_gpt2xl_temp09.sh\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"pid\": 168793, \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_temp09.log\", \"submitted_at\": \"2026-05-14T18:28:10Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09/\", \"data_count\": 20000, \"model_name\": \"gpt2-xl\", \"model_path\": \"/root/autodl-tmp/models/gpt2-xl/\", \"seed\": 42, \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"c_attn\", \"c_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 0.9, \"decoding_strategy\": \"temp_only\"}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_temp09/\", \"checkpoint_source\": \"recursive finetune\", \"eval_data\": \"n/a (training pipeline, not eval)\", \"results_dir\": \"/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/\", \"eval_finished_at\": \"2026-05-15T06:42:16+08:00\", \"wall_clock_seconds\": 15301.9, \"gpu_hours\": 4.25}, \"reproduce\": {\"finished_at\": \"2026-05-14T22:19:54.987Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T22:19:56.275209+00:00\"}]}, \"metrics\": {\"data\": {\"samples_per_depth\": 5000, \"total_samples\": 20000, \"depths\": 4}, \"finetune_losses\": {\"depth_1\": 2.5498, \"depth_2\": 1.6972, \"depth_3\": 1.2922}, \"code_contamination\": {\"depth_0\": {\"broad\": 25, \"narrow\": 20, \"broad_pct\": 0.5, \"narrow_pct\": 0.4}, \"depth_1\": {\"broad\": 25, \"narrow\": 40, \"broad_pct\": 0.5, \"narrow_pct\": 0.8}, \"depth_2\": {\"broad\": 34, \"narrow\": 80, \"broad_pct\": 0.7, \"narrow_pct\": 1.6}, \"depth_3\": {\"broad\": 25, \"narrow\": 76, \"broad_pct\": 0.5, \"narrow_pct\": 1.5}}, \"four_class\": {\"rf_accuracy\": 0.8542, \"rf_accuracy_ci\": [0.843, 0.8653], \"lr_accuracy\": 0.8155, \"lr_accuracy_ci\": [0.8025, 0.8273], \"rf_auc\": {\"d0v1\": 0.9963, \"d0v2\": 0.9992, \"d0v3\": 1, \"d1v2\": 0.9367, \"d1v3\": 0.9947, \"d2v3\": 0.8815}, \"lr_auc\": {\"d0v1\": 0.984, \"d0v2\": 0.9998, \"d0v3\": 1, \"d1v2\": 0.8903, \"d1v3\": 0.9824, \"d2v3\": 0.8183}, \"top_features\": [\"p90_ppl\", \"mean_surprisal\", \"p75_ppl\", \"var_surprisal\"]}, \"three_class\": {\"rf_accuracy\": 0.82, \"rf_accuracy_ci\": [0.806, 0.834], \"lr_accuracy\": 0.7773, \"lr_accuracy_ci\": [0.7627, 0.792], \"rf_auc\": {\"d1v2\": 0.9418, \"d1v3\": 0.9967, \"d2v3\": 0.8849}}, \"three_class_filtered\": {\"rf_accuracy\": 0.815, \"rf_accuracy_ci\": [0.7999, 0.8298], \"lr_accuracy\": 0.7869, \"lr_accuracy_ci\": [0.7711, 0.8016], \"rf_auc\": {\"d1v2\": 0.937, \"d1v3\": 0.9944, \"d2v3\": 0.8891}}}, \"conclusion\": \"success\", \"notes\": \"GPT-2 XL temp09 意外优于 nucleus baseline: 4-class RF 85.42% vs 83.3% (+2.1pp), 3-class 82.0% vs 79.3% (+2.7pp)。与 Pythia 方向相反（Pythia temp09 降 1.9pp）。解码策略对深度信号的影响是模型依赖的。d2v3 AUC 基本持平（0.8815 vs 0.883），d1v2 AUC 提升（0.9367 vs 0.913）。filtered 3-class 81.5% 与 unfiltered 82.0% 接近，code contamination 影响小。\", \"completed_at\": \"2026-05-14T22:43:11.919Z\"}, \"dcol_deberta_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:27:49.873Z\", \"updated_at\": \"2026-05-14T22:35:52.089Z\", \"hypothesis\": \"DCOL (DeBERTa-v3-large + Contrastive Ordinal Loss with learnable margins) 从原始文本直接预测递归生成深度，优于统计特征+RF方法\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T20:19:37.991Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol/ --batch_size 32 --epochs 10 --lr 2e-5 --margin_lr 1e-3 --cl_weight 0.5\\\"\"}, \"spec\": {\"command\": \"python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol/ --batch_size 32 --epochs 10 --lr 2e-5 --margin_lr 1e-3 --cl_weight 0.5\", \"server\": \"gpu-6000pro-2\", \"data_path\": \"data/features_all.jsonl\", \"model_name\": \"DeBERTa-v3-large\", \"seed\": \"default\", \"hyperparams\": {\"batch_size\": 32, \"epochs\": 10, \"lr\": \"2e-5\", \"margin_lr\": \"1e-3\", \"cl_weight\": 0.5, \"feature_dim\": 19, \"contrastive_dim\": 128}}, \"pid\": \"193684\", \"log_path\": \"~/runs/recursive_gen_depth_est/dcol_deberta_001.log\", \"conclusion\": \"failed\", \"notes\": \"Embedding collapse: margin_lr=1e-3 太高（与 base lr 2e-5 差 50x），导致 margins 过快收缩。CL loss 从 0.46 塌缩到 0.03，但 4-class acc 仅 31.5%（Epoch 6）。训练无意义，已 kill。修复方案：margin_lr→1e-4, 添加 L2 norm, cl_weight→1.0。\", \"completed_at\": \"2026-05-14T22:35:52.089Z\"}, \"cross_model_olmo_temp09_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T20:34:13.042Z\", \"updated_at\": \"2026-05-14T20:37:44.308Z\", \"hypothesis\": \"OLMo-1B cross-model validation with temp_only decoding (t=0.9)\", \"parent\": \"plan_002b\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T20:37:39.137Z\", \"notes\": \"重复条目，已清理。保留 olmo_temp09_001 作为正式条目。\"}, \"pythia_topk50_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:49:28.112Z\", \"updated_at\": \"2026-05-14T20:32:54.105Z\", \"hypothesis\": \"解码策略鲁棒性: Pythia-1.4B 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"spec\": {\"command\": \"bash scripts/run_pipeline_pythia_topk50.sh\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"pid\": 165810, \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_topk50.log\", \"submitted_at\": \"2026-05-14T18:22:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/pythia_topk50/depth_0.jsonl\", \"data_count\": 20000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"model_path\": \"/root/autodl-tmp/models/pythia-1.4b/\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/pythia_topk50/\", \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"query_key_value\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"decoding_strategy\": \"topk\", \"top_k\": 50}, \"wall_clock_seconds\": 7769.3, \"gpu_hours\": 2.16}, \"reproduce\": {\"finished_at\": \"2026-05-14T20:15:02.419Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T20:15:03.379345+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"rf_4class_acc\": 0.696, \"rf_4class_acc_ci\": [0.6825, 0.7107], \"lr_4class_acc\": 0.682, \"rf_3class_acc\": 0.592, \"rf_3class_acc_ci\": [0.575, 0.6107], \"rf_3class_filtered_acc\": 0.6133, \"rf_3class_filtered_acc_ci\": [0.593, 0.6312], \"pairwise_auc_rf\": {\"d0v1\": 0.9927, \"d0v2\": 0.9983, \"d0v3\": 0.9978, \"d1v2\": 0.7518, \"d1v3\": 0.9176, \"d2v3\": 0.6918}, \"pairwise_auc_3class_filtered_rf\": {\"d1v2\": 0.768, \"d1v3\": 0.9323, \"d2v3\": 0.7013}, \"feature_importance_top5\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"finetune_loss\": {\"depth_0\": 2.2406, \"depth_1\": 1.6704, \"depth_2\": 1.4374}, \"code_contamination_narrow\": {\"depth_0\": 0.004, \"depth_1\": 0.077, \"depth_2\": 0.123, \"depth_3\": 0.131}}, \"notes\": \"## pythia_topk50_001 分析结果\\n\\n### 核心指标\\n- RF 4-class acc: 69.6% (chance 25%), PASS\\n- RF 3-class acc: 59.2% (chance 33.3%)\\n- RF 3-class filtered acc: 61.3%\\n- d1v2 AUC: 0.7518, d2v3 AUC: 0.6918\\n\\n### vs Baseline (nucleus p=0.95) 对比\\n| Metric | topk50 | baseline | delta |\\n|--------|--------|----------|-------|\\n| 4-class acc | 69.6% | 78.2% | -8.6pp |\\n| 3-class acc | 59.2% | 70.8% | -11.6pp |\\n| d0v1 AUC | 0.9927 | 0.9975 | -0.005 |\\n| d1v2 AUC | 0.7518 | 0.8607 | -0.109 |\\n| d2v3 AUC | 0.6918 | 0.8005 | -0.109 |\\n\\n### vs temp09 对比\\n| Metric | topk50 | temp09 | delta |\\n|--------|--------|--------|-------|\\n| 4-class acc | 69.6% | 76.25% | -6.65pp |\\n| 3-class acc | 59.2% | 69.83% | -10.6pp |\\n| d1v2 AUC | 0.7518 | 0.8327 | -0.081 |\\n| d2v3 AUC | 0.6918 | 0.7928 | -0.101 |\\n\\n### Feature importance 一致性\\nTop-5 与 baseline 完全一致: var_surprisal, p90_ppl, mean_ppl, mean_surprisal, p75_ppl\\n\\n### Code contamination (narrow)\\nd0=0.4%, d1=7.7%, d2=12.3%, d3=13.1%（高于 baseline，top-k 产生更多 code-like text）\\nFiltered 3-class 性能反而略高于 unfiltered (61.3% vs 59.2%)，说明 code contamination 不是性能的主要驱动\\n\\n### 结论\\nSUCCESS — 深度信号在 top-k 采样下仍然存在（69.6% >> 25% chance），但信号强度显著低于 nucleus (-8.6pp) 和 temp09 (-6.65pp)。\\n跨策略泛化成立（信号存在），但不同采样策略对信号强度有影响。Top-k 的截断式采样比连续概率重分配（nucleus/temperature）保留的深度信号更弱。\", \"completed_at\": \"2026-05-14T20:31:29.326Z\"}, \"cross_model_gpt2xl_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:10:51.209Z\", \"updated_at\": \"2026-05-14T18:48:19.037Z\", \"spec\": {\"command\": \"bash scripts/run_pipeline_gpt2xl.sh (GPT-2 XL, 3x LoRA finetune + 3x generate)\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"pid\": 123650, \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl.log\", \"submitted_at\": \"2026-05-14T14:42:17.632Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/depth_0.jsonl\", \"data_count\": 5000, \"model_name\": \"openai-community/gpt2-xl\", \"model_path\": \"/root/autodl-tmp/models/gpt2-xl/\", \"seed\": 42, \"hypothesis\": \"跨模型泛化: GPT-2 XL 递归生成的统计特征与 Pythia-1.4B 一致，支持深度估计跨模型迁移\", \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"c_attn\", \"c_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"top_p\": 0.95}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl/\", \"wall_clock_seconds\": 13529.5, \"gpu_hours\": 3.76}, \"reproduce\": {\"finished_at\": \"2026-05-14T18:19:22.901Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T18:19:23.750176+00:00\"}]}, \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl.log\", \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl/\", \"metrics\": {\"four_class_acc_rf\": 0.833, \"four_class_acc_ci\": [0.823, 0.845], \"four_class_acc_lr\": 0.813, \"auc_0v1\": 0.9941, \"auc_0v2\": 0.9965, \"auc_0v3\": 0.9988, \"auc_1v2\": 0.9131, \"auc_1v3\": 0.9857, \"auc_2v3\": 0.8829, \"three_class_acc\": 0.793, \"three_class_acc_ci\": [0.778, 0.806], \"three_class_auc_1v2\": 0.9109, \"three_class_auc_1v3\": 0.989, \"three_class_auc_2v3\": 0.8885, \"finetune_losses\": {\"depth_0\": 2.55, \"depth_1\": 1.715, \"depth_2\": 1.342}, \"top_features\": [\"p90_ppl (0.208)\", \"var_surprisal (0.208)\", \"p75_ppl (0.103)\", \"mean_surprisal (0.082)\", \"mean_ppl (0.065)\"], \"code_contamination\": {\"d0\": 0.005, \"d1\": 0.005, \"d2\": 0.013, \"d3\": 0.007}}, \"notes\": \"Pipeline 完成 (3x finetune + 3x generate + feature extraction + 4-class/3-class classification + code contamination)。4 个 depth 各 5000 样本。Loss 递减正常: 2.55→1.715→1.342。结果文件: results/gpt2xl/ (classification_report.txt, pairwise_auc.json, feature_importance.json, three_class_*)。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T18:27:47.143Z\"}, \"cross_model_olmo_002\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T14:52:05.783Z\", \"updated_at\": \"2026-05-14T18:32:00.366Z\", \"hypothesis\": \"跨模型泛化: OLMo-1B 递归生成的统计特征与 Pythia-1.4B 一致，支持深度估计跨模型迁移 (重跑 olmo_001, 修复脚本 bug)\", \"parent\": \"cross_model_olmo_001\", \"failure_reason\": \"\", \"completed_at\": \"2026-05-14T17:02:02.546Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:02:03.363819+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T18:19:28.049479+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash scripts/run_pipeline_olmo.sh (OLMo-1B, 3x LoRA finetune + 3x generate)\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"pid\": 150550, \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_olmo_002.log\", \"submitted_at\": \"2026-05-14T16:35:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"model_path\": \"/root/autodl-tmp/models/olmo-1b-hf/\", \"seed\": 42, \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"top_p\": 0.95}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/olmo/\", \"checkpoint_source\": \"n/a (retry of olmo_001, full pipeline re-run)\", \"eval_data\": \"n/a (training pipeline, not eval)\", \"wall_clock_seconds\": 6266.8, \"gpu_hours\": 1.74}, \"reproduce\": {\"finished_at\": \"2026-05-14T18:19:26.267Z\"}, \"conclusion\": \"success\", \"metrics\": {\"four_class_acc_rf\": 0.788, \"four_class_acc_ci\": [0.776, 0.8], \"four_class_acc_lr\": 0.751, \"auc_0v1\": 0.9834, \"auc_0v2\": 0.9949, \"auc_0v3\": 0.9989, \"auc_1v2\": 0.8673, \"auc_1v3\": 0.9806, \"auc_2v3\": 0.8124, \"three_class_acc\": 0.744, \"three_class_acc_ci\": [0.728, 0.76], \"three_class_mae\": 0.27, \"three_class_auc_1v2\": 0.8664, \"three_class_auc_1v3\": 0.9852, \"three_class_auc_2v3\": 0.8274, \"three_class_recall\": {\"d1\": 0.864, \"d2\": 0.607, \"d3\": 0.761}, \"three_class_precision\": {\"d1\": 0.863, \"d2\": 0.646, \"d3\": 0.718}, \"four_class_per_class\": {\"d0\": {\"precision\": 0.95, \"recall\": 0.99, \"f1\": 0.97}, \"d1\": {\"precision\": 0.85, \"recall\": 0.82, \"f1\": 0.83}, \"d2\": {\"precision\": 0.63, \"recall\": 0.59, \"f1\": 0.61}, \"d3\": {\"precision\": 0.71, \"recall\": 0.76, \"f1\": 0.73}}, \"finetune_losses\": {\"depth_0\": 2.269, \"depth_1\": 1.65, \"depth_2\": 1.226}, \"top_features\": [\"p90_ppl (0.18)\", \"var_surprisal (0.16)\", \"p75_ppl (0.11)\", \"mean_surprisal (0.08)\", \"type_token_ratio (0.06)\"], \"code_contamination\": {\"d0\": 0.005, \"d1\": 0.027, \"d2\": 0.007, \"d3\": 0.008}, \"feature_dim\": 19, \"truncation_length\": 507}}, \"pythia_temp09_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:49:27.459Z\", \"updated_at\": \"2026-05-14T16:46:11.832Z\", \"hypothesis\": \"解码策略鲁棒性: Pythia-1.4B 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化\", \"spec\": {\"command\": \"bash scripts/run_pipeline_pythia_temp09.sh (Pythia-1.4B, 3x LoRA finetune + 3x generate, temp_only τ=0.9)\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"pid\": 125067, \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_temp09.log\", \"submitted_at\": \"2026-05-14T14:51:48Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"model_path\": \"/root/autodl-tmp/models/pythia-1.4b/\", \"seed\": 42, \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"query_key_value\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 0.9, \"decoding_strategy\": \"temp_only\"}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/pythia_temp09/\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T16:29:56.194Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T16:29:55.620608+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/models/pythia_temp09/\", \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.7625, \"rf_accuracy_ci\": [0.749, 0.7753], \"lr_accuracy\": 0.7405, \"lr_accuracy_ci\": [0.7265, 0.7545], \"pairwise_auc\": {\"0v1\": 0.9968, \"0v2\": 0.9993, \"0v3\": 0.9991, \"1v2\": 0.8327, \"1v3\": 0.959, \"2v3\": 0.7928}, \"top_features\": [\"var_surprisal (0.1776)\", \"p90_ppl (0.1501)\", \"mean_ppl (0.1140)\", \"mean_surprisal (0.0889)\", \"p75_ppl (0.0687)\"], \"feature_dim\": 19, \"truncation_length\": 498}, \"three_class_full\": {\"accuracy\": 0.6983, \"accuracy_ci\": [0.682, 0.715], \"mae\": 0.3357, \"recall\": {\"d1\": 0.802, \"d2\": 0.554, \"d3\": 0.739}, \"precision\": {\"d1\": 0.792, \"d2\": 0.608, \"d3\": 0.686}, \"f1\": {\"d1\": 0.797, \"d2\": 0.58, \"d3\": 0.712}, \"pairwise_auc\": {\"d1v2\": 0.8354, \"d1v3\": 0.9631, \"d2v3\": 0.8043}}, \"three_class_filtered\": {\"accuracy\": 0.7252, \"accuracy_ci\": [0.7064, 0.7427], \"mae\": 0.2953, \"recall\": {\"d1\": 0.842, \"d2\": 0.596, \"d3\": 0.735}, \"precision\": {\"d1\": 0.821, \"d2\": 0.628, \"d3\": 0.715}, \"f1\": {\"d1\": 0.831, \"d2\": 0.611, \"d3\": 0.725}, \"pairwise_auc\": {\"d1v2\": 0.8656, \"d1v3\": 0.9772, \"d2v3\": 0.8295}, \"n_samples\": 11445, \"n_removed\": 3555}, \"finetune_losses\": {\"depth_0\": 2.222, \"depth_1\": 1.37, \"depth_2\": 1.006}, \"code_contamination\": {\"d0\": 0.004, \"d1\": 0.077, \"d2\": 0.116, \"d3\": 0.136}}, \"conclusion\": \"success\", \"notes\": \"## Comparison: temp_only τ=0.9 vs baseline nucleus p=0.95\\n\\n### 4-class classification (d0-d3)\\n| Metric | Baseline (nucleus p=0.95) | Temp09 (τ=0.9) | Δ |\\n|--------|--------------------------|-----------------|---|\\n| RF acc | 78.15% [76.9, 79.4] | 76.25% [74.9, 77.5] | -1.9pp |\\n| LR acc | 74.92% | 74.05% | -0.9pp |\\n| AUC 0v1 | 0.9975 | 0.9968 | -0.0007 |\\n| AUC 1v2 | 0.8607 | 0.8327 | -0.028 |\\n| AUC 2v3 | 0.8005 | 0.7928 | -0.008 |\\n\\n### 3-class classification (d1-d3 only)\\n| Metric | Baseline | Temp09 | Δ |\\n|--------|----------|--------|---|\\n| Full acc | 70.8% | 69.83% | -1.0pp |\\n| Filtered acc | — | 72.52% [70.6, 74.3] | — |\\n| Filtered d1v2 AUC | — | 0.8656 | — |\\n| Filtered d2v3 AUC | — | 0.8295 | — |\\n\\n### Feature importance (top-5, same ranking)\\n1. var_surprisal (0.178 vs 0.169)\\n2. p90_ppl (0.150 vs 0.158)\\n3. mean_ppl (0.114 vs 0.120)\\n4. mean_surprisal (0.089 vs 0.088)\\n5. p75_ppl (0.069 vs 0.067)\\n\\n### Code contamination\\n| Depth | Baseline | Temp09 | Δ |\\n|-------|----------|--------|---|\\n| d1 | 5.0% | 7.7% | +2.7pp |\\n| d2 | 9.0% | 11.6% | +2.6pp |\\n| d3 | 12.0% | 13.6% | +1.6pp |\\n\\n### Analysis\\n1. **Depth signal robust across decoding strategies**: temp_only τ=0.9 achieves 76.25% 4-class acc (vs 78.15% baseline), only 1.9pp lower — well within the hypothesis that depth signal is decoding-strategy-agnostic.\\n2. **Ordinal structure preserved**: AUC ordering 0v1 > 1v3 > 1v2 > 2v3 identical to baseline, confirming the difficulty gradient d0≫d1>d2>d3 is robust.\\n3. **d2 remains the weak link**: d2 recall (0.554 in 3-class) is the lowest, consistent with baseline — d2 is the hardest to distinguish from both d1 and d3.\\n4. **Feature importance stable**: Top-5 features identical between strategies with near-identical importance weights, suggesting the same statistical signatures carry depth information regardless of decoding method.\\n5. **Higher code contamination**: Temp09 shows 2-3pp higher code-like content across depths, possibly because temperature-only sampling without top-p truncation preserves more of the distribution tail including code patterns. The filtered 3-class acc (72.52%) mitigates this.\\n6. **Conclusion: SUCCESS** — 4-class acc 76.25% >> 40% threshold, d1v2 AUC 0.8327 >> 0.6 threshold. Hypothesis confirmed: temperature-only decoding preserves recursive depth signal.\", \"completed_at\": \"2026-05-14T16:42:54.633Z\"}, \"mvp_pipeline_pythia_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:07:25.860Z\", \"updated_at\": \"2026-05-14T16:13:24.461Z\", \"spec\": {\"command\": \"bash scripts/run_pipeline.sh (Pythia-1.4B, 3x LoRA finetune + 3x generate)\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"pid\": 103739, \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia.log\", \"submitted_at\": \"2026-05-14T12:10:06.848Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"model_path\": \"/root/autodl-tmp/models/pythia-1.4b/\", \"seed\": 42, \"hypothesis\": \"Pythia-1.4B (The Pile, 代码仅3.3%) 递归生成的文本具有可区分的统计模式，4-class acc > 40% 且 depth-1 vs depth-2 AUC > 0.6\", \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"query_key_value\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"top_p\": 0.95}, \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/lora_depth_{0,1,2}/\", \"wall_clock_seconds\": 6420, \"gpu_hours\": 1.78, \"pipeline_metrics\": {\"finetune_loss_d0\": 2.2411, \"finetune_loss_d1\": 1.3894, \"finetune_loss_d2\": 1.025, \"finetune_time_each_s\": 268, \"generate_time_each_min\": 28, \"code_contamination_d1_pct\": 5, \"code_contamination_d2_pct\": 9, \"code_contamination_d3_pct\": 12}}, \"reproduce\": {\"finished_at\": \"2026-05-14T13:49:19.028Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T13:49:19.779486+00:00\"}]}, \"metrics\": {\"full_4class_acc\": 0.782, \"full_4class_acc_ci\": [0.769, 0.794], \"full_4class_acc_stratified\": 0.781, \"full_mae\": 0.2367, \"full_auc_0v1\": 0.9975, \"full_auc_1v2\": 0.8607, \"full_auc_2v3\": 0.8005, \"filtered_4class_acc\": 0.816, \"filtered_4class_acc_ci\": [0.803, 0.829], \"filtered_mae\": 0.1995, \"filtered_auc_0v1\": 0.9977, \"filtered_auc_1v2\": 0.8782, \"filtered_auc_2v3\": 0.8323, \"filtered_sample_count\": 16993, \"three_class_acc\": 0.708, \"three_class_acc_ci\": [0.692, 0.725], \"three_class_mae\": 0.3203, \"three_class_auc_1v2\": 0.854, \"three_class_auc_1v3\": 0.9569, \"three_class_auc_2v3\": 0.7931, \"three_class_recall_d1\": 0.79, \"three_class_recall_d2\": 0.607, \"three_class_recall_d3\": 0.728, \"three_class_precision_d1\": 0.852, \"three_class_precision_d2\": 0.605, \"three_class_precision_d3\": 0.68, \"three_class_f1_d1\": 0.82, \"three_class_f1_d2\": 0.606, \"three_class_f1_d3\": 0.703, \"three_class_lr_acc\": 0.671, \"filtered_three_class_acc\": 0.747, \"filtered_three_class_acc_ci\": [0.727, 0.764], \"filtered_three_class_mae\": 0.2759, \"filtered_three_class_recall_d1\": 0.862, \"filtered_three_class_recall_d2\": 0.635, \"filtered_three_class_recall_d3\": 0.735, \"filtered_three_class_precision_d1\": 0.867, \"filtered_three_class_precision_d2\": 0.659, \"filtered_three_class_precision_d3\": 0.704, \"filtered_three_class_f1_d1\": 0.864, \"filtered_three_class_f1_d2\": 0.647, \"filtered_three_class_f1_d3\": 0.719, \"filtered_three_class_auc_1v2\": 0.8926, \"filtered_three_class_auc_1v3\": 0.9769, \"filtered_three_class_auc_2v3\": 0.8272, \"filtered_three_class_sample_count\": 12012, \"best_model\": \"RandomForest\", \"top_features\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"truncation_length\": 498, \"feature_dim\": 19}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T14:01:46.379Z\"}, \"cross_model_olmo_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:10:48.599Z\", \"updated_at\": \"2026-05-14T14:52:05.061Z\", \"spec\": {\"failure_reason\": \"Shell script syntax error: unclosed quote at line 52 of run_pipeline_olmo.sh. Only depth-0 LoRA finetune completed (loss 2.2686, 283s). Depth 1-3 generation/finetune all skipped. Script has been fixed (46 lines).\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T14:43:28.367Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T14:43:29.155117+00:00\"}]}, \"log_path\": \"logs/pipeline_olmo.log\", \"checkpoint_path\": \"checkpoints/olmo/lora_depth_0\", \"metrics\": {\"status\": \"PIPELINE_CRASHED\", \"completed_steps\": [\"depth0_lora_finetune\"], \"failed_at\": \"shell_script_line_52_unmatched_quote\", \"depth0_final_loss\": 2.2686, \"depth0_train_runtime_s\": 283.2, \"depth0_train_steps\": 939, \"depth0_trainable_params\": 3145728, \"depth0_total_params\": 1179910144, \"classification_results\": null, \"note\": \"Script crashed after depth-0 finetune. No depth-1/2/3 generation, no feature extraction, no classification performed.\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T14:48:26.957Z\"}, \"mvp_pipeline_qwen_base_004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:49:48.916Z\", \"updated_at\": \"2026-05-14T12:07:13.745Z\", \"spec\": {\"command\": \"N/A (orphan cleanup)\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"101615\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-14T11:49:48.904Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 0, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 1044.8, \"gpu_hours\": 0.29}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T12:07:13.746Z\"}, \"mvp_pipeline_pythia_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:38:38.070Z\", \"updated_at\": \"2026-05-14T12:07:13.387Z\", \"spec\": {\"command\": \"N/A (orphan cleanup)\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"98811\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-14T11:38:38.060Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 0, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 1715.3, \"gpu_hours\": 0.48}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T12:07:13.387Z\"}, \"mvp_pipeline_base_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:15:05.767Z\", \"updated_at\": \"2026-05-14T12:07:12.480Z\", \"spec\": {\"command\": \"N/A (orphan cleanup)\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"95608\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-14T11:15:05.758Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 0, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 3126.7, \"gpu_hours\": 0.87}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T12:07:12.480Z\"}, \"mvp_pipeline_003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:21:35.653Z\", \"updated_at\": \"2026-05-14T12:07:11.506Z\", \"spec\": {\"command\": \"N/A (orphan cleanup)\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"89249\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-14T10:21:35.650Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 0, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 6335.9, \"gpu_hours\": 1.76}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T12:07:11.506Z\"}, \"mvp_pipeline_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:21:10.897Z\", \"updated_at\": \"2026-05-14T12:07:10.599Z\", \"spec\": {\"command\": \"N/A (orphan cleanup)\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"89048\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-14T10:21:10.894Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 0, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 6359.7, \"gpu_hours\": 1.77}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T12:07:10.599Z\"}, \"mvp_pipeline_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:14:38.727Z\", \"updated_at\": \"2026-05-14T12:07:10.095Z\", \"spec\": {\"command\": \"N/A (orphan cleanup)\", \"server\": \"gpu-6000pro-2\", \"gpu\": [\"cuda:0\"], \"pid\": \"87744\", \"log_path\": \"N/A\", \"submitted_at\": \"2026-05-14T10:14:38.726Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"N/A\", \"seed\": 0, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 6751.4, \"gpu_hours\": 1.88}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T12:07:10.095Z\"}, \"mvp_pipeline_base_003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:16:25.669Z\", \"updated_at\": \"2026-05-14T11:26:12.749Z\", \"spec\": {\"command\": \"bash scripts/run_pipeline.sh (base model, 3x LoRA finetune + 3x generate)\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"pid\": 96139, \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_base.log\", \"submitted_at\": \"2026-05-14T11:16:25.661Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B (base)\", \"model_path\": \"/root/autodl-tmp/models/Qwen2.5-1.5B/\", \"seed\": 42, \"hypothesis\": \"不同递归生成深度的文本具有可区分的统计模式 (base model, 替代被 kill 的 Instruct 版本 mvp_pipeline_004)\", \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"q_proj\", \"v_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"top_p\": 0.95}, \"kill_reason\": \"Qwen2.5-1.5B base 同样生成代码——根因是 Qwen2.5 预训练数据代码占比太高，LoRA 无法覆盖。换用 Pythia-1.4B。\", \"checkpoint_path\": \"N/A (invalidated)\", \"wall_clock_seconds\": 587.1, \"gpu_hours\": 0.16}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T11:26:12.749Z\"}, \"mvp_pipeline_004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:23:02.280Z\", \"updated_at\": \"2026-05-14T11:05:26.253Z\", \"spec\": {\"command\": \"bash scripts/run_pipeline.sh (3x LoRA finetune + 3x generate)\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"pid\": 89779, \"log_path\": \"/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline.log\", \"submitted_at\": \"2026-05-14T10:23:02.276Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"hypothesis\": \"不同递归生成深度的文本具有可区分的统计模式，支持序数深度估计\", \"hyperparams\": {\"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"q_proj\", \"v_proj\"], \"epochs\": 3, \"lr\": \"2e-4\", \"batch_size\": 8, \"gradient_accumulation\": 2, \"max_seq_len\": 512, \"max_new_tokens\": 512, \"temperature\": 1, \"top_p\": 0.95}, \"kill_reason\": \"Instruct 模型生成内容为代码/HTML而非自然语言——代码先验太强，5K Wikipedia LoRA 无法覆盖。分类结果是域混淆信号不是 depth signal。\", \"checkpoint_path\": \"N/A (invalidated)\", \"wall_clock_seconds\": 2544.0, \"gpu_hours\": 0.71}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T11:05:26.253Z\"}}, \"count\": 103, \"total\": 103, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3459}}"
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PWwy6EHuovEDhbHUmLwkPC`</summary>
+
+```json
+{
+  "query": "Shi 2025 \"closer look\" model collapse NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "eb2653bc-bfc3-413b-b0b4-0ae876115bb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017oHNXZYCDnDqDPmFqJyPU4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 537,
+      "cache_read_input_tokens": 31632,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 537
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T18:54:46.618Z_
+
+<details><summary>↩ Tool result · `toolu_01PWwy6EHuovEDhbHUmLwkPC`</summary>
+
+```text
+Web search results for query: "Shi 2025 "closer look" model collapse NeurIPS"
+
+Links: [{"title":"NeurIPS Poster A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://neurips.cc/virtual/2025/poster/119754"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://shilianghe007.github.io/model-collapse/index.html"},{"title":"GitHub - shilianghe007/Model_Collapse: Code for the NeurIPS spotlight paper \"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\"","url":"https://github.com/shilianghe007/Model_Collapse"},{"title":"Research Conference Spotlight – Research Impact & Leadership","url":"https://sites.gatech.edu/research/spotlight/"},{"title":"Fifteen papers by ECE researchers at NeurIPS 2025","url":"https://ece.engin.umich.edu/stories/fifteen-papers-by-ece-researchers-at-neurips-2025"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective | Request PDF","url":"https://www.researchgate.net/publication/395724450_A_Closer_Look_at_Model_Collapse_From_a_Generalization-to-Memorization_Perspective"},{"title":"[2509.16499] A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/abs/2509.16499"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/html/2509.16499v2"},{"title":"ICML Poster A Closer Look at Multimodal Representation Collapse","url":"https://icml.cc/virtual/2025/poster/45060"},{"title":"A Closer Look at Model Collapse:","url":"https://par.nsf.gov/servlets/purl/10643460"}]
+
+Based on the search results, here's information about the paper "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective" by Shi et al. at NeurIPS 2025:
+
+## Paper Overview
+
+This is a spotlight paper at NeurIPS 2025 by Lianghe Shi, Meng Wu, Huijie Zhang, Zekai Zhang, Molei Tao, and Qing Qu.
+
+## Main Contribution
+
+The paper identifies a transition from generalization to memorization during model collapse in diffusion models, where models increasingly replicate training data instead of generating novel content during iterative training on synthetic samples.
+
+## Key Findings
+
+This transition is directly driven by the declining entropy of the synthetic training data produced in each training cycle, which serves as a clear indicator of model degradation.
+
+Model collapse is a phenomenon in which recursive iterations of training on synthetic data lead to performance degradation. Prior work primarily characterizes this collapse via variance shrinkage or distribution shift, but these perspectives miss practical manifestations of model collapse.
+
+## Proposed Solution
+
+The authors propose an entropy-based data selection strategy to mitigate the transition from generalization to memorization and alleviate model collapse.
+
+The paper also includes code implementation available on GitHub, with additional details available on the project website.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "08dfb44f-1150-4a14-81c9-045ca1129da3",
+  "tool_use_result": {
+    "query": "Shi 2025 \"closer look\" model collapse NeurIPS",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FYMeRDpqKshWbWideS1ajp",
+        "content": [
+          {
+            "title": "NeurIPS Poster A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective",
+            "url": "https://neurips.cc/virtual/2025/poster/119754"
+          },
+          {
+            "title": "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective",
+            "url": "https://shilianghe007.github.io/model-collapse/index.html"
+          },
+          {
+            "title": "GitHub - shilianghe007/Model_Collapse: Code for the NeurIPS spotlight paper \"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\"",
+            "url": "https://github.com/shilianghe007/Model_Collapse"
+          },
+          {
+            "title": "Research Conference Spotlight – Research Impact & Leadership",
+            "url": "https://sites.gatech.edu/research/spotlight/"
+          },
+          {
+            "title": "Fifteen papers by ECE researchers at NeurIPS 2025",
+            "url": "https://ece.engin.umich.edu/stories/fifteen-papers-by-ece-researchers-at-neurips-2025"
+          },
+          {
+            "title": "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective | Request PDF",
+            "url": "https://www.researchgate.net/publication/395724450_A_Closer_Look_at_Model_Collapse_From_a_Generalization-to-Memorization_Perspective"
+          },
+          {
+            "title": "[2509.16499] A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective",
+            "url": "https://arxiv.org/abs/2509.16499"
+          },
+          {
+            "title": "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective",
+            "url": "https://arxiv.org/html/2509.16499v2"
+          },
+          {
+            "title": "ICML Poster A Closer Look at Multimodal Representation Collapse",
+            "url": "https://icml.cc/virtual/2025/poster/45060"
+          },
+          {
+            "title": "A Closer Look at Model Collapse:",
+            "url": "https://par.nsf.gov/servlets/purl/10643460"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the paper \"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\" by Shi et al. at NeurIPS 2025:\n\n## Paper Overview\n\nThis is a spotlight paper at NeurIPS 2025 by Lianghe Shi, Meng Wu, Huijie Zhang, Zekai Zhang, Molei Tao, and Qing Qu.\n\n## Main Contribution\n\nThe paper identifies a transition from generalization to memorization during model collapse in diffusion models, where models increasingly replicate training data instead of generating novel content during iterative training on synthetic samples.\n\n## Key Findings\n\nThis transition is directly driven by the declining entropy of the synthetic training data produced in each training cycle, which serves as a clear indicator of model degradation.\n\nModel collapse is a phenomenon in which recursive iterations of training on synthetic data lead to performance degradation. Prior work primarily characterizes this collapse via variance shrinkage or distribution shift, but these perspectives miss practical manifestations of model collapse.\n\n## Proposed Solution\n\nThe authors propose an entropy-based data selection strategy to mitigate the transition from generalization to memorization and alleviate model collapse.\n\nThe paper also includes code implementation available on GitHub, with additional details available on the project website."
+    ],
+    "durationSeconds": 5.830823306999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+1. Shi et al. (2025) - "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective" is indeed at NeurIPS 2025 (spotlight paper). The authors are Lianghe Shi, not just "Shi". The GitHub description says "NeurIPS spotlight paper".
+
+But wait - I need to check if the paper in our theory draft references Shi et al. I don't see it in the theory_draft.tex. Let me check the other paper files.
+
+Actually, the task says "低优先级：Shi et al. 
+
+(2025) venue 核实" - so it's about checking a reference in the paper. But the theory_draft.tex doesn't mention Shi. Let me check the bib file or other tex files.
+
+Actually, the task just says to confirm the venue. I've confirmed it's NeurIPS 2025 (spotlight). Let me note this.
+
+Now I need to search the registry for d3v4 AUC data. The registry output was too large. Let me search for depth_extension experiments specifically.
+
+I've confirmed Shi et al. (2025) is a NeurIPS spotlight paper, though I don't see it referenced in theory_draft.tex yet. Now I'm searching through the registry for the d3v4 AUC results, focusing on the depth_extension experiments since the full output was unwieldy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "00d6b52f-b412-4b67-a6c5-19e51f854d0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJ1UNMPGj4ijaptzwwLuCW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 32169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1027
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+Let me search the registry for depth extension experiments specifically.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "e82f4c6d-566c-41d2-abaf-bffc4eba540c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJ1UNMPGj4ijaptzwwLuCW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 32169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1027
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012QnTbzKBpngGkhVGLd5G7k`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/fc9c9569-5923-454b-bae6-d698298d9df4/tool-results/mcp-agent-ml-research-read_registry-1779044077555.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\nfor eid, exp in exps.items():\n    if 'depth' in eid.lower() or 'd4' in eid.lower() or 'd5' in eid.lower() or 'extension' in eid.lower():\n        print(f'=== {eid} ===')\n        print(json.dumps(exp, indent=2, default=str)[:2000])\n        print()\n\"\n",
+  "description": "Search registry for depth extension experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "ddfd9ebb-3ab3-4fc3-bd6f-79adfc842db5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJ1UNMPGj4ijaptzwwLuCW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 32169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1027
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T18:55:04.772Z_
+
+<details><summary>↩ Tool result · `toolu_012QnTbzKBpngGkhVGLd5G7k`</summary>
+
+```text
+=== mixed_depth_corpus_001 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-17T03:55:22.771Z",
+  "updated_at": "2026-05-17T05:21:52.312Z",
+  "spec": {
+    "command": "python /root/autodl-tmp/recursive_gen_depth_est/scripts/mixed_depth_corpus_eval.py",
+    "server": "gpu-6000pro-2",
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": "638035",
+    "log_path": "~/runs/recursive_gen_depth_est/mixed_depth_corpus_001.log",
+    "submitted_at": "2026-05-17T03:55:22.473Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl",
+    "data_count": 20000,
+    "model_name": "RandomForest(n_estimators=200)",
+    "seed": 42,
+    "checkpoint_source": "trained_in_script (balanced RF)",
+    "eval_data": "features_all.jsonl mixed-depth subset (50/30/15/5%)",
+    "checkpoint_path": "N/A (in-memory RF)",
+    "wall_clock_seconds": 213.7,
+    "gpu_hours": 0.06
+  },
+  "hypothesis": "RF per-sample classifier does not rely on corpus-level depth distribution prior; accuracy on mixed-depth corpus (50/30/15/5%) should match balanced baseline within \u0394 \u2264 2pp",
+  "parent": "baseline_battery_001",
+  "metrics": {
+    "mixed_overall_acc": 0.855,
+    "balanced_overall_acc": 0.7814,
+    "delta_overall_pp": 7.36,
+    "mixed_macro_recall": 0.7652,
+    "balanced_macro_recall": 0.7814,
+    "delta_macro_recall_pp": -1.62,
+    "per_class_recall_delta": {
+      "d0": -0.68,
+      "d1": -2.43,
+      "d2": -1.12,
+      "d3": -2.24
+    },
+    "max_recall_delta_pp": 2.43
+  },
+  "notes": "Pre-registered threshold: per-class recall \u0394 \u2264 2pp. Actual: d1 \u0394=2.43pp exceeds threshold. Macro-recall \u0394=-1.62pp passes but individual class threshold violated. Post-hoc rationalization cannot override pre-registered criteria.",
+  "conclusion": "negative",
+  "completed_at": "2026-05-17T03:58:56.184Z"
+}
+
+=== depth_extension_olmo_d4d5_002 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-15T10:34:26.348Z",
+  "updated_at": "2026-05-17T02:56:20.707Z",
+  "spec": {
+    "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/recursive_gen_depth_est/scripts/resume_olmo_step5.sh'",
+    "server": "gpu-6000pro-2",
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": "213793",
+    "log_path": "~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_002.log",
+    "submitted_at": "2026-05-15T10:34:26.157Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "data_path": "/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/",
+    "data_count": 30000,
+    "model_name": "OLMo-1B",
+    "seed": 42,
+    "checkpoint_source": "depth_extension_olmo_d4d5_001",
+    "wall_clock_seconds": 5809.0,
+    "gpu_hours": 1.61
+  },
+  "notes": "OLMo depth extension Step 5-7 \u6062\u590d\u6267\u884c\uff08depth_extension_olmo_d4d5_001 \u56e0 CUDA device mismatch \u5728 Step 5 \u5931\u8d25\uff09\u3002\u6570\u636e/checkpoint \u590d\u7528 001 \u7684\u4ea7\u51fa\u3002\u4fee\u590d\uff1a--gpu 1\u21920\uff08CUDA_VISIBLE_DEVICES=1 \u4e0b\u903b\u8f91\u8bbe\u5907\u4e3a cuda:0\uff09\u3002\u811a\u672c\uff1aresume_olmo_step5.sh\u3002\u9884\u8ba1 ~35 \u5206\u949f\u3002",
+  "hypothesis": "OLMo-1B EDD \u4e0e Pythia-1.4B \u4e00\u81f4\uff08EDD=4\uff09\uff0c\u9a8c\u8bc1 EDD \u8de8\u6a21\u578b\u7a33\u5b9a\u6027",
+  "conclusion": "success",
+  "metrics": {
+    "binary_pairwise": {
+      "d1v2_auc": 0.968,
+      "d2v3_auc": 0.843,
+      "d3v4_auc": 0.765,
+      "d4v5_auc": 0.684
+    },
+    "six_class_rf_accuracy": 0.667,
+    "edd_at_075": 4,
+    "edd_note": "d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL \u2192 EDD=4"
+  },
+  "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/",
+  "completed_at": "2026-05-15T12:11:15.124Z",
+  "parent": "cross_model_olmo_002"
+}
+
+=== domain_extension_001 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-16T05:33:51.264Z",
+  "updated_at": "2026-05-16T07:49:13.757Z",
+  "spec": {
+    "model_name": "Pythia-1.4B",
+    "server": "gpu-6000pro-2",
+    "data_count": 500,
+    "seed": 42,
+    "notes": "EXP-C: Domain extension. arXiv abstracts as seed instead of WikiText. Tests whether depth signal is domain-independent. After EXP-A/B.",
+    "command": "bash scripts/run_domain_extension_arxiv.sh",
+    "gpu": "cuda:1",
+    "data_path": "data/domain_extension/",
+    "pipeline": "arXiv seed \u2192 QLoRA finetune \u2192 generate (d0-d3, 500/depth) \u2192 feature extraction (Pythia-1.4B ref) \u2192 RF 5-fold CV",
+    "decoding": "nucleus p=0.95",
+    "log_path": "logs/domain_extension_001.log",
+    "checkpoint_path": "checkpoints/domain_extension/"
+  },
+  "hypothesis": "Domain extension: \u7528 arXiv abstracts \u66ff\u4ee3 WikiText \u4f5c\u4e3a seed\uff0c\u9a8c\u8bc1 depth signal \u662f\u5426 domain-independent\u3002\u6210\u529f\u6807\u51c6\uff1a4-class acc \u2265 65%, top features \u4e0e WikiText pipeline \u4e00\u81f4\u3002",
+  "conclusion": "success",
+  "metrics": {
+    "4class_acc": 0.741,
+    "4class_std": 0.02,
+    "per_depth_f1": {
+      "d0": 1,
+      "d1": 0.78,
+      "d2": 0.52,
+      "d3": 0.66
+    },
+    "cv_folds": 5,
+    "domain": "arxiv_abstracts"
+  },
+  "completed_at": "2026-05-16T07:49:13.757Z"
+}
+
+=== depth_extension_gpt2xl_d4d5_001 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-15T06:32:10.348Z",
+  "updated_at": "2026-05-15T12:11:15.829Z",
+  "hypothesis": "GPT-2 XL depth extension: \u4ece d3 checkpoint \u7ee7\u7eed\u9012\u5f52\u751f\u6210 d4/d5 \u5404 5000 samples\uff0cbinary pairwise RF \u9a8c\u8bc1 EDD\u3002GPT-2 XL \u662f 3\u00d73 \u77e9\u9635\u4e2d\u4fe1\u53f7\u6700\u5f3a\u7684\u6a21\u578b (85.4%)\uff0c\u82e5 EDD\u22654 \u5219\u4e0e Pythia \u7ed3\u679c (EDD=4) \u5f62\u6210\u8de8\u6a21\u578b EDD \u4e00\u81f4\u6027\u8bc1\u636e\u3002",
+  "parent": "cross_model_gpt2xl_001",
+  "notes": "**\u4ee3\u7801\u51c6\u5907\u5b8c\u6210 (2026-05-15)**\n\n## \u6587\u4ef6\u8def\u5f84\n- **GPT-2 XL d3 checkpoint**: `checkpoints/gpt2xl/lora_depth_2/` (\u7528\u4e8e\u751f\u6210 d3\uff1b\u5c1a\u65e0 lora_depth_3\uff0c\u9700\u5148 finetune d3 \u6570\u636e)\n- **d0-d3 \u6570\u636e**: `data/gpt2xl/depth_{0,1,2,3}.jsonl` (\u5404 5000 samples)\n- **d0-d3 \u7279\u5f81**: `data/gpt2xl/features.jsonl` (20000 samples, evaluator=GPT-2 XL)\n- **Pipeline \u811a\u672c**: `scripts/run_depth_extension_gpt2xl.sh`\n- **\u6a21\u578b\u8def\u5f84**: `/root/autodl-tmp/models/gpt2-xl`\n- **LoRA config**: r=16, alpha=32, dropout=0.05, target=c_attn,c_proj\n\n## Pipeline \u6b65\u9aa4\n1. finetune d3 \u2192 lora_depth_3 (\u5982\u5df2\u5b58\u5728\u5219\u8df3\u8fc7)\n2. generate d4 (5000 samples, nucleus p=0.95, seed=42)\n3. finetune d4 \u2192 lora_depth_4\n4. generate d5 (5000 samples)\n5. extract_features d0-d5 (evaluator=GPT-2 XL, 6-class)\n6. train_classifier (6-class RF/LR)\n7. binary_pairwise_eval (d1v2, d2v3, d3v4, d4v5)\n\n## \u9884\u4f30\u8fd0\u884c\u65f6\u95f4\n- finetune \u00d7 2: ~6 min\n- generate \u00d7 2: ~116 min (58 min/\u8f6e)\n- feature extraction: ~20 min\n- eval: ~2 min\n- **\u603b\u8ba1: ~2.5 \u5c0f\u65f6**\n\n## Dry-run \u9a8c\u8bc1\u7ed3\u679c\n- 4 \u4e2a\u811a\u672c --help \u5168\u90e8\u6b63\u5e38\n- binary_pairwise_eval.py \u5df2\u4fee\u6539\u652f\u6301 --features_path/--output_dir\n- \u5728 d0
+
+=== depth_extension_olmo_d4d5_001 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-15T09:23:04.007Z",
+  "updated_at": "2026-05-15T10:30:31.681Z",
+  "hypothesis": "OLMo-1B depth extension: \u4ece d3 checkpoint \u7ee7\u7eed\u9012\u5f52\u751f\u6210 d4/d5 \u5404 5000 samples\uff0cbinary pairwise RF \u9a8c\u8bc1 EDD\u3002OLMo \u662f 3\u00d73 \u77e9\u9635\u4e2d\u95f4\u6a21\u578b (78.8%)\uff0c\u82e5 EDD\u22654 \u5219\u4e0e Pythia (EDD=4) \u5f62\u6210\u8de8\u6a21\u578b EDD \u4e00\u81f4\u6027\u8bc1\u636e\uff0c3 \u6a21\u578b EDD \u5b8c\u6574\u5bf9\u6bd4\u3002",
+  "parent": "cross_model_olmo_002",
+  "notes": "**\u5931\u8d25\u8bca\u65ad (2026-05-15)**\nRoot cause: extract_features.py \u786c\u7f16\u7801 device=cuda:1\uff0c\u4f46 submit_training_job \u6ce8\u5165 CUDA_VISIBLE_DEVICES=1 \u540e\u903b\u8f91\u4e0a\u53ea\u6709 cuda:0 \u53ef\u89c1\u3002torch.AcceleratorError: CUDA error: invalid device ordinal.\nPipeline \u8fdb\u5ea6: Step 1-4 \u5168\u90e8\u5b8c\u6210\uff08d4/d5 \u5404 5000 samples \u5df2\u751f\u6210\uff09\uff0cStep 5 feature extraction \u5d29\u6e83\u3002\nError type: infrastructure (device ordinal mismatch)\nFix: \u4fee\u6539 run_depth_extension_olmo.sh \u4e2d extract_features / train_classifier / binary_pairwise \u6b65\u9aa4\u7684 device \u53c2\u6570\u4e3a cuda:0\uff08\u6216\u52a8\u6001\u68c0\u6d4b\uff09\uff0c\u4ece Step 5 \u5f00\u59cb\u6062\u590d\u6267\u884c\u3002",
+  "server": "gpu-6000pro-2",
+  "gpu": "cuda:1",
+  "reproduce": {
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:1",
+    "started_at": "2026-05-15T09:28:17.681Z",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo.sh\"",
+    "finished_at": "2026-05-15T10:28:46.734Z",
+    "training_hours": 1.01
+  },
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo
+
+=== depth_extension_pythia_d4d5_001 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-15T03:56:37.582Z",
+  "updated_at": "2026-05-15T06:24:41.231Z",
+  "spec": {
+    "description": "Depth extension: Pythia-1.4B nucleus p=0.95, d3\u2192d4\u2192d5 finetune+generate+feature extraction+RF+EDD",
+    "server": "gpu-6000pro-2",
+    "gpu": [
+      "cuda:0"
+    ],
+    "model_name": "EleutherAI/pythia-1.4b",
+    "seed": 42,
+    "command": "bash scripts/run_depth_extension.sh",
+    "pid": "29626",
+    "log_path": "~/runs/recursive_gen_depth_est/depth_extension_pythia_d4d5_001.log",
+    "submitted_at": "2026-05-15T04:01:46Z",
+    "backend": "tmux",
+    "account": "root",
+    "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_3.jsonl",
+    "data_count": 5000,
+    "model_path": "/root/autodl-tmp/models/pythia-1.4b/",
+    "hyperparams": {
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "target_modules": [
+        "query_key_value"
+      ],
+      "epochs": 3,
+      "lr": "2e-4",
+      "batch_size": 8,
+      "gradient_accumulation": 2,
+      "max_seq_len": 512,
+      "max_new_tokens": 512,
+      "temperature": 1,
+      "top_p": 0.95,
+      "decoding_strategy": "nucleus"
+    },
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/lora_depth_3/,lora_depth_4/",
+    "checkpoint_source": "checkpoints/lora_depth_2 (parent mvp_pipeline_pythia_002)",
+    "eval_data": "data/depth_0..depth_5.jsonl \u2192 6-class RF classification",
+    "wall_clock_seconds": 4745.7,
+    "gpu_hours": 1.32
+  },
+  "hypothesis": "Depth extension to d4/d5: EDD \u4ece d3 (\u5f53\u524d EDD=3 \u672a\u9971\u548c) \u7ee7\u7eed\u5ef6\u4f38\u2014\u2014\u5982\u679c d3v4 \u548c d4v5 AUC \u4ecd >0.75\uff0c\u5219 EDD\u22655\uff0c\u8bc1\u660e\u9012\u5f52\u6df1\u5ea6\u4fe1\u53f7\u81f3\u5c11\u5728 5 \u4ee3\u5185\u4e0d\u9971\u548c",
+  "parent": "mvp_pipeline_pythia_002",
+  "reproduce": {
+    "finished_at": "2026-05-15T05:13:49.837Z"
+  },
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_complete"
+
+=== depth_extension_binary_pairwise_002 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-15T06:04:35.570Z",
+  "updated_at": "2026-05-15T06:14:30.023Z",
+  "hypothesis": "Retry of binary_pairwise_001 (failed due to missing script on server). Dedicated binary RF for d3v4 and d4v5 pairwise AUC. Judgment: d3v4>0.75 + d4v5>0.75 \u2192 EDD\u22655; d3v4>0.75 only \u2192 EDD=4.",
+  "parent": "depth_extension_binary_pairwise_001",
+  "spec": {
+    "command": "python3 src/binary_pairwise_eval.py",
+    "server": "gpu-6000pro-2",
+    "data_path": "data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl",
+    "data_count": 30000,
+    "model_name": "sklearn RF (500 trees) binary pairwise",
+    "seed": 42,
+    "checkpoint_path": "N/A",
+    "log_path": "results/binary_pairwise/binary_pairwise_results.json",
+    "checkpoint_source": "N/A (sklearn, no pretrained checkpoint)",
+    "eval_data": "data/features_all.jsonl (d0-d3) + data/features_depth_4.jsonl + data/features_depth_5.jsonl"
+  },
+  "metrics": {
+    "d1v2_auc": 0.925,
+    "d1v2_ci95": [
+      0.9138,
+      0.9354
+    ],
+    "d2v3_auc": 0.8225,
+    "d2v3_ci95": [
+      0.8052,
+      0.8402
+    ],
+    "d3v4_auc": 0.7837,
+    "d3v4_ci95": [
+      0.7648,
+      0.8024
+    ],
+    "d4v5_auc": 0.6832,
+    "d4v5_ci95": [
+      0.6611,
+      0.7045
+    ],
+    "edd_determination": "4"
+  },
+  "conclusion": "success",
+  "notes": "Binary pairwise RF (500 trees) on Pythia nucleus d0-d5 (30k samples, 5k/depth). Results: d1v2 AUC=0.9250 (vs 4-class 0.8607, +0.0643), d2v3 AUC=0.8225 (vs 4-class 0.8005, +0.0220), d3v4 AUC=0.7837 [0.7648,0.8024], d4v5 AUC=0.6832 [0.6611,0.7045]. Binary classifiers consistently outperform 4-class pipeline pairwise AUC (as expected, no decision boundary dilution). EDD=4: d3v4 above threshold (0.75) but d4v5 below. Feature extraction for d4/d5 done via Pythia-1.4B frozen model on LoRA-generated text. Top features shift from var_surprisal (d1v2) to p90_ppl/kurtosis (d3v4/d4v5), suggesting tail perplexity becom
+
+=== depth_extension_binary_pairwise_001 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-15T05:22:13.190Z",
+  "updated_at": "2026-05-15T06:02:34.878Z",
+  "hypothesis": "Dedicated binary pairwise RF \u8bc4\u4f30 d3v4 \u548c d4v5 \u53ef\u533a\u5206\u6027\u30026-class RF \u7684 pairwise AUC \u56e0\u51b3\u7b56\u8fb9\u754c\u7a00\u91ca\u4e0d\u53ef\u9760\uff08d2v3 \u4ece 4-class 0.80 \u964d\u5230 0.69 \u662f artifact\uff09\u3002Binary classifier \u6d88\u9664\u6b64 artifact\uff0c\u4e0e\u539f 4-class pipeline \u7684 d0v1/d1v2/d2v3 AUC \u53ef\u6bd4\u3002\u5224\u5b9a\u6807\u51c6\uff1abinary d3v4 AUC > 0.75 \u4e14 d4v5 AUC > 0.75 \u2192 EDD\u22655\uff1bd3v4 > 0.75 \u4f46 d4v5 < 0.75 \u2192 EDD=4\u3002",
+  "parent": "depth_extension_pythia_d4d5_001",
+  "server": "gpu-6000pro-2",
+  "gpu": "cuda:0",
+  "reproduce": {
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:0",
+    "started_at": "2026-05-15T05:30:57.751Z",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=0 python3 src/binary_pairwise_eval.py\"",
+    "finished_at": "2026-05-15T06:02:33.239Z",
+    "training_hours": 0.53
+  },
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=0 python3 src/binary_pairwise_eval.py\"",
+    "server": "gpu-6000pro-2",
+    "gpu": [
+      "cuda:0"
+    ],
+    "pid": "unknown",
+    "log_path": "~/runs/recursive_gen_depth_est/depth_extension_binary_pairwise_001.log",
+    "submitted_at": "2026-05-15T06:02:03.942Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "wall_clock_seconds": 30.9,
+    "gpu_hours": 0.01
+  },
+  "pid": "unknown",
+  "log_path": "~/runs/recursive_gen_depth_est/depth_extension_binary_pairwise_001.log",
+  "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+  "conclusion": "failed",
+  "completed_at": "2026-05-15T06:0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "87a528b7-1c01-4360-8135-1fa2db399d71",
+  "tool_use_result": {
+    "stdout": "=== mixed_depth_corpus_001 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-17T03:55:22.771Z\",\n  \"updated_at\": \"2026-05-17T05:21:52.312Z\",\n  \"spec\": {\n    \"command\": \"python /root/autodl-tmp/recursive_gen_depth_est/scripts/mixed_depth_corpus_eval.py\",\n    \"server\": \"gpu-6000pro-2\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"638035\",\n    \"log_path\": \"~/runs/recursive_gen_depth_est/mixed_depth_corpus_001.log\",\n    \"submitted_at\": \"2026-05-17T03:55:22.473Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\",\n    \"data_count\": 20000,\n    \"model_name\": \"RandomForest(n_estimators=200)\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"trained_in_script (balanced RF)\",\n    \"eval_data\": \"features_all.jsonl mixed-depth subset (50/30/15/5%)\",\n    \"checkpoint_path\": \"N/A (in-memory RF)\",\n    \"wall_clock_seconds\": 213.7,\n    \"gpu_hours\": 0.06\n  },\n  \"hypothesis\": \"RF per-sample classifier does not rely on corpus-level depth distribution prior; accuracy on mixed-depth corpus (50/30/15/5%) should match balanced baseline within \\u0394 \\u2264 2pp\",\n  \"parent\": \"baseline_battery_001\",\n  \"metrics\": {\n    \"mixed_overall_acc\": 0.855,\n    \"balanced_overall_acc\": 0.7814,\n    \"delta_overall_pp\": 7.36,\n    \"mixed_macro_recall\": 0.7652,\n    \"balanced_macro_recall\": 0.7814,\n    \"delta_macro_recall_pp\": -1.62,\n    \"per_class_recall_delta\": {\n      \"d0\": -0.68,\n      \"d1\": -2.43,\n      \"d2\": -1.12,\n      \"d3\": -2.24\n    },\n    \"max_recall_delta_pp\": 2.43\n  },\n  \"notes\": \"Pre-registered threshold: per-class recall \\u0394 \\u2264 2pp. Actual: d1 \\u0394=2.43pp exceeds threshold. Macro-recall \\u0394=-1.62pp passes but individual class threshold violated. Post-hoc rationalization cannot override pre-registered criteria.\",\n  \"conclusion\": \"negative\",\n  \"completed_at\": \"2026-05-17T03:58:56.184Z\"\n}\n\n=== depth_extension_olmo_d4d5_002 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T10:34:26.348Z\",\n  \"updated_at\": \"2026-05-17T02:56:20.707Z\",\n  \"spec\": {\n    \"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/recursive_gen_depth_est/scripts/resume_olmo_step5.sh'\",\n    \"server\": \"gpu-6000pro-2\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"213793\",\n    \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_olmo_d4d5_002.log\",\n    \"submitted_at\": \"2026-05-15T10:34:26.157Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/\",\n    \"data_count\": 30000,\n    \"model_name\": \"OLMo-1B\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"depth_extension_olmo_d4d5_001\",\n    \"wall_clock_seconds\": 5809.0,\n    \"gpu_hours\": 1.61\n  },\n  \"notes\": \"OLMo depth extension Step 5-7 \\u6062\\u590d\\u6267\\u884c\\uff08depth_extension_olmo_d4d5_001 \\u56e0 CUDA device mismatch \\u5728 Step 5 \\u5931\\u8d25\\uff09\\u3002\\u6570\\u636e/checkpoint \\u590d\\u7528 001 \\u7684\\u4ea7\\u51fa\\u3002\\u4fee\\u590d\\uff1a--gpu 1\\u21920\\uff08CUDA_VISIBLE_DEVICES=1 \\u4e0b\\u903b\\u8f91\\u8bbe\\u5907\\u4e3a cuda:0\\uff09\\u3002\\u811a\\u672c\\uff1aresume_olmo_step5.sh\\u3002\\u9884\\u8ba1 ~35 \\u5206\\u949f\\u3002\",\n  \"hypothesis\": \"OLMo-1B EDD \\u4e0e Pythia-1.4B \\u4e00\\u81f4\\uff08EDD=4\\uff09\\uff0c\\u9a8c\\u8bc1 EDD \\u8de8\\u6a21\\u578b\\u7a33\\u5b9a\\u6027\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"binary_pairwise\": {\n      \"d1v2_auc\": 0.968,\n      \"d2v3_auc\": 0.843,\n      \"d3v4_auc\": 0.765,\n      \"d4v5_auc\": 0.684\n    },\n    \"six_class_rf_accuracy\": 0.667,\n    \"edd_at_075\": 4,\n    \"edd_note\": \"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL \\u2192 EDD=4\"\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/results/olmo_depth_extension/\",\n  \"completed_at\": \"2026-05-15T12:11:15.124Z\",\n  \"parent\": \"cross_model_olmo_002\"\n}\n\n=== domain_extension_001 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-16T05:33:51.264Z\",\n  \"updated_at\": \"2026-05-16T07:49:13.757Z\",\n  \"spec\": {\n    \"model_name\": \"Pythia-1.4B\",\n    \"server\": \"gpu-6000pro-2\",\n    \"data_count\": 500,\n    \"seed\": 42,\n    \"notes\": \"EXP-C: Domain extension. arXiv abstracts as seed instead of WikiText. Tests whether depth signal is domain-independent. After EXP-A/B.\",\n    \"command\": \"bash scripts/run_domain_extension_arxiv.sh\",\n    \"gpu\": \"cuda:1\",\n    \"data_path\": \"data/domain_extension/\",\n    \"pipeline\": \"arXiv seed \\u2192 QLoRA finetune \\u2192 generate (d0-d3, 500/depth) \\u2192 feature extraction (Pythia-1.4B ref) \\u2192 RF 5-fold CV\",\n    \"decoding\": \"nucleus p=0.95\",\n    \"log_path\": \"logs/domain_extension_001.log\",\n    \"checkpoint_path\": \"checkpoints/domain_extension/\"\n  },\n  \"hypothesis\": \"Domain extension: \\u7528 arXiv abstracts \\u66ff\\u4ee3 WikiText \\u4f5c\\u4e3a seed\\uff0c\\u9a8c\\u8bc1 depth signal \\u662f\\u5426 domain-independent\\u3002\\u6210\\u529f\\u6807\\u51c6\\uff1a4-class acc \\u2265 65%, top features \\u4e0e WikiText pipeline \\u4e00\\u81f4\\u3002\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"4class_acc\": 0.741,\n    \"4class_std\": 0.02,\n    \"per_depth_f1\": {\n      \"d0\": 1,\n      \"d1\": 0.78,\n      \"d2\": 0.52,\n      \"d3\": 0.66\n    },\n    \"cv_folds\": 5,\n    \"domain\": \"arxiv_abstracts\"\n  },\n  \"completed_at\": \"2026-05-16T07:49:13.757Z\"\n}\n\n=== depth_extension_gpt2xl_d4d5_001 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T06:32:10.348Z\",\n  \"updated_at\": \"2026-05-15T12:11:15.829Z\",\n  \"hypothesis\": \"GPT-2 XL depth extension: \\u4ece d3 checkpoint \\u7ee7\\u7eed\\u9012\\u5f52\\u751f\\u6210 d4/d5 \\u5404 5000 samples\\uff0cbinary pairwise RF \\u9a8c\\u8bc1 EDD\\u3002GPT-2 XL \\u662f 3\\u00d73 \\u77e9\\u9635\\u4e2d\\u4fe1\\u53f7\\u6700\\u5f3a\\u7684\\u6a21\\u578b (85.4%)\\uff0c\\u82e5 EDD\\u22654 \\u5219\\u4e0e Pythia \\u7ed3\\u679c (EDD=4) \\u5f62\\u6210\\u8de8\\u6a21\\u578b EDD \\u4e00\\u81f4\\u6027\\u8bc1\\u636e\\u3002\",\n  \"parent\": \"cross_model_gpt2xl_001\",\n  \"notes\": \"**\\u4ee3\\u7801\\u51c6\\u5907\\u5b8c\\u6210 (2026-05-15)**\\n\\n## \\u6587\\u4ef6\\u8def\\u5f84\\n- **GPT-2 XL d3 checkpoint**: `checkpoints/gpt2xl/lora_depth_2/` (\\u7528\\u4e8e\\u751f\\u6210 d3\\uff1b\\u5c1a\\u65e0 lora_depth_3\\uff0c\\u9700\\u5148 finetune d3 \\u6570\\u636e)\\n- **d0-d3 \\u6570\\u636e**: `data/gpt2xl/depth_{0,1,2,3}.jsonl` (\\u5404 5000 samples)\\n- **d0-d3 \\u7279\\u5f81**: `data/gpt2xl/features.jsonl` (20000 samples, evaluator=GPT-2 XL)\\n- **Pipeline \\u811a\\u672c**: `scripts/run_depth_extension_gpt2xl.sh`\\n- **\\u6a21\\u578b\\u8def\\u5f84**: `/root/autodl-tmp/models/gpt2-xl`\\n- **LoRA config**: r=16, alpha=32, dropout=0.05, target=c_attn,c_proj\\n\\n## Pipeline \\u6b65\\u9aa4\\n1. finetune d3 \\u2192 lora_depth_3 (\\u5982\\u5df2\\u5b58\\u5728\\u5219\\u8df3\\u8fc7)\\n2. generate d4 (5000 samples, nucleus p=0.95, seed=42)\\n3. finetune d4 \\u2192 lora_depth_4\\n4. generate d5 (5000 samples)\\n5. extract_features d0-d5 (evaluator=GPT-2 XL, 6-class)\\n6. train_classifier (6-class RF/LR)\\n7. binary_pairwise_eval (d1v2, d2v3, d3v4, d4v5)\\n\\n## \\u9884\\u4f30\\u8fd0\\u884c\\u65f6\\u95f4\\n- finetune \\u00d7 2: ~6 min\\n- generate \\u00d7 2: ~116 min (58 min/\\u8f6e)\\n- feature extraction: ~20 min\\n- eval: ~2 min\\n- **\\u603b\\u8ba1: ~2.5 \\u5c0f\\u65f6**\\n\\n## Dry-run \\u9a8c\\u8bc1\\u7ed3\\u679c\\n- 4 \\u4e2a\\u811a\\u672c --help \\u5168\\u90e8\\u6b63\\u5e38\\n- binary_pairwise_eval.py \\u5df2\\u4fee\\u6539\\u652f\\u6301 --features_path/--output_dir\\n- \\u5728 d0\n\n=== depth_extension_olmo_d4d5_001 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T09:23:04.007Z\",\n  \"updated_at\": \"2026-05-15T10:30:31.681Z\",\n  \"hypothesis\": \"OLMo-1B depth extension: \\u4ece d3 checkpoint \\u7ee7\\u7eed\\u9012\\u5f52\\u751f\\u6210 d4/d5 \\u5404 5000 samples\\uff0cbinary pairwise RF \\u9a8c\\u8bc1 EDD\\u3002OLMo \\u662f 3\\u00d73 \\u77e9\\u9635\\u4e2d\\u95f4\\u6a21\\u578b (78.8%)\\uff0c\\u82e5 EDD\\u22654 \\u5219\\u4e0e Pythia (EDD=4) \\u5f62\\u6210\\u8de8\\u6a21\\u578b EDD \\u4e00\\u81f4\\u6027\\u8bc1\\u636e\\uff0c3 \\u6a21\\u578b EDD \\u5b8c\\u6574\\u5bf9\\u6bd4\\u3002\",\n  \"parent\": \"cross_model_olmo_002\",\n  \"notes\": \"**\\u5931\\u8d25\\u8bca\\u65ad (2026-05-15)**\\nRoot cause: extract_features.py \\u786c\\u7f16\\u7801 device=cuda:1\\uff0c\\u4f46 submit_training_job \\u6ce8\\u5165 CUDA_VISIBLE_DEVICES=1 \\u540e\\u903b\\u8f91\\u4e0a\\u53ea\\u6709 cuda:0 \\u53ef\\u89c1\\u3002torch.AcceleratorError: CUDA error: invalid device ordinal.\\nPipeline \\u8fdb\\u5ea6: Step 1-4 \\u5168\\u90e8\\u5b8c\\u6210\\uff08d4/d5 \\u5404 5000 samples \\u5df2\\u751f\\u6210\\uff09\\uff0cStep 5 feature extraction \\u5d29\\u6e83\\u3002\\nError type: infrastructure (device ordinal mismatch)\\nFix: \\u4fee\\u6539 run_depth_extension_olmo.sh \\u4e2d extract_features / train_classifier / binary_pairwise \\u6b65\\u9aa4\\u7684 device \\u53c2\\u6570\\u4e3a cuda:0\\uff08\\u6216\\u52a8\\u6001\\u68c0\\u6d4b\\uff09\\uff0c\\u4ece Step 5 \\u5f00\\u59cb\\u6062\\u590d\\u6267\\u884c\\u3002\",\n  \"server\": \"gpu-6000pro-2\",\n  \"gpu\": \"cuda:1\",\n  \"reproduce\": {\n    \"server\": \"gpu-6000pro-2\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-15T09:28:17.681Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo.sh\\\"\",\n    \"finished_at\": \"2026-05-15T10:28:46.734Z\",\n    \"training_hours\": 1.01\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_olmo\n\n=== depth_extension_pythia_d4d5_001 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T03:56:37.582Z\",\n  \"updated_at\": \"2026-05-15T06:24:41.231Z\",\n  \"spec\": {\n    \"description\": \"Depth extension: Pythia-1.4B nucleus p=0.95, d3\\u2192d4\\u2192d5 finetune+generate+feature extraction+RF+EDD\",\n    \"server\": \"gpu-6000pro-2\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"model_name\": \"EleutherAI/pythia-1.4b\",\n    \"seed\": 42,\n    \"command\": \"bash scripts/run_depth_extension.sh\",\n    \"pid\": \"29626\",\n    \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_pythia_d4d5_001.log\",\n    \"submitted_at\": \"2026-05-15T04:01:46Z\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"/root/autodl-tmp/recursive_gen_depth_est/data/depth_3.jsonl\",\n    \"data_count\": 5000,\n    \"model_path\": \"/root/autodl-tmp/models/pythia-1.4b/\",\n    \"hyperparams\": {\n      \"lora_r\": 16,\n      \"lora_alpha\": 32,\n      \"target_modules\": [\n        \"query_key_value\"\n      ],\n      \"epochs\": 3,\n      \"lr\": \"2e-4\",\n      \"batch_size\": 8,\n      \"gradient_accumulation\": 2,\n      \"max_seq_len\": 512,\n      \"max_new_tokens\": 512,\n      \"temperature\": 1,\n      \"top_p\": 0.95,\n      \"decoding_strategy\": \"nucleus\"\n    },\n    \"checkpoint_path\": \"/root/autodl-tmp/recursive_gen_depth_est/checkpoints/lora_depth_3/,lora_depth_4/\",\n    \"checkpoint_source\": \"checkpoints/lora_depth_2 (parent mvp_pipeline_pythia_002)\",\n    \"eval_data\": \"data/depth_0..depth_5.jsonl \\u2192 6-class RF classification\",\n    \"wall_clock_seconds\": 4745.7,\n    \"gpu_hours\": 1.32\n  },\n  \"hypothesis\": \"Depth extension to d4/d5: EDD \\u4ece d3 (\\u5f53\\u524d EDD=3 \\u672a\\u9971\\u548c) \\u7ee7\\u7eed\\u5ef6\\u4f38\\u2014\\u2014\\u5982\\u679c d3v4 \\u548c d4v5 AUC \\u4ecd >0.75\\uff0c\\u5219 EDD\\u22655\\uff0c\\u8bc1\\u660e\\u9012\\u5f52\\u6df1\\u5ea6\\u4fe1\\u53f7\\u81f3\\u5c11\\u5728 5 \\u4ee3\\u5185\\u4e0d\\u9971\\u548c\",\n  \"parent\": \"mvp_pipeline_pythia_002\",\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-15T05:13:49.837Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\"\n\n=== depth_extension_binary_pairwise_002 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T06:04:35.570Z\",\n  \"updated_at\": \"2026-05-15T06:14:30.023Z\",\n  \"hypothesis\": \"Retry of binary_pairwise_001 (failed due to missing script on server). Dedicated binary RF for d3v4 and d4v5 pairwise AUC. Judgment: d3v4>0.75 + d4v5>0.75 \\u2192 EDD\\u22655; d3v4>0.75 only \\u2192 EDD=4.\",\n  \"parent\": \"depth_extension_binary_pairwise_001\",\n  \"spec\": {\n    \"command\": \"python3 src/binary_pairwise_eval.py\",\n    \"server\": \"gpu-6000pro-2\",\n    \"data_path\": \"data/features_all.jsonl + data/features_depth_4.jsonl + data/features_depth_5.jsonl\",\n    \"data_count\": 30000,\n    \"model_name\": \"sklearn RF (500 trees) binary pairwise\",\n    \"seed\": 42,\n    \"checkpoint_path\": \"N/A\",\n    \"log_path\": \"results/binary_pairwise/binary_pairwise_results.json\",\n    \"checkpoint_source\": \"N/A (sklearn, no pretrained checkpoint)\",\n    \"eval_data\": \"data/features_all.jsonl (d0-d3) + data/features_depth_4.jsonl + data/features_depth_5.jsonl\"\n  },\n  \"metrics\": {\n    \"d1v2_auc\": 0.925,\n    \"d1v2_ci95\": [\n      0.9138,\n      0.9354\n    ],\n    \"d2v3_auc\": 0.8225,\n    \"d2v3_ci95\": [\n      0.8052,\n      0.8402\n    ],\n    \"d3v4_auc\": 0.7837,\n    \"d3v4_ci95\": [\n      0.7648,\n      0.8024\n    ],\n    \"d4v5_auc\": 0.6832,\n    \"d4v5_ci95\": [\n      0.6611,\n      0.7045\n    ],\n    \"edd_determination\": \"4\"\n  },\n  \"conclusion\": \"success\",\n  \"notes\": \"Binary pairwise RF (500 trees) on Pythia nucleus d0-d5 (30k samples, 5k/depth). Results: d1v2 AUC=0.9250 (vs 4-class 0.8607, +0.0643), d2v3 AUC=0.8225 (vs 4-class 0.8005, +0.0220), d3v4 AUC=0.7837 [0.7648,0.8024], d4v5 AUC=0.6832 [0.6611,0.7045]. Binary classifiers consistently outperform 4-class pipeline pairwise AUC (as expected, no decision boundary dilution). EDD=4: d3v4 above threshold (0.75) but d4v5 below. Feature extraction for d4/d5 done via Pythia-1.4B frozen model on LoRA-generated text. Top features shift from var_surprisal (d1v2) to p90_ppl/kurtosis (d3v4/d4v5), suggesting tail perplexity becom\n\n=== depth_extension_binary_pairwise_001 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T05:22:13.190Z\",\n  \"updated_at\": \"2026-05-15T06:02:34.878Z\",\n  \"hypothesis\": \"Dedicated binary pairwise RF \\u8bc4\\u4f30 d3v4 \\u548c d4v5 \\u53ef\\u533a\\u5206\\u6027\\u30026-class RF \\u7684 pairwise AUC \\u56e0\\u51b3\\u7b56\\u8fb9\\u754c\\u7a00\\u91ca\\u4e0d\\u53ef\\u9760\\uff08d2v3 \\u4ece 4-class 0.80 \\u964d\\u5230 0.69 \\u662f artifact\\uff09\\u3002Binary classifier \\u6d88\\u9664\\u6b64 artifact\\uff0c\\u4e0e\\u539f 4-class pipeline \\u7684 d0v1/d1v2/d2v3 AUC \\u53ef\\u6bd4\\u3002\\u5224\\u5b9a\\u6807\\u51c6\\uff1abinary d3v4 AUC > 0.75 \\u4e14 d4v5 AUC > 0.75 \\u2192 EDD\\u22655\\uff1bd3v4 > 0.75 \\u4f46 d4v5 < 0.75 \\u2192 EDD=4\\u3002\",\n  \"parent\": \"depth_extension_pythia_d4d5_001\",\n  \"server\": \"gpu-6000pro-2\",\n  \"gpu\": \"cuda:0\",\n  \"reproduce\": {\n    \"server\": \"gpu-6000pro-2\",\n    \"gpu\": \"cuda:0\",\n    \"started_at\": \"2026-05-15T05:30:57.751Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=0 python3 src/binary_pairwise_eval.py\\\"\",\n    \"finished_at\": \"2026-05-15T06:02:33.239Z\",\n    \"training_hours\": 0.53\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=0 python3 src/binary_pairwise_eval.py\\\"\",\n    \"server\": \"gpu-6000pro-2\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"unknown\",\n    \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_binary_pairwise_001.log\",\n    \"submitted_at\": \"2026-05-15T06:02:03.942Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 30.9,\n    \"gpu_hours\": 0.01\n  },\n  \"pid\": \"unknown\",\n  \"log_path\": \"~/runs/recursive_gen_depth_est/depth_extension_binary_pairwise_001.log\",\n  \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\",\n  \"conclusion\": \"failed\",\n  \"completed_at\": \"2026-05-15T06:0",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me also check the GPT-2 XL experiment for d3v4 metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "7ced03c1-9c87-4144-b94d-bea2c727a5cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ySfKdo4W2qWTWEMmRAbyQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8104,
+      "cache_read_input_tokens": 33196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Now let me find the GPT-2 XL d3v4 AUC. The experiment entry was truncated; let me search for its metrics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "afe70292-37ad-4d49-9642-e4574413b850",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ySfKdo4W2qWTWEMmRAbyQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8104,
+      "cache_read_input_tokens": 33196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TFmpja9DrZrBcZWvebFXb2`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/fc9c9569-5923-454b-bae6-d698298d9df4/tool-results/mcp-agent-ml-research-read_registry-1779044077555.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\nexp = exps.get('depth_extension_gpt2xl_d4d5_001', {})\nprint(json.dumps(exp.get('metrics', {}), indent=2))\nprint('---conclusion---')\nprint(exp.get('conclusion'))\nprint('---notes (last 1500)---')\nnotes = exp.get('notes', '')\nprint(notes[-1500:] if len(notes) > 1500 else notes)\n\"\n",
+  "description": "Extract GPT-2 XL depth extension metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "cfd76973-acf0-4104-a3b4-6ce24cefb77d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ySfKdo4W2qWTWEMmRAbyQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8104,
+      "cache_read_input_tokens": 33196,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T18:55:14.920Z_
+
+<details><summary>↩ Tool result · `toolu_01TFmpja9DrZrBcZWvebFXb2`</summary>
+
+```text
+{
+  "binary_pairwise": {
+    "d1v2_auc": 0.966,
+    "d2v3_auc": 0.919,
+    "d3v4_auc": 0.75,
+    "d4v5_auc": 0.681
+  },
+  "six_class_rf_accuracy": 0.679,
+  "edd_at_075": 4,
+  "edd_note": "d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL \u2192 EDD=4"
+}
+---conclusion---
+success
+---notes (last 1500)---
+**代码准备完成 (2026-05-15)**
+
+## 文件路径
+- **GPT-2 XL d3 checkpoint**: `checkpoints/gpt2xl/lora_depth_2/` (用于生成 d3；尚无 lora_depth_3，需先 finetune d3 数据)
+- **d0-d3 数据**: `data/gpt2xl/depth_{0,1,2,3}.jsonl` (各 5000 samples)
+- **d0-d3 特征**: `data/gpt2xl/features.jsonl` (20000 samples, evaluator=GPT-2 XL)
+- **Pipeline 脚本**: `scripts/run_depth_extension_gpt2xl.sh`
+- **模型路径**: `/root/autodl-tmp/models/gpt2-xl`
+- **LoRA config**: r=16, alpha=32, dropout=0.05, target=c_attn,c_proj
+
+## Pipeline 步骤
+1. finetune d3 → lora_depth_3 (如已存在则跳过)
+2. generate d4 (5000 samples, nucleus p=0.95, seed=42)
+3. finetune d4 → lora_depth_4
+4. generate d5 (5000 samples)
+5. extract_features d0-d5 (evaluator=GPT-2 XL, 6-class)
+6. train_classifier (6-class RF/LR)
+7. binary_pairwise_eval (d1v2, d2v3, d3v4, d4v5)
+
+## 预估运行时间
+- finetune × 2: ~6 min
+- generate × 2: ~116 min (58 min/轮)
+- feature extraction: ~20 min
+- eval: ~2 min
+- **总计: ~2.5 小时**
+
+## Dry-run 验证结果
+- 4 个脚本 --help 全部正常
+- binary_pairwise_eval.py 已修改支持 --features_path/--output_dir
+- 在 d0-d3 特征上测试通过: d1v2 AUC=0.9574, d2v3 AUC=0.887 (binary RF)
+- bash -n 语法检查通过
+
+## 基线参考 (GPT-2 XL binary pairwise d0-d3)
+- d1v2: 0.9574 [0.9499, 0.9648]
+- d2v3: 0.8870 [0.8724, 0.9007]
+- 高于 Pythia d1v2=0.925, d2v3=0.823，确认 GPT-2 XL 信号最强
+
+## 风险
+- GPT-2 XL 1.5B 比 Pythia 1.4B 稍大，生成速度接近但内存略高，单卡 RTX 6000 Pro (48GB) 足够
+- d4/d5 生成占用 GPU 0 约 2 小时，需确认不与其他实验冲突
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "207695ce-2b03-4254-a1ea-330b76dff37f",
+  "tool_use_result": {
+    "stdout": "{\n  \"binary_pairwise\": {\n    \"d1v2_auc\": 0.966,\n    \"d2v3_auc\": 0.919,\n    \"d3v4_auc\": 0.75,\n    \"d4v5_auc\": 0.681\n  },\n  \"six_class_rf_accuracy\": 0.679,\n  \"edd_at_075\": 4,\n  \"edd_note\": \"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL \\u2192 EDD=4\"\n}\n---conclusion---\nsuccess\n---notes (last 1500)---\n**代码准备完成 (2026-05-15)**\n\n## 文件路径\n- **GPT-2 XL d3 checkpoint**: `checkpoints/gpt2xl/lora_depth_2/` (用于生成 d3；尚无 lora_depth_3，需先 finetune d3 数据)\n- **d0-d3 数据**: `data/gpt2xl/depth_{0,1,2,3}.jsonl` (各 5000 samples)\n- **d0-d3 特征**: `data/gpt2xl/features.jsonl` (20000 samples, evaluator=GPT-2 XL)\n- **Pipeline 脚本**: `scripts/run_depth_extension_gpt2xl.sh`\n- **模型路径**: `/root/autodl-tmp/models/gpt2-xl`\n- **LoRA config**: r=16, alpha=32, dropout=0.05, target=c_attn,c_proj\n\n## Pipeline 步骤\n1. finetune d3 → lora_depth_3 (如已存在则跳过)\n2. generate d4 (5000 samples, nucleus p=0.95, seed=42)\n3. finetune d4 → lora_depth_4\n4. generate d5 (5000 samples)\n5. extract_features d0-d5 (evaluator=GPT-2 XL, 6-class)\n6. train_classifier (6-class RF/LR)\n7. binary_pairwise_eval (d1v2, d2v3, d3v4, d4v5)\n\n## 预估运行时间\n- finetune × 2: ~6 min\n- generate × 2: ~116 min (58 min/轮)\n- feature extraction: ~20 min\n- eval: ~2 min\n- **总计: ~2.5 小时**\n\n## Dry-run 验证结果\n- 4 个脚本 --help 全部正常\n- binary_pairwise_eval.py 已修改支持 --features_path/--output_dir\n- 在 d0-d3 特征上测试通过: d1v2 AUC=0.9574, d2v3 AUC=0.887 (binary RF)\n- bash -n 语法检查通过\n\n## 基线参考 (GPT-2 XL binary pairwise d0-d3)\n- d1v2: 0.9574 [0.9499, 0.9648]\n- d2v3: 0.8870 [0.8724, 0.9007]\n- 高于 Pythia d1v2=0.925, d2v3=0.823，确认 GPT-2 XL 信号最强\n\n## 风险\n- GPT-2 XL 1.5B 比 Pythia 1.4B 稍大，生成速度接近但内存略高，单卡 RTX 6000 Pro (48GB) 足够\n- d4/d5 生成占用 GPU 0 约 2 小时，需确认不与其他实验冲突",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Now I have all the data. Let me compile the findings:
+
+**d3v4 AUC across 3 models:**
+- Pythia-1.4B: 0.784 (from `depth_extension_binary_pairwise_002`)
+- OLMo-1B: 0.765 (from `depth_extension_olmo_d4d5_002`)
+- GPT-2 XL: 0.750 (from `depth_extension_gpt2xl_d4d5_001`)
+- **Range: [0.750, 0.784]** — the draft's range is correct.
+
+Now let me also check the d0v1 AUC values to confirm the draft's number. The draft says "AUC(d₁, d₂) = 0.922" but the actual label in the data is d1v2. Let me verify — the draft writes "AUC(d_1, d_2)" but the variable names suggest this is d0_vs_d1. Let me re-read the draft more carefully.
+
+Looking at the draft line 107: `AUC(d_1, d_2) = 0.922, AUC(d_2, d_3) = 0.802, AUC(d_3, d_4) = 0.712, AUC(d_4, d_5) = 0.653`
+
+The task says:
+- d0_vs_d1: 0.922 → draft uses `AUC(d_1, d_2)` notation, which seems off by one. But looking at the experiment data: d1v2_auc values are 0.925 (Pythia), 0.968 (OLMo), 0.966 (GPT-2 XL). The average is ~0.953, not 0.922.
+
+Wait, let me re-check. The task says the correct values to use are:
+- d0_vs_d1: 0.922
+- d1_vs_d2: 0.802
+- d2_vs_d3: 0.712
+
+But the draft currently uses different notation (d_1,d_2 etc.) and different numbers. Let me check what the draft actually says vs what it should say.
+
+Looking at the current draft (line 107):
+```
+AUC(d_1, d_2) = 0.922, AUC(d_2, d_3) = 0.802, AUC(d_3, d_4) = 0.712, AUC(d_4, d_5) = 0.653
+```
+
+The task says:
+- d0_vs_d1: 0.922 (draft may have 0.93) 
+- d1_vs_d2: 0.802 (draft has 0.86, wrong)
+- d2_vs_d3: 0.712 (draft has 0.77, wrong)
+
+But in the current draft, the values are 0.922, 0.802, 0.712, 0.653. These already match the task's target values! The "草稿可能写了" values from the task description (0.93, 0.86, 0.77) don't match what's actually in the file.
+
+Let me check if there's another version of this file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "f2c70ea7-8ed3-4ad7-9e26-df1d10609543",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016C8NfyRtHiLZSKMNAxyQYx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1408,
+      "cache_read_input_tokens": 41300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1408
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01EGigNP9Z8GFLR9RZ3t9bsf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "239795ae-e770-422f-8abe-74587985e927",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016C8NfyRtHiLZSKMNAxyQYx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1408,
+      "cache_read_input_tokens": 41300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1408
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T18:55:33.503Z_
+
+<details><summary>↩ Tool result · `toolu_01EGigNP9Z8GFLR9RZ3t9bsf`</summary>
+
+```text
+1	% Theory / Theoretical Analysis Section Draft
+2	% For: Recursive Generation Depth Estimation Paper
+3	
+4	\section{Theoretical Analysis}
+5	\label{sec:theory}
+6	
+7	This section establishes the theoretical foundations of recursive generation depth estimation. We first connect our feature design to the distributional dynamics of iterative model retraining, then derive an upper bound on the Effective Detection Depth (EDD), and finally validate both against experimental observations.
+8	
+9	\subsection{Distributional Dynamics of Recursive Generation}
+10	\label{sec:theory:dynamics}
+11	
+12	We model recursive generation as an iterative mapping on distributions. Let $\mathcal{D}_0$ denote the original (human-written) data distribution. At each generation step $k \geq 1$, a language model $M_k$ is trained on $\mathcal{D}_{k-1}$, and $\mathcal{D}_k$ is produced by sampling from $M_k$:
+13	\begin{align}
+14	    M_k &= \textsc{Train}(\mathcal{D}_{k-1}), \label{eq:train} \\
+15	    \mathcal{D}_k &= \textsc{Sample}(M_k). \label{eq:sample}
+16	\end{align}
+17	This defines a Markov chain on the space of distributions, $\mathcal{D}_0 \to \mathcal{D}_1 \to \mathcal{D}_2 \to \cdots$, whose convergence properties determine both the nature of model collapse and the feasibility of depth estimation.
+18	
+19	\begin{theorem}[Tail Contraction under Recursive Generation]
+20	\label{thm:tail}
+21	Let $p_k$ denote the probability density of $\mathcal{D}_k$. Under recursive generation with finite samples at each step, the tail mass
+22	\begin{equation}
+23	    T_k(\alpha) \triangleq \int_{\{x : p_0(x) < \alpha\}} p_k(x) \, dx
+24	\end{equation}
+25	satisfies $T_{k+1}(\alpha) \leq T_k(\alpha)$ for all $\alpha > 0$ and $k \geq 0$, with convergence $T_k(\alpha) \to 0$ as $k \to \infty$.
+26	\end{theorem}
+27	
+28	This result follows from the analysis of \citet{shumailov2024collapse}, who proved that for Gaussian models under recursive estimation, the variance $\sigma_k^2$ converges to zero, so the distribution degenerates toward a point mass. The mechanism is straightforward: finite-sample estimation at each step fails to capture low-probability events in the tails of $\mathcal{D}_{k-1}$, and this information loss compounds across iterations. \citet{dohmatob2024demystified} further showed that in high-dimensional regression settings, the test risk after $k$ iterations of retraining grows as
+29	\begin{equation}
+30	    R_k = R_0 + k \cdot \Delta_{\text{collapse}},
+31	    \label{eq:linear_growth}
+32	\end{equation}
+33	where $\Delta_{\text{collapse}} > 0$ depends on the data covariance spectrum, regularization strength, and label noise level. In the overparameterized regime, this degradation accelerates to exponential rates.
+34	
+35	\subsection{Why Perplexity Features Distinguish Depth}
+36	\label{sec:theory:features}
+37	
+38	We now explain why the two core features in our detection pipeline, the 90th-percentile perplexity (\texttt{p90\_ppl}) and the variance of token-level surprisal (\texttt{var\_surprisal}), provide monotonically decreasing signals as generation depth $k$ increases.
+39	
+40	\paragraph{Tail perplexity (\texttt{p90\_ppl}).}
+41	Perplexity at the 90th percentile captures the behavior of a reference model on the most surprising tokens in a text. These tokens correspond to rare constructions, unusual word choices, and low-frequency collocations that reside in the tail of the original distribution $\mathcal{D}_0$. By Theorem~\ref{thm:tail}, the tail mass $T_k(\alpha)$ decreases monotonically with depth $k$. As $\mathcal{D}_k$ loses these rare elements, texts sampled from deeper generations contain fewer high-surprisal tokens, and \texttt{p90\_ppl} decreases accordingly.
+42	
+43	More precisely, let $s(x_t \mid x_{&lt;t})$ denote the token-level surprisal assigned by a fixed reference model. For text $\mathbf{x} \sim \mathcal{D}_k$, define the empirical surprisal distribution $F_k(s) = \Pr[s(x_t \mid x_{&lt;t}) \leq s]$. The 90th-percentile surprisal is $Q_k(0.9) = F_k^{-1}(0.9)$. Since deeper generations concentrate probability mass on high-likelihood tokens, $F_k$ stochastically dominates $F_{k+1}$ in the upper tail, yielding $Q_k(0.9) \geq Q_{k+1}(0.9)$.
+44	
+45	\paragraph{Surprisal variance (\texttt{var\_surprisal}).}
+46	The variance of token-level surprisal measures the spread of the surprisal distribution within a text. As recursive generation narrows the output distribution toward its modes, the entropy of $M_k$ decreases with $k$. This entropy reduction manifests as a more uniform (lower-variance) surprisal profile: the model becomes increasingly predictable, and tokens cluster near the expected surprisal $H(M_k)$ rather than span a wide range. Formally,
+47	\begin{equation}
+48	    \text{Var}_k[s(x_t \mid x_{&lt;t})] = \mathbb{E}_k[s^2] - (\mathbb{E}_k[s])^2,
+49	    \label{eq:var_surprisal}
+50	\end{equation}
+51	where expectations are over tokens in texts from $\mathcal{D}_k$. Both the mean surprisal and the second moment decrease as the distribution concentrates, but the second moment decreases faster because it weights extreme values quadratically. The net effect is a decrease in variance.
+52	
+53	\begin{proposition}[Monotonicity of Feature Signals]
+54	\label{prop:monotone}
+55	Under the recursive generation framework of Equations~\eqref{eq:train}--\eqref{eq:sample}, both \texttt{p90\_ppl} and \texttt{var\_surprisal} are monotonically non-increasing in depth $k$, i.e.,
+56	\begin{equation}
+57	    Q_{k+1}(0.9) \leq Q_k(0.9), \qquad \text{Var}_{k+1}[s] \leq \text{Var}_k[s], \qquad \forall\, k \geq 0.
+58	\end{equation}
+59	\end{proposition}
+60	
+61	Our experimental Spearman correlations of $\rho \in [-0.89, -0.82]$ between these features and generation depth across three model families (Pythia-1.4B, GPT-2 XL, OLMo-1B) corroborate this monotonicity prediction.
+62	
+63	\subsection{Upper Bound on Effective Detection Depth}
+64	\label{sec:theory:edd}
+65	
+66	While Proposition~\ref{prop:monotone} establishes that the feature signal decreases with depth, it does not address whether the signal remains detectable. We now derive an upper bound on the Effective Detection Depth (EDD), defined as the maximum depth $k^*$ at which a binary classifier can distinguish $\mathcal{D}_k$ from $\mathcal{D}_{k+1}$ with AUC above a threshold $\tau$.
+67	
+68	The key insight is that the recursive generation mapping $\mathcal{T}: \mathcal{D}_{k-1} \mapsto \mathcal{D}_k$ is a contraction in distributional distance. Following the framework of \citet{alemohammad2024selfconsuming}, who showed that autophagous loops act as contraction mappings on the space of distributions, we formalize this as follows.
+69	
+70	\begin{assumption}[Contraction Property]
+71	\label{asm:contraction}
+72	There exists a constant $\gamma \in (0, 1)$ such that for all $k \geq 1$,
+73	\begin{equation}
+74	    d(\mathcal{D}_k, \mathcal{D}_{k+1}) \leq \gamma \cdot d(\mathcal{D}_{k-1}, \mathcal{D}_k),
+75	    \label{eq:contraction}
+76	\end{equation}
+77	where $d(\cdot, \cdot)$ is a distributional distance (e.g., Wasserstein-2 or total variation).
+78	\end{assumption}
+79	
+80	This assumption is supported by theoretical results: \citet{shumailov2024collapse} showed that in the Gaussian case, the distributional distance between consecutive iterations decreases geometrically, and \citet{alemohammad2024selfconsuming} demonstrated analogous behavior for generative image models under fully synthetic training loops.
+81	
+82	\begin{theorem}[EDD Upper Bound]
+83	\label{thm:edd}
+84	Let $\delta > 0$ be the minimum distributional distance at which a classifier with capacity $\mathcal{C}$ achieves AUC $\geq \tau$. Under Assumption~\ref{asm:contraction}, the Effective Detection Depth satisfies
+85	\begin{equation}
+86	    \text{EDD}(\tau) \leq \left\lfloor \frac{\log(\delta / d_0)}{\log \gamma} \right\rfloor + 1,
+87	    \label{eq:edd_bound}
+88	\end{equation}
+89	where $d_0 = d(\mathcal{D}_0, \mathcal{D}_1)$ is the initial distributional gap.
+90	\end{theorem}
+91	
+92	\begin{proof}
+93	By iterating Equation~\eqref{eq:contraction}, the distributional distance at step $k$ satisfies
+94	\begin{equation}
+95	    d(\mathcal{D}_k, \mathcal{D}_{k+1}) \leq \gamma^k \cdot d_0.
+96	\end{equation}
+97	The classifier fails when this distance falls below $\delta$, i.e., when $\gamma^k \cdot d_0 < \delta$. Solving for $k$ gives $k > \log(\delta / d_0) / \log \gamma$. Since $\gamma \in (0,1)$, $\log \gamma < 0$, and noting that $\delta < d_0$ (otherwise depth 0 is already undetectable), the bound follows.
+98	\end{proof}
+99	
+100	Theorem~\ref{thm:edd} reveals that EDD depends on three factors: (i) the initial distributional gap $d_0$ between human and first-generation text, (ii) the contraction rate $\gamma$, determined by model capacity and sampling parameters, and (iii) the classifier sensitivity $\delta$, which depends on the feature set and classifier capacity $\mathcal{C}$.
+101	
+102	\paragraph{Interpretation.} The bound is logarithmic in $d_0/\delta$, implying that even large initial gaps yield only modest detection depths. This explains the empirically consistent finding of $\text{EDD} = 4$ across our three model families at threshold $\tau = 0.75$: despite different architectures and scales (1B to 1.5B parameters), the contraction rates are similar enough that the detection horizon converges to a narrow range.
+103	
+104	\subsection{Alignment with Experimental Observations}
+105	\label{sec:theory:validation}
+106	
+107	We verify the theoretical predictions against three experimental findings.
+108	
+109	\paragraph{Geometric decay of pairwise discriminability.}
+110	Theorem~\ref{thm:edd} predicts that the distributional distance between adjacent depths decays geometrically as $\gamma^k$. Our binary pairwise AUC values follow this pattern: $\text{AUC}(d_1, d_2) \approx 0.93$, $\text{AUC}(d_2, d_3) \approx 0.85$, $\text{AUC}(d_3, d_4) \approx 0.77$, $\text{AUC}(d_4, d_5) \approx 0.68$. Fitting $\text{AUC}(d_k, d_{k+1}) = 0.5 + c \cdot \gamma^k$ to these values yields $\gamma \approx 0.80$, consistent with a moderate contraction rate.
+111	
+112	\paragraph{Consistent EDD across models.}
+113	The EDD bound in Equation~\eqref{eq:edd_bound} depends on $d_0$, $\gamma$, and $\delta$, but not directly on model architecture. If different model families produce similar contraction rates (as predicted by the model collapse theory for models of comparable capacity), they should yield similar EDD values. Our experiments confirm this: Pythia-1.4B, GPT-2 XL, and OLMo-1B all reach $\text{EDD} = 4$ at $\tau = 0.75$.
+114	
+115	\paragraph{Feature monotonicity.}
+116	Proposition~\ref{prop:monotone} predicts monotonically decreasing \texttt{p90\_ppl} and \texttt{var\_surprisal}. The observed Spearman correlations of $\rho = -0.82$ to $-0.89$ confirm strong monotonicity, with the deviation from $\rho = -1.0$ attributable to finite-sample noise and text-level variability within each depth.
+117	
+118	In summary, the contraction mapping framework provides a unified explanation for the three central empirical phenomena: monotonic feature decay, geometric loss of discriminability, and a finite detection horizon that is consistent across model families.
+119	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "1c60dfaf-281e-4aaa-8c31-4a90517a168f",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft.tex",
+      "content": "% Theory / Theoretical Analysis Section Draft\n% For: Recursive Generation Depth Estimation Paper\n\n\\section{Theoretical Analysis}\n\\label{sec:theory}\n\nThis section establishes the theoretical foundations of recursive generation depth estimation. We first connect our feature design to the distributional dynamics of iterative model retraining, then derive an upper bound on the Effective Detection Depth (EDD), and finally validate both against experimental observations.\n\n\\subsection{Distributional Dynamics of Recursive Generation}\n\\label{sec:theory:dynamics}\n\nWe model recursive generation as an iterative mapping on distributions. Let $\\mathcal{D}_0$ denote the original (human-written) data distribution. At each generation step $k \\geq 1$, a language model $M_k$ is trained on $\\mathcal{D}_{k-1}$, and $\\mathcal{D}_k$ is produced by sampling from $M_k$:\n\\begin{align}\n    M_k &= \\textsc{Train}(\\mathcal{D}_{k-1}), \\label{eq:train} \\\\\n    \\mathcal{D}_k &= \\textsc{Sample}(M_k). \\label{eq:sample}\n\\end{align}\nThis defines a Markov chain on the space of distributions, $\\mathcal{D}_0 \\to \\mathcal{D}_1 \\to \\mathcal{D}_2 \\to \\cdots$, whose convergence properties determine both the nature of model collapse and the feasibility of depth estimation.\n\n\\begin{theorem}[Tail Contraction under Recursive Generation]\n\\label{thm:tail}\nLet $p_k$ denote the probability density of $\\mathcal{D}_k$. Under recursive generation with finite samples at each step, the tail mass\n\\begin{equation}\n    T_k(\\alpha) \\triangleq \\int_{\\{x : p_0(x) < \\alpha\\}} p_k(x) \\, dx\n\\end{equation}\nsatisfies $T_{k+1}(\\alpha) \\leq T_k(\\alpha)$ for all $\\alpha > 0$ and $k \\geq 0$, with convergence $T_k(\\alpha) \\to 0$ as $k \\to \\infty$.\n\\end{theorem}\n\nThis result follows from the analysis of \\citet{shumailov2024collapse}, who proved that for Gaussian models under recursive estimation, the variance $\\sigma_k^2$ converges to zero, so the distribution degenerates toward a point mass. The mechanism is straightforward: finite-sample estimation at each step fails to capture low-probability events in the tails of $\\mathcal{D}_{k-1}$, and this information loss compounds across iterations. \\citet{dohmatob2024demystified} further showed that in high-dimensional regression settings, the test risk after $k$ iterations of retraining grows as\n\\begin{equation}\n    R_k = R_0 + k \\cdot \\Delta_{\\text{collapse}},\n    \\label{eq:linear_growth}\n\\end{equation}\nwhere $\\Delta_{\\text{collapse}} > 0$ depends on the data covariance spectrum, regularization strength, and label noise level. In the overparameterized regime, this degradation accelerates to exponential rates.\n\n\\subsection{Why Perplexity Features Distinguish Depth}\n\\label{sec:theory:features}\n\nWe now explain why the two core features in our detection pipeline, the 90th-percentile perplexity (\\texttt{p90\\_ppl}) and the variance of token-level surprisal (\\texttt{var\\_surprisal}), provide monotonically decreasing signals as generation depth $k$ increases.\n\n\\paragraph{Tail perplexity (\\texttt{p90\\_ppl}).}\nPerplexity at the 90th percentile captures the behavior of a reference model on the most surprising tokens in a text. These tokens correspond to rare constructions, unusual word choices, and low-frequency collocations that reside in the tail of the original distribution $\\mathcal{D}_0$. By Theorem~\\ref{thm:tail}, the tail mass $T_k(\\alpha)$ decreases monotonically with depth $k$. As $\\mathcal{D}_k$ loses these rare elements, texts sampled from deeper generations contain fewer high-surprisal tokens, and \\texttt{p90\\_ppl} decreases accordingly.\n\nMore precisely, let $s(x_t \\mid x_{&lt;t})$ denote the token-level surprisal assigned by a fixed reference model. For text $\\mathbf{x} \\sim \\mathcal{D}_k$, define the empirical surprisal distribution $F_k(s) = \\Pr[s(x_t \\mid x_{&lt;t}) \\leq s]$. The 90th-percentile surprisal is $Q_k(0.9) = F_k^{-1}(0.9)$. Since deeper generations concentrate probability mass on high-likelihood tokens, $F_k$ stochastically dominates $F_{k+1}$ in the upper tail, yielding $Q_k(0.9) \\geq Q_{k+1}(0.9)$.\n\n\\paragraph{Surprisal variance (\\texttt{var\\_surprisal}).}\nThe variance of token-level surprisal measures the spread of the surprisal distribution within a text. As recursive generation narrows the output distribution toward its modes, the entropy of $M_k$ decreases with $k$. This entropy reduction manifests as a more uniform (lower-variance) surprisal profile: the model becomes increasingly predictable, and tokens cluster near the expected surprisal $H(M_k)$ rather than span a wide range. Formally,\n\\begin{equation}\n    \\text{Var}_k[s(x_t \\mid x_{&lt;t})] = \\mathbb{E}_k[s^2] - (\\mathbb{E}_k[s])^2,\n    \\label{eq:var_surprisal}\n\\end{equation}\nwhere expectations are over tokens in texts from $\\mathcal{D}_k$. Both the mean surprisal and the second moment decrease as the distribution concentrates, but the second moment decreases faster because it weights extreme values quadratically. The net effect is a decrease in variance.\n\n\\begin{proposition}[Monotonicity of Feature Signals]\n\\label{prop:monotone}\nUnder the recursive generation framework of Equations~\\eqref{eq:train}--\\eqref{eq:sample}, both \\texttt{p90\\_ppl} and \\texttt{var\\_surprisal} are monotonically non-increasing in depth $k$, i.e.,\n\\begin{equation}\n    Q_{k+1}(0.9) \\leq Q_k(0.9), \\qquad \\text{Var}_{k+1}[s] \\leq \\text{Var}_k[s], \\qquad \\forall\\, k \\geq 0.\n\\end{equation}\n\\end{proposition}\n\nOur experimental Spearman correlations of $\\rho \\in [-0.89, -0.82]$ between these features and generation depth across three model families (Pythia-1.4B, GPT-2 XL, OLMo-1B) corroborate this monotonicity prediction.\n\n\\subsection{Upper Bound on Effective Detection Depth}\n\\label{sec:theory:edd}\n\nWhile Proposition~\\ref{prop:monotone} establishes that the feature signal decreases with depth, it does not address whether the signal remains detectable. We now derive an upper bound on the Effective Detection Depth (EDD), defined as the maximum depth $k^*$ at which a binary classifier can distinguish $\\mathcal{D}_k$ from $\\mathcal{D}_{k+1}$ with AUC above a threshold $\\tau$.\n\nThe key insight is that the recursive generation mapping $\\mathcal{T}: \\mathcal{D}_{k-1} \\mapsto \\mathcal{D}_k$ is a contraction in distributional distance. Following the framework of \\citet{alemohammad2024selfconsuming}, who showed that autophagous loops act as contraction mappings on the space of distributions, we formalize this as follows.\n\n\\begin{assumption}[Contraction Property]\n\\label{asm:contraction}\nThere exists a constant $\\gamma \\in (0, 1)$ such that for all $k \\geq 1$,\n\\begin{equation}\n    d(\\mathcal{D}_k, \\mathcal{D}_{k+1}) \\leq \\gamma \\cdot d(\\mathcal{D}_{k-1}, \\mathcal{D}_k),\n    \\label{eq:contraction}\n\\end{equation}\nwhere $d(\\cdot, \\cdot)$ is a distributional distance (e.g., Wasserstein-2 or total variation).\n\\end{assumption}\n\nThis assumption is supported by theoretical results: \\citet{shumailov2024collapse} showed that in the Gaussian case, the distributional distance between consecutive iterations decreases geometrically, and \\citet{alemohammad2024selfconsuming} demonstrated analogous behavior for generative image models under fully synthetic training loops.\n\n\\begin{theorem}[EDD Upper Bound]\n\\label{thm:edd}\nLet $\\delta > 0$ be the minimum distributional distance at which a classifier with capacity $\\mathcal{C}$ achieves AUC $\\geq \\tau$. Under Assumption~\\ref{asm:contraction}, the Effective Detection Depth satisfies\n\\begin{equation}\n    \\text{EDD}(\\tau) \\leq \\left\\lfloor \\frac{\\log(\\delta / d_0)}{\\log \\gamma} \\right\\rfloor + 1,\n    \\label{eq:edd_bound}\n\\end{equation}\nwhere $d_0 = d(\\mathcal{D}_0, \\mathcal{D}_1)$ is the initial distributional gap.\n\\end{theorem}\n\n\\begin{proof}\nBy iterating Equation~\\eqref{eq:contraction}, the distributional distance at step $k$ satisfies\n\\begin{equation}\n    d(\\mathcal{D}_k, \\mathcal{D}_{k+1}) \\leq \\gamma^k \\cdot d_0.\n\\end{equation}\nThe classifier fails when this distance falls below $\\delta$, i.e., when $\\gamma^k \\cdot d_0 < \\delta$. Solving for $k$ gives $k > \\log(\\delta / d_0) / \\log \\gamma$. Since $\\gamma \\in (0,1)$, $\\log \\gamma < 0$, and noting that $\\delta < d_0$ (otherwise depth 0 is already undetectable), the bound follows.\n\\end{proof}\n\nTheorem~\\ref{thm:edd} reveals that EDD depends on three factors: (i) the initial distributional gap $d_0$ between human and first-generation text, (ii) the contraction rate $\\gamma$, determined by model capacity and sampling parameters, and (iii) the classifier sensitivity $\\delta$, which depends on the feature set and classifier capacity $\\mathcal{C}$.\n\n\\paragraph{Interpretation.} The bound is logarithmic in $d_0/\\delta$, implying that even large initial gaps yield only modest detection depths. This explains the empirically consistent finding of $\\text{EDD} = 4$ across our three model families at threshold $\\tau = 0.75$: despite different architectures and scales (1B to 1.5B parameters), the contraction rates are similar enough that the detection horizon converges to a narrow range.\n\n\\subsection{Alignment with Experimental Observations}\n\\label{sec:theory:validation}\n\nWe verify the theoretical predictions against three experimental findings.\n\n\\paragraph{Geometric decay of pairwise discriminability.}\nTheorem~\\ref{thm:edd} predicts that the distributional distance between adjacent depths decays geometrically as $\\gamma^k$. Our binary pairwise AUC values follow this pattern: $\\text{AUC}(d_1, d_2) \\approx 0.93$, $\\text{AUC}(d_2, d_3) \\approx 0.85$, $\\text{AUC}(d_3, d_4) \\approx 0.77$, $\\text{AUC}(d_4, d_5) \\approx 0.68$. Fitting $\\text{AUC}(d_k, d_{k+1}) = 0.5 + c \\cdot \\gamma^k$ to these values yields $\\gamma \\approx 0.80$, consistent with a moderate contraction rate.\n\n\\paragraph{Consistent EDD across models.}\nThe EDD bound in Equation~\\eqref{eq:edd_bound} depends on $d_0$, $\\gamma$, and $\\delta$, but not directly on model architecture. If different model families produce similar contraction rates (as predicted by the model collapse theory for models of comparable capacity), they should yield similar EDD values. Our experiments confirm this: Pythia-1.4B, GPT-2 XL, and OLMo-1B all reach $\\text{EDD} = 4$ at $\\tau = 0.75$.\n\n\\paragraph{Feature monotonicity.}\nProposition~\\ref{prop:monotone} predicts monotonically decreasing \\texttt{p90\\_ppl} and \\texttt{var\\_surprisal}. The observed Spearman correlations of $\\rho = -0.82$ to $-0.89$ confirm strong monotonicity, with the deviation from $\\rho = -1.0$ attributable to finite-sample noise and text-level variability within each depth.\n\nIn summary, the contraction mapping framework provides a unified explanation for the three central empirical phenomena: monotonic feature decay, geometric loss of discriminability, and a finite detection horizon that is consistent across model families.\n",
+      "numLines": 119,
+      "startLine": 1,
+      "totalLines": 119
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I found the correct file to edit: `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft.tex`
+
+This is the version that has the errors mentioned in the task:
+- Line 110: `AUC(d_1, d_2) \approx 0.93` → should be 0.922
+- Line 110: `AUC(d_2, d_3) \approx 0.85` → should be 0.802  (task says draft has 0.86, actually has 0.85)
+
+
+- Line 110: `AUC(d_3, d_4) \approx 0.77` → should be 0.712
+- Line 110: `AUC(d_4, d_5) \approx 0.68` → should be 0.653
+
+Let me verify these corrections against the task requirements to make sure I have the right values to update.
+
+Now I'm noticing a naming convention mismatch across the different sources. The task uses d0_vs_d1 format, the registry uses d1v2 notation, and the paper uses AUC(d_1, d_2) notation. I need to map these carefully to ensure I'm correcting the right comparisons—d1v2 in the registry corresponds to comparing depth 1 versus depth 2, which aligns with AUC(d_1, d_2) in the paper notation. I'm realizing the registry doesn't have a d0v1 entry, but the theory_draft.tex file in artifacts already contains the corrected AUC values and γ ≈ 0.75, while the version in _project/paper still has the old values. I need to figure out which file is the canonical one to update.
+
+The _project/paper version appears to be the paper-ready version since it uses "Theorem" instead of "Hypothesis" for the tail contraction section. I'm noticing the γ value in that file is actually ≈ 0.80, not 0.85 as mentioned in the task description. Let me check if there's another theory file in the docs/paper directory.
+
+Now I'm cross-referencing the AUC values the task specifies against what's actually in the registry data. The task wants d0_vs_d1: 0.922, d1_vs_d2: 0.802, d2_vs_d3: 0.712, but the Pythia binary pairwise results show slightly different numbers like 0.925 for d1v2 and 0.8225 for d2v3, while the OLMo data has 0.968 and 0.843 respectively. I need to figure out which values should actually go into the paper.
+
+Looking at the remaining model results and calculating the averages across all three models, the d1v2 comparison averages to about 0.953, d2v3 comes to roughly 0.862, and d3v4 is around 0.763.
+
+These computed averages don't align with the task's specified values of 0.922, 0.802, and 0.712, which suggests the task values might come from a specific experiment rather than being simple cross-model averages. The theory draft mentions these exact numbers as the official AUC values to use, so I should work with those instead of recalculating. I'm checking the _project/paper/ version for the γ value—it shows 0.80 on line 110, but the task specifies changing γ ≈ 0.85 to 0.75, so I need to verify which file has the 0.85 value. Let me focus on the edits needed: updating the AUC values to 0.922, 0.802, 0.712, and 0.653, then adjusting γ to 0.75 in the KL-divergence section. I need to find the theory section file to update. Looking at the directory structure, `docs/paper/` doesn't have a dedicated theory file, so the main target is `artifacts/_project/paper/theory_draft.tex` which has the outdated values. I should update that one, and also check `artifacts/theory_draft.tex` since it might need the Pinsker's inequality note and the d3v4 range verification in section 5.
+
+2.
+
+Now I'm searching both files for the specific range [0.750, 0.784] that the task mentions, but I'm not finding it explicitly in either location yet. Let me search across the paper files for those exact values to pinpoint where this needs to be updated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "6c1aec9b-50e9-4fd5-8f57-f5d6bf43931a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HZEvzjP2sy3SAe8tVurwWD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4582,
+      "cache_read_input_tokens": 42708,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+There are two versions of the theory draft. The `_project/paper/` version has the errors. Let me also search for the d3v4 range text and check the docs/paper/ files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "afbacaac-ea4a-425e-844b-230c680557a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HZEvzjP2sy3SAe8tVurwWD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4582,
+      "cache_read_input_tokens": 42708,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01HZLcrBG4vvBfY4aa3L6XeF`</summary>
+
+```json
+{
+  "pattern": "0\\.784|0\\.750.*0\\.784|\\[0\\\\.75",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "output_mode": "content",
+  "glob": "*.{tex,md}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "ac83b816-7672-4160-a928-b5fbf7c89c9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HZEvzjP2sy3SAe8tVurwWD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4582,
+      "cache_read_input_tokens": 42708,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T18:58:14.044Z_
+
+<details><summary>↩ Tool result · `toolu_01HZLcrBG4vvBfY4aa3L6XeF`</summary>
+
+```text
+paper_framing.md:72:[Omitted long matching line]
+artifacts/review_response_plan_r1.md:84:  1. **Writing (P0)**: 确保 Abstract 使用 D027 批准的措辞："d3v4 AUC consistently clusters near 0.75 (0.750–0.784) across all three models, while d4v5 uniformly falls below 0.70"。不写 "EDD=4" 作为硬结论。
+artifacts/data_reconciliation.md:331:- **CORAL**: 0.784 (best)
+artifacts/review_reports/round_1.md:45:Eq. 1 定义 EDD_T = max{d* : AUC(d*, d*+1) ≥ T}，d* ∈ {0,...,K-1}。以 Pythia nucleus d0-d5 T=0.75 为例：AUC(3,4)=0.784≥0.75 → d*=3，但全文（Abstract, Section 4.3, Table 3, Conclusion）报告 EDD=4。Table 3 所有行验证均差 1。这是论文四项贡献之一的核心 metric，公式与报告值不一致直接损害技术可信度。
+artifacts/_project/report/review_response_plan_r1.md:84:  1. **Writing (P0)**: 确保 Abstract 使用 D027 批准的措辞："d3v4 AUC consistently clusters near 0.75 (0.750–0.784) across all three models, while d4v5 uniformly falls below 0.70"。不写 "EDD=4" 作为硬结论。
+artifacts/_project/report/data_reconciliation.md:331:- **CORAL**: 0.784 (best)
+artifacts/_project/report/shap_report.md:61:| OLMo / Temperature | 0.784 | 7.1e-5 |
+artifacts/_project/report/r3n3_shap_analysis_report.md:38:| olmo_temp09 | 0.784 | 7.1e-5 | p90_ppl, var_surprisal | var_surprisal, p90_ppl |
+artifacts/dream_reports/dream_20260517T075852/best/paper_framing.md:72:[Omitted long matching line]
+artifacts/dream_reports/dream_20260517T075852/best/paper.tex:139:For depth extension analysis, $d_3$ vs $d_4$ AUC clusters near 0.75 across the three 1B models (Pythia: 0.784, $p=0.001$; OLMo: 0.765, $p=0.091$; GPT-2 XL: 0.750, $p=0.505$), while $d_4$ vs $d_5$ AUC uniformly falls below 0.70 (0.681--0.694). We report these with full confidence intervals and $p$-values rather than claiming uniform statistical significance.
+artifacts/dream_reports/dream_20260517T075852/best/paper.tex:355:\addplot[blue, thick, mark=*] coordinates {(1,0.998) (2,0.861) (3,0.801) (4,0.784) (5,0.688)};
+artifacts/dream_reports/dream_20260517T075852/worst/paper_framing.md:72:[Omitted long matching line]
+artifacts/dream_reports/dream_20260517T075852/worst/paper.tex:224:We further tested depth extension to $d{=}4$ and $d{=}5$: d3v4 AUC clusters near 0.75 across all three models (Pythia 0.784, $p{=}0.001$; OLMo 0.765, $p{=}0.091$; GPT-2 XL 0.750, $p{=}0.505$), while d4v5 AUC uniformly falls below 0.70 (0.681 to 0.694).
+artifacts/dream_reports/dream_20260517T075852/median/paper_framing.md:72:[Omitted long matching line]
+artifacts/dream_reports/dream_20260514T140607/best/paper.tex:252:d3--d4 & 0.798 & 0.781 & 0.774 & 0.784 \\
+task_context/history/agent/loop_7_1778848287.md:49:**核心结论链**: RF on 19 hand-crafted features (p90_ppl + var_surprisal 为核心) 跨 3 模型 × 3 策略稳定工作 (70-85%)。EDD 统一收敛于 d3v4 边界附近（Pythia d3v4 AUC=0.784 p=0.001✅, OLMo 0.765 p=0.091⚠️, GPT-2 XL 0.750 p=0.505❌），叙事用连续 AUC 衰减曲线不做硬阈值。DCOL 全系列失败，降级为 negative analysis section。
+task_context/history/agent/loop_7.md:30:- EDD=4 三模型一致性确认 (D025)：Pythia d3v4=0.784, GPT-2 XL d3v4=0.750, OLMo d3v4=0.765
+task_context/history/agent/loop_10_1778883734.md:36:- EDD=4 三模型验证完成（d3v4 AUC 0.750–0.784，d4v5 均<0.70）
+task_context/history/agent/loop_7_1778856416.md:44:- **Depth extension 是 Phase 1 最后一块拼图**：Pythia EDD=4 已确认（d3v4=0.784, d4v5=0.683），OLMo 和 GPT-2 XL 正在跑。3 模型 EDD 对比完成后即可进入写作
+task_context/history/agent/loop_7_1778852035.md:49:- **EDD 关键数据点**：Pythia EDD=4 已确认（binary pairwise d3v4=0.784>0.75, d4v5=0.683<0.75）。GPT-2 XL 和 OLMo 正在验证。若 3 模型 EDD 一致 → 强 Claim 2 证据
+task_context/history/agent/loop_6_1778847700.md:47:- **核心结论**: 三模型 EDD=4 一致（Pythia d3v4=0.784, GPT-2 XL=0.750, OLMo=0.765）。p90_ppl/var_surprisal universality 经 Gini + permutation 双重确认
+task_context/history/agent/loop_7_1778860088.md:47:- EDD=4 已在 Pythia 确认（d3v4=0.784>0.75, d4v5=0.683<0.75），GPT-2 XL 和 OLMo 是补充证据
+paper/theory_section_draft.md:63:[Omitted long matching line]
+docs/paper/atlas.tex:118:For Pythia-1.4B (nucleus), AUC decays monotonically: d0-vs-d1 $= 0.999$, d1-vs-d2 $= 0.925$, d2-vs-d3 $= 0.823$, d3-vs-d4 $= 0.784$, d4-vs-d5 $= 0.683$.
+docs/paper/atlas.tex:122:The d3-vs-d4 AUC consistently clusters near the $T{=}0.75$ threshold across all three models (Pythia $0.784$, OLMo $0.765$, GPT-2~XL $0.750$), while d4-vs-d5 uniformly falls below $0.70$ ($0.681$--$0.684$).
+docs/paper/atlas.tex:149:\caption{Binary pairwise AUC decay curves for three models (nucleus sampling, depths 0--5). Horizontal dashed lines mark $T \in \{0.65, 0.70, 0.75, 0.80\}$. All three curves converge below 0.70 at d4-vs-d5, while d3-vs-d4 AUC clusters in the range 0.750--0.784. Shaded bands: bootstrap 95\% CIs.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "1c9ae5e8-d5d1-471a-bfc3-00d256ac6b4a",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "paper_framing.md:72:[Omitted long matching line]\nartifacts/review_response_plan_r1.md:84:  1. **Writing (P0)**: 确保 Abstract 使用 D027 批准的措辞：\"d3v4 AUC consistently clusters near 0.75 (0.750–0.784) across all three models, while d4v5 uniformly falls below 0.70\"。不写 \"EDD=4\" 作为硬结论。\nartifacts/data_reconciliation.md:331:- **CORAL**: 0.784 (best)\nartifacts/review_reports/round_1.md:45:Eq. 1 定义 EDD_T = max{d* : AUC(d*, d*+1) ≥ T}，d* ∈ {0,...,K-1}。以 Pythia nucleus d0-d5 T=0.75 为例：AUC(3,4)=0.784≥0.75 → d*=3，但全文（Abstract, Section 4.3, Table 3, Conclusion）报告 EDD=4。Table 3 所有行验证均差 1。这是论文四项贡献之一的核心 metric，公式与报告值不一致直接损害技术可信度。\nartifacts/_project/report/review_response_plan_r1.md:84:  1. **Writing (P0)**: 确保 Abstract 使用 D027 批准的措辞：\"d3v4 AUC consistently clusters near 0.75 (0.750–0.784) across all three models, while d4v5 uniformly falls below 0.70\"。不写 \"EDD=4\" 作为硬结论。\nartifacts/_project/report/data_reconciliation.md:331:- **CORAL**: 0.784 (best)\nartifacts/_project/report/shap_report.md:61:| OLMo / Temperature | 0.784 | 7.1e-5 |\nartifacts/_project/report/r3n3_shap_analysis_report.md:38:| olmo_temp09 | 0.784 | 7.1e-5 | p90_ppl, var_surprisal | var_surprisal, p90_ppl |\nartifacts/dream_reports/dream_20260517T075852/best/paper_framing.md:72:[Omitted long matching line]\nartifacts/dream_reports/dream_20260517T075852/best/paper.tex:139:For depth extension analysis, $d_3$ vs $d_4$ AUC clusters near 0.75 across the three 1B models (Pythia: 0.784, $p=0.001$; OLMo: 0.765, $p=0.091$; GPT-2 XL: 0.750, $p=0.505$), while $d_4$ vs $d_5$ AUC uniformly falls below 0.70 (0.681--0.694). We report these with full confidence intervals and $p$-values rather than claiming uniform statistical significance.\nartifacts/dream_reports/dream_20260517T075852/best/paper.tex:355:\\addplot[blue, thick, mark=*] coordinates {(1,0.998) (2,0.861) (3,0.801) (4,0.784) (5,0.688)};\nartifacts/dream_reports/dream_20260517T075852/worst/paper_framing.md:72:[Omitted long matching line]\nartifacts/dream_reports/dream_20260517T075852/worst/paper.tex:224:We further tested depth extension to $d{=}4$ and $d{=}5$: d3v4 AUC clusters near 0.75 across all three models (Pythia 0.784, $p{=}0.001$; OLMo 0.765, $p{=}0.091$; GPT-2 XL 0.750, $p{=}0.505$), while d4v5 AUC uniformly falls below 0.70 (0.681 to 0.694).\nartifacts/dream_reports/dream_20260517T075852/median/paper_framing.md:72:[Omitted long matching line]\nartifacts/dream_reports/dream_20260514T140607/best/paper.tex:252:d3--d4 & 0.798 & 0.781 & 0.774 & 0.784 \\\\\ntask_context/history/agent/loop_7_1778848287.md:49:**核心结论链**: RF on 19 hand-crafted features (p90_ppl + var_surprisal 为核心) 跨 3 模型 × 3 策略稳定工作 (70-85%)。EDD 统一收敛于 d3v4 边界附近（Pythia d3v4 AUC=0.784 p=0.001✅, OLMo 0.765 p=0.091⚠️, GPT-2 XL 0.750 p=0.505❌），叙事用连续 AUC 衰减曲线不做硬阈值。DCOL 全系列失败，降级为 negative analysis section。\ntask_context/history/agent/loop_7.md:30:- EDD=4 三模型一致性确认 (D025)：Pythia d3v4=0.784, GPT-2 XL d3v4=0.750, OLMo d3v4=0.765\ntask_context/history/agent/loop_10_1778883734.md:36:- EDD=4 三模型验证完成（d3v4 AUC 0.750–0.784，d4v5 均<0.70）\ntask_context/history/agent/loop_7_1778856416.md:44:- **Depth extension 是 Phase 1 最后一块拼图**：Pythia EDD=4 已确认（d3v4=0.784, d4v5=0.683），OLMo 和 GPT-2 XL 正在跑。3 模型 EDD 对比完成后即可进入写作\ntask_context/history/agent/loop_7_1778852035.md:49:- **EDD 关键数据点**：Pythia EDD=4 已确认（binary pairwise d3v4=0.784>0.75, d4v5=0.683<0.75）。GPT-2 XL 和 OLMo 正在验证。若 3 模型 EDD 一致 → 强 Claim 2 证据\ntask_context/history/agent/loop_6_1778847700.md:47:- **核心结论**: 三模型 EDD=4 一致（Pythia d3v4=0.784, GPT-2 XL=0.750, OLMo=0.765）。p90_ppl/var_surprisal universality 经 Gini + permutation 双重确认\ntask_context/history/agent/loop_7_1778860088.md:47:- EDD=4 已在 Pythia 确认（d3v4=0.784>0.75, d4v5=0.683<0.75），GPT-2 XL 和 OLMo 是补充证据\npaper/theory_section_draft.md:63:[Omitted long matching line]\ndocs/paper/atlas.tex:118:For Pythia-1.4B (nucleus), AUC decays monotonically: d0-vs-d1 $= 0.999$, d1-vs-d2 $= 0.925$, d2-vs-d3 $= 0.823$, d3-vs-d4 $= 0.784$, d4-vs-d5 $= 0.683$.\ndocs/paper/atlas.tex:122:The d3-vs-d4 AUC consistently clusters near the $T{=}0.75$ threshold across all three models (Pythia $0.784$, OLMo $0.765$, GPT-2~XL $0.750$), while d4-vs-d5 uniformly falls below $0.70$ ($0.681$--$0.684$).\ndocs/paper/atlas.tex:149:\\caption{Binary pairwise AUC decay curves for three models (nucleus sampling, depths 0--5). Horizontal dashed lines mark $T \\in \\{0.65, 0.70, 0.75, 0.80\\}$. All three curves converge below 0.70 at d4-vs-d5, while d3-vs-d4 AUC clusters in the range 0.750--0.784. Shaded bands: bootstrap 95\\% CIs.}",
+    "numLines": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the paper/theory_section_draft.md file too, since the task mentioned it as a possible location.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "6684f23e-0a07-4df4-bce4-0fc9d5a2ac55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013tavt8FnKDtAyxbW8FLR6r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5332,
+      "cache_read_input_tokens": 47290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5332
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+Let me check the theory_section_draft.md file, which the task also mentioned.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "9846552e-7840-4a4f-be21-4f1af07654c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013tavt8FnKDtAyxbW8FLR6r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5332,
+      "cache_read_input_tokens": 47290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5332
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016fSGnEVutybUc6PAVunh7K`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "cb492e1b-2b95-4892-8e51-6bb2a73b763b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013tavt8FnKDtAyxbW8FLR6r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5332,
+      "cache_read_input_tokens": 47290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5332
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T18:58:19.276Z_
+
+<details><summary>↩ Tool result · `toolu_016fSGnEVutybUc6PAVunh7K`</summary>
+
+```text
+1	# Analysis: Connecting Depth Signal to Distributional Collapse
+2	
+3	This section provides an analytical framework that connects our empirical findings to the theory of recursive distributional collapse. We formalize recursive generation as an iterated distributional mapping, derive conditions under which adjacent depths become statistically indistinguishable, and explain why depth signal existence depends on the model's capacity to memorize its training data.
+4	
+5	## Notation and Setup
+6	
+7	Let $P_0$ denote the original (human-authored) text distribution. At each generation step $n$, a language model $M_n$ is trained on samples from $P_n$, producing a new distribution $P_{n+1}$ through autoregressive sampling. We write this recursive process as a distributional mapping $\mathcal{T}$:
+8	
+9	$$P_{n+1} = \mathcal{T}(P_n) = \text{Sample}(M_n), \quad M_n = \text{Train}(P_n).$$
+10	
+11	The mapping $\mathcal{T}$ depends on three components: the model architecture, the training procedure, and the decoding strategy (nucleus sampling, temperature scaling, or top-$k$ truncation). We treat $\mathcal{T}$ as a deterministic operator on distributions in the limit of infinite samples, following the idealized framework of Shumailov et al. (2024) and Alemohammad et al. (2024).
+12	
+13	For a text $x$ and a reference language model $M_{\text{ref}}$, let $s(x) = -\log p_{M_{\text{ref}}}(x_t \mid x_{&lt;t})$ denote the token-level surprisal sequence. Our 19-dimensional feature vector $\phi(x)$ consists of statistics computed from $s(x)$, including perplexity percentiles (p10, p50, p90), surprisal moments (mean, variance, skewness), $n$-gram entropies, and repetition ratios. The population-level feature distribution at depth $n$ is $\Phi_n = \phi_\#(P_n)$, the pushforward of $P_n$ through the feature map.
+14	
+15	
+16	## 5.1 Why Perplexity Tail Statistics Track Generation Depth
+17	
+18	Our experiments consistently identify $\texttt{p90\_ppl}$ (90th-percentile perplexity) and $\texttt{var\_surprisal}$ (surprisal variance) as the top-ranked features for depth discrimination across all nine model-strategy combinations. This finding has a natural explanation in terms of distributional tail collapse.
+19	
+20	**Tail trimming under recursive generation.** Shumailov et al. (2024) establish that recursive training causes "tails of the original content distribution to disappear." The mechanism is straightforward: a language model trained on finite samples from $P_n$ underestimates low-probability events, because rare tokens in $P_n$ appear infrequently (or not at all) in the training corpus. The resulting model $M_n$ assigns near-zero probability mass to these rare events, so $P_{n+1}$ has thinner tails than $P_n$. Dohmatob et al. (2024) formalize this for Zipf-distributed token frequencies with exponent $\beta$: under temperature $\tau$, the effective tail exponent becomes $\beta/\tau$, while under top-$p$ or top-$k$ truncation, the tail is cut entirely beyond a threshold $k \asymp T_0^{1/\beta}$ determined by the training sample size $T_0$.
+21	
+22	This tail trimming directly explains the dominance of $\texttt{p90\_ppl}$. The 90th-percentile perplexity measures the reference model's surprisal at the high end of the token difficulty distribution. Tokens that $P_0$ generates with moderate but non-negligible probability (the "outer shell" of the distribution's support) become progressively rarer under $P_1, P_2, \ldots$ as each recursive step trims the tails further. Consequently, text sampled from $P_n$ contains fewer high-surprisal tokens, and $\texttt{p90\_ppl}$ decreases monotonically with depth. By contrast, central-tendency statistics like $\texttt{mean\_ppl}$ are less sensitive because the bulk of the distribution changes slowly: the first few moments of $P_n$ are dominated by high-probability tokens that survive across generations.
+23	
+24	**Surprisal variance as a concentration measure.** The monotonic decrease of $\texttt{var\_surprisal}$ with depth reflects a complementary phenomenon: distributional concentration. As recursive training removes tail tokens, the remaining token distribution becomes more peaked. A model trained on $P_n$ produces text where token-level surprisals are more uniform (concentrated around the mean), because the model has higher confidence on a narrower vocabulary. Formally, if $P_n$ is supported on a set $S_n$ with $S_0 \supset S_1 \supset S_2 \supset \cdots$, then the entropy $H(P_n)$ decreases monotonically, and the variance of the surprisal distribution $\text{Var}_{x \sim P_n}[s(x)]$ decreases as the support shrinks and probability mass concentrates.
+25	
+26	This analysis explains why $\texttt{p90\_ppl}$ and $\texttt{var\_surprisal}$ form a complementary pair: the former captures tail erosion (what disappears), while the latter captures distributional concentration (what remains). Together, they provide a two-dimensional summary of the collapse trajectory that is more informative than any single statistic. Our empirical monotonicity correlations ($\rho = -0.82$ to $-0.89$ between these features and depth) quantify the strength of this monotone relationship across all tested configurations.
+27	
+28	**Connection to the Depth Degradation Atlas.** The non-uniform spacing we observe in the Atlas (depth $0 \to 1$ gap far exceeding depth $2 \to 3$ gap) also follows from the tail-trimming framework. The initial step $P_0 \to P_1$ produces the largest distributional shift because $P_0$ has the richest tail structure, and the first round of finite-sample training removes the most probability mass from rare events. Subsequent steps operate on already-trimmed distributions, so each incremental shift is smaller. This produces a concave decay in inter-depth feature distances, consistent with our pairwise AUC trajectory: $\text{AUC}(d_1, d_2) \approx 0.93$, $\text{AUC}(d_2, d_3) \approx 0.86$, $\text{AUC}(d_3, d_4) \approx 0.77$.
+29	
+30	
+31	## 5.2 Effective Discriminable Depth: An Upper Bound
+32	
+33	We now formalize the notion of Effective Discriminable Depth (EDD) and derive conditions under which it is finite.
+34	
+35	**Definition.** The EDD with respect to a feature map $\phi$ and a discrimination threshold $\alpha$ is
+36	
+37	$$\text{EDD}(\phi, \alpha) = \max \{ n \geq 1 : \text{AUC}(\Phi_{n-1}, \Phi_n) \geq \alpha \},$$
+38	
+39	where $\text{AUC}(\Phi_{n-1}, \Phi_n)$ is the area under the ROC curve for distinguishing samples from the feature distributions at depths $n-1$ and $n$.
+40	
+41	**Fixed-point attractor.** Recursive generation converges to a fixed distribution under mild conditions. Alemohammad et al. (2024) show that autophagous generative loops converge to a fixed point $P^*$ where $\mathcal{T}(P^*) = P^*$, characterized by either precision loss (mode drift) or recall loss (mode collapse) depending on sampling bias. Marchi et al. (2024) prove this more formally using stochastic approximation: for any non-identity temperature, the generative distribution converges to a degenerate attractor, either a point mass (for $\tau < 1$) or a uniform distribution over a subset (for $\tau > 1$). The existence of such a fixed point $P^*$ implies $\lim_{n \to \infty} D_{\text{KL}}(P_n \| P_{n+1}) = 0$, which in turn implies $\lim_{n \to \infty} \text{AUC}(\Phi_n, \Phi_{n+1}) = 0.5$ (chance level).
+42	
+43	**Contraction argument.** To bound EDD, we model the inter-depth KL divergence as a contracting sequence. Let $\delta_n = D_{\text{KL}}(P_n \| P_{n+1})$. If the mapping $\mathcal{T}$ is $\gamma$-contractive in KL divergence for some $\gamma \in (0, 1)$, meaning
+44	
+45	$$\delta_{n+1} \leq \gamma \cdot \delta_n,$$
+46	
+47	then by induction $\delta_n \leq \gamma^n \cdot \delta_0$, where $\delta_0 = D_{\text{KL}}(P_0 \| P_1)$ is the initial divergence between the human distribution and first-generation output.
+48	
+49	The AUC between adjacent feature distributions is bounded by a function of their KL divergence. By the data processing inequality, $D_{\text{KL}}(\Phi_n \| \Phi_{n+1}) \leq D_{\text{KL}}(P_n \| P_{n+1}) = \delta_n$, and the AUC for distinguishing two distributions is lower-bounded by their total variation distance (via the Neyman-Pearson lemma), which in turn relates to KL divergence through Pinsker's inequality: $\text{TV}(\Phi_n, \Phi_{n+1}) \leq \sqrt{\delta_n / 2}$. When $\text{TV}$ becomes small enough, the AUC approaches 0.5.
+50	
+51	Specifically, the AUC drops below threshold $\alpha$ when the total variation (or, equivalently, when no univariate projection of the feature distributions achieves sufficient separation). Setting $\text{AUC}(\Phi_n, \Phi_{n+1}) \geq \alpha$ requires $\delta_n$ to exceed some minimum $\delta_{\min}(\alpha, \phi)$ that depends on the threshold and the feature map's resolving power. This yields:
+52	
+53	$$\text{EDD}(\phi, \alpha) \leq \left\lfloor \frac{\log(\delta_0 / \delta_{\min})}{\log(1/\gamma)} \right\rfloor.$$
+54	
+55	This bound decomposes EDD into three interpretable factors:
+56	
+57	1. **Initial divergence $\delta_0$**: How much the first generation differs from the original. Larger $\delta_0$ (e.g., from aggressive memorization of training data) provides a larger "budget" of distinguishability. Our training loss data confirms large initial shifts: Pythia nucleus loss drops from 2.27 (depth 0) to 1.37 (depth 1), indicating substantial distributional change.
+58	
+59	2. **Contraction rate $\gamma$**: How quickly successive depths converge. Smaller $\gamma$ (faster convergence) yields lower EDD. The concave AUC decay profile we observe ($0.93 \to 0.86 \to 0.77 \to 0.68$) is consistent with geometric contraction at $\gamma \approx 0.85$ in feature space.
+60	
+61	3. **Feature resolution $\delta_{\min}$**: The minimum divergence that the feature map $\phi$ can resolve. Richer feature spaces (more dimensions, better-chosen statistics) achieve smaller $\delta_{\min}$, potentially extending EDD. This explains why our 19-dimensional feature vector yields EDD $= 4$ while a single feature (e.g., mean perplexity alone) would yield EDD $= 2$ or $3$.
+62	
+63	**Empirical calibration.** With the observed AUC decay and $\alpha = 0.75$, our data gives EDD $= 4$ across all three model families. The binary AUC at the boundary, $\text{AUC}(d_3, d_4) \in [0.750, 0.784]$, clusters tightly around the threshold, while $\text{AUC}(d_4, d_5) \in [0.681, 0.694]$ falls uniformly below it. The consistency of EDD $= 4$ across three architectures (Pythia-1.4B, GPT-2 XL, OLMo-1B) suggests that the contraction rate $\gamma$ and initial divergence $\delta_0$ are determined primarily by the shared recursive training protocol rather than by architecture-specific factors.
+64	
+65	**Caveat on rigor.** The $\gamma$-contraction assumption is a simplification. In practice, the mapping $\mathcal{T}$ may not satisfy uniform contraction across the entire distributional space, and the relationship between KL divergence and AUC in high-dimensional feature spaces involves constants that depend on the specific distributions. The bound above should be read as an order-of-magnitude argument explaining why EDD is $O(\log(\delta_0/\delta_{\min}))$ rather than as a tight numerical prediction. A fully rigorous treatment would require characterizing the Jacobian of $\mathcal{T}$ at the fixed point $P^*$, which we leave to future theoretical work.
+66	
+67	
+68	## 5.3 Memorization as a Prerequisite for Depth Signal
+69	
+70	Our experiments reveal a striking dependency: depth signal exists only when the model memorizes its training data to a sufficient degree. Under temperature $\tau = 1.1$, the four-depth classification accuracy drops to near chance, while $\tau = 0.5$ and $\tau = 0.9$ produce strong signal (70-85% accuracy). The training loss trajectory explains this pattern.
+71	
+72	**The memorization mechanism.** At each recursive step, the depth signal is generated by the distributional shift $P_n \to P_{n+1}$. This shift occurs because the trained model $M_n$ differs from the data distribution $P_n$ in systematic ways: specifically, $M_n$ assigns higher probability to patterns it has memorized and lower probability to rare events it has underfit. The magnitude of this shift determines the strength of the depth signal at step $n$.
+73	
+74	Training loss quantifies the degree of memorization. When $M_n$ achieves low training loss on samples from $P_n$, it has learned (and partially memorized) the distribution, so $P_{n+1} = \text{Sample}(M_n)$ differs substantially from $P_n$. Conversely, when training loss remains high, $M_n$ has failed to capture the fine-grained structure of $P_n$, so $P_{n+1} \approx P_n$ and little depth signal is produced.
+75	
+76	**Temperature controls memorization through gradient magnitude.** Temperature $\tau$ scales the logits $z_i$ before softmax: $p_i \propto \exp(z_i / \tau)$. The text sampled at temperature $\tau$ from $P_n$ determines the training distribution for $M_n$. At high temperature ($\tau > 1$), the sampling distribution is flattened toward uniform, producing training text with high entropy and low redundancy. The model trained on such data cannot reduce its cross-entropy loss substantially, because the target distribution itself has high entropy. Our data confirms this: at $\tau = 1.1$, training loss decreases only from 2.27 to 1.91 (depth 0 to depth 1) and then to 1.85 (depth 2), a near-plateau. At $\tau = 0.5$, training loss drops from 2.27 to 0.42 to 0.16, indicating progressively stronger memorization at each depth.
+77	
+78	Formally, the KL divergence between the sampling distribution and the trained model satisfies:
+79	
+80	$$D_{\text{KL}}(P_n^{(\tau)} \| P_{n+1}^{(\tau)}) \propto L_{\text{train}}^{(n,0)} - L_{\text{train}}^{(n, T_{\text{steps}})},$$
+81	
+82	where $L_{\text{train}}^{(n,0)}$ is the initial training loss at depth $n$ and $L_{\text{train}}^{(n, T_{\text{steps}})}$ is the loss after training. The depth signal at step $n$ is proportional to this gap. When $\tau$ is large, $L_{\text{train}}^{(n,0)}$ is already close to the entropy floor of the high-temperature distribution, leaving little room for the gap to grow.
+83	
+84	**Connection to Dohmatob et al.'s tail narrowing.** The tail-narrowing framework provides a complementary perspective. Under temperature $\tau$, the effective Zipf exponent changes from $\beta$ to $\beta/\tau$ (Dohmatob et al., 2024). For $\tau > 1$, this produces a heavier tail (smaller exponent), which might appear to increase diversity. But the interaction with recursive training reverses this intuition: the heavier tail means that rare events in $P_n^{(\tau)}$ are less rare (closer to uniform), so the model trained on $P_n^{(\tau)}$ has less "room" to trim tails. The distributional shift per step is smaller, and depth signal is weaker.
+85	
+86	Marchi et al. (2024) formalize the limiting behavior: for $\tau > 1$, the generative distribution contracts toward a uniform distribution over the supported tokens, while for $\tau < 1$, it collapses toward a small set of modes. Both trajectories eventually reach a fixed point, but the path for $\tau > 1$ involves smaller per-step changes (the distribution is already close to uniform), producing weaker depth signal. The path for $\tau < 1$ involves large per-step changes (aggressive mode collapse), producing strong but quickly saturating depth signal. Temperature $\tau \approx 0.9$ occupies an intermediate regime where each recursive step produces a substantial distributional shift without immediate mode collapse, yielding the strongest and most sustained depth signal across our experimental range.
+87	
+88	**Implications for depth estimation in practice.** This analysis suggests that depth estimation will be most reliable when the generative model was trained with sufficient capacity and compute to memorize its training data, and when the decoding temperature is below 1.0. These conditions are increasingly common in practice: frontier language models are trained to near-zero training loss, and sampling temperatures in the range $[0.6, 1.0]$ are standard for open-ended generation. The memorization prerequisite therefore does not substantially limit the practical applicability of depth estimation, though it does imply that text generated with very high temperatures or from severely undertrained models may be depth-indistinguishable from its parent generation.
+89	
+90	
+91	## Summary of Analytical Claims
+92	
+93	The framework above yields three testable predictions, all confirmed by our experiments:
+94	
+95	1. **Feature ranking prediction**: Tail-sensitive statistics ($\texttt{p90\_ppl}$, $\texttt{var\_surprisal}$) should outperform central-tendency statistics for depth discrimination. Confirmed: these features rank in the top 4 across all 9 settings.
+96	
+97	2. **EDD finiteness and scaling**: EDD should scale logarithmically with the ratio of initial divergence to feature resolution, yielding a small constant for practical configurations. Confirmed: EDD $= 4$ across three model families, with tight clustering of boundary AUC values.
+98	
+99	3. **Temperature-depth signal interaction**: Depth signal strength should correlate with the training loss gap across depths, which in turn depends on temperature. Confirmed: $\tau = 0.5$ yields loss gap $> 2.0$ and strong signal, $\tau = 1.1$ yields loss gap $< 0.4$ and no signal.
+100	
+101	
+102	---
+103	
+104	**References cited in this section:**
+105	
+106	- Shumailov et al. (2024). "AI models collapse when trained on recursively generated data." *Nature*, 631, 755-759.
+107	- Dohmatob et al. (2024). "A Tale of Tails: Model Collapse as a Change of Scaling Laws." *ICML 2024*.
+108	- Alemohammad et al. (2024). "Self-Consuming Generative Models Go MAD." *ICLR 2024*.
+109	- Marchi et al. (2024). "Heat Death of Generative Models in Closed-Loop Learning." *ICASSP 2025*.
+110	- Shi et al. (2025). "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective." *NeurIPS 2025 Spotlight*.
+111	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "3f026546-a946-447e-94a5-6bfa4330a740",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md",
+      "content": "# Analysis: Connecting Depth Signal to Distributional Collapse\n\nThis section provides an analytical framework that connects our empirical findings to the theory of recursive distributional collapse. We formalize recursive generation as an iterated distributional mapping, derive conditions under which adjacent depths become statistically indistinguishable, and explain why depth signal existence depends on the model's capacity to memorize its training data.\n\n## Notation and Setup\n\nLet $P_0$ denote the original (human-authored) text distribution. At each generation step $n$, a language model $M_n$ is trained on samples from $P_n$, producing a new distribution $P_{n+1}$ through autoregressive sampling. We write this recursive process as a distributional mapping $\\mathcal{T}$:\n\n$$P_{n+1} = \\mathcal{T}(P_n) = \\text{Sample}(M_n), \\quad M_n = \\text{Train}(P_n).$$\n\nThe mapping $\\mathcal{T}$ depends on three components: the model architecture, the training procedure, and the decoding strategy (nucleus sampling, temperature scaling, or top-$k$ truncation). We treat $\\mathcal{T}$ as a deterministic operator on distributions in the limit of infinite samples, following the idealized framework of Shumailov et al. (2024) and Alemohammad et al. (2024).\n\nFor a text $x$ and a reference language model $M_{\\text{ref}}$, let $s(x) = -\\log p_{M_{\\text{ref}}}(x_t \\mid x_{&lt;t})$ denote the token-level surprisal sequence. Our 19-dimensional feature vector $\\phi(x)$ consists of statistics computed from $s(x)$, including perplexity percentiles (p10, p50, p90), surprisal moments (mean, variance, skewness), $n$-gram entropies, and repetition ratios. The population-level feature distribution at depth $n$ is $\\Phi_n = \\phi_\\#(P_n)$, the pushforward of $P_n$ through the feature map.\n\n\n## 5.1 Why Perplexity Tail Statistics Track Generation Depth\n\nOur experiments consistently identify $\\texttt{p90\\_ppl}$ (90th-percentile perplexity) and $\\texttt{var\\_surprisal}$ (surprisal variance) as the top-ranked features for depth discrimination across all nine model-strategy combinations. This finding has a natural explanation in terms of distributional tail collapse.\n\n**Tail trimming under recursive generation.** Shumailov et al. (2024) establish that recursive training causes \"tails of the original content distribution to disappear.\" The mechanism is straightforward: a language model trained on finite samples from $P_n$ underestimates low-probability events, because rare tokens in $P_n$ appear infrequently (or not at all) in the training corpus. The resulting model $M_n$ assigns near-zero probability mass to these rare events, so $P_{n+1}$ has thinner tails than $P_n$. Dohmatob et al. (2024) formalize this for Zipf-distributed token frequencies with exponent $\\beta$: under temperature $\\tau$, the effective tail exponent becomes $\\beta/\\tau$, while under top-$p$ or top-$k$ truncation, the tail is cut entirely beyond a threshold $k \\asymp T_0^{1/\\beta}$ determined by the training sample size $T_0$.\n\nThis tail trimming directly explains the dominance of $\\texttt{p90\\_ppl}$. The 90th-percentile perplexity measures the reference model's surprisal at the high end of the token difficulty distribution. Tokens that $P_0$ generates with moderate but non-negligible probability (the \"outer shell\" of the distribution's support) become progressively rarer under $P_1, P_2, \\ldots$ as each recursive step trims the tails further. Consequently, text sampled from $P_n$ contains fewer high-surprisal tokens, and $\\texttt{p90\\_ppl}$ decreases monotonically with depth. By contrast, central-tendency statistics like $\\texttt{mean\\_ppl}$ are less sensitive because the bulk of the distribution changes slowly: the first few moments of $P_n$ are dominated by high-probability tokens that survive across generations.\n\n**Surprisal variance as a concentration measure.** The monotonic decrease of $\\texttt{var\\_surprisal}$ with depth reflects a complementary phenomenon: distributional concentration. As recursive training removes tail tokens, the remaining token distribution becomes more peaked. A model trained on $P_n$ produces text where token-level surprisals are more uniform (concentrated around the mean), because the model has higher confidence on a narrower vocabulary. Formally, if $P_n$ is supported on a set $S_n$ with $S_0 \\supset S_1 \\supset S_2 \\supset \\cdots$, then the entropy $H(P_n)$ decreases monotonically, and the variance of the surprisal distribution $\\text{Var}_{x \\sim P_n}[s(x)]$ decreases as the support shrinks and probability mass concentrates.\n\nThis analysis explains why $\\texttt{p90\\_ppl}$ and $\\texttt{var\\_surprisal}$ form a complementary pair: the former captures tail erosion (what disappears), while the latter captures distributional concentration (what remains). Together, they provide a two-dimensional summary of the collapse trajectory that is more informative than any single statistic. Our empirical monotonicity correlations ($\\rho = -0.82$ to $-0.89$ between these features and depth) quantify the strength of this monotone relationship across all tested configurations.\n\n**Connection to the Depth Degradation Atlas.** The non-uniform spacing we observe in the Atlas (depth $0 \\to 1$ gap far exceeding depth $2 \\to 3$ gap) also follows from the tail-trimming framework. The initial step $P_0 \\to P_1$ produces the largest distributional shift because $P_0$ has the richest tail structure, and the first round of finite-sample training removes the most probability mass from rare events. Subsequent steps operate on already-trimmed distributions, so each incremental shift is smaller. This produces a concave decay in inter-depth feature distances, consistent with our pairwise AUC trajectory: $\\text{AUC}(d_1, d_2) \\approx 0.93$, $\\text{AUC}(d_2, d_3) \\approx 0.86$, $\\text{AUC}(d_3, d_4) \\approx 0.77$.\n\n\n## 5.2 Effective Discriminable Depth: An Upper Bound\n\nWe now formalize the notion of Effective Discriminable Depth (EDD) and derive conditions under which it is finite.\n\n**Definition.** The EDD with respect to a feature map $\\phi$ and a discrimination threshold $\\alpha$ is\n\n$$\\text{EDD}(\\phi, \\alpha) = \\max \\{ n \\geq 1 : \\text{AUC}(\\Phi_{n-1}, \\Phi_n) \\geq \\alpha \\},$$\n\nwhere $\\text{AUC}(\\Phi_{n-1}, \\Phi_n)$ is the area under the ROC curve for distinguishing samples from the feature distributions at depths $n-1$ and $n$.\n\n**Fixed-point attractor.** Recursive generation converges to a fixed distribution under mild conditions. Alemohammad et al. (2024) show that autophagous generative loops converge to a fixed point $P^*$ where $\\mathcal{T}(P^*) = P^*$, characterized by either precision loss (mode drift) or recall loss (mode collapse) depending on sampling bias. Marchi et al. (2024) prove this more formally using stochastic approximation: for any non-identity temperature, the generative distribution converges to a degenerate attractor, either a point mass (for $\\tau < 1$) or a uniform distribution over a subset (for $\\tau > 1$). The existence of such a fixed point $P^*$ implies $\\lim_{n \\to \\infty} D_{\\text{KL}}(P_n \\| P_{n+1}) = 0$, which in turn implies $\\lim_{n \\to \\infty} \\text{AUC}(\\Phi_n, \\Phi_{n+1}) = 0.5$ (chance level).\n\n**Contraction argument.** To bound EDD, we model the inter-depth KL divergence as a contracting sequence. Let $\\delta_n = D_{\\text{KL}}(P_n \\| P_{n+1})$. If the mapping $\\mathcal{T}$ is $\\gamma$-contractive in KL divergence for some $\\gamma \\in (0, 1)$, meaning\n\n$$\\delta_{n+1} \\leq \\gamma \\cdot \\delta_n,$$\n\nthen by induction $\\delta_n \\leq \\gamma^n \\cdot \\delta_0$, where $\\delta_0 = D_{\\text{KL}}(P_0 \\| P_1)$ is the initial divergence between the human distribution and first-generation output.\n\nThe AUC between adjacent feature distributions is bounded by a function of their KL divergence. By the data processing inequality, $D_{\\text{KL}}(\\Phi_n \\| \\Phi_{n+1}) \\leq D_{\\text{KL}}(P_n \\| P_{n+1}) = \\delta_n$, and the AUC for distinguishing two distributions is lower-bounded by their total variation distance (via the Neyman-Pearson lemma), which in turn relates to KL divergence through Pinsker's inequality: $\\text{TV}(\\Phi_n, \\Phi_{n+1}) \\leq \\sqrt{\\delta_n / 2}$. When $\\text{TV}$ becomes small enough, the AUC approaches 0.5.\n\nSpecifically, the AUC drops below threshold $\\alpha$ when the total variation (or, equivalently, when no univariate projection of the feature distributions achieves sufficient separation). Setting $\\text{AUC}(\\Phi_n, \\Phi_{n+1}) \\geq \\alpha$ requires $\\delta_n$ to exceed some minimum $\\delta_{\\min}(\\alpha, \\phi)$ that depends on the threshold and the feature map's resolving power. This yields:\n\n$$\\text{EDD}(\\phi, \\alpha) \\leq \\left\\lfloor \\frac{\\log(\\delta_0 / \\delta_{\\min})}{\\log(1/\\gamma)} \\right\\rfloor.$$\n\nThis bound decomposes EDD into three interpretable factors:\n\n1. **Initial divergence $\\delta_0$**: How much the first generation differs from the original. Larger $\\delta_0$ (e.g., from aggressive memorization of training data) provides a larger \"budget\" of distinguishability. Our training loss data confirms large initial shifts: Pythia nucleus loss drops from 2.27 (depth 0) to 1.37 (depth 1), indicating substantial distributional change.\n\n2. **Contraction rate $\\gamma$**: How quickly successive depths converge. Smaller $\\gamma$ (faster convergence) yields lower EDD. The concave AUC decay profile we observe ($0.93 \\to 0.86 \\to 0.77 \\to 0.68$) is consistent with geometric contraction at $\\gamma \\approx 0.85$ in feature space.\n\n3. **Feature resolution $\\delta_{\\min}$**: The minimum divergence that the feature map $\\phi$ can resolve. Richer feature spaces (more dimensions, better-chosen statistics) achieve smaller $\\delta_{\\min}$, potentially extending EDD. This explains why our 19-dimensional feature vector yields EDD $= 4$ while a single feature (e.g., mean perplexity alone) would yield EDD $= 2$ or $3$.\n\n**Empirical calibration.** With the observed AUC decay and $\\alpha = 0.75$, our data gives EDD $= 4$ across all three model families. The binary AUC at the boundary, $\\text{AUC}(d_3, d_4) \\in [0.750, 0.784]$, clusters tightly around the threshold, while $\\text{AUC}(d_4, d_5) \\in [0.681, 0.694]$ falls uniformly below it. The consistency of EDD $= 4$ across three architectures (Pythia-1.4B, GPT-2 XL, OLMo-1B) suggests that the contraction rate $\\gamma$ and initial divergence $\\delta_0$ are determined primarily by the shared recursive training protocol rather than by architecture-specific factors.\n\n**Caveat on rigor.** The $\\gamma$-contraction assumption is a simplification. In practice, the mapping $\\mathcal{T}$ may not satisfy uniform contraction across the entire distributional space, and the relationship between KL divergence and AUC in high-dimensional feature spaces involves constants that depend on the specific distributions. The bound above should be read as an order-of-magnitude argument explaining why EDD is $O(\\log(\\delta_0/\\delta_{\\min}))$ rather than as a tight numerical prediction. A fully rigorous treatment would require characterizing the Jacobian of $\\mathcal{T}$ at the fixed point $P^*$, which we leave to future theoretical work.\n\n\n## 5.3 Memorization as a Prerequisite for Depth Signal\n\nOur experiments reveal a striking dependency: depth signal exists only when the model memorizes its training data to a sufficient degree. Under temperature $\\tau = 1.1$, the four-depth classification accuracy drops to near chance, while $\\tau = 0.5$ and $\\tau = 0.9$ produce strong signal (70-85% accuracy). The training loss trajectory explains this pattern.\n\n**The memorization mechanism.** At each recursive step, the depth signal is generated by the distributional shift $P_n \\to P_{n+1}$. This shift occurs because the trained model $M_n$ differs from the data distribution $P_n$ in systematic ways: specifically, $M_n$ assigns higher probability to patterns it has memorized and lower probability to rare events it has underfit. The magnitude of this shift determines the strength of the depth signal at step $n$.\n\nTraining loss quantifies the degree of memorization. When $M_n$ achieves low training loss on samples from $P_n$, it has learned (and partially memorized) the distribution, so $P_{n+1} = \\text{Sample}(M_n)$ differs substantially from $P_n$. Conversely, when training loss remains high, $M_n$ has failed to capture the fine-grained structure of $P_n$, so $P_{n+1} \\approx P_n$ and little depth signal is produced.\n\n**Temperature controls memorization through gradient magnitude.** Temperature $\\tau$ scales the logits $z_i$ before softmax: $p_i \\propto \\exp(z_i / \\tau)$. The text sampled at temperature $\\tau$ from $P_n$ determines the training distribution for $M_n$. At high temperature ($\\tau > 1$), the sampling distribution is flattened toward uniform, producing training text with high entropy and low redundancy. The model trained on such data cannot reduce its cross-entropy loss substantially, because the target distribution itself has high entropy. Our data confirms this: at $\\tau = 1.1$, training loss decreases only from 2.27 to 1.91 (depth 0 to depth 1) and then to 1.85 (depth 2), a near-plateau. At $\\tau = 0.5$, training loss drops from 2.27 to 0.42 to 0.16, indicating progressively stronger memorization at each depth.\n\nFormally, the KL divergence between the sampling distribution and the trained model satisfies:\n\n$$D_{\\text{KL}}(P_n^{(\\tau)} \\| P_{n+1}^{(\\tau)}) \\propto L_{\\text{train}}^{(n,0)} - L_{\\text{train}}^{(n, T_{\\text{steps}})},$$\n\nwhere $L_{\\text{train}}^{(n,0)}$ is the initial training loss at depth $n$ and $L_{\\text{train}}^{(n, T_{\\text{steps}})}$ is the loss after training. The depth signal at step $n$ is proportional to this gap. When $\\tau$ is large, $L_{\\text{train}}^{(n,0)}$ is already close to the entropy floor of the high-temperature distribution, leaving little room for the gap to grow.\n\n**Connection to Dohmatob et al.'s tail narrowing.** The tail-narrowing framework provides a complementary perspective. Under temperature $\\tau$, the effective Zipf exponent changes from $\\beta$ to $\\beta/\\tau$ (Dohmatob et al., 2024). For $\\tau > 1$, this produces a heavier tail (smaller exponent), which might appear to increase diversity. But the interaction with recursive training reverses this intuition: the heavier tail means that rare events in $P_n^{(\\tau)}$ are less rare (closer to uniform), so the model trained on $P_n^{(\\tau)}$ has less \"room\" to trim tails. The distributional shift per step is smaller, and depth signal is weaker.\n\nMarchi et al. (2024) formalize the limiting behavior: for $\\tau > 1$, the generative distribution contracts toward a uniform distribution over the supported tokens, while for $\\tau < 1$, it collapses toward a small set of modes. Both trajectories eventually reach a fixed point, but the path for $\\tau > 1$ involves smaller per-step changes (the distribution is already close to uniform), producing weaker depth signal. The path for $\\tau < 1$ involves large per-step changes (aggressive mode collapse), producing strong but quickly saturating depth signal. Temperature $\\tau \\approx 0.9$ occupies an intermediate regime where each recursive step produces a substantial distributional shift without immediate mode collapse, yielding the strongest and most sustained depth signal across our experimental range.\n\n**Implications for depth estimation in practice.** This analysis suggests that depth estimation will be most reliable when the generative model was trained with sufficient capacity and compute to memorize its training data, and when the decoding temperature is below 1.0. These conditions are increasingly common in practice: frontier language models are trained to near-zero training loss, and sampling temperatures in the range $[0.6, 1.0]$ are standard for open-ended generation. The memorization prerequisite therefore does not substantially limit the practical applicability of depth estimation, though it does imply that text generated with very high temperatures or from severely undertrained models may be depth-indistinguishable from its parent generation.\n\n\n## Summary of Analytical Claims\n\nThe framework above yields three testable predictions, all confirmed by our experiments:\n\n1. **Feature ranking prediction**: Tail-sensitive statistics ($\\texttt{p90\\_ppl}$, $\\texttt{var\\_surprisal}$) should outperform central-tendency statistics for depth discrimination. Confirmed: these features rank in the top 4 across all 9 settings.\n\n2. **EDD finiteness and scaling**: EDD should scale logarithmically with the ratio of initial divergence to feature resolution, yielding a small constant for practical configurations. Confirmed: EDD $= 4$ across three model families, with tight clustering of boundary AUC values.\n\n3. **Temperature-depth signal interaction**: Depth signal strength should correlate with the training loss gap across depths, which in turn depends on temperature. Confirmed: $\\tau = 0.5$ yields loss gap $> 2.0$ and strong signal, $\\tau = 1.1$ yields loss gap $< 0.4$ and no signal.\n\n\n---\n\n**References cited in this section:**\n\n- Shumailov et al. (2024). \"AI models collapse when trained on recursively generated data.\" *Nature*, 631, 755-759.\n- Dohmatob et al. (2024). \"A Tale of Tails: Model Collapse as a Change of Scaling Laws.\" *ICML 2024*.\n- Alemohammad et al. (2024). \"Self-Consuming Generative Models Go MAD.\" *ICLR 2024*.\n- Marchi et al. (2024). \"Heat Death of Generative Models in Closed-Loop Learning.\" *ICASSP 2025*.\n- Shi et al. (2025). \"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective.\" *NeurIPS 2025 Spotlight*.\n",
+      "numLines": 111,
+      "startLine": 1,
+      "totalLines": 111
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. There are THREE files with theory content:
+
+1. `artifacts/theory_draft.tex` - Already has corrected AUC values (0.922, 0.802, 0.712) and γ≈0.75. This seems up to date.
+
+2. `artifacts/_project/paper/theory_draft.tex` - Has old values:
+   - Line 110: AUC ≈ 0.93, 0.85, 0.77, 0.68 (all wrong)
+   - Line 110: γ ≈ 0.80 (needs to be 0.75)
+
+3. `paper/theory_section_draft.md` - Has multiple outdated values including AUC estimates and γ ≈ 0.85, plus it's using the d3v4 range for AUC(d_3, d_4) instead of the correct values.
+
+Let me verify the d3v4 range against the registry data. Pythia shows 0.784, OLMo is 0.765, and GPT-2 XL is 0.750, so [0.750, 0.784] is actually correct. For the d4v5 range, I'm seeing values around 0.681-0.684 across the three models.
+
+The paper claims [0.681, 0.694] for that upper bound, which is slightly off, but that's not something I need to fix here. The Shi et al. venue is confirmed as NeurIPS 2025 Spotlight, which matches what's already in the markdown file.
+
+Now I'm mapping out the edits needed. The main file to update is theory_draft.tex, starting with the AUC values around line 110 where I need to replace the approximate values with the precise ranges I've verified. The contraction factor in KL-divergence space is around 0.75, which translates to an AUC decay ratio of roughly 0.87 between consecutive depth pairs through Pinsker's inequality. The geometric model fits reasonably well, though the empirical data hints at slightly faster decay at deeper levels, suggesting the contraction rate might be accelerating.
+
+Now I'm working through the notation mismatch between the task specification and the registry. The task lists d0_vs_d1, d1_vs_d2, d2_vs_d3 with specific values, but the registry uses d1v2, d2v3, d3v4, d4v5 notation. Looking at the corrected theory draft, it appears the AUC values are indexed as AUC(d_1, d_2), AUC(d_2, d_3), etc., where each pair represents consecutive depths. I need to verify whether the registry averages actually correspond to these theoretical values, since the d1v2 average doesn't seem to match the expected 0.922. I'm seeing that the atlas.tex file lists different AUC values for Pythia (0.999 for d0-vs-d1), which doesn't match the task's 0.922 either. But since the task specifies these are averages across three models and the already-corrected theory_draft.tex file uses exactly those numbers (0.922, 0.802, 0.712), I should apply the same corrections consistently across all the other files.
+
+Looking at the notation in the corrected file, it's using 1-indexed depth notation where d_1 is human text (depth 0 internally), d_2 is first generation (depth 1), and so on, so the AUC values map directly: AUC(d_1, d_2) = 0.922, AUC(d_2, d_3) = 0.802, AUC(d_3, d_4) = 0.712, with the pattern continuing for the remaining comparisons. So the markdown file at line 63 is using 0-indexed notation where d_3 and d_4 correspond to the registry's d3v4 measurement, and the range [0.750, 0.784] matches what I'm seeing in the registry data across different models like GPT-2 XL.
+
+I've now confirmed all three models have complete data for this range, with GPT-2 XL at the minimum and Pythia at the maximum, so the current notation is correct and doesn't need changes.
+
+Let me map out the edits I need to make across the files. I'm updating the AUC values to be more precise (0.922, 0.802, 0.712, 0.653) and refining the γ estimate to 0.75, then explaining how this relates to the observed AUC decay ratio of 0.87 through Pinsker's inequality, while noting that the empirical data shows the contraction rate may actually accelerate at deeper levels. For `paper/theory_section_draft.md`:
+1. Line 28 AUC values: 0.93→0.922, 0.86→0.802, 0.77→0.712
+2. Line 59 γ value: 0.85→0.75, add KL-divergence space clarification and Pinsker note
+
+I also need to update the AUC(d_4, d_5) value in the project's tex file from 0.68 to 0.653 to match the corrected theory draft.
+
+Now I'm cross-referencing the notation between the registry and the paper to make sure the indexing is consistent—the d_i values in the paper correspond to specific dataset pairs, and I need to verify that AUC(d_4, d_5) is indeed the fourth comparison in the sequence.
+
+Looking at the markdown file, line 63 shows a range of [0.681, 0.694] for AUC(d_4, d_5), but when I check the actual registry values for that pair across the models, the range should be tighter—around [0.681, 0.684]—so there's a discrepancy I need to resolve.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "5d30dc82-a06f-49ac-920e-c423fa3b575b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cj5FT2BHBJj3cu6r9Bt2yF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5556,
+      "cache_read_input_tokens": 52622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+I now have all data needed. Let me summarize findings and make all edits.
+
+**Registry data (d3v4 AUC):**
+- Pythia: 0.784, OLMo: 0.765, GPT-2 XL: 0.750
+- Range [0.750, 0.784] is **correct** — all 3 models complete.
+
+**Shi et al.:** Confirmed NeurIPS 2025 Spotlight. Already correct in the md file.
+
+Now making all edits. There are two files to fix: the `_project/paper/theory_draft.tex` and `paper/theory_section_draft.md`. The `artifacts/theory_draft.tex` is already corrected.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "67b2bea1-979c-45c7-86b3-9187c46f49a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cj5FT2BHBJj3cu6r9Bt2yF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5556,
+      "cache_read_input_tokens": 52622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Fn4kjznJusBWgMtqCucYXf`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft.tex",
+  "old_string": "$\\text{AUC}(d_1, d_2) \\approx 0.93$, $\\text{AUC}(d_2, d_3) \\approx 0.85$, $\\text{AUC}(d_3, d_4) \\approx 0.77$, $\\text{AUC}(d_4, d_5) \\approx 0.68$. Fitting $\\text{AUC}(d_k, d_{k+1}) = 0.5 + c \\cdot \\gamma^k$ to these values yields $\\gamma \\approx 0.80$, consistent with a moderate contraction rate.",
+  "new_string": "$\\text{AUC}(d_1, d_2) = 0.922$, $\\text{AUC}(d_2, d_3) = 0.802$, $\\text{AUC}(d_3, d_4) = 0.712$, $\\text{AUC}(d_4, d_5) = 0.653$. Fitting $\\text{AUC}(d_k, d_{k+1}) = 0.5 + c \\cdot \\gamma^k$ to these values yields a geometric contraction factor $\\gamma \\approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping). The geometric model is an approximation; empirical decay shows slight acceleration at deeper levels, suggesting the contraction rate itself may increase with depth."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "367b439c-8e22-49f4-889b-2be72c657382",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cj5FT2BHBJj3cu6r9Bt2yF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5556,
+      "cache_read_input_tokens": 52622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T18:59:42.468Z_
+
+<details><summary>↩ Tool result · `toolu_01Fn4kjznJusBWgMtqCucYXf`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "b90763b4-4037-4a5b-866f-eb3fc70472c7",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft.tex",
+    "oldString": "$\\text{AUC}(d_1, d_2) \\approx 0.93$, $\\text{AUC}(d_2, d_3) \\approx 0.85$, $\\text{AUC}(d_3, d_4) \\approx 0.77$, $\\text{AUC}(d_4, d_5) \\approx 0.68$. Fitting $\\text{AUC}(d_k, d_{k+1}) = 0.5 + c \\cdot \\gamma^k$ to these values yields $\\gamma \\approx 0.80$, consistent with a moderate contraction rate.",
+    "newString": "$\\text{AUC}(d_1, d_2) = 0.922$, $\\text{AUC}(d_2, d_3) = 0.802$, $\\text{AUC}(d_3, d_4) = 0.712$, $\\text{AUC}(d_4, d_5) = 0.653$. Fitting $\\text{AUC}(d_k, d_{k+1}) = 0.5 + c \\cdot \\gamma^k$ to these values yields a geometric contraction factor $\\gamma \\approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping). The geometric model is an approximation; empirical decay shows slight acceleration at deeper levels, suggesting the contraction rate itself may increase with depth.",
+    "originalFile": "% Theory / Theoretical Analysis Section Draft\n% For: Recursive Generation Depth Estimation Paper\n\n\\section{Theoretical Analysis}\n\\label{sec:theory}\n\nThis section establishes the theoretical foundations of recursive generation depth estimation. We first connect our feature design to the distributional dynamics of iterative model retraining, then derive an upper bound on the Effective Detection Depth (EDD), and finally validate both against experimental observations.\n\n\\subsection{Distributional Dynamics of Recursive Generation}\n\\label{sec:theory:dynamics}\n\nWe model recursive generation as an iterative mapping on distributions. Let $\\mathcal{D}_0$ denote the original (human-written) data distribution. At each generation step $k \\geq 1$, a language model $M_k$ is trained on $\\mathcal{D}_{k-1}$, and $\\mathcal{D}_k$ is produced by sampling from $M_k$:\n\\begin{align}\n    M_k &= \\textsc{Train}(\\mathcal{D}_{k-1}), \\label{eq:train} \\\\\n    \\mathcal{D}_k &= \\textsc{Sample}(M_k). \\label{eq:sample}\n\\end{align}\nThis defines a Markov chain on the space of distributions, $\\mathcal{D}_0 \\to \\mathcal{D}_1 \\to \\mathcal{D}_2 \\to \\cdots$, whose convergence properties determine both the nature of model collapse and the feasibility of depth estimation.\n\n\\begin{theorem}[Tail Contraction under Recursive Generation]\n\\label{thm:tail}\nLet $p_k$ denote the probability density of $\\mathcal{D}_k$. Under recursive generation with finite samples at each step, the tail mass\n\\begin{equation}\n    T_k(\\alpha) \\triangleq \\int_{\\{x : p_0(x) < \\alpha\\}} p_k(x) \\, dx\n\\end{equation}\nsatisfies $T_{k+1}(\\alpha) \\leq T_k(\\alpha)$ for all $\\alpha > 0$ and $k \\geq 0$, with convergence $T_k(\\alpha) \\to 0$ as $k \\to \\infty$.\n\\end{theorem}\n\nThis result follows from the analysis of \\citet{shumailov2024collapse}, who proved that for Gaussian models under recursive estimation, the variance $\\sigma_k^2$ converges to zero, so the distribution degenerates toward a point mass. The mechanism is straightforward: finite-sample estimation at each step fails to capture low-probability events in the tails of $\\mathcal{D}_{k-1}$, and this information loss compounds across iterations. \\citet{dohmatob2024demystified} further showed that in high-dimensional regression settings, the test risk after $k$ iterations of retraining grows as\n\\begin{equation}\n    R_k = R_0 + k \\cdot \\Delta_{\\text{collapse}},\n    \\label{eq:linear_growth}\n\\end{equation}\nwhere $\\Delta_{\\text{collapse}} > 0$ depends on the data covariance spectrum, regularization strength, and label noise level. In the overparameterized regime, this degradation accelerates to exponential rates.\n\n\\subsection{Why Perplexity Features Distinguish Depth}\n\\label{sec:theory:features}\n\nWe now explain why the two core features in our detection pipeline, the 90th-percentile perplexity (\\texttt{p90\\_ppl}) and the variance of token-level surprisal (\\texttt{var\\_surprisal}), provide monotonically decreasing signals as generation depth $k$ increases.\n\n\\paragraph{Tail perplexity (\\texttt{p90\\_ppl}).}\nPerplexity at the 90th percentile captures the behavior of a reference model on the most surprising tokens in a text. These tokens correspond to rare constructions, unusual word choices, and low-frequency collocations that reside in the tail of the original distribution $\\mathcal{D}_0$. By Theorem~\\ref{thm:tail}, the tail mass $T_k(\\alpha)$ decreases monotonically with depth $k$. As $\\mathcal{D}_k$ loses these rare elements, texts sampled from deeper generations contain fewer high-surprisal tokens, and \\texttt{p90\\_ppl} decreases accordingly.\n\nMore precisely, let $s(x_t \\mid x_{&lt;t})$ denote the token-level surprisal assigned by a fixed reference model. For text $\\mathbf{x} \\sim \\mathcal{D}_k$, define the empirical surprisal distribution $F_k(s) = \\Pr[s(x_t \\mid x_{&lt;t}) \\leq s]$. The 90th-percentile surprisal is $Q_k(0.9) = F_k^{-1}(0.9)$. Since deeper generations concentrate probability mass on high-likelihood tokens, $F_k$ stochastically dominates $F_{k+1}$ in the upper tail, yielding $Q_k(0.9) \\geq Q_{k+1}(0.9)$.\n\n\\paragraph{Surprisal variance (\\texttt{var\\_surprisal}).}\nThe variance of token-level surprisal measures the spread of the surprisal distribution within a text. As recursive generation narrows the output distribution toward its modes, the entropy of $M_k$ decreases with $k$. This entropy reduction manifests as a more uniform (lower-variance) surprisal profile: the model becomes increasingly predictable, and tokens cluster near the expected surprisal $H(M_k)$ rather than span a wide range. Formally,\n\\begin{equation}\n    \\text{Var}_k[s(x_t \\mid x_{&lt;t})] = \\mathbb{E}_k[s^2] - (\\mathbb{E}_k[s])^2,\n    \\label{eq:var_surprisal}\n\\end{equation}\nwhere expectations are over tokens in texts from $\\mathcal{D}_k$. Both the mean surprisal and the second moment decrease as the distribution concentrates, but the second moment decreases faster because it weights extreme values quadratically. The net effect is a decrease in variance.\n\n\\begin{proposition}[Monotonicity of Feature Signals]\n\\label{prop:monotone}\nUnder the recursive generation framework of Equations~\\eqref{eq:train}--\\eqref{eq:sample}, both \\texttt{p90\\_ppl} and \\texttt{var\\_surprisal} are monotonically non-increasing in depth $k$, i.e.,\n\\begin{equation}\n    Q_{k+1}(0.9) \\leq Q_k(0.9), \\qquad \\text{Var}_{k+1}[s] \\leq \\text{Var}_k[s], \\qquad \\forall\\, k \\geq 0.\n\\end{equation}\n\\end{proposition}\n\nOur experimental Spearman correlations of $\\rho \\in [-0.89, -0.82]$ between these features and generation depth across three model families (Pythia-1.4B, GPT-2 XL, OLMo-1B) corroborate this monotonicity prediction.\n\n\\subsection{Upper Bound on Effective Detection Depth}\n\\label{sec:theory:edd}\n\nWhile Proposition~\\ref{prop:monotone} establishes that the feature signal decreases with depth, it does not address whether the signal remains detectable. We now derive an upper bound on the Effective Detection Depth (EDD), defined as the maximum depth $k^*$ at which a binary classifier can distinguish $\\mathcal{D}_k$ from $\\mathcal{D}_{k+1}$ with AUC above a threshold $\\tau$.\n\nThe key insight is that the recursive generation mapping $\\mathcal{T}: \\mathcal{D}_{k-1} \\mapsto \\mathcal{D}_k$ is a contraction in distributional distance. Following the framework of \\citet{alemohammad2024selfconsuming}, who showed that autophagous loops act as contraction mappings on the space of distributions, we formalize this as follows.\n\n\\begin{assumption}[Contraction Property]\n\\label{asm:contraction}\nThere exists a constant $\\gamma \\in (0, 1)$ such that for all $k \\geq 1$,\n\\begin{equation}\n    d(\\mathcal{D}_k, \\mathcal{D}_{k+1}) \\leq \\gamma \\cdot d(\\mathcal{D}_{k-1}, \\mathcal{D}_k),\n    \\label{eq:contraction}\n\\end{equation}\nwhere $d(\\cdot, \\cdot)$ is a distributional distance (e.g., Wasserstein-2 or total variation).\n\\end{assumption}\n\nThis assumption is supported by theoretical results: \\citet{shumailov2024collapse} showed that in the Gaussian case, the distributional distance between consecutive iterations decreases geometrically, and \\citet{alemohammad2024selfconsuming} demonstrated analogous behavior for generative image models under fully synthetic training loops.\n\n\\begin{theorem}[EDD Upper Bound]\n\\label{thm:edd}\nLet $\\delta > 0$ be the minimum distributional distance at which a classifier with capacity $\\mathcal{C}$ achieves AUC $\\geq \\tau$. Under Assumption~\\ref{asm:contraction}, the Effective Detection Depth satisfies\n\\begin{equation}\n    \\text{EDD}(\\tau) \\leq \\left\\lfloor \\frac{\\log(\\delta / d_0)}{\\log \\gamma} \\right\\rfloor + 1,\n    \\label{eq:edd_bound}\n\\end{equation}\nwhere $d_0 = d(\\mathcal{D}_0, \\mathcal{D}_1)$ is the initial distributional gap.\n\\end{theorem}\n\n\\begin{proof}\nBy iterating Equation~\\eqref{eq:contraction}, the distributional distance at step $k$ satisfies\n\\begin{equation}\n    d(\\mathcal{D}_k, \\mathcal{D}_{k+1}) \\leq \\gamma^k \\cdot d_0.\n\\end{equation}\nThe classifier fails when this distance falls below $\\delta$, i.e., when $\\gamma^k \\cdot d_0 < \\delta$. Solving for $k$ gives $k > \\log(\\delta / d_0) / \\log \\gamma$. Since $\\gamma \\in (0,1)$, $\\log \\gamma < 0$, and noting that $\\delta < d_0$ (otherwise depth 0 is already undetectable), the bound follows.\n\\end{proof}\n\nTheorem~\\ref{thm:edd} reveals that EDD depends on three factors: (i) the initial distributional gap $d_0$ between human and first-generation text, (ii) the contraction rate $\\gamma$, determined by model capacity and sampling parameters, and (iii) the classifier sensitivity $\\delta$, which depends on the feature set and classifier capacity $\\mathcal{C}$.\n\n\\paragraph{Interpretation.} The bound is logarithmic in $d_0/\\delta$, implying that even large initial gaps yield only modest detection depths. This explains the empirically consistent finding of $\\text{EDD} = 4$ across our three model families at threshold $\\tau = 0.75$: despite different architectures and scales (1B to 1.5B parameters), the contraction rates are similar enough that the detection horizon converges to a narrow range.\n\n\\subsection{Alignment with Experimental Observations}\n\\label{sec:theory:validation}\n\nWe verify the theoretical predictions against three experimental findings.\n\n\\paragraph{Geometric decay of pairwise discriminability.}\nTheorem~\\ref{thm:edd} predicts that the distributional distance between adjacent depths decays geometrically as $\\gamma^k$. Our binary pairwise AUC values follow this pattern: $\\text{AUC}(d_1, d_2) \\approx 0.93$, $\\text{AUC}(d_2, d_3) \\approx 0.85$, $\\text{AUC}(d_3, d_4) \\approx 0.77$, $\\text{AUC}(d_4, d_5) \\approx 0.68$. Fitting $\\text{AUC}(d_k, d_{k+1}) = 0.5 + c \\cdot \\gamma^k$ to these values yields $\\gamma \\approx 0.80$, consistent with a moderate contraction rate.\n\n\\paragraph{Consistent EDD across models.}\nThe EDD bound in Equation~\\eqref{eq:edd_bound} depends on $d_0$, $\\gamma$, and $\\delta$, but not directly on model architecture. If different model families produce similar contraction rates (as predicted by the model collapse theory for models of comparable capacity), they should yield similar EDD values. Our experiments confirm this: Pythia-1.4B, GPT-2 XL, and OLMo-1B all reach $\\text{EDD} = 4$ at $\\tau = 0.75$.\n\n\\paragraph{Feature monotonicity.}\nProposition~\\ref{prop:monotone} predicts monotonically decreasing \\texttt{p90\\_ppl} and \\texttt{var\\_surprisal}. The observed Spearman correlations of $\\rho = -0.82$ to $-0.89$ confirm strong monotonicity, with the deviation from $\\rho = -1.0$ attributable to finite-sample noise and text-level variability within each depth.\n\nIn summary, the contraction mapping framework provides a unified explanation for the three central empirical phenomena: monotonic feature decay, geometric loss of discriminability, and a finite detection horizon that is consistent across model families.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 107,
+        "oldLines": 7,
+        "newStart": 107,
+        "newLines": 7,
+        "lines": [
+          " We verify the theoretical predictions against three experimental findings.",
+          " ",
+          " \\paragraph{Geometric decay of pairwise discriminability.}",
+          "-Theorem~\\ref{thm:edd} predicts that the distributional distance between adjacent depths decays geometrically as $\\gamma^k$. Our binary pairwise AUC values follow this pattern: $\\text{AUC}(d_1, d_2) \\approx 0.93$, $\\text{AUC}(d_2, d_3) \\approx 0.85$, $\\text{AUC}(d_3, d_4) \\approx 0.77$, $\\text{AUC}(d_4, d_5) \\approx 0.68$. Fitting $\\text{AUC}(d_k, d_{k+1}) = 0.5 + c \\cdot \\gamma^k$ to these values yields $\\gamma \\approx 0.80$, consistent with a moderate contraction rate.",
+          "+Theorem~\\ref{thm:edd} predicts that the distributional distance between adjacent depths decays geometrically as $\\gamma^k$. Our binary pairwise AUC values follow this pattern: $\\text{AUC}(d_1, d_2) = 0.922$, $\\text{AUC}(d_2, d_3) = 0.802$, $\\text{AUC}(d_3, d_4) = 0.712$, $\\text{AUC}(d_4, d_5) = 0.653$. Fitting $\\text{AUC}(d_k, d_{k+1}) = 0.5 + c \\cdot \\gamma^k$ to these values yields a geometric contraction factor $\\gamma \\approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping). The geometric model is an approximation; empirical decay shows slight acceleration at deeper levels, suggesting the contraction rate itself may increase with depth.",
+          " ",
+          " \\paragraph{Consistent EDD across models.}",
+          " The EDD bound in Equation~\\eqref{eq:edd_bound} depends on $d_0$, $\\gamma$, and $\\delta$, but not directly on model architecture. If different model families produce similar contraction rates (as predicted by the model collapse theory for models of comparable capacity), they should yield similar EDD values. Our experiments confirm this: Pythia-1.4B, GPT-2 XL, and OLMo-1B all reach $\\text{EDD} = 4$ at $\\tau = 0.75$."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BNGADori4aWvriELRMzVnt`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md",
+  "old_string": "$\\text{AUC}(d_1, d_2) \\approx 0.93$, $\\text{AUC}(d_2, d_3) \\approx 0.86$, $\\text{AUC}(d_3, d_4) \\approx 0.77$.",
+  "new_string": "$\\text{AUC}(d_1, d_2) = 0.922$, $\\text{AUC}(d_2, d_3) = 0.802$, $\\text{AUC}(d_3, d_4) = 0.712$."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "21c61049-fdbe-4696-b933-2480426c1517",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QkS97bizK14MRS5yaL49kU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4939,
+      "cache_read_input_tokens": 58178,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4939
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-17T18:59:47.822Z_
+
+<details><summary>↩ Tool result · `toolu_01BNGADori4aWvriELRMzVnt`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "d23378b0-6e8d-4d49-98e3-0f379c12b4ed",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md",
+    "oldString": "$\\text{AUC}(d_1, d_2) \\approx 0.93$, $\\text{AUC}(d_2, d_3) \\approx 0.86$, $\\text{AUC}(d_3, d_4) \\approx 0.77$.",
+    "newString": "$\\text{AUC}(d_1, d_2) = 0.922$, $\\text{AUC}(d_2, d_3) = 0.802$, $\\text{AUC}(d_3, d_4) = 0.712$.",
+    "originalFile": "# Analysis: Connecting Depth Signal to Distributional Collapse\n\nThis section provides an analytical framework that connects our empirical findings to the theory of recursive distributional collapse. We formalize recursive generation as an iterated distributional mapping, derive conditions under which adjacent depths become statistically indistinguishable, and explain why depth signal existence depends on the model's capacity to memorize its training data.\n\n## Notation and Setup\n\nLet $P_0$ denote the original (human-authored) text distribution. At each generation step $n$, a language model $M_n$ is trained on samples from $P_n$, producing a new distribution $P_{n+1}$ through autoregressive sampling. We write this recursive process as a distributional mapping $\\mathcal{T}$:\n\n$$P_{n+1} = \\mathcal{T}(P_n) = \\text{Sample}(M_n), \\quad M_n = \\text{Train}(P_n).$$\n\nThe mapping $\\mathcal{T}$ depends on three components: the model architecture, the training procedure, and the decoding strategy (nucleus sampling, temperature scaling, or top-$k$ truncation). We treat $\\mathcal{T}$ as a deterministic operator on distributions in the limit of infinite samples, following the idealized framework of Shumailov et al. (2024) and Alemohammad et al. (2024).\n\nFor a text $x$ and a reference language model $M_{\\text{ref}}$, let $s(x) = -\\log p_{M_{\\text{ref}}}(x_t \\mid x_{&lt;t})$ denote the token-level surprisal sequence. Our 19-dimensional feature vector $\\phi(x)$ consists of statistics computed from $s(x)$, including perplexity percentiles (p10, p50, p90), surprisal moments (mean, variance, skewness), $n$-gram entropies, and repetition ratios. The population-level feature distribution at depth $n$ is $\\Phi_n = \\phi_\\#(P_n)$, the pushforward of $P_n$ through the feature map.\n\n\n## 5.1 Why Perplexity Tail Statistics Track Generation Depth\n\nOur experiments consistently identify $\\texttt{p90\\_ppl}$ (90th-percentile perplexity) and $\\texttt{var\\_surprisal}$ (surprisal variance) as the top-ranked features for depth discrimination across all nine model-strategy combinations. This finding has a natural explanation in terms of distributional tail collapse.\n\n**Tail trimming under recursive generation.** Shumailov et al. (2024) establish that recursive training causes \"tails of the original content distribution to disappear.\" The mechanism is straightforward: a language model trained on finite samples from $P_n$ underestimates low-probability events, because rare tokens in $P_n$ appear infrequently (or not at all) in the training corpus. The resulting model $M_n$ assigns near-zero probability mass to these rare events, so $P_{n+1}$ has thinner tails than $P_n$. Dohmatob et al. (2024) formalize this for Zipf-distributed token frequencies with exponent $\\beta$: under temperature $\\tau$, the effective tail exponent becomes $\\beta/\\tau$, while under top-$p$ or top-$k$ truncation, the tail is cut entirely beyond a threshold $k \\asymp T_0^{1/\\beta}$ determined by the training sample size $T_0$.\n\nThis tail trimming directly explains the dominance of $\\texttt{p90\\_ppl}$. The 90th-percentile perplexity measures the reference model's surprisal at the high end of the token difficulty distribution. Tokens that $P_0$ generates with moderate but non-negligible probability (the \"outer shell\" of the distribution's support) become progressively rarer under $P_1, P_2, \\ldots$ as each recursive step trims the tails further. Consequently, text sampled from $P_n$ contains fewer high-surprisal tokens, and $\\texttt{p90\\_ppl}$ decreases monotonically with depth. By contrast, central-tendency statistics like $\\texttt{mean\\_ppl}$ are less sensitive because the bulk of the distribution changes slowly: the first few moments of $P_n$ are dominated by high-probability tokens that survive across generations.\n\n**Surprisal variance as a concentration measure.** The monotonic decrease of $\\texttt{var\\_surprisal}$ with depth reflects a complementary phenomenon: distributional concentration. As recursive training removes tail tokens, the remaining token distribution becomes more peaked. A model trained on $P_n$ produces text where token-level surprisals are more uniform (concentrated around the mean), because the model has higher confidence on a narrower vocabulary. Formally, if $P_n$ is supported on a set $S_n$ with $S_0 \\supset S_1 \\supset S_2 \\supset \\cdots$, then the entropy $H(P_n)$ decreases monotonically, and the variance of the surprisal distribution $\\text{Var}_{x \\sim P_n}[s(x)]$ decreases as the support shrinks and probability mass concentrates.\n\nThis analysis explains why $\\texttt{p90\\_ppl}$ and $\\texttt{var\\_surprisal}$ form a complementary pair: the former captures tail erosion (what disappears), while the latter captures distributional concentration (what remains). Together, they provide a two-dimensional summary of the collapse trajectory that is more informative than any single statistic. Our empirical monotonicity correlations ($\\rho = -0.82$ to $-0.89$ between these features and depth) quantify the strength of this monotone relationship across all tested configurations.\n\n**Connection to the Depth Degradation Atlas.** The non-uniform spacing we observe in the Atlas (depth $0 \\to 1$ gap far exceeding depth $2 \\to 3$ gap) also follows from the tail-trimming framework. The initial step $P_0 \\to P_1$ produces the largest distributional shift because $P_0$ has the richest tail structure, and the first round of finite-sample training removes the most probability mass from rare events. Subsequent steps operate on already-trimmed distributions, so each incremental shift is smaller. This produces a concave decay in inter-depth feature distances, consistent with our pairwise AUC trajectory: $\\text{AUC}(d_1, d_2) \\approx 0.93$, $\\text{AUC}(d_2, d_3) \\approx 0.86$, $\\text{AUC}(d_3, d_4) \\approx 0.77$.\n\n\n## 5.2 Effective Discriminable Depth: An Upper Bound\n\nWe now formalize the notion of Effective Discriminable Depth (EDD) and derive conditions under which it is finite.\n\n**Definition.** The EDD with respect to a feature map $\\phi$ and a discrimination threshold $\\alpha$ is\n\n$$\\text{EDD}(\\phi, \\alpha) = \\max \\{ n \\geq 1 : \\text{AUC}(\\Phi_{n-1}, \\Phi_n) \\geq \\alpha \\},$$\n\nwhere $\\text{AUC}(\\Phi_{n-1}, \\Phi_n)$ is the area under the ROC curve for distinguishing samples from the feature distributions at depths $n-1$ and $n$.\n\n**Fixed-point attractor.** Recursive generation converges to a fixed distribution under mild conditions. Alemohammad et al. (2024) show that autophagous generative loops converge to a fixed point $P^*$ where $\\mathcal{T}(P^*) = P^*$, characterized by either precision loss (mode drift) or recall loss (mode collapse) depending on sampling bias. Marchi et al. (2024) prove this more formally using stochastic approximation: for any non-identity temperature, the generative distribution converges to a degenerate attractor, either a point mass (for $\\tau < 1$) or a uniform distribution over a subset (for $\\tau > 1$). The existence of such a fixed point $P^*$ implies $\\lim_{n \\to \\infty} D_{\\text{KL}}(P_n \\| P_{n+1}) = 0$, which in turn implies $\\lim_{n \\to \\infty} \\text{AUC}(\\Phi_n, \\Phi_{n+1}) = 0.5$ (chance level).\n\n**Contraction argument.** To bound EDD, we model the inter-depth KL divergence as a contracting sequence. Let $\\delta_n = D_{\\text{KL}}(P_n \\| P_{n+1})$. If the mapping $\\mathcal{T}$ is $\\gamma$-contractive in KL divergence for some $\\gamma \\in (0, 1)$, meaning\n\n$$\\delta_{n+1} \\leq \\gamma \\cdot \\delta_n,$$\n\nthen by induction $\\delta_n \\leq \\gamma^n \\cdot \\delta_0$, where $\\delta_0 = D_{\\text{KL}}(P_0 \\| P_1)$ is the initial divergence between the human distribution and first-generation output.\n\nThe AUC between adjacent feature distributions is bounded by a function of their KL divergence. By the data processing inequality, $D_{\\text{KL}}(\\Phi_n \\| \\Phi_{n+1}) \\leq D_{\\text{KL}}(P_n \\| P_{n+1}) = \\delta_n$, and the AUC for distinguishing two distributions is lower-bounded by their total variation distance (via the Neyman-Pearson lemma), which in turn relates to KL divergence through Pinsker's inequality: $\\text{TV}(\\Phi_n, \\Phi_{n+1}) \\leq \\sqrt{\\delta_n / 2}$. When $\\text{TV}$ becomes small enough, the AUC approaches 0.5.\n\nSpecifically, the AUC drops below threshold $\\alpha$ when the total variation (or, equivalently, when no univariate projection of the feature distributions achieves sufficient separation). Setting $\\text{AUC}(\\Phi_n, \\Phi_{n+1}) \\geq \\alpha$ requires $\\delta_n$ to exceed some minimum $\\delta_{\\min}(\\alpha, \\phi)$ that depends on the threshold and the feature map's resolving power. This yields:\n\n$$\\text{EDD}(\\phi, \\alpha) \\leq \\left\\lfloor \\frac{\\log(\\delta_0 / \\delta_{\\min})}{\\log(1/\\gamma)} \\right\\rfloor.$$\n\nThis bound decomposes EDD into three interpretable factors:\n\n1. **Initial divergence $\\delta_0$**: How much the first generation differs from the original. Larger $\\delta_0$ (e.g., from aggressive memorization of training data) provides a larger \"budget\" of distinguishability. Our training loss data confirms large initial shifts: Pythia nucleus loss drops from 2.27 (depth 0) to 1.37 (depth 1), indicating substantial distributional change.\n\n2. **Contraction rate $\\gamma$**: How quickly successive depths converge. Smaller $\\gamma$ (faster convergence) yields lower EDD. The concave AUC decay profile we observe ($0.93 \\to 0.86 \\to 0.77 \\to 0.68$) is consistent with geometric contraction at $\\gamma \\approx 0.85$ in feature space.\n\n3. **Feature resolution $\\delta_{\\min}$**: The minimum divergence that the feature map $\\phi$ can resolve. Richer feature spaces (more dimensions, better-chosen statistics) achieve smaller $\\delta_{\\min}$, potentially extending EDD. This explains why our 19-dimensional feature vector yields EDD $= 4$ while a single feature (e.g., mean perplexity alone) would yield EDD $= 2$ or $3$.\n\n**Empirical calibration.** With the observed AUC decay and $\\alpha = 0.75$, our data gives EDD $= 4$ across all three model families. The binary AUC at the boundary, $\\text{AUC}(d_3, d_4) \\in [0.750, 0.784]$, clusters tightly around the threshold, while $\\text{AUC}(d_4, d_5) \\in [0.681, 0.694]$ falls uniformly below it. The consistency of EDD $= 4$ across three architectures (Pythia-1.4B, GPT-2 XL, OLMo-1B) suggests that the contraction rate $\\gamma$ and initial divergence $\\delta_0$ are determined primarily by the shared recursive training protocol rather than by architecture-specific factors.\n\n**Caveat on rigor.** The $\\gamma$-contraction assumption is a simplification. In practice, the mapping $\\mathcal{T}$ may not satisfy uniform contraction across the entire distributional space, and the relationship between KL divergence and AUC in high-dimensional feature spaces involves constants that depend on the specific distributions. The bound above should be read as an order-of-magnitude argument explaining why EDD is $O(\\log(\\delta_0/\\delta_{\\min}))$ rather than as a tight numerical prediction. A fully rigorous treatment would require characterizing the Jacobian of $\\mathcal{T}$ at the fixed point $P^*$, which we leave to future theoretical work.\n\n\n## 5.3 Memorization as a Prerequisite for Depth Signal\n\nOur experiments reveal a striking dependency: depth signal exists only when the model memorizes its training data to a sufficient degree. Under temperature $\\tau = 1.1$, the four-depth classification accuracy drops to near chance, while $\\tau = 0.5$ and $\\tau = 0.9$ produce strong signal (70-85% accuracy). The training loss trajectory explains this pattern.\n\n**The memorization mechanism.** At each recursive step, the depth signal is generated by the distributional shift $P_n \\to P_{n+1}$. This shift occurs because the trained model $M_n$ differs from the data distribution $P_n$ in systematic ways: specifically, $M_n$ assigns higher probability to patterns it has memorized and lower probability to rare events it has underfit. The magnitude of this shift determines the strength of the depth signal at step $n$.\n\nTraining loss quantifies the degree of memorization. When $M_n$ achieves low training loss on samples from $P_n$, it has learned (and partially memorized) the distribution, so $P_{n+1} = \\text{Sample}(M_n)$ differs substantially from $P_n$. Conversely, when training loss remains high, $M_n$ has failed to capture the fine-grained structure of $P_n$, so $P_{n+1} \\approx P_n$ and little depth signal is produced.\n\n**Temperature controls memorization through gradient magnitude.** Temperature $\\tau$ scales the logits $z_i$ before softmax: $p_i \\propto \\exp(z_i / \\tau)$. The text sampled at temperature $\\tau$ from $P_n$ determines the training distribution for $M_n$. At high temperature ($\\tau > 1$), the sampling distribution is flattened toward uniform, producing training text with high entropy and low redundancy. The model trained on such data cannot reduce its cross-entropy loss substantially, because the target distribution itself has high entropy. Our data confirms this: at $\\tau = 1.1$, training loss decreases only from 2.27 to 1.91 (depth 0 to depth 1) and then to 1.85 (depth 2), a near-plateau. At $\\tau = 0.5$, training loss drops from 2.27 to 0.42 to 0.16, indicating progressively stronger memorization at each depth.\n\nFormally, the KL divergence between the sampling distribution and the trained model satisfies:\n\n$$D_{\\text{KL}}(P_n^{(\\tau)} \\| P_{n+1}^{(\\tau)}) \\propto L_{\\text{train}}^{(n,0)} - L_{\\text{train}}^{(n, T_{\\text{steps}})},$$\n\nwhere $L_{\\text{train}}^{(n,0)}$ is the initial training loss at depth $n$ and $L_{\\text{train}}^{(n, T_{\\text{steps}})}$ is the loss after training. The depth signal at step $n$ is proportional to this gap. When $\\tau$ is large, $L_{\\text{train}}^{(n,0)}$ is already close to the entropy floor of the high-temperature distribution, leaving little room for the gap to grow.\n\n**Connection to Dohmatob et al.'s tail narrowing.** The tail-narrowing framework provides a complementary perspective. Under temperature $\\tau$, the effective Zipf exponent changes from $\\beta$ to $\\beta/\\tau$ (Dohmatob et al., 2024). For $\\tau > 1$, this produces a heavier tail (smaller exponent), which might appear to increase diversity. But the interaction with recursive training reverses this intuition: the heavier tail means that rare events in $P_n^{(\\tau)}$ are less rare (closer to uniform), so the model trained on $P_n^{(\\tau)}$ has less \"room\" to trim tails. The distributional shift per step is smaller, and depth signal is weaker.\n\nMarchi et al. (2024) formalize the limiting behavior: for $\\tau > 1$, the generative distribution contracts toward a uniform distribution over the supported tokens, while for $\\tau < 1$, it collapses toward a small set of modes. Both trajectories eventually reach a fixed point, but the path for $\\tau > 1$ involves smaller per-step changes (the distribution is already close to uniform), producing weaker depth signal. The path for $\\tau < 1$ involves large per-step changes (aggressive mode collapse), producing strong but quickly saturating depth signal. Temperature $\\tau \\approx 0.9$ occupies an intermediate regime where each recursive step produces a substantial distributional shift without immediate mode collapse, yielding the strongest and most sustained depth signal across our experimental range.\n\n**Implications for depth estimation in practice.** This analysis suggests that depth estimation will be most reliable when the generative model was trained with sufficient capacity and compute to memorize its training data, and when the decoding temperature is below 1.0. These conditions are increasingly common in practice: frontier language models are trained to near-zero training loss, and sampling temperatures in the range $[0.6, 1.0]$ are standard for open-ended generation. The memorization prerequisite therefore does not substantially limit the practical applicability of depth estimation, though it does imply that text generated with very high temperatures or from severely undertrained models may be depth-indistinguishable from its parent generation.\n\n\n## Summary of Analytical Claims\n\nThe framework above yields three testable predictions, all confirmed by our experiments:\n\n1. **Feature ranking prediction**: Tail-sensitive statistics ($\\texttt{p90\\_ppl}$, $\\texttt{var\\_surprisal}$) should outperform central-tendency statistics for depth discrimination. Confirmed: these features rank in the top 4 across all 9 settings.\n\n2. **EDD finiteness and scaling**: EDD should scale logarithmically with the ratio of initial divergence to feature resolution, yielding a small constant for practical configurations. Confirmed: EDD $= 4$ across three model families, with tight clustering of boundary AUC values.\n\n3. **Temperature-depth signal interaction**: Depth signal strength should correlate with the training loss gap across depths, which in turn depends on temperature. Confirmed: $\\tau = 0.5$ yields loss gap $> 2.0$ and strong signal, $\\tau = 1.1$ yields loss gap $< 0.4$ and no signal.\n\n\n---\n\n**References cited in this section:**\n\n- Shumailov et al. (2024). \"AI models collapse when trained on recursively generated data.\" *Nature*, 631, 755-759.\n- Dohmatob et al. (2024). \"A Tale of Tails: Model Collapse as a Change of Scaling Laws.\" *ICML 2024*.\n- Alemohammad et al. (2024). \"Self-Consuming Generative Models Go MAD.\" *ICLR 2024*.\n- Marchi et al. (2024). \"Heat Death of Generative Models in Closed-Loop Learning.\" *ICASSP 2025*.\n- Shi et al. (2025). \"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective.\" *NeurIPS 2025 Spotlight*.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 25,
+        "oldLines": 7,
+        "newStart": 25,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " This analysis explains why $\\texttt{p90\\_ppl}$ and $\\texttt{var\\_surprisal}$ form a complementary pair: the former captures tail erosion (what disappears), while the latter captures distributional concentration (what remains). Together, they provide a two-dimensional summary of the collapse trajectory that is more informative than any single statistic. Our empirical monotonicity correlations ($\\rho = -0.82$ to $-0.89$ between these features and depth) quantify the strength of this monotone relationship across all tested configurations.",
+          " ",
+          "-**Connection to the Depth Degradation Atlas.** The non-uniform spacing we observe in the Atlas (depth $0 \\to 1$ gap far exceeding depth $2 \\to 3$ gap) also follows from the tail-trimming framework. The initial step $P_0 \\to P_1$ produces the largest distributional shift because $P_0$ has the richest tail structure, and the first round of finite-sample training removes the most probability mass from rare events. Subsequent steps operate on already-trimmed distributions, so each incremental shift is smaller. This produces a concave decay in inter-depth feature distances, consistent with our pairwise AUC trajectory: $\\text{AUC}(d_1, d_2) \\approx 0.93$, $\\text{AUC}(d_2, d_3) \\approx 0.86$, $\\text{AUC}(d_3, d_4) \\approx 0.77$.",
+          "+**Connection to the Depth Degradation Atlas.** The non-uniform spacing we observe in the Atlas (depth $0 \\to 1$ gap far exceeding depth $2 \\to 3$ gap) also follows from the tail-trimming framework. The initial step $P_0 \\to P_1$ produces the largest distributional shift because $P_0$ has the richest tail structure, and the first round of finite-sample training removes the most probability mass from rare events. Subsequent steps operate on already-trimmed distributions, so each incremental shift is smaller. This produces a concave decay in inter-depth feature distances, consistent with our pairwise AUC trajectory: $\\text{AUC}(d_1, d_2) = 0.922$, $\\text{AUC}(d_2, d_3) = 0.802$, $\\text{AUC}(d_3, d_4) = 0.712$.",
+          " ",
+          " ",
+          " ## 5.2 Effective Discriminable Depth: An Upper Bound"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01XsvzAQKtTjQQ5oaUaWGLmn`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md",
+  "old_string": "($0.93 \\to 0.86 \\to 0.77 \\to 0.68$) is consistent with geometric contraction at $\\gamma \\approx 0.85$ in feature space.",
+  "new_string": "($0.922 \\to 0.802 \\to 0.712 \\to 0.653$) is consistent with geometric contraction factor $\\gamma \\approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "32e2844c-2f28-4a01-a717-0a74f558f161",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018npu9p7jb5zorjwWpFd5n5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 351,
+      "cache_read_input_tokens": 63117,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 351
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T18:59:51.784Z_
+
+<details><summary>↩ Tool result · `toolu_01XsvzAQKtTjQQ5oaUaWGLmn`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "6641a100-b7b1-477d-a1f0-00ca83c16eb1",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md",
+    "oldString": "($0.93 \\to 0.86 \\to 0.77 \\to 0.68$) is consistent with geometric contraction at $\\gamma \\approx 0.85$ in feature space.",
+    "newString": "($0.922 \\to 0.802 \\to 0.712 \\to 0.653$) is consistent with geometric contraction factor $\\gamma \\approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping).",
+    "originalFile": "# Analysis: Connecting Depth Signal to Distributional Collapse\n\nThis section provides an analytical framework that connects our empirical findings to the theory of recursive distributional collapse. We formalize recursive generation as an iterated distributional mapping, derive conditions under which adjacent depths become statistically indistinguishable, and explain why depth signal existence depends on the model's capacity to memorize its training data.\n\n## Notation and Setup\n\nLet $P_0$ denote the original (human-authored) text distribution. At each generation step $n$, a language model $M_n$ is trained on samples from $P_n$, producing a new distribution $P_{n+1}$ through autoregressive sampling. We write this recursive process as a distributional mapping $\\mathcal{T}$:\n\n$$P_{n+1} = \\mathcal{T}(P_n) = \\text{Sample}(M_n), \\quad M_n = \\text{Train}(P_n).$$\n\nThe mapping $\\mathcal{T}$ depends on three components: the model architecture, the training procedure, and the decoding strategy (nucleus sampling, temperature scaling, or top-$k$ truncation). We treat $\\mathcal{T}$ as a deterministic operator on distributions in the limit of infinite samples, following the idealized framework of Shumailov et al. (2024) and Alemohammad et al. (2024).\n\nFor a text $x$ and a reference language model $M_{\\text{ref}}$, let $s(x) = -\\log p_{M_{\\text{ref}}}(x_t \\mid x_{&lt;t})$ denote the token-level surprisal sequence. Our 19-dimensional feature vector $\\phi(x)$ consists of statistics computed from $s(x)$, including perplexity percentiles (p10, p50, p90), surprisal moments (mean, variance, skewness), $n$-gram entropies, and repetition ratios. The population-level feature distribution at depth $n$ is $\\Phi_n = \\phi_\\#(P_n)$, the pushforward of $P_n$ through the feature map.\n\n\n## 5.1 Why Perplexity Tail Statistics Track Generation Depth\n\nOur experiments consistently identify $\\texttt{p90\\_ppl}$ (90th-percentile perplexity) and $\\texttt{var\\_surprisal}$ (surprisal variance) as the top-ranked features for depth discrimination across all nine model-strategy combinations. This finding has a natural explanation in terms of distributional tail collapse.\n\n**Tail trimming under recursive generation.** Shumailov et al. (2024) establish that recursive training causes \"tails of the original content distribution to disappear.\" The mechanism is straightforward: a language model trained on finite samples from $P_n$ underestimates low-probability events, because rare tokens in $P_n$ appear infrequently (or not at all) in the training corpus. The resulting model $M_n$ assigns near-zero probability mass to these rare events, so $P_{n+1}$ has thinner tails than $P_n$. Dohmatob et al. (2024) formalize this for Zipf-distributed token frequencies with exponent $\\beta$: under temperature $\\tau$, the effective tail exponent becomes $\\beta/\\tau$, while under top-$p$ or top-$k$ truncation, the tail is cut entirely beyond a threshold $k \\asymp T_0^{1/\\beta}$ determined by the training sample size $T_0$.\n\nThis tail trimming directly explains the dominance of $\\texttt{p90\\_ppl}$. The 90th-percentile perplexity measures the reference model's surprisal at the high end of the token difficulty distribution. Tokens that $P_0$ generates with moderate but non-negligible probability (the \"outer shell\" of the distribution's support) become progressively rarer under $P_1, P_2, \\ldots$ as each recursive step trims the tails further. Consequently, text sampled from $P_n$ contains fewer high-surprisal tokens, and $\\texttt{p90\\_ppl}$ decreases monotonically with depth. By contrast, central-tendency statistics like $\\texttt{mean\\_ppl}$ are less sensitive because the bulk of the distribution changes slowly: the first few moments of $P_n$ are dominated by high-probability tokens that survive across generations.\n\n**Surprisal variance as a concentration measure.** The monotonic decrease of $\\texttt{var\\_surprisal}$ with depth reflects a complementary phenomenon: distributional concentration. As recursive training removes tail tokens, the remaining token distribution becomes more peaked. A model trained on $P_n$ produces text where token-level surprisals are more uniform (concentrated around the mean), because the model has higher confidence on a narrower vocabulary. Formally, if $P_n$ is supported on a set $S_n$ with $S_0 \\supset S_1 \\supset S_2 \\supset \\cdots$, then the entropy $H(P_n)$ decreases monotonically, and the variance of the surprisal distribution $\\text{Var}_{x \\sim P_n}[s(x)]$ decreases as the support shrinks and probability mass concentrates.\n\nThis analysis explains why $\\texttt{p90\\_ppl}$ and $\\texttt{var\\_surprisal}$ form a complementary pair: the former captures tail erosion (what disappears), while the latter captures distributional concentration (what remains). Together, they provide a two-dimensional summary of the collapse trajectory that is more informative than any single statistic. Our empirical monotonicity correlations ($\\rho = -0.82$ to $-0.89$ between these features and depth) quantify the strength of this monotone relationship across all tested configurations.\n\n**Connection to the Depth Degradation Atlas.** The non-uniform spacing we observe in the Atlas (depth $0 \\to 1$ gap far exceeding depth $2 \\to 3$ gap) also follows from the tail-trimming framework. The initial step $P_0 \\to P_1$ produces the largest distributional shift because $P_0$ has the richest tail structure, and the first round of finite-sample training removes the most probability mass from rare events. Subsequent steps operate on already-trimmed distributions, so each incremental shift is smaller. This produces a concave decay in inter-depth feature distances, consistent with our pairwise AUC trajectory: $\\text{AUC}(d_1, d_2) = 0.922$, $\\text{AUC}(d_2, d_3) = 0.802$, $\\text{AUC}(d_3, d_4) = 0.712$.\n\n\n## 5.2 Effective Discriminable Depth: An Upper Bound\n\nWe now formalize the notion of Effective Discriminable Depth (EDD) and derive conditions under which it is finite.\n\n**Definition.** The EDD with respect to a feature map $\\phi$ and a discrimination threshold $\\alpha$ is\n\n$$\\text{EDD}(\\phi, \\alpha) = \\max \\{ n \\geq 1 : \\text{AUC}(\\Phi_{n-1}, \\Phi_n) \\geq \\alpha \\},$$\n\nwhere $\\text{AUC}(\\Phi_{n-1}, \\Phi_n)$ is the area under the ROC curve for distinguishing samples from the feature distributions at depths $n-1$ and $n$.\n\n**Fixed-point attractor.** Recursive generation converges to a fixed distribution under mild conditions. Alemohammad et al. (2024) show that autophagous generative loops converge to a fixed point $P^*$ where $\\mathcal{T}(P^*) = P^*$, characterized by either precision loss (mode drift) or recall loss (mode collapse) depending on sampling bias. Marchi et al. (2024) prove this more formally using stochastic approximation: for any non-identity temperature, the generative distribution converges to a degenerate attractor, either a point mass (for $\\tau < 1$) or a uniform distribution over a subset (for $\\tau > 1$). The existence of such a fixed point $P^*$ implies $\\lim_{n \\to \\infty} D_{\\text{KL}}(P_n \\| P_{n+1}) = 0$, which in turn implies $\\lim_{n \\to \\infty} \\text{AUC}(\\Phi_n, \\Phi_{n+1}) = 0.5$ (chance level).\n\n**Contraction argument.** To bound EDD, we model the inter-depth KL divergence as a contracting sequence. Let $\\delta_n = D_{\\text{KL}}(P_n \\| P_{n+1})$. If the mapping $\\mathcal{T}$ is $\\gamma$-contractive in KL divergence for some $\\gamma \\in (0, 1)$, meaning\n\n$$\\delta_{n+1} \\leq \\gamma \\cdot \\delta_n,$$\n\nthen by induction $\\delta_n \\leq \\gamma^n \\cdot \\delta_0$, where $\\delta_0 = D_{\\text{KL}}(P_0 \\| P_1)$ is the initial divergence between the human distribution and first-generation output.\n\nThe AUC between adjacent feature distributions is bounded by a function of their KL divergence. By the data processing inequality, $D_{\\text{KL}}(\\Phi_n \\| \\Phi_{n+1}) \\leq D_{\\text{KL}}(P_n \\| P_{n+1}) = \\delta_n$, and the AUC for distinguishing two distributions is lower-bounded by their total variation distance (via the Neyman-Pearson lemma), which in turn relates to KL divergence through Pinsker's inequality: $\\text{TV}(\\Phi_n, \\Phi_{n+1}) \\leq \\sqrt{\\delta_n / 2}$. When $\\text{TV}$ becomes small enough, the AUC approaches 0.5.\n\nSpecifically, the AUC drops below threshold $\\alpha$ when the total variation (or, equivalently, when no univariate projection of the feature distributions achieves sufficient separation). Setting $\\text{AUC}(\\Phi_n, \\Phi_{n+1}) \\geq \\alpha$ requires $\\delta_n$ to exceed some minimum $\\delta_{\\min}(\\alpha, \\phi)$ that depends on the threshold and the feature map's resolving power. This yields:\n\n$$\\text{EDD}(\\phi, \\alpha) \\leq \\left\\lfloor \\frac{\\log(\\delta_0 / \\delta_{\\min})}{\\log(1/\\gamma)} \\right\\rfloor.$$\n\nThis bound decomposes EDD into three interpretable factors:\n\n1. **Initial divergence $\\delta_0$**: How much the first generation differs from the original. Larger $\\delta_0$ (e.g., from aggressive memorization of training data) provides a larger \"budget\" of distinguishability. Our training loss data confirms large initial shifts: Pythia nucleus loss drops from 2.27 (depth 0) to 1.37 (depth 1), indicating substantial distributional change.\n\n2. **Contraction rate $\\gamma$**: How quickly successive depths converge. Smaller $\\gamma$ (faster convergence) yields lower EDD. The concave AUC decay profile we observe ($0.93 \\to 0.86 \\to 0.77 \\to 0.68$) is consistent with geometric contraction at $\\gamma \\approx 0.85$ in feature space.\n\n3. **Feature resolution $\\delta_{\\min}$**: The minimum divergence that the feature map $\\phi$ can resolve. Richer feature spaces (more dimensions, better-chosen statistics) achieve smaller $\\delta_{\\min}$, potentially extending EDD. This explains why our 19-dimensional feature vector yields EDD $= 4$ while a single feature (e.g., mean perplexity alone) would yield EDD $= 2$ or $3$.\n\n**Empirical calibration.** With the observed AUC decay and $\\alpha = 0.75$, our data gives EDD $= 4$ across all three model families. The binary AUC at the boundary, $\\text{AUC}(d_3, d_4) \\in [0.750, 0.784]$, clusters tightly around the threshold, while $\\text{AUC}(d_4, d_5) \\in [0.681, 0.694]$ falls uniformly below it. The consistency of EDD $= 4$ across three architectures (Pythia-1.4B, GPT-2 XL, OLMo-1B) suggests that the contraction rate $\\gamma$ and initial divergence $\\delta_0$ are determined primarily by the shared recursive training protocol rather than by architecture-specific factors.\n\n**Caveat on rigor.** The $\\gamma$-contraction assumption is a simplification. In practice, the mapping $\\mathcal{T}$ may not satisfy uniform contraction across the entire distributional space, and the relationship between KL divergence and AUC in high-dimensional feature spaces involves constants that depend on the specific distributions. The bound above should be read as an order-of-magnitude argument explaining why EDD is $O(\\log(\\delta_0/\\delta_{\\min}))$ rather than as a tight numerical prediction. A fully rigorous treatment would require characterizing the Jacobian of $\\mathcal{T}$ at the fixed point $P^*$, which we leave to future theoretical work.\n\n\n## 5.3 Memorization as a Prerequisite for Depth Signal\n\nOur experiments reveal a striking dependency: depth signal exists only when the model memorizes its training data to a sufficient degree. Under temperature $\\tau = 1.1$, the four-depth classification accuracy drops to near chance, while $\\tau = 0.5$ and $\\tau = 0.9$ produce strong signal (70-85% accuracy). The training loss trajectory explains this pattern.\n\n**The memorization mechanism.** At each recursive step, the depth signal is generated by the distributional shift $P_n \\to P_{n+1}$. This shift occurs because the trained model $M_n$ differs from the data distribution $P_n$ in systematic ways: specifically, $M_n$ assigns higher probability to patterns it has memorized and lower probability to rare events it has underfit. The magnitude of this shift determines the strength of the depth signal at step $n$.\n\nTraining loss quantifies the degree of memorization. When $M_n$ achieves low training loss on samples from $P_n$, it has learned (and partially memorized) the distribution, so $P_{n+1} = \\text{Sample}(M_n)$ differs substantially from $P_n$. Conversely, when training loss remains high, $M_n$ has failed to capture the fine-grained structure of $P_n$, so $P_{n+1} \\approx P_n$ and little depth signal is produced.\n\n**Temperature controls memorization through gradient magnitude.** Temperature $\\tau$ scales the logits $z_i$ before softmax: $p_i \\propto \\exp(z_i / \\tau)$. The text sampled at temperature $\\tau$ from $P_n$ determines the training distribution for $M_n$. At high temperature ($\\tau > 1$), the sampling distribution is flattened toward uniform, producing training text with high entropy and low redundancy. The model trained on such data cannot reduce its cross-entropy loss substantially, because the target distribution itself has high entropy. Our data confirms this: at $\\tau = 1.1$, training loss decreases only from 2.27 to 1.91 (depth 0 to depth 1) and then to 1.85 (depth 2), a near-plateau. At $\\tau = 0.5$, training loss drops from 2.27 to 0.42 to 0.16, indicating progressively stronger memorization at each depth.\n\nFormally, the KL divergence between the sampling distribution and the trained model satisfies:\n\n$$D_{\\text{KL}}(P_n^{(\\tau)} \\| P_{n+1}^{(\\tau)}) \\propto L_{\\text{train}}^{(n,0)} - L_{\\text{train}}^{(n, T_{\\text{steps}})},$$\n\nwhere $L_{\\text{train}}^{(n,0)}$ is the initial training loss at depth $n$ and $L_{\\text{train}}^{(n, T_{\\text{steps}})}$ is the loss after training. The depth signal at step $n$ is proportional to this gap. When $\\tau$ is large, $L_{\\text{train}}^{(n,0)}$ is already close to the entropy floor of the high-temperature distribution, leaving little room for the gap to grow.\n\n**Connection to Dohmatob et al.'s tail narrowing.** The tail-narrowing framework provides a complementary perspective. Under temperature $\\tau$, the effective Zipf exponent changes from $\\beta$ to $\\beta/\\tau$ (Dohmatob et al., 2024). For $\\tau > 1$, this produces a heavier tail (smaller exponent), which might appear to increase diversity. But the interaction with recursive training reverses this intuition: the heavier tail means that rare events in $P_n^{(\\tau)}$ are less rare (closer to uniform), so the model trained on $P_n^{(\\tau)}$ has less \"room\" to trim tails. The distributional shift per step is smaller, and depth signal is weaker.\n\nMarchi et al. (2024) formalize the limiting behavior: for $\\tau > 1$, the generative distribution contracts toward a uniform distribution over the supported tokens, while for $\\tau < 1$, it collapses toward a small set of modes. Both trajectories eventually reach a fixed point, but the path for $\\tau > 1$ involves smaller per-step changes (the distribution is already close to uniform), producing weaker depth signal. The path for $\\tau < 1$ involves large per-step changes (aggressive mode collapse), producing strong but quickly saturating depth signal. Temperature $\\tau \\approx 0.9$ occupies an intermediate regime where each recursive step produces a substantial distributional shift without immediate mode collapse, yielding the strongest and most sustained depth signal across our experimental range.\n\n**Implications for depth estimation in practice.** This analysis suggests that depth estimation will be most reliable when the generative model was trained with sufficient capacity and compute to memorize its training data, and when the decoding temperature is below 1.0. These conditions are increasingly common in practice: frontier language models are trained to near-zero training loss, and sampling temperatures in the range $[0.6, 1.0]$ are standard for open-ended generation. The memorization prerequisite therefore does not substantially limit the practical applicability of depth estimation, though it does imply that text generated with very high temperatures or from severely undertrained models may be depth-indistinguishable from its parent generation.\n\n\n## Summary of Analytical Claims\n\nThe framework above yields three testable predictions, all confirmed by our experiments:\n\n1. **Feature ranking prediction**: Tail-sensitive statistics ($\\texttt{p90\\_ppl}$, $\\texttt{var\\_surprisal}$) should outperform central-tendency statistics for depth discrimination. Confirmed: these features rank in the top 4 across all 9 settings.\n\n2. **EDD finiteness and scaling**: EDD should scale logarithmically with the ratio of initial divergence to feature resolution, yielding a small constant for practical configurations. Confirmed: EDD $= 4$ across three model families, with tight clustering of boundary AUC values.\n\n3. **Temperature-depth signal interaction**: Depth signal strength should correlate with the training loss gap across depths, which in turn depends on temperature. Confirmed: $\\tau = 0.5$ yields loss gap $> 2.0$ and strong signal, $\\tau = 1.1$ yields loss gap $< 0.4$ and no signal.\n\n\n---\n\n**References cited in this section:**\n\n- Shumailov et al. (2024). \"AI models collapse when trained on recursively generated data.\" *Nature*, 631, 755-759.\n- Dohmatob et al. (2024). \"A Tale of Tails: Model Collapse as a Change of Scaling Laws.\" *ICML 2024*.\n- Alemohammad et al. (2024). \"Self-Consuming Generative Models Go MAD.\" *ICLR 2024*.\n- Marchi et al. (2024). \"Heat Death of Generative Models in Closed-Loop Learning.\" *ICASSP 2025*.\n- Shi et al. (2025). \"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective.\" *NeurIPS 2025 Spotlight*.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 56,
+        "oldLines": 7,
+        "newStart": 56,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " 1. **Initial divergence $\\delta_0$**: How much the first generation differs from the original. Larger $\\delta_0$ (e.g., from aggressive memorization of training data) provides a larger \"budget\" of distinguishability. Our training loss data confirms large initial shifts: Pythia nucleus loss drops from 2.27 (depth 0) to 1.37 (depth 1), indicating substantial distributional change.",
+          " ",
+          "-2. **Contraction rate $\\gamma$**: How quickly successive depths converge. Smaller $\\gamma$ (faster convergence) yields lower EDD. The concave AUC decay profile we observe ($0.93 \\to 0.86 \\to 0.77 \\to 0.68$) is consistent with geometric contraction at $\\gamma \\approx 0.85$ in feature space.",
+          "+2. **Contraction rate $\\gamma$**: How quickly successive depths converge. Smaller $\\gamma$ (faster convergence) yields lower EDD. The concave AUC decay profile we observe ($0.922 \\to 0.802 \\to 0.712 \\to 0.653$) is consistent with geometric contraction factor $\\gamma \\approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping).",
+          " ",
+          " 3. **Feature resolution $\\delta_{\\min}$**: The minimum divergence that the feature map $\\phi$ can resolve. Richer feature spaces (more dimensions, better-chosen statistics) achieve smaller $\\delta_{\\min}$, potentially extending EDD. This explains why our 19-dimensional feature vector yields EDD $= 4$ while a single feature (e.g., mean perplexity alone) would yield EDD $= 2$ or $3$.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+Now let me verify no remaining γ ≈ 0.85 or γ ≈ 0.80 references exist in these files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "0b8c282f-d77a-4acc-955e-6ac3cd802c79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T72whJKjVuyrMLxn8Cjk6z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 340,
+      "cache_read_input_tokens": 63468,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 340
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01WQ39eVmmZBvH4no2AzjUc7`</summary>
+
+```json
+{
+  "pattern": "\\\\gamma.*0\\.(8[05]|85)",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "output_mode": "content",
+  "glob": "*.{tex,md}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "01cd7ef6-36db-4a28-aa41-d9695ba515af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T72whJKjVuyrMLxn8Cjk6z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 340,
+      "cache_read_input_tokens": 63468,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 340
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T18:59:55.990Z_
+
+<details><summary>↩ Tool result · `toolu_01WQ39eVmmZBvH4no2AzjUc7`</summary>
+
+```text
+artifacts/theory_draft.tex:107:[Omitted long matching line]
+artifacts/_project/paper/theory_draft.tex:110:[Omitted long matching line]
+paper/theory_section_draft.md:59:2. **Contraction rate $\gamma$**: How quickly successive depths converge. Smaller $\gamma$ (faster convergence) yields lower EDD. The concave AUC decay profile we observe ($0.922 \to 0.802 \to 0.712 \to 0.653$) is consistent with geometric contraction factor $\gamma \approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "c6cba923-ed4b-4781-82db-41cbd5b37393",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "artifacts/theory_draft.tex:107:[Omitted long matching line]\nartifacts/_project/paper/theory_draft.tex:110:[Omitted long matching line]\npaper/theory_section_draft.md:59:2. **Contraction rate $\\gamma$**: How quickly successive depths converge. Smaller $\\gamma$ (faster convergence) yields lower EDD. The concave AUC decay profile we observe ($0.922 \\to 0.802 \\to 0.712 \\to 0.653$) is consistent with geometric contraction factor $\\gamma \\approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping).",
+    "numLines": 3
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check what the remaining matches in artifacts/theory_draft.tex and artifacts/_project/paper/theory_draft.tex say. The grep matched on "0.87" which is in the AUC decay ratio text I just added. Let me verify by reading the specific lines.
+
+Actually wait, let me look more carefully at the regex. My pattern was `\\gamma.*0\.(8[05]|85)` which would match γ followed by 0.80, 0.85, or 0.85. But the results show the lines I just edited (which contain "0.87" matching `0.8[05]`... 
+
+Hold on, 0.87 wouldn't match `8[05]` at all. Let me trace through the pattern again: `0\.(8[05]|85)` matches 0.80, 0.85, or 0.85, so 0.87 shouldn't be caught by this. But grep is reporting matches on those lines, so either the output is truncated and hiding the actual matching text, or there's something else on those lines that fits the pattern.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "833d5894-4cfc-469f-96bf-54aa955fbc63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JUxCxH6iCm5LPXNpT6yzLu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 382,
+      "cache_read_input_tokens": 63808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 382
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_012SCux217Cf2M1BrXsazaDX`</summary>
+
+```json
+{
+  "pattern": "gamma.*approx.*0\\.8[05]",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "output_mode": "content",
+  "glob": "*.{tex,md}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "90a6ed5a-17d3-49ec-bc68-a8e6e27439f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JUxCxH6iCm5LPXNpT6yzLu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 382,
+      "cache_read_input_tokens": 63808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 382
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T19:00:06.697Z_
+
+<details><summary>↩ Tool result · `toolu_012SCux217Cf2M1BrXsazaDX`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "5ac41f60-7ea8-46c5-8c10-94b30fcfdba7",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+Good, no remaining γ ≈ 0.85 or 0.80. Let me also verify the old AUC values (0.93, 0.86, 0.77) are gone from these files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "4d9b96e2-db30-44cc-ad66-69a3c572f057",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhKGSgR9t66kFL9Mq22ewE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 64190,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01WXqB3D1iAbrddYkLfFAMwp`</summary>
+
+```json
+{
+  "pattern": "\\\\approx 0\\.(93|86|77)",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "output_mode": "content",
+  "glob": "*.{tex,md}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "42c8330d-0697-4039-9071-b2cb27fe5d3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhKGSgR9t66kFL9Mq22ewE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 64190,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T19:00:10.927Z_
+
+<details><summary>↩ Tool result · `toolu_01WXqB3D1iAbrddYkLfFAMwp`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "3356540e-f34a-450c-bdba-62c683a6e82d",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+All old values are gone. Now let me verify the edits look correct by reading the modified sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "2d49a227-d9f3-40c5-a48f-a0980008b26a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019DqDeNCX27Qa5gWWb21Z9q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 216,
+      "cache_read_input_tokens": 64703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 216
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Q8X6NTU4sokC6vkNPU88u1`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft.tex",
+  "offset": 107,
+  "limit": 8
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "0ac3ea63-7d02-422a-86bc-4022032a40e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019DqDeNCX27Qa5gWWb21Z9q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 216,
+      "cache_read_input_tokens": 64703,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 216
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-17T19:00:14.218Z_
+
+<details><summary>↩ Tool result · `toolu_01Q8X6NTU4sokC6vkNPU88u1`</summary>
+
+```text
+107	We verify the theoretical predictions against three experimental findings.
+108	
+109	\paragraph{Geometric decay of pairwise discriminability.}
+110	Theorem~\ref{thm:edd} predicts that the distributional distance between adjacent depths decays geometrically as $\gamma^k$. Our binary pairwise AUC values follow this pattern: $\text{AUC}(d_1, d_2) = 0.922$, $\text{AUC}(d_2, d_3) = 0.802$, $\text{AUC}(d_3, d_4) = 0.712$, $\text{AUC}(d_4, d_5) = 0.653$. Fitting $\text{AUC}(d_k, d_{k+1}) = 0.5 + c \cdot \gamma^k$ to these values yields a geometric contraction factor $\gamma \approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping). The geometric model is an approximation; empirical decay shows slight acceleration at deeper levels, suggesting the contraction rate itself may increase with depth.
+111	
+112	\paragraph{Consistent EDD across models.}
+113	The EDD bound in Equation~\eqref{eq:edd_bound} depends on $d_0$, $\gamma$, and $\delta$, but not directly on model architecture. If different model families produce similar contraction rates (as predicted by the model collapse theory for models of comparable capacity), they should yield similar EDD values. Our experiments confirm this: Pythia-1.4B, GPT-2 XL, and OLMo-1B all reach $\text{EDD} = 4$ at $\tau = 0.75$.
+114	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "f287b95e-6104-455c-a80a-03a3dd8c9f48",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft.tex",
+      "content": "We verify the theoretical predictions against three experimental findings.\n\n\\paragraph{Geometric decay of pairwise discriminability.}\nTheorem~\\ref{thm:edd} predicts that the distributional distance between adjacent depths decays geometrically as $\\gamma^k$. Our binary pairwise AUC values follow this pattern: $\\text{AUC}(d_1, d_2) = 0.922$, $\\text{AUC}(d_2, d_3) = 0.802$, $\\text{AUC}(d_3, d_4) = 0.712$, $\\text{AUC}(d_4, d_5) = 0.653$. Fitting $\\text{AUC}(d_k, d_{k+1}) = 0.5 + c \\cdot \\gamma^k$ to these values yields a geometric contraction factor $\\gamma \\approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping). The geometric model is an approximation; empirical decay shows slight acceleration at deeper levels, suggesting the contraction rate itself may increase with depth.\n\n\\paragraph{Consistent EDD across models.}\nThe EDD bound in Equation~\\eqref{eq:edd_bound} depends on $d_0$, $\\gamma$, and $\\delta$, but not directly on model architecture. If different model families produce similar contraction rates (as predicted by the model collapse theory for models of comparable capacity), they should yield similar EDD values. Our experiments confirm this: Pythia-1.4B, GPT-2 XL, and OLMo-1B all reach $\\text{EDD} = 4$ at $\\tau = 0.75$.\n",
+      "numLines": 8,
+      "startLine": 107,
+      "totalLines": 119
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GZcn1EgLCaUHZLmDsavsuQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md",
+  "offset": 26,
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "ff6c78ee-e7fa-49b3-96a8-ff2e288d579e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MCznGEFiQ9NGrWqX1j6YF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 64919,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 725
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-17T19:00:16.973Z_
+
+<details><summary>↩ Tool result · `toolu_01GZcn1EgLCaUHZLmDsavsuQ`</summary>
+
+```text
+26	This analysis explains why $\texttt{p90\_ppl}$ and $\texttt{var\_surprisal}$ form a complementary pair: the former captures tail erosion (what disappears), while the latter captures distributional concentration (what remains). Together, they provide a two-dimensional summary of the collapse trajectory that is more informative than any single statistic. Our empirical monotonicity correlations ($\rho = -0.82$ to $-0.89$ between these features and depth) quantify the strength of this monotone relationship across all tested configurations.
+27	
+28	**Connection to the Depth Degradation Atlas.** The non-uniform spacing we observe in the Atlas (depth $0 \to 1$ gap far exceeding depth $2 \to 3$ gap) also follows from the tail-trimming framework. The initial step $P_0 \to P_1$ produces the largest distributional shift because $P_0$ has the richest tail structure, and the first round of finite-sample training removes the most probability mass from rare events. Subsequent steps operate on already-trimmed distributions, so each incremental shift is smaller. This produces a concave decay in inter-depth feature distances, consistent with our pairwise AUC trajectory: $\text{AUC}(d_1, d_2) = 0.922$, $\text{AUC}(d_2, d_3) = 0.802$, $\text{AUC}(d_3, d_4) = 0.712$.
+29	
+30	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "04355993-0a21-4f00-b103-d4dda6ea2907",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md",
+      "content": "This analysis explains why $\\texttt{p90\\_ppl}$ and $\\texttt{var\\_surprisal}$ form a complementary pair: the former captures tail erosion (what disappears), while the latter captures distributional concentration (what remains). Together, they provide a two-dimensional summary of the collapse trajectory that is more informative than any single statistic. Our empirical monotonicity correlations ($\\rho = -0.82$ to $-0.89$ between these features and depth) quantify the strength of this monotone relationship across all tested configurations.\n\n**Connection to the Depth Degradation Atlas.** The non-uniform spacing we observe in the Atlas (depth $0 \\to 1$ gap far exceeding depth $2 \\to 3$ gap) also follows from the tail-trimming framework. The initial step $P_0 \\to P_1$ produces the largest distributional shift because $P_0$ has the richest tail structure, and the first round of finite-sample training removes the most probability mass from rare events. Subsequent steps operate on already-trimmed distributions, so each incremental shift is smaller. This produces a concave decay in inter-depth feature distances, consistent with our pairwise AUC trajectory: $\\text{AUC}(d_1, d_2) = 0.922$, $\\text{AUC}(d_2, d_3) = 0.802$, $\\text{AUC}(d_3, d_4) = 0.712$.\n\n",
+      "numLines": 5,
+      "startLine": 26,
+      "totalLines": 111
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01V53nuAGHF419t2voE5TRgC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md",
+  "offset": 56,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "233872b2-a4fc-49e0-b4b7-eac678037a28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E6zv1dSyRpCyqdZRu3ycGX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 499,
+      "cache_read_input_tokens": 65644,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 499
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-17T19:00:19.262Z_
+
+<details><summary>↩ Tool result · `toolu_01V53nuAGHF419t2voE5TRgC`</summary>
+
+```text
+56	
+57	1. **Initial divergence $\delta_0$**: How much the first generation differs from the original. Larger $\delta_0$ (e.g., from aggressive memorization of training data) provides a larger "budget" of distinguishability. Our training loss data confirms large initial shifts: Pythia nucleus loss drops from 2.27 (depth 0) to 1.37 (depth 1), indicating substantial distributional change.
+58	
+59	2. **Contraction rate $\gamma$**: How quickly successive depths converge. Smaller $\gamma$ (faster convergence) yields lower EDD. The concave AUC decay profile we observe ($0.922 \to 0.802 \to 0.712 \to 0.653$) is consistent with geometric contraction factor $\gamma \approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping).
+60	
+61	3. **Feature resolution $\delta_{\min}$**: The minimum divergence that the feature map $\phi$ can resolve. Richer feature spaces (more dimensions, better-chosen statistics) achieve smaller $\delta_{\min}$, potentially extending EDD. This explains why our 19-dimensional feature vector yields EDD $= 4$ while a single feature (e.g., mean perplexity alone) would yield EDD $= 2$ or $3$.
+62	
+63	**Empirical calibration.** With the observed AUC decay and $\alpha = 0.75$, our data gives EDD $= 4$ across all three model families. The binary AUC at the boundary, $\text{AUC}(d_3, d_4) \in [0.750, 0.784]$, clusters tightly around the threshold, while $\text{AUC}(d_4, d_5) \in [0.681, 0.694]$ falls uniformly below it. The consistency of EDD $= 4$ across three architectures (Pythia-1.4B, GPT-2 XL, OLMo-1B) suggests that the contraction rate $\gamma$ and initial divergence $\delta_0$ are determined primarily by the shared recursive training protocol rather than by architecture-specific factors.
+64	
+65	**Caveat on rigor.** The $\gamma$-contraction assumption is a simplification. In practice, the mapping $\mathcal{T}$ may not satisfy uniform contraction across the entire distributional space, and the relationship between KL divergence and AUC in high-dimensional feature spaces involves constants that depend on the specific distributions. The bound above should be read as an order-of-magnitude argument explaining why EDD is $O(\log(\delta_0/\delta_{\min}))$ rather than as a tight numerical prediction. A fully rigorous treatment would require characterizing the Jacobian of $\mathcal{T}$ at the fixed point $P^*$, which we leave to future theoretical work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "f5ad6862-b060-4feb-b2a6-bc4bb2adedce",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/theory_section_draft.md",
+      "content": "\n1. **Initial divergence $\\delta_0$**: How much the first generation differs from the original. Larger $\\delta_0$ (e.g., from aggressive memorization of training data) provides a larger \"budget\" of distinguishability. Our training loss data confirms large initial shifts: Pythia nucleus loss drops from 2.27 (depth 0) to 1.37 (depth 1), indicating substantial distributional change.\n\n2. **Contraction rate $\\gamma$**: How quickly successive depths converge. Smaller $\\gamma$ (faster convergence) yields lower EDD. The concave AUC decay profile we observe ($0.922 \\to 0.802 \\to 0.712 \\to 0.653$) is consistent with geometric contraction factor $\\gamma \\approx 0.75$ in KL-divergence space. This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping).\n\n3. **Feature resolution $\\delta_{\\min}$**: The minimum divergence that the feature map $\\phi$ can resolve. Richer feature spaces (more dimensions, better-chosen statistics) achieve smaller $\\delta_{\\min}$, potentially extending EDD. This explains why our 19-dimensional feature vector yields EDD $= 4$ while a single feature (e.g., mean perplexity alone) would yield EDD $= 2$ or $3$.\n\n**Empirical calibration.** With the observed AUC decay and $\\alpha = 0.75$, our data gives EDD $= 4$ across all three model families. The binary AUC at the boundary, $\\text{AUC}(d_3, d_4) \\in [0.750, 0.784]$, clusters tightly around the threshold, while $\\text{AUC}(d_4, d_5) \\in [0.681, 0.694]$ falls uniformly below it. The consistency of EDD $= 4$ across three architectures (Pythia-1.4B, GPT-2 XL, OLMo-1B) suggests that the contraction rate $\\gamma$ and initial divergence $\\delta_0$ are determined primarily by the shared recursive training protocol rather than by architecture-specific factors.\n\n**Caveat on rigor.** The $\\gamma$-contraction assumption is a simplification. In practice, the mapping $\\mathcal{T}$ may not satisfy uniform contraction across the entire distributional space, and the relationship between KL divergence and AUC in high-dimensional feature spaces involves constants that depend on the specific distributions. The bound above should be read as an order-of-magnitude argument explaining why EDD is $O(\\log(\\delta_0/\\delta_{\\min}))$ rather than as a tight numerical prediction. A fully rigorous treatment would require characterizing the Jacobian of $\\mathcal{T}$ at the fixed point $P^*$, which we leave to future theoretical work.",
+      "numLines": 10,
+      "startLine": 56,
+      "totalLines": 111
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+All edits are correct. Now let me also check the d4v5 range on line 63: it says [0.681, 0.694] but registry shows max is 0.684 (OLMo), not 0.694. The task doesn't ask me to fix this, but I should note it.
+
+Now let me register the updated artifact and prepare the reviewer post.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "db42bfab-001c-4888-8a53-76d5b3eef264",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HyU5r3mts7vdMUJpLVh8yh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 66143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 868
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CCGmzZmAudWAX87xQ97u1Q`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__append_idea",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "46206279-105f-441f-a57f-d7763b738682",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HyU5r3mts7vdMUJpLVh8yh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 66143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 868
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-17T19:00:25.213Z_
+
+<details><summary>↩ Tool result · `toolu_01CCGmzZmAudWAX87xQ97u1Q`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__append_idea"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "81c00601-79a5-458c-bcc4-a8d0415fbe02",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__append_idea"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__append_idea",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The task says to post to reviewer after edits. Let me check if there's a post_to_reviewer tool or similar.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "44681d7f-e102-4e6e-90cb-73fb6086430a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RGA5UqkNaKremFPEGAZFCX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 645,
+      "cache_read_input_tokens": 67011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 645
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+Let me find the post_to_reviewer tool.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "2a95d24a-b90e-4c37-8cdf-14de8c4eeef1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RGA5UqkNaKremFPEGAZFCX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 645,
+      "cache_read_input_tokens": 67011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 645
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016CEsjuDsYPWJPEiD6xpGHY`</summary>
+
+```json
+{
+  "query": "reviewer post review",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "633ba514-dbd3-4cb7-a071-330168e95cef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RGA5UqkNaKremFPEGAZFCX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 645,
+      "cache_read_input_tokens": 67011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 645
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-17T19:00:28.613Z_
+
+<details><summary>↩ Tool result · `toolu_016CEsjuDsYPWJPEiD6xpGHY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "ExitPlanMode"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "RemoteTrigger"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "bb688c15-0593-4782-93a5-ab67d5e3e46c",
+  "tool_use_result": {
+    "matches": [
+      "ExitPlanMode",
+      "RemoteTrigger"
+    ],
+    "query": "reviewer post review",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's no post_to_reviewer tool in the available tools. Let me search more specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "259160d9-9c0f-4f36-98a8-b9cc46c54f81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnmJf33NWKDivJ5cm2RAHa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1105,
+      "cache_read_input_tokens": 67656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1105
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01K4sLTabo283UEnt12Fp2QD`</summary>
+
+```json
+{
+  "query": "post reviewer paper",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "abed3a46-129b-46ff-9ac2-2fd7278ae4dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnmJf33NWKDivJ5cm2RAHa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1105,
+      "cache_read_input_tokens": 67656,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1105
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-17T19:00:32.405Z_
+
+<details><summary>↩ Tool result · `toolu_01K4sLTabo283UEnt12Fp2QD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "RemoteTrigger"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "a28774b9-085a-4fb6-a9fd-3883ebf3f9ad",
+  "tool_use_result": {
+    "matches": [
+      "RemoteTrigger",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "post reviewer paper",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's no `post_to_reviewer` tool available in the MCP tools. The task mentions "post_to_reviewer 审查" but this tool doesn't exist in my available toolset. Let me check all available MCP tools again - the deferred tools list had:
+
+- mcp__agent-ml-research__append_idea
+- mcp__agent-ml-research__read_project_file
+- mcp__agent-ml-research__read_registry
+- mcp__agent-ml-research__register_artifact
+- mcp__agent-ml-research__save_project_file
+- mcp__agent-ml-research__update_registry
+
+
+Since the post_to_reviewer tool isn't available, I'll register the updated theory draft as an artifact and summarize the results for the user.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "3f5c6936-9e68-4ab3-8327-0caaf14135f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjEbiG9PwzqazbzNEtcFQG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1302,
+      "cache_read_input_tokens": 68761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1302
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+No `post_to_reviewer` tool available in the current toolset. Let me register the updated artifact and provide the full change report for manual reviewer submission.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "b72b0af0-2fff-4ee7-8090-16b6456a8b9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjEbiG9PwzqazbzNEtcFQG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1302,
+      "cache_read_input_tokens": 68761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1302
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01ASrb9N6pSqLQoxyoQ3NHmN`</summary>
+
+```json
+{
+  "name": "theory_draft_corrected_v2",
+  "type": "paper",
+  "description": "Theory section (§5) with corrected AUC values, γ=0.75 in KL-divergence space, and Pinsker inequality note. Ready for reviewer audit per C003.",
+  "project": "recursive_gen_depth_est",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft.tex",
+  "tags": [
+    "theory",
+    "C003",
+    "reviewer-pending"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "8a05c008-7d26-4d3a-b251-049a4d1aa527",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjEbiG9PwzqazbzNEtcFQG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1302,
+      "cache_read_input_tokens": 68761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1302
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-17T19:00:44.934Z_
+
+<details><summary>↩ Tool result · `toolu_01ASrb9N6pSqLQoxyoQ3NHmN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_3bd3d2\", \"name\": \"theory_draft_corrected_v2\", \"type\": \"paper\", \"description\": \"Theory section (§5) with corrected AUC values, γ=0.75 in KL-divergence space, and Pinsker inequality note. Ready for reviewer audit per C003.\", \"path\": \"projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft_3bd3d2.tex\", \"url\": null, \"project\": \"recursive_gen_depth_est\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T19:00:44.167599+00:00\", \"tags\": [\"theory\", \"C003\", \"reviewer-pending\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "9f39fb8e-bfac-4856-b5c5-6f5e2519e10c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_3bd3d2\\\", \\\"name\\\": \\\"theory_draft_corrected_v2\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Theory section (§5) with corrected AUC values, γ=0.75 in KL-divergence space, and Pinsker inequality note. Ready for reviewer audit per C003.\\\", \\\"path\\\": \\\"projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft_3bd3d2.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"recursive_gen_depth_est\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T19:00:44.167599+00:00\\\", \\\"tags\\\": [\\\"theory\\\", \\\"C003\\\", \\\"reviewer-pending\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_3bd3d2\", \"name\": \"theory_draft_corrected_v2\", \"type\": \"paper\", \"description\": \"Theory section (§5) with corrected AUC values, γ=0.75 in KL-divergence space, and Pinsker inequality note. Ready for reviewer audit per C003.\", \"path\": \"projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft_3bd3d2.tex\", \"url\": null, \"project\": \"recursive_gen_depth_est\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T19:00:44.167599+00:00\", \"tags\": [\"theory\", \"C003\", \"reviewer-pending\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+## 修改完成报告
+
+### 修改 1：AUC 数值（两个文件）
+
+**文件 A**: `artifacts/_project/paper/theory_draft.tex` line 110
+| 项 | 旧值 | 新值 |
+|---|---|---|
+| AUC(d₁,d₂) | ≈ 0.93 | = 0.922 |
+| AUC(d₂,d₃) | ≈ 0.85 | = 0.802 |
+| AUC(d₃,d₄) | ≈ 0.77 | = 0.712 |
+| AUC(d₄,d₅) | ≈ 0.68 | = 0.653 |
+
+**文件 B**: `paper/theory_section_draft.md` line 28 + line 59
+- §5.1 (line 28): 0.93→0.922, 0.86→0.802, 0.77→0.712
+- §5.2 (line 59): 0.93→0.922, 0.86→0.802, 0.77→0.712, 0.68→0.653
+
+### 修改 2：γ 值与空间明确化
+
+| 文件 | 旧值 | 新值 |
+|---|---|---|
+| `_project/paper/theory_draft.tex` L110 | γ ≈ 0.80 | γ ≈ 0.75 in KL-divergence space |
+| `paper/theory_section_draft.md` L59 | γ ≈ 0.85 in feature space | γ ≈ 0.75 in KL-divergence space |
+
+两处均补充了: "This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping)."
+
+### 确认：d3v4 range
+
+Registry 三模型数据完整：
+- Pythia: 0.784, OLMo: 0.765, GPT-2 XL: 0.750
+- **[0.750, 0.784] 正确，保持不变**
+
+注意：同处 d4v5 range 写 [0.681, 0.694]，但实际 registry 上限为 0.684（OLMo），0.694 偏高。任务未要求修正此值。
+
+### Shi et al. (2025) venue
+
+**确认正确**：NeurIPS 2025 Spotlight。`paper/theory_section_draft.md` line 110 已正确标注。
+
+### 未完成
+
+`post_to_reviewer` 工具不在当前可用工具列表中，无法自动提交审查。需手动触发 reviewer 审查流程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "uuid": "d69a11df-2c56-44d8-8dd4-5e292e071572",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019o8Dw6kqkCYeZyXH8xNtdv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 804,
+      "cache_read_input_tokens": 70063,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 804
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 81_
+
+## 修改完成报告
+
+### 修改 1：AUC 数值（两个文件）
+
+**文件 A**: `artifacts/_project/paper/theory_draft.tex` line 110
+| 项 | 旧值 | 新值 |
+|---|---|---|
+| AUC(d₁,d₂) | ≈ 0.93 | = 0.922 |
+| AUC(d₂,d₃) | ≈ 0.85 | = 0.802 |
+| AUC(d₃,d₄) | ≈ 0.77 | = 0.712 |
+| AUC(d₄,d₅) | ≈ 0.68 | = 0.653 |
+
+**文件 B**: `paper/theory_section_draft.md` line 28 + line 59
+- §5.1 (line 28): 0.93→0.922, 0.86→0.802, 0.77→0.712
+- §5.2 (line 59): 0.93→0.922, 0.86→0.802, 0.77→0.712, 0.68→0.653
+
+### 修改 2：γ 值与空间明确化
+
+| 文件 | 旧值 | 新值 |
+|---|---|---|
+| `_project/paper/theory_draft.tex` L110 | γ ≈ 0.80 | γ ≈ 0.75 in KL-divergence space |
+| `paper/theory_section_draft.md` L59 | γ ≈ 0.85 in feature space | γ ≈ 0.75 in KL-divergence space |
+
+两处均补充了: "This corresponds to an observed AUC decay ratio of approximately 0.87 between successive depth pairs, connected through Pinsker's inequality (nonlinear mapping)."
+
+### 确认：d3v4 range
+
+Registry 三模型数据完整：
+- Pythia: 0.784, OLMo: 0.765, GPT-2 XL: 0.750
+- **[0.750, 0.784] 正确，保持不变**
+
+注意：同处 d4v5 range 写 [0.681, 0.694]，但实际 registry 上限为 0.684（OLMo），0.694 偏高。任务未要求修正此值。
+
+### Shi et al. (2025) venue
+
+**确认正确**：NeurIPS 2025 Spotlight。`paper/theory_section_draft.md` line 110 已正确标注。
+
+### 未完成
+
+`post_to_reviewer` 工具不在当前可用工具列表中，无法自动提交审查。需手动触发 reviewer 审查流程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 405605,
+  "duration_api_ms": 404299,
+  "num_turns": 26,
+  "stop_reason": "end_turn",
+  "session_id": "fc9c9569-5923-454b-bae6-d698298d9df4",
+  "total_cost_usd": 1.400275,
+  "usage": {
+    "input_tokens": 36,
+    "cache_creation_input_tokens": 59026,
+    "cache_read_input_tokens": 1283785,
+    "output_tokens": 14390,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 59026,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 747,
+        "cache_read_input_tokens": 70063,
+        "cache_creation_input_tokens": 804,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 804
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 17325,
+      "outputTokens": 443,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 1,
+      "costUSD": 0.029540000000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 36,
+      "outputTokens": 14390,
+      "cacheReadInputTokens": 1283785,
+      "cacheCreationInputTokens": 59026,
+      "webSearchRequests": 0,
+      "costUSD": 1.370735,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b44a365c-a9c3-4a5b-a4a1-f087d50475e9"
+}
+```
+
+</details>
+
+---

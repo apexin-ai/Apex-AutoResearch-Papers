@@ -915,5 +915,6 @@
       ],
       "message_count": 21
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ssh-gpu-status-check.md"
 }

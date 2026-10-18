@@ -1,0 +1,1995 @@
+# paper writing intro abstract r5 revision
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_paper_writing_intro_abstract_r5_revision_20260524T042710.log`
+- **Structured JSON:** [`72ce48816f4401d887b9.json`](../../sessions/72/72ce48816f4401d887b9.json)
+
+## Before a recorded user message
+
+35 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__auto_build_provenance",
+    "mcp__agent-ml-research__bootstrap_provenance",
+    "mcp__agent-ml-research__check_figures_and_layout",
+    "mcp__agent-ml-research__check_paper_consistency",
+    "mcp__agent-ml-research__check_provenance_completeness",
+    "mcp__agent-ml-research__cleanup_pdf_images",
+    "mcp__agent-ml-research__compute_coverage_matrix",
+    "mcp__agent-ml-research__edit_paper_section",
+    "mcp__agent-ml-research__get_image_info",
+    "mcp__agent-ml-research__get_worker_status",
+    "mcp__agent-ml-research__list_artifacts",
+    "mcp__agent-ml-research__list_workers",
+    "mcp__agent-ml-research__load_project_config",
+    "mcp__agent-ml-research__overleaf_init",
+    "mcp__agent-ml-research__overleaf_pull",
+    "mcp__agent-ml-research__overleaf_push",
+    "mcp__agent-ml-research__overleaf_status",
+    "mcp__agent-ml-research__overleaf_sync",
+    "mcp__agent-ml-research__paper_agent_post_to_director",
+    "mcp__agent-ml-research__paper_agent_request_review",
+    "mcp__agent-ml-research__paper_compile_and_check",
+    "mcp__agent-ml-research__pdf_to_images",
+    "mcp__agent-ml-research__read_experiment_plan_with_status",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__read_roadmap",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__send_progress",
+    "mcp__agent-ml-research__spawn_worker",
+    "mcp__agent-ml-research__verify_references",
+    "mcp__agent-ml-research__write_paper_section"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d0b5596a-266b-4b59-a31a-604d200d7df9",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779608400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "88f0befc-817c-4ca4-9552-d0c00a0816a3",
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the required files: the paper-writing-norms skill, the current introduction.tex, main.tex (for abstract), and abstract.tex.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "afd9d5f0-d90f-4514-bf87-b11ff959756b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H26TTDy6oYEWj5Z3y3yJAE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14044,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14044
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GXJdfoAXAAwJt6epTu5pzH`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "66d47e4f-186c-4b7e-a134-d0a0cb3e0915",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H26TTDy6oYEWj5Z3y3yJAE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14044,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14044
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T04:27:24.635Z_
+
+<details><summary>↩ Tool result · `toolu_01GXJdfoAXAAwJt6epTu5pzH`</summary>
+
+```text
+1	---
+2	name: paper-writing-norms
+3	description: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。
+4	allowed-tools: [Read, Write, Edit, Glob, Grep]
+5	scope: global
+6	version: 2
+7	priority: 9
+8	tags:
+9	  - writing
+10	  - paper
+11	  - style
+12	  - norms
+13	roles:
+14	  - agent
+15	  - worker
+16	  - paper_agent
+17	---
+18	
+19	# 论文写作风格规范
+20	
+21	> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。
+22	
+23	---
+24	
+25	## 一、总体写作哲学
+26	
+27	### 1.1 故事驱动，不是数据堆砌
+28	
+29	- 论文必须以"故事线"为核心展开：问题 → 洞察 → 方法 → 验证
+30	- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进
+31	- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌
+32	- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing
+33	
+34	### 1.2 主线统一性
+35	
+36	- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**
+37	- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C
+38	- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机
+39	- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线
+40	
+41	### 1.3 专有名词必须有定义
+42	
+43	- 首次出现的专有名词/缩写必须给出完整定义和解释
+44	- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）
+45	- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用
+46	- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug
+47	
+48	### 1.4 写作前必读同类优秀论文
+49	
+50	- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可
+51	- 重点学：
+52	  - Abstract 怎么用最少篇幅讲完故事
+53	  - Introduction 怎么从大问题切入到具体贡献
+54	  - Related Work 怎么 positioning 自己（不是 survey）
+55	  - Table/Figure 怎么压缩信息密度
+56	- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大
+57	- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文
+58	
+59	---
+60	
+61	## 二、Abstract 写作规范
+62	
+63	### 2.1 四个必答问题（150-250 words）
+64	
+65	Abstract 必须在很短的篇幅内清楚回答：
+66	1. **研究什么问题** — 1-2 句话交代背景和痛点
+67	2. **为什么重要** — 现有方法的不足（不用写太多）
+68	3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）
+69	4. **结果说明什么** — 用具体实验结论支撑贡献
+70	
+71	### 2.2 禁忌
+72	
+73	- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim
+74	- **禁止过度宣传**：不说 "revolutionary"、"groundbreaking"
+75	- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元
+76	- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了
+77	- **缩写必须定义**：Abstract 中首次出现的缩写必须展开
+78	
+79	### 2.3 审稿人视角检验
+80	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "a8b3bd1f-e581-49f9-b913-4a62afd4d012",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+      "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n",
+      "numLines": 80,
+      "startLine": 1,
+      "totalLines": 276
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017E7CXYJEj79LighrxXJbuc`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex",
+  "offset": 20,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "bbac87f6-6462-4f9d-b49b-7a8f78838789",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H26TTDy6oYEWj5Z3y3yJAE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14044,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14044
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-24T04:27:25.639Z_
+
+<details><summary>↩ Tool result · `toolu_017E7CXYJEj79LighrxXJbuc`</summary>
+
+```text
+20	
+21	\author{Anonymous}
+22	
+23	\begin{document}
+24	\maketitle
+25	
+26	\begin{abstract}
+27	Multi-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\eta_{\max}$) and structural diversity ($K_{\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \in \{3, 5, 7\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\geq}5$, $K_{\mathrm{eff}}$ becomes the sole significant predictor. Sensitivity analysis shows $K_{\mathrm{eff}}$'s robustness to hypothetical confounders increases with panel size (RV exceeds the known confound in 1/12 at $K{=}3$ to 4/12 at $K{=}7$; 10/12 at $K{=}5$ in a capability-matched subsample). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.
+28	\end{abstract}
+29	
+30	\input{introduction}
+31	\input{related_work}
+32	\input{threat_model}
+33	\input{methodology}
+34	\input{results}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "b4d69533-85d1-4ac6-a78a-3277ad6a5180",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex",
+      "content": "\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nMulti-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Sensitivity analysis shows $K_{\\mathrm{eff}}$'s robustness to hypothetical confounders increases with panel size (RV exceeds the known confound in 1/12 at $K{=}3$ to 4/12 at $K{=}7$; 10/12 at $K{=}5$ in a capability-matched subsample). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.\n\\end{abstract}\n\n\\input{introduction}\n\\input{related_work}\n\\input{threat_model}\n\\input{methodology}\n\\input{results}",
+      "numLines": 15,
+      "startLine": 20,
+      "totalLines": 57
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GYyGjVzJDCk2z17sixfzb5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "6531c4b6-9372-4005-a102-9a115a18dc4f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H26TTDy6oYEWj5Z3y3yJAE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14044,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14044
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T04:27:26.541Z_
+
+<details><summary>↩ Tool result · `toolu_01GYyGjVzJDCk2z17sixfzb5`</summary>
+
+```text
+1	\section{Introduction}
+2	
+3	\begin{figure*}[t]
+4	\centering
+5	\includegraphics[width=\textwidth]{figures/fig_framework.pdf}
+6	\caption{Overview of our evaluation framework. Given $N$ candidate LLM judges, we construct $K$-judge panels (\S\ref{sec:experiments}), subject them to six adversarial attack types (\S\ref{sec:threat_model}), and assess vulnerability through two complementary metrics: $\eta_{\max}$ (weakest-link individual susceptibility) and $K_{\text{eff}}$ (effective independent channels via mutual information). Panel decisions are aggregated through four methods of increasing sophistication (\S\ref{sec:aggregation}).}
+7	\label{fig:framework}
+8	\end{figure*}
+9	
+10	Multi-judge panels have emerged as the dominant defense against bias and manipulation in LLM-based evaluation. After \citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, drawing inspiration from Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \citep{lamport1982byzantine,castro1999practical}. A recent systematization of LLM-judge security reports that 7-model committees reduce attack success rates from 50--68\% to 10--19\% \citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation.
+11	
+12	Yet the evidence for diversity as a causal defense is weaker than it appears. The observed ASR reduction conflates panel diversity (judge independence) with individual robustness (strongest members). No existing work disentangles these across panel sizes. BFT adversaries control faulty nodes internally, whereas evaluation adversaries manipulate inputs externally; the SDPI bounds joint failure but assumes non-adaptive faults \citep{schneier2000secrets}.
+13	
+14	In our experiments, we observe a panel-size-dependent predictor shift. $K_{\mathrm{eff}}$'s coefficient direction is uniformly positive across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\% positive rate), consistent with independent judges presenting more targetable attack surfaces \citep{goodfellow2015adversarial,papernot2016transferability}. The relative importance of the two predictors shifts with panel size: at $K{=}3$, both $\eta_{\max}$ and $K_{\mathrm{eff}}$ show some significance; at $K{\geq}5$, $K_{\mathrm{eff}}$ becomes the sole significant predictor while $\eta_{\max}$ drops to zero significance. GAM bootstrap confirms the uniform positive direction (12/12 conditions, 88.9--100\% bootstrap rate at $K{=}3$) with no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).
+15	
+16	Controlled experiments across 15 models, $K \in \{3,5,7\}$, 6 attacks, and 2 benchmarks confirm this shift (Figure~\ref{fig:framework}). Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); the predictability collapse under adaptive attack is most pronounced at $K{=}3$. Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09); Bayesian calibration attenuates $K_{\mathrm{eff}}$ (5+/1$-$) but $\eta_{\max}$ persists (9/12 under OLS).
+17	
+18	These findings yield three contributions:
+19	\begin{enumerate}
+20	\item \textbf{Diversity--vulnerability association.} We provide the first systematic empirical characterization of how panel diversity is associated with adversarial vulnerability in LLM judge panels. $K_{\mathrm{eff}}$'s coefficient direction is positive in all 12 conditions, confirmed by both OLS and GAM bootstrap (88.9--100\% positive rate at $K{=}3$, 100\% at $K{=}5$), though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$). No attack-type-dependent directional split exists (Kruskal--Wallis $p{=}0.200$ at $K{=}3$, $p{=}0.423$ at $K{=}5$; \S\ref{sec:dominance}, \S\ref{sec:gam_taxonomy}).
+21	\item \textbf{Panel-size-dependent predictor shift.} At $K{=}3$, both $\eta_{\max}$ (3/12) and $K_{\mathrm{eff}}$ (4/12) contribute under bootstrap (co-determination); at $K{\geq}5$, $K_{\mathrm{eff}}$ becomes the sole significant predictor (10/12 at $K{=}5$, 9/12 at $K{=}7$) while $\eta_{\max}$ drops to 0/12 (\S\ref{sec:cross_k}, \S\ref{sec:rf_contrast}).
+22	\item \textbf{Aggregation as predictability control.} Aggregation rules influence how much variance panel composition explains ($R^2$: threshold 0.83 $\to$ Bayesian 0.09). Bayesian calibration attenuates $K_{\mathrm{eff}}$ (5+/1$-$) but $\eta_{\max}$ persists (9/12), providing partial rather than complete defense (\S\ref{sec:aggregation}, \S\ref{sec:analysis}).
+23	\end{enumerate}
+24	
+25	Our findings describe descriptive associations; causal attribution is limited by the diversity--capability confound (\S\ref{sec:analysis}).
+26	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "e57e3bf2-1d1c-4ff1-95cf-dc1141ee9e54",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig_framework.pdf}\n\\caption{Overview of our evaluation framework. Given $N$ candidate LLM judges, we construct $K$-judge panels (\\S\\ref{sec:experiments}), subject them to six adversarial attack types (\\S\\ref{sec:threat_model}), and assess vulnerability through two complementary metrics: $\\eta_{\\max}$ (weakest-link individual susceptibility) and $K_{\\text{eff}}$ (effective independent channels via mutual information). Panel decisions are aggregated through four methods of increasing sophistication (\\S\\ref{sec:aggregation}).}\n\\label{fig:framework}\n\\end{figure*}\n\nMulti-judge panels have emerged as the dominant defense against bias and manipulation in LLM-based evaluation. After \\citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \\citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, drawing inspiration from Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \\citep{lamport1982byzantine,castro1999practical}. A recent systematization of LLM-judge security reports that 7-model committees reduce attack success rates from 50--68\\% to 10--19\\% \\citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation.\n\nYet the evidence for diversity as a causal defense is weaker than it appears. The observed ASR reduction conflates panel diversity (judge independence) with individual robustness (strongest members). No existing work disentangles these across panel sizes. BFT adversaries control faulty nodes internally, whereas evaluation adversaries manipulate inputs externally; the SDPI bounds joint failure but assumes non-adaptive faults \\citep{schneier2000secrets}.\n\nIn our experiments, we observe a panel-size-dependent predictor shift. $K_{\\mathrm{eff}}$'s coefficient direction is uniformly positive across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate), consistent with independent judges presenting more targetable attack surfaces \\citep{goodfellow2015adversarial,papernot2016transferability}. The relative importance of the two predictors shifts with panel size: at $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. GAM bootstrap confirms the uniform positive direction (12/12 conditions, 88.9--100\\% bootstrap rate at $K{=}3$) with no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).\n\nControlled experiments across 15 models, $K \\in \\{3,5,7\\}$, 6 attacks, and 2 benchmarks confirm this shift (Figure~\\ref{fig:framework}). Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); the predictability collapse under adaptive attack is most pronounced at $K{=}3$. Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09); Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12 under OLS).\n\nThese findings yield three contributions:\n\\begin{enumerate}\n\\item \\textbf{Diversity--vulnerability association.} We provide the first systematic empirical characterization of how panel diversity is associated with adversarial vulnerability in LLM judge panels. $K_{\\mathrm{eff}}$'s coefficient direction is positive in all 12 conditions, confirmed by both OLS and GAM bootstrap (88.9--100\\% positive rate at $K{=}3$, 100\\% at $K{=}5$), though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$). No attack-type-dependent directional split exists (Kruskal--Wallis $p{=}0.200$ at $K{=}3$, $p{=}0.423$ at $K{=}5$; \\S\\ref{sec:dominance}, \\S\\ref{sec:gam_taxonomy}).\n\\item \\textbf{Panel-size-dependent predictor shift.} At $K{=}3$, both $\\eta_{\\max}$ (3/12) and $K_{\\mathrm{eff}}$ (4/12) contribute under bootstrap (co-determination); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor (10/12 at $K{=}5$, 9/12 at $K{=}7$) while $\\eta_{\\max}$ drops to 0/12 (\\S\\ref{sec:cross_k}, \\S\\ref{sec:rf_contrast}).\n\\item \\textbf{Aggregation as predictability control.} Aggregation rules influence how much variance panel composition explains ($R^2$: threshold 0.83 $\\to$ Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), providing partial rather than complete defense (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).\n\\end{enumerate}\n\nOur findings describe descriptive associations; causal attribution is limited by the diversity--capability confound (\\S\\ref{sec:analysis}).\n",
+      "numLines": 26,
+      "startLine": 1,
+      "totalLines": 26
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017Sd7x2LfXms52dGeC7aG9L`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "ee77abaa-0e3e-45db-8acd-a88cdcea39f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H26TTDy6oYEWj5Z3y3yJAE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14044,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14044
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T04:27:26.724Z_
+
+<details><summary>↩ Tool result · `toolu_017Sd7x2LfXms52dGeC7aG9L`</summary>
+
+```text
+1	% Mirror of abstract in main.tex — do not edit here.
+2	
+3	Multi-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\eta_{\max}$) and structural diversity ($K_{\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \in \{3, 5, 7\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\geq}5$, $K_{\mathrm{eff}}$ becomes the sole significant predictor. Sensitivity analysis shows $K_{\mathrm{eff}}$'s robustness to hypothetical confounders increases with panel size (RV exceeds the known confound in 1/12 at $K{=}3$ to 4/12 at $K{=}7$; 10/12 at $K{=}5$ in a capability-matched subsample). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.
+4	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "fa7d0fcf-214a-4ad4-b367-d384c2115662",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex",
+      "content": "% Mirror of abstract in main.tex — do not edit here.\n\nMulti-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Sensitivity analysis shows $K_{\\mathrm{eff}}$'s robustness to hypothetical confounders increases with panel size (RV exceeds the known confound in 1/12 at $K{=}3$ to 4/12 at $K{=}7$; 10/12 at $K{=}5$ in a capability-matched subsample). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.\n",
+      "numLines": 4,
+      "startLine": 1,
+      "totalLines": 4
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the files. Let me plan the four modifications:
+
+### Task 1 (M2): Abstract — Cinelli-Hazlett unfavorable results upfront
+Current abstract ~155 words. Need to:
+- Acknowledge that in 78% conditions (28/36), K_eff's RV doesn't exceed η_max's partial R²
+- Add fractional logit clustered SE as primary robustness support (K3:9/12, K5:11/12, K7:12/12)
+- Stay ≤200 words
+
+
+### Task 2 (M2): Introduction — Cinelli-Hazlett limitation in Contribution 1
+Strengthen the existing caveat in Contribution 1 by acknowledging the 78% RV insufficiency and adding fractional logit support showing improvement across specifications (9/12→11/12→12/12).
+
+### Task 3 (M4): CJT recontextualization in Introduction
+Refocus paragraph 3 away from adversarial ML literature toward the predictor shift phenomenon, LLM judge context, and aggregation modulation—framing this as a transition rather than a critique of CJT itself.
+
+### Task 4 (S1): Collinearity caveat...
+
+Now I'm strengthening the final sentence of the Introduction with VIF data to make the collinearity limitation more prominent. Let me work through the abstract revision. The current text describes how we decompose panel vulnerability into individual judge weakness and effective diversity across a large experimental space, but it gets cut off mid-sentence around the diversity-capability confound. I need to tighten this and complete the thought about how the correlation between diversity and capability constrains our causal claims.
+
+The key findings are that effective diversity consistently predicts vulnerability across conditions, though this relationship is confounded with model capability (correlations around 0.70-0.81). The relative importance of the two factors shifts with panel size—at K=3 both matter, but at larger sizes effective diversity dominates. The sensitivity analysis using robustness values shows that effective diversity's effect is fairly robust to unmeasured confounders, especially in larger panels and capability-matched subsamples. Aggregation rules matter significantly for predictability. The practical takeaway is that defense strategies need to be tailored to panel size: smaller panels need individual judge screening while larger ones need to manage judge independence. I need to integrate the defense implications and refine the sensitivity analysis findings. The key insight is that mitigation strategies depend critically on panel size—smaller panels are vulnerable through individual judge weaknesses while larger ones face coordination risks. I should also note that robustness to unmeasured confounding improves substantially with panel size, though most conditions still fall below the threshold where we can rule out hidden confounders. The fractional logit results with clustered standard errors show consistent support across different panel sizes, strengthening confidence in these patterns. More concise. The key is to front the unfavorable result clearly while adding fractional logit as supporting evidence. I'll tighten this to one sentence that acknowledges the sensitivity analysis limitation and then pivots to the robustness check that does support the finding. I'm laying out the empirical scope and key findings: across a large experimental space, structural diversity consistently predicts vulnerability, but the confounding relationship between diversity and model capability undermines causal claims. The relative importance of these factors shifts depending on panel size, and sensitivity analysis suggests the diversity effect may not be robust to unmeasured confounding.
+
+Now looking at the robustness checks and practical implications: fractional logit models with clustered errors largely confirm the positive association across different panel sizes, though aggregation rules dramatically affect predictability. The takeaway is that defense strategies need to be tailored to panel composition—smaller panels benefit from vetting individual judge reliability, while larger panels need to address judge independence. The predictors' relative importance shifts with panel size at both contribute at becomes the sole significant predictor = 16 (total 85)
+Cinelli Hazlett sensitivity analysis shows robustness value falls short of the known confound in 78% of conditions though fractional logit with clustered standard errors confirms the positive association in most conditions = 27 (total 112)
+Aggregation rules influence predictability threshold 0.83 Bayesian 0.09 = 7 (total 119)
+The defense strategy must match the panel size small panels require screening for individual robustness larger panels require managing judge independence = 18 (total 137)
+
+Multi-judge LLM evaluation panels are assumed to benefit from diversity, but how that diversity actually holds up under adversarial attack remains unclear. I'm breaking down panel vulnerability into two components: individual judge weakness and the structural diversity across the 15 models we're testing. The relationship holds consistently across all conditions, though the correlation between diversity and capability makes it hard to establish causation. As panel size increases, the relative importance of these predictors changes—both factors matter at smaller sizes, but effectiveness becomes the dominant predictor at larger ones.
+
+The Cinelli-Hazlett sensitivity analysis reveals that the robustness value falls below the known confounder threshold in most cases, yet the fractional logit model with clustered standard errors still confirms the positive association across the majority of conditions. I'm finishing the word count for that sentence and then reconsidering how to count certain elements like hyphenated names, numbers, and abbreviations — "Cinelli--Hazlett" should probably be two words, and I need to verify whether percentages and numerical expressions count as individual words for submission purposes.
+
+Looking back at the task requirements, I need to make sure the abstract explicitly acknowledges the unfavorable finding: under the full pool with 78% of conditions (28/36), K_eff's robustness value doesn't exceed η_max's partial R². The current structure already fronts this negative result in the sensitivity analysis sentence, which should satisfy that requirement.
+
+Now I'm moving on to revise the first contribution statement. The current version is quite long and detailed about the diversity-vulnerability association findings. I need to compress this down while keeping the key points: we're the first to systematically characterize how panel diversity relates to adversarial vulnerability, the coefficient is consistently positive across conditions, but there's a confounding issue with diversity and capability that limits causal claims, and the statistical significance varies by method. , the diversity--capability confound (r = 0.70--0.81) substantially limits causal claims: sensitivity analysis reveals that in 78% of conditions, the diversity effect's robustness doesn't exceed the confound's influence. Fractional logit models with clustered errors consistently support the association across all three diversity levels (K=3 through K=7), though statistical significance varies by method, and the uniformly positive direction across conditions points to a genuine descriptive relationship despite the confounding. I'm checking the robustness of these findings across different statistical approaches—the Cinelli-Hazlett values suggest the diversity-capability confound is substantial enough to mask causal effects in most cases, though fractional logit models with clustered errors still show the positive association holds across nearly all conditions. The statistical significance varies considerably depending on the method used, and there's no evidence that different attack types drive the relationship in different directions. I'm seeing that the panel-size effect is the key finding here—$K_{\mathrm{eff}}$ stays consistently positive across all conditions, but its dominance over $\eta_{\max}$ only emerges at larger panel sizes, which the bootstrap analysis confirms. The practical angle is that aggregation itself modulates which predictor matters, and this matters differently for LLM judges facing language-based versus gradient attacks. The key insight is that while ensemble adversarial theory predicts $K_{\mathrm{eff}}$ should matter, the language-based nature of LLM judge attacks creates a fundamentally different mechanism than gradient-based adversarial perturbations—and the statistical tests show no meaningful difference between attack types regardless of panel composition. I'm laying out the empirical evidence for the panel-size effect: the consistent positive direction of the effective coefficient across all conditions is theoretically grounded, but the novel finding is how predictor dominance shifts with panel size—at smaller K values both metrics matter, but once K reaches 5 or higher, the effective coefficient takes over entirely while the max predictor drops out. This transition appears unique to the LLM judge context where adversarial dynamics play a different role. I'm seeing a panel-size effect where $K_{\mathrm{eff}}$ consistently predicts across conditions, but $\eta_{\max}$ loses significance once $K{\geq}5$—a shift that emerges specifically in the LLM judge setting where natural language manipulation replaces gradient-based attacks, and where aggregation choice becomes a practical control point for predictability.
+
+The bootstrap analysis shows attack type doesn't meaningfully differentiate outcomes. I'm realizing that Tasks 3 and 4 are actually asking for the same modification—strengthening that caveat about causal attribution in the introduction's closing. Let me consolidate these and execute all the edits now.
+
+For the abstract, I need to replace the sensitivity analysis sentence with the new Cinelli-Hazlett framing that's more concise about the robustness value. The diversity metric shows consistent positive association with vulnerability across conditions, though the strong correlation with model capability (0.70-0.81) complicates causal claims. The relative importance of these factors depends on panel size—both matter at K=3, but effective diversity dominates at larger panels. Sensitivity analysis suggests the diversity effect's robustness is limited by the confound in most cases, yet fractional logit regression with clustered errors still supports the positive relationship across nearly all panel configurations. Different aggregation rules produce vastly different predictability levels, and defense strategies need to be tailored accordingly. the panel size: small panels require screening for individual robustness; larger panels require managing judge independence. Now I'm tallying up the word counts across these findings—checking my arithmetic on the sentence lengths and accounting for mathematical notation versus actual words. The total comes to around 138 words, though I need to be careful about what counts as a word when math symbols are involved.
+
+For EMNLP submissions, the convention is to count rendered words rather than LaTeX commands, so something like $K_{\mathrm{eff}}$ counts as a single word. Being conservative with my estimate, I'm landing somewhere between 155-165 words, which is comfortably under the 200-word limit. Now I'm ready to make the edits to the abstract in the main file.
+
+For the first revision, I'm replacing that sensitivity analysis sentence with a more precise statement about the Cinelli-Hazlett robustness values and how the fractional logit model performs across different conditions. The new version is more specific about the percentages and conditions tested.
+
+For the second revision, I'm integrating the robustness analysis directly into the discussion of the diversity-capability confound, showing both the limitation (78% of conditions don't exceed the confound threshold) and the reassurance (the fractional logit model still confirms the positive relationship across most K values). This flows better into the statistical significance discussion that follows. The diversity--capability confound ($r{=}0.70$--$0.81$) substantially limits causal claims: Cinelli--Hazlett robustness checks fail to exceed the confound magnitude in most conditions (28/36), yet fractional logit with clustered standard errors still recovers the positive association across all panel sizes ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). The inference method matters considerably—OLS shows consistent significance while bootstrap resampling only reaches it in a minority of cases at smaller $K$.
+
+As panel size grows, the relative importance of the two predictors shifts markedly: $K_{\mathrm{eff}}$ maintains its positive coefficient across all conditions and inference methods, but $\eta_{\max}$ loses statistical power, becoming negligible once $K{\geq}5$. The GAM bootstrap confirms this directional consistency (88.9--100\% positive rate across conditions) with no meaningful differences between attack types.
+
+This transition is noteworthy because it emerges specifically in the LLM judge setting where adversaries operate through natural language manipulation rather than gradient-based perturbations, and the aggregation mechanism itself becomes a tunable control. The pattern wasn't previously documented in adversarial ensemble theory, suggesting that the interplay between panel composition and linguistic attack strategies creates a distinct dynamic.
+
+Our findings remain descriptive associations constrained by the diversity--capability confound, so causal claims require additional investigation. I need to verify that the old strings I'm replacing are unique in introduction.tex so I don't accidentally modify the wrong sections. The Task 2 string about the diversity-capability confound appears only in Contribution 1, and Task 3's paragraph starting with "In our experiments" is distinct enough that it won't have duplicates. Let me proceed with making these edits across both files. the Edit tool uses string-based find-and-replace, so I should be able to run all four edits in parallel since they target different strings across different files. Let me execute the main.tex change along with all three introduction.tex edits simultaneously.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "1506c96c-1241-4911-93c7-c11e191c6f4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TXB39psEfQ182v3D1xx9RX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 25491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Reading the required files now.
+
+I have all four files. Let me execute the four modifications in parallel.
+
+**Summary of changes:**
+1. **Abstract** (main.tex): Replace sensitivity analysis sentence → front 78% RV insufficiency, add fractional logit support
+2. **Introduction Contribution 1**: Strengthen confound caveat with Cinelli-Hazlett 28/36 + fractional logit
+3. **Introduction para 3**: Recontextualize around predictor shift phenomenon, LLM judge context, aggregation lever
+4. **Introduction final line**: Add VIF data, strengthen collinearity caveat
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "eef4ec26-4a59-426b-8359-9b999d4af138",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TXB39psEfQ182v3D1xx9RX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 25491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01P4qkFZVy1fvQQJSqDLnS8i`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex",
+  "old_string": "Sensitivity analysis shows $K_{\\mathrm{eff}}$'s robustness to hypothetical confounders increases with panel size (RV exceeds the known confound in 1/12 at $K{=}3$ to 4/12 at $K{=}7$; 10/12 at $K{=}5$ in a capability-matched subsample).",
+  "new_string": "Cinelli--Hazlett sensitivity analysis reveals that $K_{\\mathrm{eff}}$'s robustness value does not exceed the known confound in 78\\% of conditions (28/36), but fractional logit with clustered standard errors confirms the positive association in most conditions ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "57cda83b-d2fe-4f77-b08a-88bc7a374aed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TXB39psEfQ182v3D1xx9RX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4472,
+      "cache_read_input_tokens": 25491,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4472
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T04:30:11.986Z_
+
+<details><summary>↩ Tool result · `toolu_01P4qkFZVy1fvQQJSqDLnS8i`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "766d0796-32b2-40dd-945a-8641c04e6b00",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex",
+    "oldString": "Sensitivity analysis shows $K_{\\mathrm{eff}}$'s robustness to hypothetical confounders increases with panel size (RV exceeds the known confound in 1/12 at $K{=}3$ to 4/12 at $K{=}7$; 10/12 at $K{=}5$ in a capability-matched subsample).",
+    "newString": "Cinelli--Hazlett sensitivity analysis reveals that $K_{\\mathrm{eff}}$'s robustness value does not exceed the known confound in 78\\% of conditions (28/36), but fractional logit with clustered standard errors confirms the positive association in most conditions ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12).",
+    "originalFile": "\\documentclass[11pt]{article}\n\\usepackage[review]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{amsmath,amssymb,amsthm}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\n\\newtheorem{theorem}{Theorem}\n\\newtheorem{definition}{Definition}\n\\newtheorem{proposition}{Proposition}\n\n\\title{The Shifting Bottleneck: Panel-Size-Dependent Predictors\\\\of Adversarial Vulnerability in LLM Judge Panels}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nMulti-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Sensitivity analysis shows $K_{\\mathrm{eff}}$'s robustness to hypothetical confounders increases with panel size (RV exceeds the known confound in 1/12 at $K{=}3$ to 4/12 at $K{=}7$; 10/12 at $K{=}5$ in a capability-matched subsample). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.\n\\end{abstract}\n\n\\input{introduction}\n\\input{related_work}\n\\input{threat_model}\n\\input{methodology}\n\\input{results}\n\\input{analysis}\n\\input{conclusion}\n\n\\section*{Limitations}\n\nOur study has several limitations. \\textbf{Diversity--capability confound.} The structural coupling between diversity and capability in current LLM ecosystems ($r{=}0.70$--$0.81$) means observational regression cannot reliably separate their contributions. Capability-matched subsampling reduces but does not eliminate this confound (Pool~A $r{=}0.50$; \\S\\ref{sec:analysis}). Causal identification requires training-based diversity control.\n\n\\textbf{Inference sensitivity.} At $K{=}3$, $K_{\\mathrm{eff}}$'s significance is sensitive to inference method (OLS 12/12, bootstrap 4/12, fractional logit 9/12), though coefficient direction is uniformly positive. The 13 clusters per position at $K{=}3$ fall below the ${\\geq}20$ threshold \\citep{cameron2008bootstrap}, so bootstrap attenuation may partly reflect power limitations.\n\n\\textbf{Benchmark and attack scope.} Both benchmarks use multiple-choice formats; whether the predictor shift holds for open-ended evaluation is unknown. The six local models use AWQ INT4 quantization, which may confound the capability tier classification. Each attack type uses 1--2 template variants; conclusions may be sensitive to specific template wording. All API models are accessed through OpenRouter, introducing a dependency on routing and snapshot consistency.\n\n\\textbf{Panel size range.} We study only odd $K \\in \\{3,5,7\\}$; the predictor shift threshold $K^*$ ($3 < K^* < 5$) is not precisely identified. The 300-item sample per benchmark provides sufficient power for panel-level regression but may not capture the full distributional tail of judge vulnerabilities.\n\n\\section*{Code and Data Availability}\nCode, the evaluation framework, and all panel-level results will be released upon acceptance. All evaluation items are sampled from publicly available benchmarks: MMLU \\citep{hendrycks2021mmlu} and ARC-Challenge \\citep{clark2018arc}. The nine API-accessed judge models are served through OpenRouter; the six local judges are open-weight models (Qwen 2.5, Llama 3.1, Mistral Large) in AWQ-quantized form. Individual judge scores, panel compositions, and aggregated vulnerability metrics will be included in the release. All experiments use a fixed random seed (42), and all hyperparameters are reported in the methodology section to support reproducibility.\n\n\\input{appendix}\n\\input{appendix_attacks}\n\n\\bibliography{references}\n\n\\end{document}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 24,
+        "oldLines": 7,
+        "newStart": 24,
+        "newLines": 7,
+        "lines": [
+          " \\maketitle",
+          " ",
+          " \\begin{abstract}",
+          "-Multi-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Sensitivity analysis shows $K_{\\mathrm{eff}}$'s robustness to hypothetical confounders increases with panel size (RV exceeds the known confound in 1/12 at $K{=}3$ to 4/12 at $K{=}7$; 10/12 at $K{=}5$ in a capability-matched subsample). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.",
+          "+Multi-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Cinelli--Hazlett sensitivity analysis reveals that $K_{\\mathrm{eff}}$'s robustness value does not exceed the known confound in 78\\% of conditions (28/36), but fractional logit with clustered standard errors confirms the positive association in most conditions ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.",
+          " \\end{abstract}",
+          " ",
+          " \\input{introduction}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_013aqVEXQUoYZUzBh8irt57V`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex",
+  "old_string": ", though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$).",
+  "new_string": ". The diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation: Cinelli--Hazlett robustness values do not exceed the confound in 78\\% of conditions (28/36), though fractional logit with clustered standard errors confirms the positive association ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "eb6c72bc-2b9a-4d3c-9393-03633c9cc525",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019d8AWViAAExJBfcUcfnejv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11342,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11342
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T04:30:19.070Z_
+
+<details><summary>↩ Tool result · `toolu_013aqVEXQUoYZUzBh8irt57V`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "d968c21f-eb27-461f-9db2-8e0ad530d504",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex",
+    "oldString": ", though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$).",
+    "newString": ". The diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation: Cinelli--Hazlett robustness values do not exceed the confound in 78\\% of conditions (28/36), though fractional logit with clustered standard errors confirms the positive association ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$).",
+    "originalFile": "\\section{Introduction}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig_framework.pdf}\n\\caption{Overview of our evaluation framework. Given $N$ candidate LLM judges, we construct $K$-judge panels (\\S\\ref{sec:experiments}), subject them to six adversarial attack types (\\S\\ref{sec:threat_model}), and assess vulnerability through two complementary metrics: $\\eta_{\\max}$ (weakest-link individual susceptibility) and $K_{\\text{eff}}$ (effective independent channels via mutual information). Panel decisions are aggregated through four methods of increasing sophistication (\\S\\ref{sec:aggregation}).}\n\\label{fig:framework}\n\\end{figure*}\n\nMulti-judge panels have emerged as the dominant defense against bias and manipulation in LLM-based evaluation. After \\citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \\citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, drawing inspiration from Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \\citep{lamport1982byzantine,castro1999practical}. A recent systematization of LLM-judge security reports that 7-model committees reduce attack success rates from 50--68\\% to 10--19\\% \\citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation.\n\nYet the evidence for diversity as a causal defense is weaker than it appears. The observed ASR reduction conflates panel diversity (judge independence) with individual robustness (strongest members). No existing work disentangles these across panel sizes. BFT adversaries control faulty nodes internally, whereas evaluation adversaries manipulate inputs externally; the SDPI bounds joint failure but assumes non-adaptive faults \\citep{schneier2000secrets}.\n\nIn our experiments, we observe a panel-size-dependent predictor shift. $K_{\\mathrm{eff}}$'s coefficient direction is uniformly positive across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate), consistent with independent judges presenting more targetable attack surfaces \\citep{goodfellow2015adversarial,papernot2016transferability}. The relative importance of the two predictors shifts with panel size: at $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. GAM bootstrap confirms the uniform positive direction (12/12 conditions, 88.9--100\\% bootstrap rate at $K{=}3$) with no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).\n\nControlled experiments across 15 models, $K \\in \\{3,5,7\\}$, 6 attacks, and 2 benchmarks confirm this shift (Figure~\\ref{fig:framework}). Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); the predictability collapse under adaptive attack is most pronounced at $K{=}3$. Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09); Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12 under OLS).\n\nThese findings yield three contributions:\n\\begin{enumerate}\n\\item \\textbf{Diversity--vulnerability association.} We provide the first systematic empirical characterization of how panel diversity is associated with adversarial vulnerability in LLM judge panels. $K_{\\mathrm{eff}}$'s coefficient direction is positive in all 12 conditions, confirmed by both OLS and GAM bootstrap (88.9--100\\% positive rate at $K{=}3$, 100\\% at $K{=}5$), though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$). No attack-type-dependent directional split exists (Kruskal--Wallis $p{=}0.200$ at $K{=}3$, $p{=}0.423$ at $K{=}5$; \\S\\ref{sec:dominance}, \\S\\ref{sec:gam_taxonomy}).\n\\item \\textbf{Panel-size-dependent predictor shift.} At $K{=}3$, both $\\eta_{\\max}$ (3/12) and $K_{\\mathrm{eff}}$ (4/12) contribute under bootstrap (co-determination); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor (10/12 at $K{=}5$, 9/12 at $K{=}7$) while $\\eta_{\\max}$ drops to 0/12 (\\S\\ref{sec:cross_k}, \\S\\ref{sec:rf_contrast}).\n\\item \\textbf{Aggregation as predictability control.} Aggregation rules influence how much variance panel composition explains ($R^2$: threshold 0.83 $\\to$ Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), providing partial rather than complete defense (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).\n\\end{enumerate}\n\nOur findings describe descriptive associations; causal attribution is limited by the diversity--capability confound (\\S\\ref{sec:analysis}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 17,
+        "oldLines": 7,
+        "newStart": 17,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " These findings yield three contributions:",
+          " \\begin{enumerate}",
+          "-\\item \\textbf{Diversity--vulnerability association.} We provide the first systematic empirical characterization of how panel diversity is associated with adversarial vulnerability in LLM judge panels. $K_{\\mathrm{eff}}$'s coefficient direction is positive in all 12 conditions, confirmed by both OLS and GAM bootstrap (88.9--100\\% positive rate at $K{=}3$, 100\\% at $K{=}5$), though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$). No attack-type-dependent directional split exists (Kruskal--Wallis $p{=}0.200$ at $K{=}3$, $p{=}0.423$ at $K{=}5$; \\S\\ref{sec:dominance}, \\S\\ref{sec:gam_taxonomy}).",
+          "+\\item \\textbf{Diversity--vulnerability association.} We provide the first systematic empirical characterization of how panel diversity is associated with adversarial vulnerability in LLM judge panels. $K_{\\mathrm{eff}}$'s coefficient direction is positive in all 12 conditions, confirmed by both OLS and GAM bootstrap (88.9--100\\% positive rate at $K{=}3$, 100\\% at $K{=}5$). The diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation: Cinelli--Hazlett robustness values do not exceed the confound in 78\\% of conditions (28/36), though fractional logit with clustered standard errors confirms the positive association ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$). No attack-type-dependent directional split exists (Kruskal--Wallis $p{=}0.200$ at $K{=}3$, $p{=}0.423$ at $K{=}5$; \\S\\ref{sec:dominance}, \\S\\ref{sec:gam_taxonomy}).",
+          " \\item \\textbf{Panel-size-dependent predictor shift.} At $K{=}3$, both $\\eta_{\\max}$ (3/12) and $K_{\\mathrm{eff}}$ (4/12) contribute under bootstrap (co-determination); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor (10/12 at $K{=}5$, 9/12 at $K{=}7$) while $\\eta_{\\max}$ drops to 0/12 (\\S\\ref{sec:cross_k}, \\S\\ref{sec:rf_contrast}).",
+          " \\item \\textbf{Aggregation as predictability control.} Aggregation rules influence how much variance panel composition explains ($R^2$: threshold 0.83 $\\to$ Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), providing partial rather than complete defense (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).",
+          " \\end{enumerate}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01T9jLHUupYCKH6L77dXC15f`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex",
+  "old_string": "In our experiments, we observe a panel-size-dependent predictor shift. $K_{\\mathrm{eff}}$'s coefficient direction is uniformly positive across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate), consistent with independent judges presenting more targetable attack surfaces \\citep{goodfellow2015adversarial,papernot2016transferability}. The relative importance of the two predictors shifts with panel size: at $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. GAM bootstrap confirms the uniform positive direction (12/12 conditions, 88.9--100\\% bootstrap rate at $K{=}3$) with no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).",
+  "new_string": "In our experiments, we observe a panel-size-dependent predictor shift. The positive direction of $K_{\\mathrm{eff}}$'s coefficient across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate) is directionally consistent with adversarial ensemble theory \\citep{goodfellow2015adversarial,papernot2016transferability}, but the $K$-dependent transition in predictor dominance is previously uncharacterized. At $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. This transition arises in the LLM judge setting, where adversaries manipulate through natural language rather than gradient-based perturbations, and aggregation rules provide a practical modulation lever. GAM bootstrap confirms no significant difference between attack types (Kruskal--Wallis $p{=}0.200$)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "e3431d5c-e753-4f69-8521-6d1aa3fa2d28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H5k3SsWPP82NagsSWJzyr3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 402,
+      "cache_read_input_tokens": 41305,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 402
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T04:30:34.924Z_
+
+<details><summary>↩ Tool result · `toolu_01T9jLHUupYCKH6L77dXC15f`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "7b025d93-1eb0-42fa-8d78-21b8f3af067c",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex",
+    "oldString": "In our experiments, we observe a panel-size-dependent predictor shift. $K_{\\mathrm{eff}}$'s coefficient direction is uniformly positive across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate), consistent with independent judges presenting more targetable attack surfaces \\citep{goodfellow2015adversarial,papernot2016transferability}. The relative importance of the two predictors shifts with panel size: at $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. GAM bootstrap confirms the uniform positive direction (12/12 conditions, 88.9--100\\% bootstrap rate at $K{=}3$) with no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).",
+    "newString": "In our experiments, we observe a panel-size-dependent predictor shift. The positive direction of $K_{\\mathrm{eff}}$'s coefficient across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate) is directionally consistent with adversarial ensemble theory \\citep{goodfellow2015adversarial,papernot2016transferability}, but the $K$-dependent transition in predictor dominance is previously uncharacterized. At $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. This transition arises in the LLM judge setting, where adversaries manipulate through natural language rather than gradient-based perturbations, and aggregation rules provide a practical modulation lever. GAM bootstrap confirms no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).",
+    "originalFile": "\\section{Introduction}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig_framework.pdf}\n\\caption{Overview of our evaluation framework. Given $N$ candidate LLM judges, we construct $K$-judge panels (\\S\\ref{sec:experiments}), subject them to six adversarial attack types (\\S\\ref{sec:threat_model}), and assess vulnerability through two complementary metrics: $\\eta_{\\max}$ (weakest-link individual susceptibility) and $K_{\\text{eff}}$ (effective independent channels via mutual information). Panel decisions are aggregated through four methods of increasing sophistication (\\S\\ref{sec:aggregation}).}\n\\label{fig:framework}\n\\end{figure*}\n\nMulti-judge panels have emerged as the dominant defense against bias and manipulation in LLM-based evaluation. After \\citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \\citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, drawing inspiration from Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \\citep{lamport1982byzantine,castro1999practical}. A recent systematization of LLM-judge security reports that 7-model committees reduce attack success rates from 50--68\\% to 10--19\\% \\citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation.\n\nYet the evidence for diversity as a causal defense is weaker than it appears. The observed ASR reduction conflates panel diversity (judge independence) with individual robustness (strongest members). No existing work disentangles these across panel sizes. BFT adversaries control faulty nodes internally, whereas evaluation adversaries manipulate inputs externally; the SDPI bounds joint failure but assumes non-adaptive faults \\citep{schneier2000secrets}.\n\nIn our experiments, we observe a panel-size-dependent predictor shift. $K_{\\mathrm{eff}}$'s coefficient direction is uniformly positive across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate), consistent with independent judges presenting more targetable attack surfaces \\citep{goodfellow2015adversarial,papernot2016transferability}. The relative importance of the two predictors shifts with panel size: at $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. GAM bootstrap confirms the uniform positive direction (12/12 conditions, 88.9--100\\% bootstrap rate at $K{=}3$) with no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).\n\nControlled experiments across 15 models, $K \\in \\{3,5,7\\}$, 6 attacks, and 2 benchmarks confirm this shift (Figure~\\ref{fig:framework}). Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); the predictability collapse under adaptive attack is most pronounced at $K{=}3$. Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09); Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12 under OLS).\n\nThese findings yield three contributions:\n\\begin{enumerate}\n\\item \\textbf{Diversity--vulnerability association.} We provide the first systematic empirical characterization of how panel diversity is associated with adversarial vulnerability in LLM judge panels. $K_{\\mathrm{eff}}$'s coefficient direction is positive in all 12 conditions, confirmed by both OLS and GAM bootstrap (88.9--100\\% positive rate at $K{=}3$, 100\\% at $K{=}5$). The diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation: Cinelli--Hazlett robustness values do not exceed the confound in 78\\% of conditions (28/36), though fractional logit with clustered standard errors confirms the positive association ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$). No attack-type-dependent directional split exists (Kruskal--Wallis $p{=}0.200$ at $K{=}3$, $p{=}0.423$ at $K{=}5$; \\S\\ref{sec:dominance}, \\S\\ref{sec:gam_taxonomy}).\n\\item \\textbf{Panel-size-dependent predictor shift.} At $K{=}3$, both $\\eta_{\\max}$ (3/12) and $K_{\\mathrm{eff}}$ (4/12) contribute under bootstrap (co-determination); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor (10/12 at $K{=}5$, 9/12 at $K{=}7$) while $\\eta_{\\max}$ drops to 0/12 (\\S\\ref{sec:cross_k}, \\S\\ref{sec:rf_contrast}).\n\\item \\textbf{Aggregation as predictability control.} Aggregation rules influence how much variance panel composition explains ($R^2$: threshold 0.83 $\\to$ Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), providing partial rather than complete defense (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).\n\\end{enumerate}\n\nOur findings describe descriptive associations; causal attribution is limited by the diversity--capability confound (\\S\\ref{sec:analysis}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 11,
+        "oldLines": 7,
+        "newStart": 11,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " Yet the evidence for diversity as a causal defense is weaker than it appears. The observed ASR reduction conflates panel diversity (judge independence) with individual robustness (strongest members). No existing work disentangles these across panel sizes. BFT adversaries control faulty nodes internally, whereas evaluation adversaries manipulate inputs externally; the SDPI bounds joint failure but assumes non-adaptive faults \\citep{schneier2000secrets}.",
+          " ",
+          "-In our experiments, we observe a panel-size-dependent predictor shift. $K_{\\mathrm{eff}}$'s coefficient direction is uniformly positive across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate), consistent with independent judges presenting more targetable attack surfaces \\citep{goodfellow2015adversarial,papernot2016transferability}. The relative importance of the two predictors shifts with panel size: at $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. GAM bootstrap confirms the uniform positive direction (12/12 conditions, 88.9--100\\% bootstrap rate at $K{=}3$) with no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).",
+          "+In our experiments, we observe a panel-size-dependent predictor shift. The positive direction of $K_{\\mathrm{eff}}$'s coefficient across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate) is directionally consistent with adversarial ensemble theory \\citep{goodfellow2015adversarial,papernot2016transferability}, but the $K$-dependent transition in predictor dominance is previously uncharacterized. At $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. This transition arises in the LLM judge setting, where adversaries manipulate through natural language rather than gradient-based perturbations, and aggregation rules provide a practical modulation lever. GAM bootstrap confirms no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).",
+          " ",
+          " Controlled experiments across 15 models, $K \\in \\{3,5,7\\}$, 6 attacks, and 2 benchmarks confirm this shift (Figure~\\ref{fig:framework}). Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); the predictability collapse under adaptive attack is most pronounced at $K{=}3$. Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09); Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12 under OLS).",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01L9dVDoBVyQQt8LTgkAxMWD`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex",
+  "old_string": "Our findings describe descriptive associations; causal attribution is limited by the diversity--capability confound (\\S\\ref{sec:analysis}).",
+  "new_string": "Our findings describe descriptive associations; causal interpretation is fundamentally limited by the diversity--capability collinearity ($r{=}0.70$--$0.81$, VIF${\\approx}2.0$--$2.9$; \\S\\ref{sec:analysis})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "60b7bc1f-540c-4fee-a699-8d045f85779c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sFJi5dj5ssMix1ubh4Gft",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 713,
+      "cache_read_input_tokens": 41707,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 713
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T04:30:40.511Z_
+
+<details><summary>↩ Tool result · `toolu_01L9dVDoBVyQQt8LTgkAxMWD`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "e183f14d-6b45-4890-8b9c-b522c25ea5d1",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex",
+    "oldString": "Our findings describe descriptive associations; causal attribution is limited by the diversity--capability confound (\\S\\ref{sec:analysis}).",
+    "newString": "Our findings describe descriptive associations; causal interpretation is fundamentally limited by the diversity--capability collinearity ($r{=}0.70$--$0.81$, VIF${\\approx}2.0$--$2.9$; \\S\\ref{sec:analysis}).",
+    "originalFile": "\\section{Introduction}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig_framework.pdf}\n\\caption{Overview of our evaluation framework. Given $N$ candidate LLM judges, we construct $K$-judge panels (\\S\\ref{sec:experiments}), subject them to six adversarial attack types (\\S\\ref{sec:threat_model}), and assess vulnerability through two complementary metrics: $\\eta_{\\max}$ (weakest-link individual susceptibility) and $K_{\\text{eff}}$ (effective independent channels via mutual information). Panel decisions are aggregated through four methods of increasing sophistication (\\S\\ref{sec:aggregation}).}\n\\label{fig:framework}\n\\end{figure*}\n\nMulti-judge panels have emerged as the dominant defense against bias and manipulation in LLM-based evaluation. After \\citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \\citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, drawing inspiration from Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \\citep{lamport1982byzantine,castro1999practical}. A recent systematization of LLM-judge security reports that 7-model committees reduce attack success rates from 50--68\\% to 10--19\\% \\citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation.\n\nYet the evidence for diversity as a causal defense is weaker than it appears. The observed ASR reduction conflates panel diversity (judge independence) with individual robustness (strongest members). No existing work disentangles these across panel sizes. BFT adversaries control faulty nodes internally, whereas evaluation adversaries manipulate inputs externally; the SDPI bounds joint failure but assumes non-adaptive faults \\citep{schneier2000secrets}.\n\nIn our experiments, we observe a panel-size-dependent predictor shift. The positive direction of $K_{\\mathrm{eff}}$'s coefficient across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate) is directionally consistent with adversarial ensemble theory \\citep{goodfellow2015adversarial,papernot2016transferability}, but the $K$-dependent transition in predictor dominance is previously uncharacterized. At $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. This transition arises in the LLM judge setting, where adversaries manipulate through natural language rather than gradient-based perturbations, and aggregation rules provide a practical modulation lever. GAM bootstrap confirms no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).\n\nControlled experiments across 15 models, $K \\in \\{3,5,7\\}$, 6 attacks, and 2 benchmarks confirm this shift (Figure~\\ref{fig:framework}). Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); the predictability collapse under adaptive attack is most pronounced at $K{=}3$. Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09); Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12 under OLS).\n\nThese findings yield three contributions:\n\\begin{enumerate}\n\\item \\textbf{Diversity--vulnerability association.} We provide the first systematic empirical characterization of how panel diversity is associated with adversarial vulnerability in LLM judge panels. $K_{\\mathrm{eff}}$'s coefficient direction is positive in all 12 conditions, confirmed by both OLS and GAM bootstrap (88.9--100\\% positive rate at $K{=}3$, 100\\% at $K{=}5$). The diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation: Cinelli--Hazlett robustness values do not exceed the confound in 78\\% of conditions (28/36), though fractional logit with clustered standard errors confirms the positive association ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$). No attack-type-dependent directional split exists (Kruskal--Wallis $p{=}0.200$ at $K{=}3$, $p{=}0.423$ at $K{=}5$; \\S\\ref{sec:dominance}, \\S\\ref{sec:gam_taxonomy}).\n\\item \\textbf{Panel-size-dependent predictor shift.} At $K{=}3$, both $\\eta_{\\max}$ (3/12) and $K_{\\mathrm{eff}}$ (4/12) contribute under bootstrap (co-determination); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor (10/12 at $K{=}5$, 9/12 at $K{=}7$) while $\\eta_{\\max}$ drops to 0/12 (\\S\\ref{sec:cross_k}, \\S\\ref{sec:rf_contrast}).\n\\item \\textbf{Aggregation as predictability control.} Aggregation rules influence how much variance panel composition explains ($R^2$: threshold 0.83 $\\to$ Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), providing partial rather than complete defense (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).\n\\end{enumerate}\n\nOur findings describe descriptive associations; causal attribution is limited by the diversity--capability confound (\\S\\ref{sec:analysis}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 22,
+        "oldLines": 4,
+        "newStart": 22,
+        "newLines": 4,
+        "lines": [
+          " \\item \\textbf{Aggregation as predictability control.} Aggregation rules influence how much variance panel composition explains ($R^2$: threshold 0.83 $\\to$ Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), providing partial rather than complete defense (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).",
+          " \\end{enumerate}",
+          " ",
+          "-Our findings describe descriptive associations; causal attribution is limited by the diversity--capability confound (\\S\\ref{sec:analysis}).",
+          "+Our findings describe descriptive associations; causal interpretation is fundamentally limited by the diversity--capability collinearity ($r{=}0.70$--$0.81$, VIF${\\approx}2.0$--$2.9$; \\S\\ref{sec:analysis})."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Now sync abstract.tex. Let me read the updated main.tex abstract first.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "fcebe1f5-75de-4992-a972-4a3810eb4880",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mf4kNUC468phdvJU69ECtc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 295,
+      "cache_read_input_tokens": 42420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 295
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HSRwY7E533UMsPyjBoK6XN`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex",
+  "offset": 25,
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "3b6b6b5a-b8d6-43a2-a38b-e5ec14c9cc3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mf4kNUC468phdvJU69ECtc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 295,
+      "cache_read_input_tokens": 42420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 295
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T04:30:44.704Z_
+
+<details><summary>↩ Tool result · `toolu_01HSRwY7E533UMsPyjBoK6XN`</summary>
+
+```text
+25	
+26	\begin{abstract}
+27	Multi-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\eta_{\max}$) and structural diversity ($K_{\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \in \{3, 5, 7\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\geq}5$, $K_{\mathrm{eff}}$ becomes the sole significant predictor. Cinelli--Hazlett sensitivity analysis reveals that $K_{\mathrm{eff}}$'s robustness value does not exceed the known confound in 78\% of conditions (28/36), but fractional logit with clustered standard errors confirms the positive association in most conditions ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.
+28	\end{abstract}
+29	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "bfae2f0e-ca66-4f9c-bc19-35656b71b87d",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex",
+      "content": "\n\\begin{abstract}\nMulti-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Cinelli--Hazlett sensitivity analysis reveals that $K_{\\mathrm{eff}}$'s robustness value does not exceed the known confound in 78\\% of conditions (28/36), but fractional logit with clustered standard errors confirms the positive association in most conditions ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.\n\\end{abstract}\n",
+      "numLines": 5,
+      "startLine": 25,
+      "totalLines": 57
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01XdUY4256yAmuLxbgtmopox`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex",
+  "content": "% Mirror of abstract in main.tex — do not edit here.\n\nMulti-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Cinelli--Hazlett sensitivity analysis reveals that $K_{\\mathrm{eff}}$'s robustness value does not exceed the known confound in 78\\% of conditions (28/36), but fractional logit with clustered standard errors confirms the positive association in most conditions ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "b5caa805-fc4f-4a4a-9800-89ff596a4890",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015rxajbWwUSfceshp3DNwUC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 42715,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 669
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-24T04:30:51.472Z_
+
+<details><summary>↩ Tool result · `toolu_01XdUY4256yAmuLxbgtmopox`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "4be7bbfe-3876-4611-84bc-c48b51aaf0fa",
+  "tool_use_result": {
+    "type": "update",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex",
+    "content": "% Mirror of abstract in main.tex — do not edit here.\n\nMulti-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Cinelli--Hazlett sensitivity analysis reveals that $K_{\\mathrm{eff}}$'s robustness value does not exceed the known confound in 78\\% of conditions (28/36), but fractional logit with clustered standard errors confirms the positive association in most conditions ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 3,
+        "newStart": 1,
+        "newLines": 3,
+        "lines": [
+          " % Mirror of abstract in main.tex — do not edit here.",
+          " ",
+          "-Multi-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Sensitivity analysis shows $K_{\\mathrm{eff}}$'s robustness to hypothetical confounders increases with panel size (RV exceeds the known confound in 1/12 at $K{=}3$ to 4/12 at $K{=}7$; 10/12 at $K{=}5$ in a capability-matched subsample). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.",
+          "+Multi-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Cinelli--Hazlett sensitivity analysis reveals that $K_{\\mathrm{eff}}$'s robustness value does not exceed the known confound in 78\\% of conditions (28/36), but fractional logit with clustered standard errors confirms the positive association in most conditions ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence."
+        ]
+      }
+    ],
+    "originalFile": "% Mirror of abstract in main.tex — do not edit here.\n\nMulti-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Sensitivity analysis shows $K_{\\mathrm{eff}}$'s robustness to hypothetical confounders increases with panel size (RV exceeds the known confound in 1/12 at $K{=}3$ to 4/12 at $K{=}7$; 10/12 at $K{=}5$ in a capability-matched subsample). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.\n",
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Now verifying both files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "f8669afd-7b4a-47ea-b8b1-077aa2453141",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mfcn41FMZKHrdnGKrEuWje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 567,
+      "cache_read_input_tokens": 43384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 567
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014eG1B2jkm4YrzPpcja3moF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "e36e501c-32d4-4fc4-9ecd-60da06b74738",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mfcn41FMZKHrdnGKrEuWje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 567,
+      "cache_read_input_tokens": 43384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 567
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T04:30:54.436Z_
+
+<details><summary>↩ Tool result · `toolu_014eG1B2jkm4YrzPpcja3moF`</summary>
+
+```text
+1	\section{Introduction}
+2	
+3	\begin{figure*}[t]
+4	\centering
+5	\includegraphics[width=\textwidth]{figures/fig_framework.pdf}
+6	\caption{Overview of our evaluation framework. Given $N$ candidate LLM judges, we construct $K$-judge panels (\S\ref{sec:experiments}), subject them to six adversarial attack types (\S\ref{sec:threat_model}), and assess vulnerability through two complementary metrics: $\eta_{\max}$ (weakest-link individual susceptibility) and $K_{\text{eff}}$ (effective independent channels via mutual information). Panel decisions are aggregated through four methods of increasing sophistication (\S\ref{sec:aggregation}).}
+7	\label{fig:framework}
+8	\end{figure*}
+9	
+10	Multi-judge panels have emerged as the dominant defense against bias and manipulation in LLM-based evaluation. After \citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, drawing inspiration from Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \citep{lamport1982byzantine,castro1999practical}. A recent systematization of LLM-judge security reports that 7-model committees reduce attack success rates from 50--68\% to 10--19\% \citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation.
+11	
+12	Yet the evidence for diversity as a causal defense is weaker than it appears. The observed ASR reduction conflates panel diversity (judge independence) with individual robustness (strongest members). No existing work disentangles these across panel sizes. BFT adversaries control faulty nodes internally, whereas evaluation adversaries manipulate inputs externally; the SDPI bounds joint failure but assumes non-adaptive faults \citep{schneier2000secrets}.
+13	
+14	In our experiments, we observe a panel-size-dependent predictor shift. The positive direction of $K_{\mathrm{eff}}$'s coefficient across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\% positive rate) is directionally consistent with adversarial ensemble theory \citep{goodfellow2015adversarial,papernot2016transferability}, but the $K$-dependent transition in predictor dominance is previously uncharacterized. At $K{=}3$, both $\eta_{\max}$ and $K_{\mathrm{eff}}$ show some significance; at $K{\geq}5$, $K_{\mathrm{eff}}$ becomes the sole significant predictor while $\eta_{\max}$ drops to zero significance. This transition arises in the LLM judge setting, where adversaries manipulate through natural language rather than gradient-based perturbations, and aggregation rules provide a practical modulation lever. GAM bootstrap confirms no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).
+15	
+16	Controlled experiments across 15 models, $K \in \{3,5,7\}$, 6 attacks, and 2 benchmarks confirm this shift (Figure~\ref{fig:framework}). Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); the predictability collapse under adaptive attack is most pronounced at $K{=}3$. Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09); Bayesian calibration attenuates $K_{\mathrm{eff}}$ (5+/1$-$) but $\eta_{\max}$ persists (9/12 under OLS).
+17	
+18	These findings yield three contributions:
+19	\begin{enumerate}
+20	\item \textbf{Diversity--vulnerability association.} We provide the first systematic empirical characterization of how panel diversity is associated with adversarial vulnerability in LLM judge panels. $K_{\mathrm{eff}}$'s coefficient direction is positive in all 12 conditions, confirmed by both OLS and GAM bootstrap (88.9--100\% positive rate at $K{=}3$, 100\% at $K{=}5$). The diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation: Cinelli--Hazlett robustness values do not exceed the confound in 78\% of conditions (28/36), though fractional logit with clustered standard errors confirms the positive association ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$). No attack-type-dependent directional split exists (Kruskal--Wallis $p{=}0.200$ at $K{=}3$, $p{=}0.423$ at $K{=}5$; \S\ref{sec:dominance}, \S\ref{sec:gam_taxonomy}).
+21	\item \textbf{Panel-size-dependent predictor shift.} At $K{=}3$, both $\eta_{\max}$ (3/12) and $K_{\mathrm{eff}}$ (4/12) contribute under bootstrap (co-determination); at $K{\geq}5$, $K_{\mathrm{eff}}$ becomes the sole significant predictor (10/12 at $K{=}5$, 9/12 at $K{=}7$) while $\eta_{\max}$ drops to 0/12 (\S\ref{sec:cross_k}, \S\ref{sec:rf_contrast}).
+22	\item \textbf{Aggregation as predictability control.} Aggregation rules influence how much variance panel composition explains ($R^2$: threshold 0.83 $\to$ Bayesian 0.09). Bayesian calibration attenuates $K_{\mathrm{eff}}$ (5+/1$-$) but $\eta_{\max}$ persists (9/12), providing partial rather than complete defense (\S\ref{sec:aggregation}, \S\ref{sec:analysis}).
+23	\end{enumerate}
+24	
+25	Our findings describe descriptive associations; causal interpretation is fundamentally limited by the diversity--capability collinearity ($r{=}0.70$--$0.81$, VIF${\approx}2.0$--$2.9$; \S\ref{sec:analysis}).
+26	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "f9198552-466f-4a55-b55a-2c1f67fd8b24",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig_framework.pdf}\n\\caption{Overview of our evaluation framework. Given $N$ candidate LLM judges, we construct $K$-judge panels (\\S\\ref{sec:experiments}), subject them to six adversarial attack types (\\S\\ref{sec:threat_model}), and assess vulnerability through two complementary metrics: $\\eta_{\\max}$ (weakest-link individual susceptibility) and $K_{\\text{eff}}$ (effective independent channels via mutual information). Panel decisions are aggregated through four methods of increasing sophistication (\\S\\ref{sec:aggregation}).}\n\\label{fig:framework}\n\\end{figure*}\n\nMulti-judge panels have emerged as the dominant defense against bias and manipulation in LLM-based evaluation. After \\citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \\citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, drawing inspiration from Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \\citep{lamport1982byzantine,castro1999practical}. A recent systematization of LLM-judge security reports that 7-model committees reduce attack success rates from 50--68\\% to 10--19\\% \\citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation.\n\nYet the evidence for diversity as a causal defense is weaker than it appears. The observed ASR reduction conflates panel diversity (judge independence) with individual robustness (strongest members). No existing work disentangles these across panel sizes. BFT adversaries control faulty nodes internally, whereas evaluation adversaries manipulate inputs externally; the SDPI bounds joint failure but assumes non-adaptive faults \\citep{schneier2000secrets}.\n\nIn our experiments, we observe a panel-size-dependent predictor shift. The positive direction of $K_{\\mathrm{eff}}$'s coefficient across all 12 conditions (FDR-significant under OLS; GAM bootstrap confirms 88.9--100\\% positive rate) is directionally consistent with adversarial ensemble theory \\citep{goodfellow2015adversarial,papernot2016transferability}, but the $K$-dependent transition in predictor dominance is previously uncharacterized. At $K{=}3$, both $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ show some significance; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor while $\\eta_{\\max}$ drops to zero significance. This transition arises in the LLM judge setting, where adversaries manipulate through natural language rather than gradient-based perturbations, and aggregation rules provide a practical modulation lever. GAM bootstrap confirms no significant difference between attack types (Kruskal--Wallis $p{=}0.200$).\n\nControlled experiments across 15 models, $K \\in \\{3,5,7\\}$, 6 attacks, and 2 benchmarks confirm this shift (Figure~\\ref{fig:framework}). Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); the predictability collapse under adaptive attack is most pronounced at $K{=}3$. Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09); Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12 under OLS).\n\nThese findings yield three contributions:\n\\begin{enumerate}\n\\item \\textbf{Diversity--vulnerability association.} We provide the first systematic empirical characterization of how panel diversity is associated with adversarial vulnerability in LLM judge panels. $K_{\\mathrm{eff}}$'s coefficient direction is positive in all 12 conditions, confirmed by both OLS and GAM bootstrap (88.9--100\\% positive rate at $K{=}3$, 100\\% at $K{=}5$). The diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation: Cinelli--Hazlett robustness values do not exceed the confound in 78\\% of conditions (28/36), though fractional logit with clustered standard errors confirms the positive association ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Statistical significance is inference-method-dependent (OLS 12/12; bootstrap 4/12 at $K{=}3$). No attack-type-dependent directional split exists (Kruskal--Wallis $p{=}0.200$ at $K{=}3$, $p{=}0.423$ at $K{=}5$; \\S\\ref{sec:dominance}, \\S\\ref{sec:gam_taxonomy}).\n\\item \\textbf{Panel-size-dependent predictor shift.} At $K{=}3$, both $\\eta_{\\max}$ (3/12) and $K_{\\mathrm{eff}}$ (4/12) contribute under bootstrap (co-determination); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor (10/12 at $K{=}5$, 9/12 at $K{=}7$) while $\\eta_{\\max}$ drops to 0/12 (\\S\\ref{sec:cross_k}, \\S\\ref{sec:rf_contrast}).\n\\item \\textbf{Aggregation as predictability control.} Aggregation rules influence how much variance panel composition explains ($R^2$: threshold 0.83 $\\to$ Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), providing partial rather than complete defense (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).\n\\end{enumerate}\n\nOur findings describe descriptive associations; causal interpretation is fundamentally limited by the diversity--capability collinearity ($r{=}0.70$--$0.81$, VIF${\\approx}2.0$--$2.9$; \\S\\ref{sec:analysis}).\n",
+      "numLines": 26,
+      "startLine": 1,
+      "totalLines": 26
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016PKUAdvpnpqaNE7GFBDMed`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "817a4791-879c-4bcd-9839-6b3d2869ce9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mfcn41FMZKHrdnGKrEuWje",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 567,
+      "cache_read_input_tokens": 43384,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 567
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T04:30:54.969Z_
+
+<details><summary>↩ Tool result · `toolu_016PKUAdvpnpqaNE7GFBDMed`</summary>
+
+```text
+1	% Mirror of abstract in main.tex — do not edit here.
+2	
+3	Multi-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\eta_{\max}$) and structural diversity ($K_{\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \in \{3, 5, 7\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\geq}5$, $K_{\mathrm{eff}}$ becomes the sole significant predictor. Cinelli--Hazlett sensitivity analysis reveals that $K_{\mathrm{eff}}$'s robustness value does not exceed the known confound in 78\% of conditions (28/36), but fractional logit with clustered standard errors confirms the positive association in most conditions ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.
+4	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "c12fcf6e-a0e5-4497-a3b9-2be83bf10644",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex",
+      "content": "% Mirror of abstract in main.tex — do not edit here.\n\nMulti-judge LLM evaluation panels are assumed to benefit from diversity, yet diversity's role under adversarial manipulation is poorly understood. We decompose panel attack success into individual judge weakness ($\\eta_{\\max}$) and structural diversity ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Consistent with adversarial ensemble theory but newly characterized in the LLM judge setting, $K_{\\mathrm{eff}}$ is uniformly positively associated with vulnerability across all 12 conditions, though the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation. The predictors' relative importance shifts with panel size: at $K{=}3$, both contribute; at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the sole significant predictor. Cinelli--Hazlett sensitivity analysis reveals that $K_{\\mathrm{eff}}$'s robustness value does not exceed the known confound in 78\\% of conditions (28/36), but fractional logit with clustered standard errors confirms the positive association in most conditions ($K{=}3$: 9/12; $K{=}5$: 11/12; $K{=}7$: 12/12). Aggregation rules influence predictability ($R^2$: threshold 0.83, Bayesian 0.09). The defense strategy must match the panel size: small panels require screening for individual robustness; larger panels require managing judge independence.\n",
+      "numLines": 4,
+      "startLine": 1,
+      "totalLines": 4
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All edits are verified. Let me summarize what changed:
+
+1. **Abstract (main.tex + abstract.tex)**: Replaced the sensitivity analysis sentence. Now fronts the unfavorable Cinelli-Hazlett result (78% of conditions RV insufficient) before presenting fractional logit as complementary robustness support. Word count remains well under 200.
+
+2. **Introduction Contribution 1 (line 20)**: Split the confound clause into a separate sentence; added explicit Cinelli-Hazlett 28/36 insufficiency and fractional logit K-graduated support (9/12→11/12→12/12).
+
+
+3. **Introduction para 3 (line 14)**: Reframed around predictor shift as a K-dependent transition distinct from known ensemble behavior, the language versus gradient distinction in LLM judge settings, and aggregation as a practical lever—removing the "against CJT" framing.
+
+4. **Introduction final line (line 25)**: Tightened the caveat language from "causal attribution" to "causal interpretation is fundamentally limited," swapped "confound" for "collinearity," and included VIF estimates around 2.0–2.9.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "af6a7c09-e187-435b-980f-9325db5add1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D3gq4xhiUdKFhYHR6PJBFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2315,
+      "cache_read_input_tokens": 43951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2315
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+All four modifications complete. Summary of changes:
+
+**Abstract** (main.tex:27 + abstract.tex): Replaced sensitivity analysis sentence → now fronts unfavorable result ("robustness value does not exceed the known confound in 78% of conditions (28/36)") before presenting fractional logit support (9/12→11/12→12/12). Word count ~155, well under 200.
+
+**Introduction Contribution 1** (introduction.tex:20): Split confound clause into standalone sentence; added explicit Cinelli-Hazlett 28/36 insufficiency + fractional logit K-graduated confirmation.
+
+**Introduction para 3** (introduction.tex:14): Reframed around (1) K-dependent transition as novel finding vs known ensemble direction, (2) LLM judge setting distinction (language vs gradient perturbations), (3) aggregation as practical modulation lever. Removed "targetable attack surfaces" framing.
+
+**Introduction final line** (introduction.tex:25): "causal attribution...confound" → "causal interpretation is fundamentally limited by...collinearity" + added VIF≈2.0–2.9.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "uuid": "b4b1273d-b9a3-48b2-924a-129a7e52e4fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D3gq4xhiUdKFhYHR6PJBFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2315,
+      "cache_read_input_tokens": 43951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2315
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 35_
+
+All four modifications complete. Summary of changes:
+
+**Abstract** (main.tex:27 + abstract.tex): Replaced sensitivity analysis sentence → now fronts unfavorable result ("robustness value does not exceed the known confound in 78% of conditions (28/36)") before presenting fractional logit support (9/12→11/12→12/12). Word count ~155, well under 200.
+
+**Introduction Contribution 1** (introduction.tex:20): Split confound clause into standalone sentence; added explicit Cinelli-Hazlett 28/36 insufficiency + fractional logit K-graduated confirmation.
+
+**Introduction para 3** (introduction.tex:14): Reframed around (1) K-dependent transition as novel finding vs known ensemble direction, (2) LLM judge setting distinction (language vs gradient perturbations), (3) aggregation as practical modulation lever. Removed "targetable attack surfaces" framing.
+
+**Introduction final line** (introduction.tex:25): "causal attribution...confound" → "causal interpretation is fundamentally limited by...collinearity" + added VIF≈2.0–2.9.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 232230,
+  "duration_api_ms": 234586,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "497d6ae9-519f-4666-b865-897931432c66",
+  "total_cost_usd": 0.7387002500000001,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 34819,
+    "cache_read_input_tokens": 322383,
+    "output_tokens": 14292,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 34819,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 565,
+        "cache_read_input_tokens": 43951,
+        "cache_creation_input_tokens": 2315,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2315
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2430,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002535,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 14292,
+      "cacheReadInputTokens": 322383,
+      "cacheCreationInputTokens": 34819,
+      "webSearchRequests": 0,
+      "costUSD": 0.7361652500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "5f41e296-080e-4f17-8c3c-957fedab86c9"
+}
+```
+
+</details>
+
+---

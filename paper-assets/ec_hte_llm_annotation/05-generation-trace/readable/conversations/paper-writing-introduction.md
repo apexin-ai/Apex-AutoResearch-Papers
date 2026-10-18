@@ -1,0 +1,1771 @@
+# paper writing introduction
+
+**When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 0
+- **Tool calls:** 25
+- **Original source:** `logs/chats/worker_paper_writing_introduction_20260521T051630.jsonl`
+- **Structured JSON:** [`580bc4d5c2dcdc34559c.json`](../../sessions/58/580bc4d5c2dcdc34559c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+51 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T05:20:31.816596+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T05:20:31.817250+00:00_
+
+1	---
+2	name: paper-writing-norms
+3	description: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。
+4	allowed-tools: [Read, Write, Edit, Glob, Grep]
+5	scope: global
+6	version: 2
+7	priority: 9
+8	tags:
+9	  - writing
+10	  - paper
+11	  - style
+12	  - norms
+13	roles:
+14	  - agent
+15	  - worker
+16	  - paper_agent
+17	---
+18	
+19	# 论文写作风格规范
+20	
+21	> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。
+22	
+23	---
+24	
+25	## 一、总体写作哲学
+26	
+27	### 1.1 故事驱动，不是数据堆砌
+28	
+29	- 论文必须以"故事线"为核心展开：问题 → 洞察 → 方法 → 验证
+30	- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进
+31	- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌
+32	- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing
+33	
+34	### 1.2 主线统一性
+35	
+36	- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**
+37	- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C
+38	- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机
+39	- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线
+40	
+41	### 1.3 专有名词必须有定义
+42	
+43	- 首次出现的专有名词/缩写必须给出完整定义和解释
+44	- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）
+45	- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用
+46	- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug
+47	
+48	### 1.4 写作前必读同类优秀论文
+49	
+50	- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可
+51	- 重点学：
+52	  - Abstract 怎么用最少篇幅讲完故事
+53	  - Introduction 怎么从大问题切入到具体贡献
+54	  - Related Work 怎么 positioning 自己（不是 survey）
+55	  - Table/Figure 怎么压缩信息密度
+56	- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大
+57	- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文
+58	
+59	---
+60	
+61	## 二、Abstract 写作规范
+62	
+63	### 2.1 四个必答问题（150-250 words）
+64	
+65	Abstract 必须在很短的篇幅内清楚回答：
+66	1. **研究什么问题** — 1-2 句话交代背景和痛点
+67	2. **为什么重要** — 现有方法的不足（不用写太多）
+68	3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）
+69	4. **结果说明什么** — 用具体实验结论支撑贡献
+70	
+71	### 2.2 禁忌
+72	
+73	- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim
+74	- **
+…[truncated 5709 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T05:20:31.817449+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T05:20:31.817791+00:00_
+
+1	---
+2	name: latex-paper
+3	description: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。
+4	scope: global
+5	tags:
+6	- latex
+7	- paper-writing
+8	- academic
+9	- citation
+10	- submission
+11	version: 1
+12	roles:
+13	- agent
+14	- worker
+15	---
+16	
+17	# LaTeX 论文写作全流程
+18	
+19	ML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。
+20	
+21	---
+22	
+23	## 1. 工作模式
+24	
+25	开始前选择模式：
+26	
+27	| 模式 | 说明 | 适用 |
+28	|------|------|------|
+29	| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |
+30	| **Improve** | 改写已有章节，强化论证 | 修改稿 |
+31	| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |
+32	
+33	---
+34	
+35	## 2. Claim-Evidence 方法论
+36	
+37	**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**
+38	
+39	### 2.1 一句话贡献
+40	
+41	在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。
+42	
+43	### 2.2 Claim-Evidence Map
+44	
+45	为每个 contribution 建立 claim→evidence 映射表：
+46	
+47	| Contribution | Claim | Evidence | Table/Figure |
+48	|-------------|-------|----------|-------------|
+49	| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |
+50	| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |
+51	| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |
+52	
+53	**没有直接证据支撑的 claim 必须删除或降级为 discussion。**
+54	
+55	### 2.3 章节起草顺序
+56	
+57	```
+58	1. Introduction + Experiments（先确定 claim 和 evidence）
+59	2. Method（评估问题稳定后再写细节）
+60	3. Related Work
+61	4. Abstract + Title（核心 claim 定型后最后写）
+62	```
+63	
+64	### 2.4 Quality Gates
+65	
+66	投稿前必须通过：
+67	- [ ] 前两段出现显式 novelty 声明
+68	- [ ] 每个 contribution 有可验证的 evidence
+69	- [ ] Abstract / Intro / Conclusion 的 claim 一致
+70	- [ ] Limitations 真实且技术性诚实
+71	- [ ] 审稿人两分钟内能识别 delta
+72	
+73	---
+74	
+75	## 3. 引用防幻觉（CRITICAL）
+76	
+77	**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**
+78	
+79	### 3.1 黄金法则
+80	
+81	```
+82	IF 无法程序化获取引用:
+83	    → 标记 [CITATION NEEDED] 或 \cite{PLACEHOLDER_verify}
+84	    → 明确告知用户
+85	    → 绝不编造看似合理的引用
+86	```
+87	
+88	### 3.2 五步验证流程
+89	
+90	```
+91	1. SEARCH  → Semantic Scholar API 搜索关键词
+92	2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）
+93	3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）
+94	4. CHECK   → 确认
+…[truncated 7201 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T05:20:31.818258+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T05:20:31.818474+00:00_
+
+docs/paper/theory.tex
+docs/paper/experiments.tex
+docs/paper/method.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T05:20:31.818637+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex",
+  "limit": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex",
+    "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T05:20:31.818904+00:00_
+
+1	% Requires preamble: \usepackage{amsthm,amsmath,amssymb}
+2	% and: \newtheorem{theorem}{Theorem}
+3	%      \newtheorem{corollary}[theorem]{Corollary}
+4	%      \newtheorem{proposition}[theorem]{Proposition}
+5	
+6	\section{Bias Decomposition: When Debiasing Hurts}
+7	\label{sec:theory}
+8	
+9	We formalize the bias that global misclassification correction introduces when subgroup error rates are heterogeneous.
+10	Consider estimating the conditional average treatment effect (CATE) $\tau(z) = \mathbb{E}[Y(1) - Y(0) \mid Z = z]$, where $Z \in \{0, 1\}$ is a binary effect modifier observed only through a noisy annotation $\hat{Z}$.
+11	The population consists of $K$ subgroups $S \in \{1, \ldots, K\}$ with weights $w_s = P(S{=}s)$, each characterized by a $2 \times 2$ confusion matrix $C_s$ with symmetric error rate $\pi_s = P(\hat{Z} \neq Z \mid S{=}s)$.
+12	Standard practice estimates a single confusion matrix $\bar{C} = \sum_s w_s C_s$ from expert annotations and applies its inverse uniformly to all observations, with pooled error rate $\bar{\pi} = \sum_s w_s \pi_s$.
+13	We show that when error rates vary across subgroups, this global procedure introduces a bias with an exact product form.
+14	
+15	We state four assumptions maintained throughout.
+16	%
+17	\begin{itemize}
+18	\item[\textbf{(A1)}] \textit{Conditional independence:} misclassification depends only on the true label $Z$ and subgroup $S$, not on potential outcomes $Y(0), Y(1)$.
+19	\item[\textbf{(A2)}] \textit{Symmetric misclassification:} $P(\hat{Z}{=}1 \mid Z{=}0, S{=}s) = P(\hat{Z}{=}0 \mid Z{=}1, S{=}s) = \pi_s$ for all $s$.
+20	\item[\textbf{(A3)}] \textit{Balanced effect modifier:} $P(Z{=}0) = P(Z{=}1) = 0.5$. This simplifies the exposition; we discuss relaxation below.
+21	\item[\textbf{(A4)}] \textit{Non-degeneracy:} $\pi_s \neq 0.5$ for all $s$, ensuring each $C_s$ is invertible.
+22	\end{itemize}
+23	
+24	Under (A2)--(A3), the Bayesian mixing matrix $M_s$ (entries $M_s[\hat{z}, z] = P(Z{=}z \mid \hat{Z}{=}\hat{z}, S{
+…[truncated 4806 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T05:20:31.819177+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex",
+  "limit": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex",
+    "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T05:20:31.819371+00:00_
+
+1	\section{EC-HTE: Error-Corrected Heterogeneous Treatment Effects}
+2	\label{sec:method}
+3	
+4	EC-HTE corrects subgroup-level misclassification bias in three stages: estimate per-subgroup confusion matrices via hierarchical Bayes, invert them to correct observed outcome moments, and propagate correction uncertainty into downstream causal estimators.
+5	
+6	\subsection{Hierarchical Bayes Confusion Matrix Estimation}
+7	
+8	We place a Dirichlet-Multinomial hierarchical model over the confusion matrices $\{C_s\}_{s=1}^K$.
+9	For each subgroup $s$, row $j$ of $C_s$ has a Dirichlet prior $\text{Dir}(\alpha_0 \cdot \mathbf{e}_j)$, where $\mathbf{e}_j$ is the $j$-th standard basis vector and $\alpha_0 > 0$ is a shared concentration parameter.
+10	A $\text{Gamma}(2, 1)$ hyperprior on $\alpha_0$ controls the strength of partial pooling across subgroups: large $\alpha_0$ pulls subgroup estimates toward the identity matrix (low error), while small $\alpha_0$ allows subgroup-specific rates to dominate.
+11	This partial pooling implements a James-Stein shrinkage effect, borrowing strength across subgroups to reduce variance for small subgroups while preserving heterogeneity where the data support it.
+12	
+13	Posterior inference uses a Gibbs sampler with 4 chains, 4000 iterations (2000 warmup).
+14	We require convergence diagnostics $\hat{R} < 1.01$ and effective sample size $\text{ESS} > 845$ for all parameters before accepting estimates.
+15	In practice, all runs achieve $\hat{R} < 1.0034$ and $\text{ESS} > 1618$, well within these thresholds.
+16	HB estimation outperforms stratified MLE in 87.5\% of configurations (21 of 24) across the experimental grid (Section~\ref{sec:ec_hte_eval}), with the largest gains when $n_{\text{expert}} / K < 100$.
+17	The advantage requires at least $n_{\text{expert}} / K \geq 25$ per subgroup; below this threshold, stratified MLE is preferred because the hierarchical model lacks sufficient observations for stable shrinkage.
+18	At $n_{\text{expert}} \geq 1000$
+…[truncated 4164 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T05:20:31.819535+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+  "limit": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+    "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T05:20:31.819730+00:00_
+
+1	\section{Experiments}
+2	
+3	\subsection{Experimental Setup and Data Generation}
+4	
+5	\subsubsection{Synthetic DGP}
+6	
+7	We generate data from a controlled data-generating process (DGP) that separates the effect of subgroup-level misclassification heterogeneity from other confounders.
+8	For each observation $i$, the potential outcome under treatment $t$ is
+9	\begin{equation}
+10	Y_i(t) = \alpha + \tau(Z_i) \cdot t + \beta X_i + \varepsilon_i, \quad \varepsilon_i \sim \mathcal{N}(0,1),
+11	\end{equation}
+12	where $T_i \sim \text{Bernoulli}(0.5)$ simulates a randomized controlled trial, and $Z_i \in \{0, \ldots, K{-}1\}$ is the true effect modifier with $K \in \{2, 4\}$ subgroups.
+13	The conditional average treatment effect (CATE) $\tau(Z{=}z)$ varies across subgroups with controlled heterogeneity $\Delta\tau = \max_z \tau(z) - \min_z \tau(z)$.
+14	Misclassification is injected through subgroup-specific symmetric confusion matrices $C_s$: the observed label $\hat{Z}_i$ is drawn as $\hat{Z}_i \sim \text{Multinomial}(C_{S_i})$, where each subgroup $s$ has error rate $\pi_s$ and $\Delta\pi = \max_s \pi_s - \min_s \pi_s$ controls heterogeneity.
+15	We fix $N{=}5000$ observations and vary $n_{\text{expert}} \in \{50, 100, 250, 500, 1000, 2000\}$ (the number of expert-labeled observations used to estimate confusion matrices).
+16	Each configuration is repeated for 100 Monte Carlo runs.
+17	
+18	\subsubsection{Semi-synthetic DGP (TweetEval)}
+19	
+20	To test EC-HTE under realistic conditions, we construct a semi-synthetic DGP from the TweetEval sentiment corpus~\cite{barbieri2020tweeteval}, sampling $N{=}5000$ tweets per run from a pool of 57{,}899.
+21	Four subgroups are defined by crossing two binary text features: presence of hashtags (\texttt{has\_hashtag}) and text length relative to the median (\texttt{text\_length\_bin}).
+22	This yields unbalanced subgroup proportions (S0: 39\%, S1: 38\%, S2: 12\%, S3: 11\%).
+23	The effect modifier is $Z{=}1$ if the true sentiment is positive (
+…[truncated 6148 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T05:20:31.820024+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+  "offset": "80",
+  "limit": "120"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+    "offset": "80",
+    "limit": "120"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T05:20:31.820233+00:00_
+
+80	 & Naive & 0.058 & 0.090 & 0.82 \\
+81	 & Global & 0.059 & 0.099 & 0.87 \\
+82	 & Strat.\ MLE & 0.012 & 0.094 & 0.95 \\
+83	 & HB EC-HTE & \textbf{0.011} & 0.093 & 0.95 \\
+84	\midrule
+85	\multirow{4}{*}{\shortstack[l]{Synthetic DIM\\$K{=}2$, moderate, $n{=}250$}}
+86	 & Naive & 0.018 & 0.064 & 0.95 \\
+87	 & Global & 0.009 & 0.074 & 0.96 \\
+88	 & Strat.\ MLE & \textbf{0.005} & 0.075$^\dagger$ & 0.97 \\
+89	 & HB EC-HTE & \textbf{0.005} & 0.075$^\dagger$ & 0.97 \\
+90	\midrule
+91	\multirow{4}{*}{\shortstack[l]{Synthetic DIM\\$K{=}4$, extreme, $n{=}500$}}
+92	 & Naive & 0.062 & 0.113 & 0.88 \\
+93	 & Global & 0.056 & 0.125 & 0.91 \\
+94	 & Strat.\ MLE & 0.010 & 0.127$^\dagger$ & 0.95 \\
+95	 & HB EC-HTE & \textbf{0.009} & 0.127$^\dagger$ & 0.95 \\
+96	\midrule
+97	\multirow{3}{*}{\shortstack[l]{Synthetic CausalForest\\$K{=}4$, extreme, $n{=}500$}}
+98	 & Naive & 0.208 & 0.231 & 0.44 \\
+99	 & Global & 0.191 & 0.244 & 0.58 \\
+100	 & EC-HTE Forest & \textbf{0.040} & 0.224 & 0.91 \\
+101	\midrule
+102	\multirow{4}{*}{\shortstack[l]{Semi-synthetic\\TweetEval, extreme, $n{=}250$}}
+103	 & Naive & 0.027 & 0.103 & 0.93 \\
+104	 & Global & \textbf{0.023} & 0.124 & 0.92 \\
+105	 & Strat.\ MLE & 0.032 & 0.248$^\dagger$ & 0.91 \\
+106	 & HB EC-HTE & 0.027 & 0.225$^\dagger$ & 0.91 \\
+107	\bottomrule
+108	\end{tabular}
+109	\end{table*}
+110	
+111	\subsection{Diagnostic Criterion}
+112	\label{sec:diagnostic}
+113	
+114	As a practical corollary of Theorem~\ref{thm:bias_identity}, the $\Delta\pi \times \Delta\tau$ product provides a computable diagnostic for predicting when global correction will fail.
+115	Using leave-one-out cross-validation at the subgroup level, a threshold classifier on $|\Delta\pi \times \Delta\tau|$ achieves AUC = 0.833 for predicting whether global correction increases bias relative to the naive estimator.
+116	The Pearson correlation between the signed product and the observed bias ratio is $r = 0.86$.
+117	At the setting level (averaging across subgroups within a configuration), the 
+…[truncated 5218 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T05:20:31.820426+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/",
+  "description": "Check paper directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/",
+    "description": "Check paper directory contents"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T05:20:31.820571+00:00_
+
+experiments.tex
+method.tex
+theory.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T05:20:31.820747+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "content": "\\section{Introduction}\n\\label{sec:intro}\n\nLarge language models now routinely replace human annotators in computational social science, producing labels for sentiment, hate speech, stance, and political discourse at costs orders of magnitude below manual coding~\\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp}.\nYet these annotations are not uniformly accurate.\n\\citet{ashwin2025bias} document that LLM misclassification rates vary by up to 5$\\times$ across demographic subgroups defined by refugee status, gender, and education level.\nWhen such annotations serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, subgroup-specific errors propagate directly into conditional average treatment effect (CATE) estimates.\nThe resulting bias is not random noise that averages out; it is structured by the same demographic axes that define the research question.\nStandard correction procedures, which estimate a single confusion matrix and apply its inverse uniformly, cannot account for this heterogeneity.\n\nThis problem matters because HTE analysis is the primary tool for understanding differential treatment effects across populations.\nSubgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.\nBiased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.\nThe problem grows in proportion to LLM adoption: as automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.\nCorrection is necessary because LLM annotation is not a transitional technology but the emerging default for large-scale text measurement.\n\nSeveral methods address measurement error in downstream statistical analyses, but none handles the specific failure mode we identify.\nPrediction-Powered Inference~\\cite{angelopoulos2023ppi} and Design-based Supervised Learning~\\cite{egami2024dsl} correct population-level aggregates by combining predicted and gold-standard labels, assuming homogeneous prediction error across subgroups.\nPrediction-Powered Conditional Inference (PPCI;~\\citealt{sui2026ppci}) extends PPI to conditional means but targets outcome-side prediction error rather than covariate-side misclassification.\n\\citet{mozer2026ppi} prove that arm-specific rectifiers fix average treatment effect bias under differential prediction error, but their analysis is limited to population averages and does not address heterogeneity estimation.\nForestIV~\\cite{bu2023forestiv} handles ML-covariate measurement error in regression forests but targets the outcome model rather than the treatment effect heterogeneity structure.\nThe gap is specific: no existing method corrects bias when the mismeasured variable is the one that defines the heterogeneity structure itself, i.e., the effect modifier whose levels index the CATE function.\n\nWe formalize this gap and discover a previously unrecognized bias mechanism.\nWhen a pooled confusion matrix is applied to correct subgroup CATEs, it misattributes error across subgroups with an exact product form: the bias in subgroup $s$ equals $\\delta_s \\cdot \\Delta\\tau / (1 - 2\\bar{\\pi})$, where $\\delta_s$ is the deviation from the pooled error rate and $\\Delta\\tau$ is the CATE heterogeneity (Theorem~\\ref{thm:bias_identity}).\nThis is not a bound but an exact population-level identity, verified empirically with $R^2 = 0.994$ ($K{=}2$) and $R^2 = 0.974$ ($K{=}4$).\nA direct consequence is that global correction can be worse than no correction at all: in 50\\% of our experimental configurations, global debiasing increases absolute bias relative to the naive estimator, with amplification reaching 2.86$\\times$ ($K{=}2$) and 5.9$\\times$ ($K{=}4$ with CausalForest).\nEC-HTE addresses this through hierarchical Bayesian estimation of subgroup-stratified confusion matrices combined with CausalForestDML, reducing $|\\text{bias}|$ from 0.059 to 0.011 under extreme heterogeneity ($K{=}2$).\nThe bias decomposition identity also yields a computable diagnostic: the $\\Delta\\pi \\times \\Delta\\tau$ product predicts when global correction will fail at the subgroup level (AUC = 0.833), allowing practitioners to decide whether stratified correction is warranted before committing to the additional expert annotation it requires.\nEC-HTE's advantage is conditional on sufficient error heterogeneity and expert budget; when $\\Delta\\pi$ is small, global correction suffices and EC-HTE's variance cost is not justified (Figure~\\ref{fig:bias_mechanism}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item A bias decomposition identity (Theorem~\\ref{thm:bias_identity}) showing that global confusion-matrix correction introduces bias exactly proportional to the product of error-rate heterogeneity and CATE heterogeneity, including a formal condition under which debiasing increases bias (Section~\\ref{sec:theory}).\n    \\item The EC-HTE framework: hierarchical Bayesian subgroup-stratified confusion matrix estimation combined with CausalForestDML and plug-in standard error propagation, with a singularity guard for near-degenerate subgroups (Section~\\ref{sec:method}).\n    \\item A computable diagnostic criterion derived from Theorem~\\ref{thm:bias_identity}: the $\\Delta\\pi \\times \\Delta\\tau$ product predicts at the subgroup level whether global correction will fail, achieving AUC = 0.833 in cross-validated evaluation (Section~\\ref{sec:diagnostic}).\n    \\item A composition of EC-HTE with PPCI for dual covariate/outcome error settings, reducing $|\\text{bias}|$ from 0.179 to 0.007 when both error types are present (Section~\\ref{sec:ppci}).\n    \\item Comprehensive validation across 520 synthetic configurations (100 Monte Carlo runs each) and a semi-synthetic TweetEval experiment ($N{=}5000$), establishing the conditions under which EC-HTE improves over global correction and where it does not (Section~\\ref{sec:bias_mechanism}, Section~\\ref{sec:ec_hte_eval}).\n\\end{itemize}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "content": "\\section{Introduction}\n\\label{sec:intro}\n\nLarge language models now routinely replace human annotators in computational social science, producing labels for sentiment, hate speech, stance, and political discourse at costs orders of magnitude below manual coding~\\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp}.\nYet these annotations are not uniformly accurate.\n\\citet{ashwin2025bias} document that LLM misclassification rates vary by up to 5$\\times$ across demographic subgroups defined by refugee status, gender, and education level.\nWhen such annotations serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, subgroup-specific errors propagate directly into conditional average treatment effect (CATE) estimates.\nThe resulting bias is not random noise that averages out; it is structured by the same demographic axes that define the research question.\nStandard correction procedures, which estimate a single confusion matrix and apply its inverse uniformly, cannot account for this heterogeneity.\n\nThis problem matters because HTE analysis is the primary tool for understanding differential treatment effects across populations.\nSubgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.\nBiased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.\nThe problem grows in proportion to LLM adoption: as automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.\nCorrection is necessary because LLM annotation is not a transitional technology but the emerging default for large-scale text measurement.\n\nSeveral methods address measurement error in downstream statistical analyses, but none handles the specific failure mode we identify.\nPrediction-Powered Inference~\\cite{angelopoulos2023ppi} and Design-based Supervised Learning~\\cite{egami2024dsl} correct population-level aggregates by combining predicted and gold-standard labels, assuming homogeneous prediction error across subgroups.\nPrediction-Powered Conditional Inference (PPCI;~\\citealt{sui2026ppci}) extends PPI to conditional means but targets outcome-side prediction error rather than covariate-side misclassification.\n\\citet{mozer2026ppi} prove that arm-specific rectifiers fix average treatment effect bias under differential prediction error, but their analysis is limited to population averages and does not address heterogeneity estimation.\nForestIV~\\cite{bu2023forestiv} handles ML-covariate measurement error in regression forests but targets the outcome model rather than the treatment effect heterogeneity structure.\nThe gap is specific: no existing method corrects bias when the mismeasured variable is the one that defines the heterogeneity structure itself, i.e., the effect modifier whose levels index the CATE function.\n\nWe formalize this gap and discover a previously unrecognized bias mechanism.\nWhen a pooled confusion matrix is applied to correct subgroup CATEs, it misattributes error across subgroups with an exact product form: the bias in subgroup $s$ equals $\\delta_s \\cdot \\Delta\\tau / (1 - 2\\bar{\\pi})$, where $\\delta_s$ is the deviation from the pooled error rate and $\\Delta\\tau$ is the CATE heterogeneity (Theorem~\\ref{thm:bias_identity}).\nThis is not a bound but an exact population-level identity, verified empirically with $R^2 = 0.994$ ($K{=}2$) and $R^2 = 0.974$ ($K{=}4$).\nA direct consequence is that global correction can be worse than no correction at all: in 50\\% of our experimental configurations, global debiasing increases absolute bias relative to the naive estimator, with amplification reaching 2.86$\\times$ ($K{=}2$) and 5.9$\\times$ ($K{=}4$ with CausalForest).\nEC-HTE addresses this through hierarchical Bayesian estimation of subgroup-stratified confusion matrices combined with CausalForestDML, reducing $|\\text{bias}|$ from 0.059 to 0.011 under extreme heterogeneity ($K{=}2$).\nThe bias decomposition identity also yields a computable diagnostic: the $\\Delta\\pi \\times \\Delta\\tau$ product predicts when global correction will fail at the subgroup level (AUC = 0.833), allowing practitioners to decide whether stratified correction is warranted before committing to the additional expert annotation it requires.\nEC-HTE's advantage is conditional on sufficient error heterogeneity and expert budget; when $\\Delta\\pi$ is small, global correction suffices and EC-HTE's variance cost is not justified (Figure~\\ref{fig:bias_mechanism}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item A bias decomposition identity (Theorem~\\ref{thm:bias_identity}) showing that global confusion-matrix correction introduces bias exactly proportional to the product of error-rate heterogeneity and CATE heterogeneity, including a formal condition under which debiasing increases bias (Section~\\ref{sec:theory}).\n    \\item The EC-HTE framework: hierarchical Bayesian subgroup-stratified confusion matrix estimation combined with CausalForestDML and plug-in standard error propagation, with a singularity guard for near-degenerate subgroups (Section~\\ref{sec:method}).\n    \\item A computable diagnostic criterion derived from Theorem~\\ref{thm:bias_identity}: the $\\Delta\\pi \\times \\Delta\\tau$ product predicts at the subgroup level whether global correction will fail, achieving AUC = 0.833 in cross-validated evaluation (Section~\\ref{sec:diagnostic}).\n    \\item A composition of EC-HTE with PPCI for dual covariate/outcome error settings, reducing $|\\text{bias}|$ from 0.179 to 0.007 when both error types are present (Section~\\ref{sec:ppci}).\n    \\item Comprehensive validation across 520 synthetic configurations (100 Monte Carlo runs each) and a semi-synthetic TweetEval experiment ($N{=}5000$), establishing the conditions under which EC-HTE improves over global correction and where it does not (Section~\\ref{sec:bias_mechanism}, Section~\\ref{sec:ec_hte_eval}).\n\\end{itemize}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T05:20:31.821001+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T05:20:31.821155+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "—|ing,|ing\\.|Furthermore|Moreover|Additionally|leverage|utilize|delve",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "—|ing,|ing\\.|Furthermore|Moreover|Additionally|leverage|utilize|delve",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T05:20:31.821284+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T05:20:31.821408+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": " – ",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": " – ",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T05:20:31.821530+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T05:20:31.821655+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "description": "Count words in introduction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "description": "Count words in introduction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T05:20:31.821879+00:00_
+
+769 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T05:20:31.822115+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/%.*//; /^$/d' /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex | wc -w",
+  "description": "Count prose words excluding LaTeX commands"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/%.*//; /^$/d' /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex | wc -w",
+    "description": "Count prose words excluding LaTeX commands"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T05:20:31.822294+00:00_
+
+724
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T05:20:31.822443+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T05:20:31.822618+00:00_
+
+1	\section{Introduction}
+2	\label{sec:intro}
+3	
+4	Large language models now routinely replace human annotators in computational social science, producing labels for sentiment, hate speech, stance, and political discourse at costs orders of magnitude below manual coding~\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp}.
+5	Yet these annotations are not uniformly accurate.
+6	\citet{ashwin2025bias} document that LLM misclassification rates vary by up to 5$\times$ across demographic subgroups defined by refugee status, gender, and education level.
+7	When such annotations serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, subgroup-specific errors propagate directly into conditional average treatment effect (CATE) estimates.
+8	The resulting bias is not random noise that averages out; it is structured by the same demographic axes that define the research question.
+9	Standard correction procedures, which estimate a single confusion matrix and apply its inverse uniformly, cannot account for this heterogeneity.
+10	
+11	This problem matters because HTE analysis is the primary tool for understanding differential treatment effects across populations.
+12	Subgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.
+13	Biased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.
+14	The problem grows in proportion to LLM adoption: as automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.
+15	Correction is necessary because LLM annotation is not a transitional technology but the emerging default for large-sca
+…[truncated 4367 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T05:20:31.822793+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "old_string": "This problem matters because HTE analysis is the primary tool for understanding differential treatment effects across populations.\nSubgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.\nBiased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.\nThe problem grows in proportion to LLM adoption: as automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.\nCorrection is necessary because LLM annotation is not a transitional technology but the emerging default for large-scale text measurement.",
+  "new_string": "This problem matters because HTE analysis is the primary tool for understanding differential treatment effects across populations.\nSubgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.\nBiased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.\nThe failure mode is subtle: a researcher who responsibly corrects for annotation noise using a pooled confusion matrix may introduce more bias than doing nothing, precisely in the low-error subgroups where the original labels were most trustworthy.\nThe problem grows in proportion to LLM adoption: as automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.\nCorrection is necessary because LLM annotation is not a transitional technology but the emerging default for large-scale text measurement."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "old_string": "This problem matters because HTE analysis is the primary tool for understanding differential treatment effects across populations.\nSubgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.\nBiased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.\nThe problem grows in proportion to LLM adoption: as automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.\nCorrection is necessary because LLM annotation is not a transitional technology but the emerging default for large-scale text measurement.",
+    "new_string": "This problem matters because HTE analysis is the primary tool for understanding differential treatment effects across populations.\nSubgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.\nBiased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.\nThe failure mode is subtle: a researcher who responsibly corrects for annotation noise using a pooled confusion matrix may introduce more bias than doing nothing, precisely in the low-error subgroups where the original labels were most trustworthy.\nThe problem grows in proportion to LLM adoption: as automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.\nCorrection is necessary because LLM annotation is not a transitional technology but the emerging default for large-scale text measurement."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T05:20:31.823047+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T05:20:31.823195+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "old_string": "Several methods address measurement error in downstream statistical analyses, but none handles the specific failure mode we identify.\nPrediction-Powered Inference~\\cite{angelopoulos2023ppi} and Design-based Supervised Learning~\\cite{egami2024dsl} correct population-level aggregates by combining predicted and gold-standard labels, assuming homogeneous prediction error across subgroups.\nPrediction-Powered Conditional Inference (PPCI;~\\citealt{sui2026ppci}) extends PPI to conditional means but targets outcome-side prediction error rather than covariate-side misclassification.\n\\citet{mozer2026ppi} prove that arm-specific rectifiers fix average treatment effect bias under differential prediction error, but their analysis is limited to population averages and does not address heterogeneity estimation.\nForestIV~\\cite{bu2023forestiv} handles ML-covariate measurement error in regression forests but targets the outcome model rather than the treatment effect heterogeneity structure.\nThe gap is specific: no existing method corrects bias when the mismeasured variable is the one that defines the heterogeneity structure itself, i.e., the effect modifier whose levels index the CATE function.",
+  "new_string": "Several methods address measurement error in downstream statistical analyses, but none handles the specific failure mode we identify.\nPrediction-Powered Inference (PPI;~\\citealt{angelopoulos2023ppi}) and Design-based Supervised Learning~\\cite{egami2024dsl} correct population-level aggregates by combining predicted and gold-standard labels, assuming homogeneous prediction error across subgroups.\nThese methods produce valid confidence intervals for marginal quantities but do not extend to subgroup-conditional estimands.\nPrediction-Powered Conditional Inference (PPCI;~\\citealt{sui2026ppci}) extends PPI to conditional means but targets outcome-side prediction error rather than covariate-side misclassification; it corrects $\\hat{Y}$ given true $Z$, not the reverse.\n\\citet{mozer2026ppi} prove that arm-specific rectifiers fix average treatment effect bias under differential prediction error, but their analysis is limited to population averages and does not address heterogeneity estimation.\nForestIV~\\cite{bu2023forestiv} handles ML-covariate measurement error in regression forests but targets the outcome model rather than the treatment effect heterogeneity structure.\nThe gap is specific: no existing method corrects bias when the mismeasured variable is the one that defines the heterogeneity structure itself, i.e., the effect modifier whose levels index the CATE function."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "old_string": "Several methods address measurement error in downstream statistical analyses, but none handles the specific failure mode we identify.\nPrediction-Powered Inference~\\cite{angelopoulos2023ppi} and Design-based Supervised Learning~\\cite{egami2024dsl} correct population-level aggregates by combining predicted and gold-standard labels, assuming homogeneous prediction error across subgroups.\nPrediction-Powered Conditional Inference (PPCI;~\\citealt{sui2026ppci}) extends PPI to conditional means but targets outcome-side prediction error rather than covariate-side misclassification.\n\\citet{mozer2026ppi} prove that arm-specific rectifiers fix average treatment effect bias under differential prediction error, but their analysis is limited to population averages and does not address heterogeneity estimation.\nForestIV~\\cite{bu2023forestiv} handles ML-covariate measurement error in regression forests but targets the outcome model rather than the treatment effect heterogeneity structure.\nThe gap is specific: no existing method corrects bias when the mismeasured variable is the one that defines the heterogeneity structure itself, i.e., the effect modifier whose levels index the CATE function.",
+    "new_string": "Several methods address measurement error in downstream statistical analyses, but none handles the specific failure mode we identify.\nPrediction-Powered Inference (PPI;~\\citealt{angelopoulos2023ppi}) and Design-based Supervised Learning~\\cite{egami2024dsl} correct population-level aggregates by combining predicted and gold-standard labels, assuming homogeneous prediction error across subgroups.\nThese methods produce valid confidence intervals for marginal quantities but do not extend to subgroup-conditional estimands.\nPrediction-Powered Conditional Inference (PPCI;~\\citealt{sui2026ppci}) extends PPI to conditional means but targets outcome-side prediction error rather than covariate-side misclassification; it corrects $\\hat{Y}$ given true $Z$, not the reverse.\n\\citet{mozer2026ppi} prove that arm-specific rectifiers fix average treatment effect bias under differential prediction error, but their analysis is limited to population averages and does not address heterogeneity estimation.\nForestIV~\\cite{bu2023forestiv} handles ML-covariate measurement error in regression forests but targets the outcome model rather than the treatment effect heterogeneity structure.\nThe gap is specific: no existing method corrects bias when the mismeasured variable is the one that defines the heterogeneity structure itself, i.e., the effect modifier whose levels index the CATE function."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T05:20:31.823376+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T05:20:31.823506+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/%.*//; /^$/d' /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex | wc -w",
+  "description": "Recount prose words"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/%.*//; /^$/d' /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex | wc -w",
+    "description": "Recount prose words"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T05:20:31.823629+00:00_
+
+724
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T05:20:31.823760+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T05:20:31.823959+00:00_
+
+File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T05:20:31.824109+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "offset": "10",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "offset": "10",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T05:20:31.824246+00:00_
+
+10	
+11	This problem matters because HTE analysis is the primary tool for understanding differential treatment effects across populations.
+12	Subgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.
+13	Biased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.
+14	The problem grows in proportion to LLM adoption: as automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.
+15	Correction is necessary because LLM annotation is not a transitional technology but the emerging default for large-scale text measurement.
+16	
+17	Several methods address measurement error in downstream statistical analyses, but none handles the specific failure mode we identify.
+18	Prediction-Powered Inference~\cite{angelopoulos2023ppi} and Design-based Supervised Learning~\cite{egami2024dsl} correct population-level aggregates by combining predicted and gold-standard labels, assuming homogeneous prediction error across subgroups.
+19	Prediction-Powered Conditional Inference (PPCI;~\citealt{sui2026ppci}) extends PPI to conditional means but targets outcome-side prediction error rather than covariate-side misclassification.
+20	\citet{mozer2026ppi} prove that arm-specific rectifiers fix average treatment effect bias under differential prediction error, but their analysis is limited to population averages and does not address heterogeneity estimation.
+21	ForestIV~\cite{bu2023forestiv} handles ML-covariate measurement error in regression forests but targets the outcome model rather than the treatment effect heterogeneity structure.
+22	The gap is specific:
+…[truncated 271 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T05:20:31.824442+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "content": "\\section{Introduction}\n\\label{sec:intro}\n\nLarge language models (LLMs) now routinely replace human annotators in computational social science (CSS), producing labels for sentiment, hate speech, stance, and political discourse at costs orders of magnitude below manual coding~\\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp}.\nYet these annotations are not uniformly accurate.\n\\citet{ashwin2025bias} document that LLM misclassification rates vary by up to 5$\\times$ across demographic subgroups defined by refugee status, gender, and education level.\nWhen such annotations serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, subgroup-specific errors propagate directly into conditional average treatment effect (CATE) estimates.\nThe resulting bias is not random noise that averages out; it is structured by the same demographic axes that define the research question.\nStandard correction procedures, which estimate a single confusion matrix and apply its inverse uniformly, cannot account for this heterogeneity.\n\nThis problem matters because HTE analysis is the primary tool for understanding how treatment effects vary across populations.\nSubgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.\nBiased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.\nThe failure mode is subtle: a researcher who responsibly corrects for annotation noise using a pooled confusion matrix may introduce more bias than doing nothing, precisely in the low-error subgroups where the original labels were most trustworthy.\nThe problem grows in proportion to LLM adoption.\nAs automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.\nCorrection is necessary because LLM annotation is not a transitional technology but the emerging default for large-scale text measurement.\n\nSeveral methods address measurement error in downstream statistical analyses, but none handles the specific failure mode we identify.\nPrediction-Powered Inference (PPI;~\\citealt{angelopoulos2023ppi}) and Design-based Supervised Learning~\\cite{egami2024dsl} correct population-level aggregates by combining predicted and gold-standard labels, assuming homogeneous prediction error across subgroups.\nThese methods produce valid confidence intervals for marginal quantities but do not extend to subgroup-conditional estimands.\nPrediction-Powered Conditional Inference (PPCI;~\\citealt{sui2026ppci}) extends PPI to conditional means but targets outcome-side prediction error rather than covariate-side misclassification; it corrects $\\hat{Y}$ given true $Z$, not the reverse.\n\\citet{mozer2026ppi} prove that arm-specific rectifiers fix average treatment effect bias under differential prediction error, but their analysis is limited to population averages and does not address heterogeneity estimation.\nForestIV~\\cite{bu2023forestiv} handles ML-covariate measurement error in regression forests but targets the outcome model rather than the treatment effect heterogeneity structure.\nThe gap is specific: no existing method corrects bias when the mismeasured variable is the one that defines the heterogeneity structure itself, i.e., the effect modifier whose levels index the CATE function.\n\nWe formalize this gap and discover a previously unrecognized bias mechanism.\nWhen a pooled confusion matrix is applied to correct subgroup CATEs, it misattributes error across subgroups with an exact product form: the bias in subgroup $s$ equals $\\delta_s \\cdot \\Delta\\tau / (1 - 2\\bar{\\pi})$, where $\\delta_s$ is the deviation from the pooled error rate and $\\Delta\\tau$ is the CATE heterogeneity (Theorem~\\ref{thm:bias_identity}).\nThis is not a bound but an exact population-level identity, verified empirically with $R^2 = 0.994$ ($K{=}2$) and $R^2 = 0.974$ ($K{=}4$).\nA direct consequence is that global correction can be worse than no correction at all: in 50\\% of our experimental configurations, global debiasing increases absolute bias relative to the naive estimator, with amplification reaching 2.86$\\times$ ($K{=}2$) and 5.9$\\times$ ($K{=}4$ with CausalForest).\nError-Corrected Heterogeneous Treatment Effects (EC-HTE) addresses this through hierarchical Bayesian estimation of subgroup-stratified confusion matrices combined with CausalForestDML, reducing $|\\text{bias}|$ from 0.059 to 0.011 under extreme heterogeneity ($K{=}2$).\nThe bias decomposition identity also yields a computable diagnostic: the $\\Delta\\pi \\times \\Delta\\tau$ product predicts when global correction will fail at the subgroup level (AUC = 0.833), so practitioners can decide whether stratified correction is warranted before committing to the additional expert annotation it requires.\nEC-HTE's advantage is conditional on sufficient error heterogeneity and expert budget; when $\\Delta\\pi$ is small, global correction suffices and EC-HTE's variance cost is not justified (Figure~\\ref{fig:bias_mechanism}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item A bias decomposition identity (Theorem~\\ref{thm:bias_identity}) showing that global confusion-matrix correction introduces bias exactly proportional to the product of error-rate heterogeneity and CATE heterogeneity, including a formal condition under which debiasing increases bias (Section~\\ref{sec:theory}).\n    \\item The EC-HTE framework: hierarchical Bayesian subgroup-stratified confusion matrix estimation combined with CausalForestDML and plug-in standard error propagation, with a singularity guard for near-degenerate subgroups (Section~\\ref{sec:method}).\n    \\item A computable diagnostic criterion derived from Theorem~\\ref{thm:bias_identity}: the $\\Delta\\pi \\times \\Delta\\tau$ product predicts at the subgroup level whether global correction will fail, achieving AUC = 0.833 in cross-validated evaluation (Section~\\ref{sec:diagnostic}).\n    \\item A composition of EC-HTE with PPCI for dual covariate/outcome error settings, reducing $|\\text{bias}|$ from 0.179 to 0.007 when both error types are present (Section~\\ref{sec:ppci}).\n    \\item Comprehensive validation across 520 synthetic configurations (100 Monte Carlo runs each) and a semi-synthetic TweetEval experiment ($N{=}5000$), with crossover analysis ($n_{\\text{expert}}{=}250$ for $K{=}2$, $n_{\\text{expert}}{=}1000$ for $K{=}4$) establishing the conditions under which EC-HTE improves over global correction and where it does not (Section~\\ref{sec:bias_mechanism}, Section~\\ref{sec:ec_hte_eval}).\n\\end{itemize}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "content": "\\section{Introduction}\n\\label{sec:intro}\n\nLarge language models (LLMs) now routinely replace human annotators in computational social science (CSS), producing labels for sentiment, hate speech, stance, and political discourse at costs orders of magnitude below manual coding~\\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp}.\nYet these annotations are not uniformly accurate.\n\\citet{ashwin2025bias} document that LLM misclassification rates vary by up to 5$\\times$ across demographic subgroups defined by refugee status, gender, and education level.\nWhen such annotations serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, subgroup-specific errors propagate directly into conditional average treatment effect (CATE) estimates.\nThe resulting bias is not random noise that averages out; it is structured by the same demographic axes that define the research question.\nStandard correction procedures, which estimate a single confusion matrix and apply its inverse uniformly, cannot account for this heterogeneity.\n\nThis problem matters because HTE analysis is the primary tool for understanding how treatment effects vary across populations.\nSubgroup CATEs inform resource allocation decisions: which communities benefit most from policy interventions, where health programs should be targeted, and how educational reforms affect different student groups.\nBiased CATE estimates can reverse the sign of apparent treatment heterogeneity, leading practitioners to conclude that an intervention harms a subgroup it actually helps, or to allocate resources away from the communities that benefit most.\nThe failure mode is subtle: a researcher who responsibly corrects for annotation noise using a pooled confusion matrix may introduce more bias than doing nothing, precisely in the low-error subgroups where the original labels were most trustworthy.\nThe problem grows in proportion to LLM adoption.\nAs automated annotation pipelines replace manual coding across the social sciences, heterogeneous classification errors will propagate to an increasing share of causal analyses.\nCorrection is necessary because LLM annotation is not a transitional technology but the emerging default for large-scale text measurement.\n\nSeveral methods address measurement error in downstream statistical analyses, but none handles the specific failure mode we identify.\nPrediction-Powered Inference (PPI;~\\citealt{angelopoulos2023ppi}) and Design-based Supervised Learning~\\cite{egami2024dsl} correct population-level aggregates by combining predicted and gold-standard labels, assuming homogeneous prediction error across subgroups.\nThese methods produce valid confidence intervals for marginal quantities but do not extend to subgroup-conditional estimands.\nPrediction-Powered Conditional Inference (PPCI;~\\citealt{sui2026ppci}) extends PPI to conditional means but targets outcome-side prediction error rather than covariate-side misclassification; it corrects $\\hat{Y}$ given true $Z$, not the reverse.\n\\citet{mozer2026ppi} prove that arm-specific rectifiers fix average treatment effect bias under differential prediction error, but their analysis is limited to population averages and does not address heterogeneity estimation.\nForestIV~\\cite{bu2023forestiv} handles ML-covariate measurement error in regression forests but targets the outcome model rather than the treatment effect heterogeneity structure.\nThe gap is specific: no existing method corrects bias when the mismeasured variable is the one that defines the heterogeneity structure itself, i.e., the effect modifier whose levels index the CATE function.\n\nWe formalize this gap and discover a previously unrecognized bias mechanism.\nWhen a pooled confusion matrix is applied to correct subgroup CATEs, it misattributes error across subgroups with an exact product form: the bias in subgroup $s$ equals $\\delta_s \\cdot \\Delta\\tau / (1 - 2\\bar{\\pi})$, where $\\delta_s$ is the deviation from the pooled error rate and $\\Delta\\tau$ is the CATE heterogeneity (Theorem~\\ref{thm:bias_identity}).\nThis is not a bound but an exact population-level identity, verified empirically with $R^2 = 0.994$ ($K{=}2$) and $R^2 = 0.974$ ($K{=}4$).\nA direct consequence is that global correction can be worse than no correction at all: in 50\\% of our experimental configurations, global debiasing increases absolute bias relative to the naive estimator, with amplification reaching 2.86$\\times$ ($K{=}2$) and 5.9$\\times$ ($K{=}4$ with CausalForest).\nError-Corrected Heterogeneous Treatment Effects (EC-HTE) addresses this through hierarchical Bayesian estimation of subgroup-stratified confusion matrices combined with CausalForestDML, reducing $|\\text{bias}|$ from 0.059 to 0.011 under extreme heterogeneity ($K{=}2$).\nThe bias decomposition identity also yields a computable diagnostic: the $\\Delta\\pi \\times \\Delta\\tau$ product predicts when global correction will fail at the subgroup level (AUC = 0.833), so practitioners can decide whether stratified correction is warranted before committing to the additional expert annotation it requires.\nEC-HTE's advantage is conditional on sufficient error heterogeneity and expert budget; when $\\Delta\\pi$ is small, global correction suffices and EC-HTE's variance cost is not justified (Figure~\\ref{fig:bias_mechanism}).\n\nOur contributions are:\n\\begin{itemize}\n    \\item A bias decomposition identity (Theorem~\\ref{thm:bias_identity}) showing that global confusion-matrix correction introduces bias exactly proportional to the product of error-rate heterogeneity and CATE heterogeneity, including a formal condition under which debiasing increases bias (Section~\\ref{sec:theory}).\n    \\item The EC-HTE framework: hierarchical Bayesian subgroup-stratified confusion matrix estimation combined with CausalForestDML and plug-in standard error propagation, with a singularity guard for near-degenerate subgroups (Section~\\ref{sec:method}).\n    \\item A computable diagnostic criterion derived from Theorem~\\ref{thm:bias_identity}: the $\\Delta\\pi \\times \\Delta\\tau$ product predicts at the subgroup level whether global correction will fail, achieving AUC = 0.833 in cross-validated evaluation (Section~\\ref{sec:diagnostic}).\n    \\item A composition of EC-HTE with PPCI for dual covariate/outcome error settings, reducing $|\\text{bias}|$ from 0.179 to 0.007 when both error types are present (Section~\\ref{sec:ppci}).\n    \\item Comprehensive validation across 520 synthetic configurations (100 Monte Carlo runs each) and a semi-synthetic TweetEval experiment ($N{=}5000$), with crossover analysis ($n_{\\text{expert}}{=}250$ for $K{=}2$, $n_{\\text{expert}}{=}1000$ for $K{=}4$) establishing the conditions under which EC-HTE improves over global correction and where it does not (Section~\\ref{sec:bias_mechanism}, Section~\\ref{sec:ec_hte_eval}).\n\\end{itemize}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T05:20:31.824687+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T05:20:31.824840+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/%.*//; /^$/d' /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex | wc -w",
+  "description": "Count prose words in final version"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/%.*//; /^$/d' /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex | wc -w",
+    "description": "Count prose words in final version"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T05:20:31.824970+00:00_
+
+802
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T05:20:31.825098+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "—| – |Furthermore|Moreover|Additionally|leverage|utilize|delve|bias bound",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "—| – |Furthermore|Moreover|Additionally|leverage|utilize|delve|bias bound",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T05:20:31.825221+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-21T05:20:31.825337+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "ing,|ing\\.",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "ing,|ing\\.",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T05:20:31.825452+00:00_
+
+14:The failure mode is subtle: a researcher who responsibly corrects for annotation noise using a pooled confusion matrix may introduce more bias than doing nothing, precisely in the low-error subgroups where the original labels were most trustworthy.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-21T05:20:31.825581+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T05:20:31.825700+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T05:20:31.825830+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "introduction.tex",
+  "type": "paper",
+  "description": "Introduction section for EC-HTE EMNLP 2026 paper: 5-paragraph structure + contribution list, ~800 prose words",
+  "project": "ec_hte_llm_annotation",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "tags": "['paper', 'introduction', 'latex']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "introduction.tex",
+    "type": "paper",
+    "description": "Introduction section for EC-HTE EMNLP 2026 paper: 5-paragraph structure + contribution list, ~800 prose words",
+    "project": "ec_hte_llm_annotation",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "tags": "['paper', 'introduction', 'latex']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T05:20:31.825976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_d6ce33\", \"name\": \"introduction.tex\", \"type\": \"paper\", \"description\": \"Introduction section for EC-HTE EMNLP 2026 paper: 5-paragraph structure + contribution list, ~800 prose words\", \"path\": \"projects/ec_hte_llm_annotation/artifacts/_project/paper/introduction.tex\", \"url\": null, \"project\": \"ec_hte_llm_annotation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T05:20:18.167900+00:00\", \"tags\": [\"paper\", \"introduction\", \"latex\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_introduction_20260521T051630",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-21T05:20:31.826130+00:00_
+
+`introduction.tex` written and registered. Summary:
+
+- **P1** (Hook): LLM annotation in CSS, heterogeneous error rates (Ashwin et al.), propagation to CATE estimates
+- **P2** (Importance): HTE guides policy, biased CATEs cause misallocation, subtle failure mode where correction hurts low-error subgroups
+- **P3** (Gap): PPI/DSL correct marginals; PPCI targets outcome-side; Mozer limited to ATE; ForestIV targets outcome model; no method handles effect-modifier misclassification
+- **P4** (Insight): Exact bias decomposition identity (not a bound), "debiasing can hurt" in 50% of configs, EC-HTE with HB + CausalForestDML, computable diagnostic AUC=0.833, conditional advantage explicitly stated
+- **P5** (Contributions): 5 items, each mapped to a specific section, with exact experimental numbers
+
+All style constraints satisfied: no em-dashes, no -ing endings, no AI markers, no forward claims, no "bias bound," EC-HTE framed as conditionally advantageous. ~800 prose words.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_writing_introduction_20260521T051630"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,7815 @@
+# research ref audit w2
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 239
+- **Recorded user turns:** 0
+- **Tool calls:** 119
+- **Original source:** `logs/chats/worker_research_ref-audit-w2_20260526T101511.jsonl`
+- **Structured JSON:** [`f228d05772cf3eb8ca0f.json`](../../sessions/f2/f228d05772cf3eb8ca0f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+239 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-26T10:24:41.173965+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/references.bib"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-26T10:24:41.174306+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-26T10:24:41.174471+00:00_
+
+docs/paper/conclusion.tex
+docs/paper/supplementary.tex
+docs/paper/prompt_appendix.tex
+docs/paper/abstract.tex
+docs/paper/checklist.tex
+docs/paper/main.tex
+docs/paper/related_work.tex
+docs/paper/sdgd_negative.tex
+docs/paper/introduction.tex
+docs/paper/experimental_setup.tex
+docs/paper/results.tex
+docs/paper/discussion.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-26T10:24:41.174752+00:00_
+
+1	@inproceedings{golde-2025-familiarity,
+2	  title     = {Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data},
+3	  author    = {Golde, Jonas and Haller, Patrick and Ploner, Max and Barth, Fabio and Jedema, Nicolaas and Akbik, Alan},
+4	  booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+5	  pages     = {820--834},
+6	  year      = {2025},
+7	  url       = {https://arxiv.org/abs/2412.10121}
+8	}
+9	
+10	@book{cohen-1988-statistical,
+11	  author    = {Cohen, Jacob},
+12	  title     = {Statistical Power Analysis for the Behavioral Sciences},
+13	  edition   = {2nd},
+14	  publisher = {Lawrence Erlbaum Associates},
+15	  year      = {1988}
+16	}
+17	
+18	@inproceedings{baan-2023-ecological,
+19	  author    = {Orlikowski, Matthias and R{\"o}ttger, Paul and Cimiano, Philipp and Hovy, Dirk},
+20	  title     = {The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics},
+21	  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)},
+22	  pages     = {1017--1029},
+23	  year      = {2023}
+24	}
+25	
+26	@inproceedings{josifoski-2022-genie,
+27	  author    = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},
+28	  title     = {{GenIE}: Generative Information Extraction},
+29	  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},
+30	  pages     = {4626--4643},
+31	  year      = {2022}
+32	}
+33	
+34	@inproceedings{dubey-2018-pairwise-confusion,
+35	  author    = {Dubey, Abhimanyu and Gupta, Otkrist and Guo, Pei and Raskar, Ramesh and Farrell, Ryan and Naik, Nikhil},
+36	  title     = {Pairwise Confusion for Fine-Grained Visual Classification},
+37	  booktitle = {Proceedings of the Euro
+…[truncated 28869 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-26T10:24:41.175010+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-26T10:24:41.175154+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-26T10:24:41.175275+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep -oP '\\\\cite[tp]?\\*?\\{[^}]+\\}' *.tex | sort -u",
+  "description": "Extract all citation commands from tex files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && grep -oP '\\\\cite[tp]?\\*?\\{[^}]+\\}' *.tex | sort -u",
+    "description": "Extract all citation commands from tex files"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-26T10:24:41.175434+00:00_
+
+checklist.tex:\citep{docred-2019}
+checklist.tex:\citep{fewnerd-2021}
+checklist.tex:\citep{fewrel-2018}
+checklist.tex:\citep{gemini-2025}
+checklist.tex:\citep{llama3-2024}
+checklist.tex:\citep{maven-2020}
+checklist.tex:\citep{minilm-2020}
+checklist.tex:\citep{qwen3-2025}
+checklist.tex:\citep{vllm-2023}
+discussion.tex:\citep{baan-2023-ecological}
+experimental_setup.tex:\citep{docred-2019}
+experimental_setup.tex:\citep{fewnerd-2021}
+experimental_setup.tex:\citep{fewrel-2018}
+experimental_setup.tex:\citep{llama3-2024}
+experimental_setup.tex:\citep{maven-2020}
+experimental_setup.tex:\citep{minilm-2020,sentence-bert-2019}
+experimental_setup.tex:\citep{qwen3-2025}
+experimental_setup.tex:\citep{vllm-2023}
+introduction.tex:\citep{docred-2019}
+introduction.tex:\citep{fewnerd-2021}
+introduction.tex:\citep{fewrel-2018}
+introduction.tex:\citep{llm4ie-survey-2024}
+introduction.tex:\citep{maven-2020}
+introduction.tex:\citep{uniner-2024,llm-pee-2025,parse-2025}
+main.tex:\citep{card-2020-power,dror-2018-significance}
+main.tex:\citep{gemini-2025}
+main.tex:\citep{lakens-2017-equivalence}
+main.tex:\citep{lost-in-middle-2024}
+main.tex:\citep{robinson-1950-ecological}
+main.tex:\citep{rothman-1990}
+main.tex:\citet{li2023evaluating}
+prompt_appendix.tex:\citep{fewnerd-2021}
+prompt_appendix.tex:\citep{fewrel-2018}
+prompt_appendix.tex:\citep{maven-2020}
+related_work.tex:\citep{boylan-2025-glirel,wadhwa-re-llm-2023}
+related_work.tex:\citep{collier-2021-correlated-noise,guo-2021-label-confusion}
+related_work.tex:\citep{crossagentie-2025,cmas-ner-2025}
+related_work.tex:\citep{dubey-2018-pairwise-confusion,deng-2010-imagenet}
+related_work.tex:\citep{gliner-2024,gliner2-2025}
+related_work.tex:\citep{gollie-2024,adelie-2024}
+related_work.tex:\citep{haystack-to-needle-2025,dlisc-2025,spt-2025}
+related_work.tex:\citep{iepile-2024}
+related_work.tex:\citep{instructuie-2023}
+related_work.tex:\citep{josifoski-2022-genie}
+related_work.tex:\citep{json-schema-bench-2025,willard2023efficient}
+related_work.te
+…[truncated 866 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-26T10:24:41.175623+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Verify bib entries batch 1 (1-10)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct. \n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description  \n- ⚠ key: [possible issue] description\n\nHere are the 10 entries to verify:\n\n1. golde-2025-familiarity\n   Title: \"Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data\"\n   Authors: Golde, Jonas and Haller, Patrick and Ploner, Max and Barth, Fabio and Jedema, Nicolaas and Akbik, Alan\n   Year: 2025, Venue: NAACL 2025, arxiv: 2412.10121\n\n2. cohen-1988-statistical\n   Title: \"Statistical Power Analysis for the Behavioral Sciences\"\n   Author: Cohen, Jacob\n   Year: 1988, Publisher: Lawrence Erlbaum Associates (book, 2nd edition)\n\n3. baan-2023-ecological\n   Title: \"The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics\"\n   Authors: Orlikowski, Matthias and Röttger, Paul and Cimiano, Philipp and Hovy, Dirk\n   Year: 2023, Venue: ACL 2023 Short Papers\n   NOTE: The bib key says \"baan-2023\" but the authors are Orlikowski et al., not Baan et al. Check if this is a key mismatch.\n\n4. josifoski-2022-genie\n   Title: \"GenIE: Generative Information Extraction\"\n   Authors: Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert\n   Year: 2022, Venue: NAACL 2022\n\n5. dubey-2018-pairwise-confusion\n   Title: \"Pairwise Confusion for Fine-Grained Visual Classification\"\n   Authors: Dubey, Abhimanyu and Gupta, Otkrist and Guo, Pei and Raskar, Ramesh and Farrell, Ryan and Naik, Nikhil\n   Year: 2018, Venue: ECCV 2018\n\n6. collier-2021-correlated-noise\n   Title: \"Correlated Input-Dependent Label Noise in Large-Scale Image Classification\"\n   Authors: Collier, Mark and Mustafa, Basil and Kokiopoulou, Efi and Jenatton, Rodolphe and Berent, Jesse\n   Year: 2021, Venue: CVPR 2021\n\n7. yin-2019-zero-shot-bench\n   Title: \"Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach\"\n   Authors: Yin, Wenpeng and Hay, Jamaal and Roth, Dan\n   Year: 2019, Venue: EMNLP 2019, arxiv: 1909.00161\n\n8. schuirmann-1987-tost\n   Title: \"A Comparison of the Two One-Sided Tests Procedure and the Power Approach for Assessing the Equivalence of Average Bioavailability\"\n   Author: Schuirmann, Donald J.\n   Year: 1987, Journal: Journal of Pharmacokinetics and Biopharmaceutics, Vol 15, No 6, pp 657-680\n\n9. gemini-2025\n   Title: \"Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long Context, and Next Generation Agentic Capabilities\"\n   Author: Gemini Team\n   Year: 2025, arXiv: 2507.06261\n   NOTE: arXiv ID 2507.06261 would be from July 2025. The bib says year 2025. Check if this arxiv ID is correct/exists.\n\n10. snell2017prototypical\n    Title: \"Prototypical Networks for Few-shot Learning\"\n    Authors: Snell, Jake and Swersky, Kevin and Zemel, Richard\n    Year: 2017, Venue: NeurIPS 2017\n\nSearch for each title using WebSearch and report your findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify bib entries batch 1 (1-10)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct. \n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description  \n- ⚠ key: [possible issue] description\n\nHere are the 10 entries to verify:\n\n1. golde-2025-familiarity\n   Title: \"Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data\"\n   Authors: Golde, Jonas and Haller, Patrick and Ploner, Max and Barth, Fabio and Jedema, Nicolaas and Akbik, Alan\n   Year: 2025, Venue: NAACL 2025, arxiv: 2412.10121\n\n2. cohen-1988-statistical\n   Title: \"Statistical Power Analysis for the Behavioral Sciences\"\n   Author: Cohen, Jacob\n   Year: 1988, Publisher: Lawrence Erlbaum Associates (book, 2nd edition)\n\n3. baan-2023-ecological\n   Title: \"The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics\"\n   Authors: Orlikowski, Matthias and Röttger, Paul and Cimiano, Philipp and Hovy, Dirk\n   Year: 2023, Venue: ACL 2023 Short Papers\n   NOTE: The bib key says \"baan-2023\" but the authors are Orlikowski et al., not Baan et al. Check if this is a key mismatch.\n\n4. josifoski-2022-genie\n   Title: \"GenIE: Generative Information Extraction\"\n   Authors: Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert\n   Year: 2022, Venue: NAACL 2022\n\n5. dubey-2018-pairwise-confusion\n   Title: \"Pairwise Confusion for Fine-Grained Visual Classification\"\n   Authors: Dubey, Abhimanyu and Gupta, Otkrist and Guo, Pei and Raskar, Ramesh and Farrell, Ryan and Naik, Nikhil\n   Year: 2018, Venue: ECCV 2018\n\n6. collier-2021-correlated-noise\n   Title: \"Correlated Input-Dependent Label Noise in Large-Scale Image Classification\"\n   Authors: Collier, Mark and Mustafa, Basil and Kokiopoulou, Efi and Jenatton, Rodolphe and Berent, Jesse\n   Year: 2021, Venue: CVPR 2021\n\n7. yin-2019-zero-shot-bench\n   Title: \"Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach\"\n   Authors: Yin, Wenpeng and Hay, Jamaal and Roth, Dan\n   Year: 2019, Venue: EMNLP 2019, arxiv: 1909.00161\n\n8. schuirmann-1987-tost\n   Title: \"A Comparison of the Two One-Sided Tests Procedure and the Power Approach for Assessing the Equivalence of Average Bioavailability\"\n   Author: Schuirmann, Donald J.\n   Year: 1987, Journal: Journal of Pharmacokinetics and Biopharmaceutics, Vol 15, No 6, pp 657-680\n\n9. gemini-2025\n   Title: \"Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long Context, and Next Generation Agentic Capabilities\"\n   Author: Gemini Team\n   Year: 2025, arXiv: 2507.06261\n   NOTE: arXiv ID 2507.06261 would be from July 2025. The bib says year 2025. Check if this arxiv ID is correct/exists.\n\n10. snell2017prototypical\n    Title: \"Prototypical Networks for Few-shot Learning\"\n    Authors: Snell, Jake and Swersky, Kevin and Zemel, Richard\n    Year: 2017, Venue: NeurIPS 2017\n\nSearch for each title using WebSearch and report your findings."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-26T10:24:41.175885+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T10:24:41.176049+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-26T10:24:41.176173+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Familiarity Better Evaluation Zero-Shot Named Entity Recognition Quantifying Label Shifts Synthetic Training Data Golde 2025 NAACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Familiarity Better Evaluation Zero-Shot Named Entity Recognition Quantifying Label Shifts Synthetic Training Data Golde 2025 NAACL"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-26T10:24:41.176314+00:00_
+
+Web search results for query: "Familiarity Better Evaluation Zero-Shot Named Entity Recognition Quantifying Label Shifts Synthetic Training Data Golde 2025 NAACL"
+
+Links: [{"title":"[2412.10121] Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data","url":"https://arxiv.org/abs/2412.10121"},{"title":"Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data - ACL Anthology","url":"https://aclanthology.org/2025.naacl-long.37/"},{"title":"Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data","url":"https://arxiv.org/html/2412.10121v1"},{"title":"GitHub - flairNLP/familiarity: Label shift estimation for transfer difficulty with Familiarity.","url":"https://github.com/flairNLP/familiarity"},{"title":"Accepted Papers - NAACL-HLT 2025","url":"https://2025.naacl.org/program/accepted_papers/"},{"title":"(PDF) Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data","url":"https://www.researchgate.net/publication/387078555_Familiarity_Better_Evaluation_of_Zero-Shot_Named_Entity_Recognition_by_Quantifying_Label_Shifts_in_Synthetic_Training_Data"},{"title":"Alan AKBIK | Professor | Doctor of Engineering | Humboldt-Universität zu Berlin, Berlin | HU Berlin | Department of Computer Science | Research profile","url":"https://www.researchgate.net/profile/Alan-Akbik-2"},{"title":"Alan Akbik - Professor of Machine Learning","url":"https://alanakbik.github.io/"}]
+
+I found the research paper you're looking for! Here's what the search revealed:
+
+"Familiarity" is a novel metric that captures both the semantic similarity between entity types in training and evaluation, as well as their frequency in the training data, to provide an estimate of label shift.
+
+The paper addresses a key issue: current research increasingly
+…[truncated 859 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-26T10:24:41.176462+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Cohen 1988 \"Statistical Power Analysis for the Behavioral Sciences\" second edition Lawrence Erlbaum"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Cohen 1988 \"Statistical Power Analysis for the Behavioral Sciences\" second edition Lawrence Erlbaum"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-26T10:24:41.176602+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Verify bib entries batch 2 (11-21)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct.\n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description\n- ⚠ key: [possible issue] description\n\nHere are the 11 entries to verify:\n\n11. muller2019when\n    Title: \"When Does Label Smoothing Help?\"\n    Authors: Müller, Rafael and Kornblith, Simon and Hinton, Geoffrey E.\n    Year: 2019, Venue: NeurIPS 2019\n\n12. peterson2019human\n    Title: \"Human Uncertainty Makes Classification More Robust\"\n    Authors: Peterson, Joshua C. and Battleday, Ruairidh M. and Griffiths, Thomas L. and Russakovsky, Olga\n    Year: 2019, Venue: ICCV 2019\n\n13. willard2023efficient\n    Title: \"Efficient Guided Generation for Large Language Models\"\n    Authors: Willard, Brandon T. and Louf, Rémi\n    Year: 2023, arXiv: 2307.09702\n\n14. llm-pee-2025\n    Title: \"Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction\"\n    Authors: Liu, Wenxuan and Li, Zixuan and Bai, Long and Zuo, Yuxin and Xu, Daozhu and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi\n    Year: 2025, Venue: EMNLP 2025, URL: https://aclanthology.org/2025.emnlp-main.1743/\n\n15. parse-2025\n    Title: \"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction\"\n    Authors: Shrimal, Anubhav and Jain, Aryan and Chowdhury, Soumyajit and Yenigalla, Promod\n    Year: 2025, Venue: EMNLP 2025 Industry Track\n\n16. crossagentie-2025\n    Title: \"CROSSAGENTIE: Cross-Type and Cross-Task Multi-Agent LLM Collaboration for Zero-Shot Information Extraction\"\n    Authors: Lu, Meng and Xie, Yuzhang and Bi, Zhenyu and Cao, Shuxiang and Wang, Xuan\n    Year: 2025, Venue: ACL 2025 Findings\n\n17. cmas-ner-2025\n    Title: \"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition\"\n    Authors: Wang, Zihan and Zhao, Ziqi and Lyu, Yougang and Chen, Zhumin and de Rijke, Maarten and Ren, Zhaochun\n    Year: 2025, Venue: WWW 2025, DOI: 10.1145/3696410.3714923\n\n18. uniner-2024\n    Title: \"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\"\n    Authors: Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung\n    Year: 2024, Venue: ICLR 2024, arxiv: 2308.03279\n\n19. gollie-2024\n    Title: \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\"\n    Authors: Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacalle, Oier and Rigau, German and Agirre, Eneko\n    Year: 2024, Venue: ICLR 2024, arxiv: 2310.03668\n\n20. gliner-2024\n    Title: \"GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer\"\n    Authors: Zaratiana, Urchade and Tomeh, Nadi and Holat, Pierre and Charnois, Thierry\n    Year: 2024, Venue: NAACL 2024, arxiv: 2311.08526\n\n21. gliner2-2025\n    Title: \"GLiNER2: Schema-Driven Multi-Task Learning for Structured Information Extraction\"\n    Authors: Zaratiana, Urchade and Pasternak, Gil and Boyd, Oliver and Hurn-Maloney, George and Lewis, Ash\n    Year: 2025, Venue: EMNLP 2025 System Demonstrations\n\nSearch for each title using WebSearch and report your findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify bib entries batch 2 (11-21)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct.\n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description\n- ⚠ key: [possible issue] description\n\nHere are the 11 entries to verify:\n\n11. muller2019when\n    Title: \"When Does Label Smoothing Help?\"\n    Authors: Müller, Rafael and Kornblith, Simon and Hinton, Geoffrey E.\n    Year: 2019, Venue: NeurIPS 2019\n\n12. peterson2019human\n    Title: \"Human Uncertainty Makes Classification More Robust\"\n    Authors: Peterson, Joshua C. and Battleday, Ruairidh M. and Griffiths, Thomas L. and Russakovsky, Olga\n    Year: 2019, Venue: ICCV 2019\n\n13. willard2023efficient\n    Title: \"Efficient Guided Generation for Large Language Models\"\n    Authors: Willard, Brandon T. and Louf, Rémi\n    Year: 2023, arXiv: 2307.09702\n\n14. llm-pee-2025\n    Title: \"Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction\"\n    Authors: Liu, Wenxuan and Li, Zixuan and Bai, Long and Zuo, Yuxin and Xu, Daozhu and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi\n    Year: 2025, Venue: EMNLP 2025, URL: https://aclanthology.org/2025.emnlp-main.1743/\n\n15. parse-2025\n    Title: \"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction\"\n    Authors: Shrimal, Anubhav and Jain, Aryan and Chowdhury, Soumyajit and Yenigalla, Promod\n    Year: 2025, Venue: EMNLP 2025 Industry Track\n\n16. crossagentie-2025\n    Title: \"CROSSAGENTIE: Cross-Type and Cross-Task Multi-Agent LLM Collaboration for Zero-Shot Information Extraction\"\n    Authors: Lu, Meng and Xie, Yuzhang and Bi, Zhenyu and Cao, Shuxiang and Wang, Xuan\n    Year: 2025, Venue: ACL 2025 Findings\n\n17. cmas-ner-2025\n    Title: \"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition\"\n    Authors: Wang, Zihan and Zhao, Ziqi and Lyu, Yougang and Chen, Zhumin and de Rijke, Maarten and Ren, Zhaochun\n    Year: 2025, Venue: WWW 2025, DOI: 10.1145/3696410.3714923\n\n18. uniner-2024\n    Title: \"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\"\n    Authors: Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung\n    Year: 2024, Venue: ICLR 2024, arxiv: 2308.03279\n\n19. gollie-2024\n    Title: \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\"\n    Authors: Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacalle, Oier and Rigau, German and Agirre, Eneko\n    Year: 2024, Venue: ICLR 2024, arxiv: 2310.03668\n\n20. gliner-2024\n    Title: \"GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer\"\n    Authors: Zaratiana, Urchade and Tomeh, Nadi and Holat, Pierre and Charnois, Thierry\n    Year: 2024, Venue: NAACL 2024, arxiv: 2311.08526\n\n21. gliner2-2025\n    Title: \"GLiNER2: Schema-Driven Multi-Task Learning for Structured Information Extraction\"\n    Authors: Zaratiana, Urchade and Pasternak, Gil and Boyd, Oliver and Hurn-Maloney, George and Lewis, Ash\n    Year: 2025, Venue: EMNLP 2025 System Demonstrations\n\nSearch for each title using WebSearch and report your findings."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T10:24:41.176865+00:00_
+
+Web search results for query: "Cohen 1988 "Statistical Power Analysis for the Behavioral Sciences" second edition Lawrence Erlbaum"
+
+Links: [{"title":"Statistical Power Analysis for the Behavioral Sciences - 2nd Edition -","url":"https://www.routledge.com/Statistical-Power-Analysis-for-the-Behavioral-Sciences/Cohen/p/book/9780805802832"},{"title":"Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences (2nd ed.). Routledge. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=3845582"},{"title":"Cohen, J. (1988). Statistical Power Analysis for the Behavioral Sciences (2nd ed.). Hillsdale, NJ Lawrence Erlbaum Associates, Publishers. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/ReferencesPapers?ReferenceID=2041144"},{"title":"Statistical Power Analysis for the Behavioral Sciences (2nd Edition): Cohen, Jacob: 9780805802832: Amazon.com: Books","url":"https://www.amazon.com/Statistical-Power-Analysis-Behavioral-Sciences/dp/0805802835"},{"title":"Statistical Power Analysis for the Behavioral Sciences (2nd Edition) - Cohen, Jacob: 9780805802832 - AbeBooks","url":"https://www.abebooks.com/9780805802832/Statistical-Power-Analysis-Behavioral-Sciences-0805802835/plp"},{"title":"Statistical Power Analysis for the Behavioral Sciences || - DOKUMEN.PUB","url":"https://dokumen.pub/statistical-power-analysis-for-the-behavioral-sciences.html"},{"title":"Statistical Power Analysis for the Behavioral Sciences 2nd edition | 9780805802832, 9781134742776 | VitalSource","url":"https://www.vitalsource.com/products/statistical-power-analysis-for-the-behavioral-jacob-cohen-v9781134742776"},{"title":"Cohen, J. (1988) Statistical Power Analysis for the Behavioral Sciences. 2nd Edition, Lawrence Erlbaum Associates, Hillsdale, New Jersey. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=3222582"},{"title":"Cohen, 
+…[truncated 1259 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-26T10:24:41.177071+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Ecological Fallacy in Annotation\" Orlikowski Röttger Cimiano Hovy ACL 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Ecological Fallacy in Annotation\" Orlikowski Röttger Cimiano Hovy ACL 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-26T10:24:41.177221+00:00_
+
+Web search results for query: ""Ecological Fallacy in Annotation" Orlikowski Röttger Cimiano Hovy ACL 2023"
+
+Links: [{"title":"The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics - ACL Anthology","url":"https://aclanthology.org/2023.acl-short.88/"},{"title":"The Ecological Fallacy in Annotation: Modelling Human ...","url":"https://aclanthology.org/2023.acl-short.88.pdf"},{"title":"[2306.11559] The Ecological Fallacy in Annotation: Modelling Human Label Variation goes beyond Sociodemographics","url":"https://arxiv.org/abs/2306.11559"},{"title":"(PDF) The Ecological Fallacy in Annotation: Modelling Human Label Variation goes beyond Sociodemographics","url":"https://www.researchgate.net/publication/371728925_The_Ecological_Fallacy_in_Annotation_Modelling_Human_Label_Variation_goes_beyond_Sociodemographics"},{"title":"The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics | Dirk Hovy","url":"https://www.dirkhovy.com/publication/2023-ecological-fallacy-annotation-modeling-human-label-variation-goes-beyond-sociodemographics/"},{"title":"Matthias Orlikowski - Research in Natural Language Processing and Computational Social Science","url":"https://hosting113534.a2f54.netcup.net/"},{"title":"The Ecological Fallacy in Annotation: Modelling Human Label Variation goes beyond Sociodemographics","url":"https://arxiv.org/html/2306.11559"},{"title":"Matthias Orlikowski - ACL Anthology","url":"https://aclanthology.org/people/matthias-orlikowski/"},{"title":"The Ecological Fallacy in Annotation: Modelling Human Label Variation goes beyond Sociodemographics | Article Information | J-GLOBAL","url":"https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202302218031854820"}]
+
+I found the paper you're looking for! Here are the details:
+
+"The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics" by Matthias Orlikowski, Paul Röttger, Philipp Cimiano, and Dirk Hovy wa
+…[truncated 1089 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-26T10:24:41.177372+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Baan 2023 \"Ecological Fallacy in Annotation\" ACL paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Baan 2023 \"Ecological Fallacy in Annotation\" ACL paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-26T10:24:41.177550+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-26T10:24:41.177751+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-26T10:24:41.177968+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Müller Kornblith Hinton \"When Does Label Smoothing Help?\" NeurIPS 2019"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Müller Kornblith Hinton \"When Does Label Smoothing Help?\" NeurIPS 2019"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-26T10:24:41.178182+00:00_
+
+Web search results for query: "Müller Kornblith Hinton "When Does Label Smoothing Help?" NeurIPS 2019"
+
+Links: [{"title":"[1906.02629] When Does Label Smoothing Help?","url":"https://arxiv.org/abs/1906.02629"},{"title":"When Does Label Smoothing Help?","url":"http://papers.neurips.cc/paper/8717-when-does-label-smoothing-help.pdf"},{"title":"[PDF] When Does Label Smoothing Help? | Semantic Scholar","url":"https://www.semanticscholar.org/paper/When-Does-Label-Smoothing-Help-M%C3%BCller-Kornblith/f8de25118af2abc4c48afb947d6ec298e05ef1e5"},{"title":"Rafael Müller, Simon Kornblith, Geoffrey Hinton When does label smoothing help?","url":"https://neurips.cc/media/neurips-2019/Slides/15717.pdf"},{"title":"When Does Label Smoothing Help?","url":"https://bibbase.org/network/publication/mller-kornblith-hinton-whendoeslabelsmoothinghelp-2019"},{"title":"When does label smoothing help?","url":"https://nips.cc/media/Slides/nips/2019/westballa+b(12-10-05)-12-10-30-15717-when_does_label.pdf"},{"title":"[Re] When Does Label Smoothing Help? · Issue #75 · ReScience/submissions","url":"https://github.com/ReScience/submissions/issues/75"},{"title":"When Does Label Smoothing Help? - ADS","url":"https://ui.adsabs.harvard.edu/abs/2019arXiv190602629M/abstract"},{"title":"When does label smoothing help?","url":"https://research.google/pubs/pub48740/"}]
+
+I found the paper you're looking for. Here are the key details:
+
+**Paper Title:** "When Does Label Smoothing Help?"
+
+**Authors:** Rafael Müller, Simon Kornblith, and Geoffrey E. Hinton
+
+**Conference:** Advances in Neural Information Processing Systems (NeurIPS), 2019
+
+**Main Findings:**
+
+The generalization and learning speed of a multi-class neural network can often be significantly improved by using soft targets that are a weighted average of the hard targets and the uniform distribution over labels. The paper shows empirically that in addition to improving generalization, label smoothing improves model calibration which can significantly im
+…[truncated 459 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-26T10:24:41.178420+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Peterson Battleday Griffiths Russakovsky \"Human Uncertainty Makes Classification More Robust\" ICCV 2019"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Peterson Battleday Griffiths Russakovsky \"Human Uncertainty Makes Classification More Robust\" ICCV 2019"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-26T10:24:41.178643+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Verify bib entries batch 3 (22-32)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct.\n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description\n- ⚠ key: [possible issue] description\n\nHere are the 11 entries to verify:\n\n22. iepile-2024\n    Title: \"IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus\"\n    Authors: Gui, Honghao and Yuan, Lin and Ye, Hongbin and Zhang, Ningyu and Sun, Mengshu and Liang, Lei and Chen, Huajun\n    Year: 2024, Venue: ACL 2024 Short Papers\n\n23. dror-2018-significance\n    Title: \"The Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing\"\n    Authors: Dror, Rotem and Baumer, Gili and Shlomov, Segev and Reichart, Roi\n    Year: 2018, Venue: ACL 2018\n\n24. lost-in-middle-2024\n    Title: \"Lost in the Middle: How Language Models Use Long Contexts\"\n    Authors: Liu, Nelson F. and Lin, Kevin and Hewitt, John and Paranjape, Ashwin and Bevilacqua, Michele and Petroni, Fabio and Liang, Percy\n    Year: 2024, Journal: TACL vol 12 pp 157-173, arxiv: 2307.03172\n\n25. shachar-2025-ner-retriever\n    Title: \"NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings\"\n    Authors: Shachar, Or and Katz, Uri and Goldberg, Yoav and Glickman, Oren\n    Year: 2025, Venue: EMNLP 2025 Findings\n\n26. llm4ie-survey-2024\n    Title: \"Large Language Models for Generative Information Extraction: A Survey\"\n    Authors: Xu, Derong and Chen, Wei and Peng, Wenjun and Zhang, Chao and Xu, Tong and Zhao, Xiangyu and Wu, Xian and Zheng, Yefeng and Wang, Yang and Chen, Enhong\n    Year: 2024, Journal: Frontiers of Computer Science vol 18 no 6, arxiv: 2312.17617\n\n27. knowcoder-2024\n    Title: \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\"\n    Authors: Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and Su, Miao and Guo, Yucan and Liu, Yantao and Li, Xiang and Hu, Zhilei and Bai, Long and Li, Wei and Liu, Yidan and Yang, Pan and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi\n    Year: 2024, Venue: ACL 2024, arxiv: 2403.07969\n\n28. slot-2025\n    Title: \"SLOT: Structuring the Output of Large Language Models\"\n    Authors: Shen, Zhengyuan and Wang, Darren Yow-Bang and Mishra, Soumya Smruti and Xu, Zhichao and Teng, Yifei and Ding, Haibo\n    Year: 2025, Venue: EMNLP 2025 Industry Track\n\n29. cai-isotropy-clusters-2021\n    Title: \"Isotropy in the Contextual Embedding Space: Clusters and Manifolds\"\n    Authors: Cai, Xingyu and Huang, Jiaji and Bian, Yuchen and Church, Kenneth\n    Year: 2021, Venue: ICLR 2021\n\n30. instructuie-2023\n    Title: \"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\"\n    Authors: Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang, Yuansen and Zheng, Rui and Ye, Junjie and Zhang, Qi and Gui, Tao and Kang, Jihua and Yang, Jingsheng and Li, Siyuan and Du, Chunsai\n    Year: 2023, arXiv: 2304.08085\n\n31. codeie-2023\n    Title: \"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\"\n    Authors: Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng\n    Year: 2023, Venue: ACL 2023\n\n32. adelie-2024\n    Title: \"ADELIE: Aligning Large Language Models on Information Extraction\"\n    Authors: Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juanzi\n    Year: 2024, Venue: EMNLP 2024\n\nSearch for each title using WebSearch and report your findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify bib entries batch 3 (22-32)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct.\n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description\n- ⚠ key: [possible issue] description\n\nHere are the 11 entries to verify:\n\n22. iepile-2024\n    Title: \"IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus\"\n    Authors: Gui, Honghao and Yuan, Lin and Ye, Hongbin and Zhang, Ningyu and Sun, Mengshu and Liang, Lei and Chen, Huajun\n    Year: 2024, Venue: ACL 2024 Short Papers\n\n23. dror-2018-significance\n    Title: \"The Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing\"\n    Authors: Dror, Rotem and Baumer, Gili and Shlomov, Segev and Reichart, Roi\n    Year: 2018, Venue: ACL 2018\n\n24. lost-in-middle-2024\n    Title: \"Lost in the Middle: How Language Models Use Long Contexts\"\n    Authors: Liu, Nelson F. and Lin, Kevin and Hewitt, John and Paranjape, Ashwin and Bevilacqua, Michele and Petroni, Fabio and Liang, Percy\n    Year: 2024, Journal: TACL vol 12 pp 157-173, arxiv: 2307.03172\n\n25. shachar-2025-ner-retriever\n    Title: \"NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings\"\n    Authors: Shachar, Or and Katz, Uri and Goldberg, Yoav and Glickman, Oren\n    Year: 2025, Venue: EMNLP 2025 Findings\n\n26. llm4ie-survey-2024\n    Title: \"Large Language Models for Generative Information Extraction: A Survey\"\n    Authors: Xu, Derong and Chen, Wei and Peng, Wenjun and Zhang, Chao and Xu, Tong and Zhao, Xiangyu and Wu, Xian and Zheng, Yefeng and Wang, Yang and Chen, Enhong\n    Year: 2024, Journal: Frontiers of Computer Science vol 18 no 6, arxiv: 2312.17617\n\n27. knowcoder-2024\n    Title: \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\"\n    Authors: Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and Su, Miao and Guo, Yucan and Liu, Yantao and Li, Xiang and Hu, Zhilei and Bai, Long and Li, Wei and Liu, Yidan and Yang, Pan and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi\n    Year: 2024, Venue: ACL 2024, arxiv: 2403.07969\n\n28. slot-2025\n    Title: \"SLOT: Structuring the Output of Large Language Models\"\n    Authors: Shen, Zhengyuan and Wang, Darren Yow-Bang and Mishra, Soumya Smruti and Xu, Zhichao and Teng, Yifei and Ding, Haibo\n    Year: 2025, Venue: EMNLP 2025 Industry Track\n\n29. cai-isotropy-clusters-2021\n    Title: \"Isotropy in the Contextual Embedding Space: Clusters and Manifolds\"\n    Authors: Cai, Xingyu and Huang, Jiaji and Bian, Yuchen and Church, Kenneth\n    Year: 2021, Venue: ICLR 2021\n\n30. instructuie-2023\n    Title: \"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\"\n    Authors: Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang, Yuansen and Zheng, Rui and Ye, Junjie and Zhang, Qi and Gui, Tao and Kang, Jihua and Yang, Jingsheng and Li, Siyuan and Du, Chunsai\n    Year: 2023, arXiv: 2304.08085\n\n31. codeie-2023\n    Title: \"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\"\n    Authors: Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng\n    Year: 2023, Venue: ACL 2023\n\n32. adelie-2024\n    Title: \"ADELIE: Aligning Large Language Models on Information Extraction\"\n    Authors: Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juanzi\n    Year: 2024, Venue: EMNLP 2024\n\nSearch for each title using WebSearch and report your findings."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-26T10:24:41.179075+00:00_
+
+Web search results for query: "Baan 2023 "Ecological Fallacy in Annotation" ACL paper"
+
+Links: [{"title":"The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics - ACL Anthology","url":"https://aclanthology.org/2023.acl-short.88/"},{"title":"The Ecological Fallacy in Annotation: Modelling Human ...","url":"https://aclanthology.org/2023.acl-short.88.pdf"},{"title":"[2306.11559] The Ecological Fallacy in Annotation: Modelling Human Label Variation goes beyond Sociodemographics","url":"https://arxiv.org/abs/2306.11559"},{"title":"The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics | Dirk Hovy","url":"https://www.dirkhovy.com/publication/2023-ecological-fallacy-annotation-modeling-human-label-variation-goes-beyond-sociodemographics/"},{"title":"The Ecological Fallacy in Annotation: Modelling Human Label Variation goes beyond Sociodemographics","url":"https://arxiv.org/html/2306.11559"},{"title":"What Is Ecological Fallacy? | Definition & Example","url":"https://www.scribbr.com/fallacies/ecological-fallacy/"},{"title":"(PDF) The Ecological Fallacy in Annotation: Modelling Human Label Variation goes beyond Sociodemographics","url":"https://www.researchgate.net/publication/371728925_The_Ecological_Fallacy_in_Annotation_Modelling_Human_Label_Variation_goes_beyond_Sociodemographics"}]
+
+I found the paper! Here are the search results:
+
+The paper is titled "The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics" and was published in the Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), pages 1017–1029, Toronto, Canada.
+
+However, I should note that the paper is authored by **Orlikowski et al.**, not "Baan." The authors are Matthias Orlikowski, Paul Röttger, Philipp Cimiano, and Dirk Hovy.
+
+The paper's main contribution is that it introduces group-specific layers to multi-annotator mod
+…[truncated 411 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-26T10:24:41.179329+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "GenIE Generative Information Extraction Josifoski De Cao Peyrard Petroni West NAACL 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "GenIE Generative Information Extraction Josifoski De Cao Peyrard Petroni West NAACL 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-26T10:24:41.179558+00:00_
+
+Web search results for query: "GenIE Generative Information Extraction Josifoski De Cao Peyrard Petroni West NAACL 2022"
+
+Links: [{"title":"GenIE: Generative Information Extraction - ACL Anthology","url":"https://aclanthology.org/2022.naacl-main.342/"},{"title":"[2112.08340] GenIE: Generative Information Extraction","url":"https://arxiv.org/abs/2112.08340"},{"title":"GitHub - epfl-dlab/GenIE: The autoregressive information extraction system GenIE (Generative Information Extraction) implemented in PyTorch. · GitHub","url":"https://github.com/epfl-dlab/GenIE"},{"title":"GenIE: Generative Information Extraction","url":"https://dlab.epfl.ch/people/west/pub/Josifoski-DeCao-Peyrard-Petroni-West_NAACL-22.pdf"},{"title":"GenIE: Generative Information Extraction","url":"https://infoscience.epfl.ch/entities/publication/ac96118e-64f4-4d05-8461-aa27321afaeb"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=GenIE:+Generative+information+extraction&amp=&author=Martin+Josifoski&amp=&author=Nicola+De+Cao&amp=&author=Maxime+Peyrard&amp=&author=Fabio+Petroni&amp=&author=Robert+West&amp=&publication_year=2022&amp=&pages=4626-4643&amp=&doi=10.18653/v1/2022.naacl-main.342"},{"title":"(PDF) GenIE: Generative Information Extraction","url":"https://www.researchgate.net/publication/362262820_GenIE_Generative_Information_Extraction"},{"title":"GenIE: Generative Information Extraction - ADS","url":"https://ui.adsabs.harvard.edu/abs/arXiv:2112.08340"},{"title":"Accepted Papers - NAACL-HLT 2022","url":"https://2022.naacl.org/program/accepted_papers/"}]
+
+I found comprehensive information about the GenIE paper. Here are the search results:
+
+**GenIE: Generative Information Extraction** is a paper by Martin Josifoski, Nicola De Cao, Maxime Peyrard, Fabio Petroni, and Robert West, presented at NAACL 2022. It was published in the Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologi
+…[truncated 963 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-26T10:24:41.179854+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Pairwise Confusion for Fine-Grained Visual Classification\" Dubey Gupta Guo Raskar Farrell Naik ECCV 2018"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Pairwise Confusion for Fine-Grained Visual Classification\" Dubey Gupta Guo Raskar Farrell Naik ECCV 2018"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-26T10:24:41.180125+00:00_
+
+Web search results for query: "Peterson Battleday Griffiths Russakovsky "Human Uncertainty Makes Classification More Robust" ICCV 2019"
+
+Links: [{"title":"Human Uncertainty Makes Classification More Robust","url":"https://openaccess.thecvf.com/content_ICCV_2019/papers/Peterson_Human_Uncertainty_Makes_Classification_More_Robust_ICCV_2019_paper.pdf"},{"title":"Human uncertainty makes classification more robust - Princeton University","url":"https://collaborate.princeton.edu/en/publications/human-uncertainty-makes-classification-more-robust/"},{"title":"Human uncertainty makes classification more robust","url":"https://gfx.cs.princeton.edu/pubs/Peterson_2019_HUM/index.php"},{"title":"[1908.07086] Human uncertainty makes classification more robust","url":"https://arxiv.org/abs/1908.07086"},{"title":"Human uncertainty makes classification more robust, ICCV 2019 Review | PPT","url":"https://www.slideshare.net/slideshow/human-uncertainty-makes-classification-more-robust-iccv-2019-review/177625925"},{"title":"[PDF] Human Uncertainty Makes Classification More Robust | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Human-Uncertainty-Makes-Classification-More-Robust-Peterson-Battleday/d2a2be6ce932a0f1939f31cfff4d64ea3d76723d"},{"title":"Human uncertainty makes classification more robust - ADS","url":"https://ui.adsabs.harvard.edu/abs/2019arXiv190807086P/abstract"},{"title":"Human Uncertainty Makes Classification More Robust | Request PDF","url":"https://www.researchgate.net/publication/335243909_Human_Uncertainty_Makes_Classification_More_Robust"},{"title":"Figure 3 from Human Uncertainty Makes Classification More Robust | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Human-Uncertainty-Makes-Classification-More-Robust-Peterson-Battleday/d2a2be6ce932a0f1939f31cfff4d64ea3d76723d/figure/4"},{"title":"GitHub - jcpeterson/cifar-10h: Original dataset release for CIFAR-10H · GitHub","url":"https://github.com/jcpeterson/cifar-10h"}]
+
+I found the paper 
+…[truncated 1222 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-26T10:24:41.180399+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Willard Louf \"Efficient Guided Generation for Large Language Models\" arXiv 2307.09702"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Willard Louf \"Efficient Guided Generation for Large Language Models\" arXiv 2307.09702"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-26T10:24:41.180636+00:00_
+
+Web search results for query: "Willard Louf "Efficient Guided Generation for Large Language Models" arXiv 2307.09702"
+
+Links: [{"title":"[2307.09702] Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/abs/2307.09702"},{"title":"Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/pdf/2307.09702"},{"title":"Paper page - Efficient Guided Generation for Large Language Models","url":"https://huggingface.co/papers/2307.09702"},{"title":"[PDF] Efficient Guided Generation for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Efficient-Guided-Generation-for-Large-Language-Willard-Louf/c4ceaef35bca063815f50d90a087acbd07a65478"},{"title":"Efficient Guided Generation for Large Language Models","url":"https://www.researchhub.com/paper/1278292/efficient-guided-generation-for-large-language-models"},{"title":"[2307.09702v3] Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/abs/2307.09702v3"},{"title":"Efficient Guided Generation for Large Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230709702W/abstract"},{"title":"[2307.09702v2] Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/abs/2307.09702v2"},{"title":"dblp: Efficient Guided Generation for Large Language Models.","url":"https://dblp.org/rec/journals/corr/abs-2307-09702.html"},{"title":"AI-Powered Paper Summarization about the arXiv paper 2307.09702v3","url":"https://www.summarizepaper.com/en/arxiv-id/2307.09702v3/"}]
+
+I found the paper you're looking for. Here are the key details:
+
+**Title:** Efficient Guided Generation for Large Language Models
+
+**Authors:** Brandon T. Willard and Rémi Louf
+
+**arXiv ID:** 2307.09702
+
+**Main Contribution:** The paper shows how neural text generation can be reformulated in terms of transitions between states of a finite-state machine, leading to an efficient approach to guiding text generation with regular expressio
+…[truncated 703 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-26T10:24:41.180903+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation\" EMNLP 2025 Liu Wenxuan"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation\" EMNLP 2025 Liu Wenxuan"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-26T10:24:41.181118+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-26T10:24:41.181319+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-26T10:24:41.181528+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "IEPile Unearthing Large Scale Schema-Conditioned Information Extraction Corpus ACL 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "IEPile Unearthing Large Scale Schema-Conditioned Information Extraction Corpus ACL 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-26T10:24:41.181748+00:00_
+
+Web search results for query: "IEPile Unearthing Large Scale Schema-Conditioned Information Extraction Corpus ACL 2024"
+
+Links: [{"title":"IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus - ACL Anthology","url":"https://aclanthology.org/2024.acl-short.13/"},{"title":"GitHub - zjunlp/IEPile: [ACL 2024] IEPile: A Large-Scale Information Extraction Corpus · GitHub","url":"https://github.com/zjunlp/IEPile"},{"title":"IEPILE: Unearthing Large-Scale Schema-Based ...","url":"https://aclanthology.org/2024.acl-short.13.pdf"},{"title":"[2402.14710] IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus","url":"https://arxiv.org/abs/2402.14710"},{"title":"IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus","url":"https://arxiv.org/html/2402.14710v1"},{"title":"IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus | Request PDF","url":"https://www.researchgate.net/publication/384216193_IEPile_Unearthing_Large_Scale_Schema-Conditioned_Information_Extraction_Corpus"},{"title":"IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/iepile-unearthing-large-scale-schema-based-information"},{"title":"LLMs for Knowledge Graph Construction and Reasoning: Recent Capabilities and Future Opportunities","url":"https://arxiv.org/html/2305.13168v4"}]
+
+Based on the search results, here's what I found about the IEPile paper:
+
+## Overview
+IEPile is a comprehensive bilingual (English and Chinese) IE instruction corpus, which contains approximately 0.32B tokens.
+
+## Construction
+The authors construct IEPile by collecting and cleaning 33 existing IE datasets, and introduce schema-based instruction generation to unearth a large-scale corpus. The dataset integrates a total of 26 English IE datasets and 7 Chinese IE datasets.
+
+## Purpose and Results
+IEPile is designed to enhance the adaptability and processing c
+…[truncated 699 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-26T10:24:41.182041+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Verify bib entries batch 4 (33-43)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct.\n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description\n- ⚠ key: [possible issue] description\n\nHere are the 11 entries to verify:\n\n33. oneke-2025\n    Title: \"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System\"\n    Authors: Luo, Yujie and Ru, Xiangyuan and Liu, Kangwei and Yuan, Lin and Sun, Mengshu and Zhang, Ningyu and Liang, Lei and Zhang, Zhiqiang and Zhou, Jun and Wei, Lanning and Zheng, Da and Wang, Haofen and Chen, Huajun\n    Year: 2025, Venue: WWW Companion 2025, arxiv: 2412.20005\n\n34. fewnerd-2021\n    Title: \"Few-NERD: A Few-shot Named Entity Recognition Dataset\"\n    Authors: Ding, Ning and Xu, Guangwei and Chen, Yulin and Wang, Xiaobin and Han, Xu and Xie, Pengjun and Zheng, Haitao and Liu, Zhiyuan\n    Year: 2021, Venue: ACL 2021\n\n35. fewrel-2018\n    Title: \"FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation\"\n    Authors: Han, Xu and Zhu, Hao and Yu, Pengfei and Wang, Ziyun and Yao, Yuan and Liu, Zhiyuan and Sun, Maosong\n    Year: 2018, Venue: EMNLP 2018\n\n36. maven-2020\n    Title: \"MAVEN: A Massive General Domain Event Detection Dataset\"\n    Authors: Wang, Xiaozhi and Wang, Ziqi and Han, Xu and Jiang, Wangyi and Han, Rong and Liu, Zhiyuan and Li, Juanzi and Li, Peng and Lin, Yankai and Zhou, Jie\n    Year: 2020, Venue: EMNLP 2020\n\n37. docred-2019\n    Title: \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\"\n    Authors: Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zhenghao and Liu, Zhiyuan and Huang, Lixin and Zhou, Jie and Sun, Maosong\n    Year: 2019, Venue: ACL 2019\n\n38. qwen3-2025\n    Title: \"Qwen3 Technical Report\"\n    Author: Qwen Team\n    Year: 2025, arXiv: 2505.09388\n\n39. llama3-2024\n    Title: \"The Llama 3 Herd of Models\"\n    Authors: Grattafiori, Aaron and Dubey, Abhimanyu and others (only first few listed)\n    Year: 2024, arXiv: 2407.21783\n\n40. sentence-bert-2019\n    Title: \"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks\"\n    Authors: Reimers, Nils and Gurevych, Iryna\n    Year: 2019, Venue: EMNLP 2019\n\n41. minilm-2020\n    Title: \"MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers\"\n    Authors: Wang, Wenhui and Wei, Furu and Dong, Li and Bao, Hangbo and Yang, Nan and Zhou, Ming\n    Year: 2020, Venue: NeurIPS 2020, arxiv: 2002.10957\n\n42. reflect-learn-2026\n    Title: \"Reflect then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion\"\n    Authors: Zhao, Dong and Wang, Yadong and Chen, Xiang and Wang, Chenxi and Dai, Hongliang and Geng, Chuanxing and Zhang, Shengzhong and Li, Shaoyuan and Huang, Sheng-Jun\n    Year: 2026, Venue: AAAI 2026 (vol 40, pp 34923-34931), arxiv: 2508.10036\n    NOTE: arxiv ID 2508.10036 means August 2025 preprint. AAAI 2026 would be correct if it was presented in 2026. Check if this paper exists.\n\n43. sclar-sensitivity-2024\n    Title: \"Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design, or: How I learned to start worrying about prompt formatting\"\n    Authors: Sclar, Melanie and Choi, Yejin and Tsvetkov, Yulia and Suhr, Alane\n    Year: 2024, Venue: ICLR 2024, arxiv: 2310.11324\n\nSearch for each title using WebSearch and report your findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify bib entries batch 4 (33-43)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct.\n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description\n- ⚠ key: [possible issue] description\n\nHere are the 11 entries to verify:\n\n33. oneke-2025\n    Title: \"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System\"\n    Authors: Luo, Yujie and Ru, Xiangyuan and Liu, Kangwei and Yuan, Lin and Sun, Mengshu and Zhang, Ningyu and Liang, Lei and Zhang, Zhiqiang and Zhou, Jun and Wei, Lanning and Zheng, Da and Wang, Haofen and Chen, Huajun\n    Year: 2025, Venue: WWW Companion 2025, arxiv: 2412.20005\n\n34. fewnerd-2021\n    Title: \"Few-NERD: A Few-shot Named Entity Recognition Dataset\"\n    Authors: Ding, Ning and Xu, Guangwei and Chen, Yulin and Wang, Xiaobin and Han, Xu and Xie, Pengjun and Zheng, Haitao and Liu, Zhiyuan\n    Year: 2021, Venue: ACL 2021\n\n35. fewrel-2018\n    Title: \"FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation\"\n    Authors: Han, Xu and Zhu, Hao and Yu, Pengfei and Wang, Ziyun and Yao, Yuan and Liu, Zhiyuan and Sun, Maosong\n    Year: 2018, Venue: EMNLP 2018\n\n36. maven-2020\n    Title: \"MAVEN: A Massive General Domain Event Detection Dataset\"\n    Authors: Wang, Xiaozhi and Wang, Ziqi and Han, Xu and Jiang, Wangyi and Han, Rong and Liu, Zhiyuan and Li, Juanzi and Li, Peng and Lin, Yankai and Zhou, Jie\n    Year: 2020, Venue: EMNLP 2020\n\n37. docred-2019\n    Title: \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\"\n    Authors: Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zhenghao and Liu, Zhiyuan and Huang, Lixin and Zhou, Jie and Sun, Maosong\n    Year: 2019, Venue: ACL 2019\n\n38. qwen3-2025\n    Title: \"Qwen3 Technical Report\"\n    Author: Qwen Team\n    Year: 2025, arXiv: 2505.09388\n\n39. llama3-2024\n    Title: \"The Llama 3 Herd of Models\"\n    Authors: Grattafiori, Aaron and Dubey, Abhimanyu and others (only first few listed)\n    Year: 2024, arXiv: 2407.21783\n\n40. sentence-bert-2019\n    Title: \"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks\"\n    Authors: Reimers, Nils and Gurevych, Iryna\n    Year: 2019, Venue: EMNLP 2019\n\n41. minilm-2020\n    Title: \"MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers\"\n    Authors: Wang, Wenhui and Wei, Furu and Dong, Li and Bao, Hangbo and Yang, Nan and Zhou, Ming\n    Year: 2020, Venue: NeurIPS 2020, arxiv: 2002.10957\n\n42. reflect-learn-2026\n    Title: \"Reflect then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion\"\n    Authors: Zhao, Dong and Wang, Yadong and Chen, Xiang and Wang, Chenxi and Dai, Hongliang and Geng, Chuanxing and Zhang, Shengzhong and Li, Shaoyuan and Huang, Sheng-Jun\n    Year: 2026, Venue: AAAI 2026 (vol 40, pp 34923-34931), arxiv: 2508.10036\n    NOTE: arxiv ID 2508.10036 means August 2025 preprint. AAAI 2026 would be correct if it was presented in 2026. Check if this paper exists.\n\n43. sclar-sensitivity-2024\n    Title: \"Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design, or: How I learned to start worrying about prompt formatting\"\n    Authors: Sclar, Melanie and Choi, Yejin and Tsvetkov, Yulia and Suhr, Alane\n    Year: 2024, Venue: ICLR 2024, arxiv: 2310.11324\n\nSearch for each title using WebSearch and report your findings."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-26T10:24:41.182392+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Dror \"Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing\" ACL 2018"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Dror \"Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing\" ACL 2018"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-26T10:24:41.182713+00:00_
+
+Web search results for query: ""Pairwise Confusion for Fine-Grained Visual Classification" Dubey Gupta Guo Raskar Farrell Naik ECCV 2018"
+
+Links: [{"title":"Pairwise Confusion for Fine-Grained Visual Classification","url":"https://openaccess.thecvf.com/content_ECCV_2018/papers/Abhimanyu_Dubey_Improving_Fine-Grained_Visual_ECCV_2018_paper.pdf"},{"title":"GitHub - abhimanyudubey/confusion: Code for the ECCV 2018 paper \"Pairwise Confusion for Fine-Grained Visual Classification\" · GitHub","url":"https://github.com/abhimanyudubey/confusion"},{"title":"[1705.08016] Pairwise Confusion for Fine-Grained Visual Classification","url":"https://arxiv.org/abs/1705.08016"},{"title":"Pairwise Confusion for Fine-Grained Visual Classification | SpringerLink","url":"https://link.springer.com/chapter/10.1007/978-3-030-01258-8_5"},{"title":"dblp: Pairwise Confusion for Fine-Grained Visual Classification.","url":"https://dblp.org/rec/conf/eccv/DubeyGGRFN18.html"},{"title":"Pairwise Confusion for Fine-Grained Visual Classiﬁcation","url":"https://arxiv.org/pdf/1705.08016"},{"title":"[PDF] Pairwise Confusion for Fine-Grained Visual Classification | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Pairwise-Confusion-for-Fine-Grained-Visual-Dubey-Gupta/20cc4bfdb648fd7947c71252589fc867d4d16933"},{"title":"(PDF) Training with Confusion for Fine-Grained Visual Classification","url":"https://www.researchgate.net/publication/317087888_Training_with_Confusion_for_Fine-Grained_Visual_Classification"},{"title":"Fine-Grained Visual Classification via Progressive Multi-granularity Training of Jigsaw Patches | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-030-58565-5_10"},{"title":"A few-shot fine-grained image classification method leveraging global and local structures | International Journal of Machine Learning and Cybernetics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s13042-022-01522-w"}]
+
+I've found the research paper you
+…[truncated 1037 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-26T10:24:41.182993+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Correlated Input-Dependent Label Noise in Large-Scale Image Classification\" Collier Mustafa Kokiopoulou Jenatton Berent CVPR 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Correlated Input-Dependent Label Noise in Large-Scale Image Classification\" Collier Mustafa Kokiopoulou Jenatton Berent CVPR 2021"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-26T10:24:41.183235+00:00_
+
+Web search results for query: ""Correlated Input-Dependent Label Noise in Large-Scale Image Classification" Collier Mustafa Kokiopoulou Jenatton Berent CVPR 2021"
+
+Links: [{"title":"[2105.10305] Correlated Input-Dependent Label Noise in Large-Scale Image Classification","url":"https://arxiv.org/abs/2105.10305"},{"title":"Related Material - CVPR 2021 Open Access Repository","url":"https://openaccess.thecvf.com/content/CVPR2021/html/Collier_Correlated_Input-Dependent_Label_Noise_in_Large-Scale_Image_Classification_CVPR_2021_paper.html"},{"title":"Correlated Input-Dependent Label Noise in Large-Scale Image Classification","url":"https://research.google/pubs/correlated-input-dependent-label-noise-in-large-scale-image-classification/"},{"title":"Correlated Input-Dependent Label Noise in Large-Scale Image Classiﬁcation","url":"https://openaccess.thecvf.com/content/CVPR2021/papers/Collier_Correlated_Input-Dependent_Label_Noise_in_Large-Scale_Image_Classification_CVPR_2021_paper.pdf"},{"title":"Correlated Input-Dependent Label Noise in Large-Scale Image Classification - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv210510305C/abstract"},{"title":"[PDF] Correlated Input-Dependent Label Noise in Large-Scale Image Classification | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Correlated-Input-Dependent-Label-Noise-in-Image-Collier-Mustafa/6ac8e0915df41692bdceef7f18bc1c50271630fc"},{"title":"Correlated Input-Dependent Label Noise in Large-Scale Image Classification | Request PDF","url":"https://www.researchgate.net/publication/355866332_Correlated_Input-Dependent_Label_Noise_in_Large-Scale_Image_Classification"},{"title":"Correlated Input-Dependent Label Noise in Large-Scale Image Classification - researchr publication","url":"https://researchr.org/publication/CollierMKJB21"},{"title":"[2105.10305] Correlated Input-Dependent Label Noise in Large-Scale Image Classification","url":"https://arxiv-export-lb.library.cornell.edu/abs/2105.10305?context=cs"},{
+…[truncated 1503 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-26T10:24:41.183505+00:00_
+
+Web search results for query: ""Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation" EMNLP 2025 Liu Wenxuan"
+
+Links: [{"title":"Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1743/"},{"title":"[2503.02628] Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction","url":"https://arxiv.org/abs/2503.02628"},{"title":"Towards Event Extraction with Massive Types: LLM-based ...","url":"https://aclanthology.org/2025.emnlp-main.1743.pdf"},{"title":"Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction","url":"https://arxiv.org/html/2503.02628v1"},{"title":"[2503.02628] Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction - Academus scientific article reader","url":"https://academ.us/article/2503.02628/"},{"title":"Daozhu Xu - ACL Anthology","url":"https://aclanthology.org/people/daozhu-xu/"},{"title":"Towards Event Extraction with Massive Types: LLM-based Collaborative","url":"https://arxiv.org/pdf/2503.02628"}]
+
+I found the paper you're looking for. Here are the key details:
+
+**Paper Title:** Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction
+
+**Authors:** Wenxuan Liu, Zixuan Li, Long Bai, Yuxin Zuo, Daozhu Xu, Xiaolong Jin, Jiafeng Guo, and Xueqi Cheng
+
+**Conference:** Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pages 34377–34399, Suzhou, China
+
+**Overview:** The paper addresses the challenge of developing a general-purpose extraction system that can extract events with massive types in Event Extraction. 
+
+**Main Approach:** The authors propose a collaborative annotation method based on Large Language Models (LLMs), which first refines annotations of trigger words 
+…[truncated 532 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-26T10:24:41.183765+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction\" EMNLP 2025 Shrimal Jain"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction\" EMNLP 2025 Shrimal Jain"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-26T10:24:41.184014+00:00_
+
+Web search results for query: ""PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction" EMNLP 2025 Shrimal Jain"
+
+Links: [{"title":"[2510.08623] PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/abs/2510.08623"},{"title":"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/html/2510.08623v1"},{"title":"PARSE: LLM driven schema optimization for reliable entity extraction - Amazon Science","url":"https://www.amazon.science/publications/parse-llm-driven-schema-optimization-for-reliable-entity-extraction"},{"title":"PARSE: LLM Driven Schema Optimization for Reliable ...","url":"https://aclanthology.org/2025.emnlp-industry.184.pdf"},{"title":"(PDF) PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://www.researchgate.net/publication/396458126_PARSE_LLM_Driven_Schema_Optimization_for_Reliable_Entity_Extraction"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=13775&show=25"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=3600&show=250"}]
+
+I found the paper! Here's what I discovered about "PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction":
+
+## Paper Details
+
+The paper by Anubhav Shrimal, Aryan Jain, Soumyajit Chowdhury, and Promod Yenigalla was accepted to the EMNLP 2025 Industry Track.
+
+## Overview
+
+Structured information extraction from unstructured text is critical for emerging Software 3.0 systems where LLM agents autonomously interact with APIs and tools. 
+
+## Framework Components
+
+The PARSE system takes an unoptimized schema and input text, processes it through ARCHITECT for schema refinement and SCOPE for extraction, producing accurate structured output. JSON schemas are recognized as a form of natural language understanding contract that encodes rules, relationships, and expectations about data structure contracts that LLMs should be abl
+…[truncated 337 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-26T10:24:41.184268+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"CROSSAGENTIE\" \"Cross-Type and Cross-Task Multi-Agent\" \"Zero-Shot Information Extraction\" ACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"CROSSAGENTIE\" \"Cross-Type and Cross-Task Multi-Agent\" \"Zero-Shot Information Extraction\" ACL 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-26T10:24:41.184506+00:00_
+
+Web search results for query: "Dror "Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing" ACL 2018"
+
+Links: [{"title":"The Hitchhiker’s Guide to Testing Statistical Significance in Natural Language Processing - ACL Anthology","url":"https://aclanthology.org/P18-1128/"},{"title":"ACL 2018: The Hitchhiker’s Guide to Testing Statistical Significance in Natural Language Processing","url":"https://acl2018.org/paper/703/"},{"title":"[PDF] The Hitchhiker’s Guide to Testing Statistical Significance in Natural Language Processing | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-Hitchhiker%E2%80%99s-Guide-to-Testing-Statistical-in-Dror-Baumer/d10df96b3fb0ab5c6b1d0cc22c7400d0acccc3cc"},{"title":"Recommended Statistical Significance Tests for NLP Tasks","url":"https://arxiv.org/pdf/1809.01448"},{"title":"[Quick Review] The Hitchhiker’s Guide to Testing Statistical Significance in Natural Language Processing","url":"https://liner.com/review/hitchhikers-guide-to-testing-statistical-significance-in-natural-language-processing"},{"title":"(PDF) The Hitchhiker’s Guide to Testing Statistical Significance in Natural Language Processing","url":"https://www.researchgate.net/publication/327034173_The_Hitchhiker's_Guide_to_Testing_Statistical_Significance_in_Natural_Language_Processing"},{"title":"The Hitchhiker’s Guide to Testing Statistical Significance in Natural Language Processing | BibSonomy","url":"https://www.bibsonomy.org/bibtex/24d35b165e7566906bf48fa548bedf68c/schwemmlein"},{"title":"The Hitchhiker’s Guide to Testing Statistical Significance in Natural Language Processing | by Anjali Bhavan | Medium","url":"https://selfassuredpaperreads.medium.com/the-hitchhikers-guide-to-testing-statistical-significance-in-natural-language-processing-d8d96b0673ac"}]
+
+I found the paper you're looking for. Here are the details:
+
+"The Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing" was published by Rotem 
+…[truncated 950 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-26T10:24:41.184754+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Liu \"Lost in the Middle: How Language Models Use Long Contexts\" TACL 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Liu \"Lost in the Middle: How Language Models Use Long Contexts\" TACL 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-26T10:24:41.185026+00:00_
+
+Web search results for query: "Liu "Lost in the Middle: How Language Models Use Long Contexts" TACL 2024"
+
+Links: [{"title":"Lost in the Middle: How Language Models Use Long Contexts | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00638/119630/Lost-in-the-Middle-How-Language-Models-Use-Long"},{"title":"Lost in the Middle: How Language Models Use Long Contexts - ACL Anthology","url":"https://aclanthology.org/2024.tacl-1.9/"},{"title":"[2307.03172] Lost in the Middle: How Language Models Use Long Contexts","url":"https://arxiv.org/abs/2307.03172"},{"title":"(PDF) Lost in the Middle: How Language Models Use Long Contexts","url":"https://www.researchgate.net/publication/378284067_Lost_in_the_Middle_How_Language_Models_Use_Long_Contexts"},{"title":"Lost in the Middle: How Language Models Use Long Contexts - researchr publication","url":"https://researchr.org/publication/LiuLHPBPL24"},{"title":"Lost in the Middle: How Language Models Use Long Contexts Nelson F. Liu1∗","url":"https://aclanthology.org/2024.tacl-1.9.pdf"},{"title":"Lost in the Middle: How Language Models Use Long Contexts | Transactions of the Association for Computational Linguistics","url":"https://transacl.org/index.php/tacl/article/view/5757"},{"title":"[PDF] Lost in the Middle: How Language Models Use Long Contexts | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Lost-in-the-Middle:-How-Language-Models-Use-Long-Liu-Lin/1733eb7792f7a43dd21f51f4d1017a1bffd217b5"},{"title":"Stanford","url":"https://cs.stanford.edu/~nfliu/papers/lost-in-the-middle.tacl2023.bib"}]
+
+I found the paper! Here are the key details:
+
+**Paper Information:**
+The paper "Lost in the Middle: How Language Models Use Long Contexts" is by Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua, Fabio Petroni, and Percy Liang, published in Transactions of the Association for Computational Linguistics 2024, volume 12
+…[truncated 834 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-26T10:24:41.185285+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Shachar \"NER Retriever Zero-Shot Named Entity Retrieval Type-Aware Embeddings\" EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Shachar \"NER Retriever Zero-Shot Named Entity Retrieval Type-Aware Embeddings\" EMNLP 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-26T10:24:41.185504+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-26T10:24:41.185709+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-26T10:24:41.185941+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "OneKE Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System arxiv 2412.20005"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "OneKE Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System arxiv 2412.20005"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-26T10:24:41.186169+00:00_
+
+Web search results for query: "OneKE Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System arxiv 2412.20005"
+
+Links: [{"title":"[2412.20005] OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System","url":"https://arxiv.org/abs/2412.20005"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System","url":"https://arxiv.org/pdf/2412.20005"},{"title":"Paper page - OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System","url":"https://huggingface.co/papers/2412.20005"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv241220005L/abstract"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System","url":"https://www.researchgate.net/publication/387539869_OneKE_A_Dockerized_Schema-Guided_LLM_Agent-based_Knowledge_Extraction_System"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System | alphaXiv","url":"https://www.alphaxiv.org/abs/2412.20005"},{"title":"\"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System\"","url":"https://www.rohan-paul.com/p/oneke-a-dockerized-schema-guided"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/oneke-dockerized-schema-guided-llm-agent-based"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System | PromptLayer","url":"https://www.promptlayer.com/research-papers/unlocking-knowledge-how-oneke-extracts-insights-from-pdfs-web-pages"},{"title":"Daily Paper Cast | OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System","url":"https://dailypapercast.transistor.fm/episodes/oneke-a-dockerized-schema-guided-llm-agent-based-knowledge-extraction-system"}]
+
+I found information about the paper you're searching for.
+…[truncated 1427 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-26T10:24:41.186417+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Few-NERD Few-shot Named Entity Recognition Dataset Ding Ning ACL 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Few-NERD Few-shot Named Entity Recognition Dataset Ding Ning ACL 2021"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-26T10:24:41.186675+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Verify bib entries batch 5 (44-53)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct.\n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description\n- ⚠ key: [possible issue] description\n\nHere are the 10 entries to verify:\n\n44. vllm-2023\n    Title: \"Efficient Memory Management for Large Language Model Serving with PagedAttention\"\n    Authors: Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianmin and Yu, Cody Hao and Gonzalez, Joseph E. and Zhang, Hao and Stoica, Ion\n    Year: 2023, Venue: SOSP 2023 (29th Symposium on Operating Systems Principles)\n\n45. xie-zeroshot-ner-2023\n    Title: \"Empirical Study of Zero-Shot NER with ChatGPT\"\n    Authors: Xie, Tingyu and Li, Qi and Zhang, Jian and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei\n    Year: 2023, Venue: EMNLP 2023\n\n46. wadhwa-re-llm-2023\n    Title: \"Revisiting Relation Extraction in the era of Large Language Models\"\n    Authors: Wadhwa, Somin and Amir, Silvio and Wallace, Byron C.\n    Year: 2023, Venue: ACL 2023\n\n47. relationprompt-2022\n    Title: \"RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction\"\n    Authors: Chia, Yew Ken and Bing, Lidong and Poria, Soujanya and Si, Luo\n    Year: 2022, Venue: ACL 2022 Findings\n\n48. promptner-2023\n    Title: \"PromptNER: Prompting For Named Entity Recognition\"\n    Authors: Ashok, Dhananjay and Lipton, Zachary C.\n    Year: 2023, arXiv: 2305.15444\n\n49. json-schema-bench-2025\n    Title: \"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\"\n    Authors: Geng, Saibo and Cooper, Hudson and Moskal, Michał and Jenkins, Samuel and Berman, Julian and Ranchin, Nathan and West, Robert and Horvitz, Eric and Nori, Harsha\n    Year: 2025, arXiv: 2501.10868\n\n50. rastogi2020towards\n    Title: \"Towards Scalable Multi-Domain Conversational Agents: The Schema-Guided Dialogue Dataset\"\n    Authors: Rastogi, Abhinav and Zang, Xiaoxue and Sunkara, Srinivas and Gupta, Raghav and Khaitan, Pranav\n    Year: 2020, Venue: AAAI 2020, arxiv: 1909.05855\n\n51. li2023evaluating\n    Title: \"Evaluating ChatGPT's Information Extraction Capabilities: An Assessment of Performance, Explainability, Calibration, and Faithfulness\"\n    Authors: Li, Bo and Fang, Gexiang and Yang, Yang and Wang, Quansen and Ye, Wei and Zhao, Wen and Zhang, Shikun\n    Year: 2023, arXiv: 2304.11633\n\n52. lee2022sgd\n    Title: \"SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems\"\n    Authors: Lee, Harrison and Gupta, Raghav and Rastogi, Abhinav and Cao, Yuan and Zhang, Bin and Wu, Yonghui\n    Year: 2022, Venue: AAAI 2022, arxiv: 2110.06800\n\n53. haystack-to-needle-2025\n    Title: \"From Haystack to Needle: Label Space Reduction for Zero-shot Classification\"\n    Authors: Vandemoortele, Nathan and Steenwinckel, Bram and Ongenae, Femke and Van Hoecke, Sofie\n    Year: 2025, arXiv: 2502.08436\n\nSearch for each title using WebSearch and report your findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify bib entries batch 5 (44-53)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct.\n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description\n- ⚠ key: [possible issue] description\n\nHere are the 10 entries to verify:\n\n44. vllm-2023\n    Title: \"Efficient Memory Management for Large Language Model Serving with PagedAttention\"\n    Authors: Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianmin and Yu, Cody Hao and Gonzalez, Joseph E. and Zhang, Hao and Stoica, Ion\n    Year: 2023, Venue: SOSP 2023 (29th Symposium on Operating Systems Principles)\n\n45. xie-zeroshot-ner-2023\n    Title: \"Empirical Study of Zero-Shot NER with ChatGPT\"\n    Authors: Xie, Tingyu and Li, Qi and Zhang, Jian and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei\n    Year: 2023, Venue: EMNLP 2023\n\n46. wadhwa-re-llm-2023\n    Title: \"Revisiting Relation Extraction in the era of Large Language Models\"\n    Authors: Wadhwa, Somin and Amir, Silvio and Wallace, Byron C.\n    Year: 2023, Venue: ACL 2023\n\n47. relationprompt-2022\n    Title: \"RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction\"\n    Authors: Chia, Yew Ken and Bing, Lidong and Poria, Soujanya and Si, Luo\n    Year: 2022, Venue: ACL 2022 Findings\n\n48. promptner-2023\n    Title: \"PromptNER: Prompting For Named Entity Recognition\"\n    Authors: Ashok, Dhananjay and Lipton, Zachary C.\n    Year: 2023, arXiv: 2305.15444\n\n49. json-schema-bench-2025\n    Title: \"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\"\n    Authors: Geng, Saibo and Cooper, Hudson and Moskal, Michał and Jenkins, Samuel and Berman, Julian and Ranchin, Nathan and West, Robert and Horvitz, Eric and Nori, Harsha\n    Year: 2025, arXiv: 2501.10868\n\n50. rastogi2020towards\n    Title: \"Towards Scalable Multi-Domain Conversational Agents: The Schema-Guided Dialogue Dataset\"\n    Authors: Rastogi, Abhinav and Zang, Xiaoxue and Sunkara, Srinivas and Gupta, Raghav and Khaitan, Pranav\n    Year: 2020, Venue: AAAI 2020, arxiv: 1909.05855\n\n51. li2023evaluating\n    Title: \"Evaluating ChatGPT's Information Extraction Capabilities: An Assessment of Performance, Explainability, Calibration, and Faithfulness\"\n    Authors: Li, Bo and Fang, Gexiang and Yang, Yang and Wang, Quansen and Ye, Wei and Zhao, Wen and Zhang, Shikun\n    Year: 2023, arXiv: 2304.11633\n\n52. lee2022sgd\n    Title: \"SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems\"\n    Authors: Lee, Harrison and Gupta, Raghav and Rastogi, Abhinav and Cao, Yuan and Zhang, Bin and Wu, Yonghui\n    Year: 2022, Venue: AAAI 2022, arxiv: 2110.06800\n\n53. haystack-to-needle-2025\n    Title: \"From Haystack to Needle: Label Space Reduction for Zero-shot Classification\"\n    Authors: Vandemoortele, Nathan and Steenwinckel, Bram and Ongenae, Femke and Van Hoecke, Sofie\n    Year: 2025, arXiv: 2502.08436\n\nSearch for each title using WebSearch and report your findings."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-26T10:24:41.187158+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach\" Yin Hay Roth EMNLP 2019"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach\" Yin Hay Roth EMNLP 2019"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-26T10:24:41.187419+00:00_
+
+Web search results for query: ""Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach" Yin Hay Roth EMNLP 2019"
+
+Links: [{"title":"Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach - ACL Anthology","url":"https://aclanthology.org/D19-1404/"},{"title":"[1909.00161] Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach","url":"https://arxiv.org/abs/1909.00161"},{"title":"Benchmarking Zero-shot Text Classification: Datasets ...","url":"https://cogcomp.seas.upenn.edu/papers/YinHaRo19.pdf"},{"title":"Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach | Request PDF","url":"https://www.researchgate.net/publication/335599580_Benchmarking_Zero-shot_Text_Classification_Datasets_Evaluation_and_Entailment_Approach"},{"title":"GitHub - yinwenpeng/BenchmarkingZeroShot · GitHub","url":"https://github.com/yinwenpeng/BenchmarkingZeroShot"},{"title":"[PDF] Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Benchmarking-Zero-shot-Text-Classification:-and-Yin-Hay/093d9253a2fe765ca6577b091d3f99bab3155a7d"},{"title":"GitHub - CogComp/Benchmarking-Zero-shot-Text-Classification: Code for EMNLP2019 paper : \"Benchmarking zero-shot text classification: datasets, evaluation and entailment approach\" · GitHub","url":"https://github.com/CogComp/Benchmarking-Zero-shot-Text-Classification"},{"title":"[Quick Review] Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach","url":"https://liner.com/review/benchmarking-zeroshot-text-classification-datasets-evaluation-and-entailment-approach"},{"title":"Google Académico","url":"https://scholar.google.com/scholar?q=Wenpeng+Yin,+Jamaal+Hay,+and+Dan+Roth.+2019.+Benchmarking+Zero-shot+Text+Classification:+Datasets,+Evaluation+and+Entailment+Approach.+In+EMNLP."}]
+
+I found the p
+…[truncated 1217 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-26T10:24:41.187673+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Schuirmann 1987 \"Two One-Sided Tests Procedure\" \"Power Approach\" equivalence bioavailability Journal of Pharmacokinetics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Schuirmann 1987 \"Two One-Sided Tests Procedure\" \"Power Approach\" equivalence bioavailability Journal of Pharmacokinetics"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-26T10:24:41.187931+00:00_
+
+Web search results for query: ""CROSSAGENTIE" "Cross-Type and Cross-Task Multi-Agent" "Zero-Shot Information Extraction" ACL 2025"
+
+Links: [{"title":"CROSSAGENTIE: Cross-Type and Cross-Task Multi-Agent LLM Collaboration for Zero-Shot Information Extraction - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.718/"},{"title":"CROSSAGENTIE: Cross-Type and Cross-Task Multi-Agent LLM Collaboration for Zero-Shot Information Extraction | OpenReview","url":"https://openreview.net/forum?id=OaSBRV0xMG"},{"title":"Cross-Type and Cross-Task Multi-Agent LLM Collaboration ...","url":"https://aclanthology.org/2025.findings-acl.718.pdf"},{"title":"Publications and Patents - Xuan Wang","url":"https://xuanwang91.github.io/publications/"},{"title":"Cross-Task Generalization Abilities of Large Language ...","url":"https://aclanthology.org/2024.naacl-srw.27.pdf"},{"title":"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition | OpenReview","url":"https://openreview.net/forum?id=NWcYybtI7r"},{"title":"GitHub - gabeorlanski/zero-shot-cross-task: Course Project for CSCI-GA:2590 Natural Language Processing. Looked at cross-task zero-shot performance of prompts across a wide range of tasks.","url":"https://github.com/gabeorlanski/zero-shot-cross-task"}]
+
+Great! I found information about CROSSAGENTIE. Here are the search results:
+
+## CROSSAGENTIE: Cross-Type and Cross-Task Multi-Agent LLM Collaboration for Zero-Shot Information Extraction
+
+CROSSAGENTIE is published in the Findings of the Association for Computational Linguistics: ACL 2025, authored by Meng Lu, Yuzhang Xie, Zhenyu Bi, Shuxiang Cao, and Xuan Wang.
+
+### Overview
+
+While large language models struggle with producing structured output while maintaining accuracy in zero-shot information extraction tasks like named entity recognition (NER) and relation extraction (RE), CROSSAGENTIE is a multi-agent framework that enhances zero-shot IE through multi-agent LLM collaboration.
+
+### Key Mechanisms
+
+CROS
+…[truncated 896 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-26T10:24:41.188187+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition\" WWW 2025 Wang Zihan"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition\" WWW 2025 Wang Zihan"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-26T10:24:41.188424+00:00_
+
+Web search results for query: "Shachar "NER Retriever Zero-Shot Named Entity Retrieval Type-Aware Embeddings" EMNLP 2025"
+
+Links: [{"title":"[2509.04011] NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings","url":"https://arxiv.org/abs/2509.04011"},{"title":"NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.597/"},{"title":"[2509.04011v1] NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings","url":"https://arxiv.org/abs/2509.04011v1"},{"title":"Paper page - NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings","url":"https://huggingface.co/papers/2509.04011"},{"title":"Zero-Shot Named Entity Retrieval with Type-Aware ...","url":"https://aclanthology.org/2025.findings-emnlp.597.pdf"},{"title":"NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings | Request PDF","url":"https://www.researchgate.net/publication/397426570_NER_Retriever_Zero-Shot_Named_Entity_Retrieval_with_Type-Aware_Embeddings"},{"title":"Or Shachar - ACL Anthology","url":"https://aclanthology.org/people/or-shachar/"},{"title":"[Quick Review] NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware\\n Embeddings","url":"https://liner.com/review/ner-retriever-zeroshot-named-entity-retrieval-with-typeaware-embeddings"},{"title":"GitHub - ShacharOr100/ner_retriever: A demonstration of the paper NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings","url":"https://github.com/ShacharOr100/ner_retriever"}]
+
+I found several results about this paper. Here's a summary of what I found:
+
+## Paper Information
+
+The paper "NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings" was authored by Or Shachar, Uri Katz, Yoav Goldberg, and Oren Glickman and published in the Findings of the Association for Computational Linguistics: EMNLP 2025 in Suzhou, China.
+
+## Paper Overview
+
+The paper present
+…[truncated 1013 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-26T10:24:41.188662+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Xu \"Large Language Models for Generative Information Extraction: A Survey\" Frontiers of Computer Science 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Xu \"Large Language Models for Generative Information Extraction: A Survey\" Frontiers of Computer Science 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-26T10:24:41.188924+00:00_
+
+Web search results for query: "Few-NERD Few-shot Named Entity Recognition Dataset Ding Ning ACL 2021"
+
+Links: [{"title":"Few-NERD: A Few-shot Named Entity Recognition Dataset - ACL Anthology","url":"https://aclanthology.org/2021.acl-long.248/"},{"title":"GitHub - thunlp/Few-NERD: Code and data of ACL 2021 paper \"Few-NERD: A Few-shot Named Entity Recognition Dataset\" · GitHub","url":"https://github.com/thunlp/Few-NERD"},{"title":"[2105.07464] Few-NERD: A Few-Shot Named Entity Recognition Dataset","url":"https://arxiv.org/abs/2105.07464"},{"title":"Few-NERD","url":"https://ningding97.github.io/fewnerd/"},{"title":"(PDF) Few-NERD: A Few-shot Named Entity Recognition Dataset","url":"https://www.academia.edu/78460366/Few_NERD_A_Few_shot_Named_Entity_Recognition_Dataset"},{"title":"Papers with Code - Few-NERD: A Few-Shot Named Entity Recognition Dataset","url":"https://paperswithcode.com/paper/few-nerd-a-few-shot-named-entity-recognition"},{"title":"DFKI-SLT/few-nerd · Datasets at Hugging Face","url":"https://huggingface.co/datasets/DFKI-SLT/few-nerd"},{"title":"Few-NERD: A Few-shot Named Entity Recognition Dataset | Request PDF","url":"https://www.researchgate.net/publication/353490454_Few-NERD_A_Few-shot_Named_Entity_Recognition_Dataset"}]
+
+Based on the search results, here's information about the Few-NERD dataset:
+
+## Overview
+
+Few-NERD: A Few-shot Named Entity Recognition Dataset was published by Ding et al. at ACL-IJCNLP 2021, with authors including Ning Ding, Guangwei Xu, Yulin Chen, Xiaobin Wang, Xu Han, Pengjun Xie, Haitao Zheng, and Zhiyuan Liu.
+
+## Dataset Characteristics
+
+The dataset is a large-scale human-annotated few-shot NER dataset with a hierarchy of 8 coarse-grained and 66 fine-grained entity types. Few-NERD consists of 188,238 sentences from Wikipedia, with 4,601,160 words included, each annotated as context or a part of a two-level entity type.
+
+## Significance
+
+This is the first few-shot NER dataset and the largest human-crafted NER dataset. While c
+…[truncated 484 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-26T10:24:41.189178+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "FewRel Large-Scale Supervised Few-Shot Relation Classification Dataset Han Xu EMNLP 2018"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "FewRel Large-Scale Supervised Few-Shot Relation Classification Dataset Han Xu EMNLP 2018"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-26T10:24:41.189406+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-26T10:24:41.189608+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-26T10:24:41.189816+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Efficient Memory Management for Large Language Model Serving with PagedAttention Kwon 2023 SOSP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Efficient Memory Management for Large Language Model Serving with PagedAttention Kwon 2023 SOSP"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-26T10:24:41.190046+00:00_
+
+Web search results for query: "Efficient Memory Management for Large Language Model Serving with PagedAttention Kwon 2023 SOSP"
+
+Links: [{"title":"[2309.06180] Efficient Memory Management for Large Language Model Serving with PagedAttention","url":"https://arxiv.org/abs/2309.06180"},{"title":"[Paper Note] Efficient Memory Management for Large Language Model Serving with PagedAttention, Woosuk Kwon+, SOSP'23 · Issue #2474 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/2474"},{"title":"Efficient Memory Management for Large Language Model Serving with PagedAttention | Proceedings of the 29th Symposium on Operating Systems Principles","url":"https://dl.acm.org/doi/10.1145/3600006.3613165"},{"title":"Efficient Memory Management for Large Language Model ...","url":"https://minjiazhang.github.io/courses/sp24-resource/vLLM-pre.pdf"},{"title":"dblp: Efficient Memory Management for Large Language Model Serving with PagedAttention.","url":"https://dblp.org/rec/conf/sosp/KwonLZ0ZY0ZS23.html"},{"title":"SOSP '23 | Efficient Memory Management for Large Language Model Serving with PagedAttention - YouTube","url":"https://www.youtube.com/watch?v=UdNocRPQS3Y"},{"title":"Efficient Memory Management for Large Language Model Serving with PagedAttention | Request PDF","url":"https://www.researchgate.net/publication/374920067_Efficient_Memory_Management_for_Large_Language_Model_Serving_with_PagedAttention"},{"title":"GitHub - vllm-project/vllm: A high-throughput and memory-efficient inference and serving engine for LLMs · GitHub","url":"https://github.com/vllm-project/vllm"},{"title":"[PDF] Efficient Memory Management for Large Language Model Serving with PagedAttention | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Efficient-Memory-Management-for-Large-Language-with-Kwon-Li/83b90f4a0ae4cc214eb3cc140ccfef9cd99fac05"}]
+
+I found comprehensive information about the paper you're looking for. Here are the key details:
+
+## Paper Ov
+…[truncated 1397 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-26T10:24:41.190307+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Verify bib entries batch 6 (54-63)",
+  "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct.\n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description\n- ⚠ key: [possible issue] description\n\nHere are the 10 entries to verify:\n\n54. deng-2010-imagenet\n    Title: \"What Does Classifying More Than 10,000 Image Categories Tell Us?\"\n    Authors: Deng, Jia and Berg, Alexander C. and Li, Kai and Fei-Fei, Li\n    Year: 2010, Venue: ECCV 2010 (11th European Conference on Computer Vision)\n\n55. rothman-1990\n    Title: \"No Adjustments Are Needed for Multiple Comparisons\"\n    Author: Rothman, Kenneth J.\n    Year: 1990, Journal: Epidemiology vol 1 no 1 pp 43-46\n\n56. lakens-2017-equivalence\n    Title: \"Equivalence Tests: A Practical Primer for t Tests, Correlations, and Meta-Analyses\"\n    Author: Lakens, Daniël\n    Year: 2017, Journal: Social Psychological and Personality Science vol 8 no 4 pp 355-362\n\n57. guo-2021-label-confusion\n    Title: \"Label Confusion Learning to Enhance Text Classification Models\"\n    Authors: Guo, Biyang and Han, Songqiao and Han, Xiao and Huang, Hailiang and Lu, Ting\n    Year: 2021, Venue: AAAI 2021 (vol 35, pp 12929-12936)\n\n58. dlisc-2025\n    Title: \"Effective and Efficient Schema-aware Information Extraction Using On-Device Large Language Models\"\n    Authors: Wen, Zhihao and Liang, Sheng and Wu, Yaxiong and Zhang, Yongyue and Liu, Yong\n    Year: 2025, arXiv: 2505.14992\n\n59. spt-2025\n    Title: \"Schema as Parameterized Tools for Universal Information Extraction\"\n    Authors: Liang, Sheng and Zhang, Yongyue and Wu, Yaxiong and Tang, Ruiming and Liu, Yong\n    Year: 2025, arXiv: 2506.01276\n    NOTE: arXiv ID 2506.01276 means June 2025 preprint. Check if this exists.\n\n60. card-2020-power\n    Title: \"With Little Power Comes Great Responsibility\"\n    Authors: Card, Dallas and Henderson, Peter and Khandelwal, Urvashi and Jia, Robin and Mahowald, Kyle and Jurafsky, Dan\n    Year: 2020, Venue: EMNLP 2020\n\n61. chen-2026-multi-instance\n    Title: \"Understanding LLM Performance Degradation in Multi-Instance Processing: The Roles of Instance Count and Context Length\"\n    Authors: Chen, Jingxuan and Pilehvar, Mohammad Taher and Camacho-Collados, Jose\n    Year: 2026, arXiv: 2603.22608\n    NOTE: arXiv ID 2603.22608 means March 2026 preprint. Check if this exists.\n\n62. robinson-1950-ecological\n    Title: \"Ecological Correlations and the Behavior of Individuals\"\n    Author: Robinson, William S.\n    Year: 1950, Journal: American Sociological Review vol 15 no 3 pp 351-357\n\n63. boylan-2025-glirel\n    Title: \"GLiREL -- Generalist Model for Zero-Shot Relation Extraction\"\n    Authors: Boylan, Jack and Hokamp, Chris and Gholipour Ghalandari, Demian\n    Year: 2025, Venue: NAACL 2025\n\nSearch for each title using WebSearch and report your findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Verify bib entries batch 6 (54-63)",
+    "prompt": "You are verifying academic paper references for correctness. For each entry below, use WebSearch to search for the paper title and verify: (1) the paper exists, (2) authors are correct, (3) year is correct, (4) venue is correct, (5) title is correct.\n\nFor each entry, output one line:\n- ✓ key: confirmed correct\n- ✗ key: [error type] description\n- ⚠ key: [possible issue] description\n\nHere are the 10 entries to verify:\n\n54. deng-2010-imagenet\n    Title: \"What Does Classifying More Than 10,000 Image Categories Tell Us?\"\n    Authors: Deng, Jia and Berg, Alexander C. and Li, Kai and Fei-Fei, Li\n    Year: 2010, Venue: ECCV 2010 (11th European Conference on Computer Vision)\n\n55. rothman-1990\n    Title: \"No Adjustments Are Needed for Multiple Comparisons\"\n    Author: Rothman, Kenneth J.\n    Year: 1990, Journal: Epidemiology vol 1 no 1 pp 43-46\n\n56. lakens-2017-equivalence\n    Title: \"Equivalence Tests: A Practical Primer for t Tests, Correlations, and Meta-Analyses\"\n    Author: Lakens, Daniël\n    Year: 2017, Journal: Social Psychological and Personality Science vol 8 no 4 pp 355-362\n\n57. guo-2021-label-confusion\n    Title: \"Label Confusion Learning to Enhance Text Classification Models\"\n    Authors: Guo, Biyang and Han, Songqiao and Han, Xiao and Huang, Hailiang and Lu, Ting\n    Year: 2021, Venue: AAAI 2021 (vol 35, pp 12929-12936)\n\n58. dlisc-2025\n    Title: \"Effective and Efficient Schema-aware Information Extraction Using On-Device Large Language Models\"\n    Authors: Wen, Zhihao and Liang, Sheng and Wu, Yaxiong and Zhang, Yongyue and Liu, Yong\n    Year: 2025, arXiv: 2505.14992\n\n59. spt-2025\n    Title: \"Schema as Parameterized Tools for Universal Information Extraction\"\n    Authors: Liang, Sheng and Zhang, Yongyue and Wu, Yaxiong and Tang, Ruiming and Liu, Yong\n    Year: 2025, arXiv: 2506.01276\n    NOTE: arXiv ID 2506.01276 means June 2025 preprint. Check if this exists.\n\n60. card-2020-power\n    Title: \"With Little Power Comes Great Responsibility\"\n    Authors: Card, Dallas and Henderson, Peter and Khandelwal, Urvashi and Jia, Robin and Mahowald, Kyle and Jurafsky, Dan\n    Year: 2020, Venue: EMNLP 2020\n\n61. chen-2026-multi-instance\n    Title: \"Understanding LLM Performance Degradation in Multi-Instance Processing: The Roles of Instance Count and Context Length\"\n    Authors: Chen, Jingxuan and Pilehvar, Mohammad Taher and Camacho-Collados, Jose\n    Year: 2026, arXiv: 2603.22608\n    NOTE: arXiv ID 2603.22608 means March 2026 preprint. Check if this exists.\n\n62. robinson-1950-ecological\n    Title: \"Ecological Correlations and the Behavior of Individuals\"\n    Author: Robinson, William S.\n    Year: 1950, Journal: American Sociological Review vol 15 no 3 pp 351-357\n\n63. boylan-2025-glirel\n    Title: \"GLiREL -- Generalist Model for Zero-Shot Relation Extraction\"\n    Authors: Boylan, Jack and Hokamp, Chris and Gholipour Ghalandari, Demian\n    Year: 2025, Venue: NAACL 2025\n\nSearch for each title using WebSearch and report your findings."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-26T10:24:41.190648+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Empirical Study of Zero-Shot NER with ChatGPT Xie Tingyu 2023 EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Empirical Study of Zero-Shot NER with ChatGPT Xie Tingyu 2023 EMNLP"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-26T10:24:41.190912+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-26T10:24:41.191133+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-26T10:24:41.191340+00:00_
+
+Web search results for query: "FewRel Large-Scale Supervised Few-Shot Relation Classification Dataset Han Xu EMNLP 2018"
+
+Links: [{"title":"FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation - ACL Anthology","url":"https://aclanthology.org/D18-1514/"},{"title":"FewRel: A Large-Scale Supervised Few-shot Relation Classification Dataset with State-of-the-Art Evaluation","url":"https://thunlp.github.io/1/fewrel1.html"},{"title":"GitHub - thunlp/FewRel: A Large-Scale Few-Shot Relation Extraction Dataset · GitHub","url":"https://github.com/thunlp/FewRel"},{"title":"[1810.10147] FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation","url":"https://arxiv.org/abs/1810.10147"},{"title":"FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation | Request PDF","url":"https://www.researchgate.net/publication/334115814_FewRel_A_Large-Scale_Supervised_Few-Shot_Relation_Classification_Dataset_with_State-of-the-Art_Evaluation"},{"title":"[PDF] FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/FewRel:-A-Large-Scale-Supervised-Few-Shot-Relation-Han-Zhu/274b4ad4840b0a8a70c5bac3fe4b4861ce5fbb95"},{"title":"FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2018arXiv181010147H/abstract"},{"title":"(PDF) FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation","url":"https://www.researchgate.net/publication/328494683_FewRel_A_Large-Scale_Supervised_Few-Shot_Relation_Classification_Dataset_with_State-of-the-Art_Evaluation"},{"title":"FewRel/readme.md at master · thunlp/FewRel","url":"https://github.com/thunlp/FewRel/blob/master/readme.md"},{"title":"[1810.10147v2
+…[truncated 1487 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-26T10:24:41.191590+00:00_
+
+Web search results for query: "Schuirmann 1987 "Two One-Sided Tests Procedure" "Power Approach" equivalence bioavailability Journal of Pharmacokinetics"
+
+Links: [{"title":"A comparison of the Two One-Sided Tests Procedure and the Power Approach for assessing the equivalence of average bioavailability | Journal of Pharmacokinetics and Pharmacodynamics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/BF01068419"},{"title":"[PDF] A comparison of the Two One-Sided Tests Procedure and the Power Approach for assessing the equivalence of average bioavailability | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-comparison-of-the-Two-One-Sided-Tests-Procedure-Schuirmann/053b97e316fc43588e6235f88a1a7a4077342de7"},{"title":"A comparison of the Two One-Sided Tests Procedure and ...","url":"https://community.jmp.com/kvoqx44227/attachments/kvoqx44227/discussions/96942/1/TOSTarticle.pdf"},{"title":"A comparison of the two one-sided tests procedure and the power approach for assessing the equivalence of average bioavailability - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/3450848/?dopt=Abstract"},{"title":"(Open Access) A comparison of the Two One-Sided Tests Procedure and the Power Approach for assessing the equivalence of average bioavailability (1987) | Donald J. Schuirmann | 2437 Citations","url":"https://scispace.com/papers/a-comparison-of-the-two-one-sided-tests-procedure-and-the-17764djo4q"},{"title":"(PDF) Probabilities and sample sizes for the two one-sided tests procedure","url":"https://www.researchgate.net/publication/233170910_Probabilities_and_sample_sizes_for_the_two_one-sided_tests_procedure"},{"title":"R: Power of Two One-Sided Tests Procedure (TOST) for Equivalence","url":"https://search.r-project.org/CRAN/refmans/MBESS/html/power.equivalence.md.html"},{"title":"Probabilities and sample sizes for the two one-sided tests procedure: Communications in Statistics - Theory and Methods: Vol 22, No 7","url":"https://www.tandfon
+…[truncated 1468 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-26T10:24:41.191860+00:00_
+
+Web search results for query: "Xu "Large Language Models for Generative Information Extraction: A Survey" Frontiers of Computer Science 2024"
+
+Links: [{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"Large language models for generative information extraction: a survey - CityUHK Scholars","url":"https://scholars.cityu.edu.hk/en/publications/large-language-models-for-generative-information-extraction-a-sur/"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science: Selected Publications from Chinese Universities","url":"https://dl.acm.org/doi/10.1007/s11704-024-40555-y"},{"title":"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub","url":"https://github.com/quqxui/Awesome-LLM4IE-Papers"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"Large language models for generative information extraction: a survey","url":"https://d-nb.info/1354655508/34"},{"title":"[PDF] Large language models for generative information extraction: a survey | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Large-language-models-for-generative-information-a-Xu-Chen/351a2d50b4aff8e9754dc7074dd589b10a7465d4"},{"title":"[2312.17617] Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/abs/2312.17617"}]
+
+I found the paper you're looking for! Here are the key details:
+
+The paper "Large language models for generative information extraction: a survey" was authored by Xu, D., Chen, W., Peng, W., Zhang, C., Xu, T., Zhao, X., Wu, X., Zheng, Y., Wang, Y., and Chen, E., published in Frontiers of Computer Science in 2024, Volume 18, Issue 6, Article 186357.
+…[truncated 613 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-26T10:24:41.192126+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Deng Berg Li Fei-Fei \"What Does Classifying More Than 10,000 Image Categories Tell Us\" ECCV 2010"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Deng Berg Li Fei-Fei \"What Does Classifying More Than 10,000 Image Categories Tell Us\" ECCV 2010"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-26T10:24:41.192404+00:00_
+
+Web search results for query: "Empirical Study of Zero-Shot NER with ChatGPT Xie Tingyu 2023 EMNLP"
+
+Links: [{"title":"Empirical Study of Zero-Shot NER with ChatGPT - ACL Anthology","url":"https://aclanthology.org/2023.emnlp-main.493/"},{"title":"[2310.10035] Empirical Study of Zero-Shot NER with ChatGPT","url":"https://arxiv.org/abs/2310.10035"},{"title":"Empirical Study of Zero-Shot NER with ChatGPT","url":"https://aclanthology.org/2023.emnlp-main.493.pdf"},{"title":"Empirical Study of Zero-Shot NER with ChatGPT | Request PDF","url":"https://www.researchgate.net/publication/376394022_Empirical_Study_of_Zero-Shot_NER_with_ChatGPT"},{"title":"[Quick Review] Empirical Study of Zero-Shot NER with ChatGPT","url":"https://liner.com/review/empirical-study-zeroshot-ner-with-chatgpt"},{"title":"GitHub - Emma1066/Zero-Shot-NER-with-ChatGPT: This is the github repository for the paper at EMNLP 2023: Empirical Study of Zero-Shot NER with ChatGPT.","url":"https://github.com/emma1066/zero-shot-ner-with-chatgpt"},{"title":"Main Conference - EMNLP 2023","url":"https://2023.emnlp.org/program/accepted_main_conference/"},{"title":"[PDF] Empirical Study of Zero-Shot NER with ChatGPT | Semantic Scholar","url":"https://www.semanticscholar.org/paper/3c55aa582a2d682eb53e9237589234854e0b92d8"}]
+
+I found the paper! Here are the details:
+
+"Empirical Study of Zero-Shot NER with ChatGPT" by Tingyu Xie, Qi Li, Jian Zhang, Yan Zhang, Zuozhu Liu, and Hongwei Wang was published in the Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, pages 7935–7956, Singapore.
+
+The work focuses on exploring LLM performance on zero-shot information extraction, with a focus on the ChatGPT and named entity recognition (NER) task. Inspired by the remarkable reasoning capability of LLM on symbolic and arithmetic reasoning, the authors adapt the prevalent reasoning methods to NER and propose reasoning strategies tailored for NER.
+
+First, they explore a decomposed question-answerin
+…[truncated 685 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-26T10:24:41.192718+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "MAVEN Massive General Domain Event Detection Dataset Wang Xiaozhi EMNLP 2020"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "MAVEN Massive General Domain Event Detection Dataset Wang Xiaozhi EMNLP 2020"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-26T10:24:41.193035+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Gemini 2.5 arxiv 2507.06261 \"Pushing the Frontier\" reasoning multimodality agentic"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Gemini 2.5 arxiv 2507.06261 \"Pushing the Frontier\" reasoning multimodality agentic"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-26T10:24:41.193282+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "KnowCoder \"Coding Structured Knowledge into LLMs for Universal Information Extraction\" ACL 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "KnowCoder \"Coding Structured Knowledge into LLMs for Universal Information Extraction\" ACL 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-26T10:24:41.193486+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Revisiting Relation Extraction in the era of Large Language Models Wadhwa Somin ACL 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Revisiting Relation Extraction in the era of Large Language Models Wadhwa Somin ACL 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-26T10:24:41.193691+00:00_
+
+Web search results for query: ""A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition" WWW 2025 Wang Zihan"
+
+Links: [{"title":"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition | Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3696410.3714923"},{"title":"[2502.18702] A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition","url":"https://arxiv.org/abs/2502.18702"},{"title":"GitHub - WZH-NLP/WWW25-CMAS","url":"https://github.com/WZH-NLP/WWW25-CMAS"},{"title":"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition | OpenReview","url":"https://openreview.net/forum?id=NWcYybtI7r"},{"title":"[Quick Review] A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition","url":"https://liner.com/review/cooperative-multiagent-framework-for-zeroshot-named-entity-recognition"},{"title":"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition","url":"https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/wang-2025-cooperative.pdf"},{"title":"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition | Request PDF","url":"https://www.researchgate.net/publication/391467195_A_Cooperative_Multi-Agent_Framework_for_Zero-Shot_Named_Entity_Recognition"},{"title":"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition","url":"https://arxiv.org/html/2502.18702v1"},{"title":"[PDF] A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-Cooperative-Multi-Agent-Framework-for-Zero-Shot-Wang-Zhao/cec61b51f6eed5e3c253f974c71fe1989ee4aee7"},{"title":"A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition | Proceedings of the ACM on Web Conference 2025","url":"https://doi.org/10.1145/3696410.3714923"}]
+
+I found the paper you're looking for! Here's what I found:
+
+## Summary
+
+"A Cooperative Mult
+…[truncated 1613 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 5
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-26T10:24:41.193991+00:00_
+
+Web search results for query: "Gemini 2.5 arxiv 2507.06261 "Pushing the Frontier" reasoning multimodality agentic"
+
+Links: [{"title":"[2507.06261] Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long Context, and Next Generation Agentic Capabilities","url":"https://arxiv.org/abs/2507.06261"},{"title":"Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long","url":"https://arxiv.org/pdf/2507.06261"},{"title":"[2507.06261v1] Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long Context, and Next Generation Agentic Capabilities","url":"https://arxiv.org/abs/2507.06261v1"},{"title":"[2507.06261v5] Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long Context, and Next Generation Agentic Capabilities","url":"https://arxiv.org/abs/2507.06261v5"},{"title":"(PDF) Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long Context, and Next Generation Agentic Capabilities","url":"https://www.researchgate.net/publication/393539209_Gemini_25_Pushing_the_Frontier_with_Advanced_Reasoning_Multimodality_Long_Context_and_Next_Generation_Agentic_Capabilities"},{"title":"[2507.06261v3] Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long Context, and Next Generation Agentic Capabilities","url":"https://arxiv.org/abs/2507.06261v3"},{"title":"[2507.06261] Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long Context, and Next Generation Agentic Capabilities – Papiers","url":"https://papiers.ai/2507.06261"},{"title":"[2507.06261v2] Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long Context, and Next Generation Agentic Capabilities","url":"https://arxiv.org/abs/2507.06261v2"}]
+
+I found the arxiv paper you were searching for. Here's what I found:
+
+The paper introduces the Gemini 2.X model family, including Gemini 2.5 Pro and Gemini 2.5 Flash. Gemini 2.5 Pro is their most capable model yet, achieving sta
+…[truncated 828 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-26T10:24:41.194231+00:00_
+
+Web search results for query: "MAVEN Massive General Domain Event Detection Dataset Wang Xiaozhi EMNLP 2020"
+
+Links: [{"title":"MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology","url":"https://aclanthology.org/2020.emnlp-main.129/"},{"title":"GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub","url":"https://github.com/THU-KEG/MAVEN-dataset"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智","url":"https://bakser.github.io/publication/2020-11-17-MAVEN"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset | Request PDF","url":"https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"},{"title":"KG-NLP-Papers/EMNLP/2020/EE/8. MAVEN_A Massive General Domain Event Detection Dataset.md at main · Clearailhc/KG-NLP-Papers","url":"https://github.com/Clearailhc/KG-NLP-Papers/blob/main/EMNLP/2020/EE/8.%20MAVEN_A%20Massive%20General%20Domain%20Event%20Detection%20Dataset.md"},{"title":"[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset","url":"https://arxiv.org/abs/2004.13590"},{"title":"MAVEN","url":"https://thukeg.gitee.io/maven/"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset | DeepAI","url":"https://deepai.org/publication/maven-a-massive-general-domain-event-detection-dataset"}]
+
+## Search Results for MAVEN Dataset
+
+I found comprehensive information about the MAVEN paper. Here's what I found:
+
+### Publication Details
+The paper "MAVEN: A Massive General Domain Event Detection Dataset" was authored by Xiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, and Jie Zhou and published at EMNLP 2020.
+
+### Dataset Overview
+The MAVEN dataset contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types.
+
+### Problem Statement
+Event detection (ED), which mea
+…[truncated 792 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-26T10:24:41.194459+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\" ICLR 2024 Zhou Wenxuan"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\" ICLR 2024 Zhou Wenxuan"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-26T10:24:41.194663+00:00_
+
+Web search results for query: "Deng Berg Li Fei-Fei "What Does Classifying More Than 10,000 Image Categories Tell Us" ECCV 2010"
+
+Links: [{"title":"What Does Classifying More Than 10,000 Image Categories Tell Us?","url":"http://vision.stanford.edu/documents/DengBergLiFei-Fei_ECCV2010.pdf"},{"title":"What Does Classifying More Than 10,000 Image Categories Tell Us? | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-642-15555-0_6"},{"title":"What does classifying more than 10,000 image categories tell us? - Princeton University","url":"https://collaborate.princeton.edu/en/publications/what-does-classifying-more-than-10000-image-categories-tell-us"},{"title":"What Does Classifying More Than 10, 000 Image Categories Tell Us? | Request PDF","url":"https://www.researchgate.net/publication/221305119_What_Does_Classifying_More_Than_10_000_Image_Categories_Tell_Us"},{"title":"AMMAI(Week 15) – What does classifying more than 10,000 image categories tell us? | Mr.pojenlai","url":"https://pojenlai.wordpress.com/2015/06/09/ammaiweek-15-what-does-classifying-more-than-10000-image-categories-tell-us/"},{"title":"What Does Classifying More Than 10,000 Image Categories ...","url":"http://vision.stanford.edu/pdf/DengBergLiFei-Fei_ECCV2010.pdf"},{"title":"[PDF] What Does Classifying More Than 10, 000 Image Categories Tell Us? | Semantic Scholar","url":"https://www.semanticscholar.org/paper/What-Does-Classifying-More-Than-10,-000-Image-Tell-Deng-Berg/9800e3c3394c569be83379ee2ebe3424e09c2919"},{"title":"What Does Classifying More Than 10, 000 Image Categories Tell Us? - Google Search","url":"https://google.com/search?hl=en&ie=UTF-8&oq=What+Does+Classifying+More+Than+10%2C+000+Image+Categories+Tell+Us%3F&q=What+Does+Classifying+More+Than+10%2C+000+Image+Categories+Tell+Us%3F&sourceid=chrome"},{"title":"The Nine Lives of ImageNet: A Sociotechnical Retrospective ...","url":"https://data.mlr.press/assets/pdf/v01-4.pdf"}]
+
+I found the paper you were looking for! He
+…[truncated 998 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-26T10:24:41.194918+00:00_
+
+Web search results for query: "KnowCoder "Coding Structured Knowledge into LLMs for Universal Information Extraction" ACL 2024"
+
+Links: [{"title":"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction - ACL Anthology","url":"https://aclanthology.org/2024.acl-long.475/"},{"title":"[2403.07969] KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction","url":"https://arxiv.org/abs/2403.07969"},{"title":"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction","url":"https://arxiv.org/html/2403.07969v2"},{"title":"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction | Request PDF","url":"https://www.researchgate.net/publication/384207388_KnowCoder_Coding_Structured_Knowledge_into_LLMs_for_Universal_Information_Extraction"},{"title":"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction. | BibSonomy","url":"https://www.bibsonomy.org/bibtex/2b5538e89bfb4cac76acafc1f9f2c9f64/dblp"},{"title":"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction - Zixuan Li","url":"https://lee-zix.github.io/publications/2024-08-16-ACL/"},{"title":"GitHub - ICT-GoKnow/KnowCoder: Official Repo of paper \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\". In the paper, we propose KnowCoder, the most powerful large language model so far for universal information extraction.","url":"https://github.com/ICT-GoKnow/KnowCoder"},{"title":"KnowCoder","url":"https://ict-goknow.github.io/knowcoder/"},{"title":"[PDF] KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/3ba0f13d9b24a2dcfdcd861150e33c7d71e6c69e"}]
+
+I found the paper for you! Here's what I found about KnowCoder:
+
+KnowCoder is a Large Language Model proposed to conduct Universal Information Extraction (UIE) via code generat
+…[truncated 1425 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-26T10:24:41.195157+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "DocRED Large-Scale Document-Level Relation Extraction Dataset Yao Yuan ACL 2019"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "DocRED Large-Scale Document-Level Relation Extraction Dataset Yao Yuan ACL 2019"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-26T10:24:41.195351+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Prototypical Networks for Few-shot Learning\" Snell Swersky Zemel NeurIPS 2017"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Prototypical Networks for Few-shot Learning\" Snell Swersky Zemel NeurIPS 2017"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-26T10:24:41.195627+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Rothman \"No Adjustments Are Needed for Multiple Comparisons\" Epidemiology 1990"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Rothman \"No Adjustments Are Needed for Multiple Comparisons\" Epidemiology 1990"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-26T10:24:41.195902+00:00_
+
+Web search results for query: "Revisiting Relation Extraction in the era of Large Language Models Wadhwa Somin ACL 2023"
+
+Links: [{"title":"Revisiting Relation Extraction in the era of Large Language Models - ACL Anthology","url":"https://aclanthology.org/2023.acl-long.868/"},{"title":"[2305.05003] Revisiting Relation Extraction in the era of Large Language Models","url":"https://arxiv.org/abs/2305.05003"},{"title":"Revisiting Relation Extraction in the era of Large Language Models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10482322/"},{"title":"Revisiting Relation Extraction in the era of Large Language ...","url":"https://aclanthology.org/2023.acl-long.868.pdf"},{"title":"Revisiting Relation Extraction in the era of Large Language Models - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/37674787/"},{"title":"Revisiting Relation Extraction in the era of Large Language Models | NSF Public Access Repository","url":"https://par.nsf.gov/biblio/10523775-revisiting-relation-extraction-era-large-language-models"},{"title":"[PDF] Revisiting Relation Extraction in the era of Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Revisiting-Relation-Extraction-in-the-era-of-Large-Wadhwa-Amir/97782a67971c4ff1a74bf07e82fe20b2c4bf86c4"},{"title":"[Quick Review] Revisiting Relation Extraction in the era of Large Language Models","url":"https://liner.com/review/revisiting-relation-extraction-in-era-large-language-models"},{"title":"dblp: Revisiting Relation Extraction in the era of Large Language Models.","url":"https://dblp.org/rec/journals/corr/abs-2305-05003.html"},{"title":"dblp: Somin Wadhwa","url":"https://dblp.org/pid/265/5925.html"}]
+
+I found the paper you're looking for! Here's what I found:
+
+"Revisiting Relation Extraction in the era of Large Language Models" is a paper by Somin Wadhwa, Silvio Amir, and Byron Wallace, published in the Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volum
+…[truncated 1019 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-26T10:24:41.196153+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "SLOT \"Structuring the Output of Large Language Models\" EMNLP 2025 Industry Track"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "SLOT \"Structuring the Output of Large Language Models\" EMNLP 2025 Industry Track"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-26T10:24:41.196357+00:00_
+
+Web search results for query: ""UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition" ICLR 2024 Zhou Wenxuan"
+
+Links: [{"title":"[2308.03279] UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition","url":"https://arxiv.org/abs/2308.03279"},{"title":"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/universalner-targeted-distillation-from-large-language-models-for-open-named-entity-recognition/"},{"title":"UniversalNER: targeted distillation from large language models for open named entity recognition","url":"https://arxiv.org/html/2308.03279v2"},{"title":"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition | OpenReview","url":"https://openreview.net/forum?id=r65xfUb76p"},{"title":"[2308.03279v2] UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition","url":"https://arxiv.org/abs/2308.03279v2"},{"title":"[PDF] UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition | Semantic Scholar","url":"https://www.semanticscholar.org/paper/76b99439d524ae1813c30edc4bcad487a30a1f8c"},{"title":"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition | Request PDF","url":"https://www.researchgate.net/publication/372961966_UniversalNER_Targeted_Distillation_from_Large_Language_Models_for_Open_Named_Entity_Recognition"},{"title":"UniversalNER","url":"https://universal-ner.github.io/"},{"title":"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition [Quick Review]","url":"https://liner.com/review/universalner-targeted-distillation-from-large-language-models-for-open-named"}]
+
+Based on the search results, here's what I found about this paper:
+
+## Paper Overview
+
+Unive
+…[truncated 1291 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-26T10:24:41.196566+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "RelationPrompt Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction Chia ACL 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "RelationPrompt Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction Chia ACL 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-26T10:24:41.196720+00:00_
+
+Web search results for query: "Rothman "No Adjustments Are Needed for Multiple Comparisons" Epidemiology 1990"
+
+Links: [{"title":"No Adjustments Are Needed for Multiple Comparisons : Epidemiology","url":"https://journals.lww.com/epidem/abstract/1990/01000/no_adjustments_are_needed_for_multiple_comparisons.10.aspx"},{"title":"No adjustments are needed for multiple comparisons","url":"https://pubmed.ncbi.nlm.nih.gov/2081237/"},{"title":"[PDF] No Adjustments Are Needed for Multiple Comparisons | Semantic Scholar","url":"https://www.semanticscholar.org/paper/No-Adjustments-Are-Needed-for-Multiple-Comparisons-Rothman/7cdae9ece0e94ad740189e7b328bbf6993b4c8d5"},{"title":"Rothman (1990) No adjustments are needed for multiple comparisons.pdf","url":"https://www.scribd.com/document/321113650/Rothman-1990-No-adjustments-are-needed-for-multiple-comparisons-pdf"},{"title":"No adjustments are needed for multiple comparisons - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/2081237/?dopt=Abstract"},{"title":"Rothman, K.J. (1990) No adjustments are needed for multiple comparisons. Epidemiology, 1, 43-46. doi10.1097/00001648-199001000-00010 - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=768985"},{"title":"Dealing with multiple testing: To adjust or not to adjust","url":"https://arxiv.org/pdf/2010.02205"},{"title":"K. J. Rothman, “No Adjustments Are Needed for Multiple Comparisons,” Epidemi-ology, Vol. 1, No. 1, 1990, pp. 43-46. doi10.1097/00001648-199001000-00010 - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=411541"},{"title":"No adjustments are needed for multiple comparisons.","url":"https://europepmc.org/article/med/2081237"},{"title":"GraphPad Prism 11 Statistics Guide - When it makes sense to not correct for multiple comparisons","url":"https://www.graphpad.com/guides/prism/latest/statistics/stat_when_to_not_correct_for_2.htm"}]
+
+I found the pa
+…[truncated 1342 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-26T10:24:41.196930+00:00_
+
+Web search results for query: "DocRED Large-Scale Document-Level Relation Extraction Dataset Yao Yuan ACL 2019"
+
+Links: [{"title":"DocRED: A Large-Scale Document-Level Relation Extraction Dataset - ACL Anthology","url":"https://aclanthology.org/P19-1074/"},{"title":"[1906.06127] DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://arxiv.org/abs/1906.06127"},{"title":"[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"},{"title":"(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"},{"title":"[1906.06127] DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://ar5iv.labs.arxiv.org/html/1906.06127"},{"title":"[1906.06127v3] DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://arxiv.org/abs/1906.06127v3"},{"title":"Papers with Code - DocRED Dataset","url":"https://paperswithcode.com/dataset/docred"}]
+
+I've found comprehensive information about the DocRED dataset. Here are the key details:
+
+## Overview
+
+DocRED: A Large-Scale Document-Level Relation Extraction Dataset was created by Yuan Yao, Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Lixin Huang, Jie Zhou, and Maosong Sun in 2019 and published in Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics (ACL).
+
+## Key Features
+
+DocRED is a new dataset constructed from Wikipedia and Wikidata with three features: (1) DocRED annotates both named entities and relations, and is the largest human-annotated dataset for document-level RE from plain text; (2) DocRED requires reading multiple sentences in a document to extract entities and infer their relations by synthesizing all i
+…[truncated 618 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-26T10:24:41.197129+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\" ICLR 2024 Sainz Oscar"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\" ICLR 2024 Sainz Oscar"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-26T10:24:41.197269+00:00_
+
+Web search results for query: ""Prototypical Networks for Few-shot Learning" Snell Swersky Zemel NeurIPS 2017"
+
+Links: [{"title":"Prototypical Networks for Few-shot Learning","url":"https://proceedings.neurips.cc/paper_files/paper/2017/hash/cb8da6767461f2812ae4290eac7cbc42-Abstract.html"},{"title":"Prototypical Networks for Few-shot Learning","url":"https://papers.nips.cc/paper/6996-prototypical-networks-for-few-shot-learning"},{"title":"[1703.05175] Prototypical Networks for Few-shot Learning","url":"https://arxiv.org/abs/1703.05175"},{"title":"Prototypical Networks for Few-shot Learning","url":"https://arxiv.org/pdf/1703.05175"},{"title":"Prototypical networks for few-shot learning | Proceedings of the 31st International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3294996.3295163"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar?q=Snell%2C+J.%2C+Swersky%2C+K.%2C+Zemel%2C+R.%3A+Prototypical+networks+for+few-shot+learning.+In%3A+Advances+in+Neural+Information+Processing+Systems+%28NIPS%29+%282017%29"},{"title":"(PDF) Prototypical Networks for Few-shot Learning (2017) | Jake Snell | 8115 Citations","url":"https://scispace.com/papers/prototypical-networks-for-few-shot-learning-2l18ppn4sw"},{"title":"[PDF] Prototypical Networks for Few-shot Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Prototypical-Networks-for-Few-shot-Learning-Snell-Swersky/c269858a7bb34e8350f2442ccf37797856ae9bca"},{"title":"Gaussian Prototypical Networks for Few-Shot Learning on Omniglot","url":"https://arxiv.org/pdf/1708.02735"}]
+
+I found excellent results for your search. Here's information about the paper:
+
+## Prototypical Networks for Few-shot Learning
+
+**Authors:** Jake Snell, Kevin Swersky, Richard Zemel
+
+**Venue:** Advances in Neural Information Processing Systems 30 (NIPS 2017)
+
+**Main Contribution:** Prototypical Networks learn a metric space in which classification can be performed by computing 
+…[truncated 824 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-26T10:24:41.197470+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Lakens \"Equivalence Tests: A Practical Primer for t Tests, Correlations, and Meta-Analyses\" 2017"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Lakens \"Equivalence Tests: A Practical Primer for t Tests, Correlations, and Meta-Analyses\" 2017"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-26T10:24:41.197758+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Qwen3 Technical Report arxiv 2505.09388 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Qwen3 Technical Report arxiv 2505.09388 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-26T10:24:41.197962+00:00_
+
+Web search results for query: "SLOT "Structuring the Output of Large Language Models" EMNLP 2025 Industry Track"
+
+Links: [{"title":"SLOT: Structuring the Output of Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-industry.32/"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://aclanthology.org/2025.emnlp-industry.32.pdf"},{"title":"[2505.04016] SLOT: Structuring the Output of Large Language Models","url":"https://arxiv.org/abs/2505.04016"},{"title":"Accepted Industry Track Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/ind_papers/"},{"title":"2025.emnlp-industry.0.pdf","url":"https://aclanthology.org/2025.emnlp-industry.0.pdf"},{"title":"SLOT: Structuring the Output of Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/397423713_SLOT_Structuring_the_Output_of_Large_Language_Models"},{"title":"dblp: EMNLP 2025 - Industry Track","url":"https://dblp.org/db/conf/emnlp/emnlp2025i.html"},{"title":"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track - ACL Anthology","url":"https://aclanthology.org/volumes/2025.emnlp-industry/"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://arxiv.org/html/2505.04016v1"},{"title":"FMBench: Adaptive Large Language Model Output Formatting","url":"https://arxiv.org/html/2602.06384v1"}]
+
+## Search Results for SLOT: Structuring the Output of Large Language Models (EMNLP 2025 Industry Track)
+
+I found the paper you were looking for! Here are the key details:
+
+### Paper Information
+SLOT: Structuring the Output of Large Language Models was authored by Zhengyuan Shen, Darren Yow-Bang Wang, Soumya Smruti Mishra, Zhichao Xu, Yifei Teng, and Haibo Ding.
+
+### Publication Details
+The paper was published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track, pages 472–491, in Suzhou, China.
+
+### Research Overvie
+…[truncated 996 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-26T10:24:41.198137+00:00_
+
+Web search results for query: "RelationPrompt Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction Chia ACL 2022"
+
+Links: [{"title":"RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction - ACL Anthology","url":"https://aclanthology.org/2022.findings-acl.5/"},{"title":"GitHub - declare-lab/RelationPrompt: This repository implements our ACL Findings 2022 research paper RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction. The goal of Zero-Shot Relation Triplet Extraction (ZeroRTE) is to extract relation triplets of the format (head entity, tail entity, relation), despite not having annotated data for the test relation labels.","url":"https://github.com/declare-lab/RelationPrompt"},{"title":"[2203.09101] RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction","url":"https://arxiv.org/abs/2203.09101"},{"title":"dblp: RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction.","url":"https://dblp.org/rec/conf/acl/ChiaBPS22.html"},{"title":"[2203.09101v1] RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction","url":"https://arxiv.org/abs/2203.09101v1"},{"title":"RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction | Request PDF","url":"https://www.researchgate.net/publication/359309678_RelationPrompt_Leveraging_Prompts_to_Generate_Synthetic_Data_for_Zero-Shot_Relation_Triplet_Extraction"},{"title":"ACL.2022 - Findings | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/ACL.2022?group=Findings"},{"title":"Zero-Shot Relation Triplet Extraction via Retrieval-Augmented Synthetic Data Generation | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-99-8184-7_28"}]
+
+I found the paper you're looking for
+…[truncated 1212 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-26T10:24:41.198294+00:00_
+
+Web search results for query: ""GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction" ICLR 2024 Sainz Oscar"
+
+Links: [{"title":"[2310.03668] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://arxiv.org/abs/2310.03668"},{"title":"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | OpenReview","url":"https://openreview.net/forum?id=Y3wpuxd7u9"},{"title":"ICLR Poster GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://iclr.cc/virtual/2024/poster/18435"},{"title":"GOLLIE: ANNOTATION GUIDELINES IMPROVE ZERO-SHOT INFORMATION-EXTRACTION | Documents - Universidad del País Vasco / Euskal Herriko Unibertsitatea","url":"https://ekoizpen-zientifikoa.ehu.eus/documentos/66cb8eeac7cd8e0cebf21fbb"},{"title":"GOLLIE : ANNOTATION GUIDELINES IMPROVE ZERO- ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf"},{"title":"GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://arxiv.org/html/2310.03668v5"},{"title":"GitHub - hitz-zentroa/GoLLIE: Guideline following Large Language Model for Information Extraction · GitHub","url":"https://github.com/hitz-zentroa/GoLLIE"}]
+
+I found the paper! Here are the search results for "GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction" ICLR 2024 by Oscar Sainz:
+
+## Paper Overview
+
+GoLLIE (Guideline-following Large Language Model for IE) is a model able to improve zero-shot results on unseen IE tasks by virtue of being fine-tuned to comply with annotation guidelines.
+
+## Key Problem and Contribution
+
+Large Language Models (LLMs) combined with instruction tuning have made significant progress when generalizing to unseen tasks, however, they have been less successful in Information Extraction (IE), lagging behind task-specific models. IE tasks are characterized by complex annotation guidelines which describe the task and give 
+…[truncated 794 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-26T10:24:41.198456+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Cai \"Isotropy in the Contextual Embedding Space: Clusters and Manifolds\" ICLR 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Cai \"Isotropy in the Contextual Embedding Space: Clusters and Manifolds\" ICLR 2021"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-26T10:24:41.198592+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Baan 2023 ACL annotation label variation NLP paper author"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Baan 2023 ACL annotation label variation NLP paper author"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-26T10:24:41.198727+00:00_
+
+Web search results for query: "Lakens "Equivalence Tests: A Practical Primer for t Tests, Correlations, and Meta-Analyses" 2017"
+
+Links: [{"title":"Equivalence Tests: A Practical Primer for t Tests, Correlations, and Meta-Analyses - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/28736600/"},{"title":"Equivalence Tests - Daniël Lakens, 2017","url":"https://journals.sagepub.com/doi/10.1177/1948550617697177"},{"title":"(PDF) Equivalence Tests: A Practical Primer for t Tests, Correlations, and Meta-Analyses","url":"https://www.researchgate.net/publication/316752481_Equivalence_Tests_A_Practical_Primer_for_t_Tests_Correlations_and_Meta-Analyses"},{"title":"Cornell Statistical Consulting Unit Equivalence Testing","url":"https://cscu.cornell.edu/wp-content/uploads/equiv.pdf"},{"title":"CRAN: TOSTER citation info","url":"https://cran.r-project.org/web/packages/TOSTER/citation.html"},{"title":"Equivalence tests : a practical primer for t tests, correlations, and meta-analyses — Research portal Eindhoven University of Technology","url":"https://research.tue.nl/en/publications/equivalence-tests-a-practical-primer-for-t-tests-correlations-and"},{"title":"GitHub - Lakens/TOSTER: TOST equivalence test and power functions · GitHub","url":"https://github.com/Lakens/TOSTER"}]
+
+Here are the search results for the Lakens (2017) article:
+
+## Publication Details
+
+The article "Equivalence tests: a practical primer for t tests, correlations, and meta-analyses" was published by Lakens in 2017 in Social Psychological and Personality Science, volume 8(4), pages 355-362. The DOI is 10.1177/1948550617697177.
+
+## Overview
+
+The article addresses the problem that researchers often incorrectly conclude an effect is absent based on a nonsignificant result. It presents a widely recommended approach within a frequentist framework to test for equivalence, such as the two one-sided tests (TOST) procedure, which specifies upper and lower equivalence bounds based on the smallest effect size of interest.
+
+…[truncated 616 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-26T10:24:41.198908+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "PromptNER Prompting For Named Entity Recognition Ashok Dhananjay Lipton arXiv 2305.15444"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "PromptNER Prompting For Named Entity Recognition Ashok Dhananjay Lipton arXiv 2305.15444"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-26T10:24:41.199050+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer\" NAACL 2024 Zaratiana"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer\" NAACL 2024 Zaratiana"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-26T10:24:41.199182+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Guo Han Han Huang Lu \"Label Confusion Learning to Enhance Text Classification Models\" AAAI 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Guo Han Han Huang Lu \"Label Confusion Learning to Enhance Text Classification Models\" AAAI 2021"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-26T10:24:41.199374+00:00_
+
+Web search results for query: "Qwen3 Technical Report arxiv 2505.09388 2025"
+
+Links: [{"title":"[2505.09388] Qwen3 Technical Report","url":"https://arxiv.org/abs/2505.09388"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"Paper page - Qwen3 Technical Report","url":"https://huggingface.co/papers/2505.09388"},{"title":"[2505.09388] Qwen3 Technical Report - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2505.09388"},{"title":"Qwen3 Technical Report | Request PDF","url":"https://www.researchgate.net/publication/391741196_Qwen3_Technical_Report"},{"title":"[2505.09388v1] Qwen3 Technical Report","url":"https://arxiv.org/abs/2505.09388v1"},{"title":"Qwen3 Technical Report","url":"https://arxiv.org/html/arXiv:2505.09388"},{"title":"Qwen3 Technical Report (arXiv:2505.09388v1) - ScienceStack","url":"https://www.sciencestack.ai/paper/2505.09388v1"},{"title":"Qwen3 Technical Report","url":"https://summarizepaper.com/en/arxiv-id/2505.09388v1/"}]
+
+I found the Qwen3 Technical Report (arxiv 2505.09388). Here's what the research paper presents:
+
+## Overview
+
+Qwen3 is the latest version of the Qwen model family, comprising a series of large language models (LLMs) designed to advance performance, efficiency, and multilingual capabilities.
+
+## Model Architecture and Scale
+
+The Qwen3 series includes models of both dense and Mixture-of-Expert (MoE) architectures, with parameter scales ranging from 0.6 to 235 billion.
+
+## Key Innovation: Thinking Mode
+
+A key innovation in Qwen3 is the integration of thinking mode (for complex, multi-step reasoning) and non-thinking mode (for rapid, context-driven responses) into a unified framework. This eliminates the need to switch between different models--such as chat-optimized models (e.g., GPT-4o) and dedicated reasoning models (e.g., QwQ-32B)--and enables dynamic mode switching based on user queries or chat templates.
+
+## Adaptive Resource Allocation
+
+Q
+…[truncated 1059 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-26T10:24:41.199588+00:00_
+
+Web search results for query: "Cai "Isotropy in the Contextual Embedding Space: Clusters and Manifolds" ICLR 2021"
+
+Links: [{"title":"ICLR Poster Isotropy in the Contextual Embedding Space: Clusters and Manifolds","url":"https://iclr.cc/virtual/2021/poster/3079"},{"title":"Isotropy in the Contextual Embedding Space: Clusters and Manifolds | OpenReview","url":"https://openreview.net/forum?id=xYGNO86OWDH"},{"title":"dblp: Isotropy in the Contextual Embedding Space: Clusters and Manifolds.","url":"https://dblp.org/rec/conf/iclr/CaiHB021.html"},{"title":"Isotropy in the Contextual Embedding Space: Clusters and Manifolds","url":"https://papertalk.org/papertalks/28964"},{"title":"ISOTROPY IN THE CONTEXTUAL EMBEDDING SPACE","url":"https://openreview.net/pdf/8b00c8e698e9a810bfcee44a4ae5f6c3adeb7266.pdf"},{"title":"Isotropy in the Contextual Embedding Space: Clusters and Manifolds | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Isotropy-in-the-Contextual-Embedding-Space:-and-Cai-Huang/2a8bb26654c015f663670d1e0745f870071d5507"},{"title":"GitHub - TideDancer/iclr21_isotropy_contxt","url":"https://github.com/TideDancer/iclr21_isotropy_contxt"},{"title":"Isotropy in the Contextual Embedding Space: Clusters and ...","url":"https://dblp.uni-trier.de/rec/conf/iclr/CaiHB021.html"},{"title":"Xingyu Cai, Jiaji Huang, Yuchen Bian, Kenneth Church · Isotropy in the Contextual Embedding Space: Clusters and Manifolds","url":"https://slideslive.com/38953489/isotropy-in-the-contextual-embedding-space-clusters-and-manifolds"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=Isotropy+in+the+contextual+embedding+space:+Clusters+and+manifolds&amp=&author=Xingyu+Cai&amp=&author=Jiaji+Huang&amp=&author=Yuchen+Bian&amp=&author=Kenneth+Church&amp=&publication_year=2021"}]
+
+I found the paper! Here's what I found about this ICLR 2021 paper:
+
+**Title:** Isotropy in the Contextual Embedding Space: Clusters and Manifolds
+
+**Authors:** X. Cai, J. Huang, Y. 
+…[truncated 873 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-26T10:24:41.199909+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Llama 3 Herd of Models Grattafiori arxiv 2407.21783"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Llama 3 Herd of Models Grattafiori arxiv 2407.21783"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-26T10:24:41.200072+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "InstructUIE \"Multi-task Instruction Tuning for Unified Information Extraction\" Wang Zhou Zu 2023 arxiv 2304.08085"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "InstructUIE \"Multi-task Instruction Tuning for Unified Information Extraction\" Wang Zhou Zu 2023 arxiv 2304.08085"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-26T10:24:41.200209+00:00_
+
+Web search results for query: "PromptNER Prompting For Named Entity Recognition Ashok Dhananjay Lipton arXiv 2305.15444"
+
+Links: [{"title":"[2305.15444] PromptNER: Prompting For Named Entity Recognition","url":"https://arxiv.org/abs/2305.15444"},{"title":"PromptNER : Prompting For Named Entity Recognition","url":"https://arxiv.org/html/2305.15444"},{"title":"(PDF) PromptNER: Prompting For Named Entity Recognition","url":"https://www.researchgate.net/publication/371040584_PromptNER_Prompting_For_Named_Entity_Recognition"},{"title":"[2305.15444] PromptNER: Prompting For Named Entity Recognition","url":"http://export.arxiv.org/abs/2305.15444"},{"title":"PromptNER : Prompting For Named Entity Recognition Dhananjay Ashok","url":"https://arxiv.org/pdf/2305.15444"},{"title":"[PDF] PromptNER: Prompting For Named Entity Recognition | Semantic Scholar","url":"https://www.semanticscholar.org/paper/PromptNER:-Prompting-For-Named-Entity-Recognition-Ashok-Lipton/9141480721653789597b6e537ee0eeab401f3e60"},{"title":"[2305.15444v2] PromptNER: Prompting For Named Entity Recognition","url":"https://arxiv.org/abs/2305.15444v2"},{"title":"PromptNER: Prompting For Named Entity Recognition - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230515444A/abstract"},{"title":"Improving Few-Shot Cross-Domain Named Entity Recognition by Instruction Tuning a Word-Embedding based Retrieval Augmented Large Language Model","url":"https://arxiv.org/html/2411.00451v1"}]
+
+I found the paper for you! Here are the key details:
+
+**Paper Title:** PromptNER: Prompting For Named Entity Recognition
+
+**Authors:** Dhananjay Ashok and Zachary C. Lipton from Carnegie Mellon University
+
+**arXiv ID:** 2305.15444 (published June 20, 2023)
+
+**Overview:**
+
+PromptNER is a state-of-the-art algorithm for few-shot and cross-domain NER. To adapt to any new NER task, PromptNER requires a set of entity definitions in addition to standard few-shot examples.
+
+**How It Works:**
+
+Given a sentence, PromptNER prompts an LLM t
+…[truncated 578 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-26T10:24:41.200376+00:00_
+
+Web search results for query: ""GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer" NAACL 2024 Zaratiana"
+
+Links: [{"title":"GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer - ACL Anthology","url":"https://aclanthology.org/2024.naacl-long.300/"},{"title":"GitHub - urchade/GLiNER: Generalist and Lightweight Model for Named Entity Recognition (Extract any entity types from texts) · GitHub","url":"https://github.com/urchade/GLiNER"},{"title":"[2311.08526] GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer","url":"https://arxiv.org/abs/2311.08526"},{"title":"GLiNER: Generalist Model for Named Entity Recognition ...","url":"https://aclanthology.org/2024.naacl-long.300.pdf"},{"title":"(PDF) GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer","url":"https://www.researchgate.net/publication/382634629_GLiNER_Generalist_Model_for_Named_Entity_Recognition_using_Bidirectional_Transformer"},{"title":"GitHub - urchade/GLiNER: Generalist and Lightweight Model for Named Entity Recognition (Extract any entity types from texts) @ NAACL 2024","url":"https://github.com/urchade/GLiNER/tree/main"},{"title":"GitHub - locchh/GLiNER: Generalist and Lightweight Model for Named Entity Recognition (Extract any entity types from texts) @ NAACL 2024","url":"https://github.com/locchh/GLiNER"},{"title":"GitHub - theori-io/GLiNER-multilabel: Generalist and Lightweight Model for Named Entity Recognition (Extract any entity types from texts) @ NAACL 2024 · GitHub","url":"https://github.com/theori-io/GLiNER-multilabel"}]
+
+I found relevant information about the GLiNER paper. Here are the search results:
+
+## Publication Details
+
+GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer was published by Zaratiana et al. at NAACL 2024. The paper appears in the Proceedings of the 2024 Conference of the North American Chapter of the Associa
+…[truncated 1035 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-26T10:24:41.200530+00:00_
+
+Web search results for query: "Guo Han Han Huang Lu "Label Confusion Learning to Enhance Text Classification Models" AAAI 2021"
+
+Links: [{"title":"Label Confusion Learning to Enhance Text Classification Models | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/17529"},{"title":"Label Confusion Learning to Enhance Text Classiﬁcation Models","url":"https://www.atailab.cn/seminar2021Spring/pdf/AAAI_2021_Label%20Confusion%20Learning%20to%20Enhance%20Text%20Classification%20Models.pdf"},{"title":"GitHub - beyondguo/label_confusion_learning: Official implementation of AAAI-21 paper \"Label Confusion Learning to Enhance Text Classification Models\"","url":"https://github.com/beyondguo/label_confusion_learning"},{"title":"Label Confusion Learning to Enhance Text Classification Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2020arXiv201204987G/abstract"},{"title":"Label Confusion Learning to Enhance Text Classification Models - AAAI","url":"https://aaai.org/papers/12929-label-confusion-learning-to-enhance-text-classification-models/"},{"title":"[PDF] Label Confusion Learning to Enhance Text Classification Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Label-Confusion-Learning-to-Enhance-Text-Models-Guo-Han/e4f70b3f601eacad372426a572e196034ec940be"},{"title":"[2012.04987v1] Label Confusion Learning to Enhance Text Classification Models","url":"https://arxiv.org/abs/2012.04987v1"},{"title":"[2012.04987] Label Confusion Learning to Enhance Text Classification Models","url":"https://arxiv.org/abs/2012.04987"}]
+
+Perfect! I found the paper you're looking for. Here are the search results:
+
+## Paper Details
+
+The paper "Label Confusion Learning to Enhance Text Classification Models" was authored by Guo, B., Han, S., Han, X., Huang, H., & Lu, T. (2021) and published in the Proceedings of the AAAI Conference on Artificial Intelligence, 35(14), 12929-12936.
+
+## Key Information
+
+The aut
+…[truncated 976 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-26T10:24:41.200689+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"GLiNER2\" \"Schema-Driven Multi-Task Learning for Structured Information Extraction\" EMNLP 2025 Zaratiana"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"GLiNER2\" \"Schema-Driven Multi-Task Learning for Structured Information Extraction\" EMNLP 2025 Zaratiana"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-26T10:24:41.200825+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "JSONSchemaBench Rigorous Benchmark Structured Outputs Language Models Geng Saibo 2025 arXiv 2501.10868"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "JSONSchemaBench Rigorous Benchmark Structured Outputs Language Models Geng Saibo 2025 arXiv 2501.10868"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-26T10:24:41.201009+00:00_
+
+Web search results for query: "Llama 3 Herd of Models Grattafiori arxiv 2407.21783"
+
+Links: [{"title":"[2407.21783] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783"},{"title":"The Llama 3 Herd of Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240721783G/abstract"},{"title":"[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2407.21783"},{"title":"Paper page - The Llama 3 Herd of Models","url":"https://huggingface.co/papers/2407.21783"},{"title":"(PDF) The Llama 3 Herd of Models","url":"https://www.researchgate.net/publication/382739128_The_Llama_3_Herd_of_Models"},{"title":"The Llama 3 herd of models - Archive ouverte HAL","url":"https://hal.science/hal-05414211"},{"title":"[2407.21783v2] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783v2"},{"title":"[2407.21783v3] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783v3"},{"title":"[2407.21783v1] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783v1"}]
+
+I found the paper you're looking for. Here's what the search results show:
+
+"The Llama 3 Herd of Models" presents a new set of foundation models called Llama 3, which is a herd of language models that natively support multilinguality, coding, reasoning, and tool usage. The largest model is a dense Transformer with 405B parameters and a context window of up to 128K tokens.
+
+Llama 3 delivers comparable quality to leading language models such as GPT-4 on a plethora of tasks. The paper presents publicly released Llama 3 models, including pre-trained and post-trained versions of the 405B parameter language model and Llama Guard 3 model for input and output safety, and also presents results of experiments integrating image, video, and speech capabilities into Llama 3 via a compositional approach.
+
+The paper (arXiv:2407.21783) was submitted on July 31, 2024, and the latest version was revised on November 23, 2024. You can access the full paper
+…[truncated 149 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-26T10:24:41.201196+00:00_
+
+Web search results for query: "InstructUIE "Multi-task Instruction Tuning for Unified Information Extraction" Wang Zhou Zu 2023 arxiv 2304.08085"
+
+Links: [{"title":"[2304.08085] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://arxiv.org/abs/2304.08085"},{"title":"InstructUIE: Multi-task Instruction Tuning for Uniﬁed Information Extraction","url":"https://arxiv.org/pdf/2304.08085"},{"title":"(PDF) InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction (2023) | Xiao Wang | 81 Citations","url":"https://scispace.com/papers/instructuie-multi-task-instruction-tuning-for-unified-qe70ci1r"},{"title":"Paper page - InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://huggingface.co/papers/2304.08085"},{"title":"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://www.researchgate.net/publication/370071546_InstructUIE_Multi-task_Instruction_Tuning_for_Unified_Information_Extraction"},{"title":"[2304.08085v1] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://arxiv.org/abs/2304.08085v1"},{"title":"[PDF] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/InstructUIE:-Multi-task-Instruction-Tuning-for-Wang-Zhou/bbb2fc6e95d24fb58ab6c25b216b14ac49a32fbe"},{"title":"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction - nikkie-memos","url":"https://scrapbox.io/nikkie-memos/InstructUIE:_Multi-task_Instruction_Tuning_for_Unified_Information_Extraction"},{"title":"InstructUIE: Unified Info Extraction Framework | PDF | Conceptual Model | Information","url":"https://www.scribd.com/document/797504751/2304-08085v1"}]
+
+I found the paper! Here's a summary of the search results for InstructUIE:
+
+**Paper Details:**
+- InstructUIE is a unified information extraction framework based on instru
+…[truncated 864 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122 · 2026-05-26T10:24:41.201361+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Wen Liang Wu Zhang Liu \"Effective and Efficient Schema-aware Information Extraction Using On-Device Large Language Models\" arXiv 2505.14992"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Wen Liang Wu Zhang Liu \"Effective and Efficient Schema-aware Information Extraction Using On-Device Large Language Models\" arXiv 2505.14992"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-26T10:24:41.201513+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Sentence-BERT Sentence Embeddings Siamese BERT-Networks Reimers Gurevych EMNLP 2019"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Sentence-BERT Sentence Embeddings Siamese BERT-Networks Reimers Gurevych EMNLP 2019"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-26T10:24:41.201663+00:00_
+
+Web search results for query: "Baan 2023 ACL annotation label variation NLP paper author"
+
+Links: [{"title":"VariErr NLI: Separating Annotation Error from Human Label Variation - ACL Anthology","url":"https://aclanthology.org/2024.acl-long.123/"},{"title":"VARIERR NLI: Separating Annotation Error from Human ...","url":"https://aclanthology.org/2024.acl-long.123.pdf"},{"title":"Annotator-Centric Active Learning for Subjective NLP Tasks","url":"https://aclanthology.org/2024.emnlp-main.1031.pdf"},{"title":"Ecologically Valid Explanations for Label Variation in NLI - ACL Anthology","url":"https://aclanthology.org/2023.findings-emnlp.712/"},{"title":"Demographic Features for Annotation-Aware Classification","url":"https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.142.pdf"},{"title":"The 18th Conference on Natural Language Processing (KONVENS 2023) - ACL Anthology","url":"https://aclanthology.org/events/konvens-2023/"},{"title":"Peer-Label Assisted Hierarchical Text Classification - ACL 2023!","url":"https://virtual2023.aclweb.org/paper_P1166.html"},{"title":"NoisywikiHow: A Benchmark for Learning with Real-world ...","url":"https://aclanthology.org/2023.findings-acl.299.pdf"}]
+
+Based on the search results, I found a relevant paper but it appears to be from 2023 but published at a 2024 venue. Let me search more specifically for Joris Baan's 2023 work:
+
+Links: [{"title":"Joris Baan - ACL Anthology","url":"https://aclanthology.org/people/joris-baan/"},{"title":"Joris Baan","url":"https://jorisbaan.nl/"},{"title":"Interpreting Predictive Probabilities: Model Confidence or Human Label Variation? - ACL Anthology","url":"https://aclanthology.org/2024.eacl-short.24/"},{"title":"Interpreting Predictive Probabilities: Model Confidence or Human Label Variation? | Request PDF","url":"https://www.researchgate.net/publication/393044678_Interpreting_Predictive_Probabilities_Model_Confidence_or_Human_Label_Variation"},{"title":"The Ecological Fallacy in Annotation: Model
+…[truncated 2410 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-26T10:24:41.201871+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CodeIE \"Large Code Generation Models are Better Few-Shot Information Extractors\" Li Sun Tang ACL 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CodeIE \"Large Code Generation Models are Better Few-Shot Information Extractors\" Li Sun Tang ACL 2023"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-26T10:24:41.202024+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Schuirmann 1987 \"Journal of Pharmacokinetics and Biopharmaceutics\" volume 15 number 6 pages 657"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Schuirmann 1987 \"Journal of Pharmacokinetics and Biopharmaceutics\" volume 15 number 6 pages 657"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-26T10:24:41.202161+00:00_
+
+Web search results for query: ""GLiNER2" "Schema-Driven Multi-Task Learning for Structured Information Extraction" EMNLP 2025 Zaratiana"
+
+Links: [{"title":"GLiNER2: Schema-Driven Multi-Task Learning for Structured Information Extraction - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-demos.10/"},{"title":"GLiNER2: An Efficient Multi-Task Information Extraction System with Schema-Driven Interface","url":"https://arxiv.org/html/2507.18546v1"},{"title":"[2507.18546] GLiNER2: An Efficient Multi-Task Information Extraction System with Schema-Driven Interface","url":"https://arxiv.org/abs/2507.18546"},{"title":"GLiNER2: Schema-Driven Multi-Task Learning for Structured Information Extraction","url":"https://www.researchgate.net/publication/397420183_GLiNER2_Schema-Driven_Multi-Task_Learning_for_Structured_Information_Extraction"},{"title":"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: System Demonstrations - ACL Anthology","url":"https://aclanthology.org/volumes/2025.emnlp-demos/"},{"title":"[PDF] GLiNER2: An Efficient Multi-Task Information Extraction System with Schema-Driven Interface | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GLiNER2:-An-Efficient-Multi-Task-Information-System-Zaratiana-Pasternak/73459ec452412f2653b341d55632190aeadc1e12"},{"title":"gliner2 · PyPI","url":"https://pypi.org/project/gliner2/"},{"title":"[2507.18546v1] GLiNER2: An Efficient Multi-Task Information Extraction System with Schema-Driven Interface","url":"https://arxiv.org/abs/2507.18546v1"},{"title":"GLiNER2: An Efficient Multi-Task Information Extraction System with Schema-Driven Interface [Quick Review]","url":"https://liner.com/review/gliner2-efficient-multitask-information-extraction-system-with-schemadriven-interface"}]
+
+Based on the search results, here's what I found about GLiNER2:
+
+## Paper Details
+
+GLiNER2: Schema-Driven Multi-Task Learning for Structured Information Extraction was presented by Zaratiana and co
+…[truncated 1018 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-26T10:24:41.202323+00:00_
+
+Web search results for query: "Sentence-BERT Sentence Embeddings Siamese BERT-Networks Reimers Gurevych EMNLP 2019"
+
+Links: [{"title":"[PDF] Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Sentence-BERT:-Sentence-Embeddings-using-Siamese-Reimers-Gurevych/93d63ec754f29fa22572615320afe0521f7ec66d"},{"title":"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks | Request PDF","url":"https://www.researchgate.net/publication/336996965_Sentence-BERT_Sentence_Embeddings_using_Siamese_BERT-Networks"},{"title":"Reimers, N. and Gurevych, I. (2019) Sentence-BERT Sentence Embeddings Using Siamese BERT-Networks. Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Pro-cessing (EMNLP-IJCNLP), Hong Kong, November 2019, 3982-3992. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=3422225"},{"title":"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks - ACL Anthology","url":"https://aclanthology.org/D19-1410/"},{"title":"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks (EMNLP 2019) | Joohong Lee","url":"https://roomylee.github.io/sentence-bert/"},{"title":"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks | BibSonomy","url":"https://www.bibsonomy.org/bibtex/292afb49328e6651f17dc1e1b8c304aae/nosebrain"},{"title":"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks","url":"https://arxiv.org/pdf/1908.10084"},{"title":"(PDF) Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks (2019) | Nils Reimers | 11970 Citations","url":"https://scispace.com/papers/sentence-bert-sentence-embeddings-using-siamese-bert-5dz0n53mvi"}]
+
+Based on the search results, I found comprehensive information about this paper:
+
+## Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks
+
+This paper was pu
+…[truncated 1305 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-26T10:24:41.202478+00:00_
+
+Web search results for query: "Wen Liang Wu Zhang Liu "Effective and Efficient Schema-aware Information Extraction Using On-Device Large Language Models" arXiv 2505.14992"
+
+Links: [{"title":"[2505.14992] Effective and Efficient Schema-aware Information Extraction Using On-Device Large Language Models","url":"https://arxiv.org/abs/2505.14992"},{"title":"[2505.14992v1] Effective and Efficient Schema-aware Information Extraction Using On-Device Large Language Models","url":"https://arxiv.org/abs/2505.14992v1"},{"title":"Effective and Efficient Schema-aware Information Extraction Using On-Device Large Language Models","url":"https://arxiv.org/html/2505.14992"},{"title":"Effective and Efficient Schema-aware Information ...","url":"https://www.arxiv.org/pdf/2505.14992"},{"title":"Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation","url":"https://arxiv.org/html/2505.08690"},{"title":"[2505.08690v1] Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2505.08690v1"},{"title":"[2505.08690] Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2505.08690"}]
+
+I found the paper you're searching for! Here are the details:
+
+**Paper Information:**
+
+The paper is titled "Effective and Efficient Schema-aware Information Extraction Using On-Device Large Language Models" with arXiv ID 2505.14992, submitted on May 21, 2025. The authors are Zhihao Wen, Sheng Liang, Yaxiong Wu, Yongyue Zhang, and Yong Liu.
+
+**Abstract Summary:**
+
+The paper addresses information extraction (IE), which plays a crucial role in NLP by converting unstructured text into structured knowledge. Deploying computationally intensive LLMs on resource-constrained devices for information extraction is challenging, particularly due to issues like hallucinations, limited context length, and high latency—especially when handling diverse extraction schemas.
+
+**Proposed Solution:**
+
+To address these 
+…[truncated 614 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-26T10:24:41.202637+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "GLiNER2 EMNLP 2025 demo authors Pasternak Boyd Hurn-Maloney Lewis aclanthology"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "GLiNER2 EMNLP 2025 demo authors Pasternak Boyd Hurn-Maloney Lewis aclanthology"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-26T10:24:41.202778+00:00_
+
+Web search results for query: "CodeIE "Large Code Generation Models are Better Few-Shot Information Extractors" Li Sun Tang ACL 2023"
+
+Links: [{"title":"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors - ACL Anthology","url":"https://aclanthology.org/2023.acl-long.855/"},{"title":"GitHub - artpli/CodeIE: [ACL 23] CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors · GitHub","url":"https://github.com/artpli/CodeIE"},{"title":"CODEIE: Large Code Generation Models are Better Few- ...","url":"https://aclanthology.org/2023.acl-long.855.pdf"},{"title":"[2305.05711] CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors","url":"https://arxiv.org/abs/2305.05711"},{"title":"[Quick Review] CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors","url":"https://liner.com/review/codeie-large-code-generation-models-are-better-fewshot-information-extractors"},{"title":"CodeIE","url":"https://artpli.github.io/CodeIE/"},{"title":"[2305.05711v2] CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors","url":"https://arxiv.org/abs/2305.05711v2"},{"title":"GitHub - zjunlp/Low-resource-KEPapers: A Paper List of Low-resource Information Extraction","url":"https://github.com/zjunlp/Low-resource-KEPapers"},{"title":"Main Conference - ACL 2023","url":"https://2023.aclweb.org/program/accepted_main_conference/"}]
+
+I found comprehensive information about the paper you requested. Here are the key details:
+
+**Paper Information:**
+CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors was authored by Peng Li, Tianxiang Sun, Qiong Tang, Hang Yan, Yuanbin Wu, Xuanjing Huang, and Xipeng Qiu.
+
+**Publication Details:**
+The paper was published in Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 15339–15353, Toronto, Canada in July 2023.
+
+**Main Contribution:**
+The paper proposes
+…[truncated 752 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-26T10:24:41.202957+00:00_
+
+Web search results for query: "JSONSchemaBench Rigorous Benchmark Structured Outputs Language Models Geng Saibo 2025 arXiv 2501.10868"
+
+Links: [{"title":"[2501.10868] JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models","url":"https://arxiv.org/abs/2501.10868"},{"title":"GitHub - guidance-ai/jsonschemabench · GitHub","url":"https://github.com/guidance-ai/jsonschemabench"},{"title":"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models","url":"https://arxiv.org/html/2501.10868v3"},{"title":"[Literature Review] JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models","url":"https://www.themoonlight.io/en/review/jsonschemabench-a-rigorous-benchmark-of-structured-outputs-for-language-models"},{"title":"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250110868G/abstract"},{"title":"(PDF) Generating Structured Outputs from Language Models: Benchmark and Studies","url":"https://www.researchgate.net/publication/388231978_Generating_Structured_Outputs_from_Language_Models_Benchmark_and_Studies"},{"title":"Learning to Generate Structured Output with Schema ...","url":"https://aclanthology.org/2025.acl-long.243.pdf"},{"title":"epfl-dlab/JSONSchemaBench · Datasets at Hugging Face","url":"https://huggingface.co/datasets/epfl-dlab/JSONSchemaBench"},{"title":"LLMStructBench: Benchmarking Large Language Model Structured Data Extraction","url":"https://arxiv.org/html/2602.14743v1"}]
+
+I found the paper you're looking for. Here's what I found about JSONSchemaBench:
+
+## Overview
+
+JSONSchemaBench is a benchmark for constrained decoding comprising 10K real-world JSON schemas that encompass a wide range of constraints with varying complexity.
+
+## Purpose and Motivation
+
+Constrained decoding has emerged as the dominant technology across sectors for enforcing structured outputs during generation. Despite its growing adoption, 
+…[truncated 1025 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-26T10:24:41.203120+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Schema as Parameterized Tools for Universal Information Extraction\" Liang Zhang Wu Tang Liu arXiv 2506.01276"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Schema as Parameterized Tools for Universal Information Extraction\" Liang Zhang Wu Tang Liu arXiv 2506.01276"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-26T10:24:41.203255+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "MiniLM Deep Self-Attention Distillation Task-Agnostic Compression Pre-Trained Transformers Wang Wenhui NeurIPS 2020 arxiv 2002.10957"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "MiniLM Deep Self-Attention Distillation Task-Agnostic Compression Pre-Trained Transformers Wang Wenhui NeurIPS 2020 arxiv 2002.10957"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-26T10:24:41.203392+00:00_
+
+Web search results for query: "Schuirmann 1987 "Journal of Pharmacokinetics and Biopharmaceutics" volume 15 number 6 pages 657"
+
+Links: [{"title":"Volume 15, Issue 6 | Journal of Pharmacokinetics and Pharmacodynamics | Springer Nature Link","url":"https://link.springer.com/journal/10928/volumes-and-issues/15-6"},{"title":"A comparison of the Two One-Sided Tests Procedure and the Power Approach for assessing the equivalence of average bioavailability | Journal of Pharmacokinetics and Pharmacodynamics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/BF01068419"},{"title":"cset: Confidence regions and intervals around multivariate normal... in PhilipPallmann/jocre: Joint Confidence Regions","url":"https://rdrr.io/github/PhilipPallmann/jocre/man/cset.html"},{"title":"Sample size determination for the two one-sided tests procedure in bioequivalence | Journal of Pharmacokinetics and Pharmacodynamics","url":"https://rd.springer.com/article/10.1007/BF01143188"},{"title":"confset: Confidence regions around multivariate normal means","url":"https://www.rdocumentation.org/packages/jocre/versions/0.1/topics/confset"},{"title":"Measuring switchability and prescribability: When is average bioequivalence sufficient? | Journal of Pharmacokinetics and Pharmacodynamics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/BF02353794"},{"title":"(Open Access) A comparison of the Two One-Sided Tests Procedure and the Power Approach for assessing the equivalence of average bioavailability (1987) | Donald J. Schuirmann | 2437 Citations","url":"https://scispace.com/papers/a-comparison-of-the-two-one-sided-tests-procedure-and-the-17764djo4q"},{"title":"Power of the two one-sided tests procedure in bioequivalence | Journal of Pharmacokinetics and Pharmacodynamics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/BF01063556"},{"title":"Top 45 Journal of Pharmacokinetics and Biopharmaceutics ...","url":"https://scispace.com/jou
+…[truncated 985 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136 · 2026-05-26T10:24:41.203590+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Towards Scalable Multi-Domain Conversational Agents Schema-Guided Dialogue Dataset Rastogi AAAI 2020"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Towards Scalable Multi-Domain Conversational Agents Schema-Guided Dialogue Dataset Rastogi AAAI 2020"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-26T10:24:41.203765+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ADELIE \"Aligning Large Language Models on Information Extraction\" Qi Peng Wang EMNLP 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ADELIE \"Aligning Large Language Models on Information Extraction\" Qi Peng Wang EMNLP 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 138 · 2026-05-26T10:24:41.203953+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 1909.00161 Yin Hay Roth zero-shot text classification exact title"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 1909.00161 Yin Hay Roth zero-shot text classification exact title"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 139 · 2026-05-26T10:24:41.204157+00:00_
+
+Web search results for query: ""Schema as Parameterized Tools for Universal Information Extraction" Liang Zhang Wu Tang Liu arXiv 2506.01276"
+
+Links: [{"title":"[2506.01276] Schema as Parameterized Tools for Universal Information Extraction","url":"https://arxiv.org/abs/2506.01276"},{"title":"Schema as Parameterized Tools for Universal Information Extraction","url":"https://arxiv.org/html/2506.01276v1"},{"title":"Schema as Parameterized Tools for Universal Information Extraction","url":"https://openreview.net/pdf?id=yoPtjKVtoX"},{"title":"Schema as Parameterized Tools for Universal Information ...","url":"https://arxiv.org/pdf/2506.01276"},{"title":"Schema as Parameterized Tools for Universal Information Extraction | OpenReview","url":"https://openreview.net/forum?id=r1QGqAOBxa"},{"title":"[Literature Review] Schema as Parameterized Tools for Universal Information Extraction","url":"https://www.themoonlight.io/en/review/schema-as-parameterized-tools-for-universal-information-extraction"},{"title":"Schema as Parameterized Tools for Universal Information Extraction. | Semantic Scholar","url":"https://www.semanticscholar.org/search?q=Schema+as+Parameterized+Tools+for+Universal+Information+Extraction."}]
+
+I found the paper you're looking for! Here's what I found:
+
+The paper "Schema as Parameterized Tools for Universal Information Extraction" is authored by Sheng Liang, Yongyue Zhang, Yaxiong Wu, Ruiming Tang, and Yong Liu from Huawei Noah's Ark Lab, with the arXiv identifier 2506.01276.
+
+The paper proposes a unified adaptive text-to-structure generation framework called Schema as Parameterized Tools (SPT), which reimagines the tool-calling capability of LLMs by treating predefined schemas as parameterized tools for tool selection and parameter filling.
+
+The work addresses the problem that Universal Information Extraction (UIE) suffers from a lack of adaptability when selecting between predefined schemas and on-the-fly schema generation within the in-context learning par
+…[truncated 463 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-26T10:24:41.204381+00:00_
+
+Web search results for query: "GLiNER2 EMNLP 2025 demo authors Pasternak Boyd Hurn-Maloney Lewis aclanthology"
+
+Links: [{"title":"GLiNER2: Schema-Driven Multi-Task Learning for Structured Information Extraction - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-demos.10/"},{"title":"GLiNER2: Schema-Driven Multi-Task Learning for Structured Information Extraction | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.emnlp-demos.10@ACL"},{"title":"GLiNER2: An Efficient Multi-Task Information Extraction ...","url":"https://aclanthology.org/2025.emnlp-demos.10.pdf"},{"title":"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: System Demonstrations - ACL Anthology","url":"https://aclanthology.org/volumes/2025.emnlp-demos/"},{"title":"[2507.18546] GLiNER2: An Efficient Multi-Task Information Extraction System with Schema-Driven Interface","url":"https://arxiv.org/abs/2507.18546"},{"title":"[PDF] GLiNER2: An Efficient Multi-Task Information Extraction System with Schema-Driven Interface | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GLiNER2:-An-Efficient-Multi-Task-Information-System-Zaratiana-Pasternak/73459ec452412f2653b341d55632190aeadc1e12"},{"title":"EMNLP 2025 The 2025 Conference on Empirical Methods in Natural","url":"https://aclanthology.org/2025.emnlp-demos.0.pdf"},{"title":"EMNLP.2025 - System Demonstrations | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/EMNLP.2025?group=System+Demonstrations"},{"title":"GitHub - fastino-ai/GLiNER2: Unified Schema-Based Information Extraction · GitHub","url":"https://github.com/fastino-ai/GLiNER2"},{"title":"Accepted System Demonstrations Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/demo_papers/"}]
+
+Based on the search results, I found information about the GLiNER2 EMNLP 2025 demo paper from the ACL Anthology:
+
+GLiNER2: Schema-Driven Multi-Task Learning for Structured Information Extraction was aut
+…[truncated 853 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-26T10:24:41.204555+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Card Henderson Khandelwal Jia Mahowald Jurafsky \"With Little Power Comes Great Responsibility\" EMNLP 2020"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Card Henderson Khandelwal Jia Mahowald Jurafsky \"With Little Power Comes Great Responsibility\" EMNLP 2020"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-26T10:24:41.204695+00:00_
+
+Web search results for query: "ADELIE "Aligning Large Language Models on Information Extraction" Qi Peng Wang EMNLP 2024"
+
+Links: [{"title":"GitHub - THU-KEG/ADELIE: [EMNLP2024] Aligning Large Language Models on Information Extraction · GitHub","url":"https://github.com/THU-KEG/ADELIE"},{"title":"ADELIE: Aligning Large Language Models on Information Extraction - ACL Anthology","url":"https://aclanthology.org/2024.emnlp-main.419/"},{"title":"[2405.05008] ADELIE: Aligning Large Language Models on Information Extraction","url":"https://arxiv.org/abs/2405.05008"},{"title":"[Quick Review] ADELIE: Aligning Large Language Models on Information Extraction","url":"https://liner.com/review/adelie-aligning-large-language-models-on-information-extraction"},{"title":"Main Conference - EMNLP 2024","url":"https://2024.emnlp.org/program/accepted_main_conference/"},{"title":"ADELIE: Aligning Large Language Models on Information Extraction | Request PDF","url":"https://www.researchgate.net/publication/386188440_ADELIE_Aligning_Large_Language_Models_on_Information_Extraction"},{"title":"ADELIE: Aligning Large Language Models on Information Extraction","url":"https://arxiv.org/html/2405.05008v1"},{"title":"dblp: ADELIE: Aligning Large Language Models on Information Extraction.","url":"https://dblp.org/rec/journals/corr/abs-2405-05008.html"}]
+
+I found the paper you're looking for! Here are the search results:
+
+## ADELIE: Aligning Large Language Models on Information Extraction
+
+The paper "ADELIE: Aligning Large Language Models on Information Extraction" was written by Yunjia Qi, Hao Peng, Xiaozhi Wang, Bin Xu, Lei Hou, and Juanzi Li, and was published in Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing in Miami, Florida, USA.
+
+**Key Information:**
+
+ADELIE is an aligned LLM that effectively solves various IE tasks, including closed IE, open IE, and on-demand IE. 
+
+Large language models usually fall short on information extraction tasks and struggle t
+…[truncated 910 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-26T10:24:41.204893+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Willard Louf \"Efficient Guided Generation\" 2307.09702 published venue conference ICML NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Willard Louf \"Efficient Guided Generation\" 2307.09702 published venue conference ICML NeurIPS"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-26T10:24:41.205065+00:00_
+
+Web search results for query: "Towards Scalable Multi-Domain Conversational Agents Schema-Guided Dialogue Dataset Rastogi AAAI 2020"
+
+Links: [{"title":"Towards Scalable Multi-Domain Conversational Agents: The Schema-Guided Dialogue Dataset | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/6394"},{"title":"[1909.05855] Towards Scalable Multi-domain Conversational Agents: The Schema-Guided Dialogue Dataset","url":"https://arxiv.org/abs/1909.05855"},{"title":"(PDF) Towards Scalable Multi-Domain Conversational Agents: The Schema-Guided Dialogue Dataset","url":"https://www.researchgate.net/publication/342540613_Towards_Scalable_Multi-Domain_Conversational_Agents_The_Schema-Guided_Dialogue_Dataset"},{"title":"GitHub - google-research-datasets/dstc8-schema-guided-dialogue: The Schema-Guided Dialogue Dataset · GitHub","url":"https://github.com/google-research-datasets/dstc8-schema-guided-dialogue"},{"title":"Towards Scalable Multi-Domain Conversational Agents: The Schema-Guided Dialogue Dataset - R Discovery","url":"https://discovery.researcher.life/article/towards-scalable-multi-domain-conversational-agents-the-schema-guided-dialogue-dataset/e78e7eb730643968891a0dd0268418c2"},{"title":"Towards Scalable Multi-domain Conversational Agents: The Schema-Guided Dialogue Dataset","url":"https://research.google/pubs/pub48569/"},{"title":"Towards Scalable Multi-Domain Conversational Agents: The Schema-Guided","url":"https://arxiv.org/pdf/1909.05855"},{"title":"[PDF] Towards Scalable Multi-domain Conversational Agents: The Schema-Guided Dialogue Dataset | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Towards-Scalable-Multi-domain-Conversational-The-Rastogi-Zang/674b6321ae1d12c83f28ade1850a27256c20f0d4"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Publication Information:**
+Rastogi, A., Zang, X., Sunkara, S., Gupta, R., & Khaitan, P. (2020). Towards Scalable Multi-Domain C
+…[truncated 1193 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 145 · 2026-05-26T10:24:41.205221+00:00_
+
+Web search results for query: "arxiv 1909.00161 Yin Hay Roth zero-shot text classification exact title"
+
+Links: [{"title":"[1909.00161] Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach","url":"https://arxiv.org/abs/1909.00161"},{"title":"Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach | Request PDF","url":"https://www.researchgate.net/publication/335599580_Benchmarking_Zero-shot_Text_Classification_Datasets_Evaluation_and_Entailment_Approach"},{"title":"[1909.00161v1] Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach","url":"https://arxiv.org/abs/1909.00161v1"},{"title":"Benchmarking Zero-shot Text Classification","url":"https://www.emergentmind.com/papers/1909.00161"},{"title":"[PDF] Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Benchmarking-Zero-shot-Text-Classification:-and-Yin-Hay/093d9253a2fe765ca6577b091d3f99bab3155a7d"},{"title":"Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach | Takara TLDR","url":"https://tldr.takara.ai/p/1909.00161"},{"title":"GitHub - yinwenpeng/BenchmarkingZeroShot · GitHub","url":"https://github.com/yinwenpeng/BenchmarkingZeroShot"},{"title":"Paper page - Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach","url":"https://huggingface.co/papers/1909.00161"},{"title":"Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach - ACL Anthology","url":"https://aclanthology.org/D19-1404/"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Exact Title:** "Benchmarking Zero-shot Text Classification: Datasets, Evaluation and Entailment Approach"
+
+**Authors:** Wenpeng Yin, Jamaal Hay, Dan Roth
+
+**arXiv ID:** 1909.00161
+
+**Submission Date:** August 31, 2019
+
+The paper was published in the Proceedi
+…[truncated 525 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 146 · 2026-05-26T10:24:41.205379+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Evaluating ChatGPT's Information Extraction Capabilities Assessment Performance Explainability Calibration Faithfulness Li Bo 2023 arXiv 2304.11633"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Evaluating ChatGPT's Information Extraction Capabilities Assessment Performance Explainability Calibration Faithfulness Li Bo 2023 arXiv 2304.11633"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 147 · 2026-05-26T10:24:41.205515+00:00_
+
+Web search results for query: "MiniLM Deep Self-Attention Distillation Task-Agnostic Compression Pre-Trained Transformers Wang Wenhui NeurIPS 2020 arxiv 2002.10957"
+
+Links: [{"title":"MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers","url":"https://proceedings.neurips.cc/paper/2020/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html"},{"title":"[2002.10957] MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers","url":"https://arxiv.org/abs/2002.10957"},{"title":"[PDF] MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers | Semantic Scholar","url":"https://www.semanticscholar.org/paper/MiniLM:-Deep-Self-Attention-Distillation-for-of-Wang-Wei/c6c734e16f66fbfcefac7625cc64599e83292c1e"},{"title":"[2002.10957v2] MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers","url":"https://arxiv.org/abs/2002.10957v2"},{"title":"[2002.10957v1] MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers","url":"https://arxiv.org/abs/2002.10957v1"},{"title":"Review for NeurIPS paper: MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers","url":"https://proceedings.neurips.cc/paper/2020/file/3f5ee243547dee91fbd053c1c4a845aa-Review.html"},{"title":"MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers - ADS","url":"https://ui.adsabs.harvard.edu/abs/2020arXiv200210957W/abstract"},{"title":"(PDF) MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers","url":"https://www.researchgate.net/publication/339497943_MiniLM_Deep_Self-Attention_Distillation_for_Task-Agnostic_Compression_of_Pre-Trained_Transformers"}]
+
+I found the paper you were searching for. Here are the key details:
+
+**MiniLM: Deep Self-Attention Distillation for Task-Agnostic
+…[truncated 956 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 148 · 2026-05-26T10:24:41.205665+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "IEPile ACL Anthology 2024 \"Schema-Conditioned\" OR \"Schema-Based\" exact title authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "IEPile ACL Anthology 2024 \"Schema-Conditioned\" OR \"Schema-Based\" exact title authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 149 · 2026-05-26T10:24:41.205802+00:00_
+
+Web search results for query: "Card Henderson Khandelwal Jia Mahowald Jurafsky "With Little Power Comes Great Responsibility" EMNLP 2020"
+
+Links: [{"title":"With Little Power Comes Great Responsibility","url":"https://web.stanford.edu/~jurafsky/pubs/2020.emnlp-main.745.pdf"},{"title":"With Little Power Comes Great Responsibility - ACL Anthology","url":"https://aclanthology.org/2020.emnlp-main.745/"},{"title":"[PDF] With Little Power Comes Great Responsibility | Semantic Scholar","url":"https://www.semanticscholar.org/paper/With-Little-Power-Comes-Great-Responsibility-Card-Henderson/186d26390779f7c54930e05812cfe85e6973961f"},{"title":"GitHub - dallascard/NLP-power-analysis: Replication code for \"With Little Power Comes Great Responsibility\"","url":"https://github.com/dallascard/NLP-power-analysis"},{"title":"With Little Power Comes Great Responsibility | Request PDF","url":"https://www.researchgate.net/publication/347236070_With_Little_Power_Comes_Great_Responsibility"},{"title":"With Little Power Comes Great Responsibility | Peter Henderson","url":"https://www.peterhenderson.co/publication/power-2020-emnlp/"},{"title":"Kyle Mahowald","url":"https://mahowak.github.io/"},{"title":"[2010.06595] With Little Power Comes Great Responsibility","url":"https://arxiv.org/abs/2010.06595"},{"title":"Dan Jurafsky - ACL Anthology","url":"https://www.aclweb.org/anthology/people/d/dan-jurafsky/"},{"title":"Robin Jia","url":"https://robinjia.github.io/"}]
+
+I found the paper you're looking for. "With Little Power Comes Great Responsibility" is a paper by Dallas Card, Peter Henderson, Urvashi Khandelwal, Robin Jia, Kyle Mahowald, and Dan Jurafsky, published in the Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP), pages 9263–9274.
+
+The paper addresses the fact that statistical power has largely been ignored by the NLP community. It argues that underpowered experiments make it more difficult to discern the difference between statistical no
+…[truncated 633 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-26T10:24:41.205987+00:00_
+
+Web search results for query: "Willard Louf "Efficient Guided Generation" 2307.09702 published venue conference ICML NeurIPS"
+
+Links: [{"title":"[2307.09702] Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/abs/2307.09702"},{"title":"Paper page - Efficient Guided Generation for Large Language Models","url":"https://huggingface.co/papers/2307.09702"},{"title":"Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/pdf/2307.09702"},{"title":"[PDF] Efficient Guided Generation for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Efficient-Guided-Generation-for-Large-Language-Willard-Louf/c4ceaef35bca063815f50d90a087acbd07a65478"},{"title":"(PDF) Efficient Guided Generation for LLMs","url":"https://www.researchgate.net/publication/372468267_Efficient_Guided_Generation_for_LLMs"},{"title":"[2307.09702v3] Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/abs/2307.09702v3"},{"title":"[2307.09702v1] Efficient Guided Generation for LLMs","url":"https://arxiv.org/abs/2307.09702v1"},{"title":"Efficient Guided Generation for Large Language Models","url":"https://www.researchhub.com/paper/1278292/efficient-guided-generation-for-large-language-models"},{"title":"dblp: Efficient Guided Generation for Large Language Models.","url":"https://dblp.org/rec/journals/corr/abs-2307-09702.html"},{"title":"[2307.09702v2] Efficient Guided Generation for Large Language Models","url":"https://arxiv.org/abs/2307.09702v2"}]
+
+Based on the search results, I found information about the paper. Here's what I discovered:
+
+The authors are Brandon T. Willard and Rémi Louf. The paper is titled "Efficient Guided Generation for Large Language Models" with arxiv ID 2307.09702.
+
+The paper was submitted on July 19, 2023, with the final version (v4) revised on August 19, 2023. The paper shows how neural text generation can be reformulated in terms of finite-state machine transitions, leadi
+…[truncated 563 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-26T10:24:41.206148+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Reflect then Learn\" \"Active Prompting for Information Extraction\" \"Introspective Confusion\" Zhao Dong AAAI 2026 arxiv 2508.10036"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Reflect then Learn\" \"Active Prompting for Information Extraction\" \"Introspective Confusion\" Zhao Dong AAAI 2026 arxiv 2508.10036"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 152 · 2026-05-26T10:24:41.206285+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "aclanthology.org 2023.acl-short.88 \"Ecological Fallacy\" exact title Modeling Modelling"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "aclanthology.org 2023.acl-short.88 \"Ecological Fallacy\" exact title Modeling Modelling"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-26T10:24:41.206415+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Chen Pilehvar Camacho-Collados \"Understanding LLM Performance Degradation in Multi-Instance Processing\" arXiv 2603.22608"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Chen Pilehvar Camacho-Collados \"Understanding LLM Performance Degradation in Multi-Instance Processing\" arXiv 2603.22608"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 154 · 2026-05-26T10:24:41.206544+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:aclanthology.org \"2025.emnlp-industry\" PARSE \"Schema Optimization\" Shrimal"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:aclanthology.org \"2025.emnlp-industry\" PARSE \"Schema Optimization\" Shrimal"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 155 · 2026-05-26T10:24:41.206676+00:00_
+
+Web search results for query: "Evaluating ChatGPT's Information Extraction Capabilities Assessment Performance Explainability Calibration Faithfulness Li Bo 2023 arXiv 2304.11633"
+
+Links: [{"title":"[2304.11633] Evaluating ChatGPT's Information Extraction Capabilities: An Assessment of Performance, Explainability, Calibration, and Faithfulness","url":"https://arxiv.org/abs/2304.11633"},{"title":"[2304.11633v1] Evaluating ChatGPT's Information Extraction Capabilities: An Assessment of Performance, Explainability, Calibration, and Faithfulness","url":"https://arxiv.org/abs/2304.11633v1"},{"title":"(PDF) Evaluating ChatGPT's Information Extraction Capabilities: An Assessment of Performance, Explainability, Calibration, and Faithfulness","url":"https://www.researchgate.net/publication/370227431_Evaluating_ChatGPT's_Information_Extraction_Capabilities_An_Assessment_of_Performance_Explainability_Calibration_and_Faithfulness"},{"title":"[2304.11633] Evaluating ChatGPT’s Information Extraction Capabilities: An Assessment of Performance, Explainability, Calibration, and Faithfulness","url":"https://ar5iv.labs.arxiv.org/html/2304.11633"},{"title":"[PDF] Evaluating ChatGPT's Information Extraction Capabilities: An Assessment of Performance, Explainability, Calibration, and Faithfulness | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Evaluating-ChatGPT's-Information-Extraction-An-of-Li-Fang/88abef771472c3aa46c53d5d626a0d0c3b66e8cd"},{"title":"[Paper Note] Evaluating ChatGPT's Information Extraction Capabilities: An Assessment of Performance, Explainability, Calibration, and Faithfulness, Bo Li+, arXiv'23 · Issue #534 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/534"},{"title":"AI-Powered Paper Summarization about the arXiv paper 2304.11633v1","url":"https://summarizepaper.com/en/arxiv-id/2304.11633v1/"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Paper Title:** Evaluating ChatGPT's Informat
+…[truncated 1078 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-26T10:24:41.206825+00:00_
+
+Web search results for query: "IEPile ACL Anthology 2024 "Schema-Conditioned" OR "Schema-Based" exact title authors"
+
+Links: [{"title":"IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus - ACL Anthology","url":"https://aclanthology.org/2024.acl-short.13/"},{"title":"GitHub - zjunlp/IEPile: [ACL 2024] IEPile: A Large-Scale Information Extraction Corpus · GitHub","url":"https://github.com/zjunlp/IEPile"},{"title":"IEPILE: Unearthing Large-Scale Schema-Based ...","url":"https://aclanthology.org/2024.acl-short.13.pdf"},{"title":"IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240214710G/abstract"},{"title":"IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus | Request PDF","url":"https://www.researchgate.net/publication/384216193_IEPile_Unearthing_Large_Scale_Schema-Conditioned_Information_Extraction_Corpus"},{"title":"ACL.2024 - Short Papers | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/ACL.2024?group=Short+Papers"},{"title":"SHIELD: LLM-Driven Schema Induction for Predictive Analytics in EV Battery Supply Chain Disruptions - ACL Anthology","url":"https://aclanthology.org/2024.emnlp-industry.24/"},{"title":"IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus","url":"https://arxiv.org/html/2402.14710v3"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Title:** IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus
+
+**Authors:** Honghao Gui, Lin Yuan, Hongbin Ye, Ningyu Zhang, Mengshu Sun, Lei Liang, and Huajun Chen
+
+**Publication Details:** Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), pages 127–146, Bangkok, Thailand, 2024
+
+**What the paper does:** The paper constructs IEPile by collecting and cleaning 33 existing IE datasets, and introduces schema-based instruction
+…[truncated 147 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 157 · 2026-05-26T10:24:41.207006+00:00_
+
+Web search results for query: "aclanthology.org 2023.acl-short.88 "Ecological Fallacy" exact title Modeling Modelling"
+
+Links: [{"title":"The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics - ACL Anthology","url":"https://aclanthology.org/2023.acl-short.88/"},{"title":"The Ecological Fallacy in Annotation: Modelling Human ...","url":"https://aclanthology.org/2023.acl-short.88.pdf"},{"title":"EMNLP 2023 The 10th Workshop on Argument Mining (ArgMining 2023)","url":"https://aclanthology.org/2023.argmining-1.pdf"},{"title":"Program Chairs’ Report on Peer Review at ACL 2023 Anna Rogers}","url":"https://aclanthology.org/2023.acl-long.report.pdf"},{"title":"Two Decades of the ACL Anthology: Development, Impact, and Open Challenges","url":"https://people.cs.georgetown.edu/nschneid/p/aclanth.pdf"},{"title":"Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers) - ACL Anthology","url":"https://aclanthology.org/volumes/2023.acl-short/"},{"title":"Findings of the Association for Computational Linguistics: ACL 2023 - ACL Anthology","url":"https://aclanthology.org/volumes/2023.findings-acl/"},{"title":"Aclanthology","url":"https://aclanthology.org/2024.naacl-long.52.pdf"}]
+
+I found the paper you were looking for! The paper is titled "The Ecological Fallacy in Annotation: Modeling Human Label Variation goes beyond Sociodemographics" and was published in the Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), pages 1017–1029, Toronto, Canada in 2023.
+
+The paper addresses the ecological fallacy, which states that aggregate group behaviour, such as the behaviour of the average female annotator, does not necessarily explain individual behaviour. The authors introduce group-specific layers to multi-annotator models to account for sociodemographics in models of individual annotator behaviour, and in experiments for toxic c
+…[truncated 311 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 158 · 2026-05-26T10:24:41.207159+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "SGD-X Benchmark Robust Generalization Schema-Guided Dialogue Systems Lee Harrison AAAI 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "SGD-X Benchmark Robust Generalization Schema-Guided Dialogue Systems Lee Harrison AAAI 2022"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 159 · 2026-05-26T10:24:41.207295+00:00_
+
+Web search results for query: "Chen Pilehvar Camacho-Collados "Understanding LLM Performance Degradation in Multi-Instance Processing" arXiv 2603.22608"
+
+Links: [{"title":"[2603.22608] Understanding LLM Performance Degradation in Multi-Instance Processing: The Roles of Instance Count and Context Length","url":"https://arxiv.org/abs/2603.22608"},{"title":"Understanding LLM Performance Degradation in Multi-Instance","url":"https://arxiv.org/pdf/2603.22608"},{"title":"Understanding LLM Performance Degradation in Multi-Instance Processing: The Roles of Instance Count and Context Length - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260322608C/abstract"},{"title":"Context Discipline and Performance Correlation: Analyzing LLM Performance and Quality Degradation Under Varying Context Lengths","url":"https://arxiv.org/html/2601.11564v1"},{"title":"Towards Efficient and Reliable LLM Serving: A Real-World Workload Study","url":"https://arxiv.org/html/2401.17644v2/"},{"title":"Characterizing CPU-Induced Slowdowns in Multi-GPU LLM Inference","url":"https://arxiv.org/html/2603.22774v1"},{"title":"Forecasting LLM Inference Performance via Hardware-Agnostic Analytical Modeling","url":"https://arxiv.org/html/2508.00904v1"},{"title":"Efficient and Workload-Aware LLM Serving via Runtime Layer Swapping and KV Cache Resizing","url":"https://arxiv.org/html/2506.02006v1"},{"title":"MoE-Lens: Towards the Hardware Limit of High-Throughput MoE LLM Serving Under Resource Constraints","url":"https://arxiv.org/html/2504.09345v1"},{"title":"Towards Efficient and Reliable LLM Servi...","url":"https://axi.lims.ac.uk/paper/2401.17644"}]
+
+I found the paper! The paper "Understanding LLM Performance Degradation in Multi-Instance Processing: The Roles of Instance Count and Context Length" (arXiv:2603.22608) was authored by Jingxuan Chen, Mohammad Taher Pilehvar, and Jose Camacho-Collados.
+
+The paper examines how Large Language Models perform when processing multiple documents or analyzing mu
+…[truncated 642 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 160 · 2026-05-26T10:24:41.207447+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:aclanthology.org \"IEPile\" 2024.acl-short authors Gui Yuan Ye Zhang"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:aclanthology.org \"IEPile\" 2024.acl-short authors Gui Yuan Ye Zhang"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 161 · 2026-05-26T10:24:41.207577+00:00_
+
+Web search results for query: ""Reflect then Learn" "Active Prompting for Information Extraction" "Introspective Confusion" Zhao Dong AAAI 2026 arxiv 2508.10036"
+
+Links: [{"title":"Reflect then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion","url":"https://arxiv.org/html/2508.10036v1"},{"title":"[2508.10036] Reflect then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion","url":"https://arxiv.org/abs/2508.10036"},{"title":"Reflect Then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40796"},{"title":"Information Retrieval","url":"https://arxiv.org/list/cs.IR/recent?skip=12&show=100"},{"title":"Computer Science Aug 2025","url":"https://arxiv.org/list/cs/2025-08?skip=4500&show=2000"},{"title":"Position: Introspective Experience from Conversational Environments as a Path to Better Learning","url":"https://arxiv.org/html/2602.14910v1"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"Learning to Tell Apart: Weakly Supervised Video Anomaly Detection via","url":"https://arxiv.org/pdf/2511.10334"}]
+
+I found the paper you're searching for! Here are the key details:
+
+**Paper Title:** Reflect Then Learn: Active Prompting for Information Extraction Guided by Introspective Confusion
+
+**Authors:** Dong Zhao, Yadong Wang, Xiang Chen, Chenxi Wang, Hongliang Dai, Chuanxing Geng, Shengzhong Zhang, Shaoyuan Li, Sheng-Jun Huang
+
+**Venue:** Proceedings of the AAAI Conference on Artificial Intelligence, 40(41), 34923-34931 (2026)
+
+**arXiv ID:** 2508.10036
+
+**Main Contribution:** The paper introduces Active Prompting for Information Extraction (APIE), a novel active prompting framework guided by a principle termed introspective confusion. Conventional selection strategies ofte
+…[truncated 448 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-26T10:24:41.207722+00:00_
+
+Web search results for query: "site:aclanthology.org "2025.emnlp-industry" PARSE "Schema Optimization" Shrimal"
+
+Links: [{"title":"2025.emnlp-industry.0.pdf","url":"https://aclanthology.org/2025.emnlp-industry.0.pdf"},{"title":"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/pdf/2510.08623"},{"title":"AutoLink: Autonomous Schema Exploration and Expansion for Scalable Schema Linking in Text-to-SQL at Scale","url":"https://arxiv.org/pdf/2511.17190"},{"title":"Schema Lineage Extraction at Scale: Multilingual Pipelines, Composite Evaluation, and Language-Model Benchmarks","url":"https://arxiv.org/pdf/2508.07179"},{"title":"SchemaGraphSQL: Efficient Schema Linking with Pathfinding Graph Algorithms for Text-to-SQL on Large-Scale Databases","url":"https://arxiv.org/pdf/2505.18363"}]
+
+The search found your paper! PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction is authored by Anubhav Shrimal, Aryan Jain, Soumyajit Chowdhury and Promod Yenigalla, and it appears in the 2025 EMNLP Industry Track.
+
+According to the paper details found, PARSE is a novel system with two synergistic components: ARCHITECT, which autonomously optimizes JSON schemas for LLM consumption while maintaining backward compatibility through RELAY (an integrated code generation system), and SCOPE, which implements reflection-based extraction with combined static and LLM-based guardrails. 
+
+The work evaluates PARSE on three datasets including Schema-Guided Dialogue (SGD), Structured Web Data Extraction (SWDE), and internal retail conversation data, achieving up to 64.7% improvement in extraction accuracy on SWDE.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 163 · 2026-05-26T10:24:41.207885+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Robinson \"Ecological Correlations and the Behavior of Individuals\" American Sociological Review 1950"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Robinson \"Ecological Correlations and the Behavior of Individuals\" American Sociological Review 1950"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 164 · 2026-05-26T10:24:41.208026+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Sclar \"Quantifying Language Models Sensitivity Spurious Features Prompt Design\" \"How I learned to start worrying\" ICLR 2024 arxiv 2310.11324"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Sclar \"Quantifying Language Models Sensitivity Spurious Features Prompt Design\" \"How I learned to start worrying\" ICLR 2024 arxiv 2310.11324"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 165 · 2026-05-26T10:24:41.208156+00:00_
+
+Web search results for query: "SGD-X Benchmark Robust Generalization Schema-Guided Dialogue Systems Lee Harrison AAAI 2022"
+
+Links: [{"title":"[2110.06800] SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems","url":"https://arxiv.org/abs/2110.06800"},{"title":"SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems","url":"https://cdn.aaai.org/ojs/21341/21341-13-25354-1-2-20220628.pdf"},{"title":"SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/21341"},{"title":"SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems - AAAI","url":"https://aaai.org/papers/10938-sgd-x-a-benchmark-for-robust-generalization-in-schema-guided-dialogue-systems/"},{"title":"SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems","url":"https://research.google/pubs/sgd-x-a-benchmark-for-robust-generalization-in-schema-guided-dialogue-systems/"},{"title":"AAAI2022: SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems","url":"https://aaai-2022.virtualchair.net/poster_aaai11645"},{"title":"(PDF) SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems","url":"https://www.researchgate.net/publication/355237275_SGD-X_A_Benchmark_for_Robust_Generalization_in_Schema-Guided_Dialogue_Systems"},{"title":"SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems | DeepAI","url":"https://deepai.org/publication/sgd-x-a-benchmark-for-robust-generalization-in-schema-guided-dialogue-systems"},{"title":"Table 4 from SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SGD-X:-A-Benchmark-for-Robust-Generalization-in-Lee-Gupta/3e9044c80d65a0c9aae8bcec4ed5c8997bcf7e2e/figure/7"},{"title":"Span-Selective Linear
+…[truncated 1119 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-26T10:24:41.208314+00:00_
+
+Web search results for query: "Robinson "Ecological Correlations and the Behavior of Individuals" American Sociological Review 1950"
+
+Links: [{"title":"Robinson, W. S. (1950). Ecological Correlations and the Behavior of Individuals. American Sociological Review, 15, 351-357. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=2253248"},{"title":"Ecological correlations and the behavior of individuals.","url":"https://psycnet.apa.org/record/1951-06782-001"},{"title":"Ecological correlations and the behavior of individuals","url":"https://pubmed.ncbi.nlm.nih.gov/19179346/"},{"title":"Ecological Correlations and the Behavior of Individuals*","url":"https://urizenapw02-vlp.du.edu/~paul.sutton/AAA_Sutton_WebPage/Sutton/Courses/Geog_4020_Geographic_Research_Methodology/SeminalGeographyPapers/Ecological_Fallacy_Robinson_1950.pdf"},{"title":"Ecological Correlations and the Behavior of Individuals","url":"https://www.stats.uwo.ca/faculty/aim/2015/9938/articles/Robinson1950AmericanSociologicalReview.pdf"},{"title":"[PDF] Ecological correlations and the behavior of individuals. | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Ecological-correlations-and-the-behavior-of-Robinson/ce3cb52a44a332ba176ff9e8901026b5be919c59"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?hl=en&volume=15&publication_year=1950&pages=351-357&journal=American+Sociological+Review&author=W.+S.+Robinson&title=Ecological+correlations+and+the+behavior+of+individuals"},{"title":"(PDF) Robinson's Ecological Correlations and the Behavior of Individuals: methodological corrections","url":"https://www.researchgate.net/publication/51150611_Robinson's_Ecological_Correlations_and_the_Behavior_of_Individuals_methodological_corrections"},{"title":"Ecological Correlations and the Behavior of Individuals","url":"https://www.deepdyve.com/lp/doc/qWqWP9xWzx"},{"title":"W. S. Robinson, “Ecological Correlations and the
+…[truncated 1008 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 167 · 2026-05-26T10:24:41.208467+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "From Haystack to Needle Label Space Reduction Zero-shot Classification Vandemoortele 2025 arXiv 2502.08436"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "From Haystack to Needle Label Space Reduction Zero-shot Classification Vandemoortele 2025 arXiv 2502.08436"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 168 · 2026-05-26T10:24:41.208609+00:00_
+
+Web search results for query: "site:aclanthology.org "IEPile" 2024.acl-short authors Gui Yuan Ye Zhang"
+
+Links: [{"title":"IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus - ACL Anthology","url":"https://aclanthology.org/2024.acl-short.13/"},{"title":"IEPILE: Unearthing Large-Scale Schema-Based ...","url":"https://aclanthology.org/2024.acl-short.13.pdf"},{"title":"GitHub - zjunlp/IEPile: [ACL 2024] IEPile: A Large-Scale Information Extraction Corpus · GitHub","url":"https://github.com/zjunlp/IEPile"},{"title":"[2402.14710] IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus","url":"https://arxiv.org/abs/2402.14710"},{"title":"Aclanthology","url":"https://aclanthology.org/2025.wasp-main.7.pdf"},{"title":"IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus | Request PDF","url":"https://www.researchgate.net/publication/384216193_IEPile_Unearthing_Large_Scale_Schema-Conditioned_Information_Extraction_Corpus"},{"title":"Yuan Zhang - ACL Anthology","url":"https://aclanthology.org/people/yuan-zhang/"},{"title":"EMNLP 2024 The 2024 Conference on Empirical Methods in Natural","url":"https://aclanthology.org/2024.findings-emnlp.0.pdf"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus** was published in the Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), pages 127–146, Bangkok, Thailand in August 2024.
+
+The authors are: Honghao Gui, Lin Yuan, Hongbin Ye, Ningyu Zhang, Mengshu Sun, Lei Liang, and Huajun Chen.
+
+IEPile is described as "a comprehensive bilingual (English and Chinese) IE instruction corpus, which contains approximately 0.32B tokens." The corpus was constructed by collecting and cleaning 33 existing IE datasets.
+
+The paper is available on ACL Anthology at: https://aclanthology.org/2024.acl-short.13/
+
+
+REMINDER: You MUST 
+…[truncated 81 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 169 · 2026-05-26T10:24:41.208763+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Boylan Hokamp Ghalandari \"GLiREL Generalist Model for Zero-Shot Relation Extraction\" NAACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Boylan Hokamp Ghalandari \"GLiREL Generalist Model for Zero-Shot Relation Extraction\" NAACL 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-26T10:24:41.208943+00:00_
+
+Web search results for query: "Sclar "Quantifying Language Models Sensitivity Spurious Features Prompt Design" "How I learned to start worrying" ICLR 2024 arxiv 2310.11324"
+
+Links: [{"title":"[2310.11324] Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://arxiv.org/abs/2310.11324"},{"title":"[PDF] Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Quantifying-Language-Models'-Sensitivity-to-in-or:-Sclar-Choi/17a6116e5bbd8b87082cbb2e795885567300c483"},{"title":"Quantifying Language Models’ Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://arxiv.org/html/2310.11324v2"},{"title":"[2310.11324] Quantifying Language Models’ Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://ar5iv.labs.arxiv.org/html/2310.11324"},{"title":"[2310.11324v2] Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://arxiv.org/abs/2310.11324v2"},{"title":"Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://blog.athina.ai/quantifying-language-models-sensitivity-to-spurious-features-in-prompt-design-or-how-i-learned-to-start-worrying-about-prompt-formatting"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=Quantifying+language+models%E2%80%99+sensitivity+to+spurious+features+in+prompt+design+or:+How+I+learned+to+start+worrying+about+prompt+formatting&amp=&author=M.+Sclar&amp=&author=Y.+Choi&amp=&author=Y.+Tsvetkov&amp=&author=A.+Suhr&amp=&publication_year=2024"},{"titl
+…[truncated 1400 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 171 · 2026-05-26T10:24:41.209122+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:aclanthology.org \"Lost in the Middle\" 2024.tacl full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:aclanthology.org \"Lost in the Middle\" 2024.tacl full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 172 · 2026-05-26T10:24:41.209260+00:00_
+
+Web search results for query: "From Haystack to Needle Label Space Reduction Zero-shot Classification Vandemoortele 2025 arXiv 2502.08436"
+
+Links: [{"title":"[2502.08436] From Haystack to Needle: Label Space Reduction for Zero-shot Classification","url":"https://arxiv.org/abs/2502.08436"},{"title":"From Haystack to Needle: Label Space Reduction for Zero-shot Classification","url":"https://arxiv.org/html/2502.08436v2"},{"title":"Machine Learning Feb 2025","url":"https://arxiv.org/list/cs.LG/2025-02?skip=3175&show=50"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=1500&show=50"},{"title":"Artificial Intelligence Feb 2025","url":"https://arxiv.org/list/cs.AI/2025-02?skip=1700&show=25"},{"title":"[Literature Review] From Haystack to Needle: Label Space Reduction for Zero-shot Classification","url":"https://www.themoonlight.io/en/review/from-haystack-to-needle-label-space-reduction-for-zero-shot-classification"},{"title":"Computer Science Feb 2025","url":"https://arxiv.org/list/cs/2025-02?skip=4050&show=2000"},{"title":"Computation and Language Feb 2025","url":"http://www.arxiv.org/list/cs.CL/2025-02?skip=475&show=1000"}]
+
+I found the paper you were looking for! Here's information about the research:
+
+**Paper Title:** From Haystack to Needle: Label Space Reduction for Zero-shot Classification
+
+**Authors:** Nathan Vandemoortele, Bram Steenwinckel, Femke Ongenae, and Sofie Van Hoecke
+
+**arXiv ID:** 2502.08436
+
+**Key Contribution:** The paper presents Label Space Reduction (LSR), a novel method for improving zero-shot classification performance of Large Language Models (LLMs). LSR iteratively refines the classification label space by systematically ranking and reducing candidate classes, enabling the model to concentrate on the most relevant options.
+
+**Methodology:** LSR leverages unlabeled data with the statistical learning capabilities of data-driven models to dynamically optimize the label space representation at test time.
+
+**Re
+…[truncated 671 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 173 · 2026-05-26T10:24:41.209479+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "OneKE \"WWW\" OR \"Web Conference\" 2025 Companion Demo Luo Yujie venue proceedings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "OneKE \"WWW\" OR \"Web Conference\" 2025 Companion Demo Luo Yujie venue proceedings"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 174 · 2026-05-26T10:24:41.209666+00:00_
+
+Web search results for query: "site:aclanthology.org "Lost in the Middle" 2024.tacl full author list"
+
+Links: [{"title":"Lost in the Middle: How Language Models Use Long Contexts - ACL Anthology","url":"https://aclanthology.org/2024.tacl-1.9/"},{"title":"Lost in the Middle: How Language Models Use Long Contexts Nelson F. Liu1∗","url":"https://aclanthology.org/2024.tacl-1.9.pdf"},{"title":"Never Lost in the Middle: Mastering Long-Context Question Answering with Position-Agnostic Decompositional Training - ACL Anthology","url":"https://aclanthology.org/2024.acl-long.736/"},{"title":"Aclanthology","url":"https://aclanthology.org/2024.tacl-1.9.bib"},{"title":"Lost in the Middle: How Language Models Use Long Contexts - researchr publication","url":"https://researchr.org/publication/LiuLHPBPL24"},{"title":"Transactions of the Association for Computational Linguistics, Volume 12 - ACL Anthology","url":"https://aclanthology.org/volumes/2024.tacl-1/"},{"title":"Lost but Not Only in the Middle | Advances in Information Retrieval","url":"https://dl.acm.org/doi/10.1007/978-3-031-88708-6_16"},{"title":"Transactions of the Association for Computational Linguistics (2024) - ACL Anthology","url":"https://aclanthology.org/events/tacl-2024/"},{"title":"[2307.03172] Lost in the Middle: How Language Models Use Long Contexts","url":"https://arxiv.org/abs/2307.03172"}]
+
+Based on the search results, the full author list for "Lost in the Middle: How Language Models Use Long Contexts" published in TACL 2024 is: Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua, Fabio Petroni, and Percy Liang.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 175 · 2026-05-26T10:24:41.209924+00:00_
+
+Web search results for query: "Boylan Hokamp Ghalandari "GLiREL Generalist Model for Zero-Shot Relation Extraction" NAACL 2025"
+
+Links: [{"title":"GLiREL - Generalist Model for Zero-Shot Relation Extraction - ACL Anthology","url":"https://aclanthology.org/2025.naacl-long.418/"},{"title":"GLiREL - Generalist Model for Zero-Shot Relation Extraction","url":"https://aclanthology.org/2025.naacl-long.418.pdf"},{"title":"[2501.03172] GLiREL -- Generalist Model for Zero-Shot Relation Extraction","url":"https://arxiv.org/abs/2501.03172"},{"title":"GLiREL - Generalist Model for Zero-Shot Relation Extraction | Request PDF","url":"https://www.researchgate.net/publication/392505146_GLiREL_-_Generalist_Model_for_Zero-Shot_Relation_Extraction"},{"title":"GitHub - jackboyla/GLiREL: Generalist and Lightweight Model for Relation Extraction (Extract any relationship types from text) · GitHub","url":"https://github.com/jackboyla/GLiREL"},{"title":"GLiREL - Generalist Model for Zero-Shot Relation Extraction [Quick Review]","url":"https://liner.com/review/glirel-generalist-model-for-zeroshot-relation-extraction"},{"title":"GLiREL - Generalist Model for Zero-Shot Relation Extraction","url":"https://arxiv.org/html/2501.03172v1"},{"title":"Paper page - GLiREL -- Generalist Model for Zero-Shot Relation Extraction","url":"https://huggingface.co/papers/2501.03172"},{"title":"[2501.03172v1] GLiREL -- Generalist Model for Zero-Shot Relation Extraction","url":"https://arxiv.org/abs/2501.03172v1"},{"title":"[Literature Review] GLiREL -- Generalist Model for Zero-Shot Relation Extraction","url":"https://www.themoonlight.io/en/review/glirel-generalist-model-for-zero-shot-relation-extraction"}]
+
+Based on the search results, here's what I found about the paper:
+
+GLiREL - Generalist Model for Zero-Shot Relation Extraction was published by Jack Boylan, Chris Hokamp, and Demian Gholipour Ghalandari at NAACL 2025. The paper appears in the Proceedings of the 2025 Conference of the Nations of the Americas C
+…[truncated 942 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 176 · 2026-05-26T10:24:41.210242+00:00_
+
+All searches are complete. Here are the verification results for all 11 entries:
+
+---
+
+- ✓ **muller2019when**: Confirmed correct. Title, authors (Müller, Kornblith, Hinton), year (2019), venue (NeurIPS 2019) all verified via arXiv 1906.02629 and NeurIPS proceedings.
+
+- ✓ **peterson2019human**: Confirmed correct. Title, authors (Peterson, Battleday, Griffiths, Russakovsky), year (2019), venue (ICCV 2019) all verified via ICCV proceedings and arXiv 1908.07086.
+
+- ✓ **willard2023efficient**: Confirmed correct. Title, authors (Willard, Louf), year (2023), arXiv ID (2307.09702) all verified. Paper remains an arXiv preprint (no conference venue claimed in the bib entry, consistent with search results).
+
+- ✓ **llm-pee-2025**: Confirmed correct. Title, authors (Liu, Li, Bai, Zuo, Xu, Jin, Guo, Cheng), year (2025), venue (EMNLP 2025 main), URL all verified via ACL Anthology (2025.emnlp-main.1743).
+
+- ✓ **parse-2025**: Confirmed correct. Title, authors (Shrimal, Jain, Chowdhury, Yenigalla), year (2025), venue (EMNLP 2025 Industry Track) all verified via ACL Anthology (2025.emnlp-industry.184).
+
+- ✓ **crossagentie-2025**: Confirmed correct. Title, authors (Lu, Xie, Bi, Cao, Wang), year (2025), venue (ACL 2025 Findings) all verified via ACL Anthology (2025.findings-acl.718).
+
+- ✓ **cmas-ner-2025**: Confirmed correct. Title, authors (Wang, Zhao, Lyu, Chen, de Rijke, Ren), year (2025), venue (WWW 2025), DOI (10.1145/3696410.3714923) all verified via ACM Digital Library.
+
+- ✓ **uniner-2024**: Confirmed correct. Title, authors (Zhou, Zhang, Gu, Chen, Poon), year (2024), venue (ICLR 2024), arXiv (2308.03279) all verified via OpenReview and arXiv.
+
+- ✓ **gollie-2024**: Confirmed correct. Title, authors (Sainz, García-Ferrero, Agerri, Lopez de Lacalle, Rigau, Agirre), year (2024), venue (ICLR 2024), arXiv (2310.03668) all verified via OpenReview and ICLR proceedings.
+
+- ✓ **gliner-2024**: Confirmed correct. Title, authors (Zaratiana, Tomeh, Holat, Charnois), year (2024), venue (NAACL 
+…[truncated 557 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "elapsed_ms": 33
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 177 · 2026-05-26T10:24:41.210508+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Wadhwa Somin Amir Silvio Wallace Byron \"Revisiting Relation Extraction\" ACL 2023 authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Wadhwa Somin Amir Silvio Wallace Byron \"Revisiting Relation Extraction\" ACL 2023 authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 178 · 2026-05-26T10:24:41.210718+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "InstructUIE 2304.08085 published venue conference journal 2023 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "InstructUIE 2304.08085 published venue conference journal 2023 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 179 · 2026-05-26T10:24:41.210949+00:00_
+
+Web search results for query: "OneKE "WWW" OR "Web Conference" 2025 Companion Demo Luo Yujie venue proceedings"
+
+Links: [{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System | Companion Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3701716.3715189"},{"title":"[PDF] OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System | Semantic Scholar","url":"https://www.semanticscholar.org/paper/OneKE:-A-Dockerized-Schema-Guided-LLM-Agent-based-Luo-Ru/0b4206ee29e10f6e2156a66b0419f0e18fa13e63"},{"title":"GitHub - zjunlp/OneKE: [WWW 2025] A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System. · GitHub","url":"https://github.com/zjunlp/OneKE"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System | Companion Proceedings of the ACM on Web Conference 2025","url":"https://doi.org/10.1145/3701716.3715189"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System","url":"https://www.researchgate.net/publication/392062813_OneKE_A_Dockerized_Schema-Guided_LLM_Agent-based_Knowledge_Extraction_System"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System","url":"https://arxiv.org/pdf/2412.20005"},{"title":"GitHub - OpenSPG/OneKE: OneKE is a knowledge extraction framework based on a large model, with preliminary generalized knowledge extraction capabilities in both Chinese and English and in multiple fields and tasks. · GitHub","url":"https://github.com/OpenSPG/OneKE"},{"title":"Companion Proceedings of the ACM on Web Conference 2025 | ACM Conferences","url":"https://dl.acm.org/doi/proceedings/10.1145/3701716"},{"title":"[2412.20005] OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System","url":"https://arxiv.org/abs/2412.20005"},{"title":"Proceedings of the ACM on Web Conference 2025 | ACM Conferences","url":"https://dl.acm.org/doi/proceedings/10.1145/369641
+…[truncated 1164 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 180 · 2026-05-26T10:24:41.211269+00:00_
+
+Here are the verification results for all 10 entries:
+
+---
+
+**✓ golde-2025-familiarity**: Confirmed correct. Title, authors (Golde, Haller, Ploner, Barth, Jedema, Akbik), year (2025), venue (NAACL 2025), and arXiv ID (2412.10121) all verified via ACL Anthology.
+
+**✓ cohen-1988-statistical**: Confirmed correct. Author (Jacob Cohen), year (1988), publisher (Lawrence Erlbaum Associates), 2nd edition all verified via Routledge/Springer records.
+
+**⚠ baan-2023-ecological**: [bib key mismatch] The paper itself is correct -- title, authors (Orlikowski, Roettger, Cimiano, Hovy), year (2023), venue (ACL 2023 Short Papers) all verified via ACL Anthology (2023.acl-short.88). However, the bib key `baan-2023-ecological` is misleading: none of the authors is named "Baan." The key should be something like `orlikowski-2023-ecological`. Additionally, the ACL Anthology title uses "Modeling" (American spelling) while the arXiv PDF uses "Modelling" (British spelling) -- depending on which version the bib entry cites, ensure the spelling matches.
+
+**✓ josifoski-2022-genie**: Confirmed correct. Title, authors (Josifoski, De Cao, Peyrard, Petroni, West), year (2022), venue (NAACL 2022) all verified via ACL Anthology (2022.naacl-main.342).
+
+**✓ dubey-2018-pairwise-confusion**: Confirmed correct. Title, authors (Dubey, Gupta, Guo, Raskar, Farrell, Naik), year (2018), venue (ECCV 2018) all verified via CVF Open Access and Springer.
+
+**✓ collier-2021-correlated-noise**: Confirmed correct. Title, authors (Collier, Mustafa, Kokiopoulou, Jenatton, Berent), year (2021), venue (CVPR 2021) all verified via CVF Open Access and arXiv (2105.10305).
+
+**✓ yin-2019-zero-shot-bench**: Confirmed correct. Title, authors (Yin, Hay, Roth), year (2019), venue (EMNLP 2019, technically EMNLP-IJCNLP 2019), arXiv ID (1909.00161) all verified via ACL Anthology (D19-1404).
+
+**✓ schuirmann-1987-tost**: Confirmed correct. Title, author (Donald J. Schuirmann), year (1987), journal (Journal of Pharmacokinetics and Bioph
+…[truncated 2155 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "elapsed_ms": 35
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 181 · 2026-05-26T10:24:41.211514+00:00_
+
+Web search results for query: "InstructUIE 2304.08085 published venue conference journal 2023 2024"
+
+Links: [{"title":"[2304.08085] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://arxiv.org/abs/2304.08085"},{"title":"[PDF] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/InstructUIE:-Multi-task-Instruction-Tuning-for-Wang-Zhou/bbb2fc6e95d24fb58ab6c25b216b14ac49a32fbe"},{"title":"(PDF) InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction (2023) | Xiao Wang | 81 Citations","url":"https://scispace.com/papers/instructuie-multi-task-instruction-tuning-for-unified-qe70ci1r"},{"title":"InstructUIE: Multi-task Instruction Tuning for Uniﬁed Information Extraction","url":"https://arxiv.org/pdf/2304.08085"},{"title":"Paper page - InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://huggingface.co/papers/2304.08085"},{"title":"[2304.08085v1] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://arxiv.org/abs/2304.08085v1"},{"title":"InstructUIE: Unified Info Extraction Framework | PDF | Conceptual Model | Information","url":"https://www.scribd.com/document/797504751/2304-08085v1"}]
+
+Based on the search results, here's what I found about InstructUIE (arXiv:2304.08085):
+
+**Publication Details:**
+The paper was submitted to arXiv on April 17, 2023. It was published as an ArXiv article in 2023.
+
+**Key Information:**
+- The paper is titled "InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction" with authors including Xiao Wang, Weikang Zhou, Can Zu, Han Xia, Tianze Chen, Yuansen Zhang, Rui Zheng, Junjie Ye, Qi Zhang, Tao Gui, Jihua Kang, Jingsheng Yang, Siyuan Li, and Chunsai Du.
+
+**Publication Venue:**
+The search results indicate that this paper was published on arXiv as a preprint rather than in a peer-reviewed confer
+…[truncated 454 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 182 · 2026-05-26T10:24:41.211753+00:00_
+
+Web search results for query: "Wadhwa Somin Amir Silvio Wallace Byron "Revisiting Relation Extraction" ACL 2023 authors"
+
+Links: [{"title":"Revisiting Relation Extraction in the era of Large Language Models - ACL Anthology","url":"https://aclanthology.org/2023.acl-long.868/"},{"title":"[PDF] Revisiting Relation Extraction in the era of Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Revisiting-Relation-Extraction-in-the-era-of-Large-Wadhwa-Amir/97782a67971c4ff1a74bf07e82fe20b2c4bf86c4"},{"title":"Revisiting Relation Extraction in the era of Large Language Models | NSF Public Access Repository","url":"https://par.nsf.gov/biblio/10523775-revisiting-relation-extraction-era-large-language-models"},{"title":"Revisiting Relation Extraction in the era of Large Language Models - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/37674787/"},{"title":"Revisiting Relation Extraction in the era of Large Language ...","url":"https://aclanthology.org/2023.acl-long.868.pdf"},{"title":"Revisiting Relation Extraction in the era of Large Language Models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10482322/"},{"title":"[2305.05003] Revisiting Relation Extraction in the era of Large Language Models","url":"https://arxiv.org/abs/2305.05003"},{"title":"Somin Wadhwa - ACL Anthology","url":"https://aclanthology.org/people/somin-wadhwa/"},{"title":"dblp: Somin Wadhwa","url":"https://dblp.org/pid/265/5925.html"},{"title":"SemEval-2023 Task 8: Causal Medical Claim Identification and Related PIO Frame Extraction from Social Media Posts - ACL Anthology","url":"https://aclanthology.org/2023.semeval-1.311/"}]
+
+Based on the search results, the paper "Revisiting Relation Extraction in the era of Large Language Models" was authored by Somin Wadhwa, Silvio Amir, and Byron Wallace and presented at ACL 2023. 
+
+The paper was published in the Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), page
+…[truncated 588 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 183 · 2026-05-26T10:24:41.212006+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2407.21783 \"Llama 3 Herd of Models\" authors first author Grattafiori OR Dubey"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2407.21783 \"Llama 3 Herd of Models\" authors first author Grattafiori OR Dubey"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 184 · 2026-05-26T10:24:41.212213+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "IEPile ACL Anthology title \"Schema-Conditioned\" vs arXiv \"Schema-Based\" difference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "IEPile ACL Anthology title \"Schema-Conditioned\" vs arXiv \"Schema-Based\" difference"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 185 · 2026-05-26T10:24:41.212468+00:00_
+
+All 10 searches are complete. Here are the verification results:
+
+---
+
+- **✓ deng-2010-imagenet**: Confirmed correct. Deng, Berg, Li, Fei-Fei. ECCV 2010. Title matches.
+
+- **✓ rothman-1990**: Confirmed correct. Rothman, Kenneth J. Epidemiology, vol 1, no 1, pp 43-46, 1990.
+
+- **✓ lakens-2017-equivalence**: Confirmed correct. Lakens, Daniel. Social Psychological and Personality Science, vol 8, no 4, pp 355-362, 2017.
+
+- **✓ guo-2021-label-confusion**: Confirmed correct. Guo, Han, Han, Huang, Lu. AAAI 2021, vol 35, pp 12929-12936. Title matches.
+
+- **✓ dlisc-2025**: Confirmed correct. Wen, Liang, Wu, Zhang, Liu. arXiv:2505.14992 (May 2025). Title and authors match.
+
+- **✓ spt-2025**: Confirmed correct. Liang, Zhang, Wu, Tang, Liu. arXiv:2506.01276 exists and is accessible. Title and authors match.
+
+- **✓ card-2020-power**: Confirmed correct. Card, Henderson, Khandelwal, Jia, Mahowald, Jurafsky. EMNLP 2020 (ACL Anthology: 2020.emnlp-main.745).
+
+- **✓ chen-2026-multi-instance**: Confirmed correct. Chen, Pilehvar, Camacho-Collados. arXiv:2603.22608 (March 2026) exists. Title and authors match.
+
+- **✓ robinson-1950-ecological**: Confirmed correct. Robinson, William S. American Sociological Review, vol 15, no 3, pp 351-357, 1950.
+
+- **✓ boylan-2025-glirel**: Confirmed correct. Boylan, Hokamp, Gholipour Ghalandari. NAACL 2025 (ACL Anthology: 2025.naacl-long.418). Title uses "GLiREL" with dash separator matching the bib entry.
+
+**Summary: All 10 entries verified correct. No errors found.**
+agentId: a04b694d1a95fd841 (use SendMessage with to: 'a04b694d1a95fd841' to continue this agent)
+&lt;usage>total_tokens: 26784
+tool_uses: 11
+duration_ms: 115302&lt;/usage>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "elapsed_ms": 22
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 186 · 2026-05-26T10:24:41.212706+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:aclanthology.org \"2023.acl-long.868\" \"Byron C. Wallace\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:aclanthology.org \"2023.acl-long.868\" \"Byron C. Wallace\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 187 · 2026-05-26T10:24:41.212946+00:00_
+
+Web search results for query: "arxiv 2407.21783 "Llama 3 Herd of Models" authors first author Grattafiori OR Dubey"
+
+Links: [{"title":"[2407.21783] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783"},{"title":"The Llama 3 Herd of Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240721783G/abstract"},{"title":"[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2407.21783"},{"title":"Paper page - The Llama 3 Herd of Models","url":"https://huggingface.co/papers/2407.21783"},{"title":"[2407.21783v1] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783v1"},{"title":"The Llama 3 Herd of Models","url":"https://arxiv.org/pdf/2407.21783"},{"title":"The Llama 3 Herd of Models Llama Team, AI @ Meta1","url":"https://arxiv.org/pdf/2407.21783v3"},{"title":"[2407.21783v2] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783v2"},{"title":"(PDF) The Llama 3 Herd of Models","url":"https://www.researchgate.net/publication/382739128_The_Llama_3_Herd_of_Models"}]
+
+Based on the search results, I can provide you with information about the paper arxiv 2407.21783 "The Llama 3 Herd of Models":
+
+**Paper Details:**
+This paper presents a new set of foundation models, called Llama 3, which is a herd of language models that natively support multilinguality, coding, reasoning, and tool usage.
+
+**First Author:**
+The search results show different first authors depending on the version:
+- Aaron Grattafiori is listed as the first author in the latest version (v3)
+- Abhimanyu Dubey is listed as the first author in version 1
+
+So the first author changed between versions—Abhimanyu Dubey was the first author in the original submission (v1 from July 31, 2024), while Aaron Grattafiori became the first author in the most recent version (v3 from November 23, 2024).
+
+**Model Details:**
+The largest model is a dense Transformer with 405B parameters and a context window of up to 128K tokens.
+
+
+REMINDER: Y
+…[truncated 89 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 188 · 2026-05-26T10:24:41.213189+00:00_
+
+Web search results for query: "IEPile ACL Anthology title "Schema-Conditioned" vs arXiv "Schema-Based" difference"
+
+Links: [{"title":"IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus - ACL Anthology","url":"https://aclanthology.org/2024.acl-short.13/"},{"title":"IEPILE: Unearthing Large-Scale Schema-Based ...","url":"https://aclanthology.org/2024.acl-short.13.pdf"},{"title":"[2402.14710] IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus","url":"https://arxiv.org/abs/2402.14710"},{"title":"GitHub - zjunlp/IEPile: [ACL 2024] IEPile: A Large-Scale Information Extraction Corpus · GitHub","url":"https://github.com/zjunlp/IEPile"},{"title":"IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240214710G/abstract"},{"title":"IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus","url":"https://arxiv.org/html/2402.14710v1"},{"title":"Schema as Parameterized Tools for Universal Information ...","url":"https://arxiv.org/pdf/2506.01276"},{"title":"IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus | Request PDF","url":"https://www.researchgate.net/publication/384216193_IEPile_Unearthing_Large_Scale_Schema-Conditioned_Information_Extraction_Corpus"},{"title":"Learning to Generate Structured Output with Schema Reinforcement Learning - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.243/"}]
+
+Based on the search results, I found the key difference in the paper title:
+
+The ACL Anthology version of IEPile is titled "Unearthing Large Scale Schema-Conditioned Information Extraction Corpus", while the arXiv version uses "Unearthing Large-Scale Schema-Based Information Extraction Corpus".
+
+This appears to be a simple terminology difference between the two versions. The paper is the same work by Gui et al., but the final published version in ACL 2024 uses "Schema-Conditioned" while the earlier ar
+…[truncated 283 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 189 · 2026-05-26T10:24:41.213403+00:00_
+
+Web search results for query: "site:aclanthology.org "2023.acl-long.868" "Byron C. Wallace""
+
+Links: [{"title":"Revisiting Relation Extraction in the era of Large Language Models - ACL Anthology","url":"https://aclanthology.org/2023.acl-long.868/"},{"title":"Aclanthology","url":"https://aclanthology.org/2023.acl-long.868.pdf"},{"title":"Byron C. Wallace - ACL Anthology","url":"https://aclanthology.org/people/byron-c-wallace/"},{"title":"Byron Wallace - Khoury College of Computer Sciences","url":"https://www.khoury.northeastern.edu/people/byron-wallace/"},{"title":"Byron C. Wallace Khoury College of Computer Sciences Northeastern University","url":"https://byronwallace.com/static/bcw-cv.pdf"},{"title":"Attention is not Explanation - ACL Anthology","url":"https://aclanthology.org/N19-1357/"},{"title":"Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) - ACL Anthology","url":"https://aclanthology.org/volumes/2023.acl-long/"}]
+
+The search was successful! I found the paper you were looking for. The paper is titled "Revisiting Relation Extraction in the era of Large Language Models" by Wadhwa, Somin, Amir, Silvio, and Wallace, Byron, published in the Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) in July 2023 in Toronto, Canada.
+
+The paper's abstract indicates it addresses relation extraction (RE) as "the core NLP task of inferring semantic relationships between entities from text".
+
+The full paper is available at: https://aclanthology.org/2023.acl-long.868/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 190 · 2026-05-26T10:24:41.213619+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "OneKE authors list Luo Yujie Ru Xiangyuan Liu Kangwei Wei Lanning Zheng Da full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "OneKE authors list Luo Yujie Ru Xiangyuan Liu Kangwei Wei Lanning Zheng Da full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 191 · 2026-05-26T10:24:41.213811+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "PromptNER Ashok Lipton 2305.15444 published conference venue ACL EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "PromptNER Ashok Lipton 2305.15444 published conference venue ACL EMNLP"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 192 · 2026-05-26T10:24:41.214031+00:00_
+
+Web search results for query: "OneKE authors list Luo Yujie Ru Xiangyuan Liu Kangwei Wei Lanning Zheng Da full author list"
+
+Links: [{"title":"[2412.20005] OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System","url":"https://arxiv.org/abs/2412.20005"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System | Companion Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3701716.3715189"},{"title":"[PDF] OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System | Semantic Scholar","url":"https://www.semanticscholar.org/paper/OneKE:-A-Dockerized-Schema-Guided-LLM-Agent-based-Luo-Ru/0b4206ee29e10f6e2156a66b0419f0e18fa13e63"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System","url":"https://www.researchgate.net/publication/392062813_OneKE_A_Dockerized_Schema-Guided_LLM_Agent-based_Knowledge_Extraction_System"},{"title":"GitHub - zjunlp/OneKE: [WWW 2025] A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System. · GitHub","url":"https://github.com/zjunlp/OneKE"},{"title":"OneKE: A Dockerized Schema-Guided LLM Agent-based Knowledge Extraction System | Companion Proceedings of the ACM on Web Conference 2025","url":"https://doi.org/10.1145/3701716.3715189"},{"title":"Shuofei Qiao - Homepage","url":"https://gooodte.github.io/"},{"title":"Authors: Hu Gao; Fajuan Tang; Bin Chen; Xihong Li to Huazano-Estrada, Pablo; Herrera-Trejo, Martín; Castro-Román, Manuel de J.; Ruiz-Mondragón, Jorge - Free Online Library","url":"https://www.thefreelibrary.com/Authors/Hu-i0"}]
+
+Based on the search results, here is the complete author list for OneKE:
+
+The authors of OneKE are: Yujie Luo, Xiangyuan Ru, Kangwei Liu, Lin Yuan, Mengshu Sun, Ningyu Zhang, Lei Liang, Zhiqiang Zhang, Jun Zhou, Lanning Wei, Da Zheng, Haofen Wang, and Huajun Chen.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperl
+…[truncated 5 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 193 · 2026-05-26T10:24:41.214248+00:00_
+
+Web search results for query: "PromptNER Ashok Lipton 2305.15444 published conference venue ACL EMNLP"
+
+Links: [{"title":"[2305.15444] PromptNER: Prompting For Named Entity Recognition","url":"https://arxiv.org/abs/2305.15444"},{"title":"[PDF] PromptNER: Prompting For Named Entity Recognition | Semantic Scholar","url":"https://www.semanticscholar.org/paper/PromptNER:-Prompting-For-Named-Entity-Recognition-Ashok-Lipton/9141480721653789597b6e537ee0eeab401f3e60"},{"title":"Improving Few-Shot Cross-Domain Named Entity ...","url":"https://aclanthology.org/2024.emnlp-industry.51.pdf"},{"title":"PromptNER : Prompting For Named Entity Recognition","url":"https://arxiv.org/html/2305.15444"},{"title":"[2305.15444] PromptNER: Prompting For Named Entity Recognition","url":"http://export.arxiv.org/abs/2305.15444"},{"title":"(PDF) PromptNER: Prompting For Named Entity Recognition","url":"https://www.researchgate.net/publication/371040584_PromptNER_Prompting_For_Named_Entity_Recognition"},{"title":"PromptNER : Prompting For Named Entity Recognition Dhananjay Ashok","url":"https://arxiv.org/pdf/2305.15444"},{"title":"[2305.15444v2] PromptNER: Prompting For Named Entity Recognition","url":"https://arxiv.org/abs/2305.15444v2"},{"title":"GitHub - tricktreat/PromptNER: Code for the paper \"PromptNER: Prompt Locating and Typing for Named Entity Recognition\", accepted at ACL 2023.","url":"https://github.com/tricktreat/promptner"}]
+
+Based on the search results, I found information about the paper PromptNER with arxiv ID 2305.15444:
+
+**Paper Details:**
+- Authors: Dhananjay Ashok and Zachary C. Lipton
+- The paper introduces PromptNER, a new state-of-the-art algorithm for few-shot and cross-domain NER
+- arxiv ID: 2305.15444
+
+**Conference Venue:**
+The paper was accepted at ACL 2023 (Association for Computational Linguistics). 
+
+The search results do not indicate that this paper was published at EMNLP. The GitHub repository and arxiv abstract both reference ACL 2023 as the published conferenc
+…[truncated 111 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 194 · 2026-05-26T10:24:41.214477+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2310.11324 exact title \"Quantifying Language Models' Sensitivity\" prompt formatting ICLR 2024 proceedings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2310.11324 exact title \"Quantifying Language Models' Sensitivity\" prompt formatting ICLR 2024 proceedings"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 195 · 2026-05-26T10:24:41.214740+00:00_
+
+Now I have all the information needed to compile results. Here is the verification:
+
+---
+
+**22. iepile-2024**
+✓ iepile-2024: Confirmed correct. ACL Anthology title is "IEPile: Unearthing Large Scale Schema-Conditioned Information Extraction Corpus", authors match, ACL 2024 Short Papers confirmed. Note: the arXiv version uses "Schema-Based" instead of "Schema-Conditioned", but the bib entry matches the official ACL Anthology title.
+
+**23. dror-2018-significance**
+✓ dror-2018-significance: Confirmed correct. Title, authors (Dror, Baumer, Shlomov, Reichart), year (2018), and venue (ACL 2018) all match ACL Anthology entry P18-1128.
+
+**24. lost-in-middle-2024**
+✓ lost-in-middle-2024: Confirmed correct. Title, authors (Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni, Liang), year (2024), journal (TACL vol 12 pp 157-173), and arXiv ID (2307.03172) all match.
+
+**25. shachar-2025-ner-retriever**
+✓ shachar-2025-ner-retriever: Confirmed correct. Title, authors (Shachar, Katz, Goldberg, Glickman), year (2025), and venue (EMNLP 2025 Findings) all match ACL Anthology entry 2025.findings-emnlp.597.
+
+**26. llm4ie-survey-2024**
+✓ llm4ie-survey-2024: Confirmed correct. Title, authors, year (2024), journal (Frontiers of Computer Science vol 18 no 6), and arXiv ID (2312.17617) all match.
+
+**27. knowcoder-2024**
+✓ knowcoder-2024: Confirmed correct. Title, authors, year (2024), venue (ACL 2024), and arXiv ID (2403.07969) all match ACL Anthology entry 2024.acl-long.475.
+
+**28. slot-2025**
+✓ slot-2025: Confirmed correct. Title, authors (Shen, Wang, Mishra, Xu, Teng, Ding), year (2025), and venue (EMNLP 2025 Industry Track) all match ACL Anthology entry 2025.emnlp-industry.32.
+
+**29. cai-isotropy-clusters-2021**
+✓ cai-isotropy-clusters-2021: Confirmed correct. Title, authors (Cai, Huang, Bian, Church), year (2021), and venue (ICLR 2021) all match.
+
+**30. instructuie-2023**
+✓ instructuie-2023: Confirmed correct. Title, authors, year (2023), and arXiv ID (2304.08085) all match. The paper rem
+…[truncated 700 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "elapsed_ms": 36
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 196 · 2026-05-26T10:24:41.215014+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Dhananjay Ashok \"PromptNER\" \"Prompting For Named Entity Recognition\" Semantic Scholar venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Dhananjay Ashok \"PromptNER\" \"Prompting For Named Entity Recognition\" Semantic Scholar venue"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 197 · 2026-05-26T10:24:41.215221+00:00_
+
+Web search results for query: "arxiv 2310.11324 exact title "Quantifying Language Models' Sensitivity" prompt formatting ICLR 2024 proceedings"
+
+Links: [{"title":"[2310.11324] Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://arxiv.org/abs/2310.11324"},{"title":"[2310.11324] Quantifying Language Models’ Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://ar5iv.labs.arxiv.org/html/2310.11324"},{"title":"[2310.11324v2] Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://arxiv.org/abs/2310.11324v2"},{"title":"Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://blog.athina.ai/quantifying-language-models-sensitivity-to-spurious-features-in-prompt-design-or-how-i-learned-to-start-worrying-about-prompt-formatting"},{"title":"LLM Sensitivity to Prompt Formatting","url":"https://www.emergentmind.com/papers/2310.11324"},{"title":"ICLR Poster Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://iclr.cc/virtual/2024/poster/18650"},{"title":"Published as a conference paper at ICLR 2024","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/1fa1ab11f4bd5f94b2ec20e794dbfa3b-Paper-Conference.pdf"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Paper Details:**
+
+The paper is titled "Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting" with arXiv ID 2310.11324. The authors are Melanie Sclar, Yejin Choi, Yulia Tsvetkov, and Alane Suhr, with the paper last revised on July 1, 2024.
+
+**Key F
+…[truncated 810 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 198 · 2026-05-26T10:24:41.215453+00:00_
+
+Web search results for query: "Dhananjay Ashok "PromptNER" "Prompting For Named Entity Recognition" Semantic Scholar venue"
+
+Links: [{"title":"[PDF] PromptNER: Prompting For Named Entity Recognition | Semantic Scholar","url":"https://www.semanticscholar.org/paper/PromptNER:-Prompting-For-Named-Entity-Recognition-Ashok-Lipton/9141480721653789597b6e537ee0eeab401f3e60"},{"title":"[2305.15444] PromptNER: Prompting For Named Entity Recognition","url":"https://arxiv.org/abs/2305.15444"},{"title":"(PDF) PromptNER: Prompting For Named Entity Recognition","url":"https://www.researchgate.net/publication/371040584_PromptNER_Prompting_For_Named_Entity_Recognition"},{"title":"PromptNER : Prompting For Named Entity Recognition","url":"https://arxiv.org/html/2305.15444"},{"title":"PromptNER : Prompting For Named Entity Recognition Dhananjay Ashok","url":"https://arxiv.org/pdf/2305.15444"},{"title":"dblp: Dhananjay Ashok","url":"https://dblp.org/pid/277/0892.html"},{"title":"GitHub - DhananjayAshok/PromptNER: Prompting For Named Entity Recognition · GitHub","url":"https://github.com/DhananjayAshok/PromptNER"},{"title":"PromptNER: Prompting For Named Entity Recognition | DeepAI","url":"https://deepai.org/publication/promptner-prompting-for-named-entity-recognition"},{"title":"[2305.15444v2] PromptNER: Prompting For Named Entity Recognition","url":"https://arxiv.org/abs/2305.15444v2"}]
+
+Based on the search results, here's what I found about the PromptNER paper by Dhananjay Ashok and Zachary C. Lipton:
+
+**Paper Details:**
+- Title: "PromptNER: Prompting For Named Entity Recognition"
+- Authors: Dhananjay Ashok and Zachary Chase Lipton
+- Published in ArXiv in 2023 (arXiv:2305.15444)
+
+**Venue Information:**
+Based on the search results, the paper appears to have been published on **arXiv** as a preprint. The DBLP entry lists it as "CoRR abs/2305.15444 (2023)" (where CoRR stands for Computing Research Repository, which is arXiv's computer science section). The GitHub repository indicates it
+…[truncated 570 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 199 · 2026-05-26T10:24:41.215739+00:00_
+
+Now I have all the information needed. Let me compile the verification results.
+
+Here are the verification results for all 11 references:
+
+**✓ oneke-2025**: Confirmed correct. Title, authors (Luo, Yujie et al.), year 2025, venue (Companion Proceedings of the ACM Web Conference 2025 = WWW Companion 2025), and arxiv ID 2412.20005 all match.
+
+**✓ fewnerd-2021**: Confirmed correct. Title, authors (Ding, Ning et al.), year 2021, venue ACL 2021 (technically ACL-IJCNLP 2021) all match. The author list matches the ACL Anthology entry.
+
+**✓ fewrel-2018**: Confirmed correct. Title, authors (Han, Xu et al.), year 2018, venue EMNLP 2018 all match per ACL Anthology (D18-1514).
+
+**✓ maven-2020**: Confirmed correct. Title, authors (Wang, Xiaozhi et al.), year 2020, venue EMNLP 2020 all match per ACL Anthology (2020.emnlp-main.129).
+
+**✓ docred-2019**: Confirmed correct. Title, authors (Yao, Yuan et al.), year 2019, venue ACL 2019 all match per ACL Anthology (P19-1074).
+
+**✓ qwen3-2025**: Confirmed correct. Title "Qwen3 Technical Report", author Qwen Team, year 2025, arxiv 2505.09388 all match.
+
+**⚠ llama3-2024**: [possible issue] The first author listing depends on the arxiv version. In v1 (July 2024) the first author was Abhimanyu Dubey; in v3 (November 2024) it was changed to Aaron Grattafiori. The bib entry lists "Grattafiori, Aaron and Dubey, Abhimanyu" which matches the latest v3 ordering. If your bib cites a specific version, ensure consistency. Otherwise this is acceptable as-is.
+
+**✓ sentence-bert-2019**: Confirmed correct. Title, authors (Reimers, Nils and Gurevych, Iryna), year 2019, venue EMNLP 2019 (EMNLP-IJCNLP 2019) all match per ACL Anthology (D19-1410).
+
+**✓ minilm-2020**: Confirmed correct. Title, authors (Wang, Wenhui et al.), year 2020, venue NeurIPS 2020, arxiv 2002.10957 all match per NeurIPS proceedings.
+
+**✓ reflect-learn-2026**: Confirmed correct. The paper exists in both arxiv (2508.10036) and AAAI 2026 proceedings (vol 40, pp 34923-34931). Authors (Zhao, 
+…[truncated 897 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "elapsed_ms": 33
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 200 · 2026-05-26T10:24:41.216058+00:00_
+
+Good — Ashok & Lipton's PromptNER appears to remain arXiv-only, which matches the bib entry. Now let me compile all findings.
+
+Here are the verification results for all 10 entries:
+
+- **✓ vllm-2023**: Confirmed correct. Title, authors (Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang, Stoica), year (2023), and venue (SOSP 2023, 29th Symposium on Operating Systems Principles) all match the ACM DL and arXiv (2309.06180).
+
+- **✓ xie-zeroshot-ner-2023**: Confirmed correct. Title, authors (Xie, Li, Zhang, Zhang, Liu, Wang), year (2023), and venue (EMNLP 2023 main conference) all match ACL Anthology (2023.emnlp-main.493).
+
+- **⚠ wadhwa-re-llm-2023**: [possible issue] The bib entry lists authors as "Wadhwa, Somin and Amir, Silvio and Wallace, Byron C." — the ACL Anthology lists the author as "Byron C. Wallace" (with middle initial). If the bib entry uses just "Byron C." that is correct. The title, year (2023), and venue (ACL 2023, long papers) are confirmed correct. One minor note: the title uses lowercase "era" — the ACL Anthology also uses lowercase "era", so this matches.
+
+- **✓ relationprompt-2022**: Confirmed correct. Title, authors (Chia, Bing, Poria, Si), year (2022), and venue (ACL 2022 Findings) all match ACL Anthology (2022.findings-acl.5).
+
+- **✓ promptner-2023**: Confirmed correct. Title, authors (Ashok, Lipton), year (2023), and arXiv ID (2305.15444) all match. The paper remains an arXiv preprint (not published at a peer-reviewed venue), which is consistent with the bib entry listing only arXiv.
+
+- **✓ json-schema-bench-2025**: Confirmed correct. Title, authors (Geng, Cooper, Moskal, Jenkins, Berman, Ranchin, West, Horvitz, Nori), year (2025), and arXiv ID (2501.10868) all match.
+
+- **✓ rastogi2020towards**: Confirmed correct. Title, authors (Rastogi, Zang, Sunkara, Gupta, Khaitan), year (2020), venue (AAAI 2020), and arXiv ID (1909.05855) all match.
+
+- **✓ li2023evaluating**: Confirmed correct. Title, authors (Li, Fang, Yang, Wang, Ye, Zhao, Zhang), year (
+…[truncated 721 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Agent",
+  "elapsed_ms": 29
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 201 · 2026-05-26T10:24:41.216353+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "cohen-1988|muller2019|peterson2019|sclar-sensitivity",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "cohen-1988|muller2019|peterson2019|sclar-sensitivity",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "output_mode": "content",
+    "glob": "*.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 202 · 2026-05-26T10:24:41.216547+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 203 · 2026-05-26T10:24:41.216716+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Sclar Melanie \"Quantifying Language Models Sensitivity to Spurious Features in Prompt Design\" ICLR 2024 exact title"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Sclar Melanie \"Quantifying Language Models Sensitivity to Spurious Features in Prompt Design\" ICLR 2024 exact title"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 204 · 2026-05-26T10:24:41.216933+00:00_
+
+Web search results for query: "Sclar Melanie "Quantifying Language Models Sensitivity to Spurious Features in Prompt Design" ICLR 2024 exact title"
+
+Links: [{"title":"[2310.11324] Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://arxiv.org/abs/2310.11324"},{"title":"ICLR Poster Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://iclr.cc/virtual/2024/poster/18650"},{"title":"[PDF] Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Quantifying-Language-Models'-Sensitivity-to-in-or:-Sclar-Choi/17a6116e5bbd8b87082cbb2e795885567300c483"},{"title":"Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://proceedings.iclr.cc/paper_files/paper/2024/hash/6c0e99d736da621403018ca7b32b1a4d-Abstract-Conference.html"},{"title":"Quantifying Language Models’ Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting","url":"https://arxiv.org/html/2310.11324v2"},{"title":"How I learned to start worrying about prompt formatting","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/6c0e99d736da621403018ca7b32b1a4d-Paper-Conference.pdf"},{"title":"Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting | OpenReview","url":"https://openreview.net/forum?id=RIu5lyNXjT"},{"title":"dblp: Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting.","url":"https://dblp.org/rec/conf/iclr/Sclar0TS24.html"},{"title":"[2310.11
+…[truncated 1585 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 205 · 2026-05-26T10:24:41.217149+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "cohen-1988|muller2019|peterson2019|sclar-sensitivity|nocite",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "cohen-1988|muller2019|peterson2019|sclar-sensitivity|nocite",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 206 · 2026-05-26T10:24:41.217288+00:00_
+
+references.bib:10:@book{cohen-1988-statistical,
+references.bib:86:@inproceedings{muller2019when,
+references.bib:94:@inproceedings{peterson2019human,
+references.bib:419:@inproceedings{sclar-sensitivity-2024,
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 207 · 2026-05-26T10:24:41.217410+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "sclar|cohen.*1988|muller.*label.smooth|peterson.*uncertain",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "sclar|cohen.*1988|muller.*label.smooth|peterson.*uncertain",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 208 · 2026-05-26T10:24:41.217532+00:00_
+
+references.bib:10:@book{cohen-1988-statistical,
+references.bib:419:@inproceedings{sclar-sensitivity-2024,
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 209 · 2026-05-26T10:24:41.217683+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 210 · 2026-05-26T10:24:41.217866+00:00_
+
+1	\section{Related Work}
+2	\label{sec:related_work}
+3	
+4	\paragraph{Training-free LLM IE.}
+5	\looseness=-1
+6	Training-free LLM IE spans instruction tuning \citep{instructuie-2023}, code-style schema encoding \citep{knowcoder-2024,codeie-2023}, annotation-guided extraction \citep{gollie-2024,adelie-2024}, schema-driven decoding \citep{slot-2025,oneke-2025}, and constrained JSON decoding \citep{json-schema-bench-2025,willard2023efficient}. NER methods include zero-shot decomposition \citep{xie-zeroshot-ner-2023,promptner-2023}, distillation \citep{uniner-2024}, and bidirectional encoders \citep{gliner-2024,gliner2-2025}; RE methods include zero-shot triplet extraction \citep{relationprompt-2022}, constrained generation \citep{josifoski-2022-genie}, and shared embedding spaces \citep{boylan-2025-glirel,wadhwa-re-llm-2023}. Related work exploits type embeddings for retrieval \citep{shachar-2025-ner-retriever} and introspective confusion for example selection \citep{reflect-learn-2026}. These methods handle moderate schemas (4--20 types) but none investigates how performance degrades as schema complexity scales.
+7	
+8	\begin{figure}[t]
+9	\centering
+10	\includegraphics[width=\columnwidth]{../../figures/paper/fig_framework.pdf}
+11	\caption{Experimental design overview on FewRel. Each point is one batch; color encodes RE accuracy (green=high, red=low). \textbf{Dimension~1} (horizontal): accuracy declines with type count (\S\ref{sec:count_curves}). \textbf{Dimension~2} (vertical): within each count level, higher BCS correlates with lower accuracy (\S\ref{sec:bcs_controlled}). BCS range narrows at high counts, limiting Dimension~2 discriminability.}
+12	\label{fig:framework}
+13	\end{figure}
+14	
+15	\paragraph{Schema complexity in IE.}
+16	\looseness=-1
+17	The most directly related work is LLM-PEE \citep{llm-pee-2025}, which partitions large event schemas by type embedding similarity. Our work differs in three ways: (1)~we conduct controlled analysis to understand \emph{why} extra
+…[truncated 3334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 211 · 2026-05-26T10:24:41.218040+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 212 · 2026-05-26T10:24:41.218197+00:00_
+
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	\begin{figure}[t]
+5	\centering
+6	\includegraphics[width=\columnwidth]{../../figures/paper/fig_problem_illustration.pdf}
+7	\caption{Schema complexity in zero-shot relation extraction. Given the same input, a simple schema (few dissimilar types) yields the correct relation, while a complex schema with more candidate types and a cluster of semantically similar types causes type substitution (gold \emph{place of birth} $\to$ predicted \emph{residence}). We decompose schema complexity into two dimensions: type count and inter-type confusability.}
+8	\label{fig:problem}
+9	\end{figure}
+10	
+11	\looseness=-1
+12	Training-free\footnote{We use ``training-free'' and ``zero-shot'' interchangeably to denote prompting without parameter updates.} LLM information extraction (prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning) enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, and is attractive for applications where annotation is expensive or schemas evolve frequently \citep{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to a plateau of ${\sim}$0.28 across intermediate schema sizes (22--44 types) before partial recovery at full-schema. On relation extraction, accuracy falls from 85.7\% with one relation to 50.4\% with 80 relations (sentence-level) and from 88.0\% to 38.7\% with 96 relations (document-level), near-halving or worse. This degradation is not academic: real-world ontologies routinely define 50--200+ types, which places them squarely in the regime where training-free extraction becomes unreliable (Figure~\ref{fig:problem}).
+13	
+14	\looseness=-1
+15	What explains this degra
+…[truncated 3013 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 213 · 2026-05-26T10:24:41.218339+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 214 · 2026-05-26T10:24:41.218483+00:00_
+
+1	\section{Discussion and Conclusion}
+2	\label{sec:discussion}
+3	
+4	\looseness=-1
+5	\textbf{RQ1} (independent confusability effect): Yes, on RE. BCS independently explains ${\sim}$27\% of cross-batch accuracy variance on FewRel after controlling for count and centrality, replicating across three model scales. The NER null reflects dispersed error modes rather than absence of confusability effects (\S\ref{sec:multi_channel}).
+6	\textbf{RQ2} (degradation modes): Count reduces recall overall (monotonically in RE; non-monotonically in NER); confusability drives type substitution (IntraSub) that scales monotonically with BCS. The two dimensions interact with bounded magnitude on the linear scale.
+7	\textbf{RQ3} (decomposition): Schema decomposition fails in practice due to routing ambiguity (RE) and merge amplification (NER/ED), though oracle routing confirms the dimensions are separable in principle (\S\ref{sec:sdgd}).
+8	
+9	\begin{table}[t]
+10	\centering
+11	\small
+12	\caption{Intra-batch substitution (IntraSub) and missed rates by BCS bin. IntraSub scales monotonically with BCS across all three datasets. DocRED missed rates decrease with BCS, indicating errors shift from omission to substitution.}
+13	\label{tab:error_taxonomy}
+14	\resizebox{\columnwidth}{!}{%
+15	\begin{tabular}{llrrrrrrr}
+16	\toprule
+17	 & & \multicolumn{5}{c}{\textbf{BCS Bin}} & & \\
+18	\cmidrule(lr){3-7}
+19	\textbf{Task} & \textbf{Error} & \textbf{Solo} & \textbf{Low} & \textbf{Mid} & \textbf{High} & \textbf{V.High} & \textbf{$\rho$} & \textbf{$p$} \\
+20	\midrule
+21	NER & IntraSub & 0\% & 1.6\% & 10.6\% & 49.4\% & --- & 1.000 & ${<}0.001$ \\
+22	RE  & IntraSub & 0\% & 4.2\% & 13.0\% & 20.3\% & 32.3\% & 0.954 & ${<}\,0.001$ \\
+23	DocRED & IntraSub & --- & 4.8\% & 22.4\% & 37.0\% & 41.9\% & 0.843 & ${<}\,0.001$ \\
+24	\midrule
+25	NER & Missed & --- & 42.8\% & 64.8\% & 49.9\% & --- & --- & --- \\
+26	RE  & Missed & --- & 10.4\% & 11.3\% & 13.1\% & 15.7\% & --- & --- \\
+27	DocRED & Missed & --- & 28.1\% & 22
+…[truncated 919 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 215 · 2026-05-26T10:24:41.218644+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 216 · 2026-05-26T10:24:41.218826+00:00_
+
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	All experiments use Qwen3-32B and the v1 prompt (\S\ref{sec:model}; Appendix~\ref{sec:appendix_prompts}) unless noted; cross-model validation covers Dimensions~1--2, while secondary analyses (error taxonomy, DocRED $R^2$, Two One-Sided Tests [TOST]) remain single-model.
+5	
+6	\begin{table}[t]
+7	\centering
+8	\small
+9	\resizebox{\columnwidth}{!}{%
+10	\begin{tabular}{llrrrrr}
+11	\toprule
+12	\textbf{Dataset} & \textbf{Embed.} & \textbf{$n$ pairs} & \textbf{$r$} & \textbf{$r^2$} & \textbf{95\% CI} & \textbf{$p$} \\
+13	\midrule
+14	Few-NERD & Qwen3 & 1{,}953 & 0.112 & 0.013 & {[}0.076, 0.156{]} & ${<}\,0.001$ \\
+15	MAVEN & MiniLM & 11{,}026 & 0.129 & 0.017 & {[}0.104, 0.156{]} & ${<}\,0.001$ \\
+16	\bottomrule
+17	\end{tabular}}
+18	\caption{Pairwise SCS--confusion correlation. Confusion rate is bidirectional $C(t_i{\to}t_j) + C(t_j{\to}t_i)$ divided by gold frequency sum; CIs are percentile bootstrap ($B{=}10{,}000$). FewRel ($r = 0.187$; \S\ref{sec:scs-validation}) excluded (per-instance RE format). Type-level cluster bootstrap CIs exclude zero (Few-NERD [0.069, 0.219]; MAVEN [0.081, 0.185]).}
+19	\label{tab:pairwise}
+20	\end{table}
+21	
+22	\subsection{Count-Degradation Curves}
+23	\label{sec:count_curves}
+24	
+25	\looseness=-1
+26	Figure~\ref{fig:main_results}a shows RE accuracy declines monotonically with schema size (85.7\%$\to$50.4\% for FewRel). NER recall drops from 0.72 (count 1) to 0.28 before recovering to 0.41 at full-schema. DocRED replicates the monotonic RE pattern (88.0\%$\to$38.7\%; Appendix~\ref{sec:appendix_figures}); MAVEN exhibits a reversed trend attributable to centrality confounding (\S\ref{sec:centrality_confound}). The decline is stable across seeds (Jonckheere-Terpstra $p < 0.001$) and replicates on Llama-8B ($-$43\,pp; Table~\ref{tab:cross_model}), Llama-70B, and Gemini Flash (Figure~\ref{fig:cross_model_count}).
+27	
+28	\subsection{Pairwise Confusability and Type Confusion}
+29	\label{sec:pairwise}
+30	
+31	\lo
+…[truncated 7837 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 217 · 2026-05-26T10:24:41.219000+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 218 · 2026-05-26T10:24:41.219129+00:00_
+
+File content (26245 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 219 · 2026-05-26T10:24:41.219251+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\\\cite[tp]?\\*?\\{[^}]+\\}",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\\\cite[tp]?\\*?\\{[^}]+\\}",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 220 · 2026-05-26T10:24:41.219373+00:00_
+
+51:Four English Wikipedia/Wikidata datasets in a zero-shot setting; few-shot, fine-tuned, and non-English scenarios remain untested. BCS predicts RE accuracy but not NER. Cross-dataset consistency is converging evidence, not independent replication \citep{rothman-1990}.
+195:[Omitted long matching line]
+373:[Omitted long matching line]
+569:[Omitted long matching line]
+648:[Omitted long matching line]
+693:We validate both dimensions on a proprietary model, Gemini 2.5 Flash \citep{gemini-2025}, accessed via API. This extends the cross-model evidence from open-weight families (Qwen, Llama) to a proprietary architecture with unknown training details. We replicate the FewRel count-curve and BCS-controlled experiments using the same 960 balanced samples, batch compositions, and evaluation protocol as Qwen3-32B.
+763:[Omitted long matching line]
+786:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 221 · 2026-05-26T10:24:41.219497+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "offset": "190",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "offset": "190",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 222 · 2026-05-26T10:24:41.219634+00:00_
+
+190	To formally test whether count and confusability effects are additive, we fit a multiple regression (accuracy $\sim$ $\log_2$\,count $+$ BCS $+$ count$\times$BCS) across 69 batches from FewRel spanning five count levels ($k \in \{4, 8, 16, 32, 40\}$). Both main effects are significant (count: $p = 0.008$; BCS: $p = 0.0002$; $R^2 = 0.52$), but the interaction term is negligible (0.47\,pp). A TOST equivalence test with a $\pm 3$\,pp margin confirms that the interaction is bounded well below practical significance ($p_{\text{TOST}} = 0.003$); this supports bounded interaction between count and confusability effects.
+191	
+192	A $2 \times 2$ factorial sensitivity check on FewRel (count $\in \{8, 16\}$, BCS low/high; $n = 54$) was inconclusive ($p_{\text{TOST}} = 0.56$) due to limited power; this does not contradict the primary finding but limits generalization beyond the regression framework. The Few-NERD factorial (\S\ref{sec:multi_channel}) similarly did not reach significance ($p = 0.50$). The regression approach provides the stronger test by leveraging the full count range.
+193	
+194	\paragraph{Equivalence margin justification.}
+195	We set the $\pm 3$\,pp margin based on three converging anchors. \emph{External}: evaluation variance in IE benchmarks typically spans 2--5\,pp across random seeds, prompt variations, and data splits \citep{card-2020-power,dror-2018-significance}; our own four structurally distinct prompt variants yield cross-variant accuracy SD of 3.5--4.6\,pp across count conditions (Table~\ref{tab:prompt_variants}), confirming that a within-margin interaction would be indistinguishable from routine prompt-design noise and satisfying the smallest-effect-of-interest criterion \citep{lakens-2017-equivalence}. \emph{Internal}: $0.5 \times$ within-cell SD ($= 2.3$\,pp) corresponds to Cohen's $d \approx 0.5$ (medium effect threshold; \citealt{lakens-2017-equivalence}), cross-validated against the IQR-predicted confusability main effect of 2.2\,pp (\S\ref{
+…[truncated 936 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 223 · 2026-05-26T10:24:41.219777+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "offset": "368",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "offset": "368",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 224 · 2026-05-26T10:24:41.219927+00:00_
+
+368	Minimal & 32 & 0.615 & $-$0.771 & 0.009 \\
+369	\bottomrule
+370	\end{tabular}}
+371	\end{table}
+372	
+373	At count 32, all four variants produce negative BCS--accuracy correlations ($r$ ranges from $-$0.47 to $-$0.77), with V2 ($p = 0.043$) and Minimal ($p = 0.009$) reaching significance and Chain-of-thought approaching it ($p = 0.088$). At count 8, correlations are weaker and nonsignificant across all variants, consistent with the narrower BCS range at lower schema complexity reducing the detectable effect size. Rather than applying Bonferroni correction, which assumes independent hypotheses inappropriate for correlated prompt variants testing the same underlying signal, we note directional consistency: 7 of 8 conditions show negative BCS--accuracy slopes, consistent with the primary finding \citep{rothman-1990}. These results confirm that the confusability effect arises from schema composition, not prompt-specific phrasing.
+374	
+375	\section{BCS Aggregation Sensitivity}
+376	\label{sec:appendix_bcs_sensitivity}
+377	
+378	We define Batch Confusability Score (BCS) as the \emph{mean} pairwise SCS across all type pairs in a batch (\S\ref{sec:bcs_controlled}). An alternative definition takes the \emph{maximum} pairwise SCS within each batch to capture the single most confusable pair. Here we compare both aggregation methods to verify that core conclusions are robust to this choice (Table~\ref{tab:bcs_aggregation}).
+379	
+380	\begin{table}[h]
+381	\centering
+382	\small
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 225 · 2026-05-26T10:24:41.220057+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "offset": "564",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "offset": "564",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 226 · 2026-05-26T10:24:41.220192+00:00_
+
+564	
+565	\paragraph{Sensitivity to $\rho$.}
+566	The inter-pair SCS correlation $\rho = 0.35$ is estimated from pairs sharing a common type. At $\rho = 0.20$ (halved correlation), a parallel simulation yields batch $R^2 \approx 0.22$; at $\rho = 0.50$, the correlation structure approaches the positive-definiteness boundary; $\rho = 0.35$ thus sits in a stable regime. The simulation is illustrative; the pooled semipartial $R^2 = 0.273$ (\S\ref{sec:bcs_controlled}) is the primary evidence.
+567	
+568	\paragraph{Non-independence and ecological inference.}
+569	Types within a batch share prompt context, so their extraction outcomes are not independent---a form of ecological correlation \citep{robinson-1950-ecological}. This non-independence is built into the design: BCS measures batch-level confusability precisely because co-present types interact during type resolution. The core batch-level effect (FewRel semipartial $R^2 = 0.273$, DocRED pooled $R^2 = 0.578$; \S\ref{sec:practical_magnitude}) is a direct empirical observation from regressing batch accuracy on BCS, not derived from the simulation above. The inter-pair SCS correlation $\rho = 0.35$ used in the simulation was estimated from the SCS correlation matrix independently of batch-level accuracy data.
+570	
+571	\section{BCS Independence from Type Composition}
+572	\label{app:bcs-composition}
+573	
+574	FewRel's balanced design (700 instances per type) makes type frequency invariant across batches, ruling out frequency-driven confounding. To test whether BCS captures information beyond type composition effects, we decompose the explained variance in a joint model (accuracy $\sim$ BCS $+$ mean type difficulty), where type difficulty is the per-type solo-baseline accuracy averaged across batch members. On 100 random 8-type batches from the 16-relation pool, the joint model explains $R^2 = 0.704$. Variance decomposition yields: BCS unique $R^2 = 0.259$ (36.8\% of explained variance), composition unique $R^2 = 0.298$ (42.3\%)
+…[truncated 314 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 227 · 2026-05-26T10:24:41.220335+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "offset": "643",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "offset": "643",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 228 · 2026-05-26T10:24:41.220468+00:00_
+
+643	FP8 quantization noise (SD${}\,=\,0.88$\,pp) yields minimum detectable slope $\approx$0.4\,pp per 0.1 BCS unit at 80\% power ($n = 204$); the observed slope (${\sim}$1.9\,pp per 0.1 BCS unit) exceeds this threshold by approximately 5$\times$.
+644	
+645	\section{Cross-Domain Connections}
+646	\label{app:cross-domain}
+647	
+648	The schema-associated degradation documented here is not unique to information extraction. Schema-Guided Dialogue systems (SGD/SGD-X; \citealt{rastogi2020towards}) face an analogous challenge: as the number of intent and slot types grows, dialogue state tracking accuracy declines. \citet{li2023evaluating} observed count-dependent degradation in ChatGPT-based IE, attributing it to prompt overload. Our two-dimensional decomposition offers a more refined explanation: schema size per se is not the sole predictor; rather, larger schemas increase the probability of including high-SCS pairs, which contribute disproportionately to confusion. This distinction has practical implications: a schema of 80 types with low mutual confusability may outperform a 40-type schema with clustered semantics, and suggests that confusability-aware design principles may generalize to any task where an LLM must discriminate among a prompt-specified label inventory.
+649	
+650	\section{Cross-Model Validation with Llama-3.1-70B-Instruct (FP8)}
+651	\label{sec:appendix_cross_model_70b}
+652	
+653	To test whether the two-dimensional degradation pattern generalizes across models, we replicate the count-curve and BCS-controlled experiments on Meta-Llama-3.1-70B-Instruct (FP8 quantization). All batch compositions, type pools, and test samples are identical to those used for Qwen3-32B (\S\ref{sec:count_curves}, \S\ref{sec:bcs_controlled}).
+654	
+655	\begin{table}[h]
+656	\centering
+657	\small
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 229 · 2026-05-26T10:24:41.220598+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "offset": "758",
+  "limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "offset": "758",
+    "limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 230 · 2026-05-26T10:24:41.220735+00:00_
+
+758	5-shot & 0.715 & 0.488 & +22.8 & {[}+18.9, +26.8{]} \\
+759	\bottomrule
+760	\end{tabular}}
+761	\end{table}
+762	
+763	Demonstrations improve absolute accuracy primarily on low-BCS (easy) batches, where type boundaries are already distinct and examples reinforce correct mappings. On high-BCS batches, where types are semantically confusable, demonstrations provide inconsistent benefit (+5.6\,pp at 1-shot, $-$1.0\,pp at 5-shot): the model still substitutes similar types at comparable rates. The net effect is that the confusability gap widens under few-shot prompting (+4.3\,pp from 0-shot to 5-shot, bootstrap $p = 0.014$), with all three confidence intervals excluding zero. This indicates that BCS-associated type confusion is a structural property of the schema composition rather than a deficit addressable through prompt engineering. The non-monotonic low-BCS pattern (0.754 at 1-shot vs.\ 0.715 at 5-shot) may reflect lost-in-middle effects from increased prompt length \citep{lost-in-middle-2024}.
+764	
+765	The 0-shot gap (+18.5\,pp) is smaller than the extreme-batch gap reported in \S\ref{sec:bcs_controlled} (+25.5\,pp) because the two experiments use different test splits and batch sampling seeds; direct magnitude comparison across experiments is not appropriate.
+766	
+767	\paragraph{Replication at count 16.}
+768	To test whether the few-shot--confusability interaction generalizes beyond count 8, we repeat the experiment at count 16 using 50 extreme-BCS batches (25 low-BCS, mean $\approx 0.41$; 25 high-BCS, mean $\approx 0.74$) drawn from the same FewRel 80-relation pool (Table~\ref{tab:fewshot_bcs_count16}).
+769	
+770	\begin{table}[h]
+771	\centering
+772	\small
+773	\caption{BCS gap under few-shot prompting (FewRel, count 16). The 1-shot gap (+18.4\,pp) exceeds the 0-shot gap (+15.7\,pp), replicating the widening pattern observed at count 8. The 5-shot gap (+16.7\,pp) retreats from the 1-shot peak, consistent with prompt-length ceiling effects at higher type counts.}
+774	\
+…[truncated 1255 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 231 · 2026-05-26T10:24:41.220972+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "NAACL 2025 \"Nations of the Americas\" OR \"North American\" official name ACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "NAACL 2025 \"Nations of the Americas\" OR \"North American\" official name ACL"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 232 · 2026-05-26T10:24:41.221121+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "InstructUIE \"Multi-task Instruction Tuning for Unified Information Extraction\" published venue 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "InstructUIE \"Multi-task Instruction Tuning for Unified Information Extraction\" published venue 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 233 · 2026-05-26T10:24:41.221270+00:00_
+
+Web search results for query: "NAACL 2025 "Nations of the Americas" OR "North American" official name ACL"
+
+Links: [{"title":"NAACL: Nations of the Americas Chapter of the ACL (Association for Computational Linguistics)","url":"https://naacl.org/"},{"title":"North American Chapter of the Association for Computational Linguistics - Wikipedia","url":"https://en.wikipedia.org/wiki/North_American_Chapter_of_the_Association_for_Computational_Linguistics"},{"title":"2025 Annual Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics - NAACL-HLT 2025","url":"https://2025.naacl.org/"},{"title":"NAACL 2025 is now the 2025 Annual Conference of the Nations of the Americas Chapter of the ACL - NAACL-HLT 2025","url":"https://2025.naacl.org/blog/name-change/"},{"title":"Nations of the Americas Chapter of the Association for Computational Linguistics - ACL Anthology","url":"https://aclanthology.org/venues/naacl/"},{"title":"Joint Call for Workshops Proposals - NAACL-HLT 2025","url":"https://2025.naacl.org/calls/workshops/"},{"title":"NAACL 2025 Annual Conference of the Nations of the Americas Chapter of","url":"https://aclanthology.org/2025.naacl-short.0.pdf"},{"title":"Second Call for Main Conference Papers - NAACL-HLT 2025","url":"https://2025.naacl.org/calls/papers/"},{"title":"NAACL 2025 : North American Chapter of the Association for Computational Linguistics","url":"http://www.wikicfp.com/cfp/servlet/event.showcfp?copyownerid=90704&eventid=182018"},{"title":"Registration - NAACL-HLT 2025","url":"https://2025.naacl.org/registration/registration/"}]
+
+Based on the search results, here's what I found regarding NAACL 2025's official name:
+
+The NAACL board changed the official name of the organization from "The North American Chapter of the Association for Computational Linguistics" to "The Nations of the Americas Chapter of the Association for Computational Linguistics", with the vote concluding on September 15th 2024.
+
+The conference na
+…[truncated 392 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 234 · 2026-05-26T10:24:41.221454+00:00_
+
+Web search results for query: "InstructUIE "Multi-task Instruction Tuning for Unified Information Extraction" published venue 2024 2025"
+
+Links: [{"title":"[2304.08085] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://arxiv.org/abs/2304.08085"},{"title":"[PDF] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/bbb2fc6e95d24fb58ab6c25b216b14ac49a32fbe"},{"title":"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://www.researchgate.net/publication/370071546_InstructUIE_Multi-task_Instruction_Tuning_for_Unified_Information_Extraction"},{"title":"(PDF) InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction (2023) | Xiao Wang | 81 Citations","url":"https://scispace.com/papers/instructuie-multi-task-instruction-tuning-for-unified-qe70ci1r"},{"title":"[2304.08085v1] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://arxiv.org/abs/2304.08085v1"},{"title":"Paper page - InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://huggingface.co/papers/2304.08085"},{"title":"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction | alphaXiv","url":"https://www.alphaxiv.org/abs/2304.08085v1"},{"title":"GitHub - BeyonderXX/InstructUIE: Universal information extraction with instruction learning · GitHub","url":"https://github.com/BeyonderXX/InstructUIE"},{"title":"InstructUIE: Multi-task Instruction Tuning for Uniﬁed Information Extraction","url":"https://arxiv.org/pdf/2304.08085"},{"title":"Multi-LoRA continual learning based instruction tuning framework for universal information extraction - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0950705124013844"}]
+
+Based on the search results, InstructUIE is a unified information extraction framework based on i
+…[truncated 966 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 235 · 2026-05-26T10:24:41.221640+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/",
+  "description": "Check report directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/",
+    "description": "Check report directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 236 · 2026-05-26T10:24:41.221772+00:00_
+
+analysis_c3_extreme_batch_n.md
+analysis_m1_gemini_leverage.md
+analysis_m2_ecological_fallacy.md
+analysis_m4_contamination.md
+arr_checklist_final.md
+arr_submission_metadata.md
+author_response_template.md
+crossagentie_analysis.md
+maven_dataset_report.md
+maven_dataset_report_d9b24e.md
+r1_statistical_supplements.md
+rebuttal_response_template.md
+references_survey.md
+report_provenance_check.md
+sdgd_design_doc.md
+submission_audit_20260523.md
+third_task_type_eval.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 237 · 2026-05-26T10:24:41.221942+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/ref_audit_worker2.md",
+  "content": "# Reference Audit Report (Worker 2)\n\n**Date**: 2026-05-26\n**Bib file**: `docs/paper/references.bib`\n**Total entries**: 63\n\n## Per-Entry Verification\n\n### DIRECT COMPETITORS\n\n```\n✓ llm-pee-2025: 确认正确 (EMNLP 2025 main, ACL Anthology verified)\n✓ parse-2025: 确认正确 (EMNLP 2025 Industry Track, ACL Anthology verified)\n✓ crossagentie-2025: 确认正确 (ACL 2025 Findings, ACL Anthology verified)\n✓ cmas-ner-2025: 确认正确 (WWW 2025, ACM DL verified, DOI correct)\n```\n\n### METHOD COMPONENTS\n\n```\n✓ uniner-2024: 确认正确 (ICLR 2024, OpenReview verified)\n✓ gollie-2024: 确认正确 (ICLR 2024, OpenReview verified)\n✓ gliner-2024: 确认正确 (NAACL 2024, ACL Anthology verified)\n✓ gliner2-2025: 确认正确 (EMNLP 2025 System Demos, ACL Anthology verified)\n✓ iepile-2024: 确认正确 (ACL 2024 Short Papers, ACL Anthology verified)\n✓ dror-2018-significance: 确认正确 (ACL 2018, ACL Anthology P18-1128)\n✓ lost-in-middle-2024: 确认正确 (TACL vol 12, pp 157-173, arXiv 2307.03172)\n✓ shachar-2025-ner-retriever: 确认正确 (EMNLP 2025 Findings, ACL Anthology verified)\n```\n\n### SURVEYS / BACKGROUND\n\n```\n✓ llm4ie-survey-2024: 确认正确 (Frontiers of Computer Science vol 18 no 6, arXiv 2312.17617)\n✓ knowcoder-2024: 确认正确 (ACL 2024, arXiv 2403.07969)\n✓ slot-2025: 确认正确 (EMNLP 2025 Industry Track, ACL Anthology verified)\n✓ cai-isotropy-clusters-2021: 确认正确 (ICLR 2021, OpenReview verified)\n✓ instructuie-2023: 确认正确 (arXiv 2304.08085, remains arXiv-only preprint)\n✓ codeie-2023: 确认正确 (ACL 2023, ACL Anthology 2023.acl-long.855)\n✓ adelie-2024: 确认正确 (EMNLP 2024, ACL Anthology 2024.emnlp-main.419)\n✓ oneke-2025: 确认正确 (WWW Companion 2025, arXiv 2412.20005, DOI verified)\n```\n\n### EMBEDDING ANISOTROPY / REPRESENTATION\n\n```\n✓ josifoski-2022-genie: 确认正确 (NAACL 2022, ACL Anthology 2022.naacl-main.342)\n✓ dubey-2018-pairwise-confusion: 确认正确 (ECCV 2018)\n✓ collier-2021-correlated-noise: 确认正确 (CVPR 2021)\n✓ snell2017prototypical: 确认正确 (NeurIPS 2017)\n✓ yin-2019-zero-shot-bench: 确认正确 (EMNLP 2019, arXiv 1909.00161)\n```\n\n### ZERO-SHOT NER / RE BASELINES\n\n```\n✓ xie-zeroshot-ner-2023: 确认正确 (EMNLP 2023, ACL Anthology 2023.emnlp-main.493)\n✓ wadhwa-re-llm-2023: 确认正确 (ACL 2023, ACL Anthology 2023.acl-long.868)\n✓ relationprompt-2022: 确认正确 (ACL 2022 Findings, ACL Anthology 2022.findings-acl.5)\n✓ promptner-2023: 确认正确 (arXiv 2305.15444, remains arXiv-only preprint)\n✓ reflect-learn-2026: 确认正确 (AAAI 2026 vol 40, arXiv 2508.10036)\n✓ boylan-2025-glirel: 确认正确 (NAACL 2025 — \"Nations of the Americas\" is the new official name since 2025)\n```\n\n### DATASETS\n\n```\n✓ fewnerd-2021: 确认正确 (ACL 2021, ACL Anthology 2021.acl-long.248)\n✓ fewrel-2018: 确认正确 (EMNLP 2018, ACL Anthology D18-1514)\n✓ maven-2020: 确认正确 (EMNLP 2020, ACL Anthology 2020.emnlp-main.129)\n✓ docred-2019: 确认正确 (ACL 2019, ACL Anthology P19-1074)\n```\n\n### MODELS AND TOOLS\n\n```\n✓ qwen3-2025: 确认正确 (arXiv 2505.09388)\n⚠ llama3-2024: [作者顺序变更] arXiv v1 首作者为 Dubey, v3 改为 Grattafiori。当前 bib 匹配最新版本 (v3)，可接受但需注意一致性\n✓ sentence-bert-2019: 确认正确 (EMNLP 2019, ACL Anthology D19-1410)\n✓ minilm-2020: 确认正确 (NeurIPS 2020, arXiv 2002.10957)\n✓ vllm-2023: 确认正确 (SOSP 2023, ACM DL verified)\n✓ willard2023efficient: 确认正确 (arXiv 2307.09702, remains arXiv-only preprint)\n✓ gemini-2025: 确认正确 (arXiv 2507.06261, July 2025)\n```\n\n### STATISTICS / EVALUATION\n\n```\n✓ schuirmann-1987-tost: 确认正确 (J Pharmacokinetics and Biopharmaceutics, vol 15 no 6 pp 657-680)\n✓ cohen-1988-statistical: 确认正确 (book, 2nd ed., Lawrence Erlbaum Associates)\n✓ rothman-1990: 确认正确 (Epidemiology, vol 1 no 1 pp 43-46)\n✓ lakens-2017-equivalence: 确认正确 (SPPS, vol 8 no 4 pp 355-362)\n✓ card-2020-power: 确认正确 (EMNLP 2020, ACL Anthology 2020.emnlp-main.745)\n✓ robinson-1950-ecological: 确认正确 (American Sociological Review, vol 15 no 3 pp 351-357)\n✓ deng-2010-imagenet: 确认正确 (ECCV 2010)\n✓ guo-2021-label-confusion: 确认正确 (AAAI 2021 vol 35 pp 12929-12936)\n```\n\n### OTHER\n\n```\n✓ golde-2025-familiarity: 确认正确 (NAACL 2025, arXiv 2412.10121)\n⚠ baan-2023-ecological: [key 命名错误] 论文本身正确 (Orlikowski et al., ACL 2023 Short Papers)，但 bib key 前缀 \"baan\" 不对应任何作者。第一作者是 Orlikowski。key 应为 orlikowski-2023-ecological\n✗ sclar-sensitivity-2024: [标题标点错误] bib 中标题为 \"...Prompt Design, or: How I learned...\"（逗号），实际标题无逗号：\"...Prompt Design or: How I learned...\"。其余字段（作者、年份、venue ICLR 2024）正确\n✓ json-schema-bench-2025: 确认正确 (arXiv 2501.10868)\n✓ rastogi2020towards: 确认正确 (AAAI 2020, arXiv 1909.05855)\n✓ li2023evaluating: 确认正确 (arXiv 2304.11633, remains arXiv-only preprint)\n✓ lee2022sgd: 确认正确 (AAAI 2022, arXiv 2110.06800)\n✓ haystack-to-needle-2025: 确认正确 (arXiv 2502.08436)\n✓ muller2019when: 确认正确 (NeurIPS 2019)\n✓ peterson2019human: 确认正确 (ICCV 2019)\n✓ dlisc-2025: 确认正确 (arXiv 2505.14992)\n✓ spt-2025: 确认正确 (arXiv 2506.01276)\n✓ chen-2026-multi-instance: 确认正确 (arXiv 2603.22608, March 2026)\n```\n\n## 引用上下文正确性检查\n\n所有 tex 文件中的 \\cite 均已核对上下文，未发现引用张冠李戴的情况。具体抽查：\n\n- `\\citep{robinson-1950-ecological,baan-2023-ecological}` — 用于 ecological correlation / 聚合效应，正确\n- `\\citep{lost-in-middle-2024}` — 用于解释 prompt 过长导致的 lost-in-middle 效应，正确\n- `\\citep{cai-isotropy-clusters-2021}` — 用于 FrameNet 类型嵌入聚类，正确\n- `\\citep{lakens-2017-equivalence,schuirmann-1987-tost}` — 用于 TOST 等价检验，正确\n- `\\citep{rothman-1990}` — 用于论证不需要 Bonferroni 校正，正确\n- `\\citep{card-2020-power,dror-2018-significance}` — 用于评估方差基线 (2-5pp)，正确\n- `\\citet{chen-2026-multi-instance}` — 用于支持 instance count 效应，正确\n- `\\citet{golde-2025-familiarity}` — 用于类型相似度预测 NER 难度，正确\n- `\\citet{li2023evaluating}` — 用于 ChatGPT IE 中 count-dependent 退化，正确\n\n## 未引用的 Bib 条目\n\n以下 4 条 entry 存在于 references.bib 中但未在任何 .tex 文件中被 \\cite：\n\n1. **cohen-1988-statistical** — Statistical Power Analysis for the Behavioral Sciences (Cohen, 1988)\n2. **muller2019when** — When Does Label Smoothing Help? (Müller et al., NeurIPS 2019)\n3. **peterson2019human** — Human Uncertainty Makes Classification More Robust (Peterson et al., ICCV 2019)\n4. **sclar-sensitivity-2024** — Quantifying Language Models' Sensitivity... (Sclar et al., ICLR 2024)\n\n建议：删除未引用条目以避免 LaTeX warnings 和审稿人疑虑。\n\n## 汇总\n\n| 类别 | 数量 |\n|------|------|\n| 总条数 | 63 |\n| ✓ 确认正确 | 60 |\n| ✗ 错误 | 1 (sclar-sensitivity-2024: 标题标点) |\n| ⚠ 疑似问题 | 2 (baan-2023-ecological: key 命名; llama3-2024: 作者顺序版本差异) |\n| 未引用条目 | 4 (cohen-1988, muller2019, peterson2019, sclar-sensitivity-2024) |\n\n## 需修复项\n\n1. **sclar-sensitivity-2024**: 删除标题中 \"Design, or:\" 的逗号 → \"Design or:\"\n2. **baan-2023-ecological**: 建议将 key 改为 `orlikowski-2023-ecological` 以匹配第一作者（需同步修改所有 tex 文件中的 \\cite 引用）\n3. 删除 4 条未引用 entry（cohen-1988-statistical, muller2019when, peterson2019human, sclar-sensitivity-2024）\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/ref_audit_worker2.md",
+    "content": "# Reference Audit Report (Worker 2)\n\n**Date**: 2026-05-26\n**Bib file**: `docs/paper/references.bib`\n**Total entries**: 63\n\n## Per-Entry Verification\n\n### DIRECT COMPETITORS\n\n```\n✓ llm-pee-2025: 确认正确 (EMNLP 2025 main, ACL Anthology verified)\n✓ parse-2025: 确认正确 (EMNLP 2025 Industry Track, ACL Anthology verified)\n✓ crossagentie-2025: 确认正确 (ACL 2025 Findings, ACL Anthology verified)\n✓ cmas-ner-2025: 确认正确 (WWW 2025, ACM DL verified, DOI correct)\n```\n\n### METHOD COMPONENTS\n\n```\n✓ uniner-2024: 确认正确 (ICLR 2024, OpenReview verified)\n✓ gollie-2024: 确认正确 (ICLR 2024, OpenReview verified)\n✓ gliner-2024: 确认正确 (NAACL 2024, ACL Anthology verified)\n✓ gliner2-2025: 确认正确 (EMNLP 2025 System Demos, ACL Anthology verified)\n✓ iepile-2024: 确认正确 (ACL 2024 Short Papers, ACL Anthology verified)\n✓ dror-2018-significance: 确认正确 (ACL 2018, ACL Anthology P18-1128)\n✓ lost-in-middle-2024: 确认正确 (TACL vol 12, pp 157-173, arXiv 2307.03172)\n✓ shachar-2025-ner-retriever: 确认正确 (EMNLP 2025 Findings, ACL Anthology verified)\n```\n\n### SURVEYS / BACKGROUND\n\n```\n✓ llm4ie-survey-2024: 确认正确 (Frontiers of Computer Science vol 18 no 6, arXiv 2312.17617)\n✓ knowcoder-2024: 确认正确 (ACL 2024, arXiv 2403.07969)\n✓ slot-2025: 确认正确 (EMNLP 2025 Industry Track, ACL Anthology verified)\n✓ cai-isotropy-clusters-2021: 确认正确 (ICLR 2021, OpenReview verified)\n✓ instructuie-2023: 确认正确 (arXiv 2304.08085, remains arXiv-only preprint)\n✓ codeie-2023: 确认正确 (ACL 2023, ACL Anthology 2023.acl-long.855)\n✓ adelie-2024: 确认正确 (EMNLP 2024, ACL Anthology 2024.emnlp-main.419)\n✓ oneke-2025: 确认正确 (WWW Companion 2025, arXiv 2412.20005, DOI verified)\n```\n\n### EMBEDDING ANISOTROPY / REPRESENTATION\n\n```\n✓ josifoski-2022-genie: 确认正确 (NAACL 2022, ACL Anthology 2022.naacl-main.342)\n✓ dubey-2018-pairwise-confusion: 确认正确 (ECCV 2018)\n✓ collier-2021-correlated-noise: 确认正确 (CVPR 2021)\n✓ snell2017prototypical: 确认正确 (NeurIPS 2017)\n✓ yin-2019-zero-shot-bench: 确认正确 (EMNLP 2019, arXiv 1909.00161)\n```\n\n### ZERO-SHOT NER / RE BASELINES\n\n```\n✓ xie-zeroshot-ner-2023: 确认正确 (EMNLP 2023, ACL Anthology 2023.emnlp-main.493)\n✓ wadhwa-re-llm-2023: 确认正确 (ACL 2023, ACL Anthology 2023.acl-long.868)\n✓ relationprompt-2022: 确认正确 (ACL 2022 Findings, ACL Anthology 2022.findings-acl.5)\n✓ promptner-2023: 确认正确 (arXiv 2305.15444, remains arXiv-only preprint)\n✓ reflect-learn-2026: 确认正确 (AAAI 2026 vol 40, arXiv 2508.10036)\n✓ boylan-2025-glirel: 确认正确 (NAACL 2025 — \"Nations of the Americas\" is the new official name since 2025)\n```\n\n### DATASETS\n\n```\n✓ fewnerd-2021: 确认正确 (ACL 2021, ACL Anthology 2021.acl-long.248)\n✓ fewrel-2018: 确认正确 (EMNLP 2018, ACL Anthology D18-1514)\n✓ maven-2020: 确认正确 (EMNLP 2020, ACL Anthology 2020.emnlp-main.129)\n✓ docred-2019: 确认正确 (ACL 2019, ACL Anthology P19-1074)\n```\n\n### MODELS AND TOOLS\n\n```\n✓ qwen3-2025: 确认正确 (arXiv 2505.09388)\n⚠ llama3-2024: [作者顺序变更] arXiv v1 首作者为 Dubey, v3 改为 Grattafiori。当前 bib 匹配最新版本 (v3)，可接受但需注意一致性\n✓ sentence-bert-2019: 确认正确 (EMNLP 2019, ACL Anthology D19-1410)\n✓ minilm-2020: 确认正确 (NeurIPS 2020, arXiv 2002.10957)\n✓ vllm-2023: 确认正确 (SOSP 2023, ACM DL verified)\n✓ willard2023efficient: 确认正确 (arXiv 2307.09702, remains arXiv-only preprint)\n✓ gemini-2025: 确认正确 (arXiv 2507.06261, July 2025)\n```\n\n### STATISTICS / EVALUATION\n\n```\n✓ schuirmann-1987-tost: 确认正确 (J Pharmacokinetics and Biopharmaceutics, vol 15 no 6 pp 657-680)\n✓ cohen-1988-statistical: 确认正确 (book, 2nd ed., Lawrence Erlbaum Associates)\n✓ rothman-1990: 确认正确 (Epidemiology, vol 1 no 1 pp 43-46)\n✓ lakens-2017-equivalence: 确认正确 (SPPS, vol 8 no 4 pp 355-362)\n✓ card-2020-power: 确认正确 (EMNLP 2020, ACL Anthology 2020.emnlp-main.745)\n✓ robinson-1950-ecological: 确认正确 (American Sociological Review, vol 15 no 3 pp 351-357)\n✓ deng-2010-imagenet: 确认正确 (ECCV 2010)\n✓ guo-2021-label-confusion: 确认正确 (AAAI 2021 vol 35 pp 12929-12936)\n```\n\n### OTHER\n\n```\n✓ golde-2025-familiarity: 确认正确 (NAACL 2025, arXiv 2412.10121)\n⚠ baan-2023-ecological: [key 命名错误] 论文本身正确 (Orlikowski et al., ACL 2023 Short Papers)，但 bib key 前缀 \"baan\" 不对应任何作者。第一作者是 Orlikowski。key 应为 orlikowski-2023-ecological\n✗ sclar-sensitivity-2024: [标题标点错误] bib 中标题为 \"...Prompt Design, or: How I learned...\"（逗号），实际标题无逗号：\"...Prompt Design or: How I learned...\"。其余字段（作者、年份、venue ICLR 2024）正确\n✓ json-schema-bench-2025: 确认正确 (arXiv 2501.10868)\n✓ rastogi2020towards: 确认正确 (AAAI 2020, arXiv 1909.05855)\n✓ li2023evaluating: 确认正确 (arXiv 2304.11633, remains arXiv-only preprint)\n✓ lee2022sgd: 确认正确 (AAAI 2022, arXiv 2110.06800)\n✓ haystack-to-needle-2025: 确认正确 (arXiv 2502.08436)\n✓ muller2019when: 确认正确 (NeurIPS 2019)\n✓ peterson2019human: 确认正确 (ICCV 2019)\n✓ dlisc-2025: 确认正确 (arXiv 2505.14992)\n✓ spt-2025: 确认正确 (arXiv 2506.01276)\n✓ chen-2026-multi-instance: 确认正确 (arXiv 2603.22608, March 2026)\n```\n\n## 引用上下文正确性检查\n\n所有 tex 文件中的 \\cite 均已核对上下文，未发现引用张冠李戴的情况。具体抽查：\n\n- `\\citep{robinson-1950-ecological,baan-2023-ecological}` — 用于 ecological correlation / 聚合效应，正确\n- `\\citep{lost-in-middle-2024}` — 用于解释 prompt 过长导致的 lost-in-middle 效应，正确\n- `\\citep{cai-isotropy-clusters-2021}` — 用于 FrameNet 类型嵌入聚类，正确\n- `\\citep{lakens-2017-equivalence,schuirmann-1987-tost}` — 用于 TOST 等价检验，正确\n- `\\citep{rothman-1990}` — 用于论证不需要 Bonferroni 校正，正确\n- `\\citep{card-2020-power,dror-2018-significance}` — 用于评估方差基线 (2-5pp)，正确\n- `\\citet{chen-2026-multi-instance}` — 用于支持 instance count 效应，正确\n- `\\citet{golde-2025-familiarity}` — 用于类型相似度预测 NER 难度，正确\n- `\\citet{li2023evaluating}` — 用于 ChatGPT IE 中 count-dependent 退化，正确\n\n## 未引用的 Bib 条目\n\n以下 4 条 entry 存在于 references.bib 中但未在任何 .tex 文件中被 \\cite：\n\n1. **cohen-1988-statistical** — Statistical Power Analysis for the Behavioral Sciences (Cohen, 1988)\n2. **muller2019when** — When Does Label Smoothing Help? (Müller et al., NeurIPS 2019)\n3. **peterson2019human** — Human Uncertainty Makes Classification More Robust (Peterson et al., ICCV 2019)\n4. **sclar-sensitivity-2024** — Quantifying Language Models' Sensitivity... (Sclar et al., ICLR 2024)\n\n建议：删除未引用条目以避免 LaTeX warnings 和审稿人疑虑。\n\n## 汇总\n\n| 类别 | 数量 |\n|------|------|\n| 总条数 | 63 |\n| ✓ 确认正确 | 60 |\n| ✗ 错误 | 1 (sclar-sensitivity-2024: 标题标点) |\n| ⚠ 疑似问题 | 2 (baan-2023-ecological: key 命名; llama3-2024: 作者顺序版本差异) |\n| 未引用条目 | 4 (cohen-1988, muller2019, peterson2019, sclar-sensitivity-2024) |\n\n## 需修复项\n\n1. **sclar-sensitivity-2024**: 删除标题中 \"Design, or:\" 的逗号 → \"Design or:\"\n2. **baan-2023-ecological**: 建议将 key 改为 `orlikowski-2023-ecological` 以匹配第一作者（需同步修改所有 tex 文件中的 \\cite 引用）\n3. 删除 4 条未引用 entry（cohen-1988-statistical, muller2019when, peterson2019human, sclar-sensitivity-2024）\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 238 · 2026-05-26T10:24:41.222172+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/report/ref_audit_worker2.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_ref-audit-w2_20260526T101511",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 239 · 2026-05-26T10:24:41.222345+00:00_
+
+审计完成。63 条 bib entry 全部用 WebSearch 逐条验证。
+
+**结果**：60 条正确，1 条错误，2 条疑似问题，4 条未引用。
+
+需修复项：
+1. **`sclar-sensitivity-2024`** — 标题有多余逗号："Design, or:" → "Design or:"
+2. **`baan-2023-ecological`** — key 前缀 "baan" 不对应任何作者（实际第一作者 Orlikowski），建议改 key
+3. **4 条 entry 未被任何 tex 引用**：`cohen-1988-statistical`、`muller2019when`、`peterson2019human`、`sclar-sensitivity-2024`，建议清理
+
+报告已写入 `artifacts/_project/report/ref_audit_worker2.md`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_ref-audit-w2_20260526T101511"
+}
+```
+
+</details>
+
+---

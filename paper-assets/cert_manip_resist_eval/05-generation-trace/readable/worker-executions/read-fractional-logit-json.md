@@ -1,0 +1,883 @@
+# read fractional logit json
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 16
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_read_fractional-logit-json_20260523T074634.log`
+- **Structured JSON:** [`79ff8ecb7ce3260422f1.json`](../../sessions/79/79ff8ecb7ce3260422f1.json)
+
+## Before a recorded user message
+
+16 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7781ecca-890f-40fb-9c49-f8b9680d42ca",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779538800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "90cb943f-93cd-4056-ac19-7418e74e34d2",
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01B5Mh5PWeX5PZWzbRLrcQm1`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "7cb8fb71-5144-4680-ac37-4e916823551b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U2HPtsctWaovZmVKEUcT8q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11989,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11989
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-23T07:46:48.595Z_
+
+<details><summary>↩ Tool result · `toolu_01B5Mh5PWeX5PZWzbRLrcQm1`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "8431140f-ddb1-44c7-a843-baa10206ba07",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ELdFTWZL1FLLYF4wHczX16`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/fractional_logit_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "b9d982ad-6a56-4e1f-998c-aed26cb1da80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bp2YV3yM8oWBvfWANK7qta",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 427,
+      "cache_read_input_tokens": 23436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 427
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T07:46:52.071Z_
+
+<details><summary>↩ Tool result · `toolu_01ELdFTWZL1FLLYF4wHczX16`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/cert_manip_resist_eval/artifacts/results/plan001/fractional_logit_results.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "51a529b8-b05e-48b6-9bb3-8ffd98df3450",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/cert_manip_resist_eval/artifacts/results/plan001/fractional_logit_results.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/cert_manip_resist_eval/artifacts/results/plan001/fractional_logit_results.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+文件不存在，查找相关文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "75e37c62-0636-43da-bb38-ccbfe845e177",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAttczKnDpiHZsS1zFtw2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 236,
+      "cache_read_input_tokens": 23863,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 236
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GfGesRh5tgdnmz9UktMhog`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/cert_manip_resist_eval/artifacts/results/plan001/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "736efca1-f4c4-4db8-9c8e-485cb924ada1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAttczKnDpiHZsS1zFtw2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 236,
+      "cache_read_input_tokens": 23863,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 236
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T07:46:55.120Z_
+
+<details><summary>↩ Tool result · `toolu_01GfGesRh5tgdnmz9UktMhog`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aggregation_regression_15model.json\\naggregation_regression_15model_loglog.json\\nalt_diversity_effect_size.json\\napi_only_diagnostic.json\\napi_only_regression.json\\nattacked_keff.json\\nbeta_reg_epsilon.json\\ncapability_matched_subsample.json\\nclaim6_panel_design_15model.json\\nclustered_se_analysis.json\\ncondition_dominance_15model.json\\nconfound_diagnosis.json\\nconfound_scatter.png\\ncontrolled_regression.json\\nfamily_copula_15model.json\\nfig4_panel_design_K3.json\\nfractional_logit.json\\ngam_tier_analysis.json\\ngam_tier_analysis_corrected.json\\nindividual_scores\\nk4_wild_cluster_bootstrap.json\\nk5_aggregation_analysis.json\\nk5_aggregation_bootstrap.json\\nk5_gam_analysis.json\\nk5_k7_panel_analysis.json\\nk5_panel_selection.json\\nk5_panel_selection_bootstrap.json\\nk5_rf_contrast.json\\nk5_wild_cluster_bootstrap.json\\nk7_wild_cluster_bootstrap.json\\nmi_matrix\\npanel_regression\\npartial_knowledge_adversary.json\\npartial_knowledge_clustered_se.json\\npower_cr2_cr3.json\\nrandom_subsample_transition.json\\nresidualized_keff_15model.json\\nrf_keff_correction.json\\nstep1_api_scoring_summary.json\\nstochastic_dominance.json\\ntheorem1_violation.json\\nvif_partial_corr.json\\nwild_cluster_bootstrap.json\\nwild_cluster_bootstrap_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "5a8da5c6-8a9b-4515-b73e-9e7c83385065",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"aggregation_regression_15model.json\\\\naggregation_regression_15model_loglog.json\\\\nalt_diversity_effect_size.json\\\\napi_only_diagnostic.json\\\\napi_only_regression.json\\\\nattacked_keff.json\\\\nbeta_reg_epsilon.json\\\\ncapability_matched_subsample.json\\\\nclaim6_panel_design_15model.json\\\\nclustered_se_analysis.json\\\\ncondition_dominance_15model.json\\\\nconfound_diagnosis.json\\\\nconfound_scatter.png\\\\ncontrolled_regression.json\\\\nfamily_copula_15model.json\\\\nfig4_panel_design_K3.json\\\\nfractional_logit.json\\\\ngam_tier_analysis.json\\\\ngam_tier_analysis_corrected.json\\\\nindividual_scores\\\\nk4_wild_cluster_bootstrap.json\\\\nk5_aggregation_analysis.json\\\\nk5_aggregation_bootstrap.json\\\\nk5_gam_analysis.json\\\\nk5_k7_panel_analysis.json\\\\nk5_panel_selection.json\\\\nk5_panel_selection_bootstrap.json\\\\nk5_rf_contrast.json\\\\nk5_wild_cluster_bootstrap.json\\\\nk7_wild_cluster_bootstrap.json\\\\nmi_matrix\\\\npanel_regression\\\\npartial_knowledge_adversary.json\\\\npartial_knowledge_clustered_se.json\\\\npower_cr2_cr3.json\\\\nrandom_subsample_transition.json\\\\nresidualized_keff_15model.json\\\\nrf_keff_correction.json\\\\nstep1_api_scoring_summary.json\\\\nstochastic_dominance.json\\\\ntheorem1_violation.json\\\\nvif_partial_corr.json\\\\nwild_cluster_bootstrap.json\\\\nwild_cluster_bootstrap_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"aggregation_regression_15model.json\\naggregation_regression_15model_loglog.json\\nalt_diversity_effect_size.json\\napi_only_diagnostic.json\\napi_only_regression.json\\nattacked_keff.json\\nbeta_reg_epsilon.json\\ncapability_matched_subsample.json\\nclaim6_panel_design_15model.json\\nclustered_se_analysis.json\\ncondition_dominance_15model.json\\nconfound_diagnosis.json\\nconfound_scatter.png\\ncontrolled_regression.json\\nfamily_copula_15model.json\\nfig4_panel_design_K3.json\\nfractional_logit.json\\ngam_tier_analysis.json\\ngam_tier_analysis_corrected.json\\nindividual_scores\\nk4_wild_cluster_bootstrap.json\\nk5_aggregation_analysis.json\\nk5_aggregation_bootstrap.json\\nk5_gam_analysis.json\\nk5_k7_panel_analysis.json\\nk5_panel_selection.json\\nk5_panel_selection_bootstrap.json\\nk5_rf_contrast.json\\nk5_wild_cluster_bootstrap.json\\nk7_wild_cluster_bootstrap.json\\nmi_matrix\\npanel_regression\\npartial_knowledge_adversary.json\\npartial_knowledge_clustered_se.json\\npower_cr2_cr3.json\\nrandom_subsample_transition.json\\nresidualized_keff_15model.json\\nrf_keff_correction.json\\nstep1_api_scoring_summary.json\\nstochastic_dominance.json\\ntheorem1_violation.json\\nvif_partial_corr.json\\nwild_cluster_bootstrap.json\\nwild_cluster_bootstrap_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+找到 `fractional_logit.json`（不是 `fractional_logit_results.json`）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "2bad2762-b528-4a1f-9512-36edd2341c10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHvjiR9eMtjbNdenfzmUXb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 24099,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 662
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Euzf2NkBxjw24UoR9rRLvE`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/fractional_logit.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "4a120a83-010c-4b34-901e-3627b972070c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHvjiR9eMtjbNdenfzmUXb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 24099,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 662
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T07:46:59.557Z_
+
+<details><summary>↩ Tool result · `toolu_01Euzf2NkBxjw24UoR9rRLvE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"fractional_logistic_regression\\\",\\n  \\\"reference\\\": \\\"Papke & Wooldridge (1996)\\\",\\n  \\\"model\\\": \\\"GLM(Binomial(), logit link)\\\",\\n  \\\"predictors\\\": \\\"z-scored log(K_eff) and log(eta_max+1e-6)\\\",\\n  \\\"response\\\": \\\"ASR [0,1] (raw, no log transform)\\\",\\n  \\\"K3\\\": {\\n    \\\"frac_logit_ols\\\": {\\n      \\\"eta_sig\\\": \\\"1/12\\\",\\n      \\\"keff_sig\\\": \\\"0/12\\\"\\n    },\\n    \\\"frac_logit_clustered\\\": {\\n      \\\"eta_sig\\\": \\\"7/12\\\",\\n      \\\"keff_sig\\\": \\\"4/12\\\"\\n    }\\n  },\\n  \\\"K5\\\": {\\n    \\\"frac_logit_ols\\\": {\\n      \\\"eta_sig\\\": \\\"2/12\\\",\\n      \\\"keff_sig\\\": \\\"4/12\\\"\\n    },\\n    \\\"frac_logit_clustered\\\": {\\n      \\\"eta_sig\\\": \\\"5/12\\\",\\n      \\\"keff_sig\\\": \\\"9/12\\\"\\n    }\\n  },\\n  \\\"K7\\\": {\\n    \\\"frac_logit_ols\\\": {\\n      \\\"eta_sig\\\": \\\"2/12\\\",\\n      \\\"keff_sig\\\": \\\"7/12\\\"\\n    },\\n    \\\"frac_logit_clustered\\\": {\\n      \\\"eta_sig\\\": \\\"5/12\\\",\\n      \\\"keff_sig\\\": \\\"10/12\\\"\\n    }\\n  },\\n  \\\"comparison_with_ols\\\": {\\n    \\\"concordance_rate\\\": 0.9305555555555556,\\n    \\\"significance_concordance_rate\\\": 0.3333333333333333,\\n    \\\"significance_concordance\\\": \\\"24/72\\\",\\n    \\\"direction_flips\\\": [\\n      {\\n        \\\"condition\\\": \\\"arc_challengexprompt_injection\\\",\\n        \\\"variable\\\": \\\"eta_max\\\",\\n        \\\"frac_sign\\\": -1.0,\\n        \\\"ols_sign\\\": 1.0\\n      },\\n      {\\n        \\\"condition\\\": \\\"arc_challengexsycophancy\\\",\\n        \\\"variable\\\": \\\"K_eff\\\",\\n        \\\"frac_sign\\\": 1.0,\\n        \\\"ols_sign\\\": -1.0\\n      },\\n      {\\n        \\\"condition\\\": \\\"arc_challengexscore_manipulation\\\",\\n        \\\"variable\\\": \\\"eta_max\\\",\\n        \\\"frac_sign\\\": -1.0,\\n        \\\"ols_sign\\\": 1.0\\n      },\\n      {\\n        \\\"condition\\\": \\\"mmluxscore_manipulation\\\",\\n        \\\"variable\\\": \\\"eta_max\\\",\\n        \\\"frac_sign\\\": -1.0,\\n        \\\"ols_sign\\\": 1.0\\n      },\\n      {\\n        \\\"condition\\\": \\\"arc_challengexscore_manipulation\\\",\\n        \\\"variable\\\": \\\"eta_max\\\",\\n        \\\"frac_sign\\\": -1.0,\\n        \\\"ols_sign\\\": 1.0\\n      }\\n    ],\\n    \\\"ols_known_results\\\": {\\n      \\\"K3\\\": {\\n        \\\"eta_sig\\\": \\\"11/12\\\",\\n        \\\"keff_sig\\\": \\\"8/12\\\"\\n      },\\n      \\\"K5\\\": {\\n        \\\"eta_sig\\\": \\\"10/12\\\",\\n        \\\"keff_sig\\\": \\\"12/12\\\"\\n      },\\n      \\\"K7\\\": {\\n        \\\"eta_sig\\\": \\\"12/12\\\",\\n        \\\"keff_sig\\\": \\\"11/12\\\"\\n      }\\n    }\\n  },\\n  \\\"per_condition_detail\\\": {\\n    \\\"K3\\\": {\\n      \\\"mmluxprompt_injection\\\": {\\n        \\\"n_panels\\\": 455,\\n        \\\"n_asr_zero\\\": 0,\\n        \\\"n_asr_one\\\": 0,\\n        \\\"asr_mean\\\": 0.18732590688271336,\\n        \\\"skipped\\\": false,\\n        \\\"frac_logit\\\": {\\n          \\\"keff_beta\\\": 0.38562956574357266,\\n          \\\"keff_p\\\": 0.04067052166350147,\\n          \\\"eta_beta\\\": 0.6302851199829556,\\n          \\\"eta_p\\\": 0.002268044641780738,\\n          \\\"aic\\\": 290.0425720184502,\\n          \\\"keff_fdr_p\\\": 0.24402312998100884,\\n          \\\"eta_fdr_p\\\": 0.027216535701368855\\n        },\\n        \\\"frac_logit_robust\\\": {\\n          \\\"keff_beta\\\": 0.38562956574357266,\\n          \\\"keff_p\\\": 7.232155497404743e-18,\\n          \\\"eta_beta\\\": 0.6302851199829556,\\n          \\\"eta_p\\\": 1.9154383860559085e-51,\\n          \\\"keff_fdr_p\\\": 4.339293298442846e-17,\\n          \\\"eta_fdr_p\\\": 7.661753544223634e-51\\n        },\\n        \\\"frac_logit_clustered\\\": {\\n          \\\"keff_maxp\\\": 0.009142268685044372,\\n          \\\"eta_maxp\\\": 1.6083014111375015e-11,\\n          \\\"n_positions\\\": 3,\\n          \\\"keff_fdr_p\\\": 0.028935135216336484,\\n          \\\"eta_fdr_p\\\": 9.649808466825009e-11\\n        },\\n        \\\"ols_reference\\\": {\\n          \\\"keff_beta\\\": 1.828553484192996,\\n          \\\"keff_p\\\": 1.606661858073769e-10,\\n          \\\"eta_beta\\\": 0.7438879306104328,\\n          \\\"eta_p\\\": 7.448021615384025e-46,\\n          \\\"r2\\\": 0.6625901402298174,\\n          \\\"keff_fdr_p\\\": 1.9279942296885228e-09,\\n          \\\"eta_fdr_p\\\": 8.93762593846083e-45\\n        }\\n      },\\n      \\\"mmluxsycophancy\\\": {\\n        \\\"n_panels\\\": 455,\\n        \\\"n_asr_zero\\\": 1,\\n        \\\"n_asr_one\\\": 0,\\n        \\\"asr_mean\\\": 0.05227906503898483,\\n        \\\"skipped\\\": false,\\n        \\\"frac_logit\\\": {\\n          \\\"keff_beta\\\": 0.21558526187577468,\\n          \\\"keff_p\\\": 0.3986260688943869,\\n          \\\"eta_beta\\\": 0.3478412014703694,\\n          \\\"eta_p\\\": 0.13029900749086143,\\n          \\\"aic\\\": 144.35443710237416,\\n          \\\"keff_fdr_p\\\": 0.8600699056998258,\\n          \\\"eta_fdr_p\\\": 0.5211960299634457\\n        },\\n        \\\"frac_logit_robust\\\": {\\n      \\n\\n... [截断: 输出过长，省略 44533 字符] ...\\n\\n       \\\"eta_p\\\": 0.43035114120577245,\\n          \\\"aic\\\": 545.13168903421,\\n          \\\"keff_fdr_p\\\": 0.014853770880380047,\\n          \\\"eta_fdr_p\\\": 0.6734835681588269\\n        },\\n        \\\"frac_logit_robust\\\": {\\n          \\\"keff_beta\\\": 0.6398139540213995,\\n          \\\"keff_p\\\": 1.2645906614410526e-251,\\n          \\\"eta_beta\\\": 0.1831870336966606,\\n          \\\"eta_p\\\": 5.281631930585549e-30,\\n          \\\"keff_fdr_p\\\": 1.896885992161579e-251,\\n          \\\"eta_fdr_p\\\": 7.042175907447398e-30\\n        },\\n        \\\"frac_logit_clustered\\\": {\\n          \\\"keff_maxp\\\": 8.478412573213394e-06,\\n          \\\"eta_maxp\\\": 0.10530232912654591,\\n          \\\"n_positions\\\": 7,\\n          \\\"keff_fdr_p\\\": 1.2717618859820091e-05,\\n          \\\"eta_fdr_p\\\": 0.18051827850265012\\n        },\\n        \\\"ols_reference\\\": {\\n          \\\"keff_beta\\\": 6.758223411602601,\\n          \\\"keff_p\\\": 5.777458996018682e-47,\\n          \\\"eta_beta\\\": 1.0387497314136538,\\n          \\\"eta_p\\\": 7.76067948123377e-42,\\n          \\\"r2\\\": 0.214486593548191,\\n          \\\"keff_fdr_p\\\": 7.703278661358242e-47,\\n          \\\"eta_fdr_p\\\": 1.330402196782932e-41\\n        }\\n      },\\n      \\\"arc_challengexposition_bias\\\": {\\n        \\\"n_panels\\\": 6435,\\n        \\\"n_asr_zero\\\": 0,\\n        \\\"n_asr_one\\\": 0,\\n        \\\"asr_mean\\\": 0.47754490740259947,\\n        \\\"skipped\\\": false,\\n        \\\"frac_logit\\\": {\\n          \\\"keff_beta\\\": 0.033118971572719536,\\n          \\\"keff_p\\\": 0.471271990229145,\\n          \\\"eta_beta\\\": -0.013079732837494463,\\n          \\\"eta_p\\\": 0.7760236229404487,\\n          \\\"aic\\\": 5811.275858405563,\\n          \\\"keff_fdr_p\\\": 0.62836265363886,\\n          \\\"eta_fdr_p\\\": 0.8465712250259441\\n        },\\n        \\\"frac_logit_robust\\\": {\\n          \\\"keff_beta\\\": 0.033118971572719536,\\n          \\\"keff_p\\\": 0.0,\\n          \\\"eta_beta\\\": -0.013079732837494463,\\n          \\\"eta_p\\\": 1.9050350394998913e-110,\\n          \\\"keff_fdr_p\\\": 0.0,\\n          \\\"eta_fdr_p\\\": 3.8100700789997825e-110\\n        },\\n        \\\"frac_logit_clustered\\\": {\\n          \\\"keff_maxp\\\": 0.0027538856994409,\\n          \\\"eta_maxp\\\": 0.1535866457151489,\\n          \\\"n_positions\\\": 7,\\n          \\\"keff_fdr_p\\\": 0.0036718475992545334,\\n          \\\"eta_fdr_p\\\": 0.2047821942868652\\n        },\\n        \\\"ols_reference\\\": {\\n          \\\"keff_beta\\\": 0.12162073331274109,\\n          \\\"keff_p\\\": 0.0,\\n          \\\"eta_beta\\\": -0.04494465329982716,\\n          \\\"eta_p\\\": 2.0871409891050397e-67,\\n          \\\"r2\\\": 0.3406868641444346,\\n          \\\"keff_fdr_p\\\": 0.0,\\n          \\\"eta_fdr_p\\\": 4.1742819782100795e-67\\n        }\\n      },\\n      \\\"arc_challengexauthority_bias\\\": {\\n        \\\"n_panels\\\": 6435,\\n        \\\"n_asr_zero\\\": 2542,\\n        \\\"n_asr_one\\\": 0,\\n        \\\"asr_mean\\\": 0.004506549680632018,\\n        \\\"skipped\\\": false,\\n        \\\"frac_logit\\\": {\\n          \\\"keff_beta\\\": 0.42818879830370504,\\n          \\\"keff_p\\\": 0.16389759953187344,\\n          \\\"eta_beta\\\": 0.04877219580048607,\\n          \\\"eta_p\\\": 0.8603834814137703,\\n          \\\"aic\\\": 314.55607472365546,\\n          \\\"keff_fdr_p\\\": 0.24584639929781016,\\n          \\\"eta_fdr_p\\\": 0.8603834814137703\\n        },\\n        \\\"frac_logit_robust\\\": {\\n          \\\"keff_beta\\\": 0.42818879830370504,\\n          \\\"keff_p\\\": 3.6084416088735023e-110,\\n          \\\"eta_beta\\\": 0.04877219580048607,\\n          \\\"eta_p\\\": 0.006602971015796903,\\n          \\\"keff_fdr_p\\\": 4.8112554784980033e-110,\\n          \\\"eta_fdr_p\\\": 0.006602971015796903\\n        },\\n        \\\"frac_logit_clustered\\\": {\\n          \\\"keff_maxp\\\": 4.308780516797464e-09,\\n          \\\"eta_maxp\\\": 0.6644345631031582,\\n          \\\"n_positions\\\": 7,\\n          \\\"keff_fdr_p\\\": 1.0341073240313914e-08,\\n          \\\"eta_fdr_p\\\": 0.6644345631031582\\n        },\\n        \\\"ols_reference\\\": {\\n          \\\"keff_beta\\\": 8.211815311610527,\\n          \\\"keff_p\\\": 2.5123076053030703e-55,\\n          \\\"eta_beta\\\": 0.29082079220769297,\\n          \\\"eta_p\\\": 1.1474255006408141e-05,\\n          \\\"r2\\\": 0.10556134548993645,\\n          \\\"keff_fdr_p\\\": 3.768461407954606e-55,\\n          \\\"eta_fdr_p\\\": 1.251736909789979e-05\\n        }\\n      }\\n    }\\n  },\\n  \\\"summary\\\": \\\"Fractional logit (GLM Binomial) confirms OLS patterns: direction concordance 93.1%, significance concordance 33.3% (24/72). Direction flips: 5.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "72388d93-68e0-43e4-97fd-e887de6fde19",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"fractional_logistic_regression\\\\\\\",\\\\n  \\\\\\\"reference\\\\\\\": \\\\\\\"Papke & Wooldridge (1996)\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"GLM(Binomial(), logit link)\\\\\\\",\\\\n  \\\\\\\"predictors\\\\\\\": \\\\\\\"z-scored log(K_eff) and log(eta_max+1e-6)\\\\\\\",\\\\n  \\\\\\\"response\\\\\\\": \\\\\\\"ASR [0,1] (raw, no log transform)\\\\\\\",\\\\n  \\\\\\\"K3\\\\\\\": {\\\\n    \\\\\\\"frac_logit_ols\\\\\\\": {\\\\n      \\\\\\\"eta_sig\\\\\\\": \\\\\\\"1/12\\\\\\\",\\\\n      \\\\\\\"keff_sig\\\\\\\": \\\\\\\"0/12\\\\\\\"\\\\n    },\\\\n    \\\\\\\"frac_logit_clustered\\\\\\\": {\\\\n      \\\\\\\"eta_sig\\\\\\\": \\\\\\\"7/12\\\\\\\",\\\\n      \\\\\\\"keff_sig\\\\\\\": \\\\\\\"4/12\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"K5\\\\\\\": {\\\\n    \\\\\\\"frac_logit_ols\\\\\\\": {\\\\n      \\\\\\\"eta_sig\\\\\\\": \\\\\\\"2/12\\\\\\\",\\\\n      \\\\\\\"keff_sig\\\\\\\": \\\\\\\"4/12\\\\\\\"\\\\n    },\\\\n    \\\\\\\"frac_logit_clustered\\\\\\\": {\\\\n      \\\\\\\"eta_sig\\\\\\\": \\\\\\\"5/12\\\\\\\",\\\\n      \\\\\\\"keff_sig\\\\\\\": \\\\\\\"9/12\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"K7\\\\\\\": {\\\\n    \\\\\\\"frac_logit_ols\\\\\\\": {\\\\n      \\\\\\\"eta_sig\\\\\\\": \\\\\\\"2/12\\\\\\\",\\\\n      \\\\\\\"keff_sig\\\\\\\": \\\\\\\"7/12\\\\\\\"\\\\n    },\\\\n    \\\\\\\"frac_logit_clustered\\\\\\\": {\\\\n      \\\\\\\"eta_sig\\\\\\\": \\\\\\\"5/12\\\\\\\",\\\\n      \\\\\\\"keff_sig\\\\\\\": \\\\\\\"10/12\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison_with_ols\\\\\\\": {\\\\n    \\\\\\\"concordance_rate\\\\\\\": 0.9305555555555556,\\\\n    \\\\\\\"significance_concordance_rate\\\\\\\": 0.3333333333333333,\\\\n    \\\\\\\"significance_concordance\\\\\\\": \\\\\\\"24/72\\\\\\\",\\\\n    \\\\\\\"direction_flips\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"condition\\\\\\\": \\\\\\\"arc_challengexprompt_injection\\\\\\\",\\\\n        \\\\\\\"variable\\\\\\\": \\\\\\\"eta_max\\\\\\\",\\\\n        \\\\\\\"frac_sign\\\\\\\": -1.0,\\\\n        \\\\\\\"ols_sign\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"condition\\\\\\\": \\\\\\\"arc_challengexsycophancy\\\\\\\",\\\\n        \\\\\\\"variable\\\\\\\": \\\\\\\"K_eff\\\\\\\",\\\\n        \\\\\\\"frac_sign\\\\\\\": 1.0,\\\\n        \\\\\\\"ols_sign\\\\\\\": -1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"condition\\\\\\\": \\\\\\\"arc_challengexscore_manipulation\\\\\\\",\\\\n        \\\\\\\"variable\\\\\\\": \\\\\\\"eta_max\\\\\\\",\\\\n        \\\\\\\"frac_sign\\\\\\\": -1.0,\\\\n        \\\\\\\"ols_sign\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"condition\\\\\\\": \\\\\\\"mmluxscore_manipulation\\\\\\\",\\\\n        \\\\\\\"variable\\\\\\\": \\\\\\\"eta_max\\\\\\\",\\\\n        \\\\\\\"frac_sign\\\\\\\": -1.0,\\\\n        \\\\\\\"ols_sign\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"condition\\\\\\\": \\\\\\\"arc_challengexscore_manipulation\\\\\\\",\\\\n        \\\\\\\"variable\\\\\\\": \\\\\\\"eta_max\\\\\\\",\\\\n        \\\\\\\"frac_sign\\\\\\\": -1.0,\\\\n        \\\\\\\"ols_sign\\\\\\\": 1.0\\\\n      }\\\\n    ],\\\\n    \\\\\\\"ols_known_results\\\\\\\": {\\\\n      \\\\\\\"K3\\\\\\\": {\\\\n        \\\\\\\"eta_sig\\\\\\\": \\\\\\\"11/12\\\\\\\",\\\\n        \\\\\\\"keff_sig\\\\\\\": \\\\\\\"8/12\\\\\\\"\\\\n      },\\\\n      \\\\\\\"K5\\\\\\\": {\\\\n        \\\\\\\"eta_sig\\\\\\\": \\\\\\\"10/12\\\\\\\",\\\\n        \\\\\\\"keff_sig\\\\\\\": \\\\\\\"12/12\\\\\\\"\\\\n      },\\\\n      \\\\\\\"K7\\\\\\\": {\\\\n        \\\\\\\"eta_sig\\\\\\\": \\\\\\\"12/12\\\\\\\",\\\\n        \\\\\\\"keff_sig\\\\\\\": \\\\\\\"11/12\\\\\\\"\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_condition_detail\\\\\\\": {\\\\n    \\\\\\\"K3\\\\\\\": {\\\\n      \\\\\\\"mmluxprompt_injection\\\\\\\": {\\\\n        \\\\\\\"n_panels\\\\\\\": 455,\\\\n        \\\\\\\"n_asr_zero\\\\\\\": 0,\\\\n        \\\\\\\"n_asr_one\\\\\\\": 0,\\\\n        \\\\\\\"asr_mean\\\\\\\": 0.18732590688271336,\\\\n        \\\\\\\"skipped\\\\\\\": false,\\\\n        \\\\\\\"frac_logit\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 0.38562956574357266,\\\\n          \\\\\\\"keff_p\\\\\\\": 0.04067052166350147,\\\\n          \\\\\\\"eta_beta\\\\\\\": 0.6302851199829556,\\\\n          \\\\\\\"eta_p\\\\\\\": 0.002268044641780738,\\\\n          \\\\\\\"aic\\\\\\\": 290.0425720184502,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 0.24402312998100884,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 0.027216535701368855\\\\n        },\\\\n        \\\\\\\"frac_logit_robust\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 0.38562956574357266,\\\\n          \\\\\\\"keff_p\\\\\\\": 7.232155497404743e-18,\\\\n          \\\\\\\"eta_beta\\\\\\\": 0.6302851199829556,\\\\n          \\\\\\\"eta_p\\\\\\\": 1.9154383860559085e-51,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 4.339293298442846e-17,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 7.661753544223634e-51\\\\n        },\\\\n        \\\\\\\"frac_logit_clustered\\\\\\\": {\\\\n          \\\\\\\"keff_maxp\\\\\\\": 0.009142268685044372,\\\\n          \\\\\\\"eta_maxp\\\\\\\": 1.6083014111375015e-11,\\\\n          \\\\\\\"n_positions\\\\\\\": 3,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 0.028935135216336484,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 9.649808466825009e-11\\\\n        },\\\\n        \\\\\\\"ols_reference\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 1.828553484192996,\\\\n          \\\\\\\"keff_p\\\\\\\": 1.606661858073769e-10,\\\\n          \\\\\\\"eta_beta\\\\\\\": 0.7438879306104328,\\\\n          \\\\\\\"eta_p\\\\\\\": 7.448021615384025e-46,\\\\n          \\\\\\\"r2\\\\\\\": 0.6625901402298174,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 1.9279942296885228e-09,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 8.93762593846083e-45\\\\n        }\\\\n      },\\\\n      \\\\\\\"mmluxsycophancy\\\\\\\": {\\\\n        \\\\\\\"n_panels\\\\\\\": 455,\\\\n        \\\\\\\"n_asr_zero\\\\\\\": 1,\\\\n        \\\\\\\"n_asr_one\\\\\\\": 0,\\\\n        \\\\\\\"asr_mean\\\\\\\": 0.05227906503898483,\\\\n        \\\\\\\"skipped\\\\\\\": false,\\\\n        \\\\\\\"frac_logit\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 0.21558526187577468,\\\\n          \\\\\\\"keff_p\\\\\\\": 0.3986260688943869,\\\\n          \\\\\\\"eta_beta\\\\\\\": 0.3478412014703694,\\\\n          \\\\\\\"eta_p\\\\\\\": 0.13029900749086143,\\\\n          \\\\\\\"aic\\\\\\\": 144.35443710237416,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 0.8600699056998258,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 0.5211960299634457\\\\n        },\\\\n        \\\\\\\"frac_logit_robust\\\\\\\": {\\\\n      \\\\n\\\\n... [截断: 输出过长，省略 44533 字符] ...\\\\n\\\\n       \\\\\\\"eta_p\\\\\\\": 0.43035114120577245,\\\\n          \\\\\\\"aic\\\\\\\": 545.13168903421,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 0.014853770880380047,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 0.6734835681588269\\\\n        },\\\\n        \\\\\\\"frac_logit_robust\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 0.6398139540213995,\\\\n          \\\\\\\"keff_p\\\\\\\": 1.2645906614410526e-251,\\\\n          \\\\\\\"eta_beta\\\\\\\": 0.1831870336966606,\\\\n          \\\\\\\"eta_p\\\\\\\": 5.281631930585549e-30,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 1.896885992161579e-251,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 7.042175907447398e-30\\\\n        },\\\\n        \\\\\\\"frac_logit_clustered\\\\\\\": {\\\\n          \\\\\\\"keff_maxp\\\\\\\": 8.478412573213394e-06,\\\\n          \\\\\\\"eta_maxp\\\\\\\": 0.10530232912654591,\\\\n          \\\\\\\"n_positions\\\\\\\": 7,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 1.2717618859820091e-05,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 0.18051827850265012\\\\n        },\\\\n        \\\\\\\"ols_reference\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 6.758223411602601,\\\\n          \\\\\\\"keff_p\\\\\\\": 5.777458996018682e-47,\\\\n          \\\\\\\"eta_beta\\\\\\\": 1.0387497314136538,\\\\n          \\\\\\\"eta_p\\\\\\\": 7.76067948123377e-42,\\\\n          \\\\\\\"r2\\\\\\\": 0.214486593548191,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 7.703278661358242e-47,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 1.330402196782932e-41\\\\n        }\\\\n      },\\\\n      \\\\\\\"arc_challengexposition_bias\\\\\\\": {\\\\n        \\\\\\\"n_panels\\\\\\\": 6435,\\\\n        \\\\\\\"n_asr_zero\\\\\\\": 0,\\\\n        \\\\\\\"n_asr_one\\\\\\\": 0,\\\\n        \\\\\\\"asr_mean\\\\\\\": 0.47754490740259947,\\\\n        \\\\\\\"skipped\\\\\\\": false,\\\\n        \\\\\\\"frac_logit\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 0.033118971572719536,\\\\n          \\\\\\\"keff_p\\\\\\\": 0.471271990229145,\\\\n          \\\\\\\"eta_beta\\\\\\\": -0.013079732837494463,\\\\n          \\\\\\\"eta_p\\\\\\\": 0.7760236229404487,\\\\n          \\\\\\\"aic\\\\\\\": 5811.275858405563,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 0.62836265363886,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 0.8465712250259441\\\\n        },\\\\n        \\\\\\\"frac_logit_robust\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 0.033118971572719536,\\\\n          \\\\\\\"keff_p\\\\\\\": 0.0,\\\\n          \\\\\\\"eta_beta\\\\\\\": -0.013079732837494463,\\\\n          \\\\\\\"eta_p\\\\\\\": 1.9050350394998913e-110,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 0.0,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 3.8100700789997825e-110\\\\n        },\\\\n        \\\\\\\"frac_logit_clustered\\\\\\\": {\\\\n          \\\\\\\"keff_maxp\\\\\\\": 0.0027538856994409,\\\\n          \\\\\\\"eta_maxp\\\\\\\": 0.1535866457151489,\\\\n          \\\\\\\"n_positions\\\\\\\": 7,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 0.0036718475992545334,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 0.2047821942868652\\\\n        },\\\\n        \\\\\\\"ols_reference\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 0.12162073331274109,\\\\n          \\\\\\\"keff_p\\\\\\\": 0.0,\\\\n          \\\\\\\"eta_beta\\\\\\\": -0.04494465329982716,\\\\n          \\\\\\\"eta_p\\\\\\\": 2.0871409891050397e-67,\\\\n          \\\\\\\"r2\\\\\\\": 0.3406868641444346,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 0.0,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 4.1742819782100795e-67\\\\n        }\\\\n      },\\\\n      \\\\\\\"arc_challengexauthority_bias\\\\\\\": {\\\\n        \\\\\\\"n_panels\\\\\\\": 6435,\\\\n        \\\\\\\"n_asr_zero\\\\\\\": 2542,\\\\n        \\\\\\\"n_asr_one\\\\\\\": 0,\\\\n        \\\\\\\"asr_mean\\\\\\\": 0.004506549680632018,\\\\n        \\\\\\\"skipped\\\\\\\": false,\\\\n        \\\\\\\"frac_logit\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 0.42818879830370504,\\\\n          \\\\\\\"keff_p\\\\\\\": 0.16389759953187344,\\\\n          \\\\\\\"eta_beta\\\\\\\": 0.04877219580048607,\\\\n          \\\\\\\"eta_p\\\\\\\": 0.8603834814137703,\\\\n          \\\\\\\"aic\\\\\\\": 314.55607472365546,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 0.24584639929781016,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 0.8603834814137703\\\\n        },\\\\n        \\\\\\\"frac_logit_robust\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 0.42818879830370504,\\\\n          \\\\\\\"keff_p\\\\\\\": 3.6084416088735023e-110,\\\\n          \\\\\\\"eta_beta\\\\\\\": 0.04877219580048607,\\\\n          \\\\\\\"eta_p\\\\\\\": 0.006602971015796903,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 4.8112554784980033e-110,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 0.006602971015796903\\\\n        },\\\\n        \\\\\\\"frac_logit_clustered\\\\\\\": {\\\\n          \\\\\\\"keff_maxp\\\\\\\": 4.308780516797464e-09,\\\\n          \\\\\\\"eta_maxp\\\\\\\": 0.6644345631031582,\\\\n          \\\\\\\"n_positions\\\\\\\": 7,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 1.0341073240313914e-08,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 0.6644345631031582\\\\n        },\\\\n        \\\\\\\"ols_reference\\\\\\\": {\\\\n          \\\\\\\"keff_beta\\\\\\\": 8.211815311610527,\\\\n          \\\\\\\"keff_p\\\\\\\": 2.5123076053030703e-55,\\\\n          \\\\\\\"eta_beta\\\\\\\": 0.29082079220769297,\\\\n          \\\\\\\"eta_p\\\\\\\": 1.1474255006408141e-05,\\\\n          \\\\\\\"r2\\\\\\\": 0.10556134548993645,\\\\n          \\\\\\\"keff_fdr_p\\\\\\\": 3.768461407954606e-55,\\\\n          \\\\\\\"eta_fdr_p\\\\\\\": 1.251736909789979e-05\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": \\\\\\\"Fractional logit (GLM Binomial) confirms OLS patterns: direction concordance 93.1%, significance concordance 33.3% (24/72). Direction flips: 5.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"fractional_logistic_regression\\\",\\n  \\\"reference\\\": \\\"Papke & Wooldridge (1996)\\\",\\n  \\\"model\\\": \\\"GLM(Binomial(), logit link)\\\",\\n  \\\"predictors\\\": \\\"z-scored log(K_eff) and log(eta_max+1e-6)\\\",\\n  \\\"response\\\": \\\"ASR [0,1] (raw, no log transform)\\\",\\n  \\\"K3\\\": {\\n    \\\"frac_logit_ols\\\": {\\n      \\\"eta_sig\\\": \\\"1/12\\\",\\n      \\\"keff_sig\\\": \\\"0/12\\\"\\n    },\\n    \\\"frac_logit_clustered\\\": {\\n      \\\"eta_sig\\\": \\\"7/12\\\",\\n      \\\"keff_sig\\\": \\\"4/12\\\"\\n    }\\n  },\\n  \\\"K5\\\": {\\n    \\\"frac_logit_ols\\\": {\\n      \\\"eta_sig\\\": \\\"2/12\\\",\\n      \\\"keff_sig\\\": \\\"4/12\\\"\\n    },\\n    \\\"frac_logit_clustered\\\": {\\n      \\\"eta_sig\\\": \\\"5/12\\\",\\n      \\\"keff_sig\\\": \\\"9/12\\\"\\n    }\\n  },\\n  \\\"K7\\\": {\\n    \\\"frac_logit_ols\\\": {\\n      \\\"eta_sig\\\": \\\"2/12\\\",\\n      \\\"keff_sig\\\": \\\"7/12\\\"\\n    },\\n    \\\"frac_logit_clustered\\\": {\\n      \\\"eta_sig\\\": \\\"5/12\\\",\\n      \\\"keff_sig\\\": \\\"10/12\\\"\\n    }\\n  },\\n  \\\"comparison_with_ols\\\": {\\n    \\\"concordance_rate\\\": 0.9305555555555556,\\n    \\\"significance_concordance_rate\\\": 0.3333333333333333,\\n    \\\"significance_concordance\\\": \\\"24/72\\\",\\n    \\\"direction_flips\\\": [\\n      {\\n        \\\"condition\\\": \\\"arc_challengexprompt_injection\\\",\\n        \\\"variable\\\": \\\"eta_max\\\",\\n        \\\"frac_sign\\\": -1.0,\\n        \\\"ols_sign\\\": 1.0\\n      },\\n      {\\n        \\\"condition\\\": \\\"arc_challengexsycophancy\\\",\\n        \\\"variable\\\": \\\"K_eff\\\",\\n        \\\"frac_sign\\\": 1.0,\\n        \\\"ols_sign\\\": -1.0\\n      },\\n      {\\n        \\\"condition\\\": \\\"arc_challengexscore_manipulation\\\",\\n        \\\"variable\\\": \\\"eta_max\\\",\\n        \\\"frac_sign\\\": -1.0,\\n        \\\"ols_sign\\\": 1.0\\n      },\\n      {\\n        \\\"condition\\\": \\\"mmluxscore_manipulation\\\",\\n        \\\"variable\\\": \\\"eta_max\\\",\\n        \\\"frac_sign\\\": -1.0,\\n        \\\"ols_sign\\\": 1.0\\n      },\\n      {\\n        \\\"condition\\\": \\\"arc_challengexscore_manipulation\\\",\\n        \\\"variable\\\": \\\"eta_max\\\",\\n        \\\"frac_sign\\\": -1.0,\\n        \\\"ols_sign\\\": 1.0\\n      }\\n    ],\\n    \\\"ols_known_results\\\": {\\n      \\\"K3\\\": {\\n        \\\"eta_sig\\\": \\\"11/12\\\",\\n        \\\"keff_sig\\\": \\\"8/12\\\"\\n      },\\n      \\\"K5\\\": {\\n        \\\"eta_sig\\\": \\\"10/12\\\",\\n        \\\"keff_sig\\\": \\\"12/12\\\"\\n      },\\n      \\\"K7\\\": {\\n        \\\"eta_sig\\\": \\\"12/12\\\",\\n        \\\"keff_sig\\\": \\\"11/12\\\"\\n      }\\n    }\\n  },\\n  \\\"per_condition_detail\\\": {\\n    \\\"K3\\\": {\\n      \\\"mmluxprompt_injection\\\": {\\n        \\\"n_panels\\\": 455,\\n        \\\"n_asr_zero\\\": 0,\\n        \\\"n_asr_one\\\": 0,\\n        \\\"asr_mean\\\": 0.18732590688271336,\\n        \\\"skipped\\\": false,\\n        \\\"frac_logit\\\": {\\n          \\\"keff_beta\\\": 0.38562956574357266,\\n          \\\"keff_p\\\": 0.04067052166350147,\\n          \\\"eta_beta\\\": 0.6302851199829556,\\n          \\\"eta_p\\\": 0.002268044641780738,\\n          \\\"aic\\\": 290.0425720184502,\\n          \\\"keff_fdr_p\\\": 0.24402312998100884,\\n          \\\"eta_fdr_p\\\": 0.027216535701368855\\n        },\\n        \\\"frac_logit_robust\\\": {\\n          \\\"keff_beta\\\": 0.38562956574357266,\\n          \\\"keff_p\\\": 7.232155497404743e-18,\\n          \\\"eta_beta\\\": 0.6302851199829556,\\n          \\\"eta_p\\\": 1.9154383860559085e-51,\\n          \\\"keff_fdr_p\\\": 4.339293298442846e-17,\\n          \\\"eta_fdr_p\\\": 7.661753544223634e-51\\n        },\\n        \\\"frac_logit_clustered\\\": {\\n          \\\"keff_maxp\\\": 0.009142268685044372,\\n          \\\"eta_maxp\\\": 1.6083014111375015e-11,\\n          \\\"n_positions\\\": 3,\\n          \\\"keff_fdr_p\\\": 0.028935135216336484,\\n          \\\"eta_fdr_p\\\": 9.649808466825009e-11\\n        },\\n        \\\"ols_reference\\\": {\\n          \\\"keff_beta\\\": 1.828553484192996,\\n          \\\"keff_p\\\": 1.606661858073769e-10,\\n          \\\"eta_beta\\\": 0.7438879306104328,\\n          \\\"eta_p\\\": 7.448021615384025e-46,\\n          \\\"r2\\\": 0.6625901402298174,\\n          \\\"keff_fdr_p\\\": 1.9279942296885228e-09,\\n          \\\"eta_fdr_p\\\": 8.93762593846083e-45\\n        }\\n      },\\n      \\\"mmluxsycophancy\\\": {\\n        \\\"n_panels\\\": 455,\\n        \\\"n_asr_zero\\\": 1,\\n        \\\"n_asr_one\\\": 0,\\n        \\\"asr_mean\\\": 0.05227906503898483,\\n        \\\"skipped\\\": false,\\n        \\\"frac_logit\\\": {\\n          \\\"keff_beta\\\": 0.21558526187577468,\\n          \\\"keff_p\\\": 0.3986260688943869,\\n          \\\"eta_beta\\\": 0.3478412014703694,\\n          \\\"eta_p\\\": 0.13029900749086143,\\n          \\\"aic\\\": 144.35443710237416,\\n          \\\"keff_fdr_p\\\": 0.8600699056998258,\\n          \\\"eta_fdr_p\\\": 0.5211960299634457\\n        },\\n        \\\"frac_logit_robust\\\": {\\n      \\n\\n... [截断: 输出过长，省略 44533 字符] ...\\n\\n       \\\"eta_p\\\": 0.43035114120577245,\\n          \\\"aic\\\": 545.13168903421,\\n          \\\"keff_fdr_p\\\": 0.014853770880380047,\\n          \\\"eta_fdr_p\\\": 0.6734835681588269\\n        },\\n        \\\"frac_logit_robust\\\": {\\n          \\\"keff_beta\\\": 0.6398139540213995,\\n          \\\"keff_p\\\": 1.2645906614410526e-251,\\n          \\\"eta_beta\\\": 0.1831870336966606,\\n          \\\"eta_p\\\": 5.281631930585549e-30,\\n          \\\"keff_fdr_p\\\": 1.896885992161579e-251,\\n          \\\"eta_fdr_p\\\": 7.042175907447398e-30\\n        },\\n        \\\"frac_logit_clustered\\\": {\\n          \\\"keff_maxp\\\": 8.478412573213394e-06,\\n          \\\"eta_maxp\\\": 0.10530232912654591,\\n          \\\"n_positions\\\": 7,\\n          \\\"keff_fdr_p\\\": 1.2717618859820091e-05,\\n          \\\"eta_fdr_p\\\": 0.18051827850265012\\n        },\\n        \\\"ols_reference\\\": {\\n          \\\"keff_beta\\\": 6.758223411602601,\\n          \\\"keff_p\\\": 5.777458996018682e-47,\\n          \\\"eta_beta\\\": 1.0387497314136538,\\n          \\\"eta_p\\\": 7.76067948123377e-42,\\n          \\\"r2\\\": 0.214486593548191,\\n          \\\"keff_fdr_p\\\": 7.703278661358242e-47,\\n          \\\"eta_fdr_p\\\": 1.330402196782932e-41\\n        }\\n      },\\n      \\\"arc_challengexposition_bias\\\": {\\n        \\\"n_panels\\\": 6435,\\n        \\\"n_asr_zero\\\": 0,\\n        \\\"n_asr_one\\\": 0,\\n        \\\"asr_mean\\\": 0.47754490740259947,\\n        \\\"skipped\\\": false,\\n        \\\"frac_logit\\\": {\\n          \\\"keff_beta\\\": 0.033118971572719536,\\n          \\\"keff_p\\\": 0.471271990229145,\\n          \\\"eta_beta\\\": -0.013079732837494463,\\n          \\\"eta_p\\\": 0.7760236229404487,\\n          \\\"aic\\\": 5811.275858405563,\\n          \\\"keff_fdr_p\\\": 0.62836265363886,\\n          \\\"eta_fdr_p\\\": 0.8465712250259441\\n        },\\n        \\\"frac_logit_robust\\\": {\\n          \\\"keff_beta\\\": 0.033118971572719536,\\n          \\\"keff_p\\\": 0.0,\\n          \\\"eta_beta\\\": -0.013079732837494463,\\n          \\\"eta_p\\\": 1.9050350394998913e-110,\\n          \\\"keff_fdr_p\\\": 0.0,\\n          \\\"eta_fdr_p\\\": 3.8100700789997825e-110\\n        },\\n        \\\"frac_logit_clustered\\\": {\\n          \\\"keff_maxp\\\": 0.0027538856994409,\\n          \\\"eta_maxp\\\": 0.1535866457151489,\\n          \\\"n_positions\\\": 7,\\n          \\\"keff_fdr_p\\\": 0.0036718475992545334,\\n          \\\"eta_fdr_p\\\": 0.2047821942868652\\n        },\\n        \\\"ols_reference\\\": {\\n          \\\"keff_beta\\\": 0.12162073331274109,\\n          \\\"keff_p\\\": 0.0,\\n          \\\"eta_beta\\\": -0.04494465329982716,\\n          \\\"eta_p\\\": 2.0871409891050397e-67,\\n          \\\"r2\\\": 0.3406868641444346,\\n          \\\"keff_fdr_p\\\": 0.0,\\n          \\\"eta_fdr_p\\\": 4.1742819782100795e-67\\n        }\\n      },\\n      \\\"arc_challengexauthority_bias\\\": {\\n        \\\"n_panels\\\": 6435,\\n        \\\"n_asr_zero\\\": 2542,\\n        \\\"n_asr_one\\\": 0,\\n        \\\"asr_mean\\\": 0.004506549680632018,\\n        \\\"skipped\\\": false,\\n        \\\"frac_logit\\\": {\\n          \\\"keff_beta\\\": 0.42818879830370504,\\n          \\\"keff_p\\\": 0.16389759953187344,\\n          \\\"eta_beta\\\": 0.04877219580048607,\\n          \\\"eta_p\\\": 0.8603834814137703,\\n          \\\"aic\\\": 314.55607472365546,\\n          \\\"keff_fdr_p\\\": 0.24584639929781016,\\n          \\\"eta_fdr_p\\\": 0.8603834814137703\\n        },\\n        \\\"frac_logit_robust\\\": {\\n          \\\"keff_beta\\\": 0.42818879830370504,\\n          \\\"keff_p\\\": 3.6084416088735023e-110,\\n          \\\"eta_beta\\\": 0.04877219580048607,\\n          \\\"eta_p\\\": 0.006602971015796903,\\n          \\\"keff_fdr_p\\\": 4.8112554784980033e-110,\\n          \\\"eta_fdr_p\\\": 0.006602971015796903\\n        },\\n        \\\"frac_logit_clustered\\\": {\\n          \\\"keff_maxp\\\": 4.308780516797464e-09,\\n          \\\"eta_maxp\\\": 0.6644345631031582,\\n          \\\"n_positions\\\": 7,\\n          \\\"keff_fdr_p\\\": 1.0341073240313914e-08,\\n          \\\"eta_fdr_p\\\": 0.6644345631031582\\n        },\\n        \\\"ols_reference\\\": {\\n          \\\"keff_beta\\\": 8.211815311610527,\\n          \\\"keff_p\\\": 2.5123076053030703e-55,\\n          \\\"eta_beta\\\": 0.29082079220769297,\\n          \\\"eta_p\\\": 1.1474255006408141e-05,\\n          \\\"r2\\\": 0.10556134548993645,\\n          \\\"keff_fdr_p\\\": 3.768461407954606e-55,\\n          \\\"eta_fdr_p\\\": 1.251736909789979e-05\\n        }\\n      }\\n    }\\n  },\\n  \\\"summary\\\": \\\"Fractional logit (GLM Binomial) confirms OLS patterns: direction concordance 93.1%, significance concordance 33.3% (24/72). Direction flips: 5.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated in the middle. Let me format the key parts that were visible. The file is `fractional_logit.json` and it was successfully read. The output is very long (truncated ~44533 characters in the middle). Let me present what was returned.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "2446cdc7-149f-488c-9c75-5fe0260a4fcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012JcvaQKLHCGSYsodthgsuz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4868,
+      "cache_read_input_tokens": 24761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4868
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+文件名是 `fractional_logit.json`（非 `fractional_logit_results.json`）。内容如下（中间部分被 SSH 工具截断约 44533 字符）：
+
+```json
+{
+  "method": "fractional_logistic_regression",
+  "reference": "Papke & Wooldridge (1996)",
+  "model": "GLM(Binomial(), logit link)",
+  "predictors": "z-scored log(K_eff) and log(eta_max+1e-6)",
+  "response": "ASR [0,1] (raw, no log transform)",
+  "K3": {
+    "frac_logit_ols": { "eta_sig": "1/12", "keff_sig": "0/12" },
+    "frac_logit_clustered": { "eta_sig": "7/12", "keff_sig": "4/12" }
+  },
+  "K5": {
+    "frac_logit_ols": { "eta_sig": "2/12", "keff_sig": "4/12" },
+    "frac_logit_clustered": { "eta_sig": "5/12", "keff_sig": "9/12" }
+  },
+  "K7": {
+    "frac_logit_ols": { "eta_sig": "2/12", "keff_sig": "7/12" },
+    "frac_logit_clustered": { "eta_sig": "5/12", "keff_sig": "10/12" }
+  },
+  "comparison_with_ols": {
+    "concordance_rate": 0.9306,
+    "significance_concordance_rate": 0.3333,
+    "significance_concordance": "24/72",
+    "direction_flips": [
+      {"condition": "arc_challengexprompt_injection", "variable": "eta_max", "frac_sign": -1.0, "ols_sign": 1.0},
+      {"condition": "arc_challengexsycophancy", "variable": "K_eff", "frac_sign": 1.0, "ols_sign": -1.0},
+      {"condition": "arc_challengexscore_manipulation", "variable": "eta_max", "frac_sign": -1.0, "ols_sign": 1.0},
+      {"condition": "mmluxscore_manipulation", "variable": "eta_max", "frac_sign": -1.0, "ols_sign": 1.0},
+      {"condition": "arc_challengexscore_manipulation", "variable": "eta_max", "frac_sign": -1.0, "ols_sign": 1.0}
+    ],
+    "ols_known_results": {
+      "K3": { "eta_sig": "11/12", "keff_sig": "8/12" },
+      "K5": { "eta_sig": "10/12", "keff_sig": "12/12" },
+      "K7": { "eta_sig": "12/12", "keff_sig": "11/12" }
+    }
+  },
+  "per_condition_detail": {
+    "K3": {
+      "mmluxprompt_injection": { "n_panels": 455, "n_asr_zero": 0, "n_asr_one": 0, "asr_mean": 0.187, ... },
+      "mmluxsycophancy": { "n_panels": 455, "n_asr_zero": 1, "n_asr_one": 0, "asr_mean": 0.052, ... },
+      ...
+    },
+    ...（中间 ~44533 字符被截断）...
+    "K7": {
+      ...
+      "arc_challengexposition_bias": { "n_panels": 6435, "n_asr_zero": 0, "n_asr_one": 0, "asr_mean": 0.478, ... },
+      "arc_challengexauthority_bias": { "n_panels": 6435, "n_asr_zero": 2542, "n_asr_one": 0, "asr_mean": 0.0045, ... }
+    }
+  },
+  "summary": "Fractional logit (GLM Binomial) confirms OLS patterns: direction concordance 93.1%, significance concordance 33.3% (24/72). Direction flips: 5."
+}
+```
+
+文件内容过长，`per_condition_detail` 中间部分被截断。如需完整内容，可以分段用 `head`/`tail` 读取。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "uuid": "78b217c6-1fde-44e9-a36f-bcb926ea00f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012JcvaQKLHCGSYsodthgsuz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4868,
+      "cache_read_input_tokens": 24761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4868
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 16_
+
+文件名是 `fractional_logit.json`（非 `fractional_logit_results.json`）。内容如下（中间部分被 SSH 工具截断约 44533 字符）：
+
+```json
+{
+  "method": "fractional_logistic_regression",
+  "reference": "Papke & Wooldridge (1996)",
+  "model": "GLM(Binomial(), logit link)",
+  "predictors": "z-scored log(K_eff) and log(eta_max+1e-6)",
+  "response": "ASR [0,1] (raw, no log transform)",
+  "K3": {
+    "frac_logit_ols": { "eta_sig": "1/12", "keff_sig": "0/12" },
+    "frac_logit_clustered": { "eta_sig": "7/12", "keff_sig": "4/12" }
+  },
+  "K5": {
+    "frac_logit_ols": { "eta_sig": "2/12", "keff_sig": "4/12" },
+    "frac_logit_clustered": { "eta_sig": "5/12", "keff_sig": "9/12" }
+  },
+  "K7": {
+    "frac_logit_ols": { "eta_sig": "2/12", "keff_sig": "7/12" },
+    "frac_logit_clustered": { "eta_sig": "5/12", "keff_sig": "10/12" }
+  },
+  "comparison_with_ols": {
+    "concordance_rate": 0.9306,
+    "significance_concordance_rate": 0.3333,
+    "significance_concordance": "24/72",
+    "direction_flips": [
+      {"condition": "arc_challengexprompt_injection", "variable": "eta_max", "frac_sign": -1.0, "ols_sign": 1.0},
+      {"condition": "arc_challengexsycophancy", "variable": "K_eff", "frac_sign": 1.0, "ols_sign": -1.0},
+      {"condition": "arc_challengexscore_manipulation", "variable": "eta_max", "frac_sign": -1.0, "ols_sign": 1.0},
+      {"condition": "mmluxscore_manipulation", "variable": "eta_max", "frac_sign": -1.0, "ols_sign": 1.0},
+      {"condition": "arc_challengexscore_manipulation", "variable": "eta_max", "frac_sign": -1.0, "ols_sign": 1.0}
+    ],
+    "ols_known_results": {
+      "K3": { "eta_sig": "11/12", "keff_sig": "8/12" },
+      "K5": { "eta_sig": "10/12", "keff_sig": "12/12" },
+      "K7": { "eta_sig": "12/12", "keff_sig": "11/12" }
+    }
+  },
+  "per_condition_detail": {
+    "K3": {
+      "mmluxprompt_injection": { "n_panels": 455, "n_asr_zero": 0, "n_asr_one": 0, "asr_mean": 0.187, ... },
+      "mmluxsycophancy": { "n_panels": 455, "n_asr_zero": 1, "n_asr_one": 0, "asr_mean": 0.052, ... },
+      ...
+    },
+    ...（中间 ~44533 字符被截断）...
+    "K7": {
+      ...
+      "arc_challengexposition_bias": { "n_panels": 6435, "n_asr_zero": 0, "n_asr_one": 0, "asr_mean": 0.478, ... },
+      "arc_challengexauthority_bias": { "n_panels": 6435, "n_asr_zero": 2542, "n_asr_one": 0, "asr_mean": 0.0045, ... }
+    }
+  },
+  "summary": "Fractional logit (GLM Binomial) confirms OLS patterns: direction concordance 93.1%, significance concordance 33.3% (24/72). Direction flips: 5."
+}
+```
+
+文件内容过长，`per_condition_detail` 中间部分被截断。如需完整内容，可以分段用 `head`/`tail` 读取。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 37320,
+  "duration_api_ms": 36293,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "0ef4385f-2258-4e2f-b97c-b2eeb7b8a29b",
+  "total_cost_usd": 0.21167750000000002,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 18182,
+    "cache_read_input_tokens": 107606,
+    "output_tokens": 1732,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 18182,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1259,
+        "cache_read_input_tokens": 24761,
+        "cache_creation_input_tokens": 4868,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4868
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 812,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000892,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1732,
+      "cacheReadInputTokens": 107606,
+      "cacheCreationInputTokens": 18182,
+      "webSearchRequests": 0,
+      "costUSD": 0.21078550000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e5936e7e-937b-4765-a97d-ae0938a56dcb"
+}
+```
+
+</details>
+
+---

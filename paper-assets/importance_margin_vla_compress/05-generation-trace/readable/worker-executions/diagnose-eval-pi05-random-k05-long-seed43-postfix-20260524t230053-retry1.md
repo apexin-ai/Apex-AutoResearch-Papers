@@ -1,0 +1,2907 @@
+# diagnose eval pi05 random k05 long seed43 postfix 20260524T230053 retry1
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/workers/worker_diagnose_eval_pi05_random_k05_long_seed43_postfix_20260524T230053_retry1.log`
+- **Structured JSON:** [`5d5bb9a39b29e4acb7c1.json`](../../sessions/5d/5d5bb9a39b29e4acb7c1.json)
+
+## Before a recorded user message
+
+61 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__delete_cron",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-7[1m]",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "10dc63e9-f740-4dd1-bfa7-9f4eb60441a0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779671400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "1dd7d263-db61-4f8d-8cce-cea4932b10b0",
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "aa199b63-567c-4964-9759-e406675d21e4",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NGUq9bKGYjViXkNdsjR6Zv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 14752,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14752
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RQtpJCv83B6Yip5pXKXj8h`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron,mcp__agent-ml-research__read_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "f4090feb-7767-4f36-8bc8-3b4129ffc0dd",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NGUq9bKGYjViXkNdsjR6Zv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 14752,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14752
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T23:01:19.106Z_
+
+<details><summary>↩ Tool result · `toolu_01RQtpJCv83B6Yip5pXKXj8h`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__delete_cron"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "082f426c-1907-49ec-9664-e15570951f3d",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__delete_cron",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "3e26d8ce-9522-4a30-a8b7-e25cf0689bd6",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_018Cwr8CrhTwdxQySJRHeDSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 16660,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 28754
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011YtKzfYuVHEkn6ZP4HmUV1`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "account": "root",
+  "command": "tail -100 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_long_seed43_postfix.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "f64898e6-080e-45bc-99d5-0e3eac08d5ff",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_018Cwr8CrhTwdxQySJRHeDSe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 16660,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16660
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 28754
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T23:01:25.583Z_
+
+<details><summary>↩ Tool result · `toolu_011YtKzfYuVHEkn6ZP4HmUV1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_long_seed43_postfix.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "5399f3a3-fbd8-4e73-b9f5-2caaf12b5936",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_long_seed43_postfix.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_long_seed43_postfix.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NEZzicMuyMsepspukwX3h2`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "account": "root",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/logs/ -name \"*random*k05*long*seed43*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "0f55cc03-bf4c-4557-b286-4d480dc9e886",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01R3caR26TuyUU6BT8rbXoaW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 442,
+      "cache_read_input_tokens": 32994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 442
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T23:01:30.210Z_
+
+<details><summary>↩ Tool result · `toolu_01NEZzicMuyMsepspukwX3h2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "7c51fef4-7f12-4cfb-be79-d63bfd3f2abf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LtPdLefTN8GcoMerW6nCU9`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "account": "root",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/logs/ -name \"*seed43*\" -newer /root/autodl-tmp/importance_margin_vla_compress/logs/.. 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "3e60bf4d-5c61-4f39-a006-c5dea96830ba",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01XoJobXrzQ6PAbH3RXfANj8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 269,
+      "cache_read_input_tokens": 33436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 269
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-24T23:01:34.564Z_
+
+<details><summary>↩ Tool result · `toolu_01LtPdLefTN8GcoMerW6nCU9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "6fe668c3-0d31-4d05-9720-832fdd36667c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WKxFeQjLHkedcjKV8LKm6X`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "account": "root",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/logs/ -name \"*seed43*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "40cfea4a-f500-46aa-881c-f2edee3c6159",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0118Hzr4eeFJ8RPRvtQB42GN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 331,
+      "cache_read_input_tokens": 33705,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 331
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T23:01:38.526Z_
+
+<details><summary>↩ Tool result · `toolu_01WKxFeQjLHkedcjKV8LKm6X`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m128_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m16_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_prune_k09_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_prune_k07_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_prune_k05_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_k03_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_prune_k02_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_prune_k01_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_k095_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_k08_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_k085_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k07_object_seed43_v2.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k03_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k03_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k07_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k03_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k03_goal_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_spatial_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/random_k07_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_object_seed43_postfix.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "faeb6b10-1222-4785-a814-8162c0105076",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m128_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m16_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_prune_k09_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_prune_k07_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_prune_k05_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_k03_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_prune_k02_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_prune_k01_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_k095_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_k08_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_k085_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_object_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k07_object_seed43_v2.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k03_object_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k03_object_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k07_object_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k03_object_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k03_goal_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_spatial_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/random_k07_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_object_seed43_postfix.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m128_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m16_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_prune_k09_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_prune_k07_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_prune_k05_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_k03_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_prune_k02_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_prune_k01_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_k095_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_k08_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_k085_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k07_object_seed43_v2.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k03_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k03_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k07_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k03_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k03_goal_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k085_spatial_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/random_k07_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_object_seed43_postfix.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "72ddc889-0e57-47e0-b48b-5b9f91076a90",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_011uWPEefRWE6L4gKy7PvCr7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1370,
+      "cache_read_input_tokens": 34036,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1370
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JXt23oTD2dJEXpvHJ7nH8j`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "account": "root",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/logs/ -name \"*long*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "0edf46eb-770b-4e4e-99ea-e6fc3c270438",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_011uWPEefRWE6L4gKy7PvCr7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1370,
+      "cache_read_input_tokens": 34036,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1370
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T23:01:45.692Z_
+
+<details><summary>↩ Tool result · `toolu_01JXt23oTD2dJEXpvHJ7nH8j`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_baseline_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_baseline_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k095_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_baseline_long_s42_cqa1.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_l2norm_k095_long_s42_cqa1.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_l2norm_k09_long_s42_cqa1.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_l2norm_k085_long_s42_cqa1.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix_v2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "f90d710d-6df3-44bd-b86d-a1a56cf39da3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_baseline_long_seed42.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_baseline_long_seed42.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k095_long_seed42.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_baseline_long_s42_cqa1.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_l2norm_k095_long_s42_cqa1.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_l2norm_k09_long_s42_cqa1.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_l2norm_k085_long_s42_cqa1.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix_v2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_baseline_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_baseline_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k095_long_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_baseline_long_s42_cqa1.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_l2norm_k095_long_s42_cqa1.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_l2norm_k09_long_s42_cqa1.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/pi05_l2norm_k085_long_s42_cqa1.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix_v2.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011jZ197GdMQaFqR4eASFniG`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "account": "root",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/logs/ -name \"*postfix*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "bcb8cca9-b889-4e47-a7a1-7f90f7359f2b",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01ETXVhByaeNFSZiUB9diPAb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 35406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 775
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T23:01:49.096Z_
+
+<details><summary>↩ Tool result · `toolu_011jZ197GdMQaFqR4eASFniG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_spatial_seed42_postfix_v3.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed42_postfix_v2.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_spatial_seed42_postfix_v2.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k07_spatial_seed42_postfix.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k03_spatial_seed42_postfix.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k05_spatial_seed42_postfix.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix_v2.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_object_seed43_postfix.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "82a10f21-8776-4be8-9ce4-37f9aff494ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_spatial_seed42_postfix_v3.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed42_postfix_v2.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_spatial_seed42_postfix_v2.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k07_spatial_seed42_postfix.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k03_spatial_seed42_postfix.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k05_spatial_seed42_postfix.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix_v2.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_object_seed43_postfix.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_spatial_seed42_postfix_v3.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_spatial_seed42_postfix_v2.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_spatial_seed42_postfix_v2.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k07_spatial_seed42_postfix.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k03_spatial_seed42_postfix.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k05_spatial_seed42_postfix.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix_v2.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_object_seed43_postfix.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "1bb83bfd-d5b3-46be-8f60-06b043be5c57",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_013nisLeRWx2z2bFYDjcEExH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 747,
+      "cache_read_input_tokens": 36181,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 747
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01A6mCtLfzGR2nQYP59EV8k6`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "eval_pi05_random_k05_long_seed43_postfix"
+  },
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "6b3f99e5-8c3c-451a-a926-0c43bb59932d",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_013nisLeRWx2z2bFYDjcEExH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 747,
+      "cache_read_input_tokens": 36181,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 747
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T23:01:55.683Z_
+
+<details><summary>↩ Tool result · `toolu_01A6mCtLfzGR2nQYP59EV8k6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6898}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "857654e9-755c-4bf4-99c7-a84a3293c18c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6898}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6898}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015hcdx7p4A2nwMR2Nk6mHp2`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": {
+      "$contains": "k05_long_seed43"
+    }
+  },
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "81a62d66-bd3c-4ef6-801a-a07fa1ead411",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01G8Ur94jRCG4NP2ibi5ivk3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 344,
+      "cache_read_input_tokens": 36928,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 344
+      },
+      "output_tokens": 55,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T23:02:01.957Z_
+
+<details><summary>↩ Tool result · `toolu_015hcdx7p4A2nwMR2Nk6mHp2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8955}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "5d382383-1bba-4343-920b-6fb9e7d6ffba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8955}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8955}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01DaTTmRCZHeNMtofWQT5QGD`</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "exp_id",
+    "status",
+    "log_path"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "51ccf2d8-7b99-462e-a73a-01fee5141317",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01WfJXxwu8rc5dxi2ioEEtxk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 260,
+      "cache_read_input_tokens": 37272,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 260
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-24T23:02:07.283Z_
+
+<details><summary>↩ Tool result · `toolu_01DaTTmRCZHeNMtofWQT5QGD`</summary>
+
+```text
+Error: result (57,694 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/31d15452-68ea-458c-bf2d-f27b003d91c3/tool-results/mcp-agent-ml-research-read_registry-1779663727268.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/31d15452-68ea-458c-bf2d-f27b003d91c3/tool-results/mcp-agent-ml-research-read_registry-1779663727268.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "1e2b7597-e251-4b35-8ea0-2499eafa434b",
+  "tool_use_result": {
+    "content": "Error: result (57,694 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/31d15452-68ea-458c-bf2d-f27b003d91c3/tool-results/mcp-agent-ml-research-read_registry-1779663727268.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/31d15452-68ea-458c-bf2d-f27b003d91c3/tool-results/mcp-agent-ml-research-read_registry-1779663727268.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_openvla_attn_k09_spatial_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_spatial_seed42.log\"}, \"eval_openvla_attn_k085_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log\"}, \"eval_openvla_attn_k09_object_seed42_v3\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log\"}, \"eval_pi05_l2norm_k085_spatial_seed43_postfix\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k095_long_seed43_postfix\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"eval_pi05_random_k085_spatial_seed43_postfix\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k07_long_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_goal_seed43_postfix\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k09_object_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_openvla_attn_k09_long_seed42\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k09_goal_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_object_seed43_postfix\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k09_spatial_seed43_postfix_v2\": {\"status\": \"RUNNING\"}, \"eval_openvla_attn_k085_long_seed42\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k09_spatial_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_openvla_attn_k085_spatial_seed42\": {\"status\": \"RUNNING\"}, \"eval_openvla_attn_k085_goal_seed42\": {\"status\": \"RUNNING\"}, \"eval_pi05_l2norm_k03_long_seed43_postfix_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_object_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_goal_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_spatial_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_long_seed43_postfix\": {\"status\": \"ANALYZING\"}, \"eval_pi05_random_k085_long_seed43_postfix\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_long_seed43_postfix.log\"}, \"eval_openvla_attn_k09_goal_seed42\": {\"status\": \"RUNNING\"}, \"eval_pi05_l2norm_k05_long_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k05_long_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k03_long_seed42_postfix_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_long_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_long_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_long_seed43_postfix_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_long_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_openvla_simplerenv_l2norm_k09\": {\"status\": \"DONE\"}, \"eval_openvla_simplerenv_baseline\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_long_seed42_postfix_v2\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix_v2.log\"}, \"eval_pi05_l2norm_k095_long_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_long_seed43_postfix\": {\"status\": \"RUNNING\"}, \"eval_smolvla_metaworld_l2norm_sweep\": {\"status\": \"DONE\"}, \"eval_smolvla_metaworld_random_sweep\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_long_seed43_postfix_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k03_long_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_smolvla_metaworld_baseline\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k05_goal_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_long_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k09_long.log\"}, \"eval_pi05_random_k03_spatial_seed42_postfix_v2\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_pi05_random_k03_spatial_postfix_v2.log\"}, \"eval_pi05_l2norm_k03_long_seed42_postfix\": {\"status\": \"ALLOCATED\"}, \"eval_pi05_l2norm_k085_long_seed43_postfix\": {\"status\": \"ALLOCATED\"}, \"eval_pi05_l2norm_k09_long_seed43_postfix\": {\"status\": \"ALLOCATED\"}, \"diag_openvla_unnorm_key\": {\"status\": \"DONE\", \"log_path\": \"N/A\"}, \"eval_pi05_l2norm_k095_long_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_long_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_long.log\"}, \"eval_pi05_random_k07_long_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k07_long.log\"}, \"eval_pi05_random_k085_long_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_long_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_long.log\"}, \"eval_pi05_l2norm_k03_spatial_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/l2norm_k03_spatial.log\"}, \"eval_pi05_l2norm_k09_long_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix.log\"}, \"eval_pi05_l2norm_k085_long_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k095_goal_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_pi05_l2norm_k095_goal_postfix.log\"}, \"eval_pi05_l2norm_k07_spatial_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_object_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_spatial_seed42_postfix_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_spatial_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_goal_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k03_goal_seed42_postfix.log\"}, \"eval_pi05_l2norm_k0925_goal_seed42_postfix\": {\"status\": \"ANALYZING\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k0925_goal_seed42_postfix.log\"}, \"eval_openvla_attn_k05_goal_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_attn_k05_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_spatial_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_goal_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_goal_seed42_postfix.log\"}, \"eval_pi05_l2norm_k07_goal_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed42_postfix.log\"}, \"eval_pi05_l2norm_k05_goal_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_goal_seed42_postfix.log\"}, \"eval_pi05_l2norm_k03_goal_seed42_postfix\": {\"status\": \"ANALYZING\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_goal_seed42_postfix.log\"}, \"eval_pi05_random_k095_goal_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k095_goal_seed42_postfix.log\"}, \"eval_pi05_random_k05_goal_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_goal_seed42_postfix.log\"}, \"eval_xvla_l2norm_k03_goal_seed42_v5\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k03_goal_seed42_v5.log\"}, \"eval_pi05_random_k03_long_seed43_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k05_spatial_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_pi05_l2norm_k05_spatial_postfix.log\"}, \"eval_pi05_random_k085_goal_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_goal_seed42_postfix.log\"}, \"eval_pi05_random_k09_goal_seed42_postfix\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_goal_seed42_postfix.log\"}, \"eval_pi05_random_k07_goal_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_goal_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_spatial_seed42_postfix_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k0925_goal_seed42_v3\": {\"status\": \"DONE\"}, \"eval_pi05_random_k0925_object_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_spatial_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k03_long_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k03_long_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_long_seed42_v4\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_spatial_seed42_v3\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_spatial_seed42_v3\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k0925_goal_seed42_v3\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_spatial_seed42\": {\"status\": \"DEPLOYED\"}, \"eval_openvla_attn_k05_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k03_goal_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k07_spatial_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_spatial_seed42_postfix_v3\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_spatial_seed42_postfix_v3.log\"}, \"eval_pi05_l2norm_k05_spatial_seed43_v2\": {\"status\": \"DONE\"}, \"eval_xvla_random_k085_long_seed42\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\"}, \"eval_pi05_random_k09_spatial_seed42_postfix_v2\": {\"status\": \"DONE\"}, \"eval_openvla_random_k05_goal_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_spatial_seed42_postfix_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_goal_seed43_v2\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k03_goal_seed43_v2.log\"}, \"eval_xvla_l2norm_k03_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k03_goal_seed42_v3\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_object_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_long_seed42_v3\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_spatial_seed42_v2\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k07_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k05_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_goal_seed43\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.85_libero_goal_seed43.json\"}, \"eval_pi05_random_k095_goal_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_random_k05_spatial_seed43\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_spatial_seed43.log\"}, \"eval_xvla_l2norm_k05_goal_seed43\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_xvla_l2norm_k05_goal_seed43.log\"}, \"eval_pi05_random_k05_goal_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_goal_seed42_v2.log\"}, \"eval_pi05_l2norm_k07_goal_seed43_v2\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\"}, \"eval_xvla_l2norm_k07_goal_seed42_v2\": {\"status\": \"DEPLOYED\"}, \"eval_pi05_l2norm_k085_goal_seed43\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_pi05_l2norm_k085_goal_seed43.log\"}, \"eval_pi05_random_k085_spatial_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_xvla_random_k085_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.85_libero_object.json\"}, \"eval_xvla_random_k085_spatial_seed42\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_xvla_random_k085_spatial_seed42.log\"}, \"eval_xvla_random_k085_goal_seed42\": {\"status\": \"DONE\", \"log_path\": \"tmux output only (no log file)\"}, \"eval_pi05_random_k095_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_object_seed42_v4\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k05_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_object_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_object_seed42_v2.log\"}, \"eval_pi05_random_k05_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_object_seed42_v3\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_long_seed43\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_xvla_l2norm_k05_long_seed43.log\"}, \"eval_pi05_l2norm_k05_long_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_goal_seed43\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43.log\"}, \"eval_pi05_random_k05_spatial_seed42_postfix_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_spatial_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_long_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k05_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_object_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_random_k05_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k05_long_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_random_k05_goal_seed43_v4\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_goal_seed43_v4.log\"}, \"eval_pi05_random_k05_spatial_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_attention_k05_long_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_baseline_long_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_goal_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_random_k03_goal_seed42.log\"}, \"eval_pi05_attention_k05_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_pi05_attention_k05_object_seed42.log\"}, \"eval_openvla_l2norm_k05_goal_seed42_v3\": {\"status\": \"DONE\"}, \"eval_xvla_random_k05_long_seed43\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log\"}, \"eval_pi05_random_k095_spatial_seed42_postfix\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_object_seed43\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k05_object_seed43.log\"}, \"eval_pi05_attention_k05_spatial_seed42\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_pi05_attention_k05_spatial_seed42.log\"}, \"eval_pi05_attention_k05_goal_seed43\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed43.json\"}, \"eval_pi05_random_k07_object_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_pi05_random_k07_object_seed42_v2.log\"}, \"eval_pi05_l2norm_k095_goal_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k03_goal_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_l2norm_k03_goal_seed42.log\"}, \"eval_xvla_random_k05_goal_seed43_v3\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_xvla_random_k05_goal_seed43_v3.log\"}, \"eval_xvla_random_k05_goal_seed43_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k05_goal_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k05_long_seed42_v3\": {\"status\": \"DONE\"}, \"eval_pi05_random_k0925_spatial_seed42_unreg\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_long_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_v2.log\"}, \"eval_pi05_attention_k05_goal_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k03_goal_seed42_v4\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k03_goal_seed42_v4.log\"}, \"eval_xvla_random_k05_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_xvla_random_k05_object_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_goal_seed42_v4\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k03_spatial_seed42\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k03_spatial_seed42.log\"}, \"eval_xvla_l2norm_k05_goal_seed42_v3\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_spatial_seed42_v3\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k07_goal_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k0925_goal_seed42_w38\": {\"status\": \"DONE\"}, \"eval_e5_xvla_attn_last_goal_k03\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k0925_goal_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_spatial_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k0925_goal_seed42_w38\": {\"status\": \"DONE\"}, \"eval_e5_xvla_attn_mean_goal_k03\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_goal_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k0925_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k0925_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k0925_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_openvla_baseline_goal_seed42_v3\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_spatial_seed42_v2\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k05_long_seed42_v2\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k03_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_xvla_random_k05_goal_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k095_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_e5_xvla_attn_rollout_goal_k05_v2\": {\"status\": \"DONE\"}, \"eval_e5_xvla_attn_mean_goal_k05_v2\": {\"status\": \"DONE\"}, \"eval_e5_xvla_attn_last_goal_k05_v2\": {\"status\": \"DONE\"}, \"eval_e5_xvla_random_goal_k05_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_goal_seed42_v2\": {\"status\": \"DONE\"}, \"eval_e5_xvla_attn_last_obj_k03\": {\"status\": \"DONE\"}, \"eval_e5_xvla_attn_rollout_obj_k03\": {\"status\": \"DONE\"}, \"eval_e5_xvla_attn_mean_spatial_k03\": {\"status\": \"DONE\"}, \"eval_e5_xvla_attn_last_spatial_k03\": {\"status\": \"DONE\"}, \"eval_e5_xvla_attn_mean_obj_k03\": {\"status\": \"DONE\"}, \"eval_openvla_baseline_goal_seed42_v2\": {\"status\": \"PREPARING\"}, \"diag_find_pi05_path\": {\"status\": \"PREPARING\"}, \"diag_openvla_script_model_path\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k05_long_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_long_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k0925_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_baseline_goal_seed42\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k085_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k0925_goal_seed42\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k0925_goal_seed42\": {\"status\": \"PREPARING\"}, \"diag_openvla_script_args\": {\"status\": \"PREPARING\"}, \"diag_openvla_shards_check\": {\"status\": \"PREPARING\"}, \"diag_openvla_status_v3\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k09_goal_seed42_cqa1\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k085_goal_seed42\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k05_goal_seed42\": {\"status\": \"PREPARING\"}, \"diag_read_long_seed43\": {\"status\": \"PREPARING\"}, \"diag_read_goal_v2\": {\"status\": \"PREPARING\"}, \"diag_read_cqa1_goal_results\": {\"status\": \"PREPARING\"}, \"diag_read_goal_results\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k085_object_cqa1\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k03_object_cqa1\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k03_object_cqa1\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k085_object_cqa1\": {\"status\": \"PREPARING\"}, \"diag_cqa1_find_goal_k09\": {\"status\": \"PREPARING\"}, \"diag_westd41074_find_goal_logs\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_rollout_spatial_k07\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_mean_long_k05_seed43\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_last_long_k05_seed43\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_rollout_long_k05_w38\": {\"status\": \"PREPARING\"}, \"diag_openvla_download_check\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_rollout_obj_k07_w27\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_rollout_goal_k05\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_mean_goal_k05\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_rollout_long_k05_w27\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k03_long_seed43_v5\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_mean_long_k05\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_last_goal_k05\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_mean_spatial_k05\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_goal_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_goal_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k05_goal_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_long_seed43_v4\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_long_seed43_v4.log\"}, \"eval_pi05_random_k085_long_seed43_v3\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_long_seed43_v3.log\"}, \"eval_pi05_l2norm_k07_long_seed43_v4\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed43_v4.log\"}, \"eval_e5_xvla_attn_rollout_spatial_k05\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k03_long_seed43\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k05_long_seed43\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k05_object_cqa1\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k07_object_cqa1\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k05_object_cqa1\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_last_spatial_k05\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_last_long_k05\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k07_object_cqa1\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_last_obj_k07\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_rollout_obj_k05\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_mean_obj_k05\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_last_obj_k05\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k07_goal_seed42\": {\"status\": \"DEPLOYED\", \"log_path\": \"logs/eval_pi05_l2norm_k07_goal_seed42.log\"}, \"eval_pi05_random_k09_goal_seed42\": {\"status\": \"DEPLOYED\", \"log_path\": \"N/A - stale\"}, \"diag_cqa1_logs\": {\"status\": \"PREPARING\"}, \"eval_e5_xvla_attn_mean_obj_k05_w27\": {\"status\": \"PREPARING\"}, \"eval_xvla_l2norm_k07_long_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_long_seed43_v3_r\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k085_long_seed43_v2_r\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k07_long_seed43_v3_r\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k03_long_seed43_v4_r\": {\"status\": \"PREPARING\"}, \"diag_find_e5_westd27271\": {\"status\": \"PREPARING\"}, \"diag_transfer_e5_v2\": {\"status\": \"PREPARING\"}, \"diag_transfer_e5_script\": {\"status\": \"PREPARING\"}, \"diag_westd38929_e5_check\": {\"status\": \"PREPARING\"}, \"diag_find_pi05_script\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k085_long_seed43_v3\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k085_long_seed43_v2\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k07_long_seed43_v3\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k03_long_seed43_v4\": {\"status\": \"PREPARING\"}, \"eval_xvla_l2norm_k07_long_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k09_long_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k095_object_seed42_v3\": {\"status\": \"PREPARING\"}, \"eval_xvla_random_k07_long_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k095_object_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_object_seed42_v2.log\"}, \"eval_pi05_random_k09_object_seed43_v4\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_object_seed43_v4.log\"}, \"eval_xvla_random_k07_spatial_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_xvla_random_k07_spatial_seed42.log\"}, \"eval_xvla_random_k095_long_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_object_seed43_v3\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_long_seed43_v3\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k05_long_seed43_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_long_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_long_seed43_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_long_seed43_v3\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_long_seed43_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_spatial_seed43_v2\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_spatial_seed43.log\"}, \"eval_xvla_baseline_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_baseline_goal_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k09_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_long_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_spatial_seed43\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_spatial_seed43.log\"}, \"eval_pi05_random_k085_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k095_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_long_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_long_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_long_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_goal_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k03_long_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k03_long_seed42.log\"}, \"eval_xvla_random_k095_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_long_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k095_object_seed42\": {\"status\": \"PREPARING\"}, \"eval_pi05_attention_k07_object_seed42\": {\"status\": \"DONE\"}, \"eval_smolvla_baseline_spatial_seed42_cqa1\": {\"status\": \"DONE\", \"log_path\": \"logs/smolvla_baseline_spatial_s42.log\"}, \"eval_xvla_random_k07_goal_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_xvla_random_k07_goal_seed42.log\"}, \"eval_pi05_random_k09_long_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_random_k09_long_seed42.log\"}, \"eval_pi05_random_k085_long_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_random_k085_long_seed42.log\"}, \"eval_pi05_l2norm_k09_long_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_long_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k09_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k09_goal_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k095_spatial_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_random_k095_spatial.log\"}, \"eval_xvla_random_k095_goal_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_random_k095_goal.log\"}, \"eval_openvla_baseline_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k095_spatial_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_spatial_seed42.log\"}, \"eval_pi05_random_k0925_object_seed43\": {\"status\": \"DONE\"}, \"eval_smolvla_random_k09_spatial_seed42_cqa1\": {\"status\": \"PREPARING\"}, \"eval_smolvla_l2norm_k09_spatial_seed42_cqa1\": {\"status\": \"PREPARING\"}, \"eval_smolvla_baseline_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_long_seed42\": {\"status\": \"DONE\", \"log_path\": \"eval_results/pi05_l2norm_k0.85_libero_10_seed42.json\"}, \"eval_pi05_random_k095_long_seed42\": {\"status\": \"DONE\", \"log_path\": \"eval_results/pi05_random_k0.95_libero_10_seed42.json\"}, \"eval_pi05_random_k085_goal_seed42_v3\": {\"status\": \"DONE\", \"log_path\": \"eval_results/pi05_random_k0.85_libero_goal_seed42.json\"}, \"eval_pi05_l2norm_k07_long_seed42\": {\"status\": \"DONE\", \"log_path\": \"eval_results/pi05_l2norm_k0.70_libero_10_seed42.json\"}, \"eval_pi05_l2norm_k0925_spatial_seed43\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k0925_spatial_seed43.log\"}, \"eval_pi05_l2norm_k09_object_seed43\": {\"status\": \"DONE\", \"log_path\": \"N/A - stale\"}, \"eval_pi05_l2norm_k095_object_seed43_v2\": {\"status\": \"DONE\", \"log_path\": \"N/A - stale\"}, \"eval_pi05_l2norm_k0925_object_seed43_v2\": {\"status\": \"DONE\", \"log_path\": \"N/A - stale\"}, \"eval_pi05_l2norm_k095_long_seed42\": {\"status\": \"DONE\", \"log_path\": \"N/A - stale\"}, \"eval_pi05_l2norm_k085_goal_seed42_w38929\": {\"status\": \"DONE\", \"log_path\": \"logs/pi05_l2norm_k085_goal_s42.log\"}, \"eval_pi05_baseline_long_seed42\": {\"status\": \"DONE\", \"log_path\": \"N/A - stale\"}, \"random_k095_goal_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_random_k095_goal_seed42.log\"}, \"pi05_l2norm_k09_goal_s42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_l2norm_k09_goal_seed42.log\"}, \"eval_pi05_random_k085_goal_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"N/A - superseded by v3\"}, \"l2norm_k095_goal_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_l2norm_k095_goal_seed42.log\"}, \"random_k095_long_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_random_k095_long_seed42.log\"}, \"pi05_l2norm_k095_long_s42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_l2norm_k095_long_seed42.log\"}, \"pi05_random_k09_goal_s42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_random_k09_goal_seed42.log\"}, \"pi05_l2norm_k085_goal_s42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_l2norm_k085_goal_seed42.log\"}, \"train_openvla_sc_m96_seed42_v3\": {\"status\": \"DONE\", \"log_path\": \"N/A - stale\"}, \"train_openvla_sc_m64_seed42_v6\": {\"status\": \"DONE\", \"log_path\": \"N/A - stale\"}, \"pi05_baseline_long_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_attention_k085_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_attention_k09_object_seed42\": {\"status\": \"DONE\"}, \"smolvla_random_k095_long_seed42\": {\"status\": \"DONE\"}, \"smolvla_l2norm_k095_long_seed42\": {\"status\": \"DONE\"}, \"smolvla_random_k095_goal_seed42\": {\"status\": \"DONE\"}, \"smolvla_l2norm_k095_goal_seed42\": {\"status\": \"DONE\"}, \"smolvla_random_k095_spatial_seed42\": {\"status\": \"DONE\"}, \"smolvla_l2norm_k095_spatial_seed42\": {\"status\": \"DONE\"}, \"smolvla_baseline_long_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k09_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k09_goal_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k095_goal_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k095_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_attention_k095_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k09_long_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k095_long_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_baseline_long_seed42\": {\"status\": \"DONE\"}, \"pi05_random_k085_goal_s42\": {\"status\": \"DONE\"}, \"smolvla_official_goal_baseline_s42\": {\"status\": \"DONE\"}, \"smolvla_official_object_l2norm_k095_s42\": {\"status\": \"DONE\"}, \"smolvla_official_spatial_baseline_s42\": {\"status\": \"DONE\"}, \"eval_pi05_baseline_goal_seed42\": {\"status\": \"DONE\"}, \"eval_smolvla_zeromask_l2norm_k095_object_seed42\": {\"status\": \"DONE\"}, \"eval_smolvla_zeromask_random_k095_object_seed42\": {\"status\": \"DONE\"}, \"train_openvla_sc_m96_seed42\": {\"status\": \"DONE\"}, \"eval_smolvla_official_l2norm_k090_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_object_seed43_v4\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_object_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k03_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k0925_object_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k095_object_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_smart_compress_m32_official\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_object_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_object_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_object_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k0925_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k05_object_seed42_v5\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_spatial_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_object_seed43_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_object_seed43_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_spatial_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_object_seed43_v3\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_spatial_seed42_v4\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_object_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_object_seed43_v3\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_object_seed43_v3\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k0925_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_spatial_seed42_v3\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k095_spatial_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_spatial_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_pi05_l2norm_k07_spatial_seed42.log\"}, \"eval_pi05_l2norm_k09_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_spatial_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_object_seed42_v4\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_openvla_baseline_spatial_seed42_v3\": {\"status\": \"DONE\"}, \"train_openvla_sc_m32_vtconly_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k095_object_seed42\": {\"status\": \"PREPARING\"}, \"eval_pi05_l2norm_k085_object_seed42_v3\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k0925_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_object_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k085_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_object_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"/tmp/eval_pi05_random_k085_object_seed42_v2.log\"}, \"eval_openvla_l2norm_k05_object_seed42_v4\": {\"status\": \"PREPARING\"}, \"eval_pi05_random_k03_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_fixedmask_object_seed42_v2\": {\"status\": \"DONE\"}, \"train_smart_compress_m16_seed44_v3\": {\"status\": \"DONE\"}, \"train_smart_compress_m16_seed43\": {\"status\": \"DONE\"}, \"train_smart_compress_m128_seed43\": {\"status\": \"DONE\"}, \"train_smart_compress_m96_seed44\": {\"status\": \"DONE\"}, \"train_smart_compress_m32_seed44\": {\"status\": \"DONE\"}, \"train_smart_compress_m64_seed44\": {\"status\": \"DONE\"}, \"train_smart_compress_m128_resume\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_random_k05_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/eval_openvla_random_k05_object_seed42.log\"}, \"eval_openvla_random_k07_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_openvla_random_k09_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k03_object_seed43\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k09_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/logs/eval_openvla_l2norm_k09_object_seed42.log\"}, \"eval_pi05_l2norm_k05_object_seed43\": {\"status\": \"DONE\"}, \"eval_smolvla_official_random_k050_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k050_object_seed42.json\"}, \"eval_smolvla_official_random_k090_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k090_object_seed42.json\"}, \"eval_smolvla_official_l2norm_k070_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k070_object_seed42.json\"}, \"eval_smolvla_official_l2norm_k030_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k030_object_seed42.json\"}, \"eval_smolvla_official_random_k070_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k070_object_seed42.json\"}, \"eval_smolvla_official_random_k030_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k030_object_seed42.json\"}, \"eval_smolvla_official_l2norm_k050_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k05_spatial_seed42\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\"}, \"eval_pi05_l2norm_k03_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k09_fixedmask_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_baseline_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k095_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k01_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k01_seed42.log\"}, \"eval_smolvla_official_random_k050_object_seed43\": {\"status\": \"DONE\"}, \"eval_smolvla_official_l2norm_k095_object_seed43\": {\"status\": \"DONE\"}, \"eval_smolvla_official_random_k095_object_seed43\": {\"status\": \"DONE\"}, \"eval_smolvla_official_baseline_object_seed43\": {\"status\": \"DONE\"}, \"eval_smolvla_official_l2norm_k095_object_seed42\": {\"status\": \"DONE\"}, \"eval_smolvla_official_random_k095_object_seed42\": {\"status\": \"DONE\"}, \"eval_smolvla_official_baseline_object_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k05_object_seed43\": {\"status\": \"DONE\"}, \"train_openvla_sc_m64_seed42_v5\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k03_object_seed43\": {\"status\": \"DONE\", \"log_path\": \"N/A\"}, \"eval_openvla_random_k07_object_seed43\": {\"status\": \"DONE\"}, \"eval_openvla_baseline_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_openvla_baseline_object_seed42.log\"}, \"eval_xvla_l2norm_k03_object_seed44\": {\"status\": \"DONE\", \"log_path\": \"N/A\"}, \"eval_xvla_random_k07_object_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"N/A\"}, \"eval_xvla_random_k085_object_seed43\": {\"status\": \"DONE\", \"log_path\": \"N/A\"}, \"eval_xvla_random_k085_object_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"N/A\"}, \"eval_pi05_l2norm_k07_object_seed43\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k03_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k085_object_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k03_object_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_random_k03_object_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_random_k07_object_seed44\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k07_object_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_random_k03_object_seed44\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k07_object_seed44\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k07_object_seed43_v2\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k03_object_seed42_rerun\": {\"status\": \"DONE\"}, \"eval_openvla_random_k03_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k05_object_seed42_v3\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k05_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k07_object_seed42_v2\": {\"status\": \"DONE\"}, \"eval_pi05_random_k07_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k03_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_random_k03_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k03_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k05_object_seed44\": {\"status\": \"DONE\"}, \"eval_pi05_random_k05_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_l2norm_k07_object_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k07_object_seed42_v2.log\"}, \"train_openvla_sc_m64_seed42_v4\": {\"status\": \"DONE\"}, \"eval_xvla_random_k07_object_seed43_v2\": {\"status\": \"DONE\"}, \"eval_openvla_sc_m128_object_seed42_v2\": {\"status\": \"DONE\", \"log_path\": \"N/A\"}, \"eval_openvla_random_k07_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k05_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k07_object_seed43\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k05_object_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k03_object_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_random_k03_object_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_l2norm_k07_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k03_object_seed42\": {\"status\": \"DONE\"}, \"eval_pi05_baseline_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k07_object_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_sc_m128_object_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_prune_random_k05_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_prune_random_k07_seed42_v2\": {\"status\": \"DONE\"}, \"eval_openvla_prune_random_k095_seed42_v2\": {\"status\": \"DONE\"}, \"eval_smolvla_baseline_spatial_westd38929_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k08_object_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_random_k09_object_seed42\": {\"status\": \"DONE\"}, \"eval_oft_baseline_goal_seed42\": {\"status\": \"PREPARING\"}, \"eval_oft_object_std_v3\": {\"status\": \"PREPARING\"}, \"eval_oft_object_nolora_v2\": {\"status\": \"PREPARING\"}, \"eval_xvla_spatial_k085_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_prune_l2norm_k07_seed43_v2\": {\"status\": \"DONE\"}, \"eval_oft_baseline_object_seed42\": {\"status\": \"DONE\"}, \"train_openvla_sc_m64_seed42_v3\": {\"status\": \"DONE\"}, \"eval_openvla_sc_m64_50k_seed42\": {\"status\": \"PREPARING\"}, \"openvla-spatial-maxsteps600-quick\": {\"status\": \"PREPARING\"}, \"openvla-spatial-maxsteps600-test\": {\"status\": \"PREPARING\"}, \"eval_openvla_baseline_spatial_seed42_v2\": {\"status\": \"DONE\"}, \"eval_xvla_goal_k05_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_goal_k09_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_spatial_k09_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_sc_m128_spatial_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_prune_random_k03_seed43\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k03_seed43.log\"}, \"eval_openvla_prune_random_k07_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k07_seed42.log\"}, \"eval_openvla_prune_random_k095_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_random_k095_seed42.log\"}, \"eval_openvla_prune_l2norm_k09_seed43\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_seed43.log\"}, \"eval_xvla_spatial_k05_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_spatial_k05_seed42.log\"}, \"eval_xvla_prune_k085_seed44\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k08_seed44\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_k08_seed44.log\"}, \"eval_openvla_prune_random_k095_seed43\": {\"status\": \"DONE\", \"log_path\": \"eval_results/openvla_random_prune_k095_seed43.json\"}, \"eval_openvla_prune_l2norm_k07_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k08_seed42\": {\"status\": \"DONE\", \"log_path\": \"eval_results/xvla_prune_k08_libero_object_seed42.json\"}, \"eval_xvla_prune_k085_seed43\": {\"status\": \"DONE\", \"log_path\": \"eval_results/xvla_prune_k0.85_libero_object_seed43.json\"}, \"eval_xvla_prune_k085_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k08_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k01_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k095_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k095_seed44\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k095_seed42\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k01_seed44\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k01_seed43\": {\"status\": \"DONE\"}, \"eval_openvla_prune_random_k03_seed42\": {\"status\": \"PREPARING\"}, \"eval_openvla_prune_random_k09_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_prune_random_k09_seed43\": {\"status\": \"DONE\"}, \"eval_openvla_prune_random_k05_seed43_v2\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k02_seed44\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k02_seed43\": {\"status\": \"DONE\"}, \"eval_openvla_prune_l2norm_k09\": {\"status\": \"DONE\"}, \"eval_openvla_prune_random_k07_seed43_v2\": {\"status\": \"DONE\"}, \"eval_openvla_prune_l2norm_k095\": {\"status\": \"DONE\"}, \"eval_openvla_prune_l2norm_k03\": {\"status\": \"DONE\"}, \"eval_openvla_prune_l2norm_k05\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k03_seed43\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k03_seed44\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k05_seed44\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k07_seed44\": {\"status\": \"DONE\"}, \"eval_xvla_prune_k09_seed44\": {\"status\": \"DONE\"}, \"eval_openvla_prune_random_k05_seed43\": {\"status\": \"DONE\"}, \"eval_openvla_prune_random_k07_seed43\": {\"status\": \"DONE\"}, \"eval_openvla_prune_seed43_sweep\": {\"status\": \"PREPARING\"}, \"eval_oft_baseline_k10\": {\"status\": \"DONE\"}, \"eval_openvla_sc_m128_20k_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_prune_l2norm_sweep\": {\"status\": \"PREPARING\"}, \"eval_smart_compress_m16_seed44\": {\"status\": \"DONE\"}, \"analysis_smolvla_importance_cv\": {\"status\": \"PREPARING\"}, \"eval_smart_compress_m16_seed43\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m16_seed43.log\"}, \"eval_smart_compress_m128_seed43\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_smart_compress_m128_seed43.log\"}, \"train_openvla_sc_m128_vtconly_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_sc_m128_vtconly_20k_seed42\": {\"status\": \"DONE\"}, \"analysis_pi0_token_importance\": {\"status\": \"PREPARING\"}, \"train_openvla_sc_m128_seed42_v2\": {\"status\": \"DONE\"}, \"train_openvla_sc_m64_seed42\": {\"status\": \"PREPARING\"}, \"analysis_xvla_token_importance\": {\"status\": \"DONE\"}, \"train_openvla_sc_m96_vtconly_seed42\": {\"status\": \"DONE\"}, \"train_openvla_sc_m64_vtconly_seed42\": {\"status\": \"DONE\"}, \"train_c5_roboflamingo_v2\": {\"status\": \"DONE\"}, \"train_c5_roboflamingo_libero_object\": {\"status\": \"DONE\"}, \"train_openvla_sc_m128_lora_seed42\": {\"status\": \"DONE\"}, \"eval_smart_compress_m32_seed44\": {\"status\": \"DONE\"}, \"eval_smart_compress_m96_seed44\": {\"status\": \"DONE\"}, \"eval_smart_compress_m64_seed44\": {\"status\": \"DONE\"}, \"eval_openvla_random_pruning_sweep\": {\"status\": \"DONE\"}, \"c5_roboflamingo_libero_object\": {\"status\": \"PREPARING\"}, \"c5-roboflamingo-libero-baseline\": {\"status\": \"PREPARING\"}, \"train_openvla_sc_m128_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_baseline_spatial\": {\"status\": \"DONE\"}, \"train_smart_compress_m16_seed44_v2\": {\"status\": \"DONE\"}, \"eval_official_smolvla_prune_k05_spatial_v2\": {\"status\": \"DONE\"}, \"eval_smart_compress_m96_seed44_v2\": {\"status\": \"DONE\"}, \"eval_smart_compress_m64_seed44_v2\": {\"status\": \"DONE\"}, \"eval_smart_compress_m32_seed44_v2\": {\"status\": \"DONE\"}, \"eval_mlp_adapter_seed44\": {\"status\": \"DONE\"}, \"eval_official_smolvla_prune_k05_spatial\": {\"status\": \"DONE\"}, \"eval_smolvla_official_baseline_spatial_v2\": {\"status\": \"DONE\"}, \"eval_mlp_adapter_seed43\": {\"status\": \"DONE\"}, \"eval_mlp_adapter_control\": {\"status\": \"DONE\"}, \"eval_smolvla_prune_k05_spatial_v2\": {\"status\": \"DONE\"}, \"eval_smolvla_baseline_spatial\": {\"status\": \"DONE\"}, \"eval_smolvla_official_baseline_spatial\": {\"status\": \"DONE\"}, \"eval_smolvla_prune_k05_spatial\": {\"status\": \"DONE\"}, \"train_smart_compress_m16_seed44\": {\"status\": \"DONE\"}, \"train_mlp_adapter_control\": {\"status\": \"DONE\"}, \"eval_smart_compress_m32_spatial\": {\"status\": \"DONE\"}, \"eval_smart_compress_m128_seed44\": {\"status\": \"DONE\"}, \"train_smart_compress_m32_official\": {\"status\": \"DONE\"}, \"train_smart_compress_m128_seed44\": {\"status\": \"DONE\"}, \"eval_openvla_prune_k095\": {\"status\": \"DONE\"}, \"eval_openvla_prune_k09\": {\"status\": \"DONE\"}, \"eval_smart_compress_m32_seed43\": {\"status\": \"DONE\"}, \"eval_smart_compress_m32_libero_spatial\": {\"status\": \"DONE\"}, \"eval_smart_compress_m64_seed43\": {\"status\": \"DONE\"}, \"eval_smart_compress_m32_libero_goal\": {\"status\": \"DONE\"}, \"eval_baseline_control_prune_k05\": {\"status\": \"DONE\"}, \"train_smart_compress_m64_seed43\": {\"status\": \"DONE\"}, \"train_smart_compress_m32_seed43\": {\"status\": \"DONE\"}, \"eval_smart_compress_m96_seed43_v2\": {\"status\": \"DONE\"}, \"eval_smart_compress_m96_seed43\": {\"status\": \"DONE\"}, \"train_smart_compress_m96_seed43\": {\"status\": \"DONE\"}, \"train_baseline_control_100k_v2\": {\"status\": \"DONE\"}, \"eval_baseline_control_100k_v2\": {\"status\": \"DONE\"}, \"eval_official_smolvla_prune_k095\": {\"status\": \"DONE\"}, \"eval_official_smolvla_prune_k09\": {\"status\": \"DONE\"}, \"eval_acis_k05_supplement_v2\": {\"status\": \"DONE\", \"log_path\": \"logs/eval_acis_k05_v2.log\"}, \"eval_acis_k05_supplement_200eps\": {\"status\": \"DONE\"}, \"eval_official_smolvla_prune_k05_v2\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_prune_k05_v2.log\"}, \"eval_official_smolvla_baseline\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_official_smolvla_baseline.log\"}, \"eval_smolvla_random_prune_k095\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log\"}, \"eval_official_smolvla_pruning\": {\"status\": \"DONE\"}, \"debug_obs_official\": {\"status\": \"PREPARING\"}, \"eval_official_smolvla_prune_k05\": {\"status\": \"PREPARING\"}, \"train_baseline_control_100k\": {\"status\": \"DONE\"}, \"eval_smart_compress_m128\": {\"status\": \"DONE\"}, \"eval_openvla_pruning_k03_restart\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k03_restart.log\"}, \"smolvla_entropy_perlayer\": {\"status\": \"DONE\"}, \"inference_latency_comparison\": {\"status\": \"DONE\", \"log_path\": \"logs/inference_latency_comparison.log\"}, \"eval_openvla_pruning_k03\": {\"status\": \"DONE\"}, \"openvla_entropy_real\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_entropy_real.log\"}, \"train_smart_compress_m128\": {\"status\": \"DONE\"}, \"eval_smart_compress_m96\": {\"status\": \"DONE\"}, \"eval_smart_compress_m16\": {\"status\": \"DONE\"}, \"eval_openvla_pruning_k07\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_prune_k07_object.log\"}, \"train_smart_compress_m96\": {\"status\": \"DONE\"}, \"smart_compress_m16\": {\"status\": \"DONE\"}, \"eval_smart_compress_m64\": {\"status\": \"DONE\"}, \"eval_smart_compress_m32\": {\"status\": \"DONE\"}, \"train_smart_compress_m32\": {\"status\": \"DONE\"}, \"train_smart_compress_m64\": {\"status\": \"DONE\"}, \"libero_full_ft_baseline\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/libero_full_ft_baseline.log\"}, \"train_acis_stage1only_k03\": {\"status\": \"DONE\"}, \"eval_openvla_pruning_k05\": {\"status\": \"DONE\"}, \"geometric_prior_k05_eval\": {\"status\": \"DONE\"}, \"eval_openvla_crossmodel_pruning\": {\"status\": \"DONE\"}, \"eval_geometric_prior_k09\": {\"status\": \"DONE\"}, \"eval_geometric_prior_k07\": {\"status\": \"DONE\"}, \"eval_geometric_prior_k05\": {\"status\": \"DONE\"}, \"libero_fullft_batch64_v2\": {\"status\": \"DONE\"}, \"baseline_bypass_object\": {\"status\": \"DONE\"}, \"action_divergence_v2_clean\": {\"status\": \"DONE\"}, \"eval_goal_prune_k05\": {\"status\": \"DONE\"}, \"offline_singlestep_action_error\": {\"status\": \"DONE\"}, \"offline_singlestep_error_k05\": {\"status\": \"DONE\", \"log_path\": \"eval_results/offline_singlestep_error.json\"}, \"eval_spatial_prune_k05\": {\"status\": \"DONE\", \"log_path\": \"eval_results/eval_spatial_prune_k05.log\"}, \"eval_merge_k05\": {\"status\": \"DONE\", \"log_path\": \"eval_results/eval_merge_k05.log\"}, \"eval_k07_zero_mask\": {\"status\": \"DONE\", \"log_path\": \"eval_results/eval_k07_zero_mask.log\"}, \"eval_true_removal_k05\": {\"status\": \"DONE\", \"log_path\": \"eval_results/eval_true_removal_k05.log\"}, \"eval_stage1only_k09\": {\"status\": \"DONE\"}, \"eval_random_prune_k05\": {\"status\": \"DONE\"}, \"train_acis_stage1only_k07\": {\"status\": \"DONE\"}, \"eval_stage1only_object_v2_fixed\": {\"status\": \"DONE\"}, \"eval_stage1only_spatial\": {\"status\": \"DONE\"}, \"eval_stage1_only\": {\"status\": \"DONE\"}, \"sanity_acis_prune\": {\"status\": \"PREPARING\"}, \"libero_fullft_seed1\": {\"status\": \"DONE\"}, \"libero_fullft_batch64\": {\"status\": \"DONE\"}, \"eval_random_prune_baseline\": {\"status\": \"PREPARING\"}, \"eval_imm100k_bypass\": {\"status\": \"DONE\"}, \"eval_k07_bypass_v3\": {\"status\": \"DONE\"}, \"eval_k07_bypass_v2\": {\"status\": \"DONE\"}, \"eval_k07_bypass\": {\"status\": \"PREPARING\"}, \"eval_imm_k07_object\": {\"status\": \"DONE\"}, \"mvp_imm_anchor_v7_2\": {\"status\": \"DONE\"}, \"mvp_imm_anchor_v7\": {\"status\": \"DONE\"}, \"libero_fullft_seed0\": {\"status\": \"DONE\"}, \"libero_imm_fullft_k07\": {\"status\": \"DONE\"}, \"libero_imm_fullft_seed0\": {\"status\": \"DONE\"}, \"libero_imm_fullft_100k\": {\"status\": \"DONE\"}, \"libero_imm_fullft_v2\": {\"status\": \"DONE\"}, \"libero_lora_seed0\": {\"status\": \"DONE\"}, \"libero_lora_baseline\": {\"status\": \"DONE\"}, \"libero_imm_twostage_v1\": {\"status\": \"DONE\"}, \"plan_009_token_importance\": {\"status\": \"DONE\"}, \"plan_011_acis_overhead\": {\"status\": \"DONE\"}, \"plan_008_pruning_sweep_v2\": {\"status\": \"DONE\"}, \"plan_005_formal_bound_v2\": {\"status\": \"DONE\"}, \"plan_008_pruning_sweep\": {\"status\": \"DONE\"}, \"plan_005_formal_bound\": {\"status\": \"PREPARING\"}, \"baseline_v6_alpha16\": {\"status\": \"DONE\", \"log_path\": \"~/runs/importance_margin_vla_compress/baseline_v6_alpha16.log\"}, \"mvp_imm_v8c_annealing\": {\"status\": \"DONE\", \"log_path\": \"eval_results/gate_report_v8c_final.json\"}, \"eval_sim_success_rate\": {\"status\": \"PREPARING\"}, \"mvp_imm_v8b_twostage\": {\"status\": \"DONE\"}, \"mvp_imm_anchor_v8_1\": {\"status\": \"DONE\"}, \"imm_two_stage_v9\": {\"status\": \"PREPARING\"}, \"mvp_imm_anchor_v8\": {\"status\": \"DONE\"}, \"mvp_baseline_v5\": {\"status\": \"DONE\"}, \"mvp_imm_anchor_v7_1\": {\"status\": \"DONE\"}, \"mvp_imm_anchor_v6\": {\"status\": \"DONE\"}, \"mvp_imm_anchor_v5\": {\"status\": \"DONE\"}, \"mvp_baseline_v4\": {\"status\": \"DONE\"}, \"mvp_imm_anchor_v4\": {\"status\": \"DONE\"}, \"mvp_baseline_v3\": {\"status\": \"DONE\"}, \"mvp_imm_anchor_v2\": {\"status\": \"DONE\"}, \"mvp_baseline_v2\": {\"status\": \"DONE\"}, \"mvp_imm_anchor\": {\"status\": \"DONE\"}, \"mvp_baseline\": {\"status\": \"DONE\"}, \"eval_openvla_prune_l2norm_k095_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_prune_l2norm_k09_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_prune_l2norm_k05_seed42\": {\"status\": \"DONE\"}, \"eval_openvla_prune_l2norm_k03_seed42\": {\"status\": \"DONE\"}, \"eval_oft_baseline_object_seed42_v2\": {\"status\": \"DONE\"}}, \"count\": 719, \"total\": 719, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.179}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LQRVGTnmPJS7u6Z8YdZRL3`</summary>
+
+```json
+{
+  "command": "grep -i \"random_k05_long_seed43\\|k05_long_seed43\\|k05.*long.*43\" /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/31d15452-68ea-458c-bf2d-f27b003d91c3/tool-results/mcp-agent-ml-research-read_registry-1779663727268.txt | head -20",
+  "description": "Search registry for matching exp_id"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "ce9d3792-faab-4d5b-9311-644951e2cdec",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01M4YLvSc1X9vFXGRzHi99Xf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 789,
+      "cache_read_input_tokens": 37532,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 789
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-24T23:02:21.875Z_
+
+<details><summary>↩ Tool result · `toolu_01LQRVGTnmPJS7u6Z8YdZRL3`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (56.3KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/31d15452-68ea-458c-bf2d-f27b003d91c3/tool-results/b1k5j043d.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_openvla_attn_k09_spatial_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_spatial_seed42.log\"}, \"eval_openvla_attn_k085_object_seed42\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log\"}, \"eval_openvla_attn_k09_object_seed42_v3\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log\"}, \"eval_pi05_l2norm_k085_spatial_seed43_postfix\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k095_long_seed43_postfix\": {\"status\": \"DONE\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"eval_pi05_random_k085_spatial_seed43_postfix\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k07_long_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_goal_seed43_postfix\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k09_object_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_openvla_attn_k09_long_seed42\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k09_goal_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_random_k085_object_seed43_postfix\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k09_spatial_seed43_postfix_v2\": {\"status\": \"RUNNING\"}, \"eval_openvla_attn_k085_long_seed42\": {\"status\": \"RUNNING\"}, \"eval_pi05_random_k09_spatial_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_openvla_attn_k085_spatial_seed42\": {\"status\": \"RUNNING\"}, \"eval_openvla_attn_k085_goal_seed42\": {\"status\": \"RUNNING\"}, \"eval_pi05_l2norm_k03_long_seed43_postfix_v2\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_object_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_goal_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi05_l2norm_k09_spatial_seed43_postfix\": {\"status\": \"DONE\"}, \"eval_pi0
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "4b68447d-a2c3-46b1-abab-44fbe91bb2ad",
+  "tool_use_result": {
+    "stdout": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_openvla_attn_k09_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_spatial_seed42.log\\\"}, \\\"eval_openvla_attn_k085_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_object_seed42.log\\\"}, \\\"eval_openvla_attn_k09_object_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_object_seed42.log\\\"}, \\\"eval_pi05_l2norm_k085_spatial_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k095_long_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\"}, \\\"eval_pi05_random_k085_spatial_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k07_long_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k085_goal_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k09_object_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_attn_k09_long_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k09_goal_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k085_object_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k09_spatial_seed43_postfix_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_openvla_attn_k085_long_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_random_k09_spatial_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_attn_k085_spatial_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_openvla_attn_k085_goal_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k03_long_seed43_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k09_object_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k09_goal_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k09_spatial_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k09_long_seed43_postfix\\\": {\\\"status\\\": \\\"ANALYZING\\\"}, \\\"eval_pi05_random_k085_long_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_long_seed43_postfix.log\\\"}, \\\"eval_openvla_attn_k09_goal_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_pi05_l2norm_k05_long_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k05_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k03_long_seed42_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k07_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k03_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_long_seed43_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k07_long_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_simplerenv_l2norm_k09\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_simplerenv_baseline\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k09_long_seed42_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix_v2.log\\\"}, \\\"eval_pi05_l2norm_k095_long_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k05_long_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_smolvla_metaworld_l2norm_sweep\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_smolvla_metaworld_random_sweep\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k09_long_seed43_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k03_long_seed43_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_smolvla_metaworld_baseline\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_l2norm_k05_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k09_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k09_long.log\\\"}, \\\"eval_pi05_random_k03_spatial_seed42_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/tmp/eval_pi05_random_k03_spatial_postfix_v2.log\\\"}, \\\"eval_pi05_l2norm_k03_long_seed42_postfix\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"eval_pi05_l2norm_k085_long_seed43_postfix\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"eval_pi05_l2norm_k09_long_seed43_postfix\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"diag_openvla_unnorm_key\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"eval_pi05_l2norm_k095_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k05_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_long.log\\\"}, \\\"eval_pi05_random_k07_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k07_long.log\\\"}, \\\"eval_pi05_random_k085_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k095_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_long.log\\\"}, \\\"eval_pi05_l2norm_k03_spatial_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/l2norm_k03_spatial.log\\\"}, \\\"eval_pi05_l2norm_k09_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_l2norm_k09_long_postfix.log\\\"}, \\\"eval_pi05_l2norm_k085_long_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k095_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/tmp/eval_pi05_l2norm_k095_goal_postfix.log\\\"}, \\\"eval_pi05_l2norm_k07_spatial_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k07_object_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k07_spatial_seed42_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k09_spatial_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k03_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k03_goal_seed42_postfix.log\\\"}, \\\"eval_pi05_l2norm_k0925_goal_seed42_postfix\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k0925_goal_seed42_postfix.log\\\"}, \\\"eval_openvla_attn_k05_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_attn_k05_object_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k03_spatial_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k09_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k09_goal_seed42_postfix.log\\\"}, \\\"eval_pi05_l2norm_k07_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed42_postfix.log\\\"}, \\\"eval_pi05_l2norm_k05_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_goal_seed42_postfix.log\\\"}, \\\"eval_pi05_l2norm_k03_goal_seed42_postfix\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_goal_seed42_postfix.log\\\"}, \\\"eval_pi05_random_k095_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k095_goal_seed42_postfix.log\\\"}, \\\"eval_pi05_random_k05_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_goal_seed42_postfix.log\\\"}, \\\"eval_xvla_l2norm_k03_goal_seed42_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k03_goal_seed42_v5.log\\\"}, \\\"eval_pi05_random_k03_long_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k05_spatial_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/tmp/eval_pi05_l2norm_k05_spatial_postfix.log\\\"}, \\\"eval_pi05_random_k085_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k085_goal_seed42_postfix.log\\\"}, \\\"eval_pi05_random_k09_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_goal_seed42_postfix.log\\\"}, \\\"eval_pi05_random_k07_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_goal_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k095_spatial_seed42_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k0925_goal_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k0925_object_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k07_spatial_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k03_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k03_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_long_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_spatial_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k085_spatial_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k0925_goal_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_spatial_seed42\\\": {\\\"status\\\": \\\"DEPLOYED\\\"}, \\\"eval_openvla_attn_k05_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k03_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k07_spatial_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k05_spatial_seed42_postfix_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_spatial_seed42_postfix_v3.log\\\"}, \\\"eval_pi05_l2norm_k05_spatial_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k085_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_random_k085_long_seed42.log\\\"}, \\\"eval_pi05_random_k09_spatial_seed42_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_random_k05_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k085_spatial_seed42_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k03_goal_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k03_goal_seed43_v2.log\\\"}, \\\"eval_xvla_l2norm_k03_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k03_goal_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k085_object_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_long_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_spatial_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k07_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k05_spatial_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k085_goal_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.85_libero_goal_seed43.json\\\"}, \\\"eval_pi05_random_k095_goal_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k05_spatial_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_spatial_seed43.log\\\"}, \\\"eval_xvla_l2norm_k05_goal_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/eval_xvla_l2norm_k05_goal_seed43.log\\\"}, \\\"eval_pi05_random_k05_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_goal_seed42_v2.log\\\"}, \\\"eval_pi05_l2norm_k07_goal_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\\\"}, \\\"eval_xvla_l2norm_k07_goal_seed42_v2\\\": {\\\"status\\\": \\\"DEPLOYED\\\"}, \\\"eval_pi05_l2norm_k085_goal_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/tmp/eval_pi05_l2norm_k085_goal_seed43.log\\\"}, \\\"eval_pi05_random_k085_spatial_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k085_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_prune_k0.85_libero_object.json\\\"}, \\\"eval_xvla_random_k085_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/tmp/eval_xvla_random_k085_spatial_seed42.log\\\"}, \\\"eval_xvla_random_k085_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"tmux output only (no log file)\\\"}, \\\"eval_pi05_random_k095_object_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k07_object_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_l2norm_k05_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k09_object_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_object_seed42_v2.log\\\"}, \\\"eval_pi05_random_k05_object_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k07_object_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_long_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/tmp/eval_xvla_l2norm_k05_long_seed43.log\\\"}, \\\"eval_pi05_l2norm_k05_long_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k07_goal_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43.log\\\"}, \\\"eval_pi05_random_k05_spatial_seed42_postfix_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k09_spatial_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k05_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k09_object_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k05_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k05_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_spatial_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k05_goal_seed43_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_goal_seed43_v4.log\\\"}, \\\"eval_pi05_random_k05_spatial_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_attention_k05_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_baseline_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k03_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/eval_pi05_random_k03_goal_seed42.log\\\"}, \\\"eval_pi05_attention_k05_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/tmp/eval_pi05_attention_k05_object_seed42.log\\\"}, \\\"eval_openvla_l2norm_k05_goal_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k05_long_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log\\\"}, \\\"eval_pi05_random_k095_spatial_seed42_postfix\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_object_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_l2norm_k05_object_seed43.log\\\"}, \\\"eval_pi05_attention_k05_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/tmp/eval_pi05_attention_k05_spatial_seed42.log\\\"}, \\\"eval_pi05_attention_k05_goal_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_attention_k0.50_libero_goal_seed43.json\\\"}, \\\"eval_pi05_random_k07_object_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/tmp/eval_pi05_random_k07_object_seed42_v2.log\\\"}, \\\"eval_pi05_l2norm_k095_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k03_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/eval_pi05_l2norm_k03_goal_seed42.log\\\"}, \\\"eval_xvla_random_k05_goal_seed43_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/tmp/eval_xvla_random_k05_goal_seed43_v3.log\\\"}, \\\"eval_xvla_random_k05_goal_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k05_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k05_goal_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k05_long_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k0925_spatial_seed42_unreg\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k05_long_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_long_seed42_v2.log\\\"}, \\\"eval_pi05_attention_k05_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k03_goal_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k03_goal_seed42_v4.log\\\"}, \\\"eval_xvla_random_k05_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k05_object_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k085_goal_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k03_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_xvla_l2norm_k03_spatial_seed42.log\\\"}, \\\"eval_xvla_l2norm_k05_goal_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_spatial_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k07_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k0925_goal_seed42_w38\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_attn_last_goal_k03\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k07_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k095_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k09_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k0925_goal_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k085_spatial_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k0925_goal_seed42_w38\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_attn_mean_goal_k03\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k0925_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k0925_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k0925_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_baseline_goal_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_spatial_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_l2norm_k05_long_seed42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_l2norm_k03_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k05_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k07_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k09_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k095_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_attn_rollout_goal_k05_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_attn_mean_goal_k05_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_attn_last_goal_k05_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_random_goal_k05_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k03_goal_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_attn_last_obj_k03\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_attn_rollout_obj_k03\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_attn_mean_spatial_k03\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_attn_last_spatial_k03\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_e5_xvla_attn_mean_obj_k03\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_baseline_goal_seed42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_find_pi05_path\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_openvla_script_model_path\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_l2norm_k05_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k05_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k0925_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_openvla_baseline_goal_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k085_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k0925_goal_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k0925_goal_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_openvla_script_args\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_openvla_shards_check\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_openvla_status_v3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k09_goal_seed42_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k085_goal_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k05_goal_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_read_long_seed43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_read_goal_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_read_cqa1_goal_results\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_read_goal_results\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_l2norm_k085_object_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_l2norm_k03_object_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k03_object_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k085_object_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_cqa1_find_goal_k09\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_westd41074_find_goal_logs\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_rollout_spatial_k07\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_mean_long_k05_seed43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_last_long_k05_seed43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_rollout_long_k05_w38\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_openvla_download_check\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_rollout_obj_k07_w27\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_rollout_goal_k05\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_mean_goal_k05\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_rollout_long_k05_w27\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k03_long_seed43_v5\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_mean_long_k05\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_last_goal_k05\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_mean_spatial_k05\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k09_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k07_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k05_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_long_seed43_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_long_seed43_v4.log\\\"}, \\\"eval_pi05_random_k085_long_seed43_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_long_seed43_v3.log\\\"}, \\\"eval_pi05_l2norm_k07_long_seed43_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed43_v4.log\\\"}, \\\"eval_e5_xvla_attn_rollout_spatial_k05\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k03_long_seed43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k05_long_seed43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k05_object_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_l2norm_k07_object_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_l2norm_k05_object_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_last_spatial_k05\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_last_long_k05\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k07_object_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_last_obj_k07\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_rollout_obj_k05\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_mean_obj_k05\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_last_obj_k05\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_l2norm_k07_goal_seed42\\\": {\\\"status\\\": \\\"DEPLOYED\\\", \\\"log_path\\\": \\\"logs/eval_pi05_l2norm_k07_goal_seed42.log\\\"}, \\\"eval_pi05_random_k09_goal_seed42\\\": {\\\"status\\\": \\\"DEPLOYED\\\", \\\"log_path\\\": \\\"N/A - stale\\\"}, \\\"diag_cqa1_logs\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_e5_xvla_attn_mean_obj_k05_w27\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_xvla_l2norm_k07_long_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_long_seed43_v3_r\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k085_long_seed43_v2_r\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_l2norm_k07_long_seed43_v3_r\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k03_long_seed43_v4_r\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_find_e5_westd27271\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_transfer_e5_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_transfer_e5_script\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_westd38929_e5_check\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"diag_find_pi05_script\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_l2norm_k085_long_seed43_v3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k085_long_seed43_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_l2norm_k07_long_seed43_v3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k03_long_seed43_v4\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_xvla_l2norm_k07_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k09_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k095_object_seed42_v3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_xvla_random_k07_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k095_object_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k095_object_seed42_v2.log\\\"}, \\\"eval_pi05_random_k09_object_seed43_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_object_seed43_v4.log\\\"}, \\\"eval_xvla_random_k07_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/eval_xvla_random_k07_spatial_seed42.log\\\"}, \\\"eval_xvla_random_k095_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k09_object_seed43_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k05_long_seed43_v3\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_random_k05_long_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k085_long_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k07_long_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k03_long_seed43_v3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_long_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k05_spatial_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k05_spatial_seed43.log\\\"}, \\\"eval_xvla_baseline_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_baseline_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_prune_k09_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k09_long_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k05_spatial_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_spatial_seed43.log\\\"}, \\\"eval_pi05_random_k085_spatial_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_spatial_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k095_spatial_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k07_long_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k03_long_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_long_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k095_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k03_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_l2norm_k03_long_seed42.log\\\"}, \\\"eval_xvla_random_k095_object_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k03_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k095_object_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_pi05_attention_k07_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_smolvla_baseline_spatial_seed42_cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/smolvla_baseline_spatial_s42.log\\\"}, \\\"eval_xvla_random_k07_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/eval_xvla_random_k07_goal_seed42.log\\\"}, \\\"eval_pi05_random_k09_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/eval_pi05_random_k09_long_seed42.log\\\"}, \\\"eval_pi05_random_k085_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/eval_pi05_random_k085_long_seed42.log\\\"}, \\\"eval_pi05_l2norm_k09_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_random_k07_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k09_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k09_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_xvla_random_k095_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_random_k095_spatial.log\\\"}, \\\"eval_xvla_random_k095_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/xvla_random_k095_goal.log\\\"}, \\\"eval_openvla_baseline_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k095_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"/root/runs/importance_margin_vla_compress/eval_pi05_l2norm_k095_spatial_seed42.log\\\"}, \\\"eval_pi05_random_k0925_object_seed43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_smolvla_random_k09_spatial_seed42_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_smolvla_l2norm_k09_spatial_seed42_cqa1\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_smolvla_baseline_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"eval_pi05_l2norm_k085_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"eval_results/pi05_l2norm_k0.85_libero_10_seed42.json\\\"}, \\\"eval_pi05_random_k095_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"eval_results/pi05_random_k0.95_libero_10_seed42.json\\\"}, \\\"eval_pi05_random_k085_goal_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"eval_results/pi05_random_k0.85_libero_goal_seed42.json\\\"}, \\\"eval_pi05_l2norm_k07_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"eval_results/pi05_l2norm_k0.70_libero_10_seed42.json\\\"}, \\\"eval_pi05_l2norm_k0925_spatial_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k0925_spatial_seed43.log\\\"}, \\\"eval_pi05_l2norm_k09_object_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"N/A - stale\\\"}, \\\"eval_pi05_l2norm_k095_object_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"N/A - stale\\\"}, \\\"eval_pi05_l2norm_k0925_object_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"N/A - stale\\\"}, \\\"eval_pi05_l2norm_k095_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"N/A - stale\\\"}, \\\"eval_pi05_l2norm_k085_goal_seed42_w38929\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/pi05_l2norm_k085_goal_s42.log\\\"}, \\\"eval_pi05_baseline_long_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"N/A - stale\\\"}, \\\"random_k095_goal_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/eval_pi05_random_k095_goal_seed42.log\\\"}, \\\"pi05_l2norm_k09_goal_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"log_path\\\": \\\"logs/eval_pi05_l2norm_k09_goal_seed42.log\\\"}, \\\"eval_pi05_random_k085_goal_seed42_v2\\\": {\\\"status\\\": \\\"D",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false,
+    "persistedOutputPath": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/31d15452-68ea-458c-bf2d-f27b003d91c3/tool-results/b1k5j043d.txt",
+    "persistedOutputSize": 57695
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LXhnP5kTfv6qwScXKcFNXg`</summary>
+
+```json
+{
+  "command": "grep -o '\"eval_pi05_random_k05_long_seed43[^\"]*\":[^}]*}' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/31d15452-68ea-458c-bf2d-f27b003d91c3/tool-results/mcp-agent-ml-research-read_registry-1779663727268.txt",
+  "description": "Search for exact exp_id in registry dump"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "e6f9e74d-fa20-48a5-b7ac-4a0d7934cb17",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01GUWwVeem6hshmkyX76n8NS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1552,
+      "cache_read_input_tokens": 38321,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1552
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-24T23:02:29.430Z_
+
+<details><summary>↩ Tool result · `toolu_01LXhnP5kTfv6qwScXKcFNXg`</summary>
+
+```text
+"eval_pi05_random_k05_long_seed43_postfix\": {\"status\": \"RUNNING\"}
+"eval_pi05_random_k05_long_seed43\": {\"status\": \"PREPARING\"}
+"eval_pi05_random_k05_long_seed43_v3\": {\"status\": \"PREPARING\"}
+"eval_pi05_random_k05_long_seed43_v2\": {\"status\": \"DONE\"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "37bedbd7-97a7-43aa-9f6d-5a3f05af2743",
+  "tool_use_result": {
+    "stdout": "\"eval_pi05_random_k05_long_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\"}\n\"eval_pi05_random_k05_long_seed43\\\": {\\\"status\\\": \\\"PREPARING\\\"}\n\"eval_pi05_random_k05_long_seed43_v3\\\": {\\\"status\\\": \\\"PREPARING\\\"}\n\"eval_pi05_random_k05_long_seed43_v2\\\": {\\\"status\\\": \\\"DONE\\\"}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "d35ab284-1ecf-4621-95bf-f873ce3425d1",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_011K4p3Rz2gkQDsjTpkNpzC1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 420,
+      "cache_read_input_tokens": 39873,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 420
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01X2Gi5B9hi7jcFeLicQe16a`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "eval_pi05_random_k05_long_seed43_postfix"
+  },
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "a2f299a3-c055-4dd1-a735-278727f4520f",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_011K4p3Rz2gkQDsjTpkNpzC1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 420,
+      "cache_read_input_tokens": 39873,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 420
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T23:02:36.604Z_
+
+<details><summary>↩ Tool result · `toolu_01X2Gi5B9hi7jcFeLicQe16a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5833}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "ba0068f7-420a-4db9-a115-87b59a9729b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5833}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5833}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RY8rvtzSjCyteGjYH2prSH`</summary>
+
+```json
+{
+  "command": "grep -o '\"eval_pi05_random_k05_long_seed43_postfix\":[^,]*,' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/31d15452-68ea-458c-bf2d-f27b003d91c3/tool-results/b1k5j043d.txt | head -5",
+  "description": "Look for log_path of postfix exp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "e4b9e6e7-4f88-4dc2-a055-126278aef6d5",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014zC7xenhKFhiskT3avY5WC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 342,
+      "cache_read_input_tokens": 40293,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 342
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-24T23:02:41.420Z_
+
+<details><summary>↩ Tool result · `toolu_01RY8rvtzSjCyteGjYH2prSH`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "233472af-48b4-4f60-b267-e31a2727b435",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WCwdULxoUeMpZU2zUFK3pH`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/31d15452-68ea-458c-bf2d-f27b003d91c3/tool-results/b1k5j043d.txt') as f:\n    outer = json.load(f)\ndata = json.loads(outer['result'])\nexps = data['data']['experiments']\nfor k in exps:\n    if 'k05_long_seed43' in k:\n        print(k, exps[k])\n\"",
+  "description": "Find matching experiments in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "f7318e7b-8da1-4bc4-9ce4-8ff418af9108",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017JMLD3ctcyuF9gY2eeiNio",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 261,
+      "cache_read_input_tokens": 40635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 261
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T23:02:46.428Z_
+
+<details><summary>↩ Tool result · `toolu_01WCwdULxoUeMpZU2zUFK3pH`</summary>
+
+```text
+eval_pi05_l2norm_k05_long_seed43_postfix {'status': 'DONE'}
+eval_pi05_random_k05_long_seed43_postfix {'status': 'RUNNING'}
+eval_xvla_l2norm_k05_long_seed43 {'status': 'DONE', 'log_path': '/tmp/eval_xvla_l2norm_k05_long_seed43.log'}
+eval_pi05_l2norm_k05_long_seed43 {'status': 'DONE'}
+eval_xvla_random_k05_long_seed43 {'status': 'DONE', 'log_path': '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log'}
+eval_pi05_random_k05_long_seed43 {'status': 'PREPARING'}
+eval_pi05_random_k05_long_seed43_v3 {'status': 'PREPARING'}
+eval_pi05_random_k05_long_seed43_v2 {'status': 'DONE'}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "d40b3cc2-3256-4868-a4fa-7176b0bc286f",
+  "tool_use_result": {
+    "stdout": "eval_pi05_l2norm_k05_long_seed43_postfix {'status': 'DONE'}\neval_pi05_random_k05_long_seed43_postfix {'status': 'RUNNING'}\neval_xvla_l2norm_k05_long_seed43 {'status': 'DONE', 'log_path': '/tmp/eval_xvla_l2norm_k05_long_seed43.log'}\neval_pi05_l2norm_k05_long_seed43 {'status': 'DONE'}\neval_xvla_random_k05_long_seed43 {'status': 'DONE', 'log_path': '/root/autodl-tmp/importance_margin_vla_compress/logs/eval_xvla_random_k05_long_seed43.log'}\neval_pi05_random_k05_long_seed43 {'status': 'PREPARING'}\neval_pi05_random_k05_long_seed43_v3 {'status': 'PREPARING'}\neval_pi05_random_k05_long_seed43_v2 {'status': 'DONE'}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GcJoeKVWd8Sbxk5SGFF5hA`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "account": "root",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/logs/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "d0e4db22-cfd2-4208-9aa4-88d280f7937c",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PTboRFfRegGVo69sgDvcYq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 656,
+      "cache_read_input_tokens": 40896,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 656
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T23:02:52.139Z_
+
+<details><summary>↩ Tool result · `toolu_01GcJoeKVWd8Sbxk5SGFF5hA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3856\\ndrwxr-xr-x  2 root root   8192 May 25 05:33 .\\ndrwxr-xr-x 13 root root   4096 May 23 15:22 ..\\n-rw-r--r--  1 root root   2076 May 17 15:59 batch64_v2.log\\n-rw-r--r--  1 root root   7831 May 17 22:30 batch64_v2_resume.log\\n-rw-r--r--  1 root root   4430 May 18 00:48 dryrun_pi05.log\\n-rw-r--r--  1 root root   2113 May 18 00:54 dryrun_pi05_v2.log\\n-rw-r--r--  1 root root   6299 May 18 00:58 dryrun_pi05_v3.log\\n-rw-r--r--  1 root root  15092 May 19 00:11 eval_acis_k05_v2.log\\n-rw-r--r--  1 root root  10432 May 18 00:50 eval_geometric_prior_k05.log\\n-rw-r--r--  1 root root  12575 May 18 00:50 eval_geometric_prior_k07.log\\n-rw-r--r--  1 root root  11049 May 18 00:50 eval_geometric_prior_k09.log\\n-rw-r--r--  1 root root     40 May 20 22:33 eval_k03_seed43.log\\n-rw-r--r--  1 root root     40 May 20 22:33 eval_k03_seed44.log\\n-rw-r--r--  1 root root   7820 May 25 00:09 eval_l2norm_k09_long_postfix.log\\n-rw-r--r--  1 root root   7822 May 25 00:51 eval_l2norm_k09_long_postfix_v2.log\\n-rw-r--r--  1 root root   2540 May 18 00:41 eval_pi05_baseline.log\\n-rw-r--r--  1 root root   4598 May 22 20:19 eval_pi05_baseline_goal_seed42.log\\n-rw-r--r--  1 root root   4116 May 22 20:22 eval_pi05_baseline_long_seed42.log\\n-rw-r--r--  1 root root   7470 May 24 06:33 eval_pi05_l2norm_k03_goal_seed42.log\\n-rw-r--r--  1 root root   8848 May 24 21:35 eval_pi05_l2norm_k05_spatial_seed42_postfix.log\\n-rw-r--r--  1 root root   7481 May 23 07:14 eval_pi05_l2norm_k07_goal_seed42.log\\n-rw-r--r--  1 root root   4620 May 22 07:17 eval_pi05_l2norm_k085_object_seed42.log\\n-rw-r--r--  1 root root    393 May 23 09:38 eval_pi05_l2norm_k085_spatial_seed43.log\\n-rw-r--r--  1 root root   7504 May 24 06:45 eval_pi05_l2norm_k095_goal_seed42.log\\n-rw-r--r--  1 root root   7470 May 24 07:25 eval_pi05_random_k03_goal_seed42.log\\n-rw-r--r--  1 root root   7465 May 23 08:10 eval_pi05_random_k03_goal_seed43.log\\n-rw-r--r--  1 root root   4533 May 22 07:16 eval_pi05_random_k03_object_seed43.log\\n-rw-r--r--  1 root root   7864 May 24 16:27 eval_pi05_random_k03_spatial_seed42_postfix.log\\n-rw-r--r--  1 root root   2176 May 24 05:50 eval_pi05_random_k05_spatial_seed42.log\\n-rw-r--r--  1 root root   7880 May 24 12:39 eval_pi05_random_k05_spatial_seed42_postfix_v3.log\\n-rw-r--r--  1 root root   7881 May 24 08:59 eval_pi05_random_k07_object_seed42_v3.log\\n-rw-r--r--  1 root root   7881 May 24 15:43 eval_pi05_random_k07_spatial_seed42_postfix.log\\n-rw-r--r--  1 root root   2671 May 22 23:49 eval_pi05_random_k085_goal_seed42_v2.log\\n-rw-r--r--  1 root root   4733 May 25 07:00 eval_pi05_random_k085_object_seed43_postfix.log\\n-rw-r--r--  1 root root   7877 May 24 13:00 eval_pi05_random_k085_spatial_seed42_postfix_v2.log\\n-rw-r--r--  1 root root    393 May 23 09:38 eval_pi05_random_k085_spatial_seed43.log\\n-rw-r--r--  1 root root   7491 May 23 06:53 eval_pi05_random_k095_goal_seed42.log\\n-rw-r--r--  1 root root   8898 May 22 17:53 eval_pi05_random_k095_long_seed42.log\\n-rw-r--r--  1 root root   7879 May 24 09:58 eval_pi05_random_k095_object_seed42_v2.log\\n-rw-r--r--  1 root root   7796 May 24 09:32 eval_pi05_random_k09_object_seed42_v2.log\\n-rw-r--r--  1 root root   7878 May 24 13:12 eval_pi05_random_k09_spatial_seed42_postfix_v2.log\\n-rw-r--r--  1 root root 306949 May 20 15:56 eval_smart_compress_m128_seed43.log\\n-rw-r--r--  1 root root 307600 May 20 15:54 eval_smart_compress_m16_seed43.log\\n-rw-r--r--  1 root root 307321 May 20 17:15 eval_smart_compress_m16_seed44.log\\n-rw-r--r--  1 root root  34053 May 19 19:07 eval_smart_compress_m32_official.log\\n-rw-r--r--  1 root root  34192 May 19 19:01 eval_smart_compress_m32_seed44.log\\n-rw-r--r--  1 root root  34264 May 19 19:01 eval_smart_compress_m64_seed44.log\\n-rw-r--r--  1 root root  34090 May 19 19:02 eval_smart_compress_m96_seed44.log\\n-rw-r--r--  1 root root  35535 May 21 10:10 eval_xvla_baseline_long_seed42.log\\n-rw-r--r--  1 root root  34235 May 21 10:14 eval_xvla_goal_k05_seed42.log\\n-rw-r--r--  1 root root  34383 May 21 10:04 eval_xvla_goal_k09_seed42.log\\n-rw-r--r--  1 root \\n\\n... [截断: 输出过长，省略 727 字符] ...\\n\\n1 19:58 eval_xvla_l2norm_k03_object_seed43.log\\n-rw-r--r--  1 root root  34533 May 21 17:09 eval_xvla_l2norm_k05_object_seed42.log\\n-rw-r--r--  1 root root  34756 May 21 16:04 eval_xvla_l2norm_k07_object_seed42_v2.log\\n-rw-r--r--  1 root root  34777 May 21 19:23 eval_xvla_l2norm_k07_object_seed43.log\\n-rw-r--r--  1 root root  34738 May 21 21:10 eval_xvla_l2norm_k07_object_seed44.log\\n-rw-r--r--  1 root root  33838 May 21 04:53 eval_xvla_prune_k01_seed42.log\\n-rw-r--r--  1 root root  33838 May 21 03:23 eval_xvla_prune_k01_seed43.log\\n-rw-r--r--  1 root root  33838 May 21 03:24 eval_xvla_prune_k01_seed44.log\\n-rw-r--r--  1 root root  33919 May 21 01:29 eval_xvla_prune_k02_seed43.log\\n-rw-r--r--  1 root root  34887 May 21 19:21 eval_xvla_random_k03_object_seed43.log\\n-rw-r--r--  1 root root  34835 May 21 21:05 eval_xvla_random_k03_object_seed44.log\\n-rw-r--r--  1 root root  34949 May 21 12:26 eval_xvla_random_k05_object_seed42.log\\n-rw-r--r--  1 root root  34953 May 21 15:51 eval_xvla_random_k05_object_seed43.log\\n-rw-r--r--  1 root root  34928 May 21 17:17 eval_xvla_random_k05_object_seed44.log\\n-rw-r--r--  1 root root  34870 May 21 22:38 eval_xvla_random_k07_object_seed42.log\\n-rw-r--r--  1 root root  34859 May 21 16:49 eval_xvla_random_k07_object_seed43_v2.log\\n-rw-r--r--  1 root root  34867 May 21 19:56 eval_xvla_random_k07_object_seed44.log\\n-rw-r--r--  1 root root  35026 May 21 09:06 eval_xvla_spatial_k05_seed42.log\\n-rw-r--r--  1 root root  35296 May 21 08:41 eval_xvla_spatial_k09_seed42.log\\n-rw-r--r--  1 root root  19116 May 17 13:08 fullft_batch64.log\\n-rw-r--r--  1 root root   3171 May 18 00:12 geometric_prior_k09_dryrun.log\\n-rw-r--r--  1 root root   2457 May 18 15:00 inference_latency_comparison.log\\n-rw-r--r--  1 root root   7874 May 24 21:35 l2norm_k03_spatial.log\\n-rw-r--r--  1 root root   5488 May 20 19:52 oft_cv_computation.log\\n-rw-r--r--  1 root root 174587 May 23 04:58 openvla_baseline_spatial_s42.log\\n-rw-r--r--  1 root root    700 May 22 22:04 openvla_l2norm_k095_spatial_s42.log\\n-rw-r--r--  1 root root    613 May 22 22:03 openvla_l2norm_k09_spatial_s42.log\\n-rw-r--r--  1 root root   7761 May 23 01:19 pi05_baseline_long_s42_cqa1.log\\n-rw-r--r--  1 root root   7825 May 23 10:59 pi05_l2norm_k085_long_s42_cqa1.log\\n-rw-r--r--  1 root root   7849 May 23 04:44 pi05_l2norm_k095_long_s42_cqa1.log\\n-rw-r--r--  1 root root   7824 May 23 07:58 pi05_l2norm_k09_long_s42_cqa1.log\\n-rw-r--r--  1 root root   7479 May 23 02:43 pi05_random_k05_goal_s42.log\\n-rw-r--r--  1 root root   7489 May 23 02:33 pi05_random_k07_goal_s42.log\\n-rw-r--r--  1 root root   7808 May 25 06:57 random_k05_seed43.log\\n-rw-r--r--  1 root root   7812 May 25 06:29 random_k07_seed43.log\\n-rw-r--r--  1 root root   7810 May 25 06:43 random_k095_seed43.log\\n-rw-r--r--  1 root root 222198 May 19 16:14 smart_compress_m32_seed44.log\\n-rw-r--r--  1 root root 222200 May 19 16:01 smart_compress_m96_seed44.log\\n-rw-r--r--  1 root root   1499 May 23 04:51 smolvla_baseline_goal_s42.log\\n-rw-r--r--  1 root root   1502 May 23 04:50 smolvla_baseline_spatial_s42.log\\n-rw-r--r--  1 root root   1570 May 23 04:51 smolvla_l2norm_k09_goal_s42.log\\n-rw-r--r--  1 root root   1573 May 23 04:51 smolvla_l2norm_k09_spatial_s42.log\\n-rw-r--r--  1 root root   1575 May 23 04:51 smolvla_random_k09_goal_s42.log\\n-rw-r--r--  1 root root   1578 May 23 04:51 smolvla_random_k09_spatial_s42.log\\n-rw-r--r--  1 root root    904 May 22 20:37 test_pi05_quick.log\\n-rw-r--r--  1 root root   4145 May 22 20:41 test_pi05_quick_v2.log\\n-rw-r--r--  1 root root 222264 May 19 17:20 train_smart_compress_m32_official.log\\n-rw-r--r--  1 root root 222199 May 19 16:15 train_smart_compress_m64_seed44.log\\n-rw-r--r--  1 root root   2152 May 22 20:29 verify_fix_object_5ep.log\\n-rw-r--r--  1 root root   2152 May 22 20:34 verify_fix_v2_object_5ep.log\\n-rw-r--r--  1 root root  34540 May 20 21:43 xvla_prune_k05_seed43.log\\n-rw-r--r--  1 root root  34761 May 20 21:22 xvla_prune_k07_seed43.log\\n-rw-r--r--  1 root root  35358 May 20 20:44 xvla_prune_k09_seed43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "292d97e4-ef34-47ca-ab54-e5ee74798d00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 3856\\\\ndrwxr-xr-x  2 root root   8192 May 25 05:33 .\\\\ndrwxr-xr-x 13 root root   4096 May 23 15:22 ..\\\\n-rw-r--r--  1 root root   2076 May 17 15:59 batch64_v2.log\\\\n-rw-r--r--  1 root root   7831 May 17 22:30 batch64_v2_resume.log\\\\n-rw-r--r--  1 root root   4430 May 18 00:48 dryrun_pi05.log\\\\n-rw-r--r--  1 root root   2113 May 18 00:54 dryrun_pi05_v2.log\\\\n-rw-r--r--  1 root root   6299 May 18 00:58 dryrun_pi05_v3.log\\\\n-rw-r--r--  1 root root  15092 May 19 00:11 eval_acis_k05_v2.log\\\\n-rw-r--r--  1 root root  10432 May 18 00:50 eval_geometric_prior_k05.log\\\\n-rw-r--r--  1 root root  12575 May 18 00:50 eval_geometric_prior_k07.log\\\\n-rw-r--r--  1 root root  11049 May 18 00:50 eval_geometric_prior_k09.log\\\\n-rw-r--r--  1 root root     40 May 20 22:33 eval_k03_seed43.log\\\\n-rw-r--r--  1 root root     40 May 20 22:33 eval_k03_seed44.log\\\\n-rw-r--r--  1 root root   7820 May 25 00:09 eval_l2norm_k09_long_postfix.log\\\\n-rw-r--r--  1 root root   7822 May 25 00:51 eval_l2norm_k09_long_postfix_v2.log\\\\n-rw-r--r--  1 root root   2540 May 18 00:41 eval_pi05_baseline.log\\\\n-rw-r--r--  1 root root   4598 May 22 20:19 eval_pi05_baseline_goal_seed42.log\\\\n-rw-r--r--  1 root root   4116 May 22 20:22 eval_pi05_baseline_long_seed42.log\\\\n-rw-r--r--  1 root root   7470 May 24 06:33 eval_pi05_l2norm_k03_goal_seed42.log\\\\n-rw-r--r--  1 root root   8848 May 24 21:35 eval_pi05_l2norm_k05_spatial_seed42_postfix.log\\\\n-rw-r--r--  1 root root   7481 May 23 07:14 eval_pi05_l2norm_k07_goal_seed42.log\\\\n-rw-r--r--  1 root root   4620 May 22 07:17 eval_pi05_l2norm_k085_object_seed42.log\\\\n-rw-r--r--  1 root root    393 May 23 09:38 eval_pi05_l2norm_k085_spatial_seed43.log\\\\n-rw-r--r--  1 root root   7504 May 24 06:45 eval_pi05_l2norm_k095_goal_seed42.log\\\\n-rw-r--r--  1 root root   7470 May 24 07:25 eval_pi05_random_k03_goal_seed42.log\\\\n-rw-r--r--  1 root root   7465 May 23 08:10 eval_pi05_random_k03_goal_seed43.log\\\\n-rw-r--r--  1 root root   4533 May 22 07:16 eval_pi05_random_k03_object_seed43.log\\\\n-rw-r--r--  1 root root   7864 May 24 16:27 eval_pi05_random_k03_spatial_seed42_postfix.log\\\\n-rw-r--r--  1 root root   2176 May 24 05:50 eval_pi05_random_k05_spatial_seed42.log\\\\n-rw-r--r--  1 root root   7880 May 24 12:39 eval_pi05_random_k05_spatial_seed42_postfix_v3.log\\\\n-rw-r--r--  1 root root   7881 May 24 08:59 eval_pi05_random_k07_object_seed42_v3.log\\\\n-rw-r--r--  1 root root   7881 May 24 15:43 eval_pi05_random_k07_spatial_seed42_postfix.log\\\\n-rw-r--r--  1 root root   2671 May 22 23:49 eval_pi05_random_k085_goal_seed42_v2.log\\\\n-rw-r--r--  1 root root   4733 May 25 07:00 eval_pi05_random_k085_object_seed43_postfix.log\\\\n-rw-r--r--  1 root root   7877 May 24 13:00 eval_pi05_random_k085_spatial_seed42_postfix_v2.log\\\\n-rw-r--r--  1 root root    393 May 23 09:38 eval_pi05_random_k085_spatial_seed43.log\\\\n-rw-r--r--  1 root root   7491 May 23 06:53 eval_pi05_random_k095_goal_seed42.log\\\\n-rw-r--r--  1 root root   8898 May 22 17:53 eval_pi05_random_k095_long_seed42.log\\\\n-rw-r--r--  1 root root   7879 May 24 09:58 eval_pi05_random_k095_object_seed42_v2.log\\\\n-rw-r--r--  1 root root   7796 May 24 09:32 eval_pi05_random_k09_object_seed42_v2.log\\\\n-rw-r--r--  1 root root   7878 May 24 13:12 eval_pi05_random_k09_spatial_seed42_postfix_v2.log\\\\n-rw-r--r--  1 root root 306949 May 20 15:56 eval_smart_compress_m128_seed43.log\\\\n-rw-r--r--  1 root root 307600 May 20 15:54 eval_smart_compress_m16_seed43.log\\\\n-rw-r--r--  1 root root 307321 May 20 17:15 eval_smart_compress_m16_seed44.log\\\\n-rw-r--r--  1 root root  34053 May 19 19:07 eval_smart_compress_m32_official.log\\\\n-rw-r--r--  1 root root  34192 May 19 19:01 eval_smart_compress_m32_seed44.log\\\\n-rw-r--r--  1 root root  34264 May 19 19:01 eval_smart_compress_m64_seed44.log\\\\n-rw-r--r--  1 root root  34090 May 19 19:02 eval_smart_compress_m96_seed44.log\\\\n-rw-r--r--  1 root root  35535 May 21 10:10 eval_xvla_baseline_long_seed42.log\\\\n-rw-r--r--  1 root root  34235 May 21 10:14 eval_xvla_goal_k05_seed42.log\\\\n-rw-r--r--  1 root root  34383 May 21 10:04 eval_xvla_goal_k09_seed42.log\\\\n-rw-r--r--  1 root \\\\n\\\\n... [截断: 输出过长，省略 727 字符] ...\\\\n\\\\n1 19:58 eval_xvla_l2norm_k03_object_seed43.log\\\\n-rw-r--r--  1 root root  34533 May 21 17:09 eval_xvla_l2norm_k05_object_seed42.log\\\\n-rw-r--r--  1 root root  34756 May 21 16:04 eval_xvla_l2norm_k07_object_seed42_v2.log\\\\n-rw-r--r--  1 root root  34777 May 21 19:23 eval_xvla_l2norm_k07_object_seed43.log\\\\n-rw-r--r--  1 root root  34738 May 21 21:10 eval_xvla_l2norm_k07_object_seed44.log\\\\n-rw-r--r--  1 root root  33838 May 21 04:53 eval_xvla_prune_k01_seed42.log\\\\n-rw-r--r--  1 root root  33838 May 21 03:23 eval_xvla_prune_k01_seed43.log\\\\n-rw-r--r--  1 root root  33838 May 21 03:24 eval_xvla_prune_k01_seed44.log\\\\n-rw-r--r--  1 root root  33919 May 21 01:29 eval_xvla_prune_k02_seed43.log\\\\n-rw-r--r--  1 root root  34887 May 21 19:21 eval_xvla_random_k03_object_seed43.log\\\\n-rw-r--r--  1 root root  34835 May 21 21:05 eval_xvla_random_k03_object_seed44.log\\\\n-rw-r--r--  1 root root  34949 May 21 12:26 eval_xvla_random_k05_object_seed42.log\\\\n-rw-r--r--  1 root root  34953 May 21 15:51 eval_xvla_random_k05_object_seed43.log\\\\n-rw-r--r--  1 root root  34928 May 21 17:17 eval_xvla_random_k05_object_seed44.log\\\\n-rw-r--r--  1 root root  34870 May 21 22:38 eval_xvla_random_k07_object_seed42.log\\\\n-rw-r--r--  1 root root  34859 May 21 16:49 eval_xvla_random_k07_object_seed43_v2.log\\\\n-rw-r--r--  1 root root  34867 May 21 19:56 eval_xvla_random_k07_object_seed44.log\\\\n-rw-r--r--  1 root root  35026 May 21 09:06 eval_xvla_spatial_k05_seed42.log\\\\n-rw-r--r--  1 root root  35296 May 21 08:41 eval_xvla_spatial_k09_seed42.log\\\\n-rw-r--r--  1 root root  19116 May 17 13:08 fullft_batch64.log\\\\n-rw-r--r--  1 root root   3171 May 18 00:12 geometric_prior_k09_dryrun.log\\\\n-rw-r--r--  1 root root   2457 May 18 15:00 inference_latency_comparison.log\\\\n-rw-r--r--  1 root root   7874 May 24 21:35 l2norm_k03_spatial.log\\\\n-rw-r--r--  1 root root   5488 May 20 19:52 oft_cv_computation.log\\\\n-rw-r--r--  1 root root 174587 May 23 04:58 openvla_baseline_spatial_s42.log\\\\n-rw-r--r--  1 root root    700 May 22 22:04 openvla_l2norm_k095_spatial_s42.log\\\\n-rw-r--r--  1 root root    613 May 22 22:03 openvla_l2norm_k09_spatial_s42.log\\\\n-rw-r--r--  1 root root   7761 May 23 01:19 pi05_baseline_long_s42_cqa1.log\\\\n-rw-r--r--  1 root root   7825 May 23 10:59 pi05_l2norm_k085_long_s42_cqa1.log\\\\n-rw-r--r--  1 root root   7849 May 23 04:44 pi05_l2norm_k095_long_s42_cqa1.log\\\\n-rw-r--r--  1 root root   7824 May 23 07:58 pi05_l2norm_k09_long_s42_cqa1.log\\\\n-rw-r--r--  1 root root   7479 May 23 02:43 pi05_random_k05_goal_s42.log\\\\n-rw-r--r--  1 root root   7489 May 23 02:33 pi05_random_k07_goal_s42.log\\\\n-rw-r--r--  1 root root   7808 May 25 06:57 random_k05_seed43.log\\\\n-rw-r--r--  1 root root   7812 May 25 06:29 random_k07_seed43.log\\\\n-rw-r--r--  1 root root   7810 May 25 06:43 random_k095_seed43.log\\\\n-rw-r--r--  1 root root 222198 May 19 16:14 smart_compress_m32_seed44.log\\\\n-rw-r--r--  1 root root 222200 May 19 16:01 smart_compress_m96_seed44.log\\\\n-rw-r--r--  1 root root   1499 May 23 04:51 smolvla_baseline_goal_s42.log\\\\n-rw-r--r--  1 root root   1502 May 23 04:50 smolvla_baseline_spatial_s42.log\\\\n-rw-r--r--  1 root root   1570 May 23 04:51 smolvla_l2norm_k09_goal_s42.log\\\\n-rw-r--r--  1 root root   1573 May 23 04:51 smolvla_l2norm_k09_spatial_s42.log\\\\n-rw-r--r--  1 root root   1575 May 23 04:51 smolvla_random_k09_goal_s42.log\\\\n-rw-r--r--  1 root root   1578 May 23 04:51 smolvla_random_k09_spatial_s42.log\\\\n-rw-r--r--  1 root root    904 May 22 20:37 test_pi05_quick.log\\\\n-rw-r--r--  1 root root   4145 May 22 20:41 test_pi05_quick_v2.log\\\\n-rw-r--r--  1 root root 222264 May 19 17:20 train_smart_compress_m32_official.log\\\\n-rw-r--r--  1 root root 222199 May 19 16:15 train_smart_compress_m64_seed44.log\\\\n-rw-r--r--  1 root root   2152 May 22 20:29 verify_fix_object_5ep.log\\\\n-rw-r--r--  1 root root   2152 May 22 20:34 verify_fix_v2_object_5ep.log\\\\n-rw-r--r--  1 root root  34540 May 20 21:43 xvla_prune_k05_seed43.log\\\\n-rw-r--r--  1 root root  34761 May 20 21:22 xvla_prune_k07_seed43.log\\\\n-rw-r--r--  1 root root  35358 May 20 20:44 xvla_prune_k09_seed43.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 3856\\ndrwxr-xr-x  2 root root   8192 May 25 05:33 .\\ndrwxr-xr-x 13 root root   4096 May 23 15:22 ..\\n-rw-r--r--  1 root root   2076 May 17 15:59 batch64_v2.log\\n-rw-r--r--  1 root root   7831 May 17 22:30 batch64_v2_resume.log\\n-rw-r--r--  1 root root   4430 May 18 00:48 dryrun_pi05.log\\n-rw-r--r--  1 root root   2113 May 18 00:54 dryrun_pi05_v2.log\\n-rw-r--r--  1 root root   6299 May 18 00:58 dryrun_pi05_v3.log\\n-rw-r--r--  1 root root  15092 May 19 00:11 eval_acis_k05_v2.log\\n-rw-r--r--  1 root root  10432 May 18 00:50 eval_geometric_prior_k05.log\\n-rw-r--r--  1 root root  12575 May 18 00:50 eval_geometric_prior_k07.log\\n-rw-r--r--  1 root root  11049 May 18 00:50 eval_geometric_prior_k09.log\\n-rw-r--r--  1 root root     40 May 20 22:33 eval_k03_seed43.log\\n-rw-r--r--  1 root root     40 May 20 22:33 eval_k03_seed44.log\\n-rw-r--r--  1 root root   7820 May 25 00:09 eval_l2norm_k09_long_postfix.log\\n-rw-r--r--  1 root root   7822 May 25 00:51 eval_l2norm_k09_long_postfix_v2.log\\n-rw-r--r--  1 root root   2540 May 18 00:41 eval_pi05_baseline.log\\n-rw-r--r--  1 root root   4598 May 22 20:19 eval_pi05_baseline_goal_seed42.log\\n-rw-r--r--  1 root root   4116 May 22 20:22 eval_pi05_baseline_long_seed42.log\\n-rw-r--r--  1 root root   7470 May 24 06:33 eval_pi05_l2norm_k03_goal_seed42.log\\n-rw-r--r--  1 root root   8848 May 24 21:35 eval_pi05_l2norm_k05_spatial_seed42_postfix.log\\n-rw-r--r--  1 root root   7481 May 23 07:14 eval_pi05_l2norm_k07_goal_seed42.log\\n-rw-r--r--  1 root root   4620 May 22 07:17 eval_pi05_l2norm_k085_object_seed42.log\\n-rw-r--r--  1 root root    393 May 23 09:38 eval_pi05_l2norm_k085_spatial_seed43.log\\n-rw-r--r--  1 root root   7504 May 24 06:45 eval_pi05_l2norm_k095_goal_seed42.log\\n-rw-r--r--  1 root root   7470 May 24 07:25 eval_pi05_random_k03_goal_seed42.log\\n-rw-r--r--  1 root root   7465 May 23 08:10 eval_pi05_random_k03_goal_seed43.log\\n-rw-r--r--  1 root root   4533 May 22 07:16 eval_pi05_random_k03_object_seed43.log\\n-rw-r--r--  1 root root   7864 May 24 16:27 eval_pi05_random_k03_spatial_seed42_postfix.log\\n-rw-r--r--  1 root root   2176 May 24 05:50 eval_pi05_random_k05_spatial_seed42.log\\n-rw-r--r--  1 root root   7880 May 24 12:39 eval_pi05_random_k05_spatial_seed42_postfix_v3.log\\n-rw-r--r--  1 root root   7881 May 24 08:59 eval_pi05_random_k07_object_seed42_v3.log\\n-rw-r--r--  1 root root   7881 May 24 15:43 eval_pi05_random_k07_spatial_seed42_postfix.log\\n-rw-r--r--  1 root root   2671 May 22 23:49 eval_pi05_random_k085_goal_seed42_v2.log\\n-rw-r--r--  1 root root   4733 May 25 07:00 eval_pi05_random_k085_object_seed43_postfix.log\\n-rw-r--r--  1 root root   7877 May 24 13:00 eval_pi05_random_k085_spatial_seed42_postfix_v2.log\\n-rw-r--r--  1 root root    393 May 23 09:38 eval_pi05_random_k085_spatial_seed43.log\\n-rw-r--r--  1 root root   7491 May 23 06:53 eval_pi05_random_k095_goal_seed42.log\\n-rw-r--r--  1 root root   8898 May 22 17:53 eval_pi05_random_k095_long_seed42.log\\n-rw-r--r--  1 root root   7879 May 24 09:58 eval_pi05_random_k095_object_seed42_v2.log\\n-rw-r--r--  1 root root   7796 May 24 09:32 eval_pi05_random_k09_object_seed42_v2.log\\n-rw-r--r--  1 root root   7878 May 24 13:12 eval_pi05_random_k09_spatial_seed42_postfix_v2.log\\n-rw-r--r--  1 root root 306949 May 20 15:56 eval_smart_compress_m128_seed43.log\\n-rw-r--r--  1 root root 307600 May 20 15:54 eval_smart_compress_m16_seed43.log\\n-rw-r--r--  1 root root 307321 May 20 17:15 eval_smart_compress_m16_seed44.log\\n-rw-r--r--  1 root root  34053 May 19 19:07 eval_smart_compress_m32_official.log\\n-rw-r--r--  1 root root  34192 May 19 19:01 eval_smart_compress_m32_seed44.log\\n-rw-r--r--  1 root root  34264 May 19 19:01 eval_smart_compress_m64_seed44.log\\n-rw-r--r--  1 root root  34090 May 19 19:02 eval_smart_compress_m96_seed44.log\\n-rw-r--r--  1 root root  35535 May 21 10:10 eval_xvla_baseline_long_seed42.log\\n-rw-r--r--  1 root root  34235 May 21 10:14 eval_xvla_goal_k05_seed42.log\\n-rw-r--r--  1 root root  34383 May 21 10:04 eval_xvla_goal_k09_seed42.log\\n-rw-r--r--  1 root \\n\\n... [截断: 输出过长，省略 727 字符] ...\\n\\n1 19:58 eval_xvla_l2norm_k03_object_seed43.log\\n-rw-r--r--  1 root root  34533 May 21 17:09 eval_xvla_l2norm_k05_object_seed42.log\\n-rw-r--r--  1 root root  34756 May 21 16:04 eval_xvla_l2norm_k07_object_seed42_v2.log\\n-rw-r--r--  1 root root  34777 May 21 19:23 eval_xvla_l2norm_k07_object_seed43.log\\n-rw-r--r--  1 root root  34738 May 21 21:10 eval_xvla_l2norm_k07_object_seed44.log\\n-rw-r--r--  1 root root  33838 May 21 04:53 eval_xvla_prune_k01_seed42.log\\n-rw-r--r--  1 root root  33838 May 21 03:23 eval_xvla_prune_k01_seed43.log\\n-rw-r--r--  1 root root  33838 May 21 03:24 eval_xvla_prune_k01_seed44.log\\n-rw-r--r--  1 root root  33919 May 21 01:29 eval_xvla_prune_k02_seed43.log\\n-rw-r--r--  1 root root  34887 May 21 19:21 eval_xvla_random_k03_object_seed43.log\\n-rw-r--r--  1 root root  34835 May 21 21:05 eval_xvla_random_k03_object_seed44.log\\n-rw-r--r--  1 root root  34949 May 21 12:26 eval_xvla_random_k05_object_seed42.log\\n-rw-r--r--  1 root root  34953 May 21 15:51 eval_xvla_random_k05_object_seed43.log\\n-rw-r--r--  1 root root  34928 May 21 17:17 eval_xvla_random_k05_object_seed44.log\\n-rw-r--r--  1 root root  34870 May 21 22:38 eval_xvla_random_k07_object_seed42.log\\n-rw-r--r--  1 root root  34859 May 21 16:49 eval_xvla_random_k07_object_seed43_v2.log\\n-rw-r--r--  1 root root  34867 May 21 19:56 eval_xvla_random_k07_object_seed44.log\\n-rw-r--r--  1 root root  35026 May 21 09:06 eval_xvla_spatial_k05_seed42.log\\n-rw-r--r--  1 root root  35296 May 21 08:41 eval_xvla_spatial_k09_seed42.log\\n-rw-r--r--  1 root root  19116 May 17 13:08 fullft_batch64.log\\n-rw-r--r--  1 root root   3171 May 18 00:12 geometric_prior_k09_dryrun.log\\n-rw-r--r--  1 root root   2457 May 18 15:00 inference_latency_comparison.log\\n-rw-r--r--  1 root root   7874 May 24 21:35 l2norm_k03_spatial.log\\n-rw-r--r--  1 root root   5488 May 20 19:52 oft_cv_computation.log\\n-rw-r--r--  1 root root 174587 May 23 04:58 openvla_baseline_spatial_s42.log\\n-rw-r--r--  1 root root    700 May 22 22:04 openvla_l2norm_k095_spatial_s42.log\\n-rw-r--r--  1 root root    613 May 22 22:03 openvla_l2norm_k09_spatial_s42.log\\n-rw-r--r--  1 root root   7761 May 23 01:19 pi05_baseline_long_s42_cqa1.log\\n-rw-r--r--  1 root root   7825 May 23 10:59 pi05_l2norm_k085_long_s42_cqa1.log\\n-rw-r--r--  1 root root   7849 May 23 04:44 pi05_l2norm_k095_long_s42_cqa1.log\\n-rw-r--r--  1 root root   7824 May 23 07:58 pi05_l2norm_k09_long_s42_cqa1.log\\n-rw-r--r--  1 root root   7479 May 23 02:43 pi05_random_k05_goal_s42.log\\n-rw-r--r--  1 root root   7489 May 23 02:33 pi05_random_k07_goal_s42.log\\n-rw-r--r--  1 root root   7808 May 25 06:57 random_k05_seed43.log\\n-rw-r--r--  1 root root   7812 May 25 06:29 random_k07_seed43.log\\n-rw-r--r--  1 root root   7810 May 25 06:43 random_k095_seed43.log\\n-rw-r--r--  1 root root 222198 May 19 16:14 smart_compress_m32_seed44.log\\n-rw-r--r--  1 root root 222200 May 19 16:01 smart_compress_m96_seed44.log\\n-rw-r--r--  1 root root   1499 May 23 04:51 smolvla_baseline_goal_s42.log\\n-rw-r--r--  1 root root   1502 May 23 04:50 smolvla_baseline_spatial_s42.log\\n-rw-r--r--  1 root root   1570 May 23 04:51 smolvla_l2norm_k09_goal_s42.log\\n-rw-r--r--  1 root root   1573 May 23 04:51 smolvla_l2norm_k09_spatial_s42.log\\n-rw-r--r--  1 root root   1575 May 23 04:51 smolvla_random_k09_goal_s42.log\\n-rw-r--r--  1 root root   1578 May 23 04:51 smolvla_random_k09_spatial_s42.log\\n-rw-r--r--  1 root root    904 May 22 20:37 test_pi05_quick.log\\n-rw-r--r--  1 root root   4145 May 22 20:41 test_pi05_quick_v2.log\\n-rw-r--r--  1 root root 222264 May 19 17:20 train_smart_compress_m32_official.log\\n-rw-r--r--  1 root root 222199 May 19 16:15 train_smart_compress_m64_seed44.log\\n-rw-r--r--  1 root root   2152 May 22 20:29 verify_fix_object_5ep.log\\n-rw-r--r--  1 root root   2152 May 22 20:34 verify_fix_v2_object_5ep.log\\n-rw-r--r--  1 root root  34540 May 20 21:43 xvla_prune_k05_seed43.log\\n-rw-r--r--  1 root root  34761 May 20 21:22 xvla_prune_k07_seed43.log\\n-rw-r--r--  1 root root  35358 May 20 20:44 xvla_prune_k09_seed43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "30454968-3d32-47c5-8907-60e722d2cc1e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01A5ND9to8Wk9Ps3tkWzuzNC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5027,
+      "cache_read_input_tokens": 41552,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5027
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CYw6QdV1bmH1j3yJyx8uh1`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "account": "root",
+  "command": "tail -100 /root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "0f659ac2-3ee0-407d-b0af-ecbe58b4dec8",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01A5ND9to8Wk9Ps3tkWzuzNC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5027,
+      "cache_read_input_tokens": 41552,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5027
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-24T23:03:03.290Z_
+
+<details><summary>↩ Tool result · `toolu_01CYw6QdV1bmH1j3yJyx8uh1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-25 02:43:59,937 Config: suite=libero_10, prune=random, keep=0.5, eps=50, gpu=0\\n2026-05-25 02:43:59,937 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-25 02:46:28,670 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-25 02:46:38,585 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-25 02:46:38,585 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-25 02:46:41,907 Patched embed_image\\n2026-05-25 02:46:41,918 Model: 4143.4M params\\n2026-05-25 02:46:41,918 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-25 02:46:41,918 Pruning: random, keep 128/256 tokens/image (384 total)\\n2026-05-25 02:46:42,917 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-25 02:46:42,947 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-25 02:46:42,947 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-25 02:46:42,947 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-25 02:46:43,001 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-25 02:46:43,235 Suite: libero_10, 10 tasks, max_steps=520\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\n[PRUNE-DIAG] random: n_keep=128/256, first_indices=[0, 2, 6, 10, 12]\\n2026-05-25 02:51:56,214   T0 [put both the alphabet soup and the tomat] ep=10: 7/10=70%\\n2026-05-25 02:57:48,392   T0 [put both the alphabet soup and the tomat] ep=20: 12/20=60%\\n2026-05-25 03:02:59,167   T0 [put both the alphabet soup and the tomat] ep=30: 18/30=60%\\n2026-05-25 03:07:34,722   T0 [put both the alphabet soup and the tomat] ep=40: 28/40=70%\\n2026-05-25 03:12:22,578   T0 [put both the alphabet soup and the tomat] ep=50: 36/50=72%\\n2026-05-25 03:12:22,578 Task 0: SR=72.0% | Total: 36/50=72.0% | Time: 25.7min\\n2026-05-25 03:17:56,192   T1 [put both the cream cheese box and the bu] ep=10: 3/10=30%\\n2026-05-25 03:22:56,038   T1 [put both the cream cheese box and the bu] ep=20: 9/20=45%\\n2026-05-25 03:28:12,418   T1 [put both the cream cheese box and the bu] ep=30: 13/30=43%\\n2026-05-25 03:33:50,470   T1 [put both the cream cheese box and the bu] ep=40: 16/40=40%\\n2026-05-25 03:40:24,812   T1 [put both the cream cheese box and the bu] ep=50: 17/50=34%\\n2026-05-25 03:40:24,813 Task 1: SR=34.0% | Total: 53/100=53.0% | Time: 53.7min\\n2026-05-25 03:44:28,273   T2 [turn on the stove and put the moka pot o] ep=10: 7/10=70%\\n2026-05-25 03:48:34,919   T2 [turn on the stove and put the moka pot o] ep=20: 14/20=70%\\n2026-05-25 03:52:33,524   T2 [turn on the stove and put the moka pot o] ep=30: 21/30=70%\\n2026-05-25 03:56:57,178   T2 [turn on the stove and put the moka pot o] ep=40: 26/40=65%\\n2026-05-25 04:00:58,944   T2 [turn on the stove and put the moka pot o] ep=50: 32/50=64%\\n2026-05-25 04:00:58,944 Task 2: SR=64.0% | Total: 85/150=56.7% | Time: 74.3min\\n2026-05-25 04:05:27,329   T3 [put the black bowl in the bottom drawer ] ep=10: 7/10=70%\\n2026-05-25 04:10:29,837   T3 [put the black bowl in the bottom drawer ] ep=20: 12/20=60%\\n2026-05-25 04:14:36,069   T3 [put the black bowl in the bottom drawer ] ep=30: 20/30=67%\\n2026-05-25 04:19:23,299   T3 [put the black bowl in the bottom drawer ] ep=40: 26/40=65%\\n2026-05-25 04:23:06,504   T3 [put the black bowl in the bottom drawer ] ep=50: 34/50=68%\\n2026-05-25 04:23:06,505 Task 3: SR=68.0% | Total: 119/200=59.5% | Time: 96.4min\\n2026-05-25 04:27:56,548   T4 [put the white mug on the left plate and ] ep=10: 7/10=70%\\n2026-05-25 04:32:29,522   T4 [put the white mug on the left plate and ] ep=20: 14/20=70%\\n2026-05-25 04:38:27,905   T4 [put the white mug on the left plate and ] ep=30: 17/30=57%\\n2026-05-25 04:42:44,107   T4 [put the white mug on the left plate and ] ep=40: 25/40=62%\\n2026-05-25 04:48:17,696   T4 [put the white mug on the left plate and ] ep=50: 29/50=58%\\n2026-05-25 04:48:17,696 Task 4: SR=58.0% | Total: 148/250=59.2% | Time: 121.6min\\n2026-05-25 04:52:25,249   T5 [pick up the book and place it in the bac] ep=10: 4/10=40%\\n2026-05-25 04:57:14,561   T5 [pick up the book and place it in the bac] ep=20: 7/20=35%\\n2026-05-25 05:01:35,866   T5 [pick up the book and place it in the bac] ep=30: 11/30=37%\\n2026-05-25 05:06:53,222   T5 [pick up the book and place it in the bac] ep=40: 13/40=32%\\n2026-05-25 05:12:30,782   T5 [pick up the book and place it in the bac] ep=50: 13/50=26%\\n2026-05-25 05:12:30,782 Task 5: SR=26.0% | Total: 161/300=53.7% | Time: 145.8min\\n2026-05-25 05:17:32,293   T6 [put the white mug on the plate and put t] ep=10: 3/10=30%\\n2026-05-25 05:22:12,084   T6 [put the white mug on the plate and put t] ep=20: 8/20=40%\\n2026-05-25 05:27:35,686   T6 [put the white mug on the plate and put t] ep=30: 10/30=33%\\n2026-05-25 05:32:38,160   T6 [put the white mug on the plate and put t] ep=40: 16/40=40%\\n2026-05-25 05:38:20,725   T6 [put the white mug on the plate and put t] ep=50: 18/50=36%\\n2026-05-25 05:38:20,726 Task 6: SR=36.0% | Total: 179/350=51.1% | Time: 171.6min\\n2026-05-25 05:43:48,503   T7 [put both the alphabet soup and the cream] ep=10: 4/10=40%\\n2026-05-25 05:48:50,859   T7 [put both the alphabet soup and the cream] ep=20: 11/20=55%\\n2026-05-25 05:53:08,174   T7 [put both the alphabet soup and the cream] ep=30: 19/30=63%\\n2026-05-25 05:58:18,854   T7 [put both the alphabet soup and the cream] ep=40: 25/40=62%\\n2026-05-25 06:02:50,431   T7 [put both the alphabet soup and the cream] ep=50: 32/50=64%\\n2026-05-25 06:02:50,431 Task 7: SR=64.0% | Total: 211/400=52.8% | Time: 196.1min\\n2026-05-25 06:08:47,812   T8 [put both moka pots on the stove] ep=10: 0/10=0%\\n2026-05-25 06:14:35,264   T8 [put both moka pots on the stove] ep=20: 2/20=10%\\n2026-05-25 06:20:46,673   T8 [put both moka pots on the stove] ep=30: 2/30=7%\\n2026-05-25 06:26:40,957   T8 [put both moka pots on the stove] ep=40: 3/40=8%\\n2026-05-25 06:32:28,030   T8 [put both moka pots on the stove] ep=50: 3/50=6%\\n2026-05-25 06:32:28,031 Task 8: SR=6.0% | Total: 214/450=47.6% | Time: 225.7min\\n2026-05-25 06:37:12,493   T9 [put the yellow and white mug in the micr] ep=10: 6/10=60%\\n2026-05-25 06:42:13,157   T9 [put the yellow and white mug in the micr] ep=20: 9/20=45%\\n2026-05-25 06:46:43,716   T9 [put the yellow and white mug in the micr] ep=30: 14/30=47%\\n2026-05-25 06:52:11,174   T9 [put the yellow and white mug in the micr] ep=40: 16/40=40%\\n2026-05-25 06:57:14,083   T9 [put the yellow and white mug in the micr] ep=50: 20/50=40%\\n2026-05-25 06:57:14,084 Task 9: SR=40.0% | Total: 234/500=46.8% | Time: 250.5min\\n2026-05-25 06:57:14,629 \\n============================================================\\n2026-05-25 06:57:14,629 RESULT: libero_10 prune=random keep=0.5 SR=46.8%\\n2026-05-25 06:57:14,629 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\\n2026-05-25 06:57:14,629 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "fa7d99ec-a08b-4c12-b8bb-689ab88fb970",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-25 02:43:59,937 Config: suite=libero_10, prune=random, keep=0.5, eps=50, gpu=0\\\\n2026-05-25 02:43:59,937 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n2026-05-25 02:46:28,670 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-25 02:46:38,585 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-25 02:46:38,585 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-25 02:46:41,907 Patched embed_image\\\\n2026-05-25 02:46:41,918 Model: 4143.4M params\\\\n2026-05-25 02:46:41,918 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-25 02:46:41,918 Pruning: random, keep 128/256 tokens/image (384 total)\\\\n2026-05-25 02:46:42,917 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-25 02:46:42,947 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-25 02:46:42,947 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-25 02:46:42,947 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-25 02:46:43,001 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-25 02:46:43,235 Suite: libero_10, 10 tasks, max_steps=520\\\\nLocal assets not found. Downloading from HuggingFace Hub...\\\\nAssets already downloaded at /root/.cache/libero/assets\\\\n[PRUNE-DIAG] random: n_keep=128/256, first_indices=[0, 2, 6, 10, 12]\\\\n2026-05-25 02:51:56,214   T0 [put both the alphabet soup and the tomat] ep=10: 7/10=70%\\\\n2026-05-25 02:57:48,392   T0 [put both the alphabet soup and the tomat] ep=20: 12/20=60%\\\\n2026-05-25 03:02:59,167   T0 [put both the alphabet soup and the tomat] ep=30: 18/30=60%\\\\n2026-05-25 03:07:34,722   T0 [put both the alphabet soup and the tomat] ep=40: 28/40=70%\\\\n2026-05-25 03:12:22,578   T0 [put both the alphabet soup and the tomat] ep=50: 36/50=72%\\\\n2026-05-25 03:12:22,578 Task 0: SR=72.0% | Total: 36/50=72.0% | Time: 25.7min\\\\n2026-05-25 03:17:56,192   T1 [put both the cream cheese box and the bu] ep=10: 3/10=30%\\\\n2026-05-25 03:22:56,038   T1 [put both the cream cheese box and the bu] ep=20: 9/20=45%\\\\n2026-05-25 03:28:12,418   T1 [put both the cream cheese box and the bu] ep=30: 13/30=43%\\\\n2026-05-25 03:33:50,470   T1 [put both the cream cheese box and the bu] ep=40: 16/40=40%\\\\n2026-05-25 03:40:24,812   T1 [put both the cream cheese box and the bu] ep=50: 17/50=34%\\\\n2026-05-25 03:40:24,813 Task 1: SR=34.0% | Total: 53/100=53.0% | Time: 53.7min\\\\n2026-05-25 03:44:28,273   T2 [turn on the stove and put the moka pot o] ep=10: 7/10=70%\\\\n2026-05-25 03:48:34,919   T2 [turn on the stove and put the moka pot o] ep=20: 14/20=70%\\\\n2026-05-25 03:52:33,524   T2 [turn on the stove and put the moka pot o] ep=30: 21/30=70%\\\\n2026-05-25 03:56:57,178   T2 [turn on the stove and put the moka pot o] ep=40: 26/40=65%\\\\n2026-05-25 04:00:58,944   T2 [turn on the stove and put the moka pot o] ep=50: 32/50=64%\\\\n2026-05-25 04:00:58,944 Task 2: SR=64.0% | Total: 85/150=56.7% | Time: 74.3min\\\\n2026-05-25 04:05:27,329   T3 [put the black bowl in the bottom drawer ] ep=10: 7/10=70%\\\\n2026-05-25 04:10:29,837   T3 [put the black bowl in the bottom drawer ] ep=20: 12/20=60%\\\\n2026-05-25 04:14:36,069   T3 [put the black bowl in the bottom drawer ] ep=30: 20/30=67%\\\\n2026-05-25 04:19:23,299   T3 [put the black bowl in the bottom drawer ] ep=40: 26/40=65%\\\\n2026-05-25 04:23:06,504   T3 [put the black bowl in the bottom drawer ] ep=50: 34/50=68%\\\\n2026-05-25 04:23:06,505 Task 3: SR=68.0% | Total: 119/200=59.5% | Time: 96.4min\\\\n2026-05-25 04:27:56,548   T4 [put the white mug on the left plate and ] ep=10: 7/10=70%\\\\n2026-05-25 04:32:29,522   T4 [put the white mug on the left plate and ] ep=20: 14/20=70%\\\\n2026-05-25 04:38:27,905   T4 [put the white mug on the left plate and ] ep=30: 17/30=57%\\\\n2026-05-25 04:42:44,107   T4 [put the white mug on the left plate and ] ep=40: 25/40=62%\\\\n2026-05-25 04:48:17,696   T4 [put the white mug on the left plate and ] ep=50: 29/50=58%\\\\n2026-05-25 04:48:17,696 Task 4: SR=58.0% | Total: 148/250=59.2% | Time: 121.6min\\\\n2026-05-25 04:52:25,249   T5 [pick up the book and place it in the bac] ep=10: 4/10=40%\\\\n2026-05-25 04:57:14,561   T5 [pick up the book and place it in the bac] ep=20: 7/20=35%\\\\n2026-05-25 05:01:35,866   T5 [pick up the book and place it in the bac] ep=30: 11/30=37%\\\\n2026-05-25 05:06:53,222   T5 [pick up the book and place it in the bac] ep=40: 13/40=32%\\\\n2026-05-25 05:12:30,782   T5 [pick up the book and place it in the bac] ep=50: 13/50=26%\\\\n2026-05-25 05:12:30,782 Task 5: SR=26.0% | Total: 161/300=53.7% | Time: 145.8min\\\\n2026-05-25 05:17:32,293   T6 [put the white mug on the plate and put t] ep=10: 3/10=30%\\\\n2026-05-25 05:22:12,084   T6 [put the white mug on the plate and put t] ep=20: 8/20=40%\\\\n2026-05-25 05:27:35,686   T6 [put the white mug on the plate and put t] ep=30: 10/30=33%\\\\n2026-05-25 05:32:38,160   T6 [put the white mug on the plate and put t] ep=40: 16/40=40%\\\\n2026-05-25 05:38:20,725   T6 [put the white mug on the plate and put t] ep=50: 18/50=36%\\\\n2026-05-25 05:38:20,726 Task 6: SR=36.0% | Total: 179/350=51.1% | Time: 171.6min\\\\n2026-05-25 05:43:48,503   T7 [put both the alphabet soup and the cream] ep=10: 4/10=40%\\\\n2026-05-25 05:48:50,859   T7 [put both the alphabet soup and the cream] ep=20: 11/20=55%\\\\n2026-05-25 05:53:08,174   T7 [put both the alphabet soup and the cream] ep=30: 19/30=63%\\\\n2026-05-25 05:58:18,854   T7 [put both the alphabet soup and the cream] ep=40: 25/40=62%\\\\n2026-05-25 06:02:50,431   T7 [put both the alphabet soup and the cream] ep=50: 32/50=64%\\\\n2026-05-25 06:02:50,431 Task 7: SR=64.0% | Total: 211/400=52.8% | Time: 196.1min\\\\n2026-05-25 06:08:47,812   T8 [put both moka pots on the stove] ep=10: 0/10=0%\\\\n2026-05-25 06:14:35,264   T8 [put both moka pots on the stove] ep=20: 2/20=10%\\\\n2026-05-25 06:20:46,673   T8 [put both moka pots on the stove] ep=30: 2/30=7%\\\\n2026-05-25 06:26:40,957   T8 [put both moka pots on the stove] ep=40: 3/40=8%\\\\n2026-05-25 06:32:28,030   T8 [put both moka pots on the stove] ep=50: 3/50=6%\\\\n2026-05-25 06:32:28,031 Task 8: SR=6.0% | Total: 214/450=47.6% | Time: 225.7min\\\\n2026-05-25 06:37:12,493   T9 [put the yellow and white mug in the micr] ep=10: 6/10=60%\\\\n2026-05-25 06:42:13,157   T9 [put the yellow and white mug in the micr] ep=20: 9/20=45%\\\\n2026-05-25 06:46:43,716   T9 [put the yellow and white mug in the micr] ep=30: 14/30=47%\\\\n2026-05-25 06:52:11,174   T9 [put the yellow and white mug in the micr] ep=40: 16/40=40%\\\\n2026-05-25 06:57:14,083   T9 [put the yellow and white mug in the micr] ep=50: 20/50=40%\\\\n2026-05-25 06:57:14,084 Task 9: SR=40.0% | Total: 234/500=46.8% | Time: 250.5min\\\\n2026-05-25 06:57:14,629 \\\\n============================================================\\\\n2026-05-25 06:57:14,629 RESULT: libero_10 prune=random keep=0.5 SR=46.8%\\\\n2026-05-25 06:57:14,629 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\\\\n2026-05-25 06:57:14,629 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-25 02:43:59,937 Config: suite=libero_10, prune=random, keep=0.5, eps=50, gpu=0\\n2026-05-25 02:43:59,937 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-25 02:46:28,670 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-25 02:46:38,585 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-25 02:46:38,585 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-25 02:46:41,907 Patched embed_image\\n2026-05-25 02:46:41,918 Model: 4143.4M params\\n2026-05-25 02:46:41,918 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-25 02:46:41,918 Pruning: random, keep 128/256 tokens/image (384 total)\\n2026-05-25 02:46:42,917 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-25 02:46:42,947 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-25 02:46:42,947 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-25 02:46:42,947 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-25 02:46:43,001 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-25 02:46:43,235 Suite: libero_10, 10 tasks, max_steps=520\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\n[PRUNE-DIAG] random: n_keep=128/256, first_indices=[0, 2, 6, 10, 12]\\n2026-05-25 02:51:56,214   T0 [put both the alphabet soup and the tomat] ep=10: 7/10=70%\\n2026-05-25 02:57:48,392   T0 [put both the alphabet soup and the tomat] ep=20: 12/20=60%\\n2026-05-25 03:02:59,167   T0 [put both the alphabet soup and the tomat] ep=30: 18/30=60%\\n2026-05-25 03:07:34,722   T0 [put both the alphabet soup and the tomat] ep=40: 28/40=70%\\n2026-05-25 03:12:22,578   T0 [put both the alphabet soup and the tomat] ep=50: 36/50=72%\\n2026-05-25 03:12:22,578 Task 0: SR=72.0% | Total: 36/50=72.0% | Time: 25.7min\\n2026-05-25 03:17:56,192   T1 [put both the cream cheese box and the bu] ep=10: 3/10=30%\\n2026-05-25 03:22:56,038   T1 [put both the cream cheese box and the bu] ep=20: 9/20=45%\\n2026-05-25 03:28:12,418   T1 [put both the cream cheese box and the bu] ep=30: 13/30=43%\\n2026-05-25 03:33:50,470   T1 [put both the cream cheese box and the bu] ep=40: 16/40=40%\\n2026-05-25 03:40:24,812   T1 [put both the cream cheese box and the bu] ep=50: 17/50=34%\\n2026-05-25 03:40:24,813 Task 1: SR=34.0% | Total: 53/100=53.0% | Time: 53.7min\\n2026-05-25 03:44:28,273   T2 [turn on the stove and put the moka pot o] ep=10: 7/10=70%\\n2026-05-25 03:48:34,919   T2 [turn on the stove and put the moka pot o] ep=20: 14/20=70%\\n2026-05-25 03:52:33,524   T2 [turn on the stove and put the moka pot o] ep=30: 21/30=70%\\n2026-05-25 03:56:57,178   T2 [turn on the stove and put the moka pot o] ep=40: 26/40=65%\\n2026-05-25 04:00:58,944   T2 [turn on the stove and put the moka pot o] ep=50: 32/50=64%\\n2026-05-25 04:00:58,944 Task 2: SR=64.0% | Total: 85/150=56.7% | Time: 74.3min\\n2026-05-25 04:05:27,329   T3 [put the black bowl in the bottom drawer ] ep=10: 7/10=70%\\n2026-05-25 04:10:29,837   T3 [put the black bowl in the bottom drawer ] ep=20: 12/20=60%\\n2026-05-25 04:14:36,069   T3 [put the black bowl in the bottom drawer ] ep=30: 20/30=67%\\n2026-05-25 04:19:23,299   T3 [put the black bowl in the bottom drawer ] ep=40: 26/40=65%\\n2026-05-25 04:23:06,504   T3 [put the black bowl in the bottom drawer ] ep=50: 34/50=68%\\n2026-05-25 04:23:06,505 Task 3: SR=68.0% | Total: 119/200=59.5% | Time: 96.4min\\n2026-05-25 04:27:56,548   T4 [put the white mug on the left plate and ] ep=10: 7/10=70%\\n2026-05-25 04:32:29,522   T4 [put the white mug on the left plate and ] ep=20: 14/20=70%\\n2026-05-25 04:38:27,905   T4 [put the white mug on the left plate and ] ep=30: 17/30=57%\\n2026-05-25 04:42:44,107   T4 [put the white mug on the left plate and ] ep=40: 25/40=62%\\n2026-05-25 04:48:17,696   T4 [put the white mug on the left plate and ] ep=50: 29/50=58%\\n2026-05-25 04:48:17,696 Task 4: SR=58.0% | Total: 148/250=59.2% | Time: 121.6min\\n2026-05-25 04:52:25,249   T5 [pick up the book and place it in the bac] ep=10: 4/10=40%\\n2026-05-25 04:57:14,561   T5 [pick up the book and place it in the bac] ep=20: 7/20=35%\\n2026-05-25 05:01:35,866   T5 [pick up the book and place it in the bac] ep=30: 11/30=37%\\n2026-05-25 05:06:53,222   T5 [pick up the book and place it in the bac] ep=40: 13/40=32%\\n2026-05-25 05:12:30,782   T5 [pick up the book and place it in the bac] ep=50: 13/50=26%\\n2026-05-25 05:12:30,782 Task 5: SR=26.0% | Total: 161/300=53.7% | Time: 145.8min\\n2026-05-25 05:17:32,293   T6 [put the white mug on the plate and put t] ep=10: 3/10=30%\\n2026-05-25 05:22:12,084   T6 [put the white mug on the plate and put t] ep=20: 8/20=40%\\n2026-05-25 05:27:35,686   T6 [put the white mug on the plate and put t] ep=30: 10/30=33%\\n2026-05-25 05:32:38,160   T6 [put the white mug on the plate and put t] ep=40: 16/40=40%\\n2026-05-25 05:38:20,725   T6 [put the white mug on the plate and put t] ep=50: 18/50=36%\\n2026-05-25 05:38:20,726 Task 6: SR=36.0% | Total: 179/350=51.1% | Time: 171.6min\\n2026-05-25 05:43:48,503   T7 [put both the alphabet soup and the cream] ep=10: 4/10=40%\\n2026-05-25 05:48:50,859   T7 [put both the alphabet soup and the cream] ep=20: 11/20=55%\\n2026-05-25 05:53:08,174   T7 [put both the alphabet soup and the cream] ep=30: 19/30=63%\\n2026-05-25 05:58:18,854   T7 [put both the alphabet soup and the cream] ep=40: 25/40=62%\\n2026-05-25 06:02:50,431   T7 [put both the alphabet soup and the cream] ep=50: 32/50=64%\\n2026-05-25 06:02:50,431 Task 7: SR=64.0% | Total: 211/400=52.8% | Time: 196.1min\\n2026-05-25 06:08:47,812   T8 [put both moka pots on the stove] ep=10: 0/10=0%\\n2026-05-25 06:14:35,264   T8 [put both moka pots on the stove] ep=20: 2/20=10%\\n2026-05-25 06:20:46,673   T8 [put both moka pots on the stove] ep=30: 2/30=7%\\n2026-05-25 06:26:40,957   T8 [put both moka pots on the stove] ep=40: 3/40=8%\\n2026-05-25 06:32:28,030   T8 [put both moka pots on the stove] ep=50: 3/50=6%\\n2026-05-25 06:32:28,031 Task 8: SR=6.0% | Total: 214/450=47.6% | Time: 225.7min\\n2026-05-25 06:37:12,493   T9 [put the yellow and white mug in the micr] ep=10: 6/10=60%\\n2026-05-25 06:42:13,157   T9 [put the yellow and white mug in the micr] ep=20: 9/20=45%\\n2026-05-25 06:46:43,716   T9 [put the yellow and white mug in the micr] ep=30: 14/30=47%\\n2026-05-25 06:52:11,174   T9 [put the yellow and white mug in the micr] ep=40: 16/40=40%\\n2026-05-25 06:57:14,083   T9 [put the yellow and white mug in the micr] ep=50: 20/50=40%\\n2026-05-25 06:57:14,084 Task 9: SR=40.0% | Total: 234/500=46.8% | Time: 250.5min\\n2026-05-25 06:57:14,629 \\n============================================================\\n2026-05-25 06:57:14,629 RESULT: libero_10 prune=random keep=0.5 SR=46.8%\\n2026-05-25 06:57:14,629 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\\n2026-05-25 06:57:14,629 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "8f28dce5-f317-4f05-9fa1-04a97eb29b11",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JLG8hXjFBm6UgV2BUNRvi2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4607,
+      "cache_read_input_tokens": 46579,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4607
+      },
+      "output_tokens": 103,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+Success. Updating registry and clearing cron.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "c13ede37-61b1-4c1e-87ed-c4aff0be48b1",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JLG8hXjFBm6UgV2BUNRvi2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4607,
+      "cache_read_input_tokens": 46579,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4607
+      },
+      "output_tokens": 103,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Bn8KavZJXkS2hN16ckTB5K`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed43_postfix",
+  "field": "log_path",
+  "value": "/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "5bd63680-571f-409b-94ec-e79b5672f2aa",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JLG8hXjFBm6UgV2BUNRvi2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4607,
+      "cache_read_input_tokens": 46579,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4607
+      },
+      "output_tokens": 103,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-24T23:03:16.086Z_
+
+<details><summary>↩ Tool result · `toolu_01Bn8KavZJXkS2hN16ckTB5K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T23:03:13.903Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.2339}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "ffa2c7f4-3950-4311-a0ce-2a495372aa8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k05_long_seed43_postfix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:30.297Z\\\", \\\"updated_at\\\": \\\"2026-05-24T23:03:13.903Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.2339}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T23:03:13.903Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.2339}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01BN56wuupWAtPSF5Ga9BfXp`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed43_postfix",
+  "field": "checkpoint_path",
+  "value": "N/A",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "7db9e4ba-d814-43b1-a276-3597c2dc5fd5",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Vv5wj3SeCV1zdYRgdy4Qjt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 51186,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1126
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JQcNmJcNbahwdrd7MMsY9z`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed43_postfix",
+  "field": "metrics",
+  "value": {
+    "overall_sr": 46.8,
+    "total_episodes": 500,
+    "elapsed_min": 250.5,
+    "per_task_sr": {
+      "T0": 72,
+      "T1": 34,
+      "T2": 64,
+      "T3": 68,
+      "T4": 58,
+      "T5": 26,
+      "T6": 36,
+      "T7": 64,
+      "T8": 6,
+      "T9": 40
+    },
+    "result_json": "/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json"
+  },
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "81704927-6c21-4265-85bd-caaf92194c2e",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Vv5wj3SeCV1zdYRgdy4Qjt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 51186,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1126
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-24T23:03:26.651Z_
+
+<details><summary>↩ Tool result · `toolu_01BN56wuupWAtPSF5Ga9BfXp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T23:03:24.440Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\", \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.2857}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "02303aeb-fb72-4bd0-ad98-8dc057570e75",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k05_long_seed43_postfix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:30.297Z\\\", \\\"updated_at\\\": \\\"2026-05-24T23:03:24.440Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.2857}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T23:03:24.440Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\", \"checkpoint_path\": \"N/A\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.2857}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-24T23:03:35.934Z_
+
+<details><summary>↩ Tool result · `toolu_01JQcNmJcNbahwdrd7MMsY9z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T23:03:33.585Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\", \"checkpoint_path\": \"N/A\", \"metrics\": {\"overall_sr\": 46.8, \"total_episodes\": 500, \"elapsed_min\": 250.5, \"per_task_sr\": {\"T0\": 72, \"T1\": 34, \"T2\": 64, \"T3\": 68, \"T4\": 58, \"T5\": 26, \"T6\": 36, \"T7\": 64, \"T8\": 6, \"T9\": 40}, \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.2569}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "93c109fa-cc3b-4ed0-b56e-9d0a016d7cac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k05_long_seed43_postfix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:30.297Z\\\", \\\"updated_at\\\": \\\"2026-05-24T23:03:33.585Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 46.8, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 250.5, \\\"per_task_sr\\\": {\\\"T0\\\": 72, \\\"T1\\\": 34, \\\"T2\\\": 64, \\\"T3\\\": 68, \\\"T4\\\": 58, \\\"T5\\\": 26, \\\"T6\\\": 36, \\\"T7\\\": 64, \\\"T8\\\": 6, \\\"T9\\\": 40}, \\\"result_json\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.2569}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T23:03:33.585Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\", \"checkpoint_path\": \"N/A\", \"metrics\": {\"overall_sr\": 46.8, \"total_episodes\": 500, \"elapsed_min\": 250.5, \"per_task_sr\": {\"T0\": 72, \"T1\": 34, \"T2\": 64, \"T3\": 68, \"T4\": 58, \"T5\": 26, \"T6\": 36, \"T7\": 64, \"T8\": 6, \"T9\": 40}, \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.2569}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FD21fxnn2dVvN2abuQ2QBF`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed43_postfix",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "ae49e0c0-dd94-447a-9562-cee0f05992ad",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015EKxzxS6XiS7m17Uvx9x2U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2207,
+      "cache_read_input_tokens": 52312,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2207
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-24T23:03:45.169Z_
+
+<details><summary>↩ Tool result · `toolu_01FD21fxnn2dVvN2abuQ2QBF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 4.6815}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "d4c437c8-f397-49c6-8c79-59d907ed9b02",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.6815}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 4.6815}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GgFjQHoeCEjEJmY9XopiqS`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed43_postfix",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "92932692-b4cc-45f5-8bcc-50bde79b23c4",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01MqTPq6tTYNzrnDaWRR8KQ9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 274,
+      "cache_read_input_tokens": 54519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 274
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-24T23:03:56.508Z_
+
+<details><summary>↩ Tool result · `toolu_01GgFjQHoeCEjEJmY9XopiqS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T23:03:53.029Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\", \"checkpoint_path\": \"N/A\", \"metrics\": {\"overall_sr\": 46.8, \"total_episodes\": 500, \"elapsed_min\": 250.5, \"per_task_sr\": {\"T0\": 72, \"T1\": 34, \"T2\": 64, \"T3\": 68, \"T4\": 58, \"T5\": 26, \"T6\": 36, \"T7\": 64, \"T8\": 6, \"T9\": 40}, \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.4347}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "c4b21c38-9e79-4627-8853-2ac98d2b79e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k05_long_seed43_postfix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:30.297Z\\\", \\\"updated_at\\\": \\\"2026-05-24T23:03:53.029Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 46.8, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 250.5, \\\"per_task_sr\\\": {\\\"T0\\\": 72, \\\"T1\\\": 34, \\\"T2\\\": 64, \\\"T3\\\": 68, \\\"T4\\\": 58, \\\"T5\\\": 26, \\\"T6\\\": 36, \\\"T7\\\": 64, \\\"T8\\\": 6, \\\"T9\\\": 40}, \\\"result_json\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.4347}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T23:03:53.029Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\", \"checkpoint_path\": \"N/A\", \"metrics\": {\"overall_sr\": 46.8, \"total_episodes\": 500, \"elapsed_min\": 250.5, \"per_task_sr\": {\"T0\": 72, \"T1\": 34, \"T2\": 64, \"T3\": 68, \"T4\": 58, \"T5\": 26, \"T6\": 36, \"T7\": 64, \"T8\": 6, \"T9\": 40}, \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.4347}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014zEboF9JX1U5881NnKRUjd`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed43_postfix",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "64227b85-041b-4faa-871c-bc21fc31af44",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01WpDsas5BRGCXV3syFpg8V7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1035,
+      "cache_read_input_tokens": 54793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1035
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__delete_cron · `toolu_01XCeAhZqanKexiRyXou96yY`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k05_long_seed43_postfix"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "aff9bf85-6e75-4922-9f58-307f014fcb59",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01WpDsas5BRGCXV3syFpg8V7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1035,
+      "cache_read_input_tokens": 54793,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1035
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-24T23:04:17.216Z_
+
+<details><summary>↩ Tool result · `toolu_014zEboF9JX1U5881NnKRUjd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed43_postfix\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T23:04:08.874Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\", \"checkpoint_path\": \"N/A\", \"metrics\": {\"overall_sr\": 46.8, \"total_episodes\": 500, \"elapsed_min\": 250.5, \"per_task_sr\": {\"T0\": 72, \"T1\": 34, \"T2\": 64, \"T3\": 68, \"T4\": 58, \"T5\": 26, \"T6\": 36, \"T7\": 64, \"T8\": 6, \"T9\": 40}, \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T23:04:08.874Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.5635}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "77c13d9c-7daa-4166-827e-5f0a549d3f27",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k05_long_seed43_postfix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:30.297Z\\\", \\\"updated_at\\\": \\\"2026-05-24T23:04:08.874Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 46.8, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 250.5, \\\"per_task_sr\\\": {\\\"T0\\\": 72, \\\"T1\\\": 34, \\\"T2\\\": 64, \\\"T3\\\": 68, \\\"T4\\\": 58, \\\"T5\\\": 26, \\\"T6\\\": 36, \\\"T7\\\": 64, \\\"T8\\\": 6, \\\"T9\\\": 40}, \\\"result_json\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-24T23:04:08.874Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 15.5635}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k05_long_seed43_postfix\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T23:04:08.874Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\", \"checkpoint_path\": \"N/A\", \"metrics\": {\"overall_sr\": 46.8, \"total_episodes\": 500, \"elapsed_min\": 250.5, \"per_task_sr\": {\"T0\": 72, \"T1\": 34, \"T2\": 64, \"T3\": 68, \"T4\": 58, \"T5\": 26, \"T6\": 36, \"T7\": 64, \"T8\": 6, \"T9\": 40}, \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_10_seed43.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T23:04:08.874Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.5635}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-24T23:04:17.557Z_
+
+<details><summary>↩ Tool result · `toolu_01XCeAhZqanKexiRyXou96yY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"deleted\": \"eval_pi05_random_k05_long_seed43_postfix\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "04d3e2ce-0ccd-4129-ba9f-bfded2fc1249",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": \\\"eval_pi05_random_k05_long_seed43_postfix\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"deleted\": \"eval_pi05_random_k05_long_seed43_postfix\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+**完成 — success**
+
+- **exp**: `eval_pi05_random_k05_long_seed43_postfix`
+- **log**: `/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log`
+- **overall_sr**: **46.8%** (234/500), elapsed 250.5 min
+- **per-task**: T0=72, T1=34, T2=64, T3=68, T4=58, T5=26, T6=36, T7=64, T8=6, T9=40
+- **vs seed42**: **完全一致 46.8% = 46.8%**，dual-seed Random k=0.5 Long 复现性极好
+- Registry → DONE/success；cron 已清除
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "uuid": "b22c8720-190b-467d-80c9-5982a9c37c6f",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_013yx8fy9LkMCgp4NMyXx4im",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1330,
+      "cache_read_input_tokens": 55828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 61_
+
+**完成 — success**
+
+- **exp**: `eval_pi05_random_k05_long_seed43_postfix`
+- **log**: `/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log`
+- **overall_sr**: **46.8%** (234/500), elapsed 250.5 min
+- **per-task**: T0=72, T1=34, T2=64, T3=68, T4=58, T5=26, T6=36, T7=64, T8=6, T9=40
+- **vs seed42**: **完全一致 46.8% = 46.8%**，dual-seed Random k=0.5 Long 复现性极好
+- Registry → DONE/success；cron 已清除
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 188222,
+  "duration_api_ms": 134985,
+  "num_turns": 25,
+  "stop_reason": "end_turn",
+  "session_id": "31d15452-68ea-458c-bf2d-f27b003d91c3",
+  "total_cost_usd": 0.9411629999999999,
+  "usage": {
+    "input_tokens": 33,
+    "cache_creation_input_tokens": 55576,
+    "cache_read_input_tokens": 906852,
+    "output_tokens": 5551,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 55576,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 240,
+        "cache_read_input_tokens": 55828,
+        "cache_creation_input_tokens": 1330,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1330
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1312,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001447,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-7[1m]": {
+      "inputTokens": 33,
+      "outputTokens": 5551,
+      "cacheReadInputTokens": 906852,
+      "cacheCreationInputTokens": 55576,
+      "webSearchRequests": 0,
+      "costUSD": 0.9397159999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8af50ff8-4494-4a5a-b4e7-05bb4e8fece4"
+}
+```
+
+</details>
+
+---

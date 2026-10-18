@@ -274,5 +274,6 @@
       ],
       "message_count": 5
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/analyze-mistral-hires-bf16-2bitonly-v4.md"
 }

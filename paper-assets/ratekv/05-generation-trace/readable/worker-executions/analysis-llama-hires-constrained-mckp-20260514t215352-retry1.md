@@ -1,0 +1,1491 @@
+# analysis llama hires constrained mckp 20260514T215352 retry1
+
+**When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_analysis_llama_hires_constrained_mckp_20260514T215352_retry1.log`
+- **Structured JSON:** [`e6547e781934f65122da.json`](../../sessions/e6/e6547e781934f65122da.json)
+
+## Before a recorded user message
+
+31 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-7[1m]",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1cf7ab74-1c57-46df-8e14-246dca1494a4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-ratekv/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1778796000,
+    "rateLimitType": "seven_day",
+    "utilization": 0.9,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "387e6637-6cbd-4e90-8f32-e0cb211fa211",
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "4d23aeaf-be54-4b53-b5c2-38f9d2677bca",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01TidgdrCDWSbrXiEgKfyPus",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15764,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15764
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Qk8M5uNJmeNX7eNi64qqRG`</summary>
+
+```json
+{
+  "query": "select:ssh_read_only,ssh_execute,update_registry,save_project_file,read_project_file,read_registry,register_artifact",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "57360cdb-dbb6-462e-9708-2e09fa43fd7d",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01TidgdrCDWSbrXiEgKfyPus",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 15764,
+      "cache_read_input_tokens": 16241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15764
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T21:54:11.849Z_
+
+<details><summary>↩ Tool result · `toolu_01Qk8M5uNJmeNX7eNi64qqRG`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "4125934e-1ccb-4b96-9bb8-aadd3feefa65",
+  "tool_use_result": {
+    "matches": [],
+    "query": "select:ssh_read_only,ssh_execute,update_registry,save_project_file,read_project_file,read_registry,register_artifact",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SKXDqBCsKv2pRTEhZvqA4G`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "8e2c7285-6412-466d-9a3b-eea5178680d6",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01FQTW7pRZPxqkz1N8XrCuUU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 197,
+      "cache_read_input_tokens": 32005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 197
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T21:54:14.815Z_
+
+<details><summary>↩ Tool result · `toolu_01SKXDqBCsKv2pRTEhZvqA4G`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "b91882b7-e0eb-432a-a9ec-97980a5302ef",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "1dc48765-ad7d-4f95-92d7-c4d6379e63ab",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01WPi8wd6r61mgQHAPAskRBa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 19412,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19412
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29566
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HypiZAASwAj2ALvhCSkAuF`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "tail -100 /root/runs/ratekv/llama_hires_constrained_mckp.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "173966a6-3c98-43a8-90e1-52998c5e5564",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01WPi8wd6r61mgQHAPAskRBa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 19412,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19412
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29566
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W8u1iS9qme1wcfpc24v1vq`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "ls -la /root/runs/ratekv/llama_hires_constrained_mckp.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "9b105151-c57d-47b5-837f-a87f789d3673",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01WPi8wd6r61mgQHAPAskRBa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 19412,
+      "cache_read_input_tokens": 16334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19412
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 29566
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T21:54:20.761Z_
+
+<details><summary>↩ Tool result · `toolu_01HypiZAASwAj2ALvhCSkAuF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\nLlama-3.1-8B: 32L x 8KV, GQA 4:1, 256 total heads\\n\\nLoading hires 2-bit profiles from llama_hires_bf16_2bitonly_profiles.json...\\nHires: 32 layers, 8 heads/layer\\nLoading standard profiles from llama_profiling_results.json...\\nStandard: 32 layers, 8 heads/layer\\n\\nMerging profiles (hires 2-bit + standard 4-bit/8-bit)...\\n  L2H5 merged: 2bit=15.2636 (hires), 4bit=0.000000, 8bit=0.000000 (standard)\\n  L2H5 standard 2bit was: 11.9821\\n\\nRunning constrained MCKP (max_2bit=2, budget=0.25)...\\nBit distribution: {4: 253, 8: 1, 2: 2}\\n2-bit heads: ['26,0', '31,7']\\n8-bit heads: ['12,3']\\nTotal distortion: 0.701507\\nMemory ratio: 0.2500\\n\\nLoading model in bf16 to cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 230.40it/s]\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\nToken indices sequence length is longer than the specified maximum sequence length for this model (288937 > 131072). Running this sequence through the model will result in indexing errors\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\nModel loaded. GPU mem: 16.1GB\\n\\nEvaluating bf16 baseline on WikiText-2...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=7.95\\n  chunk 100/564, running ppl=8.51\\n  chunk 150/564, running ppl=8.04\\n  chunk 200/564, running ppl=8.32\\n  chunk 250/564, running ppl=8.10\\n  chunk 300/564, running ppl=7.95\\n  chunk 350/564, running ppl=7.99\\n  chunk 400/564, running ppl=8.27\\n  chunk 450/564, running ppl=8.11\\n  chunk 500/564, running ppl=8.09\\n  chunk 550/564, running ppl=8.07\\nBF16 WikiText-2 PPL: 8.0922\\n\\nEvaluating constrained MCKP (hires) on WikiText-2...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=8.36\\n  chunk 100/564, running ppl=8.96\\n  chunk 150/564, running ppl=8.45\\n  chunk 200/564, running ppl=8.72\\n  chunk 250/564, running ppl=8.50\\n  chunk 300/564, running ppl=8.34\\n  chunk 350/564, running ppl=8.36\\n  chunk 400/564, running ppl=8.67\\n  chunk 450/564, running ppl=8.53\\n  chunk 500/564, running ppl=8.50\\n  chunk 550/564, running ppl=8.48\\nMCKP PPL: 8.5042\\n\\nEvaluating uniform 4-bit on WikiText-2...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=8.33\\n  chunk 100/564, running ppl=8.92\\n  chunk 150/564, running ppl=8.42\\n  chunk 200/564, running ppl=8.69\\n  chunk 250/564, running ppl=8.47\\n  chunk 300/564, running ppl=8.31\\n  chunk 350/564, running ppl=8.33\\n  chunk 400/564, running ppl=8.63\\n  chunk 450/564, running ppl=8.49\\n  chunk 500/564, running ppl=8.47\\n  chunk 550/564, running ppl=8.45\\nUniform 4-bit PPL: 8.4701\\n\\nMCKP improvement over uniform: -0.0341 (-9.0%)\\n\\n============================================================\\nRESULTS — Llama-3.1-8B (hires constrained MCKP)\\n============================================================\\n\\nMethod                                     PPL   Delta vs uniform\\n-----------------------------------------------------------------\\nBaseline (bf16)                         8.0922                ---\\nHires MCKP (k=2)                        8.5042            -0.0341\\nUniform 4-bit                           8.4701                ---\\nStd MCKP (reference)                    8.4498            +0.0192\\n\\nConcentration: hires=0.5749\\nBit distribution: {4: 253, 8: 1, 2: 2}\\n2-bit heads: ['26,0', '31,7']\\n8-bit heads: ['12,3']\\nVerdict: FAIL\\nTotal time: 1.6min\\nSaved to llama_hires_constrained_results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "a5655bab-d056-40c0-9783-85c0f3bb6a67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"`torch_dtype` is deprecated! Use `dtype` instead!\\\\nLlama-3.1-8B: 32L x 8KV, GQA 4:1, 256 total heads\\\\n\\\\nLoading hires 2-bit profiles from llama_hires_bf16_2bitonly_profiles.json...\\\\nHires: 32 layers, 8 heads/layer\\\\nLoading standard profiles from llama_profiling_results.json...\\\\nStandard: 32 layers, 8 heads/layer\\\\n\\\\nMerging profiles (hires 2-bit + standard 4-bit/8-bit)...\\\\n  L2H5 merged: 2bit=15.2636 (hires), 4bit=0.000000, 8bit=0.000000 (standard)\\\\n  L2H5 standard 2bit was: 11.9821\\\\n\\\\nRunning constrained MCKP (max_2bit=2, budget=0.25)...\\\\nBit distribution: {4: 253, 8: 1, 2: 2}\\\\n2-bit heads: ['26,0', '31,7']\\\\n8-bit heads: ['12,3']\\\\nTotal distortion: 0.701507\\\\nMemory ratio: 0.2500\\\\n\\\\nLoading model in bf16 to cuda:0...\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 230.40it/s]\\\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\\\nToken indices sequence length is longer than the specified maximum sequence length for this model (288937 > 131072). Running this sequence through the model will result in indexing errors\\\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\\\nModel loaded. GPU mem: 16.1GB\\\\n\\\\nEvaluating bf16 baseline on WikiText-2...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=7.95\\\\n  chunk 100/564, running ppl=8.51\\\\n  chunk 150/564, running ppl=8.04\\\\n  chunk 200/564, running ppl=8.32\\\\n  chunk 250/564, running ppl=8.10\\\\n  chunk 300/564, running ppl=7.95\\\\n  chunk 350/564, running ppl=7.99\\\\n  chunk 400/564, running ppl=8.27\\\\n  chunk 450/564, running ppl=8.11\\\\n  chunk 500/564, running ppl=8.09\\\\n  chunk 550/564, running ppl=8.07\\\\nBF16 WikiText-2 PPL: 8.0922\\\\n\\\\nEvaluating constrained MCKP (hires) on WikiText-2...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.36\\\\n  chunk 100/564, running ppl=8.96\\\\n  chunk 150/564, running ppl=8.45\\\\n  chunk 200/564, running ppl=8.72\\\\n  chunk 250/564, running ppl=8.50\\\\n  chunk 300/564, running ppl=8.34\\\\n  chunk 350/564, running ppl=8.36\\\\n  chunk 400/564, running ppl=8.67\\\\n  chunk 450/564, running ppl=8.53\\\\n  chunk 500/564, running ppl=8.50\\\\n  chunk 550/564, running ppl=8.48\\\\nMCKP PPL: 8.5042\\\\n\\\\nEvaluating uniform 4-bit on WikiText-2...\\\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\\\n  chunk 50/564, running ppl=8.33\\\\n  chunk 100/564, running ppl=8.92\\\\n  chunk 150/564, running ppl=8.42\\\\n  chunk 200/564, running ppl=8.69\\\\n  chunk 250/564, running ppl=8.47\\\\n  chunk 300/564, running ppl=8.31\\\\n  chunk 350/564, running ppl=8.33\\\\n  chunk 400/564, running ppl=8.63\\\\n  chunk 450/564, running ppl=8.49\\\\n  chunk 500/564, running ppl=8.47\\\\n  chunk 550/564, running ppl=8.45\\\\nUniform 4-bit PPL: 8.4701\\\\n\\\\nMCKP improvement over uniform: -0.0341 (-9.0%)\\\\n\\\\n============================================================\\\\nRESULTS — Llama-3.1-8B (hires constrained MCKP)\\\\n============================================================\\\\n\\\\nMethod                                     PPL   Delta vs uniform\\\\n-----------------------------------------------------------------\\\\nBaseline (bf16)                         8.0922                ---\\\\nHires MCKP (k=2)                        8.5042            -0.0341\\\\nUniform 4-bit                           8.4701                ---\\\\nStd MCKP (reference)                    8.4498            +0.0192\\\\n\\\\nConcentration: hires=0.5749\\\\nBit distribution: {4: 253, 8: 1, 2: 2}\\\\n2-bit heads: ['26,0', '31,7']\\\\n8-bit heads: ['12,3']\\\\nVerdict: FAIL\\\\nTotal time: 1.6min\\\\nSaved to llama_hires_constrained_results.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\nLlama-3.1-8B: 32L x 8KV, GQA 4:1, 256 total heads\\n\\nLoading hires 2-bit profiles from llama_hires_bf16_2bitonly_profiles.json...\\nHires: 32 layers, 8 heads/layer\\nLoading standard profiles from llama_profiling_results.json...\\nStandard: 32 layers, 8 heads/layer\\n\\nMerging profiles (hires 2-bit + standard 4-bit/8-bit)...\\n  L2H5 merged: 2bit=15.2636 (hires), 4bit=0.000000, 8bit=0.000000 (standard)\\n  L2H5 standard 2bit was: 11.9821\\n\\nRunning constrained MCKP (max_2bit=2, budget=0.25)...\\nBit distribution: {4: 253, 8: 1, 2: 2}\\n2-bit heads: ['26,0', '31,7']\\n8-bit heads: ['12,3']\\nTotal distortion: 0.701507\\nMemory ratio: 0.2500\\n\\nLoading model in bf16 to cuda:0...\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 230.40it/s]\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\nToken indices sequence length is longer than the specified maximum sequence length for this model (288937 > 131072). Running this sequence through the model will result in indexing errors\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3 (last modified on Thu May 14 03:51:25 2026).\\nModel loaded. GPU mem: 16.1GB\\n\\nEvaluating bf16 baseline on WikiText-2...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=7.95\\n  chunk 100/564, running ppl=8.51\\n  chunk 150/564, running ppl=8.04\\n  chunk 200/564, running ppl=8.32\\n  chunk 250/564, running ppl=8.10\\n  chunk 300/564, running ppl=7.95\\n  chunk 350/564, running ppl=7.99\\n  chunk 400/564, running ppl=8.27\\n  chunk 450/564, running ppl=8.11\\n  chunk 500/564, running ppl=8.09\\n  chunk 550/564, running ppl=8.07\\nBF16 WikiText-2 PPL: 8.0922\\n\\nEvaluating constrained MCKP (hires) on WikiText-2...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=8.36\\n  chunk 100/564, running ppl=8.96\\n  chunk 150/564, running ppl=8.45\\n  chunk 200/564, running ppl=8.72\\n  chunk 250/564, running ppl=8.50\\n  chunk 300/564, running ppl=8.34\\n  chunk 350/564, running ppl=8.36\\n  chunk 400/564, running ppl=8.67\\n  chunk 450/564, running ppl=8.53\\n  chunk 500/564, running ppl=8.50\\n  chunk 550/564, running ppl=8.48\\nMCKP PPL: 8.5042\\n\\nEvaluating uniform 4-bit on WikiText-2...\\nEvaluating perplexity on 288937 tokens, stride=512, 564 chunks\\n  chunk 50/564, running ppl=8.33\\n  chunk 100/564, running ppl=8.92\\n  chunk 150/564, running ppl=8.42\\n  chunk 200/564, running ppl=8.69\\n  chunk 250/564, running ppl=8.47\\n  chunk 300/564, running ppl=8.31\\n  chunk 350/564, running ppl=8.33\\n  chunk 400/564, running ppl=8.63\\n  chunk 450/564, running ppl=8.49\\n  chunk 500/564, running ppl=8.47\\n  chunk 550/564, running ppl=8.45\\nUniform 4-bit PPL: 8.4701\\n\\nMCKP improvement over uniform: -0.0341 (-9.0%)\\n\\n============================================================\\nRESULTS — Llama-3.1-8B (hires constrained MCKP)\\n============================================================\\n\\nMethod                                     PPL   Delta vs uniform\\n-----------------------------------------------------------------\\nBaseline (bf16)                         8.0922                ---\\nHires MCKP (k=2)                        8.5042            -0.0341\\nUniform 4-bit                           8.4701                ---\\nStd MCKP (reference)                    8.4498            +0.0192\\n\\nConcentration: hires=0.5749\\nBit distribution: {4: 253, 8: 1, 2: 2}\\n2-bit heads: ['26,0', '31,7']\\n8-bit heads: ['12,3']\\nVerdict: FAIL\\nTotal time: 1.6min\\nSaved to llama_hires_constrained_results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T21:54:21.287Z_
+
+<details><summary>↩ Tool result · `toolu_01W8u1iS9qme1wcfpc24v1vq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 4498 May 15 05:52 /root/runs/ratekv/llama_hires_constrained_mckp.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "3d387521-9ce6-4e4e-9a9b-5b8b22d94e60",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 4498 May 15 05:52 /root/runs/ratekv/llama_hires_constrained_mckp.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 4498 May 15 05:52 /root/runs/ratekv/llama_hires_constrained_mckp.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "717448b9-33e3-423d-a677-32d7365f2c2f",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01S3xEtm6e2CGscXPnYMaESD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3009,
+      "cache_read_input_tokens": 35746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3009
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VZov9WBykzHvDP5UwTBhrG`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "find /root -name \"llama_hires_constrained_results.json\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "b6880372-71b3-4269-a379-079c8bf34972",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01S3xEtm6e2CGscXPnYMaESD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3009,
+      "cache_read_input_tokens": 35746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3009
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T21:54:29.399Z_
+
+<details><summary>↩ Tool result · `toolu_01VZov9WBykzHvDP5UwTBhrG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "e69400e4-5b91-441e-a44e-3e4adfa0bd7e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mp9st9WE9j6sD7HuawHn7B`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "grep -i \"wandb\" /root/runs/ratekv/llama_hires_constrained_mckp.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "235bd115-6953-49f2-b74f-46d844c2339d",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01S3xEtm6e2CGscXPnYMaESD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3009,
+      "cache_read_input_tokens": 35746,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3009
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T21:54:30.727Z_
+
+<details><summary>↩ Tool result · `toolu_01Mp9st9WE9j6sD7HuawHn7B`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "d8160c5f-b30c-4266-ab65-29fa1e754512",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "f9b475b7-8fa4-4d9b-a9aa-c4990c9b997f",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015q12kJH3NPYL1LXnzR69ck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1121,
+      "cache_read_input_tokens": 38755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1121
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LEbUnxyCk6bXSdUM8rTuPB`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "find /root -name \"llama_hires_constrained_results.json\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "8920f554-9bac-4891-a821-ef85a2eea8d9",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015q12kJH3NPYL1LXnzR69ck",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1121,
+      "cache_read_input_tokens": 38755,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1121
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T21:54:33.993Z_
+
+<details><summary>↩ Tool result · `toolu_01LEbUnxyCk6bXSdUM8rTuPB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "3e34e62e-2255-4e31-805a-c3f0d2d1d61b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013JLWh9gQZnGFY7YcUVCWFB`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "find /root -name \"llama_hires_constrained_results.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "3a910b51-8fa8-446d-98d9-45816877706b",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017BRWUgYYyo9Jz1wnBmYfzJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 318,
+      "cache_read_input_tokens": 39876,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 318
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T21:54:37.459Z_
+
+<details><summary>↩ Tool result · `toolu_013JLWh9gQZnGFY7YcUVCWFB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/llama_hires_constrained_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "8325e5d1-cd3e-495e-b130-5ccacb2b3a21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/ratekv/llama_hires_constrained_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/ratekv/llama_hires_constrained_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SpFDx2MrtPuiipbSSguCRP`</summary>
+
+```json
+{
+  "server": "westd-37397",
+  "command": "cat /root/ratekv/llama_hires_constrained_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "b8cb073d-c56a-4091-b825-c2dfcb0585c7",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014uNiZr5xDdUzY1AqCz9d2f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 267,
+      "cache_read_input_tokens": 40194,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 267
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T21:54:40.353Z_
+
+<details><summary>↩ Tool result · `toolu_01SpFDx2MrtPuiipbSSguCRP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B\\\",\\n  \\\"model_name\\\": \\\"Llama-3.1-8B\\\",\\n  \\\"precision\\\": \\\"merged_hires_bf16_2bit_plus_standard_4bit_8bit\\\",\\n  \\\"architecture\\\": {\\n    \\\"num_layers\\\": 32,\\n    \\\"num_kv_heads\\\": 8,\\n    \\\"num_attention_heads\\\": 32,\\n    \\\"head_dim\\\": 128,\\n    \\\"hidden_size\\\": 4096,\\n    \\\"gqa_ratio\\\": 4,\\n    \\\"total_kv_heads\\\": 256\\n  },\\n  \\\"profiling_sources\\\": {\\n    \\\"2bit\\\": \\\"llama_hires_bf16_2bitonly_profiles.json (bf16, 64seq x 2048tok)\\\",\\n    \\\"4bit_8bit\\\": \\\"llama_profiling_results.json (standard)\\\"\\n  },\\n  \\\"constraint\\\": {\\n    \\\"max_2bit\\\": 2,\\n    \\\"budget\\\": 0.25,\\n    \\\"l0_exclude_2bit\\\": true\\n  },\\n  \\\"baseline_wikitext2_ppl\\\": 8.0922,\\n  \\\"mckp_wikitext2_ppl\\\": 8.5042,\\n  \\\"uniform4bit_wikitext2_ppl\\\": 8.4701,\\n  \\\"mckp_improvement_over_uniform\\\": -0.0341,\\n  \\\"mckp_improvement_pct\\\": -9.01,\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"bit_distribution\\\": {\\n    \\\"4\\\": 253,\\n    \\\"8\\\": 1,\\n    \\\"2\\\": 2\\n  },\\n  \\\"heads_2bit\\\": [\\n    \\\"26,0\\\",\\n    \\\"31,7\\\"\\n  ],\\n  \\\"heads_8bit\\\": [\\n    \\\"12,3\\\"\\n  ],\\n  \\\"mckp_total_distortion\\\": 0.7015066684338045,\\n  \\\"mckp_actual_memory_ratio\\\": 0.25,\\n  \\\"allocation\\\": {\\n    \\\"0,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"8,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"8,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"8,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"8,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"\\n\\n... [截断: 输出过长，省略 4615 字符] ...\\n\\n[\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"21,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"21,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,0\\\": [\\n      \\\"quant\\\",\\n      2\\n    ],\\n    \\\"26,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,7\\\": [\\n      \\\"quant\\\",\\n      2\\n    ]\\n  },\\n  \\\"analysis\\\": {\\n    \\\"top5_concentration_hires\\\": 0.5749,\\n    \\\"top5_concentration_profiling_reported\\\": 0.5749\\n  },\\n  \\\"standard_reference\\\": {\\n    \\\"mckp_ppl_standard\\\": 8.4498,\\n    \\\"uniform_4bit_ppl\\\": 8.469,\\n    \\\"baseline_ppl\\\": 8.0918,\\n    \\\"lowres_mckp_ppl\\\": 8.6951,\\n    \\\"concentration_hires_profiling\\\": 0.5749\\n  },\\n  \\\"timing\\\": {\\n    \\\"total_seconds\\\": 95.8\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "0d960ae1-8dff-4de9-af5d-287de2df84e4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B\\\\\\\",\\\\n  \\\\\\\"model_name\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n  \\\\\\\"precision\\\\\\\": \\\\\\\"merged_hires_bf16_2bit_plus_standard_4bit_8bit\\\\\\\",\\\\n  \\\\\\\"architecture\\\\\\\": {\\\\n    \\\\\\\"num_layers\\\\\\\": 32,\\\\n    \\\\\\\"num_kv_heads\\\\\\\": 8,\\\\n    \\\\\\\"num_attention_heads\\\\\\\": 32,\\\\n    \\\\\\\"head_dim\\\\\\\": 128,\\\\n    \\\\\\\"hidden_size\\\\\\\": 4096,\\\\n    \\\\\\\"gqa_ratio\\\\\\\": 4,\\\\n    \\\\\\\"total_kv_heads\\\\\\\": 256\\\\n  },\\\\n  \\\\\\\"profiling_sources\\\\\\\": {\\\\n    \\\\\\\"2bit\\\\\\\": \\\\\\\"llama_hires_bf16_2bitonly_profiles.json (bf16, 64seq x 2048tok)\\\\\\\",\\\\n    \\\\\\\"4bit_8bit\\\\\\\": \\\\\\\"llama_profiling_results.json (standard)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"constraint\\\\\\\": {\\\\n    \\\\\\\"max_2bit\\\\\\\": 2,\\\\n    \\\\\\\"budget\\\\\\\": 0.25,\\\\n    \\\\\\\"l0_exclude_2bit\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"baseline_wikitext2_ppl\\\\\\\": 8.0922,\\\\n  \\\\\\\"mckp_wikitext2_ppl\\\\\\\": 8.5042,\\\\n  \\\\\\\"uniform4bit_wikitext2_ppl\\\\\\\": 8.4701,\\\\n  \\\\\\\"mckp_improvement_over_uniform\\\\\\\": -0.0341,\\\\n  \\\\\\\"mckp_improvement_pct\\\\\\\": -9.01,\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n  \\\\\\\"bit_distribution\\\\\\\": {\\\\n    \\\\\\\"4\\\\\\\": 253,\\\\n    \\\\\\\"8\\\\\\\": 1,\\\\n    \\\\\\\"2\\\\\\\": 2\\\\n  },\\\\n  \\\\\\\"heads_2bit\\\\\\\": [\\\\n    \\\\\\\"26,0\\\\\\\",\\\\n    \\\\\\\"31,7\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"heads_8bit\\\\\\\": [\\\\n    \\\\\\\"12,3\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"mckp_total_distortion\\\\\\\": 0.7015066684338045,\\\\n  \\\\\\\"mckp_actual_memory_ratio\\\\\\\": 0.25,\\\\n  \\\\\\\"allocation\\\\\\\": {\\\\n    \\\\\\\"0,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"0,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"0,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"0,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"0,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"0,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"0,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"0,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"1,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"1,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"1,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"1,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"1,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"1,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"1,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"1,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"2,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"2,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"2,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"2,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"2,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"2,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"2,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"2,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"3,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"3,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"3,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"3,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"3,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"3,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"3,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"3,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"4,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"4,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"4,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"4,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"4,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"4,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"4,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"4,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"5,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"5,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"5,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"5,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"5,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"5,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"5,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"5,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"6,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"6,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"6,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"6,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"6,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"6,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"6,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"6,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"7,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"7,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"7,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"7,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"7,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"7,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"7,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"7,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"8,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"8,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"8,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"8,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 4615 字符] ...\\\\n\\\\n[\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"21,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"21,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"22,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"22,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"22,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"22,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"22,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"22,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"22,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"22,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"23,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"23,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"23,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"23,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"23,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"23,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"23,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"23,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"24,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"24,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"24,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"24,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"24,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"24,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"24,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"24,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"25,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"25,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"25,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"25,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"25,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"25,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"25,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"25,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"26,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      2\\\\n    ],\\\\n    \\\\\\\"26,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"26,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"26,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"26,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"26,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"26,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"26,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"27,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"27,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"27,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"27,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"27,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"27,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"27,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"27,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"28,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"28,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"28,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"28,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"28,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"28,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"28,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"28,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"29,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"29,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"29,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"29,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"29,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"29,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"29,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"29,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"30,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"30,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"30,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"30,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"30,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"30,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"30,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"30,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"31,0\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"31,1\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"31,2\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"31,3\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"31,4\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"31,5\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"31,6\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      4\\\\n    ],\\\\n    \\\\\\\"31,7\\\\\\\": [\\\\n      \\\\\\\"quant\\\\\\\",\\\\n      2\\\\n    ]\\\\n  },\\\\n  \\\\\\\"analysis\\\\\\\": {\\\\n    \\\\\\\"top5_concentration_hires\\\\\\\": 0.5749,\\\\n    \\\\\\\"top5_concentration_profiling_reported\\\\\\\": 0.5749\\\\n  },\\\\n  \\\\\\\"standard_reference\\\\\\\": {\\\\n    \\\\\\\"mckp_ppl_standard\\\\\\\": 8.4498,\\\\n    \\\\\\\"uniform_4bit_ppl\\\\\\\": 8.469,\\\\n    \\\\\\\"baseline_ppl\\\\\\\": 8.0918,\\\\n    \\\\\\\"lowres_mckp_ppl\\\\\\\": 8.6951,\\\\n    \\\\\\\"concentration_hires_profiling\\\\\\\": 0.5749\\\\n  },\\\\n  \\\\\\\"timing\\\\\\\": {\\\\n    \\\\\\\"total_seconds\\\\\\\": 95.8\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B\\\",\\n  \\\"model_name\\\": \\\"Llama-3.1-8B\\\",\\n  \\\"precision\\\": \\\"merged_hires_bf16_2bit_plus_standard_4bit_8bit\\\",\\n  \\\"architecture\\\": {\\n    \\\"num_layers\\\": 32,\\n    \\\"num_kv_heads\\\": 8,\\n    \\\"num_attention_heads\\\": 32,\\n    \\\"head_dim\\\": 128,\\n    \\\"hidden_size\\\": 4096,\\n    \\\"gqa_ratio\\\": 4,\\n    \\\"total_kv_heads\\\": 256\\n  },\\n  \\\"profiling_sources\\\": {\\n    \\\"2bit\\\": \\\"llama_hires_bf16_2bitonly_profiles.json (bf16, 64seq x 2048tok)\\\",\\n    \\\"4bit_8bit\\\": \\\"llama_profiling_results.json (standard)\\\"\\n  },\\n  \\\"constraint\\\": {\\n    \\\"max_2bit\\\": 2,\\n    \\\"budget\\\": 0.25,\\n    \\\"l0_exclude_2bit\\\": true\\n  },\\n  \\\"baseline_wikitext2_ppl\\\": 8.0922,\\n  \\\"mckp_wikitext2_ppl\\\": 8.5042,\\n  \\\"uniform4bit_wikitext2_ppl\\\": 8.4701,\\n  \\\"mckp_improvement_over_uniform\\\": -0.0341,\\n  \\\"mckp_improvement_pct\\\": -9.01,\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"bit_distribution\\\": {\\n    \\\"4\\\": 253,\\n    \\\"8\\\": 1,\\n    \\\"2\\\": 2\\n  },\\n  \\\"heads_2bit\\\": [\\n    \\\"26,0\\\",\\n    \\\"31,7\\\"\\n  ],\\n  \\\"heads_8bit\\\": [\\n    \\\"12,3\\\"\\n  ],\\n  \\\"mckp_total_distortion\\\": 0.7015066684338045,\\n  \\\"mckp_actual_memory_ratio\\\": 0.25,\\n  \\\"allocation\\\": {\\n    \\\"0,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"0,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"1,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"2,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"3,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"4,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"5,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"6,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"7,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"8,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"8,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"8,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"8,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"\\n\\n... [截断: 输出过长，省略 4615 字符] ...\\n\\n[\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"21,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"21,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"22,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"23,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"24,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"25,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,0\\\": [\\n      \\\"quant\\\",\\n      2\\n    ],\\n    \\\"26,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"26,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"27,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"28,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"29,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"30,7\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,0\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,1\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,2\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,3\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,4\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,5\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,6\\\": [\\n      \\\"quant\\\",\\n      4\\n    ],\\n    \\\"31,7\\\": [\\n      \\\"quant\\\",\\n      2\\n    ]\\n  },\\n  \\\"analysis\\\": {\\n    \\\"top5_concentration_hires\\\": 0.5749,\\n    \\\"top5_concentration_profiling_reported\\\": 0.5749\\n  },\\n  \\\"standard_reference\\\": {\\n    \\\"mckp_ppl_standard\\\": 8.4498,\\n    \\\"uniform_4bit_ppl\\\": 8.469,\\n    \\\"baseline_ppl\\\": 8.0918,\\n    \\\"lowres_mckp_ppl\\\": 8.6951,\\n    \\\"concentration_hires_profiling\\\": 0.5749\\n  },\\n  \\\"timing\\\": {\\n    \\\"total_seconds\\\": 95.8\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "aa46903b-6d65-4be1-9751-1030c7606b8a",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01BUNvG7juBATHVsy56do8n3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7689,
+      "cache_read_input_tokens": 40461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7689
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+All key data extracted. Now updating registry and appending to report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "2d89f4ab-8df4-41b7-a4b0-0470620a6554",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01BUNvG7juBATHVsy56do8n3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7689,
+      "cache_read_input_tokens": 40461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7689
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_013YdQZSSpAeZkyBFii6smzY`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "llama_hires_constrained_mckp"
+  },
+  "project": "ratekv",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "1fc1cc2d-1146-42bd-bc48-600a7cd26ed1",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01BUNvG7juBATHVsy56do8n3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7689,
+      "cache_read_input_tokens": 40461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7689
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T21:54:49.305Z_
+
+<details><summary>↩ Tool result · `toolu_013YdQZSSpAeZkyBFii6smzY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1555}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "89d5b276-7922-4499-b5df-2a142a0e7b29",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1555}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1555}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_013XrCD2dvfX9pHdSpXa8anx`</summary>
+
+```json
+{
+  "project": "ratekv",
+  "file": "report.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "68eecb00-bb85-48c6-9593-072e07a5f0ed",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01BUNvG7juBATHVsy56do8n3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7689,
+      "cache_read_input_tokens": 40461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7689
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T21:54:49.473Z_
+
+<details><summary>↩ Tool result · `toolu_013XrCD2dvfX9pHdSpXa8anx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T21:52:30Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 69 个实验 — ANALYZING 1, DONE 62, PREPARING 5, RUNNING 1\\n**DONE 分布**: failed 8, killed 8, negative 13, success 33\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-37397:cuda:0, westd-37397:cuda:1\\n- **实际运行**: 1 张 — westd-37397:cuda:1(mistral_hires_bf16_2bitonly_v4)\\n- **空闲（分配了没跑）**: westd-37397:cuda:0\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `mistral_hires_bf16_2bitonly_v4` | westd-37397 | cuda:1 | 264489 | `~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `llama_hires_bf16_2bitonly` [success] — 2026-05-14T21:47:38\\n- `mistral_hires_bf16_2bitonly_v2` [failed] — 2026-05-14T21:36:53\\n- `mistral_hires_bf16_2bitonly` [failed] — 2026-05-14T21:06:34\\n- `yi15_hires_constrained_mckp` [negative] — 2026-05-14T20:38:14\\n- `yi15_hires_bf16_2bitonly` [success] — 2026-05-14T20:18:07\\n\\n### 🔴 最近失败原因 (top 3)\\n- `mistral_hires_bf16_2bitonly_v2`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `mistral_hires_bf16_2bitonly`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mistral_hires_bf16_2bitonly_v4 | Mistral-7B-v0.3 hires bf16 2-bit only profiling (model re-downloaded from HF, fixed cuda device). 64seq x 2048tok, 224 heads x ~20s/head ≈ 1.2h. | — | — | — |\\n| llama_hires_constrained_mckp | Llama-3.1-8B hires constrained MCKP + WikiText-2 PPL eval. Uses hires profiles (concentration=0.57, t1/t5=0.85). Determines if Table 1 Llama PPL needs updating from standard 8.45. | — | — | — |\\n\\n## 待处理\\n- mistral_hires_bf16_2bitonly_v3: Mistral-7B-v0.3 hires bf16 2-bit only profiling v3. Model integrity verified (3/3 shards + safetensor + transformers). 64seq×2048tok, 256 heads.（准备中）\\n- qwen_hires_constrained_d049（准备中）\\n- qwen25-hires-profiling（准备中）\\n- cross_domain_calibration_v2（准备中）\\n- greedy_constrained_ablation（准备中）\\n\\n## 近期结论\\n- **llama_hires_bf16_2bitonly** (success): Llama-3.1-8B hires bf16 2-bit only profiling (64seq×2048tok): 补全 5 模型 hires concentration 全景图。Standard profiling concentration=0.34-0.59, 预期 hires 会更高。256 heads × ~30s/head ≈ 2h。\\n- **mistral_hires_bf16_2bitonly_v2** (failed): Mistral-7B-v0.3 hires bf16 2-bit only profiling retry (config.json fixed). 64seq x 2048tok, 224 heads x ~20s/head ≈ 1.2h. ← 基于 mistral_hires_bf16_2bitonly\\n- **mistral_hires_bf16_2bitonly** (failed): —\\n\\n## 趋势\\n成功 33 / 负向 13 / 失败 8 / 共 62\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-37397: 无 GPU 信息\\n\\n## 告警\\n- mvp_001: 训练失败 — unknown\\n- sanity_001: 训练失败 — unknown\\n- mvp_002: 训练失败 — unknown\\n- sanity_002: 训练失败 — unknown\\n- mvp_003: 训练失败 — unknown\\n- sanity_003: 训练失败 — unknown\\n- c4_cross_dataset_eval: 已被终止 — unknown\\n- l0_only_heuristic: 已被终止 — unknown\\n- l0_heuristic_baseline: 已被终止 — unknown\\n- cross_domain_calibration: 已被终止 — unknown\\n- c4_cross_dataset_eval_v2: 已被终止 — unknown\\n- multi_seed_lowres: 已被终止 — unknown\\n- qwen72b_profiling: 已被终止 — unknown\\n- yi15_hires_float32_profiling: 已被终止 — unknown\\n- mistral_hires_bf16_2bitonly: 训练失败 — unknown\\n- mistral_hires_bf16_2bitonly_v2: 训练失败 — unknown\\n\", \"total_chars\": 3264, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "968e3694-bcc7-4eca-92b4-5250a35e831b",
+  "uuid": "f5f08f2f-34d0-4956-b89d-d6f1e04d4bb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T21:52:30Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 69 个实验 — ANALYZING 1, DONE 62, PREPARING 5, RUNNING 1\\\\n**DONE 分布**: failed 8, killed 8, negative 13, success 33\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-37397:cuda:0, westd-37397:cuda:1\\\\n- **实际运行**: 1 张 — westd-37397:cuda:1(mistral_hires_bf16_2bitonly_v4)\\\\n- **空闲（分配了没跑）**: westd-37397:cuda:0\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `mistral_hires_bf16_2bitonly_v4` | westd-37397 | cuda:1 | 264489 | `~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `llama_hires_bf16_2bitonly` [success] — 2026-05-14T21:47:38\\\\n- `mistral_hires_bf16_2bitonly_v2` [failed] — 2026-05-14T21:36:53\\\\n- `mistral_hires_bf16_2bitonly` [failed] — 2026-05-14T21:06:34\\\\n- `yi15_hires_constrained_mckp` [negative] — 2026-05-14T20:38:14\\\\n- `yi15_hires_bf16_2bitonly` [success] — 2026-05-14T20:18:07\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `mistral_hires_bf16_2bitonly_v2`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `mistral_hires_bf16_2bitonly`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| mistral_hires_bf16_2bitonly_v4 | Mistral-7B-v0.3 hires bf16 2-bit only profiling (model re-downloaded from HF, fixed cuda device). 64seq x 2048tok, 224 heads x ~20s/head ≈ 1.2h. | — | — | — |\\\\n| llama_hires_constrained_mckp | Llama-3.1-8B hires constrained MCKP + WikiText-2 PPL eval. Uses hires profiles (concentration=0.57, t1/t5=0.85). Determines if Table 1 Llama PPL needs updating from standard 8.45. | — | — | — |\\\\n\\\\n## 待处理\\\\n- mistral_hires_bf16_2bitonly_v3: Mistral-7B-v0.3 hires bf16 2-bit only profiling v3. Model integrity verified (3/3 shards + safetensor + transformers). 64seq×2048tok, 256 heads.（准备中）\\\\n- qwen_hires_constrained_d049（准备中）\\\\n- qwen25-hires-profiling（准备中）\\\\n- cross_domain_calibration_v2（准备中）\\\\n- greedy_constrained_ablation（准备中）\\\\n\\\\n## 近期结论\\\\n- **llama_hires_bf16_2bitonly** (success): Llama-3.1-8B hires bf16 2-bit only profiling (64seq×2048tok): 补全 5 模型 hires concentration 全景图。Standard profiling concentration=0.34-0.59, 预期 hires 会更高。256 heads × ~30s/head ≈ 2h。\\\\n- **mistral_hires_bf16_2bitonly_v2** (failed): Mistral-7B-v0.3 hires bf16 2-bit only profiling retry (config.json fixed). 64seq x 2048tok, 224 heads x ~20s/head ≈ 1.2h. ← 基于 mistral_hires_bf16_2bitonly\\\\n- **mistral_hires_bf16_2bitonly** (failed): —\\\\n\\\\n## 趋势\\\\n成功 33 / 负向 13 / 失败 8 / 共 62\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-37397: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_001: 训练失败 — unknown\\\\n- sanity_001: 训练失败 — unknown\\\\n- mvp_002: 训练失败 — unknown\\\\n- sanity_002: 训练失败 — unknown\\\\n- mvp_003: 训练失败 — unknown\\\\n- sanity_003: 训练失败 — unknown\\\\n- c4_cross_dataset_eval: 已被终止 — unknown\\\\n- l0_only_heuristic: 已被终止 — unknown\\\\n- l0_heuristic_baseline: 已被终止 — unknown\\\\n- cross_domain_calibration: 已被终止 — unknown\\\\n- c4_cross_dataset_eval_v2: 已被终止 — unknown\\\\n- multi_seed_lowres: 已被终止 — unknown\\\\n- qwen72b_profiling: 已被终止 — unknown\\\\n- yi15_hires_float32_profiling: 已被终止 — unknown\\\\n- mistral_hires_bf16_2bitonly: 训练失败 — unknown\\\\n- mistral_hires_bf16_2bitonly_v2: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 3264, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T21:52:30Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 69 个实验 — ANALYZING 1, DONE 62, PREPARING 5, RUNNING 1\\n**DONE 分布**: failed 8, killed 8, negative 13, success 33\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-37397:cuda:0, westd-37397:cuda:1\\n- **实际运行**: 1 张 — westd-37397:cuda:1(mistral_hires_bf16_2bitonly_v4)\\n- **空闲（分配了没跑）**: westd-37397:cuda:0\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `mistral_hires_bf16_2bitonly_v4` | westd-37397 | cuda:1 | 264489 | `~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `llama_hires_bf16_2bitonly` [success] — 2026-05-14T21:47:38\\n- `mistral_hires_bf16_2bitonly_v2` [failed] — 2026-05-14T21:36:53\\n- `mistral_hires_bf16_2bitonly` [failed] — 2026-05-14T21:06:34\\n- `yi15_hires_constrained_mckp` [negative] — 2026-05-14T20:38:14\\n- `yi15_hires_bf16_2bitonly` [success] — 2026-05-14T20:18:07\\n\\n### 🔴 最近失败原因 (top 3)\\n- `mistral_hires_bf16_2bitonly_v2`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `mistral_hires_bf16_2bitonly`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mistral_hires_bf16_2bitonly_v4 | Mistral-7B-v0.3 hires bf16 2-bit only profiling (model re-downloaded from HF, fixed cuda device). 64seq x 2048tok, 224 heads x ~20s/head ≈ 1.2h. | — | — | — |\\n| llama_hires_constrained_mckp | Llama-3.1-8B hires constrained MCKP + WikiText-2 PPL eval. Uses hires profiles (concentration=0.57, t1/t5=0.85). Determines if Table 1 Llama PPL needs updating from standard 8.45. | — | — | — |\\n\\n## 待处理\\n- mistral_hires_bf16_2bitonly_v3: Mistral-7B-v0.3 hires bf16 2-bit only profiling v3. Model integrity verified (3/3 shards + safetensor + transformers). 64seq×2048tok, 256 heads.（准备中）\\n- qwen_hires_constrained_d049（准备中）\\n- qwen25-hires-profiling（准备中）\\n- cross_domain_calibration_v2（准备中）\\n- greedy_constrained_ablation（准备中）\\n\\n## 近期结论\\n- **llama_hires_bf16_2bitonly** (success): Llama-3.1-8B hires bf16 2-bit only profiling (64seq×2048tok): 补全 5 模型 hires concentration 全景图。Standard profiling concentration=0.34-0.59, 预期 hires 会更高。256 heads × ~30s/head ≈ 2h。\\n- **mistral_hires_bf16_2bitonly_v2** (failed): Mistral-7B-v0.3 hires bf16 2-bit only profiling retry (config.json fixed). 64seq x 2048tok, 224 heads x ~20s/head ≈ 1.2h. ← 基于 mistral_hires_bf16_2bitonly\\n- **mistral_hires_bf16_2bitonly** (failed): —\\n\\n## 趋势\\n成功 33 / 负向 13 / 失败 8 / 共 62\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-37397: 无 GPU 信息\\n\\n## 告警\\n- mvp_001: 训练失败 — unknown\\n- sanity_001: 训练失败 — unknown\\n- mvp_002: 训练失败 — unknown\\n- sanity_002: 训练失败 — unknown\\n- mvp_003: 训练失败 — unknown\\n- sanity_003: 训练失败 — unknown\\n- c4_cross_dataset_eval: 已被终止 — unknown\\n- l0_only_heuristic: 已被终止 — unknown\\n- l0_heuristic_baseline: 已被终止 — unknown\\n- cross_domain_calibration: 已被终止 — unknown\\n- c4_cross_dataset_eval_v2: 已被终止 — unknown\\n- multi_seed_lowres: 已被终止 — unknown\\n- qwen72b_profiling: 已被终止 — unknown\\n- yi15_hires_float32_profiling: 已被终止 — unknown\\n- mistral_hires_bf16_2bitonly: 训练失败 — unknown\\n- mistral_hires_bf16_2bitonly_v2: 训练失败 — unknown\\n\", \"total_chars\": 3264, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

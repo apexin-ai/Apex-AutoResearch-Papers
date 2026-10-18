@@ -2761,5 +2761,6 @@
       ],
       "message_count": 66
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/bugfix-claude-bt-pvalue-twosided.md"
 }

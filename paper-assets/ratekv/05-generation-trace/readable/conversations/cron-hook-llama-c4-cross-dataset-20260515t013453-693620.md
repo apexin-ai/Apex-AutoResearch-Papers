@@ -1,0 +1,1739 @@
+# cron hook llama c4 cross dataset 20260515T013453 693620
+
+**When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 54
+- **Recorded user turns:** 2
+- **Tool calls:** 26
+- **Original source:** `logs/chats/archive/cron_hook_llama_c4_cross_dataset_20260515T013453_693620.jsonl`
+- **Structured JSON:** [`f611c9b323f6d248e548.json`](../../sessions/f6/f611c9b323f6d248e548.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+36 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T22:12:46.968225+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #7。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 **westd-37397:cuda:0, cuda:1** 只此两张，不可用其他设备
+- 所有 eval 必须 **bf16**，禁止 fp16（Llama fp16 PPL=1.31 overflow 事故，D046 全局修复）
+- 论文数字只用**统一 pipeline** 产出，禁止引用 exp_e 的绝对 PPL（eval 设置不一致）
+- Profile 文件加载必须验证 concentration 值（hires ~0.61 vs lowres ~0.42），`qwen_float32_profiles.json` 是 lowres 数据不是 hires
+- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，服务器无 .venv
+- ssh_execute 有 30 秒硬超时，耗时操作必须 tmux 脚本方案
+- EMNLP ARR 截止 **2026-05-25**（距今 11 天）
+
+### 2. 🖥️ 基础设施快照
+- **服务器**：westd-37397，2× RTX PRO 6000 96GB
+- **工作目录**：/root/ratekv
+- **Python**：/root/miniconda3/bin/python（conda base 环境）
+- **模型路径**：/root/autodl-tmp/models/Mistral-7B-v0.3, /root/autodl-tmp/.hf_cache/google/gemma-2-9b, /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B
+- **HF_HOME**：/root/autodl-tmp/.hf_cache（WikiText-2 缓存在 datasets/wikitext/wikitext-2-raw-v1/）
+- **活跃进程**：mistral_hires_bf16_2bitonly_v4 PID=264489, tmux session, cuda:1（~69/256 heads, ETA ~1h）
+- **Cron**：reconcile 确认 mistral_hires_bf16_2bitonly_v4 仍在运行。本 session 无 CronCreate 注册——**下一个 session 需要 reconcile_crons 或重新 register_cron**
+
+### 3. 📊 当前状态
+- **gemma2_hires_bf16_2bitonly** 刚完成进入 **ANALYZING**（22:11 UTC）。有 on_complete hook 已触发但本 session 即将 RESET，结果**未被提取**。这是最优先待处理项——需要 spawn worker SSH 读 `/root/runs/ratekv/gemma2_hires_bf16_2bitonly.log` 和结果 JSON，提取 concentration / bit_distribution，更新 registry + 5-model table + report.md
+- **mistral_hires_bf16_2bitonly_v4** RUNNING on cuda:1，约 69/256 heads（~1h 剩余）
+- **2 个 running workers**（worker_fix_kill_gemma2_duplicate / worker_ops_kill_gemma2_duplicate）在处理 gemma2 重复进程 kill，可能已完成但状态未刷新
+- **PREPARING 中 5 个实验**：v3/qwen_hires_constrained_d049/qwen25-hires-profiling/cross_domain_calibration_v2/greedy_constrained_ablation 全部已 conclusion=killed，只是状态未推到 DONE
+- **P0 8/8 + P1 7/7 全部完成**，论文 refinement round 2 已提交
+- **cuda:0 空闲**（gemma2 完成后）
+
+### 4. 📋 待办（条件触发式）
+- **立即** → 提取 gemma2_hires_bf16_2bitonly 结果（ANALYZING 状态），更新 registry（metrics + conclusion），刷新 5-model evidence table。预期 concentration ~0.23（standard=0.23），确认 flat pattern
+- **mistral_hires_bf16_2bitonly_v4 cron 回调到达** → spawn worker 提取结果，更新 Mistral hires concentration（standard=0.22，预期 hires 类似）。这是最后一个 hires 补全实验
+- **Gemma-2 + Mistral hires 都完成后** → 5 模型 hires 全景图完整，可以：(1) 重生成 heatmap（用 hires 替换 standard）(2) 校验 scatter 图 concentration 值 (3) 去掉 Table 3 ddagger 标注
+- **Director 决策 P0 patches 方案** → 执行值替换（0.61 vs 0.59-0.66）到 .tex 文件
+- **Group C 审稿报告回传** → 处理 reviewer feedback
+- **cuda:0 空闲** → 如果 Director 有新任务可立即用
+
+### 5. 🎯 战略上下文
+- **核心贡献是 cardinality constraint**（不是 MCKP solver）——constrained greedy = constrained MCKP, Δ=0.0000
+- **5 模型 evidence 格局已定**：只有 Qwen (spread) 受益 (+27.3%)；Yi-1.5/Llama (spike) 和 Mistral/Gemma-2 (flat) 不受益。这不是 negative——论文 framing 已转为 "architecture-dependent analysis + diagnostic framework"
+- **Claim 3 joint diagnostic**：concentration ≳0.50 AND t₁/t₅ ≲0.70，5/5 正确分类。Yi-1.5 hires concentration=0.71 但 t₁/t₅=0.90（spike），正确排除
+- **D049-D050 是最新关键决策**：GQA ratio 不是 proxy（Yi-1.5 反证），需要 concentration + shape 双条件
+- **易错点**：(1) 不要把 standard profiling 的 concentration 和 hires 的混用——两者数值不同，论文 Table 3 的 concentration 列需要统一标注用哪个 (2) Yi-1.5 hires concentration=0.71 > Qwen 0.61 但 FAIL——这是 by design（spike pattern），不是 bug (3) 5 个 PREPARING 实验实际都已 killed，需要清理状态到 DONE
+
+## 可查的历史
+前 15 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T22:13:02.723399+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T22:13:02.723865+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T22:13:05.893069+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "ratekv",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "ratekv",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T22:13:06.347098+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T22:13:06.405835+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"gemma2_hires_bf16_2bitonly\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-14T22:03:50.846Z\", \"updated_at\": \"2026-05-14T22:11:06.567Z\"}, \"llama_hires_constrained_mckp\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T21:50:29.826Z\", \"updated_at\": \"2026-05-14T21:56:15.999Z\", \"hypothesis\": \"Llama-3.1-8B hires constrained MCKP + WikiText-2 PPL eval. Uses hires profiles (concentration=0.57, t1/t5=0.85). Determines if Table 1 Llama PPL needs updating from standard 8.45.\", \"metrics\": {\"baseline_bf16_ppl\": 8.0922, \"hires_mckp_ppl\": 8.5042, \"uniform_4bit_ppl\": 8.4701, \"std_mckp_reference_ppl\": 8.4498, \"mckp_vs_uniform_delta\": -0.0341, \"mckp_vs_uniform_pct\": -9, \"hires_vs_std_mckp_delta\": 0.0544, \"concentration\": 0.5749, \"bit_distribution\": {\"2\": 2, \"4\": 253, \"8\": 1}, \"heads_2bit\": [\"26,0\", \"31,7\"], \"heads_8bit\": [\"12,3\"], \"verdict\": \"FAIL\"}, \"notes\": \"Hires profiles (concentration=0.5749, from llama_hires_bf16_2bitonly_profiles.json) merged with standard 4/8-bit profiles. Constrained MCKP (max_2bit=2, budget=0.25, L0-excluded) selected 2 heads for 2-bit: (26,0), (31,7); 1 head for 8-bit: (12,3); rest at 4-bit. WikiText-2 PPL results: BF16=8.0922, Hires-MCKP=8.5042, Uniform-4bit=8.4701, Std-MCKP-ref=8.4498. KEY FINDINGS: (1) Hires MCKP UNDERPERFORMS uniform 4-bit by 0.0341 (-9%), verdict=FAIL. With standard profiles, MCKP beat uniform by +0.2% — hires inverts the sign. The hires-selected 2-bit heads ((26,0), (31,7)) are worse choices than standard MCKP would pick. (2) Hires-MCKP PPL 8.5042 vs Table-1 standard 8.4498: diff=0.0544 < seed variance 0.065 → Table 1 PPL value NOT strictly out-of-spec, but very close to the threshold (within ~84% of variance). Recommend keeping Table 1 at 8.45 with a footnote noting hires profiling produces a worse MCKP allocation on Llama; this is consistent with the paper's claim that standard profiling is sufficie
+…[truncated 46443 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 512
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T22:13:06.658852+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "ratekv",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "ratekv",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T22:13:06.709459+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T22:13:08.668198+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"mistral_hires_bf16_2bitonly_v4\", \"success\": true, \"actions\": [\"Job still running (pid=264489)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2321
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T22:13:08.668896+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T22:11:07Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 70 个实验 — ANALYZING 1, DONE 63, PREPARING 5, RUNNING 1\\n**DONE 分布**: failed 8, killed 8, negative 14, success 33\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-37397:cuda:0, westd-37397:cuda:1\\n- **实际运行**: 1 张 — westd-37397:cuda:1(mistral_hires_bf16_2bitonly_v4)\\n- **空闲（分配了没跑）**: westd-37397:cuda:0\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `mistral_hires_bf16_2bitonly_v4` | westd-37397 | cuda:1 | 264489 | `~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `llama_hires_constrained_mckp` [negative] — 2026-05-14T21:56:15\\n- `llama_hires_bf16_2bitonly` [success] — 2026-05-14T21:47:38\\n- `mistral_hires_bf16_2bitonly_v2` [failed] — 2026-05-14T21:36:53\\n- `mistral_hires_bf16_2bitonly` [failed] — 2026-05-14T21:06:34\\n- `yi15_hires_constrained_mckp` [negative] — 2026-05-14T20:38:14\\n\\n### 🔴 最近失败原因 (top 3)\\n- `mistral_hires_bf16_2bitonly_v2`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `mistral_hires_bf16_2bitonly`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mistral_hires_bf16_2bitonly_v4 | Mistral-7B-v0.3 hires bf16 2-bit only profiling (model re-downloaded from HF, fixed cuda device). 64seq x 2048tok, 224 heads x ~20s/head ≈ 1.2h. | — | — | — |\\n| gemma2_hires_bf16_2bitonly | — | — | — | — |\\n\\n## 待处理\\n- mistral_hires_bf16_2bitonly_v3: Mistral-7B-v0.3 hires bf16 2-bit only profiling v3. Model integrity verified (3/3 shards + safetensor + transformers). 64seq×2048tok, 
+…[truncated 1660 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 2010
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T22:13:08.719678+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/ROADMAP.md\", \"content\": \"# ratekv — Research Dashboard\\n\\n> 最后更新: 2026-05-14 22:01 UTC | 更新原因: Llama hires 完成 (Spike 0.57), Gemma-2 hires 提交中, Mistral v4 运行中\\n\\n## 核心方向\\nPer-KV-head 非均匀 bit-width 分配：**cardinality constraint 是核心方法贡献**——一个简单约束让任何 solver（greedy/MCKP）在 {2,4,8,16} 上找到完全相同的最优解（Δ=0.0000）。分析贡献：heterogeneity 的 **distribution shape**（spike vs spread）决定 non-uniform 是否值得——GQA ratio 不是可靠 proxy（Yi-1.5 反证）。详见 `paper_framing.md`。\\n\\n## 当前阶段: Paper Revision + 审稿进行中\\n\\n**投稿目标**: EMNLP 2026 Main (ARR May 25, 2026, 距今 11 天)\\n**论文状态**: 全章节完成 + refinement round 2 已提交。P1 patches 完成（5模型）。审稿团队（Group C）独立审稿中。**P0 patches 待 Director 决策值替换方案（0.61 vs 0.59-0.66）。**\\n\\n## ✅ D048 已通过 — Claim 3 PASS\\n\\n**Float32 hires top-5% concentration = 0.6104**\\n- bf16 range (0.59-0.66) 确认可靠，float32 落在范围内\\n- 0.50 threshold 5/5 分类准确率成立\\n- Plan A1 ready（简单值替换），待 Director 决策用 0.61 还是保留 0.59-0.66\\n\\n## 实验完成度\\n\\n**P0 (8/8): ✅ 全部完成**\\n**P1 (7/7): ✅ 全部完成**\\n**P2 (1/1): ⏸ Deferred**（plan_013 72B profiling — D039/D043）\\n**扩展模型 (2/2): ✅ 完成**（Gemma-2 negative, Yi-1.5 negative）\\n\\n## 5-Model Evidence（D047 更新）\\n\\n| Model | GQA | Top-5% | MCKP vs Uniform | Shape | Verdict |\\n|-------|-----|--------|-----------------|-------|---------|\\n| Qwen | 7:1 | **0.61** (float32 verified) | +27.3% | Spread (L0 cluster) | ✅ PASS |\\n| Yi-1.5 | 8:1 | **0.71** (hires) | ≈0% | Spike (L4H3 单 outlier) | ❌ FAIL |\\n| Llama | 4:1 | **0.57** (hires) | ≈0% (noise) | Spike (L2H5 单 outlier) | ≈ Uniform (noise) |\\n| Mistral | 4:1 | **0.22** (hires) | -0.4% | Flat (zero-signal) | ❌ FAIL |\\n| Gemma-2 | 2:1 | 0.23 | -0.3% | Uniform | ❌ FAIL |\\n\\n## 近期任务\\n\\n- [x] **[阻断]** D048 Qwen hires float32 重跑 → ✅ concentration=0.61, Claim 3 PASS\\n- [x] P1 patches: 5模型数据写入全部 .tex 文件\\n- [x] analysis.tex caption + 3 related work citations + appendix runtime\\n- [x] Registry 清理：multi_seed_low
+…[truncated 2258 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 2010
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T22:13:22.778504+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T22:13:22.931531+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "ToolSearch",
+  "elapsed_ms": 153
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T22:13:34.486780+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mistral_hires_bf16_2bitonly_v3",
+  "field": "status",
+  "value": "DONE",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mistral_hires_bf16_2bitonly_v3",
+    "field": "status",
+    "value": "DONE",
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T22:13:34.989995+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1789}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T22:13:35.496460+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "qwen_hires_constrained_d049",
+  "field": "status",
+  "value": "DONE",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "qwen_hires_constrained_d049",
+    "field": "status",
+    "value": "DONE",
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T22:13:35.948276+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.21}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T22:13:35.948708+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "qwen25-hires-profiling",
+  "field": "status",
+  "value": "DONE",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "qwen25-hires-profiling",
+    "field": "status",
+    "value": "DONE",
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T22:13:36.453065+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2507}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T22:13:36.905768+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "cross_domain_calibration_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "cross_domain_calibration_v2",
+    "field": "status",
+    "value": "DONE",
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T22:13:37.407841+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1583}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T22:13:37.859746+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "greedy_constrained_ablation",
+  "field": "status",
+  "value": "DONE",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "greedy_constrained_ablation",
+    "field": "status",
+    "value": "DONE",
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T22:13:38.364040+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1526}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T22:14:00.654430+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:gemma2_hires_extract",
+  "project": "ratekv",
+  "task_prompt": "## 任务：提取 Gemma-2 hires bf16 2-bit only profiling 结果\n\n### 背景\n实验 `gemma2_hires_bf16_2bitonly` 刚完成（状态 ANALYZING），需要从服务器提取结果。\n\n### 服务器信息\n- 服务器：westd-37397\n- 工作目录：/root/ratekv\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 日志文件：~/runs/ratekv/gemma2_hires_bf16_2bitonly.log\n\n### 具体步骤\n\n1. SSH 读取日志文件 `~/runs/ratekv/gemma2_hires_bf16_2bitonly.log`，提取：\n   - 是否成功完成（检查最后几行有无 error/traceback）\n   - 总运行时间\n   - 处理了多少 heads（Gemma-2-9B 有 336 total KV heads，42 layers × 8 heads）\n\n2. 查找结果文件。可能在以下位置：\n   - /root/ratekv/gemma2_hires_bf16_2bitonly_profiles.json\n   - /root/ratekv/results/ 目录下\n   - /root/ratekv/ 下任何包含 \"gemma2\" 和 \"hires\" 的 JSON 文件\n   用 `ls -la /root/ratekv/*gemma2*hires*` 和 `find /root/ratekv -name \"*gemma2*hires*\" -type f` 搜索\n\n3. 从 profiles JSON 中提取关键指标：\n   - **top5_concentration**：top 5% heads 的 delta 之和 / 全部 heads delta 之和。这是最关键的指标。\n     - Gemma-2 有 336 heads，top 5% = 约 17 heads\n     - Standard profiling concentration = 0.23，预期 hires 类似（flat pattern）\n   - **t1_t5**：top-1 head delta / top-5 heads delta sum（spike indicator）\n   - **baseline_ppl**：calibration 数据的 baseline PPL\n   - **top1_head**：delta 最大的 head 及其 delta 值\n   - **delta_2bit_cv**：所有 heads 的 2-bit delta 的 coefficient of variation\n   - **positive_delta_heads**：有正 delta 的 head 数量\n   - **total_heads**：总 head 数（应为 336）\n\n4. 计算方法（如果 profiles JSON 是 per-head delta 列表）：\n   ```python\n   # 假设 profiles 格式为 {layer_head: {2: delta_2bit, 4: delta_4bit, ...}}\n   # 或者可能是 list of dicts\n   # 提取所有 2-bit deltas\n   deltas = [每个 head 的 2-bit delta]\n   deltas_sorted = sorted(deltas, reverse=True)\n   n = len(deltas)\n   top5_n = max(1, int(n * 0.05))\n   top5_sum = sum(deltas_sorted[:top5_n])\n   total_sum = sum(deltas_sorted)\n   concentration = top5_sum / total_sum if total_sum > 0 else 0\n   t1_t5 = deltas_sorted[0] / top5_sum if top5_sum > 0 else 0\n   ```\n\n5. 用 `update_registry` 更新实验：\n   - status → DONE\n   - conclusion → success 或 negative（根据是否成功完成）\n   - metrics → 包含上述所有指标\n   - notes → 简要总结发现，特别是 concentration 值与 standard (0.23) 的对比\n\n### 预期结果\n- Gemma-2 是 flat pattern（低异质性，GQA 2:1），预期 hires concentration 仍低（~0.20-0.25）\n- 如果 concentration 远高于 standard 的 0.23，这是意外发现需要特别标注\n\n### 错误处理\n- 如果日志显示失败，提取错误信息，update_registry conclusion=failed\n- 如果 profiles 文件不存在，检查是否实验实际未完成",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:gemma2_hires_extract",
+    "project": "ratekv",
+    "task_prompt": "## 任务：提取 Gemma-2 hires bf16 2-bit only profiling 结果\n\n### 背景\n实验 `gemma2_hires_bf16_2bitonly` 刚完成（状态 ANALYZING），需要从服务器提取结果。\n\n### 服务器信息\n- 服务器：westd-37397\n- 工作目录：/root/ratekv\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 日志文件：~/runs/ratekv/gemma2_hires_bf16_2bitonly.log\n\n### 具体步骤\n\n1. SSH 读取日志文件 `~/runs/ratekv/gemma2_hires_bf16_2bitonly.log`，提取：\n   - 是否成功完成（检查最后几行有无 error/traceback）\n   - 总运行时间\n   - 处理了多少 heads（Gemma-2-9B 有 336 total KV heads，42 layers × 8 heads）\n\n2. 查找结果文件。可能在以下位置：\n   - /root/ratekv/gemma2_hires_bf16_2bitonly_profiles.json\n   - /root/ratekv/results/ 目录下\n   - /root/ratekv/ 下任何包含 \"gemma2\" 和 \"hires\" 的 JSON 文件\n   用 `ls -la /root/ratekv/*gemma2*hires*` 和 `find /root/ratekv -name \"*gemma2*hires*\" -type f` 搜索\n\n3. 从 profiles JSON 中提取关键指标：\n   - **top5_concentration**：top 5% heads 的 delta 之和 / 全部 heads delta 之和。这是最关键的指标。\n     - Gemma-2 有 336 heads，top 5% = 约 17 heads\n     - Standard profiling concentration = 0.23，预期 hires 类似（flat pattern）\n   - **t1_t5**：top-1 head delta / top-5 heads delta sum（spike indicator）\n   - **baseline_ppl**：calibration 数据的 baseline PPL\n   - **top1_head**：delta 最大的 head 及其 delta 值\n   - **delta_2bit_cv**：所有 heads 的 2-bit delta 的 coefficient of variation\n   - **positive_delta_heads**：有正 delta 的 head 数量\n   - **total_heads**：总 head 数（应为 336）\n\n4. 计算方法（如果 profiles JSON 是 per-head delta 列表）：\n   ```python\n   # 假设 profiles 格式为 {layer_head: {2: delta_2bit, 4: delta_4bit, ...}}\n   # 或者可能是 list of dicts\n   # 提取所有 2-bit deltas\n   deltas = [每个 head 的 2-bit delta]\n   deltas_sorted = sorted(deltas, reverse=True)\n   n = len(deltas)\n   top5_n = max(1, int(n * 0.05))\n   top5_sum = sum(deltas_sorted[:top5_n])\n   total_sum = sum(deltas_sorted)\n   concentration = top5_sum / total_sum if total_sum > 0 else 0\n   t1_t5 = deltas_sorted[0] / top5_sum if top5_sum > 0 else 0\n   ```\n\n5. 用 `update_registry` 更新实验：\n   - status → DONE\n   - conclusion → success 或 negative（根据是否成功完成）\n   - metrics → 包含上述所有指标\n   - notes → 简要总结发现，特别是 concentration 值与 standard (0.23) 的对比\n\n### 预期结果\n- Gemma-2 是 flat pattern（低异质性，GQA 2:1），预期 hires concentration 仍低（~0.20-0.25）\n- 如果 concentration 远高于 standard 的 0.23，这是意外发现需要特别标注\n\n### 错误处理\n- 如果日志显示失败，提取错误信息，update_registry conclusion=failed\n- 如果 profiles 文件不存在，检查是否实验实际未完成",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T22:14:03.372188+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_gemma2_hires_extract_20260514T221401\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/logs/workers/worker_analysis_gemma2_hires_extract_20260514T221401.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_gemma2_hires_extract_20260514T221401 started. Use get_worker_status('worker_analysis_gemma2_hires_extract_20260514T221401') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2717
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T22:14:19.464852+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T22:14:19.465431+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_4bce0d32.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T22:14:22.429057+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T22:14:22.480752+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "Glob",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T22:14:25.540782+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T22:14:27.533353+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "Glob",
+  "elapsed_ms": 1992
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T22:14:30.360676+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T22:14:30.411699+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T22:15:07.671991+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:mistral_v4_progress_check",
+  "project": "ratekv",
+  "task_prompt": "## 任务：检查 Mistral hires v4 进度 + 准备 5-model 聚合数据\n\n### 背景\nmistral_hires_bf16_2bitonly_v4 正在 westd-37397 cuda:1 上运行（PID 264489）。这是最后一个 hires profiling 实验。完成后 5 模型 hires 全景图将全部就绪。\n\n### 服务器信息\n- 服务器：westd-37397\n- 工作目录：/root/ratekv\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 日志：~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log\n\n### 步骤 1：检查 Mistral v4 进度\n\n1. 用 ssh_read_only 检查日志尾部：\n   ```\n   tail -50 ~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log\n   ```\n2. 确认：\n   - 当前处理到第几个 head（总共 224 heads，因为 layer 0 的 32 个 heads 可能被跳过）\n   - 有无错误\n   - 估算 ETA\n\n3. 检查进程是否存活：\n   ```\n   ps -p 264489 -o pid,etime,pcpu,pmem,args --no-headers\n   ```\n\n### 步骤 2：汇总 5-model hires concentration 数据\n\n已有 4 个模型的 hires concentration：\n- Qwen2.5-7B: 0.6104 (float32 verified) / 0.61 (bf16 hires)\n- Yi-1.5-9B: 0.7139 (hires bf16)  \n- Llama-3.1-8B: 0.5749 (hires bf16)\n- Gemma-2-9B: 标准 profiling 0.23，hires 正在提取中\n\n从 registry 读取这 4 个模型的完整指标（read_registry filters={\"status\":\"DONE\"} 然后挑出 hires profiling 相关的实验）。\n\n### 步骤 3：检查已有 hires profiles 文件\n\n列出服务器上所有 hires profiles 文件：\n```\nls -la /root/ratekv/*hires*profiles*.json /root/ratekv/*hires*profile*.json 2>/dev/null\nfind /root/ratekv -name \"*hires*prof*\" -type f 2>/dev/null\n```\n\n确认每个模型的 hires profiles 文件存在且可用（后续 heatmap 重生成需要）。\n\n### 产出\n在任务完成时汇总一段简短报告：\n1. Mistral v4 当前进度和 ETA\n2. 4 个已完成模型的 hires profiles 文件路径\n3. 是否所有文件都 ready for heatmap regeneration",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:mistral_v4_progress_check",
+    "project": "ratekv",
+    "task_prompt": "## 任务：检查 Mistral hires v4 进度 + 准备 5-model 聚合数据\n\n### 背景\nmistral_hires_bf16_2bitonly_v4 正在 westd-37397 cuda:1 上运行（PID 264489）。这是最后一个 hires profiling 实验。完成后 5 模型 hires 全景图将全部就绪。\n\n### 服务器信息\n- 服务器：westd-37397\n- 工作目录：/root/ratekv\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 日志：~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log\n\n### 步骤 1：检查 Mistral v4 进度\n\n1. 用 ssh_read_only 检查日志尾部：\n   ```\n   tail -50 ~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log\n   ```\n2. 确认：\n   - 当前处理到第几个 head（总共 224 heads，因为 layer 0 的 32 个 heads 可能被跳过）\n   - 有无错误\n   - 估算 ETA\n\n3. 检查进程是否存活：\n   ```\n   ps -p 264489 -o pid,etime,pcpu,pmem,args --no-headers\n   ```\n\n### 步骤 2：汇总 5-model hires concentration 数据\n\n已有 4 个模型的 hires concentration：\n- Qwen2.5-7B: 0.6104 (float32 verified) / 0.61 (bf16 hires)\n- Yi-1.5-9B: 0.7139 (hires bf16)  \n- Llama-3.1-8B: 0.5749 (hires bf16)\n- Gemma-2-9B: 标准 profiling 0.23，hires 正在提取中\n\n从 registry 读取这 4 个模型的完整指标（read_registry filters={\"status\":\"DONE\"} 然后挑出 hires profiling 相关的实验）。\n\n### 步骤 3：检查已有 hires profiles 文件\n\n列出服务器上所有 hires profiles 文件：\n```\nls -la /root/ratekv/*hires*profiles*.json /root/ratekv/*hires*profile*.json 2>/dev/null\nfind /root/ratekv -name \"*hires*prof*\" -type f 2>/dev/null\n```\n\n确认每个模型的 hires profiles 文件存在且可用（后续 heatmap 重生成需要）。\n\n### 产出\n在任务完成时汇总一段简短报告：\n1. Mistral v4 当前进度和 ETA\n2. 4 个已完成模型的 hires profiles 文件路径\n3. 是否所有文件都 ready for heatmap regeneration",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T22:15:18.497728+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际在跑 1 (cuda:1 mistral_v4) | Worker 池 2 (GPU 0 / CPU 2)\n\n**Loop #7 Session Start 汇报**\n\n1. **gemma2_hires_bf16_2bitonly** — ANALYZING 状态，Worker 已派出提取结果。预期 concentration ~0.23（flat pattern）。提取完成后 5 模型中 4 个 hires profiling 全部就绪。\n\n2. **mistral_hires_bf16_2bitonly_v4** — cuda:1 RUNNING（PID 264489），cron 确认存活。Worker 正在检查精确进度和 ETA。这是最后一个 hires 补全实验。\n\n3. **cuda:0 空闲** — gemma2 完成后释放。当前无排队实验。Gemma-2 + Mistral hires 都完成后，可用于 heatmap 重生成或 Director 指定的新任务。\n\n4. **Registry 清理** — 5 个 PREPARING/killed 实验（v3、d049、qwen25-hires-profiling、cross_domain_calibration_v2、greedy_constrained_ablation）conclusion=killed 但状态机不允许 PREPARING→DONE 直接跳转，暂搁。\n\n5. **待 Director 决策**：\n   - P0 patches 值替换方案（0.61 vs 0.59-0.66）\n   - cuda:0 空闲，是否有新实验需求？\n\n**进度**：Gemma-2 + Mistral hires 完成后，5-model hires 全景图齐全 → 可执行：(1) heatmap 重生成 (2) scatter 图 concentration 校验 (3) Table 3 ddagger 标注移除。距 EMNLP ARR 11 天。",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际在跑 1 (cuda:1 mistral_v4) | Worker 池 2 (GPU 0 / CPU 2)\n\n**Loop #7 Session Start 汇报**\n\n1. **gemma2_hires_bf16_2bitonly** — ANALYZING 状态，Worker 已派出提取结果。预期 concentration ~0.23（flat pattern）。提取完成后 5 模型中 4 个 hires profiling 全部就绪。\n\n2. **mistral_hires_bf16_2bitonly_v4** — cuda:1 RUNNING（PID 264489），cron 确认存活。Worker 正在检查精确进度和 ETA。这是最后一个 hires 补全实验。\n\n3. **cuda:0 空闲** — gemma2 完成后释放。当前无排队实验。Gemma-2 + Mistral hires 都完成后，可用于 heatmap 重生成或 Director 指定的新任务。\n\n4. **Registry 清理** — 5 个 PREPARING/killed 实验（v3、d049、qwen25-hires-profiling、cross_domain_calibration_v2、greedy_constrained_ablation）conclusion=killed 但状态机不允许 PREPARING→DONE 直接跳转，暂搁。\n\n5. **待 Director 决策**：\n   - P0 patches 值替换方案（0.61 vs 0.59-0.66）\n   - cuda:0 空闲，是否有新实验需求？\n\n**进度**：Gemma-2 + Mistral hires 完成后，5-model hires 全景图齐全 → 可执行：(1) heatmap 重生成 (2) scatter 图 concentration 校验 (3) Table 3 ddagger 标注移除。距 EMNLP ARR 11 天。",
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-14T22:32:47.182453+00:00_
+
+现在向 Director 汇报当前状态。同时 spawn 第二个 worker 检查 mistral v4 进度并准备 5-model 数据聚合。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:llama_c4_cross_dataset"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+18 recorded events
+
+### User
+
+_source line 37 · 2026-05-15T01:33:57.036429+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T01:34:05.722761+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__reconcile_crons",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__reconcile_crons",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T01:34:05.773332+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T01:34:08.734530+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "ratekv",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "ratekv",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T01:34:09.236729+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "ratekv",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "ratekv",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T01:34:12.199566+00:00_
+
+Error: result (101,076 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-ratekv--claude-sessions-agent-4bce0d32/8a17227e-ef07-402d-b515-d30ee5082790/tool-results/mcp-agent-ml-research-read_registry-1778808849230.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-ratekv--claude-sessions-agent-4bce0d32/8a17227e-ef07-402d-b515-d30ee5082790/tool-results/mcp-agent-ml-research-read_registry-1778808849230.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 3465
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T01:34:12.200150+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- mistral_hires_bf16_2bitonly_v3: Mistral-7B-v0.3 hires bf16 2-bit only profiling v3. Model integrity verified (3/3 shards + safetensor + transformers). 64seq×2048tok, 256 heads.（准备中）\\n- qwen_hires_constrained_d049（准备中）\\n- qwen25-hires-profiling（准备中）\\n- cross_domain_calibration_v2（准备中）\\n- greedy_constrained_ablation（准备中）\\n\\n## 近期结论\\n- **gemma2_hires_bf16_2bitonly** (success): —\\n- **mistral_c4_hires_crossdataset** (negative): —\\n- **llama_c4_hires_crossdataset** (negative): —\\n\\n## 趋势\\n成功 35 / 负向 16 / 失败 8 / 共 67\\nl0_dominance_ratio: 2.05 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-37397: 无 GPU 信息\\n\\n## 告警\\n- mvp_001: 训练失败 — unknown\\n- sanity_001: 训练失败 — unknown\\n- mvp_002: 训练失败 — unknown\\n- sanity_002: 训练失败 — unknown\\n- mvp_003: 训练失败 — unknown\\n- sanity_003: 训练失败 — unknown\\n- c4_cross_dataset_eval: 已被终止 — unknown\\n- l0_only_heuristic: 已被终止 — unknown\\n- l0_heuristic_baseline: 已被终止 — unknown\\n- cross_domain_calibration: 已被终止 — unknown\\n- c4_cross_dataset_eval_v2: 已被终止 — unknown\\n- multi_seed_lowres: 已被终止 — unknown\\n- qwen72b_profiling: 已被终止 — unknown\\n- yi15_hires_float32_profiling: 已被终止 — unknown\\n- mistral_hires_bf16_2bitonly: 训练失败 — unknown\\n- mistral_hires_bf16_2bitonly_v2: 训练失败 — unknown\\n\", \"total_chars\": 1283, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 2963
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T01:34:12.250906+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "ratekv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T01:34:12.251266+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T01:34:12.251572+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/ROADMAP.md\", \"content\": \"# ratekv — Research Dashboard\\n\\n> 最后更新: 2026-05-15 01:05 UTC | 更新原因: Gemma-2 hires 完成 (Flat 0.2291), 5 模型 hires 全景齐全, 两 GPU 空闲\\n\\n## 核心方向\\nPer-KV-head 非均匀 bit-width 分配：**cardinality constraint 是核心方法贡献**——一个简单约束让任何 solver（greedy/MCKP）在 {2,4,8,16} 上找到完全相同的最优解（Δ=0.0000）。分析贡献：heterogeneity 的 **distribution shape**（spike vs spread）决定 non-uniform 是否值得——GQA ratio 不是可靠 proxy（Yi-1.5 反证）。详见 `paper_framing.md`。\\n\\n## 当前阶段: Paper Revision + 审稿进行中\\n\\n**投稿目标**: EMNLP 2026 Main (ARR May 25, 2026, 距今 10 天)\\n**论文状态**: 全章节完成 + refinement round 2 已提交。P1 patches 完成（5模型）。审稿团队（Group C）独立审稿中。**P0 patches 待 Director 决策值替换方案（0.61 vs 0.59-0.66）。**\\n\\n## ✅ D048 已通过 — Claim 3 PASS\\n\\n**Float32 hires top-5% concentration = 0.6104**\\n- bf16 range (0.59-0.66) 确认可靠，float32 落在范围内\\n- 0.50 threshold 5/5 分类准确率成立\\n- Plan A1 ready（简单值替换），待 Director 决策用 0.61 还是保留 0.59-0.66\\n\\n## 实验完成度\\n\\n**P0 (8/8): ✅ 全部完成**\\n**P1 (7/7): ✅ 全部完成**\\n**P2 (1/1): ⏸ Deferred**（plan_013 72B profiling — D039/D043）\\n**扩展模型 (2/2): ✅ 完成**（Gemma-2 negative, Yi-1.5 negative）\\n\\n## 5-Model Evidence（D047 更新）\\n\\n| Model | GQA | Top-5% | MCKP vs Uniform | Shape | Verdict |\\n|-------|-----|--------|-----------------|-------|---------|\\n| Qwen | 7:1 | **0.61** (float32 verified) | +27.3% | Spread (L0 cluster) | ✅ PASS |\\n| Yi-1.5 | 8:1 | **0.71** (hires) | ≈0% | Spike (L4H3 单 outlier) | ❌ FAIL |\\n| Llama | 4:1 | **0.57** (hires) | ≈0% (noise) | Spike (L2H5 单 outlier) | ≈ Uniform (noise) |\\n| Mistral | 4:1 | **0.24** (hires, 0.241) | -0.4% | Flat (zero-signal) | ❌ FAIL |\\n| Gemma-2 | 2:1 | **0.23** (hires, 0.2291) | -0.3% | Flat (CV=1.28) | ❌ FAIL |\\n\\n## 近期任务\\n\\n- [x] **[阻断]** D048 Qwen hires float32 重跑 → ✅ concentration=0.61, Claim 3 PASS\\n- [x] P1 patches: 5模型数据写入全部 .tex 文件\\n- [x] analysis.tex caption + 3 related work citations + appendix runtime\\n- [
+…[truncated 2381 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T01:34:12.352343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T01:34:17.471798+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "ratekv",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "ratekv",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T01:34:17.923897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1515}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T01:34:17.924303+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "ratekv",
+  "filters": "{'status': 'PREPARING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "ratekv",
+    "filters": "{'status': 'PREPARING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T01:34:18.125388+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"mistral_hires_bf16_2bitonly_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T21:37:00.902Z\", \"updated_at\": \"2026-05-15T00:58:27.843Z\", \"hypothesis\": \"Mistral-7B-v0.3 hires bf16 2-bit only profiling v3. Model integrity verified (3/3 shards + safetensor + transformers). 64seq×2048tok, 256 heads.\", \"conclusion\": \"killed\", \"parent\": \"mistral_hires_bf16_2bitonly_v2\", \"notes\": \"SUPERSEDED by v4 (mistral_hires_bf16_2bitonly_v4). Model integrity verified but v4 used re-downloaded model from HF with fixed cuda device.\"}, \"qwen_hires_constrained_d049\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T19:52:04.438Z\", \"updated_at\": \"2026-05-14T20:13:43.887Z\", \"notes\": \"FIXED & RERUN: 修正 profiles 路径 (qwen_float32_profiles.json → hires_profiles.json) 后重跑。Float32 hires constrained MCKP PPL=10.8921, 与 bf16 hires 10.9131 差 0.021 (在 seed variance ±0.065 内)。Bit distribution {2:8, 4:100, 8:4} 与 bf16 完全一致。Allocation identical, PPL within variance — 确认 bf16 precision 对 constrained allocation 无影响。\", \"metrics\": {\"float32_hires_constrained_mckp_ppl\": 10.8921, \"baseline_ppl\": 9.8106, \"uniform_4bit_ppl\": 15.4484, \"bit_distribution\": {\"2\": 8, \"4\": 100, \"8\": 4}, \"gap_recovery_pct\": 80.8, \"top5_concentration\": 0.6156, \"top5_concentration_pre_monotonicity\": 0.6104, \"bf16_hires_constrained_mckp_ppl\": 10.9131, \"delta_f32_vs_bf16\": 0.021}, \"conclusion\": \"success\"}, \"qwen25-hires-profiling\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T18:12:19.075Z\", \"updated_at\": \"2026-05-14T18:39:01.674Z\", \"conclusion\": \"killed\"}, \"cross_domain_calibration_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T09:06:12.622Z\", \"updated_at\": \"2026-05-14T15:17:34.123Z\", \"notes\": \"不再需要。Director D038 决定 c4_rerun_d032 已覆盖 plan_010 全部需求（C4↔WT2 双向 + agreement rate 96.4%）。Llama/Mistral 跨域不需要，n=1 模型足够。\", \"conclusion\": \"killed\"}, \"greed
+…[truncated 389 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T01:34:18.125803+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "ratekv",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "ratekv",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T01:34:18.226517+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/memory.md\", \"content\": \"# Memory — ratekv\\n\\n> 非 metrics/registry 可派生的决策原因、约束、经验教训。\\n\\n## 经验教训\\n\\n- [2026-05-15] 5-Model hires panorama 全部完成：Qwen PASS (Spread)，其余 4 个 FAIL（Yi/Llama=Spike, Mistral/Gemma=Flat）。所有 negative 与 D050 framing 一致，无需新 Framing 提案。\\n- [2026-05-15] Llama hires constrained MCKP 反转：standard profiling MCKP 微弱胜出 (+0.2%)，但 hires profiling 后 MCKP 反而劣于 uniform (-0.8%)。原因：hires 选出的 2-bit heads ((26,0),(31,7)) 比 standard 选的更差。说明 Spike 模型 hires profiling 可能选错 2-bit 候选。\\n- [2026-05-15] Mistral C4 cross-dataset: Phase 4 失败因缺 `mistral_k_ablation_results.json` reference file。核心 PPL 结果（Phase 3）已够用。未来跨数据集实验如需 Phase 4 对比，先确保 reference 文件存在。\\n- [2026-05-15] Gemma-2 hires concentration=0.2291 完全匹配 standard 0.23，说明对 Flat 模型 hires vs standard 差异极小。\\n- [2026-05-14] Gemma-2 cron 误判：PID 复用导致进程退出误触发 ANALYZING，状态机不允许回退。解决方案：在 notes 中记录真实 PID，人工推进。\\n- [2026-05-14] bfloat16 精度 bug：profiler 中 KV cache 相减必须用 `.float()` 转 float32，否则 bf16 精度损失导致 concentration 偏高。全局修复后所有模型需重跑 hires。\\n- [2026-05-14] AutoDL Mistral 模型路径：实际路径 `/root/autodl-tmp/models/Mistral-7B-v0.3`（非 ModelScope `___` 格式）。脚本中 hardcode 模型路径必须与服务器实际一致。\\n- [2026-05-14] submit_training_job 注入 CUDA_VISIBLE_DEVICES 做物理→逻辑映射，脚本内 device 必须写 `cuda:0`。\\n\\n## 约束\\n\\n- westd-37397 GPU 白名单：cuda:0, cuda:1（两张 RTX PRO 6000 96GB）\\n- 论文值锁定：Qwen concentration=0.61 (float32, commit bfaea4e), Mistral concentration=0.24/t1t5=0.41 (hires, commit e52fb0e)\\n- Flat 分类诊断条件：concentration ≥0.50 AND t1/t5 ≤0.70 → 5/5 正确分类\\n\\n## 决策原因\\n\\n- [D050] 诊断从单一 concentration 升级为 concentration + t1/t5 双条件：Yi-1.5 concentration=0.71 但实为 Spike（单 outlier L4H3），需 t1/t5 区分 Spike vs Spread\\n- [D049] GQA ratio 不足以预测 heterogeneity：Yi-1.5 (8:1) 是 Spike 而非 Spread，L0 dominance 是更可靠 proxy\\n- [D051] Qwen concentration 全文统一 0.61：float32 hires 验证值，与 bf16 range (0.59-0.66) 一致\\n\", \"total_chars\": 1752, \"truncated\": false}, 
+…[truncated 36 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:llama_c4_cross_dataset",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-15T01:34:53.692089+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单仅 westd-37397 cuda:0 和 cuda:1（两张 RTX PRO 6000 96GB）
+- 论文值已锁定：Qwen concentration=0.61 (float32, commit bfaea4e)，Mistral concentration=0.24/t1t5=0.41 (hires, commit e52fb0e)——不可被新实验覆盖
+- submit_training_job 注入 CUDA_VISIBLE_DEVICES 做物理→逻辑映射，脚本内 device 必须写 `cuda:0`
+- profiler 中 KV cache 相减必须用 `.float()` 转 float32（bf16 精度 bug 已全局修复，不可回退）
+- PREPARING 中 5 个实验全部已 killed/concluded，不要尝试提交它们
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-37397，2× RTX PRO 6000 96GB
+- 工作目录：未明确（历史 SSH 操作在 `/root/autodl-tmp/` 下）
+- Python/Conda：aml-train 镜像，`/root/miniconda3/bin/python`（conda base env）
+- 模型路径：Mistral `/root/autodl-tmp/models/Mistral-7B-v0.3`（其他模型类似位置）
+- HF cache：`/root/autodl-tmp/.hf_cache`
+- 活跃进程：无。cuda:0 和 cuda:1 均空闲
+- Cron：reconcile 返回 0 个活跃 cron
+
+### 3. 📊 当前状态
+所有实验已完成。5-Model hires panorama 全部跑完，论文数据齐全。
+
+Registry 状态：0 个 RUNNING，5 个 PREPARING（全部 killed/concluded 但未清理到 DONE）。总计 67 实验：35 success / 16 negative / 8 failed。
+
+当前阶段：**Paper Revision + 审稿进行中**。EMNLP 2026 ARR May 25 截止（距今 10 天）。全章节完成，P1 patches 已提交。等待：
+1. Director 决策 P0 patches 值替换方案（0.61 单值 vs 0.59-0.66 range）
+2. Group C 审稿报告回传
+3. Heatmap 需重生成（Gemma-2 切 hires 数据 + 移除 * 脚注）——但未收到 Director 指令启动
+
+无等待中的 Worker 回调或 Cron。
+
+### 4. 📋 待办（条件触发式）
+- Director 决策 P0 值替换方案 → 执行全文 sed 替换（0.61 单值 or 保留 range）→ 重编译 PDF
+- Group C 审稿报告到达 → 读 report → 逐条响应 → 需要时补实验或改文
+- Director 指示重生成 Heatmap → spawn Worker 用 hires Gemma-2 数据跑 `generate_hires_heatmap.py` → 移除 * 脚注 → 更新 figures/
+- 两张 GPU 持续空闲 → 向 Director 报告资源闲置，询问是否有新任务或释放
+
+### 5. 🎯 战略上下文
+- 核心贡献：cardinality constraint 让 greedy/MCKP 在 {2,4,8,16} 上找到完全相同最优解（Δ=0.0000）
+- 分析贡献：heterogeneity distribution shape（Spread/Spike/Flat）决定 non-uniform 是否值得——GQA ratio 不是可靠 proxy（Yi-1.5 反证）
+- 5 模型结论：Qwen=PASS (Spread)，Yi/Llama=FAIL (Spike)，Mistral/Gemma=FAIL (Flat)——只有 Spread 形态受益于 non-uniform
+- 诊断条件（D050）：concentration ≥0.50 AND t1/t5 ≤0.70 → 5/5 正确分类
+- 易错点：Llama hires constrained MCKP 反转（hires profiling 让 Spike 模型选错 2-bit 候选，反而劣于 uniform）——不要试图"修复"这个 negative，它是 paper 论据的一部分
+- 决策链关键节点：D046(bf16 bug) → D047(Yi反证) → D048(float32验证) → D049(GQA≠proxy) → D050(双条件诊断) → D051(Qwen 0.61 锁定)
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:llama_c4_cross_dataset"
+}
+```
+
+</details>
+
+---

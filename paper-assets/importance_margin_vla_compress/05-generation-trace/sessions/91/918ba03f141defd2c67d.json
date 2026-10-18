@@ -3473,5 +3473,6 @@
       ],
       "message_count": 47
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/fix-westd27271-gpu-check-deploy.md"
 }

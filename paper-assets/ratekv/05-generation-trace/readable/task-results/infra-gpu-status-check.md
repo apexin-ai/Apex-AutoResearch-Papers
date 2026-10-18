@@ -1,0 +1,73 @@
+# infra gpu status check
+
+**When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_infra_gpu_status_check_20260515T181736_result.json`
+- **Structured JSON:** [`474fc21f708c0d0ae9a8.json`](../../sessions/47/474fc21f708c0d0ae9a8.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 服务器状态报告 — westd-37397 @ 2026-05-16 02:17 UTC
+
+### GPU 状态
+
+| GPU | 型号 | 利用率 | 显存 | 进程 |
+|-----|------|--------|------|------|
+| 0 | RTX PRO 6000 Blackwell (96GB) | **95%** | 18.8 / 97.9 GB | PID 356698 — `run_yi_mistral_downstream_k2.py` |
+| 1 | RTX PRO 6000 Blackwell (96GB) | **0%** | 空闲 | — |
+
+### 进程详情
+
+**1. yi_mistral_downstream_k2 (PID 356698) — GPU:0 活跃运行中**
+- Yi-1.5-9B 已完成，结果已写入 `yi_downstream_k2_results.json`
+- 当前正在跑 **Mistral-7B-v0.3 downstream eval [3/3] MCKP k=2**
+- 进度：loglikelihood requests **55%** (28253/51065)，速度 ~187 it/s
+- 剩余 ~22800 items ÷ 187 it/s ≈ **~2 分钟完成当前阶段**
+- 整体实验预计 **5-10 分钟内全部完成**
+
+**2. CodeLlama-7b-hf 下载 (PID 357568) — CPU 下载中**
+- 通过 ModelScope 下载，多个 shard 并行：
+  - `pytorch_model-00001-of-00002.bin`: 29% (2.68G/9.29G) @ 1.75 MB/s
+  - `pytorch_model-00003-of-00006.bin`: 60% (2.71G/4.52G) @ 2.29 MB/s
+  - `pytorch_model-00004-of-00006.bin`: 61% (2.75G/4.52G) @ 1.90 MB/s
+  - `model-00002-of-00002.safetensors`: 83% (2.70G/3.26G) @ 2.13 MB/s
+- 本地目录仅有 config/metadata（48K），权重文件尚未写入
+- 瓶颈 shard: 00001-of-00002 (9.29GB)，剩余 ~6.6GB ÷ 1.75 MB/s ≈ **~63 分钟**
+
+**3. Phi-3-medium-128k-instruct 下载 (PID 351296) — CPU 下载中**
+- 通过 HuggingFace Hub 下载，已运行约 1.5 小时
+- 本地已有：`model-00005-of-00006.safetensors` (4.5GB) + 配置/tokenizer 文件
+- 6 个 shard 中仅 1 个完成，剩余 5 个 shard 仍在下载中（~28GB 模型）
+- 预计 **2-3 小时完成**（受 AutoDL 代理速度限制）
+
+### 最新产出 (artifacts/)
+
+最近产出文件（今日）：
+- `yi_downstream_k2_results.json` — 02:14（刚完成）
+- `llama_downstream_eval_results.json` — 02:09
+- `fig_compounding_curves.pdf/png` — 02:08
+
+### 总结
+
+| 任务 | 状态 | 预计完成 |
+|------|------|----------|
+| yi_mistral_downstream_k2 | 运行中 (Mistral 55%) | ~5-10 min |
+| CodeLlama 下载 | 下载中 (最慢 shard 29%) | ~60-70 min |
+| Phi-3-medium 下载 | 下载中 (1/6 shard) | ~2-3 h |
+
+GPU:1 当前完全空闲，下载完成后可立即启动 CodeLlama/Phi-3 profiling 实验。
+
+---

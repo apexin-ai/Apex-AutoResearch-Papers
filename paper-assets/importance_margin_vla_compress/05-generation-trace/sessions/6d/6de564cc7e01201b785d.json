@@ -5831,5 +5831,6 @@
       ],
       "message_count": 145
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/bugfix-eval-pruning-audit.md"
 }

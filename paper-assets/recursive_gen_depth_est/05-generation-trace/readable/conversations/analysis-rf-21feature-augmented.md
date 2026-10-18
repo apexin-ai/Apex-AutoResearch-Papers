@@ -1,0 +1,4517 @@
+# analysis rf 21feature augmented
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 159
+- **Recorded user turns:** 0
+- **Tool calls:** 79
+- **Original source:** `logs/chats/worker_analysis_rf_21feature_augmented_20260518T195603.jsonl`
+- **Structured JSON:** [`6d66353f17a18cab6078.json`](../../sessions/6d/6d66353f17a18cab6078.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+159 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T20:07:23.450815+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T20:07:23.451198+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T20:07:23.451375+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T20:07:23.451511+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T20:07:23.451636+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/table2_rerun_5foldcv.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/table2_rerun_5foldcv.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T20:07:23.451802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"baseline_battery_9cell\\nbaselines\\nbaselines_coral100\\nbinary_pairwise\\nbootstrap_ci_table1_log.txt\\nclassification_report.txt\\nconfusion_matrix.png\\ncross_model_loo.json\\ncross_model_loo_detailed.json\\ncross_model_recursive_chain_001\\ncross_scale_llama3_8b_001\\ncross_scale_llama3_8b_002\\ncross_scale_llama3_8b_003\\ncross_scale_llama3_base\\ncross_scale_qwen7b\\ncross_seed_transfer\\ncross_seed_transfer_log.txt\\ncross_strategy_loo.json\\ncross_strategy_loo_zscore.json\\ncross_strategy_pipeline\\ncross_strategy_pipeline_log.txt\\ncuration_poc\\nd23_edd_bootstrap.json\\nd4_extension_gpt2xl\\nd4_extension_olmo\\nd4_extension_olmo_log.txt\\nd4_extension_pythia\\ndetectgpt_baseline\\ndetection_baselines\\ndetector_baselines\\ndomain_extension_001\\nensemble_reference\\nfeature_ablation\\nfeature_importance.json\\ngen_length_ablation\\ngpt2xl\\ngpt2xl_depth_extension\\ngpt2xl_ref_model\\ngpt2xl_seed43\\ngpt2xl_temp09\\ngpt2xl_topk50\\ngranularity_ablation\\ninvestigate_table2_output.json\\nlearned_estimator\\nlora_rank_ablation\\nlr_cross_strategy_zscore\\nlr_zscore_cross_strategy.json\\nmink_prob_baseline\\nmixed_depth_corpus\\nmlp_baseline\\nmlp_baseline_stdout.log\\nmulti_tau_ablation\\nmulti_tau_ablation_001_analysis.json\\nn2_deberta_finetune\\nn2_feature_overlap\\nn2_roberta_feature_overlap\\nn2_roberta_finetune\\nn3_bootstrap_significance.json\\nn3_fold_metrics.json\\nolmo\\nolmo_depth_extension\\nolmo_seed43\\nolmo_temp09\\nolmo_topk50\\npairwise_auc.json\\nplan_015_wild_data\\nplan_015_wild_data_v2\\nprompted_generation\\npythia_depth_extension\\npythia_seed43\\npythia_temp09\\npythia_topk50\\nqwen25_1.5b_instruct\\nqwen25_14b_scale\\nr3_n5_cross_strategy_curation\\nr3w5_baselines\\nr3w5_baselines_log.txt\\nref_model_ablation_001\\nref_model_ablation_001.log\\nreference_free_baseline\\nreverse_chain_n4\\nreviewer_metrics\\nrf_seed_robustness.json\\nsecond_seed_replication\\nshap_analysis\\ntable
+…[truncated 519 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T20:07:23.451993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gpt2xl_nucleus_K10_scores.npy\\ngpt2xl_nucleus_K20_scores.npy\\ngpt2xl_nucleus_K30_scores.npy\\ngpt2xl_temp09_K10_scores.npy\\ngpt2xl_temp09_K20_scores.npy\\ngpt2xl_temp09_K30_scores.npy\\ngpt2xl_topk50_K10_scores.npy\\ngpt2xl_topk50_K20_scores.npy\\ngpt2xl_topk50_K30_scores.npy\\nmink_prob_results.json\\nolmo_nucleus_K10_scores.npy\\nolmo_nucleus_K20_scores.npy\\nolmo_nucleus_K30_scores.npy\\nolmo_temp09_K10_scores.npy\\nolmo_temp09_K20_scores.npy\\nolmo_temp09_K30_scores.npy\\nolmo_topk50_K10_scores.npy\\nolmo_topk50_K20_scores.npy\\nolmo_topk50_K30_scores.npy\\npythia_nucleus_K10_scores.npy\\npythia_nucleus_K20_scores.npy\\npythia_nucleus_K30_scores.npy\\npythia_temp09_K10_scores.npy\\npythia_temp09_K20_scores.npy\\npythia_temp09_K30_scores.npy\\npythia_topk50_K10_scores.npy\\npythia_topk50_K20_scores.npy\\npythia_topk50_K30_scores.npy\\nrun.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T20:07:23.452256+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"cell\\\": \\\"pythia_nucleus\\\",\\n    \\\"n_samples\\\": 20000,\\n    \\\"class_dist\\\": [\\n      5000,\\n      5000,\\n      5000,\\n      5000\\n    ],\\n    \\\"4class_acc_mean\\\": 0.787,\\n    \\\"4class_acc_std\\\": 0.0053,\\n    \\\"4class_acc_ci95\\\": [\\n      0.781,\\n      0.7924\\n    ],\\n    \\\"d1d3_bal_acc_mean\\\": 0.7183,\\n    \\\"d1d3_bal_acc_std\\\": 0.0075,\\n    \\\"d1d3_bal_acc_ci95\\\": [\\n      0.7106,\\n      0.7255\\n    ],\\n    \\\"fold_4class_accs\\\": [\\n      0.7815,\\n      0.789,\\n      0.7855,\\n      0.7827,\\n      0.7963\\n    ],\\n    \\\"fold_d1d3_bal_accs\\\": [\\n      0.7107,\\n      0.7213,\\n      0.717,\\n      0.7113,\\n      0.731\\n    ],\\n    \\\"d1_recall\\\": 0.8194,\\n    \\\"d2_recall\\\": 0.5918,\\n    \\\"d3_recall\\\": 0.7436\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"cell\\\": \\\"pythia_temp09\\\",\\n    \\\"n_samples\\\": 20000,\\n    \\\"class_dist\\\": [\\n      5000,\\n      5000,\\n      5000,\\n      5000\\n    ],\\n    \\\"4class_acc_mean\\\": 0.7679,\\n    \\\"4class_acc_std\\\": 0.0088,\\n    \\\"4class_acc_ci95\\\": [\\n      0.7621,\\n      0.7738\\n    ],\\n    \\\"d1d3_bal_acc_mean\\\": 0.6933,\\n    \\\"d1d3_bal_acc_std\\\": 0.0111,\\n    \\\"d1d3_bal_acc_ci95\\\": [\\n      0.6861,\\n      0.7003\\n    ],\\n    \\\"fold_4class_accs\\\": [\\n      0.7715,\\n      0.7762,\\n      0.754,\\n      0.7762,\\n      0.7612\\n    ],\\n    \\\"fold_d1d3_bal_accs\\\": [\\n      0.6987,\\n      0.7047,\\n      0.6763,\\n      0.7027,\\n      0.6843\\n    ],\\n    \\\"d1_recall\\\": 0.799,\\n    \\\"d2_recall\\\": 0.56,\\n    \\\"d3_recall\\\": 0.721\\n  },\\n  \\\"pythia_topk50\\\": {\\n    \\\"cell\\\": \\\"pythia_topk50\\\",\\n    \\\"n_samples\\\": 20000,\\n    \\\"class_dist\\\": [\\n      5000,\\n      5000,\\n      5000,\\n      5000\\n    ],\\n    \\\"4class_acc_mean\\\": 0.6885,\\n    \\\
+…[truncated 5789 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T20:07:23.452449+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T20:07:23.452603+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"detectgpt_results.json\\ngpt2xl_nucleus_scores.npz\\ngpt2xl_temp09_scores.npz\\ngpt2xl_topk50_scores.npz\\nolmo_nucleus_scores.npz\\nolmo_temp09_scores.npz\\nolmo_topk50_scores.npz\\npythia_temp09_scores.npz\\npythia_topk50_scores.npz\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T20:07:23.452732+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "python3 -c \"import numpy as np; s=np.load('/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/pythia_nucleus_K20_scores.npy'); print(s.shape, s.dtype, s[:5])\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "python3 -c \"import numpy as np; s=np.load('/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/pythia_nucleus_K20_scores.npy'); print(s.shape, s.dtype, s[:5])\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T20:07:23.452859+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T20:07:23.453010+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T20:07:23.453149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross_model_chain\\ncuration_poc\\ndepth_0.jsonl\\ndepth_0_features.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\ndomain_extension\\ndownstream\\nfeatures_3class.jsonl\\nfeatures_all.jsonl\\nfeatures_d4d5.jsonl\\nfeatures_depth_4.jsonl\\nfeatures_depth_5.jsonl\\nfeatures_filtered.jsonl\\ngpt2xl\\ngpt2xl_seed43\\ngpt2xl_temp09\\ngpt2xl_topk50\\nllama3_8b_nucleus\\nllama3_base_nucleus\\nolmo\\nolmo_seed43\\nolmo_temp09\\nolmo_topk50\\nprompted_gen\\npythia_seed43\\npythia_temp05\\npythia_temp07\\npythia_temp09\\npythia_temp11\\npythia_topk50\\nqwen25_1.5b_instruct\\nqwen25_14b\\nqwen7b_nucleus\\nredpajama_en_head.json.gz\\nreverse_chain\\nwikitext103_test.txt\\nwild\\nwild_data\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T20:07:23.453305+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "python3 -c \"import numpy as np; d=np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/pythia_temp09_scores.npz'); print(list(d.keys())); print({k: d[k].shape for k in d.keys()})\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "python3 -c \"import numpy as np; d=np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/pythia_temp09_scores.npz'); print(list(d.keys())); print({k: d[k].shape for k in d.keys()})\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T20:07:23.453430+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T20:07:23.453552+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "head -1 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "head -1 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T20:07:23.453689+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"depth\\\": 0, \\\"sample_id\\\": 0, \\\"mean_ppl\\\": 1607.154718291221, \\\"var_ppl\\\": 158779688.72304317, \\\"skewness_ppl\\\": 10.406051089379453, \\\"kurtosis_ppl\\\": 114.01617768762445, \\\"p10_ppl\\\": 1.0253935757537525, \\\"p25_ppl\\\": 1.4685526791140988, \\\"p50_ppl\\\": 4.352294272371119, \\\"p75_ppl\\\": 39.40245503911115, \\\"p90_ppl\\\": 369.16657551683574, \\\"mean_surprisal\\\": 2.372938156607645, \\\"var_surprisal\\\": 6.239684146274182, \\\"entropy_of_surprisal\\\": 3.1822611603270903, \\\"type_token_ratio\\\": 0.570281124497992, \\\"hapax_ratio\\\": 0.7922535211267606, \\\"bigram_entropy\\\": 6.013228236535451, \\\"trigram_entropy\\\": 6.165336778855558, \\\"rep_2gram\\\": 0.11066398390342047, \\\"rep_3gram\\\": 0.028225806451612878, \\\"rep_4gram\\\": 0.014141414141414121}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T20:07:23.453812+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T20:07:23.453955+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "python3 -c \"import numpy as np; s=np.load('/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/pythia_nucleus_K20_scores.npy'); print(s.shape, s.dtype)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "python3 -c \"import numpy as np; s=np.load('/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/pythia_nucleus_K20_scores.npy'); print(s.shape, s.dtype)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T20:07:23.454082+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"depth_0.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\nfeatures.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T20:07:23.454199+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T20:07:23.454368+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "python3 -c \"\nimport numpy as np\n# Check Min-K% shape\ns = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/pythia_nucleus_K20_scores.npy')\nprint('mink shape:', s.shape, s.dtype, 'first5:', s[:5])\n\n# Check DetectGPT shape\nd = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/pythia_temp09_scores.npz')\nprint('detectgpt keys:', list(d.keys()))\nfor k in d.keys():\n    print(f'  {k}: shape={d[k].shape}, dtype={d[k].dtype}, first3={d[k][:3]}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "python3 -c \"\nimport numpy as np\n# Check Min-K% shape\ns = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/pythia_nucleus_K20_scores.npy')\nprint('mink shape:', s.shape, s.dtype, 'first5:', s[:5])\n\n# Check DetectGPT shape\nd = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/pythia_temp09_scores.npz')\nprint('detectgpt keys:', list(d.keys()))\nfor k in d.keys():\n    print(f'  {k}: shape={d[k].shape}, dtype={d[k].dtype}, first3={d[k][:3]}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T20:07:23.454515+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport numpy as np\\\\n# Check Min-K% shape\\\\ns = np.load(\\\\'/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/pythia_nucleus_K20_scores.npy\\\\')\\\\nprint(\\\\'mink shape:\\\\', s.shape, s.dtype, \\\\'first5:\\\\', s[:5])\\\\n\\\\n# Check DetectGPT shape\\\\nd = np.load(\\\\'/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/pythia_temp09_scores.npz\\\\')\\\\nprint(\\\\'detectgpt keys:\\\\', list(d.keys()))\\\\nfor k in d.keys():\\\\n    print(f\\\\'  {k}: shape={d[k].shape}, dtype={d[k].dtype}, first3={d[k][:3]}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 2, in &lt;module>\\nModuleNotFoundError: No module named 'numpy'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T20:07:23.454642+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-18T20:07:23.454758+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T20:07:23.454888+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09/features.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09/features.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T20:07:23.455017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"20000 /root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T20:07:23.455135+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"20000 /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T20:07:23.455250+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"wc: /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09/features.jsonl: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T20:07:23.455396+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09 -name \"features*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09 -name \"features*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T20:07:23.455520+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T20:07:23.455635+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls /root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-18T20:07:23.455748+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "which conda && conda env list 2>/dev/null || which pip3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "which conda && conda env list 2>/dev/null || which pip3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T20:07:23.455864+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"depth_0.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T20:07:23.456005+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which conda && conda env list 2>/dev/null || which pip3'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T20:07:23.456135+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root -name \"python*\" -type f 2>/dev/null | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root -name \"python*\" -type f 2>/dev/null | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-18T20:07:23.456250+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"features*.jsonl\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "find /root/autodl-tmp/recursive_gen_depth_est -name \"features*.jsonl\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T20:07:23.456383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/include/python3.12/cpython/pythonrun.h\\n/root/miniconda3/include/python3.12/pythonrun.h\\n/root/miniconda3/lib/pkgconfig/python-3.12-embed.pc\\n/root/miniconda3/lib/pkgconfig/python-3.12.pc\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/__pycache__/python-config.cpython-312.pyc\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/python-config.py\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/python.o\\n/root/miniconda3/lib/python3.12/idlelib/Icons/python.gif\\n/root/miniconda3/lib/python3.12/site-packages/conda/cli/__pycache__/python_api.cpython-312.pyc\\n/root/miniconda3/lib/python3.12/site-packages/conda/cli/python_api.py\\n/root/miniconda3/lib/python3.12/site-packages/conda/common/pkg_formats/__pycache__/python.cpython-312.pyc\\n/root/miniconda3/lib/python3.12/site-packages/conda/common/pkg_formats/python.py\\n/root/miniconda3/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/__pycache__/python.cpython-312.pyc\\n/root/miniconda3/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/python.py\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/python/python_test.h\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/python/python_to_arrow.h\\n/root/miniconda3/lib/python3.12/site-packages/pyarrow/include/arrow/python/vendored/pythoncapi_compat.h\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T20:07:23.456556+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_filtered.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_3class.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/olmo/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features_3class.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp09/features_filtered.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_d4d5.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_depth_4.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/features_depth_5.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp05/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/pythia_temp11/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/qwen7b_nucleus/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/cross_model_chain/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/llama3_8b_nucleus/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/llama3_base_nucleus/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/reverse_chain/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/prompted_gen/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b/features_self_ref.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/features.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/features_3class.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/features_filtered.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/pythia_topk50/features_3class_filtered.jsonl\\n/root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/features.jso
+…[truncated 3120 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T20:07:23.456726+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "/root/miniconda3/bin/python3 -c \"\nimport numpy as np\ns = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/pythia_nucleus_K20_scores.npy')\nprint('mink shape:', s.shape, s.dtype, 'first5:', s[:5])\nd = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/pythia_temp09_scores.npz')\nprint('detectgpt keys:', list(d.keys()))\nfor k in d.keys():\n    print(f'  {k}: shape={d[k].shape} dtype={d[k].dtype} first3={d[k][:3]}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "/root/miniconda3/bin/python3 -c \"\nimport numpy as np\ns = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/pythia_nucleus_K20_scores.npy')\nprint('mink shape:', s.shape, s.dtype, 'first5:', s[:5])\nd = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/pythia_temp09_scores.npz')\nprint('detectgpt keys:', list(d.keys()))\nfor k in d.keys():\n    print(f'  {k}: shape={d[k].shape} dtype={d[k].dtype} first3={d[k][:3]}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-18T20:07:23.456860+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "head -1 /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/features.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "head -1 /root/autodl-tmp/recursive_gen_depth_est/results/gpt2xl_temp09/features.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T20:07:23.457015+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"mink shape: (20000,) float64 first5: [-7.07550287 -6.79557943 -6.71802282 -6.32033205 -7.52618027]\\ndetectgpt keys: ['scores', 'labels']\\n  scores: shape=(600,) dtype=float64 first3=[-0.21484375  0.10664063  0.21914063]\\n  labels: shape=(600,) dtype=int64 first3=[1 1 1]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-18T20:07:23.457138+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/detectgpt_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/detectgpt_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T20:07:23.457275+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"depth\\\": 0, \\\"sample_id\\\": 0, \\\"mean_ppl\\\": 9474.133177057485, \\\"var_ppl\\\": 28597004577.195564, \\\"skewness_ppl\\\": 21.759986243359258, \\\"kurtosis_ppl\\\": 475.92412436355045, \\\"p10_ppl\\\": 1.0540530935795704, \\\"p25_ppl\\\": 1.7027266092948952, \\\"p50_ppl\\\": 6.137718694555804, \\\"p75_ppl\\\": 62.59756498680392, \\\"p90_ppl\\\": 457.1447132689089, \\\"mean_surprisal\\\": 2.629565915119381, \\\"var_surprisal\\\": 6.741009917046379, \\\"entropy_of_surprisal\\\": 3.0736459743680515, \\\"type_token_ratio\\\": 0.5853658536585366, \\\"hapax_ratio\\\": 0.7916666666666666, \\\"bigram_entropy\\\": 6.052021389395242, \\\"trigram_entropy\\\": 6.168942841614717, \\\"rep_2gram\\\": 0.0835030549898167, \\\"rep_3gram\\\": 0.01836734693877551, \\\"rep_4gram\\\": 0.008179959100204526}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T20:07:23.457484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"gpt2xl_nucleus\\\": {\\n    \\\"methodA\\\": {\\n      \\\"4class_acc\\\": 0.285,\\n      \\\"4class_acc_std\\\": 0.0551,\\n      \\\"d1d3_bal_acc\\\": 0.3183,\\n      \\\"d1d3_bal_acc_std\\\": 0.0193\\n    },\\n    \\\"methodB\\\": {\\n      \\\"4class_acc\\\": 0.25,\\n      \\\"4class_acc_std\\\": 0.0324,\\n      \\\"d1d3_bal_acc\\\": 0.325,\\n      \\\"d1d3_bal_acc_std\\\": 0.0376\\n    },\\n    \\\"methodC\\\": {\\n      \\\"4class_acc\\\": 0.4012,\\n      \\\"4class_acc_std\\\": 0.016,\\n      \\\"d1d3_bal_acc\\\": 0.31,\\n      \\\"d1d3_bal_acc_std\\\": 0.02\\n    }\\n  },\\n  \\\"gpt2xl_temp09\\\": {\\n    \\\"methodA\\\": {\\n      \\\"4class_acc\\\": 0.28,\\n      \\\"4class_acc_std\\\": 0.015,\\n      \\\"d1d3_bal_acc\\\": 0.3183,\\n      \\\"d1d3_bal_acc_std\\\": 0.0122\\n    },\\n    \\\"methodB\\\": {\\n      \\\"4class_acc\\\": 0.2963,\\n      \\\"4class_acc_std\\\": 0.0287,\\n      \\\"d1d3_bal_acc\\\": 0.37,\\n      \\\"d1d3_bal_acc_std\\\": 0.0327\\n    },\\n    \\\"methodC\\\": {\\n      \\\"4class_acc\\\": 0.4138,\\n      \\\"4class_acc_std\\\": 0.0121,\\n      \\\"d1d3_bal_acc\\\": 0.3017,\\n      \\\"d1d3_bal_acc_std\\\": 0.0309\\n    }\\n  },\\n  \\\"gpt2xl_topk50\\\": {\\n    \\\"methodA\\\": {\\n      \\\"4class_acc\\\": 0.3112,\\n      \\\"4class_acc_std\\\": 0.0191,\\n      \\\"d1d3_bal_acc\\\": 0.3233,\\n      \\\"d1d3_bal_acc_std\\\": 0.0347\\n    },\\n    \\\"methodB\\\": {\\n      \\\"4class_acc\\\": 0.265,\\n      \\\"4class_acc_std\\\": 0.0249,\\n      \\\"d1d3_bal_acc\\\": 0.3483,\\n      \\\"d1d3_bal_acc_std\\\": 0.0392\\n    },\\n    \\\"methodC\\\": {\\n      \\\"4class_acc\\\": 0.3688,\\n      \\\"4class_acc_std\\\": 0.0265,\\n      \\\"d1d3_bal_acc\\\": 0.24,\\n      \\\"d1d3_bal_acc_std\\\": 0.0442\\n    }\\n  },\\n  \\\"olmo_nucleus\\\": {\\n    \\\"methodA\\\": {\\n      \\\"4class_acc\\\": 0.2588,\\n      \\\"4class_acc_std\\\": 0.0064,\\n      \\\"d1d3_bal_ac
+…[truncated 3276 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T20:07:23.457673+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "/root/miniconda3/bin/python3 -c \"\nimport numpy as np\nd = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/pythia_temp09_scores.npz')\nlabels = d['labels']\nscores = d['scores']\nprint('unique labels:', np.unique(labels))\nfor l in np.unique(labels):\n    mask = labels == l\n    print(f'  label {l}: count={mask.sum()}, score range=[{scores[mask].min():.4f}, {scores[mask].max():.4f}]')\n\n# Check another cell\nd2 = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/gpt2xl_nucleus_scores.npz')\nprint('gpt2xl_nucleus labels:', np.unique(d2['labels']), 'shape:', d2['scores'].shape)\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "/root/miniconda3/bin/python3 -c \"\nimport numpy as np\nd = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/pythia_temp09_scores.npz')\nlabels = d['labels']\nscores = d['scores']\nprint('unique labels:', np.unique(labels))\nfor l in np.unique(labels):\n    mask = labels == l\n    print(f'  label {l}: count={mask.sum()}, score range=[{scores[mask].min():.4f}, {scores[mask].max():.4f}]')\n\n# Check another cell\nd2 = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/gpt2xl_nucleus_scores.npz')\nprint('gpt2xl_nucleus labels:', np.unique(d2['labels']), 'shape:', d2['scores'].shape)\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T20:07:23.457816+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"unique labels: [1 2 3]\\n  label 1: count=200, score range=[-3.1688, 1.0887]\\n  label 2: count=200, score range=[-2.0459, 0.9150]\\n  label 3: count=200, score range=[-7.7962, 0.9238]\\ngpt2xl_nucleus labels: [0 1 2 3] shape: (800,)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T20:07:23.457984+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "/root/miniconda3/bin/python3 -c \"\nimport numpy as np, os\nbase = '/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/'\nfor f in sorted(os.listdir(base)):\n    if f.endswith('.npz'):\n        d = np.load(os.path.join(base, f))\n        labels = d['labels']\n        print(f'{f}: shape={d[\\\"scores\\\"].shape}, labels={sorted(np.unique(labels).tolist())}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "/root/miniconda3/bin/python3 -c \"\nimport numpy as np, os\nbase = '/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/'\nfor f in sorted(os.listdir(base)):\n    if f.endswith('.npz'):\n        d = np.load(os.path.join(base, f))\n        labels = d['labels']\n        print(f'{f}: shape={d[\\\"scores\\\"].shape}, labels={sorted(np.unique(labels).tolist())}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T20:07:23.458128+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gpt2xl_nucleus_scores.npz: shape=(800,), labels=[0, 1, 2, 3]\\ngpt2xl_temp09_scores.npz: shape=(800,), labels=[0, 1, 2, 3]\\ngpt2xl_topk50_scores.npz: shape=(800,), labels=[0, 1, 2, 3]\\nolmo_nucleus_scores.npz: shape=(800,), labels=[0, 1, 2, 3]\\nolmo_temp09_scores.npz: shape=(800,), labels=[0, 1, 2, 3]\\nolmo_topk50_scores.npz: shape=(800,), labels=[0, 1, 2, 3]\\npythia_temp09_scores.npz: shape=(600,), labels=[1, 2, 3]\\npythia_topk50_scores.npz: shape=(600,), labels=[1, 2, 3]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T20:07:23.458302+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "/root/miniconda3/bin/python3 -c \"\nimport json\n# Check feature file ordering for pythia_nucleus\nwith open('/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl') as f:\n    lines = [json.loads(l) for l in f]\nprint('Total lines:', len(lines))\nprint('First line depth/id:', lines[0]['depth'], lines[0]['sample_id'])\nprint('Line 4999 depth/id:', lines[4999]['depth'], lines[4999]['sample_id'])\nprint('Line 5000 depth/id:', lines[5000]['depth'], lines[5000]['sample_id'])\nprint('Line 9999 depth/id:', lines[9999]['depth'], lines[9999]['sample_id'])\nprint('Line 10000 depth/id:', lines[10000]['depth'], lines[10000]['sample_id'])\nprint('Last line depth/id:', lines[-1]['depth'], lines[-1]['sample_id'])\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "/root/miniconda3/bin/python3 -c \"\nimport json\n# Check feature file ordering for pythia_nucleus\nwith open('/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl') as f:\n    lines = [json.loads(l) for l in f]\nprint('Total lines:', len(lines))\nprint('First line depth/id:', lines[0]['depth'], lines[0]['sample_id'])\nprint('Line 4999 depth/id:', lines[4999]['depth'], lines[4999]['sample_id'])\nprint('Line 5000 depth/id:', lines[5000]['depth'], lines[5000]['sample_id'])\nprint('Line 9999 depth/id:', lines[9999]['depth'], lines[9999]['sample_id'])\nprint('Line 10000 depth/id:', lines[10000]['depth'], lines[10000]['sample_id'])\nprint('Last line depth/id:', lines[-1]['depth'], lines[-1]['sample_id'])\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-18T20:07:23.458434+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/mink_prob_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/mink_prob_baseline/mink_prob_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-18T20:07:23.458562+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total lines: 20000\\nFirst line depth/id: 0 0\\nLine 4999 depth/id: 0 4999\\nLine 5000 depth/id: 1 5000\\nLine 9999 depth/id: 1 9999\\nLine 10000 depth/id: 2 10000\\nLast line depth/id: 3 19999\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T20:07:23.458836+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_nucleus\\\": {\\n    \\\"K10_methodA\\\": {\\n      \\\"4class_acc\\\": 0.2565,\\n      \\\"d1d3_bal_acc\\\": 0.0086\\n    },\\n    \\\"K10_methodB\\\": {\\n      \\\"4class_acc\\\": 0.2514,\\n      \\\"d1d3_bal_acc\\\": 0.3351\\n    },\\n    \\\"K10_methodC\\\": {\\n      \\\"4class_acc\\\": 0.2528,\\n      \\\"d1d3_bal_acc\\\": 0.3371\\n    },\\n    \\\"K20_methodA\\\": {\\n      \\\"4class_acc\\\": 0.2544,\\n      \\\"d1d3_bal_acc\\\": 0.0059\\n    },\\n    \\\"K20_methodB\\\": {\\n      \\\"4class_acc\\\": 0.2568,\\n      \\\"d1d3_bal_acc\\\": 0.3423\\n    },\\n    \\\"K20_methodC\\\": {\\n      \\\"4class_acc\\\": 0.2485,\\n      \\\"d1d3_bal_acc\\\": 0.3313\\n    },\\n    \\\"K30_methodA\\\": {\\n      \\\"4class_acc\\\": 0.2535,\\n      \\\"d1d3_bal_acc\\\": 0.0049\\n    },\\n    \\\"K30_methodB\\\": {\\n      \\\"4class_acc\\\": 0.3045,\\n      \\\"d1d3_bal_acc\\\": 0.406\\n    },\\n    \\\"K30_methodC\\\": {\\n      \\\"4class_acc\\\": 0.247,\\n      \\\"d1d3_bal_acc\\\": 0.3293\\n    }\\n  },\\n  \\\"pythia_temp09\\\": {\\n    \\\"K10_methodA\\\": {\\n      \\\"4class_acc\\\": 0.2559,\\n      \\\"d1d3_bal_acc\\\": 0.0078\\n    },\\n    \\\"K10_methodB\\\": {\\n      \\\"4class_acc\\\": 0.2564,\\n      \\\"d1d3_bal_acc\\\": 0.3419\\n    },\\n    \\\"K10_methodC\\\": {\\n      \\\"4class_acc\\\": 0.2521,\\n      \\\"d1d3_bal_acc\\\": 0.3361\\n    },\\n    \\\"K20_methodA\\\": {\\n      \\\"4class_acc\\\": 0.256,\\n      \\\"d1d3_bal_acc\\\": 0.008\\n    },\\n    \\\"K20_methodB\\\": {\\n      \\\"4class_acc\\\": 0.2706,\\n      \\\"d1d3_bal_acc\\\": 0.3607\\n    },\\n    \\\"K20_methodC\\\": {\\n      \\\"4class_acc\\\": 0.2474,\\n      \\\"d1d3_bal_acc\\\": 0.3298\\n    },\\n    \\\"K30_methodA\\\": {\\n      \\\"4class_acc\\\": 0.2551,\\n      \\\"d1d3_bal_acc\\\": 0.0075\\n    },\\n    \\\"K30_methodB\\\": {\\n      \\\"4class_acc\\\": 0.2828,\\n      \\\"d1d3_bal_acc\\\": 0.3758\\n 
+…[truncated 8489 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T20:07:23.459055+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "/root/miniconda3/bin/python3 -c \"\nimport json\n# Check gpt2xl features ordering\nwith open('/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl') as f:\n    lines = [json.loads(l) for l in f]\nprint('gpt2xl: n=%d, first=(d%d,id%d), 4999th=(d%d,id%d), 5000th=(d%d,id%d), last=(d%d,id%d)' % (\n    len(lines), lines[0]['depth'], lines[0]['sample_id'],\n    lines[4999]['depth'], lines[4999]['sample_id'],\n    lines[5000]['depth'], lines[5000]['sample_id'],\n    lines[-1]['depth'], lines[-1]['sample_id']))\n\n# Check DetectGPT label order  \nimport numpy as np\nd = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/gpt2xl_nucleus_scores.npz')\nlabels = d['labels']\nprint('detectgpt gpt2xl_nucleus: first10 labels:', labels[:10].tolist())\nprint('at 200:', labels[199:201].tolist())\nprint('at 400:', labels[399:401].tolist())\nprint('at 600:', labels[599:601].tolist())\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "/root/miniconda3/bin/python3 -c \"\nimport json\n# Check gpt2xl features ordering\nwith open('/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/features.jsonl') as f:\n    lines = [json.loads(l) for l in f]\nprint('gpt2xl: n=%d, first=(d%d,id%d), 4999th=(d%d,id%d), 5000th=(d%d,id%d), last=(d%d,id%d)' % (\n    len(lines), lines[0]['depth'], lines[0]['sample_id'],\n    lines[4999]['depth'], lines[4999]['sample_id'],\n    lines[5000]['depth'], lines[5000]['sample_id'],\n    lines[-1]['depth'], lines[-1]['sample_id']))\n\n# Check DetectGPT label order  \nimport numpy as np\nd = np.load('/root/autodl-tmp/recursive_gen_depth_est/results/detectgpt_baseline/gpt2xl_nucleus_scores.npz')\nlabels = d['labels']\nprint('detectgpt gpt2xl_nucleus: first10 labels:', labels[:10].tolist())\nprint('at 200:', labels[199:201].tolist())\nprint('at 400:', labels[399:401].tolist())\nprint('at 600:', labels[599:601].tolist())\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T20:07:23.459202+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gpt2xl: n=20000, first=(d0,id0), 4999th=(d0,id4999), 5000th=(d1,id5000), last=(d3,id19999)\\ndetectgpt gpt2xl_nucleus: first10 labels: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\\nat 200: [0, 1]\\nat 400: [1, 2]\\nat 600: [2, 3]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T20:07:23.459371+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "/root/miniconda3/bin/python3 -c \"import sklearn; print(sklearn.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "/root/miniconda3/bin/python3 -c \"import sklearn; print(sklearn.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T20:07:23.459508+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.8.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T20:07:23.459650+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "mkdir -p /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "mkdir -p /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T20:07:23.459777+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T20:07:23.459973+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run_augmented_rf.py\n# 21-feature RF experiment: 19 original + Min-K% K20 + DetectGPT perturbation discrepancy\n# Compares 19-feat, 20-feat (19+mink), 21-feat (19+mink+detectgpt) RF classifiers\n\nimport json\nimport numpy as np\nfrom pathlib import Path\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, balanced_accuracy_score\n\nSEED = 42\nN_TREES = 200\nN_FOLDS = 5\nBASE = Path(\"/root/autodl-tmp/recursive_gen_depth_est\")\n\nFEATURE_NAMES = [\n    \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n    \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n    \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\",\n    \"type_token_ratio\", \"hapax_ratio\",\n    \"bigram_entropy\", \"trigram_entropy\",\n    \"rep_2gram\", \"rep_3gram\", \"rep_4gram\",\n]\n\nCELL_FEATURE_PATHS = {\n    \"pythia_nucleus\": BASE / \"data\" / \"features_all.jsonl\",\n    \"pythia_temp09\":  BASE / \"data\" / \"pythia_temp09\" / \"features.jsonl\",\n    \"pythia_topk50\":  BASE / \"results\" / \"pythia_topk50\" / \"features.jsonl\",\n    \"olmo_nucleus\":   BASE / \"data\" / \"olmo\" / \"features.jsonl\",\n    \"olmo_temp09\":    BASE / \"results\" / \"olmo_temp09\" / \"features.jsonl\",\n    \"olmo_topk50\":    BASE / \"results\" / \"olmo_topk50\" / \"features.jsonl\",\n    \"gpt2xl_nucleus\": BASE / \"data\" / \"gpt2xl\" / \"features.jsonl\",\n    \"gpt2xl_temp09\":  BASE / \"results\" / \"gpt2xl_temp09\" / \"features.jsonl\",\n    \"gpt2xl_topk50\":  BASE / \"results\" / \"gpt2xl_topk50\" / \"features.jsonl\",\n}\n\nMINK_DIR = BASE / \"results\" / \"mink_prob_baseline\"\nDETECTGPT_DIR = BASE / \"results\" / \"detectgpt_baseline\"\nOUT_DIR = BASE / \"results\" / \"augmented_feature_rf\"\n\n\ndef load_features(cell):\n    \"\"\"Load 19 features and depth labels from jsonl. Returns (X[n,19], y[n]).\"\"\"\n    path = CELL_FEATURE_PATHS[cell]\n    rows = []\n    with open(path) as f:\n        for line in f:\n            rows.append(json.loads(line))\n    X = np.array([[r[fn] for fn in FEATURE_NAMES] for r in rows], dtype=np.float64)\n    y = np.array([r[\"depth\"] for r in rows], dtype=np.int64)\n    np.clip(X, -1e15, 1e15, out=X)\n    X = np.nan_to_num(X, nan=0.0, posinf=1e15, neginf=-1e15)\n    return X, y\n\n\ndef load_mink(cell):\n    \"\"\"Load Min-K% K=20 scores. Returns shape (20000,).\"\"\"\n    path = MINK_DIR / f\"{cell}_K20_scores.npy\"\n    s = np.load(path)\n    np.clip(s, -1e15, 1e15, out=s)\n    s = np.nan_to_num(s, nan=0.0, posinf=1e15, neginf=-1e15)\n    return s\n\n\ndef load_detectgpt(cell):\n    \"\"\"Load DetectGPT scores. Returns (scores, labels) or (None, None) if not available.\"\"\"\n    path = DETECTGPT_DIR / f\"{cell}_scores.npz\"\n    if not path.exists():\n        return None, None\n    d = np.load(path)\n    scores = d[\"scores\"].astype(np.float64)\n    labels = d[\"labels\"].astype(np.int64)\n    np.clip(scores, -1e15, 1e15, out=scores)\n    scores = np.nan_to_num(scores, nan=0.0, posinf=1e15, neginf=-1e15)\n    return scores, labels\n\n\ndef run_cv(X, y, n_classes=4):\n    \"\"\"5-fold stratified CV with RF. Returns dict with acc, d1d3 bal acc, per-fold results.\"\"\"\n    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=SEED)\n    fold_accs, fold_bals = [], []\n    for train_idx, test_idx in skf.split(X, y):\n        clf = RandomForestClassifier(n_estimators=N_TREES, random_state=SEED, n_jobs=-1)\n        clf.fit(X[train_idx], y[train_idx])\n        pred = clf.predict(X[test_idx])\n        fold_accs.append(accuracy_score(y[test_idx], pred))\n        if n_classes == 4:\n            mask = y[test_idx] >= 1\n            fold_bals.append(balanced_accuracy_score(y[test_idx][mask], pred[mask]))\n        else:\n            fold_bals.append(balanced_accuracy_score(y[test_idx], pred))\n    return {\n        \"4class_acc_mean\": round(np.mean(fold_accs), 4),\n        \"4class_acc_std\": round(np.std(fold_accs), 4),\n        \"d1d3_bal_acc_mean\": round(np.mean(fold_bals), 4),\n        \"d1d3_bal_acc_std\": round(np.std(fold_bals), 4),\n        \"fold_accs\": [round(x, 4) for x in fold_accs],\n        \"fold_bals\": [round(x, 4) for x in fold_bals],\n    }\n\n\ndef get_feature_importance(X, y, feature_names):\n    \"\"\"Train full RF and return feature importance ranking.\"\"\"\n    clf = RandomForestClassifier(n_estimators=N_TREES, random_state=SEED, n_jobs=-1)\n    clf.fit(X, y)\n    imp = clf.feature_importances_\n    ranked = sorted(zip(feature_names, imp), key=lambda x: -x[1])\n    return {name: round(float(val), 6) for name, val in ranked}, clf.feature_importances_\n\n\ndef subset_for_detectgpt(X_19, mink, y, dg_scores, dg_labels):\n    \"\"\"Extract the 200-sample-per-depth subset that has DetectGPT scores.\n    DetectGPT order: sorted by depth, first 200 per depth.\n    Features order: d0[0:5000], d1[5000:10000], d2[10000:15000], d3[15000:20000].\n    \"\"\"\n    unique_depths = sorted(np.unique(dg_labels).tolist())\n    feat_indices = []\n    for depth in unique_depths:\n        depth_start = depth * 5000\n        feat_indices.extend(range(depth_start, depth_start + 200))\n    feat_indices = np.array(feat_indices)\n    X_sub = X_19[feat_indices]\n    mink_sub = mink[feat_indices]\n    y_sub = y[feat_indices]\n    return X_sub, mink_sub, y_sub, feat_indices\n\n\n# ======================== MAIN ========================\ncells = list(CELL_FEATURE_PATHS.keys())\nresults = {\"per_cell\": {}, \"experiment_A_20feat\": {}, \"experiment_B_21feat\": {}, \"feature_importance\": {}}\n\n# Experiment A: 20-feature (19 + Min-K%) on all 9 cells, full 20000 samples\nprint(\"=\" * 60)\nprint(\"Experiment A: 20-feature RF (19 + Min-K% K20)\")\nprint(\"=\" * 60)\nexp_a_accs, exp_a_bals = [], []\nfor cell in cells:\n    print(f\"\\n  {cell}...\")\n    X_19, y = load_features(cell)\n    mink = load_mink(cell)\n    assert X_19.shape[0] == mink.shape[0] == 20000, f\"Shape mismatch: {X_19.shape[0]} vs {mink.shape[0]}\"\n\n    # 19-feature baseline on full data\n    res_19 = run_cv(X_19, y)\n    # 20-feature\n    X_20 = np.column_stack([X_19, mink])\n    res_20 = run_cv(X_20, y)\n\n    delta_acc = round(res_20[\"4class_acc_mean\"] - res_19[\"4class_acc_mean\"], 4)\n    delta_bal = round(res_20[\"d1d3_bal_acc_mean\"] - res_19[\"d1d3_bal_acc_mean\"], 4)\n\n    results[\"per_cell\"][cell] = {\n        \"19feat_full\": res_19,\n        \"20feat_full\": res_20,\n        \"delta_20v19_acc\": delta_acc,\n        \"delta_20v19_bal\": delta_bal,\n    }\n    exp_a_accs.append(res_20[\"4class_acc_mean\"])\n    exp_a_bals.append(res_20[\"d1d3_bal_acc_mean\"])\n    print(f\"    19-feat: acc={res_19['4class_acc_mean']:.4f}, bal={res_19['d1d3_bal_acc_mean']:.4f}\")\n    print(f\"    20-feat: acc={res_20['4class_acc_mean']:.4f}, bal={res_20['d1d3_bal_acc_mean']:.4f}\")\n    print(f\"    delta:   acc={delta_acc:+.4f}, bal={delta_bal:+.4f}\")\n\n# Experiment A summary\nbaseline_19_accs = [results[\"per_cell\"][c][\"19feat_full\"][\"4class_acc_mean\"] for c in cells]\nresults[\"experiment_A_20feat\"] = {\n    \"n_cells\": 9,\n    \"n_samples_per_cell\": 20000,\n    \"mean_19feat_acc\": round(np.mean(baseline_19_accs), 4),\n    \"mean_19feat_bal\": round(np.mean([results[\"per_cell\"][c][\"19feat_full\"][\"d1d3_bal_acc_mean\"] for c in cells]), 4),\n    \"mean_20feat_acc\": round(np.mean(exp_a_accs), 4),\n    \"mean_20feat_bal\": round(np.mean(exp_a_bals), 4),\n    \"mean_delta_acc\": round(np.mean(exp_a_accs) - np.mean(baseline_19_accs), 4),\n    \"mean_delta_bal\": round(np.mean(exp_a_bals) - np.mean([results[\"per_cell\"][c][\"19feat_full\"][\"d1d3_bal_acc_mean\"] for c in cells]), 4),\n}\n\nprint(f\"\\n  === Exp A Summary ===\")\nprint(f\"  19-feat mean acc: {results['experiment_A_20feat']['mean_19feat_acc']:.4f}\")\nprint(f\"  20-feat mean acc: {results['experiment_A_20feat']['mean_20feat_acc']:.4f}\")\nprint(f\"  delta:            {results['experiment_A_20feat']['mean_delta_acc']:+.4f}\")\n\n# Experiment B: 21-feature on DetectGPT subset\nprint(\"\\n\" + \"=\" * 60)\nprint(\"Experiment B: 21-feature RF (19 + Min-K% + DetectGPT) on subset\")\nprint(\"=\" * 60)\n\ncells_with_dg = [c for c in cells if (DETECTGPT_DIR / f\"{c}_scores.npz\").exists()]\nprint(f\"  Cells with DetectGPT: {cells_with_dg}\")\n\nexp_b_results = {}\nimportance_accumulator = {}\nfor cell in cells_with_dg:\n    print(f\"\\n  {cell}...\")\n    X_19, y = load_features(cell)\n    mink = load_mink(cell)\n    dg_scores, dg_labels = load_detectgpt(cell)\n\n    unique_dg_depths = sorted(np.unique(dg_labels).tolist())\n    has_d0 = 0 in unique_dg_depths\n    n_classes = 4 if has_d0 else 3\n\n    X_sub, mink_sub, y_sub, feat_idx = subset_for_detectgpt(X_19, mink, y, dg_scores, dg_labels)\n\n    assert X_sub.shape[0] == dg_scores.shape[0], f\"Subset mismatch: {X_sub.shape[0]} vs {dg_scores.shape[0]}\"\n    assert np.array_equal(y_sub, dg_labels), f\"Label mismatch for {cell}\"\n\n    # 19-feat on subset\n    res_19_sub = run_cv(X_sub, y_sub, n_classes=n_classes)\n    # 20-feat on subset\n    X_20_sub = np.column_stack([X_sub, mink_sub])\n    res_20_sub = run_cv(X_20_sub, y_sub, n_classes=n_classes)\n    # 21-feat on subset\n    X_21_sub = np.column_stack([X_sub, mink_sub, dg_scores])\n    res_21_sub = run_cv(X_21_sub, y_sub, n_classes=n_classes)\n\n    delta_21v19_acc = round(res_21_sub[\"4class_acc_mean\"] - res_19_sub[\"4class_acc_mean\"], 4)\n    delta_21v19_bal = round(res_21_sub[\"d1d3_bal_acc_mean\"] - res_19_sub[\"d1d3_bal_acc_mean\"], 4)\n    delta_21v20_acc = round(res_21_sub[\"4class_acc_mean\"] - res_20_sub[\"4class_acc_mean\"], 4)\n    delta_21v20_bal = round(res_21_sub[\"d1d3_bal_acc_mean\"] - res_20_sub[\"d1d3_bal_acc_mean\"], 4)\n\n    cell_result = {\n        \"n_classes\": n_classes,\n        \"n_samples\": X_sub.shape[0],\n        \"depths\": unique_dg_depths,\n        \"19feat_subset\": res_19_sub,\n        \"20feat_subset\": res_20_sub,\n        \"21feat_subset\": res_21_sub,\n        \"delta_21v19_acc\": delta_21v19_acc,\n        \"delta_21v19_bal\": delta_21v19_bal,\n        \"delta_21v20_acc\": delta_21v20_acc,\n        \"delta_21v20_bal\": delta_21v20_bal,\n    }\n    results[\"per_cell\"][cell].update(cell_result)\n    exp_b_results[cell] = cell_result\n\n    # Feature importance for 21-feat model\n    feat_names_21 = FEATURE_NAMES + [\"mink_k20_score\", \"detectgpt_score\"]\n    imp_dict, imp_raw = get_feature_importance(X_21_sub, y_sub, feat_names_21)\n    results[\"per_cell\"][cell][\"feature_importance_21feat\"] = imp_dict\n\n    mink_rank = list(imp_dict.keys()).index(\"mink_k20_score\") + 1\n    dg_rank = list(imp_dict.keys()).index(\"detectgpt_score\") + 1\n    results[\"per_cell\"][cell][\"mink_rank\"] = mink_rank\n    results[\"per_cell\"][cell][\"detectgpt_rank\"] = dg_rank\n\n    for name, val in zip(feat_names_21, imp_raw):\n        importance_accumulator.setdefault(name, []).append(float(val))\n\n    print(f\"    n_classes={n_classes}, n_samples={X_sub.shape[0]}\")\n    print(f\"    19-feat subset: acc={res_19_sub['4class_acc_mean']:.4f}, bal={res_19_sub['d1d3_bal_acc_mean']:.4f}\")\n    print(f\"    20-feat subset: acc={res_20_sub['4class_acc_mean']:.4f}, bal={res_20_sub['d1d3_bal_acc_mean']:.4f}\")\n    print(f\"    21-feat subset: acc={res_21_sub['4class_acc_mean']:.4f}, bal={res_21_sub['d1d3_bal_acc_mean']:.4f}\")\n    print(f\"    delta 21v19:    acc={delta_21v19_acc:+.4f}, bal={delta_21v19_bal:+.4f}\")\n    print(f\"    mink_rank={mink_rank}, detectgpt_rank={dg_rank}\")\n\n# Experiment B summary (only 4-class cells for comparable mean)\ncells_4class = [c for c in cells_with_dg if exp_b_results[c][\"n_classes\"] == 4]\ncells_3class = [c for c in cells_with_dg if exp_b_results[c][\"n_classes\"] == 3]\n\nif cells_4class:\n    results[\"experiment_B_21feat_4class\"] = {\n        \"cells\": cells_4class,\n        \"n_cells\": len(cells_4class),\n        \"samples_per_cell\": 800,\n        \"mean_19feat_acc\": round(np.mean([exp_b_results[c][\"19feat_subset\"][\"4class_acc_mean\"] for c in cells_4class]), 4),\n        \"mean_20feat_acc\": round(np.mean([exp_b_results[c][\"20feat_subset\"][\"4class_acc_mean\"] for c in cells_4class]), 4),\n        \"mean_21feat_acc\": round(np.mean([exp_b_results[c][\"21feat_subset\"][\"4class_acc_mean\"] for c in cells_4class]), 4),\n        \"mean_19feat_bal\": round(np.mean([exp_b_results[c][\"19feat_subset\"][\"d1d3_bal_acc_mean\"] for c in cells_4class]), 4),\n        \"mean_20feat_bal\": round(np.mean([exp_b_results[c][\"20feat_subset\"][\"d1d3_bal_acc_mean\"] for c in cells_4class]), 4),\n        \"mean_21feat_bal\": round(np.mean([exp_b_results[c][\"21feat_subset\"][\"d1d3_bal_acc_mean\"] for c in cells_4class]), 4),\n    }\n    s = results[\"experiment_B_21feat_4class\"]\n    s[\"mean_delta_21v19_acc\"] = round(s[\"mean_21feat_acc\"] - s[\"mean_19feat_acc\"], 4)\n    s[\"mean_delta_21v19_bal\"] = round(s[\"mean_21feat_bal\"] - s[\"mean_19feat_bal\"], 4)\n\nif cells_3class:\n    results[\"experiment_B_21feat_3class\"] = {\n        \"cells\": cells_3class,\n        \"n_cells\": len(cells_3class),\n        \"samples_per_cell\": 600,\n        \"mean_19feat_acc\": round(np.mean([exp_b_results[c][\"19feat_subset\"][\"4class_acc_mean\"] for c in cells_3class]), 4),\n        \"mean_20feat_acc\": round(np.mean([exp_b_results[c][\"20feat_subset\"][\"4class_acc_mean\"] for c in cells_3class]), 4),\n        \"mean_21feat_acc\": round(np.mean([exp_b_results[c][\"21feat_subset\"][\"4class_acc_mean\"] for c in cells_3class]), 4),\n    }\n\n# Experiment C: Average feature importance across cells\navg_importance = {name: round(np.mean(vals), 6) for name, vals in importance_accumulator.items()}\navg_ranked = dict(sorted(avg_importance.items(), key=lambda x: -x[1]))\nresults[\"feature_importance\"] = {\n    \"avg_importance_ranked\": avg_ranked,\n    \"mink_k20_score\": {\n        \"avg_importance\": avg_importance.get(\"mink_k20_score\", 0),\n        \"avg_rank\": sorted(avg_ranked.keys()).index(\"mink_k20_score\") + 1 if \"mink_k20_score\" in avg_ranked else None,\n        \"rank_by_importance\": list(avg_ranked.keys()).index(\"mink_k20_score\") + 1,\n    },\n    \"detectgpt_score\": {\n        \"avg_importance\": avg_importance.get(\"detectgpt_score\", 0),\n        \"avg_rank\": sorted(avg_ranked.keys()).index(\"detectgpt_score\") + 1 if \"detectgpt_score\" in avg_ranked else None,\n        \"rank_by_importance\": list(avg_ranked.keys()).index(\"detectgpt_score\") + 1,\n    },\n}\n\n# Final summary\nbaseline_19_mean = results[\"experiment_A_20feat\"][\"mean_19feat_acc\"]\nresults[\"summary\"] = {\n    \"19feature\": {\n        \"mean_4class_acc\": results[\"experiment_A_20feat\"][\"mean_19feat_acc\"],\n        \"mean_d1d3_bal\": results[\"experiment_A_20feat\"][\"mean_19feat_bal\"],\n    },\n    \"20feature_mink\": {\n        \"mean_4class_acc\": results[\"experiment_A_20feat\"][\"mean_20feat_acc\"],\n        \"mean_d1d3_bal\": results[\"experiment_A_20feat\"][\"mean_20feat_bal\"],\n        \"delta_vs_19\": results[\"experiment_A_20feat\"][\"mean_delta_acc\"],\n    },\n}\nif cells_4class:\n    results[\"summary\"][\"21feature_full\"] = {\n        \"mean_4class_acc\": results[\"experiment_B_21feat_4class\"][\"mean_21feat_acc\"],\n        \"mean_d1d3_bal\": results[\"experiment_B_21feat_4class\"][\"mean_21feat_bal\"],\n        \"delta_vs_19_on_subset\": results[\"experiment_B_21feat_4class\"][\"mean_delta_21v19_acc\"],\n        \"note\": f\"on 800-sample subset of {len(cells_4class)} cells with 4-class DetectGPT\",\n    }\nresults[\"summary\"][\"feature_importance\"] = {\n    \"mink_score_rank\": results[\"feature_importance\"][\"mink_k20_score\"][\"rank_by_importance\"],\n    \"detectgpt_score_rank\": results[\"feature_importance\"][\"detectgpt_score\"][\"rank_by_importance\"],\n    \"mink_importance\": results[\"feature_importance\"][\"mink_k20_score\"][\"avg_importance\"],\n    \"detectgpt_importance\": results[\"feature_importance\"][\"detectgpt_score\"][\"avg_importance\"],\n}\n\n# Save\nout_path = OUT_DIR / \"augmented_feature_results.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\n\\nResults saved to {out_path}\")\n\n# Print final summary\nprint(\"\\n\" + \"=\" * 60)\nprint(\"FINAL SUMMARY\")\nprint(\"=\" * 60)\nprint(json.dumps(results[\"summary\"], indent=2))\nPYEOF\necho \"Script written.\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run_augmented_rf.py\n# 21-feature RF experiment: 19 original + Min-K% K20 + DetectGPT perturbation discrepancy\n# Compares 19-feat, 20-feat (19+mink), 21-feat (19+mink+detectgpt) RF classifiers\n\nimport json\nimport numpy as np\nfrom pathlib import Path\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, balanced_accuracy_score\n\nSEED = 42\nN_TREES = 200\nN_FOLDS = 5\nBASE = Path(\"/root/autodl-tmp/recursive_gen_depth_est\")\n\nFEATURE_NAMES = [\n    \"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\",\n    \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\",\n    \"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\",\n    \"type_token_ratio\", \"hapax_ratio\",\n    \"bigram_entropy\", \"trigram_entropy\",\n    \"rep_2gram\", \"rep_3gram\", \"rep_4gram\",\n]\n\nCELL_FEATURE_PATHS = {\n    \"pythia_nucleus\": BASE / \"data\" / \"features_all.jsonl\",\n    \"pythia_temp09\":  BASE / \"data\" / \"pythia_temp09\" / \"features.jsonl\",\n    \"pythia_topk50\":  BASE / \"results\" / \"pythia_topk50\" / \"features.jsonl\",\n    \"olmo_nucleus\":   BASE / \"data\" / \"olmo\" / \"features.jsonl\",\n    \"olmo_temp09\":    BASE / \"results\" / \"olmo_temp09\" / \"features.jsonl\",\n    \"olmo_topk50\":    BASE / \"results\" / \"olmo_topk50\" / \"features.jsonl\",\n    \"gpt2xl_nucleus\": BASE / \"data\" / \"gpt2xl\" / \"features.jsonl\",\n    \"gpt2xl_temp09\":  BASE / \"results\" / \"gpt2xl_temp09\" / \"features.jsonl\",\n    \"gpt2xl_topk50\":  BASE / \"results\" / \"gpt2xl_topk50\" / \"features.jsonl\",\n}\n\nMINK_DIR = BASE / \"results\" / \"mink_prob_baseline\"\nDETECTGPT_DIR = BASE / \"results\" / \"detectgpt_baseline\"\nOUT_DIR = BASE / \"results\" / \"augmented_feature_rf\"\n\n\ndef load_features(cell):\n    \"\"\"Load 19 features and depth labels from jsonl. Returns (X[n,19], y[n]).\"\"\"\n    path = CELL_FEATURE_PATHS[cell]\n    rows = []\n    with open(path) as f:\n        for line in f:\n            rows.append(json.loads(line))\n    X = np.array([[r[fn] for fn in FEATURE_NAMES] for r in rows], dtype=np.float64)\n    y = np.array([r[\"depth\"] for r in rows], dtype=np.int64)\n    np.clip(X, -1e15, 1e15, out=X)\n    X = np.nan_to_num(X, nan=0.0, posinf=1e15, neginf=-1e15)\n    return X, y\n\n\ndef load_mink(cell):\n    \"\"\"Load Min-K% K=20 scores. Returns shape (20000,).\"\"\"\n    path = MINK_DIR / f\"{cell}_K20_scores.npy\"\n    s = np.load(path)\n    np.clip(s, -1e15, 1e15, out=s)\n    s = np.nan_to_num(s, nan=0.0, posinf=1e15, neginf=-1e15)\n    return s\n\n\ndef load_detectgpt(cell):\n    \"\"\"Load DetectGPT scores. Returns (scores, labels) or (None, None) if not available.\"\"\"\n    path = DETECTGPT_DIR / f\"{cell}_scores.npz\"\n    if not path.exists():\n        return None, None\n    d = np.load(path)\n    scores = d[\"scores\"].astype(np.float64)\n    labels = d[\"labels\"].astype(np.int64)\n    np.clip(scores, -1e15, 1e15, out=scores)\n    scores = np.nan_to_num(scores, nan=0.0, posinf=1e15, neginf=-1e15)\n    return scores, labels\n\n\ndef run_cv(X, y, n_classes=4):\n    \"\"\"5-fold stratified CV with RF. Returns dict with acc, d1d3 bal acc, per-fold results.\"\"\"\n    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=SEED)\n    fold_accs, fold_bals = [], []\n    for train_idx, test_idx in skf.split(X, y):\n        clf = RandomForestClassifier(n_estimators=N_TREES, random_state=SEED, n_jobs=-1)\n        clf.fit(X[train_idx], y[train_idx])\n        pred = clf.predict(X[test_idx])\n        fold_accs.append(accuracy_score(y[test_idx], pred))\n        if n_classes == 4:\n            mask = y[test_idx] >= 1\n            fold_bals.append(balanced_accuracy_score(y[test_idx][mask], pred[mask]))\n        else:\n            fold_bals.append(balanced_accuracy_score(y[test_idx], pred))\n    return {\n        \"4class_acc_mean\": round(np.mean(fold_accs), 4),\n        \"4class_acc_std\": round(np.std(fold_accs), 4),\n        \"d1d3_bal_acc_mean\": round(np.mean(fold_bals), 4),\n        \"d1d3_bal_acc_std\": round(np.std(fold_bals), 4),\n        \"fold_accs\": [round(x, 4) for x in fold_accs],\n        \"fold_bals\": [round(x, 4) for x in fold_bals],\n    }\n\n\ndef get_feature_importance(X, y, feature_names):\n    \"\"\"Train full RF and return feature importance ranking.\"\"\"\n    clf = RandomForestClassifier(n_estimators=N_TREES, random_state=SEED, n_jobs=-1)\n    clf.fit(X, y)\n    imp = clf.feature_importances_\n    ranked = sorted(zip(feature_names, imp), key=lambda x: -x[1])\n    return {name: round(float(val), 6) for name, val in ranked}, clf.feature_importances_\n\n\ndef subset_for_detectgpt(X_19, mink, y, dg_scores, dg_labels):\n    \"\"\"Extract the 200-sample-per-depth subset that has DetectGPT scores.\n    DetectGPT order: sorted by depth, first 200 per depth.\n    Features order: d0[0:5000], d1[5000:10000], d2[10000:15000], d3[15000:20000].\n    \"\"\"\n    unique_depths = sorted(np.unique(dg_labels).tolist())\n    feat_indices = []\n    for depth in unique_depths:\n        depth_start = depth * 5000\n        feat_indices.extend(range(depth_start, depth_start + 200))\n    feat_indices = np.array(feat_indices)\n    X_sub = X_19[feat_indices]\n    mink_sub = mink[feat_indices]\n    y_sub = y[feat_indices]\n    return X_sub, mink_sub, y_sub, feat_indices\n\n\n# ======================== MAIN ========================\ncells = list(CELL_FEATURE_PATHS.keys())\nresults = {\"per_cell\": {}, \"experiment_A_20feat\": {}, \"experiment_B_21feat\": {}, \"feature_importance\": {}}\n\n# Experiment A: 20-feature (19 + Min-K%) on all 9 cells, full 20000 samples\nprint(\"=\" * 60)\nprint(\"Experiment A: 20-feature RF (19 + Min-K% K20)\")\nprint(\"=\" * 60)\nexp_a_accs, exp_a_bals = [], []\nfor cell in cells:\n    print(f\"\\n  {cell}...\")\n    X_19, y = load_features(cell)\n    mink = load_mink(cell)\n    assert X_19.shape[0] == mink.shape[0] == 20000, f\"Shape mismatch: {X_19.shape[0]} vs {mink.shape[0]}\"\n\n    # 19-feature baseline on full data\n    res_19 = run_cv(X_19, y)\n    # 20-feature\n    X_20 = np.column_stack([X_19, mink])\n    res_20 = run_cv(X_20, y)\n\n    delta_acc = round(res_20[\"4class_acc_mean\"] - res_19[\"4class_acc_mean\"], 4)\n    delta_bal = round(res_20[\"d1d3_bal_acc_mean\"] - res_19[\"d1d3_bal_acc_mean\"], 4)\n\n    results[\"per_cell\"][cell] = {\n        \"19feat_full\": res_19,\n        \"20feat_full\": res_20,\n        \"delta_20v19_acc\": delta_acc,\n        \"delta_20v19_bal\": delta_bal,\n    }\n    exp_a_accs.append(res_20[\"4class_acc_mean\"])\n    exp_a_bals.append(res_20[\"d1d3_bal_acc_mean\"])\n    print(f\"    19-feat: acc={res_19['4class_acc_mean']:.4f}, bal={res_19['d1d3_bal_acc_mean']:.4f}\")\n    print(f\"    20-feat: acc={res_20['4class_acc_mean']:.4f}, bal={res_20['d1d3_bal_acc_mean']:.4f}\")\n    print(f\"    delta:   acc={delta_acc:+.4f}, bal={delta_bal:+.4f}\")\n\n# Experiment A summary\nbaseline_19_accs = [results[\"per_cell\"][c][\"19feat_full\"][\"4class_acc_mean\"] for c in cells]\nresults[\"experiment_A_20feat\"] = {\n    \"n_cells\": 9,\n    \"n_samples_per_cell\": 20000,\n    \"mean_19feat_acc\": round(np.mean(baseline_19_accs), 4),\n    \"mean_19feat_bal\": round(np.mean([results[\"per_cell\"][c][\"19feat_full\"][\"d1d3_bal_acc_mean\"] for c in cells]), 4),\n    \"mean_20feat_acc\": round(np.mean(exp_a_accs), 4),\n    \"mean_20feat_bal\": round(np.mean(exp_a_bals), 4),\n    \"mean_delta_acc\": round(np.mean(exp_a_accs) - np.mean(baseline_19_accs), 4),\n    \"mean_delta_bal\": round(np.mean(exp_a_bals) - np.mean([results[\"per_cell\"][c][\"19feat_full\"][\"d1d3_bal_acc_mean\"] for c in cells]), 4),\n}\n\nprint(f\"\\n  === Exp A Summary ===\")\nprint(f\"  19-feat mean acc: {results['experiment_A_20feat']['mean_19feat_acc']:.4f}\")\nprint(f\"  20-feat mean acc: {results['experiment_A_20feat']['mean_20feat_acc']:.4f}\")\nprint(f\"  delta:            {results['experiment_A_20feat']['mean_delta_acc']:+.4f}\")\n\n# Experiment B: 21-feature on DetectGPT subset\nprint(\"\\n\" + \"=\" * 60)\nprint(\"Experiment B: 21-feature RF (19 + Min-K% + DetectGPT) on subset\")\nprint(\"=\" * 60)\n\ncells_with_dg = [c for c in cells if (DETECTGPT_DIR / f\"{c}_scores.npz\").exists()]\nprint(f\"  Cells with DetectGPT: {cells_with_dg}\")\n\nexp_b_results = {}\nimportance_accumulator = {}\nfor cell in cells_with_dg:\n    print(f\"\\n  {cell}...\")\n    X_19, y = load_features(cell)\n    mink = load_mink(cell)\n    dg_scores, dg_labels = load_detectgpt(cell)\n\n    unique_dg_depths = sorted(np.unique(dg_labels).tolist())\n    has_d0 = 0 in unique_dg_depths\n    n_classes = 4 if has_d0 else 3\n\n    X_sub, mink_sub, y_sub, feat_idx = subset_for_detectgpt(X_19, mink, y, dg_scores, dg_labels)\n\n    assert X_sub.shape[0] == dg_scores.shape[0], f\"Subset mismatch: {X_sub.shape[0]} vs {dg_scores.shape[0]}\"\n    assert np.array_equal(y_sub, dg_labels), f\"Label mismatch for {cell}\"\n\n    # 19-feat on subset\n    res_19_sub = run_cv(X_sub, y_sub, n_classes=n_classes)\n    # 20-feat on subset\n    X_20_sub = np.column_stack([X_sub, mink_sub])\n    res_20_sub = run_cv(X_20_sub, y_sub, n_classes=n_classes)\n    # 21-feat on subset\n    X_21_sub = np.column_stack([X_sub, mink_sub, dg_scores])\n    res_21_sub = run_cv(X_21_sub, y_sub, n_classes=n_classes)\n\n    delta_21v19_acc = round(res_21_sub[\"4class_acc_mean\"] - res_19_sub[\"4class_acc_mean\"], 4)\n    delta_21v19_bal = round(res_21_sub[\"d1d3_bal_acc_mean\"] - res_19_sub[\"d1d3_bal_acc_mean\"], 4)\n    delta_21v20_acc = round(res_21_sub[\"4class_acc_mean\"] - res_20_sub[\"4class_acc_mean\"], 4)\n    delta_21v20_bal = round(res_21_sub[\"d1d3_bal_acc_mean\"] - res_20_sub[\"d1d3_bal_acc_mean\"], 4)\n\n    cell_result = {\n        \"n_classes\": n_classes,\n        \"n_samples\": X_sub.shape[0],\n        \"depths\": unique_dg_depths,\n        \"19feat_subset\": res_19_sub,\n        \"20feat_subset\": res_20_sub,\n        \"21feat_subset\": res_21_sub,\n        \"delta_21v19_acc\": delta_21v19_acc,\n        \"delta_21v19_bal\": delta_21v19_bal,\n        \"delta_21v20_acc\": delta_21v20_acc,\n        \"delta_21v20_bal\": delta_21v20_bal,\n    }\n    results[\"per_cell\"][cell].update(cell_result)\n    exp_b_results[cell] = cell_result\n\n    # Feature importance for 21-feat model\n    feat_names_21 = FEATURE_NAMES + [\"mink_k20_score\", \"detectgpt_score\"]\n    imp_dict, imp_raw = get_feature_importance(X_21_sub, y_sub, feat_names_21)\n    results[\"per_cell\"][cell][\"feature_importance_21feat\"] = imp_dict\n\n    mink_rank = list(imp_dict.keys()).index(\"mink_k20_score\") + 1\n    dg_rank = list(imp_dict.keys()).index(\"detectgpt_score\") + 1\n    results[\"per_cell\"][cell][\"mink_rank\"] = mink_rank\n    results[\"per_cell\"][cell][\"detectgpt_rank\"] = dg_rank\n\n    for name, val in zip(feat_names_21, imp_raw):\n        importance_accumulator.setdefault(name, []).append(float(val))\n\n    print(f\"    n_classes={n_classes}, n_samples={X_sub.shape[0]}\")\n    print(f\"    19-feat subset: acc={res_19_sub['4class_acc_mean']:.4f}, bal={res_19_sub['d1d3_bal_acc_mean']:.4f}\")\n    print(f\"    20-feat subset: acc={res_20_sub['4class_acc_mean']:.4f}, bal={res_20_sub['d1d3_bal_acc_mean']:.4f}\")\n    print(f\"    21-feat subset: acc={res_21_sub['4class_acc_mean']:.4f}, bal={res_21_sub['d1d3_bal_acc_mean']:.4f}\")\n    print(f\"    delta 21v19:    acc={delta_21v19_acc:+.4f}, bal={delta_21v19_bal:+.4f}\")\n    print(f\"    mink_rank={mink_rank}, detectgpt_rank={dg_rank}\")\n\n# Experiment B summary (only 4-class cells for comparable mean)\ncells_4class = [c for c in cells_with_dg if exp_b_results[c][\"n_classes\"] == 4]\ncells_3class = [c for c in cells_with_dg if exp_b_results[c][\"n_classes\"] == 3]\n\nif cells_4class:\n    results[\"experiment_B_21feat_4class\"] = {\n        \"cells\": cells_4class,\n        \"n_cells\": len(cells_4class),\n        \"samples_per_cell\": 800,\n        \"mean_19feat_acc\": round(np.mean([exp_b_results[c][\"19feat_subset\"][\"4class_acc_mean\"] for c in cells_4class]), 4),\n        \"mean_20feat_acc\": round(np.mean([exp_b_results[c][\"20feat_subset\"][\"4class_acc_mean\"] for c in cells_4class]), 4),\n        \"mean_21feat_acc\": round(np.mean([exp_b_results[c][\"21feat_subset\"][\"4class_acc_mean\"] for c in cells_4class]), 4),\n        \"mean_19feat_bal\": round(np.mean([exp_b_results[c][\"19feat_subset\"][\"d1d3_bal_acc_mean\"] for c in cells_4class]), 4),\n        \"mean_20feat_bal\": round(np.mean([exp_b_results[c][\"20feat_subset\"][\"d1d3_bal_acc_mean\"] for c in cells_4class]), 4),\n        \"mean_21feat_bal\": round(np.mean([exp_b_results[c][\"21feat_subset\"][\"d1d3_bal_acc_mean\"] for c in cells_4class]), 4),\n    }\n    s = results[\"experiment_B_21feat_4class\"]\n    s[\"mean_delta_21v19_acc\"] = round(s[\"mean_21feat_acc\"] - s[\"mean_19feat_acc\"], 4)\n    s[\"mean_delta_21v19_bal\"] = round(s[\"mean_21feat_bal\"] - s[\"mean_19feat_bal\"], 4)\n\nif cells_3class:\n    results[\"experiment_B_21feat_3class\"] = {\n        \"cells\": cells_3class,\n        \"n_cells\": len(cells_3class),\n        \"samples_per_cell\": 600,\n        \"mean_19feat_acc\": round(np.mean([exp_b_results[c][\"19feat_subset\"][\"4class_acc_mean\"] for c in cells_3class]), 4),\n        \"mean_20feat_acc\": round(np.mean([exp_b_results[c][\"20feat_subset\"][\"4class_acc_mean\"] for c in cells_3class]), 4),\n        \"mean_21feat_acc\": round(np.mean([exp_b_results[c][\"21feat_subset\"][\"4class_acc_mean\"] for c in cells_3class]), 4),\n    }\n\n# Experiment C: Average feature importance across cells\navg_importance = {name: round(np.mean(vals), 6) for name, vals in importance_accumulator.items()}\navg_ranked = dict(sorted(avg_importance.items(), key=lambda x: -x[1]))\nresults[\"feature_importance\"] = {\n    \"avg_importance_ranked\": avg_ranked,\n    \"mink_k20_score\": {\n        \"avg_importance\": avg_importance.get(\"mink_k20_score\", 0),\n        \"avg_rank\": sorted(avg_ranked.keys()).index(\"mink_k20_score\") + 1 if \"mink_k20_score\" in avg_ranked else None,\n        \"rank_by_importance\": list(avg_ranked.keys()).index(\"mink_k20_score\") + 1,\n    },\n    \"detectgpt_score\": {\n        \"avg_importance\": avg_importance.get(\"detectgpt_score\", 0),\n        \"avg_rank\": sorted(avg_ranked.keys()).index(\"detectgpt_score\") + 1 if \"detectgpt_score\" in avg_ranked else None,\n        \"rank_by_importance\": list(avg_ranked.keys()).index(\"detectgpt_score\") + 1,\n    },\n}\n\n# Final summary\nbaseline_19_mean = results[\"experiment_A_20feat\"][\"mean_19feat_acc\"]\nresults[\"summary\"] = {\n    \"19feature\": {\n        \"mean_4class_acc\": results[\"experiment_A_20feat\"][\"mean_19feat_acc\"],\n        \"mean_d1d3_bal\": results[\"experiment_A_20feat\"][\"mean_19feat_bal\"],\n    },\n    \"20feature_mink\": {\n        \"mean_4class_acc\": results[\"experiment_A_20feat\"][\"mean_20feat_acc\"],\n        \"mean_d1d3_bal\": results[\"experiment_A_20feat\"][\"mean_20feat_bal\"],\n        \"delta_vs_19\": results[\"experiment_A_20feat\"][\"mean_delta_acc\"],\n    },\n}\nif cells_4class:\n    results[\"summary\"][\"21feature_full\"] = {\n        \"mean_4class_acc\": results[\"experiment_B_21feat_4class\"][\"mean_21feat_acc\"],\n        \"mean_d1d3_bal\": results[\"experiment_B_21feat_4class\"][\"mean_21feat_bal\"],\n        \"delta_vs_19_on_subset\": results[\"experiment_B_21feat_4class\"][\"mean_delta_21v19_acc\"],\n        \"note\": f\"on 800-sample subset of {len(cells_4class)} cells with 4-class DetectGPT\",\n    }\nresults[\"summary\"][\"feature_importance\"] = {\n    \"mink_score_rank\": results[\"feature_importance\"][\"mink_k20_score\"][\"rank_by_importance\"],\n    \"detectgpt_score_rank\": results[\"feature_importance\"][\"detectgpt_score\"][\"rank_by_importance\"],\n    \"mink_importance\": results[\"feature_importance\"][\"mink_k20_score\"][\"avg_importance\"],\n    \"detectgpt_importance\": results[\"feature_importance\"][\"detectgpt_score\"][\"avg_importance\"],\n}\n\n# Save\nout_path = OUT_DIR / \"augmented_feature_results.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\n\\nResults saved to {out_path}\")\n\n# Print final summary\nprint(\"\\n\" + \"=\" * 60)\nprint(\"FINAL SUMMARY\")\nprint(\"=\" * 60)\nprint(json.dumps(results[\"summary\"], indent=2))\nPYEOF\necho \"Script written.\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T20:07:23.460252+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T20:07:23.460384+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "/root/miniconda3/bin/python3 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run_augmented_rf.py",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "/root/miniconda3/bin/python3 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run_augmented_rf.py",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T20:07:23.460527+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: '/root/miniconda3/bin/python3 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run_augmented_rf.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T20:07:23.460705+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 run_augmented_rf.py > run.log 2>&1 && echo \"DONE\" || echo \"FAILED\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 run_augmented_rf.py > run.log 2>&1 && echo \"DONE\" || echo \"FAILED\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T20:07:23.460842+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 run_augmented_rf.py > run.log 2>&1 && echo \\\"DONE\\\" || echo \\\"FAILED\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T20:07:23.461058+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 run_augmented_rf.py > run.log 2>&1 &\necho \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 run_augmented_rf.py > run.log 2>&1 &\necho \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T20:07:23.461206+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 run_augmented_rf.py > run.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=714298\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-18T20:07:23.461499+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -30 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -30 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T20:07:23.461698+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning:
+…[truncated 1235 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T20:07:23.461868+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ps aux | grep run_augmented_rf | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ps aux | grep run_augmented_rf | grep -v grep"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T20:07:23.462037+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     699230 1409  0.0 10257248 492724 ?     Ssl  04:00  28:24 /root/miniconda3/bin/python3 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run_augmented_rf.py\\nroot     705375  0.0  0.0   4364  1456 ?        Ss   04:01   0:00 bash -c cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 run_augmented_rf.py > run.log 2>&1 && echo \\\"DONE\\\" || echo \\\"FAILED\\\"\\nroot     705376 1980  0.0 9595888 473236 ?      Sl   04:01  25:05 /root/miniconda3/bin/python3 run_augmented_rf.py\\nroot     714298  0.0  0.0   4364   236 ?        S    04:01   0:00 bash -c cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 run_augmented_rf.py > run.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     714299 1982  0.0 9593276 467148 ?      Sl   04:01  13:12 /root/miniconda3/bin/python3 run_augmented_rf.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T20:07:23.462205+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "kill 699230 705376 714299 705375 714298 2>/dev/null; sleep 1; ps aux | grep run_augmented_rf | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "kill 699230 705376 714299 705375 714298 2>/dev/null; sleep 1; ps aux | grep run_augmented_rf | grep -v grep"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T20:07:23.462371+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'kill 699230 705376 714299 705375 714298 2>/dev/null; sleep 1; ps aux | grep run_augmented_rf | grep -v grep'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T20:07:23.462512+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/augmented_feature_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/augmented_feature_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T20:07:23.462646+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/augmented_feature_results.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T20:07:23.462781+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep -v \"UserWarning\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep -v \"UserWarning\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log | head -30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T20:07:23.462960+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\\")\\n  warnings.warn(\\\"y_pred contains classes not in y_true\\
+…[truncated 109 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T20:07:23.463186+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run_augmented_rf.py\n# 21-feature RF: 19 original + Min-K% K20 + DetectGPT perturbation discrepancy\nimport json, warnings, sys, os\nimport numpy as np\nfrom pathlib import Path\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, balanced_accuracy_score\nwarnings.filterwarnings(\"ignore\")\n\ndef log(msg):\n    print(msg, flush=True)\n\nSEED = 42\nN_TREES = 200\nN_FOLDS = 5\nBASE = Path(\"/root/autodl-tmp/recursive_gen_depth_est\")\nFEAT = [\"mean_ppl\",\"var_ppl\",\"skewness_ppl\",\"kurtosis_ppl\",\"p10_ppl\",\"p25_ppl\",\"p50_ppl\",\"p75_ppl\",\"p90_ppl\",\"mean_surprisal\",\"var_surprisal\",\"entropy_of_surprisal\",\"type_token_ratio\",\"hapax_ratio\",\"bigram_entropy\",\"trigram_entropy\",\"rep_2gram\",\"rep_3gram\",\"rep_4gram\"]\n\nPATHS = {\n    \"pythia_nucleus\": BASE/\"data\"/\"features_all.jsonl\",\n    \"pythia_temp09\": BASE/\"data\"/\"pythia_temp09\"/\"features.jsonl\",\n    \"pythia_topk50\": BASE/\"results\"/\"pythia_topk50\"/\"features.jsonl\",\n    \"olmo_nucleus\": BASE/\"data\"/\"olmo\"/\"features.jsonl\",\n    \"olmo_temp09\": BASE/\"results\"/\"olmo_temp09\"/\"features.jsonl\",\n    \"olmo_topk50\": BASE/\"results\"/\"olmo_topk50\"/\"features.jsonl\",\n    \"gpt2xl_nucleus\": BASE/\"data\"/\"gpt2xl\"/\"features.jsonl\",\n    \"gpt2xl_temp09\": BASE/\"results\"/\"gpt2xl_temp09\"/\"features.jsonl\",\n    \"gpt2xl_topk50\": BASE/\"results\"/\"gpt2xl_topk50\"/\"features.jsonl\",\n}\nMINK = BASE/\"results\"/\"mink_prob_baseline\"\nDG = BASE/\"results\"/\"detectgpt_baseline\"\nOUT = BASE/\"results\"/\"augmented_feature_rf\"\n\ndef load_feat(cell):\n    rows = []\n    with open(PATHS[cell]) as f:\n        for line in f:\n            rows.append(json.loads(line))\n    X = np.array([[r[fn] for fn in FEAT] for r in rows], dtype=np.float64)\n    y = np.array([r[\"depth\"] for r in rows], dtype=np.int64)\n    X = np.nan_to_num(np.clip(X, -1e15, 1e15), nan=0.0, posinf=1e15, neginf=-1e15)\n    return X, y\n\ndef load_mink(cell):\n    s = np.load(MINK/f\"{cell}_K20_scores.npy\")\n    return np.nan_to_num(np.clip(s, -1e15, 1e15), nan=0.0, posinf=1e15, neginf=-1e15)\n\ndef load_dg(cell):\n    p = DG/f\"{cell}_scores.npz\"\n    if not p.exists(): return None, None\n    d = np.load(p)\n    s = np.nan_to_num(np.clip(d[\"scores\"].astype(np.float64), -1e15, 1e15), nan=0.0, posinf=1e15, neginf=-1e15)\n    return s, d[\"labels\"].astype(np.int64)\n\ndef cv(X, y, n_cls=4):\n    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=SEED)\n    accs, bals = [], []\n    for tr, te in skf.split(X, y):\n        clf = RandomForestClassifier(n_estimators=N_TREES, random_state=SEED, n_jobs=-1)\n        clf.fit(X[tr], y[tr])\n        p = clf.predict(X[te])\n        accs.append(accuracy_score(y[te], p))\n        if n_cls == 4:\n            m = y[te] >= 1\n            bals.append(balanced_accuracy_score(y[te][m], p[m]))\n        else:\n            bals.append(balanced_accuracy_score(y[te], p))\n    return {\"acc_mean\": round(np.mean(accs),4), \"acc_std\": round(np.std(accs),4),\n            \"bal_mean\": round(np.mean(bals),4), \"bal_std\": round(np.std(bals),4),\n            \"fold_accs\": [round(x,4) for x in accs], \"fold_bals\": [round(x,4) for x in bals]}\n\ndef importance(X, y, names):\n    clf = RandomForestClassifier(n_estimators=N_TREES, random_state=SEED, n_jobs=-1)\n    clf.fit(X, y)\n    imp = clf.feature_importances_\n    ranked = sorted(zip(names, imp.tolist()), key=lambda x: -x[1])\n    return {n: round(v,6) for n,v in ranked}, imp\n\ncells = list(PATHS.keys())\nR = {\"per_cell\": {}}\n\n# === Exp A: 20-feat on full 20k ===\nlog(\"=== Exp A: 20-feat (19+mink) full 20k ===\")\nfor cell in cells:\n    log(f\"  {cell}...\")\n    X19, y = load_feat(cell)\n    mk = load_mink(cell)\n    r19 = cv(X19, y)\n    X20 = np.column_stack([X19, mk])\n    r20 = cv(X20, y)\n    d_acc = round(r20[\"acc_mean\"]-r19[\"acc_mean\"],4)\n    d_bal = round(r20[\"bal_mean\"]-r19[\"bal_mean\"],4)\n    R[\"per_cell\"][cell] = {\"f19_full\": r19, \"f20_full\": r20, \"d20v19_acc\": d_acc, \"d20v19_bal\": d_bal}\n    log(f\"    19f: acc={r19['acc_mean']:.4f} bal={r19['bal_mean']:.4f}\")\n    log(f\"    20f: acc={r20['acc_mean']:.4f} bal={r20['bal_mean']:.4f} delta_acc={d_acc:+.4f} delta_bal={d_bal:+.4f}\")\n\nm19a = round(np.mean([R[\"per_cell\"][c][\"f19_full\"][\"acc_mean\"] for c in cells]),4)\nm19b = round(np.mean([R[\"per_cell\"][c][\"f19_full\"][\"bal_mean\"] for c in cells]),4)\nm20a = round(np.mean([R[\"per_cell\"][c][\"f20_full\"][\"acc_mean\"] for c in cells]),4)\nm20b = round(np.mean([R[\"per_cell\"][c][\"f20_full\"][\"bal_mean\"] for c in cells]),4)\nR[\"expA\"] = {\"mean_19_acc\": m19a, \"mean_19_bal\": m19b, \"mean_20_acc\": m20a, \"mean_20_bal\": m20b,\n             \"delta_acc\": round(m20a-m19a,4), \"delta_bal\": round(m20b-m19b,4)}\nlog(f\"\\n  ExpA summary: 19f_acc={m19a} 20f_acc={m20a} delta={round(m20a-m19a,4):+.4f}\")\n\n# === Exp B: 21-feat on detectgpt subset ===\nlog(\"\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\")\ndg_cells = [c for c in cells if (DG/f\"{c}_scores.npz\").exists()]\nlog(f\"  cells: {dg_cells}\")\n\nimp_acc = {}\nfor cell in dg_cells:\n    log(f\"  {cell}...\")\n    X19, y = load_feat(cell)\n    mk = load_mink(cell)\n    dg_s, dg_l = load_dg(cell)\n    depths = sorted(np.unique(dg_l).tolist())\n    has_d0 = 0 in depths\n    nc = 4 if has_d0 else 3\n    idx = []\n    for d in depths:\n        idx.extend(range(d*5000, d*5000+200))\n    idx = np.array(idx)\n    Xs, ms, ys = X19[idx], mk[idx], y[idx]\n    assert Xs.shape[0] == dg_s.shape[0] and np.array_equal(ys, dg_l)\n\n    r19s = cv(Xs, ys, nc)\n    r20s = cv(np.column_stack([Xs, ms]), ys, nc)\n    r21s = cv(np.column_stack([Xs, ms, dg_s]), ys, nc)\n\n    names21 = FEAT + [\"mink_k20\", \"detectgpt\"]\n    imp_d, imp_raw = importance(np.column_stack([Xs, ms, dg_s]), ys, names21)\n    mk_rank = list(imp_d.keys()).index(\"mink_k20\")+1\n    dg_rank = list(imp_d.keys()).index(\"detectgpt\")+1\n    for n, v in zip(names21, imp_raw):\n        imp_acc.setdefault(n, []).append(float(v))\n\n    R[\"per_cell\"][cell].update({\n        \"nc\": nc, \"ns\": Xs.shape[0], \"depths\": depths,\n        \"f19_sub\": r19s, \"f20_sub\": r20s, \"f21_sub\": r21s,\n        \"d21v19_acc\": round(r21s[\"acc_mean\"]-r19s[\"acc_mean\"],4),\n        \"d21v19_bal\": round(r21s[\"bal_mean\"]-r19s[\"bal_mean\"],4),\n        \"d21v20_acc\": round(r21s[\"acc_mean\"]-r20s[\"acc_mean\"],4),\n        \"d21v20_bal\": round(r21s[\"bal_mean\"]-r20s[\"bal_mean\"],4),\n        \"imp21\": imp_d, \"mink_rank\": mk_rank, \"dg_rank\": dg_rank,\n    })\n    log(f\"    nc={nc} ns={Xs.shape[0]}\")\n    log(f\"    19f: acc={r19s['acc_mean']:.4f} bal={r19s['bal_mean']:.4f}\")\n    log(f\"    20f: acc={r20s['acc_mean']:.4f} bal={r20s['bal_mean']:.4f}\")\n    log(f\"    21f: acc={r21s['acc_mean']:.4f} bal={r21s['bal_mean']:.4f}\")\n    log(f\"    d21v19: acc={round(r21s['acc_mean']-r19s['acc_mean'],4):+.4f} bal={round(r21s['bal_mean']-r19s['bal_mean'],4):+.4f}\")\n    log(f\"    mink_rank={mk_rank} dg_rank={dg_rank}\")\n\nc4 = [c for c in dg_cells if R[\"per_cell\"][c][\"nc\"]==4]\nc3 = [c for c in dg_cells if R[\"per_cell\"][c][\"nc\"]==3]\nif c4:\n    R[\"expB_4class\"] = {\n        \"cells\": c4, \"n\": len(c4), \"spc\": 800,\n        \"m19a\": round(np.mean([R[\"per_cell\"][c][\"f19_sub\"][\"acc_mean\"] for c in c4]),4),\n        \"m20a\": round(np.mean([R[\"per_cell\"][c][\"f20_sub\"][\"acc_mean\"] for c in c4]),4),\n        \"m21a\": round(np.mean([R[\"per_cell\"][c][\"f21_sub\"][\"acc_mean\"] for c in c4]),4),\n        \"m19b\": round(np.mean([R[\"per_cell\"][c][\"f19_sub\"][\"bal_mean\"] for c in c4]),4),\n        \"m20b\": round(np.mean([R[\"per_cell\"][c][\"f20_sub\"][\"bal_mean\"] for c in c4]),4),\n        \"m21b\": round(np.mean([R[\"per_cell\"][c][\"f21_sub\"][\"bal_mean\"] for c in c4]),4),\n    }\n    s = R[\"expB_4class\"]\n    s[\"d21v19_acc\"] = round(s[\"m21a\"]-s[\"m19a\"],4)\n    s[\"d21v19_bal\"] = round(s[\"m21b\"]-s[\"m19b\"],4)\n    log(f\"\\n  ExpB 4-class ({len(c4)} cells): 19f={s['m19a']} 20f={s['m20a']} 21f={s['m21a']} d21v19={s['d21v19_acc']:+.4f}\")\n\nif c3:\n    R[\"expB_3class\"] = {\n        \"cells\": c3, \"n\": len(c3), \"spc\": 600,\n        \"m19a\": round(np.mean([R[\"per_cell\"][c][\"f19_sub\"][\"acc_mean\"] for c in c3]),4),\n        \"m20a\": round(np.mean([R[\"per_cell\"][c][\"f20_sub\"][\"acc_mean\"] for c in c3]),4),\n        \"m21a\": round(np.mean([R[\"per_cell\"][c][\"f21_sub\"][\"acc_mean\"] for c in c3]),4),\n    }\n    s = R[\"expB_3class\"]\n    log(f\"  ExpB 3-class ({len(c3)} cells): 19f={s['m19a']} 20f={s['m20a']} 21f={s['m21a']}\")\n\n# Feature importance\navg_imp = {n: round(np.mean(v),6) for n,v in imp_acc.items()}\navg_ranked = dict(sorted(avg_imp.items(), key=lambda x: -x[1]))\nR[\"feature_importance\"] = {\n    \"ranked\": avg_ranked,\n    \"mink_rank\": list(avg_ranked.keys()).index(\"mink_k20\")+1,\n    \"dg_rank\": list(avg_ranked.keys()).index(\"detectgpt\")+1,\n    \"mink_imp\": avg_imp.get(\"mink_k20\",0),\n    \"dg_imp\": avg_imp.get(\"detectgpt\",0),\n}\n\n# Summary\nR[\"summary\"] = {\n    \"19feature\": {\"mean_4class_acc\": m19a, \"mean_d1d3_bal\": m19b},\n    \"20feature_mink\": {\"mean_4class_acc\": m20a, \"mean_d1d3_bal\": m20b, \"delta_vs_19\": round(m20a-m19a,4)},\n}\nif c4:\n    R[\"summary\"][\"21feature_full\"] = {\n        \"mean_4class_acc\": R[\"expB_4class\"][\"m21a\"],\n        \"mean_d1d3_bal\": R[\"expB_4class\"][\"m21b\"],\n        \"delta_vs_19_subset\": R[\"expB_4class\"][\"d21v19_acc\"],\n        \"note\": f\"800-sample subset, {len(c4)} cells with 4-class DG\",\n    }\nR[\"summary\"][\"feature_importance\"] = {\n    \"mink_score_rank\": R[\"feature_importance\"][\"mink_rank\"],\n    \"detectgpt_score_rank\": R[\"feature_importance\"][\"dg_rank\"],\n    \"mink_importance\": R[\"feature_importance\"][\"mink_imp\"],\n    \"detectgpt_importance\": R[\"feature_importance\"][\"dg_imp\"],\n}\n\nwith open(OUT/\"augmented_feature_results.json\", \"w\") as f:\n    json.dump(R, f, indent=2)\nlog(f\"\\nSaved to {OUT/'augmented_feature_results.json'}\")\nlog(\"\\n=== SUMMARY ===\")\nlog(json.dumps(R[\"summary\"], indent=2))\nlog(\"DONE\")\nPYEOF\necho \"Script rewritten.\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat << 'PYEOF' > /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run_augmented_rf.py\n# 21-feature RF: 19 original + Min-K% K20 + DetectGPT perturbation discrepancy\nimport json, warnings, sys, os\nimport numpy as np\nfrom pathlib import Path\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import StratifiedKFold\nfrom sklearn.metrics import accuracy_score, balanced_accuracy_score\nwarnings.filterwarnings(\"ignore\")\n\ndef log(msg):\n    print(msg, flush=True)\n\nSEED = 42\nN_TREES = 200\nN_FOLDS = 5\nBASE = Path(\"/root/autodl-tmp/recursive_gen_depth_est\")\nFEAT = [\"mean_ppl\",\"var_ppl\",\"skewness_ppl\",\"kurtosis_ppl\",\"p10_ppl\",\"p25_ppl\",\"p50_ppl\",\"p75_ppl\",\"p90_ppl\",\"mean_surprisal\",\"var_surprisal\",\"entropy_of_surprisal\",\"type_token_ratio\",\"hapax_ratio\",\"bigram_entropy\",\"trigram_entropy\",\"rep_2gram\",\"rep_3gram\",\"rep_4gram\"]\n\nPATHS = {\n    \"pythia_nucleus\": BASE/\"data\"/\"features_all.jsonl\",\n    \"pythia_temp09\": BASE/\"data\"/\"pythia_temp09\"/\"features.jsonl\",\n    \"pythia_topk50\": BASE/\"results\"/\"pythia_topk50\"/\"features.jsonl\",\n    \"olmo_nucleus\": BASE/\"data\"/\"olmo\"/\"features.jsonl\",\n    \"olmo_temp09\": BASE/\"results\"/\"olmo_temp09\"/\"features.jsonl\",\n    \"olmo_topk50\": BASE/\"results\"/\"olmo_topk50\"/\"features.jsonl\",\n    \"gpt2xl_nucleus\": BASE/\"data\"/\"gpt2xl\"/\"features.jsonl\",\n    \"gpt2xl_temp09\": BASE/\"results\"/\"gpt2xl_temp09\"/\"features.jsonl\",\n    \"gpt2xl_topk50\": BASE/\"results\"/\"gpt2xl_topk50\"/\"features.jsonl\",\n}\nMINK = BASE/\"results\"/\"mink_prob_baseline\"\nDG = BASE/\"results\"/\"detectgpt_baseline\"\nOUT = BASE/\"results\"/\"augmented_feature_rf\"\n\ndef load_feat(cell):\n    rows = []\n    with open(PATHS[cell]) as f:\n        for line in f:\n            rows.append(json.loads(line))\n    X = np.array([[r[fn] for fn in FEAT] for r in rows], dtype=np.float64)\n    y = np.array([r[\"depth\"] for r in rows], dtype=np.int64)\n    X = np.nan_to_num(np.clip(X, -1e15, 1e15), nan=0.0, posinf=1e15, neginf=-1e15)\n    return X, y\n\ndef load_mink(cell):\n    s = np.load(MINK/f\"{cell}_K20_scores.npy\")\n    return np.nan_to_num(np.clip(s, -1e15, 1e15), nan=0.0, posinf=1e15, neginf=-1e15)\n\ndef load_dg(cell):\n    p = DG/f\"{cell}_scores.npz\"\n    if not p.exists(): return None, None\n    d = np.load(p)\n    s = np.nan_to_num(np.clip(d[\"scores\"].astype(np.float64), -1e15, 1e15), nan=0.0, posinf=1e15, neginf=-1e15)\n    return s, d[\"labels\"].astype(np.int64)\n\ndef cv(X, y, n_cls=4):\n    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=SEED)\n    accs, bals = [], []\n    for tr, te in skf.split(X, y):\n        clf = RandomForestClassifier(n_estimators=N_TREES, random_state=SEED, n_jobs=-1)\n        clf.fit(X[tr], y[tr])\n        p = clf.predict(X[te])\n        accs.append(accuracy_score(y[te], p))\n        if n_cls == 4:\n            m = y[te] >= 1\n            bals.append(balanced_accuracy_score(y[te][m], p[m]))\n        else:\n            bals.append(balanced_accuracy_score(y[te], p))\n    return {\"acc_mean\": round(np.mean(accs),4), \"acc_std\": round(np.std(accs),4),\n            \"bal_mean\": round(np.mean(bals),4), \"bal_std\": round(np.std(bals),4),\n            \"fold_accs\": [round(x,4) for x in accs], \"fold_bals\": [round(x,4) for x in bals]}\n\ndef importance(X, y, names):\n    clf = RandomForestClassifier(n_estimators=N_TREES, random_state=SEED, n_jobs=-1)\n    clf.fit(X, y)\n    imp = clf.feature_importances_\n    ranked = sorted(zip(names, imp.tolist()), key=lambda x: -x[1])\n    return {n: round(v,6) for n,v in ranked}, imp\n\ncells = list(PATHS.keys())\nR = {\"per_cell\": {}}\n\n# === Exp A: 20-feat on full 20k ===\nlog(\"=== Exp A: 20-feat (19+mink) full 20k ===\")\nfor cell in cells:\n    log(f\"  {cell}...\")\n    X19, y = load_feat(cell)\n    mk = load_mink(cell)\n    r19 = cv(X19, y)\n    X20 = np.column_stack([X19, mk])\n    r20 = cv(X20, y)\n    d_acc = round(r20[\"acc_mean\"]-r19[\"acc_mean\"],4)\n    d_bal = round(r20[\"bal_mean\"]-r19[\"bal_mean\"],4)\n    R[\"per_cell\"][cell] = {\"f19_full\": r19, \"f20_full\": r20, \"d20v19_acc\": d_acc, \"d20v19_bal\": d_bal}\n    log(f\"    19f: acc={r19['acc_mean']:.4f} bal={r19['bal_mean']:.4f}\")\n    log(f\"    20f: acc={r20['acc_mean']:.4f} bal={r20['bal_mean']:.4f} delta_acc={d_acc:+.4f} delta_bal={d_bal:+.4f}\")\n\nm19a = round(np.mean([R[\"per_cell\"][c][\"f19_full\"][\"acc_mean\"] for c in cells]),4)\nm19b = round(np.mean([R[\"per_cell\"][c][\"f19_full\"][\"bal_mean\"] for c in cells]),4)\nm20a = round(np.mean([R[\"per_cell\"][c][\"f20_full\"][\"acc_mean\"] for c in cells]),4)\nm20b = round(np.mean([R[\"per_cell\"][c][\"f20_full\"][\"bal_mean\"] for c in cells]),4)\nR[\"expA\"] = {\"mean_19_acc\": m19a, \"mean_19_bal\": m19b, \"mean_20_acc\": m20a, \"mean_20_bal\": m20b,\n             \"delta_acc\": round(m20a-m19a,4), \"delta_bal\": round(m20b-m19b,4)}\nlog(f\"\\n  ExpA summary: 19f_acc={m19a} 20f_acc={m20a} delta={round(m20a-m19a,4):+.4f}\")\n\n# === Exp B: 21-feat on detectgpt subset ===\nlog(\"\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\")\ndg_cells = [c for c in cells if (DG/f\"{c}_scores.npz\").exists()]\nlog(f\"  cells: {dg_cells}\")\n\nimp_acc = {}\nfor cell in dg_cells:\n    log(f\"  {cell}...\")\n    X19, y = load_feat(cell)\n    mk = load_mink(cell)\n    dg_s, dg_l = load_dg(cell)\n    depths = sorted(np.unique(dg_l).tolist())\n    has_d0 = 0 in depths\n    nc = 4 if has_d0 else 3\n    idx = []\n    for d in depths:\n        idx.extend(range(d*5000, d*5000+200))\n    idx = np.array(idx)\n    Xs, ms, ys = X19[idx], mk[idx], y[idx]\n    assert Xs.shape[0] == dg_s.shape[0] and np.array_equal(ys, dg_l)\n\n    r19s = cv(Xs, ys, nc)\n    r20s = cv(np.column_stack([Xs, ms]), ys, nc)\n    r21s = cv(np.column_stack([Xs, ms, dg_s]), ys, nc)\n\n    names21 = FEAT + [\"mink_k20\", \"detectgpt\"]\n    imp_d, imp_raw = importance(np.column_stack([Xs, ms, dg_s]), ys, names21)\n    mk_rank = list(imp_d.keys()).index(\"mink_k20\")+1\n    dg_rank = list(imp_d.keys()).index(\"detectgpt\")+1\n    for n, v in zip(names21, imp_raw):\n        imp_acc.setdefault(n, []).append(float(v))\n\n    R[\"per_cell\"][cell].update({\n        \"nc\": nc, \"ns\": Xs.shape[0], \"depths\": depths,\n        \"f19_sub\": r19s, \"f20_sub\": r20s, \"f21_sub\": r21s,\n        \"d21v19_acc\": round(r21s[\"acc_mean\"]-r19s[\"acc_mean\"],4),\n        \"d21v19_bal\": round(r21s[\"bal_mean\"]-r19s[\"bal_mean\"],4),\n        \"d21v20_acc\": round(r21s[\"acc_mean\"]-r20s[\"acc_mean\"],4),\n        \"d21v20_bal\": round(r21s[\"bal_mean\"]-r20s[\"bal_mean\"],4),\n        \"imp21\": imp_d, \"mink_rank\": mk_rank, \"dg_rank\": dg_rank,\n    })\n    log(f\"    nc={nc} ns={Xs.shape[0]}\")\n    log(f\"    19f: acc={r19s['acc_mean']:.4f} bal={r19s['bal_mean']:.4f}\")\n    log(f\"    20f: acc={r20s['acc_mean']:.4f} bal={r20s['bal_mean']:.4f}\")\n    log(f\"    21f: acc={r21s['acc_mean']:.4f} bal={r21s['bal_mean']:.4f}\")\n    log(f\"    d21v19: acc={round(r21s['acc_mean']-r19s['acc_mean'],4):+.4f} bal={round(r21s['bal_mean']-r19s['bal_mean'],4):+.4f}\")\n    log(f\"    mink_rank={mk_rank} dg_rank={dg_rank}\")\n\nc4 = [c for c in dg_cells if R[\"per_cell\"][c][\"nc\"]==4]\nc3 = [c for c in dg_cells if R[\"per_cell\"][c][\"nc\"]==3]\nif c4:\n    R[\"expB_4class\"] = {\n        \"cells\": c4, \"n\": len(c4), \"spc\": 800,\n        \"m19a\": round(np.mean([R[\"per_cell\"][c][\"f19_sub\"][\"acc_mean\"] for c in c4]),4),\n        \"m20a\": round(np.mean([R[\"per_cell\"][c][\"f20_sub\"][\"acc_mean\"] for c in c4]),4),\n        \"m21a\": round(np.mean([R[\"per_cell\"][c][\"f21_sub\"][\"acc_mean\"] for c in c4]),4),\n        \"m19b\": round(np.mean([R[\"per_cell\"][c][\"f19_sub\"][\"bal_mean\"] for c in c4]),4),\n        \"m20b\": round(np.mean([R[\"per_cell\"][c][\"f20_sub\"][\"bal_mean\"] for c in c4]),4),\n        \"m21b\": round(np.mean([R[\"per_cell\"][c][\"f21_sub\"][\"bal_mean\"] for c in c4]),4),\n    }\n    s = R[\"expB_4class\"]\n    s[\"d21v19_acc\"] = round(s[\"m21a\"]-s[\"m19a\"],4)\n    s[\"d21v19_bal\"] = round(s[\"m21b\"]-s[\"m19b\"],4)\n    log(f\"\\n  ExpB 4-class ({len(c4)} cells): 19f={s['m19a']} 20f={s['m20a']} 21f={s['m21a']} d21v19={s['d21v19_acc']:+.4f}\")\n\nif c3:\n    R[\"expB_3class\"] = {\n        \"cells\": c3, \"n\": len(c3), \"spc\": 600,\n        \"m19a\": round(np.mean([R[\"per_cell\"][c][\"f19_sub\"][\"acc_mean\"] for c in c3]),4),\n        \"m20a\": round(np.mean([R[\"per_cell\"][c][\"f20_sub\"][\"acc_mean\"] for c in c3]),4),\n        \"m21a\": round(np.mean([R[\"per_cell\"][c][\"f21_sub\"][\"acc_mean\"] for c in c3]),4),\n    }\n    s = R[\"expB_3class\"]\n    log(f\"  ExpB 3-class ({len(c3)} cells): 19f={s['m19a']} 20f={s['m20a']} 21f={s['m21a']}\")\n\n# Feature importance\navg_imp = {n: round(np.mean(v),6) for n,v in imp_acc.items()}\navg_ranked = dict(sorted(avg_imp.items(), key=lambda x: -x[1]))\nR[\"feature_importance\"] = {\n    \"ranked\": avg_ranked,\n    \"mink_rank\": list(avg_ranked.keys()).index(\"mink_k20\")+1,\n    \"dg_rank\": list(avg_ranked.keys()).index(\"detectgpt\")+1,\n    \"mink_imp\": avg_imp.get(\"mink_k20\",0),\n    \"dg_imp\": avg_imp.get(\"detectgpt\",0),\n}\n\n# Summary\nR[\"summary\"] = {\n    \"19feature\": {\"mean_4class_acc\": m19a, \"mean_d1d3_bal\": m19b},\n    \"20feature_mink\": {\"mean_4class_acc\": m20a, \"mean_d1d3_bal\": m20b, \"delta_vs_19\": round(m20a-m19a,4)},\n}\nif c4:\n    R[\"summary\"][\"21feature_full\"] = {\n        \"mean_4class_acc\": R[\"expB_4class\"][\"m21a\"],\n        \"mean_d1d3_bal\": R[\"expB_4class\"][\"m21b\"],\n        \"delta_vs_19_subset\": R[\"expB_4class\"][\"d21v19_acc\"],\n        \"note\": f\"800-sample subset, {len(c4)} cells with 4-class DG\",\n    }\nR[\"summary\"][\"feature_importance\"] = {\n    \"mink_score_rank\": R[\"feature_importance\"][\"mink_rank\"],\n    \"detectgpt_score_rank\": R[\"feature_importance\"][\"dg_rank\"],\n    \"mink_importance\": R[\"feature_importance\"][\"mink_imp\"],\n    \"detectgpt_importance\": R[\"feature_importance\"][\"dg_imp\"],\n}\n\nwith open(OUT/\"augmented_feature_results.json\", \"w\") as f:\n    json.dump(R, f, indent=2)\nlog(f\"\\nSaved to {OUT/'augmented_feature_results.json'}\")\nlog(\"\\n=== SUMMARY ===\")\nlog(json.dumps(R[\"summary\"], indent=2))\nlog(\"DONE\")\nPYEOF\necho \"Script rewritten.\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T20:07:23.463411+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script rewritten.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-18T20:07:23.463543+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 -u run_augmented_rf.py > run.log 2>&1 &\necho \"Started PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 -u run_augmented_rf.py > run.log 2>&1 &\necho \"Started PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T20:07:23.463673+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf && nohup /root/miniconda3/bin/python3 -u run_augmented_rf.py > run.log 2>&1 &\\\\necho \\\"Started PID=$!\\\"'\\n\\nStdout:\\n\\nStarted PID=733753\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-18T20:07:23.463814+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -20 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -20 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T20:07:23.463971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Exp A: 20-feat (19+mink) full 20k ===\\n  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-18T20:07:23.464122+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -30 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -30 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-18T20:07:23.464258+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Exp A: 20-feat (19+mink) full 20k ===\\n  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-18T20:07:23.464384+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -40 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -40 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-18T20:07:23.464514+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Exp A: 20-feat (19+mink) full 20k ===\\n  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-18T20:07:23.464650+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-18T20:07:23.464779+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"17 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-18T20:07:23.464916+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -50 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -50 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-18T20:07:23.465052+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Exp A: 20-feat (19+mink) full 20k ===\\n  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-18T20:07:23.465175+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -60 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -60 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-18T20:07:23.465301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Exp A: 20-feat (19+mink) full 20k ===\\n  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-18T20:07:23.465424+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -80 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -80 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-18T20:07:23.465558+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Exp A: 20-feat (19+mink) full 20k ===\\n  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n    19f: acc=0.8415 bal=0.7941\\n    20f: acc=0.8502 bal=0.8034 delta_acc=+0.0087 delta_bal=+0.0093\\n  gpt2xl_temp09...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-18T20:07:23.465683+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -100 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -100 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-18T20:07:23.465811+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Exp A: 20-feat (19+mink) full 20k ===\\n  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n    19f: acc=0.8415 bal=0.7941\\n    20f: acc=0.8502 bal=0.8034 delta_acc=+0.0087 delta_bal=+0.0093\\n  gpt2xl_temp09...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-18T20:07:23.465956+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-18T20:07:23.466080+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"26 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-18T20:07:23.466218+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -5 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -5 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-18T20:07:23.466439+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  ExpA summary: 19f_acc=0.7842 20f_acc=0.789 delta=+0.0048\\n\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\\n  cells: ['pythia_temp09', 'pythia_topk50', 'olmo_nucleus', 'olmo_temp09', 'olmo_topk50', 'gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50']\\n  pythia_temp09...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-18T20:07:23.466597+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -20 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -20 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-18T20:07:23.466732+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n    19f: acc=0.8415 bal=0.7941\\n    20f: acc=0.8502 bal=0.8034 delta_acc=+0.0087 delta_bal=+0.0093\\n  gpt2xl_temp09...\\n    19f: acc=0.8584 bal=0.8141\\n    20f: acc=0.8604 bal=0.8168 delta_acc=+0.0020 delta_bal=+0.0027\\n  gpt2xl_topk50...\\n    19f: acc=0.7604 bal=0.6850\\n    20f: acc=0.7582 bal=0.6823 delta_acc=-0.0022 delta_bal=-0.0027\\n\\n  ExpA summary: 19f_acc=0.7842 20f_acc=0.789 delta=+0.0048\\n\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\\n  cells: ['pythia_temp09', 'pythia_topk50', 'olmo_nucleus', 'olmo_temp09', 'olmo_topk50', 'gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50']\\n  pythia_temp09...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-18T20:07:23.466858+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -30 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -30 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-18T20:07:23.467019+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n    19f: acc=0.8415 bal=0.7941\\n    20f: acc=0.8502 bal=0.8034 delta_acc=+0.0087 delta_bal=+0.0093\\n  gpt2xl_temp09...\\n    19f: acc=0.8584 bal=0.8141\\n    20f: acc=0.8604 bal=0.8168 delta_acc=+0.0020 delta_bal=+0.0027\\n  gpt2xl_topk50...\\n    19f: acc=0.7604 bal=0.6850\\n    20f: acc=0.7582 bal=0.6823 delta_acc=-0.0022 delta_bal=-0.0027\\n\\n  ExpA summary: 19f_acc=0.7842 20f_acc=0.789 delta=+0.0048\\n\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\\n  cells: ['pythia_temp09', 'pythia_topk50', 'olmo_nucleus', 'olmo_temp09', 'olmo_topk50', 'gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50']\\n  pythia_temp09...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-18T20:07:23.467168+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -40 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -40 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-18T20:07:23.467320+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n    19f: acc=0.8415 bal=0.7941\\n    20f: acc=0.8502 bal=0.8034 delta_acc=+0.0087 delta_bal=+0.0093\\n  gpt2xl_temp09...\\n    19f: acc=0.8584 bal=0.8141\\n    20f: acc=0.8604 bal=0.8168 delta_acc=+0.0020 delta_bal=+0.0027\\n  gpt2xl_topk50...\\n    19f: acc=0.7604 bal=0.6850\\n    20f: acc=0.7582 bal=0.6823 delta_acc=-0.0022 delta_bal=-0.0027\\n\\n  ExpA summary: 19f_acc=0.7842 20f_acc=0.789 delta=+0.0048\\n\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\\n  cells: ['pythia_temp09', 'pythia_topk50', 'olmo_nucleus', 'olmo_temp09', 'olmo_topk50', 'gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50']\\n  pythia_temp09...\\n    nc=3 ns=600\\n    19f: acc=0.6550 bal=0.6550\\n    20f: acc=0.6367 bal=0.6367\\n    21f: acc=0.6317 bal=0.6317\\n    d21v19: acc=-0.0233 bal=-0.0233\\n    mink_rank=5 dg_rank=16\\n  pythia_topk50...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-18T20:07:23.467514+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-18T20:07:23.467652+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-18T20:07:23.467778+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -60 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -60 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-18T20:07:23.467956+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Exp A: 20-feat (19+mink) full 20k ===\\n  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n    19f: acc=0.8415 bal=0.7941\\n    20f: acc=0.8502 bal=0.8034 delta_acc=+0.0087 delta_bal=+0.0093\\n  gpt2xl_temp09...\\n    19f: acc=0.8584 bal=0.8141\\n    20f: acc=0.8604 bal=0.8168 delta_acc=+0.0020 delta_bal=+0.0027\\n  gpt2xl_topk50...\\n    19f: acc=0.7604 bal=0.6850\\n    20f: acc=0.7582 bal=0.6823 delta_acc=-0.0022 delta_bal=-0.0027\\n\\n  ExpA summary: 19f_acc=0.7842 20f_acc=0.789 delta=+0.0048\\n\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\\n  cells: ['pythia_temp09', 'pythia_topk50', 'olmo_nucleus', 'olmo_temp09', 'olmo_topk50', 'gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50']\\n  pythia_temp09...\\n    nc=3 ns=600\\n    19f: acc=0.6550 bal=0.6550\\n    20f: acc=0.6367 bal=0.6367\\n    21f: acc=0.6317 bal=0.6317\\n    d21v19: acc=-0.0233 bal=-0.0233\\n    mink_rank=5 dg_rank=16\\n  pythia_topk50...\\n    nc=3 ns=600\\n    19f: acc=0.5517 bal=0.5517\\n    20f: acc=0.5717 bal=0.5717\\n    21f: acc=0.5633 bal=0.5633\\n    d21v19: acc=+0.0116 bal=+0.0116\\n    mink_rank=3 dg_rank=12\\n  olmo_nucleus...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-18T20:07:23.468107+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep -c \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep -c \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-18T20:07:23.468234+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-18T20:07:23.468351+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "wc -l /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-18T20:07:23.468477+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"48 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-18T20:07:23.468596+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -20 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -20 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-18T20:07:23.468723+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n  ExpA summary: 19f_acc=0.7842 20f_acc=0.789 delta=+0.0048\\n\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\\n  cells: ['pythia_temp09', 'pythia_topk50', 'olmo_nucleus', 'olmo_temp09', 'olmo_topk50', 'gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50']\\n  pythia_temp09...\\n    nc=3 ns=600\\n    19f: acc=0.6550 bal=0.6550\\n    20f: acc=0.6367 bal=0.6367\\n    21f: acc=0.6317 bal=0.6317\\n    d21v19: acc=-0.0233 bal=-0.0233\\n    mink_rank=5 dg_rank=16\\n  pythia_topk50...\\n    nc=3 ns=600\\n    19f: acc=0.5517 bal=0.5517\\n    20f: acc=0.5717 bal=0.5717\\n    21f: acc=0.5633 bal=0.5633\\n    d21v19: acc=+0.0116 bal=+0.0116\\n    mink_rank=3 dg_rank=12\\n  olmo_nucleus...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-18T20:07:23.468858+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -40 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -40 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-18T20:07:23.469017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n    19f: acc=0.8415 bal=0.7941\\n    20f: acc=0.8502 bal=0.8034 delta_acc=+0.0087 delta_bal=+0.0093\\n  gpt2xl_temp09...\\n    19f: acc=0.8584 bal=0.8141\\n    20f: acc=0.8604 bal=0.8168 delta_acc=+0.0020 delta_bal=+0.0027\\n  gpt2xl_topk50...\\n    19f: acc=0.7604 bal=0.6850\\n    20f: acc=0.7582 bal=0.6823 delta_acc=-0.0022 delta_bal=-0.0027\\n\\n  ExpA summary: 19f_acc=0.7842 20f_acc=0.789 delta=+0.0048\\n\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\\n  cells: ['pythia_temp09', 'pythia_topk50', 'olmo_nucleus', 'olmo_temp09', 'olmo_topk50', 'gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50']\\n  pythia_temp09...\\n    nc=3 ns=600\\n    19f: acc=0.6550 bal=0.6550\\n    20f: acc=0.6367 bal=0.6367\\n    21f: acc=0.6317 bal=0.6317\\n    d21v19: acc=-0.0233 bal=-0.0233\\n    mink_rank=5 dg_rank=16\\n  pythia_topk50...\\n    nc=3 ns=600\\n    19f: acc=0.5517 bal=0.5517\\n    20f: acc=0.5717 bal=0.5717\\n    21f: acc=0.5633 bal=0.5633\\n    d21v19: acc=+0.0116 bal=+0.0116\\n    mink_rank=3 dg_rank=12\\n  olmo_nucleus...\\n    nc=4 ns=800\\n    19f: acc=0.7475 bal=0.6850\\n    20f: acc=0.7500 bal=0.6850\\n    21f: acc=0.7575 bal=0.6933\\n    d21v19: acc=+0.0100 bal=+0.0083\\n    mink_rank=3 dg_rank=14\\n  olmo_temp09...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-18T20:07:23.469155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-18T20:07:23.469279+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-18T20:07:23.469395+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -60 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -60 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-18T20:07:23.469537+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Exp A: 20-feat (19+mink) full 20k ===\\n  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n    19f: acc=0.8415 bal=0.7941\\n    20f: acc=0.8502 bal=0.8034 delta_acc=+0.0087 delta_bal=+0.0093\\n  gpt2xl_temp09...\\n    19f: acc=0.8584 bal=0.8141\\n    20f: acc=0.8604 bal=0.8168 delta_acc=+0.0020 delta_bal=+0.0027\\n  gpt2xl_topk50...\\n    19f: acc=0.7604 bal=0.6850\\n    20f: acc=0.7582 bal=0.6823 delta_acc=-0.0022 delta_bal=-0.0027\\n\\n  ExpA summary: 19f_acc=0.7842 20f_acc=0.789 delta=+0.0048\\n\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\\n  cells: ['pythia_temp09', 'pythia_topk50', 'olmo_nucleus', 'olmo_temp09', 'olmo_topk50', 'gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50']\\n  pythia_temp09...\\n    nc=3 ns=600\\n    19f: acc=0.6550 bal=0.6550\\n    20f: acc=0.6367 bal=0.6367\\n    21f: acc=0.6317 bal=0.6317\\n    d21v19: acc=-0.0233 bal=-0.0233\\n    mink_rank=5 dg_rank=16\\n  pythia_topk50...\\n    nc=3 ns=600\\n    19f: acc=0.5517 bal=0.5517\\n    20f: acc=0.5717 bal=0.5717\\n    21f: acc=0.5633 bal=0.5633\\n    d21v19: acc=+0.0116 bal=+0.0116\\n    mink_rank=3 dg_rank=12\\n  olmo_nucleus...\\n    nc=4 ns=800\\n    19f: acc=0.7475 bal=0.6850\\n    20f: acc=0.7500 bal=0.6850\\n    21f: acc=0.7575 bal
+…[truncated 199 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-18T20:07:23.469677+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -5 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -5 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-18T20:07:23.469806+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    20f: acc=0.8237 bal=0.7717\\n    21f: acc=0.8188 bal=0.7650\\n    d21v19: acc=+0.0150 bal=+0.0200\\n    mink_rank=3 dg_rank=20\\n  olmo_topk50...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-18T20:07:23.469968+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -10 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -10 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-18T20:07:23.470096+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    d21v19: acc=+0.0100 bal=+0.0083\\n    mink_rank=3 dg_rank=14\\n  olmo_temp09...\\n    nc=4 ns=800\\n    19f: acc=0.8038 bal=0.7450\\n    20f: acc=0.8237 bal=0.7717\\n    21f: acc=0.8188 bal=0.7650\\n    d21v19: acc=+0.0150 bal=+0.0200\\n    mink_rank=3 dg_rank=20\\n  olmo_topk50...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-18T20:07:23.470213+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-18T20:07:23.470345+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-18T20:07:23.470460+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -15 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -15 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-18T20:07:23.470585+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  olmo_temp09...\\n    nc=4 ns=800\\n    19f: acc=0.8038 bal=0.7450\\n    20f: acc=0.8237 bal=0.7717\\n    21f: acc=0.8188 bal=0.7650\\n    d21v19: acc=+0.0150 bal=+0.0200\\n    mink_rank=3 dg_rank=20\\n  olmo_topk50...\\n    nc=4 ns=800\\n    19f: acc=0.7125 bal=0.6233\\n    20f: acc=0.7100 bal=0.6200\\n    21f: acc=0.7138 bal=0.6250\\n    d21v19: acc=+0.0013 bal=+0.0017\\n    mink_rank=5 dg_rank=16\\n  gpt2xl_nucleus...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-18T20:07:23.470704+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -30 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -30 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-18T20:07:23.470841+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    mink_rank=5 dg_rank=16\\n  pythia_topk50...\\n    nc=3 ns=600\\n    19f: acc=0.5517 bal=0.5517\\n    20f: acc=0.5717 bal=0.5717\\n    21f: acc=0.5633 bal=0.5633\\n    d21v19: acc=+0.0116 bal=+0.0116\\n    mink_rank=3 dg_rank=12\\n  olmo_nucleus...\\n    nc=4 ns=800\\n    19f: acc=0.7475 bal=0.6850\\n    20f: acc=0.7500 bal=0.6850\\n    21f: acc=0.7575 bal=0.6933\\n    d21v19: acc=+0.0100 bal=+0.0083\\n    mink_rank=3 dg_rank=14\\n  olmo_temp09...\\n    nc=4 ns=800\\n    19f: acc=0.8038 bal=0.7450\\n    20f: acc=0.8237 bal=0.7717\\n    21f: acc=0.8188 bal=0.7650\\n    d21v19: acc=+0.0150 bal=+0.0200\\n    mink_rank=3 dg_rank=20\\n  olmo_topk50...\\n    nc=4 ns=800\\n    19f: acc=0.7125 bal=0.6233\\n    20f: acc=0.7100 bal=0.6200\\n    21f: acc=0.7138 bal=0.6250\\n    d21v19: acc=+0.0013 bal=+0.0017\\n    mink_rank=5 dg_rank=16\\n  gpt2xl_nucleus...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-18T20:07:23.470989+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -3 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -3 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-18T20:07:23.471112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    d21v19: acc=+0.0013 bal=+0.0017\\n    mink_rank=5 dg_rank=16\\n  gpt2xl_nucleus...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-18T20:07:23.471227+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -5 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -5 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-18T20:07:23.471345+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    20f: acc=0.8175 bal=0.7667\\n    21f: acc=0.8212 bal=0.7717\\n    d21v19: acc=+0.0150 bal=+0.0184\\n    mink_rank=3 dg_rank=17\\n  gpt2xl_temp09...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-18T20:07:23.471461+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -10 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -10 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-18T20:07:23.471582+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    d21v19: acc=+0.0013 bal=+0.0017\\n    mink_rank=5 dg_rank=16\\n  gpt2xl_nucleus...\\n    nc=4 ns=800\\n    19f: acc=0.8062 bal=0.7533\\n    20f: acc=0.8175 bal=0.7667\\n    21f: acc=0.8212 bal=0.7717\\n    d21v19: acc=+0.0150 bal=+0.0184\\n    mink_rank=3 dg_rank=17\\n  gpt2xl_temp09...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-18T20:07:23.471705+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-18T20:07:23.471825+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-18T20:07:23.471961+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -20 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -20 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-18T20:07:23.472091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    19f: acc=0.8038 bal=0.7450\\n    20f: acc=0.8237 bal=0.7717\\n    21f: acc=0.8188 bal=0.7650\\n    d21v19: acc=+0.0150 bal=+0.0200\\n    mink_rank=3 dg_rank=20\\n  olmo_topk50...\\n    nc=4 ns=800\\n    19f: acc=0.7125 bal=0.6233\\n    20f: acc=0.7100 bal=0.6200\\n    21f: acc=0.7138 bal=0.6250\\n    d21v19: acc=+0.0013 bal=+0.0017\\n    mink_rank=5 dg_rank=16\\n  gpt2xl_nucleus...\\n    nc=4 ns=800\\n    19f: acc=0.8062 bal=0.7533\\n    20f: acc=0.8175 bal=0.7667\\n    21f: acc=0.8212 bal=0.7717\\n    d21v19: acc=+0.0150 bal=+0.0184\\n    mink_rank=3 dg_rank=17\\n  gpt2xl_temp09...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-18T20:07:23.472211+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -5 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -5 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-18T20:07:23.472330+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    20f: acc=0.8538 bal=0.8117\\n    21f: acc=0.8500 bal=0.8067\\n    d21v19: acc=+0.0000 bal=+0.0000\\n    mink_rank=2 dg_rank=16\\n  gpt2xl_topk50...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-18T20:07:23.472445+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"DONE\\|SUMMARY\\|Saved\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep \"DONE\\|SUMMARY\\|Saved\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-18T20:07:23.472561+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-18T20:07:23.472680+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep \"DONE\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-18T20:07:23.472798+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-18T20:07:23.472929+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "tail -8 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "tail -8 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-18T20:07:23.473057+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"feature_importance\\\": {\\n    \\\"mink_score_rank\\\": 3,\\n    \\\"detectgpt_score_rank\\\": 17,\\n    \\\"mink_importance\\\": 0.095216,\\n    \\\"detectgpt_importance\\\": 0.025491\\n  }\\n}\\nDONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-18T20:07:23.473192+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"SUMMARY\" -A 50 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep \"SUMMARY\" -A 50 /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-18T20:07:23.473329+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== SUMMARY ===\\n{\\n  \\\"19feature\\\": {\\n    \\\"mean_4class_acc\\\": 0.7842,\\n    \\\"mean_d1d3_bal\\\": 0.716\\n  },\\n  \\\"20feature_mink\\\": {\\n    \\\"mean_4class_acc\\\": 0.789,\\n    \\\"mean_d1d3_bal\\\": 0.722,\\n    \\\"delta_vs_19\\\": 0.0048\\n  },\\n  \\\"21feature_full\\\": {\\n    \\\"mean_4class_acc\\\": 0.7788,\\n    \\\"mean_d1d3_bal\\\": 0.7153,\\n    \\\"delta_vs_19_subset\\\": 0.0067,\\n    \\\"note\\\": \\\"800-sample subset, 6 cells with 4-class DG\\\"\\n  },\\n  \\\"feature_importance\\\": {\\n    \\\"mink_score_rank\\\": 3,\\n    \\\"detectgpt_score_rank\\\": 17,\\n    \\\"mink_importance\\\": 0.095216,\\n    \\\"detectgpt_importance\\\": 0.025491\\n  }\\n}\\nDONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-18T20:07:23.473453+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"ExpB\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "grep \"ExpB\" /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-18T20:07:23.473578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  ExpB 4-class (6 cells): 19f=0.7721 20f=0.7765 21f=0.7788 d21v19=+0.0067\\n  ExpB 3-class (2 cells): 19f=0.6034 20f=0.6042 21f=0.5975\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-18T20:07:23.473712+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "gpu-6000pro-2",
+    "command": "cat /root/autodl-tmp/recursive_gen_depth_est/results/augmented_feature_rf/run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-18T20:07:23.473895+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Exp A: 20-feat (19+mink) full 20k ===\\n  pythia_nucleus...\\n    19f: acc=0.7869 bal=0.7178\\n    20f: acc=0.7913 bal=0.7237 delta_acc=+0.0044 delta_bal=+0.0059\\n  pythia_temp09...\\n    19f: acc=0.7678 bal=0.6931\\n    20f: acc=0.7734 bal=0.7006 delta_acc=+0.0056 delta_bal=+0.0075\\n  pythia_topk50...\\n    19f: acc=0.6884 bal=0.5887\\n    20f: acc=0.6907 bal=0.5919 delta_acc=+0.0023 delta_bal=+0.0032\\n  olmo_nucleus...\\n    19f: acc=0.7884 bal=0.7249\\n    20f: acc=0.7909 bal=0.7270 delta_acc=+0.0025 delta_bal=+0.0021\\n  olmo_temp09...\\n    19f: acc=0.8224 bal=0.7653\\n    20f: acc=0.8382 bal=0.7866 delta_acc=+0.0158 delta_bal=+0.0213\\n  olmo_topk50...\\n    19f: acc=0.7440 bal=0.6613\\n    20f: acc=0.7474 bal=0.6655 delta_acc=+0.0034 delta_bal=+0.0042\\n  gpt2xl_nucleus...\\n    19f: acc=0.8415 bal=0.7941\\n    20f: acc=0.8502 bal=0.8034 delta_acc=+0.0087 delta_bal=+0.0093\\n  gpt2xl_temp09...\\n    19f: acc=0.8584 bal=0.8141\\n    20f: acc=0.8604 bal=0.8168 delta_acc=+0.0020 delta_bal=+0.0027\\n  gpt2xl_topk50...\\n    19f: acc=0.7604 bal=0.6850\\n    20f: acc=0.7582 bal=0.6823 delta_acc=-0.0022 delta_bal=-0.0027\\n\\n  ExpA summary: 19f_acc=0.7842 20f_acc=0.789 delta=+0.0048\\n\\n=== Exp B: 21-feat (19+mink+dg) on subset ===\\n  cells: ['pythia_temp09', 'pythia_topk50', 'olmo_nucleus', 'olmo_temp09', 'olmo_topk50', 'gpt2xl_nucleus', 'gpt2xl_temp09', 'gpt2xl_topk50']\\n  pythia_temp09...\\n    nc=3 ns=600\\n    19f: acc=0.6550 bal=0.6550\\n    20f: acc=0.6367 bal=0.6367\\n    21f: acc=0.6317 bal=0.6317\\n    d21v19: acc=-0.0233 bal=-0.0233\\n    mink_rank=5 dg_rank=16\\n  pythia_topk50...\\n    nc=3 ns=600\\n    19f: acc=0.5517 bal=0.5517\\n    20f: acc=0.5717 bal=0.5717\\n    21f: acc=0.5633 bal=0.5633\\n    d21v19: acc=+0.0116 bal=+0.0116\\n    mink_rank=3 dg_rank=12\\n  olmo_nucleus...\\n    nc=4 ns=800\\n    19f: acc=0.7475 bal=0.6850\\n    20f: acc=0.7500 bal=0.6850\\n    21f: acc=0.7575 bal
+…[truncated 2171 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 159 · 2026-05-18T20:07:23.474096+00:00_
+
+实验全部完成。结果已保存到 `augmented_feature_results.json`。
+
+## 结果汇总
+
+### Exp A: 20-feature (19 + Min-K% K20) — 全量 20k, 9 cells
+
+| | 4-class acc | d1-d3 bal acc |
+|---|---|---|
+| 19-feature | 0.7842 | 0.7160 |
+| 20-feature (+mink) | 0.7890 | 0.7220 |
+| **delta** | **+0.0048** | **+0.0060** |
+
+Min-K% 在 8/9 cells 上带来正增益，唯一例外是 gpt2xl_topk50 (-0.0022)。最大增益在 olmo_temp09 (+0.0158 acc, +0.0213 bal)。
+
+### Exp B: 21-feature (19 + Min-K% + DetectGPT) — 800 样本子集
+
+**4-class (6 cells, gpt2xl + olmo):**
+
+| | 4-class acc |
+|---|---|
+| 19-feature | 0.7721 |
+| 20-feature | 0.7765 |
+| 21-feature | 0.7788 |
+| **delta 21 vs 19** | **+0.0067** |
+
+DetectGPT 在 20-feat 基础上额外贡献约 +0.002 的增量，很微弱。
+
+**3-class (2 pythia cells, d1-d3 only, 600 samples):** 21-feat 反而略低于 19-feat (-0.006)，样本太小导致不稳定。
+
+### Exp C: Feature Importance (21-feat RF)
+
+| 特征 | 排名 | Importance |
+|---|---|---|
+| **mink_k20** | **#3** | 0.0952 |
+| **detectgpt** | **#17** | 0.0255 |
+
+Min-K% 排名第3，说明它携带了 19 原始特征未完全覆盖的信息。DetectGPT 排名第17/21，贡献极低，这与其几乎不提升准确率一致。
+
+### 结论
+- Min-K% score 是有价值的补充特征（rank #3, +0.48% acc），值得加入。
+- DetectGPT perturbation discrepancy 对 RF 几乎无帮助（rank #17, 额外 +0.2% on subset），且只有 200 samples/depth，实用性有限。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_rf_21feature_augmented_20260518T195603"
+}
+```
+
+</details>
+
+---

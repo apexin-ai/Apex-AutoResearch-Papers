@@ -1,0 +1,3114 @@
+# deploy openvla random k09 seed42
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 65
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/workers/worker_deploy_openvla-random-k09-seed42_20260521T220946.log`
+- **Structured JSON:** [`6e122efa269cbb773dc3.json`](../../sessions/6e/6e122efa269cbb773dc3.json)
+
+## Before a recorded user message
+
+65 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "81eebb17-507f-4d2c-83ab-ed1b599dbba0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779405000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "00b9ff7e-3754-47dd-9573-97b4ba217dee",
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking GPU0 status and finding the correct eval script and parameters for OpenVLA.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "7632e525-6302-4646-8614-8458f2be1ef0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y4VpmkbGf2tkBchAnK1uHp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12054,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12054
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先确认 GPU0 状态和查找 OpenVLA eval 脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "1b2e0cf3-d332-433e-b667-c98989dfa200",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y4VpmkbGf2tkBchAnK1uHp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12054,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12054
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DtbmGXF8iq3RTX96uLV4PG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "75bb6584-ec30-49c5-a5ca-8c68172dbe67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y4VpmkbGf2tkBchAnK1uHp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12054,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12054
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T22:10:00.863Z_
+
+<details><summary>↩ Tool result · `toolu_01DtbmGXF8iq3RTX96uLV4PG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "5f85a7de-3037-45f7-b974-2f40470bd4ff",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check GPU0 status, find the eval script, and look at the L2norm k=0.9 registry entry in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "60fdb60d-dff9-447f-ba46-32bf5f48ce78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3PMZDvqBwT8FxkxTkk4vd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2183,
+      "cache_read_input_tokens": 23895,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2183
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AvzA3KjNXVbWM3nScbS7YA`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "2fdab869-acb8-4375-926c-336293c45709",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3PMZDvqBwT8FxkxTkk4vd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2183,
+      "cache_read_input_tokens": 23895,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2183
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BoVzTTuKasRg68ypuPG4bs`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*eval*openvla*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "98ce6dbb-13b9-43ce-8eff-595165862f0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3PMZDvqBwT8FxkxTkk4vd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2183,
+      "cache_read_input_tokens": 23895,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2183
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T22:10:06.341Z_
+
+<details><summary>↩ Tool result · `toolu_01AvzA3KjNXVbWM3nScbS7YA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 0 %\\n1, 42189 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "de1059f6-b366-4763-ba80-b651c9533779",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 0 %\\\\n1, 42189 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 0 %\\n1, 42189 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T22:10:06.874Z_
+
+<details><summary>↩ Tool result · `toolu_01BoVzTTuKasRg68ypuPG4bs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_sc_m128_vtconly_20k_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k07_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_sc_m128_object_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k05_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/__pycache__/eval_openvla_smart_compress.cpython-312.pyc\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_openvla_baseline_spatial.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_openvla_baseline_spatial.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "8ba8cdbe-eaa0-4ec3-a5f2-3a58d2412682",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_sc_m128_vtconly_20k_seed42.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k07_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_sc_m128_object_seed42.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k05_object_seed43.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/__pycache__/eval_openvla_smart_compress.cpython-312.pyc\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_openvla_baseline_spatial.log\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_openvla_baseline_spatial.json\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_smart_compress.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_sc_m128_vtconly_20k_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k07_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_sc_m128_object_seed42.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_l2norm_k05_object_seed43.log\\n/root/autodl-tmp/importance_margin_vla_compress/__pycache__/eval_openvla_smart_compress.cpython-312.pyc\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_openvla_baseline_spatial.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_openvla_baseline_spatial.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01SB7TDDCzTGLF2mtaUvgGpJ`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "eval_openvla_l2norm_k09_object_seed42"
+  },
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "5a550ca3-a002-4e08-87b2-a4723fce5ee8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L3PMZDvqBwT8FxkxTkk4vd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2183,
+      "cache_read_input_tokens": 23895,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2183
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T22:10:07.893Z_
+
+<details><summary>↩ Tool result · `toolu_01SB7TDDCzTGLF2mtaUvgGpJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.749}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "fcc62822-2b1d-48f3-80fb-c35b4d6d3b29",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.749}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.749}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+GPU0 is free (0 MiB, 0%). Let me find the correct registry entry for the L2norm k=0.9 OpenVLA experiment. The filter by exp_id didn't work - let me search more broadly. Also, I need to check the eval script to understand the parameters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "d2bb7f6a-b1fc-438a-9827-1a382e146983",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015UkmTYmWfPykZeuiYvhaFS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 26078,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+GPU0 空闲。找到几个 OpenVLA eval 脚本。让我查看 L2norm 脚本参数和 registry 中的 L2norm 实验记录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "c04a35ef-dc32-4a44-b3a3-3231e64f90d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015UkmTYmWfPykZeuiYvhaFS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 26078,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XEpqBf8kxFMo3nixjDJkeW`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "head -80 /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "2a2bc8e8-5379-461f-9288-4bc71e74db16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015UkmTYmWfPykZeuiYvhaFS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 26078,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T22:10:14.431Z_
+
+<details><summary>↩ Tool result · `toolu_01XEpqBf8kxFMo3nixjDJkeW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nOpenVLA LIBERO Evaluation: Baseline + Random/L2-Norm Token Pruning.\\nUsage:\\n    python eval_openvla_l2norm_libero.py --mode baseline --suite libero_object\\n    python eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object\\n\\\"\\\"\\\"\\nimport argparse, io, json, math, os, sys, time\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\n# Use transformers 4.40.1 for OpenVLA compat\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla_deps\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\n\\n# Import OpenVLA model code\\nhf_dir = \\\"/root/autodl-tmp/openvla-repo/prismatic/extern/hf\\\"\\ninit_path = os.path.join(hf_dir, \\\"__init__.py\\\")\\nif not os.path.exists(init_path):\\n    open(init_path, \\\"w\\\").close()\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla-repo/prismatic/extern\\\")\\nfrom hf.configuration_prismatic import OpenVLAConfig\\nfrom hf.modeling_prismatic import OpenVLAForActionPrediction\\nfrom hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\\n\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nCHECKPOINT_PATH = \\\"/root/autodl-tmp/openvla-libero-object\\\"\\nUNNORM_KEY = \\\"libero_object\\\"\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--mode\\\", choices=[\\\"baseline\\\", \\\"random_prune\\\", \\\"l2norm_prune\\\"], default=\\\"baseline\\\")\\n    p.add_argument(\\\"--k_ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\")\\n    p.add_argument(\\\"--num_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--seed\\\", type=int, default=7)\\n    p.add_argument(\\\"--output\\\", type=str, default=None)\\n    p.add_argument(\\\"--center_crop\\\", action=\\\"store_true\\\", default=True)\\n    p.add_argument(\\\"--num_steps_wait\\\", type=int, default=10)\\n    return p.parse_args()\\n\\n\\ndef set_seed(seed):\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n    np.random.seed(seed)\\n    import random\\n    random.seed(seed)\\n\\n\\ndef load_model():\\n    print(\\\"[*] Loading OpenVLA from:\\\", CHECKPOINT_PATH, flush=True)\\n    config = OpenVLAConfig.from_pretrained(CHECKPOINT_PATH)\\n    vla = OpenVLAForActionPrediction.from_pretrained(\\n        CHECKPOINT_PATH,\\n        config=config,\\n        torch_dtype=torch.bfloat16,\\n        low_cpu_mem_usage=True,\\n    ).to(DEVICE)\\n    with open(os.path.join(CHECKPOINT_PATH, \\\"dataset_statistics.json\\\")) as f:\\n        vla.norm_stats = json.load(f)\\n    vla.eval()\\n\\n    from transformers import AutoTokenizer\\n    tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT_PATH)\\n    image_processor = PrismaticImageProcessor.from_pretrained(CHECKPOINT_PATH)\\n    processor = PrismaticProcessor(image_processor=image_processor, tokenizer=tokenizer)\\n    print(f\\\"[*] Model loaded, GPU: {torch.cuda.max_memory_allocated()/1e9:.1f} GB\\\", flush=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "cc812282-7b02-4828-af58-2b46bc1bb63c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nOpenVLA LIBERO Evaluation: Baseline + Random/L2-Norm Token Pruning.\\\\nUsage:\\\\n    python eval_openvla_l2norm_libero.py --mode baseline --suite libero_object\\\\n    python eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse, io, json, math, os, sys, time\\\\nos.environ[\\\\\\\"MUJOCO_GL\\\\\\\"] = \\\\\\\"egl\\\\\\\"\\\\nos.environ.setdefault(\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\", \\\\\\\"0\\\\\\\")\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\n# Use transformers 4.40.1 for OpenVLA compat\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/openvla_deps\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\n\\\\n# Import OpenVLA model code\\\\nhf_dir = \\\\\\\"/root/autodl-tmp/openvla-repo/prismatic/extern/hf\\\\\\\"\\\\ninit_path = os.path.join(hf_dir, \\\\\\\"__init__.py\\\\\\\")\\\\nif not os.path.exists(init_path):\\\\n    open(init_path, \\\\\\\"w\\\\\\\").close()\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/openvla-repo/prismatic/extern\\\\\\\")\\\\nfrom hf.configuration_prismatic import OpenVLAConfig\\\\nfrom hf.modeling_prismatic import OpenVLAForActionPrediction\\\\nfrom hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\\\\n\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\nCHECKPOINT_PATH = \\\\\\\"/root/autodl-tmp/openvla-libero-object\\\\\\\"\\\\nUNNORM_KEY = \\\\\\\"libero_object\\\\\\\"\\\\n\\\\nSUITE_MAX_STEPS = {\\\\n    \\\\\\\"libero_spatial\\\\\\\": 280,\\\\n    \\\\\\\"libero_object\\\\\\\": 280,\\\\n    \\\\\\\"libero_goal\\\\\\\": 300,\\\\n    \\\\\\\"libero_10\\\\\\\": 520,\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"baseline\\\\\\\", \\\\\\\"random_prune\\\\\\\", \\\\\\\"l2norm_prune\\\\\\\"], default=\\\\\\\"baseline\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--k_ratio\\\\\\\", type=float, default=0.5)\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_episodes\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=7)\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=None)\\\\n    p.add_argument(\\\\\\\"--center_crop\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    p.add_argument(\\\\\\\"--num_steps_wait\\\\\\\", type=int, default=10)\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n    np.random.seed(seed)\\\\n    import random\\\\n    random.seed(seed)\\\\n\\\\n\\\\ndef load_model():\\\\n    print(\\\\\\\"[*] Loading OpenVLA from:\\\\\\\", CHECKPOINT_PATH, flush=True)\\\\n    config = OpenVLAConfig.from_pretrained(CHECKPOINT_PATH)\\\\n    vla = OpenVLAForActionPrediction.from_pretrained(\\\\n        CHECKPOINT_PATH,\\\\n        config=config,\\\\n        torch_dtype=torch.bfloat16,\\\\n        low_cpu_mem_usage=True,\\\\n    ).to(DEVICE)\\\\n    with open(os.path.join(CHECKPOINT_PATH, \\\\\\\"dataset_statistics.json\\\\\\\")) as f:\\\\n        vla.norm_stats = json.load(f)\\\\n    vla.eval()\\\\n\\\\n    from transformers import AutoTokenizer\\\\n    tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT_PATH)\\\\n    image_processor = PrismaticImageProcessor.from_pretrained(CHECKPOINT_PATH)\\\\n    processor = PrismaticProcessor(image_processor=image_processor, tokenizer=tokenizer)\\\\n    print(f\\\\\\\"[*] Model loaded, GPU: {torch.cuda.max_memory_allocated()/1e9:.1f} GB\\\\\\\", flush=True)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nOpenVLA LIBERO Evaluation: Baseline + Random/L2-Norm Token Pruning.\\nUsage:\\n    python eval_openvla_l2norm_libero.py --mode baseline --suite libero_object\\n    python eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object\\n\\\"\\\"\\\"\\nimport argparse, io, json, math, os, sys, time\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\n# Use transformers 4.40.1 for OpenVLA compat\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla_deps\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\n\\n# Import OpenVLA model code\\nhf_dir = \\\"/root/autodl-tmp/openvla-repo/prismatic/extern/hf\\\"\\ninit_path = os.path.join(hf_dir, \\\"__init__.py\\\")\\nif not os.path.exists(init_path):\\n    open(init_path, \\\"w\\\").close()\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla-repo/prismatic/extern\\\")\\nfrom hf.configuration_prismatic import OpenVLAConfig\\nfrom hf.modeling_prismatic import OpenVLAForActionPrediction\\nfrom hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\\n\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nCHECKPOINT_PATH = \\\"/root/autodl-tmp/openvla-libero-object\\\"\\nUNNORM_KEY = \\\"libero_object\\\"\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--mode\\\", choices=[\\\"baseline\\\", \\\"random_prune\\\", \\\"l2norm_prune\\\"], default=\\\"baseline\\\")\\n    p.add_argument(\\\"--k_ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\")\\n    p.add_argument(\\\"--num_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--seed\\\", type=int, default=7)\\n    p.add_argument(\\\"--output\\\", type=str, default=None)\\n    p.add_argument(\\\"--center_crop\\\", action=\\\"store_true\\\", default=True)\\n    p.add_argument(\\\"--num_steps_wait\\\", type=int, default=10)\\n    return p.parse_args()\\n\\n\\ndef set_seed(seed):\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n    np.random.seed(seed)\\n    import random\\n    random.seed(seed)\\n\\n\\ndef load_model():\\n    print(\\\"[*] Loading OpenVLA from:\\\", CHECKPOINT_PATH, flush=True)\\n    config = OpenVLAConfig.from_pretrained(CHECKPOINT_PATH)\\n    vla = OpenVLAForActionPrediction.from_pretrained(\\n        CHECKPOINT_PATH,\\n        config=config,\\n        torch_dtype=torch.bfloat16,\\n        low_cpu_mem_usage=True,\\n    ).to(DEVICE)\\n    with open(os.path.join(CHECKPOINT_PATH, \\\"dataset_statistics.json\\\")) as f:\\n        vla.norm_stats = json.load(f)\\n    vla.eval()\\n\\n    from transformers import AutoTokenizer\\n    tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT_PATH)\\n    image_processor = PrismaticImageProcessor.from_pretrained(CHECKPOINT_PATH)\\n    processor = PrismaticProcessor(image_processor=image_processor, tokenizer=tokenizer)\\n    print(f\\\"[*] Model loaded, GPU: {torch.cuda.max_memory_allocated()/1e9:.1f} GB\\\", flush=True)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Rdq5eFzgxVjyHpKAM1jj8C`</summary>
+
+```json
+{
+  "filters": {
+    "status": "DONE"
+  },
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "c69022aa-367b-4746-981b-bf2c4519d9d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015UkmTYmWfPykZeuiYvhaFS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 26078,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1098
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T22:10:15.501Z_
+
+<details><summary>↩ Tool result · `toolu_01Rdq5eFzgxVjyHpKAM1jj8C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k03_object_seed43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T11:27:32.180Z\", \"updated_at\": \"2026-05-21T22:09:26.332Z\", \"hypothesis\": \"π0.5 L2norm k=0.3 Object seed43: seed 验证 L2norm 非单调性。seed42 L2norm k=0.3=51.0% > k=0.5=33.4%。确认 V-shape 恢复跨 seed 可复现——这是论文要用的发现。\", \"parent\": \"eval_pi05_l2norm_k03_object_seed42\", \"spec\": {\"command\": \"python eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_object --n_episodes 50 --seed 43 --gpu 1\", \"server\": \"westd-41074\", \"gpu_id\": 1, \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"pid\": 207154, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_object_seed43.json\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_object_10tasks_50eps\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\"}, \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.554, \"total_successes\": 277, \"total_episodes\": 500, \"elapsed_min\": 85.15, \"per_task\": {\"alphabet_soup\": 0.16, \"cream_cheese\": 0.56, \"salad_dressing\": 0.9, \"bbq_sauce\": 0.54, \"ketchup\": 0.4, \"tomato_sauce\": 0.86, \"butter\": 0.52, \"milk\": 0.14, \"chocolate_pudding\": 0.92, \"orange_juice\": 0.54}}, \"completed_at\": \"2026-05-21T13:00:46.690Z\"}, \"eval_openvla_l2norm_k09_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T18:34:31.828Z\", \"updated_at\": \"2026-05-21T22:07:51.904Z\", \"hypothesis\": \"OpenVLA L2norm k=0.9 (保留90% tokens) on LIBERO-object seed42. 接近无压缩baseline，验证L2norm在高保留率下是否维持性能，完善scaling law k-sweep数据点。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu_id\": 0, \"pid\": 306593, \"seed\": 42, \"model_name\": \"openvla\", \"data_path\": \"libero_object\", \"data_count\": 500, \"eval_data\": \"libero_object\", \"checkpoint_source\": \"openvla_finetuned\"}, \"log_path\": \"/root/autodl-tmp/logs/eval_openvla_l2norm_k09_object_seed42.log\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_l2norm_prune_k09_object_seed42.json\", \"metrics\": {\"overall_sr\": 0.706, \"total_successes\": 353, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.66, \"cream_cheese\": 0.58, \"salad_dressing\": 0.66, \"bbq_sauce\": 0.48, \"ketchup\": 0.9, \"tomato_sauce\": 0.64, \"butter\": 0.74, \"milk\": 0.74, \"chocolate_pudding\": 0.78, \"orange_juice\": 0.88}, \"elapsed_minutes\": 228.5}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T22:07:51.904Z\"}, \"eval_pi05_l2norm_k05_object_seed43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T11:27:29.169Z\", \"updated_at\": \"2026-05-21T22:03:27.880Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Object seed43: seed 验证 V-shape valley。seed42=33.4%（最低点）。确认 V-shape valley 跨 seed 可复现。\", \"parent\": \"eval_pi05_l2norm_k05_object_seed42\", \"spec\": {\"command\": \"python eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_object --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu_id\": 0, \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"pid\": 206999, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.50_libero_object_seed43.json\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_object_10tasks_50eps\", \"checkpoint_path\": \"N/A\"}, \"metrics\": {\"overall_sr\": 0.336, \"total_successes\": 168, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.44, \"cream_cheese\": 0.08, \"salad_dressing\": 0, \"bbq_sauce\": 0.04, \"ketchup\": 0.6, \"tomato_sauce\": 0.38, \"butter\": 0.32, \"milk\": 0.52, \"chocolate_pudding\": 0.46, \"orange_juice\": 0.52}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T13:17:08.902Z\"}, \"eval_pi05_random_k095_object_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T20:12:00.108Z\", \"updated_at\": \"2026-05-21T21:49:51.815Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_object --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"627788\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k095_object_seed42_v2.log\", \"submitted_at\": \"2026-05-21T20:11:58.028Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_object\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"wall_clock_seconds\": 5873.8, \"gpu_hours\": 1.63}, \"hypothesis\": \"π0.5 random k=0.95 seed42 v2: 定位 random pruning 单调性违反的精确转折点。k=0.9→10% vs k=0.7→75.5%，去除更少 token 反而更差。如果 k=0.95 也很低，问题在高 retention ratio 本身；如果正常(~95%+)，转折在(0.9,0.95)之间。v1 因网络不可达失败，v2 用 HF_HUB_OFFLINE=1 修复。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"reproduce\": {\"finished_at\": \"2026-05-21T21:46:46.534Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T21:46:57.351619+00:00\"}]}, \"metrics\": {\"success_rate\": 69.4, \"total_successes\": 347, \"total_episodes\": 500, \"elapsed_min\": 91.3, \"per_task_sr\": {\"T0_alphabet_soup\": 64, \"T1_cream_cheese\": 92, \"T2_salad_dressing\": 84, \"T3_bbq_sauce\": 56, \"T4_ketchup\": 54, \"T5_tomato_sauce\": 68, \"T6_butter\": 86, \"T7_milk\": 52, \"T8_chocolate_pudding\": 80, \"T9_orange_juice\": 58}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:49:51.815Z\"}, \"eval_smolvla_official_random_k050_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:42:19.468Z\", \"updated_at\": \"2026-05-21T21:28:02.923Z\", \"hypothesis\": \"SmolVLA official random k=0.5 (50% removal) will show ~0% SR, confirming SmolVLA cliff-edge at all pruning ratios\", \"spec\": {\"command\": \"python -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/hub/models--HuggingFaceVLA--smolvla_libero/snapshots/6721902bc4d61e50a3bfdb11dfb4cb626f05d102/ --mode random_prune --k_ratio 0.5 --suite libero_object --num_episodes 50 --gpu 0 --seed 42\", \"server\": \"cqa1-33015\", \"gpu_id\": \"1\", \"model_name\": \"SmolVLA-LIBERO-official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"HuggingFaceVLA/smolvla_libero\", \"checkpoint_path\": \"N/A - eval only\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:27:06.452Z\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k050_object_seed42.json\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.5 confirmed. 0/500 successes. Cliff-edge at all pruning ratios verified.\"}, \"eval_smolvla_official_random_k090_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:22.230Z\", \"updated_at\": \"2026-05-21T21:28:01.433Z\", \"hypothesis\": \"SmolVLA official random k=0.9; k=0.95 已 0% SR，确认 cliff-edge 延续到 k=0.9\", \"spec\": {\"command\": \"python -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/hub/models--HuggingFaceVLA--smolvla_libero/snapshots/6721902bc4d61e50a3bfdb11dfb4cb626f05d102/ --mode random_prune --k_ratio 0.9 --suite libero_object --num_episodes 50 --gpu 0 --seed 42\", \"server\": \"cqa1-33015\", \"gpu_id\": \"0\", \"model_name\": \"SmolVLA-LIBERO-official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"HuggingFaceVLA/smolvla_libero\", \"checkpoint_path\": \"N/A - eval only\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:27:04.107Z\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k090_object_seed42.json\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.9 confirmed. 0/500 successes. Even 10% removal destroys SmolVLA completely.\"}, \"eval_smolvla_official_l2norm_k070_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:19.998Z\", \"updated_at\": \"2026-05-21T21:28:00.050Z\", \"hypothesis\": \"SmolVLA L2-norm k=0.7 on official checkpoint. Expected ~0% SR.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode l2_norm --k_ratio 0.7\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 50, \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k070_object_seed42.json\", \"checkpoint_path\": \"N/A - eval only\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:26:53.749Z\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at L2norm prune k=0.7 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_l2norm_k030_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:21.066Z\", \"updated_at\": \"2026-05-21T21:27:58.750Z\", \"hypothesis\": \"SmolVLA L2-norm k=0.3 on official checkpoint. Expected ~0% SR.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode l2_norm --k_ratio 0.3\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 50, \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k030_object_seed42.json\", \"checkpoint_path\": \"N/A - eval only\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:26:55.944Z\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at L2norm prune k=0.3 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_random_k070_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:23.388Z\", \"updated_at\": \"2026-05-21T21:27:57.528Z\", \"hypothesis\": \"SmolVLA random prune k=0.7 on official checkpoint. Expected ~0% SR.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode random_prune --k_ratio 0.7\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 50, \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k070_object_seed42.json\", \"checkpoint_path\": \"N/A - eval only\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:26:58.037Z\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.7 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_random_k030_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:24.427Z\", \"updated_at\": \"2026-05-21T21:27:56.235Z\", \"hypothesis\": \"SmolVLA random prune k=0.3 on official checkpoint. Expected ~0% SR.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode random_prune --k_ratio 0.3\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 50, \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k030_object_seed42.json\", \"checkpoint_path\": \"N/A - eval only\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:27:00.344Z\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.3 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_l2norm_k050_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:42:18.304Z\", \"updated_at\": \"2026-05-21T21:21:10.125Z\", \"hypothesis\": \"SmolVLA official L2norm k=0.5 补 sweep 数据点，预期与 random k=0.5 一样接近 0% SR\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode l2_norm --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 42\", \"server\": \"cqa1-33015\", \"gpu_id\": \"3\", \"model_name\": \"SmolVLA-LIBERO-official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"HuggingFaceVLA/smolvla_libero\", \"checkpoint_path\": \"N/A - eval only\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0, \"total_episodes\": 500, \"seed\": 42}, \"completed_at\": \"2026-05-21T18:13:34.742Z\"}, \"eval_pi05_l2norm_k05_spatial_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:04:43.315Z\", \"updated_at\": \"2026-05-21T21:05:43.902Z\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 1\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:1\"], \"pid\": \"590423\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\", \"submitted_at\": \"2026-05-21T19:09:44.831Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_spatial (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"wall_clock_seconds\": 6898.7, \"gpu_hours\": 1.92}, \"hypothesis\": \"π0.5 L2norm k=0.5 on LIBERO-Spatial seed42, 验证 CV=0.055 linear projection 下 L2norm 在 Spatial 任务上是否也接近 random（与 Object 上一致）\", \"reproduce\": {\"finished_at\": \"2026-05-21T21:02:42.865Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T21:02:50.761973+00:00\"}]}, \"metrics\": {\"overall_sr\": 55.6, \"total_successes\": 278, \"total_episodes\": 500, \"elapsed_min\": 108.9, \"per_task_sr\": {\"T0_pick_up_black_bowl_between_plate\": 74, \"T1_pick_up_black_bowl_next_to_ramekin\": 82, \"T2_pick_up_black_bowl_on_plate\": 78, \"T3_pick_up_black_bowl_on_cookie_box\": 28, \"T4_pick_up_black_bowl_in_top_drawer\": 38, \"T5_pick_up_black_bowl_on_ramekin\": 44, \"T6_pick_up_black_bowl_next_to_cookie\": 32, \"T7_pick_up_black_bowl_on_stove\": 74, \"T8_pick_up_black_bowl_next_to_plate\": 62, \"T9_pick_up_black_bowl_on_wooden_cab\": 44}, \"comparison\": {\"vs_random_k05_spatial\": \"55.6 vs 71.6 (-16.0pp)\", \"vs_l2norm_k05_object\": \"55.6 vs 33.4 (+22.2pp)\", \"vs_baseline_spatial\": \"55.6 vs 97.2 (-41.6pp)\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:04:43.483Z\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\"}, \"eval_pi05_l2norm_k03_spatial_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:04:48.329Z\", \"updated_at\": \"2026-05-21T21:04:40.771Z\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 3\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:3\"], \"pid\": \"590816\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\", \"submitted_at\": \"2026-05-21T19:09:50.353Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_spatial (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"wall_clock_seconds\": 6890.4, \"gpu_hours\": 1.91}, \"hypothesis\": \"π0.5 L2norm k=0.3 on LIBERO-Spatial seed42, 验证 k=0.3 处 method reversal (L2norm > random) 是否跨 suite 复现\", \"reproduce\": {\"finished_at\": \"2026-05-21T21:00:31.958Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T21:00:40.481357+00:00\"}]}, \"metrics\": {\"overall_sr\": 57.2, \"total_successes\": 286, \"total_episodes\": 500, \"elapsed_min\": 108.4, \"seed\": 42, \"per_task_sr\": {\"T0_bowl_between_plate\": 62, \"T1_bowl_next_to_ramekin\": 72, \"T2_bowl_from_table_center\": 78, \"T3_bowl_on_cookie_box\": 24, \"T4_bowl_in_top_drawer\": 34, \"T5_bowl_on_ramekin\": 26, \"T6_bowl_next_to_cookie\": 74, \"T7_bowl_on_stove\": 90, \"T8_bowl_next_to_plate\": 66, \"T9_bowl_on_wooden_cabinet\": 46}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_spatial_seed42.json\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T21:04:40.771Z\"}, \"eval_pi05_random_k05_spatial_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:04:45.852Z\", \"updated_at\": \"2026-05-21T20:49:21.137Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_spatial_seed42.json\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_spatial_seed42.log\", \"wall_clock_seconds\": 5581, \"gpu_hours\": 1.55}, \"hypothesis\": \"π0.5 random k=0.5 on LIBERO-Spatial seed42, 与 L2norm k=0.5 对比验证 cross-suite 下 method preference 是否一致\", \"reproduce\": {\"finished_at\": \"2026-05-21T20:46:53.112Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T20:46:59.855517+00:00\"}]}, \"metrics\": {\"success_rate\": 71.6, \"total_successes\": 358, \"total_episodes\": 500, \"per_task\": {\"T0_bowl_between_plate_ramekin\": 88, \"T1_bowl_next_to_ramekin\": 82, \"T2_bowl_from_table_center\": 88, \"T3_bowl_on_cookie_box\": 52, \"T4_bowl_in_top_drawer\": 44, \"T5_bowl_on_ramekin\": 38, \"T6_bowl_next_to_cookie_box\": 84, \"T7_bowl_on_stove\": 84, \"T8_bowl_next_to_plate\": 80, \"T9_bowl_on_wooden_cabinet\": 76}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T20:49:21.138Z\"}, \"eval_pi05_random_k085_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:04:01.513Z\", \"updated_at\": \"2026-05-21T20:15:51.002Z\", \"hypothesis\": \"π0.5 random k=0.85 seed42: 补充 k=0.7-0.9 之间的数据点。k=0.7→75.5% vs k=0.9→10%，确认 random pruning 曲线在此区间的急剧下降行为，排除 k=0.9 为孤立异常的可能。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --n_episodes 50 --suite libero_object --seed 42 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": 626630, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_object_seed42.log\", \"submitted_at\": \"2026-05-21T20:01:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": 1, \"seed\": 42, \"model_name\": \"pi05_libero_finetuned\", \"data_path\": \"libero_object\", \"data_count\": 500, \"eval_data\": \"libero_object\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"wall_clock_seconds\": 602.0, \"gpu_hours\": 0.17}, \"reproduce\": {\"finished_at\": \"2026-05-21T20:11:49.422Z\"}, \"failure_reason\": \"Network unreachable - AutoTokenizer.from_pretrained(\\\"google/paligemma-3b-pt-224\\\") failed, 0 episodes executed. Same root cause as k095 and fixed-mask v1.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T20:11:53.085Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T20:12:03.069992+00:00\"}]}}, \"eval_pi05_random_k09_fixedmask_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:09:35.064Z\", \"updated_at\": \"2026-05-21T20:10:57.961Z\", \"hypothesis\": \"判别 k=0.9 ~10% SR 的根因是 per-call stochastic mask 导致时序不一致还是 random 90% subset 本身不够\", \"parent\": \"eval_pi05_random_k09_object_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_object --n_episodes 50 --seed 42 --gpu 0 --fixed_mask\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": 625841, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_fixedmask_seed42.log\", \"submitted_at\": \"2026-05-21T19:57:07.867Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": 1, \"seed\": 42, \"model_name\": \"pi05_libero_finetuned\", \"data_path\": \"libero_object\", \"data_count\": 500, \"eval_data\": \"libero_object\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"checkpoint_path\": \"N/A_eval_only\", \"wall_clock_seconds\": 822.3, \"gpu_hours\": 0.23}, \"reproduce\": {\"finished_at\": \"2026-05-21T20:08:13.719Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T20:08:30.930267+00:00\"}]}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T20:10:50.143Z\", \"metrics\": {\"error\": \"Network unreachable - AutoTokenizer.from_pretrained('google/paligemma-3b-pt-224') failed because AutoDL network was not enabled (source /etc/network_turbo not run). No episodes executed.\", \"overall_sr\": null, \"total_episodes\": 0}}, \"eval_pi05_baseline_spatial_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:04:40.813Z\", \"updated_at\": \"2026-05-21T20:10:19.902Z\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode none --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"590344\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_baseline_spatial_seed42.log\", \"submitted_at\": \"2026-05-21T19:09:42.134Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_spatial (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_baseline_libero_spatial_seed42.json\", \"wall_clock_seconds\": 3637.8, \"gpu_hours\": 1.01}, \"hypothesis\": \"π0.5 baseline on LIBERO-Spatial seed42, establishing cross-suite baseline to verify pruning tolerance generalization across different task suites\", \"reproduce\": {\"finished_at\": \"2026-05-21T20:07:38.514Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T20:07:45.522889+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97.2, \"total_successes\": 486, \"num_episodes\": 500, \"elapsed_minutes\": 55.8, \"seed\": 42, \"per_task\": {\"T0_pick_up_black_bowl_between_plate\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T1_pick_up_black_bowl_next_to_ramekin\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T2_pick_up_black_bowl_from_stove\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T3_pick_up_black_bowl_on_cookie_box\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T4_pick_up_black_bowl_in_top_drawer\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T5_pick_up_black_bowl_on_ramekin\": {\"sr\": 78, \"success\": 39, \"total\": 50}, \"T6_pick_up_black_bowl_next_to_cookie\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T7_pick_up_black_bowl_on_stove\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T8_pick_up_black_bowl_next_to_plate\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T9_pick_up_black_bowl_on_wooden_cabinet\": {\"sr\": 100, \"success\": 50, \"total\": 50}}}, \"completed_at\": \"2026-05-21T20:10:19.902Z\"}, \"eval_pi05_random_k095_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:03:59.633Z\", \"updated_at\": \"2026-05-21T20:08:53.282Z\", \"hypothesis\": \"π0.5 random k=0.95 seed42: 定位 random pruning 单调性违反的精确转折点。k=0.9→10% vs k=0.7→75.5%，去除更少 token 反而更差。如果 k=0.95 也很低，问题在高 retention ratio 本身；如果正常(~95%+)，转折在(0.9,0.95)之间。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_object --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"625487\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k095_object_seed42.log\", \"submitted_at\": \"2026-05-21T19:55:38.624Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress/\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_object (50 episodes)\", \"wall_clock_seconds\": 545.6, \"gpu_hours\": 0.15}, \"reproduce\": {\"finished_at\": \"2026-05-21T20:04:45.682Z\"}, \"failure_reason\": \"Network unreachable - AutoTokenizer.from_pretrained(\\\"google/paligemma-3b-pt-224\\\") failed, no episodes executed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T20:04:44.217Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T20:04:53.846959+00:00\"}]}}, \"eval_pi05_random_k09_object_seed43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T17:48:39.903Z\", \"updated_at\": \"2026-05-21T19:57:53.279Z\", \"hypothesis\": \"π0.5 random k=0.9 seed43: 验证 seed42 的 12% SR 异常是否可复现。已确认代码无 bug，seed42 结果疑似 transient issue。加入 torch.manual_seed 修复后的对照重跑。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_object --n_episodes 50 --seed 43 --gpu 1\", \"server\": \"westd-41074\", \"gpu_id\": 1, \"pid\": 531274, \"seed\": 43, \"model_name\": \"pi05_libero_finetuned\", \"data_path\": \"libero_object\", \"data_count\": 50, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_seed43.log\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_object\", \"checkpoint_path\": \"N/A_eval_only\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T19:57:27.622Z\", \"metrics\": {\"overall_sr\": 0.096, \"total_successes\": 48, \"total_episodes\": 500, \"elapsed_min\": 119.5, \"per_task_sr\": {\"T0_alphabet_soup\": 0.16, \"T1_cream_cheese\": 0.16, \"T2_salad_dressing\": 0.1, \"T3_bbq_sauce\": 0.02, \"T4_ketchup\": 0.06, \"T5_tomato_sauce\": 0.14, \"T6_butter\": 0.14, \"T7_milk\": 0.02, \"T8_chocolate_pudding\": 0.08, \"T9_orange_juice\": 0.08}}}, \"eval_pi05_random_k09_object_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:52:07.928Z\", \"updated_at\": \"2026-05-21T19:57:33.543Z\", \"hypothesis\": \"π0.5 random k=0.9 seed42 v2; 填充 scaling curve 数据点。低 CV 模型 10% random pruning 预期影响极小 (baseline 98.2%)\", \"parent\": \"eval_pi05_random_k07_object_seed43\", \"spec\": {\"suspect\": false}, \"metrics\": {\"success_rate\": 12, \"total_episodes\": 500, \"seed\": 42, \"suspect\": false, \"suspect_reason\": \"cleared - seed43=9.6% confirms result is real, not bug\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T17:48:20.079Z\"}}, \"count\": 20, \"total\": 289, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7656}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "9ec8f5d2-1e05-438d-8b14-863dab7c22a8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k03_object_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T11:27:32.180Z\\\", \\\"updated_at\\\": \\\"2026-05-21T22:09:26.332Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.3 Object seed43: seed 验证 L2norm 非单调性。seed42 L2norm k=0.3=51.0% > k=0.5=33.4%。确认 V-shape 恢复跨 seed 可复现——这是论文要用的发现。\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k03_object_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_object --n_episodes 50 --seed 43 --gpu 1\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu_id\\\": 1, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"pid\\\": 207154, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_object_seed43.json\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_object_10tasks_50eps\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"SR\\\": 0.554, \\\"total_successes\\\": 277, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 85.15, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0.16, \\\"cream_cheese\\\": 0.56, \\\"salad_dressing\\\": 0.9, \\\"bbq_sauce\\\": 0.54, \\\"ketchup\\\": 0.4, \\\"tomato_sauce\\\": 0.86, \\\"butter\\\": 0.52, \\\"milk\\\": 0.14, \\\"chocolate_pudding\\\": 0.92, \\\"orange_juice\\\": 0.54}}, \\\"completed_at\\\": \\\"2026-05-21T13:00:46.690Z\\\"}, \\\"eval_openvla_l2norm_k09_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T18:34:31.828Z\\\", \\\"updated_at\\\": \\\"2026-05-21T22:07:51.904Z\\\", \\\"hypothesis\\\": \\\"OpenVLA L2norm k=0.9 (保留90% tokens) on LIBERO-object seed42. 接近无压缩baseline，验证L2norm在高保留率下是否维持性能，完善scaling law k-sweep数据点。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_object --seed 42\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu_id\\\": 0, \\\"pid\\\": 306593, \\\"seed\\\": 42, \\\"model_name\\\": \\\"openvla\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"eval_data\\\": \\\"libero_object\\\", \\\"checkpoint_source\\\": \\\"openvla_finetuned\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/eval_openvla_l2norm_k09_object_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_l2norm_prune_k09_object_seed42.json\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.706, \\\"total_successes\\\": 353, \\\"total_episodes\\\": 500, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0.66, \\\"cream_cheese\\\": 0.58, \\\"salad_dressing\\\": 0.66, \\\"bbq_sauce\\\": 0.48, \\\"ketchup\\\": 0.9, \\\"tomato_sauce\\\": 0.64, \\\"butter\\\": 0.74, \\\"milk\\\": 0.74, \\\"chocolate_pudding\\\": 0.78, \\\"orange_juice\\\": 0.88}, \\\"elapsed_minutes\\\": 228.5}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T22:07:51.904Z\\\"}, \\\"eval_pi05_l2norm_k05_object_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T11:27:29.169Z\\\", \\\"updated_at\\\": \\\"2026-05-21T22:03:27.880Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 Object seed43: seed 验证 V-shape valley。seed42=33.4%（最低点）。确认 V-shape valley 跨 seed 可复现。\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k05_object_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_object --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu_id\\\": 0, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"pid\\\": 206999, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.50_libero_object_seed43.json\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_object_10tasks_50eps\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"metrics\\\": {\\\"overall_sr\\\": 0.336, \\\"total_successes\\\": 168, \\\"total_episodes\\\": 500, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0.44, \\\"cream_cheese\\\": 0.08, \\\"salad_dressing\\\": 0, \\\"bbq_sauce\\\": 0.04, \\\"ketchup\\\": 0.6, \\\"tomato_sauce\\\": 0.38, \\\"butter\\\": 0.32, \\\"milk\\\": 0.52, \\\"chocolate_pudding\\\": 0.46, \\\"orange_juice\\\": 0.52}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T13:17:08.902Z\\\"}, \\\"eval_pi05_random_k095_object_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T20:12:00.108Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:49:51.815Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_object --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"627788\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k095_object_seed42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T20:11:58.028Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_object\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"wall_clock_seconds\\\": 5873.8, \\\"gpu_hours\\\": 1.63}, \\\"hypothesis\\\": \\\"π0.5 random k=0.95 seed42 v2: 定位 random pruning 单调性违反的精确转折点。k=0.9→10% vs k=0.7→75.5%，去除更少 token 反而更差。如果 k=0.95 也很低，问题在高 retention ratio 本身；如果正常(~95%+)，转折在(0.9,0.95)之间。v1 因网络不可达失败，v2 用 HF_HUB_OFFLINE=1 修复。\\\", \\\"parent\\\": \\\"eval_pi05_random_k09_object_seed42_v2\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T21:46:46.534Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T21:46:57.351619+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 69.4, \\\"total_successes\\\": 347, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 91.3, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup\\\": 64, \\\"T1_cream_cheese\\\": 92, \\\"T2_salad_dressing\\\": 84, \\\"T3_bbq_sauce\\\": 56, \\\"T4_ketchup\\\": 54, \\\"T5_tomato_sauce\\\": 68, \\\"T6_butter\\\": 86, \\\"T7_milk\\\": 52, \\\"T8_chocolate_pudding\\\": 80, \\\"T9_orange_juice\\\": 58}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T21:49:51.815Z\\\"}, \\\"eval_smolvla_official_random_k050_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:42:19.468Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:28:02.923Z\\\", \\\"hypothesis\\\": \\\"SmolVLA official random k=0.5 (50% removal) will show ~0% SR, confirming SmolVLA cliff-edge at all pruning ratios\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/hub/models--HuggingFaceVLA--smolvla_libero/snapshots/6721902bc4d61e50a3bfdb11dfb4cb626f05d102/ --mode random_prune --k_ratio 0.5 --suite libero_object --num_episodes 50 --gpu 0 --seed 42\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu_id\\\": \\\"1\\\", \\\"model_name\\\": \\\"SmolVLA-LIBERO-official\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"HuggingFaceVLA/smolvla_libero\\\", \\\"checkpoint_path\\\": \\\"N/A - eval only\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\\\"}, \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 0, \\\"wilson_ci_95\\\": [0, 0.0076], \\\"per_task_sr\\\": {\\\"task0\\\": 0, \\\"task1\\\": 0, \\\"task2\\\": 0, \\\"task3\\\": 0, \\\"task4\\\": 0, \\\"task5\\\": 0, \\\"task6\\\": 0, \\\"task7\\\": 0, \\\"task8\\\": 0, \\\"task9\\\": 0}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T21:27:06.452Z\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k050_object_seed42.json\\\", \\\"notes\\\": \\\"SmolVLA official checkpoint catastrophic degradation at random prune k=0.5 confirmed. 0/500 successes. Cliff-edge at all pruning ratios verified.\\\"}, \\\"eval_smolvla_official_random_k090_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:43:22.230Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:28:01.433Z\\\", \\\"hypothesis\\\": \\\"SmolVLA official random k=0.9; k=0.95 已 0% SR，确认 cliff-edge 延续到 k=0.9\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/hub/models--HuggingFaceVLA--smolvla_libero/snapshots/6721902bc4d61e50a3bfdb11dfb4cb626f05d102/ --mode random_prune --k_ratio 0.9 --suite libero_object --num_episodes 50 --gpu 0 --seed 42\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu_id\\\": \\\"0\\\", \\\"model_name\\\": \\\"SmolVLA-LIBERO-official\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"HuggingFaceVLA/smolvla_libero\\\", \\\"checkpoint_path\\\": \\\"N/A - eval only\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\\\"}, \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 0, \\\"wilson_ci_95\\\": [0, 0.0076], \\\"per_task_sr\\\": {\\\"task0\\\": 0, \\\"task1\\\": 0, \\\"task2\\\": 0, \\\"task3\\\": 0, \\\"task4\\\": 0, \\\"task5\\\": 0, \\\"task6\\\": 0, \\\"task7\\\": 0, \\\"task8\\\": 0, \\\"task9\\\": 0}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T21:27:04.107Z\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k090_object_seed42.json\\\", \\\"notes\\\": \\\"SmolVLA official checkpoint catastrophic degradation at random prune k=0.9 confirmed. 0/500 successes. Even 10% removal destroys SmolVLA completely.\\\"}, \\\"eval_smolvla_official_l2norm_k070_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:43:19.998Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:28:00.050Z\\\", \\\"hypothesis\\\": \\\"SmolVLA L2-norm k=0.7 on official checkpoint. Expected ~0% SR.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode l2_norm --k_ratio 0.7\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero_official\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object\\\"}, \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 0, \\\"wilson_ci_95\\\": [0, 0.0076], \\\"per_task_sr\\\": {\\\"task0\\\": 0, \\\"task1\\\": 0, \\\"task2\\\": 0, \\\"task3\\\": 0, \\\"task4\\\": 0, \\\"task5\\\": 0, \\\"task6\\\": 0, \\\"task7\\\": 0, \\\"task8\\\": 0, \\\"task9\\\": 0}}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k070_object_seed42.json\\\", \\\"checkpoint_path\\\": \\\"N/A - eval only\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T21:26:53.749Z\\\", \\\"notes\\\": \\\"SmolVLA official checkpoint catastrophic degradation at L2norm prune k=0.7 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\\\"}, \\\"eval_smolvla_official_l2norm_k030_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:43:21.066Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:27:58.750Z\\\", \\\"hypothesis\\\": \\\"SmolVLA L2-norm k=0.3 on official checkpoint. Expected ~0% SR.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode l2_norm --k_ratio 0.3\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero_official\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object\\\"}, \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 0, \\\"wilson_ci_95\\\": [0, 0.0076], \\\"per_task_sr\\\": {\\\"task0\\\": 0, \\\"task1\\\": 0, \\\"task2\\\": 0, \\\"task3\\\": 0, \\\"task4\\\": 0, \\\"task5\\\": 0, \\\"task6\\\": 0, \\\"task7\\\": 0, \\\"task8\\\": 0, \\\"task9\\\": 0}}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k030_object_seed42.json\\\", \\\"checkpoint_path\\\": \\\"N/A - eval only\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T21:26:55.944Z\\\", \\\"notes\\\": \\\"SmolVLA official checkpoint catastrophic degradation at L2norm prune k=0.3 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\\\"}, \\\"eval_smolvla_official_random_k070_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:43:23.388Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:27:57.528Z\\\", \\\"hypothesis\\\": \\\"SmolVLA random prune k=0.7 on official checkpoint. Expected ~0% SR.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode random_prune --k_ratio 0.7\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero_official\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object\\\"}, \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 0, \\\"wilson_ci_95\\\": [0, 0.0076], \\\"per_task_sr\\\": {\\\"task0\\\": 0, \\\"task1\\\": 0, \\\"task2\\\": 0, \\\"task3\\\": 0, \\\"task4\\\": 0, \\\"task5\\\": 0, \\\"task6\\\": 0, \\\"task7\\\": 0, \\\"task8\\\": 0, \\\"task9\\\": 0}}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k070_object_seed42.json\\\", \\\"checkpoint_path\\\": \\\"N/A - eval only\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T21:26:58.037Z\\\", \\\"notes\\\": \\\"SmolVLA official checkpoint catastrophic degradation at random prune k=0.7 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\\\"}, \\\"eval_smolvla_official_random_k030_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:43:24.427Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:27:56.235Z\\\", \\\"hypothesis\\\": \\\"SmolVLA random prune k=0.3 on official checkpoint. Expected ~0% SR.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode random_prune --k_ratio 0.3\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"smolvla_libero_official\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/.hf_cache/smolvla_libero_official\\\", \\\"eval_data\\\": \\\"libero_object\\\"}, \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"total_episodes\\\": 500, \\\"total_successes\\\": 0, \\\"wilson_ci_95\\\": [0, 0.0076], \\\"per_task_sr\\\": {\\\"task0\\\": 0, \\\"task1\\\": 0, \\\"task2\\\": 0, \\\"task3\\\": 0, \\\"task4\\\": 0, \\\"task5\\\": 0, \\\"task6\\\": 0, \\\"task7\\\": 0, \\\"task8\\\": 0, \\\"task9\\\": 0}}, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k030_object_seed42.json\\\", \\\"checkpoint_path\\\": \\\"N/A - eval only\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T21:27:00.344Z\\\", \\\"notes\\\": \\\"SmolVLA official checkpoint catastrophic degradation at random prune k=0.3 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\\\"}, \\\"eval_smolvla_official_l2norm_k050_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:42:18.304Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:21:10.125Z\\\", \\\"hypothesis\\\": \\\"SmolVLA official L2norm k=0.5 补 sweep 数据点，预期与 random k=0.5 一样接近 0% SR\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_official_libero.py --mode l2_norm --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 42\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu_id\\\": \\\"3\\\", \\\"model_name\\\": \\\"SmolVLA-LIBERO-official\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"HuggingFaceVLA/smolvla_libero\\\", \\\"checkpoint_path\\\": \\\"N/A - eval only\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0, \\\"total_episodes\\\": 500, \\\"seed\\\": 42}, \\\"completed_at\\\": \\\"2026-05-21T18:13:34.742Z\\\"}, \\\"eval_pi05_l2norm_k05_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:43.315Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:05:43.902Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 1\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"590423\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:09:44.831Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_spatial\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"wall_clock_seconds\\\": 6898.7, \\\"gpu_hours\\\": 1.92}, \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.5 on LIBERO-Spatial seed42, 验证 CV=0.055 linear projection 下 L2norm 在 Spatial 任务上是否也接近 random（与 Object 上一致）\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T21:02:42.865Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T21:02:50.761973+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 55.6, \\\"total_successes\\\": 278, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 108.9, \\\"per_task_sr\\\": {\\\"T0_pick_up_black_bowl_between_plate\\\": 74, \\\"T1_pick_up_black_bowl_next_to_ramekin\\\": 82, \\\"T2_pick_up_black_bowl_on_plate\\\": 78, \\\"T3_pick_up_black_bowl_on_cookie_box\\\": 28, \\\"T4_pick_up_black_bowl_in_top_drawer\\\": 38, \\\"T5_pick_up_black_bowl_on_ramekin\\\": 44, \\\"T6_pick_up_black_bowl_next_to_cookie\\\": 32, \\\"T7_pick_up_black_bowl_on_stove\\\": 74, \\\"T8_pick_up_black_bowl_next_to_plate\\\": 62, \\\"T9_pick_up_black_bowl_on_wooden_cab\\\": 44}, \\\"comparison\\\": {\\\"vs_random_k05_spatial\\\": \\\"55.6 vs 71.6 (-16.0pp)\\\", \\\"vs_l2norm_k05_object\\\": \\\"55.6 vs 33.4 (+22.2pp)\\\", \\\"vs_baseline_spatial\\\": \\\"55.6 vs 97.2 (-41.6pp)\\\"}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T21:04:43.483Z\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\\\"}, \\\"eval_pi05_l2norm_k03_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:48.329Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:04:40.771Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 3\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"590816\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:09:50.353Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_spatial\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"wall_clock_seconds\\\": 6890.4, \\\"gpu_hours\\\": 1.91}, \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.3 on LIBERO-Spatial seed42, 验证 k=0.3 处 method reversal (L2norm > random) 是否跨 suite 复现\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T21:00:31.958Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T21:00:40.481357+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_sr\\\": 57.2, \\\"total_successes\\\": 286, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 108.4, \\\"seed\\\": 42, \\\"per_task_sr\\\": {\\\"T0_bowl_between_plate\\\": 62, \\\"T1_bowl_next_to_ramekin\\\": 72, \\\"T2_bowl_from_table_center\\\": 78, \\\"T3_bowl_on_cookie_box\\\": 24, \\\"T4_bowl_in_top_drawer\\\": 34, \\\"T5_bowl_on_ramekin\\\": 26, \\\"T6_bowl_next_to_cookie\\\": 74, \\\"T7_bowl_on_stove\\\": 90, \\\"T8_bowl_next_to_plate\\\": 66, \\\"T9_bowl_on_wooden_cabinet\\\": 46}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"result_json\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_spatial_seed42.json\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T21:04:40.771Z\\\"}, \\\"eval_pi05_random_k05_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:45.852Z\\\", \\\"updated_at\\\": \\\"2026-05-21T20:49:21.137Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_spatial_seed42.json\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_spatial_seed42.log\\\", \\\"wall_clock_seconds\\\": 5581, \\\"gpu_hours\\\": 1.55}, \\\"hypothesis\\\": \\\"π0.5 random k=0.5 on LIBERO-Spatial seed42, 与 L2norm k=0.5 对比验证 cross-suite 下 method preference 是否一致\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T20:46:53.112Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T20:46:59.855517+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 71.6, \\\"total_successes\\\": 358, \\\"total_episodes\\\": 500, \\\"per_task\\\": {\\\"T0_bowl_between_plate_ramekin\\\": 88, \\\"T1_bowl_next_to_ramekin\\\": 82, \\\"T2_bowl_from_table_center\\\": 88, \\\"T3_bowl_on_cookie_box\\\": 52, \\\"T4_bowl_in_top_drawer\\\": 44, \\\"T5_bowl_on_ramekin\\\": 38, \\\"T6_bowl_next_to_cookie_box\\\": 84, \\\"T7_bowl_on_stove\\\": 84, \\\"T8_bowl_next_to_plate\\\": 80, \\\"T9_bowl_on_wooden_cabinet\\\": 76}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T20:49:21.138Z\\\"}, \\\"eval_pi05_random_k085_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:01.513Z\\\", \\\"updated_at\\\": \\\"2026-05-21T20:15:51.002Z\\\", \\\"hypothesis\\\": \\\"π0.5 random k=0.85 seed42: 补充 k=0.7-0.9 之间的数据点。k=0.7→75.5% vs k=0.9→10%，确认 random pruning 曲线在此区间的急剧下降行为，排除 k=0.9 为孤立异常的可能。\\\", \\\"parent\\\": \\\"eval_pi05_random_k09_object_seed42_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --n_episodes 50 --suite libero_object --seed 42 --gpu 0\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": 626630, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_object_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T20:01:51.062Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_id\\\": 1, \\\"seed\\\": 42, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"eval_data\\\": \\\"libero_object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"wall_clock_seconds\\\": 602.0, \\\"gpu_hours\\\": 0.17}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T20:11:49.422Z\\\"}, \\\"failure_reason\\\": \\\"Network unreachable - AutoTokenizer.from_pretrained(\\\\\\\"google/paligemma-3b-pt-224\\\\\\\") failed, 0 episodes executed. Same root cause as k095 and fixed-mask v1.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-21T20:11:53.085Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T20:12:03.069992+00:00\\\"}]}}, \\\"eval_pi05_random_k09_fixedmask_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:09:35.064Z\\\", \\\"updated_at\\\": \\\"2026-05-21T20:10:57.961Z\\\", \\\"hypothesis\\\": \\\"判别 k=0.9 ~10% SR 的根因是 per-call stochastic mask 导致时序不一致还是 random 90% subset 本身不够\\\", \\\"parent\\\": \\\"eval_pi05_random_k09_object_seed43\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_object --n_episodes 50 --seed 42 --gpu 0 --fixed_mask\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": 625841, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_fixedmask_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:57:07.867Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_id\\\": 1, \\\"seed\\\": 42, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"eval_data\\\": \\\"libero_object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"checkpoint_path\\\": \\\"N/A_eval_only\\\", \\\"wall_clock_seconds\\\": 822.3, \\\"gpu_hours\\\": 0.23}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T20:08:13.719Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T20:08:30.930267+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-21T20:10:50.143Z\\\", \\\"metrics\\\": {\\\"error\\\": \\\"Network unreachable - AutoTokenizer.from_pretrained('google/paligemma-3b-pt-224') failed because AutoDL network was not enabled (source /etc/network_turbo not run). No episodes executed.\\\", \\\"overall_sr\\\": null, \\\"total_episodes\\\": 0}}, \\\"eval_pi05_baseline_spatial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:04:40.813Z\\\", \\\"updated_at\\\": \\\"2026-05-21T20:10:19.902Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode none --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"590344\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_baseline_spatial_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:09:42.134Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial (10 tasks x 50 eps)\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_spatial\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_baseline_libero_spatial_seed42.json\\\", \\\"wall_clock_seconds\\\": 3637.8, \\\"gpu_hours\\\": 1.01}, \\\"hypothesis\\\": \\\"π0.5 baseline on LIBERO-Spatial seed42, establishing cross-suite baseline to verify pruning tolerance generalization across different task suites\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T20:07:38.514Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T20:07:45.522889+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 97.2, \\\"total_successes\\\": 486, \\\"num_episodes\\\": 500, \\\"elapsed_minutes\\\": 55.8, \\\"seed\\\": 42, \\\"per_task\\\": {\\\"T0_pick_up_black_bowl_between_plate\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}, \\\"T1_pick_up_black_bowl_next_to_ramekin\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}, \\\"T2_pick_up_black_bowl_from_stove\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}, \\\"T3_pick_up_black_bowl_on_cookie_box\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}, \\\"T4_pick_up_black_bowl_in_top_drawer\\\": {\\\"sr\\\": 98, \\\"success\\\": 49, \\\"total\\\": 50}, \\\"T5_pick_up_black_bowl_on_ramekin\\\": {\\\"sr\\\": 78, \\\"success\\\": 39, \\\"total\\\": 50}, \\\"T6_pick_up_black_bowl_next_to_cookie\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}, \\\"T7_pick_up_black_bowl_on_stove\\\": {\\\"sr\\\": 98, \\\"success\\\": 49, \\\"total\\\": 50}, \\\"T8_pick_up_black_bowl_next_to_plate\\\": {\\\"sr\\\": 98, \\\"success\\\": 49, \\\"total\\\": 50}, \\\"T9_pick_up_black_bowl_on_wooden_cabinet\\\": {\\\"sr\\\": 100, \\\"success\\\": 50, \\\"total\\\": 50}}}, \\\"completed_at\\\": \\\"2026-05-21T20:10:19.902Z\\\"}, \\\"eval_pi05_random_k095_object_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T19:03:59.633Z\\\", \\\"updated_at\\\": \\\"2026-05-21T20:08:53.282Z\\\", \\\"hypothesis\\\": \\\"π0.5 random k=0.95 seed42: 定位 random pruning 单调性违反的精确转折点。k=0.9→10% vs k=0.7→75.5%，去除更少 token 反而更差。如果 k=0.95 也很低，问题在高 retention ratio 本身；如果正常(~95%+)，转折在(0.9,0.95)之间。\\\", \\\"parent\\\": \\\"eval_pi05_random_k09_object_seed42_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_object --n_episodes 50 --seed 42 --gpu 0\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"625487\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k095_object_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T19:55:38.624Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_object (50 episodes)\\\", \\\"wall_clock_seconds\\\": 545.6, \\\"gpu_hours\\\": 0.15}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T20:04:45.682Z\\\"}, \\\"failure_reason\\\": \\\"Network unreachable - AutoTokenizer.from_pretrained(\\\\\\\"google/paligemma-3b-pt-224\\\\\\\") failed, no episodes executed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-21T20:04:44.217Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T20:04:53.846959+00:00\\\"}]}}, \\\"eval_pi05_random_k09_object_seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T17:48:39.903Z\\\", \\\"updated_at\\\": \\\"2026-05-21T19:57:53.279Z\\\", \\\"hypothesis\\\": \\\"π0.5 random k=0.9 seed43: 验证 seed42 的 12% SR 异常是否可复现。已确认代码无 bug，seed42 结果疑似 transient issue。加入 torch.manual_seed 修复后的对照重跑。\\\", \\\"parent\\\": \\\"eval_pi05_random_k09_object_seed42_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_object --n_episodes 50 --seed 43 --gpu 1\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu_id\\\": 1, \\\"pid\\\": 531274, \\\"seed\\\": 43, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 50, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_seed43.log\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_object\\\", \\\"checkpoint_path\\\": \\\"N/A_eval_only\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T19:57:27.622Z\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.096, \\\"total_successes\\\": 48, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 119.5, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup\\\": 0.16, \\\"T1_cream_cheese\\\": 0.16, \\\"T2_salad_dressing\\\": 0.1, \\\"T3_bbq_sauce\\\": 0.02, \\\"T4_ketchup\\\": 0.06, \\\"T5_tomato_sauce\\\": 0.14, \\\"T6_butter\\\": 0.14, \\\"T7_milk\\\": 0.02, \\\"T8_chocolate_pudding\\\": 0.08, \\\"T9_orange_juice\\\": 0.08}}}, \\\"eval_pi05_random_k09_object_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T15:52:07.928Z\\\", \\\"updated_at\\\": \\\"2026-05-21T19:57:33.543Z\\\", \\\"hypothesis\\\": \\\"π0.5 random k=0.9 seed42 v2; 填充 scaling curve 数据点。低 CV 模型 10% random pruning 预期影响极小 (baseline 98.2%)\\\", \\\"parent\\\": \\\"eval_pi05_random_k07_object_seed43\\\", \\\"spec\\\": {\\\"suspect\\\": false}, \\\"metrics\\\": {\\\"success_rate\\\": 12, \\\"total_episodes\\\": 500, \\\"seed\\\": 42, \\\"suspect\\\": false, \\\"suspect_reason\\\": \\\"cleared - seed43=9.6% confirms result is real, not bug\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-21T17:48:20.079Z\\\"}}, \\\"count\\\": 20, \\\"total\\\": 289, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7656}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k03_object_seed43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T11:27:32.180Z\", \"updated_at\": \"2026-05-21T22:09:26.332Z\", \"hypothesis\": \"π0.5 L2norm k=0.3 Object seed43: seed 验证 L2norm 非单调性。seed42 L2norm k=0.3=51.0% > k=0.5=33.4%。确认 V-shape 恢复跨 seed 可复现——这是论文要用的发现。\", \"parent\": \"eval_pi05_l2norm_k03_object_seed42\", \"spec\": {\"command\": \"python eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_object --n_episodes 50 --seed 43 --gpu 1\", \"server\": \"westd-41074\", \"gpu_id\": 1, \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"pid\": 207154, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_object_seed43.json\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_object_10tasks_50eps\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\"}, \"conclusion\": \"success\", \"metrics\": {\"SR\": 0.554, \"total_successes\": 277, \"total_episodes\": 500, \"elapsed_min\": 85.15, \"per_task\": {\"alphabet_soup\": 0.16, \"cream_cheese\": 0.56, \"salad_dressing\": 0.9, \"bbq_sauce\": 0.54, \"ketchup\": 0.4, \"tomato_sauce\": 0.86, \"butter\": 0.52, \"milk\": 0.14, \"chocolate_pudding\": 0.92, \"orange_juice\": 0.54}}, \"completed_at\": \"2026-05-21T13:00:46.690Z\"}, \"eval_openvla_l2norm_k09_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T18:34:31.828Z\", \"updated_at\": \"2026-05-21T22:07:51.904Z\", \"hypothesis\": \"OpenVLA L2norm k=0.9 (保留90% tokens) on LIBERO-object seed42. 接近无压缩baseline，验证L2norm在高保留率下是否维持性能，完善scaling law k-sweep数据点。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu_id\": 0, \"pid\": 306593, \"seed\": 42, \"model_name\": \"openvla\", \"data_path\": \"libero_object\", \"data_count\": 500, \"eval_data\": \"libero_object\", \"checkpoint_source\": \"openvla_finetuned\"}, \"log_path\": \"/root/autodl-tmp/logs/eval_openvla_l2norm_k09_object_seed42.log\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_l2norm_prune_k09_object_seed42.json\", \"metrics\": {\"overall_sr\": 0.706, \"total_successes\": 353, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.66, \"cream_cheese\": 0.58, \"salad_dressing\": 0.66, \"bbq_sauce\": 0.48, \"ketchup\": 0.9, \"tomato_sauce\": 0.64, \"butter\": 0.74, \"milk\": 0.74, \"chocolate_pudding\": 0.78, \"orange_juice\": 0.88}, \"elapsed_minutes\": 228.5}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T22:07:51.904Z\"}, \"eval_pi05_l2norm_k05_object_seed43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T11:27:29.169Z\", \"updated_at\": \"2026-05-21T22:03:27.880Z\", \"hypothesis\": \"π0.5 L2norm k=0.5 Object seed43: seed 验证 V-shape valley。seed42=33.4%（最低点）。确认 V-shape valley 跨 seed 可复现。\", \"parent\": \"eval_pi05_l2norm_k05_object_seed42\", \"spec\": {\"command\": \"python eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_object --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu_id\": 0, \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"pid\": 206999, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.50_libero_object_seed43.json\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_object_10tasks_50eps\", \"checkpoint_path\": \"N/A\"}, \"metrics\": {\"overall_sr\": 0.336, \"total_successes\": 168, \"total_episodes\": 500, \"per_task_sr\": {\"alphabet_soup\": 0.44, \"cream_cheese\": 0.08, \"salad_dressing\": 0, \"bbq_sauce\": 0.04, \"ketchup\": 0.6, \"tomato_sauce\": 0.38, \"butter\": 0.32, \"milk\": 0.52, \"chocolate_pudding\": 0.46, \"orange_juice\": 0.52}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T13:17:08.902Z\"}, \"eval_pi05_random_k095_object_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T20:12:00.108Z\", \"updated_at\": \"2026-05-21T21:49:51.815Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_object --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"627788\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k095_object_seed42_v2.log\", \"submitted_at\": \"2026-05-21T20:11:58.028Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_object\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"wall_clock_seconds\": 5873.8, \"gpu_hours\": 1.63}, \"hypothesis\": \"π0.5 random k=0.95 seed42 v2: 定位 random pruning 单调性违反的精确转折点。k=0.9→10% vs k=0.7→75.5%，去除更少 token 反而更差。如果 k=0.95 也很低，问题在高 retention ratio 本身；如果正常(~95%+)，转折在(0.9,0.95)之间。v1 因网络不可达失败，v2 用 HF_HUB_OFFLINE=1 修复。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"reproduce\": {\"finished_at\": \"2026-05-21T21:46:46.534Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T21:46:57.351619+00:00\"}]}, \"metrics\": {\"success_rate\": 69.4, \"total_successes\": 347, \"total_episodes\": 500, \"elapsed_min\": 91.3, \"per_task_sr\": {\"T0_alphabet_soup\": 64, \"T1_cream_cheese\": 92, \"T2_salad_dressing\": 84, \"T3_bbq_sauce\": 56, \"T4_ketchup\": 54, \"T5_tomato_sauce\": 68, \"T6_butter\": 86, \"T7_milk\": 52, \"T8_chocolate_pudding\": 80, \"T9_orange_juice\": 58}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:49:51.815Z\"}, \"eval_smolvla_official_random_k050_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:42:19.468Z\", \"updated_at\": \"2026-05-21T21:28:02.923Z\", \"hypothesis\": \"SmolVLA official random k=0.5 (50% removal) will show ~0% SR, confirming SmolVLA cliff-edge at all pruning ratios\", \"spec\": {\"command\": \"python -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/hub/models--HuggingFaceVLA--smolvla_libero/snapshots/6721902bc4d61e50a3bfdb11dfb4cb626f05d102/ --mode random_prune --k_ratio 0.5 --suite libero_object --num_episodes 50 --gpu 0 --seed 42\", \"server\": \"cqa1-33015\", \"gpu_id\": \"1\", \"model_name\": \"SmolVLA-LIBERO-official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"HuggingFaceVLA/smolvla_libero\", \"checkpoint_path\": \"N/A - eval only\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:27:06.452Z\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k050_object_seed42.json\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.5 confirmed. 0/500 successes. Cliff-edge at all pruning ratios verified.\"}, \"eval_smolvla_official_random_k090_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:22.230Z\", \"updated_at\": \"2026-05-21T21:28:01.433Z\", \"hypothesis\": \"SmolVLA official random k=0.9; k=0.95 已 0% SR，确认 cliff-edge 延续到 k=0.9\", \"spec\": {\"command\": \"python -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/hub/models--HuggingFaceVLA--smolvla_libero/snapshots/6721902bc4d61e50a3bfdb11dfb4cb626f05d102/ --mode random_prune --k_ratio 0.9 --suite libero_object --num_episodes 50 --gpu 0 --seed 42\", \"server\": \"cqa1-33015\", \"gpu_id\": \"0\", \"model_name\": \"SmolVLA-LIBERO-official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"HuggingFaceVLA/smolvla_libero\", \"checkpoint_path\": \"N/A - eval only\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:27:04.107Z\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k090_object_seed42.json\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.9 confirmed. 0/500 successes. Even 10% removal destroys SmolVLA completely.\"}, \"eval_smolvla_official_l2norm_k070_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:19.998Z\", \"updated_at\": \"2026-05-21T21:28:00.050Z\", \"hypothesis\": \"SmolVLA L2-norm k=0.7 on official checkpoint. Expected ~0% SR.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode l2_norm --k_ratio 0.7\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 50, \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k070_object_seed42.json\", \"checkpoint_path\": \"N/A - eval only\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:26:53.749Z\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at L2norm prune k=0.7 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_l2norm_k030_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:21.066Z\", \"updated_at\": \"2026-05-21T21:27:58.750Z\", \"hypothesis\": \"SmolVLA L2-norm k=0.3 on official checkpoint. Expected ~0% SR.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode l2_norm --k_ratio 0.3\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 50, \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_l2norm_k030_object_seed42.json\", \"checkpoint_path\": \"N/A - eval only\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:26:55.944Z\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at L2norm prune k=0.3 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_random_k070_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:23.388Z\", \"updated_at\": \"2026-05-21T21:27:57.528Z\", \"hypothesis\": \"SmolVLA random prune k=0.7 on official checkpoint. Expected ~0% SR.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode random_prune --k_ratio 0.7\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 50, \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k070_object_seed42.json\", \"checkpoint_path\": \"N/A - eval only\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:26:58.037Z\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.7 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_random_k030_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:43:24.427Z\", \"updated_at\": \"2026-05-21T21:27:56.235Z\", \"hypothesis\": \"SmolVLA random prune k=0.3 on official checkpoint. Expected ~0% SR.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python3 -u eval_official_libero.py --pretrained_dir /root/autodl-tmp/.hf_cache/smolvla_libero_official --suite libero_object --num_episodes 50 --gpu 0 --seed 42 --mode random_prune --k_ratio 0.3\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_object\", \"data_count\": 50, \"model_name\": \"smolvla_libero_official\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/smolvla_libero_official\", \"eval_data\": \"libero_object\"}, \"metrics\": {\"overall_sr\": 0, \"total_episodes\": 500, \"total_successes\": 0, \"wilson_ci_95\": [0, 0.0076], \"per_task_sr\": {\"task0\": 0, \"task1\": 0, \"task2\": 0, \"task3\": 0, \"task4\": 0, \"task5\": 0, \"task6\": 0, \"task7\": 0, \"task8\": 0, \"task9\": 0}}, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_official_random_k030_object_seed42.json\", \"checkpoint_path\": \"N/A - eval only\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:27:00.344Z\", \"notes\": \"SmolVLA official checkpoint catastrophic degradation at random prune k=0.3 confirmed. 0/500 successes across all 10 tasks. Hypothesis verified.\"}, \"eval_smolvla_official_l2norm_k050_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:42:18.304Z\", \"updated_at\": \"2026-05-21T21:21:10.125Z\", \"hypothesis\": \"SmolVLA official L2norm k=0.5 补 sweep 数据点，预期与 random k=0.5 一样接近 0% SR\", \"spec\": {\"command\": \"python -u eval_official_libero.py --mode l2_norm --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 42\", \"server\": \"cqa1-33015\", \"gpu_id\": \"3\", \"model_name\": \"SmolVLA-LIBERO-official\", \"seed\": 42, \"data_path\": \"libero_object\", \"data_count\": 500, \"checkpoint_source\": \"HuggingFaceVLA/smolvla_libero\", \"checkpoint_path\": \"N/A - eval only\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0, \"total_episodes\": 500, \"seed\": 42}, \"completed_at\": \"2026-05-21T18:13:34.742Z\"}, \"eval_pi05_l2norm_k05_spatial_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:04:43.315Z\", \"updated_at\": \"2026-05-21T21:05:43.902Z\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.5 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 1\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:1\"], \"pid\": \"590423\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\", \"submitted_at\": \"2026-05-21T19:09:44.831Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_spatial (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"wall_clock_seconds\": 6898.7, \"gpu_hours\": 1.92}, \"hypothesis\": \"π0.5 L2norm k=0.5 on LIBERO-Spatial seed42, 验证 CV=0.055 linear projection 下 L2norm 在 Spatial 任务上是否也接近 random（与 Object 上一致）\", \"reproduce\": {\"finished_at\": \"2026-05-21T21:02:42.865Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T21:02:50.761973+00:00\"}]}, \"metrics\": {\"overall_sr\": 55.6, \"total_successes\": 278, \"total_episodes\": 500, \"elapsed_min\": 108.9, \"per_task_sr\": {\"T0_pick_up_black_bowl_between_plate\": 74, \"T1_pick_up_black_bowl_next_to_ramekin\": 82, \"T2_pick_up_black_bowl_on_plate\": 78, \"T3_pick_up_black_bowl_on_cookie_box\": 28, \"T4_pick_up_black_bowl_in_top_drawer\": 38, \"T5_pick_up_black_bowl_on_ramekin\": 44, \"T6_pick_up_black_bowl_next_to_cookie\": 32, \"T7_pick_up_black_bowl_on_stove\": 74, \"T8_pick_up_black_bowl_next_to_plate\": 62, \"T9_pick_up_black_bowl_on_wooden_cab\": 44}, \"comparison\": {\"vs_random_k05_spatial\": \"55.6 vs 71.6 (-16.0pp)\", \"vs_l2norm_k05_object\": \"55.6 vs 33.4 (+22.2pp)\", \"vs_baseline_spatial\": \"55.6 vs 97.2 (-41.6pp)\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T21:04:43.483Z\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k05_spatial_seed42.log\"}, \"eval_pi05_l2norm_k03_spatial_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:04:48.329Z\", \"updated_at\": \"2026-05-21T21:04:40.771Z\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.3 --suite libero_spatial --n_episodes 50 --seed 42 --gpu 3\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:3\"], \"pid\": \"590816\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\", \"submitted_at\": \"2026-05-21T19:09:50.353Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_spatial (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"wall_clock_seconds\": 6890.4, \"gpu_hours\": 1.91}, \"hypothesis\": \"π0.5 L2norm k=0.3 on LIBERO-Spatial seed42, 验证 k=0.3 处 method reversal (L2norm > random) 是否跨 suite 复现\", \"reproduce\": {\"finished_at\": \"2026-05-21T21:00:31.958Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T21:00:40.481357+00:00\"}]}, \"metrics\": {\"overall_sr\": 57.2, \"total_successes\": 286, \"total_episodes\": 500, \"elapsed_min\": 108.4, \"seed\": 42, \"per_task_sr\": {\"T0_bowl_between_plate\": 62, \"T1_bowl_next_to_ramekin\": 72, \"T2_bowl_from_table_center\": 78, \"T3_bowl_on_cookie_box\": 24, \"T4_bowl_in_top_drawer\": 34, \"T5_bowl_on_ramekin\": 26, \"T6_bowl_next_to_cookie\": 74, \"T7_bowl_on_stove\": 90, \"T8_bowl_next_to_plate\": 66, \"T9_bowl_on_wooden_cabinet\": 46}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k03_spatial_seed42.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"result_json\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.30_libero_spatial_seed42.json\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T21:04:40.771Z\"}, \"eval_pi05_random_k05_spatial_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:04:45.852Z\", \"updated_at\": \"2026-05-21T20:49:21.137Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_spatial_seed42.json\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k05_spatial_seed42.log\", \"wall_clock_seconds\": 5581, \"gpu_hours\": 1.55}, \"hypothesis\": \"π0.5 random k=0.5 on LIBERO-Spatial seed42, 与 L2norm k=0.5 对比验证 cross-suite 下 method preference 是否一致\", \"reproduce\": {\"finished_at\": \"2026-05-21T20:46:53.112Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T20:46:59.855517+00:00\"}]}, \"metrics\": {\"success_rate\": 71.6, \"total_successes\": 358, \"total_episodes\": 500, \"per_task\": {\"T0_bowl_between_plate_ramekin\": 88, \"T1_bowl_next_to_ramekin\": 82, \"T2_bowl_from_table_center\": 88, \"T3_bowl_on_cookie_box\": 52, \"T4_bowl_in_top_drawer\": 44, \"T5_bowl_on_ramekin\": 38, \"T6_bowl_next_to_cookie_box\": 84, \"T7_bowl_on_stove\": 84, \"T8_bowl_next_to_plate\": 80, \"T9_bowl_on_wooden_cabinet\": 76}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T20:49:21.138Z\"}, \"eval_pi05_random_k085_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:04:01.513Z\", \"updated_at\": \"2026-05-21T20:15:51.002Z\", \"hypothesis\": \"π0.5 random k=0.85 seed42: 补充 k=0.7-0.9 之间的数据点。k=0.7→75.5% vs k=0.9→10%，确认 random pruning 曲线在此区间的急剧下降行为，排除 k=0.9 为孤立异常的可能。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --n_episodes 50 --suite libero_object --seed 42 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": 626630, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_object_seed42.log\", \"submitted_at\": \"2026-05-21T20:01:51.062Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": 1, \"seed\": 42, \"model_name\": \"pi05_libero_finetuned\", \"data_path\": \"libero_object\", \"data_count\": 500, \"eval_data\": \"libero_object\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"wall_clock_seconds\": 602.0, \"gpu_hours\": 0.17}, \"reproduce\": {\"finished_at\": \"2026-05-21T20:11:49.422Z\"}, \"failure_reason\": \"Network unreachable - AutoTokenizer.from_pretrained(\\\"google/paligemma-3b-pt-224\\\") failed, 0 episodes executed. Same root cause as k095 and fixed-mask v1.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T20:11:53.085Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T20:12:03.069992+00:00\"}]}}, \"eval_pi05_random_k09_fixedmask_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:09:35.064Z\", \"updated_at\": \"2026-05-21T20:10:57.961Z\", \"hypothesis\": \"判别 k=0.9 ~10% SR 的根因是 per-call stochastic mask 导致时序不一致还是 random 90% subset 本身不够\", \"parent\": \"eval_pi05_random_k09_object_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_object --n_episodes 50 --seed 42 --gpu 0 --fixed_mask\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": 625841, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_fixedmask_seed42.log\", \"submitted_at\": \"2026-05-21T19:57:07.867Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": 1, \"seed\": 42, \"model_name\": \"pi05_libero_finetuned\", \"data_path\": \"libero_object\", \"data_count\": 500, \"eval_data\": \"libero_object\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"checkpoint_path\": \"N/A_eval_only\", \"wall_clock_seconds\": 822.3, \"gpu_hours\": 0.23}, \"reproduce\": {\"finished_at\": \"2026-05-21T20:08:13.719Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T20:08:30.930267+00:00\"}]}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T20:10:50.143Z\", \"metrics\": {\"error\": \"Network unreachable - AutoTokenizer.from_pretrained('google/paligemma-3b-pt-224') failed because AutoDL network was not enabled (source /etc/network_turbo not run). No episodes executed.\", \"overall_sr\": null, \"total_episodes\": 0}}, \"eval_pi05_baseline_spatial_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:04:40.813Z\", \"updated_at\": \"2026-05-21T20:10:19.902Z\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode none --suite libero_spatial --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"westd-38929\", \"gpu\": [\"cuda:0\"], \"pid\": \"590344\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_baseline_spatial_seed42.log\", \"submitted_at\": \"2026-05-21T19:09:42.134Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_spatial (10 tasks x 50 eps)\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\", \"checkpoint_path\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_baseline_libero_spatial_seed42.json\", \"wall_clock_seconds\": 3637.8, \"gpu_hours\": 1.01}, \"hypothesis\": \"π0.5 baseline on LIBERO-Spatial seed42, establishing cross-suite baseline to verify pruning tolerance generalization across different task suites\", \"reproduce\": {\"finished_at\": \"2026-05-21T20:07:38.514Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T20:07:45.522889+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 97.2, \"total_successes\": 486, \"num_episodes\": 500, \"elapsed_minutes\": 55.8, \"seed\": 42, \"per_task\": {\"T0_pick_up_black_bowl_between_plate\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T1_pick_up_black_bowl_next_to_ramekin\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T2_pick_up_black_bowl_from_stove\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T3_pick_up_black_bowl_on_cookie_box\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T4_pick_up_black_bowl_in_top_drawer\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T5_pick_up_black_bowl_on_ramekin\": {\"sr\": 78, \"success\": 39, \"total\": 50}, \"T6_pick_up_black_bowl_next_to_cookie\": {\"sr\": 100, \"success\": 50, \"total\": 50}, \"T7_pick_up_black_bowl_on_stove\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T8_pick_up_black_bowl_next_to_plate\": {\"sr\": 98, \"success\": 49, \"total\": 50}, \"T9_pick_up_black_bowl_on_wooden_cabinet\": {\"sr\": 100, \"success\": 50, \"total\": 50}}}, \"completed_at\": \"2026-05-21T20:10:19.902Z\"}, \"eval_pi05_random_k095_object_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:03:59.633Z\", \"updated_at\": \"2026-05-21T20:08:53.282Z\", \"hypothesis\": \"π0.5 random k=0.95 seed42: 定位 random pruning 单调性违反的精确转折点。k=0.9→10% vs k=0.7→75.5%，去除更少 token 反而更差。如果 k=0.95 也很低，问题在高 retention ratio 本身；如果正常(~95%+)，转折在(0.9,0.95)之间。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_object --n_episodes 50 --seed 42 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:0\"], \"pid\": \"625487\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k095_object_seed42.log\", \"submitted_at\": \"2026-05-21T19:55:38.624Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress/\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_object (50 episodes)\", \"wall_clock_seconds\": 545.6, \"gpu_hours\": 0.15}, \"reproduce\": {\"finished_at\": \"2026-05-21T20:04:45.682Z\"}, \"failure_reason\": \"Network unreachable - AutoTokenizer.from_pretrained(\\\"google/paligemma-3b-pt-224\\\") failed, no episodes executed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T20:04:44.217Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T20:04:53.846959+00:00\"}]}}, \"eval_pi05_random_k09_object_seed43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T17:48:39.903Z\", \"updated_at\": \"2026-05-21T19:57:53.279Z\", \"hypothesis\": \"π0.5 random k=0.9 seed43: 验证 seed42 的 12% SR 异常是否可复现。已确认代码无 bug，seed42 结果疑似 transient issue。加入 torch.manual_seed 修复后的对照重跑。\", \"parent\": \"eval_pi05_random_k09_object_seed42_v2\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_object --n_episodes 50 --seed 43 --gpu 1\", \"server\": \"westd-41074\", \"gpu_id\": 1, \"pid\": 531274, \"seed\": 43, \"model_name\": \"pi05_libero_finetuned\", \"data_path\": \"libero_object\", \"data_count\": 50, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_pi05_random_k09_seed43.log\", \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_object\", \"checkpoint_path\": \"N/A_eval_only\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T19:57:27.622Z\", \"metrics\": {\"overall_sr\": 0.096, \"total_successes\": 48, \"total_episodes\": 500, \"elapsed_min\": 119.5, \"per_task_sr\": {\"T0_alphabet_soup\": 0.16, \"T1_cream_cheese\": 0.16, \"T2_salad_dressing\": 0.1, \"T3_bbq_sauce\": 0.02, \"T4_ketchup\": 0.06, \"T5_tomato_sauce\": 0.14, \"T6_butter\": 0.14, \"T7_milk\": 0.02, \"T8_chocolate_pudding\": 0.08, \"T9_orange_juice\": 0.08}}}, \"eval_pi05_random_k09_object_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:52:07.928Z\", \"updated_at\": \"2026-05-21T19:57:33.543Z\", \"hypothesis\": \"π0.5 random k=0.9 seed42 v2; 填充 scaling curve 数据点。低 CV 模型 10% random pruning 预期影响极小 (baseline 98.2%)\", \"parent\": \"eval_pi05_random_k07_object_seed43\", \"spec\": {\"suspect\": false}, \"metrics\": {\"success_rate\": 12, \"total_episodes\": 500, \"seed\": 42, \"suspect\": false, \"suspect_reason\": \"cleared - seed43=9.6% confirms result is real, not bug\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T17:48:20.079Z\"}}, \"count\": 20, \"total\": 289, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7656}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+I found the L2norm k=0.9 experiment. The command was:
+```
+CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.9 --suite libero_object --seed 42
+```
+
+The script supports modes: `baseline`, `random_prune`, `l2norm_prune`. So for random, I need `--mode random_prune --k_ratio 0.9`.
+
+The script defaults to `--num_episodes 50` (which means 50 per task × 10 tasks = 500 total). 
+
+The script already has offline mode hardcoded, so I don't need to worry about that. Now I need to register this experiment in the registry and submit the job, which means I should look for the `submit_training_job` tool.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "36d5c2d2-83d6-4fa4-a9d8-06eba41effba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R35TYrYZnF4WXjiNGhgg2p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15500,
+      "cache_read_input_tokens": 27176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15500
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+L2norm k=0.9 的命令确认：`--mode l2norm_prune`。Random 对应 `--mode random_prune`。脚本已内置 `HF_HUB_OFFLINE=1`。
+
+现在注册实验并提交。先搜索 submit_training_job 工具。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "6ede34d4-bc03-42d2-bd08-a4a1bceca761",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R35TYrYZnF4WXjiNGhgg2p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15500,
+      "cache_read_input_tokens": 27176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15500
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MAHHbxBZy1i5pNoEqNAxws`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_training_job",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "b8f7749b-d10c-4fd9-a5dd-8139fb11dcf8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R35TYrYZnF4WXjiNGhgg2p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15500,
+      "cache_read_input_tokens": 27176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15500
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T22:10:25.189Z_
+
+<details><summary>↩ Tool result · `toolu_01MAHHbxBZy1i5pNoEqNAxws`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "0a76608b-9f8d-4b2c-9216-8879736e1227",
+  "tool_use_result": {
+    "matches": [],
+    "query": "select:mcp__agent-ml-research__submit_training_job",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The submit_training_job tool is not found. Let me search for it differently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "9b4b2800-8840-4d54-b9a8-9db90fdcd57e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9dNVkcFZHyC39Fa3vkxDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 524,
+      "cache_read_input_tokens": 42676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 524
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VNHKsTSeHCmwCbZGLm6yx4`</summary>
+
+```json
+{
+  "query": "submit training job",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "4bd374b2-d941-40c6-9c37-0caa694a83f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9dNVkcFZHyC39Fa3vkxDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 524,
+      "cache_read_input_tokens": 42676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 524
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T22:10:28.145Z_
+
+<details><summary>↩ Tool result · `toolu_01VNHKsTSeHCmwCbZGLm6yx4`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronCreate"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "Monitor"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "37835102-37e3-4139-a8d3-fba64458181a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__kill_job",
+      "CronDelete",
+      "CronCreate",
+      "Monitor"
+    ],
+    "query": "submit training job",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+`submit_training_job` 不在可用工具列表中。我直接用 `ssh_execute` 通过 nohup 提交，然后注册 registry。
+
+先创建 registry 实验，再提交任务。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "3d8d729b-56a9-49cc-bf2a-ec6e9f4f35de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EED7Vw9rJE6JUuvcGdyBwa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3266,
+      "cache_read_input_tokens": 43200,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3266
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JSas8MeNptFYKhaJHNZmeQ`</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_random_k09_object_seed42",
+  "field": "hypothesis",
+  "value": "OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "c3a7c1c1-5cfb-489d-8ecc-51b9b68cac2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EED7Vw9rJE6JUuvcGdyBwa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3266,
+      "cache_read_input_tokens": 43200,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3266
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MMZjT2F9GcsikHQdnR5Gs5`</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_random_k09_object_seed42",
+  "field": "parent",
+  "value": "eval_openvla_l2norm_k09_object_seed42",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "9dfa9555-9efe-42ed-ad85-0dd3153d8e37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EED7Vw9rJE6JUuvcGdyBwa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3266,
+      "cache_read_input_tokens": 43200,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3266
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T22:10:41.427Z_
+
+<details><summary>↩ Tool result · `toolu_01JSas8MeNptFYKhaJHNZmeQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k09_object_seed42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:10:39.739Z\", \"updated_at\": \"2026-05-21T22:10:39.739Z\", \"hypothesis\": \"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.5866}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "7f4616ef-bd1b-4724-84e8-8c8cac5c581e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k09_object_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T22:10:39.739Z\\\", \\\"updated_at\\\": \\\"2026-05-21T22:10:39.739Z\\\", \\\"hypothesis\\\": \\\"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.5866}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k09_object_seed42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:10:39.739Z\", \"updated_at\": \"2026-05-21T22:10:39.739Z\", \"hypothesis\": \"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.5866}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T22:10:44.549Z_
+
+<details><summary>↩ Tool result · `toolu_01MMZjT2F9GcsikHQdnR5Gs5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k09_object_seed42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:10:39.739Z\", \"updated_at\": \"2026-05-21T22:10:43.575Z\", \"hypothesis\": \"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\", \"parent\": \"eval_openvla_l2norm_k09_object_seed42\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.089}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "f59a78dc-597a-4b0c-a9cf-7c6155a2a144",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k09_object_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T22:10:39.739Z\\\", \\\"updated_at\\\": \\\"2026-05-21T22:10:43.575Z\\\", \\\"hypothesis\\\": \\\"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\\\", \\\"parent\\\": \\\"eval_openvla_l2norm_k09_object_seed42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.089}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k09_object_seed42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:10:39.739Z\", \"updated_at\": \"2026-05-21T22:10:43.575Z\", \"hypothesis\": \"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\", \"parent\": \"eval_openvla_l2norm_k09_object_seed42\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.089}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+Registry 创建完毕。提交实验到 GPU0。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "bd898c48-5c0d-43ea-a1e1-b2027be2e58e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nbxthSuQFjNSGFPc4sQDy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1116,
+      "cache_read_input_tokens": 46466,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1116
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01U4Q5TkoCFGtvhNZLcvqdNx`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "cd /root/autodl-tmp/importance_margin_vla_compress && mkdir -p logs && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42' > logs/eval_openvla_random_k09_object_seed42.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "ab5327b6-be44-4702-960a-3c5368425599",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nbxthSuQFjNSGFPc4sQDy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1116,
+      "cache_read_input_tokens": 46466,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1116
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T22:10:50.507Z_
+
+<details><summary>↩ Tool result · `toolu_01U4Q5TkoCFGtvhNZLcvqdNx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=360366\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "143b20c8-f253-470f-b421-75272892edf1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=360366\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID=360366\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+PID=360366。更新 registry 为 RUNNING 并验证进程启动。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "c8f97dfb-b08c-4844-9755-2205a831ce54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Awcd5keRSN9hWpwtGZ7UGF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 47582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 314
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015D8Z4GGBAeqZBGRqTk5X83`</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_random_k09_object_seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42",
+    "server": "westd-27271",
+    "gpu_id": 0,
+    "pid": 360366,
+    "seed": 42,
+    "model_name": "openvla",
+    "data_path": "libero_object",
+    "data_count": 500,
+    "eval_data": "libero_object",
+    "checkpoint_source": "openvla_finetuned",
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k09_object_seed42.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "7f6f9d1c-afd1-4ce3-8ced-5f956156758c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Awcd5keRSN9hWpwtGZ7UGF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 47582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 314
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011TFE88J2cNavDMXZJQSfxU`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ps -p 360366 -o pid,cmd --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "25c25a1b-bacb-4e7b-9c33-f654f98019f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Awcd5keRSN9hWpwtGZ7UGF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 47582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 314
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T22:10:57.974Z_
+
+<details><summary>↩ Tool result · `toolu_015D8Z4GGBAeqZBGRqTk5X83`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.7488}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "6f2aad92-241d-4f90-a595-a208930958e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7488}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.7488}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T22:10:58.429Z_
+
+<details><summary>↩ Tool result · `toolu_011TFE88J2cNavDMXZJQSfxU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "8300133d-19c1-4cb9-8212-1b9b543db2f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The process might have exited already. Let me check the log and also try the state transition properly. The state machine requires PREPARING → QUEUED → RUNNING. Let me also check if the process is running under a different PID (maybe the bash wrapper spawned a child).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "10e24c3e-7f09-4849-a6e0-fa175e4fab2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vRsMgQjtb41ULixi5Vxeg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 676,
+      "cache_read_input_tokens": 47896,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 676
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+进程可能已在子进程中运行。检查日志和进程状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "da19ade8-9a10-4a1a-a6bd-1752cccf1355",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vRsMgQjtb41ULixi5Vxeg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 676,
+      "cache_read_input_tokens": 47896,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 676
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017W55cYxYYxZFLugKG4ufGq`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -20 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k09_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "1029e1df-ebbd-4d43-ae7e-f3beef7c212d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vRsMgQjtb41ULixi5Vxeg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 676,
+      "cache_read_input_tokens": 47896,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 676
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T22:11:04.517Z_
+
+<details><summary>↩ Tool result · `toolu_017W55cYxYYxZFLugKG4ufGq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "b7cd68e0-133c-43c8-aa05-074bcef4c512",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: python: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017WcJEJJfufCkoGV6R6Ry6S`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ps aux --no-headers -w -w",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "576de4ee-c131-4caa-ab24-ca299e60215b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vRsMgQjtb41ULixi5Vxeg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 676,
+      "cache_read_input_tokens": 47896,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 676
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T22:11:05.501Z_
+
+<details><summary>↩ Tool result · `toolu_017WcJEJJfufCkoGV6R6Ry6S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  2912 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\nroot        890  2.9  0.0 723872 22996 ?        Sl   May18 157:28 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        905  0.0  0.0 189148 100532 ?       S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        908  0.0  0.0  15444  9416 ?        S    May18   0:20 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        910  0.2  0.0 6894324 107752 ?      Sl   May18  12:28 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        912  0.2  0.0 2942728 20228 ?       Sl   May18  11:06 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        913  0.0  0.0 2794880 20360 ?       Sl   May18   4:06 proxy -c /init/proxy/proxy.ini\\nroot        915  0.0  0.0 3329588 78004 ?       Sl   May18   3:19 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        999  0.1  0.0 28341192 11940 ?      Sl   May18   5:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_gl8jv6re/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_gl8jv6re/startup_error\\nroot     183962  1.1  1.7 116180928 18443956 pts/0 Sl+ May21  11:38 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\nroot     183963  1.1  1.7 116180940 18415744 pts/0 Sl+ May21  11:40 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\nroot     183964  1.1  1.7 116180952 18448396 pts/0 Sl+ May21  11:38 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\nroot     183965  1.1  1.7 116180964 18419572 pts/0 Sl+ May21  11:39 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\nroot     360315  0.0  0.0  16692 11064 ?        Ss   06:10   0:00 sshd: root@notty\\nroot     360375  1.0  0.0  16692 11024 ?        Ss   06:11   0:00 sshd: root@notty\\nroot     360402  0.0  0.0   7064  1544 ?        Rs   06:11   0:00 ps aux --no-headers -w -w\\nroot     915285  0.0  0.0  16780 10908 ?        Ss   May20   0:19 sshd: root@notty\\nroot     921270  0.0  0.0   6832  4404 ?        Ss   May20   0:01 tmux new-session -d -s train_openvla_sc_m32_seed42 bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 WANDB_MODE=offline python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42 2>&1 | tee logs/train_openvla_sc_m32_seed42_resume.log'\\nroot     921272  0.0  0.0   4364  2780 pts/0    Ss+  May20   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 WANDB_MODE=offline python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42 2>&1 | tee logs/train_openvla_sc_m32_seed42_resume.log\\nroot     921279  283  0.5 117019584 5508984 pts/0 Rl+ May20 6018:52 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\nroot     921280  0.0  0.0   2796  1016 pts/0    S+   May20   0:00 tee logs/train_openvla_sc_m32_seed42_resume.log\\nroot     921789  0.2  0.0 1281204 44020 ?       Ssl  May20   4:19 /root/miniconda3/lib/python3.12/site-packages/wandb/bin/wandb-core --port-filename /tmp/tmp2xijygeu/port-921279.txt --pid 921279\\nroot     921807  0.0  0.0 3173492 26388 ?       Sl   May20   0:09 /root/miniconda3/lib/python3.12/site-packages/wandb/bin/gpu_stats --portfile /tmp/wandb-system-monitor-portfile-2837439178 --parent-pid 921789\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "6cf6e6fa-fa0e-4173-b8a7-e97f686cd541",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  2912 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\\\nroot        890  2.9  0.0 723872 22996 ?        Sl   May18 157:28 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        905  0.0  0.0 189148 100532 ?       S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        908  0.0  0.0  15444  9416 ?        S    May18   0:20 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        910  0.2  0.0 6894324 107752 ?      Sl   May18  12:28 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        912  0.2  0.0 2942728 20228 ?       Sl   May18  11:06 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        913  0.0  0.0 2794880 20360 ?       Sl   May18   4:06 proxy -c /init/proxy/proxy.ini\\\\nroot        915  0.0  0.0 3329588 78004 ?       Sl   May18   3:19 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        999  0.1  0.0 28341192 11940 ?      Sl   May18   5:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_gl8jv6re/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_gl8jv6re/startup_error\\\\nroot     183962  1.1  1.7 116180928 18443956 pts/0 Sl+ May21  11:38 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\\\nroot     183963  1.1  1.7 116180940 18415744 pts/0 Sl+ May21  11:40 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\\\nroot     183964  1.1  1.7 116180952 18448396 pts/0 Sl+ May21  11:38 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\\\nroot     183965  1.1  1.7 116180964 18419572 pts/0 Sl+ May21  11:39 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\\\nroot     360315  0.0  0.0  16692 11064 ?        Ss   06:10   0:00 sshd: root@notty\\\\nroot     360375  1.0  0.0  16692 11024 ?        Ss   06:11   0:00 sshd: root@notty\\\\nroot     360402  0.0  0.0   7064  1544 ?        Rs   06:11   0:00 ps aux --no-headers -w -w\\\\nroot     915285  0.0  0.0  16780 10908 ?        Ss   May20   0:19 sshd: root@notty\\\\nroot     921270  0.0  0.0   6832  4404 ?        Ss   May20   0:01 tmux new-session -d -s train_openvla_sc_m32_seed42 bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 WANDB_MODE=offline python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42 2>&1 | tee logs/train_openvla_sc_m32_seed42_resume.log'\\\\nroot     921272  0.0  0.0   4364  2780 pts/0    Ss+  May20   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 WANDB_MODE=offline python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42 2>&1 | tee logs/train_openvla_sc_m32_seed42_resume.log\\\\nroot     921279  283  0.5 117019584 5508984 pts/0 Rl+ May20 6018:52 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\\\nroot     921280  0.0  0.0   2796  1016 pts/0    S+   May20   0:00 tee logs/train_openvla_sc_m32_seed42_resume.log\\\\nroot     921789  0.2  0.0 1281204 44020 ?       Ssl  May20   4:19 /root/miniconda3/lib/python3.12/site-packages/wandb/bin/wandb-core --port-filename /tmp/tmp2xijygeu/port-921279.txt --pid 921279\\\\nroot     921807  0.0  0.0 3173492 26388 ?       Sl   May20   0:09 /root/miniconda3/lib/python3.12/site-packages/wandb/bin/gpu_stats --portfile /tmp/wandb-system-monitor-portfile-2837439178 --parent-pid 921789\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  2912 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\nroot        890  2.9  0.0 723872 22996 ?        Sl   May18 157:28 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        905  0.0  0.0 189148 100532 ?       S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        908  0.0  0.0  15444  9416 ?        S    May18   0:20 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        910  0.2  0.0 6894324 107752 ?      Sl   May18  12:28 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        912  0.2  0.0 2942728 20228 ?       Sl   May18  11:06 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        913  0.0  0.0 2794880 20360 ?       Sl   May18   4:06 proxy -c /init/proxy/proxy.ini\\nroot        915  0.0  0.0 3329588 78004 ?       Sl   May18   3:19 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        999  0.1  0.0 28341192 11940 ?      Sl   May18   5:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_gl8jv6re/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_gl8jv6re/startup_error\\nroot     183962  1.1  1.7 116180928 18443956 pts/0 Sl+ May21  11:38 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\nroot     183963  1.1  1.7 116180940 18415744 pts/0 Sl+ May21  11:40 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\nroot     183964  1.1  1.7 116180952 18448396 pts/0 Sl+ May21  11:38 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\nroot     183965  1.1  1.7 116180964 18419572 pts/0 Sl+ May21  11:39 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\nroot     360315  0.0  0.0  16692 11064 ?        Ss   06:10   0:00 sshd: root@notty\\nroot     360375  1.0  0.0  16692 11024 ?        Ss   06:11   0:00 sshd: root@notty\\nroot     360402  0.0  0.0   7064  1544 ?        Rs   06:11   0:00 ps aux --no-headers -w -w\\nroot     915285  0.0  0.0  16780 10908 ?        Ss   May20   0:19 sshd: root@notty\\nroot     921270  0.0  0.0   6832  4404 ?        Ss   May20   0:01 tmux new-session -d -s train_openvla_sc_m32_seed42 bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 WANDB_MODE=offline python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42 2>&1 | tee logs/train_openvla_sc_m32_seed42_resume.log'\\nroot     921272  0.0  0.0   4364  2780 pts/0    Ss+  May20   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 WANDB_MODE=offline python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42 2>&1 | tee logs/train_openvla_sc_m32_seed42_resume.log\\nroot     921279  283  0.5 117019584 5508984 pts/0 Rl+ May20 6018:52 python -u train_openvla_smart_compress.py --config configs/openvla_smart_compress_m32.yaml --resume checkpoints/openvla_sc_m32_seed42\\nroot     921280  0.0  0.0   2796  1016 pts/0    S+   May20   0:00 tee logs/train_openvla_sc_m32_seed42_resume.log\\nroot     921789  0.2  0.0 1281204 44020 ?       Ssl  May20   4:19 /root/miniconda3/lib/python3.12/site-packages/wandb/bin/wandb-core --port-filename /tmp/tmp2xijygeu/port-921279.txt --pid 921279\\nroot     921807  0.0  0.0 3173492 26388 ?       Sl   May20   0:09 /root/miniconda3/lib/python3.12/site-packages/wandb/bin/gpu_stats --portfile /tmp/wandb-system-monitor-portfile-2837439178 --parent-pid 921789\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GNriW35A4ig3o5zNmCgChD`</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_random_k09_object_seed42",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "0a59ddbe-0d81-4ef9-99ff-ab9d810e8bb4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vRsMgQjtb41ULixi5Vxeg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 676,
+      "cache_read_input_tokens": 47896,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 676
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T22:11:13.182Z_
+
+<details><summary>↩ Tool result · `toolu_01GNriW35A4ig3o5zNmCgChD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k09_object_seed42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:10:39.739Z\", \"updated_at\": \"2026-05-21T22:11:07.365Z\", \"hypothesis\": \"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\", \"parent\": \"eval_openvla_l2norm_k09_object_seed42\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.3485}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "43b97c72-d69f-48bc-a1f0-bf270faf8f7f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k09_object_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T22:10:39.739Z\\\", \\\"updated_at\\\": \\\"2026-05-21T22:11:07.365Z\\\", \\\"hypothesis\\\": \\\"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\\\", \\\"parent\\\": \\\"eval_openvla_l2norm_k09_object_seed42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.3485}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k09_object_seed42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:10:39.739Z\", \"updated_at\": \"2026-05-21T22:11:07.365Z\", \"hypothesis\": \"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\", \"parent\": \"eval_openvla_l2norm_k09_object_seed42\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.3485}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The issue is `python: command not found` - because the nohup command ran bare bash without activating conda. The training on GPU1 uses conda. I need to activate conda first. Let me resubmit with the conda activation.
+
+Also I see the GPU1 is occupied by the M32 VTC training (`train_openvla_smart_compress.py`), which is correct - don't touch it.
+
+Let me resubmit with conda activation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "65984b48-fc00-4c79-a14f-e190cc81f425",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016jK1P7gRbvCfQZSHo6fEgq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2930,
+      "cache_read_input_tokens": 48572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2930
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+`python: command not found` — 需要先激活 conda。重新提交。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "9af77a34-ab7e-4b25-ade2-4fa51e2c60c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016jK1P7gRbvCfQZSHo6fEgq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2930,
+      "cache_read_input_tokens": 48572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2930
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VTrMqfgyrg9QZnY9YWcEuJ`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "cd /root/autodl-tmp/importance_margin_vla_compress && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42' > logs/eval_openvla_random_k09_object_seed42.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "332deec0-4c5d-4f5a-83cd-64efd4f69d97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016jK1P7gRbvCfQZSHo6fEgq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2930,
+      "cache_read_input_tokens": 48572,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2930
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T22:11:54.912Z_
+
+<details><summary>↩ Tool result · `toolu_01VTrMqfgyrg9QZnY9YWcEuJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && nohup bash -c \\\\'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42\\\\' > logs/eval_openvla_random_k09_object_seed42.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=360411\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "cbdeca83-eab3-4836-b847-7e88dfc860d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && nohup bash -c \\\\\\\\'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42\\\\\\\\' > logs/eval_openvla_random_k09_object_seed42.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=360411\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && nohup bash -c \\\\'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42\\\\' > logs/eval_openvla_random_k09_object_seed42.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=360411\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+It seems like the command started but the SSH session took longer to complete (probably because conda activation takes time). The PID is 360411. Let me check if it's running.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "5f96421b-d80a-476b-b9fb-f0dc56f5f677",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AK3kQH1nj9xbwrwK7QpE9D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 51502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+PID=360411 已获取（SSH 超时但进程已启动）。验证进程和日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "c60f49c3-7b1c-48fd-b50c-2fa3deb0b6b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AK3kQH1nj9xbwrwK7QpE9D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 51502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VYQyLpnQKAadG2drg2yWmf`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ps -p 360411 -o pid,cmd --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "5e4fab13-9662-48e6-ab07-ce0c5b89f5bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AK3kQH1nj9xbwrwK7QpE9D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 51502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ms2hGnNLtLkR7SUVLMQtHm`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -20 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k09_object_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "a22b3986-f058-4740-ac4c-4dc827122531",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AK3kQH1nj9xbwrwK7QpE9D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 642,
+      "cache_read_input_tokens": 51502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 642
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T22:12:00.915Z_
+
+<details><summary>↩ Tool result · `toolu_01VYQyLpnQKAadG2drg2yWmf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"360411 bash -c cd /root/autodl-tmp/importance_margin_vla_compress && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42' > logs/eval_openvla_random_k09_object_seed42.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "30ba4ecd-ed65-4f6c-ab76-45cfcb02ec80",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"360411 bash -c cd /root/autodl-tmp/importance_margin_vla_compress && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42' > logs/eval_openvla_random_k09_object_seed42.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"360411 bash -c cd /root/autodl-tmp/importance_margin_vla_compress && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42' > logs/eval_openvla_random_k09_object_seed42.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T22:12:01.442Z_
+
+<details><summary>↩ Tool result · `toolu_01Ms2hGnNLtLkR7SUVLMQtHm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[*] Loading OpenVLA from: /root/autodl-tmp/openvla-libero-object\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  9.13it/s]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00, 12.84it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 13.10it/s]\\n[*] Model loaded, GPU: 15.1 GB\\n[*] Vision tokens: 256, dim: 4096\\n[*] Random pruning: k=0.9\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[*] libero_object: 10 tasks x 50 episodes = 500 total\\n\\n[Task 1/10] pick up the alphabet soup and place it in the basket\\n[Pruning] 256 -> 230 vision tokens (k=0.9)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "38ffd075-d3ba-42f5-a4b2-d85467930758",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[*] Loading OpenVLA from: /root/autodl-tmp/openvla-libero-object\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  9.13it/s]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00, 12.84it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 13.10it/s]\\\\n[*] Model loaded, GPU: 15.1 GB\\\\n[*] Vision tokens: 256, dim: 4096\\\\n[*] Random pruning: k=0.9\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[*] libero_object: 10 tasks x 50 episodes = 500 total\\\\n\\\\n[Task 1/10] pick up the alphabet soup and place it in the basket\\\\n[Pruning] 256 -> 230 vision tokens (k=0.9)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[*] Loading OpenVLA from: /root/autodl-tmp/openvla-libero-object\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  9.13it/s]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00, 12.84it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 13.10it/s]\\n[*] Model loaded, GPU: 15.1 GB\\n[*] Vision tokens: 256, dim: 4096\\n[*] Random pruning: k=0.9\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[*] libero_object: 10 tasks x 50 episodes = 500 total\\n\\n[Task 1/10] pick up the alphabet soup and place it in the basket\\n[Pruning] 256 -> 230 vision tokens (k=0.9)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+进程正常运行，模型已加载，开始 Task 1/10 评估（256→230 tokens, k=0.9 random pruning）。
+
+更新 registry 为 RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "ac42b4ca-630d-481b-9477-5f6a7011888b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1bGLtXA3MSFjUPd5NH35V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1120,
+      "cache_read_input_tokens": 52144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1120
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LE4a54R7nyhnN2qkmL5J3P`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "716eb355-656f-477a-8939-18f4fa656023",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1bGLtXA3MSFjUPd5NH35V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1120,
+      "cache_read_input_tokens": 52144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1120
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T22:12:06.876Z_
+
+<details><summary>↩ Tool result · `toolu_01LE4a54R7nyhnN2qkmL5J3P`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 15980 MiB, 73 %\\n1, 42189 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "5c9498de-f0ab-4c98-be83-2b5d5632e5c5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 15980 MiB, 73 %\\\\n1, 42189 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 15980 MiB, 73 %\\n1, 42189 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01XaNMaHnVmsHiwVHUkFGvov`</summary>
+
+```json
+{
+  "exp_id": "eval_openvla_random_k09_object_seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "importance_margin_vla_compress",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42",
+    "server": "westd-27271",
+    "gpu_id": 0,
+    "pid": 360411,
+    "seed": 42,
+    "model_name": "openvla",
+    "data_path": "libero_object",
+    "data_count": 500,
+    "eval_data": "libero_object",
+    "checkpoint_source": "/root/autodl-tmp/openvla-libero-object",
+    "checkpoint_path": "/root/autodl-tmp/openvla-libero-object",
+    "log_path": "/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k09_object_seed42.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "cbc3302b-1340-4308-b5eb-65cb93674d76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1bGLtXA3MSFjUPd5NH35V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1120,
+      "cache_read_input_tokens": 52144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1120
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-21T22:12:13.158Z_
+
+<details><summary>↩ Tool result · `toolu_01XaNMaHnVmsHiwVHUkFGvov`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k09_object_seed42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:10:39.739Z\", \"updated_at\": \"2026-05-21T22:12:11.405Z\", \"hypothesis\": \"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\", \"parent\": \"eval_openvla_l2norm_k09_object_seed42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu_id\": 0, \"pid\": 360411, \"seed\": 42, \"model_name\": \"openvla\", \"data_path\": \"libero_object\", \"data_count\": 500, \"eval_data\": \"libero_object\", \"checkpoint_source\": \"/root/autodl-tmp/openvla-libero-object\", \"checkpoint_path\": \"/root/autodl-tmp/openvla-libero-object\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k09_object_seed42.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.0594}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "4664a511-59d2-4c0f-ae4e-f4d8fac0f79c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_openvla_random_k09_object_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T22:10:39.739Z\\\", \\\"updated_at\\\": \\\"2026-05-21T22:12:11.405Z\\\", \\\"hypothesis\\\": \\\"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\\\", \\\"parent\\\": \\\"eval_openvla_l2norm_k09_object_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"gpu_id\\\": 0, \\\"pid\\\": 360411, \\\"seed\\\": 42, \\\"model_name\\\": \\\"openvla\\\", \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"eval_data\\\": \\\"libero_object\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/openvla-libero-object\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/openvla-libero-object\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k09_object_seed42.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0594}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_openvla_random_k09_object_seed42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:10:39.739Z\", \"updated_at\": \"2026-05-21T22:12:11.405Z\", \"hypothesis\": \"OpenVLA random k=0.9 Object seed42: 与 L2norm k=0.9(70.6%) 配对对比。CV=0.215（中等），如果 random 也接近 70% → 中等 CV 下 method indifferent；如果明显更低 → 中等 CV 下 L2norm 仍有选择优势。与 π0.5(CV=0.055) 的极端分化(98.2% vs 10.8%)对比。\", \"parent\": \"eval_openvla_l2norm_k09_object_seed42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.9 --suite libero_object --seed 42\", \"server\": \"westd-27271\", \"gpu_id\": 0, \"pid\": 360411, \"seed\": 42, \"model_name\": \"openvla\", \"data_path\": \"libero_object\", \"data_count\": 500, \"eval_data\": \"libero_object\", \"checkpoint_source\": \"/root/autodl-tmp/openvla-libero-object\", \"checkpoint_path\": \"/root/autodl-tmp/openvla-libero-object\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k09_object_seed42.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.0594}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+部署完成。
+
+**状态汇总：**
+- **实验**: `eval_openvla_random_k09_object_seed42` → RUNNING
+- **服务器**: westd-27271 GPU0 (15.9GB / 73% util)
+- **PID**: 360411
+- **配置**: OpenVLA random_prune k=0.9, libero_object, 500 episodes, seed 42
+- **进度**: 模型已加载(15.1GB)，Task 1/10 评估中，256→230 vision tokens
+- **GPU1**: M32 VTC 训练不受影响 (42GB occupied)
+- **预计耗时**: ~4h（参考 L2norm k=0.9 用了 228 min）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "uuid": "06841346-23be-4be2-8ca2-9f46c1ae7d56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ps511NqonJj4kGFDSmjQaL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1249,
+      "cache_read_input_tokens": 53264,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1249
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 65_
+
+部署完成。
+
+**状态汇总：**
+- **实验**: `eval_openvla_random_k09_object_seed42` → RUNNING
+- **服务器**: westd-27271 GPU0 (15.9GB / 73% util)
+- **PID**: 360411
+- **配置**: OpenVLA random_prune k=0.9, libero_object, 500 episodes, seed 42
+- **进度**: 模型已加载(15.1GB)，Task 1/10 评估中，256→230 vision tokens
+- **GPU1**: M32 VTC 训练不受影响 (42GB occupied)
+- **预计耗时**: ~4h（参考 L2norm k=0.9 用了 228 min）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 143150,
+  "duration_api_ms": 93529,
+  "num_turns": 22,
+  "stop_reason": "end_turn",
+  "session_id": "58feb2f9-c9be-4a45-928d-f3c1d738a1e8",
+  "total_cost_usd": 0.6437710000000001,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 42672,
+    "cache_read_input_tokens": 522292,
+    "output_tokens": 4559,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 42672,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 202,
+        "cache_read_input_tokens": 53264,
+        "cache_creation_input_tokens": 1249,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1249
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1745,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001855,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 4559,
+      "cacheReadInputTokens": 522292,
+      "cacheCreationInputTokens": 42672,
+      "webSearchRequests": 0,
+      "costUSD": 0.6419160000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "06e4d4e9-feaa-4a0b-beb5-1e4ee09cf63f"
+}
+```
+
+</details>
+
+---

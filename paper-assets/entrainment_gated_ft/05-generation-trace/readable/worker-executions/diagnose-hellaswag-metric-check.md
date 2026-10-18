@@ -1,0 +1,3493 @@
+# diagnose hellaswag metric check
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 76
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_diagnose_hellaswag-metric-check_20260521T095449.log`
+- **Structured JSON:** [`db402faec253a41fd57a.json`](../../sessions/db/db402faec253a41fd57a.json)
+
+## Before a recorded user message
+
+76 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "11f94679-8e99-42e9-97cb-9be50d023dbc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779373200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4105ea00-d276-4d9b-9b92-3c2f92834c78",
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me SSH to the server and check the HellaSwag eval metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "b80fb4d5-8af2-442e-9e5d-f4cb9e36ddc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013vQ3oT2Qudyejeudycu7Jy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11957,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11957
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Qgh8QGFFFHuBGgyTqTKAiB`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "b95d8cc7-921a-4d8e-babf-64e998d7c223",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013vQ3oT2Qudyejeudycu7Jy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11957,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11957
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T09:55:01.376Z_
+
+<details><summary>↩ Tool result · `toolu_01Qgh8QGFFFHuBGgyTqTKAiB`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "2bc57126-b910-4b2a-9c13-150412b73369",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MK2ngjsXcHCPEXQJ56MXhp`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/autodl-pub/eval_results -path \"*GatedDeltaNet-pure*\" -path \"*hellaswag*\" -name \"*.json\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "25b6913f-f979-49c9-9e4c-7add5c9cc9d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnQpUH1oLTTVmRExdtHcrL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 457,
+      "cache_read_input_tokens": 23798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 457
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T09:55:05.012Z_
+
+<details><summary>↩ Tool result · `toolu_01MK2ngjsXcHCPEXQJ56MXhp`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "804143b2-21b8-42e1-9681-32b7b341ff59",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WckGG2GvdKCmQXnZyUu52x`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/autodl-pub/eval_results -path \"*GatedDeltaNet-pure*\" -path \"*hellaswag*\" -name \"*.jsonl\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "cc195fc5-a56b-49ed-88e0-9c5cf1d3ad2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnQpUH1oLTTVmRExdtHcrL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 457,
+      "cache_read_input_tokens": 23798,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 457
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T09:55:05.722Z_
+
+<details><summary>↩ Tool result · `toolu_01WckGG2GvdKCmQXnZyUu52x`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "858af645-add6-4494-a587-a8be32e6a30c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+The `2>/dev/null` redirect is blocked. Let me retry without it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "15a913e8-d447-4583-88d7-ec6dea4990d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pcxh2oJ5sVVPB41t5AWF5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 526,
+      "cache_read_input_tokens": 24255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 526
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L7MoCXwUnchktUzyFFuLne`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/autodl-pub/eval_results -path \"*GatedDeltaNet-pure*\" -path \"*hellaswag*\" -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "589abeec-d58a-4aac-8c0b-11b1f1d8962c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pcxh2oJ5sVVPB41t5AWF5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 526,
+      "cache_read_input_tokens": 24255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 526
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012oTCaPGUuqSAYjDc9qwBni`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/autodl-pub/eval_results -path \"*GatedDeltaNet-pure*\" -path \"*hellaswag*\" -name \"*.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "04f84902-f8ec-432b-874b-ad444a28f5a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pcxh2oJ5sVVPB41t5AWF5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 526,
+      "cache_read_input_tokens": 24255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 526
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T09:55:11.728Z_
+
+<details><summary>↩ Tool result · `toolu_01L7MoCXwUnchktUzyFFuLne`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-pub/eval_results': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "f3946371-9cf3-4256-b1bf-a86e36fa284d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-pub/eval_results': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-pub/eval_results': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T09:55:12.646Z_
+
+<details><summary>↩ Tool result · `toolu_012oTCaPGUuqSAYjDc9qwBni`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-pub/eval_results': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "8bf87786-1302-47a6-81df-80eb78b54de3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-pub/eval_results': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-pub/eval_results': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+目录不存在，换路径找。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "39164757-0415-4bb9-bc5f-679163e7705d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AoQWCY2fYvQdY6AufQEx8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 544,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 544
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011VdEiLC5VcgCZRkYSPx7Vh`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root -type d -name \"eval_results\" -maxdepth 4",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "c746c5b2-ddad-4f33-bf05-111e1a35486c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AoQWCY2fYvQdY6AufQEx8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 544,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 544
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T09:55:16.984Z_
+
+<details><summary>↩ Tool result · `toolu_011VdEiLC5VcgCZRkYSPx7Vh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "c060c03a-fb37-41ca-a43e-9bfd0c916737",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015r7KXXrvkuzh36KDgFmqp4`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft -name \"*.json\" -path \"*hellaswag*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "b54fd545-6f2e-483e-9637-7ad2cb2930c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AoQWCY2fYvQdY6AufQEx8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 544,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 544
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YcRarqppRnaLpKpa2zYFMS`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "ddccdd05-f9a8-435c-b6a1-729a617a6f91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AoQWCY2fYvQdY6AufQEx8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 544,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 544
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T09:55:18.158Z_
+
+<details><summary>↩ Tool result · `toolu_015r7KXXrvkuzh36KDgFmqp4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-24-1/1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-12-1/1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-6-1/1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-3-1/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-pure/1.3B-100B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-24-1/1.3B-100B-RetNet-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-12-1/1.3B-100B-RetNet-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-6-1/1.3B-100B-RetNet-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-3-1/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-pure/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-24-1/1.3B-100B-HGRN2-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-12-1/1.3B-100B-HGRN2-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-6-1/1.3B-100B-HGRN2-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-3-1/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/hellaswag_per_example.json\\n/root/entrainment_gated_ft/hellaswag_jaccard_analysis.json\\n/root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json\\n/root/entrainment_gated_ft/analysis_output/hellaswag_jaccard_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "17273b7b-387e-4afd-8a3c-9a65f338f9a4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-24-1/1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-12-1/1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-6-1/1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-3-1/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-pure/1.3B-100B-RetNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-24-1/1.3B-100B-RetNet-hybrid-24-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-12-1/1.3B-100B-RetNet-hybrid-12-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-6-1/1.3B-100B-RetNet-hybrid-6-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-3-1/1.3B-100B-RetNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-pure/1.3B-100B-HGRN2-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-24-1/1.3B-100B-HGRN2-hybrid-24-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-12-1/1.3B-100B-HGRN2-hybrid-12-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-6-1/1.3B-100B-HGRN2-hybrid-6-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-3-1/1.3B-100B-HGRN2-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/hellaswag_per_example.json\\\\n/root/entrainment_gated_ft/hellaswag_jaccard_analysis.json\\\\n/root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json\\\\n/root/entrainment_gated_ft/analysis_output/hellaswag_jaccard_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-24-1/1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-12-1/1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-6-1/1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-3-1/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-pure/1.3B-100B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-24-1/1.3B-100B-RetNet-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-12-1/1.3B-100B-RetNet-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-6-1/1.3B-100B-RetNet-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-3-1/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-pure/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-24-1/1.3B-100B-HGRN2-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-12-1/1.3B-100B-HGRN2-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-6-1/1.3B-100B-HGRN2-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-3-1/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/hellaswag_per_example.json\\n/root/entrainment_gated_ft/hellaswag_jaccard_analysis.json\\n/root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json\\n/root/entrainment_gated_ft/analysis_output/hellaswag_jaccard_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T09:55:19.064Z_
+
+<details><summary>↩ Tool result · `toolu_01YcRarqppRnaLpKpa2zYFMS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"download_7b.log\\ndownload_7b_ms.log\\ndownload_output.log\\nentrainment_gated_ft_backup_20260519.tar.gz\\nmodels\\nmodels_1.3b\\nmodels_7b\\nredownload.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "109a658c-b6df-4111-92e5-a6412b049da2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"download_7b.log\\\\ndownload_7b_ms.log\\\\ndownload_output.log\\\\nentrainment_gated_ft_backup_20260519.tar.gz\\\\nmodels\\\\nmodels_1.3b\\\\nmodels_7b\\\\nredownload.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"download_7b.log\\ndownload_7b_ms.log\\ndownload_output.log\\nentrainment_gated_ft_backup_20260519.tar.gz\\nmodels\\nmodels_1.3b\\nmodels_7b\\nredownload.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+找到了。现在读取 GatedDeltaNet-pure 的 results JSON 和 per-example 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "589787b0-20dd-4297-befe-0fc1d4d1fcce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lub4HgghmXjabKw7HHKz3Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1885,
+      "cache_read_input_tokens": 25325,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1885
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TYgJ1LvHKTBYQp498CWK9n`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/1.3B-100B-GatedDeltaNet-pure.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "66ad6f6a-26f5-4dfd-b125-a9f310ca49dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lub4HgghmXjabKw7HHKz3Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1885,
+      "cache_read_input_tokens": 25325,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1885
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T09:55:23.666Z_
+
+<details><summary>↩ Tool result · `toolu_01TYgJ1LvHKTBYQp498CWK9n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"name\\\": \\\"hellaswag\\\",\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"sample_len\\\": 10042,\\n      \\\"acc,none\\\": 0.4640509858593906,\\n      \\\"acc_stderr,none\\\": 0.004976867796583177,\\n      \\\"acc_norm,none\\\": 0.607647878908584,\\n      \\\"acc_norm_stderr,none\\\": 0.004872765504069728\\n    }\\n  },\\n  \\\"group_subtasks\\\": {},\\n  \\\"configs\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"task\\\": \\\"hellaswag\\\",\\n      \\\"dataset_path\\\": \\\"Rowan/hellaswag\\\",\\n      \\\"training_split\\\": \\\"train\\\",\\n      \\\"validation_split\\\": \\\"validation\\\",\\n      \\\"process_docs\\\": \\\"def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\\\\n    def _process_doc(doc):\\\\n        ctx = doc[\\\\\\\"ctx_a\\\\\\\"] + \\\\\\\" \\\\\\\" + doc[\\\\\\\"ctx_b\\\\\\\"].capitalize()\\\\n        out_doc = {\\\\n            \\\\\\\"query\\\\\\\": preprocess(doc[\\\\\\\"activity_label\\\\\\\"] + \\\\\\\": \\\\\\\" + ctx),\\\\n            \\\\\\\"choices\\\\\\\": [preprocess(ending) for ending in doc[\\\\\\\"endings\\\\\\\"]],\\\\n            \\\\\\\"gold\\\\\\\": int(doc[\\\\\\\"label\\\\\\\"]),\\\\n        }\\\\n        return out_doc\\\\n\\\\n    return dataset.map(_process_doc)\\\\n\\\",\\n      \\\"doc_to_text\\\": \\\"{{query}}\\\",\\n      \\\"doc_to_target\\\": \\\"{{label}}\\\",\\n      \\\"unsafe_code\\\": false,\\n      \\\"doc_to_choice\\\": \\\"choices\\\",\\n      \\\"description\\\": \\\"\\\",\\n      \\\"target_delimiter\\\": \\\" \\\",\\n      \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n      \\\"fewshot_config\\\": {\\n        \\\"sampler\\\": \\\"default\\\",\\n        \\\"split\\\": null,\\n        \\\"process_docs\\\": \\\"&lt;function process_docs at 0x7f97dc406d40>\\\",\\n        \\\"fewshot_indices\\\": null,\\n        \\\"samples\\\": null,\\n        \\\"doc_to_text\\\": \\\"{{query}}\\\",\\n        \\\"doc_to_choice\\\": \\\"choices\\\",\\n        \\\"doc_to_target\\\": \\\"{{label}}\\\",\\n        \\\"gen_prefix\\\": null,\\n        \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n        \\\"target_delimiter\\\": \\\" \\\"\\n      },\\n      \\\"num_fewshot\\\": 0,\\n      \\\"metric_list\\\": [\\n        {\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"aggregation\\\": \\\"mean\\\",\\n          \\\"higher_is_better\\\": true\\n        },\\n        {\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"aggregation\\\": \\\"mean\\\",\\n          \\\"higher_is_better\\\": true\\n        }\\n      ],\\n      \\\"output_type\\\": \\\"multiple_choice\\\",\\n      \\\"repeats\\\": 1,\\n      \\\"should_decontaminate\\\": false,\\n      \\\"metadata\\\": {\\n        \\\"version\\\": 1.0,\\n        \\\"config_source\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/tasks/hellaswag/hellaswag.yaml\\\"\\n      }\\n    }\\n  },\\n  \\\"versions\\\": {\\n    \\\"hellaswag\\\": 1.0\\n  },\\n  \\\"n-shot\\\": {\\n    \\\"hellaswag\\\": 0\\n  },\\n  \\\"higher_is_better\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n    }\\n  },\\n  \\\"n-samples\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"original\\\": 10042,\\n      \\\"effective\\\": 10042\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/models_1.3b/1.3B-100B-GatedDeltaNet-pure\\\",\\n    \\\"model_args\\\": null,\\n    \\\"model_num_parameters\\\": 1466343808,\\n    \\\"model_dtype\\\": \\\"torch.bfloat16\\\",\\n    \\\"model_revision\\\": \\\"main\\\",\\n    \\\"model_sha\\\": \\\"\\\",\\n    \\\"batch_size\\\": null,\\n    \\\"batch_sizes\\\": [],\\n    \\\"device\\\": null,\\n    \\\"use_cache\\\": null,\\n    \\\"limit\\\": null,\\n    \\\"bootstrap_iters\\\": 100000,\\n    \\\"gen_kwargs\\\": null,\\n    \\\"random_seed\\\": 0,\\n    \\\"numpy_seed\\\": 1234,\\n    \\\"torch_seed\\\": 1234,\\n    \\\"fewshot_seed\\\": 1234\\n  },\\n  \\\"git_hash\\\": null,\\n  \\\"date\\\": 1779276874.9966602,\\n  \\\"pretty_env_info\\\": \\\"PyTorch version: 2.8.0+cu128\\\\nIs debug build: False\\\\nCUDA used to build PyTorch: 12.8\\\\nROCM used to build PyTorch: N/A\\\\n\\\\nOS: Ubuntu 22.04.5 LTS (x86_64)\\\\nGCC version: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0\\\\nClang version: Could not collect\\\\nCMake version: version 3.22.1\\\\nLibc version: glibc-2.35\\\\n\\\\nPython version: 3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0] (64-bit runtime)\\\\nPython platform: Linux-5.15.0-78-generic-x86_64-with-glibc2.35\\\\nIs CUDA available: True\\\\nCUDA runtime version: Could not collect\\\\nCUDA_MODULE_LOADING set to: LAZY\\\\nGPU models and configuration: GPU 0: NVIDIA RTX PRO 6000 Blackwell Server Edition\\\\nNvidia driver version: 595.58.03\\\\ncuDNN version: Probably one of the following:\\\\n/usr/lib/x86_64-linux-gnu/libcudnn.so.9.8.0\\\\n/usr/lib/x86_64-linux-gnu/libcudnn_adv.so.9.8.0\\\\n/usr/lib/x86_64-linux-gnu/libcudnn_cnn.so.9.8.0\\\\n/usr/lib/x86_64-linux-gnu/libcudnn_engines_precompiled.so.9.8.0\\\\n/u\\n\\n... [截断: 输出过长，省略 1644 字符] ...\\n\\n_l2 ssbd mba ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local split_lock_detect avx_vnni avx512_bf16 wbnoinvd dtherm ida arat pln pts avx512vbmi umip pku ospke waitpkg avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq la57 rdpid bus_lock_detect cldemote movdiri movdir64b enqcmd fsrm md_clear serialize tsxldtrk pconfig arch_lbr amx_bf16 avx512_fp16 amx_tile amx_int8 flush_l1d arch_capabilities\\\\nVirtualization:                  VT-x\\\\nL1d cache:                       4.9 MiB (104 instances)\\\\nL1i cache:                       3.3 MiB (104 instances)\\\\nL2 cache:                        208 MiB (104 instances)\\\\nL3 cache:                        210 MiB (2 instances)\\\\nNUMA node(s):                    2\\\\nNUMA node0 CPU(s):               0-51,104-155\\\\nNUMA node1 CPU(s):               52-103,156-207\\\\nVulnerability Itlb multihit:     Not affected\\\\nVulnerability L1tf:              Not affected\\\\nVulnerability Mds:               Not affected\\\\nVulnerability Meltdown:          Not affected\\\\nVulnerability Mmio stale data:   Not affected\\\\nVulnerability Retbleed:          Not affected\\\\nVulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp\\\\nVulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization\\\\nVulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB filling, PBRSB-eIBRS SW sequence\\\\nVulnerability Srbds:             Not affected\\\\nVulnerability Tsx async abort:   Not affected\\\\n\\\\nVersions of relevant libraries:\\\\n[pip3] numpy==2.3.2\\\\n[pip3] nvidia-cublas-cu12==12.8.4.1\\\\n[pip3] nvidia-cuda-cupti-cu12==12.8.90\\\\n[pip3] nvidia-cuda-nvrtc-cu12==12.8.93\\\\n[pip3] nvidia-cuda-runtime-cu12==12.8.90\\\\n[pip3] nvidia-cudnn-cu12==9.10.2.21\\\\n[pip3] nvidia-cufft-cu12==11.3.3.83\\\\n[pip3] nvidia-curand-cu12==10.3.9.90\\\\n[pip3] nvidia-cusolver-cu12==11.7.3.90\\\\n[pip3] nvidia-cusparse-cu12==12.5.8.93\\\\n[pip3] nvidia-cusparselt-cu12==0.7.1\\\\n[pip3] nvidia-nccl-cu12==2.27.3\\\\n[pip3] nvidia-nvjitlink-cu12==12.8.93\\\\n[pip3] nvidia-nvtx-cu12==12.8.90\\\\n[pip3] torch==2.8.0+cu128\\\\n[pip3] torchvision==0.23.0+cu128\\\\n[pip3] triton==3.4.0\\\\n[conda] numpy                     2.3.2                    pypi_0    pypi\\\\n[conda] nvidia-cublas-cu12        12.8.4.1                 pypi_0    pypi\\\\n[conda] nvidia-cuda-cupti-cu12    12.8.90                  pypi_0    pypi\\\\n[conda] nvidia-cuda-nvrtc-cu12    12.8.93                  pypi_0    pypi\\\\n[conda] nvidia-cuda-runtime-cu12  12.8.90                  pypi_0    pypi\\\\n[conda] nvidia-cudnn-cu12         9.10.2.21                pypi_0    pypi\\\\n[conda] nvidia-cufft-cu12         11.3.3.83                pypi_0    pypi\\\\n[conda] nvidia-curand-cu12        10.3.9.90                pypi_0    pypi\\\\n[conda] nvidia-cusolver-cu12      11.7.3.90                pypi_0    pypi\\\\n[conda] nvidia-cusparse-cu12      12.5.8.93                pypi_0    pypi\\\\n[conda] nvidia-cusparselt-cu12    0.7.1                    pypi_0    pypi\\\\n[conda] nvidia-nccl-cu12          2.27.3                   pypi_0    pypi\\\\n[conda] nvidia-nvjitlink-cu12     12.8.93                  pypi_0    pypi\\\\n[conda] nvidia-nvtx-cu12          12.8.90                  pypi_0    pypi\\\\n[conda] torch                     2.8.0+cu128              pypi_0    pypi\\\\n[conda] torchvision               0.23.0+cu128             pypi_0    pypi\\\\n[conda] triton                    3.4.0                    pypi_0    pypi\\\",\\n  \\\"transformers_version\\\": \\\"5.8.1\\\",\\n  \\\"lm_eval_version\\\": \\\"0.4.12\\\",\\n  \\\"upper_git_hash\\\": null,\\n  \\\"tokenizer_pad_token\\\": [\\n    \\\"&lt;unk>\\\",\\n    \\\"0\\\"\\n  ],\\n  \\\"tokenizer_eos_token\\\": [\\n    \\\"&lt;/s>\\\",\\n    \\\"2\\\"\\n  ],\\n  \\\"tokenizer_bos_token\\\": [\\n    \\\"&lt;s>\\\",\\n    \\\"1\\\"\\n  ],\\n  \\\"eot_token_id\\\": 2,\\n  \\\"max_length\\\": 2048\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "18d47cb5-cafb-4a17-96e6-92d62093763b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 10042,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4640509858593906,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.004976867796583177,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.607647878908584,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.004872765504069728\\\\n    }\\\\n  },\\\\n  \\\\\\\"group_subtasks\\\\\\\": {},\\\\n  \\\\\\\"configs\\\\\\\": {\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"dataset_path\\\\\\\": \\\\\\\"Rowan/hellaswag\\\\\\\",\\\\n      \\\\\\\"training_split\\\\\\\": \\\\\\\"train\\\\\\\",\\\\n      \\\\\\\"validation_split\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"process_docs\\\\\\\": \\\\\\\"def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\\\\\\\\n    def _process_doc(doc):\\\\\\\\n        ctx = doc[\\\\\\\\\\\\\\\"ctx_a\\\\\\\\\\\\\\\"] + \\\\\\\\\\\\\\\" \\\\\\\\\\\\\\\" + doc[\\\\\\\\\\\\\\\"ctx_b\\\\\\\\\\\\\\\"].capitalize()\\\\\\\\n        out_doc = {\\\\\\\\n            \\\\\\\\\\\\\\\"query\\\\\\\\\\\\\\\": preprocess(doc[\\\\\\\\\\\\\\\"activity_label\\\\\\\\\\\\\\\"] + \\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\" + ctx),\\\\\\\\n            \\\\\\\\\\\\\\\"choices\\\\\\\\\\\\\\\": [preprocess(ending) for ending in doc[\\\\\\\\\\\\\\\"endings\\\\\\\\\\\\\\\"]],\\\\\\\\n            \\\\\\\\\\\\\\\"gold\\\\\\\\\\\\\\\": int(doc[\\\\\\\\\\\\\\\"label\\\\\\\\\\\\\\\"]),\\\\\\\\n        }\\\\\\\\n        return out_doc\\\\\\\\n\\\\\\\\n    return dataset.map(_process_doc)\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"{{query}}\\\\\\\",\\\\n      \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{label}}\\\\\\\",\\\\n      \\\\\\\"unsafe_code\\\\\\\": false,\\\\n      \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"choices\\\\\\\",\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\",\\\\n      \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"fewshot_config\\\\\\\": {\\\\n        \\\\\\\"sampler\\\\\\\": \\\\\\\"default\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": null,\\\\n        \\\\\\\"process_docs\\\\\\\": \\\\\\\"&lt;function process_docs at 0x7f97dc406d40>\\\\\\\",\\\\n        \\\\\\\"fewshot_indices\\\\\\\": null,\\\\n        \\\\\\\"samples\\\\\\\": null,\\\\n        \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"{{query}}\\\\\\\",\\\\n        \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"choices\\\\\\\",\\\\n        \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{label}}\\\\\\\",\\\\n        \\\\\\\"gen_prefix\\\\\\\": null,\\\\n        \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\"\\\\n      },\\\\n      \\\\\\\"num_fewshot\\\\\\\": 0,\\\\n      \\\\\\\"metric_list\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"metric\\\\\\\": \\\\\\\"acc\\\\\\\",\\\\n          \\\\\\\"aggregation\\\\\\\": \\\\\\\"mean\\\\\\\",\\\\n          \\\\\\\"higher_is_better\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"metric\\\\\\\": \\\\\\\"acc_norm\\\\\\\",\\\\n          \\\\\\\"aggregation\\\\\\\": \\\\\\\"mean\\\\\\\",\\\\n          \\\\\\\"higher_is_better\\\\\\\": true\\\\n        }\\\\n      ],\\\\n      \\\\\\\"output_type\\\\\\\": \\\\\\\"multiple_choice\\\\\\\",\\\\n      \\\\\\\"repeats\\\\\\\": 1,\\\\n      \\\\\\\"should_decontaminate\\\\\\\": false,\\\\n      \\\\\\\"metadata\\\\\\\": {\\\\n        \\\\\\\"version\\\\\\\": 1.0,\\\\n        \\\\\\\"config_source\\\\\\\": \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/tasks/hellaswag/hellaswag.yaml\\\\\\\"\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"versions\\\\\\\": {\\\\n    \\\\\\\"hellaswag\\\\\\\": 1.0\\\\n  },\\\\n  \\\\\\\"n-shot\\\\\\\": {\\\\n    \\\\\\\"hellaswag\\\\\\\": 0\\\\n  },\\\\n  \\\\\\\"higher_is_better\\\\\\\": {\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"acc\\\\\\\": true,\\\\n      \\\\\\\"acc_norm\\\\\\\": true\\\\n    }\\\\n  },\\\\n  \\\\\\\"n-samples\\\\\\\": {\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"original\\\\\\\": 10042,\\\\n      \\\\\\\"effective\\\\\\\": 10042\\\\n    }\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/models_1.3b/1.3B-100B-GatedDeltaNet-pure\\\\\\\",\\\\n    \\\\\\\"model_args\\\\\\\": null,\\\\n    \\\\\\\"model_num_parameters\\\\\\\": 1466343808,\\\\n    \\\\\\\"model_dtype\\\\\\\": \\\\\\\"torch.bfloat16\\\\\\\",\\\\n    \\\\\\\"model_revision\\\\\\\": \\\\\\\"main\\\\\\\",\\\\n    \\\\\\\"model_sha\\\\\\\": \\\\\\\"\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": null,\\\\n    \\\\\\\"batch_sizes\\\\\\\": [],\\\\n    \\\\\\\"device\\\\\\\": null,\\\\n    \\\\\\\"use_cache\\\\\\\": null,\\\\n    \\\\\\\"limit\\\\\\\": null,\\\\n    \\\\\\\"bootstrap_iters\\\\\\\": 100000,\\\\n    \\\\\\\"gen_kwargs\\\\\\\": null,\\\\n    \\\\\\\"random_seed\\\\\\\": 0,\\\\n    \\\\\\\"numpy_seed\\\\\\\": 1234,\\\\n    \\\\\\\"torch_seed\\\\\\\": 1234,\\\\n    \\\\\\\"fewshot_seed\\\\\\\": 1234\\\\n  },\\\\n  \\\\\\\"git_hash\\\\\\\": null,\\\\n  \\\\\\\"date\\\\\\\": 1779276874.9966602,\\\\n  \\\\\\\"pretty_env_info\\\\\\\": \\\\\\\"PyTorch version: 2.8.0+cu128\\\\\\\\nIs debug build: False\\\\\\\\nCUDA used to build PyTorch: 12.8\\\\\\\\nROCM used to build PyTorch: N/A\\\\\\\\n\\\\\\\\nOS: Ubuntu 22.04.5 LTS (x86_64)\\\\\\\\nGCC version: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0\\\\\\\\nClang version: Could not collect\\\\\\\\nCMake version: version 3.22.1\\\\\\\\nLibc version: glibc-2.35\\\\\\\\n\\\\\\\\nPython version: 3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0] (64-bit runtime)\\\\\\\\nPython platform: Linux-5.15.0-78-generic-x86_64-with-glibc2.35\\\\\\\\nIs CUDA available: True\\\\\\\\nCUDA runtime version: Could not collect\\\\\\\\nCUDA_MODULE_LOADING set to: LAZY\\\\\\\\nGPU models and configuration: GPU 0: NVIDIA RTX PRO 6000 Blackwell Server Edition\\\\\\\\nNvidia driver version: 595.58.03\\\\\\\\ncuDNN version: Probably one of the following:\\\\\\\\n/usr/lib/x86_64-linux-gnu/libcudnn.so.9.8.0\\\\\\\\n/usr/lib/x86_64-linux-gnu/libcudnn_adv.so.9.8.0\\\\\\\\n/usr/lib/x86_64-linux-gnu/libcudnn_cnn.so.9.8.0\\\\\\\\n/usr/lib/x86_64-linux-gnu/libcudnn_engines_precompiled.so.9.8.0\\\\\\\\n/u\\\\n\\\\n... [截断: 输出过长，省略 1644 字符] ...\\\\n\\\\n_l2 ssbd mba ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local split_lock_detect avx_vnni avx512_bf16 wbnoinvd dtherm ida arat pln pts avx512vbmi umip pku ospke waitpkg avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq la57 rdpid bus_lock_detect cldemote movdiri movdir64b enqcmd fsrm md_clear serialize tsxldtrk pconfig arch_lbr amx_bf16 avx512_fp16 amx_tile amx_int8 flush_l1d arch_capabilities\\\\\\\\nVirtualization:                  VT-x\\\\\\\\nL1d cache:                       4.9 MiB (104 instances)\\\\\\\\nL1i cache:                       3.3 MiB (104 instances)\\\\\\\\nL2 cache:                        208 MiB (104 instances)\\\\\\\\nL3 cache:                        210 MiB (2 instances)\\\\\\\\nNUMA node(s):                    2\\\\\\\\nNUMA node0 CPU(s):               0-51,104-155\\\\\\\\nNUMA node1 CPU(s):               52-103,156-207\\\\\\\\nVulnerability Itlb multihit:     Not affected\\\\\\\\nVulnerability L1tf:              Not affected\\\\\\\\nVulnerability Mds:               Not affected\\\\\\\\nVulnerability Meltdown:          Not affected\\\\\\\\nVulnerability Mmio stale data:   Not affected\\\\\\\\nVulnerability Retbleed:          Not affected\\\\\\\\nVulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp\\\\\\\\nVulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization\\\\\\\\nVulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB filling, PBRSB-eIBRS SW sequence\\\\\\\\nVulnerability Srbds:             Not affected\\\\\\\\nVulnerability Tsx async abort:   Not affected\\\\\\\\n\\\\\\\\nVersions of relevant libraries:\\\\\\\\n[pip3] numpy==2.3.2\\\\\\\\n[pip3] nvidia-cublas-cu12==12.8.4.1\\\\\\\\n[pip3] nvidia-cuda-cupti-cu12==12.8.90\\\\\\\\n[pip3] nvidia-cuda-nvrtc-cu12==12.8.93\\\\\\\\n[pip3] nvidia-cuda-runtime-cu12==12.8.90\\\\\\\\n[pip3] nvidia-cudnn-cu12==9.10.2.21\\\\\\\\n[pip3] nvidia-cufft-cu12==11.3.3.83\\\\\\\\n[pip3] nvidia-curand-cu12==10.3.9.90\\\\\\\\n[pip3] nvidia-cusolver-cu12==11.7.3.90\\\\\\\\n[pip3] nvidia-cusparse-cu12==12.5.8.93\\\\\\\\n[pip3] nvidia-cusparselt-cu12==0.7.1\\\\\\\\n[pip3] nvidia-nccl-cu12==2.27.3\\\\\\\\n[pip3] nvidia-nvjitlink-cu12==12.8.93\\\\\\\\n[pip3] nvidia-nvtx-cu12==12.8.90\\\\\\\\n[pip3] torch==2.8.0+cu128\\\\\\\\n[pip3] torchvision==0.23.0+cu128\\\\\\\\n[pip3] triton==3.4.0\\\\\\\\n[conda] numpy                     2.3.2                    pypi_0    pypi\\\\\\\\n[conda] nvidia-cublas-cu12        12.8.4.1                 pypi_0    pypi\\\\\\\\n[conda] nvidia-cuda-cupti-cu12    12.8.90                  pypi_0    pypi\\\\\\\\n[conda] nvidia-cuda-nvrtc-cu12    12.8.93                  pypi_0    pypi\\\\\\\\n[conda] nvidia-cuda-runtime-cu12  12.8.90                  pypi_0    pypi\\\\\\\\n[conda] nvidia-cudnn-cu12         9.10.2.21                pypi_0    pypi\\\\\\\\n[conda] nvidia-cufft-cu12         11.3.3.83                pypi_0    pypi\\\\\\\\n[conda] nvidia-curand-cu12        10.3.9.90                pypi_0    pypi\\\\\\\\n[conda] nvidia-cusolver-cu12      11.7.3.90                pypi_0    pypi\\\\\\\\n[conda] nvidia-cusparse-cu12      12.5.8.93                pypi_0    pypi\\\\\\\\n[conda] nvidia-cusparselt-cu12    0.7.1                    pypi_0    pypi\\\\\\\\n[conda] nvidia-nccl-cu12          2.27.3                   pypi_0    pypi\\\\\\\\n[conda] nvidia-nvjitlink-cu12     12.8.93                  pypi_0    pypi\\\\\\\\n[conda] nvidia-nvtx-cu12          12.8.90                  pypi_0    pypi\\\\\\\\n[conda] torch                     2.8.0+cu128              pypi_0    pypi\\\\\\\\n[conda] torchvision               0.23.0+cu128             pypi_0    pypi\\\\\\\\n[conda] triton                    3.4.0                    pypi_0    pypi\\\\\\\",\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"5.8.1\\\\\\\",\\\\n  \\\\\\\"lm_eval_version\\\\\\\": \\\\\\\"0.4.12\\\\\\\",\\\\n  \\\\\\\"upper_git_hash\\\\\\\": null,\\\\n  \\\\\\\"tokenizer_pad_token\\\\\\\": [\\\\n    \\\\\\\"&lt;unk>\\\\\\\",\\\\n    \\\\\\\"0\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"tokenizer_eos_token\\\\\\\": [\\\\n    \\\\\\\"&lt;/s>\\\\\\\",\\\\n    \\\\\\\"2\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"tokenizer_bos_token\\\\\\\": [\\\\n    \\\\\\\"&lt;s>\\\\\\\",\\\\n    \\\\\\\"1\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"eot_token_id\\\\\\\": 2,\\\\n  \\\\\\\"max_length\\\\\\\": 2048\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"name\\\": \\\"hellaswag\\\",\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"sample_len\\\": 10042,\\n      \\\"acc,none\\\": 0.4640509858593906,\\n      \\\"acc_stderr,none\\\": 0.004976867796583177,\\n      \\\"acc_norm,none\\\": 0.607647878908584,\\n      \\\"acc_norm_stderr,none\\\": 0.004872765504069728\\n    }\\n  },\\n  \\\"group_subtasks\\\": {},\\n  \\\"configs\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"task\\\": \\\"hellaswag\\\",\\n      \\\"dataset_path\\\": \\\"Rowan/hellaswag\\\",\\n      \\\"training_split\\\": \\\"train\\\",\\n      \\\"validation_split\\\": \\\"validation\\\",\\n      \\\"process_docs\\\": \\\"def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\\\\n    def _process_doc(doc):\\\\n        ctx = doc[\\\\\\\"ctx_a\\\\\\\"] + \\\\\\\" \\\\\\\" + doc[\\\\\\\"ctx_b\\\\\\\"].capitalize()\\\\n        out_doc = {\\\\n            \\\\\\\"query\\\\\\\": preprocess(doc[\\\\\\\"activity_label\\\\\\\"] + \\\\\\\": \\\\\\\" + ctx),\\\\n            \\\\\\\"choices\\\\\\\": [preprocess(ending) for ending in doc[\\\\\\\"endings\\\\\\\"]],\\\\n            \\\\\\\"gold\\\\\\\": int(doc[\\\\\\\"label\\\\\\\"]),\\\\n        }\\\\n        return out_doc\\\\n\\\\n    return dataset.map(_process_doc)\\\\n\\\",\\n      \\\"doc_to_text\\\": \\\"{{query}}\\\",\\n      \\\"doc_to_target\\\": \\\"{{label}}\\\",\\n      \\\"unsafe_code\\\": false,\\n      \\\"doc_to_choice\\\": \\\"choices\\\",\\n      \\\"description\\\": \\\"\\\",\\n      \\\"target_delimiter\\\": \\\" \\\",\\n      \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n      \\\"fewshot_config\\\": {\\n        \\\"sampler\\\": \\\"default\\\",\\n        \\\"split\\\": null,\\n        \\\"process_docs\\\": \\\"&lt;function process_docs at 0x7f97dc406d40>\\\",\\n        \\\"fewshot_indices\\\": null,\\n        \\\"samples\\\": null,\\n        \\\"doc_to_text\\\": \\\"{{query}}\\\",\\n        \\\"doc_to_choice\\\": \\\"choices\\\",\\n        \\\"doc_to_target\\\": \\\"{{label}}\\\",\\n        \\\"gen_prefix\\\": null,\\n        \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n        \\\"target_delimiter\\\": \\\" \\\"\\n      },\\n      \\\"num_fewshot\\\": 0,\\n      \\\"metric_list\\\": [\\n        {\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"aggregation\\\": \\\"mean\\\",\\n          \\\"higher_is_better\\\": true\\n        },\\n        {\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"aggregation\\\": \\\"mean\\\",\\n          \\\"higher_is_better\\\": true\\n        }\\n      ],\\n      \\\"output_type\\\": \\\"multiple_choice\\\",\\n      \\\"repeats\\\": 1,\\n      \\\"should_decontaminate\\\": false,\\n      \\\"metadata\\\": {\\n        \\\"version\\\": 1.0,\\n        \\\"config_source\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/lm_eval/tasks/hellaswag/hellaswag.yaml\\\"\\n      }\\n    }\\n  },\\n  \\\"versions\\\": {\\n    \\\"hellaswag\\\": 1.0\\n  },\\n  \\\"n-shot\\\": {\\n    \\\"hellaswag\\\": 0\\n  },\\n  \\\"higher_is_better\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n    }\\n  },\\n  \\\"n-samples\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"original\\\": 10042,\\n      \\\"effective\\\": 10042\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/models_1.3b/1.3B-100B-GatedDeltaNet-pure\\\",\\n    \\\"model_args\\\": null,\\n    \\\"model_num_parameters\\\": 1466343808,\\n    \\\"model_dtype\\\": \\\"torch.bfloat16\\\",\\n    \\\"model_revision\\\": \\\"main\\\",\\n    \\\"model_sha\\\": \\\"\\\",\\n    \\\"batch_size\\\": null,\\n    \\\"batch_sizes\\\": [],\\n    \\\"device\\\": null,\\n    \\\"use_cache\\\": null,\\n    \\\"limit\\\": null,\\n    \\\"bootstrap_iters\\\": 100000,\\n    \\\"gen_kwargs\\\": null,\\n    \\\"random_seed\\\": 0,\\n    \\\"numpy_seed\\\": 1234,\\n    \\\"torch_seed\\\": 1234,\\n    \\\"fewshot_seed\\\": 1234\\n  },\\n  \\\"git_hash\\\": null,\\n  \\\"date\\\": 1779276874.9966602,\\n  \\\"pretty_env_info\\\": \\\"PyTorch version: 2.8.0+cu128\\\\nIs debug build: False\\\\nCUDA used to build PyTorch: 12.8\\\\nROCM used to build PyTorch: N/A\\\\n\\\\nOS: Ubuntu 22.04.5 LTS (x86_64)\\\\nGCC version: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0\\\\nClang version: Could not collect\\\\nCMake version: version 3.22.1\\\\nLibc version: glibc-2.35\\\\n\\\\nPython version: 3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0] (64-bit runtime)\\\\nPython platform: Linux-5.15.0-78-generic-x86_64-with-glibc2.35\\\\nIs CUDA available: True\\\\nCUDA runtime version: Could not collect\\\\nCUDA_MODULE_LOADING set to: LAZY\\\\nGPU models and configuration: GPU 0: NVIDIA RTX PRO 6000 Blackwell Server Edition\\\\nNvidia driver version: 595.58.03\\\\ncuDNN version: Probably one of the following:\\\\n/usr/lib/x86_64-linux-gnu/libcudnn.so.9.8.0\\\\n/usr/lib/x86_64-linux-gnu/libcudnn_adv.so.9.8.0\\\\n/usr/lib/x86_64-linux-gnu/libcudnn_cnn.so.9.8.0\\\\n/usr/lib/x86_64-linux-gnu/libcudnn_engines_precompiled.so.9.8.0\\\\n/u\\n\\n... [截断: 输出过长，省略 1644 字符] ...\\n\\n_l2 ssbd mba ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local split_lock_detect avx_vnni avx512_bf16 wbnoinvd dtherm ida arat pln pts avx512vbmi umip pku ospke waitpkg avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq la57 rdpid bus_lock_detect cldemote movdiri movdir64b enqcmd fsrm md_clear serialize tsxldtrk pconfig arch_lbr amx_bf16 avx512_fp16 amx_tile amx_int8 flush_l1d arch_capabilities\\\\nVirtualization:                  VT-x\\\\nL1d cache:                       4.9 MiB (104 instances)\\\\nL1i cache:                       3.3 MiB (104 instances)\\\\nL2 cache:                        208 MiB (104 instances)\\\\nL3 cache:                        210 MiB (2 instances)\\\\nNUMA node(s):                    2\\\\nNUMA node0 CPU(s):               0-51,104-155\\\\nNUMA node1 CPU(s):               52-103,156-207\\\\nVulnerability Itlb multihit:     Not affected\\\\nVulnerability L1tf:              Not affected\\\\nVulnerability Mds:               Not affected\\\\nVulnerability Meltdown:          Not affected\\\\nVulnerability Mmio stale data:   Not affected\\\\nVulnerability Retbleed:          Not affected\\\\nVulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp\\\\nVulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization\\\\nVulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB filling, PBRSB-eIBRS SW sequence\\\\nVulnerability Srbds:             Not affected\\\\nVulnerability Tsx async abort:   Not affected\\\\n\\\\nVersions of relevant libraries:\\\\n[pip3] numpy==2.3.2\\\\n[pip3] nvidia-cublas-cu12==12.8.4.1\\\\n[pip3] nvidia-cuda-cupti-cu12==12.8.90\\\\n[pip3] nvidia-cuda-nvrtc-cu12==12.8.93\\\\n[pip3] nvidia-cuda-runtime-cu12==12.8.90\\\\n[pip3] nvidia-cudnn-cu12==9.10.2.21\\\\n[pip3] nvidia-cufft-cu12==11.3.3.83\\\\n[pip3] nvidia-curand-cu12==10.3.9.90\\\\n[pip3] nvidia-cusolver-cu12==11.7.3.90\\\\n[pip3] nvidia-cusparse-cu12==12.5.8.93\\\\n[pip3] nvidia-cusparselt-cu12==0.7.1\\\\n[pip3] nvidia-nccl-cu12==2.27.3\\\\n[pip3] nvidia-nvjitlink-cu12==12.8.93\\\\n[pip3] nvidia-nvtx-cu12==12.8.90\\\\n[pip3] torch==2.8.0+cu128\\\\n[pip3] torchvision==0.23.0+cu128\\\\n[pip3] triton==3.4.0\\\\n[conda] numpy                     2.3.2                    pypi_0    pypi\\\\n[conda] nvidia-cublas-cu12        12.8.4.1                 pypi_0    pypi\\\\n[conda] nvidia-cuda-cupti-cu12    12.8.90                  pypi_0    pypi\\\\n[conda] nvidia-cuda-nvrtc-cu12    12.8.93                  pypi_0    pypi\\\\n[conda] nvidia-cuda-runtime-cu12  12.8.90                  pypi_0    pypi\\\\n[conda] nvidia-cudnn-cu12         9.10.2.21                pypi_0    pypi\\\\n[conda] nvidia-cufft-cu12         11.3.3.83                pypi_0    pypi\\\\n[conda] nvidia-curand-cu12        10.3.9.90                pypi_0    pypi\\\\n[conda] nvidia-cusolver-cu12      11.7.3.90                pypi_0    pypi\\\\n[conda] nvidia-cusparse-cu12      12.5.8.93                pypi_0    pypi\\\\n[conda] nvidia-cusparselt-cu12    0.7.1                    pypi_0    pypi\\\\n[conda] nvidia-nccl-cu12          2.27.3                   pypi_0    pypi\\\\n[conda] nvidia-nvjitlink-cu12     12.8.93                  pypi_0    pypi\\\\n[conda] nvidia-nvtx-cu12          12.8.90                  pypi_0    pypi\\\\n[conda] torch                     2.8.0+cu128              pypi_0    pypi\\\\n[conda] torchvision               0.23.0+cu128             pypi_0    pypi\\\\n[conda] triton                    3.4.0                    pypi_0    pypi\\\",\\n  \\\"transformers_version\\\": \\\"5.8.1\\\",\\n  \\\"lm_eval_version\\\": \\\"0.4.12\\\",\\n  \\\"upper_git_hash\\\": null,\\n  \\\"tokenizer_pad_token\\\": [\\n    \\\"&lt;unk>\\\",\\n    \\\"0\\\"\\n  ],\\n  \\\"tokenizer_eos_token\\\": [\\n    \\\"&lt;/s>\\\",\\n    \\\"2\\\"\\n  ],\\n  \\\"tokenizer_bos_token\\\": [\\n    \\\"&lt;s>\\\",\\n    \\\"1\\\"\\n  ],\\n  \\\"eot_token_id\\\": 2,\\n  \\\"max_length\\\": 2048\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RJQEgxGKnLdH7K5HdPCion`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -3 /root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "b298c25d-0b6e-4f39-b035-6ebd716180ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lub4HgghmXjabKw7HHKz3Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1885,
+      "cache_read_input_tokens": 25325,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1885
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MSV6rkMX3zSim9nB1K4yq9`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft -name \"*.jsonl\" -path \"*hellaswag*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "94e12c83-6174-4fb3-9756-d0235905e620",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lub4HgghmXjabKw7HHKz3Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1885,
+      "cache_read_input_tokens": 25325,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1885
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T09:55:24.726Z_
+
+<details><summary>↩ Tool result · `toolu_01RJQEgxGKnLdH7K5HdPCion`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"hellaswag\\\",\\n  \\\"n_samples\\\": 10042,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "f68b9f9c-ef32-41a2-8e65-4499d655c9ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 10042,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"hellaswag\\\",\\n  \\\"n_samples\\\": 10042,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T09:55:25.653Z_
+
+<details><summary>↩ Tool result · `toolu_01MSV6rkMX3zSim9nB1K4yq9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T17-58-59.437801.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-04-21.775324.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-09-55.701549.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline_v2/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T18-06-58.522842.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/retnet_pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_hellaswag_2026-05-18T18-13-40.854538.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T18-24-24.830994.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T19-50-08.002524.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-GatedDeltaNet-hybrid-3-1/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-38-22.701250.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-GatedDeltaNet-hybrid-3-1/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T20-11-17.753642.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-RetNet-pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_hellaswag_2026-05-18T18-59-18.864716.jsonl\\n/root/entrainment_gated_ft/results_v5/transformer/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T19-49-52.554219.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-12-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-6-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-3-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-24-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-12-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-6-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-3-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-24-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-12-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-6-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-3-1/samples/hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "042414dc-7fa7-479b-b6d6-0730220386b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T17-58-59.437801.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-04-21.775324.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-09-55.701549.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline_v2/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T18-06-58.522842.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/retnet_pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_hellaswag_2026-05-18T18-13-40.854538.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T18-24-24.830994.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T19-50-08.002524.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-GatedDeltaNet-hybrid-3-1/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-38-22.701250.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-GatedDeltaNet-hybrid-3-1/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T20-11-17.753642.jsonl\\\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-RetNet-pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_hellaswag_2026-05-18T18-59-18.864716.jsonl\\\\n/root/entrainment_gated_ft/results_v5/transformer/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T19-49-52.554219.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-12-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-6-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-3-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-pure/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-24-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-12-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-6-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-3-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-pure/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-24-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-12-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-6-1/samples/hellaswag.jsonl\\\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-3-1/samples/hellaswag.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T17-58-59.437801.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-04-21.775324.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/gated_deltanet_hybrid/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-09-55.701549.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/transformer_baseline_v2/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T18-06-58.522842.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval/retnet_pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_hellaswag_2026-05-18T18-13-40.854538.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T18-24-24.830994.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/transformer_1.3B_baseline/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T19-50-08.002524.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-GatedDeltaNet-hybrid-3-1/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T18-38-22.701250.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-GatedDeltaNet-hybrid-3-1/__root__autodl-tmp__models_1.3b__1.3B-100B-GatedDeltaNet-hybrid-3-1/samples_hellaswag_2026-05-18T20-11-17.753642.jsonl\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/1.3B-100B-RetNet-pure/__root__autodl-tmp__models_1.3b__1.3B-100B-RetNet-pure/samples_hellaswag_2026-05-18T18-59-18.864716.jsonl\\n/root/entrainment_gated_ft/results_v5/transformer/__root__autodl-tmp__models_1.3b__transformer_1.3B_baseline/samples_hellaswag_2026-05-18T19-49-52.554219.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-24-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-12-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-6-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-3-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-24-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-12-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-6-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-3-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-pure/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-24-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-12-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-6-1/samples/hellaswag.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-3-1/samples/hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+拿到了 aggregate results。现在看 per-example jsonl 和 per_example.json 的结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "db0c491d-da31-4e61-b88b-f2f2aa0792ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKBA3WmyrCw48fpt3tdPYi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6607,
+      "cache_read_input_tokens": 27210,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6607
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019g9hvKRYVcSjbdWNKdrCvD`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "cd819c12-95e1-48fe-9a56-6a6dbe044a32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKBA3WmyrCw48fpt3tdPYi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6607,
+      "cache_read_input_tokens": 27210,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6607
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T09:55:30.847Z_
+
+<details><summary>↩ Tool result · `toolu_019g9hvKRYVcSjbdWNKdrCvD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"ind\\\": 24, \\\"activity_label\\\": \\\"Roof shingle removal\\\", \\\"ctx_a\\\": \\\"A man is sitting on a roof.\\\", \\\"ctx_b\\\": \\\"he\\\", \\\"ctx\\\": \\\"A man is sitting on a roof. he\\\", \\\"endings\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"source_id\\\": \\\"activitynet~v_-JhWjGDPHMY\\\", \\\"split\\\": \\\"val\\\", \\\"split_type\\\": \\\"indomain\\\", \\\"label\\\": \\\"3\\\", \\\"query\\\": \\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\"choices\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"gold\\\": 3}, \\\"target\\\": 3, \\\"arguments\\\": [[\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is using wrap to wrap a pair of skis.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is ripping level tiles off.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is holding a rubik's cube.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" starts pulling up roofing on a roof.\\\"]], \\\"resps\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\"filtered_resps\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\", \\\"prompt_hash\\\": \\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\", \\\"target_hash\\\": \\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\", \\\"acc\\\": 0.0, \\\"acc_norm\\\": 0.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "964f6b19-38ca-41ac-a9d9-21770f9182cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": 0, \\\\\\\"doc\\\\\\\": {\\\\\\\"ind\\\\\\\": 24, \\\\\\\"activity_label\\\\\\\": \\\\\\\"Roof shingle removal\\\\\\\", \\\\\\\"ctx_a\\\\\\\": \\\\\\\"A man is sitting on a roof.\\\\\\\", \\\\\\\"ctx_b\\\\\\\": \\\\\\\"he\\\\\\\", \\\\\\\"ctx\\\\\\\": \\\\\\\"A man is sitting on a roof. he\\\\\\\", \\\\\\\"endings\\\\\\\": [\\\\\\\"is using wrap to wrap a pair of skis.\\\\\\\", \\\\\\\"is ripping level tiles off.\\\\\\\", \\\\\\\"is holding a rubik's cube.\\\\\\\", \\\\\\\"starts pulling up roofing on a roof.\\\\\\\"], \\\\\\\"source_id\\\\\\\": \\\\\\\"activitynet~v_-JhWjGDPHMY\\\\\\\", \\\\\\\"split\\\\\\\": \\\\\\\"val\\\\\\\", \\\\\\\"split_type\\\\\\\": \\\\\\\"indomain\\\\\\\", \\\\\\\"label\\\\\\\": \\\\\\\"3\\\\\\\", \\\\\\\"query\\\\\\\": \\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\"choices\\\\\\\": [\\\\\\\"is using wrap to wrap a pair of skis.\\\\\\\", \\\\\\\"is ripping level tiles off.\\\\\\\", \\\\\\\"is holding a rubik's cube.\\\\\\\", \\\\\\\"starts pulling up roofing on a roof.\\\\\\\"], \\\\\\\"gold\\\\\\\": 3}, \\\\\\\"target\\\\\\\": 3, \\\\\\\"arguments\\\\\\\": [[\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is using wrap to wrap a pair of skis.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is ripping level tiles off.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" is holding a rubik's cube.\\\\\\\"], [\\\\\\\"Roof shingle removal: A man is sitting on a roof. He\\\\\\\", \\\\\\\" starts pulling up roofing on a roof.\\\\\\\"]], \\\\\\\"resps\\\\\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\\\\\"filtered_resps\\\\\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\\\\\"filter\\\\\\\": \\\\\\\"none\\\\\\\", \\\\\\\"metrics\\\\\\\": [\\\\\\\"acc\\\\\\\", \\\\\\\"acc_norm\\\\\\\"], \\\\\\\"doc_hash\\\\\\\": \\\\\\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\\\\\", \\\\\\\"prompt_hash\\\\\\\": \\\\\\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\\\\\", \\\\\\\"target_hash\\\\\\\": \\\\\\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\\\\\", \\\\\\\"acc\\\\\\\": 0.0, \\\\\\\"acc_norm\\\\\\\": 0.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"ind\\\": 24, \\\"activity_label\\\": \\\"Roof shingle removal\\\", \\\"ctx_a\\\": \\\"A man is sitting on a roof.\\\", \\\"ctx_b\\\": \\\"he\\\", \\\"ctx\\\": \\\"A man is sitting on a roof. he\\\", \\\"endings\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"source_id\\\": \\\"activitynet~v_-JhWjGDPHMY\\\", \\\"split\\\": \\\"val\\\", \\\"split_type\\\": \\\"indomain\\\", \\\"label\\\": \\\"3\\\", \\\"query\\\": \\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\"choices\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"gold\\\": 3}, \\\"target\\\": 3, \\\"arguments\\\": [[\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is using wrap to wrap a pair of skis.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is ripping level tiles off.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is holding a rubik's cube.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" starts pulling up roofing on a roof.\\\"]], \\\"resps\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\"filtered_resps\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\", \\\"prompt_hash\\\": \\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\", \\\"target_hash\\\": \\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\", \\\"acc\\\": 0.0, \\\"acc_norm\\\": 0.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BHz9NGnfWNo5dW1L13R9sJ`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "python3 -c \"import json; d=json.load(open('/root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json')); print(type(d)); ks=list(d.keys())[:10] if isinstance(d,dict) else None; print(ks); print(json.dumps(d[:2] if isinstance(d,list) else {k:d[k] for k in ks[:3]}, indent=2, ensure_ascii=False)[:2000])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "bc9d9928-a9d0-400d-a8ee-cf098229f952",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKBA3WmyrCw48fpt3tdPYi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6607,
+      "cache_read_input_tokens": 27210,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6607
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T09:55:32.692Z_
+
+<details><summary>↩ Tool result · `toolu_01BHz9NGnfWNo5dW1L13R9sJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "6a1caffd-a6b3-463d-ade7-69e1a70afb09",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+现在看看 per_example.json 的结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "1ec0a318-ef78-46fe-ab14-fe4b03879112",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AC3BrKRR2rsiZGPGb49Gm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1435,
+      "cache_read_input_tokens": 33817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1435
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016MooMSfg6sF1k3pktUMCuM`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -30 /root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "ea09a573-7d4c-45a7-9d5f-748d1b9f401e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AC3BrKRR2rsiZGPGb49Gm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1435,
+      "cache_read_input_tokens": 33817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1435
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CxzAdZLsDLDbt1e8t5n5bB`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -m 5 \"correct\" /root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "d64dd51b-e124-4596-9619-f8525ea6f0cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AC3BrKRR2rsiZGPGb49Gm3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1435,
+      "cache_read_input_tokens": 33817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1435
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T09:55:38.428Z_
+
+<details><summary>↩ Tool result · `toolu_016MooMSfg6sF1k3pktUMCuM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"hellaswag\\\",\\n  \\\"n_samples\\\": 10042,\\n  \\\"architectures\\\": [\\n    \\\"GDN\\\",\\n    \\\"RetNet\\\",\\n    \\\"HGRN2\\\"\\n  ],\\n  \\\"ratios\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"per_example_classification\\\": {\\n    \\\"GDN\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 317,\\n        \\\"n_hurt\\\": 358,\\n        \\\"n_stayed_right\\\": 4302,\\n        \\\"n_stayed_wrong\\\": 5065,\\n        \\\"net_effect\\\": -41,\\n        \\\"pct_helped\\\": 3.16,\\n        \\\"pct_hurt\\\": 3.57\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 346,\\n        \\\"n_hurt\\\": 360,\\n        \\\"n_stayed_right\\\": 4300,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "8ffa15b9-f6c0-46b0-931a-95a5dceab47b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 10042,\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"GDN\\\\\\\",\\\\n    \\\\\\\"RetNet\\\\\\\",\\\\n    \\\\\\\"HGRN2\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"ratios\\\\\\\": [\\\\n    \\\\\\\"pure\\\\\\\",\\\\n    \\\\\\\"h24-1\\\\\\\",\\\\n    \\\\\\\"h12-1\\\\\\\",\\\\n    \\\\\\\"h6-1\\\\\\\",\\\\n    \\\\\\\"h3-1\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"per_example_classification\\\\\\\": {\\\\n    \\\\\\\"GDN\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 317,\\\\n        \\\\\\\"n_hurt\\\\\\\": 358,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 4302,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 5065,\\\\n        \\\\\\\"net_effect\\\\\\\": -41,\\\\n        \\\\\\\"pct_helped\\\\\\\": 3.16,\\\\n        \\\\\\\"pct_hurt\\\\\\\": 3.57\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 346,\\\\n        \\\\\\\"n_hurt\\\\\\\": 360,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 4300,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"hellaswag\\\",\\n  \\\"n_samples\\\": 10042,\\n  \\\"architectures\\\": [\\n    \\\"GDN\\\",\\n    \\\"RetNet\\\",\\n    \\\"HGRN2\\\"\\n  ],\\n  \\\"ratios\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"per_example_classification\\\": {\\n    \\\"GDN\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"n_helped\\\": 317,\\n        \\\"n_hurt\\\": 358,\\n        \\\"n_stayed_right\\\": 4302,\\n        \\\"n_stayed_wrong\\\": 5065,\\n        \\\"net_effect\\\": -41,\\n        \\\"pct_helped\\\": 3.16,\\n        \\\"pct_hurt\\\": 3.57\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"n_helped\\\": 346,\\n        \\\"n_hurt\\\": 360,\\n        \\\"n_stayed_right\\\": 4300,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T09:55:39.342Z_
+
+<details><summary>↩ Tool result · `toolu_01CxzAdZLsDLDbt1e8t5n5bB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "d27d5e8a-b327-4cfa-9361-28418bd2f4ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the code that generates the per_example classification to understand which metric it uses. Let me also look at the `run_lmeval_clean.py` script and the analysis code.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "bde9a2ce-a816-4266-ae40-c9ded393edc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrNvH2WtMGMzA3N3nBsbgR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 973,
+      "cache_read_input_tokens": 35252,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 973
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+看看生成 per_example 分析的脚本，确认它用的是哪个字段来判断 correct/incorrect。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "1fd7a034-c4c3-4844-89d2-6e75c0bdda3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrNvH2WtMGMzA3N3nBsbgR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 973,
+      "cache_read_input_tokens": 35252,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 973
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BPjS1963GNm5qhJ2JM19Pn`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft -name \"*.py\" -path \"*analysis*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "9e3d4417-5ebf-41c9-b088-ed38d14f84e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrNvH2WtMGMzA3N3nBsbgR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 973,
+      "cache_read_input_tokens": 35252,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 973
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WZb8hdfjq3u6NvEbD9p9Y7`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft -name \"*.py\" -path \"*per_example*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "684210a2-585c-4e35-bb07-9a660d05804d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrNvH2WtMGMzA3N3nBsbgR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 973,
+      "cache_read_input_tokens": 35252,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 973
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T09:55:45.221Z_
+
+<details><summary>↩ Tool result · `toolu_01BPjS1963GNm5qhJ2JM19Pn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analysis/convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/logprob_analysis.py\\n/root/entrainment_gated_ft/analysis/logprob_plots.py\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\n/root/entrainment_gated_ft/analysis/lambada_matched_comparison.py\\n/root/entrainment_gated_ft/analysis/lambada_three_arch_comparison.py\\n/root/entrainment_gated_ft/analysis/lambada_robustness_h6.py\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\n/root/entrainment_gated_ft/analysis/sample_characterization.py\\n/root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py\\n/root/entrainment_gated_ft/analysis/sample_perplexity_dryrun.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\n/root/entrainment_gated_ft/analysis/fix_hgrn2_and_complete.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\n/root/entrainment_gated_ft/analysis/additional_benchmarks_convergence.py\\n/root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py\\n/root/entrainment_gated_ft/analysis/generate_paper_data.py\\n/root/entrainment_gated_ft/analysis/plot_decoupling.py\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/xstorycloze_convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/extract_attention_weights.py\\n/root/entrainment_gated_ft/analysis/exp007_analysis.py\\n/root/entrainment_gated_ft/analysis/within_arch_stability.py\\n/root/entrainment_gated_ft/analysis/confidence_margin_analysis.py\\n/root/entrainment_gated_ft/analysis/confidence_margin_within_category.py\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.py\\n/root/entrainment_gated_ft/analysis/retnet_hgrn2_only_decoupling.py\\n/root/entrainment_gated_ft/transformer_baseline_analysis.py\\n/root/entrainment_gated_ft/per_example_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "335e034b-48e2-4bef-b598-34afd1955c1d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/analysis/convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/logprob_analysis.py\\\\n/root/entrainment_gated_ft/analysis/logprob_plots.py\\\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\n/root/entrainment_gated_ft/analysis/lambada_matched_comparison.py\\\\n/root/entrainment_gated_ft/analysis/lambada_three_arch_comparison.py\\\\n/root/entrainment_gated_ft/analysis/lambada_robustness_h6.py\\\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\\\n/root/entrainment_gated_ft/analysis/sample_characterization.py\\\\n/root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py\\\\n/root/entrainment_gated_ft/analysis/sample_perplexity_dryrun.py\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\\\n/root/entrainment_gated_ft/analysis/fix_hgrn2_and_complete.py\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\\\n/root/entrainment_gated_ft/analysis/additional_benchmarks_convergence.py\\\\n/root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py\\\\n/root/entrainment_gated_ft/analysis/generate_paper_data.py\\\\n/root/entrainment_gated_ft/analysis/plot_decoupling.py\\\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/xstorycloze_convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/extract_attention_weights.py\\\\n/root/entrainment_gated_ft/analysis/exp007_analysis.py\\\\n/root/entrainment_gated_ft/analysis/within_arch_stability.py\\\\n/root/entrainment_gated_ft/analysis/confidence_margin_analysis.py\\\\n/root/entrainment_gated_ft/analysis/confidence_margin_within_category.py\\\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.py\\\\n/root/entrainment_gated_ft/analysis/retnet_hgrn2_only_decoupling.py\\\\n/root/entrainment_gated_ft/transformer_baseline_analysis.py\\\\n/root/entrainment_gated_ft/per_example_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analysis/convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/logprob_analysis.py\\n/root/entrainment_gated_ft/analysis/logprob_plots.py\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\n/root/entrainment_gated_ft/analysis/lambada_matched_comparison.py\\n/root/entrainment_gated_ft/analysis/lambada_three_arch_comparison.py\\n/root/entrainment_gated_ft/analysis/lambada_robustness_h6.py\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\n/root/entrainment_gated_ft/analysis/sample_characterization.py\\n/root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py\\n/root/entrainment_gated_ft/analysis/sample_perplexity_dryrun.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\n/root/entrainment_gated_ft/analysis/fix_hgrn2_and_complete.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\n/root/entrainment_gated_ft/analysis/additional_benchmarks_convergence.py\\n/root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py\\n/root/entrainment_gated_ft/analysis/generate_paper_data.py\\n/root/entrainment_gated_ft/analysis/plot_decoupling.py\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/xstorycloze_convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/extract_attention_weights.py\\n/root/entrainment_gated_ft/analysis/exp007_analysis.py\\n/root/entrainment_gated_ft/analysis/within_arch_stability.py\\n/root/entrainment_gated_ft/analysis/confidence_margin_analysis.py\\n/root/entrainment_gated_ft/analysis/confidence_margin_within_category.py\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.py\\n/root/entrainment_gated_ft/analysis/retnet_hgrn2_only_decoupling.py\\n/root/entrainment_gated_ft/transformer_baseline_analysis.py\\n/root/entrainment_gated_ft/per_example_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T09:55:46.136Z_
+
+<details><summary>↩ Tool result · `toolu_01WZb8hdfjq3u6NvEbD9p9Y7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/per_example_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "dd1366a5-f30a-400b-8d27-e0f9b222c6d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/per_example_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/per_example_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AUHXGH7qo3EuQt6eSMkYzD`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/per_example_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "1c8a0a1d-2d7e-4f25-886a-efb0ddf63a3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CpiYxViD8kCXFwmG3jxo9K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1263,
+      "cache_read_input_tokens": 36225,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1263
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T09:55:49.586Z_
+
+<details><summary>↩ Tool result · `toolu_01AUHXGH7qo3EuQt6eSMkYzD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Full per-example analysis for ARC-Easy + LAMBADA (Parts A-F).\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nfrom itertools import permutations as iterperms\\n\\nnp.random.seed(42)\\n\\nARCHS = [\\\"GDN\\\", \\\"RetNet\\\", \\\"HGRN2\\\"]\\nRATIOS = [\\\"pure\\\", \\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nHYBRID_RATIOS = [\\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nARCH_PAIRS = [(\\\"GDN\\\", \\\"RetNet\\\"), (\\\"GDN\\\", \\\"HGRN2\\\"), (\\\"RetNet\\\", \\\"HGRN2\\\")]\\nN_PERM = 10000\\nOUT_DIR = \\\"/root/entrainment_gated_ft\\\"\\n\\n# === Paths ===\\nARC_BASE = \\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy\\\"\\nARC_ARCH_MAP = {\\\"GDN\\\": \\\"GatedDeltaNet\\\", \\\"RetNet\\\": \\\"RetNet\\\", \\\"HGRN2\\\": \\\"HGRN2\\\"}\\n\\ndef arc_path(arch, ratio):\\n    a = ARC_ARCH_MAP[arch]\\n    if ratio == \\\"pure\\\":\\n        return f\\\"{ARC_BASE}/1.3B-100B-{a}-pure/samples/arc_easy.jsonl\\\"\\n    num = ratio.split(\\\"-\\\")[0][1:]\\n    return f\\\"{ARC_BASE}/1.3B-100B-{a}-hybrid-{num}-1/samples/arc_easy.jsonl\\\"\\n\\nLAMB_EXP = \\\"/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b\\\"\\nLAMB_EXTRA = \\\"/root/entrainment_gated_ft/lm_eval_clean/1.3b\\\"\\n\\ndef lambada_path(arch, ratio):\\n    if arch == \\\"GDN\\\" and ratio in [\\\"h24-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]:\\n        return f\\\"{LAMB_EXTRA}/GDN-{ratio}-logsamples/samples/lambada_openai.jsonl\\\"\\n    name = {\\\"GDN\\\": \\\"GDN\\\", \\\"RetNet\\\": \\\"RetNet\\\", \\\"HGRN2\\\": \\\"HGRN2\\\"}[arch]\\n    return f\\\"{LAMB_EXP}/{name}-{ratio}/samples/lambada_openai.jsonl\\\"\\n\\ndef load_jsonl(path):\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            data.append(json.loads(line))\\n    return data\\n\\n# === Load ===\\nprint(\\\"Loading data...\\\")\\narc_data = {}\\nlambada_raw = {}\\nfor arch in ARCHS:\\n    for ratio in RATIOS:\\n        arc_data[(arch, ratio)] = load_jsonl(arc_path(arch, ratio))\\n        lambada_raw[(arch, ratio)] = load_jsonl(lambada_path(arch, ratio))\\n\\nN_ARC = len(arc_data[(\\\"GDN\\\", \\\"pure\\\")])\\nN_LAMB = len(lambada_raw[(\\\"GDN\\\", \\\"pure\\\")])\\nprint(f\\\"ARC-Easy: {N_ARC}, LAMBADA: {N_LAMB}\\\")\\n\\nfor arch in ARCHS:\\n    for ratio in RATIOS:\\n        assert len(arc_data[(arch, ratio)]) == N_ARC, f\\\"ARC mismatch {arch}/{ratio}: {len(arc_data[(arch,ratio)])} != {N_ARC}\\\"\\n        assert len(lambada_raw[(arch, ratio)]) == N_LAMB, f\\\"LAMB mismatch {arch}/{ratio}: {len(lambada_raw[(arch,ratio)])} != {N_LAMB}\\\"\\n\\n# Verify doc_id alignment\\nfor arch in ARCHS:\\n    for ratio in RATIOS:\\n        for i in range(min(5, N_ARC)):\\n            assert arc_data[(arch, ratio)][i][\\\"doc_id\\\"] == i, f\\\"ARC doc_id mismatch {arch}/{ratio} idx={i}\\\"\\n        for i in range(min(5, N_LAMB)):\\n            assert lambada_raw[(arch, ratio)][i][\\\"doc_id\\\"] == i, f\\\"LAMB doc_id mismatch {arch}/{ratio} idx={i}\\\"\\n\\n# Extract arrays\\narc_accs = {}; arc_lp = {}\\nlamb_accs = {}; lamb_lp = {}\\nfor arch in ARCHS:\\n    for ratio in RATIOS:\\n        s = arc_data[(arch, ratio)]\\n        arc_accs[(arch, ratio)] = np.array([x[\\\"acc\\\"] for x in s])\\n        arc_lp[(arch, ratio)] = np.array([x[\\\"filtered_resps\\\"][x[\\\"target\\\"]][0] for x in s])\\n        s2 = lambada_raw[(arch, ratio)]\\n        lamb_accs[(arch, ratio)] = np.array([float(x[\\\"acc\\\"]) for x in s2])\\n        lamb_lp[(arch, ratio)] = np.array([x[\\\"filtered_resps\\\"][0][0] for x in s2])\\n\\nprint(\\\"\\\\nOverall accuracies:\\\")\\nfor bname, ad in [(\\\"ARC\\\", arc_accs), (\\\"LAMB\\\", lamb_accs)]:\\n    for arch in ARCHS:\\n        vals = \\\" \\\".join(f\\\"{r}={np.mean(ad[(arch,r)]):.4f}\\\" for r in RATIOS)\\n        print(f\\\"  {bname} {arch}: {vals}\\\")\\n\\n# ============ A. Per-Example Classification ============\\nprint(\\\"\\\\n=== A. Per-Example Classification ===\\\")\\npe = {}\\nfor arch in ARCHS:\\n    pe[arch] = {}\\n    pure = arc_accs[(arch, \\\"pure\\\")]\\n    for ratio in HYBRID_RATIOS:\\n        hyb = arc_accs[(arch, ratio)]\\n        h = int(np.sum((pure == 0) & (hyb == 1)))\\n        r = int(np.sum((pure == 1) & (hyb == 0)))\\n        sr = int(np.sum((pure == 1) & (hyb == 1)))\\n        sw = int(np.sum((pure == 0) & (hyb == 0)))\\n        pe[arch][ratio] = {\\n            \\\"n_helped\\\": h, \\\"n_hurt\\\": r,\\n            \\\"n_stayed_right\\\": sr, \\\"n_stayed_wrong\\\": sw,\\n            \\\"net_effect\\\": h - r\\n        }\\n        print(f\\\"  {arch:6s} {ratio:5s}: helped={h:3d} hurt={r:3d} stayed_right={sr:4d} stayed_wrong={sw\\n\\n... [截断: 输出过长，省略 3016 字符] ...\\n\\nk, axis=0)\\n    ms = float(np.mean(sig))\\n    conv[ratio] = {\\n        \\\"mean_sigma\\\": round(ms, 6),\\n        \\\"median_sigma\\\": round(float(np.median(sig)), 6),\\n        \\\"n_unanimous_correct\\\": int(np.sum(np.all(stack == 1, axis=0))),\\n        \\\"n_unanimous_wrong\\\": int(np.sum(np.all(stack == 0, axis=0))),\\n        \\\"n_split\\\": int(np.sum((np.sum(stack, axis=0) > 0) & (np.sum(stack, axis=0) < 3)))\\n    }\\n    msigs.append(ms)\\n    print(f\\\"  {ratio:5s}: mean_sigma={ms:.6f} split={conv[ratio]['n_split']} unan_right={conv[ratio]['n_unanimous_correct']} unan_wrong={conv[ratio]['n_unanimous_wrong']}\\\")\\n\\nranks = np.arange(1, 6, dtype=float)\\nmsigs_arr = np.array(msigs)\\nrho = spearman(ranks, msigs_arr)\\n\\ncnt_rho = 0\\ntot_rho = 0\\nfor perm in iterperms(range(5)):\\n    ps = msigs_arr[list(perm)]\\n    r = spearman(ranks, ps)\\n    if abs(r) >= abs(rho) - 1e-10:\\n        cnt_rho += 1\\n    tot_rho += 1\\np_rho = cnt_rho / tot_rho\\nconv[\\\"spearman\\\"] = {\\\"rho\\\": round(float(rho), 4), \\\"p_exact_two_tailed\\\": round(p_rho, 4), \\\"n_permutations\\\": tot_rho}\\nprint(f\\\"  Spearman rho={rho:.4f}, p_exact={p_rho:.4f} (n_perm={tot_rho})\\\")\\n\\n# ============ E. Multiplicity Metrics ============\\nprint(\\\"\\\\n=== E. Formal Predictive Multiplicity (Marx et al. 2020) ===\\\")\\n\\ndef compute_mult(accs_d, lp_d, N, name):\\n    res = {}\\n    for ratio in RATIOS:\\n        stack = np.stack([accs_d[(a, ratio)] for a in ARCHS])\\n        lps = np.stack([lp_d[(a, ratio)] for a in ARCHS])\\n        nc = np.sum(stack, axis=0)\\n        unan = (nc == 0) | (nc == 3)\\n        alpha = float(1.0 - np.mean(unan))\\n\\n        ac_mask = (nc == 3)\\n        n_cc = int(np.sum(ac_mask))\\n        if n_cc > 0:\\n            lpc = lps[:, ac_mask]\\n            spreads = np.max(lpc, axis=0) - np.min(lpc, axis=0)\\n            delta = float(np.mean(spreads))\\n            delta_std = float(np.std(spreads))\\n            delta_median = float(np.median(spreads))\\n        else:\\n            delta = delta_std = delta_median = None\\n\\n        dist = {\\n            \\\"0_of_3\\\": int(np.sum(nc == 0)),\\n            \\\"1_of_3\\\": int(np.sum(nc == 1)),\\n            \\\"2_of_3\\\": int(np.sum(nc == 2)),\\n            \\\"3_of_3\\\": int(np.sum(nc == 3))\\n        }\\n\\n        res[ratio] = {\\n            \\\"ambiguity_alpha\\\": round(alpha, 6),\\n            \\\"discrepancy_delta_mean\\\": round(delta, 6) if delta is not None else None,\\n            \\\"discrepancy_delta_std\\\": round(delta_std, 6) if delta_std is not None else None,\\n            \\\"discrepancy_delta_median\\\": round(delta_median, 6) if delta_median is not None else None,\\n            \\\"n_concordant_correct\\\": n_cc,\\n            \\\"disagreement_distribution\\\": dist,\\n            \\\"n_samples\\\": N\\n        }\\n        d_s = f\\\"{delta:.4f}\\\" if delta is not None else \\\"N/A\\\"\\n        print(f\\\"  {name:4s} {ratio:5s}: alpha={alpha:.4f} delta={d_s} n_cc={n_cc} dist=[{dist['0_of_3']},{dist['1_of_3']},{dist['2_of_3']},{dist['3_of_3']}]\\\")\\n    return res\\n\\nmult_arc = compute_mult(arc_accs, arc_lp, N_ARC, \\\"ARC\\\")\\nmult_lamb = compute_mult(lamb_accs, lamb_lp, N_LAMB, \\\"LAMB\\\")\\n\\n# ============ F. Save ============\\nprint(\\\"\\\\n=== Saving results ===\\\")\\n\\nr1 = {\\n    \\\"benchmark\\\": \\\"arc_easy\\\", \\\"n_samples\\\": N_ARC,\\n    \\\"architectures\\\": ARCHS, \\\"ratios\\\": RATIOS,\\n    \\\"per_example_classification\\\": pe,\\n    \\\"convergence_sigma\\\": conv\\n}\\np1 = f\\\"{OUT_DIR}/arc_easy_per_example.json\\\"\\nwith open(p1, \\\"w\\\") as f:\\n    json.dump(r1, f, indent=2)\\nprint(f\\\"  {p1}\\\")\\n\\nr2 = {\\n    \\\"description\\\": \\\"Formal Predictive Multiplicity Metrics (Marx et al. 2020)\\\",\\n    \\\"model_set\\\": \\\"3 architectures (GDN, RetNet, HGRN2) at each attention ratio\\\",\\n    \\\"arc_easy\\\": {\\\"n_samples\\\": N_ARC, \\\"metrics\\\": mult_arc},\\n    \\\"lambada\\\": {\\\"n_samples\\\": N_LAMB, \\\"metrics\\\": mult_lamb}\\n}\\np2 = f\\\"{OUT_DIR}/formal_multiplicity_metrics.json\\\"\\nwith open(p2, \\\"w\\\") as f:\\n    json.dump(r2, f, indent=2)\\nprint(f\\\"  {p2}\\\")\\n\\nr3 = {\\n    \\\"benchmark\\\": \\\"arc_easy\\\", \\\"n_samples\\\": N_ARC,\\n    \\\"jaccard_similarity\\\": jacc, \\\"jaccard_null_model\\\": jacc_null\\n}\\np3 = f\\\"{OUT_DIR}/arc_easy_jaccard_analysis.json\\\"\\nwith open(p3, \\\"w\\\") as f:\\n    json.dump(r3, f, indent=2)\\nprint(f\\\"  {p3}\\\")\\n\\nprint(\\\"\\\\nAll done!\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "0593e78f-dedc-49b7-8e47-a78fb5173ca2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Full per-example analysis for ARC-Easy + LAMBADA (Parts A-F).\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport numpy as np\\\\nfrom itertools import permutations as iterperms\\\\n\\\\nnp.random.seed(42)\\\\n\\\\nARCHS = [\\\\\\\"GDN\\\\\\\", \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\"]\\\\nRATIOS = [\\\\\\\"pure\\\\\\\", \\\\\\\"h24-1\\\\\\\", \\\\\\\"h12-1\\\\\\\", \\\\\\\"h6-1\\\\\\\", \\\\\\\"h3-1\\\\\\\"]\\\\nHYBRID_RATIOS = [\\\\\\\"h24-1\\\\\\\", \\\\\\\"h12-1\\\\\\\", \\\\\\\"h6-1\\\\\\\", \\\\\\\"h3-1\\\\\\\"]\\\\nARCH_PAIRS = [(\\\\\\\"GDN\\\\\\\", \\\\\\\"RetNet\\\\\\\"), (\\\\\\\"GDN\\\\\\\", \\\\\\\"HGRN2\\\\\\\"), (\\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\")]\\\\nN_PERM = 10000\\\\nOUT_DIR = \\\\\\\"/root/entrainment_gated_ft\\\\\\\"\\\\n\\\\n# === Paths ===\\\\nARC_BASE = \\\\\\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy\\\\\\\"\\\\nARC_ARCH_MAP = {\\\\\\\"GDN\\\\\\\": \\\\\\\"GatedDeltaNet\\\\\\\", \\\\\\\"RetNet\\\\\\\": \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\": \\\\\\\"HGRN2\\\\\\\"}\\\\n\\\\ndef arc_path(arch, ratio):\\\\n    a = ARC_ARCH_MAP[arch]\\\\n    if ratio == \\\\\\\"pure\\\\\\\":\\\\n        return f\\\\\\\"{ARC_BASE}/1.3B-100B-{a}-pure/samples/arc_easy.jsonl\\\\\\\"\\\\n    num = ratio.split(\\\\\\\"-\\\\\\\")[0][1:]\\\\n    return f\\\\\\\"{ARC_BASE}/1.3B-100B-{a}-hybrid-{num}-1/samples/arc_easy.jsonl\\\\\\\"\\\\n\\\\nLAMB_EXP = \\\\\\\"/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b\\\\\\\"\\\\nLAMB_EXTRA = \\\\\\\"/root/entrainment_gated_ft/lm_eval_clean/1.3b\\\\\\\"\\\\n\\\\ndef lambada_path(arch, ratio):\\\\n    if arch == \\\\\\\"GDN\\\\\\\" and ratio in [\\\\\\\"h24-1\\\\\\\", \\\\\\\"h6-1\\\\\\\", \\\\\\\"h3-1\\\\\\\"]:\\\\n        return f\\\\\\\"{LAMB_EXTRA}/GDN-{ratio}-logsamples/samples/lambada_openai.jsonl\\\\\\\"\\\\n    name = {\\\\\\\"GDN\\\\\\\": \\\\\\\"GDN\\\\\\\", \\\\\\\"RetNet\\\\\\\": \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\": \\\\\\\"HGRN2\\\\\\\"}[arch]\\\\n    return f\\\\\\\"{LAMB_EXP}/{name}-{ratio}/samples/lambada_openai.jsonl\\\\\\\"\\\\n\\\\ndef load_jsonl(path):\\\\n    data = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            data.append(json.loads(line))\\\\n    return data\\\\n\\\\n# === Load ===\\\\nprint(\\\\\\\"Loading data...\\\\\\\")\\\\narc_data = {}\\\\nlambada_raw = {}\\\\nfor arch in ARCHS:\\\\n    for ratio in RATIOS:\\\\n        arc_data[(arch, ratio)] = load_jsonl(arc_path(arch, ratio))\\\\n        lambada_raw[(arch, ratio)] = load_jsonl(lambada_path(arch, ratio))\\\\n\\\\nN_ARC = len(arc_data[(\\\\\\\"GDN\\\\\\\", \\\\\\\"pure\\\\\\\")])\\\\nN_LAMB = len(lambada_raw[(\\\\\\\"GDN\\\\\\\", \\\\\\\"pure\\\\\\\")])\\\\nprint(f\\\\\\\"ARC-Easy: {N_ARC}, LAMBADA: {N_LAMB}\\\\\\\")\\\\n\\\\nfor arch in ARCHS:\\\\n    for ratio in RATIOS:\\\\n        assert len(arc_data[(arch, ratio)]) == N_ARC, f\\\\\\\"ARC mismatch {arch}/{ratio}: {len(arc_data[(arch,ratio)])} != {N_ARC}\\\\\\\"\\\\n        assert len(lambada_raw[(arch, ratio)]) == N_LAMB, f\\\\\\\"LAMB mismatch {arch}/{ratio}: {len(lambada_raw[(arch,ratio)])} != {N_LAMB}\\\\\\\"\\\\n\\\\n# Verify doc_id alignment\\\\nfor arch in ARCHS:\\\\n    for ratio in RATIOS:\\\\n        for i in range(min(5, N_ARC)):\\\\n            assert arc_data[(arch, ratio)][i][\\\\\\\"doc_id\\\\\\\"] == i, f\\\\\\\"ARC doc_id mismatch {arch}/{ratio} idx={i}\\\\\\\"\\\\n        for i in range(min(5, N_LAMB)):\\\\n            assert lambada_raw[(arch, ratio)][i][\\\\\\\"doc_id\\\\\\\"] == i, f\\\\\\\"LAMB doc_id mismatch {arch}/{ratio} idx={i}\\\\\\\"\\\\n\\\\n# Extract arrays\\\\narc_accs = {}; arc_lp = {}\\\\nlamb_accs = {}; lamb_lp = {}\\\\nfor arch in ARCHS:\\\\n    for ratio in RATIOS:\\\\n        s = arc_data[(arch, ratio)]\\\\n        arc_accs[(arch, ratio)] = np.array([x[\\\\\\\"acc\\\\\\\"] for x in s])\\\\n        arc_lp[(arch, ratio)] = np.array([x[\\\\\\\"filtered_resps\\\\\\\"][x[\\\\\\\"target\\\\\\\"]][0] for x in s])\\\\n        s2 = lambada_raw[(arch, ratio)]\\\\n        lamb_accs[(arch, ratio)] = np.array([float(x[\\\\\\\"acc\\\\\\\"]) for x in s2])\\\\n        lamb_lp[(arch, ratio)] = np.array([x[\\\\\\\"filtered_resps\\\\\\\"][0][0] for x in s2])\\\\n\\\\nprint(\\\\\\\"\\\\\\\\nOverall accuracies:\\\\\\\")\\\\nfor bname, ad in [(\\\\\\\"ARC\\\\\\\", arc_accs), (\\\\\\\"LAMB\\\\\\\", lamb_accs)]:\\\\n    for arch in ARCHS:\\\\n        vals = \\\\\\\" \\\\\\\".join(f\\\\\\\"{r}={np.mean(ad[(arch,r)]):.4f}\\\\\\\" for r in RATIOS)\\\\n        print(f\\\\\\\"  {bname} {arch}: {vals}\\\\\\\")\\\\n\\\\n# ============ A. Per-Example Classification ============\\\\nprint(\\\\\\\"\\\\\\\\n=== A. Per-Example Classification ===\\\\\\\")\\\\npe = {}\\\\nfor arch in ARCHS:\\\\n    pe[arch] = {}\\\\n    pure = arc_accs[(arch, \\\\\\\"pure\\\\\\\")]\\\\n    for ratio in HYBRID_RATIOS:\\\\n        hyb = arc_accs[(arch, ratio)]\\\\n        h = int(np.sum((pure == 0) & (hyb == 1)))\\\\n        r = int(np.sum((pure == 1) & (hyb == 0)))\\\\n        sr = int(np.sum((pure == 1) & (hyb == 1)))\\\\n        sw = int(np.sum((pure == 0) & (hyb == 0)))\\\\n        pe[arch][ratio] = {\\\\n            \\\\\\\"n_helped\\\\\\\": h, \\\\\\\"n_hurt\\\\\\\": r,\\\\n            \\\\\\\"n_stayed_right\\\\\\\": sr, \\\\\\\"n_stayed_wrong\\\\\\\": sw,\\\\n            \\\\\\\"net_effect\\\\\\\": h - r\\\\n        }\\\\n        print(f\\\\\\\"  {arch:6s} {ratio:5s}: helped={h:3d} hurt={r:3d} stayed_right={sr:4d} stayed_wrong={sw\\\\n\\\\n... [截断: 输出过长，省略 3016 字符] ...\\\\n\\\\nk, axis=0)\\\\n    ms = float(np.mean(sig))\\\\n    conv[ratio] = {\\\\n        \\\\\\\"mean_sigma\\\\\\\": round(ms, 6),\\\\n        \\\\\\\"median_sigma\\\\\\\": round(float(np.median(sig)), 6),\\\\n        \\\\\\\"n_unanimous_correct\\\\\\\": int(np.sum(np.all(stack == 1, axis=0))),\\\\n        \\\\\\\"n_unanimous_wrong\\\\\\\": int(np.sum(np.all(stack == 0, axis=0))),\\\\n        \\\\\\\"n_split\\\\\\\": int(np.sum((np.sum(stack, axis=0) > 0) & (np.sum(stack, axis=0) < 3)))\\\\n    }\\\\n    msigs.append(ms)\\\\n    print(f\\\\\\\"  {ratio:5s}: mean_sigma={ms:.6f} split={conv[ratio]['n_split']} unan_right={conv[ratio]['n_unanimous_correct']} unan_wrong={conv[ratio]['n_unanimous_wrong']}\\\\\\\")\\\\n\\\\nranks = np.arange(1, 6, dtype=float)\\\\nmsigs_arr = np.array(msigs)\\\\nrho = spearman(ranks, msigs_arr)\\\\n\\\\ncnt_rho = 0\\\\ntot_rho = 0\\\\nfor perm in iterperms(range(5)):\\\\n    ps = msigs_arr[list(perm)]\\\\n    r = spearman(ranks, ps)\\\\n    if abs(r) >= abs(rho) - 1e-10:\\\\n        cnt_rho += 1\\\\n    tot_rho += 1\\\\np_rho = cnt_rho / tot_rho\\\\nconv[\\\\\\\"spearman\\\\\\\"] = {\\\\\\\"rho\\\\\\\": round(float(rho), 4), \\\\\\\"p_exact_two_tailed\\\\\\\": round(p_rho, 4), \\\\\\\"n_permutations\\\\\\\": tot_rho}\\\\nprint(f\\\\\\\"  Spearman rho={rho:.4f}, p_exact={p_rho:.4f} (n_perm={tot_rho})\\\\\\\")\\\\n\\\\n# ============ E. Multiplicity Metrics ============\\\\nprint(\\\\\\\"\\\\\\\\n=== E. Formal Predictive Multiplicity (Marx et al. 2020) ===\\\\\\\")\\\\n\\\\ndef compute_mult(accs_d, lp_d, N, name):\\\\n    res = {}\\\\n    for ratio in RATIOS:\\\\n        stack = np.stack([accs_d[(a, ratio)] for a in ARCHS])\\\\n        lps = np.stack([lp_d[(a, ratio)] for a in ARCHS])\\\\n        nc = np.sum(stack, axis=0)\\\\n        unan = (nc == 0) | (nc == 3)\\\\n        alpha = float(1.0 - np.mean(unan))\\\\n\\\\n        ac_mask = (nc == 3)\\\\n        n_cc = int(np.sum(ac_mask))\\\\n        if n_cc > 0:\\\\n            lpc = lps[:, ac_mask]\\\\n            spreads = np.max(lpc, axis=0) - np.min(lpc, axis=0)\\\\n            delta = float(np.mean(spreads))\\\\n            delta_std = float(np.std(spreads))\\\\n            delta_median = float(np.median(spreads))\\\\n        else:\\\\n            delta = delta_std = delta_median = None\\\\n\\\\n        dist = {\\\\n            \\\\\\\"0_of_3\\\\\\\": int(np.sum(nc == 0)),\\\\n            \\\\\\\"1_of_3\\\\\\\": int(np.sum(nc == 1)),\\\\n            \\\\\\\"2_of_3\\\\\\\": int(np.sum(nc == 2)),\\\\n            \\\\\\\"3_of_3\\\\\\\": int(np.sum(nc == 3))\\\\n        }\\\\n\\\\n        res[ratio] = {\\\\n            \\\\\\\"ambiguity_alpha\\\\\\\": round(alpha, 6),\\\\n            \\\\\\\"discrepancy_delta_mean\\\\\\\": round(delta, 6) if delta is not None else None,\\\\n            \\\\\\\"discrepancy_delta_std\\\\\\\": round(delta_std, 6) if delta_std is not None else None,\\\\n            \\\\\\\"discrepancy_delta_median\\\\\\\": round(delta_median, 6) if delta_median is not None else None,\\\\n            \\\\\\\"n_concordant_correct\\\\\\\": n_cc,\\\\n            \\\\\\\"disagreement_distribution\\\\\\\": dist,\\\\n            \\\\\\\"n_samples\\\\\\\": N\\\\n        }\\\\n        d_s = f\\\\\\\"{delta:.4f}\\\\\\\" if delta is not None else \\\\\\\"N/A\\\\\\\"\\\\n        print(f\\\\\\\"  {name:4s} {ratio:5s}: alpha={alpha:.4f} delta={d_s} n_cc={n_cc} dist=[{dist['0_of_3']},{dist['1_of_3']},{dist['2_of_3']},{dist['3_of_3']}]\\\\\\\")\\\\n    return res\\\\n\\\\nmult_arc = compute_mult(arc_accs, arc_lp, N_ARC, \\\\\\\"ARC\\\\\\\")\\\\nmult_lamb = compute_mult(lamb_accs, lamb_lp, N_LAMB, \\\\\\\"LAMB\\\\\\\")\\\\n\\\\n# ============ F. Save ============\\\\nprint(\\\\\\\"\\\\\\\\n=== Saving results ===\\\\\\\")\\\\n\\\\nr1 = {\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"arc_easy\\\\\\\", \\\\\\\"n_samples\\\\\\\": N_ARC,\\\\n    \\\\\\\"architectures\\\\\\\": ARCHS, \\\\\\\"ratios\\\\\\\": RATIOS,\\\\n    \\\\\\\"per_example_classification\\\\\\\": pe,\\\\n    \\\\\\\"convergence_sigma\\\\\\\": conv\\\\n}\\\\np1 = f\\\\\\\"{OUT_DIR}/arc_easy_per_example.json\\\\\\\"\\\\nwith open(p1, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(r1, f, indent=2)\\\\nprint(f\\\\\\\"  {p1}\\\\\\\")\\\\n\\\\nr2 = {\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"Formal Predictive Multiplicity Metrics (Marx et al. 2020)\\\\\\\",\\\\n    \\\\\\\"model_set\\\\\\\": \\\\\\\"3 architectures (GDN, RetNet, HGRN2) at each attention ratio\\\\\\\",\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\\\\"n_samples\\\\\\\": N_ARC, \\\\\\\"metrics\\\\\\\": mult_arc},\\\\n    \\\\\\\"lambada\\\\\\\": {\\\\\\\"n_samples\\\\\\\": N_LAMB, \\\\\\\"metrics\\\\\\\": mult_lamb}\\\\n}\\\\np2 = f\\\\\\\"{OUT_DIR}/formal_multiplicity_metrics.json\\\\\\\"\\\\nwith open(p2, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(r2, f, indent=2)\\\\nprint(f\\\\\\\"  {p2}\\\\\\\")\\\\n\\\\nr3 = {\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"arc_easy\\\\\\\", \\\\\\\"n_samples\\\\\\\": N_ARC,\\\\n    \\\\\\\"jaccard_similarity\\\\\\\": jacc, \\\\\\\"jaccard_null_model\\\\\\\": jacc_null\\\\n}\\\\np3 = f\\\\\\\"{OUT_DIR}/arc_easy_jaccard_analysis.json\\\\\\\"\\\\nwith open(p3, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(r3, f, indent=2)\\\\nprint(f\\\\\\\"  {p3}\\\\\\\")\\\\n\\\\nprint(\\\\\\\"\\\\\\\\nAll done!\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Full per-example analysis for ARC-Easy + LAMBADA (Parts A-F).\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nfrom itertools import permutations as iterperms\\n\\nnp.random.seed(42)\\n\\nARCHS = [\\\"GDN\\\", \\\"RetNet\\\", \\\"HGRN2\\\"]\\nRATIOS = [\\\"pure\\\", \\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nHYBRID_RATIOS = [\\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nARCH_PAIRS = [(\\\"GDN\\\", \\\"RetNet\\\"), (\\\"GDN\\\", \\\"HGRN2\\\"), (\\\"RetNet\\\", \\\"HGRN2\\\")]\\nN_PERM = 10000\\nOUT_DIR = \\\"/root/entrainment_gated_ft\\\"\\n\\n# === Paths ===\\nARC_BASE = \\\"/root/entrainment_gated_ft/lm_eval_clean/arc_easy\\\"\\nARC_ARCH_MAP = {\\\"GDN\\\": \\\"GatedDeltaNet\\\", \\\"RetNet\\\": \\\"RetNet\\\", \\\"HGRN2\\\": \\\"HGRN2\\\"}\\n\\ndef arc_path(arch, ratio):\\n    a = ARC_ARCH_MAP[arch]\\n    if ratio == \\\"pure\\\":\\n        return f\\\"{ARC_BASE}/1.3B-100B-{a}-pure/samples/arc_easy.jsonl\\\"\\n    num = ratio.split(\\\"-\\\")[0][1:]\\n    return f\\\"{ARC_BASE}/1.3B-100B-{a}-hybrid-{num}-1/samples/arc_easy.jsonl\\\"\\n\\nLAMB_EXP = \\\"/root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b\\\"\\nLAMB_EXTRA = \\\"/root/entrainment_gated_ft/lm_eval_clean/1.3b\\\"\\n\\ndef lambada_path(arch, ratio):\\n    if arch == \\\"GDN\\\" and ratio in [\\\"h24-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]:\\n        return f\\\"{LAMB_EXTRA}/GDN-{ratio}-logsamples/samples/lambada_openai.jsonl\\\"\\n    name = {\\\"GDN\\\": \\\"GDN\\\", \\\"RetNet\\\": \\\"RetNet\\\", \\\"HGRN2\\\": \\\"HGRN2\\\"}[arch]\\n    return f\\\"{LAMB_EXP}/{name}-{ratio}/samples/lambada_openai.jsonl\\\"\\n\\ndef load_jsonl(path):\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            data.append(json.loads(line))\\n    return data\\n\\n# === Load ===\\nprint(\\\"Loading data...\\\")\\narc_data = {}\\nlambada_raw = {}\\nfor arch in ARCHS:\\n    for ratio in RATIOS:\\n        arc_data[(arch, ratio)] = load_jsonl(arc_path(arch, ratio))\\n        lambada_raw[(arch, ratio)] = load_jsonl(lambada_path(arch, ratio))\\n\\nN_ARC = len(arc_data[(\\\"GDN\\\", \\\"pure\\\")])\\nN_LAMB = len(lambada_raw[(\\\"GDN\\\", \\\"pure\\\")])\\nprint(f\\\"ARC-Easy: {N_ARC}, LAMBADA: {N_LAMB}\\\")\\n\\nfor arch in ARCHS:\\n    for ratio in RATIOS:\\n        assert len(arc_data[(arch, ratio)]) == N_ARC, f\\\"ARC mismatch {arch}/{ratio}: {len(arc_data[(arch,ratio)])} != {N_ARC}\\\"\\n        assert len(lambada_raw[(arch, ratio)]) == N_LAMB, f\\\"LAMB mismatch {arch}/{ratio}: {len(lambada_raw[(arch,ratio)])} != {N_LAMB}\\\"\\n\\n# Verify doc_id alignment\\nfor arch in ARCHS:\\n    for ratio in RATIOS:\\n        for i in range(min(5, N_ARC)):\\n            assert arc_data[(arch, ratio)][i][\\\"doc_id\\\"] == i, f\\\"ARC doc_id mismatch {arch}/{ratio} idx={i}\\\"\\n        for i in range(min(5, N_LAMB)):\\n            assert lambada_raw[(arch, ratio)][i][\\\"doc_id\\\"] == i, f\\\"LAMB doc_id mismatch {arch}/{ratio} idx={i}\\\"\\n\\n# Extract arrays\\narc_accs = {}; arc_lp = {}\\nlamb_accs = {}; lamb_lp = {}\\nfor arch in ARCHS:\\n    for ratio in RATIOS:\\n        s = arc_data[(arch, ratio)]\\n        arc_accs[(arch, ratio)] = np.array([x[\\\"acc\\\"] for x in s])\\n        arc_lp[(arch, ratio)] = np.array([x[\\\"filtered_resps\\\"][x[\\\"target\\\"]][0] for x in s])\\n        s2 = lambada_raw[(arch, ratio)]\\n        lamb_accs[(arch, ratio)] = np.array([float(x[\\\"acc\\\"]) for x in s2])\\n        lamb_lp[(arch, ratio)] = np.array([x[\\\"filtered_resps\\\"][0][0] for x in s2])\\n\\nprint(\\\"\\\\nOverall accuracies:\\\")\\nfor bname, ad in [(\\\"ARC\\\", arc_accs), (\\\"LAMB\\\", lamb_accs)]:\\n    for arch in ARCHS:\\n        vals = \\\" \\\".join(f\\\"{r}={np.mean(ad[(arch,r)]):.4f}\\\" for r in RATIOS)\\n        print(f\\\"  {bname} {arch}: {vals}\\\")\\n\\n# ============ A. Per-Example Classification ============\\nprint(\\\"\\\\n=== A. Per-Example Classification ===\\\")\\npe = {}\\nfor arch in ARCHS:\\n    pe[arch] = {}\\n    pure = arc_accs[(arch, \\\"pure\\\")]\\n    for ratio in HYBRID_RATIOS:\\n        hyb = arc_accs[(arch, ratio)]\\n        h = int(np.sum((pure == 0) & (hyb == 1)))\\n        r = int(np.sum((pure == 1) & (hyb == 0)))\\n        sr = int(np.sum((pure == 1) & (hyb == 1)))\\n        sw = int(np.sum((pure == 0) & (hyb == 0)))\\n        pe[arch][ratio] = {\\n            \\\"n_helped\\\": h, \\\"n_hurt\\\": r,\\n            \\\"n_stayed_right\\\": sr, \\\"n_stayed_wrong\\\": sw,\\n            \\\"net_effect\\\": h - r\\n        }\\n        print(f\\\"  {arch:6s} {ratio:5s}: helped={h:3d} hurt={r:3d} stayed_right={sr:4d} stayed_wrong={sw\\n\\n... [截断: 输出过长，省略 3016 字符] ...\\n\\nk, axis=0)\\n    ms = float(np.mean(sig))\\n    conv[ratio] = {\\n        \\\"mean_sigma\\\": round(ms, 6),\\n        \\\"median_sigma\\\": round(float(np.median(sig)), 6),\\n        \\\"n_unanimous_correct\\\": int(np.sum(np.all(stack == 1, axis=0))),\\n        \\\"n_unanimous_wrong\\\": int(np.sum(np.all(stack == 0, axis=0))),\\n        \\\"n_split\\\": int(np.sum((np.sum(stack, axis=0) > 0) & (np.sum(stack, axis=0) < 3)))\\n    }\\n    msigs.append(ms)\\n    print(f\\\"  {ratio:5s}: mean_sigma={ms:.6f} split={conv[ratio]['n_split']} unan_right={conv[ratio]['n_unanimous_correct']} unan_wrong={conv[ratio]['n_unanimous_wrong']}\\\")\\n\\nranks = np.arange(1, 6, dtype=float)\\nmsigs_arr = np.array(msigs)\\nrho = spearman(ranks, msigs_arr)\\n\\ncnt_rho = 0\\ntot_rho = 0\\nfor perm in iterperms(range(5)):\\n    ps = msigs_arr[list(perm)]\\n    r = spearman(ranks, ps)\\n    if abs(r) >= abs(rho) - 1e-10:\\n        cnt_rho += 1\\n    tot_rho += 1\\np_rho = cnt_rho / tot_rho\\nconv[\\\"spearman\\\"] = {\\\"rho\\\": round(float(rho), 4), \\\"p_exact_two_tailed\\\": round(p_rho, 4), \\\"n_permutations\\\": tot_rho}\\nprint(f\\\"  Spearman rho={rho:.4f}, p_exact={p_rho:.4f} (n_perm={tot_rho})\\\")\\n\\n# ============ E. Multiplicity Metrics ============\\nprint(\\\"\\\\n=== E. Formal Predictive Multiplicity (Marx et al. 2020) ===\\\")\\n\\ndef compute_mult(accs_d, lp_d, N, name):\\n    res = {}\\n    for ratio in RATIOS:\\n        stack = np.stack([accs_d[(a, ratio)] for a in ARCHS])\\n        lps = np.stack([lp_d[(a, ratio)] for a in ARCHS])\\n        nc = np.sum(stack, axis=0)\\n        unan = (nc == 0) | (nc == 3)\\n        alpha = float(1.0 - np.mean(unan))\\n\\n        ac_mask = (nc == 3)\\n        n_cc = int(np.sum(ac_mask))\\n        if n_cc > 0:\\n            lpc = lps[:, ac_mask]\\n            spreads = np.max(lpc, axis=0) - np.min(lpc, axis=0)\\n            delta = float(np.mean(spreads))\\n            delta_std = float(np.std(spreads))\\n            delta_median = float(np.median(spreads))\\n        else:\\n            delta = delta_std = delta_median = None\\n\\n        dist = {\\n            \\\"0_of_3\\\": int(np.sum(nc == 0)),\\n            \\\"1_of_3\\\": int(np.sum(nc == 1)),\\n            \\\"2_of_3\\\": int(np.sum(nc == 2)),\\n            \\\"3_of_3\\\": int(np.sum(nc == 3))\\n        }\\n\\n        res[ratio] = {\\n            \\\"ambiguity_alpha\\\": round(alpha, 6),\\n            \\\"discrepancy_delta_mean\\\": round(delta, 6) if delta is not None else None,\\n            \\\"discrepancy_delta_std\\\": round(delta_std, 6) if delta_std is not None else None,\\n            \\\"discrepancy_delta_median\\\": round(delta_median, 6) if delta_median is not None else None,\\n            \\\"n_concordant_correct\\\": n_cc,\\n            \\\"disagreement_distribution\\\": dist,\\n            \\\"n_samples\\\": N\\n        }\\n        d_s = f\\\"{delta:.4f}\\\" if delta is not None else \\\"N/A\\\"\\n        print(f\\\"  {name:4s} {ratio:5s}: alpha={alpha:.4f} delta={d_s} n_cc={n_cc} dist=[{dist['0_of_3']},{dist['1_of_3']},{dist['2_of_3']},{dist['3_of_3']}]\\\")\\n    return res\\n\\nmult_arc = compute_mult(arc_accs, arc_lp, N_ARC, \\\"ARC\\\")\\nmult_lamb = compute_mult(lamb_accs, lamb_lp, N_LAMB, \\\"LAMB\\\")\\n\\n# ============ F. Save ============\\nprint(\\\"\\\\n=== Saving results ===\\\")\\n\\nr1 = {\\n    \\\"benchmark\\\": \\\"arc_easy\\\", \\\"n_samples\\\": N_ARC,\\n    \\\"architectures\\\": ARCHS, \\\"ratios\\\": RATIOS,\\n    \\\"per_example_classification\\\": pe,\\n    \\\"convergence_sigma\\\": conv\\n}\\np1 = f\\\"{OUT_DIR}/arc_easy_per_example.json\\\"\\nwith open(p1, \\\"w\\\") as f:\\n    json.dump(r1, f, indent=2)\\nprint(f\\\"  {p1}\\\")\\n\\nr2 = {\\n    \\\"description\\\": \\\"Formal Predictive Multiplicity Metrics (Marx et al. 2020)\\\",\\n    \\\"model_set\\\": \\\"3 architectures (GDN, RetNet, HGRN2) at each attention ratio\\\",\\n    \\\"arc_easy\\\": {\\\"n_samples\\\": N_ARC, \\\"metrics\\\": mult_arc},\\n    \\\"lambada\\\": {\\\"n_samples\\\": N_LAMB, \\\"metrics\\\": mult_lamb}\\n}\\np2 = f\\\"{OUT_DIR}/formal_multiplicity_metrics.json\\\"\\nwith open(p2, \\\"w\\\") as f:\\n    json.dump(r2, f, indent=2)\\nprint(f\\\"  {p2}\\\")\\n\\nr3 = {\\n    \\\"benchmark\\\": \\\"arc_easy\\\", \\\"n_samples\\\": N_ARC,\\n    \\\"jaccard_similarity\\\": jacc, \\\"jaccard_null_model\\\": jacc_null\\n}\\np3 = f\\\"{OUT_DIR}/arc_easy_jaccard_analysis.json\\\"\\nwith open(p3, \\\"w\\\") as f:\\n    json.dump(r3, f, indent=2)\\nprint(f\\\"  {p3}\\\")\\n\\nprint(\\\"\\\\nAll done!\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the per_example_analysis.py script. It uses `arc_accs[(arch, ratio)] = np.array([x["acc"] for x in s])` for ARC-Easy, and `lamb_accs[(arch, ratio)] = np.array([float(x["acc"]) for x in s2])` for LAMBADA. Both use `"acc"` field, not `"acc_norm"`.
+
+But for HellaSwag specifically, let me check if there's a separate analysis script. The `hellaswag_per_example.json` file exists in `analysis_output/`, so there must be code generating it. 
+
+Let me search for where that's being created.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "a76d09a0-5c14-41c8-b67c-0b2809903175",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWaK3ebaxyFtukufE3fLo6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4275,
+      "cache_read_input_tokens": 37488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4275
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+这个脚本只处理 ARC-Easy 和 LAMBADA。找 HellaSwag 的分析脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "4600a72a-5ac1-43f6-b1c5-92adccc858e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWaK3ebaxyFtukufE3fLo6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4275,
+      "cache_read_input_tokens": 37488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4275
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LwyiKr7hUr1P28q4iZZRTw`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -rl \"hellaswag\" /root/entrainment_gated_ft/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "c0a34e39-0587-449f-8754-06c61a5e76a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWaK3ebaxyFtukufE3fLo6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4275,
+      "cache_read_input_tokens": 37488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4275
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Gxr7G45wkPVcjRdzpxdwt2`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -rl \"hellaswag_per_example\" /root/entrainment_gated_ft/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "bcedbc76-cf84-4f9a-88cb-98e37abcebf9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWaK3ebaxyFtukufE3fLo6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4275,
+      "cache_read_input_tokens": 37488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4275
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T09:55:58.634Z_
+
+<details><summary>↩ Tool result · `toolu_01LwyiKr7hUr1P28q4iZZRTw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analysis/convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\n/root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py.bak\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/exp011_convergence_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "42764f09-e74e-4925-932f-95b9859e0292",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/analysis/convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\n/root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py.bak\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/exp011_convergence_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analysis/convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\n/root/entrainment_gated_ft/analysis/cross_scale_summary.csv\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py.bak\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/exp011_convergence_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T09:56:02.642Z_
+
+<details><summary>↩ Tool result · `toolu_01Gxr7G45wkPVcjRdzpxdwt2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 3.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "9fce4b5f-3616-4beb-ae37-0297f7f61c0a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 3.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EQJEZQcfJ6oEkU99PcZRzQ`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -rl \"hellaswag\" /root/entrainment_gated_ft/analysis/task_specificity_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "3838d68a-7dd1-4150-a896-22e8a8361a30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTz8ebzyvgH1eSQLjJQj54",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 41763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 870
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QTYhnP2GL7N9wzHGc4agD7`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -n \"acc\" /root/entrainment_gated_ft/analysis/task_specificity_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "13d8a243-21ec-46fe-af73-e3284fd05dc3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTz8ebzyvgH1eSQLjJQj54",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 41763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 870
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T09:56:06.865Z_
+
+<details><summary>↩ Tool result · `toolu_01EQJEZQcfJ6oEkU99PcZRzQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "aafc59ac-74fa-4446-88cb-4e79b6cfa4c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T09:56:07.774Z_
+
+<details><summary>↩ Tool result · `toolu_01QTYhnP2GL7N9wzHGc4agD7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"29:BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'arc_challenge_norm',\\n30:              'winogrande_acc', 'arc_easy_norm', 'mmlu_acc']\\n33:    'lambada_acc': 'LAMBADA',\\n36:    'winogrande_acc': 'WinoGrande',\\n38:    'mmlu_acc': 'MMLU',\\n42:    'lambada_acc': 'Retrieval-dependent',\\n45:    'winogrande_acc': 'Reasoning-dependent',\\n47:    'mmlu_acc': 'Mixed',\\n55:    'lambada_acc': ('lambada_openai', 'acc,none'),\\n56:    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\n57:    'winogrande_acc': ('winogrande', 'acc,none'),\\n58:    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\n59:    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\n60:    'mmlu_acc': ('mmlu', 'acc,none'),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "68c2739d-9cc6-4483-ade6-9f6d7ca4da89",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29:BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'arc_challenge_norm',\\\\n30:              'winogrande_acc', 'arc_easy_norm', 'mmlu_acc']\\\\n33:    'lambada_acc': 'LAMBADA',\\\\n36:    'winogrande_acc': 'WinoGrande',\\\\n38:    'mmlu_acc': 'MMLU',\\\\n42:    'lambada_acc': 'Retrieval-dependent',\\\\n45:    'winogrande_acc': 'Reasoning-dependent',\\\\n47:    'mmlu_acc': 'Mixed',\\\\n55:    'lambada_acc': ('lambada_openai', 'acc,none'),\\\\n56:    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\\\n57:    'winogrande_acc': ('winogrande', 'acc,none'),\\\\n58:    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\\\n59:    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\\\n60:    'mmlu_acc': ('mmlu', 'acc,none'),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"29:BENCHMARKS = ['lambada_acc', 'hellaswag_norm', 'arc_challenge_norm',\\n30:              'winogrande_acc', 'arc_easy_norm', 'mmlu_acc']\\n33:    'lambada_acc': 'LAMBADA',\\n36:    'winogrande_acc': 'WinoGrande',\\n38:    'mmlu_acc': 'MMLU',\\n42:    'lambada_acc': 'Retrieval-dependent',\\n45:    'winogrande_acc': 'Reasoning-dependent',\\n47:    'mmlu_acc': 'Mixed',\\n55:    'lambada_acc': ('lambada_openai', 'acc,none'),\\n56:    'hellaswag_norm': ('hellaswag', 'acc_norm,none'),\\n57:    'winogrande_acc': ('winogrande', 'acc,none'),\\n58:    'arc_easy_norm': ('arc_easy', 'acc_norm,none'),\\n59:    'arc_challenge_norm': ('arc_challenge', 'acc_norm,none'),\\n60:    'mmlu_acc': ('mmlu', 'acc,none'),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see clearly. In `task_specificity_analysis.py`:
+- `hellaswag_norm` maps to `('hellaswag', 'acc_norm,none')` — so HellaSwag uses `acc_norm` for the aggregate metric.
+
+But I still need to check what the `hellaswag_per_example.json` in `analysis_output/` uses. Let me look at what generated that file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "a0e8e9e4-124f-4f13-951c-204f01d39e50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JhM5m17Z9MGk4xVmDLaT2c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 792,
+      "cache_read_input_tokens": 42633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 792
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+关键发现：`task_specificity_analysis.py` 中 HellaSwag 用的是 `acc_norm,none`。现在确认 `analysis_output/hellaswag_per_example.json` 的生成代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "5d634ea8-4260-4e50-b8cd-99ca449ba623",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JhM5m17Z9MGk4xVmDLaT2c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 792,
+      "cache_read_input_tokens": 42633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 792
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XxudsVH5zfrtp4CDPu353s`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft -name \"*.py\" -newer /root/entrainment_gated_ft/analysis_output/hellaswag_per_example.json -path \"*analysis*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "d20e2c3b-8852-4c64-8773-a0c1735cb501",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JhM5m17Z9MGk4xVmDLaT2c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 792,
+      "cache_read_input_tokens": 42633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 792
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QE1zNXdU4v3eUdWKaRbRF1`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -rn \"hellaswag_per_example\" /root/entrainment_gated_ft/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "d0864e87-a86b-4ed7-8cbf-72104f5fd96c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JhM5m17Z9MGk4xVmDLaT2c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 792,
+      "cache_read_input_tokens": 42633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 792
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T09:56:16.170Z_
+
+<details><summary>↩ Tool result · `toolu_01XxudsVH5zfrtp4CDPu353s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "9e95e4c6-0721-46c8-b90d-dc7a6cc396a8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-21T09:56:17.557Z_
+
+<details><summary>↩ Tool result · `toolu_01QE1zNXdU4v3eUdWKaRbRF1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "6ae55b45-6f79-4eef-8158-7a88cd4bdb9e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011FbL2PXqfZEjzuZrmUG5aP`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -rn \"hellaswag_per_example\" /root/entrainment_gated_ft/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "044aedff-8498-4677-a371-5069d55c2998",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TDp8TNyJqth3kTMEBMgZ9e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 43425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 762
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-21T09:56:24.607Z_
+
+<details><summary>↩ Tool result · `toolu_011FbL2PXqfZEjzuZrmUG5aP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 4.23}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "abc03a70-cd34-484e-b710-767177c13b4d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.23}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 4.23}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L4NQRAcRNyuRSDEiDfRyuN`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/analysis_output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "0427740d-6ea1-4fe2-b623-40b2e8b53cc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A8egyZxPjGtX4xh2F1mbRY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 205,
+      "cache_read_input_tokens": 44187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 205
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XzwG7UxF9yeuCBJnFFbmNM`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -rn \"analysis_output\" /root/entrainment_gated_ft/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "b89a84eb-c686-4104-95de-3d771d3e1424",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A8egyZxPjGtX4xh2F1mbRY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 205,
+      "cache_read_input_tokens": 44187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 205
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T09:56:28.525Z_
+
+<details><summary>↩ Tool result · `toolu_01L4NQRAcRNyuRSDEiDfRyuN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"boolq_confidence_margin.json\\nboolq_jaccard_analysis.json\\nboolq_per_example.json\\ncross_benchmark_confidence_margin.json\\nhellaswag_jaccard_analysis.json\\nhellaswag_per_example.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "273b3923-ad26-4633-badc-a9073745df1d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"boolq_confidence_margin.json\\\\nboolq_jaccard_analysis.json\\\\nboolq_per_example.json\\\\ncross_benchmark_confidence_margin.json\\\\nhellaswag_jaccard_analysis.json\\\\nhellaswag_per_example.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"boolq_confidence_margin.json\\nboolq_jaccard_analysis.json\\nboolq_per_example.json\\ncross_benchmark_confidence_margin.json\\nhellaswag_jaccard_analysis.json\\nhellaswag_per_example.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-21T09:56:29.934Z_
+
+<details><summary>↩ Tool result · `toolu_01XzwG7UxF9yeuCBJnFFbmNM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "a50a48dc-f57e-4469-9706-23217a7aa6b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012dVDXKfP1UWfnDS2i7jF3B`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "grep -rn \"analysis_output\" /root/entrainment_gated_ft/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "60c45bb8-cff6-46ee-9d0a-52f689f1de28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011JtaK4B2wjcG1cGJSt5DuH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 505,
+      "cache_read_input_tokens": 44392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 505
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-21T09:56:33.789Z_
+
+<details><summary>↩ Tool result · `toolu_012dVDXKfP1UWfnDS2i7jF3B`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analyze_boolq_hellaswag.py:9:OUTPUT_DIR = \\\"/root/entrainment_gated_ft/analysis_output\\\"\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py:169:os.makedirs(\\\"/root/entrainment_gated_ft/analysis_output\\\", exist_ok=True)\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py:170:out_path = \\\"/root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "a1fe39b0-d7fb-4716-80e7-7c28c1529716",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/analyze_boolq_hellaswag.py:9:OUTPUT_DIR = \\\\\\\"/root/entrainment_gated_ft/analysis_output\\\\\\\"\\\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py:169:os.makedirs(\\\\\\\"/root/entrainment_gated_ft/analysis_output\\\\\\\", exist_ok=True)\\\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py:170:out_path = \\\\\\\"/root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/analyze_boolq_hellaswag.py:9:OUTPUT_DIR = \\\"/root/entrainment_gated_ft/analysis_output\\\"\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py:169:os.makedirs(\\\"/root/entrainment_gated_ft/analysis_output\\\", exist_ok=True)\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py:170:out_path = \\\"/root/entrainment_gated_ft/analysis_output/cross_benchmark_confidence_margin.json\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+找到了。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "1e6be726-c5aa-4607-a1a1-a4ab8903280d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K6fq1pS8TQngwZUxWR24Cu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 363,
+      "cache_read_input_tokens": 44897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 363
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XiTwDbsgdHacbfPCLG5qVN`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/analyze_boolq_hellaswag.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "b532b120-f2c9-475c-a9a4-4c4f8efca348",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K6fq1pS8TQngwZUxWR24Cu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 363,
+      "cache_read_input_tokens": 44897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 363
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T09:56:37.469Z_
+
+<details><summary>↩ Tool result · `toolu_01XiTwDbsgdHacbfPCLG5qVN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"BoolQ + HellaSwag per-example analysis for entrainment_gated_ft project.\\\"\\\"\\\"\\nimport json, os\\nimport numpy as np\\nfrom itertools import permutations\\nfrom scipy.stats import spearmanr\\n\\nEVAL_BASE = \\\"/root/entrainment_gated_ft/lm_eval_clean\\\"\\nOUTPUT_DIR = \\\"/root/entrainment_gated_ft/analysis_output\\\"\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\nARCHS = [\\\"GatedDeltaNet\\\", \\\"RetNet\\\", \\\"HGRN2\\\"]\\nARCH_SHORT = {\\\"GatedDeltaNet\\\": \\\"GDN\\\", \\\"RetNet\\\": \\\"RetNet\\\", \\\"HGRN2\\\": \\\"HGRN2\\\"}\\nRATIOS = [\\\"pure\\\", \\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nRATIO_DIR = {\\\"pure\\\": \\\"pure\\\", \\\"h24-1\\\": \\\"hybrid-24-1\\\", \\\"h12-1\\\": \\\"hybrid-12-1\\\", \\\"h6-1\\\": \\\"hybrid-6-1\\\", \\\"h3-1\\\": \\\"hybrid-3-1\\\"}\\nARCH_PAIRS = [(\\\"GDN\\\", \\\"RetNet\\\"), (\\\"GDN\\\", \\\"HGRN2\\\"), (\\\"RetNet\\\", \\\"HGRN2\\\")]\\nARCH_FROM_SHORT = {\\\"GDN\\\": \\\"GatedDeltaNet\\\", \\\"RetNet\\\": \\\"RetNet\\\", \\\"HGRN2\\\": \\\"HGRN2\\\"}\\n\\nBENCHMARKS = {\\n    \\\"boolq\\\": {\\\"expected_n\\\": 3270},\\n    \\\"hellaswag\\\": {\\\"expected_n\\\": 10042}\\n}\\n\\ndef load_accs(benchmark, arch, ratio):\\n    dir_name = f\\\"1.3B-100B-{arch}-{RATIO_DIR[ratio]}\\\"\\n    path = f\\\"{EVAL_BASE}/{benchmark}/{dir_name}/samples/{benchmark}.jsonl\\\"\\n    accs = []\\n    with open(path) as f:\\n        for line in f:\\n            d = json.loads(line)\\n            accs.append((d[\\\"doc_id\\\"], int(d[\\\"acc\\\"])))\\n    accs.sort(key=lambda x: x[0])\\n    return [a for _, a in accs]\\n\\ndef jaccard(set_a, set_b):\\n    if not set_a and not set_b:\\n        return 0.0\\n    union = set_a | set_b\\n    return len(set_a & set_b) / len(union) if union else 0.0\\n\\ndef jaccard_null(a_size, b_size, n):\\n    exp = a_size * b_size / n\\n    denom = a_size + b_size - exp\\n    return exp / denom if denom > 0 else 0.0\\n\\ndef jaccard_max(a_size, b_size):\\n    m = min(a_size, b_size)\\n    denom = a_size + b_size - m\\n    return m / denom if denom > 0 else 0.0\\n\\ndef normalized_es(j_obs, j_null, j_max):\\n    denom = j_max - j_null\\n    return (j_obs - j_null) / denom if denom > 0 else 0.0\\n\\ndef permutation_test(set_a_size, set_b_size, n_total, j_obs, n_perms=10000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    count = 0\\n    indices = np.arange(n_total)\\n    for _ in range(n_perms):\\n        perm_a = set(rng.choice(n_total, set_a_size, replace=False))\\n        perm_b = set(rng.choice(n_total, set_b_size, replace=False))\\n        j_perm = len(perm_a & perm_b) / len(perm_a | perm_b) if (perm_a | perm_b) else 0\\n        if j_perm >= j_obs:\\n            count += 1\\n    return count / n_perms\\n\\ndef spearman_exact(x, y):\\n    rho, _ = spearmanr(x, y)\\n    n = len(x)\\n    count = 0\\n    total = 0\\n    for perm in permutations(y):\\n        r, _ = spearmanr(x, list(perm))\\n        total += 1\\n        if abs(r) >= abs(rho):\\n            count += 1\\n    return rho, count / total\\n\\nfor benchmark, bconf in BENCHMARKS.items():\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Analyzing {benchmark}\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    data = {}\\n    for arch in ARCHS:\\n        data[arch] = {}\\n        for ratio in RATIOS:\\n            data[arch][ratio] = load_accs(benchmark, arch, ratio)\\n            print(f\\\"  {ARCH_SHORT[arch]:6s} {ratio:6s}: N={len(data[arch][ratio])}, acc={np.mean(data[arch][ratio]):.4f}\\\")\\n\\n    N = bconf[\\\"expected_n\\\"]\\n    assert all(len(data[a][r]) == N for a in ARCHS for r in RATIOS), \\\"Sample count mismatch!\\\"\\n\\n    # A. Per-example classification\\n    per_example = {}\\n    for arch in ARCHS:\\n        short = ARCH_SHORT[arch]\\n        per_example[short] = {}\\n        pure = data[arch][\\\"pure\\\"]\\n        for ratio in RATIOS[1:]:\\n            hybrid = data[arch][ratio]\\n            helped = sum(1 for p, h in zip(pure, hybrid) if p == 0 and h == 1)\\n            hurt = sum(1 for p, h in zip(pure, hybrid) if p == 1 and h == 0)\\n            stayed_right = sum(1 for p, h in zip(pure, hybrid) if p == 1 and h == 1)\\n            stayed_wrong = sum(1 for p, h in zip(pure, hybrid) if p == 0 and h == 0)\\n            per_example[short][ratio] = {\\n                \\\"n_helped\\\": helped, \\\"n_hurt\\\": hurt,\\n                \\\"n_stayed_right\\\": stayed_right, \\\"n_stayed_wrong\\\": stayed_wrong,\\n                \\\"net_effect\\\": helped - hurt,\\n                \\\"pct_helped\\\":\\n\\n... [截断: 输出过长，省略 136 字符] ...\\n\\n_results = {}\\n    for ratio in RATIOS[1:]:\\n        jaccard_results[ratio] = {}\\n        sets = {}\\n        for arch in ARCHS:\\n            short = ARCH_SHORT[arch]\\n            pure = data[arch][\\\"pure\\\"]\\n            hybrid = data[arch][ratio]\\n            helped_set = {i for i, (p, h) in enumerate(zip(pure, hybrid)) if p == 0 and h == 1}\\n            hurt_set = {i for i, (p, h) in enumerate(zip(pure, hybrid)) if p == 1 and h == 0}\\n            sets[short] = {\\\"helped\\\": helped_set, \\\"hurt\\\": hurt_set}\\n\\n        for a_name, b_name in ARCH_PAIRS:\\n            pair_key = f\\\"{a_name}-{b_name}\\\"\\n            for category in [\\\"helped\\\", \\\"hurt\\\"]:\\n                set_a = sets[a_name][category]\\n                set_b = sets[b_name][category]\\n                j_obs = jaccard(set_a, set_b)\\n                j_n = jaccard_null(len(set_a), len(set_b), N)\\n                j_m = jaccard_max(len(set_a), len(set_b))\\n                n_es = normalized_es(j_obs, j_n, j_m)\\n                p_val = permutation_test(len(set_a), len(set_b), N, j_obs)\\n                key = f\\\"{pair_key}_{category}\\\"\\n                jaccard_results[ratio][key] = {\\n                    \\\"J_obs\\\": round(j_obs, 4),\\n                    \\\"J_null\\\": round(j_n, 4),\\n                    \\\"J_max\\\": round(j_m, 4),\\n                    \\\"normalized_ES\\\": round(n_es, 4),\\n                    \\\"p_value_permutation\\\": round(p_val, 4),\\n                    \\\"n_permutations\\\": 10000,\\n                    \\\"sizes\\\": [len(set_a), len(set_b)]\\n                }\\n                print(f\\\"  {ratio} {pair_key} {category}: J={j_obs:.4f} J_null={j_n:.4f} nES={n_es:.4f} p={p_val:.4f}\\\")\\n\\n    # D. Ambiguity alpha\\n    ambiguity = {}\\n    for ratio in RATIOS:\\n        preds = [data[arch][ratio] for arch in ARCHS]\\n        votes = [sum(preds[a][i] for a in range(3)) for i in range(N)]\\n        n_ambiguous = sum(1 for v in votes if v != 0 and v != 3)\\n        ambiguity[ratio] = {\\n            \\\"ambiguity_alpha\\\": round(n_ambiguous / N, 6),\\n            \\\"n_ambiguous\\\": n_ambiguous,\\n            \\\"n_samples\\\": N,\\n            \\\"disagreement_distribution\\\": {\\n                \\\"0_of_3\\\": sum(1 for v in votes if v == 0),\\n                \\\"1_of_3\\\": sum(1 for v in votes if v == 1),\\n                \\\"2_of_3\\\": sum(1 for v in votes if v == 2),\\n                \\\"3_of_3\\\": sum(1 for v in votes if v == 3),\\n            }\\n        }\\n        print(f\\\"  {ratio} ambiguity_alpha={ambiguity[ratio]['ambiguity_alpha']:.4f}\\\")\\n\\n    # E. Convergence sigma + Spearman\\n    convergence = {}\\n    sigmas = []\\n    for ratio in RATIOS:\\n        accs = [np.mean(data[arch][ratio]) for arch in ARCHS]\\n        sigma = float(np.std(accs))\\n        convergence[ratio] = {\\n            \\\"sigma\\\": round(sigma, 6),\\n            \\\"accs\\\": {ARCH_SHORT[arch]: round(np.mean(data[arch][ratio]), 4) for arch in ARCHS}\\n        }\\n        sigmas.append(sigma)\\n\\n    rho, p_exact = spearman_exact(list(range(len(RATIOS))), sigmas)\\n    convergence[\\\"spearman\\\"] = {\\\"rho\\\": round(rho, 4), \\\"p_exact_two_tailed\\\": round(p_exact, 4), \\\"n_permutations\\\": 120}\\n    print(f\\\"  Spearman rho={rho:.4f}, p={p_exact:.4f}\\\")\\n\\n    # Save per_example JSON\\n    per_example_output = {\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_samples\\\": N,\\n        \\\"architectures\\\": list(ARCH_SHORT.values()),\\n        \\\"ratios\\\": RATIOS,\\n        \\\"per_example_classification\\\": per_example,\\n        \\\"ambiguity\\\": ambiguity,\\n        \\\"convergence_sigma\\\": convergence\\n    }\\n    with open(f\\\"{OUTPUT_DIR}/{benchmark}_per_example.json\\\", \\\"w\\\") as f:\\n        json.dump(per_example_output, f, indent=2)\\n    print(f\\\"  Wrote {OUTPUT_DIR}/{benchmark}_per_example.json\\\")\\n\\n    # Save Jaccard JSON\\n    jaccard_output = {\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_samples\\\": N,\\n        \\\"arch_pairs\\\": [f\\\"{a}-{b}\\\" for a, b in ARCH_PAIRS],\\n        \\\"jaccard_analysis\\\": jaccard_results\\n    }\\n    with open(f\\\"{OUTPUT_DIR}/{benchmark}_jaccard_analysis.json\\\", \\\"w\\\") as f:\\n        json.dump(jaccard_output, f, indent=2)\\n    print(f\\\"  Wrote {OUTPUT_DIR}/{benchmark}_jaccard_analysis.json\\\")\\n\\nprint(f\\\"\\\\nDone! 4 files in {OUTPUT_DIR}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "0ba94ce8-3df0-4849-9344-e3d921a8a30f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"BoolQ + HellaSwag per-example analysis for entrainment_gated_ft project.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os\\\\nimport numpy as np\\\\nfrom itertools import permutations\\\\nfrom scipy.stats import spearmanr\\\\n\\\\nEVAL_BASE = \\\\\\\"/root/entrainment_gated_ft/lm_eval_clean\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/entrainment_gated_ft/analysis_output\\\\\\\"\\\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\nARCHS = [\\\\\\\"GatedDeltaNet\\\\\\\", \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\"]\\\\nARCH_SHORT = {\\\\\\\"GatedDeltaNet\\\\\\\": \\\\\\\"GDN\\\\\\\", \\\\\\\"RetNet\\\\\\\": \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\": \\\\\\\"HGRN2\\\\\\\"}\\\\nRATIOS = [\\\\\\\"pure\\\\\\\", \\\\\\\"h24-1\\\\\\\", \\\\\\\"h12-1\\\\\\\", \\\\\\\"h6-1\\\\\\\", \\\\\\\"h3-1\\\\\\\"]\\\\nRATIO_DIR = {\\\\\\\"pure\\\\\\\": \\\\\\\"pure\\\\\\\", \\\\\\\"h24-1\\\\\\\": \\\\\\\"hybrid-24-1\\\\\\\", \\\\\\\"h12-1\\\\\\\": \\\\\\\"hybrid-12-1\\\\\\\", \\\\\\\"h6-1\\\\\\\": \\\\\\\"hybrid-6-1\\\\\\\", \\\\\\\"h3-1\\\\\\\": \\\\\\\"hybrid-3-1\\\\\\\"}\\\\nARCH_PAIRS = [(\\\\\\\"GDN\\\\\\\", \\\\\\\"RetNet\\\\\\\"), (\\\\\\\"GDN\\\\\\\", \\\\\\\"HGRN2\\\\\\\"), (\\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\")]\\\\nARCH_FROM_SHORT = {\\\\\\\"GDN\\\\\\\": \\\\\\\"GatedDeltaNet\\\\\\\", \\\\\\\"RetNet\\\\\\\": \\\\\\\"RetNet\\\\\\\", \\\\\\\"HGRN2\\\\\\\": \\\\\\\"HGRN2\\\\\\\"}\\\\n\\\\nBENCHMARKS = {\\\\n    \\\\\\\"boolq\\\\\\\": {\\\\\\\"expected_n\\\\\\\": 3270},\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\\\\"expected_n\\\\\\\": 10042}\\\\n}\\\\n\\\\ndef load_accs(benchmark, arch, ratio):\\\\n    dir_name = f\\\\\\\"1.3B-100B-{arch}-{RATIO_DIR[ratio]}\\\\\\\"\\\\n    path = f\\\\\\\"{EVAL_BASE}/{benchmark}/{dir_name}/samples/{benchmark}.jsonl\\\\\\\"\\\\n    accs = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            d = json.loads(line)\\\\n            accs.append((d[\\\\\\\"doc_id\\\\\\\"], int(d[\\\\\\\"acc\\\\\\\"])))\\\\n    accs.sort(key=lambda x: x[0])\\\\n    return [a for _, a in accs]\\\\n\\\\ndef jaccard(set_a, set_b):\\\\n    if not set_a and not set_b:\\\\n        return 0.0\\\\n    union = set_a | set_b\\\\n    return len(set_a & set_b) / len(union) if union else 0.0\\\\n\\\\ndef jaccard_null(a_size, b_size, n):\\\\n    exp = a_size * b_size / n\\\\n    denom = a_size + b_size - exp\\\\n    return exp / denom if denom > 0 else 0.0\\\\n\\\\ndef jaccard_max(a_size, b_size):\\\\n    m = min(a_size, b_size)\\\\n    denom = a_size + b_size - m\\\\n    return m / denom if denom > 0 else 0.0\\\\n\\\\ndef normalized_es(j_obs, j_null, j_max):\\\\n    denom = j_max - j_null\\\\n    return (j_obs - j_null) / denom if denom > 0 else 0.0\\\\n\\\\ndef permutation_test(set_a_size, set_b_size, n_total, j_obs, n_perms=10000, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    count = 0\\\\n    indices = np.arange(n_total)\\\\n    for _ in range(n_perms):\\\\n        perm_a = set(rng.choice(n_total, set_a_size, replace=False))\\\\n        perm_b = set(rng.choice(n_total, set_b_size, replace=False))\\\\n        j_perm = len(perm_a & perm_b) / len(perm_a | perm_b) if (perm_a | perm_b) else 0\\\\n        if j_perm >= j_obs:\\\\n            count += 1\\\\n    return count / n_perms\\\\n\\\\ndef spearman_exact(x, y):\\\\n    rho, _ = spearmanr(x, y)\\\\n    n = len(x)\\\\n    count = 0\\\\n    total = 0\\\\n    for perm in permutations(y):\\\\n        r, _ = spearmanr(x, list(perm))\\\\n        total += 1\\\\n        if abs(r) >= abs(rho):\\\\n            count += 1\\\\n    return rho, count / total\\\\n\\\\nfor benchmark, bconf in BENCHMARKS.items():\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Analyzing {benchmark}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    data = {}\\\\n    for arch in ARCHS:\\\\n        data[arch] = {}\\\\n        for ratio in RATIOS:\\\\n            data[arch][ratio] = load_accs(benchmark, arch, ratio)\\\\n            print(f\\\\\\\"  {ARCH_SHORT[arch]:6s} {ratio:6s}: N={len(data[arch][ratio])}, acc={np.mean(data[arch][ratio]):.4f}\\\\\\\")\\\\n\\\\n    N = bconf[\\\\\\\"expected_n\\\\\\\"]\\\\n    assert all(len(data[a][r]) == N for a in ARCHS for r in RATIOS), \\\\\\\"Sample count mismatch!\\\\\\\"\\\\n\\\\n    # A. Per-example classification\\\\n    per_example = {}\\\\n    for arch in ARCHS:\\\\n        short = ARCH_SHORT[arch]\\\\n        per_example[short] = {}\\\\n        pure = data[arch][\\\\\\\"pure\\\\\\\"]\\\\n        for ratio in RATIOS[1:]:\\\\n            hybrid = data[arch][ratio]\\\\n            helped = sum(1 for p, h in zip(pure, hybrid) if p == 0 and h == 1)\\\\n            hurt = sum(1 for p, h in zip(pure, hybrid) if p == 1 and h == 0)\\\\n            stayed_right = sum(1 for p, h in zip(pure, hybrid) if p == 1 and h == 1)\\\\n            stayed_wrong = sum(1 for p, h in zip(pure, hybrid) if p == 0 and h == 0)\\\\n            per_example[short][ratio] = {\\\\n                \\\\\\\"n_helped\\\\\\\": helped, \\\\\\\"n_hurt\\\\\\\": hurt,\\\\n                \\\\\\\"n_stayed_right\\\\\\\": stayed_right, \\\\\\\"n_stayed_wrong\\\\\\\": stayed_wrong,\\\\n                \\\\\\\"net_effect\\\\\\\": helped - hurt,\\\\n                \\\\\\\"pct_helped\\\\\\\":\\\\n\\\\n... [截断: 输出过长，省略 136 字符] ...\\\\n\\\\n_results = {}\\\\n    for ratio in RATIOS[1:]:\\\\n        jaccard_results[ratio] = {}\\\\n        sets = {}\\\\n        for arch in ARCHS:\\\\n            short = ARCH_SHORT[arch]\\\\n            pure = data[arch][\\\\\\\"pure\\\\\\\"]\\\\n            hybrid = data[arch][ratio]\\\\n            helped_set = {i for i, (p, h) in enumerate(zip(pure, hybrid)) if p == 0 and h == 1}\\\\n            hurt_set = {i for i, (p, h) in enumerate(zip(pure, hybrid)) if p == 1 and h == 0}\\\\n            sets[short] = {\\\\\\\"helped\\\\\\\": helped_set, \\\\\\\"hurt\\\\\\\": hurt_set}\\\\n\\\\n        for a_name, b_name in ARCH_PAIRS:\\\\n            pair_key = f\\\\\\\"{a_name}-{b_name}\\\\\\\"\\\\n            for category in [\\\\\\\"helped\\\\\\\", \\\\\\\"hurt\\\\\\\"]:\\\\n                set_a = sets[a_name][category]\\\\n                set_b = sets[b_name][category]\\\\n                j_obs = jaccard(set_a, set_b)\\\\n                j_n = jaccard_null(len(set_a), len(set_b), N)\\\\n                j_m = jaccard_max(len(set_a), len(set_b))\\\\n                n_es = normalized_es(j_obs, j_n, j_m)\\\\n                p_val = permutation_test(len(set_a), len(set_b), N, j_obs)\\\\n                key = f\\\\\\\"{pair_key}_{category}\\\\\\\"\\\\n                jaccard_results[ratio][key] = {\\\\n                    \\\\\\\"J_obs\\\\\\\": round(j_obs, 4),\\\\n                    \\\\\\\"J_null\\\\\\\": round(j_n, 4),\\\\n                    \\\\\\\"J_max\\\\\\\": round(j_m, 4),\\\\n                    \\\\\\\"normalized_ES\\\\\\\": round(n_es, 4),\\\\n                    \\\\\\\"p_value_permutation\\\\\\\": round(p_val, 4),\\\\n                    \\\\\\\"n_permutations\\\\\\\": 10000,\\\\n                    \\\\\\\"sizes\\\\\\\": [len(set_a), len(set_b)]\\\\n                }\\\\n                print(f\\\\\\\"  {ratio} {pair_key} {category}: J={j_obs:.4f} J_null={j_n:.4f} nES={n_es:.4f} p={p_val:.4f}\\\\\\\")\\\\n\\\\n    # D. Ambiguity alpha\\\\n    ambiguity = {}\\\\n    for ratio in RATIOS:\\\\n        preds = [data[arch][ratio] for arch in ARCHS]\\\\n        votes = [sum(preds[a][i] for a in range(3)) for i in range(N)]\\\\n        n_ambiguous = sum(1 for v in votes if v != 0 and v != 3)\\\\n        ambiguity[ratio] = {\\\\n            \\\\\\\"ambiguity_alpha\\\\\\\": round(n_ambiguous / N, 6),\\\\n            \\\\\\\"n_ambiguous\\\\\\\": n_ambiguous,\\\\n            \\\\\\\"n_samples\\\\\\\": N,\\\\n            \\\\\\\"disagreement_distribution\\\\\\\": {\\\\n                \\\\\\\"0_of_3\\\\\\\": sum(1 for v in votes if v == 0),\\\\n                \\\\\\\"1_of_3\\\\\\\": sum(1 for v in votes if v == 1),\\\\n                \\\\\\\"2_of_3\\\\\\\": sum(1 for v in votes if v == 2),\\\\n                \\\\\\\"3_of_3\\\\\\\": sum(1 for v in votes if v == 3),\\\\n            }\\\\n        }\\\\n        print(f\\\\\\\"  {ratio} ambiguity_alpha={ambiguity[ratio]['ambiguity_alpha']:.4f}\\\\\\\")\\\\n\\\\n    # E. Convergence sigma + Spearman\\\\n    convergence = {}\\\\n    sigmas = []\\\\n    for ratio in RATIOS:\\\\n        accs = [np.mean(data[arch][ratio]) for arch in ARCHS]\\\\n        sigma = float(np.std(accs))\\\\n        convergence[ratio] = {\\\\n            \\\\\\\"sigma\\\\\\\": round(sigma, 6),\\\\n            \\\\\\\"accs\\\\\\\": {ARCH_SHORT[arch]: round(np.mean(data[arch][ratio]), 4) for arch in ARCHS}\\\\n        }\\\\n        sigmas.append(sigma)\\\\n\\\\n    rho, p_exact = spearman_exact(list(range(len(RATIOS))), sigmas)\\\\n    convergence[\\\\\\\"spearman\\\\\\\"] = {\\\\\\\"rho\\\\\\\": round(rho, 4), \\\\\\\"p_exact_two_tailed\\\\\\\": round(p_exact, 4), \\\\\\\"n_permutations\\\\\\\": 120}\\\\n    print(f\\\\\\\"  Spearman rho={rho:.4f}, p={p_exact:.4f}\\\\\\\")\\\\n\\\\n    # Save per_example JSON\\\\n    per_example_output = {\\\\n        \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n        \\\\\\\"n_samples\\\\\\\": N,\\\\n        \\\\\\\"architectures\\\\\\\": list(ARCH_SHORT.values()),\\\\n        \\\\\\\"ratios\\\\\\\": RATIOS,\\\\n        \\\\\\\"per_example_classification\\\\\\\": per_example,\\\\n        \\\\\\\"ambiguity\\\\\\\": ambiguity,\\\\n        \\\\\\\"convergence_sigma\\\\\\\": convergence\\\\n    }\\\\n    with open(f\\\\\\\"{OUTPUT_DIR}/{benchmark}_per_example.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(per_example_output, f, indent=2)\\\\n    print(f\\\\\\\"  Wrote {OUTPUT_DIR}/{benchmark}_per_example.json\\\\\\\")\\\\n\\\\n    # Save Jaccard JSON\\\\n    jaccard_output = {\\\\n        \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n        \\\\\\\"n_samples\\\\\\\": N,\\\\n        \\\\\\\"arch_pairs\\\\\\\": [f\\\\\\\"{a}-{b}\\\\\\\" for a, b in ARCH_PAIRS],\\\\n        \\\\\\\"jaccard_analysis\\\\\\\": jaccard_results\\\\n    }\\\\n    with open(f\\\\\\\"{OUTPUT_DIR}/{benchmark}_jaccard_analysis.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(jaccard_output, f, indent=2)\\\\n    print(f\\\\\\\"  Wrote {OUTPUT_DIR}/{benchmark}_jaccard_analysis.json\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\nDone! 4 files in {OUTPUT_DIR}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"BoolQ + HellaSwag per-example analysis for entrainment_gated_ft project.\\\"\\\"\\\"\\nimport json, os\\nimport numpy as np\\nfrom itertools import permutations\\nfrom scipy.stats import spearmanr\\n\\nEVAL_BASE = \\\"/root/entrainment_gated_ft/lm_eval_clean\\\"\\nOUTPUT_DIR = \\\"/root/entrainment_gated_ft/analysis_output\\\"\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\nARCHS = [\\\"GatedDeltaNet\\\", \\\"RetNet\\\", \\\"HGRN2\\\"]\\nARCH_SHORT = {\\\"GatedDeltaNet\\\": \\\"GDN\\\", \\\"RetNet\\\": \\\"RetNet\\\", \\\"HGRN2\\\": \\\"HGRN2\\\"}\\nRATIOS = [\\\"pure\\\", \\\"h24-1\\\", \\\"h12-1\\\", \\\"h6-1\\\", \\\"h3-1\\\"]\\nRATIO_DIR = {\\\"pure\\\": \\\"pure\\\", \\\"h24-1\\\": \\\"hybrid-24-1\\\", \\\"h12-1\\\": \\\"hybrid-12-1\\\", \\\"h6-1\\\": \\\"hybrid-6-1\\\", \\\"h3-1\\\": \\\"hybrid-3-1\\\"}\\nARCH_PAIRS = [(\\\"GDN\\\", \\\"RetNet\\\"), (\\\"GDN\\\", \\\"HGRN2\\\"), (\\\"RetNet\\\", \\\"HGRN2\\\")]\\nARCH_FROM_SHORT = {\\\"GDN\\\": \\\"GatedDeltaNet\\\", \\\"RetNet\\\": \\\"RetNet\\\", \\\"HGRN2\\\": \\\"HGRN2\\\"}\\n\\nBENCHMARKS = {\\n    \\\"boolq\\\": {\\\"expected_n\\\": 3270},\\n    \\\"hellaswag\\\": {\\\"expected_n\\\": 10042}\\n}\\n\\ndef load_accs(benchmark, arch, ratio):\\n    dir_name = f\\\"1.3B-100B-{arch}-{RATIO_DIR[ratio]}\\\"\\n    path = f\\\"{EVAL_BASE}/{benchmark}/{dir_name}/samples/{benchmark}.jsonl\\\"\\n    accs = []\\n    with open(path) as f:\\n        for line in f:\\n            d = json.loads(line)\\n            accs.append((d[\\\"doc_id\\\"], int(d[\\\"acc\\\"])))\\n    accs.sort(key=lambda x: x[0])\\n    return [a for _, a in accs]\\n\\ndef jaccard(set_a, set_b):\\n    if not set_a and not set_b:\\n        return 0.0\\n    union = set_a | set_b\\n    return len(set_a & set_b) / len(union) if union else 0.0\\n\\ndef jaccard_null(a_size, b_size, n):\\n    exp = a_size * b_size / n\\n    denom = a_size + b_size - exp\\n    return exp / denom if denom > 0 else 0.0\\n\\ndef jaccard_max(a_size, b_size):\\n    m = min(a_size, b_size)\\n    denom = a_size + b_size - m\\n    return m / denom if denom > 0 else 0.0\\n\\ndef normalized_es(j_obs, j_null, j_max):\\n    denom = j_max - j_null\\n    return (j_obs - j_null) / denom if denom > 0 else 0.0\\n\\ndef permutation_test(set_a_size, set_b_size, n_total, j_obs, n_perms=10000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    count = 0\\n    indices = np.arange(n_total)\\n    for _ in range(n_perms):\\n        perm_a = set(rng.choice(n_total, set_a_size, replace=False))\\n        perm_b = set(rng.choice(n_total, set_b_size, replace=False))\\n        j_perm = len(perm_a & perm_b) / len(perm_a | perm_b) if (perm_a | perm_b) else 0\\n        if j_perm >= j_obs:\\n            count += 1\\n    return count / n_perms\\n\\ndef spearman_exact(x, y):\\n    rho, _ = spearmanr(x, y)\\n    n = len(x)\\n    count = 0\\n    total = 0\\n    for perm in permutations(y):\\n        r, _ = spearmanr(x, list(perm))\\n        total += 1\\n        if abs(r) >= abs(rho):\\n            count += 1\\n    return rho, count / total\\n\\nfor benchmark, bconf in BENCHMARKS.items():\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Analyzing {benchmark}\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    data = {}\\n    for arch in ARCHS:\\n        data[arch] = {}\\n        for ratio in RATIOS:\\n            data[arch][ratio] = load_accs(benchmark, arch, ratio)\\n            print(f\\\"  {ARCH_SHORT[arch]:6s} {ratio:6s}: N={len(data[arch][ratio])}, acc={np.mean(data[arch][ratio]):.4f}\\\")\\n\\n    N = bconf[\\\"expected_n\\\"]\\n    assert all(len(data[a][r]) == N for a in ARCHS for r in RATIOS), \\\"Sample count mismatch!\\\"\\n\\n    # A. Per-example classification\\n    per_example = {}\\n    for arch in ARCHS:\\n        short = ARCH_SHORT[arch]\\n        per_example[short] = {}\\n        pure = data[arch][\\\"pure\\\"]\\n        for ratio in RATIOS[1:]:\\n            hybrid = data[arch][ratio]\\n            helped = sum(1 for p, h in zip(pure, hybrid) if p == 0 and h == 1)\\n            hurt = sum(1 for p, h in zip(pure, hybrid) if p == 1 and h == 0)\\n            stayed_right = sum(1 for p, h in zip(pure, hybrid) if p == 1 and h == 1)\\n            stayed_wrong = sum(1 for p, h in zip(pure, hybrid) if p == 0 and h == 0)\\n            per_example[short][ratio] = {\\n                \\\"n_helped\\\": helped, \\\"n_hurt\\\": hurt,\\n                \\\"n_stayed_right\\\": stayed_right, \\\"n_stayed_wrong\\\": stayed_wrong,\\n                \\\"net_effect\\\": helped - hurt,\\n                \\\"pct_helped\\\":\\n\\n... [截断: 输出过长，省略 136 字符] ...\\n\\n_results = {}\\n    for ratio in RATIOS[1:]:\\n        jaccard_results[ratio] = {}\\n        sets = {}\\n        for arch in ARCHS:\\n            short = ARCH_SHORT[arch]\\n            pure = data[arch][\\\"pure\\\"]\\n            hybrid = data[arch][ratio]\\n            helped_set = {i for i, (p, h) in enumerate(zip(pure, hybrid)) if p == 0 and h == 1}\\n            hurt_set = {i for i, (p, h) in enumerate(zip(pure, hybrid)) if p == 1 and h == 0}\\n            sets[short] = {\\\"helped\\\": helped_set, \\\"hurt\\\": hurt_set}\\n\\n        for a_name, b_name in ARCH_PAIRS:\\n            pair_key = f\\\"{a_name}-{b_name}\\\"\\n            for category in [\\\"helped\\\", \\\"hurt\\\"]:\\n                set_a = sets[a_name][category]\\n                set_b = sets[b_name][category]\\n                j_obs = jaccard(set_a, set_b)\\n                j_n = jaccard_null(len(set_a), len(set_b), N)\\n                j_m = jaccard_max(len(set_a), len(set_b))\\n                n_es = normalized_es(j_obs, j_n, j_m)\\n                p_val = permutation_test(len(set_a), len(set_b), N, j_obs)\\n                key = f\\\"{pair_key}_{category}\\\"\\n                jaccard_results[ratio][key] = {\\n                    \\\"J_obs\\\": round(j_obs, 4),\\n                    \\\"J_null\\\": round(j_n, 4),\\n                    \\\"J_max\\\": round(j_m, 4),\\n                    \\\"normalized_ES\\\": round(n_es, 4),\\n                    \\\"p_value_permutation\\\": round(p_val, 4),\\n                    \\\"n_permutations\\\": 10000,\\n                    \\\"sizes\\\": [len(set_a), len(set_b)]\\n                }\\n                print(f\\\"  {ratio} {pair_key} {category}: J={j_obs:.4f} J_null={j_n:.4f} nES={n_es:.4f} p={p_val:.4f}\\\")\\n\\n    # D. Ambiguity alpha\\n    ambiguity = {}\\n    for ratio in RATIOS:\\n        preds = [data[arch][ratio] for arch in ARCHS]\\n        votes = [sum(preds[a][i] for a in range(3)) for i in range(N)]\\n        n_ambiguous = sum(1 for v in votes if v != 0 and v != 3)\\n        ambiguity[ratio] = {\\n            \\\"ambiguity_alpha\\\": round(n_ambiguous / N, 6),\\n            \\\"n_ambiguous\\\": n_ambiguous,\\n            \\\"n_samples\\\": N,\\n            \\\"disagreement_distribution\\\": {\\n                \\\"0_of_3\\\": sum(1 for v in votes if v == 0),\\n                \\\"1_of_3\\\": sum(1 for v in votes if v == 1),\\n                \\\"2_of_3\\\": sum(1 for v in votes if v == 2),\\n                \\\"3_of_3\\\": sum(1 for v in votes if v == 3),\\n            }\\n        }\\n        print(f\\\"  {ratio} ambiguity_alpha={ambiguity[ratio]['ambiguity_alpha']:.4f}\\\")\\n\\n    # E. Convergence sigma + Spearman\\n    convergence = {}\\n    sigmas = []\\n    for ratio in RATIOS:\\n        accs = [np.mean(data[arch][ratio]) for arch in ARCHS]\\n        sigma = float(np.std(accs))\\n        convergence[ratio] = {\\n            \\\"sigma\\\": round(sigma, 6),\\n            \\\"accs\\\": {ARCH_SHORT[arch]: round(np.mean(data[arch][ratio]), 4) for arch in ARCHS}\\n        }\\n        sigmas.append(sigma)\\n\\n    rho, p_exact = spearman_exact(list(range(len(RATIOS))), sigmas)\\n    convergence[\\\"spearman\\\"] = {\\\"rho\\\": round(rho, 4), \\\"p_exact_two_tailed\\\": round(p_exact, 4), \\\"n_permutations\\\": 120}\\n    print(f\\\"  Spearman rho={rho:.4f}, p={p_exact:.4f}\\\")\\n\\n    # Save per_example JSON\\n    per_example_output = {\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_samples\\\": N,\\n        \\\"architectures\\\": list(ARCH_SHORT.values()),\\n        \\\"ratios\\\": RATIOS,\\n        \\\"per_example_classification\\\": per_example,\\n        \\\"ambiguity\\\": ambiguity,\\n        \\\"convergence_sigma\\\": convergence\\n    }\\n    with open(f\\\"{OUTPUT_DIR}/{benchmark}_per_example.json\\\", \\\"w\\\") as f:\\n        json.dump(per_example_output, f, indent=2)\\n    print(f\\\"  Wrote {OUTPUT_DIR}/{benchmark}_per_example.json\\\")\\n\\n    # Save Jaccard JSON\\n    jaccard_output = {\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_samples\\\": N,\\n        \\\"arch_pairs\\\": [f\\\"{a}-{b}\\\" for a, b in ARCH_PAIRS],\\n        \\\"jaccard_analysis\\\": jaccard_results\\n    }\\n    with open(f\\\"{OUTPUT_DIR}/{benchmark}_jaccard_analysis.json\\\", \\\"w\\\") as f:\\n        json.dump(jaccard_output, f, indent=2)\\n    print(f\\\"  Wrote {OUTPUT_DIR}/{benchmark}_jaccard_analysis.json\\\")\\n\\nprint(f\\\"\\\\nDone! 4 files in {OUTPUT_DIR}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+结论明确了。
+
+## 结果
+
+**HellaSwag per-example correct/incorrect 基于 `acc`（非 `acc_norm`）。**
+
+### 证据
+
+1. **`analyze_boolq_hellaswag.py` 第 32 行**（生成 `hellaswag_per_example.json` 的脚本）：
+   ```python
+   accs.append((d["doc_id"], int(d["acc"])))
+   ```
+   用的是 `d["acc"]` 字段，不是 `d["acc_norm"]`。
+
+2. **per-example jsonl 样本**（`hellaswag.jsonl` 第一行）同时包含 `"acc": 0.0` 和 `"acc_norm": 0.0` 两个字段，但分析代码只读取了 `"acc"`。
+
+3. **Aggregate 指标**（GatedDeltaNet-pure）：
+   - **`acc` = 0.4641**
+   - **`acc_norm` = 0.6076**
+   
+   差异很大（~14pp），`acc_norm` 做了 length normalization 后显著更高。
+
+4. **注意**：`task_specificity_analysis.py` 的 aggregate 汇报用的是 `acc_norm,none`（即报告时引用 0.6076），但 per-example helped/hurt 分类用的是 `acc`（即基于 0.4641 水平的逐样本对错判断）。
+
+### 含义
+
+per-example 分析中一个样本被判"正确"意味着模型选了 raw log-likelihood 最高的选项恰好是 gold answer（无 length normalization）。这比 `acc_norm` 标准更严格，对应的 pure baseline 正确率只有 ~46%。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "uuid": "e59b1dec-894d-4d3a-9028-8965f6cd2b92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0117n5Jt6LxhWCTv61sjJFAi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3919,
+      "cache_read_input_tokens": 45260,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3919
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 76_
+
+结论明确了。
+
+## 结果
+
+**HellaSwag per-example correct/incorrect 基于 `acc`（非 `acc_norm`）。**
+
+### 证据
+
+1. **`analyze_boolq_hellaswag.py` 第 32 行**（生成 `hellaswag_per_example.json` 的脚本）：
+   ```python
+   accs.append((d["doc_id"], int(d["acc"])))
+   ```
+   用的是 `d["acc"]` 字段，不是 `d["acc_norm"]`。
+
+2. **per-example jsonl 样本**（`hellaswag.jsonl` 第一行）同时包含 `"acc": 0.0` 和 `"acc_norm": 0.0` 两个字段，但分析代码只读取了 `"acc"`。
+
+3. **Aggregate 指标**（GatedDeltaNet-pure）：
+   - **`acc` = 0.4641**
+   - **`acc_norm` = 0.6076**
+   
+   差异很大（~14pp），`acc_norm` 做了 length normalization 后显著更高。
+
+4. **注意**：`task_specificity_analysis.py` 的 aggregate 汇报用的是 `acc_norm,none`（即报告时引用 0.6076），但 per-example helped/hurt 分类用的是 `acc`（即基于 0.4641 水平的逐样本对错判断）。
+
+### 含义
+
+per-example 分析中一个样本被判"正确"意味着模型选了 raw log-likelihood 最高的选项恰好是 gold answer（无 length normalization）。这比 `acc_norm` 标准更严格，对应的 pure baseline 正确率只有 ~46%。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 112206,
+  "duration_api_ms": 90553,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "6b9f1fe6-89b3-4a0e-b4cb-b8d463d689b8",
+  "total_cost_usd": 0.647711,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 37338,
+    "cache_read_input_tokens": 586549,
+    "output_tokens": 4783,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 37338,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 492,
+        "cache_read_input_tokens": 45260,
+        "cache_creation_input_tokens": 3919,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3919
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1279,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001399,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 4783,
+      "cacheReadInputTokens": 586549,
+      "cacheCreationInputTokens": 37338,
+      "webSearchRequests": 0,
+      "costUSD": 0.646312,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "6e7434a5-be22-4b10-8e36-bedf2e4e46aa"
+}
+```
+
+</details>
+
+---

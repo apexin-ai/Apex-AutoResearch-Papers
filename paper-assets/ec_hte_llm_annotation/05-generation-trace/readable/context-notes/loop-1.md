@@ -1,0 +1,66 @@
+# director / loop_1.md
+
+**When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_1.md`
+- **Structured JSON:** [`d431ad318fb2142c6c18.json`](../../sessions/d4/d431ad318fb2142c6c18.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 1
+reason: max_messages
+updated: '2026-05-22T18:29:28+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目 GPU 已全部释放（已三次请 Manager 回收），不要再分配 GPU 给实验
+- autodl-rtx6000 服务器正在被 Manager 转移给其他项目，不要在该服务器上启动任何任务
+- Appendix 已有 26 个 \section，\Alph 计数器上限 26。**新增 appendix 内容必须用 \subsection**，否则编译报 "Counter too large"
+- 诊断 AUC 在论文中必须诚实报告：synthetic=0.86, real CM=0.63, K=2 反预测。不得回退到只报 0.86
+- EMNLP 2026 正文严格 ≤8 页，当前 Conclusion 恰好在 p8 末尾，任何主文新增内容都需要等量压缩
+
+### 2. 🖥️ 基础设施快照
+- 服务器：无活跃 GPU 服务器（autodl-rtx6000 转移中）。local-cpu (localhost) 可用于 CPU 模拟
+- 论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/`
+- 实验代码/结果：远程 `/home/ubuntu/ec_hte_llm_annotation/`（但服务器正在转移）
+- 活跃进程：无。所有实验完成，无 RUNNING worker/cron
+
+### 3. 📊 当前状态
+- **Round 12 审稿已提交**（approval_id: `apr_20260522T173152_xaou`，continue 模式），等待审批卡确认 + 审稿结果
+- 所有实验完成：exp-028 (asymmetric diagnostic AUC, negative), exp-029 (A1 sensitivity, positive)
+- Round 11 全部 13 项修复已落地：W5 页面压缩、诊断 C3 诚实报告+meta-diagnostic+binary Z 等价 Corollary、A1 sensitivity table、CF oracle 数据、Abstract 平衡、F-L 区分、(A3) 扩展、2 条引用、estimator-agnostic 措辞
+- 编译状态：25 页，0 critical warnings，main text ≤8 页
+- Manager 密码问题：用户已确认会自行提供给 Manager
+
+### 4. 📋 待办
+- Round 12 审稿报告回来 → 按处理协议逐条编号 + Action Matrix + post_to_reviewer 独立审查 → 综合后派 Agent/Paper Agent
+- 审稿评分 ≥3.5 → 可考虑 DDL 前最后一轮 polish（W9 κ ablation 如果时间够）
+- 审稿评分仍 3.0 → 评估是否有可在 DDL 前解决的 actionable issue，还是 structural limitation
+- DDL 5月25日（~2.5天）→ 最后一天留给格式检查 + checklist 填写 + 提交
+
+### 5. 🎯 战略上下文
+- **评分轨迹**：Dream best=4 median=3.5 → R10(continue)=3.5 → R11(fresh)=3.0 → R12 pending
+- **冲 4 的天花板是 novelty 争议**（R1=3.5 theory-driven vs R2=3.0 F-L incremental），论文改写能缓解但很难消除
+- **关键正面资产**：bias identity R²=0.975 (11 real LLM CMs), A1 sensitivity coverage≥93.5%, 25页系统性 Appendix
+- **易错判断**：
+  - 诊断 C3 不要过度 claim practical utility — real CM AUC=0.63，K=2 反预测是代数必然（2×2 column-stochastic M 性质），不可修复
+  - CF 覆盖率 83-85% 是 M⁻¹ SE propagation asymmetry，不是 CF 本身的 bug — oracle 94-96% 已证明 CF SE well-calibrated
+  - fresh vs continue 模式评分差异是正常的（fresh 更接近真实审稿），不要因为 continue=3.5 就认为论文已达标
+  - M008 错题本：任何诊断/指标在 synthetic 上验证后，必须用 real 数据交叉验证再写入 claim
+
+
+---

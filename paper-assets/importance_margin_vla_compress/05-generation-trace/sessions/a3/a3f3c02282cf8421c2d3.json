@@ -250,5 +250,6 @@
       ],
       "message_count": 11
     }
-  ]
+  ],
+  "readable_path": "readable/conversations/fix-westd41074-kill-stuck-gpu02.md"
 }

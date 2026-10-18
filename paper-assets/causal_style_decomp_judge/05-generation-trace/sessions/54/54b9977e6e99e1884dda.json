@@ -128,5 +128,6 @@
       ],
       "message_count": 5
     }
-  ]
+  ],
+  "readable_path": "readable/conversations/ops-kill-vllm.md"
 }

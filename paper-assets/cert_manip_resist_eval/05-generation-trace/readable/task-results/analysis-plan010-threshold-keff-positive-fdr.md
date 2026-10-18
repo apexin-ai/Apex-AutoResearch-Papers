@@ -1,0 +1,64 @@
+# analysis plan010 threshold keff positive fdr
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_plan010-threshold-keff-positive-fdr_20260522T124552_result.json`
+- **Structured JSON:** [`cecc7d08bbc2b7d3c513.json`](../../sessions/ce/cecc7d08bbc2b7d3c513.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 结果汇报
+
+### threshold_vote K_eff 正方向 FDR 显著：**8/12 conditions**
+
+| Condition | β_keff | p_raw | q_fdr | η_max 也显著? |
+|---|---|---|---|---|
+| mmlu__prompt_injection | 1.757 | 1.92e-06 | 9.24e-05 | Yes (p=3.2e-10) |
+| mmlu__score_manipulation | 2.391 | 6.63e-04 | 5.88e-03 | Yes (p=7.5e-05) |
+| mmlu__verbosity_bias | 1.975 | 1.56e-04 | 2.49e-03 | Yes (p=1.9e-03) |
+| mmlu__position_bias | 5.188 | 4.58e-04 | 5.50e-03 | No (p=0.084) |
+| mmlu__authority_bias | 2.325 | 1.49e-05 | 3.58e-04 | No (p=0.234) |
+| arc__prompt_injection | 1.162 | 1.12e-02 | 4.90e-02 | Yes (p=9.8e-10) |
+| arc__sycophancy | 0.919 | 6.13e-03 | 3.27e-02 | No (p=0.420) |
+| arc__verbosity_bias | 0.938 | 7.35e-04 | 5.88e-03 | Yes (p=1.8e-09) |
+
+未通过 FDR 的 4 条：mmlu__sycophancy、arc__score_manipulation、arc__position_bias（唯一负方向β）、arc__authority_bias。
+
+### Cross-method 对比
+
+| Method | K_eff pos_sig | K_eff neg_sig |
+|---|---|---|
+| majority_vote | 0/12 | 1/12 |
+| weighted_vote | 0/12 | 1/12 |
+| **threshold_vote** | **8/12** | **0/12** |
+| bayesian | 1/12 | 0/12 |
+
+### 与 η_max 的对比
+
+8 个 K_eff 正方向显著条件中，4 个 η_max 也同时显著（prompt_injection×2, score_manip, verbosity_bias），但另外 **4 个条件（position_bias, authority_bias, arc_sycophancy）η_max 不显著而 K_eff 正方向显著**。这说明 K_eff 在 threshold 聚合下携带了 η_max 未捕获的独立信号。
+
+### 对 weakest-link narrative 的含义
+
+这是一个重要的 **聚合方法交互效应**：
+
+- **majority/weighted**：K_eff 负方向显著（arc_sycophancy），符合 weakest-link 叙事——diversity 越高，抵抗力越强（ASR 越低）。
+- **threshold_vote**：K_eff **正方向** 8/12 显著——diversity 越高，ASR 反而越高。
+
+机制解释：threshold 聚合要求达到特定比例的 certifier 同意才通过。当 K_eff 增大（certifier diversity 增加），各 certifier 的判断标准分散，攻击者更容易找到足够多的 "软目标" certifier 来凑够 threshold。这与 majority 的 "多数意志" 机制相反——majority 下 diversity 提供互补保护，threshold 下 diversity 反而暴露更多攻击面。
+
+这支持论文增加一个 nuance：**weakest-link defense 的有效性取决于聚合规则**。Threshold 聚合下 diversity 可能有害，需要搭配更严格的 threshold 参数来补偿。
+
+---

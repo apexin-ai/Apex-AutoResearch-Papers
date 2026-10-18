@@ -1,0 +1,610 @@
+# ops check westd eval results
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/chats/worker_ops_check_westd_eval_results_20260517T090042.jsonl`
+- **Structured JSON:** [`721c21ac7df4d37f7c40.json`](../../sessions/72/721c21ac7df4d37f7c40.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+19 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T09:01:42.702354+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T09:01:42.702691+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T09:01:42.702872+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T09:01:42.703011+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T09:01:42.703151+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tmux list-sessions 2>&1; echo \"---PGREP---\"; pgrep -af \"eval\\|random_prune\\|stage1only\\|true_removal\" 2>&1; echo \"---NVIDIA---\"; nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "tmux list-sessions 2>&1; echo \"---PGREP---\"; pgrep -af \"eval\\|random_prune\\|stage1only\\|true_removal\" 2>&1; echo \"---NVIDIA---\"; nvidia-smi",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T09:01:42.703332+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 468\\ndrwxr-xr-x  3 root root  4096 May 17 16:52 .\\ndrwxr-xr-x 12 root root  4096 May 17 16:39 ..\\n-rw-r--r--  1 root root  1484 May 16 19:18 action_diversity_by_step.json\\n-rw-r--r--  1 root root  4172 May 16 06:45 eval_baseline_v5_bypass_acis.json\\n-rw-r--r--  1 root root  4147 May 16 05:23 eval_baseline_v5_final.json\\n-rw-r--r--  1 root root  4171 May 16 12:04 eval_baseline_v5_fixed.json\\n-rw-r--r--  1 root root  4145 May 16 05:28 eval_baseline_v5_step10000.json\\n-rw-r--r--  1 root root  4148 May 16 05:25 eval_baseline_v5_step5000.json\\n-rw-r--r--  1 root root  2703 May 17 11:36 eval_imm_k07_bypass_object.log\\n-rw-r--r--  1 root root  2687 May 17 10:37 eval_imm_k07_object_acis_prune.json\\n-rw-r--r--  1 root root   836 May 16 06:56 eval_imm_v7_2_bypass_acis.json\\n-rw-r--r--  1 root root  4504 May 16 07:03 eval_imm_v7_2_final.json\\n-rw-r--r--  1 root root  4485 May 16 05:55 eval_imm_v7_2_step010000.json\\n-rw-r--r--  1 root root  4478 May 16 05:58 eval_imm_v7_2_step020000.json\\n-rw-r--r--  1 root root  4468 May 16 04:52 eval_imm_v7_final.json\\n-rw-r--r--  1 root root  2407 May 16 14:18 eval_imm_v8_1_acis_prune.json\\n-rw-r--r--  1 root root   830 May 16 14:18 eval_imm_v8_1_bypass.json\\n-rw-r--r--  1 root root  4510 May 16 14:13 eval_imm_v8_1_standard.json\\n-rw-r--r--  1 root root   834 May 16 10:48 eval_imm_v8_bypass_final.json\\n-rw-r--r--  1 root root   834 May 16 11:58 eval_imm_v8_bypass_fixed.json\\n-rw-r--r--  1 root root  4500 May 16 10:31 eval_imm_v8_final.json\\n-rw-r--r--  1 root root  8724 May 16 10:49 eval_imm_v8_final_30k.json\\n-rw-r--r--  1 root root  4526 May 16 11:53 eval_imm_v8_fixed.json\\n-rw-r--r--  1 root root  4516 May 16 08:10 eval_imm_v8_step002000.json\\n-rw-r--r--  1 root root   832 May 16 08:02 eval_imm_v8_step002000_bypass.json\\n-rw-r--r--  1 root root  2423 May 16 15:21 eval_imm_v8b_acis_prune.json\\n-rw-r--r--  1 root root   849 May 16 15:21 eval_imm_v8b_byp
+…[truncated 3253 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T09:01:42.703493+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 528\\ndrwxr-xr-x  2 root root   4096 May 17 16:11 .\\ndrwxr-xr-x 12 root root   4096 May 17 16:39 ..\\n-rw-r--r--  1 root root  33341 May 17 10:02 eval_ft100k_spatial.log\\n-rw-r--r--  1 root root  17310 May 17 14:52 eval_stage1only_k07.log\\n-rw-r--r--  1 root root  32988 May 17 16:52 eval_stage1only_k09.log\\n-rw-r--r--  1 root root  41630 May 16 12:04 eval_v8_fixed.log\\n-rw-r--r--  1 root root  44665 May 17 09:07 expert_only_ft.log\\n-rw-r--r--  1 root root  19740 May 17 09:08 imm_100k_eval_goal.log\\n-rw-r--r--  1 root root  33154 May 17 09:48 imm_100k_eval_object.log\\n-rw-r--r--  1 root root  14222 May 17 09:08 imm_100k_eval_spatial.log\\n-rw-r--r--  1 root root   1800 May 17 09:08 imm_100k_object_eval.log\\n-rw-r--r--  1 root root   3319 May 16 23:21 plan_005_formal_bound.log\\n-rw-r--r--  1 root root  28071 May 16 14:18 v8_1_eval.log\\n-rw-r--r--  1 root root 102214 May 16 13:54 v8_1_train.log\\n-rw-r--r--  1 root root  28861 May 16 15:21 v8b_eval.log\\n-rw-r--r--  1 root root  81546 May 16 14:57 v8b_twostage_train.log\\n-rw-r--r--  1 root root  12571 May 16 15:08 v8c_annealing_train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T09:01:42.703657+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_true_removal_k05: 1 windows (created Sun May 17 16:41:33 2026)\\n---PGREP---\\n---NVIDIA---\\nSun May 17 17:01:04 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\n| N/A   35C    P0             88W /  600W |    2248MiB /  97887MiB |      1%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\n| N/A   35C    P0            113W /  600W |    3047MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=====================
+…[truncated 458 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T09:01:42.703835+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_random_prune_k05_object.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_random_prune_k05_object.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T09:01:42.703966+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_stage1only_k09_object.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_stage1only_k09_object.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T09:01:42.704168+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"suite\\\": \\\"libero_object\\\",\\n  \\\"mode\\\": \\\"random_prune\\\",\\n  \\\"checkpoint\\\": \\\"checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt\\\",\\n  \\\"config\\\": \\\"configs/libero_imm_twostage_fullft.yaml\\\",\\n  \\\"total_episodes\\\": 500,\\n  \\\"total_successes\\\": 0,\\n  \\\"overall_success_rate\\\": 0.0,\\n  \\\"wilson_ci_95\\\": [\\n    0.0,\\n    0.0076\\n  ],\\n  \\\"num_episodes_per_task\\\": 50,\\n  \\\"max_steps\\\": 280,\\n  \\\"action_horizon\\\": 50,\\n  \\\"seed\\\": 42,\\n  \\\"per_task\\\": {\\n    \\\"0\\\": {\\n      \\\"task_id\\\": 0,\\n      \\\"task_description\\\": \\\"pick up the alphabet soup and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"1\\\": {\\n      \\\"task_id\\\": 1,\\n      \\\"task_description\\\": \\\"pick up the cream cheese and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"2\\\": {\\n      \\\"task_id\\\": 2,\\n      \\\"task_description\\\": \\\"pick up the salad dressing and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"3\\\": {\\n      \\\"task_id\\\": 3,\\n      \\\"task_description\\\": \\\"pick up the bbq sauce and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"4\\\": {\\n      \\\"task_id\\\": 4,\\n      \\\"task_description\\\": \\\"pick up the ketchup and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"succes
+…[truncated 1613 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T09:01:42.704327+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -50 /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_true_removal_k05.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "tail -50 /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_true_removal_k05.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T09:01:42.704509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"suite\\\": \\\"libero_object\\\",\\n  \\\"mode\\\": \\\"acis_prune\\\",\\n  \\\"checkpoint\\\": \\\"checkpoints/libero_imm_twostage_fullft/stage1_done/checkpoint.pt\\\",\\n  \\\"config\\\": \\\"configs/libero_acis_stage1only_k09.yaml\\\",\\n  \\\"total_episodes\\\": 500,\\n  \\\"total_successes\\\": 0,\\n  \\\"overall_success_rate\\\": 0.0,\\n  \\\"wilson_ci_95\\\": [\\n    0.0,\\n    0.0076\\n  ],\\n  \\\"num_episodes_per_task\\\": 50,\\n  \\\"max_steps\\\": 280,\\n  \\\"action_horizon\\\": 50,\\n  \\\"seed\\\": 42,\\n  \\\"per_task\\\": {\\n    \\\"0\\\": {\\n      \\\"task_id\\\": 0,\\n      \\\"task_description\\\": \\\"pick up the alphabet soup and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"1\\\": {\\n      \\\"task_id\\\": 1,\\n      \\\"task_description\\\": \\\"pick up the cream cheese and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"2\\\": {\\n      \\\"task_id\\\": 2,\\n      \\\"task_description\\\": \\\"pick up the salad dressing and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"3\\\": {\\n      \\\"task_id\\\": 3,\\n      \\\"task_description\\\": \\\"pick up the bbq sauce and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"mean_steps\\\": 280.0\\n    },\\n    \\\"4\\\": {\\n      \\\"task_id\\\": 4,\\n      \\\"task_description\\\": \\\"pick up the ketchup and place it in the basket\\\",\\n      \\\"success_count\\\": 0,\\n      \\\"total_episodes\\\": 50,\\n      \\\"success_
+…[truncated 1611 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T09:01:42.704685+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-17 16:57:32 [INFO]   Ep 43/50 | FAIL | steps=280\\n2026-05-17 16:57:36 [INFO]   Ep 44/50 | FAIL | steps=280\\n2026-05-17 16:57:41 [INFO]   Ep 45/50 | FAIL | steps=280\\n2026-05-17 16:57:46 [INFO]   Ep 46/50 | FAIL | steps=280\\n2026-05-17 16:57:51 [INFO]   Ep 47/50 | FAIL | steps=280\\n2026-05-17 16:57:55 [INFO]   Ep 48/50 | FAIL | steps=280\\n2026-05-17 16:58:00 [INFO]   Ep 49/50 | FAIL | steps=280\\n2026-05-17 16:58:04 [INFO]   Ep 50/50 | FAIL | steps=280\\n2026-05-17 16:58:05 [INFO]   Task 3 SR: 0/50 (0.0%)\\n2026-05-17 16:58:05 [INFO] --- Task 4: pick up the ketchup and place it in the basket ---\\n2026-05-17 16:58:11 [INFO]   Ep 1/50 | FAIL | steps=280\\n2026-05-17 16:58:15 [INFO]   Ep 2/50 | FAIL | steps=280\\n2026-05-17 16:58:20 [INFO]   Ep 3/50 | FAIL | steps=280\\n2026-05-17 16:58:24 [INFO]   Ep 4/50 | FAIL | steps=280\\n2026-05-17 16:58:29 [INFO]   Ep 5/50 | FAIL | steps=280\\n2026-05-17 16:58:34 [INFO]   Ep 6/50 | FAIL | steps=280\\n2026-05-17 16:58:38 [INFO]   Ep 7/50 | FAIL | steps=280\\n2026-05-17 16:58:43 [INFO]   Ep 8/50 | FAIL | steps=280\\n2026-05-17 16:58:47 [INFO]   Ep 9/50 | FAIL | steps=280\\n2026-05-17 16:58:52 [INFO]   Ep 10/50 | FAIL | steps=280\\n2026-05-17 16:58:57 [INFO]   Ep 11/50 | FAIL | steps=280\\n2026-05-17 16:59:02 [INFO]   Ep 12/50 | FAIL | steps=280\\n2026-05-17 16:59:06 [INFO]   Ep 13/50 | FAIL | steps=280\\n2026-05-17 16:59:11 [INFO]   Ep 14/50 | FAIL | steps=280\\n2026-05-17 16:59:15 [INFO]   Ep 15/50 | FAIL | steps=280\\n2026-05-17 16:59:20 [INFO]   Ep 16/50 | FAIL | steps=280\\n2026-05-17 16:59:25 [INFO]   Ep 17/50 | FAIL | steps=280\\n2026-05-17 16:59:29 [INFO]   Ep 18/50 | FAIL | steps=280\\n2026-05-17 16:59:34 [INFO]   Ep 19/50 | FAIL | steps=280\\n2026-05-17 16:59:39 [INFO]   Ep 20/50 | FAIL | steps=280\\n2026-05-17 16:59:43 [INFO]   Ep 21/50 | FAIL | steps=280\\n2026-05-17 16:59:48 [INFO]   Ep 22/50 | FAIL | steps=280\\n2026-05-17 16:59:52 [INFO]   Ep 23/50
+…[truncated 1129 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T09:01:42.704865+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep -c \"Task.*SR:\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_true_removal_k05.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep -c \"Task.*SR:\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_true_removal_k05.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T09:01:42.704990+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "grep \"Task.*SR:\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_true_removal_k05.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "grep \"Task.*SR:\" /root/autodl-tmp/importance_margin_vla_compress/eval_results/eval_true_removal_k05.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T09:01:42.705111+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T09:01:42.705365+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-17 16:45:58 [INFO]   Task 0 SR: 0/50 (0.0%)\\n2026-05-17 16:50:10 [INFO]   Task 1 SR: 0/50 (0.0%)\\n2026-05-17 16:54:10 [INFO]   Task 2 SR: 0/50 (0.0%)\\n2026-05-17 16:58:05 [INFO]   Task 3 SR: 0/50 (0.0%)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-17T09:01:42.705539+00:00_
+
+## 结果汇总
+
+### 1. eval_random_prune_k05 (已完成)
+
+| Task | Description | SR |
+|------|------------|-----|
+| 0 | alphabet soup → basket | 0/50 (0%) |
+| 1 | cream cheese → basket | 0/50 (0%) |
+| 2 | salad dressing → basket | 0/50 (0%) |
+| 3 | bbq sauce → basket | 0/50 (0%) |
+| 4 | ketchup → basket | 0/50 (0%) |
+| 5 | tomato sauce → basket | 0/50 (0%) |
+| 6 | butter → basket | 0/50 (0%) |
+| 7 | milk → basket | 0/50 (0%) |
+| 8 | chocolate pudding → basket | 0/50 (0%) |
+| 9 | orange juice → basket | 0/50 (0%) |
+
+**Overall SR: 0/500 (0.0%)**。随机剪枝 50% token 后模型完全丧失能力。
+
+### 2. eval_stage1only_k09 (已完成)
+
+| Task | Description | SR |
+|------|------------|-----|
+| 0–9 | (同上 10 个 object tasks) | 全部 0/50 (0%) |
+
+**Overall SR: 0/500 (0.0%)**。仅用 stage1 checkpoint + ACIS prune k=0.9（保留 90% token）也完全失败。
+
+### 3. eval_true_removal_k05 (运行中)
+
+- 当前进度：**Task 4, Ep 40/50**（已完成 task 0-3，正在跑 task 4）
+- 已完成 4 个 task 的 SR 均为 0%
+- 进度约 **44%**（~240/500 episodes 完成）
+- 按每 task ~4 分钟估算，剩余 6 个 task 约 **24 分钟**完成
+
+### 4. GPU 状态
+
+| GPU | 型号 | 显存占用 | GPU-Util | 温度 |
+|-----|------|---------|----------|------|
+| 0 | RTX PRO 6000 Blackwell | 2248/97887 MiB | 1% | 35°C |
+| 1 | RTX PRO 6000 Blackwell | 3047/97887 MiB | 0% | 35°C |
+
+一个 python 进程 (PID 261666) 占用双卡，就是 true_removal eval。GPU 利用率低是因为 eval 主要是 CPU-bound 的 sim 环境交互。
+
+### 小结
+
+三个 pruning baseline 实验（random prune k=0.5, stage1only k=0.9, true removal k=0.5）在 libero_object 上 SR 全部为 **0%**。这说明不经过 stage2 fine-tuning，无论是随机剪枝还是 importance-based 剪枝，直接在推理时 prune token 都会导致模型彻底崩溃。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_check_westd_eval_results_20260517T090042"
+}
+```
+
+</details>
+
+---

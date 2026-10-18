@@ -12,6 +12,7 @@
     "bytes": 25348,
     "sha256": "2b3365c0d53f1dac158d2104a96ec3b59f76301fcb5fa3c0888920e4c7235bca"
   },
+  "readable_path": "readable/conversations/cron-hook-gemma2-hires-bf16-2bitonly.md",
   "paper_title": "When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic",
   "preview_selection": {
     "round": 1,

@@ -1,0 +1,73 @@
+# ops d166 westd27271 xvla
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_d166_westd27271_xvla_20260522T131153_result.json`
+- **Structured JSON:** [`7a6c04fce98bfab85a3c.json`](../../sessions/7a/7a6c04fce98bfab85a3c.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+实验部署完成。汇报：
+
+---
+
+## 部署汇报
+
+### 进程 PID
+| GPU | 实验 | PID | tmux session |
+|-----|------|-----|-------------|
+| cuda:0 | X-VLA Spatial baseline (k=1.0) | **505749** | xvla_spatial |
+| cuda:1 | X-VLA Goal baseline (k=1.0) | **506123** | xvla_goal |
+
+### 早期日志
+- **Spatial (cuda:0)**: Task 0 运行中 — Ep 1 SUCCESS (75步), Ep 2 SUCCESS (77步), Ep 3 FAIL (800步)。模型加载成功，879.5M 参数。
+- **Goal (cuda:1)**: Task 0 运行中 — 连续 7 个 SUCCESS (113-124步)，表现优异。
+
+### GPU 状态
+- GPU 0: 83% 利用率, 4938 MiB 显存
+- GPU 1: 4371 MiB 显存（模型已加载）
+
+### 实际使用的命令（与模板差异）
+参数映射：
+- `--prune_mode none` → `--keep_ratio 1.0`（baseline，无 prune_mode 参数）
+- `--prune_mode l2norm` → `--mode l2_norm --keep_ratio &lt;k>`
+- `--n_episodes 500` → `--num_episodes 50`（50/task × 10 tasks = 500 total）
+- `--suite` 参数不变
+- `--gpu 0`（因 CUDA_VISIBLE_DEVICES 已限定可见设备）
+
+### 每 GPU 实验顺序（4 个实验串联执行）
+1. Baseline (k=1.0) → 当前运行中
+2. L2norm k=0.95
+3. L2norm k=0.9
+4. L2norm k=0.7
+
+### SUITE_MAX_STEPS
+- Spatial: **800**（非 280，X-VLA 用 30-step action chunks，需要更多步数）
+- Goal: **800**（非 300，同上）
+
+### 预估时长
+- 每个 episode：成功 ~3-5秒，失败（超时）~20秒
+- 每个实验：10 tasks × 50 eps = 500 eps，预计 ~1-2 小时
+- 4 个实验/GPU，总计 ~4-8 小时/GPU
+
+### 额外操作
+1. 脚本 `eval_xvla_pruning_libero.py` 从本地 artifacts 上传到服务器
+2. 模型 `2toINF/X-VLA-Libero`（3.3GB）通过 hf-mirror.com 下载到 `/root/autodl-tmp/X-VLA-Libero/`
+3. 修复 X-VLA 模型代码中的相对导入（`from .` → `from`）
+4. transformers 从 5.5.3 降级到 4.51.3（匹配模型要求）
+5. 安装缺失依赖：fastapi, uvicorn, json-numpy, opencv-python-headless
+
+---

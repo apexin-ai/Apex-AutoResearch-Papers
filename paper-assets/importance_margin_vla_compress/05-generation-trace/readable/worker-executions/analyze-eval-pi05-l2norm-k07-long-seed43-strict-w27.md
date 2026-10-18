@@ -1,0 +1,644 @@
+# analyze eval pi05 l2norm k07 long seed43 strict w27
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 12
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_analyze_eval_pi05_l2norm_k07_long_seed43_strict_w27_20260527T204834.log`
+- **Structured JSON:** [`9ee4e146170be001eb88.json`](../../sessions/9e/9ee4e146170be001eb88.json)
+
+## Before a recorded user message
+
+12 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__compare_wandb_runs",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__fetch_wandb_metrics",
+    "mcp__agent-ml-research__fetch_wandb_run_history",
+    "mcp__agent-ml-research__get_best_wandb_run",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__list_wandb_runs",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "51d3cba7-b7ec-48e7-a9c4-88864ccefc9f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779932400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f9493fa2-d452-4bef-baa5-93a6aeb609a3",
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the experiment results. I need to:
+1. SSH to read the log file tail
+2. Check W&B for the run
+
+Let me do both in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b",
+  "uuid": "e1bd1a0b-c566-4bca-9a0b-ccc51358c9a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwkfDV6hyuczHnezCjwQab",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12220,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12220
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019jatfGvkrJ5mYgtPw2bqsr`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__list_wandb_runs",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b",
+  "uuid": "16a4401d-3911-47fd-a757-c114711f2baf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwkfDV6hyuczHnezCjwQab",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12220,
+      "cache_read_input_tokens": 11845,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12220
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-27T20:48:47.875Z_
+
+<details><summary>↩ Tool result · `toolu_019jatfGvkrJ5mYgtPw2bqsr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_wandb_runs"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b",
+  "uuid": "0683f618-7869-440b-9fb8-10de3951b6a1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__list_wandb_runs"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__list_wandb_runs",
+    "total_deferred_tools": 28
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ppd74ssRFCZLEjBNfjpros`</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -100 ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_long_seed43_strict_w27.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b",
+  "uuid": "f7721234-b3e9-40f7-9773-492f56eab503",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NngtB2nyza4jR1rhs5kUwq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 823,
+      "cache_read_input_tokens": 24065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 823
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_wandb_runs · `toolu_01XewR4Ar5Ekdmgii1tFmQJU`</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "filters": {
+    "display_name": {
+      "$regex": "l2norm_k07_long_seed43"
+    }
+  },
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b",
+  "uuid": "9fb778af-63e0-4ce5-9fd2-e953c3e86782",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NngtB2nyza4jR1rhs5kUwq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 823,
+      "cache_read_input_tokens": 24065,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 823
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-27T20:48:52.793Z_
+
+<details><summary>↩ Tool result · `toolu_01Ppd74ssRFCZLEjBNfjpros`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 01:58:09,207 Config: suite=libero_10, prune=l2norm, keep=0.7, eps=50, gpu=0\\n2026-05-28 01:58:09,207 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-28 01:59:41,043 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-28 01:59:42,509 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-28 01:59:42,509 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-28 01:59:44,423 Patched embed_image\\n2026-05-28 01:59:44,429 Model: 4143.4M params\\n2026-05-28 01:59:44,429 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-28 01:59:44,429 Pruning: l2norm, keep 179/256 tokens/image (537 total)\\n2026-05-28 01:59:45,099 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-28 01:59:45,132 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-28 01:59:45,132 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-28 01:59:45,132 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-28 01:59:45,313 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-28 01:59:45,485 Suite: libero_10, 10 tasks, max_steps=520\\n[PRUNE-DIAG] l2norm: n_keep=179/256, first_indices=[2, 5, 6, 7, 8]\\n2026-05-28 02:03:07,592   T0 [put both the alphabet soup and the tomat] ep=10: 6/10=60%\\n2026-05-28 02:05:54,290   T0 [put both the alphabet soup and the tomat] ep=20: 15/20=75%\\n2026-05-28 02:09:09,839   T0 [put both the alphabet soup and the tomat] ep=30: 23/30=77%\\n2026-05-28 02:12:17,563   T0 [put both the alphabet soup and the tomat] ep=40: 31/40=78%\\n2026-05-28 02:15:25,040   T0 [put both the alphabet soup and the tomat] ep=50: 39/50=78%\\n2026-05-28 02:15:25,040 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 15.7min\\n2026-05-28 02:18:39,133   T1 [put both the cream cheese box and the bu] ep=10: 8/10=80%\\n2026-05-28 02:21:09,280   T1 [put both the cream cheese box and the bu] ep=20: 18/20=90%\\n2026-05-28 02:24:12,956   T1 [put both the cream cheese box and the bu] ep=30: 26/30=87%\\n2026-05-28 02:27:21,212   T1 [put both the cream cheese box and the bu] ep=40: 35/40=88%\\n2026-05-28 02:30:36,303   T1 [put both the cream cheese box and the bu] ep=50: 42/50=84%\\n2026-05-28 02:30:36,303 Task 1: SR=84.0% | Total: 81/100=81.0% | Time: 30.8min\\n2026-05-28 02:33:28,077   T2 [turn on the stove and put the moka pot o] ep=10: 8/10=80%\\n2026-05-28 02:36:20,523   T2 [turn on the stove and put the moka pot o] ep=20: 16/20=80%\\n2026-05-28 02:39:08,474   T2 [turn on the stove and put the moka pot o] ep=30: 24/30=80%\\n2026-05-28 02:41:35,705   T2 [turn on the stove and put the moka pot o] ep=40: 33/40=82%\\n2026-05-28 02:44:47,484   T2 [turn on the stove and put the moka pot o] ep=50: 39/50=78%\\n2026-05-28 02:44:47,484 Task 2: SR=78.0% | Total: 120/150=80.0% | Time: 45.0min\\n2026-05-28 02:48:48,149   T3 [put the black bowl in the bottom drawer ] ep=10: 5/10=50%\\n2026-05-28 02:53:07,005   T3 [put the black bowl in the bottom drawer ] ep=20: 11/20=55%\\n2026-05-28 02:57:25,360   T3 [put the black bowl in the bottom drawer ] ep=30: 15/30=50%\\n2026-05-28 03:01:40,485   T3 [put the black bowl in the bottom drawer ] ep=40: 22/40=55%\\n2026-05-28 03:05:46,184   T3 [put the black bowl in the bottom drawer ] ep=50: 29/50=58%\\n2026-05-28 03:05:46,184 Task 3: SR=58.0% | Total: 149/200=74.5% | Time: 66.0min\\n2026-05-28 03:09:22,103   T4 [put the white mug on the left plate and ] ep=10: 5/10=50%\\n2026-05-28 03:12:25,570   T4 [put the white mug on the left plate and ] ep=20: 13/20=65%\\n2026-05-28 03:15:44,616   T4 [put the white mug on the left plate and ] ep=30: 19/30=63%\\n2026-05-28 03:19:06,224   T4 [put the white mug on the left plate and ] ep=40: 25/40=62%\\n2026-05-28 03:22:05,734   T4 [put the white mug on the left plate and ] ep=50: 33/50=66%\\n2026-05-28 03:22:05,734 Task 4: SR=66.0% | Total: 182/250=72.8% | Time: 82.3min\\n2026-05-28 03:24:26,939   T5 [pick up the book and place it in the bac] ep=10: 8/10=80%\\n2026-05-28 03:26:56,137   T5 [pick up the book and place it in the bac] ep=20: 16/20=80%\\n2026-05-28 03:29:59,907   T5 [pick up the book and place it in the bac] ep=30: 22/30=73%\\n2026-05-28 03:32:07,557   T5 [pick up the book and place it in the bac] ep=40: 32/40=80%\\n2026-05-28 03:34:19,386   T5 [pick up the book and place it in the bac] ep=50: 41/50=82%\\n2026-05-28 03:34:19,386 Task 5: SR=82.0% | Total: 223/300=74.3% | Time: 94.6min\\n2026-05-28 03:37:57,973   T6 [put the white mug on the plate and put t] ep=10: 7/10=70%\\n2026-05-28 03:41:46,543   T6 [put the white mug on the plate and put t] ep=20: 11/20=55%\\n2026-05-28 03:45:15,897   T6 [put the white mug on the plate and put t] ep=30: 16/30=53%\\n2026-05-28 03:48:15,880   T6 [put the white mug on the plate and put t] ep=40: 23/40=57%\\n2026-05-28 03:52:15,170   T6 [put the white mug on the plate and put t] ep=50: 26/50=52%\\n2026-05-28 03:52:15,170 Task 6: SR=52.0% | Total: 249/350=71.1% | Time: 112.5min\\n2026-05-28 03:55:10,875   T7 [put both the alphabet soup and the cream] ep=10: 9/10=90%\\n2026-05-28 03:59:01,961   T7 [put both the alphabet soup and the cream] ep=20: 14/20=70%\\n2026-05-28 04:02:18,228   T7 [put both the alphabet soup and the cream] ep=30: 21/30=70%\\n2026-05-28 04:06:01,688   T7 [put both the alphabet soup and the cream] ep=40: 25/40=62%\\n2026-05-28 04:09:36,563   T7 [put both the alphabet soup and the cream] ep=50: 31/50=62%\\n2026-05-28 04:09:36,563 Task 7: SR=62.0% | Total: 280/400=70.0% | Time: 129.9min\\n2026-05-28 04:14:03,791   T8 [put both moka pots on the stove] ep=10: 0/10=0%\\n2026-05-28 04:18:24,641   T8 [put both moka pots on the stove] ep=20: 1/20=5%\\n2026-05-28 04:22:52,743   T8 [put both moka pots on the stove] ep=30: 1/30=3%\\n2026-05-28 04:27:21,519   T8 [put both moka pots on the stove] ep=40: 1/40=2%\\n2026-05-28 04:31:46,274   T8 [put both moka pots on the stove] ep=50: 2/50=4%\\n2026-05-28 04:31:46,274 Task 8: SR=4.0% | Total: 282/450=62.7% | Time: 152.0min\\n2026-05-28 04:34:25,610   T9 [put the yellow and white mug in the micr] ep=10: 10/10=100%\\n2026-05-28 04:37:15,128   T9 [put the yellow and white mug in the micr] ep=20: 19/20=95%\\n2026-05-28 04:40:03,561   T9 [put the yellow and white mug in the micr] ep=30: 29/30=97%\\n2026-05-28 04:43:10,670   T9 [put the yellow and white mug in the micr] ep=40: 37/40=92%\\n2026-05-28 04:46:13,337   T9 [put the yellow and white mug in the micr] ep=50: 46/50=92%\\n2026-05-28 04:46:13,337 Task 9: SR=92.0% | Total: 328/500=65.6% | Time: 166.5min\\n2026-05-28 04:46:13,621 \\n============================================================\\n2026-05-28 04:46:13,621 RESULT: libero_10 prune=l2norm keep=0.7 SR=65.6%\\n2026-05-28 04:46:13,621 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.70_libero_10_seed43.json\\n2026-05-28 04:46:13,621 ============================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b",
+  "uuid": "89bbd3e3-3835-4440-bb04-d43cd0929978",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-28 01:58:09,207 Config: suite=libero_10, prune=l2norm, keep=0.7, eps=50, gpu=0\\\\n2026-05-28 01:58:09,207 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n2026-05-28 01:59:41,043 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-28 01:59:42,509 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-28 01:59:42,509 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-28 01:59:44,423 Patched embed_image\\\\n2026-05-28 01:59:44,429 Model: 4143.4M params\\\\n2026-05-28 01:59:44,429 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-28 01:59:44,429 Pruning: l2norm, keep 179/256 tokens/image (537 total)\\\\n2026-05-28 01:59:45,099 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n2026-05-28 01:59:45,132 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n2026-05-28 01:59:45,132 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-28 01:59:45,132 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-28 01:59:45,313 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-28 01:59:45,485 Suite: libero_10, 10 tasks, max_steps=520\\\\n[PRUNE-DIAG] l2norm: n_keep=179/256, first_indices=[2, 5, 6, 7, 8]\\\\n2026-05-28 02:03:07,592   T0 [put both the alphabet soup and the tomat] ep=10: 6/10=60%\\\\n2026-05-28 02:05:54,290   T0 [put both the alphabet soup and the tomat] ep=20: 15/20=75%\\\\n2026-05-28 02:09:09,839   T0 [put both the alphabet soup and the tomat] ep=30: 23/30=77%\\\\n2026-05-28 02:12:17,563   T0 [put both the alphabet soup and the tomat] ep=40: 31/40=78%\\\\n2026-05-28 02:15:25,040   T0 [put both the alphabet soup and the tomat] ep=50: 39/50=78%\\\\n2026-05-28 02:15:25,040 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 15.7min\\\\n2026-05-28 02:18:39,133   T1 [put both the cream cheese box and the bu] ep=10: 8/10=80%\\\\n2026-05-28 02:21:09,280   T1 [put both the cream cheese box and the bu] ep=20: 18/20=90%\\\\n2026-05-28 02:24:12,956   T1 [put both the cream cheese box and the bu] ep=30: 26/30=87%\\\\n2026-05-28 02:27:21,212   T1 [put both the cream cheese box and the bu] ep=40: 35/40=88%\\\\n2026-05-28 02:30:36,303   T1 [put both the cream cheese box and the bu] ep=50: 42/50=84%\\\\n2026-05-28 02:30:36,303 Task 1: SR=84.0% | Total: 81/100=81.0% | Time: 30.8min\\\\n2026-05-28 02:33:28,077   T2 [turn on the stove and put the moka pot o] ep=10: 8/10=80%\\\\n2026-05-28 02:36:20,523   T2 [turn on the stove and put the moka pot o] ep=20: 16/20=80%\\\\n2026-05-28 02:39:08,474   T2 [turn on the stove and put the moka pot o] ep=30: 24/30=80%\\\\n2026-05-28 02:41:35,705   T2 [turn on the stove and put the moka pot o] ep=40: 33/40=82%\\\\n2026-05-28 02:44:47,484   T2 [turn on the stove and put the moka pot o] ep=50: 39/50=78%\\\\n2026-05-28 02:44:47,484 Task 2: SR=78.0% | Total: 120/150=80.0% | Time: 45.0min\\\\n2026-05-28 02:48:48,149   T3 [put the black bowl in the bottom drawer ] ep=10: 5/10=50%\\\\n2026-05-28 02:53:07,005   T3 [put the black bowl in the bottom drawer ] ep=20: 11/20=55%\\\\n2026-05-28 02:57:25,360   T3 [put the black bowl in the bottom drawer ] ep=30: 15/30=50%\\\\n2026-05-28 03:01:40,485   T3 [put the black bowl in the bottom drawer ] ep=40: 22/40=55%\\\\n2026-05-28 03:05:46,184   T3 [put the black bowl in the bottom drawer ] ep=50: 29/50=58%\\\\n2026-05-28 03:05:46,184 Task 3: SR=58.0% | Total: 149/200=74.5% | Time: 66.0min\\\\n2026-05-28 03:09:22,103   T4 [put the white mug on the left plate and ] ep=10: 5/10=50%\\\\n2026-05-28 03:12:25,570   T4 [put the white mug on the left plate and ] ep=20: 13/20=65%\\\\n2026-05-28 03:15:44,616   T4 [put the white mug on the left plate and ] ep=30: 19/30=63%\\\\n2026-05-28 03:19:06,224   T4 [put the white mug on the left plate and ] ep=40: 25/40=62%\\\\n2026-05-28 03:22:05,734   T4 [put the white mug on the left plate and ] ep=50: 33/50=66%\\\\n2026-05-28 03:22:05,734 Task 4: SR=66.0% | Total: 182/250=72.8% | Time: 82.3min\\\\n2026-05-28 03:24:26,939   T5 [pick up the book and place it in the bac] ep=10: 8/10=80%\\\\n2026-05-28 03:26:56,137   T5 [pick up the book and place it in the bac] ep=20: 16/20=80%\\\\n2026-05-28 03:29:59,907   T5 [pick up the book and place it in the bac] ep=30: 22/30=73%\\\\n2026-05-28 03:32:07,557   T5 [pick up the book and place it in the bac] ep=40: 32/40=80%\\\\n2026-05-28 03:34:19,386   T5 [pick up the book and place it in the bac] ep=50: 41/50=82%\\\\n2026-05-28 03:34:19,386 Task 5: SR=82.0% | Total: 223/300=74.3% | Time: 94.6min\\\\n2026-05-28 03:37:57,973   T6 [put the white mug on the plate and put t] ep=10: 7/10=70%\\\\n2026-05-28 03:41:46,543   T6 [put the white mug on the plate and put t] ep=20: 11/20=55%\\\\n2026-05-28 03:45:15,897   T6 [put the white mug on the plate and put t] ep=30: 16/30=53%\\\\n2026-05-28 03:48:15,880   T6 [put the white mug on the plate and put t] ep=40: 23/40=57%\\\\n2026-05-28 03:52:15,170   T6 [put the white mug on the plate and put t] ep=50: 26/50=52%\\\\n2026-05-28 03:52:15,170 Task 6: SR=52.0% | Total: 249/350=71.1% | Time: 112.5min\\\\n2026-05-28 03:55:10,875   T7 [put both the alphabet soup and the cream] ep=10: 9/10=90%\\\\n2026-05-28 03:59:01,961   T7 [put both the alphabet soup and the cream] ep=20: 14/20=70%\\\\n2026-05-28 04:02:18,228   T7 [put both the alphabet soup and the cream] ep=30: 21/30=70%\\\\n2026-05-28 04:06:01,688   T7 [put both the alphabet soup and the cream] ep=40: 25/40=62%\\\\n2026-05-28 04:09:36,563   T7 [put both the alphabet soup and the cream] ep=50: 31/50=62%\\\\n2026-05-28 04:09:36,563 Task 7: SR=62.0% | Total: 280/400=70.0% | Time: 129.9min\\\\n2026-05-28 04:14:03,791   T8 [put both moka pots on the stove] ep=10: 0/10=0%\\\\n2026-05-28 04:18:24,641   T8 [put both moka pots on the stove] ep=20: 1/20=5%\\\\n2026-05-28 04:22:52,743   T8 [put both moka pots on the stove] ep=30: 1/30=3%\\\\n2026-05-28 04:27:21,519   T8 [put both moka pots on the stove] ep=40: 1/40=2%\\\\n2026-05-28 04:31:46,274   T8 [put both moka pots on the stove] ep=50: 2/50=4%\\\\n2026-05-28 04:31:46,274 Task 8: SR=4.0% | Total: 282/450=62.7% | Time: 152.0min\\\\n2026-05-28 04:34:25,610   T9 [put the yellow and white mug in the micr] ep=10: 10/10=100%\\\\n2026-05-28 04:37:15,128   T9 [put the yellow and white mug in the micr] ep=20: 19/20=95%\\\\n2026-05-28 04:40:03,561   T9 [put the yellow and white mug in the micr] ep=30: 29/30=97%\\\\n2026-05-28 04:43:10,670   T9 [put the yellow and white mug in the micr] ep=40: 37/40=92%\\\\n2026-05-28 04:46:13,337   T9 [put the yellow and white mug in the micr] ep=50: 46/50=92%\\\\n2026-05-28 04:46:13,337 Task 9: SR=92.0% | Total: 328/500=65.6% | Time: 166.5min\\\\n2026-05-28 04:46:13,621 \\\\n============================================================\\\\n2026-05-28 04:46:13,621 RESULT: libero_10 prune=l2norm keep=0.7 SR=65.6%\\\\n2026-05-28 04:46:13,621 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.70_libero_10_seed43.json\\\\n2026-05-28 04:46:13,621 ============================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-28 01:58:09,207 Config: suite=libero_10, prune=l2norm, keep=0.7, eps=50, gpu=0\\n2026-05-28 01:58:09,207 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-28 01:59:41,043 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-28 01:59:42,509 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-28 01:59:42,509 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-28 01:59:44,423 Patched embed_image\\n2026-05-28 01:59:44,429 Model: 4143.4M params\\n2026-05-28 01:59:44,429 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-28 01:59:44,429 Pruning: l2norm, keep 179/256 tokens/image (537 total)\\n2026-05-28 01:59:45,099 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-28 01:59:45,132 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-28 01:59:45,132 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-28 01:59:45,132 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-28 01:59:45,313 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-28 01:59:45,485 Suite: libero_10, 10 tasks, max_steps=520\\n[PRUNE-DIAG] l2norm: n_keep=179/256, first_indices=[2, 5, 6, 7, 8]\\n2026-05-28 02:03:07,592   T0 [put both the alphabet soup and the tomat] ep=10: 6/10=60%\\n2026-05-28 02:05:54,290   T0 [put both the alphabet soup and the tomat] ep=20: 15/20=75%\\n2026-05-28 02:09:09,839   T0 [put both the alphabet soup and the tomat] ep=30: 23/30=77%\\n2026-05-28 02:12:17,563   T0 [put both the alphabet soup and the tomat] ep=40: 31/40=78%\\n2026-05-28 02:15:25,040   T0 [put both the alphabet soup and the tomat] ep=50: 39/50=78%\\n2026-05-28 02:15:25,040 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 15.7min\\n2026-05-28 02:18:39,133   T1 [put both the cream cheese box and the bu] ep=10: 8/10=80%\\n2026-05-28 02:21:09,280   T1 [put both the cream cheese box and the bu] ep=20: 18/20=90%\\n2026-05-28 02:24:12,956   T1 [put both the cream cheese box and the bu] ep=30: 26/30=87%\\n2026-05-28 02:27:21,212   T1 [put both the cream cheese box and the bu] ep=40: 35/40=88%\\n2026-05-28 02:30:36,303   T1 [put both the cream cheese box and the bu] ep=50: 42/50=84%\\n2026-05-28 02:30:36,303 Task 1: SR=84.0% | Total: 81/100=81.0% | Time: 30.8min\\n2026-05-28 02:33:28,077   T2 [turn on the stove and put the moka pot o] ep=10: 8/10=80%\\n2026-05-28 02:36:20,523   T2 [turn on the stove and put the moka pot o] ep=20: 16/20=80%\\n2026-05-28 02:39:08,474   T2 [turn on the stove and put the moka pot o] ep=30: 24/30=80%\\n2026-05-28 02:41:35,705   T2 [turn on the stove and put the moka pot o] ep=40: 33/40=82%\\n2026-05-28 02:44:47,484   T2 [turn on the stove and put the moka pot o] ep=50: 39/50=78%\\n2026-05-28 02:44:47,484 Task 2: SR=78.0% | Total: 120/150=80.0% | Time: 45.0min\\n2026-05-28 02:48:48,149   T3 [put the black bowl in the bottom drawer ] ep=10: 5/10=50%\\n2026-05-28 02:53:07,005   T3 [put the black bowl in the bottom drawer ] ep=20: 11/20=55%\\n2026-05-28 02:57:25,360   T3 [put the black bowl in the bottom drawer ] ep=30: 15/30=50%\\n2026-05-28 03:01:40,485   T3 [put the black bowl in the bottom drawer ] ep=40: 22/40=55%\\n2026-05-28 03:05:46,184   T3 [put the black bowl in the bottom drawer ] ep=50: 29/50=58%\\n2026-05-28 03:05:46,184 Task 3: SR=58.0% | Total: 149/200=74.5% | Time: 66.0min\\n2026-05-28 03:09:22,103   T4 [put the white mug on the left plate and ] ep=10: 5/10=50%\\n2026-05-28 03:12:25,570   T4 [put the white mug on the left plate and ] ep=20: 13/20=65%\\n2026-05-28 03:15:44,616   T4 [put the white mug on the left plate and ] ep=30: 19/30=63%\\n2026-05-28 03:19:06,224   T4 [put the white mug on the left plate and ] ep=40: 25/40=62%\\n2026-05-28 03:22:05,734   T4 [put the white mug on the left plate and ] ep=50: 33/50=66%\\n2026-05-28 03:22:05,734 Task 4: SR=66.0% | Total: 182/250=72.8% | Time: 82.3min\\n2026-05-28 03:24:26,939   T5 [pick up the book and place it in the bac] ep=10: 8/10=80%\\n2026-05-28 03:26:56,137   T5 [pick up the book and place it in the bac] ep=20: 16/20=80%\\n2026-05-28 03:29:59,907   T5 [pick up the book and place it in the bac] ep=30: 22/30=73%\\n2026-05-28 03:32:07,557   T5 [pick up the book and place it in the bac] ep=40: 32/40=80%\\n2026-05-28 03:34:19,386   T5 [pick up the book and place it in the bac] ep=50: 41/50=82%\\n2026-05-28 03:34:19,386 Task 5: SR=82.0% | Total: 223/300=74.3% | Time: 94.6min\\n2026-05-28 03:37:57,973   T6 [put the white mug on the plate and put t] ep=10: 7/10=70%\\n2026-05-28 03:41:46,543   T6 [put the white mug on the plate and put t] ep=20: 11/20=55%\\n2026-05-28 03:45:15,897   T6 [put the white mug on the plate and put t] ep=30: 16/30=53%\\n2026-05-28 03:48:15,880   T6 [put the white mug on the plate and put t] ep=40: 23/40=57%\\n2026-05-28 03:52:15,170   T6 [put the white mug on the plate and put t] ep=50: 26/50=52%\\n2026-05-28 03:52:15,170 Task 6: SR=52.0% | Total: 249/350=71.1% | Time: 112.5min\\n2026-05-28 03:55:10,875   T7 [put both the alphabet soup and the cream] ep=10: 9/10=90%\\n2026-05-28 03:59:01,961   T7 [put both the alphabet soup and the cream] ep=20: 14/20=70%\\n2026-05-28 04:02:18,228   T7 [put both the alphabet soup and the cream] ep=30: 21/30=70%\\n2026-05-28 04:06:01,688   T7 [put both the alphabet soup and the cream] ep=40: 25/40=62%\\n2026-05-28 04:09:36,563   T7 [put both the alphabet soup and the cream] ep=50: 31/50=62%\\n2026-05-28 04:09:36,563 Task 7: SR=62.0% | Total: 280/400=70.0% | Time: 129.9min\\n2026-05-28 04:14:03,791   T8 [put both moka pots on the stove] ep=10: 0/10=0%\\n2026-05-28 04:18:24,641   T8 [put both moka pots on the stove] ep=20: 1/20=5%\\n2026-05-28 04:22:52,743   T8 [put both moka pots on the stove] ep=30: 1/30=3%\\n2026-05-28 04:27:21,519   T8 [put both moka pots on the stove] ep=40: 1/40=2%\\n2026-05-28 04:31:46,274   T8 [put both moka pots on the stove] ep=50: 2/50=4%\\n2026-05-28 04:31:46,274 Task 8: SR=4.0% | Total: 282/450=62.7% | Time: 152.0min\\n2026-05-28 04:34:25,610   T9 [put the yellow and white mug in the micr] ep=10: 10/10=100%\\n2026-05-28 04:37:15,128   T9 [put the yellow and white mug in the micr] ep=20: 19/20=95%\\n2026-05-28 04:40:03,561   T9 [put the yellow and white mug in the micr] ep=30: 29/30=97%\\n2026-05-28 04:43:10,670   T9 [put the yellow and white mug in the micr] ep=40: 37/40=92%\\n2026-05-28 04:46:13,337   T9 [put the yellow and white mug in the micr] ep=50: 46/50=92%\\n2026-05-28 04:46:13,337 Task 9: SR=92.0% | Total: 328/500=65.6% | Time: 166.5min\\n2026-05-28 04:46:13,621 \\n============================================================\\n2026-05-28 04:46:13,621 RESULT: libero_10 prune=l2norm keep=0.7 SR=65.6%\\n2026-05-28 04:46:13,621 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.70_libero_10_seed43.json\\n2026-05-28 04:46:13,621 ============================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T20:48:52.841Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01XewR4Ar5Ekdmgii1tFmQJU`</summary>
+
+```text
+Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b",
+  "uuid": "5f9774e3-9347-455f-aee8-e0c631125a5c",
+  "tool_use_result": "Error: Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+实验已完成，EXIT_CODE=0。
+
+```
+exp_id: eval_pi05_l2norm_k07_long_seed43_strict_w27
+overall_SR: 65.6%
+total_episodes: 500 (10 tasks × 50 eps)
+per_task: [T0=78%, T1=84%, T2=78%, T3=58%, T4=66%, T5=82%, T6=52%, T7=62%, T8=4%, T9=92%]
+source: server_log
+anomalies: 无
+runtime: 166.5min (~2.8h)
+```
+
+与 seed42 对比：seed42=63.2%, seed43=65.6%, 差值+2.4pp。两个 seed 均值 **64.4%**。
+
+T8（put both moka pots on the stove）仅 4%，是明显的弱项 task，两个 seed 一致偏低。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b",
+  "uuid": "4299e4d2-d0f5-4c29-98f9-3d5e9316712d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw3GpRgsc9cjKBv84JeCgb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4032,
+      "cache_read_input_tokens": 24888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4032
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 12_
+
+实验已完成，EXIT_CODE=0。
+
+```
+exp_id: eval_pi05_l2norm_k07_long_seed43_strict_w27
+overall_SR: 65.6%
+total_episodes: 500 (10 tasks × 50 eps)
+per_task: [T0=78%, T1=84%, T2=78%, T3=58%, T4=66%, T5=82%, T6=52%, T7=62%, T8=4%, T9=92%]
+source: server_log
+anomalies: 无
+runtime: 166.5min (~2.8h)
+```
+
+与 seed42 对比：seed42=63.2%, seed43=65.6%, 差值+2.4pp。两个 seed 均值 **64.4%**。
+
+T8（put both moka pots on the stove）仅 4%，是明显的弱项 task，两个 seed 一致偏低。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 17105,
+  "duration_api_ms": 17317,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "4da811c3-9998-4c93-8b9b-f1f68f9bfd1b",
+  "total_cost_usd": 0.15554774999999998,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 17075,
+    "cache_read_input_tokens": 60798,
+    "output_tokens": 655,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17075,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 246,
+        "cache_read_input_tokens": 24888,
+        "cache_creation_input_tokens": 4032,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4032
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1880,
+      "outputTokens": 28,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00202,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 655,
+      "cacheReadInputTokens": 60798,
+      "cacheCreationInputTokens": 17075,
+      "webSearchRequests": 0,
+      "costUSD": 0.15352775,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "5a7ed7a3-d0a6-4215-b80b-35ad46f40a02"
+}
+```
+
+</details>
+
+---

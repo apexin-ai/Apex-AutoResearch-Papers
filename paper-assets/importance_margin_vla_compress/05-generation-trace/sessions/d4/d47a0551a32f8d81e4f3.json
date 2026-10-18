@@ -3530,5 +3530,6 @@
       ],
       "message_count": 82
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/fix-westd38929-model-path-redeploy.md"
 }

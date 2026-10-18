@@ -1,0 +1,767 @@
+# check plan 005 westd status
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/chats/worker_check_plan_005_westd_status_20260516T144751.jsonl`
+- **Structured JSON:** [`40c6187816e1e3097169.json`](../../sessions/40/40c6187816e1e3097169.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+25 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T14:48:42.139204+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T14:48:42.139790+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T14:48:42.140108+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T14:48:42.140379+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T14:48:42.140605+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T14:48:42.140822+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ps aux --sort=-%mem",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "ps aux --sort=-%mem",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T14:48:42.141042+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T14:48:42.141294+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_formal_bound.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_formal_bound.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T14:48:42.141571+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot     195322  1.1  0.0 10121836 842708 ?     Sl   22:01   0:30 python3 -c  from lerobot.datasets.lerobot_dataset import LeRobotDataset print('Loading lerobot/libero_10...') ds = LeRobotDataset('lerobot/libero_10') print(f'Dataset loaded: {len(ds)} samples') print(f'Features: {list(ds.features.keys())}') sample = ds[0] for k, v in sample.items():     if hasattr(v, 'shape'):         print(f'  {k}: {v.shape} {v.dtype}')     else:         print(f'  {k}: {type(v).__name__}') print('Dataset download complete!') \\nroot     188326  0.0  0.0 1025440 247956 ?      S    21:16   0:03 git clone --filter=blob:none --quiet https://github.com/Lifelong-Robot-Learning/LIBERO.git /tmp/pip-req-build-ug7as59p\\nroot       1213  0.1  0.0 6894036 105628 ?      Sl   May15   3:04 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1214  0.0  0.0 182296 97764 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1209  0.0  0.0 3327816 80384 ?       Sl   May15   1:05 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot     188321  0.0  0.0  55260 49384 ?        S    21:16   0:00 /root/miniconda3/bin/python /root/miniconda3/bin/pip install --no-deps git+https://github.com/Lifelong-Robot-Learning/LIBERO.git\\nroot       1192  2.8  0.0 724128 24880 ?        Sl   May15  47:39 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1215  0.0  0.0 2426092 20892 ?       Sl   May15   1:28 proxy -c /init/proxy/proxy.ini\\nroot       1212  0.0  0.0 2278372 20604 ?       Sl   May15   0:22 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot     200379  2.0  0.0  26724 15884 ?        S    22:48   0:00 /usr/lib/git-core/git-remote-https origin https://github.com/Lifelong
+…[truncated 2759 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T14:48:42.141850+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 11963 May 16 22:31 /root/autodl-tmp/importance_margin_vla_compress/eval_formal_bound.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T14:48:42.142067+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T14:48:42.142428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 244\\ndrwxr-xr-x  3 root root 4096 May 16 20:56 .\\ndrwxr-xr-x 12 root root 4096 May 16 22:31 ..\\n-rw-r--r--  1 root root 1484 May 16 19:18 action_diversity_by_step.json\\n-rw-r--r--  1 root root 4172 May 16 06:45 eval_baseline_v5_bypass_acis.json\\n-rw-r--r--  1 root root 4147 May 16 05:23 eval_baseline_v5_final.json\\n-rw-r--r--  1 root root 4171 May 16 12:04 eval_baseline_v5_fixed.json\\n-rw-r--r--  1 root root 4145 May 16 05:28 eval_baseline_v5_step10000.json\\n-rw-r--r--  1 root root 4148 May 16 05:25 eval_baseline_v5_step5000.json\\n-rw-r--r--  1 root root  836 May 16 06:56 eval_imm_v7_2_bypass_acis.json\\n-rw-r--r--  1 root root 4504 May 16 07:03 eval_imm_v7_2_final.json\\n-rw-r--r--  1 root root 4485 May 16 05:55 eval_imm_v7_2_step010000.json\\n-rw-r--r--  1 root root 4478 May 16 05:58 eval_imm_v7_2_step020000.json\\n-rw-r--r--  1 root root 4468 May 16 04:52 eval_imm_v7_final.json\\n-rw-r--r--  1 root root 2407 May 16 14:18 eval_imm_v8_1_acis_prune.json\\n-rw-r--r--  1 root root  830 May 16 14:18 eval_imm_v8_1_bypass.json\\n-rw-r--r--  1 root root 4510 May 16 14:13 eval_imm_v8_1_standard.json\\n-rw-r--r--  1 root root  834 May 16 10:48 eval_imm_v8_bypass_final.json\\n-rw-r--r--  1 root root  834 May 16 11:58 eval_imm_v8_bypass_fixed.json\\n-rw-r--r--  1 root root 4500 May 16 10:31 eval_imm_v8_final.json\\n-rw-r--r--  1 root root 8724 May 16 10:49 eval_imm_v8_final_30k.json\\n-rw-r--r--  1 root root 4526 May 16 11:53 eval_imm_v8_fixed.json\\n-rw-r--r--  1 root root 4516 May 16 08:10 eval_imm_v8_step002000.json\\n-rw-r--r--  1 root root  832 May 16 08:02 eval_imm_v8_step002000_bypass.json\\n-rw-r--r--  1 root root 2423 May 16 15:21 eval_imm_v8b_acis_prune.json\\n-rw-r--r--  1 root root  849 May 16 15:21 eval_imm_v8b_bypass.json\\n-rw-r--r--  1 root root 4518 May 16 15:16 eval_imm_v8b_standard.json\\n-rw-r--r--  1 root root 2409 May 16 18:58 eval_imm_v8c_acis_prune.json\\n-rw-r--r--  1 root root  85
+…[truncated 1168 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T14:48:42.142703+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*.log\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*.log\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T14:48:42.142984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/v8_1_train.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/eval_v8_fixed.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/v8b_twostage_train.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/v8_1_eval.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/v8b_eval.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/v8c_annealing_train.log\\n/root/autodl-tmp/importance_margin_vla_compress/logs/plan_005_formal_bound.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260515_225401-yyyvkfkp/logs/debug.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260515_225401-yyyvkfkp/logs/debug-internal.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260515_225407-a4flaysk/logs/debug.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260515_225407-a4flaysk/logs/debug-internal.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260515_232557-7dikql04/logs/debug.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260515_232557-7dikql04/logs/debug-internal.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260515_233431-io3arcde/logs/debug.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260515_233431-io3arcde/logs/debug-internal.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260515_233435-r9zbrs6p/logs/debug.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260515_233435-r9zbrs6p/logs/debug-internal.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260516_003110-igavs9hy/logs/debug.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260516_003110-igavs9hy/logs/debug-internal.log\\n/root/autodl-tmp/importance_margin_vla_compress/wandb/offline-run-20260516_0
+…[truncated 2278 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T14:48:42.143256+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/nohup.out",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/nohup.out",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T14:48:42.143482+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/importance_margin_vla_compress/nohup.out': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T14:48:42.143696+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "head -30 /root/autodl-tmp/importance_margin_vla_compress/eval_formal_bound.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "head -30 /root/autodl-tmp/importance_margin_vla_compress/eval_formal_bound.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T14:48:42.143946+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Formal Bound Verification (plan_005).\\n\\nValidates Claim 1 (stability criterion): top-k selection is stable under\\nepsilon-bounded perturbation when Delta_k > 2*L*epsilon.\\n\\nMeasures:\\n  1. Lipschitz constant L (spectral norm product + empirical)\\n  2. Empirical top-k stability across epsilon levels (perturbation on visual tokens)\\n  3. Theoretical vs empirical stability rate comparison\\n  4. Margin distribution statistics\\n\\nUsage:\\n    python eval_formal_bound.py \\\\\\n        --checkpoint checkpoints/imm_two_stage/final/checkpoint.pt \\\\\\n        --config configs/imm_anchor.yaml \\\\\\n        --gpu 0 --max_batches 500 --seed 42\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\n\\nARTIFACTS_DIR = Path(__file__).resolve().parent\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T14:48:42.144224+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "tail -50 /root/autodl-tmp/importance_margin_vla_compress/logs/plan_005_formal_bound.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "tail -50 /root/autodl-tmp/importance_margin_vla_compress/logs/plan_005_formal_bound.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T14:48:42.144552+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 22:31:58 [INFO] HTTP Request: GET https://huggingface.co/api/models/HuggingFaceTB/SmolVLM2-500M-Video-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false \\\"HTTP/1.1 404 Not Found\\\"\\n2026-05-16 22:31:58 [INFO] HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM2-500M-Video-Instruct/resolve/main/processor_config.json \\\"HTTP/1.1 307 Temporary Redirect\\\"\\n2026-05-16 22:31:58 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM2-500M-Video-Instruct/7b375e1b73b11138ff12fe22c8f2822d8fe03467/processor_config.json \\\"HTTP/1.1 200 OK\\\"\\n2026-05-16 22:31:59 [INFO] HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM2-500M-Video-Instruct/resolve/main/chat_template.json \\\"HTTP/1.1 307 Temporary Redirect\\\"\\n2026-05-16 22:31:59 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM2-500M-Video-Instruct/7b375e1b73b11138ff12fe22c8f2822d8fe03467/chat_template.json \\\"HTTP/1.1 200 OK\\\"\\n2026-05-16 22:32:00 [INFO] HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM2-500M-Video-Instruct/resolve/main/chat_template.jinja \\\"HTTP/1.1 404 Not Found\\\"\\n2026-05-16 22:32:00 [INFO] HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM2-500M-Video-Instruct/resolve/main/audio_tokenizer_config.json \\\"HTTP/1.1 404 Not Found\\\"\\n2026-05-16 22:32:01 [INFO] HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM2-500M-Video-Instruct/resolve/main/processor_config.json \\\"HTTP/1.1 307 Temporary Redirect\\\"\\n2026-05-16 22:32:01 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolVLM2-500M-Video-Instruct/7b375e1b73b11138ff12fe22c8f2822d8fe03467/processor_config.json \\\"HTTP/1.1 200 OK\\\"\\n2026-05-16 22:32:01 [INFO] HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolVLM2-500M-Video-Instruct/resolve/m
+…[truncated 5871 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T14:48:42.144815+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/logs/plan_005_formal_bound.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/logs/plan_005_formal_bound.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T14:48:42.145035+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-27271",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*formal_bound*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-27271",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress -name \"*formal_bound*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T14:48:42.145295+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"63 /root/autodl-tmp/importance_margin_vla_compress/logs/plan_005_formal_bound.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T14:48:42.145517+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/plan_005_formal_bound.log\\n/root/autodl-tmp/importance_margin_vla_compress/eval_formal_bound.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_check_plan_005_westd_status_20260516T144751",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-16T14:48:42.145794+00:00_
+
+## 汇报
+
+**plan_005_formal_bound 已失败退出，不在运行。**
+
+### 状态总结
+
+| 项目 | 状态 |
+|------|------|
+| 进程 | **未运行** — ps 中无 eval_formal_bound 相关进程 |
+| GPU | 两块 RTX PRO 6000 Blackwell (98GB each)，**均空闲** (0 MiB / 0% utilization) |
+| 日志 | `logs/plan_005_formal_bound.log`，63 行 |
+| 结果文件 | 无 formal_bound 相关输出产物 |
+
+### 失败原因
+
+脚本在 `22:32:12` 加载完模型后崩溃：
+
+```
+File "eval_formal_bound.py", line 137, in main
+    tokenizer = get_tokenizer_from_policy(model)
+File "train.py", line 255, in get_tokenizer_from_policy
+    model = policy.model
+AttributeError: 'IMMSmolVLAWrapper' object has no attribute 'model'
+```
+
+`get_tokenizer_from_policy()` 尝试访问 `policy.model`，但 `IMMSmolVLAWrapper` 没有这个属性。需要修正属性访问路径。
+
+### 其他在跑的进程
+
+服务器上有另一个 worker 在跑数据集下载（`lerobot/libero_10` via LeRobotDataset，PID 195322）和 pip install LIBERO（PID 188321），与 plan_005 无关。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_check_plan_005_westd_status_20260516T144751"
+}
+```
+
+</details>
+
+---

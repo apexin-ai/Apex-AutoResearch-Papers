@@ -1,0 +1,3221 @@
+# analysis per error mode bcs quartile
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 67
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/workers/worker_analysis_per_error_mode_bcs_quartile_20260520T141053.log`
+- **Structured JSON:** [`a939cadd63bec3e6d7b3.json`](../../sessions/a9/a939cadd63bec3e6d7b3.json)
+
+## Before a recorded user message
+
+67 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a85daad8-f30b-4edc-ab4f-0858571edc7f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779304200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "140d669b-b6db-4810-a41c-7658aa86048c",
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by exploring the server to find the relevant data files and understand the data structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "5e5ab1ff-2e03-4296-aec6-8753138a9a9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014QbxkrnYHELsgmHPdMgt3S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12246,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12246
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+我先 SSH 到服务器探索数据结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "4af720c5-ca1d-4146-bfd0-2a5e5c991bd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014QbxkrnYHELsgmHPdMgt3S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12246,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12246
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Qz3fjEediNm6A1eELDarFZ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "8a73f704-3f48-4b31-8cda-929ebabcdeb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014QbxkrnYHELsgmHPdMgt3S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12246,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12246
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T14:11:07.883Z_
+
+<details><summary>↩ Tool result · `toolu_01Qz3fjEediNm6A1eELDarFZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "eb6a7675-6932-4004-8763-447c590c8dbf",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wh5f5TfM2Jh8fxhnhfGWbC`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "9ec29488-02c5-4f71-a294-afbe65f3e974",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012D6Vuk9fxCJf2JhuYS8m33",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 922,
+      "cache_read_input_tokens": 24087,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 922
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V9or2VKZnTXsqSispyahVk`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/w4_relaxed_matching/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "fcc5299c-31ca-4ec2-9636-0b4d575b421d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012D6Vuk9fxCJf2JhuYS8m33",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 922,
+      "cache_read_input_tokens": 24087,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 922
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T14:11:14.529Z_
+
+<details><summary>↩ Tool result · `toolu_01Wh5f5TfM2Jh8fxhnhfGWbC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aggregation_simulation\\nbatch_config_dry_run.json\\nbatch_config_exp1.json\\nbatch_config_exp2.json\\nbatch_config_maven_dry_run.json\\nbcs_controlled_llama-3.1-70b-fp8\\nbcs_fix\\nbootstrap_ci.json\\ncase_study\\ncross_embedding_sensitivity_results.json\\nd035_extreme_batch\\nd051_batch2.log\\nd051_fewnerd_n25_s123\\nd051_fewnerd_n25_s42\\nd051_fewnerd_n25_s456\\nd051_fewrel_n25_s123\\nd051_fewrel_n25_s42\\nd051_fewrel_n25_s456\\nd051_llama-3.1-70b-fp8_fewnerd_n25_s42\\nd051_llama-3.1-70b-fp8_fewrel_n25_s42\\ndocred_factorial_tost\\nembedding_ablation_fewnerd.json\\neval_dry_run.json\\neval_exp1.json\\neval_exp2.json\\neval_maven_dry_run.json\\nexp004\\nexp004_exp1.log\\nexp004_exp2.log\\nexp006\\nexp006_interaction_2x2\\nexp007\\nexp008\\nexp008_dryrun\\nexp008_dryrun2\\nexp008_run.log\\nexp008_run2.log\\nexp008_v2\\nexp012\\nexp012_dryrun\\nexp012_llama_8b\\nexp015_scs_validation.json\\nexp017_gpt4o_mini_fewrel\\nexp_batch_composition\\nexp_confusability_batch_composition\\nexp_docred_bcs_expanded\\nexp_docred_confusability\\nexp_gemini_flash\\nexp_maven_minilm\\nexp_paired_constrained\\nexp_schema_intervention\\nexp_sdgd_zero_maven\\nexp_v2_re_n25\\nextreme_batch_analysis.json\\nfewnerd_bcs_matrix_minilm.pt\\nfewrel_16rel_100batch\\nfewrel_16rel_bootstrap\\nfewrel_40rel\\nfewrel_40rel_r4\\nfewrel_80pool_16sub\\nfewrel_80rel_error_taxonomy.json\\nfewrel_contamination_check\\nfewrel_factorial_tost\\nfewrel_formal\\nfewrel_formal_full\\nfewrel_partial_correlation_freq\\nfewrel_pilot\\nfewrel_qwen3_embeddings.pt\\nfewrel_qwen3_sim_matrix.pt\\nfewrel_v2_bcs\\nfewshot_bcs\\nfewshot_bcs_mitigation\\nfewshot_bcs_v2\\nllama_fewrel_ch2\\nmaven_bcs_matrix_qwen3.pt\\nmaven_case_study.json\\nmaven_minilm_embeddings.pt\\nmaven_minilm_pertype_analysis.json\\nmaven_minilm_sim_matrix.pt\\nmaven_residualized_bcs\\nmaven_type_embeddings_qwen3.pt\\nmetric_consistency_report.md\\nmultiseed_bcs_re\\npaper\\npredictions_dry_run.json\\npredictions_exp1.json\\npredictions_exp2.json\\npredictions_maven_dry_run.json\\nq3_val_scs_confusion\\nround2_statistical_analyses.json\\nscs_name_def_ablation\\nscs_renaming_intervention.json\\nsdgd_v2_validation.json\\nsim_matrix.pt\\nthree_way_comparison\\ntype_embeddings.pt\\nunconstrained_decoding_ablation\\nunconstrained_decoding_ablation_n25\\nw4_relaxed_matching\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "2f006bf4-c219-46a3-9e93-7807ec800663",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"aggregation_simulation\\\\nbatch_config_dry_run.json\\\\nbatch_config_exp1.json\\\\nbatch_config_exp2.json\\\\nbatch_config_maven_dry_run.json\\\\nbcs_controlled_llama-3.1-70b-fp8\\\\nbcs_fix\\\\nbootstrap_ci.json\\\\ncase_study\\\\ncross_embedding_sensitivity_results.json\\\\nd035_extreme_batch\\\\nd051_batch2.log\\\\nd051_fewnerd_n25_s123\\\\nd051_fewnerd_n25_s42\\\\nd051_fewnerd_n25_s456\\\\nd051_fewrel_n25_s123\\\\nd051_fewrel_n25_s42\\\\nd051_fewrel_n25_s456\\\\nd051_llama-3.1-70b-fp8_fewnerd_n25_s42\\\\nd051_llama-3.1-70b-fp8_fewrel_n25_s42\\\\ndocred_factorial_tost\\\\nembedding_ablation_fewnerd.json\\\\neval_dry_run.json\\\\neval_exp1.json\\\\neval_exp2.json\\\\neval_maven_dry_run.json\\\\nexp004\\\\nexp004_exp1.log\\\\nexp004_exp2.log\\\\nexp006\\\\nexp006_interaction_2x2\\\\nexp007\\\\nexp008\\\\nexp008_dryrun\\\\nexp008_dryrun2\\\\nexp008_run.log\\\\nexp008_run2.log\\\\nexp008_v2\\\\nexp012\\\\nexp012_dryrun\\\\nexp012_llama_8b\\\\nexp015_scs_validation.json\\\\nexp017_gpt4o_mini_fewrel\\\\nexp_batch_composition\\\\nexp_confusability_batch_composition\\\\nexp_docred_bcs_expanded\\\\nexp_docred_confusability\\\\nexp_gemini_flash\\\\nexp_maven_minilm\\\\nexp_paired_constrained\\\\nexp_schema_intervention\\\\nexp_sdgd_zero_maven\\\\nexp_v2_re_n25\\\\nextreme_batch_analysis.json\\\\nfewnerd_bcs_matrix_minilm.pt\\\\nfewrel_16rel_100batch\\\\nfewrel_16rel_bootstrap\\\\nfewrel_40rel\\\\nfewrel_40rel_r4\\\\nfewrel_80pool_16sub\\\\nfewrel_80rel_error_taxonomy.json\\\\nfewrel_contamination_check\\\\nfewrel_factorial_tost\\\\nfewrel_formal\\\\nfewrel_formal_full\\\\nfewrel_partial_correlation_freq\\\\nfewrel_pilot\\\\nfewrel_qwen3_embeddings.pt\\\\nfewrel_qwen3_sim_matrix.pt\\\\nfewrel_v2_bcs\\\\nfewshot_bcs\\\\nfewshot_bcs_mitigation\\\\nfewshot_bcs_v2\\\\nllama_fewrel_ch2\\\\nmaven_bcs_matrix_qwen3.pt\\\\nmaven_case_study.json\\\\nmaven_minilm_embeddings.pt\\\\nmaven_minilm_pertype_analysis.json\\\\nmaven_minilm_sim_matrix.pt\\\\nmaven_residualized_bcs\\\\nmaven_type_embeddings_qwen3.pt\\\\nmetric_consistency_report.md\\\\nmultiseed_bcs_re\\\\npaper\\\\npredictions_dry_run.json\\\\npredictions_exp1.json\\\\npredictions_exp2.json\\\\npredictions_maven_dry_run.json\\\\nq3_val_scs_confusion\\\\nround2_statistical_analyses.json\\\\nscs_name_def_ablation\\\\nscs_renaming_intervention.json\\\\nsdgd_v2_validation.json\\\\nsim_matrix.pt\\\\nthree_way_comparison\\\\ntype_embeddings.pt\\\\nunconstrained_decoding_ablation\\\\nunconstrained_decoding_ablation_n25\\\\nw4_relaxed_matching\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"aggregation_simulation\\nbatch_config_dry_run.json\\nbatch_config_exp1.json\\nbatch_config_exp2.json\\nbatch_config_maven_dry_run.json\\nbcs_controlled_llama-3.1-70b-fp8\\nbcs_fix\\nbootstrap_ci.json\\ncase_study\\ncross_embedding_sensitivity_results.json\\nd035_extreme_batch\\nd051_batch2.log\\nd051_fewnerd_n25_s123\\nd051_fewnerd_n25_s42\\nd051_fewnerd_n25_s456\\nd051_fewrel_n25_s123\\nd051_fewrel_n25_s42\\nd051_fewrel_n25_s456\\nd051_llama-3.1-70b-fp8_fewnerd_n25_s42\\nd051_llama-3.1-70b-fp8_fewrel_n25_s42\\ndocred_factorial_tost\\nembedding_ablation_fewnerd.json\\neval_dry_run.json\\neval_exp1.json\\neval_exp2.json\\neval_maven_dry_run.json\\nexp004\\nexp004_exp1.log\\nexp004_exp2.log\\nexp006\\nexp006_interaction_2x2\\nexp007\\nexp008\\nexp008_dryrun\\nexp008_dryrun2\\nexp008_run.log\\nexp008_run2.log\\nexp008_v2\\nexp012\\nexp012_dryrun\\nexp012_llama_8b\\nexp015_scs_validation.json\\nexp017_gpt4o_mini_fewrel\\nexp_batch_composition\\nexp_confusability_batch_composition\\nexp_docred_bcs_expanded\\nexp_docred_confusability\\nexp_gemini_flash\\nexp_maven_minilm\\nexp_paired_constrained\\nexp_schema_intervention\\nexp_sdgd_zero_maven\\nexp_v2_re_n25\\nextreme_batch_analysis.json\\nfewnerd_bcs_matrix_minilm.pt\\nfewrel_16rel_100batch\\nfewrel_16rel_bootstrap\\nfewrel_40rel\\nfewrel_40rel_r4\\nfewrel_80pool_16sub\\nfewrel_80rel_error_taxonomy.json\\nfewrel_contamination_check\\nfewrel_factorial_tost\\nfewrel_formal\\nfewrel_formal_full\\nfewrel_partial_correlation_freq\\nfewrel_pilot\\nfewrel_qwen3_embeddings.pt\\nfewrel_qwen3_sim_matrix.pt\\nfewrel_v2_bcs\\nfewshot_bcs\\nfewshot_bcs_mitigation\\nfewshot_bcs_v2\\nllama_fewrel_ch2\\nmaven_bcs_matrix_qwen3.pt\\nmaven_case_study.json\\nmaven_minilm_embeddings.pt\\nmaven_minilm_pertype_analysis.json\\nmaven_minilm_sim_matrix.pt\\nmaven_residualized_bcs\\nmaven_type_embeddings_qwen3.pt\\nmetric_consistency_report.md\\nmultiseed_bcs_re\\npaper\\npredictions_dry_run.json\\npredictions_exp1.json\\npredictions_exp2.json\\npredictions_maven_dry_run.json\\nq3_val_scs_confusion\\nround2_statistical_analyses.json\\nscs_name_def_ablation\\nscs_renaming_intervention.json\\nsdgd_v2_validation.json\\nsim_matrix.pt\\nthree_way_comparison\\ntype_embeddings.pt\\nunconstrained_decoding_ablation\\nunconstrained_decoding_ablation_n25\\nw4_relaxed_matching\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T14:11:14.974Z_
+
+<details><summary>↩ Tool result · `toolu_01V9or2VKZnTXsqSispyahVk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analyze_relaxed.py\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "0526bc94-49c0-4b60-888f-aa1b7494bc6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analyze_relaxed.py\\\\nresults.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analyze_relaxed.py\\nresults.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at the W4 relaxed matching analysis script and results, and also explore the NER prediction data directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "22ba63d9-6646-4434-a88f-388426dc3d32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qX4s65uKmB8sjqCAm7oqA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1454,
+      "cache_read_input_tokens": 25009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017rnka8JjmD4GXEo2iHUXcP`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/w4_relaxed_matching/analyze_relaxed.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "b6254b73-5a04-4ce0-8cc0-1cdcd6dc26f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qX4s65uKmB8sjqCAm7oqA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1454,
+      "cache_read_input_tokens": 25009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T14:11:21.165Z_
+
+<details><summary>↩ Tool result · `toolu_017rnka8JjmD4GXEo2iHUXcP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"NER relaxed matching re-evaluation.\\n\\nCompares exact text match vs relaxed (substring) text match F1,\\nthen computes BCS correlation for both to test whether boundary\\nerrors dilute the BCS signal.\\n\\\"\\\"\\\"\\nimport json\\nimport sys\\nimport logging\\nfrom pathlib import Path\\nfrom collections import defaultdict\\nimport numpy as np\\nfrom scipy import stats\\n\\nsys.path.insert(0, str(Path(\\\"/root/schema-dag-extraction/src\\\")))\\nfrom few_nerd_utils import load_few_nerd\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nARTIFACTS = Path(\\\"/root/schema-dag-extraction/artifacts\\\")\\nSEEDS = [\\n    (\\\"s42\\\", ARTIFACTS / \\\"d051_fewnerd_n25_s42\\\"),\\n    (\\\"s123\\\", ARTIFACTS / \\\"d051_fewnerd_n25_s123\\\"),\\n    (\\\"s456\\\", ARTIFACTS / \\\"d051_fewnerd_n25_s456\\\"),\\n]\\nCOUNT_LEVELS = [\\\"count_2\\\", \\\"count_6\\\", \\\"count_12\\\", \\\"count_22\\\", \\\"count_44\\\", \\\"count_66\\\"]\\nMAX_SAMPLES = 1000\\nN_BOOTSTRAP = 10000\\n\\n\\ndef load_predictions(seed_dir):\\n    \\\"\\\"\\\"Load all JSONL prediction files from a seed directory.\\\"\\\"\\\"\\n    preds = []\\n    for ck in COUNT_LEVELS:\\n        path = seed_dir / f\\\"results_{ck}.jsonl\\\"\\n        if not path.exists():\\n            logger.warning(\\\"Missing %s\\\", path)\\n            continue\\n        with open(path) as f:\\n            for line in f:\\n                if line.strip():\\n                    preds.append(json.loads(line))\\n    return preds\\n\\n\\ndef compute_batch_f1(pred_entries, samples, batch_types_set, match_fn):\\n    \\\"\\\"\\\"Compute micro F1 for one batch using given match function.\\\"\\\"\\\"\\n    by_sample = defaultdict(list)\\n    for p in pred_entries:\\n        by_sample[p[\\\"sample_id\\\"]].append(p)\\n\\n    total_tp = 0\\n    total_pred = 0\\n    total_gold = 0\\n\\n    for sid, entries in by_sample.items():\\n        if sid >= len(samples):\\n            continue\\n        source_text = samples[sid][\\\"text\\\"]\\n        gold_entities = [e for e in samples[sid][\\\"entities\\\"] if e[\\\"type\\\"] in batch_types_set]\\n        total_gold += len(gold_entities)\\n\\n        preds = entries[0].get(\\\"predictions\\\", [])\\n        preds = [p for p in preds if p.get(\\\"type\\\") in batch_types_set]\\n        total_pred += len(preds)\\n\\n        matched_gold = set()\\n        for pred in preds:\\n            pt = pred.get(\\\"text\\\", \\\"\\\").strip()\\n            ptype = pred.get(\\\"type\\\", \\\"\\\")\\n            if not pt:\\n                continue\\n            for gi, gold in enumerate(gold_entities):\\n                if gi in matched_gold:\\n                    continue\\n                if match_fn(pt, ptype, gold[\\\"text\\\"], gold[\\\"type\\\"], source_text):\\n                    total_tp += 1\\n                    matched_gold.add(gi)\\n                    break\\n\\n    p = total_tp / total_pred if total_pred > 0 else 0.0\\n    r = total_tp / total_gold if total_gold > 0 else 0.0\\n    f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0.0\\n    return {\\\"precision\\\": p, \\\"recall\\\": r, \\\"f1\\\": f1, \\\"tp\\\": total_tp,\\n            \\\"total_pred\\\": total_pred, \\\"total_gold\\\": total_gold}\\n\\n\\ndef exact_text_match(pred_text, pred_type, gold_text, gold_type, source_text):\\n    if pred_type != gold_type:\\n        return False\\n    return pred_text.lower() == gold_text.lower()\\n\\n\\ndef relaxed_text_match(pred_text, pred_type, gold_text, gold_type, source_text):\\n    if pred_type != gold_type:\\n        return False\\n    pl = pred_text.lower()\\n    gl = gold_text.lower()\\n    if not pl or not gl:\\n        return False\\n    return pl == gl or pl in gl or gl in pl\\n\\n\\ndef relaxed_type_ignored(pred_text, pred_type, gold_text, gold_type, source_text):\\n    \\\"\\\"\\\"Relaxed text overlap, ignoring type (boundary-only evaluation).\\\"\\\"\\\"\\n    pl = pred_text.lower().strip()\\n    gl = gold_text.lower().strip()\\n    if not pl or not gl:\\n        return False\\n    return pl == gl or pl in gl or gl in pl\\n\\n\\ndef token_overlap_match(pred_text, pred_type, gold_text, gold_type, source_text):\\n    \\\"\\\"\\\"Type match + token-level overlap (at least one shared token).\\\"\\\"\\\"\\n    if pred_type != gold_type:\\n        return False\\n    pred_tokens = set(pred_text.lower().split())\\n    gold_tokens = set(gold_text.lower().split())\\n    return len\\n\\n... [截断: 输出过长，省略 4208 字符] ...\\n\\n       pr = stats.pearsonr(ck_bcs, ck_f1)\\n                per_count[ck][f\\\"{mode_name}_pearson_r\\\"] = float(pr.statistic)\\n                per_count[ck][f\\\"{mode_name}_pearson_p\\\"] = float(pr.pvalue)\\n\\n    # Gain analysis: how many batches see F1 improvement with relaxed matching\\n    gains = []\\n    for b in all_batches:\\n        exact = b[\\\"exact_text_f1\\\"]\\n        relaxed = b[\\\"relaxed_text_f1\\\"]\\n        gains.append(relaxed - exact)\\n    gains = np.array(gains)\\n\\n    gain_summary = {\\n        \\\"mean_f1_gain\\\": float(np.mean(gains)),\\n        \\\"median_f1_gain\\\": float(np.median(gains)),\\n        \\\"pct_improved\\\": float(np.mean(gains > 0) * 100),\\n        \\\"pct_same\\\": float(np.mean(gains == 0) * 100),\\n        \\\"max_gain\\\": float(np.max(gains)),\\n    }\\n\\n    # Summary text\\n    exact_r = results[\\\"exact_text\\\"][\\\"pearson_r\\\"]\\n    relaxed_r = results[\\\"relaxed_text\\\"][\\\"pearson_r\\\"]\\n    token_r = results[\\\"token_overlap\\\"][\\\"pearson_r\\\"]\\n    summary = (\\n        f\\\"Exact text match: r={exact_r:.4f} (p={results['exact_text']['pearson_p']:.4f}). \\\"\\n        f\\\"Relaxed text match: r={relaxed_r:.4f} (p={results['relaxed_text']['pearson_p']:.4f}). \\\"\\n        f\\\"Token overlap: r={token_r:.4f} (p={results['token_overlap']['pearson_p']:.4f}). \\\"\\n        f\\\"Mean F1 gain from relaxed: {gain_summary['mean_f1_gain']:.4f} ({gain_summary['pct_improved']:.1f}% batches improved). \\\"\\n    )\\n    if abs(relaxed_r) > abs(exact_r) + 0.05:\\n        summary += \\\"Relaxed matching reveals stronger BCS signal — boundary errors were masking it.\\\"\\n    elif abs(relaxed_r - exact_r) < 0.05:\\n        summary += \\\"Relaxed matching does NOT substantially change BCS correlation — boundary errors are not the primary cause of weak signal.\\\"\\n\\n    output = {\\n        \\\"exact_match\\\": results[\\\"exact_text\\\"],\\n        \\\"relaxed_match\\\": results[\\\"relaxed_text\\\"],\\n        \\\"token_overlap\\\": results[\\\"token_overlap\\\"],\\n        \\\"relaxed_type_ignored\\\": results[\\\"relaxed_type_ignored\\\"],\\n        \\\"gain_summary\\\": gain_summary,\\n        \\\"per_count\\\": per_count,\\n        \\\"per_batch\\\": all_batches,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    out_path = Path(\\\"/root/schema-dag-extraction/artifacts/w4_relaxed_matching/results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n    logger.info(\\\"Results saved to %s\\\", out_path)\\n\\n    # Print comparison table\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 100)\\n    print(\\\"BCS vs F1 Correlation: Exact Match vs Relaxed Match\\\")\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"{'Match Mode':<25} {'Pearson r':>10} {'p-value':>10} {'Spearman ρ':>12} {'p-value':>10} {'95% CI':>20} {'Mean F1':>8}\\\")\\n    print(\\\"-\\\" * 100)\\n    for mode in [\\\"exact_text\\\", \\\"relaxed_text\\\", \\\"token_overlap\\\", \\\"relaxed_type_ignored\\\"]:\\n        r = results[mode]\\n        ci = r[\\\"bootstrap_ci_95\\\"]\\n        print(f\\\"{mode:<25} {r['pearson_r']:>10.4f} {r['pearson_p']:>10.4f} \\\"\\n              f\\\"{r['spearman_rho']:>12.4f} {r['spearman_p']:>10.4f} \\\"\\n              f\\\"[{ci[0]:>+.4f}, {ci[1]:>+.4f}] {r['mean_f1']:>8.4f}\\\")\\n    print(\\\"=\\\" * 100)\\n\\n    # Per count-level table\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 100)\\n    print(\\\"Per Count-Level: Mean F1 by Match Mode\\\")\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"{'Count':<12} {'#Bat':>5} {'Exact F1':>10} {'Relaxed F1':>12} {'Token F1':>10} {'F1 Δ':>8}\\\")\\n    print(\\\"-\\\" * 100)\\n    for ck in COUNT_LEVELS:\\n        if ck not in per_count:\\n            continue\\n        pc = per_count[ck]\\n        delta = pc.get(\\\"relaxed_text_mean_f1\\\", 0) - pc.get(\\\"exact_text_mean_f1\\\", 0)\\n        print(f\\\"{ck:<12} {pc['n_batches']:>5} {pc.get('exact_text_mean_f1', 0):>10.4f} \\\"\\n              f\\\"{pc.get('relaxed_text_mean_f1', 0):>12.4f} \\\"\\n              f\\\"{pc.get('token_overlap_mean_f1', 0):>10.4f} {delta:>+8.4f}\\\")\\n    print(\\\"=\\\" * 100)\\n\\n    # Gain summary\\n    print(f\\\"\\\\nRelaxed matching gain: mean={gain_summary['mean_f1_gain']:.4f}, \\\"\\n          f\\\"median={gain_summary['median_f1_gain']:.4f}, \\\"\\n          f\\\"{gain_summary['pct_improved']:.1f}% batches improved, \\\"\\n          f\\\"max gain={gain_summary['max_gain']:.4f}\\\")\\n\\n    print(f\\\"\\\\n{summary}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "51e01a74-6717-4cd3-a7fd-1d4bf1c57767",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"NER relaxed matching re-evaluation.\\\\n\\\\nCompares exact text match vs relaxed (substring) text match F1,\\\\nthen computes BCS correlation for both to test whether boundary\\\\nerrors dilute the BCS signal.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport sys\\\\nimport logging\\\\nfrom pathlib import Path\\\\nfrom collections import defaultdict\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nsys.path.insert(0, str(Path(\\\\\\\"/root/schema-dag-extraction/src\\\\\\\")))\\\\nfrom few_nerd_utils import load_few_nerd\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nARTIFACTS = Path(\\\\\\\"/root/schema-dag-extraction/artifacts\\\\\\\")\\\\nSEEDS = [\\\\n    (\\\\\\\"s42\\\\\\\", ARTIFACTS / \\\\\\\"d051_fewnerd_n25_s42\\\\\\\"),\\\\n    (\\\\\\\"s123\\\\\\\", ARTIFACTS / \\\\\\\"d051_fewnerd_n25_s123\\\\\\\"),\\\\n    (\\\\\\\"s456\\\\\\\", ARTIFACTS / \\\\\\\"d051_fewnerd_n25_s456\\\\\\\"),\\\\n]\\\\nCOUNT_LEVELS = [\\\\\\\"count_2\\\\\\\", \\\\\\\"count_6\\\\\\\", \\\\\\\"count_12\\\\\\\", \\\\\\\"count_22\\\\\\\", \\\\\\\"count_44\\\\\\\", \\\\\\\"count_66\\\\\\\"]\\\\nMAX_SAMPLES = 1000\\\\nN_BOOTSTRAP = 10000\\\\n\\\\n\\\\ndef load_predictions(seed_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all JSONL prediction files from a seed directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    preds = []\\\\n    for ck in COUNT_LEVELS:\\\\n        path = seed_dir / f\\\\\\\"results_{ck}.jsonl\\\\\\\"\\\\n        if not path.exists():\\\\n            logger.warning(\\\\\\\"Missing %s\\\\\\\", path)\\\\n            continue\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                if line.strip():\\\\n                    preds.append(json.loads(line))\\\\n    return preds\\\\n\\\\n\\\\ndef compute_batch_f1(pred_entries, samples, batch_types_set, match_fn):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute micro F1 for one batch using given match function.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    by_sample = defaultdict(list)\\\\n    for p in pred_entries:\\\\n        by_sample[p[\\\\\\\"sample_id\\\\\\\"]].append(p)\\\\n\\\\n    total_tp = 0\\\\n    total_pred = 0\\\\n    total_gold = 0\\\\n\\\\n    for sid, entries in by_sample.items():\\\\n        if sid >= len(samples):\\\\n            continue\\\\n        source_text = samples[sid][\\\\\\\"text\\\\\\\"]\\\\n        gold_entities = [e for e in samples[sid][\\\\\\\"entities\\\\\\\"] if e[\\\\\\\"type\\\\\\\"] in batch_types_set]\\\\n        total_gold += len(gold_entities)\\\\n\\\\n        preds = entries[0].get(\\\\\\\"predictions\\\\\\\", [])\\\\n        preds = [p for p in preds if p.get(\\\\\\\"type\\\\\\\") in batch_types_set]\\\\n        total_pred += len(preds)\\\\n\\\\n        matched_gold = set()\\\\n        for pred in preds:\\\\n            pt = pred.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\").strip()\\\\n            ptype = pred.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            if not pt:\\\\n                continue\\\\n            for gi, gold in enumerate(gold_entities):\\\\n                if gi in matched_gold:\\\\n                    continue\\\\n                if match_fn(pt, ptype, gold[\\\\\\\"text\\\\\\\"], gold[\\\\\\\"type\\\\\\\"], source_text):\\\\n                    total_tp += 1\\\\n                    matched_gold.add(gi)\\\\n                    break\\\\n\\\\n    p = total_tp / total_pred if total_pred > 0 else 0.0\\\\n    r = total_tp / total_gold if total_gold > 0 else 0.0\\\\n    f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0.0\\\\n    return {\\\\\\\"precision\\\\\\\": p, \\\\\\\"recall\\\\\\\": r, \\\\\\\"f1\\\\\\\": f1, \\\\\\\"tp\\\\\\\": total_tp,\\\\n            \\\\\\\"total_pred\\\\\\\": total_pred, \\\\\\\"total_gold\\\\\\\": total_gold}\\\\n\\\\n\\\\ndef exact_text_match(pred_text, pred_type, gold_text, gold_type, source_text):\\\\n    if pred_type != gold_type:\\\\n        return False\\\\n    return pred_text.lower() == gold_text.lower()\\\\n\\\\n\\\\ndef relaxed_text_match(pred_text, pred_type, gold_text, gold_type, source_text):\\\\n    if pred_type != gold_type:\\\\n        return False\\\\n    pl = pred_text.lower()\\\\n    gl = gold_text.lower()\\\\n    if not pl or not gl:\\\\n        return False\\\\n    return pl == gl or pl in gl or gl in pl\\\\n\\\\n\\\\ndef relaxed_type_ignored(pred_text, pred_type, gold_text, gold_type, source_text):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Relaxed text overlap, ignoring type (boundary-only evaluation).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pl = pred_text.lower().strip()\\\\n    gl = gold_text.lower().strip()\\\\n    if not pl or not gl:\\\\n        return False\\\\n    return pl == gl or pl in gl or gl in pl\\\\n\\\\n\\\\ndef token_overlap_match(pred_text, pred_type, gold_text, gold_type, source_text):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Type match + token-level overlap (at least one shared token).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if pred_type != gold_type:\\\\n        return False\\\\n    pred_tokens = set(pred_text.lower().split())\\\\n    gold_tokens = set(gold_text.lower().split())\\\\n    return len\\\\n\\\\n... [截断: 输出过长，省略 4208 字符] ...\\\\n\\\\n       pr = stats.pearsonr(ck_bcs, ck_f1)\\\\n                per_count[ck][f\\\\\\\"{mode_name}_pearson_r\\\\\\\"] = float(pr.statistic)\\\\n                per_count[ck][f\\\\\\\"{mode_name}_pearson_p\\\\\\\"] = float(pr.pvalue)\\\\n\\\\n    # Gain analysis: how many batches see F1 improvement with relaxed matching\\\\n    gains = []\\\\n    for b in all_batches:\\\\n        exact = b[\\\\\\\"exact_text_f1\\\\\\\"]\\\\n        relaxed = b[\\\\\\\"relaxed_text_f1\\\\\\\"]\\\\n        gains.append(relaxed - exact)\\\\n    gains = np.array(gains)\\\\n\\\\n    gain_summary = {\\\\n        \\\\\\\"mean_f1_gain\\\\\\\": float(np.mean(gains)),\\\\n        \\\\\\\"median_f1_gain\\\\\\\": float(np.median(gains)),\\\\n        \\\\\\\"pct_improved\\\\\\\": float(np.mean(gains > 0) * 100),\\\\n        \\\\\\\"pct_same\\\\\\\": float(np.mean(gains == 0) * 100),\\\\n        \\\\\\\"max_gain\\\\\\\": float(np.max(gains)),\\\\n    }\\\\n\\\\n    # Summary text\\\\n    exact_r = results[\\\\\\\"exact_text\\\\\\\"][\\\\\\\"pearson_r\\\\\\\"]\\\\n    relaxed_r = results[\\\\\\\"relaxed_text\\\\\\\"][\\\\\\\"pearson_r\\\\\\\"]\\\\n    token_r = results[\\\\\\\"token_overlap\\\\\\\"][\\\\\\\"pearson_r\\\\\\\"]\\\\n    summary = (\\\\n        f\\\\\\\"Exact text match: r={exact_r:.4f} (p={results['exact_text']['pearson_p']:.4f}). \\\\\\\"\\\\n        f\\\\\\\"Relaxed text match: r={relaxed_r:.4f} (p={results['relaxed_text']['pearson_p']:.4f}). \\\\\\\"\\\\n        f\\\\\\\"Token overlap: r={token_r:.4f} (p={results['token_overlap']['pearson_p']:.4f}). \\\\\\\"\\\\n        f\\\\\\\"Mean F1 gain from relaxed: {gain_summary['mean_f1_gain']:.4f} ({gain_summary['pct_improved']:.1f}% batches improved). \\\\\\\"\\\\n    )\\\\n    if abs(relaxed_r) > abs(exact_r) + 0.05:\\\\n        summary += \\\\\\\"Relaxed matching reveals stronger BCS signal — boundary errors were masking it.\\\\\\\"\\\\n    elif abs(relaxed_r - exact_r) < 0.05:\\\\n        summary += \\\\\\\"Relaxed matching does NOT substantially change BCS correlation — boundary errors are not the primary cause of weak signal.\\\\\\\"\\\\n\\\\n    output = {\\\\n        \\\\\\\"exact_match\\\\\\\": results[\\\\\\\"exact_text\\\\\\\"],\\\\n        \\\\\\\"relaxed_match\\\\\\\": results[\\\\\\\"relaxed_text\\\\\\\"],\\\\n        \\\\\\\"token_overlap\\\\\\\": results[\\\\\\\"token_overlap\\\\\\\"],\\\\n        \\\\\\\"relaxed_type_ignored\\\\\\\": results[\\\\\\\"relaxed_type_ignored\\\\\\\"],\\\\n        \\\\\\\"gain_summary\\\\\\\": gain_summary,\\\\n        \\\\\\\"per_count\\\\\\\": per_count,\\\\n        \\\\\\\"per_batch\\\\\\\": all_batches,\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n    }\\\\n\\\\n    out_path = Path(\\\\\\\"/root/schema-dag-extraction/artifacts/w4_relaxed_matching/results.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=str)\\\\n    logger.info(\\\\\\\"Results saved to %s\\\\\\\", out_path)\\\\n\\\\n    # Print comparison table\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 100)\\\\n    print(\\\\\\\"BCS vs F1 Correlation: Exact Match vs Relaxed Match\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    print(f\\\\\\\"{'Match Mode':<25} {'Pearson r':>10} {'p-value':>10} {'Spearman ρ':>12} {'p-value':>10} {'95% CI':>20} {'Mean F1':>8}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 100)\\\\n    for mode in [\\\\\\\"exact_text\\\\\\\", \\\\\\\"relaxed_text\\\\\\\", \\\\\\\"token_overlap\\\\\\\", \\\\\\\"relaxed_type_ignored\\\\\\\"]:\\\\n        r = results[mode]\\\\n        ci = r[\\\\\\\"bootstrap_ci_95\\\\\\\"]\\\\n        print(f\\\\\\\"{mode:<25} {r['pearson_r']:>10.4f} {r['pearson_p']:>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{r['spearman_rho']:>12.4f} {r['spearman_p']:>10.4f} \\\\\\\"\\\\n              f\\\\\\\"[{ci[0]:>+.4f}, {ci[1]:>+.4f}] {r['mean_f1']:>8.4f}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n\\\\n    # Per count-level table\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 100)\\\\n    print(\\\\\\\"Per Count-Level: Mean F1 by Match Mode\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    print(f\\\\\\\"{'Count':<12} {'#Bat':>5} {'Exact F1':>10} {'Relaxed F1':>12} {'Token F1':>10} {'F1 Δ':>8}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 100)\\\\n    for ck in COUNT_LEVELS:\\\\n        if ck not in per_count:\\\\n            continue\\\\n        pc = per_count[ck]\\\\n        delta = pc.get(\\\\\\\"relaxed_text_mean_f1\\\\\\\", 0) - pc.get(\\\\\\\"exact_text_mean_f1\\\\\\\", 0)\\\\n        print(f\\\\\\\"{ck:<12} {pc['n_batches']:>5} {pc.get('exact_text_mean_f1', 0):>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{pc.get('relaxed_text_mean_f1', 0):>12.4f} \\\\\\\"\\\\n              f\\\\\\\"{pc.get('token_overlap_mean_f1', 0):>10.4f} {delta:>+8.4f}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n\\\\n    # Gain summary\\\\n    print(f\\\\\\\"\\\\\\\\nRelaxed matching gain: mean={gain_summary['mean_f1_gain']:.4f}, \\\\\\\"\\\\n          f\\\\\\\"median={gain_summary['median_f1_gain']:.4f}, \\\\\\\"\\\\n          f\\\\\\\"{gain_summary['pct_improved']:.1f}% batches improved, \\\\\\\"\\\\n          f\\\\\\\"max gain={gain_summary['max_gain']:.4f}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{summary}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"NER relaxed matching re-evaluation.\\n\\nCompares exact text match vs relaxed (substring) text match F1,\\nthen computes BCS correlation for both to test whether boundary\\nerrors dilute the BCS signal.\\n\\\"\\\"\\\"\\nimport json\\nimport sys\\nimport logging\\nfrom pathlib import Path\\nfrom collections import defaultdict\\nimport numpy as np\\nfrom scipy import stats\\n\\nsys.path.insert(0, str(Path(\\\"/root/schema-dag-extraction/src\\\")))\\nfrom few_nerd_utils import load_few_nerd\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nARTIFACTS = Path(\\\"/root/schema-dag-extraction/artifacts\\\")\\nSEEDS = [\\n    (\\\"s42\\\", ARTIFACTS / \\\"d051_fewnerd_n25_s42\\\"),\\n    (\\\"s123\\\", ARTIFACTS / \\\"d051_fewnerd_n25_s123\\\"),\\n    (\\\"s456\\\", ARTIFACTS / \\\"d051_fewnerd_n25_s456\\\"),\\n]\\nCOUNT_LEVELS = [\\\"count_2\\\", \\\"count_6\\\", \\\"count_12\\\", \\\"count_22\\\", \\\"count_44\\\", \\\"count_66\\\"]\\nMAX_SAMPLES = 1000\\nN_BOOTSTRAP = 10000\\n\\n\\ndef load_predictions(seed_dir):\\n    \\\"\\\"\\\"Load all JSONL prediction files from a seed directory.\\\"\\\"\\\"\\n    preds = []\\n    for ck in COUNT_LEVELS:\\n        path = seed_dir / f\\\"results_{ck}.jsonl\\\"\\n        if not path.exists():\\n            logger.warning(\\\"Missing %s\\\", path)\\n            continue\\n        with open(path) as f:\\n            for line in f:\\n                if line.strip():\\n                    preds.append(json.loads(line))\\n    return preds\\n\\n\\ndef compute_batch_f1(pred_entries, samples, batch_types_set, match_fn):\\n    \\\"\\\"\\\"Compute micro F1 for one batch using given match function.\\\"\\\"\\\"\\n    by_sample = defaultdict(list)\\n    for p in pred_entries:\\n        by_sample[p[\\\"sample_id\\\"]].append(p)\\n\\n    total_tp = 0\\n    total_pred = 0\\n    total_gold = 0\\n\\n    for sid, entries in by_sample.items():\\n        if sid >= len(samples):\\n            continue\\n        source_text = samples[sid][\\\"text\\\"]\\n        gold_entities = [e for e in samples[sid][\\\"entities\\\"] if e[\\\"type\\\"] in batch_types_set]\\n        total_gold += len(gold_entities)\\n\\n        preds = entries[0].get(\\\"predictions\\\", [])\\n        preds = [p for p in preds if p.get(\\\"type\\\") in batch_types_set]\\n        total_pred += len(preds)\\n\\n        matched_gold = set()\\n        for pred in preds:\\n            pt = pred.get(\\\"text\\\", \\\"\\\").strip()\\n            ptype = pred.get(\\\"type\\\", \\\"\\\")\\n            if not pt:\\n                continue\\n            for gi, gold in enumerate(gold_entities):\\n                if gi in matched_gold:\\n                    continue\\n                if match_fn(pt, ptype, gold[\\\"text\\\"], gold[\\\"type\\\"], source_text):\\n                    total_tp += 1\\n                    matched_gold.add(gi)\\n                    break\\n\\n    p = total_tp / total_pred if total_pred > 0 else 0.0\\n    r = total_tp / total_gold if total_gold > 0 else 0.0\\n    f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0.0\\n    return {\\\"precision\\\": p, \\\"recall\\\": r, \\\"f1\\\": f1, \\\"tp\\\": total_tp,\\n            \\\"total_pred\\\": total_pred, \\\"total_gold\\\": total_gold}\\n\\n\\ndef exact_text_match(pred_text, pred_type, gold_text, gold_type, source_text):\\n    if pred_type != gold_type:\\n        return False\\n    return pred_text.lower() == gold_text.lower()\\n\\n\\ndef relaxed_text_match(pred_text, pred_type, gold_text, gold_type, source_text):\\n    if pred_type != gold_type:\\n        return False\\n    pl = pred_text.lower()\\n    gl = gold_text.lower()\\n    if not pl or not gl:\\n        return False\\n    return pl == gl or pl in gl or gl in pl\\n\\n\\ndef relaxed_type_ignored(pred_text, pred_type, gold_text, gold_type, source_text):\\n    \\\"\\\"\\\"Relaxed text overlap, ignoring type (boundary-only evaluation).\\\"\\\"\\\"\\n    pl = pred_text.lower().strip()\\n    gl = gold_text.lower().strip()\\n    if not pl or not gl:\\n        return False\\n    return pl == gl or pl in gl or gl in pl\\n\\n\\ndef token_overlap_match(pred_text, pred_type, gold_text, gold_type, source_text):\\n    \\\"\\\"\\\"Type match + token-level overlap (at least one shared token).\\\"\\\"\\\"\\n    if pred_type != gold_type:\\n        return False\\n    pred_tokens = set(pred_text.lower().split())\\n    gold_tokens = set(gold_text.lower().split())\\n    return len\\n\\n... [截断: 输出过长，省略 4208 字符] ...\\n\\n       pr = stats.pearsonr(ck_bcs, ck_f1)\\n                per_count[ck][f\\\"{mode_name}_pearson_r\\\"] = float(pr.statistic)\\n                per_count[ck][f\\\"{mode_name}_pearson_p\\\"] = float(pr.pvalue)\\n\\n    # Gain analysis: how many batches see F1 improvement with relaxed matching\\n    gains = []\\n    for b in all_batches:\\n        exact = b[\\\"exact_text_f1\\\"]\\n        relaxed = b[\\\"relaxed_text_f1\\\"]\\n        gains.append(relaxed - exact)\\n    gains = np.array(gains)\\n\\n    gain_summary = {\\n        \\\"mean_f1_gain\\\": float(np.mean(gains)),\\n        \\\"median_f1_gain\\\": float(np.median(gains)),\\n        \\\"pct_improved\\\": float(np.mean(gains > 0) * 100),\\n        \\\"pct_same\\\": float(np.mean(gains == 0) * 100),\\n        \\\"max_gain\\\": float(np.max(gains)),\\n    }\\n\\n    # Summary text\\n    exact_r = results[\\\"exact_text\\\"][\\\"pearson_r\\\"]\\n    relaxed_r = results[\\\"relaxed_text\\\"][\\\"pearson_r\\\"]\\n    token_r = results[\\\"token_overlap\\\"][\\\"pearson_r\\\"]\\n    summary = (\\n        f\\\"Exact text match: r={exact_r:.4f} (p={results['exact_text']['pearson_p']:.4f}). \\\"\\n        f\\\"Relaxed text match: r={relaxed_r:.4f} (p={results['relaxed_text']['pearson_p']:.4f}). \\\"\\n        f\\\"Token overlap: r={token_r:.4f} (p={results['token_overlap']['pearson_p']:.4f}). \\\"\\n        f\\\"Mean F1 gain from relaxed: {gain_summary['mean_f1_gain']:.4f} ({gain_summary['pct_improved']:.1f}% batches improved). \\\"\\n    )\\n    if abs(relaxed_r) > abs(exact_r) + 0.05:\\n        summary += \\\"Relaxed matching reveals stronger BCS signal — boundary errors were masking it.\\\"\\n    elif abs(relaxed_r - exact_r) < 0.05:\\n        summary += \\\"Relaxed matching does NOT substantially change BCS correlation — boundary errors are not the primary cause of weak signal.\\\"\\n\\n    output = {\\n        \\\"exact_match\\\": results[\\\"exact_text\\\"],\\n        \\\"relaxed_match\\\": results[\\\"relaxed_text\\\"],\\n        \\\"token_overlap\\\": results[\\\"token_overlap\\\"],\\n        \\\"relaxed_type_ignored\\\": results[\\\"relaxed_type_ignored\\\"],\\n        \\\"gain_summary\\\": gain_summary,\\n        \\\"per_count\\\": per_count,\\n        \\\"per_batch\\\": all_batches,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    out_path = Path(\\\"/root/schema-dag-extraction/artifacts/w4_relaxed_matching/results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n    logger.info(\\\"Results saved to %s\\\", out_path)\\n\\n    # Print comparison table\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 100)\\n    print(\\\"BCS vs F1 Correlation: Exact Match vs Relaxed Match\\\")\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"{'Match Mode':<25} {'Pearson r':>10} {'p-value':>10} {'Spearman ρ':>12} {'p-value':>10} {'95% CI':>20} {'Mean F1':>8}\\\")\\n    print(\\\"-\\\" * 100)\\n    for mode in [\\\"exact_text\\\", \\\"relaxed_text\\\", \\\"token_overlap\\\", \\\"relaxed_type_ignored\\\"]:\\n        r = results[mode]\\n        ci = r[\\\"bootstrap_ci_95\\\"]\\n        print(f\\\"{mode:<25} {r['pearson_r']:>10.4f} {r['pearson_p']:>10.4f} \\\"\\n              f\\\"{r['spearman_rho']:>12.4f} {r['spearman_p']:>10.4f} \\\"\\n              f\\\"[{ci[0]:>+.4f}, {ci[1]:>+.4f}] {r['mean_f1']:>8.4f}\\\")\\n    print(\\\"=\\\" * 100)\\n\\n    # Per count-level table\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 100)\\n    print(\\\"Per Count-Level: Mean F1 by Match Mode\\\")\\n    print(\\\"=\\\" * 100)\\n    print(f\\\"{'Count':<12} {'#Bat':>5} {'Exact F1':>10} {'Relaxed F1':>12} {'Token F1':>10} {'F1 Δ':>8}\\\")\\n    print(\\\"-\\\" * 100)\\n    for ck in COUNT_LEVELS:\\n        if ck not in per_count:\\n            continue\\n        pc = per_count[ck]\\n        delta = pc.get(\\\"relaxed_text_mean_f1\\\", 0) - pc.get(\\\"exact_text_mean_f1\\\", 0)\\n        print(f\\\"{ck:<12} {pc['n_batches']:>5} {pc.get('exact_text_mean_f1', 0):>10.4f} \\\"\\n              f\\\"{pc.get('relaxed_text_mean_f1', 0):>12.4f} \\\"\\n              f\\\"{pc.get('token_overlap_mean_f1', 0):>10.4f} {delta:>+8.4f}\\\")\\n    print(\\\"=\\\" * 100)\\n\\n    # Gain summary\\n    print(f\\\"\\\\nRelaxed matching gain: mean={gain_summary['mean_f1_gain']:.4f}, \\\"\\n          f\\\"median={gain_summary['median_f1_gain']:.4f}, \\\"\\n          f\\\"{gain_summary['pct_improved']:.1f}% batches improved, \\\"\\n          f\\\"max gain={gain_summary['max_gain']:.4f}\\\")\\n\\n    print(f\\\"\\\\n{summary}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015QmkAZaF3wF2LyzuZSbjs5`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -100 /root/schema-dag-extraction/artifacts/w4_relaxed_matching/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "419b2dc8-80b6-403f-b51c-d4d68e5d8878",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qX4s65uKmB8sjqCAm7oqA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1454,
+      "cache_read_input_tokens": 25009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0175dd4ivP1tFidFW3fLkvSc`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "80893925-66bc-46d7-a92b-2770b7abfbac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qX4s65uKmB8sjqCAm7oqA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1454,
+      "cache_read_input_tokens": 25009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T14:11:22.057Z_
+
+<details><summary>↩ Tool result · `toolu_015QmkAZaF3wF2LyzuZSbjs5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exact_match\\\": {\\n    \\\"pearson_r\\\": 0.01441562978415713,\\n    \\\"pearson_p\\\": 0.7603912875476582,\\n    \\\"spearman_rho\\\": -0.10049491765374868,\\n    \\\"spearman_p\\\": 0.03306543451259907,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.10461881453270443,\\n      0.12239372721508272\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.30363598155859095,\\n    \\\"std_f1\\\": 0.10379540401300559\\n  },\\n  \\\"relaxed_match\\\": {\\n    \\\"pearson_r\\\": 0.0031824812199015215,\\n    \\\"pearson_p\\\": 0.9463245492649768,\\n    \\\"spearman_rho\\\": -0.10998250781808805,\\n    \\\"spearman_p\\\": 0.019612707644789017,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.11945112148898734,\\n      0.11372640223290084\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.3454911175258332,\\n    \\\"std_f1\\\": 0.1144122210993041\\n  },\\n  \\\"token_overlap\\\": {\\n    \\\"pearson_r\\\": 0.0038222238411343918,\\n    \\\"pearson_p\\\": 0.9355561603931638,\\n    \\\"spearman_rho\\\": -0.11267159423128933,\\n    \\\"spearman_p\\\": 0.016798155685150015,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.12007511854533806,\\n      0.11557096163044532\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.34936004915796454,\\n    \\\"std_f1\\\": 0.11458548224632828\\n  },\\n  \\\"relaxed_type_ignored\\\": {\\n    \\\"pearson_r\\\": 0.02337456251993858,\\n    \\\"pearson_p\\\": 0.620926417456738,\\n    \\\"spearman_rho\\\": -0.0974248737426866,\\n    \\\"spearman_p\\\": 0.038841498515668864,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.07768878880970966,\\n      0.1173204963376925\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.42465015623681046,\\n    \\\"std_f1\\\": 0.17010577202377292\\n  },\\n  \\\"gain_summary\\\": {\\n    \\\"mean_f1_gain\\\": 0.041855135967242295,\\n    \\\"median_f1_gain\\\": 0.04000752468009397,\\n    \\\"pct_improved\\\": 98.44444444444444,\\n    \\\"pct_same\\\": 1.5555555555555556,\\n    \\\"max_gain\\\": 0.23529411764705876\\n  },\\n  \\\"per_count\\\": {\\n    \\\"count_2\\\": {\\n      \\\"n_batches\\\": 75,\\n      \\\"exact_text_mean_f1\\\": 0.2914494919465701,\\n      \\\"exact_text_std_f1\\\": 0.12326456682178272,\\n      \\\"exact_text_pearson_r\\\": 0.02174817423807074,\\n      \\\"exact_text_pearson_p\\\": 0.8530696904490938,\\n      \\\"relaxed_text_mean_f1\\\": 0.34139895014347255,\\n      \\\"relaxed_text_std_f1\\\": 0.14042788809045978,\\n      \\\"relaxed_text_pearson_r\\\": 0.008846636314738083,\\n      \\\"relaxed_text_pearson_p\\\": 0.9399531352652678,\\n      \\\"token_overlap_mean_f1\\\": 0.3468074275015001,\\n      \\\"token_overlap_std_f1\\\": 0.14172726919034137,\\n      \\\"token_overlap_pearson_r\\\": 0.012468071882526275,\\n      \\\"token_overlap_pearson_p\\\": 0.915449694618243,\\n      \\\"relaxed_type_ignored_mean_f1\\\": 0.34573496953647276,\\n      \\\"relaxed_type_ignored_std_f1\\\": 0.14099430051762135,\\n      \\\"relaxed_type_ignored_pearson_r\\\": 0.01908614054357082,\\n      \\\"relaxed_type_ignored_pearson_p\\\": 0.870888991514127\\n    },\\n    \\\"count_6\\\": {\\n      \\\"n_batches\\\": 75,\\n      \\\"exact_text_mean_f1\\\": 0.26313790230345047,\\n      \\\"exact_text_std_f1\\\": 0.06983010207078781,\\n      \\\"exact_text_pearson_r\\\": 0.10945905852979335,\\n      \\\"exact_text_pearson_p\\\": 0.3498735521838874,\\n      \\\"relaxed_text_mean_f1\\\": 0.30071258615986296,\\n      \\\"relaxed_text_std_f1\\\": 0.07587406592064387,\\n      \\\"relaxed_text_pearson_r\\\": 0.08208759420136438,\\n      \\\"relaxed_text_pearson_p\\\": 0.48383854895004025,\\n      \\\"token_overlap_mean_f1\\\": 0.30417439208124736,\\n      \\\"token_overlap_std_f1\\\": 0.07673959700333362,\\n      \\\"token_overlap_pearson_r\\\": 0.07493224550953,\\n      \\\"token_overlap_pearson_p\\\": 0.5228671392561771,\\n      \\\"relaxed_type_ignored_mean_f1\\\": 0.32025557298637475,\\n      \\\"relaxed_type_ignored_std_f1\\\": 0.07971642557682505,\\n      \\\"relaxed_type_ignored_pearson_r\\\": 0.1693933730992355,\\n      \\\"relaxed_type_ignored_pearson_p\\\": 0.14625912221640047\\n    },\\n    \\\"count_12\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "444b653d-5654-45bd-95c5-2b4faa0827a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exact_match\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.01441562978415713,\\\\n    \\\\\\\"pearson_p\\\\\\\": 0.7603912875476582,\\\\n    \\\\\\\"spearman_rho\\\\\\\": -0.10049491765374868,\\\\n    \\\\\\\"spearman_p\\\\\\\": 0.03306543451259907,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      -0.10461881453270443,\\\\n      0.12239372721508272\\\\n    ],\\\\n    \\\\\\\"n_batches\\\\\\\": 450,\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.30363598155859095,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.10379540401300559\\\\n  },\\\\n  \\\\\\\"relaxed_match\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.0031824812199015215,\\\\n    \\\\\\\"pearson_p\\\\\\\": 0.9463245492649768,\\\\n    \\\\\\\"spearman_rho\\\\\\\": -0.10998250781808805,\\\\n    \\\\\\\"spearman_p\\\\\\\": 0.019612707644789017,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      -0.11945112148898734,\\\\n      0.11372640223290084\\\\n    ],\\\\n    \\\\\\\"n_batches\\\\\\\": 450,\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.3454911175258332,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.1144122210993041\\\\n  },\\\\n  \\\\\\\"token_overlap\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.0038222238411343918,\\\\n    \\\\\\\"pearson_p\\\\\\\": 0.9355561603931638,\\\\n    \\\\\\\"spearman_rho\\\\\\\": -0.11267159423128933,\\\\n    \\\\\\\"spearman_p\\\\\\\": 0.016798155685150015,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      -0.12007511854533806,\\\\n      0.11557096163044532\\\\n    ],\\\\n    \\\\\\\"n_batches\\\\\\\": 450,\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.34936004915796454,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.11458548224632828\\\\n  },\\\\n  \\\\\\\"relaxed_type_ignored\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.02337456251993858,\\\\n    \\\\\\\"pearson_p\\\\\\\": 0.620926417456738,\\\\n    \\\\\\\"spearman_rho\\\\\\\": -0.0974248737426866,\\\\n    \\\\\\\"spearman_p\\\\\\\": 0.038841498515668864,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      -0.07768878880970966,\\\\n      0.1173204963376925\\\\n    ],\\\\n    \\\\\\\"n_batches\\\\\\\": 450,\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.42465015623681046,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.17010577202377292\\\\n  },\\\\n  \\\\\\\"gain_summary\\\\\\\": {\\\\n    \\\\\\\"mean_f1_gain\\\\\\\": 0.041855135967242295,\\\\n    \\\\\\\"median_f1_gain\\\\\\\": 0.04000752468009397,\\\\n    \\\\\\\"pct_improved\\\\\\\": 98.44444444444444,\\\\n    \\\\\\\"pct_same\\\\\\\": 1.5555555555555556,\\\\n    \\\\\\\"max_gain\\\\\\\": 0.23529411764705876\\\\n  },\\\\n  \\\\\\\"per_count\\\\\\\": {\\\\n    \\\\\\\"count_2\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 75,\\\\n      \\\\\\\"exact_text_mean_f1\\\\\\\": 0.2914494919465701,\\\\n      \\\\\\\"exact_text_std_f1\\\\\\\": 0.12326456682178272,\\\\n      \\\\\\\"exact_text_pearson_r\\\\\\\": 0.02174817423807074,\\\\n      \\\\\\\"exact_text_pearson_p\\\\\\\": 0.8530696904490938,\\\\n      \\\\\\\"relaxed_text_mean_f1\\\\\\\": 0.34139895014347255,\\\\n      \\\\\\\"relaxed_text_std_f1\\\\\\\": 0.14042788809045978,\\\\n      \\\\\\\"relaxed_text_pearson_r\\\\\\\": 0.008846636314738083,\\\\n      \\\\\\\"relaxed_text_pearson_p\\\\\\\": 0.9399531352652678,\\\\n      \\\\\\\"token_overlap_mean_f1\\\\\\\": 0.3468074275015001,\\\\n      \\\\\\\"token_overlap_std_f1\\\\\\\": 0.14172726919034137,\\\\n      \\\\\\\"token_overlap_pearson_r\\\\\\\": 0.012468071882526275,\\\\n      \\\\\\\"token_overlap_pearson_p\\\\\\\": 0.915449694618243,\\\\n      \\\\\\\"relaxed_type_ignored_mean_f1\\\\\\\": 0.34573496953647276,\\\\n      \\\\\\\"relaxed_type_ignored_std_f1\\\\\\\": 0.14099430051762135,\\\\n      \\\\\\\"relaxed_type_ignored_pearson_r\\\\\\\": 0.01908614054357082,\\\\n      \\\\\\\"relaxed_type_ignored_pearson_p\\\\\\\": 0.870888991514127\\\\n    },\\\\n    \\\\\\\"count_6\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 75,\\\\n      \\\\\\\"exact_text_mean_f1\\\\\\\": 0.26313790230345047,\\\\n      \\\\\\\"exact_text_std_f1\\\\\\\": 0.06983010207078781,\\\\n      \\\\\\\"exact_text_pearson_r\\\\\\\": 0.10945905852979335,\\\\n      \\\\\\\"exact_text_pearson_p\\\\\\\": 0.3498735521838874,\\\\n      \\\\\\\"relaxed_text_mean_f1\\\\\\\": 0.30071258615986296,\\\\n      \\\\\\\"relaxed_text_std_f1\\\\\\\": 0.07587406592064387,\\\\n      \\\\\\\"relaxed_text_pearson_r\\\\\\\": 0.08208759420136438,\\\\n      \\\\\\\"relaxed_text_pearson_p\\\\\\\": 0.48383854895004025,\\\\n      \\\\\\\"token_overlap_mean_f1\\\\\\\": 0.30417439208124736,\\\\n      \\\\\\\"token_overlap_std_f1\\\\\\\": 0.07673959700333362,\\\\n      \\\\\\\"token_overlap_pearson_r\\\\\\\": 0.07493224550953,\\\\n      \\\\\\\"token_overlap_pearson_p\\\\\\\": 0.5228671392561771,\\\\n      \\\\\\\"relaxed_type_ignored_mean_f1\\\\\\\": 0.32025557298637475,\\\\n      \\\\\\\"relaxed_type_ignored_std_f1\\\\\\\": 0.07971642557682505,\\\\n      \\\\\\\"relaxed_type_ignored_pearson_r\\\\\\\": 0.1693933730992355,\\\\n      \\\\\\\"relaxed_type_ignored_pearson_p\\\\\\\": 0.14625912221640047\\\\n    },\\\\n    \\\\\\\"count_12\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exact_match\\\": {\\n    \\\"pearson_r\\\": 0.01441562978415713,\\n    \\\"pearson_p\\\": 0.7603912875476582,\\n    \\\"spearman_rho\\\": -0.10049491765374868,\\n    \\\"spearman_p\\\": 0.03306543451259907,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.10461881453270443,\\n      0.12239372721508272\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.30363598155859095,\\n    \\\"std_f1\\\": 0.10379540401300559\\n  },\\n  \\\"relaxed_match\\\": {\\n    \\\"pearson_r\\\": 0.0031824812199015215,\\n    \\\"pearson_p\\\": 0.9463245492649768,\\n    \\\"spearman_rho\\\": -0.10998250781808805,\\n    \\\"spearman_p\\\": 0.019612707644789017,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.11945112148898734,\\n      0.11372640223290084\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.3454911175258332,\\n    \\\"std_f1\\\": 0.1144122210993041\\n  },\\n  \\\"token_overlap\\\": {\\n    \\\"pearson_r\\\": 0.0038222238411343918,\\n    \\\"pearson_p\\\": 0.9355561603931638,\\n    \\\"spearman_rho\\\": -0.11267159423128933,\\n    \\\"spearman_p\\\": 0.016798155685150015,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.12007511854533806,\\n      0.11557096163044532\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.34936004915796454,\\n    \\\"std_f1\\\": 0.11458548224632828\\n  },\\n  \\\"relaxed_type_ignored\\\": {\\n    \\\"pearson_r\\\": 0.02337456251993858,\\n    \\\"pearson_p\\\": 0.620926417456738,\\n    \\\"spearman_rho\\\": -0.0974248737426866,\\n    \\\"spearman_p\\\": 0.038841498515668864,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.07768878880970966,\\n      0.1173204963376925\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.42465015623681046,\\n    \\\"std_f1\\\": 0.17010577202377292\\n  },\\n  \\\"gain_summary\\\": {\\n    \\\"mean_f1_gain\\\": 0.041855135967242295,\\n    \\\"median_f1_gain\\\": 0.04000752468009397,\\n    \\\"pct_improved\\\": 98.44444444444444,\\n    \\\"pct_same\\\": 1.5555555555555556,\\n    \\\"max_gain\\\": 0.23529411764705876\\n  },\\n  \\\"per_count\\\": {\\n    \\\"count_2\\\": {\\n      \\\"n_batches\\\": 75,\\n      \\\"exact_text_mean_f1\\\": 0.2914494919465701,\\n      \\\"exact_text_std_f1\\\": 0.12326456682178272,\\n      \\\"exact_text_pearson_r\\\": 0.02174817423807074,\\n      \\\"exact_text_pearson_p\\\": 0.8530696904490938,\\n      \\\"relaxed_text_mean_f1\\\": 0.34139895014347255,\\n      \\\"relaxed_text_std_f1\\\": 0.14042788809045978,\\n      \\\"relaxed_text_pearson_r\\\": 0.008846636314738083,\\n      \\\"relaxed_text_pearson_p\\\": 0.9399531352652678,\\n      \\\"token_overlap_mean_f1\\\": 0.3468074275015001,\\n      \\\"token_overlap_std_f1\\\": 0.14172726919034137,\\n      \\\"token_overlap_pearson_r\\\": 0.012468071882526275,\\n      \\\"token_overlap_pearson_p\\\": 0.915449694618243,\\n      \\\"relaxed_type_ignored_mean_f1\\\": 0.34573496953647276,\\n      \\\"relaxed_type_ignored_std_f1\\\": 0.14099430051762135,\\n      \\\"relaxed_type_ignored_pearson_r\\\": 0.01908614054357082,\\n      \\\"relaxed_type_ignored_pearson_p\\\": 0.870888991514127\\n    },\\n    \\\"count_6\\\": {\\n      \\\"n_batches\\\": 75,\\n      \\\"exact_text_mean_f1\\\": 0.26313790230345047,\\n      \\\"exact_text_std_f1\\\": 0.06983010207078781,\\n      \\\"exact_text_pearson_r\\\": 0.10945905852979335,\\n      \\\"exact_text_pearson_p\\\": 0.3498735521838874,\\n      \\\"relaxed_text_mean_f1\\\": 0.30071258615986296,\\n      \\\"relaxed_text_std_f1\\\": 0.07587406592064387,\\n      \\\"relaxed_text_pearson_r\\\": 0.08208759420136438,\\n      \\\"relaxed_text_pearson_p\\\": 0.48383854895004025,\\n      \\\"token_overlap_mean_f1\\\": 0.30417439208124736,\\n      \\\"token_overlap_std_f1\\\": 0.07673959700333362,\\n      \\\"token_overlap_pearson_r\\\": 0.07493224550953,\\n      \\\"token_overlap_pearson_p\\\": 0.5228671392561771,\\n      \\\"relaxed_type_ignored_mean_f1\\\": 0.32025557298637475,\\n      \\\"relaxed_type_ignored_std_f1\\\": 0.07971642557682505,\\n      \\\"relaxed_type_ignored_pearson_r\\\": 0.1693933730992355,\\n      \\\"relaxed_type_ignored_pearson_p\\\": 0.14625912221640047\\n    },\\n    \\\"count_12\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T14:11:22.509Z_
+
+<details><summary>↩ Tool result · `toolu_0175dd4ivP1tFidFW3fLkvSc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"batch_config.json\\ncount_curve_summary.json\\neval_results.json\\nresults_count_12.jsonl\\nresults_count_2.jsonl\\nresults_count_22.jsonl\\nresults_count_44.jsonl\\nresults_count_6.jsonl\\nresults_count_66.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "c81dc84d-ab20-45b8-820b-cee1d9d08e1a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"batch_config.json\\\\ncount_curve_summary.json\\\\neval_results.json\\\\nresults_count_12.jsonl\\\\nresults_count_2.jsonl\\\\nresults_count_22.jsonl\\\\nresults_count_44.jsonl\\\\nresults_count_6.jsonl\\\\nresults_count_66.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"batch_config.json\\ncount_curve_summary.json\\neval_results.json\\nresults_count_12.jsonl\\nresults_count_2.jsonl\\nresults_count_22.jsonl\\nresults_count_44.jsonl\\nresults_count_6.jsonl\\nresults_count_66.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to understand the data structure. Let me look at:
+1. The batch_config.json to understand BCS values per batch
+2. The prediction JSONL files to understand the format
+3. The few_nerd_utils to understand how gold labels are loaded
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "5fe238d2-3bdd-45d1-8113-bd577116f7eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRxj8WZp8JDvAG8afYL7Je",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6279,
+      "cache_read_input_tokens": 26463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6279
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019DTPqaUkWMiHwbYbhTjrfm`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -80 /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/batch_config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "49fc12f1-9e33-4211-b9fe-84760df78d55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRxj8WZp8JDvAG8afYL7Je",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6279,
+      "cache_read_input_tokens": 26463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6279
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T14:11:29.898Z_
+
+<details><summary>↩ Tool result · `toolu_019DTPqaUkWMiHwbYbhTjrfm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_2\\\": {\\n    \\\"random\\\": [\\n      {\\n        \\\"types\\\": [\\n          \\\"person-director\\\",\\n          \\\"event-attack/battle/war/militaryconflict\\\"\\n        ],\\n        \\\"bcs\\\": 0.7446293234825134\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"location-island\\\",\\n          \\\"other-medical\\\"\\n        ],\\n        \\\"bcs\\\": 0.809938371181488\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"organization-education\\\",\\n          \\\"other-astronomything\\\"\\n        ],\\n        \\\"bcs\\\": 0.7055112719535828\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"art-other\\\",\\n          \\\"organization-education\\\"\\n        ],\\n        \\\"bcs\\\": 0.722868800163269\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"event-attack/battle/war/militaryconflict\\\",\\n          \\\"art-film\\\"\\n        ],\\n        \\\"bcs\\\": 0.7860161662101746\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-sportsfacility\\\",\\n          \\\"location-GPE\\\"\\n        ],\\n        \\\"bcs\\\": 0.8162476420402527\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"product-weapon\\\",\\n          \\\"other-award\\\"\\n        ],\\n        \\\"bcs\\\": 0.7371934652328491\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"other-medical\\\",\\n          \\\"person-athlete\\\"\\n        ],\\n        \\\"bcs\\\": 0.7852590680122375\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"other-currency\\\",\\n          \\\"other-language\\\"\\n        ],\\n        \\\"bcs\\\": 0.9041562080383301\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-library\\\",\\n          \\\"other-educationaldegree\\\"\\n        ],\\n        \\\"bcs\\\": 0.8263304233551025\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"organization-sportsteam\\\",\\n          \\\"location-GPE\\\"\\n        ],\\n        \\\"bcs\\\": 0.7798455357551575\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "f82b1f96-76c4-4bda-ad1a-7d08a0d537eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_2\\\\\\\": {\\\\n    \\\\\\\"random\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"person-director\\\\\\\",\\\\n          \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.7446293234825134\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"location-island\\\\\\\",\\\\n          \\\\\\\"other-medical\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.809938371181488\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"organization-education\\\\\\\",\\\\n          \\\\\\\"other-astronomything\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.7055112719535828\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-other\\\\\\\",\\\\n          \\\\\\\"organization-education\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.722868800163269\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\",\\\\n          \\\\\\\"art-film\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.7860161662101746\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-sportsfacility\\\\\\\",\\\\n          \\\\\\\"location-GPE\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.8162476420402527\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"product-weapon\\\\\\\",\\\\n          \\\\\\\"other-award\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.7371934652328491\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"other-medical\\\\\\\",\\\\n          \\\\\\\"person-athlete\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.7852590680122375\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"other-currency\\\\\\\",\\\\n          \\\\\\\"other-language\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.9041562080383301\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-library\\\\\\\",\\\\n          \\\\\\\"other-educationaldegree\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.8263304233551025\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"organization-sportsteam\\\\\\\",\\\\n          \\\\\\\"location-GPE\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.7798455357551575\\\\n      },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_2\\\": {\\n    \\\"random\\\": [\\n      {\\n        \\\"types\\\": [\\n          \\\"person-director\\\",\\n          \\\"event-attack/battle/war/militaryconflict\\\"\\n        ],\\n        \\\"bcs\\\": 0.7446293234825134\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"location-island\\\",\\n          \\\"other-medical\\\"\\n        ],\\n        \\\"bcs\\\": 0.809938371181488\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"organization-education\\\",\\n          \\\"other-astronomything\\\"\\n        ],\\n        \\\"bcs\\\": 0.7055112719535828\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"art-other\\\",\\n          \\\"organization-education\\\"\\n        ],\\n        \\\"bcs\\\": 0.722868800163269\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"event-attack/battle/war/militaryconflict\\\",\\n          \\\"art-film\\\"\\n        ],\\n        \\\"bcs\\\": 0.7860161662101746\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-sportsfacility\\\",\\n          \\\"location-GPE\\\"\\n        ],\\n        \\\"bcs\\\": 0.8162476420402527\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"product-weapon\\\",\\n          \\\"other-award\\\"\\n        ],\\n        \\\"bcs\\\": 0.7371934652328491\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"other-medical\\\",\\n          \\\"person-athlete\\\"\\n        ],\\n        \\\"bcs\\\": 0.7852590680122375\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"other-currency\\\",\\n          \\\"other-language\\\"\\n        ],\\n        \\\"bcs\\\": 0.9041562080383301\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-library\\\",\\n          \\\"other-educationaldegree\\\"\\n        ],\\n        \\\"bcs\\\": 0.8263304233551025\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"organization-sportsteam\\\",\\n          \\\"location-GPE\\\"\\n        ],\\n        \\\"bcs\\\": 0.7798455357551575\\n      },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MFhFjVUUAn5N3emCEiVuq4`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -30 /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/results_count_2.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "0fb40bf4-148e-4a39-9801-25049b196b59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRxj8WZp8JDvAG8afYL7Je",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6279,
+      "cache_read_input_tokens": 26463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6279
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BSeNi6KxpMjW9EvPMMaocN`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/src -name \"few_nerd_utils.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "25c097e0-e996-4ca9-8f3b-0ec6f51c3008",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BRxj8WZp8JDvAG8afYL7Je",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6279,
+      "cache_read_input_tokens": 26463,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6279
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T14:11:31.131Z_
+
+<details><summary>↩ Tool result · `toolu_01MFhFjVUUAn5N3emCEiVuq4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"sample_id\\\": 0, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 156, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 1, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 149, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 2, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 142, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 3, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [{\\\"text\\\": \\\"Major Larry G. Messinger\\\", \\\"type\\\": \\\"person-director\\\"}], \\\"prompt_tokens\\\": 133, \\\"gen_tokens\\\": 22, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 4, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 133, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 5, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 130, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 6, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 172, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 7, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 164, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 8, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 134, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 9, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [{\\\"text\\\": \\\"Battle of Camulodunum\\\", \\\"type\\\": \\\"event-attack/battle/war/militaryconflict\\\"}, {\\\"text\\\": \\\"Quintus Petillius Cerialis\\\", \\\"type\\\": \\\"person-director\\\"}, {\\\"text\\\": \\\"rebellion of Boudica ( 61 )\\\", \\\"type\\\": \\\"event-attack/battle/war/militaryconflict\\\"}], \\\"prompt_tokens\\\": 184, \\\"gen_tokens\\\": 87, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 10, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 147, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 11, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 146, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 12, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"c\\n\\n... [截断: 输出过长，省略 1503 字符] ...\\n\\nt_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 148, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 18, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [{\\\"text\\\": \\\"Battle of Antietam\\\", \\\"type\\\": \\\"event-attack/battle/war/militaryconflict\\\"}], \\\"prompt_tokens\\\": 156, \\\"gen_tokens\\\": 30, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 19, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 131, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 20, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 177, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 21, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 133, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 22, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 139, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 23, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 142, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 24, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 139, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 25, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 150, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 26, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 149, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 27, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 132, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 28, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 182, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 29, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 143, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "f84cb295-6679-46fa-a142-45ee0dfc9254",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"sample_id\\\\\\\": 0, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 156, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 1, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 149, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 2, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 142, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 3, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Major Larry G. Messinger\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person-director\\\\\\\"}], \\\\\\\"prompt_tokens\\\\\\\": 133, \\\\\\\"gen_tokens\\\\\\\": 22, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 4, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 133, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 5, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 130, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 6, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 172, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 7, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 164, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 8, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 134, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 9, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Battle of Camulodunum\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Quintus Petillius Cerialis\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"person-director\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"rebellion of Boudica ( 61 )\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"}], \\\\\\\"prompt_tokens\\\\\\\": 184, \\\\\\\"gen_tokens\\\\\\\": 87, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 10, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 147, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 11, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 146, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 12, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"c\\\\n\\\\n... [截断: 输出过长，省略 1503 字符] ...\\\\n\\\\nt_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 148, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 18, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Battle of Antietam\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"}], \\\\\\\"prompt_tokens\\\\\\\": 156, \\\\\\\"gen_tokens\\\\\\\": 30, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 19, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 131, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 20, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 177, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 21, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 133, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 22, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 139, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 23, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 142, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 24, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 139, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 25, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 150, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 26, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 149, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 27, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 132, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 28, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 182, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n{\\\\\\\"sample_id\\\\\\\": 29, \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_2_random_0\\\\\\\", \\\\\\\"count_key\\\\\\\": \\\\\\\"count_2\\\\\\\", \\\\\\\"batch_types\\\\\\\": [\\\\\\\"person-director\\\\\\\", \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"], \\\\\\\"batch_bcs\\\\\\\": 0.7446293234825134, \\\\\\\"predictions\\\\\\\": [], \\\\\\\"prompt_tokens\\\\\\\": 143, \\\\\\\"gen_tokens\\\\\\\": 2, \\\\\\\"latency_s\\\\\\\": 0.034065974950790404, \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"sample_id\\\": 0, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 156, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 1, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 149, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 2, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 142, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 3, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [{\\\"text\\\": \\\"Major Larry G. Messinger\\\", \\\"type\\\": \\\"person-director\\\"}], \\\"prompt_tokens\\\": 133, \\\"gen_tokens\\\": 22, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 4, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 133, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 5, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 130, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 6, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 172, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 7, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 164, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 8, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 134, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 9, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [{\\\"text\\\": \\\"Battle of Camulodunum\\\", \\\"type\\\": \\\"event-attack/battle/war/militaryconflict\\\"}, {\\\"text\\\": \\\"Quintus Petillius Cerialis\\\", \\\"type\\\": \\\"person-director\\\"}, {\\\"text\\\": \\\"rebellion of Boudica ( 61 )\\\", \\\"type\\\": \\\"event-attack/battle/war/militaryconflict\\\"}], \\\"prompt_tokens\\\": 184, \\\"gen_tokens\\\": 87, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 10, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 147, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 11, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 146, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 12, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"c\\n\\n... [截断: 输出过长，省略 1503 字符] ...\\n\\nt_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 148, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 18, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [{\\\"text\\\": \\\"Battle of Antietam\\\", \\\"type\\\": \\\"event-attack/battle/war/militaryconflict\\\"}], \\\"prompt_tokens\\\": 156, \\\"gen_tokens\\\": 30, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 19, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 131, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 20, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 177, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 21, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 133, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 22, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 139, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 23, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 142, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 24, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 139, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 25, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 150, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 26, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 149, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 27, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 132, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 28, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 182, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n{\\\"sample_id\\\": 29, \\\"batch_id\\\": \\\"count_2_random_0\\\", \\\"count_key\\\": \\\"count_2\\\", \\\"batch_types\\\": [\\\"person-director\\\", \\\"event-attack/battle/war/militaryconflict\\\"], \\\"batch_bcs\\\": 0.7446293234825134, \\\"predictions\\\": [], \\\"prompt_tokens\\\": 143, \\\"gen_tokens\\\": 2, \\\"latency_s\\\": 0.034065974950790404, \\\"prompt_version\\\": \\\"v2\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T14:11:31.590Z_
+
+<details><summary>↩ Tool result · `toolu_01BSeNi6KxpMjW9EvPMMaocN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/few_nerd_utils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "def2d764-9a0e-42f6-9d29-1a30c855cad7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/few_nerd_utils.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/few_nerd_utils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the data structure:
+- Each prediction JSONL has entries with `sample_id`, `batch_id`, `count_key`, `batch_types`, `batch_bcs`, `predictions`
+- Gold labels are in the Few-NERD dataset loaded via `few_nerd_utils.py`
+- Each batch has 25 batches per count level × 6 count levels × 3 seeds = 450 batches
+
+I need to look at the gold data structure. Let me check the few_nerd_utils.py to understand how gold entities are structured. 
+
+Since predictions are text-based rather than token-based, I can't rely on traditional span overlap matching. Both predictions and gold entities have `text` and `type` fields, so I need to match on the extracted text itself. For error classification, I'll mark entities as misses when there's no text overlap with any prediction, boundary errors when the text overlaps but doesn't match exactly while the type is correct, and type substitutions when the text matches exactly but the type is wrong. "overlap" in terms of text. Let me think about this...
+
+Actually, looking at the W4 code, they use text-based matching (not span-based). The predictions are text strings extracted by the LLM, and gold entities also have text strings. So "span overlap" needs to be interpreted as text substring overlap.
+
+Let me define:
+- **exact text match**: pred_text.lower() == gold_text.lower()
+- **relaxed text match** (boundary proxy): pred_text is substring of gold_text or vice versa, but not exact match
+- **token overlap**: at least one shared token
+
+For error mode classification per gold entity:
+1. Check all predictions: is there any pred with exact text match + same type? → correct (not an error)
+2. Check all predictions: is there any pred with exact text match + wrong type? → type_sub
+3. Check all predictions: is there any pred with relaxed text overlap + same type? → boundary
+4. Check all predictions: is there any pred with relaxed text overlap + wrong type? → other (partial overlap + wrong type)
+5. No overlap at all → miss
+
+The error mode percentages should be computed across all gold entities rather than all predictions. Now I need to check the few_nerd_utils to see how the gold entities are structured.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "f39b5396-c199-4f49-a2f4-2f3febd51d44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxHtkFWqWdo1QUtKdivPWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6410,
+      "cache_read_input_tokens": 32742,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6410
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ThEj2CPbYh2thtXBQ5nnAA`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -100 /root/schema-dag-extraction/src/few_nerd_utils.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "78722429-a9ae-4cd3-998e-fb2c4bd1be96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxHtkFWqWdo1QUtKdivPWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6410,
+      "cache_read_input_tokens": 32742,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6410
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T14:11:51.298Z_
+
+<details><summary>↩ Tool result · `toolu_01ThEj2CPbYh2thtXBQ5nnAA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Few-NERD data loading and preprocessing utilities.\\n\\nInput: Few-NERD dataset (token-level annotation, 66 fine-grained entity types)\\n       Loaded from local parquet files; falls back to HF Hub if parquet missing.\\nOutput: List of {\\\"text\\\": str, \\\"entities\\\": [{\\\"text\\\": str, \\\"type\\\": str, \\\"start\\\": int, \\\"end\\\": int}]}\\nDependencies: datasets\\n\\\"\\\"\\\"\\nimport json\\nimport logging\\nimport os\\nfrom typing import Dict, List, Optional, Set\\n\\nfrom datasets import load_dataset\\n\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_DATA_DIR = \\\"/root/schema-dag-extraction/data/parquet\\\"\\n\\n\\ndef load_few_nerd(\\n    split: str = \\\"test\\\",\\n    max_samples: Optional[int] = None,\\n    data_dir: str = DEFAULT_DATA_DIR,\\n) -> List[Dict]:\\n    \\\"\\\"\\\"Load Few-NERD and convert token-level tags to span-level entities.\\n\\n    Args:\\n        split: Dataset split (\\\"train\\\", \\\"validation\\\", \\\"test\\\").\\n        max_samples: If set, only return first N samples.\\n        data_dir: Directory containing {split}.parquet files.\\n\\n    Returns:\\n        List of dicts with \\\"text\\\" (reconstructed sentence) and \\\"entities\\\" (span-level).\\n    \\\"\\\"\\\"\\n    parquet_path = os.path.join(data_dir, f\\\"{split}.parquet\\\")\\n    if os.path.exists(parquet_path):\\n        logger.info(\\\"Loading Few-NERD from local parquet: %s\\\", parquet_path)\\n        ds = load_dataset(\\\"parquet\\\", data_files=parquet_path, split=\\\"train\\\")\\n    else:\\n        logger.info(\\\"Local parquet not found, falling back to HF Hub\\\")\\n        ds = load_dataset(\\\"DFKI-SLT/few-nerd\\\", \\\"supervised\\\", split=split, trust_remote_code=True)\\n\\n    tag_names = ds.features[\\\"fine_ner_tags\\\"].feature.names\\n\\n    samples = []\\n    for i, example in enumerate(ds):\\n        if max_samples is not None and i >= max_samples:\\n            break\\n\\n        tokens = example[\\\"tokens\\\"]\\n        tags = example[\\\"fine_ner_tags\\\"]\\n\\n        text, entities = _tokens_to_spans(tokens, tags, tag_names)\\n        samples.append({\\\"text\\\": text, \\\"entities\\\": entities})\\n\\n    logger.info(\\\"Loaded %d samples from Few-NERD %s split\\\", len(samples), split)\\n    return samples\\n\\n\\ndef _tokens_to_spans(tokens: List[str], tag_ids: List[int], tag_names: List[str]) -> tuple:\\n    \\\"\\\"\\\"Convert token-level tags to char-offset spans.\\n\\n    Few-NERD uses flat labels (no B-/I- prefix). Consecutive tokens sharing\\n    the same non-O tag id form one entity span.\\n\\n    Returns:\\n        (text, entities) where text is space-joined tokens and entities have char offsets.\\n    \\\"\\\"\\\"\\n    text = \\\"\\\"\\n    char_offsets = []\\n    for tok in tokens:\\n        start = len(text)\\n        text += tok\\n        end = len(text)\\n        char_offsets.append((start, end))\\n        text += \\\" \\\"\\n    text = text.rstrip()\\n\\n    entities = []\\n    current_entity = None\\n\\n    for idx, tag_id in enumerate(tag_ids):\\n        if tag_id == 0:  # O tag\\n            if current_entity is not None:\\n                entities.append(_finalize_entity(current_entity, tokens, char_offsets))\\n                current_entity = None\\n        else:\\n            type_name = tag_names[tag_id]\\n            if current_entity is not None and current_entity[\\\"type\\\"] == type_name:\\n                current_entity[\\\"token_end\\\"] = idx\\n            else:\\n                if current_entity is not None:\\n                    entities.append(_finalize_entity(current_entity, tokens, char_offsets))\\n                current_entity = {\\\"type\\\": type_name, \\\"token_start\\\": idx, \\\"token_end\\\": idx}\\n\\n    if current_entity is not None:\\n        entities.append(_finalize_entity(current_entity, tokens, char_offsets))\\n\\n    return text, entities\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "a276059d-c033-40e8-9b2a-1bf7292ef6ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Few-NERD data loading and preprocessing utilities.\\\\n\\\\nInput: Few-NERD dataset (token-level annotation, 66 fine-grained entity types)\\\\n       Loaded from local parquet files; falls back to HF Hub if parquet missing.\\\\nOutput: List of {\\\\\\\"text\\\\\\\": str, \\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": str, \\\\\\\"type\\\\\\\": str, \\\\\\\"start\\\\\\\": int, \\\\\\\"end\\\\\\\": int}]}\\\\nDependencies: datasets\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nfrom typing import Dict, List, Optional, Set\\\\n\\\\nfrom datasets import load_dataset\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDEFAULT_DATA_DIR = \\\\\\\"/root/schema-dag-extraction/data/parquet\\\\\\\"\\\\n\\\\n\\\\ndef load_few_nerd(\\\\n    split: str = \\\\\\\"test\\\\\\\",\\\\n    max_samples: Optional[int] = None,\\\\n    data_dir: str = DEFAULT_DATA_DIR,\\\\n) -> List[Dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load Few-NERD and convert token-level tags to span-level entities.\\\\n\\\\n    Args:\\\\n        split: Dataset split (\\\\\\\"train\\\\\\\", \\\\\\\"validation\\\\\\\", \\\\\\\"test\\\\\\\").\\\\n        max_samples: If set, only return first N samples.\\\\n        data_dir: Directory containing {split}.parquet files.\\\\n\\\\n    Returns:\\\\n        List of dicts with \\\\\\\"text\\\\\\\" (reconstructed sentence) and \\\\\\\"entities\\\\\\\" (span-level).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    parquet_path = os.path.join(data_dir, f\\\\\\\"{split}.parquet\\\\\\\")\\\\n    if os.path.exists(parquet_path):\\\\n        logger.info(\\\\\\\"Loading Few-NERD from local parquet: %s\\\\\\\", parquet_path)\\\\n        ds = load_dataset(\\\\\\\"parquet\\\\\\\", data_files=parquet_path, split=\\\\\\\"train\\\\\\\")\\\\n    else:\\\\n        logger.info(\\\\\\\"Local parquet not found, falling back to HF Hub\\\\\\\")\\\\n        ds = load_dataset(\\\\\\\"DFKI-SLT/few-nerd\\\\\\\", \\\\\\\"supervised\\\\\\\", split=split, trust_remote_code=True)\\\\n\\\\n    tag_names = ds.features[\\\\\\\"fine_ner_tags\\\\\\\"].feature.names\\\\n\\\\n    samples = []\\\\n    for i, example in enumerate(ds):\\\\n        if max_samples is not None and i >= max_samples:\\\\n            break\\\\n\\\\n        tokens = example[\\\\\\\"tokens\\\\\\\"]\\\\n        tags = example[\\\\\\\"fine_ner_tags\\\\\\\"]\\\\n\\\\n        text, entities = _tokens_to_spans(tokens, tags, tag_names)\\\\n        samples.append({\\\\\\\"text\\\\\\\": text, \\\\\\\"entities\\\\\\\": entities})\\\\n\\\\n    logger.info(\\\\\\\"Loaded %d samples from Few-NERD %s split\\\\\\\", len(samples), split)\\\\n    return samples\\\\n\\\\n\\\\ndef _tokens_to_spans(tokens: List[str], tag_ids: List[int], tag_names: List[str]) -> tuple:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Convert token-level tags to char-offset spans.\\\\n\\\\n    Few-NERD uses flat labels (no B-/I- prefix). Consecutive tokens sharing\\\\n    the same non-O tag id form one entity span.\\\\n\\\\n    Returns:\\\\n        (text, entities) where text is space-joined tokens and entities have char offsets.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    text = \\\\\\\"\\\\\\\"\\\\n    char_offsets = []\\\\n    for tok in tokens:\\\\n        start = len(text)\\\\n        text += tok\\\\n        end = len(text)\\\\n        char_offsets.append((start, end))\\\\n        text += \\\\\\\" \\\\\\\"\\\\n    text = text.rstrip()\\\\n\\\\n    entities = []\\\\n    current_entity = None\\\\n\\\\n    for idx, tag_id in enumerate(tag_ids):\\\\n        if tag_id == 0:  # O tag\\\\n            if current_entity is not None:\\\\n                entities.append(_finalize_entity(current_entity, tokens, char_offsets))\\\\n                current_entity = None\\\\n        else:\\\\n            type_name = tag_names[tag_id]\\\\n            if current_entity is not None and current_entity[\\\\\\\"type\\\\\\\"] == type_name:\\\\n                current_entity[\\\\\\\"token_end\\\\\\\"] = idx\\\\n            else:\\\\n                if current_entity is not None:\\\\n                    entities.append(_finalize_entity(current_entity, tokens, char_offsets))\\\\n                current_entity = {\\\\\\\"type\\\\\\\": type_name, \\\\\\\"token_start\\\\\\\": idx, \\\\\\\"token_end\\\\\\\": idx}\\\\n\\\\n    if current_entity is not None:\\\\n        entities.append(_finalize_entity(current_entity, tokens, char_offsets))\\\\n\\\\n    return text, entities\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Few-NERD data loading and preprocessing utilities.\\n\\nInput: Few-NERD dataset (token-level annotation, 66 fine-grained entity types)\\n       Loaded from local parquet files; falls back to HF Hub if parquet missing.\\nOutput: List of {\\\"text\\\": str, \\\"entities\\\": [{\\\"text\\\": str, \\\"type\\\": str, \\\"start\\\": int, \\\"end\\\": int}]}\\nDependencies: datasets\\n\\\"\\\"\\\"\\nimport json\\nimport logging\\nimport os\\nfrom typing import Dict, List, Optional, Set\\n\\nfrom datasets import load_dataset\\n\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_DATA_DIR = \\\"/root/schema-dag-extraction/data/parquet\\\"\\n\\n\\ndef load_few_nerd(\\n    split: str = \\\"test\\\",\\n    max_samples: Optional[int] = None,\\n    data_dir: str = DEFAULT_DATA_DIR,\\n) -> List[Dict]:\\n    \\\"\\\"\\\"Load Few-NERD and convert token-level tags to span-level entities.\\n\\n    Args:\\n        split: Dataset split (\\\"train\\\", \\\"validation\\\", \\\"test\\\").\\n        max_samples: If set, only return first N samples.\\n        data_dir: Directory containing {split}.parquet files.\\n\\n    Returns:\\n        List of dicts with \\\"text\\\" (reconstructed sentence) and \\\"entities\\\" (span-level).\\n    \\\"\\\"\\\"\\n    parquet_path = os.path.join(data_dir, f\\\"{split}.parquet\\\")\\n    if os.path.exists(parquet_path):\\n        logger.info(\\\"Loading Few-NERD from local parquet: %s\\\", parquet_path)\\n        ds = load_dataset(\\\"parquet\\\", data_files=parquet_path, split=\\\"train\\\")\\n    else:\\n        logger.info(\\\"Local parquet not found, falling back to HF Hub\\\")\\n        ds = load_dataset(\\\"DFKI-SLT/few-nerd\\\", \\\"supervised\\\", split=split, trust_remote_code=True)\\n\\n    tag_names = ds.features[\\\"fine_ner_tags\\\"].feature.names\\n\\n    samples = []\\n    for i, example in enumerate(ds):\\n        if max_samples is not None and i >= max_samples:\\n            break\\n\\n        tokens = example[\\\"tokens\\\"]\\n        tags = example[\\\"fine_ner_tags\\\"]\\n\\n        text, entities = _tokens_to_spans(tokens, tags, tag_names)\\n        samples.append({\\\"text\\\": text, \\\"entities\\\": entities})\\n\\n    logger.info(\\\"Loaded %d samples from Few-NERD %s split\\\", len(samples), split)\\n    return samples\\n\\n\\ndef _tokens_to_spans(tokens: List[str], tag_ids: List[int], tag_names: List[str]) -> tuple:\\n    \\\"\\\"\\\"Convert token-level tags to char-offset spans.\\n\\n    Few-NERD uses flat labels (no B-/I- prefix). Consecutive tokens sharing\\n    the same non-O tag id form one entity span.\\n\\n    Returns:\\n        (text, entities) where text is space-joined tokens and entities have char offsets.\\n    \\\"\\\"\\\"\\n    text = \\\"\\\"\\n    char_offsets = []\\n    for tok in tokens:\\n        start = len(text)\\n        text += tok\\n        end = len(text)\\n        char_offsets.append((start, end))\\n        text += \\\" \\\"\\n    text = text.rstrip()\\n\\n    entities = []\\n    current_entity = None\\n\\n    for idx, tag_id in enumerate(tag_ids):\\n        if tag_id == 0:  # O tag\\n            if current_entity is not None:\\n                entities.append(_finalize_entity(current_entity, tokens, char_offsets))\\n                current_entity = None\\n        else:\\n            type_name = tag_names[tag_id]\\n            if current_entity is not None and current_entity[\\\"type\\\"] == type_name:\\n                current_entity[\\\"token_end\\\"] = idx\\n            else:\\n                if current_entity is not None:\\n                    entities.append(_finalize_entity(current_entity, tokens, char_offsets))\\n                current_entity = {\\\"type\\\": type_name, \\\"token_start\\\": idx, \\\"token_end\\\": idx}\\n\\n    if current_entity is not None:\\n        entities.append(_finalize_entity(current_entity, tokens, char_offsets))\\n\\n    return text, entities\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KY37c1d62WDG53rV9CZeCT`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import json; d=json.loads(open('/root/schema-dag-extraction/artifacts/w4_relaxed_matching/results.json').read()); b=d['per_batch'][0]; print(json.dumps(b, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "5026f4a6-6984-4371-bbd9-025a4ee2528d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxHtkFWqWdo1QUtKdivPWY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6410,
+      "cache_read_input_tokens": 32742,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6410
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T14:11:51.680Z_
+
+<details><summary>↩ Tool result · `toolu_01KY37c1d62WDG53rV9CZeCT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "1f950d4b-fe1d-4752-924d-49b772f9fd8c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011MLdM5HYJ8eXscXLukySuG`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -50 /root/schema-dag-extraction/artifacts/w4_relaxed_matching/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "93a23f6f-cc1f-4082-b844-758b7ddc7939",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jwnn3e5QXMmPrpM1sHrZzq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2397,
+      "cache_read_input_tokens": 39152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2397
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T14:11:55.967Z_
+
+<details><summary>↩ Tool result · `toolu_011MLdM5HYJ8eXscXLukySuG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exact_match\\\": {\\n    \\\"pearson_r\\\": 0.01441562978415713,\\n    \\\"pearson_p\\\": 0.7603912875476582,\\n    \\\"spearman_rho\\\": -0.10049491765374868,\\n    \\\"spearman_p\\\": 0.03306543451259907,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.10461881453270443,\\n      0.12239372721508272\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.30363598155859095,\\n    \\\"std_f1\\\": 0.10379540401300559\\n  },\\n  \\\"relaxed_match\\\": {\\n    \\\"pearson_r\\\": 0.0031824812199015215,\\n    \\\"pearson_p\\\": 0.9463245492649768,\\n    \\\"spearman_rho\\\": -0.10998250781808805,\\n    \\\"spearman_p\\\": 0.019612707644789017,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.11945112148898734,\\n      0.11372640223290084\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.3454911175258332,\\n    \\\"std_f1\\\": 0.1144122210993041\\n  },\\n  \\\"token_overlap\\\": {\\n    \\\"pearson_r\\\": 0.0038222238411343918,\\n    \\\"pearson_p\\\": 0.9355561603931638,\\n    \\\"spearman_rho\\\": -0.11267159423128933,\\n    \\\"spearman_p\\\": 0.016798155685150015,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.12007511854533806,\\n      0.11557096163044532\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.34936004915796454,\\n    \\\"std_f1\\\": 0.11458548224632828\\n  },\\n  \\\"relaxed_type_ignored\\\": {\\n    \\\"pearson_r\\\": 0.02337456251993858,\\n    \\\"pearson_p\\\": 0.620926417456738,\\n    \\\"spearman_rho\\\": -0.0974248737426866,\\n    \\\"spearman_p\\\": 0.038841498515668864,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.07768878880970966,\\n      0.1173204963376925\\n    ],\\n    \\\"n_batches\\\": 450,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "cf2e2205-2cf9-463c-8935-27951ee363e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exact_match\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.01441562978415713,\\\\n    \\\\\\\"pearson_p\\\\\\\": 0.7603912875476582,\\\\n    \\\\\\\"spearman_rho\\\\\\\": -0.10049491765374868,\\\\n    \\\\\\\"spearman_p\\\\\\\": 0.03306543451259907,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      -0.10461881453270443,\\\\n      0.12239372721508272\\\\n    ],\\\\n    \\\\\\\"n_batches\\\\\\\": 450,\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.30363598155859095,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.10379540401300559\\\\n  },\\\\n  \\\\\\\"relaxed_match\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.0031824812199015215,\\\\n    \\\\\\\"pearson_p\\\\\\\": 0.9463245492649768,\\\\n    \\\\\\\"spearman_rho\\\\\\\": -0.10998250781808805,\\\\n    \\\\\\\"spearman_p\\\\\\\": 0.019612707644789017,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      -0.11945112148898734,\\\\n      0.11372640223290084\\\\n    ],\\\\n    \\\\\\\"n_batches\\\\\\\": 450,\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.3454911175258332,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.1144122210993041\\\\n  },\\\\n  \\\\\\\"token_overlap\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.0038222238411343918,\\\\n    \\\\\\\"pearson_p\\\\\\\": 0.9355561603931638,\\\\n    \\\\\\\"spearman_rho\\\\\\\": -0.11267159423128933,\\\\n    \\\\\\\"spearman_p\\\\\\\": 0.016798155685150015,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      -0.12007511854533806,\\\\n      0.11557096163044532\\\\n    ],\\\\n    \\\\\\\"n_batches\\\\\\\": 450,\\\\n    \\\\\\\"mean_f1\\\\\\\": 0.34936004915796454,\\\\n    \\\\\\\"std_f1\\\\\\\": 0.11458548224632828\\\\n  },\\\\n  \\\\\\\"relaxed_type_ignored\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.02337456251993858,\\\\n    \\\\\\\"pearson_p\\\\\\\": 0.620926417456738,\\\\n    \\\\\\\"spearman_rho\\\\\\\": -0.0974248737426866,\\\\n    \\\\\\\"spearman_p\\\\\\\": 0.038841498515668864,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      -0.07768878880970966,\\\\n      0.1173204963376925\\\\n    ],\\\\n    \\\\\\\"n_batches\\\\\\\": 450,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exact_match\\\": {\\n    \\\"pearson_r\\\": 0.01441562978415713,\\n    \\\"pearson_p\\\": 0.7603912875476582,\\n    \\\"spearman_rho\\\": -0.10049491765374868,\\n    \\\"spearman_p\\\": 0.03306543451259907,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.10461881453270443,\\n      0.12239372721508272\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.30363598155859095,\\n    \\\"std_f1\\\": 0.10379540401300559\\n  },\\n  \\\"relaxed_match\\\": {\\n    \\\"pearson_r\\\": 0.0031824812199015215,\\n    \\\"pearson_p\\\": 0.9463245492649768,\\n    \\\"spearman_rho\\\": -0.10998250781808805,\\n    \\\"spearman_p\\\": 0.019612707644789017,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.11945112148898734,\\n      0.11372640223290084\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.3454911175258332,\\n    \\\"std_f1\\\": 0.1144122210993041\\n  },\\n  \\\"token_overlap\\\": {\\n    \\\"pearson_r\\\": 0.0038222238411343918,\\n    \\\"pearson_p\\\": 0.9355561603931638,\\n    \\\"spearman_rho\\\": -0.11267159423128933,\\n    \\\"spearman_p\\\": 0.016798155685150015,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.12007511854533806,\\n      0.11557096163044532\\n    ],\\n    \\\"n_batches\\\": 450,\\n    \\\"mean_f1\\\": 0.34936004915796454,\\n    \\\"std_f1\\\": 0.11458548224632828\\n  },\\n  \\\"relaxed_type_ignored\\\": {\\n    \\\"pearson_r\\\": 0.02337456251993858,\\n    \\\"pearson_p\\\": 0.620926417456738,\\n    \\\"spearman_rho\\\": -0.0974248737426866,\\n    \\\"spearman_p\\\": 0.038841498515668864,\\n    \\\"bootstrap_ci_95\\\": [\\n      -0.07768878880970966,\\n      0.1173204963376925\\n    ],\\n    \\\"n_batches\\\": 450,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NSbP12qDKZXuMoLH7otCGi`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -c \"per_batch\" /root/schema-dag-extraction/artifacts/w4_relaxed_matching/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "c4d19fc9-9eee-45fd-bb7a-9c2c3b345859",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jwnn3e5QXMmPrpM1sHrZzq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2397,
+      "cache_read_input_tokens": 39152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2397
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T14:11:56.559Z_
+
+<details><summary>↩ Tool result · `toolu_01NSbP12qDKZXuMoLH7otCGi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "8fecf730-f08e-4ecc-8f28-7c4c251792af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the data structure well enough to write the analysis script. Let me also check if the per_batch data in W4 results already has the BCS values, so I can understand the full data structure. Let me also look at how gold entities are stored.
+
+Gold entities have: `text`, `type`, `start`, `end` (char offsets)
+Predictions have: `text`, `type` (just text, no offsets)
+
+For error mode classification, since predictions are text-based (LLM outputs), I need to match using text similarity:
+- **Exact span match**: pred_text.lower() == gold_text.lower()
+
+
+- **Partial overlap** (boundary): pred_text is substring of gold_text or vice versa, but not exact
+- **Token overlap**: at least one shared token
+
+Error mode classification per gold entity:
+1. Any pred with exact text match + same type → **correct** (not an error)
+2. Any pred with exact text match + wrong type → **type_sub**
+3. Any pred with relaxed text overlap (substring) + same type → **boundary** 
+4. Any pred with token overlap + same type → **boundary** (fallback)
+5. Any pred with relaxed text overlap + wrong type → **other**
+6. No match at all → **miss**
+
+Now let me re-read the task description to make sure I'm classifying errors correctly.
+
+The priority order is: exact span match with wrong type gets flagged as **type_sub**, partial overlap with correct type becomes **boundary**, no overlap at all is **miss**, and partial overlap with wrong type falls into **other**.
+
+For the implementation, I'll treat exact span match as case-insensitive text matching, and partial overlap as either substring or token-level overlap.
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "433d34d4-a0e4-47a3-b6ec-f3739223ab21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJwBKdzbQtC4WVE2KHms53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 41549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+Now I have a clear picture. Let me check the per_batch structure in the W4 results to see what fields are already available.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "b0f9b77a-3c46-4cbc-9264-53849c0206aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJwBKdzbQtC4WVE2KHms53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 41549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GYToBA43n8fXRj1dK2KU9u`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -m 1 \"batch_id\" /root/schema-dag-extraction/artifacts/w4_relaxed_matching/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "95dd7c60-018e-4925-b983-f733fd33a9ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJwBKdzbQtC4WVE2KHms53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 41549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T14:12:11.427Z_
+
+<details><summary>↩ Tool result · `toolu_01GYToBA43n8fXRj1dK2KU9u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"batch_id\\\": \\\"count_12_random_0\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "900f2783-ac34-42c8-ada2-0ffd8c2db3eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_12_random_0\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      \\\"batch_id\\\": \\\"count_12_random_0\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QxciEQ7PP1zQAAjy64BeQi`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "tail -100 /root/schema-dag-extraction/artifacts/w4_relaxed_matching/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "c0b61931-1415-4aa6-bea2-08bd91e7b404",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJwBKdzbQtC4WVE2KHms53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 41549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T14:12:11.947Z_
+
+<details><summary>↩ Tool result · `toolu_01QxciEQ7PP1zQAAjy64BeQi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"relaxed_text_f1\\\": 0.37073170731707317,\\n      \\\"relaxed_text_precision\\\": 0.4578313253012048,\\n      \\\"relaxed_text_recall\\\": 0.3114754098360656,\\n      \\\"relaxed_text_tp\\\": 38,\\n      \\\"relaxed_text_total_pred\\\": 83,\\n      \\\"relaxed_text_total_gold\\\": 122,\\n      \\\"token_overlap_f1\\\": 0.3804878048780488,\\n      \\\"token_overlap_precision\\\": 0.46987951807228917,\\n      \\\"token_overlap_recall\\\": 0.319672131147541,\\n      \\\"token_overlap_tp\\\": 39,\\n      \\\"token_overlap_total_pred\\\": 83,\\n      \\\"token_overlap_total_gold\\\": 122,\\n      \\\"relaxed_type_ignored_f1\\\": 0.3804878048780488,\\n      \\\"relaxed_type_ignored_precision\\\": 0.46987951807228917,\\n      \\\"relaxed_type_ignored_recall\\\": 0.319672131147541,\\n      \\\"relaxed_type_ignored_tp\\\": 39,\\n      \\\"relaxed_type_ignored_total_pred\\\": 83,\\n      \\\"relaxed_type_ignored_total_gold\\\": 122\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count_6_random_8\\\",\\n      \\\"seed\\\": \\\"s456\\\",\\n      \\\"bcs\\\": 0.8364575862884521,\\n      \\\"count_key\\\": \\\"count_6\\\",\\n      \\\"num_types\\\": 6,\\n      \\\"types\\\": [\\n        \\\"event-disaster\\\",\\n        \\\"organization-other\\\",\\n        \\\"other-biologything\\\",\\n        \\\"other-chemicalthing\\\",\\n        \\\"product-airplane\\\",\\n        \\\"product-car\\\"\\n      ],\\n      \\\"exact_text_f1\\\": 0.29396325459317585,\\n      \\\"exact_text_precision\\\": 0.39436619718309857,\\n      \\\"exact_text_recall\\\": 0.23430962343096234,\\n      \\\"exact_text_tp\\\": 56,\\n      \\\"exact_text_total_pred\\\": 142,\\n      \\\"exact_text_total_gold\\\": 239,\\n      \\\"relaxed_text_f1\\\": 0.3517060367454069,\\n      \\\"relaxed_text_precision\\\": 0.47183098591549294,\\n      \\\"relaxed_text_recall\\\": 0.2803347280334728,\\n      \\\"relaxed_text_tp\\\": 67,\\n      \\\"relaxed_text_total_pred\\\": 142,\\n      \\\"relaxed_text_total_gold\\\": 239,\\n      \\\"token_overlap_f1\\\": 0.3464566929133858,\\n      \\\"token_overlap_precision\\\": 0.4647887323943662,\\n      \\\"token_overlap_recall\\\": 0.27615062761506276,\\n      \\\"token_overlap_tp\\\": 66,\\n      \\\"token_overlap_total_pred\\\": 142,\\n      \\\"token_overlap_total_gold\\\": 239,\\n      \\\"relaxed_type_ignored_f1\\\": 0.3674540682414698,\\n      \\\"relaxed_type_ignored_precision\\\": 0.49295774647887325,\\n      \\\"relaxed_type_ignored_recall\\\": 0.2928870292887029,\\n      \\\"relaxed_type_ignored_tp\\\": 70,\\n      \\\"relaxed_type_ignored_total_pred\\\": 142,\\n      \\\"relaxed_type_ignored_total_gold\\\": 239\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count_6_random_9\\\",\\n      \\\"seed\\\": \\\"s456\\\",\\n      \\\"bcs\\\": 0.8034015496571859,\\n      \\\"count_key\\\": \\\"count_6\\\",\\n      \\\"num_types\\\": 6,\\n      \\\"types\\\": [\\n        \\\"art-music\\\",\\n        \\\"location-bodiesofwater\\\",\\n        \\\"organization-government/governmentagency\\\",\\n        \\\"organization-religion\\\",\\n        \\\"other-biologything\\\",\\n        \\\"product-food\\\"\\n      ],\\n      \\\"exact_text_f1\\\": 0.24380165289256198,\\n      \\\"exact_text_precision\\\": 0.22868217054263565,\\n      \\\"exact_text_recall\\\": 0.2610619469026549,\\n      \\\"exact_text_tp\\\": 59,\\n      \\\"exact_text_total_pred\\\": 258,\\n      \\\"exact_text_total_gold\\\": 226,\\n      \\\"relaxed_text_f1\\\": 0.28512396694214875,\\n      \\\"relaxed_text_precision\\\": 0.26744186046511625,\\n      \\\"relaxed_text_recall\\\": 0.3053097345132743,\\n      \\\"relaxed_text_tp\\\": 69,\\n      \\\"relaxed_text_total_pred\\\": 258,\\n      \\\"relaxed_text_total_gold\\\": 226,\\n      \\\"token_overlap_f1\\\": 0.2975206611570248,\\n      \\\"token_overlap_precision\\\": 0.27906976744186046,\\n      \\\"token_overlap_recall\\\": 0.3185840707964602,\\n      \\\"token_overlap_tp\\\": 72,\\n      \\\"token_overlap_total_pred\\\": 258,\\n      \\\"token_overlap_total_gold\\\": 226,\\n      \\\"relaxed_type_ignored_f1\\\": 0.28512396694214875,\\n      \\\"relaxed_type_ignored_precision\\\": 0.26744186046511625,\\n      \\\"relaxed_type_ignored_recall\\\": 0.3053097345132743,\\n      \\\"relaxed_type_ignored_tp\\\": 69,\\n      \\\"relaxed_type_ignored_total_pred\\\": 258,\\n      \\\"relaxed_type_ignored_total_gold\\\": 226\\n    }\\n  ],\\n  \\\"summary\\\": \\\"Exact text match: r=0.0144 (p=0.7604). Relaxed text match: r=0.0032 (p=0.9463). Token overlap: r=0.0038 (p=0.9356). Mean F1 gain from relaxed: 0.0419 (98.4% batches improved). Relaxed matching does NOT substantially change BCS correlation \\\\u2014 boundary errors are not the primary cause of weak signal.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "3b6a9d40-b150-4197-8a9b-665fe90f38c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"relaxed_text_f1\\\\\\\": 0.37073170731707317,\\\\n      \\\\\\\"relaxed_text_precision\\\\\\\": 0.4578313253012048,\\\\n      \\\\\\\"relaxed_text_recall\\\\\\\": 0.3114754098360656,\\\\n      \\\\\\\"relaxed_text_tp\\\\\\\": 38,\\\\n      \\\\\\\"relaxed_text_total_pred\\\\\\\": 83,\\\\n      \\\\\\\"relaxed_text_total_gold\\\\\\\": 122,\\\\n      \\\\\\\"token_overlap_f1\\\\\\\": 0.3804878048780488,\\\\n      \\\\\\\"token_overlap_precision\\\\\\\": 0.46987951807228917,\\\\n      \\\\\\\"token_overlap_recall\\\\\\\": 0.319672131147541,\\\\n      \\\\\\\"token_overlap_tp\\\\\\\": 39,\\\\n      \\\\\\\"token_overlap_total_pred\\\\\\\": 83,\\\\n      \\\\\\\"token_overlap_total_gold\\\\\\\": 122,\\\\n      \\\\\\\"relaxed_type_ignored_f1\\\\\\\": 0.3804878048780488,\\\\n      \\\\\\\"relaxed_type_ignored_precision\\\\\\\": 0.46987951807228917,\\\\n      \\\\\\\"relaxed_type_ignored_recall\\\\\\\": 0.319672131147541,\\\\n      \\\\\\\"relaxed_type_ignored_tp\\\\\\\": 39,\\\\n      \\\\\\\"relaxed_type_ignored_total_pred\\\\\\\": 83,\\\\n      \\\\\\\"relaxed_type_ignored_total_gold\\\\\\\": 122\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_6_random_8\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": \\\\\\\"s456\\\\\\\",\\\\n      \\\\\\\"bcs\\\\\\\": 0.8364575862884521,\\\\n      \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n      \\\\\\\"num_types\\\\\\\": 6,\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"event-disaster\\\\\\\",\\\\n        \\\\\\\"organization-other\\\\\\\",\\\\n        \\\\\\\"other-biologything\\\\\\\",\\\\n        \\\\\\\"other-chemicalthing\\\\\\\",\\\\n        \\\\\\\"product-airplane\\\\\\\",\\\\n        \\\\\\\"product-car\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"exact_text_f1\\\\\\\": 0.29396325459317585,\\\\n      \\\\\\\"exact_text_precision\\\\\\\": 0.39436619718309857,\\\\n      \\\\\\\"exact_text_recall\\\\\\\": 0.23430962343096234,\\\\n      \\\\\\\"exact_text_tp\\\\\\\": 56,\\\\n      \\\\\\\"exact_text_total_pred\\\\\\\": 142,\\\\n      \\\\\\\"exact_text_total_gold\\\\\\\": 239,\\\\n      \\\\\\\"relaxed_text_f1\\\\\\\": 0.3517060367454069,\\\\n      \\\\\\\"relaxed_text_precision\\\\\\\": 0.47183098591549294,\\\\n      \\\\\\\"relaxed_text_recall\\\\\\\": 0.2803347280334728,\\\\n      \\\\\\\"relaxed_text_tp\\\\\\\": 67,\\\\n      \\\\\\\"relaxed_text_total_pred\\\\\\\": 142,\\\\n      \\\\\\\"relaxed_text_total_gold\\\\\\\": 239,\\\\n      \\\\\\\"token_overlap_f1\\\\\\\": 0.3464566929133858,\\\\n      \\\\\\\"token_overlap_precision\\\\\\\": 0.4647887323943662,\\\\n      \\\\\\\"token_overlap_recall\\\\\\\": 0.27615062761506276,\\\\n      \\\\\\\"token_overlap_tp\\\\\\\": 66,\\\\n      \\\\\\\"token_overlap_total_pred\\\\\\\": 142,\\\\n      \\\\\\\"token_overlap_total_gold\\\\\\\": 239,\\\\n      \\\\\\\"relaxed_type_ignored_f1\\\\\\\": 0.3674540682414698,\\\\n      \\\\\\\"relaxed_type_ignored_precision\\\\\\\": 0.49295774647887325,\\\\n      \\\\\\\"relaxed_type_ignored_recall\\\\\\\": 0.2928870292887029,\\\\n      \\\\\\\"relaxed_type_ignored_tp\\\\\\\": 70,\\\\n      \\\\\\\"relaxed_type_ignored_total_pred\\\\\\\": 142,\\\\n      \\\\\\\"relaxed_type_ignored_total_gold\\\\\\\": 239\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count_6_random_9\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": \\\\\\\"s456\\\\\\\",\\\\n      \\\\\\\"bcs\\\\\\\": 0.8034015496571859,\\\\n      \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n      \\\\\\\"num_types\\\\\\\": 6,\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"art-music\\\\\\\",\\\\n        \\\\\\\"location-bodiesofwater\\\\\\\",\\\\n        \\\\\\\"organization-government/governmentagency\\\\\\\",\\\\n        \\\\\\\"organization-religion\\\\\\\",\\\\n        \\\\\\\"other-biologything\\\\\\\",\\\\n        \\\\\\\"product-food\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"exact_text_f1\\\\\\\": 0.24380165289256198,\\\\n      \\\\\\\"exact_text_precision\\\\\\\": 0.22868217054263565,\\\\n      \\\\\\\"exact_text_recall\\\\\\\": 0.2610619469026549,\\\\n      \\\\\\\"exact_text_tp\\\\\\\": 59,\\\\n      \\\\\\\"exact_text_total_pred\\\\\\\": 258,\\\\n      \\\\\\\"exact_text_total_gold\\\\\\\": 226,\\\\n      \\\\\\\"relaxed_text_f1\\\\\\\": 0.28512396694214875,\\\\n      \\\\\\\"relaxed_text_precision\\\\\\\": 0.26744186046511625,\\\\n      \\\\\\\"relaxed_text_recall\\\\\\\": 0.3053097345132743,\\\\n      \\\\\\\"relaxed_text_tp\\\\\\\": 69,\\\\n      \\\\\\\"relaxed_text_total_pred\\\\\\\": 258,\\\\n      \\\\\\\"relaxed_text_total_gold\\\\\\\": 226,\\\\n      \\\\\\\"token_overlap_f1\\\\\\\": 0.2975206611570248,\\\\n      \\\\\\\"token_overlap_precision\\\\\\\": 0.27906976744186046,\\\\n      \\\\\\\"token_overlap_recall\\\\\\\": 0.3185840707964602,\\\\n      \\\\\\\"token_overlap_tp\\\\\\\": 72,\\\\n      \\\\\\\"token_overlap_total_pred\\\\\\\": 258,\\\\n      \\\\\\\"token_overlap_total_gold\\\\\\\": 226,\\\\n      \\\\\\\"relaxed_type_ignored_f1\\\\\\\": 0.28512396694214875,\\\\n      \\\\\\\"relaxed_type_ignored_precision\\\\\\\": 0.26744186046511625,\\\\n      \\\\\\\"relaxed_type_ignored_recall\\\\\\\": 0.3053097345132743,\\\\n      \\\\\\\"relaxed_type_ignored_tp\\\\\\\": 69,\\\\n      \\\\\\\"relaxed_type_ignored_total_pred\\\\\\\": 258,\\\\n      \\\\\\\"relaxed_type_ignored_total_gold\\\\\\\": 226\\\\n    }\\\\n  ],\\\\n  \\\\\\\"summary\\\\\\\": \\\\\\\"Exact text match: r=0.0144 (p=0.7604). Relaxed text match: r=0.0032 (p=0.9463). Token overlap: r=0.0038 (p=0.9356). Mean F1 gain from relaxed: 0.0419 (98.4% batches improved). Relaxed matching does NOT substantially change BCS correlation \\\\\\\\u2014 boundary errors are not the primary cause of weak signal.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"      \\\"relaxed_text_f1\\\": 0.37073170731707317,\\n      \\\"relaxed_text_precision\\\": 0.4578313253012048,\\n      \\\"relaxed_text_recall\\\": 0.3114754098360656,\\n      \\\"relaxed_text_tp\\\": 38,\\n      \\\"relaxed_text_total_pred\\\": 83,\\n      \\\"relaxed_text_total_gold\\\": 122,\\n      \\\"token_overlap_f1\\\": 0.3804878048780488,\\n      \\\"token_overlap_precision\\\": 0.46987951807228917,\\n      \\\"token_overlap_recall\\\": 0.319672131147541,\\n      \\\"token_overlap_tp\\\": 39,\\n      \\\"token_overlap_total_pred\\\": 83,\\n      \\\"token_overlap_total_gold\\\": 122,\\n      \\\"relaxed_type_ignored_f1\\\": 0.3804878048780488,\\n      \\\"relaxed_type_ignored_precision\\\": 0.46987951807228917,\\n      \\\"relaxed_type_ignored_recall\\\": 0.319672131147541,\\n      \\\"relaxed_type_ignored_tp\\\": 39,\\n      \\\"relaxed_type_ignored_total_pred\\\": 83,\\n      \\\"relaxed_type_ignored_total_gold\\\": 122\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count_6_random_8\\\",\\n      \\\"seed\\\": \\\"s456\\\",\\n      \\\"bcs\\\": 0.8364575862884521,\\n      \\\"count_key\\\": \\\"count_6\\\",\\n      \\\"num_types\\\": 6,\\n      \\\"types\\\": [\\n        \\\"event-disaster\\\",\\n        \\\"organization-other\\\",\\n        \\\"other-biologything\\\",\\n        \\\"other-chemicalthing\\\",\\n        \\\"product-airplane\\\",\\n        \\\"product-car\\\"\\n      ],\\n      \\\"exact_text_f1\\\": 0.29396325459317585,\\n      \\\"exact_text_precision\\\": 0.39436619718309857,\\n      \\\"exact_text_recall\\\": 0.23430962343096234,\\n      \\\"exact_text_tp\\\": 56,\\n      \\\"exact_text_total_pred\\\": 142,\\n      \\\"exact_text_total_gold\\\": 239,\\n      \\\"relaxed_text_f1\\\": 0.3517060367454069,\\n      \\\"relaxed_text_precision\\\": 0.47183098591549294,\\n      \\\"relaxed_text_recall\\\": 0.2803347280334728,\\n      \\\"relaxed_text_tp\\\": 67,\\n      \\\"relaxed_text_total_pred\\\": 142,\\n      \\\"relaxed_text_total_gold\\\": 239,\\n      \\\"token_overlap_f1\\\": 0.3464566929133858,\\n      \\\"token_overlap_precision\\\": 0.4647887323943662,\\n      \\\"token_overlap_recall\\\": 0.27615062761506276,\\n      \\\"token_overlap_tp\\\": 66,\\n      \\\"token_overlap_total_pred\\\": 142,\\n      \\\"token_overlap_total_gold\\\": 239,\\n      \\\"relaxed_type_ignored_f1\\\": 0.3674540682414698,\\n      \\\"relaxed_type_ignored_precision\\\": 0.49295774647887325,\\n      \\\"relaxed_type_ignored_recall\\\": 0.2928870292887029,\\n      \\\"relaxed_type_ignored_tp\\\": 70,\\n      \\\"relaxed_type_ignored_total_pred\\\": 142,\\n      \\\"relaxed_type_ignored_total_gold\\\": 239\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count_6_random_9\\\",\\n      \\\"seed\\\": \\\"s456\\\",\\n      \\\"bcs\\\": 0.8034015496571859,\\n      \\\"count_key\\\": \\\"count_6\\\",\\n      \\\"num_types\\\": 6,\\n      \\\"types\\\": [\\n        \\\"art-music\\\",\\n        \\\"location-bodiesofwater\\\",\\n        \\\"organization-government/governmentagency\\\",\\n        \\\"organization-religion\\\",\\n        \\\"other-biologything\\\",\\n        \\\"product-food\\\"\\n      ],\\n      \\\"exact_text_f1\\\": 0.24380165289256198,\\n      \\\"exact_text_precision\\\": 0.22868217054263565,\\n      \\\"exact_text_recall\\\": 0.2610619469026549,\\n      \\\"exact_text_tp\\\": 59,\\n      \\\"exact_text_total_pred\\\": 258,\\n      \\\"exact_text_total_gold\\\": 226,\\n      \\\"relaxed_text_f1\\\": 0.28512396694214875,\\n      \\\"relaxed_text_precision\\\": 0.26744186046511625,\\n      \\\"relaxed_text_recall\\\": 0.3053097345132743,\\n      \\\"relaxed_text_tp\\\": 69,\\n      \\\"relaxed_text_total_pred\\\": 258,\\n      \\\"relaxed_text_total_gold\\\": 226,\\n      \\\"token_overlap_f1\\\": 0.2975206611570248,\\n      \\\"token_overlap_precision\\\": 0.27906976744186046,\\n      \\\"token_overlap_recall\\\": 0.3185840707964602,\\n      \\\"token_overlap_tp\\\": 72,\\n      \\\"token_overlap_total_pred\\\": 258,\\n      \\\"token_overlap_total_gold\\\": 226,\\n      \\\"relaxed_type_ignored_f1\\\": 0.28512396694214875,\\n      \\\"relaxed_type_ignored_precision\\\": 0.26744186046511625,\\n      \\\"relaxed_type_ignored_recall\\\": 0.3053097345132743,\\n      \\\"relaxed_type_ignored_tp\\\": 69,\\n      \\\"relaxed_type_ignored_total_pred\\\": 258,\\n      \\\"relaxed_type_ignored_total_gold\\\": 226\\n    }\\n  ],\\n  \\\"summary\\\": \\\"Exact text match: r=0.0144 (p=0.7604). Relaxed text match: r=0.0032 (p=0.9463). Token overlap: r=0.0038 (p=0.9356). Mean F1 gain from relaxed: 0.0419 (98.4% batches improved). Relaxed matching does NOT substantially change BCS correlation \\\\u2014 boundary errors are not the primary cause of weak signal.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a full picture. Let me write the analysis script. The key data I need:
+
+1. From W4 per_batch: `batch_id`, `seed`, `bcs`, `count_key`, `types`
+2. Gold entities from Few-NERD (loaded via few_nerd_utils)
+3. Predictions from the JSONL files
+
+The script needs to:
+1. Load all prediction data from 3 seeds × 6 count levels
+2. Load gold data from Few-NERD
+3. For each batch, for each sample, classify each gold entity into error modes
+4. Aggregate by BCS quartile
+
+
+5. I'm verifying the data structure: 25 batches per count level across 3 seeds gives 450 total batches, with batch IDs like "count_2_random_0" and corresponding entries in the W4 per_batch file that track seed and BCS values.
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "ddf3c857-e355-43fe-a6aa-17a5b1dc16ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WDsi7i5jE32Zi32mQYzbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3050,
+      "cache_read_input_tokens": 42825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3050
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+I have all the context needed. Now I'll write the analysis script and run it on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "294351d5-c656-49a6-b07d-c3e4d3b27f4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WDsi7i5jE32Zi32mQYzbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3050,
+      "cache_read_input_tokens": 42825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3050
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017GT5PZoh5i4pR3Ta17iyxs`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/artifacts/w4_error_mode_quartile/analyze_error_modes.py << 'PYEOF'\n\"\"\"Per-error-mode BCS quartile analysis.\n\nFor each of 450 NER batches (3 seeds × 6 count levels × 25 batches):\n1. Classify every gold entity into an error mode (miss / boundary / type_sub / correct / other)\n2. Compute error mode proportions per batch\n3. Split batches into BCS quartiles and report mean error proportions\n4. Compute Spearman correlations between BCS and each error mode proportion\n\"\"\"\nimport json\nimport sys\nimport logging\nfrom pathlib import Path\nfrom collections import defaultdict\nimport numpy as np\nfrom scipy import stats\n\nsys.path.insert(0, str(Path(\"/root/schema-dag-extraction/src\")))\nfrom few_nerd_utils import load_few_nerd\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlogger = logging.getLogger(__name__)\n\nARTIFACTS = Path(\"/root/schema-dag-extraction/artifacts\")\nSEEDS = [\n    (\"s42\", ARTIFACTS / \"d051_fewnerd_n25_s42\"),\n    (\"s123\", ARTIFACTS / \"d051_fewnerd_n25_s123\"),\n    (\"s456\", ARTIFACTS / \"d051_fewnerd_n25_s456\"),\n]\nCOUNT_LEVELS = [\"count_2\", \"count_6\", \"count_12\", \"count_22\", \"count_44\", \"count_66\"]\nMAX_SAMPLES = 1000\n\n\ndef classify_gold_entity(gold_text, gold_type, predictions):\n    \"\"\"Classify a single gold entity into an error mode.\n    \n    Priority:\n    1. Exact text match + correct type → 'correct'\n    2. Exact text match + wrong type → 'type_sub'\n    3. Partial text overlap (substring) + correct type → 'boundary'\n    4. Partial text overlap + wrong type → 'other'\n    5. No overlap → 'miss'\n    \"\"\"\n    gl = gold_text.lower().strip()\n    if not gl:\n        return 'miss'\n    \n    best_mode = 'miss'\n    \n    for pred in predictions:\n        pt = pred.get(\"text\", \"\").lower().strip()\n        ptype = pred.get(\"type\", \"\")\n        if not pt:\n            continue\n        \n        exact = (pt == gl)\n        # Substring overlap (relaxed boundary match)\n        partial = (not exact) and (pt in gl or gl in pt)\n        # Token overlap as fallback for partial\n        if not exact and not partial:\n            pred_tokens = set(pt.split())\n            gold_tokens = set(gl.split())\n            token_overlap = len(pred_tokens & gold_tokens) > 0\n            partial = token_overlap\n        \n        type_match = (ptype == gold_type)\n        \n        if exact and type_match:\n            return 'correct'\n        elif exact and not type_match:\n            best_mode = 'type_sub'\n        elif partial and type_match and best_mode in ('miss', 'other'):\n            best_mode = 'boundary'\n        elif partial and not type_match and best_mode == 'miss':\n            best_mode = 'other'\n    \n    return best_mode\n\n\ndef analyze_batch(pred_entries, samples, batch_types_set):\n    \"\"\"Classify all gold entities in a batch and return error mode counts.\"\"\"\n    by_sample = defaultdict(list)\n    for p in pred_entries:\n        by_sample[p[\"sample_id\"]].append(p)\n    \n    counts = defaultdict(int)\n    \n    for sid in range(len(samples)):\n        gold_entities = [e for e in samples[sid][\"entities\"] if e[\"type\"] in batch_types_set]\n        \n        entries = by_sample.get(sid, [])\n        preds = entries[0].get(\"predictions\", []) if entries else []\n        # Filter preds to batch types for type_sub detection? No — keep all preds\n        # so we can detect type_sub (pred has wrong type)\n        \n        for ge in gold_entities:\n            mode = classify_gold_entity(ge[\"text\"], ge[\"type\"], preds)\n            counts[mode] += 1\n    \n    return dict(counts)\n\n\ndef main():\n    logger.info(\"Loading Few-NERD test data...\")\n    samples = load_few_nerd(split=\"test\", max_samples=MAX_SAMPLES)\n    logger.info(\"Loaded %d samples\", len(samples))\n    \n    all_batches = []\n    \n    for seed_name, seed_dir in SEEDS:\n        logger.info(\"Processing seed %s from %s\", seed_name, seed_dir)\n        \n        # Load batch config for BCS values\n        config_path = seed_dir / \"batch_config.json\"\n        with open(config_path) as f:\n            batch_config = json.load(f)\n        \n        for ck in COUNT_LEVELS:\n            pred_path = seed_dir / f\"results_{ck}.jsonl\"\n            if not pred_path.exists():\n                logger.warning(\"Missing %s\", pred_path)\n                continue\n            \n            # Load all predictions for this count level\n            all_preds = []\n            with open(pred_path) as f:\n                for line in f:\n                    if line.strip():\n                        all_preds.append(json.loads(line))\n            \n            # Group by batch_id\n            by_batch = defaultdict(list)\n            for p in all_preds:\n                by_batch[p[\"batch_id\"]].append(p)\n            \n            # Get batch configs\n            if ck not in batch_config:\n                logger.warning(\"Count key %s not in batch config\", ck)\n                continue\n            \n            batches = batch_config[ck].get(\"random\", [])\n            \n            for bi, bc in enumerate(batches):\n                batch_id = f\"{ck}_random_{bi}\"\n                batch_types = bc[\"types\"]\n                batch_bcs = bc[\"bcs\"]\n                batch_types_set = set(batch_types)\n                \n                pred_entries = by_batch.get(batch_id, [])\n                if not pred_entries:\n                    logger.warning(\"No predictions for %s/%s\", seed_name, batch_id)\n                    continue\n                \n                error_counts = analyze_batch(pred_entries, samples, batch_types_set)\n                \n                total_gold = sum(error_counts.values())\n                if total_gold == 0:\n                    continue\n                \n                batch_result = {\n                    \"batch_id\": batch_id,\n                    \"seed\": seed_name,\n                    \"bcs\": batch_bcs,\n                    \"count_key\": ck,\n                    \"num_types\": len(batch_types),\n                    \"total_gold\": total_gold,\n                    \"n_correct\": error_counts.get(\"correct\", 0),\n                    \"n_miss\": error_counts.get(\"miss\", 0),\n                    \"n_boundary\": error_counts.get(\"boundary\", 0),\n                    \"n_type_sub\": error_counts.get(\"type_sub\", 0),\n                    \"n_other\": error_counts.get(\"other\", 0),\n                    \"pct_correct\": error_counts.get(\"correct\", 0) / total_gold * 100,\n                    \"pct_miss\": error_counts.get(\"miss\", 0) / total_gold * 100,\n                    \"pct_boundary\": error_counts.get(\"boundary\", 0) / total_gold * 100,\n                    \"pct_type_sub\": error_counts.get(\"type_sub\", 0) / total_gold * 100,\n                    \"pct_other\": error_counts.get(\"other\", 0) / total_gold * 100,\n                }\n                all_batches.append(batch_result)\n    \n    logger.info(\"Processed %d batches total\", len(all_batches))\n    \n    # --- Quartile analysis ---\n    bcs_values = np.array([b[\"bcs\"] for b in all_batches])\n    quartile_edges = np.percentile(bcs_values, [25, 50, 75])\n    \n    def get_quartile(bcs):\n        if bcs <= quartile_edges[0]:\n            return \"Q1\"\n        elif bcs <= quartile_edges[1]:\n            return \"Q2\"\n        elif bcs <= quartile_edges[2]:\n            return \"Q3\"\n        else:\n            return \"Q4\"\n    \n    quartile_data = defaultdict(list)\n    for b in all_batches:\n        q = get_quartile(b[\"bcs\"])\n        b[\"quartile\"] = q\n        quartile_data[q].append(b)\n    \n    error_modes = [\"miss\", \"boundary\", \"type_sub\"]\n    quartile_table = {}\n    for q in [\"Q1\", \"Q2\", \"Q3\", \"Q4\"]:\n        batches_in_q = quartile_data[q]\n        n = len(batches_in_q)\n        row = {\"n_batches\": n}\n        row[\"bcs_min\"] = float(min(b[\"bcs\"] for b in batches_in_q))\n        row[\"bcs_max\"] = float(max(b[\"bcs\"] for b in batches_in_q))\n        row[\"bcs_mean\"] = float(np.mean([b[\"bcs\"] for b in batches_in_q]))\n        for em in error_modes:\n            vals = [b[f\"pct_{em}\"] for b in batches_in_q]\n            row[f\"mean_pct_{em}\"] = float(np.mean(vals))\n            row[f\"std_pct_{em}\"] = float(np.std(vals))\n        # Also correct and other\n        for em in [\"correct\", \"other\"]:\n            vals = [b[f\"pct_{em}\"] for b in batches_in_q]\n            row[f\"mean_pct_{em}\"] = float(np.mean(vals))\n        quartile_table[q] = row\n    \n    # --- Spearman correlations (450 data points) ---\n    correlations = {}\n    for em in error_modes + [\"correct\", \"other\"]:\n        pct_vals = np.array([b[f\"pct_{em}\"] for b in all_batches])\n        rho, pval = stats.spearmanr(bcs_values, pct_vals)\n        correlations[em] = {\n            \"spearman_rho\": float(rho),\n            \"spearman_p\": float(pval),\n            \"mean_pct\": float(np.mean(pct_vals)),\n            \"std_pct\": float(np.std(pct_vals)),\n        }\n    \n    # --- Overall error distribution ---\n    total_all_gold = sum(b[\"total_gold\"] for b in all_batches)\n    overall = {}\n    for em in error_modes + [\"correct\", \"other\"]:\n        total_em = sum(b[f\"n_{em}\"] for b in all_batches)\n        overall[em] = {\"count\": total_em, \"pct\": total_em / total_all_gold * 100}\n    overall[\"total_gold\"] = total_all_gold\n    \n    # --- Output ---\n    output = {\n        \"n_batches\": len(all_batches),\n        \"quartile_edges\": [float(x) for x in quartile_edges],\n        \"quartile_table\": quartile_table,\n        \"correlations\": correlations,\n        \"overall_distribution\": overall,\n        \"per_batch\": all_batches,\n    }\n    \n    out_path = Path(\"/root/schema-dag-extraction/artifacts/w4_error_mode_quartile/results.json\")\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=str)\n    logger.info(\"Results saved to %s\", out_path)\n    \n    # --- Print summary ---\n    print(\"\\n\" + \"=\" * 90)\n    print(\"Error Mode Distribution by BCS Quartile\")\n    print(\"=\" * 90)\n    print(f\"{'Quartile':<10} {'N':>5} {'BCS range':>20} {'Miss%':>10} {'Boundary%':>10} {'TypeSub%':>10} {'Correct%':>10}\")\n    print(\"-\" * 90)\n    for q in [\"Q1\", \"Q2\", \"Q3\", \"Q4\"]:\n        r = quartile_table[q]\n        print(f\"{q:<10} {r['n_batches']:>5} [{r['bcs_min']:.3f}, {r['bcs_max']:.3f}] \"\n              f\"{r['mean_pct_miss']:>10.2f} {r['mean_pct_boundary']:>10.2f} \"\n              f\"{r['mean_pct_type_sub']:>10.2f} {r['mean_pct_correct']:>10.2f}\")\n    print(\"=\" * 90)\n    \n    print(\"\\nSpearman Correlations (BCS vs error mode %, N=450):\")\n    print(\"-\" * 60)\n    for em in error_modes + [\"correct\", \"other\"]:\n        c = correlations[em]\n        sig = \"***\" if c[\"spearman_p\"] < 0.001 else \"**\" if c[\"spearman_p\"] < 0.01 else \"*\" if c[\"spearman_p\"] < 0.05 else \"ns\"\n        print(f\"  {em:<12} ρ={c['spearman_rho']:>+.4f}  p={c['spearman_p']:.4f}  {sig}  (mean={c['mean_pct']:.2f}%)\")\n    \n    print(f\"\\nOverall: {total_all_gold} gold entities across {len(all_batches)} batches\")\n    for em in error_modes + [\"correct\", \"other\"]:\n        print(f\"  {em:<12}: {overall[em]['count']:>6} ({overall[em]['pct']:.2f}%)\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\nmkdir -p /root/schema-dag-extraction/artifacts/w4_error_mode_quartile",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "b8bae405-5dc3-4f8b-a06b-5ce00e1b5f88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WDsi7i5jE32Zi32mQYzbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3050,
+      "cache_read_input_tokens": 42825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3050
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T14:13:08.434Z_
+
+<details><summary>↩ Tool result · `toolu_017GT5PZoh5i4pR3Ta17iyxs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: /root/schema-dag-extraction/artifacts/w4_error_mode_quartile/analyze_error_modes.py: No such file or directory\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "14b00443-078e-436e-9e78-acf0d3eaabe3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: /root/schema-dag-extraction/artifacts/w4_error_mode_quartile/analyze_error_modes.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: /root/schema-dag-extraction/artifacts/w4_error_mode_quartile/analyze_error_modes.py: No such file or directory\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The directory didn't exist yet when the cat command ran. Let me create the directory first, then write the script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "a114d56f-44d8-4655-b38c-830c36813c04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015zwvCVHcYGiWVYepy492Jp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4210,
+      "cache_read_input_tokens": 45875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4210
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VjywsYts6F8yEaJ7RhL48T`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "mkdir -p /root/schema-dag-extraction/artifacts/w4_error_mode_quartile",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "88b7777d-16c7-453d-95a1-aa82f0b6616d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015zwvCVHcYGiWVYepy492Jp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4210,
+      "cache_read_input_tokens": 45875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4210
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T14:13:13.147Z_
+
+<details><summary>↩ Tool result · `toolu_01VjywsYts6F8yEaJ7RhL48T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "637f6df2-edd8-471b-b5ea-af4a247448f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01B6xydSkX5ysJduNLb3AVU6`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/artifacts/w4_error_mode_quartile/analyze_error_modes.py << 'PYEOF'\n\"\"\"Per-error-mode BCS quartile analysis.\n\nFor each of 450 NER batches (3 seeds x 6 count levels x 25 batches):\n1. Classify every gold entity into an error mode (miss / boundary / type_sub / correct / other)\n2. Compute error mode proportions per batch\n3. Split batches into BCS quartiles and report mean error proportions\n4. Compute Spearman correlations between BCS and each error mode proportion\n\"\"\"\nimport json\nimport sys\nimport logging\nfrom pathlib import Path\nfrom collections import defaultdict\nimport numpy as np\nfrom scipy import stats\n\nsys.path.insert(0, str(Path(\"/root/schema-dag-extraction/src\")))\nfrom few_nerd_utils import load_few_nerd\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlogger = logging.getLogger(__name__)\n\nARTIFACTS = Path(\"/root/schema-dag-extraction/artifacts\")\nSEEDS = [\n    (\"s42\", ARTIFACTS / \"d051_fewnerd_n25_s42\"),\n    (\"s123\", ARTIFACTS / \"d051_fewnerd_n25_s123\"),\n    (\"s456\", ARTIFACTS / \"d051_fewnerd_n25_s456\"),\n]\nCOUNT_LEVELS = [\"count_2\", \"count_6\", \"count_12\", \"count_22\", \"count_44\", \"count_66\"]\nMAX_SAMPLES = 1000\n\n\ndef classify_gold_entity(gold_text, gold_type, predictions):\n    \"\"\"Classify a single gold entity into an error mode.\n\n    Priority:\n    1. Exact text match + correct type -> correct\n    2. Exact text match + wrong type -> type_sub\n    3. Partial text overlap (substring or token) + correct type -> boundary\n    4. Partial text overlap + wrong type -> other\n    5. No overlap -> miss\n    \"\"\"\n    gl = gold_text.lower().strip()\n    if not gl:\n        return \"miss\"\n\n    best_mode = \"miss\"\n\n    for pred in predictions:\n        pt = pred.get(\"text\", \"\").lower().strip()\n        ptype = pred.get(\"type\", \"\")\n        if not pt:\n            continue\n\n        exact = (pt == gl)\n        partial = False\n        if not exact:\n            partial = (pt in gl or gl in pt)\n            if not partial:\n                pred_tokens = set(pt.split())\n                gold_tokens = set(gl.split())\n                partial = len(pred_tokens & gold_tokens) > 0\n\n        type_match = (ptype == gold_type)\n\n        if exact and type_match:\n            return \"correct\"\n        elif exact and not type_match:\n            best_mode = \"type_sub\"\n        elif partial and type_match and best_mode in (\"miss\", \"other\"):\n            best_mode = \"boundary\"\n        elif partial and not type_match and best_mode == \"miss\":\n            best_mode = \"other\"\n\n    return best_mode\n\n\ndef analyze_batch(pred_entries, samples, batch_types_set):\n    \"\"\"Classify all gold entities in a batch and return error mode counts.\"\"\"\n    by_sample = defaultdict(list)\n    for p in pred_entries:\n        by_sample[p[\"sample_id\"]].append(p)\n\n    counts = defaultdict(int)\n\n    for sid in range(len(samples)):\n        gold_entities = [e for e in samples[sid][\"entities\"] if e[\"type\"] in batch_types_set]\n        entries = by_sample.get(sid, [])\n        preds = entries[0].get(\"predictions\", []) if entries else []\n\n        for ge in gold_entities:\n            mode = classify_gold_entity(ge[\"text\"], ge[\"type\"], preds)\n            counts[mode] += 1\n\n    return dict(counts)\n\n\ndef main():\n    logger.info(\"Loading Few-NERD test data...\")\n    samples = load_few_nerd(split=\"test\", max_samples=MAX_SAMPLES)\n    logger.info(\"Loaded %d samples\", len(samples))\n\n    all_batches = []\n\n    for seed_name, seed_dir in SEEDS:\n        logger.info(\"Processing seed %s from %s\", seed_name, seed_dir)\n        config_path = seed_dir / \"batch_config.json\"\n        with open(config_path) as f:\n            batch_config = json.load(f)\n\n        for ck in COUNT_LEVELS:\n            pred_path = seed_dir / f\"results_{ck}.jsonl\"\n            if not pred_path.exists():\n                logger.warning(\"Missing %s\", pred_path)\n                continue\n\n            all_preds = []\n            with open(pred_path) as f:\n                for line in f:\n                    if line.strip():\n                        all_preds.append(json.loads(line))\n\n            by_batch = defaultdict(list)\n            for p in all_preds:\n                by_batch[p[\"batch_id\"]].append(p)\n\n            if ck not in batch_config:\n                logger.warning(\"Count key %s not in batch config\", ck)\n                continue\n\n            batches = batch_config[ck].get(\"random\", [])\n\n            for bi, bc in enumerate(batches):\n                batch_id = f\"{ck}_random_{bi}\"\n                batch_types = bc[\"types\"]\n                batch_bcs = bc[\"bcs\"]\n                batch_types_set = set(batch_types)\n\n                pred_entries = by_batch.get(batch_id, [])\n                if not pred_entries:\n                    logger.warning(\"No predictions for %s/%s\", seed_name, batch_id)\n                    continue\n\n                error_counts = analyze_batch(pred_entries, samples, batch_types_set)\n                total_gold = sum(error_counts.values())\n                if total_gold == 0:\n                    continue\n\n                batch_result = {\n                    \"batch_id\": batch_id,\n                    \"seed\": seed_name,\n                    \"bcs\": batch_bcs,\n                    \"count_key\": ck,\n                    \"num_types\": len(batch_types),\n                    \"total_gold\": total_gold,\n                    \"n_correct\": error_counts.get(\"correct\", 0),\n                    \"n_miss\": error_counts.get(\"miss\", 0),\n                    \"n_boundary\": error_counts.get(\"boundary\", 0),\n                    \"n_type_sub\": error_counts.get(\"type_sub\", 0),\n                    \"n_other\": error_counts.get(\"other\", 0),\n                    \"pct_correct\": error_counts.get(\"correct\", 0) / total_gold * 100,\n                    \"pct_miss\": error_counts.get(\"miss\", 0) / total_gold * 100,\n                    \"pct_boundary\": error_counts.get(\"boundary\", 0) / total_gold * 100,\n                    \"pct_type_sub\": error_counts.get(\"type_sub\", 0) / total_gold * 100,\n                    \"pct_other\": error_counts.get(\"other\", 0) / total_gold * 100,\n                }\n                all_batches.append(batch_result)\n\n    logger.info(\"Processed %d batches total\", len(all_batches))\n\n    bcs_values = np.array([b[\"bcs\"] for b in all_batches])\n    quartile_edges = np.percentile(bcs_values, [25, 50, 75])\n\n    def get_quartile(bcs):\n        if bcs <= quartile_edges[0]:\n            return \"Q1\"\n        elif bcs <= quartile_edges[1]:\n            return \"Q2\"\n        elif bcs <= quartile_edges[2]:\n            return \"Q3\"\n        else:\n            return \"Q4\"\n\n    quartile_data = defaultdict(list)\n    for b in all_batches:\n        q = get_quartile(b[\"bcs\"])\n        b[\"quartile\"] = q\n        quartile_data[q].append(b)\n\n    error_modes = [\"miss\", \"boundary\", \"type_sub\"]\n    quartile_table = {}\n    for q in [\"Q1\", \"Q2\", \"Q3\", \"Q4\"]:\n        batches_in_q = quartile_data[q]\n        n = len(batches_in_q)\n        row = {\"n_batches\": n}\n        row[\"bcs_min\"] = float(min(b[\"bcs\"] for b in batches_in_q))\n        row[\"bcs_max\"] = float(max(b[\"bcs\"] for b in batches_in_q))\n        row[\"bcs_mean\"] = float(np.mean([b[\"bcs\"] for b in batches_in_q]))\n        for em in error_modes:\n            vals = [b[f\"pct_{em}\"] for b in batches_in_q]\n            row[f\"mean_pct_{em}\"] = float(np.mean(vals))\n            row[f\"std_pct_{em}\"] = float(np.std(vals))\n        for em in [\"correct\", \"other\"]:\n            vals = [b[f\"pct_{em}\"] for b in batches_in_q]\n            row[f\"mean_pct_{em}\"] = float(np.mean(vals))\n        quartile_table[q] = row\n\n    correlations = {}\n    for em in error_modes + [\"correct\", \"other\"]:\n        pct_vals = np.array([b[f\"pct_{em}\"] for b in all_batches])\n        rho, pval = stats.spearmanr(bcs_values, pct_vals)\n        correlations[em] = {\n            \"spearman_rho\": float(rho),\n            \"spearman_p\": float(pval),\n            \"mean_pct\": float(np.mean(pct_vals)),\n            \"std_pct\": float(np.std(pct_vals)),\n        }\n\n    total_all_gold = sum(b[\"total_gold\"] for b in all_batches)\n    overall = {}\n    for em in error_modes + [\"correct\", \"other\"]:\n        total_em = sum(b[f\"n_{em}\"] for b in all_batches)\n        overall[em] = {\"count\": total_em, \"pct\": total_em / total_all_gold * 100}\n    overall[\"total_gold\"] = total_all_gold\n\n    output = {\n        \"n_batches\": len(all_batches),\n        \"quartile_edges\": [float(x) for x in quartile_edges],\n        \"quartile_table\": quartile_table,\n        \"correlations\": correlations,\n        \"overall_distribution\": overall,\n        \"per_batch\": all_batches,\n    }\n\n    out_path = Path(\"/root/schema-dag-extraction/artifacts/w4_error_mode_quartile/results.json\")\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=str)\n    logger.info(\"Results saved to %s\", out_path)\n\n    print(\"\\n\" + \"=\" * 90)\n    print(\"Error Mode Distribution by BCS Quartile\")\n    print(\"=\" * 90)\n    print(f\"{'Quartile':<10} {'N':>5} {'BCS range':>20} {'Miss%':>10} {'Boundary%':>10} {'TypeSub%':>10} {'Correct%':>10}\")\n    print(\"-\" * 90)\n    for q in [\"Q1\", \"Q2\", \"Q3\", \"Q4\"]:\n        r = quartile_table[q]\n        print(f\"{q:<10} {r['n_batches']:>5} [{r['bcs_min']:.3f}, {r['bcs_max']:.3f}] \"\n              f\"{r['mean_pct_miss']:>10.2f} {r['mean_pct_boundary']:>10.2f} \"\n              f\"{r['mean_pct_type_sub']:>10.2f} {r['mean_pct_correct']:>10.2f}\")\n    print(\"=\" * 90)\n\n    print(\"\\nSpearman Correlations (BCS vs error mode %, N=450):\")\n    print(\"-\" * 60)\n    for em in error_modes + [\"correct\", \"other\"]:\n        c = correlations[em]\n        sig = \"***\" if c[\"spearman_p\"] < 0.001 else \"**\" if c[\"spearman_p\"] < 0.01 else \"*\" if c[\"spearman_p\"] < 0.05 else \"ns\"\n        print(f\"  {em:<12} rho={c['spearman_rho']:>+.4f}  p={c['spearman_p']:.4f}  {sig}  (mean={c['mean_pct']:.2f}%)\")\n\n    print(f\"\\nOverall: {total_all_gold} gold entities across {len(all_batches)} batches\")\n    for em in error_modes + [\"correct\", \"other\"]:\n        print(f\"  {em:<12}: {overall[em]['count']:>6} ({overall[em]['pct']:.2f}%)\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "750e6ada-6f56-445e-a190-109230841d8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JmT9AQNsQsLmSS6Dgai7Js",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 338,
+      "cache_read_input_tokens": 50085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 338
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T14:13:42.936Z_
+
+<details><summary>↩ Tool result · `toolu_01B6xydSkX5ysJduNLb3AVU6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "97a69193-4762-4530-8538-98d77c6e39f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JZCpaH9JaMUyfAg2VrhwpS`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python artifacts/w4_error_mode_quartile/analyze_error_modes.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "24113fa5-4132-4b68-87cf-ed6047f08e95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYnXbKvExfCHAyRwZAdbf6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3541,
+      "cache_read_input_tokens": 50423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3541
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T14:14:17.233Z_
+
+<details><summary>↩ Tool result · `toolu_01JZCpaH9JaMUyfAg2VrhwpS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python artifacts/w4_error_mode_quartile/analyze_error_modes.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n2026-05-20 22:13:54,477 INFO Loading Few-NERD test data...\\n2026-05-20 22:13:54,477 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\n2026-05-20 22:13:56,109 INFO Loaded 1000 samples from Few-NERD test split\\n2026-05-20 22:13:56,111 INFO Loaded 1000 samples\\n2026-05-20 22:13:56,111 INFO Processing seed s42 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\n2026-05-20 22:14:05,988 INFO Processing seed s123 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\n2026-05-20 22:14:15,603 INFO Processing seed s456 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "c881aa41-ced0-432a-8e0e-cdabf522cff2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python artifacts/w4_error_mode_quartile/analyze_error_modes.py'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n2026-05-20 22:13:54,477 INFO Loading Few-NERD test data...\\\\n2026-05-20 22:13:54,477 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\\\n2026-05-20 22:13:56,109 INFO Loaded 1000 samples from Few-NERD test split\\\\n2026-05-20 22:13:56,111 INFO Loaded 1000 samples\\\\n2026-05-20 22:13:56,111 INFO Processing seed s42 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\\\n2026-05-20 22:14:05,988 INFO Processing seed s123 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\\\n2026-05-20 22:14:15,603 INFO Processing seed s456 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python artifacts/w4_error_mode_quartile/analyze_error_modes.py'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n2026-05-20 22:13:54,477 INFO Loading Few-NERD test data...\\n2026-05-20 22:13:54,477 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\n2026-05-20 22:13:56,109 INFO Loaded 1000 samples from Few-NERD test split\\n2026-05-20 22:13:56,111 INFO Loaded 1000 samples\\n2026-05-20 22:13:56,111 INFO Processing seed s42 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\n2026-05-20 22:14:05,988 INFO Processing seed s123 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\n2026-05-20 22:14:15,603 INFO Processing seed s456 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script is running but timing out at 30 seconds. It's processing through all three seeds. Let me run it with nohup.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "357a6c3a-5866-4fa3-a4cd-d54306616e5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GqFw1vUmK7vGEZVyDptELf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 53964,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 573
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+Script times out at 30s. Let me run it in background.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "c8dcfb8f-6f5b-45eb-883e-b6ec86062e17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GqFw1vUmK7vGEZVyDptELf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 53964,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 573
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FSDdJAodcCJy8b9BArRb6d`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && nohup python artifacts/w4_error_mode_quartile/analyze_error_modes.py > /tmp/error_mode_analysis.log 2>&1 & echo $!",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "77599c59-06e0-4807-8859-21c9d2af0221",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GqFw1vUmK7vGEZVyDptELf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 53964,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 573
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-20T14:14:53.173Z_
+
+<details><summary>↩ Tool result · `toolu_01FSDdJAodcCJy8b9BArRb6d`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && nohup python artifacts/w4_error_mode_quartile/analyze_error_modes.py > /tmp/error_mode_analysis.log 2>&1 & echo $!'\\n\\nStdout:\\n\\n667451\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "06932d44-d6b3-469b-b3a7-9fc27eb48f74",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && nohup python artifacts/w4_error_mode_quartile/analyze_error_modes.py > /tmp/error_mode_analysis.log 2>&1 & echo $!'\\\\n\\\\nStdout:\\\\n\\\\n667451\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && nohup python artifacts/w4_error_mode_quartile/analyze_error_modes.py > /tmp/error_mode_analysis.log 2>&1 & echo $!'\\n\\nStdout:\\n\\n667451\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The PID is 667451. Let me check on it after a moment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "88879bf0-0f45-4619-b350-ab19a6deacce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LgTgCNxZWjZFPhFgVenLTg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 409,
+      "cache_read_input_tokens": 54537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 409
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+PID 667451 launched. Let me wait and check the result.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "fd26b5ea-71e4-4ea3-90bd-1d61a5f72032",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LgTgCNxZWjZFPhFgVenLTg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 409,
+      "cache_read_input_tokens": 54537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 409
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hd54JrhfLH9ZX7vYMQzaQS`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ps -p 667451 -o pid=",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "48c371fd-d02d-4e27-bfc2-354eb8bc3c2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LgTgCNxZWjZFPhFgVenLTg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 409,
+      "cache_read_input_tokens": 54537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 409
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-20T14:14:59.017Z_
+
+<details><summary>↩ Tool result · `toolu_01Hd54JrhfLH9ZX7vYMQzaQS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"667451\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "c27cefa7-8ad6-4a32-9402-14a25c48b949",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"667451\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"667451\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BRWLPMP6Bwy5pFKY4vgKMH`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "tail -5 /tmp/error_mode_analysis.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "a7fd2492-b827-4f2a-b735-6ac503f82218",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaB3ckJfEuCoGGLKLCikqk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 54946,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 239
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-20T14:15:02.768Z_
+
+<details><summary>↩ Tool result · `toolu_01BRWLPMP6Bwy5pFKY4vgKMH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  miss        : 227338 (49.27%)\\n  boundary    :  23186 (5.03%)\\n  type_sub    :  46457 (10.07%)\\n  correct     : 147971 (32.07%)\\n  other       :  16437 (3.56%)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "553e6505-0d33-445a-aa5b-a481748f8cef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  miss        : 227338 (49.27%)\\\\n  boundary    :  23186 (5.03%)\\\\n  type_sub    :  46457 (10.07%)\\\\n  correct     : 147971 (32.07%)\\\\n  other       :  16437 (3.56%)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  miss        : 227338 (49.27%)\\n  boundary    :  23186 (5.03%)\\n  type_sub    :  46457 (10.07%)\\n  correct     : 147971 (32.07%)\\n  other       :  16437 (3.56%)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+Done. Let me get the full output.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "7569aca2-0597-4941-bc58-574d0694b1fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FS7Ry5erEfkWrreMCbcwXq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 266,
+      "cache_read_input_tokens": 55185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 266
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MoeriXzuZDe8hAf4yaDeYz`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /tmp/error_mode_analysis.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "6e806c36-1ce3-492c-96c5-7ddd92e05718",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FS7Ry5erEfkWrreMCbcwXq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 266,
+      "cache_read_input_tokens": 55185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 266
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T14:15:06.952Z_
+
+<details><summary>↩ Tool result · `toolu_01MoeriXzuZDe8hAf4yaDeYz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 22:14:30,451 INFO Loading Few-NERD test data...\\n2026-05-20 22:14:30,452 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\n2026-05-20 22:14:32,034 INFO Loaded 1000 samples from Few-NERD test split\\n2026-05-20 22:14:32,035 INFO Loaded 1000 samples\\n2026-05-20 22:14:32,036 INFO Processing seed s42 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\n2026-05-20 22:14:41,940 INFO Processing seed s123 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\n2026-05-20 22:14:51,667 INFO Processing seed s456 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\n2026-05-20 22:15:01,679 INFO Processed 450 batches total\\n2026-05-20 22:15:01,747 INFO Results saved to /root/schema-dag-extraction/artifacts/w4_error_mode_quartile/results.json\\n\\n==========================================================================================\\nError Mode Distribution by BCS Quartile\\n==========================================================================================\\nQuartile       N            BCS range      Miss%  Boundary%   TypeSub%   Correct%\\n------------------------------------------------------------------------------------------\\nQ1           113 [0.580, 0.801]      55.53       6.54       3.05      33.81\\nQ2           112 [0.801, 0.808]      48.26       5.48       9.85      32.95\\nQ3           112 [0.808, 0.815]      55.51       5.11       7.60      29.18\\nQ4           113 [0.815, 0.936]      53.65       6.44       3.11      35.78\\n==========================================================================================\\n\\nSpearman Correlations (BCS vs error mode %, N=450):\\n------------------------------------------------------------\\n  miss         rho=+0.0168  p=0.7223  ns  (mean=53.24%)\\n  boundary     rho=-0.0427  p=0.3659  ns  (mean=5.90%)\\n  type_sub     rho=-0.0096  p=0.8398  ns  (mean=5.89%)\\n  correct      rho=-0.0091  p=0.8476  ns  (mean=32.94%)\\n  other        rho=-0.0344  p=0.4671  ns  (mean=2.03%)\\n\\nOverall: 461389 gold entities across 450 batches\\n  miss        : 227338 (49.27%)\\n  boundary    :  23186 (5.03%)\\n  type_sub    :  46457 (10.07%)\\n  correct     : 147971 (32.07%)\\n  other       :  16437 (3.56%)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "41ec8fae-2d6b-4f64-8d62-712b80f4d905",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 22:14:30,451 INFO Loading Few-NERD test data...\\\\n2026-05-20 22:14:30,452 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\\\n2026-05-20 22:14:32,034 INFO Loaded 1000 samples from Few-NERD test split\\\\n2026-05-20 22:14:32,035 INFO Loaded 1000 samples\\\\n2026-05-20 22:14:32,036 INFO Processing seed s42 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\\\n2026-05-20 22:14:41,940 INFO Processing seed s123 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\\\n2026-05-20 22:14:51,667 INFO Processing seed s456 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\\\n2026-05-20 22:15:01,679 INFO Processed 450 batches total\\\\n2026-05-20 22:15:01,747 INFO Results saved to /root/schema-dag-extraction/artifacts/w4_error_mode_quartile/results.json\\\\n\\\\n==========================================================================================\\\\nError Mode Distribution by BCS Quartile\\\\n==========================================================================================\\\\nQuartile       N            BCS range      Miss%  Boundary%   TypeSub%   Correct%\\\\n------------------------------------------------------------------------------------------\\\\nQ1           113 [0.580, 0.801]      55.53       6.54       3.05      33.81\\\\nQ2           112 [0.801, 0.808]      48.26       5.48       9.85      32.95\\\\nQ3           112 [0.808, 0.815]      55.51       5.11       7.60      29.18\\\\nQ4           113 [0.815, 0.936]      53.65       6.44       3.11      35.78\\\\n==========================================================================================\\\\n\\\\nSpearman Correlations (BCS vs error mode %, N=450):\\\\n------------------------------------------------------------\\\\n  miss         rho=+0.0168  p=0.7223  ns  (mean=53.24%)\\\\n  boundary     rho=-0.0427  p=0.3659  ns  (mean=5.90%)\\\\n  type_sub     rho=-0.0096  p=0.8398  ns  (mean=5.89%)\\\\n  correct      rho=-0.0091  p=0.8476  ns  (mean=32.94%)\\\\n  other        rho=-0.0344  p=0.4671  ns  (mean=2.03%)\\\\n\\\\nOverall: 461389 gold entities across 450 batches\\\\n  miss        : 227338 (49.27%)\\\\n  boundary    :  23186 (5.03%)\\\\n  type_sub    :  46457 (10.07%)\\\\n  correct     : 147971 (32.07%)\\\\n  other       :  16437 (3.56%)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 22:14:30,451 INFO Loading Few-NERD test data...\\n2026-05-20 22:14:30,452 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\n2026-05-20 22:14:32,034 INFO Loaded 1000 samples from Few-NERD test split\\n2026-05-20 22:14:32,035 INFO Loaded 1000 samples\\n2026-05-20 22:14:32,036 INFO Processing seed s42 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\n2026-05-20 22:14:41,940 INFO Processing seed s123 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\n2026-05-20 22:14:51,667 INFO Processing seed s456 from /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\n2026-05-20 22:15:01,679 INFO Processed 450 batches total\\n2026-05-20 22:15:01,747 INFO Results saved to /root/schema-dag-extraction/artifacts/w4_error_mode_quartile/results.json\\n\\n==========================================================================================\\nError Mode Distribution by BCS Quartile\\n==========================================================================================\\nQuartile       N            BCS range      Miss%  Boundary%   TypeSub%   Correct%\\n------------------------------------------------------------------------------------------\\nQ1           113 [0.580, 0.801]      55.53       6.54       3.05      33.81\\nQ2           112 [0.801, 0.808]      48.26       5.48       9.85      32.95\\nQ3           112 [0.808, 0.815]      55.51       5.11       7.60      29.18\\nQ4           113 [0.815, 0.936]      53.65       6.44       3.11      35.78\\n==========================================================================================\\n\\nSpearman Correlations (BCS vs error mode %, N=450):\\n------------------------------------------------------------\\n  miss         rho=+0.0168  p=0.7223  ns  (mean=53.24%)\\n  boundary     rho=-0.0427  p=0.3659  ns  (mean=5.90%)\\n  type_sub     rho=-0.0096  p=0.8398  ns  (mean=5.89%)\\n  correct      rho=-0.0091  p=0.8476  ns  (mean=32.94%)\\n  other        rho=-0.0344  p=0.4671  ns  (mean=2.03%)\\n\\nOverall: 461389 gold entities across 450 batches\\n  miss        : 227338 (49.27%)\\n  boundary    :  23186 (5.03%)\\n  type_sub    :  46457 (10.07%)\\n  correct     : 147971 (32.07%)\\n  other       :  16437 (3.56%)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The analysis is complete. Let me verify the results JSON was saved correctly.
+
+Key findings:
+1. All three error modes (miss, boundary, type_sub) show NO significant correlation with BCS — all Spearman p > 0.05
+2. The quartile table shows some variation but no monotonic trend
+3. Miss is the dominant error mode (~49-56%), followed by correct (~29-36%), then type_sub (~3-10%), boundary (~5-7%), and other (~2-4%)
+
+Let me note an interesting anomaly: the quartile table shows mean type_sub% has 3.05% for Q1, jumps to 9.85% for Q2, then 7.60% for Q3, and drops to 3.11% for Q4. This is a non-monotonic pattern that is not really correlated with BCS.
+
+
+Looking at the BCS ranges more closely, I notice Q2 and Q3 are extremely compressed around 0.80-0.82, while Q1 and Q4 span much wider intervals. This concentration of BCS values likely explains why we're not seeing any meaningful correlations with error modes — the real variance in the data is driven by count level rather than BCS differences.
+
+I'm also noticing that the per-batch type_sub percentage (5.89%) is notably lower than the overall percentage (10.07%), which suggests batches containing more gold entities tend to have higher type_sub error rates when you account for the weighting. The analysis results are saved and ready to present.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "06cc5a7b-919c-494c-ae05-d468dcf524eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014okCSB9wJsbE8bkaEjzWrM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 55451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1002
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+Results saved to `/root/schema-dag-extraction/artifacts/w4_error_mode_quartile/results.json`.
+
+## 结果
+
+### BCS Quartile × Error Mode (%)
+
+| Quartile | N | BCS range | Miss% | Boundary% | TypeSub% | Correct% |
+|---|---|---|---|---|---|---|
+| Q1 | 113 | [0.580, 0.801] | 55.53 | 6.54 | 3.05 | 33.81 |
+| Q2 | 112 | [0.801, 0.808] | 48.26 | 5.48 | 9.85 | 32.95 |
+| Q3 | 112 | [0.808, 0.815] | 55.51 | 5.11 | 7.60 | 29.18 |
+| Q4 | 113 | [0.815, 0.936] | 53.65 | 6.44 | 3.11 | 35.78 |
+
+### Spearman 相关 (N=450)
+
+| Error mode | ρ | p | |
+|---|---|---|---|
+| miss | +0.017 | 0.722 | ns |
+| boundary | −0.043 | 0.366 | ns |
+| type_sub | −0.010 | 0.840 | ns |
+| correct | −0.009 | 0.848 | ns |
+
+### 总结
+
+**三种 error mode 均与 BCS 无显著相关**（所有 p > 0.3）。BCS 既不选择性增加某一类错误，也不减少——miss 始终是主导 error mode（~49-56%），boundary 和 type_sub 占比在各 quartile 间无单调趋势。
+
+值得注意的是 BCS 分布高度集中：Q2 和 Q3 的 BCS 范围极窄（0.801–0.815），这限制了检测 BCS 效应的统计功效。Q1 的低 BCS 主要来自小 count level（count_2 type 少→BCS 低），所以 quartile 间的变化可能被 count level 混淆。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "uuid": "3753d08f-e2d1-4326-a7bb-320a550eb49f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014okCSB9wJsbE8bkaEjzWrM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 55451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1002
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 67_
+
+Results saved to `/root/schema-dag-extraction/artifacts/w4_error_mode_quartile/results.json`.
+
+## 结果
+
+### BCS Quartile × Error Mode (%)
+
+| Quartile | N | BCS range | Miss% | Boundary% | TypeSub% | Correct% |
+|---|---|---|---|---|---|---|
+| Q1 | 113 | [0.580, 0.801] | 55.53 | 6.54 | 3.05 | 33.81 |
+| Q2 | 112 | [0.801, 0.808] | 48.26 | 5.48 | 9.85 | 32.95 |
+| Q3 | 112 | [0.808, 0.815] | 55.51 | 5.11 | 7.60 | 29.18 |
+| Q4 | 113 | [0.815, 0.936] | 53.65 | 6.44 | 3.11 | 35.78 |
+
+### Spearman 相关 (N=450)
+
+| Error mode | ρ | p | |
+|---|---|---|---|
+| miss | +0.017 | 0.722 | ns |
+| boundary | −0.043 | 0.366 | ns |
+| type_sub | −0.010 | 0.840 | ns |
+| correct | −0.009 | 0.848 | ns |
+
+### 总结
+
+**三种 error mode 均与 BCS 无显著相关**（所有 p > 0.3）。BCS 既不选择性增加某一类错误，也不减少——miss 始终是主导 error mode（~49-56%），boundary 和 type_sub 占比在各 quartile 间无单调趋势。
+
+值得注意的是 BCS 分布高度集中：Q2 和 Q3 的 BCS 范围极窄（0.801–0.815），这限制了检测 BCS 效应的统计功效。Q1 的低 BCS 主要来自小 count level（count_2 type 少→BCS 低），所以 quartile 间的变化可能被 count level 混淆。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 264637,
+  "duration_api_ms": 197433,
+  "num_turns": 24,
+  "stop_reason": "end_turn",
+  "session_id": "cdcef55c-1550-45aa-85c1-280f9583f09f",
+  "total_cost_usd": 0.9300609999999999,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 44612,
+    "cache_read_input_tokens": 664134,
+    "output_tokens": 12694,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 44612,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1040,
+        "cache_read_input_tokens": 55451,
+        "cache_creation_input_tokens": 1002,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1002
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1639,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001724,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 12694,
+      "cacheReadInputTokens": 664134,
+      "cacheCreationInputTokens": 44612,
+      "webSearchRequests": 0,
+      "costUSD": 0.9283369999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "aeeb9cc4-3735-4220-827b-affebf51ea6b"
+}
+```
+
+</details>
+
+---

@@ -68,5 +68,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/train-c5-roboflamingo-finetune.md"
 }

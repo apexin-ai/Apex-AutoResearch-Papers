@@ -1,0 +1,1097 @@
+# eval westd41074 gpu0 fill
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_eval_westd41074-gpu0-fill_20260520T181831.jsonl`
+- **Structured JSON:** [`b77723698a2acaec59c4.json`](../../sessions/b7/b77723698a2acaec59c4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T18:20:37.898043+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T18:20:37.898551+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T18:20:37.898839+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_bus_id,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_bus_id,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T18:20:37.899007+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-20T18:20:37.899178+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"468864, 00000000:49:00.0, 15961 MiB\\n68539, 00000000:5A:00.0, 28546 MiB\\n68852, 00000000:A8:00.0, 27526 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-20T18:20:37.899325+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ps aux --no-headers -o pid,user,%cpu,%mem,start,command",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "ps aux --no-headers -o pid,user,%cpu,%mem,start,command",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T18:20:37.899459+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 1 MiB, 97887 MiB, 0 %\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 15980 MiB, 97887 MiB, 75 %\\n2, NVIDIA RTX PRO 6000 Blackwell Server Edition, 28555 MiB, 97887 MiB, 0 %\\n3, NVIDIA RTX PRO 6000 Blackwell Server Edition, 27535 MiB, 97887 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T18:20:37.899589+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"error: conflicting format options\\n\\nUsage:\\n ps [options]\\n\\n Try 'ps --help &lt;simple|list|output|threads|misc|all>'\\n  or 'ps --help &lt;s|l|o|t|m|a>'\\n for additional help text.\\n\\nFor more details see ps(1).\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T18:20:37.899730+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /proc/468864/cmdline",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "cat /proc/468864/cmdline",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T18:20:37.899860+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"python\\u0000eval_openvla_libero.py\\u0000--mode\\u0000random_prune\\u0000--k_ratio\\u00000.5\\u0000--suite\\u0000libero_object\\u0000--seed\\u000043\\u0000--output\\u0000/root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_k05_seed43_v2.json\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T18:20:37.899993+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T18:20:37.900194+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/logs/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T18:20:37.900393+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 560\\ndrwxr-xr-x  3 root root  8192 May 21 02:04 .\\ndrwxr-xr-x 13 root root  4096 May 20 21:36 ..\\n-rw-r--r--  1 root root  1484 May 16 19:18 action_diversity_by_step.json\\n-rw-r--r--  1 root root  1389 May 18 22:08 eval_acis_k05_supplement_200eps.json\\n-rw-r--r--  1 root root  1377 May 19 00:11 eval_acis_k05_supplement_v2.json\\n-rw-r--r--  1 root root  2751 May 17 21:00 eval_acis_k07_trained_prune.json\\n-rw-r--r--  1 root root  2723 May 19 04:46 eval_baseline_control_100k_v2.json\\n-rw-r--r--  1 root root  2705 May 19 07:22 eval_baseline_control_prune_k05.json\\n-rw-r--r--  1 root root  4172 May 16 06:45 eval_baseline_v5_bypass_acis.json\\n-rw-r--r--  1 root root  4147 May 16 05:23 eval_baseline_v5_final.json\\n-rw-r--r--  1 root root  4171 May 16 12:04 eval_baseline_v5_fixed.json\\n-rw-r--r--  1 root root  4145 May 16 05:28 eval_baseline_v5_step10000.json\\n-rw-r--r--  1 root root  4148 May 16 05:25 eval_baseline_v5_step5000.json\\n-rw-r--r--  1 root root  2486 May 18 00:12 eval_geometric_prior_k09_dryrun.json\\n-rw-r--r--  1 root root   836 May 16 06:56 eval_imm_v7_2_bypass_acis.json\\n-rw-r--r--  1 root root  4504 May 16 07:03 eval_imm_v7_2_final.json\\n-rw-r--r--  1 root root  4485 May 16 05:55 eval_imm_v7_2_step010000.json\\n-rw-r--r--  1 root root  4478 May 16 05:58 eval_imm_v7_2_step020000.json\\n-rw-r--r--  1 root root  4468 May 16 04:52 eval_imm_v7_final.json\\n-rw-r--r--  1 root root  2407 May 16 14:18 eval_imm_v8_1_acis_prune.json\\n-rw-r--r--  1 root root   830 May 16 14:18 eval_imm_v8_1_bypass.json\\n-rw-r--r--  1 root root  4510 May 16 14:13 eval_imm_v8_1_standard.json\\n-rw-r--r--  1 root root   834 May 16 10:48 eval_imm_v8_bypass_final.json\\n-rw-r--r--  1 root root   834 May 16 11:58 eval_imm_v8_bypass_fixed.json\\n-rw-r--r--  1 root root  4500 May 16 10:31 eval_imm_v8_final.json\\n-rw-r--r--  1 root root  8724 May 16 10:49 eval_imm_v8_final_30k.json\\n-rw-r--r--  1 root root  4526
+…[truncated 5181 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T18:20:37.900609+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1324\\ndrwxr-xr-x  2 root root   4096 May 20 21:18 .\\ndrwxr-xr-x 13 root root   4096 May 20 21:36 ..\\n-rw-r--r--  1 root root   2076 May 17 15:59 batch64_v2.log\\n-rw-r--r--  1 root root   7831 May 17 22:30 batch64_v2_resume.log\\n-rw-r--r--  1 root root   4430 May 18 00:48 dryrun_pi05.log\\n-rw-r--r--  1 root root   2113 May 18 00:54 dryrun_pi05_v2.log\\n-rw-r--r--  1 root root   6299 May 18 00:58 dryrun_pi05_v3.log\\n-rw-r--r--  1 root root  15092 May 19 00:11 eval_acis_k05_v2.log\\n-rw-r--r--  1 root root  10432 May 18 00:50 eval_geometric_prior_k05.log\\n-rw-r--r--  1 root root  12575 May 18 00:50 eval_geometric_prior_k07.log\\n-rw-r--r--  1 root root  11049 May 18 00:50 eval_geometric_prior_k09.log\\n-rw-r--r--  1 root root   3284 May 20 05:27 eval_openvla_acis_k05.log\\n-rw-r--r--  1 root root   1534 May 20 21:24 eval_openvla_random_k05_seed43.log\\n-rw-r--r--  1 root root   1534 May 20 21:24 eval_openvla_random_k07_seed43.log\\n-rw-r--r--  1 root root   5521 May 20 15:25 eval_openvla_sc_m128_vtconly_20k_seed42.log\\n-rw-r--r--  1 root root   2540 May 18 00:41 eval_pi05_baseline.log\\n-rw-r--r--  1 root root  34053 May 19 19:07 eval_smart_compress_m32_official.log\\n-rw-r--r--  1 root root  34192 May 19 19:01 eval_smart_compress_m32_seed44.log\\n-rw-r--r--  1 root root  34264 May 19 19:01 eval_smart_compress_m64_seed44.log\\n-rw-r--r--  1 root root  34090 May 19 19:02 eval_smart_compress_m96_seed44.log\\n-rw-r--r--  1 root root  19116 May 17 13:08 fullft_batch64.log\\n-rw-r--r--  1 root root   3171 May 18 00:12 geometric_prior_k09_dryrun.log\\n-rw-r--r--  1 root root   2457 May 18 15:00 inference_latency_comparison.log\\n-rw-r--r--  1 root root   3107 May 20 21:10 oft_prune_sweep.log\\n-rw-r--r--  1 root root 222198 May 19 16:14 smart_compress_m32_seed44.log\\n-rw-r--r--  1 root root 222200 May 19 16:01 smart_compress_m96_seed44.log\\n-rw-r--r--  1 root root   8154 May 20 06:20 train_c5_roboflamin
+…[truncated 679 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T18:20:37.900820+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -20 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k05_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "tail -20 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k05_seed43.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T18:20:37.900968+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[*] Loaded LIBERO norm stats: ['libero_object_no_noops']\\n`PrismaticProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.\\n[*] LLM hidden dim: 4096\\n[*] Action head loaded from: /root/autodl-tmp/openvla-oft-libero-object/action_head--150000_checkpoint.pt\\n[*] Proprio projector loaded from: /root/autodl-tmp/openvla-oft-libero-object/proprio_projector--150000_checkpoint.pt\\n[*] GPU mem: 16.2 GB\\n[*] Random pruning k=0.5 on vla.projector\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[*] libero_object: 10 tasks x 50 eps = 500 total\\n\\n\\n[Task 1/10] pick up the alphabet soup and place it in the basket\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[Pruning] 512 -> 256 vision tokens (k=0.5)\\n  Ep 10/50 task_sr=0/10 (6.2 eps/min)\\n  Ep 20/50 task_sr=0/20 (6.3 eps/min)\\n  Ep 30/50 task_sr=0/30 (6.3 eps/min)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T18:20:37.901100+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_k07_seed43_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_random_k07_seed43_v2.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T18:20:37.901343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"openvla-7b-libero-object\\\",\\n  \\\"mode\\\": \\\"random_prune\\\",\\n  \\\"suite\\\": \\\"libero_object\\\",\\n  \\\"k_ratio\\\": 0.7,\\n  \\\"overall_success_rate\\\": 0.526,\\n  \\\"total_successes\\\": 263,\\n  \\\"total_episodes\\\": 500,\\n  \\\"per_task\\\": {\\n    \\\"pick up the alphabet soup and place it in the basket\\\": {\\n      \\\"success_rate\\\": 0.84,\\n      \\\"successes\\\": 42,\\n      \\\"episodes\\\": 50\\n    },\\n    \\\"pick up the cream cheese and place it in the basket\\\": {\\n      \\\"success_rate\\\": 0.2,\\n      \\\"successes\\\": 10,\\n      \\\"episodes\\\": 50\\n    },\\n    \\\"pick up the salad dressing and place it in the basket\\\": {\\n      \\\"success_rate\\\": 0.66,\\n      \\\"successes\\\": 33,\\n      \\\"episodes\\\": 50\\n    },\\n    \\\"pick up the bbq sauce and place it in the basket\\\": {\\n      \\\"success_rate\\\": 0.42,\\n      \\\"successes\\\": 21,\\n      \\\"episodes\\\": 50\\n    },\\n    \\\"pick up the ketchup and place it in the basket\\\": {\\n      \\\"success_rate\\\": 0.7,\\n      \\\"successes\\\": 35,\\n      \\\"episodes\\\": 50\\n    },\\n    \\\"pick up the tomato sauce and place it in the basket\\\": {\\n      \\\"success_rate\\\": 0.54,\\n      \\\"successes\\\": 27,\\n      \\\"episodes\\\": 50\\n    },\\n    \\\"pick up the butter and place it in the basket\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 5,\\n      \\\"episodes\\\": 50\\n    },\\n    \\\"pick up the milk and place it in the basket\\\": {\\n      \\\"success_rate\\\": 0.6,\\n      \\\"successes\\\": 30,\\n      \\\"episodes\\\": 50\\n    },\\n    \\\"pick up the chocolate pudding and place it in the basket\\\": {\\n      \\\"success_rate\\\": 0.36,\\n      \\\"successes\\\": 18,\\n      \\\"episodes\\\": 50\\n    },\\n    \\\"pick up the orange juice and place it in the basket\\\": {\\n      \\\"success_rate\\\": 0.8
+…[truncated 430 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T18:20:37.901505+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results/ -name \"*random*k09*\" -o -name \"*random*k095*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "find /root/autodl-tmp/importance_margin_vla_compress/eval_results/ -name \"*random*k09*\" -o -name \"*random*k095*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T18:20:37.901639+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/eval_results/smolvla_random_prune_k095.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/oft_random_prune_k095_object.json\\n/root/autodl-tmp/importance_margin_vla_compress/eval_results/oft_random_prune_k09_object.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T18:20:37.901798+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cd /root/autodl-tmp/importance_margin_vla_compress && mkdir -p logs && CUDA_VISIBLE_DEVICES=0 nohup python -u eval_openvla_libero.py --mode random_prune --k_ratio 0.95 --suite libero_object --seed 43 --output eval_results/openvla_random_k095_seed43.json > logs/eval_openvla_random_k095_seed43.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "cd /root/autodl-tmp/importance_margin_vla_compress && mkdir -p logs && CUDA_VISIBLE_DEVICES=0 nohup python -u eval_openvla_libero.py --mode random_prune --k_ratio 0.95 --suite libero_object --seed 43 --output eval_results/openvla_random_k095_seed43.json > logs/eval_openvla_random_k095_seed43.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T18:20:37.901936+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=564693\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T18:20:37.902081+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T18:20:37.902237+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 1 MiB, 0 %\\n1, 15980 MiB, 83 %\\n2, 28555 MiB, 0 %\\n3, 27535 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T18:20:37.902359+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k095_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "tail -5 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k095_seed43.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T18:20:37.902480+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"nohup: failed to run command 'python': No such file or directory\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T18:20:37.902625+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /proc/468864/environ",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "cat /proc/468864/environ",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-20T18:20:37.902800+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls /root/miniconda3/bin/python",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "ls /root/miniconda3/bin/python",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T18:20:37.903211+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SHELL=/bin/bash\\u0000CONDA_EXE=/root/miniconda3/bin/conda\\u0000_CE_M=\\u0000PWD=/root/autodl-tmp/importance_margin_vla_compress\\u0000LOGNAME=root\\u0000CONDA_PREFIX=/root/miniconda3\\u0000TZ=Asia/Shanghai\\u0000MOTD_SHOWN=pam\\u0000HOME=/root\\u0000CONDA_PROMPT_MODIFIER=(base) \\u0000SSH_CONNECTION=127.0.0.1 55006 127.0.0.1 22\\u0000_CE_CONDA=\\u0000USER=root\\u0000CONDA_SHLVL=1\\u0000SHLVL=1\\u0000CONDA_PYTHON_EXE=/root/miniconda3/bin/python\\u0000SSH_CLIENT=127.0.0.1 55006 22\\u0000CONDA_DEFAULT_ENV=base\\u0000PATH=/root/miniconda3/bin:/root/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin\\u0000OLDPWD=/root\\u0000_=/usr/bin/nohup\\u0000CUDA_VISIBLE_DEVICES=1\\u0000MUJOCO_GL=egl\\u0000TRANSFORMERS_OFFLINE=1\\u0000HF_HUB_OFFLINE=1\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T18:20:37.903390+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T18:20:37.903546+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=0 nohup python -u eval_openvla_libero.py --mode random_prune --k_ratio 0.95 --suite libero_object --seed 43 --output eval_results/openvla_random_k095_seed43.json > logs/eval_openvla_random_k095_seed43.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=0 nohup python -u eval_openvla_libero.py --mode random_prune --k_ratio 0.95 --suite libero_object --seed 43 --output eval_results/openvla_random_k095_seed43.json > logs/eval_openvla_random_k095_seed43.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T18:20:37.903678+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=0 nohup python -u eval_openvla_libero.py --mode random_prune --k_ratio 0.95 --suite libero_object --seed 43 --output eval_results/openvla_random_k095_seed43.json > logs/eval_openvla_random_k095_seed43.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=564806\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T18:20:37.903826+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-20T18:20:37.903945+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -10 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k095_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41074",
+    "command": "tail -10 /root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_random_k095_seed43.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T18:20:37.904066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 15980 MiB, 73 %\\n1, 15980 MiB, 63 %\\n2, 28555 MiB, 0 %\\n3, 27535 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T18:20:37.904214+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[*] Vision tokens: 256, dim: 4096\\n[*] Random pruning: k=0.95\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[*] libero_object: 10 tasks x 50 episodes = 500 total\\n\\n[Task 1/10] pick up the alphabet soup and place it in the basket\\n[Pruning] 256 -> 243 vision tokens (k=0.95)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-20T18:20:37.904385+00:00_
+
+已确认启动成功。
+
+**GPU 0** — OpenVLA random prune **k=0.95 seed43**, PID=564806
+- 256 → 243 vision tokens（仅剪 5%）
+- 已开始 Task 1/10，正常运行中
+- GPU 0 占用 15980 MiB, 73% util
+
+**GPU 1** — OpenVLA random prune **k=0.5 seed43**（进行中）
+- Task 1/10, Ep 30/50, 目前 0% SR
+- 预估总时长 ~4.5h（参考 k=0.7 跑了 269 min）
+
+**已有结果**:
+- k=0.7 seed43: **SR=52.6%**（263/500）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_eval_westd41074-gpu0-fill_20260520T181831"
+}
+```
+
+</details>
+
+---

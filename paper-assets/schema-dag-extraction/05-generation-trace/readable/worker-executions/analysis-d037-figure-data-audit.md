@@ -1,0 +1,2114 @@
+# analysis d037 figure data audit
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_analysis_d037_figure_data_audit_20260516T040010.log`
+- **Structured JSON:** [`15e15350b8d23b0d04e9.json`](../../sessions/15/15e15350b8d23b0d04e9.json)
+
+## Before a recorded user message
+
+41 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "34ba47c9-e892-4111-88c2-f273d9fcefe2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778921400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "89257fb0-4b0e-4b24-a475-9a627c6f40a0",
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll tackle all three tasks in parallel: reading the plotting script locally and querying the server for the JSON files and practical magnitude data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "d8e8807b-29cb-45a8-82ce-7f28ea36e4ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6dTk3mbX4K3TjVEZZPxHY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11752,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11752
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011hMtVVFYueaah9oZjT71aa`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "8d78f151-00d2-4759-b9d8-3af1d949c621",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V6dTk3mbX4K3TjVEZZPxHY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11752,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11752
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T04:00:28.252Z_
+
+<details><summary>↩ Tool result · `toolu_011hMtVVFYueaah9oZjT71aa`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "46b80ad8-f44e-4b73-aa0d-0a8a036cdc27",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I'll execute the tasks in parallel:
+1. Read the plotting script from the server
+2. Search for round2_statistical_analyses.json
+3. Search for practical magnitude data sources
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "65ae09b7-bfb0-4f8e-9d04-a8a9874d6c6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LGc2uQ4Vk4CaGSmdRyWF6R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 901,
+      "cache_read_input_tokens": 23593,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 901
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BhcMqLe8hAYhS5L59J9sYr`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/scripts/gen_fig_count_curves.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "59f4b6b0-03d9-4633-90ee-be4e066ed8e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LGc2uQ4Vk4CaGSmdRyWF6R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 901,
+      "cache_read_input_tokens": 23593,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 901
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ByFh88dD5jGxvG7AiyTqgu`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts/ -name \"*round2*\" -o -name \"*statistical*\" -o -name \"*d037*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "b250744e-c452-4b5e-9330-79d73824ced2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LGc2uQ4Vk4CaGSmdRyWF6R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 901,
+      "cache_read_input_tokens": 23593,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 901
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T04:00:41.037Z_
+
+<details><summary>↩ Tool result · `toolu_01BhcMqLe8hAYhS5L59J9sYr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Figure: Count-Degradation Curves (NER + RE).\\\"\\\"\\\"\\n\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\n\\nplt.rcParams.update({\\n    'font.family': 'serif',\\n    'font.size': 11,\\n    'axes.labelsize': 12,\\n    'axes.titlesize': 13,\\n    'xtick.labelsize': 11,\\n    'ytick.labelsize': 11,\\n    'legend.fontsize': 10,\\n    'figure.dpi': 300,\\n    'savefig.bbox': 'tight',\\n    'savefig.pad_inches': 0.05,\\n    'axes.spines.top': False,\\n    'axes.spines.right': False,\\n})\\n\\nCB_BLUE = '#0173B2'\\nCB_ORANGE = '#DE8F05'\\n\\nfig, axes = plt.subplots(1, 2, figsize=(7.0, 3.0))\\n\\n# --- Panel (a): Few-NERD NER — exp001 Qwen3-32B-FP8 Recall ---\\nax = axes[0]\\ncounts_a = [1, 2, 6, 12, 22, 44, 64]\\nrecall_a = [0.720, 0.698, 0.620, 0.539, 0.527, 0.551, 0.418]\\nax.plot(counts_a, recall_a, 'o-', color=CB_BLUE, markersize=7, linewidth=1.8,\\n        markeredgecolor='white', markeredgewidth=0.8)\\nax.set_xlabel('Number of Entity Types')\\nax.set_ylabel('Recall')\\nax.text(0.03, 0.97, '(a)', transform=ax.transAxes, fontsize=13,\\n        fontweight='bold', va='top', ha='left')\\nax.set_xscale('log', base=2)\\nax.set_xticks(counts_a)\\nax.set_xticklabels([str(c) for c in counts_a])\\nax.set_ylim(0.38, 0.78)\\nax.grid(True, alpha=0.3, color='grey', linewidth=0.5)\\n\\n# --- Panel (b): FewRel RE — exp_fewrel_formal_80rel Qwen3-32B-FP8 Accuracy ---\\nax = axes[1]\\ncounts_b = [1, 4, 8, 16, 32, 40, 64, 80]\\nacc_b   = [0.8573, 0.8667, 0.8021, 0.6958, 0.6578, 0.588, 0.5424, 0.5042]\\nax.plot(counts_b, acc_b, 's-', color=CB_ORANGE, markersize=7, linewidth=1.8,\\n        markeredgecolor='white', markeredgewidth=0.8)\\nax.set_xlabel('Number of Relation Types')\\nax.set_ylabel('Accuracy')\\nax.text(0.03, 0.97, '(b)', transform=ax.transAxes, fontsize=13,\\n        fontweight='bold', va='top', ha='left')\\nax.set_xscale('log', base=2)\\nax.set_xticks(counts_b)\\nax.set_xticklabels([str(c) for c in counts_b])\\nax.set_ylim(0.45, 0.92)\\nax.grid(True, alpha=0.3, color='grey', linewidth=0.5)\\n\\nplt.tight_layout(w_pad=2.5)\\noutpath = '/root/schema-dag-extraction/figures/paper/fig_count_curves.pdf'\\nfig.savefig(outpath, format='pdf')\\nprint(f'Saved: {outpath}')\\n\\n# Verification\\nprint('\\\\n--- Data Verification ---')\\nprint('Panel (a) Few-NERD NER [exp001]:')\\nfor c, r in zip(counts_a, recall_a):\\n    print(f'  count_{c}: recall={r}')\\nprint(f'  y-range: [{min(recall_a):.3f}, {max(recall_a):.3f}]')\\n\\nprint('Panel (b) FewRel RE [exp_fewrel_formal_80rel + 40rel_r4]:')\\nfor c, a in zip(counts_b, acc_b):\\n    print(f'  count_{c}: accuracy={a}')\\nprint(f'  y-range: [{min(acc_b):.4f}, {max(acc_b):.4f}]')\\n\\nplt.close()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "92029b1b-e063-45f7-afaa-e4630d21d3cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Figure: Count-Degradation Curves (NER + RE).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\n\\\\nplt.rcParams.update({\\\\n    'font.family': 'serif',\\\\n    'font.size': 11,\\\\n    'axes.labelsize': 12,\\\\n    'axes.titlesize': 13,\\\\n    'xtick.labelsize': 11,\\\\n    'ytick.labelsize': 11,\\\\n    'legend.fontsize': 10,\\\\n    'figure.dpi': 300,\\\\n    'savefig.bbox': 'tight',\\\\n    'savefig.pad_inches': 0.05,\\\\n    'axes.spines.top': False,\\\\n    'axes.spines.right': False,\\\\n})\\\\n\\\\nCB_BLUE = '#0173B2'\\\\nCB_ORANGE = '#DE8F05'\\\\n\\\\nfig, axes = plt.subplots(1, 2, figsize=(7.0, 3.0))\\\\n\\\\n# --- Panel (a): Few-NERD NER — exp001 Qwen3-32B-FP8 Recall ---\\\\nax = axes[0]\\\\ncounts_a = [1, 2, 6, 12, 22, 44, 64]\\\\nrecall_a = [0.720, 0.698, 0.620, 0.539, 0.527, 0.551, 0.418]\\\\nax.plot(counts_a, recall_a, 'o-', color=CB_BLUE, markersize=7, linewidth=1.8,\\\\n        markeredgecolor='white', markeredgewidth=0.8)\\\\nax.set_xlabel('Number of Entity Types')\\\\nax.set_ylabel('Recall')\\\\nax.text(0.03, 0.97, '(a)', transform=ax.transAxes, fontsize=13,\\\\n        fontweight='bold', va='top', ha='left')\\\\nax.set_xscale('log', base=2)\\\\nax.set_xticks(counts_a)\\\\nax.set_xticklabels([str(c) for c in counts_a])\\\\nax.set_ylim(0.38, 0.78)\\\\nax.grid(True, alpha=0.3, color='grey', linewidth=0.5)\\\\n\\\\n# --- Panel (b): FewRel RE — exp_fewrel_formal_80rel Qwen3-32B-FP8 Accuracy ---\\\\nax = axes[1]\\\\ncounts_b = [1, 4, 8, 16, 32, 40, 64, 80]\\\\nacc_b   = [0.8573, 0.8667, 0.8021, 0.6958, 0.6578, 0.588, 0.5424, 0.5042]\\\\nax.plot(counts_b, acc_b, 's-', color=CB_ORANGE, markersize=7, linewidth=1.8,\\\\n        markeredgecolor='white', markeredgewidth=0.8)\\\\nax.set_xlabel('Number of Relation Types')\\\\nax.set_ylabel('Accuracy')\\\\nax.text(0.03, 0.97, '(b)', transform=ax.transAxes, fontsize=13,\\\\n        fontweight='bold', va='top', ha='left')\\\\nax.set_xscale('log', base=2)\\\\nax.set_xticks(counts_b)\\\\nax.set_xticklabels([str(c) for c in counts_b])\\\\nax.set_ylim(0.45, 0.92)\\\\nax.grid(True, alpha=0.3, color='grey', linewidth=0.5)\\\\n\\\\nplt.tight_layout(w_pad=2.5)\\\\noutpath = '/root/schema-dag-extraction/figures/paper/fig_count_curves.pdf'\\\\nfig.savefig(outpath, format='pdf')\\\\nprint(f'Saved: {outpath}')\\\\n\\\\n# Verification\\\\nprint('\\\\\\\\n--- Data Verification ---')\\\\nprint('Panel (a) Few-NERD NER [exp001]:')\\\\nfor c, r in zip(counts_a, recall_a):\\\\n    print(f'  count_{c}: recall={r}')\\\\nprint(f'  y-range: [{min(recall_a):.3f}, {max(recall_a):.3f}]')\\\\n\\\\nprint('Panel (b) FewRel RE [exp_fewrel_formal_80rel + 40rel_r4]:')\\\\nfor c, a in zip(counts_b, acc_b):\\\\n    print(f'  count_{c}: accuracy={a}')\\\\nprint(f'  y-range: [{min(acc_b):.4f}, {max(acc_b):.4f}]')\\\\n\\\\nplt.close()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Figure: Count-Degradation Curves (NER + RE).\\\"\\\"\\\"\\n\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\n\\nplt.rcParams.update({\\n    'font.family': 'serif',\\n    'font.size': 11,\\n    'axes.labelsize': 12,\\n    'axes.titlesize': 13,\\n    'xtick.labelsize': 11,\\n    'ytick.labelsize': 11,\\n    'legend.fontsize': 10,\\n    'figure.dpi': 300,\\n    'savefig.bbox': 'tight',\\n    'savefig.pad_inches': 0.05,\\n    'axes.spines.top': False,\\n    'axes.spines.right': False,\\n})\\n\\nCB_BLUE = '#0173B2'\\nCB_ORANGE = '#DE8F05'\\n\\nfig, axes = plt.subplots(1, 2, figsize=(7.0, 3.0))\\n\\n# --- Panel (a): Few-NERD NER — exp001 Qwen3-32B-FP8 Recall ---\\nax = axes[0]\\ncounts_a = [1, 2, 6, 12, 22, 44, 64]\\nrecall_a = [0.720, 0.698, 0.620, 0.539, 0.527, 0.551, 0.418]\\nax.plot(counts_a, recall_a, 'o-', color=CB_BLUE, markersize=7, linewidth=1.8,\\n        markeredgecolor='white', markeredgewidth=0.8)\\nax.set_xlabel('Number of Entity Types')\\nax.set_ylabel('Recall')\\nax.text(0.03, 0.97, '(a)', transform=ax.transAxes, fontsize=13,\\n        fontweight='bold', va='top', ha='left')\\nax.set_xscale('log', base=2)\\nax.set_xticks(counts_a)\\nax.set_xticklabels([str(c) for c in counts_a])\\nax.set_ylim(0.38, 0.78)\\nax.grid(True, alpha=0.3, color='grey', linewidth=0.5)\\n\\n# --- Panel (b): FewRel RE — exp_fewrel_formal_80rel Qwen3-32B-FP8 Accuracy ---\\nax = axes[1]\\ncounts_b = [1, 4, 8, 16, 32, 40, 64, 80]\\nacc_b   = [0.8573, 0.8667, 0.8021, 0.6958, 0.6578, 0.588, 0.5424, 0.5042]\\nax.plot(counts_b, acc_b, 's-', color=CB_ORANGE, markersize=7, linewidth=1.8,\\n        markeredgecolor='white', markeredgewidth=0.8)\\nax.set_xlabel('Number of Relation Types')\\nax.set_ylabel('Accuracy')\\nax.text(0.03, 0.97, '(b)', transform=ax.transAxes, fontsize=13,\\n        fontweight='bold', va='top', ha='left')\\nax.set_xscale('log', base=2)\\nax.set_xticks(counts_b)\\nax.set_xticklabels([str(c) for c in counts_b])\\nax.set_ylim(0.45, 0.92)\\nax.grid(True, alpha=0.3, color='grey', linewidth=0.5)\\n\\nplt.tight_layout(w_pad=2.5)\\noutpath = '/root/schema-dag-extraction/figures/paper/fig_count_curves.pdf'\\nfig.savefig(outpath, format='pdf')\\nprint(f'Saved: {outpath}')\\n\\n# Verification\\nprint('\\\\n--- Data Verification ---')\\nprint('Panel (a) Few-NERD NER [exp001]:')\\nfor c, r in zip(counts_a, recall_a):\\n    print(f'  count_{c}: recall={r}')\\nprint(f'  y-range: [{min(recall_a):.3f}, {max(recall_a):.3f}]')\\n\\nprint('Panel (b) FewRel RE [exp_fewrel_formal_80rel + 40rel_r4]:')\\nfor c, a in zip(counts_b, acc_b):\\n    print(f'  count_{c}: accuracy={a}')\\nprint(f'  y-range: [{min(acc_b):.4f}, {max(acc_b):.4f}]')\\n\\nplt.close()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T04:00:41.485Z_
+
+<details><summary>↩ Tool result · `toolu_01ByFh88dD5jGxvG7AiyTqgu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "71b503ad-4a28-4fcf-a60e-fad0d9cad913",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CeenxLD86fHyGnCTH3HD6y`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -r \"IQR\\|typical_gap\\|practical\\|gap_pp\" /root/schema-dag-extraction/artifacts/ --include=\"*.json\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "a9d1870b-b11a-4b70-bd54-c920b0278cf2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LGc2uQ4Vk4CaGSmdRyWF6R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 901,
+      "cache_read_input_tokens": 23593,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 901
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T04:00:41.596Z_
+
+<details><summary>↩ Tool result · `toolu_01CeenxLD86fHyGnCTH3HD6y`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "c8743deb-596d-4645-8962-93ce583437a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The grep with `-l` flag should be allowed. Let me retry without the pipe. Also, let me read the round2 JSON file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "a699ee27-8e60-49b8-b277-cfbe808300d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAMbv5VRizat8NeanzoBxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2067,
+      "cache_read_input_tokens": 24494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2067
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Found the script and the JSON. Now reading the JSON and searching for practical magnitude sources.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "12f5f193-ec08-41b3-a974-af48b146c98a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAMbv5VRizat8NeanzoBxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2067,
+      "cache_read_input_tokens": 24494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2067
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SWLX58ZbZ2dnsT9NZWbME1`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/round2_statistical_analyses.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "170967c6-8de3-4785-a537-ee594c126f8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAMbv5VRizat8NeanzoBxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2067,
+      "cache_read_input_tokens": 24494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2067
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T04:00:47.703Z_
+
+<details><summary>↩ Tool result · `toolu_01SWLX58ZbZ2dnsT9NZWbME1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"W3_cluster_bootstrap\\\": {\\n    \\\"fewnerd\\\": {\\n      \\\"point_estimate\\\": 0.1372302437793451,\\n      \\\"cluster_ci_lower\\\": 0.06929773496707424,\\n      \\\"cluster_ci_upper\\\": 0.2186197985169236,\\n      \\\"n_types\\\": 63,\\n      \\\"n_pairs\\\": 1953,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_valid_bootstrap\\\": 10000,\\n      \\\"significant\\\": true,\\n      \\\"boot_mean\\\": 0.14559536506023063,\\n      \\\"boot_std\\\": 0.03701644340721873,\\n      \\\"naive_ci\\\": [\\n        0.076,\\n        0.156\\n      ],\\n      \\\"narrative\\\": \\\"We recomputed CIs using a cluster bootstrap that resamples entity types (N=63) rather than individual pairs. The cluster-robust 95% CI [0.069, 0.219] is wider than the naive pair-level CI [0.076, 0.156] as expected, but still excludes zero, confirming that the pairwise SCS-confusion correlation is statistically significant even after accounting for type-level clustering.\\\",\\n      \\\"original_r_paper\\\": 0.112\\n    },\\n    \\\"maven\\\": {\\n      \\\"point_estimate\\\": 0.1285734563090772,\\n      \\\"cluster_ci_lower\\\": 0.0806734385093243,\\n      \\\"cluster_ci_upper\\\": 0.184957155553557,\\n      \\\"n_types\\\": 149,\\n      \\\"n_pairs\\\": 11026,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_valid_bootstrap\\\": 10000,\\n      \\\"significant\\\": true,\\n      \\\"boot_mean\\\": 0.12934477309781067,\\n      \\\"boot_std\\\": 0.026041657610013258,\\n      \\\"naive_ci\\\": [\\n        0.104,\\n        0.156\\n      ],\\n      \\\"narrative\\\": \\\"For MAVEN (N=149 types), the cluster-robust 95% CI [0.081, 0.185] is wider than the naive CI [0.104, 0.156], but also excludes zero, confirming significance under cluster-robust inference.\\\",\\n      \\\"original_r_paper\\\": 0.129\\n    }\\n  },\\n  \\\"W4_recall_ci\\\": {\\n    \\\"count_22\\\": {\\n      \\\"n_batches\\\": 5,\\n      \\\"per_batch_recalls\\\": [\\n        0.5077,\\n        0.5961,\\n        0.4649,\\n        0.5162,\\n        0.5262\\n      ],\\n      \\\"per_batch_tp\\\": [\\n        496,\\n        704,\\n        417,\\n        351,\\n        361\\n      ],\\n      \\\"per_batch_gold\\\": [\\n        977,\\n        1181,\\n        897,\\n        680,\\n        686\\n      ],\\n      \\\"pooled_recall\\\": 0.5268,\\n      \\\"mean_recall\\\": 0.5222,\\n      \\\"pooled_ci_lower\\\": 0.4842,\\n      \\\"pooled_ci_upper\\\": 0.569,\\n      \\\"mean_ci_lower\\\": 0.4874,\\n      \\\"mean_ci_upper\\\": 0.5624,\\n      \\\"std\\\": 0.0475\\n    },\\n    \\\"count_44\\\": {\\n      \\\"n_batches\\\": 5,\\n      \\\"per_batch_recalls\\\": [\\n        0.5716,\\n        0.4958,\\n        0.5738,\\n        0.5433,\\n        0.5611\\n      ],\\n      \\\"per_batch_tp\\\": [\\n        1114,\\n        759,\\n        1089,\\n        1185,\\n        1088\\n      ],\\n      \\\"per_batch_gold\\\": [\\n        1949,\\n        1531,\\n        1898,\\n        2181,\\n        1939\\n      ],\\n      \\\"pooled_recall\\\": 0.5512,\\n      \\\"mean_recall\\\": 0.5491,\\n      \\\"pooled_ci_lower\\\": 0.5248,\\n      \\\"pooled_ci_upper\\\": 0.5699,\\n      \\\"mean_ci_lower\\\": 0.5209,\\n      \\\"mean_ci_upper\\\": 0.5699,\\n      \\\"std\\\": 0.0322\\n    },\\n    \\\"overlap_analysis\\\": {\\n      \\\"pooled_ci_22\\\": [\\n        0.4842,\\n        0.569\\n      ],\\n      \\\"pooled_ci_44\\\": [\\n        0.5248,\\n        0.5699\\n      ],\\n      \\\"overlap_pooled\\\": true,\\n      \\\"mean_ci_22\\\": [\\n        0.4874,\\n        0.5624\\n      ],\\n      \\\"mean_ci_44\\\": [\\n        0.5209,\\n        0.5699\\n      ],\\n      \\\"overlap_mean\\\": true,\\n      \\\"delta_pooled\\\": 0.0244,\\n      \\\"delta_mean\\\": 0.0269,\\n      \\\"narrative\\\": \\\"The 95% bootstrap CIs for count=22 (pooled recall=0.527, CI [0.484, 0.569]) and count=44 (pooled recall=0.551, CI [0.525, 0.570]) overlap substantially, confirming that the non-monotonicity (+0.024) is within sampling variability and not statistically significant. With only 5 batches per count level, the wide CIs reflect the expected high variance in batch composition.\\\"\\n    }\\n  },\\n  \\\"W2_practical_effect\\\": {\\n    \\\"16rel_pool\\\": {\\n      \\\"n_batches\\\": 100,\\n      \\\"slope\\\": -0.449,\\n      \\\"slope_ci_95\\\": [\\n        -0.5564038709006914,\\n        -0.3485078314313499\\n      ],\\n      \\\"r_value\\\": -0.6373,\\n      \\\"bcs_stats\\\": {\\n        \\\"mean\\\": 0.8259,\\n        \\\"std\\\": 0.0672,\\n        \\\"median\\\": 0.8405,\\n        \\\"Q1\\\": 0.7818,\\n        \\\"Q3\\\": 0.892,\\n        \\\"IQR\\\": 0.1102,\\n        \\\"min\\\": 0.6532,\\n        \\\"max\\\": 0.9002\\n      },\\n      \\\"typical_gap_pp\\\": -4.95,\\n      \\\"one_sd_gap_pp\\\": -3.02,\\n      \\\"extreme_gap_pp\\\": -31.2\\n    },\\n    \\\"80pool_16sub\\\": {\\n      \\\"slope\\\": -0.401,\\n      \\\"slope_ci_95\\\": [\\n        -0.684044,\\n        -0.062478\\n      ],\\n      \\\"bcs_Q1\\\": 0.5037,\\n      \\\"bcs_Q3\\\": 0.5692,\\n      \\\"IQR\\\": 0.0655,\\n      \\\"typical_gap_pp\\\": -2.63,\\n      \\\"one_sd_gap_pp\\\": -1.76\\n    },\\n    \\\"narrative\\\": \\\"The extreme-batch 31.2pp gap compares the lowest-BCS and highest-BCS batches (top/bottom 5% of batch compositions). For typical user experience, we consider the interquartile range (IQR). In the 16-relation pool (r=-0.64), BCS IQR spans [0.782, 0.892] (width=0.110). The regression slope (-0.449) predicts a typical Q1-to-Q3 gap of 4.9pp. A 1-SD BCS change (0.067) corresponds to 3.0pp accuracy change. In the 80-type pool with 16-type subsets (more realistic deployments), the typical IQR gap is 2.6pp and the 1-SD gap is 1.8pp.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "98cf8b2d-fa56-4e91-85df-021b0670ae40",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"W3_cluster_bootstrap\\\\\\\": {\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.1372302437793451,\\\\n      \\\\\\\"cluster_ci_lower\\\\\\\": 0.06929773496707424,\\\\n      \\\\\\\"cluster_ci_upper\\\\\\\": 0.2186197985169236,\\\\n      \\\\\\\"n_types\\\\\\\": 63,\\\\n      \\\\\\\"n_pairs\\\\\\\": 1953,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_valid_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"significant\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.14559536506023063,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.03701644340721873,\\\\n      \\\\\\\"naive_ci\\\\\\\": [\\\\n        0.076,\\\\n        0.156\\\\n      ],\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"We recomputed CIs using a cluster bootstrap that resamples entity types (N=63) rather than individual pairs. The cluster-robust 95% CI [0.069, 0.219] is wider than the naive pair-level CI [0.076, 0.156] as expected, but still excludes zero, confirming that the pairwise SCS-confusion correlation is statistically significant even after accounting for type-level clustering.\\\\\\\",\\\\n      \\\\\\\"original_r_paper\\\\\\\": 0.112\\\\n    },\\\\n    \\\\\\\"maven\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.1285734563090772,\\\\n      \\\\\\\"cluster_ci_lower\\\\\\\": 0.0806734385093243,\\\\n      \\\\\\\"cluster_ci_upper\\\\\\\": 0.184957155553557,\\\\n      \\\\\\\"n_types\\\\\\\": 149,\\\\n      \\\\\\\"n_pairs\\\\\\\": 11026,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_valid_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"significant\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.12934477309781067,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.026041657610013258,\\\\n      \\\\\\\"naive_ci\\\\\\\": [\\\\n        0.104,\\\\n        0.156\\\\n      ],\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"For MAVEN (N=149 types), the cluster-robust 95% CI [0.081, 0.185] is wider than the naive CI [0.104, 0.156], but also excludes zero, confirming significance under cluster-robust inference.\\\\\\\",\\\\n      \\\\\\\"original_r_paper\\\\\\\": 0.129\\\\n    }\\\\n  },\\\\n  \\\\\\\"W4_recall_ci\\\\\\\": {\\\\n    \\\\\\\"count_22\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 5,\\\\n      \\\\\\\"per_batch_recalls\\\\\\\": [\\\\n        0.5077,\\\\n        0.5961,\\\\n        0.4649,\\\\n        0.5162,\\\\n        0.5262\\\\n      ],\\\\n      \\\\\\\"per_batch_tp\\\\\\\": [\\\\n        496,\\\\n        704,\\\\n        417,\\\\n        351,\\\\n        361\\\\n      ],\\\\n      \\\\\\\"per_batch_gold\\\\\\\": [\\\\n        977,\\\\n        1181,\\\\n        897,\\\\n        680,\\\\n        686\\\\n      ],\\\\n      \\\\\\\"pooled_recall\\\\\\\": 0.5268,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.5222,\\\\n      \\\\\\\"pooled_ci_lower\\\\\\\": 0.4842,\\\\n      \\\\\\\"pooled_ci_upper\\\\\\\": 0.569,\\\\n      \\\\\\\"mean_ci_lower\\\\\\\": 0.4874,\\\\n      \\\\\\\"mean_ci_upper\\\\\\\": 0.5624,\\\\n      \\\\\\\"std\\\\\\\": 0.0475\\\\n    },\\\\n    \\\\\\\"count_44\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 5,\\\\n      \\\\\\\"per_batch_recalls\\\\\\\": [\\\\n        0.5716,\\\\n        0.4958,\\\\n        0.5738,\\\\n        0.5433,\\\\n        0.5611\\\\n      ],\\\\n      \\\\\\\"per_batch_tp\\\\\\\": [\\\\n        1114,\\\\n        759,\\\\n        1089,\\\\n        1185,\\\\n        1088\\\\n      ],\\\\n      \\\\\\\"per_batch_gold\\\\\\\": [\\\\n        1949,\\\\n        1531,\\\\n        1898,\\\\n        2181,\\\\n        1939\\\\n      ],\\\\n      \\\\\\\"pooled_recall\\\\\\\": 0.5512,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.5491,\\\\n      \\\\\\\"pooled_ci_lower\\\\\\\": 0.5248,\\\\n      \\\\\\\"pooled_ci_upper\\\\\\\": 0.5699,\\\\n      \\\\\\\"mean_ci_lower\\\\\\\": 0.5209,\\\\n      \\\\\\\"mean_ci_upper\\\\\\\": 0.5699,\\\\n      \\\\\\\"std\\\\\\\": 0.0322\\\\n    },\\\\n    \\\\\\\"overlap_analysis\\\\\\\": {\\\\n      \\\\\\\"pooled_ci_22\\\\\\\": [\\\\n        0.4842,\\\\n        0.569\\\\n      ],\\\\n      \\\\\\\"pooled_ci_44\\\\\\\": [\\\\n        0.5248,\\\\n        0.5699\\\\n      ],\\\\n      \\\\\\\"overlap_pooled\\\\\\\": true,\\\\n      \\\\\\\"mean_ci_22\\\\\\\": [\\\\n        0.4874,\\\\n        0.5624\\\\n      ],\\\\n      \\\\\\\"mean_ci_44\\\\\\\": [\\\\n        0.5209,\\\\n        0.5699\\\\n      ],\\\\n      \\\\\\\"overlap_mean\\\\\\\": true,\\\\n      \\\\\\\"delta_pooled\\\\\\\": 0.0244,\\\\n      \\\\\\\"delta_mean\\\\\\\": 0.0269,\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"The 95% bootstrap CIs for count=22 (pooled recall=0.527, CI [0.484, 0.569]) and count=44 (pooled recall=0.551, CI [0.525, 0.570]) overlap substantially, confirming that the non-monotonicity (+0.024) is within sampling variability and not statistically significant. With only 5 batches per count level, the wide CIs reflect the expected high variance in batch composition.\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"W2_practical_effect\\\\\\\": {\\\\n    \\\\\\\"16rel_pool\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 100,\\\\n      \\\\\\\"slope\\\\\\\": -0.449,\\\\n      \\\\\\\"slope_ci_95\\\\\\\": [\\\\n        -0.5564038709006914,\\\\n        -0.3485078314313499\\\\n      ],\\\\n      \\\\\\\"r_value\\\\\\\": -0.6373,\\\\n      \\\\\\\"bcs_stats\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.8259,\\\\n        \\\\\\\"std\\\\\\\": 0.0672,\\\\n        \\\\\\\"median\\\\\\\": 0.8405,\\\\n        \\\\\\\"Q1\\\\\\\": 0.7818,\\\\n        \\\\\\\"Q3\\\\\\\": 0.892,\\\\n        \\\\\\\"IQR\\\\\\\": 0.1102,\\\\n        \\\\\\\"min\\\\\\\": 0.6532,\\\\n        \\\\\\\"max\\\\\\\": 0.9002\\\\n      },\\\\n      \\\\\\\"typical_gap_pp\\\\\\\": -4.95,\\\\n      \\\\\\\"one_sd_gap_pp\\\\\\\": -3.02,\\\\n      \\\\\\\"extreme_gap_pp\\\\\\\": -31.2\\\\n    },\\\\n    \\\\\\\"80pool_16sub\\\\\\\": {\\\\n      \\\\\\\"slope\\\\\\\": -0.401,\\\\n      \\\\\\\"slope_ci_95\\\\\\\": [\\\\n        -0.684044,\\\\n        -0.062478\\\\n      ],\\\\n      \\\\\\\"bcs_Q1\\\\\\\": 0.5037,\\\\n      \\\\\\\"bcs_Q3\\\\\\\": 0.5692,\\\\n      \\\\\\\"IQR\\\\\\\": 0.0655,\\\\n      \\\\\\\"typical_gap_pp\\\\\\\": -2.63,\\\\n      \\\\\\\"one_sd_gap_pp\\\\\\\": -1.76\\\\n    },\\\\n    \\\\\\\"narrative\\\\\\\": \\\\\\\"The extreme-batch 31.2pp gap compares the lowest-BCS and highest-BCS batches (top/bottom 5% of batch compositions). For typical user experience, we consider the interquartile range (IQR). In the 16-relation pool (r=-0.64), BCS IQR spans [0.782, 0.892] (width=0.110). The regression slope (-0.449) predicts a typical Q1-to-Q3 gap of 4.9pp. A 1-SD BCS change (0.067) corresponds to 3.0pp accuracy change. In the 80-type pool with 16-type subsets (more realistic deployments), the typical IQR gap is 2.6pp and the 1-SD gap is 1.8pp.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"W3_cluster_bootstrap\\\": {\\n    \\\"fewnerd\\\": {\\n      \\\"point_estimate\\\": 0.1372302437793451,\\n      \\\"cluster_ci_lower\\\": 0.06929773496707424,\\n      \\\"cluster_ci_upper\\\": 0.2186197985169236,\\n      \\\"n_types\\\": 63,\\n      \\\"n_pairs\\\": 1953,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_valid_bootstrap\\\": 10000,\\n      \\\"significant\\\": true,\\n      \\\"boot_mean\\\": 0.14559536506023063,\\n      \\\"boot_std\\\": 0.03701644340721873,\\n      \\\"naive_ci\\\": [\\n        0.076,\\n        0.156\\n      ],\\n      \\\"narrative\\\": \\\"We recomputed CIs using a cluster bootstrap that resamples entity types (N=63) rather than individual pairs. The cluster-robust 95% CI [0.069, 0.219] is wider than the naive pair-level CI [0.076, 0.156] as expected, but still excludes zero, confirming that the pairwise SCS-confusion correlation is statistically significant even after accounting for type-level clustering.\\\",\\n      \\\"original_r_paper\\\": 0.112\\n    },\\n    \\\"maven\\\": {\\n      \\\"point_estimate\\\": 0.1285734563090772,\\n      \\\"cluster_ci_lower\\\": 0.0806734385093243,\\n      \\\"cluster_ci_upper\\\": 0.184957155553557,\\n      \\\"n_types\\\": 149,\\n      \\\"n_pairs\\\": 11026,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_valid_bootstrap\\\": 10000,\\n      \\\"significant\\\": true,\\n      \\\"boot_mean\\\": 0.12934477309781067,\\n      \\\"boot_std\\\": 0.026041657610013258,\\n      \\\"naive_ci\\\": [\\n        0.104,\\n        0.156\\n      ],\\n      \\\"narrative\\\": \\\"For MAVEN (N=149 types), the cluster-robust 95% CI [0.081, 0.185] is wider than the naive CI [0.104, 0.156], but also excludes zero, confirming significance under cluster-robust inference.\\\",\\n      \\\"original_r_paper\\\": 0.129\\n    }\\n  },\\n  \\\"W4_recall_ci\\\": {\\n    \\\"count_22\\\": {\\n      \\\"n_batches\\\": 5,\\n      \\\"per_batch_recalls\\\": [\\n        0.5077,\\n        0.5961,\\n        0.4649,\\n        0.5162,\\n        0.5262\\n      ],\\n      \\\"per_batch_tp\\\": [\\n        496,\\n        704,\\n        417,\\n        351,\\n        361\\n      ],\\n      \\\"per_batch_gold\\\": [\\n        977,\\n        1181,\\n        897,\\n        680,\\n        686\\n      ],\\n      \\\"pooled_recall\\\": 0.5268,\\n      \\\"mean_recall\\\": 0.5222,\\n      \\\"pooled_ci_lower\\\": 0.4842,\\n      \\\"pooled_ci_upper\\\": 0.569,\\n      \\\"mean_ci_lower\\\": 0.4874,\\n      \\\"mean_ci_upper\\\": 0.5624,\\n      \\\"std\\\": 0.0475\\n    },\\n    \\\"count_44\\\": {\\n      \\\"n_batches\\\": 5,\\n      \\\"per_batch_recalls\\\": [\\n        0.5716,\\n        0.4958,\\n        0.5738,\\n        0.5433,\\n        0.5611\\n      ],\\n      \\\"per_batch_tp\\\": [\\n        1114,\\n        759,\\n        1089,\\n        1185,\\n        1088\\n      ],\\n      \\\"per_batch_gold\\\": [\\n        1949,\\n        1531,\\n        1898,\\n        2181,\\n        1939\\n      ],\\n      \\\"pooled_recall\\\": 0.5512,\\n      \\\"mean_recall\\\": 0.5491,\\n      \\\"pooled_ci_lower\\\": 0.5248,\\n      \\\"pooled_ci_upper\\\": 0.5699,\\n      \\\"mean_ci_lower\\\": 0.5209,\\n      \\\"mean_ci_upper\\\": 0.5699,\\n      \\\"std\\\": 0.0322\\n    },\\n    \\\"overlap_analysis\\\": {\\n      \\\"pooled_ci_22\\\": [\\n        0.4842,\\n        0.569\\n      ],\\n      \\\"pooled_ci_44\\\": [\\n        0.5248,\\n        0.5699\\n      ],\\n      \\\"overlap_pooled\\\": true,\\n      \\\"mean_ci_22\\\": [\\n        0.4874,\\n        0.5624\\n      ],\\n      \\\"mean_ci_44\\\": [\\n        0.5209,\\n        0.5699\\n      ],\\n      \\\"overlap_mean\\\": true,\\n      \\\"delta_pooled\\\": 0.0244,\\n      \\\"delta_mean\\\": 0.0269,\\n      \\\"narrative\\\": \\\"The 95% bootstrap CIs for count=22 (pooled recall=0.527, CI [0.484, 0.569]) and count=44 (pooled recall=0.551, CI [0.525, 0.570]) overlap substantially, confirming that the non-monotonicity (+0.024) is within sampling variability and not statistically significant. With only 5 batches per count level, the wide CIs reflect the expected high variance in batch composition.\\\"\\n    }\\n  },\\n  \\\"W2_practical_effect\\\": {\\n    \\\"16rel_pool\\\": {\\n      \\\"n_batches\\\": 100,\\n      \\\"slope\\\": -0.449,\\n      \\\"slope_ci_95\\\": [\\n        -0.5564038709006914,\\n        -0.3485078314313499\\n      ],\\n      \\\"r_value\\\": -0.6373,\\n      \\\"bcs_stats\\\": {\\n        \\\"mean\\\": 0.8259,\\n        \\\"std\\\": 0.0672,\\n        \\\"median\\\": 0.8405,\\n        \\\"Q1\\\": 0.7818,\\n        \\\"Q3\\\": 0.892,\\n        \\\"IQR\\\": 0.1102,\\n        \\\"min\\\": 0.6532,\\n        \\\"max\\\": 0.9002\\n      },\\n      \\\"typical_gap_pp\\\": -4.95,\\n      \\\"one_sd_gap_pp\\\": -3.02,\\n      \\\"extreme_gap_pp\\\": -31.2\\n    },\\n    \\\"80pool_16sub\\\": {\\n      \\\"slope\\\": -0.401,\\n      \\\"slope_ci_95\\\": [\\n        -0.684044,\\n        -0.062478\\n      ],\\n      \\\"bcs_Q1\\\": 0.5037,\\n      \\\"bcs_Q3\\\": 0.5692,\\n      \\\"IQR\\\": 0.0655,\\n      \\\"typical_gap_pp\\\": -2.63,\\n      \\\"one_sd_gap_pp\\\": -1.76\\n    },\\n    \\\"narrative\\\": \\\"The extreme-batch 31.2pp gap compares the lowest-BCS and highest-BCS batches (top/bottom 5% of batch compositions). For typical user experience, we consider the interquartile range (IQR). In the 16-relation pool (r=-0.64), BCS IQR spans [0.782, 0.892] (width=0.110). The regression slope (-0.449) predicts a typical Q1-to-Q3 gap of 4.9pp. A 1-SD BCS change (0.067) corresponds to 3.0pp accuracy change. In the 80-type pool with 16-type subsets (more realistic deployments), the typical IQR gap is 2.6pp and the 1-SD gap is 1.8pp.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XGKBxaGsK5VZpijtEMDjZr`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -rl \"IQR\" /root/schema-dag-extraction/artifacts/ --include=\"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "fd32b05b-549c-476f-b612-a3a12b284385",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAMbv5VRizat8NeanzoBxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2067,
+      "cache_read_input_tokens": 24494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2067
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T04:00:49.370Z_
+
+<details><summary>↩ Tool result · `toolu_01XGKBxaGsK5VZpijtEMDjZr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "24bacea8-fdef-459f-8a5a-a8bf49bc9cb7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q5mruerzZoWdaqDbWEUy8Q`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -rl \"typical_gap\" /root/schema-dag-extraction/artifacts/ --include=\"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "63f55296-3d7c-436c-9fa8-985ef9e110f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAMbv5VRizat8NeanzoBxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2067,
+      "cache_read_input_tokens": 24494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2067
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U4Cf1GrZNRiq3FJ4DBW2BQ`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -rl \"practical\" /root/schema-dag-extraction/artifacts/ --include=\"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "47a38c62-9524-4f7d-8db4-11ada45823b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAMbv5VRizat8NeanzoBxD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2067,
+      "cache_read_input_tokens": 24494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2067
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T04:00:50.983Z_
+
+<details><summary>↩ Tool result · `toolu_01Q5mruerzZoWdaqDbWEUy8Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "16b61075-d751-4cc3-82ac-fc7f489fed64",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T04:00:52.377Z_
+
+<details><summary>↩ Tool result · `toolu_01U4Cf1GrZNRiq3FJ4DBW2BQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/preprocess.json\\n/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "1ff670da-ea25-43df-ba89-72bf1df2d5af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch/preprocess.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/preprocess.json\\\\n/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/preprocess.json\\n/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me also check the local artifacts directory structure and check if there are also local copies of the W2 practical effect data, and then check what the 80pool_16sub data says.
+
+Let me analyze the findings:
+
+## Task 1: Figure 1a Data Source Audit
+
+The plotting script `gen_fig_count_curves.py` has **hardcoded** data:
+- `counts_a = [1, 2, 6, 12, 22, 44, 64]`
+- `recall_a = [0.720, 0.698, 0.620, 0.539, 0.527, 0.551, 0.418]`
+
+
+The hardcoded recall values at count_22 (0.527) and count_44 (0.551) align with the micro recall pooled values from the reference data (0.5268 and 0.5512 respectively, just rounded).
+
+Now I'm looking at the statistical analyses file to check the bootstrap confidence intervals and correlation coefficients for the clustering results across FewNERD and MAVEN datasets.
+
+For the practical magnitude data, I'm finding two entries in the JSON: the 16-relation pool with an IQR of 0.1102 and typical gap of -4.95 percentage points, and the 80-type pool with 16-type subsets showing an IQR of 0.0655 and gap of -2.63 percentage points. The Director's cited numbers match the second entry exactly, but the paper currently reports different values that don't align with either source.
+
+I'm also seeing a local W2 JSON with 100 random subsets that gives yet another set of numbers—IQR of 0.0539 and gap of 2.16 percentage points—which appears to be what the paper's rounded figures came from. So I'm tracking three distinct data sources here, and I need to figure out which one is actually being used and whether there's been a transcription error somewhere. Let me check the local files and any preprocessing data that might clarify where these numbers originated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "a34169c9-fb29-4853-8f55-8bfdd83699fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PSKhzKdnW7k8JnR5besj95",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3608,
+      "cache_read_input_tokens": 26561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3608
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+All data collected. Let me also check if there's a local W2 JSON to compare.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "ef2ca7f2-24c7-4080-9949-81aa439da5f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PSKhzKdnW7k8JnR5besj95",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3608,
+      "cache_read_input_tokens": 26561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3608
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01LuAkzx2dwXhTUtWTE1XaMK`</summary>
+
+```json
+{
+  "pattern": "**/W2*.json",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "56f649af-3548-4cab-97b4-73dbc314b087",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PSKhzKdnW7k8JnR5besj95",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3608,
+      "cache_read_input_tokens": 26561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3608
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T04:01:18.829Z_
+
+<details><summary>↩ Tool result · `toolu_01LuAkzx2dwXhTUtWTE1XaMK`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "32dcd292-58f1-4b97-987d-e43ca8272802",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 15,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01WfWyTwwx7AXBdcXVqTDyBW`</summary>
+
+```json
+{
+  "pattern": "**/*practical*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "a5167709-764f-46a0-a8e3-913155a40018",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PSKhzKdnW7k8JnR5besj95",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3608,
+      "cache_read_input_tokens": 26561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3608
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T04:01:19.012Z_
+
+<details><summary>↩ Tool result · `toolu_01WfWyTwwx7AXBdcXVqTDyBW`</summary>
+
+```text
+artifacts/d037_statistical_analyses/w2_practical_effect_results.json
+artifacts/_project/data/w2_practical_effect_results.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "36ace9f7-afb9-42e2-8dc3-ba99d071f7e6",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/d037_statistical_analyses/w2_practical_effect_results.json",
+      "artifacts/_project/data/w2_practical_effect_results.json"
+    ],
+    "durationMs": 19,
+    "numFiles": 2,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YMwToqosQCasZ1TgEqHUF2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_statistical_analyses/w2_practical_effect_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "6bf7ad64-ddf3-4a35-a508-b3a15dc71f65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019YwMjDTbeDwfEZMCkB6f5H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 30169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T04:01:21.508Z_
+
+<details><summary>↩ Tool result · `toolu_01YMwToqosQCasZ1TgEqHUF2`</summary>
+
+```text
+1	{
+2	  "n_batches": 100,
+3	  "bcs_distribution": {
+4	    "mean": 0.557,
+5	    "std": 0.0438,
+6	    "Q1": 0.5281,
+7	    "median": 0.5568,
+8	    "Q3": 0.582,
+9	    "IQR": 0.0539,
+10	    "P10": 0.5085,
+11	    "P90": 0.6138,
+12	    "min": 0.4578,
+13	    "max": 0.6836
+14	  },
+15	  "accuracy_distribution": {
+16	    "mean": 0.8077,
+17	    "std": 0.0797,
+18	    "Q1": 0.7552,
+19	    "median": 0.8229,
+20	    "Q3": 0.875,
+21	    "IQR_pp": 11.98
+22	  },
+23	  "regression": {
+24	    "slope": -0.401,
+25	    "slope_ci_95": [-0.684, -0.0625],
+26	    "r_value": -0.2206,
+27	    "p_value": 0.027389
+28	  },
+29	  "typical_effect_iqr": {
+30	    "bcs_span": 0.0539,
+31	    "expected_acc_gap_pp": 2.16,
+32	    "bootstrap_ci_pp": [0.41, 4.01],
+33	    "note": "Expected accuracy gap from BCS Q1 to Q3 via regression slope"
+34	  },
+35	  "typical_effect_p10_p90": {
+36	    "bcs_span": 0.1053,
+37	    "expected_acc_gap_pp": 4.22
+38	  },
+39	  "direct_quartile_comparison": {
+40	    "n_low_bcs": 25,
+41	    "n_high_bcs": 25,
+42	    "mean_acc_low_bcs": 0.8283,
+43	    "mean_acc_high_bcs": 0.7892,
+44	    "direct_gap_pp": 3.92
+45	  },
+46	  "extreme_batch_reference": {
+47	    "gap_pp": 31.2,
+48	    "note": "From min-BCS vs max-BCS batches in 80-rel pool (not typical)"
+49	  },
+50	  "ratio_typical_to_extreme": 0.07
+51	}
+52	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "c4dfd149-5c3d-4ca2-a938-ccc7906ada8b",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_statistical_analyses/w2_practical_effect_results.json",
+      "content": "{\n  \"n_batches\": 100,\n  \"bcs_distribution\": {\n    \"mean\": 0.557,\n    \"std\": 0.0438,\n    \"Q1\": 0.5281,\n    \"median\": 0.5568,\n    \"Q3\": 0.582,\n    \"IQR\": 0.0539,\n    \"P10\": 0.5085,\n    \"P90\": 0.6138,\n    \"min\": 0.4578,\n    \"max\": 0.6836\n  },\n  \"accuracy_distribution\": {\n    \"mean\": 0.8077,\n    \"std\": 0.0797,\n    \"Q1\": 0.7552,\n    \"median\": 0.8229,\n    \"Q3\": 0.875,\n    \"IQR_pp\": 11.98\n  },\n  \"regression\": {\n    \"slope\": -0.401,\n    \"slope_ci_95\": [-0.684, -0.0625],\n    \"r_value\": -0.2206,\n    \"p_value\": 0.027389\n  },\n  \"typical_effect_iqr\": {\n    \"bcs_span\": 0.0539,\n    \"expected_acc_gap_pp\": 2.16,\n    \"bootstrap_ci_pp\": [0.41, 4.01],\n    \"note\": \"Expected accuracy gap from BCS Q1 to Q3 via regression slope\"\n  },\n  \"typical_effect_p10_p90\": {\n    \"bcs_span\": 0.1053,\n    \"expected_acc_gap_pp\": 4.22\n  },\n  \"direct_quartile_comparison\": {\n    \"n_low_bcs\": 25,\n    \"n_high_bcs\": 25,\n    \"mean_acc_low_bcs\": 0.8283,\n    \"mean_acc_high_bcs\": 0.7892,\n    \"direct_gap_pp\": 3.92\n  },\n  \"extreme_batch_reference\": {\n    \"gap_pp\": 31.2,\n    \"note\": \"From min-BCS vs max-BCS batches in 80-rel pool (not typical)\"\n  },\n  \"ratio_typical_to_extreme\": 0.07\n}\n",
+      "numLines": 52,
+      "startLine": 1,
+      "totalLines": 52
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01U53idTxFUDzNYhgdkJ8YEr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/w2_practical_effect_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "435331c6-80fc-424d-bd91-36efc7e18f2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019YwMjDTbeDwfEZMCkB6f5H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 30169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T04:01:21.962Z_
+
+<details><summary>↩ Tool result · `toolu_01U53idTxFUDzNYhgdkJ8YEr`</summary>
+
+```text
+1	{
+2	  "n_batches": 100,
+3	  "bcs_distribution": {
+4	    "mean": 0.557,
+5	    "std": 0.0438,
+6	    "Q1": 0.5281,
+7	    "median": 0.5568,
+8	    "Q3": 0.582,
+9	    "IQR": 0.0539,
+10	    "P10": 0.5085,
+11	    "P90": 0.6138,
+12	    "min": 0.4578,
+13	    "max": 0.6836
+14	  },
+15	  "accuracy_distribution": {
+16	    "mean": 0.8077,
+17	    "std": 0.0797,
+18	    "Q1": 0.7552,
+19	    "median": 0.8229,
+20	    "Q3": 0.875,
+21	    "IQR_pp": 11.98
+22	  },
+23	  "regression": {
+24	    "slope": -0.401,
+25	    "slope_ci_95": [-0.684, -0.0625],
+26	    "r_value": -0.2206,
+27	    "p_value": 0.027389
+28	  },
+29	  "typical_effect_iqr": {
+30	    "bcs_span": 0.0539,
+31	    "expected_acc_gap_pp": 2.16,
+32	    "bootstrap_ci_pp": [0.41, 4.01],
+33	    "note": "Expected accuracy gap from BCS Q1 to Q3 via regression slope"
+34	  },
+35	  "typical_effect_p10_p90": {
+36	    "bcs_span": 0.1053,
+37	    "expected_acc_gap_pp": 4.22
+38	  },
+39	  "direct_quartile_comparison": {
+40	    "n_low_bcs": 25,
+41	    "n_high_bcs": 25,
+42	    "mean_acc_low_bcs": 0.8283,
+43	    "mean_acc_high_bcs": 0.7892,
+44	    "direct_gap_pp": 3.92
+45	  },
+46	  "extreme_batch_reference": {
+47	    "gap_pp": 31.2,
+48	    "note": "From min-BCS vs max-BCS batches in 80-rel pool (not typical)"
+49	  },
+50	  "ratio_typical_to_extreme": 0.07
+51	}
+52	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "55ae8591-a5b3-4520-b5a6-8ee05f10dad2",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/w2_practical_effect_results.json",
+      "content": "{\n  \"n_batches\": 100,\n  \"bcs_distribution\": {\n    \"mean\": 0.557,\n    \"std\": 0.0438,\n    \"Q1\": 0.5281,\n    \"median\": 0.5568,\n    \"Q3\": 0.582,\n    \"IQR\": 0.0539,\n    \"P10\": 0.5085,\n    \"P90\": 0.6138,\n    \"min\": 0.4578,\n    \"max\": 0.6836\n  },\n  \"accuracy_distribution\": {\n    \"mean\": 0.8077,\n    \"std\": 0.0797,\n    \"Q1\": 0.7552,\n    \"median\": 0.8229,\n    \"Q3\": 0.875,\n    \"IQR_pp\": 11.98\n  },\n  \"regression\": {\n    \"slope\": -0.401,\n    \"slope_ci_95\": [-0.684, -0.0625],\n    \"r_value\": -0.2206,\n    \"p_value\": 0.027389\n  },\n  \"typical_effect_iqr\": {\n    \"bcs_span\": 0.0539,\n    \"expected_acc_gap_pp\": 2.16,\n    \"bootstrap_ci_pp\": [0.41, 4.01],\n    \"note\": \"Expected accuracy gap from BCS Q1 to Q3 via regression slope\"\n  },\n  \"typical_effect_p10_p90\": {\n    \"bcs_span\": 0.1053,\n    \"expected_acc_gap_pp\": 4.22\n  },\n  \"direct_quartile_comparison\": {\n    \"n_low_bcs\": 25,\n    \"n_high_bcs\": 25,\n    \"mean_acc_low_bcs\": 0.8283,\n    \"mean_acc_high_bcs\": 0.7892,\n    \"direct_gap_pp\": 3.92\n  },\n  \"extreme_batch_reference\": {\n    \"gap_pp\": 31.2,\n    \"note\": \"From min-BCS vs max-BCS batches in 80-rel pool (not typical)\"\n  },\n  \"ratio_typical_to_extreme\": 0.07\n}\n",
+      "numLines": 52,
+      "startLine": 1,
+      "totalLines": 52
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all three data sources. Let me summarize:
+
+**Figure 1a:**
+- Hardcoded in `gen_fig_count_curves.py`
+- count_22 = 0.527, count_44 = 0.551
+- These match **micro recall** (pooled): 0.5268→0.527, 0.5512→0.551 from round2 JSON
+- NOT macro recall (batch mean): 0.5222, 0.5491
+
+**Practical Magnitude - three sources:**
+
+1. **Server round2 JSON `80pool_16sub`**: IQR=0.0655, gap=2.63pp, slope=-0.401
+   - Uses 80-type pool with 16-type subsets
+   - BCS Q1=0.5037, Q3=0.5692
+
+2. **Local W2 JSON** (`w2_practical_effect_results.json`): IQR=0.0539, gap=2.16pp, slope=-0.401
+   - Uses 100 random subsets from 80-rel pool
+   - BCS Q1=0.5281, Q3=0.582
+   - Has bootstrap CI: [0.41, 4.01]pp
+
+3. **Server round2 JSON `16rel_pool`**: IQR=0.1102
+
+, gap=4.95pp, slope=-0.449
+   - This is the 16-relation pool, not the 80-pool subsets
+
+The slope stays consistent at -0.401, but the IQR discrepancy explains the gap difference: the round2 JSON's IQR of 0.0655 produces 2.63pp while the local W2's 0.0539 produces 2.16pp. The real divergence comes from the BCS quartile distributions—round2 has Q1=0.5037 and Q3=0.5692 versus local W2's Q1=0.5281 and Q3=0.582, suggesting they're pulling from different batch samples or using different sampling methods.
+
+Now I'll write out the results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "048cf6ab-be62-4a10-a9bc-d6dfa31de10b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DiAKncxZm7kGZ9duyozBQL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1593,
+      "cache_read_input_tokens": 31474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1593
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+All data collected. Now creating the output artifact.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "ba72c09d-4bc6-408c-afec-7ccf73d7542b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DiAKncxZm7kGZ9duyozBQL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1593,
+      "cache_read_input_tokens": 31474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1593
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011NFMJ2ZLkDiQ85eBT6Yio1`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_statistical_analyses/",
+  "description": "List existing files in output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "ffca86fd-ccf8-4eeb-8eba-9d1824670559",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DiAKncxZm7kGZ9duyozBQL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1593,
+      "cache_read_input_tokens": 31474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1593
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T04:01:39.405Z_
+
+<details><summary>↩ Tool result · `toolu_011NFMJ2ZLkDiQ85eBT6Yio1`</summary>
+
+```text
+paper_text.md
+w2_practical_effect_results.json
+w3_cluster_bootstrap_results.json
+w4_count_recall_ci_results.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "6e94df45-20a2-48f3-9e8f-c39f96fa892d",
+  "tool_use_result": {
+    "stdout": "paper_text.md\nw2_practical_effect_results.json\nw3_cluster_bootstrap_results.json\nw4_count_recall_ci_results.json",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01NiezjtiobyYink5YkAZmux`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_statistical_analyses/figure_data_audit.json",
+  "content": "{\n  \"figure_1a\": {\n    \"data_source\": \"hardcoded in /root/schema-dag-extraction/scripts/gen_fig_count_curves.py\",\n    \"recall_type\": \"micro (pooled across entities)\",\n    \"evidence\": \"hardcoded 0.527/0.551 match pooled_recall from round2 JSON (0.5268/0.5512), NOT mean_recall (0.5222/0.5491)\",\n    \"count_22_value\": 0.527,\n    \"count_44_value\": 0.551,\n    \"all_hardcoded_values\": {\n      \"counts\": [1, 2, 6, 12, 22, 44, 64],\n      \"recall\": [0.720, 0.698, 0.620, 0.539, 0.527, 0.551, 0.418]\n    },\n    \"round2_json_cross_reference\": {\n      \"count_22_pooled_recall\": 0.5268,\n      \"count_22_mean_recall\": 0.5222,\n      \"count_44_pooled_recall\": 0.5512,\n      \"count_44_mean_recall\": 0.5491\n    }\n  },\n  \"round2_json\": {\n    \"found\": true,\n    \"path\": \"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\",\n    \"cluster_bootstrap_ci\": {\n      \"fewnerd\": {\n        \"point_estimate\": 0.1372,\n        \"ci_95\": [0.0693, 0.2186],\n        \"n_types\": 63,\n        \"n_pairs\": 1953,\n        \"significant\": true,\n        \"original_r_paper\": 0.112\n      },\n      \"maven\": {\n        \"point_estimate\": 0.1286,\n        \"ci_95\": [0.0807, 0.1850],\n        \"n_types\": 149,\n        \"n_pairs\": 11026,\n        \"significant\": true,\n        \"original_r_paper\": 0.129\n      }\n    },\n    \"w4_recall_ci\": {\n      \"count_22\": {\n        \"pooled_recall\": 0.5268,\n        \"mean_recall\": 0.5222,\n        \"pooled_ci\": [0.4842, 0.569],\n        \"mean_ci\": [0.4874, 0.5624],\n        \"n_batches\": 5\n      },\n      \"count_44\": {\n        \"pooled_recall\": 0.5512,\n        \"mean_recall\": 0.5491,\n        \"pooled_ci\": [0.5248, 0.5699],\n        \"mean_ci\": [0.5209, 0.5699],\n        \"n_batches\": 5\n      },\n      \"overlap\": true,\n      \"delta_pooled\": 0.0244\n    }\n  },\n  \"practical_magnitude_sources\": [\n    {\n      \"path\": \"server: round2_statistical_analyses.json → W2_practical_effect.80pool_16sub\",\n      \"description\": \"80-type pool, 16-type subsets, from round2 server JSON\",\n      \"slope\": -0.401,\n      \"slope_ci_95\": [-0.684, -0.062],\n      \"bcs_Q1\": 0.5037,\n      \"bcs_Q3\": 0.5692,\n      \"iqr\": 0.0655,\n      \"gap_pp\": 2.63,\n      \"one_sd_gap_pp\": 1.76\n    },\n    {\n      \"path\": \"local: artifacts/d037_statistical_analyses/w2_practical_effect_results.json\",\n      \"description\": \"100 random 16-type subsets from 80-rel pool, local W2 JSON\",\n      \"slope\": -0.401,\n      \"slope_ci_95\": [-0.684, -0.0625],\n      \"r_value\": -0.2206,\n      \"p_value\": 0.027389,\n      \"bcs_Q1\": 0.5281,\n      \"bcs_Q3\": 0.582,\n      \"iqr\": 0.0539,\n      \"gap_pp\": 2.16,\n      \"bootstrap_ci_pp\": [0.41, 4.01]\n    },\n    {\n      \"path\": \"server: round2_statistical_analyses.json → W2_practical_effect.16rel_pool\",\n      \"description\": \"16-relation pool (NOT 80-pool subsets), separate experiment\",\n      \"slope\": -0.449,\n      \"bcs_Q1\": 0.7818,\n      \"bcs_Q3\": 0.892,\n      \"iqr\": 0.1102,\n      \"gap_pp\": 4.95,\n      \"one_sd_gap_pp\": 3.02,\n      \"note\": \"This is the 16-rel pool, not the 80-pool 16-type subsets\"\n    }\n  ],\n  \"practical_magnitude_discrepancy\": {\n    \"paper_current\": {\"iqr\": 0.054, \"gap_pp\": 2.2, \"source\": \"rounded from local W2 JSON\"},\n    \"local_w2_json\": {\"iqr\": 0.0539, \"gap_pp\": 2.16, \"source\": \"100 random subsets, local file\"},\n    \"server_round2_80pool\": {\"iqr\": 0.0655, \"gap_pp\": 2.63, \"source\": \"round2 JSON on server\"},\n    \"root_cause\": \"Same slope (-0.401) but different BCS distributions: local W2 has Q1=0.5281/Q3=0.582 (IQR=0.054), server round2 has Q1=0.5037/Q3=0.5692 (IQR=0.066). Likely different random seeds or sampling runs producing different 100-batch BCS distributions.\",\n    \"recommendation\": \"Verify which run is authoritative. The server round2 JSON (IQR=0.066, gap=2.63pp) may be from a newer/corrected run.\"\n  },\n  \"audit_date\": \"2026-05-16\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "4b9bf993-8bf1-4601-a777-23aada582b78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hyfxu4RxfUk9dddJtCDNrC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 33067,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 725
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T04:02:04.357Z_
+
+<details><summary>↩ Tool result · `toolu_01NiezjtiobyYink5YkAZmux`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_statistical_analyses/figure_data_audit.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "ea0dedac-ca30-4eb3-86b1-253577008708",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_statistical_analyses/figure_data_audit.json",
+    "content": "{\n  \"figure_1a\": {\n    \"data_source\": \"hardcoded in /root/schema-dag-extraction/scripts/gen_fig_count_curves.py\",\n    \"recall_type\": \"micro (pooled across entities)\",\n    \"evidence\": \"hardcoded 0.527/0.551 match pooled_recall from round2 JSON (0.5268/0.5512), NOT mean_recall (0.5222/0.5491)\",\n    \"count_22_value\": 0.527,\n    \"count_44_value\": 0.551,\n    \"all_hardcoded_values\": {\n      \"counts\": [1, 2, 6, 12, 22, 44, 64],\n      \"recall\": [0.720, 0.698, 0.620, 0.539, 0.527, 0.551, 0.418]\n    },\n    \"round2_json_cross_reference\": {\n      \"count_22_pooled_recall\": 0.5268,\n      \"count_22_mean_recall\": 0.5222,\n      \"count_44_pooled_recall\": 0.5512,\n      \"count_44_mean_recall\": 0.5491\n    }\n  },\n  \"round2_json\": {\n    \"found\": true,\n    \"path\": \"/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\",\n    \"cluster_bootstrap_ci\": {\n      \"fewnerd\": {\n        \"point_estimate\": 0.1372,\n        \"ci_95\": [0.0693, 0.2186],\n        \"n_types\": 63,\n        \"n_pairs\": 1953,\n        \"significant\": true,\n        \"original_r_paper\": 0.112\n      },\n      \"maven\": {\n        \"point_estimate\": 0.1286,\n        \"ci_95\": [0.0807, 0.1850],\n        \"n_types\": 149,\n        \"n_pairs\": 11026,\n        \"significant\": true,\n        \"original_r_paper\": 0.129\n      }\n    },\n    \"w4_recall_ci\": {\n      \"count_22\": {\n        \"pooled_recall\": 0.5268,\n        \"mean_recall\": 0.5222,\n        \"pooled_ci\": [0.4842, 0.569],\n        \"mean_ci\": [0.4874, 0.5624],\n        \"n_batches\": 5\n      },\n      \"count_44\": {\n        \"pooled_recall\": 0.5512,\n        \"mean_recall\": 0.5491,\n        \"pooled_ci\": [0.5248, 0.5699],\n        \"mean_ci\": [0.5209, 0.5699],\n        \"n_batches\": 5\n      },\n      \"overlap\": true,\n      \"delta_pooled\": 0.0244\n    }\n  },\n  \"practical_magnitude_sources\": [\n    {\n      \"path\": \"server: round2_statistical_analyses.json → W2_practical_effect.80pool_16sub\",\n      \"description\": \"80-type pool, 16-type subsets, from round2 server JSON\",\n      \"slope\": -0.401,\n      \"slope_ci_95\": [-0.684, -0.062],\n      \"bcs_Q1\": 0.5037,\n      \"bcs_Q3\": 0.5692,\n      \"iqr\": 0.0655,\n      \"gap_pp\": 2.63,\n      \"one_sd_gap_pp\": 1.76\n    },\n    {\n      \"path\": \"local: artifacts/d037_statistical_analyses/w2_practical_effect_results.json\",\n      \"description\": \"100 random 16-type subsets from 80-rel pool, local W2 JSON\",\n      \"slope\": -0.401,\n      \"slope_ci_95\": [-0.684, -0.0625],\n      \"r_value\": -0.2206,\n      \"p_value\": 0.027389,\n      \"bcs_Q1\": 0.5281,\n      \"bcs_Q3\": 0.582,\n      \"iqr\": 0.0539,\n      \"gap_pp\": 2.16,\n      \"bootstrap_ci_pp\": [0.41, 4.01]\n    },\n    {\n      \"path\": \"server: round2_statistical_analyses.json → W2_practical_effect.16rel_pool\",\n      \"description\": \"16-relation pool (NOT 80-pool subsets), separate experiment\",\n      \"slope\": -0.449,\n      \"bcs_Q1\": 0.7818,\n      \"bcs_Q3\": 0.892,\n      \"iqr\": 0.1102,\n      \"gap_pp\": 4.95,\n      \"one_sd_gap_pp\": 3.02,\n      \"note\": \"This is the 16-rel pool, not the 80-pool 16-type subsets\"\n    }\n  ],\n  \"practical_magnitude_discrepancy\": {\n    \"paper_current\": {\"iqr\": 0.054, \"gap_pp\": 2.2, \"source\": \"rounded from local W2 JSON\"},\n    \"local_w2_json\": {\"iqr\": 0.0539, \"gap_pp\": 2.16, \"source\": \"100 random subsets, local file\"},\n    \"server_round2_80pool\": {\"iqr\": 0.0655, \"gap_pp\": 2.63, \"source\": \"round2 JSON on server\"},\n    \"root_cause\": \"Same slope (-0.401) but different BCS distributions: local W2 has Q1=0.5281/Q3=0.582 (IQR=0.054), server round2 has Q1=0.5037/Q3=0.5692 (IQR=0.066). Likely different random seeds or sampling runs producing different 100-batch BCS distributions.\",\n    \"recommendation\": \"Verify which run is authoritative. The server round2 JSON (IQR=0.066, gap=2.63pp) may be from a newer/corrected run.\"\n  },\n  \"audit_date\": \"2026-05-16\"\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+审计结果：
+
+### Task 1: Figure 1a 用的是 micro recall (pooled)
+- 数据**硬编码**在 `gen_fig_count_curves.py` 里，不读任何外部文件
+- count_22=0.527, count_44=0.551，与 round2 JSON 的 `pooled_recall`（0.5268, 0.5512）吻合
+- 排除 macro recall（batch mean 是 0.5222, 0.5491）
+
+### Task 2: round2_statistical_analyses.json 已获取
+- 路径：`/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json`
+- Cluster bootstrap CI 均显著：FewNERD r=0.137 CI [0.069, 0.219], MAVEN r=0.129 CI [0.081, 0.185]
+- W4 count_22/44 的 pooled CI 重叠，delta=0.024 不显著
+
+### Task 3: Practical Magnitude 差异根源
+存在**两个不同的数据源**，slope 相同（-0.401）但 BCS 分布不同：
+
+| 来源 | BCS IQR | Gap (pp) | Q1 → Q3 |
+|------|---------|----------|----------|
+| 本地 W2 JSON (100 batches) | 0.0539 | 2.16 | 0.528 → 0.582 |
+| 服务器 round2 JSON `80pool_16sub` | 0.0655 | 2.63 | 0.504 → 0.569 |
+| 论文当前文字 | ~0.054 | ~2.2 | (rounded from 本地 W2) |
+
+**根因**：两次运行产生了不同的 100-batch BCS 分布（不同随机种子或采样策略），导致 IQR 差异 0.012、gap 差异 0.47pp。论文当前数字是本地 W2 的四舍五入。需确认哪个运行是权威版本。
+
+输出已写入 `figure_data_audit.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "uuid": "c856b648-55e9-4757-8525-0bb730574792",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBX1MkxtjpzSXsW7hv9hZj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 33792,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1744
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 41_
+
+审计结果：
+
+### Task 1: Figure 1a 用的是 micro recall (pooled)
+- 数据**硬编码**在 `gen_fig_count_curves.py` 里，不读任何外部文件
+- count_22=0.527, count_44=0.551，与 round2 JSON 的 `pooled_recall`（0.5268, 0.5512）吻合
+- 排除 macro recall（batch mean 是 0.5222, 0.5491）
+
+### Task 2: round2_statistical_analyses.json 已获取
+- 路径：`/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json`
+- Cluster bootstrap CI 均显著：FewNERD r=0.137 CI [0.069, 0.219], MAVEN r=0.129 CI [0.081, 0.185]
+- W4 count_22/44 的 pooled CI 重叠，delta=0.024 不显著
+
+### Task 3: Practical Magnitude 差异根源
+存在**两个不同的数据源**，slope 相同（-0.401）但 BCS 分布不同：
+
+| 来源 | BCS IQR | Gap (pp) | Q1 → Q3 |
+|------|---------|----------|----------|
+| 本地 W2 JSON (100 batches) | 0.0539 | 2.16 | 0.528 → 0.582 |
+| 服务器 round2 JSON `80pool_16sub` | 0.0655 | 2.63 | 0.504 → 0.569 |
+| 论文当前文字 | ~0.054 | ~2.2 | (rounded from 本地 W2) |
+
+**根因**：两次运行产生了不同的 100-batch BCS 分布（不同随机种子或采样策略），导致 IQR 差异 0.012、gap 差异 0.47pp。论文当前数字是本地 W2 的四舍五入。需确认哪个运行是权威版本。
+
+输出已写入 `figure_data_audit.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 114628,
+  "duration_api_ms": 113243,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "e2fce6b7-382d-490e-8a6d-e299505821f9",
+  "total_cost_usd": 0.3926342500000001,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 23695,
+    "cache_read_input_tokens": 214991,
+    "output_tokens": 5411,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23695,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 582,
+        "cache_read_input_tokens": 33792,
+        "cache_creation_input_tokens": 1744,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1744
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1610,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017100000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 5411,
+      "cacheReadInputTokens": 214991,
+      "cacheCreationInputTokens": 23695,
+      "webSearchRequests": 0,
+      "costUSD": 0.39092425,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "a70dbddd-38bc-4df9-90c5-9ae28a34c1ea"
+}
+```
+
+</details>
+
+---

@@ -20,5 +20,6 @@
     "unparsed_lines_preserved": 0,
     "reported_errors": 0
   },
-  "rounds": []
+  "rounds": [],
+  "readable_path": "readable/worker-executions/analyze-eval-pi05-attention-k07-long-seed42-v2-copy-2.md"
 }

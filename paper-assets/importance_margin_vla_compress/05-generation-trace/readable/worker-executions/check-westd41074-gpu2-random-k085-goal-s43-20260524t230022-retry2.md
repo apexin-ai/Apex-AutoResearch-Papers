@@ -1,0 +1,1322 @@
+# check westd41074 gpu2 random k085 goal s43 20260524T230022 retry2
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_check_westd41074_gpu2_random_k085_goal_s43_20260524T230022_retry2.log`
+- **Structured JSON:** [`b1121dab91c280f7ec8b.json`](../../sessions/b1/b1121dab91c280f7ec8b.json)
+
+## Before a recorded user message
+
+26 recorded events
+
+### System
+
+_source line 1_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7be3bd55-c1b6-43fe-8b00-df508f174d3a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779671400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e9214d42-4678-49a6-960a-7bbf4fcae8cb",
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+I'll check the registry first, then SSH to the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "3bf5409b-1c34-46a0-ab75-2f3bfbc53e87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kj8mjdzP8z6kALDZoPhWPU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11640,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11640
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AYdA9op4SwitAMQxWeBry9`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "5fd898f0-ff1b-4429-8eeb-a872709ed6f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kj8mjdzP8z6kALDZoPhWPU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11640,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11640
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-24T23:02:09.032Z_
+
+<details><summary>↩ Tool result · `toolu_01AYdA9op4SwitAMQxWeBry9`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "73b86d03-9e38-40a9-93c3-048c9ec615b7",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first check the registry for the experiment details, and simultaneously SSH to westd-41074 to check for the experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "2bf15e18-a137-49dd-903c-472d22bbc4c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011QdhTNSeEbfBFt8BhTxaWE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 23481,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 787
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01YLKc2UUCVgo3FympZPfYG9`</summary>
+
+```json
+{
+  "filters": {
+    "name": "eval_pi05_random_k085_goal_seed43_postfix"
+  },
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "c833ea6d-681d-494c-872d-54cf7c0fb881",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011QdhTNSeEbfBFt8BhTxaWE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 23481,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 787
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-24T23:02:15.378Z_
+
+<details><summary>↩ Tool result · `toolu_01YLKc2UUCVgo3FympZPfYG9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6079}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "e20b6723-f418-49dc-a2e4-3a53e5daddc6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6079}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6079}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0189i2kNM8P9U1bJHLMNEaxW`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ps aux | grep -v grep | grep -iE \"goal.*k085|k085.*goal|random.*goal|seed43\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "eb7d7cef-34bb-4b56-ae11-d0c3c29c1619",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011QdhTNSeEbfBFt8BhTxaWE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 23481,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 787
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T23:02:16.802Z_
+
+<details><summary>↩ Tool result · `toolu_0189i2kNM8P9U1bJHLMNEaxW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "ba5c76f8-8ba8-43e2-938b-b854347886ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Registry 无此实验记录。管道符被禁止，拆分命令重查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "6fc50210-e31d-45f8-a87e-423da7524d85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbPNkx83gwQJiHDEXzZ7Fy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 24268,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LzXtK73ohniAzHTpKnBwKJ`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ps aux",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "fb44d87a-a07f-41dc-99da-86a2693dcb40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbPNkx83gwQJiHDEXzZ7Fy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 24268,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UukdJsiLctYp5nCBDH6ABD`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "4f20d206-3ac6-467b-ac51-62ac6a68f580",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbPNkx83gwQJiHDEXzZ7Fy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 24268,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T23:02:23.028Z_
+
+<details><summary>↩ Tool result · `toolu_01LzXtK73ohniAzHTpKnBwKJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3076 ?        Ss   May20   0:00 bash /init/boot/boot.sh\\nroot       1102  2.3  0.0 725728 21900 ?        Sl   May20 175:45 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1115  0.0  0.0 4147224 75092 ?       Sl   May20   4:27 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1120  0.2  0.0 6969336 107804 ?      Sl   May20  17:06 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1122  0.0  0.0 182296 92764 ?        S    May20   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1123  0.1  0.0 2867268 19872 ?       Sl   May20  11:17 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1125  0.0  0.0  15444  8956 ?        S    May20   0:01 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot       1126  0.1  0.0 3237656 20316 ?       Sl   May20  10:26 proxy -c /init/proxy/proxy.ini\\nroot       1230  0.0  0.0 28341192 11404 ?      Sl   May20   7:09 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_9wdbz2ji/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_9wdbz2ji/startup_error\\nroot      10015  0.0  0.0   4364  2060 ?        S    06:36   0:00 bash -c cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0' > /root/autodl-tmp/logs/eval_pi05_random_k085_goal_seed43_postfix.log 2>&1 & echo PID=$!\\nroot      10020  453  0.9 64685420 9916532 ?    Rl   06:36 116:27 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0\\nroot      11175  0.7  0.0 19739984 642932 ?     Sl   06:38   0:10 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot      11243  0.0  0.0 19608896 368456 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot      11245  0.0  0.0 19608896 368236 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot      11247  0.0  0.0 19608896 368240 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot      11249  0.0  0.0 19608896 368324 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --re\\n\\n... [截断: 输出过长，省略 22571 字符] ...\\n\\n_inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926687  0.0  0.0 19608768 368192 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926689  0.0  0.0 19608768 368192 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926691  0.0  0.0 19608768 368192 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926693  0.0  0.0 19608768 368128 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926695  0.0  0.0 19608768 368128 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926697  0.0  0.0 19608768 368036 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926699  0.0  0.0 19608768 368136 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926701  0.0  0.0 19608768 368204 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     982879  0.0  0.0   4364  2012 ?        S    06:07   0:00 bash -c cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl nohup python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_long_seed42.json > logs/eval_openvla_attn_k09_long_seed42.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     982884  682  0.5 66507440 6200556 ?    Rl   06:07 377:01 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_long_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "7296cba0-8cdf-4b9f-aa99-d5b083fb6d61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3076 ?        Ss   May20   0:00 bash /init/boot/boot.sh\\\\nroot       1102  2.3  0.0 725728 21900 ?        Sl   May20 175:45 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1115  0.0  0.0 4147224 75092 ?       Sl   May20   4:27 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1120  0.2  0.0 6969336 107804 ?      Sl   May20  17:06 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1122  0.0  0.0 182296 92764 ?        S    May20   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1123  0.1  0.0 2867268 19872 ?       Sl   May20  11:17 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1125  0.0  0.0  15444  8956 ?        S    May20   0:01 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot       1126  0.1  0.0 3237656 20316 ?       Sl   May20  10:26 proxy -c /init/proxy/proxy.ini\\\\nroot       1230  0.0  0.0 28341192 11404 ?      Sl   May20   7:09 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_9wdbz2ji/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_9wdbz2ji/startup_error\\\\nroot      10015  0.0  0.0   4364  2060 ?        S    06:36   0:00 bash -c cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0' > /root/autodl-tmp/logs/eval_pi05_random_k085_goal_seed43_postfix.log 2>&1 & echo PID=$!\\\\nroot      10020  453  0.9 64685420 9916532 ?    Rl   06:36 116:27 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0\\\\nroot      11175  0.7  0.0 19739984 642932 ?     Sl   06:38   0:10 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot      11243  0.0  0.0 19608896 368456 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot      11245  0.0  0.0 19608896 368236 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot      11247  0.0  0.0 19608896 368240 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot      11249  0.0  0.0 19608896 368324 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --re\\\\n\\\\n... [截断: 输出过长，省略 22571 字符] ...\\\\n\\\\n_inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     926687  0.0  0.0 19608768 368192 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     926689  0.0  0.0 19608768 368192 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     926691  0.0  0.0 19608768 368192 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     926693  0.0  0.0 19608768 368128 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     926695  0.0  0.0 19608768 368128 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     926697  0.0  0.0 19608768 368036 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     926699  0.0  0.0 19608768 368136 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     926701  0.0  0.0 19608768 368204 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     982879  0.0  0.0   4364  2012 ?        S    06:07   0:00 bash -c cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl nohup python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_long_seed42.json > logs/eval_openvla_attn_k09_long_seed42.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot     982884  682  0.5 66507440 6200556 ?    Rl   06:07 377:01 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_long_seed42.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3076 ?        Ss   May20   0:00 bash /init/boot/boot.sh\\nroot       1102  2.3  0.0 725728 21900 ?        Sl   May20 175:45 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1115  0.0  0.0 4147224 75092 ?       Sl   May20   4:27 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1120  0.2  0.0 6969336 107804 ?      Sl   May20  17:06 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1122  0.0  0.0 182296 92764 ?        S    May20   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1123  0.1  0.0 2867268 19872 ?       Sl   May20  11:17 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1125  0.0  0.0  15444  8956 ?        S    May20   0:01 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot       1126  0.1  0.0 3237656 20316 ?       Sl   May20  10:26 proxy -c /init/proxy/proxy.ini\\nroot       1230  0.0  0.0 28341192 11404 ?      Sl   May20   7:09 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_9wdbz2ji/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_9wdbz2ji/startup_error\\nroot      10015  0.0  0.0   4364  2060 ?        S    06:36   0:00 bash -c cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0' > /root/autodl-tmp/logs/eval_pi05_random_k085_goal_seed43_postfix.log 2>&1 & echo PID=$!\\nroot      10020  453  0.9 64685420 9916532 ?    Rl   06:36 116:27 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0\\nroot      11175  0.7  0.0 19739984 642932 ?     Sl   06:38   0:10 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot      11243  0.0  0.0 19608896 368456 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot      11245  0.0  0.0 19608896 368236 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot      11247  0.0  0.0 19608896 368240 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot      11249  0.0  0.0 19608896 368324 ?     Sl   06:38   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=10020 --re\\n\\n... [截断: 输出过长，省略 22571 字符] ...\\n\\n_inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926687  0.0  0.0 19608768 368192 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926689  0.0  0.0 19608768 368192 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926691  0.0  0.0 19608768 368192 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926693  0.0  0.0 19608768 368128 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926695  0.0  0.0 19608768 368128 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926697  0.0  0.0 19608768 368036 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926699  0.0  0.0 19608768 368136 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     926701  0.0  0.0 19608768 368204 ?     Sl   05:32   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=924031 --read-fd=12 --write-fd=16 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     982879  0.0  0.0   4364  2012 ?        S    06:07   0:00 bash -c cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl nohup python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_long_seed42.json > logs/eval_openvla_attn_k09_long_seed42.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     982884  682  0.5 66507440 6200556 ?    Rl   06:07 377:01 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --seed 42 --output /root/autodl-tmp/importance_margin_vla_compress/eval_results/openvla_attn_prune_k09_long_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T23:02:23.049Z_
+
+<details><summary>↩ Tool result · `toolu_01UukdJsiLctYp5nCBDH6ABD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "b3d448fa-611e-4322-a93c-b63b02c93d65",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UCiASipsH7DysziTaPXoJ6`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls /root/autodl-tmp/importance_margin_vla_compress/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "a7e3b8cf-3917-49d0-bfbf-b70a4c3fcd07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbPNkx83gwQJiHDEXzZ7Fy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 24268,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_013M2n6r21BCCT8ri2mKw32s`</summary>
+
+```json
+{
+  "filters": {
+    "status": "RUNNING"
+  },
+  "project": "importance_margin_vla_compress",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "2c3bf570-6228-4eec-9d34-fa766d56a0b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbPNkx83gwQJiHDEXzZ7Fy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 24268,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T23:02:24.305Z_
+
+<details><summary>↩ Tool result · `toolu_01UCiASipsH7DysziTaPXoJ6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"batch64_v2.log\\nbatch64_v2_resume.log\\ndebug_pi05_actions.log\\ndryrun_pi05.log\\ndryrun_pi05_v2.log\\ndryrun_pi05_v3.log\\ne3_cosine_similarity_smolvla_pi05.log\\ne4_inference_latency_smolvla_pi05.log\\neval_acis_k05_v2.log\\neval_geometric_prior_k05.log\\neval_geometric_prior_k07.log\\neval_geometric_prior_k09.log\\neval_openvla_acis_k05.log\\neval_openvla_attn_k085_long_seed42.log\\neval_openvla_attn_k09_long_seed42.log\\neval_openvla_random_k05_seed43.log\\neval_openvla_random_k07_seed43.log\\neval_openvla_random_k095_seed43.log\\neval_openvla_random_k09_object_seed42_v2.log\\neval_openvla_sc_m128_vtconly_20k_seed42.log\\neval_pi05_baseline.log\\neval_pi05_baseline_object_seed42.log\\neval_pi05_baseline_object_seed42_official.log\\neval_pi05_diag_5ep.log\\neval_pi05_l2norm_k01_seed42.log\\neval_pi05_l2norm_k03_goal_seed42.log\\neval_pi05_l2norm_k03_long_seed42_postfix.log\\neval_pi05_l2norm_k03_long_seed43.log\\neval_pi05_l2norm_k03_object_seed42.log\\neval_pi05_l2norm_k05_goal_seed42.log\\neval_pi05_l2norm_k05_long_seed43.log\\neval_pi05_l2norm_k05_long_seed43_v2.log\\neval_pi05_l2norm_k05_object_seed42.log\\neval_pi05_l2norm_k07_goal_seed42.log\\neval_pi05_l2norm_k07_goal_seed43.log\\neval_pi05_l2norm_k07_goal_seed43_v2.log\\neval_pi05_l2norm_k07_long_seed42_v2.log\\neval_pi05_l2norm_k07_long_seed43_v3.log\\neval_pi05_l2norm_k085_goal_seed42.log\\neval_pi05_l2norm_k085_goal_seed42_postfix.log\\neval_pi05_l2norm_k085_long_seed43.log\\neval_pi05_l2norm_k085_long_seed43_postfix_v2.log\\neval_pi05_l2norm_k085_long_seed43_v3.log\\neval_pi05_l2norm_k095_object_seed42_v2.log\\neval_pi05_l2norm_k09_goal_seed43_postfix.log\\neval_pi05_l2norm_k09_long_seed42.log\\neval_pi05_l2norm_k09_long_seed43_postfix_v2.log\\neval_pi05_l2norm_k09_object_seed43_postfix.log\\neval_pi05_random_k03_long_seed43_v4.log\\neval_pi05_random_k03_object_seed42.log\\neval_pi05_random_k05_long_seed42.log\\neval_pi05_random_k05_long_seed43.log\\neval_pi05_random_k05_long_seed43_v2.log\\neval_pi05_random_k05_object_seed42.log\\neval_pi05_random_k05_object_seed43.log\\neval_pi05_random_k05_spatial_seed43.log\\neval_pi05_random_k07_long_seed42.log\\neval_pi05_random_k07_object_seed42.log\\neval_pi05_random_k07_object_seed43.log\\neval_pi05_random_k085_long_seed42.log\\neval_pi05_random_k085_long_seed43.log\\neval_pi05_random_k085_long_seed43_v2.log\\neval_pi05_random_k0925_object_seed42.log\\neval_pi05_random_k095_goal_seed42.log\\neval_pi05_random_k095_goal_seed43.log\\neval_pi05_random_k095_goal_seed43_v2.log\\neval_pi05_random_k095_object_seed43.log\\neval_pi05_random_k09_fixedmask_seed42.log\\neval_pi05_random_k09_goal_seed42.log\\neval_pi05_random_k09_goal_seed43_postfix.log\\neval_pi05_random_k09_object_seed43_postfix.log\\neval_pi05_random_k09_object_seed43_v4.log\\neval_pi05_random_k09_seed43.log\\neval_pi05_random_k09_spatial_seed43_postfix.log\\neval_pi05_random_k09_spatial_seed43_postfix_v2.log\\neval_random_k09_seed42.log\\neval_smart_compress_m32_official.log\\neval_smart_compress_m32_seed44.log\\neval_smart_compress_m64_seed44.log\\neval_smart_compress_m96_seed44.log\\nfullft_batch64.log\\ngeometric_prior_k09_dryrun.log\\ninference_latency_comparison.log\\nl2norm_k07_long_seed43.log\\nl2norm_k085_long_seed42.log\\nl2norm_k085_long_seed43_v2.log\\nl2norm_k09_long_seed43_v2.log\\noft_prune_sweep.log\\npi05_attention_k07_object_s42.log\\npi05_attention_k085_object_s42.log\\npi05_attention_k095_object_s42.log\\npi05_attention_k09_object_s42.log\\npi05_l2norm_k0925_object_s43_rerun.log\\npi05_random_k07_goal_s42.log\\npi05_random_k085_goal_s42.log\\nrandom_k085_long_seed42.log\\nrandom_k095_long.log\\nrandom_k09_long.log\\nsmart_compress_m32_seed44.log\\nsmart_compress_m96_seed44.log\\nsmolvla_baseline_spatial_s42.log\\ntrain_c5_roboflamingo_gpu1.log\\ntrain_c5_roboflamingo_v2.log\\ntrain_m64v6.log\\ntrain_openvla_sc_m128_lora_seed42.log\\ntrain_openvla_sc_m64_seed42.log\\ntrain_openvla_sc_m64_seed42_v5.log\\ntrain_openvla_sc_m96_seed42.log\\ntrain_openvla_vtc_m128_seed42.log\\ntrain_smart_compress_m32_official.log\\ntrain_smart_compress_m64_seed44.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "f962cd2c-4b0f-4728-a595-31c32a88d258",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"batch64_v2.log\\\\nbatch64_v2_resume.log\\\\ndebug_pi05_actions.log\\\\ndryrun_pi05.log\\\\ndryrun_pi05_v2.log\\\\ndryrun_pi05_v3.log\\\\ne3_cosine_similarity_smolvla_pi05.log\\\\ne4_inference_latency_smolvla_pi05.log\\\\neval_acis_k05_v2.log\\\\neval_geometric_prior_k05.log\\\\neval_geometric_prior_k07.log\\\\neval_geometric_prior_k09.log\\\\neval_openvla_acis_k05.log\\\\neval_openvla_attn_k085_long_seed42.log\\\\neval_openvla_attn_k09_long_seed42.log\\\\neval_openvla_random_k05_seed43.log\\\\neval_openvla_random_k07_seed43.log\\\\neval_openvla_random_k095_seed43.log\\\\neval_openvla_random_k09_object_seed42_v2.log\\\\neval_openvla_sc_m128_vtconly_20k_seed42.log\\\\neval_pi05_baseline.log\\\\neval_pi05_baseline_object_seed42.log\\\\neval_pi05_baseline_object_seed42_official.log\\\\neval_pi05_diag_5ep.log\\\\neval_pi05_l2norm_k01_seed42.log\\\\neval_pi05_l2norm_k03_goal_seed42.log\\\\neval_pi05_l2norm_k03_long_seed42_postfix.log\\\\neval_pi05_l2norm_k03_long_seed43.log\\\\neval_pi05_l2norm_k03_object_seed42.log\\\\neval_pi05_l2norm_k05_goal_seed42.log\\\\neval_pi05_l2norm_k05_long_seed43.log\\\\neval_pi05_l2norm_k05_long_seed43_v2.log\\\\neval_pi05_l2norm_k05_object_seed42.log\\\\neval_pi05_l2norm_k07_goal_seed42.log\\\\neval_pi05_l2norm_k07_goal_seed43.log\\\\neval_pi05_l2norm_k07_goal_seed43_v2.log\\\\neval_pi05_l2norm_k07_long_seed42_v2.log\\\\neval_pi05_l2norm_k07_long_seed43_v3.log\\\\neval_pi05_l2norm_k085_goal_seed42.log\\\\neval_pi05_l2norm_k085_goal_seed42_postfix.log\\\\neval_pi05_l2norm_k085_long_seed43.log\\\\neval_pi05_l2norm_k085_long_seed43_postfix_v2.log\\\\neval_pi05_l2norm_k085_long_seed43_v3.log\\\\neval_pi05_l2norm_k095_object_seed42_v2.log\\\\neval_pi05_l2norm_k09_goal_seed43_postfix.log\\\\neval_pi05_l2norm_k09_long_seed42.log\\\\neval_pi05_l2norm_k09_long_seed43_postfix_v2.log\\\\neval_pi05_l2norm_k09_object_seed43_postfix.log\\\\neval_pi05_random_k03_long_seed43_v4.log\\\\neval_pi05_random_k03_object_seed42.log\\\\neval_pi05_random_k05_long_seed42.log\\\\neval_pi05_random_k05_long_seed43.log\\\\neval_pi05_random_k05_long_seed43_v2.log\\\\neval_pi05_random_k05_object_seed42.log\\\\neval_pi05_random_k05_object_seed43.log\\\\neval_pi05_random_k05_spatial_seed43.log\\\\neval_pi05_random_k07_long_seed42.log\\\\neval_pi05_random_k07_object_seed42.log\\\\neval_pi05_random_k07_object_seed43.log\\\\neval_pi05_random_k085_long_seed42.log\\\\neval_pi05_random_k085_long_seed43.log\\\\neval_pi05_random_k085_long_seed43_v2.log\\\\neval_pi05_random_k0925_object_seed42.log\\\\neval_pi05_random_k095_goal_seed42.log\\\\neval_pi05_random_k095_goal_seed43.log\\\\neval_pi05_random_k095_goal_seed43_v2.log\\\\neval_pi05_random_k095_object_seed43.log\\\\neval_pi05_random_k09_fixedmask_seed42.log\\\\neval_pi05_random_k09_goal_seed42.log\\\\neval_pi05_random_k09_goal_seed43_postfix.log\\\\neval_pi05_random_k09_object_seed43_postfix.log\\\\neval_pi05_random_k09_object_seed43_v4.log\\\\neval_pi05_random_k09_seed43.log\\\\neval_pi05_random_k09_spatial_seed43_postfix.log\\\\neval_pi05_random_k09_spatial_seed43_postfix_v2.log\\\\neval_random_k09_seed42.log\\\\neval_smart_compress_m32_official.log\\\\neval_smart_compress_m32_seed44.log\\\\neval_smart_compress_m64_seed44.log\\\\neval_smart_compress_m96_seed44.log\\\\nfullft_batch64.log\\\\ngeometric_prior_k09_dryrun.log\\\\ninference_latency_comparison.log\\\\nl2norm_k07_long_seed43.log\\\\nl2norm_k085_long_seed42.log\\\\nl2norm_k085_long_seed43_v2.log\\\\nl2norm_k09_long_seed43_v2.log\\\\noft_prune_sweep.log\\\\npi05_attention_k07_object_s42.log\\\\npi05_attention_k085_object_s42.log\\\\npi05_attention_k095_object_s42.log\\\\npi05_attention_k09_object_s42.log\\\\npi05_l2norm_k0925_object_s43_rerun.log\\\\npi05_random_k07_goal_s42.log\\\\npi05_random_k085_goal_s42.log\\\\nrandom_k085_long_seed42.log\\\\nrandom_k095_long.log\\\\nrandom_k09_long.log\\\\nsmart_compress_m32_seed44.log\\\\nsmart_compress_m96_seed44.log\\\\nsmolvla_baseline_spatial_s42.log\\\\ntrain_c5_roboflamingo_gpu1.log\\\\ntrain_c5_roboflamingo_v2.log\\\\ntrain_m64v6.log\\\\ntrain_openvla_sc_m128_lora_seed42.log\\\\ntrain_openvla_sc_m64_seed42.log\\\\ntrain_openvla_sc_m64_seed42_v5.log\\\\ntrain_openvla_sc_m96_seed42.log\\\\ntrain_openvla_vtc_m128_seed42.log\\\\ntrain_smart_compress_m32_official.log\\\\ntrain_smart_compress_m64_seed44.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"batch64_v2.log\\nbatch64_v2_resume.log\\ndebug_pi05_actions.log\\ndryrun_pi05.log\\ndryrun_pi05_v2.log\\ndryrun_pi05_v3.log\\ne3_cosine_similarity_smolvla_pi05.log\\ne4_inference_latency_smolvla_pi05.log\\neval_acis_k05_v2.log\\neval_geometric_prior_k05.log\\neval_geometric_prior_k07.log\\neval_geometric_prior_k09.log\\neval_openvla_acis_k05.log\\neval_openvla_attn_k085_long_seed42.log\\neval_openvla_attn_k09_long_seed42.log\\neval_openvla_random_k05_seed43.log\\neval_openvla_random_k07_seed43.log\\neval_openvla_random_k095_seed43.log\\neval_openvla_random_k09_object_seed42_v2.log\\neval_openvla_sc_m128_vtconly_20k_seed42.log\\neval_pi05_baseline.log\\neval_pi05_baseline_object_seed42.log\\neval_pi05_baseline_object_seed42_official.log\\neval_pi05_diag_5ep.log\\neval_pi05_l2norm_k01_seed42.log\\neval_pi05_l2norm_k03_goal_seed42.log\\neval_pi05_l2norm_k03_long_seed42_postfix.log\\neval_pi05_l2norm_k03_long_seed43.log\\neval_pi05_l2norm_k03_object_seed42.log\\neval_pi05_l2norm_k05_goal_seed42.log\\neval_pi05_l2norm_k05_long_seed43.log\\neval_pi05_l2norm_k05_long_seed43_v2.log\\neval_pi05_l2norm_k05_object_seed42.log\\neval_pi05_l2norm_k07_goal_seed42.log\\neval_pi05_l2norm_k07_goal_seed43.log\\neval_pi05_l2norm_k07_goal_seed43_v2.log\\neval_pi05_l2norm_k07_long_seed42_v2.log\\neval_pi05_l2norm_k07_long_seed43_v3.log\\neval_pi05_l2norm_k085_goal_seed42.log\\neval_pi05_l2norm_k085_goal_seed42_postfix.log\\neval_pi05_l2norm_k085_long_seed43.log\\neval_pi05_l2norm_k085_long_seed43_postfix_v2.log\\neval_pi05_l2norm_k085_long_seed43_v3.log\\neval_pi05_l2norm_k095_object_seed42_v2.log\\neval_pi05_l2norm_k09_goal_seed43_postfix.log\\neval_pi05_l2norm_k09_long_seed42.log\\neval_pi05_l2norm_k09_long_seed43_postfix_v2.log\\neval_pi05_l2norm_k09_object_seed43_postfix.log\\neval_pi05_random_k03_long_seed43_v4.log\\neval_pi05_random_k03_object_seed42.log\\neval_pi05_random_k05_long_seed42.log\\neval_pi05_random_k05_long_seed43.log\\neval_pi05_random_k05_long_seed43_v2.log\\neval_pi05_random_k05_object_seed42.log\\neval_pi05_random_k05_object_seed43.log\\neval_pi05_random_k05_spatial_seed43.log\\neval_pi05_random_k07_long_seed42.log\\neval_pi05_random_k07_object_seed42.log\\neval_pi05_random_k07_object_seed43.log\\neval_pi05_random_k085_long_seed42.log\\neval_pi05_random_k085_long_seed43.log\\neval_pi05_random_k085_long_seed43_v2.log\\neval_pi05_random_k0925_object_seed42.log\\neval_pi05_random_k095_goal_seed42.log\\neval_pi05_random_k095_goal_seed43.log\\neval_pi05_random_k095_goal_seed43_v2.log\\neval_pi05_random_k095_object_seed43.log\\neval_pi05_random_k09_fixedmask_seed42.log\\neval_pi05_random_k09_goal_seed42.log\\neval_pi05_random_k09_goal_seed43_postfix.log\\neval_pi05_random_k09_object_seed43_postfix.log\\neval_pi05_random_k09_object_seed43_v4.log\\neval_pi05_random_k09_seed43.log\\neval_pi05_random_k09_spatial_seed43_postfix.log\\neval_pi05_random_k09_spatial_seed43_postfix_v2.log\\neval_random_k09_seed42.log\\neval_smart_compress_m32_official.log\\neval_smart_compress_m32_seed44.log\\neval_smart_compress_m64_seed44.log\\neval_smart_compress_m96_seed44.log\\nfullft_batch64.log\\ngeometric_prior_k09_dryrun.log\\ninference_latency_comparison.log\\nl2norm_k07_long_seed43.log\\nl2norm_k085_long_seed42.log\\nl2norm_k085_long_seed43_v2.log\\nl2norm_k09_long_seed43_v2.log\\noft_prune_sweep.log\\npi05_attention_k07_object_s42.log\\npi05_attention_k085_object_s42.log\\npi05_attention_k095_object_s42.log\\npi05_attention_k09_object_s42.log\\npi05_l2norm_k0925_object_s43_rerun.log\\npi05_random_k07_goal_s42.log\\npi05_random_k085_goal_s42.log\\nrandom_k085_long_seed42.log\\nrandom_k095_long.log\\nrandom_k09_long.log\\nsmart_compress_m32_seed44.log\\nsmart_compress_m96_seed44.log\\nsmolvla_baseline_spatial_s42.log\\ntrain_c5_roboflamingo_gpu1.log\\ntrain_c5_roboflamingo_v2.log\\ntrain_m64v6.log\\ntrain_openvla_sc_m128_lora_seed42.log\\ntrain_openvla_sc_m64_seed42.log\\ntrain_openvla_sc_m64_seed42_v5.log\\ntrain_openvla_sc_m96_seed42.log\\ntrain_openvla_vtc_m128_seed42.log\\ntrain_smart_compress_m32_official.log\\ntrain_smart_compress_m64_seed44.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-24T23:02:27.893Z_
+
+<details><summary>↩ Tool result · `toolu_013M2n6r21BCCT8ri2mKw32s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k085_spatial_seed43_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:47:31.188Z\", \"updated_at\": \"2026-05-24T22:48:19.032Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Spatial seed43 postfix. Paired with Random k=0.85 Spatial s43 (cqa1 GPU1) to compute Spatial importance margin at k=0.85 cliff zone. seed42 L2norm k=0.85 Spatial = 88.4%. Completes L2norm k=0.85 dual-seed for Spatial suite.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"gpu\": 3, \"pid\": 792816, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_spatial_seed43_postfix.log\", \"submitted_at\": \"2026-05-24T22:47:42.842Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\"}}, \"eval_pi05_random_k085_spatial_seed43_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:42:40.666Z\", \"updated_at\": \"2026-05-24T22:43:28.175Z\", \"hypothesis\": \"π0.5 Random k=0.85 Spatial seed43 postfix. Cliff zone k=0.85 dual-seed validation for Spatial suite. Completes k=0.85 cliff zone coverage across all 4 suites (Object on cqa1 GPU0, Goal on westd-41074 GPU2, Long ✅ done, Spatial missing). seed42 Random k=0.85 Spatial postfix = 52.6%.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"gpu\": 1, \"pid\": 788482, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_spatial_seed43_postfix.log\", \"submitted_at\": \"2026-05-24T22:42:53.383Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\"}}, \"eval_pi05_random_k085_goal_seed43_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:35:00.448Z\", \"updated_at\": \"2026-05-24T22:37:27.886Z\", \"hypothesis\": \"π0.5 Random k=0.85 Goal seed43 postfix — cliff zone k=0.85 dual-seed 数据。seed42 k=0.85 Goal postfix 已有数据。补充 seed43 计算跨 seed 稳定性。\", \"parent\": \"eval_pi05_random_k085_goal_seed42_postfix\", \"spec\": {\"server\": \"westd-41074\", \"gpu_ids\": [2], \"gpu_id\": 2, \"seed\": 43, \"model_name\": \"pi05_libero_finetuned\", \"data_path\": \"libero_goal\", \"data_count\": 500, \"checkpoint_source\": \"pi05_libero_finetuned\", \"eval_data\": \"libero_goal (10 tasks x 50 episodes)\", \"checkpoint_path\": \"N/A (eval only)\", \"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0\", \"pid\": 10015, \"log_path\": \"/root/autodl-tmp/logs/eval_pi05_random_k085_goal_seed43_postfix.log\"}}, \"eval_openvla_attn_k09_long_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:08:09.941Z\", \"updated_at\": \"2026-05-24T22:09:01.577Z\", \"hypothesis\": \"OpenVLA Attention scoring k=0.9 on LIBERO-Long. Fills k=0.9 Long blank in OpenVLA Attn crossover table. k=0.85 Long running on same server GPU1.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --seed 42 --output eval_results/openvla_attn_prune_k09_long_seed42.json\", \"server\": \"westd-41074\", \"gpu\": 0, \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"logs/eval_openvla_attn_k09_long_seed42.log\"}}, \"eval_pi05_random_k085_object_seed43_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T21:33:02.163Z\", \"updated_at\": \"2026-05-24T21:34:29.219Z\", \"hypothesis\": \"π0.5 Random k=0.85 Object seed43. Cliff zone k=0.85 dual-seed validation. seed42 Random k=0.85 Object needed for margin calculation.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_object --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"gpu\": 0, \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"log_path\": \"logs/eval_pi05_random_k085_object_seed43_postfix.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"pid\": 733129}}, \"eval_pi05_random_k09_spatial_seed43_postfix_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T21:32:23.858Z\", \"updated_at\": \"2026-05-24T21:33:06.056Z\", \"hypothesis\": \"π0.5 Random k=0.9 Spatial seed43 v2. Retry after v1 network error. HF_HUB_OFFLINE=1 added. Paired with L2norm k=0.9 Spatial s43 (96.2%) for cliff zone margin.\", \"parent\": \"eval_pi05_random_k09_spatial_seed43_postfix\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": 3, \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_path\": \"N/A (eval only)\", \"checkpoint_source\": \"pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\", \"log_path\": \"logs/eval_pi05_random_k09_spatial_seed43_postfix_v2.log\"}}, \"eval_openvla_attn_k085_long_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T21:25:20.002Z\", \"updated_at\": \"2026-05-24T21:26:20.561Z\", \"hypothesis\": \"OpenVLA Attention scoring k=0.85 on LIBERO-Long. Extending Attn scoring to Long suite. Attn k=0.9 and k=0.85 Object running on westd-38929, k=0.9 Goal+Spatial on westd-27271. Long suite tests attention scoring on most challenging multi-step tasks.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_10 --seed 42 --output eval_results/openvla_attn_prune_k085_long_seed42.json\", \"server\": \"westd-41074\", \"gpu\": 1, \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_long_seed42.log\", \"pid\": 912556}}, \"eval_openvla_attn_k085_spatial_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T21:01:44.172Z\", \"updated_at\": \"2026-05-24T21:03:00.890Z\", \"hypothesis\": \"OpenVLA Attention scoring k=0.85 on LIBERO-Spatial. MLP connector + attention scoring crossover test. k=0.85 Object already running. Extending to Spatial suite.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_spatial --seed 42 --output eval_results/openvla_attn_prune_k085_spatial_seed42.json\", \"server\": \"westd-38929\", \"gpu\": 3, \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"openvla-7b\", \"seed\": 42, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_spatial_seed42.log\", \"checkpoint_path\": \"N/A (eval only)\", \"pid\": 861122}}, \"eval_openvla_attn_k085_goal_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T21:01:36.424Z\", \"updated_at\": \"2026-05-24T21:02:56.029Z\", \"hypothesis\": \"OpenVLA Attention scoring k=0.85 on LIBERO-Goal. MLP connector + attention scoring crossover test. k=0.85 Object already running. Extending to Goal suite.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_goal --seed 42 --output eval_results/openvla_attn_prune_k085_goal_seed42.json\", \"server\": \"westd-38929\", \"gpu\": 2, \"data_path\": \"libero_goal\", \"data_count\": 500, \"model_name\": \"openvla-7b\", \"seed\": 42, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_goal_seed42.log\", \"checkpoint_path\": \"N/A (eval only)\", \"pid\": 860471}}, \"eval_openvla_attn_k09_goal_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T19:46:21.080Z\", \"updated_at\": \"2026-05-24T19:47:29.625Z\", \"hypothesis\": \"OpenVLA Attn scoring k=0.9 Goal seed42 — 补全 2×2 crossover table 跨 suite 验证。Object 已在 westd-38929 运行。Goal suite 验证 MLP connector + Attention scoring 在不同任务复杂度下的一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal\", \"server\": \"westd-27271\", \"data_path\": \"libero_goal\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"libero_goal (10 tasks x 50 eps)\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_goal_seed42.log\"}}, \"eval_pi05_random_k05_long_seed43_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T18:45:24.572Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}}}, \"count\": 11, \"total\": 11, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.564}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "87277f7c-acf9-45e6-9996-1b762a775390",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pi05_l2norm_k085_spatial_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T22:47:31.188Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:48:19.032Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.85 Spatial seed43 postfix. Paired with Random k=0.85 Spatial s43 (cqa1 GPU1) to compute Spatial importance margin at k=0.85 cliff zone. seed42 L2norm k=0.85 Spatial = 88.4%. Completes L2norm k=0.85 dual-seed for Spatial suite.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": 3, \\\"pid\\\": 792816, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_spatial_seed43_postfix.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T22:47:42.842Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\"}}, \\\"eval_pi05_random_k085_spatial_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T22:42:40.666Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:43:28.175Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.85 Spatial seed43 postfix. Cliff zone k=0.85 dual-seed validation for Spatial suite. Completes k=0.85 cliff zone coverage across all 4 suites (Object on cqa1 GPU0, Goal on westd-41074 GPU2, Long ✅ done, Spatial missing). seed42 Random k=0.85 Spatial postfix = 52.6%.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": 1, \\\"pid\\\": 788482, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_spatial_seed43_postfix.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T22:42:53.383Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"libero_spatial\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\"}}, \\\"eval_pi05_random_k085_goal_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T22:35:00.448Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:37:27.886Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.85 Goal seed43 postfix — cliff zone k=0.85 dual-seed 数据。seed42 k=0.85 Goal postfix 已有数据。补充 seed43 计算跨 seed 稳定性。\\\", \\\"parent\\\": \\\"eval_pi05_random_k085_goal_seed42_postfix\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-41074\\\", \\\"gpu_ids\\\": [2], \\\"gpu_id\\\": 2, \\\"seed\\\": 43, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"data_path\\\": \\\"libero_goal\\\", \\\"data_count\\\": 500, \\\"checkpoint_source\\\": \\\"pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_goal (10 tasks x 50 episodes)\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0\\\", \\\"pid\\\": 10015, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/eval_pi05_random_k085_goal_seed43_postfix.log\\\"}}, \\\"eval_openvla_attn_k09_long_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T22:08:09.941Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:09:01.577Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attention scoring k=0.9 on LIBERO-Long. Fills k=0.9 Long blank in OpenVLA Attn crossover table. k=0.85 Long running on same server GPU1.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --seed 42 --output eval_results/openvla_attn_prune_k09_long_seed42.json\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": 0, \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"log_path\\\": \\\"logs/eval_openvla_attn_k09_long_seed42.log\\\"}}, \\\"eval_pi05_random_k085_object_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T21:33:02.163Z\\\", \\\"updated_at\\\": \\\"2026-05-24T21:34:29.219Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.85 Object seed43. Cliff zone k=0.85 dual-seed validation. seed42 Random k=0.85 Object needed for margin calculation.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_object --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"gpu\\\": 0, \\\"data_path\\\": \\\"libero_object\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"log_path\\\": \\\"logs/eval_pi05_random_k085_object_seed43_postfix.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"pid\\\": 733129}}, \\\"eval_pi05_random_k09_spatial_seed43_postfix_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T21:32:23.858Z\\\", \\\"updated_at\\\": \\\"2026-05-24T21:33:06.056Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.9 Spatial seed43 v2. Retry after v1 network error. HF_HUB_OFFLINE=1 added. Paired with L2norm k=0.9 Spatial s43 (96.2%) for cliff zone margin.\\\", \\\"parent\\\": \\\"eval_pi05_random_k09_spatial_seed43_postfix\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": 3, \\\"data_path\\\": \\\"libero_spatial\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"checkpoint_source\\\": \\\"pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_spatial\\\", \\\"log_path\\\": \\\"logs/eval_pi05_random_k09_spatial_seed43_postfix_v2.log\\\"}}, \\\"eval_openvla_attn_k085_long_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T21:25:20.002Z\\\", \\\"updated_at\\\": \\\"2026-05-24T21:26:20.561Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attention scoring k=0.85 on LIBERO-Long. Extending Attn scoring to Long suite. Attn k=0.9 and k=0.85 Object running on westd-38929, k=0.9 Goal+Spatial on westd-27271. Long suite tests attention scoring on most challenging multi-step tasks.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_10 --seed 42 --output eval_results/openvla_attn_prune_k085_long_seed42.json\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": 1, \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_long_seed42.log\\\", \\\"pid\\\": 912556}}, \\\"eval_openvla_attn_k085_spatial_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T21:01:44.172Z\\\", \\\"updated_at\\\": \\\"2026-05-24T21:03:00.890Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attention scoring k=0.85 on LIBERO-Spatial. MLP connector + attention scoring crossover test. k=0.85 Object already running. Extending to Spatial suite.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_spatial --seed 42 --output eval_results/openvla_attn_prune_k085_spatial_seed42.json\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": 3, \\\"data_path\\\": \\\"libero_spatial\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_spatial_seed42.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"pid\\\": 861122}}, \\\"eval_openvla_attn_k085_goal_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T21:01:36.424Z\\\", \\\"updated_at\\\": \\\"2026-05-24T21:02:56.029Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attention scoring k=0.85 on LIBERO-Goal. MLP connector + attention scoring crossover test. k=0.85 Object already running. Extending to Goal suite.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_goal --seed 42 --output eval_results/openvla_attn_prune_k085_goal_seed42.json\\\", \\\"server\\\": \\\"westd-38929\\\", \\\"gpu\\\": 2, \\\"data_path\\\": \\\"libero_goal\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_goal_seed42.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"pid\\\": 860471}}, \\\"eval_openvla_attn_k09_goal_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T19:46:21.080Z\\\", \\\"updated_at\\\": \\\"2026-05-24T19:47:29.625Z\\\", \\\"hypothesis\\\": \\\"OpenVLA Attn scoring k=0.9 Goal seed42 — 补全 2×2 crossover table 跨 suite 验证。Object 已在 westd-38929 运行。Goal suite 验证 MLP connector + Attention scoring 在不同任务复杂度下的一致性\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal\\\", \\\"server\\\": \\\"westd-27271\\\", \\\"data_path\\\": \\\"libero_goal\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"openvla-7b-finetuned-libero-goal\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/openvla-7b-finetuned-libero-goal\\\", \\\"eval_data\\\": \\\"libero_goal (10 tasks x 50 eps)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_goal_seed42.log\\\"}}, \\\"eval_pi05_random_k05_long_seed43_postfix\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:30.297Z\\\", \\\"updated_at\\\": \\\"2026-05-24T18:45:24.572Z\\\", \\\"hypothesis\\\": \\\"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\\\"}}}, \\\"count\\\": 11, \\\"total\\\": 11, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.564}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_pi05_l2norm_k085_spatial_seed43_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:47:31.188Z\", \"updated_at\": \"2026-05-24T22:48:19.032Z\", \"hypothesis\": \"π0.5 L2norm k=0.85 Spatial seed43 postfix. Paired with Random k=0.85 Spatial s43 (cqa1 GPU1) to compute Spatial importance margin at k=0.85 cliff zone. seed42 L2norm k=0.85 Spatial = 88.4%. Completes L2norm k=0.85 dual-seed for Spatial suite.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"gpu\": 3, \"pid\": 792816, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k085_spatial_seed43_postfix.log\", \"submitted_at\": \"2026-05-24T22:47:42.842Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\"}}, \"eval_pi05_random_k085_spatial_seed43_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:42:40.666Z\", \"updated_at\": \"2026-05-24T22:43:28.175Z\", \"hypothesis\": \"π0.5 Random k=0.85 Spatial seed43 postfix. Cliff zone k=0.85 dual-seed validation for Spatial suite. Completes k=0.85 cliff zone coverage across all 4 suites (Object on cqa1 GPU0, Goal on westd-41074 GPU2, Long ✅ done, Spatial missing). seed42 Random k=0.85 Spatial postfix = 52.6%.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"gpu\": 1, \"pid\": 788482, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_random_k085_spatial_seed43_postfix.log\", \"submitted_at\": \"2026-05-24T22:42:53.383Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\"}}, \"eval_pi05_random_k085_goal_seed43_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:35:00.448Z\", \"updated_at\": \"2026-05-24T22:37:27.886Z\", \"hypothesis\": \"π0.5 Random k=0.85 Goal seed43 postfix — cliff zone k=0.85 dual-seed 数据。seed42 k=0.85 Goal postfix 已有数据。补充 seed43 计算跨 seed 稳定性。\", \"parent\": \"eval_pi05_random_k085_goal_seed42_postfix\", \"spec\": {\"server\": \"westd-41074\", \"gpu_ids\": [2], \"gpu_id\": 2, \"seed\": 43, \"model_name\": \"pi05_libero_finetuned\", \"data_path\": \"libero_goal\", \"data_count\": 500, \"checkpoint_source\": \"pi05_libero_finetuned\", \"eval_data\": \"libero_goal (10 tasks x 50 episodes)\", \"checkpoint_path\": \"N/A (eval only)\", \"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_goal --n_episodes 50 --seed 43 --gpu 0\", \"pid\": 10015, \"log_path\": \"/root/autodl-tmp/logs/eval_pi05_random_k085_goal_seed43_postfix.log\"}}, \"eval_openvla_attn_k09_long_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T22:08:09.941Z\", \"updated_at\": \"2026-05-24T22:09:01.577Z\", \"hypothesis\": \"OpenVLA Attention scoring k=0.9 on LIBERO-Long. Fills k=0.9 Long blank in OpenVLA Attn crossover table. k=0.85 Long running on same server GPU1.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_10 --seed 42 --output eval_results/openvla_attn_prune_k09_long_seed42.json\", \"server\": \"westd-41074\", \"gpu\": 0, \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"logs/eval_openvla_attn_k09_long_seed42.log\"}}, \"eval_pi05_random_k085_object_seed43_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T21:33:02.163Z\", \"updated_at\": \"2026-05-24T21:34:29.219Z\", \"hypothesis\": \"π0.5 Random k=0.85 Object seed43. Cliff zone k=0.85 dual-seed validation. seed42 Random k=0.85 Object needed for margin calculation.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache MUJOCO_GL=egl python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.85 --suite libero_object --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"gpu\": 0, \"data_path\": \"libero_object\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"log_path\": \"logs/eval_pi05_random_k085_object_seed43_postfix.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"pid\": 733129}}, \"eval_pi05_random_k09_spatial_seed43_postfix_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T21:32:23.858Z\", \"updated_at\": \"2026-05-24T21:33:06.056Z\", \"hypothesis\": \"π0.5 Random k=0.9 Spatial seed43 v2. Retry after v1 network error. HF_HUB_OFFLINE=1 added. Paired with L2norm k=0.9 Spatial s43 (96.2%) for cliff zone margin.\", \"parent\": \"eval_pi05_random_k09_spatial_seed43_postfix\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.9 --suite libero_spatial --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": 3, \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_path\": \"N/A (eval only)\", \"checkpoint_source\": \"pi05_libero_finetuned\", \"eval_data\": \"libero_spatial\", \"log_path\": \"logs/eval_pi05_random_k09_spatial_seed43_postfix_v2.log\"}}, \"eval_openvla_attn_k085_long_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T21:25:20.002Z\", \"updated_at\": \"2026-05-24T21:26:20.561Z\", \"hypothesis\": \"OpenVLA Attention scoring k=0.85 on LIBERO-Long. Extending Attn scoring to Long suite. Attn k=0.9 and k=0.85 Object running on westd-38929, k=0.9 Goal+Spatial on westd-27271. Long suite tests attention scoring on most challenging multi-step tasks.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_10 --seed 42 --output eval_results/openvla_attn_prune_k085_long_seed42.json\", \"server\": \"westd-41074\", \"gpu\": 1, \"data_path\": \"libero_10\", \"data_count\": 500, \"model_name\": \"openvla-7b\", \"seed\": 42, \"checkpoint_path\": \"N/A (eval only)\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_long_seed42.log\", \"pid\": 912556}}, \"eval_openvla_attn_k085_spatial_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T21:01:44.172Z\", \"updated_at\": \"2026-05-24T21:03:00.890Z\", \"hypothesis\": \"OpenVLA Attention scoring k=0.85 on LIBERO-Spatial. MLP connector + attention scoring crossover test. k=0.85 Object already running. Extending to Spatial suite.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_spatial --seed 42 --output eval_results/openvla_attn_prune_k085_spatial_seed42.json\", \"server\": \"westd-38929\", \"gpu\": 3, \"data_path\": \"libero_spatial\", \"data_count\": 500, \"model_name\": \"openvla-7b\", \"seed\": 42, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_spatial_seed42.log\", \"checkpoint_path\": \"N/A (eval only)\", \"pid\": 861122}}, \"eval_openvla_attn_k085_goal_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T21:01:36.424Z\", \"updated_at\": \"2026-05-24T21:02:56.029Z\", \"hypothesis\": \"OpenVLA Attention scoring k=0.85 on LIBERO-Goal. MLP connector + attention scoring crossover test. k=0.85 Object already running. Extending to Goal suite.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.85 --suite libero_goal --seed 42 --output eval_results/openvla_attn_prune_k085_goal_seed42.json\", \"server\": \"westd-38929\", \"gpu\": 2, \"data_path\": \"libero_goal\", \"data_count\": 500, \"model_name\": \"openvla-7b\", \"seed\": 42, \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k085_goal_seed42.log\", \"checkpoint_path\": \"N/A (eval only)\", \"pid\": 860471}}, \"eval_openvla_attn_k09_goal_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T19:46:21.080Z\", \"updated_at\": \"2026-05-24T19:47:29.625Z\", \"hypothesis\": \"OpenVLA Attn scoring k=0.9 Goal seed42 — 补全 2×2 crossover table 跨 suite 验证。Object 已在 westd-38929 运行。Goal suite 验证 MLP connector + Attention scoring 在不同任务复杂度下的一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python -u eval_openvla_l2norm_libero.py --mode attention_prune --k_ratio 0.9 --suite libero_goal --num_episodes 50 --seed 42 --model_path /root/autodl-tmp/openvla-7b-finetuned-libero-goal --unnorm_key libero_goal\", \"server\": \"westd-27271\", \"data_path\": \"libero_goal\", \"data_count\": 500, \"model_name\": \"openvla-7b-finetuned-libero-goal\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/openvla-7b-finetuned-libero-goal\", \"eval_data\": \"libero_goal (10 tasks x 50 eps)\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/eval_openvla_attn_k09_goal_seed42.log\"}}, \"eval_pi05_random_k05_long_seed43_postfix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:30.297Z\", \"updated_at\": \"2026-05-24T18:45:24.572Z\", \"hypothesis\": \"π0.5 Random k=0.5 Long seed43 post-fix — dual-seed heavy pruning Random 验证。seed42 Random k=0.5 Long=46.8%。seed43 验证 heavy pruning Random baseline 跨 seed 一致性\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.5 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k05_seed43.log\"}}}, \"count\": 11, \"total\": 11, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.564}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the key information. Let me analyze:
+
+1. **Registry**: `eval_pi05_random_k085_goal_seed43_postfix` is registered as RUNNING, with:
+   - `server: westd-41074`
+   - `gpu_id: 2` (GPU2)
+   - `pid: 10015`
+   - `log_path: /root/autodl-tmp/logs/eval_pi05_random_k085_goal_seed43_postfix.log`
+
+2. **ps aux on westd-41074**: The process IS running on GPU2:
+   - PID 10015 is the bash wrapper with `CUDA_VISIBLE_DEVICES=2`
+   - PID 10020 is the actual Python evaluation script running the pruning experiment with random mode at 0.85 keep ratio, which has been executing for 116 minutes at high CPU usage
+
+3. Now I'm checking whether the log file actually exists in the expected directory—it's not showing up in the listing, so something's off with the path or the file location.
+
+Actually, I realize the log path in the registry points to `/root/autodl-tmp/logs/` rather than the subdirectory I was looking at. Let me check that log file to see what progress has been made.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "0287d754-6430-4c1b-bafc-ff0be066ce63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXJn8Fg4verWe3sFVoxLv2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10966,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10966
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+实验确认正在 westd-41074 GPU2 上运行。查看日志确认进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "852ca461-69d3-4a34-9fdc-b6c0da4bf19f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXJn8Fg4verWe3sFVoxLv2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10966,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10966
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HcALS5bF6aufHMjMSvtkCv`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -30 /root/autodl-tmp/logs/eval_pi05_random_k085_goal_seed43_postfix.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "1459296d-300f-482d-8e28-87939a68cc9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXJn8Fg4verWe3sFVoxLv2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10966,
+      "cache_read_input_tokens": 24781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10966
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T23:02:41.462Z_
+
+<details><summary>↩ Tool result · `toolu_01HcALS5bF6aufHMjMSvtkCv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"All keys loaded successfully!\\n2026-05-25 06:38:28,569 Patched embed_image\\n2026-05-25 06:38:28,575 Model: 4143.4M params\\n2026-05-25 06:38:28,576 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-25 06:38:28,576 Pruning: random, keep 217/256 tokens/image (651 total)\\n2026-05-25 06:38:29,365 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-25 06:38:29,388 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-25 06:38:29,388 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-25 06:38:29,388 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-25 06:38:29,439 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-25 06:38:29,847 Suite: libero_goal, 10 tasks, max_steps=300\\n[PRUNE-DIAG] random: n_keep=217/256, first_indices=[0, 1, 2, 3, 4]\\n2026-05-25 06:40:03,930   T0 [open the middle drawer of the cabinet] ep=10: 7/10=70%\\n2026-05-25 06:41:38,676   T0 [open the middle drawer of the cabinet] ep=20: 14/20=70%\\n2026-05-25 06:42:57,435   T0 [open the middle drawer of the cabinet] ep=30: 23/30=77%\\n2026-05-25 06:44:26,064   T0 [open the middle drawer of the cabinet] ep=40: 31/40=78%\\n2026-05-25 06:45:51,418   T0 [open the middle drawer of the cabinet] ep=50: 39/50=78%\\n2026-05-25 06:45:51,418 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 7.4min\\n2026-05-25 06:48:12,547   T1 [put the bowl on the stove] ep=10: 0/10=0%\\n2026-05-25 06:50:33,393   T1 [put the bowl on the stove] ep=20: 0/20=0%\\n2026-05-25 06:52:54,274   T1 [put the bowl on the stove] ep=30: 0/30=0%\\n2026-05-25 06:55:15,228   T1 [put the bowl on the stove] ep=40: 0/40=0%\\n2026-05-25 06:57:36,504   T1 [put the bowl on the stove] ep=50: 0/50=0%\\n2026-05-25 06:57:36,504 Task 1: SR=0.0% | Total: 39/100=39.0% | Time: 19.1min\\n2026-05-25 06:59:24,299   T2 [put the wine bottle on top of the cabine] ep=10: 4/10=40%\\n2026-05-25 07:01:11,804   T2 [put the wine bottle on top of the cabine] ep=20: 8/20=40%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "59a8b76a-5440-4798-a222-25d62d8fb155",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All keys loaded successfully!\\\\n2026-05-25 06:38:28,569 Patched embed_image\\\\n2026-05-25 06:38:28,575 Model: 4143.4M params\\\\n2026-05-25 06:38:28,576 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-25 06:38:28,576 Pruning: random, keep 217/256 tokens/image (651 total)\\\\n2026-05-25 06:38:29,365 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n2026-05-25 06:38:29,388 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n2026-05-25 06:38:29,388 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-25 06:38:29,388 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-25 06:38:29,439 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-25 06:38:29,847 Suite: libero_goal, 10 tasks, max_steps=300\\\\n[PRUNE-DIAG] random: n_keep=217/256, first_indices=[0, 1, 2, 3, 4]\\\\n2026-05-25 06:40:03,930   T0 [open the middle drawer of the cabinet] ep=10: 7/10=70%\\\\n2026-05-25 06:41:38,676   T0 [open the middle drawer of the cabinet] ep=20: 14/20=70%\\\\n2026-05-25 06:42:57,435   T0 [open the middle drawer of the cabinet] ep=30: 23/30=77%\\\\n2026-05-25 06:44:26,064   T0 [open the middle drawer of the cabinet] ep=40: 31/40=78%\\\\n2026-05-25 06:45:51,418   T0 [open the middle drawer of the cabinet] ep=50: 39/50=78%\\\\n2026-05-25 06:45:51,418 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 7.4min\\\\n2026-05-25 06:48:12,547   T1 [put the bowl on the stove] ep=10: 0/10=0%\\\\n2026-05-25 06:50:33,393   T1 [put the bowl on the stove] ep=20: 0/20=0%\\\\n2026-05-25 06:52:54,274   T1 [put the bowl on the stove] ep=30: 0/30=0%\\\\n2026-05-25 06:55:15,228   T1 [put the bowl on the stove] ep=40: 0/40=0%\\\\n2026-05-25 06:57:36,504   T1 [put the bowl on the stove] ep=50: 0/50=0%\\\\n2026-05-25 06:57:36,504 Task 1: SR=0.0% | Total: 39/100=39.0% | Time: 19.1min\\\\n2026-05-25 06:59:24,299   T2 [put the wine bottle on top of the cabine] ep=10: 4/10=40%\\\\n2026-05-25 07:01:11,804   T2 [put the wine bottle on top of the cabine] ep=20: 8/20=40%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"All keys loaded successfully!\\n2026-05-25 06:38:28,569 Patched embed_image\\n2026-05-25 06:38:28,575 Model: 4143.4M params\\n2026-05-25 06:38:28,576 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-25 06:38:28,576 Pruning: random, keep 217/256 tokens/image (651 total)\\n2026-05-25 06:38:29,365 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-25 06:38:29,388 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-25 06:38:29,388 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-25 06:38:29,388 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-25 06:38:29,439 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-25 06:38:29,847 Suite: libero_goal, 10 tasks, max_steps=300\\n[PRUNE-DIAG] random: n_keep=217/256, first_indices=[0, 1, 2, 3, 4]\\n2026-05-25 06:40:03,930   T0 [open the middle drawer of the cabinet] ep=10: 7/10=70%\\n2026-05-25 06:41:38,676   T0 [open the middle drawer of the cabinet] ep=20: 14/20=70%\\n2026-05-25 06:42:57,435   T0 [open the middle drawer of the cabinet] ep=30: 23/30=77%\\n2026-05-25 06:44:26,064   T0 [open the middle drawer of the cabinet] ep=40: 31/40=78%\\n2026-05-25 06:45:51,418   T0 [open the middle drawer of the cabinet] ep=50: 39/50=78%\\n2026-05-25 06:45:51,418 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 7.4min\\n2026-05-25 06:48:12,547   T1 [put the bowl on the stove] ep=10: 0/10=0%\\n2026-05-25 06:50:33,393   T1 [put the bowl on the stove] ep=20: 0/20=0%\\n2026-05-25 06:52:54,274   T1 [put the bowl on the stove] ep=30: 0/30=0%\\n2026-05-25 06:55:15,228   T1 [put the bowl on the stove] ep=40: 0/40=0%\\n2026-05-25 06:57:36,504   T1 [put the bowl on the stove] ep=50: 0/50=0%\\n2026-05-25 06:57:36,504 Task 1: SR=0.0% | Total: 39/100=39.0% | Time: 19.1min\\n2026-05-25 06:59:24,299   T2 [put the wine bottle on top of the cabine] ep=10: 4/10=40%\\n2026-05-25 07:01:11,804   T2 [put the wine bottle on top of the cabine] ep=20: 8/20=40%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment is running on westd-41074 GPU2. Let me analyze the progress:
+
+- Task 0: 78.0% (50/50 episodes done)
+- Task 1: 0.0% (50/50 episodes done)
+- Task 2: currently at ep 20, 40% so far
+
+So it's on Task 2 out of 10 tasks. It started at 06:36 and is now processing Task 2. Each task with 50 episodes takes about 7-12 minutes. So roughly 10 tasks × ~10min = ~100min total, and it's about 25 minutes in (~2/10 tasks done).
+
+
+Based on this trajectory, I'm estimating the full run should complete in roughly 75-80 more minutes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "025077cb-3844-4d6d-aa88-9f7e7a39dfa0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eq3y9vC6pvyynxgdvLQdkz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1847,
+      "cache_read_input_tokens": 35747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1847
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+**结论：实验正在 westd-41074 GPU2 上运行。**
+
+- **Registry**: `eval_pi05_random_k085_goal_seed43_postfix` 状态 RUNNING，server=westd-41074，gpu=2，PID=10015
+- **进程确认**: PID 10020 运行中，`CUDA_VISIBLE_DEVICES=2`，启动时间 06:36（已运行约 2 小时）
+- **进度**: 正在评估 Task 2/10（libero_goal），每 task 50 episodes
+  - T0: 78.0%
+  - T1: 0.0%
+  - T2: 进行中（20/50 ep，40%）
+- **预计剩余**: 约 8 个 task 未完成，按每 task ~10min 估计还需 ~80 分钟
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "uuid": "fe986ab5-7ea7-4f00-b914-bb66872a22df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eq3y9vC6pvyynxgdvLQdkz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1847,
+      "cache_read_input_tokens": 35747,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1847
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 26_
+
+**结论：实验正在 westd-41074 GPU2 上运行。**
+
+- **Registry**: `eval_pi05_random_k085_goal_seed43_postfix` 状态 RUNNING，server=westd-41074，gpu=2，PID=10015
+- **进程确认**: PID 10020 运行中，`CUDA_VISIBLE_DEVICES=2`，启动时间 06:36（已运行约 2 小时）
+- **进度**: 正在评估 Task 2/10（libero_goal），每 task 50 episodes
+  - T0: 78.0%
+  - T1: 0.0%
+  - T2: 进行中（20/50 ep，40%）
+- **预计剩余**: 约 8 个 task 未完成，按每 task ~10min 估计还需 ~80 分钟
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 48570,
+  "duration_api_ms": 45973,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "84aa5acc-1283-4309-96ed-74788cc2ac17",
+  "total_cost_usd": 0.26796525,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 25753,
+    "cache_read_input_tokens": 120118,
+    "output_tokens": 1816,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 25753,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 416,
+        "cache_read_input_tokens": 35747,
+        "cache_creation_input_tokens": 1847,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1847
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1345,
+      "outputTokens": 32,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001505,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1816,
+      "cacheReadInputTokens": 120118,
+      "cacheCreationInputTokens": 25753,
+      "webSearchRequests": 0,
+      "costUSD": 0.26646024999999995,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "caeee6d5-cc97-4e71-996a-685178a522a9"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,5154 @@
+# code e4 inference latency
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 106
+- **Recorded user turns:** 0
+- **Tool calls:** 41
+- **Original source:** `logs/workers/worker_code_e4_inference_latency_20260523T054910.log`
+- **Structured JSON:** [`45fd2db7fb083b26d2ee.json`](../../sessions/45/45fd2db7fb083b26d2ee.json)
+
+## Before a recorded user message
+
+106 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "456519c0-56a4-4e5c-b7a3-0fb86267d97e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779532800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0b3d2573-51d6-4742-88ca-29d7cbd8057f",
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先连接服务器查看现有 eval 脚本，了解每个模型的推理流程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "50c10b91-708e-40a4-a7b2-7f1758ead44d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JGasYJk8cSFJjfVmJptXSL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11810,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11810
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017wB6D5HABoFY9oRKMJ6v6M`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "d37f7f99-2765-4b3a-8874-d33e1dfdb389",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JGasYJk8cSFJjfVmJptXSL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11810,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11810
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T05:49:21.643Z_
+
+<details><summary>↩ Tool result · `toolu_017wB6D5HABoFY9oRKMJ6v6M`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "5ac42552-ccec-4c4e-858e-3b4e2c2ee0e1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first detect the image on the server, and simultaneously look at the project structure to understand the eval scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "f94ecc3f-8af8-4ca4-9039-13583ae2eacd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3WzRqFbJm1MNtdA4WPdxK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 23651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 903
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image · `toolu_01VwNZHuCmf3egJbyRevkJYw`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "279c5744-31bd-48ee-b414-1b482c27ebf6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3WzRqFbJm1MNtdA4WPdxK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 23651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 903
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XJ5wjpYL1FRAfusYKmomiF`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -maxdepth 2 -type f -name \"*.py\" | head -60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "bf8fe186-3c93-4d6a-b8b3-a9b08805e197",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3WzRqFbJm1MNtdA4WPdxK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 23651,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 903
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T05:49:26.232Z_
+
+<details><summary>↩ Tool result · `toolu_01VwNZHuCmf3egJbyRevkJYw`</summary>
+
+```text
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "41d75609-6b48-4e33-a014-37771103621c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"ssh_error\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"SSH error: exit code 1\\\"\\n}\"}",
+    "structuredContent": {
+      "result": "{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T05:49:26.266Z_
+
+<details><summary>↩ Tool result · `toolu_01XJ5wjpYL1FRAfusYKmomiF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "3097c65c-48ec-428a-bc51-a4ad1eb386e8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BsM8vM62eEey8xsoUwnNA3`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp/importance_margin_vla_compress -maxdepth 2 -type f -name \"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "23cad2c1-cc01-4355-b707-e35991c69c7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fNEWM5i9Tk9Q1TPqxE1hq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 466,
+      "cache_read_input_tokens": 24554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 466
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T05:49:28.804Z_
+
+<details><summary>↩ Tool result · `toolu_01BsM8vM62eEey8xsoUwnNA3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/imm/__init__.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/acis.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/soft_topk.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/losses.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/metrics.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/token_selection.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/smolvla_wrapper.py\\n/root/autodl-tmp/importance_margin_vla_compress/train.py\\n/root/autodl-tmp/importance_margin_vla_compress/evaluate.py\\n/root/autodl-tmp/importance_margin_vla_compress/_lerobot_compat.py\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_gate.py\\n/root/autodl-tmp/importance_margin_vla_compress/verify_grad_isolation.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_twostage.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/analyze_margin_distribution.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/eval_checkpoint_trajectory.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/analyze_keep_ratio_sensitivity.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/visualize_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/plot_checkpoint_trajectory.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/test_action_diversity_by_step.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_mode_collapse.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_inference_fixes.py\\n/root/autodl-tmp/importance_margin_vla_compress/scan_collapse.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_pretrained_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/diag_ep42.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_fullft.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_diversity.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_100k_sr.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_fullft_100k.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_pi05_load.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_pi05_quick.py\\n/root/autodl-tmp/importance_margin_vla_compress/geometric_prior_pruning.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k07.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k05.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v2.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v3.py\\n/root/autodl-tmp/importance_margin_vla_compress/smart_compress_module.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/measure_inference_latency.py\\n/root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer.py\\n/root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_baseline_control.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla_spatial.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/openvla_vtc_adapter.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_openvla_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_openvla_smart_compress_lora.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_acis_prune.py\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_oft_prune_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/compute_oft_l2norm_cv.py\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_pi05_vision_tokens.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_oft_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/debug_pi05_actions.py\\n/root/autodl-tmp/importance_margin_vla_compress/visualize_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/compute_pi05_attn_entropy.py\\n/root/autodl-tmp/importance_margin_vla_compress/_patch_pi05.py\\n/root/autodl-tmp/importance_margin_vla_compress/_patch_openvla.py\\n/root/autodl-tmp/importance_margin_vla_compress/_patch_smolvla.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "05c1de0e-cb26-47ef-935c-b24092c08639",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/imm/__init__.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/imm/acis.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/imm/soft_topk.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/imm/losses.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/imm/metrics.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/imm/token_selection.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/imm/smolvla_wrapper.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/train.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/evaluate.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/_lerobot_compat.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_gate.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/verify_grad_isolation.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/train_twostage.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/analyze_margin_distribution.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/eval_checkpoint_trajectory.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/analyze_keep_ratio_sensitivity.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/visualize_token_importance.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/plot_checkpoint_trajectory.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/test_action_diversity_by_step.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_sim.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/test_mode_collapse.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/test_inference_fixes.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/scan_collapse.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/test_pretrained_sim.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/diag_ep42.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/test_fullft.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_diversity.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_sim.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_100k_sr.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_fullft_100k.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/test_pi05_load.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/test_pi05_quick.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/geometric_prior_pruning.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k07.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k05.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v2.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v3.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/smart_compress_module.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/train_smart_compress.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/measure_inference_latency.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/train_baseline_control.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla_spatial.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/openvla_vtc_adapter.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/train_openvla_smart_compress.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_smart_compress.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/train_openvla_smart_compress_lora.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_acis_prune.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_oft_prune_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/compute_oft_l2norm_cv.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_pi05_vision_tokens.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_oft_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/debug_pi05_actions.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/visualize_token_importance.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/compute_pi05_attn_entropy.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/_patch_pi05.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/_patch_openvla.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/_patch_smolvla.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/imm/__init__.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/acis.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/soft_topk.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/losses.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/metrics.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/token_selection.py\\n/root/autodl-tmp/importance_margin_vla_compress/imm/smolvla_wrapper.py\\n/root/autodl-tmp/importance_margin_vla_compress/train.py\\n/root/autodl-tmp/importance_margin_vla_compress/evaluate.py\\n/root/autodl-tmp/importance_margin_vla_compress/_lerobot_compat.py\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_gate.py\\n/root/autodl-tmp/importance_margin_vla_compress/verify_grad_isolation.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_twostage.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/analyze_margin_distribution.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/eval_checkpoint_trajectory.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/analyze_keep_ratio_sensitivity.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/visualize_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/plot_checkpoint_trajectory.py\\n/root/autodl-tmp/importance_margin_vla_compress/scripts/test_action_diversity_by_step.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_mode_collapse.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_inference_fixes.py\\n/root/autodl-tmp/importance_margin_vla_compress/scan_collapse.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_pretrained_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/diag_ep42.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_fullft.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_diversity.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_10k_sim.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_100k_sr.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_libero_fullft_100k.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_success_rate_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_pi05_load.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/test_pi05_quick.py\\n/root/autodl-tmp/importance_margin_vla_compress/geometric_prior_pruning.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k07.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_geometric_prior_k05.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v2.py\\n/root/autodl-tmp/importance_margin_vla_compress/dryrun_pi05_v3.py\\n/root/autodl-tmp/importance_margin_vla_compress/smart_compress_module.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/measure_inference_latency.py\\n/root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer.py\\n/root/autodl-tmp/importance_margin_vla_compress/measure_smolvla_entropy_perlayer_fixed.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_baseline_control.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla_spatial.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_official_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/openvla_vtc_adapter.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_openvla_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_smart_compress.py\\n/root/autodl-tmp/importance_margin_vla_compress/train_openvla_smart_compress_lora.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_acis_prune.py\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_oft_prune_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/compute_oft_l2norm_cv.py\\n/root/autodl-tmp/importance_margin_vla_compress/analyze_pi05_vision_tokens.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_oft_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/debug_pi05_actions.py\\n/root/autodl-tmp/importance_margin_vla_compress/visualize_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/compute_pi05_attn_entropy.py\\n/root/autodl-tmp/importance_margin_vla_compress/_patch_pi05.py\\n/root/autodl-tmp/importance_margin_vla_compress/_patch_openvla.py\\n/root/autodl-tmp/importance_margin_vla_compress/_patch_smolvla.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's already a `measure_inference_latency.py` file on the server. Let me check its content and also look at the key eval scripts to understand the inference flow for each model. Let me read the existing file and a few key eval scripts in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "ce22e590-d06b-4179-8055-1e6fb2b97068",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JahkDwyWLmph3h4ncyUse",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2284,
+      "cache_read_input_tokens": 25020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2284
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+已有 `measure_inference_latency.py`。让我查看现有文件和各模型的 eval 脚本来了解推理流程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "e3e555e0-de35-424c-b9ce-9150d684560b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JahkDwyWLmph3h4ncyUse",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2284,
+      "cache_read_input_tokens": 25020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2284
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S3T7pgn5qtAJXzpWEzT97Z`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/measure_inference_latency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "fb630bed-8094-4e66-8787-52bfc8aff67d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JahkDwyWLmph3h4ncyUse",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2284,
+      "cache_read_input_tokens": 25020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2284
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T05:49:35.488Z_
+
+<details><summary>↩ Tool result · `toolu_01S3T7pgn5qtAJXzpWEzT97Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Measure SmolVLA inference latency: baseline (128 tokens) vs Smart Compress M=32/M=64.\\n\\nUsage:\\n    CUDA_VISIBLE_DEVICES=2 python measure_inference_latency.py\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\n\\nimport torch\\nimport numpy as np\\n\\nPROJ_DIR = Path(__file__).resolve().parent\\nsys.path.insert(0, str(PROJ_DIR))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nN_WARMUP = 10\\nN_RUNS = 100\\n\\n\\ndef make_dummy_batch(policy, tokenizer, device):\\n    \\\"\\\"\\\"Create a synthetic batch matching LIBERO observation shapes.\\\"\\\"\\\"\\n    batch = {}\\n    # 2 cameras, 3x256x256\\n    batch[\\\"observation.images.image\\\"] = torch.randn(1, 3, 256, 256, device=device)\\n    batch[\\\"observation.images.image2\\\"] = torch.randn(1, 3, 256, 256, device=device)\\n    # state: 8-dim (eef_pos 3 + eef_aa 3 + gripper 2)\\n    batch[\\\"observation.state\\\"] = torch.randn(1, 8, device=device)\\n    # language tokens\\n    text = \\\"pick up the red cup\\\\n\\\"\\n    encoded = tokenizer(\\n        [text], padding=\\\"longest\\\", max_length=48,\\n        truncation=True, return_tensors=\\\"pt\\\",\\n    )\\n    batch[\\\"observation.language.tokens\\\"] = encoded[\\\"input_ids\\\"].to(device)\\n    batch[\\\"observation.language.attention_mask\\\"] = encoded[\\\"attention_mask\\\"].bool().to(device)\\n    return batch\\n\\n\\ndef time_inference(fn, batch, n_warmup, n_runs, device):\\n    \\\"\\\"\\\"Time inference function with proper GPU synchronization.\\\"\\\"\\\"\\n    # Warmup\\n    for _ in range(n_warmup):\\n        fn(batch)\\n    torch.cuda.synchronize(device)\\n\\n    # Timed runs\\n    latencies = []\\n    for _ in range(n_runs):\\n        torch.cuda.synchronize(device)\\n        t0 = time.perf_counter()\\n        fn(batch)\\n        torch.cuda.synchronize(device)\\n        t1 = time.perf_counter()\\n        latencies.append((t1 - t0) * 1000.0)  # ms\\n\\n    return np.array(latencies)\\n\\n\\ndef get_gpu_memory_mb(device):\\n    torch.cuda.synchronize(device)\\n    return torch.cuda.max_memory_allocated(device) / (1024 * 1024)\\n\\n\\ndef main():\\n    device = torch.device(\\\"cuda:0\\\")\\n    log.info(\\\"Device: %s\\\", device)\\n    log.info(\\\"GPU: %s\\\", torch.cuda.get_device_name(device))\\n\\n    # Load config and base policy\\n    from train_smart_compress import load_smolvla_policy, load_config\\n    from smart_compress_module import SmartCompressWrapper\\n    from train import get_tokenizer_from_policy\\n\\n    config = load_config(\\\"configs/smart_compress.yaml\\\")\\n    log.info(\\\"Loading SmolVLA policy...\\\")\\n    policy = load_smolvla_policy(config, device)\\n    tokenizer = get_tokenizer_from_policy(policy)\\n\\n    dummy_batch = make_dummy_batch(policy, tokenizer, device)\\n    log.info(\\\"Dummy batch created.\\\")\\n\\n    results = {\\\"configs\\\": {}, \\\"device\\\": torch.cuda.get_device_name(device), \\\"n_warmup\\\": N_WARMUP, \\\"n_runs\\\": N_RUNS}\\n\\n    # ============================================================\\n    # 1. Baseline: 128 vision tokens (no compression)\\n    # ============================================================\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"CONFIG: baseline_128 (no compression, 128 vision tokens)\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    policy.eval()\\n    torch.cuda.reset_peak_memory_stats(device)\\n\\n    @torch.no_grad()\\n    def baseline_fn(batch):\\n        return policy.predict_action_chunk(batch)\\n\\n    latencies_baseline = time_inference(baseline_fn, dummy_batch, N_WARMUP, N_RUNS, device)\\n    mem_baseline = get_gpu_memory_mb(device)\\n    total_params_baseline = sum(p.numel() for p in policy.parameters())\\n\\n    results[\\\"configs\\\"][\\\"baseline_128\\\"] = {\\n        \\\"n_vision_tokens\\\": 128,\\n        \\\"mean_ms\\\": round(float(latencies_baseline.mean()), 3),\\n        \\\"std_ms\\\": round(float(latencies_baseline.std()), 3),\\n        \\\"median_ms\\\": round(float(np.median(latencies_baseline)), 3),\\n        \\\"min_ms\\\": round(float(la\\n\\n... [截断: 输出过长，省略 1589 字符] ...\\n\\n,\\n        \\\"std_ms\\\": round(float(latencies_m32.std()), 3),\\n        \\\"median_ms\\\": round(float(np.median(latencies_m32)), 3),\\n        \\\"min_ms\\\": round(float(latencies_m32.min()), 3),\\n        \\\"max_ms\\\": round(float(latencies_m32.max()), 3),\\n        \\\"gpu_memory_mb\\\": round(mem_m32, 1),\\n        \\\"total_params\\\": total_params_baseline + compressor_params_m32,\\n        \\\"compressor_params\\\": compressor_params_m32,\\n    }\\n    log.info(\\\"M=32: mean=%.2f ms, std=%.2f ms, median=%.2f ms\\\",\\n             latencies_m32.mean(), latencies_m32.std(), np.median(latencies_m32))\\n\\n    # Free M=32 wrapper (keep policy)\\n    del wrapper_m32, ckpt_m32\\n    torch.cuda.empty_cache()\\n\\n    # ============================================================\\n    # 3. Smart Compress M=64\\n    # ============================================================\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"CONFIG: smart_compress_m64 (64 vision tokens)\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    compress_config_m64 = {\\\"num_queries\\\": 64, \\\"num_heads\\\": 12, \\\"num_layers\\\": 2, \\\"dropout\\\": 0.1}\\n    wrapper_m64 = SmartCompressWrapper(policy, compress_config=compress_config_m64)\\n    wrapper_m64.to(device)\\n\\n    ckpt_m64 = torch.load(\\\"checkpoints/smart_compress_m64/checkpoint.pt\\\", map_location=device, weights_only=False)\\n    wrapper_m64.load_state_dict(ckpt_m64[\\\"model_state_dict\\\"], strict=False)\\n    wrapper_m64.eval()\\n    log.info(\\\"M=64 checkpoint loaded.\\\")\\n\\n    torch.cuda.reset_peak_memory_stats(device)\\n\\n    @torch.no_grad()\\n    def m64_fn(batch):\\n        return wrapper_m64.forward_inference(batch)\\n\\n    latencies_m64 = time_inference(m64_fn, dummy_batch, N_WARMUP, N_RUNS, device)\\n    mem_m64 = get_gpu_memory_mb(device)\\n    compressor_params_m64 = sum(p.numel() for p in wrapper_m64.compressor.parameters())\\n\\n    results[\\\"configs\\\"][\\\"smart_compress_m64\\\"] = {\\n        \\\"n_vision_tokens\\\": 64,\\n        \\\"mean_ms\\\": round(float(latencies_m64.mean()), 3),\\n        \\\"std_ms\\\": round(float(latencies_m64.std()), 3),\\n        \\\"median_ms\\\": round(float(np.median(latencies_m64)), 3),\\n        \\\"min_ms\\\": round(float(latencies_m64.min()), 3),\\n        \\\"max_ms\\\": round(float(latencies_m64.max()), 3),\\n        \\\"gpu_memory_mb\\\": round(mem_m64, 1),\\n        \\\"total_params\\\": total_params_baseline + compressor_params_m64,\\n        \\\"compressor_params\\\": compressor_params_m64,\\n    }\\n    log.info(\\\"M=64: mean=%.2f ms, std=%.2f ms, median=%.2f ms\\\",\\n             latencies_m64.mean(), latencies_m64.std(), np.median(latencies_m64))\\n\\n    # ============================================================\\n    # Speedups\\n    # ============================================================\\n    baseline_mean = results[\\\"configs\\\"][\\\"baseline_128\\\"][\\\"mean_ms\\\"]\\n    m32_mean = results[\\\"configs\\\"][\\\"smart_compress_m32\\\"][\\\"mean_ms\\\"]\\n    m64_mean = results[\\\"configs\\\"][\\\"smart_compress_m64\\\"][\\\"mean_ms\\\"]\\n\\n    results[\\\"speedup_m32_vs_baseline\\\"] = round(baseline_mean / m32_mean, 4) if m32_mean > 0 else None\\n    results[\\\"speedup_m64_vs_baseline\\\"] = round(baseline_mean / m64_mean, 4) if m64_mean > 0 else None\\n\\n    # ============================================================\\n    # Save\\n    # ============================================================\\n    out_dir = Path(\\\"eval_results\\\")\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"inference_latency_comparison.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    log.info(\\\"Results saved to %s\\\", out_path)\\n\\n    # Summary\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"SUMMARY\\\")\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"Baseline (128 tokens): %.2f ms (+-%.2f)\\\", baseline_mean, results[\\\"configs\\\"][\\\"baseline_128\\\"][\\\"std_ms\\\"])\\n    log.info(\\\"M=32  (32 tokens):     %.2f ms (+-%.2f)  speedup=%.2fx\\\", m32_mean, results[\\\"configs\\\"][\\\"smart_compress_m32\\\"][\\\"std_ms\\\"], results[\\\"speedup_m32_vs_baseline\\\"])\\n    log.info(\\\"M=64  (64 tokens):     %.2f ms (+-%.2f)  speedup=%.2fx\\\", m64_mean, results[\\\"configs\\\"][\\\"smart_compress_m64\\\"][\\\"std_ms\\\"], results[\\\"speedup_m64_vs_baseline\\\"])\\n    log.info(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "892ac764-7ca8-43d1-9c36-b4dad695ff88",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Measure SmolVLA inference latency: baseline (128 tokens) vs Smart Compress M=32/M=64.\\\\n\\\\nUsage:\\\\n    CUDA_VISIBLE_DEVICES=2 python measure_inference_latency.py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HOME\\\\\\\", \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\")\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\n\\\\nPROJ_DIR = Path(__file__).resolve().parent\\\\nsys.path.insert(0, str(PROJ_DIR))\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\",\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nN_WARMUP = 10\\\\nN_RUNS = 100\\\\n\\\\n\\\\ndef make_dummy_batch(policy, tokenizer, device):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Create a synthetic batch matching LIBERO observation shapes.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    batch = {}\\\\n    # 2 cameras, 3x256x256\\\\n    batch[\\\\\\\"observation.images.image\\\\\\\"] = torch.randn(1, 3, 256, 256, device=device)\\\\n    batch[\\\\\\\"observation.images.image2\\\\\\\"] = torch.randn(1, 3, 256, 256, device=device)\\\\n    # state: 8-dim (eef_pos 3 + eef_aa 3 + gripper 2)\\\\n    batch[\\\\\\\"observation.state\\\\\\\"] = torch.randn(1, 8, device=device)\\\\n    # language tokens\\\\n    text = \\\\\\\"pick up the red cup\\\\\\\\n\\\\\\\"\\\\n    encoded = tokenizer(\\\\n        [text], padding=\\\\\\\"longest\\\\\\\", max_length=48,\\\\n        truncation=True, return_tensors=\\\\\\\"pt\\\\\\\",\\\\n    )\\\\n    batch[\\\\\\\"observation.language.tokens\\\\\\\"] = encoded[\\\\\\\"input_ids\\\\\\\"].to(device)\\\\n    batch[\\\\\\\"observation.language.attention_mask\\\\\\\"] = encoded[\\\\\\\"attention_mask\\\\\\\"].bool().to(device)\\\\n    return batch\\\\n\\\\n\\\\ndef time_inference(fn, batch, n_warmup, n_runs, device):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Time inference function with proper GPU synchronization.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # Warmup\\\\n    for _ in range(n_warmup):\\\\n        fn(batch)\\\\n    torch.cuda.synchronize(device)\\\\n\\\\n    # Timed runs\\\\n    latencies = []\\\\n    for _ in range(n_runs):\\\\n        torch.cuda.synchronize(device)\\\\n        t0 = time.perf_counter()\\\\n        fn(batch)\\\\n        torch.cuda.synchronize(device)\\\\n        t1 = time.perf_counter()\\\\n        latencies.append((t1 - t0) * 1000.0)  # ms\\\\n\\\\n    return np.array(latencies)\\\\n\\\\n\\\\ndef get_gpu_memory_mb(device):\\\\n    torch.cuda.synchronize(device)\\\\n    return torch.cuda.max_memory_allocated(device) / (1024 * 1024)\\\\n\\\\n\\\\ndef main():\\\\n    device = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\n    log.info(\\\\\\\"Device: %s\\\\\\\", device)\\\\n    log.info(\\\\\\\"GPU: %s\\\\\\\", torch.cuda.get_device_name(device))\\\\n\\\\n    # Load config and base policy\\\\n    from train_smart_compress import load_smolvla_policy, load_config\\\\n    from smart_compress_module import SmartCompressWrapper\\\\n    from train import get_tokenizer_from_policy\\\\n\\\\n    config = load_config(\\\\\\\"configs/smart_compress.yaml\\\\\\\")\\\\n    log.info(\\\\\\\"Loading SmolVLA policy...\\\\\\\")\\\\n    policy = load_smolvla_policy(config, device)\\\\n    tokenizer = get_tokenizer_from_policy(policy)\\\\n\\\\n    dummy_batch = make_dummy_batch(policy, tokenizer, device)\\\\n    log.info(\\\\\\\"Dummy batch created.\\\\\\\")\\\\n\\\\n    results = {\\\\\\\"configs\\\\\\\": {}, \\\\\\\"device\\\\\\\": torch.cuda.get_device_name(device), \\\\\\\"n_warmup\\\\\\\": N_WARMUP, \\\\\\\"n_runs\\\\\\\": N_RUNS}\\\\n\\\\n    # ============================================================\\\\n    # 1. Baseline: 128 vision tokens (no compression)\\\\n    # ============================================================\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"CONFIG: baseline_128 (no compression, 128 vision tokens)\\\\\\\")\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    policy.eval()\\\\n    torch.cuda.reset_peak_memory_stats(device)\\\\n\\\\n    @torch.no_grad()\\\\n    def baseline_fn(batch):\\\\n        return policy.predict_action_chunk(batch)\\\\n\\\\n    latencies_baseline = time_inference(baseline_fn, dummy_batch, N_WARMUP, N_RUNS, device)\\\\n    mem_baseline = get_gpu_memory_mb(device)\\\\n    total_params_baseline = sum(p.numel() for p in policy.parameters())\\\\n\\\\n    results[\\\\\\\"configs\\\\\\\"][\\\\\\\"baseline_128\\\\\\\"] = {\\\\n        \\\\\\\"n_vision_tokens\\\\\\\": 128,\\\\n        \\\\\\\"mean_ms\\\\\\\": round(float(latencies_baseline.mean()), 3),\\\\n        \\\\\\\"std_ms\\\\\\\": round(float(latencies_baseline.std()), 3),\\\\n        \\\\\\\"median_ms\\\\\\\": round(float(np.median(latencies_baseline)), 3),\\\\n        \\\\\\\"min_ms\\\\\\\": round(float(la\\\\n\\\\n... [截断: 输出过长，省略 1589 字符] ...\\\\n\\\\n,\\\\n        \\\\\\\"std_ms\\\\\\\": round(float(latencies_m32.std()), 3),\\\\n        \\\\\\\"median_ms\\\\\\\": round(float(np.median(latencies_m32)), 3),\\\\n        \\\\\\\"min_ms\\\\\\\": round(float(latencies_m32.min()), 3),\\\\n        \\\\\\\"max_ms\\\\\\\": round(float(latencies_m32.max()), 3),\\\\n        \\\\\\\"gpu_memory_mb\\\\\\\": round(mem_m32, 1),\\\\n        \\\\\\\"total_params\\\\\\\": total_params_baseline + compressor_params_m32,\\\\n        \\\\\\\"compressor_params\\\\\\\": compressor_params_m32,\\\\n    }\\\\n    log.info(\\\\\\\"M=32: mean=%.2f ms, std=%.2f ms, median=%.2f ms\\\\\\\",\\\\n             latencies_m32.mean(), latencies_m32.std(), np.median(latencies_m32))\\\\n\\\\n    # Free M=32 wrapper (keep policy)\\\\n    del wrapper_m32, ckpt_m32\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    # ============================================================\\\\n    # 3. Smart Compress M=64\\\\n    # ============================================================\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"CONFIG: smart_compress_m64 (64 vision tokens)\\\\\\\")\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    compress_config_m64 = {\\\\\\\"num_queries\\\\\\\": 64, \\\\\\\"num_heads\\\\\\\": 12, \\\\\\\"num_layers\\\\\\\": 2, \\\\\\\"dropout\\\\\\\": 0.1}\\\\n    wrapper_m64 = SmartCompressWrapper(policy, compress_config=compress_config_m64)\\\\n    wrapper_m64.to(device)\\\\n\\\\n    ckpt_m64 = torch.load(\\\\\\\"checkpoints/smart_compress_m64/checkpoint.pt\\\\\\\", map_location=device, weights_only=False)\\\\n    wrapper_m64.load_state_dict(ckpt_m64[\\\\\\\"model_state_dict\\\\\\\"], strict=False)\\\\n    wrapper_m64.eval()\\\\n    log.info(\\\\\\\"M=64 checkpoint loaded.\\\\\\\")\\\\n\\\\n    torch.cuda.reset_peak_memory_stats(device)\\\\n\\\\n    @torch.no_grad()\\\\n    def m64_fn(batch):\\\\n        return wrapper_m64.forward_inference(batch)\\\\n\\\\n    latencies_m64 = time_inference(m64_fn, dummy_batch, N_WARMUP, N_RUNS, device)\\\\n    mem_m64 = get_gpu_memory_mb(device)\\\\n    compressor_params_m64 = sum(p.numel() for p in wrapper_m64.compressor.parameters())\\\\n\\\\n    results[\\\\\\\"configs\\\\\\\"][\\\\\\\"smart_compress_m64\\\\\\\"] = {\\\\n        \\\\\\\"n_vision_tokens\\\\\\\": 64,\\\\n        \\\\\\\"mean_ms\\\\\\\": round(float(latencies_m64.mean()), 3),\\\\n        \\\\\\\"std_ms\\\\\\\": round(float(latencies_m64.std()), 3),\\\\n        \\\\\\\"median_ms\\\\\\\": round(float(np.median(latencies_m64)), 3),\\\\n        \\\\\\\"min_ms\\\\\\\": round(float(latencies_m64.min()), 3),\\\\n        \\\\\\\"max_ms\\\\\\\": round(float(latencies_m64.max()), 3),\\\\n        \\\\\\\"gpu_memory_mb\\\\\\\": round(mem_m64, 1),\\\\n        \\\\\\\"total_params\\\\\\\": total_params_baseline + compressor_params_m64,\\\\n        \\\\\\\"compressor_params\\\\\\\": compressor_params_m64,\\\\n    }\\\\n    log.info(\\\\\\\"M=64: mean=%.2f ms, std=%.2f ms, median=%.2f ms\\\\\\\",\\\\n             latencies_m64.mean(), latencies_m64.std(), np.median(latencies_m64))\\\\n\\\\n    # ============================================================\\\\n    # Speedups\\\\n    # ============================================================\\\\n    baseline_mean = results[\\\\\\\"configs\\\\\\\"][\\\\\\\"baseline_128\\\\\\\"][\\\\\\\"mean_ms\\\\\\\"]\\\\n    m32_mean = results[\\\\\\\"configs\\\\\\\"][\\\\\\\"smart_compress_m32\\\\\\\"][\\\\\\\"mean_ms\\\\\\\"]\\\\n    m64_mean = results[\\\\\\\"configs\\\\\\\"][\\\\\\\"smart_compress_m64\\\\\\\"][\\\\\\\"mean_ms\\\\\\\"]\\\\n\\\\n    results[\\\\\\\"speedup_m32_vs_baseline\\\\\\\"] = round(baseline_mean / m32_mean, 4) if m32_mean > 0 else None\\\\n    results[\\\\\\\"speedup_m64_vs_baseline\\\\\\\"] = round(baseline_mean / m64_mean, 4) if m64_mean > 0 else None\\\\n\\\\n    # ============================================================\\\\n    # Save\\\\n    # ============================================================\\\\n    out_dir = Path(\\\\\\\"eval_results\\\\\\\")\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    out_path = out_dir / \\\\\\\"inference_latency_comparison.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    log.info(\\\\\\\"Results saved to %s\\\\\\\", out_path)\\\\n\\\\n    # Summary\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"SUMMARY\\\\\\\")\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"Baseline (128 tokens): %.2f ms (+-%.2f)\\\\\\\", baseline_mean, results[\\\\\\\"configs\\\\\\\"][\\\\\\\"baseline_128\\\\\\\"][\\\\\\\"std_ms\\\\\\\"])\\\\n    log.info(\\\\\\\"M=32  (32 tokens):     %.2f ms (+-%.2f)  speedup=%.2fx\\\\\\\", m32_mean, results[\\\\\\\"configs\\\\\\\"][\\\\\\\"smart_compress_m32\\\\\\\"][\\\\\\\"std_ms\\\\\\\"], results[\\\\\\\"speedup_m32_vs_baseline\\\\\\\"])\\\\n    log.info(\\\\\\\"M=64  (64 tokens):     %.2f ms (+-%.2f)  speedup=%.2fx\\\\\\\", m64_mean, results[\\\\\\\"configs\\\\\\\"][\\\\\\\"smart_compress_m64\\\\\\\"][\\\\\\\"std_ms\\\\\\\"], results[\\\\\\\"speedup_m64_vs_baseline\\\\\\\"])\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Measure SmolVLA inference latency: baseline (128 tokens) vs Smart Compress M=32/M=64.\\n\\nUsage:\\n    CUDA_VISIBLE_DEVICES=2 python measure_inference_latency.py\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\n\\nimport torch\\nimport numpy as np\\n\\nPROJ_DIR = Path(__file__).resolve().parent\\nsys.path.insert(0, str(PROJ_DIR))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nN_WARMUP = 10\\nN_RUNS = 100\\n\\n\\ndef make_dummy_batch(policy, tokenizer, device):\\n    \\\"\\\"\\\"Create a synthetic batch matching LIBERO observation shapes.\\\"\\\"\\\"\\n    batch = {}\\n    # 2 cameras, 3x256x256\\n    batch[\\\"observation.images.image\\\"] = torch.randn(1, 3, 256, 256, device=device)\\n    batch[\\\"observation.images.image2\\\"] = torch.randn(1, 3, 256, 256, device=device)\\n    # state: 8-dim (eef_pos 3 + eef_aa 3 + gripper 2)\\n    batch[\\\"observation.state\\\"] = torch.randn(1, 8, device=device)\\n    # language tokens\\n    text = \\\"pick up the red cup\\\\n\\\"\\n    encoded = tokenizer(\\n        [text], padding=\\\"longest\\\", max_length=48,\\n        truncation=True, return_tensors=\\\"pt\\\",\\n    )\\n    batch[\\\"observation.language.tokens\\\"] = encoded[\\\"input_ids\\\"].to(device)\\n    batch[\\\"observation.language.attention_mask\\\"] = encoded[\\\"attention_mask\\\"].bool().to(device)\\n    return batch\\n\\n\\ndef time_inference(fn, batch, n_warmup, n_runs, device):\\n    \\\"\\\"\\\"Time inference function with proper GPU synchronization.\\\"\\\"\\\"\\n    # Warmup\\n    for _ in range(n_warmup):\\n        fn(batch)\\n    torch.cuda.synchronize(device)\\n\\n    # Timed runs\\n    latencies = []\\n    for _ in range(n_runs):\\n        torch.cuda.synchronize(device)\\n        t0 = time.perf_counter()\\n        fn(batch)\\n        torch.cuda.synchronize(device)\\n        t1 = time.perf_counter()\\n        latencies.append((t1 - t0) * 1000.0)  # ms\\n\\n    return np.array(latencies)\\n\\n\\ndef get_gpu_memory_mb(device):\\n    torch.cuda.synchronize(device)\\n    return torch.cuda.max_memory_allocated(device) / (1024 * 1024)\\n\\n\\ndef main():\\n    device = torch.device(\\\"cuda:0\\\")\\n    log.info(\\\"Device: %s\\\", device)\\n    log.info(\\\"GPU: %s\\\", torch.cuda.get_device_name(device))\\n\\n    # Load config and base policy\\n    from train_smart_compress import load_smolvla_policy, load_config\\n    from smart_compress_module import SmartCompressWrapper\\n    from train import get_tokenizer_from_policy\\n\\n    config = load_config(\\\"configs/smart_compress.yaml\\\")\\n    log.info(\\\"Loading SmolVLA policy...\\\")\\n    policy = load_smolvla_policy(config, device)\\n    tokenizer = get_tokenizer_from_policy(policy)\\n\\n    dummy_batch = make_dummy_batch(policy, tokenizer, device)\\n    log.info(\\\"Dummy batch created.\\\")\\n\\n    results = {\\\"configs\\\": {}, \\\"device\\\": torch.cuda.get_device_name(device), \\\"n_warmup\\\": N_WARMUP, \\\"n_runs\\\": N_RUNS}\\n\\n    # ============================================================\\n    # 1. Baseline: 128 vision tokens (no compression)\\n    # ============================================================\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"CONFIG: baseline_128 (no compression, 128 vision tokens)\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    policy.eval()\\n    torch.cuda.reset_peak_memory_stats(device)\\n\\n    @torch.no_grad()\\n    def baseline_fn(batch):\\n        return policy.predict_action_chunk(batch)\\n\\n    latencies_baseline = time_inference(baseline_fn, dummy_batch, N_WARMUP, N_RUNS, device)\\n    mem_baseline = get_gpu_memory_mb(device)\\n    total_params_baseline = sum(p.numel() for p in policy.parameters())\\n\\n    results[\\\"configs\\\"][\\\"baseline_128\\\"] = {\\n        \\\"n_vision_tokens\\\": 128,\\n        \\\"mean_ms\\\": round(float(latencies_baseline.mean()), 3),\\n        \\\"std_ms\\\": round(float(latencies_baseline.std()), 3),\\n        \\\"median_ms\\\": round(float(np.median(latencies_baseline)), 3),\\n        \\\"min_ms\\\": round(float(la\\n\\n... [截断: 输出过长，省略 1589 字符] ...\\n\\n,\\n        \\\"std_ms\\\": round(float(latencies_m32.std()), 3),\\n        \\\"median_ms\\\": round(float(np.median(latencies_m32)), 3),\\n        \\\"min_ms\\\": round(float(latencies_m32.min()), 3),\\n        \\\"max_ms\\\": round(float(latencies_m32.max()), 3),\\n        \\\"gpu_memory_mb\\\": round(mem_m32, 1),\\n        \\\"total_params\\\": total_params_baseline + compressor_params_m32,\\n        \\\"compressor_params\\\": compressor_params_m32,\\n    }\\n    log.info(\\\"M=32: mean=%.2f ms, std=%.2f ms, median=%.2f ms\\\",\\n             latencies_m32.mean(), latencies_m32.std(), np.median(latencies_m32))\\n\\n    # Free M=32 wrapper (keep policy)\\n    del wrapper_m32, ckpt_m32\\n    torch.cuda.empty_cache()\\n\\n    # ============================================================\\n    # 3. Smart Compress M=64\\n    # ============================================================\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"CONFIG: smart_compress_m64 (64 vision tokens)\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    compress_config_m64 = {\\\"num_queries\\\": 64, \\\"num_heads\\\": 12, \\\"num_layers\\\": 2, \\\"dropout\\\": 0.1}\\n    wrapper_m64 = SmartCompressWrapper(policy, compress_config=compress_config_m64)\\n    wrapper_m64.to(device)\\n\\n    ckpt_m64 = torch.load(\\\"checkpoints/smart_compress_m64/checkpoint.pt\\\", map_location=device, weights_only=False)\\n    wrapper_m64.load_state_dict(ckpt_m64[\\\"model_state_dict\\\"], strict=False)\\n    wrapper_m64.eval()\\n    log.info(\\\"M=64 checkpoint loaded.\\\")\\n\\n    torch.cuda.reset_peak_memory_stats(device)\\n\\n    @torch.no_grad()\\n    def m64_fn(batch):\\n        return wrapper_m64.forward_inference(batch)\\n\\n    latencies_m64 = time_inference(m64_fn, dummy_batch, N_WARMUP, N_RUNS, device)\\n    mem_m64 = get_gpu_memory_mb(device)\\n    compressor_params_m64 = sum(p.numel() for p in wrapper_m64.compressor.parameters())\\n\\n    results[\\\"configs\\\"][\\\"smart_compress_m64\\\"] = {\\n        \\\"n_vision_tokens\\\": 64,\\n        \\\"mean_ms\\\": round(float(latencies_m64.mean()), 3),\\n        \\\"std_ms\\\": round(float(latencies_m64.std()), 3),\\n        \\\"median_ms\\\": round(float(np.median(latencies_m64)), 3),\\n        \\\"min_ms\\\": round(float(latencies_m64.min()), 3),\\n        \\\"max_ms\\\": round(float(latencies_m64.max()), 3),\\n        \\\"gpu_memory_mb\\\": round(mem_m64, 1),\\n        \\\"total_params\\\": total_params_baseline + compressor_params_m64,\\n        \\\"compressor_params\\\": compressor_params_m64,\\n    }\\n    log.info(\\\"M=64: mean=%.2f ms, std=%.2f ms, median=%.2f ms\\\",\\n             latencies_m64.mean(), latencies_m64.std(), np.median(latencies_m64))\\n\\n    # ============================================================\\n    # Speedups\\n    # ============================================================\\n    baseline_mean = results[\\\"configs\\\"][\\\"baseline_128\\\"][\\\"mean_ms\\\"]\\n    m32_mean = results[\\\"configs\\\"][\\\"smart_compress_m32\\\"][\\\"mean_ms\\\"]\\n    m64_mean = results[\\\"configs\\\"][\\\"smart_compress_m64\\\"][\\\"mean_ms\\\"]\\n\\n    results[\\\"speedup_m32_vs_baseline\\\"] = round(baseline_mean / m32_mean, 4) if m32_mean > 0 else None\\n    results[\\\"speedup_m64_vs_baseline\\\"] = round(baseline_mean / m64_mean, 4) if m64_mean > 0 else None\\n\\n    # ============================================================\\n    # Save\\n    # ============================================================\\n    out_dir = Path(\\\"eval_results\\\")\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"inference_latency_comparison.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    log.info(\\\"Results saved to %s\\\", out_path)\\n\\n    # Summary\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"SUMMARY\\\")\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"Baseline (128 tokens): %.2f ms (+-%.2f)\\\", baseline_mean, results[\\\"configs\\\"][\\\"baseline_128\\\"][\\\"std_ms\\\"])\\n    log.info(\\\"M=32  (32 tokens):     %.2f ms (+-%.2f)  speedup=%.2fx\\\", m32_mean, results[\\\"configs\\\"][\\\"smart_compress_m32\\\"][\\\"std_ms\\\"], results[\\\"speedup_m32_vs_baseline\\\"])\\n    log.info(\\\"M=64  (64 tokens):     %.2f ms (+-%.2f)  speedup=%.2fx\\\", m64_mean, results[\\\"configs\\\"][\\\"smart_compress_m64\\\"][\\\"std_ms\\\"], results[\\\"speedup_m64_vs_baseline\\\"])\\n    log.info(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GaA545gCVNnwBNkDaSdw7s`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_smart_compress_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "f6d230ce-c5d8-480f-a232-d898fe476bb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JahkDwyWLmph3h4ncyUse",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2284,
+      "cache_read_input_tokens": 25020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2284
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T05:49:36.021Z_
+
+<details><summary>↩ Tool result · `toolu_01GaA545gCVNnwBNkDaSdw7s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LIBERO Success Rate Evaluation for SmartCompress (VisionTokenCompressor) models.\\n\\nUsage:\\n    python eval_smart_compress_libero.py \\\\\\n        --n_queries 32 \\\\\\n        --checkpoint_path checkpoints/smart_compress_m32/checkpoint.pt \\\\\\n        --suite libero_object \\\\\\n        --num_episodes 50 \\\\\\n        --gpu 0\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time as time_mod\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\n\\nimport numpy as np\\nimport torch\\n\\nARTIFACTS_DIR = Path(__file__).resolve().parent\\nsys.path.insert(0, str(ARTIFACTS_DIR))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n    \\\"libero_90\\\": 400,\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"LIBERO eval for SmartCompress models\\\")\\n    p.add_argument(\\\"--n_queries\\\", type=int, required=True,\\n                   help=\\\"M: number of compressed vision tokens\\\")\\n    p.add_argument(\\\"--checkpoint_path\\\", type=str, required=True,\\n                   help=\\\"Path to checkpoint.pt\\\")\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\",\\n                   choices=list(SUITE_MAX_STEPS.keys()))\\n    p.add_argument(\\\"--num_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--action_horizon\\\", type=int, default=50)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=None)\\n    p.add_argument(\\\"--output\\\", type=str, default=None)\\n    p.add_argument(\\\"--task_ids\\\", type=str, default=None)\\n    return p.parse_args()\\n\\n\\ndef load_model(args, device):\\n    from train_smart_compress import load_smolvla_policy, load_config\\n    from smart_compress_module import SmartCompressWrapper\\n\\n    ckpt = torch.load(args.checkpoint_path, map_location=device, weights_only=False)\\n\\n    if \\\"config\\\" in ckpt:\\n        config = ckpt[\\\"config\\\"]\\n        log.info(\\\"Using config from checkpoint\\\")\\n    else:\\n        config = load_config(\\\"configs/smart_compress.yaml\\\")\\n        log.info(\\\"No config in checkpoint, falling back to yaml\\\")\\n\\n    policy = load_smolvla_policy(config, device)\\n\\n    compress_config = {\\\"num_queries\\\": args.n_queries}\\n    wrapper = SmartCompressWrapper(policy, compress_config=compress_config)\\n    wrapper.to(device)\\n\\n    missing, unexpected = wrapper.load_state_dict(ckpt[\\\"model_state_dict\\\"], strict=False)\\n    if missing:\\n        log.warning(\\\"Missing keys (%d): %s\\\", len(missing), missing[:10])\\n    if unexpected:\\n        log.warning(\\\"Unexpected keys (%d): %s\\\", len(unexpected), unexpected[:10])\\n    if not missing and not unexpected:\\n        log.info(\\\"Checkpoint loaded with strict match (no missing/unexpected keys)\\\")\\n    wrapper.eval()\\n\\n    log.info(\\\"SmartCompressWrapper loaded: M=%d, compressor params=%d\\\",\\n             args.n_queries,\\n             sum(p.numel() for p in wrapper.compressor.parameters()))\\n\\n    return wrapper, config\\n\\n\\ndef quat_to_axis_angle(quat):\\n    q = quat.astype(np.float64)\\n    w = np.clip(q[3], -1.0, 1.0)\\n    den = np.sqrt(max(1.0 - w * w, 0.0))\\n    if den > 1e-10:\\n        angle = 2.0 * np.arccos(w)\\n        axis = q[:3] / den\\n        return (axis * angle).astype(np.float32)\\n    return np.zeros(3, dtype=np.float32)\\n\\n\\ndef extract_state(obs):\\n    rs = obs[\\\"robot_state\\\"]\\n    eef_pos = np.asarray(rs[\\\"eef\\\"][\\\"pos\\\"], dtype=np.float32)\\n    eef_quat = np.asarray(rs[\\\"eef\\\"][\\\"quat\\\"], dtype=np.float64)\\n    gripper_qpos = np.asarray(rs[\\\"gripper\\\"][\\\"qpos\\\"], dtype=np.float32)\\n    eef_aa = quat_to_axis_angle(eef_quat)\\n    return np.concatenate([eef_pos, eef_aa, gripper_qpos])\\n\\n\\ndef obs_to_batch(obs, task_text, tokenizer, camera_keys, device):\\n    batch = {}\\n    for cam_key in came\\n\\n... [截断: 输出过长，省略 3109 字符] ...\\n\\nk_id)\\n        task_desc = task.language\\n        log.info(\\\"--- Task %d: %s ---\\\", task_id, task_desc)\\n\\n        init_states = get_task_init_states(task_suite, task_id)\\n\\n        env = LiberoEnv(\\n            task_suite=task_suite,\\n            task_id=task_id,\\n            task_suite_name=args.suite,\\n            camera_name=\\\"agentview_image,robot0_eye_in_hand_image\\\",\\n            obs_type=\\\"pixels_agent_pos\\\",\\n            observation_width=256,\\n            observation_height=256,\\n            init_states=True,\\n            n_envs=args.num_episodes,\\n            episode_index=0,\\n            control_mode=\\\"relative\\\",\\n        )\\n\\n        task_successes = []\\n        task_lengths = []\\n\\n        for ep in range(args.num_episodes):\\n            obs, info = env.reset(seed=args.seed + task_id * 1000 + ep)\\n            action_chunk = None\\n            action_idx = 0\\n            success = False\\n\\n            for step in range(max_steps):\\n                if action_chunk is None or action_idx >= args.action_horizon:\\n                    batch = obs_to_batch(obs, task_desc, tokenizer, camera_keys, device)\\n                    action_chunk = predict_actions_compressed(wrapper, batch)\\n                    action_idx = 0\\n\\n                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\\n                action = np.clip(action, -1.0, 1.0)\\n                action_idx += 1\\n\\n                obs, reward, terminated, truncated, info = env.step(action)\\n\\n                if info.get(\\\"is_success\\\", False):\\n                    success = True\\n                    break\\n\\n                if terminated or truncated:\\n                    break\\n\\n            ep_steps = step + 1\\n            task_successes.append(success)\\n            task_lengths.append(ep_steps)\\n\\n            log.info(\\\"  Ep %d/%d | %s | steps=%d\\\",\\n                     ep + 1, args.num_episodes,\\n                     \\\"SUCCESS\\\" if success else \\\"FAIL\\\", ep_steps)\\n\\n        env.close()\\n\\n        n_succ = sum(task_successes)\\n        n_total = len(task_successes)\\n        sr = n_succ / n_total if n_total > 0 else 0.0\\n\\n        all_task_results[task_id] = {\\n            \\\"task_id\\\": task_id,\\n            \\\"task_description\\\": task_desc,\\n            \\\"success_count\\\": n_succ,\\n            \\\"total_episodes\\\": n_total,\\n            \\\"success_rate\\\": round(sr, 4),\\n            \\\"mean_steps\\\": round(float(np.mean(task_lengths)), 1),\\n        }\\n        total_successes += n_succ\\n        total_episodes += n_total\\n\\n        log.info(\\\"  Task %d SR: %d/%d (%.1f%%)\\\", task_id, n_succ, n_total, sr * 100)\\n\\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"SUITE: %s | M=%d\\\", args.suite, args.n_queries)\\n    log.info(\\\"Overall SR: %d/%d (%.1f%%)\\\", total_successes, total_episodes, overall_sr * 100)\\n    log.info(\\\"95%% Wilson CI: [%.1f%%, %.1f%%]\\\", ci_lo * 100, ci_hi * 100)\\n\\n    for tid, tr in sorted(all_task_results.items()):\\n        log.info(\\\"  Task %d: %.0f%% (%d/%d) -- %s\\\",\\n                 tid, tr[\\\"success_rate\\\"] * 100, tr[\\\"success_count\\\"],\\n                 tr[\\\"total_episodes\\\"], tr[\\\"task_description\\\"])\\n    log.info(\\\"=\\\" * 60)\\n\\n    summary = {\\n        \\\"suite\\\": args.suite,\\n        \\\"n_queries\\\": args.n_queries,\\n        \\\"checkpoint\\\": args.checkpoint_path,\\n        \\\"total_episodes\\\": total_episodes,\\n        \\\"total_successes\\\": total_successes,\\n        \\\"overall_success_rate\\\": round(overall_sr, 4),\\n        \\\"wilson_ci_95\\\": [round(ci_lo, 4), round(ci_hi, 4)],\\n        \\\"num_episodes_per_task\\\": args.num_episodes,\\n        \\\"max_steps\\\": max_steps,\\n        \\\"action_horizon\\\": args.action_horizon,\\n        \\\"seed\\\": args.seed,\\n        \\\"per_task\\\": all_task_results,\\n    }\\n\\n    output_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    log.info(\\\"Results saved to %s\\\", output_path)\\n\\n    return summary\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    args = parse_args()\\n    run_evaluation(args)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "d5dd1886-e4f0-43b2-b725-89f63fa8c821",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"LIBERO Success Rate Evaluation for SmartCompress (VisionTokenCompressor) models.\\\\n\\\\nUsage:\\\\n    python eval_smart_compress_libero.py \\\\\\\\\\\\n        --n_queries 32 \\\\\\\\\\\\n        --checkpoint_path checkpoints/smart_compress_m32/checkpoint.pt \\\\\\\\\\\\n        --suite libero_object \\\\\\\\\\\\n        --num_episodes 50 \\\\\\\\\\\\n        --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time as time_mod\\\\nfrom pathlib import Path\\\\n\\\\nos.environ.setdefault(\\\\\\\"MUJOCO_GL\\\\\\\", \\\\\\\"egl\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nARTIFACTS_DIR = Path(__file__).resolve().parent\\\\nsys.path.insert(0, str(ARTIFACTS_DIR))\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\",\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSUITE_MAX_STEPS = {\\\\n    \\\\\\\"libero_spatial\\\\\\\": 280,\\\\n    \\\\\\\"libero_object\\\\\\\": 280,\\\\n    \\\\\\\"libero_goal\\\\\\\": 300,\\\\n    \\\\\\\"libero_10\\\\\\\": 520,\\\\n    \\\\\\\"libero_90\\\\\\\": 400,\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"LIBERO eval for SmartCompress models\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--n_queries\\\\\\\", type=int, required=True,\\\\n                   help=\\\\\\\"M: number of compressed vision tokens\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--checkpoint_path\\\\\\\", type=str, required=True,\\\\n                   help=\\\\\\\"Path to checkpoint.pt\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\",\\\\n                   choices=list(SUITE_MAX_STEPS.keys()))\\\\n    p.add_argument(\\\\\\\"--num_episodes\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--action_horizon\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=None)\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=None)\\\\n    p.add_argument(\\\\\\\"--task_ids\\\\\\\", type=str, default=None)\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef load_model(args, device):\\\\n    from train_smart_compress import load_smolvla_policy, load_config\\\\n    from smart_compress_module import SmartCompressWrapper\\\\n\\\\n    ckpt = torch.load(args.checkpoint_path, map_location=device, weights_only=False)\\\\n\\\\n    if \\\\\\\"config\\\\\\\" in ckpt:\\\\n        config = ckpt[\\\\\\\"config\\\\\\\"]\\\\n        log.info(\\\\\\\"Using config from checkpoint\\\\\\\")\\\\n    else:\\\\n        config = load_config(\\\\\\\"configs/smart_compress.yaml\\\\\\\")\\\\n        log.info(\\\\\\\"No config in checkpoint, falling back to yaml\\\\\\\")\\\\n\\\\n    policy = load_smolvla_policy(config, device)\\\\n\\\\n    compress_config = {\\\\\\\"num_queries\\\\\\\": args.n_queries}\\\\n    wrapper = SmartCompressWrapper(policy, compress_config=compress_config)\\\\n    wrapper.to(device)\\\\n\\\\n    missing, unexpected = wrapper.load_state_dict(ckpt[\\\\\\\"model_state_dict\\\\\\\"], strict=False)\\\\n    if missing:\\\\n        log.warning(\\\\\\\"Missing keys (%d): %s\\\\\\\", len(missing), missing[:10])\\\\n    if unexpected:\\\\n        log.warning(\\\\\\\"Unexpected keys (%d): %s\\\\\\\", len(unexpected), unexpected[:10])\\\\n    if not missing and not unexpected:\\\\n        log.info(\\\\\\\"Checkpoint loaded with strict match (no missing/unexpected keys)\\\\\\\")\\\\n    wrapper.eval()\\\\n\\\\n    log.info(\\\\\\\"SmartCompressWrapper loaded: M=%d, compressor params=%d\\\\\\\",\\\\n             args.n_queries,\\\\n             sum(p.numel() for p in wrapper.compressor.parameters()))\\\\n\\\\n    return wrapper, config\\\\n\\\\n\\\\ndef quat_to_axis_angle(quat):\\\\n    q = quat.astype(np.float64)\\\\n    w = np.clip(q[3], -1.0, 1.0)\\\\n    den = np.sqrt(max(1.0 - w * w, 0.0))\\\\n    if den > 1e-10:\\\\n        angle = 2.0 * np.arccos(w)\\\\n        axis = q[:3] / den\\\\n        return (axis * angle).astype(np.float32)\\\\n    return np.zeros(3, dtype=np.float32)\\\\n\\\\n\\\\ndef extract_state(obs):\\\\n    rs = obs[\\\\\\\"robot_state\\\\\\\"]\\\\n    eef_pos = np.asarray(rs[\\\\\\\"eef\\\\\\\"][\\\\\\\"pos\\\\\\\"], dtype=np.float32)\\\\n    eef_quat = np.asarray(rs[\\\\\\\"eef\\\\\\\"][\\\\\\\"quat\\\\\\\"], dtype=np.float64)\\\\n    gripper_qpos = np.asarray(rs[\\\\\\\"gripper\\\\\\\"][\\\\\\\"qpos\\\\\\\"], dtype=np.float32)\\\\n    eef_aa = quat_to_axis_angle(eef_quat)\\\\n    return np.concatenate([eef_pos, eef_aa, gripper_qpos])\\\\n\\\\n\\\\ndef obs_to_batch(obs, task_text, tokenizer, camera_keys, device):\\\\n    batch = {}\\\\n    for cam_key in came\\\\n\\\\n... [截断: 输出过长，省略 3109 字符] ...\\\\n\\\\nk_id)\\\\n        task_desc = task.language\\\\n        log.info(\\\\\\\"--- Task %d: %s ---\\\\\\\", task_id, task_desc)\\\\n\\\\n        init_states = get_task_init_states(task_suite, task_id)\\\\n\\\\n        env = LiberoEnv(\\\\n            task_suite=task_suite,\\\\n            task_id=task_id,\\\\n            task_suite_name=args.suite,\\\\n            camera_name=\\\\\\\"agentview_image,robot0_eye_in_hand_image\\\\\\\",\\\\n            obs_type=\\\\\\\"pixels_agent_pos\\\\\\\",\\\\n            observation_width=256,\\\\n            observation_height=256,\\\\n            init_states=True,\\\\n            n_envs=args.num_episodes,\\\\n            episode_index=0,\\\\n            control_mode=\\\\\\\"relative\\\\\\\",\\\\n        )\\\\n\\\\n        task_successes = []\\\\n        task_lengths = []\\\\n\\\\n        for ep in range(args.num_episodes):\\\\n            obs, info = env.reset(seed=args.seed + task_id * 1000 + ep)\\\\n            action_chunk = None\\\\n            action_idx = 0\\\\n            success = False\\\\n\\\\n            for step in range(max_steps):\\\\n                if action_chunk is None or action_idx >= args.action_horizon:\\\\n                    batch = obs_to_batch(obs, task_desc, tokenizer, camera_keys, device)\\\\n                    action_chunk = predict_actions_compressed(wrapper, batch)\\\\n                    action_idx = 0\\\\n\\\\n                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\\\\n                action = np.clip(action, -1.0, 1.0)\\\\n                action_idx += 1\\\\n\\\\n                obs, reward, terminated, truncated, info = env.step(action)\\\\n\\\\n                if info.get(\\\\\\\"is_success\\\\\\\", False):\\\\n                    success = True\\\\n                    break\\\\n\\\\n                if terminated or truncated:\\\\n                    break\\\\n\\\\n            ep_steps = step + 1\\\\n            task_successes.append(success)\\\\n            task_lengths.append(ep_steps)\\\\n\\\\n            log.info(\\\\\\\"  Ep %d/%d | %s | steps=%d\\\\\\\",\\\\n                     ep + 1, args.num_episodes,\\\\n                     \\\\\\\"SUCCESS\\\\\\\" if success else \\\\\\\"FAIL\\\\\\\", ep_steps)\\\\n\\\\n        env.close()\\\\n\\\\n        n_succ = sum(task_successes)\\\\n        n_total = len(task_successes)\\\\n        sr = n_succ / n_total if n_total > 0 else 0.0\\\\n\\\\n        all_task_results[task_id] = {\\\\n            \\\\\\\"task_id\\\\\\\": task_id,\\\\n            \\\\\\\"task_description\\\\\\\": task_desc,\\\\n            \\\\\\\"success_count\\\\\\\": n_succ,\\\\n            \\\\\\\"total_episodes\\\\\\\": n_total,\\\\n            \\\\\\\"success_rate\\\\\\\": round(sr, 4),\\\\n            \\\\\\\"mean_steps\\\\\\\": round(float(np.mean(task_lengths)), 1),\\\\n        }\\\\n        total_successes += n_succ\\\\n        total_episodes += n_total\\\\n\\\\n        log.info(\\\\\\\"  Task %d SR: %d/%d (%.1f%%)\\\\\\\", task_id, n_succ, n_total, sr * 100)\\\\n\\\\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\\\\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\\\\n\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"SUITE: %s | M=%d\\\\\\\", args.suite, args.n_queries)\\\\n    log.info(\\\\\\\"Overall SR: %d/%d (%.1f%%)\\\\\\\", total_successes, total_episodes, overall_sr * 100)\\\\n    log.info(\\\\\\\"95%% Wilson CI: [%.1f%%, %.1f%%]\\\\\\\", ci_lo * 100, ci_hi * 100)\\\\n\\\\n    for tid, tr in sorted(all_task_results.items()):\\\\n        log.info(\\\\\\\"  Task %d: %.0f%% (%d/%d) -- %s\\\\\\\",\\\\n                 tid, tr[\\\\\\\"success_rate\\\\\\\"] * 100, tr[\\\\\\\"success_count\\\\\\\"],\\\\n                 tr[\\\\\\\"total_episodes\\\\\\\"], tr[\\\\\\\"task_description\\\\\\\"])\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    summary = {\\\\n        \\\\\\\"suite\\\\\\\": args.suite,\\\\n        \\\\\\\"n_queries\\\\\\\": args.n_queries,\\\\n        \\\\\\\"checkpoint\\\\\\\": args.checkpoint_path,\\\\n        \\\\\\\"total_episodes\\\\\\\": total_episodes,\\\\n        \\\\\\\"total_successes\\\\\\\": total_successes,\\\\n        \\\\\\\"overall_success_rate\\\\\\\": round(overall_sr, 4),\\\\n        \\\\\\\"wilson_ci_95\\\\\\\": [round(ci_lo, 4), round(ci_hi, 4)],\\\\n        \\\\\\\"num_episodes_per_task\\\\\\\": args.num_episodes,\\\\n        \\\\\\\"max_steps\\\\\\\": max_steps,\\\\n        \\\\\\\"action_horizon\\\\\\\": args.action_horizon,\\\\n        \\\\\\\"seed\\\\\\\": args.seed,\\\\n        \\\\\\\"per_task\\\\\\\": all_task_results,\\\\n    }\\\\n\\\\n    output_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    log.info(\\\\\\\"Results saved to %s\\\\\\\", output_path)\\\\n\\\\n    return summary\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    args = parse_args()\\\\n    run_evaluation(args)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LIBERO Success Rate Evaluation for SmartCompress (VisionTokenCompressor) models.\\n\\nUsage:\\n    python eval_smart_compress_libero.py \\\\\\n        --n_queries 32 \\\\\\n        --checkpoint_path checkpoints/smart_compress_m32/checkpoint.pt \\\\\\n        --suite libero_object \\\\\\n        --num_episodes 50 \\\\\\n        --gpu 0\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time as time_mod\\nfrom pathlib import Path\\n\\nos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\n\\nimport numpy as np\\nimport torch\\n\\nARTIFACTS_DIR = Path(__file__).resolve().parent\\nsys.path.insert(0, str(ARTIFACTS_DIR))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n    \\\"libero_90\\\": 400,\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"LIBERO eval for SmartCompress models\\\")\\n    p.add_argument(\\\"--n_queries\\\", type=int, required=True,\\n                   help=\\\"M: number of compressed vision tokens\\\")\\n    p.add_argument(\\\"--checkpoint_path\\\", type=str, required=True,\\n                   help=\\\"Path to checkpoint.pt\\\")\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\",\\n                   choices=list(SUITE_MAX_STEPS.keys()))\\n    p.add_argument(\\\"--num_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--action_horizon\\\", type=int, default=50)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=None)\\n    p.add_argument(\\\"--output\\\", type=str, default=None)\\n    p.add_argument(\\\"--task_ids\\\", type=str, default=None)\\n    return p.parse_args()\\n\\n\\ndef load_model(args, device):\\n    from train_smart_compress import load_smolvla_policy, load_config\\n    from smart_compress_module import SmartCompressWrapper\\n\\n    ckpt = torch.load(args.checkpoint_path, map_location=device, weights_only=False)\\n\\n    if \\\"config\\\" in ckpt:\\n        config = ckpt[\\\"config\\\"]\\n        log.info(\\\"Using config from checkpoint\\\")\\n    else:\\n        config = load_config(\\\"configs/smart_compress.yaml\\\")\\n        log.info(\\\"No config in checkpoint, falling back to yaml\\\")\\n\\n    policy = load_smolvla_policy(config, device)\\n\\n    compress_config = {\\\"num_queries\\\": args.n_queries}\\n    wrapper = SmartCompressWrapper(policy, compress_config=compress_config)\\n    wrapper.to(device)\\n\\n    missing, unexpected = wrapper.load_state_dict(ckpt[\\\"model_state_dict\\\"], strict=False)\\n    if missing:\\n        log.warning(\\\"Missing keys (%d): %s\\\", len(missing), missing[:10])\\n    if unexpected:\\n        log.warning(\\\"Unexpected keys (%d): %s\\\", len(unexpected), unexpected[:10])\\n    if not missing and not unexpected:\\n        log.info(\\\"Checkpoint loaded with strict match (no missing/unexpected keys)\\\")\\n    wrapper.eval()\\n\\n    log.info(\\\"SmartCompressWrapper loaded: M=%d, compressor params=%d\\\",\\n             args.n_queries,\\n             sum(p.numel() for p in wrapper.compressor.parameters()))\\n\\n    return wrapper, config\\n\\n\\ndef quat_to_axis_angle(quat):\\n    q = quat.astype(np.float64)\\n    w = np.clip(q[3], -1.0, 1.0)\\n    den = np.sqrt(max(1.0 - w * w, 0.0))\\n    if den > 1e-10:\\n        angle = 2.0 * np.arccos(w)\\n        axis = q[:3] / den\\n        return (axis * angle).astype(np.float32)\\n    return np.zeros(3, dtype=np.float32)\\n\\n\\ndef extract_state(obs):\\n    rs = obs[\\\"robot_state\\\"]\\n    eef_pos = np.asarray(rs[\\\"eef\\\"][\\\"pos\\\"], dtype=np.float32)\\n    eef_quat = np.asarray(rs[\\\"eef\\\"][\\\"quat\\\"], dtype=np.float64)\\n    gripper_qpos = np.asarray(rs[\\\"gripper\\\"][\\\"qpos\\\"], dtype=np.float32)\\n    eef_aa = quat_to_axis_angle(eef_quat)\\n    return np.concatenate([eef_pos, eef_aa, gripper_qpos])\\n\\n\\ndef obs_to_batch(obs, task_text, tokenizer, camera_keys, device):\\n    batch = {}\\n    for cam_key in came\\n\\n... [截断: 输出过长，省略 3109 字符] ...\\n\\nk_id)\\n        task_desc = task.language\\n        log.info(\\\"--- Task %d: %s ---\\\", task_id, task_desc)\\n\\n        init_states = get_task_init_states(task_suite, task_id)\\n\\n        env = LiberoEnv(\\n            task_suite=task_suite,\\n            task_id=task_id,\\n            task_suite_name=args.suite,\\n            camera_name=\\\"agentview_image,robot0_eye_in_hand_image\\\",\\n            obs_type=\\\"pixels_agent_pos\\\",\\n            observation_width=256,\\n            observation_height=256,\\n            init_states=True,\\n            n_envs=args.num_episodes,\\n            episode_index=0,\\n            control_mode=\\\"relative\\\",\\n        )\\n\\n        task_successes = []\\n        task_lengths = []\\n\\n        for ep in range(args.num_episodes):\\n            obs, info = env.reset(seed=args.seed + task_id * 1000 + ep)\\n            action_chunk = None\\n            action_idx = 0\\n            success = False\\n\\n            for step in range(max_steps):\\n                if action_chunk is None or action_idx >= args.action_horizon:\\n                    batch = obs_to_batch(obs, task_desc, tokenizer, camera_keys, device)\\n                    action_chunk = predict_actions_compressed(wrapper, batch)\\n                    action_idx = 0\\n\\n                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\\n                action = np.clip(action, -1.0, 1.0)\\n                action_idx += 1\\n\\n                obs, reward, terminated, truncated, info = env.step(action)\\n\\n                if info.get(\\\"is_success\\\", False):\\n                    success = True\\n                    break\\n\\n                if terminated or truncated:\\n                    break\\n\\n            ep_steps = step + 1\\n            task_successes.append(success)\\n            task_lengths.append(ep_steps)\\n\\n            log.info(\\\"  Ep %d/%d | %s | steps=%d\\\",\\n                     ep + 1, args.num_episodes,\\n                     \\\"SUCCESS\\\" if success else \\\"FAIL\\\", ep_steps)\\n\\n        env.close()\\n\\n        n_succ = sum(task_successes)\\n        n_total = len(task_successes)\\n        sr = n_succ / n_total if n_total > 0 else 0.0\\n\\n        all_task_results[task_id] = {\\n            \\\"task_id\\\": task_id,\\n            \\\"task_description\\\": task_desc,\\n            \\\"success_count\\\": n_succ,\\n            \\\"total_episodes\\\": n_total,\\n            \\\"success_rate\\\": round(sr, 4),\\n            \\\"mean_steps\\\": round(float(np.mean(task_lengths)), 1),\\n        }\\n        total_successes += n_succ\\n        total_episodes += n_total\\n\\n        log.info(\\\"  Task %d SR: %d/%d (%.1f%%)\\\", task_id, n_succ, n_total, sr * 100)\\n\\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"SUITE: %s | M=%d\\\", args.suite, args.n_queries)\\n    log.info(\\\"Overall SR: %d/%d (%.1f%%)\\\", total_successes, total_episodes, overall_sr * 100)\\n    log.info(\\\"95%% Wilson CI: [%.1f%%, %.1f%%]\\\", ci_lo * 100, ci_hi * 100)\\n\\n    for tid, tr in sorted(all_task_results.items()):\\n        log.info(\\\"  Task %d: %.0f%% (%d/%d) -- %s\\\",\\n                 tid, tr[\\\"success_rate\\\"] * 100, tr[\\\"success_count\\\"],\\n                 tr[\\\"total_episodes\\\"], tr[\\\"task_description\\\"])\\n    log.info(\\\"=\\\" * 60)\\n\\n    summary = {\\n        \\\"suite\\\": args.suite,\\n        \\\"n_queries\\\": args.n_queries,\\n        \\\"checkpoint\\\": args.checkpoint_path,\\n        \\\"total_episodes\\\": total_episodes,\\n        \\\"total_successes\\\": total_successes,\\n        \\\"overall_success_rate\\\": round(overall_sr, 4),\\n        \\\"wilson_ci_95\\\": [round(ci_lo, 4), round(ci_hi, 4)],\\n        \\\"num_episodes_per_task\\\": args.num_episodes,\\n        \\\"max_steps\\\": max_steps,\\n        \\\"action_horizon\\\": args.action_horizon,\\n        \\\"seed\\\": args.seed,\\n        \\\"per_task\\\": all_task_results,\\n    }\\n\\n    output_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    log.info(\\\"Results saved to %s\\\", output_path)\\n\\n    return summary\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    args = parse_args()\\n    run_evaluation(args)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UxNFdU7D7CGhN3EH61jmhy`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "834093b4-41ca-4ee7-a427-e284c4b091a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JahkDwyWLmph3h4ncyUse",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2284,
+      "cache_read_input_tokens": 25020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2284
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T05:49:36.958Z_
+
+<details><summary>↩ Tool result · `toolu_01UxNFdU7D7CGhN3EH61jmhy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python\\n\\\"\\\"\\\"Pi0.5 LIBERO eval with vision token pruning (random / l2norm / none).\\n\\nUsage:\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode none\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode random --keep_ratio 0.5\\n    python eval_pi05_pruning_libero.py --suite libero_spatial --prune_mode l2norm --keep_ratio 0.7\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time as time_mod\\nimport types\\nimport logging\\nfrom pathlib import Path\\nfrom collections import deque\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_TOKEN\\\"] = \\\"[REDACTED_HF_TOKEN]\\\"\\n\\nimport numpy as np\\nimport torch\\nimport torch._dynamo; torch._dynamo.config.disable = True\\nfrom safetensors.torch import load_file\\n\\nlogging.basicConfig(level=logging.INFO, force=True, format=\\\"%(asctime)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\n_episode_mask_cache = {}\\n\\nSUITE_CONFIG = {\\n    \\\"libero_object\\\":  {\\\"name\\\": \\\"libero_object\\\",  \\\"max_steps\\\": 280},\\n    \\\"libero_spatial\\\":  {\\\"name\\\": \\\"libero_spatial\\\",  \\\"max_steps\\\": 280},\\n    \\\"libero_goal\\\":     {\\\"name\\\": \\\"libero_goal\\\",     \\\"max_steps\\\": 300},\\n    \\\"libero_10\\\":       {\\\"name\\\": \\\"libero_10\\\",       \\\"max_steps\\\": 520},\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"/root/autodl-tmp/pi05_libero_finetuned\\\")\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\", choices=list(SUITE_CONFIG))\\n    p.add_argument(\\\"--prune_mode\\\", type=str, default=\\\"none\\\", choices=[\\\"none\\\", \\\"random\\\", \\\"l2norm\\\", \\\"attention\\\"])\\n    p.add_argument(\\\"--keep_ratio\\\", type=float, default=1.0)\\n    p.add_argument(\\\"--n_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--seed\\\", type=int, default=7)\\n    p.add_argument(\\\"--replan_steps\\\", type=int, default=5)\\n    p.add_argument(\\\"--output_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\")\\n    p.add_argument(\\\"--fixed_mask\\\", action=\\\"store_true\\\")\\n    return p.parse_args()\\n\\n\\ndef prune_tokens_random(img_emb, keep_ratio):\\n    bsize, n_tokens, dim = img_emb.shape\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\n    indices = torch.randperm(n_tokens, device=img_emb.device)[:n_keep].sort().values\\n    if not hasattr(prune_tokens_random, \\\"_logged\\\"):\\n        print(f\\\"[PRUNE-DIAG] random: n_keep={n_keep}/{n_tokens}, first_indices={indices[:5].tolist()}\\\")\\n        prune_tokens_random._logged = True\\n    return img_emb[:, indices, :], n_keep\\n\\n\\ndef prune_tokens_l2norm(img_emb, keep_ratio):\\n    bsize, n_tokens, dim = img_emb.shape\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\n    norms = torch.norm(img_emb[0].float(), dim=-1)\\n    _, topk_idx = torch.topk(norms, n_keep)\\n    topk_idx = topk_idx.sort().values\\n    if not hasattr(prune_tokens_l2norm, \\\"_logged\\\"):\\n        print(f\\\"[PRUNE-DIAG] l2norm: n_keep={n_keep}/{n_tokens}, first_indices={topk_idx.sort().values[:5].tolist()}\\\")\\n        prune_tokens_l2norm._logged = True\\n    return img_emb[:, topk_idx, :], n_keep\\n\\n\\ndef compute_attention_importance_probe(img_embs, lang_emb, lm, n_probe_layers=2):\\n    \\\"\\\"\\\"Run first n_probe_layers of the LLM to get attention-based importance for vision tokens.\\n\\n    Importance = avg attention from language tokens -> each vision token,\\n    averaged across probe layers and all heads.\\n    \\\"\\\"\\\"\\n    import torch.nn.functional as F\\n    from transformers.models.gemma import modeling_gemma as _gemma\\n\\n    all_vis = torch.cat(img_embs, dim=1)\\n    total_vis = all_vis.shape[1]\\n    full_embs = torch.cat([all_vis, lang_emb], dim=1)\\n    B, S, D = full_embs.shape\\n\\n    position_ids = torch.arange(S, device=full_embs.device).unsqueeze(0).expand(B, -1)\\n    _model_dtype = lm.layers[0].self_attn.q_proj.weight.dtype\\n    hidden = full_embs.to(_model_dtype)\\n    all_attn = []\\n\\n    with torch.no_grad():\\n        for layer_idx in range(min(n_probe_layers, len(lm.layers))):\\n            layer = \\n\\n... [截断: 输出过长，省略 9859 字符] ...\\n\\nnRenderEnv(bddl_file_name=str(bddl),\\n                                 camera_heights=256, camera_widths=256)\\n        env.seed(args.seed)\\n        task_desc = task.language\\n        task_successes = 0\\n\\n        for ep in range(args.n_episodes):\\n            _episode_mask_cache.clear()\\n            env.reset()\\n            obs = env.set_init_state(init_states[ep])\\n            for _ in range(10):\\n                obs, _, _, _ = env.step([0.0]*6 + [-1.0])\\n\\n            done = False\\n            action_queue = deque()\\n\\n            for t in range(max_steps):\\n                if not action_queue:\\n                    base_img = obs[\\\"agentview_image\\\"]\\n                    wrist_img = obs[\\\"robot0_eye_in_hand_image\\\"]\\n                    base_t = torch.from_numpy(base_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    base_t = torch.flip(base_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n                    wrist_t = torch.from_numpy(wrist_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    wrist_t = torch.flip(wrist_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n\\n                    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n                    eef_quat = obs[\\\"robot0_eef_quat\\\"]\\n                    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n                    state = np.concatenate([\\n                        eef_pos, quat_to_axisangle(eef_quat), gripper_qpos\\n                    ]).astype(np.float32)\\n                    state_t = torch.from_numpy(state)\\n\\n                    raw_obs = {\\n                        \\\"observation.images.image\\\": base_t,\\n                        \\\"observation.images.image2\\\": wrist_t,\\n                        \\\"observation.state\\\": state_t,\\n                        \\\"task\\\": task_desc,\\n                    }\\n                    batch = preprocess(raw_obs)\\n\\n                    with torch.no_grad():\\n                        actions = policy.predict_action_chunk(batch)\\n\\n                    actions_unnorm = postprocess(actions)\\n                    action_np = actions_unnorm[0].cpu().numpy()\\n\\n                    for a in action_np[:args.replan_steps]:\\n                        action_queue.append(a[:7])\\n\\n                action = action_queue.popleft()\\n                obs, reward, done, info = env.step(action.tolist())\\n                if done:\\n                    task_successes += 1\\n                    total_success += 1\\n                    break\\n\\n            total_episodes += 1\\n\\n            if (ep + 1) % 10 == 0:\\n                log.info(f\\\"  T{task_id} [{task_desc[:40]}] ep={ep+1}: \\\"\\n                         f\\\"{task_successes}/{ep+1}={task_successes/(ep+1)*100:.0f}%\\\")\\n\\n        task_sr = task_successes / args.n_episodes\\n        results[\\\"per_task\\\"][task_desc] = {\\\"id\\\": task_id, \\\"sr\\\": task_sr, \\\"n\\\": task_successes}\\n        elapsed = time_mod.time() - t_start\\n        log.info(f\\\"Task {task_id}: SR={task_sr*100:.1f}% | \\\"\\n                 f\\\"Total: {total_success}/{total_episodes}={total_success/total_episodes*100:.1f}% | \\\"\\n                 f\\\"Time: {elapsed/60:.1f}min\\\")\\n        env.close()\\n\\n    results[\\\"overall_sr\\\"] = total_success / total_episodes\\n    results[\\\"total_successes\\\"] = total_success\\n    results[\\\"total_episodes\\\"] = total_episodes\\n    results[\\\"elapsed_min\\\"] = (time_mod.time() - t_start) / 60\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    if args.prune_mode == \\\"none\\\":\\n        fname = f\\\"pi05_baseline_{args.suite}_seed{args.seed}.json\\\"\\n    else:\\n        mask_tag = \\\"_fixmask\\\" if args.fixed_mask else \\\"\\\"\\n        fname = f\\\"pi05_{args.prune_mode}{mask_tag}_k{args.keep_ratio:.2f}_{args.suite}_seed{args.seed}.json\\\"\\n    out_path = out_dir / fname\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    log.info(f\\\"\\\\n{'='*60}\\\")\\n    log.info(f\\\"RESULT: {args.suite} prune={args.prune_mode} keep={args.keep_ratio} \\\"\\n             f\\\"SR={results['overall_sr']*100:.1f}%\\\")\\n    log.info(f\\\"Saved: {out_path}\\\")\\n    log.info(f\\\"{'='*60}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "74f10b5a-5f18-4313-8dd0-76961d071e31",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Pi0.5 LIBERO eval with vision token pruning (random / l2norm / none).\\\\n\\\\nUsage:\\\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode none\\\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode random --keep_ratio 0.5\\\\n    python eval_pi05_pruning_libero.py --suite libero_spatial --prune_mode l2norm --keep_ratio 0.7\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time as time_mod\\\\nimport types\\\\nimport logging\\\\nfrom pathlib import Path\\\\nfrom collections import deque\\\\n\\\\nos.environ[\\\\\\\"MUJOCO_GL\\\\\\\"] = \\\\\\\"egl\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"HF_TOKEN\\\\\\\"] = \\\\\\\"[REDACTED_HF_TOKEN]\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch._dynamo; torch._dynamo.config.disable = True\\\\nfrom safetensors.torch import load_file\\\\n\\\\nlogging.basicConfig(level=logging.INFO, force=True, format=\\\\\\\"%(asctime)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n_episode_mask_cache = {}\\\\n\\\\nSUITE_CONFIG = {\\\\n    \\\\\\\"libero_object\\\\\\\":  {\\\\\\\"name\\\\\\\": \\\\\\\"libero_object\\\\\\\",  \\\\\\\"max_steps\\\\\\\": 280},\\\\n    \\\\\\\"libero_spatial\\\\\\\":  {\\\\\\\"name\\\\\\\": \\\\\\\"libero_spatial\\\\\\\",  \\\\\\\"max_steps\\\\\\\": 280},\\\\n    \\\\\\\"libero_goal\\\\\\\":     {\\\\\\\"name\\\\\\\": \\\\\\\"libero_goal\\\\\\\",     \\\\\\\"max_steps\\\\\\\": 300},\\\\n    \\\\\\\"libero_10\\\\\\\":       {\\\\\\\"name\\\\\\\": \\\\\\\"libero_10\\\\\\\",       \\\\\\\"max_steps\\\\\\\": 520},\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\", choices=list(SUITE_CONFIG))\\\\n    p.add_argument(\\\\\\\"--prune_mode\\\\\\\", type=str, default=\\\\\\\"none\\\\\\\", choices=[\\\\\\\"none\\\\\\\", \\\\\\\"random\\\\\\\", \\\\\\\"l2norm\\\\\\\", \\\\\\\"attention\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--keep_ratio\\\\\\\", type=float, default=1.0)\\\\n    p.add_argument(\\\\\\\"--n_episodes\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=7)\\\\n    p.add_argument(\\\\\\\"--replan_steps\\\\\\\", type=int, default=5)\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str,\\\\n                   default=\\\\\\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--fixed_mask\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef prune_tokens_random(img_emb, keep_ratio):\\\\n    bsize, n_tokens, dim = img_emb.shape\\\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\\\n    indices = torch.randperm(n_tokens, device=img_emb.device)[:n_keep].sort().values\\\\n    if not hasattr(prune_tokens_random, \\\\\\\"_logged\\\\\\\"):\\\\n        print(f\\\\\\\"[PRUNE-DIAG] random: n_keep={n_keep}/{n_tokens}, first_indices={indices[:5].tolist()}\\\\\\\")\\\\n        prune_tokens_random._logged = True\\\\n    return img_emb[:, indices, :], n_keep\\\\n\\\\n\\\\ndef prune_tokens_l2norm(img_emb, keep_ratio):\\\\n    bsize, n_tokens, dim = img_emb.shape\\\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\\\n    norms = torch.norm(img_emb[0].float(), dim=-1)\\\\n    _, topk_idx = torch.topk(norms, n_keep)\\\\n    topk_idx = topk_idx.sort().values\\\\n    if not hasattr(prune_tokens_l2norm, \\\\\\\"_logged\\\\\\\"):\\\\n        print(f\\\\\\\"[PRUNE-DIAG] l2norm: n_keep={n_keep}/{n_tokens}, first_indices={topk_idx.sort().values[:5].tolist()}\\\\\\\")\\\\n        prune_tokens_l2norm._logged = True\\\\n    return img_emb[:, topk_idx, :], n_keep\\\\n\\\\n\\\\ndef compute_attention_importance_probe(img_embs, lang_emb, lm, n_probe_layers=2):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run first n_probe_layers of the LLM to get attention-based importance for vision tokens.\\\\n\\\\n    Importance = avg attention from language tokens -> each vision token,\\\\n    averaged across probe layers and all heads.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import torch.nn.functional as F\\\\n    from transformers.models.gemma import modeling_gemma as _gemma\\\\n\\\\n    all_vis = torch.cat(img_embs, dim=1)\\\\n    total_vis = all_vis.shape[1]\\\\n    full_embs = torch.cat([all_vis, lang_emb], dim=1)\\\\n    B, S, D = full_embs.shape\\\\n\\\\n    position_ids = torch.arange(S, device=full_embs.device).unsqueeze(0).expand(B, -1)\\\\n    _model_dtype = lm.layers[0].self_attn.q_proj.weight.dtype\\\\n    hidden = full_embs.to(_model_dtype)\\\\n    all_attn = []\\\\n\\\\n    with torch.no_grad():\\\\n        for layer_idx in range(min(n_probe_layers, len(lm.layers))):\\\\n            layer = \\\\n\\\\n... [截断: 输出过长，省略 9859 字符] ...\\\\n\\\\nnRenderEnv(bddl_file_name=str(bddl),\\\\n                                 camera_heights=256, camera_widths=256)\\\\n        env.seed(args.seed)\\\\n        task_desc = task.language\\\\n        task_successes = 0\\\\n\\\\n        for ep in range(args.n_episodes):\\\\n            _episode_mask_cache.clear()\\\\n            env.reset()\\\\n            obs = env.set_init_state(init_states[ep])\\\\n            for _ in range(10):\\\\n                obs, _, _, _ = env.step([0.0]*6 + [-1.0])\\\\n\\\\n            done = False\\\\n            action_queue = deque()\\\\n\\\\n            for t in range(max_steps):\\\\n                if not action_queue:\\\\n                    base_img = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n                    wrist_img = obs[\\\\\\\"robot0_eye_in_hand_image\\\\\\\"]\\\\n                    base_t = torch.from_numpy(base_img.copy()).permute(2, 0, 1).float() / 255.0\\\\n                    base_t = torch.flip(base_t, dims=[1, 2])  # 180° flip to match LeRobot training\\\\n                    wrist_t = torch.from_numpy(wrist_img.copy()).permute(2, 0, 1).float() / 255.0\\\\n                    wrist_t = torch.flip(wrist_t, dims=[1, 2])  # 180° flip to match LeRobot training\\\\n\\\\n                    eef_pos = obs[\\\\\\\"robot0_eef_pos\\\\\\\"]\\\\n                    eef_quat = obs[\\\\\\\"robot0_eef_quat\\\\\\\"]\\\\n                    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n                    state = np.concatenate([\\\\n                        eef_pos, quat_to_axisangle(eef_quat), gripper_qpos\\\\n                    ]).astype(np.float32)\\\\n                    state_t = torch.from_numpy(state)\\\\n\\\\n                    raw_obs = {\\\\n                        \\\\\\\"observation.images.image\\\\\\\": base_t,\\\\n                        \\\\\\\"observation.images.image2\\\\\\\": wrist_t,\\\\n                        \\\\\\\"observation.state\\\\\\\": state_t,\\\\n                        \\\\\\\"task\\\\\\\": task_desc,\\\\n                    }\\\\n                    batch = preprocess(raw_obs)\\\\n\\\\n                    with torch.no_grad():\\\\n                        actions = policy.predict_action_chunk(batch)\\\\n\\\\n                    actions_unnorm = postprocess(actions)\\\\n                    action_np = actions_unnorm[0].cpu().numpy()\\\\n\\\\n                    for a in action_np[:args.replan_steps]:\\\\n                        action_queue.append(a[:7])\\\\n\\\\n                action = action_queue.popleft()\\\\n                obs, reward, done, info = env.step(action.tolist())\\\\n                if done:\\\\n                    task_successes += 1\\\\n                    total_success += 1\\\\n                    break\\\\n\\\\n            total_episodes += 1\\\\n\\\\n            if (ep + 1) % 10 == 0:\\\\n                log.info(f\\\\\\\"  T{task_id} [{task_desc[:40]}] ep={ep+1}: \\\\\\\"\\\\n                         f\\\\\\\"{task_successes}/{ep+1}={task_successes/(ep+1)*100:.0f}%\\\\\\\")\\\\n\\\\n        task_sr = task_successes / args.n_episodes\\\\n        results[\\\\\\\"per_task\\\\\\\"][task_desc] = {\\\\\\\"id\\\\\\\": task_id, \\\\\\\"sr\\\\\\\": task_sr, \\\\\\\"n\\\\\\\": task_successes}\\\\n        elapsed = time_mod.time() - t_start\\\\n        log.info(f\\\\\\\"Task {task_id}: SR={task_sr*100:.1f}% | \\\\\\\"\\\\n                 f\\\\\\\"Total: {total_success}/{total_episodes}={total_success/total_episodes*100:.1f}% | \\\\\\\"\\\\n                 f\\\\\\\"Time: {elapsed/60:.1f}min\\\\\\\")\\\\n        env.close()\\\\n\\\\n    results[\\\\\\\"overall_sr\\\\\\\"] = total_success / total_episodes\\\\n    results[\\\\\\\"total_successes\\\\\\\"] = total_success\\\\n    results[\\\\\\\"total_episodes\\\\\\\"] = total_episodes\\\\n    results[\\\\\\\"elapsed_min\\\\\\\"] = (time_mod.time() - t_start) / 60\\\\n\\\\n    out_dir = Path(args.output_dir)\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    if args.prune_mode == \\\\\\\"none\\\\\\\":\\\\n        fname = f\\\\\\\"pi05_baseline_{args.suite}_seed{args.seed}.json\\\\\\\"\\\\n    else:\\\\n        mask_tag = \\\\\\\"_fixmask\\\\\\\" if args.fixed_mask else \\\\\\\"\\\\\\\"\\\\n        fname = f\\\\\\\"pi05_{args.prune_mode}{mask_tag}_k{args.keep_ratio:.2f}_{args.suite}_seed{args.seed}.json\\\\\\\"\\\\n    out_path = out_dir / fname\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    log.info(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    log.info(f\\\\\\\"RESULT: {args.suite} prune={args.prune_mode} keep={args.keep_ratio} \\\\\\\"\\\\n             f\\\\\\\"SR={results['overall_sr']*100:.1f}%\\\\\\\")\\\\n    log.info(f\\\\\\\"Saved: {out_path}\\\\\\\")\\\\n    log.info(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python\\n\\\"\\\"\\\"Pi0.5 LIBERO eval with vision token pruning (random / l2norm / none).\\n\\nUsage:\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode none\\n    python eval_pi05_pruning_libero.py --suite libero_object --prune_mode random --keep_ratio 0.5\\n    python eval_pi05_pruning_libero.py --suite libero_spatial --prune_mode l2norm --keep_ratio 0.7\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nimport time as time_mod\\nimport types\\nimport logging\\nfrom pathlib import Path\\nfrom collections import deque\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"HF_TOKEN\\\"] = \\\"[REDACTED_HF_TOKEN]\\\"\\n\\nimport numpy as np\\nimport torch\\nimport torch._dynamo; torch._dynamo.config.disable = True\\nfrom safetensors.torch import load_file\\n\\nlogging.basicConfig(level=logging.INFO, force=True, format=\\\"%(asctime)s %(message)s\\\")\\nlog = logging.getLogger(__name__)\\n\\n_episode_mask_cache = {}\\n\\nSUITE_CONFIG = {\\n    \\\"libero_object\\\":  {\\\"name\\\": \\\"libero_object\\\",  \\\"max_steps\\\": 280},\\n    \\\"libero_spatial\\\":  {\\\"name\\\": \\\"libero_spatial\\\",  \\\"max_steps\\\": 280},\\n    \\\"libero_goal\\\":     {\\\"name\\\": \\\"libero_goal\\\",     \\\"max_steps\\\": 300},\\n    \\\"libero_10\\\":       {\\\"name\\\": \\\"libero_10\\\",       \\\"max_steps\\\": 520},\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"/root/autodl-tmp/pi05_libero_finetuned\\\")\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\", choices=list(SUITE_CONFIG))\\n    p.add_argument(\\\"--prune_mode\\\", type=str, default=\\\"none\\\", choices=[\\\"none\\\", \\\"random\\\", \\\"l2norm\\\", \\\"attention\\\"])\\n    p.add_argument(\\\"--keep_ratio\\\", type=float, default=1.0)\\n    p.add_argument(\\\"--n_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--seed\\\", type=int, default=7)\\n    p.add_argument(\\\"--replan_steps\\\", type=int, default=5)\\n    p.add_argument(\\\"--output_dir\\\", type=str,\\n                   default=\\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\")\\n    p.add_argument(\\\"--fixed_mask\\\", action=\\\"store_true\\\")\\n    return p.parse_args()\\n\\n\\ndef prune_tokens_random(img_emb, keep_ratio):\\n    bsize, n_tokens, dim = img_emb.shape\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\n    indices = torch.randperm(n_tokens, device=img_emb.device)[:n_keep].sort().values\\n    if not hasattr(prune_tokens_random, \\\"_logged\\\"):\\n        print(f\\\"[PRUNE-DIAG] random: n_keep={n_keep}/{n_tokens}, first_indices={indices[:5].tolist()}\\\")\\n        prune_tokens_random._logged = True\\n    return img_emb[:, indices, :], n_keep\\n\\n\\ndef prune_tokens_l2norm(img_emb, keep_ratio):\\n    bsize, n_tokens, dim = img_emb.shape\\n    n_keep = max(1, int(n_tokens * keep_ratio))\\n    norms = torch.norm(img_emb[0].float(), dim=-1)\\n    _, topk_idx = torch.topk(norms, n_keep)\\n    topk_idx = topk_idx.sort().values\\n    if not hasattr(prune_tokens_l2norm, \\\"_logged\\\"):\\n        print(f\\\"[PRUNE-DIAG] l2norm: n_keep={n_keep}/{n_tokens}, first_indices={topk_idx.sort().values[:5].tolist()}\\\")\\n        prune_tokens_l2norm._logged = True\\n    return img_emb[:, topk_idx, :], n_keep\\n\\n\\ndef compute_attention_importance_probe(img_embs, lang_emb, lm, n_probe_layers=2):\\n    \\\"\\\"\\\"Run first n_probe_layers of the LLM to get attention-based importance for vision tokens.\\n\\n    Importance = avg attention from language tokens -> each vision token,\\n    averaged across probe layers and all heads.\\n    \\\"\\\"\\\"\\n    import torch.nn.functional as F\\n    from transformers.models.gemma import modeling_gemma as _gemma\\n\\n    all_vis = torch.cat(img_embs, dim=1)\\n    total_vis = all_vis.shape[1]\\n    full_embs = torch.cat([all_vis, lang_emb], dim=1)\\n    B, S, D = full_embs.shape\\n\\n    position_ids = torch.arange(S, device=full_embs.device).unsqueeze(0).expand(B, -1)\\n    _model_dtype = lm.layers[0].self_attn.q_proj.weight.dtype\\n    hidden = full_embs.to(_model_dtype)\\n    all_attn = []\\n\\n    with torch.no_grad():\\n        for layer_idx in range(min(n_probe_layers, len(lm.layers))):\\n            layer = \\n\\n... [截断: 输出过长，省略 9859 字符] ...\\n\\nnRenderEnv(bddl_file_name=str(bddl),\\n                                 camera_heights=256, camera_widths=256)\\n        env.seed(args.seed)\\n        task_desc = task.language\\n        task_successes = 0\\n\\n        for ep in range(args.n_episodes):\\n            _episode_mask_cache.clear()\\n            env.reset()\\n            obs = env.set_init_state(init_states[ep])\\n            for _ in range(10):\\n                obs, _, _, _ = env.step([0.0]*6 + [-1.0])\\n\\n            done = False\\n            action_queue = deque()\\n\\n            for t in range(max_steps):\\n                if not action_queue:\\n                    base_img = obs[\\\"agentview_image\\\"]\\n                    wrist_img = obs[\\\"robot0_eye_in_hand_image\\\"]\\n                    base_t = torch.from_numpy(base_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    base_t = torch.flip(base_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n                    wrist_t = torch.from_numpy(wrist_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    wrist_t = torch.flip(wrist_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n\\n                    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n                    eef_quat = obs[\\\"robot0_eef_quat\\\"]\\n                    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n                    state = np.concatenate([\\n                        eef_pos, quat_to_axisangle(eef_quat), gripper_qpos\\n                    ]).astype(np.float32)\\n                    state_t = torch.from_numpy(state)\\n\\n                    raw_obs = {\\n                        \\\"observation.images.image\\\": base_t,\\n                        \\\"observation.images.image2\\\": wrist_t,\\n                        \\\"observation.state\\\": state_t,\\n                        \\\"task\\\": task_desc,\\n                    }\\n                    batch = preprocess(raw_obs)\\n\\n                    with torch.no_grad():\\n                        actions = policy.predict_action_chunk(batch)\\n\\n                    actions_unnorm = postprocess(actions)\\n                    action_np = actions_unnorm[0].cpu().numpy()\\n\\n                    for a in action_np[:args.replan_steps]:\\n                        action_queue.append(a[:7])\\n\\n                action = action_queue.popleft()\\n                obs, reward, done, info = env.step(action.tolist())\\n                if done:\\n                    task_successes += 1\\n                    total_success += 1\\n                    break\\n\\n            total_episodes += 1\\n\\n            if (ep + 1) % 10 == 0:\\n                log.info(f\\\"  T{task_id} [{task_desc[:40]}] ep={ep+1}: \\\"\\n                         f\\\"{task_successes}/{ep+1}={task_successes/(ep+1)*100:.0f}%\\\")\\n\\n        task_sr = task_successes / args.n_episodes\\n        results[\\\"per_task\\\"][task_desc] = {\\\"id\\\": task_id, \\\"sr\\\": task_sr, \\\"n\\\": task_successes}\\n        elapsed = time_mod.time() - t_start\\n        log.info(f\\\"Task {task_id}: SR={task_sr*100:.1f}% | \\\"\\n                 f\\\"Total: {total_success}/{total_episodes}={total_success/total_episodes*100:.1f}% | \\\"\\n                 f\\\"Time: {elapsed/60:.1f}min\\\")\\n        env.close()\\n\\n    results[\\\"overall_sr\\\"] = total_success / total_episodes\\n    results[\\\"total_successes\\\"] = total_success\\n    results[\\\"total_episodes\\\"] = total_episodes\\n    results[\\\"elapsed_min\\\"] = (time_mod.time() - t_start) / 60\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    if args.prune_mode == \\\"none\\\":\\n        fname = f\\\"pi05_baseline_{args.suite}_seed{args.seed}.json\\\"\\n    else:\\n        mask_tag = \\\"_fixmask\\\" if args.fixed_mask else \\\"\\\"\\n        fname = f\\\"pi05_{args.prune_mode}{mask_tag}_k{args.keep_ratio:.2f}_{args.suite}_seed{args.seed}.json\\\"\\n    out_path = out_dir / fname\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    log.info(f\\\"\\\\n{'='*60}\\\")\\n    log.info(f\\\"RESULT: {args.suite} prune={args.prune_mode} keep={args.keep_ratio} \\\"\\n             f\\\"SR={results['overall_sr']*100:.1f}%\\\")\\n    log.info(f\\\"Saved: {out_path}\\\")\\n    log.info(f\\\"{'='*60}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016MSczQzE29cbGs9AGFdAPo`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "73eaddb9-9e5e-43af-83df-15250cfc8bed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JahkDwyWLmph3h4ncyUse",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2284,
+      "cache_read_input_tokens": 25020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2284
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T05:49:37.919Z_
+
+<details><summary>↩ Tool result · `toolu_016MSczQzE29cbGs9AGFdAPo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"X-VLA Vision Token Pruning Evaluation on LIBERO.\\n\\nPrunes vision tokens by L2 norm after Florence2's image encoder + linear projection,\\nbefore they enter the Florence2 language encoder. Evaluates on LIBERO suites.\\n\\nFollows official X-VLA evaluation protocol:\\n  - Absolute EEF control (use_delta=False)\\n  - 20D action space: [arm1: pos(3)+rot6d(6)+grip(1)] + [arm2: zeros(10)]\\n  - 20D proprio: [pos(3)+rot6d(6)+0.0] + zeros(10)\\n  - domain_id=3 for LIBERO\\n  - Closed-loop proprio update from last predicted action\\n\\nUsage:\\n    CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python eval_xvla_pruning_libero.py \\\\\\n        --model_path /path/to/X-VLA-Libero \\\\\\n        --suite libero_object \\\\\\n        --keep_ratio 0.5 \\\\\\n        --num_episodes 50 \\\\\\n        --gpu 0\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time as time_mod\\nfrom pathlib import Path\\nfrom functools import wraps\\n\\nos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 800,\\n    \\\"libero_object\\\": 800,\\n    \\\"libero_goal\\\": 800,\\n    \\\"libero_10\\\": 520,\\n    \\\"libero_90\\\": 800,\\n}\\n\\nEPS = 1e-6\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"X-VLA pruning eval on LIBERO\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"2toINF/X-VLA-Libero\\\",\\n                   help=\\\"HuggingFace model path or local dir\\\")\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\",\\n                   choices=list(SUITE_MAX_STEPS.keys()))\\n    p.add_argument(\\\"--keep_ratio\\\", type=float, default=1.0,\\n                   help=\\\"Fraction of vision tokens to keep (1.0 = no pruning)\\\")\\n    p.add_argument(\\\"--num_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=None)\\n    p.add_argument(\\\"--output\\\", type=str, default=None)\\n    p.add_argument(\\\"--task_ids\\\", type=str, default=None)\\n    p.add_argument(\\\"--domain_id\\\", type=int, default=3)\\n    p.add_argument(\\\"--denoise_steps\\\", type=int, default=10,\\n                   help=\\\"Flow matching denoising steps\\\")\\n    return p.parse_args()\\n\\n\\n# ---------------------------------------------------------------------------\\n# Pruning hook\\n# ---------------------------------------------------------------------------\\n\\ndef install_vision_pruning(model, keep_ratio: float):\\n    if keep_ratio >= 1.0:\\n        log.info(\\\"keep_ratio=%.2f, no pruning applied\\\", keep_ratio)\\n        return\\n\\n    original_encode = model.vlm._encode_image\\n\\n    @wraps(original_encode)\\n    def pruned_encode(pixel_values):\\n        features = original_encode(pixel_values)\\n        N = features.shape[1]\\n        k = max(1, int(keep_ratio * N))\\n        if k >= N:\\n            return features\\n        norms = features.norm(dim=-1)\\n        _, indices = norms.topk(k, dim=-1)\\n        indices_sorted = indices.sort(dim=-1).values\\n        pruned = features.gather(\\n            1, indices_sorted.unsqueeze(-1).expand(-1, -1, features.shape[-1])\\n        )\\n        return pruned\\n\\n    model.vlm._encode_image = pruned_encode\\n    log.info(\\\"Vision pruning installed: keep_ratio=%.2f\\\", keep_ratio)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Model loading\\n# ---------------------------------------------------------------------------\\n\\ndef load_model(model_path: str, device: torch.device):\\n    model_dir = str(Path(model_path).resolve())\\n    sys.path.insert(0, model_dir)\\n\\n    from configuration_xvla import XVLAConfig\\n    from modeling_xvla import XVLA\\n    from processing_xvla import XVLAProcessor\\n    from safetensors.torch import load_file\\n\\n    log.info(\\\"Loading X-VLA from %s\\\", model_dir)\\n    config = XVLAConf\\n\\n... [截断: 输出过长，省略 9044 字符] ...\\n\\nange(max_steps):\\n                if not action_queue:\\n                    # Extract proprio from env\\n                    proprio_20d = extract_proprio_20d(env)\\n                    if proprio_state is not None:\\n                        proprio_20d[:9] = proprio_state[:9]\\n\\n                    images = get_images_from_obs(obs)\\n                    if not images:\\n                        raise ValueError(f\\\"No images found in obs keys: {list(obs.keys())}\\\")\\n\\n                    raw_actions = predict_actions(\\n                        model, processor, images, task_desc, proprio_20d,\\n                        args.domain_id, device, args.denoise_steps,\\n                    )  # [30, 20]\\n\\n                    # Update closed-loop proprio with last predicted action\\n                    proprio_state = proprio_20d.copy()\\n                    proprio_state[:9] = raw_actions[-1, :9].copy()\\n\\n                    actions_7d = decode_action_20d_to_7d(raw_actions)  # [30, 7]\\n                    action_queue = list(actions_7d)\\n\\n                action = action_queue.pop(0)\\n                obs, reward, done, info = env.step(action)\\n\\n                if done or reward > 0.5:\\n                    success = True\\n                    break\\n\\n            ep_steps = step_idx + 1\\n            task_successes.append(success)\\n            task_lengths.append(ep_steps)\\n            log.info(\\\"  Ep %d/%d | %s | steps=%d\\\",\\n                     ep + 1, args.num_episodes,\\n                     \\\"SUCCESS\\\" if success else \\\"FAIL\\\", ep_steps)\\n\\n            env.close()\\n\\n        n_succ = sum(task_successes)\\n        n_total = len(task_successes)\\n        sr = n_succ / n_total if n_total > 0 else 0.0\\n\\n        all_task_results[task_id] = {\\n            \\\"task_id\\\": task_id,\\n            \\\"task_description\\\": task_desc,\\n            \\\"success_count\\\": n_succ,\\n            \\\"total_episodes\\\": n_total,\\n            \\\"success_rate\\\": round(sr, 4),\\n            \\\"mean_steps\\\": round(float(np.mean(task_lengths)), 1),\\n        }\\n        total_successes += n_succ\\n        total_episodes += n_total\\n        log.info(\\\"  Task %d SR: %d/%d (%.1f%%)\\\", task_id, n_succ, n_total, sr * 100)\\n\\n    elapsed = time_mod.time() - eval_start\\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"SUITE: %s | MODEL: xvla | keep_ratio: %.2f\\\", args.suite, args.keep_ratio)\\n    log.info(\\\"Overall SR: %d/%d (%.1f%%)\\\", total_successes, total_episodes, overall_sr * 100)\\n    log.info(\\\"95%% Wilson CI: [%.1f%%, %.1f%%]\\\", ci_lo * 100, ci_hi * 100)\\n    for tid, tr in sorted(all_task_results.items()):\\n        log.info(\\\"  Task %d: %.0f%% (%d/%d) -- %s\\\",\\n                 tid, tr[\\\"success_rate\\\"] * 100, tr[\\\"success_count\\\"],\\n                 tr[\\\"total_episodes\\\"], tr[\\\"task_description\\\"])\\n    log.info(\\\"Elapsed: %.1f min\\\", elapsed / 60)\\n    log.info(\\\"=\\\" * 60)\\n\\n    summary = {\\n        \\\"model\\\": \\\"xvla\\\",\\n        \\\"model_path\\\": args.model_path,\\n        \\\"mode\\\": \\\"l2_norm_prune\\\",\\n        \\\"suite\\\": args.suite,\\n        \\\"keep_ratio\\\": args.keep_ratio,\\n        \\\"n_vision_tokens_original\\\": n_vis_tokens,\\n        \\\"n_vision_tokens_kept\\\": k_tokens,\\n        \\\"total_episodes\\\": total_episodes,\\n        \\\"total_successes\\\": total_successes,\\n        \\\"overall_success_rate\\\": round(overall_sr, 4),\\n        \\\"wilson_ci_95\\\": [round(ci_lo, 4), round(ci_hi, 4)],\\n        \\\"num_episodes_per_task\\\": args.num_episodes,\\n        \\\"max_steps\\\": max_steps,\\n        \\\"num_actions_per_chunk\\\": num_actions_per_chunk,\\n        \\\"domain_id\\\": args.domain_id,\\n        \\\"denoise_steps\\\": args.denoise_steps,\\n        \\\"seed\\\": args.seed,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n        \\\"per_task\\\": all_task_results,\\n    }\\n\\n    output_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    log.info(\\\"Results saved to %s\\\", output_path)\\n\\n    return summary\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    args = parse_args()\\n    run_evaluation(args)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "1cd05d0a-5132-4547-8636-7877742428b6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"X-VLA Vision Token Pruning Evaluation on LIBERO.\\\\n\\\\nPrunes vision tokens by L2 norm after Florence2's image encoder + linear projection,\\\\nbefore they enter the Florence2 language encoder. Evaluates on LIBERO suites.\\\\n\\\\nFollows official X-VLA evaluation protocol:\\\\n  - Absolute EEF control (use_delta=False)\\\\n  - 20D action space: [arm1: pos(3)+rot6d(6)+grip(1)] + [arm2: zeros(10)]\\\\n  - 20D proprio: [pos(3)+rot6d(6)+0.0] + zeros(10)\\\\n  - domain_id=3 for LIBERO\\\\n  - Closed-loop proprio update from last predicted action\\\\n\\\\nUsage:\\\\n    CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python eval_xvla_pruning_libero.py \\\\\\\\\\\\n        --model_path /path/to/X-VLA-Libero \\\\\\\\\\\\n        --suite libero_object \\\\\\\\\\\\n        --keep_ratio 0.5 \\\\\\\\\\\\n        --num_episodes 50 \\\\\\\\\\\\n        --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nimport time as time_mod\\\\nfrom pathlib import Path\\\\nfrom functools import wraps\\\\n\\\\nos.environ.setdefault(\\\\\\\"MUJOCO_GL\\\\\\\", \\\\\\\"egl\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\",\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSUITE_MAX_STEPS = {\\\\n    \\\\\\\"libero_spatial\\\\\\\": 800,\\\\n    \\\\\\\"libero_object\\\\\\\": 800,\\\\n    \\\\\\\"libero_goal\\\\\\\": 800,\\\\n    \\\\\\\"libero_10\\\\\\\": 520,\\\\n    \\\\\\\"libero_90\\\\\\\": 800,\\\\n}\\\\n\\\\nEPS = 1e-6\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"X-VLA pruning eval on LIBERO\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=\\\\\\\"2toINF/X-VLA-Libero\\\\\\\",\\\\n                   help=\\\\\\\"HuggingFace model path or local dir\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\",\\\\n                   choices=list(SUITE_MAX_STEPS.keys()))\\\\n    p.add_argument(\\\\\\\"--keep_ratio\\\\\\\", type=float, default=1.0,\\\\n                   help=\\\\\\\"Fraction of vision tokens to keep (1.0 = no pruning)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_episodes\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=None)\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=None)\\\\n    p.add_argument(\\\\\\\"--task_ids\\\\\\\", type=str, default=None)\\\\n    p.add_argument(\\\\\\\"--domain_id\\\\\\\", type=int, default=3)\\\\n    p.add_argument(\\\\\\\"--denoise_steps\\\\\\\", type=int, default=10,\\\\n                   help=\\\\\\\"Flow matching denoising steps\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Pruning hook\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef install_vision_pruning(model, keep_ratio: float):\\\\n    if keep_ratio >= 1.0:\\\\n        log.info(\\\\\\\"keep_ratio=%.2f, no pruning applied\\\\\\\", keep_ratio)\\\\n        return\\\\n\\\\n    original_encode = model.vlm._encode_image\\\\n\\\\n    @wraps(original_encode)\\\\n    def pruned_encode(pixel_values):\\\\n        features = original_encode(pixel_values)\\\\n        N = features.shape[1]\\\\n        k = max(1, int(keep_ratio * N))\\\\n        if k >= N:\\\\n            return features\\\\n        norms = features.norm(dim=-1)\\\\n        _, indices = norms.topk(k, dim=-1)\\\\n        indices_sorted = indices.sort(dim=-1).values\\\\n        pruned = features.gather(\\\\n            1, indices_sorted.unsqueeze(-1).expand(-1, -1, features.shape[-1])\\\\n        )\\\\n        return pruned\\\\n\\\\n    model.vlm._encode_image = pruned_encode\\\\n    log.info(\\\\\\\"Vision pruning installed: keep_ratio=%.2f\\\\\\\", keep_ratio)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Model loading\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef load_model(model_path: str, device: torch.device):\\\\n    model_dir = str(Path(model_path).resolve())\\\\n    sys.path.insert(0, model_dir)\\\\n\\\\n    from configuration_xvla import XVLAConfig\\\\n    from modeling_xvla import XVLA\\\\n    from processing_xvla import XVLAProcessor\\\\n    from safetensors.torch import load_file\\\\n\\\\n    log.info(\\\\\\\"Loading X-VLA from %s\\\\\\\", model_dir)\\\\n    config = XVLAConf\\\\n\\\\n... [截断: 输出过长，省略 9044 字符] ...\\\\n\\\\nange(max_steps):\\\\n                if not action_queue:\\\\n                    # Extract proprio from env\\\\n                    proprio_20d = extract_proprio_20d(env)\\\\n                    if proprio_state is not None:\\\\n                        proprio_20d[:9] = proprio_state[:9]\\\\n\\\\n                    images = get_images_from_obs(obs)\\\\n                    if not images:\\\\n                        raise ValueError(f\\\\\\\"No images found in obs keys: {list(obs.keys())}\\\\\\\")\\\\n\\\\n                    raw_actions = predict_actions(\\\\n                        model, processor, images, task_desc, proprio_20d,\\\\n                        args.domain_id, device, args.denoise_steps,\\\\n                    )  # [30, 20]\\\\n\\\\n                    # Update closed-loop proprio with last predicted action\\\\n                    proprio_state = proprio_20d.copy()\\\\n                    proprio_state[:9] = raw_actions[-1, :9].copy()\\\\n\\\\n                    actions_7d = decode_action_20d_to_7d(raw_actions)  # [30, 7]\\\\n                    action_queue = list(actions_7d)\\\\n\\\\n                action = action_queue.pop(0)\\\\n                obs, reward, done, info = env.step(action)\\\\n\\\\n                if done or reward > 0.5:\\\\n                    success = True\\\\n                    break\\\\n\\\\n            ep_steps = step_idx + 1\\\\n            task_successes.append(success)\\\\n            task_lengths.append(ep_steps)\\\\n            log.info(\\\\\\\"  Ep %d/%d | %s | steps=%d\\\\\\\",\\\\n                     ep + 1, args.num_episodes,\\\\n                     \\\\\\\"SUCCESS\\\\\\\" if success else \\\\\\\"FAIL\\\\\\\", ep_steps)\\\\n\\\\n            env.close()\\\\n\\\\n        n_succ = sum(task_successes)\\\\n        n_total = len(task_successes)\\\\n        sr = n_succ / n_total if n_total > 0 else 0.0\\\\n\\\\n        all_task_results[task_id] = {\\\\n            \\\\\\\"task_id\\\\\\\": task_id,\\\\n            \\\\\\\"task_description\\\\\\\": task_desc,\\\\n            \\\\\\\"success_count\\\\\\\": n_succ,\\\\n            \\\\\\\"total_episodes\\\\\\\": n_total,\\\\n            \\\\\\\"success_rate\\\\\\\": round(sr, 4),\\\\n            \\\\\\\"mean_steps\\\\\\\": round(float(np.mean(task_lengths)), 1),\\\\n        }\\\\n        total_successes += n_succ\\\\n        total_episodes += n_total\\\\n        log.info(\\\\\\\"  Task %d SR: %d/%d (%.1f%%)\\\\\\\", task_id, n_succ, n_total, sr * 100)\\\\n\\\\n    elapsed = time_mod.time() - eval_start\\\\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\\\\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\\\\n\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"SUITE: %s | MODEL: xvla | keep_ratio: %.2f\\\\\\\", args.suite, args.keep_ratio)\\\\n    log.info(\\\\\\\"Overall SR: %d/%d (%.1f%%)\\\\\\\", total_successes, total_episodes, overall_sr * 100)\\\\n    log.info(\\\\\\\"95%% Wilson CI: [%.1f%%, %.1f%%]\\\\\\\", ci_lo * 100, ci_hi * 100)\\\\n    for tid, tr in sorted(all_task_results.items()):\\\\n        log.info(\\\\\\\"  Task %d: %.0f%% (%d/%d) -- %s\\\\\\\",\\\\n                 tid, tr[\\\\\\\"success_rate\\\\\\\"] * 100, tr[\\\\\\\"success_count\\\\\\\"],\\\\n                 tr[\\\\\\\"total_episodes\\\\\\\"], tr[\\\\\\\"task_description\\\\\\\"])\\\\n    log.info(\\\\\\\"Elapsed: %.1f min\\\\\\\", elapsed / 60)\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    summary = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"xvla\\\\\\\",\\\\n        \\\\\\\"model_path\\\\\\\": args.model_path,\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"l2_norm_prune\\\\\\\",\\\\n        \\\\\\\"suite\\\\\\\": args.suite,\\\\n        \\\\\\\"keep_ratio\\\\\\\": args.keep_ratio,\\\\n        \\\\\\\"n_vision_tokens_original\\\\\\\": n_vis_tokens,\\\\n        \\\\\\\"n_vision_tokens_kept\\\\\\\": k_tokens,\\\\n        \\\\\\\"total_episodes\\\\\\\": total_episodes,\\\\n        \\\\\\\"total_successes\\\\\\\": total_successes,\\\\n        \\\\\\\"overall_success_rate\\\\\\\": round(overall_sr, 4),\\\\n        \\\\\\\"wilson_ci_95\\\\\\\": [round(ci_lo, 4), round(ci_hi, 4)],\\\\n        \\\\\\\"num_episodes_per_task\\\\\\\": args.num_episodes,\\\\n        \\\\\\\"max_steps\\\\\\\": max_steps,\\\\n        \\\\\\\"num_actions_per_chunk\\\\\\\": num_actions_per_chunk,\\\\n        \\\\\\\"domain_id\\\\\\\": args.domain_id,\\\\n        \\\\\\\"denoise_steps\\\\\\\": args.denoise_steps,\\\\n        \\\\\\\"seed\\\\\\\": args.seed,\\\\n        \\\\\\\"elapsed_seconds\\\\\\\": round(elapsed, 1),\\\\n        \\\\\\\"per_task\\\\\\\": all_task_results,\\\\n    }\\\\n\\\\n    output_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    log.info(\\\\\\\"Results saved to %s\\\\\\\", output_path)\\\\n\\\\n    return summary\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    args = parse_args()\\\\n    run_evaluation(args)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"X-VLA Vision Token Pruning Evaluation on LIBERO.\\n\\nPrunes vision tokens by L2 norm after Florence2's image encoder + linear projection,\\nbefore they enter the Florence2 language encoder. Evaluates on LIBERO suites.\\n\\nFollows official X-VLA evaluation protocol:\\n  - Absolute EEF control (use_delta=False)\\n  - 20D action space: [arm1: pos(3)+rot6d(6)+grip(1)] + [arm2: zeros(10)]\\n  - 20D proprio: [pos(3)+rot6d(6)+0.0] + zeros(10)\\n  - domain_id=3 for LIBERO\\n  - Closed-loop proprio update from last predicted action\\n\\nUsage:\\n    CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl python eval_xvla_pruning_libero.py \\\\\\n        --model_path /path/to/X-VLA-Libero \\\\\\n        --suite libero_object \\\\\\n        --keep_ratio 0.5 \\\\\\n        --num_episodes 50 \\\\\\n        --gpu 0\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time as time_mod\\nfrom pathlib import Path\\nfrom functools import wraps\\n\\nos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 800,\\n    \\\"libero_object\\\": 800,\\n    \\\"libero_goal\\\": 800,\\n    \\\"libero_10\\\": 520,\\n    \\\"libero_90\\\": 800,\\n}\\n\\nEPS = 1e-6\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"X-VLA pruning eval on LIBERO\\\")\\n    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"2toINF/X-VLA-Libero\\\",\\n                   help=\\\"HuggingFace model path or local dir\\\")\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\",\\n                   choices=list(SUITE_MAX_STEPS.keys()))\\n    p.add_argument(\\\"--keep_ratio\\\", type=float, default=1.0,\\n                   help=\\\"Fraction of vision tokens to keep (1.0 = no pruning)\\\")\\n    p.add_argument(\\\"--num_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--max_steps\\\", type=int, default=None)\\n    p.add_argument(\\\"--output\\\", type=str, default=None)\\n    p.add_argument(\\\"--task_ids\\\", type=str, default=None)\\n    p.add_argument(\\\"--domain_id\\\", type=int, default=3)\\n    p.add_argument(\\\"--denoise_steps\\\", type=int, default=10,\\n                   help=\\\"Flow matching denoising steps\\\")\\n    return p.parse_args()\\n\\n\\n# ---------------------------------------------------------------------------\\n# Pruning hook\\n# ---------------------------------------------------------------------------\\n\\ndef install_vision_pruning(model, keep_ratio: float):\\n    if keep_ratio >= 1.0:\\n        log.info(\\\"keep_ratio=%.2f, no pruning applied\\\", keep_ratio)\\n        return\\n\\n    original_encode = model.vlm._encode_image\\n\\n    @wraps(original_encode)\\n    def pruned_encode(pixel_values):\\n        features = original_encode(pixel_values)\\n        N = features.shape[1]\\n        k = max(1, int(keep_ratio * N))\\n        if k >= N:\\n            return features\\n        norms = features.norm(dim=-1)\\n        _, indices = norms.topk(k, dim=-1)\\n        indices_sorted = indices.sort(dim=-1).values\\n        pruned = features.gather(\\n            1, indices_sorted.unsqueeze(-1).expand(-1, -1, features.shape[-1])\\n        )\\n        return pruned\\n\\n    model.vlm._encode_image = pruned_encode\\n    log.info(\\\"Vision pruning installed: keep_ratio=%.2f\\\", keep_ratio)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Model loading\\n# ---------------------------------------------------------------------------\\n\\ndef load_model(model_path: str, device: torch.device):\\n    model_dir = str(Path(model_path).resolve())\\n    sys.path.insert(0, model_dir)\\n\\n    from configuration_xvla import XVLAConfig\\n    from modeling_xvla import XVLA\\n    from processing_xvla import XVLAProcessor\\n    from safetensors.torch import load_file\\n\\n    log.info(\\\"Loading X-VLA from %s\\\", model_dir)\\n    config = XVLAConf\\n\\n... [截断: 输出过长，省略 9044 字符] ...\\n\\nange(max_steps):\\n                if not action_queue:\\n                    # Extract proprio from env\\n                    proprio_20d = extract_proprio_20d(env)\\n                    if proprio_state is not None:\\n                        proprio_20d[:9] = proprio_state[:9]\\n\\n                    images = get_images_from_obs(obs)\\n                    if not images:\\n                        raise ValueError(f\\\"No images found in obs keys: {list(obs.keys())}\\\")\\n\\n                    raw_actions = predict_actions(\\n                        model, processor, images, task_desc, proprio_20d,\\n                        args.domain_id, device, args.denoise_steps,\\n                    )  # [30, 20]\\n\\n                    # Update closed-loop proprio with last predicted action\\n                    proprio_state = proprio_20d.copy()\\n                    proprio_state[:9] = raw_actions[-1, :9].copy()\\n\\n                    actions_7d = decode_action_20d_to_7d(raw_actions)  # [30, 7]\\n                    action_queue = list(actions_7d)\\n\\n                action = action_queue.pop(0)\\n                obs, reward, done, info = env.step(action)\\n\\n                if done or reward > 0.5:\\n                    success = True\\n                    break\\n\\n            ep_steps = step_idx + 1\\n            task_successes.append(success)\\n            task_lengths.append(ep_steps)\\n            log.info(\\\"  Ep %d/%d | %s | steps=%d\\\",\\n                     ep + 1, args.num_episodes,\\n                     \\\"SUCCESS\\\" if success else \\\"FAIL\\\", ep_steps)\\n\\n            env.close()\\n\\n        n_succ = sum(task_successes)\\n        n_total = len(task_successes)\\n        sr = n_succ / n_total if n_total > 0 else 0.0\\n\\n        all_task_results[task_id] = {\\n            \\\"task_id\\\": task_id,\\n            \\\"task_description\\\": task_desc,\\n            \\\"success_count\\\": n_succ,\\n            \\\"total_episodes\\\": n_total,\\n            \\\"success_rate\\\": round(sr, 4),\\n            \\\"mean_steps\\\": round(float(np.mean(task_lengths)), 1),\\n        }\\n        total_successes += n_succ\\n        total_episodes += n_total\\n        log.info(\\\"  Task %d SR: %d/%d (%.1f%%)\\\", task_id, n_succ, n_total, sr * 100)\\n\\n    elapsed = time_mod.time() - eval_start\\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"SUITE: %s | MODEL: xvla | keep_ratio: %.2f\\\", args.suite, args.keep_ratio)\\n    log.info(\\\"Overall SR: %d/%d (%.1f%%)\\\", total_successes, total_episodes, overall_sr * 100)\\n    log.info(\\\"95%% Wilson CI: [%.1f%%, %.1f%%]\\\", ci_lo * 100, ci_hi * 100)\\n    for tid, tr in sorted(all_task_results.items()):\\n        log.info(\\\"  Task %d: %.0f%% (%d/%d) -- %s\\\",\\n                 tid, tr[\\\"success_rate\\\"] * 100, tr[\\\"success_count\\\"],\\n                 tr[\\\"total_episodes\\\"], tr[\\\"task_description\\\"])\\n    log.info(\\\"Elapsed: %.1f min\\\", elapsed / 60)\\n    log.info(\\\"=\\\" * 60)\\n\\n    summary = {\\n        \\\"model\\\": \\\"xvla\\\",\\n        \\\"model_path\\\": args.model_path,\\n        \\\"mode\\\": \\\"l2_norm_prune\\\",\\n        \\\"suite\\\": args.suite,\\n        \\\"keep_ratio\\\": args.keep_ratio,\\n        \\\"n_vision_tokens_original\\\": n_vis_tokens,\\n        \\\"n_vision_tokens_kept\\\": k_tokens,\\n        \\\"total_episodes\\\": total_episodes,\\n        \\\"total_successes\\\": total_successes,\\n        \\\"overall_success_rate\\\": round(overall_sr, 4),\\n        \\\"wilson_ci_95\\\": [round(ci_lo, 4), round(ci_hi, 4)],\\n        \\\"num_episodes_per_task\\\": args.num_episodes,\\n        \\\"max_steps\\\": max_steps,\\n        \\\"num_actions_per_chunk\\\": num_actions_per_chunk,\\n        \\\"domain_id\\\": args.domain_id,\\n        \\\"denoise_steps\\\": args.denoise_steps,\\n        \\\"seed\\\": args.seed,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n        \\\"per_task\\\": all_task_results,\\n    }\\n\\n    output_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    log.info(\\\"Results saved to %s\\\", output_path)\\n\\n    return summary\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    args = parse_args()\\n    run_evaluation(args)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0161SKA8FtZjJJsXFpb5jNqB`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "302ca5b7-cd24-4d6c-8f0c-e92dc92d1cc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JahkDwyWLmph3h4ncyUse",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2284,
+      "cache_read_input_tokens": 25020,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2284
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T05:49:38.516Z_
+
+<details><summary>↩ Tool result · `toolu_0161SKA8FtZjJJsXFpb5jNqB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nOpenVLA LIBERO Evaluation: Baseline + Random Token Pruning.\\nUsage:\\n    python eval_openvla_libero.py --mode baseline --suite libero_object\\n    python eval_openvla_libero.py --mode random_prune --k_ratio 0.5 --suite libero_object\\n\\\"\\\"\\\"\\nimport argparse, io, json, math, os, sys, time\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\n# Use transformers 4.40.1 for OpenVLA compat\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla_deps\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\n\\n# Import OpenVLA model code\\nhf_dir = \\\"/root/autodl-tmp/openvla-repo/prismatic/extern/hf\\\"\\ninit_path = os.path.join(hf_dir, \\\"__init__.py\\\")\\nif not os.path.exists(init_path):\\n    open(init_path, \\\"w\\\").close()\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla-repo/prismatic/extern\\\")\\nfrom hf.configuration_prismatic import OpenVLAConfig\\nfrom hf.modeling_prismatic import OpenVLAForActionPrediction\\nfrom hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\\n\\nDEVICE = torch.device(\\\"cuda:0\\\")\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"/root/autodl-tmp/openvla-libero-object\\\",\\n                   help=\\\"Path to fine-tuned OpenVLA checkpoint dir\\\")\\n    p.add_argument(\\\"--mode\\\", choices=[\\\"baseline\\\", \\\"random_prune\\\"], default=\\\"baseline\\\")\\n    p.add_argument(\\\"--k_ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\")\\n    p.add_argument(\\\"--num_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--seed\\\", type=int, default=7)\\n    p.add_argument(\\\"--output\\\", type=str, default=None)\\n    p.add_argument(\\\"--center_crop\\\", action=\\\"store_true\\\", default=True)\\n    p.add_argument(\\\"--num_steps_wait\\\", type=int, default=10)\\n    return p.parse_args()\\n\\n\\ndef set_seed(seed):\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n    np.random.seed(seed)\\n    import random\\n    random.seed(seed)\\n\\n\\ndef load_model(model_path):\\n    print(\\\"[*] Loading OpenVLA from:\\\", model_path, flush=True)\\n    config = OpenVLAConfig.from_pretrained(model_path)\\n    vla = OpenVLAForActionPrediction.from_pretrained(\\n        model_path,\\n        config=config,\\n        torch_dtype=torch.bfloat16,\\n        low_cpu_mem_usage=True,\\n    ).to(DEVICE)\\n    with open(os.path.join(model_path, \\\"dataset_statistics.json\\\")) as f:\\n        vla.norm_stats = json.load(f)\\n    vla.eval()\\n    unnorm_key = next(iter(vla.norm_stats.keys()))\\n    print(f\\\"[*] Auto-detected unnorm_key: {unnorm_key}\\\", flush=True)\\n\\n    from transformers import AutoTokenizer\\n    tokenizer = AutoTokenizer.from_pretrained(model_path)\\n    image_processor = PrismaticImageProcessor.from_pretrained(model_path)\\n    processor = PrismaticProcessor(image_processor=image_processor, tokenizer=tokenizer)\\n    print(f\\\"[*] Model loaded, GPU: {torch.cuda.max_memory_allocated()/1e9:.1f} GB\\\", flush=True)\\n    return vla, processor, unnorm_key\\n\\n\\ndef center_crop_image(image: Image.Image, crop_scale=0.9) -> Image.Image:\\n    w, h = image.size\\n    new_w = int(w * math.sqrt(crop_scale))\\n    new_h = int(h * math.sqrt(crop_scale))\\n    left = (w - new_w) // 2\\n    top = (h - new_h) // 2\\n    cropped = image.crop((left, top, left + new_w, top + new_h))\\n    return cropped.resize((w, h), Image.LANCZOS)\\n\\n\\ndef preprocess_image(obs, center_crop=True):\\n    img = obs[\\\"agentview_image\\\"]\\n    img = img[::-1, ::-1]\\n    pil_img = Image.fromarray(img)\\n    buf = io.BytesIO()\\n    pil_img.save(buf, format=\\\"JPEG\\\")\\n    buf.seek(0)\\n    pil_img = Image.open(buf).convert(\\\"RGB\\\")\\n    pil_img = pil_img.resize((224, 224), Image.LANCZOS)\\n    if center_crop:\\n        pil_img = center_crop_image(pil_img, crop_scale=0.9)\\n    return pil_img\\n\\n\\ndef get_action(vla, processor, image: Image.Image, task_label: str, unnorm_key: str):\\n    prompt = f\\\"In: What action should the robo\\n\\n... [截断: 输出过长，省略 2605 字符] ...\\n\\n\\n    t_start = time.time()\\n\\n    for task_id in range(n_tasks):\\n        task = task_suite.get_task(task_id)\\n        task_description = task.language\\n        task_bddl_file = os.path.join(\\n            get_libero_path(\\\"bddl_files\\\"), task.problem_folder, task.bddl_file\\n        )\\n        env = OffScreenRenderEnv(\\n            bddl_file_name=task_bddl_file, camera_heights=256, camera_widths=256\\n        )\\n        env.seed(args.seed)\\n\\n        task_successes = 0\\n        print(f\\\"\\\\n[Task {task_id+1}/{n_tasks}] {task_description}\\\", flush=True)\\n\\n        for ep in range(args.num_episodes):\\n            env.reset()\\n            init_states = task_suite.get_task_init_states(task_id)\\n            obs = env.set_init_state(init_states[ep])\\n            done = False\\n            t = 0\\n\\n            while t < max_steps + args.num_steps_wait:\\n                try:\\n                    if t < args.num_steps_wait:\\n                        obs, reward, done, info = env.step([0, 0, 0, 0, 0, 0, -1])\\n                        t += 1\\n                        continue\\n\\n                    img = preprocess_image(obs, center_crop=args.center_crop)\\n                    action = get_action(vla, processor, img, task_description, unnorm_key)\\n                    action = normalize_gripper_action(action, binarize=True)\\n                    action = invert_gripper_action(action)\\n                    obs, reward, done, info = env.step(action.tolist())\\n                    if done:\\n                        task_successes += 1\\n                        total_successes += 1\\n                        break\\n                    t += 1\\n                except Exception as e:\\n                    print(f\\\"  Exception t={t}: {e}\\\", flush=True)\\n                    break\\n\\n            total_episodes += 1\\n            if (ep + 1) % 10 == 0:\\n                elapsed = time.time() - t_start\\n                eps_per_min = total_episodes / (elapsed / 60)\\n                print(f\\\"  Ep {ep+1}/{args.num_episodes} task_sr={task_successes}/{ep+1} \\\"\\n                      f\\\"({eps_per_min:.1f} eps/min)\\\", flush=True)\\n\\n        task_sr = task_successes / args.num_episodes\\n        per_task_results[task_description] = {\\n            \\\"success_rate\\\": task_sr,\\n            \\\"successes\\\": task_successes,\\n            \\\"episodes\\\": args.num_episodes,\\n        }\\n        print(f\\\"  => Task SR: {task_sr:.3f} ({task_successes}/{args.num_episodes})\\\", flush=True)\\n        env.close()\\n\\n    overall_sr = total_successes / total_episodes\\n    elapsed = time.time() - t_start\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(f\\\"Overall SR: {overall_sr:.4f} ({total_successes}/{total_episodes})\\\", flush=True)\\n    print(f\\\"Time: {elapsed/60:.1f} min\\\", flush=True)\\n    print(f\\\"{'='*60}\\\", flush=True)\\n\\n    results = {\\n        \\\"model\\\": args.model_path,\\n        \\\"mode\\\": args.mode,\\n        \\\"suite\\\": args.suite,\\n        \\\"k_ratio\\\": args.k_ratio if args.mode == \\\"random_prune\\\" else None,\\n        \\\"overall_success_rate\\\": overall_sr,\\n        \\\"total_successes\\\": total_successes,\\n        \\\"total_episodes\\\": total_episodes,\\n        \\\"per_task\\\": per_task_results,\\n        \\\"vision_tokens\\\": token_info,\\n        \\\"max_steps\\\": max_steps,\\n        \\\"seed\\\": args.seed,\\n        \\\"elapsed_minutes\\\": elapsed / 60,\\n        \\\"timestamp\\\": time.strftime(\\\"%Y-%m-%d %H:%M:%S\\\"),\\n    }\\n\\n    if args.output:\\n        out_path = args.output\\n    else:\\n        out_dir = \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\"\\n        os.makedirs(out_dir, exist_ok=True)\\n        if args.mode == \\\"baseline\\\":\\n            out_path = f\\\"{out_dir}/openvla_baseline_{args.suite.replace('libero_', '')}_seed{args.seed}.json\\\"\\n        else:\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_random_prune_k{k_str}_{args.suite.replace('libero_', '')}_seed{args.seed}.json\\\"\\n\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"[*] Saved: {out_path}\\\", flush=True)\\n\\n    if hook_handle:\\n        hook_handle.remove()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "0170cf16-bb23-4af0-85f4-d6536a6a3d02",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nOpenVLA LIBERO Evaluation: Baseline + Random Token Pruning.\\\\nUsage:\\\\n    python eval_openvla_libero.py --mode baseline --suite libero_object\\\\n    python eval_openvla_libero.py --mode random_prune --k_ratio 0.5 --suite libero_object\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse, io, json, math, os, sys, time\\\\nos.environ[\\\\\\\"MUJOCO_GL\\\\\\\"] = \\\\\\\"egl\\\\\\\"\\\\nos.environ.setdefault(\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\", \\\\\\\"0\\\\\\\")\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\n# Use transformers 4.40.1 for OpenVLA compat\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/openvla_deps\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\n\\\\n# Import OpenVLA model code\\\\nhf_dir = \\\\\\\"/root/autodl-tmp/openvla-repo/prismatic/extern/hf\\\\\\\"\\\\ninit_path = os.path.join(hf_dir, \\\\\\\"__init__.py\\\\\\\")\\\\nif not os.path.exists(init_path):\\\\n    open(init_path, \\\\\\\"w\\\\\\\").close()\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/openvla-repo/prismatic/extern\\\\\\\")\\\\nfrom hf.configuration_prismatic import OpenVLAConfig\\\\nfrom hf.modeling_prismatic import OpenVLAForActionPrediction\\\\nfrom hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\\\\n\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\n\\\\nSUITE_MAX_STEPS = {\\\\n    \\\\\\\"libero_spatial\\\\\\\": 280,\\\\n    \\\\\\\"libero_object\\\\\\\": 280,\\\\n    \\\\\\\"libero_goal\\\\\\\": 300,\\\\n    \\\\\\\"libero_10\\\\\\\": 520,\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/openvla-libero-object\\\\\\\",\\\\n                   help=\\\\\\\"Path to fine-tuned OpenVLA checkpoint dir\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"baseline\\\\\\\", \\\\\\\"random_prune\\\\\\\"], default=\\\\\\\"baseline\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--k_ratio\\\\\\\", type=float, default=0.5)\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_episodes\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=7)\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=None)\\\\n    p.add_argument(\\\\\\\"--center_crop\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    p.add_argument(\\\\\\\"--num_steps_wait\\\\\\\", type=int, default=10)\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n    np.random.seed(seed)\\\\n    import random\\\\n    random.seed(seed)\\\\n\\\\n\\\\ndef load_model(model_path):\\\\n    print(\\\\\\\"[*] Loading OpenVLA from:\\\\\\\", model_path, flush=True)\\\\n    config = OpenVLAConfig.from_pretrained(model_path)\\\\n    vla = OpenVLAForActionPrediction.from_pretrained(\\\\n        model_path,\\\\n        config=config,\\\\n        torch_dtype=torch.bfloat16,\\\\n        low_cpu_mem_usage=True,\\\\n    ).to(DEVICE)\\\\n    with open(os.path.join(model_path, \\\\\\\"dataset_statistics.json\\\\\\\")) as f:\\\\n        vla.norm_stats = json.load(f)\\\\n    vla.eval()\\\\n    unnorm_key = next(iter(vla.norm_stats.keys()))\\\\n    print(f\\\\\\\"[*] Auto-detected unnorm_key: {unnorm_key}\\\\\\\", flush=True)\\\\n\\\\n    from transformers import AutoTokenizer\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path)\\\\n    image_processor = PrismaticImageProcessor.from_pretrained(model_path)\\\\n    processor = PrismaticProcessor(image_processor=image_processor, tokenizer=tokenizer)\\\\n    print(f\\\\\\\"[*] Model loaded, GPU: {torch.cuda.max_memory_allocated()/1e9:.1f} GB\\\\\\\", flush=True)\\\\n    return vla, processor, unnorm_key\\\\n\\\\n\\\\ndef center_crop_image(image: Image.Image, crop_scale=0.9) -> Image.Image:\\\\n    w, h = image.size\\\\n    new_w = int(w * math.sqrt(crop_scale))\\\\n    new_h = int(h * math.sqrt(crop_scale))\\\\n    left = (w - new_w) // 2\\\\n    top = (h - new_h) // 2\\\\n    cropped = image.crop((left, top, left + new_w, top + new_h))\\\\n    return cropped.resize((w, h), Image.LANCZOS)\\\\n\\\\n\\\\ndef preprocess_image(obs, center_crop=True):\\\\n    img = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n    img = img[::-1, ::-1]\\\\n    pil_img = Image.fromarray(img)\\\\n    buf = io.BytesIO()\\\\n    pil_img.save(buf, format=\\\\\\\"JPEG\\\\\\\")\\\\n    buf.seek(0)\\\\n    pil_img = Image.open(buf).convert(\\\\\\\"RGB\\\\\\\")\\\\n    pil_img = pil_img.resize((224, 224), Image.LANCZOS)\\\\n    if center_crop:\\\\n        pil_img = center_crop_image(pil_img, crop_scale=0.9)\\\\n    return pil_img\\\\n\\\\n\\\\ndef get_action(vla, processor, image: Image.Image, task_label: str, unnorm_key: str):\\\\n    prompt = f\\\\\\\"In: What action should the robo\\\\n\\\\n... [截断: 输出过长，省略 2605 字符] ...\\\\n\\\\n\\\\n    t_start = time.time()\\\\n\\\\n    for task_id in range(n_tasks):\\\\n        task = task_suite.get_task(task_id)\\\\n        task_description = task.language\\\\n        task_bddl_file = os.path.join(\\\\n            get_libero_path(\\\\\\\"bddl_files\\\\\\\"), task.problem_folder, task.bddl_file\\\\n        )\\\\n        env = OffScreenRenderEnv(\\\\n            bddl_file_name=task_bddl_file, camera_heights=256, camera_widths=256\\\\n        )\\\\n        env.seed(args.seed)\\\\n\\\\n        task_successes = 0\\\\n        print(f\\\\\\\"\\\\\\\\n[Task {task_id+1}/{n_tasks}] {task_description}\\\\\\\", flush=True)\\\\n\\\\n        for ep in range(args.num_episodes):\\\\n            env.reset()\\\\n            init_states = task_suite.get_task_init_states(task_id)\\\\n            obs = env.set_init_state(init_states[ep])\\\\n            done = False\\\\n            t = 0\\\\n\\\\n            while t < max_steps + args.num_steps_wait:\\\\n                try:\\\\n                    if t < args.num_steps_wait:\\\\n                        obs, reward, done, info = env.step([0, 0, 0, 0, 0, 0, -1])\\\\n                        t += 1\\\\n                        continue\\\\n\\\\n                    img = preprocess_image(obs, center_crop=args.center_crop)\\\\n                    action = get_action(vla, processor, img, task_description, unnorm_key)\\\\n                    action = normalize_gripper_action(action, binarize=True)\\\\n                    action = invert_gripper_action(action)\\\\n                    obs, reward, done, info = env.step(action.tolist())\\\\n                    if done:\\\\n                        task_successes += 1\\\\n                        total_successes += 1\\\\n                        break\\\\n                    t += 1\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"  Exception t={t}: {e}\\\\\\\", flush=True)\\\\n                    break\\\\n\\\\n            total_episodes += 1\\\\n            if (ep + 1) % 10 == 0:\\\\n                elapsed = time.time() - t_start\\\\n                eps_per_min = total_episodes / (elapsed / 60)\\\\n                print(f\\\\\\\"  Ep {ep+1}/{args.num_episodes} task_sr={task_successes}/{ep+1} \\\\\\\"\\\\n                      f\\\\\\\"({eps_per_min:.1f} eps/min)\\\\\\\", flush=True)\\\\n\\\\n        task_sr = task_successes / args.num_episodes\\\\n        per_task_results[task_description] = {\\\\n            \\\\\\\"success_rate\\\\\\\": task_sr,\\\\n            \\\\\\\"successes\\\\\\\": task_successes,\\\\n            \\\\\\\"episodes\\\\\\\": args.num_episodes,\\\\n        }\\\\n        print(f\\\\\\\"  => Task SR: {task_sr:.3f} ({task_successes}/{args.num_episodes})\\\\\\\", flush=True)\\\\n        env.close()\\\\n\\\\n    overall_sr = total_successes / total_episodes\\\\n    elapsed = time.time() - t_start\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Overall SR: {overall_sr:.4f} ({total_successes}/{total_episodes})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Time: {elapsed/60:.1f} min\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\", flush=True)\\\\n\\\\n    results = {\\\\n        \\\\\\\"model\\\\\\\": args.model_path,\\\\n        \\\\\\\"mode\\\\\\\": args.mode,\\\\n        \\\\\\\"suite\\\\\\\": args.suite,\\\\n        \\\\\\\"k_ratio\\\\\\\": args.k_ratio if args.mode == \\\\\\\"random_prune\\\\\\\" else None,\\\\n        \\\\\\\"overall_success_rate\\\\\\\": overall_sr,\\\\n        \\\\\\\"total_successes\\\\\\\": total_successes,\\\\n        \\\\\\\"total_episodes\\\\\\\": total_episodes,\\\\n        \\\\\\\"per_task\\\\\\\": per_task_results,\\\\n        \\\\\\\"vision_tokens\\\\\\\": token_info,\\\\n        \\\\\\\"max_steps\\\\\\\": max_steps,\\\\n        \\\\\\\"seed\\\\\\\": args.seed,\\\\n        \\\\\\\"elapsed_minutes\\\\\\\": elapsed / 60,\\\\n        \\\\\\\"timestamp\\\\\\\": time.strftime(\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\"),\\\\n    }\\\\n\\\\n    if args.output:\\\\n        out_path = args.output\\\\n    else:\\\\n        out_dir = \\\\\\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\\\\\"\\\\n        os.makedirs(out_dir, exist_ok=True)\\\\n        if args.mode == \\\\\\\"baseline\\\\\\\":\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_baseline_{args.suite.replace('libero_', '')}_seed{args.seed}.json\\\\\\\"\\\\n        else:\\\\n            k_str = str(args.k_ratio).replace(\\\\\\\".\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_random_prune_k{k_str}_{args.suite.replace('libero_', '')}_seed{args.seed}.json\\\\\\\"\\\\n\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"[*] Saved: {out_path}\\\\\\\", flush=True)\\\\n\\\\n    if hook_handle:\\\\n        hook_handle.remove()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nOpenVLA LIBERO Evaluation: Baseline + Random Token Pruning.\\nUsage:\\n    python eval_openvla_libero.py --mode baseline --suite libero_object\\n    python eval_openvla_libero.py --mode random_prune --k_ratio 0.5 --suite libero_object\\n\\\"\\\"\\\"\\nimport argparse, io, json, math, os, sys, time\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\n# Use transformers 4.40.1 for OpenVLA compat\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla_deps\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\n\\n# Import OpenVLA model code\\nhf_dir = \\\"/root/autodl-tmp/openvla-repo/prismatic/extern/hf\\\"\\ninit_path = os.path.join(hf_dir, \\\"__init__.py\\\")\\nif not os.path.exists(init_path):\\n    open(init_path, \\\"w\\\").close()\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla-repo/prismatic/extern\\\")\\nfrom hf.configuration_prismatic import OpenVLAConfig\\nfrom hf.modeling_prismatic import OpenVLAForActionPrediction\\nfrom hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\\n\\nDEVICE = torch.device(\\\"cuda:0\\\")\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"/root/autodl-tmp/openvla-libero-object\\\",\\n                   help=\\\"Path to fine-tuned OpenVLA checkpoint dir\\\")\\n    p.add_argument(\\\"--mode\\\", choices=[\\\"baseline\\\", \\\"random_prune\\\"], default=\\\"baseline\\\")\\n    p.add_argument(\\\"--k_ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\")\\n    p.add_argument(\\\"--num_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--seed\\\", type=int, default=7)\\n    p.add_argument(\\\"--output\\\", type=str, default=None)\\n    p.add_argument(\\\"--center_crop\\\", action=\\\"store_true\\\", default=True)\\n    p.add_argument(\\\"--num_steps_wait\\\", type=int, default=10)\\n    return p.parse_args()\\n\\n\\ndef set_seed(seed):\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n    np.random.seed(seed)\\n    import random\\n    random.seed(seed)\\n\\n\\ndef load_model(model_path):\\n    print(\\\"[*] Loading OpenVLA from:\\\", model_path, flush=True)\\n    config = OpenVLAConfig.from_pretrained(model_path)\\n    vla = OpenVLAForActionPrediction.from_pretrained(\\n        model_path,\\n        config=config,\\n        torch_dtype=torch.bfloat16,\\n        low_cpu_mem_usage=True,\\n    ).to(DEVICE)\\n    with open(os.path.join(model_path, \\\"dataset_statistics.json\\\")) as f:\\n        vla.norm_stats = json.load(f)\\n    vla.eval()\\n    unnorm_key = next(iter(vla.norm_stats.keys()))\\n    print(f\\\"[*] Auto-detected unnorm_key: {unnorm_key}\\\", flush=True)\\n\\n    from transformers import AutoTokenizer\\n    tokenizer = AutoTokenizer.from_pretrained(model_path)\\n    image_processor = PrismaticImageProcessor.from_pretrained(model_path)\\n    processor = PrismaticProcessor(image_processor=image_processor, tokenizer=tokenizer)\\n    print(f\\\"[*] Model loaded, GPU: {torch.cuda.max_memory_allocated()/1e9:.1f} GB\\\", flush=True)\\n    return vla, processor, unnorm_key\\n\\n\\ndef center_crop_image(image: Image.Image, crop_scale=0.9) -> Image.Image:\\n    w, h = image.size\\n    new_w = int(w * math.sqrt(crop_scale))\\n    new_h = int(h * math.sqrt(crop_scale))\\n    left = (w - new_w) // 2\\n    top = (h - new_h) // 2\\n    cropped = image.crop((left, top, left + new_w, top + new_h))\\n    return cropped.resize((w, h), Image.LANCZOS)\\n\\n\\ndef preprocess_image(obs, center_crop=True):\\n    img = obs[\\\"agentview_image\\\"]\\n    img = img[::-1, ::-1]\\n    pil_img = Image.fromarray(img)\\n    buf = io.BytesIO()\\n    pil_img.save(buf, format=\\\"JPEG\\\")\\n    buf.seek(0)\\n    pil_img = Image.open(buf).convert(\\\"RGB\\\")\\n    pil_img = pil_img.resize((224, 224), Image.LANCZOS)\\n    if center_crop:\\n        pil_img = center_crop_image(pil_img, crop_scale=0.9)\\n    return pil_img\\n\\n\\ndef get_action(vla, processor, image: Image.Image, task_label: str, unnorm_key: str):\\n    prompt = f\\\"In: What action should the robo\\n\\n... [截断: 输出过长，省略 2605 字符] ...\\n\\n\\n    t_start = time.time()\\n\\n    for task_id in range(n_tasks):\\n        task = task_suite.get_task(task_id)\\n        task_description = task.language\\n        task_bddl_file = os.path.join(\\n            get_libero_path(\\\"bddl_files\\\"), task.problem_folder, task.bddl_file\\n        )\\n        env = OffScreenRenderEnv(\\n            bddl_file_name=task_bddl_file, camera_heights=256, camera_widths=256\\n        )\\n        env.seed(args.seed)\\n\\n        task_successes = 0\\n        print(f\\\"\\\\n[Task {task_id+1}/{n_tasks}] {task_description}\\\", flush=True)\\n\\n        for ep in range(args.num_episodes):\\n            env.reset()\\n            init_states = task_suite.get_task_init_states(task_id)\\n            obs = env.set_init_state(init_states[ep])\\n            done = False\\n            t = 0\\n\\n            while t < max_steps + args.num_steps_wait:\\n                try:\\n                    if t < args.num_steps_wait:\\n                        obs, reward, done, info = env.step([0, 0, 0, 0, 0, 0, -1])\\n                        t += 1\\n                        continue\\n\\n                    img = preprocess_image(obs, center_crop=args.center_crop)\\n                    action = get_action(vla, processor, img, task_description, unnorm_key)\\n                    action = normalize_gripper_action(action, binarize=True)\\n                    action = invert_gripper_action(action)\\n                    obs, reward, done, info = env.step(action.tolist())\\n                    if done:\\n                        task_successes += 1\\n                        total_successes += 1\\n                        break\\n                    t += 1\\n                except Exception as e:\\n                    print(f\\\"  Exception t={t}: {e}\\\", flush=True)\\n                    break\\n\\n            total_episodes += 1\\n            if (ep + 1) % 10 == 0:\\n                elapsed = time.time() - t_start\\n                eps_per_min = total_episodes / (elapsed / 60)\\n                print(f\\\"  Ep {ep+1}/{args.num_episodes} task_sr={task_successes}/{ep+1} \\\"\\n                      f\\\"({eps_per_min:.1f} eps/min)\\\", flush=True)\\n\\n        task_sr = task_successes / args.num_episodes\\n        per_task_results[task_description] = {\\n            \\\"success_rate\\\": task_sr,\\n            \\\"successes\\\": task_successes,\\n            \\\"episodes\\\": args.num_episodes,\\n        }\\n        print(f\\\"  => Task SR: {task_sr:.3f} ({task_successes}/{args.num_episodes})\\\", flush=True)\\n        env.close()\\n\\n    overall_sr = total_successes / total_episodes\\n    elapsed = time.time() - t_start\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(f\\\"Overall SR: {overall_sr:.4f} ({total_successes}/{total_episodes})\\\", flush=True)\\n    print(f\\\"Time: {elapsed/60:.1f} min\\\", flush=True)\\n    print(f\\\"{'='*60}\\\", flush=True)\\n\\n    results = {\\n        \\\"model\\\": args.model_path,\\n        \\\"mode\\\": args.mode,\\n        \\\"suite\\\": args.suite,\\n        \\\"k_ratio\\\": args.k_ratio if args.mode == \\\"random_prune\\\" else None,\\n        \\\"overall_success_rate\\\": overall_sr,\\n        \\\"total_successes\\\": total_successes,\\n        \\\"total_episodes\\\": total_episodes,\\n        \\\"per_task\\\": per_task_results,\\n        \\\"vision_tokens\\\": token_info,\\n        \\\"max_steps\\\": max_steps,\\n        \\\"seed\\\": args.seed,\\n        \\\"elapsed_minutes\\\": elapsed / 60,\\n        \\\"timestamp\\\": time.strftime(\\\"%Y-%m-%d %H:%M:%S\\\"),\\n    }\\n\\n    if args.output:\\n        out_path = args.output\\n    else:\\n        out_dir = \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\"\\n        os.makedirs(out_dir, exist_ok=True)\\n        if args.mode == \\\"baseline\\\":\\n            out_path = f\\\"{out_dir}/openvla_baseline_{args.suite.replace('libero_', '')}_seed{args.seed}.json\\\"\\n        else:\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_random_prune_k{k_str}_{args.suite.replace('libero_', '')}_seed{args.seed}.json\\\"\\n\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"[*] Saved: {out_path}\\\", flush=True)\\n\\n    if hook_handle:\\n        hook_handle.remove()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the existing code. Let me also check how the `_patch_*.py` files work for each model, as they might contain the pruning hooks. Let me also look at the OpenVLA pruning eval and check what model paths/checkpoints are available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "ac99c1f0-ce12-4898-88fa-2330a0555984",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgwuAiW8VcC8UbFfzTfLsp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17837,
+      "cache_read_input_tokens": 27304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+Now let me check the patch files and model paths to understand how pruning is injected into each model.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "5893d7c3-a869-4ed0-95e9-135d034c854c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgwuAiW8VcC8UbFfzTfLsp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17837,
+      "cache_read_input_tokens": 27304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PatvatnstXo9kY8KpvXfRb`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/_patch_pi05.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "7c96d07d-e29f-4637-ac23-afe4912a6a13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgwuAiW8VcC8UbFfzTfLsp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17837,
+      "cache_read_input_tokens": 27304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T05:49:45.199Z_
+
+<details><summary>↩ Tool result · `toolu_01PatvatnstXo9kY8KpvXfRb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Patch eval_pi05_pruning_libero.py to add attention-based pruning.\\\"\\\"\\\"\\n\\nfilepath = '/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py'\\nwith open(filepath, 'r') as f:\\n    content = f.read()\\n\\n# 1. Add \\\"attention\\\" to prune_mode choices\\ncontent = content.replace(\\n    'choices=[\\\"none\\\", \\\"random\\\", \\\"l2norm\\\"]',\\n    'choices=[\\\"none\\\", \\\"random\\\", \\\"l2norm\\\", \\\"attention\\\"]'\\n)\\n\\n# 2. Insert compute_attention_importance_probe function before main()\\nPROBE_FN = '''\\ndef compute_attention_importance_probe(img_embs, lang_emb, lm, n_probe_layers=2):\\n    \\\"\\\"\\\"Run first n_probe_layers of the LLM to get attention-based importance for vision tokens.\\n\\n    Importance = avg attention from language tokens -> each vision token,\\n    averaged across probe layers and all heads.\\n    \\\"\\\"\\\"\\n    import torch.nn.functional as F\\n    from transformers.models.gemma import modeling_gemma as _gemma\\n\\n    all_vis = torch.cat(img_embs, dim=1)\\n    total_vis = all_vis.shape[1]\\n    full_embs = torch.cat([all_vis, lang_emb], dim=1)\\n    B, S, D = full_embs.shape\\n\\n    position_ids = torch.arange(S, device=full_embs.device).unsqueeze(0).expand(B, -1)\\n    hidden = full_embs\\n    all_attn = []\\n\\n    with torch.no_grad():\\n        for layer_idx in range(min(n_probe_layers, len(lm.layers))):\\n            layer = lm.layers[layer_idx]\\n            normed = layer.input_layernorm(hidden)\\n\\n            head_dim = layer.self_attn.head_dim\\n            q = layer.self_attn.q_proj(normed)\\n            k = layer.self_attn.k_proj(normed)\\n            v = layer.self_attn.v_proj(normed)\\n\\n            n_q_heads = q.shape[-1] // head_dim\\n            n_kv_heads = k.shape[-1] // head_dim\\n\\n            q = q.view(B, S, n_q_heads, head_dim).transpose(1, 2)\\n            k = k.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\n            v = v.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\n\\n            cos, sin = lm.rotary_emb(v, position_ids)\\n            q, k = _gemma.apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1)\\n\\n            if n_kv_heads != n_q_heads:\\n                n_rep = n_q_heads // n_kv_heads\\n                k = k.repeat_interleave(n_rep, dim=1)\\n                v = v.repeat_interleave(n_rep, dim=1)\\n\\n            scaling = layer.self_attn.scaling\\n            attn_weights = torch.matmul(q, k.transpose(-2, -1)) * scaling\\n            attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\n            all_attn.append(attn_weights)\\n\\n            attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\n            attn_out = attn_out.transpose(1, 2).reshape(B, S, n_q_heads * head_dim)\\n            attn_out = layer.self_attn.o_proj(attn_out)\\n            hidden = hidden + attn_out\\n\\n            normed2 = layer.post_attention_layernorm(hidden)\\n            mlp_out = layer.mlp(normed2)\\n            hidden = hidden + mlp_out\\n\\n    avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, S, S]\\n    lang_to_vis = avg_attn[:, total_vis:, :total_vis]  # [B, L, V]\\n    vis_importance = lang_to_vis.mean(dim=1)  # [B, V]\\n    return vis_importance\\n\\n'''\\n\\ncontent = content.replace(\\n    '\\\\ndef main():',\\n    PROBE_FN + '\\\\ndef main():'\\n)\\n\\n# 3. Make the prune_fn block skip attention mode\\ncontent = content.replace(\\n    '    if prune_fn is not None:\\\\n        original_embed_prefix = policy.model.embed_prefix',\\n    '    if prune_fn is not None and args.prune_mode != \\\"attention\\\":\\\\n        original_embed_prefix = policy.model.embed_prefix'\\n)\\n\\n# 4. Add attention monkey-patching block after the existing random/l2norm block\\n# Find the log.info line that ends the existing pruning block\\nOLD_END = '''        log.info(f\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n                 f\\\"({n_keep*3} total)\\\")\\n\\n    from lerobot.policies.factory import make_pre_post_processors'''\\n\\nATTN_BLOCK = '''        log.info(f\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n                 f\\\"({n_keep*3} total)\\\")\\n\\n    if args.prune_mode == \\\"attention\\\":\\n        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\n\\n        def pruned_embed_prefix_attn(self_model, images, img_masks, tokens, masks):\\n            img_embs = []\\n            for img, img_mask in zip(images, img_masks, strict=True):\\n                img_emb = self_model.paligemma_with_expert.embed_image(img)\\n                img_embs.append(img_emb)\\n            lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\\n\\n            lm = self_model.paligemma_with_expert.paligemma.model.language_model\\n            vis_importance = compute_attention_importance_probe(img_embs, lang_emb, lm)\\n\\n            embs = []\\n            pad_masks_list = []\\n            att_masks = []\\n            start_idx = 0\\n            bsize = img_embs[0].shape[0]\\n\\n            for i, (img_emb, img_mask) in enumerate(zip(img_embs, img_masks)):\\n                n_tokens = img_emb.shape[1]\\n                n_keep_cur = max(1, int(n_tokens * args.keep_ratio))\\n                scores = vis_importance[0, start_idx:start_idx + n_tokens]\\n                _, topk_idx = torch.topk(scores, n_keep_cur)\\n                topk_idx = topk_idx.sort().values\\n\\n                if not hasattr(pruned_embed_prefix_attn, \\\"_logged\\\"):\\n                    print(f\\\"[PRUNE-DIAG] attention: n_keep={n_keep_cur}/{n_tokens}, \\\"\\n                          f\\\"score_range=[{scores.min():.6f}, {scores.max():.6f}], \\\"\\n                          f\\\"first_indices={topk_idx[:5].tolist()}\\\")\\n                    pruned_embed_prefix_attn._logged = True\\n\\n                embs.append(img_emb[:, topk_idx, :])\\n                pad_masks_list.append(img_mask[:, None].expand(bsize, n_keep_cur))\\n                att_masks += [0] * n_keep_cur\\n                start_idx += n_tokens\\n\\n            embs.append(lang_emb)\\n            pad_masks_list.append(masks)\\n            att_masks += [0] * lang_emb.shape[1]\\n\\n            embs = torch.cat(embs, dim=1)\\n            pad_masks_cat = torch.cat(pad_masks_list, dim=1)\\n            att_masks_t = torch.tensor(att_masks, dtype=torch.bool, device=pad_masks_cat.device)\\n            att_masks_t = att_masks_t[None, :].expand(bsize, len(att_masks))\\n            return embs, pad_masks_cat, att_masks_t\\n\\n        policy.model.embed_prefix = types.MethodType(pruned_embed_prefix_attn, policy.model)\\n        log.info(f\\\"Pruning: attention, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n                 f\\\"({n_keep*3} total, 2-layer probe)\\\")\\n\\n    from lerobot.policies.factory import make_pre_post_processors'''\\n\\ncontent = content.replace(OLD_END, ATTN_BLOCK)\\n\\nwith open(filepath, 'w') as f:\\n    f.write(content)\\n\\nprint(\\\"OK: patched eval_pi05_pruning_libero.py\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "bff8af8f-21ac-476f-8a29-b7fad277cc5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Patch eval_pi05_pruning_libero.py to add attention-based pruning.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfilepath = '/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py'\\\\nwith open(filepath, 'r') as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Add \\\\\\\"attention\\\\\\\" to prune_mode choices\\\\ncontent = content.replace(\\\\n    'choices=[\\\\\\\"none\\\\\\\", \\\\\\\"random\\\\\\\", \\\\\\\"l2norm\\\\\\\"]',\\\\n    'choices=[\\\\\\\"none\\\\\\\", \\\\\\\"random\\\\\\\", \\\\\\\"l2norm\\\\\\\", \\\\\\\"attention\\\\\\\"]'\\\\n)\\\\n\\\\n# 2. Insert compute_attention_importance_probe function before main()\\\\nPROBE_FN = '''\\\\ndef compute_attention_importance_probe(img_embs, lang_emb, lm, n_probe_layers=2):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run first n_probe_layers of the LLM to get attention-based importance for vision tokens.\\\\n\\\\n    Importance = avg attention from language tokens -> each vision token,\\\\n    averaged across probe layers and all heads.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import torch.nn.functional as F\\\\n    from transformers.models.gemma import modeling_gemma as _gemma\\\\n\\\\n    all_vis = torch.cat(img_embs, dim=1)\\\\n    total_vis = all_vis.shape[1]\\\\n    full_embs = torch.cat([all_vis, lang_emb], dim=1)\\\\n    B, S, D = full_embs.shape\\\\n\\\\n    position_ids = torch.arange(S, device=full_embs.device).unsqueeze(0).expand(B, -1)\\\\n    hidden = full_embs\\\\n    all_attn = []\\\\n\\\\n    with torch.no_grad():\\\\n        for layer_idx in range(min(n_probe_layers, len(lm.layers))):\\\\n            layer = lm.layers[layer_idx]\\\\n            normed = layer.input_layernorm(hidden)\\\\n\\\\n            head_dim = layer.self_attn.head_dim\\\\n            q = layer.self_attn.q_proj(normed)\\\\n            k = layer.self_attn.k_proj(normed)\\\\n            v = layer.self_attn.v_proj(normed)\\\\n\\\\n            n_q_heads = q.shape[-1] // head_dim\\\\n            n_kv_heads = k.shape[-1] // head_dim\\\\n\\\\n            q = q.view(B, S, n_q_heads, head_dim).transpose(1, 2)\\\\n            k = k.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\\\n            v = v.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\\\n\\\\n            cos, sin = lm.rotary_emb(v, position_ids)\\\\n            q, k = _gemma.apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1)\\\\n\\\\n            if n_kv_heads != n_q_heads:\\\\n                n_rep = n_q_heads // n_kv_heads\\\\n                k = k.repeat_interleave(n_rep, dim=1)\\\\n                v = v.repeat_interleave(n_rep, dim=1)\\\\n\\\\n            scaling = layer.self_attn.scaling\\\\n            attn_weights = torch.matmul(q, k.transpose(-2, -1)) * scaling\\\\n            attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\\\n            all_attn.append(attn_weights)\\\\n\\\\n            attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\\\n            attn_out = attn_out.transpose(1, 2).reshape(B, S, n_q_heads * head_dim)\\\\n            attn_out = layer.self_attn.o_proj(attn_out)\\\\n            hidden = hidden + attn_out\\\\n\\\\n            normed2 = layer.post_attention_layernorm(hidden)\\\\n            mlp_out = layer.mlp(normed2)\\\\n            hidden = hidden + mlp_out\\\\n\\\\n    avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, S, S]\\\\n    lang_to_vis = avg_attn[:, total_vis:, :total_vis]  # [B, L, V]\\\\n    vis_importance = lang_to_vis.mean(dim=1)  # [B, V]\\\\n    return vis_importance\\\\n\\\\n'''\\\\n\\\\ncontent = content.replace(\\\\n    '\\\\\\\\ndef main():',\\\\n    PROBE_FN + '\\\\\\\\ndef main():'\\\\n)\\\\n\\\\n# 3. Make the prune_fn block skip attention mode\\\\ncontent = content.replace(\\\\n    '    if prune_fn is not None:\\\\\\\\n        original_embed_prefix = policy.model.embed_prefix',\\\\n    '    if prune_fn is not None and args.prune_mode != \\\\\\\"attention\\\\\\\":\\\\\\\\n        original_embed_prefix = policy.model.embed_prefix'\\\\n)\\\\n\\\\n# 4. Add attention monkey-patching block after the existing random/l2norm block\\\\n# Find the log.info line that ends the existing pruning block\\\\nOLD_END = '''        log.info(f\\\\\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\\\\\"\\\\n                 f\\\\\\\"({n_keep*3} total)\\\\\\\")\\\\n\\\\n    from lerobot.policies.factory import make_pre_post_processors'''\\\\n\\\\nATTN_BLOCK = '''        log.info(f\\\\\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\\\\\"\\\\n                 f\\\\\\\"({n_keep*3} total)\\\\\\\")\\\\n\\\\n    if args.prune_mode == \\\\\\\"attention\\\\\\\":\\\\n        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\\\n\\\\n        def pruned_embed_prefix_attn(self_model, images, img_masks, tokens, masks):\\\\n            img_embs = []\\\\n            for img, img_mask in zip(images, img_masks, strict=True):\\\\n                img_emb = self_model.paligemma_with_expert.embed_image(img)\\\\n                img_embs.append(img_emb)\\\\n            lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\\\\n\\\\n            lm = self_model.paligemma_with_expert.paligemma.model.language_model\\\\n            vis_importance = compute_attention_importance_probe(img_embs, lang_emb, lm)\\\\n\\\\n            embs = []\\\\n            pad_masks_list = []\\\\n            att_masks = []\\\\n            start_idx = 0\\\\n            bsize = img_embs[0].shape[0]\\\\n\\\\n            for i, (img_emb, img_mask) in enumerate(zip(img_embs, img_masks)):\\\\n                n_tokens = img_emb.shape[1]\\\\n                n_keep_cur = max(1, int(n_tokens * args.keep_ratio))\\\\n                scores = vis_importance[0, start_idx:start_idx + n_tokens]\\\\n                _, topk_idx = torch.topk(scores, n_keep_cur)\\\\n                topk_idx = topk_idx.sort().values\\\\n\\\\n                if not hasattr(pruned_embed_prefix_attn, \\\\\\\"_logged\\\\\\\"):\\\\n                    print(f\\\\\\\"[PRUNE-DIAG] attention: n_keep={n_keep_cur}/{n_tokens}, \\\\\\\"\\\\n                          f\\\\\\\"score_range=[{scores.min():.6f}, {scores.max():.6f}], \\\\\\\"\\\\n                          f\\\\\\\"first_indices={topk_idx[:5].tolist()}\\\\\\\")\\\\n                    pruned_embed_prefix_attn._logged = True\\\\n\\\\n                embs.append(img_emb[:, topk_idx, :])\\\\n                pad_masks_list.append(img_mask[:, None].expand(bsize, n_keep_cur))\\\\n                att_masks += [0] * n_keep_cur\\\\n                start_idx += n_tokens\\\\n\\\\n            embs.append(lang_emb)\\\\n            pad_masks_list.append(masks)\\\\n            att_masks += [0] * lang_emb.shape[1]\\\\n\\\\n            embs = torch.cat(embs, dim=1)\\\\n            pad_masks_cat = torch.cat(pad_masks_list, dim=1)\\\\n            att_masks_t = torch.tensor(att_masks, dtype=torch.bool, device=pad_masks_cat.device)\\\\n            att_masks_t = att_masks_t[None, :].expand(bsize, len(att_masks))\\\\n            return embs, pad_masks_cat, att_masks_t\\\\n\\\\n        policy.model.embed_prefix = types.MethodType(pruned_embed_prefix_attn, policy.model)\\\\n        log.info(f\\\\\\\"Pruning: attention, keep {n_keep}/{N_PATCHES} tokens/image \\\\\\\"\\\\n                 f\\\\\\\"({n_keep*3} total, 2-layer probe)\\\\\\\")\\\\n\\\\n    from lerobot.policies.factory import make_pre_post_processors'''\\\\n\\\\ncontent = content.replace(OLD_END, ATTN_BLOCK)\\\\n\\\\nwith open(filepath, 'w') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\\\\"OK: patched eval_pi05_pruning_libero.py\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Patch eval_pi05_pruning_libero.py to add attention-based pruning.\\\"\\\"\\\"\\n\\nfilepath = '/root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py'\\nwith open(filepath, 'r') as f:\\n    content = f.read()\\n\\n# 1. Add \\\"attention\\\" to prune_mode choices\\ncontent = content.replace(\\n    'choices=[\\\"none\\\", \\\"random\\\", \\\"l2norm\\\"]',\\n    'choices=[\\\"none\\\", \\\"random\\\", \\\"l2norm\\\", \\\"attention\\\"]'\\n)\\n\\n# 2. Insert compute_attention_importance_probe function before main()\\nPROBE_FN = '''\\ndef compute_attention_importance_probe(img_embs, lang_emb, lm, n_probe_layers=2):\\n    \\\"\\\"\\\"Run first n_probe_layers of the LLM to get attention-based importance for vision tokens.\\n\\n    Importance = avg attention from language tokens -> each vision token,\\n    averaged across probe layers and all heads.\\n    \\\"\\\"\\\"\\n    import torch.nn.functional as F\\n    from transformers.models.gemma import modeling_gemma as _gemma\\n\\n    all_vis = torch.cat(img_embs, dim=1)\\n    total_vis = all_vis.shape[1]\\n    full_embs = torch.cat([all_vis, lang_emb], dim=1)\\n    B, S, D = full_embs.shape\\n\\n    position_ids = torch.arange(S, device=full_embs.device).unsqueeze(0).expand(B, -1)\\n    hidden = full_embs\\n    all_attn = []\\n\\n    with torch.no_grad():\\n        for layer_idx in range(min(n_probe_layers, len(lm.layers))):\\n            layer = lm.layers[layer_idx]\\n            normed = layer.input_layernorm(hidden)\\n\\n            head_dim = layer.self_attn.head_dim\\n            q = layer.self_attn.q_proj(normed)\\n            k = layer.self_attn.k_proj(normed)\\n            v = layer.self_attn.v_proj(normed)\\n\\n            n_q_heads = q.shape[-1] // head_dim\\n            n_kv_heads = k.shape[-1] // head_dim\\n\\n            q = q.view(B, S, n_q_heads, head_dim).transpose(1, 2)\\n            k = k.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\n            v = v.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\n\\n            cos, sin = lm.rotary_emb(v, position_ids)\\n            q, k = _gemma.apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1)\\n\\n            if n_kv_heads != n_q_heads:\\n                n_rep = n_q_heads // n_kv_heads\\n                k = k.repeat_interleave(n_rep, dim=1)\\n                v = v.repeat_interleave(n_rep, dim=1)\\n\\n            scaling = layer.self_attn.scaling\\n            attn_weights = torch.matmul(q, k.transpose(-2, -1)) * scaling\\n            attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\n            all_attn.append(attn_weights)\\n\\n            attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\n            attn_out = attn_out.transpose(1, 2).reshape(B, S, n_q_heads * head_dim)\\n            attn_out = layer.self_attn.o_proj(attn_out)\\n            hidden = hidden + attn_out\\n\\n            normed2 = layer.post_attention_layernorm(hidden)\\n            mlp_out = layer.mlp(normed2)\\n            hidden = hidden + mlp_out\\n\\n    avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, S, S]\\n    lang_to_vis = avg_attn[:, total_vis:, :total_vis]  # [B, L, V]\\n    vis_importance = lang_to_vis.mean(dim=1)  # [B, V]\\n    return vis_importance\\n\\n'''\\n\\ncontent = content.replace(\\n    '\\\\ndef main():',\\n    PROBE_FN + '\\\\ndef main():'\\n)\\n\\n# 3. Make the prune_fn block skip attention mode\\ncontent = content.replace(\\n    '    if prune_fn is not None:\\\\n        original_embed_prefix = policy.model.embed_prefix',\\n    '    if prune_fn is not None and args.prune_mode != \\\"attention\\\":\\\\n        original_embed_prefix = policy.model.embed_prefix'\\n)\\n\\n# 4. Add attention monkey-patching block after the existing random/l2norm block\\n# Find the log.info line that ends the existing pruning block\\nOLD_END = '''        log.info(f\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n                 f\\\"({n_keep*3} total)\\\")\\n\\n    from lerobot.policies.factory import make_pre_post_processors'''\\n\\nATTN_BLOCK = '''        log.info(f\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n                 f\\\"({n_keep*3} total)\\\")\\n\\n    if args.prune_mode == \\\"attention\\\":\\n        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\n\\n        def pruned_embed_prefix_attn(self_model, images, img_masks, tokens, masks):\\n            img_embs = []\\n            for img, img_mask in zip(images, img_masks, strict=True):\\n                img_emb = self_model.paligemma_with_expert.embed_image(img)\\n                img_embs.append(img_emb)\\n            lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\\n\\n            lm = self_model.paligemma_with_expert.paligemma.model.language_model\\n            vis_importance = compute_attention_importance_probe(img_embs, lang_emb, lm)\\n\\n            embs = []\\n            pad_masks_list = []\\n            att_masks = []\\n            start_idx = 0\\n            bsize = img_embs[0].shape[0]\\n\\n            for i, (img_emb, img_mask) in enumerate(zip(img_embs, img_masks)):\\n                n_tokens = img_emb.shape[1]\\n                n_keep_cur = max(1, int(n_tokens * args.keep_ratio))\\n                scores = vis_importance[0, start_idx:start_idx + n_tokens]\\n                _, topk_idx = torch.topk(scores, n_keep_cur)\\n                topk_idx = topk_idx.sort().values\\n\\n                if not hasattr(pruned_embed_prefix_attn, \\\"_logged\\\"):\\n                    print(f\\\"[PRUNE-DIAG] attention: n_keep={n_keep_cur}/{n_tokens}, \\\"\\n                          f\\\"score_range=[{scores.min():.6f}, {scores.max():.6f}], \\\"\\n                          f\\\"first_indices={topk_idx[:5].tolist()}\\\")\\n                    pruned_embed_prefix_attn._logged = True\\n\\n                embs.append(img_emb[:, topk_idx, :])\\n                pad_masks_list.append(img_mask[:, None].expand(bsize, n_keep_cur))\\n                att_masks += [0] * n_keep_cur\\n                start_idx += n_tokens\\n\\n            embs.append(lang_emb)\\n            pad_masks_list.append(masks)\\n            att_masks += [0] * lang_emb.shape[1]\\n\\n            embs = torch.cat(embs, dim=1)\\n            pad_masks_cat = torch.cat(pad_masks_list, dim=1)\\n            att_masks_t = torch.tensor(att_masks, dtype=torch.bool, device=pad_masks_cat.device)\\n            att_masks_t = att_masks_t[None, :].expand(bsize, len(att_masks))\\n            return embs, pad_masks_cat, att_masks_t\\n\\n        policy.model.embed_prefix = types.MethodType(pruned_embed_prefix_attn, policy.model)\\n        log.info(f\\\"Pruning: attention, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n                 f\\\"({n_keep*3} total, 2-layer probe)\\\")\\n\\n    from lerobot.policies.factory import make_pre_post_processors'''\\n\\ncontent = content.replace(OLD_END, ATTN_BLOCK)\\n\\nwith open(filepath, 'w') as f:\\n    f.write(content)\\n\\nprint(\\\"OK: patched eval_pi05_pruning_libero.py\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YP5yxNHx8re9idBWB4H8a6`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/_patch_smolvla.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "f698903e-a6cc-4e5b-bfaa-18f0e4f36823",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgwuAiW8VcC8UbFfzTfLsp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17837,
+      "cache_read_input_tokens": 27304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T05:49:46.149Z_
+
+<details><summary>↩ Tool result · `toolu_01YP5yxNHx8re9idBWB4H8a6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Patch eval_smolvla_pruning_official.py to add attention-based pruning.\\\"\\\"\\\"\\nimport math\\n\\nfilepath = '/root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py'\\nwith open(filepath, 'r') as f:\\n    content = f.read()\\n\\n# 1. Add \\\"attention_prune\\\" to mode choices\\ncontent = content.replace(\\n    'choices=[\\\"baseline\\\", \\\"l2norm_prune\\\", \\\"random_prune\\\"]',\\n    'choices=[\\\"baseline\\\", \\\"l2norm_prune\\\", \\\"random_prune\\\", \\\"attention_prune\\\"]'\\n)\\n\\n# 2. Add register_attention_prune_hook function after register_random_prune_hook\\nATTN_HOOK_FN = '''\\n\\ndef register_attention_prune_hook(connector, policy, k_ratio, method=\\\"true_removal\\\"):\\n    \\\"\\\"\\\"Attention-based pruning: 2-layer self-attention probe among vision tokens.\\\"\\\"\\\"\\n    import math\\n    call_count = [0]\\n\\n    def hook_fn(module, input, output):\\n        import torch.nn.functional as F\\n\\n        tokens = output[0] if isinstance(output, tuple) else output\\n        if tokens.dim() != 3:\\n            return output\\n        B, N, D = tokens.shape\\n        k = max(1, int(N * k_ratio))\\n        if k >= N:\\n            return output\\n\\n        vlm = policy.model.vlm_with_expert.vlm.model\\n        position_ids = torch.arange(N, device=tokens.device).unsqueeze(0).expand(B, -1)\\n\\n        hidden = tokens\\n        all_attn = []\\n\\n        with torch.no_grad():\\n            for layer_idx in range(min(2, len(vlm.layers))):\\n                layer = vlm.layers[layer_idx]\\n                normed = layer.input_layernorm(hidden)\\n\\n                head_dim = layer.self_attn.head_dim\\n                q = layer.self_attn.q_proj(normed)\\n                k_proj = layer.self_attn.k_proj(normed)\\n                v = layer.self_attn.v_proj(normed)\\n\\n                n_q_heads = q.shape[-1] // head_dim\\n                n_kv_heads = k_proj.shape[-1] // head_dim\\n\\n                q = q.view(B, N, n_q_heads, head_dim).transpose(1, 2)\\n                k_proj = k_proj.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\n                v = v.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\n\\n                cos, sin = vlm.rotary_emb(v, position_ids)\\n                from transformers.models.llama.modeling_llama import rotate_half\\n                q_embed = (q * cos) + (rotate_half(q) * sin)\\n                k_embed = (k_proj * cos) + (rotate_half(k_proj) * sin)\\n\\n                if n_kv_heads != n_q_heads:\\n                    n_rep = n_q_heads // n_kv_heads\\n                    k_embed = k_embed.repeat_interleave(n_rep, dim=1)\\n                    v = v.repeat_interleave(n_rep, dim=1)\\n\\n                attn_weights = torch.matmul(q_embed, k_embed.transpose(-2, -1)) / math.sqrt(head_dim)\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\n                all_attn.append(attn_weights)\\n\\n                attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\n                attn_out = attn_out.transpose(1, 2).reshape(B, N, n_q_heads * head_dim)\\n                attn_out = layer.self_attn.o_proj(attn_out)\\n                hidden = hidden + attn_out\\n\\n                normed2 = layer.post_attention_layernorm(hidden)\\n                mlp_out = layer.mlp(normed2)\\n                hidden = hidden + mlp_out\\n\\n        avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, N, N]\\n        importance = avg_attn.sum(dim=1)  # [B, N]\\n\\n        _, topk_idx = torch.topk(importance, k, dim=-1)\\n        topk_idx_sorted = topk_idx.sort(dim=-1).values\\n\\n        if call_count[0] < 2:\\n            log.info(\\\"Attention hook: N=%d, k=%d (keep %.1f%%), method=%s, \\\"\\n                     \\\"importance_range=[%.4f, %.4f]\\\",\\n                     N, k, k_ratio * 100, method,\\n                     importance.min().item(), importance.max().item())\\n        call_count[0] += 1\\n\\n        if method == \\\"true_removal\\\":\\n            pruned = torch.gather(tokens, 1, topk_idx_sorted.unsqueeze(-1).expand(-1, -1, D))\\n        else:\\n            mask = torch.zeros(B, N, dtype=torch.bool, device=tokens.device)\\n            mask.scatter_(1, topk_idx_sorted, True)\\n            pruned = tokens.clone()\\n            pruned[~mask] = 0\\n\\n        if isinstance(output, tuple):\\n            return (pruned,) + output[1:]\\n        return pruned\\n\\n    return connector.register_forward_hook(hook_fn)\\n\\n'''\\n\\n# Insert after register_random_prune_hook function\\n# Find the end of register_random_prune_hook by locating its return statement\\ncontent = content.replace(\\n    '    return connector.register_forward_hook(hook_fn)\\\\n\\\\n\\\\ndef find_connector',\\n    '    return connector.register_forward_hook(hook_fn)\\\\n' + ATTN_HOOK_FN + '\\\\ndef find_connector',\\n    1  # only replace first occurrence (the random_prune one is second)\\n)\\n\\n# If the above didn't work (because there are two such return statements), try a different approach\\nif 'register_attention_prune_hook' not in content:\\n    # Find the second occurrence of the return statement (end of random_prune hook)\\n    idx1 = content.find('    return connector.register_forward_hook(hook_fn)')\\n    if idx1 >= 0:\\n        idx2 = content.find('    return connector.register_forward_hook(hook_fn)', idx1 + 1)\\n        if idx2 >= 0:\\n            insert_pos = content.find('\\\\n', idx2) + 1\\n            content = content[:insert_pos] + ATTN_HOOK_FN + content[insert_pos:]\\n\\n# 3. Add attention_prune handling in the eval loop\\ncontent = content.replace(\\n    '''                    elif args.mode == \\\"random_prune\\\":\\n                        hook = register_random_prune_hook(connector, args.k_ratio, args.pruning_method)\\n                        action_chunk = predict_actions(policy, batch)\\n                        hook.remove()''',\\n    '''                    elif args.mode == \\\"random_prune\\\":\\n                        hook = register_random_prune_hook(connector, args.k_ratio, args.pruning_method)\\n                        action_chunk = predict_actions(policy, batch)\\n                        hook.remove()\\n                    elif args.mode == \\\"attention_prune\\\":\\n                        hook = register_attention_prune_hook(connector, policy, args.k_ratio, args.pruning_method)\\n                        action_chunk = predict_actions(policy, batch)\\n                        hook.remove()'''\\n)\\n\\n# 4. Update result summary to handle attention_prune\\ncontent = content.replace(\\n    '    if args.mode != \\\"baseline\\\":',\\n    '    if args.mode not in (\\\"baseline\\\",):'\\n)\\n\\n# 5. Update pruning_method in summary\\ncontent = content.replace(\\n    '\\\"pruning_method\\\": args.pruning_method if args.mode != \\\"baseline\\\" else \\\"none\\\"',\\n    '\\\"pruning_method\\\": args.pruning_method if args.mode != \\\"baseline\\\" else \\\"none\\\"'\\n)\\n\\n# 6. Update k_ratio in summary\\ncontent = content.replace(\\n    '\\\"k_ratio\\\": args.k_ratio if args.mode != \\\"baseline\\\" else None',\\n    '\\\"k_ratio\\\": args.k_ratio if args.mode != \\\"baseline\\\" else None'\\n)\\n\\nwith open(filepath, 'w') as f:\\n    f.write(content)\\n\\nprint(\\\"OK: patched eval_smolvla_pruning_official.py\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "1a3a7175-f56c-4a2c-bde2-d872e41d20b3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Patch eval_smolvla_pruning_official.py to add attention-based pruning.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport math\\\\n\\\\nfilepath = '/root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py'\\\\nwith open(filepath, 'r') as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Add \\\\\\\"attention_prune\\\\\\\" to mode choices\\\\ncontent = content.replace(\\\\n    'choices=[\\\\\\\"baseline\\\\\\\", \\\\\\\"l2norm_prune\\\\\\\", \\\\\\\"random_prune\\\\\\\"]',\\\\n    'choices=[\\\\\\\"baseline\\\\\\\", \\\\\\\"l2norm_prune\\\\\\\", \\\\\\\"random_prune\\\\\\\", \\\\\\\"attention_prune\\\\\\\"]'\\\\n)\\\\n\\\\n# 2. Add register_attention_prune_hook function after register_random_prune_hook\\\\nATTN_HOOK_FN = '''\\\\n\\\\ndef register_attention_prune_hook(connector, policy, k_ratio, method=\\\\\\\"true_removal\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Attention-based pruning: 2-layer self-attention probe among vision tokens.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import math\\\\n    call_count = [0]\\\\n\\\\n    def hook_fn(module, input, output):\\\\n        import torch.nn.functional as F\\\\n\\\\n        tokens = output[0] if isinstance(output, tuple) else output\\\\n        if tokens.dim() != 3:\\\\n            return output\\\\n        B, N, D = tokens.shape\\\\n        k = max(1, int(N * k_ratio))\\\\n        if k >= N:\\\\n            return output\\\\n\\\\n        vlm = policy.model.vlm_with_expert.vlm.model\\\\n        position_ids = torch.arange(N, device=tokens.device).unsqueeze(0).expand(B, -1)\\\\n\\\\n        hidden = tokens\\\\n        all_attn = []\\\\n\\\\n        with torch.no_grad():\\\\n            for layer_idx in range(min(2, len(vlm.layers))):\\\\n                layer = vlm.layers[layer_idx]\\\\n                normed = layer.input_layernorm(hidden)\\\\n\\\\n                head_dim = layer.self_attn.head_dim\\\\n                q = layer.self_attn.q_proj(normed)\\\\n                k_proj = layer.self_attn.k_proj(normed)\\\\n                v = layer.self_attn.v_proj(normed)\\\\n\\\\n                n_q_heads = q.shape[-1] // head_dim\\\\n                n_kv_heads = k_proj.shape[-1] // head_dim\\\\n\\\\n                q = q.view(B, N, n_q_heads, head_dim).transpose(1, 2)\\\\n                k_proj = k_proj.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\\\n                v = v.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\\\n\\\\n                cos, sin = vlm.rotary_emb(v, position_ids)\\\\n                from transformers.models.llama.modeling_llama import rotate_half\\\\n                q_embed = (q * cos) + (rotate_half(q) * sin)\\\\n                k_embed = (k_proj * cos) + (rotate_half(k_proj) * sin)\\\\n\\\\n                if n_kv_heads != n_q_heads:\\\\n                    n_rep = n_q_heads // n_kv_heads\\\\n                    k_embed = k_embed.repeat_interleave(n_rep, dim=1)\\\\n                    v = v.repeat_interleave(n_rep, dim=1)\\\\n\\\\n                attn_weights = torch.matmul(q_embed, k_embed.transpose(-2, -1)) / math.sqrt(head_dim)\\\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\\\n                all_attn.append(attn_weights)\\\\n\\\\n                attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\\\n                attn_out = attn_out.transpose(1, 2).reshape(B, N, n_q_heads * head_dim)\\\\n                attn_out = layer.self_attn.o_proj(attn_out)\\\\n                hidden = hidden + attn_out\\\\n\\\\n                normed2 = layer.post_attention_layernorm(hidden)\\\\n                mlp_out = layer.mlp(normed2)\\\\n                hidden = hidden + mlp_out\\\\n\\\\n        avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, N, N]\\\\n        importance = avg_attn.sum(dim=1)  # [B, N]\\\\n\\\\n        _, topk_idx = torch.topk(importance, k, dim=-1)\\\\n        topk_idx_sorted = topk_idx.sort(dim=-1).values\\\\n\\\\n        if call_count[0] < 2:\\\\n            log.info(\\\\\\\"Attention hook: N=%d, k=%d (keep %.1f%%), method=%s, \\\\\\\"\\\\n                     \\\\\\\"importance_range=[%.4f, %.4f]\\\\\\\",\\\\n                     N, k, k_ratio * 100, method,\\\\n                     importance.min().item(), importance.max().item())\\\\n        call_count[0] += 1\\\\n\\\\n        if method == \\\\\\\"true_removal\\\\\\\":\\\\n            pruned = torch.gather(tokens, 1, topk_idx_sorted.unsqueeze(-1).expand(-1, -1, D))\\\\n        else:\\\\n            mask = torch.zeros(B, N, dtype=torch.bool, device=tokens.device)\\\\n            mask.scatter_(1, topk_idx_sorted, True)\\\\n            pruned = tokens.clone()\\\\n            pruned[~mask] = 0\\\\n\\\\n        if isinstance(output, tuple):\\\\n            return (pruned,) + output[1:]\\\\n        return pruned\\\\n\\\\n    return connector.register_forward_hook(hook_fn)\\\\n\\\\n'''\\\\n\\\\n# Insert after register_random_prune_hook function\\\\n# Find the end of register_random_prune_hook by locating its return statement\\\\ncontent = content.replace(\\\\n    '    return connector.register_forward_hook(hook_fn)\\\\\\\\n\\\\\\\\n\\\\\\\\ndef find_connector',\\\\n    '    return connector.register_forward_hook(hook_fn)\\\\\\\\n' + ATTN_HOOK_FN + '\\\\\\\\ndef find_connector',\\\\n    1  # only replace first occurrence (the random_prune one is second)\\\\n)\\\\n\\\\n# If the above didn't work (because there are two such return statements), try a different approach\\\\nif 'register_attention_prune_hook' not in content:\\\\n    # Find the second occurrence of the return statement (end of random_prune hook)\\\\n    idx1 = content.find('    return connector.register_forward_hook(hook_fn)')\\\\n    if idx1 >= 0:\\\\n        idx2 = content.find('    return connector.register_forward_hook(hook_fn)', idx1 + 1)\\\\n        if idx2 >= 0:\\\\n            insert_pos = content.find('\\\\\\\\n', idx2) + 1\\\\n            content = content[:insert_pos] + ATTN_HOOK_FN + content[insert_pos:]\\\\n\\\\n# 3. Add attention_prune handling in the eval loop\\\\ncontent = content.replace(\\\\n    '''                    elif args.mode == \\\\\\\"random_prune\\\\\\\":\\\\n                        hook = register_random_prune_hook(connector, args.k_ratio, args.pruning_method)\\\\n                        action_chunk = predict_actions(policy, batch)\\\\n                        hook.remove()''',\\\\n    '''                    elif args.mode == \\\\\\\"random_prune\\\\\\\":\\\\n                        hook = register_random_prune_hook(connector, args.k_ratio, args.pruning_method)\\\\n                        action_chunk = predict_actions(policy, batch)\\\\n                        hook.remove()\\\\n                    elif args.mode == \\\\\\\"attention_prune\\\\\\\":\\\\n                        hook = register_attention_prune_hook(connector, policy, args.k_ratio, args.pruning_method)\\\\n                        action_chunk = predict_actions(policy, batch)\\\\n                        hook.remove()'''\\\\n)\\\\n\\\\n# 4. Update result summary to handle attention_prune\\\\ncontent = content.replace(\\\\n    '    if args.mode != \\\\\\\"baseline\\\\\\\":',\\\\n    '    if args.mode not in (\\\\\\\"baseline\\\\\\\",):'\\\\n)\\\\n\\\\n# 5. Update pruning_method in summary\\\\ncontent = content.replace(\\\\n    '\\\\\\\"pruning_method\\\\\\\": args.pruning_method if args.mode != \\\\\\\"baseline\\\\\\\" else \\\\\\\"none\\\\\\\"',\\\\n    '\\\\\\\"pruning_method\\\\\\\": args.pruning_method if args.mode != \\\\\\\"baseline\\\\\\\" else \\\\\\\"none\\\\\\\"'\\\\n)\\\\n\\\\n# 6. Update k_ratio in summary\\\\ncontent = content.replace(\\\\n    '\\\\\\\"k_ratio\\\\\\\": args.k_ratio if args.mode != \\\\\\\"baseline\\\\\\\" else None',\\\\n    '\\\\\\\"k_ratio\\\\\\\": args.k_ratio if args.mode != \\\\\\\"baseline\\\\\\\" else None'\\\\n)\\\\n\\\\nwith open(filepath, 'w') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\\\\"OK: patched eval_smolvla_pruning_official.py\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Patch eval_smolvla_pruning_official.py to add attention-based pruning.\\\"\\\"\\\"\\nimport math\\n\\nfilepath = '/root/autodl-tmp/importance_margin_vla_compress/eval_smolvla_pruning_official.py'\\nwith open(filepath, 'r') as f:\\n    content = f.read()\\n\\n# 1. Add \\\"attention_prune\\\" to mode choices\\ncontent = content.replace(\\n    'choices=[\\\"baseline\\\", \\\"l2norm_prune\\\", \\\"random_prune\\\"]',\\n    'choices=[\\\"baseline\\\", \\\"l2norm_prune\\\", \\\"random_prune\\\", \\\"attention_prune\\\"]'\\n)\\n\\n# 2. Add register_attention_prune_hook function after register_random_prune_hook\\nATTN_HOOK_FN = '''\\n\\ndef register_attention_prune_hook(connector, policy, k_ratio, method=\\\"true_removal\\\"):\\n    \\\"\\\"\\\"Attention-based pruning: 2-layer self-attention probe among vision tokens.\\\"\\\"\\\"\\n    import math\\n    call_count = [0]\\n\\n    def hook_fn(module, input, output):\\n        import torch.nn.functional as F\\n\\n        tokens = output[0] if isinstance(output, tuple) else output\\n        if tokens.dim() != 3:\\n            return output\\n        B, N, D = tokens.shape\\n        k = max(1, int(N * k_ratio))\\n        if k >= N:\\n            return output\\n\\n        vlm = policy.model.vlm_with_expert.vlm.model\\n        position_ids = torch.arange(N, device=tokens.device).unsqueeze(0).expand(B, -1)\\n\\n        hidden = tokens\\n        all_attn = []\\n\\n        with torch.no_grad():\\n            for layer_idx in range(min(2, len(vlm.layers))):\\n                layer = vlm.layers[layer_idx]\\n                normed = layer.input_layernorm(hidden)\\n\\n                head_dim = layer.self_attn.head_dim\\n                q = layer.self_attn.q_proj(normed)\\n                k_proj = layer.self_attn.k_proj(normed)\\n                v = layer.self_attn.v_proj(normed)\\n\\n                n_q_heads = q.shape[-1] // head_dim\\n                n_kv_heads = k_proj.shape[-1] // head_dim\\n\\n                q = q.view(B, N, n_q_heads, head_dim).transpose(1, 2)\\n                k_proj = k_proj.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\n                v = v.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\n\\n                cos, sin = vlm.rotary_emb(v, position_ids)\\n                from transformers.models.llama.modeling_llama import rotate_half\\n                q_embed = (q * cos) + (rotate_half(q) * sin)\\n                k_embed = (k_proj * cos) + (rotate_half(k_proj) * sin)\\n\\n                if n_kv_heads != n_q_heads:\\n                    n_rep = n_q_heads // n_kv_heads\\n                    k_embed = k_embed.repeat_interleave(n_rep, dim=1)\\n                    v = v.repeat_interleave(n_rep, dim=1)\\n\\n                attn_weights = torch.matmul(q_embed, k_embed.transpose(-2, -1)) / math.sqrt(head_dim)\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\n                all_attn.append(attn_weights)\\n\\n                attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\n                attn_out = attn_out.transpose(1, 2).reshape(B, N, n_q_heads * head_dim)\\n                attn_out = layer.self_attn.o_proj(attn_out)\\n                hidden = hidden + attn_out\\n\\n                normed2 = layer.post_attention_layernorm(hidden)\\n                mlp_out = layer.mlp(normed2)\\n                hidden = hidden + mlp_out\\n\\n        avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, N, N]\\n        importance = avg_attn.sum(dim=1)  # [B, N]\\n\\n        _, topk_idx = torch.topk(importance, k, dim=-1)\\n        topk_idx_sorted = topk_idx.sort(dim=-1).values\\n\\n        if call_count[0] < 2:\\n            log.info(\\\"Attention hook: N=%d, k=%d (keep %.1f%%), method=%s, \\\"\\n                     \\\"importance_range=[%.4f, %.4f]\\\",\\n                     N, k, k_ratio * 100, method,\\n                     importance.min().item(), importance.max().item())\\n        call_count[0] += 1\\n\\n        if method == \\\"true_removal\\\":\\n            pruned = torch.gather(tokens, 1, topk_idx_sorted.unsqueeze(-1).expand(-1, -1, D))\\n        else:\\n            mask = torch.zeros(B, N, dtype=torch.bool, device=tokens.device)\\n            mask.scatter_(1, topk_idx_sorted, True)\\n            pruned = tokens.clone()\\n            pruned[~mask] = 0\\n\\n        if isinstance(output, tuple):\\n            return (pruned,) + output[1:]\\n        return pruned\\n\\n    return connector.register_forward_hook(hook_fn)\\n\\n'''\\n\\n# Insert after register_random_prune_hook function\\n# Find the end of register_random_prune_hook by locating its return statement\\ncontent = content.replace(\\n    '    return connector.register_forward_hook(hook_fn)\\\\n\\\\n\\\\ndef find_connector',\\n    '    return connector.register_forward_hook(hook_fn)\\\\n' + ATTN_HOOK_FN + '\\\\ndef find_connector',\\n    1  # only replace first occurrence (the random_prune one is second)\\n)\\n\\n# If the above didn't work (because there are two such return statements), try a different approach\\nif 'register_attention_prune_hook' not in content:\\n    # Find the second occurrence of the return statement (end of random_prune hook)\\n    idx1 = content.find('    return connector.register_forward_hook(hook_fn)')\\n    if idx1 >= 0:\\n        idx2 = content.find('    return connector.register_forward_hook(hook_fn)', idx1 + 1)\\n        if idx2 >= 0:\\n            insert_pos = content.find('\\\\n', idx2) + 1\\n            content = content[:insert_pos] + ATTN_HOOK_FN + content[insert_pos:]\\n\\n# 3. Add attention_prune handling in the eval loop\\ncontent = content.replace(\\n    '''                    elif args.mode == \\\"random_prune\\\":\\n                        hook = register_random_prune_hook(connector, args.k_ratio, args.pruning_method)\\n                        action_chunk = predict_actions(policy, batch)\\n                        hook.remove()''',\\n    '''                    elif args.mode == \\\"random_prune\\\":\\n                        hook = register_random_prune_hook(connector, args.k_ratio, args.pruning_method)\\n                        action_chunk = predict_actions(policy, batch)\\n                        hook.remove()\\n                    elif args.mode == \\\"attention_prune\\\":\\n                        hook = register_attention_prune_hook(connector, policy, args.k_ratio, args.pruning_method)\\n                        action_chunk = predict_actions(policy, batch)\\n                        hook.remove()'''\\n)\\n\\n# 4. Update result summary to handle attention_prune\\ncontent = content.replace(\\n    '    if args.mode != \\\"baseline\\\":',\\n    '    if args.mode not in (\\\"baseline\\\",):'\\n)\\n\\n# 5. Update pruning_method in summary\\ncontent = content.replace(\\n    '\\\"pruning_method\\\": args.pruning_method if args.mode != \\\"baseline\\\" else \\\"none\\\"',\\n    '\\\"pruning_method\\\": args.pruning_method if args.mode != \\\"baseline\\\" else \\\"none\\\"'\\n)\\n\\n# 6. Update k_ratio in summary\\ncontent = content.replace(\\n    '\\\"k_ratio\\\": args.k_ratio if args.mode != \\\"baseline\\\" else None',\\n    '\\\"k_ratio\\\": args.k_ratio if args.mode != \\\"baseline\\\" else None'\\n)\\n\\nwith open(filepath, 'w') as f:\\n    f.write(content)\\n\\nprint(\\\"OK: patched eval_smolvla_pruning_official.py\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R7u5oWxng2pPGU8227K9YC`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/_patch_openvla.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "edb9089d-20b6-4985-84f0-9c2c7871b665",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgwuAiW8VcC8UbFfzTfLsp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17837,
+      "cache_read_input_tokens": 27304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T05:49:47.120Z_
+
+<details><summary>↩ Tool result · `toolu_01R7u5oWxng2pPGU8227K9YC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Patch eval_openvla_l2norm_libero.py to add attention-based pruning.\\\"\\\"\\\"\\nimport math\\n\\nfilepath = '/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py'\\nwith open(filepath, 'r') as f:\\n    content = f.read()\\n\\n# 1. Add \\\"attention_prune\\\" to mode choices\\ncontent = content.replace(\\n    'choices=[\\\"baseline\\\", \\\"random_prune\\\", \\\"l2norm_prune\\\"]',\\n    'choices=[\\\"baseline\\\", \\\"random_prune\\\", \\\"l2norm_prune\\\", \\\"attention_prune\\\"]'\\n)\\n\\n# 2. Add math import if not present\\nif 'import math' not in content.split('\\\\n')[1]:  # check it's not already in the multi-import line\\n    content = content.replace(\\n        'import argparse, io, json, math, os, sys, time',\\n        'import argparse, io, json, math, os, sys, time'\\n    )\\n\\n# 3. Add AttentionPruningHook class after L2NormPruningHook\\nATTN_HOOK_CLASS = '''\\n\\nclass AttentionPruningHook:\\n    \\\"\\\"\\\"Keep top-k vision tokens ranked by attention importance.\\n\\n    Runs a 2-layer probe through the LLM backbone using only the vision\\n    token embeddings (self-attention). Tokens that receive more total\\n    attention from other vision tokens are considered more important.\\n    \\\"\\\"\\\"\\n    def __init__(self, k_ratio, vla):\\n        self.k_ratio = k_ratio\\n        self.vla = vla\\n        self.logged = False\\n\\n    def __call__(self, module, input, output):\\n        import torch.nn.functional as F\\n\\n        B, N, D = output.shape\\n        keep = max(1, int(N * self.k_ratio))\\n        if keep >= N:\\n            return output\\n\\n        lm = self.vla.language_model.model\\n        position_ids = torch.arange(N, device=output.device).unsqueeze(0).expand(B, -1)\\n\\n        hidden = output\\n        all_attn = []\\n\\n        with torch.no_grad():\\n            for layer_idx in range(min(2, len(lm.layers))):\\n                layer = lm.layers[layer_idx]\\n                normed = layer.input_layernorm(hidden)\\n\\n                head_dim = layer.self_attn.head_dim\\n                n_q_heads = layer.self_attn.num_heads\\n                n_kv_heads = layer.self_attn.num_key_value_heads\\n\\n                q = layer.self_attn.q_proj(normed)\\n                k = layer.self_attn.k_proj(normed)\\n                v = layer.self_attn.v_proj(normed)\\n\\n                q = q.view(B, N, n_q_heads, head_dim).transpose(1, 2)\\n                k = k.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\n                v = v.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\n\\n                cos, sin = lm.rotary_emb(v, position_ids)\\n                from transformers.models.llama.modeling_llama import rotate_half\\n                q_embed = (q * cos) + (rotate_half(q) * sin)\\n                k_embed = (k * cos) + (rotate_half(k) * sin)\\n\\n                if n_kv_heads != n_q_heads:\\n                    n_rep = n_q_heads // n_kv_heads\\n                    k_embed = k_embed.repeat_interleave(n_rep, dim=1)\\n                    v = v.repeat_interleave(n_rep, dim=1)\\n\\n                attn_weights = torch.matmul(q_embed, k_embed.transpose(-2, -1)) / math.sqrt(head_dim)\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\n                all_attn.append(attn_weights)\\n\\n                attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\n                attn_out = attn_out.transpose(1, 2).reshape(B, N, n_q_heads * head_dim)\\n                attn_out = layer.self_attn.o_proj(attn_out)\\n                hidden = hidden + attn_out\\n\\n                normed2 = layer.post_attention_layernorm(hidden)\\n                mlp_out = layer.mlp(normed2)\\n                hidden = hidden + mlp_out\\n\\n        avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, N, N]\\n        importance = avg_attn.sum(dim=1)  # [B, N]\\n\\n        _, indices = torch.topk(importance, keep, dim=-1)\\n        indices = indices.sort(dim=-1).values\\n        pruned = torch.gather(output, 1, indices.unsqueeze(-1).expand(-1, -1, D))\\n\\n        if not self.logged:\\n            print(f\\\"[Attn Pruning] {N} -> {keep} vision tokens (k={self.k_ratio}), \\\"\\n                  f\\\"importance range=[{importance.min():.4f}, {importance.max():.4f}]\\\",\\n                  flush=True)\\n            self.logged = True\\n\\n        return pruned\\n\\n'''\\n\\n# Insert after L2NormPruningHook class\\ncontent = content.replace(\\n    '\\\\ndef count_vision_tokens',\\n    ATTN_HOOK_CLASS + '\\\\ndef count_vision_tokens'\\n)\\n\\n# 4. Add attention_prune hook registration in main()\\ncontent = content.replace(\\n    '''    elif args.mode == \\\"l2norm_prune\\\":\\n        hook_handle = vla.projector.register_forward_hook(L2NormPruningHook(args.k_ratio))\\n        print(f\\\"[*] L2 norm pruning: k={args.k_ratio}\\\", flush=True)''',\\n    '''    elif args.mode == \\\"l2norm_prune\\\":\\n        hook_handle = vla.projector.register_forward_hook(L2NormPruningHook(args.k_ratio))\\n        print(f\\\"[*] L2 norm pruning: k={args.k_ratio}\\\", flush=True)\\n    elif args.mode == \\\"attention_prune\\\":\\n        hook_handle = vla.projector.register_forward_hook(AttentionPruningHook(args.k_ratio, vla))\\n        print(f\\\"[*] Attention pruning: k={args.k_ratio}\\\", flush=True)'''\\n)\\n\\n# 5. Update result filename to handle attention_prune\\ncontent = content.replace(\\n    '''        elif args.mode == \\\"random_prune\\\":\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_random_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n        else:\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_l2norm_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"''',\\n    '''        elif args.mode == \\\"random_prune\\\":\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_random_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n        elif args.mode == \\\"attention_prune\\\":\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_attention_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n        else:\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_l2norm_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"'''\\n)\\n\\n# 6. Update k_ratio inclusion in results dict\\ncontent = content.replace(\\n    '\\\"k_ratio\\\": args.k_ratio if args.mode in (\\\"random_prune\\\", \\\"l2norm_prune\\\") else None',\\n    '\\\"k_ratio\\\": args.k_ratio if args.mode in (\\\"random_prune\\\", \\\"l2norm_prune\\\", \\\"attention_prune\\\") else None'\\n)\\n\\nwith open(filepath, 'w') as f:\\n    f.write(content)\\n\\nprint(\\\"OK: patched eval_openvla_l2norm_libero.py\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "1721125a-6662-49e4-a192-a7b3417d9dc4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Patch eval_openvla_l2norm_libero.py to add attention-based pruning.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport math\\\\n\\\\nfilepath = '/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py'\\\\nwith open(filepath, 'r') as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Add \\\\\\\"attention_prune\\\\\\\" to mode choices\\\\ncontent = content.replace(\\\\n    'choices=[\\\\\\\"baseline\\\\\\\", \\\\\\\"random_prune\\\\\\\", \\\\\\\"l2norm_prune\\\\\\\"]',\\\\n    'choices=[\\\\\\\"baseline\\\\\\\", \\\\\\\"random_prune\\\\\\\", \\\\\\\"l2norm_prune\\\\\\\", \\\\\\\"attention_prune\\\\\\\"]'\\\\n)\\\\n\\\\n# 2. Add math import if not present\\\\nif 'import math' not in content.split('\\\\\\\\n')[1]:  # check it's not already in the multi-import line\\\\n    content = content.replace(\\\\n        'import argparse, io, json, math, os, sys, time',\\\\n        'import argparse, io, json, math, os, sys, time'\\\\n    )\\\\n\\\\n# 3. Add AttentionPruningHook class after L2NormPruningHook\\\\nATTN_HOOK_CLASS = '''\\\\n\\\\nclass AttentionPruningHook:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Keep top-k vision tokens ranked by attention importance.\\\\n\\\\n    Runs a 2-layer probe through the LLM backbone using only the vision\\\\n    token embeddings (self-attention). Tokens that receive more total\\\\n    attention from other vision tokens are considered more important.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    def __init__(self, k_ratio, vla):\\\\n        self.k_ratio = k_ratio\\\\n        self.vla = vla\\\\n        self.logged = False\\\\n\\\\n    def __call__(self, module, input, output):\\\\n        import torch.nn.functional as F\\\\n\\\\n        B, N, D = output.shape\\\\n        keep = max(1, int(N * self.k_ratio))\\\\n        if keep >= N:\\\\n            return output\\\\n\\\\n        lm = self.vla.language_model.model\\\\n        position_ids = torch.arange(N, device=output.device).unsqueeze(0).expand(B, -1)\\\\n\\\\n        hidden = output\\\\n        all_attn = []\\\\n\\\\n        with torch.no_grad():\\\\n            for layer_idx in range(min(2, len(lm.layers))):\\\\n                layer = lm.layers[layer_idx]\\\\n                normed = layer.input_layernorm(hidden)\\\\n\\\\n                head_dim = layer.self_attn.head_dim\\\\n                n_q_heads = layer.self_attn.num_heads\\\\n                n_kv_heads = layer.self_attn.num_key_value_heads\\\\n\\\\n                q = layer.self_attn.q_proj(normed)\\\\n                k = layer.self_attn.k_proj(normed)\\\\n                v = layer.self_attn.v_proj(normed)\\\\n\\\\n                q = q.view(B, N, n_q_heads, head_dim).transpose(1, 2)\\\\n                k = k.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\\\n                v = v.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\\\n\\\\n                cos, sin = lm.rotary_emb(v, position_ids)\\\\n                from transformers.models.llama.modeling_llama import rotate_half\\\\n                q_embed = (q * cos) + (rotate_half(q) * sin)\\\\n                k_embed = (k * cos) + (rotate_half(k) * sin)\\\\n\\\\n                if n_kv_heads != n_q_heads:\\\\n                    n_rep = n_q_heads // n_kv_heads\\\\n                    k_embed = k_embed.repeat_interleave(n_rep, dim=1)\\\\n                    v = v.repeat_interleave(n_rep, dim=1)\\\\n\\\\n                attn_weights = torch.matmul(q_embed, k_embed.transpose(-2, -1)) / math.sqrt(head_dim)\\\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\\\n                all_attn.append(attn_weights)\\\\n\\\\n                attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\\\n                attn_out = attn_out.transpose(1, 2).reshape(B, N, n_q_heads * head_dim)\\\\n                attn_out = layer.self_attn.o_proj(attn_out)\\\\n                hidden = hidden + attn_out\\\\n\\\\n                normed2 = layer.post_attention_layernorm(hidden)\\\\n                mlp_out = layer.mlp(normed2)\\\\n                hidden = hidden + mlp_out\\\\n\\\\n        avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, N, N]\\\\n        importance = avg_attn.sum(dim=1)  # [B, N]\\\\n\\\\n        _, indices = torch.topk(importance, keep, dim=-1)\\\\n        indices = indices.sort(dim=-1).values\\\\n        pruned = torch.gather(output, 1, indices.unsqueeze(-1).expand(-1, -1, D))\\\\n\\\\n        if not self.logged:\\\\n            print(f\\\\\\\"[Attn Pruning] {N} -> {keep} vision tokens (k={self.k_ratio}), \\\\\\\"\\\\n                  f\\\\\\\"importance range=[{importance.min():.4f}, {importance.max():.4f}]\\\\\\\",\\\\n                  flush=True)\\\\n            self.logged = True\\\\n\\\\n        return pruned\\\\n\\\\n'''\\\\n\\\\n# Insert after L2NormPruningHook class\\\\ncontent = content.replace(\\\\n    '\\\\\\\\ndef count_vision_tokens',\\\\n    ATTN_HOOK_CLASS + '\\\\\\\\ndef count_vision_tokens'\\\\n)\\\\n\\\\n# 4. Add attention_prune hook registration in main()\\\\ncontent = content.replace(\\\\n    '''    elif args.mode == \\\\\\\"l2norm_prune\\\\\\\":\\\\n        hook_handle = vla.projector.register_forward_hook(L2NormPruningHook(args.k_ratio))\\\\n        print(f\\\\\\\"[*] L2 norm pruning: k={args.k_ratio}\\\\\\\", flush=True)''',\\\\n    '''    elif args.mode == \\\\\\\"l2norm_prune\\\\\\\":\\\\n        hook_handle = vla.projector.register_forward_hook(L2NormPruningHook(args.k_ratio))\\\\n        print(f\\\\\\\"[*] L2 norm pruning: k={args.k_ratio}\\\\\\\", flush=True)\\\\n    elif args.mode == \\\\\\\"attention_prune\\\\\\\":\\\\n        hook_handle = vla.projector.register_forward_hook(AttentionPruningHook(args.k_ratio, vla))\\\\n        print(f\\\\\\\"[*] Attention pruning: k={args.k_ratio}\\\\\\\", flush=True)'''\\\\n)\\\\n\\\\n# 5. Update result filename to handle attention_prune\\\\ncontent = content.replace(\\\\n    '''        elif args.mode == \\\\\\\"random_prune\\\\\\\":\\\\n            k_str = str(args.k_ratio).replace(\\\\\\\".\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_random_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\\\\\"\\\\n        else:\\\\n            k_str = str(args.k_ratio).replace(\\\\\\\".\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_l2norm_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\\\\\"''',\\\\n    '''        elif args.mode == \\\\\\\"random_prune\\\\\\\":\\\\n            k_str = str(args.k_ratio).replace(\\\\\\\".\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_random_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\\\\\"\\\\n        elif args.mode == \\\\\\\"attention_prune\\\\\\\":\\\\n            k_str = str(args.k_ratio).replace(\\\\\\\".\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_attention_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\\\\\"\\\\n        else:\\\\n            k_str = str(args.k_ratio).replace(\\\\\\\".\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_l2norm_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\\\\\"'''\\\\n)\\\\n\\\\n# 6. Update k_ratio inclusion in results dict\\\\ncontent = content.replace(\\\\n    '\\\\\\\"k_ratio\\\\\\\": args.k_ratio if args.mode in (\\\\\\\"random_prune\\\\\\\", \\\\\\\"l2norm_prune\\\\\\\") else None',\\\\n    '\\\\\\\"k_ratio\\\\\\\": args.k_ratio if args.mode in (\\\\\\\"random_prune\\\\\\\", \\\\\\\"l2norm_prune\\\\\\\", \\\\\\\"attention_prune\\\\\\\") else None'\\\\n)\\\\n\\\\nwith open(filepath, 'w') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\\\\\"OK: patched eval_openvla_l2norm_libero.py\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Patch eval_openvla_l2norm_libero.py to add attention-based pruning.\\\"\\\"\\\"\\nimport math\\n\\nfilepath = '/root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py'\\nwith open(filepath, 'r') as f:\\n    content = f.read()\\n\\n# 1. Add \\\"attention_prune\\\" to mode choices\\ncontent = content.replace(\\n    'choices=[\\\"baseline\\\", \\\"random_prune\\\", \\\"l2norm_prune\\\"]',\\n    'choices=[\\\"baseline\\\", \\\"random_prune\\\", \\\"l2norm_prune\\\", \\\"attention_prune\\\"]'\\n)\\n\\n# 2. Add math import if not present\\nif 'import math' not in content.split('\\\\n')[1]:  # check it's not already in the multi-import line\\n    content = content.replace(\\n        'import argparse, io, json, math, os, sys, time',\\n        'import argparse, io, json, math, os, sys, time'\\n    )\\n\\n# 3. Add AttentionPruningHook class after L2NormPruningHook\\nATTN_HOOK_CLASS = '''\\n\\nclass AttentionPruningHook:\\n    \\\"\\\"\\\"Keep top-k vision tokens ranked by attention importance.\\n\\n    Runs a 2-layer probe through the LLM backbone using only the vision\\n    token embeddings (self-attention). Tokens that receive more total\\n    attention from other vision tokens are considered more important.\\n    \\\"\\\"\\\"\\n    def __init__(self, k_ratio, vla):\\n        self.k_ratio = k_ratio\\n        self.vla = vla\\n        self.logged = False\\n\\n    def __call__(self, module, input, output):\\n        import torch.nn.functional as F\\n\\n        B, N, D = output.shape\\n        keep = max(1, int(N * self.k_ratio))\\n        if keep >= N:\\n            return output\\n\\n        lm = self.vla.language_model.model\\n        position_ids = torch.arange(N, device=output.device).unsqueeze(0).expand(B, -1)\\n\\n        hidden = output\\n        all_attn = []\\n\\n        with torch.no_grad():\\n            for layer_idx in range(min(2, len(lm.layers))):\\n                layer = lm.layers[layer_idx]\\n                normed = layer.input_layernorm(hidden)\\n\\n                head_dim = layer.self_attn.head_dim\\n                n_q_heads = layer.self_attn.num_heads\\n                n_kv_heads = layer.self_attn.num_key_value_heads\\n\\n                q = layer.self_attn.q_proj(normed)\\n                k = layer.self_attn.k_proj(normed)\\n                v = layer.self_attn.v_proj(normed)\\n\\n                q = q.view(B, N, n_q_heads, head_dim).transpose(1, 2)\\n                k = k.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\n                v = v.view(B, N, n_kv_heads, head_dim).transpose(1, 2)\\n\\n                cos, sin = lm.rotary_emb(v, position_ids)\\n                from transformers.models.llama.modeling_llama import rotate_half\\n                q_embed = (q * cos) + (rotate_half(q) * sin)\\n                k_embed = (k * cos) + (rotate_half(k) * sin)\\n\\n                if n_kv_heads != n_q_heads:\\n                    n_rep = n_q_heads // n_kv_heads\\n                    k_embed = k_embed.repeat_interleave(n_rep, dim=1)\\n                    v = v.repeat_interleave(n_rep, dim=1)\\n\\n                attn_weights = torch.matmul(q_embed, k_embed.transpose(-2, -1)) / math.sqrt(head_dim)\\n                attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\n                all_attn.append(attn_weights)\\n\\n                attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\n                attn_out = attn_out.transpose(1, 2).reshape(B, N, n_q_heads * head_dim)\\n                attn_out = layer.self_attn.o_proj(attn_out)\\n                hidden = hidden + attn_out\\n\\n                normed2 = layer.post_attention_layernorm(hidden)\\n                mlp_out = layer.mlp(normed2)\\n                hidden = hidden + mlp_out\\n\\n        avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, N, N]\\n        importance = avg_attn.sum(dim=1)  # [B, N]\\n\\n        _, indices = torch.topk(importance, keep, dim=-1)\\n        indices = indices.sort(dim=-1).values\\n        pruned = torch.gather(output, 1, indices.unsqueeze(-1).expand(-1, -1, D))\\n\\n        if not self.logged:\\n            print(f\\\"[Attn Pruning] {N} -> {keep} vision tokens (k={self.k_ratio}), \\\"\\n                  f\\\"importance range=[{importance.min():.4f}, {importance.max():.4f}]\\\",\\n                  flush=True)\\n            self.logged = True\\n\\n        return pruned\\n\\n'''\\n\\n# Insert after L2NormPruningHook class\\ncontent = content.replace(\\n    '\\\\ndef count_vision_tokens',\\n    ATTN_HOOK_CLASS + '\\\\ndef count_vision_tokens'\\n)\\n\\n# 4. Add attention_prune hook registration in main()\\ncontent = content.replace(\\n    '''    elif args.mode == \\\"l2norm_prune\\\":\\n        hook_handle = vla.projector.register_forward_hook(L2NormPruningHook(args.k_ratio))\\n        print(f\\\"[*] L2 norm pruning: k={args.k_ratio}\\\", flush=True)''',\\n    '''    elif args.mode == \\\"l2norm_prune\\\":\\n        hook_handle = vla.projector.register_forward_hook(L2NormPruningHook(args.k_ratio))\\n        print(f\\\"[*] L2 norm pruning: k={args.k_ratio}\\\", flush=True)\\n    elif args.mode == \\\"attention_prune\\\":\\n        hook_handle = vla.projector.register_forward_hook(AttentionPruningHook(args.k_ratio, vla))\\n        print(f\\\"[*] Attention pruning: k={args.k_ratio}\\\", flush=True)'''\\n)\\n\\n# 5. Update result filename to handle attention_prune\\ncontent = content.replace(\\n    '''        elif args.mode == \\\"random_prune\\\":\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_random_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n        else:\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_l2norm_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"''',\\n    '''        elif args.mode == \\\"random_prune\\\":\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_random_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n        elif args.mode == \\\"attention_prune\\\":\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_attention_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n        else:\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_l2norm_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"'''\\n)\\n\\n# 6. Update k_ratio inclusion in results dict\\ncontent = content.replace(\\n    '\\\"k_ratio\\\": args.k_ratio if args.mode in (\\\"random_prune\\\", \\\"l2norm_prune\\\") else None',\\n    '\\\"k_ratio\\\": args.k_ratio if args.mode in (\\\"random_prune\\\", \\\"l2norm_prune\\\", \\\"attention_prune\\\") else None'\\n)\\n\\nwith open(filepath, 'w') as f:\\n    f.write(content)\\n\\nprint(\\\"OK: patched eval_openvla_l2norm_libero.py\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AjW6CPZrv4MXVHuvZvm3ur`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp -maxdepth 1 -type d -name \"*vla*\" -o -name \"*pi0*\" -o -name \"*openvla*\" -o -name \"*smol*\" -o -name \"*xvla*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "4f04e9e3-fbb8-4e2f-beaf-50a02c66f512",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgwuAiW8VcC8UbFfzTfLsp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17837,
+      "cache_read_input_tokens": 27304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T05:49:48.177Z_
+
+<details><summary>↩ Tool result · `toolu_01AjW6CPZrv4MXVHuvZvm3ur`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress\\n/root/autodl-tmp/openvla-libero-object\\n/root/autodl-tmp/xvla_model.safetensors.aria2\\n/root/autodl-tmp/openvla-oft-repo\\n/root/autodl-tmp/openvla-oft-libero-object-ms\\n/root/autodl-tmp/openvla-repo\\n/root/autodl-tmp/pi05_libero_finetuned\\n/root/autodl-tmp/pi05_libero_official\\n/root/autodl-tmp/eval_pi05_random_k07_object_seed42_v3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "e089b286-9869-4250-95ea-8ecea70cb5c8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\\n/root/autodl-tmp/openvla-libero-object\\\\n/root/autodl-tmp/xvla_model.safetensors.aria2\\\\n/root/autodl-tmp/openvla-oft-repo\\\\n/root/autodl-tmp/openvla-oft-libero-object-ms\\\\n/root/autodl-tmp/openvla-repo\\\\n/root/autodl-tmp/pi05_libero_finetuned\\\\n/root/autodl-tmp/pi05_libero_official\\\\n/root/autodl-tmp/eval_pi05_random_k07_object_seed42_v3.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress\\n/root/autodl-tmp/openvla-libero-object\\n/root/autodl-tmp/xvla_model.safetensors.aria2\\n/root/autodl-tmp/openvla-oft-repo\\n/root/autodl-tmp/openvla-oft-libero-object-ms\\n/root/autodl-tmp/openvla-repo\\n/root/autodl-tmp/pi05_libero_finetuned\\n/root/autodl-tmp/pi05_libero_official\\n/root/autodl-tmp/eval_pi05_random_k07_object_seed42_v3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the model loading and inference flow for each model:
+
+1. **SmolVLA**: Uses `train_smart_compress.load_smolvla_policy()` → `policy.predict_action_chunk(batch)`. Token pruning via hooks on the connector module. Images: 2x 3x256x256, state: 8-dim, language tokens.
+
+2. **Pi0.5**: Uses LeRobot's Pi0 policy loaded from `/root/autodl-tmp/pi05_libero_finetuned`. Pruning via `embed_prefix` monkey-patch. Uses `policy.predict_action_chunk(batch)`.
+
+
+3. **X-VLA**: Loaded from a local directory with a custom model class, applying pruning through vision encoding hooks. Uses its own action prediction method.
+4. **OpenVLA**: Leverages the prismatic library's action prediction model, with pruning applied at the projection layer. The inference pipeline tokenizes the prompt and image, runs the model's logit prediction, then decodes the output.
+
+I need to trace back where X-VLA is loaded from and dig deeper into the SmolVLA evaluation script.
+
+Looking at the requirements: I'm measuring four models across five pruning ratios (1.0, 0.95, 0.9, 0.7, 0.5), loading each one, running a warm-up pass with 10 iterations, then collecting latency and peak GPU memory over 100 runs, all output to CSV. The current latency script only covers SmolVLA with specific compression settings, so I'll need to build a more comprehensive benchmark that handles all four models uniformly.
+
+From the evaluation scripts, SmolVLA loads through a dedicated function that returns a policy object, and inference happens by passing batches through the policy's action prediction method with pruning controlled via hooks.
+
+Pi0.5 comes from a local checkpoint and also uses the policy interface, but its pruning strategy targets the vision token embeddings directly through monkey-patching.
+
+X-VLA requires a custom prediction function and applies pruning at the image encoding stage, while OpenVLA uses a different interface with a processor and single-image inputs, with pruning applied at the projector level.
+
+For the latency benchmark, I'm focusing on pure inference without LIBERO environments—just creating dummy inputs matched to each model's requirements and applying consistent l2norm pruning across all three. Now I need to verify where the X-VLA and SmolVLA checkpoints are stored.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "023537e9-631b-4bb2-a765-1b94a0fb671e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WGzKCoD1XDuUzL9Y9BCsC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8819,
+      "cache_read_input_tokens": 45141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Let me check X-VLA and SmolVLA model locations, and the key inference functions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "4c835250-8cba-427c-ae1b-3d5e6e9089e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WGzKCoD1XDuUzL9Y9BCsC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8819,
+      "cache_read_input_tokens": 45141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015xtQGLMHTCHiJncRVPEfj6`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp -maxdepth 2 -type d -name \"*X-VLA*\" -o -name \"*xvla*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "01fc1d45-f4c5-4886-8288-0f478645a25d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WGzKCoD1XDuUzL9Y9BCsC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8819,
+      "cache_read_input_tokens": 45141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T05:50:15.196Z_
+
+<details><summary>↩ Tool result · `toolu_015xtQGLMHTCHiJncRVPEfj6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/run_xvla_prune_sweep.sh\\n/root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py\\n/root/autodl-tmp/.hf_cache/models--2toINF--X-VLA-Libero\\n/root/autodl-tmp/.hf_cache/xvla_libero_official\\n/root/autodl-tmp/.hf_cache/xvla_ms\\n/root/autodl-tmp/xvla_model.safetensors.aria2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "ad1b53b0-19a6-4a2b-820d-d925ef7778ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\\\n/root/autodl-tmp/importance_margin_vla_compress/run_xvla_prune_sweep.sh\\\\n/root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py\\\\n/root/autodl-tmp/.hf_cache/models--2toINF--X-VLA-Libero\\\\n/root/autodl-tmp/.hf_cache/xvla_libero_official\\\\n/root/autodl-tmp/.hf_cache/xvla_ms\\\\n/root/autodl-tmp/xvla_model.safetensors.aria2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py\\n/root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py\\n/root/autodl-tmp/importance_margin_vla_compress/run_xvla_prune_sweep.sh\\n/root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py\\n/root/autodl-tmp/.hf_cache/models--2toINF--X-VLA-Libero\\n/root/autodl-tmp/.hf_cache/xvla_libero_official\\n/root/autodl-tmp/.hf_cache/xvla_ms\\n/root/autodl-tmp/xvla_model.safetensors.aria2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QmnRJ4z5tdUVfRSd3LiD9r`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "find /root/autodl-tmp/.hf_cache -maxdepth 3 -type d -name \"*X-VLA*\" -o -name \"*xvla*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "2077ada9-7196-470a-b814-fe5882cbb355",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WGzKCoD1XDuUzL9Y9BCsC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8819,
+      "cache_read_input_tokens": 45141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T05:50:16.598Z_
+
+<details><summary>↩ Tool result · `toolu_01QmnRJ4z5tdUVfRSd3LiD9r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/models--lerobot--xvla-libero\\n/root/autodl-tmp/.hf_cache/hub/models--2toINF--X-VLA-Libero\\n/root/autodl-tmp/.hf_cache/.locks/models--2toINF--X-VLA-Libero\\n/root/autodl-tmp/.hf_cache/models--2toINF--X-VLA-Libero\\n/root/autodl-tmp/.hf_cache/xvla_libero_official\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/modeling_xvla.py\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/processing_xvla.py\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/configuration_xvla.py\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/__pycache__/configuration_xvla.cpython-312.pyc\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/__pycache__/modeling_xvla.cpython-312.pyc\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/__pycache__/processing_xvla.cpython-312.pyc\\n/root/autodl-tmp/.hf_cache/xvla_ms\\n/root/autodl-tmp/.hf_cache/xvla_ms/2toINF/X-VLA-Libero\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "94eecd42-48d7-48f1-9362-43637580c859",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/hub/models--lerobot--xvla-libero\\\\n/root/autodl-tmp/.hf_cache/hub/models--2toINF--X-VLA-Libero\\\\n/root/autodl-tmp/.hf_cache/.locks/models--2toINF--X-VLA-Libero\\\\n/root/autodl-tmp/.hf_cache/models--2toINF--X-VLA-Libero\\\\n/root/autodl-tmp/.hf_cache/xvla_libero_official\\\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/modeling_xvla.py\\\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/processing_xvla.py\\\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/configuration_xvla.py\\\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/__pycache__/configuration_xvla.cpython-312.pyc\\\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/__pycache__/modeling_xvla.cpython-312.pyc\\\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/__pycache__/processing_xvla.cpython-312.pyc\\\\n/root/autodl-tmp/.hf_cache/xvla_ms\\\\n/root/autodl-tmp/.hf_cache/xvla_ms/2toINF/X-VLA-Libero\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/models--lerobot--xvla-libero\\n/root/autodl-tmp/.hf_cache/hub/models--2toINF--X-VLA-Libero\\n/root/autodl-tmp/.hf_cache/.locks/models--2toINF--X-VLA-Libero\\n/root/autodl-tmp/.hf_cache/models--2toINF--X-VLA-Libero\\n/root/autodl-tmp/.hf_cache/xvla_libero_official\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/modeling_xvla.py\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/processing_xvla.py\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/configuration_xvla.py\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/__pycache__/configuration_xvla.cpython-312.pyc\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/__pycache__/modeling_xvla.cpython-312.pyc\\n/root/autodl-tmp/.hf_cache/xvla_libero_official/__pycache__/processing_xvla.cpython-312.pyc\\n/root/autodl-tmp/.hf_cache/xvla_ms\\n/root/autodl-tmp/.hf_cache/xvla_ms/2toINF/X-VLA-Libero\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XqWHeBRsGKDvENHqkCvVLr`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "head -80 /root/autodl-tmp/importance_margin_vla_compress/train_smart_compress.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "722ffd89-852e-48be-ae63-ad4420c251c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WGzKCoD1XDuUzL9Y9BCsC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8819,
+      "cache_read_input_tokens": 45141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8819
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T05:50:17.139Z_
+
+<details><summary>↩ Tool result · `toolu_01XqWHeBRsGKDvENHqkCvVLr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Smart Compress Training: VisionTokenCompressor + SmolVLA on LIBERO.\\n\\nUsage:\\n    python train_smart_compress.py --config configs/smart_compress.yaml\\n    python train_smart_compress.py --config configs/smart_compress.yaml --dry-run\\n    python train_smart_compress.py --config configs/smart_compress.yaml --resume checkpoints/smart_compress_m32/latest\\n\\nTrainable: VisionTokenCompressor + action expert + projections.\\nFrozen: SigLIP + connector + VLM text model.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport faulthandler\\nfaulthandler.enable()\\nimport argparse\\nimport copy\\nimport json\\nimport logging\\nimport os\\nimport signal\\nimport sys\\nimport time as time_module\\nfrom pathlib import Path\\nfrom typing import Any, Dict\\n\\nimport torch\\nimport torch.nn.functional as F\\nimport yaml\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nARTIFACTS_DIR = Path(__file__).resolve().parent\\nsys.path.insert(0, str(ARTIFACTS_DIR))\\n\\nfrom smart_compress_module import SmartCompressWrapper, VisionTokenCompressor\\n\\n\\n# ---- config loading (reused from train.py) ----\\n\\ndef load_config(config_path: str) -> Dict[str, Any]:\\n    config_path = Path(config_path)\\n    with open(config_path) as f:\\n        config = yaml.safe_load(f)\\n    if \\\"_base_\\\" in config:\\n        base_path = config_path.parent / config.pop(\\\"_base_\\\")\\n        base_config = load_config(str(base_path))\\n        base_config = deep_merge(base_config, config)\\n        return base_config\\n    return config\\n\\n\\ndef deep_merge(base: Dict, override: Dict) -> Dict:\\n    result = copy.deepcopy(base)\\n    for k, v in override.items():\\n        if k in result and isinstance(result[k], dict) and isinstance(v, dict):\\n            result[k] = deep_merge(result[k], v)\\n        else:\\n            result[k] = copy.deepcopy(v)\\n    return result\\n\\n\\ndef set_seed(seed: int):\\n    import random\\n    import numpy as np\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\n# ---- model loading ----\\n\\ndef load_smolvla_policy(config: Dict[str, Any], device: torch.device):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "d9fccdb6-f2eb-4c94-86a0-dc03d01be6f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Smart Compress Training: VisionTokenCompressor + SmolVLA on LIBERO.\\\\n\\\\nUsage:\\\\n    python train_smart_compress.py --config configs/smart_compress.yaml\\\\n    python train_smart_compress.py --config configs/smart_compress.yaml --dry-run\\\\n    python train_smart_compress.py --config configs/smart_compress.yaml --resume checkpoints/smart_compress_m32/latest\\\\n\\\\nTrainable: VisionTokenCompressor + action expert + projections.\\\\nFrozen: SigLIP + connector + VLM text model.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport faulthandler\\\\nfaulthandler.enable()\\\\nimport argparse\\\\nimport copy\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport signal\\\\nimport sys\\\\nimport time as time_module\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nimport yaml\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\",\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nARTIFACTS_DIR = Path(__file__).resolve().parent\\\\nsys.path.insert(0, str(ARTIFACTS_DIR))\\\\n\\\\nfrom smart_compress_module import SmartCompressWrapper, VisionTokenCompressor\\\\n\\\\n\\\\n# ---- config loading (reused from train.py) ----\\\\n\\\\ndef load_config(config_path: str) -> Dict[str, Any]:\\\\n    config_path = Path(config_path)\\\\n    with open(config_path) as f:\\\\n        config = yaml.safe_load(f)\\\\n    if \\\\\\\"_base_\\\\\\\" in config:\\\\n        base_path = config_path.parent / config.pop(\\\\\\\"_base_\\\\\\\")\\\\n        base_config = load_config(str(base_path))\\\\n        base_config = deep_merge(base_config, config)\\\\n        return base_config\\\\n    return config\\\\n\\\\n\\\\ndef deep_merge(base: Dict, override: Dict) -> Dict:\\\\n    result = copy.deepcopy(base)\\\\n    for k, v in override.items():\\\\n        if k in result and isinstance(result[k], dict) and isinstance(v, dict):\\\\n            result[k] = deep_merge(result[k], v)\\\\n        else:\\\\n            result[k] = copy.deepcopy(v)\\\\n    return result\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    import random\\\\n    import numpy as np\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    if torch.cuda.is_available():\\\\n        torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\n# ---- model loading ----\\\\n\\\\ndef load_smolvla_policy(config: Dict[str, Any], device: torch.device):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Smart Compress Training: VisionTokenCompressor + SmolVLA on LIBERO.\\n\\nUsage:\\n    python train_smart_compress.py --config configs/smart_compress.yaml\\n    python train_smart_compress.py --config configs/smart_compress.yaml --dry-run\\n    python train_smart_compress.py --config configs/smart_compress.yaml --resume checkpoints/smart_compress_m32/latest\\n\\nTrainable: VisionTokenCompressor + action expert + projections.\\nFrozen: SigLIP + connector + VLM text model.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport faulthandler\\nfaulthandler.enable()\\nimport argparse\\nimport copy\\nimport json\\nimport logging\\nimport os\\nimport signal\\nimport sys\\nimport time as time_module\\nfrom pathlib import Path\\nfrom typing import Any, Dict\\n\\nimport torch\\nimport torch.nn.functional as F\\nimport yaml\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%Y-%m-%d %H:%M:%S\\\",\\n)\\nlog = logging.getLogger(__name__)\\n\\nARTIFACTS_DIR = Path(__file__).resolve().parent\\nsys.path.insert(0, str(ARTIFACTS_DIR))\\n\\nfrom smart_compress_module import SmartCompressWrapper, VisionTokenCompressor\\n\\n\\n# ---- config loading (reused from train.py) ----\\n\\ndef load_config(config_path: str) -> Dict[str, Any]:\\n    config_path = Path(config_path)\\n    with open(config_path) as f:\\n        config = yaml.safe_load(f)\\n    if \\\"_base_\\\" in config:\\n        base_path = config_path.parent / config.pop(\\\"_base_\\\")\\n        base_config = load_config(str(base_path))\\n        base_config = deep_merge(base_config, config)\\n        return base_config\\n    return config\\n\\n\\ndef deep_merge(base: Dict, override: Dict) -> Dict:\\n    result = copy.deepcopy(base)\\n    for k, v in override.items():\\n        if k in result and isinstance(result[k], dict) and isinstance(v, dict):\\n            result[k] = deep_merge(result[k], v)\\n        else:\\n            result[k] = copy.deepcopy(v)\\n    return result\\n\\n\\ndef set_seed(seed: int):\\n    import random\\n    import numpy as np\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\n# ---- model loading ----\\n\\ndef load_smolvla_policy(config: Dict[str, Any], device: torch.device):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YJSj29hBMWuGs6WmXcYVuN`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -n +80 /root/autodl-tmp/importance_margin_vla_compress/train_smart_compress.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "8434b573-a8a1-4cd3-b4f9-4eebab3c4a32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BjA5QKpGDXBj38EdF9CudD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3099,
+      "cache_read_input_tokens": 53960,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3099
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-23T05:50:22.523Z_
+
+<details><summary>↩ Tool result · `toolu_01YJSj29hBMWuGs6WmXcYVuN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def load_smolvla_policy(config: Dict[str, Any], device: torch.device):\\n    \\\"\\\"\\\"Load SmolVLAPolicy, adapt projections for target dataset.\\\"\\\"\\\"\\n    from lerobot.policies.smolvla.configuration_smolvla import SmolVLAConfig\\n    from lerobot.policies.smolvla.modeling_smolvla import SmolVLAPolicy\\n    from lerobot.configs.types import FeatureType, PolicyFeature\\n\\n    model_cfg = config[\\\"model\\\"]\\n    ds_cfg = config.get(\\\"dataset\\\", {})\\n\\n    pretrained_path = model_cfg.get(\\\"pretrained\\\")\\n    if pretrained_path:\\n        policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\n    else:\\n        policy = SmolVLAPolicy(SmolVLAConfig())\\n\\n    features = ds_cfg.get(\\\"features\\\", {})\\n    state_dim = features.get(\\\"state_dim\\\")\\n    action_dim = features.get(\\\"action_dim\\\")\\n    cameras = features.get(\\\"cameras\\\")\\n\\n    if state_dim is not None:\\n        policy.config.input_features[\\\"observation.state\\\"] = PolicyFeature(\\n            type=FeatureType.STATE, shape=(state_dim,)\\n        )\\n    if action_dim is not None:\\n        policy.config.output_features[\\\"action\\\"] = PolicyFeature(\\n            type=FeatureType.ACTION, shape=(action_dim,)\\n        )\\n    if cameras:\\n        new_inputs = {}\\n        for key, feat in policy.config.input_features.items():\\n            if feat.type == FeatureType.VISUAL:\\n                continue\\n            new_inputs[key] = feat\\n        for cam_key in cameras:\\n            new_inputs[cam_key] = PolicyFeature(\\n                type=FeatureType.VISUAL,\\n                shape=list(policy.config.resize_imgs_with_padding or [3, 256, 256]),\\n            )\\n        policy.config.input_features = new_inputs\\n\\n    policy.to(device)\\n    return policy\\n\\n\\ndef wrap_with_compressor(policy, config: Dict[str, Any]) -> SmartCompressWrapper:\\n    compress_cfg = config.get(\\\"compressor\\\", {})\\n    wrapper = SmartCompressWrapper(policy, compress_config=compress_cfg)\\n    return wrapper\\n\\n\\ndef freeze_for_compress_training(wrapper: SmartCompressWrapper):\\n    \\\"\\\"\\\"Freeze SigLIP + connector + VLM text model. Train compressor + expert + projections.\\\"\\\"\\\"\\n    # freeze everything first\\n    for param in wrapper.policy.parameters():\\n        param.requires_grad = False\\n\\n    # unfreeze action expert + projection layers\\n    expert_keywords = (\\n        \\\"lm_expert\\\", \\\"state_proj\\\", \\\"action_in_proj\\\",\\n        \\\"action_out_proj\\\", \\\"action_time_mlp_in\\\", \\\"action_time_mlp_out\\\",\\n    )\\n    for name, param in wrapper.policy.named_parameters():\\n        if any(kw in name for kw in expert_keywords):\\n            param.requires_grad = True\\n\\n    # compressor is already trainable (nn.Module default)\\n    for param in wrapper.compressor.parameters():\\n        param.requires_grad = True\\n\\n    trainable = sum(p.numel() for p in wrapper.parameters() if p.requires_grad)\\n    total = sum(p.numel() for p in wrapper.parameters())\\n    log.info(\\n        \\\"Freeze config: trainable=%d / total=%d (%.2f%%)\\\",\\n        trainable, total, 100 * trainable / total,\\n    )\\n\\n    # breakdown\\n    comp_params = sum(p.numel() for p in wrapper.compressor.parameters())\\n    expert_params = sum(\\n        p.numel() for n, p in wrapper.policy.named_parameters()\\n        if p.requires_grad\\n    )\\n    log.info(\\\"  Compressor params: %d\\\", comp_params)\\n    log.info(\\\"  Expert+projection trainable params: %d\\\", expert_params)\\n\\n\\n# ---- dataset loading (reused from train.py) ----\\n\\ndef load_dataset(config: Dict[str, Any]):\\n    from lerobot.datasets.lerobot_dataset import LeRobotDataset\\n    from lerobot.datasets.dataset_metadata import LeRobotDatasetMetadata\\n\\n    ds_cfg = config[\\\"dataset\\\"]\\n    repo_id = ds_cfg[\\\"repo_id\\\"]\\n    chunk_size = 50\\n\\n    meta = LeRobotDatasetMetadata(repo_id)\\n    delta_timestamps = {\\\"action\\\": [i / meta.fps for i in range(chunk_size)]}\\n\\n    dataset = LeRobotDataset(\\n        repo_id=repo_id,\\n        episodes=ds_cfg.get(\\\"episodes\\\", None),\\n        delta_timestamps=delta_timestamps,\\n    )\\n    return dataset\\n\\n\\ndef make_dataloader(dataset, config: Dict[str, Any]):\\n    from torch.utils.data import DataLoader\\n    train_cfg = config[\\\"training\\\"]\\n    re\\n\\n... [截断: 输出过长，省略 10090 字符] ...\\n\\ng)\\n    scheduler = make_scheduler(optimizer, config)\\n\\n    total_steps = args.max_steps or train_cfg.get(\\\"total_steps\\\", 100000)\\n    log_every = train_cfg.get(\\\"log_every\\\", 50)\\n    eval_every = train_cfg.get(\\\"eval_every\\\", 5000)\\n    save_every = train_cfg.get(\\\"save_every\\\", 10000)\\n    grad_clip = train_cfg.get(\\\"grad_clip\\\", 10.0)\\n    output_dir = train_cfg.get(\\\"output_dir\\\", \\\"checkpoints/smart_compress\\\")\\n\\n    start_step = 0\\n\\n    # resume\\n    if args.resume:\\n        ckpt_path = Path(args.resume)\\n        if ckpt_path.is_dir():\\n            ckpt_path = ckpt_path / \\\"checkpoint.pt\\\"\\n        log.info(\\\"Resuming from %s\\\", ckpt_path)\\n        ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)\\n        model.load_state_dict(ckpt[\\\"model_state_dict\\\"], strict=False)\\n        optimizer.load_state_dict(ckpt[\\\"optimizer_state_dict\\\"])\\n        scheduler.load_state_dict(ckpt[\\\"scheduler_state_dict\\\"])\\n        start_step = ckpt[\\\"step\\\"] + 1\\n        log.info(\\\"Resumed at step %d\\\", start_step)\\n\\n    # W&B\\n    import wandb\\n    compress_cfg = config.get(\\\"compressor\\\", {})\\n    run_name = args.wandb_run or f\\\"smart_compress_m{compress_cfg.get('num_queries', 32)}\\\"\\n    wandb.init(\\n        project=args.wandb_project,\\n        name=run_name,\\n        config=config,\\n        resume=\\\"allow\\\",\\n    )\\n\\n    # eval dataloader\\n    eval_dataloader = make_dataloader(dataset, {\\n        **config,\\n        \\\"training\\\": {**train_cfg, \\\"batch_size\\\": train_cfg.get(\\\"eval_batch_size\\\", 1)},\\n    })\\n\\n    # training loop\\n    graceful = GracefulExit()\\n    model.train()\\n    data_iter = iter(dataloader)\\n    t0 = time_module.time()\\n    last_info = {}\\n\\n    log.info(\\\"Starting training: %d -> %d steps\\\", start_step, total_steps)\\n\\n    for step in range(start_step, total_steps):\\n        try:\\n            batch = next(data_iter)\\n        except StopIteration:\\n            data_iter = iter(dataloader)\\n            batch = next(data_iter)\\n\\n        batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}\\n        batch = preprocess_batch(batch, tokenizer, device=device)\\n\\n        loss, info = model.forward(batch, step=step)\\n        loss.backward()\\n\\n        grad_norm = torch.nn.utils.clip_grad_norm_(\\n            [p for p in model.parameters() if p.requires_grad],\\n            grad_clip,\\n        ).item()\\n\\n        optimizer.step()\\n        scheduler.step()\\n        optimizer.zero_grad()\\n\\n        last_info = info\\n\\n        if step % log_every == 0:\\n            action_l = info[\\\"action_loss\\\"].item() if isinstance(info[\\\"action_loss\\\"], torch.Tensor) else info[\\\"action_loss\\\"]\\n            log_dict = {\\n                \\\"train/action_loss\\\": action_l,\\n                \\\"train/lr\\\": optimizer.param_groups[0][\\\"lr\\\"],\\n                \\\"train/grad_norm\\\": grad_norm,\\n            }\\n            wandb.log(log_dict, step=step)\\n\\n            elapsed = time_module.time() - t0\\n            sps = (step - start_step + 1) / elapsed if elapsed > 0 else 0\\n            log.info(\\n                \\\"step=%d/%d  loss=%.4f  lr=%.2e  grad=%.2f  sps=%.1f\\\",\\n                step, total_steps, action_l,\\n                optimizer.param_groups[0][\\\"lr\\\"], grad_norm, sps,\\n            )\\n\\n        if step > 0 and step % eval_every == 0:\\n            eval_metrics = evaluate(model, eval_dataloader, step, config, device, tokenizer=tokenizer)\\n            wandb.log(eval_metrics, step=step)\\n            for k, v in eval_metrics.items():\\n                log.info(\\\"  %s: %.4f\\\", k, v)\\n\\n        if step > 0 and step % save_every == 0:\\n            save_checkpoint(model, optimizer, scheduler, step, config, last_info, output_dir)\\n\\n        if graceful.should_exit:\\n            log.info(\\\"Graceful exit at step %d\\\", step)\\n            save_checkpoint(model, optimizer, scheduler, step, config, last_info, output_dir)\\n            break\\n\\n    if not graceful.should_exit:\\n        save_checkpoint(model, optimizer, scheduler, total_steps - 1, config, last_info, output_dir)\\n\\n    wandb.finish()\\n    log.info(\\\"Training complete.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "83cb04d5-3c79-4cb2-a539-44e6dcc9f0d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def load_smolvla_policy(config: Dict[str, Any], device: torch.device):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load SmolVLAPolicy, adapt projections for target dataset.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from lerobot.policies.smolvla.configuration_smolvla import SmolVLAConfig\\\\n    from lerobot.policies.smolvla.modeling_smolvla import SmolVLAPolicy\\\\n    from lerobot.configs.types import FeatureType, PolicyFeature\\\\n\\\\n    model_cfg = config[\\\\\\\"model\\\\\\\"]\\\\n    ds_cfg = config.get(\\\\\\\"dataset\\\\\\\", {})\\\\n\\\\n    pretrained_path = model_cfg.get(\\\\\\\"pretrained\\\\\\\")\\\\n    if pretrained_path:\\\\n        policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\\\n    else:\\\\n        policy = SmolVLAPolicy(SmolVLAConfig())\\\\n\\\\n    features = ds_cfg.get(\\\\\\\"features\\\\\\\", {})\\\\n    state_dim = features.get(\\\\\\\"state_dim\\\\\\\")\\\\n    action_dim = features.get(\\\\\\\"action_dim\\\\\\\")\\\\n    cameras = features.get(\\\\\\\"cameras\\\\\\\")\\\\n\\\\n    if state_dim is not None:\\\\n        policy.config.input_features[\\\\\\\"observation.state\\\\\\\"] = PolicyFeature(\\\\n            type=FeatureType.STATE, shape=(state_dim,)\\\\n        )\\\\n    if action_dim is not None:\\\\n        policy.config.output_features[\\\\\\\"action\\\\\\\"] = PolicyFeature(\\\\n            type=FeatureType.ACTION, shape=(action_dim,)\\\\n        )\\\\n    if cameras:\\\\n        new_inputs = {}\\\\n        for key, feat in policy.config.input_features.items():\\\\n            if feat.type == FeatureType.VISUAL:\\\\n                continue\\\\n            new_inputs[key] = feat\\\\n        for cam_key in cameras:\\\\n            new_inputs[cam_key] = PolicyFeature(\\\\n                type=FeatureType.VISUAL,\\\\n                shape=list(policy.config.resize_imgs_with_padding or [3, 256, 256]),\\\\n            )\\\\n        policy.config.input_features = new_inputs\\\\n\\\\n    policy.to(device)\\\\n    return policy\\\\n\\\\n\\\\ndef wrap_with_compressor(policy, config: Dict[str, Any]) -> SmartCompressWrapper:\\\\n    compress_cfg = config.get(\\\\\\\"compressor\\\\\\\", {})\\\\n    wrapper = SmartCompressWrapper(policy, compress_config=compress_cfg)\\\\n    return wrapper\\\\n\\\\n\\\\ndef freeze_for_compress_training(wrapper: SmartCompressWrapper):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Freeze SigLIP + connector + VLM text model. Train compressor + expert + projections.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    # freeze everything first\\\\n    for param in wrapper.policy.parameters():\\\\n        param.requires_grad = False\\\\n\\\\n    # unfreeze action expert + projection layers\\\\n    expert_keywords = (\\\\n        \\\\\\\"lm_expert\\\\\\\", \\\\\\\"state_proj\\\\\\\", \\\\\\\"action_in_proj\\\\\\\",\\\\n        \\\\\\\"action_out_proj\\\\\\\", \\\\\\\"action_time_mlp_in\\\\\\\", \\\\\\\"action_time_mlp_out\\\\\\\",\\\\n    )\\\\n    for name, param in wrapper.policy.named_parameters():\\\\n        if any(kw in name for kw in expert_keywords):\\\\n            param.requires_grad = True\\\\n\\\\n    # compressor is already trainable (nn.Module default)\\\\n    for param in wrapper.compressor.parameters():\\\\n        param.requires_grad = True\\\\n\\\\n    trainable = sum(p.numel() for p in wrapper.parameters() if p.requires_grad)\\\\n    total = sum(p.numel() for p in wrapper.parameters())\\\\n    log.info(\\\\n        \\\\\\\"Freeze config: trainable=%d / total=%d (%.2f%%)\\\\\\\",\\\\n        trainable, total, 100 * trainable / total,\\\\n    )\\\\n\\\\n    # breakdown\\\\n    comp_params = sum(p.numel() for p in wrapper.compressor.parameters())\\\\n    expert_params = sum(\\\\n        p.numel() for n, p in wrapper.policy.named_parameters()\\\\n        if p.requires_grad\\\\n    )\\\\n    log.info(\\\\\\\"  Compressor params: %d\\\\\\\", comp_params)\\\\n    log.info(\\\\\\\"  Expert+projection trainable params: %d\\\\\\\", expert_params)\\\\n\\\\n\\\\n# ---- dataset loading (reused from train.py) ----\\\\n\\\\ndef load_dataset(config: Dict[str, Any]):\\\\n    from lerobot.datasets.lerobot_dataset import LeRobotDataset\\\\n    from lerobot.datasets.dataset_metadata import LeRobotDatasetMetadata\\\\n\\\\n    ds_cfg = config[\\\\\\\"dataset\\\\\\\"]\\\\n    repo_id = ds_cfg[\\\\\\\"repo_id\\\\\\\"]\\\\n    chunk_size = 50\\\\n\\\\n    meta = LeRobotDatasetMetadata(repo_id)\\\\n    delta_timestamps = {\\\\\\\"action\\\\\\\": [i / meta.fps for i in range(chunk_size)]}\\\\n\\\\n    dataset = LeRobotDataset(\\\\n        repo_id=repo_id,\\\\n        episodes=ds_cfg.get(\\\\\\\"episodes\\\\\\\", None),\\\\n        delta_timestamps=delta_timestamps,\\\\n    )\\\\n    return dataset\\\\n\\\\n\\\\ndef make_dataloader(dataset, config: Dict[str, Any]):\\\\n    from torch.utils.data import DataLoader\\\\n    train_cfg = config[\\\\\\\"training\\\\\\\"]\\\\n    re\\\\n\\\\n... [截断: 输出过长，省略 10090 字符] ...\\\\n\\\\ng)\\\\n    scheduler = make_scheduler(optimizer, config)\\\\n\\\\n    total_steps = args.max_steps or train_cfg.get(\\\\\\\"total_steps\\\\\\\", 100000)\\\\n    log_every = train_cfg.get(\\\\\\\"log_every\\\\\\\", 50)\\\\n    eval_every = train_cfg.get(\\\\\\\"eval_every\\\\\\\", 5000)\\\\n    save_every = train_cfg.get(\\\\\\\"save_every\\\\\\\", 10000)\\\\n    grad_clip = train_cfg.get(\\\\\\\"grad_clip\\\\\\\", 10.0)\\\\n    output_dir = train_cfg.get(\\\\\\\"output_dir\\\\\\\", \\\\\\\"checkpoints/smart_compress\\\\\\\")\\\\n\\\\n    start_step = 0\\\\n\\\\n    # resume\\\\n    if args.resume:\\\\n        ckpt_path = Path(args.resume)\\\\n        if ckpt_path.is_dir():\\\\n            ckpt_path = ckpt_path / \\\\\\\"checkpoint.pt\\\\\\\"\\\\n        log.info(\\\\\\\"Resuming from %s\\\\\\\", ckpt_path)\\\\n        ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)\\\\n        model.load_state_dict(ckpt[\\\\\\\"model_state_dict\\\\\\\"], strict=False)\\\\n        optimizer.load_state_dict(ckpt[\\\\\\\"optimizer_state_dict\\\\\\\"])\\\\n        scheduler.load_state_dict(ckpt[\\\\\\\"scheduler_state_dict\\\\\\\"])\\\\n        start_step = ckpt[\\\\\\\"step\\\\\\\"] + 1\\\\n        log.info(\\\\\\\"Resumed at step %d\\\\\\\", start_step)\\\\n\\\\n    # W&B\\\\n    import wandb\\\\n    compress_cfg = config.get(\\\\\\\"compressor\\\\\\\", {})\\\\n    run_name = args.wandb_run or f\\\\\\\"smart_compress_m{compress_cfg.get('num_queries', 32)}\\\\\\\"\\\\n    wandb.init(\\\\n        project=args.wandb_project,\\\\n        name=run_name,\\\\n        config=config,\\\\n        resume=\\\\\\\"allow\\\\\\\",\\\\n    )\\\\n\\\\n    # eval dataloader\\\\n    eval_dataloader = make_dataloader(dataset, {\\\\n        **config,\\\\n        \\\\\\\"training\\\\\\\": {**train_cfg, \\\\\\\"batch_size\\\\\\\": train_cfg.get(\\\\\\\"eval_batch_size\\\\\\\", 1)},\\\\n    })\\\\n\\\\n    # training loop\\\\n    graceful = GracefulExit()\\\\n    model.train()\\\\n    data_iter = iter(dataloader)\\\\n    t0 = time_module.time()\\\\n    last_info = {}\\\\n\\\\n    log.info(\\\\\\\"Starting training: %d -> %d steps\\\\\\\", start_step, total_steps)\\\\n\\\\n    for step in range(start_step, total_steps):\\\\n        try:\\\\n            batch = next(data_iter)\\\\n        except StopIteration:\\\\n            data_iter = iter(dataloader)\\\\n            batch = next(data_iter)\\\\n\\\\n        batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}\\\\n        batch = preprocess_batch(batch, tokenizer, device=device)\\\\n\\\\n        loss, info = model.forward(batch, step=step)\\\\n        loss.backward()\\\\n\\\\n        grad_norm = torch.nn.utils.clip_grad_norm_(\\\\n            [p for p in model.parameters() if p.requires_grad],\\\\n            grad_clip,\\\\n        ).item()\\\\n\\\\n        optimizer.step()\\\\n        scheduler.step()\\\\n        optimizer.zero_grad()\\\\n\\\\n        last_info = info\\\\n\\\\n        if step % log_every == 0:\\\\n            action_l = info[\\\\\\\"action_loss\\\\\\\"].item() if isinstance(info[\\\\\\\"action_loss\\\\\\\"], torch.Tensor) else info[\\\\\\\"action_loss\\\\\\\"]\\\\n            log_dict = {\\\\n                \\\\\\\"train/action_loss\\\\\\\": action_l,\\\\n                \\\\\\\"train/lr\\\\\\\": optimizer.param_groups[0][\\\\\\\"lr\\\\\\\"],\\\\n                \\\\\\\"train/grad_norm\\\\\\\": grad_norm,\\\\n            }\\\\n            wandb.log(log_dict, step=step)\\\\n\\\\n            elapsed = time_module.time() - t0\\\\n            sps = (step - start_step + 1) / elapsed if elapsed > 0 else 0\\\\n            log.info(\\\\n                \\\\\\\"step=%d/%d  loss=%.4f  lr=%.2e  grad=%.2f  sps=%.1f\\\\\\\",\\\\n                step, total_steps, action_l,\\\\n                optimizer.param_groups[0][\\\\\\\"lr\\\\\\\"], grad_norm, sps,\\\\n            )\\\\n\\\\n        if step > 0 and step % eval_every == 0:\\\\n            eval_metrics = evaluate(model, eval_dataloader, step, config, device, tokenizer=tokenizer)\\\\n            wandb.log(eval_metrics, step=step)\\\\n            for k, v in eval_metrics.items():\\\\n                log.info(\\\\\\\"  %s: %.4f\\\\\\\", k, v)\\\\n\\\\n        if step > 0 and step % save_every == 0:\\\\n            save_checkpoint(model, optimizer, scheduler, step, config, last_info, output_dir)\\\\n\\\\n        if graceful.should_exit:\\\\n            log.info(\\\\\\\"Graceful exit at step %d\\\\\\\", step)\\\\n            save_checkpoint(model, optimizer, scheduler, step, config, last_info, output_dir)\\\\n            break\\\\n\\\\n    if not graceful.should_exit:\\\\n        save_checkpoint(model, optimizer, scheduler, total_steps - 1, config, last_info, output_dir)\\\\n\\\\n    wandb.finish()\\\\n    log.info(\\\\\\\"Training complete.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def load_smolvla_policy(config: Dict[str, Any], device: torch.device):\\n    \\\"\\\"\\\"Load SmolVLAPolicy, adapt projections for target dataset.\\\"\\\"\\\"\\n    from lerobot.policies.smolvla.configuration_smolvla import SmolVLAConfig\\n    from lerobot.policies.smolvla.modeling_smolvla import SmolVLAPolicy\\n    from lerobot.configs.types import FeatureType, PolicyFeature\\n\\n    model_cfg = config[\\\"model\\\"]\\n    ds_cfg = config.get(\\\"dataset\\\", {})\\n\\n    pretrained_path = model_cfg.get(\\\"pretrained\\\")\\n    if pretrained_path:\\n        policy = SmolVLAPolicy.from_pretrained(pretrained_path)\\n    else:\\n        policy = SmolVLAPolicy(SmolVLAConfig())\\n\\n    features = ds_cfg.get(\\\"features\\\", {})\\n    state_dim = features.get(\\\"state_dim\\\")\\n    action_dim = features.get(\\\"action_dim\\\")\\n    cameras = features.get(\\\"cameras\\\")\\n\\n    if state_dim is not None:\\n        policy.config.input_features[\\\"observation.state\\\"] = PolicyFeature(\\n            type=FeatureType.STATE, shape=(state_dim,)\\n        )\\n    if action_dim is not None:\\n        policy.config.output_features[\\\"action\\\"] = PolicyFeature(\\n            type=FeatureType.ACTION, shape=(action_dim,)\\n        )\\n    if cameras:\\n        new_inputs = {}\\n        for key, feat in policy.config.input_features.items():\\n            if feat.type == FeatureType.VISUAL:\\n                continue\\n            new_inputs[key] = feat\\n        for cam_key in cameras:\\n            new_inputs[cam_key] = PolicyFeature(\\n                type=FeatureType.VISUAL,\\n                shape=list(policy.config.resize_imgs_with_padding or [3, 256, 256]),\\n            )\\n        policy.config.input_features = new_inputs\\n\\n    policy.to(device)\\n    return policy\\n\\n\\ndef wrap_with_compressor(policy, config: Dict[str, Any]) -> SmartCompressWrapper:\\n    compress_cfg = config.get(\\\"compressor\\\", {})\\n    wrapper = SmartCompressWrapper(policy, compress_config=compress_cfg)\\n    return wrapper\\n\\n\\ndef freeze_for_compress_training(wrapper: SmartCompressWrapper):\\n    \\\"\\\"\\\"Freeze SigLIP + connector + VLM text model. Train compressor + expert + projections.\\\"\\\"\\\"\\n    # freeze everything first\\n    for param in wrapper.policy.parameters():\\n        param.requires_grad = False\\n\\n    # unfreeze action expert + projection layers\\n    expert_keywords = (\\n        \\\"lm_expert\\\", \\\"state_proj\\\", \\\"action_in_proj\\\",\\n        \\\"action_out_proj\\\", \\\"action_time_mlp_in\\\", \\\"action_time_mlp_out\\\",\\n    )\\n    for name, param in wrapper.policy.named_parameters():\\n        if any(kw in name for kw in expert_keywords):\\n            param.requires_grad = True\\n\\n    # compressor is already trainable (nn.Module default)\\n    for param in wrapper.compressor.parameters():\\n        param.requires_grad = True\\n\\n    trainable = sum(p.numel() for p in wrapper.parameters() if p.requires_grad)\\n    total = sum(p.numel() for p in wrapper.parameters())\\n    log.info(\\n        \\\"Freeze config: trainable=%d / total=%d (%.2f%%)\\\",\\n        trainable, total, 100 * trainable / total,\\n    )\\n\\n    # breakdown\\n    comp_params = sum(p.numel() for p in wrapper.compressor.parameters())\\n    expert_params = sum(\\n        p.numel() for n, p in wrapper.policy.named_parameters()\\n        if p.requires_grad\\n    )\\n    log.info(\\\"  Compressor params: %d\\\", comp_params)\\n    log.info(\\\"  Expert+projection trainable params: %d\\\", expert_params)\\n\\n\\n# ---- dataset loading (reused from train.py) ----\\n\\ndef load_dataset(config: Dict[str, Any]):\\n    from lerobot.datasets.lerobot_dataset import LeRobotDataset\\n    from lerobot.datasets.dataset_metadata import LeRobotDatasetMetadata\\n\\n    ds_cfg = config[\\\"dataset\\\"]\\n    repo_id = ds_cfg[\\\"repo_id\\\"]\\n    chunk_size = 50\\n\\n    meta = LeRobotDatasetMetadata(repo_id)\\n    delta_timestamps = {\\\"action\\\": [i / meta.fps for i in range(chunk_size)]}\\n\\n    dataset = LeRobotDataset(\\n        repo_id=repo_id,\\n        episodes=ds_cfg.get(\\\"episodes\\\", None),\\n        delta_timestamps=delta_timestamps,\\n    )\\n    return dataset\\n\\n\\ndef make_dataloader(dataset, config: Dict[str, Any]):\\n    from torch.utils.data import DataLoader\\n    train_cfg = config[\\\"training\\\"]\\n    re\\n\\n... [截断: 输出过长，省略 10090 字符] ...\\n\\ng)\\n    scheduler = make_scheduler(optimizer, config)\\n\\n    total_steps = args.max_steps or train_cfg.get(\\\"total_steps\\\", 100000)\\n    log_every = train_cfg.get(\\\"log_every\\\", 50)\\n    eval_every = train_cfg.get(\\\"eval_every\\\", 5000)\\n    save_every = train_cfg.get(\\\"save_every\\\", 10000)\\n    grad_clip = train_cfg.get(\\\"grad_clip\\\", 10.0)\\n    output_dir = train_cfg.get(\\\"output_dir\\\", \\\"checkpoints/smart_compress\\\")\\n\\n    start_step = 0\\n\\n    # resume\\n    if args.resume:\\n        ckpt_path = Path(args.resume)\\n        if ckpt_path.is_dir():\\n            ckpt_path = ckpt_path / \\\"checkpoint.pt\\\"\\n        log.info(\\\"Resuming from %s\\\", ckpt_path)\\n        ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)\\n        model.load_state_dict(ckpt[\\\"model_state_dict\\\"], strict=False)\\n        optimizer.load_state_dict(ckpt[\\\"optimizer_state_dict\\\"])\\n        scheduler.load_state_dict(ckpt[\\\"scheduler_state_dict\\\"])\\n        start_step = ckpt[\\\"step\\\"] + 1\\n        log.info(\\\"Resumed at step %d\\\", start_step)\\n\\n    # W&B\\n    import wandb\\n    compress_cfg = config.get(\\\"compressor\\\", {})\\n    run_name = args.wandb_run or f\\\"smart_compress_m{compress_cfg.get('num_queries', 32)}\\\"\\n    wandb.init(\\n        project=args.wandb_project,\\n        name=run_name,\\n        config=config,\\n        resume=\\\"allow\\\",\\n    )\\n\\n    # eval dataloader\\n    eval_dataloader = make_dataloader(dataset, {\\n        **config,\\n        \\\"training\\\": {**train_cfg, \\\"batch_size\\\": train_cfg.get(\\\"eval_batch_size\\\", 1)},\\n    })\\n\\n    # training loop\\n    graceful = GracefulExit()\\n    model.train()\\n    data_iter = iter(dataloader)\\n    t0 = time_module.time()\\n    last_info = {}\\n\\n    log.info(\\\"Starting training: %d -> %d steps\\\", start_step, total_steps)\\n\\n    for step in range(start_step, total_steps):\\n        try:\\n            batch = next(data_iter)\\n        except StopIteration:\\n            data_iter = iter(dataloader)\\n            batch = next(data_iter)\\n\\n        batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}\\n        batch = preprocess_batch(batch, tokenizer, device=device)\\n\\n        loss, info = model.forward(batch, step=step)\\n        loss.backward()\\n\\n        grad_norm = torch.nn.utils.clip_grad_norm_(\\n            [p for p in model.parameters() if p.requires_grad],\\n            grad_clip,\\n        ).item()\\n\\n        optimizer.step()\\n        scheduler.step()\\n        optimizer.zero_grad()\\n\\n        last_info = info\\n\\n        if step % log_every == 0:\\n            action_l = info[\\\"action_loss\\\"].item() if isinstance(info[\\\"action_loss\\\"], torch.Tensor) else info[\\\"action_loss\\\"]\\n            log_dict = {\\n                \\\"train/action_loss\\\": action_l,\\n                \\\"train/lr\\\": optimizer.param_groups[0][\\\"lr\\\"],\\n                \\\"train/grad_norm\\\": grad_norm,\\n            }\\n            wandb.log(log_dict, step=step)\\n\\n            elapsed = time_module.time() - t0\\n            sps = (step - start_step + 1) / elapsed if elapsed > 0 else 0\\n            log.info(\\n                \\\"step=%d/%d  loss=%.4f  lr=%.2e  grad=%.2f  sps=%.1f\\\",\\n                step, total_steps, action_l,\\n                optimizer.param_groups[0][\\\"lr\\\"], grad_norm, sps,\\n            )\\n\\n        if step > 0 and step % eval_every == 0:\\n            eval_metrics = evaluate(model, eval_dataloader, step, config, device, tokenizer=tokenizer)\\n            wandb.log(eval_metrics, step=step)\\n            for k, v in eval_metrics.items():\\n                log.info(\\\"  %s: %.4f\\\", k, v)\\n\\n        if step > 0 and step % save_every == 0:\\n            save_checkpoint(model, optimizer, scheduler, step, config, last_info, output_dir)\\n\\n        if graceful.should_exit:\\n            log.info(\\\"Graceful exit at step %d\\\", step)\\n            save_checkpoint(model, optimizer, scheduler, step, config, last_info, output_dir)\\n            break\\n\\n    if not graceful.should_exit:\\n        save_checkpoint(model, optimizer, scheduler, total_steps - 1, config, last_info, output_dir)\\n\\n    wandb.finish()\\n    log.info(\\\"Training complete.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018dy2W5b29N38pRrgvaA48g`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/configs/smart_compress.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "124446b0-0c54-4179-99ac-efeebcb7dd8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BjA5QKpGDXBj38EdF9CudD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3099,
+      "cache_read_input_tokens": 53960,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3099
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-23T05:50:23.129Z_
+
+<details><summary>↩ Tool result · `toolu_018dy2W5b29N38pRrgvaA48g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Smart Compress: cross-attention pooling to compress 128 vision tokens -> M tokens.\\n# Trainable: VisionTokenCompressor + action expert + projections.\\n# Frozen: SigLIP + connector + VLM text model.\\n\\nmodel:\\n  name: smolvla\\n  pretrained: \\\"/root/autodl-tmp/.hf_cache/lerobot/smolvla_base\\\"\\n\\ncompressor:\\n  num_queries: 32      # M = 32 compressed tokens (75% compression)\\n  num_heads: 12        # 960/12 = 80 dim per head\\n  num_layers: 2        # 2 cross-attention + FFN blocks\\n  dropout: 0.1\\n\\ndataset:\\n  repo_id: \\\"HuggingFaceVLA/libero\\\"\\n  features:\\n    state_dim: 8\\n    action_dim: 7\\n    cameras:\\n      - \\\"observation.images.image\\\"\\n      - \\\"observation.images.image2\\\"\\n\\ntraining:\\n  total_steps: 100000\\n  batch_size: 4\\n  eval_batch_size: 1\\n  num_workers: 4\\n  lr: 1.0e-4\\n  betas: [0.9, 0.95]\\n  weight_decay: 1.0e-10\\n  warmup_steps: 1000\\n  decay_lr: 2.5e-6\\n  grad_clip: 10.0\\n  eval_every: 5000\\n  save_every: 1000\\n  log_every: 50\\n  output_dir: \\\"checkpoints/smart_compress_m32\\\"\\n  seed: 42\\n\\nevaluation:\\n  max_eval_batches: 50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "d82279dd-b70c-424d-bce9-2d1455fd5556",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Smart Compress: cross-attention pooling to compress 128 vision tokens -> M tokens.\\\\n# Trainable: VisionTokenCompressor + action expert + projections.\\\\n# Frozen: SigLIP + connector + VLM text model.\\\\n\\\\nmodel:\\\\n  name: smolvla\\\\n  pretrained: \\\\\\\"/root/autodl-tmp/.hf_cache/lerobot/smolvla_base\\\\\\\"\\\\n\\\\ncompressor:\\\\n  num_queries: 32      # M = 32 compressed tokens (75% compression)\\\\n  num_heads: 12        # 960/12 = 80 dim per head\\\\n  num_layers: 2        # 2 cross-attention + FFN blocks\\\\n  dropout: 0.1\\\\n\\\\ndataset:\\\\n  repo_id: \\\\\\\"HuggingFaceVLA/libero\\\\\\\"\\\\n  features:\\\\n    state_dim: 8\\\\n    action_dim: 7\\\\n    cameras:\\\\n      - \\\\\\\"observation.images.image\\\\\\\"\\\\n      - \\\\\\\"observation.images.image2\\\\\\\"\\\\n\\\\ntraining:\\\\n  total_steps: 100000\\\\n  batch_size: 4\\\\n  eval_batch_size: 1\\\\n  num_workers: 4\\\\n  lr: 1.0e-4\\\\n  betas: [0.9, 0.95]\\\\n  weight_decay: 1.0e-10\\\\n  warmup_steps: 1000\\\\n  decay_lr: 2.5e-6\\\\n  grad_clip: 10.0\\\\n  eval_every: 5000\\\\n  save_every: 1000\\\\n  log_every: 50\\\\n  output_dir: \\\\\\\"checkpoints/smart_compress_m32\\\\\\\"\\\\n  seed: 42\\\\n\\\\nevaluation:\\\\n  max_eval_batches: 50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# Smart Compress: cross-attention pooling to compress 128 vision tokens -> M tokens.\\n# Trainable: VisionTokenCompressor + action expert + projections.\\n# Frozen: SigLIP + connector + VLM text model.\\n\\nmodel:\\n  name: smolvla\\n  pretrained: \\\"/root/autodl-tmp/.hf_cache/lerobot/smolvla_base\\\"\\n\\ncompressor:\\n  num_queries: 32      # M = 32 compressed tokens (75% compression)\\n  num_heads: 12        # 960/12 = 80 dim per head\\n  num_layers: 2        # 2 cross-attention + FFN blocks\\n  dropout: 0.1\\n\\ndataset:\\n  repo_id: \\\"HuggingFaceVLA/libero\\\"\\n  features:\\n    state_dim: 8\\n    action_dim: 7\\n    cameras:\\n      - \\\"observation.images.image\\\"\\n      - \\\"observation.images.image2\\\"\\n\\ntraining:\\n  total_steps: 100000\\n  batch_size: 4\\n  eval_batch_size: 1\\n  num_workers: 4\\n  lr: 1.0e-4\\n  betas: [0.9, 0.95]\\n  weight_decay: 1.0e-10\\n  warmup_steps: 1000\\n  decay_lr: 2.5e-6\\n  grad_clip: 10.0\\n  eval_every: 5000\\n  save_every: 1000\\n  log_every: 50\\n  output_dir: \\\"checkpoints/smart_compress_m32\\\"\\n  seed: 42\\n\\nevaluation:\\n  max_eval_batches: 50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete understanding. Let me check the X-VLA model loading in `eval_xvla_pruning_libero.py` more carefully for the model path, and also check the SmolVLA eval script for the pruning hook details. Let me also understand the vision token counts for each model.
+
+From the eval scripts:
+
+1. **SmolVLA**: 128 vision tokens per camera (2 cameras = 256 total), pretrained from `/root/autodl-tmp/.hf_cache/lerobot/smolvla_base`. Pruning via hook on connector module.
+
+
+2. **Pi0.5**: Loads LeRobot's Pi0 policy from `/root/autodl-tmp/pi05_libero_finetuned`, processes 3 images through the `embed_prefix` method with N_PATCHES tokens per image group.
+3. **X-VLA**: Loads from `/root/autodl-tmp/.hf_cache/xvla_ms/2toINF/X-VLA-Libero` or HF cache, uses Florence2 vision encoder with pruning applied to `model.vlm._encode_image`.
+4. **OpenVLA**: Loads from `/root/autodl-tmp/openvla-libero-object`.
+
+Now I'm working through the dummy input shapes each model expects. OpenVLA chains SigLIP or DINO vision encoders through a projector into LLaMA, with the pruning hook attached to the projector layer. For SmolVLA and Pi0.5, I need to construct batch dictionaries with image tensors at [1, 3, 256, 256], state vectors, and tokenized language inputs with attention masks.
+
+Pi0.5 specifically uses LeRobot's preprocessing pipeline—the raw observation dict gets fed through `make_pre_post_processors` which handles image normalization and text tokenization before passing to the policy. X-VLA takes a different approach, using PIL images directly with text prompts and proprioceptive state through its processor.
+
+OpenVLA has its own format too—it constructs a specific prompt template and processes the image and text together. Since each model has completely different input handling and inference patterns, I'll need to design the latency benchmark to load and test each one separately with their respective dummy batches and inference functions.
+
+Setting up the benchmark loop...
+
+For the pruning strategy, I'm leaning toward L2-norm pruning since it's consistent across all models and what the paper evaluates. But I'm realizing SmolVLA's existing benchmarks use M=32 and M=64 for Smart Compress, which might not align perfectly with a simple keep_ratio approach—I need to figure out how to map the pruning ratios to SmolVLA's specific compression parameters.
+
+Looking back at the task, it's clear this is about measuring latency impact across different token pruning ratios, not about Smart Compress specifically. So I should standardize on L2-norm pruning for all models. Now I need to understand how each model implements its pruning mechanism, particularly SmolVLA where I've seen separate eval scripts for random pruning and spatial pruning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "4deccfef-3c15-4d0c-869a-b56e7f37c818",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jpbmir5a1iV4Foz3K4e8QX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4054,
+      "cache_read_input_tokens": 57059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4054
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+Let me check the SmolVLA pruning eval to understand the hook mechanism, and also check X-VLA model path resolution.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "23ff7131-77e0-4064-8ea6-75a7ec1a98b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jpbmir5a1iV4Foz3K4e8QX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4054,
+      "cache_read_input_tokens": 57059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4054
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01722dyTeg4FpAjACTk33jBS`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "head -200 /root/autodl-tmp/importance_margin_vla_compress/eval_random_prune_smolvla.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "48b77ccf-f58b-4b5d-aaba-2e84b8f1acd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jpbmir5a1iV4Foz3K4e8QX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4054,
+      "cache_read_input_tokens": 57059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4054
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T05:50:59.615Z_
+
+<details><summary>↩ Tool result · `toolu_01722dyTeg4FpAjACTk33jBS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Random Pruning eval on LIBERO-Object for SmolVLA.\\n\\nRandomly selects vision tokens to remove at inference time.\\nTraining-free baseline for compression cliff-edge analysis.\\n\\\"\\\"\\\"\\nimport os\\nimport sys\\nfrom pathlib import Path\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\nPROJECT_DIR = Path(\\\"/root/autodl-tmp/importance_margin_vla_compress\\\")\\nsys.path.insert(0, str(PROJECT_DIR))\\n\\nimport argparse\\nimport json\\nimport numpy as np\\nimport torch\\nfrom scipy.spatial.transform import Rotation\\n\\nfrom test_mode_collapse import load_model, load_config\\nfrom train import get_tokenizer_from_policy, preprocess_batch\\nfrom geometric_prior_pruning import find_connector, register_geometric_hook\\n\\n\\ndef wilson_ci(successes, total, z=1.96):\\n    if total == 0:\\n        return (0.0, 0.0)\\n    p = successes / total\\n    denom = 1 + z**2 / total\\n    center = (p + z**2 / (2 * total)) / denom\\n    spread = z * np.sqrt((p * (1 - p) + z**2 / (4 * total)) / total) / denom\\n    return (round(max(0, center - spread), 4), round(min(1, center + spread), 4))\\n\\n\\ndef quat_to_axis_angle(quat):\\n    r = Rotation.from_quat(quat)\\n    return r.as_rotvec().astype(np.float32)\\n\\n\\ndef obs_to_batch(obs, task_text, tokenizer, device):\\n    img1 = obs[\\\"pixels\\\"][\\\"image\\\"]\\n    img2 = obs[\\\"pixels\\\"][\\\"image2\\\"]\\n    img1_t = torch.from_numpy(np.asarray(img1)).permute(2, 0, 1).float() / 255.0\\n    img2_t = torch.from_numpy(np.asarray(img2)).permute(2, 0, 1).float() / 255.0\\n    eef_pos = obs[\\\"robot_state\\\"][\\\"eef\\\"][\\\"pos\\\"]\\n    eef_quat = obs[\\\"robot_state\\\"][\\\"eef\\\"][\\\"quat\\\"]\\n    gripper_qpos = obs[\\\"robot_state\\\"][\\\"gripper\\\"][\\\"qpos\\\"]\\n    axis_angle = quat_to_axis_angle(eef_quat)\\n    state = np.concatenate([eef_pos, axis_angle, gripper_qpos]).astype(np.float32)\\n    state_t = torch.from_numpy(state).unsqueeze(0)\\n    batch = {\\n        \\\"observation.images.image\\\": img1_t.unsqueeze(0),\\n        \\\"observation.images.image2\\\": img2_t.unsqueeze(0),\\n        \\\"observation.state\\\": state_t,\\n        \\\"task\\\": [task_text],\\n    }\\n    return preprocess_batch(batch, tokenizer, device=device)\\n\\n\\n@torch.no_grad()\\ndef predict_actions(policy, batch):\\n    images, img_masks = policy.prepare_images(batch)\\n    state = policy.prepare_state(batch)\\n    lang_tokens = batch[\\\"observation.language.tokens\\\"]\\n    lang_masks = batch[\\\"observation.language.attention_mask\\\"]\\n    actions = policy.model.sample_actions(\\n        images, img_masks, lang_tokens, lang_masks, state\\n    )\\n    action_dim = policy.config.action_feature.shape[0]\\n    return actions[0, :, :action_dim]\\n\\n\\nclass RandomPruner:\\n    def __init__(self, model, k_ratio=0.5, method=\\\"true_removal\\\", seed=42):\\n        self.k_ratio = k_ratio\\n        self.method = method\\n        self.connector = find_connector(model)\\n        if self.connector is None:\\n            raise RuntimeError(\\\"Cannot find connector module in model\\\")\\n        self.rng = np.random.RandomState(seed)\\n        self._hook_handle = None\\n        self._last_mask = None\\n\\n    def attach(self, device, n_tokens=128):\\n        k = max(1, int(n_tokens * self.k_ratio))\\n        indices = self.rng.permutation(n_tokens)[:k]\\n        mask = torch.zeros(1, n_tokens, device=device)\\n        mask[0, indices] = 1.0\\n        self._last_mask = mask\\n        self._hook_handle = register_geometric_hook(\\n            self.connector, mask, method=self.method\\n        )\\n        return mask\\n\\n    def detach(self):\\n        if self._hook_handle is not None:\\n            self._hook_handle.remove()\\n            self._hook_handle = None\\n\\n    def get_stats(self):\\n        if self._last_mask is None:\\n            return {}\\n        return {\\n            \\\"total_kept\\\": int(self._last_mask.sum().item()),\\n            \\\"total_tokens\\\": self._last_mask.shape[1],\\n        }\\n\\n\\ndef run_eval(args):\\n    device = torch.device(\\\"cuda:0\\\")\\n\\n    ckpt_path = PROJECT_DIR / \\\"checkpoints/libero_full_ft/step_099999/checkpoint.pt\\\"\\n    config_path = str(PROJECT_DIR / \\\"configs/libero_full_ft.yaml\\\")\\n\\n    print(f\\\"Loading model from {ckpt_path}...\\\")\\n    policy, config = load_model(str(ckpt_path), config_path, device)\\n    tokenizer = get_tokenizer_from_policy(policy)\\n\\n    pruner = RandomPruner(\\n        policy.model, k_ratio=args.k_ratio, method=\\\"true_removal\\\", seed=args.seed\\n    )\\n    k_tokens = max(1, int(128 * args.k_ratio))\\n    removed = 128 - k_tokens\\n    print(f\\\"RandomPruner: k_ratio={args.k_ratio}, keep {k_tokens}/128 tokens, remove {removed}\\\")\\n\\n    from libero.libero import benchmark\\n    from lerobot.envs.libero import LiberoEnv\\n\\n    suite = benchmark.get_benchmark_dict()[\\\"libero_object\\\"]()\\n    n_tasks = len(suite.tasks)\\n\\n    results_per_task = {}\\n    total_success = 0\\n    total_eps = 0\\n\\n    for task_id in range(min(n_tasks, 10)):\\n        task_text = suite.tasks[task_id].language + \\\"\\\\n\\\"\\n        task_successes = []\\n\\n        env = LiberoEnv(\\n            task_suite=suite,\\n            task_id=task_id,\\n            task_suite_name=\\\"libero_object\\\",\\n            camera_name=\\\"agentview_image,robot0_eye_in_hand_image\\\",\\n            obs_type=\\\"pixels_agent_pos\\\",\\n            observation_width=256,\\n            observation_height=256,\\n            control_mode=\\\"relative\\\",\\n            init_states=True,\\n            episode_index=0,\\n            n_envs=1,\\n        )\\n\\n        for ep in range(args.episodes_per_task):\\n            obs, info = env.reset(seed=42 + ep)\\n            action_chunk = None\\n            action_idx = 0\\n            success = False\\n\\n            for step in range(args.max_steps):\\n                if action_chunk is None or action_idx >= args.action_horizon:\\n                    pruner.attach(device, n_tokens=128)\\n                    batch = obs_to_batch(obs, task_text, tokenizer, device)\\n                    action_chunk = predict_actions(policy, batch)\\n                    pruner.detach()\\n\\n                    if ep == 0 and step == 0 and task_id == 0:\\n                        stats = pruner.get_stats()\\n                        print(f\\\"  Pruning stats (first step): {stats}\\\")\\n\\n                    action_idx = 0\\n\\n                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\\n                action = np.clip(action, -1.0, 1.0)\\n                action_idx += 1\\n\\n                obs, reward, terminated, truncated, info = env.step(action)\\n\\n                if info.get(\\\"is_success\\\", False):\\n                    success = True\\n                    break\\n                if terminated or truncated:\\n                    break\\n\\n            task_successes.append(success)\\n            status = \\\"OK\\\" if success else \\\"FAIL\\\"\\n            print(f\\\"  T{task_id} Ep{ep+1}/{args.episodes_per_task}: {status} (steps={step+1})\\\")\\n\\n        env.close()\\n        sr = sum(task_successes) / len(task_successes)\\n        results_per_task[str(task_id)] = {\\n            \\\"task_id\\\": task_id,\\n            \\\"task_description\\\": task_text.strip(),\\n            \\\"success_count\\\": sum(task_successes),\\n            \\\"total_episodes\\\": len(task_successes),\\n            \\\"success_rate\\\": sr,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "c02ed555-39a9-4bff-9ac0-2416a7c221c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Random Pruning eval on LIBERO-Object for SmolVLA.\\\\n\\\\nRandomly selects vision tokens to remove at inference time.\\\\nTraining-free baseline for compression cliff-edge analysis.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nos.environ[\\\\\\\"MUJOCO_GL\\\\\\\"] = \\\\\\\"egl\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nPROJECT_DIR = Path(\\\\\\\"/root/autodl-tmp/importance_margin_vla_compress\\\\\\\")\\\\nsys.path.insert(0, str(PROJECT_DIR))\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy.spatial.transform import Rotation\\\\n\\\\nfrom test_mode_collapse import load_model, load_config\\\\nfrom train import get_tokenizer_from_policy, preprocess_batch\\\\nfrom geometric_prior_pruning import find_connector, register_geometric_hook\\\\n\\\\n\\\\ndef wilson_ci(successes, total, z=1.96):\\\\n    if total == 0:\\\\n        return (0.0, 0.0)\\\\n    p = successes / total\\\\n    denom = 1 + z**2 / total\\\\n    center = (p + z**2 / (2 * total)) / denom\\\\n    spread = z * np.sqrt((p * (1 - p) + z**2 / (4 * total)) / total) / denom\\\\n    return (round(max(0, center - spread), 4), round(min(1, center + spread), 4))\\\\n\\\\n\\\\ndef quat_to_axis_angle(quat):\\\\n    r = Rotation.from_quat(quat)\\\\n    return r.as_rotvec().astype(np.float32)\\\\n\\\\n\\\\ndef obs_to_batch(obs, task_text, tokenizer, device):\\\\n    img1 = obs[\\\\\\\"pixels\\\\\\\"][\\\\\\\"image\\\\\\\"]\\\\n    img2 = obs[\\\\\\\"pixels\\\\\\\"][\\\\\\\"image2\\\\\\\"]\\\\n    img1_t = torch.from_numpy(np.asarray(img1)).permute(2, 0, 1).float() / 255.0\\\\n    img2_t = torch.from_numpy(np.asarray(img2)).permute(2, 0, 1).float() / 255.0\\\\n    eef_pos = obs[\\\\\\\"robot_state\\\\\\\"][\\\\\\\"eef\\\\\\\"][\\\\\\\"pos\\\\\\\"]\\\\n    eef_quat = obs[\\\\\\\"robot_state\\\\\\\"][\\\\\\\"eef\\\\\\\"][\\\\\\\"quat\\\\\\\"]\\\\n    gripper_qpos = obs[\\\\\\\"robot_state\\\\\\\"][\\\\\\\"gripper\\\\\\\"][\\\\\\\"qpos\\\\\\\"]\\\\n    axis_angle = quat_to_axis_angle(eef_quat)\\\\n    state = np.concatenate([eef_pos, axis_angle, gripper_qpos]).astype(np.float32)\\\\n    state_t = torch.from_numpy(state).unsqueeze(0)\\\\n    batch = {\\\\n        \\\\\\\"observation.images.image\\\\\\\": img1_t.unsqueeze(0),\\\\n        \\\\\\\"observation.images.image2\\\\\\\": img2_t.unsqueeze(0),\\\\n        \\\\\\\"observation.state\\\\\\\": state_t,\\\\n        \\\\\\\"task\\\\\\\": [task_text],\\\\n    }\\\\n    return preprocess_batch(batch, tokenizer, device=device)\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef predict_actions(policy, batch):\\\\n    images, img_masks = policy.prepare_images(batch)\\\\n    state = policy.prepare_state(batch)\\\\n    lang_tokens = batch[\\\\\\\"observation.language.tokens\\\\\\\"]\\\\n    lang_masks = batch[\\\\\\\"observation.language.attention_mask\\\\\\\"]\\\\n    actions = policy.model.sample_actions(\\\\n        images, img_masks, lang_tokens, lang_masks, state\\\\n    )\\\\n    action_dim = policy.config.action_feature.shape[0]\\\\n    return actions[0, :, :action_dim]\\\\n\\\\n\\\\nclass RandomPruner:\\\\n    def __init__(self, model, k_ratio=0.5, method=\\\\\\\"true_removal\\\\\\\", seed=42):\\\\n        self.k_ratio = k_ratio\\\\n        self.method = method\\\\n        self.connector = find_connector(model)\\\\n        if self.connector is None:\\\\n            raise RuntimeError(\\\\\\\"Cannot find connector module in model\\\\\\\")\\\\n        self.rng = np.random.RandomState(seed)\\\\n        self._hook_handle = None\\\\n        self._last_mask = None\\\\n\\\\n    def attach(self, device, n_tokens=128):\\\\n        k = max(1, int(n_tokens * self.k_ratio))\\\\n        indices = self.rng.permutation(n_tokens)[:k]\\\\n        mask = torch.zeros(1, n_tokens, device=device)\\\\n        mask[0, indices] = 1.0\\\\n        self._last_mask = mask\\\\n        self._hook_handle = register_geometric_hook(\\\\n            self.connector, mask, method=self.method\\\\n        )\\\\n        return mask\\\\n\\\\n    def detach(self):\\\\n        if self._hook_handle is not None:\\\\n            self._hook_handle.remove()\\\\n            self._hook_handle = None\\\\n\\\\n    def get_stats(self):\\\\n        if self._last_mask is None:\\\\n            return {}\\\\n        return {\\\\n            \\\\\\\"total_kept\\\\\\\": int(self._last_mask.sum().item()),\\\\n            \\\\\\\"total_tokens\\\\\\\": self._last_mask.shape[1],\\\\n        }\\\\n\\\\n\\\\ndef run_eval(args):\\\\n    device = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\n\\\\n    ckpt_path = PROJECT_DIR / \\\\\\\"checkpoints/libero_full_ft/step_099999/checkpoint.pt\\\\\\\"\\\\n    config_path = str(PROJECT_DIR / \\\\\\\"configs/libero_full_ft.yaml\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"Loading model from {ckpt_path}...\\\\\\\")\\\\n    policy, config = load_model(str(ckpt_path), config_path, device)\\\\n    tokenizer = get_tokenizer_from_policy(policy)\\\\n\\\\n    pruner = RandomPruner(\\\\n        policy.model, k_ratio=args.k_ratio, method=\\\\\\\"true_removal\\\\\\\", seed=args.seed\\\\n    )\\\\n    k_tokens = max(1, int(128 * args.k_ratio))\\\\n    removed = 128 - k_tokens\\\\n    print(f\\\\\\\"RandomPruner: k_ratio={args.k_ratio}, keep {k_tokens}/128 tokens, remove {removed}\\\\\\\")\\\\n\\\\n    from libero.libero import benchmark\\\\n    from lerobot.envs.libero import LiberoEnv\\\\n\\\\n    suite = benchmark.get_benchmark_dict()[\\\\\\\"libero_object\\\\\\\"]()\\\\n    n_tasks = len(suite.tasks)\\\\n\\\\n    results_per_task = {}\\\\n    total_success = 0\\\\n    total_eps = 0\\\\n\\\\n    for task_id in range(min(n_tasks, 10)):\\\\n        task_text = suite.tasks[task_id].language + \\\\\\\"\\\\\\\\n\\\\\\\"\\\\n        task_successes = []\\\\n\\\\n        env = LiberoEnv(\\\\n            task_suite=suite,\\\\n            task_id=task_id,\\\\n            task_suite_name=\\\\\\\"libero_object\\\\\\\",\\\\n            camera_name=\\\\\\\"agentview_image,robot0_eye_in_hand_image\\\\\\\",\\\\n            obs_type=\\\\\\\"pixels_agent_pos\\\\\\\",\\\\n            observation_width=256,\\\\n            observation_height=256,\\\\n            control_mode=\\\\\\\"relative\\\\\\\",\\\\n            init_states=True,\\\\n            episode_index=0,\\\\n            n_envs=1,\\\\n        )\\\\n\\\\n        for ep in range(args.episodes_per_task):\\\\n            obs, info = env.reset(seed=42 + ep)\\\\n            action_chunk = None\\\\n            action_idx = 0\\\\n            success = False\\\\n\\\\n            for step in range(args.max_steps):\\\\n                if action_chunk is None or action_idx >= args.action_horizon:\\\\n                    pruner.attach(device, n_tokens=128)\\\\n                    batch = obs_to_batch(obs, task_text, tokenizer, device)\\\\n                    action_chunk = predict_actions(policy, batch)\\\\n                    pruner.detach()\\\\n\\\\n                    if ep == 0 and step == 0 and task_id == 0:\\\\n                        stats = pruner.get_stats()\\\\n                        print(f\\\\\\\"  Pruning stats (first step): {stats}\\\\\\\")\\\\n\\\\n                    action_idx = 0\\\\n\\\\n                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\\\\n                action = np.clip(action, -1.0, 1.0)\\\\n                action_idx += 1\\\\n\\\\n                obs, reward, terminated, truncated, info = env.step(action)\\\\n\\\\n                if info.get(\\\\\\\"is_success\\\\\\\", False):\\\\n                    success = True\\\\n                    break\\\\n                if terminated or truncated:\\\\n                    break\\\\n\\\\n            task_successes.append(success)\\\\n            status = \\\\\\\"OK\\\\\\\" if success else \\\\\\\"FAIL\\\\\\\"\\\\n            print(f\\\\\\\"  T{task_id} Ep{ep+1}/{args.episodes_per_task}: {status} (steps={step+1})\\\\\\\")\\\\n\\\\n        env.close()\\\\n        sr = sum(task_successes) / len(task_successes)\\\\n        results_per_task[str(task_id)] = {\\\\n            \\\\\\\"task_id\\\\\\\": task_id,\\\\n            \\\\\\\"task_description\\\\\\\": task_text.strip(),\\\\n            \\\\\\\"success_count\\\\\\\": sum(task_successes),\\\\n            \\\\\\\"total_episodes\\\\\\\": len(task_successes),\\\\n            \\\\\\\"success_rate\\\\\\\": sr,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Random Pruning eval on LIBERO-Object for SmolVLA.\\n\\nRandomly selects vision tokens to remove at inference time.\\nTraining-free baseline for compression cliff-edge analysis.\\n\\\"\\\"\\\"\\nimport os\\nimport sys\\nfrom pathlib import Path\\n\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\nPROJECT_DIR = Path(\\\"/root/autodl-tmp/importance_margin_vla_compress\\\")\\nsys.path.insert(0, str(PROJECT_DIR))\\n\\nimport argparse\\nimport json\\nimport numpy as np\\nimport torch\\nfrom scipy.spatial.transform import Rotation\\n\\nfrom test_mode_collapse import load_model, load_config\\nfrom train import get_tokenizer_from_policy, preprocess_batch\\nfrom geometric_prior_pruning import find_connector, register_geometric_hook\\n\\n\\ndef wilson_ci(successes, total, z=1.96):\\n    if total == 0:\\n        return (0.0, 0.0)\\n    p = successes / total\\n    denom = 1 + z**2 / total\\n    center = (p + z**2 / (2 * total)) / denom\\n    spread = z * np.sqrt((p * (1 - p) + z**2 / (4 * total)) / total) / denom\\n    return (round(max(0, center - spread), 4), round(min(1, center + spread), 4))\\n\\n\\ndef quat_to_axis_angle(quat):\\n    r = Rotation.from_quat(quat)\\n    return r.as_rotvec().astype(np.float32)\\n\\n\\ndef obs_to_batch(obs, task_text, tokenizer, device):\\n    img1 = obs[\\\"pixels\\\"][\\\"image\\\"]\\n    img2 = obs[\\\"pixels\\\"][\\\"image2\\\"]\\n    img1_t = torch.from_numpy(np.asarray(img1)).permute(2, 0, 1).float() / 255.0\\n    img2_t = torch.from_numpy(np.asarray(img2)).permute(2, 0, 1).float() / 255.0\\n    eef_pos = obs[\\\"robot_state\\\"][\\\"eef\\\"][\\\"pos\\\"]\\n    eef_quat = obs[\\\"robot_state\\\"][\\\"eef\\\"][\\\"quat\\\"]\\n    gripper_qpos = obs[\\\"robot_state\\\"][\\\"gripper\\\"][\\\"qpos\\\"]\\n    axis_angle = quat_to_axis_angle(eef_quat)\\n    state = np.concatenate([eef_pos, axis_angle, gripper_qpos]).astype(np.float32)\\n    state_t = torch.from_numpy(state).unsqueeze(0)\\n    batch = {\\n        \\\"observation.images.image\\\": img1_t.unsqueeze(0),\\n        \\\"observation.images.image2\\\": img2_t.unsqueeze(0),\\n        \\\"observation.state\\\": state_t,\\n        \\\"task\\\": [task_text],\\n    }\\n    return preprocess_batch(batch, tokenizer, device=device)\\n\\n\\n@torch.no_grad()\\ndef predict_actions(policy, batch):\\n    images, img_masks = policy.prepare_images(batch)\\n    state = policy.prepare_state(batch)\\n    lang_tokens = batch[\\\"observation.language.tokens\\\"]\\n    lang_masks = batch[\\\"observation.language.attention_mask\\\"]\\n    actions = policy.model.sample_actions(\\n        images, img_masks, lang_tokens, lang_masks, state\\n    )\\n    action_dim = policy.config.action_feature.shape[0]\\n    return actions[0, :, :action_dim]\\n\\n\\nclass RandomPruner:\\n    def __init__(self, model, k_ratio=0.5, method=\\\"true_removal\\\", seed=42):\\n        self.k_ratio = k_ratio\\n        self.method = method\\n        self.connector = find_connector(model)\\n        if self.connector is None:\\n            raise RuntimeError(\\\"Cannot find connector module in model\\\")\\n        self.rng = np.random.RandomState(seed)\\n        self._hook_handle = None\\n        self._last_mask = None\\n\\n    def attach(self, device, n_tokens=128):\\n        k = max(1, int(n_tokens * self.k_ratio))\\n        indices = self.rng.permutation(n_tokens)[:k]\\n        mask = torch.zeros(1, n_tokens, device=device)\\n        mask[0, indices] = 1.0\\n        self._last_mask = mask\\n        self._hook_handle = register_geometric_hook(\\n            self.connector, mask, method=self.method\\n        )\\n        return mask\\n\\n    def detach(self):\\n        if self._hook_handle is not None:\\n            self._hook_handle.remove()\\n            self._hook_handle = None\\n\\n    def get_stats(self):\\n        if self._last_mask is None:\\n            return {}\\n        return {\\n            \\\"total_kept\\\": int(self._last_mask.sum().item()),\\n            \\\"total_tokens\\\": self._last_mask.shape[1],\\n        }\\n\\n\\ndef run_eval(args):\\n    device = torch.device(\\\"cuda:0\\\")\\n\\n    ckpt_path = PROJECT_DIR / \\\"checkpoints/libero_full_ft/step_099999/checkpoint.pt\\\"\\n    config_path = str(PROJECT_DIR / \\\"configs/libero_full_ft.yaml\\\")\\n\\n    print(f\\\"Loading model from {ckpt_path}...\\\")\\n    policy, config = load_model(str(ckpt_path), config_path, device)\\n    tokenizer = get_tokenizer_from_policy(policy)\\n\\n    pruner = RandomPruner(\\n        policy.model, k_ratio=args.k_ratio, method=\\\"true_removal\\\", seed=args.seed\\n    )\\n    k_tokens = max(1, int(128 * args.k_ratio))\\n    removed = 128 - k_tokens\\n    print(f\\\"RandomPruner: k_ratio={args.k_ratio}, keep {k_tokens}/128 tokens, remove {removed}\\\")\\n\\n    from libero.libero import benchmark\\n    from lerobot.envs.libero import LiberoEnv\\n\\n    suite = benchmark.get_benchmark_dict()[\\\"libero_object\\\"]()\\n    n_tasks = len(suite.tasks)\\n\\n    results_per_task = {}\\n    total_success = 0\\n    total_eps = 0\\n\\n    for task_id in range(min(n_tasks, 10)):\\n        task_text = suite.tasks[task_id].language + \\\"\\\\n\\\"\\n        task_successes = []\\n\\n        env = LiberoEnv(\\n            task_suite=suite,\\n            task_id=task_id,\\n            task_suite_name=\\\"libero_object\\\",\\n            camera_name=\\\"agentview_image,robot0_eye_in_hand_image\\\",\\n            obs_type=\\\"pixels_agent_pos\\\",\\n            observation_width=256,\\n            observation_height=256,\\n            control_mode=\\\"relative\\\",\\n            init_states=True,\\n            episode_index=0,\\n            n_envs=1,\\n        )\\n\\n        for ep in range(args.episodes_per_task):\\n            obs, info = env.reset(seed=42 + ep)\\n            action_chunk = None\\n            action_idx = 0\\n            success = False\\n\\n            for step in range(args.max_steps):\\n                if action_chunk is None or action_idx >= args.action_horizon:\\n                    pruner.attach(device, n_tokens=128)\\n                    batch = obs_to_batch(obs, task_text, tokenizer, device)\\n                    action_chunk = predict_actions(policy, batch)\\n                    pruner.detach()\\n\\n                    if ep == 0 and step == 0 and task_id == 0:\\n                        stats = pruner.get_stats()\\n                        print(f\\\"  Pruning stats (first step): {stats}\\\")\\n\\n                    action_idx = 0\\n\\n                action = action_chunk[action_idx].cpu().numpy().astype(np.float32)\\n                action = np.clip(action, -1.0, 1.0)\\n                action_idx += 1\\n\\n                obs, reward, terminated, truncated, info = env.step(action)\\n\\n                if info.get(\\\"is_success\\\", False):\\n                    success = True\\n                    break\\n                if terminated or truncated:\\n                    break\\n\\n            task_successes.append(success)\\n            status = \\\"OK\\\" if success else \\\"FAIL\\\"\\n            print(f\\\"  T{task_id} Ep{ep+1}/{args.episodes_per_task}: {status} (steps={step+1})\\\")\\n\\n        env.close()\\n        sr = sum(task_successes) / len(task_successes)\\n        results_per_task[str(task_id)] = {\\n            \\\"task_id\\\": task_id,\\n            \\\"task_description\\\": task_text.strip(),\\n            \\\"success_count\\\": sum(task_successes),\\n            \\\"total_episodes\\\": len(task_successes),\\n            \\\"success_rate\\\": sr,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011evNrKq9wmayhPxK9BERvx`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls /root/autodl-tmp/.hf_cache/xvla_ms/2toINF/X-VLA-Libero/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "dfae94d7-34d7-4b66-9719-4bfac3ad3ca9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jpbmir5a1iV4Foz3K4e8QX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4054,
+      "cache_read_input_tokens": 57059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4054
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-23T05:51:00.493Z_
+
+<details><summary>↩ Tool result · `toolu_011evNrKq9wmayhPxK9BERvx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "54a532c6-33ed-4310-91a4-01795685456f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013T6JiDb973YEfyaGzJjbY2`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_openvla_l2norm_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "73da8a25-95b2-45f9-87e4-cbe4f26a9098",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jpbmir5a1iV4Foz3K4e8QX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4054,
+      "cache_read_input_tokens": 57059,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4054
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-23T05:51:01.781Z_
+
+<details><summary>↩ Tool result · `toolu_013T6JiDb973YEfyaGzJjbY2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nOpenVLA LIBERO Evaluation: Baseline + Random/L2-Norm Token Pruning.\\nUsage:\\n    python eval_openvla_l2norm_libero.py --mode baseline --suite libero_object\\n    python eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object\\n\\\"\\\"\\\"\\nimport argparse, io, json, math, os, sys, time\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\n# Use transformers 4.40.1 for OpenVLA compat\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla_deps\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\n\\n# Import OpenVLA model code\\nhf_dir = \\\"/root/autodl-tmp/openvla-repo/prismatic/extern/hf\\\"\\ninit_path = os.path.join(hf_dir, \\\"__init__.py\\\")\\nif not os.path.exists(init_path):\\n    open(init_path, \\\"w\\\").close()\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla-repo/prismatic/extern\\\")\\nfrom hf.configuration_prismatic import OpenVLAConfig\\nfrom hf.modeling_prismatic import OpenVLAForActionPrediction\\nfrom hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\\n\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nCHECKPOINT_PATH = \\\"/root/autodl-tmp/openvla-libero-object\\\"\\nUNNORM_KEY = \\\"libero_object\\\"\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--mode\\\", choices=[\\\"baseline\\\", \\\"random_prune\\\", \\\"l2norm_prune\\\", \\\"attention_prune\\\"], default=\\\"baseline\\\")\\n    p.add_argument(\\\"--k_ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\")\\n    p.add_argument(\\\"--num_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--seed\\\", type=int, default=7)\\n    p.add_argument(\\\"--output\\\", type=str, default=None)\\n    p.add_argument(\\\"--center_crop\\\", action=\\\"store_true\\\", default=True)\\n    p.add_argument(\\\"--num_steps_wait\\\", type=int, default=10)\\n    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"/root/autodl-tmp/openvla-libero-object\\\", help=\\\"Path to OpenVLA checkpoint\\\")\\n    p.add_argument(\\\"--unnorm_key\\\", type=str, default=\\\"libero_object\\\", help=\\\"Unnormalization key for action space\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0, help=\\\"GPU device index\\\")\\n    return p.parse_args()\\n\\n\\ndef set_seed(seed):\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n    np.random.seed(seed)\\n    import random\\n    random.seed(seed)\\n\\n\\ndef load_model():\\n    print(\\\"[*] Loading OpenVLA from:\\\", CHECKPOINT_PATH, flush=True)\\n    config = OpenVLAConfig.from_pretrained(CHECKPOINT_PATH)\\n    vla = OpenVLAForActionPrediction.from_pretrained(\\n        CHECKPOINT_PATH,\\n        config=config,\\n        torch_dtype=torch.bfloat16,\\n        low_cpu_mem_usage=True,\\n    ).to(DEVICE)\\n    with open(os.path.join(CHECKPOINT_PATH, \\\"dataset_statistics.json\\\")) as f:\\n        vla.norm_stats = json.load(f)\\n    vla.eval()\\n\\n    from transformers import AutoTokenizer\\n    tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT_PATH)\\n    image_processor = PrismaticImageProcessor.from_pretrained(CHECKPOINT_PATH)\\n    processor = PrismaticProcessor(image_processor=image_processor, tokenizer=tokenizer)\\n    print(f\\\"[*] Model loaded, GPU: {torch.cuda.max_memory_allocated()/1e9:.1f} GB\\\", flush=True)\\n    return vla, processor\\n\\n\\ndef center_crop_image(image: Image.Image, crop_scale=0.9) -> Image.Image:\\n    w, h = image.size\\n    new_w = int(w * math.sqrt(crop_scale))\\n    new_h = int(h * math.sqrt(crop_scale))\\n    left = (w - new_w) // 2\\n    top = (h - new_h) // 2\\n    cropped = image.crop((left, top, left + new_w, top + new_h))\\n    return cropped.resize((w, h), Image.LANCZOS)\\n\\n\\ndef preprocess_image(obs, center_crop=True):\\n    img = obs[\\\"agentview_image\\\"]\\n    img = img[::-1, ::-1]\\n    pil_img = Image.fromarray(img)\\n    buf = io.BytesIO()\\n    pil_img.save(buf, format=\\\"JPEG\\\")\\n    buf.seek(0)\\n    pil_img = Image.open(buf).convert(\\\"RGB\\\")\\n    pil_img = pil_img.resize((224, 224), Image.LANCZOS)\\n    if center_crop:\\n        pil_img = center_c\\n\\n... [截断: 输出过长，省略 7633 字符] ...\\n\\nprint(f\\\"\\\\n[Task {task_id+1}/{n_tasks}] {task_description}\\\", flush=True)\\n\\n        for ep in range(args.num_episodes):\\n            env.reset()\\n            init_states = task_suite.get_task_init_states(task_id)\\n            obs = env.set_init_state(init_states[ep])\\n            done = False\\n            t = 0\\n\\n            while t < max_steps + args.num_steps_wait:\\n                try:\\n                    if t < args.num_steps_wait:\\n                        obs, reward, done, info = env.step([0, 0, 0, 0, 0, 0, -1])\\n                        t += 1\\n                        continue\\n\\n                    img = preprocess_image(obs, center_crop=args.center_crop)\\n                    action = get_action(vla, processor, img, task_description)\\n                    action = normalize_gripper_action(action, binarize=True)\\n                    action = invert_gripper_action(action)\\n                    obs, reward, done, info = env.step(action.tolist())\\n                    if done:\\n                        task_successes += 1\\n                        total_successes += 1\\n                        break\\n                    t += 1\\n                except Exception as e:\\n                    print(f\\\"  Exception t={t}: {e}\\\", flush=True)\\n                    break\\n\\n            total_episodes += 1\\n            if (ep + 1) % 10 == 0:\\n                elapsed = time.time() - t_start\\n                eps_per_min = total_episodes / (elapsed / 60)\\n                print(f\\\"  Ep {ep+1}/{args.num_episodes} task_sr={task_successes}/{ep+1} \\\"\\n                      f\\\"({eps_per_min:.1f} eps/min)\\\", flush=True)\\n\\n        task_sr = task_successes / args.num_episodes\\n        per_task_results[task_description] = {\\n            \\\"success_rate\\\": task_sr,\\n            \\\"successes\\\": task_successes,\\n            \\\"episodes\\\": args.num_episodes,\\n        }\\n        print(f\\\"  => Task SR: {task_sr:.3f} ({task_successes}/{args.num_episodes})\\\", flush=True)\\n        env.close()\\n\\n    overall_sr = total_successes / total_episodes\\n    elapsed = time.time() - t_start\\n    print(f\\\"\\\\n{'''='''*60}\\\", flush=True)\\n    print(f\\\"Overall SR: {overall_sr:.4f} ({total_successes}/{total_episodes})\\\", flush=True)\\n    print(f\\\"Time: {elapsed/60:.1f} min\\\", flush=True)\\n    print(f\\\"{'''='''*60}\\\", flush=True)\\n\\n    results = {\\n        \\\"model\\\": os.path.basename(args.model_path),\\n        \\\"mode\\\": args.mode,\\n        \\\"suite\\\": args.suite,\\n        \\\"k_ratio\\\": args.k_ratio if args.mode in (\\\"random_prune\\\", \\\"l2norm_prune\\\", \\\"attention_prune\\\") else None,\\n        \\\"overall_success_rate\\\": overall_sr,\\n        \\\"total_successes\\\": total_successes,\\n        \\\"total_episodes\\\": total_episodes,\\n        \\\"per_task\\\": per_task_results,\\n        \\\"vision_tokens\\\": token_info,\\n        \\\"max_steps\\\": max_steps,\\n        \\\"seed\\\": args.seed,\\n        \\\"elapsed_minutes\\\": elapsed / 60,\\n        \\\"timestamp\\\": time.strftime(\\\"%Y-%m-%d %H:%M:%S\\\"),\\n    }\\n\\n    if args.output:\\n        out_path = args.output\\n    else:\\n        out_dir = \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\"\\n        os.makedirs(out_dir, exist_ok=True)\\n        suite_short = args.suite.replace('libero_', '')\\n        if args.mode == \\\"baseline\\\":\\n            out_path = f\\\"{out_dir}/openvla_baseline_{suite_short}_seed{args.seed}.json\\\"\\n        elif args.mode == \\\"random_prune\\\":\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_random_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n        elif args.mode == \\\"attention_prune\\\":\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_attention_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n        else:\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_l2norm_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"[*] Saved: {out_path}\\\", flush=True)\\n\\n    if hook_handle:\\n        hook_handle.remove()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "ef234d6a-57f9-41db-9f98-4c7e33e1c033",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nOpenVLA LIBERO Evaluation: Baseline + Random/L2-Norm Token Pruning.\\\\nUsage:\\\\n    python eval_openvla_l2norm_libero.py --mode baseline --suite libero_object\\\\n    python eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse, io, json, math, os, sys, time\\\\nos.environ[\\\\\\\"MUJOCO_GL\\\\\\\"] = \\\\\\\"egl\\\\\\\"\\\\nos.environ.setdefault(\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\", \\\\\\\"0\\\\\\\")\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\n# Use transformers 4.40.1 for OpenVLA compat\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/openvla_deps\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom PIL import Image\\\\n\\\\n# Import OpenVLA model code\\\\nhf_dir = \\\\\\\"/root/autodl-tmp/openvla-repo/prismatic/extern/hf\\\\\\\"\\\\ninit_path = os.path.join(hf_dir, \\\\\\\"__init__.py\\\\\\\")\\\\nif not os.path.exists(init_path):\\\\n    open(init_path, \\\\\\\"w\\\\\\\").close()\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/openvla-repo/prismatic/extern\\\\\\\")\\\\nfrom hf.configuration_prismatic import OpenVLAConfig\\\\nfrom hf.modeling_prismatic import OpenVLAForActionPrediction\\\\nfrom hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\\\\n\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\nCHECKPOINT_PATH = \\\\\\\"/root/autodl-tmp/openvla-libero-object\\\\\\\"\\\\nUNNORM_KEY = \\\\\\\"libero_object\\\\\\\"\\\\n\\\\nSUITE_MAX_STEPS = {\\\\n    \\\\\\\"libero_spatial\\\\\\\": 280,\\\\n    \\\\\\\"libero_object\\\\\\\": 280,\\\\n    \\\\\\\"libero_goal\\\\\\\": 300,\\\\n    \\\\\\\"libero_10\\\\\\\": 520,\\\\n}\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"baseline\\\\\\\", \\\\\\\"random_prune\\\\\\\", \\\\\\\"l2norm_prune\\\\\\\", \\\\\\\"attention_prune\\\\\\\"], default=\\\\\\\"baseline\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--k_ratio\\\\\\\", type=float, default=0.5)\\\\n    p.add_argument(\\\\\\\"--suite\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_episodes\\\\\\\", type=int, default=50)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=7)\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=None)\\\\n    p.add_argument(\\\\\\\"--center_crop\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True)\\\\n    p.add_argument(\\\\\\\"--num_steps_wait\\\\\\\", type=int, default=10)\\\\n    p.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/openvla-libero-object\\\\\\\", help=\\\\\\\"Path to OpenVLA checkpoint\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--unnorm_key\\\\\\\", type=str, default=\\\\\\\"libero_object\\\\\\\", help=\\\\\\\"Unnormalization key for action space\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0, help=\\\\\\\"GPU device index\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n    np.random.seed(seed)\\\\n    import random\\\\n    random.seed(seed)\\\\n\\\\n\\\\ndef load_model():\\\\n    print(\\\\\\\"[*] Loading OpenVLA from:\\\\\\\", CHECKPOINT_PATH, flush=True)\\\\n    config = OpenVLAConfig.from_pretrained(CHECKPOINT_PATH)\\\\n    vla = OpenVLAForActionPrediction.from_pretrained(\\\\n        CHECKPOINT_PATH,\\\\n        config=config,\\\\n        torch_dtype=torch.bfloat16,\\\\n        low_cpu_mem_usage=True,\\\\n    ).to(DEVICE)\\\\n    with open(os.path.join(CHECKPOINT_PATH, \\\\\\\"dataset_statistics.json\\\\\\\")) as f:\\\\n        vla.norm_stats = json.load(f)\\\\n    vla.eval()\\\\n\\\\n    from transformers import AutoTokenizer\\\\n    tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT_PATH)\\\\n    image_processor = PrismaticImageProcessor.from_pretrained(CHECKPOINT_PATH)\\\\n    processor = PrismaticProcessor(image_processor=image_processor, tokenizer=tokenizer)\\\\n    print(f\\\\\\\"[*] Model loaded, GPU: {torch.cuda.max_memory_allocated()/1e9:.1f} GB\\\\\\\", flush=True)\\\\n    return vla, processor\\\\n\\\\n\\\\ndef center_crop_image(image: Image.Image, crop_scale=0.9) -> Image.Image:\\\\n    w, h = image.size\\\\n    new_w = int(w * math.sqrt(crop_scale))\\\\n    new_h = int(h * math.sqrt(crop_scale))\\\\n    left = (w - new_w) // 2\\\\n    top = (h - new_h) // 2\\\\n    cropped = image.crop((left, top, left + new_w, top + new_h))\\\\n    return cropped.resize((w, h), Image.LANCZOS)\\\\n\\\\n\\\\ndef preprocess_image(obs, center_crop=True):\\\\n    img = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n    img = img[::-1, ::-1]\\\\n    pil_img = Image.fromarray(img)\\\\n    buf = io.BytesIO()\\\\n    pil_img.save(buf, format=\\\\\\\"JPEG\\\\\\\")\\\\n    buf.seek(0)\\\\n    pil_img = Image.open(buf).convert(\\\\\\\"RGB\\\\\\\")\\\\n    pil_img = pil_img.resize((224, 224), Image.LANCZOS)\\\\n    if center_crop:\\\\n        pil_img = center_c\\\\n\\\\n... [截断: 输出过长，省略 7633 字符] ...\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\n[Task {task_id+1}/{n_tasks}] {task_description}\\\\\\\", flush=True)\\\\n\\\\n        for ep in range(args.num_episodes):\\\\n            env.reset()\\\\n            init_states = task_suite.get_task_init_states(task_id)\\\\n            obs = env.set_init_state(init_states[ep])\\\\n            done = False\\\\n            t = 0\\\\n\\\\n            while t < max_steps + args.num_steps_wait:\\\\n                try:\\\\n                    if t < args.num_steps_wait:\\\\n                        obs, reward, done, info = env.step([0, 0, 0, 0, 0, 0, -1])\\\\n                        t += 1\\\\n                        continue\\\\n\\\\n                    img = preprocess_image(obs, center_crop=args.center_crop)\\\\n                    action = get_action(vla, processor, img, task_description)\\\\n                    action = normalize_gripper_action(action, binarize=True)\\\\n                    action = invert_gripper_action(action)\\\\n                    obs, reward, done, info = env.step(action.tolist())\\\\n                    if done:\\\\n                        task_successes += 1\\\\n                        total_successes += 1\\\\n                        break\\\\n                    t += 1\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"  Exception t={t}: {e}\\\\\\\", flush=True)\\\\n                    break\\\\n\\\\n            total_episodes += 1\\\\n            if (ep + 1) % 10 == 0:\\\\n                elapsed = time.time() - t_start\\\\n                eps_per_min = total_episodes / (elapsed / 60)\\\\n                print(f\\\\\\\"  Ep {ep+1}/{args.num_episodes} task_sr={task_successes}/{ep+1} \\\\\\\"\\\\n                      f\\\\\\\"({eps_per_min:.1f} eps/min)\\\\\\\", flush=True)\\\\n\\\\n        task_sr = task_successes / args.num_episodes\\\\n        per_task_results[task_description] = {\\\\n            \\\\\\\"success_rate\\\\\\\": task_sr,\\\\n            \\\\\\\"successes\\\\\\\": task_successes,\\\\n            \\\\\\\"episodes\\\\\\\": args.num_episodes,\\\\n        }\\\\n        print(f\\\\\\\"  => Task SR: {task_sr:.3f} ({task_successes}/{args.num_episodes})\\\\\\\", flush=True)\\\\n        env.close()\\\\n\\\\n    overall_sr = total_successes / total_episodes\\\\n    elapsed = time.time() - t_start\\\\n    print(f\\\\\\\"\\\\\\\\n{'''='''*60}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Overall SR: {overall_sr:.4f} ({total_successes}/{total_episodes})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Time: {elapsed/60:.1f} min\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'''='''*60}\\\\\\\", flush=True)\\\\n\\\\n    results = {\\\\n        \\\\\\\"model\\\\\\\": os.path.basename(args.model_path),\\\\n        \\\\\\\"mode\\\\\\\": args.mode,\\\\n        \\\\\\\"suite\\\\\\\": args.suite,\\\\n        \\\\\\\"k_ratio\\\\\\\": args.k_ratio if args.mode in (\\\\\\\"random_prune\\\\\\\", \\\\\\\"l2norm_prune\\\\\\\", \\\\\\\"attention_prune\\\\\\\") else None,\\\\n        \\\\\\\"overall_success_rate\\\\\\\": overall_sr,\\\\n        \\\\\\\"total_successes\\\\\\\": total_successes,\\\\n        \\\\\\\"total_episodes\\\\\\\": total_episodes,\\\\n        \\\\\\\"per_task\\\\\\\": per_task_results,\\\\n        \\\\\\\"vision_tokens\\\\\\\": token_info,\\\\n        \\\\\\\"max_steps\\\\\\\": max_steps,\\\\n        \\\\\\\"seed\\\\\\\": args.seed,\\\\n        \\\\\\\"elapsed_minutes\\\\\\\": elapsed / 60,\\\\n        \\\\\\\"timestamp\\\\\\\": time.strftime(\\\\\\\"%Y-%m-%d %H:%M:%S\\\\\\\"),\\\\n    }\\\\n\\\\n    if args.output:\\\\n        out_path = args.output\\\\n    else:\\\\n        out_dir = \\\\\\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\\\\\"\\\\n        os.makedirs(out_dir, exist_ok=True)\\\\n        suite_short = args.suite.replace('libero_', '')\\\\n        if args.mode == \\\\\\\"baseline\\\\\\\":\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_baseline_{suite_short}_seed{args.seed}.json\\\\\\\"\\\\n        elif args.mode == \\\\\\\"random_prune\\\\\\\":\\\\n            k_str = str(args.k_ratio).replace(\\\\\\\".\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_random_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\\\\\"\\\\n        elif args.mode == \\\\\\\"attention_prune\\\\\\\":\\\\n            k_str = str(args.k_ratio).replace(\\\\\\\".\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_attention_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\\\\\"\\\\n        else:\\\\n            k_str = str(args.k_ratio).replace(\\\\\\\".\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            out_path = f\\\\\\\"{out_dir}/openvla_l2norm_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\\\\\"\\\\n\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"[*] Saved: {out_path}\\\\\\\", flush=True)\\\\n\\\\n    if hook_handle:\\\\n        hook_handle.remove()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nOpenVLA LIBERO Evaluation: Baseline + Random/L2-Norm Token Pruning.\\nUsage:\\n    python eval_openvla_l2norm_libero.py --mode baseline --suite libero_object\\n    python eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object\\n\\\"\\\"\\\"\\nimport argparse, io, json, math, os, sys, time\\nos.environ[\\\"MUJOCO_GL\\\"] = \\\"egl\\\"\\nos.environ.setdefault(\\\"CUDA_VISIBLE_DEVICES\\\", \\\"0\\\")\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\n\\n# Use transformers 4.40.1 for OpenVLA compat\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla_deps\\\")\\n\\nimport numpy as np\\nimport torch\\nfrom PIL import Image\\n\\n# Import OpenVLA model code\\nhf_dir = \\\"/root/autodl-tmp/openvla-repo/prismatic/extern/hf\\\"\\ninit_path = os.path.join(hf_dir, \\\"__init__.py\\\")\\nif not os.path.exists(init_path):\\n    open(init_path, \\\"w\\\").close()\\nsys.path.insert(0, \\\"/root/autodl-tmp/openvla-repo/prismatic/extern\\\")\\nfrom hf.configuration_prismatic import OpenVLAConfig\\nfrom hf.modeling_prismatic import OpenVLAForActionPrediction\\nfrom hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\\n\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nCHECKPOINT_PATH = \\\"/root/autodl-tmp/openvla-libero-object\\\"\\nUNNORM_KEY = \\\"libero_object\\\"\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 280,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n}\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"--mode\\\", choices=[\\\"baseline\\\", \\\"random_prune\\\", \\\"l2norm_prune\\\", \\\"attention_prune\\\"], default=\\\"baseline\\\")\\n    p.add_argument(\\\"--k_ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--suite\\\", type=str, default=\\\"libero_object\\\")\\n    p.add_argument(\\\"--num_episodes\\\", type=int, default=50)\\n    p.add_argument(\\\"--seed\\\", type=int, default=7)\\n    p.add_argument(\\\"--output\\\", type=str, default=None)\\n    p.add_argument(\\\"--center_crop\\\", action=\\\"store_true\\\", default=True)\\n    p.add_argument(\\\"--num_steps_wait\\\", type=int, default=10)\\n    p.add_argument(\\\"--model_path\\\", type=str, default=\\\"/root/autodl-tmp/openvla-libero-object\\\", help=\\\"Path to OpenVLA checkpoint\\\")\\n    p.add_argument(\\\"--unnorm_key\\\", type=str, default=\\\"libero_object\\\", help=\\\"Unnormalization key for action space\\\")\\n    p.add_argument(\\\"--gpu\\\", type=int, default=0, help=\\\"GPU device index\\\")\\n    return p.parse_args()\\n\\n\\ndef set_seed(seed):\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n    np.random.seed(seed)\\n    import random\\n    random.seed(seed)\\n\\n\\ndef load_model():\\n    print(\\\"[*] Loading OpenVLA from:\\\", CHECKPOINT_PATH, flush=True)\\n    config = OpenVLAConfig.from_pretrained(CHECKPOINT_PATH)\\n    vla = OpenVLAForActionPrediction.from_pretrained(\\n        CHECKPOINT_PATH,\\n        config=config,\\n        torch_dtype=torch.bfloat16,\\n        low_cpu_mem_usage=True,\\n    ).to(DEVICE)\\n    with open(os.path.join(CHECKPOINT_PATH, \\\"dataset_statistics.json\\\")) as f:\\n        vla.norm_stats = json.load(f)\\n    vla.eval()\\n\\n    from transformers import AutoTokenizer\\n    tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT_PATH)\\n    image_processor = PrismaticImageProcessor.from_pretrained(CHECKPOINT_PATH)\\n    processor = PrismaticProcessor(image_processor=image_processor, tokenizer=tokenizer)\\n    print(f\\\"[*] Model loaded, GPU: {torch.cuda.max_memory_allocated()/1e9:.1f} GB\\\", flush=True)\\n    return vla, processor\\n\\n\\ndef center_crop_image(image: Image.Image, crop_scale=0.9) -> Image.Image:\\n    w, h = image.size\\n    new_w = int(w * math.sqrt(crop_scale))\\n    new_h = int(h * math.sqrt(crop_scale))\\n    left = (w - new_w) // 2\\n    top = (h - new_h) // 2\\n    cropped = image.crop((left, top, left + new_w, top + new_h))\\n    return cropped.resize((w, h), Image.LANCZOS)\\n\\n\\ndef preprocess_image(obs, center_crop=True):\\n    img = obs[\\\"agentview_image\\\"]\\n    img = img[::-1, ::-1]\\n    pil_img = Image.fromarray(img)\\n    buf = io.BytesIO()\\n    pil_img.save(buf, format=\\\"JPEG\\\")\\n    buf.seek(0)\\n    pil_img = Image.open(buf).convert(\\\"RGB\\\")\\n    pil_img = pil_img.resize((224, 224), Image.LANCZOS)\\n    if center_crop:\\n        pil_img = center_c\\n\\n... [截断: 输出过长，省略 7633 字符] ...\\n\\nprint(f\\\"\\\\n[Task {task_id+1}/{n_tasks}] {task_description}\\\", flush=True)\\n\\n        for ep in range(args.num_episodes):\\n            env.reset()\\n            init_states = task_suite.get_task_init_states(task_id)\\n            obs = env.set_init_state(init_states[ep])\\n            done = False\\n            t = 0\\n\\n            while t < max_steps + args.num_steps_wait:\\n                try:\\n                    if t < args.num_steps_wait:\\n                        obs, reward, done, info = env.step([0, 0, 0, 0, 0, 0, -1])\\n                        t += 1\\n                        continue\\n\\n                    img = preprocess_image(obs, center_crop=args.center_crop)\\n                    action = get_action(vla, processor, img, task_description)\\n                    action = normalize_gripper_action(action, binarize=True)\\n                    action = invert_gripper_action(action)\\n                    obs, reward, done, info = env.step(action.tolist())\\n                    if done:\\n                        task_successes += 1\\n                        total_successes += 1\\n                        break\\n                    t += 1\\n                except Exception as e:\\n                    print(f\\\"  Exception t={t}: {e}\\\", flush=True)\\n                    break\\n\\n            total_episodes += 1\\n            if (ep + 1) % 10 == 0:\\n                elapsed = time.time() - t_start\\n                eps_per_min = total_episodes / (elapsed / 60)\\n                print(f\\\"  Ep {ep+1}/{args.num_episodes} task_sr={task_successes}/{ep+1} \\\"\\n                      f\\\"({eps_per_min:.1f} eps/min)\\\", flush=True)\\n\\n        task_sr = task_successes / args.num_episodes\\n        per_task_results[task_description] = {\\n            \\\"success_rate\\\": task_sr,\\n            \\\"successes\\\": task_successes,\\n            \\\"episodes\\\": args.num_episodes,\\n        }\\n        print(f\\\"  => Task SR: {task_sr:.3f} ({task_successes}/{args.num_episodes})\\\", flush=True)\\n        env.close()\\n\\n    overall_sr = total_successes / total_episodes\\n    elapsed = time.time() - t_start\\n    print(f\\\"\\\\n{'''='''*60}\\\", flush=True)\\n    print(f\\\"Overall SR: {overall_sr:.4f} ({total_successes}/{total_episodes})\\\", flush=True)\\n    print(f\\\"Time: {elapsed/60:.1f} min\\\", flush=True)\\n    print(f\\\"{'''='''*60}\\\", flush=True)\\n\\n    results = {\\n        \\\"model\\\": os.path.basename(args.model_path),\\n        \\\"mode\\\": args.mode,\\n        \\\"suite\\\": args.suite,\\n        \\\"k_ratio\\\": args.k_ratio if args.mode in (\\\"random_prune\\\", \\\"l2norm_prune\\\", \\\"attention_prune\\\") else None,\\n        \\\"overall_success_rate\\\": overall_sr,\\n        \\\"total_successes\\\": total_successes,\\n        \\\"total_episodes\\\": total_episodes,\\n        \\\"per_task\\\": per_task_results,\\n        \\\"vision_tokens\\\": token_info,\\n        \\\"max_steps\\\": max_steps,\\n        \\\"seed\\\": args.seed,\\n        \\\"elapsed_minutes\\\": elapsed / 60,\\n        \\\"timestamp\\\": time.strftime(\\\"%Y-%m-%d %H:%M:%S\\\"),\\n    }\\n\\n    if args.output:\\n        out_path = args.output\\n    else:\\n        out_dir = \\\"/root/autodl-tmp/importance_margin_vla_compress/eval_results\\\"\\n        os.makedirs(out_dir, exist_ok=True)\\n        suite_short = args.suite.replace('libero_', '')\\n        if args.mode == \\\"baseline\\\":\\n            out_path = f\\\"{out_dir}/openvla_baseline_{suite_short}_seed{args.seed}.json\\\"\\n        elif args.mode == \\\"random_prune\\\":\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_random_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n        elif args.mode == \\\"attention_prune\\\":\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_attention_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n        else:\\n            k_str = str(args.k_ratio).replace(\\\".\\\", \\\"\\\")\\n            out_path = f\\\"{out_dir}/openvla_l2norm_prune_k{k_str}_{suite_short}_seed{args.seed}.json\\\"\\n\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"[*] Saved: {out_path}\\\", flush=True)\\n\\n    if hook_handle:\\n        hook_handle.remove()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the geometric_prior_pruning.py for the `find_connector` and `register_geometric_hook` functions used for SmolVLA pruning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "2960f9c7-07a9-4113-a3fe-8fa5cf1b99ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Jbao2ofHwE2GoLEm5QaPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8198,
+      "cache_read_input_tokens": 61113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8198
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+Let me check the connector/pruning mechanism for SmolVLA and the X-VLA model path.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "4a4dea77-3a02-4eb0-9def-e2710a2e46ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Jbao2ofHwE2GoLEm5QaPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8198,
+      "cache_read_input_tokens": 61113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8198
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M33pJBgGNeijRDoMJ76wtS`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "head -100 /root/autodl-tmp/importance_margin_vla_compress/geometric_prior_pruning.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "21815593-6b55-4897-82b7-4a00f8d0ccac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Jbao2ofHwE2GoLEm5QaPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8198,
+      "cache_read_input_tokens": 61113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8198
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-23T05:51:08.226Z_
+
+<details><summary>↩ Tool result · `toolu_01M33pJBgGNeijRDoMJ76wtS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nGeometric Prior Pruning for SmolVLA\\n\\nTraining-free vision token selection based on Sobel edge detection.\\nKeeps tokens whose spatial region has high image gradient (object boundaries).\\n\\nSmolVLA architecture:\\n  SigLIP (512x512, patch_size=16) -> 32x32 = 1024 tokens\\n  Connector pixel_shuffle (scale_factor=4) -> 8x8 = 64 tokens per camera\\n  LIBERO: 2 cameras -> 128 total visual tokens\\n\\nEach 8x8 output token maps to a 4x4 block of SigLIP patches = 64x64 pixels\\nin the 512x512 input image = 32x32 pixels in the raw 256x256 observation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport logging\\nfrom typing import List, Optional\\n\\nimport cv2\\nimport numpy as np\\nimport torch\\n\\nlog = logging.getLogger(__name__)\\n\\nGRID_H = 8\\nGRID_W = 8\\nTOKENS_PER_CAMERA = GRID_H * GRID_W  # 64\\n\\n\\ndef compute_sobel_importance(\\n    image: np.ndarray,\\n    grid_h: int = GRID_H,\\n    grid_w: int = GRID_W,\\n) -> np.ndarray:\\n    # 180-deg flip to match SmolVLA image preprocessing (torch.flip dims=[2,3])\\n    image = image[::-1, ::-1].copy()\\n\\n    gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY).astype(np.float64)\\n    sobelx = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=3)\\n    sobely = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=3)\\n    magnitude = np.sqrt(sobelx ** 2 + sobely ** 2)\\n\\n    H, W = magnitude.shape\\n    cell_h = H / grid_h\\n    cell_w = W / grid_w\\n\\n    importance = np.zeros(grid_h * grid_w, dtype=np.float64)\\n    for i in range(grid_h):\\n        for j in range(grid_w):\\n            r0 = int(i * cell_h)\\n            r1 = int((i + 1) * cell_h)\\n            c0 = int(j * cell_w)\\n            c1 = int((j + 1) * cell_w)\\n            importance[i * grid_w + j] = magnitude[r0:r1, c0:c1].mean()\\n\\n    vmin, vmax = importance.min(), importance.max()\\n    if vmax > vmin:\\n        importance = (importance - vmin) / (vmax - vmin)\\n    else:\\n        importance[:] = 1.0\\n\\n    return importance\\n\\n\\ndef compute_geometric_mask(\\n    images: List[np.ndarray],\\n    k_ratio: float,\\n    device: torch.device,\\n    grid_h: int = GRID_H,\\n    grid_w: int = GRID_W,\\n) -> torch.Tensor:\\n    all_imp = []\\n    for img in images:\\n        imp = compute_sobel_importance(img, grid_h, grid_w)\\n        all_imp.append(imp)\\n\\n    importance = np.concatenate(all_imp)\\n    importance_t = torch.from_numpy(importance).float().to(device)\\n\\n    N = importance_t.shape[0]\\n    k = max(1, int(N * k_ratio))\\n    _, topk_idx = torch.topk(importance_t, k)\\n\\n    mask = torch.zeros(1, N, device=device)\\n    mask[0, topk_idx] = 1.0\\n\\n    return mask\\n\\n\\ndef find_connector(model):\\n    for name, module in model.named_modules():\\n        if name.endswith(\\\".connector\\\") or \\\"multi_modal_projector\\\" in name:\\n            return module\\n    return None\\n\\n\\ndef register_geometric_hook(\\n    connector,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "c8d83460-8132-494f-934e-7da22c25fffc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nGeometric Prior Pruning for SmolVLA\\\\n\\\\nTraining-free vision token selection based on Sobel edge detection.\\\\nKeeps tokens whose spatial region has high image gradient (object boundaries).\\\\n\\\\nSmolVLA architecture:\\\\n  SigLIP (512x512, patch_size=16) -> 32x32 = 1024 tokens\\\\n  Connector pixel_shuffle (scale_factor=4) -> 8x8 = 64 tokens per camera\\\\n  LIBERO: 2 cameras -> 128 total visual tokens\\\\n\\\\nEach 8x8 output token maps to a 4x4 block of SigLIP patches = 64x64 pixels\\\\nin the 512x512 input image = 32x32 pixels in the raw 256x256 observation.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport logging\\\\nfrom typing import List, Optional\\\\n\\\\nimport cv2\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nGRID_H = 8\\\\nGRID_W = 8\\\\nTOKENS_PER_CAMERA = GRID_H * GRID_W  # 64\\\\n\\\\n\\\\ndef compute_sobel_importance(\\\\n    image: np.ndarray,\\\\n    grid_h: int = GRID_H,\\\\n    grid_w: int = GRID_W,\\\\n) -> np.ndarray:\\\\n    # 180-deg flip to match SmolVLA image preprocessing (torch.flip dims=[2,3])\\\\n    image = image[::-1, ::-1].copy()\\\\n\\\\n    gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY).astype(np.float64)\\\\n    sobelx = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=3)\\\\n    sobely = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=3)\\\\n    magnitude = np.sqrt(sobelx ** 2 + sobely ** 2)\\\\n\\\\n    H, W = magnitude.shape\\\\n    cell_h = H / grid_h\\\\n    cell_w = W / grid_w\\\\n\\\\n    importance = np.zeros(grid_h * grid_w, dtype=np.float64)\\\\n    for i in range(grid_h):\\\\n        for j in range(grid_w):\\\\n            r0 = int(i * cell_h)\\\\n            r1 = int((i + 1) * cell_h)\\\\n            c0 = int(j * cell_w)\\\\n            c1 = int((j + 1) * cell_w)\\\\n            importance[i * grid_w + j] = magnitude[r0:r1, c0:c1].mean()\\\\n\\\\n    vmin, vmax = importance.min(), importance.max()\\\\n    if vmax > vmin:\\\\n        importance = (importance - vmin) / (vmax - vmin)\\\\n    else:\\\\n        importance[:] = 1.0\\\\n\\\\n    return importance\\\\n\\\\n\\\\ndef compute_geometric_mask(\\\\n    images: List[np.ndarray],\\\\n    k_ratio: float,\\\\n    device: torch.device,\\\\n    grid_h: int = GRID_H,\\\\n    grid_w: int = GRID_W,\\\\n) -> torch.Tensor:\\\\n    all_imp = []\\\\n    for img in images:\\\\n        imp = compute_sobel_importance(img, grid_h, grid_w)\\\\n        all_imp.append(imp)\\\\n\\\\n    importance = np.concatenate(all_imp)\\\\n    importance_t = torch.from_numpy(importance).float().to(device)\\\\n\\\\n    N = importance_t.shape[0]\\\\n    k = max(1, int(N * k_ratio))\\\\n    _, topk_idx = torch.topk(importance_t, k)\\\\n\\\\n    mask = torch.zeros(1, N, device=device)\\\\n    mask[0, topk_idx] = 1.0\\\\n\\\\n    return mask\\\\n\\\\n\\\\ndef find_connector(model):\\\\n    for name, module in model.named_modules():\\\\n        if name.endswith(\\\\\\\".connector\\\\\\\") or \\\\\\\"multi_modal_projector\\\\\\\" in name:\\\\n            return module\\\\n    return None\\\\n\\\\n\\\\ndef register_geometric_hook(\\\\n    connector,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nGeometric Prior Pruning for SmolVLA\\n\\nTraining-free vision token selection based on Sobel edge detection.\\nKeeps tokens whose spatial region has high image gradient (object boundaries).\\n\\nSmolVLA architecture:\\n  SigLIP (512x512, patch_size=16) -> 32x32 = 1024 tokens\\n  Connector pixel_shuffle (scale_factor=4) -> 8x8 = 64 tokens per camera\\n  LIBERO: 2 cameras -> 128 total visual tokens\\n\\nEach 8x8 output token maps to a 4x4 block of SigLIP patches = 64x64 pixels\\nin the 512x512 input image = 32x32 pixels in the raw 256x256 observation.\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport logging\\nfrom typing import List, Optional\\n\\nimport cv2\\nimport numpy as np\\nimport torch\\n\\nlog = logging.getLogger(__name__)\\n\\nGRID_H = 8\\nGRID_W = 8\\nTOKENS_PER_CAMERA = GRID_H * GRID_W  # 64\\n\\n\\ndef compute_sobel_importance(\\n    image: np.ndarray,\\n    grid_h: int = GRID_H,\\n    grid_w: int = GRID_W,\\n) -> np.ndarray:\\n    # 180-deg flip to match SmolVLA image preprocessing (torch.flip dims=[2,3])\\n    image = image[::-1, ::-1].copy()\\n\\n    gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY).astype(np.float64)\\n    sobelx = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=3)\\n    sobely = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=3)\\n    magnitude = np.sqrt(sobelx ** 2 + sobely ** 2)\\n\\n    H, W = magnitude.shape\\n    cell_h = H / grid_h\\n    cell_w = W / grid_w\\n\\n    importance = np.zeros(grid_h * grid_w, dtype=np.float64)\\n    for i in range(grid_h):\\n        for j in range(grid_w):\\n            r0 = int(i * cell_h)\\n            r1 = int((i + 1) * cell_h)\\n            c0 = int(j * cell_w)\\n            c1 = int((j + 1) * cell_w)\\n            importance[i * grid_w + j] = magnitude[r0:r1, c0:c1].mean()\\n\\n    vmin, vmax = importance.min(), importance.max()\\n    if vmax > vmin:\\n        importance = (importance - vmin) / (vmax - vmin)\\n    else:\\n        importance[:] = 1.0\\n\\n    return importance\\n\\n\\ndef compute_geometric_mask(\\n    images: List[np.ndarray],\\n    k_ratio: float,\\n    device: torch.device,\\n    grid_h: int = GRID_H,\\n    grid_w: int = GRID_W,\\n) -> torch.Tensor:\\n    all_imp = []\\n    for img in images:\\n        imp = compute_sobel_importance(img, grid_h, grid_w)\\n        all_imp.append(imp)\\n\\n    importance = np.concatenate(all_imp)\\n    importance_t = torch.from_numpy(importance).float().to(device)\\n\\n    N = importance_t.shape[0]\\n    k = max(1, int(N * k_ratio))\\n    _, topk_idx = torch.topk(importance_t, k)\\n\\n    mask = torch.zeros(1, N, device=device)\\n    mask[0, topk_idx] = 1.0\\n\\n    return mask\\n\\n\\ndef find_connector(model):\\n    for name, module in model.named_modules():\\n        if name.endswith(\\\".connector\\\") or \\\"multi_modal_projector\\\" in name:\\n            return module\\n    return None\\n\\n\\ndef register_geometric_hook(\\n    connector,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CTtghE1wLLMMw3MufH56hX`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls /root/autodl-tmp/.hf_cache/xvla_ms/2toINF/X-VLA-Libero",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "2f9246c2-8851-44f1-a121-75e9dcbfc55a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Jbao2ofHwE2GoLEm5QaPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8198,
+      "cache_read_input_tokens": 61113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8198
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-23T05:51:09.827Z_
+
+<details><summary>↩ Tool result · `toolu_01CTtghE1wLLMMw3MufH56hX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "8576e4ed-b35e-49e0-b5f3-cef2ca976352",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jaz8RgFHB9z8qxSaCbDoSx`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls /root/autodl-tmp/.hf_cache/xvla_libero_official/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "07d1ff31-4009-4498-8756-8b4e008f62d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Jbao2ofHwE2GoLEm5QaPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8198,
+      "cache_read_input_tokens": 61113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8198
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-23T05:51:10.789Z_
+
+<details><summary>↩ Tool result · `toolu_01Jaz8RgFHB9z8qxSaCbDoSx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\naction_hub.py\\nconfig.json\\nconfiguration_florence2.py\\nconfiguration_xvla.py\\nmodel.safetensors\\nmodeling_florence2.py\\nmodeling_xvla.py\\npreprocessor_config.json\\nprocessing_xvla.py\\ntokenizer.json\\ntokenizer_config.json\\ntransformer.py\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "f4a37f35-50f2-4b54-af3e-8917b5649db8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\n__pycache__\\\\naction_hub.py\\\\nconfig.json\\\\nconfiguration_florence2.py\\\\nconfiguration_xvla.py\\\\nmodel.safetensors\\\\nmodeling_florence2.py\\\\nmodeling_xvla.py\\\\npreprocessor_config.json\\\\nprocessing_xvla.py\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntransformer.py\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\naction_hub.py\\nconfig.json\\nconfiguration_florence2.py\\nconfiguration_xvla.py\\nmodel.safetensors\\nmodeling_florence2.py\\nmodeling_xvla.py\\npreprocessor_config.json\\nprocessing_xvla.py\\ntokenizer.json\\ntokenizer_config.json\\ntransformer.py\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check how the OpenVLA pruning hook works on the projector, and get the `register_geometric_hook` function for SmolVLA.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "e5ea5e7b-0c69-47fd-8a58-cf5ef3bb57ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxJsXS9Zu6mRAJ82TaJN6g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1992,
+      "cache_read_input_tokens": 69311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019FPJv1UKJ24E5tjpq7ATkd`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -n +100 /root/autodl-tmp/importance_margin_vla_compress/geometric_prior_pruning.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "a29bfd7a-fed4-476d-a24a-be7be2915219",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxJsXS9Zu6mRAJ82TaJN6g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1992,
+      "cache_read_input_tokens": 69311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-23T05:51:16.696Z_
+
+<details><summary>↩ Tool result · `toolu_019FPJv1UKJ24E5tjpq7ATkd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    connector,\\n    mask: torch.Tensor,\\n    method: str = \\\"true_removal\\\",\\n):\\n    state = {\\\"offset\\\": 0}\\n\\n    def hook_fn(module, input, output):\\n        tokens = output[0] if isinstance(output, tuple) else output\\n        if tokens.dim() != 3:\\n            return output\\n\\n        n = tokens.shape[1]\\n        offset = state[\\\"offset\\\"]\\n        if offset + n > mask.shape[1]:\\n            return output\\n\\n        cam_mask = mask[:, offset : offset + n]\\n        state[\\\"offset\\\"] = offset + n\\n\\n        B, N, D = tokens.shape\\n        keep_mask = cam_mask[:B]\\n\\n        if method == \\\"true_removal\\\":\\n            kept = keep_mask[0].bool()\\n            masked = tokens[:, kept, :]\\n        else:\\n            masked = tokens * keep_mask.unsqueeze(-1)\\n\\n        if isinstance(output, tuple):\\n            return (masked,) + output[1:]\\n        return masked\\n\\n    return connector.register_forward_hook(hook_fn)\\n\\n\\nclass GeometricPriorPruner:\\n    def __init__(\\n        self,\\n        model,\\n        k_ratio: float = 0.5,\\n        method: str = \\\"true_removal\\\",\\n    ):\\n        self.k_ratio = k_ratio\\n        self.method = method\\n        self.connector = find_connector(model)\\n        if self.connector is None:\\n            raise RuntimeError(\\\"Cannot find connector module in model\\\")\\n        self._current_images: List[np.ndarray] = []\\n        self._hook_handle = None\\n        self._last_mask: Optional[torch.Tensor] = None\\n        self._last_per_camera_importance: List[np.ndarray] = []\\n\\n    def set_current_images(self, images: List[np.ndarray]):\\n        self._current_images = images\\n\\n    def attach(self, device: torch.device) -> torch.Tensor:\\n        if not self._current_images:\\n            raise RuntimeError(\\\"No images set. Call set_current_images() first.\\\")\\n\\n        self._last_per_camera_importance = []\\n        for img in self._current_images:\\n            imp = compute_sobel_importance(img)\\n            self._last_per_camera_importance.append(imp)\\n\\n        mask = compute_geometric_mask(\\n            self._current_images, self.k_ratio, device\\n        )\\n        self._last_mask = mask\\n\\n        self._hook_handle = register_geometric_hook(\\n            self.connector, mask, method=self.method\\n        )\\n        return mask\\n\\n    def detach(self):\\n        if self._hook_handle is not None:\\n            self._hook_handle.remove()\\n            self._hook_handle = None\\n\\n    def remove(self):\\n        self.detach()\\n\\n    def get_importance_stats(self) -> dict:\\n        if not self._last_per_camera_importance:\\n            return {}\\n        stats = {}\\n        for i, imp in enumerate(self._last_per_camera_importance):\\n            stats[f\\\"cam{i}_mean\\\"] = float(imp.mean())\\n            stats[f\\\"cam{i}_std\\\"] = float(imp.std())\\n            stats[f\\\"cam{i}_min\\\"] = float(imp.min())\\n            stats[f\\\"cam{i}_max\\\"] = float(imp.max())\\n            stats[f\\\"cam{i}_nonzero\\\"] = int((imp > 0.01).sum())\\n        if self._last_mask is not None:\\n            stats[\\\"total_kept\\\"] = int(self._last_mask.sum().item())\\n            stats[\\\"total_tokens\\\"] = self._last_mask.shape[1]\\n        return stats\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "89759086-bb78-4c45-b0ce-73e21716ca39",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    connector,\\\\n    mask: torch.Tensor,\\\\n    method: str = \\\\\\\"true_removal\\\\\\\",\\\\n):\\\\n    state = {\\\\\\\"offset\\\\\\\": 0}\\\\n\\\\n    def hook_fn(module, input, output):\\\\n        tokens = output[0] if isinstance(output, tuple) else output\\\\n        if tokens.dim() != 3:\\\\n            return output\\\\n\\\\n        n = tokens.shape[1]\\\\n        offset = state[\\\\\\\"offset\\\\\\\"]\\\\n        if offset + n > mask.shape[1]:\\\\n            return output\\\\n\\\\n        cam_mask = mask[:, offset : offset + n]\\\\n        state[\\\\\\\"offset\\\\\\\"] = offset + n\\\\n\\\\n        B, N, D = tokens.shape\\\\n        keep_mask = cam_mask[:B]\\\\n\\\\n        if method == \\\\\\\"true_removal\\\\\\\":\\\\n            kept = keep_mask[0].bool()\\\\n            masked = tokens[:, kept, :]\\\\n        else:\\\\n            masked = tokens * keep_mask.unsqueeze(-1)\\\\n\\\\n        if isinstance(output, tuple):\\\\n            return (masked,) + output[1:]\\\\n        return masked\\\\n\\\\n    return connector.register_forward_hook(hook_fn)\\\\n\\\\n\\\\nclass GeometricPriorPruner:\\\\n    def __init__(\\\\n        self,\\\\n        model,\\\\n        k_ratio: float = 0.5,\\\\n        method: str = \\\\\\\"true_removal\\\\\\\",\\\\n    ):\\\\n        self.k_ratio = k_ratio\\\\n        self.method = method\\\\n        self.connector = find_connector(model)\\\\n        if self.connector is None:\\\\n            raise RuntimeError(\\\\\\\"Cannot find connector module in model\\\\\\\")\\\\n        self._current_images: List[np.ndarray] = []\\\\n        self._hook_handle = None\\\\n        self._last_mask: Optional[torch.Tensor] = None\\\\n        self._last_per_camera_importance: List[np.ndarray] = []\\\\n\\\\n    def set_current_images(self, images: List[np.ndarray]):\\\\n        self._current_images = images\\\\n\\\\n    def attach(self, device: torch.device) -> torch.Tensor:\\\\n        if not self._current_images:\\\\n            raise RuntimeError(\\\\\\\"No images set. Call set_current_images() first.\\\\\\\")\\\\n\\\\n        self._last_per_camera_importance = []\\\\n        for img in self._current_images:\\\\n            imp = compute_sobel_importance(img)\\\\n            self._last_per_camera_importance.append(imp)\\\\n\\\\n        mask = compute_geometric_mask(\\\\n            self._current_images, self.k_ratio, device\\\\n        )\\\\n        self._last_mask = mask\\\\n\\\\n        self._hook_handle = register_geometric_hook(\\\\n            self.connector, mask, method=self.method\\\\n        )\\\\n        return mask\\\\n\\\\n    def detach(self):\\\\n        if self._hook_handle is not None:\\\\n            self._hook_handle.remove()\\\\n            self._hook_handle = None\\\\n\\\\n    def remove(self):\\\\n        self.detach()\\\\n\\\\n    def get_importance_stats(self) -> dict:\\\\n        if not self._last_per_camera_importance:\\\\n            return {}\\\\n        stats = {}\\\\n        for i, imp in enumerate(self._last_per_camera_importance):\\\\n            stats[f\\\\\\\"cam{i}_mean\\\\\\\"] = float(imp.mean())\\\\n            stats[f\\\\\\\"cam{i}_std\\\\\\\"] = float(imp.std())\\\\n            stats[f\\\\\\\"cam{i}_min\\\\\\\"] = float(imp.min())\\\\n            stats[f\\\\\\\"cam{i}_max\\\\\\\"] = float(imp.max())\\\\n            stats[f\\\\\\\"cam{i}_nonzero\\\\\\\"] = int((imp > 0.01).sum())\\\\n        if self._last_mask is not None:\\\\n            stats[\\\\\\\"total_kept\\\\\\\"] = int(self._last_mask.sum().item())\\\\n            stats[\\\\\\\"total_tokens\\\\\\\"] = self._last_mask.shape[1]\\\\n        return stats\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    connector,\\n    mask: torch.Tensor,\\n    method: str = \\\"true_removal\\\",\\n):\\n    state = {\\\"offset\\\": 0}\\n\\n    def hook_fn(module, input, output):\\n        tokens = output[0] if isinstance(output, tuple) else output\\n        if tokens.dim() != 3:\\n            return output\\n\\n        n = tokens.shape[1]\\n        offset = state[\\\"offset\\\"]\\n        if offset + n > mask.shape[1]:\\n            return output\\n\\n        cam_mask = mask[:, offset : offset + n]\\n        state[\\\"offset\\\"] = offset + n\\n\\n        B, N, D = tokens.shape\\n        keep_mask = cam_mask[:B]\\n\\n        if method == \\\"true_removal\\\":\\n            kept = keep_mask[0].bool()\\n            masked = tokens[:, kept, :]\\n        else:\\n            masked = tokens * keep_mask.unsqueeze(-1)\\n\\n        if isinstance(output, tuple):\\n            return (masked,) + output[1:]\\n        return masked\\n\\n    return connector.register_forward_hook(hook_fn)\\n\\n\\nclass GeometricPriorPruner:\\n    def __init__(\\n        self,\\n        model,\\n        k_ratio: float = 0.5,\\n        method: str = \\\"true_removal\\\",\\n    ):\\n        self.k_ratio = k_ratio\\n        self.method = method\\n        self.connector = find_connector(model)\\n        if self.connector is None:\\n            raise RuntimeError(\\\"Cannot find connector module in model\\\")\\n        self._current_images: List[np.ndarray] = []\\n        self._hook_handle = None\\n        self._last_mask: Optional[torch.Tensor] = None\\n        self._last_per_camera_importance: List[np.ndarray] = []\\n\\n    def set_current_images(self, images: List[np.ndarray]):\\n        self._current_images = images\\n\\n    def attach(self, device: torch.device) -> torch.Tensor:\\n        if not self._current_images:\\n            raise RuntimeError(\\\"No images set. Call set_current_images() first.\\\")\\n\\n        self._last_per_camera_importance = []\\n        for img in self._current_images:\\n            imp = compute_sobel_importance(img)\\n            self._last_per_camera_importance.append(imp)\\n\\n        mask = compute_geometric_mask(\\n            self._current_images, self.k_ratio, device\\n        )\\n        self._last_mask = mask\\n\\n        self._hook_handle = register_geometric_hook(\\n            self.connector, mask, method=self.method\\n        )\\n        return mask\\n\\n    def detach(self):\\n        if self._hook_handle is not None:\\n            self._hook_handle.remove()\\n            self._hook_handle = None\\n\\n    def remove(self):\\n        self.detach()\\n\\n    def get_importance_stats(self) -> dict:\\n        if not self._last_per_camera_importance:\\n            return {}\\n        stats = {}\\n        for i, imp in enumerate(self._last_per_camera_importance):\\n            stats[f\\\"cam{i}_mean\\\"] = float(imp.mean())\\n            stats[f\\\"cam{i}_std\\\"] = float(imp.std())\\n            stats[f\\\"cam{i}_min\\\"] = float(imp.min())\\n            stats[f\\\"cam{i}_max\\\"] = float(imp.max())\\n            stats[f\\\"cam{i}_nonzero\\\"] = int((imp > 0.01).sum())\\n        if self._last_mask is not None:\\n            stats[\\\"total_kept\\\"] = int(self._last_mask.sum().item())\\n            stats[\\\"total_tokens\\\"] = self._last_mask.shape[1]\\n        return stats\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YURSG5EatvJFWt55bEafHD`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "head -60 /root/autodl-tmp/importance_margin_vla_compress/eval_oft_prune_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "2a2c50ec-141f-45c5-a826-de623281ecd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxJsXS9Zu6mRAJ82TaJN6g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1992,
+      "cache_read_input_tokens": 69311,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-23T05:51:17.749Z_
+
+<details><summary>↩ Tool result · `toolu_01YURSG5EatvJFWt55bEafHD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nOFT (OpenVLA-OFT) Random Pruning Closed-Loop Evaluation on LIBERO.\\n\\nUsage:\\n    CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python eval_oft_prune_libero.py \\\\\\n        --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 7\\n\\\"\\\"\\\"\\n\\nimport argparse, json, math, os, sys, time as time_mod\\nfrom collections import deque\\n\\nos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom PIL import Image\\n\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nCHECKPOINT_PATH = \\\"/root/autodl-tmp/openvla-oft-libero-object\\\"\\nUNNORM_KEY = \\\"libero_object_no_noops\\\"\\n\\n# OFT LIBERO constants\\nACTION_DIM = 7\\nPROPRIO_DIM = 8\\nNUM_ACTIONS_CHUNK = 8\\nNUM_OPEN_LOOP_STEPS = 8\\nNUM_IMAGES_IN_INPUT = 2\\nUSE_PROPRIO = True\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 220,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n}\\n\\n# ---------------------------------------------------------------------------\\n# Action head / projector classes (from openvla-oft, inlined to avoid tf dep)\\n# ---------------------------------------------------------------------------\\n\\nclass MLPResNetBlock(nn.Module):\\n    def __init__(self, dim):\\n        super().__init__()\\n        self.ffn = nn.Sequential(nn.LayerNorm(dim), nn.Linear(dim, dim), nn.ReLU())\\n\\n    def forward(self, x):\\n        return x + self.ffn(x)\\n\\n\\nclass MLPResNet(nn.Module):\\n    def __init__(self, num_blocks, input_dim, hidden_dim, output_dim):\\n        super().__init__()\\n        self.layer_norm1 = nn.LayerNorm(input_dim)\\n        self.fc1 = nn.Linear(input_dim, hidden_dim)\\n        self.relu = nn.ReLU()\\n        self.mlp_resnet_blocks = nn.ModuleList([MLPResNetBlock(dim=hidden_dim) for _ in range(num_blocks)])\\n        self.layer_norm2 = nn.LayerNorm(hidden_dim)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "87d4d6e1-d481-4bbb-bdd7-30ddf3eea447",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nOFT (OpenVLA-OFT) Random Pruning Closed-Loop Evaluation on LIBERO.\\\\n\\\\nUsage:\\\\n    CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python eval_oft_prune_libero.py \\\\\\\\\\\\n        --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 7\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse, json, math, os, sys, time as time_mod\\\\nfrom collections import deque\\\\n\\\\nos.environ.setdefault(\\\\\\\"MUJOCO_GL\\\\\\\", \\\\\\\"egl\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom PIL import Image\\\\n\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\nCHECKPOINT_PATH = \\\\\\\"/root/autodl-tmp/openvla-oft-libero-object\\\\\\\"\\\\nUNNORM_KEY = \\\\\\\"libero_object_no_noops\\\\\\\"\\\\n\\\\n# OFT LIBERO constants\\\\nACTION_DIM = 7\\\\nPROPRIO_DIM = 8\\\\nNUM_ACTIONS_CHUNK = 8\\\\nNUM_OPEN_LOOP_STEPS = 8\\\\nNUM_IMAGES_IN_INPUT = 2\\\\nUSE_PROPRIO = True\\\\n\\\\nSUITE_MAX_STEPS = {\\\\n    \\\\\\\"libero_spatial\\\\\\\": 220,\\\\n    \\\\\\\"libero_object\\\\\\\": 280,\\\\n    \\\\\\\"libero_goal\\\\\\\": 300,\\\\n    \\\\\\\"libero_10\\\\\\\": 520,\\\\n}\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Action head / projector classes (from openvla-oft, inlined to avoid tf dep)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass MLPResNetBlock(nn.Module):\\\\n    def __init__(self, dim):\\\\n        super().__init__()\\\\n        self.ffn = nn.Sequential(nn.LayerNorm(dim), nn.Linear(dim, dim), nn.ReLU())\\\\n\\\\n    def forward(self, x):\\\\n        return x + self.ffn(x)\\\\n\\\\n\\\\nclass MLPResNet(nn.Module):\\\\n    def __init__(self, num_blocks, input_dim, hidden_dim, output_dim):\\\\n        super().__init__()\\\\n        self.layer_norm1 = nn.LayerNorm(input_dim)\\\\n        self.fc1 = nn.Linear(input_dim, hidden_dim)\\\\n        self.relu = nn.ReLU()\\\\n        self.mlp_resnet_blocks = nn.ModuleList([MLPResNetBlock(dim=hidden_dim) for _ in range(num_blocks)])\\\\n        self.layer_norm2 = nn.LayerNorm(hidden_dim)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nOFT (OpenVLA-OFT) Random Pruning Closed-Loop Evaluation on LIBERO.\\n\\nUsage:\\n    CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl python eval_oft_prune_libero.py \\\\\\n        --k_ratio 0.5 --suite libero_object --num_episodes 50 --seed 7\\n\\\"\\\"\\\"\\n\\nimport argparse, json, math, os, sys, time as time_mod\\nfrom collections import deque\\n\\nos.environ.setdefault(\\\"MUJOCO_GL\\\", \\\"egl\\\")\\nos.environ.setdefault(\\\"TRANSFORMERS_OFFLINE\\\", \\\"1\\\")\\nos.environ.setdefault(\\\"HF_HUB_OFFLINE\\\", \\\"1\\\")\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom PIL import Image\\n\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nCHECKPOINT_PATH = \\\"/root/autodl-tmp/openvla-oft-libero-object\\\"\\nUNNORM_KEY = \\\"libero_object_no_noops\\\"\\n\\n# OFT LIBERO constants\\nACTION_DIM = 7\\nPROPRIO_DIM = 8\\nNUM_ACTIONS_CHUNK = 8\\nNUM_OPEN_LOOP_STEPS = 8\\nNUM_IMAGES_IN_INPUT = 2\\nUSE_PROPRIO = True\\n\\nSUITE_MAX_STEPS = {\\n    \\\"libero_spatial\\\": 220,\\n    \\\"libero_object\\\": 280,\\n    \\\"libero_goal\\\": 300,\\n    \\\"libero_10\\\": 520,\\n}\\n\\n# ---------------------------------------------------------------------------\\n# Action head / projector classes (from openvla-oft, inlined to avoid tf dep)\\n# ---------------------------------------------------------------------------\\n\\nclass MLPResNetBlock(nn.Module):\\n    def __init__(self, dim):\\n        super().__init__()\\n        self.ffn = nn.Sequential(nn.LayerNorm(dim), nn.Linear(dim, dim), nn.ReLU())\\n\\n    def forward(self, x):\\n        return x + self.ffn(x)\\n\\n\\nclass MLPResNet(nn.Module):\\n    def __init__(self, num_blocks, input_dim, hidden_dim, output_dim):\\n        super().__init__()\\n        self.layer_norm1 = nn.LayerNorm(input_dim)\\n        self.fc1 = nn.Linear(input_dim, hidden_dim)\\n        self.relu = nn.ReLU()\\n        self.mlp_resnet_blocks = nn.ModuleList([MLPResNetBlock(dim=hidden_dim) for _ in range(num_blocks)])\\n        self.layer_norm2 = nn.LayerNorm(hidden_dim)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of all four models' loading and inference patterns. Let me also check how OpenVLA's L2 norm pruning hook works on the projector, since I need that for the latency script.
+
+From eval_openvla_l2norm_libero.py, I saw:
+- OpenVLA uses `vla.projector` for the hook
+- L2NormPruningHook and RandomPruningHook classes
+
+For the latency benchmark, I need to create a unified script. Let me now check the OpenVLA L2 norm hook class and a few more details.
+
+Actually I already have enough information. 
+
+Now I'm organizing the key details about how each model loads, runs inference, and applies pruning hooks so I can build the unified latency benchmark script. For X-VLA, I'm loading the model and processor, then running inference through a denoising loop to predict actions from images and text input, with pruning applied to the image encoder and vision tokens coming from Florence2. For OpenVLA, I'm loading the action prediction model and processor, then generating actions autoregressively from an image and task label, with pruning on the projector layer and vision tokens from a Sig encoder.
+
+Now I need to build the latency measurement script where each model has its own loading procedure, dummy inputs, and pruning strategy—all using L2-norm based pruning for consistency. The tricky part is handling the different inference patterns: SmolVLA and Pi0.5 use chunk-based prediction, X-VLA uses a denoising loop, and OpenVLA generates tokens autoregressively. I also need to count the vision tokens for each model to understand the computational load.
+
+Looking at the eval scripts to extract token counts: X-VLA determines the number of tokens dynamically from the model's output shape, OpenVLA applies L2-norm pruning at the projector layer, and Pi0.5 uses a fixed 256-patch grid from a 16×16 image representation.
+
+Rather than getting caught up in the specifics of each implementation, I'll write a unified evaluation script that handles all four models separately. The approach is straightforward: load each model, create appropriate dummy inputs, sweep through different keep ratios while installing and removing pruning hooks, and measure latency at each step.
+
+Writing the measurement script... I see the issue now—each model has its own pruning mechanism that doesn't align with a single L2 norm approach at the model level. SmolVLA prunes via a connector hook on concatenated tokens, Pi0.5 needs to intercept the embed_prefix to prune per-image tokens, X-VLA requires patching the Florence2 encoder output, and OpenVLA hooks into the projector. Since the latency benchmark should use the same pruning strategy as the evaluation, I need to implement model-specific pruning functions that all reduce vision tokens fed to the LLM backbone, though this means handling the complexities like Pi0.5's denoise steps and X-VLA's custom encoding separately.
+
+Setting up the benchmark script with per-model inference functions... I need to load the PI0 policy from LeRobot using the from_pretrained method, which handles the model initialization and weight loading from the checkpoint. Then I'll need to identify where the token pruning hook should attach—likely in the embed_prefix module that processes the image inputs.
+
+Writing comprehensive script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "0036c2cf-8d07-425c-9680-100fbe69f850",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QcXMN3Nn2ae1rSkAq16JBd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2471,
+      "cache_read_input_tokens": 71303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+Let me check Pi0.5 model loading and X-VLA predict_actions more closely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "1d6b6b7b-8c41-4809-9c84-5966030d32e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QcXMN3Nn2ae1rSkAq16JBd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2471,
+      "cache_read_input_tokens": 71303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AqpuDGTim3UikPE1wyLFEi`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -n \"def load_model\\|def preprocess\\|def predict_action\\|N_PATCHES\\|from lerobot\\|from_pretrained\\|safetensors\\|model_path\" /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "7fff8200-31ed-46e1-857c-5d8ac2b84ca3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QcXMN3Nn2ae1rSkAq16JBd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2471,
+      "cache_read_input_tokens": 71303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-23T05:52:27.745Z_
+
+<details><summary>↩ Tool result · `toolu_01AqpuDGTim3UikPE1wyLFEi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "7467744d-e90e-4ee9-b604-2277632043ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017MfpLigUyJpPscXA6u9y4D`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -n \"def predict_actions\\|def load_model\\|_encode_image\\|n_vis_tokens\\|denoise\" /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "08786040-80e1-458c-9c0a-e9ccd4b2015b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QcXMN3Nn2ae1rSkAq16JBd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2471,
+      "cache_read_input_tokens": 71303,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-23T05:52:29.178Z_
+
+<details><summary>↩ Tool result · `toolu_017MfpLigUyJpPscXA6u9y4D`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "e5e4d65f-0e3c-4381-9dec-1ed2f07deb37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VtNsNigqpisewRmWmGGriC`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -n \"N_PATCHES\\|def load_policy\\|def preprocess\\|from_pretrained\\|model_path\\|safetensors\" /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "2c61dfca-7ed6-4637-8f3e-0fa95ab5bbfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UScT9FH4PpZMJxDELh2rFZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3564,
+      "cache_read_input_tokens": 73774,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3564
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-23T05:52:32.332Z_
+
+<details><summary>↩ Tool result · `toolu_01VtNsNigqpisewRmWmGGriC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "9cbd4d6d-d446-4562-b1a5-febd8b150de4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ByPi7FAqEdQurNGuUiceXf`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -n \"def predict_actions\\|def load_model\\|n_vis_tokens\\|denoise_steps\" /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "e5c416db-0ea5-4a6d-8d40-e023df3375ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UScT9FH4PpZMJxDELh2rFZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3564,
+      "cache_read_input_tokens": 73774,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3564
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-23T05:52:33.073Z_
+
+<details><summary>↩ Tool result · `toolu_01ByPi7FAqEdQurNGuUiceXf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "a7766bbe-55f1-4a49-8e23-2a3af1821d45",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011ySZjTyqLJYao7pCviBSs1`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -n \"N_PATCHES\" /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "d291a3d1-9c4e-4dc1-b4ab-068d20147bce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F4PzfD8pCbiB3H18uy7qtw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 556,
+      "cache_read_input_tokens": 77338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 556
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-23T05:52:36.350Z_
+
+<details><summary>↩ Tool result · `toolu_011ySZjTyqLJYao7pCviBSs1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"182:    N_PATCHES = (224 // 14) ** 2\\n183:    log.info(f\\\"Vision tokens: {N_PATCHES}/image, 3 slots -> {N_PATCHES*3} total\\\")\\n228:        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\n229:        log.info(f\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n233:        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\n280:        log.info(f\\\"Pruning: attention, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n319:            \\\"vision_tokens_per_image\\\": N_PATCHES,\\n320:            \\\"total_vision_tokens\\\": N_PATCHES * 3,\\n321:            \\\"n_keep_per_image\\\": max(1, int(N_PATCHES * args.keep_ratio)) if prune_fn else N_PATCHES,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "46360f5d-b394-406a-8dd1-652fb6a194f5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"182:    N_PATCHES = (224 // 14) ** 2\\\\n183:    log.info(f\\\\\\\"Vision tokens: {N_PATCHES}/image, 3 slots -> {N_PATCHES*3} total\\\\\\\")\\\\n228:        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\\\n229:        log.info(f\\\\\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\\\\\"\\\\n233:        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\\\n280:        log.info(f\\\\\\\"Pruning: attention, keep {n_keep}/{N_PATCHES} tokens/image \\\\\\\"\\\\n319:            \\\\\\\"vision_tokens_per_image\\\\\\\": N_PATCHES,\\\\n320:            \\\\\\\"total_vision_tokens\\\\\\\": N_PATCHES * 3,\\\\n321:            \\\\\\\"n_keep_per_image\\\\\\\": max(1, int(N_PATCHES * args.keep_ratio)) if prune_fn else N_PATCHES,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"182:    N_PATCHES = (224 // 14) ** 2\\n183:    log.info(f\\\"Vision tokens: {N_PATCHES}/image, 3 slots -> {N_PATCHES*3} total\\\")\\n228:        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\n229:        log.info(f\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n233:        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\n280:        log.info(f\\\"Pruning: attention, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n319:            \\\"vision_tokens_per_image\\\": N_PATCHES,\\n320:            \\\"total_vision_tokens\\\": N_PATCHES * 3,\\n321:            \\\"n_keep_per_image\\\": max(1, int(N_PATCHES * args.keep_ratio)) if prune_fn else N_PATCHES,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XkSKvERvgRawNFkpMaGszP`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "grep -n \"def predict_actions\" /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "adb7b2db-6899-4cdc-a5c6-abc6c3350143",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F4PzfD8pCbiB3H18uy7qtw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 556,
+      "cache_read_input_tokens": 77338,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 556
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-23T05:52:38.187Z_
+
+<details><summary>↩ Tool result · `toolu_01XkSKvERvgRawNFkpMaGszP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"246:def predict_actions(model, processor, images, task_desc, proprio_20d, domain_id,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "966826ef-0c4b-47bf-85d9-664d9702cca9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"246:def predict_actions(model, processor, images, task_desc, proprio_20d, domain_id,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"246:def predict_actions(model, processor, images, task_desc, proprio_20d, domain_id,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Sb6SaWs2TABmqjgGWvpKuT`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -n +170 /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "1f723fc5-d860-4338-91c3-44a31d0c6606",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GeroTZmJDHcMu4iM7XeXTU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 77894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-23T05:52:42.116Z_
+
+<details><summary>↩ Tool result · `toolu_01Sb6SaWs2TABmqjgGWvpKuT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n        if features.dtype != out_dtype:\\n            features = features.to(out_dtype)\\n        return features\\n\\n    paligemma_expert.embed_image = types.MethodType(patched_embed_image, paligemma_expert)\\n    log.info(\\\"Patched embed_image\\\")\\n\\n    policy = policy.to(DEVICE)\\n    policy.eval()\\n    log.info(f\\\"Model: {sum(p.numel() for p in policy.parameters())/1e6:.1f}M params\\\")\\n\\n    N_PATCHES = (224 // 14) ** 2\\n    log.info(f\\\"Vision tokens: {N_PATCHES}/image, 3 slots -> {N_PATCHES*3} total\\\")\\n\\n    prune_fn = None\\n    if args.prune_mode == \\\"random\\\":\\n        prune_fn = prune_tokens_random\\n    elif args.prune_mode == \\\"l2norm\\\":\\n        prune_fn = prune_tokens_l2norm\\n\\n    if prune_fn is not None and args.prune_mode != \\\"attention\\\":\\n        original_embed_prefix = policy.model.embed_prefix\\n\\n        def pruned_embed_prefix(self_model, images, img_masks, tokens, masks):\\n            embs = []\\n            pad_masks_list = []\\n            att_masks = []\\n\\n            for cam_idx, (img, img_mask) in enumerate(zip(images, img_masks, strict=True)):\\n                img_emb = self_model.paligemma_with_expert.embed_image(img)\\n                bsize, num_img_embs, dim = img_emb.shape\\n\\n                if args.fixed_mask and args.prune_mode == \\\"random\\\":\\n                    n_keep = max(1, int(num_img_embs * args.keep_ratio))\\n                    if cam_idx not in _episode_mask_cache:\\n                        _episode_mask_cache[cam_idx] = torch.randperm(num_img_embs, device=img_emb.device)[:n_keep].sort().values\\n                    img_emb = img_emb[:, _episode_mask_cache[cam_idx], :]\\n                else:\\n                    img_emb, n_keep = prune_fn(img_emb, args.keep_ratio)\\n\\n                embs.append(img_emb)\\n                pad_masks_list.append(img_mask[:, None].expand(bsize, n_keep))\\n                att_masks += [0] * n_keep\\n\\n            lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\\n            embs.append(lang_emb)\\n            pad_masks_list.append(masks)\\n            att_masks += [0] * lang_emb.shape[1]\\n\\n            embs = torch.cat(embs, dim=1)\\n            pad_masks_cat = torch.cat(pad_masks_list, dim=1)\\n            att_masks_t = torch.tensor(att_masks, dtype=torch.bool, device=pad_masks_cat.device)\\n            att_masks_t = att_masks_t[None, :].expand(bsize, len(att_masks))\\n\\n            return embs, pad_masks_cat, att_masks_t\\n\\n        policy.model.embed_prefix = types.MethodType(pruned_embed_prefix, policy.model)\\n        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\n        log.info(f\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n                 f\\\"({n_keep*3} total)\\\")\\n\\n    if args.prune_mode == \\\"attention\\\":\\n        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\n\\n        def pruned_embed_prefix_attn(self_model, images, img_masks, tokens, masks):\\n            img_embs = []\\n            for img, img_mask in zip(images, img_masks, strict=True):\\n                img_emb = self_model.paligemma_with_expert.embed_image(img)\\n                img_embs.append(img_emb)\\n            lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\\n\\n            lm = self_model.paligemma_with_expert.paligemma.model.language_model\\n            vis_importance = compute_attention_importance_probe(img_embs, lang_emb, lm)\\n\\n            embs = []\\n            pad_masks_list = []\\n            att_masks = []\\n            start_idx = 0\\n            bsize = img_embs[0].shape[0]\\n\\n            for i, (img_emb, img_mask) in enumerate(zip(img_embs, img_masks)):\\n                n_tokens = img_emb.shape[1]\\n                n_keep_cur = max(1, int(n_tokens * args.keep_ratio))\\n                scores = vis_importance[0, start_idx:start_idx + n_tokens]\\n                _, topk_idx = torch.topk(scores, n_keep_cur)\\n                topk_idx = topk_idx.sort().values\\n\\n                if not hasattr(pruned_embed_prefix_attn, \\\"_logged\\\"):\\n                    print(f\\\"[PRUNE-DIAG] attention: n_keep={n_keep_cur}/{n_tokens}, \\\"\\n              \\n\\n... [截断: 输出过长，省略 3046 字符] ...\\n\\nnRenderEnv(bddl_file_name=str(bddl),\\n                                 camera_heights=256, camera_widths=256)\\n        env.seed(args.seed)\\n        task_desc = task.language\\n        task_successes = 0\\n\\n        for ep in range(args.n_episodes):\\n            _episode_mask_cache.clear()\\n            env.reset()\\n            obs = env.set_init_state(init_states[ep])\\n            for _ in range(10):\\n                obs, _, _, _ = env.step([0.0]*6 + [-1.0])\\n\\n            done = False\\n            action_queue = deque()\\n\\n            for t in range(max_steps):\\n                if not action_queue:\\n                    base_img = obs[\\\"agentview_image\\\"]\\n                    wrist_img = obs[\\\"robot0_eye_in_hand_image\\\"]\\n                    base_t = torch.from_numpy(base_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    base_t = torch.flip(base_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n                    wrist_t = torch.from_numpy(wrist_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    wrist_t = torch.flip(wrist_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n\\n                    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n                    eef_quat = obs[\\\"robot0_eef_quat\\\"]\\n                    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n                    state = np.concatenate([\\n                        eef_pos, quat_to_axisangle(eef_quat), gripper_qpos\\n                    ]).astype(np.float32)\\n                    state_t = torch.from_numpy(state)\\n\\n                    raw_obs = {\\n                        \\\"observation.images.image\\\": base_t,\\n                        \\\"observation.images.image2\\\": wrist_t,\\n                        \\\"observation.state\\\": state_t,\\n                        \\\"task\\\": task_desc,\\n                    }\\n                    batch = preprocess(raw_obs)\\n\\n                    with torch.no_grad():\\n                        actions = policy.predict_action_chunk(batch)\\n\\n                    actions_unnorm = postprocess(actions)\\n                    action_np = actions_unnorm[0].cpu().numpy()\\n\\n                    for a in action_np[:args.replan_steps]:\\n                        action_queue.append(a[:7])\\n\\n                action = action_queue.popleft()\\n                obs, reward, done, info = env.step(action.tolist())\\n                if done:\\n                    task_successes += 1\\n                    total_success += 1\\n                    break\\n\\n            total_episodes += 1\\n\\n            if (ep + 1) % 10 == 0:\\n                log.info(f\\\"  T{task_id} [{task_desc[:40]}] ep={ep+1}: \\\"\\n                         f\\\"{task_successes}/{ep+1}={task_successes/(ep+1)*100:.0f}%\\\")\\n\\n        task_sr = task_successes / args.n_episodes\\n        results[\\\"per_task\\\"][task_desc] = {\\\"id\\\": task_id, \\\"sr\\\": task_sr, \\\"n\\\": task_successes}\\n        elapsed = time_mod.time() - t_start\\n        log.info(f\\\"Task {task_id}: SR={task_sr*100:.1f}% | \\\"\\n                 f\\\"Total: {total_success}/{total_episodes}={total_success/total_episodes*100:.1f}% | \\\"\\n                 f\\\"Time: {elapsed/60:.1f}min\\\")\\n        env.close()\\n\\n    results[\\\"overall_sr\\\"] = total_success / total_episodes\\n    results[\\\"total_successes\\\"] = total_success\\n    results[\\\"total_episodes\\\"] = total_episodes\\n    results[\\\"elapsed_min\\\"] = (time_mod.time() - t_start) / 60\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    if args.prune_mode == \\\"none\\\":\\n        fname = f\\\"pi05_baseline_{args.suite}_seed{args.seed}.json\\\"\\n    else:\\n        mask_tag = \\\"_fixmask\\\" if args.fixed_mask else \\\"\\\"\\n        fname = f\\\"pi05_{args.prune_mode}{mask_tag}_k{args.keep_ratio:.2f}_{args.suite}_seed{args.seed}.json\\\"\\n    out_path = out_dir / fname\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    log.info(f\\\"\\\\n{'='*60}\\\")\\n    log.info(f\\\"RESULT: {args.suite} prune={args.prune_mode} keep={args.keep_ratio} \\\"\\n             f\\\"SR={results['overall_sr']*100:.1f}%\\\")\\n    log.info(f\\\"Saved: {out_path}\\\")\\n    log.info(f\\\"{'='*60}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "e5d6c542-904d-4374-b6d8-85c09e423aee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n        if features.dtype != out_dtype:\\\\n            features = features.to(out_dtype)\\\\n        return features\\\\n\\\\n    paligemma_expert.embed_image = types.MethodType(patched_embed_image, paligemma_expert)\\\\n    log.info(\\\\\\\"Patched embed_image\\\\\\\")\\\\n\\\\n    policy = policy.to(DEVICE)\\\\n    policy.eval()\\\\n    log.info(f\\\\\\\"Model: {sum(p.numel() for p in policy.parameters())/1e6:.1f}M params\\\\\\\")\\\\n\\\\n    N_PATCHES = (224 // 14) ** 2\\\\n    log.info(f\\\\\\\"Vision tokens: {N_PATCHES}/image, 3 slots -> {N_PATCHES*3} total\\\\\\\")\\\\n\\\\n    prune_fn = None\\\\n    if args.prune_mode == \\\\\\\"random\\\\\\\":\\\\n        prune_fn = prune_tokens_random\\\\n    elif args.prune_mode == \\\\\\\"l2norm\\\\\\\":\\\\n        prune_fn = prune_tokens_l2norm\\\\n\\\\n    if prune_fn is not None and args.prune_mode != \\\\\\\"attention\\\\\\\":\\\\n        original_embed_prefix = policy.model.embed_prefix\\\\n\\\\n        def pruned_embed_prefix(self_model, images, img_masks, tokens, masks):\\\\n            embs = []\\\\n            pad_masks_list = []\\\\n            att_masks = []\\\\n\\\\n            for cam_idx, (img, img_mask) in enumerate(zip(images, img_masks, strict=True)):\\\\n                img_emb = self_model.paligemma_with_expert.embed_image(img)\\\\n                bsize, num_img_embs, dim = img_emb.shape\\\\n\\\\n                if args.fixed_mask and args.prune_mode == \\\\\\\"random\\\\\\\":\\\\n                    n_keep = max(1, int(num_img_embs * args.keep_ratio))\\\\n                    if cam_idx not in _episode_mask_cache:\\\\n                        _episode_mask_cache[cam_idx] = torch.randperm(num_img_embs, device=img_emb.device)[:n_keep].sort().values\\\\n                    img_emb = img_emb[:, _episode_mask_cache[cam_idx], :]\\\\n                else:\\\\n                    img_emb, n_keep = prune_fn(img_emb, args.keep_ratio)\\\\n\\\\n                embs.append(img_emb)\\\\n                pad_masks_list.append(img_mask[:, None].expand(bsize, n_keep))\\\\n                att_masks += [0] * n_keep\\\\n\\\\n            lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\\\\n            embs.append(lang_emb)\\\\n            pad_masks_list.append(masks)\\\\n            att_masks += [0] * lang_emb.shape[1]\\\\n\\\\n            embs = torch.cat(embs, dim=1)\\\\n            pad_masks_cat = torch.cat(pad_masks_list, dim=1)\\\\n            att_masks_t = torch.tensor(att_masks, dtype=torch.bool, device=pad_masks_cat.device)\\\\n            att_masks_t = att_masks_t[None, :].expand(bsize, len(att_masks))\\\\n\\\\n            return embs, pad_masks_cat, att_masks_t\\\\n\\\\n        policy.model.embed_prefix = types.MethodType(pruned_embed_prefix, policy.model)\\\\n        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\\\n        log.info(f\\\\\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\\\\\"\\\\n                 f\\\\\\\"({n_keep*3} total)\\\\\\\")\\\\n\\\\n    if args.prune_mode == \\\\\\\"attention\\\\\\\":\\\\n        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\\\n\\\\n        def pruned_embed_prefix_attn(self_model, images, img_masks, tokens, masks):\\\\n            img_embs = []\\\\n            for img, img_mask in zip(images, img_masks, strict=True):\\\\n                img_emb = self_model.paligemma_with_expert.embed_image(img)\\\\n                img_embs.append(img_emb)\\\\n            lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\\\\n\\\\n            lm = self_model.paligemma_with_expert.paligemma.model.language_model\\\\n            vis_importance = compute_attention_importance_probe(img_embs, lang_emb, lm)\\\\n\\\\n            embs = []\\\\n            pad_masks_list = []\\\\n            att_masks = []\\\\n            start_idx = 0\\\\n            bsize = img_embs[0].shape[0]\\\\n\\\\n            for i, (img_emb, img_mask) in enumerate(zip(img_embs, img_masks)):\\\\n                n_tokens = img_emb.shape[1]\\\\n                n_keep_cur = max(1, int(n_tokens * args.keep_ratio))\\\\n                scores = vis_importance[0, start_idx:start_idx + n_tokens]\\\\n                _, topk_idx = torch.topk(scores, n_keep_cur)\\\\n                topk_idx = topk_idx.sort().values\\\\n\\\\n                if not hasattr(pruned_embed_prefix_attn, \\\\\\\"_logged\\\\\\\"):\\\\n                    print(f\\\\\\\"[PRUNE-DIAG] attention: n_keep={n_keep_cur}/{n_tokens}, \\\\\\\"\\\\n              \\\\n\\\\n... [截断: 输出过长，省略 3046 字符] ...\\\\n\\\\nnRenderEnv(bddl_file_name=str(bddl),\\\\n                                 camera_heights=256, camera_widths=256)\\\\n        env.seed(args.seed)\\\\n        task_desc = task.language\\\\n        task_successes = 0\\\\n\\\\n        for ep in range(args.n_episodes):\\\\n            _episode_mask_cache.clear()\\\\n            env.reset()\\\\n            obs = env.set_init_state(init_states[ep])\\\\n            for _ in range(10):\\\\n                obs, _, _, _ = env.step([0.0]*6 + [-1.0])\\\\n\\\\n            done = False\\\\n            action_queue = deque()\\\\n\\\\n            for t in range(max_steps):\\\\n                if not action_queue:\\\\n                    base_img = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n                    wrist_img = obs[\\\\\\\"robot0_eye_in_hand_image\\\\\\\"]\\\\n                    base_t = torch.from_numpy(base_img.copy()).permute(2, 0, 1).float() / 255.0\\\\n                    base_t = torch.flip(base_t, dims=[1, 2])  # 180° flip to match LeRobot training\\\\n                    wrist_t = torch.from_numpy(wrist_img.copy()).permute(2, 0, 1).float() / 255.0\\\\n                    wrist_t = torch.flip(wrist_t, dims=[1, 2])  # 180° flip to match LeRobot training\\\\n\\\\n                    eef_pos = obs[\\\\\\\"robot0_eef_pos\\\\\\\"]\\\\n                    eef_quat = obs[\\\\\\\"robot0_eef_quat\\\\\\\"]\\\\n                    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n                    state = np.concatenate([\\\\n                        eef_pos, quat_to_axisangle(eef_quat), gripper_qpos\\\\n                    ]).astype(np.float32)\\\\n                    state_t = torch.from_numpy(state)\\\\n\\\\n                    raw_obs = {\\\\n                        \\\\\\\"observation.images.image\\\\\\\": base_t,\\\\n                        \\\\\\\"observation.images.image2\\\\\\\": wrist_t,\\\\n                        \\\\\\\"observation.state\\\\\\\": state_t,\\\\n                        \\\\\\\"task\\\\\\\": task_desc,\\\\n                    }\\\\n                    batch = preprocess(raw_obs)\\\\n\\\\n                    with torch.no_grad():\\\\n                        actions = policy.predict_action_chunk(batch)\\\\n\\\\n                    actions_unnorm = postprocess(actions)\\\\n                    action_np = actions_unnorm[0].cpu().numpy()\\\\n\\\\n                    for a in action_np[:args.replan_steps]:\\\\n                        action_queue.append(a[:7])\\\\n\\\\n                action = action_queue.popleft()\\\\n                obs, reward, done, info = env.step(action.tolist())\\\\n                if done:\\\\n                    task_successes += 1\\\\n                    total_success += 1\\\\n                    break\\\\n\\\\n            total_episodes += 1\\\\n\\\\n            if (ep + 1) % 10 == 0:\\\\n                log.info(f\\\\\\\"  T{task_id} [{task_desc[:40]}] ep={ep+1}: \\\\\\\"\\\\n                         f\\\\\\\"{task_successes}/{ep+1}={task_successes/(ep+1)*100:.0f}%\\\\\\\")\\\\n\\\\n        task_sr = task_successes / args.n_episodes\\\\n        results[\\\\\\\"per_task\\\\\\\"][task_desc] = {\\\\\\\"id\\\\\\\": task_id, \\\\\\\"sr\\\\\\\": task_sr, \\\\\\\"n\\\\\\\": task_successes}\\\\n        elapsed = time_mod.time() - t_start\\\\n        log.info(f\\\\\\\"Task {task_id}: SR={task_sr*100:.1f}% | \\\\\\\"\\\\n                 f\\\\\\\"Total: {total_success}/{total_episodes}={total_success/total_episodes*100:.1f}% | \\\\\\\"\\\\n                 f\\\\\\\"Time: {elapsed/60:.1f}min\\\\\\\")\\\\n        env.close()\\\\n\\\\n    results[\\\\\\\"overall_sr\\\\\\\"] = total_success / total_episodes\\\\n    results[\\\\\\\"total_successes\\\\\\\"] = total_success\\\\n    results[\\\\\\\"total_episodes\\\\\\\"] = total_episodes\\\\n    results[\\\\\\\"elapsed_min\\\\\\\"] = (time_mod.time() - t_start) / 60\\\\n\\\\n    out_dir = Path(args.output_dir)\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    if args.prune_mode == \\\\\\\"none\\\\\\\":\\\\n        fname = f\\\\\\\"pi05_baseline_{args.suite}_seed{args.seed}.json\\\\\\\"\\\\n    else:\\\\n        mask_tag = \\\\\\\"_fixmask\\\\\\\" if args.fixed_mask else \\\\\\\"\\\\\\\"\\\\n        fname = f\\\\\\\"pi05_{args.prune_mode}{mask_tag}_k{args.keep_ratio:.2f}_{args.suite}_seed{args.seed}.json\\\\\\\"\\\\n    out_path = out_dir / fname\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    log.info(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    log.info(f\\\\\\\"RESULT: {args.suite} prune={args.prune_mode} keep={args.keep_ratio} \\\\\\\"\\\\n             f\\\\\\\"SR={results['overall_sr']*100:.1f}%\\\\\\\")\\\\n    log.info(f\\\\\\\"Saved: {out_path}\\\\\\\")\\\\n    log.info(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n        if features.dtype != out_dtype:\\n            features = features.to(out_dtype)\\n        return features\\n\\n    paligemma_expert.embed_image = types.MethodType(patched_embed_image, paligemma_expert)\\n    log.info(\\\"Patched embed_image\\\")\\n\\n    policy = policy.to(DEVICE)\\n    policy.eval()\\n    log.info(f\\\"Model: {sum(p.numel() for p in policy.parameters())/1e6:.1f}M params\\\")\\n\\n    N_PATCHES = (224 // 14) ** 2\\n    log.info(f\\\"Vision tokens: {N_PATCHES}/image, 3 slots -> {N_PATCHES*3} total\\\")\\n\\n    prune_fn = None\\n    if args.prune_mode == \\\"random\\\":\\n        prune_fn = prune_tokens_random\\n    elif args.prune_mode == \\\"l2norm\\\":\\n        prune_fn = prune_tokens_l2norm\\n\\n    if prune_fn is not None and args.prune_mode != \\\"attention\\\":\\n        original_embed_prefix = policy.model.embed_prefix\\n\\n        def pruned_embed_prefix(self_model, images, img_masks, tokens, masks):\\n            embs = []\\n            pad_masks_list = []\\n            att_masks = []\\n\\n            for cam_idx, (img, img_mask) in enumerate(zip(images, img_masks, strict=True)):\\n                img_emb = self_model.paligemma_with_expert.embed_image(img)\\n                bsize, num_img_embs, dim = img_emb.shape\\n\\n                if args.fixed_mask and args.prune_mode == \\\"random\\\":\\n                    n_keep = max(1, int(num_img_embs * args.keep_ratio))\\n                    if cam_idx not in _episode_mask_cache:\\n                        _episode_mask_cache[cam_idx] = torch.randperm(num_img_embs, device=img_emb.device)[:n_keep].sort().values\\n                    img_emb = img_emb[:, _episode_mask_cache[cam_idx], :]\\n                else:\\n                    img_emb, n_keep = prune_fn(img_emb, args.keep_ratio)\\n\\n                embs.append(img_emb)\\n                pad_masks_list.append(img_mask[:, None].expand(bsize, n_keep))\\n                att_masks += [0] * n_keep\\n\\n            lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\\n            embs.append(lang_emb)\\n            pad_masks_list.append(masks)\\n            att_masks += [0] * lang_emb.shape[1]\\n\\n            embs = torch.cat(embs, dim=1)\\n            pad_masks_cat = torch.cat(pad_masks_list, dim=1)\\n            att_masks_t = torch.tensor(att_masks, dtype=torch.bool, device=pad_masks_cat.device)\\n            att_masks_t = att_masks_t[None, :].expand(bsize, len(att_masks))\\n\\n            return embs, pad_masks_cat, att_masks_t\\n\\n        policy.model.embed_prefix = types.MethodType(pruned_embed_prefix, policy.model)\\n        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\n        log.info(f\\\"Pruning: {args.prune_mode}, keep {n_keep}/{N_PATCHES} tokens/image \\\"\\n                 f\\\"({n_keep*3} total)\\\")\\n\\n    if args.prune_mode == \\\"attention\\\":\\n        n_keep = max(1, int(N_PATCHES * args.keep_ratio))\\n\\n        def pruned_embed_prefix_attn(self_model, images, img_masks, tokens, masks):\\n            img_embs = []\\n            for img, img_mask in zip(images, img_masks, strict=True):\\n                img_emb = self_model.paligemma_with_expert.embed_image(img)\\n                img_embs.append(img_emb)\\n            lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\\n\\n            lm = self_model.paligemma_with_expert.paligemma.model.language_model\\n            vis_importance = compute_attention_importance_probe(img_embs, lang_emb, lm)\\n\\n            embs = []\\n            pad_masks_list = []\\n            att_masks = []\\n            start_idx = 0\\n            bsize = img_embs[0].shape[0]\\n\\n            for i, (img_emb, img_mask) in enumerate(zip(img_embs, img_masks)):\\n                n_tokens = img_emb.shape[1]\\n                n_keep_cur = max(1, int(n_tokens * args.keep_ratio))\\n                scores = vis_importance[0, start_idx:start_idx + n_tokens]\\n                _, topk_idx = torch.topk(scores, n_keep_cur)\\n                topk_idx = topk_idx.sort().values\\n\\n                if not hasattr(pruned_embed_prefix_attn, \\\"_logged\\\"):\\n                    print(f\\\"[PRUNE-DIAG] attention: n_keep={n_keep_cur}/{n_tokens}, \\\"\\n              \\n\\n... [截断: 输出过长，省略 3046 字符] ...\\n\\nnRenderEnv(bddl_file_name=str(bddl),\\n                                 camera_heights=256, camera_widths=256)\\n        env.seed(args.seed)\\n        task_desc = task.language\\n        task_successes = 0\\n\\n        for ep in range(args.n_episodes):\\n            _episode_mask_cache.clear()\\n            env.reset()\\n            obs = env.set_init_state(init_states[ep])\\n            for _ in range(10):\\n                obs, _, _, _ = env.step([0.0]*6 + [-1.0])\\n\\n            done = False\\n            action_queue = deque()\\n\\n            for t in range(max_steps):\\n                if not action_queue:\\n                    base_img = obs[\\\"agentview_image\\\"]\\n                    wrist_img = obs[\\\"robot0_eye_in_hand_image\\\"]\\n                    base_t = torch.from_numpy(base_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    base_t = torch.flip(base_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n                    wrist_t = torch.from_numpy(wrist_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    wrist_t = torch.flip(wrist_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n\\n                    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n                    eef_quat = obs[\\\"robot0_eef_quat\\\"]\\n                    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n                    state = np.concatenate([\\n                        eef_pos, quat_to_axisangle(eef_quat), gripper_qpos\\n                    ]).astype(np.float32)\\n                    state_t = torch.from_numpy(state)\\n\\n                    raw_obs = {\\n                        \\\"observation.images.image\\\": base_t,\\n                        \\\"observation.images.image2\\\": wrist_t,\\n                        \\\"observation.state\\\": state_t,\\n                        \\\"task\\\": task_desc,\\n                    }\\n                    batch = preprocess(raw_obs)\\n\\n                    with torch.no_grad():\\n                        actions = policy.predict_action_chunk(batch)\\n\\n                    actions_unnorm = postprocess(actions)\\n                    action_np = actions_unnorm[0].cpu().numpy()\\n\\n                    for a in action_np[:args.replan_steps]:\\n                        action_queue.append(a[:7])\\n\\n                action = action_queue.popleft()\\n                obs, reward, done, info = env.step(action.tolist())\\n                if done:\\n                    task_successes += 1\\n                    total_success += 1\\n                    break\\n\\n            total_episodes += 1\\n\\n            if (ep + 1) % 10 == 0:\\n                log.info(f\\\"  T{task_id} [{task_desc[:40]}] ep={ep+1}: \\\"\\n                         f\\\"{task_successes}/{ep+1}={task_successes/(ep+1)*100:.0f}%\\\")\\n\\n        task_sr = task_successes / args.n_episodes\\n        results[\\\"per_task\\\"][task_desc] = {\\\"id\\\": task_id, \\\"sr\\\": task_sr, \\\"n\\\": task_successes}\\n        elapsed = time_mod.time() - t_start\\n        log.info(f\\\"Task {task_id}: SR={task_sr*100:.1f}% | \\\"\\n                 f\\\"Total: {total_success}/{total_episodes}={total_success/total_episodes*100:.1f}% | \\\"\\n                 f\\\"Time: {elapsed/60:.1f}min\\\")\\n        env.close()\\n\\n    results[\\\"overall_sr\\\"] = total_success / total_episodes\\n    results[\\\"total_successes\\\"] = total_success\\n    results[\\\"total_episodes\\\"] = total_episodes\\n    results[\\\"elapsed_min\\\"] = (time_mod.time() - t_start) / 60\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    if args.prune_mode == \\\"none\\\":\\n        fname = f\\\"pi05_baseline_{args.suite}_seed{args.seed}.json\\\"\\n    else:\\n        mask_tag = \\\"_fixmask\\\" if args.fixed_mask else \\\"\\\"\\n        fname = f\\\"pi05_{args.prune_mode}{mask_tag}_k{args.keep_ratio:.2f}_{args.suite}_seed{args.seed}.json\\\"\\n    out_path = out_dir / fname\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    log.info(f\\\"\\\\n{'='*60}\\\")\\n    log.info(f\\\"RESULT: {args.suite} prune={args.prune_mode} keep={args.keep_ratio} \\\"\\n             f\\\"SR={results['overall_sr']*100:.1f}%\\\")\\n    log.info(f\\\"Saved: {out_path}\\\")\\n    log.info(f\\\"{'='*60}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A6mF2Q43hhBHhCS2Lu28Xq`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -n +240 /root/autodl-tmp/importance_margin_vla_compress/eval_xvla_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "4edc6b92-137f-415e-a8a3-9c9e334fa583",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GeroTZmJDHcMu4iM7XeXTU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 77894,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-23T05:52:42.630Z_
+
+<details><summary>↩ Tool result · `toolu_01A6mF2Q43hhBHhCS2Lu28Xq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n# ---------------------------------------------------------------------------\\n# Action prediction\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef predict_actions(model, processor, images, task_desc, proprio_20d, domain_id,\\n                    device, denoise_steps=10):\\n    inputs = processor(images=images, language_instruction=task_desc)\\n\\n    proprio_t = torch.tensor(proprio_20d, dtype=torch.float32).unsqueeze(0).to(device)\\n    domain_t = torch.tensor([domain_id], dtype=torch.long).to(device)\\n\\n    for k, v in inputs.items():\\n        if isinstance(v, torch.Tensor):\\n            if v.is_floating_point():\\n                inputs[k] = v.to(device=device, dtype=torch.float32)\\n            else:\\n                inputs[k] = v.to(device=device)\\n\\n    actions = model.generate_actions(\\n        input_ids=inputs[\\\"input_ids\\\"],\\n        image_input=inputs[\\\"image_input\\\"],\\n        image_mask=inputs[\\\"image_mask\\\"],\\n        proprio=proprio_t,\\n        domain_id=domain_t,\\n        steps=denoise_steps,\\n    )  # [1, 30, 20]\\n\\n    return actions.squeeze(0).float().cpu().numpy()  # [30, 20]\\n\\n\\n# ---------------------------------------------------------------------------\\n# Wilson CI\\n# ---------------------------------------------------------------------------\\n\\ndef wilson_ci(successes, total, z=1.96):\\n    if total == 0:\\n        return 0.0, 0.0, 1.0\\n    p = successes / total\\n    denom = 1 + z ** 2 / total\\n    center = (p + z ** 2 / (2 * total)) / denom\\n    spread = z * np.sqrt((p * (1 - p) + z ** 2 / (4 * total)) / total) / denom\\n    return center, max(0.0, center - spread), min(1.0, center + spread)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Main evaluation\\n# ---------------------------------------------------------------------------\\n\\ndef run_evaluation(args):\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\n    max_steps = args.max_steps or SUITE_MAX_STEPS.get(args.suite, 800)\\n    output_path = Path(args.output or\\n                       f\\\"eval_results/xvla_prune_k{args.keep_ratio}_{args.suite}.json\\\")\\n\\n    log.info(\\\"Suite: %s | Device: %s | keep_ratio=%.2f | Episodes/task: %d | Max steps: %d\\\",\\n             args.suite, device, args.keep_ratio, args.num_episodes, max_steps)\\n\\n    np.random.seed(args.seed)\\n    torch.manual_seed(args.seed)\\n\\n    t0 = time_mod.time()\\n    model, processor = load_model(args.model_path, device)\\n    log.info(\\\"Model loaded in %.1fs\\\", time_mod.time() - t0)\\n\\n    dummy_img = torch.randn(1, 3, 224, 224, device=device)\\n    with torch.no_grad():\\n        dummy_feats = model.vlm._encode_image(dummy_img)\\n    n_vis_tokens = dummy_feats.shape[1]\\n    k_tokens = max(1, int(args.keep_ratio * n_vis_tokens))\\n    log.info(\\\"Vision tokens: %d total, keeping %d (%.0f%%)\\\",\\n             n_vis_tokens, k_tokens, args.keep_ratio * 100)\\n\\n    install_vision_pruning(model, args.keep_ratio)\\n\\n    num_actions_per_chunk = model.num_actions  # 30\\n\\n    # LIBERO setup — use OffScreenRenderEnv directly (matching official X-VLA eval)\\n    from libero.libero import benchmark, get_libero_path\\n    from libero.libero.envs import OffScreenRenderEnv\\n\\n    task_suite = benchmark.get_benchmark(args.suite)()\\n    n_tasks = task_suite.n_tasks\\n\\n    if args.task_ids:\\n        task_id_list = [int(x) for x in args.task_ids.split(\\\",\\\")]\\n    else:\\n        task_id_list = list(range(n_tasks))\\n\\n    eval_start = time_mod.time()\\n    all_task_results = {}\\n    total_successes = 0\\n    total_episodes = 0\\n\\n    for task_id in task_id_list:\\n        task = task_suite.get_task(task_id)\\n        task_desc = task.language\\n        task_bddl = os.path.join(\\n            get_libero_path(\\\"bddl_files\\\"), task.problem_folder, task.bddl_file\\n        )\\n        log.info(\\\"--- Task %d: %s ---\\\", task_id, task_desc)\\n\\n        init_states = task_suite.get_task_init_states(task_id)\\n\\n        task_successes = []\\n        task_lengths = []\\n\\n        for ep in range(args.num_episodes):\\n            env = OffScr\\n\\n... [截断: 输出过长，省略 815 字符] ...\\n\\nange(max_steps):\\n                if not action_queue:\\n                    # Extract proprio from env\\n                    proprio_20d = extract_proprio_20d(env)\\n                    if proprio_state is not None:\\n                        proprio_20d[:9] = proprio_state[:9]\\n\\n                    images = get_images_from_obs(obs)\\n                    if not images:\\n                        raise ValueError(f\\\"No images found in obs keys: {list(obs.keys())}\\\")\\n\\n                    raw_actions = predict_actions(\\n                        model, processor, images, task_desc, proprio_20d,\\n                        args.domain_id, device, args.denoise_steps,\\n                    )  # [30, 20]\\n\\n                    # Update closed-loop proprio with last predicted action\\n                    proprio_state = proprio_20d.copy()\\n                    proprio_state[:9] = raw_actions[-1, :9].copy()\\n\\n                    actions_7d = decode_action_20d_to_7d(raw_actions)  # [30, 7]\\n                    action_queue = list(actions_7d)\\n\\n                action = action_queue.pop(0)\\n                obs, reward, done, info = env.step(action)\\n\\n                if done or reward > 0.5:\\n                    success = True\\n                    break\\n\\n            ep_steps = step_idx + 1\\n            task_successes.append(success)\\n            task_lengths.append(ep_steps)\\n            log.info(\\\"  Ep %d/%d | %s | steps=%d\\\",\\n                     ep + 1, args.num_episodes,\\n                     \\\"SUCCESS\\\" if success else \\\"FAIL\\\", ep_steps)\\n\\n            env.close()\\n\\n        n_succ = sum(task_successes)\\n        n_total = len(task_successes)\\n        sr = n_succ / n_total if n_total > 0 else 0.0\\n\\n        all_task_results[task_id] = {\\n            \\\"task_id\\\": task_id,\\n            \\\"task_description\\\": task_desc,\\n            \\\"success_count\\\": n_succ,\\n            \\\"total_episodes\\\": n_total,\\n            \\\"success_rate\\\": round(sr, 4),\\n            \\\"mean_steps\\\": round(float(np.mean(task_lengths)), 1),\\n        }\\n        total_successes += n_succ\\n        total_episodes += n_total\\n        log.info(\\\"  Task %d SR: %d/%d (%.1f%%)\\\", task_id, n_succ, n_total, sr * 100)\\n\\n    elapsed = time_mod.time() - eval_start\\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"SUITE: %s | MODEL: xvla | keep_ratio: %.2f\\\", args.suite, args.keep_ratio)\\n    log.info(\\\"Overall SR: %d/%d (%.1f%%)\\\", total_successes, total_episodes, overall_sr * 100)\\n    log.info(\\\"95%% Wilson CI: [%.1f%%, %.1f%%]\\\", ci_lo * 100, ci_hi * 100)\\n    for tid, tr in sorted(all_task_results.items()):\\n        log.info(\\\"  Task %d: %.0f%% (%d/%d) -- %s\\\",\\n                 tid, tr[\\\"success_rate\\\"] * 100, tr[\\\"success_count\\\"],\\n                 tr[\\\"total_episodes\\\"], tr[\\\"task_description\\\"])\\n    log.info(\\\"Elapsed: %.1f min\\\", elapsed / 60)\\n    log.info(\\\"=\\\" * 60)\\n\\n    summary = {\\n        \\\"model\\\": \\\"xvla\\\",\\n        \\\"model_path\\\": args.model_path,\\n        \\\"mode\\\": \\\"l2_norm_prune\\\",\\n        \\\"suite\\\": args.suite,\\n        \\\"keep_ratio\\\": args.keep_ratio,\\n        \\\"n_vision_tokens_original\\\": n_vis_tokens,\\n        \\\"n_vision_tokens_kept\\\": k_tokens,\\n        \\\"total_episodes\\\": total_episodes,\\n        \\\"total_successes\\\": total_successes,\\n        \\\"overall_success_rate\\\": round(overall_sr, 4),\\n        \\\"wilson_ci_95\\\": [round(ci_lo, 4), round(ci_hi, 4)],\\n        \\\"num_episodes_per_task\\\": args.num_episodes,\\n        \\\"max_steps\\\": max_steps,\\n        \\\"num_actions_per_chunk\\\": num_actions_per_chunk,\\n        \\\"domain_id\\\": args.domain_id,\\n        \\\"denoise_steps\\\": args.denoise_steps,\\n        \\\"seed\\\": args.seed,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n        \\\"per_task\\\": all_task_results,\\n    }\\n\\n    output_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    log.info(\\\"Results saved to %s\\\", output_path)\\n\\n    return summary\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    args = parse_args()\\n    run_evaluation(args)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "22f0fff1-1975-4f40-83f2-b1519525e84d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n# ---------------------------------------------------------------------------\\\\n# Action prediction\\\\n# ---------------------------------------------------------------------------\\\\n\\\\n@torch.no_grad()\\\\ndef predict_actions(model, processor, images, task_desc, proprio_20d, domain_id,\\\\n                    device, denoise_steps=10):\\\\n    inputs = processor(images=images, language_instruction=task_desc)\\\\n\\\\n    proprio_t = torch.tensor(proprio_20d, dtype=torch.float32).unsqueeze(0).to(device)\\\\n    domain_t = torch.tensor([domain_id], dtype=torch.long).to(device)\\\\n\\\\n    for k, v in inputs.items():\\\\n        if isinstance(v, torch.Tensor):\\\\n            if v.is_floating_point():\\\\n                inputs[k] = v.to(device=device, dtype=torch.float32)\\\\n            else:\\\\n                inputs[k] = v.to(device=device)\\\\n\\\\n    actions = model.generate_actions(\\\\n        input_ids=inputs[\\\\\\\"input_ids\\\\\\\"],\\\\n        image_input=inputs[\\\\\\\"image_input\\\\\\\"],\\\\n        image_mask=inputs[\\\\\\\"image_mask\\\\\\\"],\\\\n        proprio=proprio_t,\\\\n        domain_id=domain_t,\\\\n        steps=denoise_steps,\\\\n    )  # [1, 30, 20]\\\\n\\\\n    return actions.squeeze(0).float().cpu().numpy()  # [30, 20]\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Wilson CI\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef wilson_ci(successes, total, z=1.96):\\\\n    if total == 0:\\\\n        return 0.0, 0.0, 1.0\\\\n    p = successes / total\\\\n    denom = 1 + z ** 2 / total\\\\n    center = (p + z ** 2 / (2 * total)) / denom\\\\n    spread = z * np.sqrt((p * (1 - p) + z ** 2 / (4 * total)) / total) / denom\\\\n    return center, max(0.0, center - spread), min(1.0, center + spread)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Main evaluation\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef run_evaluation(args):\\\\n    device = torch.device(f\\\\\\\"cuda:{args.gpu}\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\")\\\\n    max_steps = args.max_steps or SUITE_MAX_STEPS.get(args.suite, 800)\\\\n    output_path = Path(args.output or\\\\n                       f\\\\\\\"eval_results/xvla_prune_k{args.keep_ratio}_{args.suite}.json\\\\\\\")\\\\n\\\\n    log.info(\\\\\\\"Suite: %s | Device: %s | keep_ratio=%.2f | Episodes/task: %d | Max steps: %d\\\\\\\",\\\\n             args.suite, device, args.keep_ratio, args.num_episodes, max_steps)\\\\n\\\\n    np.random.seed(args.seed)\\\\n    torch.manual_seed(args.seed)\\\\n\\\\n    t0 = time_mod.time()\\\\n    model, processor = load_model(args.model_path, device)\\\\n    log.info(\\\\\\\"Model loaded in %.1fs\\\\\\\", time_mod.time() - t0)\\\\n\\\\n    dummy_img = torch.randn(1, 3, 224, 224, device=device)\\\\n    with torch.no_grad():\\\\n        dummy_feats = model.vlm._encode_image(dummy_img)\\\\n    n_vis_tokens = dummy_feats.shape[1]\\\\n    k_tokens = max(1, int(args.keep_ratio * n_vis_tokens))\\\\n    log.info(\\\\\\\"Vision tokens: %d total, keeping %d (%.0f%%)\\\\\\\",\\\\n             n_vis_tokens, k_tokens, args.keep_ratio * 100)\\\\n\\\\n    install_vision_pruning(model, args.keep_ratio)\\\\n\\\\n    num_actions_per_chunk = model.num_actions  # 30\\\\n\\\\n    # LIBERO setup — use OffScreenRenderEnv directly (matching official X-VLA eval)\\\\n    from libero.libero import benchmark, get_libero_path\\\\n    from libero.libero.envs import OffScreenRenderEnv\\\\n\\\\n    task_suite = benchmark.get_benchmark(args.suite)()\\\\n    n_tasks = task_suite.n_tasks\\\\n\\\\n    if args.task_ids:\\\\n        task_id_list = [int(x) for x in args.task_ids.split(\\\\\\\",\\\\\\\")]\\\\n    else:\\\\n        task_id_list = list(range(n_tasks))\\\\n\\\\n    eval_start = time_mod.time()\\\\n    all_task_results = {}\\\\n    total_successes = 0\\\\n    total_episodes = 0\\\\n\\\\n    for task_id in task_id_list:\\\\n        task = task_suite.get_task(task_id)\\\\n        task_desc = task.language\\\\n        task_bddl = os.path.join(\\\\n            get_libero_path(\\\\\\\"bddl_files\\\\\\\"), task.problem_folder, task.bddl_file\\\\n        )\\\\n        log.info(\\\\\\\"--- Task %d: %s ---\\\\\\\", task_id, task_desc)\\\\n\\\\n        init_states = task_suite.get_task_init_states(task_id)\\\\n\\\\n        task_successes = []\\\\n        task_lengths = []\\\\n\\\\n        for ep in range(args.num_episodes):\\\\n            env = OffScr\\\\n\\\\n... [截断: 输出过长，省略 815 字符] ...\\\\n\\\\nange(max_steps):\\\\n                if not action_queue:\\\\n                    # Extract proprio from env\\\\n                    proprio_20d = extract_proprio_20d(env)\\\\n                    if proprio_state is not None:\\\\n                        proprio_20d[:9] = proprio_state[:9]\\\\n\\\\n                    images = get_images_from_obs(obs)\\\\n                    if not images:\\\\n                        raise ValueError(f\\\\\\\"No images found in obs keys: {list(obs.keys())}\\\\\\\")\\\\n\\\\n                    raw_actions = predict_actions(\\\\n                        model, processor, images, task_desc, proprio_20d,\\\\n                        args.domain_id, device, args.denoise_steps,\\\\n                    )  # [30, 20]\\\\n\\\\n                    # Update closed-loop proprio with last predicted action\\\\n                    proprio_state = proprio_20d.copy()\\\\n                    proprio_state[:9] = raw_actions[-1, :9].copy()\\\\n\\\\n                    actions_7d = decode_action_20d_to_7d(raw_actions)  # [30, 7]\\\\n                    action_queue = list(actions_7d)\\\\n\\\\n                action = action_queue.pop(0)\\\\n                obs, reward, done, info = env.step(action)\\\\n\\\\n                if done or reward > 0.5:\\\\n                    success = True\\\\n                    break\\\\n\\\\n            ep_steps = step_idx + 1\\\\n            task_successes.append(success)\\\\n            task_lengths.append(ep_steps)\\\\n            log.info(\\\\\\\"  Ep %d/%d | %s | steps=%d\\\\\\\",\\\\n                     ep + 1, args.num_episodes,\\\\n                     \\\\\\\"SUCCESS\\\\\\\" if success else \\\\\\\"FAIL\\\\\\\", ep_steps)\\\\n\\\\n            env.close()\\\\n\\\\n        n_succ = sum(task_successes)\\\\n        n_total = len(task_successes)\\\\n        sr = n_succ / n_total if n_total > 0 else 0.0\\\\n\\\\n        all_task_results[task_id] = {\\\\n            \\\\\\\"task_id\\\\\\\": task_id,\\\\n            \\\\\\\"task_description\\\\\\\": task_desc,\\\\n            \\\\\\\"success_count\\\\\\\": n_succ,\\\\n            \\\\\\\"total_episodes\\\\\\\": n_total,\\\\n            \\\\\\\"success_rate\\\\\\\": round(sr, 4),\\\\n            \\\\\\\"mean_steps\\\\\\\": round(float(np.mean(task_lengths)), 1),\\\\n        }\\\\n        total_successes += n_succ\\\\n        total_episodes += n_total\\\\n        log.info(\\\\\\\"  Task %d SR: %d/%d (%.1f%%)\\\\\\\", task_id, n_succ, n_total, sr * 100)\\\\n\\\\n    elapsed = time_mod.time() - eval_start\\\\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\\\\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\\\\n\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"SUITE: %s | MODEL: xvla | keep_ratio: %.2f\\\\\\\", args.suite, args.keep_ratio)\\\\n    log.info(\\\\\\\"Overall SR: %d/%d (%.1f%%)\\\\\\\", total_successes, total_episodes, overall_sr * 100)\\\\n    log.info(\\\\\\\"95%% Wilson CI: [%.1f%%, %.1f%%]\\\\\\\", ci_lo * 100, ci_hi * 100)\\\\n    for tid, tr in sorted(all_task_results.items()):\\\\n        log.info(\\\\\\\"  Task %d: %.0f%% (%d/%d) -- %s\\\\\\\",\\\\n                 tid, tr[\\\\\\\"success_rate\\\\\\\"] * 100, tr[\\\\\\\"success_count\\\\\\\"],\\\\n                 tr[\\\\\\\"total_episodes\\\\\\\"], tr[\\\\\\\"task_description\\\\\\\"])\\\\n    log.info(\\\\\\\"Elapsed: %.1f min\\\\\\\", elapsed / 60)\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    summary = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"xvla\\\\\\\",\\\\n        \\\\\\\"model_path\\\\\\\": args.model_path,\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"l2_norm_prune\\\\\\\",\\\\n        \\\\\\\"suite\\\\\\\": args.suite,\\\\n        \\\\\\\"keep_ratio\\\\\\\": args.keep_ratio,\\\\n        \\\\\\\"n_vision_tokens_original\\\\\\\": n_vis_tokens,\\\\n        \\\\\\\"n_vision_tokens_kept\\\\\\\": k_tokens,\\\\n        \\\\\\\"total_episodes\\\\\\\": total_episodes,\\\\n        \\\\\\\"total_successes\\\\\\\": total_successes,\\\\n        \\\\\\\"overall_success_rate\\\\\\\": round(overall_sr, 4),\\\\n        \\\\\\\"wilson_ci_95\\\\\\\": [round(ci_lo, 4), round(ci_hi, 4)],\\\\n        \\\\\\\"num_episodes_per_task\\\\\\\": args.num_episodes,\\\\n        \\\\\\\"max_steps\\\\\\\": max_steps,\\\\n        \\\\\\\"num_actions_per_chunk\\\\\\\": num_actions_per_chunk,\\\\n        \\\\\\\"domain_id\\\\\\\": args.domain_id,\\\\n        \\\\\\\"denoise_steps\\\\\\\": args.denoise_steps,\\\\n        \\\\\\\"seed\\\\\\\": args.seed,\\\\n        \\\\\\\"elapsed_seconds\\\\\\\": round(elapsed, 1),\\\\n        \\\\\\\"per_task\\\\\\\": all_task_results,\\\\n    }\\\\n\\\\n    output_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n    log.info(\\\\\\\"Results saved to %s\\\\\\\", output_path)\\\\n\\\\n    return summary\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    args = parse_args()\\\\n    run_evaluation(args)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n# ---------------------------------------------------------------------------\\n# Action prediction\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef predict_actions(model, processor, images, task_desc, proprio_20d, domain_id,\\n                    device, denoise_steps=10):\\n    inputs = processor(images=images, language_instruction=task_desc)\\n\\n    proprio_t = torch.tensor(proprio_20d, dtype=torch.float32).unsqueeze(0).to(device)\\n    domain_t = torch.tensor([domain_id], dtype=torch.long).to(device)\\n\\n    for k, v in inputs.items():\\n        if isinstance(v, torch.Tensor):\\n            if v.is_floating_point():\\n                inputs[k] = v.to(device=device, dtype=torch.float32)\\n            else:\\n                inputs[k] = v.to(device=device)\\n\\n    actions = model.generate_actions(\\n        input_ids=inputs[\\\"input_ids\\\"],\\n        image_input=inputs[\\\"image_input\\\"],\\n        image_mask=inputs[\\\"image_mask\\\"],\\n        proprio=proprio_t,\\n        domain_id=domain_t,\\n        steps=denoise_steps,\\n    )  # [1, 30, 20]\\n\\n    return actions.squeeze(0).float().cpu().numpy()  # [30, 20]\\n\\n\\n# ---------------------------------------------------------------------------\\n# Wilson CI\\n# ---------------------------------------------------------------------------\\n\\ndef wilson_ci(successes, total, z=1.96):\\n    if total == 0:\\n        return 0.0, 0.0, 1.0\\n    p = successes / total\\n    denom = 1 + z ** 2 / total\\n    center = (p + z ** 2 / (2 * total)) / denom\\n    spread = z * np.sqrt((p * (1 - p) + z ** 2 / (4 * total)) / total) / denom\\n    return center, max(0.0, center - spread), min(1.0, center + spread)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Main evaluation\\n# ---------------------------------------------------------------------------\\n\\ndef run_evaluation(args):\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\n    max_steps = args.max_steps or SUITE_MAX_STEPS.get(args.suite, 800)\\n    output_path = Path(args.output or\\n                       f\\\"eval_results/xvla_prune_k{args.keep_ratio}_{args.suite}.json\\\")\\n\\n    log.info(\\\"Suite: %s | Device: %s | keep_ratio=%.2f | Episodes/task: %d | Max steps: %d\\\",\\n             args.suite, device, args.keep_ratio, args.num_episodes, max_steps)\\n\\n    np.random.seed(args.seed)\\n    torch.manual_seed(args.seed)\\n\\n    t0 = time_mod.time()\\n    model, processor = load_model(args.model_path, device)\\n    log.info(\\\"Model loaded in %.1fs\\\", time_mod.time() - t0)\\n\\n    dummy_img = torch.randn(1, 3, 224, 224, device=device)\\n    with torch.no_grad():\\n        dummy_feats = model.vlm._encode_image(dummy_img)\\n    n_vis_tokens = dummy_feats.shape[1]\\n    k_tokens = max(1, int(args.keep_ratio * n_vis_tokens))\\n    log.info(\\\"Vision tokens: %d total, keeping %d (%.0f%%)\\\",\\n             n_vis_tokens, k_tokens, args.keep_ratio * 100)\\n\\n    install_vision_pruning(model, args.keep_ratio)\\n\\n    num_actions_per_chunk = model.num_actions  # 30\\n\\n    # LIBERO setup — use OffScreenRenderEnv directly (matching official X-VLA eval)\\n    from libero.libero import benchmark, get_libero_path\\n    from libero.libero.envs import OffScreenRenderEnv\\n\\n    task_suite = benchmark.get_benchmark(args.suite)()\\n    n_tasks = task_suite.n_tasks\\n\\n    if args.task_ids:\\n        task_id_list = [int(x) for x in args.task_ids.split(\\\",\\\")]\\n    else:\\n        task_id_list = list(range(n_tasks))\\n\\n    eval_start = time_mod.time()\\n    all_task_results = {}\\n    total_successes = 0\\n    total_episodes = 0\\n\\n    for task_id in task_id_list:\\n        task = task_suite.get_task(task_id)\\n        task_desc = task.language\\n        task_bddl = os.path.join(\\n            get_libero_path(\\\"bddl_files\\\"), task.problem_folder, task.bddl_file\\n        )\\n        log.info(\\\"--- Task %d: %s ---\\\", task_id, task_desc)\\n\\n        init_states = task_suite.get_task_init_states(task_id)\\n\\n        task_successes = []\\n        task_lengths = []\\n\\n        for ep in range(args.num_episodes):\\n            env = OffScr\\n\\n... [截断: 输出过长，省略 815 字符] ...\\n\\nange(max_steps):\\n                if not action_queue:\\n                    # Extract proprio from env\\n                    proprio_20d = extract_proprio_20d(env)\\n                    if proprio_state is not None:\\n                        proprio_20d[:9] = proprio_state[:9]\\n\\n                    images = get_images_from_obs(obs)\\n                    if not images:\\n                        raise ValueError(f\\\"No images found in obs keys: {list(obs.keys())}\\\")\\n\\n                    raw_actions = predict_actions(\\n                        model, processor, images, task_desc, proprio_20d,\\n                        args.domain_id, device, args.denoise_steps,\\n                    )  # [30, 20]\\n\\n                    # Update closed-loop proprio with last predicted action\\n                    proprio_state = proprio_20d.copy()\\n                    proprio_state[:9] = raw_actions[-1, :9].copy()\\n\\n                    actions_7d = decode_action_20d_to_7d(raw_actions)  # [30, 7]\\n                    action_queue = list(actions_7d)\\n\\n                action = action_queue.pop(0)\\n                obs, reward, done, info = env.step(action)\\n\\n                if done or reward > 0.5:\\n                    success = True\\n                    break\\n\\n            ep_steps = step_idx + 1\\n            task_successes.append(success)\\n            task_lengths.append(ep_steps)\\n            log.info(\\\"  Ep %d/%d | %s | steps=%d\\\",\\n                     ep + 1, args.num_episodes,\\n                     \\\"SUCCESS\\\" if success else \\\"FAIL\\\", ep_steps)\\n\\n            env.close()\\n\\n        n_succ = sum(task_successes)\\n        n_total = len(task_successes)\\n        sr = n_succ / n_total if n_total > 0 else 0.0\\n\\n        all_task_results[task_id] = {\\n            \\\"task_id\\\": task_id,\\n            \\\"task_description\\\": task_desc,\\n            \\\"success_count\\\": n_succ,\\n            \\\"total_episodes\\\": n_total,\\n            \\\"success_rate\\\": round(sr, 4),\\n            \\\"mean_steps\\\": round(float(np.mean(task_lengths)), 1),\\n        }\\n        total_successes += n_succ\\n        total_episodes += n_total\\n        log.info(\\\"  Task %d SR: %d/%d (%.1f%%)\\\", task_id, n_succ, n_total, sr * 100)\\n\\n    elapsed = time_mod.time() - eval_start\\n    overall_sr = total_successes / total_episodes if total_episodes > 0 else 0.0\\n    _, ci_lo, ci_hi = wilson_ci(total_successes, total_episodes)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"SUITE: %s | MODEL: xvla | keep_ratio: %.2f\\\", args.suite, args.keep_ratio)\\n    log.info(\\\"Overall SR: %d/%d (%.1f%%)\\\", total_successes, total_episodes, overall_sr * 100)\\n    log.info(\\\"95%% Wilson CI: [%.1f%%, %.1f%%]\\\", ci_lo * 100, ci_hi * 100)\\n    for tid, tr in sorted(all_task_results.items()):\\n        log.info(\\\"  Task %d: %.0f%% (%d/%d) -- %s\\\",\\n                 tid, tr[\\\"success_rate\\\"] * 100, tr[\\\"success_count\\\"],\\n                 tr[\\\"total_episodes\\\"], tr[\\\"task_description\\\"])\\n    log.info(\\\"Elapsed: %.1f min\\\", elapsed / 60)\\n    log.info(\\\"=\\\" * 60)\\n\\n    summary = {\\n        \\\"model\\\": \\\"xvla\\\",\\n        \\\"model_path\\\": args.model_path,\\n        \\\"mode\\\": \\\"l2_norm_prune\\\",\\n        \\\"suite\\\": args.suite,\\n        \\\"keep_ratio\\\": args.keep_ratio,\\n        \\\"n_vision_tokens_original\\\": n_vis_tokens,\\n        \\\"n_vision_tokens_kept\\\": k_tokens,\\n        \\\"total_episodes\\\": total_episodes,\\n        \\\"total_successes\\\": total_successes,\\n        \\\"overall_success_rate\\\": round(overall_sr, 4),\\n        \\\"wilson_ci_95\\\": [round(ci_lo, 4), round(ci_hi, 4)],\\n        \\\"num_episodes_per_task\\\": args.num_episodes,\\n        \\\"max_steps\\\": max_steps,\\n        \\\"num_actions_per_chunk\\\": num_actions_per_chunk,\\n        \\\"domain_id\\\": args.domain_id,\\n        \\\"denoise_steps\\\": args.denoise_steps,\\n        \\\"seed\\\": args.seed,\\n        \\\"elapsed_seconds\\\": round(elapsed, 1),\\n        \\\"per_task\\\": all_task_results,\\n    }\\n\\n    output_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n    log.info(\\\"Results saved to %s\\\", output_path)\\n\\n    return summary\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    args = parse_args()\\n    run_evaluation(args)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture. Let me also check how the pi05 model loading actually works from the full eval script - I need to read lines around 100-180 of the pi05 eval.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "6a3a81c4-0f19-4b2c-bd2e-725384acf6bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016aP2NhkWegyRUgFfGUJ1fs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6556,
+      "cache_read_input_tokens": 78672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KMky11BBPwREiPFS9wuvtM`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -n +95 /root/autodl-tmp/importance_margin_vla_compress/eval_pi05_pruning_libero.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "84846bfc-d033-42fc-8327-370715c0df52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016aP2NhkWegyRUgFfGUJ1fs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6556,
+      "cache_read_input_tokens": 78672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6556
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-23T05:52:49.584Z_
+
+<details><summary>↩ Tool result · `toolu_01KMky11BBPwREiPFS9wuvtM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    _model_dtype = lm.layers[0].self_attn.q_proj.weight.dtype\\n    hidden = full_embs.to(_model_dtype)\\n    all_attn = []\\n\\n    with torch.no_grad():\\n        for layer_idx in range(min(n_probe_layers, len(lm.layers))):\\n            layer = lm.layers[layer_idx]\\n            normed = layer.input_layernorm(hidden)\\n            if isinstance(normed, tuple):\\n                normed = normed[0]\\n\\n            head_dim = layer.self_attn.head_dim\\n            q = layer.self_attn.q_proj(normed)\\n            k = layer.self_attn.k_proj(normed)\\n            v = layer.self_attn.v_proj(normed)\\n\\n            n_q_heads = q.shape[-1] // head_dim\\n            n_kv_heads = k.shape[-1] // head_dim\\n\\n            q = q.view(B, S, n_q_heads, head_dim).transpose(1, 2)\\n            k = k.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\n            v = v.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\n\\n            cos, sin = lm.rotary_emb(v, position_ids)\\n            q, k = _gemma.apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1)\\n\\n            if n_kv_heads != n_q_heads:\\n                n_rep = n_q_heads // n_kv_heads\\n                k = k.repeat_interleave(n_rep, dim=1)\\n                v = v.repeat_interleave(n_rep, dim=1)\\n\\n            scaling = layer.self_attn.scaling\\n            attn_weights = torch.matmul(q, k.transpose(-2, -1)) * scaling\\n            attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\n            all_attn.append(attn_weights)\\n\\n            attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\n            attn_out = attn_out.transpose(1, 2).reshape(B, S, n_q_heads * head_dim)\\n            attn_out = layer.self_attn.o_proj(attn_out)\\n            hidden = hidden + attn_out\\n\\n            normed2 = layer.post_attention_layernorm(hidden)\\n            if isinstance(normed2, tuple):\\n                normed2 = normed2[0]\\n            normed2 = normed2.to(_model_dtype)\\n            mlp_out = layer.mlp(normed2)\\n            hidden = hidden + mlp_out\\n\\n    avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, S, S]\\n    lang_to_vis = avg_attn[:, total_vis:, :total_vis]  # [B, L, V]\\n    vis_importance = lang_to_vis.mean(dim=1)  # [B, V]\\n    return vis_importance\\n\\n\\ndef main():\\n    args = parse_args()\\n    DEVICE = \\\"cuda:0\\\"\\n    suite_cfg = SUITE_CONFIG[args.suite]\\n\\n    log.info(f\\\"Config: suite={args.suite}, prune={args.prune_mode}, keep={args.keep_ratio}, \\\"\\n             f\\\"eps={args.n_episodes}, gpu={args.gpu}\\\")\\n\\n    log.info(f\\\"Loading π0.5 from {args.model_path} ...\\\")\\n    from lerobot.policies.pi05.modeling_pi05 import PI05Policy\\n    policy = PI05Policy.from_pretrained(args.model_path)\\n\\n    paligemma_expert = policy.model.paligemma_with_expert\\n\\n    def patched_embed_image(self, image):\\n        out_dtype = image.dtype\\n        if image.dtype != torch.float32:\\n            image = image.to(torch.float32)\\n        image_outputs = self.paligemma.model.vision_tower(image)\\n        selected_image_feature = image_outputs.last_hidden_state\\n        features = self.paligemma.model.multi_modal_projector(selected_image_feature)\\n\\n        if features.dtype != out_dtype:\\n            features = features.to(out_dtype)\\n        return features\\n\\n    paligemma_expert.embed_image = types.MethodType(patched_embed_image, paligemma_expert)\\n    log.info(\\\"Patched embed_image\\\")\\n\\n    policy = policy.to(DEVICE)\\n    policy.eval()\\n    log.info(f\\\"Model: {sum(p.numel() for p in policy.parameters())/1e6:.1f}M params\\\")\\n\\n    N_PATCHES = (224 // 14) ** 2\\n    log.info(f\\\"Vision tokens: {N_PATCHES}/image, 3 slots -> {N_PATCHES*3} total\\\")\\n\\n    prune_fn = None\\n    if args.prune_mode == \\\"random\\\":\\n        prune_fn = prune_tokens_random\\n    elif args.prune_mode == \\\"l2norm\\\":\\n        prune_fn = prune_tokens_l2norm\\n\\n    if prune_fn is not None and args.prune_mode != \\\"attention\\\":\\n        original_embed_prefix = policy.model.embed_prefix\\n\\n        def pruned_embed_prefix(self_model, images, img_masks, tokens, masks):\\n            embs = []\\n            pad_masks_list = []\\n            att_masks = []\\n\\n  \\n\\n... [截断: 输出过长，省略 6095 字符] ...\\n\\nnRenderEnv(bddl_file_name=str(bddl),\\n                                 camera_heights=256, camera_widths=256)\\n        env.seed(args.seed)\\n        task_desc = task.language\\n        task_successes = 0\\n\\n        for ep in range(args.n_episodes):\\n            _episode_mask_cache.clear()\\n            env.reset()\\n            obs = env.set_init_state(init_states[ep])\\n            for _ in range(10):\\n                obs, _, _, _ = env.step([0.0]*6 + [-1.0])\\n\\n            done = False\\n            action_queue = deque()\\n\\n            for t in range(max_steps):\\n                if not action_queue:\\n                    base_img = obs[\\\"agentview_image\\\"]\\n                    wrist_img = obs[\\\"robot0_eye_in_hand_image\\\"]\\n                    base_t = torch.from_numpy(base_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    base_t = torch.flip(base_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n                    wrist_t = torch.from_numpy(wrist_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    wrist_t = torch.flip(wrist_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n\\n                    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n                    eef_quat = obs[\\\"robot0_eef_quat\\\"]\\n                    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n                    state = np.concatenate([\\n                        eef_pos, quat_to_axisangle(eef_quat), gripper_qpos\\n                    ]).astype(np.float32)\\n                    state_t = torch.from_numpy(state)\\n\\n                    raw_obs = {\\n                        \\\"observation.images.image\\\": base_t,\\n                        \\\"observation.images.image2\\\": wrist_t,\\n                        \\\"observation.state\\\": state_t,\\n                        \\\"task\\\": task_desc,\\n                    }\\n                    batch = preprocess(raw_obs)\\n\\n                    with torch.no_grad():\\n                        actions = policy.predict_action_chunk(batch)\\n\\n                    actions_unnorm = postprocess(actions)\\n                    action_np = actions_unnorm[0].cpu().numpy()\\n\\n                    for a in action_np[:args.replan_steps]:\\n                        action_queue.append(a[:7])\\n\\n                action = action_queue.popleft()\\n                obs, reward, done, info = env.step(action.tolist())\\n                if done:\\n                    task_successes += 1\\n                    total_success += 1\\n                    break\\n\\n            total_episodes += 1\\n\\n            if (ep + 1) % 10 == 0:\\n                log.info(f\\\"  T{task_id} [{task_desc[:40]}] ep={ep+1}: \\\"\\n                         f\\\"{task_successes}/{ep+1}={task_successes/(ep+1)*100:.0f}%\\\")\\n\\n        task_sr = task_successes / args.n_episodes\\n        results[\\\"per_task\\\"][task_desc] = {\\\"id\\\": task_id, \\\"sr\\\": task_sr, \\\"n\\\": task_successes}\\n        elapsed = time_mod.time() - t_start\\n        log.info(f\\\"Task {task_id}: SR={task_sr*100:.1f}% | \\\"\\n                 f\\\"Total: {total_success}/{total_episodes}={total_success/total_episodes*100:.1f}% | \\\"\\n                 f\\\"Time: {elapsed/60:.1f}min\\\")\\n        env.close()\\n\\n    results[\\\"overall_sr\\\"] = total_success / total_episodes\\n    results[\\\"total_successes\\\"] = total_success\\n    results[\\\"total_episodes\\\"] = total_episodes\\n    results[\\\"elapsed_min\\\"] = (time_mod.time() - t_start) / 60\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    if args.prune_mode == \\\"none\\\":\\n        fname = f\\\"pi05_baseline_{args.suite}_seed{args.seed}.json\\\"\\n    else:\\n        mask_tag = \\\"_fixmask\\\" if args.fixed_mask else \\\"\\\"\\n        fname = f\\\"pi05_{args.prune_mode}{mask_tag}_k{args.keep_ratio:.2f}_{args.suite}_seed{args.seed}.json\\\"\\n    out_path = out_dir / fname\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    log.info(f\\\"\\\\n{'='*60}\\\")\\n    log.info(f\\\"RESULT: {args.suite} prune={args.prune_mode} keep={args.keep_ratio} \\\"\\n             f\\\"SR={results['overall_sr']*100:.1f}%\\\")\\n    log.info(f\\\"Saved: {out_path}\\\")\\n    log.info(f\\\"{'='*60}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "9bc7472e-145e-4118-9781-0e34a057e148",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    _model_dtype = lm.layers[0].self_attn.q_proj.weight.dtype\\\\n    hidden = full_embs.to(_model_dtype)\\\\n    all_attn = []\\\\n\\\\n    with torch.no_grad():\\\\n        for layer_idx in range(min(n_probe_layers, len(lm.layers))):\\\\n            layer = lm.layers[layer_idx]\\\\n            normed = layer.input_layernorm(hidden)\\\\n            if isinstance(normed, tuple):\\\\n                normed = normed[0]\\\\n\\\\n            head_dim = layer.self_attn.head_dim\\\\n            q = layer.self_attn.q_proj(normed)\\\\n            k = layer.self_attn.k_proj(normed)\\\\n            v = layer.self_attn.v_proj(normed)\\\\n\\\\n            n_q_heads = q.shape[-1] // head_dim\\\\n            n_kv_heads = k.shape[-1] // head_dim\\\\n\\\\n            q = q.view(B, S, n_q_heads, head_dim).transpose(1, 2)\\\\n            k = k.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\\\n            v = v.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\\\n\\\\n            cos, sin = lm.rotary_emb(v, position_ids)\\\\n            q, k = _gemma.apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1)\\\\n\\\\n            if n_kv_heads != n_q_heads:\\\\n                n_rep = n_q_heads // n_kv_heads\\\\n                k = k.repeat_interleave(n_rep, dim=1)\\\\n                v = v.repeat_interleave(n_rep, dim=1)\\\\n\\\\n            scaling = layer.self_attn.scaling\\\\n            attn_weights = torch.matmul(q, k.transpose(-2, -1)) * scaling\\\\n            attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\\\n            all_attn.append(attn_weights)\\\\n\\\\n            attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\\\n            attn_out = attn_out.transpose(1, 2).reshape(B, S, n_q_heads * head_dim)\\\\n            attn_out = layer.self_attn.o_proj(attn_out)\\\\n            hidden = hidden + attn_out\\\\n\\\\n            normed2 = layer.post_attention_layernorm(hidden)\\\\n            if isinstance(normed2, tuple):\\\\n                normed2 = normed2[0]\\\\n            normed2 = normed2.to(_model_dtype)\\\\n            mlp_out = layer.mlp(normed2)\\\\n            hidden = hidden + mlp_out\\\\n\\\\n    avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, S, S]\\\\n    lang_to_vis = avg_attn[:, total_vis:, :total_vis]  # [B, L, V]\\\\n    vis_importance = lang_to_vis.mean(dim=1)  # [B, V]\\\\n    return vis_importance\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    DEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n    suite_cfg = SUITE_CONFIG[args.suite]\\\\n\\\\n    log.info(f\\\\\\\"Config: suite={args.suite}, prune={args.prune_mode}, keep={args.keep_ratio}, \\\\\\\"\\\\n             f\\\\\\\"eps={args.n_episodes}, gpu={args.gpu}\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading π0.5 from {args.model_path} ...\\\\\\\")\\\\n    from lerobot.policies.pi05.modeling_pi05 import PI05Policy\\\\n    policy = PI05Policy.from_pretrained(args.model_path)\\\\n\\\\n    paligemma_expert = policy.model.paligemma_with_expert\\\\n\\\\n    def patched_embed_image(self, image):\\\\n        out_dtype = image.dtype\\\\n        if image.dtype != torch.float32:\\\\n            image = image.to(torch.float32)\\\\n        image_outputs = self.paligemma.model.vision_tower(image)\\\\n        selected_image_feature = image_outputs.last_hidden_state\\\\n        features = self.paligemma.model.multi_modal_projector(selected_image_feature)\\\\n\\\\n        if features.dtype != out_dtype:\\\\n            features = features.to(out_dtype)\\\\n        return features\\\\n\\\\n    paligemma_expert.embed_image = types.MethodType(patched_embed_image, paligemma_expert)\\\\n    log.info(\\\\\\\"Patched embed_image\\\\\\\")\\\\n\\\\n    policy = policy.to(DEVICE)\\\\n    policy.eval()\\\\n    log.info(f\\\\\\\"Model: {sum(p.numel() for p in policy.parameters())/1e6:.1f}M params\\\\\\\")\\\\n\\\\n    N_PATCHES = (224 // 14) ** 2\\\\n    log.info(f\\\\\\\"Vision tokens: {N_PATCHES}/image, 3 slots -> {N_PATCHES*3} total\\\\\\\")\\\\n\\\\n    prune_fn = None\\\\n    if args.prune_mode == \\\\\\\"random\\\\\\\":\\\\n        prune_fn = prune_tokens_random\\\\n    elif args.prune_mode == \\\\\\\"l2norm\\\\\\\":\\\\n        prune_fn = prune_tokens_l2norm\\\\n\\\\n    if prune_fn is not None and args.prune_mode != \\\\\\\"attention\\\\\\\":\\\\n        original_embed_prefix = policy.model.embed_prefix\\\\n\\\\n        def pruned_embed_prefix(self_model, images, img_masks, tokens, masks):\\\\n            embs = []\\\\n            pad_masks_list = []\\\\n            att_masks = []\\\\n\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 6095 字符] ...\\\\n\\\\nnRenderEnv(bddl_file_name=str(bddl),\\\\n                                 camera_heights=256, camera_widths=256)\\\\n        env.seed(args.seed)\\\\n        task_desc = task.language\\\\n        task_successes = 0\\\\n\\\\n        for ep in range(args.n_episodes):\\\\n            _episode_mask_cache.clear()\\\\n            env.reset()\\\\n            obs = env.set_init_state(init_states[ep])\\\\n            for _ in range(10):\\\\n                obs, _, _, _ = env.step([0.0]*6 + [-1.0])\\\\n\\\\n            done = False\\\\n            action_queue = deque()\\\\n\\\\n            for t in range(max_steps):\\\\n                if not action_queue:\\\\n                    base_img = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n                    wrist_img = obs[\\\\\\\"robot0_eye_in_hand_image\\\\\\\"]\\\\n                    base_t = torch.from_numpy(base_img.copy()).permute(2, 0, 1).float() / 255.0\\\\n                    base_t = torch.flip(base_t, dims=[1, 2])  # 180° flip to match LeRobot training\\\\n                    wrist_t = torch.from_numpy(wrist_img.copy()).permute(2, 0, 1).float() / 255.0\\\\n                    wrist_t = torch.flip(wrist_t, dims=[1, 2])  # 180° flip to match LeRobot training\\\\n\\\\n                    eef_pos = obs[\\\\\\\"robot0_eef_pos\\\\\\\"]\\\\n                    eef_quat = obs[\\\\\\\"robot0_eef_quat\\\\\\\"]\\\\n                    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n                    state = np.concatenate([\\\\n                        eef_pos, quat_to_axisangle(eef_quat), gripper_qpos\\\\n                    ]).astype(np.float32)\\\\n                    state_t = torch.from_numpy(state)\\\\n\\\\n                    raw_obs = {\\\\n                        \\\\\\\"observation.images.image\\\\\\\": base_t,\\\\n                        \\\\\\\"observation.images.image2\\\\\\\": wrist_t,\\\\n                        \\\\\\\"observation.state\\\\\\\": state_t,\\\\n                        \\\\\\\"task\\\\\\\": task_desc,\\\\n                    }\\\\n                    batch = preprocess(raw_obs)\\\\n\\\\n                    with torch.no_grad():\\\\n                        actions = policy.predict_action_chunk(batch)\\\\n\\\\n                    actions_unnorm = postprocess(actions)\\\\n                    action_np = actions_unnorm[0].cpu().numpy()\\\\n\\\\n                    for a in action_np[:args.replan_steps]:\\\\n                        action_queue.append(a[:7])\\\\n\\\\n                action = action_queue.popleft()\\\\n                obs, reward, done, info = env.step(action.tolist())\\\\n                if done:\\\\n                    task_successes += 1\\\\n                    total_success += 1\\\\n                    break\\\\n\\\\n            total_episodes += 1\\\\n\\\\n            if (ep + 1) % 10 == 0:\\\\n                log.info(f\\\\\\\"  T{task_id} [{task_desc[:40]}] ep={ep+1}: \\\\\\\"\\\\n                         f\\\\\\\"{task_successes}/{ep+1}={task_successes/(ep+1)*100:.0f}%\\\\\\\")\\\\n\\\\n        task_sr = task_successes / args.n_episodes\\\\n        results[\\\\\\\"per_task\\\\\\\"][task_desc] = {\\\\\\\"id\\\\\\\": task_id, \\\\\\\"sr\\\\\\\": task_sr, \\\\\\\"n\\\\\\\": task_successes}\\\\n        elapsed = time_mod.time() - t_start\\\\n        log.info(f\\\\\\\"Task {task_id}: SR={task_sr*100:.1f}% | \\\\\\\"\\\\n                 f\\\\\\\"Total: {total_success}/{total_episodes}={total_success/total_episodes*100:.1f}% | \\\\\\\"\\\\n                 f\\\\\\\"Time: {elapsed/60:.1f}min\\\\\\\")\\\\n        env.close()\\\\n\\\\n    results[\\\\\\\"overall_sr\\\\\\\"] = total_success / total_episodes\\\\n    results[\\\\\\\"total_successes\\\\\\\"] = total_success\\\\n    results[\\\\\\\"total_episodes\\\\\\\"] = total_episodes\\\\n    results[\\\\\\\"elapsed_min\\\\\\\"] = (time_mod.time() - t_start) / 60\\\\n\\\\n    out_dir = Path(args.output_dir)\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    if args.prune_mode == \\\\\\\"none\\\\\\\":\\\\n        fname = f\\\\\\\"pi05_baseline_{args.suite}_seed{args.seed}.json\\\\\\\"\\\\n    else:\\\\n        mask_tag = \\\\\\\"_fixmask\\\\\\\" if args.fixed_mask else \\\\\\\"\\\\\\\"\\\\n        fname = f\\\\\\\"pi05_{args.prune_mode}{mask_tag}_k{args.keep_ratio:.2f}_{args.suite}_seed{args.seed}.json\\\\\\\"\\\\n    out_path = out_dir / fname\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    log.info(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    log.info(f\\\\\\\"RESULT: {args.suite} prune={args.prune_mode} keep={args.keep_ratio} \\\\\\\"\\\\n             f\\\\\\\"SR={results['overall_sr']*100:.1f}%\\\\\\\")\\\\n    log.info(f\\\\\\\"Saved: {out_path}\\\\\\\")\\\\n    log.info(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    _model_dtype = lm.layers[0].self_attn.q_proj.weight.dtype\\n    hidden = full_embs.to(_model_dtype)\\n    all_attn = []\\n\\n    with torch.no_grad():\\n        for layer_idx in range(min(n_probe_layers, len(lm.layers))):\\n            layer = lm.layers[layer_idx]\\n            normed = layer.input_layernorm(hidden)\\n            if isinstance(normed, tuple):\\n                normed = normed[0]\\n\\n            head_dim = layer.self_attn.head_dim\\n            q = layer.self_attn.q_proj(normed)\\n            k = layer.self_attn.k_proj(normed)\\n            v = layer.self_attn.v_proj(normed)\\n\\n            n_q_heads = q.shape[-1] // head_dim\\n            n_kv_heads = k.shape[-1] // head_dim\\n\\n            q = q.view(B, S, n_q_heads, head_dim).transpose(1, 2)\\n            k = k.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\n            v = v.view(B, S, n_kv_heads, head_dim).transpose(1, 2)\\n\\n            cos, sin = lm.rotary_emb(v, position_ids)\\n            q, k = _gemma.apply_rotary_pos_emb(q, k, cos, sin, unsqueeze_dim=1)\\n\\n            if n_kv_heads != n_q_heads:\\n                n_rep = n_q_heads // n_kv_heads\\n                k = k.repeat_interleave(n_rep, dim=1)\\n                v = v.repeat_interleave(n_rep, dim=1)\\n\\n            scaling = layer.self_attn.scaling\\n            attn_weights = torch.matmul(q, k.transpose(-2, -1)) * scaling\\n            attn_weights = F.softmax(attn_weights, dim=-1, dtype=torch.float32)\\n            all_attn.append(attn_weights)\\n\\n            attn_out = torch.matmul(attn_weights.to(v.dtype), v)\\n            attn_out = attn_out.transpose(1, 2).reshape(B, S, n_q_heads * head_dim)\\n            attn_out = layer.self_attn.o_proj(attn_out)\\n            hidden = hidden + attn_out\\n\\n            normed2 = layer.post_attention_layernorm(hidden)\\n            if isinstance(normed2, tuple):\\n                normed2 = normed2[0]\\n            normed2 = normed2.to(_model_dtype)\\n            mlp_out = layer.mlp(normed2)\\n            hidden = hidden + mlp_out\\n\\n    avg_attn = torch.stack(all_attn).mean(dim=0).mean(dim=1)  # [B, S, S]\\n    lang_to_vis = avg_attn[:, total_vis:, :total_vis]  # [B, L, V]\\n    vis_importance = lang_to_vis.mean(dim=1)  # [B, V]\\n    return vis_importance\\n\\n\\ndef main():\\n    args = parse_args()\\n    DEVICE = \\\"cuda:0\\\"\\n    suite_cfg = SUITE_CONFIG[args.suite]\\n\\n    log.info(f\\\"Config: suite={args.suite}, prune={args.prune_mode}, keep={args.keep_ratio}, \\\"\\n             f\\\"eps={args.n_episodes}, gpu={args.gpu}\\\")\\n\\n    log.info(f\\\"Loading π0.5 from {args.model_path} ...\\\")\\n    from lerobot.policies.pi05.modeling_pi05 import PI05Policy\\n    policy = PI05Policy.from_pretrained(args.model_path)\\n\\n    paligemma_expert = policy.model.paligemma_with_expert\\n\\n    def patched_embed_image(self, image):\\n        out_dtype = image.dtype\\n        if image.dtype != torch.float32:\\n            image = image.to(torch.float32)\\n        image_outputs = self.paligemma.model.vision_tower(image)\\n        selected_image_feature = image_outputs.last_hidden_state\\n        features = self.paligemma.model.multi_modal_projector(selected_image_feature)\\n\\n        if features.dtype != out_dtype:\\n            features = features.to(out_dtype)\\n        return features\\n\\n    paligemma_expert.embed_image = types.MethodType(patched_embed_image, paligemma_expert)\\n    log.info(\\\"Patched embed_image\\\")\\n\\n    policy = policy.to(DEVICE)\\n    policy.eval()\\n    log.info(f\\\"Model: {sum(p.numel() for p in policy.parameters())/1e6:.1f}M params\\\")\\n\\n    N_PATCHES = (224 // 14) ** 2\\n    log.info(f\\\"Vision tokens: {N_PATCHES}/image, 3 slots -> {N_PATCHES*3} total\\\")\\n\\n    prune_fn = None\\n    if args.prune_mode == \\\"random\\\":\\n        prune_fn = prune_tokens_random\\n    elif args.prune_mode == \\\"l2norm\\\":\\n        prune_fn = prune_tokens_l2norm\\n\\n    if prune_fn is not None and args.prune_mode != \\\"attention\\\":\\n        original_embed_prefix = policy.model.embed_prefix\\n\\n        def pruned_embed_prefix(self_model, images, img_masks, tokens, masks):\\n            embs = []\\n            pad_masks_list = []\\n            att_masks = []\\n\\n  \\n\\n... [截断: 输出过长，省略 6095 字符] ...\\n\\nnRenderEnv(bddl_file_name=str(bddl),\\n                                 camera_heights=256, camera_widths=256)\\n        env.seed(args.seed)\\n        task_desc = task.language\\n        task_successes = 0\\n\\n        for ep in range(args.n_episodes):\\n            _episode_mask_cache.clear()\\n            env.reset()\\n            obs = env.set_init_state(init_states[ep])\\n            for _ in range(10):\\n                obs, _, _, _ = env.step([0.0]*6 + [-1.0])\\n\\n            done = False\\n            action_queue = deque()\\n\\n            for t in range(max_steps):\\n                if not action_queue:\\n                    base_img = obs[\\\"agentview_image\\\"]\\n                    wrist_img = obs[\\\"robot0_eye_in_hand_image\\\"]\\n                    base_t = torch.from_numpy(base_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    base_t = torch.flip(base_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n                    wrist_t = torch.from_numpy(wrist_img.copy()).permute(2, 0, 1).float() / 255.0\\n                    wrist_t = torch.flip(wrist_t, dims=[1, 2])  # 180° flip to match LeRobot training\\n\\n                    eef_pos = obs[\\\"robot0_eef_pos\\\"]\\n                    eef_quat = obs[\\\"robot0_eef_quat\\\"]\\n                    gripper_qpos = obs[\\\"robot0_gripper_qpos\\\"]\\n                    state = np.concatenate([\\n                        eef_pos, quat_to_axisangle(eef_quat), gripper_qpos\\n                    ]).astype(np.float32)\\n                    state_t = torch.from_numpy(state)\\n\\n                    raw_obs = {\\n                        \\\"observation.images.image\\\": base_t,\\n                        \\\"observation.images.image2\\\": wrist_t,\\n                        \\\"observation.state\\\": state_t,\\n                        \\\"task\\\": task_desc,\\n                    }\\n                    batch = preprocess(raw_obs)\\n\\n                    with torch.no_grad():\\n                        actions = policy.predict_action_chunk(batch)\\n\\n                    actions_unnorm = postprocess(actions)\\n                    action_np = actions_unnorm[0].cpu().numpy()\\n\\n                    for a in action_np[:args.replan_steps]:\\n                        action_queue.append(a[:7])\\n\\n                action = action_queue.popleft()\\n                obs, reward, done, info = env.step(action.tolist())\\n                if done:\\n                    task_successes += 1\\n                    total_success += 1\\n                    break\\n\\n            total_episodes += 1\\n\\n            if (ep + 1) % 10 == 0:\\n                log.info(f\\\"  T{task_id} [{task_desc[:40]}] ep={ep+1}: \\\"\\n                         f\\\"{task_successes}/{ep+1}={task_successes/(ep+1)*100:.0f}%\\\")\\n\\n        task_sr = task_successes / args.n_episodes\\n        results[\\\"per_task\\\"][task_desc] = {\\\"id\\\": task_id, \\\"sr\\\": task_sr, \\\"n\\\": task_successes}\\n        elapsed = time_mod.time() - t_start\\n        log.info(f\\\"Task {task_id}: SR={task_sr*100:.1f}% | \\\"\\n                 f\\\"Total: {total_success}/{total_episodes}={total_success/total_episodes*100:.1f}% | \\\"\\n                 f\\\"Time: {elapsed/60:.1f}min\\\")\\n        env.close()\\n\\n    results[\\\"overall_sr\\\"] = total_success / total_episodes\\n    results[\\\"total_successes\\\"] = total_success\\n    results[\\\"total_episodes\\\"] = total_episodes\\n    results[\\\"elapsed_min\\\"] = (time_mod.time() - t_start) / 60\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    if args.prune_mode == \\\"none\\\":\\n        fname = f\\\"pi05_baseline_{args.suite}_seed{args.seed}.json\\\"\\n    else:\\n        mask_tag = \\\"_fixmask\\\" if args.fixed_mask else \\\"\\\"\\n        fname = f\\\"pi05_{args.prune_mode}{mask_tag}_k{args.keep_ratio:.2f}_{args.suite}_seed{args.seed}.json\\\"\\n    out_path = out_dir / fname\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    log.info(f\\\"\\\\n{'='*60}\\\")\\n    log.info(f\\\"RESULT: {args.suite} prune={args.prune_mode} keep={args.keep_ratio} \\\"\\n             f\\\"SR={results['overall_sr']*100:.1f}%\\\")\\n    log.info(f\\\"Saved: {out_path}\\\")\\n    log.info(f\\\"{'='*60}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have complete understanding. Let me also check how Pi0.5's preprocess/postprocess works:
+
+From the pi05 eval, around line 300+:
+```python
+from lerobot.policies.factory import make_pre_post_processors
+preprocess, postprocess = make_pre_post_processors(policy, device=DEVICE)
+```
+
+And then for building the batch:
+```python
+raw_obs = {
+    "observation.images.image": base_t,  # [3, 256, 256]
+    "observation.images.image2": wrist_t,  # [3, 256, 256]
+    "observation.state": state_t,  # [8]
+    "task": task_desc,  # string
+}
+batch = preprocess(raw_obs)
+```
+
+So the preprocessing factory creates the pre and post processors, then the raw observation dict with image tensors and state gets passed through preprocess to create the batch. Now I need to understand how OpenVLA's L2NormPruningHook works for weight pruning during training.
+
+Defining the pruning hook...
+
+I need to understand how `vla.predict_action()` works—it's doing autoregressive generation with the model. Now I'm ready to write the benchmarking script with the key approach: load each model independently, apply L2-norm pruning consistently across all of them, use synthetic inputs to avoid needing the LIBERO environment, run a warmup phase followed by 100 measurement iterations, and track peak memory usage before outputting everything to CSV.
+
+For the dummy inputs, each model has its own format—SmolVLA takes synthetic images and tokenized state, Pi0.5 needs the same but processed through LeRobot's preprocessing pipeline, X-VLA expects PIL images with text and proprioceptive data through its processor, and OpenVLA takes PIL images with text through PrismaticProcessor.
+
+The pruning strategy varies by architecture: SmolVLA uses a connector hook with L2-norm on the output, Pi0.5requires monkey-patching the embed_prefix function to prune each image's embeddings, X-VLA needs the _encode_image function patched to prune features, and OpenVLA uses a projector hook with L2-norm on the output. I'm concerned about whether all these models will fit on a single GPU given their sizes—Pi0.5 is around 3B parameters, X-VLA is quite large, and OpenVLA is roughly 7B—so I need to check the available GPU memory on the server before proceeding.
+
+I'll write the script with a modular structure using separate functions for each model, and I'll add a `--models` flag to select which ones to test since loading all four simultaneously would likely cause an out-of-memory error. I also need to set up the sys.path correctly for OpenVLA to access its dependencies and the Prismatic processor, and I should verify which OpenVLA variant to use since the task just specifies "OpenVLA" without mentioning OFT variants.
+
+For the vision token counts, I'll need to check them at runtime rather than hardcoding them. OpenVLA uses SigLIP and DINOv2 encoders that each produce 256 tokens from a 224x224 image, which then get fused and projected down to 256 tokens through a 2:1 merging process. For X-VLA, I'll extract the actual token count from the model's configuration when it's loaded.
+
+Now I'm sketching out the benchmark script structure: I'll add a `--models` flag to select which models to test, create setup functions for each model that return the model, inference function, dummy batch, vision token count, and pruning hook installer, then loop through each model and keep ratio combination to collect timing and accuracy metrics. The output will go to both CSV and JSON formats.
+
+The tricky part is handling the different pruning approaches across models—some use forward hooks while others use monkey-patching—so I need to think about whether I can implement a generic pruning mechanism that works across all of them.
+
+For the stochastic components like Pi0.5's denoising steps and X-VLA's action generation, I'll measure the full inference pipeline including those steps since that's what actually matters for deployment latency. For creating dummy batches, I should run raw inputs through each model's preprocessor rather than constructing processed batches directly, since that matches the actual evaluation flow more closely.
+
+I need to be careful with Pi0.5's monkey-patching strategy—the `embed_prefix` method needs to call the image embedding function and then apply L2 norm pruning to the resulting embeddings. I should also patch `embed_image` itself to avoid any vision tower complications, following the patterns from the existing eval scripts.
+
+Writing the comprehensive script now... Writing the benchmark script... Continuing the benchmark loop...
+
+Now I'm setting up the Pi0.5 policy evaluation, loading the pretrained model and configuring the preprocessing pipeline to handle the image observations properly.
+
+For the pruning mechanism, I'm monkey-patching the embed_prefix function to selectively keep tokens based on the specified ratio... Concatenating all the embeddings together, then creating attention masks as a tensor and expanding them across the batch dimension before returning the combined embeddings, padding masks, and attention masks. After that, I'm binding this pruned embedding function to the policy model and returning the original method for cleanup purposes.
+
+Now for the X-VLA model, I'm setting up a pruning function that keeps only a ratio of the top-norm image features by selecting them based on their L2 norms, sorting the indices to maintain order, and gathering the pruned features back together.
+
+For OpenVLA, I'm registering a forward hook that applies the same pruning strategy to the projector module's output, filtering tokens by their norm values and keeping only the top-k features.
+
+For SmolVLA, I'm setting up a similar pruning mechanism but first locating the connector module within the policy model, then applying the L2 norm-based token filtering to its output.
+
+Now I'm putting together the complete script, but I need to account for something important: SmolVLA's connector hook fires twice since there are two cameras, and I should check how the existing geometric hook implementation handles this state management.
+
+Examining the geometric hook approach...
+
+Actually, I realize the L2 norm pruning doesn't need that offset tracking since each camera's tokens get pruned independently based on their own norms. But I need to clarify whether the connector processes all 128 tokens at once or handles each camera separately during the forward pass.
+
+Looking at the geometric pruning implementation, it seems the connector fires once per camera with 64 tokens each, using the offset to track which camera is being processed. So for my L2 norm approach, I can just prune each invocation independently without worrying about cross-camera coordination.
+
+Writing the pruning hook... Writing the inference script... Writing the script structure...
+
+I'm realizing that running all models sequentially could cause dependency conflicts since OpenVLA requires a specific transformers version, so I need to isolate the imports for each model within their setup functions rather than at the module level. conflict with the LeRobot-based models (SmolVLA, Pi0.5). So I should NOT load OpenVLA and SmolVLA in the same Python process.
+
+The cleanest approach is: the script supports `--models` flag and you run it once per model. Each run only loads and tests one model (or compatible models).
+
+But actually, looking at the existing eval scripts, OpenVLA's path manipulation is done at the top of the file, before any imports. If I put it inside a function, it should only affect imports within that function's scope... Actually no, `sys.path.insert` is global.
+
+Let me handle this by making the OpenVLA setup explicitly mess with sys.path in a way that only affects its own imports. Since we're testing one model at a time (and freeing GPU memory between models), and the imports are done lazily inside functions, this should work IF we test OpenVLA last.
+
+Actually, the simpler approach: just test one model per run. The `--models` flag selects which model(s) to test, so users run separate commands for each one and results append to the same CSV. Python's import caching means conflicting transformers versions would persist in the same process, so the real solution is to test one model at a time and document that OpenVLA needs its own separate run. the next. It should work for smolvla + pi05 + xvla in one run, and openvla in a separate run.
+
+I've spent enough time planning—let me just write the script. Pi0.5 is large at 3B+ params, but loading models sequentially and deleting each before the next should handle memory fine. For X-VLA inference, I need to handle the predict_actions function which takes the model, processor, images as PIL objects, task description, proprioceptive data, domain ID, device, and denoising steps, then constructs inputs and runs the generation loop.
+
+Writing the measurement script... Writing the evaluation script... Setting up the SmolVLA benchmark function that loads the model configuration and policy, initializes the tokenizer, and prepares dummy input tensors for images and state observations along with a text prompt...
+
+Now I'm encoding the language input and setting up the inference loop to test different token compression ratios, creating a hook that will selectively keep a percentage of the visual tokens based on the keep ratio parameter. I'm collecting the benchmark results for this configuration, logging the performance metrics, and then cleaning up resources before moving on to benchmark the PI0.5 policy model.
+
+Now I need to patch the embed_image method on the PaliGemma expert component to handle the image processing pipeline correctly, converting dtypes as needed for the vision tower and multi-modal projector.
+
+I'm setting up the policy model in evaluation mode and calculating the number of image patches, then creating preprocessed batches from raw observations with multiple image slots and state information. I'm also storing the original embed_prefix function so I can create pruned versions of it that selectively keep certain image embeddings based on different keep ratios.
+
+Writing pruned embedding logic... Writing inference benchmarking code... Setting up the X-VLA model by loading its configuration, weights, and processor from the cache directory, then preparing to measure the number of vision tokens it generates.
+
+Now I'm determining the vision token count by passing a dummy image through the encoder, then preparing test inputs including sample images, a task description, proprioceptive data, and other parameters needed for inference.
+
+Setting up tensor conversions... I'm measuring the peak memory usage and calculating how many tokens were kept after pruning, then logging the benchmark results for this configuration before cleaning up the model and moving on to test OpenVLA.
+
+Now I'm setting up the import paths for the OpenVLA dependencies and loading the necessary model components like the configuration, model architecture, image processor, and tokenizer.
+
+Loading the model checkpoint and initializing it with the appropriate configuration and data types, then reading in the dataset statistics for normalization and setting up the processor pipeline with the image processor and tokenizer.
+
+Now I need to figure out how many vision tokens the projector outputs, so I'm creating a dummy image and prompt to run through the model, then setting up a hook to capture the projector's output shape to count the tokens.
+
+Writing token filtering logic... Writing argument parser... Writing argument parsing and benchmarking logic... Writing results output...
+
+Now I'm shifting focus to think about how OpenVLA handles tokens in their evaluation code.  I remember seeing a `count_vision_tokens` function that uses a forward hook on the projector to capture the output shape, which would give me the token count directly. I should use that same approach rather than trying to manually count. I'm also reconsidering whether I need to insert that specific `openvla_deps` path into sys.path—if I'm running OpenVLA in isolation, that dependency injection might not be necessary or could even cause conflicts.
+
+For the X-VLA model loading, I need to handle the custom configuration and modeling files by adding the model directory to sys.path, then importing the custom classes and loading the weights from the safetensors file. I need to check the actual model path since the default points to a Hugging Face cache location, but I have a local copy at `/root/autodl-tmp/.hf_cache/xvla_libero_official/` that I should use instead. Looking at how the processor handles inputs, it takes images and language instructions, producing a dictionary with fields like `input_ids` and `image_input` where the images get processed through Florence2's preprocessing pipeline. For the model's generate_actions function, I need to pass these processed inputs along with the other required fields.
+
+I should be careful about image dimensions since the eval uses 256x256 images from the LIBERO environment, and the processor may resize them. I also need to handle tensor type conversions properly, casting floating point tensors to float32 on the appropriate device.
+
+Now I'm ready to write out the complete script. Writing the comprehensive benchmark script... Looking at the eval code more carefully, it only provides 2 images (agentview and wrist), so the model's default 3-slot capacity isn't fully utilized. The preprocess function handles the padding and masking, and there's a monkey-patched embed_prefix function that manages how images are processed through the model. I can measure the token counts at runtime. For the benchmark, I'll run one baseline inference without pruning to establish the original token count, then apply the pruning patch for subsequent runs to see how the keep_ratio reduces tokens. The CSV will report both the original and pruned token counts for each model. I'm going to stop overthinking this and just write the script directly. I'll handle token counting inside each model's benchmark function rather than trying to pre-calculate everything. For the models where I don't know the exact token counts upfront—Pi0.5, X-VLA, and OpenVLA—I'll measure them at runtime during the actual inference.
+
+Writing the benchmark script... Setting up the measurement script with environment variables for offline mode and importing the necessary libraries for benchmarking. Writing utility functions... Writing pruning hook...
+
+Now I'm setting up the SmolVLA benchmark function, loading the policy and tokenizer, then preparing a dummy batch with camera observations.
+
+Constructing inference wrapper...
+
+Now I'm running a benchmark loop that tests different pruning ratios, registering hooks to control how many visual tokens are kept, measuring latency and peak memory usage for each configuration, and collecting the results with logging.
+
+Next I'm moving on to benchmark the Pi0.5 policy by loading it from a pretrained checkpoint and patching its image embedding method to handle dtype conversions properly. Setting up test data with observation inputs and task description, then preprocessing it. I'm wrapping the embed_prefix method to count how many image slots get used during a forward pass, then restoring the original method afterward to determine the total number of slots needed.
+
+Now I'm calculating the total vision tokens by multiplying patches per image by the number of slots, then iterating through different pruning ratios to test how the model performs with reduced token counts. For each ratio below 1.0, I'm creating a modified embedding function that processes images through the vision encoder and applies pruning logic.
+
+Implementing pruning logic... Finishing the embedding concatenation and then setting up the pruned embedding function on the model, resetting GPU memory stats, and running inference timing benchmarks to measure latency and peak memory usage.
+
+Now I'm calculating how many patches to keep based on the keep ratio, determining the final token count, logging the results for this pruning configuration, and then cleaning up the model and GPU memory before moving on to benchmark X-VLA.
+
+Setting up X-VLA model loading...
+
+Now I'm testing the vision encoder with a dummy image to determine how many vision tokens each image produces, then preparing sample inputs including dummy images, a task description, proprioceptive data, and other parameters for the processor.
+
+Preparing model inputs... Writing benchmark code... Loading the OpenVLA model configuration and weights from the checkpoint, then initializing the model with bfloat16 precision and loading the dataset statistics for normalization.
+
+Now I'm setting up the processor pipeline by loading the tokenizer and image processor, then creating a dummy image and prompt to test the model's input handling and count the vision tokens it generates. Now I'm looping through different pruning ratios, registering a hook to apply L2 pruning when the ratio is less than 1.0, then measuring inference latency and peak memory usage for each configuration. I'm tracking how many vision tokens are kept versus the original count, logging the results, and cleaning up the GPU memory before returning all the benchmark data.
+
+Setting up the main entry point with a benchmarks dictionary mapping model names to their respective benchmark functions, then defining an argument parser to let users specify which models to run, GPU device, number of warmup and test runs, and output directory.
+
+Continuing with the argument parsing and main execution logic...
+
+I'm setting up the CSV output with fields for model performance metrics like latency and memory usage, then writing the results to a file. After that, I'm preparing to save the same data in JSON format as well.
+
+Now I'm loading any existing JSON results and appending the new ones, then writing everything back to disk. Finally, I'm logging a summary table that displays the key metrics for each model in a formatted way.
+
+Wait, I'm noticing a potential issue with the Pi0.5 implementation—the `counting_embed` function is calling `original_embed_prefix` with certain parameters, but I need to check if that function signature is actually compatible with what's being passed. `original_embed_prefix` is a bound method, so when I call it with `(images, img_masks, tokens, masks)`, those arguments get passed correctly since `self` is already bound. For the SmolVLA hook, I'm using `make_l2_prune_hook` to prune tokens per camera independently by L2 norm, keeping a minimum of 1 token per camera based on the keep ratio.
+
+For X-VLA, the `_encode_image` method is called once per image, and each call gets pruned independently. I need to verify how the token count is calculated in the eval script—whether `n_vis_tokens` represents a single image's tokens or the total across all images. Now I'm clarifying what gets reported in the CSV—the total vision tokens across all images for each model, not per-image counts. For models with multiple cameras like SmolVLA and X-VLA, I need to multiply the per-image token count by the number of images, and the pruning calculation follows the same pattern. I need to figure out whether X-VLA's processor batches the images into a single `_encode_image` call or processes them separately. Looking at the evaluation code, the processor receives a list of 2 images and likely concatenates them into a batched tensor, so `_encode_image` might be called once with a batch dimension rather than twice.
+
+For the latency benchmark though, what really matters is the end-to-end timing, not the exact token accounting. I'll report per-image token counts for X-VLA and note that 2 images are used, with the pruning ratio applying independently to each. The CSV just needs model, keep_ratio, latency, and peak memory—I shouldn't overcomplicate the token reporting. What the paper actually cares about is whether latency decreases with lower keep_ratio, by how much, and what the peak memory usage is.
+
+For X-VLA specifically, I could measure total vision tokens entering the LLM by hooking into its input, but that's complex across different architectures. Instead, I'll just report per-image tokens and multiply by 2 since LIBERO uses 2 cameras, or I can check what the eval script already reports for this.
+
+Now I'm finalizing the token counts across all models: SmolVLA uses 128 total (64 per camera × 2), Pi0.5 uses 256 × N_SLOTS, X-VLA uses N_VIS_PER_IMAGE × 2, and OpenVLA uses a single image with N_VIS tokens. One thing I need to verify is whether X-VLA loads properly using the config initialization plus state dict loading, or if there's a from_pretrained method I should use instead.
+
+Checking the eval script... I'm looking at the actual load_model function from the eval script to understand how it initializes the model. It imports the configuration and modeling classes directly from the model directory, then loads the config using from_pretrained, which suggests the model itself likely follows the same pattern with safetensors weights. Then it was truncated. Since it imports `load_file` from safetensors, it probably does loading the config, instantiating the model, and loading weights from a safetensors file with non-strict mode.
+
+But it might also use `XVLA.from_pretrained(model_dir)`. Let me try `from_pretrained` first since it's more robust.
+
+Actually, looking at the XVLA code - it might not have a standard from_pretrained if it's not a standard HuggingFace model. Let me use the safetensors loading approach.
+
+But wait, the default `model_path` in the eval is `2toINF/X-VLA-Libero` which suggests it might use HF's `from_pretrained`. Let me check if there's a `from_pretrained` in the XVLA class.
+
+I don't have time to read the full modeling_xvla.py. Let me just try `XVLA.from_pretrained(model_dir)` and fall back to manual loading if it fails. For consistency with the eval scripts, I should match their loading pattern since the eval uses safetensors. The import might be there for other purposes beyond just model loading, so I'll go with the safetensors approach to be safe.
+
+For dtype, I'll keep it consistent with the eval scripts and not add explicit dtype specifications like bfloat16, since the eval doesn't specify it for X-VLA.
+
+For Pi0.5, I should use `PI05Policy.from_pretrained` to handle the model loading properly, and I need to be careful with the image preprocessing—random tensors might not work well with the pre/post processors, so I'll use actual random images instead.
+
+Looking at how the eval code normalizes images to [0, 1] range and considering that SmolVLA's existing latency measurement uses `torch.randn` with negative values, I'll use `torch.rand` for Pi0.5 to stay within the expected [0, 1] range that the preprocessor expects.
+
+For X-VLA and OpenVLA, I'm creating PIL images from random uint8 arrays which are already in the correct format. Now I need to verify that the preprocess function properly handles the raw observation dictionary by adding batch dimensions and tokenizing the text input.
+
+I'm realizing the preprocess function should handle converting the task string into the expected batch format, and I should just write the final script with error handling for any edge cases that come up. One thing I need to be careful about is how the counting mechanism works when I replace the bound method on the policy model—I need to make sure the original embedding function is called correctly with the right arguments. So calling `original_embed_prefix(images, img_masks, tokens, masks)` passes the right arguments to the bound method. Now I need to handle the X-VLA processor setup—it returns a dict of tensors that need to be moved to the device, and then I'll pass those tensors to `model.generate_actions()` with the appropriate kwargs.
+
+I should verify whether the X-VLA model can be loaded with `from_pretrained` by checking if it inherits from `PreTrainedModel`, but since the model directory has `safetensors` and `config.json` files, it's likely a standard HuggingFace model. Let me try both loading approaches to be safe.
+
+Actually, looking at how the processor uses `from_pretrained`, I should probably stick with that same pattern for consistency rather than manually loading the weights. to device. For large models, this might cause CPU memory issues, so I should use `low_cpu_mem_usage=True` when loading with `from_pretrained`. That way the model loads directly onto the target device without materializing everything on CPU first. If `from_pretrained` isn't available, it'll throw an error that's clear enough to debug.
+
+Now I'm thinking about the generation parameters—for OpenVLA, the `predict_action` method does autoregressive generation which could have variable latency. I should make sure `do_sample=False` is set to keep things deterministic, and I can see the eval script already has that configured.
+
+One more consideration: if OpenVLA requires a specific transformers version that conflicts with the other models, the safest approach is to note in the docstring that it should be run separately. But before I finalize everything, I'm wondering about how X-VLA's `_encode_image` handles multiple images—whether it concatenates them along the batch dimension and calls the encoder once, or processes them separately.
+
+Looking at the pruning implementation, the `_encode_image` function takes pixel_values and returns features. When processing a batch of 2 images with shape [2, 3, H, W], the features come out as [2, N, D], and the pruning logic applies token selection across both images simultaneously using topk operations on the feature dimension.
+
+For the latency benchmark with pre-processed inputs containing 2 images, the pruning will work naturally as the model calls `_encode_image`. To get the token count, I'm running a dummy forward pass with a single image to extract the per-image token count, then I can multiply by the number of images for the total. I'll report both the per-image count and the total in my results.
+
+Now I need to verify what the processor actually returns when given images and text—it should contain the tokenized input IDs, processed image tensors, and an image mask. Since I'm pre-processing once and reusing the inputs dict for the latency benchmark, I want to make sure I'm handling the XVLA model loading correctly, particularly whether it needs `trust_remote_code=True` or if the custom model code is already available locally.
+
+Since I'm importing the XVLA class directly via sys.path, calling `XVLA.from_pretrained(model_dir)` should work fine—it'll load the config, instantiate the model with those settings, and pull in the weights from the safetensors file. I'll go with that approach and see if any errors come up.
+
+For the processor, I need to handle the BatchFeature object it returns when I pass in the prompt and image...
+
+Writing the benchmark script... Writing the complete inference script...
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "03cd36d8-16b9-4f84-aa25-008c33db4728",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9WmWhGgqtVA96HdK4VFbL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3514,
+      "cache_read_input_tokens": 85228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3514
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+Now I have a complete picture of all 4 models' loading, inference, and pruning patterns. Let me write the comprehensive benchmark script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "727c8093-5470-458f-a347-d4ed73314f99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9WmWhGgqtVA96HdK4VFbL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3514,
+      "cache_read_input_tokens": 85228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3514
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VHgpzBBz1M53PHcW5yWsbr`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cat > /root/autodl-tmp/importance_margin_vla_compress/measure_inference_latency.py << 'SCRIPT_EOF'\n\"\"\"Measure inference latency and peak GPU memory for VLA models with L2-norm vision token pruning.\n\nModels: SmolVLA, Pi0.5, X-VLA, OpenVLA\nKeep ratios: 1.0 (no pruning), 0.95, 0.9, 0.7, 0.5\n\nFor each (model, keep_ratio):\n  1. Install L2-norm token pruning (no-op for k=1.0)\n  2. Warm up N_WARMUP forward passes\n  3. Time N_RUNS forward passes with torch.cuda.synchronize + time.perf_counter\n  4. Record peak GPU memory (torch.cuda.max_memory_allocated)\n\nNOTE: OpenVLA requires transformers 4.40.x — run separately from LeRobot-based models:\n    python measure_inference_latency.py --models smolvla pi05 xvla --gpu 0\n    python measure_inference_latency.py --models openvla --gpu 0\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport csv\nimport gc\nimport json\nimport logging\nimport os\nimport sys\nimport time\nimport types\nfrom pathlib import Path\n\nos.environ.setdefault(\"TRANSFORMERS_OFFLINE\", \"1\")\nos.environ.setdefault(\"HF_HUB_OFFLINE\", \"1\")\nos.environ.setdefault(\"HF_HOME\", \"/root/autodl-tmp/.hf_cache\")\n\nimport numpy as np\nimport torch\n\nPROJ = Path(__file__).resolve().parent\nsys.path.insert(0, str(PROJ))\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%Y-%m-%d %H:%M:%S\",\n)\nlog = logging.getLogger(__name__)\n\nKEEP_RATIOS = [1.0, 0.95, 0.9, 0.7, 0.5]\nN_WARMUP = 10\nN_RUNS = 100\n\n\n# ========================= Timing =========================\n\ndef time_inference(fn, n_warmup, n_runs, device):\n    for _ in range(n_warmup):\n        fn()\n    torch.cuda.synchronize(device)\n\n    latencies = []\n    for _ in range(n_runs):\n        torch.cuda.synchronize(device)\n        t0 = time.perf_counter()\n        fn()\n        torch.cuda.synchronize(device)\n        latencies.append((time.perf_counter() - t0) * 1000.0)\n    return np.array(latencies)\n\n\ndef make_row(model, keep_ratio, latencies, peak_mem_mb, n_orig, n_kept):\n    return {\n        \"model\": model,\n        \"keep_ratio\": keep_ratio,\n        \"n_vis_tokens_orig\": n_orig,\n        \"n_vis_tokens_kept\": n_kept,\n        \"latency_mean_ms\": round(float(latencies.mean()), 3),\n        \"latency_std_ms\": round(float(latencies.std()), 3),\n        \"latency_median_ms\": round(float(np.median(latencies)), 3),\n        \"latency_p95_ms\": round(float(np.percentile(latencies, 95)), 3),\n        \"peak_mem_mb\": round(peak_mem_mb, 1),\n    }\n\n\ndef free_gpu():\n    gc.collect()\n    torch.cuda.empty_cache()\n\n\n# ========================= Generic L2-Norm Pruning Hook =========================\n\ndef make_l2_prune_hook(keep_ratio):\n    \"\"\"Forward hook: keep top-k tokens by L2 norm.\"\"\"\n    def hook_fn(module, input, output):\n        tokens = output[0] if isinstance(output, tuple) else output\n        if tokens.dim() != 3:\n            return output\n        B, N, D = tokens.shape\n        k = max(1, int(N * keep_ratio))\n        if k >= N:\n            return output\n        norms = tokens.float().norm(dim=-1)\n        _, idx = norms.topk(k, dim=-1)\n        idx = idx.sort(dim=-1).values\n        pruned = tokens.gather(1, idx.unsqueeze(-1).expand(-1, -1, D))\n        if isinstance(output, tuple):\n            return (pruned,) + output[1:]\n        return pruned\n    return hook_fn\n\n\n# ========================= SmolVLA =========================\n\ndef benchmark_smolvla(device):\n    log.info(\"Loading SmolVLA...\")\n    from train_smart_compress import load_smolvla_policy, load_config\n    from train import get_tokenizer_from_policy\n    from geometric_prior_pruning import find_connector\n\n    config = load_config(\"configs/smart_compress.yaml\")\n    policy = load_smolvla_policy(config, device)\n    tokenizer = get_tokenizer_from_policy(policy)\n    policy.eval()\n\n    batch = {\n        \"observation.images.image\": torch.randn(1, 3, 256, 256, device=device),\n        \"observation.images.image2\": torch.randn(1, 3, 256, 256, device=device),\n        \"observation.state\": torch.randn(1, 8, device=device),\n    }\n    enc = tokenizer(\n        [\"pick up the red cup\\n\"], padding=\"longest\",\n        max_length=48, truncation=True, return_tensors=\"pt\",\n    )\n    batch[\"observation.language.tokens\"] = enc[\"input_ids\"].to(device)\n    batch[\"observation.language.attention_mask\"] = enc[\"attention_mask\"].bool().to(device)\n\n    connector = find_connector(policy.model)\n    TOKENS_PER_CAM = 64\n    N_CAMS = 2\n    N_VIS = TOKENS_PER_CAM * N_CAMS  # 128\n\n    @torch.no_grad()\n    def infer():\n        return policy.predict_action_chunk(batch)\n\n    results = []\n    for kr in KEEP_RATIOS:\n        handle = connector.register_forward_hook(make_l2_prune_hook(kr)) if kr < 1.0 else None\n        torch.cuda.reset_peak_memory_stats(device)\n        lats = time_inference(infer, N_WARMUP, N_RUNS, device)\n        peak = torch.cuda.max_memory_allocated(device) / 1e6\n        n_kept = max(1, int(TOKENS_PER_CAM * kr)) * N_CAMS if kr < 1.0 else N_VIS\n        results.append(make_row(\"smolvla\", kr, lats, peak, N_VIS, n_kept))\n        log.info(\"SmolVLA k=%.2f: %.2f±%.2f ms, %d→%d tok, %.0f MB\",\n                 kr, lats.mean(), lats.std(), N_VIS, n_kept, peak)\n        if handle:\n            handle.remove()\n\n    del policy, batch\n    free_gpu()\n    return results\n\n\n# ========================= Pi0.5 =========================\n\ndef benchmark_pi05(device):\n    log.info(\"Loading Pi0.5...\")\n    from lerobot.policies.pi05.modeling_pi05 import PI05Policy\n    from lerobot.policies.factory import make_pre_post_processors\n\n    policy = PI05Policy.from_pretrained(\"/root/autodl-tmp/pi05_libero_finetuned\")\n\n    pge = policy.model.paligemma_with_expert\n    def patched_embed_image(self, image):\n        out_dtype = image.dtype\n        if image.dtype != torch.float32:\n            image = image.to(torch.float32)\n        image_outputs = self.paligemma.model.vision_tower(image)\n        features = self.paligemma.model.multi_modal_projector(\n            image_outputs.last_hidden_state\n        )\n        if features.dtype != out_dtype:\n            features = features.to(out_dtype)\n        return features\n    pge.embed_image = types.MethodType(patched_embed_image, pge)\n\n    policy.to(device).eval()\n\n    N_PATCHES = (224 // 14) ** 2  # 256 per image\n\n    preprocess, _ = make_pre_post_processors(policy, device=device)\n    raw_obs = {\n        \"observation.images.image\": torch.rand(3, 256, 256),\n        \"observation.images.image2\": torch.rand(3, 256, 256),\n        \"observation.state\": torch.randn(8),\n        \"task\": \"pick up the red cup\",\n    }\n    batch = preprocess(raw_obs)\n\n    # Detect number of image slots\n    n_slots_holder = [0]\n    original_embed_prefix = policy.model.embed_prefix\n    def counting_embed(self_model, images, img_masks, tokens, masks):\n        n_slots_holder[0] = len(images)\n        return original_embed_prefix(images, img_masks, tokens, masks)\n    policy.model.embed_prefix = types.MethodType(counting_embed, policy.model)\n    with torch.no_grad():\n        policy.predict_action_chunk(batch)\n    policy.model.embed_prefix = original_embed_prefix\n    N_SLOTS = n_slots_holder[0] if n_slots_holder[0] > 0 else 3\n    N_VIS = N_PATCHES * N_SLOTS\n    log.info(\"Pi0.5: %d patches/image × %d slots = %d total vision tokens\",\n             N_PATCHES, N_SLOTS, N_VIS)\n\n    @torch.no_grad()\n    def infer():\n        return policy.predict_action_chunk(batch)\n\n    results = []\n    for kr in KEEP_RATIOS:\n        if kr < 1.0:\n            def _make_pruned(keep_ratio):\n                def pruned_embed_prefix(self_model, images, img_masks, tokens, masks):\n                    embs, pad_masks_list, att_masks = [], [], []\n                    for img, img_mask in zip(images, img_masks, strict=True):\n                        img_emb = self_model.paligemma_with_expert.embed_image(img)\n                        B, N, D = img_emb.shape\n                        n_keep = max(1, int(N * keep_ratio))\n                        norms = img_emb[0].float().norm(dim=-1)\n                        _, topk = norms.topk(n_keep)\n                        topk = topk.sort().values\n                        img_emb = img_emb[:, topk, :]\n                        embs.append(img_emb)\n                        pad_masks_list.append(img_mask[:, None].expand(B, n_keep))\n                        att_masks += [0] * n_keep\n                    lang_emb = self_model.paligemma_with_expert.embed_language_tokens(tokens)\n                    embs.append(lang_emb)\n                    pad_masks_list.append(masks)\n                    att_masks += [0] * lang_emb.shape[1]\n                    embs = torch.cat(embs, dim=1)\n                    pad_masks_cat = torch.cat(pad_masks_list, dim=1)\n                    att_masks_t = torch.tensor(\n                        att_masks, dtype=torch.bool, device=pad_masks_cat.device\n                    )[None, :].expand(embs.shape[0], -1)\n                    return embs, pad_masks_cat, att_masks_t\n                return pruned_embed_prefix\n            policy.model.embed_prefix = types.MethodType(_make_pruned(kr), policy.model)\n        else:\n            policy.model.embed_prefix = original_embed_prefix\n\n        torch.cuda.reset_peak_memory_stats(device)\n        lats = time_inference(infer, N_WARMUP, N_RUNS, device)\n        peak = torch.cuda.max_memory_allocated(device) / 1e6\n        n_keep_per = max(1, int(N_PATCHES * kr))\n        n_kept = n_keep_per * N_SLOTS if kr < 1.0 else N_VIS\n        results.append(make_row(\"pi05\", kr, lats, peak, N_VIS, n_kept))\n        log.info(\"Pi0.5 k=%.2f: %.2f±%.2f ms, %d→%d tok, %.0f MB\",\n                 kr, lats.mean(), lats.std(), N_VIS, n_kept, peak)\n\n    policy.model.embed_prefix = original_embed_prefix\n    del policy, batch\n    free_gpu()\n    return results\n\n\n# ========================= X-VLA =========================\n\ndef benchmark_xvla(device):\n    log.info(\"Loading X-VLA...\")\n    model_dir = \"/root/autodl-tmp/.hf_cache/xvla_libero_official\"\n    sys.path.insert(0, model_dir)\n\n    from configuration_xvla import XVLAConfig\n    from modeling_xvla import XVLA\n    from processing_xvla import XVLAProcessor\n    from safetensors.torch import load_file\n\n    config = XVLAConfig.from_pretrained(model_dir)\n    model = XVLA(config)\n    weights = load_file(os.path.join(model_dir, \"model.safetensors\"))\n    model.load_state_dict(weights, strict=False)\n    model.to(device).eval()\n\n    processor = XVLAProcessor.from_pretrained(model_dir)\n\n    with torch.no_grad():\n        dummy_feat = model.vlm._encode_image(\n            torch.randn(1, 3, 224, 224, device=device)\n        )\n    N_VIS_PER_IMG = dummy_feat.shape[1]\n    N_IMAGES = 2  # LIBERO: agentview + wrist\n    N_VIS = N_VIS_PER_IMG * N_IMAGES\n    log.info(\"X-VLA: %d tokens/image × %d images = %d total\", N_VIS_PER_IMG, N_IMAGES, N_VIS)\n\n    from PIL import Image\n    dummy_images = [\n        Image.fromarray(np.random.randint(0, 255, (256, 256, 3), dtype=np.uint8))\n        for _ in range(N_IMAGES)\n    ]\n    inputs = processor(images=dummy_images, language_instruction=\"pick up the red cup\")\n    for k, v in inputs.items():\n        if isinstance(v, torch.Tensor):\n            if v.is_floating_point():\n                inputs[k] = v.to(device=device, dtype=torch.float32)\n            else:\n                inputs[k] = v.to(device=device)\n    proprio_t = torch.zeros(1, 20, dtype=torch.float32, device=device)\n    domain_t = torch.tensor([3], dtype=torch.long, device=device)\n    denoise_steps = 10\n\n    original_encode = model.vlm._encode_image\n\n    @torch.no_grad()\n    def infer():\n        return model.generate_actions(\n            input_ids=inputs[\"input_ids\"],\n            image_input=inputs[\"image_input\"],\n            image_mask=inputs[\"image_mask\"],\n            proprio=proprio_t,\n            domain_id=domain_t,\n            steps=denoise_steps,\n        )\n\n    results = []\n    for kr in KEEP_RATIOS:\n        if kr < 1.0:\n            def _make_pruned(keep_ratio, orig_fn):\n                def pruned_encode(pixel_values):\n                    features = orig_fn(pixel_values)\n                    N = features.shape[1]\n                    k = max(1, int(keep_ratio * N))\n                    if k >= N:\n                        return features\n                    norms = features.norm(dim=-1)\n                    _, indices = norms.topk(k, dim=-1)\n                    indices = indices.sort(dim=-1).values\n                    return features.gather(\n                        1, indices.unsqueeze(-1).expand(-1, -1, features.shape[-1])\n                    )\n                return pruned_encode\n            model.vlm._encode_image = _make_pruned(kr, original_encode)\n        else:\n            model.vlm._encode_image = original_encode\n\n        torch.cuda.reset_peak_memory_stats(device)\n        lats = time_inference(infer, N_WARMUP, N_RUNS, device)\n        peak = torch.cuda.max_memory_allocated(device) / 1e6\n        n_kept_per = max(1, int(N_VIS_PER_IMG * kr))\n        n_kept = n_kept_per * N_IMAGES if kr < 1.0 else N_VIS\n        results.append(make_row(\"xvla\", kr, lats, peak, N_VIS, n_kept))\n        log.info(\"X-VLA k=%.2f: %.2f±%.2f ms, %d→%d tok, %.0f MB\",\n                 kr, lats.mean(), lats.std(), N_VIS, n_kept, peak)\n\n    model.vlm._encode_image = original_encode\n    del model\n    free_gpu()\n    return results\n\n\n# ========================= OpenVLA =========================\n\ndef benchmark_openvla(device):\n    log.info(\"Loading OpenVLA...\")\n    sys.path.insert(0, \"/root/autodl-tmp/openvla_deps\")\n    hf_dir = \"/root/autodl-tmp/openvla-repo/prismatic/extern/hf\"\n    if not os.path.exists(os.path.join(hf_dir, \"__init__.py\")):\n        open(os.path.join(hf_dir, \"__init__.py\"), \"w\").close()\n    sys.path.insert(0, \"/root/autodl-tmp/openvla-repo/prismatic/extern\")\n\n    from hf.configuration_prismatic import OpenVLAConfig\n    from hf.modeling_prismatic import OpenVLAForActionPrediction\n    from hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\n    from transformers import AutoTokenizer\n\n    ckpt_path = \"/root/autodl-tmp/openvla-libero-object\"\n    config = OpenVLAConfig.from_pretrained(ckpt_path)\n    vla = OpenVLAForActionPrediction.from_pretrained(\n        ckpt_path, config=config, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True,\n    ).to(device)\n    with open(os.path.join(ckpt_path, \"dataset_statistics.json\")) as f:\n        vla.norm_stats = json.load(f)\n    vla.eval()\n    unnorm_key = next(iter(vla.norm_stats.keys()))\n\n    tokenizer = AutoTokenizer.from_pretrained(ckpt_path)\n    image_processor = PrismaticImageProcessor.from_pretrained(ckpt_path)\n    processor = PrismaticProcessor(\n        image_processor=image_processor, tokenizer=tokenizer\n    )\n\n    from PIL import Image\n    dummy_img = Image.fromarray(\n        np.random.randint(0, 255, (224, 224, 3), dtype=np.uint8)\n    )\n    prompt = \"In: What action should the robot take to pick up the red cup?\\nOut:\"\n    inputs = processor(prompt, dummy_img).to(device, dtype=torch.bfloat16)\n\n    # Count vision tokens via projector hook\n    n_vis_holder = [0]\n    def count_hook(mod, inp, out):\n        n_vis_holder[0] = out.shape[1]\n    h = vla.projector.register_forward_hook(count_hook)\n    with torch.no_grad():\n        vla.predict_action(**inputs, unnorm_key=unnorm_key, do_sample=False)\n    h.remove()\n    N_VIS = n_vis_holder[0]\n    log.info(\"OpenVLA: %d vision tokens\", N_VIS)\n\n    @torch.no_grad()\n    def infer():\n        return vla.predict_action(**inputs, unnorm_key=unnorm_key, do_sample=False)\n\n    results = []\n    for kr in KEEP_RATIOS:\n        handle = (\n            vla.projector.register_forward_hook(make_l2_prune_hook(kr))\n            if kr < 1.0 else None\n        )\n        torch.cuda.reset_peak_memory_stats(device)\n        lats = time_inference(infer, N_WARMUP, N_RUNS, device)\n        peak = torch.cuda.max_memory_allocated(device) / 1e6\n        n_kept = max(1, int(N_VIS * kr)) if kr < 1.0 else N_VIS\n        results.append(make_row(\"openvla\", kr, lats, peak, N_VIS, n_kept))\n        log.info(\"OpenVLA k=%.2f: %.2f±%.2f ms, %d→%d tok, %.0f MB\",\n                 kr, lats.mean(), lats.std(), N_VIS, n_kept, peak)\n        if handle:\n            handle.remove()\n\n    del vla\n    free_gpu()\n    return results\n\n\n# ========================= Main =========================\n\nBENCHMARKS = {\n    \"smolvla\": benchmark_smolvla,\n    \"pi05\": benchmark_pi05,\n    \"xvla\": benchmark_xvla,\n    \"openvla\": benchmark_openvla,\n}\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Measure VLA inference latency with vision token pruning\"\n    )\n    parser.add_argument(\n        \"--models\", nargs=\"+\", default=[\"smolvla\"],\n        choices=list(BENCHMARKS.keys()),\n        help=\"Models to benchmark (run openvla separately due to transformers version)\",\n    )\n    parser.add_argument(\"--gpu\", type=int, default=0)\n    parser.add_argument(\"--n_warmup\", type=int, default=10)\n    parser.add_argument(\"--n_runs\", type=int, default=100)\n    parser.add_argument(\"--output_dir\", type=str, default=\"eval_results\")\n    parser.add_argument(\"--keep_ratios\", type=float, nargs=\"+\",\n                        default=[1.0, 0.95, 0.9, 0.7, 0.5])\n    args = parser.parse_args()\n\n    global N_WARMUP, N_RUNS, KEEP_RATIOS\n    N_WARMUP = args.n_warmup\n    N_RUNS = args.n_runs\n    KEEP_RATIOS = args.keep_ratios\n\n    device = torch.device(f\"cuda:{args.gpu}\")\n    log.info(\"Device: %s (%s)\", device, torch.cuda.get_device_name(device))\n    log.info(\"Config: warmup=%d, runs=%d, keep_ratios=%s\", N_WARMUP, N_RUNS, KEEP_RATIOS)\n\n    all_results = []\n    for name in args.models:\n        log.info(\"=\" * 60)\n        log.info(\"Benchmarking: %s\", name)\n        log.info(\"=\" * 60)\n        all_results.extend(BENCHMARKS[name](device))\n\n    # Save CSV (append mode for incremental runs)\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    csv_path = out_dir / \"inference_latency_all_models.csv\"\n    fields = [\n        \"model\", \"keep_ratio\", \"n_vis_tokens_orig\", \"n_vis_tokens_kept\",\n        \"latency_mean_ms\", \"latency_std_ms\", \"latency_median_ms\",\n        \"latency_p95_ms\", \"peak_mem_mb\",\n    ]\n    write_header = not csv_path.exists()\n    with open(csv_path, \"a\", newline=\"\") as f:\n        w = csv.DictWriter(f, fieldnames=fields)\n        if write_header:\n            w.writeheader()\n        w.writerows(all_results)\n\n    # Save JSON\n    json_path = out_dir / \"inference_latency_all_models.json\"\n    existing = {\n        \"gpu\": torch.cuda.get_device_name(device),\n        \"n_warmup\": N_WARMUP, \"n_runs\": N_RUNS,\n        \"results\": [],\n    }\n    if json_path.exists():\n        with open(json_path) as f:\n            existing = json.load(f)\n    existing[\"results\"].extend(all_results)\n    with open(json_path, \"w\") as f:\n        json.dump(existing, f, indent=2)\n\n    log.info(\"Saved: %s, %s\", csv_path, json_path)\n\n    # Summary table\n    log.info(\"\\n\" + \"=\" * 90)\n    log.info(\"%-10s  %5s  %8s  %12s  %10s  %10s\",\n             \"Model\", \"k\", \"tokens\", \"mean±std(ms)\", \"p95(ms)\", \"mem(MB)\")\n    log.info(\"-\" * 90)\n    for r in all_results:\n        log.info(\n            \"%-10s  %5.2f  %3d->%-3d  %7.2f+-%-5.2f  %8.2f  %8.0f\",\n            r[\"model\"], r[\"keep_ratio\"],\n            r[\"n_vis_tokens_orig\"], r[\"n_vis_tokens_kept\"],\n            r[\"latency_mean_ms\"], r[\"latency_std_ms\"],\n            r[\"latency_p95_ms\"], r[\"peak_mem_mb\"],\n        )\n    log.info(\"=\" * 90)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"DONE: $?\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "b9b61cf7-beb9-422f-b9fc-bb5e28634597",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P9WmWhGgqtVA96HdK4VFbL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3514,
+      "cache_read_input_tokens": 85228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3514
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-23T06:02:26.979Z_
+
+<details><summary>↩ Tool result · `toolu_01VHgpzBBz1M53PHcW5yWsbr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "b7c1c79f-c9ff-4af4-a67d-6aa1bb562e7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE: 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DONE: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UDQVHtqt53xoD36nFK41h8`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "wc -l /root/autodl-tmp/importance_margin_vla_compress/measure_inference_latency.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "b950610b-2c31-405e-ab9f-fa4468862022",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7dvesQAZiRvXsKAFTYv9q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 36399,
+      "cache_read_input_tokens": 88742,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 36399
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-23T06:02:31.740Z_
+
+<details><summary>↩ Tool result · `toolu_01UDQVHtqt53xoD36nFK41h8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"524 /root/autodl-tmp/importance_margin_vla_compress/measure_inference_latency.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "e67cbec9-2cd5-4c98-821c-a0304aeb2a2f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"524 /root/autodl-tmp/importance_margin_vla_compress/measure_inference_latency.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"524 /root/autodl-tmp/importance_margin_vla_compress/measure_inference_latency.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+验证脚本语法正确性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "7db8152a-600c-4343-a7d6-0fb251b8c031",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LrNWaP8DuigxsVofjAapM3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 232,
+      "cache_read_input_tokens": 125141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 232
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016h34EXnSDQrkZdNxEFn17z`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cd /root/autodl-tmp/importance_margin_vla_compress && python -c \"import ast; ast.parse(open('measure_inference_latency.py').read()); print('Syntax OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "782fdee9-e461-48c5-903d-21560cff724d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LrNWaP8DuigxsVofjAapM3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 232,
+      "cache_read_input_tokens": 125141,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 232
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-23T06:02:35.472Z_
+
+<details><summary>↩ Tool result · `toolu_016h34EXnSDQrkZdNxEFn17z`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && python -c \\\"import ast; ast.parse(open(\\\\'measure_inference_latency.py\\\\').read()); print(\\\\'Syntax OK\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "8fca258e-61c0-4bd6-a4b5-2b9368f03f4f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && python -c \\\\\\\"import ast; ast.parse(open(\\\\\\\\'measure_inference_latency.py\\\\\\\\').read()); print(\\\\\\\\'Syntax OK\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && python -c \\\"import ast; ast.parse(open(\\\\'measure_inference_latency.py\\\\').read()); print(\\\\'Syntax OK\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CHhc1QszqeZKA9dcpx28u7`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "cd /root/autodl-tmp/importance_margin_vla_compress && python3 -c \"import ast; ast.parse(open('measure_inference_latency.py').read()); print('Syntax OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "07a71ec3-50c8-4f31-aeb2-962743b5d76f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WtsfDmt5tMKmHHSAoaN8Yx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 337,
+      "cache_read_input_tokens": 125373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 337
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-23T06:02:38.723Z_
+
+<details><summary>↩ Tool result · `toolu_01CHhc1QszqeZKA9dcpx28u7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && python3 -c \\\"import ast; ast.parse(open(\\\\'measure_inference_latency.py\\\\').read()); print(\\\\'Syntax OK\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "b1e87f7c-458d-4913-b062-555f2a1a776d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && python3 -c \\\\\\\"import ast; ast.parse(open(\\\\\\\\'measure_inference_latency.py\\\\\\\\').read()); print(\\\\\\\\'Syntax OK\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/importance_margin_vla_compress && python3 -c \\\"import ast; ast.parse(open(\\\\'measure_inference_latency.py\\\\').read()); print(\\\\'Syntax OK\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YFftQSRAjNNtq97qRFcpJL`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "ls /root/miniconda3/bin/python",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "7ec51c77-488f-4317-af2c-22bde117d474",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrNnhNXW6rdSUp6Lt66eyB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 330,
+      "cache_read_input_tokens": 125710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 330
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-23T06:02:42.924Z_
+
+<details><summary>↩ Tool result · `toolu_01YFftQSRAjNNtq97qRFcpJL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "d9e37256-ddc7-45ed-84f2-4a4c27aadf40",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VcjtAmsnn3PwcXzu9NG9ev`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/importance_margin_vla_compress && python -c \"import ast; ast.parse(open('measure_inference_latency.py').read()); print('Syntax OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "300b3a28-b4f9-41c0-96b6-2a2d86e52f2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LmvhnhXKYb6YYiAjyeR7vh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 199,
+      "cache_read_input_tokens": 126040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 199
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-23T06:02:46.149Z_
+
+<details><summary>↩ Tool result · `toolu_01VcjtAmsnn3PwcXzu9NG9ev`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "8c36ab74-6d69-428a-96c9-b594cad94f75",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Syntax OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+脚本语法正确，已写入远程服务器。
+
+---
+
+## 设计思路
+
+**目标**：测量 4 个 VLA 模型在不同 vision token 保留比例下的推理延迟和峰值 GPU 显存。
+
+### 架构
+
+每个模型有独立的 `benchmark_*()` 函数，负责加载模型、构建 dummy batch、安装/移除剪枝、测量延迟。模型按序执行（每个测完后释放 GPU），避免 OOM。
+
+### 剪枝方法
+
+统一使用 **L2-norm pruning**（training-free），保留 L2 范数最大的 top-k tokens：
+
+| 模型 | 剪枝注入点 | 机制 |
+|------|-----------|------|
+| SmolVLA | `connector` forward hook | hook 每次调用剪枝一个摄像头的 64 tokens |
+| Pi0.5 | monkey-patch `embed_prefix` | 每个图像 slot 的 256 tokens 独立剪枝 |
+| X-VLA | monkey-patch `vlm._encode_image` | Florence2 输出特征按 L2 norm 剪枝 |
+| OpenVLA | `projector` forward hook | SigLIP+DINOv2 投影后剪枝 |
+
+### Vision Token 数量
+
+| 模型 | 每图 | 图像数 | 总计 |
+|------|------|--------|------|
+| SmolVLA | 64 | 2 | 128 |
+| Pi0.5 | 256 | 3 slots | 768 |
+| X-VLA | 运行时检测 | 2 | N×2 |
+| OpenVLA | 运行时检测 | 1 | N |
+
+### 时间测量
+
+- `torch.cuda.synchronize()` 确保 GPU 操作完成
+- `time.perf_counter()` 高精度计时
+- 10 次 warmup + 100 次正式测量
+- 输出 mean/std/median/p95 延迟 + 峰值显存
+
+### 使用方式
+
+```bash
+# SmolVLA + Pi0.5 + X-VLA（共享 LeRobot 环境）
+python measure_inference_latency.py --models smolvla pi05 xvla --gpu 0
+
+# OpenVLA 需单独运行（transformers 版本冲突）
+python measure_inference_latency.py --models openvla --gpu 0
+```
+
+输出 CSV 采用追加模式，分开运行的结果会合并到同一个 `eval_results/inference_latency_all_models.csv`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "uuid": "cbeb7058-8925-4862-a1b2-12850b0b42e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oVn6xc3t3ztUTXQgRBvVx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 250,
+      "cache_read_input_tokens": 126239,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 250
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 106_
+
+脚本语法正确，已写入远程服务器。
+
+---
+
+## 设计思路
+
+**目标**：测量 4 个 VLA 模型在不同 vision token 保留比例下的推理延迟和峰值 GPU 显存。
+
+### 架构
+
+每个模型有独立的 `benchmark_*()` 函数，负责加载模型、构建 dummy batch、安装/移除剪枝、测量延迟。模型按序执行（每个测完后释放 GPU），避免 OOM。
+
+### 剪枝方法
+
+统一使用 **L2-norm pruning**（training-free），保留 L2 范数最大的 top-k tokens：
+
+| 模型 | 剪枝注入点 | 机制 |
+|------|-----------|------|
+| SmolVLA | `connector` forward hook | hook 每次调用剪枝一个摄像头的 64 tokens |
+| Pi0.5 | monkey-patch `embed_prefix` | 每个图像 slot 的 256 tokens 独立剪枝 |
+| X-VLA | monkey-patch `vlm._encode_image` | Florence2 输出特征按 L2 norm 剪枝 |
+| OpenVLA | `projector` forward hook | SigLIP+DINOv2 投影后剪枝 |
+
+### Vision Token 数量
+
+| 模型 | 每图 | 图像数 | 总计 |
+|------|------|--------|------|
+| SmolVLA | 64 | 2 | 128 |
+| Pi0.5 | 256 | 3 slots | 768 |
+| X-VLA | 运行时检测 | 2 | N×2 |
+| OpenVLA | 运行时检测 | 1 | N |
+
+### 时间测量
+
+- `torch.cuda.synchronize()` 确保 GPU 操作完成
+- `time.perf_counter()` 高精度计时
+- 10 次 warmup + 100 次正式测量
+- 输出 mean/std/median/p95 延迟 + 峰值显存
+
+### 使用方式
+
+```bash
+# SmolVLA + Pi0.5 + X-VLA（共享 LeRobot 环境）
+python measure_inference_latency.py --models smolvla pi05 xvla --gpu 0
+
+# OpenVLA 需单独运行（transformers 版本冲突）
+python measure_inference_latency.py --models openvla --gpu 0
+```
+
+输出 CSV 采用追加模式，分开运行的结果会合并到同一个 `eval_results/inference_latency_all_models.csv`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 827164,
+  "duration_api_ms": 819988,
+  "num_turns": 42,
+  "stop_reason": "end_turn",
+  "session_id": "45c1a759-d349-48df-a72c-f5f50e9752fd",
+  "total_cost_usd": 2.7120949999999997,
+  "usage": {
+    "input_tokens": 25,
+    "cache_creation_input_tokens": 114648,
+    "cache_read_input_tokens": 1580408,
+    "output_tokens": 48146,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 114648,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 737,
+        "cache_read_input_tokens": 126239,
+        "cache_creation_input_tokens": 250,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 250
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1496,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001566,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 25,
+      "outputTokens": 48146,
+      "cacheReadInputTokens": 1580408,
+      "cacheCreationInputTokens": 114648,
+      "webSearchRequests": 0,
+      "costUSD": 2.7105289999999993,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "9cb177f8-402e-494c-915f-f21653d7af02"
+}
+```
+
+</details>
+
+---

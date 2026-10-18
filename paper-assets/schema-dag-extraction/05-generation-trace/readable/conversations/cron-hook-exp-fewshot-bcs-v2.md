@@ -1,0 +1,933 @@
+# cron hook exp fewshot bcs v2
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/cron_hook_exp_fewshot_bcs_v2.jsonl`
+- **Structured JSON:** [`a3f9df55e8d93b5c6559.json`](../../sessions/a3/a3f9df55e8d93b5c6559.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+30 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T14:03:48.083931+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp_fewshot_bcs_v2
+- project: schema-dag-extraction
+- server: cqa1-38874
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T14:04:04.413150+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers",
+  "max_results": "8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers",
+    "max_results": "8"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T14:04:04.463995+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T14:04:07.882884+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T14:04:08.512684+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T14:04:08.564736+00:00_
+
+Error: result (99,820 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-207ffbf9/e268d9f1-c604-4eab-a4de-ba39123e4501/tool-results/mcp-agent-ml-research-read_registry-1779026648499.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-207ffbf9/e268d9f1-c604-4eab-a4de-ba39123e4501/tool-results/mcp-agent-ml-research-read_registry-1779026648499.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 681
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T14:04:08.715897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 203
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T14:04:08.716283+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T14:04:08.716522+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T14:04:08.767227+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_fewshot_bcs_v2 | Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint. | — | — | — |\\n\\n## 待处理\\n- prompt_sensitivity（准备中）\\n- prompt_sensitivity_dry4（准备中）\\n- prompt_sensitivity_dry3（准备中）\\n- prompt_sensitivity_dry2（准备中）\\n- prompt_sensitivity_dry（准备中）\\n- exp_aggregation_monte_carlo（准备中）\\n- exp_scs_name_def_ablation（准备中）\\n- exp_fewrel_contamination_check（准备中）\\n- exp017_gpt4o_mini_fewrel（准备中）\\n- exp_cross_embedding_sensitivity（准备中）\\n- …另有 2 项\\n\\n## 近期结论\\n- **exp_llama70b_cross_model** (success): LLaMA 3.1 70B-Instruct FP8 will replicate the two-dimensional degradation pattern (count-associated recall decline + confusability-associated type confusion) observed on Qwen3-32B, with BCS-accuracy correlation direction preserved despite potential magnitude differences. 70B scale should show stronger Dimension 2 signal than 8B, closing the gap with 32B. ← 基于 exp_prompt_sensitivity\\n  [exp_llama70b_cross_model_analysis](/api/workspace-files/projects/schema-dag-extraction/artifacts/exp_llama70b_cross_model/report/exp_llama70b_cross_model_analysis.md)\\n- **exp_fewshot_bcs_mitigation** (killed): Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples. If the BCS delta
+…[truncated 1503 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T14:04:08.767861+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ROADMAP.md\", \"content\": \"# schema-dag-extraction — Research Dashboard\\n\\n> 最后更新: 2026-05-17 13:23 UTC | 更新原因: 70B metric fix complete, all 3 exps done, writing dispatched; few-shot BCS v2 fixing\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\nType confusability 独立于 type count 影响 training-free LLM IE 质量。Two-dimensional decomposition: count→recall decline, confusability→type substitution。\\n\\n## 当前阶段\\n**70B 全部完成 + metric 已修正，写入论文中；few-shot BCS v2 修复后重跑中**（距 DDL 8 天）\\n\\n- D054 Phase 1-5 全部完成，Reviewer 10/10 审查通过 ✅\\n- Title \\\"Predict\\\" ✅ | NER confound 修正 ✅ | Discussion 扩展 ✅ | TOST ✅\\n- 70B Exp 1 ✅ Exp 2 ✅ Exp 3 ✅（metric 已修正 type+text match）\\n- 70B 跨模型一致性确认：count_12 70B 0.822 vs Qwen3 0.826\\n- few-shot BCS v1 killed（对比度 0.04 无效），v2 使用极端批次修复中\\n\\n## 剩余任务\\n- [ ] 70B 结果写入论文 Appendix（Agent 执行中）\\n- [ ] count_6 修正值补全（Agent 从 westd 读取）\\n- [ ] few-shot BCS v2 代码修复 + 运行（cqa1，预计 4-6h）\\n- [ ] few-shot 结果写入论文\\n- [ ] 编译 final 验证\\n- [ ] Round 12 submit_paper_to_review (fresh)\\n\\n## 分析结果汇总\\n| 分析 | 结论 | 状态 |\\n|------|------|------|\\n| Q1 NER partial corr | null r≈0 (n=450) | ✅ 写入 |\\n| Q3 TOST logit (n=69) | linear passes, logit inconclusive | ✅ 写入 appendix |\\n| Q5 BCS vs freq | partial R²=0.467, VIF=1.06 | ✅ 写入 appendix |\\n| 70B Exp 1 FewRel count | Dim1 -30.7pp, 跨模型一致 | ✅ 写入中 |\\n| 70B Exp 2 BCS-controlled | Dim2 +10.94pp count_16 | ✅ 写入中 |\\n| 70B Exp 3 Few-NERD count | metric 修正完成, monotonic decline | ✅ 写入中 |\\n| few-shot BCS mitigation | v1 killed, v2 fixing | ⏳ |\\n\\n## 表述硬约束\\n- Title = \\\"Predict\\\"（已落地）\\n- NER batch-level BCS-F1 = null (r≈0); +0.50/+0.58 = confound artifact\\n- Dim2 batch-level = RE-specific\\n- TOST ±3pp primary (p=0.003); logit appendix; ±2pp sensitivity\\n- 因果语言分层（D052）; \\\"additive separability\\\" 禁止\\n- Body ≤8 页 ACL ARR\\n\\n## GPU 预算\\n- cqa1-38874: 1× RTX PRO 6000 — few-shot BCS v2 即将提交
+…[truncated 1471 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T14:04:14.182055+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "filters": "{'exp_id': 'exp_fewshot_bcs_v2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "filters": "{'exp_id': 'exp_fewshot_bcs_v2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T14:04:14.232602+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T14:04:14.535253+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3058}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 353
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T14:04:14.636014+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ssh_verify_qwen3_fewrel_data_20260517T140413\", \"task_type\": \"ssh:verify_qwen3_fewrel_data\", \"project\": \"schema-dag-extraction\", \"status\": \"running\", \"started_at\": \"2026-05-17T14:04:13.183736+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 403
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T14:04:19.008101+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "filters": "{'status': 'ANALYZING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "schema-dag-extraction",
+    "filters": "{'status': 'ANALYZING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T14:04:19.263503+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.263}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 255
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T14:04:26.558191+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-207ffbf9/e268d9f1-c604-4eab-a4de-ba39123e4501/tool-results/mcp-agent-ml-research-read_registry-1779026648499.txt | python3 -c \"import sys,json; data=json.loads(sys.stdin.read()); r=json.loads(data['result']); exps=r['data']['experiments']; print(json.dumps({k:v for k,v in exps.items() if 'fewshot_bcs' in k}, indent=2))\" 2>/dev/null | head -200",
+  "description": "Extract fewshot_bcs experiments from registry dump"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction--claude-sessions-agent-207ffbf9/e268d9f1-c604-4eab-a4de-ba39123e4501/tool-results/mcp-agent-ml-research-read_registry-1779026648499.txt | python3 -c \"import sys,json; data=json.loads(sys.stdin.read()); r=json.loads(data['result']); exps=r['data']['experiments']; print(json.dumps({k:v for k,v in exps.items() if 'fewshot_bcs' in k}, indent=2))\" 2>/dev/null | head -200",
+    "description": "Extract fewshot_bcs experiments from registry dump"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T14:04:26.810115+00:00_
+
+{
+  "exp_fewshot_bcs_v2": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:18:15.923Z",
+    "updated_at": "2026-05-17T14:03:49.907Z",
+    "hypothesis": "Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint.",
+    "parent": "exp_fewrel_v2_n25",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/schema-dag-extraction && python3 src/run_fewshot_bcs_v2.py --stage all --n_shots 0 1 5 --seed 42\"",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "480497",
+      "log_path": "~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log",
+      "submitted_at": "2026-05-17T13:39:04.351Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema-dag-extraction/data/exp_v2_re_n25/batch_groups.json",
+      "data_count": "50 batches (25 low-BCS ~0.36, 25 high-BCS ~0.80) x 3 shots = 450 tasks",
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "checkpoint_source": "Qwen3-32B-FP8 (vLLM served, no fine-tuning)",
+      "eval_data": "FewRel extreme-BCS batches from exp_fewrel_v2_n25/batch_groups.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T14:03:41.759Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T14:03:47.723099+00:00"
+        }
+      ]
+    }
+  },
+  "exp_fewshot_bcs_mitigation": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:52:38.715Z",
+    "updated_at": "2026-05-17T13:18:02.771Z"
+…[truncated 1644 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "Bash",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T14:04:37.873033+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_fewshot_bcs_v2",
+  "field": "status",
+  "value": "ANALYZING",
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_fewshot_bcs_v2",
+    "field": "status",
+    "value": "ANALYZING",
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T14:04:38.948423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_fewshot_bcs_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:18:15.923Z\", \"updated_at\": \"2026-05-17T14:04:38.146Z\", \"hypothesis\": \"Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint.\", \"parent\": \"exp_fewrel_v2_n25\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate base && cd /root/schema-dag-extraction && python3 src/run_fewshot_bcs_v2.py --stage all --n_shots 0 1 5 --seed 42\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"480497\", \"log_path\": \"~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log\", \"submitted_at\": \"2026-05-17T13:39:04.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema-dag-extraction/data/exp_v2_re_n25/batch_groups.json\", \"data_count\": \"50 batches (25 low-BCS ~0.36, 25 high-BCS ~0.80) x 3 shots = 450 tasks\", \"model_name\": \"Qwen3-32B-FP8\", \"seed\": 42, \"checkpoint_source\": \"Qwen3-32B-FP8 (vLLM served, no fine-tuning)\", \"eval_data\": \"FewRel extreme-BCS batches from exp_fewrel_v2_n25/batch_groups.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-17T14:03:41.759Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T14:03:47.723099+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0496}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1075
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-17T14:05:08.045612+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:exp_fewshot_bcs_v2",
+  "project": "schema-dag-extraction",
+  "task_prompt": "## 任务：分析 exp_fewshot_bcs_v2 实验结果\n\n### 背景\nexp_fewshot_bcs_v2 测试 few-shot demonstrations 是否能缓解 BCS（Batch Confusability Score）驱动的类型混淆效应。\n\n**Hypothesis**: Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint.\n\n**Parent**: exp_fewrel_v2_n25（提供了 extreme-BCS batch 分组）\n**前序 v1 被 killed**：因为 BCS 分组对比度仅 0.04（应为 ~0.43），v2 使用极端批次修复。\n\n### 实验设置\n- 服务器: cqa1-38874\n- 命令: `python3 src/run_fewshot_bcs_v2.py --stage all --n_shots 0 1 5 --seed 42`\n- 数据: 50 batches (25 low-BCS ~0.36, 25 high-BCS ~0.80) x 3 shot conditions = 450 tasks\n- 模型: Qwen3-32B-FP8 via vLLM\n- Log: ~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log\n\n### 你的任务\n\n1. SSH 到 cqa1-38874，读取实验日志和结果文件：\n   - 先看日志文件 `~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log`（tail 最后 100 行确认正常完成）\n   - 查找结果输出目录（可能在 `/root/schema-dag-extraction/data/` 或 `/root/schema-dag-extraction/results/` 下，也可能由脚本输出到 stdout）\n   - 读取 `src/run_fewshot_bcs_v2.py` 了解输出路径和结果格式\n\n2. 核心分析（这是最关键的部分）：\n   - 对每个 shot 条件 (0-shot, 1-shot, 5-shot)，计算：\n     a) low-BCS 组平均 accuracy\n     b) high-BCS 组平均 accuracy  \n     c) **BCS delta** = low-BCS accuracy - high-BCS accuracy\n   - 比较 BCS delta 在 0-shot vs 1-shot vs 5-shot 之间的变化\n   - 如果 0-shot delta ≈ 25-31pp（预期），few-shot 下 delta 是否显著缩小？\n   - 统计显著性：对 low/high BCS 差异做 t-test 或 Mann-Whitney\n\n3. 判断 conclusion：\n   - **success**: BCS delta 在 few-shot 下显著缩小（说明 confusability 可通过 prompting 缓解）\n   - **negative**: BCS delta 在 few-shot 下持续（说明 confusability 是 fundamental schema-structural constraint）\n   - **failed**: 脚本出错、数据异常等\n\n4. 输出产出到本地：\n   - 写分析报告到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_fewshot_bcs_v2/analysis_report.md`\n   - 报告包含：核心数字（每组 accuracy + delta）、统计检验结果、conclusion 及理由\n   - 如果有结果 JSON/CSV，也复制关键数据到本地 artifacts\n\n5. 更新 registry：\n   - `update_registry(exp_id=\"exp_fewshot_bcs_v2\", field=\"conclusion\", value=\"success\"或\"negative\")`\n   - `update_registry(exp_id=\"exp_fewshot_bcs_v2\", field=\"metrics\", value={...核心指标...})`\n   - `update_registry(exp_id=\"exp_fewshot_bcs_v2\", field=\"status\", value=\"DONE\")`\n   - 设置 checkpoint_path（结果文件路径）和 log_path\n\n注意：negative 结果对论文同样有价值——它证实 confusability 是 schema-structural 而非 prompt-addressable 的。这实际上**强化**了论文的核心 claim。",
+  "tool_groups": "['ssh', 'registry', 'knowledge']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:exp_fewshot_bcs_v2",
+    "project": "schema-dag-extraction",
+    "task_prompt": "## 任务：分析 exp_fewshot_bcs_v2 实验结果\n\n### 背景\nexp_fewshot_bcs_v2 测试 few-shot demonstrations 是否能缓解 BCS（Batch Confusability Score）驱动的类型混淆效应。\n\n**Hypothesis**: Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint.\n\n**Parent**: exp_fewrel_v2_n25（提供了 extreme-BCS batch 分组）\n**前序 v1 被 killed**：因为 BCS 分组对比度仅 0.04（应为 ~0.43），v2 使用极端批次修复。\n\n### 实验设置\n- 服务器: cqa1-38874\n- 命令: `python3 src/run_fewshot_bcs_v2.py --stage all --n_shots 0 1 5 --seed 42`\n- 数据: 50 batches (25 low-BCS ~0.36, 25 high-BCS ~0.80) x 3 shot conditions = 450 tasks\n- 模型: Qwen3-32B-FP8 via vLLM\n- Log: ~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log\n\n### 你的任务\n\n1. SSH 到 cqa1-38874，读取实验日志和结果文件：\n   - 先看日志文件 `~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log`（tail 最后 100 行确认正常完成）\n   - 查找结果输出目录（可能在 `/root/schema-dag-extraction/data/` 或 `/root/schema-dag-extraction/results/` 下，也可能由脚本输出到 stdout）\n   - 读取 `src/run_fewshot_bcs_v2.py` 了解输出路径和结果格式\n\n2. 核心分析（这是最关键的部分）：\n   - 对每个 shot 条件 (0-shot, 1-shot, 5-shot)，计算：\n     a) low-BCS 组平均 accuracy\n     b) high-BCS 组平均 accuracy  \n     c) **BCS delta** = low-BCS accuracy - high-BCS accuracy\n   - 比较 BCS delta 在 0-shot vs 1-shot vs 5-shot 之间的变化\n   - 如果 0-shot delta ≈ 25-31pp（预期），few-shot 下 delta 是否显著缩小？\n   - 统计显著性：对 low/high BCS 差异做 t-test 或 Mann-Whitney\n\n3. 判断 conclusion：\n   - **success**: BCS delta 在 few-shot 下显著缩小（说明 confusability 可通过 prompting 缓解）\n   - **negative**: BCS delta 在 few-shot 下持续（说明 confusability 是 fundamental schema-structural constraint）\n   - **failed**: 脚本出错、数据异常等\n\n4. 输出产出到本地：\n   - 写分析报告到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_fewshot_bcs_v2/analysis_report.md`\n   - 报告包含：核心数字（每组 accuracy + delta）、统计检验结果、conclusion 及理由\n   - 如果有结果 JSON/CSV，也复制关键数据到本地 artifacts\n\n5. 更新 registry：\n   - `update_registry(exp_id=\"exp_fewshot_bcs_v2\", field=\"conclusion\", value=\"success\"或\"negative\")`\n   - `update_registry(exp_id=\"exp_fewshot_bcs_v2\", field=\"metrics\", value={...核心指标...})`\n   - `update_registry(exp_id=\"exp_fewshot_bcs_v2\", field=\"status\", value=\"DONE\")`\n   - 设置 checkpoint_path（结果文件路径）和 log_path\n\n注意：negative 结果对论文同样有价值——它证实 confusability 是 schema-structural 而非 prompt-addressable 的。这实际上**强化**了论文的核心 claim。",
+    "tool_groups": "['ssh', 'registry', 'knowledge']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T14:05:08.871872+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+  "limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+    "limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T14:05:11.034605+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp_fewshot_bcs_v2_20260517T140508\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_analysis_exp_fewshot_bcs_v2_20260517T140508.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp_fewshot_bcs_v2_20260517T140508 started. Use get_worker_status('worker_analysis_exp_fewshot_bcs_v2_20260517T140508') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2988
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T14:05:11.035129+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "Read",
+  "elapsed_ms": 2163
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T14:05:23.454878+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T14:05:23.505586+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T14:05:26.066947+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T14:05:26.368972+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-38874\", \"gpu_id\": \"cuda:0\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"cqa1-38874\", \"gpu_id\": \"cuda:0\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [], \"worker_pool\": {\"total\": 2, \"gpu_tasks\": 0, \"cpu_tasks\": 2, \"details\": [{\"worker_id\": \"worker_ssh_verify_qwen3_fewrel_data_20260517T140413\", \"task\": \"ssh:verify_qwen3_fewrel_data\"}, {\"worker_id\": \"worker_analysis_exp_fewshot_bcs_v2_20260517T140508\", \"task\": \"analysis:exp_fewshot_bcs_v2\"}]}, \"summary\": \"分配 1 张, 实际跑 0 张 ⚠️ | Worker 2 (GPU 0 / CPU 2)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_fewshot_bcs_v2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-17T14:05:35.159137+00:00_
+
+资源状态已获取：cqa1-38874 cuda:0 已分配但空闲（实验刚完成，正在分析）。Worker 池 2 个在运行。等待分析 Worker 回调结果后向 Director 汇报并安排下一步用 GPU。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_fewshot_bcs_v2"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,641 @@
+# analysis tost delta
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/chats/worker_analysis_tost-delta_20260522T035524.jsonl`
+- **Structured JSON:** [`0c4d16f417845da37aa7.json`](../../sessions/0c/0c4d16f417845da37aa7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+21 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T04:01:57.036139+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T04:01:57.036531+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T04:01:57.036755+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nfrom scipy import stats\n\n# TOST paired design parameters\nn = 87        # pairs\nalpha = 0.05  # one-sided\npower = 0.80\n\ndf = n - 1  # 86\n\n# Critical values\nt_alpha = stats.t.ppf(1 - alpha, df)     # for H0 rejection\nt_beta  = stats.t.ppf(power, df)          # for power\n\nprint(f'n = {n}, df = {df}')\nprint(f'alpha = {alpha} (one-sided)')\nprint(f'power = {power}')\nprint(f't_alpha(0.95, {df}) = {t_alpha:.4f}')\nprint(f't_beta(0.80, {df}) = {t_beta:.4f}')\nprint()\n\n# For paired TOST, the test statistic under H1 (true mean diff = 0, margin = Delta):\n#   t = (Delta - 0) / (sigma / sqrt(n))\n# We need: P(reject both one-sided tests) >= power\n# At the boundary (true diff = 0), the noncentrality parameter is Delta*sqrt(n)/sigma\n# Power condition: Delta*sqrt(n)/sigma >= t_alpha + t_beta\n# => Delta/sigma >= (t_alpha + t_beta) / sqrt(n)\n# => Delta_min in Cohen's d units = (t_alpha + t_beta) / sqrt(n)\n\nd_min = (t_alpha + t_beta) / np.sqrt(n)\nprint(f'Minimum detectable equivalence margin (Cohen d):')\nprint(f'  Delta_min / sigma = (t_alpha + t_beta) / sqrt(n)')\nprint(f'  = ({t_alpha:.4f} + {t_beta:.4f}) / sqrt({n})')\nprint(f'  = {t_alpha + t_beta:.4f} / {np.sqrt(n):.4f}')\nprint(f'  = {d_min:.4f}')\nprint()\n\n# Verify with power calculation\n# Under H1: true_diff=0, margin=Delta\n# t_upper = (Delta - 0)/(sigma/sqrt(n)) = Delta*sqrt(n)/sigma\n# t_lower = (0 - (-Delta))/(sigma/sqrt(n)) = Delta*sqrt(n)/sigma  (symmetric)\n# Power = P(T > -t_upper + t_alpha) for the binding side\n# Actually for symmetric case, power = P(T < ncp - t_alpha) where ncp = Delta*sqrt(n)/sigma\nncp = d_min * np.sqrt(n)\nprint(f'Verification:')\nprint(f'  noncentrality parameter = {ncp:.4f}')\nprint(f'  Expected: t_alpha + t_beta = {t_alpha + t_beta:.4f}')\n\n# Power verification using noncentral t\n# For the upper one-sided test: reject if t > -Delta_boundary, i.e., T_stat > some threshold\n# Simplified: power = 1 - stats.t.cdf(t_alpha, df, loc=ncp) ... but let's use the direct formula\nachieved_power = stats.t.cdf(ncp - t_alpha, df)\nprint(f'  Achieved power = {achieved_power:.4f} (target: {power})')\nprint()\n\n# Also try statsmodels if available\ntry:\n    from statsmodels.stats.power import tt_solve_power\n    # tt_solve_power gives power for a one-sample t-test\n    # For paired TOST, each one-sided test is like a one-sample t-test\n    # We need the effect size where power of EACH one-sided test = sqrt(overall_power)? No.\n    # Actually for symmetric TOST with true diff=0, both tests have same power,\n    # and overall power ≈ power of each test (since they're nearly independent at boundary)\n    # More precisely: overall power = P(reject upper) + P(reject lower) - 1\n    # At true_diff=0: both have same power p, so overall = 2p - 1\n    # We want 2p - 1 = 0.80, so p = 0.90 for each one-sided test\n    \n    # Wait, that's wrong. TOST requires BOTH to reject.\n    # At true_diff=0 (symmetric): P(both reject) = P(reject one)^2 if independent\n    # But they're not independent. For paired with true_diff=0:\n    # P(both reject) = P(|T| < Delta*sqrt(n)/sigma - t_alpha) hmm\n    \n    # Let me just use the direct noncentral t approach\n    # The binding constraint is: the one-sided test closer to the boundary\n    # When true_diff = 0 (center of equivalence region), both sides are equally binding\n    # Power of TOST = P(T1 > t_alpha AND T2 > t_alpha)\n    # where T1 = (Xbar + Delta)/(s/sqrt(n)), T2 = (Delta - Xbar)/(s/sqrt(n))\n    # Under H1 (mu_diff=0): T1 ~ noncentral t with ncp = Delta*sqrt(n)/sigma\n    #                        T2 ~ noncentral t with ncp = Delta*sqrt(n)/sigma\n    # Power ≈ [1 - t.cdf(t_alpha, df, ncp=ncp)]^2 but they're not independent\n    # Actually T2 = 2*Delta*sqrt(n)/sigma - T1, so they're perfectly negatively correlated\n    # Power = P(T1 > t_alpha AND T1 < 2*ncp - t_alpha)\n    #       = P(t_alpha < T1 < 2*ncp - t_alpha) where T1 ~ t(df)  shifted by ncp\n    # Hmm, let me redo this more carefully with noncentral t\n    \n    # Simpler: use the exact formula\n    # Power = Phi(ncp - t_alpha) - Phi(-ncp + t_alpha) ≈ Phi(ncp - t_alpha) for large ncp\n    # where Phi is the t-distribution CDF\n    # This confirms: power ≈ P(T < ncp - t_alpha) for large Delta\n    \n    print('statsmodels available')\nexcept ImportError:\n    print('statsmodels not available')\n\nprint()\nprint('='*60)\nprint('SUMMARY')\nprint('='*60)\nprint(f'For paired TOST with n={n} pairs, alpha={alpha} (one-sided), power={power}:')\nprint(f'  Minimum detectable equivalence margin = {d_min:.4f} Cohen\\\\'s d')\nprint(f'  i.e., Delta_min = {d_min:.4f} * sigma_diff')\nprint(f'  where sigma_diff = SD of paired differences')\nprint()\nprint(f'For a 5-point Likert scale (typical sigma_diff ~ 0.8-1.2):')\nfor sd in [0.5, 0.8, 1.0, 1.2]:\n    delta_raw = d_min * sd\n    print(f'  If sigma_diff = {sd}: Delta_min = {delta_raw:.3f} Likert points')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nfrom scipy import stats\n\n# TOST paired design parameters\nn = 87        # pairs\nalpha = 0.05  # one-sided\npower = 0.80\n\ndf = n - 1  # 86\n\n# Critical values\nt_alpha = stats.t.ppf(1 - alpha, df)     # for H0 rejection\nt_beta  = stats.t.ppf(power, df)          # for power\n\nprint(f'n = {n}, df = {df}')\nprint(f'alpha = {alpha} (one-sided)')\nprint(f'power = {power}')\nprint(f't_alpha(0.95, {df}) = {t_alpha:.4f}')\nprint(f't_beta(0.80, {df}) = {t_beta:.4f}')\nprint()\n\n# For paired TOST, the test statistic under H1 (true mean diff = 0, margin = Delta):\n#   t = (Delta - 0) / (sigma / sqrt(n))\n# We need: P(reject both one-sided tests) >= power\n# At the boundary (true diff = 0), the noncentrality parameter is Delta*sqrt(n)/sigma\n# Power condition: Delta*sqrt(n)/sigma >= t_alpha + t_beta\n# => Delta/sigma >= (t_alpha + t_beta) / sqrt(n)\n# => Delta_min in Cohen's d units = (t_alpha + t_beta) / sqrt(n)\n\nd_min = (t_alpha + t_beta) / np.sqrt(n)\nprint(f'Minimum detectable equivalence margin (Cohen d):')\nprint(f'  Delta_min / sigma = (t_alpha + t_beta) / sqrt(n)')\nprint(f'  = ({t_alpha:.4f} + {t_beta:.4f}) / sqrt({n})')\nprint(f'  = {t_alpha + t_beta:.4f} / {np.sqrt(n):.4f}')\nprint(f'  = {d_min:.4f}')\nprint()\n\n# Verify with power calculation\n# Under H1: true_diff=0, margin=Delta\n# t_upper = (Delta - 0)/(sigma/sqrt(n)) = Delta*sqrt(n)/sigma\n# t_lower = (0 - (-Delta))/(sigma/sqrt(n)) = Delta*sqrt(n)/sigma  (symmetric)\n# Power = P(T > -t_upper + t_alpha) for the binding side\n# Actually for symmetric case, power = P(T < ncp - t_alpha) where ncp = Delta*sqrt(n)/sigma\nncp = d_min * np.sqrt(n)\nprint(f'Verification:')\nprint(f'  noncentrality parameter = {ncp:.4f}')\nprint(f'  Expected: t_alpha + t_beta = {t_alpha + t_beta:.4f}')\n\n# Power verification using noncentral t\n# For the upper one-sided test: reject if t > -Delta_boundary, i.e., T_stat > some threshold\n# Simplified: power = 1 - stats.t.cdf(t_alpha, df, loc=ncp) ... but let's use the direct formula\nachieved_power = stats.t.cdf(ncp - t_alpha, df)\nprint(f'  Achieved power = {achieved_power:.4f} (target: {power})')\nprint()\n\n# Also try statsmodels if available\ntry:\n    from statsmodels.stats.power import tt_solve_power\n    # tt_solve_power gives power for a one-sample t-test\n    # For paired TOST, each one-sided test is like a one-sample t-test\n    # We need the effect size where power of EACH one-sided test = sqrt(overall_power)? No.\n    # Actually for symmetric TOST with true diff=0, both tests have same power,\n    # and overall power ≈ power of each test (since they're nearly independent at boundary)\n    # More precisely: overall power = P(reject upper) + P(reject lower) - 1\n    # At true_diff=0: both have same power p, so overall = 2p - 1\n    # We want 2p - 1 = 0.80, so p = 0.90 for each one-sided test\n    \n    # Wait, that's wrong. TOST requires BOTH to reject.\n    # At true_diff=0 (symmetric): P(both reject) = P(reject one)^2 if independent\n    # But they're not independent. For paired with true_diff=0:\n    # P(both reject) = P(|T| < Delta*sqrt(n)/sigma - t_alpha) hmm\n    \n    # Let me just use the direct noncentral t approach\n    # The binding constraint is: the one-sided test closer to the boundary\n    # When true_diff = 0 (center of equivalence region), both sides are equally binding\n    # Power of TOST = P(T1 > t_alpha AND T2 > t_alpha)\n    # where T1 = (Xbar + Delta)/(s/sqrt(n)), T2 = (Delta - Xbar)/(s/sqrt(n))\n    # Under H1 (mu_diff=0): T1 ~ noncentral t with ncp = Delta*sqrt(n)/sigma\n    #                        T2 ~ noncentral t with ncp = Delta*sqrt(n)/sigma\n    # Power ≈ [1 - t.cdf(t_alpha, df, ncp=ncp)]^2 but they're not independent\n    # Actually T2 = 2*Delta*sqrt(n)/sigma - T1, so they're perfectly negatively correlated\n    # Power = P(T1 > t_alpha AND T1 < 2*ncp - t_alpha)\n    #       = P(t_alpha < T1 < 2*ncp - t_alpha) where T1 ~ t(df)  shifted by ncp\n    # Hmm, let me redo this more carefully with noncentral t\n    \n    # Simpler: use the exact formula\n    # Power = Phi(ncp - t_alpha) - Phi(-ncp + t_alpha) ≈ Phi(ncp - t_alpha) for large ncp\n    # where Phi is the t-distribution CDF\n    # This confirms: power ≈ P(T < ncp - t_alpha) for large Delta\n    \n    print('statsmodels available')\nexcept ImportError:\n    print('statsmodels not available')\n\nprint()\nprint('='*60)\nprint('SUMMARY')\nprint('='*60)\nprint(f'For paired TOST with n={n} pairs, alpha={alpha} (one-sided), power={power}:')\nprint(f'  Minimum detectable equivalence margin = {d_min:.4f} Cohen\\\\'s d')\nprint(f'  i.e., Delta_min = {d_min:.4f} * sigma_diff')\nprint(f'  where sigma_diff = SD of paired differences')\nprint()\nprint(f'For a 5-point Likert scale (typical sigma_diff ~ 0.8-1.2):')\nfor sd in [0.5, 0.8, 1.0, 1.2]:\n    delta_raw = d_min * sd\n    print(f'  If sigma_diff = {sd}: Delta_min = {delta_raw:.3f} Likert points')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T04:01:57.037008+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"n = 87, df = 86\\nalpha = 0.05 (one-sided)\\npower = 0.8\\nt_alpha(0.95, 86) = 1.6628\\nt_beta(0.80, 86) = 0.8458\\n\\nMinimum detectable equivalence margin (Cohen d):\\n  Delta_min / sigma = (t_alpha + t_beta) / sqrt(n)\\n  = (1.6628 + 0.8458) / sqrt(87)\\n  = 2.5086 / 9.3274\\n  = 0.2689\\n\\nVerification:\\n  noncentrality parameter = 2.5086\\n  Expected: t_alpha + t_beta = 2.5086\\n  Achieved power = 0.8000 (target: 0.8)\\n\\nstatsmodels available\\n\\n============================================================\\nSUMMARY\\n============================================================\\nFor paired TOST with n=87 pairs, alpha=0.05 (one-sided), power=0.8:\\n  Minimum detectable equivalence margin = 0.2689 Cohen's d\\n  i.e., Delta_min = 0.2689 * sigma_diff\\n  where sigma_diff = SD of paired differences\\n\\nFor a 5-point Likert scale (typical sigma_diff ~ 0.8-1.2):\\n  If sigma_diff = 0.5: Delta_min = 0.134 Likert points\\n  If sigma_diff = 0.8: Delta_min = 0.215 Likert points\\n  If sigma_diff = 1.0: Delta_min = 0.269 Likert points\\n  If sigma_diff = 1.2: Delta_min = 0.323 Likert points\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T04:01:57.037176+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/data -name \"*.csv\" -o -name \"*.json\" -o -name \"*.jsonl\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "find /root/causal_style_decomp_judge/data -name \"*.csv\" -o -name \"*.json\" -o -name \"*.jsonl\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T04:01:57.037355+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T04:01:57.037505+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge -name \"*.py\" -path \"*/analysis/*\" -o -name \"*tost*\" -o -name \"*equivalence*\" -o -name \"*likert*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "find /root/causal_style_decomp_judge -name \"*.py\" -path \"*/analysis/*\" -o -name \"*tost*\" -o -name \"*equivalence*\" -o -name \"*likert*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T04:01:57.037635+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T04:01:57.037753+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/data -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "find /root/causal_style_decomp_judge/data -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T04:01:57.037977+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/data/mvp_samples.jsonl\\n/root/causal_style_decomp_judge/data/dry_run_cf.jsonl\\n/root/causal_style_decomp_judge/data/dry_run_verified.jsonl\\n/root/causal_style_decomp_judge/data/dry_run_verified_gpu.jsonl\\n/root/causal_style_decomp_judge/data/synth_scored.jsonl\\n/root/causal_style_decomp_judge/data/counterfactuals.jsonl\\n/root/causal_style_decomp_judge/data/verified.jsonl\\n/root/causal_style_decomp_judge/data/scored.jsonl\\n/root/causal_style_decomp_judge/data/ate_summary.csv\\n/root/causal_style_decomp_judge/data/ate_bar.png\\n/root/causal_style_decomp_judge/data/score_violin.png\\n/root/causal_style_decomp_judge/data/ate_results/ate_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results/ate_bar.png\\n/root/causal_style_decomp_judge/data/ate_results/score_violin.png\\n/root/causal_style_decomp_judge/data/counterfactuals_32b.jsonl\\n/root/causal_style_decomp_judge/data/verified_32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_32b.jsonl\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_primary_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_bar.png\\n/root/causal_style_decomp_judge/data/ate_results_32b/score_violin.png\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_sens1_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_sens2_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_all_summary.csv\\n/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\\n/root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_summary.csv\\n/root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_detailed.csv\\n/root/causal_style_decomp_judge/data/counterfactuals_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/verified_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/verified_verbosity_v2.jsonl\\n/root/causal_style_decomp_judge/data/verified_verbosity_filte
+…[truncated 6433 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T04:01:57.038180+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/claude_tost_equivalence.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "cat /root/causal_style_decomp_judge/data/claude_tost_equivalence.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T04:01:57.038391+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"equivalence_margin\\\": 0.1,\\n  \\\"null_proportion\\\": 0.5,\\n  \\\"alpha\\\": 0.05,\\n  \\\"formality\\\": {\\n    \\\"p_hat\\\": 0.562,\\n    \\\"n_pairs\\\": 88,\\n    \\\"bootstrap_ci_95\\\": [\\n      0.489,\\n      0.636\\n    ],\\n    \\\"se_bootstrap\\\": 0.0375,\\n    \\\"se_binomial\\\": 0.05289,\\n    \\\"upper_test\\\": {\\n      \\\"z\\\": -1.0133,\\n      \\\"p\\\": 0.155455\\n    },\\n    \\\"lower_test\\\": {\\n      \\\"z\\\": 4.3199,\\n      \\\"p\\\": 8e-06\\n    },\\n    \\\"tost_p\\\": 0.155455,\\n    \\\"ci_90\\\": [\\n      0.5003,\\n      0.6237\\n    ],\\n    \\\"equivalence_by_tost\\\": false,\\n    \\\"equivalence_by_ci\\\": false,\\n    \\\"equivalence_confirmed\\\": false,\\n    \\\"conclusion\\\": \\\"TOST not significant (p=0.1555 >= 0.05); 90% CI [0.500, 0.624] not fully within [0.40, 0.60]\\\"\\n  },\\n  \\\"verbosity\\\": {\\n    \\\"p_hat\\\": 0.541,\\n    \\\"n_pairs\\\": 86,\\n    \\\"bootstrap_ci_95\\\": [\\n      0.459,\\n      0.616\\n    ],\\n    \\\"se_bootstrap\\\": 0.04005,\\n    \\\"se_binomial\\\": 0.05373,\\n    \\\"upper_test\\\": {\\n      \\\"z\\\": -1.4731,\\n      \\\"p\\\": 0.070363\\n    },\\n    \\\"lower_test\\\": {\\n      \\\"z\\\": 3.5204,\\n      \\\"p\\\": 0.000215\\n    },\\n    \\\"tost_p\\\": 0.070363,\\n    \\\"ci_90\\\": [\\n      0.4751,\\n      0.6069\\n    ],\\n    \\\"equivalence_by_tost\\\": false,\\n    \\\"equivalence_by_ci\\\": false,\\n    \\\"equivalence_confirmed\\\": false,\\n    \\\"conclusion\\\": \\\"TOST not significant (p=0.0704 >= 0.05); 90% CI [0.475, 0.607] not fully within [0.40, 0.60]\\\"\\n  },\\n  \\\"method\\\": \\\"TOST for proportions (Lakens 2017), SE from pair-level bootstrap CI\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T04:01:57.038603+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nfrom scipy import stats, optimize\n\n###############################################\n# TOST for proportions: minimum detectable Δ\n# H0: |p - 0.5| >= Δ  vs  H1: |p - 0.5| < Δ\n###############################################\n\np0 = 0.5   # null proportion\nalpha = 0.05  # one-sided\npower = 0.80\n\n# Actual sample sizes from data\nfor label, n in [('formality', 88), ('verbosity', 86), ('average', 87)]:\n    # For TOST on proportions, using normal approximation:\n    # Under H1 (true p = p0 = 0.5), SE = sqrt(p0*(1-p0)/n)\n    # The test statistic for upper bound: Z = (p_hat - (p0+Δ)) / SE\n    # For power at the boundary: we need P(reject both | p = p0) >= power\n    # \n    # Upper test rejects if: Z_upper = (p_hat - (p0+Δ)) / SE < -z_alpha  \n    #   => p_hat < p0 + Δ - z_alpha * SE\n    # Lower test rejects if: Z_lower = (p_hat - (p0-Δ)) / SE > z_alpha\n    #   => p_hat > p0 - Δ + z_alpha * SE\n    #\n    # Power = P(p0 - Δ + z_alpha*SE < p_hat < p0 + Δ - z_alpha*SE | p = p0)\n    # p_hat ~ N(p0, SE^2) under H1\n    # Power = Φ((Δ - z_alpha*SE)/SE) - Φ((-Δ + z_alpha*SE)/SE)\n    #       = Φ(Δ/SE - z_alpha) - Φ(-Δ/SE + z_alpha)\n    #       = Φ(Δ/SE - z_alpha) - (1 - Φ(Δ/SE - z_alpha))   [by symmetry]\n    #       = 2*Φ(Δ/SE - z_alpha) - 1\n    #\n    # Set 2*Φ(Δ/SE - z_alpha) - 1 = power\n    # Φ(Δ/SE - z_alpha) = (1 + power) / 2\n    # Δ/SE - z_alpha = z_{(1+power)/2}\n    # Δ/SE = z_alpha + z_{(1+power)/2}\n    \n    SE = np.sqrt(p0 * (1 - p0) / n)\n    z_alpha = stats.norm.ppf(1 - alpha)\n    z_power = stats.norm.ppf((1 + power) / 2)  # z_{0.90}\n    \n    delta_min = SE * (z_alpha + z_power)\n    \n    # Verify power\n    power_check = 2 * stats.norm.cdf(delta_min / SE - z_alpha) - 1\n    \n    print(f'--- {label} (n={n}) ---')\n    print(f'  SE = sqrt(0.5*0.5/{n}) = {SE:.4f}')\n    print(f'  z_alpha = {z_alpha:.4f}')\n    print(f'  z_{{(1+power)/2}} = z_0.90 = {z_power:.4f}')\n    print(f'  Delta_min = SE * (z_alpha + z_0.90) = {SE:.4f} * {z_alpha + z_power:.4f} = {delta_min:.4f}')\n    print(f'  Power verification: {power_check:.4f}')\n    print()\n\nprint()\nprint('='*60)\nprint('SUMMARY: Minimum detectable equivalence margin (proportions)')\nprint('='*60)\n\n# For n=87 (representative)\nn = 87\nSE = np.sqrt(0.5 * 0.5 / n)\nz_alpha = stats.norm.ppf(1 - alpha)\nz_power = stats.norm.ppf((1 + power) / 2)\ndelta_min = SE * (z_alpha + z_power)\n\nprint(f'n = {n}, alpha = {alpha} (one-sided), power = {power}')\nprint(f'SE(p=0.5) = {SE:.4f}')\nprint(f'Minimum Δ = {delta_min:.4f}')\nprint(f'Equivalence region: [{p0 - delta_min:.4f}, {p0 + delta_min:.4f}]')\nprint(f'i.e., win-rate must be within [{p0 - delta_min:.1%}, {p0 + delta_min:.1%}]')\nprint()\n\n# Compare with the Δ=0.10 used in actual analysis\nprint('Comparison with actual analysis (Δ=0.10):')\ndelta_actual = 0.10\npower_at_010 = 2 * stats.norm.cdf(delta_actual / SE - z_alpha) - 1\nprint(f'  Power at Δ=0.10: {power_at_010:.4f}')\nprint(f'  Minimum Δ for 80% power: {delta_min:.4f}')\nprint(f'  Ratio: Δ_min/Δ_actual = {delta_min/delta_actual:.2f}')\nprint()\n\n# What margin gives various power levels?\nprint('Margin-Power table (n=87):')\nfor pw in [0.70, 0.75, 0.80, 0.85, 0.90, 0.95]:\n    zp = stats.norm.ppf((1 + pw) / 2)\n    dm = SE * (z_alpha + zp)\n    print(f'  Power={pw:.2f}: Δ_min = {dm:.4f} => equiv region [{p0-dm:.4f}, {p0+dm:.4f}]')\n\nprint()\n# For paper: the sentence\nprint('For paper:')\nprint(f'\\\"With n=87 pairs and alpha=0.05 (one-sided), the TOST procedure')\nprint(f'achieves 80% power to detect equivalence when the true win-rate')\nprint(f'is 0.50 and the equivalence margin is Delta >= {delta_min:.3f}')\nprint(f'(i.e., [{p0-delta_min:.3f}, {p0+delta_min:.3f}]).\\\"')\nprint()\nprint(f'\\\"At the pre-registered margin Delta=0.10 ({p0-0.10:.2f}-{p0+0.10:.2f}),')\nprint(f'the achieved power is {power_at_010:.1%}.\\\"')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nfrom scipy import stats, optimize\n\n###############################################\n# TOST for proportions: minimum detectable Δ\n# H0: |p - 0.5| >= Δ  vs  H1: |p - 0.5| < Δ\n###############################################\n\np0 = 0.5   # null proportion\nalpha = 0.05  # one-sided\npower = 0.80\n\n# Actual sample sizes from data\nfor label, n in [('formality', 88), ('verbosity', 86), ('average', 87)]:\n    # For TOST on proportions, using normal approximation:\n    # Under H1 (true p = p0 = 0.5), SE = sqrt(p0*(1-p0)/n)\n    # The test statistic for upper bound: Z = (p_hat - (p0+Δ)) / SE\n    # For power at the boundary: we need P(reject both | p = p0) >= power\n    # \n    # Upper test rejects if: Z_upper = (p_hat - (p0+Δ)) / SE < -z_alpha  \n    #   => p_hat < p0 + Δ - z_alpha * SE\n    # Lower test rejects if: Z_lower = (p_hat - (p0-Δ)) / SE > z_alpha\n    #   => p_hat > p0 - Δ + z_alpha * SE\n    #\n    # Power = P(p0 - Δ + z_alpha*SE < p_hat < p0 + Δ - z_alpha*SE | p = p0)\n    # p_hat ~ N(p0, SE^2) under H1\n    # Power = Φ((Δ - z_alpha*SE)/SE) - Φ((-Δ + z_alpha*SE)/SE)\n    #       = Φ(Δ/SE - z_alpha) - Φ(-Δ/SE + z_alpha)\n    #       = Φ(Δ/SE - z_alpha) - (1 - Φ(Δ/SE - z_alpha))   [by symmetry]\n    #       = 2*Φ(Δ/SE - z_alpha) - 1\n    #\n    # Set 2*Φ(Δ/SE - z_alpha) - 1 = power\n    # Φ(Δ/SE - z_alpha) = (1 + power) / 2\n    # Δ/SE - z_alpha = z_{(1+power)/2}\n    # Δ/SE = z_alpha + z_{(1+power)/2}\n    \n    SE = np.sqrt(p0 * (1 - p0) / n)\n    z_alpha = stats.norm.ppf(1 - alpha)\n    z_power = stats.norm.ppf((1 + power) / 2)  # z_{0.90}\n    \n    delta_min = SE * (z_alpha + z_power)\n    \n    # Verify power\n    power_check = 2 * stats.norm.cdf(delta_min / SE - z_alpha) - 1\n    \n    print(f'--- {label} (n={n}) ---')\n    print(f'  SE = sqrt(0.5*0.5/{n}) = {SE:.4f}')\n    print(f'  z_alpha = {z_alpha:.4f}')\n    print(f'  z_{{(1+power)/2}} = z_0.90 = {z_power:.4f}')\n    print(f'  Delta_min = SE * (z_alpha + z_0.90) = {SE:.4f} * {z_alpha + z_power:.4f} = {delta_min:.4f}')\n    print(f'  Power verification: {power_check:.4f}')\n    print()\n\nprint()\nprint('='*60)\nprint('SUMMARY: Minimum detectable equivalence margin (proportions)')\nprint('='*60)\n\n# For n=87 (representative)\nn = 87\nSE = np.sqrt(0.5 * 0.5 / n)\nz_alpha = stats.norm.ppf(1 - alpha)\nz_power = stats.norm.ppf((1 + power) / 2)\ndelta_min = SE * (z_alpha + z_power)\n\nprint(f'n = {n}, alpha = {alpha} (one-sided), power = {power}')\nprint(f'SE(p=0.5) = {SE:.4f}')\nprint(f'Minimum Δ = {delta_min:.4f}')\nprint(f'Equivalence region: [{p0 - delta_min:.4f}, {p0 + delta_min:.4f}]')\nprint(f'i.e., win-rate must be within [{p0 - delta_min:.1%}, {p0 + delta_min:.1%}]')\nprint()\n\n# Compare with the Δ=0.10 used in actual analysis\nprint('Comparison with actual analysis (Δ=0.10):')\ndelta_actual = 0.10\npower_at_010 = 2 * stats.norm.cdf(delta_actual / SE - z_alpha) - 1\nprint(f'  Power at Δ=0.10: {power_at_010:.4f}')\nprint(f'  Minimum Δ for 80% power: {delta_min:.4f}')\nprint(f'  Ratio: Δ_min/Δ_actual = {delta_min/delta_actual:.2f}')\nprint()\n\n# What margin gives various power levels?\nprint('Margin-Power table (n=87):')\nfor pw in [0.70, 0.75, 0.80, 0.85, 0.90, 0.95]:\n    zp = stats.norm.ppf((1 + pw) / 2)\n    dm = SE * (z_alpha + zp)\n    print(f'  Power={pw:.2f}: Δ_min = {dm:.4f} => equiv region [{p0-dm:.4f}, {p0+dm:.4f}]')\n\nprint()\n# For paper: the sentence\nprint('For paper:')\nprint(f'\\\"With n=87 pairs and alpha=0.05 (one-sided), the TOST procedure')\nprint(f'achieves 80% power to detect equivalence when the true win-rate')\nprint(f'is 0.50 and the equivalence margin is Delta >= {delta_min:.3f}')\nprint(f'(i.e., [{p0-delta_min:.3f}, {p0+delta_min:.3f}]).\\\"')\nprint()\nprint(f'\\\"At the pre-registered margin Delta=0.10 ({p0-0.10:.2f}-{p0+0.10:.2f}),')\nprint(f'the achieved power is {power_at_010:.1%}.\\\"')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T04:01:57.038868+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"--- formality (n=88) ---\\n  SE = sqrt(0.5*0.5/88) = 0.0533\\n  z_alpha = 1.6449\\n  z_{(1+power)/2} = z_0.90 = 1.2816\\n  Delta_min = SE * (z_alpha + z_0.90) = 0.0533 * 2.9264 = 0.1560\\n  Power verification: 0.8000\\n\\n--- verbosity (n=86) ---\\n  SE = sqrt(0.5*0.5/86) = 0.0539\\n  z_alpha = 1.6449\\n  z_{(1+power)/2} = z_0.90 = 1.2816\\n  Delta_min = SE * (z_alpha + z_0.90) = 0.0539 * 2.9264 = 0.1578\\n  Power verification: 0.8000\\n\\n--- average (n=87) ---\\n  SE = sqrt(0.5*0.5/87) = 0.0536\\n  z_alpha = 1.6449\\n  z_{(1+power)/2} = z_0.90 = 1.2816\\n  Delta_min = SE * (z_alpha + z_0.90) = 0.0536 * 2.9264 = 0.1569\\n  Power verification: 0.8000\\n\\n\\n============================================================\\nSUMMARY: Minimum detectable equivalence margin (proportions)\\n============================================================\\nn = 87, alpha = 0.05 (one-sided), power = 0.8\\nSE(p=0.5) = 0.0536\\nMinimum Δ = 0.1569\\nEquivalence region: [0.3431, 0.6569]\\ni.e., win-rate must be within [34.3%, 65.7%]\\n\\nComparison with actual analysis (Δ=0.10):\\n  Power at Δ=0.10: 0.1746\\n  Minimum Δ for 80% power: 0.1569\\n  Ratio: Δ_min/Δ_actual = 1.57\\n\\nMargin-Power table (n=87):\\n  Power=0.70: Δ_min = 0.1437 => equiv region [0.3563, 0.6437]\\n  Power=0.75: Δ_min = 0.1498 => equiv region [0.3502, 0.6498]\\n  Power=0.80: Δ_min = 0.1569 => equiv region [0.3431, 0.6569]\\n  Power=0.85: Δ_min = 0.1653 => equiv region [0.3347, 0.6653]\\n  Power=0.90: Δ_min = 0.1763 => equiv region [0.3237, 0.6763]\\n  Power=0.95: Δ_min = 0.1932 => equiv region [0.3068, 0.6932]\\n\\nFor paper:\\n\\\"With n=87 pairs and alpha=0.05 (one-sided), the TOST procedure\\nachieves 80% power to detect equivalence when the true win-rate\\nis 0.50 and the equivalence margin is Delta >= 0.157\\n(i.e., [0.343, 0.657]).\\\"\\n\\n\\\"At the pre-registered margin Delta=0.10 (0.40-0.60),\\nthe achieved power is 17.5%.\\\"\\n\", \"stderr\": \"\
+…[truncated 85 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T04:01:57.039080+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T04:01:57.039213+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T04:01:57.039393+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "causal_style_decomp_judge",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "causal_style_decomp_judge",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T04:01:57.039845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/memory.md\", \"content\": \"# Memory — causal_style_decomp_judge\\n\\n## 服务器环境 (westb-29275)\\n- SSH: `causal_style_decomp_judge`（~/.ssh/config 别名，免密）\\n- GPU: 4× RTX PRO 6000 Blackwell 96GB, torch=2.11.0+cu130\\n- 环境: aml-train 镜像, conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\\n- 数据盘: `/root/autodl-tmp/` 250GB\\n- **网络**: AutoDL 网络受限，每次 SSH 会话需 `source /etc/network_turbo`\\n- **CUDA JIT**: `LD_LIBRARY_PATH` 需包含 `/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib`\\n- **GPU 3 驱动异常已修复**（2026-05-22 可正常用于 Llama vLLM）\\n- **HF 网络**: 必须设 `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1` 避免 HF Hub 请求挂起\\n- **直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com`（当 Worker Pool blocked 时可直接 SSH 执行 CPU 任务）\\n\\n## 模型路径\\n- NLI: `/root/autodl-tmp/models/nli-deberta-v3-large/`\\n- BERTScore: `microsoft/deberta-xlarge-mnli` 在 HF cache `/root/autodl-tmp/.hf_cache/`\\n- Qwen3-8B: `/root/autodl-tmp/models/Qwen3-8B/`\\n- Qwen3-32B: `/root/autodl-tmp/models/Qwen3-32B/` ✅ 完成（17 shards, 62GB）\\n- Llama-3.3-70B-Instruct: ✅ **完成** `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct/`（30 shards, 132GB, via ModelScope）\\n\\n## vLLM 部署\\n- Qwen3-32B: port 8000 (GPU 0,1, tp=2) — 主实例\\n- Llama-3.3-70B: port 8003 (GPU 2,3, tp=2) — third judge\\n\\n## API 配置\\n- **统一 proxy endpoint**: `http://47.94.22.126/v1`\\n- GPT-4o: key_id=`openai_api_key_direct` — ✅ 可用\\n- Claude Sonnet 4: key_id=`claude_api_key` — ❌ 代理不支持\\n- Gemini 2.0 Flash: key_id=`gemini_api_key` — ❌ 代理不支持\\n- **OpenRouter (via proxy)**: key_id=`openrouter_key`, model=`google/gemini-2.5-flash` — ✅ 可用（第4个 judge）\\n- **只有 OpenAI + OpenRouter 可通过代理使用**，Claude/Gemini 原生 API 需直接 key\\n\\n## 数据\\n- MVP 数据: `/root/causal_style_decomp_judge/data/mvp_samples.jsonl` (100 条, seed=42)\\n- Pipeline 输出目录: `/root/causal_style_decomp_judge/data/`\\n- exp-005 
+…[truncated 19858 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T04:01:57.040138+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "causal_style_decomp_judge",
+  "file": "memory.md",
+  "content": "# Memory — causal_style_decomp_judge\n\n## 服务器环境 (westb-29275)\n- SSH: `causal_style_decomp_judge`（~/.ssh/config 别名，免密）\n- GPU: 4× RTX PRO 6000 Blackwell 96GB, torch=2.11.0+cu130\n- 环境: aml-train 镜像, conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- 数据盘: `/root/autodl-tmp/` 250GB\n- **网络**: AutoDL 网络受限，每次 SSH 会话需 `source /etc/network_turbo`\n- **CUDA JIT**: `LD_LIBRARY_PATH` 需包含 `/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib`\n- **GPU 3 驱动异常已修复**（2026-05-22 可正常用于 Llama vLLM）\n- **HF 网络**: 必须设 `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1` 避免 HF Hub 请求挂起\n- **直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com`（当 Worker Pool blocked 时可直接 SSH 执行 CPU 任务）\n\n## 模型路径\n- NLI: `/root/autodl-tmp/models/nli-deberta-v3-large/`\n- BERTScore: `microsoft/deberta-xlarge-mnli` 在 HF cache `/root/autodl-tmp/.hf_cache/`\n- Qwen3-8B: `/root/autodl-tmp/models/Qwen3-8B/`\n- Qwen3-32B: `/root/autodl-tmp/models/Qwen3-32B/` ✅ 完成（17 shards, 62GB）\n- Llama-3.3-70B-Instruct: ✅ **完成** `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct/`（30 shards, 132GB, via ModelScope）\n\n## vLLM 部署\n- Qwen3-32B: port 8000 (GPU 0,1, tp=2) — 主实例\n- Llama-3.3-70B: port 8003 (GPU 2,3, tp=2) — third judge\n\n## API 配置\n- **统一 proxy endpoint**: `http://47.94.22.126/v1`\n- GPT-4o: key_id=`openai_api_key_direct` — ✅ 可用\n- Claude Sonnet 4: key_id=`claude_api_key` — ❌ 代理不支持\n- Gemini 2.0 Flash: key_id=`gemini_api_key` — ❌ 代理不支持\n- **OpenRouter (via proxy)**: key_id=`openrouter_key`, model=`google/gemini-2.5-flash` — ✅ 可用（第4个 judge）\n- **只有 OpenAI + OpenRouter 可通过代理使用**，Claude/Gemini 原生 API 需直接 key\n\n## 数据\n- MVP 数据: `/root/causal_style_decomp_judge/data/mvp_samples.jsonl` (100 条, seed=42)\n- Pipeline 输出目录: `/root/causal_style_decomp_judge/data/`\n- exp-005 RATE control: `data/rate_control_input.jsonl` (88 条, NLI≥0.90 过滤)\n- Verified datasets: `verified_32b.jsonl`(100), `verified_verbosity.jsonl`(86 NLI-pass), `verified_register.jsonl`(94 NLI-pass), `verified_alpacaeval.jsonl`(86 NLI-pass), `verified_mtbench.jsonl`(73 NLI-pass)\n- **Scaled formality**: `scored_scaled_formality_qwen32b.jsonl` (355 条, 全部 NLI-pass, Qwen3-32B Likert)\n- **Pairwise scaled**: `pairwise_results_scaled_formality_qwen32b.jsonl` (355 条, 全部 NLI-pass)\n\n## RATE 方法 axis 可行性梯度（核心发现）\n\n| Axis | 改变了什么 | NLI 策略 | Pass rate | 结论 |\n|------|-----------|----------|-----------|------|\n| Formality | 表面 register | Bidirectional min(fwd,bwd) | 88% ✅ | 完全可行 |\n| Verbosity | 信息量 | Direction-aware (D012/D013) | 86% ✅ | 需 NLI-only gate + direction-aware |\n| Register | 话语情境 | NLI-only (D019) | 95% ✅ | NLI-only gate，与 formality 正交 (50%) |\n| Tone | 认知承诺 | Bidirectional | 45% ❌ | 结构性不可行 |\n\n**D023 决策：所有 axis 统一使用 NLI-only gating**（threshold 0.90）。\n\n## NLI Gate 特性（exp-013 发现）\n\nNLI gate (DeBERTa-v3-large, threshold 0.90) 是 **precision-oriented conservative filter**：\n- Precision 98.9%, Recall 91.6%, PABAK=0.82, AC1=0.89\n- Kappa paradox（Feinstein & Cicchetti 1990）：base rate 88:12 → kappa=0.43 低估\n\n## 完整 4×2 Blindspot 矩阵（C1/C2 核心 evidence — LLMBar）\n\n### Blindspot 矩阵（LLMBar — 4 Judges × 2 Axes）\n\n| Judge | Axis | BT P(style) | BT p | Likert p | Tie Rate | Blindspot? |\n|-------|------|-------------|------|----------|----------|------------|\n| GPT-4o | Formality | 63.0% | <0.001 | 0.332 | 62.5% | ✅ |\n| GPT-4o | Verbosity | 76.0% | 0.0001 | 0.403 | 58.1% | ✅ |\n| Qwen3-32B | Formality | 66.5% | <0.0001 | 0.908 | 72.7% | ✅ |\n| Qwen3-32B | Verbosity | 77.3% | <0.0001 | 0.179 | — | ✅ |\n| Llama-70B | Formality | 69.5% | 0.0001 | 0.846 | 72.7% | ✅ |\n| Llama-70B | Verbosity | 73.5% | 0.0001 | 0.752 | 61.6% | ✅ |\n| **Gemini Flash** | **Formality** | **57.4%** | **0.0306** | **0.309** | **—** | **✅** |\n| **Gemini Flash** | **Verbosity** | **70.8%** | **<0.0001** | **0.370** | **—** | **✅** |\n\n**8/8 cells Blindspot confirmed（4 judges × 2 axes）。**\n\n### Llama-70B GEE Decomposition\n\n| Axis | Style OR | Style p | Orig OR | Orig p |\n|------|----------|---------|---------|--------|\n| Formality | 4.81 | <0.0001 | 3.12 | 0.0007 |\n| Verbosity | 8.21 | <0.0001 | 0.38 | 0.0196 |\n| **Register** | **3.33** | **0.0003** | **3.07** | **0.0008** |\n\n**Llama formality = mixed, verbosity = style-dominated, register = mixed (意外：强于 GPT-4o/Qwen3-32B)**。\n\n### Gemini Flash GEE Decomposition（完整数据，2026-05-21 final）\n\n| Axis | Style OR | Style CI | Style p | Orig OR | Orig CI | Orig p | Regime |\n|------|----------|----------|---------|---------|---------|--------|--------|\n| Formality | 1.64 | [0.91, 2.98] | 0.1008 NS | 2.51 | [1.39, 4.54] | 0.0024 | **Orig-Dominated** |\n| Verbosity | 8.98 | [3.68, 21.94] | <0.0001 | 0.46 | [0.20, 1.04] | 0.0614 NS | **Pure Style** |\n\n**Gemini formality Style OR 最低（1.64 NS）**——唯一一个 GEE style 不显著的 judge-axis，但 BT 仍检出 (p=0.0306)。Verbosity OR=8.98 与其他 judge 完全一致。\n\n### Cross-Benchmark Formality Blindspot 矩阵\n\n| | GPT-4o | Qwen3-32B |\n|---|---|---|\n| **LLMBar** | ✅ Blindspot (Likert p=0.332) | ✅ Blindspot (Likert p=0.908) |\n| **AlpacaEval** | ✅ Blindspot (Likert p=0.170) | ✅ Blindspot (Likert p=0.908) |\n| **MT-Bench** | ❌ NOT Blindspot (Likert p=0.016) | ❌ NOT Blindspot (Likert p=0.007) |\n\n**4/6 cells Blindspot**。MT-Bench 的 style bias 足够强连 Likert 都能检测到。\n\n### Blindspot 受 Effect Size 调控（关键 nuance）\n\n| 场景 | BT P(style) | Cohen's d | Blindspot? | 解读 |\n|------|-------------|-----------|------------|------|\n| LLMBar formality | 63-66% | 0.05-0.07 | ✅ | 小效应 → Likert 完全看不到 |\n| LLMBar verbosity | 76-77% | 0.06-0.08 | ✅ | 高 tie rate (58-73%) 掩盖 |\n| MT-Bench formality | 69-71% | 0.15-0.17 | ❌ | 中等效应 → Likert 也能检测但弱 |\n| AlpacaEval verbosity | 84% | **0.375** | ❌ | 强效应 → Likert 也显著 |\n\n**Pattern**: Blindspot 主要出现在 d<0.15 时。d>0.3 时两种方法都能检测，但 BT 仍远更灵敏。\n\n### 🔑 Bootstrap Attenuation Simulation（2026-05-21, Smoking Gun 级证据）\n\n**区分 measurement attenuation vs power gap**: bootstrap 子采样 Likert 数据，不同 n 下 Cohen's d 是否保持 ≈0。\n\n| Combo | n | d_median 范围 | CI 含 0? | 对应 BT | 结论 |\n|-------|---|-------------|----------|---------|------|\n| **Formality × Qwen3-32B** | 355 | -0.019 ~ -0.015 (flat) | ✅ 全含 | 66.5% | **Smoking gun: d≈0 across ALL n** |\n| Verbosity × Qwen3-32B | 86 | 0.153 ~ 0.169 (flat) | ✅ 全含 | 77.3% | d=0.15 < small threshold |\n| Verbosity × GPT-4o | 86 | 0.197 ~ 0.205 (flat) | ✅ 全含 | 76.0% | d=0.20 borderline |\n\n**Formality 是最强证据**: d_median 在 n=50→355 完全平坦在 ~-0.017，CI 从 ±0.3 收窄到 ±0.1。不是 power gap（power gap 下 d 应随 n 收敛到真值），而是 measurement attenuation（真值本身就是 0）。\n\n### 🔑 100-point Fine-Grained Likert（2026-05-21, 直接回应 Dream Reviewer）\n\n**100-point scale (0-100) 两轴均 NS → Blindspot 不是 scale granularity artifact。**\n\n| Axis | BT P(style)/p | 7pt d/p | **100pt d/p** | Tie Rate (100pt) |\n|------|--------------|---------|--------------|-------------------|\n| Formality | 63.0% / <0.001 | 0.07 / 0.332 | **-0.04 / 0.725** | **65.9%** |\n| Verbosity | 76.0% / 0.0001 | 0.08 / 0.403 | **0.17 / 0.117** | **51.2%** |\n\n**关键**: 在 101 个可能值的 scale 上，52-66% pairs 仍得到完全相同分数。Formality 100pt 比 7pt 还差（p=0.73 vs 0.33）。与 bootstrap attenuation d≈0 形成 converging evidence: Blindspot = absolute-vs-relative 范式差异。\n\n### 🔑 NLI Threshold Continuous Curve（2026-05-21, 44/44 全显著）\n\n**BT 概率跨 NLI 阈值 [0.50→0.98] 完全稳定，证明 style bias 检测不依赖特定阈值选择。**\n\n| Combo | BT Range | Max Δpp | p-values | Sig/Total |\n|-------|----------|---------|----------|-----------|\n| **Formality × Qwen3-32B** | 0.648→0.665 | ~2pp | all ≤0.0005 | 11/11 |\n| **Formality × GPT-4o** | 0.614→0.642 | ~3pp | all ≤0.002 | 11/11 |\n| **Verbosity × Qwen3-32B** | 0.765→0.773 | ~1pp | all =0.0001 | 11/11 |\n| **Verbosity × GPT-4o** | 0.752→0.769 | ~2pp | all =0.0001 | 11/11 |\n\n**核心发现**: 即使从 0.50（几乎不过滤）到 0.98（极端严格），BT 概率波动 ≤3pp，p-value 始终 ≤0.002。Verbosity 两个 judge 的 BT 都在 0.75-0.77 范围内，formality 在 0.61-0.66 范围内。这排除了\"NLI 阈值选择偏差\"的 reviewer concern。\n\n### Claude Sonnet 4 — Negative Control (D047)\n\n| Axis | BT P(style) | BT p | Likert p | GEE Style OR | GEE Orig OR |\n|------|-------------|------|----------|--------------|-------------|\n| Formality | 56.2% | 0.091 (NS) | 0.721 | 1.47 (NS) | **6.66*** |\n| Verbosity | 54.1% | 0.284 (NS) | 0.743 | 1.52 (NS) | 0.80 (NS) |\n\n**Claude 没有 style bias**——BT/Likert/GEE style 全部 NS。验证 RATE pipeline 不产生 false positive。\n**Claude formality 有极强 originality bias** (OR=6.66)：偏好原始文本而非改写文本，但不偏好特定风格。\n**Spec 一致性**：3 个 judge 使用完全相同的 system prompt + temperature=0.0。\n\n### Correction PoC — Debiased Prompt Correction Resistance（支持 C4，5/5 全显著）\n\n| Judge | Axis | Original BT | Debiased BT | Δpp | % Reduced | Still sig? |\n|-------|------|------------|------------|-----|-----------|-----------|\n| GPT-4o | Verbosity | 76.0% | 62.9% [54.9,70.6] p=0.0016 | -13.1pp | 50.4% | ✅ |\n| **Llama-70B** | **Verbosity** | **73.5%** | **66.9%** [58.9,74.4] p<0.0001 | **-6.6pp** | **28.1%** | **✅** |\n| **Llama-70B** | **Formality** | **69.5%** | **64.3%** [57.3,71.0] p<0.0001 | **-5.2pp** | **26.7%** | **✅** |\n| Qwen3-32B | Formality | 66.5% | 60.8% p=0.002 | -5.7pp | 34.5% | ✅ |\n| GPT-4o | Formality | 63.0% | 62.6% p<0.0001 | -0.4pp | 3.1% | ✅ |\n\n**5/5 debiased combinations ALL still significant** → C4 rock-solid: style bias persists despite explicit debiasing.\n- Reduction range: 3-50%, never eliminates\n- GPT-4o verbosity 最易纠正 (50.4%), GPT-4o formality 最抗纠正 (3.1%)\n- Llama-70B 两轴表现相近 (~27%), 无明显 axis-dependent asymmetry\n- **Model-independent conclusion**: prompt-level intervention insufficient\n\n### AlpacaEval Verbosity × Qwen3-32B — 跨 benchmark verbosity 确认\n\n| Metric | 值 |\n|--------|---|\n| BT P(verbose) | 84.1% [77.4%, 90.2%], p=0.0001 |\n| Likert ATE | +0.73, p=0.0003, d=0.375 |\n| GEE Style OR | **28.64** [9.16, 89.56], p<0.0001 |\n| GEE Orig OR | 0.18 [0.06, 0.54], p=0.002 |\n| n_pairs | 82 (NLI≥0.90) |\n\n### GPT-4o Rewriter Independence — 双轴确认 (R3-N2)\n\n| Axis | GPT-4o Rewriter BT | Qwen3-32B Rewriter BT | Δpp | CI Overlap | Independence |\n|------|-------|---------|-----|------------|---|\n| **Formality** | 64.4% [56.1, 72.8] | 66.5% [58.5, 73.9] | -2.1 | ✅ baseline within CI | ✅ |\n| **Verbosity** | 73.5% [65.4, 80.9] | 77.3% [70.3, 84.3] | -3.8 | ✅ CIs overlap | ✅ |\n\n### R3 Pipeline Robustness 实验汇总\n\n| Issue | 实验 | 核心结论 |\n|-------|------|---------|\n| R3-N2 Rewriter independence | gpt4o_rewriter_formality + gpt4o_rewriter_verbosity | ✅ 双轴确认 |\n| R3-W1 NLI gate validity | nli_gate_spotcheck | ✅ 94% pass agreement, conservative |\n| R3-W2 Direction-aware gate | gate_comparison | ✅ Verbosity Δ=-1.1pp NS |\n| R3-W8 NLI FN selection | nli_fn_selection_bias | ✅ CONSERVATIVE, lower bounds |\n\n### GEE Decomposition 完整 Gradient（Canonical — 来源: gee_diagnostics.py, NLI≥0.90 过滤）\n\n| Judge | Axis | Style OR | Style p | Orig OR | Orig p | 解读 |\n|-------|------|----------|---------|---------|--------|------|\n| Qwen3-32B | **Verbosity** | **13.10** | 2.6e-09 | 0.49 | 0.096 ns | **纯 style bias** |\n| GPT-4o | **Verbosity** | **11.34** | 1.1e-08 | 0.45 | 0.062 ns | **纯 style bias** |\n| **Gemini Flash** | **Verbosity** | **8.98** | **<0.0001** | **0.46** | **0.061 ns** | **纯 style bias** |\n| **Llama-70B** | **Verbosity** | **8.21** | **<0.0001** | **0.38** | **0.020** | **Style-dominated (orig 反向)** |\n| Qwen3-32B | Formality | 4.20 | 0.0002 | 4.70 | 5.2e-05 | Style ≈ Orig |\n| **Llama-70B** | **Formality** | **4.81** | **<0.0001** | **3.12** | **0.0007** | **Style ≈ Orig (both sig)** |\n| GPT-4o | Formality | 2.58 | 0.002 | 2.32 | 0.006 | Style ≈ Orig (both sig) |\n| **Gemini Flash** | **Formality** | **1.64** | **0.101 NS [0.91,2.98]** | **2.51** | **0.002** | **Orig-Dominated (style NS)** |\n| GPT-4o | Register | 1.88 | 0.027 | 2.21 | 0.005 | Orig > Style |\n| Qwen3-32B | Register | 1.91 | 0.046 | 5.72 | 8.5e-08 | Orig >> Style |\n| **Llama-70B** | **Register** | **3.33** | **0.0003** | **3.07** | **0.0008** | **Mixed (意外强 style)** |\n\n**D041 决策**: 论文全文统一使用 `gee_diagnostics.py` 的 NLI≥0.90 过滤数字。\n\n### 🔑 Length Confound 验证（Dream W10 — D040 已通过）\n\n**结论：Verbosity style OR 在控制 text length 后完全存活，length bias 假说不成立。**\n\n| Judge | Model | Style OR | Style p | Length OR | Length p |\n|-------|-------|----------|---------|-----------|----------|\n| Qwen3-32B | A: No length | 13.10 | 2.6e-09 | — | — |\n| Qwen3-32B | B: + length_ratio | 13.10 | 2.56e-09 | 1.03 | 0.424 |\n| GPT-4o | A: No length | 10.97 | 1.74e-08 | — | — |\n| GPT-4o | B: + length_ratio | 10.97 | 1.74e-08 | 1.03 | 0.478 |\n\n### GEE Model Diagnostics（Dream W5/W9 — 已通过）\n\n- **Correlation Structure**: Exchangeable vs Independence |ΔQIC| < 0.001, Max|ΔCoef| < 0.02（所有 6 cells）→ 实质等价\n- **α 范围**: [-0.25, +0.11]，within-pair correlation 弱\n- **S×O Interaction (全 8 cells)**: 0/8 interaction terms significant (p range 0.14–0.96)。Additive model 对所有 judge×axis 都足够。Regime 分类 6/8 不变，2 个边界 case（GPT-4o Register small-sample artifact, Llama-70B Verbosity 标签差异）\n\n### 跨模型一致性（论文核心 argument — 4 judges 确认）\n- **Verbosity**: 四模型 Style OR=8.2–13.1（Gemini=8.98），Orig OR<1 → **纯 style bias 是 model-independent**\n- **Formality**: GPT-4o/Qwen3-32B/Llama-70B Style+Orig 均显著（mixed effect）；**Gemini Style OR=1.64 NS（唯一 style NS）**但 BT 仍显著 → formality bias 存在但 Gemini 的 GEE 分解中被 originality 吸收\n- **Register**: GPT-4o/Qwen3-32B Style OR≈1.9（边缘），**Llama-70B Style OR=3.33（显著强）** → judge-dependent\n\n### C3 Axis Gradient\n- **Verbosity = 纯 style bias**（OR=8.2–13.1，originality ns 或反向，4 judge 一致）\n- **Formality = 混合效应**（style + originality 共存，3/4 judge 双显著，Gemini style NS 但 BT 仍显著）\n- **Register = judge-dependent**（GPT-4o=Mixed, Qwen3-32B=Orig-Dom, Llama=Mixed）。Style OR 范围 1.88-3.33，均低于 verbosity\n\n### 🔑 Formal Power Analysis（2026-05-21, C1 强化）\n\n| Judge | Axis | Likert d | Required n (80% power) | Ratio vs actual |\n|-------|------|---------|----------------------|-----------------|\n| GPT-4o | Formality | 0.073 | 1,473 | 16.7x |\n| GPT-4o | Verbosity | 0.080 | 1,227 | 14.3x |\n| Qwen3-32B | Formality | -0.017 | 27,159 | 76.5x |\n| Qwen3-32B | Verbosity | 0.153 | 336 | 3.9x |\n| Llama-70B | Formality | 0.021 | 18,157 | 206.3x |\n| Llama-70B | Verbosity | 0.034 | 6,737 | 78.3x |\n\n**所有 6 cell infeasible**。与 bootstrap attenuation 收敛：Likert effect size 本身在 0 附近 = structural limitation, not power gap。\n\n### 🔑 TOST Minimum Detectable Equivalence Margin（2026-05-22）\n\n**Proportions TOST（实际分析所用方法）**:\n- 参数: n=87 pairs, α=0.05 one-sided, power=0.80, SE=√(0.5×0.5/87)=0.0536\n- 公式: Δ_min = SE × (z_α + z_{0.90}) = 0.0536 × 2.9264 = **0.157**\n- 即 equivalence region [0.343, 0.657]\n- **实际分析用 Δ=0.10 时 power 仅 17.5%** — 严重 underpowered\n- Formality n=88: Δ_min=0.156; Verbosity n=86: Δ_min=0.158\n\n| Margin Δ | Power | Equiv Region |\n|----------|-------|--------------|\n| 0.10 | 17.5% | [0.40, 0.60] |\n| 0.143 | 70% | [0.357, 0.643] |\n| 0.157 | 80% | [0.343, 0.657] |\n| 0.176 | 90% | [0.324, 0.676] |\n\n**Paper sentence**: \"With n≈87 pairs and α=0.05, the TOST procedure achieves 80% power to reject non-equivalence only when the equivalence margin is Δ≥0.157 (win-rate within [0.343, 0.657]); at the pre-registered margin Δ=0.10, achieved power is only 17.5%.\"\n\n**Paired Likert TOST（standardized）**: Δ_min = 0.269 Cohen's d (需 σ_diff 转换为 raw units)\n\n### 🔑 Llama-70B Register（2026-05-21, 矩阵扩展）\n\n| Metric | 值 |\n|--------|---|\n| BT P(academic) | 63.5% [55.5, 71.2], p=0.0014 |\n| Likert | ATE=0.054, d=0.024, p=0.690, tie=68.8% |\n| GEE Style OR | 3.33 (p=0.0003) |\n| GEE Orig OR | 3.07 (p=0.0008) |\n| Blindspot | ✅ YES |\n| Regime | Mixed（意外：强于 GPT-4o 57% 和 Qwen3-32B 55.3%）|\n\n### 🔑 Gemini 2.5 Flash — 第4个 Judge（2026-05-21, final complete data）\n\n| Metric | Formality (88 pairs) | Verbosity (86 pairs, 171 comp) |\n|--------|---------------------|-------------------------------|\n| BT win% | 57.4% [50.0, 64.2] | 70.8% [63.7, 77.2] |\n| BT p | 0.0306 | <0.0001 |\n| Likert ATE | -0.239 | 0.151 |\n| Likert d | -0.082 | 0.051 |\n| Likert p | 0.309 (NS) | 0.370 (NS) |\n| GEE Style OR | 1.64 [0.91, 2.98] p=0.101 NS | 8.98 [3.68, 21.94] p<0.0001 |\n| GEE Orig OR | 2.51 [1.39, 4.54] p=0.002 | 0.46 [0.20, 1.04] p=0.061 NS |\n| Blindspot | ✅ YES | ✅ YES |\n| Regime | Orig-Dominated | Pure Style |\n\n**Gemini formality BT 最弱（57.4%）但仍显著**。GEE Style OR=1.64 是唯一不显著的 style 效应 → formality 的 style bias 在 Gemini 上最弱，更多被 originality 解释。\n**Gemini verbosity 完全一致**: Style OR=8.98 排第3（Qwen 13.1 > GPT-4o 11.3 > Gemini 8.98 > Llama 8.21），Pure Style regime。\n**备注**: Verbosity mvp_0041 trial2 缺失（API 返回 None），共 171 comparisons（非 172）。\n\n## Verbosity vs Formality 的方向不对称性差异（关键机制洞察）\n\n**Verbosity = 真正的 style bias**（非 originality bias）：\n- verbose→concise: 80.6% prefer original（verbose）\n- concise→verbose: 90.7% prefer rewrite（verbose）\n- 两个方向都偏好 verbose content → 真正的 verbosity preference\n\n**Formality = 可能混合 originality bias**：\n- formal→casual: 81.4% prefer original (p<0.0001)\n- casual→formal: 50.0% (p=1.0, 无偏好)\n\n**Register = 主要是 originality bias**：\n- academic→conv: 89.3% prefer original\n- conv→academic: 68.8% prefer original\n\n## 🔑 Double-Rewrite Placebo + CF vs DR 发现（2026-05-21）\n\n### ⚠️ 概念区分（Director/Reviewer 纠正）\n- **Rewriting artifact** = judge 真实偏好 LLM-polished text → 任何测量 format 都会体现\n- **Format amplification** = pairwise FORMAT 夸大差异 → Comparative Trap 的论点\n- Placebo 检测到的是 **rewriting artifact**，**NOT format amplification**\n- **MF1 三层防御**针对的是 format amplification，完全不受 placebo 结果影响\n\n### Placebo BT 修正（choix.ilsr_pairwise + ALL pairs）\n- Qwen3-32B formality: P(orig)=0.377 [0.303,0.451] p=0.0006\n- Qwen3-32B verbosity: P(orig)=0.082 [0.035,0.140] p<0.0001\n- GPT-4o formality: P(orig)=0.418 [0.342,0.500] p=0.037\n- GPT-4o verbosity: P(orig)=0.167 [0.084,0.262] p<0.0001\n- **结论**: Judges 系统性偏好 LLM-rewritten text。GEE decomposition 是正确的 artifact 控制。\n\n### CF vs DR — 排除出论文主叙事\n- CF = 1 次改写, DR = 2 次改写 → rewrite 次数不等导致 polish confound\n- Reviewer #68/#69 独立评估一致：排除出论文\n\n## BT Canonical 数字 (D032)\n\n- **NLI-filtered (primary)**: P(formal)=63.0%, CI [55.8%, 70.3%], p<0.001, 88 pairs/173 comp\n- **All-data (robustness)**: P(formal)=60.9%, CI [53.8%, 67.8%], p=0.001, 100 pairs/197 comp\n\n## Power Curve Canonical (D030/D031)\n\n| Method | Effect Size | 80% Power n |\n|--------|------------|-------------|\n| Pairwise BT | p=0.630 | 114 |\n| Pairwise Sign Test | p=0.739, r=0.523 | 62 |\n| Binarized Likert | p=0.606, tie=0.625 | 462 |\n| Likert ATE | d=0.073 (raw) | 1,473 |\n\n## Canonical 数字源（D041 决策）\n- **GEE 6-cell 表**: `csd_pipeline/gee_diagnostics.py`（NLI≥0.90 过滤，88 pairs formality）\n- **Length confound**: `csd_pipeline/verbosity_length_confound.py`\n- 废弃: `csd_pipeline/gpt4o_analysis.py` 的 GEE 数字（exp014, 98 pairs，含 NLI<0.90）\n\n## 分析脚本路径\n- **Canonical GEE (所有 6 cells)**: `csd_pipeline/gee_diagnostics.py` ← 论文用这个\n- **Bootstrap Attenuation**: `/tmp/bootstrap_attenuation.py` → output: `data/bootstrap_attenuation.json`\n- **NLI Threshold Sweep**: `/tmp/nli_threshold_sweep.py` → output: `data/nli_threshold_sweep.json`\n- **Llama-70B Scoring**: `csd_pipeline/llama70b_scoring.py` → output: `data/llama70b_third_judge.json`, `data/pairwise_results_llama70b_{formality,verbosity}.jsonl`, `data/scored_llama70b_{formality,verbosity}.jsonl`\n- BT + GEE (Qwen3-32B formality/register): `csd_pipeline/qwen32b_analysis.py`\n- Verbosity GEE (Qwen3-32B): `csd_pipeline/verbosity_gee.py`\n- Power curve: `csd_pipeline/gen_power_curve.py`\n- BT 主分析 (GPT-4o formality): `csd_pipeline/exp016_bradley_terry.py`\n- Pipeline diagram: `csd_pipeline/gen_pipeline_figure.py`\n- Forest plot: `csd_pipeline/gen_forest_plot.py`\n- Length confound 验证: `csd_pipeline/verbosity_length_confound.py`\n- Cross-benchmark scoring: `csd_pipeline/gpt4o_crossbenchmark_scoring.py`, `csd_pipeline/alpacaeval_qwen32b_scoring.py`\n- Claude judge: `csd_pipeline/claude_judge_scoring.py`\n- Correction PoC (formality): `csd_pipeline/correction_poc.py`\n- **Debiased verbosity GPT-4o**: `csd_pipeline/debiased_verbosity_gpt4o.py` → output: `data/pairwise_results_debiased_gpt4o_verbosity.jsonl`\n- **100-point Likert**: `csd_pipeline/finegrained_likert_100pt.py` → output: `data/finegrained_likert_100pt.json`, `data/scored_100pt_gpt4o_{formality,verbosity}.jsonl`\n- NLI ablation + cross-axis: `csd_pipeline/nli_ablation_cross_axis.py`\n- **Double-rewrite placebo**: `csd_pipeline/double_rewrite_placebo.py`\n- **Placebo BT reanalysis**: `csd_pipeline/placebo_bt_reanalysis.py`\n- **Llama-70B Register scoring**: `csd_pipeline/llama70b_register_scoring.py` → output: `data/llama70b_register_summary.json`, `data/pairwise_results_llama70b_register.jsonl`, `data/scored_llama70b_register.jsonl`\n- **GEE Interaction (all 8 cells)**: `csd_pipeline/gee_interaction_analysis.py` → output: `data/gee_interaction_analysis.json`\n- **Power Analysis**: local `/tmp/power_analysis.py` → output: `artifacts/power_analysis_formal.json`\n- **Gemini Flash Scoring**: `csd_pipeline/gemini_flash_scoring.py` → output: `data/gemini_flash_summary.json`, `data/pairwise_results_gemini_flash_{formality,verbosity}.jsonl`, `data/scored_gemini_flash_{formality,verbosity}.jsonl`\n\n## 踩坑经验\n- [2026-05-20] vLLM Qwen3 需要 `VLLM_USE_FLASHINFER_SAMPLER=0`（Blackwell sm120 不兼容）\n- [2026-05-20] 32B FP16 单卡 96GB OK（gpu-memory-utilization=0.90 用了 88GB）\n- [2026-05-21] NLI-only gating 对所有 axis 都适用（D023）\n- [2026-05-21] **Consistent-only filter bug**: BT/GEE 必须用 ALL NLI-pass pairs（§3.3 方法学），不能只用 position-consistent pairs\n- [2026-05-21] **Rewriting artifact ≠ format amplification**: Placebo 检测 rewriting artifact，MF1 防御针对 format amplification\n- [2026-05-21] **Placebo bt_win_rate 实际是 sign test**：补跑用 choix.ilsr_pairwise + ALL pairs\n- [2026-05-21] **CF vs DR 不可用**: CF=1 rewrite, DR=2 rewrites, artifact 水平不同\n- [2026-05-21] **Worker Pool blocked 时可直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com` 执行 CPU 任务\n- [2026-05-21] **scored_scaled_formality_qwen32b.jsonl = n=355 formality Likert data**: 全部 NLI-pass，verified_32b.jsonl 没有 Likert scores\n- [2026-05-22] **Llama-70B vLLM 启动**: ModelScope 路径 `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct`，tp=2 GPU 2,3 port 8003\n- [2026-05-22] **OpenRouter via proxy**: `http://47.94.22.126/v1` + key_id=`openrouter_key`，model=`google/gemini-2.5-flash`，OpenAI SDK 兼容\n- [2026-05-22] **Gemini verbosity resume**: 首次跑中断于 32/86 pairs，脚本 resume 功能正常跳过已完成 pairs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "causal_style_decomp_judge",
+    "file": "memory.md",
+    "content": "# Memory — causal_style_decomp_judge\n\n## 服务器环境 (westb-29275)\n- SSH: `causal_style_decomp_judge`（~/.ssh/config 别名，免密）\n- GPU: 4× RTX PRO 6000 Blackwell 96GB, torch=2.11.0+cu130\n- 环境: aml-train 镜像, conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- 数据盘: `/root/autodl-tmp/` 250GB\n- **网络**: AutoDL 网络受限，每次 SSH 会话需 `source /etc/network_turbo`\n- **CUDA JIT**: `LD_LIBRARY_PATH` 需包含 `/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13/lib`\n- **GPU 3 驱动异常已修复**（2026-05-22 可正常用于 Llama vLLM）\n- **HF 网络**: 必须设 `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1` 避免 HF Hub 请求挂起\n- **直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com`（当 Worker Pool blocked 时可直接 SSH 执行 CPU 任务）\n\n## 模型路径\n- NLI: `/root/autodl-tmp/models/nli-deberta-v3-large/`\n- BERTScore: `microsoft/deberta-xlarge-mnli` 在 HF cache `/root/autodl-tmp/.hf_cache/`\n- Qwen3-8B: `/root/autodl-tmp/models/Qwen3-8B/`\n- Qwen3-32B: `/root/autodl-tmp/models/Qwen3-32B/` ✅ 完成（17 shards, 62GB）\n- Llama-3.3-70B-Instruct: ✅ **完成** `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct/`（30 shards, 132GB, via ModelScope）\n\n## vLLM 部署\n- Qwen3-32B: port 8000 (GPU 0,1, tp=2) — 主实例\n- Llama-3.3-70B: port 8003 (GPU 2,3, tp=2) — third judge\n\n## API 配置\n- **统一 proxy endpoint**: `http://47.94.22.126/v1`\n- GPT-4o: key_id=`openai_api_key_direct` — ✅ 可用\n- Claude Sonnet 4: key_id=`claude_api_key` — ❌ 代理不支持\n- Gemini 2.0 Flash: key_id=`gemini_api_key` — ❌ 代理不支持\n- **OpenRouter (via proxy)**: key_id=`openrouter_key`, model=`google/gemini-2.5-flash` — ✅ 可用（第4个 judge）\n- **只有 OpenAI + OpenRouter 可通过代理使用**，Claude/Gemini 原生 API 需直接 key\n\n## 数据\n- MVP 数据: `/root/causal_style_decomp_judge/data/mvp_samples.jsonl` (100 条, seed=42)\n- Pipeline 输出目录: `/root/causal_style_decomp_judge/data/`\n- exp-005 RATE control: `data/rate_control_input.jsonl` (88 条, NLI≥0.90 过滤)\n- Verified datasets: `verified_32b.jsonl`(100), `verified_verbosity.jsonl`(86 NLI-pass), `verified_register.jsonl`(94 NLI-pass), `verified_alpacaeval.jsonl`(86 NLI-pass), `verified_mtbench.jsonl`(73 NLI-pass)\n- **Scaled formality**: `scored_scaled_formality_qwen32b.jsonl` (355 条, 全部 NLI-pass, Qwen3-32B Likert)\n- **Pairwise scaled**: `pairwise_results_scaled_formality_qwen32b.jsonl` (355 条, 全部 NLI-pass)\n\n## RATE 方法 axis 可行性梯度（核心发现）\n\n| Axis | 改变了什么 | NLI 策略 | Pass rate | 结论 |\n|------|-----------|----------|-----------|------|\n| Formality | 表面 register | Bidirectional min(fwd,bwd) | 88% ✅ | 完全可行 |\n| Verbosity | 信息量 | Direction-aware (D012/D013) | 86% ✅ | 需 NLI-only gate + direction-aware |\n| Register | 话语情境 | NLI-only (D019) | 95% ✅ | NLI-only gate，与 formality 正交 (50%) |\n| Tone | 认知承诺 | Bidirectional | 45% ❌ | 结构性不可行 |\n\n**D023 决策：所有 axis 统一使用 NLI-only gating**（threshold 0.90）。\n\n## NLI Gate 特性（exp-013 发现）\n\nNLI gate (DeBERTa-v3-large, threshold 0.90) 是 **precision-oriented conservative filter**：\n- Precision 98.9%, Recall 91.6%, PABAK=0.82, AC1=0.89\n- Kappa paradox（Feinstein & Cicchetti 1990）：base rate 88:12 → kappa=0.43 低估\n\n## 完整 4×2 Blindspot 矩阵（C1/C2 核心 evidence — LLMBar）\n\n### Blindspot 矩阵（LLMBar — 4 Judges × 2 Axes）\n\n| Judge | Axis | BT P(style) | BT p | Likert p | Tie Rate | Blindspot? |\n|-------|------|-------------|------|----------|----------|------------|\n| GPT-4o | Formality | 63.0% | <0.001 | 0.332 | 62.5% | ✅ |\n| GPT-4o | Verbosity | 76.0% | 0.0001 | 0.403 | 58.1% | ✅ |\n| Qwen3-32B | Formality | 66.5% | <0.0001 | 0.908 | 72.7% | ✅ |\n| Qwen3-32B | Verbosity | 77.3% | <0.0001 | 0.179 | — | ✅ |\n| Llama-70B | Formality | 69.5% | 0.0001 | 0.846 | 72.7% | ✅ |\n| Llama-70B | Verbosity | 73.5% | 0.0001 | 0.752 | 61.6% | ✅ |\n| **Gemini Flash** | **Formality** | **57.4%** | **0.0306** | **0.309** | **—** | **✅** |\n| **Gemini Flash** | **Verbosity** | **70.8%** | **<0.0001** | **0.370** | **—** | **✅** |\n\n**8/8 cells Blindspot confirmed（4 judges × 2 axes）。**\n\n### Llama-70B GEE Decomposition\n\n| Axis | Style OR | Style p | Orig OR | Orig p |\n|------|----------|---------|---------|--------|\n| Formality | 4.81 | <0.0001 | 3.12 | 0.0007 |\n| Verbosity | 8.21 | <0.0001 | 0.38 | 0.0196 |\n| **Register** | **3.33** | **0.0003** | **3.07** | **0.0008** |\n\n**Llama formality = mixed, verbosity = style-dominated, register = mixed (意外：强于 GPT-4o/Qwen3-32B)**。\n\n### Gemini Flash GEE Decomposition（完整数据，2026-05-21 final）\n\n| Axis | Style OR | Style CI | Style p | Orig OR | Orig CI | Orig p | Regime |\n|------|----------|----------|---------|---------|---------|--------|--------|\n| Formality | 1.64 | [0.91, 2.98] | 0.1008 NS | 2.51 | [1.39, 4.54] | 0.0024 | **Orig-Dominated** |\n| Verbosity | 8.98 | [3.68, 21.94] | <0.0001 | 0.46 | [0.20, 1.04] | 0.0614 NS | **Pure Style** |\n\n**Gemini formality Style OR 最低（1.64 NS）**——唯一一个 GEE style 不显著的 judge-axis，但 BT 仍检出 (p=0.0306)。Verbosity OR=8.98 与其他 judge 完全一致。\n\n### Cross-Benchmark Formality Blindspot 矩阵\n\n| | GPT-4o | Qwen3-32B |\n|---|---|---|\n| **LLMBar** | ✅ Blindspot (Likert p=0.332) | ✅ Blindspot (Likert p=0.908) |\n| **AlpacaEval** | ✅ Blindspot (Likert p=0.170) | ✅ Blindspot (Likert p=0.908) |\n| **MT-Bench** | ❌ NOT Blindspot (Likert p=0.016) | ❌ NOT Blindspot (Likert p=0.007) |\n\n**4/6 cells Blindspot**。MT-Bench 的 style bias 足够强连 Likert 都能检测到。\n\n### Blindspot 受 Effect Size 调控（关键 nuance）\n\n| 场景 | BT P(style) | Cohen's d | Blindspot? | 解读 |\n|------|-------------|-----------|------------|------|\n| LLMBar formality | 63-66% | 0.05-0.07 | ✅ | 小效应 → Likert 完全看不到 |\n| LLMBar verbosity | 76-77% | 0.06-0.08 | ✅ | 高 tie rate (58-73%) 掩盖 |\n| MT-Bench formality | 69-71% | 0.15-0.17 | ❌ | 中等效应 → Likert 也能检测但弱 |\n| AlpacaEval verbosity | 84% | **0.375** | ❌ | 强效应 → Likert 也显著 |\n\n**Pattern**: Blindspot 主要出现在 d<0.15 时。d>0.3 时两种方法都能检测，但 BT 仍远更灵敏。\n\n### 🔑 Bootstrap Attenuation Simulation（2026-05-21, Smoking Gun 级证据）\n\n**区分 measurement attenuation vs power gap**: bootstrap 子采样 Likert 数据，不同 n 下 Cohen's d 是否保持 ≈0。\n\n| Combo | n | d_median 范围 | CI 含 0? | 对应 BT | 结论 |\n|-------|---|-------------|----------|---------|------|\n| **Formality × Qwen3-32B** | 355 | -0.019 ~ -0.015 (flat) | ✅ 全含 | 66.5% | **Smoking gun: d≈0 across ALL n** |\n| Verbosity × Qwen3-32B | 86 | 0.153 ~ 0.169 (flat) | ✅ 全含 | 77.3% | d=0.15 < small threshold |\n| Verbosity × GPT-4o | 86 | 0.197 ~ 0.205 (flat) | ✅ 全含 | 76.0% | d=0.20 borderline |\n\n**Formality 是最强证据**: d_median 在 n=50→355 完全平坦在 ~-0.017，CI 从 ±0.3 收窄到 ±0.1。不是 power gap（power gap 下 d 应随 n 收敛到真值），而是 measurement attenuation（真值本身就是 0）。\n\n### 🔑 100-point Fine-Grained Likert（2026-05-21, 直接回应 Dream Reviewer）\n\n**100-point scale (0-100) 两轴均 NS → Blindspot 不是 scale granularity artifact。**\n\n| Axis | BT P(style)/p | 7pt d/p | **100pt d/p** | Tie Rate (100pt) |\n|------|--------------|---------|--------------|-------------------|\n| Formality | 63.0% / <0.001 | 0.07 / 0.332 | **-0.04 / 0.725** | **65.9%** |\n| Verbosity | 76.0% / 0.0001 | 0.08 / 0.403 | **0.17 / 0.117** | **51.2%** |\n\n**关键**: 在 101 个可能值的 scale 上，52-66% pairs 仍得到完全相同分数。Formality 100pt 比 7pt 还差（p=0.73 vs 0.33）。与 bootstrap attenuation d≈0 形成 converging evidence: Blindspot = absolute-vs-relative 范式差异。\n\n### 🔑 NLI Threshold Continuous Curve（2026-05-21, 44/44 全显著）\n\n**BT 概率跨 NLI 阈值 [0.50→0.98] 完全稳定，证明 style bias 检测不依赖特定阈值选择。**\n\n| Combo | BT Range | Max Δpp | p-values | Sig/Total |\n|-------|----------|---------|----------|-----------|\n| **Formality × Qwen3-32B** | 0.648→0.665 | ~2pp | all ≤0.0005 | 11/11 |\n| **Formality × GPT-4o** | 0.614→0.642 | ~3pp | all ≤0.002 | 11/11 |\n| **Verbosity × Qwen3-32B** | 0.765→0.773 | ~1pp | all =0.0001 | 11/11 |\n| **Verbosity × GPT-4o** | 0.752→0.769 | ~2pp | all =0.0001 | 11/11 |\n\n**核心发现**: 即使从 0.50（几乎不过滤）到 0.98（极端严格），BT 概率波动 ≤3pp，p-value 始终 ≤0.002。Verbosity 两个 judge 的 BT 都在 0.75-0.77 范围内，formality 在 0.61-0.66 范围内。这排除了\"NLI 阈值选择偏差\"的 reviewer concern。\n\n### Claude Sonnet 4 — Negative Control (D047)\n\n| Axis | BT P(style) | BT p | Likert p | GEE Style OR | GEE Orig OR |\n|------|-------------|------|----------|--------------|-------------|\n| Formality | 56.2% | 0.091 (NS) | 0.721 | 1.47 (NS) | **6.66*** |\n| Verbosity | 54.1% | 0.284 (NS) | 0.743 | 1.52 (NS) | 0.80 (NS) |\n\n**Claude 没有 style bias**——BT/Likert/GEE style 全部 NS。验证 RATE pipeline 不产生 false positive。\n**Claude formality 有极强 originality bias** (OR=6.66)：偏好原始文本而非改写文本，但不偏好特定风格。\n**Spec 一致性**：3 个 judge 使用完全相同的 system prompt + temperature=0.0。\n\n### Correction PoC — Debiased Prompt Correction Resistance（支持 C4，5/5 全显著）\n\n| Judge | Axis | Original BT | Debiased BT | Δpp | % Reduced | Still sig? |\n|-------|------|------------|------------|-----|-----------|-----------|\n| GPT-4o | Verbosity | 76.0% | 62.9% [54.9,70.6] p=0.0016 | -13.1pp | 50.4% | ✅ |\n| **Llama-70B** | **Verbosity** | **73.5%** | **66.9%** [58.9,74.4] p<0.0001 | **-6.6pp** | **28.1%** | **✅** |\n| **Llama-70B** | **Formality** | **69.5%** | **64.3%** [57.3,71.0] p<0.0001 | **-5.2pp** | **26.7%** | **✅** |\n| Qwen3-32B | Formality | 66.5% | 60.8% p=0.002 | -5.7pp | 34.5% | ✅ |\n| GPT-4o | Formality | 63.0% | 62.6% p<0.0001 | -0.4pp | 3.1% | ✅ |\n\n**5/5 debiased combinations ALL still significant** → C4 rock-solid: style bias persists despite explicit debiasing.\n- Reduction range: 3-50%, never eliminates\n- GPT-4o verbosity 最易纠正 (50.4%), GPT-4o formality 最抗纠正 (3.1%)\n- Llama-70B 两轴表现相近 (~27%), 无明显 axis-dependent asymmetry\n- **Model-independent conclusion**: prompt-level intervention insufficient\n\n### AlpacaEval Verbosity × Qwen3-32B — 跨 benchmark verbosity 确认\n\n| Metric | 值 |\n|--------|---|\n| BT P(verbose) | 84.1% [77.4%, 90.2%], p=0.0001 |\n| Likert ATE | +0.73, p=0.0003, d=0.375 |\n| GEE Style OR | **28.64** [9.16, 89.56], p<0.0001 |\n| GEE Orig OR | 0.18 [0.06, 0.54], p=0.002 |\n| n_pairs | 82 (NLI≥0.90) |\n\n### GPT-4o Rewriter Independence — 双轴确认 (R3-N2)\n\n| Axis | GPT-4o Rewriter BT | Qwen3-32B Rewriter BT | Δpp | CI Overlap | Independence |\n|------|-------|---------|-----|------------|---|\n| **Formality** | 64.4% [56.1, 72.8] | 66.5% [58.5, 73.9] | -2.1 | ✅ baseline within CI | ✅ |\n| **Verbosity** | 73.5% [65.4, 80.9] | 77.3% [70.3, 84.3] | -3.8 | ✅ CIs overlap | ✅ |\n\n### R3 Pipeline Robustness 实验汇总\n\n| Issue | 实验 | 核心结论 |\n|-------|------|---------|\n| R3-N2 Rewriter independence | gpt4o_rewriter_formality + gpt4o_rewriter_verbosity | ✅ 双轴确认 |\n| R3-W1 NLI gate validity | nli_gate_spotcheck | ✅ 94% pass agreement, conservative |\n| R3-W2 Direction-aware gate | gate_comparison | ✅ Verbosity Δ=-1.1pp NS |\n| R3-W8 NLI FN selection | nli_fn_selection_bias | ✅ CONSERVATIVE, lower bounds |\n\n### GEE Decomposition 完整 Gradient（Canonical — 来源: gee_diagnostics.py, NLI≥0.90 过滤）\n\n| Judge | Axis | Style OR | Style p | Orig OR | Orig p | 解读 |\n|-------|------|----------|---------|---------|--------|------|\n| Qwen3-32B | **Verbosity** | **13.10** | 2.6e-09 | 0.49 | 0.096 ns | **纯 style bias** |\n| GPT-4o | **Verbosity** | **11.34** | 1.1e-08 | 0.45 | 0.062 ns | **纯 style bias** |\n| **Gemini Flash** | **Verbosity** | **8.98** | **<0.0001** | **0.46** | **0.061 ns** | **纯 style bias** |\n| **Llama-70B** | **Verbosity** | **8.21** | **<0.0001** | **0.38** | **0.020** | **Style-dominated (orig 反向)** |\n| Qwen3-32B | Formality | 4.20 | 0.0002 | 4.70 | 5.2e-05 | Style ≈ Orig |\n| **Llama-70B** | **Formality** | **4.81** | **<0.0001** | **3.12** | **0.0007** | **Style ≈ Orig (both sig)** |\n| GPT-4o | Formality | 2.58 | 0.002 | 2.32 | 0.006 | Style ≈ Orig (both sig) |\n| **Gemini Flash** | **Formality** | **1.64** | **0.101 NS [0.91,2.98]** | **2.51** | **0.002** | **Orig-Dominated (style NS)** |\n| GPT-4o | Register | 1.88 | 0.027 | 2.21 | 0.005 | Orig > Style |\n| Qwen3-32B | Register | 1.91 | 0.046 | 5.72 | 8.5e-08 | Orig >> Style |\n| **Llama-70B** | **Register** | **3.33** | **0.0003** | **3.07** | **0.0008** | **Mixed (意外强 style)** |\n\n**D041 决策**: 论文全文统一使用 `gee_diagnostics.py` 的 NLI≥0.90 过滤数字。\n\n### 🔑 Length Confound 验证（Dream W10 — D040 已通过）\n\n**结论：Verbosity style OR 在控制 text length 后完全存活，length bias 假说不成立。**\n\n| Judge | Model | Style OR | Style p | Length OR | Length p |\n|-------|-------|----------|---------|-----------|----------|\n| Qwen3-32B | A: No length | 13.10 | 2.6e-09 | — | — |\n| Qwen3-32B | B: + length_ratio | 13.10 | 2.56e-09 | 1.03 | 0.424 |\n| GPT-4o | A: No length | 10.97 | 1.74e-08 | — | — |\n| GPT-4o | B: + length_ratio | 10.97 | 1.74e-08 | 1.03 | 0.478 |\n\n### GEE Model Diagnostics（Dream W5/W9 — 已通过）\n\n- **Correlation Structure**: Exchangeable vs Independence |ΔQIC| < 0.001, Max|ΔCoef| < 0.02（所有 6 cells）→ 实质等价\n- **α 范围**: [-0.25, +0.11]，within-pair correlation 弱\n- **S×O Interaction (全 8 cells)**: 0/8 interaction terms significant (p range 0.14–0.96)。Additive model 对所有 judge×axis 都足够。Regime 分类 6/8 不变，2 个边界 case（GPT-4o Register small-sample artifact, Llama-70B Verbosity 标签差异）\n\n### 跨模型一致性（论文核心 argument — 4 judges 确认）\n- **Verbosity**: 四模型 Style OR=8.2–13.1（Gemini=8.98），Orig OR<1 → **纯 style bias 是 model-independent**\n- **Formality**: GPT-4o/Qwen3-32B/Llama-70B Style+Orig 均显著（mixed effect）；**Gemini Style OR=1.64 NS（唯一 style NS）**但 BT 仍显著 → formality bias 存在但 Gemini 的 GEE 分解中被 originality 吸收\n- **Register**: GPT-4o/Qwen3-32B Style OR≈1.9（边缘），**Llama-70B Style OR=3.33（显著强）** → judge-dependent\n\n### C3 Axis Gradient\n- **Verbosity = 纯 style bias**（OR=8.2–13.1，originality ns 或反向，4 judge 一致）\n- **Formality = 混合效应**（style + originality 共存，3/4 judge 双显著，Gemini style NS 但 BT 仍显著）\n- **Register = judge-dependent**（GPT-4o=Mixed, Qwen3-32B=Orig-Dom, Llama=Mixed）。Style OR 范围 1.88-3.33，均低于 verbosity\n\n### 🔑 Formal Power Analysis（2026-05-21, C1 强化）\n\n| Judge | Axis | Likert d | Required n (80% power) | Ratio vs actual |\n|-------|------|---------|----------------------|-----------------|\n| GPT-4o | Formality | 0.073 | 1,473 | 16.7x |\n| GPT-4o | Verbosity | 0.080 | 1,227 | 14.3x |\n| Qwen3-32B | Formality | -0.017 | 27,159 | 76.5x |\n| Qwen3-32B | Verbosity | 0.153 | 336 | 3.9x |\n| Llama-70B | Formality | 0.021 | 18,157 | 206.3x |\n| Llama-70B | Verbosity | 0.034 | 6,737 | 78.3x |\n\n**所有 6 cell infeasible**。与 bootstrap attenuation 收敛：Likert effect size 本身在 0 附近 = structural limitation, not power gap。\n\n### 🔑 TOST Minimum Detectable Equivalence Margin（2026-05-22）\n\n**Proportions TOST（实际分析所用方法）**:\n- 参数: n=87 pairs, α=0.05 one-sided, power=0.80, SE=√(0.5×0.5/87)=0.0536\n- 公式: Δ_min = SE × (z_α + z_{0.90}) = 0.0536 × 2.9264 = **0.157**\n- 即 equivalence region [0.343, 0.657]\n- **实际分析用 Δ=0.10 时 power 仅 17.5%** — 严重 underpowered\n- Formality n=88: Δ_min=0.156; Verbosity n=86: Δ_min=0.158\n\n| Margin Δ | Power | Equiv Region |\n|----------|-------|--------------|\n| 0.10 | 17.5% | [0.40, 0.60] |\n| 0.143 | 70% | [0.357, 0.643] |\n| 0.157 | 80% | [0.343, 0.657] |\n| 0.176 | 90% | [0.324, 0.676] |\n\n**Paper sentence**: \"With n≈87 pairs and α=0.05, the TOST procedure achieves 80% power to reject non-equivalence only when the equivalence margin is Δ≥0.157 (win-rate within [0.343, 0.657]); at the pre-registered margin Δ=0.10, achieved power is only 17.5%.\"\n\n**Paired Likert TOST（standardized）**: Δ_min = 0.269 Cohen's d (需 σ_diff 转换为 raw units)\n\n### 🔑 Llama-70B Register（2026-05-21, 矩阵扩展）\n\n| Metric | 值 |\n|--------|---|\n| BT P(academic) | 63.5% [55.5, 71.2], p=0.0014 |\n| Likert | ATE=0.054, d=0.024, p=0.690, tie=68.8% |\n| GEE Style OR | 3.33 (p=0.0003) |\n| GEE Orig OR | 3.07 (p=0.0008) |\n| Blindspot | ✅ YES |\n| Regime | Mixed（意外：强于 GPT-4o 57% 和 Qwen3-32B 55.3%）|\n\n### 🔑 Gemini 2.5 Flash — 第4个 Judge（2026-05-21, final complete data）\n\n| Metric | Formality (88 pairs) | Verbosity (86 pairs, 171 comp) |\n|--------|---------------------|-------------------------------|\n| BT win% | 57.4% [50.0, 64.2] | 70.8% [63.7, 77.2] |\n| BT p | 0.0306 | <0.0001 |\n| Likert ATE | -0.239 | 0.151 |\n| Likert d | -0.082 | 0.051 |\n| Likert p | 0.309 (NS) | 0.370 (NS) |\n| GEE Style OR | 1.64 [0.91, 2.98] p=0.101 NS | 8.98 [3.68, 21.94] p<0.0001 |\n| GEE Orig OR | 2.51 [1.39, 4.54] p=0.002 | 0.46 [0.20, 1.04] p=0.061 NS |\n| Blindspot | ✅ YES | ✅ YES |\n| Regime | Orig-Dominated | Pure Style |\n\n**Gemini formality BT 最弱（57.4%）但仍显著**。GEE Style OR=1.64 是唯一不显著的 style 效应 → formality 的 style bias 在 Gemini 上最弱，更多被 originality 解释。\n**Gemini verbosity 完全一致**: Style OR=8.98 排第3（Qwen 13.1 > GPT-4o 11.3 > Gemini 8.98 > Llama 8.21），Pure Style regime。\n**备注**: Verbosity mvp_0041 trial2 缺失（API 返回 None），共 171 comparisons（非 172）。\n\n## Verbosity vs Formality 的方向不对称性差异（关键机制洞察）\n\n**Verbosity = 真正的 style bias**（非 originality bias）：\n- verbose→concise: 80.6% prefer original（verbose）\n- concise→verbose: 90.7% prefer rewrite（verbose）\n- 两个方向都偏好 verbose content → 真正的 verbosity preference\n\n**Formality = 可能混合 originality bias**：\n- formal→casual: 81.4% prefer original (p<0.0001)\n- casual→formal: 50.0% (p=1.0, 无偏好)\n\n**Register = 主要是 originality bias**：\n- academic→conv: 89.3% prefer original\n- conv→academic: 68.8% prefer original\n\n## 🔑 Double-Rewrite Placebo + CF vs DR 发现（2026-05-21）\n\n### ⚠️ 概念区分（Director/Reviewer 纠正）\n- **Rewriting artifact** = judge 真实偏好 LLM-polished text → 任何测量 format 都会体现\n- **Format amplification** = pairwise FORMAT 夸大差异 → Comparative Trap 的论点\n- Placebo 检测到的是 **rewriting artifact**，**NOT format amplification**\n- **MF1 三层防御**针对的是 format amplification，完全不受 placebo 结果影响\n\n### Placebo BT 修正（choix.ilsr_pairwise + ALL pairs）\n- Qwen3-32B formality: P(orig)=0.377 [0.303,0.451] p=0.0006\n- Qwen3-32B verbosity: P(orig)=0.082 [0.035,0.140] p<0.0001\n- GPT-4o formality: P(orig)=0.418 [0.342,0.500] p=0.037\n- GPT-4o verbosity: P(orig)=0.167 [0.084,0.262] p<0.0001\n- **结论**: Judges 系统性偏好 LLM-rewritten text。GEE decomposition 是正确的 artifact 控制。\n\n### CF vs DR — 排除出论文主叙事\n- CF = 1 次改写, DR = 2 次改写 → rewrite 次数不等导致 polish confound\n- Reviewer #68/#69 独立评估一致：排除出论文\n\n## BT Canonical 数字 (D032)\n\n- **NLI-filtered (primary)**: P(formal)=63.0%, CI [55.8%, 70.3%], p<0.001, 88 pairs/173 comp\n- **All-data (robustness)**: P(formal)=60.9%, CI [53.8%, 67.8%], p=0.001, 100 pairs/197 comp\n\n## Power Curve Canonical (D030/D031)\n\n| Method | Effect Size | 80% Power n |\n|--------|------------|-------------|\n| Pairwise BT | p=0.630 | 114 |\n| Pairwise Sign Test | p=0.739, r=0.523 | 62 |\n| Binarized Likert | p=0.606, tie=0.625 | 462 |\n| Likert ATE | d=0.073 (raw) | 1,473 |\n\n## Canonical 数字源（D041 决策）\n- **GEE 6-cell 表**: `csd_pipeline/gee_diagnostics.py`（NLI≥0.90 过滤，88 pairs formality）\n- **Length confound**: `csd_pipeline/verbosity_length_confound.py`\n- 废弃: `csd_pipeline/gpt4o_analysis.py` 的 GEE 数字（exp014, 98 pairs，含 NLI<0.90）\n\n## 分析脚本路径\n- **Canonical GEE (所有 6 cells)**: `csd_pipeline/gee_diagnostics.py` ← 论文用这个\n- **Bootstrap Attenuation**: `/tmp/bootstrap_attenuation.py` → output: `data/bootstrap_attenuation.json`\n- **NLI Threshold Sweep**: `/tmp/nli_threshold_sweep.py` → output: `data/nli_threshold_sweep.json`\n- **Llama-70B Scoring**: `csd_pipeline/llama70b_scoring.py` → output: `data/llama70b_third_judge.json`, `data/pairwise_results_llama70b_{formality,verbosity}.jsonl`, `data/scored_llama70b_{formality,verbosity}.jsonl`\n- BT + GEE (Qwen3-32B formality/register): `csd_pipeline/qwen32b_analysis.py`\n- Verbosity GEE (Qwen3-32B): `csd_pipeline/verbosity_gee.py`\n- Power curve: `csd_pipeline/gen_power_curve.py`\n- BT 主分析 (GPT-4o formality): `csd_pipeline/exp016_bradley_terry.py`\n- Pipeline diagram: `csd_pipeline/gen_pipeline_figure.py`\n- Forest plot: `csd_pipeline/gen_forest_plot.py`\n- Length confound 验证: `csd_pipeline/verbosity_length_confound.py`\n- Cross-benchmark scoring: `csd_pipeline/gpt4o_crossbenchmark_scoring.py`, `csd_pipeline/alpacaeval_qwen32b_scoring.py`\n- Claude judge: `csd_pipeline/claude_judge_scoring.py`\n- Correction PoC (formality): `csd_pipeline/correction_poc.py`\n- **Debiased verbosity GPT-4o**: `csd_pipeline/debiased_verbosity_gpt4o.py` → output: `data/pairwise_results_debiased_gpt4o_verbosity.jsonl`\n- **100-point Likert**: `csd_pipeline/finegrained_likert_100pt.py` → output: `data/finegrained_likert_100pt.json`, `data/scored_100pt_gpt4o_{formality,verbosity}.jsonl`\n- NLI ablation + cross-axis: `csd_pipeline/nli_ablation_cross_axis.py`\n- **Double-rewrite placebo**: `csd_pipeline/double_rewrite_placebo.py`\n- **Placebo BT reanalysis**: `csd_pipeline/placebo_bt_reanalysis.py`\n- **Llama-70B Register scoring**: `csd_pipeline/llama70b_register_scoring.py` → output: `data/llama70b_register_summary.json`, `data/pairwise_results_llama70b_register.jsonl`, `data/scored_llama70b_register.jsonl`\n- **GEE Interaction (all 8 cells)**: `csd_pipeline/gee_interaction_analysis.py` → output: `data/gee_interaction_analysis.json`\n- **Power Analysis**: local `/tmp/power_analysis.py` → output: `artifacts/power_analysis_formal.json`\n- **Gemini Flash Scoring**: `csd_pipeline/gemini_flash_scoring.py` → output: `data/gemini_flash_summary.json`, `data/pairwise_results_gemini_flash_{formality,verbosity}.jsonl`, `data/scored_gemini_flash_{formality,verbosity}.jsonl`\n\n## 踩坑经验\n- [2026-05-20] vLLM Qwen3 需要 `VLLM_USE_FLASHINFER_SAMPLER=0`（Blackwell sm120 不兼容）\n- [2026-05-20] 32B FP16 单卡 96GB OK（gpu-memory-utilization=0.90 用了 88GB）\n- [2026-05-21] NLI-only gating 对所有 axis 都适用（D023）\n- [2026-05-21] **Consistent-only filter bug**: BT/GEE 必须用 ALL NLI-pass pairs（§3.3 方法学），不能只用 position-consistent pairs\n- [2026-05-21] **Rewriting artifact ≠ format amplification**: Placebo 检测 rewriting artifact，MF1 防御针对 format amplification\n- [2026-05-21] **Placebo bt_win_rate 实际是 sign test**：补跑用 choix.ilsr_pairwise + ALL pairs\n- [2026-05-21] **CF vs DR 不可用**: CF=1 rewrite, DR=2 rewrites, artifact 水平不同\n- [2026-05-21] **Worker Pool blocked 时可直接 SSH**: `ssh -p 29275 root@connect.westb.seetacloud.com` 执行 CPU 任务\n- [2026-05-21] **scored_scaled_formality_qwen32b.jsonl = n=355 formality Likert data**: 全部 NLI-pass，verified_32b.jsonl 没有 Likert scores\n- [2026-05-22] **Llama-70B vLLM 启动**: ModelScope 路径 `/root/autodl-tmp/models/LLM-Research/Llama-3.3-70B-Instruct`，tp=2 GPU 2,3 port 8003\n- [2026-05-22] **OpenRouter via proxy**: `http://47.94.22.126/v1` + key_id=`openrouter_key`，model=`google/gemini-2.5-flash`，OpenAI SDK 兼容\n- [2026-05-22] **Gemini verbosity resume**: 首次跑中断于 32/86 pairs，脚本 resume 功能正常跳过已完成 pairs"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T04:01:57.040655+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_tost-delta_20260522T035524",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-22T04:01:57.040841+00:00_
+
+**TOST Minimum Detectable Equivalence Margin 结果**:
+
+**Proportions TOST**（实际分析所用方法，win-rate 检验）:
+
+| 参数 | 值 |
+|------|---|
+| n | 87 pairs |
+| α | 0.05 (one-sided) |
+| SE(p=0.5) | 0.0536 |
+| **Δ_min (80% power)** | **0.157** |
+| Equivalence region | [0.343, 0.657] |
+
+**关键发现**: 实际分析用 Δ=0.10 时 power 仅 **17.5%**——严重 underpowered。要达到 80% power 需要 Δ≥0.157。
+
+**Margin-Power 对照**:
+
+| Margin Δ | Power | Region |
+|----------|-------|--------|
+| 0.10 | 17.5% | [0.40, 0.60] |
+| 0.157 | 80% | [0.343, 0.657] |
+| 0.176 | 90% | [0.324, 0.676] |
+
+**论文用句**: "With n≈87 pairs and α=0.05, the TOST procedure achieves 80% power to reject non-equivalence only when the equivalence margin is Δ≥0.157 (win-rate within [0.343, 0.657]); at the pre-registered margin Δ=0.10, achieved power is only 17.5%."
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_tost-delta_20260522T035524"
+}
+```
+
+</details>
+
+---

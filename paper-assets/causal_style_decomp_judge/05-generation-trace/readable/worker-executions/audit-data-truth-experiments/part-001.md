@@ -1,0 +1,9068 @@
+# audit data truth experiments — Part 1 of 2
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation** · Worker execution logs
+
+[Transcript overview](../audit-data-truth-experiments.md) · [Part 2 →](part-002.md) · [Structured JSON](../../../sessions/6b/6bc2e10ad121329c1a03.json)
+
+## Before a recorded user message
+
+## Before a recorded user message
+
+36 recorded events
+
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0f87ddd1-c434-4079-a885-87901053c7f2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779741000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "c0328ead-bd21-4428-9be9-643db2445c7f",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 4_
+
+I'll audit every number in the experiments section against server-side source data. Let me start by reading the paper and connecting to the server in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "3ab52a92-443f-426f-bd6a-8f9a1c154a30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jwfrdz8Sgsqa9yYGyWRKMj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13234,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13234
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Kf5kcMePA449zdobjmjP7Q`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "2ad197a6-7c3a-4084-a73e-fb0635ad45ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jwfrdz8Sgsqa9yYGyWRKMj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13234,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13234
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 6 · 2026-05-25T19:42:26.893Z_
+
+<details><summary>↩ Tool result · `toolu_01Kf5kcMePA449zdobjmjP7Q`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	
+5	\subsection{Statistical Framework}
+6	\label{sec:stat_framework}
+7	
+8	The primary family comprises six tests (three target judges $\times$ two axes), corrected via Holm-Bonferroni at $\alpha = 0.05$; Gemini-2.5-Flash serves as confirmatory replication and is excluded from family-wise error rate (FWER) control; as a sensitivity check, all eight tests remain significant under the expanded family (Appendix~\ref{app:holm8}).
+9	Table~\ref{tab:main_results} reports both raw and adjusted $p$-values.
+10	Analyses outside this grid are classified as either \emph{exploratory} (NLI threshold sensitivity sweep, \S\ref{sec:nli_threshold}) or \emph{confirmatory} (consistency filter validation, \S\ref{sec:consistency}).
+11	Exploratory analyses use uncorrected $p$-values; confirmatory analyses (pipeline validity) are evaluated at $\alpha = 0.05$ without additional correction.
+12	Bradley-Terry parameters \citep{bradley1952rank,luce1959individual} are estimated via spectral initialization followed by minorization-maximization \citep{hunter2004mm}, using the \texttt{choix} Python library's default L2 regularization ($\alpha = 10^{-6}$).
+13	In binary-choice BT models, independence of irrelevant alternatives (IIA) is structurally satisfied; the direction asymmetry in Appendix~\ref{app:bt_gof} (formality: formal-origin 88.9\% vs.\ casual-origin 52.6\%, Fisher $p = 0.015$) reflects heterogeneous treatment effects rather than IIA violation.
+14	All bootstrap confidence intervals are percentile CIs from 10{,}000 pair-level resamples with seed 42; we verify bootstrap stability by confirming that halving the resample count changes interval widths by $<$1pp.
+15	GEE models use exchangeable working correlation with sandwich standard errors (robust to correlation misspecification), justified by near-zero estimated within-pair correlations ($\hat{\alpha} \in [-0.25, +0.11]$; Appendix~\ref{app:gee_diagnostics}).
+16	A prospective power analysis (Appendix~\ref{app:power_analysis}) confirms that our sample sizes ($n = 86$--$88$ pairs) provide $>$90\% power to detect BT effects of the observed magnitude ($P \geq 0.63$), whereas Likert requires $4$--$206\times$ the sample size for equivalent power (Figure~\ref{fig:power_curve}).
+17	
+18	\paragraph{Model selection.}
+19	Target judges span four architectures from independent providers: GPT-4o (\texttt{2024-08-06}; OpenAI), Qwen3-32B-Instruct (Alibaba; also serving as rewriter), Llama-3.3-70B-Instruct (Meta), and Gemini-2.5-Flash (Google).
+20	This diversity guards against provider-specific artifacts in both training data and RLHF reward modeling; Claude Sonnet~4 (Anthropic) provides discriminative validity evidence (\S\ref{sec:cross_judge}), serving as a fifth judge from a provider not represented in the primary family.
+21	All judges are accessed via their respective APIs with temperature 0 (deterministic decoding) and default system prompts to ensure reproducibility.
+22	
+23	\begin{table}[t]
+24	\centering
+25	\small
+26	\caption{Primary results on LLMBar ($n = 88$ formality, $86$ verbosity, except where noted) across five judges and three style axes. BT $> 0.50$ indicates style preference; $\dagger$ marks Blindspot cases (BT significant, Likert not). Cross-benchmark replication in Appendix~\ref{app:cross_bench}. BT: Bradley-Terry win probability (95\% CIs in Appendix~\ref{app:bt_ci}).}
+27	\label{tab:main_results}
+28	\begin{tabular}{@{}llccc@{}}
+29	\toprule
+30	Judge & Axis & BT $P$ & Likert $d$ ($p$) & Cat.\ \\
+31	\midrule
+32	GPT-4o & Form.\ & .630$^{***}$ & $-$.041 (.905) & $\dagger$ \\
+33	GPT-4o & Verb.\ & .760$^{***}$ & .049 (.403) & $\dagger$ \\
+34	GPT-4o & Reg.\ & .570$^{\dagger}$ & .000 (.785) & $\dagger_{\text{e}}$ \\
+35	\cmidrule{1-5}
+36	Qwen3 & Form.\ & .665$^{***}$ & $-$.052 (.461) & $\dagger$ \\
+37	Qwen3 & Form.$^b$ & .675$^{***}$ & $-$.025 (.600) & $\dagger$ \\
+38	Qwen3 & Verb.\ & .773$^{***}$ & .036 (.395) & $\dagger$ \\
+39	Qwen3 & Reg.\ & .553 & $-$.073 (.373) & $\dagger_{\text{e}}$ \\
+40	\cmidrule{1-5}
+41	Llama-70B & Form.\ & .695$^{***}$ & .010 (.534) & $\dagger$ \\
+42	Llama-70B & Verb.\ & .735$^{***}$ & .020 (.284) & $\dagger$ \\
+43	Llama-70B & Reg.\ & .635$^{\dagger}$ & .024 (.524) & $\dagger_{\text{e}}$ \\
+44	\cmidrule{1-5}
+45	Gemini & Form.\ & .574$^{*}$ & $-$.082 (.309) & $\dagger_{\text{c}}$ \\
+46	Gemini & Verb.\ & .708$^{***}$ & .051 (.370) & $\dagger_{\text{c}}$ \\
+47	\cmidrule{1-5}
+48	Claude & Form.\ & .562 & $-$.021 (.721) & --- \\
+49	Claude & Verb.\ & .541 & $-$.039 (.743) & --- \\
+50	\bottomrule
+51	\multicolumn{5}{@{}p{\columnwidth}@{}}{\footnotesize $^{***}\!p < 0.001$; $^{*}\!p < 0.05$ (Holm-adj.\ for primary; raw for $_{\text{c}}$). $\dagger$: Blindspot (BT sig., Likert n.s.); ---: neither sig.; $_{\text{e}}$: exploratory; $_{\text{c}}$: confirmatory. Negative $d$: styled variants scored lower.}\\
+52	\multicolumn{5}{@{}p{\columnwidth}@{}}{\footnotesize $^b$ Scaled replication ($n = 355$). Qwen3 serves as both rewriter and judge; independent GPT-4o rewriter yields 22\% lower Style OR (App.~\ref{app:rewriter_indep}).}\\
+53	\multicolumn{5}{@{}p{\columnwidth}@{}}{\footnotesize Form.\ direction asymmetry: formal-origin 78.8\% vs.\ casual-origin 54.5\%; GEE-adj.\ Style OR$=$2.58 ($p{=}.002$; App.~\ref{app:direction}).}
+54	\end{tabular}
+55	\end{table}
+56	
+57	
+58	\begin{figure}[t]
+59	\centering
+60	\includegraphics[width=\columnwidth]{figures/forest_plot.pdf}
+61	\caption{Bradley-Terry win probabilities across four target judges and three style axes. Filled diamonds: significant ($p < 0.05$); open diamonds: non-significant. Error bars: 95\% bootstrap CI. The dashed line at 0.50 indicates no style preference. Verbosity shows the strongest and most consistent bias across all four judges.}
+62	\label{fig:forest_plot}
+63	\end{figure}
+64	
+65	\section{Analysis}
+66	\label{sec:analysis}
+67	
+68	
+69	\subsection{The Likert Blindspot}
+70	\label{sec:likert_pairwise}
+71	
+72	\paragraph{Head-to-head comparison with RATE.}
+73	Applying RATE's Likert ATE methodology \citep{reber2025rate} to our formality style-transformed pairs yields Cohen's $d = {-}0.04$, $p = 0.91$ (non-significant, $n = 88$); pairwise comparison on identical data reveals a 63.0\% formal preference ($p = 0.0004$, Bradley-Terry on all 173 comparisons), confirmed by a consistency-filtered sign test (73.9\%, $p = 0.006$, $n = 46$ consistent pairs).
+74	This is the Likert Blindspot: the same data, the same style intervention, two measurement instruments, yet one detects bias and the other does not.
+75	A $4\times$ scaled replication ($n = 355$) distinguishes measurement attenuation from insufficient power: the Likert effect size shrinks to $d = {-}0.025$ (near zero) while BT remains stable at $67.5\%$ ($p < 0.0001$). If the gap were merely statistical power, $d$ would remain non-zero at larger $n$.
+76	Bootstrap subsampling confirms $d$ remains near zero as $n$ grows (Appendix~\ref{app:bootstrap_attenuation}).
+77	Post hoc, attenuation follows a severity spectrum: complete at moderate bias ($d \to 0$, BT 63--67\%) and partial at stronger effects (${>}60\%$ loss, BT ${>}70\%$), explaining four cross-benchmark exceptions ($\ddagger$, Table~\ref{tab:cross_bench}).
+78	
+79	RATE and CSD are complementary (Likert ATE vs.\ forced-choice BT); the Blindspot arises from Likert tie rates of 58--73\%, unresolved by 100-point continuous scaling (all three judges $p > 0.15$; Appendix~\ref{app:likert100}).
+80	
+81	
+82	\paragraph{Sensitivity hierarchy across measurement methods.}
+83	Seven measurement methods applied to the same formality data confirm the Blindspot is not test-specific: both pairwise methods detect the formality preference while all five Likert-based methods fail regardless of scaling assumption (interval, ordinal, or nonparametric), with verbosity showing the same pattern (Table~\ref{tab:sensitivity}, Appendix~\ref{app:sensitivity}; verbosity replication in Appendix~\ref{app:verb_sensitivity}).
+84	
+85	Figure~\ref{fig:power_curve} plots detection probability at observed effect magnitudes (not post-hoc power; cf.\ \citealt{hoenig2001abuse}): across six cells, Likert requires $4$--$206\times$ the current $n$ ($336$--$27{,}159$ pairs; Appendix~\ref{app:power_analysis}) to detect effects BT identifies at $p < 0.001$ with $n \leq 100$.
+86	Under format equivalence, observing 8/8 primary cells as Blindspot has binomial probability $p = 0.004$; non-tie concordance (76.6\%, $p < .001$; \S\ref{sec:likert_pairwise}) provides a complementary formal test of format divergence.
+87	\paragraph{Interpreting the divergence.}
+88	The measurement-mode divergence admits three non-exclusive interpretations: (a)~\emph{Likert attenuation}, where tie inflation and residual signal loss reduce Likert sensitivity below detection thresholds; (b)~\emph{pairwise amplification}, where forced-choice comparison inflates micro-preferences into apparent biases \citep{jeong2025comparative}; (c)~\emph{construct divergence}, where the two formats measure different constructs (absolute quality vs.\ ordinal preference; \citealt{tripathi2025pairwise}).
+89	Six experimental controls (\S\ref{sec:amplification}) bound the amplification factor but cannot eliminate it; the attenuation evidence ($d \to 0$ at $n = 355$) is necessary but not sufficient for causal identification.
+90	Non-tie concordance analysis partially adjudicates: among 201 Likert non-tie pairs (pooled across judges and axes), 76.6\% agree with pairwise direction [70.3\%, 81.9\%], $p < 0.001$; point-biserial correlations are uniformly positive ($r = 0.20$--$0.45$, 7/9 significant; Appendix~\ref{app:concordance}), evidence more consistent with measurement attenuation than construct divergence, though partial construct divergence remains at weaker effect sizes.
+91	Claude's benchmark-dependent profile illustrates why aggregate BT is insufficient for bias attribution: LLMBar formality shows near-null sensitivity (Style OR n.s.) while AEval verbosity reveals significant sensitivity (Style OR $= 4.76$, $p < .001$), a pattern disambiguated only by per-axis GEE decomposition (\S\ref{sec:cross_judge}; Appendix~\ref{app:claude_tost}).
+92	All three interpretations converge on one practical conclusion: single-format audits risk incomplete bias coverage; the Blindspot manifests in 10/14 bias-positive cells, with four exceptions ($\ddagger$) confirming effect-size dependence.
+93	For alignment pipelines where pairwise judgments serve as reward signals, this implies that biases embedded during RLHF training may go undetected by Likert-based evaluation at standard benchmark scales.
+94	
+95	\begin{figure}[t]
+96	\centering
+97	\includegraphics[width=\columnwidth]{figures/power_curve.pdf}
+98	\caption{Detection probability at observed effect magnitudes. 80\% power crossings: sign test $n \approx 62$, BT $n \approx 114$, binarized Likert $n \approx 462$, Likert ATE $n \approx 1{,}473$. At typical scales ($n = 50$--$200$, shaded), pairwise methods reach 80\% power while Likert methods remain far below. At $n = 355$, Likert $d = {-}0.025$ confirms the gap is structural, not merely a power issue.}
+99	\label{fig:power_curve}
+100	\end{figure}
+101	
+102	\subsection{Per-Axis Confound Structure}
+103	\label{sec:direction}
+104	
+105	GEE conditional decomposition \citep{liang1986gee} with exchangeable working correlation and robust standard errors separates style from originality effects (Appendix~\ref{app:direction}; model diagnostics including correlation structure robustness and interaction tests in Appendix~\ref{app:gee_diagnostics}).
+106	After controlling for original preference, the formality effect remains significant (GPT-4o: OR $= 2.58$, $p = 0.002$; Qwen3-32B: OR $= 2.15$, $p < 0.0001$, $n = 355$; Llama-70B: OR $= 4.81$, $p < 0.0001$; Table~\ref{tab:gee}); the significant originality ORs confirm residual confounding.
+107	For formality, both style preference and quality correlation contribute (a conditional effect); the two-predictor GEE provides a parsimonious decomposition rather than causal identification; omitted variables (text length, lexical complexity) may partly confound both terms.
+108	This per-axis heterogeneity has direct implications for bias mitigation: verbosity bias can be addressed by style-level interventions (e.g., length normalization or debiased prompting), whereas formality bias requires disentangling genuine quality correlates from surface-level preferences, a fundamentally harder problem that aggregate bias metrics cannot even detect.
+109	
+110	\begin{table}[t]
+111	\centering
+112	\caption{GEE conditional decomposition (exchangeable correlation). Style OR: style-direction odds ratio; Orig OR: original-preference odds ratio (OR $> 1$ favors original). $n{=}88$ ORs are upward-biased estimates; scaled replications ($n = 330$--$355$) show $49$--$72\%$ shrinkage \citep{nemes2009bias}. Verbosity is style-dominated; formality shows varying confound structure.}
+113	\label{tab:gee}
+114	\resizebox{\columnwidth}{!}{%
+115	\begin{tabular}{@{}llclc@{}}
+116	\toprule
+117	 & \multicolumn{2}{c}{Style OR} & \multicolumn{2}{c}{Originality OR} \\
+118	\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+119	Config & OR & $p$ & OR & $p$ \\
+120	\midrule
+121	Qwen3 verb.\ & 13.10 & ${<}.0001$ & 0.49 & .096 \\
+122	GPT-4o verb.\ & 11.34 & ${<}.0001$ & 0.45 & .062 \\
+123	Llama-70B verb.\ & 8.21 & ${<}.0001$ & 0.38 & .020 \\
+124	Gemini verb.\ & 8.98 & ${<}.0001$ & 0.46 & .061 \\
+125	\midrule
+126	GPT-4o form.\ & 2.58 & .002 & 2.32 & .006 \\
+127	Qwen3 form.\ & 4.20 & .0002 & 4.70 & .0001 \\
+128	Qwen3 form.$^a$ & 2.15 & ${<}.0001$ & 4.99 & ${<}.0001$ \\
+129	Llama-70B form.\ & 4.81 & ${<}.0001$ & 3.12 & .0007 \\
+130	Gemini form.\ & 1.64 & .101 & 2.51 & .002 \\
+131	\midrule
+132	GPT-4o reg.\ & 1.88 & .029 & 2.21 & .006 \\
+133	Qwen3 reg.\ & 1.91 & .046 & 5.72 & ${<}.0001$ \\
+134	Llama-70B reg.\ & 3.33 & .0003 & 3.07 & .0008 \\
+135	\bottomrule
+136	\multicolumn{5}{l}{\footnotesize $^a$ $n = 355$; form.\ $n{=}88$, verb.\ $n{=}86$. 95\% CIs in Appendix.}
+137	\end{tabular}}
+138	\end{table}
+139	
+140	The confound structure is consistent across all four target judges for verbosity (style-dominated at $n = 86$--$88$: Style OR $8.2$--$13.1$, Orig OR $0.38$--$0.49$; confirmed at $n = 330$: Style OR $2.5$--$4.0$); formality is conditionally style-driven in three judges but originality-dominated in Gemini; register is judge-dependent (Figure~\ref{fig:gee_decomp}).
+141	Same-style double-rewrite controls confirm a rewriting artifact (Appendix~\ref{app:artifact_control}), absorbed by GEE's originality term.
+142	The Gemini exception (formality Style OR $= 1.64$, n.s.) demonstrates that the decomposition is not uniformly biased toward detecting style effects; judges with weaker style sensitivity produce correspondingly weaker Style ORs.
+143	
+144	\begin{figure}[t]
+145	\centering
+146	\includegraphics[width=\columnwidth]{figures/gee_decomposition.pdf}
+147	\caption{GEE conditional decomposition across four judges ($n = 88$, LLMBar). Verbosity (left) is style-dominated: Style OR $\gg 1$, Originality OR $< 1$. Formality (right) shows joint contributions from both predictors. Dashed line: OR $= 1$ (no effect). Hatched bars: Originality OR. Log scale.}
+148	\label{fig:gee_decomp}
+149	\end{figure}
+150	
+151	\paragraph{Sample-size sensitivity.}
+152	At $n = 355$, the Qwen3-32B formality Style OR drops from $4.20$ to $2.15$ ($-49\%$), consistent with small-sample upward bias \citep{nemes2009bias}; the regime classification remains stable (both effects significant; Orig OR $4.70 \to 4.99$).
+153	Verbosity $n = 330$ confirms 51--72\% GEE shrinkage (Style OR $2.5$--$4.0$; Appendix~\ref{app:verb_n355}), preserving the style-dominated classification; Likert begins detecting the strongest effects at this $n$, reframing the Blindspot as a $3$--$4\times$ efficiency gap rather than absolute failure.
+154	This convergence at larger $n$ is practically important: it means that labs with sufficient evaluation budgets ($n > 300$) can detect the strongest biases with Likert alone, but typical benchmark sizes ($n = 50$--$200$) systematically miss them.
+155	
+156	\subsection{Cross-Judge and Cross-Axis Replication}
+157	\label{sec:cross_judge}
+158	
+159	Two independent judges replicate the formality Blindspot: Qwen3-32B (BT 66.5\%, $p < 0.0001$; Likert $p = 0.461$) and Llama-3.3-70B (BT 69.5\%, $p = 0.0001$; Likert $p = 0.534$).
+160	Gemini-2.5-Flash shows a weaker, originality-dominated formality pattern (confirmatory: BT 57.4\%, $p = 0.031$; Likert $d = {-}0.08$, n.s.; Style OR $= 1.64$, n.s.; Orig OR $= 2.51$, $p = 0.002$; \S\ref{sec:direction}).
+161	Claude Sonnet~4 shows near-null sensitivity on LLMBar for both axes (BT $\leq 0.562$, n.s.), providing discriminative validity: CSD does not uniformly inflate bias estimates across all judges.
+162	
+163	Verbosity provides the strongest Blindspot: all four target judges show consistent preference (GPT-4o 76.0\%, Qwen3-32B 77.3\%, Llama-70B 73.5\%, Gemini 70.8\%; all $p \leq 0.0001$), while Likert ATE remains non-significant for all ($p = 0.284$--$0.403$).
+164	GEE confirms style dominance (Style OR $8.2$--$13.1$, all $p < .0001$; Orig OR $0.38$--$0.49$; Table~\ref{tab:gee}).
+165	Both rewriting directions favor verbose responses (90.7\%/80.6\%); length-controlled Style OR is unchanged ($<$2\%), and an independent GPT-4o rewriter bounds evaluator-producer overlap to a 22\% reduction (Appendix~\ref{app:rewriter_indep}).
+166	Length-controlled regression confirms 60\% of the Flesch-Kincaid (FK) cross-axis effect is mediated by sentence length (Sobel $z = 2.15$, $p = .031$); under the assumed causal structure (Figure~\ref{fig:dag}), FK acts as a plausible mediator ($S \to \text{FK} \to Y$; \citealp{pearl2009causality}), yielding a direct-effect Style OR of $2.15$ for GPT-4o (total OR $= 2.70$; Appendix~\ref{app:fk_length}).
+167	
+168	These per-axis patterns selectively replicate across benchmarks (6/24 possible cells; Figure~\ref{fig:cross_bench_heatmap}), targeting the strongest effects: Llama-70B formality on AlpacaEval (BT 75.0\%, Style OR $= 7.64$) is strong enough for Likert detection ($\ddagger$ rows), confirming the severity spectrum.
+169	The selective replication strategy prioritizes cells where effects are strongest, providing an informative lower bound on cross-benchmark generalization without requiring exhaustive evaluation of all judge--axis--benchmark combinations.
+170	
+171	\begin{figure}[t]
+172	\centering
+173	\includegraphics[width=\columnwidth]{figures/cross_benchmark_heatmap.pdf}
+174	\caption{Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\times$: not tested. Claude cross-benchmark effects are quality-driven (\S\ref{sec:cross_judge}; Appendix~\ref{app:claude_crossbench}). Full results in Table~\ref{tab:cross_bench}.}
+175	\label{fig:cross_bench_heatmap}
+176	\end{figure}
+177	
+178	\subsection{Robustness}
+179	\label{sec:nli_validation}
+180	
+181	\paragraph{Content preservation.}
+182	Two independent annotators evaluated 100 NLI-scored pairs (50 per axis; 70 gate-passed, 30 gate-failed), confirming $98.6\%$ gate pass precision ($69/70$; Gwet's AC$_1 = 0.96$; Appendix~\ref{app:annotation_agreement}).
+183	\label{sec:nli_threshold}
+184	BT remains stable (${\leq}3$pp variation) across 11 NLI thresholds (Appendix~\ref{app:nli_sweep}), confirming that results are not artifacts of a particular gating stringency.
+185	Annotators judged only 49--66\% of NLI-passed pairs as showing detectable style change, suggesting observed effects represent a diluted lower bound on true style sensitivity: the NLI gate retains pairs with subtle rewrites that human annotators cannot detect, yet judges still systematically prefer one variant.
+186	
+187	\paragraph{Detection vs.\ amplification.}
+188	\label{sec:amplification}
+189	\citet{jeong2025comparative} show that pairwise comparison amplifies style biases (the Comparative Trap).
+190	The divergence cannot be definitively resolved without human ground-truth measurements; six controls bound amplification risk: (i)~NLI ablation reverses NLI-fail pairs (BT 41.7\%; Appendix~\ref{app:nli_ablation}); (ii)~Claude shows benchmark-dependent sensitivity (formality Style OR n.s.; AEval verbosity OR $= 4.76$, $p < .001$); (iii)~cross-axis BT variation inconsistent with uniform amplification; (iv)~rewriting artifact absorbed by GEE; (v)~debiased prompting ($-5.2$/$-13.1$pp), bounding the amplification factor at ${\sim}9$--$17\%$ of the total BT effect; (vi)~four-architecture replication with consistent GEE structure.
+191	Register is exploratory with evaluator-producer overlap and judge-dependent effects (Table~\ref{tab:gee}).
+192	Same-style double-rewrite controls confirm that any residual rewriting artifact is absorbed by the GEE originality term rather than inflating the style coefficient.
+193	The combination of NLI validation and amplification controls establishes that while the exact magnitude of style sensitivity remains bounded rather than point-identified, the qualitative finding (systematic style preferences invisible to Likert) is robust across judges, axes, and measurement assumptions.
+194	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "e79df784-bc04-458a-8d6b-d658fba0a808",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/sections/experiments.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\n\\subsection{Statistical Framework}\n\\label{sec:stat_framework}\n\nThe primary family comprises six tests (three target judges $\\times$ two axes), corrected via Holm-Bonferroni at $\\alpha = 0.05$; Gemini-2.5-Flash serves as confirmatory replication and is excluded from family-wise error rate (FWER) control; as a sensitivity check, all eight tests remain significant under the expanded family (Appendix~\\ref{app:holm8}).\nTable~\\ref{tab:main_results} reports both raw and adjusted $p$-values.\nAnalyses outside this grid are classified as either \\emph{exploratory} (NLI threshold sensitivity sweep, \\S\\ref{sec:nli_threshold}) or \\emph{confirmatory} (consistency filter validation, \\S\\ref{sec:consistency}).\nExploratory analyses use uncorrected $p$-values; confirmatory analyses (pipeline validity) are evaluated at $\\alpha = 0.05$ without additional correction.\nBradley-Terry parameters \\citep{bradley1952rank,luce1959individual} are estimated via spectral initialization followed by minorization-maximization \\citep{hunter2004mm}, using the \\texttt{choix} Python library's default L2 regularization ($\\alpha = 10^{-6}$).\nIn binary-choice BT models, independence of irrelevant alternatives (IIA) is structurally satisfied; the direction asymmetry in Appendix~\\ref{app:bt_gof} (formality: formal-origin 88.9\\% vs.\\ casual-origin 52.6\\%, Fisher $p = 0.015$) reflects heterogeneous treatment effects rather than IIA violation.\nAll bootstrap confidence intervals are percentile CIs from 10{,}000 pair-level resamples with seed 42; we verify bootstrap stability by confirming that halving the resample count changes interval widths by $<$1pp.\nGEE models use exchangeable working correlation with sandwich standard errors (robust to correlation misspecification), justified by near-zero estimated within-pair correlations ($\\hat{\\alpha} \\in [-0.25, +0.11]$; Appendix~\\ref{app:gee_diagnostics}).\nA prospective power analysis (Appendix~\\ref{app:power_analysis}) confirms that our sample sizes ($n = 86$--$88$ pairs) provide $>$90\\% power to detect BT effects of the observed magnitude ($P \\geq 0.63$), whereas Likert requires $4$--$206\\times$ the sample size for equivalent power (Figure~\\ref{fig:power_curve}).\n\n\\paragraph{Model selection.}\nTarget judges span four architectures from independent providers: GPT-4o (\\texttt{2024-08-06}; OpenAI), Qwen3-32B-Instruct (Alibaba; also serving as rewriter), Llama-3.3-70B-Instruct (Meta), and Gemini-2.5-Flash (Google).\nThis diversity guards against provider-specific artifacts in both training data and RLHF reward modeling; Claude Sonnet~4 (Anthropic) provides discriminative validity evidence (\\S\\ref{sec:cross_judge}), serving as a fifth judge from a provider not represented in the primary family.\nAll judges are accessed via their respective APIs with temperature 0 (deterministic decoding) and default system prompts to ensure reproducibility.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Primary results on LLMBar ($n = 88$ formality, $86$ verbosity, except where noted) across five judges and three style axes. BT $> 0.50$ indicates style preference; $\\dagger$ marks Blindspot cases (BT significant, Likert not). Cross-benchmark replication in Appendix~\\ref{app:cross_bench}. BT: Bradley-Terry win probability (95\\% CIs in Appendix~\\ref{app:bt_ci}).}\n\\label{tab:main_results}\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\nJudge & Axis & BT $P$ & Likert $d$ ($p$) & Cat.\\ \\\\\n\\midrule\nGPT-4o & Form.\\ & .630$^{***}$ & $-$.041 (.905) & $\\dagger$ \\\\\nGPT-4o & Verb.\\ & .760$^{***}$ & .049 (.403) & $\\dagger$ \\\\\nGPT-4o & Reg.\\ & .570$^{\\dagger}$ & .000 (.785) & $\\dagger_{\\text{e}}$ \\\\\n\\cmidrule{1-5}\nQwen3 & Form.\\ & .665$^{***}$ & $-$.052 (.461) & $\\dagger$ \\\\\nQwen3 & Form.$^b$ & .675$^{***}$ & $-$.025 (.600) & $\\dagger$ \\\\\nQwen3 & Verb.\\ & .773$^{***}$ & .036 (.395) & $\\dagger$ \\\\\nQwen3 & Reg.\\ & .553 & $-$.073 (.373) & $\\dagger_{\\text{e}}$ \\\\\n\\cmidrule{1-5}\nLlama-70B & Form.\\ & .695$^{***}$ & .010 (.534) & $\\dagger$ \\\\\nLlama-70B & Verb.\\ & .735$^{***}$ & .020 (.284) & $\\dagger$ \\\\\nLlama-70B & Reg.\\ & .635$^{\\dagger}$ & .024 (.524) & $\\dagger_{\\text{e}}$ \\\\\n\\cmidrule{1-5}\nGemini & Form.\\ & .574$^{*}$ & $-$.082 (.309) & $\\dagger_{\\text{c}}$ \\\\\nGemini & Verb.\\ & .708$^{***}$ & .051 (.370) & $\\dagger_{\\text{c}}$ \\\\\n\\cmidrule{1-5}\nClaude & Form.\\ & .562 & $-$.021 (.721) & --- \\\\\nClaude & Verb.\\ & .541 & $-$.039 (.743) & --- \\\\\n\\bottomrule\n\\multicolumn{5}{@{}p{\\columnwidth}@{}}{\\footnotesize $^{***}\\!p < 0.001$; $^{*}\\!p < 0.05$ (Holm-adj.\\ for primary; raw for $_{\\text{c}}$). $\\dagger$: Blindspot (BT sig., Likert n.s.); ---: neither sig.; $_{\\text{e}}$: exploratory; $_{\\text{c}}$: confirmatory. Negative $d$: styled variants scored lower.}\\\\\n\\multicolumn{5}{@{}p{\\columnwidth}@{}}{\\footnotesize $^b$ Scaled replication ($n = 355$). Qwen3 serves as both rewriter and judge; independent GPT-4o rewriter yields 22\\% lower Style OR (App.~\\ref{app:rewriter_indep}).}\\\\\n\\multicolumn{5}{@{}p{\\columnwidth}@{}}{\\footnotesize Form.\\ direction asymmetry: formal-origin 78.8\\% vs.\\ casual-origin 54.5\\%; GEE-adj.\\ Style OR$=$2.58 ($p{=}.002$; App.~\\ref{app:direction}).}\n\\end{tabular}\n\\end{table}\n\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/forest_plot.pdf}\n\\caption{Bradley-Terry win probabilities across four target judges and three style axes. Filled diamonds: significant ($p < 0.05$); open diamonds: non-significant. Error bars: 95\\% bootstrap CI. The dashed line at 0.50 indicates no style preference. Verbosity shows the strongest and most consistent bias across all four judges.}\n\\label{fig:forest_plot}\n\\end{figure}\n\n\\section{Analysis}\n\\label{sec:analysis}\n\n\n\\subsection{The Likert Blindspot}\n\\label{sec:likert_pairwise}\n\n\\paragraph{Head-to-head comparison with RATE.}\nApplying RATE's Likert ATE methodology \\citep{reber2025rate} to our formality style-transformed pairs yields Cohen's $d = {-}0.04$, $p = 0.91$ (non-significant, $n = 88$); pairwise comparison on identical data reveals a 63.0\\% formal preference ($p = 0.0004$, Bradley-Terry on all 173 comparisons), confirmed by a consistency-filtered sign test (73.9\\%, $p = 0.006$, $n = 46$ consistent pairs).\nThis is the Likert Blindspot: the same data, the same style intervention, two measurement instruments, yet one detects bias and the other does not.\nA $4\\times$ scaled replication ($n = 355$) distinguishes measurement attenuation from insufficient power: the Likert effect size shrinks to $d = {-}0.025$ (near zero) while BT remains stable at $67.5\\%$ ($p < 0.0001$). If the gap were merely statistical power, $d$ would remain non-zero at larger $n$.\nBootstrap subsampling confirms $d$ remains near zero as $n$ grows (Appendix~\\ref{app:bootstrap_attenuation}).\nPost hoc, attenuation follows a severity spectrum: complete at moderate bias ($d \\to 0$, BT 63--67\\%) and partial at stronger effects (${>}60\\%$ loss, BT ${>}70\\%$), explaining four cross-benchmark exceptions ($\\ddagger$, Table~\\ref{tab:cross_bench}).\n\nRATE and CSD are complementary (Likert ATE vs.\\ forced-choice BT); the Blindspot arises from Likert tie rates of 58--73\\%, unresolved by 100-point continuous scaling (all three judges $p > 0.15$; Appendix~\\ref{app:likert100}).\n\n\n\\paragraph{Sensitivity hierarchy across measurement methods.}\nSeven measurement methods applied to the same formality data confirm the Blindspot is not test-specific: both pairwise methods detect the formality preference while all five Likert-based methods fail regardless of scaling assumption (interval, ordinal, or nonparametric), with verbosity showing the same pattern (Table~\\ref{tab:sensitivity}, Appendix~\\ref{app:sensitivity}; verbosity replication in Appendix~\\ref{app:verb_sensitivity}).\n\nFigure~\\ref{fig:power_curve} plots detection probability at observed effect magnitudes (not post-hoc power; cf.\\ \\citealt{hoenig2001abuse}): across six cells, Likert requires $4$--$206\\times$ the current $n$ ($336$--$27{,}159$ pairs; Appendix~\\ref{app:power_analysis}) to detect effects BT identifies at $p < 0.001$ with $n \\leq 100$.\nUnder format equivalence, observing 8/8 primary cells as Blindspot has binomial probability $p = 0.004$; non-tie concordance (76.6\\%, $p < .001$; \\S\\ref{sec:likert_pairwise}) provides a complementary formal test of format divergence.\n\\paragraph{Interpreting the divergence.}\nThe measurement-mode divergence admits three non-exclusive interpretations: (a)~\\emph{Likert attenuation}, where tie inflation and residual signal loss reduce Likert sensitivity below detection thresholds; (b)~\\emph{pairwise amplification}, where forced-choice comparison inflates micro-preferences into apparent biases \\citep{jeong2025comparative}; (c)~\\emph{construct divergence}, where the two formats measure different constructs (absolute quality vs.\\ ordinal preference; \\citealt{tripathi2025pairwise}).\nSix experimental controls (\\S\\ref{sec:amplification}) bound the amplification factor but cannot eliminate it; the attenuation evidence ($d \\to 0$ at $n = 355$) is necessary but not sufficient for causal identification.\nNon-tie concordance analysis partially adjudicates: among 201 Likert non-tie pairs (pooled across judges and axes), 76.6\\% agree with pairwise direction [70.3\\%, 81.9\\%], $p < 0.001$; point-biserial correlations are uniformly positive ($r = 0.20$--$0.45$, 7/9 significant; Appendix~\\ref{app:concordance}), evidence more consistent with measurement attenuation than construct divergence, though partial construct divergence remains at weaker effect sizes.\nClaude's benchmark-dependent profile illustrates why aggregate BT is insufficient for bias attribution: LLMBar formality shows near-null sensitivity (Style OR n.s.) while AEval verbosity reveals significant sensitivity (Style OR $= 4.76$, $p < .001$), a pattern disambiguated only by per-axis GEE decomposition (\\S\\ref{sec:cross_judge}; Appendix~\\ref{app:claude_tost}).\nAll three interpretations converge on one practical conclusion: single-format audits risk incomplete bias coverage; the Blindspot manifests in 10/14 bias-positive cells, with four exceptions ($\\ddagger$) confirming effect-size dependence.\nFor alignment pipelines where pairwise judgments serve as reward signals, this implies that biases embedded during RLHF training may go undetected by Likert-based evaluation at standard benchmark scales.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/power_curve.pdf}\n\\caption{Detection probability at observed effect magnitudes. 80\\% power crossings: sign test $n \\approx 62$, BT $n \\approx 114$, binarized Likert $n \\approx 462$, Likert ATE $n \\approx 1{,}473$. At typical scales ($n = 50$--$200$, shaded), pairwise methods reach 80\\% power while Likert methods remain far below. At $n = 355$, Likert $d = {-}0.025$ confirms the gap is structural, not merely a power issue.}\n\\label{fig:power_curve}\n\\end{figure}\n\n\\subsection{Per-Axis Confound Structure}\n\\label{sec:direction}\n\nGEE conditional decomposition \\citep{liang1986gee} with exchangeable working correlation and robust standard errors separates style from originality effects (Appendix~\\ref{app:direction}; model diagnostics including correlation structure robustness and interaction tests in Appendix~\\ref{app:gee_diagnostics}).\nAfter controlling for original preference, the formality effect remains significant (GPT-4o: OR $= 2.58$, $p = 0.002$; Qwen3-32B: OR $= 2.15$, $p < 0.0001$, $n = 355$; Llama-70B: OR $= 4.81$, $p < 0.0001$; Table~\\ref{tab:gee}); the significant originality ORs confirm residual confounding.\nFor formality, both style preference and quality correlation contribute (a conditional effect); the two-predictor GEE provides a parsimonious decomposition rather than causal identification; omitted variables (text length, lexical complexity) may partly confound both terms.\nThis per-axis heterogeneity has direct implications for bias mitigation: verbosity bias can be addressed by style-level interventions (e.g., length normalization or debiased prompting), whereas formality bias requires disentangling genuine quality correlates from surface-level preferences, a fundamentally harder problem that aggregate bias metrics cannot even detect.\n\n\\begin{table}[t]\n\\centering\n\\caption{GEE conditional decomposition (exchangeable correlation). Style OR: style-direction odds ratio; Orig OR: original-preference odds ratio (OR $> 1$ favors original). $n{=}88$ ORs are upward-biased estimates; scaled replications ($n = 330$--$355$) show $49$--$72\\%$ shrinkage \\citep{nemes2009bias}. Verbosity is style-dominated; formality shows varying confound structure.}\n\\label{tab:gee}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llclc@{}}\n\\toprule\n & \\multicolumn{2}{c}{Style OR} & \\multicolumn{2}{c}{Originality OR} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\nConfig & OR & $p$ & OR & $p$ \\\\\n\\midrule\nQwen3 verb.\\ & 13.10 & ${<}.0001$ & 0.49 & .096 \\\\\nGPT-4o verb.\\ & 11.34 & ${<}.0001$ & 0.45 & .062 \\\\\nLlama-70B verb.\\ & 8.21 & ${<}.0001$ & 0.38 & .020 \\\\\nGemini verb.\\ & 8.98 & ${<}.0001$ & 0.46 & .061 \\\\\n\\midrule\nGPT-4o form.\\ & 2.58 & .002 & 2.32 & .006 \\\\\nQwen3 form.\\ & 4.20 & .0002 & 4.70 & .0001 \\\\\nQwen3 form.$^a$ & 2.15 & ${<}.0001$ & 4.99 & ${<}.0001$ \\\\\nLlama-70B form.\\ & 4.81 & ${<}.0001$ & 3.12 & .0007 \\\\\nGemini form.\\ & 1.64 & .101 & 2.51 & .002 \\\\\n\\midrule\nGPT-4o reg.\\ & 1.88 & .029 & 2.21 & .006 \\\\\nQwen3 reg.\\ & 1.91 & .046 & 5.72 & ${<}.0001$ \\\\\nLlama-70B reg.\\ & 3.33 & .0003 & 3.07 & .0008 \\\\\n\\bottomrule\n\\multicolumn{5}{l}{\\footnotesize $^a$ $n = 355$; form.\\ $n{=}88$, verb.\\ $n{=}86$. 95\\% CIs in Appendix.}\n\\end{tabular}}\n\\end{table}\n\nThe confound structure is consistent across all four target judges for verbosity (style-dominated at $n = 86$--$88$: Style OR $8.2$--$13.1$, Orig OR $0.38$--$0.49$; confirmed at $n = 330$: Style OR $2.5$--$4.0$); formality is conditionally style-driven in three judges but originality-dominated in Gemini; register is judge-dependent (Figure~\\ref{fig:gee_decomp}).\nSame-style double-rewrite controls confirm a rewriting artifact (Appendix~\\ref{app:artifact_control}), absorbed by GEE's originality term.\nThe Gemini exception (formality Style OR $= 1.64$, n.s.) demonstrates that the decomposition is not uniformly biased toward detecting style effects; judges with weaker style sensitivity produce correspondingly weaker Style ORs.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/gee_decomposition.pdf}\n\\caption{GEE conditional decomposition across four judges ($n = 88$, LLMBar). Verbosity (left) is style-dominated: Style OR $\\gg 1$, Originality OR $< 1$. Formality (right) shows joint contributions from both predictors. Dashed line: OR $= 1$ (no effect). Hatched bars: Originality OR. Log scale.}\n\\label{fig:gee_decomp}\n\\end{figure}\n\n\\paragraph{Sample-size sensitivity.}\nAt $n = 355$, the Qwen3-32B formality Style OR drops from $4.20$ to $2.15$ ($-49\\%$), consistent with small-sample upward bias \\citep{nemes2009bias}; the regime classification remains stable (both effects significant; Orig OR $4.70 \\to 4.99$).\nVerbosity $n = 330$ confirms 51--72\\% GEE shrinkage (Style OR $2.5$--$4.0$; Appendix~\\ref{app:verb_n355}), preserving the style-dominated classification; Likert begins detecting the strongest effects at this $n$, reframing the Blindspot as a $3$--$4\\times$ efficiency gap rather than absolute failure.\nThis convergence at larger $n$ is practically important: it means that labs with sufficient evaluation budgets ($n > 300$) can detect the strongest biases with Likert alone, but typical benchmark sizes ($n = 50$--$200$) systematically miss them.\n\n\\subsection{Cross-Judge and Cross-Axis Replication}\n\\label{sec:cross_judge}\n\nTwo independent judges replicate the formality Blindspot: Qwen3-32B (BT 66.5\\%, $p < 0.0001$; Likert $p = 0.461$) and Llama-3.3-70B (BT 69.5\\%, $p = 0.0001$; Likert $p = 0.534$).\nGemini-2.5-Flash shows a weaker, originality-dominated formality pattern (confirmatory: BT 57.4\\%, $p = 0.031$; Likert $d = {-}0.08$, n.s.; Style OR $= 1.64$, n.s.; Orig OR $= 2.51$, $p = 0.002$; \\S\\ref{sec:direction}).\nClaude Sonnet~4 shows near-null sensitivity on LLMBar for both axes (BT $\\leq 0.562$, n.s.), providing discriminative validity: CSD does not uniformly inflate bias estimates across all judges.\n\nVerbosity provides the strongest Blindspot: all four target judges show consistent preference (GPT-4o 76.0\\%, Qwen3-32B 77.3\\%, Llama-70B 73.5\\%, Gemini 70.8\\%; all $p \\leq 0.0001$), while Likert ATE remains non-significant for all ($p = 0.284$--$0.403$).\nGEE confirms style dominance (Style OR $8.2$--$13.1$, all $p < .0001$; Orig OR $0.38$--$0.49$; Table~\\ref{tab:gee}).\nBoth rewriting directions favor verbose responses (90.7\\%/80.6\\%); length-controlled Style OR is unchanged ($<$2\\%), and an independent GPT-4o rewriter bounds evaluator-producer overlap to a 22\\% reduction (Appendix~\\ref{app:rewriter_indep}).\nLength-controlled regression confirms 60\\% of the Flesch-Kincaid (FK) cross-axis effect is mediated by sentence length (Sobel $z = 2.15$, $p = .031$); under the assumed causal structure (Figure~\\ref{fig:dag}), FK acts as a plausible mediator ($S \\to \\text{FK} \\to Y$; \\citealp{pearl2009causality}), yielding a direct-effect Style OR of $2.15$ for GPT-4o (total OR $= 2.70$; Appendix~\\ref{app:fk_length}).\n\nThese per-axis patterns selectively replicate across benchmarks (6/24 possible cells; Figure~\\ref{fig:cross_bench_heatmap}), targeting the strongest effects: Llama-70B formality on AlpacaEval (BT 75.0\\%, Style OR $= 7.64$) is strong enough for Likert detection ($\\ddagger$ rows), confirming the severity spectrum.\nThe selective replication strategy prioritizes cells where effects are strongest, providing an informative lower bound on cross-benchmark generalization without requiring exhaustive evaluation of all judge--axis--benchmark combinations.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/cross_benchmark_heatmap.pdf}\n\\caption{Pairwise BT win probabilities across five judges, three benchmarks, and three style axes. Bold: $p < .05$; color intensity encodes significance level. Grey $\\times$: not tested. Claude cross-benchmark effects are quality-driven (\\S\\ref{sec:cross_judge}; Appendix~\\ref{app:claude_crossbench}). Full results in Table~\\ref{tab:cross_bench}.}\n\\label{fig:cross_bench_heatmap}\n\\end{figure}\n\n\\subsection{Robustness}\n\\label{sec:nli_validation}\n\n\\paragraph{Content preservation.}\nTwo independent annotators evaluated 100 NLI-scored pairs (50 per axis; 70 gate-passed, 30 gate-failed), confirming $98.6\\%$ gate pass precision ($69/70$; Gwet's AC$_1 = 0.96$; Appendix~\\ref{app:annotation_agreement}).\n\\label{sec:nli_threshold}\nBT remains stable (${\\leq}3$pp variation) across 11 NLI thresholds (Appendix~\\ref{app:nli_sweep}), confirming that results are not artifacts of a particular gating stringency.\nAnnotators judged only 49--66\\% of NLI-passed pairs as showing detectable style change, suggesting observed effects represent a diluted lower bound on true style sensitivity: the NLI gate retains pairs with subtle rewrites that human annotators cannot detect, yet judges still systematically prefer one variant.\n\n\\paragraph{Detection vs.\\ amplification.}\n\\label{sec:amplification}\n\\citet{jeong2025comparative} show that pairwise comparison amplifies style biases (the Comparative Trap).\nThe divergence cannot be definitively resolved without human ground-truth measurements; six controls bound amplification risk: (i)~NLI ablation reverses NLI-fail pairs (BT 41.7\\%; Appendix~\\ref{app:nli_ablation}); (ii)~Claude shows benchmark-dependent sensitivity (formality Style OR n.s.; AEval verbosity OR $= 4.76$, $p < .001$); (iii)~cross-axis BT variation inconsistent with uniform amplification; (iv)~rewriting artifact absorbed by GEE; (v)~debiased prompting ($-5.2$/$-13.1$pp), bounding the amplification factor at ${\\sim}9$--$17\\%$ of the total BT effect; (vi)~four-architecture replication with consistent GEE structure.\nRegister is exploratory with evaluator-producer overlap and judge-dependent effects (Table~\\ref{tab:gee}).\nSame-style double-rewrite controls confirm that any residual rewriting artifact is absorbed by the GEE originality term rather than inflating the style coefficient.\nThe combination of NLI validation and amplification controls establishes that while the exact magnitude of style sensitivity remains bounded rather than point-identified, the qualitative finding (systematic style preferences invisible to Likert) is robust across judges, axes, and measurement assumptions.\n",
+      "numLines": 194,
+      "startLine": 1,
+      "totalLines": 194
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017uoGB1ckEycea67ZCc89SU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__detect_image",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "7a5824a2-d715-4aaf-b274-d7c014982443",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jwfrdz8Sgsqa9yYGyWRKMj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13234,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13234
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 8 · 2026-05-25T19:42:28.577Z_
+
+<details><summary>↩ Tool result · `toolu_017uoGB1ckEycea67ZCc89SU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "d1a4d42d-033b-40c2-b0a5-b7c2a2a44bd2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've read the experiments.tex file. Now I need to:
+
+1. Extract all numbers from the paper
+2. SSH to the server to find source data files
+3. Read the registry for experiment metrics
+4. Cross-verify everything
+
+Let me start by searching the server for results files and reading the registry in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "8985fdf7-8077-49a9-bb6a-770949f7d1c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wfnp33rUm139qieCckcWBH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9606,
+      "cache_read_input_tokens": 25075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9606
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 10_
+
+Now let me search the server for results files and read the experiment registry in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "01d2f1ad-129b-4e22-ba32-7d08fb47a893",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wfnp33rUm139qieCckcWBH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9606,
+      "cache_read_input_tokens": 25075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9606
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017wvjiBm3xo2wsdpFbaNRpZ`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/ -maxdepth 3 -type f \\( -name \"results*\" -o -name \"metrics*\" -o -name \"*.json\" -o -name \"*.csv\" -o -name \"*.yaml\" \\) 2>/dev/null | grep -v __pycache__ | grep -v node_modules | head -80",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "95cf0876-7571-4465-9205-11bb3ae7c4c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wfnp33rUm139qieCckcWBH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9606,
+      "cache_read_input_tokens": 25075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9606
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 12 · 2026-05-25T19:42:35.379Z_
+
+<details><summary>↩ Tool result · `toolu_017wvjiBm3xo2wsdpFbaNRpZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "ff180afb-fd5a-4ecb-b88a-16e6c53a31f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KhC6euB8y1WCyrRHWTf3gh`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls -la /root/causal_style_decomp_judge/results/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "5aa40725-57cc-48c8-93b2-d05db318b532",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wfnp33rUm139qieCckcWBH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9606,
+      "cache_read_input_tokens": 25075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9606
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 14 · 2026-05-25T19:42:36.327Z_
+
+<details><summary>↩ Tool result · `toolu_01KhC6euB8y1WCyrRHWTf3gh`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "667ccf8c-18e7-4708-a29b-3f96dbb3741b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XadynBs2qKacgrpZQV9G5C`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls -la /root/causal_style_decomp_judge/analysis/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "3c06d0e7-494e-4b31-b385-4177463fd022",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wfnp33rUm139qieCckcWBH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9606,
+      "cache_read_input_tokens": 25075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9606
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 16 · 2026-05-25T19:42:37.293Z_
+
+<details><summary>↩ Tool result · `toolu_01XadynBs2qKacgrpZQV9G5C`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "6fa5580f-e435-474c-a66e-27be09c49e01",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0136MrjJN9CUYmQaKudG7WLf`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls -la /root/causal_style_decomp_judge/figures/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "16a5b165-14b7-43bc-991c-102eb348793e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wfnp33rUm139qieCckcWBH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9606,
+      "cache_read_input_tokens": 25075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9606
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 18 · 2026-05-25T19:42:38.224Z_
+
+<details><summary>↩ Tool result · `toolu_0136MrjJN9CUYmQaKudG7WLf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "87b12a47-09c5-40a3-8303-62d37fe8928d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01QTc9pB57TayTfXNBoo9suF`</summary>
+
+```json
+{
+  "project": "causal_style_decomp_judge",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "7fa3a395-7cb7-4fb0-bb46-e04ea10f9489",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wfnp33rUm139qieCckcWBH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9606,
+      "cache_read_input_tokens": 25075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9606
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 20 · 2026-05-25T19:42:39.372Z_
+
+<details><summary>↩ Tool result · `toolu_01QTc9pB57TayTfXNBoo9suF`</summary>
+
+```text
+Error: result (92,037 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "8f8418f9-c5f6-44ae-85f5-81d63a46b683",
+  "tool_use_result": {
+    "content": "Error: result (92,037 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"llama70b_crossbench\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T08:17:29.390Z\", \"updated_at\": \"2026-05-24T08:27:23.918Z\", \"hypothesis\": \"Llama-70B on AlpacaEval and MT-Bench cross-benchmark pairs will show stronger style bias than on LLMBar (consistent with other judges showing benchmark-dependent effect sizes), confirming style sensitivity generalizes across benchmarks. Effect-size gradient predicts Blindspot disappears at large effects (BT>80%).\", \"spec\": {\"command\": \"python3 /root/causal_style_decomp_judge/analysis/llama70b_crossbench_scoring.py\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_{alpacaeval,alpacaeval_verbosity,mtbench}.jsonl\", \"data_count\": 280, \"model_name\": \"Llama-3.3-70B-Instruct\", \"seed\": 42}, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/llama70b_crossbench_summary.json\", \"log_path\": \"/tmp/llama70b_crossbench.log\", \"metrics\": {\"alpacaeval_formality\": {\"n\": 47, \"bt_pct\": 95.7, \"bt_ci\": [89.4, 100], \"bt_p\": 1.6e-11, \"likert_d\": 0.211, \"likert_wilcoxon_p\": 0.0124, \"gee_style_or\": \"degenerate\", \"gee_orig_or\": \"degenerate\", \"blindspot\": false}, \"alpacaeval_verbosity\": {\"n\": 66, \"bt_pct\": 97, \"bt_ci\": [92.4, 100], \"bt_p\": 6e-17, \"likert_d\": 0.297, \"likert_wilcoxon_p\": 0.0002, \"gee_style_or\": 0.54, \"gee_orig_or\": 0.54, \"blindspot\": false}, \"mtbench_formality\": {\"n\": 36, \"bt_pct\": 91.7, \"bt_ci\": [80.6, 100], \"bt_p\": 2.3e-07, \"likert_d\": 0.234, \"likert_wilcoxon_p\": 0.0029, \"gee_style_or\": 32.68, \"gee_orig_or\": 0.89, \"blindspot\": false}, \"mtbench_verbosity\": \"MISSING_DATA\", \"comparison_llmbar_formality\": {\"bt_pct\": 69.5, \"blindspot\": true}, \"comparison_llmbar_verbosity\": {\"bt_pct\": 73.5, \"blindspot\": true}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T08:25:07.239Z\"}, \"formality_llama_rewriter\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T06:22:32.105Z\", \"updated_at\": \"2026-05-24T07:40:40.018Z\", \"hypothesis\": \"Qwen3-32B judge's formality bias is rewriter-independent: using Llama-3.3-70B-Instruct instead of Qwen3-32B as the RATE counterfactual rewriter will reproduce significant pairwise preference for formal style (BT p<0.05), confirming the bias originates in the judge, not the rewriter.\", \"spec\": {\"command\": \"python analysis/analyze_llama_rewriter_formality.py\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/\", \"data_count\": 100, \"model_name\": \"Llama-3.3-70B-Instruct (rewriter) + Qwen3-32B (judge)\", \"seed\": 42}, \"log_path\": \"/root/causal_style_decomp_judge/data/llama_rewriter_formality_results.json\", \"checkpoint_path\": \"N/A (analysis-only experiment)\", \"conclusion\": \"success\", \"metrics\": {\"bt_p_formal\": 0.711, \"bt_ci\": [0.643, 0.775], \"bt_p_value\": 0.0001, \"gee_style_or\": 4.4403, \"gee_style_p\": 1.3e-05, \"gee_orig_or\": 5.7474, \"likert_ate\": 0.02, \"likert_cohen_d\": 0.013, \"likert_wilcoxon_p\": 0.687723, \"blindspot\": true, \"nli_pass_rate\": 0.79, \"n_total\": 100, \"n_nli_pass\": 79, \"baseline_delta_pp\": 4.6, \"baseline_ci_overlap\": true}, \"completed_at\": \"2026-05-24T07:40:40.018Z\"}, \"formality_scaled_n300\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T06:22:29.057Z\", \"updated_at\": \"2026-05-24T07:12:06.139Z\", \"hypothesis\": \"Llama-70B scoring of the existing n=355 formality scaled data will replicate the formality Blindspot pattern seen with Qwen3-32B (BT ~67%, Likert NS), providing cross-judge validation at scale. GEE Style OR will show small-sample shrinkage similar to Qwen3 (4.20→2.15).\", \"spec\": {\"command\": \"pairwise_scoring.py + judge_scoring.py + analyze_scaled_formality_llama70b.py\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_scaled_formality.jsonl\", \"data_count\": 355, \"model_name\": \"Llama-3.3-70B-Instruct (judge)\", \"seed\": 42, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/scored_scaled_formality_llama70b.jsonl\", \"log_path\": \"/tmp/likert_llama70b.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T07:06:00.039Z\", \"metrics\": {\"judge\": \"Llama-3.3-70B-Instruct\", \"axis\": \"formality\", \"n\": 355, \"bt_p_formal\": 0.725, \"bt_ci\": [0.691, 0.759], \"bt_p_value\": 0.0001, \"consistent_win_rate\": 0.881, \"n_consistent\": 202, \"likert_d\": 0.048, \"likert_wilcoxon_p\": 0.026, \"tie_rate\": 0.715, \"blindspot\": false, \"note\": \"CORRECTED: Worker reported 88.1% which was consistent-pair win rate, not BT. Actual BT=72.5%. LLMBar subset (n=89): BT=74.4%, Likert NS (Blindspot YES). Non-LLMBar subset: BT=69.9%, Likert sig.\"}}, \"verbosity_scaled_n355\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T09:57:40.068Z\", \"updated_at\": \"2026-05-23T12:57:27.131Z\", \"hypothesis\": \"Verbosity Style OR at n=355 will shrink from n=86 estimates (8.21-13.10) to projected range 4-6.5 due to small-sample upward bias, mirroring the formality shrinkage pattern (4.20→2.15). Likert ATE will remain NS, confirming the Blindspot is robust to increased sample size for verbosity axis.\", \"spec\": {\"command\": \"Phase 1: counterfactual_gen --axis verbosity (400 pairs) → Phase 2: content_verification → Phase 3: judge_scoring + pairwise_scoring (5 judges) → Phase 4: GEE decomposition\", \"server\": \"westb-29275\", \"data_path\": \"data/scaled_verbosity_input.jsonl\", \"data_count\": 400, \"model_name\": \"Qwen3-32B (rewriter+judge), Llama-70B, GPT-4o, Gemini, Claude\", \"seed\": 42, \"gpu\": \"0,1 (Qwen3-32B), 2,3 (Llama-70B)\", \"checkpoint_path\": \"data/scored_scaled_verbosity_*.jsonl + data/pairwise_results_scaled_verbosity_*.jsonl (10 files on server)\", \"log_path\": \"artifacts/verbosity_n355_analysis.json\"}, \"metrics\": {\"n_samples\": 330, \"n_judges\": 5, \"qwen32b\": {\"bt_p_verbose\": 0.733, \"bt_ci\": [0.696, 0.77], \"sign_p\": 0, \"likert_d\": 0.149, \"likert_wilcoxon_p\": 0.0006, \"likert_ttest_p\": 0.007, \"gee_intercept_or\": 3.83, \"gee_orig_or\": 0.52, \"gee_orig_p\": 0.001, \"ntc\": 0.881, \"blindspot\": false, \"note\": \"Likert now significant at n=355\"}, \"llama70b\": {\"bt_p_verbose\": 0.759, \"bt_ci\": [0.722, 0.793], \"sign_p\": 0, \"likert_d\": 0.16, \"likert_wilcoxon_p\": 0.0001, \"likert_ttest_p\": 0.004, \"gee_intercept_or\": 4.01, \"gee_orig_or\": 0.61, \"gee_orig_p\": 0.013, \"ntc\": 0.896, \"blindspot\": false, \"note\": \"Likert now significant at n=355\"}, \"gpt54\": {\"bt_p_verbose\": 0.59, \"bt_ci\": [0.544, 0.635], \"sign_p\": 0.0002, \"likert_d\": -0.026, \"likert_wilcoxon_p\": 0.813, \"likert_ttest_p\": 0.635, \"gee_intercept_or\": 1.06, \"gee_orig_or\": 1.96, \"gee_orig_p\": 0.0005, \"ntc\": 0.867, \"blindspot\": true, \"note\": \"Originality-dominated, minimal style bias\"}, \"gemini\": {\"bt_p_verbose\": 0.678, \"bt_ci\": [0.638, 0.717], \"sign_p\": 0, \"likert_d\": 0.087, \"likert_wilcoxon_p\": 0.021, \"likert_ttest_p\": 0.114, \"gee_intercept_or\": 2.52, \"gee_orig_or\": 0.69, \"gee_orig_p\": 0.046, \"ntc\": 0.876, \"blindspot\": true, \"note\": \"Borderline Likert — Wilcoxon sig but t-test NS\"}, \"claude\": {\"bt_p_verbose\": 0.608, \"bt_ci\": [0.567, 0.649], \"sign_p\": 1e-06, \"likert_d\": 0.032, \"likert_wilcoxon_p\": 0.317, \"likert_ttest_p\": 0.561, \"gee_intercept_or\": 1.22, \"gee_orig_or\": 1.69, \"gee_orig_p\": 0.002, \"ntc\": 0.938, \"blindspot\": true, \"note\": \"Originality bias, minimal style bias\"}, \"gee_shrinkage\": {\"qwen_n86_style_or\": 13.1, \"qwen_n355_intercept_or\": 3.83, \"shrinkage_pct\": 70.8, \"llama_n86_style_or\": 8.21, \"llama_n355_intercept_or\": 4.01, \"shrinkage_pct_llama\": 51.2}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T12:57:27.131Z\"}, \"register_100_cf\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:13:19.928Z\", \"updated_at\": \"2026-05-22T00:34:04.155Z\", \"spec\": {\"command\": \"counterfactual_gen.py --axis register + content_verification.py --axis register (NLI-only) + scoring (pending API)\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/counterfactuals_register.jsonl\", \"data_count\": 100, \"model_name\": \"Qwen3-32B (counterfactual) + DeBERTa-v3-large (NLI gate)\", \"seed\": 42, \"checkpoint_path\": \"data/verified_register.jsonl\", \"log_path\": \"logs/workers/worker_code_register_counterfactual_gen_100_20260521T004113.log\"}, \"hypothesis\": \"Register axis (academic/conversational) produces detectable style bias in GPT-4o judge comparable to formality axis, with pairwise win rate >= 60% and p < 0.05, demonstrating axis-dependent bias generalizes beyond formality\", \"metrics\": {\"n_generated\": 100, \"cf_nli_mean\": 0.941, \"cf_bertscore_mean\": 0.8589, \"cf_nli_pass_rate\": 0.94, \"cf_gating\": \"NLI-only (threshold 0.90)\", \"dr_nli_mean\": 0.8208, \"dr_bertscore_mean\": 0.8477, \"dr_pass_rate\": 0.81, \"output_file\": \"data/verified_register.jsonl\", \"artifact_id\": \"art_20260521_227674\", \"pipeline_status\": \"verification DONE, scoring BLOCKED (API 402)\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-22T00:34:04.155Z\"}, \"gemini_flash_fourth_judge\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:04:28.393Z\", \"updated_at\": \"2026-05-21T22:36:06.643Z\", \"hypothesis\": \"Gemini Flash as a fourth judge will also exhibit style blindspot (BT-significant but Likert-NS) on formality and verbosity axes, consistent with GPT-4o, Qwen-32B, and Claude judges, confirming the blindspot is judge-universal rather than model-specific.\", \"spec\": {\"command\": \"OPENROUTER_KEY=*** GEMINI_MODEL=google/gemini-2.5-flash python csd_pipeline/gemini_flash_scoring.py\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/\", \"data_count\": 174, \"model_name\": \"google/gemini-2.5-flash\", \"seed\": 42}, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/gemini_flash_fourth_judge.json\", \"log_path\": \"/tmp/gemini_flash.log\", \"metrics\": {\"formality\": {\"bt_pct\": 57.4, \"bt_ci\": [50, 64.2], \"bt_p\": 0.0306, \"likert_ate\": -0.239, \"likert_d\": -0.082, \"likert_p\": 0.3088, \"gee_style_or\": 1.64, \"gee_style_ci\": [0.91, 2.98], \"gee_style_p\": 0.1008, \"gee_orig_or\": 2.51, \"gee_orig_ci\": [1.39, 4.54], \"gee_orig_p\": 0.0024, \"blindspot\": true, \"regime\": \"Orig-Dominated\"}, \"verbosity\": {\"bt_pct\": 70.8, \"bt_ci\": [63.7, 77.2], \"bt_p\": 0, \"likert_ate\": 0.151, \"likert_d\": 0.051, \"likert_p\": 0.3697, \"gee_style_or\": 8.98, \"gee_style_ci\": [3.68, 21.94], \"gee_style_p\": 0, \"gee_orig_or\": 0.46, \"gee_orig_ci\": [0.2, 1.04], \"gee_orig_p\": 0.0614, \"blindspot\": true, \"regime\": \"Pure Style\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T22:21:47.119Z\"}, \"llama70b_register\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T17:05:28.925Z\", \"updated_at\": \"2026-05-21T17:07:54.079Z\", \"hypothesis\": \"Llama-70B register axis shows weak style bias (~55% BT, consistent with GPT-4o 57% and Qwen3-32B 55.3%), confirming register as originality-dominated across three independent judge architectures\", \"spec\": {\"command\": \"python csd_pipeline/llama70b_register_scoring.py\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_register.jsonl\", \"data_count\": 94, \"model_name\": \"Llama-3.3-70B-Instruct\", \"seed\": 42, \"gpu\": \"2,3\", \"note\": \"Pairwise + Likert scoring for register axis via vLLM port 8003\", \"checkpoint_path\": \"data/llama70b_register_summary.json\", \"log_path\": \"/tmp/llama70b_register.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T17:07:51.781Z\", \"metrics\": {\"bt_p_academic\": 0.635, \"bt_ci\": [0.555, 0.712], \"bt_p_val\": 0.0014, \"likert_ate\": 0.054, \"likert_d\": 0.024, \"likert_ttest_p\": 0.69, \"likert_tie_rate\": 0.688, \"gee_style_or\": 3.33, \"gee_style_p\": 0.0003, \"gee_orig_or\": 3.07, \"gee_orig_p\": 0.0008, \"blindspot\": true, \"regime\": \"Mixed\"}}, \"llama70b_debiased\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T16:52:24.716Z\", \"updated_at\": \"2026-05-21T16:53:31.510Z\", \"hypothesis\": \"Llama-70B correction resistance follows the same axis-dependent pattern as GPT-4o/Qwen3-32B: debiased prompts reduce but do not eliminate style bias, with verbosity more amenable to correction than formality, confirming bias persistence is model-independent\", \"spec\": {\"command\": \"python csd_pipeline/llama70b_debiased.py\", \"server\": \"westb-29275\", \"data_path\": \"verified_32b.jsonl (88 formality) + verified_verbosity.jsonl (86 verbosity)\", \"data_count\": \"174 NLI-pass pairs total\", \"model_name\": \"Llama-3.3-70B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:2,3 (vLLM port 8003)\", \"pid\": 173017, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/debiased_llama70b_summary.json\", \"log_path\": \"/root/causal_style_decomp_judge/logs/llama70b_debiased.log\"}, \"conclusion\": \"success\", \"metrics\": {\"formality\": {\"baseline_bt\": 69.5, \"debiased_bt\": 64.3, \"debiased_ci\": [57.3, 71], \"debiased_p\": 0.0001, \"reduction_pp\": -5.2, \"reduction_pct\": 26.7, \"still_significant\": true}, \"verbosity\": {\"baseline_bt\": 73.5, \"debiased_bt\": 66.9, \"debiased_ci\": [58.9, 74.4], \"debiased_p\": 0.0001, \"reduction_pp\": -6.6, \"reduction_pct\": 28.1, \"still_significant\": true}, \"all_still_significant\": true}, \"completed_at\": \"2026-05-21T16:53:31.510Z\"}, \"crossbench_alpacaeval_verbosity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T16:52:26.420Z\", \"updated_at\": \"2026-05-21T16:52:40.971Z\", \"hypothesis\": \"AlpacaEval verbosity bias is strong enough (BT ~84%) that even Likert detects it, confirming the effect-size gradient: Blindspot occurs at small-to-medium effects (d<0.15) but not at large effects (d>0.3)\", \"conclusion\": \"success\", \"metrics\": {\"bt_p_verbose\": 84.1, \"bt_ci\": [77.4, 90.2], \"bt_p\": 0.0001, \"likert_ate\": 0.732, \"likert_d\": 0.407, \"likert_p\": 0.000414, \"tie_rate\": 0.244, \"blindspot\": false, \"n_pairs\": 82}, \"spec\": {\"command\": \"alpacaeval_qwen32b_scoring.py (previously completed)\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_alpacaeval_verbosity.jsonl\", \"data_count\": \"82 NLI-pass pairs\", \"model_name\": \"Qwen3-32B\", \"seed\": 42, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_verbosity_qwen32b.jsonl\", \"log_path\": \"N/A (pre-existing data)\"}, \"completed_at\": \"2026-05-21T16:52:40.971Z\"}, \"llama70b_third_judge\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:58:29.292Z\", \"updated_at\": \"2026-05-21T16:01:06.337Z\", \"hypothesis\": \"Llama-3.3-70B as third independent judge architecture confirms the Likert Blindspot: BT pairwise detects style bias (formality + verbosity) with p<0.05 while Likert scoring shows no significant difference, replicating the pattern found with GPT-4o and Qwen3-32B judges\", \"plan_id\": \"llama70b_third_judge\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python csd_pipeline/llama70b_scoring.py\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_32b.jsonl + verified_verbosity.jsonl\", \"data_count\": \"88 formality + 86 verbosity NLI-pass pairs\", \"model_name\": \"Llama-3.3-70B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:2,3\", \"vllm_port\": 8003, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/llama70b_third_judge.json\", \"log_path\": \"/root/causal_style_decomp_judge/logs/llama70b_scoring.log\"}, \"conclusion\": \"success\", \"metrics\": {\"formality\": {\"bt_p_formal\": 0.695, \"bt_ci\": [0.619, 0.765], \"bt_p\": 0.0001, \"likert_ate\": 0.023, \"likert_p\": 0.8458, \"likert_d\": 0.01, \"likert_tie_rate\": 0.727, \"gee_style_or\": 4.81, \"gee_style_p\": 0.0001, \"gee_orig_or\": 3.12, \"gee_orig_p\": 0.0007, \"blindspot\": true}, \"verbosity\": {\"bt_p_verbose\": 0.735, \"bt_ci\": [0.655, 0.809], \"bt_p\": 0.0001, \"likert_ate\": 0.047, \"likert_p\": 0.7524, \"likert_d\": 0.02, \"likert_tie_rate\": 0.616, \"gee_style_or\": 8.21, \"gee_style_p\": 0.0001, \"gee_orig_or\": 0.38, \"gee_orig_p\": 0.0196, \"blindspot\": true}, \"blindspot_both_axes\": true, \"third_judge_confirms\": true}, \"completed_at\": \"2026-05-21T16:01:06.337Z\"}, \"finegrained_likert_100pt\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:42:30.686Z\", \"updated_at\": \"2026-05-21T15:50:03.483Z\", \"hypothesis\": \"The Likert Blindspot is NOT a scale granularity artifact: even a 100-point continuous scale (0-100) should fail to detect the style bias that pairwise BT detects, because the blindspot stems from absolute-vs-relative evaluation paradigm differences, not insufficient scale resolution\", \"spec\": {\"command\": \"/root/miniconda3/bin/python csd_pipeline/finegrained_likert_100pt.py\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_32b.jsonl + data/verified_verbosity.jsonl\", \"data_count\": \"88 formality + 86 verbosity NLI-pass pairs\", \"model_name\": \"GPT-4o (via proxy)\", \"seed\": 42, \"checkpoint_path\": \"data/finegrained_likert_100pt.json\", \"log_path\": \"/tmp/finegrained_likert.log\", \"metrics\": {\"formality\": {\"n\": 88, \"ate\": -0.625, \"cohens_d\": -0.0376, \"t_p\": 0.725, \"wilcoxon_p\": 0.9, \"tie_rate\": 0.659, \"mean_style\": 52.5, \"mean_plain\": 53.12, \"blindspot\": true}, \"verbosity\": {\"n\": 86, \"ate\": 2.849, \"cohens_d\": 0.1709, \"t_p\": 0.117, \"wilcoxon_p\": 0.067, \"tie_rate\": 0.512, \"mean_style\": 53.08, \"mean_plain\": 50.23, \"blindspot\": true}, \"both_axes_blindspot\": true, \"conclusion\": \"100-point scale cannot detect style bias that BT detects — Blindspot is absolute-vs-relative paradigm difference, not granularity artifact\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T15:50:03.483Z\"}, \"gpt4o_rewriter_verbosity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T09:11:53.204Z\", \"updated_at\": \"2026-05-21T15:40:01.391Z\", \"hypothesis\": \"Verbosity style bias is rewriter-independent: GPT-4o rewriter + Qwen3-32B judge should produce BT probability statistically equivalent to Qwen3-32B rewriter + Qwen3-32B judge, confirming the measured verbosity bias reflects judge behavior not rewriter artifacts\", \"conclusion\": \"success\", \"metrics\": {\"cf_generated\": 100, \"nli_pass\": 81, \"nli_rate\": 0.81, \"bt\": {\"p_verbose\": 0.735, \"ci\": [0.654, 0.809], \"p_value\": 0.0001}, \"likert\": {\"ate\": 0, \"p\": 0.8384, \"d\": 0, \"tie_rate\": 0.469}, \"gee\": {\"style_or\": 10.17, \"style_p\": 0.0001, \"orig_or\": 1.61, \"orig_p\": 0.3143}, \"blindspot\": true, \"vs_baseline\": {\"qwen32b_bt\": 0.773, \"delta_pp\": -3.8, \"ci_overlap\": true, \"note\": \"GPT-4o rewriter gives 73.5% vs Qwen3-32B rewriter 77.3%, CIs overlap → rewriter-independent\"}}, \"spec\": {\"command\": \"python gpt4o_rewriter_verbosity.py\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_verbosity.jsonl + GPT-4o rewritten CFs\", \"data_count\": 81, \"model_name\": \"GPT-4o (rewriter) + Qwen3-32B (judge)\", \"seed\": 42, \"checkpoint_path\": \"N/A (API scoring)\", \"log_path\": \"data/gpt4o_rewriter_verbosity_results.json\"}, \"completed_at\": \"2026-05-21T09:12:15.361Z\"}, \"gpt4o_rewriter_formality\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:46:15.195Z\", \"updated_at\": \"2026-05-21T15:39:14.228Z\", \"hypothesis\": \"Style bias detected by RATE is rewriter-independent: switching from Qwen3-32B rewriter to GPT-4o rewriter should produce statistically equivalent BT probability for formality axis, proving the measured bias reflects judge behavior not rewriter artifacts\", \"spec\": {\"command\": \"python csd_pipeline/gpt4o_rewriter_formality_scoring.py\", \"server\": \"westb-29275\", \"data_path\": \"data/mvp_samples.jsonl + GPT-4o rewritten CFs\", \"data_count\": 90, \"model_name\": \"GPT-4o (rewriter) + Qwen3-32B (judge)\", \"seed\": 42, \"checkpoint_path\": \"N/A (API scoring)\", \"log_path\": \"data/gpt4o_rewriter_formality_results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"cf_generated\": 100, \"nli_pass\": 90, \"nli_rate\": 0.9, \"bt\": {\"p_formal\": 0.644, \"ci\": [0.561, 0.728], \"p_value\": 0.0006, \"n_pairs\": 90, \"n_comparisons\": 180, \"method\": \"ALL NLI-pass pairs (fixed from consistent-only bug)\"}, \"gee\": {\"style_or\": 9.48, \"style_p\": 0.0001, \"orig_or\": 12.76, \"orig_p\": 0.0001, \"note\": \"Fixed: was 24.47/39.27 with consistent-only filter (near-separation artifact)\"}, \"likert\": {\"ate\": -0.189, \"p\": 0.1835, \"d\": -0.081, \"tie_rate\": 0.489, \"mean_formal\": 5.511, \"mean_casual\": 5.7}, \"blindspot\": true, \"vs_baseline\": {\"qwen32b_bt\": 0.665, \"delta_pp\": -2.1, \"ci_overlap\": true, \"note\": \"GPT-4o rewriter 64.4% vs Qwen3-32B rewriter 66.5%, baseline falls within CI [56.1%, 72.8%] → rewriter-independent\"}, \"bug_fix\": {\"original_bt\": 0.697, \"original_gee_style_or\": 24.47, \"original_gee_orig_or\": 39.27, \"original_n_pairs\": 66, \"fix\": \"Used ALL 90 NLI-pass pairs for BT/GEE instead of consistent-only 66. §3.3 requires all observations.\", \"fix_script\": \"csd_pipeline/fix_formality_rewriter_bt.py\"}}, \"completed_at\": \"2026-05-21T10:46:56.474Z\"}, \"debiased_verbosity_gpt4o\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:36:47.030Z\", \"updated_at\": \"2026-05-21T15:37:07.076Z\", \"hypothesis\": \"Debiased prompt intervention for verbosity axis on GPT-4o should show partial but insufficient bias reduction, consistent with formality results showing style bias is deeper than prompt-level — but verbosity may be more amenable to prompt-level correction than formality since the debiasing instruction can explicitly reference length/detail\", \"spec\": {\"command\": \"/root/miniconda3/bin/python csd_pipeline/debiased_verbosity_gpt4o.py\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_verbosity.jsonl\", \"data_count\": \"86 NLI-pass pairs\", \"model_name\": \"GPT-4o (via proxy)\", \"seed\": 42, \"checkpoint_path\": \"data/pairwise_results_debiased_gpt4o_verbosity.jsonl\", \"log_path\": \"/tmp/debiased_verbosity.log\", \"metrics\": {\"original_p_verbose\": \"76.0% [69.7, 83.5], p=0.0001\", \"debiased_p_verbose\": \"62.9% [54.5, 70.9], p=0.0016\", \"reduction_pp\": \"-13.1pp (50.4% of bias eliminated)\", \"still_significant\": true, \"valid_pairs\": 83, \"consistent_pairs\": 54, \"n_comparisons\": 167, \"neither_count\": \"~5 pairs (3 retries each)\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T15:37:07.076Z\"}, \"nli_threshold_sweep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:26:18.221Z\", \"updated_at\": \"2026-05-21T15:26:50.643Z\", \"hypothesis\": \"BT-detected style bias is robust to NLI threshold choice: sweeping from 0.50 to 0.98 should show stable BT probability and consistent significance across all 4 axis×judge combinations, proving the finding is not an artifact of a specific threshold cutoff\", \"spec\": {\"command\": \"/root/miniconda3/bin/python /tmp/nli_threshold_sweep.py /root/causal_style_decomp_judge\", \"server\": \"westb-29275\", \"data_path\": \"data/pairwise_results_{qwen32b_formality,32b,qwen32b_verbosity,gpt4o_verbosity}.jsonl\", \"data_count\": \"100 pairs × 4 combos\", \"model_name\": \"CPU analysis (choix BT + bootstrap)\", \"seed\": 42, \"checkpoint_path\": \"data/nli_threshold_sweep.json\", \"log_path\": \"data/nli_threshold_sweep.json\", \"metrics\": {\"total_significant\": \"44/44 (100%)\", \"formality_qwen32b_bt_range\": \"0.648-0.665\", \"formality_gpt4o_bt_range\": \"0.614-0.642\", \"verbosity_qwen32b_bt_range\": \"0.765-0.773\", \"verbosity_gpt4o_bt_range\": \"0.752-0.769\", \"all_p_values\": \"≤0.002\", \"max_bt_delta_across_thresholds\": \"~3pp\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T15:26:50.643Z\"}, \"bootstrap_attenuation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:17:13.754Z\", \"updated_at\": \"2026-05-21T15:18:19.510Z\", \"hypothesis\": \"Bootstrap subsampling of Likert data shows Cohen's d remains near zero across all sample sizes (n=50-355), demonstrating measurement attenuation rather than power gap — Likert fundamentally cannot detect style bias regardless of sample size\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python /tmp/bootstrap_attenuation.py\", \"server\": \"westb-29275\", \"data_path\": \"data/scored_scaled_formality_qwen32b.jsonl + data/scored_qwen32b_verbosity.jsonl + data/scored_gpt4o_verbosity.jsonl\", \"data_count\": 527, \"model_name\": \"Statistical analysis (numpy bootstrap)\", \"seed\": 42, \"checkpoint_path\": \"data/bootstrap_attenuation.json\", \"log_path\": \"data/bootstrap_attenuation.json\"}, \"completed_at\": \"2026-05-21T15:18:07.145Z\", \"metrics\": {\"formality_qwen32b\": {\"file\": \"scored_scaled_formality_qwen32b.jsonl\", \"n\": 355, \"full_d\": -0.017, \"curve\": {\"n50\": {\"d_median\": -0.017, \"ci\": [-0.308, 0.262]}, \"n100\": {\"d_median\": -0.015, \"ci\": [-0.219, 0.176]}, \"n150\": {\"d_median\": -0.019, \"ci\": [-0.179, 0.145]}, \"n200\": {\"d_median\": -0.016, \"ci\": [-0.157, 0.119]}, \"n250\": {\"d_median\": -0.018, \"ci\": [-0.144, 0.107]}, \"n300\": {\"d_median\": -0.018, \"ci\": [-0.131, 0.095]}, \"n355\": {\"d_median\": -0.017, \"ci\": [-0.123, 0.087]}}, \"interpretation\": \"SMOKING GUN: d_median flat at ~-0.017 across ALL n. CI narrows but always includes 0. Measurement attenuation confirmed.\"}, \"verbosity_qwen32b\": {\"file\": \"scored_qwen32b_verbosity.jsonl\", \"n\": 86, \"full_d\": 0.146, \"curve\": {\"n30\": {\"d_median\": 0.169, \"ci\": [-0.195, 0.595]}, \"n50\": {\"d_median\": 0.157, \"ci\": [-0.119, 0.494]}, \"n70\": {\"d_median\": 0.155, \"ci\": [-0.085, 0.443]}, \"n86\": {\"d_median\": 0.153, \"ci\": [-0.067, 0.416]}}, \"interpretation\": \"d stable at ~0.15 (below small-effect threshold 0.2). CI always includes 0. Even at n=1000 would not detect.\"}, \"verbosity_gpt4o\": {\"file\": \"scored_gpt4o_verbosity.jsonl\", \"n\": 86, \"full_d\": 0.19, \"curve\": {\"n30\": {\"d_median\": 0.205, \"ci\": [-0.161, 0.618]}, \"n50\": {\"d_median\": 0.198, \"ci\": [-0.085, 0.53]}, \"n70\": {\"d_median\": 0.197, \"ci\": [-0.048, 0.472]}, \"n86\": {\"d_median\": 0.197, \"ci\": [-0.022, 0.446]}}, \"interpretation\": \"d stable at ~0.19-0.20 (borderline small). CI includes 0 at all n. BT detects 76.0% (massive), Likert sees d=0.19 (trivial).\"}, \"formality_gpt4o\": {\"note\": \"Only 20 NLI-pass pairs available from scored_alpacaeval_gpt4o.jsonl. Single point: d_median=-0.20, CI=[-0.72, 0.24]. Insufficient for curve.\"}, \"summary\": \"3/4 combinations computed. Formality×Qwen3-32B (n=355) is the definitive result: d≈0 flat across all subsample sizes = measurement attenuation, not power gap. BT detects 66.5% (p<0.0001) on same data where Likert d=-0.017.\"}}, \"cf_vs_dr_gpt4o\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T13:37:04.042Z\", \"updated_at\": \"2026-05-21T15:01:43.024Z\", \"hypothesis\": \"Comparing counterfactual (style-changed + artifact) vs double-rewrite (original-style + artifact) with GPT-4o judge isolates pure style effect by controlling for rewriting artifact. CF win rate significantly different from 50% proves style bias exists beyond rewriting artifact (MF1 critical defense).\", \"parent\": \"double_rewrite_placebo_gpt4o\", \"spec\": {\"command\": \"python csd_pipeline/cf_vs_dr_comparison_gpt4o.py\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_32b.jsonl + data/verified_verbosity.jsonl\", \"data_count\": 124, \"model_name\": \"GPT-4o (judge via API)\", \"seed\": 42, \"checkpoint_path\": \"N/A - excluded from paper\", \"log_path\": \"westb-29275:/root/csd_pipeline/data/cf_vs_dr_gpt4o.json\", \"checkpoint_source\": \"double_rewrite_placebo_gpt4o\", \"eval_data\": \"data/verified_32b.jsonl + data/verified_verbosity.jsonl\"}, \"conclusion\": \"negative\", \"metrics\": {\"judge\": \"GPT-4o\", \"comparison\": \"counterfactual vs double_rewrite\", \"formality\": {\"n_pairs\": 81, \"n_consistent\": 53, \"consistency\": 0.654, \"cf_win_rate\": 0.151, \"ci\": [0.057, 0.246], \"p_value\": 0, \"interpretation\": \"DR strongly preferred over CF\"}, \"verbosity\": {\"note\": \"awaiting final result from worker, pattern matches Qwen3-32B\"}}, \"completed_at\": \"2026-05-21T15:01:43.024Z\"}, \"double_rewrite_placebo_gpt4o\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T13:35:56.950Z\", \"updated_at\": \"2026-05-21T14:13:21.694Z\", \"hypothesis\": \"Pairwise comparison of original vs double-rewrite (same style, only rewriting artifact difference) yields BT ≈ 50% with GPT-4o judge, proving pairwise format does not amplify rewriting artifacts (MF1 defense)\", \"spec\": {\"command\": \"python csd_pipeline/double_rewrite_placebo.py (GPT-4o judge via API)\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_32b.jsonl + data/verified_verbosity.jsonl\", \"data_count\": 124, \"model_name\": \"GPT-4o (judge via API)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"data/double_rewrite_placebo_gpt4o.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"judge\": \"GPT-4o\", \"comparison\": \"original vs double_rewrite\", \"method\": \"BT (choix.ilsr_pairwise) + pair-level bootstrap 10000 seed=42, ALL pairs including inconsistent\", \"formality\": {\"n_pairs\": 81, \"bt_p_original\": 0.4177, \"ci\": [0.3418, 0.5], \"p_value\": 0.0368, \"sign_test_rate\": 0.3488, \"sign_test_n\": \"15/43\", \"sign_test_p\": 0.066, \"note\": \"Sign test NS (p=0.066) but BT significant (p=0.037) — BT uses more data\"}, \"verbosity\": {\"n_pairs\": 43, \"bt_p_original\": 0.1668, \"ci\": [0.0835, 0.262], \"p_value\": 0, \"sign_test_rate\": 0.0625, \"sign_test_n\": \"2/32\", \"sign_test_p\": 0}, \"conclusion\": \"Rewriting artifact confirmed. GPT-4o formality BT borderline (p=0.037), verbosity extreme. BT more powerful than sign test (recovers signal from inconsistent pairs).\"}, \"completed_at\": \"2026-05-21T13:36:30.437Z\"}, \"double_rewrite_placebo_qwen32b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T13:32:17.445Z\", \"updated_at\": \"2026-05-21T14:13:20.472Z\", \"hypothesis\": \"Pairwise comparison of original vs double-rewrite (same style, only rewriting artifact difference) yields BT ≈ 50%, proving pairwise format does not amplify rewriting artifacts (MF1 defense)\", \"spec\": {\"command\": \"python csd_pipeline/double_rewrite_placebo.py (Qwen3-32B judge)\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_32b.jsonl + data/verified_verbosity.jsonl\", \"data_count\": 124, \"model_name\": \"Qwen3-32B (judge via vLLM)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"data/double_rewrite_placebo_qwen32b.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"judge\": \"Qwen3-32B\", \"comparison\": \"original vs double_rewrite\", \"method\": \"BT (choix.ilsr_pairwise) + pair-level bootstrap 10000 seed=42, ALL pairs including inconsistent\", \"formality\": {\"n_pairs\": 81, \"bt_p_original\": 0.3766, \"ci\": [0.3025, 0.4506], \"p_value\": 0.0006, \"sign_test_rate\": 0.2727, \"sign_test_n\": \"12/44\", \"sign_test_p\": 0.0037}, \"verbosity\": {\"n_pairs\": 43, \"bt_p_original\": 0.0816, \"ci\": [0.0351, 0.1397], \"p_value\": 0, \"sign_test_rate\": 0, \"sign_test_n\": \"0/36\", \"sign_test_p\": 0}, \"conclusion\": \"Rewriting artifact confirmed. Judges prefer DR over original, especially for verbosity. BT uses all pairs (matching main experiment methodology).\"}, \"completed_at\": \"2026-05-21T13:35:25.634Z\"}, \"cf_vs_dr_qwen32b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T13:37:03.554Z\", \"updated_at\": \"2026-05-21T13:54:28.362Z\", \"hypothesis\": \"Comparing counterfactual (style-changed + artifact) vs double-rewrite (original-style + artifact) isolates pure style effect by controlling for rewriting artifact. CF win rate significantly different from 50% proves style bias exists beyond rewriting artifact (MF1 critical defense).\", \"parent\": \"double_rewrite_placebo_qwen32b\", \"spec\": {\"command\": \"python csd_pipeline/cf_vs_dr_comparison.py (Qwen3-32B judge)\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_32b.jsonl + data/verified_verbosity.jsonl\", \"data_count\": 124, \"model_name\": \"Qwen3-32B (judge via vLLM)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"data/cf_vs_dr_qwen32b.json\", \"checkpoint_source\": \"double_rewrite_placebo_qwen32b\", \"eval_data\": \"data/verified_32b.jsonl + data/verified_verbosity.jsonl\"}, \"conclusion\": \"negative\", \"metrics\": {\"judge\": \"Qwen3-32B\", \"comparison\": \"counterfactual vs double_rewrite\", \"formality\": {\"n_pairs\": 81, \"n_consistent\": 55, \"consistency\": 0.679, \"cf_win_rate\": 0.2, \"ci\": [0.109, 0.309], \"p_value\": 9e-06, \"interpretation\": \"DR preferred over CF — both style effect and extra artifact compound in DR's favor\"}, \"verbosity\": {\"n_pairs\": 43, \"n_consistent\": 39, \"consistency\": 0.907, \"cf_win_rate\": 0.333, \"ci\": [0.18, 0.487], \"p_value\": 0.053, \"interpretation\": \"DR marginally preferred (p=0.053) — artifact and style effects partially cancel in mixed-direction pairs\"}}, \"completed_at\": \"2026-05-21T13:54:28.362Z\"}, \"cross_axis_gradient\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T13:30:37.151Z\", \"updated_at\": \"2026-05-21T13:31:22.748Z\", \"hypothesis\": \"NLI rejection rate serves as manipulation invasiveness proxy, with axes ordered register < formality < verbosity matching the gradient in BT and GEE Style OR (qualitative argument)\", \"spec\": {\"command\": \"python csd_pipeline/nli_ablation_cross_axis.py\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_32b.jsonl + verified_verbosity.jsonl + verified_register.jsonl\", \"data_count\": 300, \"model_name\": \"Descriptive statistics only\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"data/cross_axis_gradient.json\"}, \"conclusion\": \"success\", \"metrics\": {\"axes\": [{\"axis\": \"register\", \"nli_rejection_rate\": 0.06, \"bt\": 0.553, \"likert_d\": 0.069, \"gee_style_or\": 1.91}, {\"axis\": \"formality\", \"nli_rejection_rate\": 0.12, \"bt\": 0.665, \"likert_d\": 0.012, \"gee_style_or\": 4.2}, {\"axis\": \"verbosity\", \"nli_rejection_rate\": 0.14, \"bt\": 0.773, \"likert_d\": -0.146, \"gee_style_or\": 13.1}], \"note\": \"Qualitative gradient: register < formality < verbosity. Higher NLI rejection = more invasive manipulation = stronger detected bias.\"}, \"completed_at\": \"2026-05-21T13:31:22.748Z\"}, \"nli_gate_ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T13:30:35.825Z\", \"updated_at\": \"2026-05-21T13:31:22.271Z\", \"hypothesis\": \"NLI gate filters content-contaminated pairs without introducing systematic bias — NLI-pass BT ≈ all-pairs BT, and NLI-fail pairs show reversed or attenuated effects (bounding analysis)\", \"spec\": {\"command\": \"python csd_pipeline/nli_ablation_cross_axis.py\", \"server\": \"westb-29275\", \"data_path\": \"data/pairwise_results_qwen32b_*.jsonl + data/verified_*.jsonl\", \"data_count\": 200, \"model_name\": \"choix BT + bootstrap\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"data/nli_gate_ablation.json\"}, \"conclusion\": \"success\", \"metrics\": {\"formality\": {\"nli_pass\": {\"n\": 88, \"bt\": 0.665, \"ci\": [0.585, 0.739], \"p\": 0.0001}, \"nli_fail\": {\"n\": 12, \"bt\": 0.417, \"ci\": [0.167, 0.666], \"p\": 0.69, \"note\": \"REVERSED - no formal preference in contaminated pairs\"}, \"all\": {\"n\": 100, \"bt\": 0.635, \"ci\": [0.56, 0.705], \"p\": 0.0001}}, \"verbosity\": {\"nli_pass\": {\"n\": 86, \"bt\": 0.773, \"ci\": [0.703, 0.843], \"p\": 0.0001}, \"nli_fail\": {\"n\": 14, \"bt\": 0.75, \"ci\": [0.536, 0.928], \"p\": 0.006, \"note\": \"Still significant - verbosity bias persists even in NLI-fail\"}, \"all\": {\"n\": 100, \"bt\": 0.77, \"ci\": [0.7, 0.835], \"p\": 0.0001}}, \"interpretation\": \"Formality: NLI gate correctly filters contaminated pairs (NLI-fail BT reverses to 41.7%). Verbosity: bias so strong it persists in NLI-fail (75.0%). All-pairs BT close to NLI-pass BT for both axes.\"}, \"completed_at\": \"2026-05-21T13:31:22.271Z\"}, \"verbosity_7method_sensitivity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T13:09:57.524Z\", \"updated_at\": \"2026-05-21T13:10:23.178Z\", \"hypothesis\": \"All 6 Likert-based statistical methods fail to detect verbosity bias (p>0.05) while Bradley-Terry detects it (77.3%, p<0.001), replicating the formality attenuation pattern on verbosity axis (addresses SF5)\", \"spec\": {\"command\": \"python csd_pipeline/verbosity_7method_sensitivity.py\", \"server\": \"westb-29275\", \"data_path\": \"data/scored_qwen32b_verbosity.jsonl + data/pairwise_results_qwen32b_verbosity.jsonl\", \"data_count\": 86, \"model_name\": \"Statistical analysis (scipy, statsmodels, choix)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"data/verbosity_7method_sensitivity.json\"}, \"conclusion\": \"success\", \"metrics\": {\"n_pairs\": 86, \"axis\": \"verbosity\", \"judge\": \"Qwen3-32B\", \"benchmark\": \"LLMBar\", \"methods\": {\"paired_ttest\": {\"t\": 0.5163, \"p\": 0.607, \"d\": 0.056, \"significant\": false}, \"mann_whitney\": {\"U\": 3868, \"p\": 0.578, \"r\": -0.046, \"significant\": false}, \"ordinal_logistic\": {\"coef\": 0.1592, \"p\": 0.575, \"OR\": 1.173, \"significant\": false}, \"cohens_d\": {\"d\": 0.036, \"threshold\": 0.2, \"significant\": false}, \"binarized_chi2\": {\"chi2\": 1.5512, \"p\": 0.213, \"OR\": 2.162, \"significant\": false}, \"likert_ate\": {\"ate\": 0.0581, \"p\": 0.691, \"d\": 0.056, \"ci\": [-0.16, 0.27], \"significant\": false}, \"bradley_terry\": {\"p_verbose\": 0.7732, \"p_value\": 0.0001, \"ci\": [0.703, 0.843], \"significant\": true}}, \"summary\": \"6/6 Likert methods NS, only BT detects. Replicates formality attenuation pattern.\"}, \"completed_at\": \"2026-05-21T13:10:23.178Z\"}, \"nli_gate_full_validation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:16:02.325Z\", \"updated_at\": \"2026-05-21T12:16:36.565Z\", \"hypothesis\": \"Full-coverage GPT-4o independent validation of NLI gate decisions across all 200 pairs confirms gate reliability, with high pass precision and conservative fail behavior (addresses W-MF1)\", \"spec\": {\"command\": \"python csd_pipeline/nli_gate_full_validation.py\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_32b.jsonl + data/verified_verbosity.jsonl\", \"data_count\": 200, \"model_name\": \"GPT-4o (evaluator) + DeBERTa-v3-large (NLI gate)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"data/nli_gate_full_validation.json\"}, \"conclusion\": \"success\", \"metrics\": {\"total_evaluated\": 200, \"per_axis\": {\"formality\": {\"n\": 100, \"agreement\": 0.88, \"kappa\": 0.47, \"base_rate_pass\": 0.88, \"pass_precision\": 0.921, \"fail_recall\": 0.583}, \"verbosity\": {\"n\": 100, \"agreement\": 0.79, \"kappa\": 0.31, \"base_rate_pass\": 0.86, \"pass_precision\": 0.826, \"fail_recall\": 0.571}}, \"overall\": {\"n\": 200, \"agreement\": 0.835, \"kappa\": 0.38, \"base_rate_pass\": 0.87, \"pass_precision\": 0.874, \"fail_recall\": 0.577, \"confusion\": {\"tp\": 152, \"fp\": 22, \"tn\": 15, \"fn\": 11}}, \"vs_spotcheck\": {\"spotcheck_agreement\": 0.65, \"full_agreement\": 0.835, \"delta_pp\": 18.5, \"note\": \"Spot-check used 50/50 stratified sampling (inflating disagreement); full data has 87% pass rate, pulling overall agreement up via high pass precision\"}, \"interpretation\": \"NLI gate is reliable for pass decisions (precision 87-92%). Low fail recall (58%) means gate over-rejects — GPT-4o considers ~42% of NLI-fail pairs as actually preserving content. This confirms gate is CONSERVATIVE, consistent with NLI FN selection bias analysis.\"}, \"completed_at\": \"2026-05-21T12:16:36.566Z\"}, \"originality_minimal_subset\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:05:15.868Z\", \"updated_at\": \"2026-05-21T12:08:31.944Z\", \"hypothesis\": \"Style effect in BT remains stable when restricting to originality-balanced pairs (Likert score tied between original and counterfactual), confirming style bias is not driven by originality confound (addresses W-MF3)\", \"spec\": {\"command\": \"python csd_pipeline/originality_minimal_subset.py\", \"server\": \"westb-29275\", \"data_path\": \"data/pairwise_results_32b.jsonl + data/scored_32b.jsonl + verbosity equivalents\", \"data_count\": 174, \"model_name\": \"choix BT + bootstrap\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"data/originality_minimal_subset.json\"}, \"conclusion\": \"success\", \"metrics\": {\"formality\": {\"full\": {\"n\": 88, \"bt\": 0.6647, \"ci\": [0.585, 0.739]}, \"likert_balanced\": {\"n\": 55, \"bt\": 0.6727, \"ci_note\": \"bootstrap CI from script\", \"method\": \"Pairs where Likert score(original) == Likert score(counterfactual)\"}, \"delta_likert_vs_full\": 0.008, \"delta_ci\": [-0.1103, 0.1261], \"conclusion\": \"BT stable on originality-balanced subset (Δ=+0.008, CI includes 0)\", \"fix\": \"Corrected PAIRWISE_F from pairwise_results_32b.jsonl to pairwise_results_qwen32b_formality.jsonl\"}, \"verbosity\": {\"full\": {\"n\": 86, \"bt\": 0.7732, \"ci\": [0.703, 0.843]}, \"likert_balanced\": {\"n\": 50, \"bt\": 0.7599, \"method\": \"Pairs where Likert score(original) == Likert score(counterfactual)\"}, \"delta_likert_vs_full\": -0.0133, \"delta_ci\": [-0.133, 0.1032], \"conclusion\": \"BT stable on originality-balanced subset (Δ=-0.013, CI includes 0)\"}, \"note\": \"FIXED: formality now uses correct pairwise file (pairwise_results_qwen32b_formality.jsonl). Full BT matches canonical 0.665.\"}, \"completed_at\": \"2026-05-21T12:05:41.868Z\"}, \"bt_model_diagnostics\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:04:20.388Z\", \"updated_at\": \"2026-05-21T12:04:52.866Z\", \"hypothesis\": \"BT model adequately fits the pairwise data (GoF non-significant) and stratified BT by originality direction reveals whether style effect is confounded with originality preference (addresses W-MF2)\", \"parent\": \"qwen32b_formality\", \"spec\": {\"command\": \"python csd_pipeline/bt_model_diagnostics.py\", \"server\": \"westb-29275\", \"data_path\": \"data/pairwise_results_32b.jsonl + data/pairwise_results_qwen32b_verbosity.jsonl\", \"data_count\": 200, \"model_name\": \"choix BT + scipy chi2/Fisher\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"data/bt_model_diagnostics.json\", \"checkpoint_source\": \"qwen32b_formality + qwen32b_verbosity pairwise results\", \"eval_data\": \"Consistent pairs from pairwise results (formality n=46, verbosity n=63)\"}, \"conclusion\": \"success\", \"metrics\": {\"gof\": {\"formality\": {\"deviance\": 52.8, \"df\": 45, \"p_value\": 0.198, \"n_consistent\": 46, \"bt_prob\": 0.739}, \"verbosity\": {\"deviance\": 47.96, \"df\": 62, \"p_value\": 0.905, \"n_consistent\": 63, \"bt_prob\": 0.873}}, \"stratified_bt\": {\"formality\": {\"orig_is_formal\": {\"n\": 27, \"bt\": 0.889, \"ci\": [0.778, 1], \"wins\": 24}, \"orig_is_casual\": {\"n\": 19, \"bt\": 0.526, \"ci\": [0.316, 0.737], \"wins\": 10}, \"fisher_p\": 0.015, \"chi2_p\": 0.006, \"note\": \"Significant direction difference: orig_is_formal 88.9% vs orig_is_casual 52.6%. Confirms originality confound in formality (consistent with GEE decomposition).\"}, \"verbosity\": {\"orig_is_verbose\": {\"n\": 29, \"bt\": 0.828, \"ci\": [0.69, 0.966], \"wins\": 24}, \"orig_is_concise\": {\"n\": 34, \"bt\": 0.912, \"ci\": [0.794, 1], \"wins\": 31}, \"fisher_p\": 0.453, \"chi2_p\": 0.317, \"note\": \"No significant direction difference. Both directions strongly prefer verbose → pure style bias confirmed.\"}}}, \"completed_at\": \"2026-05-21T12:04:52.866Z\"}, \"claude_tost_equivalence\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:03:21.852Z\", \"updated_at\": \"2026-05-21T12:03:53.897Z\", \"hypothesis\": \"Claude Sonnet 4 BT results are statistically equivalent to chance (P=0.5) within ±10pp margin using TOST, formally confirming no style bias as negative control (addresses W-SF4)\", \"spec\": {\"command\": \"python csd_pipeline/claude_tost_equivalence.py\", \"server\": \"westb-29275\", \"data_path\": \"Claude BT bootstrap results\", \"data_count\": 174, \"model_name\": \"Statistical analysis only (scipy)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"data/claude_tost_equivalence.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"equivalence_margin\": 0.1, \"formality\": {\"p_hat\": 0.562, \"n\": 88, \"se\": 0.0375, \"tost_p\": 0.155, \"ci_90\": [0.5, 0.624], \"upper_test_p\": 0.155, \"lower_test_p\": 0, \"equivalence_confirmed\": false, \"note\": \"90% CI upper bound 0.624 > 0.60 margin\"}, \"verbosity\": {\"p_hat\": 0.541, \"n\": 86, \"se\": 0.0401, \"tost_p\": 0.07, \"ci_90\": [0.475, 0.607], \"upper_test_p\": 0.07, \"lower_test_p\": 0, \"equivalence_confirmed\": false, \"note\": \"90% CI upper bound 0.607 > 0.60 margin, marginal\"}, \"conclusion\": \"Equivalence NOT confirmed at Δ=0.10 — underpowered (n≈87), not evidence of bias. Both upper tests fail: formality p=0.155, verbosity p=0.070. If Δ=0.15, both would confirm equivalence.\", \"method\": \"TOST for proportions (Lakens 2017), SE from pair-level bootstrap\"}, \"completed_at\": \"2026-05-21T12:03:53.897Z\"}, \"nli_fn_selection_bias\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:40:38.454Z\", \"updated_at\": \"2026-05-21T10:47:10.010Z\", \"hypothesis\": \"NLI gate may systematically filter pairs with larger style changes, potentially underestimating the true bias effect — if so, reported effects are conservative lower bounds (addresses R3-W8)\", \"conclusion\": \"success\", \"metrics\": {\"formality\": {\"n_total\": 355, \"n_pass\": 323, \"n_fail\": 32, \"pass_rate\": 0.91, \"significant_metrics\": \"2/7 (BLEU p=0.018 d=-0.46, TF-IDF p=0.002 d=-0.62)\", \"norm_lev_p\": 0.23, \"bleu_pass\": 0.361, \"bleu_fail\": 0.235, \"tfidf_pass\": 0.69, \"tfidf_fail\": 0.558, \"conclusion\": \"CONSERVATIVE: fail pairs have larger style changes (lower BLEU/TF-IDF)\"}, \"verbosity\": {\"n_total\": 100, \"n_pass\": 39, \"n_fail\": 61, \"pass_rate\": 0.39, \"significant_metrics\": \"5/7\", \"norm_lev_pass\": 0.528, \"norm_lev_fail\": 0.69, \"norm_lev_d\": 0.788, \"tfidf_pass\": 0.675, \"tfidf_fail\": 0.491, \"tfidf_d\": -0.815, \"conclusion\": \"STRONGLY CONSERVATIVE: 5/7 significant, TF-IDF d=-0.815 large effect\"}, \"register\": {\"n_total\": 100, \"n_pass\": 80, \"n_fail\": 20, \"pass_rate\": 0.8, \"significant_metrics\": \"0/7\", \"conclusion\": \"No significant bias detected (but n_fail=20 underpowered)\"}, \"overall_conclusion\": \"Gate selection is conservative across all axes. Measured effects are lower bounds. Verbosity strongest signal (d=0.815 large).\", \"artifacts\": [\"artifacts/nli_fn_bias/nli_fn_bias_formality.png\", \"artifacts/nli_fn_bias/nli_fn_bias_verbosity.png\", \"artifacts/nli_fn_bias/nli_fn_bias_register.png\"]}, \"spec\": {\"command\": \"python nli_fn_selection_bias.py\", \"server\": \"westb-29275\", \"data_path\": \"data/ (formality + verbosity pipeline outputs)\", \"data_count\": 455, \"model_name\": \"Analysis only (Levenshtein, Jaccard, Flesch)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"csd_pipeline/nli_fn_selection_bias.py output\"}, \"completed_at\": \"2026-05-21T10:41:09.789Z\"}, \"nli_gate_spotcheck\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:18:55.907Z\", \"updated_at\": \"2026-05-21T10:40:56.025Z\", \"hypothesis\": \"GPT-4o independent evaluation agrees with NLI gate pass/fail decisions at high rate, demonstrating NLI gate validity is not an artifact of same-model-family evaluation (addresses R3-W1 concern about evaluator-producer confound in gate validation)\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 100, \"pass_samples\": 50, \"fail_samples\": 50, \"overall_agreement\": 0.65, \"cohens_kappa\": 0.3, \"kappa_ci\": [0.153, 0.456], \"pass_agreement\": 0.94, \"fail_agreement\": 0.36, \"disagreement_pattern\": {\"nli_fail_gpt_pass\": 32, \"nli_pass_gpt_fail\": 3}, \"per_axis\": {\"formality\": {\"agreement\": 0.771, \"kappa\": 0.241, \"n\": 48}, \"verbosity\": {\"agreement\": 0.618, \"kappa\": 0.294, \"n\": 34}, \"register\": {\"agreement\": 0.389, \"kappa\": 0.092, \"n\": 18}}, \"note\": \"NLI gate is conservative, not rubber-stamp. 94% pass agreement. 32/35 disagreements are NLI over-reject (fail but GPT-4o says pass). Kappa=0.30 inflated by 50/50 stratified sampling; real-data agreement much higher given 88% pass rate.\"}, \"spec\": {\"command\": \"python nli_gate_gpt4o_spotcheck.py\", \"server\": \"westb-29275\", \"data_path\": \"data/ (formality+verbosity+register NLI outputs)\", \"data_count\": 100, \"model_name\": \"GPT-4o (evaluator) + DeBERTa-v3-large (NLI)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/reanalysis_outputs/nli_gate_gpt4o_spotcheck.json\"}, \"completed_at\": \"2026-05-21T10:39:23.633Z\"}, \"gate_comparison\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:38:32.232Z\", \"updated_at\": \"2026-05-21T10:39:32.612Z\", \"hypothesis\": \"Direction-aware NLI gate does not introduce systematic bias compared to strict bidirectional gate — the extra ~21% pairs admitted by direction-aware gating have consistent BT direction with the strict-filtered subset (addresses R3-W2)\", \"conclusion\": \"success\", \"metrics\": {\"formality\": {\"strict\": {\"n\": 88, \"bt\": 0.6647, \"ci\": [0.5852, 0.7386], \"p\": 0.0001}, \"direction_aware\": {\"n\": 97, \"bt\": 0.634, \"ci\": [0.5567, 0.7061], \"p\": 0.0001}, \"extra_only\": {\"n\": 9, \"bt\": 0.3337}, \"delta\": -0.0307, \"delta_ci\": [-0.0651, -0.0018], \"significant\": true, \"note\": \"Formality pipeline already uses strict gate (min). Extra 9 pairs lean casual. Moot for paper.\"}, \"verbosity\": {\"strict\": {\"n\": 65, \"bt\": 0.7845, \"ci\": [0.7076, 0.8537], \"p\": 0.0001}, \"direction_aware\": {\"n\": 86, \"bt\": 0.7732, \"ci\": [0.7034, 0.8429], \"p\": 0.0001}, \"extra_only\": {\"n\": 21, \"bt\": 0.7379}, \"delta\": -0.0113, \"delta_ci\": [-0.0564, 0.0296], \"significant\": false, \"note\": \"No systematic difference. Extra 21 pairs consistent with overall direction (73.8% vs 77.3%).\"}}, \"spec\": {\"command\": \"python gate_comparison_bt.py\", \"server\": \"westb-29275\", \"data_path\": \"data/ (formality + verbosity NLI outputs)\", \"data_count\": 200, \"model_name\": \"DeBERTa-v3-large (NLI) + choix (BT)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"csd_pipeline/gate_comparison_bt.py output\"}, \"completed_at\": \"2026-05-21T10:39:32.612Z\"}, \"exp-006\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:57:42.107Z\", \"updated_at\": \"2026-05-21T09:08:50.683Z\", \"metrics\": {\"n_total\": 400, \"nli_pass\": 355, \"nli_rate\": 0.888, \"bt\": {\"p_formal\": 0.675, \"ci\": [0.637, 0.713], \"ci_width_pp\": 7.6, \"p_value\": 0.0001}, \"likert\": {\"ate\": -0.059, \"p\": 0.5999, \"d\": -0.025, \"tie_rate\": 0.434, \"mean_formal\": 6.58, \"mean_casual\": 6.64}, \"gee\": {\"style_or\": 2.15, \"style_ci\": [1.46, 3.16], \"style_p\": 0.0001, \"orig_or\": 4.99, \"orig_ci\": [3.4, 7.34], \"orig_p\": 0.0001}, \"blindspot\": true, \"consistency\": 0.654, \"vs_n100\": {\"bt_delta\": \"+1.0pp (67.5 vs 66.5)\", \"ci_improvement\": \"2x narrower (7.6pp vs 15.4pp)\"}}, \"hypothesis\": \"Scaling formality counterfactual generation from 100 to 400 pairs enables cross-benchmark validation (AlpacaEval/MT-Bench) and increases statistical power for detecting smaller effect sizes\", \"spec\": {\"command\": \"counterfactual_gen.py --axis formality --n 400 via vLLM Qwen3-32B tp=1 port 8002\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/scaled_formality_input.jsonl\", \"data_count\": 400, \"model_name\": \"Qwen3-32B (counterfactual generator via vLLM)\", \"seed\": 42, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/counterfactuals_scaled_formality.jsonl\", \"log_path\": \"/root/causal_style_decomp_judge/logs/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T07:45:18.441Z\"}, \"alpacaeval_verbosity_qwen32b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T09:02:00.454Z\", \"updated_at\": \"2026-05-21T09:02:30.481Z\", \"hypothesis\": \"Qwen3-32B shows verbosity Blindspot on AlpacaEval benchmark (pairwise detects verbosity bias that Likert misses), extending verbosity findings to a second benchmark\", \"metrics\": {\"bt\": {\"p_verbose\": 0.841, \"ci\": [0.774, 0.902], \"p_value\": 0.0001}, \"likert\": {\"ate\": 0.732, \"p\": 0.0003, \"d\": 0.375, \"tie_rate\": 0.244, \"mean_verbose\": 7.32, \"mean_concise\": 6.59}, \"gee\": {\"style_or\": 28.64, \"style_ci\": [9.16, 89.56], \"style_p\": 0.0001, \"orig_or\": 0.18, \"orig_ci\": [0.06, 0.54], \"orig_p\": 0.0024}, \"blindspot\": false, \"n_pairs\": 82, \"consistency\": 0.829, \"note\": \"NOT Blindspot: Likert p=0.0003 also significant. Effect is so strong (d=0.375) that even Likert detects it. GEE Style OR=28.64 is massive.\"}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python alpacaeval_qwen32b_scoring.py --axis verbosity\", \"server\": \"westb-29275\", \"data_path\": \"data/counterfactuals_alpacaeval_verbosity.jsonl\", \"data_count\": 82, \"model_name\": \"Qwen3-32B\", \"seed\": 42, \"checkpoint_path\": \"N/A (API scoring via local vLLM)\", \"log_path\": \"data/alpacaeval_verbosity_qwen32b_results.json\"}, \"completed_at\": \"2026-05-21T09:02:30.481Z\"}, \"correction_poc\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T09:00:50.949Z\", \"updated_at\": \"2026-05-21T09:01:23.388Z\", \"hypothesis\": \"Explicit style-awareness debiasing instructions in judge prompts can eliminate or substantially reduce formality style bias, providing a simple correction mechanism (C4 claim test)\", \"spec\": {\"command\": \"python correction_poc.py\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_formality.jsonl\", \"data_count\": 88, \"model_name\": \"Qwen3-32B + GPT-4o\", \"seed\": 42, \"checkpoint_path\": \"N/A (API scoring)\", \"log_path\": \"data/pairwise_results_debiased_qwen32b_formality.jsonl + data/pairwise_results_debiased_gpt4o_formality.jsonl\"}, \"conclusion\": \"negative\", \"metrics\": {\"qwen32b\": {\"original\": {\"p_formal\": 0.665, \"ci\": [0.585, 0.739], \"p_value\": 0.0001}, \"debiased\": {\"p_formal\": 0.608, \"ci\": [0.534, 0.682], \"p_value\": 0.0023}, \"reduction_pp\": 5.7, \"reduction_pct\": 34.5}, \"gpt4o\": {\"original\": {\"p_formal\": 0.63, \"ci\": [0.557, 0.703], \"p_value\": 0.0004}, \"debiased\": {\"p_formal\": 0.626, \"ci\": [0.559, 0.693], \"p_value\": 0.0001}, \"reduction_pp\": 0.4, \"reduction_pct\": 3.1, \"neither_count\": 5}, \"conclusion\": \"Debiased prompt ineffective. Qwen3-32B: -5.7pp but still p=0.002. GPT-4o: -0.4pp, no change. Style bias persists despite explicit debiasing instructions.\"}, \"completed_at\": \"2026-05-21T09:01:23.388Z\"}, \"claude_verbosity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:47:10.568Z\", \"updated_at\": \"2026-05-21T08:58:22.005Z\", \"hypothesis\": \"Claude Sonnet 4 shows verbosity style bias similar to GPT-4o (OR=10-13) and Qwen3-32B, confirming verbosity bias is model-independent\", \"conclusion\": \"negative\", \"metrics\": {\"bt\": {\"p_verbose\": 0.541, \"ci\": [0.459, 0.616], \"p_value\": 0.284}, \"likert\": {\"ate\": -0.081, \"p\": 0.7427, \"d\": -0.039, \"tie_rate\": 0.674}, \"gee\": {\"style_or\": 1.52, \"style_p\": 0.2858, \"orig_or\": 0.8, \"orig_p\": 0.5626}, \"blindspot\": false, \"n_pairs\": 86}, \"spec\": {\"command\": \"python claude_judge_scoring.py --axis verbosity\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_verbosity.jsonl\", \"data_count\": 86, \"model_name\": \"claude-sonnet-4-20250514\", \"seed\": 42, \"checkpoint_path\": \"N/A (API scoring)\", \"log_path\": \"data/claude_verbosity_results.json\"}, \"completed_at\": \"2026-05-21T08:58:22.005Z\"}, \"claude_formality\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:47:10.069Z\", \"updated_at\": \"2026-05-21T08:58:20.986Z\", \"hypothesis\": \"Claude Sonnet 4 shows similar formality style bias as GPT-4o and Qwen3-32B, with pairwise detecting bias that Likert misses, confirming Blindspot is cross-model\", \"conclusion\": \"negative\", \"metrics\": {\"bt\": {\"p_formal\": 0.562, \"ci\": [0.489, 0.636], \"p_value\": 0.0912}, \"likert\": {\"ate\": -0.045, \"p\": 0.7207, \"d\": -0.021, \"tie_rate\": 0.682}, \"gee\": {\"style_or\": 1.47, \"style_p\": 0.2757, \"orig_or\": 6.66, \"orig_p\": 0.0001}, \"blindspot\": false, \"n_pairs\": 88}, \"spec\": {\"command\": \"python claude_judge_scoring.py --axis formality\", \"server\": \"westb-29275\", \"data_path\": \"data/verified_formality.jsonl\", \"data_count\": 88, \"model_name\": \"claude-sonnet-4-20250514\", \"seed\": 42, \"checkpoint_path\": \"N/A (API scoring)\", \"log_path\": \"data/claude_formality_results.json\"}, \"completed_at\": \"2026-05-21T08:58:20.986Z\"}, \"gpt4o_alpacaeval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:47:11.684Z\", \"updated_at\": \"2026-05-21T08:58:20.046Z\", \"hypothesis\": \"GPT-4o shows formality Blindspot on AlpacaEval benchmark (pairwise detects bias, Likert misses it), confirming cross-benchmark generalizability\", \"metrics\": {\"bt\": {\"p_formal\": 0.727, \"ci\": [0.663, 0.785], \"p_value\": 0.0001}, \"likert\": {\"ate\": 0.128, \"p\": 0.1704, \"d\": 0.148, \"tie_rate\": 0.663}, \"gee\": {\"style_or\": 4.91, \"style_p\": 0.0001, \"orig_or\": 1.99, \"orig_p\": 0.0356}, \"blindspot\": true, \"n_pairs\": 86}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python gpt4o_crossbenchmark_scoring.py --benchmark alpacaeval\", \"server\": \"westb-29275\", \"data_path\": \"data/counterfactuals_alpacaeval_formality.jsonl\", \"data_count\": 86, \"model_name\": \"gpt-4o\", \"seed\": 42, \"checkpoint_path\": \"N/A (API scoring)\", \"log_path\": \"data/gpt4o_alpacaeval_formality_results.json\"}, \"completed_at\": \"2026-05-21T08:58:20.046Z\"}, \"gpt4o_mtbench\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:47:12.182Z\", \"updated_at\": \"2026-05-21T08:58:18.609Z\", \"hypothesis\": \"GPT-4o shows formality Blindspot on MT-Bench benchmark, confirming cross-benchmark generalizability beyond LLMBar and AlpacaEval\", \"metrics\": {\"bt\": {\"p_formal\": 0.692, \"ci\": [0.623, 0.753], \"p_value\": 0.0001}, \"likert\": {\"ate\": 0.164, \"p\": 0.0163, \"d\": 0.167, \"tie_rate\": 0.699}, \"gee\": {\"style_or\": 2.28, \"style_p\": 0.1055, \"orig_or\": 6.24, \"orig_p\": 0.0005}, \"blindspot\": false, \"n_pairs\": 73, \"note\": \"Likert also significant p=0.016 but d=0.167 small; BT much stronger p<0.0001. NOT Blindspot because Likert is also significant.\"}, \"conclusion\": \"success\", \"spec\": {\"command\": \"python gpt4o_crossbenchmark_scoring.py --benchmark mtbench\", \"server\": \"westb-29275\", \"data_path\": \"data/counterfactuals_mtbench_formality.jsonl\", \"data_count\": 73, \"model_name\": \"gpt-4o\", \"seed\": 42, \"checkpoint_path\": \"N/A (API scoring)\", \"log_path\": \"data/gpt4o_mtbench_formality_results.json\"}, \"completed_at\": \"2026-05-21T08:58:18.609Z\"}, \"qwen32b_register\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:24:08.776Z\", \"updated_at\": \"2026-05-21T05:56:18.529Z\", \"hypothesis\": \"Qwen3-32B judge shows register (academic/conversational) bias in pairwise comparison while Likert fails to detect it, extending Blindspot to a third style axis\", \"spec\": {\"command\": \"pairwise_scoring.py + judge_scoring.py via vLLM Qwen3-32B local (tp=2, port 8000)\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_register.jsonl\", \"data_count\": 94, \"model_name\": \"Qwen3-32B (local judge via vLLM)\", \"seed\": 42, \"checkpoint_path\": \"data/pairwise_results_qwen32b_register.jsonl\", \"log_path\": \"data/scored_qwen32b_register.jsonl\"}, \"conclusion\": \"success\", \"metrics\": {\"pairwise\": {\"consistency_rate\": 0.6, \"academic_win_rate\": 0.593, \"sign_test_p\": 0.22, \"wilson_ci\": [0.46, 0.713]}, \"likert\": {\"ate\": 0.074, \"p\": 0.505, \"cohens_d\": 0.069, \"tie_rate\": 0.638}, \"direction\": {\"academic_to_conv_orig_pref\": 0.893, \"academic_to_conv_p\": 2.7e-05, \"conv_to_academic_orig_pref\": 0.312, \"conv_to_academic_p\": 0.05}, \"blindspot_confirmed\": false, \"bt\": {\"p_academic_wins\": 0.553, \"bootstrap_ci\": [0.479, 0.628], \"bootstrap_p\": 0.0763, \"bootstrap_method\": \"pair-level (10000 iterations, seed=42)\", \"n_pairs\": 94, \"n_comparisons\": 188}, \"gee_decomposition\": {\"academic_or\": 1.9053, \"academic_ci\": [1.01, 3.58], \"academic_p\": 0.0455, \"originality_or\": 5.7181, \"originality_p\": 0.0001, \"note\": \"Register significant after controlling for originality bias (OR=1.91 p=0.046). Originality dominant (OR=5.72).\"}, \"status_note\": \"BT P(academic)=55.3% [47.9%, 62.8%] p=0.076 (NS). GEE academic OR=1.91 p=0.046 (significant after controlling originality). Originality dominant.\"}, \"completed_at\": \"2026-05-21T04:39:54.506Z\"}, \"gpt4o_register\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:28:11.858Z\", \"updated_at\": \"2026-05-21T05:33:18.995Z\", \"hypothesis\": \"GPT-4o judge shows register (academic/conversational) bias detectable via pairwise but not Likert, extending Blindspot to register axis with GPT-4o and enabling cross-model GEE decomposition comparison\", \"spec\": {\"command\": \"pairwise_scoring.py + judge_scoring.py via GPT-4o OpenRouter API\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_register.jsonl\", \"data_count\": 100, \"model_name\": \"GPT-4o (OpenRouter via http://47.94.22.126/v1)\", \"seed\": 42, \"checkpoint_path\": \"data/pairwise_results_gpt4o_register.jsonl\", \"log_path\": \"data/scored_gpt4o_register.jsonl\"}, \"conclusion\": \"success\", \"metrics\": {\"pairwise\": {\"academic_win_rate\": 0.633, \"sign_test_p\": 0.085}, \"likert\": {\"ate\": 0, \"p_wilcoxon\": 0.7849, \"cohens_d\": 0, \"tie_rate\": 0.6489}, \"bt\": {\"p_academic_wins\": 0.5699, \"bootstrap_ci\": [0.5, 0.6398], \"bootstrap_p\": 0.04, \"bootstrap_method\": \"pair-level (10000 iterations, seed=42)\"}, \"gee_decomposition\": {\"academic_or\": 1.8759, \"academic_p\": 0.0285, \"originality_or\": 2.2098, \"originality_p\": 0.0058, \"note\": \"Style marginally significant (OR=1.88 p=0.03), originality stronger (OR=2.21 p=0.006). Pattern consistent with Qwen3-32B register.\"}, \"blindspot_confirmed\": true, \"status_note\": \"BT P(academic)=57.0% [50.0%, 64.0%] p=0.04; Likert ATE=0 p=0.78 (Blindspot confirmed). GEE academic OR=1.88 p=0.03, orig OR=2.21 p=0.006.\"}, \"completed_at\": \"2026-05-21T05:29:01.095Z\"}, \"gpt4o_verbosity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:28:11.348Z\", \"updated_at\": \"2026-05-21T05:33:15.238Z\", \"hypothesis\": \"GPT-4o judge shows verbosity bias in pairwise comparison while Likert fails to detect it, extending Blindspot confirmation to GPT-4o × verbosity cell and enabling cross-model comparison with Qwen3-32B\", \"spec\": {\"command\": \"pairwise_scoring.py + judge_scoring.py via GPT-4o OpenRouter API\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_verbosity.jsonl\", \"data_count\": 100, \"model_name\": \"GPT-4o (OpenRouter via http://47.94.22.126/v1)\", \"seed\": 42, \"checkpoint_path\": \"data/pairwise_results_gpt4o_verbosity.jsonl\", \"log_path\": \"data/scored_gpt4o_verbosity.jsonl\"}, \"conclusion\": \"success\", \"metrics\": {\"pairwise\": {\"verbose_win_rate\": 0.863, \"sign_test_p\": 1e-06, \"wilson_ci\": [0.766, 0.924]}, \"likert\": {\"ate\": 0.1163, \"p_wilcoxon\": 0.4033, \"cohens_d\": 0.078, \"tie_rate\": 0.5814}, \"bt\": {\"p_verbose_wins\": 0.7602, \"bootstrap_ci\": [0.6881, 0.8283], \"bootstrap_p\": 0.0001, \"bootstrap_method\": \"pair-level (10000 iterations, seed=42)\"}, \"gee_decomposition\": {\"verbose_or\": 10.9719, \"verbose_p\": 0.0001, \"originality_or\": 0.4373, \"originality_p\": 0.0514, \"note\": \"Pure style bias (OR=10.97 p<0.0001). Originality not significant and in opposite direction (OR=0.44).\"}, \"blindspot_confirmed\": true, \"status_note\": \"BT P(verbose)=76.0% [68.8%, 82.8%] p=0.0001; Likert ATE=+0.12 p=0.40 (Blindspot confirmed). GEE verbose OR=10.97 p<0.0001, orig OR=0.44 ns.\"}, \"completed_at\": \"2026-05-21T05:29:00.698Z\"}, \"qwen32b_verbosity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:24:03.744Z\", \"updated_at\": \"2026-05-21T05:06:43.883Z\", \"hypothesis\": \"Qwen3-32B judge shows verbosity bias in pairwise comparison (verbose win rate >60%, p<0.05) while Likert scoring fails to detect it, extending Blindspot finding to verbosity axis\", \"spec\": {\"command\": \"pairwise_scoring.py + judge_scoring.py via vLLM Qwen3-32B local (tp=2, port 8000)\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_verbosity.jsonl\", \"data_count\": 86, \"model_name\": \"Qwen3-32B (local judge via vLLM)\", \"seed\": 42, \"checkpoint_path\": \"data/pairwise_results_qwen32b_verbosity.jsonl\", \"log_path\": \"data/scored_qwen32b_verbosity.jsonl\"}, \"conclusion\": \"success\", \"metrics\": {\"pairwise\": {\"consistency_rate\": 0.74, \"verbose_win_rate\": 0.873, \"sign_test_p\": 1e-06, \"wilson_ci\": [0.769, 0.934]}, \"likert\": {\"ate\": -0.151, \"p\": 0.179, \"cohens_d\": -0.146, \"tie_rate\": 0.581}, \"direction\": {\"verbose_to_concise_orig_pref\": 0.806, \"verbose_to_concise_p\": 0.000878, \"concise_to_verbose_rewrite_pref\": 0.907, \"concise_to_verbose_p\": 1e-06}, \"note\": \"Strongest bias: 87.3% verbose win (p<10⁻⁶) but Likert p=0.179. Both directions prefer verbose content (not originality bias).\", \"blindspot_confirmed\": true, \"bt\": {\"p_verbose_wins\": 0.7732, \"bootstrap_ci\": [0.7034, 0.8429], \"bootstrap_p\": 0.0001, \"bootstrap_method\": \"pair-level (10000 iterations, seed=42)\"}, \"gee_decomposition\": {\"verbose_or\": 13.1, \"verbose_ci\": [5.62, 30.55], \"verbose_p\": 2.6e-09, \"originality_or\": 0.49, \"originality_ci\": [0.21, 1.14], \"originality_p\": 0.096, \"note\": \"Verbosity bias entirely style-driven (OR=13.10 p<10⁻⁹). Originality non-significant and in opposite direction (OR=0.49).\"}, \"status_note\": \"BT P(verbose)=77.3% [70.3%, 84.3%] p<0.0001; GEE verbose OR=13.10 p<10⁻⁹, originality OR=0.49 ns. Purest style bias across all cells.\"}, \"completed_at\": \"2026-05-21T04:39:53.961Z\"}, \"qwen32b_formality\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:24:01.452Z\", \"updated_at\": \"2026-05-21T04:43:06.759Z\", \"hypothesis\": \"Qwen3-32B as local judge will show similar formality bias pattern to GPT-4o (significant pairwise, non-significant Likert), confirming the Likert Blindspot is cross-model and not GPT-4o-specific\", \"spec\": {\"command\": \"pairwise_scoring.py + judge_scoring.py via vLLM Qwen3-32B local (tp=2, port 8000)\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_32b.jsonl\", \"data_count\": 88, \"model_name\": \"Qwen3-32B (local judge via vLLM)\", \"seed\": 42, \"checkpoint_path\": \"data/pairwise_results_qwen32b_formality.jsonl\", \"log_path\": \"data/scored_qwen32b_formality.jsonl\"}, \"conclusion\": \"success\", \"metrics\": {\"pairwise\": {\"consistency_rate\": 0.65, \"formal_win_rate\": 0.764, \"sign_test_p\": 0.000114, \"wilson_ci\": [0.637, 0.856]}, \"likert\": {\"ate\": 0.011, \"p\": 0.908, \"cohens_d\": 0.012, \"tie_rate\": 0.727}, \"direction\": {\"formal_to_casual_win\": 0.814, \"formal_to_casual_p\": 4.2e-05, \"casual_to_formal_win\": 0.5, \"casual_to_formal_p\": 1}, \"vs_gpt4o\": \"pairwise 76.4% vs 63.0% (stronger); Likert both non-sig (p=0.908 vs p=0.332)\", \"blindspot_confirmed\": true, \"bt\": {\"p_formal_wins\": 0.6647, \"bootstrap_ci\": [0.5852, 0.7386], \"bootstrap_p\": 0.0001, \"bootstrap_method\": \"pair-level (10000 iterations, seed=42)\"}, \"gee_decomposition\": {\"formal_or\": 4.2008, \"formal_p\": 0.0002, \"originality_or\": 4.7041, \"originality_p\": 0.0001, \"note\": \"Both effects strong and nearly equal magnitude; casual→formal at 50% confirms originality confound\"}, \"status_note\": \"BT P(formal)=66.5% [58.5%, 73.9%] p<0.0001; GEE formal OR=4.20 p=0.0002, originality OR=4.70 p<0.0001\"}, \"completed_at\": \"2026-05-21T04:39:53.009Z\"}, \"exp016_bradley_terry\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:32:58.075Z\", \"updated_at\": \"2026-05-21T03:29:34.811Z\", \"spec\": {\"command\": \"python csd_pipeline/exp016_bradley_terry.py\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\", \"data_count\": 197, \"model_name\": \"choix BT + bootstrap\", \"seed\": 42, \"checkpoint_path\": \"N/A (reanalysis)\", \"log_path\": \"csd_pipeline/exp016_bradley_terry.py\"}, \"hypothesis\": \"Bradley-Terry model on ALL pairwise data (no consistency filtering) will confirm formal preference is significant, validating the sign test result and showing the effect is robust to inclusion of position-inconsistent pairs\", \"metrics\": {\"primary_nli_filtered\": {\"n_pairs\": 88, \"n_comparisons\": 173, \"p_formal_wins\": 0.63, \"bootstrap_ci\": [0.5575, 0.7028], \"bootstrap_p\": 0.0004, \"bootstrap_method\": \"pair-level (2000 iterations, seed=42)\", \"ci_excludes_50\": true}, \"robustness_all_data\": {\"n_pairs\": 100, \"n_comparisons\": 197, \"p_formal_wins\": 0.6091, \"bootstrap_ci\": [0.5381, 0.6784], \"bootstrap_p\": 0.001, \"bootstrap_method\": \"pair-level (2000 iterations, seed=42)\", \"ci_excludes_50\": true}, \"comparison_level_reference\": {\"all_data_ci\": [0.5381, 0.6751], \"nli_filtered_ci\": [0.5607, 0.6994], \"note\": \"Pair-level CIs ~2-5% wider than comparison-level, conclusions unchanged\"}, \"comparison_to_sign_test\": \"BT NLI-filtered 63.0% [55.8-70.3%] p<0.001 vs sign test 69.1% [56.0-79.7%] p=0.006\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T02:33:14.569Z\"}, \"verbosity_32b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:20:44.306Z\", \"updated_at\": \"2026-05-21T03:21:39.924Z\", \"hypothesis\": \"Verbosity axis (verbose/concise) produces stronger style bias signal than formality in GPT-4o judge: pairwise win rate ≥60% with p<0.05 and/or Likert corrected ATE with d≥0.3, because verbose responses contain more surface-level detail that judges may conflate with thoroughness\", \"parent\": \"pairwise_32b\", \"spec\": {\"command\": \"counterfactual_gen --axis verbosity + content_verification + judge_scoring + pairwise_scoring + ate_analysis\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/counterfactuals_verbosity.jsonl\", \"data_count\": 100, \"model_name\": \"Qwen3-32B (counterfactual) + GPT-4o (judge)\", \"seed\": 42, \"checkpoint_source\": \"Qwen3-32B vLLM serve\", \"eval_data\": \"LLMBar adversarial 100 samples\"}, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/verified_verbosity.jsonl\", \"log_path\": \"/root/causal_style_decomp_judge/data/\", \"metrics\": {\"n\": 100, \"h1_nli_pass_rate\": 0.65, \"nli_mean\": 0.6544, \"bertscore_pass_rate\": 0.27, \"bertscore_mean\": 0.7522, \"both_pass\": 0.22, \"dr_nli_mean\": 0.4847, \"dr_bertscore_mean\": 0.7199, \"dr_pass_rate\": 0.04, \"stopped_at\": \"scoring\", \"stop_reason\": \"API 402 Insufficient balance\", \"v2_direction_aware_nli\": {\"nli_ge90\": 0.86, \"nli_ge80\": 0.86, \"nli_ge95\": 0.83, \"forward_n\": 46, \"forward_nli_mean\": 0.9476, \"backward_n\": 54, \"backward_nli_mean\": 0.8267, \"nli_only_pass_rate_at_090\": 0.86, \"h1_status\": \"PASS (86% >= 80%)\", \"pipeline_blocked_at\": \"scoring (API 402, D013 approved NLI-only gate)\"}, \"status_note\": \"H1 PASS (direction-aware NLI 86%). Scoring/H2 deferred to separate experiment when API available.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T21:13:31.070Z\"}, \"exp-016\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:30:50.899Z\", \"updated_at\": \"2026-05-21T03:21:32.758Z\", \"hypothesis\": \"Bradley-Terry model on all pairwise comparisons (without consistency filtering) will confirm formal style preference, validating the sign test result with a parametric approach\", \"spec\": {\"command\": \"python3 csd_pipeline/exp016_bradley_terry.py\", \"server\": \"westb-29275\", \"data_path\": \"data/pairwise_results_32b.jsonl\", \"data_count\": 100, \"model_name\": \"n/a\", \"seed\": 42}, \"metrics\": {\"DUPLICATE\": \"canonical entry is exp016_bradley_terry. This entry should be ignored.\"}, \"conclusion\": \"killed\", \"log_path\": \"csd_pipeline/exp016_bradley_terry.py\", \"checkpoint_path\": \"n/a\", \"completed_at\": \"2026-05-21T02:31:32.935Z\"}, \"exp-015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:30:49.225Z\", \"updated_at\": \"2026-05-21T03:21:31.803Z\", \"hypothesis\": \"Ordinal regression (CLMM proxy) on Likert scores will fail to detect formality style effect, confirming the Blindspot that pointwise scoring is insensitive to style bias\", \"spec\": {\"command\": \"python3 csd_pipeline/exp015_clmm_analysis.py\", \"server\": \"westb-29275\", \"data_path\": \"data/scored_32b.jsonl\", \"data_count\": 88, \"model_name\": \"n/a\", \"seed\": 0}, \"metrics\": {\"DUPLICATE\": \"canonical entry is exp015_clmm. This entry should be ignored.\"}, \"conclusion\": \"killed\", \"log_path\": \"csd_pipeline/exp015_clmm_analysis.py\", \"checkpoint_path\": \"n/a\", \"completed_at\": \"2026-05-21T02:31:32.630Z\"}, \"exp015_clmm\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:32:56.750Z\", \"updated_at\": \"2026-05-21T02:33:08.624Z\", \"spec\": {\"command\": \"python csd_pipeline/exp015_clmm_analysis.py\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/experiments/mvp_32b_ate/scored_32b.jsonl\", \"data_count\": 88, \"model_name\": \"statsmodels OrderedModel + GEE + scipy Wilcoxon\", \"seed\": 42, \"checkpoint_path\": \"N/A (reanalysis)\", \"log_path\": \"csd_pipeline/exp015_clmm_analysis.py\"}, \"hypothesis\": \"Ordinal regression (CLMM) respecting Likert measurement level will also fail to detect formality effect (p>0.05), confirming that the Likert Blindspot is not an artifact of treating ordinal data as continuous\", \"metrics\": {\"ordinal_regression\": {\"is_formal_coef\": -0.079, \"is_formal_p\": 0.769, \"is_formal_ci\": [-0.6, 0.45]}, \"gee_paired\": {\"is_formal_coef\": -0.084, \"is_formal_p\": 0.587, \"is_formal_ci\": [-0.39, 0.22]}, \"wilcoxon\": {\"p\": 0.905}, \"n_pairs\": 88, \"n_ties\": 55, \"tie_rate\": 0.625, \"conclusion_note\": \"All three methods (ordinal LR, GEE, Wilcoxon) confirm Likert Blindspot: p=0.77/0.59/0.91. 62.5% ties eliminate statistical power.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T02:33:08.624Z\"}, \"exp013_nli_validation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:01:55.339Z\", \"updated_at\": \"2026-05-21T01:13:48.712Z\", \"spec\": {\"command\": \"python exp013_nli_validation.py --data verified_32b.jsonl + counterfactuals_32b.jsonl --model Qwen3-32B via vLLM port 8001\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_32b.jsonl + counterfactuals_32b.jsonl\", \"data_count\": 100, \"model_name\": \"Qwen3-32B (LLM-as-annotator) + DeBERTa-v3-large (NLI gate)\", \"seed\": 42, \"checkpoint_path\": \"N/A (reanalysis)\", \"log_path\": \"csd_pipeline/exp013_nli_validation.py\"}, \"hypothesis\": \"NLI gate (DeBERTa-v3-large, threshold 0.90) decisions are reliable proxies for human content-preservation judgments, achieving Cohen's kappa >= 0.6 with LLM-as-annotator (Qwen3-32B)\", \"metrics\": {\"cohens_kappa\": 0.4304, \"pabak\": 0.82, \"gwet_ac1\": 0.8934, \"agreement_rate\": 0.91, \"n_samples\": 100, \"n_nli_pass\": 88, \"n_nli_fail\": 12, \"precision\": 0.989, \"recall\": 0.916, \"confusion_matrix\": {\"nli_pass_llm_yes\": 87, \"nli_pass_llm_no\": 1, \"nli_fail_llm_yes\": 8, \"nli_fail_llm_no\": 4}, \"direction_bias\": {\"overall_f2c_ratio\": 0.59, \"nli_fail_f2c_ratio\": 0.75, \"fn_f2c_ratio\": 0.75, \"fisher_or\": 0.44, \"fisher_p\": 0.35, \"binomial_fn_p\": 0.295, \"conclusion\": \"not significant (all p>0.20, n=8/12 too small)\"}, \"kappa_paradox_note\": \"kappa=0.43 vs PABAK=0.82 vs AC1=0.89 — classic prevalence paradox (Feinstein & Cicchetti 1990, Gwet 2008). Base rate 88:12 skew depresses kappa despite 91% raw agreement.\", \"interpretation\": \"NLI gate is precision-oriented conservative filter. AC1=0.89 confirms strong agreement. No significant direction bias in FN.\", \"method\": \"LLM-as-annotator validation (Qwen3-32B)\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T01:02:07.941Z\"}, \"exp-013\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T00:59:40.588Z\", \"updated_at\": \"2026-05-21T01:05:22.718Z\", \"hypothesis\": \"NLI gate (DeBERTa-v3-large, threshold 0.90) decisions are reliable proxies for human content-preservation judgments, achieving Cohen's kappa >= 0.6 with LLM-as-annotator (Qwen3-32B)\", \"spec\": {\"command\": \"python csd_pipeline/exp013_nli_validation.py --port 8001\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_32b.jsonl\", \"data_count\": 100, \"model_name\": \"Qwen3-32B (LLM-as-annotator) + DeBERTa-v3-large (NLI gate)\", \"seed\": 0}, \"checkpoint_path\": \"/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp013_nli_validation.csv\", \"log_path\": \"/tmp/exp013.log\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-21T01:00:22.508Z\", \"metrics\": {\"DUPLICATE\": \"canonical entry is exp013_nli_validation. This entry should be ignored.\"}}, \"register_pilot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T00:14:47.268Z\", \"updated_at\": \"2026-05-21T00:19:42.234Z\", \"hypothesis\": \"Register axis (academic/conversational) RATE counterfactuals preserve content (NLI+BERTScore pass rate ≥80%) and register is independent from formality (agreement ≤95%), making it a viable third axis alongside formality and verbosity\", \"metrics\": {\"n_samples\": 20, \"cf_pass_rate_joint\": 0.2, \"cf_pass_rate_nli_only\": 0.95, \"cf_pass_rate_bs_only\": 0.2, \"nli_cf_mean\": \"high (19/20 ≥ 0.90)\", \"bertscore_cf_mean\": 0.8458, \"bertscore_threshold\": 0.92, \"register_formality_agreement\": 0.5, \"bs_sweep_0.80\": 0.75, \"bs_sweep_0.84\": 0.6, \"bs_sweep_0.88\": 0.4, \"bs_sweep_0.92\": 0.2, \"conclusion_note\": \"FAIL with joint gate (20%), PASS with NLI-only (95%). BERTScore sole bottleneck. Register-Formality 50% = orthogonal.\"}, \"spec\": {\"checkpoint_path\": \"N/A (pilot)\", \"log_path\": \"logs/workers/worker_ops_register_pilot_20260520T233206.log\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T00:19:42.234Z\"}, \"exp014_logistic_decomposition\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:56:26.706Z\", \"updated_at\": \"2026-05-21T00:19:41.292Z\", \"hypothesis\": \"The observed 69.1% formal win rate in pairwise comparison is primarily driven by original-preference bias rather than genuine formality effect, and logistic regression decomposition will show formality coefficient is non-significant after controlling for original preference\", \"metrics\": {\"method_note\": \"CORRECTED: pair-level bootstrap + GEE (fixes independence violation)\", \"pair_bootstrap\": {\"formal_effect_coef\": 0.7928, \"formal_effect_OR\": 2.2095, \"formal_effect_OR_ci\": [1.228, 4.305], \"formal_effect_p\": 0.0121, \"original_effect_coef\": 0.5958, \"original_effect_OR\": 1.8145, \"original_effect_OR_ci\": [0.976, 3.369], \"original_effect_p\": 0.0643}, \"gee_exchangeable\": {\"formal_effect_coef\": 0.7931, \"formal_effect_OR\": 2.2103, \"formal_effect_OR_ci\": [1.21, 4.038], \"formal_effect_p\": 0.0099, \"original_effect_coef\": 0.5973, \"original_effect_OR\": 1.8172, \"original_effect_OR_ci\": [0.995, 3.319], \"original_effect_p\": 0.052}, \"direction_subset\": {\"formal_to_casual_win_rate\": 0.788, \"formal_to_casual_p\": 0.001319, \"casual_to_formal_win_rate\": 0.545, \"casual_to_formal_p\": 0.831812}, \"intercept_position_bias\": -0.5851, \"n_pairs\": 98, \"n_observations\": 196, \"old_observation_bootstrap_note\": \"SUPERSEDED: old p=0.011/0.048 used observation-level bootstrap, understated SE\"}, \"spec\": {\"checkpoint_path\": \"N/A (reanalysis)\", \"log_path\": \"artifacts/csd_pipeline/exp014_logistic_decomposition.py\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T00:19:41.292Z\"}, \"exp012_consistency_bias\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:56:26.226Z\", \"updated_at\": \"2026-05-21T00:19:40.352Z\", \"hypothesis\": \"The consistency filter (discarding 43% of pairs) introduces systematic selection bias by preferentially retaining pairs with higher NLI/BERTScore or different text characteristics, biasing downstream analysis\", \"metrics\": {\"consistent_n\": 55, \"inconsistent_n\": 43, \"consistency_rate\": 0.561, \"nli_mwu_p\": 0.824, \"bertscore_mwu_p\": 0.12, \"orig_length_mwu_p\": 0.137, \"length_diff_mwu_p\": 0.715, \"nli_ks_p\": 0.68, \"conclusion_note\": \"No systematic bias detected in consistency filter (all p>0.12)\"}, \"spec\": {\"checkpoint_path\": \"N/A (reanalysis)\", \"log_path\": \"artifacts/csd_pipeline/exp012_consistency_bias.py\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T00:19:40.352Z\"}, \"exp011_nli_sensitivity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:56:25.254Z\", \"updated_at\": \"2026-05-21T00:19:39.371Z\", \"hypothesis\": \"The 0.90 NLI threshold is on a cliff edge where small changes dramatically affect pass rate and downstream pairwise results, making our findings threshold-dependent rather than robust\", \"metrics\": {\"formality_pass_rate_0.70\": 0.89, \"formality_pass_rate_0.90\": 0.88, \"formality_pass_rate_0.95\": 0.85, \"pw_win_rate_0.70\": 0.723, \"pw_win_rate_0.90\": 0.739, \"pw_p_0.70\": 0.0031, \"pw_p_0.90\": 0.0016, \"nli_mean\": 0.8956, \"nli_std\": 0.2792, \"tone_pass_rate_0.70\": 0.65, \"conclusion_note\": \"NLI bimodal distribution, 0.90 NOT on cliff edge, pairwise results robust across all thresholds\"}, \"spec\": {\"checkpoint_path\": \"N/A (reanalysis)\", \"log_path\": \"artifacts/csd_pipeline/exp011_nli_sensitivity.py\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T00:19:39.371Z\"}, \"exp010_binarized_likert\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:46:24.180Z\", \"updated_at\": \"2026-05-20T23:46:47.575Z\", \"hypothesis\": \"Likert-vs-Pairwise sensitivity gap is due to measurement structure (forced choice eliminates ties) not statistical test choice; binarized Likert with sign test will remain non-significant (p>0.05) while pairwise sign test is significant (p=0.006), because 1-10 integer Likert produces excessive ties that mask the signal\", \"parent\": \"pairwise_32b\", \"conclusion\": \"success\", \"spec\": {\"command\": \"exp010_binarized_likert.py --input-file data/scored_32b.jsonl --axis formality\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/scored_32b.jsonl\", \"data_count\": 100, \"model_name\": \"reanalysis (no model)\", \"seed\": 42, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/exp010_results/exp010_binarized_likert.csv\", \"log_path\": \"/root/causal_style_decomp_judge/data/exp010_results/\"}, \"completed_at\": \"2026-05-20T23:46:47.575Z\"}, \"tone_pilot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:28:10.374Z\", \"updated_at\": \"2026-05-20T23:28:38.580Z\", \"hypothesis\": \"Tone axis (assertive/hedging) RATE counterfactuals preserve content (NLI+BERTScore pass rate ≥80%) because tone changes only modify epistemic hedging markers without altering factual claims, making it a viable third axis alongside formality\", \"parent\": \"pairwise_32b\", \"conclusion\": \"negative\", \"spec\": {\"command\": \"counterfactual_gen --axis tone (20 samples) + content_verification --axis tone\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/counterfactuals_tone_pilot.jsonl\", \"data_count\": 20, \"model_name\": \"Qwen3-32B (counterfactual) + deberta-v3-large (NLI)\", \"seed\": 42, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/verified_tone_pilot.jsonl\", \"log_path\": \"/root/causal_style_decomp_judge/data/\"}, \"completed_at\": \"2026-05-20T23:28:30.685Z\", \"metrics\": {\"n\": 20, \"detection_split\": {\"assertive\": 13, \"hedging\": 7}, \"nli_cf_pass_rate\": 0.65, \"bertscore_cf_pass_rate\": 0.6, \"both_pass_rate\": 0.45, \"nli_cf_mean\": 0.7039, \"nli_cf_std\": 0.4208, \"bertscore_cf_mean\": 0.9201, \"nli_dr_mean\": 0.8841, \"bertscore_dr_mean\": 0.9164, \"by_tone\": {\"assertive\": {\"n\": 13, \"both_pass\": 0.385, \"nli_cf_mean\": 0.6559}, \"hedging\": {\"n\": 7, \"both_pass\": 0.571, \"nli_cf_mean\": 0.793}}, \"failure_mode\": \"assertive→hedging changes epistemic commitment, NLI correctly detects non-entailment (6/20 catastrophic NLI<0.01)\"}}, \"pairwise_32b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:12:44.351Z\", \"updated_at\": \"2026-05-20T18:15:49.470Z\", \"hypothesis\": \"Likert 1-10 integer granularity masks a real formality preference in GPT-4o; position-controlled pairwise comparison (more sensitive measurement) reveals significant formal win rate >55% where Likert ATE was non-significant\", \"parent\": \"mvp_32b_ate\", \"spec\": {\"command\": \"python pairwise_scoring.py --input-file /root/causal_style_decomp_judge/data/verified_32b.jsonl --output-file /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl --model gpt-4o --base-url http://47.94.22.126/v1 --max-concurrent 5 --rate-limit 60\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/verified_32b.jsonl\", \"data_count\": 100, \"model_name\": \"GPT-4o (judge, pairwise)\", \"seed\": 42, \"checkpoint_source\": \"32B counterfactuals from mvp_32b_ate\", \"eval_data\": \"LLMBar adversarial 100 samples with 32B RATE counterfactuals\"}, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\", \"log_path\": \"/root/causal_style_decomp_judge/data/\", \"metrics\": {\"n_total\": 100, \"n_valid_both_trials\": 98, \"n_consistent\": 55, \"n_ties_inconsistent\": 43, \"consistency_rate\": 0.5612, \"formal_wins\": 38, \"casual_wins\": 17, \"formal_win_rate\": 0.6909, \"wilson_ci_lo\": 0.5597, \"wilson_ci_hi\": 0.7972, \"sign_test_p\": 0.006456, \"position_bias_trial1_A\": 0.5306, \"position_bias_trial2_A\": 0.551, \"position_bias_overall_A\": 0.5408, \"dir_formal_orig_n\": 33, \"dir_formal_orig_formal_wins\": 26, \"dir_formal_orig_win_rate\": 0.7879, \"dir_formal_orig_p\": 0.001145, \"dir_casual_orig_n\": 22, \"dir_casual_orig_formal_wins\": 12, \"dir_casual_orig_win_rate\": 0.5455, \"dir_casual_orig_p\": 0.8318, \"nli_ge90_n\": 46, \"nli_ge90_formal_wins\": 34, \"nli_ge90_win_rate\": 0.7391, \"nli_ge90_p\": 0.001537}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T18:15:49.470Z\"}, \"mvp_32b_ate\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:29:57.801Z\", \"updated_at\": \"2026-05-20T17:30:35.462Z\", \"hypothesis\": \"Qwen3-32B (stronger instruction following than 8B) produces higher-fidelity RATE counterfactuals with lower rewrite bias, revealing significant formality premium (ATE>0.3, d>0.3) in GPT-4o judge scores that was masked by 8B rewrite noise\", \"parent\": \"mvp_8b_ate\", \"spec\": {\"command\": \"full 32B pipeline: counterfactual_gen + content_verification + judge_scoring + ate_analysis --sensitivity\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/scored_32b.jsonl\", \"data_count\": 100, \"model_name\": \"Qwen3-32B (counterfactual) + GPT-4o (judge)\", \"seed\": 42, \"checkpoint_source\": \"Qwen3-32B vLLM serve + GPT-4o judge\", \"eval_data\": \"LLMBar adversarial 100 samples\"}, \"conclusion\": \"negative\", \"metrics\": {\"n\": 100, \"n_primary\": 88, \"h1_nli_pass_rate\": 0.88, \"nli_mean\": 0.8956, \"raw_ate\": -0.1023, \"raw_se\": 0.149, \"raw_p\": 0.4944, \"raw_cohens_d\": -0.0731, \"rewrite_bias\": -0.2045, \"corrected_ate\": 0.1023, \"corrected_se\": 0.1048, \"corrected_p\": 0.3318, \"corrected_cohens_d\": 0.104, \"rate_ratio\": -1, \"dir_formal_to_casual_ate\": 0.14, \"dir_formal_to_casual_p\": 0.332, \"dir_casual_to_formal_ate\": 0.0526, \"dir_casual_to_formal_p\": 0.7365, \"sens2_corrected_ate\": 0.0959, \"sens2_corrected_p\": 0.3633, \"all_corrected_ate\": 0.1, \"all_corrected_p\": 0.2995}, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/ate_results_32b/\", \"log_path\": \"/root/causal_style_decomp_judge/data/\", \"completed_at\": \"2026-05-20T17:30:35.462Z\"}, \"mvp_8b_ate\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:43:38.410Z\", \"updated_at\": \"2026-05-20T14:44:21.033Z\", \"spec\": {\"command\": \"python artifacts/csd_pipeline/ate_analysis.py --input-file data/scored.jsonl --output-dir data/ --alpha 0.05\", \"server\": \"westb-29275\", \"data_path\": \"/root/causal_style_decomp_judge/data/scored.jsonl\", \"data_count\": 100, \"model_name\": \"Qwen3-8B (counterfactual) + GPT-4o (judge)\", \"seed\": 42, \"hypothesis\": \"Binary style counterfactuals (formality axis) via Qwen3-8B RATE double-rewrite reveal significant ATE in GPT-4o judge scores, with formal text receiving higher scores\"}, \"conclusion\": \"negative\", \"metrics\": {\"n\": 100, \"h1_nli_pass_rate\": 0.95, \"raw_ate\": -0.08, \"raw_se\": 0.1161, \"raw_p\": 0.4923, \"raw_cohens_d\": -0.0689, \"rewrite_bias\": -0.2, \"corrected_ate\": 0.12, \"corrected_se\": 0.1028, \"corrected_p\": 0.2458, \"corrected_cohens_d\": 0.1168, \"rate_ratio\": -1.5, \"dir_formal_to_casual_ate\": 0.0645, \"dir_formal_to_casual_p\": 0.5679, \"dir_casual_to_formal_ate\": 0.2105, \"dir_casual_to_formal_p\": 0.2997, \"strat_nli90_ate\": 0.1263, \"strat_nli90_p\": 0.2459, \"strat_nli90_n\": 95}, \"checkpoint_path\": \"/root/causal_style_decomp_judge/data/ate_summary.csv\", \"log_path\": \"/root/causal_style_decomp_judge/data/\", \"hypothesis\": \"Qwen3-8B RATE double-rewrite on formality axis produces content-preserving counterfactuals (NLI≥0.90) that reveal significant formality premium (ATE>0.3, d>0.3) in GPT-4o judge scores, indicating style bias independent of content quality\", \"completed_at\": \"2026-05-20T14:44:21.033Z\"}}, \"count\": 58, \"total\": 58, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.466}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ssh_read_only tool doesn't allow pipe characters or redirects. Let me fix the commands. Also, the registry output is too large, so I'll need to use an agent to parse it. Let me also fix my SSH commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "fc0b2b25-ac3e-4191-bbc8-6b264f3f867e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UstvtBYUHnT62FXF3uoJXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1733,
+      "cache_read_input_tokens": 34681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1733
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 22_
+
+Let me fix the SSH commands and parse the registry data in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "986efe9a-98ad-41c0-a7f8-a2e8538ba97a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UstvtBYUHnT62FXF3uoJXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1733,
+      "cache_read_input_tokens": 34681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1733
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019buiGTiTUkfPdmZhbV9yjc`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/ -maxdepth 3 -type f -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "41fdfc37-6b33-4ff1-a9c4-4259019f95b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UstvtBYUHnT62FXF3uoJXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1733,
+      "cache_read_input_tokens": 34681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1733
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TQnd8fevVNmpL6tUxHJRCN`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/ -maxdepth 3 -type f -name \"*.csv\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "2506ad7d-283b-427d-8af9-e8094c0e8410",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UstvtBYUHnT62FXF3uoJXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1733,
+      "cache_read_input_tokens": 34681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1733
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 25 · 2026-05-25T19:42:46.120Z_
+
+<details><summary>↩ Tool result · `toolu_019buiGTiTUkfPdmZhbV9yjc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/data/claude_tost_equivalence.json\\n/root/causal_style_decomp_judge/data/gpt4o_rewriter_formality_results.json\\n/root/causal_style_decomp_judge/data/bt_model_diagnostics.json\\n/root/causal_style_decomp_judge/data/originality_minimal_subset.json\\n/root/causal_style_decomp_judge/data/nli_gate_full_validation.json\\n/root/causal_style_decomp_judge/data/verbosity_7method_sensitivity.json\\n/root/causal_style_decomp_judge/data/nli_gate_ablation.json\\n/root/causal_style_decomp_judge/data/cross_axis_gradient.json\\n/root/causal_style_decomp_judge/data/double_rewrite_placebo_qwen32b.json\\n/root/causal_style_decomp_judge/data/double_rewrite_placebo_gpt4o.json\\n/root/causal_style_decomp_judge/data/cf_vs_dr_qwen32b.json\\n/root/causal_style_decomp_judge/data/cf_vs_dr_gpt4o.json\\n/root/causal_style_decomp_judge/data/placebo_raw_qwen32b_formality.json\\n/root/causal_style_decomp_judge/data/placebo_raw_qwen32b_verbosity.json\\n/root/causal_style_decomp_judge/data/placebo_raw_gpt4o_formality.json\\n/root/causal_style_decomp_judge/data/placebo_raw_gpt4o_verbosity.json\\n/root/causal_style_decomp_judge/data/placebo_bt_reanalysis.json\\n/root/causal_style_decomp_judge/data/bootstrap_attenuation.json\\n/root/causal_style_decomp_judge/data/nli_threshold_sweep.json\\n/root/causal_style_decomp_judge/data/debiased_verbosity_gpt4o_summary.json\\n/root/causal_style_decomp_judge/data/finegrained_likert_100pt.json\\n/root/causal_style_decomp_judge/data/llama70b_third_judge.json\\n/root/causal_style_decomp_judge/data/debiased_llama70b_summary.json\\n/root/causal_style_decomp_judge/data/gee_interaction_analysis.json\\n/root/causal_style_decomp_judge/data/llama70b_register_summary.json\\n/root/causal_style_decomp_judge/data/gemini_flash_fourth_judge.json\\n/root/causal_style_decomp_judge/data/gee_n355_results.json\\n/root/causal_style_decomp_judge/data/fk_length_control_results.json\\n/root/causal_style_decomp_judge/data/likert_100pt_multi_judge_results.json\\n/root/causal_style_decomp_judge/data/analysis_scaled_formality_llama70b.json\\n/root/causal_style_decomp_judge/data/llama_rewriter_formality_results.json\\n/root/causal_style_decomp_judge/data/llama70b_crossbench_summary.json\\n/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/nli_gate_gpt4o_spotcheck.json\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/tost_sensitivity.json\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/formality_wordcount_covariate.json\\n/root/causal_style_decomp_judge/artifacts/r13_fixes/nli_selection_bias.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/nli_selection_bias_extended.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/direction_aware_quality.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/construct_divergence_test.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gee_bug_report.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_pipeline_diagnosis.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_crossbench_results.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gpt4o_crossbench_results.json\\n/root/causal_style_decomp_judge/artifacts/r16_analysis/construct_divergence_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "2fd3abba-5faf-480e-adc3-e4052b32a883",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/data/claude_tost_equivalence.json\\\\n/root/causal_style_decomp_judge/data/gpt4o_rewriter_formality_results.json\\\\n/root/causal_style_decomp_judge/data/bt_model_diagnostics.json\\\\n/root/causal_style_decomp_judge/data/originality_minimal_subset.json\\\\n/root/causal_style_decomp_judge/data/nli_gate_full_validation.json\\\\n/root/causal_style_decomp_judge/data/verbosity_7method_sensitivity.json\\\\n/root/causal_style_decomp_judge/data/nli_gate_ablation.json\\\\n/root/causal_style_decomp_judge/data/cross_axis_gradient.json\\\\n/root/causal_style_decomp_judge/data/double_rewrite_placebo_qwen32b.json\\\\n/root/causal_style_decomp_judge/data/double_rewrite_placebo_gpt4o.json\\\\n/root/causal_style_decomp_judge/data/cf_vs_dr_qwen32b.json\\\\n/root/causal_style_decomp_judge/data/cf_vs_dr_gpt4o.json\\\\n/root/causal_style_decomp_judge/data/placebo_raw_qwen32b_formality.json\\\\n/root/causal_style_decomp_judge/data/placebo_raw_qwen32b_verbosity.json\\\\n/root/causal_style_decomp_judge/data/placebo_raw_gpt4o_formality.json\\\\n/root/causal_style_decomp_judge/data/placebo_raw_gpt4o_verbosity.json\\\\n/root/causal_style_decomp_judge/data/placebo_bt_reanalysis.json\\\\n/root/causal_style_decomp_judge/data/bootstrap_attenuation.json\\\\n/root/causal_style_decomp_judge/data/nli_threshold_sweep.json\\\\n/root/causal_style_decomp_judge/data/debiased_verbosity_gpt4o_summary.json\\\\n/root/causal_style_decomp_judge/data/finegrained_likert_100pt.json\\\\n/root/causal_style_decomp_judge/data/llama70b_third_judge.json\\\\n/root/causal_style_decomp_judge/data/debiased_llama70b_summary.json\\\\n/root/causal_style_decomp_judge/data/gee_interaction_analysis.json\\\\n/root/causal_style_decomp_judge/data/llama70b_register_summary.json\\\\n/root/causal_style_decomp_judge/data/gemini_flash_fourth_judge.json\\\\n/root/causal_style_decomp_judge/data/gee_n355_results.json\\\\n/root/causal_style_decomp_judge/data/fk_length_control_results.json\\\\n/root/causal_style_decomp_judge/data/likert_100pt_multi_judge_results.json\\\\n/root/causal_style_decomp_judge/data/analysis_scaled_formality_llama70b.json\\\\n/root/causal_style_decomp_judge/data/llama_rewriter_formality_results.json\\\\n/root/causal_style_decomp_judge/data/llama70b_crossbench_summary.json\\\\n/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/nli_gate_gpt4o_spotcheck.json\\\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/tost_sensitivity.json\\\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/formality_wordcount_covariate.json\\\\n/root/causal_style_decomp_judge/artifacts/r13_fixes/nli_selection_bias.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/nli_selection_bias_extended.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/direction_aware_quality.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/construct_divergence_test.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gee_bug_report.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_pipeline_diagnosis.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_crossbench_results.json\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gpt4o_crossbench_results.json\\\\n/root/causal_style_decomp_judge/artifacts/r16_analysis/construct_divergence_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/data/claude_tost_equivalence.json\\n/root/causal_style_decomp_judge/data/gpt4o_rewriter_formality_results.json\\n/root/causal_style_decomp_judge/data/bt_model_diagnostics.json\\n/root/causal_style_decomp_judge/data/originality_minimal_subset.json\\n/root/causal_style_decomp_judge/data/nli_gate_full_validation.json\\n/root/causal_style_decomp_judge/data/verbosity_7method_sensitivity.json\\n/root/causal_style_decomp_judge/data/nli_gate_ablation.json\\n/root/causal_style_decomp_judge/data/cross_axis_gradient.json\\n/root/causal_style_decomp_judge/data/double_rewrite_placebo_qwen32b.json\\n/root/causal_style_decomp_judge/data/double_rewrite_placebo_gpt4o.json\\n/root/causal_style_decomp_judge/data/cf_vs_dr_qwen32b.json\\n/root/causal_style_decomp_judge/data/cf_vs_dr_gpt4o.json\\n/root/causal_style_decomp_judge/data/placebo_raw_qwen32b_formality.json\\n/root/causal_style_decomp_judge/data/placebo_raw_qwen32b_verbosity.json\\n/root/causal_style_decomp_judge/data/placebo_raw_gpt4o_formality.json\\n/root/causal_style_decomp_judge/data/placebo_raw_gpt4o_verbosity.json\\n/root/causal_style_decomp_judge/data/placebo_bt_reanalysis.json\\n/root/causal_style_decomp_judge/data/bootstrap_attenuation.json\\n/root/causal_style_decomp_judge/data/nli_threshold_sweep.json\\n/root/causal_style_decomp_judge/data/debiased_verbosity_gpt4o_summary.json\\n/root/causal_style_decomp_judge/data/finegrained_likert_100pt.json\\n/root/causal_style_decomp_judge/data/llama70b_third_judge.json\\n/root/causal_style_decomp_judge/data/debiased_llama70b_summary.json\\n/root/causal_style_decomp_judge/data/gee_interaction_analysis.json\\n/root/causal_style_decomp_judge/data/llama70b_register_summary.json\\n/root/causal_style_decomp_judge/data/gemini_flash_fourth_judge.json\\n/root/causal_style_decomp_judge/data/gee_n355_results.json\\n/root/causal_style_decomp_judge/data/fk_length_control_results.json\\n/root/causal_style_decomp_judge/data/likert_100pt_multi_judge_results.json\\n/root/causal_style_decomp_judge/data/analysis_scaled_formality_llama70b.json\\n/root/causal_style_decomp_judge/data/llama_rewriter_formality_results.json\\n/root/causal_style_decomp_judge/data/llama70b_crossbench_summary.json\\n/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/nli_gate_gpt4o_spotcheck.json\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/tost_sensitivity.json\\n/root/causal_style_decomp_judge/artifacts/r12_fixes/formality_wordcount_covariate.json\\n/root/causal_style_decomp_judge/artifacts/r13_fixes/nli_selection_bias.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/nli_selection_bias_extended.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/direction_aware_quality.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/construct_divergence_test.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/cross_benchmark_local.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gee_bug_report.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_pipeline_diagnosis.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/claude_crossbench_results.json\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/gpt4o_crossbench_results.json\\n/root/causal_style_decomp_judge/artifacts/r16_analysis/construct_divergence_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018wNPd5RN3fjHW7tZJokFGQ`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/ -maxdepth 3 -type f -name \"*.yaml\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "d906364f-90a9-4eb3-9bc8-57f3410fffbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UstvtBYUHnT62FXF3uoJXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1733,
+      "cache_read_input_tokens": 34681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1733
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CGYBFc7eoguwd76gDEdWd3`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls -la /root/causal_style_decomp_judge/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "ca0e4bac-b2b2-442c-bd81-1f67e212678c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UstvtBYUHnT62FXF3uoJXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1733,
+      "cache_read_input_tokens": 34681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1733
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 28 · 2026-05-25T19:42:47.050Z_
+
+<details><summary>↩ Tool result · `toolu_01TQnd8fevVNmpL6tUxHJRCN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/data/ate_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results/ate_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_primary_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_sens1_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_sens2_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_all_summary.csv\\n/root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_summary.csv\\n/root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_detailed.csv\\n/root/causal_style_decomp_judge/data/exp010_results/exp010_binarized_likert.csv\\n/root/causal_style_decomp_judge/data/exp011_results/exp011_nli_sensitivity.csv\\n/root/causal_style_decomp_judge/data/pairwise_summary.csv\\n/root/causal_style_decomp_judge/data/pairwise_detailed.csv\\n/root/causal_style_decomp_judge/data/gpt4o_verbosity_analysis/pairwise_summary.csv\\n/root/causal_style_decomp_judge/data/gpt4o_verbosity_analysis/pairwise_detailed.csv\\n/root/causal_style_decomp_judge/data/gpt4o_register_analysis/pairwise_summary.csv\\n/root/causal_style_decomp_judge/data/gpt4o_register_analysis/pairwise_detailed.csv\\n/root/causal_style_decomp_judge/data/annotation_sheet_1.csv\\n/root/causal_style_decomp_judge/data/policy-1.csv\\n/root/causal_style_decomp_judge/data/policy-2.csv\\n/root/causal_style_decomp_judge/results/dry_run/ate_summary.csv\\n/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp014_logistic_decomposition.csv\\n/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp013_nli_validation.csv\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.csv\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_template.csv\\n/root/causal_style_decomp_judge/analysis/table1_verified.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "837ff2a6-99e1-4a25-b3a1-0338a66fe420",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/data/ate_summary.csv\\\\n/root/causal_style_decomp_judge/data/ate_results/ate_summary.csv\\\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_primary_summary.csv\\\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_sens1_summary.csv\\\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_sens2_summary.csv\\\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_all_summary.csv\\\\n/root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_summary.csv\\\\n/root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_detailed.csv\\\\n/root/causal_style_decomp_judge/data/exp010_results/exp010_binarized_likert.csv\\\\n/root/causal_style_decomp_judge/data/exp011_results/exp011_nli_sensitivity.csv\\\\n/root/causal_style_decomp_judge/data/pairwise_summary.csv\\\\n/root/causal_style_decomp_judge/data/pairwise_detailed.csv\\\\n/root/causal_style_decomp_judge/data/gpt4o_verbosity_analysis/pairwise_summary.csv\\\\n/root/causal_style_decomp_judge/data/gpt4o_verbosity_analysis/pairwise_detailed.csv\\\\n/root/causal_style_decomp_judge/data/gpt4o_register_analysis/pairwise_summary.csv\\\\n/root/causal_style_decomp_judge/data/gpt4o_register_analysis/pairwise_detailed.csv\\\\n/root/causal_style_decomp_judge/data/annotation_sheet_1.csv\\\\n/root/causal_style_decomp_judge/data/policy-1.csv\\\\n/root/causal_style_decomp_judge/data/policy-2.csv\\\\n/root/causal_style_decomp_judge/results/dry_run/ate_summary.csv\\\\n/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp014_logistic_decomposition.csv\\\\n/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp013_nli_validation.csv\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.csv\\\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_template.csv\\\\n/root/causal_style_decomp_judge/analysis/table1_verified.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/data/ate_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results/ate_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_primary_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_sens1_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_sens2_summary.csv\\n/root/causal_style_decomp_judge/data/ate_results_32b/ate_all_summary.csv\\n/root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_summary.csv\\n/root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_detailed.csv\\n/root/causal_style_decomp_judge/data/exp010_results/exp010_binarized_likert.csv\\n/root/causal_style_decomp_judge/data/exp011_results/exp011_nli_sensitivity.csv\\n/root/causal_style_decomp_judge/data/pairwise_summary.csv\\n/root/causal_style_decomp_judge/data/pairwise_detailed.csv\\n/root/causal_style_decomp_judge/data/gpt4o_verbosity_analysis/pairwise_summary.csv\\n/root/causal_style_decomp_judge/data/gpt4o_verbosity_analysis/pairwise_detailed.csv\\n/root/causal_style_decomp_judge/data/gpt4o_register_analysis/pairwise_summary.csv\\n/root/causal_style_decomp_judge/data/gpt4o_register_analysis/pairwise_detailed.csv\\n/root/causal_style_decomp_judge/data/annotation_sheet_1.csv\\n/root/causal_style_decomp_judge/data/policy-1.csv\\n/root/causal_style_decomp_judge/data/policy-2.csv\\n/root/causal_style_decomp_judge/results/dry_run/ate_summary.csv\\n/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp014_logistic_decomposition.csv\\n/root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp013_nli_validation.csv\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_samples.csv\\n/root/causal_style_decomp_judge/artifacts/r14_fixes/annotation_batch2_template.csv\\n/root/causal_style_decomp_judge/analysis/table1_verified.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0166GYYHshGkQDhABJKBvRYL`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls -la /root/causal_style_decomp_judge/figures/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "a4fbb227-95cf-4cfc-8905-b445088b91a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UstvtBYUHnT62FXF3uoJXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1733,
+      "cache_read_input_tokens": 34681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1733
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 30 · 2026-05-25T19:42:47.976Z_
+
+<details><summary>↩ Tool result · `toolu_018wNPd5RN3fjHW7tZJokFGQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "b3638728-cf4c-4b75-ad88-a827f9a216e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VxJMYvtY51hG8KvRefynd5`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls -R /root/causal_style_decomp_judge/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "7fb3b598-c3da-462e-b446-f18f34a4e728",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UstvtBYUHnT62FXF3uoJXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1733,
+      "cache_read_input_tokens": 34681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1733
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 32 · 2026-05-25T19:42:48.905Z_
+
+<details><summary>↩ Tool result · `toolu_01CGYBFc7eoguwd76gDEdWd3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  3 root root   29 May 20 19:25 .\\ndrwxr-xr-x 10 root root 4096 May 24 13:19 ..\\ndrwxr-xr-x  2 root root   88 May 20 19:26 dry_run\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "e23e96c3-c1d1-440c-9e3a-dd7f424417ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  3 root root   29 May 20 19:25 .\\\\ndrwxr-xr-x 10 root root 4096 May 24 13:19 ..\\\\ndrwxr-xr-x  2 root root   88 May 20 19:26 dry_run\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  3 root root   29 May 20 19:25 .\\ndrwxr-xr-x 10 root root 4096 May 24 13:19 ..\\ndrwxr-xr-x  2 root root   88 May 20 19:26 dry_run\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 33 · 2026-05-25T19:42:49.839Z_
+
+<details><summary>↩ Tool result · `toolu_0166GYYHshGkQDhABJKBvRYL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/causal_style_decomp_judge/figures/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "31a69583-bc95-417c-80e6-dd3d13b1cd95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/causal_style_decomp_judge/figures/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/causal_style_decomp_judge/figures/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 34 · 2026-05-25T19:42:50.766Z_
+
+<details><summary>↩ Tool result · `toolu_01VxJMYvtY51hG8KvRefynd5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/analysis/:\\nanalyze_llama_llmbar_subset.py\\nanalyze_llama_rewriter_formality.py\\nanalyze_scaled_formality_llama70b.py\\ncompute_table1_likert.py\\nllama70b_crossbench_scoring.py\\ntable1_verified.csv\\nverify_table_corrections.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "3392d129-7efb-4ed3-bb0e-94eb07e2c926",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/analysis/:\\\\nanalyze_llama_llmbar_subset.py\\\\nanalyze_llama_rewriter_formality.py\\\\nanalyze_scaled_formality_llama70b.py\\\\ncompute_table1_likert.py\\\\nllama70b_crossbench_scoring.py\\\\ntable1_verified.csv\\\\nverify_table_corrections.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/analysis/:\\nanalyze_llama_llmbar_subset.py\\nanalyze_llama_rewriter_formality.py\\nanalyze_scaled_formality_llama70b.py\\ncompute_table1_likert.py\\nllama70b_crossbench_scoring.py\\ntable1_verified.csv\\nverify_table_corrections.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01E5epTckYXw13opHj1s9NRa`</summary>
+
+```json
+{
+  "description": "Parse registry JSON data",
+  "prompt": "Parse the experiment registry JSON at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt\n\nThis file has schema: {result: string}. The \"result\" field is itself a JSON string that needs to be parsed.\n\nI need ALL experiment entries with their metrics. For each experiment, extract:\n- exp_id\n- name/description\n- status\n- metrics (all of them - especially BT win probabilities, p-values, Cohen's d, GEE ORs, etc.)\n- conclusion\n\nReport ALL experiments and ALL their metrics verbatim. Do not summarize or skip any. This is for a data audit so completeness is critical.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "c0546c8f-64d5-4558-a861-ed9ca1e86f2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UstvtBYUHnT62FXF3uoJXa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1733,
+      "cache_read_input_tokens": 34681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1733
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 36_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Parse registry JSON data",
+  "task_type": "local_agent",
+  "prompt": "Parse the experiment registry JSON at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt\n\nThis file has schema: {result: string}. The \"result\" field is itself a JSON string that needs to be parsed.\n\nI need ALL experiment entries with their metrics. For each experiment, extract:\n- exp_id\n- name/description\n- status\n- metrics (all of them - especially BT win probabilities, p-values, Cohen's d, GEE ORs, etc.)\n- conclusion\n\nReport ALL experiments and ALL their metrics verbatim. Do not summarize or skip any. This is for a data audit so completeness is critical.",
+  "uuid": "0b6ecaf9-0766-4f5c-93f2-c13b4fc32229",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+## Round 1
+
+## Round 1
+
+141 recorded events
+
+
+### User
+
+_source line 37 · 2026-05-25T19:42:52.875Z_
+
+Parse the experiment registry JSON at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt
+
+This file has schema: {result: string}. The "result" field is itself a JSON string that needs to be parsed.
+
+I need ALL experiment entries with their metrics. For each experiment, extract:
+- exp_id
+- name/description
+- status
+- metrics (all of them - especially BT win probabilities, p-values, Cohen's d, GEE ORs, etc.)
+- conclusion
+
+Report ALL experiments and ALL their metrics verbatim. Do not summarize or skip any. This is for a data audit so completeness is critical.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "ee22dc35-2ec7-42ec-bfda-acec548d1339"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 38_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Reading ~/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt",
+  "usage": {
+    "total_tokens": 15234,
+    "tool_uses": 1,
+    "duration_ms": 3876
+  },
+  "last_tool_name": "Read",
+  "uuid": "e6decaa4-8e64-4257-94c2-93bc1abfb123",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017Xj9DUkeNCkZyztdM9ZLV5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "07210a94-95e5-4226-aaec-ecb5432da123",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GkNsrEXVTrEvNK4YdsWD2u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15227,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 15227,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 40 · 2026-05-25T19:42:57.044Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_017Xj9DUkeNCkZyztdM9ZLV5`</summary>
+
+```text
+File content (37750 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "82bddc29-6ed7-4a93-ab5f-2f35651607ea",
+  "tool_use_result": "Error: File content (37750 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 41_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Reading ~/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt",
+  "usage": {
+    "total_tokens": 16297,
+    "tool_uses": 2,
+    "duration_ms": 7567
+  },
+  "last_tool_name": "Read",
+  "uuid": "e1cbe2c0-5a37-4322-a912-9ced898e1b8a",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QzDLBsvEsqpM6VSmfbMnVF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt",
+  "limit": 500,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "727de452-4d91-41b4-99b1-5adbbf331e7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ueoc9FhkZnS2ectc1Cujbm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1063,
+      "cache_read_input_tokens": 15227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1063,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 43 · 2026-05-25T19:43:00.720Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01QzDLBsvEsqpM6VSmfbMnVF`</summary>
+
+```text
+File content (37750 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "a320bff3-9353-4d3a-a7c8-f9350626038e",
+  "tool_use_result": "Error: File content (37750 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 44_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Reading ~/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt",
+  "usage": {
+    "total_tokens": 16624,
+    "tool_uses": 3,
+    "duration_ms": 15717
+  },
+  "last_tool_name": "Read",
+  "uuid": "129f615e-2134-48ce-a73e-1b41bd326112",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013DRgVGb4GkhjpQ8QNShkpD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt",
+  "limit": 200,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "7540f168-957e-4b83-a365-e5b1d2547829",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XTViw8tRPxZMgEuVTtYbFV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 255,
+      "cache_read_input_tokens": 16290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 255,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 46 · 2026-05-25T19:43:08.863Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_013DRgVGb4GkhjpQ8QNShkpD`</summary>
+
+```text
+File content (37750 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "1f585f5b-4f39-4b41-ae96-690ba5e04d5a",
+  "tool_use_result": "Error: File content (37750 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 47_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Reading ~/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt",
+  "usage": {
+    "total_tokens": 16939,
+    "tool_uses": 4,
+    "duration_ms": 19718
+  },
+  "last_tool_name": "Read",
+  "uuid": "3c8663ea-2753-4f10-ba9d-4c4d4d669591",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GGeEDr6Z1cGCrTi1yLS8U9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt",
+  "limit": 100,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "9b208cd2-c4b6-4339-ba6b-bb74d4bf443e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01543ygEeS8TtmMZ1KPRJLWZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 242,
+      "cache_read_input_tokens": 16545,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 242,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 49 · 2026-05-25T19:43:12.893Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01GGeEDr6Z1cGCrTi1yLS8U9`</summary>
+
+```text
+File content (37750 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "dbabaf63-0e12-4ad0-a0f8-a8cd65d5aaab",
+  "tool_use_result": "Error: File content (37750 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 50_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Running Count lines in the registry file",
+  "usage": {
+    "total_tokens": 17251,
+    "tool_uses": 5,
+    "duration_ms": 23040
+  },
+  "last_tool_name": "Bash",
+  "uuid": "33ed4aac-ef44-4b52-a625-f58ffe2a66e7",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014aKyiA9GCH7sNdvdrnvdxq`</summary>
+
+```json
+{
+  "command": "wc -l /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt",
+  "description": "Count lines in the registry file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "3b9800cb-5c8a-425d-af69-44c70319d45c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qk8DuBHy13CuhN4CqHriAL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 242,
+      "cache_read_input_tokens": 16787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 242,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 52 · 2026-05-25T19:43:16.078Z_
+
+<details><summary>↩ Tool result · `toolu_014aKyiA9GCH7sNdvdrnvdxq`</summary>
+
+```text
+0 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "1c8d8e79-7804-4e58-a335-3feadd24ae7a"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 53_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Running Get file size in bytes",
+  "usage": {
+    "total_tokens": 17534,
+    "tool_uses": 6,
+    "duration_ms": 26648
+  },
+  "last_tool_name": "Bash",
+  "uuid": "3555f25f-45dc-4c72-8a71-c310311fe582",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TikFbw754MyMaR89TQSqyJ`</summary>
+
+```json
+{
+  "command": "wc -c /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt",
+  "description": "Get file size in bytes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "7020d3b9-8106-4beb-a12d-f53abae71408",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FLhFTJVtGrtKqqPkYwBQh1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 281,
+      "cache_read_input_tokens": 17029,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 281,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 55 · 2026-05-25T19:43:19.587Z_
+
+<details><summary>↩ Tool result · `toolu_01TikFbw754MyMaR89TQSqyJ`</summary>
+
+```text
+92131 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "854be5da-5e40-4452-b622-ed35fe476860"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 56_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Running Parse the JSON structure and understand its schema",
+  "usage": {
+    "total_tokens": 17896,
+    "tool_uses": 7,
+    "duration_ms": 34191
+  },
+  "last_tool_name": "Bash",
+  "uuid": "314d6409-b300-4ec9-b0e0-a48083f46c29",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01USXeNFu1xLrW3BQ2wQLuka`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt', 'r') as f:\n    raw = json.load(f)\n\n# The outer structure has a 'result' field that is itself a JSON string\nresult_str = raw['result']\nregistry = json.loads(result_str)\n\n# Show top-level keys\nprint('Top-level type:', type(registry))\nif isinstance(registry, dict):\n    print('Top-level keys:', list(registry.keys()))\n    # Check if experiments is a key\n    if 'experiments' in registry:\n        exps = registry['experiments']\n        print(f'Number of experiments: {len(exps)}')\n        # Print first experiment keys to understand structure\n        if exps:\n            first = exps[0] if isinstance(exps, list) else list(exps.values())[0]\n            print('First experiment keys:', list(first.keys()) if isinstance(first, dict) else type(first))\n    else:\n        for k, v in registry.items():\n            print(f'  {k}: type={type(v).__name__}, preview={str(v)[:200]}')\nelif isinstance(registry, list):\n    print(f'List length: {len(registry)}')\n    if registry:\n        print('First item keys:', list(registry[0].keys()) if isinstance(registry[0], dict) else type(registry[0]))\n\"\n",
+  "description": "Parse the JSON structure and understand its schema"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "73bd4855-ddd2-4b0c-a96d-f752ca0cf7b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018nEAfVjaVDYC8xFNWugaG5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 298,
+      "cache_read_input_tokens": 17310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 298,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 58 · 2026-05-25T19:43:27.171Z_
+
+<details><summary>↩ Tool result · `toolu_01USXeNFu1xLrW3BQ2wQLuka`</summary>
+
+```text
+Top-level type: &lt;class 'dict'>
+Top-level keys: ['success', 'data', 'error', 'metadata']
+  success: type=bool, preview=True
+  data: type=dict, preview={'experiments': {'llama70b_crossbench': {'status': 'DONE', 'retry_count': 0, 'created_at': '2026-05-24T08:17:29.390Z', 'updated_at': '2026-05-24T08:27:23.918Z', 'hypothesis': 'Llama-70B on AlpacaEval 
+  error: type=NoneType, preview=None
+  metadata: type=dict, preview={'elapsed_seconds': 0.466}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "7cb13fe7-b056-488e-bdfb-aa925b257dc6"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 59_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Running List all experiment IDs",
+  "usage": {
+    "total_tokens": 18766,
+    "tool_uses": 8,
+    "duration_ms": 38534
+  },
+  "last_tool_name": "Bash",
+  "uuid": "26ec3646-8f86-4e17-bbef-96d85001880e",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PSwVRPwAEhDjBvHTTJcnEx`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt', 'r') as f:\n    raw = json.load(f)\n\nresult_str = raw['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\nprint(f'Total experiments: {len(experiments)}')\nprint('Experiment IDs:', list(experiments.keys()))\n\"\n",
+  "description": "List all experiment IDs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "aa33b4ac-ecd6-4c73-9e49-e6cafb91175e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLkYvkuv3N2FgKmVg4imwm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 797,
+      "cache_read_input_tokens": 17608,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 797,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 61 · 2026-05-25T19:43:31.515Z_
+
+<details><summary>↩ Tool result · `toolu_01PSwVRPwAEhDjBvHTTJcnEx`</summary>
+
+```text
+Total experiments: 58
+Experiment IDs: ['llama70b_crossbench', 'formality_llama_rewriter', 'formality_scaled_n300', 'verbosity_scaled_n355', 'register_100_cf', 'gemini_flash_fourth_judge', 'llama70b_register', 'llama70b_debiased', 'crossbench_alpacaeval_verbosity', 'llama70b_third_judge', 'finegrained_likert_100pt', 'gpt4o_rewriter_verbosity', 'gpt4o_rewriter_formality', 'debiased_verbosity_gpt4o', 'nli_threshold_sweep', 'bootstrap_attenuation', 'cf_vs_dr_gpt4o', 'double_rewrite_placebo_gpt4o', 'double_rewrite_placebo_qwen32b', 'cf_vs_dr_qwen32b', 'cross_axis_gradient', 'nli_gate_ablation', 'verbosity_7method_sensitivity', 'nli_gate_full_validation', 'originality_minimal_subset', 'bt_model_diagnostics', 'claude_tost_equivalence', 'nli_fn_selection_bias', 'nli_gate_spotcheck', 'gate_comparison', 'exp-006', 'alpacaeval_verbosity_qwen32b', 'correction_poc', 'claude_verbosity', 'claude_formality', 'gpt4o_alpacaeval', 'gpt4o_mtbench', 'qwen32b_register', 'gpt4o_register', 'gpt4o_verbosity', 'qwen32b_verbosity', 'qwen32b_formality', 'exp016_bradley_terry', 'verbosity_32b', 'exp-016', 'exp-015', 'exp015_clmm', 'exp013_nli_validation', 'exp-013', 'register_pilot', 'exp014_logistic_decomposition', 'exp012_consistency_bias', 'exp011_nli_sensitivity', 'exp010_binarized_likert', 'tone_pilot', 'pairwise_32b', 'mvp_32b_ate', 'mvp_8b_ate']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "8f456a2b-9ce4-42ae-a2d4-5ab0c67ea7f3"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 62_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Running Dump all experiments with full details",
+  "usage": {
+    "total_tokens": 19621,
+    "tool_uses": 9,
+    "duration_ms": 45457
+  },
+  "last_tool_name": "Bash",
+  "uuid": "63bd3689-7f06-4bc8-a720-34bc4db58b9c",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EgbDHboYQyVMkcVFAS68Ve`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt', 'r') as f:\n    raw = json.load(f)\n\nresult_str = raw['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\n# Print each experiment fully\nfor i, (exp_id, exp) in enumerate(experiments.items()):\n    print(f\"{'='*80}\")\n    print(f\"EXPERIMENT {i+1}/{len(experiments)}: {exp_id}\")\n    print(f\"{'='*80}\")\n    for k, v in exp.items():\n        if k == 'metrics' and isinstance(v, dict):\n            print(f\"  metrics:\")\n            for mk, mv in v.items():\n                print(f\"    {mk}: {json.dumps(mv) if isinstance(mv, (dict, list)) else mv}\")\n        elif k == 'conclusion':\n            print(f\"  conclusion: {v}\")\n        elif isinstance(v, dict):\n            print(f\"  {k}:\")\n            for sk, sv in v.items():\n                print(f\"    {sk}: {json.dumps(sv) if isinstance(sv, (dict, list)) else sv}\")\n        else:\n            print(f\"  {k}: {v}\")\n    print()\nPYEOF\n",
+  "description": "Dump all experiments with full details",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "e75087c5-25fe-4021-88f6-1643c7b30721",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F3NSLtaQ8ecPqAQJriJqkp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 18405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 853,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 64 · 2026-05-25T19:43:38.464Z_
+
+<details><summary>↩ Tool result · `toolu_01EgbDHboYQyVMkcVFAS68Ve`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (92.2KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt
+
+Preview (first 2KB):
+================================================================================
+EXPERIMENT 1/58: llama70b_crossbench
+================================================================================
+  status: DONE
+  retry_count: 0
+  created_at: 2026-05-24T08:17:29.390Z
+  updated_at: 2026-05-24T08:27:23.918Z
+  hypothesis: Llama-70B on AlpacaEval and MT-Bench cross-benchmark pairs will show stronger style bias than on LLMBar (consistent with other judges showing benchmark-dependent effect sizes), confirming style sensitivity generalizes across benchmarks. Effect-size gradient predicts Blindspot disappears at large effects (BT>80%).
+  spec:
+    command: python3 /root/causal_style_decomp_judge/analysis/llama70b_crossbench_scoring.py
+    server: westb-29275
+    data_path: /root/causal_style_decomp_judge/data/verified_{alpacaeval,alpacaeval_verbosity,mtbench}.jsonl
+    data_count: 280
+    model_name: Llama-3.3-70B-Instruct
+    seed: 42
+  checkpoint_path: /root/causal_style_decomp_judge/data/llama70b_crossbench_summary.json
+  log_path: /tmp/llama70b_crossbench.log
+  metrics:
+    alpacaeval_formality: {"n": 47, "bt_pct": 95.7, "bt_ci": [89.4, 100], "bt_p": 1.6e-11, "likert_d": 0.211, "likert_wilcoxon_p": 0.0124, "gee_style_or": "degenerate", "gee_orig_or": "degenerate", "blindspot": false}
+    alpacaeval_verbosity: {"n": 66, "bt_pct": 97, "bt_ci": [92.4, 100], "bt_p": 6e-17, "likert_d": 0.297, "likert_wilcoxon_p": 0.0002, "gee_style_or": 0.54, "gee_orig_or": 0.54, "blindspot": false}
+    mtbench_formality: {"n": 36, "bt_pct": 91.7, "bt_ci": [80.6, 100], "bt_p": 2.3e-07, "likert_d": 0.234, "likert_wilcoxon_p": 0.0029, "gee_style_or": 32.68, "gee_orig_or": 0.89, "blindspot": false}
+    mtbench_verbosity: MISSING_DATA
+    comparison_llmbar_formality: {"bt_pct": 69.5, "blindspot": true}
+    comparison_llmbar_verbosity: {"bt_pct": 73.5, "blindspot": true}
+  conclusion: success
+  completed_at: 2026-05-24T08:25:07.239Z
+
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "00afaa3e-3918-43f4-9f70-267f8277cc30"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 65_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Reading ~/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "usage": {
+    "total_tokens": 21043,
+    "tool_uses": 10,
+    "duration_ms": 49134
+  },
+  "last_tool_name": "Read",
+  "uuid": "239704d5-2e66-4760-838a-d1368394dfed",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VGuoEK1n7fUKGu5WWCjQ8V`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "limit": 300,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "0545884f-ce3b-4412-acff-e0db5f17f0f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NvM9QZqbFb4zjfbiJQyqnT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 19258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 67 · 2026-05-25T19:43:42.017Z_
+
+<details><summary>↩ Tool result · `toolu_01VGuoEK1n7fUKGu5WWCjQ8V`</summary>
+
+```text
+0	================================================================================
+1	EXPERIMENT 1/58: llama70b_crossbench
+2	================================================================================
+3	  status: DONE
+4	  retry_count: 0
+5	  created_at: 2026-05-24T08:17:29.390Z
+6	  updated_at: 2026-05-24T08:27:23.918Z
+7	  hypothesis: Llama-70B on AlpacaEval and MT-Bench cross-benchmark pairs will show stronger style bias than on LLMBar (consistent with other judges showing benchmark-dependent effect sizes), confirming style sensitivity generalizes across benchmarks. Effect-size gradient predicts Blindspot disappears at large effects (BT>80%).
+8	  spec:
+9	    command: python3 /root/causal_style_decomp_judge/analysis/llama70b_crossbench_scoring.py
+10	    server: westb-29275
+11	    data_path: /root/causal_style_decomp_judge/data/verified_{alpacaeval,alpacaeval_verbosity,mtbench}.jsonl
+12	    data_count: 280
+13	    model_name: Llama-3.3-70B-Instruct
+14	    seed: 42
+15	  checkpoint_path: /root/causal_style_decomp_judge/data/llama70b_crossbench_summary.json
+16	  log_path: /tmp/llama70b_crossbench.log
+17	  metrics:
+18	    alpacaeval_formality: {"n": 47, "bt_pct": 95.7, "bt_ci": [89.4, 100], "bt_p": 1.6e-11, "likert_d": 0.211, "likert_wilcoxon_p": 0.0124, "gee_style_or": "degenerate", "gee_orig_or": "degenerate", "blindspot": false}
+19	    alpacaeval_verbosity: {"n": 66, "bt_pct": 97, "bt_ci": [92.4, 100], "bt_p": 6e-17, "likert_d": 0.297, "likert_wilcoxon_p": 0.0002, "gee_style_or": 0.54, "gee_orig_or": 0.54, "blindspot": false}
+20	    mtbench_formality: {"n": 36, "bt_pct": 91.7, "bt_ci": [80.6, 100], "bt_p": 2.3e-07, "likert_d": 0.234, "likert_wilcoxon_p": 0.0029, "gee_style_or": 32.68, "gee_orig_or": 0.89, "blindspot": false}
+21	    mtbench_verbosity: MISSING_DATA
+22	    comparison_llmbar_formality: {"bt_pct": 69.5, "blindspot": true}
+23	    comparison_llmbar_verbosity: {"bt_pct": 73.5, "blindspot": true}
+24	  conclusion: success
+25	  completed_at: 2026-05-24T08:25:07.239Z
+26	
+27	================================================================================
+28	EXPERIMENT 2/58: formality_llama_rewriter
+29	================================================================================
+30	  status: DONE
+31	  retry_count: 0
+32	  created_at: 2026-05-24T06:22:32.105Z
+33	  updated_at: 2026-05-24T07:40:40.018Z
+34	  hypothesis: Qwen3-32B judge's formality bias is rewriter-independent: using Llama-3.3-70B-Instruct instead of Qwen3-32B as the RATE counterfactual rewriter will reproduce significant pairwise preference for formal style (BT p<0.05), confirming the bias originates in the judge, not the rewriter.
+35	  spec:
+36	    command: python analysis/analyze_llama_rewriter_formality.py
+37	    server: westb-29275
+38	    data_path: /root/causal_style_decomp_judge/data/
+39	    data_count: 100
+40	    model_name: Llama-3.3-70B-Instruct (rewriter) + Qwen3-32B (judge)
+41	    seed: 42
+42	  log_path: /root/causal_style_decomp_judge/data/llama_rewriter_formality_results.json
+43	  checkpoint_path: N/A (analysis-only experiment)
+44	  conclusion: success
+45	  metrics:
+46	    bt_p_formal: 0.711
+47	    bt_ci: [0.643, 0.775]
+48	    bt_p_value: 0.0001
+49	    gee_style_or: 4.4403
+50	    gee_style_p: 1.3e-05
+51	    gee_orig_or: 5.7474
+52	    likert_ate: 0.02
+53	    likert_cohen_d: 0.013
+54	    likert_wilcoxon_p: 0.687723
+55	    blindspot: True
+56	    nli_pass_rate: 0.79
+57	    n_total: 100
+58	    n_nli_pass: 79
+59	    baseline_delta_pp: 4.6
+60	    baseline_ci_overlap: True
+61	  completed_at: 2026-05-24T07:40:40.018Z
+62	
+63	================================================================================
+64	EXPERIMENT 3/58: formality_scaled_n300
+65	================================================================================
+66	  status: DONE
+67	  retry_count: 0
+68	  created_at: 2026-05-24T06:22:29.057Z
+69	  updated_at: 2026-05-24T07:12:06.139Z
+70	  hypothesis: Llama-70B scoring of the existing n=355 formality scaled data will replicate the formality Blindspot pattern seen with Qwen3-32B (BT ~67%, Likert NS), providing cross-judge validation at scale. GEE Style OR will show small-sample shrinkage similar to Qwen3 (4.20→2.15).
+71	  spec:
+72	    command: pairwise_scoring.py + judge_scoring.py + analyze_scaled_formality_llama70b.py
+73	    server: westb-29275
+74	    data_path: /root/causal_style_decomp_judge/data/verified_scaled_formality.jsonl
+75	    data_count: 355
+76	    model_name: Llama-3.3-70B-Instruct (judge)
+77	    seed: 42
+78	    checkpoint_path: /root/causal_style_decomp_judge/data/scored_scaled_formality_llama70b.jsonl
+79	    log_path: /tmp/likert_llama70b.log
+80	  conclusion: success
+81	  completed_at: 2026-05-24T07:06:00.039Z
+82	  metrics:
+83	    judge: Llama-3.3-70B-Instruct
+84	    axis: formality
+85	    n: 355
+86	    bt_p_formal: 0.725
+87	    bt_ci: [0.691, 0.759]
+88	    bt_p_value: 0.0001
+89	    consistent_win_rate: 0.881
+90	    n_consistent: 202
+91	    likert_d: 0.048
+92	    likert_wilcoxon_p: 0.026
+93	    tie_rate: 0.715
+94	    blindspot: False
+95	    note: CORRECTED: Worker reported 88.1% which was consistent-pair win rate, not BT. Actual BT=72.5%. LLMBar subset (n=89): BT=74.4%, Likert NS (Blindspot YES). Non-LLMBar subset: BT=69.9%, Likert sig.
+96	
+97	================================================================================
+98	EXPERIMENT 4/58: verbosity_scaled_n355
+99	================================================================================
+100	  status: DONE
+101	  retry_count: 0
+102	  created_at: 2026-05-23T09:57:40.068Z
+103	  updated_at: 2026-05-23T12:57:27.131Z
+104	  hypothesis: Verbosity Style OR at n=355 will shrink from n=86 estimates (8.21-13.10) to projected range 4-6.5 due to small-sample upward bias, mirroring the formality shrinkage pattern (4.20→2.15). Likert ATE will remain NS, confirming the Blindspot is robust to increased sample size for verbosity axis.
+105	  spec:
+106	    command: Phase 1: counterfactual_gen --axis verbosity (400 pairs) → Phase 2: content_verification → Phase 3: judge_scoring + pairwise_scoring (5 judges) → Phase 4: GEE decomposition
+107	    server: westb-29275
+108	    data_path: data/scaled_verbosity_input.jsonl
+109	    data_count: 400
+110	    model_name: Qwen3-32B (rewriter+judge), Llama-70B, GPT-4o, Gemini, Claude
+111	    seed: 42
+112	    gpu: 0,1 (Qwen3-32B), 2,3 (Llama-70B)
+113	    checkpoint_path: data/scored_scaled_verbosity_*.jsonl + data/pairwise_results_scaled_verbosity_*.jsonl (10 files on server)
+114	    log_path: artifacts/verbosity_n355_analysis.json
+115	  metrics:
+116	    n_samples: 330
+117	    n_judges: 5
+118	    qwen32b: {"bt_p_verbose": 0.733, "bt_ci": [0.696, 0.77], "sign_p": 0, "likert_d": 0.149, "likert_wilcoxon_p": 0.0006, "likert_ttest_p": 0.007, "gee_intercept_or": 3.83, "gee_orig_or": 0.52, "gee_orig_p": 0.001, "ntc": 0.881, "blindspot": false, "note": "Likert now significant at n=355"}
+119	    llama70b: {"bt_p_verbose": 0.759, "bt_ci": [0.722, 0.793], "sign_p": 0, "likert_d": 0.16, "likert_wilcoxon_p": 0.0001, "likert_ttest_p": 0.004, "gee_intercept_or": 4.01, "gee_orig_or": 0.61, "gee_orig_p": 0.013, "ntc": 0.896, "blindspot": false, "note": "Likert now significant at n=355"}
+120	    gpt54: {"bt_p_verbose": 0.59, "bt_ci": [0.544, 0.635], "sign_p": 0.0002, "likert_d": -0.026, "likert_wilcoxon_p": 0.813, "likert_ttest_p": 0.635, "gee_intercept_or": 1.06, "gee_orig_or": 1.96, "gee_orig_p": 0.0005, "ntc": 0.867, "blindspot": true, "note": "Originality-dominated, minimal style bias"}
+121	    gemini: {"bt_p_verbose": 0.678, "bt_ci": [0.638, 0.717], "sign_p": 0, "likert_d": 0.087, "likert_wilcoxon_p": 0.021, "likert_ttest_p": 0.114, "gee_intercept_or": 2.52, "gee_orig_or": 0.69, "gee_orig_p": 0.046, "ntc": 0.876, "blindspot": true, "note": "Borderline Likert \u2014 Wilcoxon sig but t-test NS"}
+122	    claude: {"bt_p_verbose": 0.608, "bt_ci": [0.567, 0.649], "sign_p": 1e-06, "likert_d": 0.032, "likert_wilcoxon_p": 0.317, "likert_ttest_p": 0.561, "gee_intercept_or": 1.22, "gee_orig_or": 1.69, "gee_orig_p": 0.002, "ntc": 0.938, "blindspot": true, "note": "Originality bias, minimal style bias"}
+123	    gee_shrinkage: {"qwen_n86_style_or": 13.1, "qwen_n355_intercept_or": 3.83, "shrinkage_pct": 70.8, "llama_n86_style_or": 8.21, "llama_n355_intercept_or": 4.01, "shrinkage_pct_llama": 51.2}
+124	  conclusion: success
+125	  completed_at: 2026-05-23T12:57:27.131Z
+126	
+127	================================================================================
+128	EXPERIMENT 5/58: register_100_cf
+129	================================================================================
+130	  status: DONE
+131	  retry_count: 0
+132	  created_at: 2026-05-21T01:13:19.928Z
+133	  updated_at: 2026-05-22T00:34:04.155Z
+134	  spec:
+135	    command: counterfactual_gen.py --axis register + content_verification.py --axis register (NLI-only) + scoring (pending API)
+136	    server: westb-29275
+137	    data_path: /root/causal_style_decomp_judge/data/counterfactuals_register.jsonl
+138	    data_count: 100
+139	    model_name: Qwen3-32B (counterfactual) + DeBERTa-v3-large (NLI gate)
+140	    seed: 42
+141	    checkpoint_path: data/verified_register.jsonl
+142	    log_path: logs/workers/worker_code_register_counterfactual_gen_100_20260521T004113.log
+143	  hypothesis: Register axis (academic/conversational) produces detectable style bias in GPT-4o judge comparable to formality axis, with pairwise win rate >= 60% and p < 0.05, demonstrating axis-dependent bias generalizes beyond formality
+144	  metrics:
+145	    n_generated: 100
+146	    cf_nli_mean: 0.941
+147	    cf_bertscore_mean: 0.8589
+148	    cf_nli_pass_rate: 0.94
+149	    cf_gating: NLI-only (threshold 0.90)
+150	    dr_nli_mean: 0.8208
+151	    dr_bertscore_mean: 0.8477
+152	    dr_pass_rate: 0.81
+153	    output_file: data/verified_register.jsonl
+154	    artifact_id: art_20260521_227674
+155	    pipeline_status: verification DONE, scoring BLOCKED (API 402)
+156	  conclusion: killed
+157	  completed_at: 2026-05-22T00:34:04.155Z
+158	
+159	================================================================================
+160	EXPERIMENT 6/58: gemini_flash_fourth_judge
+161	================================================================================
+162	  status: DONE
+163	  retry_count: 0
+164	  created_at: 2026-05-21T22:04:28.393Z
+165	  updated_at: 2026-05-21T22:36:06.643Z
+166	  hypothesis: Gemini Flash as a fourth judge will also exhibit style blindspot (BT-significant but Likert-NS) on formality and verbosity axes, consistent with GPT-4o, Qwen-32B, and Claude judges, confirming the blindspot is judge-universal rather than model-specific.
+167	  spec:
+168	    command: OPENROUTER_KEY=*** GEMINI_MODEL=google/gemini-2.5-flash python csd_pipeline/gemini_flash_scoring.py
+169	    server: westb-29275
+170	    data_path: /root/causal_style_decomp_judge/data/
+171	    data_count: 174
+172	    model_name: google/gemini-2.5-flash
+173	    seed: 42
+174	  checkpoint_path: /root/causal_style_decomp_judge/data/gemini_flash_fourth_judge.json
+175	  log_path: /tmp/gemini_flash.log
+176	  metrics:
+177	    formality: {"bt_pct": 57.4, "bt_ci": [50, 64.2], "bt_p": 0.0306, "likert_ate": -0.239, "likert_d": -0.082, "likert_p": 0.3088, "gee_style_or": 1.64, "gee_style_ci": [0.91, 2.98], "gee_style_p": 0.1008, "gee_orig_or": 2.51, "gee_orig_ci": [1.39, 4.54], "gee_orig_p": 0.0024, "blindspot": true, "regime": "Orig-Dominated"}
+178	    verbosity: {"bt_pct": 70.8, "bt_ci": [63.7, 77.2], "bt_p": 0, "likert_ate": 0.151, "likert_d": 0.051, "likert_p": 0.3697, "gee_style_or": 8.98, "gee_style_ci": [3.68, 21.94], "gee_style_p": 0, "gee_orig_or": 0.46, "gee_orig_ci": [0.2, 1.04], "gee_orig_p": 0.0614, "blindspot": true, "regime": "Pure Style"}
+179	  conclusion: success
+180	  completed_at: 2026-05-21T22:21:47.119Z
+181	
+182	================================================================================
+183	EXPERIMENT 7/58: llama70b_register
+184	================================================================================
+185	  status: DONE
+186	  retry_count: 0
+187	  created_at: 2026-05-21T17:05:28.925Z
+188	  updated_at: 2026-05-21T17:07:54.079Z
+189	  hypothesis: Llama-70B register axis shows weak style bias (~55% BT, consistent with GPT-4o 57% and Qwen3-32B 55.3%), confirming register as originality-dominated across three independent judge architectures
+190	  spec:
+191	    command: python csd_pipeline/llama70b_register_scoring.py
+192	    server: westb-29275
+193	    data_path: data/verified_register.jsonl
+194	    data_count: 94
+195	    model_name: Llama-3.3-70B-Instruct
+196	    seed: 42
+197	    gpu: 2,3
+198	    note: Pairwise + Likert scoring for register axis via vLLM port 8003
+199	    checkpoint_path: data/llama70b_register_summary.json
+200	    log_path: /tmp/llama70b_register.log
+201	  conclusion: success
+202	  completed_at: 2026-05-21T17:07:51.781Z
+203	  metrics:
+204	    bt_p_academic: 0.635
+205	    bt_ci: [0.555, 0.712]
+206	    bt_p_val: 0.0014
+207	    likert_ate: 0.054
+208	    likert_d: 0.024
+209	    likert_ttest_p: 0.69
+210	    likert_tie_rate: 0.688
+211	    gee_style_or: 3.33
+212	    gee_style_p: 0.0003
+213	    gee_orig_or: 3.07
+214	    gee_orig_p: 0.0008
+215	    blindspot: True
+216	    regime: Mixed
+217	
+218	================================================================================
+219	EXPERIMENT 8/58: llama70b_debiased
+220	================================================================================
+221	  status: DONE
+222	  retry_count: 0
+223	  created_at: 2026-05-21T16:52:24.716Z
+224	  updated_at: 2026-05-21T16:53:31.510Z
+225	  hypothesis: Llama-70B correction resistance follows the same axis-dependent pattern as GPT-4o/Qwen3-32B: debiased prompts reduce but do not eliminate style bias, with verbosity more amenable to correction than formality, confirming bias persistence is model-independent
+226	  spec:
+227	    command: python csd_pipeline/llama70b_debiased.py
+228	    server: westb-29275
+229	    data_path: verified_32b.jsonl (88 formality) + verified_verbosity.jsonl (86 verbosity)
+230	    data_count: 174 NLI-pass pairs total
+231	    model_name: Llama-3.3-70B-Instruct
+232	    seed: 42
+233	    gpu: cuda:2,3 (vLLM port 8003)
+234	    pid: 173017
+235	    checkpoint_path: /root/causal_style_decomp_judge/data/debiased_llama70b_summary.json
+236	    log_path: /root/causal_style_decomp_judge/logs/llama70b_debiased.log
+237	  conclusion: success
+238	  metrics:
+239	    formality: {"baseline_bt": 69.5, "debiased_bt": 64.3, "debiased_ci": [57.3, 71], "debiased_p": 0.0001, "reduction_pp": -5.2, "reduction_pct": 26.7, "still_significant": true}
+240	    verbosity: {"baseline_bt": 73.5, "debiased_bt": 66.9, "debiased_ci": [58.9, 74.4], "debiased_p": 0.0001, "reduction_pp": -6.6, "reduction_pct": 28.1, "still_significant": true}
+241	    all_still_significant: True
+242	  completed_at: 2026-05-21T16:53:31.510Z
+243	
+244	================================================================================
+245	EXPERIMENT 9/58: crossbench_alpacaeval_verbosity
+246	================================================================================
+247	  status: DONE
+248	  retry_count: 0
+249	  created_at: 2026-05-21T16:52:26.420Z
+250	  updated_at: 2026-05-21T16:52:40.971Z
+251	  hypothesis: AlpacaEval verbosity bias is strong enough (BT ~84%) that even Likert detects it, confirming the effect-size gradient: Blindspot occurs at small-to-medium effects (d<0.15) but not at large effects (d>0.3)
+252	  conclusion: success
+253	  metrics:
+254	    bt_p_verbose: 84.1
+255	    bt_ci: [77.4, 90.2]
+256	    bt_p: 0.0001
+257	    likert_ate: 0.732
+258	    likert_d: 0.407
+259	    likert_p: 0.000414
+260	    tie_rate: 0.244
+261	    blindspot: False
+262	    n_pairs: 82
+263	  spec:
+264	    command: alpacaeval_qwen32b_scoring.py (previously completed)
+265	    server: westb-29275
+266	    data_path: /root/causal_style_decomp_judge/data/verified_alpacaeval_verbosity.jsonl
+267	    data_count: 82 NLI-pass pairs
+268	    model_name: Qwen3-32B
+269	    seed: 42
+270	    checkpoint_path: /root/causal_style_decomp_judge/data/pairwise_results_alpacaeval_verbosity_qwen32b.jsonl
+271	    log_path: N/A (pre-existing data)
+272	  completed_at: 2026-05-21T16:52:40.971Z
+273	
+274	================================================================================
+275	EXPERIMENT 10/58: llama70b_third_judge
+276	================================================================================
+277	  status: DONE
+278	  retry_count: 0
+279	  created_at: 2026-05-21T15:58:29.292Z
+280	  updated_at: 2026-05-21T16:01:06.337Z
+281	  hypothesis: Llama-3.3-70B as third independent judge architecture confirms the Likert Blindspot: BT pairwise detects style bias (formality + verbosity) with p<0.05 while Likert scoring shows no significant difference, replicating the pattern found with GPT-4o and Qwen3-32B judges
+282	  plan_id: llama70b_third_judge
+283	  spec:
+284	    command: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python csd_pipeline/llama70b_scoring.py
+285	    server: westb-29275
+286	    data_path: /root/causal_style_decomp_judge/data/verified_32b.jsonl + verified_verbosity.jsonl
+287	    data_count: 88 formality + 86 verbosity NLI-pass pairs
+288	    model_name: Llama-3.3-70B-Instruct
+289	    seed: 42
+290	    gpu: cuda:2,3
+291	    vllm_port: 8003
+292	    checkpoint_path: /root/causal_style_decomp_judge/data/llama70b_third_judge.json
+293	    log_path: /root/causal_style_decomp_judge/logs/llama70b_scoring.log
+294	  conclusion: success
+295	  metrics:
+296	    formality: {"bt_p_formal": 0.695, "bt_ci": [0.619, 0.765], "bt_p": 0.0001, "likert_ate": 0.023, "likert_p": 0.8458, "likert_d": 0.01, "likert_tie_rate": 0.727, "gee_style_or": 4.81, "gee_style_p": 0.0001, "gee_orig_or": 3.12, "gee_orig_p": 0.0007, "blindspot": true}
+297	    verbosity: {"bt_p_verbose": 0.735, "bt_ci": [0.655, 0.809], "bt_p": 0.0001, "likert_ate": 0.047, "likert_p": 0.7524, "likert_d": 0.02, "likert_tie_rate": 0.616, "gee_style_or": 8.21, "gee_style_p": 0.0001, "gee_orig_or": 0.38, "gee_orig_p": 0.0196, "blindspot": true}
+298	    blindspot_both_axes: True
+299	    third_judge_confirms: True
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "2120d77a-fd1d-4083-ae04-649440426e12"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 68_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Reading ~/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "usage": {
+    "total_tokens": 28495,
+    "tool_uses": 11,
+    "duration_ms": 54636
+  },
+  "last_tool_name": "Read",
+  "uuid": "8f1015a6-79a8-4285-b0a2-3fbb808d6a66",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XLRLAET3AEPQTMVe5Tkb9Q`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "limit": 300,
+  "offset": 300
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "6872d894-6631-4b36-bca1-127d726cd4dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SfprDGjr8jqz2oNhmacXkf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7414,
+      "cache_read_input_tokens": 20678,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7414,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 70 · 2026-05-25T19:43:47.517Z_
+
+<details><summary>↩ Tool result · `toolu_01XLRLAET3AEPQTMVe5Tkb9Q`</summary>
+
+```text
+300	    third_judge_confirms: True
+301	  completed_at: 2026-05-21T16:01:06.337Z
+302	
+303	================================================================================
+304	EXPERIMENT 11/58: finegrained_likert_100pt
+305	================================================================================
+306	  status: DONE
+307	  retry_count: 0
+308	  created_at: 2026-05-21T15:42:30.686Z
+309	  updated_at: 2026-05-21T15:50:03.483Z
+310	  hypothesis: The Likert Blindspot is NOT a scale granularity artifact: even a 100-point continuous scale (0-100) should fail to detect the style bias that pairwise BT detects, because the blindspot stems from absolute-vs-relative evaluation paradigm differences, not insufficient scale resolution
+311	  spec:
+312	    command: /root/miniconda3/bin/python csd_pipeline/finegrained_likert_100pt.py
+313	    server: westb-29275
+314	    data_path: data/verified_32b.jsonl + data/verified_verbosity.jsonl
+315	    data_count: 88 formality + 86 verbosity NLI-pass pairs
+316	    model_name: GPT-4o (via proxy)
+317	    seed: 42
+318	    checkpoint_path: data/finegrained_likert_100pt.json
+319	    log_path: /tmp/finegrained_likert.log
+320	    metrics: {"formality": {"n": 88, "ate": -0.625, "cohens_d": -0.0376, "t_p": 0.725, "wilcoxon_p": 0.9, "tie_rate": 0.659, "mean_style": 52.5, "mean_plain": 53.12, "blindspot": true}, "verbosity": {"n": 86, "ate": 2.849, "cohens_d": 0.1709, "t_p": 0.117, "wilcoxon_p": 0.067, "tie_rate": 0.512, "mean_style": 53.08, "mean_plain": 50.23, "blindspot": true}, "both_axes_blindspot": true, "conclusion": "100-point scale cannot detect style bias that BT detects \u2014 Blindspot is absolute-vs-relative paradigm difference, not granularity artifact"}
+321	  conclusion: success
+322	  completed_at: 2026-05-21T15:50:03.483Z
+323	
+324	================================================================================
+325	EXPERIMENT 12/58: gpt4o_rewriter_verbosity
+326	================================================================================
+327	  status: DONE
+328	  retry_count: 0
+329	  created_at: 2026-05-21T09:11:53.204Z
+330	  updated_at: 2026-05-21T15:40:01.391Z
+331	  hypothesis: Verbosity style bias is rewriter-independent: GPT-4o rewriter + Qwen3-32B judge should produce BT probability statistically equivalent to Qwen3-32B rewriter + Qwen3-32B judge, confirming the measured verbosity bias reflects judge behavior not rewriter artifacts
+332	  conclusion: success
+333	  metrics:
+334	    cf_generated: 100
+335	    nli_pass: 81
+336	    nli_rate: 0.81
+337	    bt: {"p_verbose": 0.735, "ci": [0.654, 0.809], "p_value": 0.0001}
+338	    likert: {"ate": 0, "p": 0.8384, "d": 0, "tie_rate": 0.469}
+339	    gee: {"style_or": 10.17, "style_p": 0.0001, "orig_or": 1.61, "orig_p": 0.3143}
+340	    blindspot: True
+341	    vs_baseline: {"qwen32b_bt": 0.773, "delta_pp": -3.8, "ci_overlap": true, "note": "GPT-4o rewriter gives 73.5% vs Qwen3-32B rewriter 77.3%, CIs overlap \u2192 rewriter-independent"}
+342	  spec:
+343	    command: python gpt4o_rewriter_verbosity.py
+344	    server: westb-29275
+345	    data_path: data/verified_verbosity.jsonl + GPT-4o rewritten CFs
+346	    data_count: 81
+347	    model_name: GPT-4o (rewriter) + Qwen3-32B (judge)
+348	    seed: 42
+349	    checkpoint_path: N/A (API scoring)
+350	    log_path: data/gpt4o_rewriter_verbosity_results.json
+351	  completed_at: 2026-05-21T09:12:15.361Z
+352	
+353	================================================================================
+354	EXPERIMENT 13/58: gpt4o_rewriter_formality
+355	================================================================================
+356	  status: DONE
+357	  retry_count: 0
+358	  created_at: 2026-05-21T10:46:15.195Z
+359	  updated_at: 2026-05-21T15:39:14.228Z
+360	  hypothesis: Style bias detected by RATE is rewriter-independent: switching from Qwen3-32B rewriter to GPT-4o rewriter should produce statistically equivalent BT probability for formality axis, proving the measured bias reflects judge behavior not rewriter artifacts
+361	  spec:
+362	    command: python csd_pipeline/gpt4o_rewriter_formality_scoring.py
+363	    server: westb-29275
+364	    data_path: data/mvp_samples.jsonl + GPT-4o rewritten CFs
+365	    data_count: 90
+366	    model_name: GPT-4o (rewriter) + Qwen3-32B (judge)
+367	    seed: 42
+368	    checkpoint_path: N/A (API scoring)
+369	    log_path: data/gpt4o_rewriter_formality_results.json
+370	  conclusion: success
+371	  metrics:
+372	    cf_generated: 100
+373	    nli_pass: 90
+374	    nli_rate: 0.9
+375	    bt: {"p_formal": 0.644, "ci": [0.561, 0.728], "p_value": 0.0006, "n_pairs": 90, "n_comparisons": 180, "method": "ALL NLI-pass pairs (fixed from consistent-only bug)"}
+376	    gee: {"style_or": 9.48, "style_p": 0.0001, "orig_or": 12.76, "orig_p": 0.0001, "note": "Fixed: was 24.47/39.27 with consistent-only filter (near-separation artifact)"}
+377	    likert: {"ate": -0.189, "p": 0.1835, "d": -0.081, "tie_rate": 0.489, "mean_formal": 5.511, "mean_casual": 5.7}
+378	    blindspot: True
+379	    vs_baseline: {"qwen32b_bt": 0.665, "delta_pp": -2.1, "ci_overlap": true, "note": "GPT-4o rewriter 64.4% vs Qwen3-32B rewriter 66.5%, baseline falls within CI [56.1%, 72.8%] \u2192 rewriter-independent"}
+380	    bug_fix: {"original_bt": 0.697, "original_gee_style_or": 24.47, "original_gee_orig_or": 39.27, "original_n_pairs": 66, "fix": "Used ALL 90 NLI-pass pairs for BT/GEE instead of consistent-only 66. \u00a73.3 requires all observations.", "fix_script": "csd_pipeline/fix_formality_rewriter_bt.py"}
+381	  completed_at: 2026-05-21T10:46:56.474Z
+382	
+383	================================================================================
+384	EXPERIMENT 14/58: debiased_verbosity_gpt4o
+385	================================================================================
+386	  status: DONE
+387	  retry_count: 0
+388	  created_at: 2026-05-21T15:36:47.030Z
+389	  updated_at: 2026-05-21T15:37:07.076Z
+390	  hypothesis: Debiased prompt intervention for verbosity axis on GPT-4o should show partial but insufficient bias reduction, consistent with formality results showing style bias is deeper than prompt-level — but verbosity may be more amenable to prompt-level correction than formality since the debiasing instruction can explicitly reference length/detail
+391	  spec:
+392	    command: /root/miniconda3/bin/python csd_pipeline/debiased_verbosity_gpt4o.py
+393	    server: westb-29275
+394	    data_path: data/verified_verbosity.jsonl
+395	    data_count: 86 NLI-pass pairs
+396	    model_name: GPT-4o (via proxy)
+397	    seed: 42
+398	    checkpoint_path: data/pairwise_results_debiased_gpt4o_verbosity.jsonl
+399	    log_path: /tmp/debiased_verbosity.log
+400	    metrics: {"original_p_verbose": "76.0% [69.7, 83.5], p=0.0001", "debiased_p_verbose": "62.9% [54.5, 70.9], p=0.0016", "reduction_pp": "-13.1pp (50.4% of bias eliminated)", "still_significant": true, "valid_pairs": 83, "consistent_pairs": 54, "n_comparisons": 167, "neither_count": "~5 pairs (3 retries each)"}
+401	  conclusion: success
+402	  completed_at: 2026-05-21T15:37:07.076Z
+403	
+404	================================================================================
+405	EXPERIMENT 15/58: nli_threshold_sweep
+406	================================================================================
+407	  status: DONE
+408	  retry_count: 0
+409	  created_at: 2026-05-21T15:26:18.221Z
+410	  updated_at: 2026-05-21T15:26:50.643Z
+411	  hypothesis: BT-detected style bias is robust to NLI threshold choice: sweeping from 0.50 to 0.98 should show stable BT probability and consistent significance across all 4 axis×judge combinations, proving the finding is not an artifact of a specific threshold cutoff
+412	  spec:
+413	    command: /root/miniconda3/bin/python /tmp/nli_threshold_sweep.py /root/causal_style_decomp_judge
+414	    server: westb-29275
+415	    data_path: data/pairwise_results_{qwen32b_formality,32b,qwen32b_verbosity,gpt4o_verbosity}.jsonl
+416	    data_count: 100 pairs × 4 combos
+417	    model_name: CPU analysis (choix BT + bootstrap)
+418	    seed: 42
+419	    checkpoint_path: data/nli_threshold_sweep.json
+420	    log_path: data/nli_threshold_sweep.json
+421	    metrics: {"total_significant": "44/44 (100%)", "formality_qwen32b_bt_range": "0.648-0.665", "formality_gpt4o_bt_range": "0.614-0.642", "verbosity_qwen32b_bt_range": "0.765-0.773", "verbosity_gpt4o_bt_range": "0.752-0.769", "all_p_values": "\u22640.002", "max_bt_delta_across_thresholds": "~3pp"}
+422	  conclusion: success
+423	  completed_at: 2026-05-21T15:26:50.643Z
+424	
+425	================================================================================
+426	EXPERIMENT 16/58: bootstrap_attenuation
+427	================================================================================
+428	  status: DONE
+429	  retry_count: 0
+430	  created_at: 2026-05-21T15:17:13.754Z
+431	  updated_at: 2026-05-21T15:18:19.510Z
+432	  hypothesis: Bootstrap subsampling of Likert data shows Cohen's d remains near zero across all sample sizes (n=50-355), demonstrating measurement attenuation rather than power gap — Likert fundamentally cannot detect style bias regardless of sample size
+433	  conclusion: success
+434	  spec:
+435	    command: python /tmp/bootstrap_attenuation.py
+436	    server: westb-29275
+437	    data_path: data/scored_scaled_formality_qwen32b.jsonl + data/scored_qwen32b_verbosity.jsonl + data/scored_gpt4o_verbosity.jsonl
+438	    data_count: 527
+439	    model_name: Statistical analysis (numpy bootstrap)
+440	    seed: 42
+441	    checkpoint_path: data/bootstrap_attenuation.json
+442	    log_path: data/bootstrap_attenuation.json
+443	  completed_at: 2026-05-21T15:18:07.145Z
+444	  metrics:
+445	    formality_qwen32b: {"file": "scored_scaled_formality_qwen32b.jsonl", "n": 355, "full_d": -0.017, "curve": {"n50": {"d_median": -0.017, "ci": [-0.308, 0.262]}, "n100": {"d_median": -0.015, "ci": [-0.219, 0.176]}, "n150": {"d_median": -0.019, "ci": [-0.179, 0.145]}, "n200": {"d_median": -0.016, "ci": [-0.157, 0.119]}, "n250": {"d_median": -0.018, "ci": [-0.144, 0.107]}, "n300": {"d_median": -0.018, "ci": [-0.131, 0.095]}, "n355": {"d_median": -0.017, "ci": [-0.123, 0.087]}}, "interpretation": "SMOKING GUN: d_median flat at ~-0.017 across ALL n. CI narrows but always includes 0. Measurement attenuation confirmed."}
+446	    verbosity_qwen32b: {"file": "scored_qwen32b_verbosity.jsonl", "n": 86, "full_d": 0.146, "curve": {"n30": {"d_median": 0.169, "ci": [-0.195, 0.595]}, "n50": {"d_median": 0.157, "ci": [-0.119, 0.494]}, "n70": {"d_median": 0.155, "ci": [-0.085, 0.443]}, "n86": {"d_median": 0.153, "ci": [-0.067, 0.416]}}, "interpretation": "d stable at ~0.15 (below small-effect threshold 0.2). CI always includes 0. Even at n=1000 would not detect."}
+447	    verbosity_gpt4o: {"file": "scored_gpt4o_verbosity.jsonl", "n": 86, "full_d": 0.19, "curve": {"n30": {"d_median": 0.205, "ci": [-0.161, 0.618]}, "n50": {"d_median": 0.198, "ci": [-0.085, 0.53]}, "n70": {"d_median": 0.197, "ci": [-0.048, 0.472]}, "n86": {"d_median": 0.197, "ci": [-0.022, 0.446]}}, "interpretation": "d stable at ~0.19-0.20 (borderline small). CI includes 0 at all n. BT detects 76.0% (massive), Likert sees d=0.19 (trivial)."}
+448	    formality_gpt4o: {"note": "Only 20 NLI-pass pairs available from scored_alpacaeval_gpt4o.jsonl. Single point: d_median=-0.20, CI=[-0.72, 0.24]. Insufficient for curve."}
+449	    summary: 3/4 combinations computed. Formality×Qwen3-32B (n=355) is the definitive result: d≈0 flat across all subsample sizes = measurement attenuation, not power gap. BT detects 66.5% (p<0.0001) on same data where Likert d=-0.017.
+450	
+451	================================================================================
+452	EXPERIMENT 17/58: cf_vs_dr_gpt4o
+453	================================================================================
+454	  status: DONE
+455	  retry_count: 0
+456	  created_at: 2026-05-21T13:37:04.042Z
+457	  updated_at: 2026-05-21T15:01:43.024Z
+458	  hypothesis: Comparing counterfactual (style-changed + artifact) vs double-rewrite (original-style + artifact) with GPT-4o judge isolates pure style effect by controlling for rewriting artifact. CF win rate significantly different from 50% proves style bias exists beyond rewriting artifact (MF1 critical defense).
+459	  parent: double_rewrite_placebo_gpt4o
+460	  spec:
+461	    command: python csd_pipeline/cf_vs_dr_comparison_gpt4o.py
+462	    server: westb-29275
+463	    data_path: data/verified_32b.jsonl + data/verified_verbosity.jsonl
+464	    data_count: 124
+465	    model_name: GPT-4o (judge via API)
+466	    seed: 42
+467	    checkpoint_path: N/A - excluded from paper
+468	    log_path: westb-29275:/root/csd_pipeline/data/cf_vs_dr_gpt4o.json
+469	    checkpoint_source: double_rewrite_placebo_gpt4o
+470	    eval_data: data/verified_32b.jsonl + data/verified_verbosity.jsonl
+471	  conclusion: negative
+472	  metrics:
+473	    judge: GPT-4o
+474	    comparison: counterfactual vs double_rewrite
+475	    formality: {"n_pairs": 81, "n_consistent": 53, "consistency": 0.654, "cf_win_rate": 0.151, "ci": [0.057, 0.246], "p_value": 0, "interpretation": "DR strongly preferred over CF"}
+476	    verbosity: {"note": "awaiting final result from worker, pattern matches Qwen3-32B"}
+477	  completed_at: 2026-05-21T15:01:43.024Z
+478	
+479	================================================================================
+480	EXPERIMENT 18/58: double_rewrite_placebo_gpt4o
+481	================================================================================
+482	  status: DONE
+483	  retry_count: 0
+484	  created_at: 2026-05-21T13:35:56.950Z
+485	  updated_at: 2026-05-21T14:13:21.694Z
+486	  hypothesis: Pairwise comparison of original vs double-rewrite (same style, only rewriting artifact difference) yields BT ≈ 50% with GPT-4o judge, proving pairwise format does not amplify rewriting artifacts (MF1 defense)
+487	  spec:
+488	    command: python csd_pipeline/double_rewrite_placebo.py (GPT-4o judge via API)
+489	    server: westb-29275
+490	    data_path: data/verified_32b.jsonl + data/verified_verbosity.jsonl
+491	    data_count: 124
+492	    model_name: GPT-4o (judge via API)
+493	    seed: 42
+494	    checkpoint_path: N/A
+495	    log_path: data/double_rewrite_placebo_gpt4o.json
+496	  conclusion: negative
+497	  metrics:
+498	    judge: GPT-4o
+499	    comparison: original vs double_rewrite
+500	    method: BT (choix.ilsr_pairwise) + pair-level bootstrap 10000 seed=42, ALL pairs including inconsistent
+501	    formality: {"n_pairs": 81, "bt_p_original": 0.4177, "ci": [0.3418, 0.5], "p_value": 0.0368, "sign_test_rate": 0.3488, "sign_test_n": "15/43", "sign_test_p": 0.066, "note": "Sign test NS (p=0.066) but BT significant (p=0.037) \u2014 BT uses more data"}
+502	    verbosity: {"n_pairs": 43, "bt_p_original": 0.1668, "ci": [0.0835, 0.262], "p_value": 0, "sign_test_rate": 0.0625, "sign_test_n": "2/32", "sign_test_p": 0}
+503	    conclusion: Rewriting artifact confirmed. GPT-4o formality BT borderline (p=0.037), verbosity extreme. BT more powerful than sign test (recovers signal from inconsistent pairs).
+504	  completed_at: 2026-05-21T13:36:30.437Z
+505	
+506	================================================================================
+507	EXPERIMENT 19/58: double_rewrite_placebo_qwen32b
+508	================================================================================
+509	  status: DONE
+510	  retry_count: 0
+511	  created_at: 2026-05-21T13:32:17.445Z
+512	  updated_at: 2026-05-21T14:13:20.472Z
+513	  hypothesis: Pairwise comparison of original vs double-rewrite (same style, only rewriting artifact difference) yields BT ≈ 50%, proving pairwise format does not amplify rewriting artifacts (MF1 defense)
+514	  spec:
+515	    command: python csd_pipeline/double_rewrite_placebo.py (Qwen3-32B judge)
+516	    server: westb-29275
+517	    data_path: data/verified_32b.jsonl + data/verified_verbosity.jsonl
+518	    data_count: 124
+519	    model_name: Qwen3-32B (judge via vLLM)
+520	    seed: 42
+521	    checkpoint_path: N/A
+522	    log_path: data/double_rewrite_placebo_qwen32b.json
+523	  conclusion: negative
+524	  metrics:
+525	    judge: Qwen3-32B
+526	    comparison: original vs double_rewrite
+527	    method: BT (choix.ilsr_pairwise) + pair-level bootstrap 10000 seed=42, ALL pairs including inconsistent
+528	    formality: {"n_pairs": 81, "bt_p_original": 0.3766, "ci": [0.3025, 0.4506], "p_value": 0.0006, "sign_test_rate": 0.2727, "sign_test_n": "12/44", "sign_test_p": 0.0037}
+529	    verbosity: {"n_pairs": 43, "bt_p_original": 0.0816, "ci": [0.0351, 0.1397], "p_value": 0, "sign_test_rate": 0, "sign_test_n": "0/36", "sign_test_p": 0}
+530	    conclusion: Rewriting artifact confirmed. Judges prefer DR over original, especially for verbosity. BT uses all pairs (matching main experiment methodology).
+531	  completed_at: 2026-05-21T13:35:25.634Z
+532	
+533	================================================================================
+534	EXPERIMENT 20/58: cf_vs_dr_qwen32b
+535	================================================================================
+536	  status: DONE
+537	  retry_count: 0
+538	  created_at: 2026-05-21T13:37:03.554Z
+539	  updated_at: 2026-05-21T13:54:28.362Z
+540	  hypothesis: Comparing counterfactual (style-changed + artifact) vs double-rewrite (original-style + artifact) isolates pure style effect by controlling for rewriting artifact. CF win rate significantly different from 50% proves style bias exists beyond rewriting artifact (MF1 critical defense).
+541	  parent: double_rewrite_placebo_qwen32b
+542	  spec:
+543	    command: python csd_pipeline/cf_vs_dr_comparison.py (Qwen3-32B judge)
+544	    server: westb-29275
+545	    data_path: data/verified_32b.jsonl + data/verified_verbosity.jsonl
+546	    data_count: 124
+547	    model_name: Qwen3-32B (judge via vLLM)
+548	    seed: 42
+549	    checkpoint_path: N/A
+550	    log_path: data/cf_vs_dr_qwen32b.json
+551	    checkpoint_source: double_rewrite_placebo_qwen32b
+552	    eval_data: data/verified_32b.jsonl + data/verified_verbosity.jsonl
+553	  conclusion: negative
+554	  metrics:
+555	    judge: Qwen3-32B
+556	    comparison: counterfactual vs double_rewrite
+557	    formality: {"n_pairs": 81, "n_consistent": 55, "consistency": 0.679, "cf_win_rate": 0.2, "ci": [0.109, 0.309], "p_value": 9e-06, "interpretation": "DR preferred over CF \u2014 both style effect and extra artifact compound in DR's favor"}
+558	    verbosity: {"n_pairs": 43, "n_consistent": 39, "consistency": 0.907, "cf_win_rate": 0.333, "ci": [0.18, 0.487], "p_value": 0.053, "interpretation": "DR marginally preferred (p=0.053) \u2014 artifact and style effects partially cancel in mixed-direction pairs"}
+559	  completed_at: 2026-05-21T13:54:28.362Z
+560	
+561	================================================================================
+562	EXPERIMENT 21/58: cross_axis_gradient
+563	================================================================================
+564	  status: DONE
+565	  retry_count: 0
+566	  created_at: 2026-05-21T13:30:37.151Z
+567	  updated_at: 2026-05-21T13:31:22.748Z
+568	  hypothesis: NLI rejection rate serves as manipulation invasiveness proxy, with axes ordered register < formality < verbosity matching the gradient in BT and GEE Style OR (qualitative argument)
+569	  spec:
+570	    command: python csd_pipeline/nli_ablation_cross_axis.py
+571	    server: westb-29275
+572	    data_path: data/verified_32b.jsonl + verified_verbosity.jsonl + verified_register.jsonl
+573	    data_count: 300
+574	    model_name: Descriptive statistics only
+575	    seed: 42
+576	    checkpoint_path: N/A
+577	    log_path: data/cross_axis_gradient.json
+578	  conclusion: success
+579	  metrics:
+580	    axes: [{"axis": "register", "nli_rejection_rate": 0.06, "bt": 0.553, "likert_d": 0.069, "gee_style_or": 1.91}, {"axis": "formality", "nli_rejection_rate": 0.12, "bt": 0.665, "likert_d": 0.012, "gee_style_or": 4.2}, {"axis": "verbosity", "nli_rejection_rate": 0.14, "bt": 0.773, "likert_d": -0.146, "gee_style_or": 13.1}]
+581	    note: Qualitative gradient: register < formality < verbosity. Higher NLI rejection = more invasive manipulation = stronger detected bias.
+582	  completed_at: 2026-05-21T13:31:22.748Z
+583	
+584	================================================================================
+585	EXPERIMENT 22/58: nli_gate_ablation
+586	================================================================================
+587	  status: DONE
+588	  retry_count: 0
+589	  created_at: 2026-05-21T13:30:35.825Z
+590	  updated_at: 2026-05-21T13:31:22.271Z
+591	  hypothesis: NLI gate filters content-contaminated pairs without introducing systematic bias — NLI-pass BT ≈ all-pairs BT, and NLI-fail pairs show reversed or attenuated effects (bounding analysis)
+592	  spec:
+593	    command: python csd_pipeline/nli_ablation_cross_axis.py
+594	    server: westb-29275
+595	    data_path: data/pairwise_results_qwen32b_*.jsonl + data/verified_*.jsonl
+596	    data_count: 200
+597	    model_name: choix BT + bootstrap
+598	    seed: 42
+599	    checkpoint_path: N/A
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "bb620813-fed4-4ba7-aa46-b1b5d9dcdfa0"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 71_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Reading ~/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "usage": {
+    "total_tokens": 36266,
+    "tool_uses": 12,
+    "duration_ms": 60385
+  },
+  "last_tool_name": "Read",
+  "uuid": "6b4d224c-92f0-4ea5-82a0-86f197517e20",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013WepxKhjfZwD9HVfugNK67`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "limit": 300,
+  "offset": 600
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "7640fe99-4b2a-492b-91d6-cfcd0d51db8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTmfi9AgzQD7TnHiRE9mZN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7733,
+      "cache_read_input_tokens": 28092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7733,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 73 · 2026-05-25T19:43:53.276Z_
+
+<details><summary>↩ Tool result · `toolu_013WepxKhjfZwD9HVfugNK67`</summary>
+
+```text
+600	    log_path: data/nli_gate_ablation.json
+601	  conclusion: success
+602	  metrics:
+603	    formality: {"nli_pass": {"n": 88, "bt": 0.665, "ci": [0.585, 0.739], "p": 0.0001}, "nli_fail": {"n": 12, "bt": 0.417, "ci": [0.167, 0.666], "p": 0.69, "note": "REVERSED - no formal preference in contaminated pairs"}, "all": {"n": 100, "bt": 0.635, "ci": [0.56, 0.705], "p": 0.0001}}
+604	    verbosity: {"nli_pass": {"n": 86, "bt": 0.773, "ci": [0.703, 0.843], "p": 0.0001}, "nli_fail": {"n": 14, "bt": 0.75, "ci": [0.536, 0.928], "p": 0.006, "note": "Still significant - verbosity bias persists even in NLI-fail"}, "all": {"n": 100, "bt": 0.77, "ci": [0.7, 0.835], "p": 0.0001}}
+605	    interpretation: Formality: NLI gate correctly filters contaminated pairs (NLI-fail BT reverses to 41.7%). Verbosity: bias so strong it persists in NLI-fail (75.0%). All-pairs BT close to NLI-pass BT for both axes.
+606	  completed_at: 2026-05-21T13:31:22.271Z
+607	
+608	================================================================================
+609	EXPERIMENT 23/58: verbosity_7method_sensitivity
+610	================================================================================
+611	  status: DONE
+612	  retry_count: 0
+613	  created_at: 2026-05-21T13:09:57.524Z
+614	  updated_at: 2026-05-21T13:10:23.178Z
+615	  hypothesis: All 6 Likert-based statistical methods fail to detect verbosity bias (p>0.05) while Bradley-Terry detects it (77.3%, p<0.001), replicating the formality attenuation pattern on verbosity axis (addresses SF5)
+616	  spec:
+617	    command: python csd_pipeline/verbosity_7method_sensitivity.py
+618	    server: westb-29275
+619	    data_path: data/scored_qwen32b_verbosity.jsonl + data/pairwise_results_qwen32b_verbosity.jsonl
+620	    data_count: 86
+621	    model_name: Statistical analysis (scipy, statsmodels, choix)
+622	    seed: 42
+623	    checkpoint_path: N/A
+624	    log_path: data/verbosity_7method_sensitivity.json
+625	  conclusion: success
+626	  metrics:
+627	    n_pairs: 86
+628	    axis: verbosity
+629	    judge: Qwen3-32B
+630	    benchmark: LLMBar
+631	    methods: {"paired_ttest": {"t": 0.5163, "p": 0.607, "d": 0.056, "significant": false}, "mann_whitney": {"U": 3868, "p": 0.578, "r": -0.046, "significant": false}, "ordinal_logistic": {"coef": 0.1592, "p": 0.575, "OR": 1.173, "significant": false}, "cohens_d": {"d": 0.036, "threshold": 0.2, "significant": false}, "binarized_chi2": {"chi2": 1.5512, "p": 0.213, "OR": 2.162, "significant": false}, "likert_ate": {"ate": 0.0581, "p": 0.691, "d": 0.056, "ci": [-0.16, 0.27], "significant": false}, "bradley_terry": {"p_verbose": 0.7732, "p_value": 0.0001, "ci": [0.703, 0.843], "significant": true}}
+632	    summary: 6/6 Likert methods NS, only BT detects. Replicates formality attenuation pattern.
+633	  completed_at: 2026-05-21T13:10:23.178Z
+634	
+635	================================================================================
+636	EXPERIMENT 24/58: nli_gate_full_validation
+637	================================================================================
+638	  status: DONE
+639	  retry_count: 0
+640	  created_at: 2026-05-21T12:16:02.325Z
+641	  updated_at: 2026-05-21T12:16:36.565Z
+642	  hypothesis: Full-coverage GPT-4o independent validation of NLI gate decisions across all 200 pairs confirms gate reliability, with high pass precision and conservative fail behavior (addresses W-MF1)
+643	  spec:
+644	    command: python csd_pipeline/nli_gate_full_validation.py
+645	    server: westb-29275
+646	    data_path: data/verified_32b.jsonl + data/verified_verbosity.jsonl
+647	    data_count: 200
+648	    model_name: GPT-4o (evaluator) + DeBERTa-v3-large (NLI gate)
+649	    seed: 42
+650	    checkpoint_path: N/A
+651	    log_path: data/nli_gate_full_validation.json
+652	  conclusion: success
+653	  metrics:
+654	    total_evaluated: 200
+655	    per_axis: {"formality": {"n": 100, "agreement": 0.88, "kappa": 0.47, "base_rate_pass": 0.88, "pass_precision": 0.921, "fail_recall": 0.583}, "verbosity": {"n": 100, "agreement": 0.79, "kappa": 0.31, "base_rate_pass": 0.86, "pass_precision": 0.826, "fail_recall": 0.571}}
+656	    overall: {"n": 200, "agreement": 0.835, "kappa": 0.38, "base_rate_pass": 0.87, "pass_precision": 0.874, "fail_recall": 0.577, "confusion": {"tp": 152, "fp": 22, "tn": 15, "fn": 11}}
+657	    vs_spotcheck: {"spotcheck_agreement": 0.65, "full_agreement": 0.835, "delta_pp": 18.5, "note": "Spot-check used 50/50 stratified sampling (inflating disagreement); full data has 87% pass rate, pulling overall agreement up via high pass precision"}
+658	    interpretation: NLI gate is reliable for pass decisions (precision 87-92%). Low fail recall (58%) means gate over-rejects — GPT-4o considers ~42% of NLI-fail pairs as actually preserving content. This confirms gate is CONSERVATIVE, consistent with NLI FN selection bias analysis.
+659	  completed_at: 2026-05-21T12:16:36.566Z
+660	
+661	================================================================================
+662	EXPERIMENT 25/58: originality_minimal_subset
+663	================================================================================
+664	  status: DONE
+665	  retry_count: 0
+666	  created_at: 2026-05-21T12:05:15.868Z
+667	  updated_at: 2026-05-21T12:08:31.944Z
+668	  hypothesis: Style effect in BT remains stable when restricting to originality-balanced pairs (Likert score tied between original and counterfactual), confirming style bias is not driven by originality confound (addresses W-MF3)
+669	  spec:
+670	    command: python csd_pipeline/originality_minimal_subset.py
+671	    server: westb-29275
+672	    data_path: data/pairwise_results_32b.jsonl + data/scored_32b.jsonl + verbosity equivalents
+673	    data_count: 174
+674	    model_name: choix BT + bootstrap
+675	    seed: 42
+676	    checkpoint_path: N/A
+677	    log_path: data/originality_minimal_subset.json
+678	  conclusion: success
+679	  metrics:
+680	    formality: {"full": {"n": 88, "bt": 0.6647, "ci": [0.585, 0.739]}, "likert_balanced": {"n": 55, "bt": 0.6727, "ci_note": "bootstrap CI from script", "method": "Pairs where Likert score(original) == Likert score(counterfactual)"}, "delta_likert_vs_full": 0.008, "delta_ci": [-0.1103, 0.1261], "conclusion": "BT stable on originality-balanced subset (\u0394=+0.008, CI includes 0)", "fix": "Corrected PAIRWISE_F from pairwise_results_32b.jsonl to pairwise_results_qwen32b_formality.jsonl"}
+681	    verbosity: {"full": {"n": 86, "bt": 0.7732, "ci": [0.703, 0.843]}, "likert_balanced": {"n": 50, "bt": 0.7599, "method": "Pairs where Likert score(original) == Likert score(counterfactual)"}, "delta_likert_vs_full": -0.0133, "delta_ci": [-0.133, 0.1032], "conclusion": "BT stable on originality-balanced subset (\u0394=-0.013, CI includes 0)"}
+682	    note: FIXED: formality now uses correct pairwise file (pairwise_results_qwen32b_formality.jsonl). Full BT matches canonical 0.665.
+683	  completed_at: 2026-05-21T12:05:41.868Z
+684	
+685	================================================================================
+686	EXPERIMENT 26/58: bt_model_diagnostics
+687	================================================================================
+688	  status: DONE
+689	  retry_count: 0
+690	  created_at: 2026-05-21T12:04:20.388Z
+691	  updated_at: 2026-05-21T12:04:52.866Z
+692	  hypothesis: BT model adequately fits the pairwise data (GoF non-significant) and stratified BT by originality direction reveals whether style effect is confounded with originality preference (addresses W-MF2)
+693	  parent: qwen32b_formality
+694	  spec:
+695	    command: python csd_pipeline/bt_model_diagnostics.py
+696	    server: westb-29275
+697	    data_path: data/pairwise_results_32b.jsonl + data/pairwise_results_qwen32b_verbosity.jsonl
+698	    data_count: 200
+699	    model_name: choix BT + scipy chi2/Fisher
+700	    seed: 42
+701	    checkpoint_path: N/A
+702	    log_path: data/bt_model_diagnostics.json
+703	    checkpoint_source: qwen32b_formality + qwen32b_verbosity pairwise results
+704	    eval_data: Consistent pairs from pairwise results (formality n=46, verbosity n=63)
+705	  conclusion: success
+706	  metrics:
+707	    gof: {"formality": {"deviance": 52.8, "df": 45, "p_value": 0.198, "n_consistent": 46, "bt_prob": 0.739}, "verbosity": {"deviance": 47.96, "df": 62, "p_value": 0.905, "n_consistent": 63, "bt_prob": 0.873}}
+708	    stratified_bt: {"formality": {"orig_is_formal": {"n": 27, "bt": 0.889, "ci": [0.778, 1], "wins": 24}, "orig_is_casual": {"n": 19, "bt": 0.526, "ci": [0.316, 0.737], "wins": 10}, "fisher_p": 0.015, "chi2_p": 0.006, "note": "Significant direction difference: orig_is_formal 88.9% vs orig_is_casual 52.6%. Confirms originality confound in formality (consistent with GEE decomposition)."}, "verbosity": {"orig_is_verbose": {"n": 29, "bt": 0.828, "ci": [0.69, 0.966], "wins": 24}, "orig_is_concise": {"n": 34, "bt": 0.912, "ci": [0.794, 1], "wins": 31}, "fisher_p": 0.453, "chi2_p": 0.317, "note": "No significant direction difference. Both directions strongly prefer verbose \u2192 pure style bias confirmed."}}
+709	  completed_at: 2026-05-21T12:04:52.866Z
+710	
+711	================================================================================
+712	EXPERIMENT 27/58: claude_tost_equivalence
+713	================================================================================
+714	  status: DONE
+715	  retry_count: 0
+716	  created_at: 2026-05-21T12:03:21.852Z
+717	  updated_at: 2026-05-21T12:03:53.897Z
+718	  hypothesis: Claude Sonnet 4 BT results are statistically equivalent to chance (P=0.5) within ±10pp margin using TOST, formally confirming no style bias as negative control (addresses W-SF4)
+719	  spec:
+720	    command: python csd_pipeline/claude_tost_equivalence.py
+721	    server: westb-29275
+722	    data_path: Claude BT bootstrap results
+723	    data_count: 174
+724	    model_name: Statistical analysis only (scipy)
+725	    seed: 42
+726	    checkpoint_path: N/A
+727	    log_path: data/claude_tost_equivalence.json
+728	  conclusion: negative
+729	  metrics:
+730	    equivalence_margin: 0.1
+731	    formality: {"p_hat": 0.562, "n": 88, "se": 0.0375, "tost_p": 0.155, "ci_90": [0.5, 0.624], "upper_test_p": 0.155, "lower_test_p": 0, "equivalence_confirmed": false, "note": "90% CI upper bound 0.624 > 0.60 margin"}
+732	    verbosity: {"p_hat": 0.541, "n": 86, "se": 0.0401, "tost_p": 0.07, "ci_90": [0.475, 0.607], "upper_test_p": 0.07, "lower_test_p": 0, "equivalence_confirmed": false, "note": "90% CI upper bound 0.607 > 0.60 margin, marginal"}
+733	    conclusion: Equivalence NOT confirmed at Δ=0.10 — underpowered (n≈87), not evidence of bias. Both upper tests fail: formality p=0.155, verbosity p=0.070. If Δ=0.15, both would confirm equivalence.
+734	    method: TOST for proportions (Lakens 2017), SE from pair-level bootstrap
+735	  completed_at: 2026-05-21T12:03:53.897Z
+736	
+737	================================================================================
+738	EXPERIMENT 28/58: nli_fn_selection_bias
+739	================================================================================
+740	  status: DONE
+741	  retry_count: 0
+742	  created_at: 2026-05-21T10:40:38.454Z
+743	  updated_at: 2026-05-21T10:47:10.010Z
+744	  hypothesis: NLI gate may systematically filter pairs with larger style changes, potentially underestimating the true bias effect — if so, reported effects are conservative lower bounds (addresses R3-W8)
+745	  conclusion: success
+746	  metrics:
+747	    formality: {"n_total": 355, "n_pass": 323, "n_fail": 32, "pass_rate": 0.91, "significant_metrics": "2/7 (BLEU p=0.018 d=-0.46, TF-IDF p=0.002 d=-0.62)", "norm_lev_p": 0.23, "bleu_pass": 0.361, "bleu_fail": 0.235, "tfidf_pass": 0.69, "tfidf_fail": 0.558, "conclusion": "CONSERVATIVE: fail pairs have larger style changes (lower BLEU/TF-IDF)"}
+748	    verbosity: {"n_total": 100, "n_pass": 39, "n_fail": 61, "pass_rate": 0.39, "significant_metrics": "5/7", "norm_lev_pass": 0.528, "norm_lev_fail": 0.69, "norm_lev_d": 0.788, "tfidf_pass": 0.675, "tfidf_fail": 0.491, "tfidf_d": -0.815, "conclusion": "STRONGLY CONSERVATIVE: 5/7 significant, TF-IDF d=-0.815 large effect"}
+749	    register: {"n_total": 100, "n_pass": 80, "n_fail": 20, "pass_rate": 0.8, "significant_metrics": "0/7", "conclusion": "No significant bias detected (but n_fail=20 underpowered)"}
+750	    overall_conclusion: Gate selection is conservative across all axes. Measured effects are lower bounds. Verbosity strongest signal (d=0.815 large).
+751	    artifacts: ["artifacts/nli_fn_bias/nli_fn_bias_formality.png", "artifacts/nli_fn_bias/nli_fn_bias_verbosity.png", "artifacts/nli_fn_bias/nli_fn_bias_register.png"]
+752	  spec:
+753	    command: python nli_fn_selection_bias.py
+754	    server: westb-29275
+755	    data_path: data/ (formality + verbosity pipeline outputs)
+756	    data_count: 455
+757	    model_name: Analysis only (Levenshtein, Jaccard, Flesch)
+758	    seed: 42
+759	    checkpoint_path: N/A
+760	    log_path: csd_pipeline/nli_fn_selection_bias.py output
+761	  completed_at: 2026-05-21T10:41:09.789Z
+762	
+763	================================================================================
+764	EXPERIMENT 29/58: nli_gate_spotcheck
+765	================================================================================
+766	  status: DONE
+767	  retry_count: 0
+768	  created_at: 2026-05-21T10:18:55.907Z
+769	  updated_at: 2026-05-21T10:40:56.025Z
+770	  hypothesis: GPT-4o independent evaluation agrees with NLI gate pass/fail decisions at high rate, demonstrating NLI gate validity is not an artifact of same-model-family evaluation (addresses R3-W1 concern about evaluator-producer confound in gate validation)
+771	  conclusion: success
+772	  metrics:
+773	    total_samples: 100
+774	    pass_samples: 50
+775	    fail_samples: 50
+776	    overall_agreement: 0.65
+777	    cohens_kappa: 0.3
+778	    kappa_ci: [0.153, 0.456]
+779	    pass_agreement: 0.94
+780	    fail_agreement: 0.36
+781	    disagreement_pattern: {"nli_fail_gpt_pass": 32, "nli_pass_gpt_fail": 3}
+782	    per_axis: {"formality": {"agreement": 0.771, "kappa": 0.241, "n": 48}, "verbosity": {"agreement": 0.618, "kappa": 0.294, "n": 34}, "register": {"agreement": 0.389, "kappa": 0.092, "n": 18}}
+783	    note: NLI gate is conservative, not rubber-stamp. 94% pass agreement. 32/35 disagreements are NLI over-reject (fail but GPT-4o says pass). Kappa=0.30 inflated by 50/50 stratified sampling; real-data agreement much higher given 88% pass rate.
+784	  spec:
+785	    command: python nli_gate_gpt4o_spotcheck.py
+786	    server: westb-29275
+787	    data_path: data/ (formality+verbosity+register NLI outputs)
+788	    data_count: 100
+789	    model_name: GPT-4o (evaluator) + DeBERTa-v3-large (NLI)
+790	    seed: 42
+791	    checkpoint_path: N/A
+792	    log_path: artifacts/reanalysis_outputs/nli_gate_gpt4o_spotcheck.json
+793	  completed_at: 2026-05-21T10:39:23.633Z
+794	
+795	================================================================================
+796	EXPERIMENT 30/58: gate_comparison
+797	================================================================================
+798	  status: DONE
+799	  retry_count: 0
+800	  created_at: 2026-05-21T10:38:32.232Z
+801	  updated_at: 2026-05-21T10:39:32.612Z
+802	  hypothesis: Direction-aware NLI gate does not introduce systematic bias compared to strict bidirectional gate — the extra ~21% pairs admitted by direction-aware gating have consistent BT direction with the strict-filtered subset (addresses R3-W2)
+803	  conclusion: success
+804	  metrics:
+805	    formality: {"strict": {"n": 88, "bt": 0.6647, "ci": [0.5852, 0.7386], "p": 0.0001}, "direction_aware": {"n": 97, "bt": 0.634, "ci": [0.5567, 0.7061], "p": 0.0001}, "extra_only": {"n": 9, "bt": 0.3337}, "delta": -0.0307, "delta_ci": [-0.0651, -0.0018], "significant": true, "note": "Formality pipeline already uses strict gate (min). Extra 9 pairs lean casual. Moot for paper."}
+806	    verbosity: {"strict": {"n": 65, "bt": 0.7845, "ci": [0.7076, 0.8537], "p": 0.0001}, "direction_aware": {"n": 86, "bt": 0.7732, "ci": [0.7034, 0.8429], "p": 0.0001}, "extra_only": {"n": 21, "bt": 0.7379}, "delta": -0.0113, "delta_ci": [-0.0564, 0.0296], "significant": false, "note": "No systematic difference. Extra 21 pairs consistent with overall direction (73.8% vs 77.3%)."}
+807	  spec:
+808	    command: python gate_comparison_bt.py
+809	    server: westb-29275
+810	    data_path: data/ (formality + verbosity NLI outputs)
+811	    data_count: 200
+812	    model_name: DeBERTa-v3-large (NLI) + choix (BT)
+813	    seed: 42
+814	    checkpoint_path: N/A
+815	    log_path: csd_pipeline/gate_comparison_bt.py output
+816	  completed_at: 2026-05-21T10:39:32.612Z
+817	
+818	================================================================================
+819	EXPERIMENT 31/58: exp-006
+820	================================================================================
+821	  status: DONE
+822	  retry_count: 0
+823	  created_at: 2026-05-21T05:57:42.107Z
+824	  updated_at: 2026-05-21T09:08:50.683Z
+825	  metrics:
+826	    n_total: 400
+827	    nli_pass: 355
+828	    nli_rate: 0.888
+829	    bt: {"p_formal": 0.675, "ci": [0.637, 0.713], "ci_width_pp": 7.6, "p_value": 0.0001}
+830	    likert: {"ate": -0.059, "p": 0.5999, "d": -0.025, "tie_rate": 0.434, "mean_formal": 6.58, "mean_casual": 6.64}
+831	    gee: {"style_or": 2.15, "style_ci": [1.46, 3.16], "style_p": 0.0001, "orig_or": 4.99, "orig_ci": [3.4, 7.34], "orig_p": 0.0001}
+832	    blindspot: True
+833	    consistency: 0.654
+834	    vs_n100: {"bt_delta": "+1.0pp (67.5 vs 66.5)", "ci_improvement": "2x narrower (7.6pp vs 15.4pp)"}
+835	  hypothesis: Scaling formality counterfactual generation from 100 to 400 pairs enables cross-benchmark validation (AlpacaEval/MT-Bench) and increases statistical power for detecting smaller effect sizes
+836	  spec:
+837	    command: counterfactual_gen.py --axis formality --n 400 via vLLM Qwen3-32B tp=1 port 8002
+838	    server: westb-29275
+839	    data_path: /root/causal_style_decomp_judge/data/scaled_formality_input.jsonl
+840	    data_count: 400
+841	    model_name: Qwen3-32B (counterfactual generator via vLLM)
+842	    seed: 42
+843	    checkpoint_path: /root/causal_style_decomp_judge/data/counterfactuals_scaled_formality.jsonl
+844	    log_path: /root/causal_style_decomp_judge/logs/
+845	  conclusion: success
+846	  completed_at: 2026-05-21T07:45:18.441Z
+847	
+848	================================================================================
+849	EXPERIMENT 32/58: alpacaeval_verbosity_qwen32b
+850	================================================================================
+851	  status: DONE
+852	  retry_count: 0
+853	  created_at: 2026-05-21T09:02:00.454Z
+854	  updated_at: 2026-05-21T09:02:30.481Z
+855	  hypothesis: Qwen3-32B shows verbosity Blindspot on AlpacaEval benchmark (pairwise detects verbosity bias that Likert misses), extending verbosity findings to a second benchmark
+856	  metrics:
+857	    bt: {"p_verbose": 0.841, "ci": [0.774, 0.902], "p_value": 0.0001}
+858	    likert: {"ate": 0.732, "p": 0.0003, "d": 0.375, "tie_rate": 0.244, "mean_verbose": 7.32, "mean_concise": 6.59}
+859	    gee: {"style_or": 28.64, "style_ci": [9.16, 89.56], "style_p": 0.0001, "orig_or": 0.18, "orig_ci": [0.06, 0.54], "orig_p": 0.0024}
+860	    blindspot: False
+861	    n_pairs: 82
+862	    consistency: 0.829
+863	    note: NOT Blindspot: Likert p=0.0003 also significant. Effect is so strong (d=0.375) that even Likert detects it. GEE Style OR=28.64 is massive.
+864	  conclusion: success
+865	  spec:
+866	    command: python alpacaeval_qwen32b_scoring.py --axis verbosity
+867	    server: westb-29275
+868	    data_path: data/counterfactuals_alpacaeval_verbosity.jsonl
+869	    data_count: 82
+870	    model_name: Qwen3-32B
+871	    seed: 42
+872	    checkpoint_path: N/A (API scoring via local vLLM)
+873	    log_path: data/alpacaeval_verbosity_qwen32b_results.json
+874	  completed_at: 2026-05-21T09:02:30.481Z
+875	
+876	================================================================================
+877	EXPERIMENT 33/58: correction_poc
+878	================================================================================
+879	  status: DONE
+880	  retry_count: 0
+881	  created_at: 2026-05-21T09:00:50.949Z
+882	  updated_at: 2026-05-21T09:01:23.388Z
+883	  hypothesis: Explicit style-awareness debiasing instructions in judge prompts can eliminate or substantially reduce formality style bias, providing a simple correction mechanism (C4 claim test)
+884	  spec:
+885	    command: python correction_poc.py
+886	    server: westb-29275
+887	    data_path: data/verified_formality.jsonl
+888	    data_count: 88
+889	    model_name: Qwen3-32B + GPT-4o
+890	    seed: 42
+891	    checkpoint_path: N/A (API scoring)
+892	    log_path: data/pairwise_results_debiased_qwen32b_formality.jsonl + data/pairwise_results_debiased_gpt4o_formality.jsonl
+893	  conclusion: negative
+894	  metrics:
+895	    qwen32b: {"original": {"p_formal": 0.665, "ci": [0.585, 0.739], "p_value": 0.0001}, "debiased": {"p_formal": 0.608, "ci": [0.534, 0.682], "p_value": 0.0023}, "reduction_pp": 5.7, "reduction_pct": 34.5}
+896	    gpt4o: {"original": {"p_formal": 0.63, "ci": [0.557, 0.703], "p_value": 0.0004}, "debiased": {"p_formal": 0.626, "ci": [0.559, 0.693], "p_value": 0.0001}, "reduction_pp": 0.4, "reduction_pct": 3.1, "neither_count": 5}
+897	    conclusion: Debiased prompt ineffective. Qwen3-32B: -5.7pp but still p=0.002. GPT-4o: -0.4pp, no change. Style bias persists despite explicit debiasing instructions.
+898	  completed_at: 2026-05-21T09:01:23.388Z
+899	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "7457ba62-d284-4642-b9e8-1eb321cb92ed"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 74_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Reading ~/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "usage": {
+    "total_tokens": 44478,
+    "tool_uses": 13,
+    "duration_ms": 65716
+  },
+  "last_tool_name": "Read",
+  "uuid": "82e25eef-bccc-430b-a1dd-d66a9f8265a6",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DE34RLMEcaUPwitSTL9UE7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "limit": 300,
+  "offset": 900
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "37d7828d-b594-4ff3-9db9-e32e8eae7eb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017GGTLQDnDL2vKnGRhcMxmZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8174,
+      "cache_read_input_tokens": 35825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 8174,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 76 · 2026-05-25T19:43:58.598Z_
+
+<details><summary>↩ Tool result · `toolu_01DE34RLMEcaUPwitSTL9UE7`</summary>
+
+```text
+900	================================================================================
+901	EXPERIMENT 34/58: claude_verbosity
+902	================================================================================
+903	  status: DONE
+904	  retry_count: 0
+905	  created_at: 2026-05-21T08:47:10.568Z
+906	  updated_at: 2026-05-21T08:58:22.005Z
+907	  hypothesis: Claude Sonnet 4 shows verbosity style bias similar to GPT-4o (OR=10-13) and Qwen3-32B, confirming verbosity bias is model-independent
+908	  conclusion: negative
+909	  metrics:
+910	    bt: {"p_verbose": 0.541, "ci": [0.459, 0.616], "p_value": 0.284}
+911	    likert: {"ate": -0.081, "p": 0.7427, "d": -0.039, "tie_rate": 0.674}
+912	    gee: {"style_or": 1.52, "style_p": 0.2858, "orig_or": 0.8, "orig_p": 0.5626}
+913	    blindspot: False
+914	    n_pairs: 86
+915	  spec:
+916	    command: python claude_judge_scoring.py --axis verbosity
+917	    server: westb-29275
+918	    data_path: data/verified_verbosity.jsonl
+919	    data_count: 86
+920	    model_name: claude-sonnet-4-20250514
+921	    seed: 42
+922	    checkpoint_path: N/A (API scoring)
+923	    log_path: data/claude_verbosity_results.json
+924	  completed_at: 2026-05-21T08:58:22.005Z
+925	
+926	================================================================================
+927	EXPERIMENT 35/58: claude_formality
+928	================================================================================
+929	  status: DONE
+930	  retry_count: 0
+931	  created_at: 2026-05-21T08:47:10.069Z
+932	  updated_at: 2026-05-21T08:58:20.986Z
+933	  hypothesis: Claude Sonnet 4 shows similar formality style bias as GPT-4o and Qwen3-32B, with pairwise detecting bias that Likert misses, confirming Blindspot is cross-model
+934	  conclusion: negative
+935	  metrics:
+936	    bt: {"p_formal": 0.562, "ci": [0.489, 0.636], "p_value": 0.0912}
+937	    likert: {"ate": -0.045, "p": 0.7207, "d": -0.021, "tie_rate": 0.682}
+938	    gee: {"style_or": 1.47, "style_p": 0.2757, "orig_or": 6.66, "orig_p": 0.0001}
+939	    blindspot: False
+940	    n_pairs: 88
+941	  spec:
+942	    command: python claude_judge_scoring.py --axis formality
+943	    server: westb-29275
+944	    data_path: data/verified_formality.jsonl
+945	    data_count: 88
+946	    model_name: claude-sonnet-4-20250514
+947	    seed: 42
+948	    checkpoint_path: N/A (API scoring)
+949	    log_path: data/claude_formality_results.json
+950	  completed_at: 2026-05-21T08:58:20.986Z
+951	
+952	================================================================================
+953	EXPERIMENT 36/58: gpt4o_alpacaeval
+954	================================================================================
+955	  status: DONE
+956	  retry_count: 0
+957	  created_at: 2026-05-21T08:47:11.684Z
+958	  updated_at: 2026-05-21T08:58:20.046Z
+959	  hypothesis: GPT-4o shows formality Blindspot on AlpacaEval benchmark (pairwise detects bias, Likert misses it), confirming cross-benchmark generalizability
+960	  metrics:
+961	    bt: {"p_formal": 0.727, "ci": [0.663, 0.785], "p_value": 0.0001}
+962	    likert: {"ate": 0.128, "p": 0.1704, "d": 0.148, "tie_rate": 0.663}
+963	    gee: {"style_or": 4.91, "style_p": 0.0001, "orig_or": 1.99, "orig_p": 0.0356}
+964	    blindspot: True
+965	    n_pairs: 86
+966	  conclusion: success
+967	  spec:
+968	    command: python gpt4o_crossbenchmark_scoring.py --benchmark alpacaeval
+969	    server: westb-29275
+970	    data_path: data/counterfactuals_alpacaeval_formality.jsonl
+971	    data_count: 86
+972	    model_name: gpt-4o
+973	    seed: 42
+974	    checkpoint_path: N/A (API scoring)
+975	    log_path: data/gpt4o_alpacaeval_formality_results.json
+976	  completed_at: 2026-05-21T08:58:20.046Z
+977	
+978	================================================================================
+979	EXPERIMENT 37/58: gpt4o_mtbench
+980	================================================================================
+981	  status: DONE
+982	  retry_count: 0
+983	  created_at: 2026-05-21T08:47:12.182Z
+984	  updated_at: 2026-05-21T08:58:18.609Z
+985	  hypothesis: GPT-4o shows formality Blindspot on MT-Bench benchmark, confirming cross-benchmark generalizability beyond LLMBar and AlpacaEval
+986	  metrics:
+987	    bt: {"p_formal": 0.692, "ci": [0.623, 0.753], "p_value": 0.0001}
+988	    likert: {"ate": 0.164, "p": 0.0163, "d": 0.167, "tie_rate": 0.699}
+989	    gee: {"style_or": 2.28, "style_p": 0.1055, "orig_or": 6.24, "orig_p": 0.0005}
+990	    blindspot: False
+991	    n_pairs: 73
+992	    note: Likert also significant p=0.016 but d=0.167 small; BT much stronger p<0.0001. NOT Blindspot because Likert is also significant.
+993	  conclusion: success
+994	  spec:
+995	    command: python gpt4o_crossbenchmark_scoring.py --benchmark mtbench
+996	    server: westb-29275
+997	    data_path: data/counterfactuals_mtbench_formality.jsonl
+998	    data_count: 73
+999	    model_name: gpt-4o
+1000	    seed: 42
+1001	    checkpoint_path: N/A (API scoring)
+1002	    log_path: data/gpt4o_mtbench_formality_results.json
+1003	  completed_at: 2026-05-21T08:58:18.609Z
+1004	
+1005	================================================================================
+1006	EXPERIMENT 38/58: qwen32b_register
+1007	================================================================================
+1008	  status: DONE
+1009	  retry_count: 0
+1010	  created_at: 2026-05-21T04:24:08.776Z
+1011	  updated_at: 2026-05-21T05:56:18.529Z
+1012	  hypothesis: Qwen3-32B judge shows register (academic/conversational) bias in pairwise comparison while Likert fails to detect it, extending Blindspot to a third style axis
+1013	  spec:
+1014	    command: pairwise_scoring.py + judge_scoring.py via vLLM Qwen3-32B local (tp=2, port 8000)
+1015	    server: westb-29275
+1016	    data_path: /root/causal_style_decomp_judge/data/verified_register.jsonl
+1017	    data_count: 94
+1018	    model_name: Qwen3-32B (local judge via vLLM)
+1019	    seed: 42
+1020	    checkpoint_path: data/pairwise_results_qwen32b_register.jsonl
+1021	    log_path: data/scored_qwen32b_register.jsonl
+1022	  conclusion: success
+1023	  metrics:
+1024	    pairwise: {"consistency_rate": 0.6, "academic_win_rate": 0.593, "sign_test_p": 0.22, "wilson_ci": [0.46, 0.713]}
+1025	    likert: {"ate": 0.074, "p": 0.505, "cohens_d": 0.069, "tie_rate": 0.638}
+1026	    direction: {"academic_to_conv_orig_pref": 0.893, "academic_to_conv_p": 2.7e-05, "conv_to_academic_orig_pref": 0.312, "conv_to_academic_p": 0.05}
+1027	    blindspot_confirmed: False
+1028	    bt: {"p_academic_wins": 0.553, "bootstrap_ci": [0.479, 0.628], "bootstrap_p": 0.0763, "bootstrap_method": "pair-level (10000 iterations, seed=42)", "n_pairs": 94, "n_comparisons": 188}
+1029	    gee_decomposition: {"academic_or": 1.9053, "academic_ci": [1.01, 3.58], "academic_p": 0.0455, "originality_or": 5.7181, "originality_p": 0.0001, "note": "Register significant after controlling for originality bias (OR=1.91 p=0.046). Originality dominant (OR=5.72)."}
+1030	    status_note: BT P(academic)=55.3% [47.9%, 62.8%] p=0.076 (NS). GEE academic OR=1.91 p=0.046 (significant after controlling originality). Originality dominant.
+1031	  completed_at: 2026-05-21T04:39:54.506Z
+1032	
+1033	================================================================================
+1034	EXPERIMENT 39/58: gpt4o_register
+1035	================================================================================
+1036	  status: DONE
+1037	  retry_count: 0
+1038	  created_at: 2026-05-21T05:28:11.858Z
+1039	  updated_at: 2026-05-21T05:33:18.995Z
+1040	  hypothesis: GPT-4o judge shows register (academic/conversational) bias detectable via pairwise but not Likert, extending Blindspot to register axis with GPT-4o and enabling cross-model GEE decomposition comparison
+1041	  spec:
+1042	    command: pairwise_scoring.py + judge_scoring.py via GPT-4o OpenRouter API
+1043	    server: westb-29275
+1044	    data_path: /root/causal_style_decomp_judge/data/verified_register.jsonl
+1045	    data_count: 100
+1046	    model_name: GPT-4o (OpenRouter via http://47.94.22.126/v1)
+1047	    seed: 42
+1048	    checkpoint_path: data/pairwise_results_gpt4o_register.jsonl
+1049	    log_path: data/scored_gpt4o_register.jsonl
+1050	  conclusion: success
+1051	  metrics:
+1052	    pairwise: {"academic_win_rate": 0.633, "sign_test_p": 0.085}
+1053	    likert: {"ate": 0, "p_wilcoxon": 0.7849, "cohens_d": 0, "tie_rate": 0.6489}
+1054	    bt: {"p_academic_wins": 0.5699, "bootstrap_ci": [0.5, 0.6398], "bootstrap_p": 0.04, "bootstrap_method": "pair-level (10000 iterations, seed=42)"}
+1055	    gee_decomposition: {"academic_or": 1.8759, "academic_p": 0.0285, "originality_or": 2.2098, "originality_p": 0.0058, "note": "Style marginally significant (OR=1.88 p=0.03), originality stronger (OR=2.21 p=0.006). Pattern consistent with Qwen3-32B register."}
+1056	    blindspot_confirmed: True
+1057	    status_note: BT P(academic)=57.0% [50.0%, 64.0%] p=0.04; Likert ATE=0 p=0.78 (Blindspot confirmed). GEE academic OR=1.88 p=0.03, orig OR=2.21 p=0.006.
+1058	  completed_at: 2026-05-21T05:29:01.095Z
+1059	
+1060	================================================================================
+1061	EXPERIMENT 40/58: gpt4o_verbosity
+1062	================================================================================
+1063	  status: DONE
+1064	  retry_count: 0
+1065	  created_at: 2026-05-21T05:28:11.348Z
+1066	  updated_at: 2026-05-21T05:33:15.238Z
+1067	  hypothesis: GPT-4o judge shows verbosity bias in pairwise comparison while Likert fails to detect it, extending Blindspot confirmation to GPT-4o × verbosity cell and enabling cross-model comparison with Qwen3-32B
+1068	  spec:
+1069	    command: pairwise_scoring.py + judge_scoring.py via GPT-4o OpenRouter API
+1070	    server: westb-29275
+1071	    data_path: /root/causal_style_decomp_judge/data/verified_verbosity.jsonl
+1072	    data_count: 100
+1073	    model_name: GPT-4o (OpenRouter via http://47.94.22.126/v1)
+1074	    seed: 42
+1075	    checkpoint_path: data/pairwise_results_gpt4o_verbosity.jsonl
+1076	    log_path: data/scored_gpt4o_verbosity.jsonl
+1077	  conclusion: success
+1078	  metrics:
+1079	    pairwise: {"verbose_win_rate": 0.863, "sign_test_p": 1e-06, "wilson_ci": [0.766, 0.924]}
+1080	    likert: {"ate": 0.1163, "p_wilcoxon": 0.4033, "cohens_d": 0.078, "tie_rate": 0.5814}
+1081	    bt: {"p_verbose_wins": 0.7602, "bootstrap_ci": [0.6881, 0.8283], "bootstrap_p": 0.0001, "bootstrap_method": "pair-level (10000 iterations, seed=42)"}
+1082	    gee_decomposition: {"verbose_or": 10.9719, "verbose_p": 0.0001, "originality_or": 0.4373, "originality_p": 0.0514, "note": "Pure style bias (OR=10.97 p<0.0001). Originality not significant and in opposite direction (OR=0.44)."}
+1083	    blindspot_confirmed: True
+1084	    status_note: BT P(verbose)=76.0% [68.8%, 82.8%] p=0.0001; Likert ATE=+0.12 p=0.40 (Blindspot confirmed). GEE verbose OR=10.97 p<0.0001, orig OR=0.44 ns.
+1085	  completed_at: 2026-05-21T05:29:00.698Z
+1086	
+1087	================================================================================
+1088	EXPERIMENT 41/58: qwen32b_verbosity
+1089	================================================================================
+1090	  status: DONE
+1091	  retry_count: 0
+1092	  created_at: 2026-05-21T04:24:03.744Z
+1093	  updated_at: 2026-05-21T05:06:43.883Z
+1094	  hypothesis: Qwen3-32B judge shows verbosity bias in pairwise comparison (verbose win rate >60%, p<0.05) while Likert scoring fails to detect it, extending Blindspot finding to verbosity axis
+1095	  spec:
+1096	    command: pairwise_scoring.py + judge_scoring.py via vLLM Qwen3-32B local (tp=2, port 8000)
+1097	    server: westb-29275
+1098	    data_path: /root/causal_style_decomp_judge/data/verified_verbosity.jsonl
+1099	    data_count: 86
+1100	    model_name: Qwen3-32B (local judge via vLLM)
+1101	    seed: 42
+1102	    checkpoint_path: data/pairwise_results_qwen32b_verbosity.jsonl
+1103	    log_path: data/scored_qwen32b_verbosity.jsonl
+1104	  conclusion: success
+1105	  metrics:
+1106	    pairwise: {"consistency_rate": 0.74, "verbose_win_rate": 0.873, "sign_test_p": 1e-06, "wilson_ci": [0.769, 0.934]}
+1107	    likert: {"ate": -0.151, "p": 0.179, "cohens_d": -0.146, "tie_rate": 0.581}
+1108	    direction: {"verbose_to_concise_orig_pref": 0.806, "verbose_to_concise_p": 0.000878, "concise_to_verbose_rewrite_pref": 0.907, "concise_to_verbose_p": 1e-06}
+1109	    note: Strongest bias: 87.3% verbose win (p<10⁻⁶) but Likert p=0.179. Both directions prefer verbose content (not originality bias).
+1110	    blindspot_confirmed: True
+1111	    bt: {"p_verbose_wins": 0.7732, "bootstrap_ci": [0.7034, 0.8429], "bootstrap_p": 0.0001, "bootstrap_method": "pair-level (10000 iterations, seed=42)"}
+1112	    gee_decomposition: {"verbose_or": 13.1, "verbose_ci": [5.62, 30.55], "verbose_p": 2.6e-09, "originality_or": 0.49, "originality_ci": [0.21, 1.14], "originality_p": 0.096, "note": "Verbosity bias entirely style-driven (OR=13.10 p<10\u207b\u2079). Originality non-significant and in opposite direction (OR=0.49)."}
+1113	    status_note: BT P(verbose)=77.3% [70.3%, 84.3%] p<0.0001; GEE verbose OR=13.10 p<10⁻⁹, originality OR=0.49 ns. Purest style bias across all cells.
+1114	  completed_at: 2026-05-21T04:39:53.961Z
+1115	
+1116	================================================================================
+1117	EXPERIMENT 42/58: qwen32b_formality
+1118	================================================================================
+1119	  status: DONE
+1120	  retry_count: 0
+1121	  created_at: 2026-05-21T04:24:01.452Z
+1122	  updated_at: 2026-05-21T04:43:06.759Z
+1123	  hypothesis: Qwen3-32B as local judge will show similar formality bias pattern to GPT-4o (significant pairwise, non-significant Likert), confirming the Likert Blindspot is cross-model and not GPT-4o-specific
+1124	  spec:
+1125	    command: pairwise_scoring.py + judge_scoring.py via vLLM Qwen3-32B local (tp=2, port 8000)
+1126	    server: westb-29275
+1127	    data_path: /root/causal_style_decomp_judge/data/verified_32b.jsonl
+1128	    data_count: 88
+1129	    model_name: Qwen3-32B (local judge via vLLM)
+1130	    seed: 42
+1131	    checkpoint_path: data/pairwise_results_qwen32b_formality.jsonl
+1132	    log_path: data/scored_qwen32b_formality.jsonl
+1133	  conclusion: success
+1134	  metrics:
+1135	    pairwise: {"consistency_rate": 0.65, "formal_win_rate": 0.764, "sign_test_p": 0.000114, "wilson_ci": [0.637, 0.856]}
+1136	    likert: {"ate": 0.011, "p": 0.908, "cohens_d": 0.012, "tie_rate": 0.727}
+1137	    direction: {"formal_to_casual_win": 0.814, "formal_to_casual_p": 4.2e-05, "casual_to_formal_win": 0.5, "casual_to_formal_p": 1}
+1138	    vs_gpt4o: pairwise 76.4% vs 63.0% (stronger); Likert both non-sig (p=0.908 vs p=0.332)
+1139	    blindspot_confirmed: True
+1140	    bt: {"p_formal_wins": 0.6647, "bootstrap_ci": [0.5852, 0.7386], "bootstrap_p": 0.0001, "bootstrap_method": "pair-level (10000 iterations, seed=42)"}
+1141	    gee_decomposition: {"formal_or": 4.2008, "formal_p": 0.0002, "originality_or": 4.7041, "originality_p": 0.0001, "note": "Both effects strong and nearly equal magnitude; casual\u2192formal at 50% confirms originality confound"}
+1142	    status_note: BT P(formal)=66.5% [58.5%, 73.9%] p<0.0001; GEE formal OR=4.20 p=0.0002, originality OR=4.70 p<0.0001
+1143	  completed_at: 2026-05-21T04:39:53.009Z
+1144	
+1145	================================================================================
+1146	EXPERIMENT 43/58: exp016_bradley_terry
+1147	================================================================================
+1148	  status: DONE
+1149	  retry_count: 0
+1150	  created_at: 2026-05-21T02:32:58.075Z
+1151	  updated_at: 2026-05-21T03:29:34.811Z
+1152	  spec:
+1153	    command: python csd_pipeline/exp016_bradley_terry.py
+1154	    server: westb-29275
+1155	    data_path: /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl
+1156	    data_count: 197
+1157	    model_name: choix BT + bootstrap
+1158	    seed: 42
+1159	    checkpoint_path: N/A (reanalysis)
+1160	    log_path: csd_pipeline/exp016_bradley_terry.py
+1161	  hypothesis: Bradley-Terry model on ALL pairwise data (no consistency filtering) will confirm formal preference is significant, validating the sign test result and showing the effect is robust to inclusion of position-inconsistent pairs
+1162	  metrics:
+1163	    primary_nli_filtered: {"n_pairs": 88, "n_comparisons": 173, "p_formal_wins": 0.63, "bootstrap_ci": [0.5575, 0.7028], "bootstrap_p": 0.0004, "bootstrap_method": "pair-level (2000 iterations, seed=42)", "ci_excludes_50": true}
+1164	    robustness_all_data: {"n_pairs": 100, "n_comparisons": 197, "p_formal_wins": 0.6091, "bootstrap_ci": [0.5381, 0.6784], "bootstrap_p": 0.001, "bootstrap_method": "pair-level (2000 iterations, seed=42)", "ci_excludes_50": true}
+1165	    comparison_level_reference: {"all_data_ci": [0.5381, 0.6751], "nli_filtered_ci": [0.5607, 0.6994], "note": "Pair-level CIs ~2-5% wider than comparison-level, conclusions unchanged"}
+1166	    comparison_to_sign_test: BT NLI-filtered 63.0% [55.8-70.3%] p<0.001 vs sign test 69.1% [56.0-79.7%] p=0.006
+1167	  conclusion: success
+1168	  completed_at: 2026-05-21T02:33:14.569Z
+1169	
+1170	================================================================================
+1171	EXPERIMENT 44/58: verbosity_32b
+1172	================================================================================
+1173	  status: DONE
+1174	  retry_count: 0
+1175	  created_at: 2026-05-20T18:20:44.306Z
+1176	  updated_at: 2026-05-21T03:21:39.924Z
+1177	  hypothesis: Verbosity axis (verbose/concise) produces stronger style bias signal than formality in GPT-4o judge: pairwise win rate ≥60% with p<0.05 and/or Likert corrected ATE with d≥0.3, because verbose responses contain more surface-level detail that judges may conflate with thoroughness
+1178	  parent: pairwise_32b
+1179	  spec:
+1180	    command: counterfactual_gen --axis verbosity + content_verification + judge_scoring + pairwise_scoring + ate_analysis
+1181	    server: westb-29275
+1182	    data_path: /root/causal_style_decomp_judge/data/counterfactuals_verbosity.jsonl
+1183	    data_count: 100
+1184	    model_name: Qwen3-32B (counterfactual) + GPT-4o (judge)
+1185	    seed: 42
+1186	    checkpoint_source: Qwen3-32B vLLM serve
+1187	    eval_data: LLMBar adversarial 100 samples
+1188	  checkpoint_path: /root/causal_style_decomp_judge/data/verified_verbosity.jsonl
+1189	  log_path: /root/causal_style_decomp_judge/data/
+1190	  metrics:
+1191	    n: 100
+1192	    h1_nli_pass_rate: 0.65
+1193	    nli_mean: 0.6544
+1194	    bertscore_pass_rate: 0.27
+1195	    bertscore_mean: 0.7522
+1196	    both_pass: 0.22
+1197	    dr_nli_mean: 0.4847
+1198	    dr_bertscore_mean: 0.7199
+1199	    dr_pass_rate: 0.04
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "e87ca931-0d87-4c5d-a23a-7517b60d29f6"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 77_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Reading ~/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "usage": {
+    "total_tokens": 51899,
+    "tool_uses": 14,
+    "duration_ms": 71029
+  },
+  "last_tool_name": "Read",
+  "uuid": "602489c7-25c9-4069-9dab-294afbb4e22b",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015TpgRKqkbQczsTXYviJkiW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "limit": 300,
+  "offset": 1200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "bcc0b179-e236-4d9f-a763-ff056a7a7884",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vhu99dtmj5gn1Aow8ozVyQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7383,
+      "cache_read_input_tokens": 43999,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7383,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 79 · 2026-05-25T19:44:03.911Z_
+
+<details><summary>↩ Tool result · `toolu_015TpgRKqkbQczsTXYviJkiW`</summary>
+
+```text
+1200	    stopped_at: scoring
+1201	    stop_reason: API 402 Insufficient balance
+1202	    v2_direction_aware_nli: {"nli_ge90": 0.86, "nli_ge80": 0.86, "nli_ge95": 0.83, "forward_n": 46, "forward_nli_mean": 0.9476, "backward_n": 54, "backward_nli_mean": 0.8267, "nli_only_pass_rate_at_090": 0.86, "h1_status": "PASS (86% >= 80%)", "pipeline_blocked_at": "scoring (API 402, D013 approved NLI-only gate)"}
+1203	    status_note: H1 PASS (direction-aware NLI 86%). Scoring/H2 deferred to separate experiment when API available.
+1204	  conclusion: success
+1205	  completed_at: 2026-05-20T21:13:31.070Z
+1206	
+1207	================================================================================
+1208	EXPERIMENT 45/58: exp-016
+1209	================================================================================
+1210	  status: DONE
+1211	  retry_count: 0
+1212	  created_at: 2026-05-21T02:30:50.899Z
+1213	  updated_at: 2026-05-21T03:21:32.758Z
+1214	  hypothesis: Bradley-Terry model on all pairwise comparisons (without consistency filtering) will confirm formal style preference, validating the sign test result with a parametric approach
+1215	  spec:
+1216	    command: python3 csd_pipeline/exp016_bradley_terry.py
+1217	    server: westb-29275
+1218	    data_path: data/pairwise_results_32b.jsonl
+1219	    data_count: 100
+1220	    model_name: n/a
+1221	    seed: 42
+1222	  metrics:
+1223	    DUPLICATE: canonical entry is exp016_bradley_terry. This entry should be ignored.
+1224	  conclusion: killed
+1225	  log_path: csd_pipeline/exp016_bradley_terry.py
+1226	  checkpoint_path: n/a
+1227	  completed_at: 2026-05-21T02:31:32.935Z
+1228	
+1229	================================================================================
+1230	EXPERIMENT 46/58: exp-015
+1231	================================================================================
+1232	  status: DONE
+1233	  retry_count: 0
+1234	  created_at: 2026-05-21T02:30:49.225Z
+1235	  updated_at: 2026-05-21T03:21:31.803Z
+1236	  hypothesis: Ordinal regression (CLMM proxy) on Likert scores will fail to detect formality style effect, confirming the Blindspot that pointwise scoring is insensitive to style bias
+1237	  spec:
+1238	    command: python3 csd_pipeline/exp015_clmm_analysis.py
+1239	    server: westb-29275
+1240	    data_path: data/scored_32b.jsonl
+1241	    data_count: 88
+1242	    model_name: n/a
+1243	    seed: 0
+1244	  metrics:
+1245	    DUPLICATE: canonical entry is exp015_clmm. This entry should be ignored.
+1246	  conclusion: killed
+1247	  log_path: csd_pipeline/exp015_clmm_analysis.py
+1248	  checkpoint_path: n/a
+1249	  completed_at: 2026-05-21T02:31:32.630Z
+1250	
+1251	================================================================================
+1252	EXPERIMENT 47/58: exp015_clmm
+1253	================================================================================
+1254	  status: DONE
+1255	  retry_count: 0
+1256	  created_at: 2026-05-21T02:32:56.750Z
+1257	  updated_at: 2026-05-21T02:33:08.624Z
+1258	  spec:
+1259	    command: python csd_pipeline/exp015_clmm_analysis.py
+1260	    server: westb-29275
+1261	    data_path: /root/causal_style_decomp_judge/experiments/mvp_32b_ate/scored_32b.jsonl
+1262	    data_count: 88
+1263	    model_name: statsmodels OrderedModel + GEE + scipy Wilcoxon
+1264	    seed: 42
+1265	    checkpoint_path: N/A (reanalysis)
+1266	    log_path: csd_pipeline/exp015_clmm_analysis.py
+1267	  hypothesis: Ordinal regression (CLMM) respecting Likert measurement level will also fail to detect formality effect (p>0.05), confirming that the Likert Blindspot is not an artifact of treating ordinal data as continuous
+1268	  metrics:
+1269	    ordinal_regression: {"is_formal_coef": -0.079, "is_formal_p": 0.769, "is_formal_ci": [-0.6, 0.45]}
+1270	    gee_paired: {"is_formal_coef": -0.084, "is_formal_p": 0.587, "is_formal_ci": [-0.39, 0.22]}
+1271	    wilcoxon: {"p": 0.905}
+1272	    n_pairs: 88
+1273	    n_ties: 55
+1274	    tie_rate: 0.625
+1275	    conclusion_note: All three methods (ordinal LR, GEE, Wilcoxon) confirm Likert Blindspot: p=0.77/0.59/0.91. 62.5% ties eliminate statistical power.
+1276	  conclusion: success
+1277	  completed_at: 2026-05-21T02:33:08.624Z
+1278	
+1279	================================================================================
+1280	EXPERIMENT 48/58: exp013_nli_validation
+1281	================================================================================
+1282	  status: DONE
+1283	  retry_count: 0
+1284	  created_at: 2026-05-21T01:01:55.339Z
+1285	  updated_at: 2026-05-21T01:13:48.712Z
+1286	  spec:
+1287	    command: python exp013_nli_validation.py --data verified_32b.jsonl + counterfactuals_32b.jsonl --model Qwen3-32B via vLLM port 8001
+1288	    server: westb-29275
+1289	    data_path: /root/causal_style_decomp_judge/data/verified_32b.jsonl + counterfactuals_32b.jsonl
+1290	    data_count: 100
+1291	    model_name: Qwen3-32B (LLM-as-annotator) + DeBERTa-v3-large (NLI gate)
+1292	    seed: 42
+1293	    checkpoint_path: N/A (reanalysis)
+1294	    log_path: csd_pipeline/exp013_nli_validation.py
+1295	  hypothesis: NLI gate (DeBERTa-v3-large, threshold 0.90) decisions are reliable proxies for human content-preservation judgments, achieving Cohen's kappa >= 0.6 with LLM-as-annotator (Qwen3-32B)
+1296	  metrics:
+1297	    cohens_kappa: 0.4304
+1298	    pabak: 0.82
+1299	    gwet_ac1: 0.8934
+1300	    agreement_rate: 0.91
+1301	    n_samples: 100
+1302	    n_nli_pass: 88
+1303	    n_nli_fail: 12
+1304	    precision: 0.989
+1305	    recall: 0.916
+1306	    confusion_matrix: {"nli_pass_llm_yes": 87, "nli_pass_llm_no": 1, "nli_fail_llm_yes": 8, "nli_fail_llm_no": 4}
+1307	    direction_bias: {"overall_f2c_ratio": 0.59, "nli_fail_f2c_ratio": 0.75, "fn_f2c_ratio": 0.75, "fisher_or": 0.44, "fisher_p": 0.35, "binomial_fn_p": 0.295, "conclusion": "not significant (all p>0.20, n=8/12 too small)"}
+1308	    kappa_paradox_note: kappa=0.43 vs PABAK=0.82 vs AC1=0.89 — classic prevalence paradox (Feinstein & Cicchetti 1990, Gwet 2008). Base rate 88:12 skew depresses kappa despite 91% raw agreement.
+1309	    interpretation: NLI gate is precision-oriented conservative filter. AC1=0.89 confirms strong agreement. No significant direction bias in FN.
+1310	    method: LLM-as-annotator validation (Qwen3-32B)
+1311	  conclusion: success
+1312	  completed_at: 2026-05-21T01:02:07.941Z
+1313	
+1314	================================================================================
+1315	EXPERIMENT 49/58: exp-013
+1316	================================================================================
+1317	  status: DONE
+1318	  retry_count: 0
+1319	  created_at: 2026-05-21T00:59:40.588Z
+1320	  updated_at: 2026-05-21T01:05:22.718Z
+1321	  hypothesis: NLI gate (DeBERTa-v3-large, threshold 0.90) decisions are reliable proxies for human content-preservation judgments, achieving Cohen's kappa >= 0.6 with LLM-as-annotator (Qwen3-32B)
+1322	  spec:
+1323	    command: python csd_pipeline/exp013_nli_validation.py --port 8001
+1324	    server: westb-29275
+1325	    data_path: /root/causal_style_decomp_judge/data/verified_32b.jsonl
+1326	    data_count: 100
+1327	    model_name: Qwen3-32B (LLM-as-annotator) + DeBERTa-v3-large (NLI gate)
+1328	    seed: 0
+1329	  checkpoint_path: /root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp013_nli_validation.csv
+1330	  log_path: /tmp/exp013.log
+1331	  conclusion: killed
+1332	  completed_at: 2026-05-21T01:00:22.508Z
+1333	  metrics:
+1334	    DUPLICATE: canonical entry is exp013_nli_validation. This entry should be ignored.
+1335	
+1336	================================================================================
+1337	EXPERIMENT 50/58: register_pilot
+1338	================================================================================
+1339	  status: DONE
+1340	  retry_count: 0
+1341	  created_at: 2026-05-21T00:14:47.268Z
+1342	  updated_at: 2026-05-21T00:19:42.234Z
+1343	  hypothesis: Register axis (academic/conversational) RATE counterfactuals preserve content (NLI+BERTScore pass rate ≥80%) and register is independent from formality (agreement ≤95%), making it a viable third axis alongside formality and verbosity
+1344	  metrics:
+1345	    n_samples: 20
+1346	    cf_pass_rate_joint: 0.2
+1347	    cf_pass_rate_nli_only: 0.95
+1348	    cf_pass_rate_bs_only: 0.2
+1349	    nli_cf_mean: high (19/20 ≥ 0.90)
+1350	    bertscore_cf_mean: 0.8458
+1351	    bertscore_threshold: 0.92
+1352	    register_formality_agreement: 0.5
+1353	    bs_sweep_0.80: 0.75
+1354	    bs_sweep_0.84: 0.6
+1355	    bs_sweep_0.88: 0.4
+1356	    bs_sweep_0.92: 0.2
+1357	    conclusion_note: FAIL with joint gate (20%), PASS with NLI-only (95%). BERTScore sole bottleneck. Register-Formality 50% = orthogonal.
+1358	  spec:
+1359	    checkpoint_path: N/A (pilot)
+1360	    log_path: logs/workers/worker_ops_register_pilot_20260520T233206.log
+1361	  conclusion: negative
+1362	  completed_at: 2026-05-21T00:19:42.234Z
+1363	
+1364	================================================================================
+1365	EXPERIMENT 51/58: exp014_logistic_decomposition
+1366	================================================================================
+1367	  status: DONE
+1368	  retry_count: 0
+1369	  created_at: 2026-05-20T23:56:26.706Z
+1370	  updated_at: 2026-05-21T00:19:41.292Z
+1371	  hypothesis: The observed 69.1% formal win rate in pairwise comparison is primarily driven by original-preference bias rather than genuine formality effect, and logistic regression decomposition will show formality coefficient is non-significant after controlling for original preference
+1372	  metrics:
+1373	    method_note: CORRECTED: pair-level bootstrap + GEE (fixes independence violation)
+1374	    pair_bootstrap: {"formal_effect_coef": 0.7928, "formal_effect_OR": 2.2095, "formal_effect_OR_ci": [1.228, 4.305], "formal_effect_p": 0.0121, "original_effect_coef": 0.5958, "original_effect_OR": 1.8145, "original_effect_OR_ci": [0.976, 3.369], "original_effect_p": 0.0643}
+1375	    gee_exchangeable: {"formal_effect_coef": 0.7931, "formal_effect_OR": 2.2103, "formal_effect_OR_ci": [1.21, 4.038], "formal_effect_p": 0.0099, "original_effect_coef": 0.5973, "original_effect_OR": 1.8172, "original_effect_OR_ci": [0.995, 3.319], "original_effect_p": 0.052}
+1376	    direction_subset: {"formal_to_casual_win_rate": 0.788, "formal_to_casual_p": 0.001319, "casual_to_formal_win_rate": 0.545, "casual_to_formal_p": 0.831812}
+1377	    intercept_position_bias: -0.5851
+1378	    n_pairs: 98
+1379	    n_observations: 196
+1380	    old_observation_bootstrap_note: SUPERSEDED: old p=0.011/0.048 used observation-level bootstrap, understated SE
+1381	  spec:
+1382	    checkpoint_path: N/A (reanalysis)
+1383	    log_path: artifacts/csd_pipeline/exp014_logistic_decomposition.py
+1384	  conclusion: success
+1385	  completed_at: 2026-05-21T00:19:41.292Z
+1386	
+1387	================================================================================
+1388	EXPERIMENT 52/58: exp012_consistency_bias
+1389	================================================================================
+1390	  status: DONE
+1391	  retry_count: 0
+1392	  created_at: 2026-05-20T23:56:26.226Z
+1393	  updated_at: 2026-05-21T00:19:40.352Z
+1394	  hypothesis: The consistency filter (discarding 43% of pairs) introduces systematic selection bias by preferentially retaining pairs with higher NLI/BERTScore or different text characteristics, biasing downstream analysis
+1395	  metrics:
+1396	    consistent_n: 55
+1397	    inconsistent_n: 43
+1398	    consistency_rate: 0.561
+1399	    nli_mwu_p: 0.824
+1400	    bertscore_mwu_p: 0.12
+1401	    orig_length_mwu_p: 0.137
+1402	    length_diff_mwu_p: 0.715
+1403	    nli_ks_p: 0.68
+1404	    conclusion_note: No systematic bias detected in consistency filter (all p>0.12)
+1405	  spec:
+1406	    checkpoint_path: N/A (reanalysis)
+1407	    log_path: artifacts/csd_pipeline/exp012_consistency_bias.py
+1408	  conclusion: success
+1409	  completed_at: 2026-05-21T00:19:40.352Z
+1410	
+1411	================================================================================
+1412	EXPERIMENT 53/58: exp011_nli_sensitivity
+1413	================================================================================
+1414	  status: DONE
+1415	  retry_count: 0
+1416	  created_at: 2026-05-20T23:56:25.254Z
+1417	  updated_at: 2026-05-21T00:19:39.371Z
+1418	  hypothesis: The 0.90 NLI threshold is on a cliff edge where small changes dramatically affect pass rate and downstream pairwise results, making our findings threshold-dependent rather than robust
+1419	  metrics:
+1420	    formality_pass_rate_0.70: 0.89
+1421	    formality_pass_rate_0.90: 0.88
+1422	    formality_pass_rate_0.95: 0.85
+1423	    pw_win_rate_0.70: 0.723
+1424	    pw_win_rate_0.90: 0.739
+1425	    pw_p_0.70: 0.0031
+1426	    pw_p_0.90: 0.0016
+1427	    nli_mean: 0.8956
+1428	    nli_std: 0.2792
+1429	    tone_pass_rate_0.70: 0.65
+1430	    conclusion_note: NLI bimodal distribution, 0.90 NOT on cliff edge, pairwise results robust across all thresholds
+1431	  spec:
+1432	    checkpoint_path: N/A (reanalysis)
+1433	    log_path: artifacts/csd_pipeline/exp011_nli_sensitivity.py
+1434	  conclusion: success
+1435	  completed_at: 2026-05-21T00:19:39.371Z
+1436	
+1437	================================================================================
+1438	EXPERIMENT 54/58: exp010_binarized_likert
+1439	================================================================================
+1440	  status: DONE
+1441	  retry_count: 0
+1442	  created_at: 2026-05-20T23:46:24.180Z
+1443	  updated_at: 2026-05-20T23:46:47.575Z
+1444	  hypothesis: Likert-vs-Pairwise sensitivity gap is due to measurement structure (forced choice eliminates ties) not statistical test choice; binarized Likert with sign test will remain non-significant (p>0.05) while pairwise sign test is significant (p=0.006), because 1-10 integer Likert produces excessive ties that mask the signal
+1445	  parent: pairwise_32b
+1446	  conclusion: success
+1447	  spec:
+1448	    command: exp010_binarized_likert.py --input-file data/scored_32b.jsonl --axis formality
+1449	    server: westb-29275
+1450	    data_path: /root/causal_style_decomp_judge/data/scored_32b.jsonl
+1451	    data_count: 100
+1452	    model_name: reanalysis (no model)
+1453	    seed: 42
+1454	    checkpoint_path: /root/causal_style_decomp_judge/data/exp010_results/exp010_binarized_likert.csv
+1455	    log_path: /root/causal_style_decomp_judge/data/exp010_results/
+1456	  completed_at: 2026-05-20T23:46:47.575Z
+1457	
+1458	================================================================================
+1459	EXPERIMENT 55/58: tone_pilot
+1460	================================================================================
+1461	  status: DONE
+1462	  retry_count: 0
+1463	  created_at: 2026-05-20T23:28:10.374Z
+1464	  updated_at: 2026-05-20T23:28:38.580Z
+1465	  hypothesis: Tone axis (assertive/hedging) RATE counterfactuals preserve content (NLI+BERTScore pass rate ≥80%) because tone changes only modify epistemic hedging markers without altering factual claims, making it a viable third axis alongside formality
+1466	  parent: pairwise_32b
+1467	  conclusion: negative
+1468	  spec:
+1469	    command: counterfactual_gen --axis tone (20 samples) + content_verification --axis tone
+1470	    server: westb-29275
+1471	    data_path: /root/causal_style_decomp_judge/data/counterfactuals_tone_pilot.jsonl
+1472	    data_count: 20
+1473	    model_name: Qwen3-32B (counterfactual) + deberta-v3-large (NLI)
+1474	    seed: 42
+1475	    checkpoint_path: /root/causal_style_decomp_judge/data/verified_tone_pilot.jsonl
+1476	    log_path: /root/causal_style_decomp_judge/data/
+1477	  completed_at: 2026-05-20T23:28:30.685Z
+1478	  metrics:
+1479	    n: 20
+1480	    detection_split: {"assertive": 13, "hedging": 7}
+1481	    nli_cf_pass_rate: 0.65
+1482	    bertscore_cf_pass_rate: 0.6
+1483	    both_pass_rate: 0.45
+1484	    nli_cf_mean: 0.7039
+1485	    nli_cf_std: 0.4208
+1486	    bertscore_cf_mean: 0.9201
+1487	    nli_dr_mean: 0.8841
+1488	    bertscore_dr_mean: 0.9164
+1489	    by_tone: {"assertive": {"n": 13, "both_pass": 0.385, "nli_cf_mean": 0.6559}, "hedging": {"n": 7, "both_pass": 0.571, "nli_cf_mean": 0.793}}
+1490	    failure_mode: assertive→hedging changes epistemic commitment, NLI correctly detects non-entailment (6/20 catastrophic NLI<0.01)
+1491	
+1492	================================================================================
+1493	EXPERIMENT 56/58: pairwise_32b
+1494	================================================================================
+1495	  status: DONE
+1496	  retry_count: 0
+1497	  created_at: 2026-05-20T18:12:44.351Z
+1498	  updated_at: 2026-05-20T18:15:49.470Z
+1499	  hypothesis: Likert 1-10 integer granularity masks a real formality preference in GPT-4o; position-controlled pairwise comparison (more sensitive measurement) reveals significant formal win rate >55% where Likert ATE was non-significant
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "57c46506-8290-454a-9b7a-8dd58e1c0905"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 80_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "description": "Reading ~/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "usage": {
+    "total_tokens": 58294,
+    "tool_uses": 15,
+    "duration_ms": 76813
+  },
+  "last_tool_name": "Read",
+  "uuid": "fce358ba-a366-410c-b2b1-e5e9a8e2f6a5",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01J9yjH6wsQD6CFLTYm73MQF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/b4l3pk2r8.txt",
+  "limit": 300,
+  "offset": 1500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "13183b55-0ae1-45b4-8f32-c2a46d673c3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhDja5FjLAeUQWTKuS7aSP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6357,
+      "cache_read_input_tokens": 51382,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6357,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 82 · 2026-05-25T19:44:09.694Z_
+
+<details><summary>↩ Tool result · `toolu_01J9yjH6wsQD6CFLTYm73MQF`</summary>
+
+```text
+1500	  parent: mvp_32b_ate
+1501	  spec:
+1502	    command: python pairwise_scoring.py --input-file /root/causal_style_decomp_judge/data/verified_32b.jsonl --output-file /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl --model gpt-4o --base-url http://47.94.22.126/v1 --max-concurrent 5 --rate-limit 60
+1503	    server: westb-29275
+1504	    data_path: /root/causal_style_decomp_judge/data/verified_32b.jsonl
+1505	    data_count: 100
+1506	    model_name: GPT-4o (judge, pairwise)
+1507	    seed: 42
+1508	    checkpoint_source: 32B counterfactuals from mvp_32b_ate
+1509	    eval_data: LLMBar adversarial 100 samples with 32B RATE counterfactuals
+1510	  checkpoint_path: /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl
+1511	  log_path: /root/causal_style_decomp_judge/data/
+1512	  metrics:
+1513	    n_total: 100
+1514	    n_valid_both_trials: 98
+1515	    n_consistent: 55
+1516	    n_ties_inconsistent: 43
+1517	    consistency_rate: 0.5612
+1518	    formal_wins: 38
+1519	    casual_wins: 17
+1520	    formal_win_rate: 0.6909
+1521	    wilson_ci_lo: 0.5597
+1522	    wilson_ci_hi: 0.7972
+1523	    sign_test_p: 0.006456
+1524	    position_bias_trial1_A: 0.5306
+1525	    position_bias_trial2_A: 0.551
+1526	    position_bias_overall_A: 0.5408
+1527	    dir_formal_orig_n: 33
+1528	    dir_formal_orig_formal_wins: 26
+1529	    dir_formal_orig_win_rate: 0.7879
+1530	    dir_formal_orig_p: 0.001145
+1531	    dir_casual_orig_n: 22
+1532	    dir_casual_orig_formal_wins: 12
+1533	    dir_casual_orig_win_rate: 0.5455
+1534	    dir_casual_orig_p: 0.8318
+1535	    nli_ge90_n: 46
+1536	    nli_ge90_formal_wins: 34
+1537	    nli_ge90_win_rate: 0.7391
+1538	    nli_ge90_p: 0.001537
+1539	  conclusion: success
+1540	  completed_at: 2026-05-20T18:15:49.470Z
+1541	
+1542	================================================================================
+1543	EXPERIMENT 57/58: mvp_32b_ate
+1544	================================================================================
+1545	  status: DONE
+1546	  retry_count: 0
+1547	  created_at: 2026-05-20T17:29:57.801Z
+1548	  updated_at: 2026-05-20T17:30:35.462Z
+1549	  hypothesis: Qwen3-32B (stronger instruction following than 8B) produces higher-fidelity RATE counterfactuals with lower rewrite bias, revealing significant formality premium (ATE>0.3, d>0.3) in GPT-4o judge scores that was masked by 8B rewrite noise
+1550	  parent: mvp_8b_ate
+1551	  spec:
+1552	    command: full 32B pipeline: counterfactual_gen + content_verification + judge_scoring + ate_analysis --sensitivity
+1553	    server: westb-29275
+1554	    data_path: /root/causal_style_decomp_judge/data/scored_32b.jsonl
+1555	    data_count: 100
+1556	    model_name: Qwen3-32B (counterfactual) + GPT-4o (judge)
+1557	    seed: 42
+1558	    checkpoint_source: Qwen3-32B vLLM serve + GPT-4o judge
+1559	    eval_data: LLMBar adversarial 100 samples
+1560	  conclusion: negative
+1561	  metrics:
+1562	    n: 100
+1563	    n_primary: 88
+1564	    h1_nli_pass_rate: 0.88
+1565	    nli_mean: 0.8956
+1566	    raw_ate: -0.1023
+1567	    raw_se: 0.149
+1568	    raw_p: 0.4944
+1569	    raw_cohens_d: -0.0731
+1570	    rewrite_bias: -0.2045
+1571	    corrected_ate: 0.1023
+1572	    corrected_se: 0.1048
+1573	    corrected_p: 0.3318
+1574	    corrected_cohens_d: 0.104
+1575	    rate_ratio: -1
+1576	    dir_formal_to_casual_ate: 0.14
+1577	    dir_formal_to_casual_p: 0.332
+1578	    dir_casual_to_formal_ate: 0.0526
+1579	    dir_casual_to_formal_p: 0.7365
+1580	    sens2_corrected_ate: 0.0959
+1581	    sens2_corrected_p: 0.3633
+1582	    all_corrected_ate: 0.1
+1583	    all_corrected_p: 0.2995
+1584	  checkpoint_path: /root/causal_style_decomp_judge/data/ate_results_32b/
+1585	  log_path: /root/causal_style_decomp_judge/data/
+1586	  completed_at: 2026-05-20T17:30:35.462Z
+1587	
+1588	================================================================================
+1589	EXPERIMENT 58/58: mvp_8b_ate
+1590	================================================================================
+1591	  status: DONE
+1592	  retry_count: 0
+1593	  created_at: 2026-05-20T14:43:38.410Z
+1594	  updated_at: 2026-05-20T14:44:21.033Z
+1595	  spec:
+1596	    command: python artifacts/csd_pipeline/ate_analysis.py --input-file data/scored.jsonl --output-dir data/ --alpha 0.05
+1597	    server: westb-29275
+1598	    data_path: /root/causal_style_decomp_judge/data/scored.jsonl
+1599	    data_count: 100
+1600	    model_name: Qwen3-8B (counterfactual) + GPT-4o (judge)
+1601	    seed: 42
+1602	    hypothesis: Binary style counterfactuals (formality axis) via Qwen3-8B RATE double-rewrite reveal significant ATE in GPT-4o judge scores, with formal text receiving higher scores
+1603	  conclusion: negative
+1604	  metrics:
+1605	    n: 100
+1606	    h1_nli_pass_rate: 0.95
+1607	    raw_ate: -0.08
+1608	    raw_se: 0.1161
+1609	    raw_p: 0.4923
+1610	    raw_cohens_d: -0.0689
+1611	    rewrite_bias: -0.2
+1612	    corrected_ate: 0.12
+1613	    corrected_se: 0.1028
+1614	    corrected_p: 0.2458
+1615	    corrected_cohens_d: 0.1168
+1616	    rate_ratio: -1.5
+1617	    dir_formal_to_casual_ate: 0.0645
+1618	    dir_formal_to_casual_p: 0.5679
+1619	    dir_casual_to_formal_ate: 0.2105
+1620	    dir_casual_to_formal_p: 0.2997
+1621	    strat_nli90_ate: 0.1263
+1622	    strat_nli90_p: 0.2459
+1623	    strat_nli90_n: 95
+1624	  checkpoint_path: /root/causal_style_decomp_judge/data/ate_summary.csv
+1625	  log_path: /root/causal_style_decomp_judge/data/
+1626	  hypothesis: Qwen3-8B RATE double-rewrite on formality axis produces content-preserving counterfactuals (NLI≥0.90) that reveal significant formality premium (ATE>0.3, d>0.3) in GPT-4o judge scores, indicating style bias independent of content quality
+1627	  completed_at: 2026-05-20T14:44:21.033Z
+1628	
+1629	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "fdb5a1b8-fea2-4264-9aa1-99906a7fde48"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 83_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "a5fd80952fb015e5f",
+  "tool_use_id": "toolu_01E5epTckYXw13opHj1s9NRa",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Parse registry JSON data",
+  "usage": {
+    "total_tokens": 60966,
+    "tool_uses": 15,
+    "duration_ms": 432542
+  },
+  "uuid": "a71d52c9-6d9d-42fa-968c-449d929a8801",
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 84 · 2026-05-25T19:50:05.422Z_
+
+<details><summary>↩ Tool result · `toolu_01E5epTckYXw13opHj1s9NRa`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (50.4KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/toolu_01E5epTckYXw13opHj1s9NRa.json
+
+Preview (first 2KB):
+[
+  {
+    "type": "text",
+    "text": "That covers all 58 experiments. Here is the complete audit of every experiment entry with all metrics verbatim.\n\n---\n\n## Complete Experiment Registry Audit — 58 Experiments\n\n### EXPERIMENT 1: `llama70b_crossbench`\n- **Status:** DONE\n- **Hypothesis:** Llama-70B on AlpacaEval and MT-Bench cross-benchmark pairs will show stronger style bias than on LLMBar (consistent with other judges showing benchmark-dependent effect sizes), confirming style sensitivity generalizes across benchmarks. Effect-size gradient predicts Blindspot disappears at large effects (BT>80%).\n- **Metrics:**\n  - `alpacaeval_formality`: n=47, bt_pct=95.7, bt_ci=[89.4, 100], bt_p=1.6e-11, likert_d=0.211, likert_wilcoxon_p=0.0124, gee_style_or=\"degenerate\", gee_orig_or=\"degenerate\", blindspot=false\n  - `alpacaeval_verbosity`: n=66, bt_pct=97, bt_ci=[92.4, 100], bt_p=6e-17, likert_d=0.297, likert_wilcoxon_p=0.0002, gee_style_or=0.54, gee_orig_or=0.54, blindspot=false\n  - `mtbench_formality`: n=36, bt_pct=91.7, bt_ci=[80.6, 100], bt_p=2.3e-07, likert_d=0.234, likert_wilcoxon_p=0.0029, gee_style_or=32.68, gee_orig_or=0.89, blindspot=false\n  - `mtbench_verbosity`: MISSING_DATA\n  - `comparison_llmbar_formality`: bt_pct=69.5, blindspot=true\n  - `comparison_llmbar_verbosity`: bt_pct=73.5, blindspot=true\n- **Conclusion:** success\n\n### EXPERIMENT 2: `formality_llama_rewriter`\n- **Status:** DONE\n- **Hypothesis:** Qwen3-32B judge's formality bias is rewriter-independent: using Llama-3.3-70B-Instruct instead of Qwen3-32B as the RATE counterfactual rewriter will reproduce significant pairwise preference for formal style (BT p<0.05), confirming the bias originates in the judge, not the rewriter.\n- **Metrics:**\n  - bt_p_formal: 0.711\n  - bt_ci: [0.643, 0.775]\n  - bt_p_value: 0.0001\n  - gee_style_or: 4.4403\n  - gee_style_p: 1.3e-05\n  - gee_orig_or: 5.7474\n  - likert_ate: 0.02\n  - likert_cohen_d: 0.013\n  - likert_wilcoxon_p: 0.687723\n  - blindspot
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "3f0304f1-e1bf-4ec9-862a-8a4db207454e",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "Parse the experiment registry JSON at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/mcp-agent-ml-research-read_registry-1779738159356.txt\n\nThis file has schema: {result: string}. The \"result\" field is itself a JSON string that needs to be parsed.\n\nI need ALL experiment entries with their metrics. For each experiment, extract:\n- exp_id\n- name/description\n- status\n- metrics (all of them - especially BT win probabilities, p-values, Cohen's d, GEE ORs, etc.)\n- conclusion\n\nReport ALL experiments and ALL their metrics verbatim. Do not summarize or skip any. This is for a data audit so completeness is critical.",
+    "agentId": "a5fd80952fb015e5f",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "That covers all 58 experiments. Here is the complete audit of every experiment entry with all metrics verbatim.\n\n---\n\n## Complete Experiment Registry Audit — 58 Experiments\n\n### EXPERIMENT 1: `llama70b_crossbench`\n- **Status:** DONE\n- **Hypothesis:** Llama-70B on AlpacaEval and MT-Bench cross-benchmark pairs will show stronger style bias than on LLMBar (consistent with other judges showing benchmark-dependent effect sizes), confirming style sensitivity generalizes across benchmarks. Effect-size gradient predicts Blindspot disappears at large effects (BT>80%).\n- **Metrics:**\n  - `alpacaeval_formality`: n=47, bt_pct=95.7, bt_ci=[89.4, 100], bt_p=1.6e-11, likert_d=0.211, likert_wilcoxon_p=0.0124, gee_style_or=\"degenerate\", gee_orig_or=\"degenerate\", blindspot=false\n  - `alpacaeval_verbosity`: n=66, bt_pct=97, bt_ci=[92.4, 100], bt_p=6e-17, likert_d=0.297, likert_wilcoxon_p=0.0002, gee_style_or=0.54, gee_orig_or=0.54, blindspot=false\n  - `mtbench_formality`: n=36, bt_pct=91.7, bt_ci=[80.6, 100], bt_p=2.3e-07, likert_d=0.234, likert_wilcoxon_p=0.0029, gee_style_or=32.68, gee_orig_or=0.89, blindspot=false\n  - `mtbench_verbosity`: MISSING_DATA\n  - `comparison_llmbar_formality`: bt_pct=69.5, blindspot=true\n  - `comparison_llmbar_verbosity`: bt_pct=73.5, blindspot=true\n- **Conclusion:** success\n\n### EXPERIMENT 2: `formality_llama_rewriter`\n- **Status:** DONE\n- **Hypothesis:** Qwen3-32B judge's formality bias is rewriter-independent: using Llama-3.3-70B-Instruct instead of Qwen3-32B as the RATE counterfactual rewriter will reproduce significant pairwise preference for formal style (BT p<0.05), confirming the bias originates in the judge, not the rewriter.\n- **Metrics:**\n  - bt_p_formal: 0.711\n  - bt_ci: [0.643, 0.775]\n  - bt_p_value: 0.0001\n  - gee_style_or: 4.4403\n  - gee_style_p: 1.3e-05\n  - gee_orig_or: 5.7474\n  - likert_ate: 0.02\n  - likert_cohen_d: 0.013\n  - likert_wilcoxon_p: 0.687723\n  - blindspot: True\n  - nli_pass_rate: 0.79\n  - n_total: 100\n  - n_nli_pass: 79\n  - baseline_delta_pp: 4.6\n  - baseline_ci_overlap: True\n- **Conclusion:** success\n\n### EXPERIMENT 3: `formality_scaled_n300`\n- **Status:** DONE\n- **Hypothesis:** Llama-70B scoring of the existing n=355 formality scaled data will replicate the formality Blindspot pattern seen with Qwen3-32B (BT ~67%, Likert NS), providing cross-judge validation at scale. GEE Style OR will show small-sample shrinkage similar to Qwen3 (4.20→2.15).\n- **Metrics:**\n  - judge: Llama-3.3-70B-Instruct\n  - axis: formality\n  - n: 355\n  - bt_p_formal: 0.725\n  - bt_ci: [0.691, 0.759]\n  - bt_p_value: 0.0001\n  - consistent_win_rate: 0.881\n  - n_consistent: 202\n  - likert_d: 0.048\n  - likert_wilcoxon_p: 0.026\n  - tie_rate: 0.715\n  - blindspot: False\n  - note: \"CORRECTED: Worker reported 88.1% which was consistent-pair win rate, not BT. Actual BT=72.5%. LLMBar subset (n=89): BT=74.4%, Likert NS (Blindspot YES). Non-LLMBar subset: BT=69.9%, Likert sig.\"\n- **Conclusion:** success\n\n### EXPERIMENT 4: `verbosity_scaled_n355`\n- **Status:** DONE\n- **Hypothesis:** Verbosity Style OR at n=355 will shrink from n=86 estimates (8.21-13.10) to projected range 4-6.5 due to small-sample upward bias, mirroring the formality shrinkage pattern (4.20→2.15). Likert ATE will remain NS, confirming the Blindspot is robust to increased sample size for verbosity axis.\n- **Metrics:**\n  - n_samples: 330\n  - n_judges: 5\n  - `qwen32b`: bt_p_verbose=0.733, bt_ci=[0.696, 0.77], sign_p=0, likert_d=0.149, likert_wilcoxon_p=0.0006, likert_ttest_p=0.007, gee_intercept_or=3.83, gee_orig_or=0.52, gee_orig_p=0.001, ntc=0.881, blindspot=false, note=\"Likert now significant at n=355\"\n  - `llama70b`: bt_p_verbose=0.759, bt_ci=[0.722, 0.793], sign_p=0, likert_d=0.16, likert_wilcoxon_p=0.0001, likert_ttest_p=0.004, gee_intercept_or=4.01, gee_orig_or=0.61, gee_orig_p=0.013, ntc=0.896, blindspot=false, note=\"Likert now significant at n=355\"\n  - `gpt54`: bt_p_verbose=0.59, bt_ci=[0.544, 0.635], sign_p=0.0002, likert_d=-0.026, likert_wilcoxon_p=0.813, likert_ttest_p=0.635, gee_intercept_or=1.06, gee_orig_or=1.96, gee_orig_p=0.0005, ntc=0.867, blindspot=true, note=\"Originality-dominated, minimal style bias\"\n  - `gemini`: bt_p_verbose=0.678, bt_ci=[0.638, 0.717], sign_p=0, likert_d=0.087, likert_wilcoxon_p=0.021, likert_ttest_p=0.114, gee_intercept_or=2.52, gee_orig_or=0.69, gee_orig_p=0.046, ntc=0.876, blindspot=true, note=\"Borderline Likert — Wilcoxon sig but t-test NS\"\n  - `claude`: bt_p_verbose=0.608, bt_ci=[0.567, 0.649], sign_p=1e-06, likert_d=0.032, likert_wilcoxon_p=0.317, likert_ttest_p=0.561, gee_intercept_or=1.22, gee_orig_or=1.69, gee_orig_p=0.002, ntc=0.938, blindspot=true, note=\"Originality bias, minimal style bias\"\n  - `gee_shrinkage`: qwen_n86_style_or=13.1, qwen_n355_intercept_or=3.83, shrinkage_pct=70.8, llama_n86_style_or=8.21, llama_n355_intercept_or=4.01, shrinkage_pct_llama=51.2\n- **Conclusion:** success\n\n### EXPERIMENT 5: `register_100_cf`\n- **Status:** DONE\n- **Hypothesis:** Register axis (academic/conversational) produces detectable style bias in GPT-4o judge comparable to formality axis, with pairwise win rate >= 60% and p < 0.05, demonstrating axis-dependent bias generalizes beyond formality\n- **Metrics:**\n  - n_generated: 100\n  - cf_nli_mean: 0.941\n  - cf_bertscore_mean: 0.8589\n  - cf_nli_pass_rate: 0.94\n  - cf_gating: NLI-only (threshold 0.90)\n  - dr_nli_mean: 0.8208\n  - dr_bertscore_mean: 0.8477\n  - dr_pass_rate: 0.81\n  - output_file: data/verified_register.jsonl\n  - artifact_id: art_20260521_227674\n  - pipeline_status: verification DONE, scoring BLOCKED (API 402)\n- **Conclusion:** killed\n\n### EXPERIMENT 6: `gemini_flash_fourth_judge`\n- **Status:** DONE\n- **Hypothesis:** Gemini Flash as a fourth judge will also exhibit style blindspot (BT-significant but Likert-NS) on formality and verbosity axes, consistent with GPT-4o, Qwen-32B, and Claude judges, confirming the blindspot is judge-universal rather than model-specific.\n- **Metrics:**\n  - `formality`: bt_pct=57.4, bt_ci=[50, 64.2], bt_p=0.0306, likert_ate=-0.239, likert_d=-0.082, likert_p=0.3088, gee_style_or=1.64, gee_style_ci=[0.91, 2.98], gee_style_p=0.1008, gee_orig_or=2.51, gee_orig_ci=[1.39, 4.54], gee_orig_p=0.0024, blindspot=true, regime=\"Orig-Dominated\"\n  - `verbosity`: bt_pct=70.8, bt_ci=[63.7, 77.2], bt_p=0, likert_ate=0.151, likert_d=0.051, likert_p=0.3697, gee_style_or=8.98, gee_style_ci=[3.68, 21.94], gee_style_p=0, gee_orig_or=0.46, gee_orig_ci=[0.2, 1.04], gee_orig_p=0.0614, blindspot=true, regime=\"Pure Style\"\n- **Conclusion:** success\n\n### EXPERIMENT 7: `llama70b_register`\n- **Status:** DONE\n- **Hypothesis:** Llama-70B register axis shows weak style bias (~55% BT, consistent with GPT-4o 57% and Qwen3-32B 55.3%), confirming register as originality-dominated across three independent judge architectures\n- **Metrics:**\n  - bt_p_academic: 0.635\n  - bt_ci: [0.555, 0.712]\n  - bt_p_val: 0.0014\n  - likert_ate: 0.054\n  - likert_d: 0.024\n  - likert_ttest_p: 0.69\n  - likert_tie_rate: 0.688\n  - gee_style_or: 3.33\n  - gee_style_p: 0.0003\n  - gee_orig_or: 3.07\n  - gee_orig_p: 0.0008\n  - blindspot: True\n  - regime: Mixed\n- **Conclusion:** success\n\n### EXPERIMENT 8: `llama70b_debiased`\n- **Status:** DONE\n- **Hypothesis:** Llama-70B correction resistance follows the same axis-dependent pattern as GPT-4o/Qwen3-32B: debiased prompts reduce but do not eliminate style bias, with verbosity more amenable to correction than formality, confirming bias persistence is model-independent\n- **Metrics:**\n  - `formality`: baseline_bt=69.5, debiased_bt=64.3, debiased_ci=[57.3, 71], debiased_p=0.0001, reduction_pp=-5.2, reduction_pct=26.7, still_significant=true\n  - `verbosity`: baseline_bt=73.5, debiased_bt=66.9, debiased_ci=[58.9, 74.4], debiased_p=0.0001, reduction_pp=-6.6, reduction_pct=28.1, still_significant=true\n  - all_still_significant: True\n- **Conclusion:** success\n\n### EXPERIMENT 9: `crossbench_alpacaeval_verbosity`\n- **Status:** DONE\n- **Hypothesis:** AlpacaEval verbosity bias is strong enough (BT ~84%) that even Likert detects it, confirming the effect-size gradient: Blindspot occurs at small-to-medium effects (d<0.15) but not at large effects (d>0.3)\n- **Metrics:**\n  - bt_p_verbose: 84.1\n  - bt_ci: [77.4, 90.2]\n  - bt_p: 0.0001\n  - likert_ate: 0.732\n  - likert_d: 0.407\n  - likert_p: 0.000414\n  - tie_rate: 0.244\n  - blindspot: False\n  - n_pairs: 82\n- **Conclusion:** success\n\n### EXPERIMENT 10: `llama70b_third_judge`\n- **Status:** DONE\n- **Hypothesis:** Llama-3.3-70B as third independent judge architecture confirms the Likert Blindspot: BT pairwise detects style bias (formality + verbosity) with p<0.05 while Likert scoring shows no significant difference, replicating the pattern found with GPT-4o and Qwen3-32B judges\n- **Metrics:**\n  - `formality`: bt_p_formal=0.695, bt_ci=[0.619, 0.765], bt_p=0.0001, likert_ate=0.023, likert_p=0.8458, likert_d=0.01, likert_tie_rate=0.727, gee_style_or=4.81, gee_style_p=0.0001, gee_orig_or=3.12, gee_orig_p=0.0007, blindspot=true\n  - `verbosity`: bt_p_verbose=0.735, bt_ci=[0.655, 0.809], bt_p=0.0001, likert_ate=0.047, likert_p=0.7524, likert_d=0.02, likert_tie_rate=0.616, gee_style_or=8.21, gee_style_p=0.0001, gee_orig_or=0.38, gee_orig_p=0.0196, blindspot=true\n  - blindspot_both_axes: True\n  - third_judge_confirms: True\n- **Conclusion:** success\n\n### EXPERIMENT 11: `finegrained_likert_100pt`\n- **Status:** DONE\n- **Hypothesis:** The Likert Blindspot is NOT a scale granularity artifact: even a 100-point continuous scale (0-100) should fail to detect the style bias that pairwise BT detects, because the blindspot stems from absolute-vs-relative evaluation paradigm differences, not insufficient scale resolution\n- **Metrics (nested in spec):**\n  - `formality`: n=88, ate=-0.625, cohens_d=-0.0376, t_p=0.725, wilcoxon_p=0.9, tie_rate=0.659, mean_style=52.5, mean_plain=53.12, blindspot=true\n  - `verbosity`: n=86, ate=2.849, cohens_d=0.1709, t_p=0.117, wilcoxon_p=0.067, tie_rate=0.512, mean_style=53.08, mean_plain=50.23, blindspot=true\n  - both_axes_blindspot: true\n  - conclusion: \"100-point scale cannot detect style bias that BT detects — Blindspot is absolute-vs-relative paradigm difference, not granularity artifact\"\n- **Conclusion:** success\n\n### EXPERIMENT 12: `gpt4o_rewriter_verbosity`\n- **Status:** DONE\n- **Hypothesis:** Verbosity style bias is rewriter-independent: GPT-4o rewriter + Qwen3-32B judge should produce BT probability statistically equivalent to Qwen3-32B rewriter + Qwen3-32B judge, confirming the measured verbosity bias reflects judge behavior not rewriter artifacts\n- **Metrics:**\n  - cf_generated: 100\n  - nli_pass: 81\n  - nli_rate: 0.81\n  - bt: p_verbose=0.735, ci=[0.654, 0.809], p_value=0.0001\n  - likert: ate=0, p=0.8384, d=0, tie_rate=0.469\n  - gee: style_or=10.17, style_p=0.0001, orig_or=1.61, orig_p=0.3143\n  - blindspot: True\n  - vs_baseline: qwen32b_bt=0.773, delta_pp=-3.8, ci_overlap=true, note=\"GPT-4o rewriter gives 73.5% vs Qwen3-32B rewriter 77.3%, CIs overlap → rewriter-independent\"\n- **Conclusion:** success\n\n### EXPERIMENT 13: `gpt4o_rewriter_formality`\n- **Status:** DONE\n- **Hypothesis:** Style bias detected by RATE is rewriter-independent: switching from Qwen3-32B rewriter to GPT-4o rewriter should produce statistically equivalent BT probability for formality axis, proving the measured bias reflects judge behavior not rewriter artifacts\n- **Metrics:**\n  - cf_generated: 100\n  - nli_pass: 90\n  - nli_rate: 0.9\n  - bt: p_formal=0.644, ci=[0.561, 0.728], p_value=0.0006, n_pairs=90, n_comparisons=180, method=\"ALL NLI-pass pairs (fixed from consistent-only bug)\"\n  - gee: style_or=9.48, style_p=0.0001, orig_or=12.76, orig_p=0.0001, note=\"Fixed: was 24.47/39.27 with consistent-only filter (near-separation artifact)\"\n  - likert: ate=-0.189, p=0.1835, d=-0.081, tie_rate=0.489, mean_formal=5.511, mean_casual=5.7\n  - blindspot: True\n  - vs_baseline: qwen32b_bt=0.665, delta_pp=-2.1, ci_overlap=true, note=\"GPT-4o rewriter 64.4% vs Qwen3-32B rewriter 66.5%, baseline falls within CI [56.1%, 72.8%] → rewriter-independent\"\n  - bug_fix: original_bt=0.697, original_gee_style_or=24.47, original_gee_orig_or=39.27, original_n_pairs=66, fix=\"Used ALL 90 NLI-pass pairs for BT/GEE instead of consistent-only 66. §3.3 requires all observations.\", fix_script=\"csd_pipeline/fix_formality_rewriter_bt.py\"\n- **Conclusion:** success\n\n### EXPERIMENT 14: `debiased_verbosity_gpt4o`\n- **Status:** DONE\n- **Hypothesis:** Debiased prompt intervention for verbosity axis on GPT-4o should show partial but insufficient bias reduction, consistent with formality results showing style bias is deeper than prompt-level\n- **Metrics (nested in spec):**\n  - original_p_verbose: \"76.0% [69.7, 83.5], p=0.0001\"\n  - debiased_p_verbose: \"62.9% [54.5, 70.9], p=0.0016\"\n  - reduction_pp: \"-13.1pp (50.4% of bias eliminated)\"\n  - still_significant: true\n  - valid_pairs: 83\n  - consistent_pairs: 54\n  - n_comparisons: 167\n  - neither_count: \"~5 pairs (3 retries each)\"\n- **Conclusion:** success\n\n### EXPERIMENT 15: `nli_threshold_sweep`\n- **Status:** DONE\n- **Hypothesis:** BT-detected style bias is robust to NLI threshold choice: sweeping from 0.50 to 0.98 should show stable BT probability and consistent significance across all 4 axis×judge combinations\n- **Metrics (nested in spec):**\n  - total_significant: \"44/44 (100%)\"\n  - formality_qwen32b_bt_range: \"0.648-0.665\"\n  - formality_gpt4o_bt_range: \"0.614-0.642\"\n  - verbosity_qwen32b_bt_range: \"0.765-0.773\"\n  - verbosity_gpt4o_bt_range: \"0.752-0.769\"\n  - all_p_values: \"≤0.002\"\n  - max_bt_delta_across_thresholds: \"~3pp\"\n- **Conclusion:** success\n\n### EXPERIMENT 16: `bootstrap_attenuation`\n- **Status:** DONE\n- **Hypothesis:** Bootstrap subsampling of Likert data shows Cohen's d remains near zero across all sample sizes (n=50-355), demonstrating measurement attenuation rather than power gap\n- **Metrics:**\n  - `formality_qwen32b`: file=\"scored_scaled_formality_qwen32b.jsonl\", n=355, full_d=-0.017, curve={n50: d_median=-0.017 ci=[-0.308, 0.262], n100: d_median=-0.015 ci=[-0.219, 0.176], n150: d_median=-0.019 ci=[-0.179, 0.145], n200: d_median=-0.016 ci=[-0.157, 0.119], n250: d_median=-0.018 ci=[-0.144, 0.107], n300: d_median=-0.018 ci=[-0.131, 0.095], n355: d_median=-0.017 ci=[-0.123, 0.087]}, interpretation=\"SMOKING GUN: d_median flat at ~-0.017 across ALL n. CI narrows but always includes 0. Measurement attenuation confirmed.\"\n  - `verbosity_qwen32b`: file=\"scored_qwen32b_verbosity.jsonl\", n=86, full_d=0.146, curve={n30: d_median=0.169 ci=[-0.195, 0.595], n50: d_median=0.157 ci=[-0.119, 0.494], n70: d_median=0.155 ci=[-0.085, 0.443], n86: d_median=0.153 ci=[-0.067, 0.416]}, interpretation=\"d stable at ~0.15 (below small-effect threshold 0.2). CI always includes 0. Even at n=1000 would not detect.\"\n  - `verbosity_gpt4o`: file=\"scored_gpt4o_verbosity.jsonl\", n=86, full_d=0.19, curve={n30: d_median=0.205 ci=[-0.161, 0.618], n50: d_median=0.198 ci=[-0.085, 0.53], n70: d_median=0.197 ci=[-0.048, 0.472], n86: d_median=0.197 ci=[-0.022, 0.446]}, interpretation=\"d stable at ~0.19-0.20 (borderline small). CI includes 0 at all n. BT detects 76.0% (massive), Likert sees d=0.19 (trivial).\"\n  - `formality_gpt4o`: note=\"Only 20 NLI-pass pairs available from scored_alpacaeval_gpt4o.jsonl. Single point: d_median=-0.20, CI=[-0.72, 0.24]. Insufficient for curve.\"\n  - summary: \"3/4 combinations computed. Formality×Qwen3-32B (n=355) is the definitive result: d≈0 flat across all subsample sizes = measurement attenuation, not power gap. BT detects 66.5% (p<0.0001) on same data where Likert d=-0.017.\"\n- **Conclusion:** success\n\n### EXPERIMENT 17: `cf_vs_dr_gpt4o`\n- **Status:** DONE\n- **Hypothesis:** Comparing counterfactual (style-changed + artifact) vs double-rewrite (original-style + artifact) with GPT-4o judge isolates pure style effect by controlling for rewriting artifact.\n- **Metrics:**\n  - judge: GPT-4o\n  - comparison: counterfactual vs double_rewrite\n  - `formality`: n_pairs=81, n_consistent=53, consistency=0.654, cf_win_rate=0.151, ci=[0.057, 0.246], p_value=0, interpretation=\"DR strongly preferred over CF\"\n  - `verbosity`: note=\"awaiting final result from worker, pattern matches Qwen3-32B\"\n- **Conclusion:** negative\n\n### EXPERIMENT 18: `double_rewrite_placebo_gpt4o`\n- **Status:** DONE\n- **Hypothesis:** Pairwise comparison of original vs double-rewrite (same style, only rewriting artifact difference) yields BT ≈ 50% with GPT-4o judge, proving pairwise format does not amplify rewriting artifacts (MF1 defense)\n- **Metrics:**\n  - judge: GPT-4o\n  - comparison: original vs double_rewrite\n  - method: BT (choix.ilsr_pairwise) + pair-level bootstrap 10000 seed=42, ALL pairs including inconsistent\n  - `formality`: n_pairs=81, bt_p_original=0.4177, ci=[0.3418, 0.5], p_value=0.0368, sign_test_rate=0.3488, sign_test_n=\"15/43\", sign_test_p=0.066, note=\"Sign test NS (p=0.066) but BT significant (p=0.037) — BT uses more data\"\n  - `verbosity`: n_pairs=43, bt_p_original=0.1668, ci=[0.0835, 0.262], p_value=0, sign_test_rate=0.0625, sign_test_n=\"2/32\", sign_test_p=0\n  - conclusion: \"Rewriting artifact confirmed. GPT-4o formality BT borderline (p=0.037), verbosity extreme. BT more powerful than sign test (recovers signal from inconsistent pairs).\"\n- **Conclusion:** negative\n\n### EXPERIMENT 19: `double_rewrite_placebo_qwen32b`\n- **Status:** DONE\n- **Hypothesis:** Pairwise comparison of original vs double-rewrite (same style, only rewriting artifact difference) yields BT ≈ 50%, proving pairwise format does not amplify rewriting artifacts (MF1 defense)\n- **Metrics:**\n  - judge: Qwen3-32B\n  - comparison: original vs double_rewrite\n  - method: BT (choix.ilsr_pairwise) + pair-level bootstrap 10000 seed=42, ALL pairs including inconsistent\n  - `formality`: n_pairs=81, bt_p_original=0.3766, ci=[0.3025, 0.4506], p_value=0.0006, sign_test_rate=0.2727, sign_test_n=\"12/44\", sign_test_p=0.0037\n  - `verbosity`: n_pairs=43, bt_p_original=0.0816, ci=[0.0351, 0.1397], p_value=0, sign_test_rate=0, sign_test_n=\"0/36\", sign_test_p=0\n  - conclusion: \"Rewriting artifact confirmed. Judges prefer DR over original, especially for verbosity. BT uses all pairs (matching main experiment methodology).\"\n- **Conclusion:** negative\n\n### EXPERIMENT 20: `cf_vs_dr_qwen32b`\n- **Status:** DONE\n- **Hypothesis:** Comparing counterfactual (style-changed + artifact) vs double-rewrite (original-style + artifact) isolates pure style effect by controlling for rewriting artifact.\n- **Metrics:**\n  - judge: Qwen3-32B\n  - comparison: counterfactual vs double_rewrite\n  - `formality`: n_pairs=81, n_consistent=55, consistency=0.679, cf_win_rate=0.2, ci=[0.109, 0.309], p_value=9e-06, interpretation=\"DR preferred over CF — both style effect and extra artifact compound in DR's favor\"\n  - `verbosity`: n_pairs=43, n_consistent=39, consistency=0.907, cf_win_rate=0.333, ci=[0.18, 0.487], p_value=0.053, interpretation=\"DR marginally preferred (p=0.053) — artifact and style effects partially cancel in mixed-direction pairs\"\n- **Conclusion:** negative\n\n### EXPERIMENT 21: `cross_axis_gradient`\n- **Status:** DONE\n- **Hypothesis:** NLI rejection rate serves as manipulation invasiveness proxy, with axes ordered register < formality < verbosity matching the gradient in BT and GEE Style OR\n- **Metrics:**\n  - axes: [\n    - {axis: \"register\", nli_rejection_rate: 0.06, bt: 0.553, likert_d: 0.069, gee_style_or: 1.91},\n    - {axis: \"formality\", nli_rejection_rate: 0.12, bt: 0.665, likert_d: 0.012, gee_style_or: 4.2},\n    - {axis: \"verbosity\", nli_rejection_rate: 0.14, bt: 0.773, likert_d: -0.146, gee_style_or: 13.1}\n  ]\n  - note: \"Qualitative gradient: register < formality < verbosity. Higher NLI rejection = more invasive manipulation = stronger detected bias.\"\n- **Conclusion:** success\n\n### EXPERIMENT 22: `nli_gate_ablation`\n- **Status:** DONE\n- **Hypothesis:** NLI gate filters content-contaminated pairs without introducing systematic bias\n- **Metrics:**\n  - `formality`: nli_pass={n=88, bt=0.665, ci=[0.585, 0.739], p=0.0001}, nli_fail={n=12, bt=0.417, ci=[0.167, 0.666], p=0.69, note=\"REVERSED - no formal preference in contaminated pairs\"}, all={n=100, bt=0.635, ci=[0.56, 0.705], p=0.0001}\n  - `verbosity`: nli_pass={n=86, bt=0.773, ci=[0.703, 0.843], p=0.0001}, nli_fail={n=14, bt=0.75, ci=[0.536, 0.928], p=0.006, note=\"Still significant - verbosity bias persists even in NLI-fail\"}, all={n=100, bt=0.77, ci=[0.7, 0.835], p=0.0001}\n  - interpretation: \"Formality: NLI gate correctly filters contaminated pairs (NLI-fail BT reverses to 41.7%). Verbosity: bias so strong it persists in NLI-fail (75.0%). All-pairs BT close to NLI-pass BT for both axes.\"\n- **Conclusion:** success\n\n### EXPERIMENT 23: `verbosity_7method_sensitivity`\n- **Status:** DONE\n- **Hypothesis:** All 6 Likert-based statistical methods fail to detect verbosity bias while Bradley-Terry detects it\n- **Metrics:**\n  - n_pairs: 86, axis: verbosity, judge: Qwen3-32B, benchmark: LLMBar\n  - methods:\n    - paired_ttest: t=0.5163, p=0.607, d=0.056, significant=false\n    - mann_whitney: U=3868, p=0.578, r=-0.046, significant=false\n    - ordinal_logistic: coef=0.1592, p=0.575, OR=1.173, significant=false\n    - cohens_d: d=0.036, threshold=0.2, significant=false\n    - binarized_chi2: chi2=1.5512, p=0.213, OR=2.162, significant=false\n    - likert_ate: ate=0.0581, p=0.691, d=0.056, ci=[-0.16, 0.27], significant=false\n    - bradley_terry: p_verbose=0.7732, p_value=0.0001, ci=[0.703, 0.843], significant=true\n  - summary: \"6/6 Likert methods NS, only BT detects. Replicates formality attenuation pattern.\"\n- **Conclusion:** success\n\n### EXPERIMENT 24: `nli_gate_full_validation`\n- **Status:** DONE\n- **Hypothesis:** Full-coverage GPT-4o independent validation of NLI gate decisions across all 200 pairs confirms gate reliability\n- **Metrics:**\n  - total_evaluated: 200\n  - per_axis: formality={n=100, agreement=0.88, kappa=0.47, base_rate_pass=0.88, pass_precision=0.921, fail_recall=0.583}, verbosity={n=100, agreement=0.79, kappa=0.31, base_rate_pass=0.86, pass_precision=0.826, fail_recall=0.571}\n  - overall: n=200, agreement=0.835, kappa=0.38, base_rate_pass=0.87, pass_precision=0.874, fail_recall=0.577, confusion={tp=152, fp=22, tn=15, fn=11}\n  - vs_spotcheck: spotcheck_agreement=0.65, full_agreement=0.835, delta_pp=18.5, note=\"Spot-check used 50/50 stratified sampling (inflating disagreement); full data has 87% pass rate, pulling overall agreement up via high pass precision\"\n  - interpretation: \"NLI gate is reliable for pass decisions (precision 87-92%). Low fail recall (58%) means gate over-rejects — GPT-4o considers ~42% of NLI-fail pairs as actually preserving content. This confirms gate is CONSERVATIVE.\"\n- **Conclusion:** success\n\n### EXPERIMENT 25: `originality_minimal_subset`\n- **Status:** DONE\n- **Hypothesis:** Style effect in BT remains stable when restricting to originality-balanced pairs\n- **Metrics:**\n  - `formality`: full={n=88, bt=0.6647, ci=[0.585, 0.739]}, likert_balanced={n=55, bt=0.6727, ci_note=\"bootstrap CI from script\", method=\"Pairs where Likert score(original) == Likert score(counterfactual)\"}, delta_likert_vs_full=0.008, delta_ci=[-0.1103, 0.1261], conclusion=\"BT stable on originality-balanced subset (Δ=+0.008, CI includes 0)\", fix=\"Corrected PAIRWISE_F from pairwise_results_32b.jsonl to pairwise_results_qwen32b_formality.jsonl\"\n  - `verbosity`: full={n=86, bt=0.7732, ci=[0.703, 0.843]}, likert_balanced={n=50, bt=0.7599, method=\"Pairs where Likert score(original) == Likert score(counterfactual)\"}, delta_likert_vs_full=-0.0133, delta_ci=[-0.133, 0.1032], conclusion=\"BT stable on originality-balanced subset (Δ=-0.013, CI includes 0)\"\n  - note: \"FIXED: formality now uses correct pairwise file (pairwise_results_qwen32b_formality.jsonl). Full BT matches canonical 0.665.\"\n- **Conclusion:** success\n\n### EXPERIMENT 26: `bt_model_diagnostics`\n- **Status:** DONE\n- **Hypothesis:** BT model adequately fits the pairwise data (GoF non-significant) and stratified BT by originality direction reveals whether style effect is confounded with originality preference\n- **Metrics:**\n  - gof: formality={deviance=52.8, df=45, p_value=0.198, n_consistent=46, bt_prob=0.739}, verbosity={deviance=47.96, df=62, p_value=0.905, n_consistent=63, bt_prob=0.873}\n  - stratified_bt:\n    - formality: orig_is_formal={n=27, bt=0.889, ci=[0.778, 1], wins=24}, orig_is_casual={n=19, bt=0.526, ci=[0.316, 0.737], wins=10}, fisher_p=0.015, chi2_p=0.006, note=\"Significant direction difference: orig_is_formal 88.9% vs orig_is_casual 52.6%. Confirms originality confound in formality (consistent with GEE decomposition).\"\n    - verbosity: orig_is_verbose={n=29, bt=0.828, ci=[0.69, 0.966], wins=24}, orig_is_concise={n=34, bt=0.912, ci=[0.794, 1], wins=31}, fisher_p=0.453, chi2_p=0.317, note=\"No significant direction difference. Both directions strongly prefer verbose → pure style bias confirmed.\"\n- **Conclusion:** success\n\n### EXPERIMENT 27: `claude_tost_equivalence`\n- **Status:** DONE\n- **Hypothesis:** Claude Sonnet 4 BT results are statistically equivalent to chance (P=0.5) within ±10pp margin using TOST\n- **Metrics:**\n  - equivalence_margin: 0.1\n  - `formality`: p_hat=0.562, n=88, se=0.0375, tost_p=0.155, ci_90=[0.5, 0.624], upper_test_p=0.155, lower_test_p=0, equivalence_confirmed=false, note=\"90% CI upper bound 0.624 > 0.60 margin\"\n  - `verbosity`: p_hat=0.541, n=86, se=0.0401, tost_p=0.07, ci_90=[0.475, 0.607], upper_test_p=0.07, lower_test_p=0, equivalence_confirmed=false, note=\"90% CI upper bound 0.607 > 0.60 margin, marginal\"\n  - conclusion: \"Equivalence NOT confirmed at Δ=0.10 — underpowered (n≈87), not evidence of bias. Both upper tests fail: formality p=0.155, verbosity p=0.070. If Δ=0.15, both would confirm equivalence.\"\n  - method: \"TOST for proportions (Lakens 2017), SE from pair-level bootstrap\"\n- **Conclusion:** negative\n\n### EXPERIMENT 28: `nli_fn_selection_bias`\n- **Status:** DONE\n- **Hypothesis:** NLI gate may systematically filter pairs with larger style changes, potentially underestimating the true bias effect\n- **Metrics:**\n  - `formality`: n_total=355, n_pass=323, n_fail=32, pass_rate=0.91, significant_metrics=\"2/7 (BLEU p=0.018 d=-0.46, TF-IDF p=0.002 d=-0.62)\", norm_lev_p=0.23, bleu_pass=0.361, bleu_fail=0.235, tfidf_pass=0.69, tfidf_fail=0.558, conclusion=\"CONSERVATIVE: fail pairs have larger style changes (lower BLEU/TF-IDF)\"\n  - `verbosity`: n_total=100, n_pass=39, n_fail=61, pass_rate=0.39, significant_metrics=\"5/7\", norm_lev_pass=0.528, norm_lev_fail=0.69, norm_lev_d=0.788, tfidf_pass=0.675, tfidf_fail=0.491, tfidf_d=-0.815, conclusion=\"STRONGLY CONSERVATIVE: 5/7 significant, TF-IDF d=-0.815 large effect\"\n  - `register`: n_total=100, n_pass=80, n_fail=20, pass_rate=0.8, significant_metrics=\"0/7\", conclusion=\"No significant bias detected (but n_fail=20 underpowered)\"\n  - overall_conclusion: \"Gate selection is conservative across all axes. Measured effects are lower bounds. Verbosity strongest signal (d=0.815 large).\"\n  - artifacts: [\"artifacts/nli_fn_bias/nli_fn_bias_formality.png\", \"artifacts/nli_fn_bias/nli_fn_bias_verbosity.png\", \"artifacts/nli_fn_bias/nli_fn_bias_register.png\"]\n- **Conclusion:** success\n\n### EXPERIMENT 29: `nli_gate_spotcheck`\n- **Status:** DONE\n- **Hypothesis:** GPT-4o independent evaluation agrees with NLI gate pass/fail decisions at high rate\n- **Metrics:**\n  - total_samples: 100, pass_samples: 50, fail_samples: 50\n  - overall_agreement: 0.65\n  - cohens_kappa: 0.3\n  - kappa_ci: [0.153, 0.456]\n  - pass_agreement: 0.94\n  - fail_agreement: 0.36\n  - disagreement_pattern: nli_fail_gpt_pass=32, nli_pass_gpt_fail=3\n  - per_axis: formality={agreement=0.771, kappa=0.241, n=48}, verbosity={agreement=0.618, kappa=0.294, n=34}, register={agreement=0.389, kappa=0.092, n=18}\n  - note: \"NLI gate is conservative, not rubber-stamp. 94% pass agreement. 32/35 disagreements are NLI over-reject (fail but GPT-4o says pass). Kappa=0.30 inflated by 50/50 stratified sampling; real-data agreement much higher given 88% pass rate.\"\n- **Conclusion:** success\n\n### EXPERIMENT 30: `gate_comparison`\n- **Status:** DONE\n- **Hypothesis:** Direction-aware NLI gate does not introduce systematic bias compared to strict bidirectional gate\n- **Metrics:**\n  - `formality`: strict={n=88, bt=0.6647, ci=[0.5852, 0.7386], p=0.0001}, direction_aware={n=97, bt=0.634, ci=[0.5567, 0.7061], p=0.0001}, extra_only={n=9, bt=0.3337}, delta=-0.0307, delta_ci=[-0.0651, -0.0018], significant=true, note=\"Formality pipeline already uses strict gate (min). Extra 9 pairs lean casual. Moot for paper.\"\n  - `verbosity`: strict={n=65, bt=0.7845, ci=[0.7076, 0.8537], p=0.0001}, direction_aware={n=86, bt=0.7732, ci=[0.7034, 0.8429], p=0.0001}, extra_only={n=21, bt=0.7379}, delta=-0.0113, delta_ci=[-0.0564, 0.0296], significant=false, note=\"No systematic difference. Extra 21 pairs consistent with overall direction (73.8% vs 77.3%).\"\n- **Conclusion:** success\n\n### EXPERIMENT 31: `exp-006`\n- **Status:** DONE\n- **Hypothesis:** Scaling formality counterfactual generation from 100 to 400 pairs enables cross-benchmark validation and increases statistical power\n- **Metrics:**\n  - n_total: 400\n  - nli_pass: 355\n  - nli_rate: 0.888\n  - bt: p_formal=0.675, ci=[0.637, 0.713], ci_width_pp=7.6, p_value=0.0001\n  - likert: ate=-0.059, p=0.5999, d=-0.025, tie_rate=0.434, mean_formal=6.58, mean_casual=6.64\n  - gee: style_or=2.15, style_ci=[1.46, 3.16], style_p=0.0001, orig_or=4.99, orig_ci=[3.4, 7.34], orig_p=0.0001\n  - blindspot: True\n  - consistency: 0.654\n  - vs_n100: bt_delta=\"+1.0pp (67.5 vs 66.5)\", ci_improvement=\"2x narrower (7.6pp vs 15.4pp)\"\n- **Conclusion:** success\n\n### EXPERIMENT 32: `alpacaeval_verbosity_qwen32b`\n- **Status:** DONE\n- **Hypothesis:** Qwen3-32B shows verbosity Blindspot on AlpacaEval benchmark\n- **Metrics:**\n  - bt: p_verbose=0.841, ci=[0.774, 0.902], p_value=0.0001\n  - likert: ate=0.732, p=0.0003, d=0.375, tie_rate=0.244, mean_verbose=7.32, mean_concise=6.59\n  - gee: style_or=28.64, style_ci=[9.16, 89.56], style_p=0.0001, orig_or=0.18, orig_ci=[0.06, 0.54], orig_p=0.0024\n  - blindspot: False\n  - n_pairs: 82\n  - consistency: 0.829\n  - note: \"NOT Blindspot: Likert p=0.0003 also significant. Effect is so strong (d=0.375) that even Likert detects it. GEE Style OR=28.64 is massive.\"\n- **Conclusion:** success\n\n### EXPERIMENT 33: `correction_poc`\n- **Status:** DONE\n- **Hypothesis:** Explicit style-awareness debiasing instructions in judge prompts can eliminate or substantially reduce formality style bias\n- **Metrics:**\n  - `qwen32b`: original={p_formal=0.665, ci=[0.585, 0.739], p_value=0.0001}, debiased={p_formal=0.608, ci=[0.534, 0.682], p_value=0.0023}, reduction_pp=5.7, reduction_pct=34.5\n  - `gpt4o`: original={p_formal=0.63, ci=[0.557, 0.703], p_value=0.0004}, debiased={p_formal=0.626, ci=[0.559, 0.693], p_value=0.0001}, reduction_pp=0.4, reduction_pct=3.1, neither_count=5\n  - conclusion: \"Debiased prompt ineffective. Qwen3-32B: -5.7pp but still p=0.002. GPT-4o: -0.4pp, no change. Style bias persists despite explicit debiasing instructions.\"\n- **Conclusion:** negative\n\n### EXPERIMENT 34: `claude_verbosity`\n- **Status:** DONE\n- **Hypothesis:** Claude Sonnet 4 shows verbosity style bias similar to GPT-4o (OR=10-13) and Qwen3-32B\n- **Metrics:**\n  - bt: p_verbose=0.541, ci=[0.459, 0.616], p_value=0.284\n  - likert: ate=-0.081, p=0.7427, d=-0.039, tie_rate=0.674\n  - gee: style_or=1.52, style_p=0.2858, orig_or=0.8, orig_p=0.5626\n  - blindspot: False\n  - n_pairs: 86\n- **Conclusion:** negative\n\n### EXPERIMENT 35: `claude_formality`\n- **Status:** DONE\n- **Hypothesis:** Claude Sonnet 4 shows similar formality style bias as GPT-4o and Qwen3-32B\n- **Metrics:**\n  - bt: p_formal=0.562, ci=[0.489, 0.636], p_value=0.0912\n  - likert: ate=-0.045, p=0.7207, d=-0.021, tie_rate=0.682\n  - gee: style_or=1.47, style_p=0.2757, orig_or=6.66, orig_p=0.0001\n  - blindspot: False\n  - n_pairs: 88\n- **Conclusion:** negative\n\n### EXPERIMENT 36: `gpt4o_alpacaeval`\n- **Status:** DONE\n- **Hypothesis:** GPT-4o shows formality Blindspot on AlpacaEval benchmark\n- **Metrics:**\n  - bt: p_formal=0.727, ci=[0.663, 0.785], p_value=0.0001\n  - likert: ate=0.128, p=0.1704, d=0.148, tie_rate=0.663\n  - gee: style_or=4.91, style_p=0.0001, orig_or=1.99, orig_p=0.0356\n  - blindspot: True\n  - n_pairs: 86\n- **Conclusion:** success\n\n### EXPERIMENT 37: `gpt4o_mtbench`\n- **Status:** DONE\n- **Hypothesis:** GPT-4o shows formality Blindspot on MT-Bench benchmark\n- **Metrics:**\n  - bt: p_formal=0.692, ci=[0.623, 0.753], p_value=0.0001\n  - likert: ate=0.164, p=0.0163, d=0.167, tie_rate=0.699\n  - gee: style_or=2.28, style_p=0.1055, orig_or=6.24, orig_p=0.0005\n  - blindspot: False\n  - n_pairs: 73\n  - note: \"Likert also significant p=0.016 but d=0.167 small; BT much stronger p<0.0001. NOT Blindspot because Likert is also significant.\"\n- **Conclusion:** success\n\n### EXPERIMENT 38: `qwen32b_register`\n- **Status:** DONE\n- **Hypothesis:** Qwen3-32B judge shows register (academic/conversational) bias in pairwise comparison while Likert fails to detect it\n- **Metrics:**\n  - pairwise: consistency_rate=0.6, academic_win_rate=0.593, sign_test_p=0.22, wilson_ci=[0.46, 0.713]\n  - likert: ate=0.074, p=0.505, cohens_d=0.069, tie_rate=0.638\n  - direction: academic_to_conv_orig_pref=0.893, academic_to_conv_p=2.7e-05, conv_to_academic_orig_pref=0.312, conv_to_academic_p=0.05\n  - blindspot_confirmed: False\n  - bt: p_academic_wins=0.553, bootstrap_ci=[0.479, 0.628], bootstrap_p=0.0763, bootstrap_method=\"pair-level (10000 iterations, seed=42)\", n_pairs=94, n_comparisons=188\n  - gee_decomposition: academic_or=1.9053, academic_ci=[1.01, 3.58], academic_p=0.0455, originality_or=5.7181, originality_p=0.0001, note=\"Register significant after controlling for originality bias (OR=1.91 p=0.046). Originality dominant (OR=5.72).\"\n  - status_note: \"BT P(academic)=55.3% [47.9%, 62.8%] p=0.076 (NS). GEE academic OR=1.91 p=0.046 (significant after controlling originality). Originality dominant.\"\n- **Conclusion:** success\n\n### EXPERIMENT 39: `gpt4o_register`\n- **Status:** DONE\n- **Hypothesis:** GPT-4o judge shows register (academic/conversational) bias detectable via pairwise but not Likert\n- **Metrics:**\n  - pairwise: academic_win_rate=0.633, sign_test_p=0.085\n  - likert: ate=0, p_wilcoxon=0.7849, cohens_d=0, tie_rate=0.6489\n  - bt: p_academic_wins=0.5699, bootstrap_ci=[0.5, 0.6398], bootstrap_p=0.04, bootstrap_method=\"pair-level (10000 iterations, seed=42)\"\n  - gee_decomposition: academic_or=1.8759, academic_p=0.0285, originality_or=2.2098, originality_p=0.0058, note=\"Style marginally significant (OR=1.88 p=0.03), originality stronger (OR=2.21 p=0.006). Pattern consistent with Qwen3-32B register.\"\n  - blindspot_confirmed: True\n  - status_note: \"BT P(academic)=57.0% [50.0%, 64.0%] p=0.04; Likert ATE=0 p=0.78 (Blindspot confirmed). GEE academic OR=1.88 p=0.03, orig OR=2.21 p=0.006.\"\n- **Conclusion:** success\n\n### EXPERIMENT 40: `gpt4o_verbosity`\n- **Status:** DONE\n- **Hypothesis:** GPT-4o judge shows verbosity bias in pairwise comparison while Likert fails to detect it\n- **Metrics:**\n  - pairwise: verbose_win_rate=0.863, sign_test_p=1e-06, wilson_ci=[0.766, 0.924]\n  - likert: ate=0.1163, p_wilcoxon=0.4033, cohens_d=0.078, tie_rate=0.5814\n  - bt: p_verbose_wins=0.7602, bootstrap_ci=[0.6881, 0.8283], bootstrap_p=0.0001, bootstrap_method=\"pair-level (10000 iterations, seed=42)\"\n  - gee_decomposition: verbose_or=10.9719, verbose_p=0.0001, originality_or=0.4373, originality_p=0.0514, note=\"Pure style bias (OR=10.97 p<0.0001). Originality not significant and in opposite direction (OR=0.44).\"\n  - blindspot_confirmed: True\n  - status_note: \"BT P(verbose)=76.0% [68.8%, 82.8%] p=0.0001; Likert ATE=+0.12 p=0.40 (Blindspot confirmed). GEE verbose OR=10.97 p<0.0001, orig OR=0.44 ns.\"\n- **Conclusion:** success\n\n### EXPERIMENT 41: `qwen32b_verbosity`\n- **Status:** DONE\n- **Hypothesis:** Qwen3-32B judge shows verbosity bias in pairwise comparison (verbose win rate >60%, p<0.05) while Likert scoring fails to detect it\n- **Metrics:**\n  - pairwise: consistency_rate=0.74, verbose_win_rate=0.873, sign_test_p=1e-06, wilson_ci=[0.769, 0.934]\n  - likert: ate=-0.151, p=0.179, cohens_d=-0.146, tie_rate=0.581\n  - direction: verbose_to_concise_orig_pref=0.806, verbose_to_concise_p=0.000878, concise_to_verbose_rewrite_pref=0.907, concise_to_verbose_p=1e-06\n  - note: \"Strongest bias: 87.3% verbose win (p<10⁻⁶) but Likert p=0.179. Both directions prefer verbose content (not originality bias).\"\n  - blindspot_confirmed: True\n  - bt: p_verbose_wins=0.7732, bootstrap_ci=[0.7034, 0.8429], bootstrap_p=0.0001, bootstrap_method=\"pair-level (10000 iterations, seed=42)\"\n  - gee_decomposition: verbose_or=13.1, verbose_ci=[5.62, 30.55], verbose_p=2.6e-09, originality_or=0.49, originality_ci=[0.21, 1.14], originality_p=0.096, note=\"Verbosity bias entirely style-driven (OR=13.10 p<10⁻⁹). Originality non-significant and in opposite direction (OR=0.49).\"\n  - status_note: \"BT P(verbose)=77.3% [70.3%, 84.3%] p<0.0001; GEE verbose OR=13.10 p<10⁻⁹, originality OR=0.49 ns. Purest style bias across all cells.\"\n- **Conclusion:** success\n\n### EXPERIMENT 42: `qwen32b_formality`\n- **Status:** DONE\n- **Hypothesis:** Qwen3-32B as local judge will show similar formality bias pattern to GPT-4o\n- **Metrics:**\n  - pairwise: consistency_rate=0.65, formal_win_rate=0.764, sign_test_p=0.000114, wilson_ci=[0.637, 0.856]\n  - likert: ate=0.011, p=0.908, cohens_d=0.012, tie_rate=0.727\n  - direction: formal_to_casual_win=0.814, formal_to_casual_p=4.2e-05, casual_to_formal_win=0.5, casual_to_formal_p=1\n  - vs_gpt4o: \"pairwise 76.4% vs 63.0% (stronger); Likert both non-sig (p=0.908 vs p=0.332)\"\n  - blindspot_confirmed: True\n  - bt: p_formal_wins=0.6647, bootstrap_ci=[0.5852, 0.7386], bootstrap_p=0.0001, bootstrap_method=\"pair-level (10000 iterations, seed=42)\"\n  - gee_decomposition: formal_or=4.2008, formal_p=0.0002, originality_or=4.7041, originality_p=0.0001, note=\"Both effects strong and nearly equal magnitude; casual→formal at 50% confirms originality confound\"\n  - status_note: \"BT P(formal)=66.5% [58.5%, 73.9%] p<0.0001; GEE formal OR=4.20 p=0.0002, originality OR=4.70 p<0.0001\"\n- **Conclusion:** success\n\n### EXPERIMENT 43: `exp016_bradley_terry`\n- **Status:** DONE\n- **Hypothesis:** Bradley-Terry model on ALL pairwise data (no consistency filtering) will confirm formal preference is significant\n- **Metrics:**\n  - primary_nli_filtered: n_pairs=88, n_comparisons=173, p_formal_wins=0.63, bootstrap_ci=[0.5575, 0.7028], bootstrap_p=0.0004, bootstrap_method=\"pair-level (2000 iterations, seed=42)\", ci_excludes_50=true\n  - robustness_all_data: n_pairs=100, n_comparisons=197, p_formal_wins=0.6091, bootstrap_ci=[0.5381, 0.6784], bootstrap_p=0.001, bootstrap_method=\"pair-level (2000 iterations, seed=42)\", ci_excludes_50=true\n  - comparison_level_reference: all_data_ci=[0.5381, 0.6751], nli_filtered_ci=[0.5607, 0.6994], note=\"Pair-level CIs ~2-5% wider than comparison-level, conclusions unchanged\"\n  - comparison_to_sign_test: \"BT NLI-filtered 63.0% [55.8-70.3%] p<0.001 vs sign test 69.1% [56.0-79.7%] p=0.006\"\n- **Conclusion:** success\n\n### EXPERIMENT 44: `verbosity_32b`\n- **Status:** DONE\n- **Hypothesis:** Verbosity axis (verbose/concise) produces stronger style bias signal than formality in GPT-4o judge\n- **Metrics:**\n  - n: 100\n  - h1_nli_pass_rate: 0.65\n  - nli_mean: 0.6544\n  - bertscore_pass_rate: 0.27\n  - bertscore_mean: 0.7522\n  - both_pass: 0.22\n  - dr_nli_mean: 0.4847\n  - dr_bertscore_mean: 0.7199\n  - dr_pass_rate: 0.04\n  - stopped_at: scoring\n  - stop_reason: \"API 402 Insufficient balance\"\n  - v2_direction_aware_nli: nli_ge90=0.86, nli_ge80=0.86, nli_ge95=0.83, forward_n=46, forward_nli_mean=0.9476, backward_n=54, backward_nli_mean=0.8267, nli_only_pass_rate_at_090=0.86, h1_status=\"PASS (86% >= 80%)\", pipeline_blocked_at=\"scoring (API 402, D013 approved NLI-only gate)\"\n  - status_note: \"H1 PASS (direction-aware NLI 86%). Scoring/H2 deferred to separate experiment when API available.\"\n- **Conclusion:** success\n\n### EXPERIMENT 45: `exp-016` (DUPLICATE)\n- **Status:** DONE\n- **Metrics:** DUPLICATE: canonical entry is exp016_bradley_terry. This entry should be ignored.\n- **Conclusion:** killed\n\n### EXPERIMENT 46: `exp-015` (DUPLICATE)\n- **Status:** DONE\n- **Metrics:** DUPLICATE: canonical entry is exp015_clmm. This entry should be ignored.\n- **Conclusion:** killed\n\n### EXPERIMENT 47: `exp015_clmm`\n- **Status:** DONE\n- **Hypothesis:** Ordinal regression (CLMM) respecting Likert measurement level will also fail to detect formality effect (p>0.05), confirming that the Likert Blindspot is not an artifact of treating ordinal data as continuous\n- **Metrics:**\n  - ordinal_regression: is_formal_coef=-0.079, is_formal_p=0.769, is_formal_ci=[-0.6, 0.45]\n  - gee_paired: is_formal_coef=-0.084, is_formal_p=0.587, is_formal_ci=[-0.39, 0.22]\n  - wilcoxon: p=0.905\n  - n_pairs: 88\n  - n_ties: 55\n  - tie_rate: 0.625\n  - conclusion_note: \"All three methods (ordinal LR, GEE, Wilcoxon) confirm Likert Blindspot: p=0.77/0.59/0.91. 62.5% ties eliminate statistical power.\"\n- **Conclusion:** success\n\n### EXPERIMENT 48: `exp013_nli_validation`\n- **Status:** DONE\n- **Hypothesis:** NLI gate (DeBERTa-v3-large, threshold 0.90) decisions are reliable proxies for human content-preservation judgments, achieving Cohen's kappa >= 0.6 with LLM-as-annotator (Qwen3-32B)\n- **Metrics:**\n  - cohens_kappa: 0.4304\n  - pabak: 0.82\n  - gwet_ac1: 0.8934\n  - agreement_rate: 0.91\n  - n_samples: 100\n  - n_nli_pass: 88\n  - n_nli_fail: 12\n  - precision: 0.989\n  - recall: 0.916\n  - confusion_matrix: nli_pass_llm_yes=87, nli_pass_llm_no=1, nli_fail_llm_yes=8, nli_fail_llm_no=4\n  - direction_bias: overall_f2c_ratio=0.59, nli_fail_f2c_ratio=0.75, fn_f2c_ratio=0.75, fisher_or=0.44, fisher_p=0.35, binomial_fn_p=0.295, conclusion=\"not significant (all p>0.20, n=8/12 too small)\"\n  - kappa_paradox_note: \"kappa=0.43 vs PABAK=0.82 vs AC1=0.89 — classic prevalence paradox (Feinstein & Cicchetti 1990, Gwet 2008). Base rate 88:12 skew depresses kappa despite 91% raw agreement.\"\n  - interpretation: \"NLI gate is precision-oriented conservative filter. AC1=0.89 confirms strong agreement. No significant direction bias in FN.\"\n  - method: \"LLM-as-annotator validation (Qwen3-32B)\"\n- **Conclusion:** success\n\n### EXPERIMENT 49: `exp-013` (DUPLICATE)\n- **Status:** DONE\n- **Metrics:** DUPLICATE: canonical entry is exp013_nli_validation. This entry should be ignored.\n- **Conclusion:** killed\n\n### EXPERIMENT 50: `register_pilot`\n- **Status:** DONE\n- **Hypothesis:** Register axis (academic/conversational) RATE counterfactuals preserve content (NLI+BERTScore pass rate >=80%) and register is independent from formality (agreement <=95%)\n- **Metrics:**\n  - n_samples: 20\n  - cf_pass_rate_joint: 0.2\n  - cf_pass_rate_nli_only: 0.95\n  - cf_pass_rate_bs_only: 0.2\n  - nli_cf_mean: high (19/20 >= 0.90)\n  - bertscore_cf_mean: 0.8458\n  - bertscore_threshold: 0.92\n  - register_formality_agreement: 0.5\n  - bs_sweep_0.80: 0.75\n  - bs_sweep_0.84: 0.6\n  - bs_sweep_0.88: 0.4\n  - bs_sweep_0.92: 0.2\n  - conclusion_note: \"FAIL with joint gate (20%), PASS with NLI-only (95%). BERTScore sole bottleneck. Register-Formality 50% = orthogonal.\"\n- **Conclusion:** negative\n\n### EXPERIMENT 51: `exp014_logistic_decomposition`\n- **Status:** DONE\n- **Hypothesis:** The observed 69.1% formal win rate in pairwise comparison is primarily driven by original-preference bias rather than genuine formality effect\n- **Metrics:**\n  - method_note: \"CORRECTED: pair-level bootstrap + GEE (fixes independence violation)\"\n  - pair_bootstrap: formal_effect_coef=0.7928, formal_effect_OR=2.2095, formal_effect_OR_ci=[1.228, 4.305], formal_effect_p=0.0121, original_effect_coef=0.5958, original_effect_OR=1.8145, original_effect_OR_ci=[0.976, 3.369], original_effect_p=0.0643\n  - gee_exchangeable: formal_effect_coef=0.7931, formal_effect_OR=2.2103, formal_effect_OR_ci=[1.21, 4.038], formal_effect_p=0.0099, original_effect_coef=0.5973, original_effect_OR=1.8172, original_effect_OR_ci=[0.995, 3.319], original_effect_p=0.052\n  - direction_subset: formal_to_casual_win_rate=0.788, formal_to_casual_p=0.001319, casual_to_formal_win_rate=0.545, casual_to_formal_p=0.831812\n  - intercept_position_bias: -0.5851\n  - n_pairs: 98\n  - n_observations: 196\n  - old_observation_bootstrap_note: \"SUPERSEDED: old p=0.011/0.048 used observation-level bootstrap, understated SE\"\n- **Conclusion:** success\n\n### EXPERIMENT 52: `exp012_consistency_bias`\n- **Status:** DONE\n- **Hypothesis:** The consistency filter (discarding 43% of pairs) introduces systematic selection bias\n- **Metrics:**\n  - consistent_n: 55\n  - inconsistent_n: 43\n  - consistency_rate: 0.561\n  - nli_mwu_p: 0.824\n  - bertscore_mwu_p: 0.12\n  - orig_length_mwu_p: 0.137\n  - length_diff_mwu_p: 0.715\n  - nli_ks_p: 0.68\n  - conclusion_note: \"No systematic bias detected in consistency filter (all p>0.12)\"\n- **Conclusion:** success\n\n### EXPERIMENT 53: `exp011_nli_sensitivity`\n- **Status:** DONE\n- **Hypothesis:** The 0.90 NLI threshold is on a cliff edge where small changes dramatically affect pass rate and downstream pairwise results\n- **Metrics:**\n  - formality_pass_rate_0.70: 0.89\n  - formality_pass_rate_0.90: 0.88\n  - formality_pass_rate_0.95: 0.85\n  - pw_win_rate_0.70: 0.723\n  - pw_win_rate_0.90: 0.739\n  - pw_p_0.70: 0.0031\n  - pw_p_0.90: 0.0016\n  - nli_mean: 0.8956\n  - nli_std: 0.2792\n  - tone_pass_rate_0.70: 0.65\n  - conclusion_note: \"NLI bimodal distribution, 0.90 NOT on cliff edge, pairwise results robust across all thresholds\"\n- **Conclusion:** success\n\n### EXPERIMENT 54: `exp010_binarized_likert`\n- **Status:** DONE\n- **Hypothesis:** Likert-vs-Pairwise sensitivity gap is due to measurement structure (forced choice eliminates ties) not statistical test choice; binarized Likert with sign test will remain non-significant\n- **Conclusion:** success\n- **Metrics:** Not explicitly listed in the entry beyond the hypothesis (data in checkpoint file `/root/causal_style_decomp_judge/data/exp010_results/exp010_binarized_likert.csv`)\n\n### EXPERIMENT 55: `tone_pilot`\n- **Status:** DONE\n- **Hypothesis:** Tone axis (assertive/hedging) RATE counterfactuals preserve content (NLI+BERTScore pass rate >=80%)\n- **Metrics:**\n  - n: 20\n  - detection_split: assertive=13, hedging=7\n  - nli_cf_pass_rate: 0.65\n  - bertscore_cf_pass_rate: 0.6\n  - both_pass_rate: 0.45\n  - nli_cf_mean: 0.7039\n  - nli_cf_std: 0.4208\n  - bertscore_cf_mean: 0.9201\n  - nli_dr_mean: 0.8841\n  - bertscore_dr_mean: 0.9164\n  - by_tone: assertive={n=13, both_pass=0.385, nli_cf_mean=0.6559}, hedging={n=7, both_pass=0.571, nli_cf_mean=0.793}\n  - failure_mode: \"assertive→hedging changes epistemic commitment, NLI correctly detects non-entailment (6/20 catastrophic NLI<0.01)\"\n- **Conclusion:** negative\n\n### EXPERIMENT 56: `pairwise_32b`\n- **Status:** DONE\n- **Hypothesis:** Likert 1-10 integer granularity masks a real formality preference in GPT-4o; position-controlled pairwise comparison reveals significant formal win rate >55% where Likert ATE was non-significant\n- **Metrics:**\n  - n_total: 100\n  - n_valid_both_trials: 98\n  - n_consistent: 55\n  - n_ties_inconsistent: 43\n  - consistency_rate: 0.5612\n  - formal_wins: 38\n  - casual_wins: 17\n  - formal_win_rate: 0.6909\n  - wilson_ci_lo: 0.5597\n  - wilson_ci_hi: 0.7972\n  - sign_test_p: 0.006456\n  - position_bias_trial1_A: 0.5306\n  - position_bias_trial2_A: 0.551\n  - position_bias_overall_A: 0.5408\n  - dir_formal_orig_n: 33\n  - dir_formal_orig_formal_wins: 26\n  - dir_formal_orig_win_rate: 0.7879\n  - dir_formal_orig_p: 0.001145\n  - dir_casual_orig_n: 22\n  - dir_casual_orig_formal_wins: 12\n  - dir_casual_orig_win_rate: 0.5455\n  - dir_casual_orig_p: 0.8318\n  - nli_ge90_n: 46\n  - nli_ge90_formal_wins: 34\n  - nli_ge90_win_rate: 0.7391\n  - nli_ge90_p: 0.001537\n- **Conclusion:** success\n\n### EXPERIMENT 57: `mvp_32b_ate`\n- **Status:** DONE\n- **Hypothesis:** Qwen3-32B (stronger instruction following than 8B) produces higher-fidelity RATE counterfactuals with lower rewrite bias, revealing significant formality premium\n- **Metrics:**\n  - n: 100\n  - n_primary: 88\n  - h1_nli_pass_rate: 0.88\n  - nli_mean: 0.8956\n  - raw_ate: -0.1023\n  - raw_se: 0.149\n  - raw_p: 0.4944\n  - raw_cohens_d: -0.0731\n  - rewrite_bias: -0.2045\n  - corrected_ate: 0.1023\n  - corrected_se: 0.1048\n  - corrected_p: 0.3318\n  - corrected_cohens_d: 0.104\n  - rate_ratio: -1\n  - dir_formal_to_casual_ate: 0.14\n  - dir_formal_to_casual_p: 0.332\n  - dir_casual_to_formal_ate: 0.0526\n  - dir_casual_to_formal_p: 0.7365\n  - sens2_corrected_ate: 0.0959\n  - sens2_corrected_p: 0.3633\n  - all_corrected_ate: 0.1\n  - all_corrected_p: 0.2995\n- **Conclusion:** negative\n\n### EXPERIMENT 58: `mvp_8b_ate`\n- **Status:** DONE\n- **Hypothesis:** Binary style counterfactuals (formality axis) via Qwen3-8B RATE double-rewrite reveal significant ATE in GPT-4o judge scores, with formal text receiving higher scores\n- **Metrics:**\n  - n: 100\n  - h1_nli_pass_rate: 0.95\n  - raw_ate: -0.08\n  - raw_se: 0.1161\n  - raw_p: 0.4923\n  - raw_cohens_d: -0.0689\n  - rewrite_bias: -0.2\n  - corrected_ate: 0.12\n  - corrected_se: 0.1028\n  - corrected_p: 0.2458\n  - corrected_cohens_d: 0.1168\n  - rate_ratio: -1.5\n  - dir_formal_to_casual_ate: 0.0645\n  - dir_formal_to_casual_p: 0.5679\n  - dir_casual_to_formal_ate: 0.2105\n  - dir_casual_to_formal_p: 0.2997\n  - strat_nli90_ate: 0.1263\n  - strat_nli90_p: 0.2459\n  - strat_nli90_n: 95\n- **Conclusion:** negative\n\n---\n\n### Summary Statistics\n- **Total experiments:** 58\n- **3 duplicates** (exp-016, exp-015, exp-013) marked as \"should be ignored\" pointing to canonical entries\n- **Conclusion breakdown:** success=36, negative=13, killed=6 (3 duplicates + register_100_cf + 2 others)\n- **Experiments with blindspot=True:** llama70b_third_judge (both axes), gemini_flash_fourth_judge (both axes), qwen32b_formality, qwen32b_verbosity, gpt4o_verbosity, gpt4o_register, exp-006, formality_llama_rewriter, gpt4o_rewriter_verbosity, gpt4o_rewriter_formality, gpt4o_alpacaeval, llama70b_register, finegrained_likert_100pt (both axes)\n- **Experiments with blindspot=False:** llama70b_crossbench (AlpacaEval/MTBench — effects too strong), crossbench_alpacaeval_verbosity (d=0.407 too strong), claude_formality, claude_verbosity (no bias detected at all), alpacaeval_verbosity_qwen32b (effect too strong), gpt4o_mtbench (Likert also significant)"
+      }
+    ],
+    "totalDurationMs": 432543,
+    "totalTokens": 80484,
+    "totalToolUseCount": 15,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2671,
+      "cache_read_input_tokens": 57739,
+      "output_tokens": 20073,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2671
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 20073,
+          "cache_read_input_tokens": 57739,
+          "cache_creation_input_tokens": 2671,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2671,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 10,
+      "searchCount": 0,
+      "bashCount": 5,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good progress. I found key files:
+1. `/root/causal_style_decomp_judge/analysis/table1_verified.csv` - this is critical
+2. Various JSON data files in `/root/causal_style_decomp_judge/data/`
+3. The registry has 58 experiments
+
+Let me now read the critical source files. I need:
+- `table1_verified.csv` - direct source for Table 1
+- The key JSON files for GEE data, BT data, etc.
+- The figure generation scripts (they're in the docs/paper/figures/ directory locally, not on server)
+
+
+- I should also check for figure scripts locally and pull the key data files from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "5bebf811-0bc3-437d-83a7-2ff9f9e40909",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcW2t27W65sExdh537zQbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5022,
+      "cache_read_input_tokens": 36414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5022
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 86_
+
+Found key files. Let me now read the critical source data files from the server and find figure scripts locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "e5d89b51-27d4-4b23-b27f-b4bf9204ee60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcW2t27W65sExdh537zQbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5022,
+      "cache_read_input_tokens": 36414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5022
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01REdAMrn4aHBV5xraZUSWdF`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/analysis/table1_verified.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "c669b094-5694-4882-a898-bc42baa2fd85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcW2t27W65sExdh537zQbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5022,
+      "cache_read_input_tokens": 36414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5022
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 88 · 2026-05-25T19:50:15.658Z_
+
+<details><summary>↩ Tool result · `toolu_01REdAMrn4aHBV5xraZUSWdF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"judge,axis,n,mean_target,mean_opposite,ate,cohen_d,wilcoxon_p,tie_rate\\r\\nGPT-4o,formality,88,5.6477,5.7500,-0.1023,-0.0417,0.9054,0.6250\\r\\nGPT-4o,verbosity,86,5.5814,5.4651,0.1163,0.0488,0.4033,0.5814\\r\\nGPT-4o,register,94,5.7128,5.7128,0.0000,0.0000,0.7849,0.6489\\r\\nQwen3-32B,formality,88,6.1023,6.1818,-0.0795,-0.0523,0.4611,0.7273\\r\\nQwen3-32B,verbosity,86,6.1628,6.1047,0.0581,0.0362,0.3949,0.5814\\r\\nQwen3-32B,register,94,6.0106,6.1277,-0.1170,-0.0731,0.3730,0.6383\\r\\nLlama-70B,formality,88,6.6591,6.6364,0.0227,0.0096,0.5335,0.7273\\r\\nLlama-70B,verbosity,86,6.7326,6.6860,0.0465,0.0203,0.2840,0.6163\\r\\nLlama-70B,register,93,6.8172,6.7634,0.0538,0.0238,0.5241,0.6882\\r\\nGemini-Flash,formality,88,6.4091,6.6477,-0.2386,-0.0820,0.3088,0.6477\\r\\nGemini-Flash,verbosity,86,6.5465,6.3953,0.1512,0.0509,0.3697,0.5465\\r\\nClaude,formality,88,4.8750,4.9205,-0.0455,-0.0210,0.7207,0.6818\\r\\nClaude,verbosity,86,4.7093,4.7907,-0.0814,-0.0397,0.7427,0.6744\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "3c075926-0989-4bf2-8c78-77cf2499b39c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"judge,axis,n,mean_target,mean_opposite,ate,cohen_d,wilcoxon_p,tie_rate\\\\r\\\\nGPT-4o,formality,88,5.6477,5.7500,-0.1023,-0.0417,0.9054,0.6250\\\\r\\\\nGPT-4o,verbosity,86,5.5814,5.4651,0.1163,0.0488,0.4033,0.5814\\\\r\\\\nGPT-4o,register,94,5.7128,5.7128,0.0000,0.0000,0.7849,0.6489\\\\r\\\\nQwen3-32B,formality,88,6.1023,6.1818,-0.0795,-0.0523,0.4611,0.7273\\\\r\\\\nQwen3-32B,verbosity,86,6.1628,6.1047,0.0581,0.0362,0.3949,0.5814\\\\r\\\\nQwen3-32B,register,94,6.0106,6.1277,-0.1170,-0.0731,0.3730,0.6383\\\\r\\\\nLlama-70B,formality,88,6.6591,6.6364,0.0227,0.0096,0.5335,0.7273\\\\r\\\\nLlama-70B,verbosity,86,6.7326,6.6860,0.0465,0.0203,0.2840,0.6163\\\\r\\\\nLlama-70B,register,93,6.8172,6.7634,0.0538,0.0238,0.5241,0.6882\\\\r\\\\nGemini-Flash,formality,88,6.4091,6.6477,-0.2386,-0.0820,0.3088,0.6477\\\\r\\\\nGemini-Flash,verbosity,86,6.5465,6.3953,0.1512,0.0509,0.3697,0.5465\\\\r\\\\nClaude,formality,88,4.8750,4.9205,-0.0455,-0.0210,0.7207,0.6818\\\\r\\\\nClaude,verbosity,86,4.7093,4.7907,-0.0814,-0.0397,0.7427,0.6744\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"judge,axis,n,mean_target,mean_opposite,ate,cohen_d,wilcoxon_p,tie_rate\\r\\nGPT-4o,formality,88,5.6477,5.7500,-0.1023,-0.0417,0.9054,0.6250\\r\\nGPT-4o,verbosity,86,5.5814,5.4651,0.1163,0.0488,0.4033,0.5814\\r\\nGPT-4o,register,94,5.7128,5.7128,0.0000,0.0000,0.7849,0.6489\\r\\nQwen3-32B,formality,88,6.1023,6.1818,-0.0795,-0.0523,0.4611,0.7273\\r\\nQwen3-32B,verbosity,86,6.1628,6.1047,0.0581,0.0362,0.3949,0.5814\\r\\nQwen3-32B,register,94,6.0106,6.1277,-0.1170,-0.0731,0.3730,0.6383\\r\\nLlama-70B,formality,88,6.6591,6.6364,0.0227,0.0096,0.5335,0.7273\\r\\nLlama-70B,verbosity,86,6.7326,6.6860,0.0465,0.0203,0.2840,0.6163\\r\\nLlama-70B,register,93,6.8172,6.7634,0.0538,0.0238,0.5241,0.6882\\r\\nGemini-Flash,formality,88,6.4091,6.6477,-0.2386,-0.0820,0.3088,0.6477\\r\\nGemini-Flash,verbosity,86,6.5465,6.3953,0.1512,0.0509,0.3697,0.5465\\r\\nClaude,formality,88,4.8750,4.9205,-0.0455,-0.0210,0.7207,0.6818\\r\\nClaude,verbosity,86,4.7093,4.7907,-0.0814,-0.0397,0.7427,0.6744\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QRWkkKsksCzMBK2xhrmLyR`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/pairwise_summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "82536829-3d1d-41da-b8fc-be6e97789b18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcW2t27W65sExdh537zQbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5022,
+      "cache_read_input_tokens": 36414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5022
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 90 · 2026-05-25T19:50:16.586Z_
+
+<details><summary>↩ Tool result · `toolu_01QRWkkKsksCzMBK2xhrmLyR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"group,n,formal_wins,casual_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\r\\noverall,111,85,26,0.7657657657657657,0.6789066790684753,0.8348444355102139,1.6986304619987468e-08,29,0.7928571428571428,0.5321428571428571\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "86df73de-972e-44cd-bc4f-ff5a3d8213ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"group,n,formal_wins,casual_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\\\r\\\\noverall,111,85,26,0.7657657657657657,0.6789066790684753,0.8348444355102139,1.6986304619987468e-08,29,0.7928571428571428,0.5321428571428571\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"group,n,formal_wins,casual_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\r\\noverall,111,85,26,0.7657657657657657,0.6789066790684753,0.8348444355102139,1.6986304619987468e-08,29,0.7928571428571428,0.5321428571428571\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KqAwNcuyJsKK8Ne5sAtn1N`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "1a512332-3183-49c5-9efa-e51855f10968",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcW2t27W65sExdh537zQbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5022,
+      "cache_read_input_tokens": 36414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5022
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 92 · 2026-05-25T19:50:17.958Z_
+
+<details><summary>↩ Tool result · `toolu_01KqAwNcuyJsKK8Ne5sAtn1N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"group,n,formal_wins,casual_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\r\\noverall,55,38,17,0.6909090909090909,0.5597116084861727,0.7971787547942276,0.006455803109956635,43,0.5612244897959183,0.5255102040816326\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "6faac51c-dde7-4ca5-b59d-ed44e957a1e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"group,n,formal_wins,casual_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\\\r\\\\noverall,55,38,17,0.6909090909090909,0.5597116084861727,0.7971787547942276,0.006455803109956635,43,0.5612244897959183,0.5255102040816326\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"group,n,formal_wins,casual_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\r\\noverall,55,38,17,0.6909090909090909,0.5597116084861727,0.7971787547942276,0.006455803109956635,43,0.5612244897959183,0.5255102040816326\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JBKwiGnLUH9MinKxWqBy1U`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/ate_summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "2bd4b672-f40e-4372-9733-49a21072ce16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcW2t27W65sExdh537zQbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5022,
+      "cache_read_input_tokens": 36414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5022
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rg6iYUHaGtnYuUWa62LNTQ`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/gee_n355_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "2b323354-7f39-4a28-8ddf-d7841f5e59b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcW2t27W65sExdh537zQbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5022,
+      "cache_read_input_tokens": 36414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5022
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T9GTWM2wcPkvPNjiinD2Ky`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/gemini_flash_fourth_judge.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "c7f4c486-5131-430c-ab73-27fe0d6035f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcW2t27W65sExdh537zQbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5022,
+      "cache_read_input_tokens": 36414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5022
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 96 · 2026-05-25T19:50:20.994Z_
+
+<details><summary>↩ Tool result · `toolu_01JBKwiGnLUH9MinKxWqBy1U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"group,n,raw_ate,raw_se,raw_ci_lo,raw_ci_hi,raw_p,raw_cohens_d,rewrite_bias,corrected_ate,corrected_se,corrected_ci_lo,corrected_ci_hi,corrected_p,corrected_cohens_d,direction\\noverall,100,-0.08,0.11606337523399476,-0.3102949165976276,0.15029491659762756,0.4922603474689714,-0.06892785931712947,-0.2,0.12000000000000001,0.1027697239541693,-0.08391742837971942,0.32391742837971943,0.24574883314775234,0.11676590671150838,\\nformal→casual,62,0.08064516129032258,0.13069069069751788,-0.18068702616771287,0.341977348748358,0.539485806261995,0.07836782919394529,0.016129032258064516,0.06451612903225806,0.11235418364114748,-0.160149946449433,0.28918220451394916,0.5679297937144332,0.0729261369280843,formal→casual\\ncasual→formal,38,-0.34210526315789475,0.2142714534091062,-0.7762604670977187,0.09204994078192918,0.11886232725184914,-0.2590023126404418,-0.5526315789473685,0.21052631578947373,0.20013471542896377,-0.19498513620316826,0.6160377677821157,0.299656702509661,0.1706444484635853,casual→formal\\nprimary: nli_cf≥0.90 (n=95),95,-0.042105263157894736,0.1138905679688608,-0.26823765566756963,0.18402712935178014,0.7124381396719416,-0.03793034777090567,-0.16842105263157894,0.12631578947368421,0.1081682001395232,-0.08845470756785756,0.341086286515226,0.2458522605687466,0.1198108735833469,\\nsecondary: bertscore_cf≥0.85 (n=76),76,0.013157894736842105,0.13044246033046028,-0.2466968114608198,0.27301260093450397,0.9199218348210119,0.011570726547156893,-0.10526315789473684,0.11842105263157894,0.12561023712772565,-0.13180737131529568,0.36864947657845354,0.34882764955817336,0.10814266940509361,\\nsecondary: bertscore_cf≥0.88 (n=57),57,-0.017543859649122806,0.15326690577183263,-0.32457436614307783,0.2894866468448322,0.9092777724265024,-0.015161400731651951,-0.14035087719298245,0.12280701754385964,0.15845070594560148,-0.1946078885365598,0.4402219236242791,0.44157137874591484,0.10265771139406654,\\nsecondary: bertscore_cf≥0.90 (n=48),48,-0.0625,0.16949615050336983,-0.40348227288886684,0.27848227288886684,0.7139774452889581,-0.05322302559259923,-0.1875,0.125,0.1777145092796608,-0.23251547819549795,0.48251547819549795,0.48529183112089563,0.10152348272128793,\\nsecondary: bertscore_cf≥0.92 (n=37),37,-0.16216216216216217,0.2069132266280334,-0.5818016358099851,0.2574773114856607,0.43833024446850205,-0.12884287618128848,-0.21621621621621623,0.05405405405405406,0.2084763327100204,-0.3687555456615427,0.47686365376965084,0.7968950236560685,0.042625614287815056,\\ntertiary: all (n=100),100,-0.08,0.11606337523399476,-0.3102949165976276,0.15029491659762756,0.4922603474689714,-0.06892785931712947,-0.2,0.12000000000000001,0.1027697239541693,-0.08391742837971942,0.32391742837971943,0.24574883314775234,0.11676590671150838,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "8207bd68-17be-42cd-98f5-a94500aa0031",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"group,n,raw_ate,raw_se,raw_ci_lo,raw_ci_hi,raw_p,raw_cohens_d,rewrite_bias,corrected_ate,corrected_se,corrected_ci_lo,corrected_ci_hi,corrected_p,corrected_cohens_d,direction\\\\noverall,100,-0.08,0.11606337523399476,-0.3102949165976276,0.15029491659762756,0.4922603474689714,-0.06892785931712947,-0.2,0.12000000000000001,0.1027697239541693,-0.08391742837971942,0.32391742837971943,0.24574883314775234,0.11676590671150838,\\\\nformal→casual,62,0.08064516129032258,0.13069069069751788,-0.18068702616771287,0.341977348748358,0.539485806261995,0.07836782919394529,0.016129032258064516,0.06451612903225806,0.11235418364114748,-0.160149946449433,0.28918220451394916,0.5679297937144332,0.0729261369280843,formal→casual\\\\ncasual→formal,38,-0.34210526315789475,0.2142714534091062,-0.7762604670977187,0.09204994078192918,0.11886232725184914,-0.2590023126404418,-0.5526315789473685,0.21052631578947373,0.20013471542896377,-0.19498513620316826,0.6160377677821157,0.299656702509661,0.1706444484635853,casual→formal\\\\nprimary: nli_cf≥0.90 (n=95),95,-0.042105263157894736,0.1138905679688608,-0.26823765566756963,0.18402712935178014,0.7124381396719416,-0.03793034777090567,-0.16842105263157894,0.12631578947368421,0.1081682001395232,-0.08845470756785756,0.341086286515226,0.2458522605687466,0.1198108735833469,\\\\nsecondary: bertscore_cf≥0.85 (n=76),76,0.013157894736842105,0.13044246033046028,-0.2466968114608198,0.27301260093450397,0.9199218348210119,0.011570726547156893,-0.10526315789473684,0.11842105263157894,0.12561023712772565,-0.13180737131529568,0.36864947657845354,0.34882764955817336,0.10814266940509361,\\\\nsecondary: bertscore_cf≥0.88 (n=57),57,-0.017543859649122806,0.15326690577183263,-0.32457436614307783,0.2894866468448322,0.9092777724265024,-0.015161400731651951,-0.14035087719298245,0.12280701754385964,0.15845070594560148,-0.1946078885365598,0.4402219236242791,0.44157137874591484,0.10265771139406654,\\\\nsecondary: bertscore_cf≥0.90 (n=48),48,-0.0625,0.16949615050336983,-0.40348227288886684,0.27848227288886684,0.7139774452889581,-0.05322302559259923,-0.1875,0.125,0.1777145092796608,-0.23251547819549795,0.48251547819549795,0.48529183112089563,0.10152348272128793,\\\\nsecondary: bertscore_cf≥0.92 (n=37),37,-0.16216216216216217,0.2069132266280334,-0.5818016358099851,0.2574773114856607,0.43833024446850205,-0.12884287618128848,-0.21621621621621623,0.05405405405405406,0.2084763327100204,-0.3687555456615427,0.47686365376965084,0.7968950236560685,0.042625614287815056,\\\\ntertiary: all (n=100),100,-0.08,0.11606337523399476,-0.3102949165976276,0.15029491659762756,0.4922603474689714,-0.06892785931712947,-0.2,0.12000000000000001,0.1027697239541693,-0.08391742837971942,0.32391742837971943,0.24574883314775234,0.11676590671150838,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"group,n,raw_ate,raw_se,raw_ci_lo,raw_ci_hi,raw_p,raw_cohens_d,rewrite_bias,corrected_ate,corrected_se,corrected_ci_lo,corrected_ci_hi,corrected_p,corrected_cohens_d,direction\\noverall,100,-0.08,0.11606337523399476,-0.3102949165976276,0.15029491659762756,0.4922603474689714,-0.06892785931712947,-0.2,0.12000000000000001,0.1027697239541693,-0.08391742837971942,0.32391742837971943,0.24574883314775234,0.11676590671150838,\\nformal→casual,62,0.08064516129032258,0.13069069069751788,-0.18068702616771287,0.341977348748358,0.539485806261995,0.07836782919394529,0.016129032258064516,0.06451612903225806,0.11235418364114748,-0.160149946449433,0.28918220451394916,0.5679297937144332,0.0729261369280843,formal→casual\\ncasual→formal,38,-0.34210526315789475,0.2142714534091062,-0.7762604670977187,0.09204994078192918,0.11886232725184914,-0.2590023126404418,-0.5526315789473685,0.21052631578947373,0.20013471542896377,-0.19498513620316826,0.6160377677821157,0.299656702509661,0.1706444484635853,casual→formal\\nprimary: nli_cf≥0.90 (n=95),95,-0.042105263157894736,0.1138905679688608,-0.26823765566756963,0.18402712935178014,0.7124381396719416,-0.03793034777090567,-0.16842105263157894,0.12631578947368421,0.1081682001395232,-0.08845470756785756,0.341086286515226,0.2458522605687466,0.1198108735833469,\\nsecondary: bertscore_cf≥0.85 (n=76),76,0.013157894736842105,0.13044246033046028,-0.2466968114608198,0.27301260093450397,0.9199218348210119,0.011570726547156893,-0.10526315789473684,0.11842105263157894,0.12561023712772565,-0.13180737131529568,0.36864947657845354,0.34882764955817336,0.10814266940509361,\\nsecondary: bertscore_cf≥0.88 (n=57),57,-0.017543859649122806,0.15326690577183263,-0.32457436614307783,0.2894866468448322,0.9092777724265024,-0.015161400731651951,-0.14035087719298245,0.12280701754385964,0.15845070594560148,-0.1946078885365598,0.4402219236242791,0.44157137874591484,0.10265771139406654,\\nsecondary: bertscore_cf≥0.90 (n=48),48,-0.0625,0.16949615050336983,-0.40348227288886684,0.27848227288886684,0.7139774452889581,-0.05322302559259923,-0.1875,0.125,0.1777145092796608,-0.23251547819549795,0.48251547819549795,0.48529183112089563,0.10152348272128793,\\nsecondary: bertscore_cf≥0.92 (n=37),37,-0.16216216216216217,0.2069132266280334,-0.5818016358099851,0.2574773114856607,0.43833024446850205,-0.12884287618128848,-0.21621621621621623,0.05405405405405406,0.2084763327100204,-0.3687555456615427,0.47686365376965084,0.7968950236560685,0.042625614287815056,\\ntertiary: all (n=100),100,-0.08,0.11606337523399476,-0.3102949165976276,0.15029491659762756,0.4922603474689714,-0.06892785931712947,-0.2,0.12000000000000001,0.1027697239541693,-0.08391742837971942,0.32391742837971943,0.24574883314775234,0.11676590671150838,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_018LBDHoqqahZcQurynQYXGf`</summary>
+
+```json
+{
+  "pattern": "**/figures/*.py",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "5385ce9e-142f-44b8-ac2d-0481bfc0c3e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcW2t27W65sExdh537zQbD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5022,
+      "cache_read_input_tokens": 36414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5022
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 98 · 2026-05-25T19:50:21.929Z_
+
+<details><summary>↩ Tool result · `toolu_01Rg6iYUHaGtnYuUWa62LNTQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n88\\\": {\\n    \\\"style_or\\\": 4.2008,\\n    \\\"style_ci\\\": [\\n      1.9893,\\n      8.8707\\n    ],\\n    \\\"style_p\\\": 0.000168,\\n    \\\"orig_or\\\": 4.7041,\\n    \\\"orig_ci\\\": [\\n      2.2228,\\n      9.9552\\n    ],\\n    \\\"orig_p\\\": 5.2e-05,\\n    \\\"n_pairs\\\": 88,\\n    \\\"n_obs\\\": 176\\n  },\\n  \\\"n355\\\": {\\n    \\\"style_or\\\": 2.1502,\\n    \\\"style_ci\\\": [\\n      1.4625,\\n      3.1614\\n    ],\\n    \\\"style_p\\\": 9.9e-05,\\n    \\\"orig_or\\\": 4.9949,\\n    \\\"orig_ci\\\": [\\n      3.397,\\n      7.3444\\n    ],\\n    \\\"orig_p\\\": 0.0,\\n    \\\"n_pairs\\\": 355,\\n    \\\"n_obs\\\": 710\\n  },\\n  \\\"ci_width_ratio\\\": {\\n    \\\"style\\\": 1.9393,\\n    \\\"orig\\\": 1.9445,\\n    \\\"note\\\": \\\"ratio of log(OR) CI widths: n88/n355, >1 means n355 is narrower\\\"\\n  },\\n  \\\"power\\\": {\\n    \\\"min_detectable_or_n88\\\": 1.5573,\\n    \\\"min_detectable_or_n355\\\": 1.2468,\\n    \\\"assumptions\\\": \\\"alpha=0.05, power=0.80, p=0.5, rho=0.1\\\"\\n  },\\n  \\\"verbosity_n355\\\": null,\\n  \\\"notes\\\": \\\"GEE binomial logit with exchangeable correlation. NLI threshold=0.9. n88: 88 pairs (from 100 raw). n355: 355 pairs (from 355 raw). Qwen3-32B judge, formality axis. Style OR shrinkage: 4.20 -> 2.15 (49% reduction). No scaled verbosity data available.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "bc4e8977-6e44-498a-856b-dd32fcc93104",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n88\\\\\\\": {\\\\n    \\\\\\\"style_or\\\\\\\": 4.2008,\\\\n    \\\\\\\"style_ci\\\\\\\": [\\\\n      1.9893,\\\\n      8.8707\\\\n    ],\\\\n    \\\\\\\"style_p\\\\\\\": 0.000168,\\\\n    \\\\\\\"orig_or\\\\\\\": 4.7041,\\\\n    \\\\\\\"orig_ci\\\\\\\": [\\\\n      2.2228,\\\\n      9.9552\\\\n    ],\\\\n    \\\\\\\"orig_p\\\\\\\": 5.2e-05,\\\\n    \\\\\\\"n_pairs\\\\\\\": 88,\\\\n    \\\\\\\"n_obs\\\\\\\": 176\\\\n  },\\\\n  \\\\\\\"n355\\\\\\\": {\\\\n    \\\\\\\"style_or\\\\\\\": 2.1502,\\\\n    \\\\\\\"style_ci\\\\\\\": [\\\\n      1.4625,\\\\n      3.1614\\\\n    ],\\\\n    \\\\\\\"style_p\\\\\\\": 9.9e-05,\\\\n    \\\\\\\"orig_or\\\\\\\": 4.9949,\\\\n    \\\\\\\"orig_ci\\\\\\\": [\\\\n      3.397,\\\\n      7.3444\\\\n    ],\\\\n    \\\\\\\"orig_p\\\\\\\": 0.0,\\\\n    \\\\\\\"n_pairs\\\\\\\": 355,\\\\n    \\\\\\\"n_obs\\\\\\\": 710\\\\n  },\\\\n  \\\\\\\"ci_width_ratio\\\\\\\": {\\\\n    \\\\\\\"style\\\\\\\": 1.9393,\\\\n    \\\\\\\"orig\\\\\\\": 1.9445,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"ratio of log(OR) CI widths: n88/n355, >1 means n355 is narrower\\\\\\\"\\\\n  },\\\\n  \\\\\\\"power\\\\\\\": {\\\\n    \\\\\\\"min_detectable_or_n88\\\\\\\": 1.5573,\\\\n    \\\\\\\"min_detectable_or_n355\\\\\\\": 1.2468,\\\\n    \\\\\\\"assumptions\\\\\\\": \\\\\\\"alpha=0.05, power=0.80, p=0.5, rho=0.1\\\\\\\"\\\\n  },\\\\n  \\\\\\\"verbosity_n355\\\\\\\": null,\\\\n  \\\\\\\"notes\\\\\\\": \\\\\\\"GEE binomial logit with exchangeable correlation. NLI threshold=0.9. n88: 88 pairs (from 100 raw). n355: 355 pairs (from 355 raw). Qwen3-32B judge, formality axis. Style OR shrinkage: 4.20 -> 2.15 (49% reduction). No scaled verbosity data available.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n88\\\": {\\n    \\\"style_or\\\": 4.2008,\\n    \\\"style_ci\\\": [\\n      1.9893,\\n      8.8707\\n    ],\\n    \\\"style_p\\\": 0.000168,\\n    \\\"orig_or\\\": 4.7041,\\n    \\\"orig_ci\\\": [\\n      2.2228,\\n      9.9552\\n    ],\\n    \\\"orig_p\\\": 5.2e-05,\\n    \\\"n_pairs\\\": 88,\\n    \\\"n_obs\\\": 176\\n  },\\n  \\\"n355\\\": {\\n    \\\"style_or\\\": 2.1502,\\n    \\\"style_ci\\\": [\\n      1.4625,\\n      3.1614\\n    ],\\n    \\\"style_p\\\": 9.9e-05,\\n    \\\"orig_or\\\": 4.9949,\\n    \\\"orig_ci\\\": [\\n      3.397,\\n      7.3444\\n    ],\\n    \\\"orig_p\\\": 0.0,\\n    \\\"n_pairs\\\": 355,\\n    \\\"n_obs\\\": 710\\n  },\\n  \\\"ci_width_ratio\\\": {\\n    \\\"style\\\": 1.9393,\\n    \\\"orig\\\": 1.9445,\\n    \\\"note\\\": \\\"ratio of log(OR) CI widths: n88/n355, >1 means n355 is narrower\\\"\\n  },\\n  \\\"power\\\": {\\n    \\\"min_detectable_or_n88\\\": 1.5573,\\n    \\\"min_detectable_or_n355\\\": 1.2468,\\n    \\\"assumptions\\\": \\\"alpha=0.05, power=0.80, p=0.5, rho=0.1\\\"\\n  },\\n  \\\"verbosity_n355\\\": null,\\n  \\\"notes\\\": \\\"GEE binomial logit with exchangeable correlation. NLI threshold=0.9. n88: 88 pairs (from 100 raw). n355: 355 pairs (from 355 raw). Qwen3-32B judge, formality axis. Style OR shrinkage: 4.20 -> 2.15 (49% reduction). No scaled verbosity data available.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 99 · 2026-05-25T19:50:22.861Z_
+
+<details><summary>↩ Tool result · `toolu_01T9GTWM2wcPkvPNjiinD2Ky`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"judge\\\": \\\"Gemini-3.5-Flash\\\",\\n  \\\"model_id\\\": \\\"google/gemini-2.5-flash\\\",\\n  \\\"nli_threshold\\\": 0.9,\\n  \\\"results\\\": {\\n    \\\"formality\\\": {\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"n_pairs\\\": 88,\\n        \\\"n_comparisons\\\": 176,\\n        \\\"p_pole_a\\\": 0.5738468529879572,\\n        \\\"ci_lo\\\": 0.5,\\n        \\\"ci_hi\\\": 0.6476937059759146,\\n        \\\"p_val\\\": 0.0448\\n      },\\n      \\\"likert\\\": {\\n        \\\"n\\\": 88,\\n        \\\"ate\\\": -0.23863636363636365,\\n        \\\"cohen_d\\\": -0.08156663208141382,\\n        \\\"wilcoxon_p\\\": 0.3087783777097697,\\n        \\\"ttest_p\\\": 0.19531693810747444,\\n        \\\"tie_rate\\\": 0.6477272727272727\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 1.6435629083235228,\\n        \\\"style_ci\\\": [\\n          0.9079431710946766,\\n          2.9751851433168564\\n        ],\\n        \\\"style_p\\\": 0.10078927131950002,\\n        \\\"orig_or\\\": 2.5082620713261994,\\n        \\\"orig_ci\\\": [\\n          1.385625129404633,\\n          4.54046226857681\\n        ],\\n        \\\"orig_p\\\": 0.0023878089157092536,\\n        \\\"n_obs\\\": 176,\\n        \\\"n_pairs\\\": 88\\n      },\\n      \\\"bt_significant\\\": true,\\n      \\\"likert_significant\\\": false,\\n      \\\"blindspot\\\": true\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"bt\\\": {\\n        \\\"n_pairs\\\": 86,\\n        \\\"n_comparisons\\\": 171,\\n        \\\"p_pole_a\\\": 0.7075537885874649,\\n        \\\"ci_lo\\\": 0.635262291225594,\\n        \\\"ci_hi\\\": 0.7777128157156221,\\n        \\\"p_val\\\": 0.0001\\n      },\\n      \\\"likert\\\": {\\n        \\\"n\\\": 86,\\n        \\\"ate\\\": 0.1511627906976744,\\n        \\\"cohen_d\\\": 0.05058849665481071,\\n        \\\"wilcoxon_p\\\": 0.3696664777487778,\\n        \\\"ttest_p\\\": 0.48206453410899364,\\n        \\\"tie_rate\\\": 0.5465116279069767\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 9.158540672838624,\\n        \\\"style_ci\\\": [\\n          3.748700362973389,\\n          22.375452592724272\\n        ],\\n        \\\"style_p\\\": 1.1774678798900353e-06,\\n        \\\"orig_or\\\": 0.4514952680910367,\\n        \\\"orig_ci\\\": [\\n          0.1989297625875915,\\n          1.0247233719933688\\n        ],\\n        \\\"orig_p\\\": 0.05722395937599803,\\n        \\\"n_obs\\\": 172,\\n        \\\"n_pairs\\\": 86\\n      },\\n      \\\"bt_significant\\\": true,\\n      \\\"likert_significant\\\": false,\\n      \\\"blindspot\\\": true\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "ceed11ef-f196-4492-9d58-c53a742e2c2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"judge\\\\\\\": \\\\\\\"Gemini-3.5-Flash\\\\\\\",\\\\n  \\\\\\\"model_id\\\\\\\": \\\\\\\"google/gemini-2.5-flash\\\\\\\",\\\\n  \\\\\\\"nli_threshold\\\\\\\": 0.9,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"bt\\\\\\\": {\\\\n        \\\\\\\"n_pairs\\\\\\\": 88,\\\\n        \\\\\\\"n_comparisons\\\\\\\": 176,\\\\n        \\\\\\\"p_pole_a\\\\\\\": 0.5738468529879572,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.5,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.6476937059759146,\\\\n        \\\\\\\"p_val\\\\\\\": 0.0448\\\\n      },\\\\n      \\\\\\\"likert\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 88,\\\\n        \\\\\\\"ate\\\\\\\": -0.23863636363636365,\\\\n        \\\\\\\"cohen_d\\\\\\\": -0.08156663208141382,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.3087783777097697,\\\\n        \\\\\\\"ttest_p\\\\\\\": 0.19531693810747444,\\\\n        \\\\\\\"tie_rate\\\\\\\": 0.6477272727272727\\\\n      },\\\\n      \\\\\\\"gee\\\\\\\": {\\\\n        \\\\\\\"style_or\\\\\\\": 1.6435629083235228,\\\\n        \\\\\\\"style_ci\\\\\\\": [\\\\n          0.9079431710946766,\\\\n          2.9751851433168564\\\\n        ],\\\\n        \\\\\\\"style_p\\\\\\\": 0.10078927131950002,\\\\n        \\\\\\\"orig_or\\\\\\\": 2.5082620713261994,\\\\n        \\\\\\\"orig_ci\\\\\\\": [\\\\n          1.385625129404633,\\\\n          4.54046226857681\\\\n        ],\\\\n        \\\\\\\"orig_p\\\\\\\": 0.0023878089157092536,\\\\n        \\\\\\\"n_obs\\\\\\\": 176,\\\\n        \\\\\\\"n_pairs\\\\\\\": 88\\\\n      },\\\\n      \\\\\\\"bt_significant\\\\\\\": true,\\\\n      \\\\\\\"likert_significant\\\\\\\": false,\\\\n      \\\\\\\"blindspot\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"bt\\\\\\\": {\\\\n        \\\\\\\"n_pairs\\\\\\\": 86,\\\\n        \\\\\\\"n_comparisons\\\\\\\": 171,\\\\n        \\\\\\\"p_pole_a\\\\\\\": 0.7075537885874649,\\\\n        \\\\\\\"ci_lo\\\\\\\": 0.635262291225594,\\\\n        \\\\\\\"ci_hi\\\\\\\": 0.7777128157156221,\\\\n        \\\\\\\"p_val\\\\\\\": 0.0001\\\\n      },\\\\n      \\\\\\\"likert\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 86,\\\\n        \\\\\\\"ate\\\\\\\": 0.1511627906976744,\\\\n        \\\\\\\"cohen_d\\\\\\\": 0.05058849665481071,\\\\n        \\\\\\\"wilcoxon_p\\\\\\\": 0.3696664777487778,\\\\n        \\\\\\\"ttest_p\\\\\\\": 0.48206453410899364,\\\\n        \\\\\\\"tie_rate\\\\\\\": 0.5465116279069767\\\\n      },\\\\n      \\\\\\\"gee\\\\\\\": {\\\\n        \\\\\\\"style_or\\\\\\\": 9.158540672838624,\\\\n        \\\\\\\"style_ci\\\\\\\": [\\\\n          3.748700362973389,\\\\n          22.375452592724272\\\\n        ],\\\\n        \\\\\\\"style_p\\\\\\\": 1.1774678798900353e-06,\\\\n        \\\\\\\"orig_or\\\\\\\": 0.4514952680910367,\\\\n        \\\\\\\"orig_ci\\\\\\\": [\\\\n          0.1989297625875915,\\\\n          1.0247233719933688\\\\n        ],\\\\n        \\\\\\\"orig_p\\\\\\\": 0.05722395937599803,\\\\n        \\\\\\\"n_obs\\\\\\\": 172,\\\\n        \\\\\\\"n_pairs\\\\\\\": 86\\\\n      },\\\\n      \\\\\\\"bt_significant\\\\\\\": true,\\\\n      \\\\\\\"likert_significant\\\\\\\": false,\\\\n      \\\\\\\"blindspot\\\\\\\": true\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"judge\\\": \\\"Gemini-3.5-Flash\\\",\\n  \\\"model_id\\\": \\\"google/gemini-2.5-flash\\\",\\n  \\\"nli_threshold\\\": 0.9,\\n  \\\"results\\\": {\\n    \\\"formality\\\": {\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"bt\\\": {\\n        \\\"n_pairs\\\": 88,\\n        \\\"n_comparisons\\\": 176,\\n        \\\"p_pole_a\\\": 0.5738468529879572,\\n        \\\"ci_lo\\\": 0.5,\\n        \\\"ci_hi\\\": 0.6476937059759146,\\n        \\\"p_val\\\": 0.0448\\n      },\\n      \\\"likert\\\": {\\n        \\\"n\\\": 88,\\n        \\\"ate\\\": -0.23863636363636365,\\n        \\\"cohen_d\\\": -0.08156663208141382,\\n        \\\"wilcoxon_p\\\": 0.3087783777097697,\\n        \\\"ttest_p\\\": 0.19531693810747444,\\n        \\\"tie_rate\\\": 0.6477272727272727\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 1.6435629083235228,\\n        \\\"style_ci\\\": [\\n          0.9079431710946766,\\n          2.9751851433168564\\n        ],\\n        \\\"style_p\\\": 0.10078927131950002,\\n        \\\"orig_or\\\": 2.5082620713261994,\\n        \\\"orig_ci\\\": [\\n          1.385625129404633,\\n          4.54046226857681\\n        ],\\n        \\\"orig_p\\\": 0.0023878089157092536,\\n        \\\"n_obs\\\": 176,\\n        \\\"n_pairs\\\": 88\\n      },\\n      \\\"bt_significant\\\": true,\\n      \\\"likert_significant\\\": false,\\n      \\\"blindspot\\\": true\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"bt\\\": {\\n        \\\"n_pairs\\\": 86,\\n        \\\"n_comparisons\\\": 171,\\n        \\\"p_pole_a\\\": 0.7075537885874649,\\n        \\\"ci_lo\\\": 0.635262291225594,\\n        \\\"ci_hi\\\": 0.7777128157156221,\\n        \\\"p_val\\\": 0.0001\\n      },\\n      \\\"likert\\\": {\\n        \\\"n\\\": 86,\\n        \\\"ate\\\": 0.1511627906976744,\\n        \\\"cohen_d\\\": 0.05058849665481071,\\n        \\\"wilcoxon_p\\\": 0.3696664777487778,\\n        \\\"ttest_p\\\": 0.48206453410899364,\\n        \\\"tie_rate\\\": 0.5465116279069767\\n      },\\n      \\\"gee\\\": {\\n        \\\"style_or\\\": 9.158540672838624,\\n        \\\"style_ci\\\": [\\n          3.748700362973389,\\n          22.375452592724272\\n        ],\\n        \\\"style_p\\\": 1.1774678798900353e-06,\\n        \\\"orig_or\\\": 0.4514952680910367,\\n        \\\"orig_ci\\\": [\\n          0.1989297625875915,\\n          1.0247233719933688\\n        ],\\n        \\\"orig_p\\\": 0.05722395937599803,\\n        \\\"n_obs\\\": 172,\\n        \\\"n_pairs\\\": 86\\n      },\\n      \\\"bt_significant\\\": true,\\n      \\\"likert_significant\\\": false,\\n      \\\"blindspot\\\": true\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 100 · 2026-05-25T19:50:22.906Z_
+
+<details><summary>↩ Tool result · `toolu_018LBDHoqqahZcQurynQYXGf`</summary>
+
+```text
+docs/paper/figures/cross_benchmark_heatmap.py
+docs/paper/figures/gen_gee_decomposition.py
+docs/paper/figures/gen_power_curve.py
+docs/paper/figures/gen_cross_benchmark_heatmap_v2.py
+docs/paper/figures/gen_gee_decomposition_v2.py
+docs/paper/figures/gen_pipeline_diagram.py
+docs/paper/figures/draw_pipeline.py
+docs/paper/figures/gen_forest_plot.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "16afb016-8435-4144-974b-4166a4e7e514",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/figures/cross_benchmark_heatmap.py",
+      "docs/paper/figures/gen_gee_decomposition.py",
+      "docs/paper/figures/gen_power_curve.py",
+      "docs/paper/figures/gen_cross_benchmark_heatmap_v2.py",
+      "docs/paper/figures/gen_gee_decomposition_v2.py",
+      "docs/paper/figures/gen_pipeline_diagram.py",
+      "docs/paper/figures/draw_pipeline.py",
+      "docs/paper/figures/gen_forest_plot.py"
+    ],
+    "durationMs": 40,
+    "numFiles": 8,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 101_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+I now have important source data. Let me note what I've found:
+
+**table1_verified.csv** (from `/root/causal_style_decomp_judge/analysis/table1_verified.csv`):
+- GPT-4o, formality: n=88, cohen_d=-0.0417, wilcoxon_p=0.9054, tie_rate=0.6250
+- GPT-4o, verbosity: n=86, cohen_d=0.0488, wilcoxon_p=0.4033, tie_rate=0.5814
+
+
+- GPT-4o, register: n=94, cohen_d=0.0000, wilcoxon_p=0.7849, tie_rate=0.6489
+- Qwen3-32B, formality: n=88, cohen_d=-0.0523, wilcoxon_p=0.4611, tie_rate=0.7273
+- Qwen3-32B, verbosity: n=86, cohen_d=0.0362, wilcoxon_p=0.3949, tie_rate=0.5814
+- Qwen3-32B, register: n=94, cohen_d=-0.0731, wilcoxon_p=0.3730, tie_rate=0.6383
+- Llama-70B, formality: n=88, cohen_d=0.0096, wilcoxon_p=0.5335, tie_rate=0.7273
+- Llama-70B, verbosity: n=86, cohen_d=0.0203, wilcoxon_p=0.2840, tie_rate=0.6163
+- Llama-70B, register: n=93, cohen_d=0.0238, wilcoxon_p=0.5241, tie_rate=0.6882
+- Gemini-Flash, formality: n=88, cohen_d=-0.0820, wilcoxon_p=0.3088, tie_rate=0.6477
+- Gemini-Flash, verbosity: n=86, cohen_d=...
+
+Compiling the statistical results across different models and linguistic dimensions—effect sizes are consistently small, p-values are well above significance thresholds, and tie rates remain high across most comparisons. Now I'm verifying the remaining effect sizes and p-values against the paper's Table 1, checking that the Likert scale Cohen's d values and significance levels match up correctly across all the model and dimension combinations. Now I'm verifying the effect sizes and p-values for the remaining models—Llama-70B's regression condition checks out, and I'm moving through Gemini and Claude's results across their different formats, confirming each conversion from the raw decimal values to the rounded figures. I think they're using truncation rather than rounding for the presentation—that would explain why -0.0417 becomes -.041 and -0.0397 becomes -.039 instead of the rounded values. Now I need to find the BT values, which aren't in the Likert data file. Looking at the Gemini JSON, I can see the BT estimates and p-values, and most of them match the paper's reported values when rounded correctly.
+
+For the GEE results, most of the odds ratios and p-values align with what's published, but I'm noticing a discrepancy with Gemini's verbosity style odds ratio—the source shows 9.16 while the paper reports 8.98, which is a meaningful difference that doesn't fit the rounding or truncation pattern I've been seeing. paper says 0.46... let me check: 0.4515 → 0.45 at 2 decimal places? but paper uses .46)
+
+Wait, let me re-read the paper Table 2:
+```
+Gemini verb.\ & 8.98 & ${<}.0001$ & 0.46 & .061 \\
+```
+
+Source JSON: style_or=9.158540672838624 → should round to 9.16, not 8.98. This is a discrepancy!
+orig_or=0.4514952680910367 → rounds to 0.45, paper says 0.46. Also a discrepancy!
+orig_p=0.05722 → rounds to .057, paper says .061. Also a discrepancy!
+
+Wait, these are close but not exact. Let me think about this more carefully. Maybe there are different versions of the GEE analysis—perhaps the Gemini JSON was computed with slightly different parameters than what ended up in the final paper.
+
+I should search for more data files and check the results for other judges like Llama 70B. Looking at the GEE results for different sample sizes, I'm seeing much better alignment: the n88 and n355 estimates all match the paper values within rounding error, which suggests the Gemini discrepancies might be due to a version mismatch or parameter difference.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "c7b37724-f4b6-439e-b79c-70ed42dd1f6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzY31S8mrrDfWciAYEbUe7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 41436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5675
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 102_
+
+Good, I have Likert data from table1_verified.csv, Gemini JSON, and GEE n355 data. Now I need BT source data and GEE data for the other judges. Let me read more source files and the figure scripts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "c0226d47-3299-41c3-a189-d067024b32c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzY31S8mrrDfWciAYEbUe7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 41436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5675
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R7JF28C6UxzzbiZRSHkvCY`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/llama70b_third_judge.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "90c232df-f320-42be-9174-1f868e161b49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzY31S8mrrDfWciAYEbUe7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 41436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5675
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XwZnibNMSbsX1v7ghWmePf`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/llama70b_register_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "6aa53cf1-5add-4498-8e74-5a1934a4d38d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzY31S8mrrDfWciAYEbUe7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 41436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5675
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 105 · 2026-05-25T19:51:09.894Z_
+
+<details><summary>↩ Tool result · `toolu_01R7JF28C6UxzzbiZRSHkvCY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"formality\\\": {\\n    \\\"axis\\\": \\\"formality\\\",\\n    \\\"n_pairs\\\": 84,\\n    \\\"bt\\\": {\\n      \\\"n_pairs\\\": 84,\\n      \\\"p_pole_a\\\": 0.6945641762452107,\\n      \\\"ci_lo\\\": 0.6190192811235421,\\n      \\\"ci_hi\\\": 0.7649963864129125,\\n      \\\"p_val\\\": 0.0001\\n    },\\n    \\\"likert\\\": {\\n      \\\"n\\\": 88,\\n      \\\"ate\\\": 0.022727272727272728,\\n      \\\"cohen_d\\\": 0.009566125013794748,\\n      \\\"wilcoxon_p\\\": 0.533492435410304,\\n      \\\"ttest_p\\\": 0.8458153985735622,\\n      \\\"tie_rate\\\": 0.7272727272727273\\n    },\\n    \\\"gee\\\": {\\n      \\\"style_or\\\": 4.807527782024421,\\n      \\\"style_p\\\": 3.445002966742223e-06,\\n      \\\"style_ci\\\": [\\n        2.4774977437586494,\\n        9.32889784992199\\n      ],\\n      \\\"orig_or\\\": 3.117534164335725,\\n      \\\"orig_p\\\": 0.0007458320207816834,\\n      \\\"orig_ci\\\": [\\n        1.6098771956691267,\\n        6.037118416203698\\n      ]\\n    },\\n    \\\"bt_significant\\\": true,\\n    \\\"likert_significant\\\": false,\\n    \\\"blindspot\\\": true\\n  },\\n  \\\"verbosity\\\": {\\n    \\\"axis\\\": \\\"verbosity\\\",\\n    \\\"n_pairs\\\": 84,\\n    \\\"bt\\\": {\\n      \\\"n_pairs\\\": 84,\\n      \\\"p_pole_a\\\": 0.7348831606841726,\\n      \\\"ci_lo\\\": 0.6547250654606046,\\n      \\\"ci_hi\\\": 0.8085657862256233,\\n      \\\"p_val\\\": 0.0001\\n    },\\n    \\\"likert\\\": {\\n      \\\"n\\\": 86,\\n      \\\"ate\\\": 0.046511627906976744,\\n      \\\"cohen_d\\\": 0.020154519509492173,\\n      \\\"wilcoxon_p\\\": 0.28402441748815654,\\n      \\\"ttest_p\\\": 0.7523583084098074,\\n      \\\"tie_rate\\\": 0.6162790697674418\\n    },\\n    \\\"gee\\\": {\\n      \\\"style_or\\\": 8.212617971799009,\\n      \\\"style_p\\\": 4.863474280269085e-07,\\n      \\\"style_ci\\\": [\\n        3.6162440240439255,\\n        18.65114563681802\\n      ],\\n      \\\"orig_or\\\": 0.3779982500744776,\\n      \\\"orig_p\\\": 0.01958385856861232,\\n      \\\"orig_ci\\\": [\\n        0.1670002160291848,\\n        0.8555837857982008\\n      ]\\n    },\\n    \\\"bt_significant\\\": true,\\n    \\\"likert_significant\\\": false,\\n    \\\"blindspot\\\": true\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "bc09bc36-4af2-4db6-a8cc-241da7083949",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"formality\\\\\\\": {\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 84,\\\\n    \\\\\\\"bt\\\\\\\": {\\\\n      \\\\\\\"n_pairs\\\\\\\": 84,\\\\n      \\\\\\\"p_pole_a\\\\\\\": 0.6945641762452107,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.6190192811235421,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.7649963864129125,\\\\n      \\\\\\\"p_val\\\\\\\": 0.0001\\\\n    },\\\\n    \\\\\\\"likert\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 88,\\\\n      \\\\\\\"ate\\\\\\\": 0.022727272727272728,\\\\n      \\\\\\\"cohen_d\\\\\\\": 0.009566125013794748,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.533492435410304,\\\\n      \\\\\\\"ttest_p\\\\\\\": 0.8458153985735622,\\\\n      \\\\\\\"tie_rate\\\\\\\": 0.7272727272727273\\\\n    },\\\\n    \\\\\\\"gee\\\\\\\": {\\\\n      \\\\\\\"style_or\\\\\\\": 4.807527782024421,\\\\n      \\\\\\\"style_p\\\\\\\": 3.445002966742223e-06,\\\\n      \\\\\\\"style_ci\\\\\\\": [\\\\n        2.4774977437586494,\\\\n        9.32889784992199\\\\n      ],\\\\n      \\\\\\\"orig_or\\\\\\\": 3.117534164335725,\\\\n      \\\\\\\"orig_p\\\\\\\": 0.0007458320207816834,\\\\n      \\\\\\\"orig_ci\\\\\\\": [\\\\n        1.6098771956691267,\\\\n        6.037118416203698\\\\n      ]\\\\n    },\\\\n    \\\\\\\"bt_significant\\\\\\\": true,\\\\n    \\\\\\\"likert_significant\\\\\\\": false,\\\\n    \\\\\\\"blindspot\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"verbosity\\\\\\\": {\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 84,\\\\n    \\\\\\\"bt\\\\\\\": {\\\\n      \\\\\\\"n_pairs\\\\\\\": 84,\\\\n      \\\\\\\"p_pole_a\\\\\\\": 0.7348831606841726,\\\\n      \\\\\\\"ci_lo\\\\\\\": 0.6547250654606046,\\\\n      \\\\\\\"ci_hi\\\\\\\": 0.8085657862256233,\\\\n      \\\\\\\"p_val\\\\\\\": 0.0001\\\\n    },\\\\n    \\\\\\\"likert\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 86,\\\\n      \\\\\\\"ate\\\\\\\": 0.046511627906976744,\\\\n      \\\\\\\"cohen_d\\\\\\\": 0.020154519509492173,\\\\n      \\\\\\\"wilcoxon_p\\\\\\\": 0.28402441748815654,\\\\n      \\\\\\\"ttest_p\\\\\\\": 0.7523583084098074,\\\\n      \\\\\\\"tie_rate\\\\\\\": 0.6162790697674418\\\\n    },\\\\n    \\\\\\\"gee\\\\\\\": {\\\\n      \\\\\\\"style_or\\\\\\\": 8.212617971799009,\\\\n      \\\\\\\"style_p\\\\\\\": 4.863474280269085e-07,\\\\n      \\\\\\\"style_ci\\\\\\\": [\\\\n        3.6162440240439255,\\\\n        18.65114563681802\\\\n      ],\\\\n      \\\\\\\"orig_or\\\\\\\": 0.3779982500744776,\\\\n      \\\\\\\"orig_p\\\\\\\": 0.01958385856861232,\\\\n      \\\\\\\"orig_ci\\\\\\\": [\\\\n        0.1670002160291848,\\\\n        0.8555837857982008\\\\n      ]\\\\n    },\\\\n    \\\\\\\"bt_significant\\\\\\\": true,\\\\n    \\\\\\\"likert_significant\\\\\\\": false,\\\\n    \\\\\\\"blindspot\\\\\\\": true\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"formality\\\": {\\n    \\\"axis\\\": \\\"formality\\\",\\n    \\\"n_pairs\\\": 84,\\n    \\\"bt\\\": {\\n      \\\"n_pairs\\\": 84,\\n      \\\"p_pole_a\\\": 0.6945641762452107,\\n      \\\"ci_lo\\\": 0.6190192811235421,\\n      \\\"ci_hi\\\": 0.7649963864129125,\\n      \\\"p_val\\\": 0.0001\\n    },\\n    \\\"likert\\\": {\\n      \\\"n\\\": 88,\\n      \\\"ate\\\": 0.022727272727272728,\\n      \\\"cohen_d\\\": 0.009566125013794748,\\n      \\\"wilcoxon_p\\\": 0.533492435410304,\\n      \\\"ttest_p\\\": 0.8458153985735622,\\n      \\\"tie_rate\\\": 0.7272727272727273\\n    },\\n    \\\"gee\\\": {\\n      \\\"style_or\\\": 4.807527782024421,\\n      \\\"style_p\\\": 3.445002966742223e-06,\\n      \\\"style_ci\\\": [\\n        2.4774977437586494,\\n        9.32889784992199\\n      ],\\n      \\\"orig_or\\\": 3.117534164335725,\\n      \\\"orig_p\\\": 0.0007458320207816834,\\n      \\\"orig_ci\\\": [\\n        1.6098771956691267,\\n        6.037118416203698\\n      ]\\n    },\\n    \\\"bt_significant\\\": true,\\n    \\\"likert_significant\\\": false,\\n    \\\"blindspot\\\": true\\n  },\\n  \\\"verbosity\\\": {\\n    \\\"axis\\\": \\\"verbosity\\\",\\n    \\\"n_pairs\\\": 84,\\n    \\\"bt\\\": {\\n      \\\"n_pairs\\\": 84,\\n      \\\"p_pole_a\\\": 0.7348831606841726,\\n      \\\"ci_lo\\\": 0.6547250654606046,\\n      \\\"ci_hi\\\": 0.8085657862256233,\\n      \\\"p_val\\\": 0.0001\\n    },\\n    \\\"likert\\\": {\\n      \\\"n\\\": 86,\\n      \\\"ate\\\": 0.046511627906976744,\\n      \\\"cohen_d\\\": 0.020154519509492173,\\n      \\\"wilcoxon_p\\\": 0.28402441748815654,\\n      \\\"ttest_p\\\": 0.7523583084098074,\\n      \\\"tie_rate\\\": 0.6162790697674418\\n    },\\n    \\\"gee\\\": {\\n      \\\"style_or\\\": 8.212617971799009,\\n      \\\"style_p\\\": 4.863474280269085e-07,\\n      \\\"style_ci\\\": [\\n        3.6162440240439255,\\n        18.65114563681802\\n      ],\\n      \\\"orig_or\\\": 0.3779982500744776,\\n      \\\"orig_p\\\": 0.01958385856861232,\\n      \\\"orig_ci\\\": [\\n        0.1670002160291848,\\n        0.8555837857982008\\n      ]\\n    },\\n    \\\"bt_significant\\\": true,\\n    \\\"likert_significant\\\": false,\\n    \\\"blindspot\\\": true\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 106 · 2026-05-25T19:51:10.826Z_
+
+<details><summary>↩ Tool result · `toolu_01XwZnibNMSbsX1v7ghWmePf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"axis\\\": \\\"register\\\",\\n  \\\"judge\\\": \\\"Llama-70B\\\",\\n  \\\"n_data\\\": 94,\\n  \\\"nli_threshold\\\": 0.9,\\n  \\\"bt\\\": {\\n    \\\"n_pairs\\\": 92,\\n    \\\"n_comparisons\\\": 181,\\n    \\\"p_academic\\\": 0.6353292090145825,\\n    \\\"ci_lo\\\": 0.55493298176225,\\n    \\\"ci_hi\\\": 0.7119104542490763,\\n    \\\"p_val\\\": 0.0014\\n  },\\n  \\\"likert\\\": {\\n    \\\"n\\\": 93,\\n    \\\"ate\\\": 0.053763440860215055,\\n    \\\"cohen_d\\\": 0.023702409211765623,\\n    \\\"wilcoxon_p\\\": 0.5240890235246387,\\n    \\\"ttest_p\\\": 0.6902368044775108,\\n    \\\"tie_rate\\\": 0.6881720430107527\\n  },\\n  \\\"gee\\\": {\\n    \\\"style_or\\\": 3.3303069547782016,\\n    \\\"style_p\\\": 0.0003237345515949448,\\n    \\\"orig_or\\\": 3.0736863594080464,\\n    \\\"orig_p\\\": 0.0007906124287719913,\\n    \\\"n_obs\\\": 188,\\n    \\\"n_pairs\\\": 94\\n  },\\n  \\\"bt_significant\\\": true,\\n  \\\"likert_significant\\\": false,\\n  \\\"blindspot\\\": true\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "82c88b95-27e6-4f79-bb22-824cbc528094",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"axis\\\\\\\": \\\\\\\"register\\\\\\\",\\\\n  \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-70B\\\\\\\",\\\\n  \\\\\\\"n_data\\\\\\\": 94,\\\\n  \\\\\\\"nli_threshold\\\\\\\": 0.9,\\\\n  \\\\\\\"bt\\\\\\\": {\\\\n    \\\\\\\"n_pairs\\\\\\\": 92,\\\\n    \\\\\\\"n_comparisons\\\\\\\": 181,\\\\n    \\\\\\\"p_academic\\\\\\\": 0.6353292090145825,\\\\n    \\\\\\\"ci_lo\\\\\\\": 0.55493298176225,\\\\n    \\\\\\\"ci_hi\\\\\\\": 0.7119104542490763,\\\\n    \\\\\\\"p_val\\\\\\\": 0.0014\\\\n  },\\\\n  \\\\\\\"likert\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 93,\\\\n    \\\\\\\"ate\\\\\\\": 0.053763440860215055,\\\\n    \\\\\\\"cohen_d\\\\\\\": 0.023702409211765623,\\\\n    \\\\\\\"wilcoxon_p\\\\\\\": 0.5240890235246387,\\\\n    \\\\\\\"ttest_p\\\\\\\": 0.6902368044775108,\\\\n    \\\\\\\"tie_rate\\\\\\\": 0.6881720430107527\\\\n  },\\\\n  \\\\\\\"gee\\\\\\\": {\\\\n    \\\\\\\"style_or\\\\\\\": 3.3303069547782016,\\\\n    \\\\\\\"style_p\\\\\\\": 0.0003237345515949448,\\\\n    \\\\\\\"orig_or\\\\\\\": 3.0736863594080464,\\\\n    \\\\\\\"orig_p\\\\\\\": 0.0007906124287719913,\\\\n    \\\\\\\"n_obs\\\\\\\": 188,\\\\n    \\\\\\\"n_pairs\\\\\\\": 94\\\\n  },\\\\n  \\\\\\\"bt_significant\\\\\\\": true,\\\\n  \\\\\\\"likert_significant\\\\\\\": false,\\\\n  \\\\\\\"blindspot\\\\\\\": true\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"axis\\\": \\\"register\\\",\\n  \\\"judge\\\": \\\"Llama-70B\\\",\\n  \\\"n_data\\\": 94,\\n  \\\"nli_threshold\\\": 0.9,\\n  \\\"bt\\\": {\\n    \\\"n_pairs\\\": 92,\\n    \\\"n_comparisons\\\": 181,\\n    \\\"p_academic\\\": 0.6353292090145825,\\n    \\\"ci_lo\\\": 0.55493298176225,\\n    \\\"ci_hi\\\": 0.7119104542490763,\\n    \\\"p_val\\\": 0.0014\\n  },\\n  \\\"likert\\\": {\\n    \\\"n\\\": 93,\\n    \\\"ate\\\": 0.053763440860215055,\\n    \\\"cohen_d\\\": 0.023702409211765623,\\n    \\\"wilcoxon_p\\\": 0.5240890235246387,\\n    \\\"ttest_p\\\": 0.6902368044775108,\\n    \\\"tie_rate\\\": 0.6881720430107527\\n  },\\n  \\\"gee\\\": {\\n    \\\"style_or\\\": 3.3303069547782016,\\n    \\\"style_p\\\": 0.0003237345515949448,\\n    \\\"orig_or\\\": 3.0736863594080464,\\n    \\\"orig_p\\\": 0.0007906124287719913,\\n    \\\"n_obs\\\": 188,\\n    \\\"n_pairs\\\": 94\\n  },\\n  \\\"bt_significant\\\": true,\\n  \\\"likert_significant\\\": false,\\n  \\\"blindspot\\\": true\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 107_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015kV1pGPoUUqFDLP1sYU2VS`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/gpt4o_verbosity_analysis/pairwise_summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "02130e65-83e7-487a-a913-e53a51b9f8cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzY31S8mrrDfWciAYEbUe7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 41436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5675
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 108 · 2026-05-25T19:51:11.905Z_
+
+<details><summary>↩ Tool result · `toolu_015kV1pGPoUUqFDLP1sYU2VS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"group,n,verbose_wins,concise_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\r\\noverall,73,63,10,0.863013698630137,0.7658736406081267,0.9238569220037919,1.5535957242568204e-10,26,0.7373737373737373,0.4898989898989899\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "7c6a83a4-f0a7-4eaf-a265-9dd7effdcfb6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"group,n,verbose_wins,concise_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\\\r\\\\noverall,73,63,10,0.863013698630137,0.7658736406081267,0.9238569220037919,1.5535957242568204e-10,26,0.7373737373737373,0.4898989898989899\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"group,n,verbose_wins,concise_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\r\\noverall,73,63,10,0.863013698630137,0.7658736406081267,0.9238569220037919,1.5535957242568204e-10,26,0.7373737373737373,0.4898989898989899\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 109_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WgkCf55Yze6sGAxtXznx6p`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/gpt4o_register_analysis/pairwise_summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "ac04a089-9d17-4d62-92c3-d36a054e4b60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzY31S8mrrDfWciAYEbUe7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 41436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5675
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 110 · 2026-05-25T19:51:12.834Z_
+
+<details><summary>↩ Tool result · `toolu_01WgkCf55Yze6sGAxtXznx6p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"group,n,academic_wins,conversational_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\r\\noverall,49,31,18,0.6326530612244898,0.49266811386889864,0.7533501747521878,0.08543313315739454,50,0.494949494949495,0.4797979797979798\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "356f517f-4ea4-4b06-aa87-42319d1cae12",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"group,n,academic_wins,conversational_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\\\r\\\\noverall,49,31,18,0.6326530612244898,0.49266811386889864,0.7533501747521878,0.08543313315739454,50,0.494949494949495,0.4797979797979798\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"group,n,academic_wins,conversational_wins,win_rate,ci_lo,ci_hi,sign_test_p,ties,consistency_rate,position_a_rate\\r\\noverall,49,31,18,0.6326530612244898,0.49266811386889864,0.7533501747521878,0.08543313315739454,50,0.494949494949495,0.4797979797979798\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 111_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BM6dHAjmQUYwyvDbWUWsYp`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/gee_interaction_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "1bc3e82d-d7f3-4138-ae0a-4c95c492ba73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzY31S8mrrDfWciAYEbUe7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 41436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5675
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01P7kjZzX3ggFKDEpdZw5J1t`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/claude_tost_equivalence.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "d78dbf28-8e07-4b5a-9ba5-3033f72c3712",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzY31S8mrrDfWciAYEbUe7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5675,
+      "cache_read_input_tokens": 41436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5675
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 113 · 2026-05-25T19:51:13.763Z_
+
+<details><summary>↩ Tool result · `toolu_01BM6dHAjmQUYwyvDbWUWsYp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"judge\\\": \\\"GPT-4o\\\",\\n    \\\"axis\\\": \\\"Formality\\\",\\n    \\\"n_pairs\\\": 88,\\n    \\\"main_style_or\\\": 2.582,\\n    \\\"main_style_p\\\": 0.002167,\\n    \\\"main_orig_or\\\": 2.324,\\n    \\\"main_orig_p\\\": 0.006417,\\n    \\\"main_regime\\\": \\\"Mixed\\\",\\n    \\\"int_style_or\\\": 3.176,\\n    \\\"int_style_p\\\": 0.010814,\\n    \\\"int_orig_or\\\": 2.857,\\n    \\\"int_orig_p\\\": 0.02034,\\n    \\\"interaction_or\\\": 0.661,\\n    \\\"interaction_p\\\": 0.526988,\\n    \\\"int_regime\\\": \\\"Mixed\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"GPT-4o\\\",\\n    \\\"axis\\\": \\\"Verbosity\\\",\\n    \\\"n_pairs\\\": 86,\\n    \\\"main_style_or\\\": 11.344,\\n    \\\"main_style_p\\\": 0.0,\\n    \\\"main_orig_or\\\": 0.452,\\n    \\\"main_orig_p\\\": 0.061594,\\n    \\\"main_regime\\\": \\\"Pure Style\\\",\\n    \\\"int_style_or\\\": 10.135,\\n    \\\"int_style_p\\\": 6e-06,\\n    \\\"int_orig_or\\\": 0.397,\\n    \\\"int_orig_p\\\": 0.09402,\\n    \\\"interaction_or\\\": 1.269,\\n    \\\"interaction_p\\\": 0.704758,\\n    \\\"int_regime\\\": \\\"Pure Style\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"GPT-4o\\\",\\n    \\\"axis\\\": \\\"Register\\\",\\n    \\\"n_pairs\\\": 94,\\n    \\\"main_style_or\\\": 1.88,\\n    \\\"main_style_p\\\": 0.026665,\\n    \\\"main_orig_or\\\": 2.207,\\n    \\\"main_orig_p\\\": 0.005424,\\n    \\\"main_regime\\\": \\\"Mixed\\\",\\n    \\\"int_style_or\\\": 1.167,\\n    \\\"int_style_p\\\": 0.717513,\\n    \\\"int_orig_or\\\": 1.375,\\n    \\\"int_orig_p\\\": 0.452116,\\n    \\\"interaction_or\\\": 2.601,\\n    \\\"interaction_p\\\": 0.136196,\\n    \\\"int_regime\\\": \\\"None\\\",\\n    \\\"regime_changed\\\": true\\n  },\\n  {\\n    \\\"judge\\\": \\\"Qwen3-32B\\\",\\n    \\\"axis\\\": \\\"Formality\\\",\\n    \\\"n_pairs\\\": 88,\\n    \\\"main_style_or\\\": 4.201,\\n    \\\"main_style_p\\\": 0.000168,\\n    \\\"main_orig_or\\\": 4.704,\\n    \\\"main_orig_p\\\": 5.2e-05,\\n    \\\"main_regime\\\": \\\"Mixed\\\",\\n    \\\"int_style_or\\\": 5.473,\\n    \\\"int_style_p\\\": 0.000298,\\n    \\\"int_orig_or\\\": 6.167,\\n    \\\"int_orig_p\\\": 0.000129,\\n    \\\"interaction_or\\\": 0.518,\\n    \\\"interaction_p\\\": 0.319457,\\n    \\\"int_regime\\\": \\\"Mixed\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"Qwen3-32B\\\",\\n    \\\"axis\\\": \\\"Verbosity\\\",\\n    \\\"n_pairs\\\": 86,\\n    \\\"main_style_or\\\": 13.101,\\n    \\\"main_style_p\\\": 0.0,\\n    \\\"main_orig_or\\\": 0.491,\\n    \\\"main_orig_p\\\": 0.096249,\\n    \\\"main_regime\\\": \\\"Pure Style\\\",\\n    \\\"int_style_or\\\": 19.444,\\n    \\\"int_style_p\\\": 0.0,\\n    \\\"int_orig_or\\\": 0.778,\\n    \\\"int_orig_p\\\": 0.652301,\\n    \\\"interaction_or\\\": 0.45,\\n    \\\"interaction_p\\\": 0.220959,\\n    \\\"int_regime\\\": \\\"Pure Style\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"Qwen3-32B\\\",\\n    \\\"axis\\\": \\\"Register\\\",\\n    \\\"n_pairs\\\": 94,\\n    \\\"main_style_or\\\": 1.905,\\n    \\\"main_style_p\\\": 0.045475,\\n    \\\"main_orig_or\\\": 5.718,\\n    \\\"main_orig_p\\\": 0.0,\\n    \\\"main_regime\\\": \\\"Orig-Dominated\\\",\\n    \\\"int_style_or\\\": 2.462,\\n    \\\"int_style_p\\\": 0.041212,\\n    \\\"int_orig_or\\\": 7.59,\\n    \\\"int_orig_p\\\": 1.5e-05,\\n    \\\"interaction_or\\\": 0.555,\\n    \\\"interaction_p\\\": 0.383162,\\n    \\\"int_regime\\\": \\\"Orig-Dominated\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"Llama-70B\\\",\\n    \\\"axis\\\": \\\"Formality\\\",\\n    \\\"n_pairs\\\": 88,\\n    \\\"main_style_or\\\": 4.808,\\n    \\\"main_style_p\\\": 3e-06,\\n    \\\"main_orig_or\\\": 3.118,\\n    \\\"main_orig_p\\\": 0.000746,\\n    \\\"main_regime\\\": \\\"Mixed\\\",\\n    \\\"int_style_or\\\": 4.879,\\n    \\\"int_style_p\\\": 0.000669,\\n    \\\"int_orig_or\\\": 3.162,\\n    \\\"int_orig_p\\\": 0.011891,\\n    \\\"interaction_or\\\": 0.968,\\n    \\\"interaction_p\\\": 0.963151,\\n    \\\"int_regime\\\": \\\"Mixed\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"Llama-70B\\\",\\n    \\\"axis\\\": \\\"Verbosity\\\",\\n    \\\"n_pairs\\\": 86,\\n    \\\"main_style_or\\\": 8.213,\\n    \\\"main_style_p\\\": 0.0,\\n    \\\"main_orig_or\\\": 0.378,\\n    \\\"main_orig_p\\\": 0.019584,\\n    \\\"main_regime\\\": \\\"Style-Dominated\\\",\\n    \\\"int_style_or\\\": 7.857,\\n    \\\"int_style_p\\\": 3.3e-05,\\n    \\\"int_orig_or\\\": 0.357,\\n    \\\"int_orig_p\\\": 0.059794,\\n    \\\"interaction_or\\\": 1.103,\\n    \\\"interaction_p\\\": 0.870229,\\n    \\\"int_regime\\\": \\\"Pure Style\\\",\\n    \\\"regime_changed\\\": true\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "26b197e1-31d8-4707-a5c3-51eecc485b61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"GPT-4o\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"Formality\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 88,\\\\n    \\\\\\\"main_style_or\\\\\\\": 2.582,\\\\n    \\\\\\\"main_style_p\\\\\\\": 0.002167,\\\\n    \\\\\\\"main_orig_or\\\\\\\": 2.324,\\\\n    \\\\\\\"main_orig_p\\\\\\\": 0.006417,\\\\n    \\\\\\\"main_regime\\\\\\\": \\\\\\\"Mixed\\\\\\\",\\\\n    \\\\\\\"int_style_or\\\\\\\": 3.176,\\\\n    \\\\\\\"int_style_p\\\\\\\": 0.010814,\\\\n    \\\\\\\"int_orig_or\\\\\\\": 2.857,\\\\n    \\\\\\\"int_orig_p\\\\\\\": 0.02034,\\\\n    \\\\\\\"interaction_or\\\\\\\": 0.661,\\\\n    \\\\\\\"interaction_p\\\\\\\": 0.526988,\\\\n    \\\\\\\"int_regime\\\\\\\": \\\\\\\"Mixed\\\\\\\",\\\\n    \\\\\\\"regime_changed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"GPT-4o\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"Verbosity\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 86,\\\\n    \\\\\\\"main_style_or\\\\\\\": 11.344,\\\\n    \\\\\\\"main_style_p\\\\\\\": 0.0,\\\\n    \\\\\\\"main_orig_or\\\\\\\": 0.452,\\\\n    \\\\\\\"main_orig_p\\\\\\\": 0.061594,\\\\n    \\\\\\\"main_regime\\\\\\\": \\\\\\\"Pure Style\\\\\\\",\\\\n    \\\\\\\"int_style_or\\\\\\\": 10.135,\\\\n    \\\\\\\"int_style_p\\\\\\\": 6e-06,\\\\n    \\\\\\\"int_orig_or\\\\\\\": 0.397,\\\\n    \\\\\\\"int_orig_p\\\\\\\": 0.09402,\\\\n    \\\\\\\"interaction_or\\\\\\\": 1.269,\\\\n    \\\\\\\"interaction_p\\\\\\\": 0.704758,\\\\n    \\\\\\\"int_regime\\\\\\\": \\\\\\\"Pure Style\\\\\\\",\\\\n    \\\\\\\"regime_changed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"GPT-4o\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"Register\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 94,\\\\n    \\\\\\\"main_style_or\\\\\\\": 1.88,\\\\n    \\\\\\\"main_style_p\\\\\\\": 0.026665,\\\\n    \\\\\\\"main_orig_or\\\\\\\": 2.207,\\\\n    \\\\\\\"main_orig_p\\\\\\\": 0.005424,\\\\n    \\\\\\\"main_regime\\\\\\\": \\\\\\\"Mixed\\\\\\\",\\\\n    \\\\\\\"int_style_or\\\\\\\": 1.167,\\\\n    \\\\\\\"int_style_p\\\\\\\": 0.717513,\\\\n    \\\\\\\"int_orig_or\\\\\\\": 1.375,\\\\n    \\\\\\\"int_orig_p\\\\\\\": 0.452116,\\\\n    \\\\\\\"interaction_or\\\\\\\": 2.601,\\\\n    \\\\\\\"interaction_p\\\\\\\": 0.136196,\\\\n    \\\\\\\"int_regime\\\\\\\": \\\\\\\"None\\\\\\\",\\\\n    \\\\\\\"regime_changed\\\\\\\": true\\\\n  },\\\\n  {\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"Formality\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 88,\\\\n    \\\\\\\"main_style_or\\\\\\\": 4.201,\\\\n    \\\\\\\"main_style_p\\\\\\\": 0.000168,\\\\n    \\\\\\\"main_orig_or\\\\\\\": 4.704,\\\\n    \\\\\\\"main_orig_p\\\\\\\": 5.2e-05,\\\\n    \\\\\\\"main_regime\\\\\\\": \\\\\\\"Mixed\\\\\\\",\\\\n    \\\\\\\"int_style_or\\\\\\\": 5.473,\\\\n    \\\\\\\"int_style_p\\\\\\\": 0.000298,\\\\n    \\\\\\\"int_orig_or\\\\\\\": 6.167,\\\\n    \\\\\\\"int_orig_p\\\\\\\": 0.000129,\\\\n    \\\\\\\"interaction_or\\\\\\\": 0.518,\\\\n    \\\\\\\"interaction_p\\\\\\\": 0.319457,\\\\n    \\\\\\\"int_regime\\\\\\\": \\\\\\\"Mixed\\\\\\\",\\\\n    \\\\\\\"regime_changed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"Verbosity\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 86,\\\\n    \\\\\\\"main_style_or\\\\\\\": 13.101,\\\\n    \\\\\\\"main_style_p\\\\\\\": 0.0,\\\\n    \\\\\\\"main_orig_or\\\\\\\": 0.491,\\\\n    \\\\\\\"main_orig_p\\\\\\\": 0.096249,\\\\n    \\\\\\\"main_regime\\\\\\\": \\\\\\\"Pure Style\\\\\\\",\\\\n    \\\\\\\"int_style_or\\\\\\\": 19.444,\\\\n    \\\\\\\"int_style_p\\\\\\\": 0.0,\\\\n    \\\\\\\"int_orig_or\\\\\\\": 0.778,\\\\n    \\\\\\\"int_orig_p\\\\\\\": 0.652301,\\\\n    \\\\\\\"interaction_or\\\\\\\": 0.45,\\\\n    \\\\\\\"interaction_p\\\\\\\": 0.220959,\\\\n    \\\\\\\"int_regime\\\\\\\": \\\\\\\"Pure Style\\\\\\\",\\\\n    \\\\\\\"regime_changed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"Register\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 94,\\\\n    \\\\\\\"main_style_or\\\\\\\": 1.905,\\\\n    \\\\\\\"main_style_p\\\\\\\": 0.045475,\\\\n    \\\\\\\"main_orig_or\\\\\\\": 5.718,\\\\n    \\\\\\\"main_orig_p\\\\\\\": 0.0,\\\\n    \\\\\\\"main_regime\\\\\\\": \\\\\\\"Orig-Dominated\\\\\\\",\\\\n    \\\\\\\"int_style_or\\\\\\\": 2.462,\\\\n    \\\\\\\"int_style_p\\\\\\\": 0.041212,\\\\n    \\\\\\\"int_orig_or\\\\\\\": 7.59,\\\\n    \\\\\\\"int_orig_p\\\\\\\": 1.5e-05,\\\\n    \\\\\\\"interaction_or\\\\\\\": 0.555,\\\\n    \\\\\\\"interaction_p\\\\\\\": 0.383162,\\\\n    \\\\\\\"int_regime\\\\\\\": \\\\\\\"Orig-Dominated\\\\\\\",\\\\n    \\\\\\\"regime_changed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-70B\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"Formality\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 88,\\\\n    \\\\\\\"main_style_or\\\\\\\": 4.808,\\\\n    \\\\\\\"main_style_p\\\\\\\": 3e-06,\\\\n    \\\\\\\"main_orig_or\\\\\\\": 3.118,\\\\n    \\\\\\\"main_orig_p\\\\\\\": 0.000746,\\\\n    \\\\\\\"main_regime\\\\\\\": \\\\\\\"Mixed\\\\\\\",\\\\n    \\\\\\\"int_style_or\\\\\\\": 4.879,\\\\n    \\\\\\\"int_style_p\\\\\\\": 0.000669,\\\\n    \\\\\\\"int_orig_or\\\\\\\": 3.162,\\\\n    \\\\\\\"int_orig_p\\\\\\\": 0.011891,\\\\n    \\\\\\\"interaction_or\\\\\\\": 0.968,\\\\n    \\\\\\\"interaction_p\\\\\\\": 0.963151,\\\\n    \\\\\\\"int_regime\\\\\\\": \\\\\\\"Mixed\\\\\\\",\\\\n    \\\\\\\"regime_changed\\\\\\\": false\\\\n  },\\\\n  {\\\\n    \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-70B\\\\\\\",\\\\n    \\\\\\\"axis\\\\\\\": \\\\\\\"Verbosity\\\\\\\",\\\\n    \\\\\\\"n_pairs\\\\\\\": 86,\\\\n    \\\\\\\"main_style_or\\\\\\\": 8.213,\\\\n    \\\\\\\"main_style_p\\\\\\\": 0.0,\\\\n    \\\\\\\"main_orig_or\\\\\\\": 0.378,\\\\n    \\\\\\\"main_orig_p\\\\\\\": 0.019584,\\\\n    \\\\\\\"main_regime\\\\\\\": \\\\\\\"Style-Dominated\\\\\\\",\\\\n    \\\\\\\"int_style_or\\\\\\\": 7.857,\\\\n    \\\\\\\"int_style_p\\\\\\\": 3.3e-05,\\\\n    \\\\\\\"int_orig_or\\\\\\\": 0.357,\\\\n    \\\\\\\"int_orig_p\\\\\\\": 0.059794,\\\\n    \\\\\\\"interaction_or\\\\\\\": 1.103,\\\\n    \\\\\\\"interaction_p\\\\\\\": 0.870229,\\\\n    \\\\\\\"int_regime\\\\\\\": \\\\\\\"Pure Style\\\\\\\",\\\\n    \\\\\\\"regime_changed\\\\\\\": true\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"judge\\\": \\\"GPT-4o\\\",\\n    \\\"axis\\\": \\\"Formality\\\",\\n    \\\"n_pairs\\\": 88,\\n    \\\"main_style_or\\\": 2.582,\\n    \\\"main_style_p\\\": 0.002167,\\n    \\\"main_orig_or\\\": 2.324,\\n    \\\"main_orig_p\\\": 0.006417,\\n    \\\"main_regime\\\": \\\"Mixed\\\",\\n    \\\"int_style_or\\\": 3.176,\\n    \\\"int_style_p\\\": 0.010814,\\n    \\\"int_orig_or\\\": 2.857,\\n    \\\"int_orig_p\\\": 0.02034,\\n    \\\"interaction_or\\\": 0.661,\\n    \\\"interaction_p\\\": 0.526988,\\n    \\\"int_regime\\\": \\\"Mixed\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"GPT-4o\\\",\\n    \\\"axis\\\": \\\"Verbosity\\\",\\n    \\\"n_pairs\\\": 86,\\n    \\\"main_style_or\\\": 11.344,\\n    \\\"main_style_p\\\": 0.0,\\n    \\\"main_orig_or\\\": 0.452,\\n    \\\"main_orig_p\\\": 0.061594,\\n    \\\"main_regime\\\": \\\"Pure Style\\\",\\n    \\\"int_style_or\\\": 10.135,\\n    \\\"int_style_p\\\": 6e-06,\\n    \\\"int_orig_or\\\": 0.397,\\n    \\\"int_orig_p\\\": 0.09402,\\n    \\\"interaction_or\\\": 1.269,\\n    \\\"interaction_p\\\": 0.704758,\\n    \\\"int_regime\\\": \\\"Pure Style\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"GPT-4o\\\",\\n    \\\"axis\\\": \\\"Register\\\",\\n    \\\"n_pairs\\\": 94,\\n    \\\"main_style_or\\\": 1.88,\\n    \\\"main_style_p\\\": 0.026665,\\n    \\\"main_orig_or\\\": 2.207,\\n    \\\"main_orig_p\\\": 0.005424,\\n    \\\"main_regime\\\": \\\"Mixed\\\",\\n    \\\"int_style_or\\\": 1.167,\\n    \\\"int_style_p\\\": 0.717513,\\n    \\\"int_orig_or\\\": 1.375,\\n    \\\"int_orig_p\\\": 0.452116,\\n    \\\"interaction_or\\\": 2.601,\\n    \\\"interaction_p\\\": 0.136196,\\n    \\\"int_regime\\\": \\\"None\\\",\\n    \\\"regime_changed\\\": true\\n  },\\n  {\\n    \\\"judge\\\": \\\"Qwen3-32B\\\",\\n    \\\"axis\\\": \\\"Formality\\\",\\n    \\\"n_pairs\\\": 88,\\n    \\\"main_style_or\\\": 4.201,\\n    \\\"main_style_p\\\": 0.000168,\\n    \\\"main_orig_or\\\": 4.704,\\n    \\\"main_orig_p\\\": 5.2e-05,\\n    \\\"main_regime\\\": \\\"Mixed\\\",\\n    \\\"int_style_or\\\": 5.473,\\n    \\\"int_style_p\\\": 0.000298,\\n    \\\"int_orig_or\\\": 6.167,\\n    \\\"int_orig_p\\\": 0.000129,\\n    \\\"interaction_or\\\": 0.518,\\n    \\\"interaction_p\\\": 0.319457,\\n    \\\"int_regime\\\": \\\"Mixed\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"Qwen3-32B\\\",\\n    \\\"axis\\\": \\\"Verbosity\\\",\\n    \\\"n_pairs\\\": 86,\\n    \\\"main_style_or\\\": 13.101,\\n    \\\"main_style_p\\\": 0.0,\\n    \\\"main_orig_or\\\": 0.491,\\n    \\\"main_orig_p\\\": 0.096249,\\n    \\\"main_regime\\\": \\\"Pure Style\\\",\\n    \\\"int_style_or\\\": 19.444,\\n    \\\"int_style_p\\\": 0.0,\\n    \\\"int_orig_or\\\": 0.778,\\n    \\\"int_orig_p\\\": 0.652301,\\n    \\\"interaction_or\\\": 0.45,\\n    \\\"interaction_p\\\": 0.220959,\\n    \\\"int_regime\\\": \\\"Pure Style\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"Qwen3-32B\\\",\\n    \\\"axis\\\": \\\"Register\\\",\\n    \\\"n_pairs\\\": 94,\\n    \\\"main_style_or\\\": 1.905,\\n    \\\"main_style_p\\\": 0.045475,\\n    \\\"main_orig_or\\\": 5.718,\\n    \\\"main_orig_p\\\": 0.0,\\n    \\\"main_regime\\\": \\\"Orig-Dominated\\\",\\n    \\\"int_style_or\\\": 2.462,\\n    \\\"int_style_p\\\": 0.041212,\\n    \\\"int_orig_or\\\": 7.59,\\n    \\\"int_orig_p\\\": 1.5e-05,\\n    \\\"interaction_or\\\": 0.555,\\n    \\\"interaction_p\\\": 0.383162,\\n    \\\"int_regime\\\": \\\"Orig-Dominated\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"Llama-70B\\\",\\n    \\\"axis\\\": \\\"Formality\\\",\\n    \\\"n_pairs\\\": 88,\\n    \\\"main_style_or\\\": 4.808,\\n    \\\"main_style_p\\\": 3e-06,\\n    \\\"main_orig_or\\\": 3.118,\\n    \\\"main_orig_p\\\": 0.000746,\\n    \\\"main_regime\\\": \\\"Mixed\\\",\\n    \\\"int_style_or\\\": 4.879,\\n    \\\"int_style_p\\\": 0.000669,\\n    \\\"int_orig_or\\\": 3.162,\\n    \\\"int_orig_p\\\": 0.011891,\\n    \\\"interaction_or\\\": 0.968,\\n    \\\"interaction_p\\\": 0.963151,\\n    \\\"int_regime\\\": \\\"Mixed\\\",\\n    \\\"regime_changed\\\": false\\n  },\\n  {\\n    \\\"judge\\\": \\\"Llama-70B\\\",\\n    \\\"axis\\\": \\\"Verbosity\\\",\\n    \\\"n_pairs\\\": 86,\\n    \\\"main_style_or\\\": 8.213,\\n    \\\"main_style_p\\\": 0.0,\\n    \\\"main_orig_or\\\": 0.378,\\n    \\\"main_orig_p\\\": 0.019584,\\n    \\\"main_regime\\\": \\\"Style-Dominated\\\",\\n    \\\"int_style_or\\\": 7.857,\\n    \\\"int_style_p\\\": 3.3e-05,\\n    \\\"int_orig_or\\\": 0.357,\\n    \\\"int_orig_p\\\": 0.059794,\\n    \\\"interaction_or\\\": 1.103,\\n    \\\"interaction_p\\\": 0.870229,\\n    \\\"int_regime\\\": \\\"Pure Style\\\",\\n    \\\"regime_changed\\\": true\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 114 · 2026-05-25T19:51:14.690Z_
+
+<details><summary>↩ Tool result · `toolu_01P7kjZzX3ggFKDEpdZw5J1t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"equivalence_margin\\\": 0.1,\\n  \\\"null_proportion\\\": 0.5,\\n  \\\"alpha\\\": 0.05,\\n  \\\"formality\\\": {\\n    \\\"p_hat\\\": 0.562,\\n    \\\"n_pairs\\\": 88,\\n    \\\"bootstrap_ci_95\\\": [\\n      0.489,\\n      0.636\\n    ],\\n    \\\"se_bootstrap\\\": 0.0375,\\n    \\\"se_binomial\\\": 0.05289,\\n    \\\"upper_test\\\": {\\n      \\\"z\\\": -1.0133,\\n      \\\"p\\\": 0.155455\\n    },\\n    \\\"lower_test\\\": {\\n      \\\"z\\\": 4.3199,\\n      \\\"p\\\": 8e-06\\n    },\\n    \\\"tost_p\\\": 0.155455,\\n    \\\"ci_90\\\": [\\n      0.5003,\\n      0.6237\\n    ],\\n    \\\"equivalence_by_tost\\\": false,\\n    \\\"equivalence_by_ci\\\": false,\\n    \\\"equivalence_confirmed\\\": false,\\n    \\\"conclusion\\\": \\\"TOST not significant (p=0.1555 >= 0.05); 90% CI [0.500, 0.624] not fully within [0.40, 0.60]\\\"\\n  },\\n  \\\"verbosity\\\": {\\n    \\\"p_hat\\\": 0.541,\\n    \\\"n_pairs\\\": 86,\\n    \\\"bootstrap_ci_95\\\": [\\n      0.459,\\n      0.616\\n    ],\\n    \\\"se_bootstrap\\\": 0.04005,\\n    \\\"se_binomial\\\": 0.05373,\\n    \\\"upper_test\\\": {\\n      \\\"z\\\": -1.4731,\\n      \\\"p\\\": 0.070363\\n    },\\n    \\\"lower_test\\\": {\\n      \\\"z\\\": 3.5204,\\n      \\\"p\\\": 0.000215\\n    },\\n    \\\"tost_p\\\": 0.070363,\\n    \\\"ci_90\\\": [\\n      0.4751,\\n      0.6069\\n    ],\\n    \\\"equivalence_by_tost\\\": false,\\n    \\\"equivalence_by_ci\\\": false,\\n    \\\"equivalence_confirmed\\\": false,\\n    \\\"conclusion\\\": \\\"TOST not significant (p=0.0704 >= 0.05); 90% CI [0.475, 0.607] not fully within [0.40, 0.60]\\\"\\n  },\\n  \\\"method\\\": \\\"TOST for proportions (Lakens 2017), SE from pair-level bootstrap CI\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "01dfcc15-0e2c-4fdf-b3a8-a57b5578e925",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"equivalence_margin\\\\\\\": 0.1,\\\\n  \\\\\\\"null_proportion\\\\\\\": 0.5,\\\\n  \\\\\\\"alpha\\\\\\\": 0.05,\\\\n  \\\\\\\"formality\\\\\\\": {\\\\n    \\\\\\\"p_hat\\\\\\\": 0.562,\\\\n    \\\\\\\"n_pairs\\\\\\\": 88,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      0.489,\\\\n      0.636\\\\n    ],\\\\n    \\\\\\\"se_bootstrap\\\\\\\": 0.0375,\\\\n    \\\\\\\"se_binomial\\\\\\\": 0.05289,\\\\n    \\\\\\\"upper_test\\\\\\\": {\\\\n      \\\\\\\"z\\\\\\\": -1.0133,\\\\n      \\\\\\\"p\\\\\\\": 0.155455\\\\n    },\\\\n    \\\\\\\"lower_test\\\\\\\": {\\\\n      \\\\\\\"z\\\\\\\": 4.3199,\\\\n      \\\\\\\"p\\\\\\\": 8e-06\\\\n    },\\\\n    \\\\\\\"tost_p\\\\\\\": 0.155455,\\\\n    \\\\\\\"ci_90\\\\\\\": [\\\\n      0.5003,\\\\n      0.6237\\\\n    ],\\\\n    \\\\\\\"equivalence_by_tost\\\\\\\": false,\\\\n    \\\\\\\"equivalence_by_ci\\\\\\\": false,\\\\n    \\\\\\\"equivalence_confirmed\\\\\\\": false,\\\\n    \\\\\\\"conclusion\\\\\\\": \\\\\\\"TOST not significant (p=0.1555 >= 0.05); 90% CI [0.500, 0.624] not fully within [0.40, 0.60]\\\\\\\"\\\\n  },\\\\n  \\\\\\\"verbosity\\\\\\\": {\\\\n    \\\\\\\"p_hat\\\\\\\": 0.541,\\\\n    \\\\\\\"n_pairs\\\\\\\": 86,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      0.459,\\\\n      0.616\\\\n    ],\\\\n    \\\\\\\"se_bootstrap\\\\\\\": 0.04005,\\\\n    \\\\\\\"se_binomial\\\\\\\": 0.05373,\\\\n    \\\\\\\"upper_test\\\\\\\": {\\\\n      \\\\\\\"z\\\\\\\": -1.4731,\\\\n      \\\\\\\"p\\\\\\\": 0.070363\\\\n    },\\\\n    \\\\\\\"lower_test\\\\\\\": {\\\\n      \\\\\\\"z\\\\\\\": 3.5204,\\\\n      \\\\\\\"p\\\\\\\": 0.000215\\\\n    },\\\\n    \\\\\\\"tost_p\\\\\\\": 0.070363,\\\\n    \\\\\\\"ci_90\\\\\\\": [\\\\n      0.4751,\\\\n      0.6069\\\\n    ],\\\\n    \\\\\\\"equivalence_by_tost\\\\\\\": false,\\\\n    \\\\\\\"equivalence_by_ci\\\\\\\": false,\\\\n    \\\\\\\"equivalence_confirmed\\\\\\\": false,\\\\n    \\\\\\\"conclusion\\\\\\\": \\\\\\\"TOST not significant (p=0.0704 >= 0.05); 90% CI [0.475, 0.607] not fully within [0.40, 0.60]\\\\\\\"\\\\n  },\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"TOST for proportions (Lakens 2017), SE from pair-level bootstrap CI\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"equivalence_margin\\\": 0.1,\\n  \\\"null_proportion\\\": 0.5,\\n  \\\"alpha\\\": 0.05,\\n  \\\"formality\\\": {\\n    \\\"p_hat\\\": 0.562,\\n    \\\"n_pairs\\\": 88,\\n    \\\"bootstrap_ci_95\\\": [\\n      0.489,\\n      0.636\\n    ],\\n    \\\"se_bootstrap\\\": 0.0375,\\n    \\\"se_binomial\\\": 0.05289,\\n    \\\"upper_test\\\": {\\n      \\\"z\\\": -1.0133,\\n      \\\"p\\\": 0.155455\\n    },\\n    \\\"lower_test\\\": {\\n      \\\"z\\\": 4.3199,\\n      \\\"p\\\": 8e-06\\n    },\\n    \\\"tost_p\\\": 0.155455,\\n    \\\"ci_90\\\": [\\n      0.5003,\\n      0.6237\\n    ],\\n    \\\"equivalence_by_tost\\\": false,\\n    \\\"equivalence_by_ci\\\": false,\\n    \\\"equivalence_confirmed\\\": false,\\n    \\\"conclusion\\\": \\\"TOST not significant (p=0.1555 >= 0.05); 90% CI [0.500, 0.624] not fully within [0.40, 0.60]\\\"\\n  },\\n  \\\"verbosity\\\": {\\n    \\\"p_hat\\\": 0.541,\\n    \\\"n_pairs\\\": 86,\\n    \\\"bootstrap_ci_95\\\": [\\n      0.459,\\n      0.616\\n    ],\\n    \\\"se_bootstrap\\\": 0.04005,\\n    \\\"se_binomial\\\": 0.05373,\\n    \\\"upper_test\\\": {\\n      \\\"z\\\": -1.4731,\\n      \\\"p\\\": 0.070363\\n    },\\n    \\\"lower_test\\\": {\\n      \\\"z\\\": 3.5204,\\n      \\\"p\\\": 0.000215\\n    },\\n    \\\"tost_p\\\": 0.070363,\\n    \\\"ci_90\\\": [\\n      0.4751,\\n      0.6069\\n    ],\\n    \\\"equivalence_by_tost\\\": false,\\n    \\\"equivalence_by_ci\\\": false,\\n    \\\"equivalence_confirmed\\\": false,\\n    \\\"conclusion\\\": \\\"TOST not significant (p=0.0704 >= 0.05); 90% CI [0.475, 0.607] not fully within [0.40, 0.60]\\\"\\n  },\\n  \\\"method\\\": \\\"TOST for proportions (Lakens 2017), SE from pair-level bootstrap CI\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 115_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Great, now I have a lot of source data. Let me continue gathering more data. I need:
+
+1. BT values for GPT-4o (formality, verbosity, register) - from pairwise summaries
+2. BT values for Qwen3-32B (formality, verbosity, register) - from pairwise results
+3. Qwen3-32B n=355 scaled replication BT data
+4. More GEE data (Gemini verbosity is a discrepancy)
+5. Figure scripts
+
+Let me now cross-check everything I have.
+
+From the data files I've read:
+
+
+Now I'm verifying the Llama-70B third_judge.json values against what's reported in the paper. The formality BT estimates, p-values, and GEE odds ratios are all matching up correctly so far.
+
+Continuing through the verbosity metrics—the BT pole estimate of 0.7349 rounds to .735, the GEE style odds ratio of 8.2126 matches 8.21, and the p-values are all aligning with the paper's reported significance levels. Moving into the register_summary.json file now to check the academic register coefficients and their corresponding p-values. I'm noticing a discrepancy with the GPT-4o Register style p-value—the source shows 0.026665, which should round to .027, but the paper reports .029. Let me double-check the paper's table to see if I'm reading it correctly. I'm noticing the p-values don't align with what's in the paper—0.026665 should round to 0.027 but the paper shows 0.029, and 0.005424 rounds to 0.005 not 0.006. These discrepancies suggest either different GEE specifications or separate runs. Let me check if there's another results file, and I should also verify that the paper's Table 2 is using the main model without interactions, not the interaction model.
+
+Now checking the Qwen3-32B values across different dimensions: the Verbosity and Formality estimates are matching up well with the paper's reported values, but I'm still working through the Register dimension to confirm all the p-values align correctly.
+
+I notice the Gemini data is actually stored in a different file—gemini_flash_fourth_judge.json rather than the main gee_interaction_analysis.json, so I need to pull the Formality GEE results from there instead.
+
+Checking the Gemini Formality metrics, those all align with the paper. But the Verbosity GEE results show some issues—the style odds ratio is coming out to 9.16 when the paper reports 8.98, and the p-value discrepancy is larger at 0.057 versus 0.061. The originality odds ratio is also slightly off at 0.45 versus 0.46, though that's within rounding. These Gemini verbosity numbers don't match as cleanly as the others.
+
+The style odds ratio difference of about 2% and the p-value gap suggest either a different analysis run or a transcription error in the paper. I'm also wondering if there's another GEE computation file somewhere with Gemini data, since the interaction analysis JSON only has eight entries across the other models. Looking at the GPT-4o register p-values, there's a similar small discrepancy between what's in the interaction JSON and what the paper shows, which makes me think there might be separate GEE output files I haven't located yet. Let me search for the Bayesian analysis source data next.
+
+I'm trying to trace where the Bradley-Terry results come from for GPT-4o and Qwen3-32B. The pairwise summary files have win rates but not the BT values themselves—they show sign test results instead. The initial GPT-4o formality analysis shows n=111 with a 76.6% win rate, but the paper cites different numbers like 73.9% for sign test and 63.0% for Bradley-Terry on 173 comparisons. The Qwen3-32B pairwise summary shows n=55 with a 69.1% win rate, which might correspond to their formality analysis. I need to find where the actual Bradley-Terry model outputs are stored.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "4595625a-aa0c-4075-bc2a-f5f21ac4efc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YCr1a8E52oLVDFq3aVnNUg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9164,
+      "cache_read_input_tokens": 47111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9164
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 116_
+
+Found key GEE data. Now let me get BT source data and more GEE files, plus verify figure scripts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "3926c06f-3c16-46cd-8d46-48df90246592",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YCr1a8E52oLVDFq3aVnNUg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9164,
+      "cache_read_input_tokens": 47111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9164
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 117_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LEczZBavH7R9rRf3kNLumK`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/analysis/verify_table_corrections.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "5e1f58f6-e983-4c18-8cde-d7b63cf0f75e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YCr1a8E52oLVDFq3aVnNUg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9164,
+      "cache_read_input_tokens": 47111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9164
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 118 · 2026-05-25T19:52:20.237Z_
+
+<details><summary>↩ Tool result · `toolu_01LEczZBavH7R9rRf3kNLumK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Verify corrected Cohen's d values for Table 23 and Table 24.\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nfrom scipy import stats\\n\\nDATA_DIR = \\\"/root/causal_style_decomp_judge/data\\\"\\n\\ndef compute_pole_aligned_d(scored_file, style_field, target_pole, score_fields=None):\\n    \\\"\\\"\\\"Compute directional pooled Cohen's d (target_pole - opposite / pooled SD).\\n    \\n    score_fields: if None, uses score_original/score_counterfactual.\\n                  if tuple like ('score_formal','score_casual'), uses those directly.\\n    \\\"\\\"\\\"\\n    with open(scored_file) as f:\\n        records = [json.loads(l) for l in f if l.strip()]\\n    \\n    if score_fields:\\n        sf_target, sf_opp = score_fields\\n        valid = [r for r in records \\n                 if r.get(sf_target) is not None and r.get(sf_opp) is not None]\\n        target_scores = [r[sf_target] for r in valid]\\n        opp_scores = [r[sf_opp] for r in valid]\\n    else:\\n        valid = [r for r in records \\n                 if r.get(\\\"score_original\\\") is not None \\n                 and r.get(\\\"score_counterfactual\\\") is not None]\\n        target_scores, opp_scores = [], []\\n        for r in valid:\\n            style_val = r.get(style_field)\\n            if style_val == target_pole:\\n                target_scores.append(r[\\\"score_original\\\"])\\n                opp_scores.append(r[\\\"score_counterfactual\\\"])\\n            else:\\n                target_scores.append(r[\\\"score_counterfactual\\\"])\\n                opp_scores.append(r[\\\"score_original\\\"])\\n    \\n    ts = np.array(target_scores, dtype=float)\\n    os_ = np.array(opp_scores, dtype=float)\\n    diffs = ts - os_\\n    ate = float(np.mean(diffs))\\n    \\n    # Cohen's d with ddof=1 (sample variance)\\n    pooled_sd_1 = np.sqrt((np.var(ts, ddof=1) + np.var(os_, ddof=1)) / 2)\\n    d_1 = ate / pooled_sd_1 if pooled_sd_1 > 0 else 0\\n    \\n    # Cohen's d with ddof=0 (population variance, matching existing code)\\n    pooled_sd_0 = np.sqrt((np.var(ts, ddof=0) + np.var(os_, ddof=0)) / 2)\\n    d_0 = ate / pooled_sd_0 if pooled_sd_0 > 0 else 0\\n    \\n    # Cohen's d_z (paired: diff / SD_diff)\\n    sd_diff = np.std(diffs, ddof=1)\\n    d_z = ate / sd_diff if sd_diff > 0 else 0\\n    \\n    # Wilcoxon\\n    non_zero = diffs[diffs != 0]\\n    if len(non_zero) > 0:\\n        _, wp = stats.wilcoxon(diffs, alternative='two-sided')\\n    else:\\n        wp = 1.0\\n    \\n    print(f\\\"  n={len(valid)}, ATE={ate:.4f}\\\")\\n    print(f\\\"  pooled_sd(ddof=1)={pooled_sd_1:.4f}, d(ddof=1)={d_1:.3f}\\\")\\n    print(f\\\"  pooled_sd(ddof=0)={pooled_sd_0:.4f}, d(ddof=0)={d_0:.3f}\\\")\\n    print(f\\\"  sd_diff={sd_diff:.4f}, d_z={d_z:.3f}\\\")\\n    print(f\\\"  Wilcoxon p={wp:.6f}\\\")\\n    return d_1, d_0, d_z, wp, len(valid)\\n\\n# === Table 23 corrections ===\\nprint(\\\"=\\\" * 60)\\nprint(\\\"TABLE 23 CORRECTIONS\\\")\\nprint(\\\"=\\\" * 60)\\n\\nprint(\\\"\\\\nRow 4: AEval × Llama-70B × Formality\\\")\\nprint(\\\"  (Old d=1.120, expected ~0.211)\\\")\\nprint(f\\\"  File: scored_alpacaeval_llama70b_formality.jsonl\\\")\\nprint(\\\"  Fields: score_formal / score_casual\\\")\\ncompute_pole_aligned_d(\\n    f\\\"{DATA_DIR}/scored_alpacaeval_llama70b_formality.jsonl\\\",\\n    \\\"original_formality\\\", \\\"formal\\\",\\n    score_fields=(\\\"score_formal\\\", \\\"score_casual\\\")\\n)\\n\\nprint(\\\"\\\\nRow 5: MTB × GPT-4o × Formality\\\")\\nprint(\\\"  (Old d=.167, expected ~0.116)\\\")\\nprint(f\\\"  File: scored_mtbench_gpt4o.jsonl\\\")\\ncompute_pole_aligned_d(\\n    f\\\"{DATA_DIR}/scored_mtbench_gpt4o.jsonl\\\",\\n    \\\"original_formality\\\", \\\"formal\\\"\\n)\\n\\n# === Table 24 corrections ===\\nprint(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\nprint(\\\"TABLE 24 CORRECTIONS\\\")\\nprint(\\\"=\\\" * 60)\\n\\nprint(\\\"\\\\nRow 4: AEval × Claude × Verbosity\\\")\\nprint(\\\"  (Old d=−.243, expected ~+0.298)\\\")\\nprint(f\\\"  File: scored_claude_alpacaeval_verbosity.jsonl\\\")\\ncompute_pole_aligned_d(\\n    f\\\"{DATA_DIR}/scored_claude_alpacaeval_verbosity.jsonl\\\",\\n    \\\"original_verbosity\\\", \\\"verbose\\\"\\n)\\n\\nprint(\\\"\\\\nRow 5: MTB × Claude × Formality\\\")\\nprint(\\\"  (Old d=.245, expected ~0.199)\\\")\\nprint(f\\\"  File: scored_claude_mtbench_formality.jsonl\\\")\\ncompute_pole_aligned_d(\\n    f\\\"{DATA_DIR}/scored_claude_mtbench_formality.jsonl\\\",\\n    \\\"original_formality\\\", \\\"formal\\\"\\n)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "d9eb8770-8a59-46bf-8888-23567ffc6968",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Verify corrected Cohen's d values for Table 23 and Table 24.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nDATA_DIR = \\\\\\\"/root/causal_style_decomp_judge/data\\\\\\\"\\\\n\\\\ndef compute_pole_aligned_d(scored_file, style_field, target_pole, score_fields=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute directional pooled Cohen's d (target_pole - opposite / pooled SD).\\\\n    \\\\n    score_fields: if None, uses score_original/score_counterfactual.\\\\n                  if tuple like ('score_formal','score_casual'), uses those directly.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(scored_file) as f:\\\\n        records = [json.loads(l) for l in f if l.strip()]\\\\n    \\\\n    if score_fields:\\\\n        sf_target, sf_opp = score_fields\\\\n        valid = [r for r in records \\\\n                 if r.get(sf_target) is not None and r.get(sf_opp) is not None]\\\\n        target_scores = [r[sf_target] for r in valid]\\\\n        opp_scores = [r[sf_opp] for r in valid]\\\\n    else:\\\\n        valid = [r for r in records \\\\n                 if r.get(\\\\\\\"score_original\\\\\\\") is not None \\\\n                 and r.get(\\\\\\\"score_counterfactual\\\\\\\") is not None]\\\\n        target_scores, opp_scores = [], []\\\\n        for r in valid:\\\\n            style_val = r.get(style_field)\\\\n            if style_val == target_pole:\\\\n                target_scores.append(r[\\\\\\\"score_original\\\\\\\"])\\\\n                opp_scores.append(r[\\\\\\\"score_counterfactual\\\\\\\"])\\\\n            else:\\\\n                target_scores.append(r[\\\\\\\"score_counterfactual\\\\\\\"])\\\\n                opp_scores.append(r[\\\\\\\"score_original\\\\\\\"])\\\\n    \\\\n    ts = np.array(target_scores, dtype=float)\\\\n    os_ = np.array(opp_scores, dtype=float)\\\\n    diffs = ts - os_\\\\n    ate = float(np.mean(diffs))\\\\n    \\\\n    # Cohen's d with ddof=1 (sample variance)\\\\n    pooled_sd_1 = np.sqrt((np.var(ts, ddof=1) + np.var(os_, ddof=1)) / 2)\\\\n    d_1 = ate / pooled_sd_1 if pooled_sd_1 > 0 else 0\\\\n    \\\\n    # Cohen's d with ddof=0 (population variance, matching existing code)\\\\n    pooled_sd_0 = np.sqrt((np.var(ts, ddof=0) + np.var(os_, ddof=0)) / 2)\\\\n    d_0 = ate / pooled_sd_0 if pooled_sd_0 > 0 else 0\\\\n    \\\\n    # Cohen's d_z (paired: diff / SD_diff)\\\\n    sd_diff = np.std(diffs, ddof=1)\\\\n    d_z = ate / sd_diff if sd_diff > 0 else 0\\\\n    \\\\n    # Wilcoxon\\\\n    non_zero = diffs[diffs != 0]\\\\n    if len(non_zero) > 0:\\\\n        _, wp = stats.wilcoxon(diffs, alternative='two-sided')\\\\n    else:\\\\n        wp = 1.0\\\\n    \\\\n    print(f\\\\\\\"  n={len(valid)}, ATE={ate:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  pooled_sd(ddof=1)={pooled_sd_1:.4f}, d(ddof=1)={d_1:.3f}\\\\\\\")\\\\n    print(f\\\\\\\"  pooled_sd(ddof=0)={pooled_sd_0:.4f}, d(ddof=0)={d_0:.3f}\\\\\\\")\\\\n    print(f\\\\\\\"  sd_diff={sd_diff:.4f}, d_z={d_z:.3f}\\\\\\\")\\\\n    print(f\\\\\\\"  Wilcoxon p={wp:.6f}\\\\\\\")\\\\n    return d_1, d_0, d_z, wp, len(valid)\\\\n\\\\n# === Table 23 corrections ===\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\nprint(\\\\\\\"TABLE 23 CORRECTIONS\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\nprint(\\\\\\\"\\\\\\\\nRow 4: AEval × Llama-70B × Formality\\\\\\\")\\\\nprint(\\\\\\\"  (Old d=1.120, expected ~0.211)\\\\\\\")\\\\nprint(f\\\\\\\"  File: scored_alpacaeval_llama70b_formality.jsonl\\\\\\\")\\\\nprint(\\\\\\\"  Fields: score_formal / score_casual\\\\\\\")\\\\ncompute_pole_aligned_d(\\\\n    f\\\\\\\"{DATA_DIR}/scored_alpacaeval_llama70b_formality.jsonl\\\\\\\",\\\\n    \\\\\\\"original_formality\\\\\\\", \\\\\\\"formal\\\\\\\",\\\\n    score_fields=(\\\\\\\"score_formal\\\\\\\", \\\\\\\"score_casual\\\\\\\")\\\\n)\\\\n\\\\nprint(\\\\\\\"\\\\\\\\nRow 5: MTB × GPT-4o × Formality\\\\\\\")\\\\nprint(\\\\\\\"  (Old d=.167, expected ~0.116)\\\\\\\")\\\\nprint(f\\\\\\\"  File: scored_mtbench_gpt4o.jsonl\\\\\\\")\\\\ncompute_pole_aligned_d(\\\\n    f\\\\\\\"{DATA_DIR}/scored_mtbench_gpt4o.jsonl\\\\\\\",\\\\n    \\\\\\\"original_formality\\\\\\\", \\\\\\\"formal\\\\\\\"\\\\n)\\\\n\\\\n# === Table 24 corrections ===\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\nprint(\\\\\\\"TABLE 24 CORRECTIONS\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\nprint(\\\\\\\"\\\\\\\\nRow 4: AEval × Claude × Verbosity\\\\\\\")\\\\nprint(\\\\\\\"  (Old d=−.243, expected ~+0.298)\\\\\\\")\\\\nprint(f\\\\\\\"  File: scored_claude_alpacaeval_verbosity.jsonl\\\\\\\")\\\\ncompute_pole_aligned_d(\\\\n    f\\\\\\\"{DATA_DIR}/scored_claude_alpacaeval_verbosity.jsonl\\\\\\\",\\\\n    \\\\\\\"original_verbosity\\\\\\\", \\\\\\\"verbose\\\\\\\"\\\\n)\\\\n\\\\nprint(\\\\\\\"\\\\\\\\nRow 5: MTB × Claude × Formality\\\\\\\")\\\\nprint(\\\\\\\"  (Old d=.245, expected ~0.199)\\\\\\\")\\\\nprint(f\\\\\\\"  File: scored_claude_mtbench_formality.jsonl\\\\\\\")\\\\ncompute_pole_aligned_d(\\\\n    f\\\\\\\"{DATA_DIR}/scored_claude_mtbench_formality.jsonl\\\\\\\",\\\\n    \\\\\\\"original_formality\\\\\\\", \\\\\\\"formal\\\\\\\"\\\\n)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Verify corrected Cohen's d values for Table 23 and Table 24.\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nfrom scipy import stats\\n\\nDATA_DIR = \\\"/root/causal_style_decomp_judge/data\\\"\\n\\ndef compute_pole_aligned_d(scored_file, style_field, target_pole, score_fields=None):\\n    \\\"\\\"\\\"Compute directional pooled Cohen's d (target_pole - opposite / pooled SD).\\n    \\n    score_fields: if None, uses score_original/score_counterfactual.\\n                  if tuple like ('score_formal','score_casual'), uses those directly.\\n    \\\"\\\"\\\"\\n    with open(scored_file) as f:\\n        records = [json.loads(l) for l in f if l.strip()]\\n    \\n    if score_fields:\\n        sf_target, sf_opp = score_fields\\n        valid = [r for r in records \\n                 if r.get(sf_target) is not None and r.get(sf_opp) is not None]\\n        target_scores = [r[sf_target] for r in valid]\\n        opp_scores = [r[sf_opp] for r in valid]\\n    else:\\n        valid = [r for r in records \\n                 if r.get(\\\"score_original\\\") is not None \\n                 and r.get(\\\"score_counterfactual\\\") is not None]\\n        target_scores, opp_scores = [], []\\n        for r in valid:\\n            style_val = r.get(style_field)\\n            if style_val == target_pole:\\n                target_scores.append(r[\\\"score_original\\\"])\\n                opp_scores.append(r[\\\"score_counterfactual\\\"])\\n            else:\\n                target_scores.append(r[\\\"score_counterfactual\\\"])\\n                opp_scores.append(r[\\\"score_original\\\"])\\n    \\n    ts = np.array(target_scores, dtype=float)\\n    os_ = np.array(opp_scores, dtype=float)\\n    diffs = ts - os_\\n    ate = float(np.mean(diffs))\\n    \\n    # Cohen's d with ddof=1 (sample variance)\\n    pooled_sd_1 = np.sqrt((np.var(ts, ddof=1) + np.var(os_, ddof=1)) / 2)\\n    d_1 = ate / pooled_sd_1 if pooled_sd_1 > 0 else 0\\n    \\n    # Cohen's d with ddof=0 (population variance, matching existing code)\\n    pooled_sd_0 = np.sqrt((np.var(ts, ddof=0) + np.var(os_, ddof=0)) / 2)\\n    d_0 = ate / pooled_sd_0 if pooled_sd_0 > 0 else 0\\n    \\n    # Cohen's d_z (paired: diff / SD_diff)\\n    sd_diff = np.std(diffs, ddof=1)\\n    d_z = ate / sd_diff if sd_diff > 0 else 0\\n    \\n    # Wilcoxon\\n    non_zero = diffs[diffs != 0]\\n    if len(non_zero) > 0:\\n        _, wp = stats.wilcoxon(diffs, alternative='two-sided')\\n    else:\\n        wp = 1.0\\n    \\n    print(f\\\"  n={len(valid)}, ATE={ate:.4f}\\\")\\n    print(f\\\"  pooled_sd(ddof=1)={pooled_sd_1:.4f}, d(ddof=1)={d_1:.3f}\\\")\\n    print(f\\\"  pooled_sd(ddof=0)={pooled_sd_0:.4f}, d(ddof=0)={d_0:.3f}\\\")\\n    print(f\\\"  sd_diff={sd_diff:.4f}, d_z={d_z:.3f}\\\")\\n    print(f\\\"  Wilcoxon p={wp:.6f}\\\")\\n    return d_1, d_0, d_z, wp, len(valid)\\n\\n# === Table 23 corrections ===\\nprint(\\\"=\\\" * 60)\\nprint(\\\"TABLE 23 CORRECTIONS\\\")\\nprint(\\\"=\\\" * 60)\\n\\nprint(\\\"\\\\nRow 4: AEval × Llama-70B × Formality\\\")\\nprint(\\\"  (Old d=1.120, expected ~0.211)\\\")\\nprint(f\\\"  File: scored_alpacaeval_llama70b_formality.jsonl\\\")\\nprint(\\\"  Fields: score_formal / score_casual\\\")\\ncompute_pole_aligned_d(\\n    f\\\"{DATA_DIR}/scored_alpacaeval_llama70b_formality.jsonl\\\",\\n    \\\"original_formality\\\", \\\"formal\\\",\\n    score_fields=(\\\"score_formal\\\", \\\"score_casual\\\")\\n)\\n\\nprint(\\\"\\\\nRow 5: MTB × GPT-4o × Formality\\\")\\nprint(\\\"  (Old d=.167, expected ~0.116)\\\")\\nprint(f\\\"  File: scored_mtbench_gpt4o.jsonl\\\")\\ncompute_pole_aligned_d(\\n    f\\\"{DATA_DIR}/scored_mtbench_gpt4o.jsonl\\\",\\n    \\\"original_formality\\\", \\\"formal\\\"\\n)\\n\\n# === Table 24 corrections ===\\nprint(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\nprint(\\\"TABLE 24 CORRECTIONS\\\")\\nprint(\\\"=\\\" * 60)\\n\\nprint(\\\"\\\\nRow 4: AEval × Claude × Verbosity\\\")\\nprint(\\\"  (Old d=−.243, expected ~+0.298)\\\")\\nprint(f\\\"  File: scored_claude_alpacaeval_verbosity.jsonl\\\")\\ncompute_pole_aligned_d(\\n    f\\\"{DATA_DIR}/scored_claude_alpacaeval_verbosity.jsonl\\\",\\n    \\\"original_verbosity\\\", \\\"verbose\\\"\\n)\\n\\nprint(\\\"\\\\nRow 5: MTB × Claude × Formality\\\")\\nprint(\\\"  (Old d=.245, expected ~0.199)\\\")\\nprint(f\\\"  File: scored_claude_mtbench_formality.jsonl\\\")\\ncompute_pole_aligned_d(\\n    f\\\"{DATA_DIR}/scored_claude_mtbench_formality.jsonl\\\",\\n    \\\"original_formality\\\", \\\"formal\\\"\\n)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 119_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HKXhXxafMKmensB3jDmcF1`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/ate_results_32b/ate_primary_summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "a79208dc-3da7-4ae2-8313-9ba332a60ba8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YCr1a8E52oLVDFq3aVnNUg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9164,
+      "cache_read_input_tokens": 47111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9164
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 120 · 2026-05-25T19:52:21.164Z_
+
+<details><summary>↩ Tool result · `toolu_01HKXhXxafMKmensB3jDmcF1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"group,n,raw_ate,raw_se,raw_ci_lo,raw_ci_hi,raw_p,raw_cohens_d,rewrite_bias,corrected_ate,corrected_se,corrected_ci_lo,corrected_ci_hi,corrected_p,corrected_cohens_d,direction\\noverall,88,-0.10227272727272728,0.1490476321087275,-0.3985210352032752,0.1939755806578206,0.49442754662482213,-0.07314647810802308,-0.20454545454545456,0.10227272727272728,0.10479588151978624,-0.1060204347124269,0.3105658892578815,0.3318083906637288,0.10403375782506567,\\nformal→casual,50,-0.22,0.17447296732310885,-0.5706165546809785,0.13061655468097846,0.21330122215400388,-0.17832389079845282,-0.36,0.13999999999999999,0.14288571142914272,-0.14713958742759956,0.4271395874275995,0.3319958859211563,0.13856521883954562,formal→casual\\ncasual→formal,38,0.05263157894736842,0.2584210960880449,-0.4709792982339494,0.5762424561286863,0.8397305859644169,0.03303898041779497,0.0,0.05263157894736842,0.15526496611527527,-0.26196512516787235,0.3672282830626092,0.7365418613627529,0.05498967182885983,casual→formal\\nprimary: nli_cf≥0.90 (n=88),88,-0.10227272727272728,0.1490476321087275,-0.3985210352032752,0.1939755806578206,0.49442754662482213,-0.07314647810802308,-0.20454545454545456,0.10227272727272728,0.10479588151978624,-0.1060204347124269,0.3105658892578815,0.3318083906637288,0.10403375782506567,\\nsecondary: bertscore_cf≥0.85 (n=60),60,0.03333333333333333,0.1502665553767152,-0.26734934945671845,0.3340160161233851,0.8252137938594398,0.028637874997074556,0.0,0.03333333333333333,0.1385287232176376,-0.24386200155762833,0.310528668224295,0.8106807375473313,0.03106442280824725,\\nsecondary: bertscore_cf≥0.88 (n=41),41,0.024390243902439025,0.12340595746998555,-0.22502249975733132,0.2738029875622094,0.8443258636198042,0.030866549895299675,0.1951219512195122,-0.17073170731707318,0.14357134295377014,-0.4609002153141599,0.11943680068001353,0.24138167348181583,-0.18571821128647864,\\nsecondary: bertscore_cf≥0.90 (n=29),29,-0.034482758620689655,0.12636212156040058,-0.2933238308774132,0.22435831363603387,0.7869415904652854,-0.05067410584971755,0.13793103448275862,-0.1724137931034483,0.16511650997137306,-0.5106396313571147,0.16581204515021813,0.30532700952023967,-0.19390209750850418,\\nsecondary: bertscore_cf≥0.92 (n=25),25,-0.04,0.14696938456699066,-0.343329901411168,0.263329901411168,0.7878225296366503,-0.054433105395181744,0.12,-0.16,0.17009801096230767,-0.5110650401608947,0.19106504016089473,0.3562643460892992,-0.1881268324007089,\\ntertiary: all (n=88),88,-0.10227272727272728,0.1490476321087275,-0.3985210352032752,0.1939755806578206,0.49442754662482213,-0.07314647810802308,-0.20454545454545456,0.10227272727272728,0.10479588151978624,-0.1060204347124269,0.3105658892578815,0.3318083906637288,0.10403375782506567,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "1a2436ab-7232-4409-a45c-2f5f84966d11",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"group,n,raw_ate,raw_se,raw_ci_lo,raw_ci_hi,raw_p,raw_cohens_d,rewrite_bias,corrected_ate,corrected_se,corrected_ci_lo,corrected_ci_hi,corrected_p,corrected_cohens_d,direction\\\\noverall,88,-0.10227272727272728,0.1490476321087275,-0.3985210352032752,0.1939755806578206,0.49442754662482213,-0.07314647810802308,-0.20454545454545456,0.10227272727272728,0.10479588151978624,-0.1060204347124269,0.3105658892578815,0.3318083906637288,0.10403375782506567,\\\\nformal→casual,50,-0.22,0.17447296732310885,-0.5706165546809785,0.13061655468097846,0.21330122215400388,-0.17832389079845282,-0.36,0.13999999999999999,0.14288571142914272,-0.14713958742759956,0.4271395874275995,0.3319958859211563,0.13856521883954562,formal→casual\\\\ncasual→formal,38,0.05263157894736842,0.2584210960880449,-0.4709792982339494,0.5762424561286863,0.8397305859644169,0.03303898041779497,0.0,0.05263157894736842,0.15526496611527527,-0.26196512516787235,0.3672282830626092,0.7365418613627529,0.05498967182885983,casual→formal\\\\nprimary: nli_cf≥0.90 (n=88),88,-0.10227272727272728,0.1490476321087275,-0.3985210352032752,0.1939755806578206,0.49442754662482213,-0.07314647810802308,-0.20454545454545456,0.10227272727272728,0.10479588151978624,-0.1060204347124269,0.3105658892578815,0.3318083906637288,0.10403375782506567,\\\\nsecondary: bertscore_cf≥0.85 (n=60),60,0.03333333333333333,0.1502665553767152,-0.26734934945671845,0.3340160161233851,0.8252137938594398,0.028637874997074556,0.0,0.03333333333333333,0.1385287232176376,-0.24386200155762833,0.310528668224295,0.8106807375473313,0.03106442280824725,\\\\nsecondary: bertscore_cf≥0.88 (n=41),41,0.024390243902439025,0.12340595746998555,-0.22502249975733132,0.2738029875622094,0.8443258636198042,0.030866549895299675,0.1951219512195122,-0.17073170731707318,0.14357134295377014,-0.4609002153141599,0.11943680068001353,0.24138167348181583,-0.18571821128647864,\\\\nsecondary: bertscore_cf≥0.90 (n=29),29,-0.034482758620689655,0.12636212156040058,-0.2933238308774132,0.22435831363603387,0.7869415904652854,-0.05067410584971755,0.13793103448275862,-0.1724137931034483,0.16511650997137306,-0.5106396313571147,0.16581204515021813,0.30532700952023967,-0.19390209750850418,\\\\nsecondary: bertscore_cf≥0.92 (n=25),25,-0.04,0.14696938456699066,-0.343329901411168,0.263329901411168,0.7878225296366503,-0.054433105395181744,0.12,-0.16,0.17009801096230767,-0.5110650401608947,0.19106504016089473,0.3562643460892992,-0.1881268324007089,\\\\ntertiary: all (n=88),88,-0.10227272727272728,0.1490476321087275,-0.3985210352032752,0.1939755806578206,0.49442754662482213,-0.07314647810802308,-0.20454545454545456,0.10227272727272728,0.10479588151978624,-0.1060204347124269,0.3105658892578815,0.3318083906637288,0.10403375782506567,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"group,n,raw_ate,raw_se,raw_ci_lo,raw_ci_hi,raw_p,raw_cohens_d,rewrite_bias,corrected_ate,corrected_se,corrected_ci_lo,corrected_ci_hi,corrected_p,corrected_cohens_d,direction\\noverall,88,-0.10227272727272728,0.1490476321087275,-0.3985210352032752,0.1939755806578206,0.49442754662482213,-0.07314647810802308,-0.20454545454545456,0.10227272727272728,0.10479588151978624,-0.1060204347124269,0.3105658892578815,0.3318083906637288,0.10403375782506567,\\nformal→casual,50,-0.22,0.17447296732310885,-0.5706165546809785,0.13061655468097846,0.21330122215400388,-0.17832389079845282,-0.36,0.13999999999999999,0.14288571142914272,-0.14713958742759956,0.4271395874275995,0.3319958859211563,0.13856521883954562,formal→casual\\ncasual→formal,38,0.05263157894736842,0.2584210960880449,-0.4709792982339494,0.5762424561286863,0.8397305859644169,0.03303898041779497,0.0,0.05263157894736842,0.15526496611527527,-0.26196512516787235,0.3672282830626092,0.7365418613627529,0.05498967182885983,casual→formal\\nprimary: nli_cf≥0.90 (n=88),88,-0.10227272727272728,0.1490476321087275,-0.3985210352032752,0.1939755806578206,0.49442754662482213,-0.07314647810802308,-0.20454545454545456,0.10227272727272728,0.10479588151978624,-0.1060204347124269,0.3105658892578815,0.3318083906637288,0.10403375782506567,\\nsecondary: bertscore_cf≥0.85 (n=60),60,0.03333333333333333,0.1502665553767152,-0.26734934945671845,0.3340160161233851,0.8252137938594398,0.028637874997074556,0.0,0.03333333333333333,0.1385287232176376,-0.24386200155762833,0.310528668224295,0.8106807375473313,0.03106442280824725,\\nsecondary: bertscore_cf≥0.88 (n=41),41,0.024390243902439025,0.12340595746998555,-0.22502249975733132,0.2738029875622094,0.8443258636198042,0.030866549895299675,0.1951219512195122,-0.17073170731707318,0.14357134295377014,-0.4609002153141599,0.11943680068001353,0.24138167348181583,-0.18571821128647864,\\nsecondary: bertscore_cf≥0.90 (n=29),29,-0.034482758620689655,0.12636212156040058,-0.2933238308774132,0.22435831363603387,0.7869415904652854,-0.05067410584971755,0.13793103448275862,-0.1724137931034483,0.16511650997137306,-0.5106396313571147,0.16581204515021813,0.30532700952023967,-0.19390209750850418,\\nsecondary: bertscore_cf≥0.92 (n=25),25,-0.04,0.14696938456699066,-0.343329901411168,0.263329901411168,0.7878225296366503,-0.054433105395181744,0.12,-0.16,0.17009801096230767,-0.5110650401608947,0.19106504016089473,0.3562643460892992,-0.1881268324007089,\\ntertiary: all (n=88),88,-0.10227272727272728,0.1490476321087275,-0.3985210352032752,0.1939755806578206,0.49442754662482213,-0.07314647810802308,-0.20454545454545456,0.10227272727272728,0.10479588151978624,-0.1060204347124269,0.3105658892578815,0.3318083906637288,0.10403375782506567,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 121_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Csd9xBNYQeLNC66LnJmzBk`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/cross_axis_gradient.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "092bddf2-a7c5-40c0-a002-70a0d3224e47",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YCr1a8E52oLVDFq3aVnNUg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9164,
+      "cache_read_input_tokens": 47111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9164
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AtYXtmrpzNvGgSzohK5Ma2`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/fk_length_control_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "b528bcc7-afc6-455a-9f53-c4f28a41bf7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YCr1a8E52oLVDFq3aVnNUg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9164,
+      "cache_read_input_tokens": 47111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9164
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 123 · 2026-05-25T19:52:22.799Z_
+
+<details><summary>↩ Tool result · `toolu_01Csd9xBNYQeLNC66LnJmzBk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"axes\\\": [\\n    {\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_rejection_rate\\\": 0.12,\\n      \\\"n_total\\\": 100,\\n      \\\"n_rejected\\\": 12,\\n      \\\"bt\\\": 0.665,\\n      \\\"likert_d\\\": 0.012,\\n      \\\"gee_style_or\\\": 4.2\\n    },\\n    {\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_rejection_rate\\\": 0.14,\\n      \\\"n_total\\\": 100,\\n      \\\"n_rejected\\\": 14,\\n      \\\"bt\\\": 0.773,\\n      \\\"likert_d\\\": -0.146,\\n      \\\"gee_style_or\\\": 13.1\\n    },\\n    {\\n      \\\"axis\\\": \\\"register\\\",\\n      \\\"nli_rejection_rate\\\": 0.06,\\n      \\\"n_total\\\": 100,\\n      \\\"n_rejected\\\": 6,\\n      \\\"bt\\\": 0.553,\\n      \\\"likert_d\\\": 0.069,\\n      \\\"gee_style_or\\\": 1.91\\n    }\\n  ],\\n  \\\"note\\\": \\\"Qualitative argument only. Higher NLI rejection \\\\u2248 more invasive manipulation.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "addc8c92-8a93-496c-abba-2307f87c4986",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"axes\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"nli_rejection_rate\\\\\\\": 0.12,\\\\n      \\\\\\\"n_total\\\\\\\": 100,\\\\n      \\\\\\\"n_rejected\\\\\\\": 12,\\\\n      \\\\\\\"bt\\\\\\\": 0.665,\\\\n      \\\\\\\"likert_d\\\\\\\": 0.012,\\\\n      \\\\\\\"gee_style_or\\\\\\\": 4.2\\\\n    },\\\\n    {\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"nli_rejection_rate\\\\\\\": 0.14,\\\\n      \\\\\\\"n_total\\\\\\\": 100,\\\\n      \\\\\\\"n_rejected\\\\\\\": 14,\\\\n      \\\\\\\"bt\\\\\\\": 0.773,\\\\n      \\\\\\\"likert_d\\\\\\\": -0.146,\\\\n      \\\\\\\"gee_style_or\\\\\\\": 13.1\\\\n    },\\\\n    {\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"register\\\\\\\",\\\\n      \\\\\\\"nli_rejection_rate\\\\\\\": 0.06,\\\\n      \\\\\\\"n_total\\\\\\\": 100,\\\\n      \\\\\\\"n_rejected\\\\\\\": 6,\\\\n      \\\\\\\"bt\\\\\\\": 0.553,\\\\n      \\\\\\\"likert_d\\\\\\\": 0.069,\\\\n      \\\\\\\"gee_style_or\\\\\\\": 1.91\\\\n    }\\\\n  ],\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"Qualitative argument only. Higher NLI rejection \\\\\\\\u2248 more invasive manipulation.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"axes\\\": [\\n    {\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_rejection_rate\\\": 0.12,\\n      \\\"n_total\\\": 100,\\n      \\\"n_rejected\\\": 12,\\n      \\\"bt\\\": 0.665,\\n      \\\"likert_d\\\": 0.012,\\n      \\\"gee_style_or\\\": 4.2\\n    },\\n    {\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_rejection_rate\\\": 0.14,\\n      \\\"n_total\\\": 100,\\n      \\\"n_rejected\\\": 14,\\n      \\\"bt\\\": 0.773,\\n      \\\"likert_d\\\": -0.146,\\n      \\\"gee_style_or\\\": 13.1\\n    },\\n    {\\n      \\\"axis\\\": \\\"register\\\",\\n      \\\"nli_rejection_rate\\\": 0.06,\\n      \\\"n_total\\\": 100,\\n      \\\"n_rejected\\\": 6,\\n      \\\"bt\\\": 0.553,\\n      \\\"likert_d\\\": 0.069,\\n      \\\"gee_style_or\\\": 1.91\\n    }\\n  ],\\n  \\\"note\\\": \\\"Qualitative argument only. Higher NLI rejection \\\\u2248 more invasive manipulation.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 124_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CyKEoX8ksPmu4bvkHKtzkU`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/debiased_verbosity_gpt4o_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "e78c74a0-ee30-4f8c-8b43-4ff3a7fc5f7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YCr1a8E52oLVDFq3aVnNUg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9164,
+      "cache_read_input_tokens": 47111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9164
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 125 · 2026-05-25T19:52:23.717Z_
+
+<details><summary>↩ Tool result · `toolu_01AtYXtmrpzNvGgSzohK5Ma2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"descriptive_passed_only\\\": {\\n    \\\"verbosity\\\": {\\n      \\\"n\\\": 86,\\n      \\\"delta_fk_mean\\\": 2.2598892513133677,\\n      \\\"delta_fk_sd\\\": 4.5088864344653645,\\n      \\\"delta_fk_d\\\": 0.5012078445886453,\\n      \\\"delta_sentlen_mean\\\": 4.105555724621923,\\n      \\\"delta_sentlen_sd\\\": 10.302512953390076,\\n      \\\"delta_sentlen_d\\\": 0.3985004186062175,\\n      \\\"delta_words_mean\\\": 5.337209302325581,\\n      \\\"delta_words_d\\\": 0.04816655530338499\\n    },\\n    \\\"formality\\\": {\\n      \\\"n\\\": 88,\\n      \\\"delta_fk_mean\\\": -0.42830396929336234,\\n      \\\"delta_fk_sd\\\": 3.564931597618777,\\n      \\\"delta_fk_d\\\": -0.1201436710817821,\\n      \\\"delta_sentlen_mean\\\": -0.08685486262378304,\\n      \\\"delta_sentlen_sd\\\": 2.0585391929277925,\\n      \\\"delta_sentlen_d\\\": -0.04219247460635046,\\n      \\\"delta_words_mean\\\": -2.772727272727273,\\n      \\\"delta_words_d\\\": -0.1486105811015432\\n    }\\n  },\\n  \\\"descriptive_all_pairs\\\": {\\n    \\\"verbosity\\\": {\\n      \\\"n\\\": 100,\\n      \\\"delta_fk_mean\\\": 2.7022940908769972,\\n      \\\"delta_fk_sd\\\": 5.009767609054633,\\n      \\\"delta_fk_d\\\": 0.5394050785894504,\\n      \\\"delta_sentlen_mean\\\": 5.251900907678273,\\n      \\\"delta_sentlen_sd\\\": 10.445420705881919,\\n      \\\"delta_sentlen_d\\\": 0.5027945791327367,\\n      \\\"delta_words_mean\\\": 19.94,\\n      \\\"delta_words_d\\\": 0.16440882820697783\\n    },\\n    \\\"formality\\\": {\\n      \\\"n\\\": 100,\\n      \\\"delta_fk_mean\\\": -0.30175881806286303,\\n      \\\"delta_fk_sd\\\": 3.6334750966604155,\\n      \\\"delta_fk_d\\\": -0.08304964532169612,\\n      \\\"delta_sentlen_mean\\\": 0.09122710786425108,\\n      \\\"delta_sentlen_sd\\\": 2.3873617101542193,\\n      \\\"delta_sentlen_d\\\": 0.03821252032158879,\\n      \\\"delta_words_mean\\\": -2.77,\\n      \\\"delta_words_d\\\": -0.12725240303608568\\n    }\\n  },\\n  \\\"regression_passed_only\\\": {\\n    \\\"n_total\\\": 174,\\n    \\\"n_verbosity\\\": 86,\\n    \\\"n_formality\\\": 88,\\n    \\\"model1_no_control\\\": {\\n      \\\"style_axis_coef\\\": 2.6881932206067303,\\n      \\\"style_axis_se\\\": 0.615457292474457,\\n      \\\"style_axis_t\\\": 4.367798145341331,\\n      \\\"style_axis_p\\\": 2.1632940865440007e-05,\\n      \\\"intercept\\\": -0.42830396929336245,\\n      \\\"r2\\\": 0.09984244403402787,\\n      \\\"adj_r2\\\": 0.09460896987143497\\n    },\\n    \\\"model2_length_controlled\\\": {\\n      \\\"style_axis_coef\\\": 1.0662987483638702,\\n      \\\"style_axis_se\\\": 0.4557056488069529,\\n      \\\"style_axis_t\\\": 2.339884860228226,\\n      \\\"style_axis_p\\\": 0.020444389073796275,\\n      \\\"delta_sentlen_coef\\\": 0.3868644157080043,\\n      \\\"delta_sentlen_se\\\": 0.02982334471019632,\\n      \\\"delta_sentlen_t\\\": 12.97186547878176,\\n      \\\"delta_sentlen_p\\\": 3.1201087723766178e-27,\\n      \\\"intercept\\\": -0.3947029136130145,\\n      \\\"r2\\\": 0.5462986341747793,\\n      \\\"adj_r2\\\": 0.5409921854516773\\n    },\\n    \\\"coef_reduction_pct\\\": 60.33399905222569\\n  },\\n  \\\"mediation_passed_only\\\": {\\n    \\\"a_X_to_M\\\": 4.192410587245707,\\n    \\\"b_M_to_Y_given_X\\\": 0.3868644157080043,\\n    \\\"c_total_X_to_Y\\\": 2.6881932206067303,\\n    \\\"c_prime_direct\\\": 1.0662987483638702,\\n    \\\"indirect_ab\\\": 1.6218944722428614,\\n    \\\"sobel_se\\\": 0.4511123767398789,\\n    \\\"sobel_z\\\": 3.595322486968875,\\n    \\\"sobel_p\\\": 0.0003239899857199191,\\n    \\\"proportion_mediated\\\": 0.6033399905222575\\n  },\\n  \\\"regression_all_pairs\\\": {\\n    \\\"n_total\\\": 200,\\n    \\\"n_verbosity\\\": 100,\\n    \\\"n_formality\\\": 100,\\n    \\\"model1_no_control\\\": {\\n      \\\"style_axis_coef\\\": 3.00405290893986,\\n      \\\"style_axis_se\\\": 0.6188692331566038,\\n      \\\"style_axis_t\\\": 4.8540996191027155,\\n      \\\"style_axis_p\\\": 2.4479917605657645e-06,\\n      \\\"intercept\\\": -0.301758818062864,\\n      \\\"r2\\\": 0.1063460927609412,\\n      \\\"adj_r2\\\": 0.10183268918902688\\n    },\\n    \\\"model2_length_controlled\\\": {\\n      \\\"style_axis_coef\\\": 0.9593504617795345,\\n      \\\"style_axis_se\\\": 0.4771604067345567,\\n      \\\"style_axis_t\\\": 2.010540791397261,\\n      \\\"style_axis_p\\\": 0.04573751956720498,\\n      \\\"delta_sentlen_coef\\\": 0.3962084267434243,\\n      \\\"delta_sentlen_se\\\": 0.02994271014734113,\\n      \\\"delta_sentlen_t\\\": 13.232216616123743,\\n      \\\"delta_sentlen_p\\\": 5.144492462991092e-29,\\n      \\\"intercept\\\": -0.33790376694611035,\\n      \\\"r2\\\": 0.5268642445259946,\\n      \\\"adj_r2\\\": 0.5220608358409793\\n    },\\n    \\\"coef_reduction_pct\\\": 68.06479476694396\\n  },\\n  \\\"correlation\\\": {\\n    \\\"delta_sentlen_vs_delta_fk\\\": {\\n      \\\"verbosity_passed\\\": {\\n        \\\"r\\\": 0.850153302695596,\\n        \\\"p\\\": 4.0457549573469937e-25,\\n        \\\"n\\\": 86\\n      },\\n      \\\"formality_passed\\\": {\\n        \\\"r\\\": 0.43246826478167244,\\n        \\\"p\\\": 2.5785503063431604e-05,\\n        \\\"n\\\": 88\\n      },\\n      \\\"pooled_passed\\\": {\\n        \\\"r\\\": 0.7292270349667558,\\n        \\\"p\\\": 3.7830337629862035e-30,\\n        \\\"n\\\": 174\\n      }\\n    }\\n  },\\n  \\\"descriptive\\\": {\\n    \\\"verbosity\\\": {\\n      \\\"n\\\": 86,\\n      \\\"delta_fk_mean\\\": 2.2598892513133677,\\n      \\\"delta_fk_sd\\\": 4.5088864344653645,\\n      \\\"delta_fk_d\\\": 0.5012078445886453,\\n      \\\"delta_sentlen_mean\\\": 4.105555724621923,\\n      \\\"delta_sentlen_sd\\\": 10.302512953390076,\\n      \\\"delta_sentlen_d\\\": 0.3985004186062175,\\n      \\\"delta_words_mean\\\": 5.337209302325581,\\n      \\\"delta_words_d\\\": 0.04816655530338499\\n    },\\n    \\\"formality\\\": {\\n      \\\"n\\\": 88,\\n      \\\"delta_fk_mean\\\": -0.42830396929336234,\\n      \\\"delta_fk_sd\\\": 3.564931597618777,\\n      \\\"delta_fk_d\\\": -0.1201436710817821,\\n      \\\"delta_sentlen_mean\\\": -0.08685486262378304,\\n      \\\"delta_sentlen_sd\\\": 2.0585391929277925,\\n      \\\"delta_sentlen_d\\\": -0.04219247460635046,\\n      \\\"delta_words_mean\\\": -2.772727272727273,\\n      \\\"delta_words_d\\\": -0.1486105811015432\\n    }\\n  },\\n  \\\"regression\\\": {\\n    \\\"n_total\\\": 174,\\n    \\\"n_verbosity\\\": 86,\\n    \\\"n_formality\\\": 88,\\n    \\\"model1_no_control\\\": {\\n      \\\"style_axis_coef\\\": 2.6881932206067303,\\n      \\\"style_axis_se\\\": 0.615457292474457,\\n      \\\"style_axis_t\\\": 4.367798145341331,\\n      \\\"style_axis_p\\\": 2.1632940865440007e-05,\\n      \\\"intercept\\\": -0.42830396929336245,\\n      \\\"r2\\\": 0.09984244403402787,\\n      \\\"adj_r2\\\": 0.09460896987143497\\n    },\\n    \\\"model2_length_controlled\\\": {\\n      \\\"style_axis_coef\\\": 1.0662987483638702,\\n      \\\"style_axis_se\\\": 0.4557056488069529,\\n      \\\"style_axis_t\\\": 2.339884860228226,\\n      \\\"style_axis_p\\\": 0.020444389073796275,\\n      \\\"delta_sentlen_coef\\\": 0.3868644157080043,\\n      \\\"delta_sentlen_se\\\": 0.02982334471019632,\\n      \\\"delta_sentlen_t\\\": 12.97186547878176,\\n      \\\"delta_sentlen_p\\\": 3.1201087723766178e-27,\\n      \\\"intercept\\\": -0.3947029136130145,\\n      \\\"r2\\\": 0.5462986341747793,\\n      \\\"adj_r2\\\": 0.5409921854516773\\n    },\\n    \\\"coef_reduction_pct\\\": 60.33399905222569\\n  },\\n  \\\"conclusion\\\": \\\"FK cross-axis contamination IS explained by sentence-length changes: the verbosity-vs-formality contrast in delta-FK shrinks from beta=2.69 (p=2.16e-05) to beta=1.07 (p=0.0204) once delta sentence length is controlled \\\\u2014 a 60% reduction.\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "cf792aa8-11d9-4a14-96b7-94f67489ec32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"descriptive_passed_only\\\\\\\": {\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 86,\\\\n      \\\\\\\"delta_fk_mean\\\\\\\": 2.2598892513133677,\\\\n      \\\\\\\"delta_fk_sd\\\\\\\": 4.5088864344653645,\\\\n      \\\\\\\"delta_fk_d\\\\\\\": 0.5012078445886453,\\\\n      \\\\\\\"delta_sentlen_mean\\\\\\\": 4.105555724621923,\\\\n      \\\\\\\"delta_sentlen_sd\\\\\\\": 10.302512953390076,\\\\n      \\\\\\\"delta_sentlen_d\\\\\\\": 0.3985004186062175,\\\\n      \\\\\\\"delta_words_mean\\\\\\\": 5.337209302325581,\\\\n      \\\\\\\"delta_words_d\\\\\\\": 0.04816655530338499\\\\n    },\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 88,\\\\n      \\\\\\\"delta_fk_mean\\\\\\\": -0.42830396929336234,\\\\n      \\\\\\\"delta_fk_sd\\\\\\\": 3.564931597618777,\\\\n      \\\\\\\"delta_fk_d\\\\\\\": -0.1201436710817821,\\\\n      \\\\\\\"delta_sentlen_mean\\\\\\\": -0.08685486262378304,\\\\n      \\\\\\\"delta_sentlen_sd\\\\\\\": 2.0585391929277925,\\\\n      \\\\\\\"delta_sentlen_d\\\\\\\": -0.04219247460635046,\\\\n      \\\\\\\"delta_words_mean\\\\\\\": -2.772727272727273,\\\\n      \\\\\\\"delta_words_d\\\\\\\": -0.1486105811015432\\\\n    }\\\\n  },\\\\n  \\\\\\\"descriptive_all_pairs\\\\\\\": {\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 100,\\\\n      \\\\\\\"delta_fk_mean\\\\\\\": 2.7022940908769972,\\\\n      \\\\\\\"delta_fk_sd\\\\\\\": 5.009767609054633,\\\\n      \\\\\\\"delta_fk_d\\\\\\\": 0.5394050785894504,\\\\n      \\\\\\\"delta_sentlen_mean\\\\\\\": 5.251900907678273,\\\\n      \\\\\\\"delta_sentlen_sd\\\\\\\": 10.445420705881919,\\\\n      \\\\\\\"delta_sentlen_d\\\\\\\": 0.5027945791327367,\\\\n      \\\\\\\"delta_words_mean\\\\\\\": 19.94,\\\\n      \\\\\\\"delta_words_d\\\\\\\": 0.16440882820697783\\\\n    },\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 100,\\\\n      \\\\\\\"delta_fk_mean\\\\\\\": -0.30175881806286303,\\\\n      \\\\\\\"delta_fk_sd\\\\\\\": 3.6334750966604155,\\\\n      \\\\\\\"delta_fk_d\\\\\\\": -0.08304964532169612,\\\\n      \\\\\\\"delta_sentlen_mean\\\\\\\": 0.09122710786425108,\\\\n      \\\\\\\"delta_sentlen_sd\\\\\\\": 2.3873617101542193,\\\\n      \\\\\\\"delta_sentlen_d\\\\\\\": 0.03821252032158879,\\\\n      \\\\\\\"delta_words_mean\\\\\\\": -2.77,\\\\n      \\\\\\\"delta_words_d\\\\\\\": -0.12725240303608568\\\\n    }\\\\n  },\\\\n  \\\\\\\"regression_passed_only\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 174,\\\\n    \\\\\\\"n_verbosity\\\\\\\": 86,\\\\n    \\\\\\\"n_formality\\\\\\\": 88,\\\\n    \\\\\\\"model1_no_control\\\\\\\": {\\\\n      \\\\\\\"style_axis_coef\\\\\\\": 2.6881932206067303,\\\\n      \\\\\\\"style_axis_se\\\\\\\": 0.615457292474457,\\\\n      \\\\\\\"style_axis_t\\\\\\\": 4.367798145341331,\\\\n      \\\\\\\"style_axis_p\\\\\\\": 2.1632940865440007e-05,\\\\n      \\\\\\\"intercept\\\\\\\": -0.42830396929336245,\\\\n      \\\\\\\"r2\\\\\\\": 0.09984244403402787,\\\\n      \\\\\\\"adj_r2\\\\\\\": 0.09460896987143497\\\\n    },\\\\n    \\\\\\\"model2_length_controlled\\\\\\\": {\\\\n      \\\\\\\"style_axis_coef\\\\\\\": 1.0662987483638702,\\\\n      \\\\\\\"style_axis_se\\\\\\\": 0.4557056488069529,\\\\n      \\\\\\\"style_axis_t\\\\\\\": 2.339884860228226,\\\\n      \\\\\\\"style_axis_p\\\\\\\": 0.020444389073796275,\\\\n      \\\\\\\"delta_sentlen_coef\\\\\\\": 0.3868644157080043,\\\\n      \\\\\\\"delta_sentlen_se\\\\\\\": 0.02982334471019632,\\\\n      \\\\\\\"delta_sentlen_t\\\\\\\": 12.97186547878176,\\\\n      \\\\\\\"delta_sentlen_p\\\\\\\": 3.1201087723766178e-27,\\\\n      \\\\\\\"intercept\\\\\\\": -0.3947029136130145,\\\\n      \\\\\\\"r2\\\\\\\": 0.5462986341747793,\\\\n      \\\\\\\"adj_r2\\\\\\\": 0.5409921854516773\\\\n    },\\\\n    \\\\\\\"coef_reduction_pct\\\\\\\": 60.33399905222569\\\\n  },\\\\n  \\\\\\\"mediation_passed_only\\\\\\\": {\\\\n    \\\\\\\"a_X_to_M\\\\\\\": 4.192410587245707,\\\\n    \\\\\\\"b_M_to_Y_given_X\\\\\\\": 0.3868644157080043,\\\\n    \\\\\\\"c_total_X_to_Y\\\\\\\": 2.6881932206067303,\\\\n    \\\\\\\"c_prime_direct\\\\\\\": 1.0662987483638702,\\\\n    \\\\\\\"indirect_ab\\\\\\\": 1.6218944722428614,\\\\n    \\\\\\\"sobel_se\\\\\\\": 0.4511123767398789,\\\\n    \\\\\\\"sobel_z\\\\\\\": 3.595322486968875,\\\\n    \\\\\\\"sobel_p\\\\\\\": 0.0003239899857199191,\\\\n    \\\\\\\"proportion_mediated\\\\\\\": 0.6033399905222575\\\\n  },\\\\n  \\\\\\\"regression_all_pairs\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 200,\\\\n    \\\\\\\"n_verbosity\\\\\\\": 100,\\\\n    \\\\\\\"n_formality\\\\\\\": 100,\\\\n    \\\\\\\"model1_no_control\\\\\\\": {\\\\n      \\\\\\\"style_axis_coef\\\\\\\": 3.00405290893986,\\\\n      \\\\\\\"style_axis_se\\\\\\\": 0.6188692331566038,\\\\n      \\\\\\\"style_axis_t\\\\\\\": 4.8540996191027155,\\\\n      \\\\\\\"style_axis_p\\\\\\\": 2.4479917605657645e-06,\\\\n      \\\\\\\"intercept\\\\\\\": -0.301758818062864,\\\\n      \\\\\\\"r2\\\\\\\": 0.1063460927609412,\\\\n      \\\\\\\"adj_r2\\\\\\\": 0.10183268918902688\\\\n    },\\\\n    \\\\\\\"model2_length_controlled\\\\\\\": {\\\\n      \\\\\\\"style_axis_coef\\\\\\\": 0.9593504617795345,\\\\n      \\\\\\\"style_axis_se\\\\\\\": 0.4771604067345567,\\\\n      \\\\\\\"style_axis_t\\\\\\\": 2.010540791397261,\\\\n      \\\\\\\"style_axis_p\\\\\\\": 0.04573751956720498,\\\\n      \\\\\\\"delta_sentlen_coef\\\\\\\": 0.3962084267434243,\\\\n      \\\\\\\"delta_sentlen_se\\\\\\\": 0.02994271014734113,\\\\n      \\\\\\\"delta_sentlen_t\\\\\\\": 13.232216616123743,\\\\n      \\\\\\\"delta_sentlen_p\\\\\\\": 5.144492462991092e-29,\\\\n      \\\\\\\"intercept\\\\\\\": -0.33790376694611035,\\\\n      \\\\\\\"r2\\\\\\\": 0.5268642445259946,\\\\n      \\\\\\\"adj_r2\\\\\\\": 0.5220608358409793\\\\n    },\\\\n    \\\\\\\"coef_reduction_pct\\\\\\\": 68.06479476694396\\\\n  },\\\\n  \\\\\\\"correlation\\\\\\\": {\\\\n    \\\\\\\"delta_sentlen_vs_delta_fk\\\\\\\": {\\\\n      \\\\\\\"verbosity_passed\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": 0.850153302695596,\\\\n        \\\\\\\"p\\\\\\\": 4.0457549573469937e-25,\\\\n        \\\\\\\"n\\\\\\\": 86\\\\n      },\\\\n      \\\\\\\"formality_passed\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": 0.43246826478167244,\\\\n        \\\\\\\"p\\\\\\\": 2.5785503063431604e-05,\\\\n        \\\\\\\"n\\\\\\\": 88\\\\n      },\\\\n      \\\\\\\"pooled_passed\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": 0.7292270349667558,\\\\n        \\\\\\\"p\\\\\\\": 3.7830337629862035e-30,\\\\n        \\\\\\\"n\\\\\\\": 174\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"descriptive\\\\\\\": {\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 86,\\\\n      \\\\\\\"delta_fk_mean\\\\\\\": 2.2598892513133677,\\\\n      \\\\\\\"delta_fk_sd\\\\\\\": 4.5088864344653645,\\\\n      \\\\\\\"delta_fk_d\\\\\\\": 0.5012078445886453,\\\\n      \\\\\\\"delta_sentlen_mean\\\\\\\": 4.105555724621923,\\\\n      \\\\\\\"delta_sentlen_sd\\\\\\\": 10.302512953390076,\\\\n      \\\\\\\"delta_sentlen_d\\\\\\\": 0.3985004186062175,\\\\n      \\\\\\\"delta_words_mean\\\\\\\": 5.337209302325581,\\\\n      \\\\\\\"delta_words_d\\\\\\\": 0.04816655530338499\\\\n    },\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 88,\\\\n      \\\\\\\"delta_fk_mean\\\\\\\": -0.42830396929336234,\\\\n      \\\\\\\"delta_fk_sd\\\\\\\": 3.564931597618777,\\\\n      \\\\\\\"delta_fk_d\\\\\\\": -0.1201436710817821,\\\\n      \\\\\\\"delta_sentlen_mean\\\\\\\": -0.08685486262378304,\\\\n      \\\\\\\"delta_sentlen_sd\\\\\\\": 2.0585391929277925,\\\\n      \\\\\\\"delta_sentlen_d\\\\\\\": -0.04219247460635046,\\\\n      \\\\\\\"delta_words_mean\\\\\\\": -2.772727272727273,\\\\n      \\\\\\\"delta_words_d\\\\\\\": -0.1486105811015432\\\\n    }\\\\n  },\\\\n  \\\\\\\"regression\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 174,\\\\n    \\\\\\\"n_verbosity\\\\\\\": 86,\\\\n    \\\\\\\"n_formality\\\\\\\": 88,\\\\n    \\\\\\\"model1_no_control\\\\\\\": {\\\\n      \\\\\\\"style_axis_coef\\\\\\\": 2.6881932206067303,\\\\n      \\\\\\\"style_axis_se\\\\\\\": 0.615457292474457,\\\\n      \\\\\\\"style_axis_t\\\\\\\": 4.367798145341331,\\\\n      \\\\\\\"style_axis_p\\\\\\\": 2.1632940865440007e-05,\\\\n      \\\\\\\"intercept\\\\\\\": -0.42830396929336245,\\\\n      \\\\\\\"r2\\\\\\\": 0.09984244403402787,\\\\n      \\\\\\\"adj_r2\\\\\\\": 0.09460896987143497\\\\n    },\\\\n    \\\\\\\"model2_length_controlled\\\\\\\": {\\\\n      \\\\\\\"style_axis_coef\\\\\\\": 1.0662987483638702,\\\\n      \\\\\\\"style_axis_se\\\\\\\": 0.4557056488069529,\\\\n      \\\\\\\"style_axis_t\\\\\\\": 2.339884860228226,\\\\n      \\\\\\\"style_axis_p\\\\\\\": 0.020444389073796275,\\\\n      \\\\\\\"delta_sentlen_coef\\\\\\\": 0.3868644157080043,\\\\n      \\\\\\\"delta_sentlen_se\\\\\\\": 0.02982334471019632,\\\\n      \\\\\\\"delta_sentlen_t\\\\\\\": 12.97186547878176,\\\\n      \\\\\\\"delta_sentlen_p\\\\\\\": 3.1201087723766178e-27,\\\\n      \\\\\\\"intercept\\\\\\\": -0.3947029136130145,\\\\n      \\\\\\\"r2\\\\\\\": 0.5462986341747793,\\\\n      \\\\\\\"adj_r2\\\\\\\": 0.5409921854516773\\\\n    },\\\\n    \\\\\\\"coef_reduction_pct\\\\\\\": 60.33399905222569\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"FK cross-axis contamination IS explained by sentence-length changes: the verbosity-vs-formality contrast in delta-FK shrinks from beta=2.69 (p=2.16e-05) to beta=1.07 (p=0.0204) once delta sentence length is controlled \\\\\\\\u2014 a 60% reduction.\\\\\\\"\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"descriptive_passed_only\\\": {\\n    \\\"verbosity\\\": {\\n      \\\"n\\\": 86,\\n      \\\"delta_fk_mean\\\": 2.2598892513133677,\\n      \\\"delta_fk_sd\\\": 4.5088864344653645,\\n      \\\"delta_fk_d\\\": 0.5012078445886453,\\n      \\\"delta_sentlen_mean\\\": 4.105555724621923,\\n      \\\"delta_sentlen_sd\\\": 10.302512953390076,\\n      \\\"delta_sentlen_d\\\": 0.3985004186062175,\\n      \\\"delta_words_mean\\\": 5.337209302325581,\\n      \\\"delta_words_d\\\": 0.04816655530338499\\n    },\\n    \\\"formality\\\": {\\n      \\\"n\\\": 88,\\n      \\\"delta_fk_mean\\\": -0.42830396929336234,\\n      \\\"delta_fk_sd\\\": 3.564931597618777,\\n      \\\"delta_fk_d\\\": -0.1201436710817821,\\n      \\\"delta_sentlen_mean\\\": -0.08685486262378304,\\n      \\\"delta_sentlen_sd\\\": 2.0585391929277925,\\n      \\\"delta_sentlen_d\\\": -0.04219247460635046,\\n      \\\"delta_words_mean\\\": -2.772727272727273,\\n      \\\"delta_words_d\\\": -0.1486105811015432\\n    }\\n  },\\n  \\\"descriptive_all_pairs\\\": {\\n    \\\"verbosity\\\": {\\n      \\\"n\\\": 100,\\n      \\\"delta_fk_mean\\\": 2.7022940908769972,\\n      \\\"delta_fk_sd\\\": 5.009767609054633,\\n      \\\"delta_fk_d\\\": 0.5394050785894504,\\n      \\\"delta_sentlen_mean\\\": 5.251900907678273,\\n      \\\"delta_sentlen_sd\\\": 10.445420705881919,\\n      \\\"delta_sentlen_d\\\": 0.5027945791327367,\\n      \\\"delta_words_mean\\\": 19.94,\\n      \\\"delta_words_d\\\": 0.16440882820697783\\n    },\\n    \\\"formality\\\": {\\n      \\\"n\\\": 100,\\n      \\\"delta_fk_mean\\\": -0.30175881806286303,\\n      \\\"delta_fk_sd\\\": 3.6334750966604155,\\n      \\\"delta_fk_d\\\": -0.08304964532169612,\\n      \\\"delta_sentlen_mean\\\": 0.09122710786425108,\\n      \\\"delta_sentlen_sd\\\": 2.3873617101542193,\\n      \\\"delta_sentlen_d\\\": 0.03821252032158879,\\n      \\\"delta_words_mean\\\": -2.77,\\n      \\\"delta_words_d\\\": -0.12725240303608568\\n    }\\n  },\\n  \\\"regression_passed_only\\\": {\\n    \\\"n_total\\\": 174,\\n    \\\"n_verbosity\\\": 86,\\n    \\\"n_formality\\\": 88,\\n    \\\"model1_no_control\\\": {\\n      \\\"style_axis_coef\\\": 2.6881932206067303,\\n      \\\"style_axis_se\\\": 0.615457292474457,\\n      \\\"style_axis_t\\\": 4.367798145341331,\\n      \\\"style_axis_p\\\": 2.1632940865440007e-05,\\n      \\\"intercept\\\": -0.42830396929336245,\\n      \\\"r2\\\": 0.09984244403402787,\\n      \\\"adj_r2\\\": 0.09460896987143497\\n    },\\n    \\\"model2_length_controlled\\\": {\\n      \\\"style_axis_coef\\\": 1.0662987483638702,\\n      \\\"style_axis_se\\\": 0.4557056488069529,\\n      \\\"style_axis_t\\\": 2.339884860228226,\\n      \\\"style_axis_p\\\": 0.020444389073796275,\\n      \\\"delta_sentlen_coef\\\": 0.3868644157080043,\\n      \\\"delta_sentlen_se\\\": 0.02982334471019632,\\n      \\\"delta_sentlen_t\\\": 12.97186547878176,\\n      \\\"delta_sentlen_p\\\": 3.1201087723766178e-27,\\n      \\\"intercept\\\": -0.3947029136130145,\\n      \\\"r2\\\": 0.5462986341747793,\\n      \\\"adj_r2\\\": 0.5409921854516773\\n    },\\n    \\\"coef_reduction_pct\\\": 60.33399905222569\\n  },\\n  \\\"mediation_passed_only\\\": {\\n    \\\"a_X_to_M\\\": 4.192410587245707,\\n    \\\"b_M_to_Y_given_X\\\": 0.3868644157080043,\\n    \\\"c_total_X_to_Y\\\": 2.6881932206067303,\\n    \\\"c_prime_direct\\\": 1.0662987483638702,\\n    \\\"indirect_ab\\\": 1.6218944722428614,\\n    \\\"sobel_se\\\": 0.4511123767398789,\\n    \\\"sobel_z\\\": 3.595322486968875,\\n    \\\"sobel_p\\\": 0.0003239899857199191,\\n    \\\"proportion_mediated\\\": 0.6033399905222575\\n  },\\n  \\\"regression_all_pairs\\\": {\\n    \\\"n_total\\\": 200,\\n    \\\"n_verbosity\\\": 100,\\n    \\\"n_formality\\\": 100,\\n    \\\"model1_no_control\\\": {\\n      \\\"style_axis_coef\\\": 3.00405290893986,\\n      \\\"style_axis_se\\\": 0.6188692331566038,\\n      \\\"style_axis_t\\\": 4.8540996191027155,\\n      \\\"style_axis_p\\\": 2.4479917605657645e-06,\\n      \\\"intercept\\\": -0.301758818062864,\\n      \\\"r2\\\": 0.1063460927609412,\\n      \\\"adj_r2\\\": 0.10183268918902688\\n    },\\n    \\\"model2_length_controlled\\\": {\\n      \\\"style_axis_coef\\\": 0.9593504617795345,\\n      \\\"style_axis_se\\\": 0.4771604067345567,\\n      \\\"style_axis_t\\\": 2.010540791397261,\\n      \\\"style_axis_p\\\": 0.04573751956720498,\\n      \\\"delta_sentlen_coef\\\": 0.3962084267434243,\\n      \\\"delta_sentlen_se\\\": 0.02994271014734113,\\n      \\\"delta_sentlen_t\\\": 13.232216616123743,\\n      \\\"delta_sentlen_p\\\": 5.144492462991092e-29,\\n      \\\"intercept\\\": -0.33790376694611035,\\n      \\\"r2\\\": 0.5268642445259946,\\n      \\\"adj_r2\\\": 0.5220608358409793\\n    },\\n    \\\"coef_reduction_pct\\\": 68.06479476694396\\n  },\\n  \\\"correlation\\\": {\\n    \\\"delta_sentlen_vs_delta_fk\\\": {\\n      \\\"verbosity_passed\\\": {\\n        \\\"r\\\": 0.850153302695596,\\n        \\\"p\\\": 4.0457549573469937e-25,\\n        \\\"n\\\": 86\\n      },\\n      \\\"formality_passed\\\": {\\n        \\\"r\\\": 0.43246826478167244,\\n        \\\"p\\\": 2.5785503063431604e-05,\\n        \\\"n\\\": 88\\n      },\\n      \\\"pooled_passed\\\": {\\n        \\\"r\\\": 0.7292270349667558,\\n        \\\"p\\\": 3.7830337629862035e-30,\\n        \\\"n\\\": 174\\n      }\\n    }\\n  },\\n  \\\"descriptive\\\": {\\n    \\\"verbosity\\\": {\\n      \\\"n\\\": 86,\\n      \\\"delta_fk_mean\\\": 2.2598892513133677,\\n      \\\"delta_fk_sd\\\": 4.5088864344653645,\\n      \\\"delta_fk_d\\\": 0.5012078445886453,\\n      \\\"delta_sentlen_mean\\\": 4.105555724621923,\\n      \\\"delta_sentlen_sd\\\": 10.302512953390076,\\n      \\\"delta_sentlen_d\\\": 0.3985004186062175,\\n      \\\"delta_words_mean\\\": 5.337209302325581,\\n      \\\"delta_words_d\\\": 0.04816655530338499\\n    },\\n    \\\"formality\\\": {\\n      \\\"n\\\": 88,\\n      \\\"delta_fk_mean\\\": -0.42830396929336234,\\n      \\\"delta_fk_sd\\\": 3.564931597618777,\\n      \\\"delta_fk_d\\\": -0.1201436710817821,\\n      \\\"delta_sentlen_mean\\\": -0.08685486262378304,\\n      \\\"delta_sentlen_sd\\\": 2.0585391929277925,\\n      \\\"delta_sentlen_d\\\": -0.04219247460635046,\\n      \\\"delta_words_mean\\\": -2.772727272727273,\\n      \\\"delta_words_d\\\": -0.1486105811015432\\n    }\\n  },\\n  \\\"regression\\\": {\\n    \\\"n_total\\\": 174,\\n    \\\"n_verbosity\\\": 86,\\n    \\\"n_formality\\\": 88,\\n    \\\"model1_no_control\\\": {\\n      \\\"style_axis_coef\\\": 2.6881932206067303,\\n      \\\"style_axis_se\\\": 0.615457292474457,\\n      \\\"style_axis_t\\\": 4.367798145341331,\\n      \\\"style_axis_p\\\": 2.1632940865440007e-05,\\n      \\\"intercept\\\": -0.42830396929336245,\\n      \\\"r2\\\": 0.09984244403402787,\\n      \\\"adj_r2\\\": 0.09460896987143497\\n    },\\n    \\\"model2_length_controlled\\\": {\\n      \\\"style_axis_coef\\\": 1.0662987483638702,\\n      \\\"style_axis_se\\\": 0.4557056488069529,\\n      \\\"style_axis_t\\\": 2.339884860228226,\\n      \\\"style_axis_p\\\": 0.020444389073796275,\\n      \\\"delta_sentlen_coef\\\": 0.3868644157080043,\\n      \\\"delta_sentlen_se\\\": 0.02982334471019632,\\n      \\\"delta_sentlen_t\\\": 12.97186547878176,\\n      \\\"delta_sentlen_p\\\": 3.1201087723766178e-27,\\n      \\\"intercept\\\": -0.3947029136130145,\\n      \\\"r2\\\": 0.5462986341747793,\\n      \\\"adj_r2\\\": 0.5409921854516773\\n    },\\n    \\\"coef_reduction_pct\\\": 60.33399905222569\\n  },\\n  \\\"conclusion\\\": \\\"FK cross-axis contamination IS explained by sentence-length changes: the verbosity-vs-formality contrast in delta-FK shrinks from beta=2.69 (p=2.16e-05) to beta=1.07 (p=0.0204) once delta sentence length is controlled \\\\u2014 a 60% reduction.\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 126 · 2026-05-25T19:52:24.647Z_
+
+<details><summary>↩ Tool result · `toolu_01CyKEoX8ksPmu4bvkHKtzkU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"debiased_verbosity_gpt4o\\\",\\n  \\\"axis\\\": \\\"verbosity\\\",\\n  \\\"judge\\\": \\\"GPT-4o\\\",\\n  \\\"n_pairs\\\": 86,\\n  \\\"original\\\": {\\n    \\\"p_verbose\\\": 76.0,\\n    \\\"ci\\\": [\\n      69.7,\\n      83.5\\n    ],\\n    \\\"p_value\\\": 0.0001\\n  },\\n  \\\"debiased\\\": {\\n    \\\"p_verbose\\\": 62.9,\\n    \\\"ci_lo\\\": 54.5,\\n    \\\"ci_hi\\\": 70.9,\\n    \\\"p_value\\\": 0.0016,\\n    \\\"n_pairs\\\": 86,\\n    \\\"n_comparisons\\\": 167\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "ebe32ddd-b7b0-44aa-8690-6033bbcbf1c5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"debiased_verbosity_gpt4o\\\\\\\",\\\\n  \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n  \\\\\\\"judge\\\\\\\": \\\\\\\"GPT-4o\\\\\\\",\\\\n  \\\\\\\"n_pairs\\\\\\\": 86,\\\\n  \\\\\\\"original\\\\\\\": {\\\\n    \\\\\\\"p_verbose\\\\\\\": 76.0,\\\\n    \\\\\\\"ci\\\\\\\": [\\\\n      69.7,\\\\n      83.5\\\\n    ],\\\\n    \\\\\\\"p_value\\\\\\\": 0.0001\\\\n  },\\\\n  \\\\\\\"debiased\\\\\\\": {\\\\n    \\\\\\\"p_verbose\\\\\\\": 62.9,\\\\n    \\\\\\\"ci_lo\\\\\\\": 54.5,\\\\n    \\\\\\\"ci_hi\\\\\\\": 70.9,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0016,\\\\n    \\\\\\\"n_pairs\\\\\\\": 86,\\\\n    \\\\\\\"n_comparisons\\\\\\\": 167\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"debiased_verbosity_gpt4o\\\",\\n  \\\"axis\\\": \\\"verbosity\\\",\\n  \\\"judge\\\": \\\"GPT-4o\\\",\\n  \\\"n_pairs\\\": 86,\\n  \\\"original\\\": {\\n    \\\"p_verbose\\\": 76.0,\\n    \\\"ci\\\": [\\n      69.7,\\n      83.5\\n    ],\\n    \\\"p_value\\\": 0.0001\\n  },\\n  \\\"debiased\\\": {\\n    \\\"p_verbose\\\": 62.9,\\n    \\\"ci_lo\\\": 54.5,\\n    \\\"ci_hi\\\": 70.9,\\n    \\\"p_value\\\": 0.0016,\\n    \\\"n_pairs\\\": 86,\\n    \\\"n_comparisons\\\": 167\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 127_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TM4jhaDoRZ7yvytgC7djoq`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/nli_gate_ablation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "5d86d7af-6b23-4313-8dad-b6f6331c4430",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YCr1a8E52oLVDFq3aVnNUg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9164,
+      "cache_read_input_tokens": 47111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9164
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 128 · 2026-05-25T19:52:25.578Z_
+
+<details><summary>↩ Tool result · `toolu_01TM4jhaDoRZ7yvytgC7djoq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"formality\\\": {\\n    \\\"nli_pass\\\": {\\n      \\\"n\\\": 88,\\n      \\\"bt\\\": 0.6647,\\n      \\\"ci\\\": [\\n        0.5852,\\n        0.7386\\n      ],\\n      \\\"p\\\": 0.0001\\n    },\\n    \\\"nli_fail\\\": {\\n      \\\"n\\\": 12,\\n      \\\"bt\\\": 0.4168,\\n      \\\"ci\\\": [\\n        0.1672,\\n        0.6664\\n      ],\\n      \\\"p\\\": 0.6868\\n    },\\n    \\\"all\\\": {\\n      \\\"n\\\": 100,\\n      \\\"bt\\\": 0.635,\\n      \\\"ci\\\": [\\n        0.56,\\n        0.705\\n      ],\\n      \\\"p\\\": 0.0004\\n    }\\n  },\\n  \\\"verbosity\\\": {\\n    \\\"nli_pass\\\": {\\n      \\\"n\\\": 86,\\n      \\\"bt\\\": 0.7732,\\n      \\\"ci\\\": [\\n        0.7034,\\n        0.8429\\n      ],\\n      \\\"p\\\": 0.0001\\n    },\\n    \\\"nli_fail\\\": {\\n      \\\"n\\\": 14,\\n      \\\"bt\\\": 0.7496,\\n      \\\"ci\\\": [\\n        0.5357,\\n        0.928\\n      ],\\n      \\\"p\\\": 0.0057\\n    },\\n    \\\"all\\\": {\\n      \\\"n\\\": 100,\\n      \\\"bt\\\": 0.7699,\\n      \\\"ci\\\": [\\n        0.7,\\n        0.8349\\n      ],\\n      \\\"p\\\": 0.0001\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "35a3663f-5307-45da-a846-69f7a65ffc92",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"formality\\\\\\\": {\\\\n    \\\\\\\"nli_pass\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 88,\\\\n      \\\\\\\"bt\\\\\\\": 0.6647,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.5852,\\\\n        0.7386\\\\n      ],\\\\n      \\\\\\\"p\\\\\\\": 0.0001\\\\n    },\\\\n    \\\\\\\"nli_fail\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 12,\\\\n      \\\\\\\"bt\\\\\\\": 0.4168,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.1672,\\\\n        0.6664\\\\n      ],\\\\n      \\\\\\\"p\\\\\\\": 0.6868\\\\n    },\\\\n    \\\\\\\"all\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 100,\\\\n      \\\\\\\"bt\\\\\\\": 0.635,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.56,\\\\n        0.705\\\\n      ],\\\\n      \\\\\\\"p\\\\\\\": 0.0004\\\\n    }\\\\n  },\\\\n  \\\\\\\"verbosity\\\\\\\": {\\\\n    \\\\\\\"nli_pass\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 86,\\\\n      \\\\\\\"bt\\\\\\\": 0.7732,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7034,\\\\n        0.8429\\\\n      ],\\\\n      \\\\\\\"p\\\\\\\": 0.0001\\\\n    },\\\\n    \\\\\\\"nli_fail\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 14,\\\\n      \\\\\\\"bt\\\\\\\": 0.7496,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.5357,\\\\n        0.928\\\\n      ],\\\\n      \\\\\\\"p\\\\\\\": 0.0057\\\\n    },\\\\n    \\\\\\\"all\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 100,\\\\n      \\\\\\\"bt\\\\\\\": 0.7699,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7,\\\\n        0.8349\\\\n      ],\\\\n      \\\\\\\"p\\\\\\\": 0.0001\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"formality\\\": {\\n    \\\"nli_pass\\\": {\\n      \\\"n\\\": 88,\\n      \\\"bt\\\": 0.6647,\\n      \\\"ci\\\": [\\n        0.5852,\\n        0.7386\\n      ],\\n      \\\"p\\\": 0.0001\\n    },\\n    \\\"nli_fail\\\": {\\n      \\\"n\\\": 12,\\n      \\\"bt\\\": 0.4168,\\n      \\\"ci\\\": [\\n        0.1672,\\n        0.6664\\n      ],\\n      \\\"p\\\": 0.6868\\n    },\\n    \\\"all\\\": {\\n      \\\"n\\\": 100,\\n      \\\"bt\\\": 0.635,\\n      \\\"ci\\\": [\\n        0.56,\\n        0.705\\n      ],\\n      \\\"p\\\": 0.0004\\n    }\\n  },\\n  \\\"verbosity\\\": {\\n    \\\"nli_pass\\\": {\\n      \\\"n\\\": 86,\\n      \\\"bt\\\": 0.7732,\\n      \\\"ci\\\": [\\n        0.7034,\\n        0.8429\\n      ],\\n      \\\"p\\\": 0.0001\\n    },\\n    \\\"nli_fail\\\": {\\n      \\\"n\\\": 14,\\n      \\\"bt\\\": 0.7496,\\n      \\\"ci\\\": [\\n        0.5357,\\n        0.928\\n      ],\\n      \\\"p\\\": 0.0057\\n    },\\n    \\\"all\\\": {\\n      \\\"n\\\": 100,\\n      \\\"bt\\\": 0.7699,\\n      \\\"ci\\\": [\\n        0.7,\\n        0.8349\\n      ],\\n      \\\"p\\\": 0.0001\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 129_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have more data. Let me extract what I need:
+
+**From nli_gate_ablation.json (for Qwen3-32B):**
+- Formality NLI pass: bt=0.6647 → paper says .665 for Qwen3 Form ✓
+- Formality NLI pass: p=0.0001 → paper shows *** ✓
+- Formality NLI fail: bt=0.4168 → paper says NLI ablation reverses NLI-fail pairs (BT 41.7%) → 0.4168 rounds to 41.7% ✓
+
+
+- Verbosity NLI pass: bt=0.7732 → paper says .773 for Qwen3 Verb ✓
+- Verbosity NLI pass: p=0.0001 → paper shows *** ✓
+
+So Qwen3-32B BT values are confirmed.
+
+**From cross_axis_gradient.json:**
+- formality: bt=0.665 → confirms Qwen3 Form BT ✓
+- verbosity: bt=0.773 → confirms Qwen3 Verb BT ✓
+- register: bt=0.553 → confirms Qwen3 Reg BT ✓
+
+Now checking the debiased verbosity results...
+
+GPT-4o's original verbosity sits at 76.0%, which matches the paper, and the debiased version drops to 62.9%—that's a 13.1 percentage point reduction that aligns with the paper's reported -13.1pp. The -5.2pp figure likely corresponds to formality debiasing, so I need to find that data. Looking at the sentence length mediation analysis, 60.33% of the FK cross-axis effect is explained by length changes, matching the paper's 60% claim.
+
+But there's a major discrepancy with the Sobel z-statistic: the source data shows z=3.595 with p=0.000324, while the paper reports z=2.15 with p=.031. These are completely different values—both the test statistic and p-value diverge significantly. I'm wondering if the paper's z=2.15 refers to a different analysis or if there's an error in how the mediation was calculated. I'm noticing a discrepancy—the paper reports a Sobel z of 2.15 with p = .031, but the source data shows the actual Sobel z should be 3.60 with p = .0003, which is a substantial difference. It looks like the direct-effect Style OR value of 2.15 may have been mistakenly used in place of the Sobel z statistic, and I need to verify which model's results are actually being cited since the reported total OR of 2.70 doesn't match the expected values either.
+
+I'm tracking down several missing pieces: the GPT-4o BT values across different dimensions, the Qwen3-32B replication results at n=355, the debiased formality data, the figure generation scripts, and the GEE analysis results for GPT-4o register to confirm whether there are similar p-value discrepancies elsewhere in the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "9c2053a3-35eb-436e-af4d-08997d3562ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G7ncQyok7PepgU8STgHem",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12166,
+      "cache_read_input_tokens": 56275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12166
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 130_
+
+Found major discrepancy in Sobel z values. Let me now get more BT source data and check for additional GEE files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "86dcad62-ede3-4d23-80d0-c840d13ac885",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G7ncQyok7PepgU8STgHem",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12166,
+      "cache_read_input_tokens": 56275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12166
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 131_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FqXcPmx5hpapYxdKmFmMnP`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/bt_model_diagnostics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "95a1df17-e825-476b-8944-6bb09a1fa869",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G7ncQyok7PepgU8STgHem",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12166,
+      "cache_read_input_tokens": 56275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12166
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 132 · 2026-05-25T19:53:00.424Z_
+
+<details><summary>↩ Tool result · `toolu_01FqXcPmx5hpapYxdKmFmMnP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"gof\\\": {\\n    \\\"formality\\\": {\\n      \\\"deviance\\\": 52.8047,\\n      \\\"df\\\": 45,\\n      \\\"p_value\\\": 0.197992,\\n      \\\"n_pairs\\\": 46,\\n      \\\"wins\\\": 34,\\n      \\\"bt_prob\\\": 0.7389\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"deviance\\\": 47.9573,\\n      \\\"df\\\": 62,\\n      \\\"p_value\\\": 0.904924,\\n      \\\"n_pairs\\\": 63,\\n      \\\"wins\\\": 55,\\n      \\\"bt_prob\\\": 0.8728\\n    }\\n  },\\n  \\\"stratified_bt\\\": {\\n    \\\"formality\\\": {\\n      \\\"orig_is_formal\\\": {\\n        \\\"n\\\": 27,\\n        \\\"bt\\\": 0.8889,\\n        \\\"ci\\\": [\\n          0.7778,\\n          1.0\\n        ],\\n        \\\"win_count\\\": 24,\\n        \\\"total\\\": 27\\n      },\\n      \\\"orig_is_casual\\\": {\\n        \\\"n\\\": 19,\\n        \\\"bt\\\": 0.5263,\\n        \\\"ci\\\": [\\n          0.3158,\\n          0.7368\\n        ],\\n        \\\"win_count\\\": 10,\\n        \\\"total\\\": 19\\n      },\\n      \\\"fisher_p\\\": 0.014644,\\n      \\\"chi2_p\\\": 0.005826\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"orig_is_verbose\\\": {\\n        \\\"n\\\": 29,\\n        \\\"bt\\\": 0.8276,\\n        \\\"ci\\\": [\\n          0.6897,\\n          0.9655\\n        ],\\n        \\\"win_count\\\": 24,\\n        \\\"total\\\": 29\\n      },\\n      \\\"orig_is_concise\\\": {\\n        \\\"n\\\": 34,\\n        \\\"bt\\\": 0.9118,\\n        \\\"ci\\\": [\\n          0.7941,\\n          1.0\\n        ],\\n        \\\"win_count\\\": 31,\\n        \\\"total\\\": 34\\n      },\\n      \\\"fisher_p\\\": 0.453064,\\n      \\\"chi2_p\\\": 0.317217\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "444c97dd-d4b4-43fb-9eca-125996db009c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"gof\\\\\\\": {\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n      \\\\\\\"deviance\\\\\\\": 52.8047,\\\\n      \\\\\\\"df\\\\\\\": 45,\\\\n      \\\\\\\"p_value\\\\\\\": 0.197992,\\\\n      \\\\\\\"n_pairs\\\\\\\": 46,\\\\n      \\\\\\\"wins\\\\\\\": 34,\\\\n      \\\\\\\"bt_prob\\\\\\\": 0.7389\\\\n    },\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n      \\\\\\\"deviance\\\\\\\": 47.9573,\\\\n      \\\\\\\"df\\\\\\\": 62,\\\\n      \\\\\\\"p_value\\\\\\\": 0.904924,\\\\n      \\\\\\\"n_pairs\\\\\\\": 63,\\\\n      \\\\\\\"wins\\\\\\\": 55,\\\\n      \\\\\\\"bt_prob\\\\\\\": 0.8728\\\\n    }\\\\n  },\\\\n  \\\\\\\"stratified_bt\\\\\\\": {\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n      \\\\\\\"orig_is_formal\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 27,\\\\n        \\\\\\\"bt\\\\\\\": 0.8889,\\\\n        \\\\\\\"ci\\\\\\\": [\\\\n          0.7778,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"win_count\\\\\\\": 24,\\\\n        \\\\\\\"total\\\\\\\": 27\\\\n      },\\\\n      \\\\\\\"orig_is_casual\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 19,\\\\n        \\\\\\\"bt\\\\\\\": 0.5263,\\\\n        \\\\\\\"ci\\\\\\\": [\\\\n          0.3158,\\\\n          0.7368\\\\n        ],\\\\n        \\\\\\\"win_count\\\\\\\": 10,\\\\n        \\\\\\\"total\\\\\\\": 19\\\\n      },\\\\n      \\\\\\\"fisher_p\\\\\\\": 0.014644,\\\\n      \\\\\\\"chi2_p\\\\\\\": 0.005826\\\\n    },\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n      \\\\\\\"orig_is_verbose\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 29,\\\\n        \\\\\\\"bt\\\\\\\": 0.8276,\\\\n        \\\\\\\"ci\\\\\\\": [\\\\n          0.6897,\\\\n          0.9655\\\\n        ],\\\\n        \\\\\\\"win_count\\\\\\\": 24,\\\\n        \\\\\\\"total\\\\\\\": 29\\\\n      },\\\\n      \\\\\\\"orig_is_concise\\\\\\\": {\\\\n        \\\\\\\"n\\\\\\\": 34,\\\\n        \\\\\\\"bt\\\\\\\": 0.9118,\\\\n        \\\\\\\"ci\\\\\\\": [\\\\n          0.7941,\\\\n          1.0\\\\n        ],\\\\n        \\\\\\\"win_count\\\\\\\": 31,\\\\n        \\\\\\\"total\\\\\\\": 34\\\\n      },\\\\n      \\\\\\\"fisher_p\\\\\\\": 0.453064,\\\\n      \\\\\\\"chi2_p\\\\\\\": 0.317217\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"gof\\\": {\\n    \\\"formality\\\": {\\n      \\\"deviance\\\": 52.8047,\\n      \\\"df\\\": 45,\\n      \\\"p_value\\\": 0.197992,\\n      \\\"n_pairs\\\": 46,\\n      \\\"wins\\\": 34,\\n      \\\"bt_prob\\\": 0.7389\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"deviance\\\": 47.9573,\\n      \\\"df\\\": 62,\\n      \\\"p_value\\\": 0.904924,\\n      \\\"n_pairs\\\": 63,\\n      \\\"wins\\\": 55,\\n      \\\"bt_prob\\\": 0.8728\\n    }\\n  },\\n  \\\"stratified_bt\\\": {\\n    \\\"formality\\\": {\\n      \\\"orig_is_formal\\\": {\\n        \\\"n\\\": 27,\\n        \\\"bt\\\": 0.8889,\\n        \\\"ci\\\": [\\n          0.7778,\\n          1.0\\n        ],\\n        \\\"win_count\\\": 24,\\n        \\\"total\\\": 27\\n      },\\n      \\\"orig_is_casual\\\": {\\n        \\\"n\\\": 19,\\n        \\\"bt\\\": 0.5263,\\n        \\\"ci\\\": [\\n          0.3158,\\n          0.7368\\n        ],\\n        \\\"win_count\\\": 10,\\n        \\\"total\\\": 19\\n      },\\n      \\\"fisher_p\\\": 0.014644,\\n      \\\"chi2_p\\\": 0.005826\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"orig_is_verbose\\\": {\\n        \\\"n\\\": 29,\\n        \\\"bt\\\": 0.8276,\\n        \\\"ci\\\": [\\n          0.6897,\\n          0.9655\\n        ],\\n        \\\"win_count\\\": 24,\\n        \\\"total\\\": 29\\n      },\\n      \\\"orig_is_concise\\\": {\\n        \\\"n\\\": 34,\\n        \\\"bt\\\": 0.9118,\\n        \\\"ci\\\": [\\n          0.7941,\\n          1.0\\n        ],\\n        \\\"win_count\\\": 31,\\n        \\\"total\\\": 34\\n      },\\n      \\\"fisher_p\\\": 0.453064,\\n      \\\"chi2_p\\\": 0.317217\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 133_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NcQtGsp4ppz39Ds1LrwdJD`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/gpt4o_rewriter_formality_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "cea3a9b0-8993-4863-ae3f-540f1138a2bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G7ncQyok7PepgU8STgHem",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12166,
+      "cache_read_input_tokens": 56275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12166
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 134 · 2026-05-25T19:53:01.918Z_
+
+<details><summary>↩ Tool result · `toolu_01NcQtGsp4ppz39Ds1LrwdJD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"gpt4o_rewriter_formality_independence\\\",\\n  \\\"rewriter\\\": \\\"GPT-4o\\\",\\n  \\\"judge\\\": \\\"Qwen3-32B\\\",\\n  \\\"dataset\\\": \\\"LLMBar\\\",\\n  \\\"axis\\\": \\\"formality\\\",\\n  \\\"n_total\\\": 100,\\n  \\\"n_nli_pass\\\": 90,\\n  \\\"nli_rate\\\": 0.9,\\n  \\\"bt\\\": {\\n    \\\"p_formal\\\": 0.6444,\\n    \\\"ci\\\": [\\n      0.5611,\\n      0.7277\\n    ],\\n    \\\"p_value\\\": 0.0002,\\n    \\\"n_pairs\\\": 90,\\n    \\\"n_comparisons\\\": 180\\n  },\\n  \\\"gee\\\": {\\n    \\\"style_or\\\": 9.48,\\n    \\\"style_p\\\": 0.0,\\n    \\\"orig_or\\\": 12.76,\\n    \\\"orig_p\\\": 0.0\\n  },\\n  \\\"likert\\\": {\\n    \\\"ate\\\": -0.1889,\\n    \\\"p\\\": 0.1835,\\n    \\\"d\\\": -0.0808,\\n    \\\"tie_rate\\\": 0.489,\\n    \\\"n\\\": 90,\\n    \\\"mean_formal\\\": 5.5111,\\n    \\\"mean_casual\\\": 5.7\\n  },\\n  \\\"blindspot\\\": true,\\n  \\\"baseline_comparison\\\": {\\n    \\\"qwen32b_rewriter_bt_p_formal\\\": 0.665,\\n    \\\"gpt4o_rewriter_bt_p_formal\\\": 0.6444,\\n    \\\"delta_pp\\\": -2.1,\\n    \\\"ci_overlap\\\": true\\n  },\\n  \\\"note\\\": \\\"Fixed: using ALL NLI-pass pairs, not consistent-only\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "4db5be1f-fadb-4918-ac22-6eec7cac8d8f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"gpt4o_rewriter_formality_independence\\\\\\\",\\\\n  \\\\\\\"rewriter\\\\\\\": \\\\\\\"GPT-4o\\\\\\\",\\\\n  \\\\\\\"judge\\\\\\\": \\\\\\\"Qwen3-32B\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"LLMBar\\\\\\\",\\\\n  \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n  \\\\\\\"n_total\\\\\\\": 100,\\\\n  \\\\\\\"n_nli_pass\\\\\\\": 90,\\\\n  \\\\\\\"nli_rate\\\\\\\": 0.9,\\\\n  \\\\\\\"bt\\\\\\\": {\\\\n    \\\\\\\"p_formal\\\\\\\": 0.6444,\\\\n    \\\\\\\"ci\\\\\\\": [\\\\n      0.5611,\\\\n      0.7277\\\\n    ],\\\\n    \\\\\\\"p_value\\\\\\\": 0.0002,\\\\n    \\\\\\\"n_pairs\\\\\\\": 90,\\\\n    \\\\\\\"n_comparisons\\\\\\\": 180\\\\n  },\\\\n  \\\\\\\"gee\\\\\\\": {\\\\n    \\\\\\\"style_or\\\\\\\": 9.48,\\\\n    \\\\\\\"style_p\\\\\\\": 0.0,\\\\n    \\\\\\\"orig_or\\\\\\\": 12.76,\\\\n    \\\\\\\"orig_p\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"likert\\\\\\\": {\\\\n    \\\\\\\"ate\\\\\\\": -0.1889,\\\\n    \\\\\\\"p\\\\\\\": 0.1835,\\\\n    \\\\\\\"d\\\\\\\": -0.0808,\\\\n    \\\\\\\"tie_rate\\\\\\\": 0.489,\\\\n    \\\\\\\"n\\\\\\\": 90,\\\\n    \\\\\\\"mean_formal\\\\\\\": 5.5111,\\\\n    \\\\\\\"mean_casual\\\\\\\": 5.7\\\\n  },\\\\n  \\\\\\\"blindspot\\\\\\\": true,\\\\n  \\\\\\\"baseline_comparison\\\\\\\": {\\\\n    \\\\\\\"qwen32b_rewriter_bt_p_formal\\\\\\\": 0.665,\\\\n    \\\\\\\"gpt4o_rewriter_bt_p_formal\\\\\\\": 0.6444,\\\\n    \\\\\\\"delta_pp\\\\\\\": -2.1,\\\\n    \\\\\\\"ci_overlap\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"Fixed: using ALL NLI-pass pairs, not consistent-only\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"gpt4o_rewriter_formality_independence\\\",\\n  \\\"rewriter\\\": \\\"GPT-4o\\\",\\n  \\\"judge\\\": \\\"Qwen3-32B\\\",\\n  \\\"dataset\\\": \\\"LLMBar\\\",\\n  \\\"axis\\\": \\\"formality\\\",\\n  \\\"n_total\\\": 100,\\n  \\\"n_nli_pass\\\": 90,\\n  \\\"nli_rate\\\": 0.9,\\n  \\\"bt\\\": {\\n    \\\"p_formal\\\": 0.6444,\\n    \\\"ci\\\": [\\n      0.5611,\\n      0.7277\\n    ],\\n    \\\"p_value\\\": 0.0002,\\n    \\\"n_pairs\\\": 90,\\n    \\\"n_comparisons\\\": 180\\n  },\\n  \\\"gee\\\": {\\n    \\\"style_or\\\": 9.48,\\n    \\\"style_p\\\": 0.0,\\n    \\\"orig_or\\\": 12.76,\\n    \\\"orig_p\\\": 0.0\\n  },\\n  \\\"likert\\\": {\\n    \\\"ate\\\": -0.1889,\\n    \\\"p\\\": 0.1835,\\n    \\\"d\\\": -0.0808,\\n    \\\"tie_rate\\\": 0.489,\\n    \\\"n\\\": 90,\\n    \\\"mean_formal\\\": 5.5111,\\n    \\\"mean_casual\\\": 5.7\\n  },\\n  \\\"blindspot\\\": true,\\n  \\\"baseline_comparison\\\": {\\n    \\\"qwen32b_rewriter_bt_p_formal\\\": 0.665,\\n    \\\"gpt4o_rewriter_bt_p_formal\\\": 0.6444,\\n    \\\"delta_pp\\\": -2.1,\\n    \\\"ci_overlap\\\": true\\n  },\\n  \\\"note\\\": \\\"Fixed: using ALL NLI-pass pairs, not consistent-only\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 135_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Naeqr7wbf5rE1u6GmhEvgv`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/debiased_llama70b_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "7d3000aa-e318-4314-871b-f5837092da42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G7ncQyok7PepgU8STgHem",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12166,
+      "cache_read_input_tokens": 56275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12166
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 136 · 2026-05-25T19:53:02.848Z_
+
+<details><summary>↩ Tool result · `toolu_01Naeqr7wbf5rE1u6GmhEvgv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"formality\\\": {\\n    \\\"baseline_bt\\\": 69.5,\\n    \\\"debiased_bt\\\": {\\n      \\\"n_pairs\\\": 86,\\n      \\\"n_comparisons\\\": 171,\\n      \\\"p_pole_a\\\": 64.3,\\n      \\\"ci_lo\\\": 57.3,\\n      \\\"ci_hi\\\": 71.0,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"n_results\\\": 88\\n  },\\n  \\\"verbosity\\\": {\\n    \\\"baseline_bt\\\": 73.5,\\n    \\\"debiased_bt\\\": {\\n      \\\"n_pairs\\\": 85,\\n      \\\"n_comparisons\\\": 169,\\n      \\\"p_pole_a\\\": 66.9,\\n      \\\"ci_lo\\\": 58.9,\\n      \\\"ci_hi\\\": 74.4,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"n_results\\\": 86\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "0b754e44-ee26-46fc-89a0-d8297670b5bd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"formality\\\\\\\": {\\\\n    \\\\\\\"baseline_bt\\\\\\\": 69.5,\\\\n    \\\\\\\"debiased_bt\\\\\\\": {\\\\n      \\\\\\\"n_pairs\\\\\\\": 86,\\\\n      \\\\\\\"n_comparisons\\\\\\\": 171,\\\\n      \\\\\\\"p_pole_a\\\\\\\": 64.3,\\\\n      \\\\\\\"ci_lo\\\\\\\": 57.3,\\\\n      \\\\\\\"ci_hi\\\\\\\": 71.0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0001\\\\n    },\\\\n    \\\\\\\"n_results\\\\\\\": 88\\\\n  },\\\\n  \\\\\\\"verbosity\\\\\\\": {\\\\n    \\\\\\\"baseline_bt\\\\\\\": 73.5,\\\\n    \\\\\\\"debiased_bt\\\\\\\": {\\\\n      \\\\\\\"n_pairs\\\\\\\": 85,\\\\n      \\\\\\\"n_comparisons\\\\\\\": 169,\\\\n      \\\\\\\"p_pole_a\\\\\\\": 66.9,\\\\n      \\\\\\\"ci_lo\\\\\\\": 58.9,\\\\n      \\\\\\\"ci_hi\\\\\\\": 74.4,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0001\\\\n    },\\\\n    \\\\\\\"n_results\\\\\\\": 86\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"formality\\\": {\\n    \\\"baseline_bt\\\": 69.5,\\n    \\\"debiased_bt\\\": {\\n      \\\"n_pairs\\\": 86,\\n      \\\"n_comparisons\\\": 171,\\n      \\\"p_pole_a\\\": 64.3,\\n      \\\"ci_lo\\\": 57.3,\\n      \\\"ci_hi\\\": 71.0,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"n_results\\\": 88\\n  },\\n  \\\"verbosity\\\": {\\n    \\\"baseline_bt\\\": 73.5,\\n    \\\"debiased_bt\\\": {\\n      \\\"n_pairs\\\": 85,\\n      \\\"n_comparisons\\\": 169,\\n      \\\"p_pole_a\\\": 66.9,\\n      \\\"ci_lo\\\": 58.9,\\n      \\\"ci_hi\\\": 74.4,\\n      \\\"p_value\\\": 0.0001\\n    },\\n    \\\"n_results\\\": 86\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 137_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UQE8F6p7HiEGHsXWJ7zSyL`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/nli_gate_full_validation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "2943874b-665b-47fd-a499-f1db67446c79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G7ncQyok7PepgU8STgHem",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12166,
+      "cache_read_input_tokens": 56275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12166
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 138_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D4kPNPdFV5WAJrAZ6kX8Xp`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/nli_threshold_sweep.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "9e1033b0-b991-43a4-9b56-e46a32d5aec6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G7ncQyok7PepgU8STgHem",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12166,
+      "cache_read_input_tokens": 56275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12166
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 139 · 2026-05-25T19:53:04.205Z_
+
+<details><summary>↩ Tool result · `toolu_01UQE8F6p7HiEGHsXWJ7zSyL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_evaluated\\\": 200,\\n  \\\"per_axis\\\": {\\n    \\\"formality\\\": {\\n      \\\"n\\\": 100,\\n      \\\"agreement\\\": 0.88,\\n      \\\"kappa\\\": 0.47,\\n      \\\"base_rate_pass\\\": 0.88,\\n      \\\"pass_precision\\\": 0.9205,\\n      \\\"fail_recall\\\": 0.5833,\\n      \\\"confusion\\\": {\\n        \\\"tp\\\": 81,\\n        \\\"fp\\\": 7,\\n        \\\"tn\\\": 7,\\n        \\\"fn\\\": 5\\n      }\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"n\\\": 100,\\n      \\\"agreement\\\": 0.79,\\n      \\\"kappa\\\": 0.3128,\\n      \\\"base_rate_pass\\\": 0.86,\\n      \\\"pass_precision\\\": 0.8256,\\n      \\\"fail_recall\\\": 0.5714,\\n      \\\"confusion\\\": {\\n        \\\"tp\\\": 71,\\n        \\\"fp\\\": 15,\\n        \\\"tn\\\": 8,\\n        \\\"fn\\\": 6\\n      }\\n    }\\n  },\\n  \\\"overall\\\": {\\n    \\\"n\\\": 200,\\n    \\\"agreement\\\": 0.835,\\n    \\\"kappa\\\": 0.3818,\\n    \\\"base_rate_pass\\\": 0.87,\\n    \\\"pass_precision\\\": 0.8736,\\n    \\\"fail_recall\\\": 0.5769,\\n    \\\"confusion\\\": {\\n      \\\"tp\\\": 152,\\n      \\\"fp\\\": 22,\\n      \\\"tn\\\": 15,\\n      \\\"fn\\\": 11\\n    }\\n  },\\n  \\\"vs_spotcheck\\\": {\\n    \\\"spotcheck_agreement\\\": 0.65,\\n    \\\"full_agreement\\\": 0.835,\\n    \\\"note\\\": \\\"Full validation agreement (0.8350) vs spot-check (0.6500): delta=+0.1850. Spot-check sampled 50 pass + 50 fail (balanced); full validation uses natural prevalence (~87% pass).\\\"\\n  },\\n  \\\"individual_results\\\": [\\n    {\\n      \\\"id\\\": \\\"mvp_0000_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.9937858581542969,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original text, with only stylistic changes in language and phrasing. The key points about the limitations of the AI assistant remain unchanged.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0001_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.9929541945457458,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original, describing the family members, their characteristics, and the essence of their gathering. The style is more casual, but the core message and details remain unchanged.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0002_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.9359870553016663,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The terms \\\\\\\"referendum\\\\\\\" and \\\\\\\"vote\\\\\\\" both refer to a process where people express their opinion or decision on a particular issue, in this case, independence. The meaning and factual content remain unchanged, with only the wording differing slightly.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0003_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.9934497475624084,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Not Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": false,\\n      \\\"agree\\\": false,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Not Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text changes \\\\\\\"joint\\\\\\\" to \\\\\\\"cigarette,\\\\\\\" which alters the meaning and factual content, as a joint refers to cannabis while a cigarette typically refers to tobacco. This change affects the context of Jimmy's behavior and experience.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0004_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.027953755110502243,\\n      \\\"nli_pass\\\": false,\\n      \\\"gpt4o_verdict\\\": \\\"Not Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 4,\\n      \\\"gpt4o_pass\\\": false,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Not Preserved  \\\\nConfidence: 4  \\\\nExplanation: The original text states that birding is done with the eyes and bird watching with the ears, suggesting a clear distinction in methods. The rewritten text implies that birding focuses on visual observation and bird watching on auditory observation, which alters the original meaning by s\\n\\n... [截断: 输出过长，省略 107792 字符] ...\\n\\ns, and commands, while only altering the writing style to provide a more detailed explanation.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0093_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.9940274953842163,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original, including the acknowledgment of the employee's performance, the announcement of a 5% raise, and the emphasis on the employee's future potential with the company. The changes are stylistic, adding more detail and formality without altering the core message.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0094_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.9987449645996094,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 4,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 4  \\\\nExplanation: The rewritten text maintains the core meaning and factual content of the original, including the act of stubbing a toe while delivering a letter to Santa and the request for a check-up. The main difference is a more concise expression, but the essential details remain intact.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0095_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.0006212640437297523,\\n      \\\"nli_pass\\\": false,\\n      \\\"gpt4o_verdict\\\": \\\"Not Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": false,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Not Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text changes the result of the subtraction from 10 to 4, which alters the factual content of the original mathematical statement.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0096_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.9522364735603333,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the original meaning and factual content, elaborating on the strategies for reducing carbon emissions, including carbon pricing, renewable energy investment, energy efficiency, transportation electrification, and land management practices, while adding more detail and examples without altering the core message.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0097_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.005233213771134615,\\n      \\\"nli_pass\\\": false,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": false,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the original meaning and factual content, elaborating on the strategies to reduce food waste while enhancing the writing style with additional context and detail.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0098_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.994631290435791,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original text, with only a more concise writing style. The reasons for each job's resistance to AI automation are preserved, focusing on the human elements that AI cannot replicate.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0099_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.9629545211791992,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: Both the original and rewritten texts are identical, indicating that the meaning and factual content are fully preserved.\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "488212bd-a6de-47bb-a1b8-c6d82c86a2cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_evaluated\\\\\\\": 200,\\\\n  \\\\\\\"per_axis\\\\\\\": {\\\\n    \\\\\\\"formality\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 100,\\\\n      \\\\\\\"agreement\\\\\\\": 0.88,\\\\n      \\\\\\\"kappa\\\\\\\": 0.47,\\\\n      \\\\\\\"base_rate_pass\\\\\\\": 0.88,\\\\n      \\\\\\\"pass_precision\\\\\\\": 0.9205,\\\\n      \\\\\\\"fail_recall\\\\\\\": 0.5833,\\\\n      \\\\\\\"confusion\\\\\\\": {\\\\n        \\\\\\\"tp\\\\\\\": 81,\\\\n        \\\\\\\"fp\\\\\\\": 7,\\\\n        \\\\\\\"tn\\\\\\\": 7,\\\\n        \\\\\\\"fn\\\\\\\": 5\\\\n      }\\\\n    },\\\\n    \\\\\\\"verbosity\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 100,\\\\n      \\\\\\\"agreement\\\\\\\": 0.79,\\\\n      \\\\\\\"kappa\\\\\\\": 0.3128,\\\\n      \\\\\\\"base_rate_pass\\\\\\\": 0.86,\\\\n      \\\\\\\"pass_precision\\\\\\\": 0.8256,\\\\n      \\\\\\\"fail_recall\\\\\\\": 0.5714,\\\\n      \\\\\\\"confusion\\\\\\\": {\\\\n        \\\\\\\"tp\\\\\\\": 71,\\\\n        \\\\\\\"fp\\\\\\\": 15,\\\\n        \\\\\\\"tn\\\\\\\": 8,\\\\n        \\\\\\\"fn\\\\\\\": 6\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 200,\\\\n    \\\\\\\"agreement\\\\\\\": 0.835,\\\\n    \\\\\\\"kappa\\\\\\\": 0.3818,\\\\n    \\\\\\\"base_rate_pass\\\\\\\": 0.87,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.8736,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.5769,\\\\n    \\\\\\\"confusion\\\\\\\": {\\\\n      \\\\\\\"tp\\\\\\\": 152,\\\\n      \\\\\\\"fp\\\\\\\": 22,\\\\n      \\\\\\\"tn\\\\\\\": 15,\\\\n      \\\\\\\"fn\\\\\\\": 11\\\\n    }\\\\n  },\\\\n  \\\\\\\"vs_spotcheck\\\\\\\": {\\\\n    \\\\\\\"spotcheck_agreement\\\\\\\": 0.65,\\\\n    \\\\\\\"full_agreement\\\\\\\": 0.835,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"Full validation agreement (0.8350) vs spot-check (0.6500): delta=+0.1850. Spot-check sampled 50 pass + 50 fail (balanced); full validation uses natural prevalence (~87% pass).\\\\\\\"\\\\n  },\\\\n  \\\\\\\"individual_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0000_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.9937858581542969,\\\\n      \\\\\\\"nli_pass\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 5,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": true,\\\\n      \\\\\\\"agree\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Preserved  \\\\\\\\nConfidence: 5  \\\\\\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original text, with only stylistic changes in language and phrasing. The key points about the limitations of the AI assistant remain unchanged.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0001_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.9929541945457458,\\\\n      \\\\\\\"nli_pass\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 5,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": true,\\\\n      \\\\\\\"agree\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Preserved  \\\\\\\\nConfidence: 5  \\\\\\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original, describing the family members, their characteristics, and the essence of their gathering. The style is more casual, but the core message and details remain unchanged.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0002_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.9359870553016663,\\\\n      \\\\\\\"nli_pass\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 5,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": true,\\\\n      \\\\\\\"agree\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Preserved  \\\\\\\\nConfidence: 5  \\\\\\\\nExplanation: The terms \\\\\\\\\\\\\\\"referendum\\\\\\\\\\\\\\\" and \\\\\\\\\\\\\\\"vote\\\\\\\\\\\\\\\" both refer to a process where people express their opinion or decision on a particular issue, in this case, independence. The meaning and factual content remain unchanged, with only the wording differing slightly.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0003_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.9934497475624084,\\\\n      \\\\\\\"nli_pass\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Not Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 5,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": false,\\\\n      \\\\\\\"agree\\\\\\\": false,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Not Preserved  \\\\\\\\nConfidence: 5  \\\\\\\\nExplanation: The rewritten text changes \\\\\\\\\\\\\\\"joint\\\\\\\\\\\\\\\" to \\\\\\\\\\\\\\\"cigarette,\\\\\\\\\\\\\\\" which alters the meaning and factual content, as a joint refers to cannabis while a cigarette typically refers to tobacco. This change affects the context of Jimmy's behavior and experience.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0004_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.027953755110502243,\\\\n      \\\\\\\"nli_pass\\\\\\\": false,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Not Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 4,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": false,\\\\n      \\\\\\\"agree\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Not Preserved  \\\\\\\\nConfidence: 4  \\\\\\\\nExplanation: The original text states that birding is done with the eyes and bird watching with the ears, suggesting a clear distinction in methods. The rewritten text implies that birding focuses on visual observation and bird watching on auditory observation, which alters the original meaning by s\\\\n\\\\n... [截断: 输出过长，省略 107792 字符] ...\\\\n\\\\ns, and commands, while only altering the writing style to provide a more detailed explanation.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0093_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.9940274953842163,\\\\n      \\\\\\\"nli_pass\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 5,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": true,\\\\n      \\\\\\\"agree\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Preserved  \\\\\\\\nConfidence: 5  \\\\\\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original, including the acknowledgment of the employee's performance, the announcement of a 5% raise, and the emphasis on the employee's future potential with the company. The changes are stylistic, adding more detail and formality without altering the core message.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0094_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.9987449645996094,\\\\n      \\\\\\\"nli_pass\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 4,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": true,\\\\n      \\\\\\\"agree\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Preserved  \\\\\\\\nConfidence: 4  \\\\\\\\nExplanation: The rewritten text maintains the core meaning and factual content of the original, including the act of stubbing a toe while delivering a letter to Santa and the request for a check-up. The main difference is a more concise expression, but the essential details remain intact.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0095_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.0006212640437297523,\\\\n      \\\\\\\"nli_pass\\\\\\\": false,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Not Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 5,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": false,\\\\n      \\\\\\\"agree\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Not Preserved  \\\\\\\\nConfidence: 5  \\\\\\\\nExplanation: The rewritten text changes the result of the subtraction from 10 to 4, which alters the factual content of the original mathematical statement.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0096_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.9522364735603333,\\\\n      \\\\\\\"nli_pass\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 5,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": true,\\\\n      \\\\\\\"agree\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Preserved  \\\\\\\\nConfidence: 5  \\\\\\\\nExplanation: The rewritten text maintains the original meaning and factual content, elaborating on the strategies for reducing carbon emissions, including carbon pricing, renewable energy investment, energy efficiency, transportation electrification, and land management practices, while adding more detail and examples without altering the core message.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0097_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.005233213771134615,\\\\n      \\\\\\\"nli_pass\\\\\\\": false,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 5,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": true,\\\\n      \\\\\\\"agree\\\\\\\": false,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Preserved  \\\\\\\\nConfidence: 5  \\\\\\\\nExplanation: The rewritten text maintains the original meaning and factual content, elaborating on the strategies to reduce food waste while enhancing the writing style with additional context and detail.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0098_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.994631290435791,\\\\n      \\\\\\\"nli_pass\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 5,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": true,\\\\n      \\\\\\\"agree\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Preserved  \\\\\\\\nConfidence: 5  \\\\\\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original text, with only a more concise writing style. The reasons for each job's resistance to AI automation are preserved, focusing on the human elements that AI cannot replicate.\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"mvp_0099_cf\\\\\\\",\\\\n      \\\\\\\"axis\\\\\\\": \\\\\\\"verbosity\\\\\\\",\\\\n      \\\\\\\"nli_score\\\\\\\": 0.9629545211791992,\\\\n      \\\\\\\"nli_pass\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_verdict\\\\\\\": \\\\\\\"Preserved\\\\\\\",\\\\n      \\\\\\\"gpt4o_confidence\\\\\\\": 5,\\\\n      \\\\\\\"gpt4o_pass\\\\\\\": true,\\\\n      \\\\\\\"agree\\\\\\\": true,\\\\n      \\\\\\\"gpt4o_raw\\\\\\\": \\\\\\\"Verdict: Preserved  \\\\\\\\nConfidence: 5  \\\\\\\\nExplanation: Both the original and rewritten texts are identical, indicating that the meaning and factual content are fully preserved.\\\\\\\"\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"total_evaluated\\\": 200,\\n  \\\"per_axis\\\": {\\n    \\\"formality\\\": {\\n      \\\"n\\\": 100,\\n      \\\"agreement\\\": 0.88,\\n      \\\"kappa\\\": 0.47,\\n      \\\"base_rate_pass\\\": 0.88,\\n      \\\"pass_precision\\\": 0.9205,\\n      \\\"fail_recall\\\": 0.5833,\\n      \\\"confusion\\\": {\\n        \\\"tp\\\": 81,\\n        \\\"fp\\\": 7,\\n        \\\"tn\\\": 7,\\n        \\\"fn\\\": 5\\n      }\\n    },\\n    \\\"verbosity\\\": {\\n      \\\"n\\\": 100,\\n      \\\"agreement\\\": 0.79,\\n      \\\"kappa\\\": 0.3128,\\n      \\\"base_rate_pass\\\": 0.86,\\n      \\\"pass_precision\\\": 0.8256,\\n      \\\"fail_recall\\\": 0.5714,\\n      \\\"confusion\\\": {\\n        \\\"tp\\\": 71,\\n        \\\"fp\\\": 15,\\n        \\\"tn\\\": 8,\\n        \\\"fn\\\": 6\\n      }\\n    }\\n  },\\n  \\\"overall\\\": {\\n    \\\"n\\\": 200,\\n    \\\"agreement\\\": 0.835,\\n    \\\"kappa\\\": 0.3818,\\n    \\\"base_rate_pass\\\": 0.87,\\n    \\\"pass_precision\\\": 0.8736,\\n    \\\"fail_recall\\\": 0.5769,\\n    \\\"confusion\\\": {\\n      \\\"tp\\\": 152,\\n      \\\"fp\\\": 22,\\n      \\\"tn\\\": 15,\\n      \\\"fn\\\": 11\\n    }\\n  },\\n  \\\"vs_spotcheck\\\": {\\n    \\\"spotcheck_agreement\\\": 0.65,\\n    \\\"full_agreement\\\": 0.835,\\n    \\\"note\\\": \\\"Full validation agreement (0.8350) vs spot-check (0.6500): delta=+0.1850. Spot-check sampled 50 pass + 50 fail (balanced); full validation uses natural prevalence (~87% pass).\\\"\\n  },\\n  \\\"individual_results\\\": [\\n    {\\n      \\\"id\\\": \\\"mvp_0000_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.9937858581542969,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original text, with only stylistic changes in language and phrasing. The key points about the limitations of the AI assistant remain unchanged.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0001_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.9929541945457458,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original, describing the family members, their characteristics, and the essence of their gathering. The style is more casual, but the core message and details remain unchanged.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0002_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.9359870553016663,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The terms \\\\\\\"referendum\\\\\\\" and \\\\\\\"vote\\\\\\\" both refer to a process where people express their opinion or decision on a particular issue, in this case, independence. The meaning and factual content remain unchanged, with only the wording differing slightly.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0003_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.9934497475624084,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Not Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": false,\\n      \\\"agree\\\": false,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Not Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text changes \\\\\\\"joint\\\\\\\" to \\\\\\\"cigarette,\\\\\\\" which alters the meaning and factual content, as a joint refers to cannabis while a cigarette typically refers to tobacco. This change affects the context of Jimmy's behavior and experience.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0004_cf\\\",\\n      \\\"axis\\\": \\\"formality\\\",\\n      \\\"nli_score\\\": 0.027953755110502243,\\n      \\\"nli_pass\\\": false,\\n      \\\"gpt4o_verdict\\\": \\\"Not Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 4,\\n      \\\"gpt4o_pass\\\": false,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Not Preserved  \\\\nConfidence: 4  \\\\nExplanation: The original text states that birding is done with the eyes and bird watching with the ears, suggesting a clear distinction in methods. The rewritten text implies that birding focuses on visual observation and bird watching on auditory observation, which alters the original meaning by s\\n\\n... [截断: 输出过长，省略 107792 字符] ...\\n\\ns, and commands, while only altering the writing style to provide a more detailed explanation.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0093_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.9940274953842163,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original, including the acknowledgment of the employee's performance, the announcement of a 5% raise, and the emphasis on the employee's future potential with the company. The changes are stylistic, adding more detail and formality without altering the core message.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0094_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.9987449645996094,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 4,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 4  \\\\nExplanation: The rewritten text maintains the core meaning and factual content of the original, including the act of stubbing a toe while delivering a letter to Santa and the request for a check-up. The main difference is a more concise expression, but the essential details remain intact.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0095_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.0006212640437297523,\\n      \\\"nli_pass\\\": false,\\n      \\\"gpt4o_verdict\\\": \\\"Not Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": false,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Not Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text changes the result of the subtraction from 10 to 4, which alters the factual content of the original mathematical statement.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0096_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.9522364735603333,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the original meaning and factual content, elaborating on the strategies for reducing carbon emissions, including carbon pricing, renewable energy investment, energy efficiency, transportation electrification, and land management practices, while adding more detail and examples without altering the core message.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0097_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.005233213771134615,\\n      \\\"nli_pass\\\": false,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": false,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the original meaning and factual content, elaborating on the strategies to reduce food waste while enhancing the writing style with additional context and detail.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0098_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.994631290435791,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: The rewritten text maintains the same meaning and factual content as the original text, with only a more concise writing style. The reasons for each job's resistance to AI automation are preserved, focusing on the human elements that AI cannot replicate.\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"mvp_0099_cf\\\",\\n      \\\"axis\\\": \\\"verbosity\\\",\\n      \\\"nli_score\\\": 0.9629545211791992,\\n      \\\"nli_pass\\\": true,\\n      \\\"gpt4o_verdict\\\": \\\"Preserved\\\",\\n      \\\"gpt4o_confidence\\\": 5,\\n      \\\"gpt4o_pass\\\": true,\\n      \\\"agree\\\": true,\\n      \\\"gpt4o_raw\\\": \\\"Verdict: Preserved  \\\\nConfidence: 5  \\\\nExplanation: Both the original and rewritten texts are identical, indicating that the meaning and factual content are fully preserved.\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 140_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F6TGcvMZeB7WGVdLNF1avg`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/bootstrap_attenuation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "1c3ecc3f-54a5-4f70-a434-448f8dfbf9a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016G7ncQyok7PepgU8STgHem",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12166,
+      "cache_read_input_tokens": 56275,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12166
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 141 · 2026-05-25T19:53:05.148Z_
+
+<details><summary>↩ Tool result · `toolu_01D4kPNPdFV5WAJrAZ6kX8Xp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"thresholds\\\": [\\n    0.5,\\n    0.55,\\n    0.6,\\n    0.65,\\n    0.7,\\n    0.75,\\n    0.8,\\n    0.85,\\n    0.9,\\n    0.95,\\n    0.98\\n  ],\\n  \\\"seed\\\": 42,\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"results\\\": {\\n    \\\"formality_qwen32b\\\": {\\n      \\\"file\\\": \\\"data/pairwise_results_qwen32b_formality.jsonl\\\",\\n      \\\"curve\\\": [\\n        {\\n          \\\"threshold\\\": 0.5,\\n          \\\"n_pass\\\": 91,\\n          \\\"bt_point\\\": 0.6483,\\n          \\\"bt_median\\\": 0.6483,\\n          \\\"ci_lo\\\": 0.5714,\\n          \\\"ci_hi\\\": 0.7252,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.55,\\n          \\\"n_pass\\\": 91,\\n          \\\"bt_point\\\": 0.6483,\\n          \\\"bt_median\\\": 0.6483,\\n          \\\"ci_lo\\\": 0.5714,\\n          \\\"ci_hi\\\": 0.7252,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.6,\\n          \\\"n_pass\\\": 90,\\n          \\\"bt_point\\\": 0.6555,\\n          \\\"bt_median\\\": 0.6555,\\n          \\\"ci_lo\\\": 0.5778,\\n          \\\"ci_hi\\\": 0.7277,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.65,\\n          \\\"n_pass\\\": 90,\\n          \\\"bt_point\\\": 0.6555,\\n          \\\"bt_median\\\": 0.6555,\\n          \\\"ci_lo\\\": 0.5833,\\n          \\\"ci_hi\\\": 0.7277,\\n          \\\"p_value\\\": 0.0002\\n        },\\n        {\\n          \\\"threshold\\\": 0.7,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6573,\\n          \\\"bt_median\\\": 0.6573,\\n          \\\"ci_lo\\\": 0.5786,\\n          \\\"ci_hi\\\": 0.7303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.75,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6573,\\n          \\\"bt_median\\\": 0.6573,\\n          \\\"ci_lo\\\": 0.5786,\\n          \\\"ci_hi\\\": 0.7303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.8,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6573,\\n          \\\"bt_median\\\": 0.6573,\\n          \\\"ci_lo\\\": 0.5786,\\n          \\\"ci_hi\\\": 0.7303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.85,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6573,\\n          \\\"bt_median\\\": 0.6573,\\n          \\\"ci_lo\\\": 0.5786,\\n          \\\"ci_hi\\\": 0.7303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.9,\\n          \\\"n_pass\\\": 88,\\n          \\\"bt_point\\\": 0.6647,\\n          \\\"bt_median\\\": 0.6647,\\n          \\\"ci_lo\\\": 0.5909,\\n          \\\"ci_hi\\\": 0.7386,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.95,\\n          \\\"n_pass\\\": 85,\\n          \\\"bt_point\\\": 0.6529,\\n          \\\"bt_median\\\": 0.6529,\\n          \\\"ci_lo\\\": 0.5765,\\n          \\\"ci_hi\\\": 0.7235,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.98,\\n          \\\"n_pass\\\": 77,\\n          \\\"bt_point\\\": 0.6493,\\n          \\\"bt_median\\\": 0.6493,\\n          \\\"ci_lo\\\": 0.5649,\\n          \\\"ci_hi\\\": 0.7272,\\n          \\\"p_value\\\": 0.0005\\n        }\\n      ]\\n    },\\n    \\\"formality_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/pairwise_results_32b.jsonl\\\",\\n      \\\"curve\\\": [\\n        {\\n          \\\"threshold\\\": 0.5,\\n          \\\"n_pass\\\": 91,\\n          \\\"bt_point\\\": 0.6145,\\n          \\\"bt_median\\\": 0.6145,\\n          \\\"ci_lo\\\": 0.5393,\\n          \\\"ci_hi\\\": 0.6854,\\n          \\\"p_value\\\": 0.0017\\n        },\\n        {\\n          \\\"threshold\\\": 0.55,\\n          \\\"n_pass\\\": 91,\\n          \\\"bt_point\\\": 0.6145,\\n          \\\"bt_median\\\": 0.6154,\\n          \\\"ci_lo\\\": 0.5428,\\n          \\\"ci_hi\\\": 0.6871,\\n          \\\"p_value\\\": 0.0013\\n        },\\n        {\\n          \\\"threshold\\\": 0.6,\\n          \\\"n_pass\\\": 90,\\n          \\\"bt_point\\\": 0.6214,\\n          \\\"bt_median\\\": 0.6222,\\n          \\\"ci_lo\\\": 0.548,\\n          \\\"ci_hi\\\": 0.6936,\\n          \\\"p_value\\\": 0.0007\\n        },\\n        {\\n          \\\"threshold\\\": 0.65,\\n          \\\"n_pass\\\": 90,\\n          \\\"bt_point\\\": 0.6214,\\n          \\\"bt_median\\\": 0.6221,\\n          \\\"ci_lo\\\": 0.548,\\n          \\\"ci_hi\\\": 0.6927,\\n          \\\"p_value\\\": 0.001\\n        },\\n        {\\n          \\\"threshold\\\": 0.7,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6228,\\n          \\\"bt_median\\\": 0.6228,\\n          \\\"ci_lo\\\": 0.5486,\\n          \\\"ci_hi\\\": 0.6936,\\n          \\\"p_value\\\": 0.0006\\n        },\\n        {\\n          \\\"threshold\\\": 0.75,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6228,\\n          \\\"bt_median\\\": 0.6236,\\n          \\\"ci_lo\\\": 0.\\n\\n... [截断: 输出过长，省略 2155 字符] ...\\n\\nreshold\\\": 0.7,\\n          \\\"n_pass\\\": 88,\\n          \\\"bt_point\\\": 0.767,\\n          \\\"bt_median\\\": 0.767,\\n          \\\"ci_lo\\\": 0.6931,\\n          \\\"ci_hi\\\": 0.8352,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.75,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7732,\\n          \\\"bt_median\\\": 0.7732,\\n          \\\"ci_lo\\\": 0.7034,\\n          \\\"ci_hi\\\": 0.8429,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.8,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7732,\\n          \\\"bt_median\\\": 0.7732,\\n          \\\"ci_lo\\\": 0.7034,\\n          \\\"ci_hi\\\": 0.8429,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.85,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7732,\\n          \\\"bt_median\\\": 0.7732,\\n          \\\"ci_lo\\\": 0.7034,\\n          \\\"ci_hi\\\": 0.8429,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.9,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7732,\\n          \\\"bt_median\\\": 0.7732,\\n          \\\"ci_lo\\\": 0.7034,\\n          \\\"ci_hi\\\": 0.8429,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.95,\\n          \\\"n_pass\\\": 83,\\n          \\\"bt_point\\\": 0.765,\\n          \\\"bt_median\\\": 0.765,\\n          \\\"ci_lo\\\": 0.6927,\\n          \\\"ci_hi\\\": 0.8312,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.98,\\n          \\\"n_pass\\\": 72,\\n          \\\"bt_point\\\": 0.7708,\\n          \\\"bt_median\\\": 0.7708,\\n          \\\"ci_lo\\\": 0.6944,\\n          \\\"ci_hi\\\": 0.8471,\\n          \\\"p_value\\\": 0.0001\\n        }\\n      ]\\n    },\\n    \\\"verbosity_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/pairwise_results_gpt4o_verbosity.jsonl\\\",\\n      \\\"curve\\\": [\\n        {\\n          \\\"threshold\\\": 0.5,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.7683,\\n          \\\"bt_median\\\": 0.7683,\\n          \\\"ci_lo\\\": 0.6966,\\n          \\\"ci_hi\\\": 0.8352,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.55,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.7683,\\n          \\\"bt_median\\\": 0.7683,\\n          \\\"ci_lo\\\": 0.7005,\\n          \\\"ci_hi\\\": 0.8342,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.6,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.7683,\\n          \\\"bt_median\\\": 0.7696,\\n          \\\"ci_lo\\\": 0.7005,\\n          \\\"ci_hi\\\": 0.8361,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.65,\\n          \\\"n_pass\\\": 88,\\n          \\\"bt_point\\\": 0.7657,\\n          \\\"bt_median\\\": 0.7657,\\n          \\\"ci_lo\\\": 0.6954,\\n          \\\"ci_hi\\\": 0.8323,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.7,\\n          \\\"n_pass\\\": 88,\\n          \\\"bt_point\\\": 0.7657,\\n          \\\"bt_median\\\": 0.7657,\\n          \\\"ci_lo\\\": 0.6931,\\n          \\\"ci_hi\\\": 0.8342,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.75,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7602,\\n          \\\"bt_median\\\": 0.7616,\\n          \\\"ci_lo\\\": 0.6863,\\n          \\\"ci_hi\\\": 0.8303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.8,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7602,\\n          \\\"bt_median\\\": 0.7602,\\n          \\\"ci_lo\\\": 0.69,\\n          \\\"ci_hi\\\": 0.8293,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.85,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7602,\\n          \\\"bt_median\\\": 0.7616,\\n          \\\"ci_lo\\\": 0.6882,\\n          \\\"ci_hi\\\": 0.8303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.9,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7602,\\n          \\\"bt_median\\\": 0.7602,\\n          \\\"ci_lo\\\": 0.69,\\n          \\\"ci_hi\\\": 0.8283,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.95,\\n          \\\"n_pass\\\": 83,\\n          \\\"bt_point\\\": 0.7515,\\n          \\\"bt_median\\\": 0.7515,\\n          \\\"ci_lo\\\": 0.6768,\\n          \\\"ci_hi\\\": 0.822,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.98,\\n          \\\"n_pass\\\": 72,\\n          \\\"bt_point\\\": 0.7692,\\n          \\\"bt_median\\\": 0.7692,\\n          \\\"ci_lo\\\": 0.6874,\\n          \\\"ci_hi\\\": 0.845,\\n          \\\"p_value\\\": 0.0001\\n        }\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "8f2043be-ca2e-4a7f-af8f-c43b5e34614d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"thresholds\\\\\\\": [\\\\n    0.5,\\\\n    0.55,\\\\n    0.6,\\\\n    0.65,\\\\n    0.7,\\\\n    0.75,\\\\n    0.8,\\\\n    0.85,\\\\n    0.9,\\\\n    0.95,\\\\n    0.98\\\\n  ],\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"formality_qwen32b\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/pairwise_results_qwen32b_formality.jsonl\\\\\\\",\\\\n      \\\\\\\"curve\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.5,\\\\n          \\\\\\\"n_pass\\\\\\\": 91,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6483,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6483,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5714,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7252,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.55,\\\\n          \\\\\\\"n_pass\\\\\\\": 91,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6483,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6483,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5714,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7252,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.6,\\\\n          \\\\\\\"n_pass\\\\\\\": 90,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6555,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6555,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5778,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7277,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.65,\\\\n          \\\\\\\"n_pass\\\\\\\": 90,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6555,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6555,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5833,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7277,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0002\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.7,\\\\n          \\\\\\\"n_pass\\\\\\\": 89,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6573,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6573,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5786,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7303,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.75,\\\\n          \\\\\\\"n_pass\\\\\\\": 89,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6573,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6573,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5786,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7303,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.8,\\\\n          \\\\\\\"n_pass\\\\\\\": 89,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6573,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6573,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5786,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7303,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.85,\\\\n          \\\\\\\"n_pass\\\\\\\": 89,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6573,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6573,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5786,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7303,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.9,\\\\n          \\\\\\\"n_pass\\\\\\\": 88,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6647,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6647,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5909,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7386,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.95,\\\\n          \\\\\\\"n_pass\\\\\\\": 85,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6529,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6529,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5765,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7235,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.98,\\\\n          \\\\\\\"n_pass\\\\\\\": 77,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6493,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6493,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5649,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7272,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0005\\\\n        }\\\\n      ]\\\\n    },\\\\n    \\\\\\\"formality_gpt4o\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/pairwise_results_32b.jsonl\\\\\\\",\\\\n      \\\\\\\"curve\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.5,\\\\n          \\\\\\\"n_pass\\\\\\\": 91,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6145,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6145,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5393,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6854,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0017\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.55,\\\\n          \\\\\\\"n_pass\\\\\\\": 91,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6145,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6154,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5428,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6871,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0013\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.6,\\\\n          \\\\\\\"n_pass\\\\\\\": 90,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6214,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6222,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.548,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6936,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0007\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.65,\\\\n          \\\\\\\"n_pass\\\\\\\": 90,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6214,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6221,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.548,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6927,\\\\n          \\\\\\\"p_value\\\\\\\": 0.001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.7,\\\\n          \\\\\\\"n_pass\\\\\\\": 89,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6228,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6228,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5486,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6936,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0006\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.75,\\\\n          \\\\\\\"n_pass\\\\\\\": 89,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.6228,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.6236,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.\\\\n\\\\n... [截断: 输出过长，省略 2155 字符] ...\\\\n\\\\nreshold\\\\\\\": 0.7,\\\\n          \\\\\\\"n_pass\\\\\\\": 88,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.767,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.767,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6931,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8352,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.75,\\\\n          \\\\\\\"n_pass\\\\\\\": 86,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7732,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7732,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7034,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8429,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.8,\\\\n          \\\\\\\"n_pass\\\\\\\": 86,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7732,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7732,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7034,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8429,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.85,\\\\n          \\\\\\\"n_pass\\\\\\\": 86,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7732,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7732,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7034,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8429,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.9,\\\\n          \\\\\\\"n_pass\\\\\\\": 86,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7732,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7732,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7034,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8429,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.95,\\\\n          \\\\\\\"n_pass\\\\\\\": 83,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.765,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.765,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6927,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8312,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.98,\\\\n          \\\\\\\"n_pass\\\\\\\": 72,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7708,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7708,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6944,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8471,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        }\\\\n      ]\\\\n    },\\\\n    \\\\\\\"verbosity_gpt4o\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/pairwise_results_gpt4o_verbosity.jsonl\\\\\\\",\\\\n      \\\\\\\"curve\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.5,\\\\n          \\\\\\\"n_pass\\\\\\\": 89,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7683,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7683,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6966,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8352,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.55,\\\\n          \\\\\\\"n_pass\\\\\\\": 89,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7683,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7683,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7005,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8342,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.6,\\\\n          \\\\\\\"n_pass\\\\\\\": 89,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7683,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7696,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7005,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8361,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.65,\\\\n          \\\\\\\"n_pass\\\\\\\": 88,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7657,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7657,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6954,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8323,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.7,\\\\n          \\\\\\\"n_pass\\\\\\\": 88,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7657,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7657,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6931,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8342,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.75,\\\\n          \\\\\\\"n_pass\\\\\\\": 86,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7602,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7616,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6863,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8303,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.8,\\\\n          \\\\\\\"n_pass\\\\\\\": 86,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7602,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7602,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.69,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8293,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.85,\\\\n          \\\\\\\"n_pass\\\\\\\": 86,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7602,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7616,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6882,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8303,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.9,\\\\n          \\\\\\\"n_pass\\\\\\\": 86,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7602,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7602,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.69,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8283,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.95,\\\\n          \\\\\\\"n_pass\\\\\\\": 83,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7515,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7515,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6768,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.822,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        {\\\\n          \\\\\\\"threshold\\\\\\\": 0.98,\\\\n          \\\\\\\"n_pass\\\\\\\": 72,\\\\n          \\\\\\\"bt_point\\\\\\\": 0.7692,\\\\n          \\\\\\\"bt_median\\\\\\\": 0.7692,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6874,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.845,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        }\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"thresholds\\\": [\\n    0.5,\\n    0.55,\\n    0.6,\\n    0.65,\\n    0.7,\\n    0.75,\\n    0.8,\\n    0.85,\\n    0.9,\\n    0.95,\\n    0.98\\n  ],\\n  \\\"seed\\\": 42,\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"results\\\": {\\n    \\\"formality_qwen32b\\\": {\\n      \\\"file\\\": \\\"data/pairwise_results_qwen32b_formality.jsonl\\\",\\n      \\\"curve\\\": [\\n        {\\n          \\\"threshold\\\": 0.5,\\n          \\\"n_pass\\\": 91,\\n          \\\"bt_point\\\": 0.6483,\\n          \\\"bt_median\\\": 0.6483,\\n          \\\"ci_lo\\\": 0.5714,\\n          \\\"ci_hi\\\": 0.7252,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.55,\\n          \\\"n_pass\\\": 91,\\n          \\\"bt_point\\\": 0.6483,\\n          \\\"bt_median\\\": 0.6483,\\n          \\\"ci_lo\\\": 0.5714,\\n          \\\"ci_hi\\\": 0.7252,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.6,\\n          \\\"n_pass\\\": 90,\\n          \\\"bt_point\\\": 0.6555,\\n          \\\"bt_median\\\": 0.6555,\\n          \\\"ci_lo\\\": 0.5778,\\n          \\\"ci_hi\\\": 0.7277,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.65,\\n          \\\"n_pass\\\": 90,\\n          \\\"bt_point\\\": 0.6555,\\n          \\\"bt_median\\\": 0.6555,\\n          \\\"ci_lo\\\": 0.5833,\\n          \\\"ci_hi\\\": 0.7277,\\n          \\\"p_value\\\": 0.0002\\n        },\\n        {\\n          \\\"threshold\\\": 0.7,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6573,\\n          \\\"bt_median\\\": 0.6573,\\n          \\\"ci_lo\\\": 0.5786,\\n          \\\"ci_hi\\\": 0.7303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.75,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6573,\\n          \\\"bt_median\\\": 0.6573,\\n          \\\"ci_lo\\\": 0.5786,\\n          \\\"ci_hi\\\": 0.7303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.8,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6573,\\n          \\\"bt_median\\\": 0.6573,\\n          \\\"ci_lo\\\": 0.5786,\\n          \\\"ci_hi\\\": 0.7303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.85,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6573,\\n          \\\"bt_median\\\": 0.6573,\\n          \\\"ci_lo\\\": 0.5786,\\n          \\\"ci_hi\\\": 0.7303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.9,\\n          \\\"n_pass\\\": 88,\\n          \\\"bt_point\\\": 0.6647,\\n          \\\"bt_median\\\": 0.6647,\\n          \\\"ci_lo\\\": 0.5909,\\n          \\\"ci_hi\\\": 0.7386,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.95,\\n          \\\"n_pass\\\": 85,\\n          \\\"bt_point\\\": 0.6529,\\n          \\\"bt_median\\\": 0.6529,\\n          \\\"ci_lo\\\": 0.5765,\\n          \\\"ci_hi\\\": 0.7235,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.98,\\n          \\\"n_pass\\\": 77,\\n          \\\"bt_point\\\": 0.6493,\\n          \\\"bt_median\\\": 0.6493,\\n          \\\"ci_lo\\\": 0.5649,\\n          \\\"ci_hi\\\": 0.7272,\\n          \\\"p_value\\\": 0.0005\\n        }\\n      ]\\n    },\\n    \\\"formality_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/pairwise_results_32b.jsonl\\\",\\n      \\\"curve\\\": [\\n        {\\n          \\\"threshold\\\": 0.5,\\n          \\\"n_pass\\\": 91,\\n          \\\"bt_point\\\": 0.6145,\\n          \\\"bt_median\\\": 0.6145,\\n          \\\"ci_lo\\\": 0.5393,\\n          \\\"ci_hi\\\": 0.6854,\\n          \\\"p_value\\\": 0.0017\\n        },\\n        {\\n          \\\"threshold\\\": 0.55,\\n          \\\"n_pass\\\": 91,\\n          \\\"bt_point\\\": 0.6145,\\n          \\\"bt_median\\\": 0.6154,\\n          \\\"ci_lo\\\": 0.5428,\\n          \\\"ci_hi\\\": 0.6871,\\n          \\\"p_value\\\": 0.0013\\n        },\\n        {\\n          \\\"threshold\\\": 0.6,\\n          \\\"n_pass\\\": 90,\\n          \\\"bt_point\\\": 0.6214,\\n          \\\"bt_median\\\": 0.6222,\\n          \\\"ci_lo\\\": 0.548,\\n          \\\"ci_hi\\\": 0.6936,\\n          \\\"p_value\\\": 0.0007\\n        },\\n        {\\n          \\\"threshold\\\": 0.65,\\n          \\\"n_pass\\\": 90,\\n          \\\"bt_point\\\": 0.6214,\\n          \\\"bt_median\\\": 0.6221,\\n          \\\"ci_lo\\\": 0.548,\\n          \\\"ci_hi\\\": 0.6927,\\n          \\\"p_value\\\": 0.001\\n        },\\n        {\\n          \\\"threshold\\\": 0.7,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6228,\\n          \\\"bt_median\\\": 0.6228,\\n          \\\"ci_lo\\\": 0.5486,\\n          \\\"ci_hi\\\": 0.6936,\\n          \\\"p_value\\\": 0.0006\\n        },\\n        {\\n          \\\"threshold\\\": 0.75,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.6228,\\n          \\\"bt_median\\\": 0.6236,\\n          \\\"ci_lo\\\": 0.\\n\\n... [截断: 输出过长，省略 2155 字符] ...\\n\\nreshold\\\": 0.7,\\n          \\\"n_pass\\\": 88,\\n          \\\"bt_point\\\": 0.767,\\n          \\\"bt_median\\\": 0.767,\\n          \\\"ci_lo\\\": 0.6931,\\n          \\\"ci_hi\\\": 0.8352,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.75,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7732,\\n          \\\"bt_median\\\": 0.7732,\\n          \\\"ci_lo\\\": 0.7034,\\n          \\\"ci_hi\\\": 0.8429,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.8,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7732,\\n          \\\"bt_median\\\": 0.7732,\\n          \\\"ci_lo\\\": 0.7034,\\n          \\\"ci_hi\\\": 0.8429,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.85,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7732,\\n          \\\"bt_median\\\": 0.7732,\\n          \\\"ci_lo\\\": 0.7034,\\n          \\\"ci_hi\\\": 0.8429,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.9,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7732,\\n          \\\"bt_median\\\": 0.7732,\\n          \\\"ci_lo\\\": 0.7034,\\n          \\\"ci_hi\\\": 0.8429,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.95,\\n          \\\"n_pass\\\": 83,\\n          \\\"bt_point\\\": 0.765,\\n          \\\"bt_median\\\": 0.765,\\n          \\\"ci_lo\\\": 0.6927,\\n          \\\"ci_hi\\\": 0.8312,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.98,\\n          \\\"n_pass\\\": 72,\\n          \\\"bt_point\\\": 0.7708,\\n          \\\"bt_median\\\": 0.7708,\\n          \\\"ci_lo\\\": 0.6944,\\n          \\\"ci_hi\\\": 0.8471,\\n          \\\"p_value\\\": 0.0001\\n        }\\n      ]\\n    },\\n    \\\"verbosity_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/pairwise_results_gpt4o_verbosity.jsonl\\\",\\n      \\\"curve\\\": [\\n        {\\n          \\\"threshold\\\": 0.5,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.7683,\\n          \\\"bt_median\\\": 0.7683,\\n          \\\"ci_lo\\\": 0.6966,\\n          \\\"ci_hi\\\": 0.8352,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.55,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.7683,\\n          \\\"bt_median\\\": 0.7683,\\n          \\\"ci_lo\\\": 0.7005,\\n          \\\"ci_hi\\\": 0.8342,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.6,\\n          \\\"n_pass\\\": 89,\\n          \\\"bt_point\\\": 0.7683,\\n          \\\"bt_median\\\": 0.7696,\\n          \\\"ci_lo\\\": 0.7005,\\n          \\\"ci_hi\\\": 0.8361,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.65,\\n          \\\"n_pass\\\": 88,\\n          \\\"bt_point\\\": 0.7657,\\n          \\\"bt_median\\\": 0.7657,\\n          \\\"ci_lo\\\": 0.6954,\\n          \\\"ci_hi\\\": 0.8323,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.7,\\n          \\\"n_pass\\\": 88,\\n          \\\"bt_point\\\": 0.7657,\\n          \\\"bt_median\\\": 0.7657,\\n          \\\"ci_lo\\\": 0.6931,\\n          \\\"ci_hi\\\": 0.8342,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.75,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7602,\\n          \\\"bt_median\\\": 0.7616,\\n          \\\"ci_lo\\\": 0.6863,\\n          \\\"ci_hi\\\": 0.8303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.8,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7602,\\n          \\\"bt_median\\\": 0.7602,\\n          \\\"ci_lo\\\": 0.69,\\n          \\\"ci_hi\\\": 0.8293,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.85,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7602,\\n          \\\"bt_median\\\": 0.7616,\\n          \\\"ci_lo\\\": 0.6882,\\n          \\\"ci_hi\\\": 0.8303,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.9,\\n          \\\"n_pass\\\": 86,\\n          \\\"bt_point\\\": 0.7602,\\n          \\\"bt_median\\\": 0.7602,\\n          \\\"ci_lo\\\": 0.69,\\n          \\\"ci_hi\\\": 0.8283,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.95,\\n          \\\"n_pass\\\": 83,\\n          \\\"bt_point\\\": 0.7515,\\n          \\\"bt_median\\\": 0.7515,\\n          \\\"ci_lo\\\": 0.6768,\\n          \\\"ci_hi\\\": 0.822,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        {\\n          \\\"threshold\\\": 0.98,\\n          \\\"n_pass\\\": 72,\\n          \\\"bt_point\\\": 0.7692,\\n          \\\"bt_median\\\": 0.7692,\\n          \\\"ci_lo\\\": 0.6874,\\n          \\\"ci_hi\\\": 0.845,\\n          \\\"p_value\\\": 0.0001\\n        }\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 142 · 2026-05-25T19:53:06.080Z_
+
+<details><summary>↩ Tool result · `toolu_01F6TGcvMZeB7WGVdLNF1avg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"seed\\\": 42,\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"discovery\\\": {\\n    \\\"formality_qwen32b\\\": {\\n      \\\"file\\\": \\\"data/scored_scaled_formality_qwen32b.jsonl\\\",\\n      \\\"n_total\\\": 355,\\n      \\\"n_nli_pass\\\": 355,\\n      \\\"n_with_likert\\\": 355,\\n      \\\"full_d\\\": -0.016835\\n    },\\n    \\\"verbosity_qwen32b\\\": {\\n      \\\"file\\\": \\\"data/scored_qwen32b_verbosity.jsonl\\\",\\n      \\\"n_total\\\": 100,\\n      \\\"n_nli_pass\\\": 86,\\n      \\\"n_with_likert\\\": 86,\\n      \\\"full_d\\\": 0.146066\\n    },\\n    \\\"formality_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/scored_alpacaeval_gpt4o.jsonl\\\",\\n      \\\"n_total\\\": 100,\\n      \\\"n_nli_pass\\\": 20,\\n      \\\"n_with_likert\\\": 20,\\n      \\\"full_d\\\": -0.184564\\n    },\\n    \\\"verbosity_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/scored_gpt4o_verbosity.jsonl\\\",\\n      \\\"n_total\\\": 100,\\n      \\\"n_nli_pass\\\": 86,\\n      \\\"n_with_likert\\\": 86,\\n      \\\"full_d\\\": 0.190037\\n    }\\n  },\\n  \\\"results\\\": {\\n    \\\"formality_qwen32b\\\": {\\n      \\\"file\\\": \\\"data/scored_scaled_formality_qwen32b.jsonl\\\",\\n      \\\"n_total\\\": 355,\\n      \\\"full_d\\\": -0.016835,\\n      \\\"curve\\\": [\\n        {\\n          \\\"n\\\": 50,\\n          \\\"d_median\\\": -0.017367534976511695,\\n          \\\"d_ci_lo\\\": -0.3079608825441261,\\n          \\\"d_ci_hi\\\": 0.2617420067332011,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 100,\\n          \\\"d_median\\\": -0.015400939593192843,\\n          \\\"d_ci_lo\\\": -0.2194608625669979,\\n          \\\"d_ci_hi\\\": 0.17573368392280228,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 150,\\n          \\\"d_median\\\": -0.018553171689227786,\\n          \\\"d_ci_lo\\\": -0.17905701048317646,\\n          \\\"d_ci_hi\\\": 0.14454562293228698,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 200,\\n          \\\"d_median\\\": -0.015773782141603285,\\n          \\\"d_ci_lo\\\": -0.15657205957847456,\\n          \\\"d_ci_hi\\\": 0.11909996898381764,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 250,\\n          \\\"d_median\\\": -0.01770166997474283,\\n          \\\"d_ci_lo\\\": -0.14372459332472579,\\n          \\\"d_ci_hi\\\": 0.10711214073565391,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 300,\\n          \\\"d_median\\\": -0.01754416465203044,\\n          \\\"d_ci_lo\\\": -0.1312230776042008,\\n          \\\"d_ci_hi\\\": 0.09472618555541903,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 355,\\n          \\\"d_median\\\": -0.01669300651808466,\\n          \\\"d_ci_lo\\\": -0.12326239231284972,\\n          \\\"d_ci_hi\\\": 0.08748005592308605,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      ]\\n    },\\n    \\\"verbosity_qwen32b\\\": {\\n      \\\"file\\\": \\\"data/scored_qwen32b_verbosity.jsonl\\\",\\n      \\\"n_total\\\": 86,\\n      \\\"full_d\\\": 0.146066,\\n      \\\"curve\\\": [\\n        {\\n          \\\"n\\\": 30,\\n          \\\"d_median\\\": 0.16886964693523376,\\n          \\\"d_ci_lo\\\": -0.19536669104511326,\\n          \\\"d_ci_hi\\\": 0.5952936654155457,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 50,\\n          \\\"d_median\\\": 0.15726366776448453,\\n          \\\"d_ci_lo\\\": -0.11939644338519559,\\n          \\\"d_ci_hi\\\": 0.49391984025188246,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 70,\\n          \\\"d_median\\\": 0.15461850100217786,\\n          \\\"d_ci_lo\\\": -0.08464696707069846,\\n          \\\"d_ci_hi\\\": 0.44332632282654705,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 86,\\n          \\\"d_median\\\": 0.1529410519511584,\\n          \\\"d_ci_lo\\\": -0.06672505224710101,\\n          \\\"d_ci_hi\\\": 0.41595282330332256,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      ]\\n    },\\n    \\\"formality_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/scored_alpacaeval_gpt4o.jsonl\\\",\\n      \\\"n_total\\\": 20,\\n      \\\"full_d\\\": -0.184564,\\n      \\\"curve\\\": [\\n        {\\n          \\\"n\\\": 20,\\n          \\\"d_median\\\": -0.20129909839395208,\\n          \\\"d_ci_lo\\\": -0.7152191702817128,\\n          \\\"d_ci_hi\\\": 0.23994948963429283,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      ]\\n    },\\n    \\\"verbosity_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/scored_gpt4o_verbosity.jsonl\\\",\\n      \\\"n_total\\\": 86,\\n      \\\"full_d\\\": 0.190037,\\n      \\\"curve\\\": [\\n        {\\n          \\\"n\\\": 30,\\n          \\\"d_median\\\": 0.20478908219076153,\\n          \\\"d_ci_lo\\\": -0.16076909627565417,\\n          \\\"d_ci_hi\\\": 0.6177263282514766,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 50,\\n          \\\"d_median\\\": 0.19785912599753497,\\n          \\\"d_ci_lo\\\": -0.08529159017892214,\\n          \\\"d_ci_hi\\\": 0.5297950478418852,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 70,\\n          \\\"d_median\\\": 0.19725806008551494,\\n          \\\"d_ci_lo\\\": -0.04763232491620382,\\n          \\\"d_ci_hi\\\": 0.4723090061273607,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 86,\\n          \\\"d_median\\\": 0.1967933366329256,\\n          \\\"d_ci_lo\\\": -0.022260105521520378,\\n          \\\"d_ci_hi\\\": 0.4459556329452274,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "6555e90a-7518-4db3-9d7c-715dd6892a21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n  \\\\\\\"discovery\\\\\\\": {\\\\n    \\\\\\\"formality_qwen32b\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/scored_scaled_formality_qwen32b.jsonl\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 355,\\\\n      \\\\\\\"n_nli_pass\\\\\\\": 355,\\\\n      \\\\\\\"n_with_likert\\\\\\\": 355,\\\\n      \\\\\\\"full_d\\\\\\\": -0.016835\\\\n    },\\\\n    \\\\\\\"verbosity_qwen32b\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/scored_qwen32b_verbosity.jsonl\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 100,\\\\n      \\\\\\\"n_nli_pass\\\\\\\": 86,\\\\n      \\\\\\\"n_with_likert\\\\\\\": 86,\\\\n      \\\\\\\"full_d\\\\\\\": 0.146066\\\\n    },\\\\n    \\\\\\\"formality_gpt4o\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/scored_alpacaeval_gpt4o.jsonl\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 100,\\\\n      \\\\\\\"n_nli_pass\\\\\\\": 20,\\\\n      \\\\\\\"n_with_likert\\\\\\\": 20,\\\\n      \\\\\\\"full_d\\\\\\\": -0.184564\\\\n    },\\\\n    \\\\\\\"verbosity_gpt4o\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/scored_gpt4o_verbosity.jsonl\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 100,\\\\n      \\\\\\\"n_nli_pass\\\\\\\": 86,\\\\n      \\\\\\\"n_with_likert\\\\\\\": 86,\\\\n      \\\\\\\"full_d\\\\\\\": 0.190037\\\\n    }\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"formality_qwen32b\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/scored_scaled_formality_qwen32b.jsonl\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 355,\\\\n      \\\\\\\"full_d\\\\\\\": -0.016835,\\\\n      \\\\\\\"curve\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 50,\\\\n          \\\\\\\"d_median\\\\\\\": -0.017367534976511695,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.3079608825441261,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.2617420067332011,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 100,\\\\n          \\\\\\\"d_median\\\\\\\": -0.015400939593192843,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.2194608625669979,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.17573368392280228,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 150,\\\\n          \\\\\\\"d_median\\\\\\\": -0.018553171689227786,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.17905701048317646,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.14454562293228698,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 200,\\\\n          \\\\\\\"d_median\\\\\\\": -0.015773782141603285,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.15657205957847456,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.11909996898381764,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 250,\\\\n          \\\\\\\"d_median\\\\\\\": -0.01770166997474283,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.14372459332472579,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.10711214073565391,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 300,\\\\n          \\\\\\\"d_median\\\\\\\": -0.01754416465203044,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.1312230776042008,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.09472618555541903,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 355,\\\\n          \\\\\\\"d_median\\\\\\\": -0.01669300651808466,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.12326239231284972,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.08748005592308605,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        }\\\\n      ]\\\\n    },\\\\n    \\\\\\\"verbosity_qwen32b\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/scored_qwen32b_verbosity.jsonl\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 86,\\\\n      \\\\\\\"full_d\\\\\\\": 0.146066,\\\\n      \\\\\\\"curve\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 30,\\\\n          \\\\\\\"d_median\\\\\\\": 0.16886964693523376,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.19536669104511326,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.5952936654155457,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 50,\\\\n          \\\\\\\"d_median\\\\\\\": 0.15726366776448453,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.11939644338519559,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.49391984025188246,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 70,\\\\n          \\\\\\\"d_median\\\\\\\": 0.15461850100217786,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.08464696707069846,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.44332632282654705,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 86,\\\\n          \\\\\\\"d_median\\\\\\\": 0.1529410519511584,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.06672505224710101,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.41595282330332256,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        }\\\\n      ]\\\\n    },\\\\n    \\\\\\\"formality_gpt4o\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/scored_alpacaeval_gpt4o.jsonl\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 20,\\\\n      \\\\\\\"full_d\\\\\\\": -0.184564,\\\\n      \\\\\\\"curve\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 20,\\\\n          \\\\\\\"d_median\\\\\\\": -0.20129909839395208,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.7152191702817128,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.23994948963429283,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        }\\\\n      ]\\\\n    },\\\\n    \\\\\\\"verbosity_gpt4o\\\\\\\": {\\\\n      \\\\\\\"file\\\\\\\": \\\\\\\"data/scored_gpt4o_verbosity.jsonl\\\\\\\",\\\\n      \\\\\\\"n_total\\\\\\\": 86,\\\\n      \\\\\\\"full_d\\\\\\\": 0.190037,\\\\n      \\\\\\\"curve\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 30,\\\\n          \\\\\\\"d_median\\\\\\\": 0.20478908219076153,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.16076909627565417,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.6177263282514766,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 50,\\\\n          \\\\\\\"d_median\\\\\\\": 0.19785912599753497,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.08529159017892214,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.5297950478418852,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 70,\\\\n          \\\\\\\"d_median\\\\\\\": 0.19725806008551494,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.04763232491620382,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.4723090061273607,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        },\\\\n        {\\\\n          \\\\\\\"n\\\\\\\": 86,\\\\n          \\\\\\\"d_median\\\\\\\": 0.1967933366329256,\\\\n          \\\\\\\"d_ci_lo\\\\\\\": -0.022260105521520378,\\\\n          \\\\\\\"d_ci_hi\\\\\\\": 0.4459556329452274,\\\\n          \\\\\\\"n_bootstrap\\\\\\\": 10000\\\\n        }\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"seed\\\": 42,\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"discovery\\\": {\\n    \\\"formality_qwen32b\\\": {\\n      \\\"file\\\": \\\"data/scored_scaled_formality_qwen32b.jsonl\\\",\\n      \\\"n_total\\\": 355,\\n      \\\"n_nli_pass\\\": 355,\\n      \\\"n_with_likert\\\": 355,\\n      \\\"full_d\\\": -0.016835\\n    },\\n    \\\"verbosity_qwen32b\\\": {\\n      \\\"file\\\": \\\"data/scored_qwen32b_verbosity.jsonl\\\",\\n      \\\"n_total\\\": 100,\\n      \\\"n_nli_pass\\\": 86,\\n      \\\"n_with_likert\\\": 86,\\n      \\\"full_d\\\": 0.146066\\n    },\\n    \\\"formality_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/scored_alpacaeval_gpt4o.jsonl\\\",\\n      \\\"n_total\\\": 100,\\n      \\\"n_nli_pass\\\": 20,\\n      \\\"n_with_likert\\\": 20,\\n      \\\"full_d\\\": -0.184564\\n    },\\n    \\\"verbosity_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/scored_gpt4o_verbosity.jsonl\\\",\\n      \\\"n_total\\\": 100,\\n      \\\"n_nli_pass\\\": 86,\\n      \\\"n_with_likert\\\": 86,\\n      \\\"full_d\\\": 0.190037\\n    }\\n  },\\n  \\\"results\\\": {\\n    \\\"formality_qwen32b\\\": {\\n      \\\"file\\\": \\\"data/scored_scaled_formality_qwen32b.jsonl\\\",\\n      \\\"n_total\\\": 355,\\n      \\\"full_d\\\": -0.016835,\\n      \\\"curve\\\": [\\n        {\\n          \\\"n\\\": 50,\\n          \\\"d_median\\\": -0.017367534976511695,\\n          \\\"d_ci_lo\\\": -0.3079608825441261,\\n          \\\"d_ci_hi\\\": 0.2617420067332011,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 100,\\n          \\\"d_median\\\": -0.015400939593192843,\\n          \\\"d_ci_lo\\\": -0.2194608625669979,\\n          \\\"d_ci_hi\\\": 0.17573368392280228,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 150,\\n          \\\"d_median\\\": -0.018553171689227786,\\n          \\\"d_ci_lo\\\": -0.17905701048317646,\\n          \\\"d_ci_hi\\\": 0.14454562293228698,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 200,\\n          \\\"d_median\\\": -0.015773782141603285,\\n          \\\"d_ci_lo\\\": -0.15657205957847456,\\n          \\\"d_ci_hi\\\": 0.11909996898381764,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 250,\\n          \\\"d_median\\\": -0.01770166997474283,\\n          \\\"d_ci_lo\\\": -0.14372459332472579,\\n          \\\"d_ci_hi\\\": 0.10711214073565391,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 300,\\n          \\\"d_median\\\": -0.01754416465203044,\\n          \\\"d_ci_lo\\\": -0.1312230776042008,\\n          \\\"d_ci_hi\\\": 0.09472618555541903,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 355,\\n          \\\"d_median\\\": -0.01669300651808466,\\n          \\\"d_ci_lo\\\": -0.12326239231284972,\\n          \\\"d_ci_hi\\\": 0.08748005592308605,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      ]\\n    },\\n    \\\"verbosity_qwen32b\\\": {\\n      \\\"file\\\": \\\"data/scored_qwen32b_verbosity.jsonl\\\",\\n      \\\"n_total\\\": 86,\\n      \\\"full_d\\\": 0.146066,\\n      \\\"curve\\\": [\\n        {\\n          \\\"n\\\": 30,\\n          \\\"d_median\\\": 0.16886964693523376,\\n          \\\"d_ci_lo\\\": -0.19536669104511326,\\n          \\\"d_ci_hi\\\": 0.5952936654155457,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 50,\\n          \\\"d_median\\\": 0.15726366776448453,\\n          \\\"d_ci_lo\\\": -0.11939644338519559,\\n          \\\"d_ci_hi\\\": 0.49391984025188246,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 70,\\n          \\\"d_median\\\": 0.15461850100217786,\\n          \\\"d_ci_lo\\\": -0.08464696707069846,\\n          \\\"d_ci_hi\\\": 0.44332632282654705,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 86,\\n          \\\"d_median\\\": 0.1529410519511584,\\n          \\\"d_ci_lo\\\": -0.06672505224710101,\\n          \\\"d_ci_hi\\\": 0.41595282330332256,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      ]\\n    },\\n    \\\"formality_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/scored_alpacaeval_gpt4o.jsonl\\\",\\n      \\\"n_total\\\": 20,\\n      \\\"full_d\\\": -0.184564,\\n      \\\"curve\\\": [\\n        {\\n          \\\"n\\\": 20,\\n          \\\"d_median\\\": -0.20129909839395208,\\n          \\\"d_ci_lo\\\": -0.7152191702817128,\\n          \\\"d_ci_hi\\\": 0.23994948963429283,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      ]\\n    },\\n    \\\"verbosity_gpt4o\\\": {\\n      \\\"file\\\": \\\"data/scored_gpt4o_verbosity.jsonl\\\",\\n      \\\"n_total\\\": 86,\\n      \\\"full_d\\\": 0.190037,\\n      \\\"curve\\\": [\\n        {\\n          \\\"n\\\": 30,\\n          \\\"d_median\\\": 0.20478908219076153,\\n          \\\"d_ci_lo\\\": -0.16076909627565417,\\n          \\\"d_ci_hi\\\": 0.6177263282514766,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 50,\\n          \\\"d_median\\\": 0.19785912599753497,\\n          \\\"d_ci_lo\\\": -0.08529159017892214,\\n          \\\"d_ci_hi\\\": 0.5297950478418852,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 70,\\n          \\\"d_median\\\": 0.19725806008551494,\\n          \\\"d_ci_lo\\\": -0.04763232491620382,\\n          \\\"d_ci_hi\\\": 0.4723090061273607,\\n          \\\"n_bootstrap\\\": 10000\\n        },\\n        {\\n          \\\"n\\\": 86,\\n          \\\"d_median\\\": 0.1967933366329256,\\n          \\\"d_ci_lo\\\": -0.022260105521520378,\\n          \\\"d_ci_hi\\\": 0.4459556329452274,\\n          \\\"n_bootstrap\\\": 10000\\n        }\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 143_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have important data. Let me continue cross-checking and collecting remaining data.
+
+Key findings so far:
+
+**NLI threshold sweep data confirms:**
+- Formality Qwen3-32B at threshold 0.9: bt=0.6647, n=88 → paper says .665 ✓
+- Formality GPT-4o at threshold 0.9: bt=0.6302 (from formality_gpt4o at 0.9), n=88
+
+Wait, let me look more carefully at the GPT-4o formality BT. From the nli_threshold_sweep, formality_gpt4o at threshold 0.9:
+
+
+- n_pass=88, bt_point=0.6302 → paper says .630 ✓
+
+And verbosity GPT-4o at threshold 0.9:
+- n_pass=86, bt_point=0.7602 → paper says .760 ✓
+
+Verbosity Qwen3-32B at threshold 0.9:
+- n_pass=86, bt_point=0.7732 → paper says .773 ✓
+
+Now I need to track down the BT values for the register task across GPT-4o, Qwen3-32B, and Llama-70B from the register summary data.
+
+For GPT-4o register, the pairwise summary shows a win rate of 0.6327 with n=49, but that's from a sign test—I need the actual Bradley-Terry value. The paper lists GPT-4o register at BT=.570, so I'm searching through the available data files to locate where this comes from. I'm checking the diagnostic files and cross-axis data to find the corresponding BT estimates for the other models.
+
+Now I'm looking at the direction asymmetry results from the Bradley-Terry diagnostics. For formality, formal-origin shows 88.9% win rate (24 wins out of 27 pairs) while casual-origin is at 52.6% (10 wins out of 19), with a Fisher exact p-value of 0.0146, which matches the paper's reported .015. However, I'm noticing a discrepancy—Table 1's footnote cites different percentages (78.8% vs 54.5%), and there's an inconsistency in how these values are reported across different sections of the paper that I need to reconcile. I'm noticing a discrepancy between the effect sizes reported in the paper versus what I'm finding in the data files—the bootstrap_attenuation data shows a full_d of -0.017 for Qwen3-32B formality at n=355, but the paper reports -.025, which suggests the d calculation method differs between these sources. Looking at table1_verified.csv, the n=88 Qwen3-32B formality value matches the paper more closely, so I need to figure out which computation method is the authoritative one.
+
+Now I'm tracking down several missing values: the GPT-4o register bootstrap value (paper says .570), the Qwen3-32B n=355 bootstrap and Likert data, and I need to verify the other effect sizes and bootstrap values across these models to ensure consistency with what's reported. I'm verifying the debiased prompting results across models—the GPT-4o verbosity drop of 13.1pp matches the paper's second value, and the Llama-70B formality drop of 5.2pp matches the first, though I still need to locate the GPT-4o formality debiased data to confirm the full picture.
+
+Rather than getting caught up in the amplification factor calculations, I should focus on completing the audit report and checking the figure generation scripts to verify all data sources. I've identified several discrepancies to investigate: the Gemini verbosity GEE value, the GPT-4o register p-value, the Sobel z-score, and various annotation issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "4c5bf3c1-4428-449d-8b60-ead4644c55cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVz2C96NWkF9sfmQDzQ3M6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15742,
+      "cache_read_input_tokens": 68441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 144_
+
+Now let me read the figure scripts and find remaining BT data sources.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "a8f5879f-676a-4e3f-9590-c3d68c4aa6cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVz2C96NWkF9sfmQDzQ3M6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15742,
+      "cache_read_input_tokens": 68441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 145_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FDWAgE3rYSV4PumfHfw1tN`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/gen_forest_plot.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "50d7cfb2-b95f-44c8-b136-9a7a56bde81b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVz2C96NWkF9sfmQDzQ3M6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15742,
+      "cache_read_input_tokens": 68441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 146 · 2026-05-25T19:53:58.188Z_
+
+<details><summary>↩ Tool result · `toolu_01FDWAgE3rYSV4PumfHfw1tN`</summary>
+
+```text
+1	"""
+2	Optimized forest plot: BT win probability across 4 judges × 2-3 style axes.
+3	Narrative: Verbosity is the strongest, most consistent bias; formality is universal
+4	but weaker; register is judge-dependent.
+5	"""
+6	import matplotlib
+7	matplotlib.use('Agg')
+8	import matplotlib.pyplot as plt
+9	import matplotlib.patheffects as pe
+10	from matplotlib.lines import Line2D
+11	import numpy as np
+12	
+13	plt.rcParams.update({
+14	    'font.family': 'DejaVu Sans',
+15	    'font.size': 10,
+16	    'axes.labelsize': 10,
+17	    'xtick.labelsize': 9,
+18	    'ytick.labelsize': 9,
+19	    'figure.dpi': 300,
+20	    'savefig.dpi': 300,
+21	    'savefig.bbox': 'tight',
+22	    'savefig.pad_inches': 0.05,
+23	    'axes.spines.top': False,
+24	    'axes.spines.right': False,
+25	    'pdf.fonttype': 42,
+26	    'ps.fonttype': 42,
+27	    'lines.linewidth': 1.8,
+28	})
+29	
+30	AXIS_COLORS = {
+31	    'Verbosity': '#E15759',
+32	    'Formality': '#4E79A7',
+33	    'Register':  '#76B7B2',
+34	}
+35	
+36	# Data grouped by judge: (axis, bt, ci_lo, ci_hi, p_str, significant)
+37	judges = {
+38	    'GPT-4o': [
+39	        ('Verbosity', 0.760, 0.686, 0.826, 'p<.001', True),
+40	        ('Formality', 0.630, 0.558, 0.703, 'p<.001', True),
+41	        ('Register',  0.570, 0.489, 0.649, 'p=.038', True),
+42	    ],
+43	    'Qwen3-32B': [
+44	        ('Verbosity', 0.773, 0.703, 0.843, 'p<.0001', True),
+45	        ('Formality', 0.665, 0.585, 0.739, 'p<.0001', True),
+46	        ('Register',  0.553, 0.473, 0.630, 'p=.092', False),
+47	    ],
+48	    'Llama-3.3-70B': [
+49	        ('Verbosity', 0.735, 0.660, 0.805, 'p<.0001', True),
+50	        ('Formality', 0.695, 0.618, 0.765, 'p<.0001', True),
+51	        ('Register',  0.635, 0.555, 0.712, 'p=.0014', True),
+52	    ],
+53	    'Gemini-2.5-Flash': [
+54	        ('Verbosity', 0.708, 0.637, 0.772, 'p<.0001', True),
+55	        ('Formality', 0.574, 0.500, 0.642, 'p=.031', True),
+56	    ],
+57	}
+58	
+59	fig, ax = plt.subplots(figsize=(4.0, 3.2))
+60	fig.patch.set_facecolor('white')
+61	ax.set_facecolor('white')
+62	
+63	# Build y positions: judge header rows (no data) + axis data rows
+64	all_rows = []  # (type, judge_name, data_or_None, y)
+65	y = 0
+66	judge_groups = list(judges.items())
+67	
+68	for ji, (judge_name, axes_data) in enumerate(reversed(judge_groups)):
+69	    group_data_start = y
+70	    for ai, row in enumerate(reversed(axes_data)):
+71	        all_rows.append(('data', judge_name, row, y))
+72	        y += 1
+73	    group_data_end = y - 1
+74	    all_rows.append(('header', judge_name, (group_data_start, group_data_end), y + 0.05))
+75	    y += 1.1  # gap for next group (header space + padding)
+76	
+77	all_rows = list(reversed(all_rows))
+78	max_y = y - 0.5
+79	
+80	# Draw judge group backgrounds (alternating)
+81	judge_idx = 0
+82	for item in all_rows:
+83	    if item[0] == 'header':
+84	        _, judge_name, (gs, ge), yh = item
+85	        if judge_idx % 2 == 0:
+86	            ax.axhspan(gs - 0.42, yh + 0.15, color='#F7F7F7', zorder=0, linewidth=0)
+87	        judge_idx += 1
+88	
+89	# Vertical reference line at 0.50
+90	ax.axvline(x=0.50, color='#AAAAAA', linestyle='--', linewidth=0.9, zorder=1)
+91	
+92	# Plot each row
+93	for item in all_rows:
+94	    if item[0] == 'header':
+95	        _, judge_name, (gs, ge), yh = item
+96	        ax.text(0.44, yh, judge_name, ha='right', va='center',
+97	                fontsize=10, fontweight='bold', color='#222222')
+98	        continue
+99	
+100	    _, judge_name, (axis_name, bt, ci_lo, ci_hi, p_str, sig), yval = item
+101	    color = AXIS_COLORS[axis_name]
+102	
+103	    # CI whisker
+104	    ax.plot([ci_lo, ci_hi], [yval, yval], color=color, linewidth=1.5,
+105	            solid_capstyle='round', zorder=2)
+106	
+107	    # Diamond marker (filled if significant, open if not)
+108	    if sig:
+109	        ax.scatter(bt, yval, marker='D', s=40, color=color,
+110	                   edgecolors='white', linewidths=0.5, zorder=4)
+111	    else:
+112	        ax.scatter(bt, yval, marker='D', s=40, facecolors='white',
+113	                   edgecolors=color, linewidths=1.5, zorder=4)
+114	
+115	    # Axis label (left of plot, indented)
+116	    ax.text(0.44, yval, f'{axis_name}', ha='right', va='center',
+117	            fontsize=9, color='#555555')
+118	
+119	# Axis configuration
+120	ax.set_xlim(0.45, 0.90)
+121	ax.set_ylim(-0.6, max_y + 2.2)
+122	ax.set_yticks([])
+123	ax.set_xlabel('P(style-preferred wins)', fontsize=10)
+124	ax.spines['left'].set_visible(False)
+125	
+126	# Axis color legend (top, horizontal)
+127	axis_patches = [
+128	    Line2D([0], [0], color=AXIS_COLORS['Verbosity'], linewidth=2.5, label='Verbosity'),
+129	    Line2D([0], [0], color=AXIS_COLORS['Formality'], linewidth=2.5, label='Formality'),
+130	    Line2D([0], [0], color=AXIS_COLORS['Register'], linewidth=2.5, label='Register'),
+131	]
+132	leg_top = ax.legend(handles=axis_patches, loc='upper right',
+133	                    fontsize=8, frameon=True, framealpha=0.95,
+134	                    edgecolor='#DDDDDD', borderpad=0.4, ncol=3,
+135	                    columnspacing=1.0, handlelength=1.5)
+136	leg_top.get_frame().set_linewidth(0.5)
+137	
+138	# Diamond legend (lower right, well separated from color legend above)
+139	diamond_elements = [
+140	    Line2D([0], [0], marker='D', color='w', markerfacecolor='#888888',
+141	           markeredgecolor='#888888', markersize=6.5, label='Sig. ($p<.05$)'),
+142	    Line2D([0], [0], marker='D', color='w', markerfacecolor='white',
+143	           markeredgecolor='#888888', markersize=6.5, markeredgewidth=1.5,
+144	           label='Not sig.'),
+145	]
+146	leg_bot = ax.legend(handles=diamond_elements, loc='upper right',
+147	                    bbox_to_anchor=(1.0, -0.18),
+148	                    fontsize=8, frameon=True, framealpha=0.95,
+149	                    edgecolor='#DDDDDD', borderpad=0.4, ncol=2,
+150	                    columnspacing=0.8, handlelength=1.2)
+151	leg_bot.get_frame().set_linewidth(0.5)
+152	ax.add_artist(leg_top)
+153	
+154	plt.tight_layout()
+155	fig.subplots_adjust(bottom=0.24)
+156	
+157	out_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures'
+158	fig.savefig(f'{out_dir}/forest_plot.pdf', facecolor='white', edgecolor='none')
+159	fig.savefig(f'{out_dir}/forest_plot.png', facecolor='white', edgecolor='none')
+160	plt.close()
+161	print('Saved: forest_plot.pdf + .png')
+162	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "40ff7b57-7071-487d-a3bb-70b8b6f4e13b",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/gen_forest_plot.py",
+      "content": "\"\"\"\nOptimized forest plot: BT win probability across 4 judges × 2-3 style axes.\nNarrative: Verbosity is the strongest, most consistent bias; formality is universal\nbut weaker; register is judge-dependent.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nfrom matplotlib.lines import Line2D\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 10,\n    'axes.labelsize': 10,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'lines.linewidth': 1.8,\n})\n\nAXIS_COLORS = {\n    'Verbosity': '#E15759',\n    'Formality': '#4E79A7',\n    'Register':  '#76B7B2',\n}\n\n# Data grouped by judge: (axis, bt, ci_lo, ci_hi, p_str, significant)\njudges = {\n    'GPT-4o': [\n        ('Verbosity', 0.760, 0.686, 0.826, 'p<.001', True),\n        ('Formality', 0.630, 0.558, 0.703, 'p<.001', True),\n        ('Register',  0.570, 0.489, 0.649, 'p=.038', True),\n    ],\n    'Qwen3-32B': [\n        ('Verbosity', 0.773, 0.703, 0.843, 'p<.0001', True),\n        ('Formality', 0.665, 0.585, 0.739, 'p<.0001', True),\n        ('Register',  0.553, 0.473, 0.630, 'p=.092', False),\n    ],\n    'Llama-3.3-70B': [\n        ('Verbosity', 0.735, 0.660, 0.805, 'p<.0001', True),\n        ('Formality', 0.695, 0.618, 0.765, 'p<.0001', True),\n        ('Register',  0.635, 0.555, 0.712, 'p=.0014', True),\n    ],\n    'Gemini-2.5-Flash': [\n        ('Verbosity', 0.708, 0.637, 0.772, 'p<.0001', True),\n        ('Formality', 0.574, 0.500, 0.642, 'p=.031', True),\n    ],\n}\n\nfig, ax = plt.subplots(figsize=(4.0, 3.2))\nfig.patch.set_facecolor('white')\nax.set_facecolor('white')\n\n# Build y positions: judge header rows (no data) + axis data rows\nall_rows = []  # (type, judge_name, data_or_None, y)\ny = 0\njudge_groups = list(judges.items())\n\nfor ji, (judge_name, axes_data) in enumerate(reversed(judge_groups)):\n    group_data_start = y\n    for ai, row in enumerate(reversed(axes_data)):\n        all_rows.append(('data', judge_name, row, y))\n        y += 1\n    group_data_end = y - 1\n    all_rows.append(('header', judge_name, (group_data_start, group_data_end), y + 0.05))\n    y += 1.1  # gap for next group (header space + padding)\n\nall_rows = list(reversed(all_rows))\nmax_y = y - 0.5\n\n# Draw judge group backgrounds (alternating)\njudge_idx = 0\nfor item in all_rows:\n    if item[0] == 'header':\n        _, judge_name, (gs, ge), yh = item\n        if judge_idx % 2 == 0:\n            ax.axhspan(gs - 0.42, yh + 0.15, color='#F7F7F7', zorder=0, linewidth=0)\n        judge_idx += 1\n\n# Vertical reference line at 0.50\nax.axvline(x=0.50, color='#AAAAAA', linestyle='--', linewidth=0.9, zorder=1)\n\n# Plot each row\nfor item in all_rows:\n    if item[0] == 'header':\n        _, judge_name, (gs, ge), yh = item\n        ax.text(0.44, yh, judge_name, ha='right', va='center',\n                fontsize=10, fontweight='bold', color='#222222')\n        continue\n\n    _, judge_name, (axis_name, bt, ci_lo, ci_hi, p_str, sig), yval = item\n    color = AXIS_COLORS[axis_name]\n\n    # CI whisker\n    ax.plot([ci_lo, ci_hi], [yval, yval], color=color, linewidth=1.5,\n            solid_capstyle='round', zorder=2)\n\n    # Diamond marker (filled if significant, open if not)\n    if sig:\n        ax.scatter(bt, yval, marker='D', s=40, color=color,\n                   edgecolors='white', linewidths=0.5, zorder=4)\n    else:\n        ax.scatter(bt, yval, marker='D', s=40, facecolors='white',\n                   edgecolors=color, linewidths=1.5, zorder=4)\n\n    # Axis label (left of plot, indented)\n    ax.text(0.44, yval, f'{axis_name}', ha='right', va='center',\n            fontsize=9, color='#555555')\n\n# Axis configuration\nax.set_xlim(0.45, 0.90)\nax.set_ylim(-0.6, max_y + 2.2)\nax.set_yticks([])\nax.set_xlabel('P(style-preferred wins)', fontsize=10)\nax.spines['left'].set_visible(False)\n\n# Axis color legend (top, horizontal)\naxis_patches = [\n    Line2D([0], [0], color=AXIS_COLORS['Verbosity'], linewidth=2.5, label='Verbosity'),\n    Line2D([0], [0], color=AXIS_COLORS['Formality'], linewidth=2.5, label='Formality'),\n    Line2D([0], [0], color=AXIS_COLORS['Register'], linewidth=2.5, label='Register'),\n]\nleg_top = ax.legend(handles=axis_patches, loc='upper right',\n                    fontsize=8, frameon=True, framealpha=0.95,\n                    edgecolor='#DDDDDD', borderpad=0.4, ncol=3,\n                    columnspacing=1.0, handlelength=1.5)\nleg_top.get_frame().set_linewidth(0.5)\n\n# Diamond legend (lower right, well separated from color legend above)\ndiamond_elements = [\n    Line2D([0], [0], marker='D', color='w', markerfacecolor='#888888',\n           markeredgecolor='#888888', markersize=6.5, label='Sig. ($p<.05$)'),\n    Line2D([0], [0], marker='D', color='w', markerfacecolor='white',\n           markeredgecolor='#888888', markersize=6.5, markeredgewidth=1.5,\n           label='Not sig.'),\n]\nleg_bot = ax.legend(handles=diamond_elements, loc='upper right',\n                    bbox_to_anchor=(1.0, -0.18),\n                    fontsize=8, frameon=True, framealpha=0.95,\n                    edgecolor='#DDDDDD', borderpad=0.4, ncol=2,\n                    columnspacing=0.8, handlelength=1.2)\nleg_bot.get_frame().set_linewidth(0.5)\nax.add_artist(leg_top)\n\nplt.tight_layout()\nfig.subplots_adjust(bottom=0.24)\n\nout_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures'\nfig.savefig(f'{out_dir}/forest_plot.pdf', facecolor='white', edgecolor='none')\nfig.savefig(f'{out_dir}/forest_plot.png', facecolor='white', edgecolor='none')\nplt.close()\nprint('Saved: forest_plot.pdf + .png')\n",
+      "numLines": 162,
+      "startLine": 1,
+      "totalLines": 162
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 147_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KMAe5uoKEKn3hKqc2MD2ZT`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/gen_gee_decomposition_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "64ee2aaf-a6f4-4932-8523-329be8179ab7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVz2C96NWkF9sfmQDzQ3M6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15742,
+      "cache_read_input_tokens": 68441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 148 · 2026-05-25T19:53:59.524Z_
+
+<details><summary>↩ Tool result · `toolu_01KMAe5uoKEKn3hKqc2MD2ZT`</summary>
+
+```text
+1	"""
+2	Optimized GEE conditional decomposition: Style OR vs Orig OR across judges.
+3	Narrative: Verbosity is style-dominated (Style OR >> 1, Orig OR < 1);
+4	formality shows joint style+quality confounding.
+5	"""
+6	import matplotlib
+7	matplotlib.use('Agg')
+8	import matplotlib.pyplot as plt
+9	import matplotlib.ticker as mticker
+10	import matplotlib.patheffects as pe
+11	import numpy as np
+12	
+13	plt.rcParams.update({
+14	    'font.family': 'DejaVu Sans',
+15	    'font.size': 9,
+16	    'axes.linewidth': 0.6,
+17	    'xtick.major.width': 0.6,
+18	    'ytick.major.width': 0.6,
+19	    'xtick.major.size': 3,
+20	    'ytick.major.size': 3,
+21	    'pdf.fonttype': 42,
+22	    'ps.fonttype': 42,
+23	})
+24	
+25	# Colors from project palette
+26	C_STYLE = '#4E79A7'
+27	C_ORIG = '#E15759'
+28	
+29	# Data from Table 3 (n=88, LLMBar)
+30	verb_judges = ['Qwen3', 'GPT-4o', 'Llama-70B', 'Gemini']
+31	verb_style  = [13.10, 11.34, 8.21, 8.98]
+32	verb_orig   = [0.49,  0.45,  0.38, 0.46]
+33	verb_style_p = ['<.0001', '<.0001', '<.0001', '<.0001']
+34	verb_orig_p  = ['.096', '.062', '.020', '.061']
+35	
+36	form_judges = ['GPT-4o', 'Qwen3', 'Llama-70B', 'Gemini']
+37	form_style  = [2.58, 4.20, 4.81, 1.64]
+38	form_orig   = [2.32, 4.70, 3.12, 2.51]
+39	form_style_p = ['.002', '.0002', '<.0001', '.101']
+40	form_orig_p  = ['.006', '.0001', '.0007', '.002']
+41	
+42	n_verb = len(verb_judges)
+43	n_form = len(form_judges)
+44	bar_width = 0.30
+45	gap = 1.2
+46	
+47	verb_pos = np.arange(n_verb)
+48	form_pos = np.arange(n_form) + n_verb + gap
+49	
+50	fig, ax = plt.subplots(figsize=(3.6, 2.6))
+51	fig.patch.set_facecolor('white')
+52	ax.set_facecolor('white')
+53	
+54	# Verbosity bars
+55	bars_vs = ax.bar(verb_pos - bar_width/2, verb_style, bar_width,
+56	                 color=C_STYLE, edgecolor='white', linewidth=0.3,
+57	                 label='Style OR', zorder=3)
+58	bars_vo = ax.bar(verb_pos + bar_width/2, verb_orig, bar_width,
+59	                 color=C_ORIG, edgecolor='#999999', linewidth=0.4,
+60	                 hatch='///', alpha=0.85, label='Orig OR', zorder=3)
+61	
+62	# Formality bars
+63	bars_fs = ax.bar(form_pos - bar_width/2, form_style, bar_width,
+64	                 color=C_STYLE, edgecolor='white', linewidth=0.3, zorder=3)
+65	bars_fo = ax.bar(form_pos + bar_width/2, form_orig, bar_width,
+66	                 color=C_ORIG, edgecolor='#999999', linewidth=0.4,
+67	                 hatch='///', alpha=0.85, zorder=3)
+68	
+69	# Log scale
+70	ax.set_yscale('log')
+71	ax.set_ylim(0.25, 22)
+72	
+73	# Y-axis formatting
+74	ax.yaxis.set_major_formatter(mticker.ScalarFormatter())
+75	ax.yaxis.get_major_formatter().set_scientific(False)
+76	ax.set_yticks([0.3, 0.5, 1, 2, 5, 10])
+77	ax.set_yticklabels(['0.3', '0.5', '1', '2', '5', '10'])
+78	ax.yaxis.set_minor_formatter(mticker.NullFormatter())
+79	
+80	# Reference line at OR=1
+81	ax.axhline(y=1.0, color='#999999', linestyle='--', linewidth=0.7, zorder=2)
+82	t = ax.text(-0.5, 1.07, 'OR = 1', fontsize=6.5, color='#999999',
+83	            fontstyle='italic', va='bottom')
+84	
+85	# Horizontal grid
+86	ax.yaxis.grid(True, which='major', linestyle='-', linewidth=0.25,
+87	              color='#E0E0E0', zorder=0)
+88	ax.xaxis.grid(False)
+89	ax.set_axisbelow(True)
+90	
+91	# X tick labels
+92	all_pos = np.concatenate([verb_pos, form_pos])
+93	all_labels = verb_judges + form_judges
+94	ax.set_xticks(all_pos)
+95	ax.set_xticklabels(all_labels, fontsize=7, rotation=25, ha='right')
+96	
+97	# Group labels with subtle background
+98	trans = ax.get_xaxis_transform()
+99	verb_center = verb_pos.mean()
+100	form_center = form_pos.mean()
+101	
+102	ax.text(verb_center, -0.30, 'Verbosity', transform=trans,
+103	        ha='center', va='top', fontsize=9, fontweight='bold', color='#333333')
+104	ax.text(form_center, -0.30, 'Formality', transform=trans,
+105	        ha='center', va='top', fontsize=9, fontweight='bold', color='#333333')
+106	
+107	# Group separator
+108	sep_x = (verb_pos[-1] + form_pos[0]) / 2
+109	ax.axvline(x=sep_x, color='#CCCCCC', linestyle='-', linewidth=0.5,
+110	           ymin=0, ymax=1, zorder=1)
+111	
+112	# Significance markers on Style OR bars (Verbosity)
+113	def add_sig_marker(ax, x, y, p_str, color='#555555'):
+114	    if p_str.startswith('<'):
+115	        marker = '***'
+116	    elif float(p_str) < 0.001:
+117	        marker = '***'
+118	    elif float(p_str) < 0.01:
+119	        marker = '**'
+120	    elif float(p_str) < 0.05:
+121	        marker = '*'
+122	    else:
+123	        marker = 'n.s.'
+124	    t = ax.text(x, y * 1.06, marker, ha='center', va='bottom',
+125	                fontsize=5.5, color=color, fontweight='bold')
+126	    t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])
+127	
+128	for i, (sp, val) in enumerate(zip(verb_style_p, verb_style)):
+129	    add_sig_marker(ax, verb_pos[i] - bar_width/2, val, sp)
+130	
+131	for i, (sp, val) in enumerate(zip(form_style_p, form_style)):
+132	    add_sig_marker(ax, form_pos[i] - bar_width/2, val, sp)
+133	
+134	# Axis labels
+135	ax.set_ylabel('Odds Ratio (log scale)', fontsize=9)
+136	
+137	# Legend
+138	leg = ax.legend(fontsize=7.5, loc='upper right', frameon=True, framealpha=0.95,
+139	                edgecolor='#DDDDDD', borderpad=0.4, handlelength=1.2,
+140	                handletextpad=0.4)
+141	leg.get_frame().set_linewidth(0.4)
+142	
+143	# Spine cleanup
+144	ax.spines['top'].set_visible(False)
+145	ax.spines['right'].set_visible(False)
+146	ax.spines['bottom'].set_linewidth(0.6)
+147	ax.spines['left'].set_linewidth(0.6)
+148	
+149	fig.subplots_adjust(bottom=0.30, left=0.14, right=0.96, top=0.95)
+150	
+151	out_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures'
+152	fig.savefig(f'{out_dir}/gee_decomposition.pdf', format='pdf', dpi=300,
+153	            bbox_inches='tight', pad_inches=0.03, facecolor='white')
+154	fig.savefig(f'{out_dir}/gee_decomposition.png', format='png', dpi=300,
+155	            bbox_inches='tight', pad_inches=0.03, facecolor='white')
+156	plt.close()
+157	print('Saved: gee_decomposition.pdf + .png')
+158	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "6683303a-3e9e-4bfd-b7f3-0ed8cc28932a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures/gen_gee_decomposition_v2.py",
+      "content": "\"\"\"\nOptimized GEE conditional decomposition: Style OR vs Orig OR across judges.\nNarrative: Verbosity is style-dominated (Style OR >> 1, Orig OR < 1);\nformality shows joint style+quality confounding.\n\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as mticker\nimport matplotlib.patheffects as pe\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 9,\n    'axes.linewidth': 0.6,\n    'xtick.major.width': 0.6,\n    'ytick.major.width': 0.6,\n    'xtick.major.size': 3,\n    'ytick.major.size': 3,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n})\n\n# Colors from project palette\nC_STYLE = '#4E79A7'\nC_ORIG = '#E15759'\n\n# Data from Table 3 (n=88, LLMBar)\nverb_judges = ['Qwen3', 'GPT-4o', 'Llama-70B', 'Gemini']\nverb_style  = [13.10, 11.34, 8.21, 8.98]\nverb_orig   = [0.49,  0.45,  0.38, 0.46]\nverb_style_p = ['<.0001', '<.0001', '<.0001', '<.0001']\nverb_orig_p  = ['.096', '.062', '.020', '.061']\n\nform_judges = ['GPT-4o', 'Qwen3', 'Llama-70B', 'Gemini']\nform_style  = [2.58, 4.20, 4.81, 1.64]\nform_orig   = [2.32, 4.70, 3.12, 2.51]\nform_style_p = ['.002', '.0002', '<.0001', '.101']\nform_orig_p  = ['.006', '.0001', '.0007', '.002']\n\nn_verb = len(verb_judges)\nn_form = len(form_judges)\nbar_width = 0.30\ngap = 1.2\n\nverb_pos = np.arange(n_verb)\nform_pos = np.arange(n_form) + n_verb + gap\n\nfig, ax = plt.subplots(figsize=(3.6, 2.6))\nfig.patch.set_facecolor('white')\nax.set_facecolor('white')\n\n# Verbosity bars\nbars_vs = ax.bar(verb_pos - bar_width/2, verb_style, bar_width,\n                 color=C_STYLE, edgecolor='white', linewidth=0.3,\n                 label='Style OR', zorder=3)\nbars_vo = ax.bar(verb_pos + bar_width/2, verb_orig, bar_width,\n                 color=C_ORIG, edgecolor='#999999', linewidth=0.4,\n                 hatch='///', alpha=0.85, label='Orig OR', zorder=3)\n\n# Formality bars\nbars_fs = ax.bar(form_pos - bar_width/2, form_style, bar_width,\n                 color=C_STYLE, edgecolor='white', linewidth=0.3, zorder=3)\nbars_fo = ax.bar(form_pos + bar_width/2, form_orig, bar_width,\n                 color=C_ORIG, edgecolor='#999999', linewidth=0.4,\n                 hatch='///', alpha=0.85, zorder=3)\n\n# Log scale\nax.set_yscale('log')\nax.set_ylim(0.25, 22)\n\n# Y-axis formatting\nax.yaxis.set_major_formatter(mticker.ScalarFormatter())\nax.yaxis.get_major_formatter().set_scientific(False)\nax.set_yticks([0.3, 0.5, 1, 2, 5, 10])\nax.set_yticklabels(['0.3', '0.5', '1', '2', '5', '10'])\nax.yaxis.set_minor_formatter(mticker.NullFormatter())\n\n# Reference line at OR=1\nax.axhline(y=1.0, color='#999999', linestyle='--', linewidth=0.7, zorder=2)\nt = ax.text(-0.5, 1.07, 'OR = 1', fontsize=6.5, color='#999999',\n            fontstyle='italic', va='bottom')\n\n# Horizontal grid\nax.yaxis.grid(True, which='major', linestyle='-', linewidth=0.25,\n              color='#E0E0E0', zorder=0)\nax.xaxis.grid(False)\nax.set_axisbelow(True)\n\n# X tick labels\nall_pos = np.concatenate([verb_pos, form_pos])\nall_labels = verb_judges + form_judges\nax.set_xticks(all_pos)\nax.set_xticklabels(all_labels, fontsize=7, rotation=25, ha='right')\n\n# Group labels with subtle background\ntrans = ax.get_xaxis_transform()\nverb_center = verb_pos.mean()\nform_center = form_pos.mean()\n\nax.text(verb_center, -0.30, 'Verbosity', transform=trans,\n        ha='center', va='top', fontsize=9, fontweight='bold', color='#333333')\nax.text(form_center, -0.30, 'Formality', transform=trans,\n        ha='center', va='top', fontsize=9, fontweight='bold', color='#333333')\n\n# Group separator\nsep_x = (verb_pos[-1] + form_pos[0]) / 2\nax.axvline(x=sep_x, color='#CCCCCC', linestyle='-', linewidth=0.5,\n           ymin=0, ymax=1, zorder=1)\n\n# Significance markers on Style OR bars (Verbosity)\ndef add_sig_marker(ax, x, y, p_str, color='#555555'):\n    if p_str.startswith('<'):\n        marker = '***'\n    elif float(p_str) < 0.001:\n        marker = '***'\n    elif float(p_str) < 0.01:\n        marker = '**'\n    elif float(p_str) < 0.05:\n        marker = '*'\n    else:\n        marker = 'n.s.'\n    t = ax.text(x, y * 1.06, marker, ha='center', va='bottom',\n                fontsize=5.5, color=color, fontweight='bold')\n    t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\nfor i, (sp, val) in enumerate(zip(verb_style_p, verb_style)):\n    add_sig_marker(ax, verb_pos[i] - bar_width/2, val, sp)\n\nfor i, (sp, val) in enumerate(zip(form_style_p, form_style)):\n    add_sig_marker(ax, form_pos[i] - bar_width/2, val, sp)\n\n# Axis labels\nax.set_ylabel('Odds Ratio (log scale)', fontsize=9)\n\n# Legend\nleg = ax.legend(fontsize=7.5, loc='upper right', frameon=True, framealpha=0.95,\n                edgecolor='#DDDDDD', borderpad=0.4, handlelength=1.2,\n                handletextpad=0.4)\nleg.get_frame().set_linewidth(0.4)\n\n# Spine cleanup\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\nax.spines['bottom'].set_linewidth(0.6)\nax.spines['left'].set_linewidth(0.6)\n\nfig.subplots_adjust(bottom=0.30, left=0.14, right=0.96, top=0.95)\n\nout_dir = '/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper/figures'\nfig.savefig(f'{out_dir}/gee_decomposition.pdf', format='pdf', dpi=300,\n            bbox_inches='tight', pad_inches=0.03, facecolor='white')\nfig.savefig(f'{out_dir}/gee_decomposition.png', format='png', dpi=300,\n            bbox_inches='tight', pad_inches=0.03, facecolor='white')\nplt.close()\nprint('Saved: gee_decomposition.pdf + .png')\n",
+      "numLines": 158,
+      "startLine": 1,
+      "totalLines": 158
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 149_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014vTWxou1Fp7BTr9QTj1s9e`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "find /root/causal_style_decomp_judge/data -name \"scored_*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "a4b9af62-8409-44f4-8ad8-2ca6ae6480d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVz2C96NWkF9sfmQDzQ3M6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15742,
+      "cache_read_input_tokens": 68441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 150_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AwMuGxotw2X1C9g1cXSQrw`</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/data/analysis_scaled_formality_llama70b.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "701615d7-1fd0-4f17-90a9-56030c6e52a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVz2C96NWkF9sfmQDzQ3M6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15742,
+      "cache_read_input_tokens": 68441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 151 · 2026-05-25T19:54:01.767Z_
+
+<details><summary>↩ Tool result · `toolu_014vTWxou1Fp7BTr9QTj1s9e`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/data/scored_32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\n/root/causal_style_decomp_judge/data/scored_gpt4o_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_gpt4o_register.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_mtbench_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_claude_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o.jsonl\\n/root/causal_style_decomp_judge/data/scored_mtbench_gpt4o.jsonl\\n/root/causal_style_decomp_judge/data/scored_claude_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_verbosity_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_formality_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_verbosity_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_formality_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_100pt_gpt4o_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_100pt_gpt4o_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_llama70b_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_llama70b_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_llama70b_register.jsonl\\n/root/causal_style_decomp_judge/data/scored_gemini_flash_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_gemini_flash_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_claude_alpacaeval_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_claude_alpacaeval_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_claude_mtbench_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt4o.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_llama70b.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_gemini.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_claude.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt54.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_formality_llama70b.jsonl\\n/root/causal_style_decomp_judge/data/scored_llama_rewriter_formality_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_mtbench_llama70b_formality.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "b8f91785-21e1-44cd-aa77-e15d61e865ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/causal_style_decomp_judge/data/scored_32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_qwen32b_formality.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_qwen32b_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_gpt4o_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_gpt4o_register.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_qwen32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_mtbench_qwen32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_claude_formality.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_mtbench_gpt4o.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_claude_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_verbosity_qwen32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_scaled_formality_qwen32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_verbosity_qwen32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_formality_qwen32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_100pt_gpt4o_formality.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_100pt_gpt4o_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_llama70b_formality.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_llama70b_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_llama70b_register.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_gemini_flash_formality.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_gemini_flash_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_claude_alpacaeval_formality.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_claude_alpacaeval_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_claude_mtbench_formality.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt4o.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_qwen32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_llama70b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_gemini.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_claude.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt54.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_scaled_formality_llama70b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_llama_rewriter_formality_qwen32b.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_verbosity.jsonl\\\\n/root/causal_style_decomp_judge/data/scored_mtbench_llama70b_formality.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/data/scored_32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\n/root/causal_style_decomp_judge/data/scored_gpt4o_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_gpt4o_register.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_mtbench_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_claude_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o.jsonl\\n/root/causal_style_decomp_judge/data/scored_mtbench_gpt4o.jsonl\\n/root/causal_style_decomp_judge/data/scored_claude_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_verbosity_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_formality_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_verbosity_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_gpt4o_rewriter_formality_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_100pt_gpt4o_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_100pt_gpt4o_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_llama70b_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_llama70b_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_llama70b_register.jsonl\\n/root/causal_style_decomp_judge/data/scored_gemini_flash_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_gemini_flash_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_mtbench_qwen32b_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_claude_alpacaeval_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_gpt4o_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_claude_alpacaeval_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_claude_mtbench_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt4o.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_llama70b.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_gemini.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_claude.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_verbosity_gpt54.jsonl\\n/root/causal_style_decomp_judge/data/scored_scaled_formality_llama70b.jsonl\\n/root/causal_style_decomp_judge/data/scored_llama_rewriter_formality_qwen32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_alpacaeval_llama70b_verbosity.jsonl\\n/root/causal_style_decomp_judge/data/scored_mtbench_llama70b_formality.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 152 · 2026-05-25T19:54:02.692Z_
+
+<details><summary>↩ Tool result · `toolu_01AwMuGxotw2X1C9g1cXSQrw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"judge\\\": \\\"Llama-3.3-70B-Instruct\\\",\\n  \\\"axis\\\": \\\"formality\\\",\\n  \\\"n_total\\\": 355,\\n  \\\"n_consistent\\\": 202,\\n  \\\"bt\\\": {\\n    \\\"n_pairs\\\": 202,\\n    \\\"p_pole_a\\\": 0.8811503811503811,\\n    \\\"ci_lo\\\": 0.8366003366003366,\\n    \\\"ci_hi\\\": 0.9208741708741691,\\n    \\\"p_val\\\": 0.0001\\n  },\\n  \\\"likert\\\": {\\n    \\\"n\\\": 354,\\n    \\\"ate\\\": 0.08757062146892655,\\n    \\\"cohen_d\\\": 0.04843053062069488,\\n    \\\"wilcoxon_p\\\": 0.025721880362371698,\\n    \\\"ttest_p\\\": 0.07682137575242771,\\n    \\\"tie_rate\\\": 0.7146892655367232\\n  },\\n  \\\"gee\\\": {\\n    \\\"style_or\\\": 27.85156250000005,\\n    \\\"style_p\\\": 8.632263393525744e-12,\\n    \\\"style_ci\\\": [\\n      10.717139170596665,\\n      72.38027997430794\\n    ],\\n    \\\"orig_or\\\": 13.47826086956525,\\n    \\\"orig_p\\\": 9.393199819239132e-08,\\n    \\\"orig_ci\\\": [\\n      5.186366025847541,\\n      35.02712981742682\\n    ]\\n  },\\n  \\\"bt_significant\\\": true,\\n  \\\"likert_significant\\\": true,\\n  \\\"blindspot\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "a8895fa4-fa6a-49bd-b322-14b6af6eef74",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"judge\\\\\\\": \\\\\\\"Llama-3.3-70B-Instruct\\\\\\\",\\\\n  \\\\\\\"axis\\\\\\\": \\\\\\\"formality\\\\\\\",\\\\n  \\\\\\\"n_total\\\\\\\": 355,\\\\n  \\\\\\\"n_consistent\\\\\\\": 202,\\\\n  \\\\\\\"bt\\\\\\\": {\\\\n    \\\\\\\"n_pairs\\\\\\\": 202,\\\\n    \\\\\\\"p_pole_a\\\\\\\": 0.8811503811503811,\\\\n    \\\\\\\"ci_lo\\\\\\\": 0.8366003366003366,\\\\n    \\\\\\\"ci_hi\\\\\\\": 0.9208741708741691,\\\\n    \\\\\\\"p_val\\\\\\\": 0.0001\\\\n  },\\\\n  \\\\\\\"likert\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 354,\\\\n    \\\\\\\"ate\\\\\\\": 0.08757062146892655,\\\\n    \\\\\\\"cohen_d\\\\\\\": 0.04843053062069488,\\\\n    \\\\\\\"wilcoxon_p\\\\\\\": 0.025721880362371698,\\\\n    \\\\\\\"ttest_p\\\\\\\": 0.07682137575242771,\\\\n    \\\\\\\"tie_rate\\\\\\\": 0.7146892655367232\\\\n  },\\\\n  \\\\\\\"gee\\\\\\\": {\\\\n    \\\\\\\"style_or\\\\\\\": 27.85156250000005,\\\\n    \\\\\\\"style_p\\\\\\\": 8.632263393525744e-12,\\\\n    \\\\\\\"style_ci\\\\\\\": [\\\\n      10.717139170596665,\\\\n      72.38027997430794\\\\n    ],\\\\n    \\\\\\\"orig_or\\\\\\\": 13.47826086956525,\\\\n    \\\\\\\"orig_p\\\\\\\": 9.393199819239132e-08,\\\\n    \\\\\\\"orig_ci\\\\\\\": [\\\\n      5.186366025847541,\\\\n      35.02712981742682\\\\n    ]\\\\n  },\\\\n  \\\\\\\"bt_significant\\\\\\\": true,\\\\n  \\\\\\\"likert_significant\\\\\\\": true,\\\\n  \\\\\\\"blindspot\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"judge\\\": \\\"Llama-3.3-70B-Instruct\\\",\\n  \\\"axis\\\": \\\"formality\\\",\\n  \\\"n_total\\\": 355,\\n  \\\"n_consistent\\\": 202,\\n  \\\"bt\\\": {\\n    \\\"n_pairs\\\": 202,\\n    \\\"p_pole_a\\\": 0.8811503811503811,\\n    \\\"ci_lo\\\": 0.8366003366003366,\\n    \\\"ci_hi\\\": 0.9208741708741691,\\n    \\\"p_val\\\": 0.0001\\n  },\\n  \\\"likert\\\": {\\n    \\\"n\\\": 354,\\n    \\\"ate\\\": 0.08757062146892655,\\n    \\\"cohen_d\\\": 0.04843053062069488,\\n    \\\"wilcoxon_p\\\": 0.025721880362371698,\\n    \\\"ttest_p\\\": 0.07682137575242771,\\n    \\\"tie_rate\\\": 0.7146892655367232\\n  },\\n  \\\"gee\\\": {\\n    \\\"style_or\\\": 27.85156250000005,\\n    \\\"style_p\\\": 8.632263393525744e-12,\\n    \\\"style_ci\\\": [\\n      10.717139170596665,\\n      72.38027997430794\\n    ],\\n    \\\"orig_or\\\": 13.47826086956525,\\n    \\\"orig_p\\\": 9.393199819239132e-08,\\n    \\\"orig_ci\\\": [\\n      5.186366025847541,\\n      35.02712981742682\\n    ]\\n  },\\n  \\\"bt_significant\\\": true,\\n  \\\"likert_significant\\\": true,\\n  \\\"blindspot\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 153_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a lot of important data. Let me also check the forest plot script data against what's in the paper.
+
+**Forest plot script data (hardcoded):**
+- GPT-4o Verbosity: bt=0.760, ci=[0.686, 0.826], p<.001 → Table 1 says .760*** ✓
+- GPT-4o Formality: bt=0.630, ci=[0.558, 0.703], p<.001 → Table 1 says .630*** ✓  
+- GPT-4o Register: bt=0.570, ci=[0.489, 0.649], p=.038 → Table 1 says .570† (p reported as 'exploratory')
+
+
+I need to be careful here—the forest plot shows p=.038 as the raw p-value for GPT-4o Register, but what matters for significance is the Holm-adjusted p-value. Let me verify the formality and verbosity coefficients against the NLI sweep data to make sure everything's consistent across sources.
+
+For GPT-4o Verbosity, the bootstrap point estimate of 0.7602 rounds to the 0.760 shown in both the paper and forest plot, so that checks out. Now I'm tracking down the source for the GPT-4o Register coefficient of 0.570 from the forest plot—I don't have a direct file for it yet, but the interaction analysis shows a main style odds ratio of 1.88 with n=94 for that group.
+
+Looking at the register analysis directory, the pairwise summary gives n=49 with a win rate of 0.6327 from the sign test, which isn't the bootstrap estimate I need. The verified table confirms n=94 but only has Likert data. I should check what the registry agent output contains to find where that 0.570 value comes from.
+
+Now comparing the verbosity metrics across the figure script and Table 2, I'm seeing that Gemini's style odds ratio matches at 8.98 in both the paper and figure, but the underlying JSON source file shows 9.16 instead. The paper and figure are internally consistent with each other, but there's a discrepancy with the raw data file—either the JSON was recomputed after the table and figure were finalized, or the published versions used an earlier analysis.
+
+Looking at Gemini's verbosity metrics more closely, I'm noticing the same pattern: the figure and table agree with each other (0.46 for the odds ratio, 0.061 for the p-value), but the JSON source gives different values (0.4515 and 0.0572 respectively). This suggests a systematic traceability issue where the source data and the published results don't align.
+
+I'm also spotting a similar discrepancy with GPT-4o's register GEE p-value—the JSON shows 0.026665 while Table 2 reports 0.029, indicating the source data and paper don't match here either.
+
+The Sobel z-statistic issue is far more alarming though. The JSON reports 3.5953 with a p-value of 0.000324, but the paper claims z=2.15 with p=0.031—these are completely different values, not just rounding differences. It's possible the paper accidentally used a different statistic or there's been a serious mix-up in which results got reported. The source data shows a Sobel z of 3.60, not 2.15 as stated in the paper. The 60% mediation percentage matches perfectly with the data I'm looking at, but the reported z-statistic and p-value are both wrong. I'm wondering if there's a distinction between different analysis versions—like passed-only versus all-pairs comparisons—that might explain the discrepancy.
+
+Now I need to shift focus to building the comprehensive audit and verify the annotation metrics like the 98.6% precision and Gwet's AC1 values.
+
+Looking at the validation data, the full validation set shows different precision numbers across formality, verbosity, and overall categories, but the paper cites 98.6% gate pass precision from the annotation study where 100 NLI-scored pairs were evaluated by two independent annotators, with 70 gate-passed and 69 of those confirmed correct. This annotation study data is separate from the full validation metrics I'm seeing in the JSON files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "da078a86-c3e4-40ee-9c9d-3d6c68696144",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRzu2kGsixpwFD4sVrAMCm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9720,
+      "cache_read_input_tokens": 84183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9720
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 154_
+
+Let me now read the registry agent's output for specific experiments to find remaining BT values, and read the cross-benchmark heatmap script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "a924c490-dd25-4f2f-b7d1-b7e530110b29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRzu2kGsixpwFD4sVrAMCm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9720,
+      "cache_read_input_tokens": 84183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9720
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 155_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RtmADyWPBasFxvbQZajQUE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-5-projects-causal-style-decomp-judge/34b1c8fb-c53e-47b8-bef7-53d80c2bd748/tool-results/toolu_01E5epTckYXw13opHj1s9NRa.json",
+  "offset": 0,
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "34b1c8fb-c53e-47b8-bef7-53d80c2bd748",
+  "uuid": "2b676a28-5744-4814-b12b-eebe92129e2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRzu2kGsixpwFD4sVrAMCm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9720,
+      "cache_read_input_tokens": 84183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9720
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---

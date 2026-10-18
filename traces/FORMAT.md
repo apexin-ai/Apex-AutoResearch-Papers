@@ -4,7 +4,7 @@ Start with [the interactive browser](index.html), or open [the offline preview](
 
 The offline preview embeds its data, styles, and JavaScript in a single HTML file, so `demo.html` can also be sent on its own. Links from that file to full catalogues, papers, and source indexes require the corresponding repository files.
 
-On GitHub, HTML files display as source. Use each paper's `05-generation-trace/README.md` for a clickable index of session JSON, or run the browser locally:
+On GitHub, HTML files display as source. Use each paper's `05-generation-trace/README.md` and its `readable/README.md` for clickable Markdown transcripts; each transcript links to the complete structured JSON. Run the browser locally when you want round navigation and filters:
 
 ```bash
 python3 scripts/serve_traces.py --open
@@ -17,8 +17,9 @@ This starts a standard-library static server at `http://127.0.0.1:8765/traces/`.
 | Level | Files | Purpose |
 |---|---|---|
 | Collection | `traces/projects.json` | Paper titles, source counts, and per-paper catalogue links. |
-| Paper | `05-generation-trace/catalog.json` and `browse/*.md` | Searchable metadata and direct GitHub links for every source record. |
-| Source session | `05-generation-trace/sessions/<shard>/<id>.json` | Ordered rounds, recorded messages, tool arguments/results, metadata, and source provenance. |
+| Paper | `05-generation-trace/catalog.json`, `readable/`, and `browse/*.md` | Human-readable transcripts plus searchable metadata and direct structured-record links. |
+| Readable source page | `05-generation-trace/readable/<kind>/<task-name>.md` | GitHub-friendly role-labelled Markdown showing User, Assistant, Tool call, and Tool result events in order. Long records link to numbered parts kept below GitHub's comfortable page size. |
+| Source session | `05-generation-trace/sessions/<shard>/<id>.json` | Ordered rounds, recorded messages, tool arguments/results, metadata, and source provenance. Hash shards are an internal storage detail. |
 
 Small source sessions contain all messages in one JSON file. Large sessions reference adjacent `*-part-*.json` pages to limit the amount fetched by the viewer. A page can contain pieces of multiple consecutive rounds. Select the matching `rounds[].number` in each referenced page and concatenate its messages in chunk order. The viewer does this automatically. **Download selected round** exports that round with all its messages, including payloads hidden by display previews.
 

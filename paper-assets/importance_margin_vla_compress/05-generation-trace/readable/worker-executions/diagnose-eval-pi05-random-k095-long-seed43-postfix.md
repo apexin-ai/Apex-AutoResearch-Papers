@@ -1,0 +1,1567 @@
+# diagnose eval pi05 random k095 long seed43 postfix
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_diagnose_eval_pi05_random_k095_long_seed43_postfix_20260524T224419.log`
+- **Structured JSON:** [`0966638d8cd4ec37c4c6.json`](../../sessions/09/0966638d8cd4ec37c4c6.json)
+
+## Before a recorded user message
+
+31 recorded events
+
+### System
+
+_source line 1_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__delete_cron",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5c45bda3-615d-4570-bbf2-e7e8792dec31",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779671400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "fb9454c7-138b-457d-b556-47350e62baae",
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+I'll check the experiment logs on cqa1-33015.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "8087b285-8569-4636-9064-5c911493691c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ya3NXRdfJAdUu6cMehBxcW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12064,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12064
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Wj7nBhhZwzwxzQujmq4Pv6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "90d3c3ac-173c-443c-b80e-97cc51ec960d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ya3NXRdfJAdUu6cMehBxcW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12064,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12064
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-24T22:44:33.031Z_
+
+<details><summary>↩ Tool result · `toolu_01Wj7nBhhZwzwxzQujmq4Pv6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__delete_cron"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "365a8d36-8635-4e64-a4cb-153b51788bc8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__delete_cron"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__delete_cron",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the logs on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "bd973770-4f32-4a50-942d-6fa229b3b112",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpGpSj6Y9W1ft4k71tjBeU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1054,
+      "cache_read_input_tokens": 23905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1054
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X8WxUuWvG2W5opWNdczfra`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tail -100 /root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "837a9203-88a5-4615-8c6c-6cb7a3e7f601",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpGpSj6Y9W1ft4k71tjBeU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1054,
+      "cache_read_input_tokens": 23905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1054
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YYZ391AqfUPGaftGUA896o`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "ls -la /root/autodl-tmp/importance_margin_vla_compress/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "d18e390f-b7e8-4d1f-b112-ce3e47ee9932",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpGpSj6Y9W1ft4k71tjBeU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1054,
+      "cache_read_input_tokens": 23905,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1054
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T22:44:38.435Z_
+
+<details><summary>↩ Tool result · `toolu_01X8WxUuWvG2W5opWNdczfra`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-25 02:44:02,077 Config: suite=libero_10, prune=random, keep=0.95, eps=50, gpu=0\\n2026-05-25 02:44:02,077 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-25 02:46:28,300 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-25 02:46:35,713 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-25 02:46:35,714 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-25 02:46:38,974 Patched embed_image\\n2026-05-25 02:46:38,990 Model: 4143.4M params\\n2026-05-25 02:46:38,990 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-25 02:46:38,990 Pruning: random, keep 243/256 tokens/image (729 total)\\n2026-05-25 02:46:40,381 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-25 02:46:40,406 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-25 02:46:40,406 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-25 02:46:40,406 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-25 02:46:40,439 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-25 02:46:40,660 Suite: libero_10, 10 tasks, max_steps=520\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\n[PRUNE-DIAG] random: n_keep=243/256, first_indices=[0, 1, 2, 3, 4]\\n2026-05-25 02:51:05,504   T0 [put both the alphabet soup and the tomat] ep=10: 8/10=80%\\n2026-05-25 02:56:26,128   T0 [put both the alphabet soup and the tomat] ep=20: 13/20=65%\\n2026-05-25 03:02:48,944   T0 [put both the alphabet soup and the tomat] ep=30: 15/30=50%\\n2026-05-25 03:08:30,374   T0 [put both the alphabet soup and the tomat] ep=40: 19/40=48%\\n2026-05-25 03:14:00,715   T0 [put both the alphabet soup and the tomat] ep=50: 25/50=50%\\n2026-05-25 03:14:00,716 Task 0: SR=50.0% | Total: 25/50=50.0% | Time: 27.3min\\n2026-05-25 03:17:33,582   T1 [put both the cream cheese box and the bu] ep=10: 10/10=100%\\n2026-05-25 03:21:29,675   T1 [put both the cream cheese box and the bu] ep=20: 19/20=95%\\n2026-05-25 03:25:37,979   T1 [put both the cream cheese box and the bu] ep=30: 27/30=90%\\n2026-05-25 03:29:44,630   T1 [put both the cream cheese box and the bu] ep=40: 36/40=90%\\n2026-05-25 03:34:04,693   T1 [put both the cream cheese box and the bu] ep=50: 44/50=88%\\n2026-05-25 03:34:04,693 Task 1: SR=88.0% | Total: 69/100=69.0% | Time: 47.4min\\n2026-05-25 03:39:02,093   T2 [turn on the stove and put the moka pot o] ep=10: 5/10=50%\\n2026-05-25 03:43:31,422   T2 [turn on the stove and put the moka pot o] ep=20: 11/20=55%\\n2026-05-25 03:47:53,492   T2 [turn on the stove and put the moka pot o] ep=30: 18/30=60%\\n2026-05-25 03:52:01,369   T2 [turn on the stove and put the moka pot o] ep=40: 25/40=62%\\n2026-05-25 03:56:36,879   T2 [turn on the stove and put the moka pot o] ep=50: 31/50=62%\\n2026-05-25 03:56:36,879 Task 2: SR=62.0% | Total: 100/150=66.7% | Time: 69.9min\\n2026-05-25 04:01:44,675   T3 [put the black bowl in the bottom drawer ] ep=10: 6/10=60%\\n2026-05-25 04:06:03,438   T3 [put the black bowl in the bottom drawer ] ep=20: 15/20=75%\\n2026-05-25 04:11:06,701   T3 [put the black bowl in the bottom drawer ] ep=30: 23/30=77%\\n2026-05-25 04:15:42,905   T3 [put the black bowl in the bottom drawer ] ep=40: 32/40=80%\\n2026-05-25 04:20:02,544   T3 [put the black bowl in the bottom drawer ] ep=50: 40/50=80%\\n2026-05-25 04:20:02,544 Task 3: SR=80.0% | Total: 140/200=70.0% | Time: 93.4min\\n2026-05-25 04:25:02,452   T4 [put the white mug on the left plate and ] ep=10: 5/10=50%\\n2026-05-25 04:30:34,827   T4 [put the white mug on the left plate and ] ep=20: 8/20=40%\\n2026-05-25 04:35:47,005   T4 [put the white mug on the left plate and ] ep=30: 13/30=43%\\n2026-05-25 04:41:15,268   T4 [put the white mug on the left plate and ] ep=40: 16/40=40%\\n2026-05-25 04:46:25,055   T4 [put the white mug on the left plate and ] ep=50: 21/50=42%\\n2026-05-25 04:46:25,055 Task 4: SR=42.0% | Total: 161/250=64.4% | Time: 119.7min\\n2026-05-25 04:49:37,650   T5 [pick up the book and place it in the bac] ep=10: 9/10=90%\\n2026-05-25 04:52:21,055   T5 [pick up the book and place it in the bac] ep=20: 18/20=90%\\n2026-05-25 04:54:42,893   T5 [pick up the book and place it in the bac] ep=30: 28/30=93%\\n2026-05-25 04:58:05,299   T5 [pick up the book and place it in the bac] ep=40: 36/40=90%\\n2026-05-25 05:00:59,128   T5 [pick up the book and place it in the bac] ep=50: 45/50=90%\\n2026-05-25 05:00:59,128 Task 5: SR=90.0% | Total: 206/300=68.7% | Time: 134.3min\\n2026-05-25 05:07:19,732   T6 [put the white mug on the plate and put t] ep=10: 0/10=0%\\n2026-05-25 05:13:15,927   T6 [put the white mug on the plate and put t] ep=20: 1/20=5%\\n2026-05-25 05:19:22,935   T6 [put the white mug on the plate and put t] ep=30: 2/30=7%\\n2026-05-25 05:25:08,852   T6 [put the white mug on the plate and put t] ep=40: 2/40=5%\\n2026-05-25 05:30:46,615   T6 [put the white mug on the plate and put t] ep=50: 3/50=6%\\n2026-05-25 05:30:46,616 Task 6: SR=6.0% | Total: 209/350=59.7% | Time: 164.1min\\n2026-05-25 05:35:20,466   T7 [put both the alphabet soup and the cream] ep=10: 5/10=50%\\n2026-05-25 05:40:41,577   T7 [put both the alphabet soup and the cream] ep=20: 9/20=45%\\n2026-05-25 05:45:46,496   T7 [put both the alphabet soup and the cream] ep=30: 16/30=53%\\n2026-05-25 05:50:13,157   T7 [put both the alphabet soup and the cream] ep=40: 22/40=55%\\n2026-05-25 05:54:35,125   T7 [put both the alphabet soup and the cream] ep=50: 29/50=58%\\n2026-05-25 05:54:35,125 Task 7: SR=58.0% | Total: 238/400=59.5% | Time: 187.9min\\n2026-05-25 06:00:34,335   T8 [put both moka pots on the stove] ep=10: 3/10=30%\\n2026-05-25 06:06:38,446   T8 [put both moka pots on the stove] ep=20: 5/20=25%\\n2026-05-25 06:12:35,025   T8 [put both moka pots on the stove] ep=30: 8/30=27%\\n2026-05-25 06:18:17,269   T8 [put both moka pots on the stove] ep=40: 9/40=22%\\n2026-05-25 06:24:28,107   T8 [put both moka pots on the stove] ep=50: 9/50=18%\\n2026-05-25 06:24:28,107 Task 8: SR=18.0% | Total: 247/450=54.9% | Time: 217.8min\\n2026-05-25 06:28:06,081   T9 [put the yellow and white mug in the micr] ep=10: 10/10=100%\\n2026-05-25 06:32:08,622   T9 [put the yellow and white mug in the micr] ep=20: 19/20=95%\\n2026-05-25 06:36:03,949   T9 [put the yellow and white mug in the micr] ep=30: 27/30=90%\\n2026-05-25 06:39:53,542   T9 [put the yellow and white mug in the micr] ep=40: 36/40=90%\\n2026-05-25 06:43:25,513   T9 [put the yellow and white mug in the micr] ep=50: 45/50=90%\\n2026-05-25 06:43:25,513 Task 9: SR=90.0% | Total: 292/500=58.4% | Time: 236.7min\\n2026-05-25 06:43:25,717 \\n============================================================\\n2026-05-25 06:43:25,717 RESULT: libero_10 prune=random keep=0.95 SR=58.4%\\n2026-05-25 06:43:25,717 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.95_libero_10_seed43.json\\n2026-05-25 06:43:25,717 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "cc88caaa-0e23-4921-9e79-64670c6ca26e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-25 02:44:02,077 Config: suite=libero_10, prune=random, keep=0.95, eps=50, gpu=0\\\\n2026-05-25 02:44:02,077 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n2026-05-25 02:46:28,300 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-25 02:46:35,713 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-25 02:46:35,714 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-25 02:46:38,974 Patched embed_image\\\\n2026-05-25 02:46:38,990 Model: 4143.4M params\\\\n2026-05-25 02:46:38,990 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-25 02:46:38,990 Pruning: random, keep 243/256 tokens/image (729 total)\\\\n2026-05-25 02:46:40,381 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-25 02:46:40,406 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-25 02:46:40,406 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-25 02:46:40,406 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-25 02:46:40,439 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-25 02:46:40,660 Suite: libero_10, 10 tasks, max_steps=520\\\\nLocal assets not found. Downloading from HuggingFace Hub...\\\\nAssets already downloaded at /root/.cache/libero/assets\\\\n[PRUNE-DIAG] random: n_keep=243/256, first_indices=[0, 1, 2, 3, 4]\\\\n2026-05-25 02:51:05,504   T0 [put both the alphabet soup and the tomat] ep=10: 8/10=80%\\\\n2026-05-25 02:56:26,128   T0 [put both the alphabet soup and the tomat] ep=20: 13/20=65%\\\\n2026-05-25 03:02:48,944   T0 [put both the alphabet soup and the tomat] ep=30: 15/30=50%\\\\n2026-05-25 03:08:30,374   T0 [put both the alphabet soup and the tomat] ep=40: 19/40=48%\\\\n2026-05-25 03:14:00,715   T0 [put both the alphabet soup and the tomat] ep=50: 25/50=50%\\\\n2026-05-25 03:14:00,716 Task 0: SR=50.0% | Total: 25/50=50.0% | Time: 27.3min\\\\n2026-05-25 03:17:33,582   T1 [put both the cream cheese box and the bu] ep=10: 10/10=100%\\\\n2026-05-25 03:21:29,675   T1 [put both the cream cheese box and the bu] ep=20: 19/20=95%\\\\n2026-05-25 03:25:37,979   T1 [put both the cream cheese box and the bu] ep=30: 27/30=90%\\\\n2026-05-25 03:29:44,630   T1 [put both the cream cheese box and the bu] ep=40: 36/40=90%\\\\n2026-05-25 03:34:04,693   T1 [put both the cream cheese box and the bu] ep=50: 44/50=88%\\\\n2026-05-25 03:34:04,693 Task 1: SR=88.0% | Total: 69/100=69.0% | Time: 47.4min\\\\n2026-05-25 03:39:02,093   T2 [turn on the stove and put the moka pot o] ep=10: 5/10=50%\\\\n2026-05-25 03:43:31,422   T2 [turn on the stove and put the moka pot o] ep=20: 11/20=55%\\\\n2026-05-25 03:47:53,492   T2 [turn on the stove and put the moka pot o] ep=30: 18/30=60%\\\\n2026-05-25 03:52:01,369   T2 [turn on the stove and put the moka pot o] ep=40: 25/40=62%\\\\n2026-05-25 03:56:36,879   T2 [turn on the stove and put the moka pot o] ep=50: 31/50=62%\\\\n2026-05-25 03:56:36,879 Task 2: SR=62.0% | Total: 100/150=66.7% | Time: 69.9min\\\\n2026-05-25 04:01:44,675   T3 [put the black bowl in the bottom drawer ] ep=10: 6/10=60%\\\\n2026-05-25 04:06:03,438   T3 [put the black bowl in the bottom drawer ] ep=20: 15/20=75%\\\\n2026-05-25 04:11:06,701   T3 [put the black bowl in the bottom drawer ] ep=30: 23/30=77%\\\\n2026-05-25 04:15:42,905   T3 [put the black bowl in the bottom drawer ] ep=40: 32/40=80%\\\\n2026-05-25 04:20:02,544   T3 [put the black bowl in the bottom drawer ] ep=50: 40/50=80%\\\\n2026-05-25 04:20:02,544 Task 3: SR=80.0% | Total: 140/200=70.0% | Time: 93.4min\\\\n2026-05-25 04:25:02,452   T4 [put the white mug on the left plate and ] ep=10: 5/10=50%\\\\n2026-05-25 04:30:34,827   T4 [put the white mug on the left plate and ] ep=20: 8/20=40%\\\\n2026-05-25 04:35:47,005   T4 [put the white mug on the left plate and ] ep=30: 13/30=43%\\\\n2026-05-25 04:41:15,268   T4 [put the white mug on the left plate and ] ep=40: 16/40=40%\\\\n2026-05-25 04:46:25,055   T4 [put the white mug on the left plate and ] ep=50: 21/50=42%\\\\n2026-05-25 04:46:25,055 Task 4: SR=42.0% | Total: 161/250=64.4% | Time: 119.7min\\\\n2026-05-25 04:49:37,650   T5 [pick up the book and place it in the bac] ep=10: 9/10=90%\\\\n2026-05-25 04:52:21,055   T5 [pick up the book and place it in the bac] ep=20: 18/20=90%\\\\n2026-05-25 04:54:42,893   T5 [pick up the book and place it in the bac] ep=30: 28/30=93%\\\\n2026-05-25 04:58:05,299   T5 [pick up the book and place it in the bac] ep=40: 36/40=90%\\\\n2026-05-25 05:00:59,128   T5 [pick up the book and place it in the bac] ep=50: 45/50=90%\\\\n2026-05-25 05:00:59,128 Task 5: SR=90.0% | Total: 206/300=68.7% | Time: 134.3min\\\\n2026-05-25 05:07:19,732   T6 [put the white mug on the plate and put t] ep=10: 0/10=0%\\\\n2026-05-25 05:13:15,927   T6 [put the white mug on the plate and put t] ep=20: 1/20=5%\\\\n2026-05-25 05:19:22,935   T6 [put the white mug on the plate and put t] ep=30: 2/30=7%\\\\n2026-05-25 05:25:08,852   T6 [put the white mug on the plate and put t] ep=40: 2/40=5%\\\\n2026-05-25 05:30:46,615   T6 [put the white mug on the plate and put t] ep=50: 3/50=6%\\\\n2026-05-25 05:30:46,616 Task 6: SR=6.0% | Total: 209/350=59.7% | Time: 164.1min\\\\n2026-05-25 05:35:20,466   T7 [put both the alphabet soup and the cream] ep=10: 5/10=50%\\\\n2026-05-25 05:40:41,577   T7 [put both the alphabet soup and the cream] ep=20: 9/20=45%\\\\n2026-05-25 05:45:46,496   T7 [put both the alphabet soup and the cream] ep=30: 16/30=53%\\\\n2026-05-25 05:50:13,157   T7 [put both the alphabet soup and the cream] ep=40: 22/40=55%\\\\n2026-05-25 05:54:35,125   T7 [put both the alphabet soup and the cream] ep=50: 29/50=58%\\\\n2026-05-25 05:54:35,125 Task 7: SR=58.0% | Total: 238/400=59.5% | Time: 187.9min\\\\n2026-05-25 06:00:34,335   T8 [put both moka pots on the stove] ep=10: 3/10=30%\\\\n2026-05-25 06:06:38,446   T8 [put both moka pots on the stove] ep=20: 5/20=25%\\\\n2026-05-25 06:12:35,025   T8 [put both moka pots on the stove] ep=30: 8/30=27%\\\\n2026-05-25 06:18:17,269   T8 [put both moka pots on the stove] ep=40: 9/40=22%\\\\n2026-05-25 06:24:28,107   T8 [put both moka pots on the stove] ep=50: 9/50=18%\\\\n2026-05-25 06:24:28,107 Task 8: SR=18.0% | Total: 247/450=54.9% | Time: 217.8min\\\\n2026-05-25 06:28:06,081   T9 [put the yellow and white mug in the micr] ep=10: 10/10=100%\\\\n2026-05-25 06:32:08,622   T9 [put the yellow and white mug in the micr] ep=20: 19/20=95%\\\\n2026-05-25 06:36:03,949   T9 [put the yellow and white mug in the micr] ep=30: 27/30=90%\\\\n2026-05-25 06:39:53,542   T9 [put the yellow and white mug in the micr] ep=40: 36/40=90%\\\\n2026-05-25 06:43:25,513   T9 [put the yellow and white mug in the micr] ep=50: 45/50=90%\\\\n2026-05-25 06:43:25,513 Task 9: SR=90.0% | Total: 292/500=58.4% | Time: 236.7min\\\\n2026-05-25 06:43:25,717 \\\\n============================================================\\\\n2026-05-25 06:43:25,717 RESULT: libero_10 prune=random keep=0.95 SR=58.4%\\\\n2026-05-25 06:43:25,717 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.95_libero_10_seed43.json\\\\n2026-05-25 06:43:25,717 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-25 02:44:02,077 Config: suite=libero_10, prune=random, keep=0.95, eps=50, gpu=0\\n2026-05-25 02:44:02,077 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-25 02:46:28,300 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-25 02:46:35,713 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-25 02:46:35,714 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-25 02:46:38,974 Patched embed_image\\n2026-05-25 02:46:38,990 Model: 4143.4M params\\n2026-05-25 02:46:38,990 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-25 02:46:38,990 Pruning: random, keep 243/256 tokens/image (729 total)\\n2026-05-25 02:46:40,381 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-25 02:46:40,406 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-25 02:46:40,406 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-25 02:46:40,406 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-25 02:46:40,439 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-25 02:46:40,660 Suite: libero_10, 10 tasks, max_steps=520\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\n[PRUNE-DIAG] random: n_keep=243/256, first_indices=[0, 1, 2, 3, 4]\\n2026-05-25 02:51:05,504   T0 [put both the alphabet soup and the tomat] ep=10: 8/10=80%\\n2026-05-25 02:56:26,128   T0 [put both the alphabet soup and the tomat] ep=20: 13/20=65%\\n2026-05-25 03:02:48,944   T0 [put both the alphabet soup and the tomat] ep=30: 15/30=50%\\n2026-05-25 03:08:30,374   T0 [put both the alphabet soup and the tomat] ep=40: 19/40=48%\\n2026-05-25 03:14:00,715   T0 [put both the alphabet soup and the tomat] ep=50: 25/50=50%\\n2026-05-25 03:14:00,716 Task 0: SR=50.0% | Total: 25/50=50.0% | Time: 27.3min\\n2026-05-25 03:17:33,582   T1 [put both the cream cheese box and the bu] ep=10: 10/10=100%\\n2026-05-25 03:21:29,675   T1 [put both the cream cheese box and the bu] ep=20: 19/20=95%\\n2026-05-25 03:25:37,979   T1 [put both the cream cheese box and the bu] ep=30: 27/30=90%\\n2026-05-25 03:29:44,630   T1 [put both the cream cheese box and the bu] ep=40: 36/40=90%\\n2026-05-25 03:34:04,693   T1 [put both the cream cheese box and the bu] ep=50: 44/50=88%\\n2026-05-25 03:34:04,693 Task 1: SR=88.0% | Total: 69/100=69.0% | Time: 47.4min\\n2026-05-25 03:39:02,093   T2 [turn on the stove and put the moka pot o] ep=10: 5/10=50%\\n2026-05-25 03:43:31,422   T2 [turn on the stove and put the moka pot o] ep=20: 11/20=55%\\n2026-05-25 03:47:53,492   T2 [turn on the stove and put the moka pot o] ep=30: 18/30=60%\\n2026-05-25 03:52:01,369   T2 [turn on the stove and put the moka pot o] ep=40: 25/40=62%\\n2026-05-25 03:56:36,879   T2 [turn on the stove and put the moka pot o] ep=50: 31/50=62%\\n2026-05-25 03:56:36,879 Task 2: SR=62.0% | Total: 100/150=66.7% | Time: 69.9min\\n2026-05-25 04:01:44,675   T3 [put the black bowl in the bottom drawer ] ep=10: 6/10=60%\\n2026-05-25 04:06:03,438   T3 [put the black bowl in the bottom drawer ] ep=20: 15/20=75%\\n2026-05-25 04:11:06,701   T3 [put the black bowl in the bottom drawer ] ep=30: 23/30=77%\\n2026-05-25 04:15:42,905   T3 [put the black bowl in the bottom drawer ] ep=40: 32/40=80%\\n2026-05-25 04:20:02,544   T3 [put the black bowl in the bottom drawer ] ep=50: 40/50=80%\\n2026-05-25 04:20:02,544 Task 3: SR=80.0% | Total: 140/200=70.0% | Time: 93.4min\\n2026-05-25 04:25:02,452   T4 [put the white mug on the left plate and ] ep=10: 5/10=50%\\n2026-05-25 04:30:34,827   T4 [put the white mug on the left plate and ] ep=20: 8/20=40%\\n2026-05-25 04:35:47,005   T4 [put the white mug on the left plate and ] ep=30: 13/30=43%\\n2026-05-25 04:41:15,268   T4 [put the white mug on the left plate and ] ep=40: 16/40=40%\\n2026-05-25 04:46:25,055   T4 [put the white mug on the left plate and ] ep=50: 21/50=42%\\n2026-05-25 04:46:25,055 Task 4: SR=42.0% | Total: 161/250=64.4% | Time: 119.7min\\n2026-05-25 04:49:37,650   T5 [pick up the book and place it in the bac] ep=10: 9/10=90%\\n2026-05-25 04:52:21,055   T5 [pick up the book and place it in the bac] ep=20: 18/20=90%\\n2026-05-25 04:54:42,893   T5 [pick up the book and place it in the bac] ep=30: 28/30=93%\\n2026-05-25 04:58:05,299   T5 [pick up the book and place it in the bac] ep=40: 36/40=90%\\n2026-05-25 05:00:59,128   T5 [pick up the book and place it in the bac] ep=50: 45/50=90%\\n2026-05-25 05:00:59,128 Task 5: SR=90.0% | Total: 206/300=68.7% | Time: 134.3min\\n2026-05-25 05:07:19,732   T6 [put the white mug on the plate and put t] ep=10: 0/10=0%\\n2026-05-25 05:13:15,927   T6 [put the white mug on the plate and put t] ep=20: 1/20=5%\\n2026-05-25 05:19:22,935   T6 [put the white mug on the plate and put t] ep=30: 2/30=7%\\n2026-05-25 05:25:08,852   T6 [put the white mug on the plate and put t] ep=40: 2/40=5%\\n2026-05-25 05:30:46,615   T6 [put the white mug on the plate and put t] ep=50: 3/50=6%\\n2026-05-25 05:30:46,616 Task 6: SR=6.0% | Total: 209/350=59.7% | Time: 164.1min\\n2026-05-25 05:35:20,466   T7 [put both the alphabet soup and the cream] ep=10: 5/10=50%\\n2026-05-25 05:40:41,577   T7 [put both the alphabet soup and the cream] ep=20: 9/20=45%\\n2026-05-25 05:45:46,496   T7 [put both the alphabet soup and the cream] ep=30: 16/30=53%\\n2026-05-25 05:50:13,157   T7 [put both the alphabet soup and the cream] ep=40: 22/40=55%\\n2026-05-25 05:54:35,125   T7 [put both the alphabet soup and the cream] ep=50: 29/50=58%\\n2026-05-25 05:54:35,125 Task 7: SR=58.0% | Total: 238/400=59.5% | Time: 187.9min\\n2026-05-25 06:00:34,335   T8 [put both moka pots on the stove] ep=10: 3/10=30%\\n2026-05-25 06:06:38,446   T8 [put both moka pots on the stove] ep=20: 5/20=25%\\n2026-05-25 06:12:35,025   T8 [put both moka pots on the stove] ep=30: 8/30=27%\\n2026-05-25 06:18:17,269   T8 [put both moka pots on the stove] ep=40: 9/40=22%\\n2026-05-25 06:24:28,107   T8 [put both moka pots on the stove] ep=50: 9/50=18%\\n2026-05-25 06:24:28,107 Task 8: SR=18.0% | Total: 247/450=54.9% | Time: 217.8min\\n2026-05-25 06:28:06,081   T9 [put the yellow and white mug in the micr] ep=10: 10/10=100%\\n2026-05-25 06:32:08,622   T9 [put the yellow and white mug in the micr] ep=20: 19/20=95%\\n2026-05-25 06:36:03,949   T9 [put the yellow and white mug in the micr] ep=30: 27/30=90%\\n2026-05-25 06:39:53,542   T9 [put the yellow and white mug in the micr] ep=40: 36/40=90%\\n2026-05-25 06:43:25,513   T9 [put the yellow and white mug in the micr] ep=50: 45/50=90%\\n2026-05-25 06:43:25,513 Task 9: SR=90.0% | Total: 292/500=58.4% | Time: 236.7min\\n2026-05-25 06:43:25,717 \\n============================================================\\n2026-05-25 06:43:25,717 RESULT: libero_10 prune=random keep=0.95 SR=58.4%\\n2026-05-25 06:43:25,717 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.95_libero_10_seed43.json\\n2026-05-25 06:43:25,717 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T22:44:38.910Z_
+
+<details><summary>↩ Tool result · `toolu_01YYZ391AqfUPGaftGUA896o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 956\\ndrwxr-xr-x  3 root root 12288 May 25 06:43 .\\ndrwxr-xr-x 13 root root  4096 May 23 15:22 ..\\n-rw-r--r--  1 root root  1484 May 16 19:18 action_diversity_by_step.json\\n-rw-r--r--  1 root root  1389 May 18 22:08 eval_acis_k05_supplement_200eps.json\\n-rw-r--r--  1 root root  1377 May 19 00:11 eval_acis_k05_supplement_v2.json\\n-rw-r--r--  1 root root  2751 May 17 21:00 eval_acis_k07_trained_prune.json\\n-rw-r--r--  1 root root  2723 May 19 04:46 eval_baseline_control_100k_v2.json\\n-rw-r--r--  1 root root  2705 May 19 07:22 eval_baseline_control_prune_k05.json\\n-rw-r--r--  1 root root  4172 May 16 06:45 eval_baseline_v5_bypass_acis.json\\n-rw-r--r--  1 root root  4147 May 16 05:23 eval_baseline_v5_final.json\\n-rw-r--r--  1 root root  4171 May 16 12:04 eval_baseline_v5_fixed.json\\n-rw-r--r--  1 root root  4145 May 16 05:28 eval_baseline_v5_step10000.json\\n-rw-r--r--  1 root root  4148 May 16 05:25 eval_baseline_v5_step5000.json\\n-rw-r--r--  1 root root  2486 May 18 00:12 eval_geometric_prior_k09_dryrun.json\\n-rw-r--r--  1 root root   836 May 16 06:56 eval_imm_v7_2_bypass_acis.json\\n-rw-r--r--  1 root root  4504 May 16 07:03 eval_imm_v7_2_final.json\\n-rw-r--r--  1 root root  4485 May 16 05:55 eval_imm_v7_2_step010000.json\\n-rw-r--r--  1 root root  4478 May 16 05:58 eval_imm_v7_2_step020000.json\\n-rw-r--r--  1 root root  4468 May 16 04:52 eval_imm_v7_final.json\\n-rw-r--r--  1 root root  2407 May 16 14:18 eval_imm_v8_1_acis_prune.json\\n-rw-r--r--  1 root root   830 May 16 14:18 eval_imm_v8_1_bypass.json\\n-rw-r--r--  1 root root  4510 May 16 14:13 eval_imm_v8_1_standard.json\\n-rw-r--r--  1 root root   834 May 16 10:48 eval_imm_v8_bypass_final.json\\n-rw-r--r--  1 root root   834 May 16 11:58 eval_imm_v8_bypass_fixed.json\\n-rw-r--r--  1 root root  4500 May 16 10:31 eval_imm_v8_final.json\\n-rw-r--r--  1 root root  8724 May 16 10:49 eval_imm_v8_final_30k.json\\n-rw-r--r--  1 root root  4526 May 16 11:53 eval_imm_v8_fixed.json\\n-rw-r--r--  1 root root  4516 May 16 08:10 eval_imm_v8_step002000.json\\n-rw-r--r--  1 root root   832 May 16 08:02 eval_imm_v8_step002000_bypass.json\\n-rw-r--r--  1 root root  2423 May 16 15:21 eval_imm_v8b_acis_prune.json\\n-rw-r--r--  1 root root   849 May 16 15:21 eval_imm_v8b_bypass.json\\n-rw-r--r--  1 root root  4518 May 16 15:16 eval_imm_v8b_standard.json\\n-rw-r--r--  1 root root  2409 May 16 18:58 eval_imm_v8c_acis_prune.json\\n-rw-r--r--  1 root root   850 May 16 18:56 eval_imm_v8c_bypass.json\\n-rw-r--r--  1 root root  4505 May 16 18:51 eval_imm_v8c_standard.json\\n-rw-r--r--  1 root root  2073 May 17 05:49 eval_lora_100k_sr.json\\n-rw-r--r--  1 root root   589 May 20 19:16 eval_openvla_sc_m128_vtconly_20k_seed42_dryrun.json\\n-rw-r--r--  1 root root  1400 May 18 01:24 eval_pi05_baseline.json\\n-rw-r--r--  1 root root 18139 May 19 20:51 eval_prune_k05_spatial.log\\n-rw-r--r--  1 root root  2661 May 20 15:56 eval_smart_compress_m128_seed43.json\\n-rw-r--r--  1 root root  2658 May 20 15:54 eval_smart_compress_m16_seed43.json\\n-rw-r--r--  1 root root  2656 May 20 17:15 eval_smart_compress_m16_seed44.json\\n-rw-r--r--  1 root root  2442 May 19 08:53 eval_smart_compress_m32_libero_goal.json\\n-rw-r--r--  1 root root  2824 May 19 08:03 eval_smart_compress_m32_libero_spatial.json\\n-rw-r--r--  1 root root  2628 May 19 19:07 eval_smart_compress_m32_official.json\\n-rw-r--r--  1 root root  2627 May 19 08:14 eval_smart_compress_m32_seed43.json\\n-rw-r--r--  1 root root  2624 May 19 19:01 eval_smart_compress_m32_seed44.json\\n-rw-r--r--  1 root root  2621 May 19 08:51 eval_smart_compress_m64_seed43.json\\n-rw-r--r--  1 root root  2623 May 19 19:01 eval_smart_compress_m64_seed44.json\\n-rw-r--r--  1 root root  2712 May 19 04:43 eval_smart_compress_m96_seed43.json\\n-rw-r--r--  1 root root  2624 May 19 06:23 eval_smart_compress_m96_seed43_v2.json\\n-rw-r--r--  1 root root  2622 May 19 19:02 eval_smart_compress_m96_seed44.json\\n-rw-r--r--  1 root root  2919 May 19 20:29 eval_smolvla_baseline_spatial.json\\n-rw-r--r--  1 root root  2884 May 19 21:52 eval_smolvla_official_baseline_spatial.\\n\\n... [截断: 输出过长，省略 9237 字符] ...\\n\\non\\n-rw-r--r--  1 root root  2782 May 21 19:23 xvla_l2_norm_k0.7_libero_object_seed43.json\\n-rw-r--r--  1 root root  2780 May 21 21:10 xvla_l2_norm_k0.7_libero_object_seed44.json\\n-rw-r--r--  1 root root  2777 May 21 01:29 xvla_prune_k0.2_libero_object_seed43.json\\n-rw-r--r--  1 root root  2774 May 21 02:04 xvla_prune_k0.2_libero_object_seed44.json\\n-rw-r--r--  1 root root  2780 May 21 18:05 xvla_prune_k0.3_libero_object.json\\n-rw-r--r--  1 root root  2780 May 21 17:05 xvla_prune_k0.3_libero_object_backup_20260521_170516.json\\n-rw-r--r--  1 root root  2783 May 21 00:40 xvla_prune_k0.3_libero_object_seed43.json\\n-rw-r--r--  1 root root  2787 May 21 00:41 xvla_prune_k0.3_libero_object_seed44.json\\n-rw-r--r--  1 root root  2782 May 21 17:17 xvla_prune_k0.5_libero_object.json\\n-rw-r--r--  1 root root  2784 May 21 17:05 xvla_prune_k0.5_libero_object_backup_20260521_170516.json\\n-rw-r--r--  1 root root  2790 May 20 21:43 xvla_prune_k0.5_libero_object_seed43.json\\n-rw-r--r--  1 root root  2788 May 20 23:12 xvla_prune_k0.5_libero_object_seed44.json\\n-rw-r--r--  1 root root  2989 May 21 14:55 xvla_prune_k0.5_libero_spatial.json\\n-rw-r--r--  1 root root  2989 May 21 17:05 xvla_prune_k0.5_libero_spatial_backup_20260521_170516.json\\n-rw-r--r--  1 root root  2778 May 21 16:49 xvla_prune_k0.7_libero_object.json\\n-rw-r--r--  1 root root  2778 May 21 17:05 xvla_prune_k0.7_libero_object_backup_20260521_170516.json\\n-rw-r--r--  1 root root  2788 May 20 21:22 xvla_prune_k0.7_libero_object_seed43.json\\n-rw-r--r--  1 root root  2786 May 20 22:54 xvla_prune_k0.7_libero_object_seed44.json\\n-rw-r--r--  1 root root  2780 May 21 11:52 xvla_prune_k0.85_libero_object.json\\n-rw-r--r--  1 root root  2986 May 21 13:04 xvla_prune_k0.85_libero_spatial.json\\n-rw-r--r--  1 root root  2783 May 21 11:29 xvla_prune_k0.8_libero_object.json\\n-rw-r--r--  1 root root  2781 May 21 11:21 xvla_prune_k0.9_libero_object.json\\n-rw-r--r--  1 root root  2789 May 20 20:44 xvla_prune_k0.9_libero_object_seed43.json\\n-rw-r--r--  1 root root  2788 May 20 22:16 xvla_prune_k0.9_libero_object_seed44.json\\n-rw-r--r--  1 root root  2766 May 21 04:53 xvla_prune_k01_libero_object_seed42.json\\n-rw-r--r--  1 root root  2766 May 21 03:23 xvla_prune_k01_libero_object_seed43.json\\n-rw-r--r--  1 root root  2766 May 21 03:24 xvla_prune_k01_libero_object_seed44.json\\n-rw-r--r--  1 root root  2790 May 21 05:51 xvla_prune_k085_libero_object_seed42.json\\n-rw-r--r--  1 root root  2790 May 21 06:00 xvla_prune_k085_libero_object_seed43.json\\n-rw-r--r--  1 root root  2790 May 21 07:11 xvla_prune_k085_libero_object_seed44.json\\n-rw-r--r--  1 root root  2791 May 21 05:57 xvla_prune_k08_libero_object_seed42.json\\n-rw-r--r--  1 root root  2791 May 21 05:42 xvla_prune_k08_libero_object_seed43.json\\n-rw-r--r--  1 root root  2789 May 21 06:44 xvla_prune_k08_libero_object_seed44.json\\n-rw-r--r--  1 root root  2787 May 21 04:24 xvla_prune_k095_libero_object_seed42.json\\n-rw-r--r--  1 root root  2787 May 21 04:29 xvla_prune_k095_libero_object_seed43.json\\n-rw-r--r--  1 root root  2786 May 21 04:29 xvla_prune_k095_libero_object_seed44.json\\n-rw-r--r--  1 root root  2780 May 21 17:06 xvla_random_k0.3_libero_object_seed42.json\\n-rw-r--r--  1 root root  2780 May 21 19:21 xvla_random_k0.3_libero_object_seed43.json\\n-rw-r--r--  1 root root  2781 May 21 21:05 xvla_random_k0.3_libero_object_seed44.json\\n-rw-r--r--  1 root root  2784 May 21 17:06 xvla_random_k0.5_libero_object_seed43_v2.json\\n-rw-r--r--  1 root root  2779 May 21 22:38 xvla_random_k0.7_libero_object_seed42.json\\n-rw-r--r--  1 root root  2778 May 21 17:06 xvla_random_k0.7_libero_object_seed43_v2.json\\n-rw-r--r--  1 root root  2777 May 21 19:56 xvla_random_k0.7_libero_object_seed44.json\\n-rw-r--r--  1 root root  2780 May 21 22:49 xvla_random_k0.85_libero_object_seed42.json\\n-rw-r--r--  1 root root  2780 May 21 21:28 xvla_random_k0.85_libero_object_seed43.json\\n-rw-r--r--  1 root root  2996 May 21 09:06 xvla_spatial_k05_seed42.json\\n-rw-r--r--  1 root root  2990 May 21 08:41 xvla_spatial_k09_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "564c2326-9891-4428-89fd-c981c9cf7b8e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 956\\\\ndrwxr-xr-x  3 root root 12288 May 25 06:43 .\\\\ndrwxr-xr-x 13 root root  4096 May 23 15:22 ..\\\\n-rw-r--r--  1 root root  1484 May 16 19:18 action_diversity_by_step.json\\\\n-rw-r--r--  1 root root  1389 May 18 22:08 eval_acis_k05_supplement_200eps.json\\\\n-rw-r--r--  1 root root  1377 May 19 00:11 eval_acis_k05_supplement_v2.json\\\\n-rw-r--r--  1 root root  2751 May 17 21:00 eval_acis_k07_trained_prune.json\\\\n-rw-r--r--  1 root root  2723 May 19 04:46 eval_baseline_control_100k_v2.json\\\\n-rw-r--r--  1 root root  2705 May 19 07:22 eval_baseline_control_prune_k05.json\\\\n-rw-r--r--  1 root root  4172 May 16 06:45 eval_baseline_v5_bypass_acis.json\\\\n-rw-r--r--  1 root root  4147 May 16 05:23 eval_baseline_v5_final.json\\\\n-rw-r--r--  1 root root  4171 May 16 12:04 eval_baseline_v5_fixed.json\\\\n-rw-r--r--  1 root root  4145 May 16 05:28 eval_baseline_v5_step10000.json\\\\n-rw-r--r--  1 root root  4148 May 16 05:25 eval_baseline_v5_step5000.json\\\\n-rw-r--r--  1 root root  2486 May 18 00:12 eval_geometric_prior_k09_dryrun.json\\\\n-rw-r--r--  1 root root   836 May 16 06:56 eval_imm_v7_2_bypass_acis.json\\\\n-rw-r--r--  1 root root  4504 May 16 07:03 eval_imm_v7_2_final.json\\\\n-rw-r--r--  1 root root  4485 May 16 05:55 eval_imm_v7_2_step010000.json\\\\n-rw-r--r--  1 root root  4478 May 16 05:58 eval_imm_v7_2_step020000.json\\\\n-rw-r--r--  1 root root  4468 May 16 04:52 eval_imm_v7_final.json\\\\n-rw-r--r--  1 root root  2407 May 16 14:18 eval_imm_v8_1_acis_prune.json\\\\n-rw-r--r--  1 root root   830 May 16 14:18 eval_imm_v8_1_bypass.json\\\\n-rw-r--r--  1 root root  4510 May 16 14:13 eval_imm_v8_1_standard.json\\\\n-rw-r--r--  1 root root   834 May 16 10:48 eval_imm_v8_bypass_final.json\\\\n-rw-r--r--  1 root root   834 May 16 11:58 eval_imm_v8_bypass_fixed.json\\\\n-rw-r--r--  1 root root  4500 May 16 10:31 eval_imm_v8_final.json\\\\n-rw-r--r--  1 root root  8724 May 16 10:49 eval_imm_v8_final_30k.json\\\\n-rw-r--r--  1 root root  4526 May 16 11:53 eval_imm_v8_fixed.json\\\\n-rw-r--r--  1 root root  4516 May 16 08:10 eval_imm_v8_step002000.json\\\\n-rw-r--r--  1 root root   832 May 16 08:02 eval_imm_v8_step002000_bypass.json\\\\n-rw-r--r--  1 root root  2423 May 16 15:21 eval_imm_v8b_acis_prune.json\\\\n-rw-r--r--  1 root root   849 May 16 15:21 eval_imm_v8b_bypass.json\\\\n-rw-r--r--  1 root root  4518 May 16 15:16 eval_imm_v8b_standard.json\\\\n-rw-r--r--  1 root root  2409 May 16 18:58 eval_imm_v8c_acis_prune.json\\\\n-rw-r--r--  1 root root   850 May 16 18:56 eval_imm_v8c_bypass.json\\\\n-rw-r--r--  1 root root  4505 May 16 18:51 eval_imm_v8c_standard.json\\\\n-rw-r--r--  1 root root  2073 May 17 05:49 eval_lora_100k_sr.json\\\\n-rw-r--r--  1 root root   589 May 20 19:16 eval_openvla_sc_m128_vtconly_20k_seed42_dryrun.json\\\\n-rw-r--r--  1 root root  1400 May 18 01:24 eval_pi05_baseline.json\\\\n-rw-r--r--  1 root root 18139 May 19 20:51 eval_prune_k05_spatial.log\\\\n-rw-r--r--  1 root root  2661 May 20 15:56 eval_smart_compress_m128_seed43.json\\\\n-rw-r--r--  1 root root  2658 May 20 15:54 eval_smart_compress_m16_seed43.json\\\\n-rw-r--r--  1 root root  2656 May 20 17:15 eval_smart_compress_m16_seed44.json\\\\n-rw-r--r--  1 root root  2442 May 19 08:53 eval_smart_compress_m32_libero_goal.json\\\\n-rw-r--r--  1 root root  2824 May 19 08:03 eval_smart_compress_m32_libero_spatial.json\\\\n-rw-r--r--  1 root root  2628 May 19 19:07 eval_smart_compress_m32_official.json\\\\n-rw-r--r--  1 root root  2627 May 19 08:14 eval_smart_compress_m32_seed43.json\\\\n-rw-r--r--  1 root root  2624 May 19 19:01 eval_smart_compress_m32_seed44.json\\\\n-rw-r--r--  1 root root  2621 May 19 08:51 eval_smart_compress_m64_seed43.json\\\\n-rw-r--r--  1 root root  2623 May 19 19:01 eval_smart_compress_m64_seed44.json\\\\n-rw-r--r--  1 root root  2712 May 19 04:43 eval_smart_compress_m96_seed43.json\\\\n-rw-r--r--  1 root root  2624 May 19 06:23 eval_smart_compress_m96_seed43_v2.json\\\\n-rw-r--r--  1 root root  2622 May 19 19:02 eval_smart_compress_m96_seed44.json\\\\n-rw-r--r--  1 root root  2919 May 19 20:29 eval_smolvla_baseline_spatial.json\\\\n-rw-r--r--  1 root root  2884 May 19 21:52 eval_smolvla_official_baseline_spatial.\\\\n\\\\n... [截断: 输出过长，省略 9237 字符] ...\\\\n\\\\non\\\\n-rw-r--r--  1 root root  2782 May 21 19:23 xvla_l2_norm_k0.7_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2780 May 21 21:10 xvla_l2_norm_k0.7_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2777 May 21 01:29 xvla_prune_k0.2_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2774 May 21 02:04 xvla_prune_k0.2_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2780 May 21 18:05 xvla_prune_k0.3_libero_object.json\\\\n-rw-r--r--  1 root root  2780 May 21 17:05 xvla_prune_k0.3_libero_object_backup_20260521_170516.json\\\\n-rw-r--r--  1 root root  2783 May 21 00:40 xvla_prune_k0.3_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2787 May 21 00:41 xvla_prune_k0.3_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2782 May 21 17:17 xvla_prune_k0.5_libero_object.json\\\\n-rw-r--r--  1 root root  2784 May 21 17:05 xvla_prune_k0.5_libero_object_backup_20260521_170516.json\\\\n-rw-r--r--  1 root root  2790 May 20 21:43 xvla_prune_k0.5_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2788 May 20 23:12 xvla_prune_k0.5_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2989 May 21 14:55 xvla_prune_k0.5_libero_spatial.json\\\\n-rw-r--r--  1 root root  2989 May 21 17:05 xvla_prune_k0.5_libero_spatial_backup_20260521_170516.json\\\\n-rw-r--r--  1 root root  2778 May 21 16:49 xvla_prune_k0.7_libero_object.json\\\\n-rw-r--r--  1 root root  2778 May 21 17:05 xvla_prune_k0.7_libero_object_backup_20260521_170516.json\\\\n-rw-r--r--  1 root root  2788 May 20 21:22 xvla_prune_k0.7_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2786 May 20 22:54 xvla_prune_k0.7_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2780 May 21 11:52 xvla_prune_k0.85_libero_object.json\\\\n-rw-r--r--  1 root root  2986 May 21 13:04 xvla_prune_k0.85_libero_spatial.json\\\\n-rw-r--r--  1 root root  2783 May 21 11:29 xvla_prune_k0.8_libero_object.json\\\\n-rw-r--r--  1 root root  2781 May 21 11:21 xvla_prune_k0.9_libero_object.json\\\\n-rw-r--r--  1 root root  2789 May 20 20:44 xvla_prune_k0.9_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2788 May 20 22:16 xvla_prune_k0.9_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2766 May 21 04:53 xvla_prune_k01_libero_object_seed42.json\\\\n-rw-r--r--  1 root root  2766 May 21 03:23 xvla_prune_k01_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2766 May 21 03:24 xvla_prune_k01_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2790 May 21 05:51 xvla_prune_k085_libero_object_seed42.json\\\\n-rw-r--r--  1 root root  2790 May 21 06:00 xvla_prune_k085_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2790 May 21 07:11 xvla_prune_k085_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2791 May 21 05:57 xvla_prune_k08_libero_object_seed42.json\\\\n-rw-r--r--  1 root root  2791 May 21 05:42 xvla_prune_k08_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2789 May 21 06:44 xvla_prune_k08_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2787 May 21 04:24 xvla_prune_k095_libero_object_seed42.json\\\\n-rw-r--r--  1 root root  2787 May 21 04:29 xvla_prune_k095_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2786 May 21 04:29 xvla_prune_k095_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2780 May 21 17:06 xvla_random_k0.3_libero_object_seed42.json\\\\n-rw-r--r--  1 root root  2780 May 21 19:21 xvla_random_k0.3_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2781 May 21 21:05 xvla_random_k0.3_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2784 May 21 17:06 xvla_random_k0.5_libero_object_seed43_v2.json\\\\n-rw-r--r--  1 root root  2779 May 21 22:38 xvla_random_k0.7_libero_object_seed42.json\\\\n-rw-r--r--  1 root root  2778 May 21 17:06 xvla_random_k0.7_libero_object_seed43_v2.json\\\\n-rw-r--r--  1 root root  2777 May 21 19:56 xvla_random_k0.7_libero_object_seed44.json\\\\n-rw-r--r--  1 root root  2780 May 21 22:49 xvla_random_k0.85_libero_object_seed42.json\\\\n-rw-r--r--  1 root root  2780 May 21 21:28 xvla_random_k0.85_libero_object_seed43.json\\\\n-rw-r--r--  1 root root  2996 May 21 09:06 xvla_spatial_k05_seed42.json\\\\n-rw-r--r--  1 root root  2990 May 21 08:41 xvla_spatial_k09_seed42.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 956\\ndrwxr-xr-x  3 root root 12288 May 25 06:43 .\\ndrwxr-xr-x 13 root root  4096 May 23 15:22 ..\\n-rw-r--r--  1 root root  1484 May 16 19:18 action_diversity_by_step.json\\n-rw-r--r--  1 root root  1389 May 18 22:08 eval_acis_k05_supplement_200eps.json\\n-rw-r--r--  1 root root  1377 May 19 00:11 eval_acis_k05_supplement_v2.json\\n-rw-r--r--  1 root root  2751 May 17 21:00 eval_acis_k07_trained_prune.json\\n-rw-r--r--  1 root root  2723 May 19 04:46 eval_baseline_control_100k_v2.json\\n-rw-r--r--  1 root root  2705 May 19 07:22 eval_baseline_control_prune_k05.json\\n-rw-r--r--  1 root root  4172 May 16 06:45 eval_baseline_v5_bypass_acis.json\\n-rw-r--r--  1 root root  4147 May 16 05:23 eval_baseline_v5_final.json\\n-rw-r--r--  1 root root  4171 May 16 12:04 eval_baseline_v5_fixed.json\\n-rw-r--r--  1 root root  4145 May 16 05:28 eval_baseline_v5_step10000.json\\n-rw-r--r--  1 root root  4148 May 16 05:25 eval_baseline_v5_step5000.json\\n-rw-r--r--  1 root root  2486 May 18 00:12 eval_geometric_prior_k09_dryrun.json\\n-rw-r--r--  1 root root   836 May 16 06:56 eval_imm_v7_2_bypass_acis.json\\n-rw-r--r--  1 root root  4504 May 16 07:03 eval_imm_v7_2_final.json\\n-rw-r--r--  1 root root  4485 May 16 05:55 eval_imm_v7_2_step010000.json\\n-rw-r--r--  1 root root  4478 May 16 05:58 eval_imm_v7_2_step020000.json\\n-rw-r--r--  1 root root  4468 May 16 04:52 eval_imm_v7_final.json\\n-rw-r--r--  1 root root  2407 May 16 14:18 eval_imm_v8_1_acis_prune.json\\n-rw-r--r--  1 root root   830 May 16 14:18 eval_imm_v8_1_bypass.json\\n-rw-r--r--  1 root root  4510 May 16 14:13 eval_imm_v8_1_standard.json\\n-rw-r--r--  1 root root   834 May 16 10:48 eval_imm_v8_bypass_final.json\\n-rw-r--r--  1 root root   834 May 16 11:58 eval_imm_v8_bypass_fixed.json\\n-rw-r--r--  1 root root  4500 May 16 10:31 eval_imm_v8_final.json\\n-rw-r--r--  1 root root  8724 May 16 10:49 eval_imm_v8_final_30k.json\\n-rw-r--r--  1 root root  4526 May 16 11:53 eval_imm_v8_fixed.json\\n-rw-r--r--  1 root root  4516 May 16 08:10 eval_imm_v8_step002000.json\\n-rw-r--r--  1 root root   832 May 16 08:02 eval_imm_v8_step002000_bypass.json\\n-rw-r--r--  1 root root  2423 May 16 15:21 eval_imm_v8b_acis_prune.json\\n-rw-r--r--  1 root root   849 May 16 15:21 eval_imm_v8b_bypass.json\\n-rw-r--r--  1 root root  4518 May 16 15:16 eval_imm_v8b_standard.json\\n-rw-r--r--  1 root root  2409 May 16 18:58 eval_imm_v8c_acis_prune.json\\n-rw-r--r--  1 root root   850 May 16 18:56 eval_imm_v8c_bypass.json\\n-rw-r--r--  1 root root  4505 May 16 18:51 eval_imm_v8c_standard.json\\n-rw-r--r--  1 root root  2073 May 17 05:49 eval_lora_100k_sr.json\\n-rw-r--r--  1 root root   589 May 20 19:16 eval_openvla_sc_m128_vtconly_20k_seed42_dryrun.json\\n-rw-r--r--  1 root root  1400 May 18 01:24 eval_pi05_baseline.json\\n-rw-r--r--  1 root root 18139 May 19 20:51 eval_prune_k05_spatial.log\\n-rw-r--r--  1 root root  2661 May 20 15:56 eval_smart_compress_m128_seed43.json\\n-rw-r--r--  1 root root  2658 May 20 15:54 eval_smart_compress_m16_seed43.json\\n-rw-r--r--  1 root root  2656 May 20 17:15 eval_smart_compress_m16_seed44.json\\n-rw-r--r--  1 root root  2442 May 19 08:53 eval_smart_compress_m32_libero_goal.json\\n-rw-r--r--  1 root root  2824 May 19 08:03 eval_smart_compress_m32_libero_spatial.json\\n-rw-r--r--  1 root root  2628 May 19 19:07 eval_smart_compress_m32_official.json\\n-rw-r--r--  1 root root  2627 May 19 08:14 eval_smart_compress_m32_seed43.json\\n-rw-r--r--  1 root root  2624 May 19 19:01 eval_smart_compress_m32_seed44.json\\n-rw-r--r--  1 root root  2621 May 19 08:51 eval_smart_compress_m64_seed43.json\\n-rw-r--r--  1 root root  2623 May 19 19:01 eval_smart_compress_m64_seed44.json\\n-rw-r--r--  1 root root  2712 May 19 04:43 eval_smart_compress_m96_seed43.json\\n-rw-r--r--  1 root root  2624 May 19 06:23 eval_smart_compress_m96_seed43_v2.json\\n-rw-r--r--  1 root root  2622 May 19 19:02 eval_smart_compress_m96_seed44.json\\n-rw-r--r--  1 root root  2919 May 19 20:29 eval_smolvla_baseline_spatial.json\\n-rw-r--r--  1 root root  2884 May 19 21:52 eval_smolvla_official_baseline_spatial.\\n\\n... [截断: 输出过长，省略 9237 字符] ...\\n\\non\\n-rw-r--r--  1 root root  2782 May 21 19:23 xvla_l2_norm_k0.7_libero_object_seed43.json\\n-rw-r--r--  1 root root  2780 May 21 21:10 xvla_l2_norm_k0.7_libero_object_seed44.json\\n-rw-r--r--  1 root root  2777 May 21 01:29 xvla_prune_k0.2_libero_object_seed43.json\\n-rw-r--r--  1 root root  2774 May 21 02:04 xvla_prune_k0.2_libero_object_seed44.json\\n-rw-r--r--  1 root root  2780 May 21 18:05 xvla_prune_k0.3_libero_object.json\\n-rw-r--r--  1 root root  2780 May 21 17:05 xvla_prune_k0.3_libero_object_backup_20260521_170516.json\\n-rw-r--r--  1 root root  2783 May 21 00:40 xvla_prune_k0.3_libero_object_seed43.json\\n-rw-r--r--  1 root root  2787 May 21 00:41 xvla_prune_k0.3_libero_object_seed44.json\\n-rw-r--r--  1 root root  2782 May 21 17:17 xvla_prune_k0.5_libero_object.json\\n-rw-r--r--  1 root root  2784 May 21 17:05 xvla_prune_k0.5_libero_object_backup_20260521_170516.json\\n-rw-r--r--  1 root root  2790 May 20 21:43 xvla_prune_k0.5_libero_object_seed43.json\\n-rw-r--r--  1 root root  2788 May 20 23:12 xvla_prune_k0.5_libero_object_seed44.json\\n-rw-r--r--  1 root root  2989 May 21 14:55 xvla_prune_k0.5_libero_spatial.json\\n-rw-r--r--  1 root root  2989 May 21 17:05 xvla_prune_k0.5_libero_spatial_backup_20260521_170516.json\\n-rw-r--r--  1 root root  2778 May 21 16:49 xvla_prune_k0.7_libero_object.json\\n-rw-r--r--  1 root root  2778 May 21 17:05 xvla_prune_k0.7_libero_object_backup_20260521_170516.json\\n-rw-r--r--  1 root root  2788 May 20 21:22 xvla_prune_k0.7_libero_object_seed43.json\\n-rw-r--r--  1 root root  2786 May 20 22:54 xvla_prune_k0.7_libero_object_seed44.json\\n-rw-r--r--  1 root root  2780 May 21 11:52 xvla_prune_k0.85_libero_object.json\\n-rw-r--r--  1 root root  2986 May 21 13:04 xvla_prune_k0.85_libero_spatial.json\\n-rw-r--r--  1 root root  2783 May 21 11:29 xvla_prune_k0.8_libero_object.json\\n-rw-r--r--  1 root root  2781 May 21 11:21 xvla_prune_k0.9_libero_object.json\\n-rw-r--r--  1 root root  2789 May 20 20:44 xvla_prune_k0.9_libero_object_seed43.json\\n-rw-r--r--  1 root root  2788 May 20 22:16 xvla_prune_k0.9_libero_object_seed44.json\\n-rw-r--r--  1 root root  2766 May 21 04:53 xvla_prune_k01_libero_object_seed42.json\\n-rw-r--r--  1 root root  2766 May 21 03:23 xvla_prune_k01_libero_object_seed43.json\\n-rw-r--r--  1 root root  2766 May 21 03:24 xvla_prune_k01_libero_object_seed44.json\\n-rw-r--r--  1 root root  2790 May 21 05:51 xvla_prune_k085_libero_object_seed42.json\\n-rw-r--r--  1 root root  2790 May 21 06:00 xvla_prune_k085_libero_object_seed43.json\\n-rw-r--r--  1 root root  2790 May 21 07:11 xvla_prune_k085_libero_object_seed44.json\\n-rw-r--r--  1 root root  2791 May 21 05:57 xvla_prune_k08_libero_object_seed42.json\\n-rw-r--r--  1 root root  2791 May 21 05:42 xvla_prune_k08_libero_object_seed43.json\\n-rw-r--r--  1 root root  2789 May 21 06:44 xvla_prune_k08_libero_object_seed44.json\\n-rw-r--r--  1 root root  2787 May 21 04:24 xvla_prune_k095_libero_object_seed42.json\\n-rw-r--r--  1 root root  2787 May 21 04:29 xvla_prune_k095_libero_object_seed43.json\\n-rw-r--r--  1 root root  2786 May 21 04:29 xvla_prune_k095_libero_object_seed44.json\\n-rw-r--r--  1 root root  2780 May 21 17:06 xvla_random_k0.3_libero_object_seed42.json\\n-rw-r--r--  1 root root  2780 May 21 19:21 xvla_random_k0.3_libero_object_seed43.json\\n-rw-r--r--  1 root root  2781 May 21 21:05 xvla_random_k0.3_libero_object_seed44.json\\n-rw-r--r--  1 root root  2784 May 21 17:06 xvla_random_k0.5_libero_object_seed43_v2.json\\n-rw-r--r--  1 root root  2779 May 21 22:38 xvla_random_k0.7_libero_object_seed42.json\\n-rw-r--r--  1 root root  2778 May 21 17:06 xvla_random_k0.7_libero_object_seed43_v2.json\\n-rw-r--r--  1 root root  2777 May 21 19:56 xvla_random_k0.7_libero_object_seed44.json\\n-rw-r--r--  1 root root  2780 May 21 22:49 xvla_random_k0.85_libero_object_seed42.json\\n-rw-r--r--  1 root root  2780 May 21 21:28 xvla_random_k0.85_libero_object_seed43.json\\n-rw-r--r--  1 root root  2996 May 21 09:06 xvla_spatial_k05_seed42.json\\n-rw-r--r--  1 root root  2990 May 21 08:41 xvla_spatial_k09_seed42.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment completed successfully. Let me read the result JSON file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "f00e126f-0c48-4055-876e-c9f83724dc6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCDtdWw5EsJ9BbBripbrX8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8510,
+      "cache_read_input_tokens": 24959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8510
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+Experiment completed successfully. Let me read the result JSON for full metrics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "e3a12cd0-bbde-48b4-8cea-42f97c7182a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCDtdWw5EsJ9BbBripbrX8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8510,
+      "cache_read_input_tokens": 24959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8510
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SAxG6y4EpA4z2rKBJbHYXD`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "cat /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.95_libero_10_seed43.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "09adcb8c-0a32-4b86-9e60-84bf34b7e56e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCDtdWw5EsJ9BbBripbrX8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8510,
+      "cache_read_input_tokens": 24959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8510
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T22:44:44.748Z_
+
+<details><summary>↩ Tool result · `toolu_01SAxG6y4EpA4z2rKBJbHYXD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"pi05\\\",\\n    \\\"ckpt\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\",\\n    \\\"suite\\\": \\\"libero_10\\\",\\n    \\\"prune_mode\\\": \\\"random\\\",\\n    \\\"keep_ratio\\\": 0.95,\\n    \\\"n_eps_per_task\\\": 50,\\n    \\\"seed\\\": 43,\\n    \\\"vision_tokens_per_image\\\": 256,\\n    \\\"total_vision_tokens\\\": 768,\\n    \\\"n_keep_per_image\\\": 243\\n  },\\n  \\\"per_task\\\": {\\n    \\\"put both the alphabet soup and the tomato sauce in the basket\\\": {\\n      \\\"id\\\": 0,\\n      \\\"sr\\\": 0.5,\\n      \\\"n\\\": 25\\n    },\\n    \\\"put both the cream cheese box and the butter in the basket\\\": {\\n      \\\"id\\\": 1,\\n      \\\"sr\\\": 0.88,\\n      \\\"n\\\": 44\\n    },\\n    \\\"turn on the stove and put the moka pot on it\\\": {\\n      \\\"id\\\": 2,\\n      \\\"sr\\\": 0.62,\\n      \\\"n\\\": 31\\n    },\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\": {\\n      \\\"id\\\": 3,\\n      \\\"sr\\\": 0.8,\\n      \\\"n\\\": 40\\n    },\\n    \\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\": {\\n      \\\"id\\\": 4,\\n      \\\"sr\\\": 0.42,\\n      \\\"n\\\": 21\\n    },\\n    \\\"pick up the book and place it in the back compartment of the caddy\\\": {\\n      \\\"id\\\": 5,\\n      \\\"sr\\\": 0.9,\\n      \\\"n\\\": 45\\n    },\\n    \\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\": {\\n      \\\"id\\\": 6,\\n      \\\"sr\\\": 0.06,\\n      \\\"n\\\": 3\\n    },\\n    \\\"put both the alphabet soup and the cream cheese box in the basket\\\": {\\n      \\\"id\\\": 7,\\n      \\\"sr\\\": 0.58,\\n      \\\"n\\\": 29\\n    },\\n    \\\"put both moka pots on the stove\\\": {\\n      \\\"id\\\": 8,\\n      \\\"sr\\\": 0.18,\\n      \\\"n\\\": 9\\n    },\\n    \\\"put the yellow and white mug in the microwave and close it\\\": {\\n      \\\"id\\\": 9,\\n      \\\"sr\\\": 0.9,\\n      \\\"n\\\": 45\\n    }\\n  },\\n  \\\"overall_sr\\\": 0.584,\\n  \\\"total_successes\\\": 292,\\n  \\\"total_episodes\\\": 500,\\n  \\\"elapsed_min\\\": 236.75093643665315\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "f4f83dcf-8536-4bc7-87f6-3a2161c72b26",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"pi05\\\\\\\",\\\\n    \\\\\\\"ckpt\\\\\\\": \\\\\\\"/root/autodl-tmp/pi05_libero_finetuned\\\\\\\",\\\\n    \\\\\\\"suite\\\\\\\": \\\\\\\"libero_10\\\\\\\",\\\\n    \\\\\\\"prune_mode\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"keep_ratio\\\\\\\": 0.95,\\\\n    \\\\\\\"n_eps_per_task\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"vision_tokens_per_image\\\\\\\": 256,\\\\n    \\\\\\\"total_vision_tokens\\\\\\\": 768,\\\\n    \\\\\\\"n_keep_per_image\\\\\\\": 243\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"put both the alphabet soup and the tomato sauce in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 0,\\\\n      \\\\\\\"sr\\\\\\\": 0.5,\\\\n      \\\\\\\"n\\\\\\\": 25\\\\n    },\\\\n    \\\\\\\"put both the cream cheese box and the butter in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 1,\\\\n      \\\\\\\"sr\\\\\\\": 0.88,\\\\n      \\\\\\\"n\\\\\\\": 44\\\\n    },\\\\n    \\\\\\\"turn on the stove and put the moka pot on it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 2,\\\\n      \\\\\\\"sr\\\\\\\": 0.62,\\\\n      \\\\\\\"n\\\\\\\": 31\\\\n    },\\\\n    \\\\\\\"put the black bowl in the bottom drawer of the cabinet and close it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 3,\\\\n      \\\\\\\"sr\\\\\\\": 0.8,\\\\n      \\\\\\\"n\\\\\\\": 40\\\\n    },\\\\n    \\\\\\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 4,\\\\n      \\\\\\\"sr\\\\\\\": 0.42,\\\\n      \\\\\\\"n\\\\\\\": 21\\\\n    },\\\\n    \\\\\\\"pick up the book and place it in the back compartment of the caddy\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 5,\\\\n      \\\\\\\"sr\\\\\\\": 0.9,\\\\n      \\\\\\\"n\\\\\\\": 45\\\\n    },\\\\n    \\\\\\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 6,\\\\n      \\\\\\\"sr\\\\\\\": 0.06,\\\\n      \\\\\\\"n\\\\\\\": 3\\\\n    },\\\\n    \\\\\\\"put both the alphabet soup and the cream cheese box in the basket\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 7,\\\\n      \\\\\\\"sr\\\\\\\": 0.58,\\\\n      \\\\\\\"n\\\\\\\": 29\\\\n    },\\\\n    \\\\\\\"put both moka pots on the stove\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 8,\\\\n      \\\\\\\"sr\\\\\\\": 0.18,\\\\n      \\\\\\\"n\\\\\\\": 9\\\\n    },\\\\n    \\\\\\\"put the yellow and white mug in the microwave and close it\\\\\\\": {\\\\n      \\\\\\\"id\\\\\\\": 9,\\\\n      \\\\\\\"sr\\\\\\\": 0.9,\\\\n      \\\\\\\"n\\\\\\\": 45\\\\n    }\\\\n  },\\\\n  \\\\\\\"overall_sr\\\\\\\": 0.584,\\\\n  \\\\\\\"total_successes\\\\\\\": 292,\\\\n  \\\\\\\"total_episodes\\\\\\\": 500,\\\\n  \\\\\\\"elapsed_min\\\\\\\": 236.75093643665315\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"pi05\\\",\\n    \\\"ckpt\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\",\\n    \\\"suite\\\": \\\"libero_10\\\",\\n    \\\"prune_mode\\\": \\\"random\\\",\\n    \\\"keep_ratio\\\": 0.95,\\n    \\\"n_eps_per_task\\\": 50,\\n    \\\"seed\\\": 43,\\n    \\\"vision_tokens_per_image\\\": 256,\\n    \\\"total_vision_tokens\\\": 768,\\n    \\\"n_keep_per_image\\\": 243\\n  },\\n  \\\"per_task\\\": {\\n    \\\"put both the alphabet soup and the tomato sauce in the basket\\\": {\\n      \\\"id\\\": 0,\\n      \\\"sr\\\": 0.5,\\n      \\\"n\\\": 25\\n    },\\n    \\\"put both the cream cheese box and the butter in the basket\\\": {\\n      \\\"id\\\": 1,\\n      \\\"sr\\\": 0.88,\\n      \\\"n\\\": 44\\n    },\\n    \\\"turn on the stove and put the moka pot on it\\\": {\\n      \\\"id\\\": 2,\\n      \\\"sr\\\": 0.62,\\n      \\\"n\\\": 31\\n    },\\n    \\\"put the black bowl in the bottom drawer of the cabinet and close it\\\": {\\n      \\\"id\\\": 3,\\n      \\\"sr\\\": 0.8,\\n      \\\"n\\\": 40\\n    },\\n    \\\"put the white mug on the left plate and put the yellow and white mug on the right plate\\\": {\\n      \\\"id\\\": 4,\\n      \\\"sr\\\": 0.42,\\n      \\\"n\\\": 21\\n    },\\n    \\\"pick up the book and place it in the back compartment of the caddy\\\": {\\n      \\\"id\\\": 5,\\n      \\\"sr\\\": 0.9,\\n      \\\"n\\\": 45\\n    },\\n    \\\"put the white mug on the plate and put the chocolate pudding to the right of the plate\\\": {\\n      \\\"id\\\": 6,\\n      \\\"sr\\\": 0.06,\\n      \\\"n\\\": 3\\n    },\\n    \\\"put both the alphabet soup and the cream cheese box in the basket\\\": {\\n      \\\"id\\\": 7,\\n      \\\"sr\\\": 0.58,\\n      \\\"n\\\": 29\\n    },\\n    \\\"put both moka pots on the stove\\\": {\\n      \\\"id\\\": 8,\\n      \\\"sr\\\": 0.18,\\n      \\\"n\\\": 9\\n    },\\n    \\\"put the yellow and white mug in the microwave and close it\\\": {\\n      \\\"id\\\": 9,\\n      \\\"sr\\\": 0.9,\\n      \\\"n\\\": 45\\n    }\\n  },\\n  \\\"overall_sr\\\": 0.584,\\n  \\\"total_successes\\\": 292,\\n  \\\"total_episodes\\\": 500,\\n  \\\"elapsed_min\\\": 236.75093643665315\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Now updating registry and clearing cron.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "05bf60c3-3fa9-41cc-be41-3a5bf0fbed01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017AoNW1KgWBrgCYFSuWdL1x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1245,
+      "cache_read_input_tokens": 33469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1245
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016XUiWY1gwVkgrc65FibnMB`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k095_long_seed43_postfix",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "86438a4f-d905-4eda-a98c-0f35f6e72df0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017AoNW1KgWBrgCYFSuWdL1x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1245,
+      "cache_read_input_tokens": 33469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1245
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T22:44:53.304Z_
+
+<details><summary>↩ Tool result · `toolu_016XUiWY1gwVkgrc65FibnMB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.5379}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "cbd46cca-76c3-4ade-b381-5335efaf6047",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5379}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.5379}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Fg1Zg3qEXx36P4qE54skKk`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k095_long_seed43_postfix",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "4d1237bc-8f2f-4b4b-8ebf-5fbde29cdb8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MTS5JxcefdLLvbL3EUPvdo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 34714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 217
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-24T22:44:58.875Z_
+
+<details><summary>↩ Tool result · `toolu_01Fg1Zg3qEXx36P4qE54skKk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k095_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:32.729Z\", \"updated_at\": \"2026-05-24T22:44:57.850Z\", \"hypothesis\": \"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5121}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "373f6643-da59-4361-aea7-6092edfd6116",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k095_long_seed43_postfix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:32.729Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:44:57.850Z\\\", \\\"hypothesis\\\": \\\"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5121}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k095_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:32.729Z\", \"updated_at\": \"2026-05-24T22:44:57.850Z\", \"hypothesis\": \"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5121}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HEaDCEESeGD5Ndj4ui95VW`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k095_long_seed43_postfix",
+  "field": "log_path",
+  "value": "/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "08cede12-b8a5-45fe-a485-3e0a9c2baf7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016HF5Xy7Wq2VSimZT6NCTqz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 34931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01LjM7rCvAZWtT7v7ADspRAg`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k095_long_seed43_postfix",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/pi05_libero_finetuned",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "08c36c0e-5dd7-40ec-be41-bb81c2eb05a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016HF5Xy7Wq2VSimZT6NCTqz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 34931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T22:45:05.613Z_
+
+<details><summary>↩ Tool result · `toolu_01HEaDCEESeGD5Ndj4ui95VW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k095_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:32.729Z\", \"updated_at\": \"2026-05-24T22:45:04.450Z\", \"hypothesis\": \"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"conclusion\": \"success\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.0546}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "c523b0c5-73d2-43e3-8591-ded545a00671",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k095_long_seed43_postfix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:32.729Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:45:04.450Z\\\", \\\"hypothesis\\\": \\\"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.0546}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k095_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:32.729Z\", \"updated_at\": \"2026-05-24T22:45:04.450Z\", \"hypothesis\": \"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"conclusion\": \"success\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.0546}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T22:45:10.255Z_
+
+<details><summary>↩ Tool result · `toolu_01LjM7rCvAZWtT7v7ADspRAg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k095_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:32.729Z\", \"updated_at\": \"2026-05-24T22:45:08.340Z\", \"hypothesis\": \"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"conclusion\": \"success\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.6212}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "9b6c4e7e-37ff-4816-9e0c-cd1f7d23b8c2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k095_long_seed43_postfix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:32.729Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:45:08.340Z\\\", \\\"hypothesis\\\": \\\"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.6212}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k095_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:32.729Z\", \"updated_at\": \"2026-05-24T22:45:08.340Z\", \"hypothesis\": \"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"conclusion\": \"success\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.6212}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EyydBAWWFNdJ6VXRUiZVD3`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k095_long_seed43_postfix",
+  "field": "metrics",
+  "value": {
+    "overall_sr": 0.584,
+    "total_successes": 292,
+    "total_episodes": 500,
+    "elapsed_min": 236.8,
+    "per_task_sr": {
+      "T0_alphabet_soup_tomato": 0.5,
+      "T1_cream_cheese_butter": 0.88,
+      "T2_stove_moka": 0.62,
+      "T3_black_bowl_drawer": 0.8,
+      "T4_white_mug_plates": 0.42,
+      "T5_book_caddy": 0.9,
+      "T6_mug_plate_pudding": 0.06,
+      "T7_alphabet_soup_cream_cheese": 0.58,
+      "T8_moka_pots_stove": 0.18,
+      "T9_mug_microwave": 0.9
+    }
+  },
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "6e61cdd8-fe12-46f0-ae33-21e2a4702379",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013hrX2zzHqszLp6amyoXSY5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1434,
+      "cache_read_input_tokens": 35502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1434
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FDPigjmgoFY8A193fQzvgY`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k095_long_seed43_postfix",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "2284134c-70f5-4a4b-be39-ad88bb2c6f26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013hrX2zzHqszLp6amyoXSY5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1434,
+      "cache_read_input_tokens": 35502,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1434
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T22:45:24.497Z_
+
+<details><summary>↩ Tool result · `toolu_01EyydBAWWFNdJ6VXRUiZVD3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k095_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:32.729Z\", \"updated_at\": \"2026-05-24T22:45:22.579Z\", \"hypothesis\": \"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"conclusion\": \"success\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"metrics\": {\"overall_sr\": 0.584, \"total_successes\": 292, \"total_episodes\": 500, \"elapsed_min\": 236.8, \"per_task_sr\": {\"T0_alphabet_soup_tomato\": 0.5, \"T1_cream_cheese_butter\": 0.88, \"T2_stove_moka\": 0.62, \"T3_black_bowl_drawer\": 0.8, \"T4_white_mug_plates\": 0.42, \"T5_book_caddy\": 0.9, \"T6_mug_plate_pudding\": 0.06, \"T7_alphabet_soup_cream_cheese\": 0.58, \"T8_moka_pots_stove\": 0.18, \"T9_mug_microwave\": 0.9}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.6558}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "9fc7150c-9431-43c4-b49d-e7f2f3a94878",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k095_long_seed43_postfix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:32.729Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:45:22.579Z\\\", \\\"hypothesis\\\": \\\"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.584, \\\"total_successes\\\": 292, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 236.8, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup_tomato\\\": 0.5, \\\"T1_cream_cheese_butter\\\": 0.88, \\\"T2_stove_moka\\\": 0.62, \\\"T3_black_bowl_drawer\\\": 0.8, \\\"T4_white_mug_plates\\\": 0.42, \\\"T5_book_caddy\\\": 0.9, \\\"T6_mug_plate_pudding\\\": 0.06, \\\"T7_alphabet_soup_cream_cheese\\\": 0.58, \\\"T8_moka_pots_stove\\\": 0.18, \\\"T9_mug_microwave\\\": 0.9}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.6558}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k095_long_seed43_postfix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:32.729Z\", \"updated_at\": \"2026-05-24T22:45:22.579Z\", \"hypothesis\": \"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"conclusion\": \"success\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"metrics\": {\"overall_sr\": 0.584, \"total_successes\": 292, \"total_episodes\": 500, \"elapsed_min\": 236.8, \"per_task_sr\": {\"T0_alphabet_soup_tomato\": 0.5, \"T1_cream_cheese_butter\": 0.88, \"T2_stove_moka\": 0.62, \"T3_black_bowl_drawer\": 0.8, \"T4_white_mug_plates\": 0.42, \"T5_book_caddy\": 0.9, \"T6_mug_plate_pudding\": 0.06, \"T7_alphabet_soup_cream_cheese\": 0.58, \"T8_moka_pots_stove\": 0.18, \"T9_mug_microwave\": 0.9}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.6558}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-24T22:45:32.680Z_
+
+<details><summary>↩ Tool result · `toolu_01FDPigjmgoFY8A193fQzvgY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k095_long_seed43_postfix\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:32.729Z\", \"updated_at\": \"2026-05-24T22:45:27.265Z\", \"hypothesis\": \"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"conclusion\": \"success\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"metrics\": {\"overall_sr\": 0.584, \"total_successes\": 292, \"total_episodes\": 500, \"elapsed_min\": 236.8, \"per_task_sr\": {\"T0_alphabet_soup_tomato\": 0.5, \"T1_cream_cheese_butter\": 0.88, \"T2_stove_moka\": 0.62, \"T3_black_bowl_drawer\": 0.8, \"T4_white_mug_plates\": 0.42, \"T5_book_caddy\": 0.9, \"T6_mug_plate_pudding\": 0.06, \"T7_alphabet_soup_cream_cheese\": 0.58, \"T8_moka_pots_stove\": 0.18, \"T9_mug_microwave\": 0.9}}, \"completed_at\": \"2026-05-24T22:45:27.265Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.1629}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "37706803-d0eb-4aa8-81bd-bc9132b1f548",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_random_k095_long_seed43_postfix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T18:43:32.729Z\\\", \\\"updated_at\\\": \\\"2026-05-24T22:45:27.265Z\\\", \\\"hypothesis\\\": \\\"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\\\", \\\"server\\\": \\\"cqa1-33015\\\", \\\"data_path\\\": \\\"libero_10\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"eval_data\\\": \\\"libero_10\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.584, \\\"total_successes\\\": 292, \\\"total_episodes\\\": 500, \\\"elapsed_min\\\": 236.8, \\\"per_task_sr\\\": {\\\"T0_alphabet_soup_tomato\\\": 0.5, \\\"T1_cream_cheese_butter\\\": 0.88, \\\"T2_stove_moka\\\": 0.62, \\\"T3_black_bowl_drawer\\\": 0.8, \\\"T4_white_mug_plates\\\": 0.42, \\\"T5_book_caddy\\\": 0.9, \\\"T6_mug_plate_pudding\\\": 0.06, \\\"T7_alphabet_soup_cream_cheese\\\": 0.58, \\\"T8_moka_pots_stove\\\": 0.18, \\\"T9_mug_microwave\\\": 0.9}}, \\\"completed_at\\\": \\\"2026-05-24T22:45:27.265Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.1629}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_random_k095_long_seed43_postfix\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:43:32.729Z\", \"updated_at\": \"2026-05-24T22:45:27.265Z\", \"hypothesis\": \"Random pruning at k=0.95 (keeping 95% of tokens) should perform close to the unpruned baseline, establishing an upper-bound reference for the random pruning curve with seed43 on libero_10 (50 episodes).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u eval_pi05_pruning_libero.py --prune_mode random --keep_ratio 0.95 --suite libero_10 --n_episodes 50 --seed 43 --gpu 0\", \"server\": \"cqa1-33015\", \"data_path\": \"libero_10\", \"data_count\": 50, \"model_name\": \"pi05_libero_finetuned\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"eval_data\": \"libero_10\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\"}, \"conclusion\": \"success\", \"log_path\": \"/root/autodl-tmp/importance_margin_vla_compress/logs/random_k095_seed43.log\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"metrics\": {\"overall_sr\": 0.584, \"total_successes\": 292, \"total_episodes\": 500, \"elapsed_min\": 236.8, \"per_task_sr\": {\"T0_alphabet_soup_tomato\": 0.5, \"T1_cream_cheese_butter\": 0.88, \"T2_stove_moka\": 0.62, \"T3_black_bowl_drawer\": 0.8, \"T4_white_mug_plates\": 0.42, \"T5_book_caddy\": 0.9, \"T6_mug_plate_pudding\": 0.06, \"T7_alphabet_soup_cream_cheese\": 0.58, \"T8_moka_pots_stove\": 0.18, \"T9_mug_microwave\": 0.9}}, \"completed_at\": \"2026-05-24T22:45:27.265Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.1629}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__delete_cron · `toolu_01DQjAvipHgFn8nZnNgecPeF`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_random_k095_long_seed43_postfix"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "aefe779a-6882-4ebe-8f57-f2676fc03ec8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018pWp6puR4YAVyDne3tXUdX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2017,
+      "cache_read_input_tokens": 36936,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2017
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-24T22:45:35.073Z_
+
+<details><summary>↩ Tool result · `toolu_01DQjAvipHgFn8nZnNgecPeF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"deleted\": \"eval_pi05_random_k095_long_seed43_postfix\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "2b585ab8-06ef-4ab0-93d3-eea2800b1d0f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": \\\"eval_pi05_random_k095_long_seed43_postfix\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"deleted\": \"eval_pi05_random_k095_long_seed43_postfix\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+**实验完成：SUCCESS**
+
+| 指标 | 值 |
+|------|-----|
+| **Overall SR** | **58.4%** (292/500) |
+| 耗时 | 236.8 min |
+
+**Per-task SR:**
+
+| Task | SR |
+|------|-----|
+| T0 alphabet soup + tomato → basket | 50% |
+| T1 cream cheese + butter → basket | 88% |
+| T2 stove + moka pot | 62% |
+| T3 black bowl → drawer | 80% |
+| T4 white mug → plates | 42% |
+| T5 book → caddy | 90% |
+| T6 mug on plate + pudding | 6% |
+| T7 alphabet soup + cream cheese → basket | 58% |
+| T8 moka pots → stove | 18% |
+| T9 mug → microwave | 90% |
+
+**对比 seed42 k=0.95 Random = 63.2%**：seed43 为 58.4%，低了 4.8pp。两 seed 均值 = 60.8%。
+
+Registry 已更新为 DONE/success，cron 已清除。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "uuid": "e6049306-58f1-40a5-9c41-5f2dfbbf7cd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018rmufXBYCLZKvMurxgQ42J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 144,
+      "cache_read_input_tokens": 38953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 144
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 31_
+
+**实验完成：SUCCESS**
+
+| 指标 | 值 |
+|------|-----|
+| **Overall SR** | **58.4%** (292/500) |
+| 耗时 | 236.8 min |
+
+**Per-task SR:**
+
+| Task | SR |
+|------|-----|
+| T0 alphabet soup + tomato → basket | 50% |
+| T1 cream cheese + butter → basket | 88% |
+| T2 stove + moka pot | 62% |
+| T3 black bowl → drawer | 80% |
+| T4 white mug → plates | 42% |
+| T5 book → caddy | 90% |
+| T6 mug on plate + pudding | 6% |
+| T7 alphabet soup + cream cheese → basket | 58% |
+| T8 moka pots → stove | 18% |
+| T9 mug → microwave | 90% |
+
+**对比 seed42 k=0.95 Random = 63.2%**：seed43 为 58.4%，低了 4.8pp。两 seed 均值 = 60.8%。
+
+Registry 已更新为 DONE/success，cron 已清除。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 72851,
+  "duration_api_ms": 48824,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "75f6c111-62ef-4418-9450-fe889466c8cf",
+  "total_cost_usd": 0.36077499999999996,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 27256,
+    "cache_read_input_tokens": 275210,
+    "output_tokens": 2034,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 27256,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 314,
+        "cache_read_input_tokens": 38953,
+        "cache_creation_input_tokens": 144,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 144
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1755,
+      "outputTokens": 30,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001905,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 2034,
+      "cacheReadInputTokens": 275210,
+      "cacheCreationInputTokens": 27256,
+      "webSearchRequests": 0,
+      "costUSD": 0.35887,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1e6f7f38-d398-41cd-a3f5-183f8c489bb2"
+}
+```
+
+</details>
+
+---

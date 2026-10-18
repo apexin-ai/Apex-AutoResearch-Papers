@@ -64,5 +64,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/experiment-r1w2-fp16-baseline-fix.md"
 }

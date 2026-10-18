@@ -75,5 +75,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/setup-cqa1-full-env.md"
 }

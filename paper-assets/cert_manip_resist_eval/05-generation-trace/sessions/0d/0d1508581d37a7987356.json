@@ -1229,5 +1229,6 @@
       ],
       "message_count": 30
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/experiment-fp16-vs-awq-eval.md"
 }

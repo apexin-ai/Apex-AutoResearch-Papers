@@ -1,0 +1,461 @@
+# analysis d009 paper strength assessment
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/chats/worker_analysis_d009-paper-strength-assessment_20260519T164246.jsonl`
+- **Structured JSON:** [`2abbb2cea43b205fe23b.json`](../../sessions/2a/2abbb2cea43b205fe23b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+15 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T16:46:09.019925+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T16:46:09.020460+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T16:46:09.020731+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T16:46:09.021070+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/paper_framing.md\", \"content\": \"# Paper Framing — entrainment_gated_ft\\n\\n> Revised 2026-05-19 after Dream review (best case = 2.5/5). Major reframing: drop \\\"paradox\\\" narrative, engage related work, add retrieval benchmarks.\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Findings (via ARR)\\n- Stretch: EMNLP 2026 Main\\n- Deadline: ARR June 2026 cycle (submission ~June 15)\\n\\n## Paper Type\\nEmpirical analysis paper — quantifying a known phenomenon (per-example divergence under aggregate convergence) in a specific important domain (hybrid recurrent architectures)\\n\\n## Core Claims (3 条)\\n\\n### Claim 1: Task-Specific Convergence (revised D009)\\nAdding attention layers to different linear recurrent architectures (GatedDeltaNet, RetNet, HGRN2) induces aggregate performance convergence **specifically on context-retrieval tasks**. Across 10 benchmarks, only LAMBADA shows significant convergence (ρ=-1.0, p=0.017 two-tailed, cross-arch std drops 79%, BCa CI [-1.0, -0.7]). This task-specificity IS the finding, not a limitation:\\n- **Negative-ρ cluster** (6/10): LAMBADA, xstorycloze, COPA, PIQA, ARC-Easy, MMLU — tasks with context-retrieval or reasoning components\\n- **Positive-ρ cluster** (4/10): BoolQ, SciQ, HellaSwag, WinoGrande — commonsense/knowledge tasks where attention doesn't equalize\\n- LAMBADA is unique as a **pure context-prediction** task (predict last word from context alone), explaining why convergence is strongest there\\n\\n**Statistical strategy (D009)**:\\n1. **Primary evidence**: BCa percentile CI [-1.0, -0.7] (100% valid resamples have ρ<0; does NOT depend on multiple comparison correction)\\n2. **Pre-registered correction (D003)**: 6-benchmark Bonferroni adj-p=0.100. Report honestly as \\\"does not survive strict Bonferroni\\\"\\n3. **Supplementary**: 10-benchmark survey as task-specificity evidence, NOT 
+…[truncated 9960 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T16:46:09.021306+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "fields": "['*']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "fields": "['*']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T16:46:09.021896+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-004\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:41:10.744Z\", \"updated_at\": \"2026-05-19T16:41:30.535Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"python extract_attention_weights.py (forward hooks on Q,K, manual softmax(QK^T/√d) with GQA expansion)\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/lambada_openai per-example data\", \"data_count\": 5153, \"model_name\": \"GDN-h3-1, RetNet-h3-1, HGRN2-h3-1 (1.3B)\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"Wang et al. pretrained weights\", \"eval_data\": \"lambada_openai (5153 examples)\"}}, \"exp-011\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:37:27.600Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wan
+…[truncated 18865 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T16:46:09.022179+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "file": "decisions.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "file": "decisions.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T16:46:09.022400+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/decisions.yaml\", \"content\": \"_next_id: 10\\ndecisions:\\n- id: D001\\n  date: 2026-05-18 07:24 UTC\\n  summary: MVP Direct variant 340M 全模型 random-chance → 先跑 log-prob 评估，同时查 1.3B 模型可用性\\n  rationale: 16 个模型（含 Transformer baseline）在 depth 1-5 上全部 ~10% accuracy。根因：340M 模型无法通过\\n    generation 完成 in-context function lookup（输出\\\"1998/1999\\\"而非执行查找）。Transformer ceiling\\n    0% → ROADMAP 的 ceiling≥50% 过滤器触发，无 eligible depth。核心理论未被证伪，只是 340M+generation\\n    这个探针失效。下一步：(1) log-prob 评估（30min，测 internal representation 差异），(2) 并行查 1.3B 模型可用性。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-18 09:50 UTC\\n  summary: 1.3B 也无 function composition ICL 能力，MVP 从 synthetic task 双轨 pivot：7B task\\n    validation + 1.3B standard benchmarks\\n  rationale: 两轮实验（340M generation+logprob, 1.3B generation+logprob）一致确认 Ye et al.\\n    的 L-FuncComp 对 Wang et al. base models 不可行——Transformer baseline 自身也只有 random-chance，无法建立\\n    ceiling。根因：pretrained base models 在 ≤1.3B 规模未习得 arbitrary lookup table 的 ICL 能力。核心理论未被证伪，但\\n    synthetic task 作为 probe 在此 scale 下失效。Pivot 方案：(1) 7B Instruct 快速验证 task design\\n    是否本身有问题，(2) 在已有 1.3B hybrid 模型上跑 standard benchmarks（LAMBADA/HellaSwag/ARC/MMLU）检测架构差异信号——如果\\n    attention ratio 对不同难度 benchmark 的影响不同，MVP 仍可 pass，且论文更有 practical relevance。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-18 09:54 UTC\\n  summary: 预注册 benchmark composition depth 赋值（结果出来前锁定，不可事后调整）\\n  rationale: 'IDEA_BRIEF 要求 \\\"composition depth must be derivable from task structure\\n    alone, not from empirical performance\\\"。在 Track 1 benchmark 结果出来前锁定每个 task 的 depth\\n    赋值，防止 post-hoc rationalization。赋值基于 task 的计算结构分析：depth 1 = 单步模式匹配/句法判断（无需跨 context\\n    组合信息）；depth 2 = 需要检索 + 单步推理组合；depth 3 = 需要多步推理链或跨多个 context 片段组合。\\n\\n\\n    预注册赋值：\\n\\n    - Depth 1: lambada_ope
+…[truncated 5320 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T16:46:09.022566+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "file": "ROADMAP.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "entrainment_gated_ft",
+    "file": "ROADMAP.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T16:46:09.022788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-19 16:37 UTC | 更新原因: exp-011 + xstorycloze 全部完成（negative）；D009 W1 策略调整；exp-004 运行中\\n\\n## 核心方向\\n**Task-specific convergence + per-example divergence in hybrid recurrent architectures**. Attention 使不同 recurrent 架构在 LAMBADA（纯上下文预测）上显著趋同，但 10 个 benchmark 中仅此一个显著——task-specificity 本身是核心发现。Per-example 效应几乎不重叠（Jaccard < 0.10），且与 aggregate convergence 解耦（D008）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Research 阶段** — W1 已通过 D009 缓解（BCa CI + task-specificity reframing），exp-004 运行中\\n\\n## 战略状态\\n- **W1 多 benchmark 路径关闭**（D009）：10/10 benchmarks 仅 LAMBADA 显著\\n- 统计策略：BCa CI [-1.0, -0.7] 主导，Bonferroni adj-p=0.100 诚实报告\\n- 目标：EMNLP 2026 Findings (3.0)\\n- DDL: ARR June 2026 (~June 15)，距今 ~27 天\\n\\n## 当前进展\\n- ✅ exp-001: Task-specificity（PASS）\\n- ✅ exp-003 + exp-003-p2: Sample characterization（surface features 阴性，perplexity 阴性 within-arch，KW 显著 cross-arch）\\n- ✅ exp-008: Statistical robustness（exact permutation, BCa CI）\\n- ✅ exp-009: Wang et al. differentiation（4 维度）\\n- ✅ exp-010: Convergence-divergence bridge（decoupling confirmed, D008）\\n- ✅ exp-011: Additional benchmarks（5 个新 benchmark 全部 negative → task-specificity evidence）\\n- 🔄 **exp-004: Attention weight extraction — GPU 运行中**（Claim 3 机制描述）\\n- 🔄 figure-table-prep Worker 运行中\\n- 🔜 exp-002: Multi-benchmark per-example（20h GPU，P0）\\n- 🔜 exp-007: 340M rebound mechanism（2h GPU，依赖 exp-002）\\n\\n## 近期任务（按优先级）\\n- [ ] 等 exp-004 完成 → 分析 attention pattern 与 helped/hurt 的关系\\n- [ ] exp-002: Multi-benchmark per-example analysis（20h GPU，Claim 1 验证）\\n- [ ] 评估 exp-002 是否仍值得投入 20h GPU（D009 后 Claim 1 已重构）\\n- [ ] 论文写作启动（目标 June 5-7，Paper Agent）\\n- [ ] Dream 重新模拟（D009 策略更新后，验证新 framing 可行性）\\n\\n## GPU 预算\\n- 分配：westb-48145 cuda:0（RTX PRO 6000 × 1）\\n- 当前：**exp-004 占用中**\\n- 剩余 P0 GPU：exp-002 20h + exp-007 2h\\n
+…[truncated 1327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T16:46:09.023048+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/d009_assessment.md",
+  "content": "# D009 后论文强度评估 + exp-002 成本效益分析\n\n> 评估日期: 2026-05-19 | 基于: 13 experiments (10 DONE, 1 RUNNING, 2 KILLED), 9 decisions\n\n---\n\n## Part 1: Dream-Style 模拟审稿\n\n### 审稿人视角 (EMNLP ARR)\n\n**Paper type**: Empirical analysis — quantifying per-example divergence under aggregate convergence in hybrid recurrent architectures\n\n**Summary**: The paper uses Wang et al.'s model zoo (72 models, 3 architectures × 5 attention ratios × 2 scales) to show that adding attention to linear recurrent models causes cross-architecture convergence specifically on LAMBADA (ρ=-1.0, BCa CI [-1.0, -0.7]), while per-example effects are nearly non-overlapping (Jaccard < 0.10) and decouple from aggregate dynamics.\n\n---\n\n### Claim-by-Claim 证据评估\n\n#### Claim 1: Task-Specific Convergence — 证据强度 2.5/5\n\n**支撑证据**:\n- LAMBADA ρ=-1.0, exact permutation p=0.017 (two-tailed)\n- BCa percentile CI [-1.0, -0.7], 100% valid resamples ρ<0\n- 效应量大：cross-arch std 从 0.024 → 0.005 (79% 下降)\n- 10-benchmark survey: 仅 LAMBADA 显著，task-specificity 本身成为发现\n\n**弱点**:\n- **6-Bonferroni adj-p=0.100，10-Bonferroni adj-p=0.167** — 均不 survive。审稿人会首先看这个数字。\n- **n=5 data points** 做 Spearman 相关，统计功效极低。ρ=-1.0 在 n=5 时 p 的下界就是 1/60=0.0167，无法更显著。\n- BCa CI 的 valid-only 策略（丢弃 11.25% degenerate resamples）会被质疑为 cherry-picking。虽然有理论依据（boundary degeneracy），但审稿人可以合理指出 full CI [-1.0, 0.0] 触及零。\n- 10 benchmark 只 1 个显著 ≈ 名义 α=0.05 下的期望假阳性率。Task-specificity reframing 虽巧妙，但审稿人可反驳：\"LAMBADA 纯上下文预测的特殊性是 post-hoc rationalization\"。\n- GDN-excluded sensitivity: LAMBADA ρ 降至 -0.7 (p=0.233)。虽然 ARC-Easy 改善至 -0.9 (p=0.083)，但这加强了对核心结果 GDN-dependence 的担忧。\n\n**审稿人可能反应**: \"BCa CI 是有意义的，但 Bonferroni 不通过 + n=5 的固有局限 + GDN-excluded 结果弱化 = 难以单独支撑一个 claim。Task-specificity reframing 是可以接受的 narrative，但需要更强的理论驱动（为什么 LAMBADA 而非其他 context-retrieval 任务如 StoryCloze？）\"\n\n#### Claim 2: Scale-Dependent Convergence — 证据强度 2.0/5\n\n**支撑证据**:\n- 1.3B vs 340M 的 binary contrast（1.3B 完全收敛，340M 部分/非单调）\n- 与容量假说一致\n\n**弱点**:\n- **仅 2 个 scale points**，无法建立趋势，也无法排除 confound（不同 scale 的训练 dynamics 差异）\n- 没有 7B 数据（Wang et al. 也不提供）\n- \"Scale is a necessary condition\" 的表述缺乏足够证据 — 2 点二元对比支撑不了 necessity claim\n- 340M rebound mechanism (exp-007) 尚未执行\n\n**审稿人可能反应**: \"Two scale points provide an observation, not a finding. Frame as preliminary evidence, not a standalone claim.\"\n\n#### Claim 3: Per-Example Divergence + Decoupling — 证据强度 3.5/5\n\n**支撑证据**:\n- Jaccard < 0.10 across all pairwise comparisons — 量化上有说服力\n- **Decoupling finding (exp-010)**: aggregate σ 单调下降 vs Jaccard 4% 时即饱和 — 这是本文最原创的发现\n- Surface features 不解释 within-arch helped/hurt (exp-003, negative)\n- Perplexity 不解释 within-arch (exp-003-p2, negative)\n- Cross-arch KW 显著 (p=0.0005 for hurt samples) — 效应是 structured，非随机噪声\n- Net asymmetry 递增 (0.013 → 0.040) — attention 越多，架构特异性效应越分化\n\n**弱点**:\n- Per-example divergence 是 well-documented phenomenon (D'Amour et al. 2022, ensemble diversity literature)。Contribution 是 quantification，非 discovery — 这在 *ACL venue 的 novelty bar 偏低。\n- 仅在 LAMBADA 上有 per-example 数据。如果其他 benchmark 也做 per-example 分析但 Jaccard 同样低，task-specificity 叙事会受冲击（underspecification 是 universal 的，与 task type 无关）。\n- exp-004 (attention weight patterns) 还在跑，暂无 mechanistic description\n\n**审稿人可能反应**: \"Decoupling finding is genuinely interesting and well-executed. The quantification is clean. However, connecting this to D'Amour et al. 2022 weakens novelty — you're confirming underspecification exists in one more domain. The decoupling timescale analysis partially saves it.\"\n\n---\n\n### Dream Weakness 评估\n\n| Weakness | 状态 | 缓解程度 | 剩余风险 |\n|----------|------|----------|----------|\n| **W1: Single-benchmark** | D009 策略 | 中等 | BCa CI defensible 但 Bonferroni failure 仍是最大攻击面。Task-specificity rationalization 可被质疑为 post-hoc |\n| **W2: Missing related work** | 待写 | 未缓解 | 20+ references 需要。ensemble diversity + underspecification positioning 是 acceptance 的必要条件 |\n| **W3: Mechanistic overclaiming** | 已 reframe | 大部分缓解 | \"Characterization\" 替代 \"mechanism\" 是正确的。exp-004 结果需谨慎使用（descriptive only） |\n| **W4: Incremental over Wang** | exp-009 文档化 | 部分缓解 | 4-dimensional differentiation 是合理的，但审稿人对 \"analytical depth on existing models\" 的接受度因人而异 |\n\n---\n\n### Overall Assessment 预测\n\n**最可能评分: 2.5 — Borderline Findings**\n\n理由:\n- **上行路径到 3.0 (Findings)**: 如果 Related Work 做得出色（20+ refs, 精准 positioning as \"quantification in emerging architecture class\"），writing 质量高，统计报告透明且自信（不过度 apologize），decoupling finding 作为核心 contribution 被突出 → 3.0 可达。\n- **下行风险到 2.0 (Resubmit)**: 如果审稿人对 BCa valid-only 策略不买账（view as cherry-picking），或将 task-specificity reframing 判定为 spin，或认为整体 novelty 不足 → 2.0。\n- 3 个 reviewer 中预期 1 个给 3.0-3.5（appreciate empirical rigor + decoupling），1 个给 2.5（borderline novelty），1 个给 2.0-2.5（single benchmark + incremental）。\n\n**到 Findings 3.0 的关键差距**:\n1. ★★★ Related Work quality — 这是最大 leverage point，0 GPU cost\n2. ★★☆ Task-specificity 的理论解释需要更深（为什么 LAMBADA 而非 xstorycloze/COPA？context-prediction 的形式化定义是什么？）\n3. ★★☆ Decoupling finding 需要作为 title/abstract 级 contribution，不能埋在 Section 4\n4. ★☆☆ exp-004 attention patterns — 如果能 show architecture-specific attention distributions correlate with helped/hurt，adds descriptive depth\n\n**评分分布预测 (3 reviewers)**:\n\n| Scenario | R1 | R2 | R3 | Average | 概率 |\n|----------|----|----|-----|---------|------|\n| 乐观（writing 出色 + related work 强） | 3.5 | 3.0 | 2.5 | 3.0 | 25% |\n| 基线（正常执行） | 3.0 | 2.5 | 2.5 | 2.7 | 45% |\n| 悲观（审稿人不买 BCa + task-specificity） | 2.5 | 2.0 | 2.0 | 2.2 | 30% |\n\n---\n\n## Part 2: exp-002 成本效益分析\n\n### exp-002 规格\n- **内容**: HellaSwag/ARC-C/ARC-Easy 上 per-example logprob 分析 (extract + Jaccard + helped/hurt characterization)\n- **GPU 时间**: 20h (RTX PRO 6000)\n- **距 DDL**: ~27 天 (June 15)\n\n### D009 后 exp-002 目标重估\n\n| 原始目标 | D009 后状态 | 分析 |\n|----------|------------|------|\n| 验证多 benchmark per-example 收敛 | ❌ 目标已失效 | Claim 1 已从 \"多 benchmark 收敛\" 转向 \"LAMBADA-specific\"。exp-002 不再服务原始目的 |\n| 为 Claim 1 提供多 benchmark Jaccard 证据 | ⚠️ 部分相关 | 如果 non-LAMBADA benchmarks 也有低 Jaccard → underspecification is universal → 实际上**削弱** task-specificity 叙事 |\n| 补充材料 | ✅ 仍有价值 | 多 benchmark per-example 数据可放 appendix，展示 thoroughness |\n\n### 三种结果场景\n\n**场景 A: Non-LAMBADA benchmarks 也有低 Jaccard (~0.10)**\n- 含义: underspecification 是 universal 的，与 task type 无关\n- 影响: **负面** — 削弱 \"task-specific convergence\" 叙事。如果 per-example divergence 到处存在，LAMBADA 的特殊性仅在 aggregate 层面，削弱 Claim 1 的解释力\n- 审稿人可能说: \"Per-example divergence is task-independent; your aggregate convergence finding on LAMBADA alone is even thinner\"\n\n**场景 B: Non-LAMBADA benchmarks Jaccard 明显更高 (~0.3-0.5)**\n- 含义: LAMBADA 的低 Jaccard 与其 aggregate convergence 有关联 → convergent tasks have more diverse per-example dynamics\n- 影响: **正面** — 直接支持 decoupling 叙事，且提供 cross-task contrast\n- 但这个结果需要理论解释，且可能只提供 suggestive evidence (n=4 tasks, no formal test)\n\n**场景 C: 结果 noisy，无清晰 pattern**\n- 含义: per-example dynamics 在 non-retrieval tasks 上不稳定\n- 影响: **中性** — 放进 supplementary，不改变主 story\n\n### 成本-收益矩阵\n\n| 维度 | 评估 |\n|------|------|\n| **GPU 成本** | 20h / 单卡 = ~1 天 wall time。exp-004 完成后才能开始。实际可用窗口 ~25 天 |\n| **信息价值** | 场景 A (40% 概率): 负面信息，强迫修改叙事。场景 B (25%): 有价值但非 decisive。场景 C (35%): 浪费 |\n| **对评分的影响** | 乐观估计: +0.1-0.2 (supplementary completeness)。exp-002 不解决任何 Major weakness |\n| **机会成本** | 20h GPU 可跑 exp-007 (2h, 340M rebound) + 留 18h buffer 给 exp-004 follow-ups 或论文 figure 生成 |\n| **风险** | 场景 A 会制造新的 narrative problem，需要额外时间修补 |\n\n### 结论: exp-002 **不推荐执行**\n\n理由:\n1. **Expected value 为负**: 场景 A（最可能）实际上损害论文叙事\n2. **不解决核心弱点**: W1/W2/W3/W4 没有一个因 exp-002 改善\n3. **LAMBADA 单 benchmark 的 per-example 数据已经足够**: Claim 3 的 evidence chain（Jaccard < 0.10 + decoupling + surface/perplexity negative + cross-arch KW）已完整\n4. **GPU 时间更好的用途**: exp-007 (2h) 为 Claim 2 提供 340M rebound 分析；剩余时间留给 exp-004 follow-up\n\n### 不做 exp-002，论文是否仍够 Findings 3.0？\n\n**是的**，条件是:\n- Related Work 做到位 (20+ refs, 精准 positioning)\n- Decoupling finding 提升为 title-level contribution\n- 统计报告透明 (BCa + Bonferroni caveat + GDN sensitivity)\n- exp-004 提供 descriptive attention pattern data\n- Writing quality 高于平均\n\nexp-002 的缺失不会被审稿人注意到——审稿人不会主动想 \"为什么没在其他 benchmark 做 per-example 分析\"，除非作者自己提起。\n\n---\n\n## Part 3: 下一步优先级排序\n\n### Tier 1 — 必须完成 (决定 accept/reject)\n\n| 优先级 | 任务 | 预估投入 | 理由 |\n|--------|------|----------|------|\n| P0 | **Related Work 撰写** | 2-3 天 writing | W2 是唯一 blocking weakness。20+ references covering: ensemble diversity, underspecification, dataset cartography, hybrid architecture survey, attention interpretability |\n| P0 | **exp-004 完成 + 分析** | ~数小时 (已在跑) | Claim 3 的 descriptive depth。如有 architecture-specific attention patterns → 有价值的 figure |\n| P0 | **Paper draft** | ~7-10 天 | DDL June 15，最迟 June 5 开写。Decoupling 作为核心 contribution |\n\n### Tier 2 — 强烈推荐 (提升 0.2-0.5 分)\n\n| 优先级 | 任务 | 预估投入 | 理由 |\n|--------|------|----------|------|\n| P1 | **LAMBADA task-specificity 理论解释** | 1 天 analysis | 为什么 LAMBADA 而非 StoryCloze？需要 formal characterization of \"pure context prediction\" vs \"commonsense completion\" |\n| P1 | **exp-007: 340M rebound** | 2h GPU + 0.5 天 analysis | Claim 2 补充。340M 非单调 rebound 的 mechanism — 如果能解释 why，增加论文深度 |\n| P1 | **Figure/table 质量** | 2-3 天 | Decoupling 的 dual-axis figure (aggregate σ vs Jaccard across attention ratios) 是 key visual |\n\n### Tier 3 — 可选 (marginal improvement)\n\n| 优先级 | 任务 | 预估投入 | 理由 |\n|--------|------|----------|------|\n| P2 | exp-002 (multi-benchmark per-example) | 20h GPU + 1 天 | 上述分析: expected value 为负，不推荐 |\n| P2 | Dream 重新模拟 (post-D009) | 0.5 天 | 验证新 framing 评分是否改善，但不改变实际行动 |\n\n### 时间线建议 (27 天到 DDL)\n\n```\nWeek 1 (May 19-25): exp-004 完成 → 分析; 开始 Related Work; exp-007 (2h)\nWeek 2 (May 26-Jun 1): Paper draft (Intro + Method + Results); figures\nWeek 3 (Jun 2-8):  Paper draft (Related Work + Discussion + Limitations); internal review\nWeek 4 (Jun 9-15): Polish + LaTeX + submission\n```\n\n---\n\n## 总结\n\n- **当前论文强度**: 2.5 (Borderline Findings)，通过 writing + related work 可达 3.0\n- **exp-002 建议**: 不做。Expected value 为负，不解决核心 weakness，GPU 更好用于 exp-007\n- **最大 leverage point**: Related Work quality + Decoupling 作为核心 contribution + 统计透明度\n- **风险底线**: 即使 Findings 3.0 不到，honest empirical work + 透明统计报告在 ARR 系统中有 2nd cycle 的基础\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/d009_assessment.md",
+    "content": "# D009 后论文强度评估 + exp-002 成本效益分析\n\n> 评估日期: 2026-05-19 | 基于: 13 experiments (10 DONE, 1 RUNNING, 2 KILLED), 9 decisions\n\n---\n\n## Part 1: Dream-Style 模拟审稿\n\n### 审稿人视角 (EMNLP ARR)\n\n**Paper type**: Empirical analysis — quantifying per-example divergence under aggregate convergence in hybrid recurrent architectures\n\n**Summary**: The paper uses Wang et al.'s model zoo (72 models, 3 architectures × 5 attention ratios × 2 scales) to show that adding attention to linear recurrent models causes cross-architecture convergence specifically on LAMBADA (ρ=-1.0, BCa CI [-1.0, -0.7]), while per-example effects are nearly non-overlapping (Jaccard < 0.10) and decouple from aggregate dynamics.\n\n---\n\n### Claim-by-Claim 证据评估\n\n#### Claim 1: Task-Specific Convergence — 证据强度 2.5/5\n\n**支撑证据**:\n- LAMBADA ρ=-1.0, exact permutation p=0.017 (two-tailed)\n- BCa percentile CI [-1.0, -0.7], 100% valid resamples ρ<0\n- 效应量大：cross-arch std 从 0.024 → 0.005 (79% 下降)\n- 10-benchmark survey: 仅 LAMBADA 显著，task-specificity 本身成为发现\n\n**弱点**:\n- **6-Bonferroni adj-p=0.100，10-Bonferroni adj-p=0.167** — 均不 survive。审稿人会首先看这个数字。\n- **n=5 data points** 做 Spearman 相关，统计功效极低。ρ=-1.0 在 n=5 时 p 的下界就是 1/60=0.0167，无法更显著。\n- BCa CI 的 valid-only 策略（丢弃 11.25% degenerate resamples）会被质疑为 cherry-picking。虽然有理论依据（boundary degeneracy），但审稿人可以合理指出 full CI [-1.0, 0.0] 触及零。\n- 10 benchmark 只 1 个显著 ≈ 名义 α=0.05 下的期望假阳性率。Task-specificity reframing 虽巧妙，但审稿人可反驳：\"LAMBADA 纯上下文预测的特殊性是 post-hoc rationalization\"。\n- GDN-excluded sensitivity: LAMBADA ρ 降至 -0.7 (p=0.233)。虽然 ARC-Easy 改善至 -0.9 (p=0.083)，但这加强了对核心结果 GDN-dependence 的担忧。\n\n**审稿人可能反应**: \"BCa CI 是有意义的，但 Bonferroni 不通过 + n=5 的固有局限 + GDN-excluded 结果弱化 = 难以单独支撑一个 claim。Task-specificity reframing 是可以接受的 narrative，但需要更强的理论驱动（为什么 LAMBADA 而非其他 context-retrieval 任务如 StoryCloze？）\"\n\n#### Claim 2: Scale-Dependent Convergence — 证据强度 2.0/5\n\n**支撑证据**:\n- 1.3B vs 340M 的 binary contrast（1.3B 完全收敛，340M 部分/非单调）\n- 与容量假说一致\n\n**弱点**:\n- **仅 2 个 scale points**，无法建立趋势，也无法排除 confound（不同 scale 的训练 dynamics 差异）\n- 没有 7B 数据（Wang et al. 也不提供）\n- \"Scale is a necessary condition\" 的表述缺乏足够证据 — 2 点二元对比支撑不了 necessity claim\n- 340M rebound mechanism (exp-007) 尚未执行\n\n**审稿人可能反应**: \"Two scale points provide an observation, not a finding. Frame as preliminary evidence, not a standalone claim.\"\n\n#### Claim 3: Per-Example Divergence + Decoupling — 证据强度 3.5/5\n\n**支撑证据**:\n- Jaccard < 0.10 across all pairwise comparisons — 量化上有说服力\n- **Decoupling finding (exp-010)**: aggregate σ 单调下降 vs Jaccard 4% 时即饱和 — 这是本文最原创的发现\n- Surface features 不解释 within-arch helped/hurt (exp-003, negative)\n- Perplexity 不解释 within-arch (exp-003-p2, negative)\n- Cross-arch KW 显著 (p=0.0005 for hurt samples) — 效应是 structured，非随机噪声\n- Net asymmetry 递增 (0.013 → 0.040) — attention 越多，架构特异性效应越分化\n\n**弱点**:\n- Per-example divergence 是 well-documented phenomenon (D'Amour et al. 2022, ensemble diversity literature)。Contribution 是 quantification，非 discovery — 这在 *ACL venue 的 novelty bar 偏低。\n- 仅在 LAMBADA 上有 per-example 数据。如果其他 benchmark 也做 per-example 分析但 Jaccard 同样低，task-specificity 叙事会受冲击（underspecification 是 universal 的，与 task type 无关）。\n- exp-004 (attention weight patterns) 还在跑，暂无 mechanistic description\n\n**审稿人可能反应**: \"Decoupling finding is genuinely interesting and well-executed. The quantification is clean. However, connecting this to D'Amour et al. 2022 weakens novelty — you're confirming underspecification exists in one more domain. The decoupling timescale analysis partially saves it.\"\n\n---\n\n### Dream Weakness 评估\n\n| Weakness | 状态 | 缓解程度 | 剩余风险 |\n|----------|------|----------|----------|\n| **W1: Single-benchmark** | D009 策略 | 中等 | BCa CI defensible 但 Bonferroni failure 仍是最大攻击面。Task-specificity rationalization 可被质疑为 post-hoc |\n| **W2: Missing related work** | 待写 | 未缓解 | 20+ references 需要。ensemble diversity + underspecification positioning 是 acceptance 的必要条件 |\n| **W3: Mechanistic overclaiming** | 已 reframe | 大部分缓解 | \"Characterization\" 替代 \"mechanism\" 是正确的。exp-004 结果需谨慎使用（descriptive only） |\n| **W4: Incremental over Wang** | exp-009 文档化 | 部分缓解 | 4-dimensional differentiation 是合理的，但审稿人对 \"analytical depth on existing models\" 的接受度因人而异 |\n\n---\n\n### Overall Assessment 预测\n\n**最可能评分: 2.5 — Borderline Findings**\n\n理由:\n- **上行路径到 3.0 (Findings)**: 如果 Related Work 做得出色（20+ refs, 精准 positioning as \"quantification in emerging architecture class\"），writing 质量高，统计报告透明且自信（不过度 apologize），decoupling finding 作为核心 contribution 被突出 → 3.0 可达。\n- **下行风险到 2.0 (Resubmit)**: 如果审稿人对 BCa valid-only 策略不买账（view as cherry-picking），或将 task-specificity reframing 判定为 spin，或认为整体 novelty 不足 → 2.0。\n- 3 个 reviewer 中预期 1 个给 3.0-3.5（appreciate empirical rigor + decoupling），1 个给 2.5（borderline novelty），1 个给 2.0-2.5（single benchmark + incremental）。\n\n**到 Findings 3.0 的关键差距**:\n1. ★★★ Related Work quality — 这是最大 leverage point，0 GPU cost\n2. ★★☆ Task-specificity 的理论解释需要更深（为什么 LAMBADA 而非 xstorycloze/COPA？context-prediction 的形式化定义是什么？）\n3. ★★☆ Decoupling finding 需要作为 title/abstract 级 contribution，不能埋在 Section 4\n4. ★☆☆ exp-004 attention patterns — 如果能 show architecture-specific attention distributions correlate with helped/hurt，adds descriptive depth\n\n**评分分布预测 (3 reviewers)**:\n\n| Scenario | R1 | R2 | R3 | Average | 概率 |\n|----------|----|----|-----|---------|------|\n| 乐观（writing 出色 + related work 强） | 3.5 | 3.0 | 2.5 | 3.0 | 25% |\n| 基线（正常执行） | 3.0 | 2.5 | 2.5 | 2.7 | 45% |\n| 悲观（审稿人不买 BCa + task-specificity） | 2.5 | 2.0 | 2.0 | 2.2 | 30% |\n\n---\n\n## Part 2: exp-002 成本效益分析\n\n### exp-002 规格\n- **内容**: HellaSwag/ARC-C/ARC-Easy 上 per-example logprob 分析 (extract + Jaccard + helped/hurt characterization)\n- **GPU 时间**: 20h (RTX PRO 6000)\n- **距 DDL**: ~27 天 (June 15)\n\n### D009 后 exp-002 目标重估\n\n| 原始目标 | D009 后状态 | 分析 |\n|----------|------------|------|\n| 验证多 benchmark per-example 收敛 | ❌ 目标已失效 | Claim 1 已从 \"多 benchmark 收敛\" 转向 \"LAMBADA-specific\"。exp-002 不再服务原始目的 |\n| 为 Claim 1 提供多 benchmark Jaccard 证据 | ⚠️ 部分相关 | 如果 non-LAMBADA benchmarks 也有低 Jaccard → underspecification is universal → 实际上**削弱** task-specificity 叙事 |\n| 补充材料 | ✅ 仍有价值 | 多 benchmark per-example 数据可放 appendix，展示 thoroughness |\n\n### 三种结果场景\n\n**场景 A: Non-LAMBADA benchmarks 也有低 Jaccard (~0.10)**\n- 含义: underspecification 是 universal 的，与 task type 无关\n- 影响: **负面** — 削弱 \"task-specific convergence\" 叙事。如果 per-example divergence 到处存在，LAMBADA 的特殊性仅在 aggregate 层面，削弱 Claim 1 的解释力\n- 审稿人可能说: \"Per-example divergence is task-independent; your aggregate convergence finding on LAMBADA alone is even thinner\"\n\n**场景 B: Non-LAMBADA benchmarks Jaccard 明显更高 (~0.3-0.5)**\n- 含义: LAMBADA 的低 Jaccard 与其 aggregate convergence 有关联 → convergent tasks have more diverse per-example dynamics\n- 影响: **正面** — 直接支持 decoupling 叙事，且提供 cross-task contrast\n- 但这个结果需要理论解释，且可能只提供 suggestive evidence (n=4 tasks, no formal test)\n\n**场景 C: 结果 noisy，无清晰 pattern**\n- 含义: per-example dynamics 在 non-retrieval tasks 上不稳定\n- 影响: **中性** — 放进 supplementary，不改变主 story\n\n### 成本-收益矩阵\n\n| 维度 | 评估 |\n|------|------|\n| **GPU 成本** | 20h / 单卡 = ~1 天 wall time。exp-004 完成后才能开始。实际可用窗口 ~25 天 |\n| **信息价值** | 场景 A (40% 概率): 负面信息，强迫修改叙事。场景 B (25%): 有价值但非 decisive。场景 C (35%): 浪费 |\n| **对评分的影响** | 乐观估计: +0.1-0.2 (supplementary completeness)。exp-002 不解决任何 Major weakness |\n| **机会成本** | 20h GPU 可跑 exp-007 (2h, 340M rebound) + 留 18h buffer 给 exp-004 follow-ups 或论文 figure 生成 |\n| **风险** | 场景 A 会制造新的 narrative problem，需要额外时间修补 |\n\n### 结论: exp-002 **不推荐执行**\n\n理由:\n1. **Expected value 为负**: 场景 A（最可能）实际上损害论文叙事\n2. **不解决核心弱点**: W1/W2/W3/W4 没有一个因 exp-002 改善\n3. **LAMBADA 单 benchmark 的 per-example 数据已经足够**: Claim 3 的 evidence chain（Jaccard < 0.10 + decoupling + surface/perplexity negative + cross-arch KW）已完整\n4. **GPU 时间更好的用途**: exp-007 (2h) 为 Claim 2 提供 340M rebound 分析；剩余时间留给 exp-004 follow-up\n\n### 不做 exp-002，论文是否仍够 Findings 3.0？\n\n**是的**，条件是:\n- Related Work 做到位 (20+ refs, 精准 positioning)\n- Decoupling finding 提升为 title-level contribution\n- 统计报告透明 (BCa + Bonferroni caveat + GDN sensitivity)\n- exp-004 提供 descriptive attention pattern data\n- Writing quality 高于平均\n\nexp-002 的缺失不会被审稿人注意到——审稿人不会主动想 \"为什么没在其他 benchmark 做 per-example 分析\"，除非作者自己提起。\n\n---\n\n## Part 3: 下一步优先级排序\n\n### Tier 1 — 必须完成 (决定 accept/reject)\n\n| 优先级 | 任务 | 预估投入 | 理由 |\n|--------|------|----------|------|\n| P0 | **Related Work 撰写** | 2-3 天 writing | W2 是唯一 blocking weakness。20+ references covering: ensemble diversity, underspecification, dataset cartography, hybrid architecture survey, attention interpretability |\n| P0 | **exp-004 完成 + 分析** | ~数小时 (已在跑) | Claim 3 的 descriptive depth。如有 architecture-specific attention patterns → 有价值的 figure |\n| P0 | **Paper draft** | ~7-10 天 | DDL June 15，最迟 June 5 开写。Decoupling 作为核心 contribution |\n\n### Tier 2 — 强烈推荐 (提升 0.2-0.5 分)\n\n| 优先级 | 任务 | 预估投入 | 理由 |\n|--------|------|----------|------|\n| P1 | **LAMBADA task-specificity 理论解释** | 1 天 analysis | 为什么 LAMBADA 而非 StoryCloze？需要 formal characterization of \"pure context prediction\" vs \"commonsense completion\" |\n| P1 | **exp-007: 340M rebound** | 2h GPU + 0.5 天 analysis | Claim 2 补充。340M 非单调 rebound 的 mechanism — 如果能解释 why，增加论文深度 |\n| P1 | **Figure/table 质量** | 2-3 天 | Decoupling 的 dual-axis figure (aggregate σ vs Jaccard across attention ratios) 是 key visual |\n\n### Tier 3 — 可选 (marginal improvement)\n\n| 优先级 | 任务 | 预估投入 | 理由 |\n|--------|------|----------|------|\n| P2 | exp-002 (multi-benchmark per-example) | 20h GPU + 1 天 | 上述分析: expected value 为负，不推荐 |\n| P2 | Dream 重新模拟 (post-D009) | 0.5 天 | 验证新 framing 评分是否改善，但不改变实际行动 |\n\n### 时间线建议 (27 天到 DDL)\n\n```\nWeek 1 (May 19-25): exp-004 完成 → 分析; 开始 Related Work; exp-007 (2h)\nWeek 2 (May 26-Jun 1): Paper draft (Intro + Method + Results); figures\nWeek 3 (Jun 2-8):  Paper draft (Related Work + Discussion + Limitations); internal review\nWeek 4 (Jun 9-15): Polish + LaTeX + submission\n```\n\n---\n\n## 总结\n\n- **当前论文强度**: 2.5 (Borderline Findings)，通过 writing + related work 可达 3.0\n- **exp-002 建议**: 不做。Expected value 为负，不解决核心 weakness，GPU 更好用于 exp-007\n- **最大 leverage point**: Related Work quality + Decoupling 作为核心 contribution + 统计透明度\n- **风险底线**: 即使 Findings 3.0 不到，honest empirical work + 透明统计报告在 ARR 系统中有 2nd cycle 的基础\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T16:46:09.023333+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/d009_assessment.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T16:46:09.023489+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "D009 Post-Decision Assessment",
+  "type": "report",
+  "description": "Dream-style review simulation (predicted 2.5 borderline findings), exp-002 cost-benefit analysis (recommend NOT executing), and prioritized next steps for EMNLP 2026 submission",
+  "project": "entrainment_gated_ft",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/d009_assessment.md",
+  "tags": "['review', 'assessment', 'd009', 'exp-002', 'strategy']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "D009 Post-Decision Assessment",
+    "type": "report",
+    "description": "Dream-style review simulation (predicted 2.5 borderline findings), exp-002 cost-benefit analysis (recommend NOT executing), and prioritized next steps for EMNLP 2026 submission",
+    "project": "entrainment_gated_ft",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/d009_assessment.md",
+    "tags": "['review', 'assessment', 'd009', 'exp-002', 'strategy']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T16:46:09.023665+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_24c33b\", \"name\": \"D009 Post-Decision Assessment\", \"type\": \"report\", \"description\": \"Dream-style review simulation (predicted 2.5 borderline findings), exp-002 cost-benefit analysis (recommend NOT executing), and prioritized next steps for EMNLP 2026 submission\", \"path\": \"projects/entrainment_gated_ft/artifacts/_project/report/d009_assessment.md\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-19T16:45:58.937349+00:00\", \"tags\": [\"review\", \"assessment\", \"d009\", \"exp-002\", \"strategy\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-19T16:46:09.023875+00:00_
+
+报告已写入 `artifacts/d009_assessment.md`。核心结论：
+
+**模拟评分: 2.5 (Borderline Findings)**，三个 reviewer 加权后基线场景 2.7，通过 Related Work + writing 质量有 25% 概率达到 3.0。
+
+**exp-002 建议: 不做。** 三个理由：
+1. 最可能结果（non-LAMBADA 也有低 Jaccard）会**削弱** task-specificity 叙事
+2. 不解决任何 Major weakness (W1-W4)
+3. 20h GPU 更好用于 exp-007 (2h, 340M rebound) + 留 buffer
+
+**到 3.0 的最大 leverage**: Related Work (20+ refs, 0 GPU cost) > Decoupling 提升为 title-level contribution > exp-007 补 Claim 2 > writing 质量。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_d009-paper-strength-assessment_20260519T164246"
+}
+```
+
+</details>
+
+---

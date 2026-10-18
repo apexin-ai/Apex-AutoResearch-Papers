@@ -1,0 +1,5340 @@
+# write prompt appendix c1a
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 169
+- **Recorded user turns:** 0
+- **Tool calls:** 84
+- **Original source:** `logs/chats/worker_write_prompt_appendix_c1a_20260516T031758.jsonl`
+- **Structured JSON:** [`1ad628b98c5d9d7bce93.json`](../../sessions/1a/1ad628b98c5d9d7bce93.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+169 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T03:21:48.962731+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Find prompt templates in artifacts",
+  "prompt": "Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ for Python scripts containing prompt templates. I need to find:\n1. v1 prompts (with character offset requirements) and v2 prompts (without offsets, with format constraints)\n2. Look for keywords: \"system_prompt\", \"user_prompt\", \"prompt\", \"system_message\", \"user_message\"\n3. Specifically look for files like run_fewrel_formal.py, run_fewnerd_*.py, run_maven_*.py\n4. Also look for any files related to exp-001 (v1) and exp-003a (v2)\n\nSearch breadth: very thorough. Report back the full content of all prompt templates you find, including the system prompt and user prompt for both v1 and v2, for each task (NER/RE/ED)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Agent",
+  "tool_args": {
+    "subagent_type": "Explore",
+    "description": "Find prompt templates in artifacts",
+    "prompt": "Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ for Python scripts containing prompt templates. I need to find:\n1. v1 prompts (with character offset requirements) and v2 prompts (without offsets, with format constraints)\n2. Look for keywords: \"system_prompt\", \"user_prompt\", \"prompt\", \"system_message\", \"user_message\"\n3. Specifically look for files like run_fewrel_formal.py, run_fewnerd_*.py, run_maven_*.py\n4. Also look for any files related to exp-001 (v1) and exp-003a (v2)\n\nSearch breadth: very thorough. Report back the full content of all prompt templates you find, including the system prompt and user prompt for both v1 and v2, for each task (NER/RE/ED)."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T03:21:48.963312+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f -name \"*.py\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f -name \"*.py\" | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T03:21:48.963550+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/preprocess_maven.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fig_count_curves.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/src/preprocess_ace05.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/src/compute_type_embeddings.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/intermediate/preprocess_ace05.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/intermediate/compute_type_embeddings.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fig_error_taxonomy.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/maven_code/src/preprocess_maven.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/bootstrap_ci.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T03:21:48.963768+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/**/*run_fewrel*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/**/*run_fewrel*.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T03:21:48.965052+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T03:21:48.965273+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/**/*run_fewnerd*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/**/*run_fewnerd*.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T03:21:48.965452+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T03:21:48.965642+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/**/*run_maven*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/**/*run_maven*.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T03:21:48.965815+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T03:21:48.966033+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-001/**/*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-001/**/*.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T03:21:48.966256+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-003a/**/*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-003a/**/*.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T03:21:48.966432+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T03:21:48.966596+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T03:21:48.966781+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ | head -30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T03:21:48.969063+00:00_
+
+total 552
+drwxr-xr-x 23 ubuntu ubuntu   4096 May 16 03:14 .
+drwxr-xr-x 12 ubuntu ubuntu   4096 May 16 03:16 ..
+drwxr-xr-x  6 ubuntu ubuntu   4096 May 15 16:11 _project
+drwxr-xr-x  4 ubuntu ubuntu   4096 May 15 03:08 ace05_code
+-rw-r--r--  1 ubuntu ubuntu  11811 May 15 03:05 ace05_data_prep_report.md
+-rw-r--r--  1 ubuntu ubuntu   5295 May 16 02:04 appendix_maven_residualized.md
+-rw-r--r--  1 ubuntu ubuntu   1518 May 14 19:48 bcs_comparison.json
+-rw-r--r--  1 ubuntu ubuntu  15725 May 15 15:09 bootstrap_ci.py
+-rw-r--r--  1 ubuntu ubuntu   8265 May 15 03:14 crossagentie_analysis.md
+drwxr-xr-x  6 ubuntu ubuntu   4096 May 15 14:57 dream_reports
+-rw-r--r--  1 ubuntu ubuntu 175776 May 15 14:34 eval_exp1.json
+-rw-r--r--  1 ubuntu ubuntu 101465 May 15 14:34 eval_exp2.json
+drwxr-xr-x  5 ubuntu ubuntu   4096 May 15 03:10 exp-004
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 15 10:18 exp-008
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 15 03:20 exp-012
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 15 05:58 exp002_confusability_controlled
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 15 05:16 exp003a
+-rw-r--r--  1 ubuntu ubuntu   2866 May 15 05:16 exp003a_analysis.json
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 16 01:35 exp004
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 15 06:05 exp004_maven_bcs
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 15 17:37 exp006_interaction_2x2
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 15 07:45 exp008_sdgd_zero_fewnerd
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 15 16:50 exp008_sdgd_zero_fewnerd_r2
+-rw-r--r--  1 ubuntu ubuntu   1500 May 15 20:06 exp012_exp2_diagnosis.md
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 15 20:00 exp012_llama_8b_r2
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 15 22:40 exp012_llama_fewrel_ch2
+drwxr-xr-x  3 ubuntu ubuntu   4096 May 16 02:19 exp_fewrel_80pool_16sub_bootstrap
+drwxr-xr-x  2 ubuntu ubuntu   4096 May 15 08:59 fewrel_formal
+-rw-r--r--  1 ubuntu ubuntu   2512 May 15 21:42 fig_count_curves.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T03:21:48.969305+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type d -name \"exp-*\" | sort"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type d -name \"exp-*\" | sort"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T03:21:48.969483+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-008
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-012
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T03:21:48.969693+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp003a -type f -name \"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp003a -type f -name \"*.py\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T03:21:48.969886+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T03:21:48.970084+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fewrel_formal -type f -name \"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fewrel_formal -type f -name \"*.py\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T03:21:48.970257+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T03:21:48.970442+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f -name \"*prompt*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f -name \"*prompt*.py\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T03:21:48.970612+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T03:21:48.970796+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f -name \"*run*.py\" | grep -E \"(fewrel|fewnerd|maven)\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f -name \"*run*.py\" | grep -E \"(fewrel|fewnerd|maven)\" | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T03:21:48.973063+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T03:21:48.973282+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp003a/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp003a/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T03:21:48.973487+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fewrel_formal/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fewrel_formal/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T03:21:48.973683+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f -name \"*.py\" | wc -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f -name \"*.py\" | wc -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T03:21:48.973878+00:00_
+
+total 12
+drwxr-xr-x  3 ubuntu ubuntu 4096 May 15 05:16 .
+drwxr-xr-x 23 ubuntu ubuntu 4096 May 16 03:14 ..
+drwxr-xr-x  2 ubuntu ubuntu 4096 May 15 05:16 report
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T03:21:48.974059+00:00_
+
+9
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T03:21:48.974221+00:00_
+
+total 12
+drwxr-xr-x  2 ubuntu ubuntu 4096 May 15 08:59 .
+drwxr-xr-x 23 ubuntu ubuntu 4096 May 16 03:14 ..
+-rw-r--r--  1 ubuntu ubuntu 2915 May 15 08:59 LAUNCH_COMMANDS.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T03:21:48.974408+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f -name \"*.py\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f -name \"*.py\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T03:21:48.974601+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/preprocess_maven.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fig_count_curves.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/src/preprocess_ace05.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/src/compute_type_embeddings.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/intermediate/preprocess_ace05.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/intermediate/compute_type_embeddings.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fig_error_taxonomy.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/maven_code/src/preprocess_maven.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/bootstrap_ci.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T03:21:48.974807+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f \\( -name \"*.py\" -o -name \"*.json\" -o -name \"*.yaml\" -o -name \"*.yml\" \\) | xargs grep -l \"system_prompt\\|user_prompt\\|system_message\\|user_message\" 2>/dev/null | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f \\( -name \"*.py\" -o -name \"*.json\" -o -name \"*.yaml\" -o -name \"*.yml\" \\) | xargs grep -l \"system_prompt\\|user_prompt\\|system_message\\|user_message\" 2>/dev/null | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T03:21:48.977080+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T03:21:48.977285+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fewrel_formal/LAUNCH_COMMANDS.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/fewrel_formal/LAUNCH_COMMANDS.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T03:21:48.977491+00:00_
+
+1	# FewRel Formal Study Launch Commands
+2	
+3	Server: cqa1-38874 | Project: /root/schema-dag-extraction
+4	
+5	## Step 0: Qwen3 Embedding Computation (prerequisite, ~2 min GPU)
+6	
+7	```bash
+8	cd /root/schema-dag-extraction
+9	source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+10	
+11	python3 src/compute_type_embeddings.py \
+12	    --types configs/fewrel_relation_types.json \
+13	    --model /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ \
+14	    --output artifacts/fewrel_qwen3_embeddings.pt \
+15	    --batch-size 8 \
+16	    --dtype bfloat16
+17	```
+18	
+19	Notes:
+20	- Output: `{PID: tensor}` dict (e.g. `{"P931": tensor, ...}`)
+21	- `run_fewrel_formal.py` auto-remaps PID keys to relation names via `pid2name`
+22	- Text template: `"{PID}: {relation_name}"` (e.g. `"P931: place served by transport hub"`)
+23	- 80 relation types, dim depends on Qwen3 hidden size
+24	
+25	## Step 1: Exp1 - Count Curve (count={1,4,8,16,32,64,80})
+26	
+27	### Dry run (verify batch config, no GPU)
+28	```bash
+29	python3 src/run_fewrel_formal.py \
+30	    --mode exp1 --use_all --dry_run
+31	```
+32	
+33	### Full run
+34	```bash
+35	nohup python3 src/run_fewrel_formal.py \
+36	    --mode exp1 --use_all \
+37	    --embeddings_path artifacts/fewrel_qwen3_embeddings.pt \
+38	    --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ \
+39	    > artifacts/fewrel_formal/exp1_run.log 2>&1 &
+40	echo $!
+41	```
+42	
+43	- 110 batches (80 solo + 5x6 random), ~13200 inferences
+44	- Est. GPU time: ~330 min @ 1.5s/sample
+45	
+46	## Step 2: Exp2 - BCS Controlled (count={8,16})
+47	
+48	### Dry run
+49	```bash
+50	python3 src/run_fewrel_formal.py \
+51	    --mode exp2 --use_all --dry_run \
+52	    --embeddings_path artifacts/fewrel_qwen3_embeddings.pt
+53	```
+54	
+55	### Full run
+56	```bash
+57	nohup python3 src/run_fewrel_formal.py \
+58	    --mode exp2 --use_all \
+59	    --embeddings_path artifacts/fewrel_qwen3_embeddings.pt \
+60	    --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ \
+61	    > artifacts/fewrel_formal/exp2_ru
+…[truncated 1215 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T03:21:48.977741+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f \\( -name \"*.json\" -o -name \"*.jsonl\" \\) | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ -type f \\( -name \"*.json\" -o -name \"*.jsonl\" \\) | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T03:21:48.977960+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/bcs_comparison.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/maven_event_types.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/eval_exp1.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp003a_analysis.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/median/experiment_data.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/worst/experiment_data.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/best/experiment_data.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/median/experiment_data.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/worst/experiment_data.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T140829/best/experiment_data.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/median/experiment_data.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/worst/experiment_data.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T113743/best/experiment_data.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/bcs_comparison.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509
+…[truncated 710 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T03:21:48.978195+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"system_prompt\\|user_prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/*.py 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"system_prompt\\|user_prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/*.py 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T03:21:48.978370+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-16T03:21:48.978558+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -name \"run_fewrel*.py\" -o -name \"run_fewnerd*.py\" -o -name \"run_maven*.py\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -name \"run_fewrel*.py\" -o -name \"run_fewnerd*.py\" -o -name \"run_maven*.py\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T03:21:48.978742+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T03:21:48.982019+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f -name \"*.py\" | grep -i \"run\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f -name \"*.py\" | grep -i \"run\" | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T03:21:48.982238+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-16T03:21:48.982431+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ -type f -name \"*.py\" | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ -type f -name \"*.py\" | head -30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T03:21:48.982609+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/text_match_reeval.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_maven_results.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_fewrel_results.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_exp008_results.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/maven_case_study.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/fewrel_error_taxonomy.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-16T03:21:48.982806+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ | head -40"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ | head -40"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T03:21:48.983014+00:00_
+
+total 124
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 15 15:26 .
+drwxr-xr-x 12 ubuntu ubuntu  4096 May 16 03:16 ..
+-rw-r--r--  1 ubuntu ubuntu  9876 May 15 11:16 analyze_exp008_results.py
+-rw-r--r--  1 ubuntu ubuntu 16892 May 15 08:34 analyze_fewrel_results.py
+-rw-r--r--  1 ubuntu ubuntu 23697 May 15 06:27 analyze_maven_results.py
+-rw-r--r--  1 ubuntu ubuntu  6891 May 15 15:09 fewrel_error_taxonomy.py
+-rw-r--r--  1 ubuntu ubuntu 14894 May 15 15:26 maven_case_study.py
+-rw-r--r--  1 ubuntu ubuntu 16401 May 15 10:54 run_fewrel_formal.py
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 15 10:55 sdgd
+-rw-r--r--  1 ubuntu ubuntu 11863 May 14 23:24 text_match_reeval.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-16T03:21:48.983214+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T03:21:48.983382+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-16T03:21:48.983586+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"system_prompt\\|user_prompt\\|system_message\\|user_message\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"system_prompt\\|user_prompt\\|system_message\\|user_message\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T03:21:48.983757+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-16T03:21:48.986032+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"character offset\\|character offsets\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"character offset\\|character offsets\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T03:21:48.986261+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp2-analysis-prep_20260514T231253.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_paper_experimental-setup_20260515T164246.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_eval-diagnosis-b2_20260514T231026.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_code_maven-data-prep_20260515T032102.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_research_maven-dataset-study_20260515T030839_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_write_compress_section5_page_limit_20260516T024837.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_write_prompt_appendix_c1a_20260516T031758.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_code_ace05-preprocess-scripts_20260515T030622.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_research_maven-dataset-study_20260515T030839.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_verify_paper_compile_consistency_20260516T023830.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_maven-analysis-scripts_20260515T062257.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_exp1-text-reeval_20260514T231942.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_prompt-v2-pre
+…[truncated 1513 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-16T03:21:48.986486+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T03:21:48.986821+00:00_
+
+1	"""FewRel formal study: BCS-confusion hypothesis on relation extraction.
+2	
+3	exp1 (Count curve): count={1,4,8,16,32,64,80}, 5 random batches per count,
+4	    count_1 = 80 solo batches (one per relation type).
+5	    1000 samples balanced across active relations.
+6	
+7	exp2 (BCS controlled): count={8,16}, 1 low-BCS + 1 high-BCS + 25 random = 27 per count.
+8	    Same 1000 samples.
+9	
+10	Metric: accuracy (RE is single-label classification per sample).
+11	
+12	Usage:
+13	    # Auto two-stage (recommended — avoids vLLM fork deadlock):
+14	    python3 src/run_fewrel_formal.py --mode exp1 --use_all
+15	
+16	    # Manual two-stage:
+17	    python3 src/run_fewrel_formal.py --stage preprocess --mode exp1 --use_all
+18	    python3 src/run_fewrel_formal.py --stage extract --mode exp1
+19	
+20	    # Dry run:
+21	    python3 src/run_fewrel_formal.py --mode exp1 --use_all --dry_run
+22	"""
+23	import argparse
+24	import json
+25	import logging
+26	import random
+27	import subprocess
+28	import sys
+29	import time
+30	from collections import defaultdict
+31	from pathlib import Path
+32	
+33	logger = logging.getLogger(__name__)
+34	
+35	BASE_DIR = Path("/root/schema-dag-extraction")
+36	
+37	EXP1_COUNTS = [1, 4, 8, 16, 32, 64, 80]
+38	EXP2_COUNTS = [8, 16]
+39	EXP1_RANDOM_PER_COUNT = 5
+40	EXP2_RANDOM_PER_COUNT = 25
+41	DEFAULT_N_SAMPLES = 1000
+42	
+43	
+44	def evaluate_re(results):
+45	    """Per-batch accuracy and per-type accuracy breakdown."""
+46	    batch_stats = defaultdict(lambda: {"correct": 0, "total": 0, "bcs": 0.0,
+47	                                       "count_key": "", "num_types": 0,
+48	                                       "batch_types": [], "per_type": defaultdict(lambda: {"correct": 0, "total": 0})})
+49	    for r in results:
+50	        bid = r["batch_id"]
+51	        s = batch_stats[bid]
+52	        s["total"] += 1
+53	        s["bcs"] = r["batch_bcs"]
+54	        s["count_key"] = r["count_key"]
+55	        s["num_types"] = len(r["batch_types"])
+56	        s["batch_types"] = r["batch_types"]
+57	    
+…[truncated 15815 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-16T03:21:48.987107+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f -name \"*.py\" | xargs grep -l \"v1\\|v2\" | grep -i \"prompt\\|template\" | head -10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f -name \"*.py\" | xargs grep -l \"v1\\|v2\" | grep -i \"prompt\\|template\" | head -10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-16T03:21:48.987291+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-16T03:21:48.987481+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f \\( -name \"*.py\" -o -name \"*.json\" \\) | xargs grep -l \"character.offset\\|offset.*character\" 2>/dev/null | head -10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f \\( -name \"*.py\" -o -name \"*.json\" \\) | xargs grep -l \"character.offset\\|offset.*character\" 2>/dev/null | head -10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T03:21:48.987660+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_qwen3-embedding-metadata-check_20260515T090746_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_research_maven-dataset-study_20260515T030839_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_read_eval_metrics_20260515T134025_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ace05_code/src/preprocess_ace05.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/intermediate/preprocess_ace05.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-16T03:21:48.989241+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -name \"run_extraction.py\" -o -name \"run_extraction*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -name \"run_extraction.py\" -o -name \"run_extraction*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T03:21:48.989513+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"build_prompt_v2\\|build_prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"build_prompt_v2\\|build_prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/ -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T03:21:48.989707+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-16T03:21:48.989895+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-16T03:21:48.990090+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -name \"*extraction*\" -o -name \"*prompt*\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -name \"*extraction*\" -o -name \"*prompt*\" | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T03:21:48.990285+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ | head -30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T03:21:48.990471+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_diagnose_exp003a_prompt_v2_rerun_20260515T024627.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_diag_exp012_ner_prompt_test_20260515T173001.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_prompt-v2-prep_20260514T231959_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_prompt_test_then_exp006_20260515T173948.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_write_prompt_appendix_c1a_20260516T031758.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_fewrel-re-prompt-fix_20260515T063640.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_fewrel-re-prompt-fix_20260515T065836.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ops_prompt_test_then_exp006_20260515T173948_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_fewrel-re-prompt-fix_20260515T065836_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_ssh_prompt-v2-prep_20260514T231959.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_diag_exp012_ner_prompt_test_20260515T173001_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/workers/worker_diagnose_exp003a_prompt_v2_rerun_20260515T024627_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/logs/chats/cron_hook_exp003a_prompt_v2_rer
+…[truncated 871 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-16T03:21:48.990683+00:00_
+
+total 296
+drwxr-xr-x 12 ubuntu ubuntu  4096 May 16 03:16 .
+drwxrwxr-x  6 ubuntu ubuntu  4096 May 14 16:07 ..
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 16:07 .claude
+-rw-r--r--  1 ubuntu ubuntu 12791 May 16 03:15 AGENTS.md
+-rw-r--r--  1 ubuntu ubuntu     0 May 14 16:10 ROADMAP.lock
+-rw-------  1 ubuntu ubuntu  4161 May 16 03:13 ROADMAP.md
+drwxr-xr-x 23 ubuntu ubuntu  4096 May 16 03:14 artifacts
+drwxr-xr-x  2 ubuntu ubuntu 20480 May 16 03:16 checkpoints
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 16:41 configs
+-rw-r--r--  1 ubuntu ubuntu     0 May 15 22:03 constraints.lock
+-rw-------  1 ubuntu ubuntu   411 May 16 02:39 constraints.yaml
+-rw-r--r--  1 ubuntu ubuntu     0 May 14 16:10 decisions.lock
+-rw-------  1 ubuntu ubuntu 30341 May 16 03:13 decisions.yaml
+drwxr-xr-x  4 ubuntu ubuntu  4096 May 15 05:30 docs
+-rwxr-xr-x  1 ubuntu ubuntu     0 May 15 02:48 dream_registry.lock
+-rw-------  1 ubuntu ubuntu  2945 May 15 14:57 dream_registry.yaml
+-rw-r--r--  1 ubuntu ubuntu  2950 May 15 14:57 dream_registry.yaml.bak
+-rw-r--r--  1 ubuntu ubuntu     0 May 15 13:44 experiment_plan.lock
+-rw-------  1 ubuntu ubuntu  5379 May 15 17:09 experiment_plan.yaml
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 15 16:09 figures
+-rw-r--r--  1 ubuntu ubuntu 19038 May 15 07:59 literature_map.yaml
+drwxr-xr-x  4 ubuntu ubuntu  4096 May 14 16:14 logs
+-rw-r--r--  1 ubuntu ubuntu  1320 May 16 02:14 memory.md
+-rw-r--r--  1 ubuntu ubuntu 11744 May 15 15:51 paper_framing.md
+-rw-r--r--  1 ubuntu ubuntu     0 May 15 17:49 paper_provenance.lock
+-rw-------  1 ubuntu ubuntu 22200 May 16 02:43 paper_provenance.yaml
+-rw-r--r--  1 ubuntu ubuntu     0 May 14 16:13 registry.lock
+-rw-------  1 ubuntu ubuntu 66326 May 16 03:16 registry.yaml
+-rw-r--r--  1 ubuntu ubuntu  2115 May 16 03:16 report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-16T03:21:48.992953+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f -name \"*.py\" | xargs grep -l \"def build_prompt\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f -name \"*.py\" | xargs grep -l \"def build_prompt\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-16T03:21:48.993192+00:00_
+
+Exit code 123
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-16T03:21:48.993475+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"def build_prompt_v2_re\\|def build_json_schema_re\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"def build_prompt_v2_re\\|def build_json_schema_re\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-16T03:21:48.993661+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(find /home/ubuntu/.agent-ml-research-ide…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-16T03:21:48.994891+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"from run_extraction import\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"from run_extraction import\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-16T03:21:48.995121+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(find /home/ubuntu/.agent-ml-research-ide…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-16T03:21:48.995329+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"system_prompt\\|user_prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ --include=\"*.py\" -A 5 -B 5 2>/dev/null | head -100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"system_prompt\\|user_prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ --include=\"*.py\" -A 5 -B 5 2>/dev/null | head -100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-16T03:21:48.995505+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-16T03:21:48.995695+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"\\\"system\\\"\\|\\\"user\\\"\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ --include=\"*.json\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"\\\"system\\\"\\|\\\"user\\\"\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/ --include=\"*.json\" | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-16T03:21:48.997922+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-16T03:21:48.998167+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp003a/ -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp003a/ -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-16T03:21:48.998349+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp003a/report/exp003a_analysis.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-16T03:21:48.998537+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/ -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/ -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-16T03:21:48.998713+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/intermediate/preprocess_ace05.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/intermediate/compute_type_embeddings.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/data/maven_scs_artifacts.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/data/ace05_relation_types.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/data/ace05_entity_types.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/report/ace05_data_prep_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/report/exp004_maven_scs_report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-16T03:21:48.998932+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp004/ -type f | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp004/ -type f | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-16T03:21:48.999111+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp004/report/analysis_report.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-16T03:21:48.999300+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"prompt_v1\\|prompt_v2\\|v1.*prompt\\|v2.*prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\" --include=\"*.md\" | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"prompt_v1\\|prompt_v2\\|v1.*prompt\\|v2.*prompt\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\" --include=\"*.md\" | head -30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-16T03:21:48.999501+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/reviewer.md:- **v1/v2 prompt 区分**: 主文 NER count curve 用 v1（0.72→0.42），cross-model table 用 v2（0.640→0.304）。两套数字不能混用，caption 已解释
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/history/director/loop_1.md:- exp003a_prompt_v2_rerun: DONE (failed, EXIT_CODE=2 syntax error)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/report.md:- exp_fewrel_v2_bcs_controlled: 验证 Channel 2 (BCS→type confusion) 在 v2 prompt 下方向一致。FewRel 80-rel, count=8, low-BCS 5 batches + high-BCS 5 batches, Qwen3-32B-FP8, v2 prompt。D037 Round 2 审稿 C1b。（已分配 ? GPU:?，等待提交）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py:    from run_extraction import build_json_schema_re, build_prompt_v2_re
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py:                p = build_prompt_v2_re(s["text"], s["head_entity"], s["tail_entity"], relation_defs, batch_types)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py:        from run_extraction import build_json_schema_re, build_prompt_v2_re
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py:            from run_extraction import build_prompt_v2_event
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py:            prompt_fn = build_prompt_v2_event
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py:            from run_extraction import build_prompt_v1_event
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py:            prompt_fn = build_prompt_v1_event
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibr
+…[truncated 3766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-16T03:21:48.999743+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-16T03:21:49.001988+00:00_
+
+total 20
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 15 10:55 .
+drwxr-xr-x 3 ubuntu ubuntu 4096 May 15 15:26 ..
+-rw-r--r-- 1 ubuntu ubuntu 9803 May 15 10:55 calibrate.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-16T03:21:49.002213+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -name \"run_extraction*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -name \"run_extraction*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-16T03:21:49.002393+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-16T03:21:49.002580+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/*.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-16T03:21:49.002754+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_exp008_results.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_fewrel_results.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_maven_results.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/fewrel_error_taxonomy.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/maven_case_study.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/text_match_reeval.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-16T03:21:49.002980+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"Identify the named entities\\|Find the relation\\|Identify the event type\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.md\" --include=\"*.py\" --include=\"*.json\" 2>/dev/null | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"Identify the named entities\\|Find the relation\\|Identify the event type\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.md\" --include=\"*.py\" --include=\"*.json\" 2>/dev/null | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-16T03:21:49.003173+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-16T03:21:49.003365+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -name \"APPENDIX*\" -o -name \"appendix*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -name \"APPENDIX*\" -o -name \"appendix*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-16T03:21:49.003534+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-16T03:21:49.003721+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/ -name \"*.md\" -o -name \"*.tex\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/ -name \"*.md\" -o -name \"*.tex\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-16T03:21:49.005962+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-16T03:21:49.006216+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-16T03:21:49.006403+00:00_
+
+total 612
+drwxr-xr-x 3 ubuntu ubuntu   4096 May 16 03:18 .
+drwxr-xr-x 4 ubuntu ubuntu   4096 May 15 05:30 ..
+drwxr-xr-x 2 ubuntu ubuntu   4096 May 16 03:00 _pdf_images
+-rw-r--r-- 1 ubuntu ubuntu   1767 May 16 02:34 abstract.tex
+-rw-r--r-- 1 ubuntu ubuntu  11615 May 15 19:35 acl.sty
+-rw-r--r-- 1 ubuntu ubuntu  45186 May 15 19:35 acl_natbib.bst
+-rw-r--r-- 1 ubuntu ubuntu    172 May 15 20:31 conclusion.tex
+-rw-r--r-- 1 ubuntu ubuntu   1612 May 16 02:54 discussion.tex
+-rw-r--r-- 1 ubuntu ubuntu   7467 May 16 02:55 experimental_setup.tex
+-rw-r--r-- 1 ubuntu ubuntu   5717 May 16 02:34 introduction.tex
+-rw-r--r-- 1 ubuntu ubuntu  35168 May 16 03:18 main.aux
+-rw-r--r-- 1 ubuntu ubuntu  16975 May 16 03:18 main.bbl
+-rw-r--r-- 1 ubuntu ubuntu   1296 May 16 03:18 main.blg
+-rw-r--r-- 1 ubuntu ubuntu  28644 May 16 03:18 main.log
+-rw-r--r-- 1 ubuntu ubuntu   4574 May 16 03:18 main.out
+-rw-r--r-- 1 ubuntu ubuntu 363098 May 16 03:18 main.pdf
+-rw-r--r-- 1 ubuntu ubuntu  13761 May 16 02:51 main.tex
+-rw-r--r-- 1 ubuntu ubuntu  19092 May 16 03:18 references.bib
+-rw-r--r-- 1 ubuntu ubuntu   3557 May 16 02:55 related_work.tex
+-rw-r--r-- 1 ubuntu ubuntu  14599 May 16 02:54 results.tex
+-rw-r--r-- 1 ubuntu ubuntu   1049 May 16 02:54 sdgd_negative.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-16T03:21:49.006619+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-16T03:21:49.006858+00:00_
+
+1	\section{Experimental Setup}
+2	\label{sec:experimental_setup}
+3	
+4	We evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks: named entity recognition (NER), relation extraction (RE), and event detection (ED).
+5	
+6	\subsection{Tasks and Datasets}
+7	\label{sec:datasets}
+8	
+9	\paragraph{Few-NERD (NER).}
+10	Few-NERD \cite{fewnerd-2021} provides 66 fine-grained entity types organized into 8 coarse categories (person, location, organization, building, art, product, event, other). The dataset spans diverse domains, making it suitable for cross-domain evaluation. We sample 1{,}000 test instances and evaluate with token-level text matching.
+11	
+12	\paragraph{FewRel (RE).}
+13	FewRel \cite{fewrel-2018} contains 80 relation types sourced from Wikidata. Since the validation split covers only 16 relations, we combine the training and validation splits to obtain the full 80-relation pool required for schema-scale experiments, and sample 1{,}000 balanced instances (12--13 per relation type, stratified to ensure equal representation). Each instance provides a sentence with marked head and tail entities; the task is to classify the relation.
+14	
+15	\paragraph{MAVEN (ED).}
+16	MAVEN \cite{maven-2020} defines 168 event types derived from the FrameNet ontology, making it a same-domain schema. We use the validation set (8{,}042 sentences containing 18{,}904 event mentions) for evaluation, as test set labels are not publicly available. The task requires both trigger identification and event type classification.
+17	
+18	Table~\ref{tab:datasets} summarizes the dataset statistics, including the Schema Confusability Score (SCS) ranges defined in \S\ref{sec:scs}.
+19	
+20	\begin{table}[t]
+21	\centering
+22	\small
+23	\resizebox{\columnwidth}{!}{%
+24	\begin{tabular}{llrrlll}
+25	\toprule
+26	\textbf{Dataset} & \textbf{Task} & \textbf{\# Types} & \textbf{\# Eval Units} & \textbf{Domain} & \textbf{BCS Range} & \textbf{Embe
+…[truncated 5722 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-16T03:21:49.007104+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/ -name \"*.md\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/ -name \"*.md\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-16T03:21:49.007279+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-16T03:21:49.007467+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -path \"*appendix*\" -name \"*.md\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -path \"*appendix*\" -name \"*.md\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-16T03:21:49.007637+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-16T03:21:49.007828+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"\\\"system\\\":\\|\\\"user\\\":\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\" --include=\"*.json\" -B 3 -A 3 | head -100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"\\\"system\\\":\\|\\\"user\\\":\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\" --include=\"*.json\" -B 3 -A 3 | head -100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-16T03:21:49.010091+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-16T03:21:49.010296+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"Identify the\\|Find the\\|Extract\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/ --include=\"*.tex\" -A 3 -B 3 | head -80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"Identify the\\|Find the\\|Extract\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/ --include=\"*.tex\" -A 3 -B 3 | head -80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-16T03:21:49.010491+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-\usepackage{amsmath}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-\usepackage{enumitem}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:\title{Does Type Confusability Drive Schema-Induced Degradation\\in Training-Free LLM Information Extraction?}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-\author{Anonymous}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex-\section{Related Work}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex-\label{sec:related_work}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex:\subsection{Training-Free LLM Information Extraction}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex-\label{sec:rw_training_free}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex-Training-free LLM IE spans instruction tuning \cite{instructuie-2023}, code-style schema encoding \cite{knowcoder-2024,codeie-2023}, annotation-guided extraction \cite{gollie-2024,adelie-2024}, schema-driven decoding \cite{slot-2025
+…[truncated 591 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-16T03:21:49.010751+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"prompt.*v1\\|prompt.*v2\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.md\" --include=\"*.yaml\" -B 2 -A 2 | head -150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"prompt.*v1\\|prompt.*v2\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.md\" --include=\"*.yaml\" -B 2 -A 2 | head -150"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-16T03:21:49.011021+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md-### Recommendation
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/IDEA_BRIEF.md:GO — 进入 research 阶段。优先执行 Exp 3a（prompt v2 重跑获取干净数据，已审批+GPU 已分配），然后按 Narrative A (multi-channel degradation) 展开完整实验矩阵。目标 EMNLP 2026 ARR May 25。
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/reviewer.md-- **C002**: 3.4× amplification 仅基于 16-type vs 80-type 两个 pool size，40-rel 不是第三个独立数据点
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/reviewer.md-- **GPU**: 服务器 cqa1-38874，只有 cuda:0（单卡 RTX PRO 6000 Blackwell 98GB），当前空闲
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/reviewer.md:- **v1/v2 prompt 区分**: 主文 NER count curve 用 v1（0.72→0.42），cross-model table 用 v2（0.640→0.304）。两套数字不能混用，caption 已解释
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/reviewer.md-- **tab:cross_model_bcs 比值**: LLaMA 效应是 Qwen3 的 **77-87%**（不是 75-87%），ROADMAP 里还是旧值 "75-87%"，尚未修正
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/reviewer.md-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/history/director/loop_1.md-- exp001_count_baseline: ANALYZING（MVP 完成）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/history/director/loop_1.md-- exp002_confusability_controlled: ANALYZING (success)（MVP 完成）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/history/director/loop_1.md:- exp003a_prompt_v2_rerun: DONE (failed, EXIT_CODE=2 syntax error)
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/task_context/history/dir
+…[truncated 15032 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-16T03:21:49.011265+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-16T03:21:49.011455+00:00_
+
+1	# Memory — schema-dag-extraction
+2	
+3	## D035 集成方案（2026-05-16）
+4	- 论文 Table 3 用**极端批次**方法（BCS 最低/最高各 ~5 batches 的 accuracy Δ），不是四分位
+5	- D033 的 7.42pp 是四分位比较，需要用极端批次方法重算
+6	- 80-pool-16sub 的 3.92pp 也是四分位，同样需要重算
+7	- 四分位 CI 作为补充证据报告，展示效应在不同分析粒度下都稳健
+8	- 两组数据一起集成到论文再编译上传
+9	
+10	## 80-pool-16sub 关键发现（2026-05-16）
+11	- BCS 范围窄 [0.458, 0.684]（vs 独立 16-rel [0.653, 0.900]），因为从 80-rel pool 采样的 16 types 语义更分散
+12	- 四分位 Δ CI 跨零 [-7.79, +0.42]，但回归斜率 CI 不跨零 [-0.684, -0.062]
+13	- 效应弱于独立 16-rel pool——BCS 范围压缩导致效应量缩小，这本身支持 BCS 是驱动因素的论点
+14	- 决策：用回归斜率做跨条件比较（斜率控制了 BCS 范围差异），四分位 Δ 作为直觉可读的补充
+15	
+16	## MAVEN per-type BCS 正相关是 artifact（2026-05-16）
+17	- exp_maven_residualized_bcs 确认：控制 log_freq + degree_centrality 后相关消失
+18	- MiniLM confound = frequency, Qwen3 confound = degree centrality (r=0.854)
+19	- 同质 schema（MAVEN 168 event types 多来自 FrameNet）下 per-type BCS 聚合失效
+20	- pairwise SCS 仍然有效
+21	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-16T03:21:49.011663+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-16T03:21:49.013967+00:00_
+
+1	"""SDGD-cal: empirical confusion-based type decomposition.
+2	
+3	Replaces embedding cosine similarity (SDGD-zero) with an empirical confusion
+4	matrix built from calibration samples. Addresses proxy failure on same-domain
+5	schemas (e.g. MAVEN 168 event types) where embedding compression makes
+6	cosine similarity unreliable.
+7	
+8	Pipeline: run_calibration() -> build_confusion_matrix() -> confusion_to_similarity()
+9	          -> (reuse SDGD-zero graph coloring infrastructure)
+10	"""
+11	import json
+12	import logging
+13	from collections import defaultdict
+14	from typing import Dict, List, Optional, Tuple
+15	
+16	import numpy as np
+17	
+18	logger = logging.getLogger(__name__)
+19	
+20	
+21	def build_confusion_matrix(
+22	    predictions: List[List[Dict]],
+23	    gold_labels: List[List[Dict]],
+24	    type_list: List[str],
+25	    task: str = "ner",
+26	) -> np.ndarray:
+27	    """Build empirical confusion matrix from calibration predictions vs gold.
+28	
+29	    For NER/Event: match gold entities to predictions by text overlap.
+30	    For RE: direct comparison of gold relation_type vs predicted relation
+31	    (each sample has exactly one relation).
+32	
+33	    Args:
+34	        predictions: per-sample predicted items
+35	        gold_labels: per-sample gold items
+36	        type_list: ordered list of type names
+37	        task: 'ner', 'event', or 're'
+38	
+39	    Returns:
+40	        confusion_matrix: (n_types, n_types) — C[i][j] = count of gold type i predicted as type j
+41	    """
+42	    n = len(type_list)
+43	    type_to_idx = {t: i for i, t in enumerate(type_list)}
+44	    C = np.zeros((n, n), dtype=np.float64)
+45	
+46	    for sample_preds, sample_golds in zip(predictions, gold_labels):
+47	        if task == "re":
+48	            gold_rel = sample_golds[0].get("relation_type", "") if sample_golds else ""
+49	            pred_rel = sample_preds[0].get("relation", "") if sample_preds else ""
+50	            if gold_rel in type_to_idx and pred_rel in type_to_idx:
+51	                C[type_
+…[truncated 8873 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-16T03:21:49.014378+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"def build_prompt\\|def build_json_schema\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\" -A 10 2>/dev/null | head -150"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"def build_prompt\\|def build_json_schema\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\" -A 10 2>/dev/null | head -150"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-16T03:21:49.014581+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120 · 2026-05-16T03:21:49.014806+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f -name \"*.py\" -exec grep -l \"def build_prompt\" {} \\;"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f -name \"*.py\" -exec grep -l \"def build_prompt\" {} \\;"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-16T03:21:49.015036+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122 · 2026-05-16T03:21:49.015225+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f \\( -name \"*.ipynb\" -o -name \"*.txt\" \\) | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ -type f \\( -name \"*.ipynb\" -o -name \"*.txt\" \\) | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-16T03:21:49.015403+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp006_interaction_2x2/intermediate/exp006_script_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/maven_minilm_sim_matrix_meta.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/three_way_comparison_pointer.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/data/d035_extreme_batch_pointer.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp002_confusability_controlled/chart/per_type_bcs_f1_scatter_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp012_llama_8b_r2/report/exp1_analysis_summary.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp004/report/analysis_report.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-004/data/maven_scs_artifacts.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp-008/intermediate/sdgd_two_stage_scripts.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp012_llama_fewrel_ch2/report/analysis_summary.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/exp_fewrel_80pool_16sub_bootstrap/data/three_way_comparison_summary.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-16T03:21:49.015625+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"v1 requests\\|v2 drops\\|character offset\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.md\" --include=\"*.tex\" -B 5 -A 10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"v1 requests\\|v2 drops\\|character offset\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.md\" --include=\"*.tex\" -B 5 -A 10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-16T03:21:49.015814+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-\subsection{Model and Inference}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-\label{sec:model}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-\paragraph{Primary model.}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:We use Qwen3-32B-FP8 \cite{qwen3-2025}, served via vLLM (v0.20.2) \cite{vllm-2023} on a single 96\,GB GPU. We use two prompt versions: v1 requests character offsets alongside entity text (fabricated in 96.5\% of cases, so we evaluate via text matching; \S\ref{sec:metrics}); v2 drops offset requirements and adds format constraints, doubling precision with minimal recall loss. Both versions provide a JSON-formatted type schema; the model outputs structured JSON. We use greedy decoding (temperature${}\,=\,0$) and a fixed seed (42) for reproducibility, and report both prompt versions where applicable to quantify formatting sensitivity \cite{sclar-sensitivity-2024}.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-\paragraph{Cross-model validation.}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex-We replicate both paradigms on Meta-Llama-3.1-8B-Instruct ($4\times$ smaller, different model family). All key metrics include 95\% bootstrap CIs (1{,}000 resamples, percentile method).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-16T03:21:49.018115+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"JSON\\|schema\\|format\\|instruction\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ --include=\"*.tex\" -B 2 -A 2 | head -100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"JSON\\|schema\\|format\\|instruction\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ --include=\"*.tex\" -B 2 -A 2 | head -100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-16T03:21:49.018427+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex-\label{sec:sdgd}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex:A natural intervention is to partition the schema so confusable types never co-occur. We test this with \textbf{Schema-DAG-Guided Decomposition} (SDGD), which uses greedy graph coloring on the pairwise SCS graph to assign types to low-confusability batches, merging predictions via set union. Every decomposition mode---SDGD (F1\,=\,0.241), random batching (0.320), per-type (0.292)---falls below the single-pass baseline (0.445) on Few-NERD (Table~\ref{tab:sdgd_results}). The bottleneck is \emph{merge amplification}: multiple passes accumulate contradictory predictions at union, destroying precision faster than decomposition helps recall. Confidence-gated merge does not resolve this, as poorly calibrated LLM scores \cite{llm-calibration-survey-2024} discard correct predictions as aggressively as false positives---a structural challenge with direct implications for \citet{llm-pee-2025}. Full experimental details including v1/v2 comparisons are in Appendix~\ref{sec:appendix_sdgd}.
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex-\includegraphics[width=\linewidth]{../../figures/paper/fig_bcs_scaling.pdf}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex-\end{minipage}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:\caption{\textbf{(a)} Count-degradation curves across three IE tasks. NER recall generally declines and RE accuracy declines monotonically with schema size; MAVEN relaxed F1 increases (\S\ref{sec:centrality_confound}). \textbf{(b)} BCS-controlled FewRel accurac
+…[truncated 24028 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 128 · 2026-05-16T03:21:49.018668+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"\\\"type\\\":\\|\\\"entities\\\":\\|\\\"relation\\\":\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\" | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"\\\"type\\\":\\|\\\"entities\\\":\\|\\\"relation\\\":\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ --include=\"*.py\" | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-16T03:21:49.018888+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py:            predictions.append([{"relation": rel}])
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_maven_results.py:        samples.append({"text": row["text"], "entities": list(entities)})
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_maven_results.py:            "type": t,
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_maven_results.py:            entities.append({"text": word, "type": t})
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_maven_results.py:        samples.append({"text": text, "entities": entities})
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_maven_results.py:                        preds.append({"text": g["text"], "type": g["type"]})
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_maven_results.py:                        preds.append({"text": g["text"], "type": wrong_type})
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/analyze_fewrel_results.py:        {"type": t, "accuracy": round(a, 4), "mean_bcs": round(b, 4),
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/maven_case_study.py:        "relation": "causative-resultative",
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/maven_case_study.py:        "relation": "manner-of",
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/maven_case_study.py:        "relation": "causative pair",
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/maven_case_study.py:        "relation": "instrument-of",
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extrac
+…[truncated 1075 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-16T03:21:49.019140+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -r \"Identify\\|Extract\\|Find\\|Given\\|text\\|offset\\|character\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/ --include=\"*.md\" -B 1 -A 1 | head -50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -r \"Identify\\|Extract\\|Find\\|Given\\|text\\|offset\\|character\" /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/ --include=\"*.md\" -B 1 -A 1 | head -50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-16T03:21:49.019366+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/related_work_draft.md-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/related_work_draft.md:## 2.1 Schema Decomposition for Information Extraction
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/related_work_draft.md-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/related_work_draft.md-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/related_work_draft.md:**Per-type and fixed decomposition.** UniversalNER \cite{uniner-2024} distills ChatGPT into a compact model by targeting one entity type per extraction call, reporting +7 F1 over ChatGPT on 43 datasets. While effective, per-type splitting sacrifices cross-type context and incurs $O(N)$ inference cost, with no principled criterion for when decomposition is necessary. KGGen \cite{kggen-2025} employs a two-stage pipeline --- entity extraction followed by relation extraction --- which decomposes at the *task* level rather than within the type schema. Similarly, DEE \cite{dee-2024} separates event detection from argument extraction with dynamic schema-aware retrieval, but does not address intra-task type partitioning.
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/related_work_draft.md-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/related_work_draft.md-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/_project/paper/related_work_draft.md:The notion that semantically similar labels cause classification errors has appeared across NLP, though not in the context of training-free LLM IE schema design.
+/home/ubuntu/.agent-ml-research-i
+…[truncated 7199 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132 · 2026-05-16T03:21:49.019588+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/appendix_maven_residualized.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-16T03:21:49.019796+00:00_
+
+1	## Appendix X: MAVEN Per-Type BCS--F1 Analysis: A Centrality Artifact
+2	
+3	### Motivation
+4	
+5	In our main experiments, higher BCS (Boundary Confusion Score) is associated with greater extraction difficulty---types whose schema neighbors are more semantically similar are harder to distinguish. On Few-NERD, per-type BCS correlates negatively with F1 ($\rho = -0.293$, $p = 0.020$), consistent with this interpretation. On MAVEN, however, per-type BCS shows a *positive* correlation with F1 (Table~\ref{tab:maven-raw}), suggesting that types embedded in denser schema neighborhoods are *easier* to classify. We investigate whether this reversal reflects a genuine structural effect or a centrality artifact.
+6	
+7	### Method
+8	
+9	We compute per-type mean BCS under two embedding spaces (MiniLM, Qwen3) for 149 MAVEN event types (168 total; 19 excluded with gold frequency $< 5$). We then test whether the BCS--F1 correlation survives partial correlation analysis controlling for two centrality proxies:
+10	
+11	- **Type frequency** ($\log(1 + \text{freq})$): more frequent types may have both higher BCS (more training signal shaping their embedding neighborhood) and higher F1 (more supervision).
+12	- **Degree centrality**: the number of types exceeding a similarity threshold (0.7 for Qwen3, 0.3 for MiniLM, selected as the strongest BCS--degree correlate per embedding). High-degree types sit at the center of the schema graph and may benefit from richer contextual disambiguation cues.
+13	
+14	Partial correlations are computed by residualizing both BCS and F1 on the control variable(s) via OLS regression and correlating the residuals (Pearson $r$). We also report Spearman $\rho$ where applicable.
+15	
+16	### Results
+17	
+18	**Table X.1: Raw per-type BCS--F1 correlations on MAVEN**
+19	
+20	| Embedding | Spearman $\rho$ | $p$ | Pearson $r$ | $p$ |
+21	|-----------|-----------------|-----|-------------|-----|
+22	| Qwen3     | +0.184          | 0.025 | +0.175    | 0.032 |
+23	| MiniLM    | +0.20
+…[truncated 3466 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-16T03:21:49.022183+00:00_
+
+Based on all my research, I can now provide a comprehensive summary. The prompt templates themselves are NOT actually defined in the current artifacts directory. According to the review feedback, these are critical missing components. Let me provide you with what I've found:
+
+## Summary of Findings
+
+I've completed a thorough search of `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/` and the entire project directory. Here's what I found regarding prompt templates:
+
+### Critical Finding: **Prompt Templates Are Missing**
+
+The reviewer feedback explicitly states in Round 2 feedback that **"Prompt 模板仍未公开"** (Prompt templates remain unpublished) and marks this as a critical issue (C1). The reviews demand:
+- Complete v1/v2 prompt text disclosure
+- Full template content for readers to assess changes
+
+### What I Found About Prompt Versions:
+
+**From the experimental setup (experimental_setup.tex):**
+- **v1 Prompt**: Requests character offsets alongside entity text. Has 96.5% error rate for offset prediction, so evaluation uses text matching instead.
+- **v2 Prompt**: Drops offset requirements and adds format constraints, doubling precision with minimal recall loss.
+
+**Key Metadata:**
+- NER (Few-NERD): v1 prompt shows 0.72 recall at count=1, v2 shows 0.64 recall at count=1 (11% difference)
+- Both versions provide JSON-formatted type schema
+- Models output structured JSON
+- Greedy decoding with temperature=0.0, seed=42
+
+### Files That Reference Prompts (but don't define them):
+
+1. **`/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/run_fewrel_formal.py`** (Line 84): Imports `build_prompt_v2_re` and `build_json_schema_re` from `run_extraction` module (which doesn't exist)
+
+2. **`/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src/sdgd/calibrate.py`** (Lines 217-237): Imports these functions:
+   - `build_json_schema_re`, `build_prompt_v2_re` (for RE)
+   - `build_prompt_v2
+…[truncated 1392 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Agent",
+  "elapsed_ms": 59
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-16T03:21:49.022476+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "build_prompt|build_json_schema|system_prompt|user_prompt",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src",
+  "output_mode": "content",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "build_prompt|build_json_schema|system_prompt|user_prompt",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/src",
+    "output_mode": "content",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-16T03:21:49.022684+00:00_
+
+src/sdgd/calibrate.py:217:        from run_extraction import build_json_schema_re, build_prompt_v2_re
+src/sdgd/calibrate.py:218:        schema_fn = build_json_schema_re
+src/sdgd/calibrate.py:221:        from run_extraction import build_json_schema_v2
+src/sdgd/calibrate.py:222:        schema_fn = build_json_schema_v2
+src/sdgd/calibrate.py:224:            from run_extraction import build_prompt_v2_event
+src/sdgd/calibrate.py:225:            prompt_fn = build_prompt_v2_event
+src/sdgd/calibrate.py:227:            from run_extraction import build_prompt_v1_event
+src/sdgd/calibrate.py:228:            prompt_fn = build_prompt_v1_event
+src/sdgd/calibrate.py:231:            from run_extraction import build_json_schema_v2, build_prompt_v2
+src/sdgd/calibrate.py:232:            schema_fn = build_json_schema_v2
+src/sdgd/calibrate.py:233:            prompt_fn = build_prompt_v2
+src/sdgd/calibrate.py:235:            from run_extraction import build_json_schema_v1, build_prompt_v1
+src/sdgd/calibrate.py:236:            schema_fn = build_json_schema_v1
+src/sdgd/calibrate.py:237:            prompt_fn = build_prompt_v1
+src/sdgd/calibrate.py:260:            build_prompt_v2_re(s["text"], s["head_entity"], s["tail_entity"],
+src/run_fewrel_formal.py:84:    from run_extraction import build_json_schema_re, build_prompt_v2_re
+src/run_fewrel_formal.py:115:            schema = build_json_schema_re(batch_types)
+src/run_fewrel_formal.py:122:                p = build_prompt_v2_re(s["text"], s["head_entity"], s["tail_entity"], relation_defs, batch_types)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-16T03:21:49.022906+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-16T03:21:49.023094+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-16T03:21:49.023309+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"run_extraction*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction -name \"run_extraction*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-16T03:21:49.023499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_extraction.py\\n/root/schema-dag-extraction/src/__pycache__/run_extraction.cpython-312.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-16T03:21:49.023679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "wc -l /root/schema-dag-extraction/src/run_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "wc -l /root/schema-dag-extraction/src/run_extraction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 142 · 2026-05-16T03:21:49.026919+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "docs/paper/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "docs/paper/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-16T03:21:49.027261+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"365 /root/schema-dag-extraction/src/run_extraction.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-16T03:21:49.027458+00:00_
+
+docs/paper/conclusion.tex
+docs/paper/abstract.tex
+docs/paper/introduction.tex
+docs/paper/main.tex
+docs/paper/sdgd_negative.tex
+docs/paper/results.tex
+docs/paper/discussion.tex
+docs/paper/experimental_setup.tex
+docs/paper/related_work.tex
+docs/paper/checklist.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-16T03:21:49.027642+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/src/run_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/src/run_extraction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-16T03:21:49.028126+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Constrained JSON decoding NER extraction using vLLM.\\n\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\n\\nInput: Few-NERD test data, type batch config, LLM model\\nOutput: JSON with extraction results per (sample, batch) pair\\nDependencies: vllm, transformers\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport time\\nfrom pathlib import Path\\nfrom typing import Dict, List, Optional, Set\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\n# --- v1: original schema/prompt with start/end offsets ---\\n\\ndef build_json_schema_v1(batch_types: list) -> dict:\\n    \\\"\\\"\\\"Build JSON schema with start/end offsets (v1).\\\"\\\"\\\"\\n    return {\\n        \\\"type\\\": \\\"array\\\",\\n        \\\"items\\\": {\\n            \\\"type\\\": \\\"object\\\",\\n            \\\"properties\\\": {\\n                \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": sorted(batch_types)},\\n                \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n            },\\n            \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n        },\\n    }\\n\\n\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\n    \\\"\\\"\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all named entities from the following text. \\\"\\n        f\\\"Only extract entities of the following types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\
+…[truncated 7491 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-16T03:21:49.028387+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-16T03:21:49.028737+00:00_
+
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\usepackage{booktabs}
+12	\usepackage{amsmath}
+13	\usepackage{enumitem}
+14	
+15	\title{Does Type Confusability Drive Schema-Induced Degradation\\in Training-Free LLM Information Extraction?}
+16	
+17	\author{Anonymous}
+18	
+19	\begin{document}
+20	\maketitle
+21	
+22	\input{abstract}
+23	
+24	\input{introduction}
+25	
+26	\input{related_work}
+27	
+28	\input{experimental_setup}
+29	
+30	\input{results}
+31	
+32	\input{sdgd_negative}
+33	
+34	\input{discussion}
+35	
+36	\section*{Limitations}
+37	\begin{enumerate}[leftmargin=*,itemsep=2pt]
+38	\item \textbf{Single primary model.} The primary experiments use Qwen3-32B. Channel~1 has been validated on Llama-3.1-8B-Instruct (recall decline $-$43\,pp, $r = 0.725$). Channel~2 was validated on FewRel RE ($\Delta = -27.1$\,pp at count 8, $-23.9$\,pp at count 16), with high-BCS accuracy converging to a model-invariant floor ($\approx$0.51). On Few-NERD NER, Channel~2 was not robustly detectable at 8B scale, likely due to floor effects and the noisier text-match metric.
+39	
+40	\item \textbf{Modest pairwise effect size.} Pairwise SCS explains 1.3--1.7\% of the variance in type confusion. Entity frequency, prompt position effects, mention ambiguity, context complexity, and type definition quality likely account for the remaining variance.
+41	
+42	\item \textbf{Cross-pool slope consistency.} The BCS--accuracy slopes are statistically indistinguishable across pools (permutation $p = 0.436$), indicating consistent per-unit sensitivity. The larger absolute gap at 80 relations (31.2\,pp vs.\ 9.1\,pp) reflects the wider BCS range available in that pool, not a stronger underlying effect. A within-pool comparison (Table~\ref{tab:within_pool}) confirms this interpretation: slope $-$0.401, CI excludes zero.
+43	
+44	\item \textbf{Non-significant fa
+…[truncated 12477 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-16T03:21:49.033278+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -200 /root/schema-dag-extraction/src/run_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "head -200 /root/schema-dag-extraction/src/run_extraction.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-16T03:21:49.033756+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Constrained JSON decoding NER extraction using vLLM.\\n\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\n\\nInput: Few-NERD test data, type batch config, LLM model\\nOutput: JSON with extraction results per (sample, batch) pair\\nDependencies: vllm, transformers\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport time\\nfrom pathlib import Path\\nfrom typing import Dict, List, Optional, Set\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\n# --- v1: original schema/prompt with start/end offsets ---\\n\\ndef build_json_schema_v1(batch_types: list) -> dict:\\n    \\\"\\\"\\\"Build JSON schema with start/end offsets (v1).\\\"\\\"\\\"\\n    return {\\n        \\\"type\\\": \\\"array\\\",\\n        \\\"items\\\": {\\n            \\\"type\\\": \\\"object\\\",\\n            \\\"properties\\\": {\\n                \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": sorted(batch_types)},\\n                \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n            },\\n            \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n        },\\n    }\\n\\n\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\n    \\\"\\\"\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all named entities from the following text. \\\"\\n        f\\\"Only extract entities of the following types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\
+…[truncated 6571 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-16T03:21:49.034096+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+  "offset": "75",
+  "limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex",
+    "offset": "75",
+    "limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-16T03:21:49.034318+00:00_
+
+75	
+76	\paragraph{ED (MAVEN): Relaxed F1.}
+77	A predicted trigger is a true positive if (a)~any token overlap exists between the predicted trigger span and a gold trigger span, \emph{and} (b)~the predicted event type matches the gold event type. This relaxed matching is necessary because event triggers are inherently ambiguous in boundary (e.g., ``was killed'' vs.\ ``killed''). We report Relaxed F1.
+78	
+79	
+80	\subsection{Model and Inference}
+81	\label{sec:model}
+82	
+83	\paragraph{Primary model.}
+84	We use Qwen3-32B-FP8 \cite{qwen3-2025}, served via vLLM (v0.20.2) \cite{vllm-2023} on a single 96\,GB GPU. We use two prompt versions: v1 requests character offsets alongside entity text (fabricated in 96.5\% of cases, so we evaluate via text matching; \S\ref{sec:metrics}); v2 drops offset requirements and adds format constraints, doubling precision with minimal recall loss. Both versions provide a JSON-formatted type schema; the model outputs structured JSON. We use greedy decoding (temperature${}\,=\,0$) and a fixed seed (42) for reproducibility, and report both prompt versions where applicable to quantify formatting sensitivity \cite{sclar-sensitivity-2024}.
+85	
+86	\paragraph{Cross-model validation.}
+87	We replicate both paradigms on Meta-Llama-3.1-8B-Instruct ($4\times$ smaller, different model family). All key metrics include 95\% bootstrap CIs (1{,}000 resamples, percentile method).
+88	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-16T03:21:49.034589+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex",
+  "content": "\\section{Prompt Templates}\n\\label{sec:appendix_prompts}\n\nThis appendix reproduces the complete prompt templates used for all three extraction tasks.\nAll prompts are injected into a single \\texttt{user} message (no system prompt); the model's chat template adds the system/assistant framing.\nBoth versions provide a JSON-formatted type schema to the vLLM constrained-decoding engine; the schema is \\emph{not} included in the natural-language prompt itself.\nWe use greedy decoding (\\texttt{temperature=0}, \\texttt{seed=42}) throughout.\n\n\\medskip\\noindent\n\\textbf{Notation.}\nPlaceholders are shown in \\texttt{\\{braces\\}}.\nText \\textbf{added in v2} (relative to v1) is marked with $\\triangleright$.\nText \\textbf{removed in v2} is marked with \\sout{strikethrough}.\n\n\\subsection{Named Entity Recognition (Few-NERD)}\n\n\\paragraph{v1 prompt (with character offsets).}\n\n\\begin{small}\n\\begin{verbatim}\nExtract all named entities from the following text.\nOnly extract entities of the following types:\n- {type_1}: {definition_1}\n- {type_2}: {definition_2}\n  ...\n\nText: {input_text}\n\nOutput as JSON: [{\"text\": \"...\", \"type\": \"...\",\n                  \"start\": ..., \"end\": ...}]\n\\end{verbatim}\n\\end{small}\n\n\\noindent\n\\textbf{v1 constrained-decoding schema:}\n\\begin{small}\n\\begin{verbatim}\n{\"type\": \"array\",\n \"items\": {\"type\": \"object\",\n   \"properties\": {\n     \"text\":  {\"type\": \"string\"},\n     \"type\":  {\"type\": \"string\",\n               \"enum\": [&lt;sorted_types>]},\n     \"start\": {\"type\": \"integer\"},\n     \"end\":   {\"type\": \"integer\"}},\n   \"required\": [\"text\",\"type\",\"start\",\"end\"]}}\n\\end{verbatim}\n\\end{small}\n\n\\paragraph{v2 prompt (text+type only).}\n\n\\begin{small}\n\\begin{verbatim}\nExtract all named entities from the following text.\nOnly extract entities of the following types:\n- {type_1}: {definition_1}\n- {type_2}: {definition_2}\n  ...\n\nText: {input_text}\n\\end{verbatim}\n\\end{small}\n\\vspace{-0.5em}\n\\noindent$\\triangleright$~\\textbf{Added in v2:}\n\\begin{small}\n\\begin{verbatim}\nOnly extract entities that clearly match one of the\ngiven types. If no entities of these types exist in\nthe text, output an empty list [].\n\\end{verbatim}\n\\end{small}\n\\vspace{-0.5em}\n\\begin{small}\n\\begin{verbatim}\nOutput as JSON: [{\"text\": \"...\", \"type\": \"...\"}]\n\\end{verbatim}\n\\end{small}\n\n\\noindent\n\\textbf{v2 constrained-decoding schema:}\n\\begin{small}\n\\begin{verbatim}\n{\"type\": \"array\",\n \"items\": {\"type\": \"object\",\n   \"properties\": {\n     \"text\": {\"type\": \"string\"},\n     \"type\": {\"type\": \"string\",\n              \"enum\": [&lt;sorted_types>]}},\n   \"required\": [\"text\",\"type\"]}}\n\\end{verbatim}\n\\end{small}\n\n\\paragraph{v1 $\\to$ v2 differences (NER).}\n\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n\\item \\textbf{Offset fields removed.} The \\texttt{start}/\\texttt{end} integer fields are dropped from both the natural-language instruction and the JSON schema. In v1, 96.5\\% of predicted offsets were hallucinated (\\S\\ref{sec:model}).\n\\item \\textbf{Format constraints added.} Two sentences are appended: (a)~``Only extract entities that clearly match one of the given types'' suppresses spurious predictions; (b)~``If no entities \\ldots output an empty list~\\texttt{[]}'' provides an explicit empty-output path.\n\\end{enumerate}\n\n\\subsection{Event Detection (MAVEN)}\n\n\\paragraph{v1 prompt (with character offsets).}\n\n\\begin{small}\n\\begin{verbatim}\nExtract all event triggers from the following text.\nA trigger is the word or phrase that most clearly\nexpresses the event occurrence. Only extract triggers\nof the following event types:\n- {type_1}: {definition_1}\n- {type_2}: {definition_2}\n  ...\n\nText: {input_text}\n\nOutput as JSON: [{\"text\": \"...\", \"type\": \"...\",\n                  \"start\": ..., \"end\": ...}]\n\\end{verbatim}\n\\end{small}\n\n\\paragraph{v2 prompt (text+type only).}\n\n\\begin{small}\n\\begin{verbatim}\nExtract all event triggers from the following text.\nA trigger is the word or phrase that most clearly\nexpresses the event occurrence. Only extract triggers\nof the following event types:\n- {type_1}: {definition_1}\n- {type_2}: {definition_2}\n  ...\n\nText: {input_text}\n\\end{verbatim}\n\\end{small}\n\\vspace{-0.5em}\n\\noindent$\\triangleright$~\\textbf{Added in v2:}\n\\begin{small}\n\\begin{verbatim}\nOnly extract triggers that clearly match one of the\ngiven event types. If no events of these types exist\nin the text, output an empty list [].\n\\end{verbatim}\n\\end{small}\n\\vspace{-0.5em}\n\\begin{small}\n\\begin{verbatim}\nOutput as JSON: [{\"text\": \"...\", \"type\": \"...\"}]\n\\end{verbatim}\n\\end{small}\n\n\\noindent The JSON schemas for ED are identical to the NER schemas above; only the natural-language framing differs (``event triggers'' instead of ``named entities'').\n\n\\paragraph{v1 $\\to$ v2 differences (ED).}\nSame two changes as NER: offset fields removed, format constraints added.\n\n\\subsection{Relation Extraction (FewRel)}\n\nRE uses only a v2-style prompt (no offset fields are applicable to classification).\n\n\\paragraph{Prompt.}\n\n\\begin{small}\n\\begin{verbatim}\nGiven the following sentence and two entities,\nclassify the relation between them.\n\nSentence: \"{sentence}\"\nHead entity: \"{head_entity}\"\nTail entity: \"{tail_entity}\"\n\nCandidate relations: {type_1}, {type_2}, ...\n\nOutput a single JSON object:\n  {\"relation\": \"&lt;relation_type>\"}\nIf none of the candidate relations apply, output:\n  {\"relation\": \"none\"}\n\\end{verbatim}\n\\end{small}\n\n\\noindent\n\\textbf{Constrained-decoding schema:}\n\\begin{small}\n\\begin{verbatim}\n{\"type\": \"object\",\n \"properties\": {\n   \"relation\": {\"type\": \"string\",\n     \"enum\": [&lt;sorted_types>, \"none\"]}},\n \"required\": [\"relation\"]}\n\\end{verbatim}\n\\end{small}\n\n\\subsection{Type Definitions}\n\\label{sec:appendix_type_defs}\n\nAll prompts include per-type natural-language definitions sourced from the respective dataset documentation:\n\\begin{itemize}[leftmargin=*,itemsep=2pt]\n\\item \\textbf{Few-NERD:} 66 fine-grained entity types with definitions derived from the Few-NERD type ontology \\cite{ding-fewnerd-2021}.\n\\item \\textbf{MAVEN:} 168 event types with FrameNet-based definitions \\cite{wang-maven-2020}.\n\\item \\textbf{FewRel:} 80 relation types with Wikidata property descriptions \\cite{han-fewrel-2018}.\n\\end{itemize}\n\n\\noindent Type definitions are injected as ``\\texttt{- \\{type\\_name\\}: \\{definition\\}}'' lines in alphabetical order. The number of types per prompt varies by experimental condition (count${}= 1, 2, 4, \\ldots, 64/80$).\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex",
+    "content": "\\section{Prompt Templates}\n\\label{sec:appendix_prompts}\n\nThis appendix reproduces the complete prompt templates used for all three extraction tasks.\nAll prompts are injected into a single \\texttt{user} message (no system prompt); the model's chat template adds the system/assistant framing.\nBoth versions provide a JSON-formatted type schema to the vLLM constrained-decoding engine; the schema is \\emph{not} included in the natural-language prompt itself.\nWe use greedy decoding (\\texttt{temperature=0}, \\texttt{seed=42}) throughout.\n\n\\medskip\\noindent\n\\textbf{Notation.}\nPlaceholders are shown in \\texttt{\\{braces\\}}.\nText \\textbf{added in v2} (relative to v1) is marked with $\\triangleright$.\nText \\textbf{removed in v2} is marked with \\sout{strikethrough}.\n\n\\subsection{Named Entity Recognition (Few-NERD)}\n\n\\paragraph{v1 prompt (with character offsets).}\n\n\\begin{small}\n\\begin{verbatim}\nExtract all named entities from the following text.\nOnly extract entities of the following types:\n- {type_1}: {definition_1}\n- {type_2}: {definition_2}\n  ...\n\nText: {input_text}\n\nOutput as JSON: [{\"text\": \"...\", \"type\": \"...\",\n                  \"start\": ..., \"end\": ...}]\n\\end{verbatim}\n\\end{small}\n\n\\noindent\n\\textbf{v1 constrained-decoding schema:}\n\\begin{small}\n\\begin{verbatim}\n{\"type\": \"array\",\n \"items\": {\"type\": \"object\",\n   \"properties\": {\n     \"text\":  {\"type\": \"string\"},\n     \"type\":  {\"type\": \"string\",\n               \"enum\": [&lt;sorted_types>]},\n     \"start\": {\"type\": \"integer\"},\n     \"end\":   {\"type\": \"integer\"}},\n   \"required\": [\"text\",\"type\",\"start\",\"end\"]}}\n\\end{verbatim}\n\\end{small}\n\n\\paragraph{v2 prompt (text+type only).}\n\n\\begin{small}\n\\begin{verbatim}\nExtract all named entities from the following text.\nOnly extract entities of the following types:\n- {type_1}: {definition_1}\n- {type_2}: {definition_2}\n  ...\n\nText: {input_text}\n\\end{verbatim}\n\\end{small}\n\\vspace{-0.5em}\n\\noindent$\\triangleright$~\\textbf{Added in v2:}\n\\begin{small}\n\\begin{verbatim}\nOnly extract entities that clearly match one of the\ngiven types. If no entities of these types exist in\nthe text, output an empty list [].\n\\end{verbatim}\n\\end{small}\n\\vspace{-0.5em}\n\\begin{small}\n\\begin{verbatim}\nOutput as JSON: [{\"text\": \"...\", \"type\": \"...\"}]\n\\end{verbatim}\n\\end{small}\n\n\\noindent\n\\textbf{v2 constrained-decoding schema:}\n\\begin{small}\n\\begin{verbatim}\n{\"type\": \"array\",\n \"items\": {\"type\": \"object\",\n   \"properties\": {\n     \"text\": {\"type\": \"string\"},\n     \"type\": {\"type\": \"string\",\n              \"enum\": [&lt;sorted_types>]}},\n   \"required\": [\"text\",\"type\"]}}\n\\end{verbatim}\n\\end{small}\n\n\\paragraph{v1 $\\to$ v2 differences (NER).}\n\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n\\item \\textbf{Offset fields removed.} The \\texttt{start}/\\texttt{end} integer fields are dropped from both the natural-language instruction and the JSON schema. In v1, 96.5\\% of predicted offsets were hallucinated (\\S\\ref{sec:model}).\n\\item \\textbf{Format constraints added.} Two sentences are appended: (a)~``Only extract entities that clearly match one of the given types'' suppresses spurious predictions; (b)~``If no entities \\ldots output an empty list~\\texttt{[]}'' provides an explicit empty-output path.\n\\end{enumerate}\n\n\\subsection{Event Detection (MAVEN)}\n\n\\paragraph{v1 prompt (with character offsets).}\n\n\\begin{small}\n\\begin{verbatim}\nExtract all event triggers from the following text.\nA trigger is the word or phrase that most clearly\nexpresses the event occurrence. Only extract triggers\nof the following event types:\n- {type_1}: {definition_1}\n- {type_2}: {definition_2}\n  ...\n\nText: {input_text}\n\nOutput as JSON: [{\"text\": \"...\", \"type\": \"...\",\n                  \"start\": ..., \"end\": ...}]\n\\end{verbatim}\n\\end{small}\n\n\\paragraph{v2 prompt (text+type only).}\n\n\\begin{small}\n\\begin{verbatim}\nExtract all event triggers from the following text.\nA trigger is the word or phrase that most clearly\nexpresses the event occurrence. Only extract triggers\nof the following event types:\n- {type_1}: {definition_1}\n- {type_2}: {definition_2}\n  ...\n\nText: {input_text}\n\\end{verbatim}\n\\end{small}\n\\vspace{-0.5em}\n\\noindent$\\triangleright$~\\textbf{Added in v2:}\n\\begin{small}\n\\begin{verbatim}\nOnly extract triggers that clearly match one of the\ngiven event types. If no events of these types exist\nin the text, output an empty list [].\n\\end{verbatim}\n\\end{small}\n\\vspace{-0.5em}\n\\begin{small}\n\\begin{verbatim}\nOutput as JSON: [{\"text\": \"...\", \"type\": \"...\"}]\n\\end{verbatim}\n\\end{small}\n\n\\noindent The JSON schemas for ED are identical to the NER schemas above; only the natural-language framing differs (``event triggers'' instead of ``named entities'').\n\n\\paragraph{v1 $\\to$ v2 differences (ED).}\nSame two changes as NER: offset fields removed, format constraints added.\n\n\\subsection{Relation Extraction (FewRel)}\n\nRE uses only a v2-style prompt (no offset fields are applicable to classification).\n\n\\paragraph{Prompt.}\n\n\\begin{small}\n\\begin{verbatim}\nGiven the following sentence and two entities,\nclassify the relation between them.\n\nSentence: \"{sentence}\"\nHead entity: \"{head_entity}\"\nTail entity: \"{tail_entity}\"\n\nCandidate relations: {type_1}, {type_2}, ...\n\nOutput a single JSON object:\n  {\"relation\": \"&lt;relation_type>\"}\nIf none of the candidate relations apply, output:\n  {\"relation\": \"none\"}\n\\end{verbatim}\n\\end{small}\n\n\\noindent\n\\textbf{Constrained-decoding schema:}\n\\begin{small}\n\\begin{verbatim}\n{\"type\": \"object\",\n \"properties\": {\n   \"relation\": {\"type\": \"string\",\n     \"enum\": [&lt;sorted_types>, \"none\"]}},\n \"required\": [\"relation\"]}\n\\end{verbatim}\n\\end{small}\n\n\\subsection{Type Definitions}\n\\label{sec:appendix_type_defs}\n\nAll prompts include per-type natural-language definitions sourced from the respective dataset documentation:\n\\begin{itemize}[leftmargin=*,itemsep=2pt]\n\\item \\textbf{Few-NERD:} 66 fine-grained entity types with definitions derived from the Few-NERD type ontology \\cite{ding-fewnerd-2021}.\n\\item \\textbf{MAVEN:} 168 event types with FrameNet-based definitions \\cite{wang-maven-2020}.\n\\item \\textbf{FewRel:} 80 relation types with Wikidata property descriptions \\cite{han-fewrel-2018}.\n\\end{itemize}\n\n\\noindent Type definitions are injected as ``\\texttt{- \\{type\\_name\\}: \\{definition\\}}'' lines in alphabetical order. The number of types per prompt varies by experimental condition (count${}= 1, 2, 4, \\ldots, 64/80$).\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-16T03:21:49.036992+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/prompt_appendix.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Write",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-16T03:21:49.037321+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "old_string": "\\usepackage{enumitem}",
+  "new_string": "\\usepackage{enumitem}\n\\usepackage[normalem]{ulem}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "old_string": "\\usepackage{enumitem}",
+    "new_string": "\\usepackage{enumitem}\n\\usepackage[normalem]{ulem}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-16T03:21:49.037516+00:00_
+
+&lt;tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-16T03:21:49.037696+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-16T03:21:49.037910+00:00_
+
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\usepackage{booktabs}
+12	\usepackage{amsmath}
+13	\usepackage{enumitem}
+14	
+15	\title{Does Type Confusability Drive Schema-Induced Degradation\\in Training-Free LLM Information Extraction?}
+16	
+17	\author{Anonymous}
+18	
+19	\begin{document}
+20	\maketitle
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159 · 2026-05-16T03:21:49.038126+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "old_string": "\\usepackage{enumitem}",
+  "new_string": "\\usepackage{enumitem}\n\\usepackage[normalem]{ulem}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "old_string": "\\usepackage{enumitem}",
+    "new_string": "\\usepackage{enumitem}\n\\usepackage[normalem]{ulem}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-16T03:21:49.038396+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161 · 2026-05-16T03:21:49.038600+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "offset": "195"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "offset": "195"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-16T03:21:49.038800+00:00_
+
+195	Qwen3 & degree centrality & --- & --- & $+$0.063 & 0.442 \\
+196	Qwen3 & log freq $+$ degree & --- & --- & --- & 0.439 \\
+197	\bottomrule
+198	\end{tabular}}
+199	\caption{MAVEN per-type BCS--F1 correlation before and after controlling for centrality confounders. Raw correlations are Spearman $\rho$; partial correlations are Pearson $r$ from residualized regression. Degree centrality is computed on the SCS graph at threshold 0.7. All values from experiment \texttt{exp\_maven\_residualized\_bcs}.}
+200	\label{tab:residualized_bcs}
+201	\end{table}
+202	
+203	\paragraph{Interpretation.}
+204	The two embeddings encode different aspects of the same underlying confound. MiniLM, a smaller sentence encoder, produces a tighter embedding cluster for MAVEN's FrameNet-derived types; here, type frequency is the primary confounder because frequent types accumulate higher mean similarity to the dense cluster. Qwen3, with a larger representation space, differentiates types enough that frequency is not the dominant factor, but degree centrality---the count of strong semantic neighbors---becomes the confound instead. In both cases, the positive raw correlation reflects a centrality artifact: types that are semantically central are both high-BCS and easy to extract.
+205	
+206	Under joint control, both embeddings yield $p > 0.2$, confirming that the raw positive BCS--F1 correlation on MAVEN is fully attributable to centrality-related confounders. This does not invalidate the confusability hypothesis; the pairwise SCS--confusion correlation on MAVEN remains significant (MiniLM $r = 0.129$, $p < 10^{-10}$; Table~\ref{tab:pairwise}). Rather, it demonstrates that per-type aggregation (mean BCS) conflates confusability with centrality in semantically homogeneous schemas, and that pairwise analysis or explicit confound adjustment is required in such settings.
+207	
+208	\end{document}
+209	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 163 · 2026-05-16T03:21:49.041097+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+  "old_string": "Under joint control, both embeddings yield $p > 0.2$, confirming that the raw positive BCS--F1 correlation on MAVEN is fully attributable to centrality-related confounders. This does not invalidate the confusability hypothesis; the pairwise SCS--confusion correlation on MAVEN remains significant (MiniLM $r = 0.129$, $p < 10^{-10}$; Table~\\ref{tab:pairwise}). Rather, it demonstrates that per-type aggregation (mean BCS) conflates confusability with centrality in semantically homogeneous schemas, and that pairwise analysis or explicit confound adjustment is required in such settings.\n\n\\end{document}",
+  "new_string": "Under joint control, both embeddings yield $p > 0.2$, confirming that the raw positive BCS--F1 correlation on MAVEN is fully attributable to centrality-related confounders. This does not invalidate the confusability hypothesis; the pairwise SCS--confusion correlation on MAVEN remains significant (MiniLM $r = 0.129$, $p < 10^{-10}$; Table~\\ref{tab:pairwise}). Rather, it demonstrates that per-type aggregation (mean BCS) conflates confusability with centrality in semantically homogeneous schemas, and that pairwise analysis or explicit confound adjustment is required in such settings.\n\n\\input{prompt_appendix}\n\n\\end{document}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
+    "old_string": "Under joint control, both embeddings yield $p > 0.2$, confirming that the raw positive BCS--F1 correlation on MAVEN is fully attributable to centrality-related confounders. This does not invalidate the confusability hypothesis; the pairwise SCS--confusion correlation on MAVEN remains significant (MiniLM $r = 0.129$, $p < 10^{-10}$; Table~\\ref{tab:pairwise}). Rather, it demonstrates that per-type aggregation (mean BCS) conflates confusability with centrality in semantically homogeneous schemas, and that pairwise analysis or explicit confound adjustment is required in such settings.\n\n\\end{document}",
+    "new_string": "Under joint control, both embeddings yield $p > 0.2$, confirming that the raw positive BCS--F1 correlation on MAVEN is fully attributable to centrality-related confounders. This does not invalidate the confusability hypothesis; the pairwise SCS--confusion correlation on MAVEN remains significant (MiniLM $r = 0.129$, $p < 10^{-10}$; Table~\\ref{tab:pairwise}). Rather, it demonstrates that per-type aggregation (mean BCS) conflates confusability with centrality in semantically homogeneous schemas, and that pairwise analysis or explicit confound adjustment is required in such settings.\n\n\\input{prompt_appendix}\n\n\\end{document}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 164 · 2026-05-16T03:21:49.041412+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165 · 2026-05-16T03:21:49.041621+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -30",
+  "description": "Compile LaTeX to check for errors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -30",
+    "description": "Compile LaTeX to check for errors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-16T03:21:49.041821+00:00_
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cmextra/cmex9.pfb>&lt;/usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
+b>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/u
+crr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/
+usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texli
+ve/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/f
+onts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (15 pages, 382811 bytes).
+Transcript written on main.log.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 167 · 2026-05-16T03:21:49.042084+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -i \"error\\|warning\" main.log | grep -i \"prompt_appendix\\|appendix_prompt\" || echo \"No prompt_appendix-specific warnings\"",
+  "description": "Check for warnings related to the new appendix"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -i \"error\\|warning\" main.log | grep -i \"prompt_appendix\\|appendix_prompt\" || echo \"No prompt_appendix-specific warnings\"",
+    "description": "Check for warnings related to the new appendix"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 168 · 2026-05-16T03:21:49.042278+00:00_
+
+No prompt_appendix-specific warnings
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 169 · 2026-05-16T03:21:49.042511+00:00_
+
+编译通过，无错误。
+
+产出：
+- **`prompt_appendix.tex`** — Appendix F，包含 NER (v1/v2)、ED (v1/v2)、RE 的完整 prompt template + constrained-decoding JSON schema + v1→v2 差异标注
+- **`main.tex`** — 添加了 `\usepackage[normalem]{ulem}`（strikethrough 支持）和 `\input{prompt_appendix}`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_write_prompt_appendix_c1a_20260516T031758"
+}
+```
+
+</details>
+
+---

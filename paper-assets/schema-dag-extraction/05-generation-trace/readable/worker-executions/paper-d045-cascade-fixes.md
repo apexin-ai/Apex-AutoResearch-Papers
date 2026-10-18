@@ -1,0 +1,1855 @@
+# paper d045 cascade fixes
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_paper_d045_cascade_fixes_20260516T105849.log`
+- **Structured JSON:** [`abe1f3d1ce7a26fb85b4.json`](../../sessions/ab/abe1f3d1ce7a26fb85b4.json)
+
+## Before a recorded user message
+
+35 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "80f4fcfb-c0be-43c6-8e3b-1b01eac3496a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778940000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "439a21a3-91f0-4a0c-a987-b4f1fc1a9fe1",
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Let me first read the relevant files to understand the current state.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "59ed2496-2e24-4955-9a22-0886eae578cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V5LPBX6rdLoXMDruAVv8wr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11974,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11974
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01J766tfpGipkez4TcrLoMbi`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "b0b1e06c-0621-48de-9818-371497e881bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V5LPBX6rdLoXMDruAVv8wr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11974,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11974
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T10:59:01.545Z_
+
+<details><summary>↩ Tool result · `toolu_01J766tfpGipkez4TcrLoMbi`</summary>
+
+```text
+1	\begin{abstract}
+2	Training-free LLM information extraction degrades as schema complexity grows. We conduct the first controlled study isolating type confusability from type count across NER, RE (a closed-set classification task), and event detection on four datasets, introducing the Schema Confusability Score (SCS) and two paradigms: count curves varying schema size while randomizing confusability, and BCS-controlled experiments fixing size while varying confusability.
+3	
+4	We identify two degradation channels: count-driven recall decline and confusability-driven type substitution. For RE, the quartile BCS gap is $-$5.3\,pp (95\% CI: [$-$7.4, $-$3.2]); typical random batches differ by ${\approx}\,2.2$\,pp. Under extreme-batch construction maximizing BCS contrast, the gap reaches 31.2\,pp. Batch-level BCS explains $R^2 = 0.22\text{--}0.53$ of accuracy variance as an aggregated signal, while pairwise effect sizes remain modest ($r^2 = 1.3\text{--}1.7\%$). The effect is directionally consistent across prompt designs, with attenuated magnitude under improved prompts. Channel~1 replicates fully on Llama-3.1-8B; Channel~2 replicates on RE but shows floor effects on 8B NER. Count increases generally suppress extraction on cross-domain schemas; MAVEN's same-domain schema exhibits centrality confounding that reverses this trend. Schema decomposition via oracle routing recovers count-based degradation for RE (+29.8\,pp over single-pass), but confusability-aware grouping yields no significant additional gain (+1.4\,pp, $p\approx 0.19$).
+5	\end{abstract}
+6	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "f19b0631-d578-4313-a9d1-82885934b828",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nTraining-free LLM information extraction degrades as schema complexity grows. We conduct the first controlled study isolating type confusability from type count across NER, RE (a closed-set classification task), and event detection on four datasets, introducing the Schema Confusability Score (SCS) and two paradigms: count curves varying schema size while randomizing confusability, and BCS-controlled experiments fixing size while varying confusability.\n\nWe identify two degradation channels: count-driven recall decline and confusability-driven type substitution. For RE, the quartile BCS gap is $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]); typical random batches differ by ${\\approx}\\,2.2$\\,pp. Under extreme-batch construction maximizing BCS contrast, the gap reaches 31.2\\,pp. Batch-level BCS explains $R^2 = 0.22\\text{--}0.53$ of accuracy variance as an aggregated signal, while pairwise effect sizes remain modest ($r^2 = 1.3\\text{--}1.7\\%$). The effect is directionally consistent across prompt designs, with attenuated magnitude under improved prompts. Channel~1 replicates fully on Llama-3.1-8B; Channel~2 replicates on RE but shows floor effects on 8B NER. Count increases generally suppress extraction on cross-domain schemas; MAVEN's same-domain schema exhibits centrality confounding that reverses this trend. Schema decomposition via oracle routing recovers count-based degradation for RE (+29.8\\,pp over single-pass), but confusability-aware grouping yields no significant additional gain (+1.4\\,pp, $p\\approx 0.19$).\n\\end{abstract}\n",
+      "numLines": 6,
+      "startLine": 1,
+      "totalLines": 6
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014nivG24M9SMS2qt2UktVwi`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "a7289e1f-cbf9-4663-86ed-e93b5bffe46d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V5LPBX6rdLoXMDruAVv8wr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11974,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11974
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T10:59:02.002Z_
+
+<details><summary>↩ Tool result · `toolu_014nivG24M9SMS2qt2UktVwi`</summary>
+
+```text
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	Training-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\% relative decline. On relation extraction, accuracy falls from 85.7\% with one relation to 50.4\% with 80 relations (sentence-level) and from 88.0\% to 38.7\% with 96 relations (document-level)---near or exceeding halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.
+5	
+6	What causes this degradation? Prior decomposition strategies implicitly assume different answers: \citet{uniner-2024} extract each type independently; \citet{llm-pee-2025} partition schemas by type embedding similarity; \citet{parse-2025} optimize schema definitions. None isolates \emph{why} schemas degrade performance. The closest work, LLM-PEE, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor accounts for the gains. All prior approaches conflate two mechanisms: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). Without disentangling these, decomposition strategies optimize a black-box objective without understanding its components.
+7	
+8	We ask three questions. \textbf{RQ1}: Does type confusability independently predict extraction degradation beyond the effect of type count? \textbf{RQ2}: Through what mechanisms do count and confusability each degrade performance? \textbf{RQ3}: Can confusability-aware schema decomposition improve extraction quality?
+9	
+10	We conduct the first controlled study isolating type confusability from type count across NER, RE, and event detection (ED). We introduce the \emph{Schema Confusability Score} (SCS)---pairwise embedding cosine similarity between types---and its batch-level aggregation, the \emph{Batch Confusability Score} (BCS). Two paradigms complement each other: \emph{count curves} vary schema size while randomizing confusability, and \emph{BCS-controlled experiments} fix size while varying confusability. We evaluate on Few-NERD \cite{fewnerd-2021} (66 types, cross-domain), FewRel \cite{fewrel-2018} (80 relations, sentence-level), DocRED \cite{docred-2019} (96 relations, document-level), and MAVEN \cite{maven-2020} (168 event types, single ontology), using Qwen3-32B with bootstrap CIs.
+11	
+12	Our experiments yield five findings: (1)~degradation operates through two separable channels---a confusability channel producing quartile gaps of $-$5.3\,pp (95\% CI: [$-$7.4, $-$3.2]) on RE with typical-batch differences of ${\approx}\,2.2$\,pp, and a count channel driving recall decline up to $-$49\,pp; (2)~pairwise SCS predicts type confusion ($r = 0.112$--$0.129$), the first factor empirically isolated in controlled zero-shot IE; (3)~effects are consistent across schema sizes and granularities (BCS slopes: $p = 0.60$; DocRED: slope $= -0.71$, $R^2 = 0.53$), and directionally consistent across prompt designs, with attenuated magnitude under improved prompts; (4)~per-type aggregation is confounded by centrality on homogeneous schemas; (5)~NER decomposition fails due to merge amplification, but RE batch composition yields a directional +1.4\,pp gain.
+13	
+14	Our contributions are:
+15	\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]
+16	    \item \textbf{Two-channel degradation model.} Count and confusability independently degrade extraction across NER, RE (sentence- and document-level), and ED, with task-dependent channel coupling.
+17	    \item \textbf{Pairwise confusability as predictor.} SCS predicts type confusion ($r = 0.112$--$0.129$) while centrality confounds per-type aggregation on homogeneous schemas.
+18	    \item \textbf{Cross-task BCS-controlled experiments.} BCS--accuracy slopes are consistent across schema sizes ($p = 0.60$) and replicate at document level (DocRED: $R^2 = 0.53$).
+19	    \item \textbf{Diagnosis to mitigation.} A diagnosis of schema decomposition feasibility: oracle routing recovers count-based degradation in RE (+29.8\,pp); confusability-aware grouping is inconclusive (+1.4\,pp, $p\approx 0.19$); NER decomposition fails due to merge amplification (\S\ref{sec:sdgd}).
+20	\end{enumerate}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "87315917-ea8a-49ae-a6b4-436503041c0a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nTraining-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\\% relative decline. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level)---near or exceeding halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.\n\nWhat causes this degradation? Prior decomposition strategies implicitly assume different answers: \\citet{uniner-2024} extract each type independently; \\citet{llm-pee-2025} partition schemas by type embedding similarity; \\citet{parse-2025} optimize schema definitions. None isolates \\emph{why} schemas degrade performance. The closest work, LLM-PEE, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor accounts for the gains. All prior approaches conflate two mechanisms: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). Without disentangling these, decomposition strategies optimize a black-box objective without understanding its components.\n\nWe ask three questions. \\textbf{RQ1}: Does type confusability independently predict extraction degradation beyond the effect of type count? \\textbf{RQ2}: Through what mechanisms do count and confusability each degrade performance? \\textbf{RQ3}: Can confusability-aware schema decomposition improve extraction quality?\n\nWe conduct the first controlled study isolating type confusability from type count across NER, RE, and event detection (ED). We introduce the \\emph{Schema Confusability Score} (SCS)---pairwise embedding cosine similarity between types---and its batch-level aggregation, the \\emph{Batch Confusability Score} (BCS). Two paradigms complement each other: \\emph{count curves} vary schema size while randomizing confusability, and \\emph{BCS-controlled experiments} fix size while varying confusability. We evaluate on Few-NERD \\cite{fewnerd-2021} (66 types, cross-domain), FewRel \\cite{fewrel-2018} (80 relations, sentence-level), DocRED \\cite{docred-2019} (96 relations, document-level), and MAVEN \\cite{maven-2020} (168 event types, single ontology), using Qwen3-32B with bootstrap CIs.\n\nOur experiments yield five findings: (1)~degradation operates through two separable channels---a confusability channel producing quartile gaps of $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]) on RE with typical-batch differences of ${\\approx}\\,2.2$\\,pp, and a count channel driving recall decline up to $-$49\\,pp; (2)~pairwise SCS predicts type confusion ($r = 0.112$--$0.129$), the first factor empirically isolated in controlled zero-shot IE; (3)~effects are consistent across schema sizes and granularities (BCS slopes: $p = 0.60$; DocRED: slope $= -0.71$, $R^2 = 0.53$), and directionally consistent across prompt designs, with attenuated magnitude under improved prompts; (4)~per-type aggregation is confounded by centrality on homogeneous schemas; (5)~NER decomposition fails due to merge amplification, but RE batch composition yields a directional +1.4\\,pp gain.\n\nOur contributions are:\n\\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]\n    \\item \\textbf{Two-channel degradation model.} Count and confusability independently degrade extraction across NER, RE (sentence- and document-level), and ED, with task-dependent channel coupling.\n    \\item \\textbf{Pairwise confusability as predictor.} SCS predicts type confusion ($r = 0.112$--$0.129$) while centrality confounds per-type aggregation on homogeneous schemas.\n    \\item \\textbf{Cross-task BCS-controlled experiments.} BCS--accuracy slopes are consistent across schema sizes ($p = 0.60$) and replicate at document level (DocRED: $R^2 = 0.53$).\n    \\item \\textbf{Diagnosis to mitigation.} A diagnosis of schema decomposition feasibility: oracle routing recovers count-based degradation in RE (+29.8\\,pp); confusability-aware grouping is inconclusive (+1.4\\,pp, $p\\approx 0.19$); NER decomposition fails due to merge amplification (\\S\\ref{sec:sdgd}).\n\\end{enumerate}",
+      "numLines": 20,
+      "startLine": 1,
+      "totalLines": 20
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014yQuRUFZpfCD4rK1TTddta`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "b169ee47-5345-494a-90a8-d7aab06fb7ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V5LPBX6rdLoXMDruAVv8wr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11974,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11974
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T10:59:02.473Z_
+
+<details><summary>↩ Tool result · `toolu_014yQuRUFZpfCD4rK1TTddta`</summary>
+
+```text
+1	\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}
+2	\label{sec:sdgd}
+3	
+4	A natural intervention is to partition the schema so confusable types never co-occur. We test this with \textbf{Schema-DAG-Guided Decomposition} (SDGD), which uses greedy graph coloring on the pairwise SCS graph to assign types to low-confusability batches, merging predictions via set union. Every decomposition mode---SDGD (F1\,=\,0.241), random batching (0.320), per-type (0.292)---falls below the single-pass baseline (0.445) on Few-NERD NER (Table~\ref{tab:sdgd_results}).
+5	
+6	\paragraph{Merge amplification as the bottleneck.}
+7	The failure is \emph{merge amplification}: presenting the same text $k$ times causes each pass to independently generate predictions. Single-pass precision (0.563) collapses to 0.210--0.249 after union merge with 8 batches, while recall gains are modest (0.368 $\to$ 0.314--0.446). Confidence gating improves precision but with disproportionate recall loss (Appendix~\ref{sec:appendix_sdgd}). The fundamental issue is that LLM predictions are not calibrated across passes \cite{llm-calibration-survey-2024}.
+8	
+9	In our NER experiments, multi-pass decomposition produces $k$ independent tagging outputs per sentence. A single entity span may be tagged with different types across passes, or hallucinated entities may appear in passes where the correct type is absent. Union merge amplifies these false positives: precision collapses from 0.563 (single-pass) to 0.210--0.249 (8 batches), faster than the modest recall gains.
+10	
+11	\paragraph{Why NER fails but RE does not.}
+12	Merge amplification is specific to span-level tasks: each NER pass independently proposes entity spans, and union merge must resolve conflicting boundaries and type assignments, degrading systematically with pass count. Under oracle routing, RE requires no span reconciliation---each pair receives a single classification from the batch containing its gold type, eliminating the mechanism that caused SDGD to fail.
+13	
+14	\paragraph{Confusability-aware batch composition for RE.}
+15	Since RE avoids merge amplification, we test whether confusability-aware batching improves accuracy. All decomposition conditions use oracle routing (each instance is routed to the batch containing its gold type). Single-type batches versus the 80-relation single-pass yields +29.8\,pp (0.802 vs.\ 0.504), confirming that decomposition is effective when span reconciliation is unnecessary. Confusability-aware graph coloring achieves 0.802 accuracy versus random batching (0.788 $\pm$ 0.018), a +1.4\,pp gain that is directionally consistent but not statistically significant ($p \approx 0.19$), limited by the single graph-coloring configuration ($n{=}1$) and narrow BCS margin (0.006) achievable at this partition granularity (Table~\ref{tab:batch_composition} in Appendix~\ref{sec:appendix_batch_composition}).
+16	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "9d02d97d-e5c6-4d17-a307-485a5dc39fde",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+      "content": "\\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}\n\\label{sec:sdgd}\n\nA natural intervention is to partition the schema so confusable types never co-occur. We test this with \\textbf{Schema-DAG-Guided Decomposition} (SDGD), which uses greedy graph coloring on the pairwise SCS graph to assign types to low-confusability batches, merging predictions via set union. Every decomposition mode---SDGD (F1\\,=\\,0.241), random batching (0.320), per-type (0.292)---falls below the single-pass baseline (0.445) on Few-NERD NER (Table~\\ref{tab:sdgd_results}).\n\n\\paragraph{Merge amplification as the bottleneck.}\nThe failure is \\emph{merge amplification}: presenting the same text $k$ times causes each pass to independently generate predictions. Single-pass precision (0.563) collapses to 0.210--0.249 after union merge with 8 batches, while recall gains are modest (0.368 $\\to$ 0.314--0.446). Confidence gating improves precision but with disproportionate recall loss (Appendix~\\ref{sec:appendix_sdgd}). The fundamental issue is that LLM predictions are not calibrated across passes \\cite{llm-calibration-survey-2024}.\n\nIn our NER experiments, multi-pass decomposition produces $k$ independent tagging outputs per sentence. A single entity span may be tagged with different types across passes, or hallucinated entities may appear in passes where the correct type is absent. Union merge amplifies these false positives: precision collapses from 0.563 (single-pass) to 0.210--0.249 (8 batches), faster than the modest recall gains.\n\n\\paragraph{Why NER fails but RE does not.}\nMerge amplification is specific to span-level tasks: each NER pass independently proposes entity spans, and union merge must resolve conflicting boundaries and type assignments, degrading systematically with pass count. Under oracle routing, RE requires no span reconciliation---each pair receives a single classification from the batch containing its gold type, eliminating the mechanism that caused SDGD to fail.\n\n\\paragraph{Confusability-aware batch composition for RE.}\nSince RE avoids merge amplification, we test whether confusability-aware batching improves accuracy. All decomposition conditions use oracle routing (each instance is routed to the batch containing its gold type). Single-type batches versus the 80-relation single-pass yields +29.8\\,pp (0.802 vs.\\ 0.504), confirming that decomposition is effective when span reconciliation is unnecessary. Confusability-aware graph coloring achieves 0.802 accuracy versus random batching (0.788 $\\pm$ 0.018), a +1.4\\,pp gain that is directionally consistent but not statistically significant ($p \\approx 0.19$), limited by the single graph-coloring configuration ($n{=}1$) and narrow BCS margin (0.006) achievable at this partition granularity (Table~\\ref{tab:batch_composition} in Appendix~\\ref{sec:appendix_batch_composition}).\n",
+      "numLines": 16,
+      "startLine": 1,
+      "totalLines": 16
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HufEZdFbktq58kJvW2MBmm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "1dba2910-dcbb-4b21-8038-9c2f97983fce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V5LPBX6rdLoXMDruAVv8wr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11974,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11974
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T10:59:02.942Z_
+
+<details><summary>↩ Tool result · `toolu_01HufEZdFbktq58kJvW2MBmm`</summary>
+
+```text
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\paragraph{Boundary conditions.}
+5	The two-channel model applies to cross-domain schemas; same-domain schemas (e.g., MAVEN's FrameNet-derived event types) exhibit centrality confounding that obscures per-type aggregated signals, requiring pairwise SCS or centrality adjustment (\S\ref{sec:centrality_confound}). High-BCS accuracy converges to $\approx$51\% across tested models, suggesting a task-inherent difficulty ceiling. RE's clean channel separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\,pp vs.\ v1: $-$31.2\,pp; Appendix~\ref{sec:appendix_prompt_sensitivity}).
+6	
+7	\paragraph{Practitioner guidance.}
+8	Our results suggest that type pairs with high SCS (e.g., above the 75th percentile) tend to contribute disproportionately to confusion. Practitioners designing extraction schemas may benefit from pre-computing pairwise SCS and restructuring or merging types that exceed this threshold.
+9	
+10	\paragraph{Future directions.}
+11	Three directions merit investigation: (i)~non-oracle routing strategies (e.g., embedding-based instance-to-batch assignment) that would make decomposition deployable without gold labels; (ii)~broader model coverage, particularly proprietary APIs; and (iii)~definition-inclusive SCS that incorporates type descriptions rather than names alone. For NER, merge amplification blocks naive decomposition (\S\ref{sec:sdgd}); calibration-aware merge, joint decoding, or coarse-to-fine extraction may address this.
+12	
+13	\section{Conclusion}
+14	\label{sec:conclusion}
+15	
+16	We isolated schema-induced degradation into count-driven recall decline and confusability-driven type confusion, showed these channels are separable in RE, with Channel~2 additionally impairing entity detection in NER, and confirmed that both channels replicate across model families on RE (Meta-Llama-3.1-8B-Instruct: count $r = 0.725$, confusability $\Delta = -27$\,pp) and across extraction granularities (DocRED document-level RE: count decline $-$49\,pp; BCS slope $= -0.71$, $R^2 = 0.53$), with high-BCS accuracy converging to a floor consistent across both tested models. We further identified a centrality confound on same-domain schemas, demonstrated that merge amplification is a structural challenge for NER decomposition, and showed that confusability-aware grouping yields a directionally consistent but non-significant improvement (+1.4\,pp, $p\approx 0.19$). Cross-batch calibration or joint decoding for NER, and broader validation of RE batch composition, are the key next steps.
+17	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "db59b4b5-364d-4424-aafd-9e9c1ad5d022",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+      "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Boundary conditions.}\nThe two-channel model applies to cross-domain schemas; same-domain schemas (e.g., MAVEN's FrameNet-derived event types) exhibit centrality confounding that obscures per-type aggregated signals, requiring pairwise SCS or centrality adjustment (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across tested models, suggesting a task-inherent difficulty ceiling. RE's clean channel separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp vs.\\ v1: $-$31.2\\,pp; Appendix~\\ref{sec:appendix_prompt_sensitivity}).\n\n\\paragraph{Practitioner guidance.}\nOur results suggest that type pairs with high SCS (e.g., above the 75th percentile) tend to contribute disproportionately to confusion. Practitioners designing extraction schemas may benefit from pre-computing pairwise SCS and restructuring or merging types that exceed this threshold.\n\n\\paragraph{Future directions.}\nThree directions merit investigation: (i)~non-oracle routing strategies (e.g., embedding-based instance-to-batch assignment) that would make decomposition deployable without gold labels; (ii)~broader model coverage, particularly proprietary APIs; and (iii)~definition-inclusive SCS that incorporates type descriptions rather than names alone. For NER, merge amplification blocks naive decomposition (\\S\\ref{sec:sdgd}); calibration-aware merge, joint decoding, or coarse-to-fine extraction may address this.\n\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe isolated schema-induced degradation into count-driven recall decline and confusability-driven type confusion, showed these channels are separable in RE, with Channel~2 additionally impairing entity detection in NER, and confirmed that both channels replicate across model families on RE (Meta-Llama-3.1-8B-Instruct: count $r = 0.725$, confusability $\\Delta = -27$\\,pp) and across extraction granularities (DocRED document-level RE: count decline $-$49\\,pp; BCS slope $= -0.71$, $R^2 = 0.53$), with high-BCS accuracy converging to a floor consistent across both tested models. We further identified a centrality confound on same-domain schemas, demonstrated that merge amplification is a structural challenge for NER decomposition, and showed that confusability-aware grouping yields a directionally consistent but non-significant improvement (+1.4\\,pp, $p\\approx 0.19$). Cross-batch calibration or joint decoding for NER, and broader validation of RE batch composition, are the key next steps.\n",
+      "numLines": 17,
+      "startLine": 1,
+      "totalLines": 17
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze each modification needed:
+
+### 1. abstract.tex: r² range update
+Current: `$r^2 = 1.3\text{--}1.7\%$`
+Need to change to: `$r^2 = 1.3\text{--}3.5\%$`
+
+Found on line 4: `$r^2 = 1.3\text{--}1.7\%$`
+
+### 2. introduction.tex: finding 2 r range
+Current on line 12: `$r = 0.112$--$0.129$`
+
+
+Need to change to: `$r = 0.112$--$0.187$`
+
+### 3. introduction.tex: Contribution 2 r range
+Current on line 17: `$r = 0.112$--$0.129$`
+Need to change to: `$r = 0.112$--$0.187$`
+
+### 4. sdgd_negative.tex: merge amplification wording
+Looking at line 9: "A single entity span may be tagged with different types across passes"
+Need to ensure it says: "entities may receive conflicting labels across separate decomposition passes"
+
+I'm going through the document modifications systematically—updating the r² range in the abstract from 1.7% to 3.5%, changing two r-value ranges in the introduction from 0.129 to 0.187, and revising the wording in sdgd_negative.tex to clarify that entities receive conflicting labels across decomposition passes rather than just being tagged differently.
+
+For the discussion.tex change, I need to update the SCS threshold description to specify that high SCS type pairs produce more substitution errors with a reference to section 4.3, using the proper LaTeX section symbol. I need to figure out the right LaTeX syntax for this reference. The instruction specifies `(\S4.3)` literally, so I'll use that format rather than trying to create a label reference. The sentence should read "type pairs with high SCS tend to produce disproportionately more substitution errors (\S4.3)" - that handles the first part of the instruction. The rest about practitioners and schema design seems to be separate guidance, so I'll focus on just making that replacement. I'm working through the exact wording for this replacement—the instruction specifies using `\S4.3` as a hardcoded reference rather than a dynamic one like `\S\ref{sec:sdgd}`, even though that could cause issues if sections get renumbered later. I'll follow the explicit instruction and make the swap from the descriptive phrase about the 75th percentile to the more direct language about substitution errors with the section reference. I need to match the instruction's phrasing more closely. The desired text specifies "entities may receive conflicting labels across separate decomposition passes," so I should incorporate that exact phrase while keeping the rest of the sentence intact. Let me revise to: "Entities may receive conflicting labels across separate decomposition passes, or hallucinated entities may appear in passes where the correct type is absent." I'm capitalizing "Entities" since it now starts the sentence, and that handles the required phrasing. I've already confirmed "chunk" doesn't appear elsewhere in the file, so I'm ready to apply all the edits.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "b9316232-6971-42a0-b50d-71f4f152b8b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hBsp7Gh4WPXRPbxFLtR4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3769,
+      "cache_read_input_tokens": 23815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3769
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Now I have the current state. Making all 5 edits.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "7a0e1d06-f7cd-483b-a4a7-9da5f091d96e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hBsp7Gh4WPXRPbxFLtR4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3769,
+      "cache_read_input_tokens": 23815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3769
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_017z5RBG7kbUbPKjm3orHAH5`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex",
+  "old_string": "$r^2 = 1.3\\text{--}1.7\\%$",
+  "new_string": "$r^2 = 1.3\\text{--}3.5\\%$"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "90c36e73-1f2b-4ea3-95ce-a4c106c016df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hBsp7Gh4WPXRPbxFLtR4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3769,
+      "cache_read_input_tokens": 23815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3769
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T10:59:40.860Z_
+
+<details><summary>↩ Tool result · `toolu_017z5RBG7kbUbPKjm3orHAH5`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "531307ec-b8ae-48c1-b5a7-bd1dbd792dba",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex",
+    "oldString": "$r^2 = 1.3\\text{--}1.7\\%$",
+    "newString": "$r^2 = 1.3\\text{--}3.5\\%$",
+    "originalFile": "\\begin{abstract}\nTraining-free LLM information extraction degrades as schema complexity grows. We conduct the first controlled study isolating type confusability from type count across NER, RE (a closed-set classification task), and event detection on four datasets, introducing the Schema Confusability Score (SCS) and two paradigms: count curves varying schema size while randomizing confusability, and BCS-controlled experiments fixing size while varying confusability.\n\nWe identify two degradation channels: count-driven recall decline and confusability-driven type substitution. For RE, the quartile BCS gap is $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]); typical random batches differ by ${\\approx}\\,2.2$\\,pp. Under extreme-batch construction maximizing BCS contrast, the gap reaches 31.2\\,pp. Batch-level BCS explains $R^2 = 0.22\\text{--}0.53$ of accuracy variance as an aggregated signal, while pairwise effect sizes remain modest ($r^2 = 1.3\\text{--}1.7\\%$). The effect is directionally consistent across prompt designs, with attenuated magnitude under improved prompts. Channel~1 replicates fully on Llama-3.1-8B; Channel~2 replicates on RE but shows floor effects on 8B NER. Count increases generally suppress extraction on cross-domain schemas; MAVEN's same-domain schema exhibits centrality confounding that reverses this trend. Schema decomposition via oracle routing recovers count-based degradation for RE (+29.8\\,pp over single-pass), but confusability-aware grouping yields no significant additional gain (+1.4\\,pp, $p\\approx 0.19$).\n\\end{abstract}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 5,
+        "newStart": 1,
+        "newLines": 5,
+        "lines": [
+          " \\begin{abstract}",
+          " Training-free LLM information extraction degrades as schema complexity grows. We conduct the first controlled study isolating type confusability from type count across NER, RE (a closed-set classification task), and event detection on four datasets, introducing the Schema Confusability Score (SCS) and two paradigms: count curves varying schema size while randomizing confusability, and BCS-controlled experiments fixing size while varying confusability.",
+          " ",
+          "-We identify two degradation channels: count-driven recall decline and confusability-driven type substitution. For RE, the quartile BCS gap is $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]); typical random batches differ by ${\\approx}\\,2.2$\\,pp. Under extreme-batch construction maximizing BCS contrast, the gap reaches 31.2\\,pp. Batch-level BCS explains $R^2 = 0.22\\text{--}0.53$ of accuracy variance as an aggregated signal, while pairwise effect sizes remain modest ($r^2 = 1.3\\text{--}1.7\\%$). The effect is directionally consistent across prompt designs, with attenuated magnitude under improved prompts. Channel~1 replicates fully on Llama-3.1-8B; Channel~2 replicates on RE but shows floor effects on 8B NER. Count increases generally suppress extraction on cross-domain schemas; MAVEN's same-domain schema exhibits centrality confounding that reverses this trend. Schema decomposition via oracle routing recovers count-based degradation for RE (+29.8\\,pp over single-pass), but confusability-aware grouping yields no significant additional gain (+1.4\\,pp, $p\\approx 0.19$).",
+          "+We identify two degradation channels: count-driven recall decline and confusability-driven type substitution. For RE, the quartile BCS gap is $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]); typical random batches differ by ${\\approx}\\,2.2$\\,pp. Under extreme-batch construction maximizing BCS contrast, the gap reaches 31.2\\,pp. Batch-level BCS explains $R^2 = 0.22\\text{--}0.53$ of accuracy variance as an aggregated signal, while pairwise effect sizes remain modest ($r^2 = 1.3\\text{--}3.5\\%$). The effect is directionally consistent across prompt designs, with attenuated magnitude under improved prompts. Channel~1 replicates fully on Llama-3.1-8B; Channel~2 replicates on RE but shows floor effects on 8B NER. Count increases generally suppress extraction on cross-domain schemas; MAVEN's same-domain schema exhibits centrality confounding that reverses this trend. Schema decomposition via oracle routing recovers count-based degradation for RE (+29.8\\,pp over single-pass), but confusability-aware grouping yields no significant additional gain (+1.4\\,pp, $p\\approx 0.19$).",
+          " \\end{abstract}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_014RaR8FooFBg5pNKoFnP38F`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+  "old_string": "($r = 0.112$--$0.129$), the first factor empirically isolated",
+  "new_string": "($r = 0.112$--$0.187$), the first factor empirically isolated"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "40847fbc-1e48-4720-8796-9c7857a746b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hBsp7Gh4WPXRPbxFLtR4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3769,
+      "cache_read_input_tokens": 23815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3769
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T10:59:42.254Z_
+
+<details><summary>↩ Tool result · `toolu_014RaR8FooFBg5pNKoFnP38F`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "9daa8d94-2a2e-4f9e-b6c2-78eb1d0ff281",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+    "oldString": "($r = 0.112$--$0.129$), the first factor empirically isolated",
+    "newString": "($r = 0.112$--$0.187$), the first factor empirically isolated",
+    "originalFile": "\\section{Introduction}\n\\label{sec:introduction}\n\nTraining-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\\% relative decline. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level)---near or exceeding halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.\n\nWhat causes this degradation? Prior decomposition strategies implicitly assume different answers: \\citet{uniner-2024} extract each type independently; \\citet{llm-pee-2025} partition schemas by type embedding similarity; \\citet{parse-2025} optimize schema definitions. None isolates \\emph{why} schemas degrade performance. The closest work, LLM-PEE, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor accounts for the gains. All prior approaches conflate two mechanisms: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). Without disentangling these, decomposition strategies optimize a black-box objective without understanding its components.\n\nWe ask three questions. \\textbf{RQ1}: Does type confusability independently predict extraction degradation beyond the effect of type count? \\textbf{RQ2}: Through what mechanisms do count and confusability each degrade performance? \\textbf{RQ3}: Can confusability-aware schema decomposition improve extraction quality?\n\nWe conduct the first controlled study isolating type confusability from type count across NER, RE, and event detection (ED). We introduce the \\emph{Schema Confusability Score} (SCS)---pairwise embedding cosine similarity between types---and its batch-level aggregation, the \\emph{Batch Confusability Score} (BCS). Two paradigms complement each other: \\emph{count curves} vary schema size while randomizing confusability, and \\emph{BCS-controlled experiments} fix size while varying confusability. We evaluate on Few-NERD \\cite{fewnerd-2021} (66 types, cross-domain), FewRel \\cite{fewrel-2018} (80 relations, sentence-level), DocRED \\cite{docred-2019} (96 relations, document-level), and MAVEN \\cite{maven-2020} (168 event types, single ontology), using Qwen3-32B with bootstrap CIs.\n\nOur experiments yield five findings: (1)~degradation operates through two separable channels---a confusability channel producing quartile gaps of $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]) on RE with typical-batch differences of ${\\approx}\\,2.2$\\,pp, and a count channel driving recall decline up to $-$49\\,pp; (2)~pairwise SCS predicts type confusion ($r = 0.112$--$0.129$), the first factor empirically isolated in controlled zero-shot IE; (3)~effects are consistent across schema sizes and granularities (BCS slopes: $p = 0.60$; DocRED: slope $= -0.71$, $R^2 = 0.53$), and directionally consistent across prompt designs, with attenuated magnitude under improved prompts; (4)~per-type aggregation is confounded by centrality on homogeneous schemas; (5)~NER decomposition fails due to merge amplification, but RE batch composition yields a directional +1.4\\,pp gain.\n\nOur contributions are:\n\\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]\n    \\item \\textbf{Two-channel degradation model.} Count and confusability independently degrade extraction across NER, RE (sentence- and document-level), and ED, with task-dependent channel coupling.\n    \\item \\textbf{Pairwise confusability as predictor.} SCS predicts type confusion ($r = 0.112$--$0.129$) while centrality confounds per-type aggregation on homogeneous schemas.\n    \\item \\textbf{Cross-task BCS-controlled experiments.} BCS--accuracy slopes are consistent across schema sizes ($p = 0.60$) and replicate at document level (DocRED: $R^2 = 0.53$).\n    \\item \\textbf{Diagnosis to mitigation.} A diagnosis of schema decomposition feasibility: oracle routing recovers count-based degradation in RE (+29.8\\,pp); confusability-aware grouping is inconclusive (+1.4\\,pp, $p\\approx 0.19$); NER decomposition fails due to merge amplification (\\S\\ref{sec:sdgd}).\n\\end{enumerate}",
+    "structuredPatch": [
+      {
+        "oldStart": 9,
+        "oldLines": 7,
+        "newStart": 9,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " We conduct the first controlled study isolating type confusability from type count across NER, RE, and event detection (ED). We introduce the \\emph{Schema Confusability Score} (SCS)---pairwise embedding cosine similarity between types---and its batch-level aggregation, the \\emph{Batch Confusability Score} (BCS). Two paradigms complement each other: \\emph{count curves} vary schema size while randomizing confusability, and \\emph{BCS-controlled experiments} fix size while varying confusability. We evaluate on Few-NERD \\cite{fewnerd-2021} (66 types, cross-domain), FewRel \\cite{fewrel-2018} (80 relations, sentence-level), DocRED \\cite{docred-2019} (96 relations, document-level), and MAVEN \\cite{maven-2020} (168 event types, single ontology), using Qwen3-32B with bootstrap CIs.",
+          " ",
+          "-Our experiments yield five findings: (1)~degradation operates through two separable channels---a confusability channel producing quartile gaps of $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]) on RE with typical-batch differences of ${\\approx}\\,2.2$\\,pp, and a count channel driving recall decline up to $-$49\\,pp; (2)~pairwise SCS predicts type confusion ($r = 0.112$--$0.129$), the first factor empirically isolated in controlled zero-shot IE; (3)~effects are consistent across schema sizes and granularities (BCS slopes: $p = 0.60$; DocRED: slope $= -0.71$, $R^2 = 0.53$), and directionally consistent across prompt designs, with attenuated magnitude under improved prompts; (4)~per-type aggregation is confounded by centrality on homogeneous schemas; (5)~NER decomposition fails due to merge amplification, but RE batch composition yields a directional +1.4\\,pp gain.",
+          "+Our experiments yield five findings: (1)~degradation operates through two separable channels---a confusability channel producing quartile gaps of $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]) on RE with typical-batch differences of ${\\approx}\\,2.2$\\,pp, and a count channel driving recall decline up to $-$49\\,pp; (2)~pairwise SCS predicts type confusion ($r = 0.112$--$0.187$), the first factor empirically isolated in controlled zero-shot IE; (3)~effects are consistent across schema sizes and granularities (BCS slopes: $p = 0.60$; DocRED: slope $= -0.71$, $R^2 = 0.53$), and directionally consistent across prompt designs, with attenuated magnitude under improved prompts; (4)~per-type aggregation is confounded by centrality on homogeneous schemas; (5)~NER decomposition fails due to merge amplification, but RE batch composition yields a directional +1.4\\,pp gain.",
+          " ",
+          " Our contributions are:",
+          " \\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01FrehKUh5ipopEysdXRrdtD`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+  "old_string": "SCS predicts type confusion ($r = 0.112$--$0.129$) while centrality",
+  "new_string": "SCS predicts type confusion ($r = 0.112$--$0.187$) while centrality"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "6b79270f-d3e1-431b-9641-98e0426d7da2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hBsp7Gh4WPXRPbxFLtR4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3769,
+      "cache_read_input_tokens": 23815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3769
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T10:59:43.647Z_
+
+<details><summary>↩ Tool result · `toolu_01FrehKUh5ipopEysdXRrdtD`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "ba9074d5-1acc-44d4-829f-2a89c5629a34",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex",
+    "oldString": "SCS predicts type confusion ($r = 0.112$--$0.129$) while centrality",
+    "newString": "SCS predicts type confusion ($r = 0.112$--$0.187$) while centrality",
+    "originalFile": "\\section{Introduction}\n\\label{sec:introduction}\n\nTraining-free LLM information extraction---prompting a large language model with a target schema and asking it to extract structured information without any task-specific fine-tuning---enables rapid deployment across new domains and ontologies. This zero-shot paradigm eliminates the need for labeled data, making it attractive for applications where annotation is expensive or schemas evolve frequently \\cite{llm4ie-survey-2024}. Yet the paradigm carries a critical limitation: performance degrades sharply as the number of candidate types in the prompt schema grows. On named entity recognition, recall drops from 0.72 with a single candidate type to 0.42 with 64 types, a 42\\% relative decline. On relation extraction, accuracy falls from 85.7\\% with one relation to 50.4\\% with 80 relations (sentence-level) and from 88.0\\% to 38.7\\% with 96 relations (document-level)---near or exceeding halving. This degradation is not academic: real-world ontologies routinely define 50--200+ types, placing them squarely in the regime where training-free extraction becomes unreliable.\n\nWhat causes this degradation? Prior decomposition strategies implicitly assume different answers: \\citet{uniner-2024} extract each type independently; \\citet{llm-pee-2025} partition schemas by type embedding similarity; \\citet{parse-2025} optimize schema definitions. None isolates \\emph{why} schemas degrade performance. The closest work, LLM-PEE, reduces both the number of co-presented types and their inter-type similarity simultaneously, making it impossible to determine which factor accounts for the gains. All prior approaches conflate two mechanisms: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). Without disentangling these, decomposition strategies optimize a black-box objective without understanding its components.\n\nWe ask three questions. \\textbf{RQ1}: Does type confusability independently predict extraction degradation beyond the effect of type count? \\textbf{RQ2}: Through what mechanisms do count and confusability each degrade performance? \\textbf{RQ3}: Can confusability-aware schema decomposition improve extraction quality?\n\nWe conduct the first controlled study isolating type confusability from type count across NER, RE, and event detection (ED). We introduce the \\emph{Schema Confusability Score} (SCS)---pairwise embedding cosine similarity between types---and its batch-level aggregation, the \\emph{Batch Confusability Score} (BCS). Two paradigms complement each other: \\emph{count curves} vary schema size while randomizing confusability, and \\emph{BCS-controlled experiments} fix size while varying confusability. We evaluate on Few-NERD \\cite{fewnerd-2021} (66 types, cross-domain), FewRel \\cite{fewrel-2018} (80 relations, sentence-level), DocRED \\cite{docred-2019} (96 relations, document-level), and MAVEN \\cite{maven-2020} (168 event types, single ontology), using Qwen3-32B with bootstrap CIs.\n\nOur experiments yield five findings: (1)~degradation operates through two separable channels---a confusability channel producing quartile gaps of $-$5.3\\,pp (95\\% CI: [$-$7.4, $-$3.2]) on RE with typical-batch differences of ${\\approx}\\,2.2$\\,pp, and a count channel driving recall decline up to $-$49\\,pp; (2)~pairwise SCS predicts type confusion ($r = 0.112$--$0.187$), the first factor empirically isolated in controlled zero-shot IE; (3)~effects are consistent across schema sizes and granularities (BCS slopes: $p = 0.60$; DocRED: slope $= -0.71$, $R^2 = 0.53$), and directionally consistent across prompt designs, with attenuated magnitude under improved prompts; (4)~per-type aggregation is confounded by centrality on homogeneous schemas; (5)~NER decomposition fails due to merge amplification, but RE batch composition yields a directional +1.4\\,pp gain.\n\nOur contributions are:\n\\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]\n    \\item \\textbf{Two-channel degradation model.} Count and confusability independently degrade extraction across NER, RE (sentence- and document-level), and ED, with task-dependent channel coupling.\n    \\item \\textbf{Pairwise confusability as predictor.} SCS predicts type confusion ($r = 0.112$--$0.129$) while centrality confounds per-type aggregation on homogeneous schemas.\n    \\item \\textbf{Cross-task BCS-controlled experiments.} BCS--accuracy slopes are consistent across schema sizes ($p = 0.60$) and replicate at document level (DocRED: $R^2 = 0.53$).\n    \\item \\textbf{Diagnosis to mitigation.} A diagnosis of schema decomposition feasibility: oracle routing recovers count-based degradation in RE (+29.8\\,pp); confusability-aware grouping is inconclusive (+1.4\\,pp, $p\\approx 0.19$); NER decomposition fails due to merge amplification (\\S\\ref{sec:sdgd}).\n\\end{enumerate}",
+    "structuredPatch": [
+      {
+        "oldStart": 14,
+        "oldLines": 7,
+        "newStart": 14,
+        "newLines": 7,
+        "lines": [
+          " Our contributions are:",
+          " \\begin{enumerate}[leftmargin=*,itemsep=2pt,topsep=2pt]",
+          "     \\item \\textbf{Two-channel degradation model.} Count and confusability independently degrade extraction across NER, RE (sentence- and document-level), and ED, with task-dependent channel coupling.",
+          "-    \\item \\textbf{Pairwise confusability as predictor.} SCS predicts type confusion ($r = 0.112$--$0.129$) while centrality confounds per-type aggregation on homogeneous schemas.",
+          "+    \\item \\textbf{Pairwise confusability as predictor.} SCS predicts type confusion ($r = 0.112$--$0.187$) while centrality confounds per-type aggregation on homogeneous schemas.",
+          "     \\item \\textbf{Cross-task BCS-controlled experiments.} BCS--accuracy slopes are consistent across schema sizes ($p = 0.60$) and replicate at document level (DocRED: $R^2 = 0.53$).",
+          "     \\item \\textbf{Diagnosis to mitigation.} A diagnosis of schema decomposition feasibility: oracle routing recovers count-based degradation in RE (+29.8\\,pp); confusability-aware grouping is inconclusive (+1.4\\,pp, $p\\approx 0.19$); NER decomposition fails due to merge amplification (\\S\\ref{sec:sdgd}).",
+          " \\end{enumerate}",
+          "\\ No newline at end of file"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01LmuPEYgwjAZ7DEuvWZCzsb`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+  "old_string": "A single entity span may be tagged with different types across passes",
+  "new_string": "Entities may receive conflicting labels across separate decomposition passes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "4039db1f-234f-4c50-8b22-1958ec059e3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hBsp7Gh4WPXRPbxFLtR4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3769,
+      "cache_read_input_tokens": 23815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3769
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T10:59:44.586Z_
+
+<details><summary>↩ Tool result · `toolu_01LmuPEYgwjAZ7DEuvWZCzsb`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "c5c0c698-6686-48ce-91d7-fe64ab5e8286",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+    "oldString": "A single entity span may be tagged with different types across passes",
+    "newString": "Entities may receive conflicting labels across separate decomposition passes",
+    "originalFile": "\\section{Schema Decomposition: Failure, Diagnosis, and Mitigation}\n\\label{sec:sdgd}\n\nA natural intervention is to partition the schema so confusable types never co-occur. We test this with \\textbf{Schema-DAG-Guided Decomposition} (SDGD), which uses greedy graph coloring on the pairwise SCS graph to assign types to low-confusability batches, merging predictions via set union. Every decomposition mode---SDGD (F1\\,=\\,0.241), random batching (0.320), per-type (0.292)---falls below the single-pass baseline (0.445) on Few-NERD NER (Table~\\ref{tab:sdgd_results}).\n\n\\paragraph{Merge amplification as the bottleneck.}\nThe failure is \\emph{merge amplification}: presenting the same text $k$ times causes each pass to independently generate predictions. Single-pass precision (0.563) collapses to 0.210--0.249 after union merge with 8 batches, while recall gains are modest (0.368 $\\to$ 0.314--0.446). Confidence gating improves precision but with disproportionate recall loss (Appendix~\\ref{sec:appendix_sdgd}). The fundamental issue is that LLM predictions are not calibrated across passes \\cite{llm-calibration-survey-2024}.\n\nIn our NER experiments, multi-pass decomposition produces $k$ independent tagging outputs per sentence. A single entity span may be tagged with different types across passes, or hallucinated entities may appear in passes where the correct type is absent. Union merge amplifies these false positives: precision collapses from 0.563 (single-pass) to 0.210--0.249 (8 batches), faster than the modest recall gains.\n\n\\paragraph{Why NER fails but RE does not.}\nMerge amplification is specific to span-level tasks: each NER pass independently proposes entity spans, and union merge must resolve conflicting boundaries and type assignments, degrading systematically with pass count. Under oracle routing, RE requires no span reconciliation---each pair receives a single classification from the batch containing its gold type, eliminating the mechanism that caused SDGD to fail.\n\n\\paragraph{Confusability-aware batch composition for RE.}\nSince RE avoids merge amplification, we test whether confusability-aware batching improves accuracy. All decomposition conditions use oracle routing (each instance is routed to the batch containing its gold type). Single-type batches versus the 80-relation single-pass yields +29.8\\,pp (0.802 vs.\\ 0.504), confirming that decomposition is effective when span reconciliation is unnecessary. Confusability-aware graph coloring achieves 0.802 accuracy versus random batching (0.788 $\\pm$ 0.018), a +1.4\\,pp gain that is directionally consistent but not statistically significant ($p \\approx 0.19$), limited by the single graph-coloring configuration ($n{=}1$) and narrow BCS margin (0.006) achievable at this partition granularity (Table~\\ref{tab:batch_composition} in Appendix~\\ref{sec:appendix_batch_composition}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 6,
+        "oldLines": 7,
+        "newStart": 6,
+        "newLines": 7,
+        "lines": [
+          " \\paragraph{Merge amplification as the bottleneck.}",
+          " The failure is \\emph{merge amplification}: presenting the same text $k$ times causes each pass to independently generate predictions. Single-pass precision (0.563) collapses to 0.210--0.249 after union merge with 8 batches, while recall gains are modest (0.368 $\\to$ 0.314--0.446). Confidence gating improves precision but with disproportionate recall loss (Appendix~\\ref{sec:appendix_sdgd}). The fundamental issue is that LLM predictions are not calibrated across passes \\cite{llm-calibration-survey-2024}.",
+          " ",
+          "-In our NER experiments, multi-pass decomposition produces $k$ independent tagging outputs per sentence. A single entity span may be tagged with different types across passes, or hallucinated entities may appear in passes where the correct type is absent. Union merge amplifies these false positives: precision collapses from 0.563 (single-pass) to 0.210--0.249 (8 batches), faster than the modest recall gains.",
+          "+In our NER experiments, multi-pass decomposition produces $k$ independent tagging outputs per sentence. Entities may receive conflicting labels across separate decomposition passes, or hallucinated entities may appear in passes where the correct type is absent. Union merge amplifies these false positives: precision collapses from 0.563 (single-pass) to 0.210--0.249 (8 batches), faster than the modest recall gains.",
+          " ",
+          " \\paragraph{Why NER fails but RE does not.}",
+          " Merge amplification is specific to span-level tasks: each NER pass independently proposes entity spans, and union merge must resolve conflicting boundaries and type assignments, degrading systematically with pass count. Under oracle routing, RE requires no span reconciliation---each pair receives a single classification from the batch containing its gold type, eliminating the mechanism that caused SDGD to fail."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01KsHRaEY9oosszvF9LC9e2t`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+  "old_string": "type pairs with high SCS (e.g., above the 75th percentile) tend to contribute disproportionately to confusion",
+  "new_string": "type pairs with high SCS tend to produce disproportionately more substitution errors (\\S4.3)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "de0936f9-366d-46cc-ab6d-9606c2ff95b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016hBsp7Gh4WPXRPbxFLtR4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3769,
+      "cache_read_input_tokens": 23815,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3769
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T10:59:45.523Z_
+
+<details><summary>↩ Tool result · `toolu_01KsHRaEY9oosszvF9LC9e2t`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "9c160700-f456-4af6-aa50-e616d6fb6c1c",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/discussion.tex",
+    "oldString": "type pairs with high SCS (e.g., above the 75th percentile) tend to contribute disproportionately to confusion",
+    "newString": "type pairs with high SCS tend to produce disproportionately more substitution errors (\\S4.3)",
+    "originalFile": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Boundary conditions.}\nThe two-channel model applies to cross-domain schemas; same-domain schemas (e.g., MAVEN's FrameNet-derived event types) exhibit centrality confounding that obscures per-type aggregated signals, requiring pairwise SCS or centrality adjustment (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across tested models, suggesting a task-inherent difficulty ceiling. RE's clean channel separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp vs.\\ v1: $-$31.2\\,pp; Appendix~\\ref{sec:appendix_prompt_sensitivity}).\n\n\\paragraph{Practitioner guidance.}\nOur results suggest that type pairs with high SCS (e.g., above the 75th percentile) tend to contribute disproportionately to confusion. Practitioners designing extraction schemas may benefit from pre-computing pairwise SCS and restructuring or merging types that exceed this threshold.\n\n\\paragraph{Future directions.}\nThree directions merit investigation: (i)~non-oracle routing strategies (e.g., embedding-based instance-to-batch assignment) that would make decomposition deployable without gold labels; (ii)~broader model coverage, particularly proprietary APIs; and (iii)~definition-inclusive SCS that incorporates type descriptions rather than names alone. For NER, merge amplification blocks naive decomposition (\\S\\ref{sec:sdgd}); calibration-aware merge, joint decoding, or coarse-to-fine extraction may address this.\n\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe isolated schema-induced degradation into count-driven recall decline and confusability-driven type confusion, showed these channels are separable in RE, with Channel~2 additionally impairing entity detection in NER, and confirmed that both channels replicate across model families on RE (Meta-Llama-3.1-8B-Instruct: count $r = 0.725$, confusability $\\Delta = -27$\\,pp) and across extraction granularities (DocRED document-level RE: count decline $-$49\\,pp; BCS slope $= -0.71$, $R^2 = 0.53$), with high-BCS accuracy converging to a floor consistent across both tested models. We further identified a centrality confound on same-domain schemas, demonstrated that merge amplification is a structural challenge for NER decomposition, and showed that confusability-aware grouping yields a directionally consistent but non-significant improvement (+1.4\\,pp, $p\\approx 0.19$). Cross-batch calibration or joint decoding for NER, and broader validation of RE batch composition, are the key next steps.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 5,
+        "oldLines": 7,
+        "newStart": 5,
+        "newLines": 7,
+        "lines": [
+          " The two-channel model applies to cross-domain schemas; same-domain schemas (e.g., MAVEN's FrameNet-derived event types) exhibit centrality confounding that obscures per-type aggregated signals, requiring pairwise SCS or centrality adjustment (\\S\\ref{sec:centrality_confound}). High-BCS accuracy converges to $\\approx$51\\% across tested models, suggesting a task-inherent difficulty ceiling. RE's clean channel separation may partly reflect its closed-set format; the effect generalizes to document-level RE (DocRED slope $-$0.71). Prompt design modulates but does not eliminate the effect (v2 gap: $-$25.5\\,pp vs.\\ v1: $-$31.2\\,pp; Appendix~\\ref{sec:appendix_prompt_sensitivity}).",
+          " ",
+          " \\paragraph{Practitioner guidance.}",
+          "-Our results suggest that type pairs with high SCS (e.g., above the 75th percentile) tend to contribute disproportionately to confusion. Practitioners designing extraction schemas may benefit from pre-computing pairwise SCS and restructuring or merging types that exceed this threshold.",
+          "+Our results suggest that type pairs with high SCS tend to produce disproportionately more substitution errors (\\S4.3). Practitioners designing extraction schemas may benefit from pre-computing pairwise SCS and restructuring or merging types that exceed this threshold.",
+          " ",
+          " \\paragraph{Future directions.}",
+          " Three directions merit investigation: (i)~non-oracle routing strategies (e.g., embedding-based instance-to-batch assignment) that would make decomposition deployable without gold labels; (ii)~broader model coverage, particularly proprietary APIs; and (iii)~definition-inclusive SCS that incorporates type descriptions rather than names alone. For NER, merge amplification blocks naive decomposition (\\S\\ref{sec:sdgd}); calibration-aware merge, joint decoding, or coarse-to-fine extraction may address this."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+5 edits done. Let me verify "chunk" is absent from sdgd_negative.tex and then compile.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "1ad57460-bb41-4afc-bba2-05389dfefbec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Efije97DEyECqJ1eiY2mVW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3393,
+      "cache_read_input_tokens": 27584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3393
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01QDnMYnLce3BfCaPHQMnfBj`</summary>
+
+```json
+{
+  "pattern": "chunk",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/sdgd_negative.tex",
+  "output_mode": "count"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "c2df9ed4-f8e9-42f6-84e1-dad677bdf6d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Efije97DEyECqJ1eiY2mVW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3393,
+      "cache_read_input_tokens": 27584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3393
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T10:59:48.679Z_
+
+<details><summary>↩ Tool result · `toolu_01QDnMYnLce3BfCaPHQMnfBj`</summary>
+
+```text
+No matches found
+
+Found 0 total occurrences across 0 files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "cc936d0a-0362-4b6d-90bb-15c2f82f561a",
+  "tool_use_result": {
+    "mode": "count",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numMatches": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01D9i2TehtrVgvki2uRZGUAw`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+  "description": "First pdflatex pass",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "4b13d5de-e020-4f9d-9959-c4efae379077",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Efije97DEyECqJ1eiY2mVW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3393,
+      "cache_read_input_tokens": 27584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3393
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T10:59:51.076Z_
+
+<details><summary>↩ Tool result · `toolu_01D9i2TehtrVgvki2uRZGUAw`</summary>
+
+```text
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb>&lt;/usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts
+/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/he
+lvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p
+fb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/
+texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (16 pages, 401118 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "7c0aa4e0-22f5-4754-9883-8b8535f0c92b",
+  "tool_use_result": {
+    "stdout": "are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/te\nxlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb>&lt;/usr/share/texlive/t\nexmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-di\nst/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfont\ns/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr\n8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/tex\nlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/te\nxmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts\n/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/he\nlvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.p\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/\ntexlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (16 pages, 401118 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019vRz7LvxTJPZfK9sAjDJDH`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && bibtex main 2>&1 | tail -10",
+  "description": "bibtex pass",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "45c3fff6-ecd7-4e60-8597-dfa9e9beae83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NENC2ATvaqqF54tirXxvby",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1100,
+      "cache_read_input_tokens": 30977,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1100
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T10:59:54.110Z_
+
+<details><summary>↩ Tool result · `toolu_019vRz7LvxTJPZfK9sAjDJDH`</summary>
+
+```text
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Database file #1: references.bib
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "0a6c68a6-228c-4532-a360-8f30dad3cf02",
+  "tool_use_result": {
+    "stdout": "This is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0113ocJmJsqmhSdjaiyDFaGq`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/ && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"pages|error|warning|Error|Warning\" | head -10",
+  "description": "Two more pdflatex passes + check errors",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "cd3f7468-059e-4001-99ae-c47616eb6208",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CNTWmhJrgHFY1AvNCW7f6A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 206,
+      "cache_read_input_tokens": 32077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 206
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T11:00:00.108Z_
+
+<details><summary>↩ Tool result · `toolu_0113ocJmJsqmhSdjaiyDFaGq`</summary>
+
+```text
+re/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texm
+f-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on main.pdf (16 pages, 402293 bytes).
+Transcript written on main.log.
+(./sdgd_negative.tex) [7 <../../figures/paper/fig_error_taxonomy.pdf>]
+LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `h' float specifier changed to `ht'.
+Output written on main.pdf (16 pages, 402416 bytes).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "569d4b56-e36c-4665-b9fe-e2343167c07b",
+  "tool_use_result": {
+    "stdout": "re/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texm\nf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (16 pages, 402293 bytes).\nTranscript written on main.log.\n(./sdgd_negative.tex) [7 <../../figures/paper/fig_error_taxonomy.pdf>]\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nLaTeX Warning: `h' float specifier changed to `ht'.\nOutput written on main.pdf (16 pages, 402416 bytes).",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+全部完成。
+
+- **5 处修改**：均已应用
+  - abstract.tex: `r² = 1.3–1.7%` → `1.3–3.5%`
+  - introduction.tex finding (2): `r = 0.112–0.129` → `0.112–0.187`
+  - introduction.tex Contribution 2: `r = 0.112–0.129` → `0.112–0.187`
+  - sdgd_negative.tex: → "entities may receive conflicting labels across separate decomposition passes"（"chunk" 已确认不存在）
+  - discussion.tex: → "type pairs with high SCS tend to produce disproportionately more substitution errors (§4.3)"
+- **编译结果**：无 error，16 页，仅 4 个 float specifier warning（`h` → `ht`，正常）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "uuid": "146725aa-6848-481b-bd32-b0aa3180724f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUUbrHTp2YviAPaaQ5tgci",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 446,
+      "cache_read_input_tokens": 32283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 446
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 35_
+
+全部完成。
+
+- **5 处修改**：均已应用
+  - abstract.tex: `r² = 1.3–1.7%` → `1.3–3.5%`
+  - introduction.tex finding (2): `r = 0.112–0.129` → `0.112–0.187`
+  - introduction.tex Contribution 2: `r = 0.112–0.129` → `0.112–0.187`
+  - sdgd_negative.tex: → "entities may receive conflicting labels across separate decomposition passes"（"chunk" 已确认不存在）
+  - discussion.tex: → "type pairs with high SCS tend to produce disproportionately more substitution errors (§4.3)"
+- **编译结果**：无 error，16 页，仅 4 个 float specifier warning（`h` → `ht`，正常）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 69072,
+  "duration_api_ms": 66501,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "3c63cbc3-3d74-455c-9a62-3518d01e686b",
+  "total_cost_usd": 0.3121765,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 20888,
+    "cache_read_input_tokens": 158577,
+    "output_tokens": 4017,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 20888,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 230,
+        "cache_read_input_tokens": 32283,
+        "cache_creation_input_tokens": 446,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 446
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1793,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001873,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 4017,
+      "cacheReadInputTokens": 158577,
+      "cacheCreationInputTokens": 20888,
+      "webSearchRequests": 0,
+      "costUSD": 0.3103035,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "af11a94f-1924-415f-82be-31e31fecb012"
+}
+```
+
+</details>
+
+---

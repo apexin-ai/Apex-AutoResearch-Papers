@@ -1,0 +1,2029 @@
+# analysis bootstrap ci alpha
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 69
+- **Recorded user turns:** 0
+- **Tool calls:** 34
+- **Original source:** `logs/chats/worker_analysis_bootstrap-ci-alpha_20260521T130458.jsonl`
+- **Structured JSON:** [`faddc57949d2c22560e3.json`](../../sessions/fa/faddc57949d2c22560e3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+69 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T13:09:56.698352+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T13:09:56.698709+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T13:09:56.698894+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/autodl-pub/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/autodl-pub/eval_results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T13:09:56.699040+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-pub/eval_results/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 4.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T13:09:56.699170+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root -type d -name \"eval_results\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root -type d -name \"eval_results\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T13:09:56.699295+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T13:09:56.699416+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root -type d -name \"eval_results\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root -type d -name \"eval_results\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T13:09:56.699537+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T13:09:56.699704+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root -type f -name \"*log_samples*\" -maxdepth 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root -type f -name \"*log_samples*\" -maxdepth 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T13:09:56.699873+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T13:09:56.699997+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root -type d -name \"*eval*\" -maxdepth 4",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root -type d -name \"*eval*\" -maxdepth 4",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T13:09:56.700130+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results_1.3b/lm_eval\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_fixed\\n/root/entrainment_gated_ft/results_1.3b/lm_eval_v5\\n/root/entrainment_gated_ft/lm_eval_clean\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T13:09:56.700251+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/results_1.3b/lm_eval_v5/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/results_1.3b/lm_eval_v5/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T13:09:56.700370+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"transformer_1.3B_baseline\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T13:09:56.700484+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/results_1.3b/lm_eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/results_1.3b/lm_eval/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T13:09:56.700601+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"all_benchmarks.log\\ngated_deltanet_hybrid\\nretnet_pure\\ntransformer_baseline\\ntransformer_baseline_v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T13:09:56.700763+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/results_1.3b/lm_eval_fixed/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T13:09:56.700886+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T13:09:56.701005+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-RetNet-pure\\ntransformer_1.3B_baseline\\ntransformer_1.3B_baseline_v2\\ntransformer_baseline\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T13:09:56.701142+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\n1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n1.3B-100B-GatedDeltaNet-pure.json\\n1.3B-100B-GatedDeltaNet-pure.log\\n1.3B-100B-GatedDeltaNet-pure_final.log\\n1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n1.3B-100B-GatedDeltaNet-pure_results.json\\n1.3B-100B-HGRN2-hybrid-12-1.json\\n1.3B-100B-HGRN2-hybrid-24-1.json\\n1.3B-100B-HGRN2-hybrid-3-1.json\\n1.3B-100B-HGRN2-hybrid-6-1.json\\n1.3B-100B-HGRN2-pure.json\\n1.3B-100B-RetNet-hybrid-12-1.json\\n1.3B-100B-RetNet-hybrid-24-1.json\\n1.3B-100B-RetNet-hybrid-3-1.json\\n1.3B-100B-RetNet-hybrid-6-1.json\\n1.3B-100B-RetNet-pure.json\\n1.3B-100B-RetNet-pure_final.log\\n1.3B-100B-RetNet-pure_results.json\\n1.3b\\n340m\\nanalysis\\narc_easy\\nboolq\\nboolq_hellaswag_eval.log\\ndebug\\neval_all.log\\neval_h24.log\\neval_remaining.log\\nexp007\\nexp011\\nfigures\\ngdn_pure_validation.log\\nhellaswag\\nhgrn2_debug.log\\nhgrn2_debug_lambada.log\\nmultiseed\\npiqa\\nremaining.log\\nretnet_hybrid12_eval.log\\nretnet_pure.log\\nretnet_pure_final.log\\nretnet_pure_v2.log\\nretnet_redownload_eval.log\\nretnet_reeval.log\\nsummary_all_1.3b.csv\\ntransformer_1.3B_baseline.json\\ntransformer_1.3B_baseline_final.log\\nvalidation.log\\nvalidation2.log\\nwinogrande\\nwinogrande_piqa_eval.log\\nxstorycloze\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T13:09:56.701292+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/piqa/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/piqa/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-21T13:09:56.701409+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/hellaswag/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/hellaswag/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T13:09:56.701520+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/arc_easy/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/arc_easy/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T13:09:56.701669+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T13:09:56.701819+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T13:09:56.701962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1\\n1.3B-100B-GatedDeltaNet-hybrid-12-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-24-1\\n1.3B-100B-GatedDeltaNet-hybrid-24-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-3-1\\n1.3B-100B-GatedDeltaNet-hybrid-3-1_eval.log\\n1.3B-100B-GatedDeltaNet-hybrid-6-1\\n1.3B-100B-GatedDeltaNet-hybrid-6-1_eval.log\\n1.3B-100B-GatedDeltaNet-pure\\n1.3B-100B-GatedDeltaNet-pure_eval.log\\n1.3B-100B-HGRN2-hybrid-12-1\\n1.3B-100B-HGRN2-hybrid-12-1_eval.log\\n1.3B-100B-HGRN2-hybrid-24-1\\n1.3B-100B-HGRN2-hybrid-24-1_eval.log\\n1.3B-100B-HGRN2-hybrid-3-1\\n1.3B-100B-HGRN2-hybrid-3-1_eval.log\\n1.3B-100B-HGRN2-hybrid-6-1\\n1.3B-100B-HGRN2-hybrid-6-1_eval.log\\n1.3B-100B-HGRN2-pure\\n1.3B-100B-HGRN2-pure_eval.log\\n1.3B-100B-RetNet-hybrid-12-1\\n1.3B-100B-RetNet-hybrid-12-1_eval.log\\n1.3B-100B-RetNet-hybrid-24-1\\n1.3B-100B-RetNet-hybrid-24-1_eval.log\\n1.3B-100B-RetNet-hybrid-3-1\\n1.3B-100B-RetNet-hybrid-3-1_eval.log\\n1.3B-100B-RetNet-hybrid-6-1\\n1.3B-100B-RetNet-hybrid-6-1_eval.log\\n1.3B-100B-RetNet-pure\\n1.3B-100B-RetNet-pure_eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T13:09:56.702106+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T13:09:56.702229+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-pure.json\\nsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T13:09:56.702344+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/samples/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/samples/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T13:09:56.702460+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"piqa.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T13:09:56.702572+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -2 /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/samples/piqa.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "head -2 /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-pure/samples/piqa.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T13:09:56.702751+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"goal\\\": \\\"How do I ready a guinea pig cage for it's new occupants?\\\", \\\"sol1\\\": \\\"Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish.\\\", \\\"sol2\\\": \\\"Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.\\\", \\\"label\\\": 0}, \\\"target\\\": 0, \\\"arguments\\\": [[\\\"Question: How do I ready a guinea pig cage for it's new occupants?\\\\nAnswer:\\\", \\\" Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish.\\\"], [\\\"Question: How do I ready a guinea pig cage for it's new occupants?\\\\nAnswer:\\\", \\\" Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.\\\"]], \\\"resps\\\": [[[-93.5, false]], [[-99.5, false]]], \\\"filtered_resps\\\": [[-93.5, false], [-99.5, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"ab177c9b9ad0fd48149e873e3d4804752991338a90c2072f52b975f86a7ca78e\\\", \\\"prompt_hash\\\": \\\"14e2e90bdc64add59c76a88c2efb217a132b459947f9f2e3bbe8580b71beb533\\\", \\\"target_hash\\\": \\\"5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9\\\", \\\"acc\\\": 1.0, \\\"acc_norm\\\": 1.0}\\n{\\\"doc_id\\\": 1, \\\"doc\\\": {\\\"goal\\\": \\\"dresser\\\", \\\"sol1\\\": \\\"replace drawer with bobby pin \\\", \\\"sol2\\\": \\\"finish, woodgrain with  bobby pin \\\", \\\"label\\\": 1}, \\\"target\\\": 1, \\\"arguments\\\": [[\\\"Question: dresser\\\\nAnswer:\\\", \\\" replace drawer with bobby pin \\\"], [\\\"Question: dresser\\\\nA
+…[truncated 681 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T13:09:56.702923+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-21T13:09:56.703046+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/lm_eval_clean -type d -name \"*ambad*\" -maxdepth 1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/lm_eval_clean -type d -name \"*ambad*\" -maxdepth 1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T13:09:56.703165+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T13:09:56.703326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T13:09:56.703459+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T13:09:56.703609+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n1.3B-100B-GatedDeltaNet-hybrid-12-1_final.log\\n1.3B-100B-GatedDeltaNet-hybrid-24-1_results.json\\n1.3B-100B-GatedDeltaNet-hybrid-3-1_results.json\\n1.3B-100B-GatedDeltaNet-hybrid-6-1_results.json\\n1.3B-100B-GatedDeltaNet-pure.json\\n1.3B-100B-GatedDeltaNet-pure.log\\n1.3B-100B-GatedDeltaNet-pure_final.log\\n1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n1.3B-100B-GatedDeltaNet-pure_results.json\\n1.3B-100B-HGRN2-hybrid-12-1.json\\n1.3B-100B-HGRN2-hybrid-24-1.json\\n1.3B-100B-HGRN2-hybrid-3-1.json\\n1.3B-100B-HGRN2-hybrid-6-1.json\\n1.3B-100B-HGRN2-pure.json\\n1.3B-100B-RetNet-hybrid-12-1.json\\n1.3B-100B-RetNet-hybrid-24-1.json\\n1.3B-100B-RetNet-hybrid-3-1.json\\n1.3B-100B-RetNet-hybrid-6-1.json\\n1.3B-100B-RetNet-pure.json\\n1.3B-100B-RetNet-pure_final.log\\n1.3B-100B-RetNet-pure_results.json\\n1.3b\\n340m\\nanalysis\\narc_easy\\nboolq\\nboolq_hellaswag_eval.log\\ndebug\\neval_all.log\\neval_h24.log\\neval_remaining.log\\nexp007\\nexp011\\nfigures\\ngdn_pure_validation.log\\nhellaswag\\nhgrn2_debug.log\\nhgrn2_debug_lambada.log\\nmultiseed\\npiqa\\nremaining.log\\nretnet_hybrid12_eval.log\\nretnet_pure.log\\nretnet_pure_final.log\\nretnet_pure_v2.log\\nretnet_redownload_eval.log\\nretnet_reeval.log\\nsummary_all_1.3b.csv\\ntransformer_1.3B_baseline.json\\ntransformer_1.3B_baseline_final.log\\nvalidation.log\\nvalidation2.log\\nwinogrande\\nwinogrande_piqa_eval.log\\nxstorycloze\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.25}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T13:09:56.703809+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -100 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "head -100 /root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T13:09:56.704016+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"lambada_openai\\\": {\\n      \\\"name\\\": \\\"lambada_openai\\\",\\n      \\\"alias\\\": \\\"lambada_openai\\\",\\n      \\\"sample_len\\\": 5153,\\n      \\\"perplexity,none\\\": 8.259574763727228,\\n      \\\"perplexity_stderr,none\\\": 0.2658602088360047,\\n      \\\"acc,none\\\": 0.5429846691247817,\\n      \\\"acc_stderr,none\\\": 0.006940188097931681\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"name\\\": \\\"hellaswag\\\",\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"sample_len\\\": 10042,\\n      \\\"acc,none\\\": 0.46464847639912366,\\n      \\\"acc_stderr,none\\\": 0.0049772940247781615,\\n      \\\"acc_norm,none\\\": 0.6080462059350727,\\n      \\\"acc_norm_stderr,none\\\": 0.004871887422893928\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6077348066298343,\\n      \\\"acc_stderr,none\\\": 0.013722400462000807\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"name\\\": \\\"arc_easy\\\",\\n      \\\"alias\\\": \\\"arc_easy\\\",\\n      \\\"sample_len\\\": 2376,\\n      \\\"acc,none\\\": 0.7125420875420876,\\n      \\\"acc_stderr,none\\\": 0.009286682281593562,\\n      \\\"acc_norm,none\\\": 0.6418350168350169,\\n      \\\"acc_norm_stderr,none\\\": 0.009838331651452002\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.371160409556314,\\n      \\\"acc_stderr,none\\\": 0.01411797190114269,\\n      \\\"acc_norm,none\\\": 0.3924914675767918,\\n      \\\"acc_norm_stderr,none\\\": 0.014269634635670669\\n    },\\n    \\\"mmlu_abstract_algebra\\\": {\\n      \\\"name\\\": \\\"mmlu_abstract_algebra\\\",\\n      \\\"alias\\\": \\\"abstract_algebra\\\",\\n      \\\"sample_len\\\": 100,\\n     
+…[truncated 2104 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T13:09:56.704193+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/lm_eval_clean -name \"*lambada*\" -maxdepth 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/lm_eval_clean -name \"*lambada*\" -maxdepth 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T13:09:56.704352+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-GatedDeltaNet-pure_lambada_only.json\\n/root/entrainment_gated_ft/lm_eval_clean/340m/transformer_340M_baseline_lambada.log\\n/root/entrainment_gated_ft/lm_eval_clean/hgrn2_debug_lambada.log\\n/root/entrainment_gated_ft/lm_eval_clean/figures/fig1_lambada_vs_attn.pdf\\n/root/entrainment_gated_ft/lm_eval_clean/figures/fig1_lambada_vs_attn.png\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h24-1-logsamples/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h6-1-logsamples/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-pure/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h3-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h6-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h12-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/GDN-h24-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-pure/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h3-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h6-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h12-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/RetNet-h24-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-pure/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h3-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated_ft/lm_eval_clean/exp007/340m/HGRN2-h6-1/samples/lambada_openai.jsonl\\n/root/entrainment_gated
+…[truncated 1515 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T13:09:56.704526+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/1.3b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/1.3b/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-21T13:09:56.704674+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T13:09:56.704809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GDN-h24-1-logsamples\\nGDN-h3-1-logsamples\\nGDN-h6-1-logsamples\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T13:09:56.704933+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GDN-h12-1\\nGDN-pure\\nHGRN2-h12-1\\nHGRN2-h24-1\\nHGRN2-h3-1\\nHGRN2-h6-1\\nHGRN2-pure\\nRetNet-h12-1\\nRetNet-h24-1\\nRetNet-h3-1\\nRetNet-h6-1\\nRetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-21T13:09:56.705071+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure/samples/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure/samples/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-21T13:09:56.705190+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/samples/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/1.3b/GDN-h3-1-logsamples/samples/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T13:09:56.705306+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"lambada_openai.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T13:09:56.705420+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"lambada_openai.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-21T13:09:56.705568+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure/samples/lambada_openai.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/exp007/1.3b/GDN-pure/samples/lambada_openai.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-21T13:09:56.705710+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "head -1 /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-pure/samples/hellaswag.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T13:09:56.705864+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"text\\\": \\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\n\\\\n\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\"\\\\n\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about signs\\\"}, \\\"target\\\": \\\" signs\\\", \\\"arguments\\\": [[\\\"In my palm is a clear stone, and inside it is a small ivory statuette. A guardian angel.\\\\n\\\\n\\\\\\\"Figured if you're going to be out at night getting hit by cars, you might as well have some backup.\\\\\\\"\\\\n\\\\nI look at him, feeling stunned. Like this is some sort of sign. But as I stare at Harlin, his mouth curved in a confident grin, I don't care about\\\", \\\" signs\\\"]], \\\"resps\\\": [[[-1.828125, false]]], \\\"filtered_resps\\\": [[-1.828125, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"perplexity\\\", \\\"acc\\\"], \\\"doc_hash\\\": \\\"d5d2ee0c7bb2325b1a3b782dd2f946222c370109812c56acc7da70b662a6a60c\\\", \\\"prompt_hash\\\": \\\"8d638394e95544a75ea75bfa8cedd5fb71d5e65dfac9758cad35a0d5fa6e296c\\\", \\\"target_hash\\\": \\\"697dfd086e17614160f34474ccf8681ad12ae5839865fc979ac177eb5bba0a48\\\", \\\"perplexity\\\": -1.828125, \\\"acc\\\": 0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T13:09:56.706036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": 0, \\\"doc\\\": {\\\"ind\\\": 24, \\\"activity_label\\\": \\\"Roof shingle removal\\\", \\\"ctx_a\\\": \\\"A man is sitting on a roof.\\\", \\\"ctx_b\\\": \\\"he\\\", \\\"ctx\\\": \\\"A man is sitting on a roof. he\\\", \\\"endings\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"source_id\\\": \\\"activitynet~v_-JhWjGDPHMY\\\", \\\"split\\\": \\\"val\\\", \\\"split_type\\\": \\\"indomain\\\", \\\"label\\\": \\\"3\\\", \\\"query\\\": \\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\"choices\\\": [\\\"is using wrap to wrap a pair of skis.\\\", \\\"is ripping level tiles off.\\\", \\\"is holding a rubik's cube.\\\", \\\"starts pulling up roofing on a roof.\\\"], \\\"gold\\\": 3}, \\\"target\\\": 3, \\\"arguments\\\": [[\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is using wrap to wrap a pair of skis.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is ripping level tiles off.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" is holding a rubik's cube.\\\"], [\\\"Roof shingle removal: A man is sitting on a roof. He\\\", \\\" starts pulling up roofing on a roof.\\\"]], \\\"resps\\\": [[[-43.25, false]], [[-30.0, false]], [[-25.0, false]], [[-34.75, false]]], \\\"filtered_resps\\\": [[-43.25, false], [-30.0, false], [-25.0, false], [-34.75, false]], \\\"filter\\\": \\\"none\\\", \\\"metrics\\\": [\\\"acc\\\", \\\"acc_norm\\\"], \\\"doc_hash\\\": \\\"5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1\\\", \\\"prompt_hash\\\": \\\"e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38\\\", \\\"target_hash\\\": \\\"4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce\\\", \\\"acc\\\": 0.0, \\\"acc_norm\\\": 0.0}\\n\", \"stderr\": \"\", \"return_code\": 0},
+…[truncated 62 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-21T13:09:56.706257+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat > /root/entrainment_gated_ft/bootstrap_ci_alpha.py << 'PYEOF'\nimport numpy as np\nimport json\nfrom pathlib import Path\n\nnp.random.seed(42)\nN_BOOTSTRAP = 10000\nBASE = Path(\"/root/entrainment_gated_ft/lm_eval_clean\")\n\nARCHS = [\"GatedDeltaNet\", \"RetNet\", \"HGRN2\"]\nRATIOS = [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\n\nBENCHMARKS = {\n    \"PIQA\": {\"dir\": \"piqa\", \"file\": \"piqa.jsonl\", \"metric\": \"acc\"},\n    \"HellaSwag\": {\"dir\": \"hellaswag\", \"file\": \"hellaswag.jsonl\", \"metric\": \"acc_norm\"},\n    \"ARC-Easy\": {\"dir\": \"arc_easy\", \"file\": \"arc_easy.jsonl\", \"metric\": \"acc\"},\n    \"LAMBADA\": {\"dir\": None, \"file\": \"lambada_openai.jsonl\", \"metric\": \"acc\"},\n}\n\ndef get_sample_path(bench_key, arch, ratio):\n    info = BENCHMARKS[bench_key]\n    if bench_key != \"LAMBADA\":\n        config = \"pure\" if ratio == \"pure\" else f\"hybrid-{ratio}\"\n        return BASE / info[\"dir\"] / f\"1.3B-100B-{arch}-{config}\" / \"samples\" / info[\"file\"]\n    else:\n        short = {\"GatedDeltaNet\": \"GDN\", \"RetNet\": \"RetNet\", \"HGRN2\": \"HGRN2\"}[arch]\n        config = \"pure\" if ratio == \"pure\" else ratio\n        # GDN h3-1, h6-1, h24-1 are in 1.3b/ with -logsamples suffix\n        if arch == \"GatedDeltaNet\" and ratio in (\"h3-1\", \"h6-1\", \"h24-1\"):\n            return BASE / \"1.3b\" / f\"{short}-{config}-logsamples\" / \"samples\" / info[\"file\"]\n        else:\n            return BASE / \"exp007\" / \"1.3b\" / f\"{short}-{config}\" / \"samples\" / info[\"file\"]\n\ndef load_per_example(path, metric):\n    results = {}\n    with open(path) as f:\n        for line in f:\n            rec = json.loads(line)\n            doc_id = rec[\"doc_id\"]\n            results[doc_id] = int(rec[metric])\n    return results\n\ndef bootstrap_alpha(disagreements, n_boot=N_BOOTSTRAP):\n    n = len(disagreements)\n    alphas = np.zeros(n_boot)\n    for i in range(n_boot):\n        idx = np.random.randint(0, n, size=n)\n        alphas[i] = disagreements[idx].mean()\n    return {\n        \"alpha_hat\": float(disagreements.mean()),\n        \"ci_lower\": float(np.percentile(alphas, 2.5)),\n        \"ci_upper\": float(np.percentile(alphas, 97.5)),\n        \"ci_width\": float(np.percentile(alphas, 97.5) - np.percentile(alphas, 2.5)),\n        \"se\": float(alphas.std()),\n    }\n\nresults = {}\nfor bench_key in BENCHMARKS:\n    results[bench_key] = {}\n    for ratio in RATIOS:\n        arch_preds = {}\n        for arch in ARCHS:\n            path = get_sample_path(bench_key, arch, ratio)\n            if not path.exists():\n                print(f\"MISSING: {path}\")\n                continue\n            arch_preds[arch] = load_per_example(path, BENCHMARKS[bench_key][\"metric\"])\n\n        if len(arch_preds) < 3:\n            print(f\"Skipping {bench_key}/{ratio}: only {len(arch_preds)} archs\")\n            continue\n\n        # Align by doc_id\n        common_ids = sorted(set.intersection(*[set(v.keys()) for v in arch_preds.values()]))\n        n_samples = len(common_ids)\n\n        # Build disagreement array\n        preds = np.array([[arch_preds[a][did] for did in common_ids] for a in ARCHS])  # (3, N)\n        disagree = (preds.min(axis=0) != preds.max(axis=0)).astype(np.int32)\n\n        ci = bootstrap_alpha(disagree)\n        ci[\"n_samples\"] = n_samples\n        results[bench_key][ratio] = ci\n        print(f\"{bench_key:12s} {ratio:6s}: α={ci['alpha_hat']:.4f} [{ci['ci_lower']:.4f}, {ci['ci_upper']:.4f}] (n={n_samples})\")\n\noutput = {\n    \"analysis\": \"bootstrap_ci_alpha\",\n    \"n_bootstrap\": N_BOOTSTRAP,\n    \"seed\": 42,\n    \"results\": results,\n}\n\nout_path = \"/tmp/bootstrap_ci_alpha.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to {out_path}\")\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat > /root/entrainment_gated_ft/bootstrap_ci_alpha.py << 'PYEOF'\nimport numpy as np\nimport json\nfrom pathlib import Path\n\nnp.random.seed(42)\nN_BOOTSTRAP = 10000\nBASE = Path(\"/root/entrainment_gated_ft/lm_eval_clean\")\n\nARCHS = [\"GatedDeltaNet\", \"RetNet\", \"HGRN2\"]\nRATIOS = [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\n\nBENCHMARKS = {\n    \"PIQA\": {\"dir\": \"piqa\", \"file\": \"piqa.jsonl\", \"metric\": \"acc\"},\n    \"HellaSwag\": {\"dir\": \"hellaswag\", \"file\": \"hellaswag.jsonl\", \"metric\": \"acc_norm\"},\n    \"ARC-Easy\": {\"dir\": \"arc_easy\", \"file\": \"arc_easy.jsonl\", \"metric\": \"acc\"},\n    \"LAMBADA\": {\"dir\": None, \"file\": \"lambada_openai.jsonl\", \"metric\": \"acc\"},\n}\n\ndef get_sample_path(bench_key, arch, ratio):\n    info = BENCHMARKS[bench_key]\n    if bench_key != \"LAMBADA\":\n        config = \"pure\" if ratio == \"pure\" else f\"hybrid-{ratio}\"\n        return BASE / info[\"dir\"] / f\"1.3B-100B-{arch}-{config}\" / \"samples\" / info[\"file\"]\n    else:\n        short = {\"GatedDeltaNet\": \"GDN\", \"RetNet\": \"RetNet\", \"HGRN2\": \"HGRN2\"}[arch]\n        config = \"pure\" if ratio == \"pure\" else ratio\n        # GDN h3-1, h6-1, h24-1 are in 1.3b/ with -logsamples suffix\n        if arch == \"GatedDeltaNet\" and ratio in (\"h3-1\", \"h6-1\", \"h24-1\"):\n            return BASE / \"1.3b\" / f\"{short}-{config}-logsamples\" / \"samples\" / info[\"file\"]\n        else:\n            return BASE / \"exp007\" / \"1.3b\" / f\"{short}-{config}\" / \"samples\" / info[\"file\"]\n\ndef load_per_example(path, metric):\n    results = {}\n    with open(path) as f:\n        for line in f:\n            rec = json.loads(line)\n            doc_id = rec[\"doc_id\"]\n            results[doc_id] = int(rec[metric])\n    return results\n\ndef bootstrap_alpha(disagreements, n_boot=N_BOOTSTRAP):\n    n = len(disagreements)\n    alphas = np.zeros(n_boot)\n    for i in range(n_boot):\n        idx = np.random.randint(0, n, size=n)\n        alphas[i] = disagreements[idx].mean()\n    return {\n        \"alpha_hat\": float(disagreements.mean()),\n        \"ci_lower\": float(np.percentile(alphas, 2.5)),\n        \"ci_upper\": float(np.percentile(alphas, 97.5)),\n        \"ci_width\": float(np.percentile(alphas, 97.5) - np.percentile(alphas, 2.5)),\n        \"se\": float(alphas.std()),\n    }\n\nresults = {}\nfor bench_key in BENCHMARKS:\n    results[bench_key] = {}\n    for ratio in RATIOS:\n        arch_preds = {}\n        for arch in ARCHS:\n            path = get_sample_path(bench_key, arch, ratio)\n            if not path.exists():\n                print(f\"MISSING: {path}\")\n                continue\n            arch_preds[arch] = load_per_example(path, BENCHMARKS[bench_key][\"metric\"])\n\n        if len(arch_preds) < 3:\n            print(f\"Skipping {bench_key}/{ratio}: only {len(arch_preds)} archs\")\n            continue\n\n        # Align by doc_id\n        common_ids = sorted(set.intersection(*[set(v.keys()) for v in arch_preds.values()]))\n        n_samples = len(common_ids)\n\n        # Build disagreement array\n        preds = np.array([[arch_preds[a][did] for did in common_ids] for a in ARCHS])  # (3, N)\n        disagree = (preds.min(axis=0) != preds.max(axis=0)).astype(np.int32)\n\n        ci = bootstrap_alpha(disagree)\n        ci[\"n_samples\"] = n_samples\n        results[bench_key][ratio] = ci\n        print(f\"{bench_key:12s} {ratio:6s}: α={ci['alpha_hat']:.4f} [{ci['ci_lower']:.4f}, {ci['ci_upper']:.4f}] (n={n_samples})\")\n\noutput = {\n    \"analysis\": \"bootstrap_ci_alpha\",\n    \"n_bootstrap\": N_BOOTSTRAP,\n    \"seed\": 42,\n    \"results\": results,\n}\n\nout_path = \"/tmp/bootstrap_ci_alpha.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to {out_path}\")\nPYEOF\necho \"Script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T13:09:56.706444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-21T13:09:56.706571+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/entrainment_gated_ft/bootstrap_ci_alpha.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/entrainment_gated_ft/bootstrap_ci_alpha.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T13:09:56.706776+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PIQA         pure  : α=0.1431 [0.1273, 0.1594] (n=1838)\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-h24-1/samples/piqa.jsonl\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-h24-1/samples/piqa.jsonl\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-h24-1/samples/piqa.jsonl\\nSkipping PIQA/h24-1: only 0 archs\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-h12-1/samples/piqa.jsonl\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-h12-1/samples/piqa.jsonl\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-h12-1/samples/piqa.jsonl\\nSkipping PIQA/h12-1: only 0 archs\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-h6-1/samples/piqa.jsonl\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-h6-1/samples/piqa.jsonl\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-h6-1/samples/piqa.jsonl\\nSkipping PIQA/h6-1: only 0 archs\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-GatedDeltaNet-hybrid-h3-1/samples/piqa.jsonl\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-RetNet-hybrid-h3-1/samples/piqa.jsonl\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/piqa/1.3B-100B-HGRN2-hybrid-h3-1/samples/piqa.jsonl\\nSkipping PIQA/h3-1: only 0 archs\\nHellaSwag    pure  : α=0.1482 [0.1414, 0.1552] (n=10042)\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-GatedDeltaNet-hybrid-h24-1/samples/hellaswag.jsonl\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-RetNet-hybrid-h24-1/samples/hellaswag.jsonl\\nMISSING: /root/entrainment_gated_ft/lm_eval_clean/hellaswag/1.3B-100B-HGRN2-hybrid-h24-1/samples/hellaswag.jsonl\\nSkipping HellaSwag/h24-1: only 0 archs\\n
+…[truncated 3216 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-21T13:09:56.706995+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat > /root/entrainment_gated_ft/bootstrap_ci_alpha.py << 'PYEOF'\nimport numpy as np\nimport json\nfrom pathlib import Path\n\nnp.random.seed(42)\nN_BOOTSTRAP = 10000\nBASE = Path(\"/root/entrainment_gated_ft/lm_eval_clean\")\n\nARCHS = [\"GatedDeltaNet\", \"RetNet\", \"HGRN2\"]\nRATIOS = [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\n\nBENCHMARKS = {\n    \"PIQA\": {\"dir\": \"piqa\", \"file\": \"piqa.jsonl\", \"metric\": \"acc\"},\n    \"HellaSwag\": {\"dir\": \"hellaswag\", \"file\": \"hellaswag.jsonl\", \"metric\": \"acc_norm\"},\n    \"ARC-Easy\": {\"dir\": \"arc_easy\", \"file\": \"arc_easy.jsonl\", \"metric\": \"acc\"},\n    \"LAMBADA\": {\"dir\": None, \"file\": \"lambada_openai.jsonl\", \"metric\": \"acc\"},\n}\n\ndef ratio_to_dir_suffix(ratio):\n    \"\"\"h24-1 -> hybrid-24-1, pure -> pure\"\"\"\n    if ratio == \"pure\":\n        return \"pure\"\n    return \"hybrid-\" + ratio[1:]  # strip leading 'h'\n\ndef get_sample_path(bench_key, arch, ratio):\n    info = BENCHMARKS[bench_key]\n    if bench_key != \"LAMBADA\":\n        config = ratio_to_dir_suffix(ratio)\n        return BASE / info[\"dir\"] / f\"1.3B-100B-{arch}-{config}\" / \"samples\" / info[\"file\"]\n    else:\n        short = {\"GatedDeltaNet\": \"GDN\", \"RetNet\": \"RetNet\", \"HGRN2\": \"HGRN2\"}[arch]\n        config = \"pure\" if ratio == \"pure\" else ratio\n        if arch == \"GatedDeltaNet\" and ratio in (\"h3-1\", \"h6-1\", \"h24-1\"):\n            return BASE / \"1.3b\" / f\"{short}-{config}-logsamples\" / \"samples\" / info[\"file\"]\n        else:\n            return BASE / \"exp007\" / \"1.3b\" / f\"{short}-{config}\" / \"samples\" / info[\"file\"]\n\ndef load_per_example(path, metric):\n    results = {}\n    with open(path) as f:\n        for line in f:\n            rec = json.loads(line)\n            doc_id = rec[\"doc_id\"]\n            results[doc_id] = int(rec[metric])\n    return results\n\ndef bootstrap_alpha(disagreements, n_boot=N_BOOTSTRAP):\n    n = len(disagreements)\n    alphas = np.zeros(n_boot)\n    for i in range(n_boot):\n        idx = np.random.randint(0, n, size=n)\n        alphas[i] = disagreements[idx].mean()\n    return {\n        \"alpha_hat\": float(disagreements.mean()),\n        \"ci_lower\": float(np.percentile(alphas, 2.5)),\n        \"ci_upper\": float(np.percentile(alphas, 97.5)),\n        \"ci_width\": float(np.percentile(alphas, 97.5) - np.percentile(alphas, 2.5)),\n        \"se\": float(alphas.std()),\n    }\n\nresults = {}\nfor bench_key in BENCHMARKS:\n    results[bench_key] = {}\n    for ratio in RATIOS:\n        arch_preds = {}\n        for arch in ARCHS:\n            path = get_sample_path(bench_key, arch, ratio)\n            if not path.exists():\n                print(f\"MISSING: {path}\")\n                continue\n            arch_preds[arch] = load_per_example(path, BENCHMARKS[bench_key][\"metric\"])\n\n        if len(arch_preds) < 3:\n            print(f\"Skipping {bench_key}/{ratio}: only {len(arch_preds)} archs\")\n            continue\n\n        common_ids = sorted(set.intersection(*[set(v.keys()) for v in arch_preds.values()]))\n        n_samples = len(common_ids)\n\n        preds = np.array([[arch_preds[a][did] for did in common_ids] for a in ARCHS])\n        disagree = (preds.min(axis=0) != preds.max(axis=0)).astype(np.int32)\n\n        ci = bootstrap_alpha(disagree)\n        ci[\"n_samples\"] = n_samples\n        results[bench_key][ratio] = ci\n        print(f\"{bench_key:12s} {ratio:6s}: α={ci['alpha_hat']:.4f} [{ci['ci_lower']:.4f}, {ci['ci_upper']:.4f}] (n={n_samples})\")\n\noutput = {\n    \"analysis\": \"bootstrap_ci_alpha\",\n    \"n_bootstrap\": N_BOOTSTRAP,\n    \"seed\": 42,\n    \"results\": results,\n}\n\nout_path = \"/tmp/bootstrap_ci_alpha.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to {out_path}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/entrainment_gated_ft/bootstrap_ci_alpha.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat > /root/entrainment_gated_ft/bootstrap_ci_alpha.py << 'PYEOF'\nimport numpy as np\nimport json\nfrom pathlib import Path\n\nnp.random.seed(42)\nN_BOOTSTRAP = 10000\nBASE = Path(\"/root/entrainment_gated_ft/lm_eval_clean\")\n\nARCHS = [\"GatedDeltaNet\", \"RetNet\", \"HGRN2\"]\nRATIOS = [\"pure\", \"h24-1\", \"h12-1\", \"h6-1\", \"h3-1\"]\n\nBENCHMARKS = {\n    \"PIQA\": {\"dir\": \"piqa\", \"file\": \"piqa.jsonl\", \"metric\": \"acc\"},\n    \"HellaSwag\": {\"dir\": \"hellaswag\", \"file\": \"hellaswag.jsonl\", \"metric\": \"acc_norm\"},\n    \"ARC-Easy\": {\"dir\": \"arc_easy\", \"file\": \"arc_easy.jsonl\", \"metric\": \"acc\"},\n    \"LAMBADA\": {\"dir\": None, \"file\": \"lambada_openai.jsonl\", \"metric\": \"acc\"},\n}\n\ndef ratio_to_dir_suffix(ratio):\n    \"\"\"h24-1 -> hybrid-24-1, pure -> pure\"\"\"\n    if ratio == \"pure\":\n        return \"pure\"\n    return \"hybrid-\" + ratio[1:]  # strip leading 'h'\n\ndef get_sample_path(bench_key, arch, ratio):\n    info = BENCHMARKS[bench_key]\n    if bench_key != \"LAMBADA\":\n        config = ratio_to_dir_suffix(ratio)\n        return BASE / info[\"dir\"] / f\"1.3B-100B-{arch}-{config}\" / \"samples\" / info[\"file\"]\n    else:\n        short = {\"GatedDeltaNet\": \"GDN\", \"RetNet\": \"RetNet\", \"HGRN2\": \"HGRN2\"}[arch]\n        config = \"pure\" if ratio == \"pure\" else ratio\n        if arch == \"GatedDeltaNet\" and ratio in (\"h3-1\", \"h6-1\", \"h24-1\"):\n            return BASE / \"1.3b\" / f\"{short}-{config}-logsamples\" / \"samples\" / info[\"file\"]\n        else:\n            return BASE / \"exp007\" / \"1.3b\" / f\"{short}-{config}\" / \"samples\" / info[\"file\"]\n\ndef load_per_example(path, metric):\n    results = {}\n    with open(path) as f:\n        for line in f:\n            rec = json.loads(line)\n            doc_id = rec[\"doc_id\"]\n            results[doc_id] = int(rec[metric])\n    return results\n\ndef bootstrap_alpha(disagreements, n_boot=N_BOOTSTRAP):\n    n = len(disagreements)\n    alphas = np.zeros(n_boot)\n    for i in range(n_boot):\n        idx = np.random.randint(0, n, size=n)\n        alphas[i] = disagreements[idx].mean()\n    return {\n        \"alpha_hat\": float(disagreements.mean()),\n        \"ci_lower\": float(np.percentile(alphas, 2.5)),\n        \"ci_upper\": float(np.percentile(alphas, 97.5)),\n        \"ci_width\": float(np.percentile(alphas, 97.5) - np.percentile(alphas, 2.5)),\n        \"se\": float(alphas.std()),\n    }\n\nresults = {}\nfor bench_key in BENCHMARKS:\n    results[bench_key] = {}\n    for ratio in RATIOS:\n        arch_preds = {}\n        for arch in ARCHS:\n            path = get_sample_path(bench_key, arch, ratio)\n            if not path.exists():\n                print(f\"MISSING: {path}\")\n                continue\n            arch_preds[arch] = load_per_example(path, BENCHMARKS[bench_key][\"metric\"])\n\n        if len(arch_preds) < 3:\n            print(f\"Skipping {bench_key}/{ratio}: only {len(arch_preds)} archs\")\n            continue\n\n        common_ids = sorted(set.intersection(*[set(v.keys()) for v in arch_preds.values()]))\n        n_samples = len(common_ids)\n\n        preds = np.array([[arch_preds[a][did] for did in common_ids] for a in ARCHS])\n        disagree = (preds.min(axis=0) != preds.max(axis=0)).astype(np.int32)\n\n        ci = bootstrap_alpha(disagree)\n        ci[\"n_samples\"] = n_samples\n        results[bench_key][ratio] = ci\n        print(f\"{bench_key:12s} {ratio:6s}: α={ci['alpha_hat']:.4f} [{ci['ci_lower']:.4f}, {ci['ci_upper']:.4f}] (n={n_samples})\")\n\noutput = {\n    \"analysis\": \"bootstrap_ci_alpha\",\n    \"n_bootstrap\": N_BOOTSTRAP,\n    \"seed\": 42,\n    \"results\": results,\n}\n\nout_path = \"/tmp/bootstrap_ci_alpha.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to {out_path}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/entrainment_gated_ft/bootstrap_ci_alpha.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T13:09:56.707202+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PIQA         pure  : α=0.1431 [0.1273, 0.1594] (n=1838)\\nPIQA         h24-1 : α=0.1376 [0.1219, 0.1540] (n=1838)\\nPIQA         h12-1 : α=0.1322 [0.1170, 0.1474] (n=1838)\\nPIQA         h6-1  : α=0.1431 [0.1273, 0.1589] (n=1838)\\nPIQA         h3-1  : α=0.1398 [0.1240, 0.1551] (n=1838)\\nHellaSwag    pure  : α=0.1482 [0.1411, 0.1550] (n=10042)\\nHellaSwag    h24-1 : α=0.1505 [0.1437, 0.1573] (n=10042)\\nHellaSwag    h12-1 : α=0.1482 [0.1413, 0.1552] (n=10042)\\nHellaSwag    h6-1  : α=0.1463 [0.1394, 0.1531] (n=10042)\\nHellaSwag    h3-1  : α=0.1505 [0.1435, 0.1575] (n=10042)\\nARC-Easy     pure  : α=0.2045 [0.1886, 0.2205] (n=2376)\\nARC-Easy     h24-1 : α=0.2264 [0.2096, 0.2428] (n=2376)\\nARC-Easy     h12-1 : α=0.2231 [0.2066, 0.2399] (n=2376)\\nARC-Easy     h6-1  : α=0.2012 [0.1852, 0.2172] (n=2376)\\nARC-Easy     h3-1  : α=0.2100 [0.1936, 0.2264] (n=2376)\\nLAMBADA      pure  : α=0.3066 [0.2938, 0.3194] (n=5153)\\nLAMBADA      h24-1 : α=0.3000 [0.2876, 0.3126] (n=5153)\\nLAMBADA      h12-1 : α=0.3159 [0.3035, 0.3287] (n=5153)\\nLAMBADA      h6-1  : α=0.2936 [0.2810, 0.3062] (n=5153)\\nLAMBADA      h3-1  : α=0.2959 [0.2835, 0.3084] (n=5153)\\n\\nSaved to /tmp/bootstrap_ci_alpha.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 19.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-21T13:09:56.707364+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /tmp/bootstrap_ci_alpha.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /tmp/bootstrap_ci_alpha.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T13:09:56.707593+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"bootstrap_ci_alpha\\\",\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"seed\\\": 42,\\n  \\\"results\\\": {\\n    \\\"PIQA\\\": {\\n      \\\"pure\\\": {\\n        \\\"alpha_hat\\\": 0.14309031556039173,\\n        \\\"ci_lower\\\": 0.12731229597388466,\\n        \\\"ci_upper\\\": 0.15941240478781285,\\n        \\\"ci_width\\\": 0.03210010881392819,\\n        \\\"se\\\": 0.008172885407242578,\\n        \\\"n_samples\\\": 1838\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"alpha_hat\\\": 0.13764961915125137,\\n        \\\"ci_lower\\\": 0.12187159956474429,\\n        \\\"ci_upper\\\": 0.15397170837867247,\\n        \\\"ci_width\\\": 0.03210010881392818,\\n        \\\"se\\\": 0.008049918755941087,\\n        \\\"n_samples\\\": 1838\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"alpha_hat\\\": 0.132208922742111,\\n        \\\"ci_lower\\\": 0.11697497279651796,\\n        \\\"ci_upper\\\": 0.14744287268770404,\\n        \\\"ci_width\\\": 0.030467899891186076,\\n        \\\"se\\\": 0.007920239711124856,\\n        \\\"n_samples\\\": 1838\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"alpha_hat\\\": 0.14309031556039173,\\n        \\\"ci_lower\\\": 0.12731229597388466,\\n        \\\"ci_upper\\\": 0.1588683351468988,\\n        \\\"ci_width\\\": 0.03155603917301414,\\n        \\\"se\\\": 0.008112638902848992,\\n        \\\"n_samples\\\": 1838\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"alpha_hat\\\": 0.1398258977149075,\\n        \\\"ci_lower\\\": 0.12404787812840043,\\n        \\\"ci_upper\\\": 0.15505984766050054,\\n        \\\"ci_width\\\": 0.031011969532100114,\\n        \\\"se\\\": 0.008016795777695875,\\n        \\\"n_samples\\\": 1838\\n      }\\n    },\\n    \\\"HellaSwag\\\": {\\n      \\\"pure\\\": {\\n        \\\"alpha_hat\\\": 0.14817765385381398,\\n        \\\"ci_lower\\\": 0.1411073491336387,\\n        \\\"ci_upper\\\": 0.15504879506074487,\\n        \\\"ci_width\\\": 0.0139414
+…[truncated 4636 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-21T13:09:56.707849+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data",
+  "description": "Create paper_data directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data",
+    "description": "Create paper_data directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T13:09:56.707987+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-21T13:09:56.708163+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/bootstrap_ci_alpha.json",
+  "content": "{\n  \"analysis\": \"bootstrap_ci_alpha\",\n  \"n_bootstrap\": 10000,\n  \"seed\": 42,\n  \"results\": {\n    \"PIQA\": {\n      \"pure\": {\n        \"alpha_hat\": 0.14309031556039173,\n        \"ci_lower\": 0.12731229597388466,\n        \"ci_upper\": 0.15941240478781285,\n        \"ci_width\": 0.03210010881392819,\n        \"se\": 0.008172885407242578,\n        \"n_samples\": 1838\n      },\n      \"h24-1\": {\n        \"alpha_hat\": 0.13764961915125137,\n        \"ci_lower\": 0.12187159956474429,\n        \"ci_upper\": 0.15397170837867247,\n        \"ci_width\": 0.03210010881392818,\n        \"se\": 0.008049918755941087,\n        \"n_samples\": 1838\n      },\n      \"h12-1\": {\n        \"alpha_hat\": 0.132208922742111,\n        \"ci_lower\": 0.11697497279651796,\n        \"ci_upper\": 0.14744287268770404,\n        \"ci_width\": 0.030467899891186076,\n        \"se\": 0.007920239711124856,\n        \"n_samples\": 1838\n      },\n      \"h6-1\": {\n        \"alpha_hat\": 0.14309031556039173,\n        \"ci_lower\": 0.12731229597388466,\n        \"ci_upper\": 0.1588683351468988,\n        \"ci_width\": 0.03155603917301414,\n        \"se\": 0.008112638902848992,\n        \"n_samples\": 1838\n      },\n      \"h3-1\": {\n        \"alpha_hat\": 0.1398258977149075,\n        \"ci_lower\": 0.12404787812840043,\n        \"ci_upper\": 0.15505984766050054,\n        \"ci_width\": 0.031011969532100114,\n        \"se\": 0.008016795777695875,\n        \"n_samples\": 1838\n      }\n    },\n    \"HellaSwag\": {\n      \"pure\": {\n        \"alpha_hat\": 0.14817765385381398,\n        \"ci_lower\": 0.1411073491336387,\n        \"ci_upper\": 0.15504879506074487,\n        \"ci_width\": 0.013941445927106166,\n        \"se\": 0.0035155620322709705,\n        \"n_samples\": 10042\n      },\n      \"h24-1\": {\n        \"alpha_hat\": 0.1504680342561243,\n        \"ci_lower\": 0.14369647480581557,\n        \"ci_upper\": 0.15733917546305518,\n        \"ci_width\": 0.013642700657239604,\n        \"se\": 0.0035294550019459876,\n        \"n_samples\": 10042\n      },\n      \"h12-1\": {\n        \"alpha_hat\": 0.14817765385381398,\n        \"ci_lower\": 0.1413065126468831,\n        \"ci_upper\": 0.15524795857398924,\n        \"ci_width\": 0.013941445927106139,\n        \"se\": 0.0035857936275768064,\n        \"n_samples\": 10042\n      },\n      \"h6-1\": {\n        \"alpha_hat\": 0.14628560047799244,\n        \"ci_lower\": 0.13941445927106155,\n        \"ci_upper\": 0.15305715992830113,\n        \"ci_width\": 0.013642700657239576,\n        \"se\": 0.003496200573737634,\n        \"n_samples\": 10042\n      },\n      \"h3-1\": {\n        \"alpha_hat\": 0.1504680342561243,\n        \"ci_lower\": 0.1434973112925712,\n        \"ci_upper\": 0.15753833897629954,\n        \"ci_width\": 0.014041027683728335,\n        \"se\": 0.0035921759900161823,\n        \"n_samples\": 10042\n      }\n    },\n    \"ARC-Easy\": {\n      \"pure\": {\n        \"alpha_hat\": 0.20454545454545456,\n        \"ci_lower\": 0.18855218855218855,\n        \"ci_upper\": 0.22053872053872053,\n        \"ci_width\": 0.03198653198653198,\n        \"se\": 0.008186709612935104,\n        \"n_samples\": 2376\n      },\n      \"h24-1\": {\n        \"alpha_hat\": 0.22643097643097643,\n        \"ci_lower\": 0.20959595959595959,\n        \"ci_upper\": 0.24284511784511784,\n        \"ci_width\": 0.03324915824915825,\n        \"se\": 0.008564141950153396,\n        \"n_samples\": 2376\n      },\n      \"h12-1\": {\n        \"alpha_hat\": 0.22306397306397308,\n        \"ci_lower\": 0.20664983164983164,\n        \"ci_upper\": 0.2398989898989899,\n        \"ci_width\": 0.03324915824915825,\n        \"se\": 0.008588704265328498,\n        \"n_samples\": 2376\n      },\n      \"h6-1\": {\n        \"alpha_hat\": 0.20117845117845118,\n        \"ci_lower\": 0.18518518518518517,\n        \"ci_upper\": 0.21717171717171718,\n        \"ci_width\": 0.03198653198653201,\n        \"se\": 0.008207109556046359,\n        \"n_samples\": 2376\n      },\n      \"h3-1\": {\n        \"alpha_hat\": 0.21001683501683502,\n        \"ci_lower\": 0.1936026936026936,\n        \"ci_upper\": 0.22643097643097643,\n        \"ci_width\": 0.03282828282828282,\n        \"se\": 0.008315706005377623,\n        \"n_samples\": 2376\n      }\n    },\n    \"LAMBADA\": {\n      \"pure\": {\n        \"alpha_hat\": 0.3066175043663885,\n        \"ci_lower\": 0.2938094313991849,\n        \"ci_upper\": 0.31942557733359206,\n        \"ci_width\": 0.025616145934407142,\n        \"se\": 0.006532285037139028,\n        \"n_samples\": 5153\n      },\n      \"h24-1\": {\n        \"alpha_hat\": 0.3000194061711624,\n        \"ci_lower\": 0.28759945662720743,\n        \"ci_upper\": 0.3126334174267417,\n        \"ci_width\": 0.025033960799534294,\n        \"se\": 0.006386718205984234,\n        \"n_samples\": 5153\n      },\n      \"h12-1\": {\n        \"alpha_hat\": 0.31593246652435475,\n        \"ci_lower\": 0.30351251698039977,\n        \"ci_upper\": 0.3287405394915583,\n        \"ci_width\": 0.02522802251115852,\n        \"se\": 0.006414843593555658,\n        \"n_samples\": 5153\n      },\n      \"h6-1\": {\n        \"alpha_hat\": 0.29361536968756063,\n        \"ci_lower\": 0.2810013584319814,\n        \"ci_upper\": 0.3062293809431399,\n        \"ci_width\": 0.02522802251115852,\n        \"se\": 0.006386148605701104,\n        \"n_samples\": 5153\n      },\n      \"h3-1\": {\n        \"alpha_hat\": 0.2959441102270522,\n        \"ci_lower\": 0.2835193091403066,\n        \"ci_upper\": 0.30836891131379773,\n        \"ci_width\": 0.024849602173491137,\n        \"se\": 0.006342229828327172,\n        \"n_samples\": 5153\n      }\n    }\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/bootstrap_ci_alpha.json",
+    "content": "{\n  \"analysis\": \"bootstrap_ci_alpha\",\n  \"n_bootstrap\": 10000,\n  \"seed\": 42,\n  \"results\": {\n    \"PIQA\": {\n      \"pure\": {\n        \"alpha_hat\": 0.14309031556039173,\n        \"ci_lower\": 0.12731229597388466,\n        \"ci_upper\": 0.15941240478781285,\n        \"ci_width\": 0.03210010881392819,\n        \"se\": 0.008172885407242578,\n        \"n_samples\": 1838\n      },\n      \"h24-1\": {\n        \"alpha_hat\": 0.13764961915125137,\n        \"ci_lower\": 0.12187159956474429,\n        \"ci_upper\": 0.15397170837867247,\n        \"ci_width\": 0.03210010881392818,\n        \"se\": 0.008049918755941087,\n        \"n_samples\": 1838\n      },\n      \"h12-1\": {\n        \"alpha_hat\": 0.132208922742111,\n        \"ci_lower\": 0.11697497279651796,\n        \"ci_upper\": 0.14744287268770404,\n        \"ci_width\": 0.030467899891186076,\n        \"se\": 0.007920239711124856,\n        \"n_samples\": 1838\n      },\n      \"h6-1\": {\n        \"alpha_hat\": 0.14309031556039173,\n        \"ci_lower\": 0.12731229597388466,\n        \"ci_upper\": 0.1588683351468988,\n        \"ci_width\": 0.03155603917301414,\n        \"se\": 0.008112638902848992,\n        \"n_samples\": 1838\n      },\n      \"h3-1\": {\n        \"alpha_hat\": 0.1398258977149075,\n        \"ci_lower\": 0.12404787812840043,\n        \"ci_upper\": 0.15505984766050054,\n        \"ci_width\": 0.031011969532100114,\n        \"se\": 0.008016795777695875,\n        \"n_samples\": 1838\n      }\n    },\n    \"HellaSwag\": {\n      \"pure\": {\n        \"alpha_hat\": 0.14817765385381398,\n        \"ci_lower\": 0.1411073491336387,\n        \"ci_upper\": 0.15504879506074487,\n        \"ci_width\": 0.013941445927106166,\n        \"se\": 0.0035155620322709705,\n        \"n_samples\": 10042\n      },\n      \"h24-1\": {\n        \"alpha_hat\": 0.1504680342561243,\n        \"ci_lower\": 0.14369647480581557,\n        \"ci_upper\": 0.15733917546305518,\n        \"ci_width\": 0.013642700657239604,\n        \"se\": 0.0035294550019459876,\n        \"n_samples\": 10042\n      },\n      \"h12-1\": {\n        \"alpha_hat\": 0.14817765385381398,\n        \"ci_lower\": 0.1413065126468831,\n        \"ci_upper\": 0.15524795857398924,\n        \"ci_width\": 0.013941445927106139,\n        \"se\": 0.0035857936275768064,\n        \"n_samples\": 10042\n      },\n      \"h6-1\": {\n        \"alpha_hat\": 0.14628560047799244,\n        \"ci_lower\": 0.13941445927106155,\n        \"ci_upper\": 0.15305715992830113,\n        \"ci_width\": 0.013642700657239576,\n        \"se\": 0.003496200573737634,\n        \"n_samples\": 10042\n      },\n      \"h3-1\": {\n        \"alpha_hat\": 0.1504680342561243,\n        \"ci_lower\": 0.1434973112925712,\n        \"ci_upper\": 0.15753833897629954,\n        \"ci_width\": 0.014041027683728335,\n        \"se\": 0.0035921759900161823,\n        \"n_samples\": 10042\n      }\n    },\n    \"ARC-Easy\": {\n      \"pure\": {\n        \"alpha_hat\": 0.20454545454545456,\n        \"ci_lower\": 0.18855218855218855,\n        \"ci_upper\": 0.22053872053872053,\n        \"ci_width\": 0.03198653198653198,\n        \"se\": 0.008186709612935104,\n        \"n_samples\": 2376\n      },\n      \"h24-1\": {\n        \"alpha_hat\": 0.22643097643097643,\n        \"ci_lower\": 0.20959595959595959,\n        \"ci_upper\": 0.24284511784511784,\n        \"ci_width\": 0.03324915824915825,\n        \"se\": 0.008564141950153396,\n        \"n_samples\": 2376\n      },\n      \"h12-1\": {\n        \"alpha_hat\": 0.22306397306397308,\n        \"ci_lower\": 0.20664983164983164,\n        \"ci_upper\": 0.2398989898989899,\n        \"ci_width\": 0.03324915824915825,\n        \"se\": 0.008588704265328498,\n        \"n_samples\": 2376\n      },\n      \"h6-1\": {\n        \"alpha_hat\": 0.20117845117845118,\n        \"ci_lower\": 0.18518518518518517,\n        \"ci_upper\": 0.21717171717171718,\n        \"ci_width\": 0.03198653198653201,\n        \"se\": 0.008207109556046359,\n        \"n_samples\": 2376\n      },\n      \"h3-1\": {\n        \"alpha_hat\": 0.21001683501683502,\n        \"ci_lower\": 0.1936026936026936,\n        \"ci_upper\": 0.22643097643097643,\n        \"ci_width\": 0.03282828282828282,\n        \"se\": 0.008315706005377623,\n        \"n_samples\": 2376\n      }\n    },\n    \"LAMBADA\": {\n      \"pure\": {\n        \"alpha_hat\": 0.3066175043663885,\n        \"ci_lower\": 0.2938094313991849,\n        \"ci_upper\": 0.31942557733359206,\n        \"ci_width\": 0.025616145934407142,\n        \"se\": 0.006532285037139028,\n        \"n_samples\": 5153\n      },\n      \"h24-1\": {\n        \"alpha_hat\": 0.3000194061711624,\n        \"ci_lower\": 0.28759945662720743,\n        \"ci_upper\": 0.3126334174267417,\n        \"ci_width\": 0.025033960799534294,\n        \"se\": 0.006386718205984234,\n        \"n_samples\": 5153\n      },\n      \"h12-1\": {\n        \"alpha_hat\": 0.31593246652435475,\n        \"ci_lower\": 0.30351251698039977,\n        \"ci_upper\": 0.3287405394915583,\n        \"ci_width\": 0.02522802251115852,\n        \"se\": 0.006414843593555658,\n        \"n_samples\": 5153\n      },\n      \"h6-1\": {\n        \"alpha_hat\": 0.29361536968756063,\n        \"ci_lower\": 0.2810013584319814,\n        \"ci_upper\": 0.3062293809431399,\n        \"ci_width\": 0.02522802251115852,\n        \"se\": 0.006386148605701104,\n        \"n_samples\": 5153\n      },\n      \"h3-1\": {\n        \"alpha_hat\": 0.2959441102270522,\n        \"ci_lower\": 0.2835193091403066,\n        \"ci_upper\": 0.30836891131379773,\n        \"ci_width\": 0.024849602173491137,\n        \"se\": 0.006342229828327172,\n        \"n_samples\": 5153\n      }\n    }\n  }\n}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T13:09:56.708388+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/bootstrap_ci_alpha.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-21T13:09:56.708527+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "bootstrap_ci_alpha",
+  "type": "data",
+  "description": "Bootstrap 95% CI for ambiguity α across 4 benchmarks (PIQA, HellaSwag, ARC-Easy, LAMBADA) × 5 attention ratios (pure, h24-1, h12-1, h6-1, h3-1), 10K resamples, 1.3B models",
+  "project": "entrainment_gated_ft",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/bootstrap_ci_alpha.json",
+  "tags": "['bootstrap', 'alpha', 'ambiguity', 'confidence_interval', '1.3B']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "bootstrap_ci_alpha",
+    "type": "data",
+    "description": "Bootstrap 95% CI for ambiguity α across 4 benchmarks (PIQA, HellaSwag, ARC-Easy, LAMBADA) × 5 attention ratios (pure, h24-1, h12-1, h6-1, h3-1), 10K resamples, 1.3B models",
+    "project": "entrainment_gated_ft",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/paper_data/bootstrap_ci_alpha.json",
+    "tags": "['bootstrap', 'alpha', 'ambiguity', 'confidence_interval', '1.3B']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T13:09:56.708710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_31b294\", \"name\": \"bootstrap_ci_alpha\", \"type\": \"data\", \"description\": \"Bootstrap 95% CI for ambiguity α across 4 benchmarks (PIQA, HellaSwag, ARC-Easy, LAMBADA) × 5 attention ratios (pure, h24-1, h12-1, h6-1, h3-1), 10K resamples, 1.3B models\", \"path\": \"projects/entrainment_gated_ft/artifacts/_project/data/bootstrap_ci_alpha.json\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T13:09:48.424269+00:00\", \"tags\": [\"bootstrap\", \"alpha\", \"ambiguity\", \"confidence_interval\", \"1.3B\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-21T13:09:56.708889+00:00_
+
+完成。4 benchmarks × 5 ratios = 20 组 bootstrap 95% CI 全部计算完毕，结果摘要：
+
+| Benchmark | α 范围 | CI 宽度 |
+|-----------|--------|---------|
+| **PIQA** (n=1838) | 0.132–0.143 | ~0.031 |
+| **HellaSwag** (n=10042) | 0.146–0.150 | ~0.014 |
+| **ARC-Easy** (n=2376) | 0.201–0.226 | ~0.032 |
+| **LAMBADA** (n=5153) | 0.294–0.316 | ~0.025 |
+
+关键观察：α 在不同 attention ratio 之间变化很小（各 benchmark 内 CI 大量重叠），说明 ambiguity 主要是 benchmark-driven 而非 architecture-driven。LAMBADA 的 α 最高（~30%），HellaSwag 的 CI 最窄（得益于 10K 样本量）。
+
+Artifact 已注册：`art_20260521_31b294`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_bootstrap-ci-alpha_20260521T130458"
+}
+```
+
+</details>
+
+---

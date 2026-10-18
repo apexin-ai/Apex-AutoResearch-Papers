@@ -1,0 +1,81 @@
+# director / loop_10.md
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_10.md`
+- **Structured JSON:** [`d3c170d25c1f80191a25.json`](../../sessions/d3/d3c170d25c1f80191a25.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 10
+reason: max_wall_time
+updated: '2026-05-25T19:16:08+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目无远程 GPU 实验，所有工作在本地完成（论文写作+排版项目）
+- 论文正文严格 8 页限制（EMNLP 2026 via ARR），Limitations 不计入但必须在正文内
+- `\enlargethispage{2\baselineskip}` 在 discussion.tex 第 1 行是第 8 页填满的关键机制，不能删
+- 已进入审稿阶段（review_chat_id: `oc_ac7ab7270b6b5caecee04f89b11aab3e`），Research Director 不参与论文格式/投稿材料准备
+- Abstract 不超过 200 words（当前 158 words）
+
+### 2. 🖥️ 基础设施快照
+- 无远程服务器，纯本地论文项目
+- 论文源码：`/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/`
+- 编译：`latexmk -pdf main.tex`，需要 `texlive-fonts-extra`（已安装，inconsolata 包）
+- PDF 渲染检查：`pdftoppm -png -r 300 -f N -l N main.pdf /tmp/paper_pages/page`
+- 当前 PDF：26 页（8 页正文 + 3 页 references + 15 页 appendix）
+- 无活跃进程/cron/tmux
+
+### 3. 📊 当前状态
+本轮处理了两批任务：
+
+**A. 论文审计报告修复（已完成）：**
+- ✅ discussion.tex RQ2 叙事不一致："Count reduces recall uniformly" → "overall (monotonically in RE; non-monotonically in NER)"
+- ✅ main.tex:243 appendix 内部实验编号 `exp_maven_residualized_bcs` → "the residualized BCS analysis"
+- ✅ results.tex §4.4 IntraSub 首次使用处补内联定义
+- ✅ experimental_setup.tex §3.5 末尾添加总计算量 "~72 GPU-hours"
+
+**B. 引用验证报告修复（已完成）：**
+- ✅ `baan-2023-ecological` 作者修正：Baan/Plank/Fernandez → Orlikowski/Röttger/Cimiano/Hovy（严重错误）
+- ✅ `dlisc-2025` 作者修正：Li/Wu/Li/Li → Wen/Liang/Wu/Zhang/Liu（严重错误）
+- ✅ `gemini-2025` 标题补全
+- ✅ `sclar-sensitivity-2024` 副标题补全
+- ✅ `llama3-2024` 首作者更新为 Grattafiori（arXiv v3）
+
+**C. 排版修复（上轮完成，本轮延续验证）：**
+- ✅ 第 8 页空白消除（`\enlargethispage{2\baselineskip}`）
+- ✅ orphan/widow 修复：related_work 删 "also" + "perform well with"→"handle"；experimental_setup "experimental paradigms"→"experiments"；results "strengthening to"→"reaching"
+- ✅ ACL 模板对齐（acl.sty/acl_natbib.bst 与官方一致，inconsolata 已加）
+
+**Registry: 无 RUNNING/PREPARING 实验。无等待中的回调。**
+
+### 4. 📋 待办
+- 用户回复 checklist A1 vs Limitations 不匹配问题 → 按用户指示修改 checklist.tex 或 Limitations 正文
+- 用户决定是否修 Figure 6 红绿配色 → 如果要改，需派 Agent 重新生成图表（draw-paper-figure skill）
+- 用户/Review Director 发来新一轮审稿报告 → 按 review-report-action skill 处理（Holistic Pass + Per-Comment Action Matrix）
+- 用户说"重新审稿"/"进入审稿" → 调 `submit_paper_to_review`
+
+### 5. 🎯 战略上下文
+- 项目核心结论：schema complexity = count（Dimension 1）+ confusability（Dimension 2），BCS 独立解释 RE 27% 方差，NER 无 BCS 信号（错误分散），schema decomposition 因 routing failure 和 merge amplification 失败
+- 论文 framing 是 analysis paper（非 method paper），三个 RQ 结构清晰
+- 审计报告总结：0 critical，主要 warning 已修复。剩余未修的：page 8 拥挤（结构性，无解）、Figure 6 色盲配色（需用户决定）、checklist vs Limitations 不匹配（需用户决定）
+- 易踩的坑：改任何正文文本都要重新编译+渲染第 8 页验证没溢出。之前加 ~10 个单词就从 26 页溢出到 27 页过。float spacing 参数已压缩（textfloatsep/floatsep/dbltextfloatsep/dblfloatsep 全设为 10pt plus 2pt minus 4pt），不要再动
+- bib 文件曾有两个严重幽灵作者（AI 生成的假作者），已修复。如果后续有新引用，务必验证
+
+
+---

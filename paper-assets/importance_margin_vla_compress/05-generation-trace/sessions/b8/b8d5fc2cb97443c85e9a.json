@@ -44,5 +44,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/code-v8-gradient-isolation.md"
 }

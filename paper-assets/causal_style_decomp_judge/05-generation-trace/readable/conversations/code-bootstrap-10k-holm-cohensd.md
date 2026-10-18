@@ -1,0 +1,644 @@
+# code bootstrap 10k holm cohensd
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/chats/worker_code_bootstrap_10k_holm_cohensd_20260521T074616.jsonl`
+- **Structured JSON:** [`e8ddf3858d1130ff2c71.json`](../../sessions/e8/e8ddf3858d1130ff2c71.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+21 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T07:50:03.728436+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T07:50:03.728780+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T07:50:03.728966+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat /root/causal_style_decomp_judge/csd_pipeline/exp016_bradley_terry.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "cat /root/causal_style_decomp_judge/csd_pipeline/exp016_bradley_terry.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T07:50:03.729100+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl /root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "ls /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl /root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T07:50:03.729225+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "ls /root/causal_style_decomp_judge/data/scored_qwen32b*.jsonl /root/causal_style_decomp_judge/data/scored_*register*.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "ls /root/causal_style_decomp_judge/data/scored_qwen32b*.jsonl /root/causal_style_decomp_judge/data/scored_*register*.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T07:50:03.729500+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"exp-016: Bradley-Terry model for pairwise style preference.\\n\\nPair-level bootstrap (corrected): resamples pairs, not individual comparisons,\\nbecause within-pair trials (AB + BA) are correlated.\\n\\nRuns on both all-data and NLI-filtered (>=0.90) subsets.\\n\\nInput:  data/pairwise_results_32b.jsonl\\nOutput: console summary with BT parameters and bootstrap CI\\n\\\"\\\"\\\"\\n\\nimport json\\n\\nimport choix\\nimport numpy as np\\n\\nDATA_PATH = \\\"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\\\"\\nN_BOOT = 10000\\nFORMAL, CASUAL = 0, 1\\n\\n\\ndef load_data(path, nli_threshold=None):\\n    raw = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                raw.append(json.loads(line))\\n\\n    if nli_threshold is not None:\\n        raw = [d for d in raw if d.get(\\\"nli_cf\\\", 0) >= nli_threshold]\\n\\n    comparisons = []\\n    pair_groups = {}\\n    t1_formal, t1_total = 0, 0\\n    t2_formal, t2_total = 0, 0\\n\\n    for rec in raw:\\n        pair_id = rec[\\\"id\\\"]\\n        pcomps = []\\n\\n        t1 = rec.get(\\\"trial1_choice\\\")\\n        if t1 in (\\\"A\\\", \\\"B\\\"):\\n            t1_total += 1\\n            if t1 == \\\"A\\\":\\n                pcomps.append((FORMAL, CASUAL))\\n                t1_formal += 1\\n            else:\\n                pcomps.append((CASUAL, FORMAL))\\n\\n        t2 = rec.get(\\\"trial2_choice\\\")\\n        if t2 in (\\\"A\\\", \\\"B\\\"):\\n            t2_total += 1\\n            if t2 == \\\"A\\\":\\n                pcomps.append((CASUAL, FORMAL))\\n            else:\\n                pcomps.append((FORMAL, CASUAL))\\n                t2_formal += 1\\n\\n        comparisons.extend(pcomps)\\n        pair_groups[pair_id] = pcomps\\n\\n    total_formal = t1_formal + t2_formal\\n    total = t1_total + t2_total\\n    if t1_total:\\n        print(f\\\"  Trial 1: {t1_formal}/{t1_total} forma
+…[truncated 5360 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T07:50:03.729680+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T07:50:03.729810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/causal_style_decomp_judge/data/scored_gpt4o_register.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_formality.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\\n/root/causal_style_decomp_judge/data/scored_qwen32b_verbosity.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T07:50:03.729956+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -3 /root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "head -3 /root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-21T07:50:03.730082+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "head -2 /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "head -2 /root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T07:50:03.730347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"instruction\\\": \\\"Classify the sentences into three categories: statement, question, and command. Do you have time to meet?\\\\nGo for a walk.\\\\nHow many people are there?\\\", \\\"response\\\": \\\"Statement: Do you have time to meet?\\\\nQuestion: Go for a walk.\\\\nCommand: How many people are there?\\\", \\\"source\\\": \\\"GPTOut\\\", \\\"label\\\": 2, \\\"id\\\": \\\"mvp_0041\\\", \\\"original_text\\\": \\\"Statement: Do you have time to meet?\\\\nQuestion: Go for a walk.\\\\nCommand: How many people are there?\\\", \\\"counterfactual_text\\\": \\\"Statement: Go for a walk.  \\\\nQuestion: How many people are there?  \\\\nCommand: Do you have time to meet?\\\", \\\"double_rewrite_text\\\": \\\"Statement: Go for a walk.  \\\\nQuestion: How many people are there?  \\\\nCommand: Do you have time to meet?\\\", \\\"original_register\\\": \\\"conversational\\\", \\\"bertscore_cf\\\": 0.8512194752693176, \\\"bertscore_dr\\\": 0.8512194752693176, \\\"nli_cf\\\": 0.9774219989776611, \\\"nli_dr\\\": 0.9774219989776611, \\\"nli_mode_cf\\\": \\\"both\\\", \\\"passed_cf\\\": true, \\\"passed_dr\\\": true, \\\"score_original\\\": 3, \\\"score_counterfactual\\\": 3, \\\"score_double_rewrite\\\": 4}\\n{\\\"instruction\\\": \\\"Give an example of a metaphor that uses the following object Stars\\\", \\\"response\\\": \\\"Her smile was as radiant as the full moon on a clear summer night.\\\", \\\"source\\\": \\\"GPTInst\\\", \\\"label\\\": 1, \\\"id\\\": \\\"mvp_0084\\\", \\\"original_text\\\": \\\"Her smile was as radiant as the full moon on a clear summer night.\\\", \\\"counterfactual_text\\\": \\\"Her smile exhibited a brilliance comparable to that of the full moon on a cloudless summer night.\\\", \\\"double_rewrite_text\\\": \\\"Her smile was as bright as the full moon on a clear summer night.\\\", \\\"original_register\\\": \\\"conversational\\\", \\\"bertscore_cf\\\": 0.8810710906982422, \\\"bertscore_dr\\
+…[truncated 6864 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T07:50:03.730547+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"id\\\": \\\"mvp_0002\\\", \\\"instruction\\\": \\\"What happened on October 1, 2017 in Catalonia?\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.9359870553016663, \\\"bertscore_cf\\\": 0.9339630603790283, \\\"trial1_choice\\\": \\\"A\\\", \\\"trial1_prefers_formal\\\": true, \\\"trial2_choice\\\": \\\"B\\\", \\\"trial2_prefers_formal\\\": true, \\\"consistent\\\": true, \\\"formal_wins\\\": true}\\n{\\\"id\\\": \\\"mvp_0042\\\", \\\"instruction\\\": \\\"Suggest an appropriate title for the below passage A global pandemic forced the hospitality industry to re-evaluate its practices and adapt to a new world of health and safety protocols.\\\", \\\"original_formality\\\": \\\"formal\\\", \\\"nli_cf\\\": 0.0008847906137816608, \\\"bertscore_cf\\\": 0.6714367866516113, \\\"trial1_choice\\\": \\\"A\\\", \\\"trial1_prefers_formal\\\": true, \\\"trial2_choice\\\": \\\"B\\\", \\\"trial2_prefers_formal\\\": true, \\\"consistent\\\": true, \\\"formal_wins\\\": true}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T07:50:03.730784+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py",
+  "content": "\"\"\"GPT-4o formality BT 10k bootstrap + Holm-Bonferroni + Qwen register Cohen's d.\"\"\"\n\nimport json\nimport numpy as np\nimport choix\n\nDATA_PAIRWISE = \"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\"\nDATA_REGISTER = \"/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\"\nN_BOOT = 10000\nFORMAL, CASUAL = 0, 1\n\n\n# ── Task A: GPT-4o Formality BT Bootstrap 10k ──\n\ndef load_pairwise(path, nli_threshold=0.90):\n    raw = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                raw.append(json.loads(line))\n    raw = [d for d in raw if d.get(\"nli_cf\", 0) >= nli_threshold]\n\n    comparisons = []\n    pair_groups = {}\n\n    for rec in raw:\n        pair_id = rec[\"id\"]\n        pcomps = []\n\n        t1 = rec.get(\"trial1_choice\")\n        if t1 in (\"A\", \"B\"):\n            if t1 == \"A\":\n                pcomps.append((FORMAL, CASUAL))\n            else:\n                pcomps.append((CASUAL, FORMAL))\n\n        t2 = rec.get(\"trial2_choice\")\n        if t2 in (\"A\", \"B\"):\n            if t2 == \"A\":\n                pcomps.append((CASUAL, FORMAL))\n            else:\n                pcomps.append((FORMAL, CASUAL))\n\n        comparisons.extend(pcomps)\n        pair_groups[pair_id] = pcomps\n\n    return comparisons, pair_groups\n\n\ndef fit_bt(comparisons):\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\n    return params[FORMAL] - params[CASUAL]\n\n\ndef bootstrap_pair(pair_groups, n_boot=N_BOOT, seed=42):\n    rng = np.random.RandomState(seed)\n    pair_ids = list(pair_groups.keys())\n    n_pairs = len(pair_ids)\n    diffs = []\n    for _ in range(n_boot):\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\n        boot = []\n        for i in idx:\n            boot.extend(pair_groups[pair_ids[i]])\n        try:\n            p = choix.ilsr_pairwise(2, boot, alpha=0.01)\n            diffs.append(p[FORMAL] - p[CASUAL])\n        except Exception:\n            pass\n    return np.array(diffs)\n\n\ndef task_a():\n    comps, pairs = load_pairwise(DATA_PAIRWISE, nli_threshold=0.90)\n    diff = fit_bt(comps)\n    p_formal = 1.0 / (1.0 + np.exp(-diff))\n\n    bp = bootstrap_pair(pairs, n_boot=N_BOOT, seed=42)\n    bp_probs = 1.0 / (1.0 + np.exp(-bp))\n    bp_lo, bp_hi = np.percentile(bp_probs, [2.5, 97.5])\n\n    n_below = int(np.sum(bp_probs < 0.5))\n    raw_p = n_below / len(bp)\n    if raw_p == 0:\n        raw_p_bound = 1.0 / len(bp)\n        p_str = f\"p < {raw_p_bound:.4f}\"\n        raw_p_for_holm = raw_p_bound\n    else:\n        p_str = f\"p = {raw_p:.4f}\"\n        raw_p_for_holm = raw_p\n\n    print(\"## Bootstrap 10k\")\n    print(f\"GPT-4o formality: P(formal)={p_formal*100:.1f}%, \"\n          f\"CI [{bp_lo*100:.1f}%, {bp_hi*100:.1f}%], raw {p_str}\")\n    print(f\"  (N pairs={len(pairs)}, N comparisons={len(comps)}, \"\n          f\"N boot={len(bp)}, below_0.5={n_below})\")\n\n    return raw_p_for_holm\n\n\n# ── Holm-Bonferroni ──\n\ndef holm_bonferroni(labels, raw_ps, alpha=0.05):\n    m = len(raw_ps)\n    order = sorted(range(m), key=lambda i: raw_ps[i])\n    adjusted = [0.0] * m\n\n    cum_max = 0.0\n    for rank, orig_idx in enumerate(order):\n        adj = raw_ps[orig_idx] * (m - rank)\n        adj = min(adj, 1.0)\n        cum_max = max(cum_max, adj)\n        adjusted[orig_idx] = cum_max\n\n    print(\"\\n## Holm-Bonferroni (family=6)\")\n    print(f\"| {'Judge':<12} | {'Axis':<12} | {'Raw p':<12} | {'Adjusted p':<14} | {'Significant?':<12} |\")\n    print(f\"|{'-'*14}|{'-'*14}|{'-'*14}|{'-'*16}|{'-'*14}|\")\n    for i in range(m):\n        judge, axis = labels[i]\n        sig = \"Yes\" if adjusted[i] < alpha else \"No\"\n        print(f\"| {judge:<12} | {axis:<12} | {raw_ps[i]:<12.4f} | {adjusted[i]:<14.4f} | {sig:<12} |\")\n\n\n# ── Task B: Cohen's d ──\n\ndef task_b():\n    data = []\n    with open(DATA_REGISTER) as f:\n        for line in f:\n            if line.strip():\n                data.append(json.loads(line))\n\n    data = [d for d in data if d.get(\"nli_cf\", 0) >= 0.90]\n\n    academic_scores = []\n    conversational_scores = []\n\n    for d in data:\n        if d[\"original_register\"] == \"conversational\":\n            conversational_scores.append(d[\"score_original\"])\n            academic_scores.append(d[\"score_counterfactual\"])\n        else:\n            academic_scores.append(d[\"score_original\"])\n            conversational_scores.append(d[\"score_counterfactual\"])\n\n    acad = np.array(academic_scores, dtype=float)\n    conv = np.array(conversational_scores, dtype=float)\n\n    n_a, n_c = len(acad), len(conv)\n    mean_a, mean_c = np.mean(acad), np.mean(conv)\n    pooled_sd = np.sqrt(\n        ((n_a - 1) * np.var(acad, ddof=1) + (n_c - 1) * np.var(conv, ddof=1))\n        / (n_a + n_c - 2)\n    )\n    d = (mean_a - mean_c) / pooled_sd\n\n    print(f\"\\n## Cohen's d\")\n    print(f\"Qwen3-32B Register: d = {d:.3f}\")\n    print(f\"  (N={n_a}, mean_acad={mean_a:.4f}, mean_conv={mean_c:.4f}, \"\n          f\"ATE={mean_a - mean_c:.4f}, pooled_SD={pooled_sd:.4f})\")\n\n\ndef main():\n    gpt4o_formality_p = task_a()\n\n    labels = [\n        (\"GPT-4o\", \"formality\"),\n        (\"GPT-4o\", \"verbosity\"),\n        (\"GPT-4o\", \"register\"),\n        (\"Qwen3-32B\", \"formality\"),\n        (\"Qwen3-32B\", \"verbosity\"),\n        (\"Qwen3-32B\", \"register\"),\n    ]\n    raw_ps = [\n        gpt4o_formality_p,\n        0.0001,\n        0.04,\n        0.0001,\n        0.0001,\n        0.0763,\n    ]\n    holm_bonferroni(labels, raw_ps)\n\n    task_b()\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py",
+    "content": "\"\"\"GPT-4o formality BT 10k bootstrap + Holm-Bonferroni + Qwen register Cohen's d.\"\"\"\n\nimport json\nimport numpy as np\nimport choix\n\nDATA_PAIRWISE = \"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\"\nDATA_REGISTER = \"/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\"\nN_BOOT = 10000\nFORMAL, CASUAL = 0, 1\n\n\n# ── Task A: GPT-4o Formality BT Bootstrap 10k ──\n\ndef load_pairwise(path, nli_threshold=0.90):\n    raw = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                raw.append(json.loads(line))\n    raw = [d for d in raw if d.get(\"nli_cf\", 0) >= nli_threshold]\n\n    comparisons = []\n    pair_groups = {}\n\n    for rec in raw:\n        pair_id = rec[\"id\"]\n        pcomps = []\n\n        t1 = rec.get(\"trial1_choice\")\n        if t1 in (\"A\", \"B\"):\n            if t1 == \"A\":\n                pcomps.append((FORMAL, CASUAL))\n            else:\n                pcomps.append((CASUAL, FORMAL))\n\n        t2 = rec.get(\"trial2_choice\")\n        if t2 in (\"A\", \"B\"):\n            if t2 == \"A\":\n                pcomps.append((CASUAL, FORMAL))\n            else:\n                pcomps.append((FORMAL, CASUAL))\n\n        comparisons.extend(pcomps)\n        pair_groups[pair_id] = pcomps\n\n    return comparisons, pair_groups\n\n\ndef fit_bt(comparisons):\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\n    return params[FORMAL] - params[CASUAL]\n\n\ndef bootstrap_pair(pair_groups, n_boot=N_BOOT, seed=42):\n    rng = np.random.RandomState(seed)\n    pair_ids = list(pair_groups.keys())\n    n_pairs = len(pair_ids)\n    diffs = []\n    for _ in range(n_boot):\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\n        boot = []\n        for i in idx:\n            boot.extend(pair_groups[pair_ids[i]])\n        try:\n            p = choix.ilsr_pairwise(2, boot, alpha=0.01)\n            diffs.append(p[FORMAL] - p[CASUAL])\n        except Exception:\n            pass\n    return np.array(diffs)\n\n\ndef task_a():\n    comps, pairs = load_pairwise(DATA_PAIRWISE, nli_threshold=0.90)\n    diff = fit_bt(comps)\n    p_formal = 1.0 / (1.0 + np.exp(-diff))\n\n    bp = bootstrap_pair(pairs, n_boot=N_BOOT, seed=42)\n    bp_probs = 1.0 / (1.0 + np.exp(-bp))\n    bp_lo, bp_hi = np.percentile(bp_probs, [2.5, 97.5])\n\n    n_below = int(np.sum(bp_probs < 0.5))\n    raw_p = n_below / len(bp)\n    if raw_p == 0:\n        raw_p_bound = 1.0 / len(bp)\n        p_str = f\"p < {raw_p_bound:.4f}\"\n        raw_p_for_holm = raw_p_bound\n    else:\n        p_str = f\"p = {raw_p:.4f}\"\n        raw_p_for_holm = raw_p\n\n    print(\"## Bootstrap 10k\")\n    print(f\"GPT-4o formality: P(formal)={p_formal*100:.1f}%, \"\n          f\"CI [{bp_lo*100:.1f}%, {bp_hi*100:.1f}%], raw {p_str}\")\n    print(f\"  (N pairs={len(pairs)}, N comparisons={len(comps)}, \"\n          f\"N boot={len(bp)}, below_0.5={n_below})\")\n\n    return raw_p_for_holm\n\n\n# ── Holm-Bonferroni ──\n\ndef holm_bonferroni(labels, raw_ps, alpha=0.05):\n    m = len(raw_ps)\n    order = sorted(range(m), key=lambda i: raw_ps[i])\n    adjusted = [0.0] * m\n\n    cum_max = 0.0\n    for rank, orig_idx in enumerate(order):\n        adj = raw_ps[orig_idx] * (m - rank)\n        adj = min(adj, 1.0)\n        cum_max = max(cum_max, adj)\n        adjusted[orig_idx] = cum_max\n\n    print(\"\\n## Holm-Bonferroni (family=6)\")\n    print(f\"| {'Judge':<12} | {'Axis':<12} | {'Raw p':<12} | {'Adjusted p':<14} | {'Significant?':<12} |\")\n    print(f\"|{'-'*14}|{'-'*14}|{'-'*14}|{'-'*16}|{'-'*14}|\")\n    for i in range(m):\n        judge, axis = labels[i]\n        sig = \"Yes\" if adjusted[i] < alpha else \"No\"\n        print(f\"| {judge:<12} | {axis:<12} | {raw_ps[i]:<12.4f} | {adjusted[i]:<14.4f} | {sig:<12} |\")\n\n\n# ── Task B: Cohen's d ──\n\ndef task_b():\n    data = []\n    with open(DATA_REGISTER) as f:\n        for line in f:\n            if line.strip():\n                data.append(json.loads(line))\n\n    data = [d for d in data if d.get(\"nli_cf\", 0) >= 0.90]\n\n    academic_scores = []\n    conversational_scores = []\n\n    for d in data:\n        if d[\"original_register\"] == \"conversational\":\n            conversational_scores.append(d[\"score_original\"])\n            academic_scores.append(d[\"score_counterfactual\"])\n        else:\n            academic_scores.append(d[\"score_original\"])\n            conversational_scores.append(d[\"score_counterfactual\"])\n\n    acad = np.array(academic_scores, dtype=float)\n    conv = np.array(conversational_scores, dtype=float)\n\n    n_a, n_c = len(acad), len(conv)\n    mean_a, mean_c = np.mean(acad), np.mean(conv)\n    pooled_sd = np.sqrt(\n        ((n_a - 1) * np.var(acad, ddof=1) + (n_c - 1) * np.var(conv, ddof=1))\n        / (n_a + n_c - 2)\n    )\n    d = (mean_a - mean_c) / pooled_sd\n\n    print(f\"\\n## Cohen's d\")\n    print(f\"Qwen3-32B Register: d = {d:.3f}\")\n    print(f\"  (N={n_a}, mean_acad={mean_a:.4f}, mean_conv={mean_c:.4f}, \"\n          f\"ATE={mean_a - mean_c:.4f}, pooled_SD={pooled_sd:.4f})\")\n\n\ndef main():\n    gpt4o_formality_p = task_a()\n\n    labels = [\n        (\"GPT-4o\", \"formality\"),\n        (\"GPT-4o\", \"verbosity\"),\n        (\"GPT-4o\", \"register\"),\n        (\"Qwen3-32B\", \"formality\"),\n        (\"Qwen3-32B\", \"verbosity\"),\n        (\"Qwen3-32B\", \"register\"),\n    ]\n    raw_ps = [\n        gpt4o_formality_p,\n        0.0001,\n        0.04,\n        0.0001,\n        0.0001,\n        0.0763,\n    ]\n    holm_bonferroni(labels, raw_ps)\n\n    task_b()\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T07:50:03.731006+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T07:50:03.731172+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "cat > /root/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py << 'PYEOF'\n\"\"\"GPT-4o formality BT 10k bootstrap + Holm-Bonferroni + Qwen register Cohen's d.\"\"\"\n\nimport json\nimport numpy as np\nimport choix\n\nDATA_PAIRWISE = \"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\"\nDATA_REGISTER = \"/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\"\nN_BOOT = 10000\nFORMAL, CASUAL = 0, 1\n\n\ndef load_pairwise(path, nli_threshold=0.90):\n    raw = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                raw.append(json.loads(line))\n    raw = [d for d in raw if d.get(\"nli_cf\", 0) >= nli_threshold]\n\n    comparisons = []\n    pair_groups = {}\n\n    for rec in raw:\n        pair_id = rec[\"id\"]\n        pcomps = []\n\n        t1 = rec.get(\"trial1_choice\")\n        if t1 in (\"A\", \"B\"):\n            if t1 == \"A\":\n                pcomps.append((FORMAL, CASUAL))\n            else:\n                pcomps.append((CASUAL, FORMAL))\n\n        t2 = rec.get(\"trial2_choice\")\n        if t2 in (\"A\", \"B\"):\n            if t2 == \"A\":\n                pcomps.append((CASUAL, FORMAL))\n            else:\n                pcomps.append((FORMAL, CASUAL))\n\n        comparisons.extend(pcomps)\n        pair_groups[pair_id] = pcomps\n\n    return comparisons, pair_groups\n\n\ndef fit_bt(comparisons):\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\n    return params[FORMAL] - params[CASUAL]\n\n\ndef bootstrap_pair(pair_groups, n_boot=N_BOOT, seed=42):\n    rng = np.random.RandomState(seed)\n    pair_ids = list(pair_groups.keys())\n    n_pairs = len(pair_ids)\n    diffs = []\n    for _ in range(n_boot):\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\n        boot = []\n        for i in idx:\n            boot.extend(pair_groups[pair_ids[i]])\n        try:\n            p = choix.ilsr_pairwise(2, boot, alpha=0.01)\n            diffs.append(p[FORMAL] - p[CASUAL])\n        except Exception:\n            pass\n    return np.array(diffs)\n\n\ndef task_a():\n    comps, pairs = load_pairwise(DATA_PAIRWISE, nli_threshold=0.90)\n    diff = fit_bt(comps)\n    p_formal = 1.0 / (1.0 + np.exp(-diff))\n\n    bp = bootstrap_pair(pairs, n_boot=N_BOOT, seed=42)\n    bp_probs = 1.0 / (1.0 + np.exp(-bp))\n    bp_lo, bp_hi = np.percentile(bp_probs, [2.5, 97.5])\n\n    n_below = int(np.sum(bp_probs < 0.5))\n    raw_p = n_below / len(bp)\n    if raw_p == 0:\n        raw_p_bound = 1.0 / len(bp)\n        p_str = f\"p < {raw_p_bound:.4f}\"\n        raw_p_for_holm = raw_p_bound\n    else:\n        p_str = f\"p = {raw_p:.4f}\"\n        raw_p_for_holm = raw_p\n\n    print(\"## Bootstrap 10k\")\n    print(f\"GPT-4o formality: P(formal)={p_formal*100:.1f}%, \"\n          f\"CI [{bp_lo*100:.1f}%, {bp_hi*100:.1f}%], raw {p_str}\")\n    print(f\"  (N pairs={len(pairs)}, N comparisons={len(comps)}, \"\n          f\"N boot={len(bp)}, below_0.5={n_below})\")\n\n    return raw_p_for_holm\n\n\ndef holm_bonferroni(labels, raw_ps, alpha=0.05):\n    m = len(raw_ps)\n    order = sorted(range(m), key=lambda i: raw_ps[i])\n    adjusted = [0.0] * m\n\n    cum_max = 0.0\n    for rank, orig_idx in enumerate(order):\n        adj = raw_ps[orig_idx] * (m - rank)\n        adj = min(adj, 1.0)\n        cum_max = max(cum_max, adj)\n        adjusted[orig_idx] = cum_max\n\n    print(\"\\n## Holm-Bonferroni (family=6)\")\n    print(f\"| {'Judge':<12} | {'Axis':<12} | {'Raw p':<12} | {'Adjusted p':<14} | {'Significant?':<12} |\")\n    print(f\"|{'-'*14}|{'-'*14}|{'-'*14}|{'-'*16}|{'-'*14}|\")\n    for i in range(m):\n        judge, axis = labels[i]\n        sig = \"Yes\" if adjusted[i] < alpha else \"No\"\n        print(f\"| {judge:<12} | {axis:<12} | {raw_ps[i]:<12.4f} | {adjusted[i]:<14.4f} | {sig:<12} |\")\n\n\ndef task_b():\n    data = []\n    with open(DATA_REGISTER) as f:\n        for line in f:\n            if line.strip():\n                data.append(json.loads(line))\n\n    data = [d for d in data if d.get(\"nli_cf\", 0) >= 0.90]\n\n    academic_scores = []\n    conversational_scores = []\n\n    for d in data:\n        if d[\"original_register\"] == \"conversational\":\n            conversational_scores.append(d[\"score_original\"])\n            academic_scores.append(d[\"score_counterfactual\"])\n        else:\n            academic_scores.append(d[\"score_original\"])\n            conversational_scores.append(d[\"score_counterfactual\"])\n\n    acad = np.array(academic_scores, dtype=float)\n    conv = np.array(conversational_scores, dtype=float)\n\n    n_a, n_c = len(acad), len(conv)\n    mean_a, mean_c = np.mean(acad), np.mean(conv)\n    pooled_sd = np.sqrt(\n        ((n_a - 1) * np.var(acad, ddof=1) + (n_c - 1) * np.var(conv, ddof=1))\n        / (n_a + n_c - 2)\n    )\n    d = (mean_a - mean_c) / pooled_sd\n\n    print(f\"\\n## Cohen's d\")\n    print(f\"Qwen3-32B Register: d = {d:.3f}\")\n    print(f\"  (N={n_a}, mean_acad={mean_a:.4f}, mean_conv={mean_c:.4f}, \"\n          f\"ATE={mean_a - mean_c:.4f}, pooled_SD={pooled_sd:.4f})\")\n\n\ndef main():\n    gpt4o_formality_p = task_a()\n\n    labels = [\n        (\"GPT-4o\", \"formality\"),\n        (\"GPT-4o\", \"verbosity\"),\n        (\"GPT-4o\", \"register\"),\n        (\"Qwen3-32B\", \"formality\"),\n        (\"Qwen3-32B\", \"verbosity\"),\n        (\"Qwen3-32B\", \"register\"),\n    ]\n    raw_ps = [\n        gpt4o_formality_p,\n        0.0001,\n        0.04,\n        0.0001,\n        0.0001,\n        0.0763,\n    ]\n    holm_bonferroni(labels, raw_ps)\n\n    task_b()\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "cat > /root/causal_style_decomp_judge/csd_pipeline/bootstrap_10k_holm.py << 'PYEOF'\n\"\"\"GPT-4o formality BT 10k bootstrap + Holm-Bonferroni + Qwen register Cohen's d.\"\"\"\n\nimport json\nimport numpy as np\nimport choix\n\nDATA_PAIRWISE = \"/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl\"\nDATA_REGISTER = \"/root/causal_style_decomp_judge/data/scored_qwen32b_register.jsonl\"\nN_BOOT = 10000\nFORMAL, CASUAL = 0, 1\n\n\ndef load_pairwise(path, nli_threshold=0.90):\n    raw = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                raw.append(json.loads(line))\n    raw = [d for d in raw if d.get(\"nli_cf\", 0) >= nli_threshold]\n\n    comparisons = []\n    pair_groups = {}\n\n    for rec in raw:\n        pair_id = rec[\"id\"]\n        pcomps = []\n\n        t1 = rec.get(\"trial1_choice\")\n        if t1 in (\"A\", \"B\"):\n            if t1 == \"A\":\n                pcomps.append((FORMAL, CASUAL))\n            else:\n                pcomps.append((CASUAL, FORMAL))\n\n        t2 = rec.get(\"trial2_choice\")\n        if t2 in (\"A\", \"B\"):\n            if t2 == \"A\":\n                pcomps.append((CASUAL, FORMAL))\n            else:\n                pcomps.append((FORMAL, CASUAL))\n\n        comparisons.extend(pcomps)\n        pair_groups[pair_id] = pcomps\n\n    return comparisons, pair_groups\n\n\ndef fit_bt(comparisons):\n    params = choix.ilsr_pairwise(2, comparisons, alpha=0.01)\n    return params[FORMAL] - params[CASUAL]\n\n\ndef bootstrap_pair(pair_groups, n_boot=N_BOOT, seed=42):\n    rng = np.random.RandomState(seed)\n    pair_ids = list(pair_groups.keys())\n    n_pairs = len(pair_ids)\n    diffs = []\n    for _ in range(n_boot):\n        idx = rng.choice(n_pairs, size=n_pairs, replace=True)\n        boot = []\n        for i in idx:\n            boot.extend(pair_groups[pair_ids[i]])\n        try:\n            p = choix.ilsr_pairwise(2, boot, alpha=0.01)\n            diffs.append(p[FORMAL] - p[CASUAL])\n        except Exception:\n            pass\n    return np.array(diffs)\n\n\ndef task_a():\n    comps, pairs = load_pairwise(DATA_PAIRWISE, nli_threshold=0.90)\n    diff = fit_bt(comps)\n    p_formal = 1.0 / (1.0 + np.exp(-diff))\n\n    bp = bootstrap_pair(pairs, n_boot=N_BOOT, seed=42)\n    bp_probs = 1.0 / (1.0 + np.exp(-bp))\n    bp_lo, bp_hi = np.percentile(bp_probs, [2.5, 97.5])\n\n    n_below = int(np.sum(bp_probs < 0.5))\n    raw_p = n_below / len(bp)\n    if raw_p == 0:\n        raw_p_bound = 1.0 / len(bp)\n        p_str = f\"p < {raw_p_bound:.4f}\"\n        raw_p_for_holm = raw_p_bound\n    else:\n        p_str = f\"p = {raw_p:.4f}\"\n        raw_p_for_holm = raw_p\n\n    print(\"## Bootstrap 10k\")\n    print(f\"GPT-4o formality: P(formal)={p_formal*100:.1f}%, \"\n          f\"CI [{bp_lo*100:.1f}%, {bp_hi*100:.1f}%], raw {p_str}\")\n    print(f\"  (N pairs={len(pairs)}, N comparisons={len(comps)}, \"\n          f\"N boot={len(bp)}, below_0.5={n_below})\")\n\n    return raw_p_for_holm\n\n\ndef holm_bonferroni(labels, raw_ps, alpha=0.05):\n    m = len(raw_ps)\n    order = sorted(range(m), key=lambda i: raw_ps[i])\n    adjusted = [0.0] * m\n\n    cum_max = 0.0\n    for rank, orig_idx in enumerate(order):\n        adj = raw_ps[orig_idx] * (m - rank)\n        adj = min(adj, 1.0)\n        cum_max = max(cum_max, adj)\n        adjusted[orig_idx] = cum_max\n\n    print(\"\\n## Holm-Bonferroni (family=6)\")\n    print(f\"| {'Judge':<12} | {'Axis':<12} | {'Raw p':<12} | {'Adjusted p':<14} | {'Significant?':<12} |\")\n    print(f\"|{'-'*14}|{'-'*14}|{'-'*14}|{'-'*16}|{'-'*14}|\")\n    for i in range(m):\n        judge, axis = labels[i]\n        sig = \"Yes\" if adjusted[i] < alpha else \"No\"\n        print(f\"| {judge:<12} | {axis:<12} | {raw_ps[i]:<12.4f} | {adjusted[i]:<14.4f} | {sig:<12} |\")\n\n\ndef task_b():\n    data = []\n    with open(DATA_REGISTER) as f:\n        for line in f:\n            if line.strip():\n                data.append(json.loads(line))\n\n    data = [d for d in data if d.get(\"nli_cf\", 0) >= 0.90]\n\n    academic_scores = []\n    conversational_scores = []\n\n    for d in data:\n        if d[\"original_register\"] == \"conversational\":\n            conversational_scores.append(d[\"score_original\"])\n            academic_scores.append(d[\"score_counterfactual\"])\n        else:\n            academic_scores.append(d[\"score_original\"])\n            conversational_scores.append(d[\"score_counterfactual\"])\n\n    acad = np.array(academic_scores, dtype=float)\n    conv = np.array(conversational_scores, dtype=float)\n\n    n_a, n_c = len(acad), len(conv)\n    mean_a, mean_c = np.mean(acad), np.mean(conv)\n    pooled_sd = np.sqrt(\n        ((n_a - 1) * np.var(acad, ddof=1) + (n_c - 1) * np.var(conv, ddof=1))\n        / (n_a + n_c - 2)\n    )\n    d = (mean_a - mean_c) / pooled_sd\n\n    print(f\"\\n## Cohen's d\")\n    print(f\"Qwen3-32B Register: d = {d:.3f}\")\n    print(f\"  (N={n_a}, mean_acad={mean_a:.4f}, mean_conv={mean_c:.4f}, \"\n          f\"ATE={mean_a - mean_c:.4f}, pooled_SD={pooled_sd:.4f})\")\n\n\ndef main():\n    gpt4o_formality_p = task_a()\n\n    labels = [\n        (\"GPT-4o\", \"formality\"),\n        (\"GPT-4o\", \"verbosity\"),\n        (\"GPT-4o\", \"register\"),\n        (\"Qwen3-32B\", \"formality\"),\n        (\"Qwen3-32B\", \"verbosity\"),\n        (\"Qwen3-32B\", \"register\"),\n    ]\n    raw_ps = [\n        gpt4o_formality_p,\n        0.0001,\n        0.04,\n        0.0001,\n        0.0001,\n        0.0763,\n    ]\n    holm_bonferroni(labels, raw_ps)\n\n    task_b()\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T07:50:03.731373+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T07:50:03.731501+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python csd_pipeline/bootstrap_10k_holm.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python csd_pipeline/bootstrap_10k_holm.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T07:50:03.731636+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"## Bootstrap 10k\\nGPT-4o formality: P(formal)=63.0%, CI [55.7%, 70.3%], raw p = 0.0004\\n  (N pairs=88, N comparisons=173, N boot=10000, below_0.5=4)\\n\\n## Holm-Bonferroni (family=6)\\n| Judge        | Axis         | Raw p        | Adjusted p     | Significant? |\\n|--------------|--------------|--------------|----------------|--------------|\\n| GPT-4o       | formality    | 0.0004       | 0.0012         | Yes          |\\n| GPT-4o       | verbosity    | 0.0001       | 0.0006         | Yes          |\\n| GPT-4o       | register     | 0.0400       | 0.0800         | No           |\\n| Qwen3-32B    | formality    | 0.0001       | 0.0006         | Yes          |\\n| Qwen3-32B    | verbosity    | 0.0001       | 0.0006         | Yes          |\\n| Qwen3-32B    | register     | 0.0763       | 0.0800         | No           |\\n\\n## Cohen's d\\nQwen3-32B Register: d = -0.073\\n  (N=94, mean_acad=6.0106, mean_conv=6.1277, ATE=-0.1170, pooled_SD=1.6089)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T07:50:03.731813+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python3 -c \"\nimport json, numpy as np\n\ndata = [json.loads(l) for l in open('data/scored_qwen32b_register.jsonl') if l.strip()]\nprint(f'Total records: {len(data)}')\nprint(f'NLI>=0.90: {sum(1 for d in data if d.get(\\\"nli_cf\\\",0)>=0.90)}')\n\n# Check score range\nall_scores = []\nfor d in data:\n    all_scores.extend([d['score_original'], d['score_counterfactual']])\nprint(f'Score range: {min(all_scores)} to {max(all_scores)}')\n\n# Check registers\nregs = [d['original_register'] for d in data]\nfrom collections import Counter\nprint(f'Registers: {Counter(regs)}')\n\n# Without NLI filter\nacad, conv = [], []\nfor d in data:\n    if d['original_register'] == 'conversational':\n        conv.append(d['score_original']); acad.append(d['score_counterfactual'])\n    else:\n        acad.append(d['score_original']); conv.append(d['score_counterfactual'])\na, c = np.array(acad, float), np.array(conv, float)\nprint(f'\\nNo filter: mean_acad={np.mean(a):.4f}, mean_conv={np.mean(c):.4f}, ATE={np.mean(a)-np.mean(c):.4f}')\n\n# Individual treatment effect (cf - orig)\neffects = [d['score_counterfactual'] - d['score_original'] for d in data]\nprint(f'Mean(cf - orig): {np.mean(effects):.4f}')\n\n# NLI filtered\nfdata = [d for d in data if d.get('nli_cf',0)>=0.90]\neffects_f = [d['score_counterfactual'] - d['score_original'] for d in fdata]\nprint(f'NLI filtered mean(cf - orig): {np.mean(effects_f):.4f}')\n\n# Paired ATE = mean of per-item (academic - conversational)\npaired = []\nfor d in fdata:\n    if d['original_register'] == 'conversational':\n        paired.append(d['score_counterfactual'] - d['score_original'])\n    else:\n        paired.append(d['score_original'] - d['score_counterfactual'])\nprint(f'Paired ATE (acad-conv, NLI): {np.mean(paired):.4f}')\n\npaired_all = []\nfor d in data:\n    if d['original_register'] == 'conversational':\n        paired_all.append(d['score_counterfactual'] - d['score_original'])\n    else:\n        paired_all.append(d['score_original'] - d['score_counterfactual'])\nprint(f'Paired ATE (acad-conv, all): {np.mean(paired_all):.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python3 -c \"\nimport json, numpy as np\n\ndata = [json.loads(l) for l in open('data/scored_qwen32b_register.jsonl') if l.strip()]\nprint(f'Total records: {len(data)}')\nprint(f'NLI>=0.90: {sum(1 for d in data if d.get(\\\"nli_cf\\\",0)>=0.90)}')\n\n# Check score range\nall_scores = []\nfor d in data:\n    all_scores.extend([d['score_original'], d['score_counterfactual']])\nprint(f'Score range: {min(all_scores)} to {max(all_scores)}')\n\n# Check registers\nregs = [d['original_register'] for d in data]\nfrom collections import Counter\nprint(f'Registers: {Counter(regs)}')\n\n# Without NLI filter\nacad, conv = [], []\nfor d in data:\n    if d['original_register'] == 'conversational':\n        conv.append(d['score_original']); acad.append(d['score_counterfactual'])\n    else:\n        acad.append(d['score_original']); conv.append(d['score_counterfactual'])\na, c = np.array(acad, float), np.array(conv, float)\nprint(f'\\nNo filter: mean_acad={np.mean(a):.4f}, mean_conv={np.mean(c):.4f}, ATE={np.mean(a)-np.mean(c):.4f}')\n\n# Individual treatment effect (cf - orig)\neffects = [d['score_counterfactual'] - d['score_original'] for d in data]\nprint(f'Mean(cf - orig): {np.mean(effects):.4f}')\n\n# NLI filtered\nfdata = [d for d in data if d.get('nli_cf',0)>=0.90]\neffects_f = [d['score_counterfactual'] - d['score_original'] for d in fdata]\nprint(f'NLI filtered mean(cf - orig): {np.mean(effects_f):.4f}')\n\n# Paired ATE = mean of per-item (academic - conversational)\npaired = []\nfor d in fdata:\n    if d['original_register'] == 'conversational':\n        paired.append(d['score_counterfactual'] - d['score_original'])\n    else:\n        paired.append(d['score_original'] - d['score_counterfactual'])\nprint(f'Paired ATE (acad-conv, NLI): {np.mean(paired):.4f}')\n\npaired_all = []\nfor d in data:\n    if d['original_register'] == 'conversational':\n        paired_all.append(d['score_counterfactual'] - d['score_original'])\n    else:\n        paired_all.append(d['score_original'] - d['score_counterfactual'])\nprint(f'Paired ATE (acad-conv, all): {np.mean(paired_all):.4f}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T07:50:03.731962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total records: 100\\nNLI>=0.90: 94\\nScore range: 2 to 9\\nRegisters: Counter({'conversational': 53, 'academic': 47})\\n\\nNo filter: mean_acad=6.0100, mean_conv=6.2000, ATE=-0.1900\\nMean(cf - orig): -0.0500\\nNLI filtered mean(cf - orig): -0.0745\\nPaired ATE (acad-conv, NLI): -0.1170\\nPaired ATE (acad-conv, all): -0.1900\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-21T07:50:03.732230+00:00_
+
+The user's ATE=0.074 matches `|mean(orig - cf)|` = 0.0745 (NLI filtered). Sign convention difference. My Cohen's d = -0.073 uses the exact formula requested: (mean_academic - mean_conversational) / pooled_SD.
+
+Results:
+
+## Bootstrap 10k
+GPT-4o formality: P(formal)=63.0%, CI [55.7%, 70.3%], raw p = 0.0004
+  (N pairs=88, N comps=173, 10k iterations, 4/10000 below 0.5)
+
+## Holm-Bonferroni (family=6)
+| Judge | Axis | Raw p | Adjusted p | Significant? |
+|---|---|---|---|---|
+| GPT-4o | formality | 0.0004 | 0.0012 | Yes |
+| GPT-4o | verbosity | 0.0001 | 0.0006 | Yes |
+| GPT-4o | register | 0.0400 | 0.0800 | No |
+| Qwen3-32B | formality | 0.0001 | 0.0006 | Yes |
+| Qwen3-32B | verbosity | 0.0001 | 0.0006 | Yes |
+| Qwen3-32B | register | 0.0763 | 0.0800 | No |
+
+4/6 significant after Holm correction. Register axis loses significance for both judges.
+
+## Cohen's d
+Qwen3-32B Register: d = −0.073
+  (N=94, mean_acad=6.011, mean_conv=6.128, ATE=−0.117, pooled_SD=1.609)
+
+Negligible effect size. The ATE sign differs from your stated 0.074 because yours is likely `mean(orig − cf)` = +0.074, while mine is `mean(acad − conv)` = −0.117 (paired, direction-adjusted). Absolute magnitude is consistent: tiny effect, non-significant.
+
+Script saved at `csd_pipeline/bootstrap_10k_holm.py` on both local and server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_bootstrap_10k_holm_cohensd_20260521T074616"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,7274 @@
+# code r19 paper fixes
+
+**When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 124
+- **Recorded user turns:** 0
+- **Tool calls:** 43
+- **Original source:** `logs/workers/worker_code_r19-paper-fixes_20260524T013802.log`
+- **Structured JSON:** [`04fe3f6e2fcdcfbded2e.json`](../../sessions/04/04fe3f6e2fcdcfbded2e.json)
+
+## Before a recorded user message
+
+124 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation",
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "40279350-d879-4e53-9e4e-13f918ff6b15",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-projects-ec-hte-llm-annotation/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779600600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "10f02edf-4528-46c3-9b2d-9ccfc403ac07",
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by reading all the relevant files to understand the current state before making changes.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "0ed877aa-6c60-49d4-b3ee-789ed417e657",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWkA1uxvSo6dEnsW2qqhD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13223,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13223
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FXX4VMJ6FKfQBdwTWkZj91`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "3db957d3-39db-413c-8660-7affdb804678",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWkA1uxvSo6dEnsW2qqhD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13223,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13223
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T01:38:15.312Z_
+
+<details><summary>↩ Tool result · `toolu_01FXX4VMJ6FKfQBdwTWkZj91`</summary>
+
+```text
+1	% Requires preamble: \usepackage{amsthm,amsmath,amssymb}
+2	% and: \newtheorem{theorem}{Theorem}
+3	%      \newtheorem{corollary}[theorem]{Corollary}
+4	%      \newtheorem{proposition}[theorem]{Proposition}
+5	
+6	\section{Bias Decomposition: When Debiasing Hurts}
+7	\label{sec:theory}
+8	
+9	We formalize the bias that global misclassification correction introduces when subgroup error rates are heterogeneous.
+10	Consider estimating the conditional average treatment effect (CATE) $\tau(z) = \mathbb{E}[Y(1) - Y(0) \mid Z = z]$, where $Z \in \{0, 1\}$ is a binary effect modifier observed only through a noisy annotation $\hat{Z}$.
+11	The population consists of $K$ subgroups $S \in \{1, \ldots, K\}$ with weights $w_s = P(S{=}s)$, each characterized by a $2 \times 2$ confusion matrix $C_s$ with symmetric error rate $\pi_s = P(\hat{Z} \neq Z \mid S{=}s)$.
+12	Standard practice estimates a single confusion matrix $\bar{C} = \sum_s w_s C_s$ from expert annotations and applies its inverse uniformly to all observations, with pooled error rate $\bar{\pi} = \sum_s w_s \pi_s$.
+13	We show that when error rates vary across subgroups, this global procedure introduces a bias with an exact product form.
+14	
+15	We state five assumptions maintained throughout.
+16	%
+17	\begin{itemize}
+18	\item[\textbf{(A1)}] \textit{Conditional independence:} misclassification depends only on the true label $Z$ and subgroup $S$, not on potential outcomes $Y(0), Y(1)$.
+19	\item[\textbf{(A2)}] \textit{Symmetric misclassification:} $P(\hat{Z}{=}1 \mid Z{=}0, S{=}s) = P(\hat{Z}{=}0 \mid Z{=}1, S{=}s) = \pi_s$ for all $s$ (diagnostic only; see Remark~2).
+20	\item[\textbf{(A3)}] \textit{Balanced effect modifier:} $P(Z{=}0) = P(Z{=}1) = 0.5$. This simplifies the exposition; we discuss relaxation below.
+21	\item[\textbf{(A4)}] \textit{Non-degeneracy:} $\pi_s \neq 0.5$ for all $s$, ensuring each $C_s$ is invertible.
+22	\item[\textbf{(A5)}] \textit{Homogeneous treatment effects across subgroups:} $\tau(z, s) = \tau(z)$ for all $s$, so $\Delta\tau = \tau(1) - \tau(0)$ is a scalar.
+23	\end{itemize}
+24	
+25	Under (A2)--(A3), the Bayesian mixing matrix $M_s$ (entries $M_s[\hat{z}, z] = P(Z{=}z \mid \hat{Z}{=}\hat{z}, S{=}s)$) coincides with $C_s$.
+26	The global mixing matrix is $M_{\text{global}} = \sum_s w_s M_s$.
+27	
+28	\begin{theorem}[Bias Decomposition Identity]
+29	\label{thm:bias_identity}
+30	Under \textnormal{(A1)--(A5)}, the bias of global correction in subgroup $s$ at effect-modifier level $z$ is
+31	\begin{align}
+32	\mathrm{bias}_{\mathrm{global}}(z{=}0, s) &= +\frac{\delta_s \cdot \Delta\tau}{1 - 2\bar{\pi}}, \label{eq:bias_z0} \\
+33	\mathrm{bias}_{\mathrm{global}}(z{=}1, s) &= -\frac{\delta_s \cdot \Delta\tau}{1 - 2\bar{\pi}}, \label{eq:bias_z1}
+34	\end{align}
+35	where $\delta_s = \pi_s - \bar{\pi}$ is the subgroup deviation from the pooled error rate and $\Delta\tau = \tau(1) - \tau(0)$ is the CATE heterogeneity.
+36	\end{theorem}
+37	
+38	Equations~\eqref{eq:bias_z0}--\eqref{eq:bias_z1} constitute an exact finite-population identity, not an asymptotic approximation or bound.
+39	The bias factors into three interpretable components: $\delta_s$ captures how much subgroup $s$ deviates from the average misclassification rate, $\Delta\tau$ captures treatment effect heterogeneity across levels of $Z$, and $1/(1 - 2\bar{\pi})$ is an amplification factor from matrix inversion.
+40	Bias vanishes when either source of variation is absent ($\delta_s = 0$ or $\Delta\tau = 0$), and arises only through their interaction.
+41	Theorem~\ref{thm:bias_identity} implies that global correction trades one source of confounding for another: it removes attenuation from label noise but introduces a new bias from error-rate heterogeneity.
+42	
+43	\paragraph{Proof sketch.}
+44	Global correction applies $M_{\text{global}}^{-1}$ to the subgroup-specific observed CATE $\tau_{\text{obs}}(\cdot, s) = M_s \cdot \tau_{\text{true}}$, yielding bias $(M_{\text{global}}^{-1} M_s - I) \cdot \tau_{\text{true}}$.
+45	Direct computation shows $M_{\text{global}}^{-1} M_s - I = \frac{\delta_s}{1-2\bar{\pi}} \bigl[\begin{smallmatrix} -1 & 1 \\ 1 & -1 \end{smallmatrix}\bigr]$.
+46	Applying this matrix to $[\tau(0),\, \tau(1)]^\top$ produces the product form.
+47	The full derivation appears in Appendix~\ref{app:derivation}.
+48	For comparison with classical scalar attenuation~\citep{frazis2003estimating}, see Section~\ref{sec:related}.
+49	
+50	\paragraph{Relationship to classical scalar attenuation.}
+51	Classical scalar attenuation~\citep{frazis2003estimating} gives $\beta^* = \beta(1 - 2\pi)$; dividing by $(1 - 2\bar{\pi})$ removes this bias under homogeneous errors, but Theorem~\ref{thm:bias_identity} characterizes a structurally distinct quantity: \emph{correction-induced} bias from applying $M_{\mathrm{global}}^{-1}$ to heterogeneous $M_s$.
+52	F-L scalar correction (dividing $\hat{\tau}(z)$ by $1 - 2\bar{\pi}$) over-corrects low-error and under-corrects high-error subgroups---the same mechanism as global CM correction but restricted to a scalar ignoring the mixing structure between $z$-levels.
+53	When $\pi_s \to 0.5$, $(1 - 2\pi_s) \to 0$ and the F-L per-subgroup correction diverges; EC-HTE's $\kappa$-guard (Section~\ref{sec:method}) avoids this singularity.
+54	Table~\ref{tab:main_results} confirms: under extreme heterogeneity ($K{=}2$), the classical F-L scalar correction \emph{increases} $|\text{bias}|$ from 0.058 to 0.122 ($2.1\times$ naive), and F-L per-subgroup to 0.168 ($2.9\times$)---the textbook attenuation correction systematically amplifies bias when subgroup error rates differ.
+55	
+56	\begin{remark}
+57	Theorem~\ref{thm:bias_identity} does not require assumption~(A2).
+58	For arbitrary asymmetric confusion matrices ($\mathrm{FPR}_s \neq \mathrm{FNR}_s$),
+59	the product form $\mathrm{bias}(z, s) = \Delta\tau \cdot [B_s]_{z,1}$ holds exactly,
+60	where $B_s = M_{\mathrm{global}}^{-1} M_s - I$, because $B_s \mathbf{1} = \mathbf{0}$
+61	follows from stochasticity of $M_s$ and $M_{\mathrm{global}}$ alone.
+62	Assumption~(A2) simplifies $[B_s]_{z,1}$ to the scalar
+63	$\pm \delta_s / (1 - 2\bar{\pi})$ but is not necessary for the product structure.
+64	Under asymmetric errors, the diagnostic (Proposition~\ref{prop:debiasing_hurts}) requires evaluating $[B_s]_{z,1}$ cell-by-cell rather than via a single scalar threshold; the AUC decreases from 0.86 to 0.66 (Appendix~\ref{app:asymmetric}), reflecting the additional complexity of cell-specific error rates.
+65	For binary effect modifiers ($|\mathcal{Z}|{=}2$), the asymmetric score $|[B_s]_{z,1}|$ reduces to a monotone transform of the symmetric score $|\delta_s|/((1{-}2\bar{\pi})\pi_s)$, because column-stochastic $M$ forces $|B_s[0,1]|{=}|B_s[1,1]|$; practitioners may use the simpler symmetric formula without loss.
+66	See Appendix~\ref{app:asymmetric} for the full derivation and empirical verification
+67	($R^2 = 0.991$).
+68	\end{remark}
+69	
+70	\begin{proposition}[Exact Identity under Heterogeneous Treatment Effects]
+71	\label{prop:a5_relaxation}
+72	When $\tau(z, s)$ varies across subgroups (relaxing A5), the bias identity remains exact:
+73	\begin{equation}
+74	\mathrm{bias}_{\mathrm{global}}(z{=}0, s) = +\frac{\delta_s \cdot \Delta\tau_s}{1 - 2\bar{\pi}}, \quad
+75	\mathrm{bias}_{\mathrm{global}}(z{=}1, s) = -\frac{\delta_s \cdot \Delta\tau_s}{1 - 2\bar{\pi}},
+76	\end{equation}
+77	where $\Delta\tau_s = \tau_s(1) - \tau_s(0)$ is the subgroup-specific CATE heterogeneity.
+78	\end{proposition}
+79	
+80	\begin{corollary}[Aggregate Bias]
+81	\label{cor:aggregate_bias}
+82	The population-weighted aggregate bias is $\mathrm{Cov}_w(\pi_s, \Delta\tau_s) / (1 - 2\bar{\pi})$.
+83	\end{corollary}
+84	
+85	The proof is immediate: $B_s = M_{\mathrm{global}}^{-1} M_s - I$ depends only on confusion matrices, not on $\tau$.
+86	The diagnostic (Proposition~\ref{prop:debiasing_hurts}) extends unchanged: $\Delta\tau_s$ cancels, so~\eqref{eq:hurts_condition} remains $\Delta\tau$-free.
+87	EC-HTE maintains $\geq$93\% coverage under both positive and negative $\Delta\tau_s$--$\delta_s$ correlation (Appendix~\ref{app:a5_violation}).
+88	
+89	The identity extends to $K > 2$ subgroups with $J$ effect-modifier levels; the multi-class bias retains the same product structure with modified amplification terms (Corollary~\ref{cor:multiclass} in Appendix~\ref{app:multiclass}).
+90	
+91	Assumption~(A3) ensures $M_s = C_s$; when $P(Z{=}1) \neq 0.5$, the mixing matrices acquire asymmetric entries, but the product structure persists with modified coefficients (Appendix~\ref{app:derivation}).
+92	Empirical verification under class imbalance (Appendix~\ref{app:classimbalance}) shows $R^2 \geq 0.976$ even at $P(Z{=}1) = 0.1$ for $K{=}2$, though EC-HTE's RMSE ratio relative to global correction increases to 1.06--1.68 as imbalance grows.
+93	Empirical verification (Section~\ref{sec:bias_mechanism}) yields $R^2 = 0.994$ for $K{=}2$ and $R^2 = 0.97$ for $K{=}4$, closing the theory-practice gap to essentially zero; the residual variance reflects Monte Carlo noise, not model misspecification.
+94	
+95	\paragraph{Sensitivity to (A1).}
+96	Assumption~(A1) is not empirically testable.
+97	If misclassification correlates with potential outcomes ($\gamma = \mathrm{Corr}(\mathbb{1}[\hat{Z} {\neq} Z],\, Y(1){-}Y(0) \mid Z, S) \neq 0$), Theorem~\ref{thm:bias_identity} gains an $O(\gamma)$ perturbation; in NLP settings, this is plausible when LLM accuracy varies with outcome magnitude.
+98	Sensitivity analysis frameworks~\cite{lash2009applying,dorn2022sharp,cinelli2020making} can bound the degradation (Section~\ref{sec:limitations}).
+99	
+100	\paragraph{Finite-sample remainder.}
+101	Theorem~\ref{thm:bias_identity} is a population-level identity.
+102	In practice, confusion matrices are estimated from $n_{\text{expert}}$ expert labels with $\hat{C}_s = C_s + E_s$, $\|E_s\| = O_p(n_{\text{expert}}^{-1/2})$; the resulting remainder is therefore $R_n = O_p(n_{\text{expert}}^{-1/2} \cdot \kappa(C_s))$, motivating the singularity guard ($\kappa > 100 \to$ fallback) in Section~\ref{sec:method}.
+103	
+104	\begin{proposition}[Debiasing Can Increase Bias]
+105	\label{prop:debiasing_hurts}
+106	Under \textnormal{(A1)--(A5)}, global correction produces larger absolute bias than the naive estimator ($|\mathrm{bias}_{\mathrm{global}}| > |\mathrm{bias}_{\mathrm{naive}}|$) in subgroup $s$ if and only if
+107	\begin{equation}
+108	\frac{|\delta_s|}{(1 - 2\bar{\pi}) \cdot \pi_s} > 1.
+109	\label{eq:hurts_condition}
+110	\end{equation}
+111	\end{proposition}
+112	
+113	Equation~\eqref{eq:hurts_condition} partitions subgroups into two regimes:
+114	\begin{itemize}
+115	    \item \textit{High-error} ($\pi_s > \bar{\pi}$): the condition reduces to $\pi_s > 0.5$, excluded by~(A4); global correction always reduces bias.
+116	    \item \textit{Low-error} ($\pi_s < \bar{\pi}$): the condition holds whenever $\pi_s < \bar{\pi} / (2(1 - \bar{\pi}))$---easily satisfied: when $\bar{\pi} = 0.15$, any subgroup with $\pi_s < 0.088$ is harmed by global correction.
+117	\end{itemize}
+118	The mechanism is over-correction: for subgroups with near-zero misclassification ($\pi_s \approx 0$), the naive estimator is nearly unbiased, yet global inversion calibrated for $\bar{\pi}$ creates substantial bias---debiasing is worse than doing nothing, and can reverse bias sign across subgroups.
+119	
+120	In our experiments (Section~\ref{sec:bias_mechanism}), global correction increases bias in 50\% of $K{=}2$ configurations (260/520), with amplification reaching $2.86\times$ ($K{=}2$) and $2.41\times$ ($K{=}4$); Figure~\ref{fig:heatmap} visualizes the full parameter grid.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "011d6908-ce38-4f36-a5cc-9182d7ea5e71",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex",
+      "content": "% Requires preamble: \\usepackage{amsthm,amsmath,amssymb}\n% and: \\newtheorem{theorem}{Theorem}\n%      \\newtheorem{corollary}[theorem]{Corollary}\n%      \\newtheorem{proposition}[theorem]{Proposition}\n\n\\section{Bias Decomposition: When Debiasing Hurts}\n\\label{sec:theory}\n\nWe formalize the bias that global misclassification correction introduces when subgroup error rates are heterogeneous.\nConsider estimating the conditional average treatment effect (CATE) $\\tau(z) = \\mathbb{E}[Y(1) - Y(0) \\mid Z = z]$, where $Z \\in \\{0, 1\\}$ is a binary effect modifier observed only through a noisy annotation $\\hat{Z}$.\nThe population consists of $K$ subgroups $S \\in \\{1, \\ldots, K\\}$ with weights $w_s = P(S{=}s)$, each characterized by a $2 \\times 2$ confusion matrix $C_s$ with symmetric error rate $\\pi_s = P(\\hat{Z} \\neq Z \\mid S{=}s)$.\nStandard practice estimates a single confusion matrix $\\bar{C} = \\sum_s w_s C_s$ from expert annotations and applies its inverse uniformly to all observations, with pooled error rate $\\bar{\\pi} = \\sum_s w_s \\pi_s$.\nWe show that when error rates vary across subgroups, this global procedure introduces a bias with an exact product form.\n\nWe state five assumptions maintained throughout.\n%\n\\begin{itemize}\n\\item[\\textbf{(A1)}] \\textit{Conditional independence:} misclassification depends only on the true label $Z$ and subgroup $S$, not on potential outcomes $Y(0), Y(1)$.\n\\item[\\textbf{(A2)}] \\textit{Symmetric misclassification:} $P(\\hat{Z}{=}1 \\mid Z{=}0, S{=}s) = P(\\hat{Z}{=}0 \\mid Z{=}1, S{=}s) = \\pi_s$ for all $s$ (diagnostic only; see Remark~2).\n\\item[\\textbf{(A3)}] \\textit{Balanced effect modifier:} $P(Z{=}0) = P(Z{=}1) = 0.5$. This simplifies the exposition; we discuss relaxation below.\n\\item[\\textbf{(A4)}] \\textit{Non-degeneracy:} $\\pi_s \\neq 0.5$ for all $s$, ensuring each $C_s$ is invertible.\n\\item[\\textbf{(A5)}] \\textit{Homogeneous treatment effects across subgroups:} $\\tau(z, s) = \\tau(z)$ for all $s$, so $\\Delta\\tau = \\tau(1) - \\tau(0)$ is a scalar.\n\\end{itemize}\n\nUnder (A2)--(A3), the Bayesian mixing matrix $M_s$ (entries $M_s[\\hat{z}, z] = P(Z{=}z \\mid \\hat{Z}{=}\\hat{z}, S{=}s)$) coincides with $C_s$.\nThe global mixing matrix is $M_{\\text{global}} = \\sum_s w_s M_s$.\n\n\\begin{theorem}[Bias Decomposition Identity]\n\\label{thm:bias_identity}\nUnder \\textnormal{(A1)--(A5)}, the bias of global correction in subgroup $s$ at effect-modifier level $z$ is\n\\begin{align}\n\\mathrm{bias}_{\\mathrm{global}}(z{=}0, s) &= +\\frac{\\delta_s \\cdot \\Delta\\tau}{1 - 2\\bar{\\pi}}, \\label{eq:bias_z0} \\\\\n\\mathrm{bias}_{\\mathrm{global}}(z{=}1, s) &= -\\frac{\\delta_s \\cdot \\Delta\\tau}{1 - 2\\bar{\\pi}}, \\label{eq:bias_z1}\n\\end{align}\nwhere $\\delta_s = \\pi_s - \\bar{\\pi}$ is the subgroup deviation from the pooled error rate and $\\Delta\\tau = \\tau(1) - \\tau(0)$ is the CATE heterogeneity.\n\\end{theorem}\n\nEquations~\\eqref{eq:bias_z0}--\\eqref{eq:bias_z1} constitute an exact finite-population identity, not an asymptotic approximation or bound.\nThe bias factors into three interpretable components: $\\delta_s$ captures how much subgroup $s$ deviates from the average misclassification rate, $\\Delta\\tau$ captures treatment effect heterogeneity across levels of $Z$, and $1/(1 - 2\\bar{\\pi})$ is an amplification factor from matrix inversion.\nBias vanishes when either source of variation is absent ($\\delta_s = 0$ or $\\Delta\\tau = 0$), and arises only through their interaction.\nTheorem~\\ref{thm:bias_identity} implies that global correction trades one source of confounding for another: it removes attenuation from label noise but introduces a new bias from error-rate heterogeneity.\n\n\\paragraph{Proof sketch.}\nGlobal correction applies $M_{\\text{global}}^{-1}$ to the subgroup-specific observed CATE $\\tau_{\\text{obs}}(\\cdot, s) = M_s \\cdot \\tau_{\\text{true}}$, yielding bias $(M_{\\text{global}}^{-1} M_s - I) \\cdot \\tau_{\\text{true}}$.\nDirect computation shows $M_{\\text{global}}^{-1} M_s - I = \\frac{\\delta_s}{1-2\\bar{\\pi}} \\bigl[\\begin{smallmatrix} -1 & 1 \\\\ 1 & -1 \\end{smallmatrix}\\bigr]$.\nApplying this matrix to $[\\tau(0),\\, \\tau(1)]^\\top$ produces the product form.\nThe full derivation appears in Appendix~\\ref{app:derivation}.\nFor comparison with classical scalar attenuation~\\citep{frazis2003estimating}, see Section~\\ref{sec:related}.\n\n\\paragraph{Relationship to classical scalar attenuation.}\nClassical scalar attenuation~\\citep{frazis2003estimating} gives $\\beta^* = \\beta(1 - 2\\pi)$; dividing by $(1 - 2\\bar{\\pi})$ removes this bias under homogeneous errors, but Theorem~\\ref{thm:bias_identity} characterizes a structurally distinct quantity: \\emph{correction-induced} bias from applying $M_{\\mathrm{global}}^{-1}$ to heterogeneous $M_s$.\nF-L scalar correction (dividing $\\hat{\\tau}(z)$ by $1 - 2\\bar{\\pi}$) over-corrects low-error and under-corrects high-error subgroups---the same mechanism as global CM correction but restricted to a scalar ignoring the mixing structure between $z$-levels.\nWhen $\\pi_s \\to 0.5$, $(1 - 2\\pi_s) \\to 0$ and the F-L per-subgroup correction diverges; EC-HTE's $\\kappa$-guard (Section~\\ref{sec:method}) avoids this singularity.\nTable~\\ref{tab:main_results} confirms: under extreme heterogeneity ($K{=}2$), the classical F-L scalar correction \\emph{increases} $|\\text{bias}|$ from 0.058 to 0.122 ($2.1\\times$ naive), and F-L per-subgroup to 0.168 ($2.9\\times$)---the textbook attenuation correction systematically amplifies bias when subgroup error rates differ.\n\n\\begin{remark}\nTheorem~\\ref{thm:bias_identity} does not require assumption~(A2).\nFor arbitrary asymmetric confusion matrices ($\\mathrm{FPR}_s \\neq \\mathrm{FNR}_s$),\nthe product form $\\mathrm{bias}(z, s) = \\Delta\\tau \\cdot [B_s]_{z,1}$ holds exactly,\nwhere $B_s = M_{\\mathrm{global}}^{-1} M_s - I$, because $B_s \\mathbf{1} = \\mathbf{0}$\nfollows from stochasticity of $M_s$ and $M_{\\mathrm{global}}$ alone.\nAssumption~(A2) simplifies $[B_s]_{z,1}$ to the scalar\n$\\pm \\delta_s / (1 - 2\\bar{\\pi})$ but is not necessary for the product structure.\nUnder asymmetric errors, the diagnostic (Proposition~\\ref{prop:debiasing_hurts}) requires evaluating $[B_s]_{z,1}$ cell-by-cell rather than via a single scalar threshold; the AUC decreases from 0.86 to 0.66 (Appendix~\\ref{app:asymmetric}), reflecting the additional complexity of cell-specific error rates.\nFor binary effect modifiers ($|\\mathcal{Z}|{=}2$), the asymmetric score $|[B_s]_{z,1}|$ reduces to a monotone transform of the symmetric score $|\\delta_s|/((1{-}2\\bar{\\pi})\\pi_s)$, because column-stochastic $M$ forces $|B_s[0,1]|{=}|B_s[1,1]|$; practitioners may use the simpler symmetric formula without loss.\nSee Appendix~\\ref{app:asymmetric} for the full derivation and empirical verification\n($R^2 = 0.991$).\n\\end{remark}\n\n\\begin{proposition}[Exact Identity under Heterogeneous Treatment Effects]\n\\label{prop:a5_relaxation}\nWhen $\\tau(z, s)$ varies across subgroups (relaxing A5), the bias identity remains exact:\n\\begin{equation}\n\\mathrm{bias}_{\\mathrm{global}}(z{=}0, s) = +\\frac{\\delta_s \\cdot \\Delta\\tau_s}{1 - 2\\bar{\\pi}}, \\quad\n\\mathrm{bias}_{\\mathrm{global}}(z{=}1, s) = -\\frac{\\delta_s \\cdot \\Delta\\tau_s}{1 - 2\\bar{\\pi}},\n\\end{equation}\nwhere $\\Delta\\tau_s = \\tau_s(1) - \\tau_s(0)$ is the subgroup-specific CATE heterogeneity.\n\\end{proposition}\n\n\\begin{corollary}[Aggregate Bias]\n\\label{cor:aggregate_bias}\nThe population-weighted aggregate bias is $\\mathrm{Cov}_w(\\pi_s, \\Delta\\tau_s) / (1 - 2\\bar{\\pi})$.\n\\end{corollary}\n\nThe proof is immediate: $B_s = M_{\\mathrm{global}}^{-1} M_s - I$ depends only on confusion matrices, not on $\\tau$.\nThe diagnostic (Proposition~\\ref{prop:debiasing_hurts}) extends unchanged: $\\Delta\\tau_s$ cancels, so~\\eqref{eq:hurts_condition} remains $\\Delta\\tau$-free.\nEC-HTE maintains $\\geq$93\\% coverage under both positive and negative $\\Delta\\tau_s$--$\\delta_s$ correlation (Appendix~\\ref{app:a5_violation}).\n\nThe identity extends to $K > 2$ subgroups with $J$ effect-modifier levels; the multi-class bias retains the same product structure with modified amplification terms (Corollary~\\ref{cor:multiclass} in Appendix~\\ref{app:multiclass}).\n\nAssumption~(A3) ensures $M_s = C_s$; when $P(Z{=}1) \\neq 0.5$, the mixing matrices acquire asymmetric entries, but the product structure persists with modified coefficients (Appendix~\\ref{app:derivation}).\nEmpirical verification under class imbalance (Appendix~\\ref{app:classimbalance}) shows $R^2 \\geq 0.976$ even at $P(Z{=}1) = 0.1$ for $K{=}2$, though EC-HTE's RMSE ratio relative to global correction increases to 1.06--1.68 as imbalance grows.\nEmpirical verification (Section~\\ref{sec:bias_mechanism}) yields $R^2 = 0.994$ for $K{=}2$ and $R^2 = 0.97$ for $K{=}4$, closing the theory-practice gap to essentially zero; the residual variance reflects Monte Carlo noise, not model misspecification.\n\n\\paragraph{Sensitivity to (A1).}\nAssumption~(A1) is not empirically testable.\nIf misclassification correlates with potential outcomes ($\\gamma = \\mathrm{Corr}(\\mathbb{1}[\\hat{Z} {\\neq} Z],\\, Y(1){-}Y(0) \\mid Z, S) \\neq 0$), Theorem~\\ref{thm:bias_identity} gains an $O(\\gamma)$ perturbation; in NLP settings, this is plausible when LLM accuracy varies with outcome magnitude.\nSensitivity analysis frameworks~\\cite{lash2009applying,dorn2022sharp,cinelli2020making} can bound the degradation (Section~\\ref{sec:limitations}).\n\n\\paragraph{Finite-sample remainder.}\nTheorem~\\ref{thm:bias_identity} is a population-level identity.\nIn practice, confusion matrices are estimated from $n_{\\text{expert}}$ expert labels with $\\hat{C}_s = C_s + E_s$, $\\|E_s\\| = O_p(n_{\\text{expert}}^{-1/2})$; the resulting remainder is therefore $R_n = O_p(n_{\\text{expert}}^{-1/2} \\cdot \\kappa(C_s))$, motivating the singularity guard ($\\kappa > 100 \\to$ fallback) in Section~\\ref{sec:method}.\n\n\\begin{proposition}[Debiasing Can Increase Bias]\n\\label{prop:debiasing_hurts}\nUnder \\textnormal{(A1)--(A5)}, global correction produces larger absolute bias than the naive estimator ($|\\mathrm{bias}_{\\mathrm{global}}| > |\\mathrm{bias}_{\\mathrm{naive}}|$) in subgroup $s$ if and only if\n\\begin{equation}\n\\frac{|\\delta_s|}{(1 - 2\\bar{\\pi}) \\cdot \\pi_s} > 1.\n\\label{eq:hurts_condition}\n\\end{equation}\n\\end{proposition}\n\nEquation~\\eqref{eq:hurts_condition} partitions subgroups into two regimes:\n\\begin{itemize}\n    \\item \\textit{High-error} ($\\pi_s > \\bar{\\pi}$): the condition reduces to $\\pi_s > 0.5$, excluded by~(A4); global correction always reduces bias.\n    \\item \\textit{Low-error} ($\\pi_s < \\bar{\\pi}$): the condition holds whenever $\\pi_s < \\bar{\\pi} / (2(1 - \\bar{\\pi}))$---easily satisfied: when $\\bar{\\pi} = 0.15$, any subgroup with $\\pi_s < 0.088$ is harmed by global correction.\n\\end{itemize}\nThe mechanism is over-correction: for subgroups with near-zero misclassification ($\\pi_s \\approx 0$), the naive estimator is nearly unbiased, yet global inversion calibrated for $\\bar{\\pi}$ creates substantial bias---debiasing is worse than doing nothing, and can reverse bias sign across subgroups.\n\nIn our experiments (Section~\\ref{sec:bias_mechanism}), global correction increases bias in 50\\% of $K{=}2$ configurations (260/520), with amplification reaching $2.86\\times$ ($K{=}2$) and $2.41\\times$ ($K{=}4$); Figure~\\ref{fig:heatmap} visualizes the full parameter grid.",
+      "numLines": 120,
+      "startLine": 1,
+      "totalLines": 120
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Kwbm3ENBn2FyC7gKkm7apr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "b5865b77-d910-4cc3-b9d6-5f82a8cce240",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWkA1uxvSo6dEnsW2qqhD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13223,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13223
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-24T01:38:15.533Z_
+
+<details><summary>↩ Tool result · `toolu_01Kwbm3ENBn2FyC7gKkm7apr`</summary>
+
+```text
+1	\section{Experiments}
+2	
+3	\subsection{Setup}
+4	
+5	We test on synthetic ($N{=}5{,}000$, $K \in \{2, 4\}$, controlled $\Delta\tau$ and $\Delta\pi$, 100 MC runs) and semi-synthetic (TweetEval sentiment~\cite{barbieri2020tweeteval}, $K{=}4$ unbalanced subgroups, $\pi \in \{0.05, 0.10, 0.15, 0.25\}$) DGPs; full specifications in Appendix~\ref{app:dgp}.
+6	
+7	We compare: (1) \textit{Naive} (no correction), (2) \textit{Global} (pooled confusion matrix, equivalent to PPI/DSL~\cite{angelopoulos2023ppi,egami2024dsl} with homogeneous error), (3) \textit{Stratified MLE} (per-subgroup DSL without shrinkage), (4) \textit{HB EC-HTE} (per-subgroup correction), (5) \textit{PPCI}~\cite{sui2026ppci}, and (6) \textit{EC-HTE+PPCI}.
+8	For CausalForest~\cite{wager2018causal}, we compare naive, global, and EC-HTE variants.
+9	Primary metrics are $|\text{bias}|$, RMSE, and 95\% CI coverage, averaged across subgroups and 100 MC runs.
+10	Robustness validation covers hate speech, six OpenAI models, subgroup misspecification, asymmetric confusion matrices, confounded treatment, outcome-dependent misclassification (all $\geq$93.5\% coverage), and treatment-dependent misclassification ($\approx$90\% at $\gamma_T \leq 0.05$; Appendices~\ref{app:hatespeech}--\ref{app:treatment_dep}).
+11	Semi-synthetic evaluation uses empirical LLM confusion matrices from 16 model--dataset--$K$ combinations (8 LLMs $\times$ 2 datasets $\times$ varying $K$); of these, 11 have sufficient subgroup variation for $R^2$ regression and 13 have $K{=}4$ for $\kappa$ analysis.
+12	
+13	\subsection{Empirical Validation of the Bias Identity}
+14	\label{sec:bias_mechanism}
+15	
+16	We verify Theorem~\ref{thm:bias_identity} on a $K{=}2$ grid (520 configurations, $\Delta\pi \in [0, 0.25]$, $\Delta\tau \in (0, 0.50]$) and a $K{=}4$ grid (Appendix~\ref{app:dgp}).
+17	Regressing observed subgroup bias on $\delta_s \cdot \Delta\tau / (1{-}2\bar{\pi})$ yields $R^2 = 0.994$ ($K{=}2$) and $0.97$ ($K{=}4$); residual variance reflects MC noise ($R^2 \geq 0.976$ even at $P(Z{=}1) = 0.1$; Appendix~\ref{app:classimbalance}).
+18	Global correction worsens bias in 50\% of $K{=}2$ configurations (260/520, excluding $\Delta\pi{=}0$), with amplification reaching 2.86$\times$ ($K{=}2$) and 2.41$\times$ ($K{=}4$); Figure~\ref{fig:heatmap} visualizes the amplification surface.
+19	Beyond amplification, global correction reverses the sign of estimated CATE---concluding a protective treatment is harmful---in 14.9\% of configurations at $\tau(0) = 0.03$ (31\% at $\tau(0) = 0.01$; critical threshold $\tau(0) < 0.089$, matching Theorem~\ref{thm:bias_identity}), with all eight real LLMs amplifying bias under global correction; EC-HTE eliminates sign reversal entirely (Figure~\ref{fig:sign_reversal}; Appendix~\ref{app:policy_reversal}).
+20	
+21	\subsection{Correction Evaluation}
+22	\label{sec:ec_hte_eval}
+23	
+24	Table~\ref{tab:main_results} presents the main results across representative configurations.
+25	In the $K{=}2$ extreme row, global correction \emph{increases} $|\text{bias}|$ relative to naive (0.059 vs.\ 0.058), confirming the over-correction mechanism of Theorem~\ref{thm:bias_identity}.
+26	F-L scalar correction increases $|\text{bias}|$ to 0.122 (coverage 0.68); F-L per-subgroup to 0.168 as $(1{-}2\pi_s) \to 0$---both worse than naive (Table~\ref{tab:main_results}).
+27	HB EC-HTE reduces $|\text{bias}|$ from 0.059 to 0.008 (7.4$\times$) at $K{=}2$ and from 0.056 to 0.012 (4.7$\times$) at $K{=}4$, maintaining near-nominal coverage (0.94--0.96) with lower RMSE than stratified MLE.
+28	Under moderate heterogeneity and in TweetEval ($K{=}4$), methods converge ($p > 0.05$); EC-HTE incurs higher RMSE when $\Delta\pi$ is small (Table~\ref{tab:main_supp}).
+29	At $K{=}8$ ($n_{\text{expert}}/K{=}31$), coverage remains $\geq$95.6\% but RMSE increases; we recommend $n_{\text{expert}}/K \geq 50$ (Appendix~\ref{app:k8_subgroups}).
+30	
+31	\paragraph{CausalForest.}
+32	Theorem~\ref{thm:bias_identity} applies to any estimator whose inputs pass through a confusion matrix; CausalForest~\cite{wager2018causal} with a noisy effect modifier $\hat{Z}$ inherits the same $M_{\text{global}}^{-1} M_s$ structure.
+33	With CausalForest ($K{=}4$, extreme, $n{=}500$), EC-HTE reduces $|\text{bias}|$ from 0.191 to 0.039 (4.9$\times$) with coverage 0.90; global amplifies bias up to 5.9$\times$ (Table~\ref{tab:main_results}; bootstrap SE in Appendix~\ref{app:bootstrap_se}).
+34	The identity and correction are estimator-agnostic: R-learner yields comparable bias reduction (89\%, Appendix~\ref{app:rlearner}), confirming that the product-form bias arises from the confusion matrix structure, not the downstream estimator.
+35	
+36	\begin{table}[t]
+37	\centering
+38	\caption{Main results (extreme heterogeneity). Metrics averaged over subgroups, $z$-levels, 100 MC runs. Bold: lowest $|\text{bias}|$. $^\dagger$RMSE exceeds Global. F-L Scalar: $\hat{\tau}/(1{-}2\bar{\pi})$~\cite{frazis2003estimating}; F-L Per-sub.: per-subgroup variant (binary $Z$ only). Moderate/TweetEval in Table~\ref{tab:main_supp}; MC SEs in Appendix~\ref{app:mcse}.\protect\footnotemark}
+39	\label{tab:main_results}
+40	\resizebox{\columnwidth}{!}{%
+41	\begin{tabular}{ll ccc}
+42	\toprule
+43	Configuration & Method & $|\text{Bias}|$ & RMSE & 95\% CI Cov. \\
+44	\midrule
+45	\multirow{6}{*}{\shortstack[l]{DIM\\$K{=}2$, $n{=}250$}}
+46	 & Naive & 0.058 & 0.090 & 0.82 \\
+47	 & Global & 0.059 & 0.099 & 0.87 \\
+48	 & F-L Scalar & 0.122 & 0.159 & 0.68 \\
+49	 & F-L Per-sub. & 0.168 & 0.220 & 0.65 \\
+50	 & Strat.\ MLE & 0.012 & 0.094 & 0.95 \\
+51	 & HB EC-HTE & \textbf{0.008} & 0.089 & 0.94 \\
+52	\midrule
+53	\multirow{4}{*}{\shortstack[l]{DIM\\$K{=}4$, $n{=}500$}}
+54	 & Naive & 0.062 & 0.113 & 0.88 \\
+55	 & Global & 0.056 & 0.125 & 0.91 \\
+56	 & Strat.\ MLE & \textbf{0.010} & 0.127$^\dagger$ & 0.95 \\
+57	 & HB EC-HTE & 0.012 & 0.120 & 0.96 \\
+58	\midrule
+59	\multirow{3}{*}{\shortstack[l]{CausalForest\\$K{=}4$, $n{=}500$}}
+60	 & Naive & 0.208 & 0.231 & 0.44 \\
+61	 & Global & 0.191 & 0.244 & 0.58 \\
+62	 & EC-HTE Forest & \textbf{0.039} & 0.180 & 0.90 \\
+63	\bottomrule
+64	\end{tabular}}
+65	\footnotetext{CausalForest plug-in SE achieves 93.8\% aggregate coverage; a bootstrap procedure ($B{=}100$) recovers $\geq$95\% coverage at all budgets tested (Appendix~\ref{app:bootstrap_se}).}
+66	\end{table}
+67	
+68	\subsection{Actionable Diagnostic}
+69	\label{sec:diagnostic}
+70	
+71	Proposition~\ref{prop:debiasing_hurts} provides a $\Delta\tau$-free diagnostic: global correction increases bias in subgroup $s$ iff $|\delta_s| / ((1-2\bar{\pi}) \cdot \pi_s) > 1$, computable from a pilot sample without estimating treatment effects.
+72	The diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\Delta\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\ref{fig:roc}, Appendix~\ref{app:screening}).
+73	For $K{=}2$, $|\delta_0|{=}|\delta_1|$ limits discrimination; a meta-criterion ($\max_s \mathrm{score}(s) > 1$) recovers reliability for $K{\geq}4$ (Appendix~\ref{app:screening}).
+74	
+75	The condition number $\kappa(\hat{C}_s)$ provides a practical guard: $\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\kappa \in (1.25, 3]$ with calibrated coverage $\geq$93\% (Appendix~\ref{app:kappa_analysis}).
+76	Budget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$) appear in Appendices~\ref{sec:budget}--\ref{app:multilm}.
+77	
+78	On a real hate speech dataset ($\Delta\pi{=}0.117$; Appendix~\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction---consistent with real LLMs exhibiting $\Delta\pi \in [0.10, 0.20]$ (Appendices~\ref{app:multilm}--\ref{app:civilcomments}), mostly below the threshold where stratification pays off.
+79	
+80	\paragraph{Operating conditions.}
+81	EC-HTE requires: (i)~$\Delta\pi > 0.15$, (ii)~$n_{\text{expert}} \geq 250$ for $K{=}2$ (scaling with $K$), (iii)~$\text{FNR}_s < 0.50$ for all $s$, and (iv)~$K \leq 4$.
+82	Under confounded treatment assignment, pairing with IPW-DIM maintains $\geq$94.5\% coverage (Appendix~\ref{app:confounded_dgp}).
+83	When conditions (i)--(iv) are unmet, global correction is preferable (Appendix~\ref{app:k8_subgroups}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "39e373df-49c1-4bd1-97aa-67b84b88d7af",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+      "content": "\\section{Experiments}\n\n\\subsection{Setup}\n\nWe test on synthetic ($N{=}5{,}000$, $K \\in \\{2, 4\\}$, controlled $\\Delta\\tau$ and $\\Delta\\pi$, 100 MC runs) and semi-synthetic (TweetEval sentiment~\\cite{barbieri2020tweeteval}, $K{=}4$ unbalanced subgroups, $\\pi \\in \\{0.05, 0.10, 0.15, 0.25\\}$) DGPs; full specifications in Appendix~\\ref{app:dgp}.\n\nWe compare: (1) \\textit{Naive} (no correction), (2) \\textit{Global} (pooled confusion matrix, equivalent to PPI/DSL~\\cite{angelopoulos2023ppi,egami2024dsl} with homogeneous error), (3) \\textit{Stratified MLE} (per-subgroup DSL without shrinkage), (4) \\textit{HB EC-HTE} (per-subgroup correction), (5) \\textit{PPCI}~\\cite{sui2026ppci}, and (6) \\textit{EC-HTE+PPCI}.\nFor CausalForest~\\cite{wager2018causal}, we compare naive, global, and EC-HTE variants.\nPrimary metrics are $|\\text{bias}|$, RMSE, and 95\\% CI coverage, averaged across subgroups and 100 MC runs.\nRobustness validation covers hate speech, six OpenAI models, subgroup misspecification, asymmetric confusion matrices, confounded treatment, outcome-dependent misclassification (all $\\geq$93.5\\% coverage), and treatment-dependent misclassification ($\\approx$90\\% at $\\gamma_T \\leq 0.05$; Appendices~\\ref{app:hatespeech}--\\ref{app:treatment_dep}).\nSemi-synthetic evaluation uses empirical LLM confusion matrices from 16 model--dataset--$K$ combinations (8 LLMs $\\times$ 2 datasets $\\times$ varying $K$); of these, 11 have sufficient subgroup variation for $R^2$ regression and 13 have $K{=}4$ for $\\kappa$ analysis.\n\n\\subsection{Empirical Validation of the Bias Identity}\n\\label{sec:bias_mechanism}\n\nWe verify Theorem~\\ref{thm:bias_identity} on a $K{=}2$ grid (520 configurations, $\\Delta\\pi \\in [0, 0.25]$, $\\Delta\\tau \\in (0, 0.50]$) and a $K{=}4$ grid (Appendix~\\ref{app:dgp}).\nRegressing observed subgroup bias on $\\delta_s \\cdot \\Delta\\tau / (1{-}2\\bar{\\pi})$ yields $R^2 = 0.994$ ($K{=}2$) and $0.97$ ($K{=}4$); residual variance reflects MC noise ($R^2 \\geq 0.976$ even at $P(Z{=}1) = 0.1$; Appendix~\\ref{app:classimbalance}).\nGlobal correction worsens bias in 50\\% of $K{=}2$ configurations (260/520, excluding $\\Delta\\pi{=}0$), with amplification reaching 2.86$\\times$ ($K{=}2$) and 2.41$\\times$ ($K{=}4$); Figure~\\ref{fig:heatmap} visualizes the amplification surface.\nBeyond amplification, global correction reverses the sign of estimated CATE---concluding a protective treatment is harmful---in 14.9\\% of configurations at $\\tau(0) = 0.03$ (31\\% at $\\tau(0) = 0.01$; critical threshold $\\tau(0) < 0.089$, matching Theorem~\\ref{thm:bias_identity}), with all eight real LLMs amplifying bias under global correction; EC-HTE eliminates sign reversal entirely (Figure~\\ref{fig:sign_reversal}; Appendix~\\ref{app:policy_reversal}).\n\n\\subsection{Correction Evaluation}\n\\label{sec:ec_hte_eval}\n\nTable~\\ref{tab:main_results} presents the main results across representative configurations.\nIn the $K{=}2$ extreme row, global correction \\emph{increases} $|\\text{bias}|$ relative to naive (0.059 vs.\\ 0.058), confirming the over-correction mechanism of Theorem~\\ref{thm:bias_identity}.\nF-L scalar correction increases $|\\text{bias}|$ to 0.122 (coverage 0.68); F-L per-subgroup to 0.168 as $(1{-}2\\pi_s) \\to 0$---both worse than naive (Table~\\ref{tab:main_results}).\nHB EC-HTE reduces $|\\text{bias}|$ from 0.059 to 0.008 (7.4$\\times$) at $K{=}2$ and from 0.056 to 0.012 (4.7$\\times$) at $K{=}4$, maintaining near-nominal coverage (0.94--0.96) with lower RMSE than stratified MLE.\nUnder moderate heterogeneity and in TweetEval ($K{=}4$), methods converge ($p > 0.05$); EC-HTE incurs higher RMSE when $\\Delta\\pi$ is small (Table~\\ref{tab:main_supp}).\nAt $K{=}8$ ($n_{\\text{expert}}/K{=}31$), coverage remains $\\geq$95.6\\% but RMSE increases; we recommend $n_{\\text{expert}}/K \\geq 50$ (Appendix~\\ref{app:k8_subgroups}).\n\n\\paragraph{CausalForest.}\nTheorem~\\ref{thm:bias_identity} applies to any estimator whose inputs pass through a confusion matrix; CausalForest~\\cite{wager2018causal} with a noisy effect modifier $\\hat{Z}$ inherits the same $M_{\\text{global}}^{-1} M_s$ structure.\nWith CausalForest ($K{=}4$, extreme, $n{=}500$), EC-HTE reduces $|\\text{bias}|$ from 0.191 to 0.039 (4.9$\\times$) with coverage 0.90; global amplifies bias up to 5.9$\\times$ (Table~\\ref{tab:main_results}; bootstrap SE in Appendix~\\ref{app:bootstrap_se}).\nThe identity and correction are estimator-agnostic: R-learner yields comparable bias reduction (89\\%, Appendix~\\ref{app:rlearner}), confirming that the product-form bias arises from the confusion matrix structure, not the downstream estimator.\n\n\\begin{table}[t]\n\\centering\n\\caption{Main results (extreme heterogeneity). Metrics averaged over subgroups, $z$-levels, 100 MC runs. Bold: lowest $|\\text{bias}|$. $^\\dagger$RMSE exceeds Global. F-L Scalar: $\\hat{\\tau}/(1{-}2\\bar{\\pi})$~\\cite{frazis2003estimating}; F-L Per-sub.: per-subgroup variant (binary $Z$ only). Moderate/TweetEval in Table~\\ref{tab:main_supp}; MC SEs in Appendix~\\ref{app:mcse}.\\protect\\footnotemark}\n\\label{tab:main_results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{ll ccc}\n\\toprule\nConfiguration & Method & $|\\text{Bias}|$ & RMSE & 95\\% CI Cov. \\\\\n\\midrule\n\\multirow{6}{*}{\\shortstack[l]{DIM\\\\$K{=}2$, $n{=}250$}}\n & Naive & 0.058 & 0.090 & 0.82 \\\\\n & Global & 0.059 & 0.099 & 0.87 \\\\\n & F-L Scalar & 0.122 & 0.159 & 0.68 \\\\\n & F-L Per-sub. & 0.168 & 0.220 & 0.65 \\\\\n & Strat.\\ MLE & 0.012 & 0.094 & 0.95 \\\\\n & HB EC-HTE & \\textbf{0.008} & 0.089 & 0.94 \\\\\n\\midrule\n\\multirow{4}{*}{\\shortstack[l]{DIM\\\\$K{=}4$, $n{=}500$}}\n & Naive & 0.062 & 0.113 & 0.88 \\\\\n & Global & 0.056 & 0.125 & 0.91 \\\\\n & Strat.\\ MLE & \\textbf{0.010} & 0.127$^\\dagger$ & 0.95 \\\\\n & HB EC-HTE & 0.012 & 0.120 & 0.96 \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{CausalForest\\\\$K{=}4$, $n{=}500$}}\n & Naive & 0.208 & 0.231 & 0.44 \\\\\n & Global & 0.191 & 0.244 & 0.58 \\\\\n & EC-HTE Forest & \\textbf{0.039} & 0.180 & 0.90 \\\\\n\\bottomrule\n\\end{tabular}}\n\\footnotetext{CausalForest plug-in SE achieves 93.8\\% aggregate coverage; a bootstrap procedure ($B{=}100$) recovers $\\geq$95\\% coverage at all budgets tested (Appendix~\\ref{app:bootstrap_se}).}\n\\end{table}\n\n\\subsection{Actionable Diagnostic}\n\\label{sec:diagnostic}\n\nProposition~\\ref{prop:debiasing_hurts} provides a $\\Delta\\tau$-free diagnostic: global correction increases bias in subgroup $s$ iff $|\\delta_s| / ((1-2\\bar{\\pi}) \\cdot \\pi_s) > 1$, computable from a pilot sample without estimating treatment effects.\nThe diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\\Delta\\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\\ref{fig:roc}, Appendix~\\ref{app:screening}).\nFor $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination; a meta-criterion ($\\max_s \\mathrm{score}(s) > 1$) recovers reliability for $K{\\geq}4$ (Appendix~\\ref{app:screening}).\n\nThe condition number $\\kappa(\\hat{C}_s)$ provides a practical guard: $\\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\\kappa \\in (1.25, 3]$ with calibrated coverage $\\geq$93\\% (Appendix~\\ref{app:kappa_analysis}).\nBudget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$) appear in Appendices~\\ref{sec:budget}--\\ref{app:multilm}.\n\nOn a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction---consistent with real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}), mostly below the threshold where stratification pays off.\n\n\\paragraph{Operating conditions.}\nEC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$ (scaling with $K$), (iii)~$\\text{FNR}_s < 0.50$ for all $s$, and (iv)~$K \\leq 4$.\nUnder confounded treatment assignment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp}).\nWhen conditions (i)--(iv) are unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).",
+      "numLines": 83,
+      "startLine": 1,
+      "totalLines": 83
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014d9oAWLVJhBgsx3qAL8Fjq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "f63f7d9e-bd36-4635-bdbd-6d28c344416f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWkA1uxvSo6dEnsW2qqhD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13223,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13223
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T01:38:16.273Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_014d9oAWLVJhBgsx3qAL8Fjq`</summary>
+
+```text
+File content (39517 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "8254a3f3-1eb6-4535-8213-6551d130e1d5",
+  "tool_use_result": "Error: File content (39517 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YDtBtfrY43AUCEodcw9WKe`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "d4599198-c167-4466-b084-bc0bace56392",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWkA1uxvSo6dEnsW2qqhD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13223,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13223
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T01:38:16.985Z_
+
+<details><summary>↩ Tool result · `toolu_01YDtBtfrY43AUCEodcw9WKe`</summary>
+
+```text
+1	\section{Correction Prescribed by the Identity}
+2	\label{sec:method}
+3	
+4	Theorem~\ref{thm:bias_identity} identifies per-subgroup misclassification deviation as the bias source; the natural correction is per-subgroup confusion matrix inversion.
+5	This correction (EC-HTE) proceeds in three stages: estimate per-subgroup confusion matrices via hierarchical Bayes, invert them to correct observed outcome moments, and propagate correction uncertainty into downstream causal estimators.
+6	The complete procedure is summarized in Algorithm~\ref{alg:echte} (Appendix~\ref{app:algorithm}).
+7	
+8	\subsection{Hierarchical Bayes Confusion Matrix Estimation}
+9	
+10	We place a Dirichlet-Multinomial hierarchical model over the confusion matrices $\{C_s\}_{s=1}^K$.
+11	For each subgroup $s$, row $j$ of $C_s$ has a Dirichlet prior centered at the global pooled confusion matrix $\hat{C}_{\text{global}}$: $\text{Dir}(\alpha_0 \cdot \hat{C}_{\text{global},j})$, where $\hat{C}_{\text{global},j}$ is the $j$-th row of the pooled CM and $\alpha_0 > 0$ is a shared concentration parameter estimated via empirical Bayes (marginal likelihood maximization).
+12	We place a $\mathrm{Gamma}(a_0, b_0)$ hyperprior on $\alpha_0$ with defaults $a_0 = 3$, $b_0 = 1$.
+13	Large $\alpha_0$ pulls subgroup estimates toward $\hat{C}_{\text{global}}$ (global correction), while small $\alpha_0$ allows subgroup-specific rates to dominate (stratified correction).
+14	This partial pooling---a form of James-Stein shrinkage well-established in small-area estimation---borrows strength across subgroups when estimating confusion matrices from limited expert labels, reducing variance for small subgroups while preserving heterogeneity where data support it.
+15	
+16	Posterior inference uses centered empirical Bayes optimization ($<$5ms for $K{=}4$, $N{=}5{,}000$); a full Gibbs MCMC alternative requires $\sim$5s (convergence diagnostics in Appendix~\ref{app:algorithm}).
+17	Bootstrap SE ($B{=}100$) adds $\sim$0.4s.
+18	HB estimation outperforms stratified MLE in 87.5\% of configurations (21 of 24) across the experimental grid (Section~\ref{sec:ec_hte_eval}), with the largest gains when $n_{\text{expert}} / K < 100$.
+19	The advantage requires $n_{\text{expert}} \times P(Z_{\text{minority}}) / K \geq 25$ per subgroup; below this threshold, stratified MLE is preferred because the hierarchical model lacks sufficient observations for stable shrinkage.
+20	At $n_{\text{expert}} \geq 1000$, HB and stratified MLE converge to within 0.5\% on all metrics.
+21	Sensitivity analysis shows $<$5\% RMSE variation under 2$\times$ hyperprior perturbation, confirming that results are not driven by prior specification.
+22	
+23	\subsection{Subgroup-Stratified Correction}
+24	
+25	Given posterior mean confusion matrices $\hat{C}_s$, we correct observed outcome moments per subgroup by matrix inversion:
+26	\begin{equation}
+27	\tilde{\boldsymbol{\mu}}_s = \hat{C}_s^{-1} \cdot \hat{\boldsymbol{\mu}}_s,
+28	\end{equation}
+29	where $\hat{\boldsymbol{\mu}}_s = [\hat{\tau}_{\text{obs}}(0, s),\, \hat{\tau}_{\text{obs}}(1, s)]^\top$ collects the observed conditional outcome moments in subgroup $s$.
+30	This requires $\det(\hat{C}_s) \neq 0$ for all $s$, which holds under assumption~(A4) ($\pi_s \neq 0.5$) but may fail in finite samples when error rates approach degeneracy.
+31	In practice, Laplace smoothing of the confusion matrix counts ensures finite-sample invertibility.
+32	We impose a singularity guard: if the condition number $\kappa(\hat{C}_s) > 100$ (for a $2{\times}2$ symmetric confusion matrix, this corresponds to $\pi_s > 0.495$, i.e., near-random classification), subgroup $s$ falls back to global correction $\bar{C}^{-1}$; when the fallback triggers, the standard error computation also uses $\bar{C}^{-1}$ for that subgroup, ensuring consistency between point estimates and confidence intervals.
+33	This hard guard prevents numerical catastrophe; $\kappa \leq 1.25$ is a sufficient condition for strongest bias reduction (Appendix~\ref{sec:budget}), though EC-HTE maintains calibrated coverage ($\geq$93\%) across the wider $\kappa \in [1.4, 3.0]$ range observed in practice (Appendix~\ref{app:kappa_analysis}).
+34	
+35	The contrast with global correction is direct.
+36	Global correction applies $\bar{C}^{-1}$ uniformly to all subgroups, introducing the $\delta_s \cdot \Delta\tau$ bias identified in Theorem~\ref{thm:bias_identity}.
+37	Subgroup-stratified correction eliminates this bias by matching each subgroup's correction to its own misclassification structure, at the cost of higher variance from estimating $K$ separate confusion matrices (Appendix~\ref{sec:budget}).
+38	
+39	\subsection{Variance-Adjusted CausalForest}
+40	
+41	For heterogeneous treatment effect estimation, we feed corrected covariates into CausalForestDML~\cite{wager2018causal} with honest splitting.
+42	The forest produces per-observation standard error estimates $\text{se}_i$.
+43	To account for confusion matrix correction, we propagate uncertainty through the inverse mapping:
+44	\begin{equation}
+45	\text{se}_{\text{corrected},i} = \sqrt{\text{diag}\!\left(\hat{C}_{S_i}^{-1}\, \text{diag}(\text{se}_i^2)\, \hat{C}_{S_i}^{-\top}\right)}.
+46	\end{equation}
+47	This plug-in SE conditions on $\hat{C}_s$, neglecting CM estimation uncertainty; at $n_{\text{expert}} \geq 100$ this is negligible, but below this threshold a full bootstrap ($B{=}100$; re-estimate CM and re-fit per replicate) maintains $\geq$95\% coverage across all budgets tested ($n_{\text{expert}} \in \{25, 50, 75, 100, 200\}$); even plug-in SE achieves $\geq$91\% at $n_{\text{expert}}{=}25$ (Appendix~\ref{app:bootstrap_se}).
+48	When $n_{\text{expert}}/K < 50$, we recommend bootstrap SE; otherwise plug-in SE suffices.
+49	
+50	\paragraph{Diagnostic criterion.}
+51	Proposition~\ref{prop:debiasing_hurts} provides a $\Delta\tau$-free diagnostic: global correction harms subgroup $s$ if and only if $|\delta_s| / ((1-2\bar{\pi}) \cdot \pi_s) > 1$, a condition depending only on per-subgroup misclassification rates estimable from a pilot sample.
+52	This breaks the circular dependency that would arise if the diagnostic required CATE estimates.
+53	A threshold classifier achieves AUC~=~0.86 at the subgroup level, reaching 1.0 when restricted to subgroups with $\tau_s > 0$ (Section~\ref{sec:diagnostic}).
+54	
+55	\paragraph{Composition with PPCI.}
+56	EC-HTE corrects structured covariate misclassification through $\hat{C}_s^{-1}$ inversion but cannot address outcome-level measurement error.
+57	PPCI~\cite{sui2026ppci} corrects residual outcome bias using a debiasing estimator but assumes correct covariate labels.
+58	The two methods are complementary: apply EC-HTE first to correct covariate labels, then PPCI to correct outcome predictions.
+59	Neither is redundant with the other: EC-HTE alone cannot fix outcome error, while PPCI alone incurs higher variance for covariate error.
+60	Under both error types simultaneously, the composition reduces $|\text{bias}|$ from 0.179 to 0.007 (Appendix~\ref{sec:ppci}).
+61	The two methods target different error sources and are not substitutes: under covariate-side error alone (DGP~A), EC-HTE provides a 27\% RMSE advantage over PPCI; under outcome-side error alone (DGP~C), PPCI achieves $|\text{bias}| = 0.003$--$0.004$ and EC-HTE's marginal contribution is negligible.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "d1d4636a-722b-4c60-bbd0-03942c024db0",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex",
+      "content": "\\section{Correction Prescribed by the Identity}\n\\label{sec:method}\n\nTheorem~\\ref{thm:bias_identity} identifies per-subgroup misclassification deviation as the bias source; the natural correction is per-subgroup confusion matrix inversion.\nThis correction (EC-HTE) proceeds in three stages: estimate per-subgroup confusion matrices via hierarchical Bayes, invert them to correct observed outcome moments, and propagate correction uncertainty into downstream causal estimators.\nThe complete procedure is summarized in Algorithm~\\ref{alg:echte} (Appendix~\\ref{app:algorithm}).\n\n\\subsection{Hierarchical Bayes Confusion Matrix Estimation}\n\nWe place a Dirichlet-Multinomial hierarchical model over the confusion matrices $\\{C_s\\}_{s=1}^K$.\nFor each subgroup $s$, row $j$ of $C_s$ has a Dirichlet prior centered at the global pooled confusion matrix $\\hat{C}_{\\text{global}}$: $\\text{Dir}(\\alpha_0 \\cdot \\hat{C}_{\\text{global},j})$, where $\\hat{C}_{\\text{global},j}$ is the $j$-th row of the pooled CM and $\\alpha_0 > 0$ is a shared concentration parameter estimated via empirical Bayes (marginal likelihood maximization).\nWe place a $\\mathrm{Gamma}(a_0, b_0)$ hyperprior on $\\alpha_0$ with defaults $a_0 = 3$, $b_0 = 1$.\nLarge $\\alpha_0$ pulls subgroup estimates toward $\\hat{C}_{\\text{global}}$ (global correction), while small $\\alpha_0$ allows subgroup-specific rates to dominate (stratified correction).\nThis partial pooling---a form of James-Stein shrinkage well-established in small-area estimation---borrows strength across subgroups when estimating confusion matrices from limited expert labels, reducing variance for small subgroups while preserving heterogeneity where data support it.\n\nPosterior inference uses centered empirical Bayes optimization ($<$5ms for $K{=}4$, $N{=}5{,}000$); a full Gibbs MCMC alternative requires $\\sim$5s (convergence diagnostics in Appendix~\\ref{app:algorithm}).\nBootstrap SE ($B{=}100$) adds $\\sim$0.4s.\nHB estimation outperforms stratified MLE in 87.5\\% of configurations (21 of 24) across the experimental grid (Section~\\ref{sec:ec_hte_eval}), with the largest gains when $n_{\\text{expert}} / K < 100$.\nThe advantage requires $n_{\\text{expert}} \\times P(Z_{\\text{minority}}) / K \\geq 25$ per subgroup; below this threshold, stratified MLE is preferred because the hierarchical model lacks sufficient observations for stable shrinkage.\nAt $n_{\\text{expert}} \\geq 1000$, HB and stratified MLE converge to within 0.5\\% on all metrics.\nSensitivity analysis shows $<$5\\% RMSE variation under 2$\\times$ hyperprior perturbation, confirming that results are not driven by prior specification.\n\n\\subsection{Subgroup-Stratified Correction}\n\nGiven posterior mean confusion matrices $\\hat{C}_s$, we correct observed outcome moments per subgroup by matrix inversion:\n\\begin{equation}\n\\tilde{\\boldsymbol{\\mu}}_s = \\hat{C}_s^{-1} \\cdot \\hat{\\boldsymbol{\\mu}}_s,\n\\end{equation}\nwhere $\\hat{\\boldsymbol{\\mu}}_s = [\\hat{\\tau}_{\\text{obs}}(0, s),\\, \\hat{\\tau}_{\\text{obs}}(1, s)]^\\top$ collects the observed conditional outcome moments in subgroup $s$.\nThis requires $\\det(\\hat{C}_s) \\neq 0$ for all $s$, which holds under assumption~(A4) ($\\pi_s \\neq 0.5$) but may fail in finite samples when error rates approach degeneracy.\nIn practice, Laplace smoothing of the confusion matrix counts ensures finite-sample invertibility.\nWe impose a singularity guard: if the condition number $\\kappa(\\hat{C}_s) > 100$ (for a $2{\\times}2$ symmetric confusion matrix, this corresponds to $\\pi_s > 0.495$, i.e., near-random classification), subgroup $s$ falls back to global correction $\\bar{C}^{-1}$; when the fallback triggers, the standard error computation also uses $\\bar{C}^{-1}$ for that subgroup, ensuring consistency between point estimates and confidence intervals.\nThis hard guard prevents numerical catastrophe; $\\kappa \\leq 1.25$ is a sufficient condition for strongest bias reduction (Appendix~\\ref{sec:budget}), though EC-HTE maintains calibrated coverage ($\\geq$93\\%) across the wider $\\kappa \\in [1.4, 3.0]$ range observed in practice (Appendix~\\ref{app:kappa_analysis}).\n\nThe contrast with global correction is direct.\nGlobal correction applies $\\bar{C}^{-1}$ uniformly to all subgroups, introducing the $\\delta_s \\cdot \\Delta\\tau$ bias identified in Theorem~\\ref{thm:bias_identity}.\nSubgroup-stratified correction eliminates this bias by matching each subgroup's correction to its own misclassification structure, at the cost of higher variance from estimating $K$ separate confusion matrices (Appendix~\\ref{sec:budget}).\n\n\\subsection{Variance-Adjusted CausalForest}\n\nFor heterogeneous treatment effect estimation, we feed corrected covariates into CausalForestDML~\\cite{wager2018causal} with honest splitting.\nThe forest produces per-observation standard error estimates $\\text{se}_i$.\nTo account for confusion matrix correction, we propagate uncertainty through the inverse mapping:\n\\begin{equation}\n\\text{se}_{\\text{corrected},i} = \\sqrt{\\text{diag}\\!\\left(\\hat{C}_{S_i}^{-1}\\, \\text{diag}(\\text{se}_i^2)\\, \\hat{C}_{S_i}^{-\\top}\\right)}.\n\\end{equation}\nThis plug-in SE conditions on $\\hat{C}_s$, neglecting CM estimation uncertainty; at $n_{\\text{expert}} \\geq 100$ this is negligible, but below this threshold a full bootstrap ($B{=}100$; re-estimate CM and re-fit per replicate) maintains $\\geq$95\\% coverage across all budgets tested ($n_{\\text{expert}} \\in \\{25, 50, 75, 100, 200\\}$); even plug-in SE achieves $\\geq$91\\% at $n_{\\text{expert}}{=}25$ (Appendix~\\ref{app:bootstrap_se}).\nWhen $n_{\\text{expert}}/K < 50$, we recommend bootstrap SE; otherwise plug-in SE suffices.\n\n\\paragraph{Diagnostic criterion.}\nProposition~\\ref{prop:debiasing_hurts} provides a $\\Delta\\tau$-free diagnostic: global correction harms subgroup $s$ if and only if $|\\delta_s| / ((1-2\\bar{\\pi}) \\cdot \\pi_s) > 1$, a condition depending only on per-subgroup misclassification rates estimable from a pilot sample.\nThis breaks the circular dependency that would arise if the diagnostic required CATE estimates.\nA threshold classifier achieves AUC~=~0.86 at the subgroup level, reaching 1.0 when restricted to subgroups with $\\tau_s > 0$ (Section~\\ref{sec:diagnostic}).\n\n\\paragraph{Composition with PPCI.}\nEC-HTE corrects structured covariate misclassification through $\\hat{C}_s^{-1}$ inversion but cannot address outcome-level measurement error.\nPPCI~\\cite{sui2026ppci} corrects residual outcome bias using a debiasing estimator but assumes correct covariate labels.\nThe two methods are complementary: apply EC-HTE first to correct covariate labels, then PPCI to correct outcome predictions.\nNeither is redundant with the other: EC-HTE alone cannot fix outcome error, while PPCI alone incurs higher variance for covariate error.\nUnder both error types simultaneously, the composition reduces $|\\text{bias}|$ from 0.179 to 0.007 (Appendix~\\ref{sec:ppci}).\nThe two methods target different error sources and are not substitutes: under covariate-side error alone (DGP~A), EC-HTE provides a 27\\% RMSE advantage over PPCI; under outcome-side error alone (DGP~C), PPCI achieves $|\\text{bias}| = 0.003$--$0.004$ and EC-HTE's marginal contribution is negligible.",
+      "numLines": 61,
+      "startLine": 1,
+      "totalLines": 61
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018SHyhRjhXbn7Jma9nnY9qk`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "73e3ffcd-c214-49c5-90d3-919622427371",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWkA1uxvSo6dEnsW2qqhD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13223,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13223
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T01:38:17.425Z_
+
+<details><summary>↩ Tool result · `toolu_018SHyhRjhXbn7Jma9nnY9qk`</summary>
+
+```text
+1	\section{Related Work}
+2	\label{sec:related}
+3	
+4	\paragraph{Measurement error and annotation models.}
+5	Classical measurement error theory shows that correction via estimated error models can amplify MSE when the error structure is misspecified~\cite{fuller1987measurement,carroll2006measurement}; Bayesian approaches require informative priors when identification is weak~\cite{gustafson2003measurement}, and nonparametric methods use repeated measurements or instruments to recover the true distribution~\cite{hu2008nonparametric}.
+6	
+7	Three distinctions separate our contribution from prior measurement error analyses.
+8	First, we study effect modifier misclassification---the mismeasured variable defines the CATE function itself---rather than regressor~\cite{frazis2003estimating,carroll2006measurement} or confounder~\cite{ogburn2012nondifferential,greenland1980effect} error, where attenuation is the primary concern.
+9	Second, Theorem~\ref{thm:bias_identity} derives a bias identity for correction-induced bias---bias created by the debiasing procedure---rather than bounding the attenuation from misclassification itself.
+10	Concretely, \citet{frazis2003estimating} derive scalar attenuation for the uncorrected estimator under homogeneous misclassification; Theorem~\ref{thm:bias_identity} characterizes a structurally distinct quantity---correction-induced bias that is subgroup-specific, potentially sign-reversing, and absent from the uncorrected estimator.
+11	The homogeneous-error setting ($K{=}1$, $\delta_s{=}0$) is a degenerate case recovering classical attenuation~\cite{blackwell2017unified}; empirically, F-L correction produces higher bias under heterogeneous misclassification, while EC-HTE achieves near-oracle performance (Appendix~\ref{app:fl_comparison}).
+12	Third, the $\delta_s \cdot \Delta\tau$ product structure arises only under heterogeneous error rates; all homogeneous-error analyses~\cite{battistin2014treatment,fong2021machine} miss this interaction entirely.
+13	In the annotation literature, \citet{dawid1979maximum} introduced confusion matrix estimation for multiple annotators, with extensions to item difficulty, annotator competence, and hierarchical priors~\cite{passonneau2014benefits,hovy2013learning,paun2018comparing}.
+14	Our hierarchical estimator (Section~\ref{sec:method}) adapts this architecture from label aggregation to causal inference, tying the prior structure to the subgroup dimension that defines treatment effect heterogeneity.
+15	
+16	\paragraph{HTE estimation and LLM annotation error.}
+17	Causal forests~\cite{athey2016recursive,wager2018causal}, double/debiased ML~\cite{chernozhukov2018dml,semenova2021debiased}, doubly-robust CATE estimators~\cite{kennedy2023dr}, and meta-learners~\cite{kunzel2019metalearners} all assume that covariates defining heterogeneity are observed without error; when the effect modifier is misclassified, CATE estimates conflate effects across groups.
+18	Per-subgroup correction restores valid inputs to any downstream estimator.
+19	The corrected pseudo-outcomes are in principle compatible with other HTE estimators such as the R-learner~\citep{nie2021quasi}.
+20	For broader perspectives on causal inference with text data, see \citet{feder2022causal} and \citet{keith2020text}; \citet{wang2020methods} study inference correction when outcomes are ML-predicted, a related but distinct problem from effect modifier misclassification.
+21	LLMs now match crowd-worker accuracy on many classification tasks~\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp,pangakis2023automated}, but \citet{ashwin2025bias} show that error rates vary by up to $5\times$ across demographic subgroups; \citet{cheng2024err} demonstrate that prompt optimization can reduce such error, a complementary preprocessing step.
+22	This subgroup-varying error distorts the very contrasts that define the research question; prior work documents the pattern without correcting downstream causal estimands.
+23	Concurrent work identifies variance-side LLM measurement error~\cite{messing2026hidden}; \citet{camuffo2025variance} characterize five variance sources in LLM annotation, complementary to our bias-side analysis.
+24	Temperature or Platt scaling~\cite{guo2017calibration} reduces per-subgroup $\pi_s$ but does not eliminate heterogeneity $\Delta\pi$; per-subgroup correction addresses the residual $\delta_s$-driven bias that persists post-calibration (Appendix~\ref{app:calibration} empirically confirms this complementarity).
+25	
+26	\paragraph{Prediction-powered and design-based correction.}
+27	PPI~\cite{angelopoulos2023ppi,zrnic2024cross} and DSL~\cite{egami2024dsl} correct population-level aggregates assuming homogeneous prediction error.
+28	In our setting---binary effect modifier with known subgroup structure, a special case of the broader problems DSL addresses---DSL's measurement error correction reduces, under the confusion-matrix parameterization we adopt, to confusion matrix inversion: pooled DSL is equivalent to our Global baseline, and per-subgroup DSL to Stratified MLE (Section~\ref{sec:ec_hte_eval}; Appendix~\ref{app:ppi_comparison}).
+29	Our hierarchical estimator adds partial pooling across subgroups, borrowing strength to reduce variance---a mechanism outside the DSL framework.
+30	\citet{audinet2025benchmarking} benchmark DSL and PPI debiasing for LLM-based parameter estimation, documenting bias-variance tradeoffs analogous to our findings; their analysis targets population-level parameters rather than subgroup-conditional estimands, leaving the $\delta_s \cdot \Delta\tau$ interaction we formalize unaddressed.
+31	\citet{mozer2026ppi} extend PPI to arm-specific ATE correction; PPCI~\cite{sui2026ppci} targets conditional estimands but corrects outcome-side error ($\hat{Y}$ given true $Z$), not covariate-side misclassification; ForestIV~\cite{bu2023forestiv} targets the outcome model rather than the heterogeneity structure.
+32	None corrects bias when the mismeasured variable is the effect modifier indexing the CATE function.
+33	\citet{imai2010causal} study treatment misclassification via instrumental variables or partial identification; \citet{ura2015heterogeneous} extends this to HTE with mismeasured treatment via IV.
+34	\citet{miao2018identifying} develop proximal causal inference for unmeasured confounders using proxy variables; our setting differs because $\hat{Z}$ is a moderator proxy rather than a confounder proxy, admitting confusion-matrix correction without the identification constraints of the proximal framework.
+35	Extended discussion appears in Appendix~\ref{app:related}.
+36	Our validation combines synthetic DGPs, semi-synthetic experiments, and real LLM confusion matrices, consistent with PPI and DSL evaluation methodology; Appendix~\ref{app:multilm} validates both $\Delta\pi$ heterogeneity and the bias identity itself ($R^2 = 0.975$) across 11 model--dataset combinations.
+37	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "875f2eb5-774f-4316-95a9-127f04eec2dd",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/related_work.tex",
+      "content": "\\section{Related Work}\n\\label{sec:related}\n\n\\paragraph{Measurement error and annotation models.}\nClassical measurement error theory shows that correction via estimated error models can amplify MSE when the error structure is misspecified~\\cite{fuller1987measurement,carroll2006measurement}; Bayesian approaches require informative priors when identification is weak~\\cite{gustafson2003measurement}, and nonparametric methods use repeated measurements or instruments to recover the true distribution~\\cite{hu2008nonparametric}.\n\nThree distinctions separate our contribution from prior measurement error analyses.\nFirst, we study effect modifier misclassification---the mismeasured variable defines the CATE function itself---rather than regressor~\\cite{frazis2003estimating,carroll2006measurement} or confounder~\\cite{ogburn2012nondifferential,greenland1980effect} error, where attenuation is the primary concern.\nSecond, Theorem~\\ref{thm:bias_identity} derives a bias identity for correction-induced bias---bias created by the debiasing procedure---rather than bounding the attenuation from misclassification itself.\nConcretely, \\citet{frazis2003estimating} derive scalar attenuation for the uncorrected estimator under homogeneous misclassification; Theorem~\\ref{thm:bias_identity} characterizes a structurally distinct quantity---correction-induced bias that is subgroup-specific, potentially sign-reversing, and absent from the uncorrected estimator.\nThe homogeneous-error setting ($K{=}1$, $\\delta_s{=}0$) is a degenerate case recovering classical attenuation~\\cite{blackwell2017unified}; empirically, F-L correction produces higher bias under heterogeneous misclassification, while EC-HTE achieves near-oracle performance (Appendix~\\ref{app:fl_comparison}).\nThird, the $\\delta_s \\cdot \\Delta\\tau$ product structure arises only under heterogeneous error rates; all homogeneous-error analyses~\\cite{battistin2014treatment,fong2021machine} miss this interaction entirely.\nIn the annotation literature, \\citet{dawid1979maximum} introduced confusion matrix estimation for multiple annotators, with extensions to item difficulty, annotator competence, and hierarchical priors~\\cite{passonneau2014benefits,hovy2013learning,paun2018comparing}.\nOur hierarchical estimator (Section~\\ref{sec:method}) adapts this architecture from label aggregation to causal inference, tying the prior structure to the subgroup dimension that defines treatment effect heterogeneity.\n\n\\paragraph{HTE estimation and LLM annotation error.}\nCausal forests~\\cite{athey2016recursive,wager2018causal}, double/debiased ML~\\cite{chernozhukov2018dml,semenova2021debiased}, doubly-robust CATE estimators~\\cite{kennedy2023dr}, and meta-learners~\\cite{kunzel2019metalearners} all assume that covariates defining heterogeneity are observed without error; when the effect modifier is misclassified, CATE estimates conflate effects across groups.\nPer-subgroup correction restores valid inputs to any downstream estimator.\nThe corrected pseudo-outcomes are in principle compatible with other HTE estimators such as the R-learner~\\citep{nie2021quasi}.\nFor broader perspectives on causal inference with text data, see \\citet{feder2022causal} and \\citet{keith2020text}; \\citet{wang2020methods} study inference correction when outcomes are ML-predicted, a related but distinct problem from effect modifier misclassification.\nLLMs now match crowd-worker accuracy on many classification tasks~\\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp,pangakis2023automated}, but \\citet{ashwin2025bias} show that error rates vary by up to $5\\times$ across demographic subgroups; \\citet{cheng2024err} demonstrate that prompt optimization can reduce such error, a complementary preprocessing step.\nThis subgroup-varying error distorts the very contrasts that define the research question; prior work documents the pattern without correcting downstream causal estimands.\nConcurrent work identifies variance-side LLM measurement error~\\cite{messing2026hidden}; \\citet{camuffo2025variance} characterize five variance sources in LLM annotation, complementary to our bias-side analysis.\nTemperature or Platt scaling~\\cite{guo2017calibration} reduces per-subgroup $\\pi_s$ but does not eliminate heterogeneity $\\Delta\\pi$; per-subgroup correction addresses the residual $\\delta_s$-driven bias that persists post-calibration (Appendix~\\ref{app:calibration} empirically confirms this complementarity).\n\n\\paragraph{Prediction-powered and design-based correction.}\nPPI~\\cite{angelopoulos2023ppi,zrnic2024cross} and DSL~\\cite{egami2024dsl} correct population-level aggregates assuming homogeneous prediction error.\nIn our setting---binary effect modifier with known subgroup structure, a special case of the broader problems DSL addresses---DSL's measurement error correction reduces, under the confusion-matrix parameterization we adopt, to confusion matrix inversion: pooled DSL is equivalent to our Global baseline, and per-subgroup DSL to Stratified MLE (Section~\\ref{sec:ec_hte_eval}; Appendix~\\ref{app:ppi_comparison}).\nOur hierarchical estimator adds partial pooling across subgroups, borrowing strength to reduce variance---a mechanism outside the DSL framework.\n\\citet{audinet2025benchmarking} benchmark DSL and PPI debiasing for LLM-based parameter estimation, documenting bias-variance tradeoffs analogous to our findings; their analysis targets population-level parameters rather than subgroup-conditional estimands, leaving the $\\delta_s \\cdot \\Delta\\tau$ interaction we formalize unaddressed.\n\\citet{mozer2026ppi} extend PPI to arm-specific ATE correction; PPCI~\\cite{sui2026ppci} targets conditional estimands but corrects outcome-side error ($\\hat{Y}$ given true $Z$), not covariate-side misclassification; ForestIV~\\cite{bu2023forestiv} targets the outcome model rather than the heterogeneity structure.\nNone corrects bias when the mismeasured variable is the effect modifier indexing the CATE function.\n\\citet{imai2010causal} study treatment misclassification via instrumental variables or partial identification; \\citet{ura2015heterogeneous} extends this to HTE with mismeasured treatment via IV.\n\\citet{miao2018identifying} develop proximal causal inference for unmeasured confounders using proxy variables; our setting differs because $\\hat{Z}$ is a moderator proxy rather than a confounder proxy, admitting confusion-matrix correction without the identification constraints of the proximal framework.\nExtended discussion appears in Appendix~\\ref{app:related}.\nOur validation combines synthetic DGPs, semi-synthetic experiments, and real LLM confusion matrices, consistent with PPI and DSL evaluation methodology; Appendix~\\ref{app:multilm} validates both $\\Delta\\pi$ heterogeneity and the bias identity itself ($R^2 = 0.975$) across 11 model--dataset combinations.\n",
+      "numLines": 37,
+      "startLine": 1,
+      "totalLines": 37
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01T6dHTfyf3ne8X11T7hoYgW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "31a63657-65f6-4349-807a-41ce0910431e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWkA1uxvSo6dEnsW2qqhD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13223,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13223
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T01:38:17.891Z_
+
+<details><summary>↩ Tool result · `toolu_01T6dHTfyf3ne8X11T7hoYgW`</summary>
+
+```text
+1	% === Proximal / Sensitivity ===
+2	
+3	@article{miao2018identifying,
+4	  title={Identifying Causal Effects with Proxy Variables of an Unmeasured Confounder},
+5	  author={Miao, Wang and Geng, Zhi and Tchetgen Tchetgen, Eric J.},
+6	  journal={Biometrika},
+7	  volume={105},
+8	  number={4},
+9	  pages={987--993},
+10	  year={2018}
+11	}
+12	
+13	@article{cinelli2020making,
+14	  title={Making Sense of Sensitivity: Extending Omitted Variable Bias},
+15	  author={Cinelli, Carlos and Hazlett, Chad},
+16	  journal={Journal of the Royal Statistical Society: Series B},
+17	  volume={82},
+18	  number={1},
+19	  pages={39--67},
+20	  year={2020}
+21	}
+22	
+23	% === Datasets ===
+24	
+25	@inproceedings{borkan2019nuanced,
+26	  title={Nuanced Metrics for Measuring Unintended Bias with Real Data for Text Classification},
+27	  author={Borkan, Daniel and Dixon, Lucas and Sorensen, Jeffrey and Thain, Nithum and Vasserman, Lucy},
+28	  booktitle={Companion Proceedings of The 2019 World Wide Web Conference},
+29	  pages={491--500},
+30	  year={2019}
+31	}
+32	
+33	% === Econometrics of Binary Misclassification ===
+34	
+35	@incollection{bound2001measurement,
+36	  title={Measurement Error in Survey Data},
+37	  author={Bound, John and Brown, Charles and Mathiowetz, Nancy},
+38	  booktitle={Handbook of Econometrics},
+39	  volume={5},
+40	  pages={3705--3843},
+41	  year={2001},
+42	  publisher={Elsevier}
+43	}
+44	
+45	@article{greenland1980effect,
+46	  title={The Effect of Misclassification in the Presence of Covariates},
+47	  author={Greenland, Sander},
+48	  journal={American Journal of Epidemiology},
+49	  volume={112},
+50	  number={4},
+51	  pages={564--569},
+52	  year={1980}
+53	}
+54	
+55	@article{frazis2003estimating,
+56	  title={Estimating Linear Regressions with Mismeasured, Possibly Endogenous, Binary Explanatory Variables},
+57	  author={Frazis, Harley and Loewenstein, Mark A.},
+58	  journal={Journal of Econometrics},
+59	  volume={117},
+60	  number={1},
+61	  pages={151--178},
+62	  year={2003}
+63	}
+64	
+65	@article{black2000racial,
+66	  title={The Impact of Economic Conditions on Participation in Disability Programs: Evidence from the Coal Boom and Bust},
+67	  author={Black, Dan and Daniel, Kermit and Sanders, Seth},
+68	  journal={American Economic Review},
+69	  volume={90},
+70	  number={1},
+71	  pages={27--50},
+72	  year={2000}
+73	}
+74	
+75	@article{mahajan2006identification,
+76	  title={Identification and Estimation of Regression Models with Misclassification},
+77	  author={Mahajan, Aprajit},
+78	  journal={Econometrica},
+79	  volume={74},
+80	  number={3},
+81	  pages={631--665},
+82	  year={2006}
+83	}
+84	
+85	@article{lewbel2007estimation,
+86	  title={Estimation of Average Treatment Effects with Misclassification},
+87	  author={Lewbel, Arthur},
+88	  journal={Econometrica},
+89	  volume={75},
+90	  number={2},
+91	  pages={537--551},
+92	  year={2007}
+93	}
+94	
+95	% === Classical Measurement Error ===
+96	
+97	@article{blackwell2017unified,
+98	  title={A Unified Approach to Measurement Error and Missing Data: Overview and Applications},
+99	  author={Blackwell, Matthew and Honaker, James and King, Gary},
+100	  journal={Sociological Methods \& Research},
+101	  volume={46},
+102	  number={3},
+103	  pages={303--341},
+104	  year={2017},
+105	  doi={10.1177/0049124115585360}
+106	}
+107	
+108	@book{fuller1987measurement,
+109	  title={Measurement Error Models},
+110	  author={Fuller, Wayne A.},
+111	  year={1987},
+112	  publisher={Wiley},
+113	  address={New York}
+114	}
+115	
+116	@book{carroll2006measurement,
+117	  title={Measurement Error in Nonlinear Models: A Modern Perspective},
+118	  author={Carroll, Raymond J. and Ruppert, David and Stefanski, Leonard A. and Crainiceanu, Ciprian M.},
+119	  year={2006},
+120	  edition={2nd},
+121	  publisher={Chapman \& Hall/CRC},
+122	  address={Boca Raton, FL}
+123	}
+124	
+125	@book{gustafson2003measurement,
+126	  title={Measurement Error and Misclassification in Statistics and Epidemiology: Impacts and Bayesian Adjustments},
+127	  author={Gustafson, Paul},
+128	  year={2003},
+129	  publisher={Chapman \& Hall/CRC},
+130	  address={Boca Raton, FL},
+131	  doi={10.1201/9780203502761}
+132	}
+133	
+134	@article{hu2008nonparametric,
+135	  title={Instrumental Variable Treatment of Nonclassical Measurement Error Models},
+136	  author={Hu, Yingyao and Schennach, Susanne M.},
+137	  journal={Econometrica},
+138	  volume={76},
+139	  number={1},
+140	  pages={195--216},
+141	  year={2008},
+142	  doi={10.1111/j.0012-9682.2008.00823.x}
+143	}
+144	
+145	% === Bayesian Annotation Models ===
+146	
+147	@article{dawid1979maximum,
+148	  title={Maximum Likelihood Estimation of Observer Error-Rates Using the {EM} Algorithm},
+149	  author={Dawid, A. Philip and Skene, Allan M.},
+150	  journal={Applied Statistics},
+151	  volume={28},
+152	  number={1},
+153	  pages={20--28},
+154	  year={1979},
+155	  doi={10.2307/2346806}
+156	}
+157	
+158	@article{passonneau2014benefits,
+159	  title={The Benefits of a Model of Annotation},
+160	  author={Passonneau, Rebecca J. and Carpenter, Bob},
+161	  journal={Transactions of the Association for Computational Linguistics},
+162	  volume={2},
+163	  pages={311--326},
+164	  year={2014},
+165	  doi={10.1162/tacl_a_00185}
+166	}
+167	
+168	@inproceedings{hovy2013learning,
+169	  title={Learning Whom to Trust with {MACE}},
+170	  author={Hovy, Dirk and Berg-Kirkpatrick, Taylor and Vaswani, Ashish and Hovy, Eduard},
+171	  booktitle={Proceedings of NAACL-HLT},
+172	  pages={1120--1130},
+173	  year={2013}
+174	}
+175	
+176	@article{paun2018comparing,
+177	  title={Comparing {B}ayesian Models of Annotation},
+178	  author={Paun, Silviu and Carpenter, Bob and Chamberlain, Jon and Hovy, Dirk and Kruschwitz, Udo and Poesio, Massimo},
+179	  journal={Transactions of the Association for Computational Linguistics},
+180	  volume={6},
+181	  pages={571--585},
+182	  year={2018},
+183	  doi={10.1162/tacl_a_00040}
+184	}
+185	
+186	% === Causal Inference & HTE ===
+187	
+188	@article{athey2016recursive,
+189	  title={Recursive Partitioning for Heterogeneous Causal Effects},
+190	  author={Athey, Susan and Imbens, Guido},
+191	  journal={Proceedings of the National Academy of Sciences},
+192	  volume={113},
+193	  number={27},
+194	  pages={7353--7360},
+195	  year={2016},
+196	  doi={10.1073/pnas.1510489113}
+197	}
+198	
+199	@article{wager2018causal,
+200	  title={Estimation and Inference of Heterogeneous Treatment Effects using Random Forests},
+201	  author={Wager, Stefan and Athey, Susan},
+202	  journal={Journal of the American Statistical Association},
+203	  volume={113},
+204	  number={523},
+205	  pages={1228--1242},
+206	  year={2018},
+207	  doi={10.1080/01621459.2017.1319839}
+208	}
+209	
+210	@article{chernozhukov2018dml,
+211	  title={Double/Debiased Machine Learning for Treatment and Structural Parameters},
+212	  author={Chernozhukov, Victor and Chetverikov, Denis and Demirer, Mert and Duflo, Esther and Hansen, Christian and Newey, Whitney and Robins, James},
+213	  journal={The Econometrics Journal},
+214	  volume={21},
+215	  number={1},
+216	  pages={C1--C68},
+217	  year={2018},
+218	  doi={10.1111/ectj.12097}
+219	}
+220	
+221	@article{kennedy2023dr,
+222	  title={Towards Optimal Doubly Robust Estimation of Heterogeneous Causal Effects},
+223	  author={Kennedy, Edward H.},
+224	  journal={Electronic Journal of Statistics},
+225	  volume={17},
+226	  number={2},
+227	  pages={3008--3049},
+228	  year={2023},
+229	  doi={10.1214/23-EJS2157}
+230	}
+231	
+232	@article{kunzel2019metalearners,
+233	  title={Metalearners for Estimating Heterogeneous Treatment Effects Using Machine Learning},
+234	  author={K{\"u}nzel, S{\"o}ren R. and Sekhon, Jasjeet S. and Bickel, Peter J. and Yu, Bin},
+235	  journal={Proceedings of the National Academy of Sciences},
+236	  volume={116},
+237	  number={10},
+238	  pages={4156--4165},
+239	  year={2019},
+240	  doi={10.1073/pnas.1804597116}
+241	}
+242	
+243	@article{imai2010causal,
+244	  title={Causal Inference with Differential Measurement Error: Nonparametric Identification and Sensitivity Analysis},
+245	  author={Imai, Kosuke and Yamamoto, Teppei},
+246	  journal={American Journal of Political Science},
+247	  volume={54},
+248	  number={4},
+249	  pages={926--943},
+250	  year={2010},
+251	  doi={10.1111/j.1540-5907.2010.00446.x}
+252	}
+253	
+254	% === LLMs as Annotators ===
+255	
+256	@article{gilardi2023chatgpt,
+257	  title={{ChatGPT} Outperforms Crowd-Workers for Text-Annotation Tasks},
+258	  author={Gilardi, Fabrizio and Alizadeh, Meysam and Kubli, Ma{\"e}l},
+259	  journal={Proceedings of the National Academy of Sciences},
+260	  volume={120},
+261	  number={30},
+262	  pages={e2305016120},
+263	  year={2023},
+264	  doi={10.1073/pnas.2305016120}
+265	}
+266	
+267	@article{tornberg2024chatgpt,
+268	  title={Large Language Models Outperform Expert Coders and Supervised Classifiers at Annotating Political Social Media Messages},
+269	  author={T{\"o}rnberg, Petter},
+270	  journal={Social Science Computer Review},
+271	  year={2024},
+272	  doi={10.1177/08944393241286471},
+273	  publisher={SAGE Publications}
+274	}
+275	
+276	@article{ziems2024nlp,
+277	  title={Can Large Language Models Transform Computational Social Science?},
+278	  author={Ziems, Caleb and Held, William and Shaikh, Omar and Chen, Jiaao and Zhang, Zhehao and Yang, Diyi},
+279	  journal={Computational Linguistics},
+280	  volume={50},
+281	  number={1},
+282	  pages={237--291},
+283	  year={2024},
+284	  doi={10.1162/coli_a_00502}
+285	}
+286	
+287	@inproceedings{pangakis2023automated,
+288	  title={Automated Annotation with Generative {AI} Requires Validation},
+289	  author={Pangakis, Nicholas and Wolken, Samuel and Fasching, Neil},
+290	  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2023},
+291	  pages={2284--2296},
+292	  year={2023}
+293	}
+294	
+295	@article{ashwin2025bias,
+296	  title={Using Large Language Models for Qualitative Analysis can Introduce Serious Bias},
+297	  author={Ashwin, Aditya and Swanson, Becca and Blair, Robert and Samii, Cyrus},
+298	  journal={Sociological Methods \& Research},
+299	  year={2025},
+300	  doi={10.1177/00491241251313793}
+301	}
+302	
+303	% === PPI / DSL / Correction Methods ===
+304	
+305	@article{angelopoulos2023ppi,
+306	  title={Prediction-Powered Inference},
+307	  author={Angelopoulos, Anastasios N. and Bates, Stephen and Cand{\`e}s, Emmanuel J. and Jordan, Michael I. and Lei, Lihua},
+308	  journal={Science},
+309	  volume={382},
+310	  number={6671},
+311	  pages={669--674},
+312	  year={2023},
+313	  doi={10.1126/science.adi6000}
+314	}
+315	
+316	@article{messing2026hidden,
+317	  title={Hidden Measurement Error in {LLM} Pipelines Distorts Annotation, Evaluation, and Benchmarking},
+318	  author={Messing, Solomon},
+319	  journal={arXiv preprint arXiv:2604.11581},
+320	  year={2026}
+321	}
+322	
+323	@article{zrnic2024cross,
+324	  title={Cross-Prediction-Powered Inference},
+325	  author={Zrnic, Tijana and Cand{\`e}s, Emmanuel J.},
+326	  journal={Proceedings of the National Academy of Sciences},
+327	  volume={121},
+328	  number={15},
+329	  pages={e2322083121},
+330	  year={2024},
+331	  doi={10.1073/pnas.2322083121}
+332	}
+333	
+334	@inproceedings{zrnic2024active,
+335	  title={Active Statistical Inference},
+336	  author={Zrnic, Tijana and Cand{\`e}s, Emmanuel J.},
+337	  booktitle={Proceedings of the 41st International Conference on Machine Learning (ICML)},
+338	  series={PMLR},
+339	  volume={235},
+340	  year={2024}
+341	}
+342	
+343	@inproceedings{egami2024dsl,
+344	  title={Using Imperfect Surrogates for Downstream Inference: Design-based Supervised Learning for Social Science Applications of Large Language Models},
+345	  author={Egami, Naoki and Hinck, Musashi and Stewart, Brandon and Wei, Hanying},
+346	  booktitle={Advances in Neural Information Processing Systems},
+347	  volume={37},
+348	  year={2024}
+349	}
+350	
+351	@article{mozer2026ppi,
+352	  title={{PPI} is the Difference Estimator: Recognizing the Survey Sampling Roots of Prediction-Powered Inference},
+353	  author={Mozer, Reagan},
+354	  journal={arXiv preprint arXiv:2603.19160},
+355	  year={2026}
+356	}
+357	
+358	@article{sui2026ppci,
+359	  title={Prediction-Powered Conditional Inference},
+360	  author={Sui, Yijun and Cand{\`e}s, Emmanuel J.},
+361	  journal={arXiv preprint arXiv:2603.05575},
+362	  year={2026}
+363	}
+364	
+365	@article{bu2023forestiv,
+366	  title={Achieving Reliable Causal Inference with Data-Mined Variables: A Random Forest Approach to the Measurement Error Problem},
+367	  author={Bu, Zhexin and Almond, David and Bhatt, Siddhartha and Goldsmith-Pinkham, Paul},
+368	  journal={INFORMS Journal on Data Science},
+369	  volume={2},
+370	  number={2},
+371	  pages={110--129},
+372	  year={2023},
+373	  doi={10.1287/ijds.2023.0026}
+374	}
+375	
+376	@article{fong2021machine,
+377	  title={Machine Learning Predictions as Regression Covariates},
+378	  author={Fong, Christian and Tyler, Matthew},
+379	  journal={Political Analysis},
+380	  volume={29},
+381	  number={1},
+382	  pages={48--64},
+383	  year={2021},
+384	  doi={10.1017/pan.2020.11}
+385	}
+386	
+387	% === CSS Methodology ===
+388	
+389	@book{grimmer2022text,
+390	  title={Text as Data: A New Framework for Machine Learning and the Social Sciences},
+391	  author={Grimmer, Justin and Roberts, Margaret E. and Stewart, Brandon M.},
+392	  year={2022},
+393	  publisher={Princeton University Press},
+394	  address={Princeton, NJ}
+395	}
+396	
+397	@article{audinet2025benchmarking,
+398	  title={Benchmarking Debiasing Methods for {LLM}-based Parameter Estimates},
+399	  author={Audinet de Pieuchon, Josias and Egami, Naoki and Alizadeh, Meysam and Gilardi, Fabrizio},
+400	  journal={Proceedings of EMNLP},
+401	  year={2025}
+402	}
+403	
+404	% === Semi-synthetic Data Source ===
+405	
+406	@inproceedings{barbieri2020tweeteval,
+407	  title={{TweetEval}: Unified Benchmark and Comparative Evaluation for Tweet Classification},
+408	  author={Barbieri, Francesco and Camacho-Collados, Jose and Espinosa-Anke, Luis and Neves, Leonardo},
+409	  booktitle={Findings of EMNLP},
+410	  pages={1644--1650},
+411	  year={2020},
+412	  doi={10.18653/v1/2020.findings-emnlp.148}
+413	}
+414	
+415	@article{wang2020methods,
+416	  title={Methods for Correcting Inference Based on Outcomes Predicted by Machine Learning},
+417	  author={Wang, Siruo and McCormick, Tyler H. and Leek, Jeffrey T.},
+418	  journal={Proceedings of the National Academy of Sciences},
+419	  volume={117},
+420	  number={48},
+421	  pages={30266--30275},
+422	  year={2020}
+423	}
+424	
+425	@article{feder2022causal,
+426	  title={Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond},
+427	  author={Feder, Amir and Keith, Katherine A. and Manzoor, Emaad and Pryzant, Reid and Sridhar, Dhanya and Wood-Doughty, Zach and Eisenstein, Jacob and Grimmer, Justin and Reichart, Roi and Roberts, Margaret E. and Stewart, Brandon M. and Veitch, Victor and Yang, Diyi},
+428	  journal={Transactions of the Association for Computational Linguistics},
+429	  volume={10},
+430	  pages={1171--1197},
+431	  year={2022}
+432	}
+433	
+434	@inproceedings{keith2020text,
+435	  title={Text and Causal Inference: A Review of Using Text to Remove Confounding from Causal Estimates},
+436	  author={Keith, Katherine A. and Jensen, David and O'Connor, Brendan},
+437	  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},
+438	  pages={5332--5344},
+439	  year={2020}
+440	}
+441	
+442	% === HTE Estimation ===
+443	
+444	@article{semenova2021debiased,
+445	  title={Debiased Machine Learning of Conditional Average Treatment Effects and Other Causal Functions},
+446	  author={Semenova, Vira and Chernozhukov, Victor},
+447	  journal={The Econometrics Journal},
+448	  volume={24},
+449	  number={2},
+450	  pages={264--289},
+451	  year={2021},
+452	  doi={10.1093/ectj/utaa027}
+453	}
+454	
+455	@article{nie2021quasi,
+456	  title={Quasi-Oracle Estimation of Heterogeneous Treatment Effects},
+457	  author={Nie, Xinkun and Wager, Stefan},
+458	  journal={Biometrika},
+459	  volume={108},
+460	  number={2},
+461	  pages={299--319},
+462	  year={2021},
+463	  doi={10.1093/biomet/asaa076}
+464	}
+465	
+466	% === Sensitivity Analysis for Misclassification ===
+467	
+468	@book{lash2009applying,
+469	  title={Applying Quantitative Bias Analysis to Epidemiologic Data},
+470	  author={Lash, Timothy L. and Fox, Matthew P. and Fink, Aliza K.},
+471	  publisher={Springer},
+472	  address={New York},
+473	  year={2009},
+474	  doi={10.1007/978-0-387-87959-8}
+475	}
+476	
+477	@article{dorn2022sharp,
+478	  title={Sharp Sensitivity Analysis for Inverse Propensity Weighting via Quantile Balancing},
+479	  author={Dorn, Jacob and Guo, Kevin and Kallus, Nathan},
+480	  journal={Journal of the American Statistical Association},
+481	  volume={118},
+482	  number={544},
+483	  pages={2645--2657},
+484	  year={2023},
+485	  doi={10.1080/01621459.2022.2064774}
+486	}
+487	
+488	% === Treatment Effects + Measurement Error ===
+489	
+490	@article{ogburn2012nondifferential,
+491	  title={On the Nondifferential Misclassification of a Binary Confounder},
+492	  author={Ogburn, Elizabeth L. and VanderWeele, Tyler J.},
+493	  journal={Epidemiology},
+494	  volume={23},
+495	  number={3},
+496	  pages={433--439},
+497	  year={2012},
+498	  doi={10.1097/EDE.0b013e31824d1f63}
+499	}
+500	
+501	@article{battistin2014treatment,
+502	  title={Treatment Effect Estimation with Covariate Measurement Error},
+503	  author={Battistin, Erich and Chesher, Andrew},
+504	  journal={Journal of Econometrics},
+505	  volume={178},
+506	  number={2},
+507	  pages={707--714},
+508	  year={2014},
+509	  doi={10.1016/j.jeconom.2013.10.006}
+510	}
+511	
+512	% === Real-Data Datasets ===
+513	
+514	@article{kennedy2020constructing,
+515	  title={Constructing Interval Variables via Faceted {Rasch} Measurement and Multitask Deep Learning: A Hate Speech Application},
+516	  author={Kennedy, Chris J. and Bacon, Geoff and Sahn, Alexander and von Vacano, Claudia},
+517	  journal={arXiv preprint arXiv:2009.10277},
+518	  year={2020}
+519	}
+520	
+521	@inproceedings{guo2017calibration,
+522	  title={On Calibration of Modern Neural Networks},
+523	  author={Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+524	  booktitle={Proceedings of the 34th International Conference on Machine Learning},
+525	  pages={1321--1330},
+526	  year={2017}
+527	}
+528	
+529	@article{camuffo2025variance,
+530	  title={Variance-Aware {LLM} Annotation for Strategy Research},
+531	  author={Camuffo, Matteo and Gambardella, Alfonso and Kazemi, Maryam and Malachowski, Daniel and Pandey, Alok},
+532	  journal={arXiv preprint arXiv:2601.02370},
+533	  year={2025}
+534	}
+535	
+536	@article{cheng2024err,
+537	  title={To Err Is Human; To Annotate, {SILICON}?},
+538	  author={Cheng, Myeongjun and Mayya, Rachit and Sedoc, Jo\~{a}o},
+539	  journal={arXiv preprint arXiv:2412.14461},
+540	  year={2024}
+541	}
+542	
+543	@article{ura2015heterogeneous,
+544	  title={Heterogeneous Treatment Effects with Mismeasured Endogenous Treatment},
+545	  author={Ura, Takuya},
+546	  journal={arXiv preprint arXiv:1511.04162},
+547	  year={2015}
+548	}
+549	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "8d15e9cc-748c-4b0a-9f22-40cd55e38147",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib",
+      "content": "% === Proximal / Sensitivity ===\n\n@article{miao2018identifying,\n  title={Identifying Causal Effects with Proxy Variables of an Unmeasured Confounder},\n  author={Miao, Wang and Geng, Zhi and Tchetgen Tchetgen, Eric J.},\n  journal={Biometrika},\n  volume={105},\n  number={4},\n  pages={987--993},\n  year={2018}\n}\n\n@article{cinelli2020making,\n  title={Making Sense of Sensitivity: Extending Omitted Variable Bias},\n  author={Cinelli, Carlos and Hazlett, Chad},\n  journal={Journal of the Royal Statistical Society: Series B},\n  volume={82},\n  number={1},\n  pages={39--67},\n  year={2020}\n}\n\n% === Datasets ===\n\n@inproceedings{borkan2019nuanced,\n  title={Nuanced Metrics for Measuring Unintended Bias with Real Data for Text Classification},\n  author={Borkan, Daniel and Dixon, Lucas and Sorensen, Jeffrey and Thain, Nithum and Vasserman, Lucy},\n  booktitle={Companion Proceedings of The 2019 World Wide Web Conference},\n  pages={491--500},\n  year={2019}\n}\n\n% === Econometrics of Binary Misclassification ===\n\n@incollection{bound2001measurement,\n  title={Measurement Error in Survey Data},\n  author={Bound, John and Brown, Charles and Mathiowetz, Nancy},\n  booktitle={Handbook of Econometrics},\n  volume={5},\n  pages={3705--3843},\n  year={2001},\n  publisher={Elsevier}\n}\n\n@article{greenland1980effect,\n  title={The Effect of Misclassification in the Presence of Covariates},\n  author={Greenland, Sander},\n  journal={American Journal of Epidemiology},\n  volume={112},\n  number={4},\n  pages={564--569},\n  year={1980}\n}\n\n@article{frazis2003estimating,\n  title={Estimating Linear Regressions with Mismeasured, Possibly Endogenous, Binary Explanatory Variables},\n  author={Frazis, Harley and Loewenstein, Mark A.},\n  journal={Journal of Econometrics},\n  volume={117},\n  number={1},\n  pages={151--178},\n  year={2003}\n}\n\n@article{black2000racial,\n  title={The Impact of Economic Conditions on Participation in Disability Programs: Evidence from the Coal Boom and Bust},\n  author={Black, Dan and Daniel, Kermit and Sanders, Seth},\n  journal={American Economic Review},\n  volume={90},\n  number={1},\n  pages={27--50},\n  year={2000}\n}\n\n@article{mahajan2006identification,\n  title={Identification and Estimation of Regression Models with Misclassification},\n  author={Mahajan, Aprajit},\n  journal={Econometrica},\n  volume={74},\n  number={3},\n  pages={631--665},\n  year={2006}\n}\n\n@article{lewbel2007estimation,\n  title={Estimation of Average Treatment Effects with Misclassification},\n  author={Lewbel, Arthur},\n  journal={Econometrica},\n  volume={75},\n  number={2},\n  pages={537--551},\n  year={2007}\n}\n\n% === Classical Measurement Error ===\n\n@article{blackwell2017unified,\n  title={A Unified Approach to Measurement Error and Missing Data: Overview and Applications},\n  author={Blackwell, Matthew and Honaker, James and King, Gary},\n  journal={Sociological Methods \\& Research},\n  volume={46},\n  number={3},\n  pages={303--341},\n  year={2017},\n  doi={10.1177/0049124115585360}\n}\n\n@book{fuller1987measurement,\n  title={Measurement Error Models},\n  author={Fuller, Wayne A.},\n  year={1987},\n  publisher={Wiley},\n  address={New York}\n}\n\n@book{carroll2006measurement,\n  title={Measurement Error in Nonlinear Models: A Modern Perspective},\n  author={Carroll, Raymond J. and Ruppert, David and Stefanski, Leonard A. and Crainiceanu, Ciprian M.},\n  year={2006},\n  edition={2nd},\n  publisher={Chapman \\& Hall/CRC},\n  address={Boca Raton, FL}\n}\n\n@book{gustafson2003measurement,\n  title={Measurement Error and Misclassification in Statistics and Epidemiology: Impacts and Bayesian Adjustments},\n  author={Gustafson, Paul},\n  year={2003},\n  publisher={Chapman \\& Hall/CRC},\n  address={Boca Raton, FL},\n  doi={10.1201/9780203502761}\n}\n\n@article{hu2008nonparametric,\n  title={Instrumental Variable Treatment of Nonclassical Measurement Error Models},\n  author={Hu, Yingyao and Schennach, Susanne M.},\n  journal={Econometrica},\n  volume={76},\n  number={1},\n  pages={195--216},\n  year={2008},\n  doi={10.1111/j.0012-9682.2008.00823.x}\n}\n\n% === Bayesian Annotation Models ===\n\n@article{dawid1979maximum,\n  title={Maximum Likelihood Estimation of Observer Error-Rates Using the {EM} Algorithm},\n  author={Dawid, A. Philip and Skene, Allan M.},\n  journal={Applied Statistics},\n  volume={28},\n  number={1},\n  pages={20--28},\n  year={1979},\n  doi={10.2307/2346806}\n}\n\n@article{passonneau2014benefits,\n  title={The Benefits of a Model of Annotation},\n  author={Passonneau, Rebecca J. and Carpenter, Bob},\n  journal={Transactions of the Association for Computational Linguistics},\n  volume={2},\n  pages={311--326},\n  year={2014},\n  doi={10.1162/tacl_a_00185}\n}\n\n@inproceedings{hovy2013learning,\n  title={Learning Whom to Trust with {MACE}},\n  author={Hovy, Dirk and Berg-Kirkpatrick, Taylor and Vaswani, Ashish and Hovy, Eduard},\n  booktitle={Proceedings of NAACL-HLT},\n  pages={1120--1130},\n  year={2013}\n}\n\n@article{paun2018comparing,\n  title={Comparing {B}ayesian Models of Annotation},\n  author={Paun, Silviu and Carpenter, Bob and Chamberlain, Jon and Hovy, Dirk and Kruschwitz, Udo and Poesio, Massimo},\n  journal={Transactions of the Association for Computational Linguistics},\n  volume={6},\n  pages={571--585},\n  year={2018},\n  doi={10.1162/tacl_a_00040}\n}\n\n% === Causal Inference & HTE ===\n\n@article{athey2016recursive,\n  title={Recursive Partitioning for Heterogeneous Causal Effects},\n  author={Athey, Susan and Imbens, Guido},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={113},\n  number={27},\n  pages={7353--7360},\n  year={2016},\n  doi={10.1073/pnas.1510489113}\n}\n\n@article{wager2018causal,\n  title={Estimation and Inference of Heterogeneous Treatment Effects using Random Forests},\n  author={Wager, Stefan and Athey, Susan},\n  journal={Journal of the American Statistical Association},\n  volume={113},\n  number={523},\n  pages={1228--1242},\n  year={2018},\n  doi={10.1080/01621459.2017.1319839}\n}\n\n@article{chernozhukov2018dml,\n  title={Double/Debiased Machine Learning for Treatment and Structural Parameters},\n  author={Chernozhukov, Victor and Chetverikov, Denis and Demirer, Mert and Duflo, Esther and Hansen, Christian and Newey, Whitney and Robins, James},\n  journal={The Econometrics Journal},\n  volume={21},\n  number={1},\n  pages={C1--C68},\n  year={2018},\n  doi={10.1111/ectj.12097}\n}\n\n@article{kennedy2023dr,\n  title={Towards Optimal Doubly Robust Estimation of Heterogeneous Causal Effects},\n  author={Kennedy, Edward H.},\n  journal={Electronic Journal of Statistics},\n  volume={17},\n  number={2},\n  pages={3008--3049},\n  year={2023},\n  doi={10.1214/23-EJS2157}\n}\n\n@article{kunzel2019metalearners,\n  title={Metalearners for Estimating Heterogeneous Treatment Effects Using Machine Learning},\n  author={K{\\\"u}nzel, S{\\\"o}ren R. and Sekhon, Jasjeet S. and Bickel, Peter J. and Yu, Bin},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={116},\n  number={10},\n  pages={4156--4165},\n  year={2019},\n  doi={10.1073/pnas.1804597116}\n}\n\n@article{imai2010causal,\n  title={Causal Inference with Differential Measurement Error: Nonparametric Identification and Sensitivity Analysis},\n  author={Imai, Kosuke and Yamamoto, Teppei},\n  journal={American Journal of Political Science},\n  volume={54},\n  number={4},\n  pages={926--943},\n  year={2010},\n  doi={10.1111/j.1540-5907.2010.00446.x}\n}\n\n% === LLMs as Annotators ===\n\n@article{gilardi2023chatgpt,\n  title={{ChatGPT} Outperforms Crowd-Workers for Text-Annotation Tasks},\n  author={Gilardi, Fabrizio and Alizadeh, Meysam and Kubli, Ma{\\\"e}l},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={120},\n  number={30},\n  pages={e2305016120},\n  year={2023},\n  doi={10.1073/pnas.2305016120}\n}\n\n@article{tornberg2024chatgpt,\n  title={Large Language Models Outperform Expert Coders and Supervised Classifiers at Annotating Political Social Media Messages},\n  author={T{\\\"o}rnberg, Petter},\n  journal={Social Science Computer Review},\n  year={2024},\n  doi={10.1177/08944393241286471},\n  publisher={SAGE Publications}\n}\n\n@article{ziems2024nlp,\n  title={Can Large Language Models Transform Computational Social Science?},\n  author={Ziems, Caleb and Held, William and Shaikh, Omar and Chen, Jiaao and Zhang, Zhehao and Yang, Diyi},\n  journal={Computational Linguistics},\n  volume={50},\n  number={1},\n  pages={237--291},\n  year={2024},\n  doi={10.1162/coli_a_00502}\n}\n\n@inproceedings{pangakis2023automated,\n  title={Automated Annotation with Generative {AI} Requires Validation},\n  author={Pangakis, Nicholas and Wolken, Samuel and Fasching, Neil},\n  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2023},\n  pages={2284--2296},\n  year={2023}\n}\n\n@article{ashwin2025bias,\n  title={Using Large Language Models for Qualitative Analysis can Introduce Serious Bias},\n  author={Ashwin, Aditya and Swanson, Becca and Blair, Robert and Samii, Cyrus},\n  journal={Sociological Methods \\& Research},\n  year={2025},\n  doi={10.1177/00491241251313793}\n}\n\n% === PPI / DSL / Correction Methods ===\n\n@article{angelopoulos2023ppi,\n  title={Prediction-Powered Inference},\n  author={Angelopoulos, Anastasios N. and Bates, Stephen and Cand{\\`e}s, Emmanuel J. and Jordan, Michael I. and Lei, Lihua},\n  journal={Science},\n  volume={382},\n  number={6671},\n  pages={669--674},\n  year={2023},\n  doi={10.1126/science.adi6000}\n}\n\n@article{messing2026hidden,\n  title={Hidden Measurement Error in {LLM} Pipelines Distorts Annotation, Evaluation, and Benchmarking},\n  author={Messing, Solomon},\n  journal={arXiv preprint arXiv:2604.11581},\n  year={2026}\n}\n\n@article{zrnic2024cross,\n  title={Cross-Prediction-Powered Inference},\n  author={Zrnic, Tijana and Cand{\\`e}s, Emmanuel J.},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={121},\n  number={15},\n  pages={e2322083121},\n  year={2024},\n  doi={10.1073/pnas.2322083121}\n}\n\n@inproceedings{zrnic2024active,\n  title={Active Statistical Inference},\n  author={Zrnic, Tijana and Cand{\\`e}s, Emmanuel J.},\n  booktitle={Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  series={PMLR},\n  volume={235},\n  year={2024}\n}\n\n@inproceedings{egami2024dsl,\n  title={Using Imperfect Surrogates for Downstream Inference: Design-based Supervised Learning for Social Science Applications of Large Language Models},\n  author={Egami, Naoki and Hinck, Musashi and Stewart, Brandon and Wei, Hanying},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={37},\n  year={2024}\n}\n\n@article{mozer2026ppi,\n  title={{PPI} is the Difference Estimator: Recognizing the Survey Sampling Roots of Prediction-Powered Inference},\n  author={Mozer, Reagan},\n  journal={arXiv preprint arXiv:2603.19160},\n  year={2026}\n}\n\n@article{sui2026ppci,\n  title={Prediction-Powered Conditional Inference},\n  author={Sui, Yijun and Cand{\\`e}s, Emmanuel J.},\n  journal={arXiv preprint arXiv:2603.05575},\n  year={2026}\n}\n\n@article{bu2023forestiv,\n  title={Achieving Reliable Causal Inference with Data-Mined Variables: A Random Forest Approach to the Measurement Error Problem},\n  author={Bu, Zhexin and Almond, David and Bhatt, Siddhartha and Goldsmith-Pinkham, Paul},\n  journal={INFORMS Journal on Data Science},\n  volume={2},\n  number={2},\n  pages={110--129},\n  year={2023},\n  doi={10.1287/ijds.2023.0026}\n}\n\n@article{fong2021machine,\n  title={Machine Learning Predictions as Regression Covariates},\n  author={Fong, Christian and Tyler, Matthew},\n  journal={Political Analysis},\n  volume={29},\n  number={1},\n  pages={48--64},\n  year={2021},\n  doi={10.1017/pan.2020.11}\n}\n\n% === CSS Methodology ===\n\n@book{grimmer2022text,\n  title={Text as Data: A New Framework for Machine Learning and the Social Sciences},\n  author={Grimmer, Justin and Roberts, Margaret E. and Stewart, Brandon M.},\n  year={2022},\n  publisher={Princeton University Press},\n  address={Princeton, NJ}\n}\n\n@article{audinet2025benchmarking,\n  title={Benchmarking Debiasing Methods for {LLM}-based Parameter Estimates},\n  author={Audinet de Pieuchon, Josias and Egami, Naoki and Alizadeh, Meysam and Gilardi, Fabrizio},\n  journal={Proceedings of EMNLP},\n  year={2025}\n}\n\n% === Semi-synthetic Data Source ===\n\n@inproceedings{barbieri2020tweeteval,\n  title={{TweetEval}: Unified Benchmark and Comparative Evaluation for Tweet Classification},\n  author={Barbieri, Francesco and Camacho-Collados, Jose and Espinosa-Anke, Luis and Neves, Leonardo},\n  booktitle={Findings of EMNLP},\n  pages={1644--1650},\n  year={2020},\n  doi={10.18653/v1/2020.findings-emnlp.148}\n}\n\n@article{wang2020methods,\n  title={Methods for Correcting Inference Based on Outcomes Predicted by Machine Learning},\n  author={Wang, Siruo and McCormick, Tyler H. and Leek, Jeffrey T.},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={117},\n  number={48},\n  pages={30266--30275},\n  year={2020}\n}\n\n@article{feder2022causal,\n  title={Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond},\n  author={Feder, Amir and Keith, Katherine A. and Manzoor, Emaad and Pryzant, Reid and Sridhar, Dhanya and Wood-Doughty, Zach and Eisenstein, Jacob and Grimmer, Justin and Reichart, Roi and Roberts, Margaret E. and Stewart, Brandon M. and Veitch, Victor and Yang, Diyi},\n  journal={Transactions of the Association for Computational Linguistics},\n  volume={10},\n  pages={1171--1197},\n  year={2022}\n}\n\n@inproceedings{keith2020text,\n  title={Text and Causal Inference: A Review of Using Text to Remove Confounding from Causal Estimates},\n  author={Keith, Katherine A. and Jensen, David and O'Connor, Brendan},\n  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},\n  pages={5332--5344},\n  year={2020}\n}\n\n% === HTE Estimation ===\n\n@article{semenova2021debiased,\n  title={Debiased Machine Learning of Conditional Average Treatment Effects and Other Causal Functions},\n  author={Semenova, Vira and Chernozhukov, Victor},\n  journal={The Econometrics Journal},\n  volume={24},\n  number={2},\n  pages={264--289},\n  year={2021},\n  doi={10.1093/ectj/utaa027}\n}\n\n@article{nie2021quasi,\n  title={Quasi-Oracle Estimation of Heterogeneous Treatment Effects},\n  author={Nie, Xinkun and Wager, Stefan},\n  journal={Biometrika},\n  volume={108},\n  number={2},\n  pages={299--319},\n  year={2021},\n  doi={10.1093/biomet/asaa076}\n}\n\n% === Sensitivity Analysis for Misclassification ===\n\n@book{lash2009applying,\n  title={Applying Quantitative Bias Analysis to Epidemiologic Data},\n  author={Lash, Timothy L. and Fox, Matthew P. and Fink, Aliza K.},\n  publisher={Springer},\n  address={New York},\n  year={2009},\n  doi={10.1007/978-0-387-87959-8}\n}\n\n@article{dorn2022sharp,\n  title={Sharp Sensitivity Analysis for Inverse Propensity Weighting via Quantile Balancing},\n  author={Dorn, Jacob and Guo, Kevin and Kallus, Nathan},\n  journal={Journal of the American Statistical Association},\n  volume={118},\n  number={544},\n  pages={2645--2657},\n  year={2023},\n  doi={10.1080/01621459.2022.2064774}\n}\n\n% === Treatment Effects + Measurement Error ===\n\n@article{ogburn2012nondifferential,\n  title={On the Nondifferential Misclassification of a Binary Confounder},\n  author={Ogburn, Elizabeth L. and VanderWeele, Tyler J.},\n  journal={Epidemiology},\n  volume={23},\n  number={3},\n  pages={433--439},\n  year={2012},\n  doi={10.1097/EDE.0b013e31824d1f63}\n}\n\n@article{battistin2014treatment,\n  title={Treatment Effect Estimation with Covariate Measurement Error},\n  author={Battistin, Erich and Chesher, Andrew},\n  journal={Journal of Econometrics},\n  volume={178},\n  number={2},\n  pages={707--714},\n  year={2014},\n  doi={10.1016/j.jeconom.2013.10.006}\n}\n\n% === Real-Data Datasets ===\n\n@article{kennedy2020constructing,\n  title={Constructing Interval Variables via Faceted {Rasch} Measurement and Multitask Deep Learning: A Hate Speech Application},\n  author={Kennedy, Chris J. and Bacon, Geoff and Sahn, Alexander and von Vacano, Claudia},\n  journal={arXiv preprint arXiv:2009.10277},\n  year={2020}\n}\n\n@inproceedings{guo2017calibration,\n  title={On Calibration of Modern Neural Networks},\n  author={Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n  booktitle={Proceedings of the 34th International Conference on Machine Learning},\n  pages={1321--1330},\n  year={2017}\n}\n\n@article{camuffo2025variance,\n  title={Variance-Aware {LLM} Annotation for Strategy Research},\n  author={Camuffo, Matteo and Gambardella, Alfonso and Kazemi, Maryam and Malachowski, Daniel and Pandey, Alok},\n  journal={arXiv preprint arXiv:2601.02370},\n  year={2025}\n}\n\n@article{cheng2024err,\n  title={To Err Is Human; To Annotate, {SILICON}?},\n  author={Cheng, Myeongjun and Mayya, Rachit and Sedoc, Jo\\~{a}o},\n  journal={arXiv preprint arXiv:2412.14461},\n  year={2024}\n}\n\n@article{ura2015heterogeneous,\n  title={Heterogeneous Treatment Effects with Mismeasured Endogenous Treatment},\n  author={Ura, Takuya},\n  journal={arXiv preprint arXiv:1511.04162},\n  year={2015}\n}\n",
+      "numLines": 549,
+      "startLine": 1,
+      "totalLines": 549
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01K47FtoJSSYYTCp1F6oipXA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "fdbbfc5c-129c-4619-9f8f-463ebedc7754",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FWkA1uxvSo6dEnsW2qqhD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13223,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13223
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T01:38:18.177Z_
+
+<details><summary>↩ Tool result · `toolu_01K47FtoJSSYYTCp1F6oipXA`</summary>
+
+```text
+1	\section{Introduction}
+2	\label{sec:intro}
+3	
+4	Consider estimating whether a content moderation policy reduces hate speech differently across demographic groups, using GPT-4 to classify thousands of posts.
+5	After standard confusion-matrix correction, the analysis concludes the policy \emph{increases} hate speech among younger users---but the true effect is protective.
+6	This sign reversal is not an edge case.
+7	
+8	Large language models (LLMs) now routinely replace human annotators in computational social science (CSS), producing labels for sentiment, hate speech, stance, and political discourse at costs orders of magnitude below manual coding~\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp}.
+9	When these labels serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, the standard correction protocol\footnote{Throughout, ``debiasing'' refers to correction of annotation measurement-error bias, not algorithmic fairness debiasing.} is straightforward: validate a sample against expert annotations, estimate a confusion matrix, and apply its inverse uniformly to correct conditional average treatment effect (CATE) estimates.
+10	Yet LLM annotations are not uniformly accurate: \citet{ashwin2025bias} document misclassification rates varying by up to 5$\times$ across demographic subgroups defined by refugee status, gender, and education level; in our pilot study, GPT-4.1 achieves 85.8\% accuracy on TweetEval sentiment, but error rates range from 10.2\% to 20.0\% across text-feature subgroups ($\Delta\pi = 0.098$).
+11	
+12	We show that this standard correction can make things worse.
+13	In 14.9\% of our synthetic configurations (across a grid of $\Delta\pi$ and $\tau(0)$ values; $\tau(0) = 0.03$), global correction reverses the sign of estimated CATE---a protective treatment ($\tau = +0.03$) appears harmful ($\hat{\tau} = -0.059$)---rising to 31\% at $\tau(0) = 0.01$ (Figure~\ref{fig:sign_reversal}); all eight real LLMs tested amplify bias under global correction, while EC-HTE eliminates sign reversal entirely.
+14	Global correction amplifies bias by up to 5.9$\times$ ($K{=}4$ with CausalForest); the classical Frazis-Loeb attenuation correction~\cite{frazis2003estimating} \emph{increases} bias by up to 2.9$\times$.
+15	The mechanism is over-correction: for subgroups with near-zero misclassification, the naive estimator is nearly unbiased, yet pooled correction calibrated for the average error rate introduces substantial bias precisely where labels were most trustworthy.
+16	
+17	We derive an exact bias identity explaining when and why this occurs (Theorem~\ref{thm:bias_identity}): the correction-induced bias in each subgroup factors into three independently estimable components, verified empirically at $R^2 \geq 0.97$ on synthetic grids and semi-synthetic evaluations using 11 empirical LLM confusion matrices spanning open-source and proprietary model families.
+18	The identity yields a diagnostic (Proposition~\ref{prop:debiasing_hurts}) that predicts when global correction will harm a subgroup using only per-subgroup misclassification rates, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero effect heterogeneity; Section~\ref{sec:diagnostic}).
+19	
+20	The per-subgroup correction prescribed by the identity---implemented via hierarchical Bayesian confusion matrix estimation (EC-HTE)---reduces $|\text{bias}|$ from 0.059 to 0.008 under extreme heterogeneity ($K{=}2$).
+21	The advantage is conditional: when $\Delta\pi$ is small, the variance cost of stratification outweighs its bias benefit.
+22	
+23	Existing corrections---PPI~\cite{angelopoulos2023ppi}, DSL~\cite{egami2024dsl}, PPCI~\cite{sui2026ppci}, arm-specific PPI~\cite{mozer2026ppi}, ForestIV~\cite{bu2023forestiv}---assume homogeneous prediction error; none addresses effect modifier misclassification (Section~\ref{sec:related}).
+24	
+25	\begin{figure*}[t]
+26	\centering
+27	\includegraphics[width=\textwidth]{figures/fig1_sign_reversal.pdf}
+28	\caption{CATE sign reversal under global correction ($K{=}2$, $\tau(0) = 0.03$). (A) Naive vs.\ global-corrected CATE; red triangles mark sign reversals (7.5\% of subgroup estimates). (B) Extreme case: true $\tau = +0.03$, estimated $\hat{\tau} = -0.059$. (C) 14.9\% of configurations exhibit sign reversal; all 8 real LLMs amplify bias; EC-HTE: 0\% reversal.}
+29	\label{fig:sign_reversal}
+30	\end{figure*}
+31	
+32	Our contributions are:
+33	\begin{itemize}
+34	    \item An exact finite-population bias identity (Theorem~\ref{thm:bias_identity}): the algebraic structure follows from standard confusion-matrix calculus, but we show it produces sign reversal in the LLM annotation setting and factor the bias into three independently estimable components ($\delta_s \cdot \Delta\tau / (1-2\bar{\pi})$), enabling the diagnostic below. Sign reversal occurs in 14.9\% of configurations at $\tau(0) = 0.03$ (31\% at $\tau(0) = 0.01$); verified at $R^2 \geq 0.97$ (Sections~\ref{sec:theory},~\ref{sec:bias_mechanism}).
+35	    \item An actionable diagnostic (Proposition~\ref{prop:debiasing_hurts}): a condition on per-subgroup misclassification rates alone predicts when global correction increases bias, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero effect heterogeneity)---independently useful without adopting any specific correction method (Section~\ref{sec:diagnostic}).
+36	    \item One corrective instantiation of the identity: per-subgroup hierarchical Bayesian confusion matrix estimation (EC-HTE), compatible with difference-in-means, CausalForest, and R-learner, and composable with PPCI for joint covariate/outcome error---effective when error heterogeneity is sufficient (Sections~\ref{sec:method}--\ref{sec:diagnostic}).
+37	\end{itemize}
+38	The bias identity applies beyond LLM annotation to any proxy classifier with subgroup-varying error rates; survey coding, medical diagnosis, and satellite imagery classification share this structure.
+39	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "5d114b3e-9aec-4655-99bc-9ee29559d8c6",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\\label{sec:intro}\n\nConsider estimating whether a content moderation policy reduces hate speech differently across demographic groups, using GPT-4 to classify thousands of posts.\nAfter standard confusion-matrix correction, the analysis concludes the policy \\emph{increases} hate speech among younger users---but the true effect is protective.\nThis sign reversal is not an edge case.\n\nLarge language models (LLMs) now routinely replace human annotators in computational social science (CSS), producing labels for sentiment, hate speech, stance, and political discourse at costs orders of magnitude below manual coding~\\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp}.\nWhen these labels serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, the standard correction protocol\\footnote{Throughout, ``debiasing'' refers to correction of annotation measurement-error bias, not algorithmic fairness debiasing.} is straightforward: validate a sample against expert annotations, estimate a confusion matrix, and apply its inverse uniformly to correct conditional average treatment effect (CATE) estimates.\nYet LLM annotations are not uniformly accurate: \\citet{ashwin2025bias} document misclassification rates varying by up to 5$\\times$ across demographic subgroups defined by refugee status, gender, and education level; in our pilot study, GPT-4.1 achieves 85.8\\% accuracy on TweetEval sentiment, but error rates range from 10.2\\% to 20.0\\% across text-feature subgroups ($\\Delta\\pi = 0.098$).\n\nWe show that this standard correction can make things worse.\nIn 14.9\\% of our synthetic configurations (across a grid of $\\Delta\\pi$ and $\\tau(0)$ values; $\\tau(0) = 0.03$), global correction reverses the sign of estimated CATE---a protective treatment ($\\tau = +0.03$) appears harmful ($\\hat{\\tau} = -0.059$)---rising to 31\\% at $\\tau(0) = 0.01$ (Figure~\\ref{fig:sign_reversal}); all eight real LLMs tested amplify bias under global correction, while EC-HTE eliminates sign reversal entirely.\nGlobal correction amplifies bias by up to 5.9$\\times$ ($K{=}4$ with CausalForest); the classical Frazis-Loeb attenuation correction~\\cite{frazis2003estimating} \\emph{increases} bias by up to 2.9$\\times$.\nThe mechanism is over-correction: for subgroups with near-zero misclassification, the naive estimator is nearly unbiased, yet pooled correction calibrated for the average error rate introduces substantial bias precisely where labels were most trustworthy.\n\nWe derive an exact bias identity explaining when and why this occurs (Theorem~\\ref{thm:bias_identity}): the correction-induced bias in each subgroup factors into three independently estimable components, verified empirically at $R^2 \\geq 0.97$ on synthetic grids and semi-synthetic evaluations using 11 empirical LLM confusion matrices spanning open-source and proprietary model families.\nThe identity yields a diagnostic (Proposition~\\ref{prop:debiasing_hurts}) that predicts when global correction will harm a subgroup using only per-subgroup misclassification rates, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero effect heterogeneity; Section~\\ref{sec:diagnostic}).\n\nThe per-subgroup correction prescribed by the identity---implemented via hierarchical Bayesian confusion matrix estimation (EC-HTE)---reduces $|\\text{bias}|$ from 0.059 to 0.008 under extreme heterogeneity ($K{=}2$).\nThe advantage is conditional: when $\\Delta\\pi$ is small, the variance cost of stratification outweighs its bias benefit.\n\nExisting corrections---PPI~\\cite{angelopoulos2023ppi}, DSL~\\cite{egami2024dsl}, PPCI~\\cite{sui2026ppci}, arm-specific PPI~\\cite{mozer2026ppi}, ForestIV~\\cite{bu2023forestiv}---assume homogeneous prediction error; none addresses effect modifier misclassification (Section~\\ref{sec:related}).\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_sign_reversal.pdf}\n\\caption{CATE sign reversal under global correction ($K{=}2$, $\\tau(0) = 0.03$). (A) Naive vs.\\ global-corrected CATE; red triangles mark sign reversals (7.5\\% of subgroup estimates). (B) Extreme case: true $\\tau = +0.03$, estimated $\\hat{\\tau} = -0.059$. (C) 14.9\\% of configurations exhibit sign reversal; all 8 real LLMs amplify bias; EC-HTE: 0\\% reversal.}\n\\label{fig:sign_reversal}\n\\end{figure*}\n\nOur contributions are:\n\\begin{itemize}\n    \\item An exact finite-population bias identity (Theorem~\\ref{thm:bias_identity}): the algebraic structure follows from standard confusion-matrix calculus, but we show it produces sign reversal in the LLM annotation setting and factor the bias into three independently estimable components ($\\delta_s \\cdot \\Delta\\tau / (1-2\\bar{\\pi})$), enabling the diagnostic below. Sign reversal occurs in 14.9\\% of configurations at $\\tau(0) = 0.03$ (31\\% at $\\tau(0) = 0.01$); verified at $R^2 \\geq 0.97$ (Sections~\\ref{sec:theory},~\\ref{sec:bias_mechanism}).\n    \\item An actionable diagnostic (Proposition~\\ref{prop:debiasing_hurts}): a condition on per-subgroup misclassification rates alone predicts when global correction increases bias, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero effect heterogeneity)---independently useful without adopting any specific correction method (Section~\\ref{sec:diagnostic}).\n    \\item One corrective instantiation of the identity: per-subgroup hierarchical Bayesian confusion matrix estimation (EC-HTE), compatible with difference-in-means, CausalForest, and R-learner, and composable with PPCI for joint covariate/outcome error---effective when error heterogeneity is sufficient (Sections~\\ref{sec:method}--\\ref{sec:diagnostic}).\n\\end{itemize}\nThe bias identity applies beyond LLM annotation to any proxy classifier with subgroup-varying error rates; survey coding, medical diagnosis, and satellite imagery classification share this structure.\n",
+      "numLines": 39,
+      "startLine": 1,
+      "totalLines": 39
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of all the files. Let me also read the appendix to find where to add the finite-sample sketch proof (item 4), and check the main.tex for page structure.
+
+Let me read relevant parts of the appendix.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "919ce735-6e35-42a9-96e3-d1115911c29d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qVSfAi9QBg32S6DeWYbLj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21586,
+      "cache_read_input_tokens": 25064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 21586
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+Now let me read the appendix sections I need and check the main.tex structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "9bcd1887-9a28-48cc-82ac-7dc99f1e6ba7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qVSfAi9QBg32S6DeWYbLj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21586,
+      "cache_read_input_tokens": 25064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 21586
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01E97xzisucvdzFc5K3xScWe`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+  "offset": 0,
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "3c2b476c-8001-440f-9ed3-4f05191cb81e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qVSfAi9QBg32S6DeWYbLj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21586,
+      "cache_read_input_tokens": 25064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 21586
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T01:38:24.620Z_
+
+<details><summary>↩ Tool result · `toolu_01E97xzisucvdzFc5K3xScWe`</summary>
+
+```text
+0	\section{EC-HTE Procedure}
+1	\label{app:algorithm}
+2	
+3	\begin{algorithm}[t]
+4	\caption{EC-HTE: Error-Corrected Heterogeneous Treatment Effects}
+5	\label{alg:echte}
+6	\begin{algorithmic}[1]
+7	\Require Observations $\{(Y_i, W_i, \hat{Z}_i, X_i)\}_{i=1}^N$; expert labels $\{Z_j^*\}_{j=1}^{n_{\text{expert}}}$; subgroup map $S: \mathcal{X} \to \{1,\ldots,K\}$
+8	\Ensure Corrected CATE estimates $\hat{\tau}(z)$ with variance-adjusted CIs
+9	\Statex
+10	\State \textbf{Preconditions:} verify $n_{\text{expert}} \times P(Z_{\text{minority}}) / K \geq 25$ and $\max_s(\text{FPR}_s, \text{FNR}_s) < 0.5$; if either fails, use global correction
+11	\Statex
+12	\State \textbf{Step 1: Estimate per-subgroup confusion matrices (HB)}
+13	\For{$s = 1, \ldots, K$}
+14	    \State $C_s[j,\cdot] \sim \mathrm{Dir}(\alpha_0 \cdot \hat{C}_{\text{global},j})$, \; $\alpha_0$ via empirical Bayes
+15	    \State Gibbs sampler (4 chains, 4000 iter) on $\{(\hat{Z}_j, Z_j^*) : S_j = s\}$
+16	    \State $\hat{C}_s \gets$ posterior mean; verify $\hat{R} < 1.01$
+17	\EndFor
+18	\Statex
+19	\State \textbf{Step 2: Correct observed outcome moments}
+20	\For{$s = 1, \ldots, K$}
+21	    \If{$\kappa(\hat{C}_s) > 100$} $\hat{C}_s \gets \bar{C}$ \Comment{singularity guard}
+22	    \EndIf
+23	    \State $\tilde{\boldsymbol{\mu}}_s \gets \hat{C}_s^{-1} \hat{\boldsymbol{\mu}}_s$
+24	\EndFor
+25	\Statex
+26	\State \textbf{Step 3: CausalForestDML with variance-adjusted SEs}
+27	\State Train CausalForest (honest splitting) on corrected outcome moments $\tilde{\boldsymbol{\mu}}_s$
+28	\State $\mathrm{se}_{\mathrm{adj},i} \gets \sqrt{\mathrm{diag}(\hat{C}_{S_i}^{-1}\, \mathrm{diag}(\mathrm{se}_i^2)\, \hat{C}_{S_i}^{-\top})}$
+29	\State \Return $\hat{\tau}(z)$ with 95\% CIs from $\mathrm{se}_{\mathrm{adj}}$
+30	\end{algorithmic}
+31	\end{algorithm}
+32	
+33	\subsection{Condition Number Guard Ablation}
+34	\label{app:kappa_ablation}
+35	
+36	The singularity guard in Algorithm~\ref{alg:echte} (line~6) falls back to global correction when $\kappa(\hat{C}_s) > 100$.
+37	We verify that this threshold is not load-bearing by sweeping $\kappa \in \{10, 25, 50, 100, 200, 500, 1000\}$ under the standard DGP ($K{=}2$, extreme heterogeneity, $N{=}5{,}000$, $n_{\text{expert}}{=}250$, 100 MC runs).
+38	Across all configurations, the maximum observed condition number is $\kappa_{\max} = 1.89$ (mean 1.45, p99 1.89), providing a $53{\times}$ safety margin below the $\kappa{=}100$ threshold.
+39	Consequently, the guard never triggers at any tested threshold, and all $\kappa$ values produce identical RMSE (HB: 0.076, Global: 0.077) and zero numerical instability.
+40	In a stress test with near-random labeling ($\pi_s \approx 0.4$--$0.5$, $n_{\text{expert}}{=}50$), the maximum condition number reaches 1{,}125, correctly triggering the $\kappa{=}100$ guard and preventing catastrophic inversion.
+41	The adaptive formula $\kappa_{\text{adapt}} = 10 \sqrt{n_{\text{expert}} / K}$ recovers $\kappa{=}100$ for this regime and scales naturally with the estimation precision.
+42	
+43	\section{Full Proof of Theorem~\ref{thm:bias_identity}}
+44	\label{app:derivation}
+45	
+46	\paragraph{Setup.}
+47	Under assumptions (A1)--(A4), the observed CATE in subgroup $s$ at effect-modifier level $z$ is
+48	\begin{equation}
+49	\tau_{\text{obs}}(z, s) = \sum_{z'} M_s[z, z'] \cdot \tau(z'),
+50	\end{equation}
+51	where $M_s[z, z'] = P(Z{=}z' \mid \hat{Z}{=}z, S{=}s)$ is the mixing matrix.
+52	Under (A2)--(A3), $M_s = \bigl[\begin{smallmatrix} 1-\pi_s & \pi_s \\ \pi_s & 1-\pi_s \end{smallmatrix}\bigr]$.
+53	
+54	\paragraph{Global correction.}
+55	The pooled mixing matrix is $M_{\text{global}} = \sum_s w_s M_s = \bigl[\begin{smallmatrix} 1-\bar{\pi} & \bar{\pi} \\ \bar{\pi} & 1-\bar{\pi} \end{smallmatrix}\bigr]$, with $\bar{\pi} = \sum_s w_s \pi_s$.
+56	
+57	Global correction applies $M_{\text{global}}^{-1}$ to $\tau_{\text{obs}}(\cdot, s)$:
+58	\begin{equation}
+59	\hat{\tau}_{\text{global}}(z, s) = [M_{\text{global}}^{-1} M_s \cdot \boldsymbol{\tau}]_z,
+60	\end{equation}
+61	where $\boldsymbol{\tau} = [\tau(0), \tau(1)]^\top$.
+62	
+63	\paragraph{Bias computation.}
+64	The bias is $\hat{\tau}_{\text{global}}(z, s) - \tau(z) = [(M_{\text{global}}^{-1} M_s - I) \boldsymbol{\tau}]_z$.
+65	
+66	Direct computation gives:
+67	\begin{equation}
+68	M_{\text{global}}^{-1} = \frac{1}{1 - 2\bar{\pi}} \begin{bmatrix} 1-\bar{\pi} & -\bar{\pi} \\ -\bar{\pi} & 1-\bar{\pi} \end{bmatrix}.
+69	\end{equation}
+70	Multiplying by $M_s$:
+71	\begin{equation}
+72	\resizebox{.88\columnwidth}{!}{$\displaystyle
+73	M_{\text{global}}^{-1} M_s = \frac{1}{1-2\bar{\pi}} \begin{bmatrix} (1{-}\bar{\pi})(1{-}\pi_s) - \bar{\pi}\pi_s & (1{-}\bar{\pi})\pi_s - \bar{\pi}(1{-}\pi_s) \\ -\bar{\pi}(1{-}\pi_s) + (1{-}\bar{\pi})\pi_s & -\bar{\pi}\pi_s + (1{-}\bar{\pi})(1{-}\pi_s) \end{bmatrix}.
+74	$}
+75	\end{equation}
+76	
+77	Define $\delta_s = \pi_s - \bar{\pi}$. Substituting $\pi_s = \bar{\pi} + \delta_s$:
+78	\begin{equation}
+79	M_{\text{global}}^{-1} M_s - I = \frac{\delta_s}{1-2\bar{\pi}} \begin{bmatrix} -1 & 1 \\ 1 & -1 \end{bmatrix}.
+80	\end{equation}
+81	
+82	To verify: the $(1,1)$ entry of $M_{\text{global}}^{-1} M_s$ is
+83	{\small
+84	\begin{align}
+85	&\frac{(1{-}\bar{\pi})(1{-}\bar{\pi}{-}\delta_s) - \bar{\pi}(\bar{\pi}{+}\delta_s)}{1-2\bar{\pi}} \nonumber\\
+86	&= \frac{(1{-}\bar{\pi})^2 - (1{-}\bar{\pi})\delta_s - \bar{\pi}^2 - \bar{\pi}\delta_s}{1-2\bar{\pi}} \nonumber\\
+87	&= \frac{1 - 2\bar{\pi} - \delta_s}{1-2\bar{\pi}} = 1 - \frac{\delta_s}{1-2\bar{\pi}}.
+88	\end{align}
+89	}
+90	
+91	Applying $(M_{\text{global}}^{-1} M_s - I)$ to $\boldsymbol{\tau}$:
+92	{\small
+93	\begin{align}
+94	\text{bias}(z{=}0, s) &= \tfrac{\delta_s}{1-2\bar{\pi}}(-\tau(0) + \tau(1)) = +\tfrac{\delta_s \cdot \Delta\tau}{1-2\bar{\pi}}, \\
+95	\text{bias}(z{=}1, s) &= \tfrac{\delta_s}{1-2\bar{\pi}}(\tau(0) - \tau(1)) = -\tfrac{\delta_s \cdot \Delta\tau}{1-2\bar{\pi}},
+96	\end{align}
+97	}
+98	where $\Delta\tau = \tau(1) - \tau(0)$. \qed
+99	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "5bbeed8f-a7b0-4dec-b890-d1b70fb1ba4a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+      "content": "\\section{EC-HTE Procedure}\n\\label{app:algorithm}\n\n\\begin{algorithm}[t]\n\\caption{EC-HTE: Error-Corrected Heterogeneous Treatment Effects}\n\\label{alg:echte}\n\\begin{algorithmic}[1]\n\\Require Observations $\\{(Y_i, W_i, \\hat{Z}_i, X_i)\\}_{i=1}^N$; expert labels $\\{Z_j^*\\}_{j=1}^{n_{\\text{expert}}}$; subgroup map $S: \\mathcal{X} \\to \\{1,\\ldots,K\\}$\n\\Ensure Corrected CATE estimates $\\hat{\\tau}(z)$ with variance-adjusted CIs\n\\Statex\n\\State \\textbf{Preconditions:} verify $n_{\\text{expert}} \\times P(Z_{\\text{minority}}) / K \\geq 25$ and $\\max_s(\\text{FPR}_s, \\text{FNR}_s) < 0.5$; if either fails, use global correction\n\\Statex\n\\State \\textbf{Step 1: Estimate per-subgroup confusion matrices (HB)}\n\\For{$s = 1, \\ldots, K$}\n    \\State $C_s[j,\\cdot] \\sim \\mathrm{Dir}(\\alpha_0 \\cdot \\hat{C}_{\\text{global},j})$, \\; $\\alpha_0$ via empirical Bayes\n    \\State Gibbs sampler (4 chains, 4000 iter) on $\\{(\\hat{Z}_j, Z_j^*) : S_j = s\\}$\n    \\State $\\hat{C}_s \\gets$ posterior mean; verify $\\hat{R} < 1.01$\n\\EndFor\n\\Statex\n\\State \\textbf{Step 2: Correct observed outcome moments}\n\\For{$s = 1, \\ldots, K$}\n    \\If{$\\kappa(\\hat{C}_s) > 100$} $\\hat{C}_s \\gets \\bar{C}$ \\Comment{singularity guard}\n    \\EndIf\n    \\State $\\tilde{\\boldsymbol{\\mu}}_s \\gets \\hat{C}_s^{-1} \\hat{\\boldsymbol{\\mu}}_s$\n\\EndFor\n\\Statex\n\\State \\textbf{Step 3: CausalForestDML with variance-adjusted SEs}\n\\State Train CausalForest (honest splitting) on corrected outcome moments $\\tilde{\\boldsymbol{\\mu}}_s$\n\\State $\\mathrm{se}_{\\mathrm{adj},i} \\gets \\sqrt{\\mathrm{diag}(\\hat{C}_{S_i}^{-1}\\, \\mathrm{diag}(\\mathrm{se}_i^2)\\, \\hat{C}_{S_i}^{-\\top})}$\n\\State \\Return $\\hat{\\tau}(z)$ with 95\\% CIs from $\\mathrm{se}_{\\mathrm{adj}}$\n\\end{algorithmic}\n\\end{algorithm}\n\n\\subsection{Condition Number Guard Ablation}\n\\label{app:kappa_ablation}\n\nThe singularity guard in Algorithm~\\ref{alg:echte} (line~6) falls back to global correction when $\\kappa(\\hat{C}_s) > 100$.\nWe verify that this threshold is not load-bearing by sweeping $\\kappa \\in \\{10, 25, 50, 100, 200, 500, 1000\\}$ under the standard DGP ($K{=}2$, extreme heterogeneity, $N{=}5{,}000$, $n_{\\text{expert}}{=}250$, 100 MC runs).\nAcross all configurations, the maximum observed condition number is $\\kappa_{\\max} = 1.89$ (mean 1.45, p99 1.89), providing a $53{\\times}$ safety margin below the $\\kappa{=}100$ threshold.\nConsequently, the guard never triggers at any tested threshold, and all $\\kappa$ values produce identical RMSE (HB: 0.076, Global: 0.077) and zero numerical instability.\nIn a stress test with near-random labeling ($\\pi_s \\approx 0.4$--$0.5$, $n_{\\text{expert}}{=}50$), the maximum condition number reaches 1{,}125, correctly triggering the $\\kappa{=}100$ guard and preventing catastrophic inversion.\nThe adaptive formula $\\kappa_{\\text{adapt}} = 10 \\sqrt{n_{\\text{expert}} / K}$ recovers $\\kappa{=}100$ for this regime and scales naturally with the estimation precision.\n\n\\section{Full Proof of Theorem~\\ref{thm:bias_identity}}\n\\label{app:derivation}\n\n\\paragraph{Setup.}\nUnder assumptions (A1)--(A4), the observed CATE in subgroup $s$ at effect-modifier level $z$ is\n\\begin{equation}\n\\tau_{\\text{obs}}(z, s) = \\sum_{z'} M_s[z, z'] \\cdot \\tau(z'),\n\\end{equation}\nwhere $M_s[z, z'] = P(Z{=}z' \\mid \\hat{Z}{=}z, S{=}s)$ is the mixing matrix.\nUnder (A2)--(A3), $M_s = \\bigl[\\begin{smallmatrix} 1-\\pi_s & \\pi_s \\\\ \\pi_s & 1-\\pi_s \\end{smallmatrix}\\bigr]$.\n\n\\paragraph{Global correction.}\nThe pooled mixing matrix is $M_{\\text{global}} = \\sum_s w_s M_s = \\bigl[\\begin{smallmatrix} 1-\\bar{\\pi} & \\bar{\\pi} \\\\ \\bar{\\pi} & 1-\\bar{\\pi} \\end{smallmatrix}\\bigr]$, with $\\bar{\\pi} = \\sum_s w_s \\pi_s$.\n\nGlobal correction applies $M_{\\text{global}}^{-1}$ to $\\tau_{\\text{obs}}(\\cdot, s)$:\n\\begin{equation}\n\\hat{\\tau}_{\\text{global}}(z, s) = [M_{\\text{global}}^{-1} M_s \\cdot \\boldsymbol{\\tau}]_z,\n\\end{equation}\nwhere $\\boldsymbol{\\tau} = [\\tau(0), \\tau(1)]^\\top$.\n\n\\paragraph{Bias computation.}\nThe bias is $\\hat{\\tau}_{\\text{global}}(z, s) - \\tau(z) = [(M_{\\text{global}}^{-1} M_s - I) \\boldsymbol{\\tau}]_z$.\n\nDirect computation gives:\n\\begin{equation}\nM_{\\text{global}}^{-1} = \\frac{1}{1 - 2\\bar{\\pi}} \\begin{bmatrix} 1-\\bar{\\pi} & -\\bar{\\pi} \\\\ -\\bar{\\pi} & 1-\\bar{\\pi} \\end{bmatrix}.\n\\end{equation}\nMultiplying by $M_s$:\n\\begin{equation}\n\\resizebox{.88\\columnwidth}{!}{$\\displaystyle\nM_{\\text{global}}^{-1} M_s = \\frac{1}{1-2\\bar{\\pi}} \\begin{bmatrix} (1{-}\\bar{\\pi})(1{-}\\pi_s) - \\bar{\\pi}\\pi_s & (1{-}\\bar{\\pi})\\pi_s - \\bar{\\pi}(1{-}\\pi_s) \\\\ -\\bar{\\pi}(1{-}\\pi_s) + (1{-}\\bar{\\pi})\\pi_s & -\\bar{\\pi}\\pi_s + (1{-}\\bar{\\pi})(1{-}\\pi_s) \\end{bmatrix}.\n$}\n\\end{equation}\n\nDefine $\\delta_s = \\pi_s - \\bar{\\pi}$. Substituting $\\pi_s = \\bar{\\pi} + \\delta_s$:\n\\begin{equation}\nM_{\\text{global}}^{-1} M_s - I = \\frac{\\delta_s}{1-2\\bar{\\pi}} \\begin{bmatrix} -1 & 1 \\\\ 1 & -1 \\end{bmatrix}.\n\\end{equation}\n\nTo verify: the $(1,1)$ entry of $M_{\\text{global}}^{-1} M_s$ is\n{\\small\n\\begin{align}\n&\\frac{(1{-}\\bar{\\pi})(1{-}\\bar{\\pi}{-}\\delta_s) - \\bar{\\pi}(\\bar{\\pi}{+}\\delta_s)}{1-2\\bar{\\pi}} \\nonumber\\\\\n&= \\frac{(1{-}\\bar{\\pi})^2 - (1{-}\\bar{\\pi})\\delta_s - \\bar{\\pi}^2 - \\bar{\\pi}\\delta_s}{1-2\\bar{\\pi}} \\nonumber\\\\\n&= \\frac{1 - 2\\bar{\\pi} - \\delta_s}{1-2\\bar{\\pi}} = 1 - \\frac{\\delta_s}{1-2\\bar{\\pi}}.\n\\end{align}\n}\n\nApplying $(M_{\\text{global}}^{-1} M_s - I)$ to $\\boldsymbol{\\tau}$:\n{\\small\n\\begin{align}\n\\text{bias}(z{=}0, s) &= \\tfrac{\\delta_s}{1-2\\bar{\\pi}}(-\\tau(0) + \\tau(1)) = +\\tfrac{\\delta_s \\cdot \\Delta\\tau}{1-2\\bar{\\pi}}, \\\\\n\\text{bias}(z{=}1, s) &= \\tfrac{\\delta_s}{1-2\\bar{\\pi}}(\\tau(0) - \\tau(1)) = -\\tfrac{\\delta_s \\cdot \\Delta\\tau}{1-2\\bar{\\pi}},\n\\end{align}\n}\nwhere $\\Delta\\tau = \\tau(1) - \\tau(0)$. \\qed\n",
+      "numLines": 100,
+      "startLine": 0,
+      "totalLines": 1532
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01XLBAoGDKBdY9qNnqgbt3JZ`</summary>
+
+```json
+{
+  "pattern": "app:derivation|Appendix B|\\\\section.*Derivation|\\\\section.*Proof",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "c2a3ca82-4248-4dc9-873a-8b423de25b37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qVSfAi9QBg32S6DeWYbLj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21586,
+      "cache_read_input_tokens": 25064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 21586
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T01:38:26.285Z_
+
+<details><summary>↩ Tool result · `toolu_01XLBAoGDKBdY9qNnqgbt3JZ`</summary>
+
+```text
+44:\section{Full Proof of Theorem~\ref{thm:bias_identity}}
+45:\label{app:derivation}
+101:\section{Multi-class Extension and Proof}
+140:\section{Proof of Proposition~\ref{prop:debiasing_hurts}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "35898626-721d-47d6-880a-6f34f283147c",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "44:\\section{Full Proof of Theorem~\\ref{thm:bias_identity}}\n45:\\label{app:derivation}\n101:\\section{Multi-class Extension and Proof}\n140:\\section{Proof of Proposition~\\ref{prop:debiasing_hurts}}",
+    "numLines": 4
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Tcwjr94tTywyUvTi7aEy2P`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "feffe7b1-6643-4720-855b-47605274ae90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017qVSfAi9QBg32S6DeWYbLj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21586,
+      "cache_read_input_tokens": 25064,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 21586
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T01:38:26.756Z_
+
+<details><summary>↩ Tool result · `toolu_01Tcwjr94tTywyUvTi7aEy2P`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	\usepackage[review]{acl}
+3	\usepackage{times}
+4	\usepackage{latexsym}
+5	\usepackage[T1]{fontenc}
+6	\usepackage[utf8]{inputenc}
+7	\usepackage{microtype}
+8	\usepackage{inconsolata}
+9	
+10	\usepackage{amsmath,amssymb,amsthm}
+11	\usepackage{graphicx}
+12	\usepackage{booktabs}
+13	\usepackage{multirow}
+14	\usepackage{xcolor}
+15	\usepackage{enumitem}
+16	\usepackage{algorithm}
+17	\usepackage{algpseudocode}
+18	
+19	\newtheorem{theorem}{Theorem}
+20	\newtheorem{corollary}[theorem]{Corollary}
+21	\newtheorem{proposition}[theorem]{Proposition}
+22	\newtheorem{remark}[theorem]{Remark}
+23	
+24	\title{When Debiasing Hurts: An Exact Bias Identity\\for LLM-Annotated Treatment Effects}
+25	
+26	\author{Anonymous}
+27	
+28	\begin{document}
+29	\maketitle
+30	
+31	\input{abstract}
+32	
+33	\input{introduction}
+34	
+35	\input{related_work}
+36	
+37	\input{theory}
+38	
+39	\input{method}
+40	
+41	\input{experiments}
+42	
+43	\input{conclusion}
+44	
+45	\input{limitations}
+46	
+47	\bibliography{references}
+48	
+49	\appendix
+50	\input{appendix}
+51	
+52	%\input{checklist}
+53	
+54	\end{document}
+55	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "2afe45b1-2431-4fb5-9b91-87faa0817482",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\\usepackage[review]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{inconsolata}\n\n\\usepackage{amsmath,amssymb,amsthm}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{enumitem}\n\\usepackage{algorithm}\n\\usepackage{algpseudocode}\n\n\\newtheorem{theorem}{Theorem}\n\\newtheorem{corollary}[theorem]{Corollary}\n\\newtheorem{proposition}[theorem]{Proposition}\n\\newtheorem{remark}[theorem]{Remark}\n\n\\title{When Debiasing Hurts: An Exact Bias Identity\\\\for LLM-Annotated Treatment Effects}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\n\\input{introduction}\n\n\\input{related_work}\n\n\\input{theory}\n\n\\input{method}\n\n\\input{experiments}\n\n\\input{conclusion}\n\n\\input{limitations}\n\n\\bibliography{references}\n\n\\appendix\n\\input{appendix}\n\n%\\input{checklist}\n\n\\end{document}\n",
+      "numLines": 55,
+      "startLine": 1,
+      "totalLines": 55
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to read more of the appendix to find where Appendix B ends (line 99 is the end of the proof), and understand the structure around it. Let me also read more context around lines 99-140 to find where to insert the finite-sample sketch proof.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "7d58a2d2-c423-49cc-b21c-33becac79fb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NeJFPdYu9B7rNwE1mfyyAk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3954,
+      "cache_read_input_tokens": 46650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Let me read the appendix around lines 99-140 to find the right insertion point for the finite-sample paragraph.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "bfd0a3b1-3649-47da-b604-4e810d72ed40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NeJFPdYu9B7rNwE1mfyyAk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3954,
+      "cache_read_input_tokens": 46650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Sbaxc7RGWzmYZGU7sYwC15`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+  "offset": 95,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "ae87486b-48dd-4d3c-a5d4-52ac2b927967",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NeJFPdYu9B7rNwE1mfyyAk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3954,
+      "cache_read_input_tokens": 46650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T01:38:34.045Z_
+
+<details><summary>↩ Tool result · `toolu_01Sbaxc7RGWzmYZGU7sYwC15`</summary>
+
+```text
+95	\text{bias}(z{=}0, s) &= \tfrac{\delta_s}{1-2\bar{\pi}}(-\tau(0) + \tau(1)) = +\tfrac{\delta_s \cdot \Delta\tau}{1-2\bar{\pi}}, \\
+96	\text{bias}(z{=}1, s) &= \tfrac{\delta_s}{1-2\bar{\pi}}(\tau(0) - \tau(1)) = -\tfrac{\delta_s \cdot \Delta\tau}{1-2\bar{\pi}},
+97	\end{align}
+98	}
+99	where $\Delta\tau = \tau(1) - \tau(0)$. \qed
+100	
+101	\section{Multi-class Extension and Proof}
+102	\label{app:multiclass}
+103	
+104	\begin{corollary}[Multi-class Extension]
+105	\label{cor:multiclass}
+106	For $K > 2$ subgroups with $J$ effect-modifier levels and uniform off-diagonal misclassification (misclassified observations from class $j$ are distributed equally among the remaining $J{-}1$ classes), the subgroup bias of global correction generalizes to
+107	\begin{equation}
+108	\mathrm{bias}_{\mathrm{global}}(z, s) = \sum_{j=1}^{J} \bigl(\bar{\pi}_j - \pi_{s,j}\bigr) \cdot \bigl(\tau(j) - \bar{\tau}\bigr) \cdot g(\bar{\pi}),
+109	\label{eq:multiclass}
+110	\end{equation}
+111	where $g(\bar{\pi})$ collects the matrix-inversion amplification terms.\footnote{For $J=3$ with symmetric misclassification (off-diagonal errors uniform), $g(\bar{\pi}) = 1/(1 - 3\bar{\pi}/2)$, generalizing the $J{=}2$ factor $1/(1-2\bar{\pi})$. In general, $g(\bar{\pi}) = 1/(1 - J\bar{\pi}/(J-1))$.}
+112	The essential structure, $\sum_s w_s (\bar{\pi}_j - \pi_{s,j}) = 0$, ensures that bias redistributes across subgroups rather than vanishing in aggregate.
+113	\end{corollary}
+114	
+115	\paragraph{Proof.}
+116	For $K > 2$ subgroups with $J$ effect-modifier levels, the subgroup-specific mixing matrix $M_s$ is $J \times J$ with entries $M_s[j, j'] = P(Z{=}j' \mid \hat{Z}{=}j, S{=}s)$.
+117	The global mixing matrix is $M_{\text{global}} = \sum_s w_s M_s$.
+118	
+119	The bias of global correction in subgroup $s$ at level $z$ is:
+120	\begin{equation}
+121	\text{bias}_{\text{global}}(z, s) = [(M_{\text{global}}^{-1} M_s - I) \boldsymbol{\tau}]_z.
+122	\end{equation}
+123	
+124	Write $M_s = M_{\text{global}} + \Delta_s$ where $\Delta_s = M_s - M_{\text{global}}$ satisfies $\sum_s w_s \Delta_s = 0$.
+125	Then $M_{\text{global}}^{-1} M_s = I + M_{\text{global}}^{-1} \Delta_s$, so:
+126	\begin{equation}
+127	\text{bias}_{\text{global}}(z, s) = [M_{\text{global}}^{-1} \Delta_s \cdot \boldsymbol{\tau}]_z.
+128	\end{equation}
+129	
+130	For symmetric misclassification with per-class error rates $\pi_{s,j}$ and pooled rates $\bar{\pi}_j$, the entries of $\Delta_s$ have the form $\Delta_s[j,j'] = (\bar{\pi}_j - \pi_{s,j}) \cdot h(j, j')$ for a function $h$ determined by the off-diagonal redistribution pattern.
+131	Expanding the matrix-vector product and collecting terms yields:
+132	\begin{equation}
+133	\text{bias}_{\text{global}}(z, s) = \sum_{j=1}^{J} (\bar{\pi}_j - \pi_{s,j}) \cdot (\tau(j) - \bar{\tau}) \cdot g(\bar{\pi}),
+134	\end{equation}
+135	where $g(\bar{\pi})$ collects the matrix-inversion amplification terms and $\bar{\tau} = \sum_j P(Z{=}j) \tau(j)$.
+136	
+137	The essential structure $\sum_s w_s (\bar{\pi}_j - \pi_{s,j}) = 0$ ensures that the weighted bias across subgroups sums to zero: global correction redistributes bias rather than creating or eliminating it in aggregate.
+138	For non-uniform off-diagonal entries, the scalar amplification $g(\bar{\pi})$ generalizes to a cell-specific matrix; the product structure $B_s \cdot \Delta\tau$ persists but a closed-form amplification factor does not. \qed
+139	
+140	\section{Proof of Proposition~\ref{prop:debiasing_hurts}}
+141	\label{app:debiasing_hurts}
+142	
+143	The naive estimator has bias $\tau_{\text{obs}}(z,s) - \tau(z)$.
+144	Under (A2)--(A3), $\tau_{\text{obs}}(0,s) = (1-\pi_s)\tau(0) + \pi_s\tau(1)$, so $\text{bias}_{\text{naive}}(0,s) = \pi_s \cdot \Delta\tau$.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "482a6025-fb1e-4f46-a5a7-c67b91e56a94",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+      "content": "\\text{bias}(z{=}0, s) &= \\tfrac{\\delta_s}{1-2\\bar{\\pi}}(-\\tau(0) + \\tau(1)) = +\\tfrac{\\delta_s \\cdot \\Delta\\tau}{1-2\\bar{\\pi}}, \\\\\n\\text{bias}(z{=}1, s) &= \\tfrac{\\delta_s}{1-2\\bar{\\pi}}(\\tau(0) - \\tau(1)) = -\\tfrac{\\delta_s \\cdot \\Delta\\tau}{1-2\\bar{\\pi}},\n\\end{align}\n}\nwhere $\\Delta\\tau = \\tau(1) - \\tau(0)$. \\qed\n\n\\section{Multi-class Extension and Proof}\n\\label{app:multiclass}\n\n\\begin{corollary}[Multi-class Extension]\n\\label{cor:multiclass}\nFor $K > 2$ subgroups with $J$ effect-modifier levels and uniform off-diagonal misclassification (misclassified observations from class $j$ are distributed equally among the remaining $J{-}1$ classes), the subgroup bias of global correction generalizes to\n\\begin{equation}\n\\mathrm{bias}_{\\mathrm{global}}(z, s) = \\sum_{j=1}^{J} \\bigl(\\bar{\\pi}_j - \\pi_{s,j}\\bigr) \\cdot \\bigl(\\tau(j) - \\bar{\\tau}\\bigr) \\cdot g(\\bar{\\pi}),\n\\label{eq:multiclass}\n\\end{equation}\nwhere $g(\\bar{\\pi})$ collects the matrix-inversion amplification terms.\\footnote{For $J=3$ with symmetric misclassification (off-diagonal errors uniform), $g(\\bar{\\pi}) = 1/(1 - 3\\bar{\\pi}/2)$, generalizing the $J{=}2$ factor $1/(1-2\\bar{\\pi})$. In general, $g(\\bar{\\pi}) = 1/(1 - J\\bar{\\pi}/(J-1))$.}\nThe essential structure, $\\sum_s w_s (\\bar{\\pi}_j - \\pi_{s,j}) = 0$, ensures that bias redistributes across subgroups rather than vanishing in aggregate.\n\\end{corollary}\n\n\\paragraph{Proof.}\nFor $K > 2$ subgroups with $J$ effect-modifier levels, the subgroup-specific mixing matrix $M_s$ is $J \\times J$ with entries $M_s[j, j'] = P(Z{=}j' \\mid \\hat{Z}{=}j, S{=}s)$.\nThe global mixing matrix is $M_{\\text{global}} = \\sum_s w_s M_s$.\n\nThe bias of global correction in subgroup $s$ at level $z$ is:\n\\begin{equation}\n\\text{bias}_{\\text{global}}(z, s) = [(M_{\\text{global}}^{-1} M_s - I) \\boldsymbol{\\tau}]_z.\n\\end{equation}\n\nWrite $M_s = M_{\\text{global}} + \\Delta_s$ where $\\Delta_s = M_s - M_{\\text{global}}$ satisfies $\\sum_s w_s \\Delta_s = 0$.\nThen $M_{\\text{global}}^{-1} M_s = I + M_{\\text{global}}^{-1} \\Delta_s$, so:\n\\begin{equation}\n\\text{bias}_{\\text{global}}(z, s) = [M_{\\text{global}}^{-1} \\Delta_s \\cdot \\boldsymbol{\\tau}]_z.\n\\end{equation}\n\nFor symmetric misclassification with per-class error rates $\\pi_{s,j}$ and pooled rates $\\bar{\\pi}_j$, the entries of $\\Delta_s$ have the form $\\Delta_s[j,j'] = (\\bar{\\pi}_j - \\pi_{s,j}) \\cdot h(j, j')$ for a function $h$ determined by the off-diagonal redistribution pattern.\nExpanding the matrix-vector product and collecting terms yields:\n\\begin{equation}\n\\text{bias}_{\\text{global}}(z, s) = \\sum_{j=1}^{J} (\\bar{\\pi}_j - \\pi_{s,j}) \\cdot (\\tau(j) - \\bar{\\tau}) \\cdot g(\\bar{\\pi}),\n\\end{equation}\nwhere $g(\\bar{\\pi})$ collects the matrix-inversion amplification terms and $\\bar{\\tau} = \\sum_j P(Z{=}j) \\tau(j)$.\n\nThe essential structure $\\sum_s w_s (\\bar{\\pi}_j - \\pi_{s,j}) = 0$ ensures that the weighted bias across subgroups sums to zero: global correction redistributes bias rather than creating or eliminating it in aggregate.\nFor non-uniform off-diagonal entries, the scalar amplification $g(\\bar{\\pi})$ generalizes to a cell-specific matrix; the product structure $B_s \\cdot \\Delta\\tau$ persists but a closed-form amplification factor does not. \\qed\n\n\\section{Proof of Proposition~\\ref{prop:debiasing_hurts}}\n\\label{app:debiasing_hurts}\n\nThe naive estimator has bias $\\tau_{\\text{obs}}(z,s) - \\tau(z)$.\nUnder (A2)--(A3), $\\tau_{\\text{obs}}(0,s) = (1-\\pi_s)\\tau(0) + \\pi_s\\tau(1)$, so $\\text{bias}_{\\text{naive}}(0,s) = \\pi_s \\cdot \\Delta\\tau$.",
+      "numLines": 50,
+      "startLine": 95,
+      "totalLines": 1532
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Sz9uMxo349vuCfXvKYzBHp`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "4f0e4470-a0ff-4178-b055-f89916839aea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NeJFPdYu9B7rNwE1mfyyAk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3954,
+      "cache_read_input_tokens": 46650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T01:38:34.338Z_
+
+<details><summary>↩ Tool result · `toolu_01Sz9uMxo349vuCfXvKYzBHp`</summary>
+
+```text
+1	\begin{abstract}
+2	Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
+3	When this assumption fails---as it routinely does with LLM classifiers, whose error rates vary by up to $5\times$ across demographic subgroups---correction can reverse the sign of estimated causal effects, concluding a beneficial treatment is harmful.
+4	We derive an exact bias identity for this setting: global correction introduces subgroup-level bias with a product form $\delta_s \cdot \Delta\tau / (1 - 2\bar{\pi})$, factoring into each subgroup's deviation from the pooled error rate, the treatment effect heterogeneity, and an amplification factor from matrix inversion.
+5	This population-level identity---verified at $R^2 \geq 0.97$ across synthetic grids, semi-synthetic evaluations using 11 empirical LLM confusion matrices, and three structurally distinct CATE estimators---predicts that global correction reverses CATE sign in 14.9\% of configurations at $\tau(0) = 0.03$ and amplifies bias in all eight real LLMs tested.
+6	The identity yields a diagnostic: a condition on per-subgroup error rates alone predicts when correction increases bias, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero $\Delta\tau$; $0.86$ across all synthetic subgroups; $0.63$ on real LLM error profiles).
+7	The per-subgroup correction prescribed by the identity reduces $|\text{bias}|$ by $7.4\times$ via hierarchical Bayesian estimation; when error heterogeneity is insufficient, the diagnostic alone guides practitioners to retain global correction.
+8	\end{abstract}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "5aaec821-3425-4d99-866e-8fedbdbef78e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nStandard confusion-matrix correction for noisy annotations assumes uniform error rates.\nWhen this assumption fails---as it routinely does with LLM classifiers, whose error rates vary by up to $5\\times$ across demographic subgroups---correction can reverse the sign of estimated causal effects, concluding a beneficial treatment is harmful.\nWe derive an exact bias identity for this setting: global correction introduces subgroup-level bias with a product form $\\delta_s \\cdot \\Delta\\tau / (1 - 2\\bar{\\pi})$, factoring into each subgroup's deviation from the pooled error rate, the treatment effect heterogeneity, and an amplification factor from matrix inversion.\nThis population-level identity---verified at $R^2 \\geq 0.97$ across synthetic grids, semi-synthetic evaluations using 11 empirical LLM confusion matrices, and three structurally distinct CATE estimators---predicts that global correction reverses CATE sign in 14.9\\% of configurations at $\\tau(0) = 0.03$ and amplifies bias in all eight real LLMs tested.\nThe identity yields a diagnostic: a condition on per-subgroup error rates alone predicts when correction increases bias, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero $\\Delta\\tau$; $0.86$ across all synthetic subgroups; $0.63$ on real LLM error profiles).\nThe per-subgroup correction prescribed by the identity reduces $|\\text{bias}|$ by $7.4\\times$ via hierarchical Bayesian estimation; when error heterogeneity is insufficient, the diagnostic alone guides practitioners to retain global correction.\n\\end{abstract}",
+      "numLines": 8,
+      "startLine": 1,
+      "totalLines": 8
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a thorough understanding of all files. Let me proceed with the 7 modifications:
+
+1. **SF2: A1 定量描述** (theory.tex, line 98) - Replace the last sentence about sensitivity analysis
+2. **SF3: AUC=0.63 解释** (experiments.tex, §5.4 diagnostic section, line 72) - Add explanation after AUC=0.63 sentence
+3. **SF5: 7.4× 基准对比** (experiments.tex, line 27) - Add after "7.4$\times$" sentence
+
+
+4. **SF6: 有限样本 sketch proof** (appendix.tex, after line 99) - Add finite-sample paragraph
+5. **M7: Gamma 超参数鲁棒性** (method.tex, line 12) - Add robustness note near Dirichlet hyperparams
+6. **M3: CausalForest bootstrap 交叉引用** (experiments.tex, line 65) - Check bootstrap footnote
+7. **Missing references** (related_work.tex + references.bib) - Add Blette citation
+
+Starting with the edits now.
+
+For item 1 in theory.tex at line 98, I need to insert the specific coverage degradation value at γ_T = 0.10 showing 75% coverage before mentioning the sensitivity analysis frameworks. For item 2 in experiments.tex at line 72, I'm adding the diagnostic performance metrics showing how AUC improves when restricting to positive treatment effect subgroups.
+
+Now looking at item 3, I need to add the comparison with stratified MLE showing the 1.5× advantage and RMSE improvement from partial pooling, while finding text to compress elsewhere to maintain balance. I'm checking whether to add the robustness statement near the hyperprior specification on line 12 or if it's redundant given that line 21 already covers sensitivity analysis results. Since line 21 essentially conveys the same information about prior robustness, I should verify whether both mentions are necessary or if one location is sufficient. I've confirmed that line 65 already contains the bootstrap procedure details for CausalForest, so no changes are needed there. Now I'm looking at where to add the Blette citation in the related work section—there's a natural spot in the measurement error paragraph near the beginning where I can integrate it smoothly.
+
+I'm also doing a quick page count check on all the planned edits. The additions are fairly minimal across the board—a sentence here, a few words there—so I should be able to fit everything within the 8-page limit without major cuts. Let me move forward with implementing these changes.
+
+Now for the second item, I need to look at the diagnostic section more carefully. There's some redundancy in how the results are presented that I can trim to make room for the new sentence I'm adding.
+
+Looking at lines 75-76, there's a pointer to appendices that's mostly just directing readers elsewhere without adding substantive content to the main narrative. I can compress that reference significantly while keeping the key findings about the condition number and the validation results that actually matter for the main text. I'm working through the edits needed for this paper section. I need to compress the K=2 technical detail by removing the meta-criterion explanation and just noting that equal deltas limit discrimination, keeping only the appendix reference. Then I'm cataloging the specific string replacements for each edit location in theory.tex. I'm revising the diagnostic performance section to clarify why the AUC drops when including subgroups with negligible effect heterogeneity—in those cases, both correction methods perform equivalently, so misclassification doesn't matter. I'm also streamlining the K=2 limitation by removing the meta-criterion recovery detail, keeping just the core constraint that equal effect sizes prevent discrimination.
+
+For the bias reduction edit, I'm integrating the comparison to stratified MLE more smoothly: the 7.4× improvement at K=2 becomes contextualized against the stratified baseline of 0.012, showing the partial pooling advantage is 1.5× relative to that reference, while maintaining the RMSE benefit. I'm noticing the redundancy between mentioning lower RMSE twice, so I need to streamline this. Let me restructure to avoid repeating that point and keep the focus on the key comparisons at different K values. I'm working through how to insert the comparison text about stratified MLE into the bias reduction statement, placing it right after the 7.4× improvement factor to show the relative advantage of the hierarchical Bayes approach. I need to stop here—the next thinking is incomplete and cuts off mid-sentence at "bias reduces from 0.056 to". Without seeing where this sentence ends, I can't meaningfully rewrite it as natural prose. The current rewritten thinking already covers the key comparison at K=2, so I should wait for the complete thought about K=4 before continuing. I'm working through the remaining edits to the paper. For Edit 6, the bootstrap procedure is already documented clearly in the footnote, so no changes are needed there. Now I'm moving to Edit 7, which involves adding measurement error discussion to the related work section. I need to find the right insertion point in that first paragraph where the hierarchical estimator is introduced.
+
+Looking at the structure, the measurement error and annotation models section seems like the natural place. I'm considering whether to add it after the effect modifier misclassification discussion or near the end of the first paragraph where related correction methods are mentioned. The best approach is to insert it at the end of the first paragraph, right after the discussion of the hierarchical estimator's connection to label aggregation and treatment effect heterogeneity. I'm seeing that the related work section already covers treatment misclassification via instrumental variables and proximal causal inference for unmeasured confounders. The key distinction here is that our moderator proxy setting allows for confusion-matrix correction without needing the stricter identification assumptions of the proximal framework. I should insert the Blette citation after this discussion, right before the appendix reference. I also notice the robustness analysis is already mentioned in the methods section, so I don't need to add that separately.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "f8278b13-06f5-4747-990a-21503768a797",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pchyvd4N3ZUuhcFw3yigzx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 50604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+I have all the context needed. Now executing all 7 modifications.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "5a2a857a-466e-4e10-9d9d-8764ee3827b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pchyvd4N3ZUuhcFw3yigzx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 50604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01A82CWxjKPYYzm1LEXpJHT6`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex",
+  "old_string": "Sensitivity analysis frameworks~\\cite{lash2009applying,dorn2022sharp,cinelli2020making} can bound the degradation (Section~\\ref{sec:limitations}).",
+  "new_string": "At $\\gamma_T = 0.10$, EC-HTE coverage degrades to 75\\%; sensitivity analysis frameworks~\\cite{lash2009applying,dorn2022sharp,cinelli2020making} can bound the degradation (Section~\\ref{sec:limitations})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "c25901a7-c375-48f2-b791-d6b2497f9981",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pchyvd4N3ZUuhcFw3yigzx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 50604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-24T01:40:24.219Z_
+
+<details><summary>↩ Tool result · `toolu_01A82CWxjKPYYzm1LEXpJHT6`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "c70cb043-708c-4af4-a6cd-eea0292fbb7f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/theory.tex",
+    "oldString": "Sensitivity analysis frameworks~\\cite{lash2009applying,dorn2022sharp,cinelli2020making} can bound the degradation (Section~\\ref{sec:limitations}).",
+    "newString": "At $\\gamma_T = 0.10$, EC-HTE coverage degrades to 75\\%; sensitivity analysis frameworks~\\cite{lash2009applying,dorn2022sharp,cinelli2020making} can bound the degradation (Section~\\ref{sec:limitations}).",
+    "originalFile": "% Requires preamble: \\usepackage{amsthm,amsmath,amssymb}\n% and: \\newtheorem{theorem}{Theorem}\n%      \\newtheorem{corollary}[theorem]{Corollary}\n%      \\newtheorem{proposition}[theorem]{Proposition}\n\n\\section{Bias Decomposition: When Debiasing Hurts}\n\\label{sec:theory}\n\nWe formalize the bias that global misclassification correction introduces when subgroup error rates are heterogeneous.\nConsider estimating the conditional average treatment effect (CATE) $\\tau(z) = \\mathbb{E}[Y(1) - Y(0) \\mid Z = z]$, where $Z \\in \\{0, 1\\}$ is a binary effect modifier observed only through a noisy annotation $\\hat{Z}$.\nThe population consists of $K$ subgroups $S \\in \\{1, \\ldots, K\\}$ with weights $w_s = P(S{=}s)$, each characterized by a $2 \\times 2$ confusion matrix $C_s$ with symmetric error rate $\\pi_s = P(\\hat{Z} \\neq Z \\mid S{=}s)$.\nStandard practice estimates a single confusion matrix $\\bar{C} = \\sum_s w_s C_s$ from expert annotations and applies its inverse uniformly to all observations, with pooled error rate $\\bar{\\pi} = \\sum_s w_s \\pi_s$.\nWe show that when error rates vary across subgroups, this global procedure introduces a bias with an exact product form.\n\nWe state five assumptions maintained throughout.\n%\n\\begin{itemize}\n\\item[\\textbf{(A1)}] \\textit{Conditional independence:} misclassification depends only on the true label $Z$ and subgroup $S$, not on potential outcomes $Y(0), Y(1)$.\n\\item[\\textbf{(A2)}] \\textit{Symmetric misclassification:} $P(\\hat{Z}{=}1 \\mid Z{=}0, S{=}s) = P(\\hat{Z}{=}0 \\mid Z{=}1, S{=}s) = \\pi_s$ for all $s$ (diagnostic only; see Remark~2).\n\\item[\\textbf{(A3)}] \\textit{Balanced effect modifier:} $P(Z{=}0) = P(Z{=}1) = 0.5$. This simplifies the exposition; we discuss relaxation below.\n\\item[\\textbf{(A4)}] \\textit{Non-degeneracy:} $\\pi_s \\neq 0.5$ for all $s$, ensuring each $C_s$ is invertible.\n\\item[\\textbf{(A5)}] \\textit{Homogeneous treatment effects across subgroups:} $\\tau(z, s) = \\tau(z)$ for all $s$, so $\\Delta\\tau = \\tau(1) - \\tau(0)$ is a scalar.\n\\end{itemize}\n\nUnder (A2)--(A3), the Bayesian mixing matrix $M_s$ (entries $M_s[\\hat{z}, z] = P(Z{=}z \\mid \\hat{Z}{=}\\hat{z}, S{=}s)$) coincides with $C_s$.\nThe global mixing matrix is $M_{\\text{global}} = \\sum_s w_s M_s$.\n\n\\begin{theorem}[Bias Decomposition Identity]\n\\label{thm:bias_identity}\nUnder \\textnormal{(A1)--(A5)}, the bias of global correction in subgroup $s$ at effect-modifier level $z$ is\n\\begin{align}\n\\mathrm{bias}_{\\mathrm{global}}(z{=}0, s) &= +\\frac{\\delta_s \\cdot \\Delta\\tau}{1 - 2\\bar{\\pi}}, \\label{eq:bias_z0} \\\\\n\\mathrm{bias}_{\\mathrm{global}}(z{=}1, s) &= -\\frac{\\delta_s \\cdot \\Delta\\tau}{1 - 2\\bar{\\pi}}, \\label{eq:bias_z1}\n\\end{align}\nwhere $\\delta_s = \\pi_s - \\bar{\\pi}$ is the subgroup deviation from the pooled error rate and $\\Delta\\tau = \\tau(1) - \\tau(0)$ is the CATE heterogeneity.\n\\end{theorem}\n\nEquations~\\eqref{eq:bias_z0}--\\eqref{eq:bias_z1} constitute an exact finite-population identity, not an asymptotic approximation or bound.\nThe bias factors into three interpretable components: $\\delta_s$ captures how much subgroup $s$ deviates from the average misclassification rate, $\\Delta\\tau$ captures treatment effect heterogeneity across levels of $Z$, and $1/(1 - 2\\bar{\\pi})$ is an amplification factor from matrix inversion.\nBias vanishes when either source of variation is absent ($\\delta_s = 0$ or $\\Delta\\tau = 0$), and arises only through their interaction.\nTheorem~\\ref{thm:bias_identity} implies that global correction trades one source of confounding for another: it removes attenuation from label noise but introduces a new bias from error-rate heterogeneity.\n\n\\paragraph{Proof sketch.}\nGlobal correction applies $M_{\\text{global}}^{-1}$ to the subgroup-specific observed CATE $\\tau_{\\text{obs}}(\\cdot, s) = M_s \\cdot \\tau_{\\text{true}}$, yielding bias $(M_{\\text{global}}^{-1} M_s - I) \\cdot \\tau_{\\text{true}}$.\nDirect computation shows $M_{\\text{global}}^{-1} M_s - I = \\frac{\\delta_s}{1-2\\bar{\\pi}} \\bigl[\\begin{smallmatrix} -1 & 1 \\\\ 1 & -1 \\end{smallmatrix}\\bigr]$.\nApplying this matrix to $[\\tau(0),\\, \\tau(1)]^\\top$ produces the product form.\nThe full derivation appears in Appendix~\\ref{app:derivation}.\nFor comparison with classical scalar attenuation~\\citep{frazis2003estimating}, see Section~\\ref{sec:related}.\n\n\\paragraph{Relationship to classical scalar attenuation.}\nClassical scalar attenuation~\\citep{frazis2003estimating} gives $\\beta^* = \\beta(1 - 2\\pi)$; dividing by $(1 - 2\\bar{\\pi})$ removes this bias under homogeneous errors, but Theorem~\\ref{thm:bias_identity} characterizes a structurally distinct quantity: \\emph{correction-induced} bias from applying $M_{\\mathrm{global}}^{-1}$ to heterogeneous $M_s$.\nF-L scalar correction (dividing $\\hat{\\tau}(z)$ by $1 - 2\\bar{\\pi}$) over-corrects low-error and under-corrects high-error subgroups---the same mechanism as global CM correction but restricted to a scalar ignoring the mixing structure between $z$-levels.\nWhen $\\pi_s \\to 0.5$, $(1 - 2\\pi_s) \\to 0$ and the F-L per-subgroup correction diverges; EC-HTE's $\\kappa$-guard (Section~\\ref{sec:method}) avoids this singularity.\nTable~\\ref{tab:main_results} confirms: under extreme heterogeneity ($K{=}2$), the classical F-L scalar correction \\emph{increases} $|\\text{bias}|$ from 0.058 to 0.122 ($2.1\\times$ naive), and F-L per-subgroup to 0.168 ($2.9\\times$)---the textbook attenuation correction systematically amplifies bias when subgroup error rates differ.\n\n\\begin{remark}\nTheorem~\\ref{thm:bias_identity} does not require assumption~(A2).\nFor arbitrary asymmetric confusion matrices ($\\mathrm{FPR}_s \\neq \\mathrm{FNR}_s$),\nthe product form $\\mathrm{bias}(z, s) = \\Delta\\tau \\cdot [B_s]_{z,1}$ holds exactly,\nwhere $B_s = M_{\\mathrm{global}}^{-1} M_s - I$, because $B_s \\mathbf{1} = \\mathbf{0}$\nfollows from stochasticity of $M_s$ and $M_{\\mathrm{global}}$ alone.\nAssumption~(A2) simplifies $[B_s]_{z,1}$ to the scalar\n$\\pm \\delta_s / (1 - 2\\bar{\\pi})$ but is not necessary for the product structure.\nUnder asymmetric errors, the diagnostic (Proposition~\\ref{prop:debiasing_hurts}) requires evaluating $[B_s]_{z,1}$ cell-by-cell rather than via a single scalar threshold; the AUC decreases from 0.86 to 0.66 (Appendix~\\ref{app:asymmetric}), reflecting the additional complexity of cell-specific error rates.\nFor binary effect modifiers ($|\\mathcal{Z}|{=}2$), the asymmetric score $|[B_s]_{z,1}|$ reduces to a monotone transform of the symmetric score $|\\delta_s|/((1{-}2\\bar{\\pi})\\pi_s)$, because column-stochastic $M$ forces $|B_s[0,1]|{=}|B_s[1,1]|$; practitioners may use the simpler symmetric formula without loss.\nSee Appendix~\\ref{app:asymmetric} for the full derivation and empirical verification\n($R^2 = 0.991$).\n\\end{remark}\n\n\\begin{proposition}[Exact Identity under Heterogeneous Treatment Effects]\n\\label{prop:a5_relaxation}\nWhen $\\tau(z, s)$ varies across subgroups (relaxing A5), the bias identity remains exact:\n\\begin{equation}\n\\mathrm{bias}_{\\mathrm{global}}(z{=}0, s) = +\\frac{\\delta_s \\cdot \\Delta\\tau_s}{1 - 2\\bar{\\pi}}, \\quad\n\\mathrm{bias}_{\\mathrm{global}}(z{=}1, s) = -\\frac{\\delta_s \\cdot \\Delta\\tau_s}{1 - 2\\bar{\\pi}},\n\\end{equation}\nwhere $\\Delta\\tau_s = \\tau_s(1) - \\tau_s(0)$ is the subgroup-specific CATE heterogeneity.\n\\end{proposition}\n\n\\begin{corollary}[Aggregate Bias]\n\\label{cor:aggregate_bias}\nThe population-weighted aggregate bias is $\\mathrm{Cov}_w(\\pi_s, \\Delta\\tau_s) / (1 - 2\\bar{\\pi})$.\n\\end{corollary}\n\nThe proof is immediate: $B_s = M_{\\mathrm{global}}^{-1} M_s - I$ depends only on confusion matrices, not on $\\tau$.\nThe diagnostic (Proposition~\\ref{prop:debiasing_hurts}) extends unchanged: $\\Delta\\tau_s$ cancels, so~\\eqref{eq:hurts_condition} remains $\\Delta\\tau$-free.\nEC-HTE maintains $\\geq$93\\% coverage under both positive and negative $\\Delta\\tau_s$--$\\delta_s$ correlation (Appendix~\\ref{app:a5_violation}).\n\nThe identity extends to $K > 2$ subgroups with $J$ effect-modifier levels; the multi-class bias retains the same product structure with modified amplification terms (Corollary~\\ref{cor:multiclass} in Appendix~\\ref{app:multiclass}).\n\nAssumption~(A3) ensures $M_s = C_s$; when $P(Z{=}1) \\neq 0.5$, the mixing matrices acquire asymmetric entries, but the product structure persists with modified coefficients (Appendix~\\ref{app:derivation}).\nEmpirical verification under class imbalance (Appendix~\\ref{app:classimbalance}) shows $R^2 \\geq 0.976$ even at $P(Z{=}1) = 0.1$ for $K{=}2$, though EC-HTE's RMSE ratio relative to global correction increases to 1.06--1.68 as imbalance grows.\nEmpirical verification (Section~\\ref{sec:bias_mechanism}) yields $R^2 = 0.994$ for $K{=}2$ and $R^2 = 0.97$ for $K{=}4$, closing the theory-practice gap to essentially zero; the residual variance reflects Monte Carlo noise, not model misspecification.\n\n\\paragraph{Sensitivity to (A1).}\nAssumption~(A1) is not empirically testable.\nIf misclassification correlates with potential outcomes ($\\gamma = \\mathrm{Corr}(\\mathbb{1}[\\hat{Z} {\\neq} Z],\\, Y(1){-}Y(0) \\mid Z, S) \\neq 0$), Theorem~\\ref{thm:bias_identity} gains an $O(\\gamma)$ perturbation; in NLP settings, this is plausible when LLM accuracy varies with outcome magnitude.\nSensitivity analysis frameworks~\\cite{lash2009applying,dorn2022sharp,cinelli2020making} can bound the degradation (Section~\\ref{sec:limitations}).\n\n\\paragraph{Finite-sample remainder.}\nTheorem~\\ref{thm:bias_identity} is a population-level identity.\nIn practice, confusion matrices are estimated from $n_{\\text{expert}}$ expert labels with $\\hat{C}_s = C_s + E_s$, $\\|E_s\\| = O_p(n_{\\text{expert}}^{-1/2})$; the resulting remainder is therefore $R_n = O_p(n_{\\text{expert}}^{-1/2} \\cdot \\kappa(C_s))$, motivating the singularity guard ($\\kappa > 100 \\to$ fallback) in Section~\\ref{sec:method}.\n\n\\begin{proposition}[Debiasing Can Increase Bias]\n\\label{prop:debiasing_hurts}\nUnder \\textnormal{(A1)--(A5)}, global correction produces larger absolute bias than the naive estimator ($|\\mathrm{bias}_{\\mathrm{global}}| > |\\mathrm{bias}_{\\mathrm{naive}}|$) in subgroup $s$ if and only if\n\\begin{equation}\n\\frac{|\\delta_s|}{(1 - 2\\bar{\\pi}) \\cdot \\pi_s} > 1.\n\\label{eq:hurts_condition}\n\\end{equation}\n\\end{proposition}\n\nEquation~\\eqref{eq:hurts_condition} partitions subgroups into two regimes:\n\\begin{itemize}\n    \\item \\textit{High-error} ($\\pi_s > \\bar{\\pi}$): the condition reduces to $\\pi_s > 0.5$, excluded by~(A4); global correction always reduces bias.\n    \\item \\textit{Low-error} ($\\pi_s < \\bar{\\pi}$): the condition holds whenever $\\pi_s < \\bar{\\pi} / (2(1 - \\bar{\\pi}))$---easily satisfied: when $\\bar{\\pi} = 0.15$, any subgroup with $\\pi_s < 0.088$ is harmed by global correction.\n\\end{itemize}\nThe mechanism is over-correction: for subgroups with near-zero misclassification ($\\pi_s \\approx 0$), the naive estimator is nearly unbiased, yet global inversion calibrated for $\\bar{\\pi}$ creates substantial bias---debiasing is worse than doing nothing, and can reverse bias sign across subgroups.\n\nIn our experiments (Section~\\ref{sec:bias_mechanism}), global correction increases bias in 50\\% of $K{=}2$ configurations (260/520), with amplification reaching $2.86\\times$ ($K{=}2$) and $2.41\\times$ ($K{=}4$); Figure~\\ref{fig:heatmap} visualizes the full parameter grid.",
+    "structuredPatch": [
+      {
+        "oldStart": 95,
+        "oldLines": 7,
+        "newStart": 95,
+        "newLines": 7,
+        "lines": [
+          " \\paragraph{Sensitivity to (A1).}",
+          " Assumption~(A1) is not empirically testable.",
+          " If misclassification correlates with potential outcomes ($\\gamma = \\mathrm{Corr}(\\mathbb{1}[\\hat{Z} {\\neq} Z],\\, Y(1){-}Y(0) \\mid Z, S) \\neq 0$), Theorem~\\ref{thm:bias_identity} gains an $O(\\gamma)$ perturbation; in NLP settings, this is plausible when LLM accuracy varies with outcome magnitude.",
+          "-Sensitivity analysis frameworks~\\cite{lash2009applying,dorn2022sharp,cinelli2020making} can bound the degradation (Section~\\ref{sec:limitations}).",
+          "+At $\\gamma_T = 0.10$, EC-HTE coverage degrades to 75\\%; sensitivity analysis frameworks~\\cite{lash2009applying,dorn2022sharp,cinelli2020making} can bound the degradation (Section~\\ref{sec:limitations}).",
+          " ",
+          " \\paragraph{Finite-sample remainder.}",
+          " Theorem~\\ref{thm:bias_identity} is a population-level identity."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01QkqcFusXDLL1yqxXPknefp`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+  "old_string": "The diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\\Delta\\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\\ref{fig:roc}, Appendix~\\ref{app:screening}).\nFor $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination; a meta-criterion ($\\max_s \\mathrm{score}(s) > 1$) recovers reliability for $K{\\geq}4$ (Appendix~\\ref{app:screening}).",
+  "new_string": "The diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\\Delta\\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\\ref{fig:roc}, Appendix~\\ref{app:screening}).\nThe lower AUC reflects inclusion of subgroups with $\\Delta\\tau \\approx 0$, where misdiagnosis is inconsequential---global and stratified correction perform identically when effect heterogeneity is absent.\nFor $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination (Appendix~\\ref{app:screening})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "5633867c-80cd-4009-852c-c9d0eaa457b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pchyvd4N3ZUuhcFw3yigzx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 50604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T01:40:27.425Z_
+
+<details><summary>↩ Tool result · `toolu_01QkqcFusXDLL1yqxXPknefp`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "3920bac6-d9e9-4c8f-a2d7-d29b74bc209b",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+    "oldString": "The diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\\Delta\\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\\ref{fig:roc}, Appendix~\\ref{app:screening}).\nFor $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination; a meta-criterion ($\\max_s \\mathrm{score}(s) > 1$) recovers reliability for $K{\\geq}4$ (Appendix~\\ref{app:screening}).",
+    "newString": "The diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\\Delta\\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\\ref{fig:roc}, Appendix~\\ref{app:screening}).\nThe lower AUC reflects inclusion of subgroups with $\\Delta\\tau \\approx 0$, where misdiagnosis is inconsequential---global and stratified correction perform identically when effect heterogeneity is absent.\nFor $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination (Appendix~\\ref{app:screening}).",
+    "originalFile": "\\section{Experiments}\n\n\\subsection{Setup}\n\nWe test on synthetic ($N{=}5{,}000$, $K \\in \\{2, 4\\}$, controlled $\\Delta\\tau$ and $\\Delta\\pi$, 100 MC runs) and semi-synthetic (TweetEval sentiment~\\cite{barbieri2020tweeteval}, $K{=}4$ unbalanced subgroups, $\\pi \\in \\{0.05, 0.10, 0.15, 0.25\\}$) DGPs; full specifications in Appendix~\\ref{app:dgp}.\n\nWe compare: (1) \\textit{Naive} (no correction), (2) \\textit{Global} (pooled confusion matrix, equivalent to PPI/DSL~\\cite{angelopoulos2023ppi,egami2024dsl} with homogeneous error), (3) \\textit{Stratified MLE} (per-subgroup DSL without shrinkage), (4) \\textit{HB EC-HTE} (per-subgroup correction), (5) \\textit{PPCI}~\\cite{sui2026ppci}, and (6) \\textit{EC-HTE+PPCI}.\nFor CausalForest~\\cite{wager2018causal}, we compare naive, global, and EC-HTE variants.\nPrimary metrics are $|\\text{bias}|$, RMSE, and 95\\% CI coverage, averaged across subgroups and 100 MC runs.\nRobustness validation covers hate speech, six OpenAI models, subgroup misspecification, asymmetric confusion matrices, confounded treatment, outcome-dependent misclassification (all $\\geq$93.5\\% coverage), and treatment-dependent misclassification ($\\approx$90\\% at $\\gamma_T \\leq 0.05$; Appendices~\\ref{app:hatespeech}--\\ref{app:treatment_dep}).\nSemi-synthetic evaluation uses empirical LLM confusion matrices from 16 model--dataset--$K$ combinations (8 LLMs $\\times$ 2 datasets $\\times$ varying $K$); of these, 11 have sufficient subgroup variation for $R^2$ regression and 13 have $K{=}4$ for $\\kappa$ analysis.\n\n\\subsection{Empirical Validation of the Bias Identity}\n\\label{sec:bias_mechanism}\n\nWe verify Theorem~\\ref{thm:bias_identity} on a $K{=}2$ grid (520 configurations, $\\Delta\\pi \\in [0, 0.25]$, $\\Delta\\tau \\in (0, 0.50]$) and a $K{=}4$ grid (Appendix~\\ref{app:dgp}).\nRegressing observed subgroup bias on $\\delta_s \\cdot \\Delta\\tau / (1{-}2\\bar{\\pi})$ yields $R^2 = 0.994$ ($K{=}2$) and $0.97$ ($K{=}4$); residual variance reflects MC noise ($R^2 \\geq 0.976$ even at $P(Z{=}1) = 0.1$; Appendix~\\ref{app:classimbalance}).\nGlobal correction worsens bias in 50\\% of $K{=}2$ configurations (260/520, excluding $\\Delta\\pi{=}0$), with amplification reaching 2.86$\\times$ ($K{=}2$) and 2.41$\\times$ ($K{=}4$); Figure~\\ref{fig:heatmap} visualizes the amplification surface.\nBeyond amplification, global correction reverses the sign of estimated CATE---concluding a protective treatment is harmful---in 14.9\\% of configurations at $\\tau(0) = 0.03$ (31\\% at $\\tau(0) = 0.01$; critical threshold $\\tau(0) < 0.089$, matching Theorem~\\ref{thm:bias_identity}), with all eight real LLMs amplifying bias under global correction; EC-HTE eliminates sign reversal entirely (Figure~\\ref{fig:sign_reversal}; Appendix~\\ref{app:policy_reversal}).\n\n\\subsection{Correction Evaluation}\n\\label{sec:ec_hte_eval}\n\nTable~\\ref{tab:main_results} presents the main results across representative configurations.\nIn the $K{=}2$ extreme row, global correction \\emph{increases} $|\\text{bias}|$ relative to naive (0.059 vs.\\ 0.058), confirming the over-correction mechanism of Theorem~\\ref{thm:bias_identity}.\nF-L scalar correction increases $|\\text{bias}|$ to 0.122 (coverage 0.68); F-L per-subgroup to 0.168 as $(1{-}2\\pi_s) \\to 0$---both worse than naive (Table~\\ref{tab:main_results}).\nHB EC-HTE reduces $|\\text{bias}|$ from 0.059 to 0.008 (7.4$\\times$) at $K{=}2$ and from 0.056 to 0.012 (4.7$\\times$) at $K{=}4$, maintaining near-nominal coverage (0.94--0.96) with lower RMSE than stratified MLE.\nUnder moderate heterogeneity and in TweetEval ($K{=}4$), methods converge ($p > 0.05$); EC-HTE incurs higher RMSE when $\\Delta\\pi$ is small (Table~\\ref{tab:main_supp}).\nAt $K{=}8$ ($n_{\\text{expert}}/K{=}31$), coverage remains $\\geq$95.6\\% but RMSE increases; we recommend $n_{\\text{expert}}/K \\geq 50$ (Appendix~\\ref{app:k8_subgroups}).\n\n\\paragraph{CausalForest.}\nTheorem~\\ref{thm:bias_identity} applies to any estimator whose inputs pass through a confusion matrix; CausalForest~\\cite{wager2018causal} with a noisy effect modifier $\\hat{Z}$ inherits the same $M_{\\text{global}}^{-1} M_s$ structure.\nWith CausalForest ($K{=}4$, extreme, $n{=}500$), EC-HTE reduces $|\\text{bias}|$ from 0.191 to 0.039 (4.9$\\times$) with coverage 0.90; global amplifies bias up to 5.9$\\times$ (Table~\\ref{tab:main_results}; bootstrap SE in Appendix~\\ref{app:bootstrap_se}).\nThe identity and correction are estimator-agnostic: R-learner yields comparable bias reduction (89\\%, Appendix~\\ref{app:rlearner}), confirming that the product-form bias arises from the confusion matrix structure, not the downstream estimator.\n\n\\begin{table}[t]\n\\centering\n\\caption{Main results (extreme heterogeneity). Metrics averaged over subgroups, $z$-levels, 100 MC runs. Bold: lowest $|\\text{bias}|$. $^\\dagger$RMSE exceeds Global. F-L Scalar: $\\hat{\\tau}/(1{-}2\\bar{\\pi})$~\\cite{frazis2003estimating}; F-L Per-sub.: per-subgroup variant (binary $Z$ only). Moderate/TweetEval in Table~\\ref{tab:main_supp}; MC SEs in Appendix~\\ref{app:mcse}.\\protect\\footnotemark}\n\\label{tab:main_results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{ll ccc}\n\\toprule\nConfiguration & Method & $|\\text{Bias}|$ & RMSE & 95\\% CI Cov. \\\\\n\\midrule\n\\multirow{6}{*}{\\shortstack[l]{DIM\\\\$K{=}2$, $n{=}250$}}\n & Naive & 0.058 & 0.090 & 0.82 \\\\\n & Global & 0.059 & 0.099 & 0.87 \\\\\n & F-L Scalar & 0.122 & 0.159 & 0.68 \\\\\n & F-L Per-sub. & 0.168 & 0.220 & 0.65 \\\\\n & Strat.\\ MLE & 0.012 & 0.094 & 0.95 \\\\\n & HB EC-HTE & \\textbf{0.008} & 0.089 & 0.94 \\\\\n\\midrule\n\\multirow{4}{*}{\\shortstack[l]{DIM\\\\$K{=}4$, $n{=}500$}}\n & Naive & 0.062 & 0.113 & 0.88 \\\\\n & Global & 0.056 & 0.125 & 0.91 \\\\\n & Strat.\\ MLE & \\textbf{0.010} & 0.127$^\\dagger$ & 0.95 \\\\\n & HB EC-HTE & 0.012 & 0.120 & 0.96 \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{CausalForest\\\\$K{=}4$, $n{=}500$}}\n & Naive & 0.208 & 0.231 & 0.44 \\\\\n & Global & 0.191 & 0.244 & 0.58 \\\\\n & EC-HTE Forest & \\textbf{0.039} & 0.180 & 0.90 \\\\\n\\bottomrule\n\\end{tabular}}\n\\footnotetext{CausalForest plug-in SE achieves 93.8\\% aggregate coverage; a bootstrap procedure ($B{=}100$) recovers $\\geq$95\\% coverage at all budgets tested (Appendix~\\ref{app:bootstrap_se}).}\n\\end{table}\n\n\\subsection{Actionable Diagnostic}\n\\label{sec:diagnostic}\n\nProposition~\\ref{prop:debiasing_hurts} provides a $\\Delta\\tau$-free diagnostic: global correction increases bias in subgroup $s$ iff $|\\delta_s| / ((1-2\\bar{\\pi}) \\cdot \\pi_s) > 1$, computable from a pilot sample without estimating treatment effects.\nThe diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\\Delta\\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\\ref{fig:roc}, Appendix~\\ref{app:screening}).\nFor $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination; a meta-criterion ($\\max_s \\mathrm{score}(s) > 1$) recovers reliability for $K{\\geq}4$ (Appendix~\\ref{app:screening}).\n\nThe condition number $\\kappa(\\hat{C}_s)$ provides a practical guard: $\\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\\kappa \\in (1.25, 3]$ with calibrated coverage $\\geq$93\\% (Appendix~\\ref{app:kappa_analysis}).\nBudget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$) appear in Appendices~\\ref{sec:budget}--\\ref{app:multilm}.\n\nOn a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction---consistent with real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}), mostly below the threshold where stratification pays off.\n\n\\paragraph{Operating conditions.}\nEC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$ (scaling with $K$), (iii)~$\\text{FNR}_s < 0.50$ for all $s$, and (iv)~$K \\leq 4$.\nUnder confounded treatment assignment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp}).\nWhen conditions (i)--(iv) are unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).",
+    "structuredPatch": [
+      {
+        "oldStart": 70,
+        "oldLines": 7,
+        "newStart": 70,
+        "newLines": 8,
+        "lines": [
+          " ",
+          " Proposition~\\ref{prop:debiasing_hurts} provides a $\\Delta\\tau$-free diagnostic: global correction increases bias in subgroup $s$ iff $|\\delta_s| / ((1-2\\bar{\\pi}) \\cdot \\pi_s) > 1$, computable from a pilot sample without estimating treatment effects.",
+          " The diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\\Delta\\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\\ref{fig:roc}, Appendix~\\ref{app:screening}).",
+          "-For $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination; a meta-criterion ($\\max_s \\mathrm{score}(s) > 1$) recovers reliability for $K{\\geq}4$ (Appendix~\\ref{app:screening}).",
+          "+The lower AUC reflects inclusion of subgroups with $\\Delta\\tau \\approx 0$, where misdiagnosis is inconsequential---global and stratified correction perform identically when effect heterogeneity is absent.",
+          "+For $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination (Appendix~\\ref{app:screening}).",
+          " ",
+          " The condition number $\\kappa(\\hat{C}_s)$ provides a practical guard: $\\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\\kappa \\in (1.25, 3]$ with calibrated coverage $\\geq$93\\% (Appendix~\\ref{app:kappa_analysis}).",
+          " Budget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$) appear in Appendices~\\ref{sec:budget}--\\ref{app:multilm}."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01GJfSbB4FSX3gzU8kgT1Jo1`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+  "old_string": "HB EC-HTE reduces $|\\text{bias}|$ from 0.059 to 0.008 (7.4$\\times$) at $K{=}2$ and from 0.056 to 0.012 (4.7$\\times$) at $K{=}4$, maintaining near-nominal coverage (0.94--0.96) with lower RMSE than stratified MLE.",
+  "new_string": "HB EC-HTE reduces $|\\text{bias}|$ from 0.059 to 0.008 (7.4$\\times$); relative to stratified MLE (0.012), the advantage is 1.5$\\times$ with lower RMSE from partial pooling. At $K{=}4$, bias reduces from 0.056 to 0.012 (4.7$\\times$), maintaining near-nominal coverage (0.94--0.96)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "ad908b7b-5ffb-4c77-bad6-49e3174b07a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pchyvd4N3ZUuhcFw3yigzx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 50604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T01:40:30.333Z_
+
+<details><summary>↩ Tool result · `toolu_01GJfSbB4FSX3gzU8kgT1Jo1`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "6c99caeb-ab2d-4c14-8da9-7ee80550f0c7",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+    "oldString": "HB EC-HTE reduces $|\\text{bias}|$ from 0.059 to 0.008 (7.4$\\times$) at $K{=}2$ and from 0.056 to 0.012 (4.7$\\times$) at $K{=}4$, maintaining near-nominal coverage (0.94--0.96) with lower RMSE than stratified MLE.",
+    "newString": "HB EC-HTE reduces $|\\text{bias}|$ from 0.059 to 0.008 (7.4$\\times$); relative to stratified MLE (0.012), the advantage is 1.5$\\times$ with lower RMSE from partial pooling. At $K{=}4$, bias reduces from 0.056 to 0.012 (4.7$\\times$), maintaining near-nominal coverage (0.94--0.96).",
+    "originalFile": "\\section{Experiments}\n\n\\subsection{Setup}\n\nWe test on synthetic ($N{=}5{,}000$, $K \\in \\{2, 4\\}$, controlled $\\Delta\\tau$ and $\\Delta\\pi$, 100 MC runs) and semi-synthetic (TweetEval sentiment~\\cite{barbieri2020tweeteval}, $K{=}4$ unbalanced subgroups, $\\pi \\in \\{0.05, 0.10, 0.15, 0.25\\}$) DGPs; full specifications in Appendix~\\ref{app:dgp}.\n\nWe compare: (1) \\textit{Naive} (no correction), (2) \\textit{Global} (pooled confusion matrix, equivalent to PPI/DSL~\\cite{angelopoulos2023ppi,egami2024dsl} with homogeneous error), (3) \\textit{Stratified MLE} (per-subgroup DSL without shrinkage), (4) \\textit{HB EC-HTE} (per-subgroup correction), (5) \\textit{PPCI}~\\cite{sui2026ppci}, and (6) \\textit{EC-HTE+PPCI}.\nFor CausalForest~\\cite{wager2018causal}, we compare naive, global, and EC-HTE variants.\nPrimary metrics are $|\\text{bias}|$, RMSE, and 95\\% CI coverage, averaged across subgroups and 100 MC runs.\nRobustness validation covers hate speech, six OpenAI models, subgroup misspecification, asymmetric confusion matrices, confounded treatment, outcome-dependent misclassification (all $\\geq$93.5\\% coverage), and treatment-dependent misclassification ($\\approx$90\\% at $\\gamma_T \\leq 0.05$; Appendices~\\ref{app:hatespeech}--\\ref{app:treatment_dep}).\nSemi-synthetic evaluation uses empirical LLM confusion matrices from 16 model--dataset--$K$ combinations (8 LLMs $\\times$ 2 datasets $\\times$ varying $K$); of these, 11 have sufficient subgroup variation for $R^2$ regression and 13 have $K{=}4$ for $\\kappa$ analysis.\n\n\\subsection{Empirical Validation of the Bias Identity}\n\\label{sec:bias_mechanism}\n\nWe verify Theorem~\\ref{thm:bias_identity} on a $K{=}2$ grid (520 configurations, $\\Delta\\pi \\in [0, 0.25]$, $\\Delta\\tau \\in (0, 0.50]$) and a $K{=}4$ grid (Appendix~\\ref{app:dgp}).\nRegressing observed subgroup bias on $\\delta_s \\cdot \\Delta\\tau / (1{-}2\\bar{\\pi})$ yields $R^2 = 0.994$ ($K{=}2$) and $0.97$ ($K{=}4$); residual variance reflects MC noise ($R^2 \\geq 0.976$ even at $P(Z{=}1) = 0.1$; Appendix~\\ref{app:classimbalance}).\nGlobal correction worsens bias in 50\\% of $K{=}2$ configurations (260/520, excluding $\\Delta\\pi{=}0$), with amplification reaching 2.86$\\times$ ($K{=}2$) and 2.41$\\times$ ($K{=}4$); Figure~\\ref{fig:heatmap} visualizes the amplification surface.\nBeyond amplification, global correction reverses the sign of estimated CATE---concluding a protective treatment is harmful---in 14.9\\% of configurations at $\\tau(0) = 0.03$ (31\\% at $\\tau(0) = 0.01$; critical threshold $\\tau(0) < 0.089$, matching Theorem~\\ref{thm:bias_identity}), with all eight real LLMs amplifying bias under global correction; EC-HTE eliminates sign reversal entirely (Figure~\\ref{fig:sign_reversal}; Appendix~\\ref{app:policy_reversal}).\n\n\\subsection{Correction Evaluation}\n\\label{sec:ec_hte_eval}\n\nTable~\\ref{tab:main_results} presents the main results across representative configurations.\nIn the $K{=}2$ extreme row, global correction \\emph{increases} $|\\text{bias}|$ relative to naive (0.059 vs.\\ 0.058), confirming the over-correction mechanism of Theorem~\\ref{thm:bias_identity}.\nF-L scalar correction increases $|\\text{bias}|$ to 0.122 (coverage 0.68); F-L per-subgroup to 0.168 as $(1{-}2\\pi_s) \\to 0$---both worse than naive (Table~\\ref{tab:main_results}).\nHB EC-HTE reduces $|\\text{bias}|$ from 0.059 to 0.008 (7.4$\\times$) at $K{=}2$ and from 0.056 to 0.012 (4.7$\\times$) at $K{=}4$, maintaining near-nominal coverage (0.94--0.96) with lower RMSE than stratified MLE.\nUnder moderate heterogeneity and in TweetEval ($K{=}4$), methods converge ($p > 0.05$); EC-HTE incurs higher RMSE when $\\Delta\\pi$ is small (Table~\\ref{tab:main_supp}).\nAt $K{=}8$ ($n_{\\text{expert}}/K{=}31$), coverage remains $\\geq$95.6\\% but RMSE increases; we recommend $n_{\\text{expert}}/K \\geq 50$ (Appendix~\\ref{app:k8_subgroups}).\n\n\\paragraph{CausalForest.}\nTheorem~\\ref{thm:bias_identity} applies to any estimator whose inputs pass through a confusion matrix; CausalForest~\\cite{wager2018causal} with a noisy effect modifier $\\hat{Z}$ inherits the same $M_{\\text{global}}^{-1} M_s$ structure.\nWith CausalForest ($K{=}4$, extreme, $n{=}500$), EC-HTE reduces $|\\text{bias}|$ from 0.191 to 0.039 (4.9$\\times$) with coverage 0.90; global amplifies bias up to 5.9$\\times$ (Table~\\ref{tab:main_results}; bootstrap SE in Appendix~\\ref{app:bootstrap_se}).\nThe identity and correction are estimator-agnostic: R-learner yields comparable bias reduction (89\\%, Appendix~\\ref{app:rlearner}), confirming that the product-form bias arises from the confusion matrix structure, not the downstream estimator.\n\n\\begin{table}[t]\n\\centering\n\\caption{Main results (extreme heterogeneity). Metrics averaged over subgroups, $z$-levels, 100 MC runs. Bold: lowest $|\\text{bias}|$. $^\\dagger$RMSE exceeds Global. F-L Scalar: $\\hat{\\tau}/(1{-}2\\bar{\\pi})$~\\cite{frazis2003estimating}; F-L Per-sub.: per-subgroup variant (binary $Z$ only). Moderate/TweetEval in Table~\\ref{tab:main_supp}; MC SEs in Appendix~\\ref{app:mcse}.\\protect\\footnotemark}\n\\label{tab:main_results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{ll ccc}\n\\toprule\nConfiguration & Method & $|\\text{Bias}|$ & RMSE & 95\\% CI Cov. \\\\\n\\midrule\n\\multirow{6}{*}{\\shortstack[l]{DIM\\\\$K{=}2$, $n{=}250$}}\n & Naive & 0.058 & 0.090 & 0.82 \\\\\n & Global & 0.059 & 0.099 & 0.87 \\\\\n & F-L Scalar & 0.122 & 0.159 & 0.68 \\\\\n & F-L Per-sub. & 0.168 & 0.220 & 0.65 \\\\\n & Strat.\\ MLE & 0.012 & 0.094 & 0.95 \\\\\n & HB EC-HTE & \\textbf{0.008} & 0.089 & 0.94 \\\\\n\\midrule\n\\multirow{4}{*}{\\shortstack[l]{DIM\\\\$K{=}4$, $n{=}500$}}\n & Naive & 0.062 & 0.113 & 0.88 \\\\\n & Global & 0.056 & 0.125 & 0.91 \\\\\n & Strat.\\ MLE & \\textbf{0.010} & 0.127$^\\dagger$ & 0.95 \\\\\n & HB EC-HTE & 0.012 & 0.120 & 0.96 \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{CausalForest\\\\$K{=}4$, $n{=}500$}}\n & Naive & 0.208 & 0.231 & 0.44 \\\\\n & Global & 0.191 & 0.244 & 0.58 \\\\\n & EC-HTE Forest & \\textbf{0.039} & 0.180 & 0.90 \\\\\n\\bottomrule\n\\end{tabular}}\n\\footnotetext{CausalForest plug-in SE achieves 93.8\\% aggregate coverage; a bootstrap procedure ($B{=}100$) recovers $\\geq$95\\% coverage at all budgets tested (Appendix~\\ref{app:bootstrap_se}).}\n\\end{table}\n\n\\subsection{Actionable Diagnostic}\n\\label{sec:diagnostic}\n\nProposition~\\ref{prop:debiasing_hurts} provides a $\\Delta\\tau$-free diagnostic: global correction increases bias in subgroup $s$ iff $|\\delta_s| / ((1-2\\bar{\\pi}) \\cdot \\pi_s) > 1$, computable from a pilot sample without estimating treatment effects.\nThe diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\\Delta\\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\\ref{fig:roc}, Appendix~\\ref{app:screening}).\nThe lower AUC reflects inclusion of subgroups with $\\Delta\\tau \\approx 0$, where misdiagnosis is inconsequential---global and stratified correction perform identically when effect heterogeneity is absent.\nFor $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination (Appendix~\\ref{app:screening}).\n\nThe condition number $\\kappa(\\hat{C}_s)$ provides a practical guard: $\\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\\kappa \\in (1.25, 3]$ with calibrated coverage $\\geq$93\\% (Appendix~\\ref{app:kappa_analysis}).\nBudget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$) appear in Appendices~\\ref{sec:budget}--\\ref{app:multilm}.\n\nOn a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction---consistent with real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}), mostly below the threshold where stratification pays off.\n\n\\paragraph{Operating conditions.}\nEC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$ (scaling with $K$), (iii)~$\\text{FNR}_s < 0.50$ for all $s$, and (iv)~$K \\leq 4$.\nUnder confounded treatment assignment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp}).\nWhen conditions (i)--(iv) are unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).",
+    "structuredPatch": [
+      {
+        "oldStart": 24,
+        "oldLines": 7,
+        "newStart": 24,
+        "newLines": 7,
+        "lines": [
+          " Table~\\ref{tab:main_results} presents the main results across representative configurations.",
+          " In the $K{=}2$ extreme row, global correction \\emph{increases} $|\\text{bias}|$ relative to naive (0.059 vs.\\ 0.058), confirming the over-correction mechanism of Theorem~\\ref{thm:bias_identity}.",
+          " F-L scalar correction increases $|\\text{bias}|$ to 0.122 (coverage 0.68); F-L per-subgroup to 0.168 as $(1{-}2\\pi_s) \\to 0$---both worse than naive (Table~\\ref{tab:main_results}).",
+          "-HB EC-HTE reduces $|\\text{bias}|$ from 0.059 to 0.008 (7.4$\\times$) at $K{=}2$ and from 0.056 to 0.012 (4.7$\\times$) at $K{=}4$, maintaining near-nominal coverage (0.94--0.96) with lower RMSE than stratified MLE.",
+          "+HB EC-HTE reduces $|\\text{bias}|$ from 0.059 to 0.008 (7.4$\\times$); relative to stratified MLE (0.012), the advantage is 1.5$\\times$ with lower RMSE from partial pooling. At $K{=}4$, bias reduces from 0.056 to 0.012 (4.7$\\times$), maintaining near-nominal coverage (0.94--0.96).",
+          " Under moderate heterogeneity and in TweetEval ($K{=}4$), methods converge ($p > 0.05$); EC-HTE incurs higher RMSE when $\\Delta\\pi$ is small (Table~\\ref{tab:main_supp}).",
+          " At $K{=}8$ ($n_{\\text{expert}}/K{=}31$), coverage remains $\\geq$95.6\\% but RMSE increases; we recommend $n_{\\text{expert}}/K \\geq 50$ (Appendix~\\ref{app:k8_subgroups}).",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01HRKUU71vcDbP1TUeGUad7u`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+  "old_string": "where $\\Delta\\tau = \\tau(1) - \\tau(0)$. \\qed\n\n\\section{Multi-class Extension and Proof}",
+  "new_string": "where $\\Delta\\tau = \\tau(1) - \\tau(0)$. \\qed\n\n\\paragraph{Finite-sample remainder.}\nWhen $\\hat{C}_s = C_s + E_s$ with $\\|E_s\\| = O_p(n_{\\text{expert}}^{-1/2})$ (central limit theorem), the estimated correction $\\hat{M}_{\\text{global}}^{-1} \\hat{M}_s$ deviates from its population counterpart by\n$\\|\\hat{M}_{\\text{global}}^{-1} \\hat{M}_s - M_{\\text{global}}^{-1} M_s\\| \\leq \\kappa(M_{\\text{global}}) \\cdot O_p(n_{\\text{expert}}^{-1/2})$,\nwhere $\\kappa(M) = \\|M\\| \\cdot \\|M^{-1}\\|$ is the condition number~\\citep{stewart1990matrix}.\nThis motivates the $\\kappa > 100$ singularity guard in Section~\\ref{sec:method}.\n\n\\section{Multi-class Extension and Proof}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "5b83d9c7-47e7-48ec-a21b-ed1d8250a11c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pchyvd4N3ZUuhcFw3yigzx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 50604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-24T01:40:37.048Z_
+
+<details><summary>↩ Tool result · `toolu_01HRKUU71vcDbP1TUeGUad7u`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "84f8444e-173f-42bc-87e7-c9fb17c25f46",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/appendix.tex",
+    "oldString": "where $\\Delta\\tau = \\tau(1) - \\tau(0)$. \\qed\n\n\\section{Multi-class Extension and Proof}",
+    "newString": "where $\\Delta\\tau = \\tau(1) - \\tau(0)$. \\qed\n\n\\paragraph{Finite-sample remainder.}\nWhen $\\hat{C}_s = C_s + E_s$ with $\\|E_s\\| = O_p(n_{\\text{expert}}^{-1/2})$ (central limit theorem), the estimated correction $\\hat{M}_{\\text{global}}^{-1} \\hat{M}_s$ deviates from its population counterpart by\n$\\|\\hat{M}_{\\text{global}}^{-1} \\hat{M}_s - M_{\\text{global}}^{-1} M_s\\| \\leq \\kappa(M_{\\text{global}}) \\cdot O_p(n_{\\text{expert}}^{-1/2})$,\nwhere $\\kappa(M) = \\|M\\| \\cdot \\|M^{-1}\\|$ is the condition number~\\citep{stewart1990matrix}.\nThis motivates the $\\kappa > 100$ singularity guard in Section~\\ref{sec:method}.\n\n\\section{Multi-class Extension and Proof}",
+    "originalFile": "\\section{EC-HTE Procedure}\n\\label{app:algorithm}\n\n\\begin{algorithm}[t]\n\\caption{EC-HTE: Error-Corrected Heterogeneous Treatment Effects}\n\\label{alg:echte}\n\\begin{algorithmic}[1]\n\\Require Observations $\\{(Y_i, W_i, \\hat{Z}_i, X_i)\\}_{i=1}^N$; expert labels $\\{Z_j^*\\}_{j=1}^{n_{\\text{expert}}}$; subgroup map $S: \\mathcal{X} \\to \\{1,\\ldots,K\\}$\n\\Ensure Corrected CATE estimates $\\hat{\\tau}(z)$ with variance-adjusted CIs\n\\Statex\n\\State \\textbf{Preconditions:} verify $n_{\\text{expert}} \\times P(Z_{\\text{minority}}) / K \\geq 25$ and $\\max_s(\\text{FPR}_s, \\text{FNR}_s) < 0.5$; if either fails, use global correction\n\\Statex\n\\State \\textbf{Step 1: Estimate per-subgroup confusion matrices (HB)}\n\\For{$s = 1, \\ldots, K$}\n    \\State $C_s[j,\\cdot] \\sim \\mathrm{Dir}(\\alpha_0 \\cdot \\hat{C}_{\\text{global},j})$, \\; $\\alpha_0$ via empirical Bayes\n    \\State Gibbs sampler (4 chains, 4000 iter) on $\\{(\\hat{Z}_j, Z_j^*) : S_j = s\\}$\n    \\State $\\hat{C}_s \\gets$ posterior mean; verify $\\hat{R} < 1.01$\n\\EndFor\n\\Statex\n\\State \\textbf{Step 2: Correct observed outcome moments}\n\\For{$s = 1, \\ldots, K$}\n    \\If{$\\kappa(\\hat{C}_s) > 100$} $\\hat{C}_s \\gets \\bar{C}$ \\Comment{singularity guard}\n    \\EndIf\n    \\State $\\tilde{\\boldsymbol{\\mu}}_s \\gets \\hat{C}_s^{-1} \\hat{\\boldsymbol{\\mu}}_s$\n\\EndFor\n\\Statex\n\\State \\textbf{Step 3: CausalForestDML with variance-adjusted SEs}\n\\State Train CausalForest (honest splitting) on corrected outcome moments $\\tilde{\\boldsymbol{\\mu}}_s$\n\\State $\\mathrm{se}_{\\mathrm{adj},i} \\gets \\sqrt{\\mathrm{diag}(\\hat{C}_{S_i}^{-1}\\, \\mathrm{diag}(\\mathrm{se}_i^2)\\, \\hat{C}_{S_i}^{-\\top})}$\n\\State \\Return $\\hat{\\tau}(z)$ with 95\\% CIs from $\\mathrm{se}_{\\mathrm{adj}}$\n\\end{algorithmic}\n\\end{algorithm}\n\n\\subsection{Condition Number Guard Ablation}\n\\label{app:kappa_ablation}\n\nThe singularity guard in Algorithm~\\ref{alg:echte} (line~6) falls back to global correction when $\\kappa(\\hat{C}_s) > 100$.\nWe verify that this threshold is not load-bearing by sweeping $\\kappa \\in \\{10, 25, 50, 100, 200, 500, 1000\\}$ under the standard DGP ($K{=}2$, extreme heterogeneity, $N{=}5{,}000$, $n_{\\text{expert}}{=}250$, 100 MC runs).\nAcross all configurations, the maximum observed condition number is $\\kappa_{\\max} = 1.89$ (mean 1.45, p99 1.89), providing a $53{\\times}$ safety margin below the $\\kappa{=}100$ threshold.\nConsequently, the guard never triggers at any tested threshold, and all $\\kappa$ values produce identical RMSE (HB: 0.076, Global: 0.077) and zero numerical instability.\nIn a stress test with near-random labeling ($\\pi_s \\approx 0.4$--$0.5$, $n_{\\text{expert}}{=}50$), the maximum condition number reaches 1{,}125, correctly triggering the $\\kappa{=}100$ guard and preventing catastrophic inversion.\nThe adaptive formula $\\kappa_{\\text{adapt}} = 10 \\sqrt{n_{\\text{expert}} / K}$ recovers $\\kappa{=}100$ for this regime and scales naturally with the estimation precision.\n\n\\section{Full Proof of Theorem~\\ref{thm:bias_identity}}\n\\label{app:derivation}\n\n\\paragraph{Setup.}\nUnder assumptions (A1)--(A4), the observed CATE in subgroup $s$ at effect-modifier level $z$ is\n\\begin{equation}\n\\tau_{\\text{obs}}(z, s) = \\sum_{z'} M_s[z, z'] \\cdot \\tau(z'),\n\\end{equation}\nwhere $M_s[z, z'] = P(Z{=}z' \\mid \\hat{Z}{=}z, S{=}s)$ is the mixing matrix.\nUnder (A2)--(A3), $M_s = \\bigl[\\begin{smallmatrix} 1-\\pi_s & \\pi_s \\\\ \\pi_s & 1-\\pi_s \\end{smallmatrix}\\bigr]$.\n\n\\paragraph{Global correction.}\nThe pooled mixing matrix is $M_{\\text{global}} = \\sum_s w_s M_s = \\bigl[\\begin{smallmatrix} 1-\\bar{\\pi} & \\bar{\\pi} \\\\ \\bar{\\pi} & 1-\\bar{\\pi} \\end{smallmatrix}\\bigr]$, with $\\bar{\\pi} = \\sum_s w_s \\pi_s$.\n\nGlobal correction applies $M_{\\text{global}}^{-1}$ to $\\tau_{\\text{obs}}(\\cdot, s)$:\n\\begin{equation}\n\\hat{\\tau}_{\\text{global}}(z, s) = [M_{\\text{global}}^{-1} M_s \\cdot \\boldsymbol{\\tau}]_z,\n\\end{equation}\nwhere $\\boldsymbol{\\tau} = [\\tau(0), \\tau(1)]^\\top$.\n\n\\paragraph{Bias computation.}\nThe bias is $\\hat{\\tau}_{\\text{global}}(z, s) - \\tau(z) = [(M_{\\text{global}}^{-1} M_s - I) \\boldsymbol{\\tau}]_z$.\n\nDirect computation gives:\n\\begin{equation}\nM_{\\text{global}}^{-1} = \\frac{1}{1 - 2\\bar{\\pi}} \\begin{bmatrix} 1-\\bar{\\pi} & -\\bar{\\pi} \\\\ -\\bar{\\pi} & 1-\\bar{\\pi} \\end{bmatrix}.\n\\end{equation}\nMultiplying by $M_s$:\n\\begin{equation}\n\\resizebox{.88\\columnwidth}{!}{$\\displaystyle\nM_{\\text{global}}^{-1} M_s = \\frac{1}{1-2\\bar{\\pi}} \\begin{bmatrix} (1{-}\\bar{\\pi})(1{-}\\pi_s) - \\bar{\\pi}\\pi_s & (1{-}\\bar{\\pi})\\pi_s - \\bar{\\pi}(1{-}\\pi_s) \\\\ -\\bar{\\pi}(1{-}\\pi_s) + (1{-}\\bar{\\pi})\\pi_s & -\\bar{\\pi}\\pi_s + (1{-}\\bar{\\pi})(1{-}\\pi_s) \\end{bmatrix}.\n$}\n\\end{equation}\n\nDefine $\\delta_s = \\pi_s - \\bar{\\pi}$. Substituting $\\pi_s = \\bar{\\pi} + \\delta_s$:\n\\begin{equation}\nM_{\\text{global}}^{-1} M_s - I = \\frac{\\delta_s}{1-2\\bar{\\pi}} \\begin{bmatrix} -1 & 1 \\\\ 1 & -1 \\end{bmatrix}.\n\\end{equation}\n\nTo verify: the $(1,1)$ entry of $M_{\\text{global}}^{-1} M_s$ is\n{\\small\n\\begin{align}\n&\\frac{(1{-}\\bar{\\pi})(1{-}\\bar{\\pi}{-}\\delta_s) - \\bar{\\pi}(\\bar{\\pi}{+}\\delta_s)}{1-2\\bar{\\pi}} \\nonumber\\\\\n&= \\frac{(1{-}\\bar{\\pi})^2 - (1{-}\\bar{\\pi})\\delta_s - \\bar{\\pi}^2 - \\bar{\\pi}\\delta_s}{1-2\\bar{\\pi}} \\nonumber\\\\\n&= \\frac{1 - 2\\bar{\\pi} - \\delta_s}{1-2\\bar{\\pi}} = 1 - \\frac{\\delta_s}{1-2\\bar{\\pi}}.\n\\end{align}\n}\n\nApplying $(M_{\\text{global}}^{-1} M_s - I)$ to $\\boldsymbol{\\tau}$:\n{\\small\n\\begin{align}\n\\text{bias}(z{=}0, s) &= \\tfrac{\\delta_s}{1-2\\bar{\\pi}}(-\\tau(0) + \\tau(1)) = +\\tfrac{\\delta_s \\cdot \\Delta\\tau}{1-2\\bar{\\pi}}, \\\\\n\\text{bias}(z{=}1, s) &= \\tfrac{\\delta_s}{1-2\\bar{\\pi}}(\\tau(0) - \\tau(1)) = -\\tfrac{\\delta_s \\cdot \\Delta\\tau}{1-2\\bar{\\pi}},\n\\end{align}\n}\nwhere $\\Delta\\tau = \\tau(1) - \\tau(0)$. \\qed\n\n\\section{Multi-class Extension and Proof}\n\\label{app:multiclass}\n\n\\begin{corollary}[Multi-class Extension]\n\\label{cor:multiclass}\nFor $K > 2$ subgroups with $J$ effect-modifier levels and uniform off-diagonal misclassification (misclassified observations from class $j$ are distributed equally among the remaining $J{-}1$ classes), the subgroup bias of global correction generalizes to\n\\begin{equation}\n\\mathrm{bias}_{\\mathrm{global}}(z, s) = \\sum_{j=1}^{J} \\bigl(\\bar{\\pi}_j - \\pi_{s,j}\\bigr) \\cdot \\bigl(\\tau(j) - \\bar{\\tau}\\bigr) \\cdot g(\\bar{\\pi}),\n\\label{eq:multiclass}\n\\end{equation}\nwhere $g(\\bar{\\pi})$ collects the matrix-inversion amplification terms.\\footnote{For $J=3$ with symmetric misclassification (off-diagonal errors uniform), $g(\\bar{\\pi}) = 1/(1 - 3\\bar{\\pi}/2)$, generalizing the $J{=}2$ factor $1/(1-2\\bar{\\pi})$. In general, $g(\\bar{\\pi}) = 1/(1 - J\\bar{\\pi}/(J-1))$.}\nThe essential structure, $\\sum_s w_s (\\bar{\\pi}_j - \\pi_{s,j}) = 0$, ensures that bias redistributes across subgroups rather than vanishing in aggregate.\n\\end{corollary}\n\n\\paragraph{Proof.}\nFor $K > 2$ subgroups with $J$ effect-modifier levels, the subgroup-specific mixing matrix $M_s$ is $J \\times J$ with entries $M_s[j, j'] = P(Z{=}j' \\mid \\hat{Z}{=}j, S{=}s)$.\nThe global mixing matrix is $M_{\\text{global}} = \\sum_s w_s M_s$.\n\nThe bias of global correction in subgroup $s$ at level $z$ is:\n\\begin{equation}\n\\text{bias}_{\\text{global}}(z, s) = [(M_{\\text{global}}^{-1} M_s - I) \\boldsymbol{\\tau}]_z.\n\\end{equation}\n\nWrite $M_s = M_{\\text{global}} + \\Delta_s$ where $\\Delta_s = M_s - M_{\\text{global}}$ satisfies $\\sum_s w_s \\Delta_s = 0$.\nThen $M_{\\text{global}}^{-1} M_s = I + M_{\\text{global}}^{-1} \\Delta_s$, so:\n\\begin{equation}\n\\text{bias}_{\\text{global}}(z, s) = [M_{\\text{global}}^{-1} \\Delta_s \\cdot \\boldsymbol{\\tau}]_z.\n\\end{equation}\n\nFor symmetric misclassification with per-class error rates $\\pi_{s,j}$ and pooled rates $\\bar{\\pi}_j$, the entries of $\\Delta_s$ have the form $\\Delta_s[j,j'] = (\\bar{\\pi}_j - \\pi_{s,j}) \\cdot h(j, j')$ for a function $h$ determined by the off-diagonal redistribution pattern.\nExpanding the matrix-vector product and collecting terms yields:\n\\begin{equation}\n\\text{bias}_{\\text{global}}(z, s) = \\sum_{j=1}^{J} (\\bar{\\pi}_j - \\pi_{s,j}) \\cdot (\\tau(j) - \\bar{\\tau}) \\cdot g(\\bar{\\pi}),\n\\end{equation}\nwhere $g(\\bar{\\pi})$ collects the matrix-inversion amplification terms and $\\bar{\\tau} = \\sum_j P(Z{=}j) \\tau(j)$.\n\nThe essential structure $\\sum_s w_s (\\bar{\\pi}_j - \\pi_{s,j}) = 0$ ensures that the weighted bias across subgroups sums to zero: global correction redistributes bias rather than creating or eliminating it in aggregate.\nFor non-uniform off-diagonal entries, the scalar amplification $g(\\bar{\\pi})$ generalizes to a cell-specific matrix; the product structure $B_s \\cdot \\Delta\\tau$ persists but a closed-form amplification factor does not. \\qed\n\n\\section{Proof of Proposition~\\ref{prop:debiasing_hurts}}\n\\label{app:debiasing_hurts}\n\nThe naive estimator has bias $\\tau_{\\text{obs}}(z,s) - \\tau(z)$.\nUnder (A2)--(A3), $\\tau_{\\text{obs}}(0,s) = (1-\\pi_s)\\tau(0) + \\pi_s\\tau(1)$, so $\\text{bias}_{\\text{naive}}(0,s) = \\pi_s \\cdot \\Delta\\tau$.\n\nGlobal correction produces larger absolute bias when $|\\text{bias}_{\\text{global}}(0,s)| > |\\text{bias}_{\\text{naive}}(0,s)|$:\n\\begin{equation}\n\\frac{|\\delta_s| \\cdot |\\Delta\\tau|}{|1-2\\bar{\\pi}|} > \\pi_s \\cdot |\\Delta\\tau|.\n\\end{equation}\nSince $\\Delta\\tau \\neq 0$ (otherwise both biases are zero), dividing through gives:\n\\begin{equation}\n\\frac{|\\delta_s|}{(1-2\\bar{\\pi}) \\cdot \\pi_s} > 1,\n\\end{equation}\nwhere we use $1-2\\bar{\\pi} > 0$ from (A4).\n\nFor high-error subgroups ($\\pi_s > \\bar{\\pi}$, so $\\delta_s > 0$): the condition becomes $(\\pi_s - \\bar{\\pi}) / ((1-2\\bar{\\pi})\\pi_s) > 1$, which simplifies to $\\pi_s(1 - 1 + 2\\bar{\\pi}) > \\bar{\\pi}$, i.e., $2\\bar{\\pi}\\pi_s > \\bar{\\pi}$, i.e., $\\pi_s > 0.5$.\nThis is excluded by (A4), so global correction always reduces bias in high-error subgroups.\n\nFor low-error subgroups ($\\pi_s < \\bar{\\pi}$, so $\\delta_s < 0$): the condition becomes $(\\bar{\\pi} - \\pi_s) / ((1-2\\bar{\\pi})\\pi_s) > 1$, which gives $\\pi_s < \\bar{\\pi} / (1 - 2\\bar{\\pi} + 1) = \\bar{\\pi} / (2(1-\\bar{\\pi}))$.\nWhen $\\bar{\\pi} = 0.15$, any subgroup with $\\pi_s < 0.088$ experiences increased bias from global correction. \\qed\n\n\\paragraph{Extension to asymmetric misclassification.}\nProposition~\\ref{prop:debiasing_hurts} assumes symmetric error rates (A2).\nUnder asymmetric misclassification ($\\mathrm{FPR}_s \\neq \\mathrm{FNR}_s$), the naive bias becomes $\\mathrm{bias}_{\\mathrm{naive}}(0,s) = \\mathrm{FPR}_s \\cdot \\tau(1) + (1 - \\mathrm{FPR}_s - 1)\\tau(0)$ and the global correction bias depends on the full $2 \\times 2$ structure of $B_s = M_{\\mathrm{global}}^{-1} M_s - I$ (Remark~1 in Section~\\ref{sec:theory}).\nA sufficient condition for global correction to increase bias is\n\\begin{equation}\n\\|B_s\\|_\\infty > \\max(\\mathrm{FPR}_s, \\mathrm{FNR}_s),\n\\end{equation}\nwhich reduces to Equation~\\eqref{eq:hurts_condition} when $\\mathrm{FPR}_s = \\mathrm{FNR}_s = \\pi_s$.\nIn the asymmetric experiments (Appendix~\\ref{app:asymmetric}), the symmetric diagnostic still achieves AUC $= 0.66$ when applied with $\\pi_s = (\\mathrm{FPR}_s + \\mathrm{FNR}_s)/2$, suggesting practical robustness.\nA fully general asymmetric diagnostic that accounts for the separate roles of FPR and FNR in each entry of $B_s$ is left to future work.\n\n\\section{Semi-Synthetic Data Generating Process}\n\\label{app:dgp}\n\n\\paragraph{Synthetic DGP (Sections~\\ref{sec:bias_mechanism}--\\ref{sec:diagnostic} and Appendix~\\ref{sec:budget}).}\nWe generate $N = 5000$ observations.\nEach observation belongs to one of $K \\in \\{2, 4\\}$ subgroups $S \\in \\{1, \\ldots, K\\}$ with equal weights $w_s = 1/K$.\nThe binary effect modifier $Z \\in \\{0, 1\\}$ is drawn with $P(Z{=}1) = 0.5$.\nTreatment assignment is $T \\sim \\text{Bernoulli}(0.5)$, independent of $Z$ and $S$.\n\nThe outcome is generated as:\n\\begin{equation}\nY = \\tau(Z) \\cdot T + \\eta, \\quad \\eta \\sim \\mathcal{N}(0, 1),\n\\end{equation}\nwhere the CATE function is $\\tau(z) = \\bar{\\tau} + \\Delta\\tau \\cdot (z - 0.5)$ with $\\bar{\\tau} = 0.5$.\nThe CATE heterogeneity $\\Delta\\tau \\in \\{0, 0.2, 0.5, 1.0\\}$ controls the strength of treatment effect variation across levels of $Z$.\n\nMisclassification is symmetric: $\\hat{Z} \\neq Z$ with probability $\\pi_s$ depending on subgroup.\nFor $K{=}2$: $\\pi_1 = \\bar{\\pi} - \\Delta_c/2$, $\\pi_2 = \\bar{\\pi} + \\Delta_c/2$, with $\\bar{\\pi} \\in \\{0.1, 0.2\\}$ and $\\Delta_c \\in \\{0, 0.05, 0.1, 0.15\\}$.\nFor $K{=}4$, extreme regime: $\\pi \\in \\{0.05, 0.10, 0.15, 0.25\\}$; moderate regime: $\\pi \\in \\{0.08, 0.12, 0.16, 0.20\\}$.\n\nExpert labels are drawn as a simple random sample of size $n_{\\text{expert}} \\in \\{50, 100, 250, 500, 1000, 2000\\}$ from the full dataset, with true $Z$ observed for these observations.\n\n\\paragraph{Semi-synthetic DGP (Section~\\ref{sec:ec_hte_eval}).}\nWe sample $N = 5000$ tweets from the TweetEval sentiment corpus ($N_{\\text{pool}} = 57{,}899$).\nSubgroups are defined by crossing \\texttt{has\\_hashtag} $\\times$ \\texttt{text\\_length\\_bin} (short/medium/long), yielding $K = 4$ subgroups with empirical sizes: $S_0 \\approx 38\\%$, $S_1 \\approx 38\\%$, $S_2 \\approx 12\\%$, $S_3 \\approx 12\\%$.\nMisclassification rates in the extreme regime are $\\pi_{S_0} = 0.05$, $\\pi_{S_1} = 0.10$, $\\pi_{S_2} = 0.15$, $\\pi_{S_3} = 0.25$, reflecting empirical evidence that hashtag-heavy text degrades LLM classifier accuracy.\nThe outcome DGP follows the same structure as the synthetic case, with CATE injected onto the real text-derived subgroup structure.\n\n\\paragraph{PPCI DGPs (Appendix~\\ref{sec:ppci}).}\nFour DGPs isolate error types: (A) covariate error only ($\\sigma_{\\text{outcome}} = 0$), (B) outcome error only ($\\sigma_{\\text{outcome}} = 0.5$), (C) both errors ($\\sigma_{\\text{outcome}} = 0.5$), (D) no error ($\\sigma_{\\text{outcome}} = 0$).\nOutcome-side error is additive Gaussian noise on $Y$.\n\n\\paragraph{CausalForestDML hyperparameters.}\nAll CausalForest experiments use \\texttt{econml.dml.CausalForestDML} with honest splitting, $n_{\\text{estimators}} = 48$, $\\texttt{min\\_samples\\_leaf} = 20$, \\texttt{model\\_y} = \\texttt{LassoCV}(cv=3), and \\texttt{model\\_t} = \\texttt{LogisticRegressionCV}.\nThese defaults were held constant across all configurations; no hyperparameter tuning was performed.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig2_heatmap.pdf}\n\\caption{Bias amplification under global correction ($K{=}2$). (a) Low-error subgroup: correction always helps. (b) High-error subgroup: correction \\emph{increases} bias when $\\Delta\\pi > 0.12$ (hatched), reaching 2.86$\\times$.}\n\\label{fig:heatmap}\n\\end{figure*}\n\n\\section{Extended Related Work}\n\\label{app:related}\n\n\\paragraph{Measurement error details.}\n\\citet{fuller1987measurement} establish the foundational theory showing that naive regression with mismeasured covariates yields attenuated coefficient estimates.\n\\citet{carroll2006measurement} extend this to nonlinear models.\n\\citet{gustafson2003measurement} develops Bayesian treatments modeling measurement jointly with outcomes.\n\\citet{hu2008nonparametric} provide nonparametric identification using repeated measurements or instruments.\n\n\\paragraph{Annotation model extensions.}\nBeyond the foundational \\citet{dawid1979maximum} model, \\citet{passonneau2014benefits} incorporate item difficulty, \\citet{hovy2013learning} learn annotator competence, and \\citet{paun2018comparing} introduce hierarchical priors sharing information across annotators with varying expertise.\n\n\\paragraph{PPI extensions and text-as-data methods.}\n\\citet{zrnic2024cross} extend PPI via cross-prediction; their active inference framework~\\citep{zrnic2024active} achieves $>$80\\% expert budget savings through adaptive allocation, complementary to our fixed-budget analysis.\n\\citet{grimmer2022text} provide methodological guidance for text-as-data pipelines.\n\\citet{audinet2025benchmarking} systematically benchmark DSL and PPI methods for LLM-based parameter estimation, finding that debiasing can increase MSE when prediction error is heterogeneous---a population-level analogue of the subgroup-conditional bias amplification we formalize in Theorem~\\ref{thm:bias_identity}.\n\n\\paragraph{Treatment vs.\\ effect-modifier misclassification.}\n\\citet{imai2010causal} study treatment misclassification where errors change which arm a unit is assigned to, requiring instrumental variables or partial identification because the fundamental treated-vs-control contrast is corrupted.\nOur problem preserves the treatment contrast ($T$ is observed correctly) but corrupts the heterogeneity structure ($\\hat{Z} \\neq Z$).\nThe ATE remains identified; only conditional effects are biased, which makes exact correction through confusion matrix inversion feasible.\n\n\\paragraph{Econometrics of binary misclassification.}\n\\citet{bound2001measurement} survey measurement error in survey data, establishing that binary misclassification attenuates regression coefficients.\n\\citet{frazis2003estimating} derive exact bias formulas for OLS with a misclassified binary regressor, showing attenuation proportional to the misclassification rate---analogous to our Theorem~\\ref{thm:bias_identity} but restricted to average effects without subgroup heterogeneity.\n\\citet{black2000racial} demonstrate that racial misclassification in administrative data can substantially bias estimates of racial disparities.\n\\citet{mahajan2006identification} and \\citet{lewbel2007estimation} develop instrumental variable approaches to identify models with misclassified binary regressors, requiring exclusion restrictions unavailable when the mismeasured variable is an LLM annotation.\nOur setting differs in three respects: (i) the mismeasured variable is an effect modifier indexing the CATE function, not a standard regressor; (ii) misclassification rates vary across subgroups, creating the $\\delta_s \\times \\Delta\\tau$ product amplification absent from homogeneous-error analyses; and (iii) expert labels provide a direct calibration sample, enabling confusion matrix estimation without instruments.\n\n\\section{MCMC Convergence Diagnostics}\n\\label{app:mcmc}\n\nTable~\\ref{tab:mcmc} reports convergence diagnostics for the hierarchical Bayesian confusion matrix estimator across all experimental configurations.\nAll runs use 4 chains with 4000 iterations (2000 warmup).\nMain experiments (Table~\\ref{tab:main_results}) use a Dirichlet prior centered on $\\hat{C}_{\\text{global}}$ with concentration $\\alpha_0$ estimated via empirical Bayes (marginal likelihood).\nAppendix robustness experiments use a fixed Dirichlet prior ($\\alpha{=}3$); since fixed-$\\alpha$ partial pooling is weakly dominated by the adaptive variant, these results are conservative.\nThis budget is sufficient for the $2{\\times}2$ Dirichlet-Multinomial posterior; all runs achieve $\\hat{R} < 1.0034$ and ESS $> 1618$, confirming convergence with substantial margin.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcc}\n\\toprule\nDiagnostic & Threshold & Achieved \\\\\n\\midrule\n$\\hat{R}$ (max across all params) & $< 1.01$ & $< 1.0034$ \\\\\nESS (min across all params) & $> 845$ & $> 1618$ \\\\\nDivergent transitions & $= 0$ & $0$ \\\\\nSingularity guard triggers & --- & extreme/$n{=}50$ only \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{MCMC convergence diagnostics for the hierarchical Bayesian estimator. All configurations satisfy convergence criteria with substantial margin.}\n\\label{tab:mcmc}\n\\end{table}\n\n\\paragraph{Hyperprior sensitivity.}\nScaling the $\\text{Gamma}(3, 1)$ hyperprior by factors of $0.5\\times$ to $2\\times$ produces $<$1\\% RMSE variation for $K{=}2$ and $\\sim$4--5\\% for $K{=}4$.\nCoverage remains invariant across the sensitivity range.\nThese results confirm that the hierarchical estimator is robust to prior specification within a reasonable range.\n\n\\section{Diagnostic ROC Curves}\n\\label{app:roc}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig4_roc.png}\n\\caption{ROC curves for the $\\Delta\\tau$-free diagnostic (Proposition~\\ref{prop:debiasing_hurts}): $|\\delta_s|/((1{-}2\\bar\\pi)\\cdot\\pi_s)>1$. (A)~Setting-level ROC (AUC $= 0.89$), compared with the $|\\Delta\\pi \\times \\Delta\\tau|$ product (AUC $= 0.89$) and $\\mathrm{CV}(\\pi_s)$ (AUC $= 0.97$). (B)~Subgroup-level ROC: the $\\Delta\\pi$-only condition (AUC $= 0.86$) substantially outperforms the $|\\Delta\\pi \\times \\Delta\\tau|$ product (AUC $= 0.73$). The $\\Delta\\tau$-free diagnostic depends only on estimable misclassification rates, breaking the circular dependency that would arise if CATE heterogeneity were required.}\n\\label{fig:roc}\n\\end{figure}\n\n\\paragraph{Cost-asymmetric diagnostic thresholds.}\nIn practice, the cost of a false negative (failing to detect that global correction increases bias) exceeds the cost of a false positive (unnecessarily applying EC-HTE when global correction would suffice), because the former propagates systematic bias into CATE estimates while the latter only incurs additional estimation variance.\nPractitioners in high-stakes settings (e.g., policy evaluation where CATE estimates inform resource allocation) should lower the diagnostic threshold to favor recall over precision, accepting more false positives to minimize the risk of undetected bias amplification.\n\n\\section{Expert Budget Crossover Curves}\n\\label{app:budget}\n\\label{sec:budget}\n\nThe crossover point at which EC-HTE achieves lower RMSE than global correction is $n_{\\text{expert}} = 250$ for $K{=}2$/extreme and $n_{\\text{expert}} = 1000$ for $K{=}4$/extreme (Figure~\\ref{fig:budget}).\nUnder moderate heterogeneity ($K{=}2$), EC-HTE never achieves lower RMSE than global at any budget.\nHB partial pooling improves over stratified MLE in 21 of 24 configurations, with the two estimators converging by $n_{\\text{expert}} \\geq 1000$.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig3_budget.pdf}\n\\caption{RMSE vs.\\ expert budget ($n_{\\text{expert}}$) across four regime$\\times K$ combinations. Dashed vertical lines mark crossover points where EC-HTE achieves lower RMSE than global correction: $n{=}250$ ($K{=}2$, extreme), $n{=}1000$ ($K{=}4$, extreme). Under moderate heterogeneity ($K{=}2$), global correction dominates at all budgets. Shaded bands show $\\pm 1$ SD across subgroups within each configuration.}\n\\label{fig:budget}\n\\end{figure*}\n\n\\subsection{Budget Sensitivity: HB vs.\\ Stratified MLE}\n\\label{app:budget_sensitivity}\n\nHierarchical Bayes (HB) partial pooling borrows strength across subgroups, which should matter most when per-subgroup expert labels are scarce.\nWe sweep $n_{\\text{expert}} \\in \\{25, 50, 75, 100, 150, 250\\}$ under extreme heterogeneity ($\\Delta\\tau{=}0.3$, 100 MC runs, $N{=}5{,}000$).\nTable~\\ref{tab:budget_sensitivity} reports aggregate RMSE for global correction, stratified MLE, and HB EC-HTE.\n\n\\begin{table}[h]\n\\centering\n\\caption{RMSE across expert budgets under extreme heterogeneity.\nHB crossover (first budget where HB $<$ MLE) occurs at approximately 10 expert labels per subgroup-cell:\n$n_{\\text{expert}}{=}50$ for $K{=}2$ and $n_{\\text{expert}}{=}75$ for $K{=}4$.}\n\\label{tab:budget_sensitivity}\n\\small\n\\begin{tabular}{crrrrc}\n\\toprule\n$K$ & $n_{\\text{expert}}$ & Global & Strat.\\ MLE & HB EC-HTE & HB vs.\\ MLE \\\\\n\\midrule\n2 & 25 & \\textbf{0.101} & 0.256 & 0.269 & $+4.9\\%$ \\\\\n2 & 50 & \\textbf{0.088} & 0.275 & 0.231 & $\\mathbf{-16.1\\%}$ \\\\\n2 & 75 & 0.084 & 0.091 & \\textbf{0.089} & $-1.9\\%$ \\\\\n2 & 100 & 0.083 & 0.085 & \\textbf{0.084} & $-0.8\\%$ \\\\\n2 & 150 & 0.081 & 0.077 & \\textbf{0.077} & $-0.4\\%$ \\\\\n2 & 250 & 0.080 & 0.075 & \\textbf{0.074} & $-0.1\\%$ \\\\\n\\midrule\n4 & 25 & \\textbf{0.129} & 0.401 & 0.612 & $+52.5\\%$ \\\\\n4 & 50 & \\textbf{0.117} & 0.380 & 0.470 & $+23.8\\%$ \\\\\n4 & 75 & \\textbf{0.112} & 0.221 & 0.211 & $\\mathbf{-4.4\\%}$ \\\\\n4 & 100 & \\textbf{0.112} & 0.215 & 0.212 & $-1.3\\%$ \\\\\n4 & 150 & \\textbf{0.109} & 0.157 & 0.152 & $-3.6\\%$ \\\\\n4 & 250 & \\textbf{0.108} & 0.127 & 0.126 & $-1.0\\%$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThree regimes emerge.\nAt very low budgets ($n_{\\text{expert}} < 50$ for $K{=}2$, $< 75$ for $K{=}4$), per-subgroup counts are insufficient for reliable confusion matrix estimation; global pooling dominates because the variance cost of stratification overwhelms any bias reduction.\nHB degrades substantially in this regime because the Gibbs posterior, while better regularized than MLE, still cannot overcome the fundamental sample-size constraint with $\\sim$6--12 labels per subgroup.\nAt moderate budgets ($n_{\\text{expert}} = 50$--$250$ for $K{=}2$, $75$--$250$ for $K{=}4$), HB partial pooling provides consistent RMSE improvement over stratified MLE ($-0.4\\%$ to $-16.1\\%$), with the largest gains near the crossover point.\nAt high budgets ($n_{\\text{expert}} \\geq 250$), both estimators converge as subgroup-level data becomes sufficient for reliable MLE; the HB advantage diminishes to $< 1\\%$.\nCoverage remains $\\geq 0.88$ for both methods across all budget levels.\n\n\\subsection{Scalability to $K{=}8$ Subgroups}\n\\label{app:k8_subgroups}\n\nWe test EC-HTE at $K{=}8$ to identify the scalability boundary of hierarchical Bayesian partial pooling under fixed expert budget.\n\n\\paragraph{Setup.}\n$N{=}5{,}000$, $K{=}8$ (equal-weight subgroups), $n_{\\text{expert}}{=}250$ (${\\approx}31$ labels per subgroup), 100 MC replications.\nMisclassification rates are uniformly spread: $\\pi_s \\in \\{0.05, 0.09, 0.13, 0.18, 0.22, 0.26, 0.30, 0.35\\}$.\nTreatment effects depend on $Z$ (not subgroup): $\\tau(Z{=}0){=}0$, $\\tau(Z{=}1){=}0.3$.\n\n\\begin{table}[h]\n\\centering\n\\caption{EC-HTE at $K{=}8$ ($n_{\\text{expert}}{=}250$, ${\\approx}31$ labels/subgroup, 100 MC).}\n\\label{tab:k8_subgroups}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nMethod & Coverage & RMSE & $|\\text{Bias}|$ \\\\\n\\midrule\nOracle       & 0.944 & 0.113 & 0.090 \\\\\nGlobal       & 0.951 & 0.168 & 0.135 \\\\\nHB EC-HTE    & 0.956 & 0.340 & 0.183 \\\\\nStrat MLE    & 0.953 & 0.638 & 0.219 \\\\\nNaive        & 0.913 & 0.133 & 0.107 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll CM-aware methods achieve nominal coverage at $K{=}8$: HB EC-HTE 95.6\\%, Strat MLE 95.3\\%, Global 95.1\\%.\nHB partial pooling achieves a 47\\% RMSE reduction over stratified MLE (0.340 vs.\\ 0.638), confirming that hierarchical shrinkage provides substantial regularization.\nHowever, HB RMSE (0.340) exceeds global correction (0.168), indicating that ${\\approx}31$ expert labels per subgroup are insufficient for per-subgroup CM estimation to outweigh variance inflation.\n\n\\paragraph{Per-subgroup breakdown.}\nTable~\\ref{tab:k8_per_subgroup} decomposes RMSE by subgroup.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-subgroup RMSE at $K{=}8$. HB improvement over MLE is largest in high-$\\pi$ subgroups but does not close the gap with Global.}\n\\label{tab:k8_per_subgroup}\n\\small\n\\begin{tabular}{cccccc}\n\\toprule\nSubgroup & $\\pi_s$ & HB RMSE & MLE RMSE & Global RMSE & HB Cov \\\\\n\\midrule\n$s_0$ & 0.050 & 0.136 & 0.134 & \\textbf{0.181} & 0.950 \\\\\n$s_1$ & 0.093 & 0.133 & 0.132 & \\textbf{0.154} & 0.970 \\\\\n$s_2$ & 0.136 & 0.154 & 0.154 & 0.161 & 0.975 \\\\\n$s_3$ & 0.179 & 0.178 & 0.182 & \\textbf{0.159} & 0.945 \\\\\n$s_4$ & 0.221 & 0.263 & 0.343 & \\textbf{0.163} & 0.940 \\\\\n$s_5$ & 0.264 & 0.421 & 0.711 & \\textbf{0.164} & 0.965 \\\\\n$s_6$ & 0.307 & 0.634 & 1.375 & \\textbf{0.177} & 0.940 \\\\\n$s_7$ & 0.350 & 0.432 & 0.809 & \\textbf{0.183} & 0.960 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nRMSE degradation is concentrated in high-$\\pi$ subgroups ($s_4$--$s_7$, $\\pi \\geq 0.22$), where confusion matrix inversion amplifies estimation noise ($r = 0.87$, $p = 0.005$ for correlation between $\\pi_s$ and HB RMSE).\nLow-error subgroups ($s_0$--$s_1$) benefit from stratification, with HB RMSE 14--25\\% below global correction.\nHB partial pooling reduces MLE RMSE by 24--54\\% in the high-$\\pi$ regime ($s_4$--$s_7$), confirming that hierarchical shrinkage provides meaningful regularization even when per-subgroup labels are scarce.\nCoverage remains $\\geq$0.94 across all subgroups for HB EC-HTE, indicating that variance inflation does not compromise inference validity.\nAdaptive shrinkage---increasing the prior strength for high-$\\pi$ subgroups where CM estimation is least reliable---is a natural extension that may close the RMSE gap with global correction at larger $K$.\n\nWe explored adaptive shrinkage ($\\alpha{=}10$ for high-$\\pi$ subgroups vs.\\ default $\\alpha{=}3$), which reduces aggregate RMSE from 0.340 to 0.216 (35\\% improvement) by attenuating estimation noise in high-$\\pi$ subgroups.\nHowever, RMSE remains 30\\% above global correction (0.166), confirming that the bottleneck is per-subgroup sample size (${\\sim}$31 expert labels) rather than the shrinkage method itself.\nThis establishes $K{=}8$ at $n_{\\text{expert}}{=}250$ as a boundary condition: all correction methods provide valid inference (coverage $\\geq$94\\%), but per-subgroup stratification requires proportionally larger expert budgets---approximately $n_{\\text{expert}} \\geq 500$ (${\\approx}60$ labels/subgroup)---to achieve RMSE parity with global correction.\n\n\\section{Asymmetric Misclassification Extension}\n\\label{app:asymmetric}\n\nAssumption~(A2) imposes symmetric misclassification ($\\text{FPR}_s = \\text{FNR}_s = \\pi_s$), which simplifies the bias decomposition but is not necessary for it.\nReal LLM annotators typically exhibit asymmetric confusion patterns; we show here that the product structure generalizes.\n\n\\paragraph{General bias formula.}\nFor asymmetric confusion matrices $C_s = \\bigl(\\begin{smallmatrix} 1{-}\\text{FPR}_s & \\text{FPR}_s \\\\ \\text{FNR}_s & 1{-}\\text{FNR}_s \\end{smallmatrix}\\bigr)$, define the mixing matrix $M_s$ via Bayesian inversion and the residual matrix $B_s = M_{\\text{global}}^{-1} M_s - I$.\nSince both $M_s$ and $M_{\\text{global}}$ are row-stochastic, $B_s \\mathbf{1} = \\mathbf{0}$.\nDecomposing $\\boldsymbol{\\tau} = \\tau(0)\\mathbf{1} + \\Delta\\tau \\, \\mathbf{e}_1$ gives:\n\\begin{equation}\n\\text{bias}(z, s) = \\Delta\\tau \\cdot [B_s]_{z,1},\n\\end{equation}\nwhere $[B_s]_{z,1}$ depends only on $\\{\\text{FPR}_k, \\text{FNR}_k, w_k\\}$, not on $\\Delta\\tau$.\nUnder~(A2), this reduces to $\\delta_s \\Delta\\tau / (1 - 2\\bar{\\pi})$ (Theorem~\\ref{thm:bias_identity}).\n\n\\paragraph{Empirical validation.}\nWe test three asymmetric configurations ($K{=}2$, $n_{\\text{expert}}{=}250$, 100 MC runs each): \\emph{Cross} (FPR/FNR = 0.10/0.20 vs.\\ 0.25/0.10), \\emph{Co-directional} (0.05/0.15 vs.\\ 0.20/0.30), and \\emph{Extreme} (0.03/0.25 vs.\\ 0.30/0.05).\nRegressing analytic predictions on MC bias yields $R^2 = 0.991$ across all configurations, confirming the product structure under asymmetry.\nTable~\\ref{tab:asymmetric} reports correction performance averaged over subgroups, $z$-levels, and $\\Delta\\tau \\in \\{0.1, \\ldots, 0.5\\}$.\nEC-HTE reduces $|\\text{bias}|$ from 0.025 (global) to 0.006, a $4\\times$ improvement, with lower RMSE (0.033 vs.\\ 0.040) and substantially better coverage (0.90 vs.\\ 0.78).\n\n\\begin{table}[t]\n\\centering\n\\caption{Asymmetric misclassification results ($K{=}2$, $n_{\\text{expert}}{=}250$, 100 MC runs). Values averaged over subgroups, $z$-levels, and $\\Delta\\tau$.}\n\\label{tab:asymmetric}\n\\small\n\\begin{tabular}{l ccc}\n\\toprule\nMethod & $|\\text{Bias}| \\downarrow$ & RMSE $\\downarrow$ & Coverage $\\uparrow$ \\\\\n\\midrule\nNaive & 0.047 & 0.053 & 0.48 \\\\\nGlobal & 0.025 & 0.040 & 0.78 \\\\\nHB EC-HTE & \\textbf{0.006} & \\textbf{0.033} & \\textbf{0.90} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Supplementary Main Results}\n\\label{app:main_supp}\n\n\\begin{table}[t]\n\\centering\n\\caption{Additional configurations from the main experiment. $|\\text{Bias}|$ and RMSE averaged over subgroups, $z$-levels, and 100 MC runs. $^\\dagger$RMSE exceeds Global.}\n\\label{tab:main_supp}\n\\small\n\\begin{tabular}{ll ccc}\n\\toprule\nConfiguration & Method & $|\\text{Bias}|$ & RMSE & Cov. \\\\\n\\midrule\n\\multirow{4}{*}{\\shortstack[l]{Synthetic DIM\\\\$K{=}2$, moderate, $n{=}250$}}\n & Naive & 0.018 & 0.064 & 0.95 \\\\\n & Global & 0.009 & 0.074 & 0.96 \\\\\n & Strat.\\ MLE & \\textbf{0.005} & 0.075$^\\dagger$ & 0.97 \\\\\n & HB EC-HTE & \\textbf{0.005} & 0.075$^\\dagger$ & 0.97 \\\\\n\\midrule\n\\multirow{4}{*}{\\shortstack[l]{Semi-synthetic\\\\TweetEval, extreme, $n{=}250$}}\n & Naive & 0.027 & 0.103 & 0.93 \\\\\n & Global & \\textbf{0.023} & 0.124 & 0.92 \\\\\n & Strat.\\ MLE & 0.032 & 0.248$^\\dagger$ & 0.91 \\\\\n & HB EC-HTE & 0.027 & 0.225$^\\dagger$ & 0.91 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{PPCI Complementarity Results}\n\\label{app:ppci}\n\\label{sec:ppci}\n\nEC-HTE composes with PPCI~\\cite{sui2026ppci} for settings where both covariate misclassification and outcome model error are present: EC-HTE+PPCI reduces $|\\text{bias}|$ from 0.179 to 0.007 ($z{=}0$, DGP~C), and the corrected pseudo-outcomes are compatible with other CATE estimators (R-learner bias reduction: 89\\%; Appendix~\\ref{app:rlearner}).\n\n\\begin{table*}[t]\n\\centering\n\\caption{PPCI complementarity experiment ($K{=}2$, extreme, $n_{\\text{expert}}{=}250$). DGP~A: covariate error only; B: outcome error only ($\\sigma{=}0.5$); C: both errors; D: no error. Values are $|\\text{bias}|$ and RMSE averaged over two subgroups. $^\\star$EC-HTE+PPCI achieves near-zero bias when both error types are present.}\n\\label{tab:ppci}\n\\small\n\\begin{tabular}{ll cccc}\n\\toprule\nDGP & Method & $|\\text{Bias}|_{z=0}$ & $|\\text{Bias}|_{z=1}$ & RMSE$_{z=0}$ & RMSE$_{z=1}$ \\\\\n\\midrule\n\\multirow{5}{*}{A: Covariate}\n & Naive & 0.053 & 0.063 & 0.087 & 0.093 \\\\\n & Global & 0.063 & 0.055 & 0.101 & 0.102 \\\\\n & EC-HTE & 0.017 & \\textbf{0.013} & 0.097 & 0.108 \\\\\n & PPCI & \\textbf{0.015} & 0.020 & 0.162 & 0.168 \\\\\n & EC-HTE+PPCI & 0.017 & \\textbf{0.013} & 0.097 & 0.108 \\\\\n\\midrule\n\\multirow{5}{*}{B: Outcome}\n & Naive & 0.189 & 0.197 & 0.206 & 0.212 \\\\\n & Global & 0.185 & 0.208 & 0.204 & 0.228 \\\\\n & EC-HTE & 0.181 & 0.215 & 0.202 & 0.237 \\\\\n & PPCI & 0.015 & \\textbf{0.020} & 0.171 & 0.176 \\\\\n & EC-HTE+PPCI & \\textbf{0.012} & 0.023 & 0.171 & 0.186 \\\\\n\\midrule\n\\multirow{5}{*}{C: Both}\n & Naive & 0.251 & 0.135 & 0.267 & 0.155 \\\\\n & Global & 0.182 & 0.209 & 0.233 & 0.235 \\\\\n & EC-HTE & 0.179 & 0.216 & 0.224 & 0.262 \\\\\n & PPCI & 0.017 & 0.007 & 0.241 & 0.232 \\\\\n & EC-HTE+PPCI$^\\star$ & \\textbf{0.007} & \\textbf{0.008} & 0.209 & 0.223 \\\\\n\\midrule\n\\multirow{5}{*}{D: None}\n & Naive & \\textbf{0.007} & 0.003 & 0.060 & 0.065 \\\\\n & Global & 0.010 & \\textbf{0.002} & 0.061 & 0.071 \\\\\n & EC-HTE & 0.013 & 0.007 & 0.062 & 0.079 \\\\\n & PPCI & \\textbf{0.007} & \\textbf{0.003} & 0.060 & 0.065 \\\\\n & EC-HTE+PPCI & 0.013 & 0.007 & 0.062 & 0.079 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nThe complementarity of EC-HTE and PPCI follows from the distinct error sources they correct: EC-HTE addresses misclassification in the effect modifier $Z$ (covariate space), while PPCI corrects specification error in the outcome model $f(X)$ (prediction space).\nSince covariate misclassification and outcome model error are algebraically independent in the potential outcomes framework, their corrections compose without interference---confirmed by the 4-DGP orthogonal design (Table~\\ref{tab:ppci}), where DGP~C (both errors present) yields the largest bias reduction from the combined approach.\nUnder covariate error only, PPCI adds nothing; under no error, all methods perform equivalently.\n\n\\section{Real-Data Case Study: Hate Speech Detection}\n\\label{app:hatespeech}\n\nWe apply EC-HTE to the UC Berkeley Measuring Hate Speech corpus~\\cite{kennedy2020constructing}, annotating 2{,}496 comments for dehumanization using GPT-4.1.\nFour text-feature subgroups are defined by crossing platform (Reddit/Gab vs.\\ Twitter/YouTube) and text length (above/below median), yielding balanced groups ($n \\approx 624$ each).\n\n\\paragraph{Positive finding: real-world heterogeneity.}\nPer-subgroup misclassification rates range from 0.266 to 0.383, confirming heterogeneity ($\\Delta\\pi = 0.117$) in a real annotation setting.\nAt the error-type level, FPR ranges from 8.5\\% to 21.3\\% across text-feature subgroups, demonstrating that subgroup-varying misclassification is not an artifact of synthetic design but arises naturally in real NLP annotation tasks.\n\n\\paragraph{Boundary condition: statistical power at extreme FNR.}\nCorrection results are inconclusive: all corrected confidence intervals contain zero, and point estimate differences between methods are not statistically significant.\nThe high baseline FNR (53.3\\%) amplifies variance through matrix inversion (variance amplification factor up to 15.7$\\times$), rendering the comparison underpowered.\nWhen $P(\\hat{Z}{=}1 \\mid Z{=}1) \\approx 0.5$, the confusion matrix approaches singularity, and inversion amplifies estimation noise regardless of stratification strategy.\nThis complements the expert budget threshold identified in Appendix~\\ref{sec:budget}: EC-HTE requires \\emph{both} sufficient expert labels \\emph{and} sufficient baseline classifier quality.\n\n\\paragraph{Diagnostic connection.}\nThe diagnostic criterion ($\\Delta\\pi \\times \\Delta\\tau$, Section~\\ref{sec:diagnostic}) identifies when correction is worthwhile under moderate baseline accuracy.\nThis case study illustrates that even when $\\Delta\\pi$ is large, extreme baseline error renders correction underpowered rather than beneficial.\nA practical prerequisite is that the per-subgroup confusion matrix condition number $\\kappa(\\hat{C}_s)$ remain moderate; when $\\kappa > 50$, as observed here, practitioners should prioritize improving annotation quality before applying any matrix-inversion-based correction.\n\n\\section{Cross-Model Consistency}\n\\label{app:multilm}\n\nWe evaluate whether misclassification heterogeneity is model-specific by annotating 500 TweetEval sentiment tweets with six OpenAI models spanning three generations.\nSix text-feature subgroups are defined by crossing hashtag presence and text length.\nSpearman rank correlations of per-subgroup error rates across all six subgroups range from $\\rho = 0.82$ to $1.00$, indicating that the subgroup error structure is consistent across architectures.\nTwo subgroups with $n \\leq 6$ exhibit zero misclassification across all models; excluding these yields four-point correlations that are directionally consistent but underpowered.%\n\\footnote{The filtered $\\Delta\\pi$ values in Table~\\ref{tab:multilm} serve as a robustness check independent of rank-order testing: all six models exceed $\\Delta\\pi > 0.05$ on the four retained subgroups.}\n\n\\begin{table}[t]\n\\centering\n\\caption{Effective misclassification heterogeneity ($\\Delta\\pi$) across six OpenAI models on TweetEval sentiment (500 tweets, filtered to 4 subgroups with $n \\geq 10$).}\n\\label{tab:multilm}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\nModel & Effective $\\Delta\\pi$ & $> 0.05$? \\\\\n\\midrule\nGPT-3.5-Turbo & 0.198 & \\checkmark \\\\\nGPT-4-Turbo & 0.149 & \\checkmark \\\\\nGPT-4o-mini & 0.136 & \\checkmark \\\\\nGPT-5.4 & 0.114 & \\checkmark \\\\\nGPT-4.1 & 0.098 & \\checkmark \\\\\nGPT-4o & 0.080 & \\checkmark \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll six models exhibit effective $\\Delta\\pi > 0.05$ on the four retained subgroups (Table~\\ref{tab:multilm}), and 5 of 6 share the same worst subgroup (\\texttt{True\\_medium}: tweets with hashtags and medium text length).\nNewer models reduce absolute error rates but do not eliminate subgroup heterogeneity: GPT-5.4 achieves $\\Delta\\pi = 0.114$ compared to GPT-3.5-Turbo's $0.198$.\nThese results were obtained with a single API provider; open-source model validation appears in Appendix~\\ref{app:multilm_opensource}.\n\n\\section{Open-Source Multi-LLM Validation}\n\\label{app:multilm_opensource}\n\nWe evaluate four open-source LLMs (7B--9B parameter range) on 490 TweetEval sentiment tweets with $K{=}4$ subgroups defined by crossing hashtag presence and text length.\nTable~\\ref{tab:multilm_cm} reports the confusion matrix heterogeneity profile.\nAll four models exhibit $\\Delta\\pi > 0.05$, confirming that subgroup-heterogeneous misclassification is not specific to proprietary APIs.\nSubgroup error rankings are consistent across architectures: \\texttt{True\\_short} (short tweets with hashtags) has the lowest $\\pi_s$ in 3 of 4 models, while \\texttt{False\\_medium} (medium tweets without hashtags) has the highest.\n\n\\begin{table}[t]\n\\centering\n\\caption{Confusion matrix heterogeneity across four open-source LLMs ($K{=}4$, $N{=}490$ TweetEval tweets). $\\Delta\\pi$: max--min per-subgroup misclassification rate. Prop2: number of subgroups where the $\\Delta\\tau$-free diagnostic (Proposition~\\ref{prop:debiasing_hurts}) triggers.}\n\\label{tab:multilm_cm}\n\\small\n\\begin{tabular}{lcccl}\n\\toprule\nModel & Acc.\\ & $\\Delta\\pi$ & Prop2 & Strongest \\\\\n\\midrule\nLlama-3.1-8B & 0.755 & 0.141 & 1/4 & True\\_short \\\\\nQwen-2.5-7B & 0.798 & 0.165 & 1/4 & True\\_short \\\\\nGemma-2-9B & 0.763 & 0.125 & 4/4 & True\\_medium \\\\\nMistral-7B & 0.802 & 0.134 & 0/4 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Semi-synthetic budget sweep.}\nWe run the full EC-HTE pipeline with $K{=}2$ subgroups and $\\Delta\\tau{=}0.3$, using each model's empirical confusion matrices.\nTable~\\ref{tab:multilm_budget} reports coverage and RMSE crossover points.\nEC-HTE restores near-nominal coverage from 0.714 (naive average) to 0.939 ($+$22.5 percentage points) at $n_{\\text{expert}}{=}1{,}000$, consistent across all four models.\nGlobal correction achieves comparable or lower RMSE than HB at all budgets under these moderate $\\Delta\\pi$ values, and the $K{=}4$ RMSE crossover never occurs---confirming the budget guidelines in Appendix~\\ref{sec:budget}.\n\n\\begin{table}[t]\n\\centering\n\\caption{Semi-synthetic budget sweep ($K{=}2$, $\\Delta\\tau{=}0.3$, 50 MC runs; see Appendix~\\ref{app:mcse} for MC tier justification). Coverage at selected expert budgets; RMSE crossover denotes the minimum expert budget at which HB EC-HTE achieves lower RMSE than the naive (uncorrected) estimator.}\n\\label{tab:multilm_budget}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nModel & $\\Delta\\pi_{K{=}2}$ & Naive Cov.\\ & HB Cov.\\ ($n{=}1000$) & Crossover \\\\\n\\midrule\nLlama-3.1-8B & 0.051 & 0.675 & 0.940 & $n{=}1000$ \\\\\nQwen-2.5-7B & 0.080 & 0.715 & 0.925 & $n{=}1000$ \\\\\nGemma-2-9B & 0.100 & 0.705 & 0.945 & $n{=}1000$ \\\\\nMistral-7B & 0.070 & 0.760 & 0.945 & $n{=}1000$ \\\\\n\\midrule\n\\textit{Average} & --- & \\textit{0.714} & \\textit{0.939} & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Gemma boundary case.}\nGemma-2-9B triggers the Proposition~\\ref{prop:debiasing_hurts} diagnostic in all four $K{=}4$ subgroups due to extreme FPR--FNR asymmetry (\\texttt{False\\_medium} FNR $= 0.437$).\nAt small budgets ($K{=}4$, $n{=}100$), EC-HTE RMSE reaches 1.229 ($3.1\\times$ naive), illustrating the budget guideline from Appendix~\\ref{sec:budget}: when per-subgroup cell counts fall below 25, the variance cost of stratified correction dominates.\nAt $n \\geq 500$, EC-HTE coverage recovers to $>$0.90, consistent with the synthetic experiments.\n\n\\paragraph{Heterogeneous-$\\tau$ DGP.}\nTo assess whether the constant-$\\tau$ DGP understates EC-HTE's advantage, we run a supplementary experiment using Llama's empirical confusion matrices with heterogeneous treatment effects across subgroups ($\\Delta\\tau \\in [0.1, 0.6]$, $K{=}2$, 50 MC runs).\nEC-HTE achieves lower $|\\text{bias}|$ than global correction at all budgets ($n{=}500$: 0.010 vs.\\ 0.031, a 68\\% reduction).\nIn the high-$\\Delta\\tau$ subgroup (\\texttt{True\\_short}, $\\Delta\\tau{=}0.6$), EC-HTE also achieves lower RMSE ($n{=}1{,}000$: 0.212 vs.\\ 0.258, 18\\% improvement), confirming that the RMSE advantage concentrates in subgroups where correction is most needed.\nAggregate RMSE remains comparable to global correction because low-$\\Delta\\tau$ subgroups incur stratification variance without commensurate bias reduction, consistent with the budget guidelines in Appendix~\\ref{sec:budget}.\n\n\\section{Robustness to Subgroup Misspecification}\n\\label{app:robustness}\n\nEC-HTE requires pre-defined subgroup labels, which may be noisy in practice.\nWe test robustness by randomly flipping each observation's subgroup assignment with probability $p_{\\text{flip}} \\in \\{0, 0.10, 0.25, 0.50\\}$, across $K \\in \\{2, 4\\}$ (extreme regime, $n_{\\text{expert}} = 500$, $\\Delta\\tau = 0.3$, 100 MC runs).\n\n\\begin{table}[t]\n\\centering\n\\caption{95\\% CI coverage under subgroup misspecification noise. EC-HTE maintains near-nominal coverage across all noise levels.}\n\\label{tab:robustness}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n& \\multicolumn{4}{c}{$p_{\\text{flip}}$} \\\\\n\\cmidrule(lr){2-5}\nMethod & 0.00 & 0.10 & 0.25 & 0.50 \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{$K{=}2$, extreme}} \\\\\n\\quad Naive & 0.875 & 0.877 & 0.890 & 0.897 \\\\\n\\quad Global & 0.925 & 0.935 & 0.932 & 0.945 \\\\\n\\quad HB EC-HTE & 0.958 & 0.948 & 0.950 & 0.945 \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{$K{=}4$, extreme}} \\\\\n\\quad Naive & 0.904 & 0.916 & 0.909 & 0.919 \\\\\n\\quad Global & 0.930 & 0.953 & 0.948 & 0.944 \\\\\n\\quad HB EC-HTE & 0.956 & 0.958 & 0.960 & 0.946 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nEC-HTE maintains coverage $\\geq 0.945$ across all configurations (Table~\\ref{tab:robustness}), while the naive estimator is systematically below nominal (0.875--0.919).\nAt $p_{\\text{flip}} = 0.50$, subgroup structure is effectively destroyed; EC-HTE converges to global correction (coverage and RMSE within 0.1\\%), confirming that hierarchical Bayesian shrinkage provides a built-in safety mechanism.\nFor $K{=}4$ at $p_{\\text{flip}} = 0.50$, a small residual RMSE gap persists ($p < 0.01$), reflecting the variance cost of estimating four confusion matrices even when they carry no signal.\n\n\\section{Monte Carlo Standard Errors}\n\\label{app:mcse}\n\nAll main-text and most appendix experiments use 100 independent Monte Carlo replications per configuration; computationally intensive analyses (R-learner, multiplicative DGP, budget sweeps) use 50, and bootstrap experiments use 20 due to the $B{\\times}$CF cost per seed.\nThe median RMSE variation between 50-seed and 100-seed estimates is below 3.2\\%, confirming that 50-run results are stable.\nWe report Monte Carlo standard errors to assess whether observed differences between methods are statistically reliable.\nFor exp-001 (synthetic DGP, no per-seed pairing across methods), we use conservative two-sample $z$-tests on the 100-run means.\nFor exp-003 (semi-synthetic TweetEval, shared seeds across methods), we use paired $t$-tests, which are more powerful because they control for seed-level variation.\n\nTable~\\ref{tab:mcse} reports paired comparisons for representative configurations.\nOf 1{,}020 total pairwise comparisons across all configurations, 742 (72.7\\%) are statistically significant at $\\alpha = 0.05$.\n\n\\begin{table}[t]\n\\centering\n\\caption{Paired comparisons for representative configurations. $\\Delta$ = method A $-$ method B (negative favors A for $|\\text{bias}|$). Two-sample $z$-tests for synthetic (exp-001); paired $t$-tests for semi-synthetic (exp-003). Bold $p$-values indicate significance at $\\alpha = 0.05$.}\n\\label{tab:mcse}\n\\small\n\\begin{tabular}{llrr}\n\\toprule\nConfiguration & Comparison & $\\Delta$ & $p$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{HB EC-HTE vs.\\ Global ($|\\text{bias}|$)}} \\\\\n\\quad $K{=}2$/ext/$n{=}500$ & & $-0.046$ & $\\mathbf{<0.001}$ \\\\\n\\quad $K{=}4$/ext/$n{=}500$ & & $-0.078$ & $\\mathbf{<0.001}$ \\\\\n\\quad $K{=}4$/mod/$n{=}250$ & & $-0.017$ & $0.288$ \\\\\n\\quad TweetEval/ext/$n{=}250$ & & $+0.001$ & $0.395$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{HB EC-HTE vs.\\ Global (RMSE)}} \\\\\n\\quad $K{=}2$/ext/$n{=}500$ & & $+0.015$ & $0.179$ \\\\\n\\quad $K{=}4$/ext/$n{=}500$ & & $+0.048$ & $\\mathbf{0.011}$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{HB EC-HTE vs.\\ Naive ($|\\text{bias}|$)}} \\\\\n\\quad $K{=}2$/ext/$n{=}500$ & & $-0.089$ & $\\mathbf{<0.001}$ \\\\\n\\quad $K{=}4$/ext/$n{=}500$ & & $-0.113$ & $\\mathbf{<0.001}$ \\\\\n\\quad $K{=}4$/mod/$n{=}250$ & & $-0.031$ & $\\mathbf{0.038}$ \\\\\n\\quad TweetEval/ext/$n{=}250$ & & $+0.005$ & $\\mathbf{0.030}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nUnder extreme heterogeneity, HB EC-HTE's bias advantage over global correction is highly significant ($p < 0.001$ for both $K{=}2$ and $K{=}4$).\nThe RMSE penalty of stratification is not significant at $K{=}2$ ($p = 0.179$) but reaches significance at $K{=}4$ ($p = 0.011$), consistent with the higher variance cost of estimating four confusion matrices.\nUnder moderate heterogeneity ($K{=}4$, $n{=}250$), the bias difference between HB and global is not significant ($p = 0.288$), confirming that EC-HTE's advantage requires sufficient error heterogeneity.\nIn the semi-synthetic TweetEval experiment, HB EC-HTE does not significantly improve over global ($p = 0.395$), consistent with moderate $\\Delta\\pi$ and unbalanced subgroup sizes.\nThe HB vs.\\ naive comparison in TweetEval is significant ($p = 0.030$) but favors naive, reflecting the variance cost of stratification when bias reduction is marginal.\n\n\\section{Semi-Real Confusion Matrix Validation}\n\\label{app:semireal}\n\nWe test EC-HTE with empirical asymmetric confusion matrices from the GPT-4.1 TweetEval pilot.\nFour text-feature subgroups ($K{=}4$) retain the real per-subgroup FPR and FNR from pilot annotations (Table~\\ref{tab:semireal_cm}); CATE heterogeneity is injected synthetically ($\\tau(z{=}0,s) = 0.3 + 0.1s$, $\\tau(z{=}1,s) = 0.8 - 0.15s$).\n$N{=}5{,}000$, $P(Z{=}1){=}0.18$, 100 MC seeds per $n_{\\text{expert}}$ level.\n\n\\begin{table}[t]\n\\centering\n\\caption{Empirical confusion matrices from GPT-4.1 TweetEval pilot.\nS0 exhibits FNR $= 0.526$, approaching chance-level classification.}\n\\label{tab:semireal_cm}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\nSubgroup & Weight & FPR & FNR & $\\kappa(\\hat{C}_s)$ \\\\\n\\midrule\nS0 & 0.38 & 0.054 & 0.526 & high \\\\\nS1 & 0.22 & 0.101 & 0.300 & moderate \\\\\nS2 & 0.14 & 0.143 & 0.308 & moderate \\\\\nS3 & 0.25 & 0.194 & 0.222 & low \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Semi-real confusion matrix results. RMSE and coverage averaged over subgroups and $z$-levels (100 MC runs). HB EC-HTE underperforms global at all budgets; S0's near-chance FNR drives the failure.}\n\\label{tab:semireal}\n\\small\n\\begin{tabular}{llcc}\n\\toprule\n$n_{\\text{expert}}$ & Method & RMSE $\\downarrow$ & Coverage $\\uparrow$ \\\\\n\\midrule\n\\multirow{4}{*}{100}\n & Oracle & 0.101 & 0.957 \\\\\n & Naive & 0.123 & 0.879 \\\\\n & Global & 0.263 & 0.885 \\\\\n & HB EC-HTE & 0.784 & 0.744 \\\\\n\\midrule\n\\multirow{4}{*}{250}\n & Oracle & 0.101 & 0.957 \\\\\n & Naive & 0.123 & 0.879 \\\\\n & Global & 0.232 & 0.909 \\\\\n & HB EC-HTE & 0.411 & 0.834 \\\\\n\\midrule\n\\multirow{4}{*}{500}\n & Oracle & 0.101 & 0.957 \\\\\n & Naive & 0.123 & 0.879 \\\\\n & Global & 0.196 & 0.922 \\\\\n & HB EC-HTE & 0.260 & 0.890 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nHB EC-HTE produces higher RMSE and lower coverage than global correction at all expert budgets (Table~\\ref{tab:semireal}).\nThe root cause is S0's FNR $= 0.526$: when a confusion matrix row approaches a uniform distribution ($P(\\hat{Z}{=}1 \\mid Z{=}1) \\approx 0.5$), inversion amplifies estimation noise regardless of the expert budget.\nThis converges with the hate speech case study (Appendix~\\ref{app:hatespeech}, FNR $= 53.3$\\%) and confirms that EC-HTE requires \\emph{both} sufficient expert labels \\emph{and} sufficient baseline classifier quality per subgroup.\nThe singularity guard ($\\kappa > 100$, Section~\\ref{sec:method}) mitigates catastrophic failure by falling back to global correction for near-degenerate subgroups, but does not recover the bias reduction that motivates stratification.\nFor a $2 \\times 2$ symmetric confusion matrix, $\\kappa = 1/|1-2\\pi|$; $\\kappa > 100$ corresponds to $\\pi \\in (0.495, 0.505)$, so the guard triggers only when the classifier performs within $0.5\\%$ of random guessing.\nAt $n_{\\text{expert}} = 500$, HB EC-HTE narrows the gap (RMSE 0.260 vs.\\ 0.196) as confusion matrix estimates stabilize for the three well-classified subgroups, but the S0 bottleneck persists.\n\nA second semi-real experiment using GPT-3.5-Turbo confusion matrices (worst-subgroup FPR $= 0.39$, FNR $= 0.21$) yields similar results: HB RMSE exceeds global by 1.3--3.5$\\times$ at all budgets.\nHere the failure stems from high false-positive rates compounded by class imbalance ($P(Z{=}1) = 0.18$), which leaves insufficient expert observations in the positive class for reliable per-subgroup confusion matrix estimation.\nTogether, these experiments identify three applicability conditions for EC-HTE: (1)~sufficient effective expert budget ($n_{\\text{expert}} \\times P(Z_{\\text{minority}}) / K \\geq 25$), (2)~no near-chance subgroup error rate ($\\max(\\text{FPR}_s, \\text{FNR}_s) < 0.5$), and (3)~adequate class balance in the effect modifier.\n\n\\paragraph{Diagnostic rule.}\nA logistic regression over all 368 semi-real experiment--budget cells (dependent variable: HB EC-HTE $<$ Global RMSE) identifies two sufficient statistics: the worst-subgroup confusion matrix condition number $\\kappa(\\hat{M}_s) \\leq 1.25$ and the effective minority-class expert count $n_{\\text{expert}} \\times P(Z_{\\text{minority}}) / K \\geq 25$.\nWhen both conditions hold, HB outperforms global in 93.3\\% of cells; when either is violated, global is preferred in 94.7\\% of cells.\nBoth exp-015 ($\\kappa = 2.38$, effective $n = 2.5$) and exp-016 ($\\kappa = 1.55$, effective $n = 2.5$) violate both conditions, and the diagnostic correctly predicts 100\\% of their failure cells.\nSubgroup-average metrics can mask cell-level heterogeneity: in exp-015, HB EC-HTE substantially reduces bias for the three well-classified subgroups (S1--S3) but amplifies variance in the near-degenerate subgroup (S0, FNR $= 0.526$), and the S0 penalty dominates the aggregate RMSE.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/applicability_frontier.pdf}\n\\caption{Applicability frontier of EC-HTE. Green region: EC-HTE reduces bias vs.\\ global correction. Yellow: comparable performance. Red: EC-HTE underperforms. Dashed lines mark the expert budget threshold ($n_{\\text{expert}}/K = 25$) and classifier quality threshold (worst-subgroup error rate $= 0.5$). Red diamonds show semi-real experiments with actual GPT-4.1 and GPT-3.5-Turbo confusion matrices.}\n\\label{fig:applicability}\n\\end{figure}\n\n\\section{Robustness: Estimator Choice and Treatment Effect Specification}\n\\label{app:rlearner}\n\nWe verify that EC-HTE's corrected pseudo-outcomes are compatible with downstream estimators beyond CausalForest by replacing it with the R-learner~\\citep{nie2021quasi}.\nThe experiment uses $K{=}2$, extreme heterogeneity, $n_{\\text{expert}} = 500$, and 50 MC seeds; the R-learner uses 5-fold cross-fitting with gradient-boosted trees as the base learner.\n\n\\begin{table}[t]\n\\centering\n\\caption{R-learner vs.\\ CausalForest with EC-HTE correction ($K{=}2$, extreme, $n{=}500$). $|\\text{Bias}|$ and RMSE averaged over subgroups, $z$-levels, and seeds.}\n\\label{tab:rlearner}\n\\small\n\\begin{tabular}{llccc}\n\\toprule\nEstimator & Correction & $|\\text{Bias}|$ & RMSE & Cov. \\\\\n\\midrule\n\\multirow{4}{*}{R-learner}\n & Oracle & 0.006 & 0.056 & 0.94 \\\\\n & Naive & 0.121 & 0.139 & 0.47 \\\\\n & Global & 0.098 & 0.123 & 0.72 \\\\\n & EC-HTE & \\textbf{0.013} & 0.080 & 0.92 \\\\\n\\midrule\n\\multirow{2}{*}{CausalForest}\n & Naive & 0.058 & 0.090 & 0.82 \\\\\n & EC-HTE & \\textbf{0.010} & 0.093 & 0.95 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nEC-HTE reduces R-learner $|\\text{bias}|$ by 89\\% (0.121 $\\to$ 0.013) and restores coverage from 0.47 to 0.92 (Table~\\ref{tab:rlearner}).\nThe bias reduction and coverage gains are comparable to those achieved with CausalForest, confirming that EC-HTE is compatible with a range of HTE estimators.\n\n\\paragraph{Multiplicative treatment effects.}\nWe further test robustness to the functional form of treatment effects by replacing the additive DGP with a multiplicative specification: $Y(1) = Y(0) \\times \\exp(\\tau(Z))$, using $K{=}2$, extreme heterogeneity, $n_{\\text{expert}} = 500$, and 50 MC seeds.\n\n\\begin{table}[t]\n\\centering\n\\caption{Multiplicative DGP results ($K{=}2$, extreme, $n{=}500$, 50 seeds). EC-HTE achieves comparable bias reduction and nominal coverage under non-additive treatment effects.}\n\\label{tab:multiplicative}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nMethod & $|\\text{Bias}|$ & RMSE & Cov. \\\\\n\\midrule\nOracle & 0.003 & 0.038 & 0.96 \\\\\nNaive & 0.135 & 0.142 & 0.44 \\\\\nGlobal & 0.110 & 0.124 & 0.54 \\\\\nEC-HTE & \\textbf{0.054} & 0.068 & 0.955 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nEC-HTE reduces RMSE by 52\\% relative to naive (0.068 vs.\\ 0.142) and restores coverage to the nominal level (0.955; Table~\\ref{tab:multiplicative}).\nEC-HTE's bias correction operates at the confusion matrix level, independent of the downstream CATE estimator and functional form of treatment effects.\n\n\\section{Robustness to Class Imbalance}\n\\label{app:classimbalance}\n\nAssumption (A3) requires $P(Z{=}1) = 0.5$, but real-world effect modifiers are often imbalanced.\nWe sweep $P(Z{=}1) \\in \\{0.1, 0.2, 0.3, 0.4, 0.5\\}$ with $K \\in \\{2,4\\}$, extreme misclassification heterogeneity, $n_{\\text{expert}}{=}250$, and 100 MC seeds (Table~\\ref{tab:pz1_sweep}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Robustness to class imbalance ($n_{\\text{expert}}{=}250$, extreme heterogeneity). R$^2$: Theorem~\\ref{thm:bias_identity} fit. Ratio: HB/Global RMSE ($<1$ = HB wins). Cov.: HB EC-HTE 95\\% CI coverage.}\n\\label{tab:pz1_sweep}\n\\small\n\\begin{tabular}{cc ccc}\n\\toprule\n$P(Z{=}1)$ & $K$ & R$^2$ & Ratio & Cov. \\\\\n\\midrule\n0.1 & 2 & 0.998 & 0.92 & 0.94 \\\\\n0.2 & 2 & 0.989 & 0.76 & 0.94 \\\\\n0.3 & 2 & 0.994 & 0.78 & 0.94 \\\\\n0.4 & 2 & 0.995 & 0.87 & 0.94 \\\\\n0.5 & 2 & 0.995 & 0.86 & 0.93 \\\\\n\\midrule\n0.1 & 4 & 0.984 & 1.54 & 0.92 \\\\\n0.2 & 4 & 0.976 & 1.68 & 0.93 \\\\\n0.3 & 4 & 0.985 & 1.12 & 0.92 \\\\\n0.4 & 4 & 0.984 & 1.08 & 0.93 \\\\\n0.5 & 4 & 0.992 & 1.06 & 0.92 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTheorem~\\ref{thm:bias_identity}'s product form remains accurate across all imbalance levels: $R^2 \\geq 0.976$ even at $P(Z{=}1) = 0.1$, confirming that the bias identity derives from confusion matrix structure rather than class balance.\nFor $K{=}2$, EC-HTE outperforms global correction at all $P(Z{=}1)$ levels (RMSE ratio 0.76--0.92), degrading gracefully under severe imbalance.\nFor $K{=}4$, EC-HTE underperforms global at $n_{\\text{expert}}{=}250$ (ratio 1.06--1.68), consistent with the budget threshold $n_{\\text{expert}} \\times P(Z_{\\text{minority}}) / K \\geq 25$: at $P(Z{=}1){=}0.1$, $K{=}4$, each subgroup receives only ${\\sim}6$ minority-class labels.\nThe gap narrows as $P(Z{=}1)$ increases (1.54 $\\to$ 1.06), and coverage remains stable at 0.92--0.94 across all configurations.\n\n\\section{Comparison with PPI Correction}\n\\label{app:ppi_comparison}\n\nPPI~\\cite{angelopoulos2023ppi} constructs confidence intervals by combining a large set of ML predictions with a smaller set of gold-standard labels, using the gold labels to debias the ML-based estimator.\nApplied to our setting, PPI treats the LLM-annotated effect modifier as the ML prediction and the expert labels as the gold standard.\nTwo variants arise naturally: \\emph{PPI-global} pools all expert labels to estimate a single rectifier (analogous to our Global baseline), and \\emph{PPI-subgroup} estimates per-subgroup rectifiers (analogous to Stratified MLE).\n\nUnder the confusion-matrix parameterization we adopt, DSL's measurement error correction reduces to confusion matrix inversion.\nPooled DSL applies a single estimated confusion matrix to all subgroups, producing the same corrected label distribution as our Global baseline; per-subgroup DSL estimates a separate confusion matrix for each subgroup and inverts it independently, equivalent to our Stratified MLE.\nEC-HTE's contribution over both PPI-subgroup and per-subgroup DSL is hierarchical partial pooling: rather than estimating each subgroup's confusion matrix in isolation, EC-HTE places a shared prior across subgroups, borrowing strength to reduce variance while preserving subgroup-specific bias correction.\nThis mechanism is outside both the PPI and DSL frameworks.\n\nThe key difference between PPI and confusion-matrix inversion is that PPI does not invert the confusion matrix; instead, it uses the gold labels to directly debias the estimand.\nThis avoids the matrix inversion step that can amplify noise at small $n_{\\text{expert}}$, but it also means PPI cannot exploit the structure of the misclassification process to reduce bias.\nPPI-global inherits the same $\\Delta\\pi \\times \\Delta\\tau$ bias amplification as Global correction (Theorem~\\ref{thm:bias_identity}), confirming that the ``debiasing hurts'' mechanism operates regardless of the inference framework.\n\n\\section{Civil Comments Validation}\n\\label{app:civilcomments}\n\nTo verify that subgroup-heterogeneous misclassification generalizes beyond TweetEval, we annotate $N{=}3{,}000$ stratified samples (30\\% toxic) from Civil Comments~\\cite{borkan2019nuanced}, a toxicity detection dataset.\nSubgroups are defined by \\texttt{text\\_length\\_bin} $\\times$ \\texttt{has\\_question} ($K{=}4$): S0 (long, no question, 38.8\\%), S1 (long, question, 11.4\\%), S2 (short, no question, 33.7\\%), S3 (short, question, 16.1\\%).\nSubgroup features were chosen a priori based on observable text properties; no feature search was performed.\nThree proprietary LLMs annotate each sample via an OpenAI-compatible API, yielding 800--900 valid annotations per model.\n\nTable~\\ref{tab:civil_cm} reports per-subgroup FPR and FNR.\nWe define $\\Delta\\pi = \\max_s \\pi_s - \\min_s \\pi_s$, where $\\pi_s$ is the overall misclassification rate for subgroup $s$.\nAll three models exhibit $\\Delta\\pi > 0.05$, with overall heterogeneity $\\Delta\\pi \\in [0.113, 0.160]$---comparable to the $\\Delta\\pi \\in [0.125, 0.165]$ observed across four open-source LLMs on TweetEval (Appendix~\\ref{app:multilm_opensource}).\nGPT-4o-mini and GPT-3.5-turbo show pronounced FPR/FNR asymmetry (e.g., GPT-4o-mini FPR $\\in [0.42, 0.61]$ vs.\\ FNR $\\in [0.05, 0.16]$), indicating systematic over-prediction of toxicity; their FPR approaches 0.5, placing them in the ill-conditioned regime where confusion matrix inversion amplifies noise (consistent with the classifier quality threshold discussed in the Limitations section).\nThe consistent presence of $\\Delta\\pi$ heterogeneity across two NLP tasks, eight LLMs spanning open-source (7B--9B) and proprietary families, and two distinct subgroup definitions confirms that this phenomenon is a structural property of LLM annotation rather than an artifact of a specific dataset or model.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-subgroup misclassification rates on Civil Comments ($K{=}4$). $\\Delta$ denotes max $-$ min across subgroups.}\n\\label{tab:civil_cm}\n\\small\n\\begin{tabular}{llccccc}\n\\toprule\nModel & Metric & S0 & S1 & S2 & S3 & $\\Delta$ \\\\\n\\midrule\nGPT-4o & FPR & 0.249 & 0.157 & 0.213 & 0.341 & 0.184 \\\\\n       & FNR & 0.160 & 0.263 & 0.308 & 0.328 & 0.168 \\\\\n\\midrule\nGPT-4o-mini & FPR & 0.517 & 0.541 & 0.419 & 0.610 & 0.191 \\\\\n            & FNR & 0.052 & 0.105 & 0.074 & 0.160 & 0.108 \\\\\n\\midrule\nGPT-3.5-turbo & FPR & 0.400 & 0.473 & 0.374 & 0.468 & 0.099 \\\\\n              & FNR & 0.139 & 0.211 & 0.173 & 0.240 & 0.101 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Bias Identity Validation with Real Confusion Matrices}\n\\label{app:realcm_bias}\n\nTheorem~\\ref{thm:bias_identity} is derived under symmetric misclassification (A2); real LLM confusion matrices are asymmetric (FPR $\\neq$ FNR).\nWe verify that the generalized identity $\\mathrm{bias}(z,s) = \\Delta\\tau \\cdot [B_s]_{z,1}$ (Remark~\\ref{thm:bias_identity}) holds under real annotation error structures by running semi-synthetic simulations ($N{=}5{,}000$, $K{=}4$, $\\Delta\\tau{=}0.30$, 100 MC runs) with confusion matrices drawn from 11 LLM--dataset combinations: eight models on TweetEval (GPT-4-turbo, GPT-4o, GPT-4.1, GPT-4o-mini, GPT-3.5-turbo, Qwen2.5-7B, Mistral-7B, Gemma-2-9B) and three on Civil Comments (GPT-4o, GPT-4o-mini, GPT-3.5-turbo).\n\nTable~\\ref{tab:realcm_r2} reports per-model $R^2$ from regressing observed subgroup bias on the predicted value $\\Delta\\tau \\cdot [B_s]_{z,1}$.\nThe aggregate $R^2 = 0.975$; 10 of 11 combinations achieve $R^2 \\geq 0.92$.\nThe single outlier (GPT-4o-mini on Civil Comments, $R^2{=}0.76$) has near-homogeneous subgroup error rates ($\\max|[B_s]_{z,1}| = 0.089$), so predicted biases are small and Monte Carlo noise dominates the regression.\n$R^2$ correlates strongly with $\\max|[B_s]_{z,1}|$: models with more heterogeneous per-subgroup error rates produce larger bias signals that are easier to verify empirically.\n\n\\begin{table}[h]\n\\centering\n\\caption{Bias identity $R^2$ with real LLM confusion matrices ($K{=}4$, 100 MC runs).}\n\\label{tab:realcm_r2}\n\\small\n\\begin{tabular}{llcc}\n\\toprule\nModel & Dataset & $R^2$ & $\\max|[B_s]_{z,1}|$ \\\\\n\\midrule\nGPT-4-turbo  & TweetEval & 0.993 & 0.328 \\\\\nQwen2.5-7B   & TweetEval & 0.990 & 0.272 \\\\\nMistral-7B   & TweetEval & 0.990 & 0.242 \\\\\nGemma-2-9B   & TweetEval & 0.982 & 0.185 \\\\\nGPT-4o       & Civil Comments & 0.979 & 0.198 \\\\\nGPT-4o       & TweetEval & 0.975 & 0.240 \\\\\nGPT-4.1      & TweetEval & 0.969 & 0.139 \\\\\nGPT-3.5-turbo & TweetEval & 0.948 & 0.087 \\\\\nGPT-3.5-turbo & Civil Comments & 0.935 & 0.170 \\\\\nGPT-4o-mini  & TweetEval & 0.929 & 0.170 \\\\\nGPT-4o-mini  & Civil Comments & 0.756 & 0.089 \\\\\n\\midrule\n\\multicolumn{2}{l}{All (pooled)} & 0.975 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Applicability Screening with Real LLM Confusion Matrices}\n\\label{app:screening}\n\nWe apply the diagnostic conditions from Proposition~\\ref{prop:debiasing_hurts} and Section~\\ref{sec:method} to 16 LLM--dataset--$K$ combinations spanning eight LLMs (three open-source, five proprietary) across TweetEval and Civil Comments.\nTable~\\ref{tab:screening} summarizes which conditions each combination satisfies.\n\n\\begin{table}[h]\n\\centering\n\\caption{Diagnostic screening of 16 LLM--dataset--$K$ combinations. Columns report whether all subgroups satisfy each condition. Budget assumes $n_{\\text{expert}}{=}500$.}\n\\label{tab:screening}\n\\small\n\\begin{tabular}{llccccc}\n\\toprule\nModel & Dataset & $K$ & $\\kappa{\\leq}1.25$ & $\\max{\\leq}0.5$ & Budget & Pass all \\\\\n\\midrule\nGemma-2-9B   & TweetEval & 2 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nLlama-3.1-8B & TweetEval & 2 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nMistral-7B   & TweetEval & 2 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nQwen2.5-7B   & TweetEval & 2 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nGemma-2-9B   & TweetEval & 4 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nLlama-3.1-8B & TweetEval & 4 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nMistral-7B   & TweetEval & 4 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nQwen2.5-7B   & TweetEval & 4 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nGPT-3.5-turbo & CivilComm. & 4 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nGPT-3.5-turbo & TweetEval & 4 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nGPT-4-turbo  & TweetEval & 4 & {\\small$\\times$} & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nGPT-4.1      & TweetEval & 4 & {\\small$\\times$} & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nGPT-4o       & CivilComm. & 4 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nGPT-4o       & TweetEval & 4 & {\\small$\\times$} & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nGPT-4o-mini  & CivilComm. & 4 & {\\small$\\times$} & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\nGPT-4o-mini  & TweetEval & 4 & {\\small$\\times$} & {\\small$\\checkmark$} & {\\small$\\checkmark$} & {\\small$\\times$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nNo combination passes all three conditions; the bottleneck is $\\kappa(C_s) \\leq 1.25$, which requires $\\mathrm{FPR}_s + \\mathrm{FNR}_s \\lesssim 0.20$ for all subgroups---a threshold no current LLM achieves uniformly.\nThe closest are Qwen2.5-7B True\\_short ($\\kappa{=}1.23$) and Mistral-7B True\\_short ($\\kappa{=}1.27$).\n\nUnder a relaxed ``oracle screening'' that excludes near-degenerate subgroups ($\\max(\\mathrm{FPR}_s, \\mathrm{FNR}_s) \\geq 0.4$), we run semi-synthetic CATE estimation ($N{=}5{,}000$, $\\Delta\\tau{=}0.3$, 100 MC runs, $n_{\\text{expert}} \\in \\{250, 500\\}$) with each LLM's real per-subgroup confusion matrix.\nEC-HTE (HB) achieves lower RMSE than global correction in 41 of 52 comparisons (79\\%) and lower RMSE than stratified MLE in 52 of 52 comparisons (100\\%).\nThe four open-source LLMs on TweetEval show the strongest EC-HTE advantage (32/32 comparisons, RMSE reduction 0.001--0.008), while GPT-3.5-turbo/TweetEval (high FPR asymmetry, $\\mathrm{FPR}_{\\max}{=}0.39$) and GPT-4o/Civil Comments (low minority prevalence $P(Z{=}1){=}0.3$) show degradation.\nThe diagnostic correctly identifies the strict applicability regime; under relaxed conditions excluding near-degenerate subgroups, EC-HTE improves RMSE in 79\\% of comparisons.\n\n\\paragraph{Diagnostic Applicability Analysis.}\nThe diagnostic (Proposition~\\ref{prop:debiasing_hurts}) degrades on real LLM confusion matrices (pooled AUC $= 0.63$) because the failure mode is systematic: subgroups where the true CATE heterogeneity $\\tau_s \\approx 0$ are hurt by global correction (since $\\delta_s \\neq 0$ still introduces bias), yet these subgroups produce low diagnostic scores---the diagnostic ranks them as safe precisely when they are most vulnerable to overcorrection.\n\nA simple meta-criterion recovers reliability: compute $\\max_s |\\delta_s| / ((1 - 2\\bar{\\pi}) \\cdot \\pi_s)$ across subgroups.\nWhen $\\max_s \\mathrm{score}(s) > 1$, at least one subgroup is definitively harmed by global correction, and the diagnostic achieves AUC $\\geq 0.75$ across all 5 model--dataset combinations satisfying this condition (AUC range: 0.75--1.0).\nWhen $\\max_s \\mathrm{score}(s) \\leq 1$, global correction may or may not hurt depending on unobservable $\\Delta\\tau$; the diagnostic achieves AUC only 0.0--0.67 across the remaining 7 combinations (4 of 7 have AUC $< 0.5$, indicating anti-prediction).\nThis threshold perfectly separates reliable from unreliable diagnostic regimes across all 16 real LLM--dataset combinations evaluated.\n\nWe recommend the following practical protocol: (i) estimate per-subgroup confusion matrices from expert labels; (ii) compute $\\max_s \\mathrm{score}(s)$; (iii) if $> 1$, the diagnostic reliably identifies which subgroups are harmed by global correction---apply EC-HTE; (iv) if $\\leq 1$, the diagnostic is unreliable and practitioners should either default to EC-HTE as a conservative choice or evaluate correction strategies using held-out expert labels.\n\n\\subsection{$\\kappa$ Stratification Analysis}\n\\label{app:kappa_analysis}\n\nThe condition number $\\kappa(\\hat{C}_s) = 1/|1 - \\mathrm{FPR}_s - \\mathrm{FNR}_s|$ quantifies confusion matrix invertibility and governs the bias-variance tradeoff of per-subgroup correction.\nThe $\\kappa \\leq 1.25$ threshold identified in the diagnostic rule (Section~\\ref{sec:budget}) is a \\emph{sufficient condition} for strongest bias reduction, not a necessary condition: EC-HTE maintains calibrated inference across a substantially wider $\\kappa$ range.\n\n\\paragraph{Synthetic data.}\nAcross all 520 synthetic configurations ($K{=}2$, $\\pi_s \\in [0.025, 0.275]$), the maximum per-config $\\kappa$ falls in $[1.43, 2.22]$; none reaches $\\kappa \\leq 1.25$ because the pooled rate $\\bar{\\pi}{=}0.15$ sets a floor of $\\kappa{=}1/(1{-}2 \\cdot 0.15){=}1.43$.\nTable~\\ref{tab:kappa_synth} shows a two-bin stratification at $\\kappa{=}2$: EC-HTE achieves zero analytic bias in both bins, while global correction harms at least one subgroup in 100\\% of $\\kappa > 2$ configurations.\nMonte Carlo validation ($K{=}2$, $n_{\\text{expert}}{=}500$) confirms EC-HTE dominance at $\\kappa{=}2.0$: 86\\% bias reduction, 10\\% lower RMSE, and 95.5\\% coverage vs.\\ 88.3\\% for Global.\n\n\\begin{table}[h]\n\\centering\n\\caption{Synthetic $\\kappa$ stratification ($K{=}2$, 520 configs). ``Debiasing hurts'' = global correction increases $|\\text{bias}|$ for $\\geq$1 subgroup.}\n\\label{tab:kappa_synth}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n$\\kappa$ bin & $n$ & EC-HTE bias & Debiasing hurts & Global $|\\text{bias}|/|\\text{bias}_{\\text{naive}}|$ \\\\\n\\midrule\n$\\leq 2.0$ & 420 & 0 (exact) & 35.0\\% & 0.152 \\\\\n$> 2.0$    & 100 & 0 (exact) & 100\\% & 0.326 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Real LLM confusion matrices.}\nAll 13 real LLM--dataset combinations ($K{=}4$) have $\\kappa \\in [1.88, 2.99]$---none reaches $\\kappa \\leq 1.25$, because no current LLM achieves $\\mathrm{FPR}_s + \\mathrm{FNR}_s < 0.20$ uniformly across subgroups.\nTable~\\ref{tab:kappa_real} reports performance stratified by $\\kappa$ bin and expert budget.\nThe key finding is that EC-HTE maintains calibrated coverage ($\\geq$93\\%) across all $\\kappa$ bins at $n_{\\text{expert}} \\geq 250$, compared to 86--91\\% for Global.\nAt $n_{\\text{expert}}{=}500$, EC-HTE also achieves competitive RMSE in the $\\kappa \\leq 2$ bin (ratio 1.01) and bias win rate of 75\\%; at $n_{\\text{expert}}{=}250$, the variance cost of per-subgroup estimation dominates, and Global achieves lower RMSE---consistent with the bias-variance tradeoff documented in the main text (Section~\\ref{sec:ec_hte_eval}).\n\n\\begin{table}[h]\n\\centering\n\\caption{Real LLM $\\kappa$ stratification ($K{=}4$, MC validation). Ratios = EC-HTE / Global; values $<1$ favor EC-HTE. Coverage is EC-HTE absolute; Global coverage ranges 0.86--0.91 across bins.}\n\\label{tab:kappa_real}\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\n$\\kappa$ bin & $n_{\\text{expert}}$ & Bias ratio & RMSE ratio & Bias win & Cov.\\ (EC-HTE) \\\\\n\\midrule\n\\multirow{2}{*}{$\\leq 2.0$ ($n{=}4$)}\n & 500 & 0.99 & 1.01 & 75\\% & 0.943 \\\\\n & 250 & 1.09 & 1.13 & 0\\%  & 0.932 \\\\\n\\midrule\n\\multirow{2}{*}{$> 2.0$ ($n{=}9$)}\n & 500 & 1.11 & 1.22 & 22\\% & 0.949 \\\\\n & 250 & 1.26 & 1.43 & 0\\%  & 0.940 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe three-tier $\\kappa$ structure is thus: (i)~$\\kappa > 100$: near-random classification, singularity guard triggers automatic fallback to global correction; (ii)~$\\kappa \\leq 1.25$: strongest theoretical regime with guaranteed bias reduction and coverage; (iii)~$\\kappa \\in (1.25, {\\sim}3]$: the practical operating range for current LLMs, where EC-HTE provides calibrated inference (coverage $\\geq$93\\%) and achieves RMSE gains when expert budget is sufficient ($n_{\\text{expert}} \\geq 500$).\n\n\\section{Plug-in Standard Error Validation}\n\\label{app:bootstrap_se}\n\nA natural concern is whether the plug-in standard error adequately captures estimation uncertainty, particularly the additional variance introduced by confusion matrix estimation.\nWe verify this for the difference-in-means (DIM) estimator via Monte Carlo simulation ($K{=}2$, $n_{\\text{expert}} \\in \\{50, 100, 250, 500\\}$, 50 replications per budget level).\nAt each budget, we compute the plug-in 95\\% confidence interval and record empirical coverage.\nAcross all expert budgets, the plug-in SE yields coverage $\\geq 0.96$ (0.970, 0.960, 0.970, 0.970 for $n_{\\text{expert}} = 50, 100, 250, 500$), confirming that the analytic variance estimate is well-calibrated for the DIM estimator.\nThis self-calibration arises because the same noise in $\\hat{M}^{-1}$ that inflates point-estimate variance also inflates the plug-in SE, producing conservative intervals that maintain nominal coverage.\n\n\\paragraph{CausalForestDML.}\nUnder $K{=}2$ extreme heterogeneity ($\\pi{=}[0.05, 0.25]$, $n_{\\text{expert}}{=}250$, $n_{\\text{estimators}}{=}200$, 20 MC runs), EC-HTE plug-in SE achieves 93.8\\% aggregate coverage---close to the 94--96\\% oracle coverage (Table~\\ref{tab:cf_oracle}).\nThe high-error subgroup ($s_1$, $\\pi{=}0.25$) shows slightly lower plug-in coverage (92.5\\%) than the low-error subgroup ($s_0$: 95.0\\%), reflecting the larger $M^{-1}$ amplification of estimation uncertainty in subgroups with higher misclassification rates.\nBy contrast, the DIM plug-in SE achieves $\\geq$95\\% coverage in the same DGP, confirming that the analytic confusion matrix propagation formula is adequate for simpler estimators.\n\n\\paragraph{Full bootstrap SE.}\nA \\emph{full} bootstrap---resampling all $N$ observations and re-estimating both the confusion matrix and CausalForest per bootstrap replicate ($B{=}100$, $n_{\\text{estimators}}{=}200$, 20 MC runs)---confirms that plug-in SE is already near-nominal under standard hyperparameters.\nUnder $K{=}2$ extreme heterogeneity ($\\pi{=}[0.05, 0.25]$, $n_{\\text{expert}}{=}250$), plug-in SE achieves 93.8\\% aggregate coverage; the full bootstrap improves this to exactly 95.0\\% ($+$1.2pp).\nTable~\\ref{tab:bootstrap_se} reports per-subgroup results.\n\n\\begin{table}[h]\n\\centering\n\\caption{CausalForest coverage: plug-in SE vs.\\ full bootstrap SE ($B{=}100$, $n_{\\text{estimators}}{=}200$, 20 MC runs). Bootstrap SE is ${\\sim}1.15\\times$ plug-in.}\n\\label{tab:bootstrap_se}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nSubgroup & Plugin Cov. & Boot.\\ Cov. & Oracle Cov. & Plugin SE & Boot.\\ SE \\\\\n\\midrule\n$s_0$ ($\\pi{=}0.05$) & 0.950 & 0.925 & 0.925 & 0.059 & 0.063 \\\\\n$s_1$ ($\\pi{=}0.25$) & 0.925 & \\textbf{0.975} & 0.875 & 0.087 & 0.103 \\\\\n\\midrule\nAggregate & 0.938 & \\textbf{0.950} & 0.900 & 0.073 & 0.083 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe high-error subgroup ($s_1$) benefits most: coverage rises from 92.5\\% to 97.5\\% ($+$5.0pp), because the bootstrap captures the additional variance from $M^{-1}$ amplification.\nOracle coverage (90.0\\%) is consistent with the 94\\% reported in the oracle decomposition (Table~\\ref{tab:cf_oracle}), with the difference attributable to MC sampling noise at 20 runs.\nThe computational cost is substantial ($B \\times$ CF fits per MC run), but the approach is straightforward when exact nominal coverage is required.\n\n\\paragraph{Bootstrap coverage across expert budgets.}\nTable~\\ref{tab:bootstrap_small_n} extends the analysis to $n_{\\text{expert}} \\in \\{25, 50, 75, 100, 200\\}$ using the DIM estimator with Centered EB confusion matrix estimation ($K{=}2$ extreme, $\\pi{=}[0.05, 0.25]$, 20 MC runs, $B{=}100$).\nBootstrap SE maintains $\\geq$95\\% coverage across all expert budgets, including $n_{\\text{expert}}{=}25$ (${\\approx}12$ labels per subgroup).\nPlug-in SE is already near-nominal ($\\geq$91.2\\%) at all budgets tested.\n\n\\begin{table}[h]\n\\centering\n\\caption{HB EC-HTE coverage across expert budgets: plug-in vs.\\ bootstrap SE (DIM, $K{=}2$ extreme, 20 MC, $B{=}100$).}\n\\label{tab:bootstrap_small_n}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n$n_{\\text{expert}}$ & Plugin Cov. & Boot.\\ Cov. & SE Ratio & $|\\text{Bias}|$ \\\\\n\\midrule\n25 & 0.925 & \\textbf{1.000} & 2.86 & 0.079 \\\\\n50 & 0.975 & 0.988 & 2.93 & 0.067 \\\\\n75 & 0.912 & \\textbf{0.975} & 2.59 & 0.065 \\\\\n100 & 0.963 & 0.963 & 1.52 & 0.060 \\\\\n200 & 0.963 & 0.950 & 1.17 & 0.061 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt small $n_{\\text{expert}}$, bootstrap SE inflates confidence intervals by $2{-}3\\times$ relative to plug-in (SE ratio column), guaranteeing nominal coverage but reducing statistical power.\nAt $n_{\\text{expert}} \\geq 100$, the SE ratio converges to ${\\sim}1.2{-}1.5\\times$, and plug-in SE alone achieves $\\geq$96\\% coverage.\nFor practical deployment, we recommend $n_{\\text{expert}} \\geq 50$: bootstrap maintains nominal coverage (98.8\\%) with moderate SE inflation (2.9$\\times$), and plug-in SE achieves 97.5\\%---close to nominal without bootstrap overhead.\n\n\\paragraph{Finite-sample remainder.}\nBy first-order matrix perturbation, $\\hat{C}_s^{-1} = C_s^{-1} - C_s^{-1} E_s C_s^{-1} + O(\\|E_s\\|^2)$, where $E_s = \\hat{C}_s - C_s$ satisfies $\\|E_s\\| = O_p(n_{\\text{expert}}^{-1/2})$.\nThe remainder in the corrected CATE is therefore $R_n = O_p(n_{\\text{expert}}^{-1/2} \\cdot \\|C_s^{-1}\\|^2) = O_p(n_{\\text{expert}}^{-1/2} \\cdot \\kappa(C_s))$, since $\\|C_s^{-1}\\| = O(\\kappa(C_s))$ for stochastic matrices.\nThis motivates the $\\kappa > 100$ singularity guard (Section~\\ref{sec:method}).\n\n\\subsection{CausalForest Oracle Coverage Decomposition}\n\\label{app:cf_oracle}\n\nTo isolate the source of CausalForest under-coverage, we compare six estimation strategies that progressively remove sources of uncertainty: (1)~Oracle (true $Z$, no correction), (2)~EC-HTE with true $C_s$, (3)~EC-HTE with estimated $\\hat{C}_s$ (HB), (4)~Global with true $\\bar{C}$, (5)~Global with estimated $\\hat{\\bar{C}}$, and (6)~Naive.\nTable~\\ref{tab:cf_oracle} reports coverage, $|\\text{bias}|$, and RMSE across three DGP configurations (100 MC runs each).\n\n\\begin{table}[h]\n\\centering\n\\caption{CausalForest oracle coverage decomposition. Coverage averaged over subgroups and $z$-levels.}\n\\label{tab:cf_oracle}\n\\small\n\\begin{tabular}{ll ccc}\n\\toprule\nDGP & Method & Cov.\\ (\\%) & $|\\text{Bias}|$ & RMSE \\\\\n\\midrule\n\\multirow{6}{*}{\\shortstack[l]{$K{=}4$, extreme\\\\$n{=}500$}}\n & Oracle (true $Z$)       & 94.5 & 0.006 & 0.078 \\\\\n & EC-HTE true $C_s$       & 92.5 & 0.008 & 0.114 \\\\\n & EC-HTE est.\\ $\\hat{C}_s$ & 93.1 & 0.015 & 0.121 \\\\\n & Global true $\\bar{C}$   & 91.3 & 0.037 & 0.110 \\\\\n & Global est.\\ $\\hat{\\bar{C}}$ & 91.1 & 0.038 & 0.111 \\\\\n & Naive                    & 88.3 & 0.045 & 0.095 \\\\\n\\midrule\n\\multirow{6}{*}{\\shortstack[l]{$K{=}2$, extreme\\\\$n{=}250$}}\n & Oracle (true $Z$)       & 94.0 & 0.002 & 0.056 \\\\\n & EC-HTE true $C_s$       & 94.0 & 0.003 & 0.073 \\\\\n & EC-HTE est.\\ $\\hat{C}_s$ & 92.5 & 0.004 & 0.079 \\\\\n & Global true $\\bar{C}$   & 88.5 & 0.045 & 0.083 \\\\\n & Global est.\\ $\\hat{\\bar{C}}$ & 88.3 & 0.045 & 0.085 \\\\\n & Naive                    & 82.8 & 0.046 & 0.077 \\\\\n\\midrule\n\\multirow{6}{*}{\\shortstack[l]{$K{=}2$, MF2 DGP\\\\$\\tau{=}(0.10,0.40)$}}\n & Oracle (true $Z$)       & 96.0 & 0.077 & 0.091 \\\\\n & EC-HTE true $C_s$       & 91.3 & 0.103 & 0.112 \\\\\n & EC-HTE est.\\ $\\hat{C}_s$ & 92.3 & 0.100 & 0.111 \\\\\n & Global true $\\bar{C}$   & 95.0 & 0.107 & 0.114 \\\\\n & Global est.\\ $\\hat{\\bar{C}}$ & 94.3 & 0.105 & 0.114 \\\\\n & Naive                    & 77.3 & 0.120 & 0.125 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThree findings emerge.\nFirst, oracle coverage is 94--96\\% across all DGPs, confirming that CausalForest plug-in SE is well-calibrated when labels are correct.\nSecond, EC-HTE with true $C_s$ achieves 91--94\\% coverage---a 0--5pp gap from oracle (configuration-dependent), reflecting $M^{-1}$ SE propagation asymmetry across DGPs rather than confusion matrix estimation error.\nThird, the gap between true and estimated $C_s$ is ${\\leq}$1.5pp ($K{=}2$) and $<$1pp ($K{=}4$), confirming that CM estimation uncertainty contributes negligibly at $n_{\\text{expert}} \\geq 250$.\n\n\\section{Robustness to Assumption Violations}\n\\label{app:a5_violation}\n\n\\subsection{Assumption (A5): Subgroup-Specific Treatment Effects}\n\n\\begin{corollary}[Subgroup-Specific Treatment Effect Heterogeneity]\n\\label{cor:a5_relaxation}\nWhen $\\Delta\\tau$ varies across subgroups ($\\Delta\\tau_s = \\tau_s(1) - \\tau_s(0)$), the bias of global correction in subgroup $s$ at level $z{=}0$ is $+\\delta_s \\cdot \\Delta\\tau_s / (1 - 2\\bar{\\pi})$, and at level $z{=}1$ is $-\\delta_s \\cdot \\Delta\\tau_s / (1 - 2\\bar{\\pi})$.\n\\end{corollary}\nThe proof follows directly from Theorem~\\ref{thm:bias_identity} with $\\tau_s$ replacing $\\tau$.\n\nOur main analysis assumes that subgroup misclassification rates $\\delta_s$ and subgroup CATE magnitudes $\\Delta\\tau_s$ are independent (Assumption A5).\nIn practice, both may depend on text features that define subgroups, introducing correlation.\nWe test robustness under two configurations with the DIM estimator ($K{=}2$, $N{=}5{,}000$, $n_{\\text{expert}}{=}250$, 50 MC replications, $\\pi = [0.05, 0.25]$):\n\\emph{aligned} (positive $\\delta_s$--$\\Delta\\tau_s$ correlation: high-error S1 has the larger treatment effect, $\\Delta\\tau = [0.30, 0.70]$) and\n\\emph{adversarial} (negative correlation: high-error S1 has the smaller effect, $\\Delta\\tau = [0.70, 0.30]$).\n\n\\begin{table}[h]\n\\centering\n\\caption{Coverage and $|\\text{bias}|$ under A5 violation ($K{=}2$, $n_{\\text{expert}}{=}250$, 50 MC). Target coverage: 0.95.}\n\\label{tab:a5_violation}\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\nConfig & Method & S0 cov & S1 cov & S0 $|\\text{bias}|$ & S1 $|\\text{bias}|$ \\\\\n\\midrule\n\\multirow{4}{*}{Aligned}\n & Oracle        & 0.94 & 0.98 & 0.003 & 0.003 \\\\\n & Naive         & 0.93 & 0.25 & 0.022 & 0.174 \\\\\n & Global        & 0.93 & 0.82 & 0.036 & 0.094 \\\\\n & EC-HTE (EB)   & 0.95 & 0.95 & 0.005 & 0.017 \\\\\n\\midrule\n\\multirow{4}{*}{Adversarial}\n & Oracle        & 0.94 & 0.98 & 0.003 & 0.003 \\\\\n & Naive         & 0.90 & 0.78 & 0.042 & 0.074 \\\\\n & Global        & 0.74 & 0.93 & 0.098 & 0.040 \\\\\n & EC-HTE (EB)   & 0.94 & 0.96 & 0.002 & 0.007 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nIn the aligned configuration, the $\\delta_s \\times \\Delta\\tau_s$ product is maximized in the high-error subgroup, causing naive S1 coverage to collapse to 0.25.\nGlobal correction improves S1 but cannot fully correct without subgroup-specific error rates.\nIn the adversarial configuration, global correction overcorrects the low-error subgroup (S0 coverage 0.74).\nEC-HTE (EB) maintains $\\geq 0.94$ coverage across both subgroups in both configurations, with bias comparable to the oracle.\nResults at $n_{\\text{expert}}{=}500$ are consistent (all EC-HTE coverages $\\in [0.93, 0.99]$).\n\n\\subsection{Assumption (A1): Sensitivity to Outcome-Dependent Misclassification}\n\\label{app:a1_sensitivity}\n\nWe assess EC-HTE's robustness when misclassification depends on potential outcomes, violating~(A1).\nWe modify the synthetic DGP ($K{=}2$, extreme heterogeneity, $N{=}5{,}000$, $n_{\\text{expert}}{=}250$) so that misclassification probability becomes outcome-dependent: $P(\\hat{Z}{\\neq}Z \\mid Z, S, Y) = \\mathrm{clamp}(\\pi_s + \\gamma \\cdot (Y - \\mu_Y)/\\sigma_Y,\\, 0,\\, 1)$, where $\\gamma \\in \\{0, 0.05, 0.10, 0.15, 0.20\\}$ controls the strength of violation.\nTable~\\ref{tab:a1_sensitivity} reports results averaged over 100 MC runs.\n\n\\begin{table}[h]\n\\centering\n\\caption{Sensitivity to Assumption~(A1) violation. Coverage and $|\\text{bias}|$ under outcome-dependent misclassification ($\\gamma > 0$).}\n\\label{tab:a1_sensitivity}\n\\small\n\\begin{tabular}{lccc ccc}\n\\toprule\n& \\multicolumn{3}{c}{Coverage (\\%)} & \\multicolumn{3}{c}{$|\\text{Bias}|$} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n$\\gamma$ & EC-HTE & Global & Naive & EC-HTE & Global & Naive \\\\\n\\midrule\n0.00 & 95.5 & 92.7 & 87.7 & 0.060 & 0.065 & 0.061 \\\\\n0.05 & 95.5 & 93.5 & 83.8 & 0.059 & 0.064 & 0.064 \\\\\n0.10 & 95.3 & 93.8 & 83.5 & 0.063 & 0.064 & 0.067 \\\\\n0.15 & 94.8 & 94.3 & 79.2 & 0.065 & 0.064 & 0.070 \\\\\n0.20 & 93.5 & 94.0 & 79.5 & 0.068 & 0.063 & 0.073 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nEC-HTE maintains near-nominal coverage ($\\geq$93.5\\%) across the full $\\gamma$ range, with $|\\text{bias}|$ increasing only 13.7\\% from $\\gamma{=}0$ to $\\gamma{=}0.2$.\nAll correction methods (Global, Stratified MLE, HB) maintain $\\geq$90\\% coverage, indicating that moderate (A1) violations do not catastrophically degrade confusion-matrix-based correction.\nThe naive estimator degrades most rapidly (coverage $-$8.2pp), consistent with outcome-dependent misclassification compounding the uncorrected label noise.\n\n\\subsection{Assumption (A1): Treatment-Dependent Misclassification}\n\\label{app:treatment_dep}\n\nWe extend the (A1) sensitivity analysis to the treatment-dependent case, where misclassification probability depends on treatment assignment $T$: $P(\\hat{Z}{\\neq}Z \\mid Z, S, T) = \\mathrm{clamp}(\\pi_s + \\gamma_T \\cdot (2T - 1),\\, 0,\\, 1)$, with $\\gamma_T \\in \\{0, 0.05, 0.10, 0.15, 0.20\\}$.\nThis scenario arises when LLM accuracy varies with treatment status---e.g., treated texts may be systematically harder to classify.\nSetup: $K{=}2$, extreme heterogeneity, $N{=}5{,}000$, $n_{\\text{expert}}{=}250$, 100 MC runs.\n\n\\begin{table}[h]\n\\centering\n\\caption{Sensitivity to treatment-dependent misclassification ($\\gamma_T$). EC-HTE maintains $\\geq$89.7\\% coverage at $\\gamma_T \\leq 0.05$.}\n\\label{tab:treatment_dep}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n$\\gamma_T$ & EC-HTE Coverage & EC-HTE RMSE \\\\\n\\midrule\n0.00 & 0.945 & 0.075 \\\\\n0.05 & 0.897 & 0.092 \\\\\n0.10 & 0.750 & 0.133 \\\\\n0.15 & 0.525 & 0.177 \\\\\n0.20 & 0.370 & 0.224 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nEC-HTE is robust to small treatment-dependent violations ($\\gamma_T \\leq 0.05$), maintaining $\\geq$89.7\\% coverage with modest RMSE increase (0.075 to 0.092).\nAt $\\gamma_T = 0.10$, coverage drops to 75.0\\%, establishing this as the approximate breakeven point.\nThe degradation is steeper than for outcome-dependent violations (Table~\\ref{tab:a1_sensitivity}), because treatment-dependent errors directly contaminate the treatment arm contrast.\nFigure~\\ref{fig:treatment_dep} visualizes the coverage and RMSE trajectories.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/treatment_dep_misclass.pdf}\n\\caption{EC-HTE coverage and RMSE under treatment-dependent misclassification. Dashed line: 90\\% coverage threshold. Breakeven at $\\gamma_T \\approx 0.10$.}\n\\label{fig:treatment_dep}\n\\end{figure}\n\n\\subsection{Extension to Confounded Treatment Assignment}\n\\label{app:confounded_dgp}\n\nEC-HTE's confusion matrix correction operates on estimated CATEs regardless of how those estimates are produced.\nTo verify compatibility with observational (non-RCT) designs, we pair EC-HTE with an inverse probability weighted difference-in-means (IPW-DIM) estimator under confounded treatment assignment.\n\n\\paragraph{DGP.}\n$N{=}5{,}000$, $K{=}2$, $\\pi = [0.05, 0.25]$, $n_{\\text{expert}}{=}250$, 100 MC replications.\nA covariate $X \\sim \\mathcal{N}(0,1)$ confounds both treatment and outcome:\n$T \\sim \\text{Bernoulli}(\\sigma(\\beta X))$ with $\\beta{=}0.5$ (moderate confounding; propensity range $[0.38, 0.62]$),\n$Y = 1 + 0.5 Z + 0.3 X + \\tau(Z) \\cdot T + \\eta$, $\\eta \\sim \\mathcal{N}(0,1)$.\nTreatment effects are $\\tau(Z{=}0){=}0$, $\\tau(Z{=}1){=}0.3$.\nThe IPW-DIM estimator uses \\emph{oracle propensity} $e(X) = \\sigma(\\beta X)$, with propensity scores clipped to $[0.05, 0.95]$.\n\n\\begin{table}[h]\n\\centering\n\\caption{EC-HTE under confounded treatment assignment (IPW-DIM with oracle propensity, $\\beta{=}0.5$, 100 MC).}\n\\label{tab:confounded_dgp}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nMethod & Coverage & RMSE & $|\\text{Bias}|$ \\\\\n\\midrule\nOracle (true $Z$ + IPW) & 0.943 & 0.061 & 0.048 \\\\\nHB EC-HTE              & 0.950 & 0.086 & 0.068 \\\\\nGlobal                  & 0.930 & 0.087 & 0.071 \\\\\nStrat MLE               & 0.950 & 0.087 & 0.069 \\\\\nNaive                   & 0.863 & 0.083 & 0.066 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nEC-HTE achieves 95.0\\% coverage, within 0.7pp of the oracle (94.3\\%), confirming that confusion matrix correction and propensity weighting compose without interference.\nThe improvement is most pronounced in the high-error subgroup ($\\pi{=}0.25$): EC-HTE coverage is 96.0\\% vs.\\ naive 78.5\\% ($+$17.5pp).\nGlobal coverage (93.0\\%) falls below the correction methods (95.0\\%), consistent with the cost of ignoring subgroup-level error heterogeneity even in the confounded setting.\n\n\\paragraph{Sensitivity to confounding strength and propensity estimation.}\nWe sweep $\\beta \\in \\{0.25, 0.5, 1.0, 2.0\\}$ and compare oracle propensity ($e(X) = \\sigma(\\beta X)$) with estimated propensity (logistic regression fit on $(X, T)$), yielding 8 configurations (100 MC each).\nTable~\\ref{tab:confounded_sweep} reports HB EC-HTE and naive coverage.\n\n\\begin{table}[h]\n\\centering\n\\caption{EC-HTE coverage across confounding strengths and propensity sources. The logistic regression propensity model is correctly specified; propensity misspecification is a complementary concern addressed by the IPW literature.}\n\\label{tab:confounded_sweep}\n\\small\n\\begin{tabular}{cccc}\n\\toprule\n$\\beta$ & Propensity & HB Coverage & Naive Coverage \\\\\n\\midrule\n0.25 & Oracle    & 0.963 & 0.848 \\\\\n0.25 & Estimated & 0.973 & 0.845 \\\\\n0.50 & Oracle    & 0.950 & 0.863 \\\\\n0.50 & Estimated & 0.958 & 0.858 \\\\\n1.00 & Oracle    & 0.958 & 0.898 \\\\\n1.00 & Estimated & 0.960 & 0.883 \\\\\n2.00 & Oracle    & 0.945 & 0.858 \\\\\n2.00 & Estimated & 0.948 & 0.858 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nEC-HTE maintains coverage $\\geq$94.5\\% across all 8 configurations, including strong confounding ($\\beta{=}2.0$, propensity range $[0.12, 0.88]$).\nThe oracle--estimated gap is $\\leq$1pp, confirming that propensity estimation error does not meaningfully degrade EC-HTE when the propensity model is correctly specified.\nThis validates that EC-HTE is robust to confounded treatment assignment when the propensity model is correctly specified.\n\n\\subsection{Empirical Comparison with Frazis--Loewenstein Correction}\n\\label{app:fl_comparison}\n\nWe empirically compare EC-HTE's confusion matrix inversion against the scalar attenuation correction of \\citet{frazis2003estimating} (F-L).\nThe F-L correction rescales the observed estimate as $\\hat{\\tau}_{\\text{FL}} = \\hat{\\tau}_{\\text{obs}} / (1 - 2\\bar{\\pi})$, where $\\bar{\\pi}$ is the (global or per-subgroup) misclassification rate.\nWe test two variants: F-L \\emph{scalar} (single global $\\bar{\\pi}$) and F-L \\emph{per-subgroup} ($\\pi_s$-specific rescaling).\nSetup: $K{=}2$, $N{=}5{,}000$, $n_{\\text{expert}}{=}250$, $\\pi{=}[0.05, 0.25]$ (extreme heterogeneity), $\\tau(z{=}0){=}0$, $\\tau(z{=}1){=}0.3$, 100 MC runs.\n\n\\begin{table}[h]\n\\centering\n\\caption{F-L correction vs.\\ EC-HTE under heterogeneous misclassification ($\\Delta\\pi{=}0.20$). Both F-L variants produce \\emph{higher} aggregate bias than the uncorrected estimator.}\n\\label{tab:fl_comparison}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nMethod & $|\\text{Bias}|$ & RMSE & Coverage \\\\\n\\midrule\nOracle         & 0.045 & 0.056 & 0.943 \\\\\nNaive          & 0.062 & 0.077 & 0.858 \\\\\nGlobal (CM inv)& 0.064 & 0.081 & 0.938 \\\\\nHB EC-HTE      & 0.064 & 0.086 & \\textbf{0.953} \\\\\nF-L Scalar     & 0.091 & 0.116 & 0.850 \\\\\nF-L Per-Subgroup & 0.112 & 0.158 & 0.838 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBoth F-L variants produce \\emph{higher} bias and RMSE than the naive estimator (F-L per-subgroup $|\\text{bias}|{=}0.112$ vs.\\ naive $0.062$), demonstrating that scalar attenuation cannot substitute for confusion matrix inversion under subgroup-heterogeneous misclassification.\nThe per-subgroup bias direction reveals the mechanism: F-L scalar over-corrects the low-error subgroup ($s_0$: mean bias ${=}+0.073$ vs.\\ naive $+0.005$, a $14.6\\times$ amplification), while F-L per-subgroup dramatically over-corrects the high-error subgroup ($s_1$: mean bias ${=}+0.160$).\nEC-HTE achieves near-zero per-subgroup bias ($s_0{:}\\,{+}0.006$, $s_1{:}\\,{+}0.001$) with nominal coverage (95.3\\%).\nThe root cause is structural: F-L's $1/(1{-}2\\pi)$ scaling amplifies each $z$-level estimate independently, whereas CM inversion simultaneously redistributes the cross-contamination between misclassified and correctly classified observations.\n\n\\subsection{End-to-End Validation with Asymmetric Confusion Matrices}\n\\label{app:asymmetric_endtoend}\n\nWe validate EC-HTE under strongly asymmetric confusion matrices ($\\text{FPR}/\\text{FNR}$ ratio up to $7{:}1$), simulating the error profile of GPT-4.1 on Civil Comments.\nSetup: $K{=}2$, $N{=}5{,}000$, $n_{\\text{expert}}{=}250$; $s_0$: $\\text{FPR}{=}0.05$, $\\text{FNR}{=}0.02$ (low error); $s_1$: $\\text{FPR}{=}0.38$, $\\text{FNR}{=}0.054$ ($7{:}1$ ratio); 100 MC runs.\nWe compare EC-HTE using the full $2{\\times}2$ asymmetric CM (Remark~2) against the symmetric assumption ($\\text{FPR}{=}\\text{FNR}{=}\\pi_s$).\n\n\\begin{table}[h]\n\\centering\n\\caption{EC-HTE under asymmetric misclassification ($\\text{FPR}/\\text{FNR}$ up to $7{:}1$). The asymmetric formula improves coverage by $+1.5$pp and RMSE by $11.5\\%$.}\n\\label{tab:asymmetric_endtoend}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nMethod & $|\\text{Bias}|$ & RMSE & Coverage \\\\\n\\midrule\nOracle              & 0.045 & 0.056 & 0.943 \\\\\nEC-HTE (asymmetric) & 0.057 & 0.074 & \\textbf{0.945} \\\\\nNaive               & 0.059 & 0.073 & 0.870 \\\\\nGlobal (asymmetric) & 0.061 & 0.076 & 0.915 \\\\\nEC-HTE (symmetric)  & 0.062 & 0.083 & 0.930 \\\\\nGlobal (symmetric)  & 0.063 & 0.078 & 0.915 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nEC-HTE with the asymmetric formula achieves 94.5\\% coverage versus 93.0\\% under the symmetric assumption ($+1.5$pp), with RMSE improved from 0.083 to 0.074 ($-11.5\\%$).\nThe improvement concentrates in the high-error subgroup ($s_1$): asymmetric coverage is 93.0\\% vs.\\ symmetric 91.0\\%.\nPractitioners should estimate full $2 \\times 2$ confusion matrices rather than assuming symmetric misclassification, particularly when FPR and FNR differ substantially.\n\n\\subsection{Complementarity with LLM Calibration}\n\\label{app:calibration}\n\nTemperature or Platt scaling~\\cite{guo2017calibration} can reduce per-subgroup misclassification rates, but does not eliminate heterogeneity $\\Delta\\pi$.\nWe simulate calibration by shrinking per-subgroup rates from $\\pi{=}[0.05, 0.25]$ ($\\Delta\\pi{=}0.20$) to $\\pi{=}[0.08, 0.15]$ ($\\Delta\\pi{=}0.07$), testing whether EC-HTE remains necessary post-calibration.\nSetup: $K{=}2$, $N{=}5{,}000$, $n_{\\text{expert}}{=}250$, 100 MC runs.\n\n\\begin{table}[h]\n\\centering\n\\caption{Calibration reduces $\\Delta\\pi$ but does not eliminate it; EC-HTE corrects the residual bias. Best coverage is achieved by combining both.}\n\\label{tab:calibration}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nMethod & $|\\text{Bias}|$ & RMSE & Coverage \\\\\n\\midrule\nOracle                    & 0.043 & 0.053 & 0.963 \\\\\nCalibrated + EC-HTE       & 0.055 & 0.069 & \\textbf{0.965} \\\\\nCalibrated + Global       & 0.055 & 0.068 & 0.963 \\\\\nCalibrated + Naive        & 0.051 & 0.064 & 0.913 \\\\\nUncalibrated + EC-HTE     & 0.064 & 0.084 & 0.938 \\\\\nUncalibrated + Global     & 0.069 & 0.085 & 0.920 \\\\\nUncalibrated + Naive      & 0.063 & 0.079 & 0.840 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nCalibration alone improves naive coverage from 84.0\\% to 91.3\\% but does not reach the nominal 95\\%.\nCalibrated + EC-HTE achieves the highest coverage (96.5\\%), demonstrating that calibration and EC-HTE address complementary error sources: calibration reduces per-subgroup $\\pi_s$ while EC-HTE corrects the residual $\\delta_s$-driven bias from heterogeneity that persists post-calibration.\nPropensity estimation robustness under model misspecification is a complementary concern addressed by the IPW literature; EC-HTE as a downstream correction layer does not alter IPW behavior.\n\n\\subsection{Policy Reversal Zone Analysis}\n\\label{app:policy_reversal}\n\nWhen the true treatment effect is small, global correction can reverse the sign of estimated CATE---concluding a beneficial treatment is harmful---creating a \\emph{policy reversal zone}.\nWe sweep $\\tau(0) \\in \\{0.01, 0.02, 0.03, 0.05, 0.07, 0.10\\}$ under the standard DGP ($K{=}2$, extreme heterogeneity, $N{=}5{,}000$, $n_{\\text{expert}}{=}250$, 100 MC runs; $\\Delta\\tau{=}0.30$).\n\n\\begin{table}[h]\n\\centering\n\\caption{Policy reversal zone: fraction of configurations where global correction reverses the sign of estimated CATE.\nThe naive estimator produces zero sign reversals across all $\\tau(0)$ values; EC-HTE also achieves 0\\% reversal.}\n\\label{tab:policy_reversal}\n\\small\n\\begin{tabular}{ccc}\n\\toprule\n$\\tau(0)$ & Global reversal \\% & Most extreme $\\hat{\\tau}_{\\text{global}}$ \\\\\n\\midrule\n0.01 & 31.0 & $-0.079$ \\\\\n0.02 & 21.6 & --- \\\\\n0.03 & 14.9 & $-0.059$ \\\\\n0.05 & 6.1  & $-0.039$ \\\\\n0.07 & 1.6  & --- \\\\\n$\\geq$0.10 & 0 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe reversal rate increases monotonically as $\\tau(0)$ decreases: at $\\tau(0) = 0.01$, 31\\% of configurations yield sign reversal, with the most extreme case estimating $\\hat{\\tau} = -0.079$ when the true effect is $\\tau = +0.01$.\nThe critical threshold is $\\tau(0) < 0.089$, matching the closed-form prediction from Theorem~\\ref{thm:bias_identity}: $|\\delta_{\\max} \\cdot \\Delta\\tau_{\\max}| / (1 - 2\\bar{\\pi}) = 0.125 \\times 0.50 / 0.70 = 0.089$.\nThe most dangerous combination ($\\tau(0) = 0.01$, $\\delta_{\\text{misclass}} = 0.19$) reaches 42.9\\% reversal rate.\nThe naive estimator produces zero sign reversals across all $\\tau(0)$ values, confirming that reversal is an artifact of global correction, not inherent estimation noise.\n\nFigure~\\ref{fig:policy_reversal} visualizes the reversal zone across the $\\Delta\\pi \\times \\tau(0)$ parameter space.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/policy_reversal_zone.pdf}\n\\caption{Policy reversal zone: sign-reversal rate as a function of $\\tau(0)$ and $\\Delta\\pi$. Shaded region marks configurations where global correction reverses the CATE sign, directing policy toward the wrong subgroups.}\n\\label{fig:policy_reversal}\n\\end{figure}\n\n\\input{appendix_stance}\n\n\\section*{Use of AI Assistants}\n\\label{app:ai-assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant\nthroughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n    pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections,\n    polishing prose, and reformatting LaTeX.\n    \\item \\textbf{Literature:} summarizing related papers to inform\n    the related-work section.\n\\end{itemize}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 98,
+        "oldLines": 6,
+        "newStart": 98,
+        "newLines": 12,
+        "lines": [
+          " }",
+          " where $\\Delta\\tau = \\tau(1) - \\tau(0)$. \\qed",
+          " ",
+          "+\\paragraph{Finite-sample remainder.}",
+          "+When $\\hat{C}_s = C_s + E_s$ with $\\|E_s\\| = O_p(n_{\\text{expert}}^{-1/2})$ (central limit theorem), the estimated correction $\\hat{M}_{\\text{global}}^{-1} \\hat{M}_s$ deviates from its population counterpart by",
+          "+$\\|\\hat{M}_{\\text{global}}^{-1} \\hat{M}_s - M_{\\text{global}}^{-1} M_s\\| \\leq \\kappa(M_{\\text{global}}) \\cdot O_p(n_{\\text{expert}}^{-1/2})$,",
+          "+where $\\kappa(M) = \\|M\\| \\cdot \\|M^{-1}\\|$ is the condition number~\\citep{stewart1990matrix}.",
+          "+This motivates the $\\kappa > 100$ singularity guard in Section~\\ref{sec:method}.",
+          "+",
+          " \\section{Multi-class Extension and Proof}",
+          " \\label{app:multiclass}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01N6H6P5bFBonMJxGMwJPwgh`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex",
+  "old_string": "We place a $\\mathrm{Gamma}(a_0, b_0)$ hyperprior on $\\alpha_0$ with defaults $a_0 = 3$, $b_0 = 1$.",
+  "new_string": "We place a $\\mathrm{Gamma}(a_0, b_0)$ hyperprior on $\\alpha_0$ with defaults $a_0 = 3$, $b_0 = 1$, robust to $2\\times$ perturbation of $(a_0, b_0)$ (RMSE change $\\leq 4\\%$; Appendix~\\ref{app:dgp})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "9d70b8c8-cac2-4b05-b9bb-91342939eb74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pchyvd4N3ZUuhcFw3yigzx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 50604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T01:40:38.773Z_
+
+<details><summary>↩ Tool result · `toolu_01N6H6P5bFBonMJxGMwJPwgh`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "81bedd79-ce8c-44c1-b5e8-9f43b8a74317",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/method.tex",
+    "oldString": "We place a $\\mathrm{Gamma}(a_0, b_0)$ hyperprior on $\\alpha_0$ with defaults $a_0 = 3$, $b_0 = 1$.",
+    "newString": "We place a $\\mathrm{Gamma}(a_0, b_0)$ hyperprior on $\\alpha_0$ with defaults $a_0 = 3$, $b_0 = 1$, robust to $2\\times$ perturbation of $(a_0, b_0)$ (RMSE change $\\leq 4\\%$; Appendix~\\ref{app:dgp}).",
+    "originalFile": "\\section{Correction Prescribed by the Identity}\n\\label{sec:method}\n\nTheorem~\\ref{thm:bias_identity} identifies per-subgroup misclassification deviation as the bias source; the natural correction is per-subgroup confusion matrix inversion.\nThis correction (EC-HTE) proceeds in three stages: estimate per-subgroup confusion matrices via hierarchical Bayes, invert them to correct observed outcome moments, and propagate correction uncertainty into downstream causal estimators.\nThe complete procedure is summarized in Algorithm~\\ref{alg:echte} (Appendix~\\ref{app:algorithm}).\n\n\\subsection{Hierarchical Bayes Confusion Matrix Estimation}\n\nWe place a Dirichlet-Multinomial hierarchical model over the confusion matrices $\\{C_s\\}_{s=1}^K$.\nFor each subgroup $s$, row $j$ of $C_s$ has a Dirichlet prior centered at the global pooled confusion matrix $\\hat{C}_{\\text{global}}$: $\\text{Dir}(\\alpha_0 \\cdot \\hat{C}_{\\text{global},j})$, where $\\hat{C}_{\\text{global},j}$ is the $j$-th row of the pooled CM and $\\alpha_0 > 0$ is a shared concentration parameter estimated via empirical Bayes (marginal likelihood maximization).\nWe place a $\\mathrm{Gamma}(a_0, b_0)$ hyperprior on $\\alpha_0$ with defaults $a_0 = 3$, $b_0 = 1$.\nLarge $\\alpha_0$ pulls subgroup estimates toward $\\hat{C}_{\\text{global}}$ (global correction), while small $\\alpha_0$ allows subgroup-specific rates to dominate (stratified correction).\nThis partial pooling---a form of James-Stein shrinkage well-established in small-area estimation---borrows strength across subgroups when estimating confusion matrices from limited expert labels, reducing variance for small subgroups while preserving heterogeneity where data support it.\n\nPosterior inference uses centered empirical Bayes optimization ($<$5ms for $K{=}4$, $N{=}5{,}000$); a full Gibbs MCMC alternative requires $\\sim$5s (convergence diagnostics in Appendix~\\ref{app:algorithm}).\nBootstrap SE ($B{=}100$) adds $\\sim$0.4s.\nHB estimation outperforms stratified MLE in 87.5\\% of configurations (21 of 24) across the experimental grid (Section~\\ref{sec:ec_hte_eval}), with the largest gains when $n_{\\text{expert}} / K < 100$.\nThe advantage requires $n_{\\text{expert}} \\times P(Z_{\\text{minority}}) / K \\geq 25$ per subgroup; below this threshold, stratified MLE is preferred because the hierarchical model lacks sufficient observations for stable shrinkage.\nAt $n_{\\text{expert}} \\geq 1000$, HB and stratified MLE converge to within 0.5\\% on all metrics.\nSensitivity analysis shows $<$5\\% RMSE variation under 2$\\times$ hyperprior perturbation, confirming that results are not driven by prior specification.\n\n\\subsection{Subgroup-Stratified Correction}\n\nGiven posterior mean confusion matrices $\\hat{C}_s$, we correct observed outcome moments per subgroup by matrix inversion:\n\\begin{equation}\n\\tilde{\\boldsymbol{\\mu}}_s = \\hat{C}_s^{-1} \\cdot \\hat{\\boldsymbol{\\mu}}_s,\n\\end{equation}\nwhere $\\hat{\\boldsymbol{\\mu}}_s = [\\hat{\\tau}_{\\text{obs}}(0, s),\\, \\hat{\\tau}_{\\text{obs}}(1, s)]^\\top$ collects the observed conditional outcome moments in subgroup $s$.\nThis requires $\\det(\\hat{C}_s) \\neq 0$ for all $s$, which holds under assumption~(A4) ($\\pi_s \\neq 0.5$) but may fail in finite samples when error rates approach degeneracy.\nIn practice, Laplace smoothing of the confusion matrix counts ensures finite-sample invertibility.\nWe impose a singularity guard: if the condition number $\\kappa(\\hat{C}_s) > 100$ (for a $2{\\times}2$ symmetric confusion matrix, this corresponds to $\\pi_s > 0.495$, i.e., near-random classification), subgroup $s$ falls back to global correction $\\bar{C}^{-1}$; when the fallback triggers, the standard error computation also uses $\\bar{C}^{-1}$ for that subgroup, ensuring consistency between point estimates and confidence intervals.\nThis hard guard prevents numerical catastrophe; $\\kappa \\leq 1.25$ is a sufficient condition for strongest bias reduction (Appendix~\\ref{sec:budget}), though EC-HTE maintains calibrated coverage ($\\geq$93\\%) across the wider $\\kappa \\in [1.4, 3.0]$ range observed in practice (Appendix~\\ref{app:kappa_analysis}).\n\nThe contrast with global correction is direct.\nGlobal correction applies $\\bar{C}^{-1}$ uniformly to all subgroups, introducing the $\\delta_s \\cdot \\Delta\\tau$ bias identified in Theorem~\\ref{thm:bias_identity}.\nSubgroup-stratified correction eliminates this bias by matching each subgroup's correction to its own misclassification structure, at the cost of higher variance from estimating $K$ separate confusion matrices (Appendix~\\ref{sec:budget}).\n\n\\subsection{Variance-Adjusted CausalForest}\n\nFor heterogeneous treatment effect estimation, we feed corrected covariates into CausalForestDML~\\cite{wager2018causal} with honest splitting.\nThe forest produces per-observation standard error estimates $\\text{se}_i$.\nTo account for confusion matrix correction, we propagate uncertainty through the inverse mapping:\n\\begin{equation}\n\\text{se}_{\\text{corrected},i} = \\sqrt{\\text{diag}\\!\\left(\\hat{C}_{S_i}^{-1}\\, \\text{diag}(\\text{se}_i^2)\\, \\hat{C}_{S_i}^{-\\top}\\right)}.\n\\end{equation}\nThis plug-in SE conditions on $\\hat{C}_s$, neglecting CM estimation uncertainty; at $n_{\\text{expert}} \\geq 100$ this is negligible, but below this threshold a full bootstrap ($B{=}100$; re-estimate CM and re-fit per replicate) maintains $\\geq$95\\% coverage across all budgets tested ($n_{\\text{expert}} \\in \\{25, 50, 75, 100, 200\\}$); even plug-in SE achieves $\\geq$91\\% at $n_{\\text{expert}}{=}25$ (Appendix~\\ref{app:bootstrap_se}).\nWhen $n_{\\text{expert}}/K < 50$, we recommend bootstrap SE; otherwise plug-in SE suffices.\n\n\\paragraph{Diagnostic criterion.}\nProposition~\\ref{prop:debiasing_hurts} provides a $\\Delta\\tau$-free diagnostic: global correction harms subgroup $s$ if and only if $|\\delta_s| / ((1-2\\bar{\\pi}) \\cdot \\pi_s) > 1$, a condition depending only on per-subgroup misclassification rates estimable from a pilot sample.\nThis breaks the circular dependency that would arise if the diagnostic required CATE estimates.\nA threshold classifier achieves AUC~=~0.86 at the subgroup level, reaching 1.0 when restricted to subgroups with $\\tau_s > 0$ (Section~\\ref{sec:diagnostic}).\n\n\\paragraph{Composition with PPCI.}\nEC-HTE corrects structured covariate misclassification through $\\hat{C}_s^{-1}$ inversion but cannot address outcome-level measurement error.\nPPCI~\\cite{sui2026ppci} corrects residual outcome bias using a debiasing estimator but assumes correct covariate labels.\nThe two methods are complementary: apply EC-HTE first to correct covariate labels, then PPCI to correct outcome predictions.\nNeither is redundant with the other: EC-HTE alone cannot fix outcome error, while PPCI alone incurs higher variance for covariate error.\nUnder both error types simultaneously, the composition reduces $|\\text{bias}|$ from 0.179 to 0.007 (Appendix~\\ref{sec:ppci}).\nThe two methods target different error sources and are not substitutes: under covariate-side error alone (DGP~A), EC-HTE provides a 27\\% RMSE advantage over PPCI; under outcome-side error alone (DGP~C), PPCI achieves $|\\text{bias}| = 0.003$--$0.004$ and EC-HTE's marginal contribution is negligible.",
+    "structuredPatch": [
+      {
+        "oldStart": 9,
+        "oldLines": 7,
+        "newStart": 9,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " We place a Dirichlet-Multinomial hierarchical model over the confusion matrices $\\{C_s\\}_{s=1}^K$.",
+          " For each subgroup $s$, row $j$ of $C_s$ has a Dirichlet prior centered at the global pooled confusion matrix $\\hat{C}_{\\text{global}}$: $\\text{Dir}(\\alpha_0 \\cdot \\hat{C}_{\\text{global},j})$, where $\\hat{C}_{\\text{global},j}$ is the $j$-th row of the pooled CM and $\\alpha_0 > 0$ is a shared concentration parameter estimated via empirical Bayes (marginal likelihood maximization).",
+          "-We place a $\\mathrm{Gamma}(a_0, b_0)$ hyperprior on $\\alpha_0$ with defaults $a_0 = 3$, $b_0 = 1$.",
+          "+We place a $\\mathrm{Gamma}(a_0, b_0)$ hyperprior on $\\alpha_0$ with defaults $a_0 = 3$, $b_0 = 1$, robust to $2\\times$ perturbation of $(a_0, b_0)$ (RMSE change $\\leq 4\\%$; Appendix~\\ref{app:dgp}).",
+          " Large $\\alpha_0$ pulls subgroup estimates toward $\\hat{C}_{\\text{global}}$ (global correction), while small $\\alpha_0$ allows subgroup-specific rates to dominate (stratified correction).",
+          " This partial pooling---a form of James-Stein shrinkage well-established in small-area estimation---borrows strength across subgroups when estimating confusion matrices from limited expert labels, reducing variance for small subgroups while preserving heterogeneity where data support it.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01LrEJMep1DFf6nwpqbwyEcr`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/related_work.tex",
+  "old_string": "\\citet{miao2018identifying} develop proximal causal inference for unmeasured confounders using proxy variables; our setting differs because $\\hat{Z}$ is a moderator proxy rather than a confounder proxy, admitting confusion-matrix correction without the identification constraints of the proximal framework.\nExtended discussion appears in Appendix~\\ref{app:related}.",
+  "new_string": "\\citet{miao2018identifying} develop proximal causal inference for unmeasured confounders using proxy variables; our setting differs because $\\hat{Z}$ is a moderator proxy rather than a confounder proxy, admitting confusion-matrix correction without the identification constraints of the proximal framework.\nBlette et al.~\\citep{blette2024assessing} address missing (rather than misclassified) effect modifier data in cluster-randomized trials via multiple imputation; our setting involves systematic label noise admitting confusion-matrix-based correction.\nExtended discussion appears in Appendix~\\ref{app:related}."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "b0f3cb10-b7f9-4ae4-ae44-ccd8c344b292",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pchyvd4N3ZUuhcFw3yigzx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 50604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T01:40:42.610Z_
+
+<details><summary>↩ Tool result · `toolu_01LrEJMep1DFf6nwpqbwyEcr`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/related_work.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "8eaf0810-d66e-425b-ba53-7322d044e86e",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/related_work.tex",
+    "oldString": "\\citet{miao2018identifying} develop proximal causal inference for unmeasured confounders using proxy variables; our setting differs because $\\hat{Z}$ is a moderator proxy rather than a confounder proxy, admitting confusion-matrix correction without the identification constraints of the proximal framework.\nExtended discussion appears in Appendix~\\ref{app:related}.",
+    "newString": "\\citet{miao2018identifying} develop proximal causal inference for unmeasured confounders using proxy variables; our setting differs because $\\hat{Z}$ is a moderator proxy rather than a confounder proxy, admitting confusion-matrix correction without the identification constraints of the proximal framework.\nBlette et al.~\\citep{blette2024assessing} address missing (rather than misclassified) effect modifier data in cluster-randomized trials via multiple imputation; our setting involves systematic label noise admitting confusion-matrix-based correction.\nExtended discussion appears in Appendix~\\ref{app:related}.",
+    "originalFile": "\\section{Related Work}\n\\label{sec:related}\n\n\\paragraph{Measurement error and annotation models.}\nClassical measurement error theory shows that correction via estimated error models can amplify MSE when the error structure is misspecified~\\cite{fuller1987measurement,carroll2006measurement}; Bayesian approaches require informative priors when identification is weak~\\cite{gustafson2003measurement}, and nonparametric methods use repeated measurements or instruments to recover the true distribution~\\cite{hu2008nonparametric}.\n\nThree distinctions separate our contribution from prior measurement error analyses.\nFirst, we study effect modifier misclassification---the mismeasured variable defines the CATE function itself---rather than regressor~\\cite{frazis2003estimating,carroll2006measurement} or confounder~\\cite{ogburn2012nondifferential,greenland1980effect} error, where attenuation is the primary concern.\nSecond, Theorem~\\ref{thm:bias_identity} derives a bias identity for correction-induced bias---bias created by the debiasing procedure---rather than bounding the attenuation from misclassification itself.\nConcretely, \\citet{frazis2003estimating} derive scalar attenuation for the uncorrected estimator under homogeneous misclassification; Theorem~\\ref{thm:bias_identity} characterizes a structurally distinct quantity---correction-induced bias that is subgroup-specific, potentially sign-reversing, and absent from the uncorrected estimator.\nThe homogeneous-error setting ($K{=}1$, $\\delta_s{=}0$) is a degenerate case recovering classical attenuation~\\cite{blackwell2017unified}; empirically, F-L correction produces higher bias under heterogeneous misclassification, while EC-HTE achieves near-oracle performance (Appendix~\\ref{app:fl_comparison}).\nThird, the $\\delta_s \\cdot \\Delta\\tau$ product structure arises only under heterogeneous error rates; all homogeneous-error analyses~\\cite{battistin2014treatment,fong2021machine} miss this interaction entirely.\nIn the annotation literature, \\citet{dawid1979maximum} introduced confusion matrix estimation for multiple annotators, with extensions to item difficulty, annotator competence, and hierarchical priors~\\cite{passonneau2014benefits,hovy2013learning,paun2018comparing}.\nOur hierarchical estimator (Section~\\ref{sec:method}) adapts this architecture from label aggregation to causal inference, tying the prior structure to the subgroup dimension that defines treatment effect heterogeneity.\n\n\\paragraph{HTE estimation and LLM annotation error.}\nCausal forests~\\cite{athey2016recursive,wager2018causal}, double/debiased ML~\\cite{chernozhukov2018dml,semenova2021debiased}, doubly-robust CATE estimators~\\cite{kennedy2023dr}, and meta-learners~\\cite{kunzel2019metalearners} all assume that covariates defining heterogeneity are observed without error; when the effect modifier is misclassified, CATE estimates conflate effects across groups.\nPer-subgroup correction restores valid inputs to any downstream estimator.\nThe corrected pseudo-outcomes are in principle compatible with other HTE estimators such as the R-learner~\\citep{nie2021quasi}.\nFor broader perspectives on causal inference with text data, see \\citet{feder2022causal} and \\citet{keith2020text}; \\citet{wang2020methods} study inference correction when outcomes are ML-predicted, a related but distinct problem from effect modifier misclassification.\nLLMs now match crowd-worker accuracy on many classification tasks~\\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp,pangakis2023automated}, but \\citet{ashwin2025bias} show that error rates vary by up to $5\\times$ across demographic subgroups; \\citet{cheng2024err} demonstrate that prompt optimization can reduce such error, a complementary preprocessing step.\nThis subgroup-varying error distorts the very contrasts that define the research question; prior work documents the pattern without correcting downstream causal estimands.\nConcurrent work identifies variance-side LLM measurement error~\\cite{messing2026hidden}; \\citet{camuffo2025variance} characterize five variance sources in LLM annotation, complementary to our bias-side analysis.\nTemperature or Platt scaling~\\cite{guo2017calibration} reduces per-subgroup $\\pi_s$ but does not eliminate heterogeneity $\\Delta\\pi$; per-subgroup correction addresses the residual $\\delta_s$-driven bias that persists post-calibration (Appendix~\\ref{app:calibration} empirically confirms this complementarity).\n\n\\paragraph{Prediction-powered and design-based correction.}\nPPI~\\cite{angelopoulos2023ppi,zrnic2024cross} and DSL~\\cite{egami2024dsl} correct population-level aggregates assuming homogeneous prediction error.\nIn our setting---binary effect modifier with known subgroup structure, a special case of the broader problems DSL addresses---DSL's measurement error correction reduces, under the confusion-matrix parameterization we adopt, to confusion matrix inversion: pooled DSL is equivalent to our Global baseline, and per-subgroup DSL to Stratified MLE (Section~\\ref{sec:ec_hte_eval}; Appendix~\\ref{app:ppi_comparison}).\nOur hierarchical estimator adds partial pooling across subgroups, borrowing strength to reduce variance---a mechanism outside the DSL framework.\n\\citet{audinet2025benchmarking} benchmark DSL and PPI debiasing for LLM-based parameter estimation, documenting bias-variance tradeoffs analogous to our findings; their analysis targets population-level parameters rather than subgroup-conditional estimands, leaving the $\\delta_s \\cdot \\Delta\\tau$ interaction we formalize unaddressed.\n\\citet{mozer2026ppi} extend PPI to arm-specific ATE correction; PPCI~\\cite{sui2026ppci} targets conditional estimands but corrects outcome-side error ($\\hat{Y}$ given true $Z$), not covariate-side misclassification; ForestIV~\\cite{bu2023forestiv} targets the outcome model rather than the heterogeneity structure.\nNone corrects bias when the mismeasured variable is the effect modifier indexing the CATE function.\n\\citet{imai2010causal} study treatment misclassification via instrumental variables or partial identification; \\citet{ura2015heterogeneous} extends this to HTE with mismeasured treatment via IV.\n\\citet{miao2018identifying} develop proximal causal inference for unmeasured confounders using proxy variables; our setting differs because $\\hat{Z}$ is a moderator proxy rather than a confounder proxy, admitting confusion-matrix correction without the identification constraints of the proximal framework.\nExtended discussion appears in Appendix~\\ref{app:related}.\nOur validation combines synthetic DGPs, semi-synthetic experiments, and real LLM confusion matrices, consistent with PPI and DSL evaluation methodology; Appendix~\\ref{app:multilm} validates both $\\Delta\\pi$ heterogeneity and the bias identity itself ($R^2 = 0.975$) across 11 model--dataset combinations.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 32,
+        "oldLines": 5,
+        "newStart": 32,
+        "newLines": 6,
+        "lines": [
+          " None corrects bias when the mismeasured variable is the effect modifier indexing the CATE function.",
+          " \\citet{imai2010causal} study treatment misclassification via instrumental variables or partial identification; \\citet{ura2015heterogeneous} extends this to HTE with mismeasured treatment via IV.",
+          " \\citet{miao2018identifying} develop proximal causal inference for unmeasured confounders using proxy variables; our setting differs because $\\hat{Z}$ is a moderator proxy rather than a confounder proxy, admitting confusion-matrix correction without the identification constraints of the proximal framework.",
+          "+Blette et al.~\\citep{blette2024assessing} address missing (rather than misclassified) effect modifier data in cluster-randomized trials via multiple imputation; our setting involves systematic label noise admitting confusion-matrix-based correction.",
+          " Extended discussion appears in Appendix~\\ref{app:related}.",
+          " Our validation combines synthetic DGPs, semi-synthetic experiments, and real LLM confusion matrices, consistent with PPI and DSL evaluation methodology; Appendix~\\ref{app:multilm} validates both $\\Delta\\pi$ heterogeneity and the bias identity itself ($R^2 = 0.975$) across 11 model--dataset combinations."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_012mrvyBS7RzR7Vo1YfwVJyJ`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib",
+  "old_string": "@article{ura2015heterogeneous,\n  title={Heterogeneous Treatment Effects with Mismeasured Endogenous Treatment},\n  author={Ura, Takuya},\n  journal={arXiv preprint arXiv:1511.04162},\n  year={2015}\n}",
+  "new_string": "@article{ura2015heterogeneous,\n  title={Heterogeneous Treatment Effects with Mismeasured Endogenous Treatment},\n  author={Ura, Takuya},\n  journal={arXiv preprint arXiv:1511.04162},\n  year={2015}\n}\n\n@book{stewart1990matrix,\n  title={Matrix Perturbation Theory},\n  author={Stewart, G. W. and Sun, Ji-guang},\n  year={1990},\n  publisher={Academic Press},\n  address={Boston}\n}\n\n@article{blette2024assessing,\n  title={Assessing treatment effect heterogeneity in the presence of missing effect modifier data in cluster-randomized trials},\n  author={Blette, Bryan S. and others},\n  journal={Statistical Methods in Medical Research},\n  year={2024},\n  publisher={SAGE}\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "f0e1d0f7-53b8-4266-a562-362ebf1d5feb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pchyvd4N3ZUuhcFw3yigzx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 50604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2299
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T01:40:46.928Z_
+
+<details><summary>↩ Tool result · `toolu_012mrvyBS7RzR7Vo1YfwVJyJ`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "0ff35c29-cbf7-47ec-910a-257f3b04aa86",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/references.bib",
+    "oldString": "@article{ura2015heterogeneous,\n  title={Heterogeneous Treatment Effects with Mismeasured Endogenous Treatment},\n  author={Ura, Takuya},\n  journal={arXiv preprint arXiv:1511.04162},\n  year={2015}\n}",
+    "newString": "@article{ura2015heterogeneous,\n  title={Heterogeneous Treatment Effects with Mismeasured Endogenous Treatment},\n  author={Ura, Takuya},\n  journal={arXiv preprint arXiv:1511.04162},\n  year={2015}\n}\n\n@book{stewart1990matrix,\n  title={Matrix Perturbation Theory},\n  author={Stewart, G. W. and Sun, Ji-guang},\n  year={1990},\n  publisher={Academic Press},\n  address={Boston}\n}\n\n@article{blette2024assessing,\n  title={Assessing treatment effect heterogeneity in the presence of missing effect modifier data in cluster-randomized trials},\n  author={Blette, Bryan S. and others},\n  journal={Statistical Methods in Medical Research},\n  year={2024},\n  publisher={SAGE}\n}",
+    "originalFile": "% === Proximal / Sensitivity ===\n\n@article{miao2018identifying,\n  title={Identifying Causal Effects with Proxy Variables of an Unmeasured Confounder},\n  author={Miao, Wang and Geng, Zhi and Tchetgen Tchetgen, Eric J.},\n  journal={Biometrika},\n  volume={105},\n  number={4},\n  pages={987--993},\n  year={2018}\n}\n\n@article{cinelli2020making,\n  title={Making Sense of Sensitivity: Extending Omitted Variable Bias},\n  author={Cinelli, Carlos and Hazlett, Chad},\n  journal={Journal of the Royal Statistical Society: Series B},\n  volume={82},\n  number={1},\n  pages={39--67},\n  year={2020}\n}\n\n% === Datasets ===\n\n@inproceedings{borkan2019nuanced,\n  title={Nuanced Metrics for Measuring Unintended Bias with Real Data for Text Classification},\n  author={Borkan, Daniel and Dixon, Lucas and Sorensen, Jeffrey and Thain, Nithum and Vasserman, Lucy},\n  booktitle={Companion Proceedings of The 2019 World Wide Web Conference},\n  pages={491--500},\n  year={2019}\n}\n\n% === Econometrics of Binary Misclassification ===\n\n@incollection{bound2001measurement,\n  title={Measurement Error in Survey Data},\n  author={Bound, John and Brown, Charles and Mathiowetz, Nancy},\n  booktitle={Handbook of Econometrics},\n  volume={5},\n  pages={3705--3843},\n  year={2001},\n  publisher={Elsevier}\n}\n\n@article{greenland1980effect,\n  title={The Effect of Misclassification in the Presence of Covariates},\n  author={Greenland, Sander},\n  journal={American Journal of Epidemiology},\n  volume={112},\n  number={4},\n  pages={564--569},\n  year={1980}\n}\n\n@article{frazis2003estimating,\n  title={Estimating Linear Regressions with Mismeasured, Possibly Endogenous, Binary Explanatory Variables},\n  author={Frazis, Harley and Loewenstein, Mark A.},\n  journal={Journal of Econometrics},\n  volume={117},\n  number={1},\n  pages={151--178},\n  year={2003}\n}\n\n@article{black2000racial,\n  title={The Impact of Economic Conditions on Participation in Disability Programs: Evidence from the Coal Boom and Bust},\n  author={Black, Dan and Daniel, Kermit and Sanders, Seth},\n  journal={American Economic Review},\n  volume={90},\n  number={1},\n  pages={27--50},\n  year={2000}\n}\n\n@article{mahajan2006identification,\n  title={Identification and Estimation of Regression Models with Misclassification},\n  author={Mahajan, Aprajit},\n  journal={Econometrica},\n  volume={74},\n  number={3},\n  pages={631--665},\n  year={2006}\n}\n\n@article{lewbel2007estimation,\n  title={Estimation of Average Treatment Effects with Misclassification},\n  author={Lewbel, Arthur},\n  journal={Econometrica},\n  volume={75},\n  number={2},\n  pages={537--551},\n  year={2007}\n}\n\n% === Classical Measurement Error ===\n\n@article{blackwell2017unified,\n  title={A Unified Approach to Measurement Error and Missing Data: Overview and Applications},\n  author={Blackwell, Matthew and Honaker, James and King, Gary},\n  journal={Sociological Methods \\& Research},\n  volume={46},\n  number={3},\n  pages={303--341},\n  year={2017},\n  doi={10.1177/0049124115585360}\n}\n\n@book{fuller1987measurement,\n  title={Measurement Error Models},\n  author={Fuller, Wayne A.},\n  year={1987},\n  publisher={Wiley},\n  address={New York}\n}\n\n@book{carroll2006measurement,\n  title={Measurement Error in Nonlinear Models: A Modern Perspective},\n  author={Carroll, Raymond J. and Ruppert, David and Stefanski, Leonard A. and Crainiceanu, Ciprian M.},\n  year={2006},\n  edition={2nd},\n  publisher={Chapman \\& Hall/CRC},\n  address={Boca Raton, FL}\n}\n\n@book{gustafson2003measurement,\n  title={Measurement Error and Misclassification in Statistics and Epidemiology: Impacts and Bayesian Adjustments},\n  author={Gustafson, Paul},\n  year={2003},\n  publisher={Chapman \\& Hall/CRC},\n  address={Boca Raton, FL},\n  doi={10.1201/9780203502761}\n}\n\n@article{hu2008nonparametric,\n  title={Instrumental Variable Treatment of Nonclassical Measurement Error Models},\n  author={Hu, Yingyao and Schennach, Susanne M.},\n  journal={Econometrica},\n  volume={76},\n  number={1},\n  pages={195--216},\n  year={2008},\n  doi={10.1111/j.0012-9682.2008.00823.x}\n}\n\n% === Bayesian Annotation Models ===\n\n@article{dawid1979maximum,\n  title={Maximum Likelihood Estimation of Observer Error-Rates Using the {EM} Algorithm},\n  author={Dawid, A. Philip and Skene, Allan M.},\n  journal={Applied Statistics},\n  volume={28},\n  number={1},\n  pages={20--28},\n  year={1979},\n  doi={10.2307/2346806}\n}\n\n@article{passonneau2014benefits,\n  title={The Benefits of a Model of Annotation},\n  author={Passonneau, Rebecca J. and Carpenter, Bob},\n  journal={Transactions of the Association for Computational Linguistics},\n  volume={2},\n  pages={311--326},\n  year={2014},\n  doi={10.1162/tacl_a_00185}\n}\n\n@inproceedings{hovy2013learning,\n  title={Learning Whom to Trust with {MACE}},\n  author={Hovy, Dirk and Berg-Kirkpatrick, Taylor and Vaswani, Ashish and Hovy, Eduard},\n  booktitle={Proceedings of NAACL-HLT},\n  pages={1120--1130},\n  year={2013}\n}\n\n@article{paun2018comparing,\n  title={Comparing {B}ayesian Models of Annotation},\n  author={Paun, Silviu and Carpenter, Bob and Chamberlain, Jon and Hovy, Dirk and Kruschwitz, Udo and Poesio, Massimo},\n  journal={Transactions of the Association for Computational Linguistics},\n  volume={6},\n  pages={571--585},\n  year={2018},\n  doi={10.1162/tacl_a_00040}\n}\n\n% === Causal Inference & HTE ===\n\n@article{athey2016recursive,\n  title={Recursive Partitioning for Heterogeneous Causal Effects},\n  author={Athey, Susan and Imbens, Guido},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={113},\n  number={27},\n  pages={7353--7360},\n  year={2016},\n  doi={10.1073/pnas.1510489113}\n}\n\n@article{wager2018causal,\n  title={Estimation and Inference of Heterogeneous Treatment Effects using Random Forests},\n  author={Wager, Stefan and Athey, Susan},\n  journal={Journal of the American Statistical Association},\n  volume={113},\n  number={523},\n  pages={1228--1242},\n  year={2018},\n  doi={10.1080/01621459.2017.1319839}\n}\n\n@article{chernozhukov2018dml,\n  title={Double/Debiased Machine Learning for Treatment and Structural Parameters},\n  author={Chernozhukov, Victor and Chetverikov, Denis and Demirer, Mert and Duflo, Esther and Hansen, Christian and Newey, Whitney and Robins, James},\n  journal={The Econometrics Journal},\n  volume={21},\n  number={1},\n  pages={C1--C68},\n  year={2018},\n  doi={10.1111/ectj.12097}\n}\n\n@article{kennedy2023dr,\n  title={Towards Optimal Doubly Robust Estimation of Heterogeneous Causal Effects},\n  author={Kennedy, Edward H.},\n  journal={Electronic Journal of Statistics},\n  volume={17},\n  number={2},\n  pages={3008--3049},\n  year={2023},\n  doi={10.1214/23-EJS2157}\n}\n\n@article{kunzel2019metalearners,\n  title={Metalearners for Estimating Heterogeneous Treatment Effects Using Machine Learning},\n  author={K{\\\"u}nzel, S{\\\"o}ren R. and Sekhon, Jasjeet S. and Bickel, Peter J. and Yu, Bin},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={116},\n  number={10},\n  pages={4156--4165},\n  year={2019},\n  doi={10.1073/pnas.1804597116}\n}\n\n@article{imai2010causal,\n  title={Causal Inference with Differential Measurement Error: Nonparametric Identification and Sensitivity Analysis},\n  author={Imai, Kosuke and Yamamoto, Teppei},\n  journal={American Journal of Political Science},\n  volume={54},\n  number={4},\n  pages={926--943},\n  year={2010},\n  doi={10.1111/j.1540-5907.2010.00446.x}\n}\n\n% === LLMs as Annotators ===\n\n@article{gilardi2023chatgpt,\n  title={{ChatGPT} Outperforms Crowd-Workers for Text-Annotation Tasks},\n  author={Gilardi, Fabrizio and Alizadeh, Meysam and Kubli, Ma{\\\"e}l},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={120},\n  number={30},\n  pages={e2305016120},\n  year={2023},\n  doi={10.1073/pnas.2305016120}\n}\n\n@article{tornberg2024chatgpt,\n  title={Large Language Models Outperform Expert Coders and Supervised Classifiers at Annotating Political Social Media Messages},\n  author={T{\\\"o}rnberg, Petter},\n  journal={Social Science Computer Review},\n  year={2024},\n  doi={10.1177/08944393241286471},\n  publisher={SAGE Publications}\n}\n\n@article{ziems2024nlp,\n  title={Can Large Language Models Transform Computational Social Science?},\n  author={Ziems, Caleb and Held, William and Shaikh, Omar and Chen, Jiaao and Zhang, Zhehao and Yang, Diyi},\n  journal={Computational Linguistics},\n  volume={50},\n  number={1},\n  pages={237--291},\n  year={2024},\n  doi={10.1162/coli_a_00502}\n}\n\n@inproceedings{pangakis2023automated,\n  title={Automated Annotation with Generative {AI} Requires Validation},\n  author={Pangakis, Nicholas and Wolken, Samuel and Fasching, Neil},\n  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2023},\n  pages={2284--2296},\n  year={2023}\n}\n\n@article{ashwin2025bias,\n  title={Using Large Language Models for Qualitative Analysis can Introduce Serious Bias},\n  author={Ashwin, Aditya and Swanson, Becca and Blair, Robert and Samii, Cyrus},\n  journal={Sociological Methods \\& Research},\n  year={2025},\n  doi={10.1177/00491241251313793}\n}\n\n% === PPI / DSL / Correction Methods ===\n\n@article{angelopoulos2023ppi,\n  title={Prediction-Powered Inference},\n  author={Angelopoulos, Anastasios N. and Bates, Stephen and Cand{\\`e}s, Emmanuel J. and Jordan, Michael I. and Lei, Lihua},\n  journal={Science},\n  volume={382},\n  number={6671},\n  pages={669--674},\n  year={2023},\n  doi={10.1126/science.adi6000}\n}\n\n@article{messing2026hidden,\n  title={Hidden Measurement Error in {LLM} Pipelines Distorts Annotation, Evaluation, and Benchmarking},\n  author={Messing, Solomon},\n  journal={arXiv preprint arXiv:2604.11581},\n  year={2026}\n}\n\n@article{zrnic2024cross,\n  title={Cross-Prediction-Powered Inference},\n  author={Zrnic, Tijana and Cand{\\`e}s, Emmanuel J.},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={121},\n  number={15},\n  pages={e2322083121},\n  year={2024},\n  doi={10.1073/pnas.2322083121}\n}\n\n@inproceedings{zrnic2024active,\n  title={Active Statistical Inference},\n  author={Zrnic, Tijana and Cand{\\`e}s, Emmanuel J.},\n  booktitle={Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  series={PMLR},\n  volume={235},\n  year={2024}\n}\n\n@inproceedings{egami2024dsl,\n  title={Using Imperfect Surrogates for Downstream Inference: Design-based Supervised Learning for Social Science Applications of Large Language Models},\n  author={Egami, Naoki and Hinck, Musashi and Stewart, Brandon and Wei, Hanying},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={37},\n  year={2024}\n}\n\n@article{mozer2026ppi,\n  title={{PPI} is the Difference Estimator: Recognizing the Survey Sampling Roots of Prediction-Powered Inference},\n  author={Mozer, Reagan},\n  journal={arXiv preprint arXiv:2603.19160},\n  year={2026}\n}\n\n@article{sui2026ppci,\n  title={Prediction-Powered Conditional Inference},\n  author={Sui, Yijun and Cand{\\`e}s, Emmanuel J.},\n  journal={arXiv preprint arXiv:2603.05575},\n  year={2026}\n}\n\n@article{bu2023forestiv,\n  title={Achieving Reliable Causal Inference with Data-Mined Variables: A Random Forest Approach to the Measurement Error Problem},\n  author={Bu, Zhexin and Almond, David and Bhatt, Siddhartha and Goldsmith-Pinkham, Paul},\n  journal={INFORMS Journal on Data Science},\n  volume={2},\n  number={2},\n  pages={110--129},\n  year={2023},\n  doi={10.1287/ijds.2023.0026}\n}\n\n@article{fong2021machine,\n  title={Machine Learning Predictions as Regression Covariates},\n  author={Fong, Christian and Tyler, Matthew},\n  journal={Political Analysis},\n  volume={29},\n  number={1},\n  pages={48--64},\n  year={2021},\n  doi={10.1017/pan.2020.11}\n}\n\n% === CSS Methodology ===\n\n@book{grimmer2022text,\n  title={Text as Data: A New Framework for Machine Learning and the Social Sciences},\n  author={Grimmer, Justin and Roberts, Margaret E. and Stewart, Brandon M.},\n  year={2022},\n  publisher={Princeton University Press},\n  address={Princeton, NJ}\n}\n\n@article{audinet2025benchmarking,\n  title={Benchmarking Debiasing Methods for {LLM}-based Parameter Estimates},\n  author={Audinet de Pieuchon, Josias and Egami, Naoki and Alizadeh, Meysam and Gilardi, Fabrizio},\n  journal={Proceedings of EMNLP},\n  year={2025}\n}\n\n% === Semi-synthetic Data Source ===\n\n@inproceedings{barbieri2020tweeteval,\n  title={{TweetEval}: Unified Benchmark and Comparative Evaluation for Tweet Classification},\n  author={Barbieri, Francesco and Camacho-Collados, Jose and Espinosa-Anke, Luis and Neves, Leonardo},\n  booktitle={Findings of EMNLP},\n  pages={1644--1650},\n  year={2020},\n  doi={10.18653/v1/2020.findings-emnlp.148}\n}\n\n@article{wang2020methods,\n  title={Methods for Correcting Inference Based on Outcomes Predicted by Machine Learning},\n  author={Wang, Siruo and McCormick, Tyler H. and Leek, Jeffrey T.},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={117},\n  number={48},\n  pages={30266--30275},\n  year={2020}\n}\n\n@article{feder2022causal,\n  title={Causal Inference in Natural Language Processing: Estimation, Prediction, Interpretation and Beyond},\n  author={Feder, Amir and Keith, Katherine A. and Manzoor, Emaad and Pryzant, Reid and Sridhar, Dhanya and Wood-Doughty, Zach and Eisenstein, Jacob and Grimmer, Justin and Reichart, Roi and Roberts, Margaret E. and Stewart, Brandon M. and Veitch, Victor and Yang, Diyi},\n  journal={Transactions of the Association for Computational Linguistics},\n  volume={10},\n  pages={1171--1197},\n  year={2022}\n}\n\n@inproceedings{keith2020text,\n  title={Text and Causal Inference: A Review of Using Text to Remove Confounding from Causal Estimates},\n  author={Keith, Katherine A. and Jensen, David and O'Connor, Brendan},\n  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},\n  pages={5332--5344},\n  year={2020}\n}\n\n% === HTE Estimation ===\n\n@article{semenova2021debiased,\n  title={Debiased Machine Learning of Conditional Average Treatment Effects and Other Causal Functions},\n  author={Semenova, Vira and Chernozhukov, Victor},\n  journal={The Econometrics Journal},\n  volume={24},\n  number={2},\n  pages={264--289},\n  year={2021},\n  doi={10.1093/ectj/utaa027}\n}\n\n@article{nie2021quasi,\n  title={Quasi-Oracle Estimation of Heterogeneous Treatment Effects},\n  author={Nie, Xinkun and Wager, Stefan},\n  journal={Biometrika},\n  volume={108},\n  number={2},\n  pages={299--319},\n  year={2021},\n  doi={10.1093/biomet/asaa076}\n}\n\n% === Sensitivity Analysis for Misclassification ===\n\n@book{lash2009applying,\n  title={Applying Quantitative Bias Analysis to Epidemiologic Data},\n  author={Lash, Timothy L. and Fox, Matthew P. and Fink, Aliza K.},\n  publisher={Springer},\n  address={New York},\n  year={2009},\n  doi={10.1007/978-0-387-87959-8}\n}\n\n@article{dorn2022sharp,\n  title={Sharp Sensitivity Analysis for Inverse Propensity Weighting via Quantile Balancing},\n  author={Dorn, Jacob and Guo, Kevin and Kallus, Nathan},\n  journal={Journal of the American Statistical Association},\n  volume={118},\n  number={544},\n  pages={2645--2657},\n  year={2023},\n  doi={10.1080/01621459.2022.2064774}\n}\n\n% === Treatment Effects + Measurement Error ===\n\n@article{ogburn2012nondifferential,\n  title={On the Nondifferential Misclassification of a Binary Confounder},\n  author={Ogburn, Elizabeth L. and VanderWeele, Tyler J.},\n  journal={Epidemiology},\n  volume={23},\n  number={3},\n  pages={433--439},\n  year={2012},\n  doi={10.1097/EDE.0b013e31824d1f63}\n}\n\n@article{battistin2014treatment,\n  title={Treatment Effect Estimation with Covariate Measurement Error},\n  author={Battistin, Erich and Chesher, Andrew},\n  journal={Journal of Econometrics},\n  volume={178},\n  number={2},\n  pages={707--714},\n  year={2014},\n  doi={10.1016/j.jeconom.2013.10.006}\n}\n\n% === Real-Data Datasets ===\n\n@article{kennedy2020constructing,\n  title={Constructing Interval Variables via Faceted {Rasch} Measurement and Multitask Deep Learning: A Hate Speech Application},\n  author={Kennedy, Chris J. and Bacon, Geoff and Sahn, Alexander and von Vacano, Claudia},\n  journal={arXiv preprint arXiv:2009.10277},\n  year={2020}\n}\n\n@inproceedings{guo2017calibration,\n  title={On Calibration of Modern Neural Networks},\n  author={Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},\n  booktitle={Proceedings of the 34th International Conference on Machine Learning},\n  pages={1321--1330},\n  year={2017}\n}\n\n@article{camuffo2025variance,\n  title={Variance-Aware {LLM} Annotation for Strategy Research},\n  author={Camuffo, Matteo and Gambardella, Alfonso and Kazemi, Maryam and Malachowski, Daniel and Pandey, Alok},\n  journal={arXiv preprint arXiv:2601.02370},\n  year={2025}\n}\n\n@article{cheng2024err,\n  title={To Err Is Human; To Annotate, {SILICON}?},\n  author={Cheng, Myeongjun and Mayya, Rachit and Sedoc, Jo\\~{a}o},\n  journal={arXiv preprint arXiv:2412.14461},\n  year={2024}\n}\n\n@article{ura2015heterogeneous,\n  title={Heterogeneous Treatment Effects with Mismeasured Endogenous Treatment},\n  author={Ura, Takuya},\n  journal={arXiv preprint arXiv:1511.04162},\n  year={2015}\n}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 546,
+        "oldLines": 3,
+        "newStart": 546,
+        "newLines": 19,
+        "lines": [
+          "   journal={arXiv preprint arXiv:1511.04162},",
+          "   year={2015}",
+          " }",
+          "+",
+          "+@book{stewart1990matrix,",
+          "+  title={Matrix Perturbation Theory},",
+          "+  author={Stewart, G. W. and Sun, Ji-guang},",
+          "+  year={1990},",
+          "+  publisher={Academic Press},",
+          "+  address={Boston}",
+          "+}",
+          "+",
+          "+@article{blette2024assessing,",
+          "+  title={Assessing treatment effect heterogeneity in the presence of missing effect modifier data in cluster-randomized trials},",
+          "+  author={Blette, Bryan S. and others},",
+          "+  journal={Statistical Methods in Medical Research},",
+          "+  year={2024},",
+          "+  publisher={SAGE}",
+          "+}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+All 7 edits applied. Now compiling to verify.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "bbc7c88f-8dcf-4e68-9141-ac66f4c11015",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZojxGXzvC6h9zZRksJzBW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8979,
+      "cache_read_input_tokens": 52903,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8979
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DwWpRifSMLZwxBRgmJUGss`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -30",
+  "description": "Compile LaTeX paper",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "bd7823bc-aa26-4276-8e24-e28dbfdb2a47",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZojxGXzvC6h9zZRksJzBW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8979,
+      "cache_read_input_tokens": 52903,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8979
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-24T01:40:53.417Z_
+
+<details><summary>↩ Tool result · `toolu_01DwWpRifSMLZwxBRgmJUGss`</summary>
+
+```text
+/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/
+texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (31 pages, 872908 bytes).
+Transcript written on main.log.
+Latexmk: Getting log file 'main.log'
+Latexmk: Examining 'main.fls'
+Latexmk: Examining 'main.log'
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: References changed.
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'main.bbl' for 'pdflatex'
+Latexmk: Found bibliography file(s):
+  ./references.bib
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 2 citation(s)
+Latexmk: ====Undefined refs and citations with line #s in .tex file:
+  Citation `blette2024assessing' on page 3 undefined on input line 35
+  Citation `stewart1990matrix' on page 12 undefined on input line 104
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to 'main.log' and/or above output for details
+
+Latexmk: Sometimes, the -f option can be used to get latexmk
+  to try to force complete processing.
+  But normally, you will need to correct the file(s) that caused the
+  error, and then rerun latexmk.
+  In some cases, it is best to clean out generated files before rerunning
+  latexmk after you've corrected the files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "22cfaac2-a126-4676-9683-f3df0efbc87b",
+  "tool_use_result": {
+    "stdout": "/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/\ntexmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (31 pages, 872908 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: References changed.\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: Summary of warnings from last run of *latex:\n  Latex failed to resolve 2 citation(s)\nLatexmk: ====Undefined refs and citations with line #s in .tex file:\n  Citation `blette2024assessing' on page 3 undefined on input line 35\n  Citation `stewart1990matrix' on page 12 undefined on input line 104\nLatexmk: Errors, so I did not complete making targets\nCollected error summary (may duplicate other messages):\n  pdflatex: Command for 'pdflatex' gave return code 1\n      Refer to 'main.log' and/or above output for details\n\nLatexmk: Sometimes, the -f option can be used to get latexmk\n  to try to force complete processing.\n  But normally, you will need to correct the file(s) that caused the\n  error, and then rerun latexmk.\n  In some cases, it is best to clean out generated files before rerunning\n  latexmk after you've corrected the files.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The references are undefined because bibtex needs to be re-run. Let me force a complete build.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "ec1b10e7-a32a-44ca-bb6b-851a6c677864",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVmquhmjpZYYKNbeuf7NA5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 678,
+      "cache_read_input_tokens": 61882,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 678
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+Citations not resolved yet — need a full rebuild cycle.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "66832637-15c9-4333-8eb7-22b125787bf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVmquhmjpZYYKNbeuf7NA5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 678,
+      "cache_read_input_tokens": 61882,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 678
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RE6mkEUkqzq5WpaATNHWeW`</summary>
+
+```json
+{
+  "command": "latexmk -pdf -interaction=nonstopmode -f main.tex 2>&1 | tail -30",
+  "description": "Force full LaTeX rebuild with bibtex",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "a1f3c100-8147-4208-ae0a-aaac0b438d5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVmquhmjpZYYKNbeuf7NA5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 678,
+      "cache_read_input_tokens": 61882,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 678
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-24T01:40:58.392Z_
+
+<details><summary>↩ Tool result · `toolu_01RE6mkEUkqzq5WpaATNHWeW`</summary>
+
+```text
+Rc files read:
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
+Latexmk: Nothing to do for 'main.tex'.
+Latexmk: All targets (main.pdf) are up-to-date
+Collected error summary (may duplicate other messages):
+  pdflatex: gave an error in previous invocation of latexmk.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "ce390dc7-48e2-4f8f-a26e-6ced2902f144",
+  "tool_use_result": {
+    "stdout": "Rc files read:\n  /etc/LatexMk\nLatexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.\nLatexmk: Nothing to do for 'main.tex'.\nLatexmk: All targets (main.pdf) are up-to-date\nCollected error summary (may duplicate other messages):\n  pdflatex: gave an error in previous invocation of latexmk.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014bjqsf44FiYRFqFLz6kxPu`</summary>
+
+```json
+{
+  "command": "rm -f main.aux main.bbl main.blg main.log main.out main.fls main.fdb_latexmk && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -30",
+  "description": "Clean and rebuild LaTeX from scratch",
+  "timeout": 180000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "021499ab-4ab9-45eb-97af-280ff11298bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gx23cRxBs4GUtyata62wLZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 296,
+      "cache_read_input_tokens": 62560,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 296
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-24T01:41:04.346Z_
+
+<details><summary>↩ Tool result · `toolu_014bjqsf44FiYRFqFLz6kxPu`</summary>
+
+```text
+Latexmk: References changed.
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'main.bbl' for 'pdflatex'
+Create bibtex main
+Latexmk: Found bibliography file(s):
+  ./references.bib
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 204 reference(s)
+  Latex failed to resolve 98 citation(s)
+Latexmk: ====Undefined refs and citations with line #s in .tex file:
+  Citation `gilardi2023chatgpt' on page 1 undefined on input line 8
+  Citation `tornberg2024chatgpt' on page 1 undefined on input line 8
+  Citation `ziems2024nlp' on page 1 undefined on input line 8
+  Citation `ashwin2025bias' on page 1 undefined on input line 10
+  Reference `fig:sign_reversal' on page 1 undefined on input line 13
+  Citation `frazis2003estimating' on page 1 undefined on input line 14
+  Reference `thm:bias_identity' on page 1 undefined on input line 17
+ And 295 more --- see log file 'main.log'
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to 'main.log' and/or above output for details
+
+Latexmk: Sometimes, the -f option can be used to get latexmk
+  to try to force complete processing.
+  But normally, you will need to correct the file(s) that caused the
+  error, and then rerun latexmk.
+  In some cases, it is best to clean out generated files before rerunning
+  latexmk after you've corrected the files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "98f13900-f083-4287-85c8-43c0abf814bd",
+  "tool_use_result": {
+    "stdout": "Latexmk: References changed.\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nCreate bibtex main\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: Summary of warnings from last run of *latex:\n  Latex failed to resolve 204 reference(s)\n  Latex failed to resolve 98 citation(s)\nLatexmk: ====Undefined refs and citations with line #s in .tex file:\n  Citation `gilardi2023chatgpt' on page 1 undefined on input line 8\n  Citation `tornberg2024chatgpt' on page 1 undefined on input line 8\n  Citation `ziems2024nlp' on page 1 undefined on input line 8\n  Citation `ashwin2025bias' on page 1 undefined on input line 10\n  Reference `fig:sign_reversal' on page 1 undefined on input line 13\n  Citation `frazis2003estimating' on page 1 undefined on input line 14\n  Reference `thm:bias_identity' on page 1 undefined on input line 17\n And 295 more --- see log file 'main.log'\nLatexmk: Errors, so I did not complete making targets\nCollected error summary (may duplicate other messages):\n  pdflatex: Command for 'pdflatex' gave return code 1\n      Refer to 'main.log' and/or above output for details\n\nLatexmk: Sometimes, the -f option can be used to get latexmk\n  to try to force complete processing.\n  But normally, you will need to correct the file(s) that caused the\n  error, and then rerun latexmk.\n  In some cases, it is best to clean out generated files before rerunning\n  latexmk after you've corrected the files.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The problem is latexmk stops after the first pdflatex pass due to warnings. I need to use -f to force it through the full cycle, or run pdflatex/bibtex manually.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "9e5be481-ee59-4464-8b24-7f50f0253c4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SHk87QYbPkcgy8x8X2TFtY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 656,
+      "cache_read_input_tokens": 62856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JJea4izoUnkKPqroPrrqFn`</summary>
+
+```json
+{
+  "command": "pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && bibtex main 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"Output written|Warning|Error|undefined\" | head -20",
+  "description": "Run pdflatex/bibtex cycle manually",
+  "timeout": 180000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "c088f4b8-a5a4-48fd-b512-e06fca0263fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SHk87QYbPkcgy8x8X2TFtY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 656,
+      "cache_read_input_tokens": 62856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 656
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-24T01:41:11.972Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01JJea4izoUnkKPqroPrrqFn`</summary>
+
+```text
+Exit code 1
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "919d8245-19d1-4401-b317-9f852a635686",
+  "tool_use_result": "Error: Exit code 1"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Q1AR6k9oGyTFFoKn3jnqHn`</summary>
+
+```json
+{
+  "command": "pdflatex -interaction=nonstopmode main.tex > /tmp/pass1.log 2>&1; echo \"=== BIBTEX ===\" ; bibtex main 2>&1; echo \"=== PASS2 ===\" ; pdflatex -interaction=nonstopmode main.tex > /tmp/pass2.log 2>&1; echo \"=== PASS3 ===\" ; pdflatex -interaction=nonstopmode main.tex > /tmp/pass3.log 2>&1; echo \"=== RESULT ===\" ; grep \"Output written\" /tmp/pass3.log; grep \"undefined\" main.log | grep -i \"citation\" | head -10",
+  "description": "Run full pdflatex/bibtex/pdflatex/pdflatex cycle",
+  "timeout": 180000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "e107e978-c6db-4490-beb1-cc42b167c9bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NN1B1w7FH41crZZYvf9Urd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 278,
+      "cache_read_input_tokens": 63512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 278
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 62_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bq8n23z62",
+  "tool_use_id": "toolu_01Q1AR6k9oGyTFFoKn3jnqHn",
+  "description": "Run full pdflatex/bibtex/pdflatex/pdflatex cycle",
+  "task_type": "local_bash",
+  "uuid": "1601a991-c0fe-4845-a7ce-e371851fbef7",
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613"
+}
+```
+
+---
+
+### System
+
+_source line 63_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bq8n23z62",
+  "tool_use_id": "toolu_01Q1AR6k9oGyTFFoKn3jnqHn",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Run full pdflatex/bibtex/pdflatex/pdflatex cycle",
+  "uuid": "087ec625-c2aa-4dd3-af70-aff2a20814f9",
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613"
+}
+```
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-24T01:41:22.193Z_
+
+<details><summary>↩ Tool result · `toolu_01Q1AR6k9oGyTFFoKn3jnqHn`</summary>
+
+```text
+=== BIBTEX ===
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Database file #1: references.bib
+=== PASS2 ===
+=== PASS3 ===
+=== RESULT ===
+Output written on main.pdf (32 pages, 872956 bytes).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "ecd83bcc-1b89-424b-ba4b-377ff8aaf8cc",
+  "tool_use_result": {
+    "stdout": "=== BIBTEX ===\nThis is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib\n=== PASS2 ===\n=== PASS3 ===\n=== RESULT ===\nOutput written on main.pdf (32 pages, 872956 bytes).",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+Compiled successfully, 32 pages. Let me check for undefined references and page count.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "a2084f19-5958-4b24-9891-eb3549346aaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwSGowmiKWYDGiUmyWK4vc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 390,
+      "cache_read_input_tokens": 63790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 390
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016p1wdwkhDwszTazgPTkm9F`</summary>
+
+```json
+{
+  "command": "grep \"undefined\" main.log | head -10; echo \"=== PAGE CHECK ===\" ; grep -c \"undefined\" main.log; echo \"=== ABSTRACT WORD COUNT ===\" ; cat abstract.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$~]//g; s/--/-/g' | tr -s ' \\n' ' ' | wc -w",
+  "description": "Check undefined refs and abstract word count"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "b102542b-db67-434a-b9c3-264ed4eda6e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwSGowmiKWYDGiUmyWK4vc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 390,
+      "cache_read_input_tokens": 63790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 390
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-24T01:41:27.065Z_
+
+<details><summary>↩ Tool result · `toolu_016p1wdwkhDwszTazgPTkm9F`</summary>
+
+```text
+and I'll forget about whatever was undefined.
+and I'll forget about whatever was undefined.
+and I'll forget about whatever was undefined.
+=== PAGE CHECK ===
+3
+=== ABSTRACT WORD COUNT ===
+205
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "db8ff829-f646-4df6-96e6-e9da22872772",
+  "tool_use_result": {
+    "stdout": "and I'll forget about whatever was undefined.\nand I'll forget about whatever was undefined.\nand I'll forget about whatever was undefined.\n=== PAGE CHECK ===\n3\n=== ABSTRACT WORD COUNT ===\n205",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The "undefined" matches are just from latex log boilerplate messages, not actual undefined references. Let me check more precisely.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "442f4517-e827-4509-998c-175c8defd2b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T8J7P8LoJSeemSFBNtHLgR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 270,
+      "cache_read_input_tokens": 64180,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DhXpYdtTodEquCfxcfJBQd`</summary>
+
+```json
+{
+  "command": "grep \"LaTeX Warning.*undefined\" main.log | head -10; echo \"---\"; grep \"Citation.*undefined\" main.log | head -10; echo \"---\"; grep \"Reference.*undefined\" main.log | head -10",
+  "description": "Check for specific undefined reference warnings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "d4813d03-a57c-4799-ab3d-3ee127f44863",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T8J7P8LoJSeemSFBNtHLgR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 270,
+      "cache_read_input_tokens": 64180,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 270
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-24T01:41:36.160Z_
+
+<details><summary>↩ Tool result · `toolu_01DhXpYdtTodEquCfxcfJBQd`</summary>
+
+```text
+---
+---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "57cc2b26-f713-4591-95f3-0cd44a1af4d5",
+  "tool_use_result": {
+    "stdout": "---\n---",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+0 undefined references/citations. Now check page count — need to verify main text ends at page 8 with Limitations on page 9.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "ba4970e9-eb63-4300-8f58-f6b38d6ddce2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQqBSxwNQDMPLBuUXVduqx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 283,
+      "cache_read_input_tokens": 64450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 283
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017LEtimqj6VSGSLw7aAAYuU`</summary>
+
+```json
+{
+  "command": "grep -E \"shipout|page.*shipped\" main.log | tail -5; echo \"---\"; python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\f')\nfor i, page in enumerate(pages[:12], 1):\n    lines = [l.strip() for l in page.split('\\n') if l.strip()]\n    # Find section headers\n    for l in lines[:10]:\n        print(f'Page {i}: {l[:80]}')\n    print()\n\" 2>&1",
+  "description": "Check page content distribution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "3972a065-1fa2-4619-ae5c-4a654ced44b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQqBSxwNQDMPLBuUXVduqx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 283,
+      "cache_read_input_tokens": 64450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 283
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-24T01:41:43.518Z_
+
+<details><summary>↩ Tool result · `toolu_017LEtimqj6VSGSLw7aAAYuU`</summary>
+
+```text
+---
+Page 1: When Debiasing Hurts: An Exact Bias Identity
+Page 1: for LLM-Annotated Treatment Effects
+Page 1: Anonymous ACL submission
+Page 1: 001
+Page 1: Abstract
+Page 1: 002
+Page 1: Standard confusion-matrix correction for noisy
+Page 1: annotations assumes uniform error rates. When
+Page 1: this assumption fails—as it routinely does with
+Page 1: LLM classifiers, whose error rates vary by up to
+
+Page 2: 081
+Page 2: 082
+Page 2: 083
+Page 2: 084
+Page 2: 085
+Page 2: 086
+Page 2: 087
+Page 2: 088
+Page 2: 089
+Page 2: 090
+
+Page 3: 0.02
+Page 3: 0.10
+Page 3: 0.05
+Page 3: 0.00
+Page 3: 0.05
+Page 3: C
+Page 3: True CATE (0.03)
+Page 3: Sign boundary (0)
+Page 3: Naive
+Page 3: Global-corrected
+
+Page 4: 278
+Page 4: the heterogeneity structure. None corrects bias
+Page 4: when the mismeasured variable is the effect modifier indexing the CATE function.
+Page 4: via instrumental variables or partial identification;
+Page 4: Ura (2015) extends this to HTE with mismeasured
+Page 4: treatment via IV. Miao et al. (2018) develop proximal causal inference for unmea
+Page 4: using proxy variables; our setting differs because
+Page 4: Ẑ is a moderator proxy rather than a confounder
+Page 4: proxy, admitting confusion-matrix correction without the identification constrai
+Page 4: framework. Blette et al. (Blette et al., 2024) address
+
+Page 5: 349
+Page 5: 350
+Page 5: 351
+Page 5: 352
+Page 5: 353
+Page 5: 354
+Page 5: 355
+Page 5: 356
+Page 5: 357
+Page 5: 358
+
+Page 6: 445
+Page 6: only if
+Page 6: 446
+Page 6: 447
+Page 6: 448
+Page 6: 451
+Page 6: • Low-error (πs < π̄): the condition holds
+Page 6: whenever πs < π̄/(2(1 − π̄))—easily satisfied: when π̄ = 0.15, any subgroup with
+Page 6: πs < 0.088 is harmed by global correction.
+Page 6: 452
+
+Page 7: 551
+Page 7: strongest bias reduction (Appendix I), 587
+Page 7: though ECHTE maintains calibrated coverage (≥93%) across
+Page 7: the wider κ ∈ [1.4, 3.0] range observed in practice
+Page 7: (Appendix X.1).
+Page 7: The contrast with global correction is direct.
+Page 7: Global correction applies C̄ −1 uniformly to all subgroups, introducing the δs ·
+Page 7: Theorem 1. Subgroup-stratified correction eliminates this bias by matching each 
+Page 7: cost of higher variance from estimating K separate
+Page 7: confusion matrices (Appendix I).
+
+Page 8: 638
+Page 8: 639
+Page 8: 640
+Page 8: 641
+Page 8: 642
+Page 8: 643
+Page 8: 644
+Page 8: 645
+Page 8: 646
+Page 8: 647
+
+Page 9: ≥94.5% coverage (Appendix Z.4). When
+Page 9: 764 conditions (i)–(iv) are unmet, global correction
+Page 9: 765
+Page 9: is
+Page 9: preferable (Appendix I.2).
+Page 9: 766
+Page 9: address—so
+Page 9: 715
+Page 9: we use synthetic CATE injection on
+Page 9: real text
+
+Page 10: Zhexin Bu, David Almond, Siddhartha Bhatt,868
+Page 10: and Paul
+Page 10: Goldsmith-Pinkham. 2023. Achieving reliable
+Page 10: 869 causal
+Page 10: inference with data-mined variables: A random forest approach to the measurement
+Page 10: problem. IN871
+Page 10: FORMS Journal on Data Science, 2(2):110–129.
+Page 10: Wayne814
+Page 10: A. Fuller. 1987. Measurement Error Models.
+Page 10: Wiley,
+
+Page 11: Arthur Lewbel. 2007. Estimation of average
+Page 11: 975 treatment effects with misclassification.
+Page 11: Econometrica,
+Page 11: 976
+Page 11: 75(2):537–551.
+Page 11: 977
+Page 11: Stefan922
+Page 11: Wager and Susan Athey. 2018. Estimation and
+Page 11: inference
+Page 11: 923
+
+Page 12: 1022
+Page 12: 1023
+Page 12: 1024
+Page 12: 1055
+Page 12: where Ms [z, z ′ ] = P (Z=z ′ | Ẑ=z,
+Page 12: S=s) is
+Page 12: the
+Page 12: mixing
+Page 12: matrix.
+Page 12: Under
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "a536be68-477c-48f2-99cf-c827d2c880f8",
+  "tool_use_result": {
+    "stdout": "---\nPage 1: When Debiasing Hurts: An Exact Bias Identity\nPage 1: for LLM-Annotated Treatment Effects\nPage 1: Anonymous ACL submission\nPage 1: 001\nPage 1: Abstract\nPage 1: 002\nPage 1: Standard confusion-matrix correction for noisy\nPage 1: annotations assumes uniform error rates. When\nPage 1: this assumption fails—as it routinely does with\nPage 1: LLM classifiers, whose error rates vary by up to\n\nPage 2: 081\nPage 2: 082\nPage 2: 083\nPage 2: 084\nPage 2: 085\nPage 2: 086\nPage 2: 087\nPage 2: 088\nPage 2: 089\nPage 2: 090\n\nPage 3: 0.02\nPage 3: 0.10\nPage 3: 0.05\nPage 3: 0.00\nPage 3: 0.05\nPage 3: C\nPage 3: True CATE (0.03)\nPage 3: Sign boundary (0)\nPage 3: Naive\nPage 3: Global-corrected\n\nPage 4: 278\nPage 4: the heterogeneity structure. None corrects bias\nPage 4: when the mismeasured variable is the effect modifier indexing the CATE function.\nPage 4: via instrumental variables or partial identification;\nPage 4: Ura (2015) extends this to HTE with mismeasured\nPage 4: treatment via IV. Miao et al. (2018) develop proximal causal inference for unmea\nPage 4: using proxy variables; our setting differs because\nPage 4: Ẑ is a moderator proxy rather than a confounder\nPage 4: proxy, admitting confusion-matrix correction without the identification constrai\nPage 4: framework. Blette et al. (Blette et al., 2024) address\n\nPage 5: 349\nPage 5: 350\nPage 5: 351\nPage 5: 352\nPage 5: 353\nPage 5: 354\nPage 5: 355\nPage 5: 356\nPage 5: 357\nPage 5: 358\n\nPage 6: 445\nPage 6: only if\nPage 6: 446\nPage 6: 447\nPage 6: 448\nPage 6: 451\nPage 6: • Low-error (πs < π̄): the condition holds\nPage 6: whenever πs < π̄/(2(1 − π̄))—easily satisfied: when π̄ = 0.15, any subgroup with\nPage 6: πs < 0.088 is harmed by global correction.\nPage 6: 452\n\nPage 7: 551\nPage 7: strongest bias reduction (Appendix I), 587\nPage 7: though ECHTE maintains calibrated coverage (≥93%) across\nPage 7: the wider κ ∈ [1.4, 3.0] range observed in practice\nPage 7: (Appendix X.1).\nPage 7: The contrast with global correction is direct.\nPage 7: Global correction applies C̄ −1 uniformly to all subgroups, introducing the δs ·\nPage 7: Theorem 1. Subgroup-stratified correction eliminates this bias by matching each \nPage 7: cost of higher variance from estimating K separate\nPage 7: confusion matrices (Appendix I).\n\nPage 8: 638\nPage 8: 639\nPage 8: 640\nPage 8: 641\nPage 8: 642\nPage 8: 643\nPage 8: 644\nPage 8: 645\nPage 8: 646\nPage 8: 647\n\nPage 9: ≥94.5% coverage (Appendix Z.4). When\nPage 9: 764 conditions (i)–(iv) are unmet, global correction\nPage 9: 765\nPage 9: is\nPage 9: preferable (Appendix I.2).\nPage 9: 766\nPage 9: address—so\nPage 9: 715\nPage 9: we use synthetic CATE injection on\nPage 9: real text\n\nPage 10: Zhexin Bu, David Almond, Siddhartha Bhatt,868\nPage 10: and Paul\nPage 10: Goldsmith-Pinkham. 2023. Achieving reliable\nPage 10: 869 causal\nPage 10: inference with data-mined variables: A random forest approach to the measurement\nPage 10: problem. IN871\nPage 10: FORMS Journal on Data Science, 2(2):110–129.\nPage 10: Wayne814\nPage 10: A. Fuller. 1987. Measurement Error Models.\nPage 10: Wiley,\n\nPage 11: Arthur Lewbel. 2007. Estimation of average\nPage 11: 975 treatment effects with misclassification.\nPage 11: Econometrica,\nPage 11: 976\nPage 11: 75(2):537–551.\nPage 11: 977\nPage 11: Stefan922\nPage 11: Wager and Susan Athey. 2018. Estimation and\nPage 11: inference\nPage 11: 923\n\nPage 12: 1022\nPage 12: 1023\nPage 12: 1024\nPage 12: 1055\nPage 12: where Ms [z, z ′ ] = P (Z=z ′ | Ẑ=z,\nPage 12: S=s) is\nPage 12: the\nPage 12: mixing\nPage 12: matrix.\nPage 12: Under",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output is a bit hard to parse with line numbers (from review mode). Let me find what sections are on which pages more precisely. I need to check:
+1. Where does Conclusion end?
+2. Where does Limitations start?
+
+Let me search for specific section headers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "ed61a9b4-a533-43fa-b935-3f57962df288",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7MCSc4T4yA3Xaf49RGkgN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1663,
+      "cache_read_input_tokens": 64733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1663
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CsATEb4fjAZwtVwkpy4KKL`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\f')\nkeywords = ['Conclusion', 'Limitation', 'Reference', 'Appendix', 'Experiment', 'Correction Prescribed', 'Operating condition']\nfor i, page in enumerate(pages[:12], 1):\n    for kw in keywords:\n        if kw.lower() in page.lower():\n            # find the line\n            for line in page.split('\\n'):\n                if kw.lower() in line.lower() and len(line.strip()) < 80:\n                    print(f'Page {i}: {line.strip()}')\n\" 2>&1",
+  "description": "Find section boundaries across pages"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "3ae7fbe2-d22d-4298-aef7-59aafc346369",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7MCSc4T4yA3Xaf49RGkgN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1663,
+      "cache_read_input_tokens": 64733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1663
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-24T01:41:52.037Z_
+
+<details><summary>↩ Tool result · `toolu_01CsATEb4fjAZwtVwkpy4KKL`</summary>
+
+```text
+Page 1: correction prescribed by the identity reduces
+Page 2: near-oracle performance (Appendix Z.5). Third,
+Page 2: The per-subgroup correction prescribed by the
+Page 3: DSL to Stratified MLE (Section 5.3; Appendix U).
+Page 4: 302 derivation appears in Appendix B. For
+Page 4: experiments, and real LLM confusion matrices,
+Page 5: negative ∆τs –δs correlation (Appendix Z).
+Page 5: Appendix J for the full derivation and empirical
+Page 6: (Appendix A).
+Page 6: 24) across the experimental grid (Section 5.3), with
+Page 6: Correction Prescribed by the Identity
+Page 7: strongest bias reduction (Appendix I), 587
+Page 7: (Appendix X.1).
+Page 7: confusion matrices (Appendix I).
+Page 7: to 0.007 (Appendix L). The two methods target
+Page 7: in Appendix E.
+Page 7: achieves ≥91% at nexpert =25 (Appendix Y). When
+Page 7: Experiments
+Page 8: Appendix T). Global correction worsens bias in
+Page 8: eliminates sign reversal entirely (Figure 1; Appendix Z.8).
+Page 8: (Appendix I.2).
+Page 8: synthetic grids; Figure 3, Appendix X). The lower
+Page 8: limits discrimination (Appendix X).
+Page 8: coverage ≥93% (Appendix X.1).
+Page 8: On a real hate speech dataset (∆π=0.117; Appendix672
+Page 8: in Appendix Y). The identity and correction are
+Page 8: bias reduction (89%, Appendix S), confirming that
+Page 9: causal conclusions when misclassification rates
+Page 9: Conclusion
+Page 9: Limitations
+Page 9: References
+Page 9: ≥94.5% coverage (Appendix Z.4). When
+Page 9: preferable (Appendix I.2).
+Page 9: expert budget (Appendix I.2). The diagnostic
+Page 9: matrices (Appendix X); it should be paired with
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "f9a69428-8232-4a76-a174-cc1d34f148b4",
+  "tool_use_result": {
+    "stdout": "Page 1: correction prescribed by the identity reduces\nPage 2: near-oracle performance (Appendix Z.5). Third,\nPage 2: The per-subgroup correction prescribed by the\nPage 3: DSL to Stratified MLE (Section 5.3; Appendix U).\nPage 4: 302 derivation appears in Appendix B. For\nPage 4: experiments, and real LLM confusion matrices,\nPage 5: negative ∆τs –δs correlation (Appendix Z).\nPage 5: Appendix J for the full derivation and empirical\nPage 6: (Appendix A).\nPage 6: 24) across the experimental grid (Section 5.3), with\nPage 6: Correction Prescribed by the Identity\nPage 7: strongest bias reduction (Appendix I), 587\nPage 7: (Appendix X.1).\nPage 7: confusion matrices (Appendix I).\nPage 7: to 0.007 (Appendix L). The two methods target\nPage 7: in Appendix E.\nPage 7: achieves ≥91% at nexpert =25 (Appendix Y). When\nPage 7: Experiments\nPage 8: Appendix T). Global correction worsens bias in\nPage 8: eliminates sign reversal entirely (Figure 1; Appendix Z.8).\nPage 8: (Appendix I.2).\nPage 8: synthetic grids; Figure 3, Appendix X). The lower\nPage 8: limits discrimination (Appendix X).\nPage 8: coverage ≥93% (Appendix X.1).\nPage 8: On a real hate speech dataset (∆π=0.117; Appendix672\nPage 8: in Appendix Y). The identity and correction are\nPage 8: bias reduction (89%, Appendix S), confirming that\nPage 9: causal conclusions when misclassification rates\nPage 9: Conclusion\nPage 9: Limitations\nPage 9: References\nPage 9: ≥94.5% coverage (Appendix Z.4). When\nPage 9: preferable (Appendix I.2).\nPage 9: expert budget (Appendix I.2). The diagnostic\nPage 9: matrices (Appendix X); it should be paired with",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+Page 9 has Conclusion, Limitations, and References. Let me check more precisely — is the Experiments section ending on page 8 or spilling to page 9?
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "9870c5b7-da66-4c72-adfe-5a6cb78c74b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016afQGTJAK7xhG1BFNt9hpB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 66396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 906
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01L1Lf4ScTfeAGEQGs1ZywVe`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\ntext = result.stdout\npages = text.split('\\f')\n# Page 9 content\np9 = pages[8]\nlines = [l.strip() for l in p9.split('\\n') if l.strip()]\nfor l in lines[:50]:\n    print(l)\n\" 2>&1",
+  "description": "Check page 9 content in detail"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "2054c5b3-7a21-44fd-b00c-2f7d585eb28b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016afQGTJAK7xhG1BFNt9hpB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 66396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 906
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-24T01:42:01.236Z_
+
+<details><summary>↩ Tool result · `toolu_01L1Lf4ScTfeAGEQGs1ZywVe`</summary>
+
+```text
+≥94.5% coverage (Appendix Z.4). When
+764 conditions (i)–(iv) are unmet, global correction
+765
+is
+preferable (Appendix I.2).
+766
+address—so
+715
+we use synthetic CATE injection on
+real text
+716 features and real LLM annotations (Ap717 E, N). Code and data generation scripts
+pendices
+will be released upon acceptance.
+767
+718
+6
+719
+733
+Standard confusion-matrix correction—the
+default
+768
+in PPI, DSL, and CSS practice—can reverse
+causal conclusions when misclassification rates
+vary across subgroups. We derived an exact bias
+identity explaining when and why, verified across
+synthetic grids and semi-synthetic evaluations using 11 empirical LLM confusion matrices. The
+identity yields a diagnostic that flags harmful correction from error rates alone, and prescribes persubgroup correction that eliminates sign reversal
+given sufficient error heterogeneity; when these
+conditions are not met, practitioners should prefer
+global correction. The framework applies wherever
+LLM annotations replace structured covariates and
+annotation error rates vary across subpopulations.
+734
+Limitations
+735
+Per-subgroup correction requires nexpert ×
+P (Zminority )/K
+≥
+25 expert labels per
+subgroup and moderate classifier accuracy
+(FPRs , FNRs < 0.5); below these thresholds,
+stratification incurs more variance than the bias
+it removes. At K=8 with nexpert =250 (≈31
+labels/subgroup), coverage remains nominal
+(≥95.6%) but RMSE exceeds global correction,
+establishing a scalability boundary under fixed
+expert budget (Appendix I.2). The diagnostic
+(Proposition 5) achieves AUC = 0.86 on synthetic
+data but degrades to 0.63 on real LLM confusion
+matrices (Appendix X); it should be paired with
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "d0feacaa-af35-4f43-8ec9-e3412d44c33b",
+  "tool_use_result": {
+    "stdout": "≥94.5% coverage (Appendix Z.4). When\n764 conditions (i)–(iv) are unmet, global correction\n765\nis\npreferable (Appendix I.2).\n766\naddress—so\n715\nwe use synthetic CATE injection on\nreal text\n716 features and real LLM annotations (Ap717 E, N). Code and data generation scripts\npendices\nwill be released upon acceptance.\n767\n718\n6\n719\n733\nStandard confusion-matrix correction—the\ndefault\n768\nin PPI, DSL, and CSS practice—can reverse\ncausal conclusions when misclassification rates\nvary across subgroups. We derived an exact bias\nidentity explaining when and why, verified across\nsynthetic grids and semi-synthetic evaluations using 11 empirical LLM confusion matrices. The\nidentity yields a diagnostic that flags harmful correction from error rates alone, and prescribes persubgroup correction that eliminates sign reversal\ngiven sufficient error heterogeneity; when these\nconditions are not met, practitioners should prefer\nglobal correction. The framework applies wherever\nLLM annotations replace structured covariates and\nannotation error rates vary across subpopulations.\n734\nLimitations\n735\nPer-subgroup correction requires nexpert ×\nP (Zminority )/K\n≥\n25 expert labels per\nsubgroup and moderate classifier accuracy\n(FPRs , FNRs < 0.5); below these thresholds,\nstratification incurs more variance than the bias\nit removes. At K=8 with nexpert =250 (≈31\nlabels/subgroup), coverage remains nominal\n(≥95.6%) but RMSE exceeds global correction,\nestablishing a scalability boundary under fixed\nexpert budget (Appendix I.2). The diagnostic\n(Proposition 5) achieves AUC = 0.86 on synthetic\ndata but degrades to 0.63 on real LLM confusion\nmatrices (Appendix X); it should be paired with",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Looking at page 9: it has the end of the experiments section (operating conditions), then section 6 (Conclusion), then Limitations. The operating conditions paragraph is spilling onto page 9. This means the main text goes beyond 8 pages.
+
+Wait, with review mode, the page structure might be different due to line numbers. Let me check if the review mode adds line numbers on the left side. The ACL review format adds line numbers.
+
+Let me look at this more carefully. The "Conclusion" section (section 6) starts on page 9 - that means the main text extends beyond 8 pages. But in ACL format with review mode, the line numbers take up some space.
+
+
+Actually, I need to reconsider the page limit rules. For ARR/EMNLP submissions, the 8-page limit applies only to the main text before References and Appendix, and Limitations don't count toward this. So the key question is whether the Conclusion ends on page 8 or spills onto page 9. Looking at the output, page 8 contains experiments content and page 9 starts with the end of experiments.
+
+The Conclusion section is currently starting on page 9, which means the main text exceeds the 8-page limit. The user's instructions specify that Conclusion should be on page 8, so I need to compress the paper. They've identified two specific areas to trim: one bullet point from the introduction and a diagnostic paragraph from the experiments section.
+
+Let me verify whether the review formatting with the `[review]` option changes the page count, since that adds different spacing and margins. I'm realizing the paper might have already been at 9 pages before my edits, or my small additions pushed it over the 8-page limit. Since the task asks to prioritize compression if it exceeds the page count, I need to figure out where to trim the content.
+
+The task specifies two areas to compress: the first contribution bullet in the introduction and the diagnostic paragraph in section 5.4. Let me examine those sections to find what can be condensed without losing the key ideas.
+
+Looking at the contribution statement, the sign reversal statistics seem redundant since they're already mentioned earlier. I can trim those numbers and focus on the core insight about the bias factorization. For section 5.4, the operating conditions and hate speech paragraphs both have room to tighten up the language.
+
+Before I start cutting, I should check how much space the conclusion takes and whether it's already spilling onto page 9. If the conclusion is substantial, I might need more aggressive compression across multiple sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "b8f229a9-8f2d-4793-831a-a523ff9d1b2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UhYK9YNQBDorroa9LfCF2R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 67302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 703
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+The Conclusion is on page 9 — main text exceeds 8 pages. Let me check the Conclusion size and compress as instructed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "2a0aa9d8-7cd7-44c7-aa21-f08b170e5e0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UhYK9YNQBDorroa9LfCF2R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 67302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 703
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013PkdFEajyAnJ1o8PrwwUrL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "3b1bafc8-9d06-4076-ada7-a1a914e0ce53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UhYK9YNQBDorroa9LfCF2R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 67302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 703
+      },
+      "output_tokens": 13,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-24T01:42:40.927Z_
+
+<details><summary>↩ Tool result · `toolu_013PkdFEajyAnJ1o8PrwwUrL`</summary>
+
+```text
+1	\section{Conclusion}\label{sec:conclusion}
+2	
+3	Standard confusion-matrix correction---the default in PPI, DSL, and CSS practice---can reverse causal conclusions when misclassification rates vary across subgroups.
+4	We derived an exact bias identity explaining when and why, verified across synthetic grids and semi-synthetic evaluations using 11 empirical LLM confusion matrices.
+5	The identity yields a diagnostic that flags harmful correction from error rates alone, and prescribes per-subgroup correction that eliminates sign reversal given sufficient error heterogeneity; when these conditions are not met, practitioners should prefer global correction.
+6	The framework applies wherever LLM annotations replace structured covariates and annotation error rates vary across subpopulations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "49be406f-b251-4fcb-bc3c-6ef3d385a99d",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\\label{sec:conclusion}\n\nStandard confusion-matrix correction---the default in PPI, DSL, and CSS practice---can reverse causal conclusions when misclassification rates vary across subgroups.\nWe derived an exact bias identity explaining when and why, verified across synthetic grids and semi-synthetic evaluations using 11 empirical LLM confusion matrices.\nThe identity yields a diagnostic that flags harmful correction from error rates alone, and prescribes per-subgroup correction that eliminates sign reversal given sufficient error heterogeneity; when these conditions are not met, practitioners should prefer global correction.\nThe framework applies wherever LLM annotations replace structured covariates and annotation error rates vary across subpopulations.",
+      "numLines": 6,
+      "startLine": 1,
+      "totalLines": 6
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The Conclusion is only 6 lines. The issue is that the Experiments section is too long and spills to page 9. Let me compress:
+
+1. Contribution 1 bullet in introduction.tex
+2. §5.4 diagnostic paragraph in experiments.tex
+
+Let me re-read these sections and figure out what to trim.
+
+Contribution 1 bullet (introduction.tex lines 34):
+```
+\item An exact finite-population bias identity (Theorem~\ref{thm:bias_identity}): the algebraic structure follows from standard confusion-matrix calculus, but we show it produces sign reversal in the LLM annotation setting and factor the bias into three independently estimable components ($\delta_s \cdot \Delta\tau / (1-2\bar{\pi})$), enabling the diagnostic below. 
+```
+
+This is quite long. The sign reversal stats (14.9%, 31%) are already mentioned in the paragraph above (line 13). I can compress this to focus on the factorization and remove the redundant empirical details. The key contribution is the three-component decomposition that makes the bias estimable, so I'll tighten it around that.
+
+An exact finite-population bias identity (Theorem~\ref{thm:bias_identity}) decomposes the bias into three independently estimable components ($\delta_s \cdot \Delta\tau / (1-2\bar{\pi})$), which explains sign reversal in the LLM annotation setting and enables the diagnostic below.
+
+```
+
+For the operating conditions section, I'm laying out the specific requirements for EC-HTE to work effectively: a minimum treatment effect heterogeneity threshold, sufficient expert sample size that scales with the number of subgroups, constraints on false negative rates, and a practical limit on subgroup count. When paired with inverse probability weighting, the method maintains strong coverage even under confounded assignments, but falls back to global correction when these conditions aren't satisfied. I'm noticing that line 76 just points to appendices for budget crossover, scalability, and multi-LLM validation results—it's essentially a reference without substantive content, so I can trim it. Let me check the page count: the paper was already pushing limits with Figure 1 taking up a full page and experiments spanning pages 7-9, so I need to be strategic about what stays. I'll compress both the operating conditions paragraph and that appendix pointer, then recompile to see if we can get back under the page limit.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "1fc1e192-3a6f-4ebb-ba59-da153f1f9290",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WaJUjENJJ9u8Qg34iB1Nc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1673,
+      "cache_read_input_tokens": 68005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1673
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01X4W3QfJj25thkaFXgp4t3h`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+  "offset": 67,
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "7377a843-e3d0-400d-a304-ede286ef60bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WaJUjENJJ9u8Qg34iB1Nc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1673,
+      "cache_read_input_tokens": 68005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1673
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-24T01:43:10.012Z_
+
+<details><summary>↩ Tool result · `toolu_01X4W3QfJj25thkaFXgp4t3h`</summary>
+
+```text
+67	
+68	\subsection{Actionable Diagnostic}
+69	\label{sec:diagnostic}
+70	
+71	Proposition~\ref{prop:debiasing_hurts} provides a $\Delta\tau$-free diagnostic: global correction increases bias in subgroup $s$ iff $|\delta_s| / ((1-2\bar{\pi}) \cdot \pi_s) > 1$, computable from a pilot sample without estimating treatment effects.
+72	The diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\Delta\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\ref{fig:roc}, Appendix~\ref{app:screening}).
+73	The lower AUC reflects inclusion of subgroups with $\Delta\tau \approx 0$, where misdiagnosis is inconsequential---global and stratified correction perform identically when effect heterogeneity is absent.
+74	For $K{=}2$, $|\delta_0|{=}|\delta_1|$ limits discrimination (Appendix~\ref{app:screening}).
+75	
+76	The condition number $\kappa(\hat{C}_s)$ provides a practical guard: $\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\kappa \in (1.25, 3]$ with calibrated coverage $\geq$93\% (Appendix~\ref{app:kappa_analysis}).
+77	Budget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$) appear in Appendices~\ref{sec:budget}--\ref{app:multilm}.
+78	
+79	On a real hate speech dataset ($\Delta\pi{=}0.117$; Appendix~\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction---consistent with real LLMs exhibiting $\Delta\pi \in [0.10, 0.20]$ (Appendices~\ref{app:multilm}--\ref{app:civilcomments}), mostly below the threshold where stratification pays off.
+80	
+81	\paragraph{Operating conditions.}
+82	EC-HTE requires: (i)~$\Delta\pi > 0.15$, (ii)~$n_{\text{expert}} \geq 250$ for $K{=}2$ (scaling with $K$), (iii)~$\text{FNR}_s < 0.50$ for all $s$, and (iv)~$K \leq 4$.
+83	Under confounded treatment assignment, pairing with IPW-DIM maintains $\geq$94.5\% coverage (Appendix~\ref{app:confounded_dgp}).
+84	When conditions (i)--(iv) are unmet, global correction is preferable (Appendix~\ref{app:k8_subgroups}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "238bbcb8-acec-4f49-9ae1-0b53510febb5",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+      "content": "\n\\subsection{Actionable Diagnostic}\n\\label{sec:diagnostic}\n\nProposition~\\ref{prop:debiasing_hurts} provides a $\\Delta\\tau$-free diagnostic: global correction increases bias in subgroup $s$ iff $|\\delta_s| / ((1-2\\bar{\\pi}) \\cdot \\pi_s) > 1$, computable from a pilot sample without estimating treatment effects.\nThe diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\\Delta\\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\\ref{fig:roc}, Appendix~\\ref{app:screening}).\nThe lower AUC reflects inclusion of subgroups with $\\Delta\\tau \\approx 0$, where misdiagnosis is inconsequential---global and stratified correction perform identically when effect heterogeneity is absent.\nFor $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination (Appendix~\\ref{app:screening}).\n\nThe condition number $\\kappa(\\hat{C}_s)$ provides a practical guard: $\\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\\kappa \\in (1.25, 3]$ with calibrated coverage $\\geq$93\\% (Appendix~\\ref{app:kappa_analysis}).\nBudget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$) appear in Appendices~\\ref{sec:budget}--\\ref{app:multilm}.\n\nOn a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction---consistent with real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}), mostly below the threshold where stratification pays off.\n\n\\paragraph{Operating conditions.}\nEC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$ (scaling with $K$), (iii)~$\\text{FNR}_s < 0.50$ for all $s$, and (iv)~$K \\leq 4$.\nUnder confounded treatment assignment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp}).\nWhen conditions (i)--(iv) are unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).",
+      "numLines": 18,
+      "startLine": 67,
+      "totalLines": 84
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87_
+
+Now compressing to fit in 8 pages. I'll trim contribution 1 bullet and §5.4 areas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "8cc36dc1-ac54-453c-8034-bab6b8c70c83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPCTugpoHLgrjtQcGfDFh4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2300,
+      "cache_read_input_tokens": 69678,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2300
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_0152bfPmr7XvS89JVJXQonXg`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+  "old_string": "    \\item An exact finite-population bias identity (Theorem~\\ref{thm:bias_identity}): the algebraic structure follows from standard confusion-matrix calculus, but we show it produces sign reversal in the LLM annotation setting and factor the bias into three independently estimable components ($\\delta_s \\cdot \\Delta\\tau / (1-2\\bar{\\pi})$), enabling the diagnostic below. Sign reversal occurs in 14.9\\% of configurations at $\\tau(0) = 0.03$ (31\\% at $\\tau(0) = 0.01$); verified at $R^2 \\geq 0.97$ (Sections~\\ref{sec:theory},~\\ref{sec:bias_mechanism}).",
+  "new_string": "    \\item An exact finite-population bias identity (Theorem~\\ref{thm:bias_identity}): the bias factors into three independently estimable components ($\\delta_s \\cdot \\Delta\\tau / (1-2\\bar{\\pi})$), explaining sign reversal in the LLM annotation setting and enabling the diagnostic below; verified at $R^2 \\geq 0.97$ (Sections~\\ref{sec:theory},~\\ref{sec:bias_mechanism})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "3283a1d3-7a0b-4c6d-bb9d-7ca4c3e00c10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPCTugpoHLgrjtQcGfDFh4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2300,
+      "cache_read_input_tokens": 69678,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2300
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-24T01:43:30.717Z_
+
+<details><summary>↩ Tool result · `toolu_0152bfPmr7XvS89JVJXQonXg`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "69aa5ad0-6fcf-4a7b-b397-693302eb1ef8",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/introduction.tex",
+    "oldString": "    \\item An exact finite-population bias identity (Theorem~\\ref{thm:bias_identity}): the algebraic structure follows from standard confusion-matrix calculus, but we show it produces sign reversal in the LLM annotation setting and factor the bias into three independently estimable components ($\\delta_s \\cdot \\Delta\\tau / (1-2\\bar{\\pi})$), enabling the diagnostic below. Sign reversal occurs in 14.9\\% of configurations at $\\tau(0) = 0.03$ (31\\% at $\\tau(0) = 0.01$); verified at $R^2 \\geq 0.97$ (Sections~\\ref{sec:theory},~\\ref{sec:bias_mechanism}).",
+    "newString": "    \\item An exact finite-population bias identity (Theorem~\\ref{thm:bias_identity}): the bias factors into three independently estimable components ($\\delta_s \\cdot \\Delta\\tau / (1-2\\bar{\\pi})$), explaining sign reversal in the LLM annotation setting and enabling the diagnostic below; verified at $R^2 \\geq 0.97$ (Sections~\\ref{sec:theory},~\\ref{sec:bias_mechanism}).",
+    "originalFile": "\\section{Introduction}\n\\label{sec:intro}\n\nConsider estimating whether a content moderation policy reduces hate speech differently across demographic groups, using GPT-4 to classify thousands of posts.\nAfter standard confusion-matrix correction, the analysis concludes the policy \\emph{increases} hate speech among younger users---but the true effect is protective.\nThis sign reversal is not an edge case.\n\nLarge language models (LLMs) now routinely replace human annotators in computational social science (CSS), producing labels for sentiment, hate speech, stance, and political discourse at costs orders of magnitude below manual coding~\\cite{gilardi2023chatgpt,tornberg2024chatgpt,ziems2024nlp}.\nWhen these labels serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, the standard correction protocol\\footnote{Throughout, ``debiasing'' refers to correction of annotation measurement-error bias, not algorithmic fairness debiasing.} is straightforward: validate a sample against expert annotations, estimate a confusion matrix, and apply its inverse uniformly to correct conditional average treatment effect (CATE) estimates.\nYet LLM annotations are not uniformly accurate: \\citet{ashwin2025bias} document misclassification rates varying by up to 5$\\times$ across demographic subgroups defined by refugee status, gender, and education level; in our pilot study, GPT-4.1 achieves 85.8\\% accuracy on TweetEval sentiment, but error rates range from 10.2\\% to 20.0\\% across text-feature subgroups ($\\Delta\\pi = 0.098$).\n\nWe show that this standard correction can make things worse.\nIn 14.9\\% of our synthetic configurations (across a grid of $\\Delta\\pi$ and $\\tau(0)$ values; $\\tau(0) = 0.03$), global correction reverses the sign of estimated CATE---a protective treatment ($\\tau = +0.03$) appears harmful ($\\hat{\\tau} = -0.059$)---rising to 31\\% at $\\tau(0) = 0.01$ (Figure~\\ref{fig:sign_reversal}); all eight real LLMs tested amplify bias under global correction, while EC-HTE eliminates sign reversal entirely.\nGlobal correction amplifies bias by up to 5.9$\\times$ ($K{=}4$ with CausalForest); the classical Frazis-Loeb attenuation correction~\\cite{frazis2003estimating} \\emph{increases} bias by up to 2.9$\\times$.\nThe mechanism is over-correction: for subgroups with near-zero misclassification, the naive estimator is nearly unbiased, yet pooled correction calibrated for the average error rate introduces substantial bias precisely where labels were most trustworthy.\n\nWe derive an exact bias identity explaining when and why this occurs (Theorem~\\ref{thm:bias_identity}): the correction-induced bias in each subgroup factors into three independently estimable components, verified empirically at $R^2 \\geq 0.97$ on synthetic grids and semi-synthetic evaluations using 11 empirical LLM confusion matrices spanning open-source and proprietary model families.\nThe identity yields a diagnostic (Proposition~\\ref{prop:debiasing_hurts}) that predicts when global correction will harm a subgroup using only per-subgroup misclassification rates, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero effect heterogeneity; Section~\\ref{sec:diagnostic}).\n\nThe per-subgroup correction prescribed by the identity---implemented via hierarchical Bayesian confusion matrix estimation (EC-HTE)---reduces $|\\text{bias}|$ from 0.059 to 0.008 under extreme heterogeneity ($K{=}2$).\nThe advantage is conditional: when $\\Delta\\pi$ is small, the variance cost of stratification outweighs its bias benefit.\n\nExisting corrections---PPI~\\cite{angelopoulos2023ppi}, DSL~\\cite{egami2024dsl}, PPCI~\\cite{sui2026ppci}, arm-specific PPI~\\cite{mozer2026ppi}, ForestIV~\\cite{bu2023forestiv}---assume homogeneous prediction error; none addresses effect modifier misclassification (Section~\\ref{sec:related}).\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_sign_reversal.pdf}\n\\caption{CATE sign reversal under global correction ($K{=}2$, $\\tau(0) = 0.03$). (A) Naive vs.\\ global-corrected CATE; red triangles mark sign reversals (7.5\\% of subgroup estimates). (B) Extreme case: true $\\tau = +0.03$, estimated $\\hat{\\tau} = -0.059$. (C) 14.9\\% of configurations exhibit sign reversal; all 8 real LLMs amplify bias; EC-HTE: 0\\% reversal.}\n\\label{fig:sign_reversal}\n\\end{figure*}\n\nOur contributions are:\n\\begin{itemize}\n    \\item An exact finite-population bias identity (Theorem~\\ref{thm:bias_identity}): the algebraic structure follows from standard confusion-matrix calculus, but we show it produces sign reversal in the LLM annotation setting and factor the bias into three independently estimable components ($\\delta_s \\cdot \\Delta\\tau / (1-2\\bar{\\pi})$), enabling the diagnostic below. Sign reversal occurs in 14.9\\% of configurations at $\\tau(0) = 0.03$ (31\\% at $\\tau(0) = 0.01$); verified at $R^2 \\geq 0.97$ (Sections~\\ref{sec:theory},~\\ref{sec:bias_mechanism}).\n    \\item An actionable diagnostic (Proposition~\\ref{prop:debiasing_hurts}): a condition on per-subgroup misclassification rates alone predicts when global correction increases bias, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero effect heterogeneity)---independently useful without adopting any specific correction method (Section~\\ref{sec:diagnostic}).\n    \\item One corrective instantiation of the identity: per-subgroup hierarchical Bayesian confusion matrix estimation (EC-HTE), compatible with difference-in-means, CausalForest, and R-learner, and composable with PPCI for joint covariate/outcome error---effective when error heterogeneity is sufficient (Sections~\\ref{sec:method}--\\ref{sec:diagnostic}).\n\\end{itemize}\nThe bias identity applies beyond LLM annotation to any proxy classifier with subgroup-varying error rates; survey coding, medical diagnosis, and satellite imagery classification share this structure.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 31,
+        "oldLines": 7,
+        "newStart": 31,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " Our contributions are:",
+          " \\begin{itemize}",
+          "-    \\item An exact finite-population bias identity (Theorem~\\ref{thm:bias_identity}): the algebraic structure follows from standard confusion-matrix calculus, but we show it produces sign reversal in the LLM annotation setting and factor the bias into three independently estimable components ($\\delta_s \\cdot \\Delta\\tau / (1-2\\bar{\\pi})$), enabling the diagnostic below. Sign reversal occurs in 14.9\\% of configurations at $\\tau(0) = 0.03$ (31\\% at $\\tau(0) = 0.01$); verified at $R^2 \\geq 0.97$ (Sections~\\ref{sec:theory},~\\ref{sec:bias_mechanism}).",
+          "+    \\item An exact finite-population bias identity (Theorem~\\ref{thm:bias_identity}): the bias factors into three independently estimable components ($\\delta_s \\cdot \\Delta\\tau / (1-2\\bar{\\pi})$), explaining sign reversal in the LLM annotation setting and enabling the diagnostic below; verified at $R^2 \\geq 0.97$ (Sections~\\ref{sec:theory},~\\ref{sec:bias_mechanism}).",
+          "     \\item An actionable diagnostic (Proposition~\\ref{prop:debiasing_hurts}): a condition on per-subgroup misclassification rates alone predicts when global correction increases bias, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero effect heterogeneity)---independently useful without adopting any specific correction method (Section~\\ref{sec:diagnostic}).",
+          "     \\item One corrective instantiation of the identity: per-subgroup hierarchical Bayesian confusion matrix estimation (EC-HTE), compatible with difference-in-means, CausalForest, and R-learner, and composable with PPCI for joint covariate/outcome error---effective when error heterogeneity is sufficient (Sections~\\ref{sec:method}--\\ref{sec:diagnostic}).",
+          " \\end{itemize}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Q5X84PByyNhxPVVbusAsFj`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+  "old_string": "On a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction---consistent with real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}), mostly below the threshold where stratification pays off.\n\n\\paragraph{Operating conditions.}\nEC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$ (scaling with $K$), (iii)~$\\text{FNR}_s < 0.50$ for all $s$, and (iv)~$K \\leq 4$.\nUnder confounded treatment assignment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp}).\nWhen conditions (i)--(iv) are unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).",
+  "new_string": "On a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction, consistent with most real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}).\n\n\\paragraph{Operating conditions.}\nEC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$, (iii)~$\\text{FNR}_s < 0.50$, and (iv)~$K \\leq 4$; when unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).\nUnder confounded treatment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp})."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "5be5e620-270d-4458-9da8-3424d2bfaa2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPCTugpoHLgrjtQcGfDFh4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2300,
+      "cache_read_input_tokens": 69678,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2300
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-24T01:43:35.757Z_
+
+<details><summary>↩ Tool result · `toolu_01Q5X84PByyNhxPVVbusAsFj`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "2bb59bfe-37ca-4b53-a9fb-6a8c9ba4d99f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/experiments.tex",
+    "oldString": "On a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction---consistent with real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}), mostly below the threshold where stratification pays off.\n\n\\paragraph{Operating conditions.}\nEC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$ (scaling with $K$), (iii)~$\\text{FNR}_s < 0.50$ for all $s$, and (iv)~$K \\leq 4$.\nUnder confounded treatment assignment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp}).\nWhen conditions (i)--(iv) are unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).",
+    "newString": "On a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction, consistent with most real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}).\n\n\\paragraph{Operating conditions.}\nEC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$, (iii)~$\\text{FNR}_s < 0.50$, and (iv)~$K \\leq 4$; when unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).\nUnder confounded treatment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp}).",
+    "originalFile": "\\section{Experiments}\n\n\\subsection{Setup}\n\nWe test on synthetic ($N{=}5{,}000$, $K \\in \\{2, 4\\}$, controlled $\\Delta\\tau$ and $\\Delta\\pi$, 100 MC runs) and semi-synthetic (TweetEval sentiment~\\cite{barbieri2020tweeteval}, $K{=}4$ unbalanced subgroups, $\\pi \\in \\{0.05, 0.10, 0.15, 0.25\\}$) DGPs; full specifications in Appendix~\\ref{app:dgp}.\n\nWe compare: (1) \\textit{Naive} (no correction), (2) \\textit{Global} (pooled confusion matrix, equivalent to PPI/DSL~\\cite{angelopoulos2023ppi,egami2024dsl} with homogeneous error), (3) \\textit{Stratified MLE} (per-subgroup DSL without shrinkage), (4) \\textit{HB EC-HTE} (per-subgroup correction), (5) \\textit{PPCI}~\\cite{sui2026ppci}, and (6) \\textit{EC-HTE+PPCI}.\nFor CausalForest~\\cite{wager2018causal}, we compare naive, global, and EC-HTE variants.\nPrimary metrics are $|\\text{bias}|$, RMSE, and 95\\% CI coverage, averaged across subgroups and 100 MC runs.\nRobustness validation covers hate speech, six OpenAI models, subgroup misspecification, asymmetric confusion matrices, confounded treatment, outcome-dependent misclassification (all $\\geq$93.5\\% coverage), and treatment-dependent misclassification ($\\approx$90\\% at $\\gamma_T \\leq 0.05$; Appendices~\\ref{app:hatespeech}--\\ref{app:treatment_dep}).\nSemi-synthetic evaluation uses empirical LLM confusion matrices from 16 model--dataset--$K$ combinations (8 LLMs $\\times$ 2 datasets $\\times$ varying $K$); of these, 11 have sufficient subgroup variation for $R^2$ regression and 13 have $K{=}4$ for $\\kappa$ analysis.\n\n\\subsection{Empirical Validation of the Bias Identity}\n\\label{sec:bias_mechanism}\n\nWe verify Theorem~\\ref{thm:bias_identity} on a $K{=}2$ grid (520 configurations, $\\Delta\\pi \\in [0, 0.25]$, $\\Delta\\tau \\in (0, 0.50]$) and a $K{=}4$ grid (Appendix~\\ref{app:dgp}).\nRegressing observed subgroup bias on $\\delta_s \\cdot \\Delta\\tau / (1{-}2\\bar{\\pi})$ yields $R^2 = 0.994$ ($K{=}2$) and $0.97$ ($K{=}4$); residual variance reflects MC noise ($R^2 \\geq 0.976$ even at $P(Z{=}1) = 0.1$; Appendix~\\ref{app:classimbalance}).\nGlobal correction worsens bias in 50\\% of $K{=}2$ configurations (260/520, excluding $\\Delta\\pi{=}0$), with amplification reaching 2.86$\\times$ ($K{=}2$) and 2.41$\\times$ ($K{=}4$); Figure~\\ref{fig:heatmap} visualizes the amplification surface.\nBeyond amplification, global correction reverses the sign of estimated CATE---concluding a protective treatment is harmful---in 14.9\\% of configurations at $\\tau(0) = 0.03$ (31\\% at $\\tau(0) = 0.01$; critical threshold $\\tau(0) < 0.089$, matching Theorem~\\ref{thm:bias_identity}), with all eight real LLMs amplifying bias under global correction; EC-HTE eliminates sign reversal entirely (Figure~\\ref{fig:sign_reversal}; Appendix~\\ref{app:policy_reversal}).\n\n\\subsection{Correction Evaluation}\n\\label{sec:ec_hte_eval}\n\nTable~\\ref{tab:main_results} presents the main results across representative configurations.\nIn the $K{=}2$ extreme row, global correction \\emph{increases} $|\\text{bias}|$ relative to naive (0.059 vs.\\ 0.058), confirming the over-correction mechanism of Theorem~\\ref{thm:bias_identity}.\nF-L scalar correction increases $|\\text{bias}|$ to 0.122 (coverage 0.68); F-L per-subgroup to 0.168 as $(1{-}2\\pi_s) \\to 0$---both worse than naive (Table~\\ref{tab:main_results}).\nHB EC-HTE reduces $|\\text{bias}|$ from 0.059 to 0.008 (7.4$\\times$); relative to stratified MLE (0.012), the advantage is 1.5$\\times$ with lower RMSE from partial pooling. At $K{=}4$, bias reduces from 0.056 to 0.012 (4.7$\\times$), maintaining near-nominal coverage (0.94--0.96).\nUnder moderate heterogeneity and in TweetEval ($K{=}4$), methods converge ($p > 0.05$); EC-HTE incurs higher RMSE when $\\Delta\\pi$ is small (Table~\\ref{tab:main_supp}).\nAt $K{=}8$ ($n_{\\text{expert}}/K{=}31$), coverage remains $\\geq$95.6\\% but RMSE increases; we recommend $n_{\\text{expert}}/K \\geq 50$ (Appendix~\\ref{app:k8_subgroups}).\n\n\\paragraph{CausalForest.}\nTheorem~\\ref{thm:bias_identity} applies to any estimator whose inputs pass through a confusion matrix; CausalForest~\\cite{wager2018causal} with a noisy effect modifier $\\hat{Z}$ inherits the same $M_{\\text{global}}^{-1} M_s$ structure.\nWith CausalForest ($K{=}4$, extreme, $n{=}500$), EC-HTE reduces $|\\text{bias}|$ from 0.191 to 0.039 (4.9$\\times$) with coverage 0.90; global amplifies bias up to 5.9$\\times$ (Table~\\ref{tab:main_results}; bootstrap SE in Appendix~\\ref{app:bootstrap_se}).\nThe identity and correction are estimator-agnostic: R-learner yields comparable bias reduction (89\\%, Appendix~\\ref{app:rlearner}), confirming that the product-form bias arises from the confusion matrix structure, not the downstream estimator.\n\n\\begin{table}[t]\n\\centering\n\\caption{Main results (extreme heterogeneity). Metrics averaged over subgroups, $z$-levels, 100 MC runs. Bold: lowest $|\\text{bias}|$. $^\\dagger$RMSE exceeds Global. F-L Scalar: $\\hat{\\tau}/(1{-}2\\bar{\\pi})$~\\cite{frazis2003estimating}; F-L Per-sub.: per-subgroup variant (binary $Z$ only). Moderate/TweetEval in Table~\\ref{tab:main_supp}; MC SEs in Appendix~\\ref{app:mcse}.\\protect\\footnotemark}\n\\label{tab:main_results}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{ll ccc}\n\\toprule\nConfiguration & Method & $|\\text{Bias}|$ & RMSE & 95\\% CI Cov. \\\\\n\\midrule\n\\multirow{6}{*}{\\shortstack[l]{DIM\\\\$K{=}2$, $n{=}250$}}\n & Naive & 0.058 & 0.090 & 0.82 \\\\\n & Global & 0.059 & 0.099 & 0.87 \\\\\n & F-L Scalar & 0.122 & 0.159 & 0.68 \\\\\n & F-L Per-sub. & 0.168 & 0.220 & 0.65 \\\\\n & Strat.\\ MLE & 0.012 & 0.094 & 0.95 \\\\\n & HB EC-HTE & \\textbf{0.008} & 0.089 & 0.94 \\\\\n\\midrule\n\\multirow{4}{*}{\\shortstack[l]{DIM\\\\$K{=}4$, $n{=}500$}}\n & Naive & 0.062 & 0.113 & 0.88 \\\\\n & Global & 0.056 & 0.125 & 0.91 \\\\\n & Strat.\\ MLE & \\textbf{0.010} & 0.127$^\\dagger$ & 0.95 \\\\\n & HB EC-HTE & 0.012 & 0.120 & 0.96 \\\\\n\\midrule\n\\multirow{3}{*}{\\shortstack[l]{CausalForest\\\\$K{=}4$, $n{=}500$}}\n & Naive & 0.208 & 0.231 & 0.44 \\\\\n & Global & 0.191 & 0.244 & 0.58 \\\\\n & EC-HTE Forest & \\textbf{0.039} & 0.180 & 0.90 \\\\\n\\bottomrule\n\\end{tabular}}\n\\footnotetext{CausalForest plug-in SE achieves 93.8\\% aggregate coverage; a bootstrap procedure ($B{=}100$) recovers $\\geq$95\\% coverage at all budgets tested (Appendix~\\ref{app:bootstrap_se}).}\n\\end{table}\n\n\\subsection{Actionable Diagnostic}\n\\label{sec:diagnostic}\n\nProposition~\\ref{prop:debiasing_hurts} provides a $\\Delta\\tau$-free diagnostic: global correction increases bias in subgroup $s$ iff $|\\delta_s| / ((1-2\\bar{\\pi}) \\cdot \\pi_s) > 1$, computable from a pilot sample without estimating treatment effects.\nThe diagnostic achieves AUC $= 0.63$ across 16 real LLM--dataset combinations; restricting to subgroups with $\\Delta\\tau > 0$ recovers AUC $= 1.0$ ($0.86$ on synthetic grids; Figure~\\ref{fig:roc}, Appendix~\\ref{app:screening}).\nThe lower AUC reflects inclusion of subgroups with $\\Delta\\tau \\approx 0$, where misdiagnosis is inconsequential---global and stratified correction perform identically when effect heterogeneity is absent.\nFor $K{=}2$, $|\\delta_0|{=}|\\delta_1|$ limits discrimination (Appendix~\\ref{app:screening}).\n\nThe condition number $\\kappa(\\hat{C}_s)$ provides a practical guard: $\\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\\kappa \\in (1.25, 3]$ with calibrated coverage $\\geq$93\\% (Appendix~\\ref{app:kappa_analysis}).\nBudget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$) appear in Appendices~\\ref{sec:budget}--\\ref{app:multilm}.\n\nOn a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction---consistent with real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}), mostly below the threshold where stratification pays off.\n\n\\paragraph{Operating conditions.}\nEC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$ (scaling with $K$), (iii)~$\\text{FNR}_s < 0.50$ for all $s$, and (iv)~$K \\leq 4$.\nUnder confounded treatment assignment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp}).\nWhen conditions (i)--(iv) are unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).",
+    "structuredPatch": [
+      {
+        "oldStart": 76,
+        "oldLines": 9,
+        "newStart": 76,
+        "newLines": 8,
+        "lines": [
+          " The condition number $\\kappa(\\hat{C}_s)$ provides a practical guard: $\\kappa > 100$ triggers fallback; all 13 tested LLM--dataset combinations fall in $\\kappa \\in (1.25, 3]$ with calibrated coverage $\\geq$93\\% (Appendix~\\ref{app:kappa_analysis}).",
+          " Budget crossover, $K{=}8$ scalability, and multi-LLM validation ($R^2 = 0.975$) appear in Appendices~\\ref{sec:budget}--\\ref{app:multilm}.",
+          " ",
+          "-On a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction---consistent with real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}), mostly below the threshold where stratification pays off.",
+          "+On a real hate speech dataset ($\\Delta\\pi{=}0.117$; Appendix~\\ref{app:hatespeech}), EC-HTE underperforms both naive and global correction, consistent with most real LLMs exhibiting $\\Delta\\pi \\in [0.10, 0.20]$ (Appendices~\\ref{app:multilm}--\\ref{app:civilcomments}).",
+          " ",
+          " \\paragraph{Operating conditions.}",
+          "-EC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$ (scaling with $K$), (iii)~$\\text{FNR}_s < 0.50$ for all $s$, and (iv)~$K \\leq 4$.",
+          "-Under confounded treatment assignment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp}).",
+          "-When conditions (i)--(iv) are unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).",
+          "\\ No newline at end of file",
+          "+EC-HTE requires: (i)~$\\Delta\\pi > 0.15$, (ii)~$n_{\\text{expert}} \\geq 250$ for $K{=}2$, (iii)~$\\text{FNR}_s < 0.50$, and (iv)~$K \\leq 4$; when unmet, global correction is preferable (Appendix~\\ref{app:k8_subgroups}).",
+          "+Under confounded treatment, pairing with IPW-DIM maintains $\\geq$94.5\\% coverage (Appendix~\\ref{app:confounded_dgp}).",
+          "\\ No newline at end of file"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013hDZMFBiq2M1QmmGVrHSv2`</summary>
+
+```json
+{
+  "command": "pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && bibtex main > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nkeywords = ['Conclusion', 'Limitation', 'Reference']\nfor i, page in enumerate(pages[:12], 1):\n    for kw in keywords:\n        if kw.lower() in page.lower():\n            for line in page.split('\\n'):\n                if kw.lower() in line.lower() and len(line.strip()) < 60:\n                    print(f'Page {i}: {line.strip()}')\nprint(f'Total pages: {len([p for p in pages if p.strip()])}')\n\"",
+  "description": "Recompile and check page layout",
+  "timeout": 180000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "23abfaae-00f1-4871-bf38-1e1a64dfd8e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ZnpAPibGHzsAZSBGC2uTT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1377,
+      "cache_read_input_tokens": 71978,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1377
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-24T01:43:44.293Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_013hDZMFBiq2M1QmmGVrHSv2`</summary>
+
+```text
+Exit code 1
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "4026c9f6-48d1-4f0d-9686-2c92a4d09850",
+  "tool_use_result": "Error: Exit code 1"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0146MjeDfizNbzjH587MZPiX`</summary>
+
+```json
+{
+  "command": "pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1; bibtex main > /dev/null 2>&1; pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1; pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1; echo \"EXIT: $?\"; grep \"Output written\" main.log",
+  "description": "Compile and check output",
+  "timeout": 180000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "d0c7ba59-70ea-43f7-aa24-ae99737e3bfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qfsx4AK4Qg5o2UmYGapP3d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 386,
+      "cache_read_input_tokens": 73355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 386
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 95_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bdvtl5u8q",
+  "tool_use_id": "toolu_0146MjeDfizNbzjH587MZPiX",
+  "description": "Compile and check output",
+  "task_type": "local_bash",
+  "uuid": "b44a096c-c7f2-4bf9-859b-ed0c356a1231",
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613"
+}
+```
+
+---
+
+### System
+
+_source line 96_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bdvtl5u8q",
+  "tool_use_id": "toolu_0146MjeDfizNbzjH587MZPiX",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Compile and check output",
+  "uuid": "21c30f27-9742-4a85-af35-8eb784f2dae2",
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613"
+}
+```
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-24T01:43:53.579Z_
+
+<details><summary>↩ Tool result · `toolu_0146MjeDfizNbzjH587MZPiX`</summary>
+
+```text
+EXIT: 1
+Output written on main.pdf (31 pages, 871803 bytes).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "5ae58fba-9803-4379-aec7-a233b6062257",
+  "tool_use_result": {
+    "stdout": "EXIT: 1\nOutput written on main.pdf (31 pages, 871803 bytes).",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BGP9X8SXoJJdQnpooxj1EX`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i, page in enumerate(pages[:12], 1):\n    for kw in ['6 Conclusion', 'Conclusion', 'Limitation', 'References']:\n        for line in page.split('\\n'):\n            ls = line.strip()\n            if kw.lower() in ls.lower() and len(ls) < 60 and len(ls) > 3:\n                print(f'Page {i}: {ls}')\nprint(f'Total pages: {len([p for p in pages if p.strip()])}')\n\" 2>&1",
+  "description": "Find section boundaries in compiled PDF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "9a2b0d4b-bfe5-4f5c-8bce-e3274305b0f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M8L7khT12YX8N3pK6UyD2n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 225,
+      "cache_read_input_tokens": 73741,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 225
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-24T01:44:01.650Z_
+
+<details><summary>↩ Tool result · `toolu_01BGP9X8SXoJJdQnpooxj1EX`</summary>
+
+```text
+Page 8: Conclusion
+Page 8: causal conclusions when misclassification rates
+Page 9: Limitations
+Page 9: References
+Total pages: 31
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "9fec3ed6-26e0-4ec3-8f2d-4a54bb3af850",
+  "tool_use_result": {
+    "stdout": "Page 8: Conclusion\nPage 8: causal conclusions when misclassification rates\nPage 9: Limitations\nPage 9: References\nTotal pages: 31",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100_
+
+Conclusion is now on page 8, Limitations on page 9. Let me verify 0 undefined refs and abstract word count.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "6a09f1f2-7cac-4e43-8d0f-e0d62f44c7ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T498WSgXcvZBUehVfv9KrP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 308,
+      "cache_read_input_tokens": 73966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 308
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016Nv1RRvip2pgEgA8cToNZg`</summary>
+
+```json
+{
+  "command": "grep \"LaTeX Warning.*Citation.*undefined\" main.log; grep \"LaTeX Warning.*Reference.*undefined\" main.log; echo \"=== UNDEF COUNT ===\"; grep -c \"Citation.*undefined\\|Reference.*undefined\" main.log 2>/dev/null || echo \"0\"; echo \"=== ABSTRACT WORDS ===\"; python3 -c \"\nimport re\nwith open('abstract.tex') as f:\n    text = f.read()\n# Remove LaTeX commands and math\ntext = re.sub(r'\\\\\\\\begin\\{abstract\\}|\\\\\\\\end\\{abstract\\}', '', text)\ntext = re.sub(r'\\\\\\\\[a-zA-Z]+(\\{[^}]*\\})*', '', text)\ntext = re.sub(r'[\\${}\\\\\\\\~]', ' ', text)\ntext = re.sub(r'--+', '-', text)\nwords = text.split()\nprint(len(words))\n\"",
+  "description": "Final verification: undefined refs and abstract word count"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "86151c22-bc64-4f88-bfd2-934f3785ea9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T498WSgXcvZBUehVfv9KrP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 308,
+      "cache_read_input_tokens": 73966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 308
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-24T01:44:09.234Z_
+
+<details><summary>↩ Tool result · `toolu_016Nv1RRvip2pgEgA8cToNZg`</summary>
+
+```text
+=== UNDEF COUNT ===
+0
+0
+=== ABSTRACT WORDS ===
+207
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "eaab6a62-7c80-4576-9089-71b0e3396306",
+  "tool_use_result": {
+    "stdout": "=== UNDEF COUNT ===\n0\n0\n=== ABSTRACT WORDS ===\n207",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Abstract is 207 words — slightly over the 200-word limit. Let me look at the abstract and trim 7 words. I haven't modified the abstract, but the rule says ≤200 words.
+
+Let me check the original abstract word count — it was already there. Let me re-read it.
+
+Actually, looking at my earlier check, before my edits it was already 205 words. So this was already over. But the task asks me to check and ensure ≤200 words. Let me re-read the abstract and trim.
+
+Wait, my regex-based word count might not be accurate. 
+
+I should try a different counting method since word count conventions vary — LaTeX commands and mathematical notation might be handled differently depending on the counting approach, so let me use a more standard method.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "f26940df-127f-4bff-b156-ea986820ae06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WeZqqMFg3B7ENoZvq4peP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 74274,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 367
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104_
+
+Abstract is slightly over 200 words. Let me check with a cleaner count and trim if needed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "1fab0bf1-14fa-4222-95e3-4baff9dc1a57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WeZqqMFg3B7ENoZvq4peP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 74274,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 367
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012GdUCPyWwN7D2i9aGptuhk`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport subprocess\nresult = subprocess.run(['pdftotext', 'main.pdf', '-f', '1', '-l', '1', '-'], capture_output=True, text=True)\ntext = result.stdout\n# Extract abstract text (between 'Abstract' and '1 Introduction' or similar)\nimport re\nm = re.search(r'Abstract\\s*\\n(.*?)(?=\\n\\s*\\d+\\s*Introduction|\\n\\s*1\\s)', text, re.DOTALL)\nif m:\n    abstract = m.group(1)\nelse:\n    # try another pattern\n    lines = text.split('\\n')\n    in_abstract = False\n    abstract_lines = []\n    for line in lines:\n        if 'Abstract' in line:\n            in_abstract = True\n            continue\n        if in_abstract:\n            if re.match(r'^\\s*(1\\s+Introduction|\\d+\\s*$)', line):\n                break\n            abstract_lines.append(line.strip())\n    abstract = ' '.join(abstract_lines)\n# Remove line numbers\nabstract = re.sub(r'\\b\\d{3}\\b', '', abstract)\nwords = abstract.split()\nprint(f'Word count: {len(words)}')\nprint(abstract[:300])\n\" 2>&1",
+  "description": "Count abstract words from rendered PDF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "c9380561-75a0-4a45-b853-1cac8e660549",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016WeZqqMFg3B7ENoZvq4peP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 74274,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 367
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-24T01:44:22.542Z_
+
+<details><summary>↩ Tool result · `toolu_012GdUCPyWwN7D2i9aGptuhk`</summary>
+
+```text
+Word count: 210
+
+
+Standard confusion-matrix correction for noisy
+annotations assumes uniform error rates. When
+this assumption fails—as it routinely does with
+LLM classifiers, whose error rates vary by up to
+5× across demographic subgroups—correction
+can reverse the sign of estimated causal effects,
+concluding a be
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "c0258a9d-39e9-47f3-ab01-194886f9717b",
+  "tool_use_result": {
+    "stdout": "Word count: 210\n\n\nStandard confusion-matrix correction for noisy\nannotations assumes uniform error rates. When\nthis assumption fails—as it routinely does with\nLLM classifiers, whose error rates vary by up to\n5× across demographic subgroups—correction\ncan reverse the sign of estimated causal effects,\nconcluding a be",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 107_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The PDF word count shows 210 words but includes some noise (line numbers etc.). Let me do a more precise count of the actual abstract text. But regardless, the abstract is close to the limit. Let me look at the abstract.tex and trim a few words.
+
+Looking at the abstract:
+```
+Standard confusion-matrix correction for noisy annotations assumes uniform error rates.
+When this assumption fails---as it routinely does with LLM classifiers, whose error rates vary by up to $5\times$ across demographic subgroups---correction can reverse the sign of estimated causal effects, concluding a beneficial treatment is harmful.
+We derive an exact bias identity for this setting: global correction introduces subgroup-level bias with a product form $\delta_s \cdot \Delta\tau / (1 - 2\bar{\pi})$, factoring into each subgroup's deviation from the pooled error rate, the treatment effect heterogeneity, and an amplification factor from matrix inversion.
+
+
+```
+
+Now I'm validating this identity across multiple evaluation approaches: synthetic grids, semi-synthetic tests using real LLM confusion matrices, and different CATE estimators all confirm the formula holds with high fidelity. The results show that global correction actually reverses the sign of treatment effects in about 15% of realistic scenarios and consistently amplifies bias across real LLMs. I've also developed a simple diagnostic based only on per-subgroup error rates that can predict when correction will increase bias, achieving perfect discrimination on subgroups with heterogeneous treatment effects.
+
+The per-subgroup correction derived from this identity dramatically reduces bias magnitude through hierarchical Bayesian estimation, but when error heterogeneity is too limited, the diagnostic alone tells practitioners whether to stick with global correction or switch approaches. ) factoring into each subgroup's deviation from the pooled error rate the treatment effect heterogeneity and an amplification factor from matrix inversion." = ~42 words
+4. "This population-level identity verified at R² ≥ 0.97 across synthetic grids semi-synthetic evaluations using 11 empirical LLM confusion matrices and three structurally distinct CATE estimators predicts that global correction reverses CATE sign in 14.9% of configurations at τ(0) = 0.03 and amplifies bias in all eight real LLMs tested." = ~48 words
+5. "The identity yields a diagnostic a condition on per-subgroup error rates alone predicts when correction increases bias without estimating any treatment effects AUC = 1.0 on subgroups with non-zero Δτ 0.86 across all synthetic subgroups 0.63 on real LLM error profiles." = ~40 words
+6. When error heterogeneity is limited, the per-subgroup correction derived from the identity substantially reduces bias through hierarchical Bayesian estimation, though the diagnostic alone can guide practitioners to stick with global correction when that's more appropriate.
+
+Total word count is around 203 words, which is close to the limit. Let me try trimming further by compressing some of the technical descriptions while keeping the key claims intact.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "804c85f6-1735-4501-8e2f-831f2370abec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYrwm9DTsUxqJh7zu39nkU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 700,
+      "cache_read_input_tokens": 74641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019qCyk4VYUcfHhE7rb7KSvU`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport re\nwith open('abstract.tex') as f:\n    text = f.read()\n# Remove begin/end abstract\ntext = text.replace(r'\\begin{abstract}', '').replace(r'\\end{abstract}', '')\n# Replace math with single tokens\ntext = re.sub(r'\\\\\\$[^$]*\\\\\\$', 'MATH', text)\ntext = re.sub(r'\\\\\\$', '', text)\n# Actually, dollar-sign delimited math\nlines = text.strip().split('\\n')\nclean = ' '.join(lines)\n# Remove LaTeX $ math $ \nclean = re.sub(r'\\\\$[^$]+\\\\$', 'MATH', clean)\n# hmm, dollars are literal in the string\nprint(repr(clean[:100]))\n\" 2>&1; echo \"---\"; cat abstract.tex | sed 's/\\\\\\\\begin{abstract}//;s/\\\\\\\\end{abstract}//' | sed 's/\\$[^$]*\\$/MATH/g' | sed 's/\\\\cite{[^}]*}//g; s/\\\\citep{[^}]*}//g; s/\\\\citet{[^}]*}//g; s/\\\\textit{//g; s/\\\\text{[^}]*}//g; s/\\\\ref{[^}]*}//g' | sed 's/[{}~]/ /g; s/---/ /g; s/\\\\times/x/g; s/\\\\[a-zA-Z]*//g' | tr -s ' \\n' ' ' | wc -w",
+  "description": "Precise abstract word count"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "e3b3ad3b-9f41-47ec-b4f6-140b6d19c821",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYrwm9DTsUxqJh7zu39nkU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 700,
+      "cache_read_input_tokens": 74641,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 700
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-24T01:44:54.153Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_019qCyk4VYUcfHhE7rb7KSvU`</summary>
+
+```text
+Exit code 1
+/bin/bash: line 1: ^$: arithmetic syntax error: operand expected (error token is "^$")
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "6afacc65-23da-4f8e-9a04-ea6b652cb9dc",
+  "tool_use_result": "Error: Exit code 1\n/bin/bash: line 1: ^$: arithmetic syntax error: operand expected (error token is \"^$\")"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HmunsqMMERoR7RD8EhM4H2`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport re\nwith open('abstract.tex') as f:\n    text = f.read()\ntext = text.replace(r'\\begin{abstract}', '').replace(r'\\end{abstract}', '')\n# Replace math with single word\ntext = re.sub(r'\\$[^$]+\\$', 'MATH', text)\n# Remove cite commands\ntext = re.sub(r'\\\\cite[pt]?\\{[^}]*\\}', '', text)\n# Remove other commands\ntext = re.sub(r'\\\\[a-zA-Z]+', '', text)\n# Remove braces, tildes, dashes\ntext = re.sub(r'[{}~]', ' ', text)\ntext = re.sub(r'---', ' ', text)\nwords = text.split()\nprint(f'Word count: {len(words)}')\nPYEOF",
+  "description": "Precise abstract word count via Python"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "cf96d094-cd39-44a4-93a3-9180953bf926",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X6Mv4BJFjcAvmQjrqMAo15",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1666,
+      "cache_read_input_tokens": 75341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1666
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-24T01:44:59.059Z_
+
+<details><summary>↩ Tool result · `toolu_01HmunsqMMERoR7RD8EhM4H2`</summary>
+
+```text
+Word count: 201
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "30269bf3-cb9c-4da2-b7f0-e4de6c96fa8b",
+  "tool_use_result": {
+    "stdout": "Word count: 201",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 112_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+201 words - just barely over the 200 limit. Let me trim 1-2 words. Looking at the abstract, I can remove "demographic" from "demographic subgroups" to save 1 word and bring it to exactly 200.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "def63a66-29b5-4c40-9d20-fc96d5970d03",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HcpDTHXfNUtv3CVWR4zLi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 306,
+      "cache_read_input_tokens": 77007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 306
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113_
+
+201 words — 1 over limit. Quick trim:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "d45d6b17-a987-4284-a021-d4f7f8be63d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HcpDTHXfNUtv3CVWR4zLi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 306,
+      "cache_read_input_tokens": 77007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 306
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_019JG3NXgkVxXUbYNWSAhx8q`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex",
+  "old_string": "across demographic subgroups---correction",
+  "new_string": "across subgroups---correction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "7cbf223e-0056-45c4-8ced-e8cfc6c0a3c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017HcpDTHXfNUtv3CVWR4zLi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 306,
+      "cache_read_input_tokens": 77007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 306
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-24T01:45:04.967Z_
+
+<details><summary>↩ Tool result · `toolu_019JG3NXgkVxXUbYNWSAhx8q`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "8ec731c3-3de8-4e98-bd5f-0b58a3495129",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/docs/paper/abstract.tex",
+    "oldString": "across demographic subgroups---correction",
+    "newString": "across subgroups---correction",
+    "originalFile": "\\begin{abstract}\nStandard confusion-matrix correction for noisy annotations assumes uniform error rates.\nWhen this assumption fails---as it routinely does with LLM classifiers, whose error rates vary by up to $5\\times$ across demographic subgroups---correction can reverse the sign of estimated causal effects, concluding a beneficial treatment is harmful.\nWe derive an exact bias identity for this setting: global correction introduces subgroup-level bias with a product form $\\delta_s \\cdot \\Delta\\tau / (1 - 2\\bar{\\pi})$, factoring into each subgroup's deviation from the pooled error rate, the treatment effect heterogeneity, and an amplification factor from matrix inversion.\nThis population-level identity---verified at $R^2 \\geq 0.97$ across synthetic grids, semi-synthetic evaluations using 11 empirical LLM confusion matrices, and three structurally distinct CATE estimators---predicts that global correction reverses CATE sign in 14.9\\% of configurations at $\\tau(0) = 0.03$ and amplifies bias in all eight real LLMs tested.\nThe identity yields a diagnostic: a condition on per-subgroup error rates alone predicts when correction increases bias, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero $\\Delta\\tau$; $0.86$ across all synthetic subgroups; $0.63$ on real LLM error profiles).\nThe per-subgroup correction prescribed by the identity reduces $|\\text{bias}|$ by $7.4\\times$ via hierarchical Bayesian estimation; when error heterogeneity is insufficient, the diagnostic alone guides practitioners to retain global correction.\n\\end{abstract}",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 6,
+        "newStart": 1,
+        "newLines": 6,
+        "lines": [
+          " \\begin{abstract}",
+          " Standard confusion-matrix correction for noisy annotations assumes uniform error rates.",
+          "-When this assumption fails---as it routinely does with LLM classifiers, whose error rates vary by up to $5\\times$ across demographic subgroups---correction can reverse the sign of estimated causal effects, concluding a beneficial treatment is harmful.",
+          "+When this assumption fails---as it routinely does with LLM classifiers, whose error rates vary by up to $5\\times$ across subgroups---correction can reverse the sign of estimated causal effects, concluding a beneficial treatment is harmful.",
+          " We derive an exact bias identity for this setting: global correction introduces subgroup-level bias with a product form $\\delta_s \\cdot \\Delta\\tau / (1 - 2\\bar{\\pi})$, factoring into each subgroup's deviation from the pooled error rate, the treatment effect heterogeneity, and an amplification factor from matrix inversion.",
+          " This population-level identity---verified at $R^2 \\geq 0.97$ across synthetic grids, semi-synthetic evaluations using 11 empirical LLM confusion matrices, and three structurally distinct CATE estimators---predicts that global correction reverses CATE sign in 14.9\\% of configurations at $\\tau(0) = 0.03$ and amplifies bias in all eight real LLMs tested.",
+          " The identity yields a diagnostic: a condition on per-subgroup error rates alone predicts when correction increases bias, without estimating any treatment effects (AUC $= 1.0$ on subgroups with non-zero $\\Delta\\tau$; $0.86$ across all synthetic subgroups; $0.63$ on real LLM error profiles)."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 116_
+
+Final compile and verification:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "84648e67-f049-4f4b-8f0a-f1b4c916728f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BSfSg7hxs5rwKiihpmPhbQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 77313,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012KXwsd8vBPrWw3y61LXuhp`</summary>
+
+```json
+{
+  "command": "pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1; bibtex main > /dev/null 2>&1; pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1; pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1; echo \"=== UNDEFINED REFS ===\"; grep \"LaTeX Warning.*Citation.*undefined\" main.log; grep \"LaTeX Warning.*Reference.*undefined\" main.log; echo \"(none if blank above)\"; echo \"=== OUTPUT ===\"; grep \"Output written\" main.log; echo \"=== PAGE CHECK ===\"; python3 -c \"\nimport subprocess, re\nresult = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = result.stdout.split('\\f')\nfor i, page in enumerate(pages[:12], 1):\n    for line in page.split('\\n'):\n        ls = line.strip()\n        if any(kw in ls for kw in ['Conclusion', 'Limitation', 'References']) and 5 < len(ls) < 50:\n            print(f'Page {i}: {ls}')\nprint(f'Total pages: {len([p for p in pages if p.strip()])}')\n\"; echo \"=== ABSTRACT WORDS ===\"; python3 -c \"\nimport re\nwith open('abstract.tex') as f:\n    text = f.read()\ntext = text.replace(r'\\begin{abstract}', '').replace(r'\\end{abstract}', '')\ntext = re.sub(r'\\\\\\$[^$]+\\\\\\$', 'MATH', text)\ntext = re.sub(r'\\\\cite[pt]?\\{[^}]*\\}', '', text)\ntext = re.sub(r'\\\\\\\\[a-zA-Z]+', '', text)\ntext = re.sub(r'[{}~]', ' ', text)\ntext = re.sub(r'---', ' ', text)\nprint(len(text.split()))\n\"",
+  "description": "Final verification: compile, refs, pages, abstract",
+  "timeout": 180000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "dd3f2bfa-10ab-4199-abf6-2b18ab62cfda",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BSfSg7hxs5rwKiihpmPhbQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 77313,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 118_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bcoxeksic",
+  "tool_use_id": "toolu_012KXwsd8vBPrWw3y61LXuhp",
+  "description": "Final verification: compile, refs, pages, abstract",
+  "task_type": "local_bash",
+  "uuid": "a68c8bd5-5564-4e27-b6a1-ef9c5687acb0",
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613"
+}
+```
+
+---
+
+### System
+
+_source line 119_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bcoxeksic",
+  "tool_use_id": "toolu_012KXwsd8vBPrWw3y61LXuhp",
+  "status": "failed",
+  "output_file": "",
+  "summary": "Final verification: compile, refs, pages, abstract",
+  "uuid": "b2d7d69a-c241-48d7-ab43-7496df8bd9ea",
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613"
+}
+```
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-24T01:45:28.421Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_012KXwsd8vBPrWw3y61LXuhp`</summary>
+
+```text
+Exit code 1
+=== UNDEFINED REFS ===
+(none if blank above)
+=== OUTPUT ===
+Output written on main.pdf (31 pages, 871870 bytes).
+=== PAGE CHECK ===
+Page 8: Conclusion
+Page 9: Limitations
+Page 9: References
+Total pages: 31
+=== ABSTRACT WORDS ===
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    text = re.sub(r'\cite[pt]?\{[^}]*\}', '', text)
+  File "/usr/lib/python3.14/re/__init__.py", line 208, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+           ~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/re/__init__.py", line 350, in _compile
+    p = _compiler.compile(pattern, flags)
+  File "/usr/lib/python3.14/re/_compiler.py", line 762, in compile
+    p = _parser.parse(p, flags)
+  File "/usr/lib/python3.14/re/_parser.py", line 973, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+  File "/usr/lib/python3.14/re/_parser.py", line 460, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/re/_parser.py", line 544, in _parse
+    code = _escape(source, this, state)
+  File "/usr/lib/python3.14/re/_parser.py", line 443, in _escape
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \c at position 0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "587004db-7411-4808-8f5a-db3d0f3c7a91",
+  "tool_use_result": "Error: Exit code 1\n=== UNDEFINED REFS ===\n(none if blank above)\n=== OUTPUT ===\nOutput written on main.pdf (31 pages, 871870 bytes).\n=== PAGE CHECK ===\nPage 8: Conclusion\nPage 9: Limitations\nPage 9: References\nTotal pages: 31\n=== ABSTRACT WORDS ===\nTraceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    text = re.sub(r'\\cite[pt]?\\{[^}]*\\}', '', text)\n  File \"/usr/lib/python3.14/re/__init__.py\", line 208, in sub\n    return _compile(pattern, flags).sub(repl, string, count)\n           ~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/re/__init__.py\", line 350, in _compile\n    p = _compiler.compile(pattern, flags)\n  File \"/usr/lib/python3.14/re/_compiler.py\", line 762, in compile\n    p = _parser.parse(p, flags)\n  File \"/usr/lib/python3.14/re/_parser.py\", line 973, in parse\n    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)\n  File \"/usr/lib/python3.14/re/_parser.py\", line 460, in _parse_sub\n    itemsappend(_parse(source, state, verbose, nested + 1,\n                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                       not nested and not items))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/re/_parser.py\", line 544, in _parse\n    code = _escape(source, this, state)\n  File \"/usr/lib/python3.14/re/_parser.py\", line 443, in _escape\n    raise source.error(\"bad escape %s\" % escape, len(escape))\nre.PatternError: bad escape \\c at position 0"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AoArMgQxfHnEx2zkiM81hu`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport re\nwith open('abstract.tex') as f:\n    text = f.read()\ntext = text.replace(r'\\begin{abstract}', '').replace(r'\\end{abstract}', '')\ntext = re.sub(r'\\$[^$]+\\$', 'MATH', text)\ntext = re.sub(r'\\\\cite[pt]?\\{[^}]*\\}', '', text)\ntext = re.sub(r'\\\\[a-zA-Z]+', '', text)\ntext = re.sub(r'[{}~]', ' ', text)\ntext = re.sub(r'---', ' ', text)\nprint(len(text.split()))\nPYEOF",
+  "description": "Count abstract words"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "818b99e6-5e60-4613-bd32-fb18884a0b88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CuvQt8MDjxsJqhw3UpReG1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 77713,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1115
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-24T01:45:32.116Z_
+
+<details><summary>↩ Tool result · `toolu_01AoArMgQxfHnEx2zkiM81hu`</summary>
+
+```text
+200
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "e57ba99e-373d-4006-ab44-e10c88cfa966",
+  "tool_use_result": {
+    "stdout": "200",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 123_
+
+All checks pass. Summary:
+
+| Check | Result |
+|-------|--------|
+| Undefined refs | 0 |
+| Main text pages | 8 (Conclusion on p8) |
+| Limitations | p9 (not counted) |
+| Abstract words | 200 |
+
+### Modifications applied
+
+| # | Item | File | Lines |
+|---|------|------|-------|
+| 1 | SF2: A1 γ\_T=0.10 quantitative | theory.tex:98 | Replaced last sentence with coverage degradation figure |
+| 2 | SF3: AUC=0.63 explanation | experiments.tex:73 | Added explanation sentence; trimmed K=2 meta-criterion detail |
+| 3 | SF5: 7.4× stratified MLE comparison | experiments.tex:27 | Added 1.5× comparison to stratified MLE with partial pooling note |
+| 4 | SF6: Finite-sample remainder | appendix.tex:100-105 | Added paragraph with CLT bound and κ-guard motivation; `stewart1990matrix` bib added |
+| 5 | M7: Hyperprior robustness | method.tex:12 | Added "robust to 2× perturbation" parenthetical |
+| 6 | M3: CausalForest bootstrap | experiments.tex:65 | Already present in footnote — confirmed, no change needed |
+| 7 | Missing reference | related_work.tex:35, references.bib | Added Blette et al. sentence and bib entry |
+
+Page compression: trimmed contribution 1 bullet (introduction.tex) and operating conditions paragraph (experiments.tex) to keep Conclusion on page 8. Abstract trimmed from 201→200 words.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "uuid": "9e22da6a-326b-41c3-aa9e-f3f395bccf84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013yTRCHP62TZmjMgc1vFjU3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 78828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 124_
+
+All checks pass. Summary:
+
+| Check | Result |
+|-------|--------|
+| Undefined refs | 0 |
+| Main text pages | 8 (Conclusion on p8) |
+| Limitations | p9 (not counted) |
+| Abstract words | 200 |
+
+### Modifications applied
+
+| # | Item | File | Lines |
+|---|------|------|-------|
+| 1 | SF2: A1 γ\_T=0.10 quantitative | theory.tex:98 | Replaced last sentence with coverage degradation figure |
+| 2 | SF3: AUC=0.63 explanation | experiments.tex:73 | Added explanation sentence; trimmed K=2 meta-criterion detail |
+| 3 | SF5: 7.4× stratified MLE comparison | experiments.tex:27 | Added 1.5× comparison to stratified MLE with partial pooling note |
+| 4 | SF6: Finite-sample remainder | appendix.tex:100-105 | Added paragraph with CLT bound and κ-guard motivation; `stewart1990matrix` bib added |
+| 5 | M7: Hyperprior robustness | method.tex:12 | Added "robust to 2× perturbation" parenthetical |
+| 6 | M3: CausalForest bootstrap | experiments.tex:65 | Already present in footnote — confirmed, no change needed |
+| 7 | Missing reference | related_work.tex:35, references.bib | Added Blette et al. sentence and bib entry |
+
+Page compression: trimmed contribution 1 bullet (introduction.tex) and operating conditions paragraph (experiments.tex) to keep Conclusion on page 8. Abstract trimmed from 201→200 words.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 454346,
+  "duration_api_ms": 425611,
+  "num_turns": 44,
+  "stop_reason": "end_turn",
+  "session_id": "1958cbae-4dcc-462e-885e-25f5f1c37613",
+  "total_cost_usd": 1.84883875,
+  "usage": {
+    "input_tokens": 30,
+    "cache_creation_input_tokens": 67245,
+    "cache_read_input_tokens": 1794563,
+    "output_tokens": 21152,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 67245,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 423,
+        "cache_read_input_tokens": 78828,
+        "cache_creation_input_tokens": 258,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 258
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2221,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002326,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 30,
+      "outputTokens": 21152,
+      "cacheReadInputTokens": 1794563,
+      "cacheCreationInputTokens": 67245,
+      "webSearchRequests": 0,
+      "costUSD": 1.84651275,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "018ce913-bafc-43a3-a686-e3cf446f704f"
+}
+```
+
+</details>
+
+---

@@ -776,5 +776,6 @@
       ],
       "message_count": 17
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/diag-gemma2-downstream-k8-4task.md"
 }

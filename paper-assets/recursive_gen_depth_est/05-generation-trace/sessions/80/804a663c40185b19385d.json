@@ -44,5 +44,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ssh-collect-pythia-topk50-results.md"
 }

@@ -1,0 +1,948 @@
+# code qwen budget sweep
+
+**When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/chats/worker_code_qwen-budget-sweep_20260521T215055.jsonl`
+- **Structured JSON:** [`b437bfa988d9aca935ed.json`](../../sessions/b4/b437bfa988d9aca935ed.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+23 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T21:54:22.670020+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_budget_sweep_k4.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_budget_sweep_k4.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T21:54:22.670463+00:00_
+
+1	#!/usr/bin/env python3
+2	"""
+3	Budget sensitivity sweep for Llama K=4 real confusion matrices.
+4	
+5	Sweeps n_expert in {100, 200, 500, 1000, 2000} with 50 MC seeds each.
+6	Uses MAP-EB instead of Gibbs for speed (250 total runs).
+7	
+8	|Bias| metric: |mean(estimate - truth) across seeds| averaged across cells.
+9	"""
+10	
+11	import time
+12	import warnings
+13	import numpy as np
+14	import pandas as pd
+15	from scipy.optimize import minimize_scalar
+16	from scipy.special import gammaln
+17	
+18	warnings.filterwarnings('ignore')
+19	
+20	# === Config ===
+21	
+22	N = 5000
+23	N_EXPERT_LIST = [100, 200, 500, 1000, 2000]
+24	N_MC = 50
+25	SEED_BASE = 0
+26	
+27	SUBGROUP_LABELS = ['False_medium', 'False_short', 'True_medium', 'True_short']
+28	SUBGROUP_WEIGHTS = np.array([0.386, 0.218, 0.258, 0.138])
+29	
+30	SUBGROUP_CM = {
+31	    'False_medium': {'fpr': 0.235, 'fnr': 0.319},
+32	    'False_short':  {'fpr': 0.310, 'fnr': 0.212},
+33	    'True_medium':  {'fpr': 0.219, 'fnr': 0.258},
+34	    'True_short':   {'fpr': 0.091, 'fnr': 0.190},
+35	}
+36	
+37	P_Z1 = 0.652
+38	P_T1 = 0.5
+39	TAU_Z0 = 0.35
+40	TAU_Z1 = 0.65
+41	
+42	
+43	def get_cm_matrix(fpr, fnr):
+44	    return np.array([[1 - fpr, fpr],
+45	                     [fnr, 1 - fnr]])
+46	
+47	
+48	# === Estimators ===
+49	
+50	def diff_in_means(Y, T, mask):
+51	    t1 = mask & (T == 1)
+52	    t0 = mask & (T == 0)
+53	    n1, n0 = t1.sum(), t0.sum()
+54	    if n1 < 2 or n0 < 2:
+55	        return np.nan, np.nan
+56	    y1, y0 = Y[t1], Y[t0]
+57	    tau_hat = y1.mean() - y0.mean()
+58	    se = np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)
+59	    return tau_hat, se
+60	
+61	
+62	def estimate_confusion_matrix(z_true, z_hat):
+63	    C = np.zeros((2, 2))
+64	    for zt in [0, 1]:
+65	        mask = z_true == zt
+66	        n = mask.sum()
+67	        for zh in [0, 1]:
+68	            C[zt, zh] = ((z_hat[mask] == zh).sum() + 1) / (n + 2) if n > 0 else 0.5
+69	    return C
+70	
+71	
+72	def estimate_cm_per_subgroup(z_true, z_hat, subgroups, labels):
+73	    C = {}
+74	    for s in
+…[truncated 19036 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T21:54:22.670661+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/qwen25_7b_balanced.csv",
+  "limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/qwen25_7b_balanced.csv",
+    "limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T21:54:22.670874+00:00_
+
+1	idx,text,true_label,llm_label,z,has_hashtag,has_mention,text_length_bin
+2	10476,"when you jacked into your house without keys. hell yeah, i'm david blaine jr.",2,2,1,False,False,short
+3	1824,Cigarettes and Valentines,1,1,1,False,False,short
+4	409,@user we'll miss you in Seattle! Especially when you win your NL Cy Young award!,2,2,1,False,True,medium
+5	12149,I'm not going to sack Tony romo but I will sack dak,0,1,0,False,False,short
+6	4506,@user Article reminds us Obama's new policy towards #Cuba follows path #Canada has taken all along #cdnpoli,1,1,1,True,True,medium
+7	4012,@user @user Link to review for #ThisIsUs isn't launching.,1,1,1,True,True,short
+8	3657,@user The same media that hides from the truth about the Clinton Foundation...,0,0,0,False,True,short
+9	2286,Oh. my. God. Bernie is a white supremacist Nazi. The warning signs have been there for years and we never noticed!!…,0,0,0,False,False,medium
+10	12066,"@user such as telling us exactly what we have to do as my points already made with gun control, health care, business, speech, ect.",1,1,1,False,True,medium
+11	1679,The latest one hundred people you should know! Thanks to @user @user @user #chile #isis,1,1,1,True,True,medium
+12	11087,@user @user twenty bags of rusted dicks.,0,0,0,False,True,short
+13	12135,Finally watching Scream Queens episode 5 after what feels like forever!! #ScreamQueens,2,2,1,True,False,medium
+14	8935,@user she'd claimed Thomistic view of ensoulment showed church's oppositon to abortion is recent develpmnt & Benedict wasn't having it,1,1,1,False,True,medium
+15	1424,Preparations Continue For #Tesla's #Model3 Launch #ElectricVehicles #GoGreen #GoElectric #GreenerDriving,1,2,1,True,False,medium
+16	9674,"Manasseh, Amon, Josiah. Pray Kim Jong Un follows Josiah's example-find the book of the Law discarded by ancestors.…",1,1,1,False,False,medium
+17	6912,"Donald, take it easy my friend, but I can't wait to see u start building that thick high wall on the Mexican border to seal ur legacy",1
+…[truncated 1657 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T21:54:22.671092+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('artifacts/c1_multi_llm/qwen25_7b_balanced.csv')\nprint('Shape:', df.shape)\nprint('Columns:', list(df.columns))\nprint('true_label values:', sorted(df['true_label'].unique()))\nprint('llm_label values:', sorted(df['llm_label'].unique()))\nprint('text_length_bin values:', df['text_length_bin'].value_counts().to_dict())\nprint('has_hashtag values:', df['has_hashtag'].value_counts().to_dict())\nprint()\n\n# Binarize\ndf['Z'] = (df['true_label'] >= 1).astype(int)\ndf['Z_hat'] = (df['llm_label'] >= 1).astype(int)\nprint('P(Z=1):', df['Z'].mean())\nprint()\n\n# K=4 subgroups (exclude long)\ndf_k4 = df[df['text_length_bin'].isin(['short','medium'])].copy()\ndf_k4['subgroup'] = df_k4['has_hashtag'].astype(str) + '_' + df_k4['text_length_bin']\nprint('K=4 subgroup counts:')\nprint(df_k4['subgroup'].value_counts().sort_index())\nprint('K=4 total:', len(df_k4))\nprint()\n\n# Per-subgroup CM for K=4\nfor sg in sorted(df_k4['subgroup'].unique()):\n    sub = df_k4[df_k4['subgroup'] == sg]\n    z = sub['Z'].values\n    zh = sub['Z_hat'].values\n    n0 = (z==0).sum()\n    n1 = (z==1).sum()\n    fpr = ((z==0) & (zh==1)).sum() / n0 if n0 > 0 else 0\n    fnr = ((z==1) & (zh==0)).sum() / n1 if n1 > 0 else 0\n    pi_s = len(sub) / len(df_k4)\n    print(f'{sg}: n={len(sub)}, n0={n0}, n1={n1}, FPR={fpr:.4f}, FNR={fnr:.4f}, pi_s={pi_s:.4f}')\n\nprint()\n# K=2 subgroups\ndf_k2 = df[df['text_length_bin'].isin(['short','medium'])].copy()\ndf_k2['subgroup'] = df_k2['has_hashtag'].astype(str)\nprint('K=2 subgroup counts:')\nprint(df_k2['subgroup'].value_counts().sort_index())\nfor sg in sorted(df_k2['subgroup'].unique()):\n    sub = df_k2[df_k2['subgroup'] == sg]\n    z = sub['Z'].values\n    zh = sub['Z_hat'].values\n    n0 = (z==0).sum()\n    n1 = (z==1).sum()\n    fpr = ((z==0) & (zh==1)).sum() / n0 if n0 > 0 else 0\n    fnr = ((z==1) & (zh==0)).sum() / n1 if n1 > 0 else 0\n    pi_s = len(sub) / len(df_k2)\n    print(f'{sg}: n={len(sub)}, n0={n0}, n1={n1}, FPR={fpr:.4f}, FNR={fnr:.4f}, pi_s={pi_s:.4f}')\n\"\n",
+  "description": "Compute Qwen CM profiles for K=4 and K=2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('artifacts/c1_multi_llm/qwen25_7b_balanced.csv')\nprint('Shape:', df.shape)\nprint('Columns:', list(df.columns))\nprint('true_label values:', sorted(df['true_label'].unique()))\nprint('llm_label values:', sorted(df['llm_label'].unique()))\nprint('text_length_bin values:', df['text_length_bin'].value_counts().to_dict())\nprint('has_hashtag values:', df['has_hashtag'].value_counts().to_dict())\nprint()\n\n# Binarize\ndf['Z'] = (df['true_label'] >= 1).astype(int)\ndf['Z_hat'] = (df['llm_label'] >= 1).astype(int)\nprint('P(Z=1):', df['Z'].mean())\nprint()\n\n# K=4 subgroups (exclude long)\ndf_k4 = df[df['text_length_bin'].isin(['short','medium'])].copy()\ndf_k4['subgroup'] = df_k4['has_hashtag'].astype(str) + '_' + df_k4['text_length_bin']\nprint('K=4 subgroup counts:')\nprint(df_k4['subgroup'].value_counts().sort_index())\nprint('K=4 total:', len(df_k4))\nprint()\n\n# Per-subgroup CM for K=4\nfor sg in sorted(df_k4['subgroup'].unique()):\n    sub = df_k4[df_k4['subgroup'] == sg]\n    z = sub['Z'].values\n    zh = sub['Z_hat'].values\n    n0 = (z==0).sum()\n    n1 = (z==1).sum()\n    fpr = ((z==0) & (zh==1)).sum() / n0 if n0 > 0 else 0\n    fnr = ((z==1) & (zh==0)).sum() / n1 if n1 > 0 else 0\n    pi_s = len(sub) / len(df_k4)\n    print(f'{sg}: n={len(sub)}, n0={n0}, n1={n1}, FPR={fpr:.4f}, FNR={fnr:.4f}, pi_s={pi_s:.4f}')\n\nprint()\n# K=2 subgroups\ndf_k2 = df[df['text_length_bin'].isin(['short','medium'])].copy()\ndf_k2['subgroup'] = df_k2['has_hashtag'].astype(str)\nprint('K=2 subgroup counts:')\nprint(df_k2['subgroup'].value_counts().sort_index())\nfor sg in sorted(df_k2['subgroup'].unique()):\n    sub = df_k2[df_k2['subgroup'] == sg]\n    z = sub['Z'].values\n    zh = sub['Z_hat'].values\n    n0 = (z==0).sum()\n    n1 = (z==1).sum()\n    fpr = ((z==0) & (zh==1)).sum() / n0 if n0 > 0 else 0\n    fnr = ((z==1) & (zh==0)).sum() / n1 if n1 > 0 else 0\n    pi_s = len(sub) / len(df_k2)\n    print(f'{sg}: n={len(sub)}, n0={n0}, n1={n1}, FPR={fpr:.4f}, FNR={fnr:.4f}, pi_s={pi_s:.4f}')\n\"\n",
+    "description": "Compute Qwen CM profiles for K=4 and K=2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T21:54:22.671246+00:00_
+
+Shape: (500, 8)
+Columns: ['idx', 'text', 'true_label', 'llm_label', 'z', 'has_hashtag', 'has_mention', 'text_length_bin']
+true_label values: [np.int64(0), np.int64(1), np.int64(2)]
+llm_label values: [np.int64(0), np.int64(1), np.int64(2)]
+text_length_bin values: {'medium': 312, 'short': 178, 'long': 10}
+has_hashtag values: {False: 302, True: 198}
+
+P(Z=1): 0.652
+
+K=4 subgroup counts:
+subgroup
+False_medium    187
+False_short     109
+True_medium     125
+True_short       69
+Name: count, dtype: int64
+K=4 total: 490
+
+False_medium: n=187, n0=100, n1=87, FPR=0.1800, FNR=0.2874, pi_s=0.3816
+False_short: n=109, n0=29, n1=80, FPR=0.2414, FNR=0.1750, pi_s=0.2224
+True_medium: n=125, n0=30, n1=95, FPR=0.2333, FNR=0.2105, pi_s=0.2551
+True_short: n=69, n0=11, n1=58, FPR=0.0000, FNR=0.1379, pi_s=0.1408
+
+K=2 subgroup counts:
+subgroup
+False    296
+True     194
+Name: count, dtype: int64
+False: n=296, n0=129, n1=167, FPR=0.1938, FNR=0.2335, pi_s=0.6041
+True: n=194, n0=41, n1=153, FPR=0.1707, FNR=0.1830, pi_s=0.3959
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T21:54:22.671508+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"\nQwen2.5-7B full pipeline: CM profile + budget sweep for K=4 and K=2.\n\"\"\"\n\nimport time\nimport warnings\nimport numpy as np\nimport pandas as pd\nfrom scipy.optimize import minimize_scalar\nfrom scipy.special import gammaln\n\nwarnings.filterwarnings('ignore')\n\n# === Config ===\n\nN = 5000\nN_EXPERT_LIST = [100, 200, 500, 1000, 2000]\nN_MC = 50\nSEED_BASE = 0\n\nP_Z1 = 0.652\nP_T1 = 0.5\nTAU_Z0 = 0.35\nTAU_Z1 = 0.65\n\n# K=4: has_hashtag x text_length_bin (short/medium only)\nK4_LABELS = ['False_medium', 'False_short', 'True_medium', 'True_short']\nK4_WEIGHTS = np.array([0.3816, 0.2224, 0.2551, 0.1408])\nK4_CM = {\n    'False_medium': {'fpr': 0.1800, 'fnr': 0.2874},\n    'False_short':  {'fpr': 0.2414, 'fnr': 0.1750},\n    'True_medium':  {'fpr': 0.2333, 'fnr': 0.2105},\n    'True_short':   {'fpr': 0.0000, 'fnr': 0.1379},\n}\n\n# K=2: has_hashtag only\nK2_LABELS = ['False', 'True']\nK2_WEIGHTS = np.array([0.6041, 0.3959])\nK2_CM = {\n    'False': {'fpr': 0.1938, 'fnr': 0.2335},\n    'True':  {'fpr': 0.1707, 'fnr': 0.1830},\n}\n\n\ndef get_cm_matrix(fpr, fnr):\n    return np.array([[1 - fpr, fpr],\n                     [fnr, 1 - fnr]])\n\n\n# === Estimators ===\n\ndef diff_in_means(Y, T, mask):\n    t1 = mask & (T == 1)\n    t0 = mask & (T == 0)\n    n1, n0 = t1.sum(), t0.sum()\n    if n1 < 2 or n0 < 2:\n        return np.nan, np.nan\n    y1, y0 = Y[t1], Y[t0]\n    tau_hat = y1.mean() - y0.mean()\n    se = np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)\n    return tau_hat, se\n\n\ndef estimate_confusion_matrix(z_true, z_hat):\n    C = np.zeros((2, 2))\n    for zt in [0, 1]:\n        mask = z_true == zt\n        n = mask.sum()\n        for zh in [0, 1]:\n            C[zt, zh] = ((z_hat[mask] == zh).sum() + 1) / (n + 2) if n > 0 else 0.5\n    return C\n\n\ndef estimate_cm_per_subgroup(z_true, z_hat, subgroups, labels):\n    C = {}\n    for s in labels:\n        ms = subgroups == s\n        C_s = np.zeros((2, 2))\n        for zt in [0, 1]:\n            mask = ms & (z_true == zt)\n            n = mask.sum()\n            for zh in [0, 1]:\n                C_s[zt, zh] = ((z_hat[mask] == zh).sum() + 1) / (n + 2) if n > 0 else 0.5\n        C[s] = C_s\n    return C\n\n\ndef build_mixing_matrix(C, p_z, p_z_hat):\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        for z in [0, 1]:\n            M[zh, z] = C[z, zh] * p_z[z] / p_z_hat[zh] if p_z_hat[zh] > 0 else 0.5\n    return M\n\n\ndef invert_mixing_safe(M, tau_obs, se_obs, cond_threshold=100):\n    cond = np.linalg.cond(M)\n    if cond > cond_threshold:\n        return tau_obs.copy(), se_obs.copy()\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\n# === MAP-EB ===\n\ndef _dirmult_neg_ll(alpha, counts_z):\n    a = alpha / 2.0\n    if a < 1e-10:\n        return 1e10\n    ll = 0.0\n    for c0, c1 in counts_z:\n        n = c0 + c1\n        if n == 0:\n            continue\n        ll += gammaln(c0 + a) + gammaln(c1 + a) - gammaln(n + 2 * a)\n        ll -= 2 * gammaln(a) - gammaln(2 * a)\n    return -ll\n\n\ndef estimate_cm_hb_map_eb(counts, labels, hp_shape=3.0, hp_scale=1.0):\n    hp_rate = 1.0 / hp_scale\n    k = len(labels)\n    alpha_opt = np.zeros(2)\n\n    for z in [0, 1]:\n        cl = [(int(counts[i, z, 0]), int(counts[i, z, 1])) for i in range(k)]\n        total = sum(c0 + c1 for c0, c1 in cl)\n        if total == 0:\n            alpha_opt[z] = hp_shape * hp_scale\n            continue\n\n        def neg_log_post(a, _cl=cl, _shape=hp_shape, _rate=hp_rate):\n            nll = _dirmult_neg_ll(a, _cl)\n            if a < 1e-10:\n                return 1e10\n            log_prior = (_shape - 1.0) * np.log(a) - _rate * a\n            return nll - log_prior\n\n        res = minimize_scalar(neg_log_post, bounds=(0.01, 500), method='bounded')\n        alpha_opt[z] = res.x\n\n    C = {}\n    for i, s in enumerate(labels):\n        C_s = np.zeros((2, 2))\n        for z in [0, 1]:\n            a = alpha_opt[z] / 2.0\n            n_sz = counts[i, z, :].sum()\n            d = n_sz + 2 * a\n            C_s[z, 0] = (counts[i, z, 0] + a) / d if d > 0 else 0.5\n            C_s[z, 1] = (counts[i, z, 1] + a) / d if d > 0 else 0.5\n        C[s] = C_s\n\n    return C, alpha_opt\n\n\ndef get_counts(z_true, z_hat, subgroups, labels):\n    k = len(labels)\n    counts = np.zeros((k, 2, 2), dtype=int)\n    for i, s in enumerate(labels):\n        ms = subgroups == s\n        for z in [0, 1]:\n            mz = ms & (z_true == z)\n            counts[i, z, 0] = (z_hat[mz] == 0).sum()\n            counts[i, z, 1] = (z_hat[mz] == 1).sum()\n    return counts\n\n\n# === DGP (generic for K=4 or K=2) ===\n\ndef generate_data(seed, n_expert, sg_labels, sg_weights, sg_cm):\n    rng = np.random.RandomState(seed)\n    k = len(sg_labels)\n\n    S_idx = rng.choice(k, size=N, p=sg_weights)\n    S = np.array([sg_labels[i] for i in S_idx])\n\n    Z = rng.binomial(1, P_Z1, N)\n    T = rng.binomial(1, P_T1, N)\n\n    Z_hat = np.empty(N, dtype=int)\n    for i in range(k):\n        s_mask = S_idx == i\n        cm = get_cm_matrix(sg_cm[sg_labels[i]]['fpr'],\n                           sg_cm[sg_labels[i]]['fnr'])\n        z_s = Z[s_mask]\n        p_obs1 = np.where(z_s == 0, cm[0, 1], cm[1, 1])\n        Z_hat[s_mask] = rng.binomial(1, p_obs1)\n\n    tau_vals = np.where(Z == 1, TAU_Z1, TAU_Z0)\n    eps = rng.randn(N)\n    Y = 1.0 + tau_vals * T + eps\n\n    expert_idx = rng.choice(N, n_expert, replace=False)\n    expert_mask = np.zeros(N, dtype=bool)\n    expert_mask[expert_idx] = True\n\n    return {\n        'T': T, 'Z': Z, 'Z_hat': Z_hat, 'S': S, 'S_idx': S_idx,\n        'Y': Y, 'tau': tau_vals, 'expert_mask': expert_mask,\n    }\n\n\n# === MC Runner ===\n\ndef run_one_mc(data, seed, sg_labels):\n    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n    expert_mask = data['expert_mask']\n\n    z_exp = Z[expert_mask]\n    zh_exp = Z_hat[expert_mask]\n    s_exp = S[expert_mask]\n\n    C_global = estimate_confusion_matrix(z_exp, zh_exp)\n    p_z_global = np.array([(z_exp == 0).mean(), (z_exp == 1).mean()])\n    p_zh_global = np.array([(Z_hat == 0).mean(), (Z_hat == 1).mean()])\n    M_global = build_mixing_matrix(C_global, p_z_global, p_zh_global)\n\n    C_mle = estimate_cm_per_subgroup(z_exp, zh_exp, s_exp, sg_labels)\n\n    counts = get_counts(z_exp, zh_exp, s_exp, sg_labels)\n    C_hb, _ = estimate_cm_hb_map_eb(counts, sg_labels)\n\n    M_mle_sub = {}\n    M_hb_sub = {}\n    for s_val in sg_labels:\n        sm_exp = (s_exp == s_val)\n        sm_all = (S == s_val)\n        if sm_exp.sum() >= 4:\n            p_z_s = np.array([(z_exp[sm_exp] == 0).mean(), (z_exp[sm_exp] == 1).mean()])\n        else:\n            p_z_s = p_z_global\n        p_zh_s = np.array([(Z_hat[sm_all] == 0).mean(), (Z_hat[sm_all] == 1).mean()])\n        M_mle_sub[s_val] = build_mixing_matrix(C_mle[s_val], p_z_s, p_zh_s)\n        M_hb_sub[s_val] = build_mixing_matrix(C_hb[s_val], p_z_s, p_zh_s)\n\n    rows = []\n\n    for s_val in sg_labels:\n        s_mask = S == s_val\n\n        for z_level in [0, 1]:\n            oracle_cate = TAU_Z1 if z_level == 1 else TAU_Z0\n\n            # Naive\n            th_nv, se_nv = diff_in_means(Y, T, s_mask & (Z_hat == z_level))\n            ci_lo_nv = th_nv - 1.96 * se_nv if not np.isnan(se_nv) else np.nan\n            ci_hi_nv = th_nv + 1.96 * se_nv if not np.isnan(se_nv) else np.nan\n            cov_nv = 1 if (not np.isnan(ci_lo_nv) and ci_lo_nv <= oracle_cate <= ci_hi_nv) else 0\n            ci_w_nv = (ci_hi_nv - ci_lo_nv) if not np.isnan(ci_lo_nv) else np.nan\n            rows.append({\n                'seed': seed, 'method': 'naive', 'subgroup': s_val,\n                'z_level': z_level,\n                'bias': th_nv - oracle_cate if not np.isnan(th_nv) else np.nan,\n                'cate_est': th_nv, 'cate_true': oracle_cate,\n                'coverage': cov_nv, 'ci_width': ci_w_nv,\n            })\n\n            # Observed CATE in Z_hat=0 and Z_hat=1 cells\n            tau_obs = np.array([\n                diff_in_means(Y, T, s_mask & (Z_hat == 0))[0],\n                diff_in_means(Y, T, s_mask & (Z_hat == 1))[0],\n            ])\n            se_obs = np.array([\n                diff_in_means(Y, T, s_mask & (Z_hat == 0))[1],\n                diff_in_means(Y, T, s_mask & (Z_hat == 1))[1],\n            ])\n\n            if not np.any(np.isnan(tau_obs)):\n                tau_gc, se_gc = invert_mixing_safe(M_global, tau_obs, se_obs)\n                th_gc, se_gc_z = tau_gc[z_level], se_gc[z_level]\n\n                tau_ml, se_ml = invert_mixing_safe(M_mle_sub[s_val], tau_obs, se_obs)\n                th_ml, se_ml_z = tau_ml[z_level], se_ml[z_level]\n\n                tau_hb, se_hb = invert_mixing_safe(M_hb_sub[s_val], tau_obs, se_obs)\n                th_hb, se_hb_z = tau_hb[z_level], se_hb[z_level]\n            else:\n                th_gc = se_gc_z = th_ml = se_ml_z = th_hb = se_hb_z = np.nan\n\n            # Global corrected\n            ci_lo_gc = th_gc - 1.96 * se_gc_z if not np.isnan(se_gc_z) else np.nan\n            ci_hi_gc = th_gc + 1.96 * se_gc_z if not np.isnan(se_gc_z) else np.nan\n            cov_gc = 1 if (not np.isnan(ci_lo_gc) and ci_lo_gc <= oracle_cate <= ci_hi_gc) else 0\n            ci_w_gc = (ci_hi_gc - ci_lo_gc) if not np.isnan(ci_lo_gc) else np.nan\n            rows.append({\n                'seed': seed, 'method': 'global_corrected', 'subgroup': s_val,\n                'z_level': z_level,\n                'bias': th_gc - oracle_cate if not np.isnan(th_gc) else np.nan,\n                'cate_est': th_gc, 'cate_true': oracle_cate,\n                'coverage': cov_gc, 'ci_width': ci_w_gc,\n            })\n\n            # Stratified MLE\n            ci_lo_ml = th_ml - 1.96 * se_ml_z if not np.isnan(se_ml_z) else np.nan\n            ci_hi_ml = th_ml + 1.96 * se_ml_z if not np.isnan(se_ml_z) else np.nan\n            cov_ml = 1 if (not np.isnan(ci_lo_ml) and ci_lo_ml <= oracle_cate <= ci_hi_ml) else 0\n            ci_w_ml = (ci_hi_ml - ci_lo_ml) if not np.isnan(ci_lo_ml) else np.nan\n            rows.append({\n                'seed': seed, 'method': 'stratified_mle', 'subgroup': s_val,\n                'z_level': z_level,\n                'bias': th_ml - oracle_cate if not np.isnan(th_ml) else np.nan,\n                'cate_est': th_ml, 'cate_true': oracle_cate,\n                'coverage': cov_ml, 'ci_width': ci_w_ml,\n            })\n\n            # HB EC-HTE (MAP-EB)\n            ci_lo_hb = th_hb - 1.96 * se_hb_z if not np.isnan(se_hb_z) else np.nan\n            ci_hi_hb = th_hb + 1.96 * se_hb_z if not np.isnan(se_hb_z) else np.nan\n            cov_hb = 1 if (not np.isnan(ci_lo_hb) and ci_lo_hb <= oracle_cate <= ci_hi_hb) else 0\n            ci_w_hb = (ci_hi_hb - ci_lo_hb) if not np.isnan(ci_lo_hb) else np.nan\n            rows.append({\n                'seed': seed, 'method': 'hb_ec_hte', 'subgroup': s_val,\n                'z_level': z_level,\n                'bias': th_hb - oracle_cate if not np.isnan(th_hb) else np.nan,\n                'cate_est': th_hb, 'cate_true': oracle_cate,\n                'coverage': cov_hb, 'ci_width': ci_w_hb,\n            })\n\n    return rows\n\n\n# === Aggregation ===\n\ndef compute_corrected_abs_bias(df):\n    cell_bias = (df.groupby(['n_expert', 'method', 'subgroup', 'z_level'])['bias']\n                 .mean().abs().reset_index(name='abs_mean_bias'))\n    return (cell_bias.groupby(['n_expert', 'method'])['abs_mean_bias']\n            .mean().reset_index(name='abs_bias'))\n\n\ndef compute_rmse(df):\n    cell_rmse = (df.assign(bias_sq=df['bias'] ** 2)\n                 .groupby(['n_expert', 'method', 'subgroup', 'z_level'])['bias_sq']\n                 .mean().apply(np.sqrt).reset_index(name='rmse'))\n    return (cell_rmse.groupby(['n_expert', 'method'])['rmse']\n            .mean().reset_index(name='rmse'))\n\n\ndef compute_coverage(df):\n    cell_cov = (df.groupby(['n_expert', 'method', 'subgroup', 'z_level'])['coverage']\n                .mean().reset_index(name='cov'))\n    return (cell_cov.groupby(['n_expert', 'method'])['cov']\n            .mean().reset_index(name='coverage'))\n\n\ndef compute_ci_width(df):\n    cell_w = (df.groupby(['n_expert', 'method', 'subgroup', 'z_level'])['ci_width']\n              .mean().reset_index(name='w'))\n    return (cell_w.groupby(['n_expert', 'method'])['w']\n            .mean().reset_index(name='ci_width'))\n\n\n# === Run sweep for one K config ===\n\ndef run_sweep(sg_labels, sg_weights, sg_cm, k_label):\n    print(f\"\\n{'='*60}\")\n    print(f\"Sweep: {k_label} (K={len(sg_labels)})\")\n    print(f\"{'='*60}\")\n\n    # Dry run\n    print(f\"\\n--- Dry run (n_expert=100, 1 seed) ---\")\n    data = generate_data(SEED_BASE, 100, sg_labels, sg_weights, sg_cm)\n    rows = run_one_mc(data, SEED_BASE, sg_labels)\n    df_dry = pd.DataFrame(rows)\n    df_dry['n_expert'] = 100\n    print(f\"Dry run OK: {len(df_dry)} rows\")\n    for m in ['naive', 'global_corrected', 'stratified_mle', 'hb_ec_hte']:\n        sub = df_dry[df_dry['method'] == m]\n        bias = sub['bias'].abs().mean()\n        print(f\"  {m:20s}: mean |bias| = {bias:.4f}\")\n\n    # Full run\n    print(f\"\\n--- Full run ({len(N_EXPERT_LIST)} budgets x {N_MC} seeds) ---\")\n    all_results = []\n    t0 = time.time()\n    total_runs = len(N_EXPERT_LIST) * N_MC\n    run_count = 0\n\n    for n_expert in N_EXPERT_LIST:\n        t_budget = time.time()\n        for mc in range(N_MC):\n            seed = SEED_BASE + mc\n            data = generate_data(seed, n_expert, sg_labels, sg_weights, sg_cm)\n            mc_rows = run_one_mc(data, seed, sg_labels)\n            for r in mc_rows:\n                r['n_expert'] = n_expert\n            all_results.extend(mc_rows)\n            run_count += 1\n        budget_time = time.time() - t_budget\n        print(f\"  n_expert={n_expert} done in {budget_time:.1f}s\")\n\n    total_time = time.time() - t0\n    print(f\"Total time: {total_time:.1f}s\")\n\n    df_raw = pd.DataFrame(all_results)\n    return df_raw\n\n\n# === CM Profile ===\n\ndef write_cm_profile(outpath):\n    lines = []\n    lines.append(\"# Qwen2.5-7B Confusion Matrix Profile\\n\")\n    lines.append(\"Balanced binarization: Z=1 if true_label >= 1, Z_hat=1 if llm_label >= 1\\n\")\n    lines.append(f\"P(Z=1) = {P_Z1}\\n\")\n\n    lines.append(\"## K=4 Subgroups (has_hashtag × text_length_bin, excluding long)\\n\")\n    lines.append(\"| Subgroup | π_s | FPR | FNR | 1-FPR-FNR | κ(M̂_s) |\")\n    lines.append(\"|----------|-----|-----|-----|-----------|---------|\")\n\n    for i, s in enumerate(K4_LABELS):\n        fpr = K4_CM[s]['fpr']\n        fnr = K4_CM[s]['fnr']\n        det = 1 - fpr - fnr\n        cm = get_cm_matrix(fpr, fnr)\n        p_z = np.array([1 - P_Z1, P_Z1])\n        p_zh = cm.T @ p_z\n        M = build_mixing_matrix(cm, p_z, p_zh)\n        kappa = np.linalg.cond(M)\n        lines.append(f\"| {s} | {K4_WEIGHTS[i]:.4f} | {fpr:.4f} | {fnr:.4f} | {det:.4f} | {kappa:.2f} |\")\n\n    lines.append(\"\")\n\n    # Δπ for K=4\n    fprs_k4 = [K4_CM[s]['fpr'] for s in K4_LABELS]\n    fnrs_k4 = [K4_CM[s]['fnr'] for s in K4_LABELS]\n    delta_fpr_k4 = max(fprs_k4) - min(fprs_k4)\n    delta_fnr_k4 = max(fnrs_k4) - min(fnrs_k4)\n    lines.append(f\"**Δ_FPR** = {delta_fpr_k4:.4f} (max FPR - min FPR)\")\n    lines.append(f\"**Δ_FNR** = {delta_fnr_k4:.4f} (max FNR - min FNR)\")\n    lines.append(\"\")\n\n    # Prop 2 check for K=4\n    lines.append(\"### Proposition 2 Check (K=4)\\n\")\n    lines.append(\"If FPR and FNR vary across subgroups, naive CATE is biased even with global correction.\\n\")\n    if delta_fpr_k4 > 0.01 or delta_fnr_k4 > 0.01:\n        lines.append(\"**Result**: FPR and/or FNR vary across subgroups → global correction insufficient, stratified correction needed.\\n\")\n    else:\n        lines.append(\"**Result**: FPR and FNR nearly constant → global correction may suffice.\\n\")\n\n    lines.append(\"## K=2 Subgroups (has_hashtag only, short+medium merged)\\n\")\n    lines.append(\"| Subgroup | π_s | FPR | FNR | 1-FPR-FNR | κ(M̂_s) |\")\n    lines.append(\"|----------|-----|-----|-----|-----------|---------|\")\n\n    for i, s in enumerate(K2_LABELS):\n        fpr = K2_CM[s]['fpr']\n        fnr = K2_CM[s]['fnr']\n        det = 1 - fpr - fnr\n        cm = get_cm_matrix(fpr, fnr)\n        p_z = np.array([1 - P_Z1, P_Z1])\n        p_zh = cm.T @ p_z\n        M = build_mixing_matrix(cm, p_z, p_zh)\n        kappa = np.linalg.cond(M)\n        lines.append(f\"| {s} | {K2_WEIGHTS[i]:.4f} | {fpr:.4f} | {fnr:.4f} | {det:.4f} | {kappa:.2f} |\")\n\n    lines.append(\"\")\n\n    fprs_k2 = [K2_CM[s]['fpr'] for s in K2_LABELS]\n    fnrs_k2 = [K2_CM[s]['fnr'] for s in K2_LABELS]\n    delta_fpr_k2 = max(fprs_k2) - min(fprs_k2)\n    delta_fnr_k2 = max(fnrs_k2) - min(fnrs_k2)\n    lines.append(f\"**Δ_FPR** = {delta_fpr_k2:.4f}\")\n    lines.append(f\"**Δ_FNR** = {delta_fnr_k2:.4f}\")\n    lines.append(\"\")\n\n    lines.append(\"### Proposition 2 Check (K=2)\\n\")\n    if delta_fpr_k2 > 0.01 or delta_fnr_k2 > 0.01:\n        lines.append(\"**Result**: FPR and/or FNR vary across subgroups → stratified correction needed.\\n\")\n    else:\n        lines.append(\"**Result**: FPR and FNR nearly constant → global correction may suffice.\\n\")\n\n    # Comparison\n    lines.append(\"## K=4 vs K=2 Comparison\\n\")\n    lines.append(f\"- K=4 Δ_FPR={delta_fpr_k4:.4f}, Δ_FNR={delta_fnr_k4:.4f}\")\n    lines.append(f\"- K=2 Δ_FPR={delta_fpr_k2:.4f}, Δ_FNR={delta_fnr_k2:.4f}\")\n    lines.append(f\"- K=4 has larger CM heterogeneity → stronger case for stratified/HB correction\")\n    lines.append(\"\")\n\n    report = \"\\n\".join(lines)\n    with open(outpath, 'w') as f:\n        f.write(report)\n    print(f\"Wrote {outpath}\")\n\n\n# === Analysis Report ===\n\ndef write_analysis(df_k4, df_k2, outpath):\n    lines = []\n    lines.append(\"# Qwen2.5-7B Budget Sweep Analysis\\n\")\n    lines.append(\"## Design\\n\")\n    lines.append(f\"- N={N}, P(Z=1)={P_Z1}\")\n    lines.append(f\"- tau(z=0)={TAU_Z0}, tau(z=1)={TAU_Z1}, Δτ={TAU_Z1 - TAU_Z0:.2f}\")\n    lines.append(f\"- n_expert sweep: {N_EXPERT_LIST}\")\n    lines.append(f\"- {N_MC} MC seeds per budget\")\n    lines.append(\"- HB method: MAP-EB (Gamma(3,1) prior)\")\n    lines.append(f\"- |Bias| = avg across cells of |mean(bias) across seeds|\")\n    lines.append(f\"- RMSE = avg across cells of sqrt(mean(bias²) across seeds)\")\n    lines.append(f\"- Coverage = avg across cells of fraction(95% CI contains true CATE)\")\n    lines.append(f\"- CI Width = avg across cells of mean(CI width across seeds)\")\n    lines.append(\"\")\n\n    for k_label, df_raw in [(\"K=4\", df_k4), (\"K=2\", df_k2)]:\n        abs_bias = compute_corrected_abs_bias(df_raw)\n        rmse = compute_rmse(df_raw)\n        cov = compute_coverage(df_raw)\n        ciw = compute_ci_width(df_raw)\n\n        summary = abs_bias.merge(rmse, on=['n_expert', 'method']).merge(cov, on=['n_expert', 'method']).merge(ciw, on=['n_expert', 'method'])\n\n        lines.append(f\"## {k_label} Summary\\n\")\n        lines.append(\"| n_expert | |Bias|_naive | |Bias|_global | |Bias|_strat | |Bias|_echte | RMSE_naive | RMSE_global | RMSE_strat | RMSE_echte | Cov_naive | Cov_echte | CI_W_echte | HB>Naive_bias? | HB>Naive_rmse? |\")\n        lines.append(\"|----------|-------------|--------------|-------------|-------------|------------|-------------|------------|------------|-----------|-----------|------------|----------------|----------------|\")\n\n        for ne in N_EXPERT_LIST:\n            sub = summary[summary['n_expert'] == ne]\n            vals = {}\n            for m in ['naive', 'global_corrected', 'stratified_mle', 'hb_ec_hte']:\n                row = sub[sub['method'] == m]\n                if len(row) > 0:\n                    vals[m] = {\n                        'abs_bias': row.iloc[0]['abs_bias'],\n                        'rmse': row.iloc[0]['rmse'],\n                        'coverage': row.iloc[0]['coverage'],\n                        'ci_width': row.iloc[0]['ci_width'],\n                    }\n                else:\n                    vals[m] = {'abs_bias': np.nan, 'rmse': np.nan, 'coverage': np.nan, 'ci_width': np.nan}\n\n            hb_wins_bias = \"YES\" if vals['hb_ec_hte']['abs_bias'] < vals['naive']['abs_bias'] else \"no\"\n            hb_wins_rmse = \"YES\" if vals['hb_ec_hte']['rmse'] < vals['naive']['rmse'] else \"no\"\n\n            lines.append(\n                f\"| {ne} \"\n                f\"| {vals['naive']['abs_bias']:.4f} \"\n                f\"| {vals['global_corrected']['abs_bias']:.4f} \"\n                f\"| {vals['stratified_mle']['abs_bias']:.4f} \"\n                f\"| {vals['hb_ec_hte']['abs_bias']:.4f} \"\n                f\"| {vals['naive']['rmse']:.4f} \"\n                f\"| {vals['global_corrected']['rmse']:.4f} \"\n                f\"| {vals['stratified_mle']['rmse']:.4f} \"\n                f\"| {vals['hb_ec_hte']['rmse']:.4f} \"\n                f\"| {vals['naive']['coverage']:.3f} \"\n                f\"| {vals['hb_ec_hte']['coverage']:.3f} \"\n                f\"| {vals['hb_ec_hte']['ci_width']:.4f} \"\n                f\"| {hb_wins_bias} \"\n                f\"| {hb_wins_rmse} |\"\n            )\n        lines.append(\"\")\n\n        # Crossover\n        lines.append(f\"### {k_label} Crossover Analysis\\n\")\n        crossover_bias = None\n        crossover_rmse = None\n        for ne in N_EXPERT_LIST:\n            sub = summary[summary['n_expert'] == ne]\n            hb = sub[sub['method'] == 'hb_ec_hte']\n            nv = sub[sub['method'] == 'naive']\n            if len(hb) > 0 and len(nv) > 0:\n                if hb.iloc[0]['abs_bias'] < nv.iloc[0]['abs_bias'] and crossover_bias is None:\n                    crossover_bias = ne\n                if hb.iloc[0]['rmse'] < nv.iloc[0]['rmse'] and crossover_rmse is None:\n                    crossover_rmse = ne\n\n        if crossover_bias is not None:\n            lines.append(f\"- **|Bias| crossover**: EC-HTE beats Naive at n_expert={crossover_bias}\")\n        else:\n            lines.append(\"- **|Bias| crossover**: EC-HTE never beats Naive in tested range\")\n        if crossover_rmse is not None:\n            lines.append(f\"- **RMSE crossover**: EC-HTE beats Naive at n_expert={crossover_rmse}\")\n        else:\n            lines.append(\"- **RMSE crossover**: EC-HTE never beats Naive in tested range\")\n        lines.append(\"\")\n\n        # Bias-variance decomposition\n        lines.append(f\"### {k_label} Bias-Variance Decomposition\\n\")\n        lines.append(\"| n_expert | Method | Bias² | Variance | MSE |\")\n        lines.append(\"|----------|--------|-------|----------|-----|\")\n        for ne in N_EXPERT_LIST:\n            for m in ['naive', 'hb_ec_hte']:\n                sub_df = df_raw[(df_raw['n_expert'] == ne) & (df_raw['method'] == m)]\n                cell_stats = (sub_df.groupby(['subgroup', 'z_level'])['bias']\n                              .agg(['mean', 'var', 'count']).reset_index())\n                mean_bias_sq = (cell_stats['mean'] ** 2).mean()\n                variance = cell_stats['var'].mean()\n                mse = mean_bias_sq + variance\n                lines.append(f\"| {ne} | {m} | {mean_bias_sq:.4f} | {variance:.4f} | {mse:.4f} |\")\n        lines.append(\"\")\n\n    # K=4 vs K=2 comparison\n    lines.append(\"## K=4 vs K=2 Comparison\\n\")\n    for k_label, df_raw in [(\"K=4\", df_k4), (\"K=2\", df_k2)]:\n        abs_bias = compute_corrected_abs_bias(df_raw)\n        lines.append(f\"### {k_label} HB EC-HTE |Bias| by budget\\n\")\n        hb_bias = abs_bias[abs_bias['method'] == 'hb_ec_hte']\n        for _, row in hb_bias.iterrows():\n            lines.append(f\"- n_expert={int(row['n_expert'])}: |Bias|={row['abs_bias']:.4f}\")\n        lines.append(\"\")\n\n    report = \"\\n\".join(lines)\n    with open(outpath, 'w') as f:\n        f.write(report)\n    print(f\"Wrote {outpath}\")\n\n\n# === Main ===\n\nif __name__ == '__main__':\n    out_dir = 'artifacts/c1_multi_llm'\n\n    # Step 1: CM Profile\n    write_cm_profile(f'{out_dir}/qwen_cm_profile.md')\n\n    # Step 2: K=4 sweep\n    df_k4 = run_sweep(K4_LABELS, K4_WEIGHTS, K4_CM, \"K=4\")\n    col_order = ['n_expert', 'seed', 'method', 'subgroup', 'z_level', 'bias', 'cate_est', 'cate_true', 'coverage', 'ci_width']\n    df_k4[col_order].to_csv(f'{out_dir}/qwen_budget_sweep_k4.csv', index=False)\n    print(f\"Saved qwen_budget_sweep_k4.csv ({len(df_k4)} rows)\")\n\n    # Step 3: K=2 sweep\n    df_k2 = run_sweep(K2_LABELS, K2_WEIGHTS, K2_CM, \"K=2\")\n    df_k2[col_order].to_csv(f'{out_dir}/qwen_budget_sweep_k2.csv', index=False)\n    print(f\"Saved qwen_budget_sweep_k2.csv ({len(df_k2)} rows)\")\n\n    # Step 4: Analysis\n    write_analysis(df_k4, df_k2, f'{out_dir}/qwen_sweep_analysis.md')\n\n    print(\"\\n=== Done ===\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"\nQwen2.5-7B full pipeline: CM profile + budget sweep for K=4 and K=2.\n\"\"\"\n\nimport time\nimport warnings\nimport numpy as np\nimport pandas as pd\nfrom scipy.optimize import minimize_scalar\nfrom scipy.special import gammaln\n\nwarnings.filterwarnings('ignore')\n\n# === Config ===\n\nN = 5000\nN_EXPERT_LIST = [100, 200, 500, 1000, 2000]\nN_MC = 50\nSEED_BASE = 0\n\nP_Z1 = 0.652\nP_T1 = 0.5\nTAU_Z0 = 0.35\nTAU_Z1 = 0.65\n\n# K=4: has_hashtag x text_length_bin (short/medium only)\nK4_LABELS = ['False_medium', 'False_short', 'True_medium', 'True_short']\nK4_WEIGHTS = np.array([0.3816, 0.2224, 0.2551, 0.1408])\nK4_CM = {\n    'False_medium': {'fpr': 0.1800, 'fnr': 0.2874},\n    'False_short':  {'fpr': 0.2414, 'fnr': 0.1750},\n    'True_medium':  {'fpr': 0.2333, 'fnr': 0.2105},\n    'True_short':   {'fpr': 0.0000, 'fnr': 0.1379},\n}\n\n# K=2: has_hashtag only\nK2_LABELS = ['False', 'True']\nK2_WEIGHTS = np.array([0.6041, 0.3959])\nK2_CM = {\n    'False': {'fpr': 0.1938, 'fnr': 0.2335},\n    'True':  {'fpr': 0.1707, 'fnr': 0.1830},\n}\n\n\ndef get_cm_matrix(fpr, fnr):\n    return np.array([[1 - fpr, fpr],\n                     [fnr, 1 - fnr]])\n\n\n# === Estimators ===\n\ndef diff_in_means(Y, T, mask):\n    t1 = mask & (T == 1)\n    t0 = mask & (T == 0)\n    n1, n0 = t1.sum(), t0.sum()\n    if n1 < 2 or n0 < 2:\n        return np.nan, np.nan\n    y1, y0 = Y[t1], Y[t0]\n    tau_hat = y1.mean() - y0.mean()\n    se = np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)\n    return tau_hat, se\n\n\ndef estimate_confusion_matrix(z_true, z_hat):\n    C = np.zeros((2, 2))\n    for zt in [0, 1]:\n        mask = z_true == zt\n        n = mask.sum()\n        for zh in [0, 1]:\n            C[zt, zh] = ((z_hat[mask] == zh).sum() + 1) / (n + 2) if n > 0 else 0.5\n    return C\n\n\ndef estimate_cm_per_subgroup(z_true, z_hat, subgroups, labels):\n    C = {}\n    for s in labels:\n        ms = subgroups == s\n        C_s = np.zeros((2, 2))\n        for zt in [0, 1]:\n            mask = ms & (z_true == zt)\n            n = mask.sum()\n            for zh in [0, 1]:\n                C_s[zt, zh] = ((z_hat[mask] == zh).sum() + 1) / (n + 2) if n > 0 else 0.5\n        C[s] = C_s\n    return C\n\n\ndef build_mixing_matrix(C, p_z, p_z_hat):\n    M = np.zeros((2, 2))\n    for zh in [0, 1]:\n        for z in [0, 1]:\n            M[zh, z] = C[z, zh] * p_z[z] / p_z_hat[zh] if p_z_hat[zh] > 0 else 0.5\n    return M\n\n\ndef invert_mixing_safe(M, tau_obs, se_obs, cond_threshold=100):\n    cond = np.linalg.cond(M)\n    if cond > cond_threshold:\n        return tau_obs.copy(), se_obs.copy()\n    det = np.linalg.det(M)\n    if abs(det) < 1e-10:\n        return tau_obs.copy(), se_obs.copy()\n    Mi = np.linalg.inv(M)\n    tau_c = Mi @ tau_obs\n    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n    return tau_c, se_c\n\n\n# === MAP-EB ===\n\ndef _dirmult_neg_ll(alpha, counts_z):\n    a = alpha / 2.0\n    if a < 1e-10:\n        return 1e10\n    ll = 0.0\n    for c0, c1 in counts_z:\n        n = c0 + c1\n        if n == 0:\n            continue\n        ll += gammaln(c0 + a) + gammaln(c1 + a) - gammaln(n + 2 * a)\n        ll -= 2 * gammaln(a) - gammaln(2 * a)\n    return -ll\n\n\ndef estimate_cm_hb_map_eb(counts, labels, hp_shape=3.0, hp_scale=1.0):\n    hp_rate = 1.0 / hp_scale\n    k = len(labels)\n    alpha_opt = np.zeros(2)\n\n    for z in [0, 1]:\n        cl = [(int(counts[i, z, 0]), int(counts[i, z, 1])) for i in range(k)]\n        total = sum(c0 + c1 for c0, c1 in cl)\n        if total == 0:\n            alpha_opt[z] = hp_shape * hp_scale\n            continue\n\n        def neg_log_post(a, _cl=cl, _shape=hp_shape, _rate=hp_rate):\n            nll = _dirmult_neg_ll(a, _cl)\n            if a < 1e-10:\n                return 1e10\n            log_prior = (_shape - 1.0) * np.log(a) - _rate * a\n            return nll - log_prior\n\n        res = minimize_scalar(neg_log_post, bounds=(0.01, 500), method='bounded')\n        alpha_opt[z] = res.x\n\n    C = {}\n    for i, s in enumerate(labels):\n        C_s = np.zeros((2, 2))\n        for z in [0, 1]:\n            a = alpha_opt[z] / 2.0\n            n_sz = counts[i, z, :].sum()\n            d = n_sz + 2 * a\n            C_s[z, 0] = (counts[i, z, 0] + a) / d if d > 0 else 0.5\n            C_s[z, 1] = (counts[i, z, 1] + a) / d if d > 0 else 0.5\n        C[s] = C_s\n\n    return C, alpha_opt\n\n\ndef get_counts(z_true, z_hat, subgroups, labels):\n    k = len(labels)\n    counts = np.zeros((k, 2, 2), dtype=int)\n    for i, s in enumerate(labels):\n        ms = subgroups == s\n        for z in [0, 1]:\n            mz = ms & (z_true == z)\n            counts[i, z, 0] = (z_hat[mz] == 0).sum()\n            counts[i, z, 1] = (z_hat[mz] == 1).sum()\n    return counts\n\n\n# === DGP (generic for K=4 or K=2) ===\n\ndef generate_data(seed, n_expert, sg_labels, sg_weights, sg_cm):\n    rng = np.random.RandomState(seed)\n    k = len(sg_labels)\n\n    S_idx = rng.choice(k, size=N, p=sg_weights)\n    S = np.array([sg_labels[i] for i in S_idx])\n\n    Z = rng.binomial(1, P_Z1, N)\n    T = rng.binomial(1, P_T1, N)\n\n    Z_hat = np.empty(N, dtype=int)\n    for i in range(k):\n        s_mask = S_idx == i\n        cm = get_cm_matrix(sg_cm[sg_labels[i]]['fpr'],\n                           sg_cm[sg_labels[i]]['fnr'])\n        z_s = Z[s_mask]\n        p_obs1 = np.where(z_s == 0, cm[0, 1], cm[1, 1])\n        Z_hat[s_mask] = rng.binomial(1, p_obs1)\n\n    tau_vals = np.where(Z == 1, TAU_Z1, TAU_Z0)\n    eps = rng.randn(N)\n    Y = 1.0 + tau_vals * T + eps\n\n    expert_idx = rng.choice(N, n_expert, replace=False)\n    expert_mask = np.zeros(N, dtype=bool)\n    expert_mask[expert_idx] = True\n\n    return {\n        'T': T, 'Z': Z, 'Z_hat': Z_hat, 'S': S, 'S_idx': S_idx,\n        'Y': Y, 'tau': tau_vals, 'expert_mask': expert_mask,\n    }\n\n\n# === MC Runner ===\n\ndef run_one_mc(data, seed, sg_labels):\n    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n    expert_mask = data['expert_mask']\n\n    z_exp = Z[expert_mask]\n    zh_exp = Z_hat[expert_mask]\n    s_exp = S[expert_mask]\n\n    C_global = estimate_confusion_matrix(z_exp, zh_exp)\n    p_z_global = np.array([(z_exp == 0).mean(), (z_exp == 1).mean()])\n    p_zh_global = np.array([(Z_hat == 0).mean(), (Z_hat == 1).mean()])\n    M_global = build_mixing_matrix(C_global, p_z_global, p_zh_global)\n\n    C_mle = estimate_cm_per_subgroup(z_exp, zh_exp, s_exp, sg_labels)\n\n    counts = get_counts(z_exp, zh_exp, s_exp, sg_labels)\n    C_hb, _ = estimate_cm_hb_map_eb(counts, sg_labels)\n\n    M_mle_sub = {}\n    M_hb_sub = {}\n    for s_val in sg_labels:\n        sm_exp = (s_exp == s_val)\n        sm_all = (S == s_val)\n        if sm_exp.sum() >= 4:\n            p_z_s = np.array([(z_exp[sm_exp] == 0).mean(), (z_exp[sm_exp] == 1).mean()])\n        else:\n            p_z_s = p_z_global\n        p_zh_s = np.array([(Z_hat[sm_all] == 0).mean(), (Z_hat[sm_all] == 1).mean()])\n        M_mle_sub[s_val] = build_mixing_matrix(C_mle[s_val], p_z_s, p_zh_s)\n        M_hb_sub[s_val] = build_mixing_matrix(C_hb[s_val], p_z_s, p_zh_s)\n\n    rows = []\n\n    for s_val in sg_labels:\n        s_mask = S == s_val\n\n        for z_level in [0, 1]:\n            oracle_cate = TAU_Z1 if z_level == 1 else TAU_Z0\n\n            # Naive\n            th_nv, se_nv = diff_in_means(Y, T, s_mask & (Z_hat == z_level))\n            ci_lo_nv = th_nv - 1.96 * se_nv if not np.isnan(se_nv) else np.nan\n            ci_hi_nv = th_nv + 1.96 * se_nv if not np.isnan(se_nv) else np.nan\n            cov_nv = 1 if (not np.isnan(ci_lo_nv) and ci_lo_nv <= oracle_cate <= ci_hi_nv) else 0\n            ci_w_nv = (ci_hi_nv - ci_lo_nv) if not np.isnan(ci_lo_nv) else np.nan\n            rows.append({\n                'seed': seed, 'method': 'naive', 'subgroup': s_val,\n                'z_level': z_level,\n                'bias': th_nv - oracle_cate if not np.isnan(th_nv) else np.nan,\n                'cate_est': th_nv, 'cate_true': oracle_cate,\n                'coverage': cov_nv, 'ci_width': ci_w_nv,\n            })\n\n            # Observed CATE in Z_hat=0 and Z_hat=1 cells\n            tau_obs = np.array([\n                diff_in_means(Y, T, s_mask & (Z_hat == 0))[0],\n                diff_in_means(Y, T, s_mask & (Z_hat == 1))[0],\n            ])\n            se_obs = np.array([\n                diff_in_means(Y, T, s_mask & (Z_hat == 0))[1],\n                diff_in_means(Y, T, s_mask & (Z_hat == 1))[1],\n            ])\n\n            if not np.any(np.isnan(tau_obs)):\n                tau_gc, se_gc = invert_mixing_safe(M_global, tau_obs, se_obs)\n                th_gc, se_gc_z = tau_gc[z_level], se_gc[z_level]\n\n                tau_ml, se_ml = invert_mixing_safe(M_mle_sub[s_val], tau_obs, se_obs)\n                th_ml, se_ml_z = tau_ml[z_level], se_ml[z_level]\n\n                tau_hb, se_hb = invert_mixing_safe(M_hb_sub[s_val], tau_obs, se_obs)\n                th_hb, se_hb_z = tau_hb[z_level], se_hb[z_level]\n            else:\n                th_gc = se_gc_z = th_ml = se_ml_z = th_hb = se_hb_z = np.nan\n\n            # Global corrected\n            ci_lo_gc = th_gc - 1.96 * se_gc_z if not np.isnan(se_gc_z) else np.nan\n            ci_hi_gc = th_gc + 1.96 * se_gc_z if not np.isnan(se_gc_z) else np.nan\n            cov_gc = 1 if (not np.isnan(ci_lo_gc) and ci_lo_gc <= oracle_cate <= ci_hi_gc) else 0\n            ci_w_gc = (ci_hi_gc - ci_lo_gc) if not np.isnan(ci_lo_gc) else np.nan\n            rows.append({\n                'seed': seed, 'method': 'global_corrected', 'subgroup': s_val,\n                'z_level': z_level,\n                'bias': th_gc - oracle_cate if not np.isnan(th_gc) else np.nan,\n                'cate_est': th_gc, 'cate_true': oracle_cate,\n                'coverage': cov_gc, 'ci_width': ci_w_gc,\n            })\n\n            # Stratified MLE\n            ci_lo_ml = th_ml - 1.96 * se_ml_z if not np.isnan(se_ml_z) else np.nan\n            ci_hi_ml = th_ml + 1.96 * se_ml_z if not np.isnan(se_ml_z) else np.nan\n            cov_ml = 1 if (not np.isnan(ci_lo_ml) and ci_lo_ml <= oracle_cate <= ci_hi_ml) else 0\n            ci_w_ml = (ci_hi_ml - ci_lo_ml) if not np.isnan(ci_lo_ml) else np.nan\n            rows.append({\n                'seed': seed, 'method': 'stratified_mle', 'subgroup': s_val,\n                'z_level': z_level,\n                'bias': th_ml - oracle_cate if not np.isnan(th_ml) else np.nan,\n                'cate_est': th_ml, 'cate_true': oracle_cate,\n                'coverage': cov_ml, 'ci_width': ci_w_ml,\n            })\n\n            # HB EC-HTE (MAP-EB)\n            ci_lo_hb = th_hb - 1.96 * se_hb_z if not np.isnan(se_hb_z) else np.nan\n            ci_hi_hb = th_hb + 1.96 * se_hb_z if not np.isnan(se_hb_z) else np.nan\n            cov_hb = 1 if (not np.isnan(ci_lo_hb) and ci_lo_hb <= oracle_cate <= ci_hi_hb) else 0\n            ci_w_hb = (ci_hi_hb - ci_lo_hb) if not np.isnan(ci_lo_hb) else np.nan\n            rows.append({\n                'seed': seed, 'method': 'hb_ec_hte', 'subgroup': s_val,\n                'z_level': z_level,\n                'bias': th_hb - oracle_cate if not np.isnan(th_hb) else np.nan,\n                'cate_est': th_hb, 'cate_true': oracle_cate,\n                'coverage': cov_hb, 'ci_width': ci_w_hb,\n            })\n\n    return rows\n\n\n# === Aggregation ===\n\ndef compute_corrected_abs_bias(df):\n    cell_bias = (df.groupby(['n_expert', 'method', 'subgroup', 'z_level'])['bias']\n                 .mean().abs().reset_index(name='abs_mean_bias'))\n    return (cell_bias.groupby(['n_expert', 'method'])['abs_mean_bias']\n            .mean().reset_index(name='abs_bias'))\n\n\ndef compute_rmse(df):\n    cell_rmse = (df.assign(bias_sq=df['bias'] ** 2)\n                 .groupby(['n_expert', 'method', 'subgroup', 'z_level'])['bias_sq']\n                 .mean().apply(np.sqrt).reset_index(name='rmse'))\n    return (cell_rmse.groupby(['n_expert', 'method'])['rmse']\n            .mean().reset_index(name='rmse'))\n\n\ndef compute_coverage(df):\n    cell_cov = (df.groupby(['n_expert', 'method', 'subgroup', 'z_level'])['coverage']\n                .mean().reset_index(name='cov'))\n    return (cell_cov.groupby(['n_expert', 'method'])['cov']\n            .mean().reset_index(name='coverage'))\n\n\ndef compute_ci_width(df):\n    cell_w = (df.groupby(['n_expert', 'method', 'subgroup', 'z_level'])['ci_width']\n              .mean().reset_index(name='w'))\n    return (cell_w.groupby(['n_expert', 'method'])['w']\n            .mean().reset_index(name='ci_width'))\n\n\n# === Run sweep for one K config ===\n\ndef run_sweep(sg_labels, sg_weights, sg_cm, k_label):\n    print(f\"\\n{'='*60}\")\n    print(f\"Sweep: {k_label} (K={len(sg_labels)})\")\n    print(f\"{'='*60}\")\n\n    # Dry run\n    print(f\"\\n--- Dry run (n_expert=100, 1 seed) ---\")\n    data = generate_data(SEED_BASE, 100, sg_labels, sg_weights, sg_cm)\n    rows = run_one_mc(data, SEED_BASE, sg_labels)\n    df_dry = pd.DataFrame(rows)\n    df_dry['n_expert'] = 100\n    print(f\"Dry run OK: {len(df_dry)} rows\")\n    for m in ['naive', 'global_corrected', 'stratified_mle', 'hb_ec_hte']:\n        sub = df_dry[df_dry['method'] == m]\n        bias = sub['bias'].abs().mean()\n        print(f\"  {m:20s}: mean |bias| = {bias:.4f}\")\n\n    # Full run\n    print(f\"\\n--- Full run ({len(N_EXPERT_LIST)} budgets x {N_MC} seeds) ---\")\n    all_results = []\n    t0 = time.time()\n    total_runs = len(N_EXPERT_LIST) * N_MC\n    run_count = 0\n\n    for n_expert in N_EXPERT_LIST:\n        t_budget = time.time()\n        for mc in range(N_MC):\n            seed = SEED_BASE + mc\n            data = generate_data(seed, n_expert, sg_labels, sg_weights, sg_cm)\n            mc_rows = run_one_mc(data, seed, sg_labels)\n            for r in mc_rows:\n                r['n_expert'] = n_expert\n            all_results.extend(mc_rows)\n            run_count += 1\n        budget_time = time.time() - t_budget\n        print(f\"  n_expert={n_expert} done in {budget_time:.1f}s\")\n\n    total_time = time.time() - t0\n    print(f\"Total time: {total_time:.1f}s\")\n\n    df_raw = pd.DataFrame(all_results)\n    return df_raw\n\n\n# === CM Profile ===\n\ndef write_cm_profile(outpath):\n    lines = []\n    lines.append(\"# Qwen2.5-7B Confusion Matrix Profile\\n\")\n    lines.append(\"Balanced binarization: Z=1 if true_label >= 1, Z_hat=1 if llm_label >= 1\\n\")\n    lines.append(f\"P(Z=1) = {P_Z1}\\n\")\n\n    lines.append(\"## K=4 Subgroups (has_hashtag × text_length_bin, excluding long)\\n\")\n    lines.append(\"| Subgroup | π_s | FPR | FNR | 1-FPR-FNR | κ(M̂_s) |\")\n    lines.append(\"|----------|-----|-----|-----|-----------|---------|\")\n\n    for i, s in enumerate(K4_LABELS):\n        fpr = K4_CM[s]['fpr']\n        fnr = K4_CM[s]['fnr']\n        det = 1 - fpr - fnr\n        cm = get_cm_matrix(fpr, fnr)\n        p_z = np.array([1 - P_Z1, P_Z1])\n        p_zh = cm.T @ p_z\n        M = build_mixing_matrix(cm, p_z, p_zh)\n        kappa = np.linalg.cond(M)\n        lines.append(f\"| {s} | {K4_WEIGHTS[i]:.4f} | {fpr:.4f} | {fnr:.4f} | {det:.4f} | {kappa:.2f} |\")\n\n    lines.append(\"\")\n\n    # Δπ for K=4\n    fprs_k4 = [K4_CM[s]['fpr'] for s in K4_LABELS]\n    fnrs_k4 = [K4_CM[s]['fnr'] for s in K4_LABELS]\n    delta_fpr_k4 = max(fprs_k4) - min(fprs_k4)\n    delta_fnr_k4 = max(fnrs_k4) - min(fnrs_k4)\n    lines.append(f\"**Δ_FPR** = {delta_fpr_k4:.4f} (max FPR - min FPR)\")\n    lines.append(f\"**Δ_FNR** = {delta_fnr_k4:.4f} (max FNR - min FNR)\")\n    lines.append(\"\")\n\n    # Prop 2 check for K=4\n    lines.append(\"### Proposition 2 Check (K=4)\\n\")\n    lines.append(\"If FPR and FNR vary across subgroups, naive CATE is biased even with global correction.\\n\")\n    if delta_fpr_k4 > 0.01 or delta_fnr_k4 > 0.01:\n        lines.append(\"**Result**: FPR and/or FNR vary across subgroups → global correction insufficient, stratified correction needed.\\n\")\n    else:\n        lines.append(\"**Result**: FPR and FNR nearly constant → global correction may suffice.\\n\")\n\n    lines.append(\"## K=2 Subgroups (has_hashtag only, short+medium merged)\\n\")\n    lines.append(\"| Subgroup | π_s | FPR | FNR | 1-FPR-FNR | κ(M̂_s) |\")\n    lines.append(\"|----------|-----|-----|-----|-----------|---------|\")\n\n    for i, s in enumerate(K2_LABELS):\n        fpr = K2_CM[s]['fpr']\n        fnr = K2_CM[s]['fnr']\n        det = 1 - fpr - fnr\n        cm = get_cm_matrix(fpr, fnr)\n        p_z = np.array([1 - P_Z1, P_Z1])\n        p_zh = cm.T @ p_z\n        M = build_mixing_matrix(cm, p_z, p_zh)\n        kappa = np.linalg.cond(M)\n        lines.append(f\"| {s} | {K2_WEIGHTS[i]:.4f} | {fpr:.4f} | {fnr:.4f} | {det:.4f} | {kappa:.2f} |\")\n\n    lines.append(\"\")\n\n    fprs_k2 = [K2_CM[s]['fpr'] for s in K2_LABELS]\n    fnrs_k2 = [K2_CM[s]['fnr'] for s in K2_LABELS]\n    delta_fpr_k2 = max(fprs_k2) - min(fprs_k2)\n    delta_fnr_k2 = max(fnrs_k2) - min(fnrs_k2)\n    lines.append(f\"**Δ_FPR** = {delta_fpr_k2:.4f}\")\n    lines.append(f\"**Δ_FNR** = {delta_fnr_k2:.4f}\")\n    lines.append(\"\")\n\n    lines.append(\"### Proposition 2 Check (K=2)\\n\")\n    if delta_fpr_k2 > 0.01 or delta_fnr_k2 > 0.01:\n        lines.append(\"**Result**: FPR and/or FNR vary across subgroups → stratified correction needed.\\n\")\n    else:\n        lines.append(\"**Result**: FPR and FNR nearly constant → global correction may suffice.\\n\")\n\n    # Comparison\n    lines.append(\"## K=4 vs K=2 Comparison\\n\")\n    lines.append(f\"- K=4 Δ_FPR={delta_fpr_k4:.4f}, Δ_FNR={delta_fnr_k4:.4f}\")\n    lines.append(f\"- K=2 Δ_FPR={delta_fpr_k2:.4f}, Δ_FNR={delta_fnr_k2:.4f}\")\n    lines.append(f\"- K=4 has larger CM heterogeneity → stronger case for stratified/HB correction\")\n    lines.append(\"\")\n\n    report = \"\\n\".join(lines)\n    with open(outpath, 'w') as f:\n        f.write(report)\n    print(f\"Wrote {outpath}\")\n\n\n# === Analysis Report ===\n\ndef write_analysis(df_k4, df_k2, outpath):\n    lines = []\n    lines.append(\"# Qwen2.5-7B Budget Sweep Analysis\\n\")\n    lines.append(\"## Design\\n\")\n    lines.append(f\"- N={N}, P(Z=1)={P_Z1}\")\n    lines.append(f\"- tau(z=0)={TAU_Z0}, tau(z=1)={TAU_Z1}, Δτ={TAU_Z1 - TAU_Z0:.2f}\")\n    lines.append(f\"- n_expert sweep: {N_EXPERT_LIST}\")\n    lines.append(f\"- {N_MC} MC seeds per budget\")\n    lines.append(\"- HB method: MAP-EB (Gamma(3,1) prior)\")\n    lines.append(f\"- |Bias| = avg across cells of |mean(bias) across seeds|\")\n    lines.append(f\"- RMSE = avg across cells of sqrt(mean(bias²) across seeds)\")\n    lines.append(f\"- Coverage = avg across cells of fraction(95% CI contains true CATE)\")\n    lines.append(f\"- CI Width = avg across cells of mean(CI width across seeds)\")\n    lines.append(\"\")\n\n    for k_label, df_raw in [(\"K=4\", df_k4), (\"K=2\", df_k2)]:\n        abs_bias = compute_corrected_abs_bias(df_raw)\n        rmse = compute_rmse(df_raw)\n        cov = compute_coverage(df_raw)\n        ciw = compute_ci_width(df_raw)\n\n        summary = abs_bias.merge(rmse, on=['n_expert', 'method']).merge(cov, on=['n_expert', 'method']).merge(ciw, on=['n_expert', 'method'])\n\n        lines.append(f\"## {k_label} Summary\\n\")\n        lines.append(\"| n_expert | |Bias|_naive | |Bias|_global | |Bias|_strat | |Bias|_echte | RMSE_naive | RMSE_global | RMSE_strat | RMSE_echte | Cov_naive | Cov_echte | CI_W_echte | HB>Naive_bias? | HB>Naive_rmse? |\")\n        lines.append(\"|----------|-------------|--------------|-------------|-------------|------------|-------------|------------|------------|-----------|-----------|------------|----------------|----------------|\")\n\n        for ne in N_EXPERT_LIST:\n            sub = summary[summary['n_expert'] == ne]\n            vals = {}\n            for m in ['naive', 'global_corrected', 'stratified_mle', 'hb_ec_hte']:\n                row = sub[sub['method'] == m]\n                if len(row) > 0:\n                    vals[m] = {\n                        'abs_bias': row.iloc[0]['abs_bias'],\n                        'rmse': row.iloc[0]['rmse'],\n                        'coverage': row.iloc[0]['coverage'],\n                        'ci_width': row.iloc[0]['ci_width'],\n                    }\n                else:\n                    vals[m] = {'abs_bias': np.nan, 'rmse': np.nan, 'coverage': np.nan, 'ci_width': np.nan}\n\n            hb_wins_bias = \"YES\" if vals['hb_ec_hte']['abs_bias'] < vals['naive']['abs_bias'] else \"no\"\n            hb_wins_rmse = \"YES\" if vals['hb_ec_hte']['rmse'] < vals['naive']['rmse'] else \"no\"\n\n            lines.append(\n                f\"| {ne} \"\n                f\"| {vals['naive']['abs_bias']:.4f} \"\n                f\"| {vals['global_corrected']['abs_bias']:.4f} \"\n                f\"| {vals['stratified_mle']['abs_bias']:.4f} \"\n                f\"| {vals['hb_ec_hte']['abs_bias']:.4f} \"\n                f\"| {vals['naive']['rmse']:.4f} \"\n                f\"| {vals['global_corrected']['rmse']:.4f} \"\n                f\"| {vals['stratified_mle']['rmse']:.4f} \"\n                f\"| {vals['hb_ec_hte']['rmse']:.4f} \"\n                f\"| {vals['naive']['coverage']:.3f} \"\n                f\"| {vals['hb_ec_hte']['coverage']:.3f} \"\n                f\"| {vals['hb_ec_hte']['ci_width']:.4f} \"\n                f\"| {hb_wins_bias} \"\n                f\"| {hb_wins_rmse} |\"\n            )\n        lines.append(\"\")\n\n        # Crossover\n        lines.append(f\"### {k_label} Crossover Analysis\\n\")\n        crossover_bias = None\n        crossover_rmse = None\n        for ne in N_EXPERT_LIST:\n            sub = summary[summary['n_expert'] == ne]\n            hb = sub[sub['method'] == 'hb_ec_hte']\n            nv = sub[sub['method'] == 'naive']\n            if len(hb) > 0 and len(nv) > 0:\n                if hb.iloc[0]['abs_bias'] < nv.iloc[0]['abs_bias'] and crossover_bias is None:\n                    crossover_bias = ne\n                if hb.iloc[0]['rmse'] < nv.iloc[0]['rmse'] and crossover_rmse is None:\n                    crossover_rmse = ne\n\n        if crossover_bias is not None:\n            lines.append(f\"- **|Bias| crossover**: EC-HTE beats Naive at n_expert={crossover_bias}\")\n        else:\n            lines.append(\"- **|Bias| crossover**: EC-HTE never beats Naive in tested range\")\n        if crossover_rmse is not None:\n            lines.append(f\"- **RMSE crossover**: EC-HTE beats Naive at n_expert={crossover_rmse}\")\n        else:\n            lines.append(\"- **RMSE crossover**: EC-HTE never beats Naive in tested range\")\n        lines.append(\"\")\n\n        # Bias-variance decomposition\n        lines.append(f\"### {k_label} Bias-Variance Decomposition\\n\")\n        lines.append(\"| n_expert | Method | Bias² | Variance | MSE |\")\n        lines.append(\"|----------|--------|-------|----------|-----|\")\n        for ne in N_EXPERT_LIST:\n            for m in ['naive', 'hb_ec_hte']:\n                sub_df = df_raw[(df_raw['n_expert'] == ne) & (df_raw['method'] == m)]\n                cell_stats = (sub_df.groupby(['subgroup', 'z_level'])['bias']\n                              .agg(['mean', 'var', 'count']).reset_index())\n                mean_bias_sq = (cell_stats['mean'] ** 2).mean()\n                variance = cell_stats['var'].mean()\n                mse = mean_bias_sq + variance\n                lines.append(f\"| {ne} | {m} | {mean_bias_sq:.4f} | {variance:.4f} | {mse:.4f} |\")\n        lines.append(\"\")\n\n    # K=4 vs K=2 comparison\n    lines.append(\"## K=4 vs K=2 Comparison\\n\")\n    for k_label, df_raw in [(\"K=4\", df_k4), (\"K=2\", df_k2)]:\n        abs_bias = compute_corrected_abs_bias(df_raw)\n        lines.append(f\"### {k_label} HB EC-HTE |Bias| by budget\\n\")\n        hb_bias = abs_bias[abs_bias['method'] == 'hb_ec_hte']\n        for _, row in hb_bias.iterrows():\n            lines.append(f\"- n_expert={int(row['n_expert'])}: |Bias|={row['abs_bias']:.4f}\")\n        lines.append(\"\")\n\n    report = \"\\n\".join(lines)\n    with open(outpath, 'w') as f:\n        f.write(report)\n    print(f\"Wrote {outpath}\")\n\n\n# === Main ===\n\nif __name__ == '__main__':\n    out_dir = 'artifacts/c1_multi_llm'\n\n    # Step 1: CM Profile\n    write_cm_profile(f'{out_dir}/qwen_cm_profile.md')\n\n    # Step 2: K=4 sweep\n    df_k4 = run_sweep(K4_LABELS, K4_WEIGHTS, K4_CM, \"K=4\")\n    col_order = ['n_expert', 'seed', 'method', 'subgroup', 'z_level', 'bias', 'cate_est', 'cate_true', 'coverage', 'ci_width']\n    df_k4[col_order].to_csv(f'{out_dir}/qwen_budget_sweep_k4.csv', index=False)\n    print(f\"Saved qwen_budget_sweep_k4.csv ({len(df_k4)} rows)\")\n\n    # Step 3: K=2 sweep\n    df_k2 = run_sweep(K2_LABELS, K2_WEIGHTS, K2_CM, \"K=2\")\n    df_k2[col_order].to_csv(f'{out_dir}/qwen_budget_sweep_k2.csv', index=False)\n    print(f\"Saved qwen_budget_sweep_k2.csv ({len(df_k2)} rows)\")\n\n    # Step 4: Analysis\n    write_analysis(df_k4, df_k2, f'{out_dir}/qwen_sweep_analysis.md')\n\n    print(\"\\n=== Done ===\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T21:54:22.672032+00:00_
+
+File created successfully at: /home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T21:54:22.672199+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 artifacts/c1_multi_llm/run_qwen_sweep.py",
+  "description": "Run Qwen budget sweep pipeline",
+  "timeout": "600000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 artifacts/c1_multi_llm/run_qwen_sweep.py",
+    "description": "Run Qwen budget sweep pipeline",
+    "timeout": "600000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T21:54:22.672335+00:00_
+
+Exit code 1
+Wrote artifacts/c1_multi_llm/qwen_cm_profile.md
+
+============================================================
+Sweep: K=4 (K=4)
+============================================================
+
+--- Dry run (n_expert=100, 1 seed) ---
+Traceback (most recent call last):
+  File "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py", line 620, in &lt;module>
+    df_k4 = run_sweep(K4_LABELS, K4_WEIGHTS, K4_CM, "K=4")
+  File "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py", line 368, in run_sweep
+    data = generate_data(SEED_BASE, 100, sg_labels, sg_weights, sg_cm)
+  File "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py", line 180, in generate_data
+    S_idx = rng.choice(k, size=N, p=sg_weights)
+  File "numpy/random/mtrand.pyx", line 994, in numpy.random.mtrand.RandomState.choice
+ValueError: probabilities do not sum to 1
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T21:54:22.672485+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py",
+  "old_string": "K4_WEIGHTS = np.array([0.3816, 0.2224, 0.2551, 0.1408])",
+  "new_string": "K4_WEIGHTS = np.array([0.3816, 0.2224, 0.2551, 0.1408])\nK4_WEIGHTS = K4_WEIGHTS / K4_WEIGHTS.sum()"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py",
+    "old_string": "K4_WEIGHTS = np.array([0.3816, 0.2224, 0.2551, 0.1408])",
+    "new_string": "K4_WEIGHTS = np.array([0.3816, 0.2224, 0.2551, 0.1408])\nK4_WEIGHTS = K4_WEIGHTS / K4_WEIGHTS.sum()"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T21:54:22.672705+00:00_
+
+The file /home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T21:54:22.672858+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py",
+  "old_string": "K2_WEIGHTS = np.array([0.6041, 0.3959])",
+  "new_string": "K2_WEIGHTS = np.array([0.6041, 0.3959])\nK2_WEIGHTS = K2_WEIGHTS / K2_WEIGHTS.sum()"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py",
+    "old_string": "K2_WEIGHTS = np.array([0.6041, 0.3959])",
+    "new_string": "K2_WEIGHTS = np.array([0.6041, 0.3959])\nK2_WEIGHTS = K2_WEIGHTS / K2_WEIGHTS.sum()"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T21:54:22.673117+00:00_
+
+The file /home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/run_qwen_sweep.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T21:54:22.673271+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 artifacts/c1_multi_llm/run_qwen_sweep.py",
+  "description": "Run Qwen budget sweep pipeline",
+  "timeout": "600000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 artifacts/c1_multi_llm/run_qwen_sweep.py",
+    "description": "Run Qwen budget sweep pipeline",
+    "timeout": "600000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T21:54:22.673414+00:00_
+
+Wrote artifacts/c1_multi_llm/qwen_cm_profile.md
+
+============================================================
+Sweep: K=4 (K=4)
+============================================================
+
+--- Dry run (n_expert=100, 1 seed) ---
+Dry run OK: 32 rows
+  naive               : mean |bias| = 0.0679
+  global_corrected    : mean |bias| = 0.1172
+  stratified_mle      : mean |bias| = 0.1848
+  hb_ec_hte           : mean |bias| = 0.1836
+
+--- Full run (5 budgets x 50 seeds) ---
+  n_expert=100 done in 0.6s
+  n_expert=200 done in 0.6s
+  n_expert=500 done in 0.6s
+  n_expert=1000 done in 0.6s
+  n_expert=2000 done in 0.7s
+Total time: 3.2s
+Saved qwen_budget_sweep_k4.csv (8000 rows)
+
+============================================================
+Sweep: K=2 (K=2)
+============================================================
+
+--- Dry run (n_expert=100, 1 seed) ---
+Dry run OK: 16 rows
+  naive               : mean |bias| = 0.0165
+  global_corrected    : mean |bias| = 0.1700
+  stratified_mle      : mean |bias| = 0.1748
+  hb_ec_hte           : mean |bias| = 0.1828
+
+--- Full run (5 budgets x 50 seeds) ---
+  n_expert=100 done in 0.4s
+  n_expert=200 done in 0.4s
+  n_expert=500 done in 0.4s
+  n_expert=1000 done in 0.4s
+  n_expert=2000 done in 0.4s
+Total time: 2.1s
+Saved qwen_budget_sweep_k2.csv (4000 rows)
+Wrote artifacts/c1_multi_llm/qwen_sweep_analysis.md
+
+=== Done ===
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T21:54:22.673554+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/qwen_cm_profile.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/qwen_cm_profile.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T21:54:22.673685+00:00_
+
+1	# Qwen2.5-7B Confusion Matrix Profile
+2	
+3	Balanced binarization: Z=1 if true_label >= 1, Z_hat=1 if llm_label >= 1
+4	
+5	P(Z=1) = 0.652
+6	
+7	## K=4 Subgroups (has_hashtag × text_length_bin, excluding long)
+8	
+9	| Subgroup | π_s | FPR | FNR | 1-FPR-FNR | κ(M̂_s) |
+10	|----------|-----|-----|-----|-----------|---------|
+11	| False_medium | 0.3816 | 0.1800 | 0.2874 | 0.5326 | 2.26 |
+12	| False_short | 0.2224 | 0.2414 | 0.1750 | 0.5836 | 1.85 |
+13	| True_medium | 0.2551 | 0.2333 | 0.2105 | 0.5562 | 2.01 |
+14	| True_short | 0.1408 | 0.0000 | 0.1379 | 0.8621 | 1.38 |
+15	
+16	**Δ_FPR** = 0.2414 (max FPR - min FPR)
+17	**Δ_FNR** = 0.1495 (max FNR - min FNR)
+18	
+19	### Proposition 2 Check (K=4)
+20	
+21	If FPR and FNR vary across subgroups, naive CATE is biased even with global correction.
+22	
+23	**Result**: FPR and/or FNR vary across subgroups → global correction insufficient, stratified correction needed.
+24	
+25	## K=2 Subgroups (has_hashtag only, short+medium merged)
+26	
+27	| Subgroup | π_s | FPR | FNR | 1-FPR-FNR | κ(M̂_s) |
+28	|----------|-----|-----|-----|-----------|---------|
+29	| False | 0.6041 | 0.1938 | 0.2335 | 0.5727 | 2.03 |
+30	| True | 0.3959 | 0.1707 | 0.1830 | 0.6463 | 1.74 |
+31	
+32	**Δ_FPR** = 0.0231
+33	**Δ_FNR** = 0.0505
+34	
+35	### Proposition 2 Check (K=2)
+36	
+37	**Result**: FPR and/or FNR vary across subgroups → stratified correction needed.
+38	
+39	## K=4 vs K=2 Comparison
+40	
+41	- K=4 Δ_FPR=0.2414, Δ_FNR=0.1495
+42	- K=2 Δ_FPR=0.0231, Δ_FNR=0.0505
+43	- K=4 has larger CM heterogeneity → stronger case for stratified/HB correction
+44	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T21:54:22.673853+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/qwen_sweep_analysis.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/ec_hte_llm_annotation/artifacts/c1_multi_llm/qwen_sweep_analysis.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T21:54:22.674023+00:00_
+
+1	# Qwen2.5-7B Budget Sweep Analysis
+2	
+3	## Design
+4	
+5	- N=5000, P(Z=1)=0.652
+6	- tau(z=0)=0.35, tau(z=1)=0.65, Δτ=0.30
+7	- n_expert sweep: [100, 200, 500, 1000, 2000]
+8	- 50 MC seeds per budget
+9	- HB method: MAP-EB (Gamma(3,1) prior)
+10	- |Bias| = avg across cells of |mean(bias) across seeds|
+11	- RMSE = avg across cells of sqrt(mean(bias²) across seeds)
+12	- Coverage = avg across cells of fraction(95% CI contains true CATE)
+13	- CI Width = avg across cells of mean(CI width across seeds)
+14	
+15	## K=4 Summary
+16	
+17	| n_expert | |Bias|_naive | |Bias|_global | |Bias|_strat | |Bias|_echte | RMSE_naive | RMSE_global | RMSE_strat | RMSE_echte | Cov_naive | Cov_echte | CI_W_echte | HB>Naive_bias? | HB>Naive_rmse? |
+18	|----------|-------------|--------------|-------------|-------------|------------|-------------|------------|------------|-----------|-----------|------------|----------------|----------------|
+19	| 100 | 0.0737 | 0.0218 | 0.0692 | 0.0697 | 0.1138 | 0.1611 | 0.3810 | 0.3775 | 0.833 | 0.685 | 0.6570 | YES | no |
+20	| 200 | 0.0737 | 0.0208 | 0.0354 | 0.0343 | 0.1138 | 0.1471 | 0.2371 | 0.2371 | 0.833 | 0.797 | 0.5458 | YES | no |
+21	| 500 | 0.0737 | 0.0200 | 0.0250 | 0.0226 | 0.1138 | 0.1315 | 0.1668 | 0.1658 | 0.833 | 0.873 | 0.4954 | YES | no |
+22	| 1000 | 0.0737 | 0.0204 | 0.0189 | 0.0177 | 0.1138 | 0.1274 | 0.1416 | 0.1408 | 0.833 | 0.902 | 0.4797 | YES | no |
+23	| 2000 | 0.0737 | 0.0206 | 0.0213 | 0.0206 | 0.1138 | 0.1238 | 0.1262 | 0.1258 | 0.833 | 0.943 | 0.4744 | YES | no |
+24	
+25	### K=4 Crossover Analysis
+26	
+27	- **|Bias| crossover**: EC-HTE beats Naive at n_expert=100
+28	- **RMSE crossover**: EC-HTE never beats Naive in tested range
+29	
+30	### K=4 Bias-Variance Decomposition
+31	
+32	| n_expert | Method | Bias² | Variance | MSE |
+33	|----------|--------|-------|----------|-----|
+34	| 100 | naive | 0.0068 | 0.0072 | 0.0140 |
+35	| 100 | hb_ec_hte | 0.0065 | 0.1586 | 0.1651 |
+36	| 200 | naive | 0.0068 | 0.0072 | 0.0140 |
+37	| 200 | hb_ec_hte | 0.00
+…[truncated 2591 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T21:54:22.674165+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "head -5 artifacts/c1_multi_llm/qwen_budget_sweep_k4.csv && echo \"---\" && wc -l artifacts/c1_multi_llm/qwen_budget_sweep_k4.csv && echo \"---\" && head -5 artifacts/c1_multi_llm/qwen_budget_sweep_k2.csv && echo \"---\" && wc -l artifacts/c1_multi_llm/qwen_budget_sweep_k2.csv",
+  "description": "Verify CSV outputs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "head -5 artifacts/c1_multi_llm/qwen_budget_sweep_k4.csv && echo \"---\" && wc -l artifacts/c1_multi_llm/qwen_budget_sweep_k4.csv && echo \"---\" && head -5 artifacts/c1_multi_llm/qwen_budget_sweep_k2.csv && echo \"---\" && wc -l artifacts/c1_multi_llm/qwen_budget_sweep_k2.csv",
+    "description": "Verify CSV outputs"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T21:54:22.674291+00:00_
+
+n_expert,seed,method,subgroup,z_level,bias,cate_est,cate_true,coverage,ci_width
+100,0,naive,False_medium,0,-0.008744144804545662,0.3412558551954543,0.35,1,0.24889545861477336
+100,0,global_corrected,False_medium,0,-0.21536590375838638,0.1346340962416136,0.35,0,0.4211750297120731
+100,0,stratified_mle,False_medium,0,-0.21790199659253617,0.1320980034074638,0.35,1,0.5226080617987496
+100,0,hb_ec_hte,False_medium,0,-0.22615820590480207,0.12384179409519791,0.35,1,0.5106179539689693
+---
+8001 artifacts/c1_multi_llm/qwen_budget_sweep_k4.csv
+---
+n_expert,seed,method,subgroup,z_level,bias,cate_est,cate_true,coverage,ci_width
+100,0,naive,False,0,0.04376835453604444,0.3937683545360444,0.35,1,0.2208009150343344
+100,0,global_corrected,False,0,-0.22297455909879837,0.1270254409012016,0.35,1,0.45406151411611395
+100,0,stratified_mle,False,0,-0.1948742931480647,0.15512570685193527,0.35,1,0.6318288236138507
+100,0,hb_ec_hte,False,0,-0.2074352920880712,0.14256470791192877,0.35,1,0.6345737487542036
+---
+4001 artifacts/c1_multi_llm/qwen_budget_sweep_k2.csv
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-21T21:54:22.674464+00:00_
+
+All 4 outputs generated successfully:
+
+1. **`qwen_cm_profile.md`** — Per-subgroup CM tables for K=4 and K=2, with Δπ and Proposition 2 checks
+2. **`qwen_budget_sweep_k4.csv`** — 8000 rows (4 subgroups × 2 z_levels × 4 methods × 5 budgets × 50 seeds)
+3. **`qwen_budget_sweep_k2.csv`** — 4000 rows (2 subgroups × 2 z_levels × 4 methods × 5 budgets × 50 seeds)
+4. **`qwen_sweep_analysis.md`** — Full summary tables + crossover analysis
+
+Key findings:
+
+**K=4**: EC-HTE beats Naive on |Bias| at all budgets (crossover at n=100), but RMSE never crosses — high variance from estimating 4 separate CMs dominates. Δ_FPR=0.24, Δ_FNR=0.15 show substantial CM heterogeneity.
+
+**K=2**: EC-HTE beats Naive on |Bias| at all budgets, **and RMSE crosses at n=1000** — fewer subgroups means less variance penalty. Δ_FPR=0.02, Δ_FNR=0.05 are smaller but still nonzero.
+
+**K=4 vs K=2**: K=2 achieves lower |Bias| than K=4 across all budgets (e.g., 0.014 vs 0.070 at n=100) because fewer groups means more data per CM estimate. K=2 also achieves the RMSE crossover that K=4 cannot.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_qwen-budget-sweep_20260521T215055"
+}
+```
+
+</details>
+
+---

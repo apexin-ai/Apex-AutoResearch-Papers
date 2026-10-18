@@ -1,0 +1,1342 @@
+# analyze cqa1 3 analyzing exps
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_analyze_cqa1_3_analyzing_exps_20260523T203521.log`
+- **Structured JSON:** [`798021a1ea711a5dce9f.json`](../../sessions/79/798021a1ea711a5dce9f.json)
+
+## Before a recorded user message
+
+25 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5ea2202c-98fb-4d28-bc96-bf8ee1d5ad10",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779581400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e0d578e0-e4ce-460b-b895-224523e5f73b",
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to analyze logs from 3 completed experiments on server cqa1-33015. I need to SSH to read the log files and extract success rates and metrics.
+
+Let me load the SSH tools first, then read the logs in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "2bd1393f-aaa8-4f0a-b81e-ffac2789ea91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019vcdaSABPpAiVYpByk7AHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11968,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11968
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EMyWYChx2B66HP9yJySoJ5`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "e1f42143-b564-458d-a728-94486988f7fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019vcdaSABPpAiVYpByk7AHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11968,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11968
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T20:35:33.657Z_
+
+<details><summary>↩ Tool result · `toolu_01EMyWYChx2B66HP9yJySoJ5`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "a2f504e2-b3fa-451c-a505-92da041f96d6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+读取 3 个实验日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "05a41d5e-3a92-49cd-b82f-8ae578abdc5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014RfYKGHRkLBykmmACQobYN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 959,
+      "cache_read_input_tokens": 23809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 959
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UnPgQis21zvgcxW2eXcS4M`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tail -100 ~/runs/importance_margin_vla_compress/eval_pi05_random_k03_goal_seed43_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "7b2d36ef-7141-403e-b6f7-94d1b88c675c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014RfYKGHRkLBykmmACQobYN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 959,
+      "cache_read_input_tokens": 23809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 959
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XEmn77hF56xCPVrZWRaq2s`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tail -100 ~/runs/importance_margin_vla_compress/eval_pi05_random_k085_goal_seed42_v4.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "8b01d48c-c3e5-4e10-87b8-7e2df88cffcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014RfYKGHRkLBykmmACQobYN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 959,
+      "cache_read_input_tokens": 23809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 959
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T20:35:40.443Z_
+
+<details><summary>↩ Tool result · `toolu_01UnPgQis21zvgcxW2eXcS4M`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 02:22:20,506 Config: suite=libero_goal, prune=random, keep=0.3, eps=50, gpu=0\\n2026-05-24 02:22:20,507 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-24 02:24:34,356 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-24 02:24:40,142 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-24 02:24:40,142 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-24 02:24:43,365 Patched embed_image\\n2026-05-24 02:24:43,379 Model: 4143.4M params\\n2026-05-24 02:24:43,379 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-24 02:24:43,379 Pruning: random, keep 76/256 tokens/image (228 total)\\n2026-05-24 02:24:44,809 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-24 02:24:44,849 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-24 02:24:44,849 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 02:24:44,849 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 02:24:44,920 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 02:24:45,251 Suite: libero_goal, 10 tasks, max_steps=300\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\n[PRUNE-DIAG] random: n_keep=76/256, first_indices=[0, 6, 15, 18, 25]\\n2026-05-24 02:27:04,225   T0 [open the middle drawer of the cabinet] ep=10: 8/10=80%\\n2026-05-24 02:29:10,396   T0 [open the middle drawer of the cabinet] ep=20: 17/20=85%\\n2026-05-24 02:31:47,431   T0 [open the middle drawer of the cabinet] ep=30: 24/30=80%\\n2026-05-24 02:34:04,895   T0 [open the middle drawer of the cabinet] ep=40: 32/40=80%\\n2026-05-24 02:36:24,824   T0 [open the middle drawer of the cabinet] ep=50: 40/50=80%\\n2026-05-24 02:36:24,825 Task 0: SR=80.0% | Total: 40/50=80.0% | Time: 11.7min\\n2026-05-24 02:40:11,687   T1 [put the bowl on the stove] ep=10: 0/10=0%\\n2026-05-24 02:43:36,578   T1 [put the bowl on the stove] ep=20: 1/20=5%\\n2026-05-24 02:46:52,478   T1 [put the bowl on the stove] ep=30: 3/30=10%\\n2026-05-24 02:50:04,968   T1 [put the bowl on the stove] ep=40: 5/40=12%\\n2026-05-24 02:53:30,837   T1 [put the bowl on the stove] ep=50: 6/50=12%\\n2026-05-24 02:53:30,838 Task 1: SR=12.0% | Total: 46/100=46.0% | Time: 28.8min\\n2026-05-24 02:55:45,161   T2 [put the wine bottle on top of the cabine] ep=10: 7/10=70%\\n2026-05-24 02:58:15,019   T2 [put the wine bottle on top of the cabine] ep=20: 14/20=70%\\n2026-05-24 03:00:21,807   T2 [put the wine bottle on top of the cabine] ep=30: 22/30=73%\\n2026-05-24 03:02:38,193   T2 [put the wine bottle on top of the cabine] ep=40: 30/40=75%\\n2026-05-24 03:04:46,579   T2 [put the wine bottle on top of the cabine] ep=50: 38/50=76%\\n2026-05-24 03:04:46,579 Task 2: SR=76.0% | Total: 84/150=56.0% | Time: 40.0min\\n2026-05-24 03:08:03,552   T3 [open the top drawer and put the bowl ins] ep=10: 5/10=50%\\n2026-05-24 03:11:10,785   T3 [open the top drawer and put the bowl ins] ep=20: 12/20=60%\\n2026-05-24 03:14:31,408   T3 [open the top drawer and put the bowl ins] ep=30: 18/30=60%\\n2026-05-24 03:17:50,353   T3 [open the top drawer and put the bowl ins] ep=40: 22/40=55%\\n2026-05-24 03:21:11,450   T3 [open the top drawer and put the bowl ins] ep=50: 26/50=52%\\n2026-05-24 03:21:11,450 Task 3: SR=52.0% | Total: 110/200=55.0% | Time: 56.4min\\n2026-05-24 03:23:38,897   T4 [put the bowl on top of the cabinet] ep=10: 6/10=60%\\n2026-05-24 03:25:50,476   T4 [put the bowl on top of the cabinet] ep=20: 13/20=65%\\n2026-05-24 03:28:57,859   T4 [put the bowl on top of the cabinet] ep=30: 16/30=53%\\n2026-05-24 03:31:04,930   T4 [put the bowl on top of the cabinet] ep=40: 24/40=60%\\n2026-05-24 03:33:26,291   T4 [put the bowl on top of the cabinet] ep=50: 30/50=60%\\n2026-05-24 03:33:26,291 Task 4: SR=60.0% | Total: 140/250=56.0% | Time: 68.7min\\n2026-05-24 03:36:36,591   T5 [push the plate to the front of the stove] ep=10: 4/10=40%\\n2026-05-24 03:40:06,156   T5 [push the plate to the front of the stove] ep=20: 6/20=30%\\n2026-05-24 03:42:59,675   T5 [push the plate to the front of the stove] ep=30: 11/30=37%\\n2026-05-24 03:46:10,172   T5 [push the plate to the front of the stove] ep=40: 14/40=35%\\n2026-05-24 03:49:35,244   T5 [push the plate to the front of the stove] ep=50: 16/50=32%\\n2026-05-24 03:49:35,244 Task 5: SR=32.0% | Total: 156/300=52.0% | Time: 84.8min\\n2026-05-24 03:52:32,728   T6 [put the cream cheese in the bowl] ep=10: 3/10=30%\\n2026-05-24 03:55:40,624   T6 [put the cream cheese in the bowl] ep=20: 5/20=25%\\n2026-05-24 03:58:52,385   T6 [put the cream cheese in the bowl] ep=30: 6/30=20%\\n2026-05-24 04:01:49,697   T6 [put the cream cheese in the bowl] ep=40: 9/40=22%\\n2026-05-24 04:04:32,504   T6 [put the cream cheese in the bowl] ep=50: 13/50=26%\\n2026-05-24 04:04:32,504 Task 6: SR=26.0% | Total: 169/350=48.3% | Time: 99.8min\\n2026-05-24 04:05:40,125   T7 [turn on the stove] ep=10: 10/10=100%\\n2026-05-24 04:06:47,843   T7 [turn on the stove] ep=20: 20/20=100%\\n2026-05-24 04:07:53,185   T7 [turn on the stove] ep=30: 30/30=100%\\n2026-05-24 04:08:56,799   T7 [turn on the stove] ep=40: 40/40=100%\\n2026-05-24 04:10:03,487   T7 [turn on the stove] ep=50: 50/50=100%\\n2026-05-24 04:10:03,487 Task 7: SR=100.0% | Total: 219/400=54.8% | Time: 105.3min\\n2026-05-24 04:11:33,778   T8 [put the bowl on the plate] ep=10: 8/10=80%\\n2026-05-24 04:13:31,465   T8 [put the bowl on the plate] ep=20: 14/20=70%\\n2026-05-24 04:14:50,812   T8 [put the bowl on the plate] ep=30: 23/30=77%\\n2026-05-24 04:16:27,690   T8 [put the bowl on the plate] ep=40: 31/40=78%\\n2026-05-24 04:18:39,548   T8 [put the bowl on the plate] ep=50: 35/50=70%\\n2026-05-24 04:18:39,548 Task 8: SR=70.0% | Total: 254/450=56.4% | Time: 113.9min\\n2026-05-24 04:21:49,978   T9 [put the wine bottle on the rack] ep=10: 0/10=0%\\n2026-05-24 04:24:40,315   T9 [put the wine bottle on the rack] ep=20: 2/20=10%\\n2026-05-24 04:27:17,580   T9 [put the wine bottle on the rack] ep=30: 5/30=17%\\n2026-05-24 04:29:56,635   T9 [put the wine bottle on the rack] ep=40: 8/40=20%\\n2026-05-24 04:32:08,177   T9 [put the wine bottle on the rack] ep=50: 14/50=28%\\n2026-05-24 04:32:08,178 Task 9: SR=28.0% | Total: 268/500=53.6% | Time: 127.4min\\n2026-05-24 04:32:08,401 \\n============================================================\\n2026-05-24 04:32:08,401 RESULT: libero_goal prune=random keep=0.3 SR=53.6%\\n2026-05-24 04:32:08,401 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.30_libero_goal_seed43.json\\n2026-05-24 04:32:08,401 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "bf4b574b-daa1-4731-abbe-46559a1b17df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 02:22:20,506 Config: suite=libero_goal, prune=random, keep=0.3, eps=50, gpu=0\\\\n2026-05-24 02:22:20,507 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n2026-05-24 02:24:34,356 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-24 02:24:40,142 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-24 02:24:40,142 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-24 02:24:43,365 Patched embed_image\\\\n2026-05-24 02:24:43,379 Model: 4143.4M params\\\\n2026-05-24 02:24:43,379 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-24 02:24:43,379 Pruning: random, keep 76/256 tokens/image (228 total)\\\\n2026-05-24 02:24:44,809 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-24 02:24:44,849 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-24 02:24:44,849 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-24 02:24:44,849 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-24 02:24:44,920 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-24 02:24:45,251 Suite: libero_goal, 10 tasks, max_steps=300\\\\nLocal assets not found. Downloading from HuggingFace Hub...\\\\nAssets already downloaded at /root/.cache/libero/assets\\\\n[PRUNE-DIAG] random: n_keep=76/256, first_indices=[0, 6, 15, 18, 25]\\\\n2026-05-24 02:27:04,225   T0 [open the middle drawer of the cabinet] ep=10: 8/10=80%\\\\n2026-05-24 02:29:10,396   T0 [open the middle drawer of the cabinet] ep=20: 17/20=85%\\\\n2026-05-24 02:31:47,431   T0 [open the middle drawer of the cabinet] ep=30: 24/30=80%\\\\n2026-05-24 02:34:04,895   T0 [open the middle drawer of the cabinet] ep=40: 32/40=80%\\\\n2026-05-24 02:36:24,824   T0 [open the middle drawer of the cabinet] ep=50: 40/50=80%\\\\n2026-05-24 02:36:24,825 Task 0: SR=80.0% | Total: 40/50=80.0% | Time: 11.7min\\\\n2026-05-24 02:40:11,687   T1 [put the bowl on the stove] ep=10: 0/10=0%\\\\n2026-05-24 02:43:36,578   T1 [put the bowl on the stove] ep=20: 1/20=5%\\\\n2026-05-24 02:46:52,478   T1 [put the bowl on the stove] ep=30: 3/30=10%\\\\n2026-05-24 02:50:04,968   T1 [put the bowl on the stove] ep=40: 5/40=12%\\\\n2026-05-24 02:53:30,837   T1 [put the bowl on the stove] ep=50: 6/50=12%\\\\n2026-05-24 02:53:30,838 Task 1: SR=12.0% | Total: 46/100=46.0% | Time: 28.8min\\\\n2026-05-24 02:55:45,161   T2 [put the wine bottle on top of the cabine] ep=10: 7/10=70%\\\\n2026-05-24 02:58:15,019   T2 [put the wine bottle on top of the cabine] ep=20: 14/20=70%\\\\n2026-05-24 03:00:21,807   T2 [put the wine bottle on top of the cabine] ep=30: 22/30=73%\\\\n2026-05-24 03:02:38,193   T2 [put the wine bottle on top of the cabine] ep=40: 30/40=75%\\\\n2026-05-24 03:04:46,579   T2 [put the wine bottle on top of the cabine] ep=50: 38/50=76%\\\\n2026-05-24 03:04:46,579 Task 2: SR=76.0% | Total: 84/150=56.0% | Time: 40.0min\\\\n2026-05-24 03:08:03,552   T3 [open the top drawer and put the bowl ins] ep=10: 5/10=50%\\\\n2026-05-24 03:11:10,785   T3 [open the top drawer and put the bowl ins] ep=20: 12/20=60%\\\\n2026-05-24 03:14:31,408   T3 [open the top drawer and put the bowl ins] ep=30: 18/30=60%\\\\n2026-05-24 03:17:50,353   T3 [open the top drawer and put the bowl ins] ep=40: 22/40=55%\\\\n2026-05-24 03:21:11,450   T3 [open the top drawer and put the bowl ins] ep=50: 26/50=52%\\\\n2026-05-24 03:21:11,450 Task 3: SR=52.0% | Total: 110/200=55.0% | Time: 56.4min\\\\n2026-05-24 03:23:38,897   T4 [put the bowl on top of the cabinet] ep=10: 6/10=60%\\\\n2026-05-24 03:25:50,476   T4 [put the bowl on top of the cabinet] ep=20: 13/20=65%\\\\n2026-05-24 03:28:57,859   T4 [put the bowl on top of the cabinet] ep=30: 16/30=53%\\\\n2026-05-24 03:31:04,930   T4 [put the bowl on top of the cabinet] ep=40: 24/40=60%\\\\n2026-05-24 03:33:26,291   T4 [put the bowl on top of the cabinet] ep=50: 30/50=60%\\\\n2026-05-24 03:33:26,291 Task 4: SR=60.0% | Total: 140/250=56.0% | Time: 68.7min\\\\n2026-05-24 03:36:36,591   T5 [push the plate to the front of the stove] ep=10: 4/10=40%\\\\n2026-05-24 03:40:06,156   T5 [push the plate to the front of the stove] ep=20: 6/20=30%\\\\n2026-05-24 03:42:59,675   T5 [push the plate to the front of the stove] ep=30: 11/30=37%\\\\n2026-05-24 03:46:10,172   T5 [push the plate to the front of the stove] ep=40: 14/40=35%\\\\n2026-05-24 03:49:35,244   T5 [push the plate to the front of the stove] ep=50: 16/50=32%\\\\n2026-05-24 03:49:35,244 Task 5: SR=32.0% | Total: 156/300=52.0% | Time: 84.8min\\\\n2026-05-24 03:52:32,728   T6 [put the cream cheese in the bowl] ep=10: 3/10=30%\\\\n2026-05-24 03:55:40,624   T6 [put the cream cheese in the bowl] ep=20: 5/20=25%\\\\n2026-05-24 03:58:52,385   T6 [put the cream cheese in the bowl] ep=30: 6/30=20%\\\\n2026-05-24 04:01:49,697   T6 [put the cream cheese in the bowl] ep=40: 9/40=22%\\\\n2026-05-24 04:04:32,504   T6 [put the cream cheese in the bowl] ep=50: 13/50=26%\\\\n2026-05-24 04:04:32,504 Task 6: SR=26.0% | Total: 169/350=48.3% | Time: 99.8min\\\\n2026-05-24 04:05:40,125   T7 [turn on the stove] ep=10: 10/10=100%\\\\n2026-05-24 04:06:47,843   T7 [turn on the stove] ep=20: 20/20=100%\\\\n2026-05-24 04:07:53,185   T7 [turn on the stove] ep=30: 30/30=100%\\\\n2026-05-24 04:08:56,799   T7 [turn on the stove] ep=40: 40/40=100%\\\\n2026-05-24 04:10:03,487   T7 [turn on the stove] ep=50: 50/50=100%\\\\n2026-05-24 04:10:03,487 Task 7: SR=100.0% | Total: 219/400=54.8% | Time: 105.3min\\\\n2026-05-24 04:11:33,778   T8 [put the bowl on the plate] ep=10: 8/10=80%\\\\n2026-05-24 04:13:31,465   T8 [put the bowl on the plate] ep=20: 14/20=70%\\\\n2026-05-24 04:14:50,812   T8 [put the bowl on the plate] ep=30: 23/30=77%\\\\n2026-05-24 04:16:27,690   T8 [put the bowl on the plate] ep=40: 31/40=78%\\\\n2026-05-24 04:18:39,548   T8 [put the bowl on the plate] ep=50: 35/50=70%\\\\n2026-05-24 04:18:39,548 Task 8: SR=70.0% | Total: 254/450=56.4% | Time: 113.9min\\\\n2026-05-24 04:21:49,978   T9 [put the wine bottle on the rack] ep=10: 0/10=0%\\\\n2026-05-24 04:24:40,315   T9 [put the wine bottle on the rack] ep=20: 2/20=10%\\\\n2026-05-24 04:27:17,580   T9 [put the wine bottle on the rack] ep=30: 5/30=17%\\\\n2026-05-24 04:29:56,635   T9 [put the wine bottle on the rack] ep=40: 8/40=20%\\\\n2026-05-24 04:32:08,177   T9 [put the wine bottle on the rack] ep=50: 14/50=28%\\\\n2026-05-24 04:32:08,178 Task 9: SR=28.0% | Total: 268/500=53.6% | Time: 127.4min\\\\n2026-05-24 04:32:08,401 \\\\n============================================================\\\\n2026-05-24 04:32:08,401 RESULT: libero_goal prune=random keep=0.3 SR=53.6%\\\\n2026-05-24 04:32:08,401 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.30_libero_goal_seed43.json\\\\n2026-05-24 04:32:08,401 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 02:22:20,506 Config: suite=libero_goal, prune=random, keep=0.3, eps=50, gpu=0\\n2026-05-24 02:22:20,507 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-24 02:24:34,356 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-24 02:24:40,142 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-24 02:24:40,142 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-24 02:24:43,365 Patched embed_image\\n2026-05-24 02:24:43,379 Model: 4143.4M params\\n2026-05-24 02:24:43,379 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-24 02:24:43,379 Pruning: random, keep 76/256 tokens/image (228 total)\\n2026-05-24 02:24:44,809 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-24 02:24:44,849 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-24 02:24:44,849 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 02:24:44,849 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 02:24:44,920 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 02:24:45,251 Suite: libero_goal, 10 tasks, max_steps=300\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\n[PRUNE-DIAG] random: n_keep=76/256, first_indices=[0, 6, 15, 18, 25]\\n2026-05-24 02:27:04,225   T0 [open the middle drawer of the cabinet] ep=10: 8/10=80%\\n2026-05-24 02:29:10,396   T0 [open the middle drawer of the cabinet] ep=20: 17/20=85%\\n2026-05-24 02:31:47,431   T0 [open the middle drawer of the cabinet] ep=30: 24/30=80%\\n2026-05-24 02:34:04,895   T0 [open the middle drawer of the cabinet] ep=40: 32/40=80%\\n2026-05-24 02:36:24,824   T0 [open the middle drawer of the cabinet] ep=50: 40/50=80%\\n2026-05-24 02:36:24,825 Task 0: SR=80.0% | Total: 40/50=80.0% | Time: 11.7min\\n2026-05-24 02:40:11,687   T1 [put the bowl on the stove] ep=10: 0/10=0%\\n2026-05-24 02:43:36,578   T1 [put the bowl on the stove] ep=20: 1/20=5%\\n2026-05-24 02:46:52,478   T1 [put the bowl on the stove] ep=30: 3/30=10%\\n2026-05-24 02:50:04,968   T1 [put the bowl on the stove] ep=40: 5/40=12%\\n2026-05-24 02:53:30,837   T1 [put the bowl on the stove] ep=50: 6/50=12%\\n2026-05-24 02:53:30,838 Task 1: SR=12.0% | Total: 46/100=46.0% | Time: 28.8min\\n2026-05-24 02:55:45,161   T2 [put the wine bottle on top of the cabine] ep=10: 7/10=70%\\n2026-05-24 02:58:15,019   T2 [put the wine bottle on top of the cabine] ep=20: 14/20=70%\\n2026-05-24 03:00:21,807   T2 [put the wine bottle on top of the cabine] ep=30: 22/30=73%\\n2026-05-24 03:02:38,193   T2 [put the wine bottle on top of the cabine] ep=40: 30/40=75%\\n2026-05-24 03:04:46,579   T2 [put the wine bottle on top of the cabine] ep=50: 38/50=76%\\n2026-05-24 03:04:46,579 Task 2: SR=76.0% | Total: 84/150=56.0% | Time: 40.0min\\n2026-05-24 03:08:03,552   T3 [open the top drawer and put the bowl ins] ep=10: 5/10=50%\\n2026-05-24 03:11:10,785   T3 [open the top drawer and put the bowl ins] ep=20: 12/20=60%\\n2026-05-24 03:14:31,408   T3 [open the top drawer and put the bowl ins] ep=30: 18/30=60%\\n2026-05-24 03:17:50,353   T3 [open the top drawer and put the bowl ins] ep=40: 22/40=55%\\n2026-05-24 03:21:11,450   T3 [open the top drawer and put the bowl ins] ep=50: 26/50=52%\\n2026-05-24 03:21:11,450 Task 3: SR=52.0% | Total: 110/200=55.0% | Time: 56.4min\\n2026-05-24 03:23:38,897   T4 [put the bowl on top of the cabinet] ep=10: 6/10=60%\\n2026-05-24 03:25:50,476   T4 [put the bowl on top of the cabinet] ep=20: 13/20=65%\\n2026-05-24 03:28:57,859   T4 [put the bowl on top of the cabinet] ep=30: 16/30=53%\\n2026-05-24 03:31:04,930   T4 [put the bowl on top of the cabinet] ep=40: 24/40=60%\\n2026-05-24 03:33:26,291   T4 [put the bowl on top of the cabinet] ep=50: 30/50=60%\\n2026-05-24 03:33:26,291 Task 4: SR=60.0% | Total: 140/250=56.0% | Time: 68.7min\\n2026-05-24 03:36:36,591   T5 [push the plate to the front of the stove] ep=10: 4/10=40%\\n2026-05-24 03:40:06,156   T5 [push the plate to the front of the stove] ep=20: 6/20=30%\\n2026-05-24 03:42:59,675   T5 [push the plate to the front of the stove] ep=30: 11/30=37%\\n2026-05-24 03:46:10,172   T5 [push the plate to the front of the stove] ep=40: 14/40=35%\\n2026-05-24 03:49:35,244   T5 [push the plate to the front of the stove] ep=50: 16/50=32%\\n2026-05-24 03:49:35,244 Task 5: SR=32.0% | Total: 156/300=52.0% | Time: 84.8min\\n2026-05-24 03:52:32,728   T6 [put the cream cheese in the bowl] ep=10: 3/10=30%\\n2026-05-24 03:55:40,624   T6 [put the cream cheese in the bowl] ep=20: 5/20=25%\\n2026-05-24 03:58:52,385   T6 [put the cream cheese in the bowl] ep=30: 6/30=20%\\n2026-05-24 04:01:49,697   T6 [put the cream cheese in the bowl] ep=40: 9/40=22%\\n2026-05-24 04:04:32,504   T6 [put the cream cheese in the bowl] ep=50: 13/50=26%\\n2026-05-24 04:04:32,504 Task 6: SR=26.0% | Total: 169/350=48.3% | Time: 99.8min\\n2026-05-24 04:05:40,125   T7 [turn on the stove] ep=10: 10/10=100%\\n2026-05-24 04:06:47,843   T7 [turn on the stove] ep=20: 20/20=100%\\n2026-05-24 04:07:53,185   T7 [turn on the stove] ep=30: 30/30=100%\\n2026-05-24 04:08:56,799   T7 [turn on the stove] ep=40: 40/40=100%\\n2026-05-24 04:10:03,487   T7 [turn on the stove] ep=50: 50/50=100%\\n2026-05-24 04:10:03,487 Task 7: SR=100.0% | Total: 219/400=54.8% | Time: 105.3min\\n2026-05-24 04:11:33,778   T8 [put the bowl on the plate] ep=10: 8/10=80%\\n2026-05-24 04:13:31,465   T8 [put the bowl on the plate] ep=20: 14/20=70%\\n2026-05-24 04:14:50,812   T8 [put the bowl on the plate] ep=30: 23/30=77%\\n2026-05-24 04:16:27,690   T8 [put the bowl on the plate] ep=40: 31/40=78%\\n2026-05-24 04:18:39,548   T8 [put the bowl on the plate] ep=50: 35/50=70%\\n2026-05-24 04:18:39,548 Task 8: SR=70.0% | Total: 254/450=56.4% | Time: 113.9min\\n2026-05-24 04:21:49,978   T9 [put the wine bottle on the rack] ep=10: 0/10=0%\\n2026-05-24 04:24:40,315   T9 [put the wine bottle on the rack] ep=20: 2/20=10%\\n2026-05-24 04:27:17,580   T9 [put the wine bottle on the rack] ep=30: 5/30=17%\\n2026-05-24 04:29:56,635   T9 [put the wine bottle on the rack] ep=40: 8/40=20%\\n2026-05-24 04:32:08,177   T9 [put the wine bottle on the rack] ep=50: 14/50=28%\\n2026-05-24 04:32:08,178 Task 9: SR=28.0% | Total: 268/500=53.6% | Time: 127.4min\\n2026-05-24 04:32:08,401 \\n============================================================\\n2026-05-24 04:32:08,401 RESULT: libero_goal prune=random keep=0.3 SR=53.6%\\n2026-05-24 04:32:08,401 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.30_libero_goal_seed43.json\\n2026-05-24 04:32:08,401 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T20:35:40.869Z_
+
+<details><summary>↩ Tool result · `toolu_01XEmn77hF56xCPVrZWRaq2s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 02:14:37,455 Config: suite=libero_goal, prune=random, keep=0.85, eps=50, gpu=0\\n2026-05-24 02:14:37,456 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-24 02:17:06,433 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-24 02:17:11,086 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-24 02:17:11,086 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-24 02:17:14,652 Patched embed_image\\n2026-05-24 02:17:14,659 Model: 4143.4M params\\n2026-05-24 02:17:14,659 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-24 02:17:14,659 Pruning: random, keep 217/256 tokens/image (651 total)\\n2026-05-24 02:17:15,608 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-24 02:17:15,632 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-24 02:17:15,632 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 02:17:15,632 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 02:17:15,665 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 02:17:16,069 Suite: libero_goal, 10 tasks, max_steps=300\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\n[PRUNE-DIAG] random: n_keep=217/256, first_indices=[0, 1, 2, 3, 4]\\n2026-05-24 02:19:39,490   T0 [open the middle drawer of the cabinet] ep=10: 7/10=70%\\n2026-05-24 02:21:22,274   T0 [open the middle drawer of the cabinet] ep=20: 17/20=85%\\n2026-05-24 02:23:52,737   T0 [open the middle drawer of the cabinet] ep=30: 23/30=77%\\n2026-05-24 02:25:56,380   T0 [open the middle drawer of the cabinet] ep=40: 32/40=80%\\n2026-05-24 02:27:42,741   T0 [open the middle drawer of the cabinet] ep=50: 42/50=84%\\n2026-05-24 02:27:42,742 Task 0: SR=84.0% | Total: 42/50=84.0% | Time: 10.4min\\n2026-05-24 02:31:26,833   T1 [put the bowl on the stove] ep=10: 0/10=0%\\n2026-05-24 02:35:10,810   T1 [put the bowl on the stove] ep=20: 0/20=0%\\n2026-05-24 02:38:36,893   T1 [put the bowl on the stove] ep=30: 0/30=0%\\n2026-05-24 02:41:55,433   T1 [put the bowl on the stove] ep=40: 1/40=2%\\n2026-05-24 02:45:36,157   T1 [put the bowl on the stove] ep=50: 1/50=2%\\n2026-05-24 02:45:36,157 Task 1: SR=2.0% | Total: 43/100=43.0% | Time: 28.3min\\n2026-05-24 02:49:19,975   T2 [put the wine bottle on top of the cabine] ep=10: 0/10=0%\\n2026-05-24 02:52:28,744   T2 [put the wine bottle on top of the cabine] ep=20: 2/20=10%\\n2026-05-24 02:55:29,033   T2 [put the wine bottle on top of the cabine] ep=30: 5/30=17%\\n2026-05-24 02:59:00,954   T2 [put the wine bottle on top of the cabine] ep=40: 7/40=18%\\n2026-05-24 03:01:53,743   T2 [put the wine bottle on top of the cabine] ep=50: 11/50=22%\\n2026-05-24 03:01:53,743 Task 2: SR=22.0% | Total: 54/150=36.0% | Time: 44.6min\\n2026-05-24 03:05:20,586   T3 [open the top drawer and put the bowl ins] ep=10: 3/10=30%\\n2026-05-24 03:09:01,826   T3 [open the top drawer and put the bowl ins] ep=20: 5/20=25%\\n2026-05-24 03:12:50,798   T3 [open the top drawer and put the bowl ins] ep=30: 8/30=27%\\n2026-05-24 03:16:01,371   T3 [open the top drawer and put the bowl ins] ep=40: 15/40=38%\\n2026-05-24 03:19:26,096   T3 [open the top drawer and put the bowl ins] ep=50: 19/50=38%\\n2026-05-24 03:19:26,096 Task 3: SR=38.0% | Total: 73/200=36.5% | Time: 62.2min\\n2026-05-24 03:21:57,485   T4 [put the bowl on top of the cabinet] ep=10: 6/10=60%\\n2026-05-24 03:24:43,953   T4 [put the bowl on top of the cabinet] ep=20: 11/20=55%\\n2026-05-24 03:27:28,385   T4 [put the bowl on top of the cabinet] ep=30: 16/30=53%\\n2026-05-24 03:30:34,133   T4 [put the bowl on top of the cabinet] ep=40: 20/40=50%\\n2026-05-24 03:33:24,939   T4 [put the bowl on top of the cabinet] ep=50: 25/50=50%\\n2026-05-24 03:33:24,939 Task 4: SR=50.0% | Total: 98/250=39.2% | Time: 76.1min\\n2026-05-24 03:36:32,882   T5 [push the plate to the front of the stove] ep=10: 5/10=50%\\n2026-05-24 03:38:56,171   T5 [push the plate to the front of the stove] ep=20: 14/20=70%\\n2026-05-24 03:41:46,353   T5 [push the plate to the front of the stove] ep=30: 19/30=63%\\n2026-05-24 03:44:31,502   T5 [push the plate to the front of the stove] ep=40: 26/40=65%\\n2026-05-24 03:47:14,513   T5 [push the plate to the front of the stove] ep=50: 33/50=66%\\n2026-05-24 03:47:14,513 Task 5: SR=66.0% | Total: 131/300=43.7% | Time: 90.0min\\n2026-05-24 03:49:38,895   T6 [put the cream cheese in the bowl] ep=10: 8/10=80%\\n2026-05-24 03:51:43,312   T6 [put the cream cheese in the bowl] ep=20: 16/20=80%\\n2026-05-24 03:53:27,283   T6 [put the cream cheese in the bowl] ep=30: 25/30=83%\\n2026-05-24 03:55:13,919   T6 [put the cream cheese in the bowl] ep=40: 34/40=85%\\n2026-05-24 03:57:15,447   T6 [put the cream cheese in the bowl] ep=50: 41/50=82%\\n2026-05-24 03:57:15,447 Task 6: SR=82.0% | Total: 172/350=49.1% | Time: 100.0min\\n2026-05-24 03:58:44,047   T7 [turn on the stove] ep=10: 9/10=90%\\n2026-05-24 04:00:18,381   T7 [turn on the stove] ep=20: 18/20=90%\\n2026-05-24 04:02:04,723   T7 [turn on the stove] ep=30: 26/30=87%\\n2026-05-24 04:03:36,748   T7 [turn on the stove] ep=40: 35/40=88%\\n2026-05-24 04:05:08,475   T7 [turn on the stove] ep=50: 44/50=88%\\n2026-05-24 04:05:08,475 Task 7: SR=88.0% | Total: 216/400=54.0% | Time: 107.9min\\n2026-05-24 04:07:14,454   T8 [put the bowl on the plate] ep=10: 7/10=70%\\n2026-05-24 04:09:22,697   T8 [put the bowl on the plate] ep=20: 13/20=65%\\n2026-05-24 04:10:54,843   T8 [put the bowl on the plate] ep=30: 22/30=73%\\n2026-05-24 04:12:12,302   T8 [put the bowl on the plate] ep=40: 32/40=80%\\n2026-05-24 04:13:45,899   T8 [put the bowl on the plate] ep=50: 42/50=84%\\n2026-05-24 04:13:45,899 Task 8: SR=84.0% | Total: 258/450=57.3% | Time: 116.5min\\n2026-05-24 04:17:09,044   T9 [put the wine bottle on the rack] ep=10: 0/10=0%\\n2026-05-24 04:20:31,914   T9 [put the wine bottle on the rack] ep=20: 1/20=5%\\n2026-05-24 04:23:43,858   T9 [put the wine bottle on the rack] ep=30: 2/30=7%\\n2026-05-24 04:27:08,973   T9 [put the wine bottle on the rack] ep=40: 3/40=8%\\n2026-05-24 04:30:27,846   T9 [put the wine bottle on the rack] ep=50: 4/50=8%\\n2026-05-24 04:30:27,846 Task 9: SR=8.0% | Total: 262/500=52.4% | Time: 133.2min\\n2026-05-24 04:30:28,062 \\n============================================================\\n2026-05-24 04:30:28,062 RESULT: libero_goal prune=random keep=0.85 SR=52.4%\\n2026-05-24 04:30:28,062 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.85_libero_goal_seed42.json\\n2026-05-24 04:30:28,062 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "06931253-3845-45b1-b64f-21542f01d84c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 02:14:37,455 Config: suite=libero_goal, prune=random, keep=0.85, eps=50, gpu=0\\\\n2026-05-24 02:14:37,456 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n2026-05-24 02:17:06,433 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-24 02:17:11,086 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-24 02:17:11,086 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-24 02:17:14,652 Patched embed_image\\\\n2026-05-24 02:17:14,659 Model: 4143.4M params\\\\n2026-05-24 02:17:14,659 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-24 02:17:14,659 Pruning: random, keep 217/256 tokens/image (651 total)\\\\n2026-05-24 02:17:15,608 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-24 02:17:15,632 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-24 02:17:15,632 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-24 02:17:15,632 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-24 02:17:15,665 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-24 02:17:16,069 Suite: libero_goal, 10 tasks, max_steps=300\\\\nLocal assets not found. Downloading from HuggingFace Hub...\\\\nAssets already downloaded at /root/.cache/libero/assets\\\\n[PRUNE-DIAG] random: n_keep=217/256, first_indices=[0, 1, 2, 3, 4]\\\\n2026-05-24 02:19:39,490   T0 [open the middle drawer of the cabinet] ep=10: 7/10=70%\\\\n2026-05-24 02:21:22,274   T0 [open the middle drawer of the cabinet] ep=20: 17/20=85%\\\\n2026-05-24 02:23:52,737   T0 [open the middle drawer of the cabinet] ep=30: 23/30=77%\\\\n2026-05-24 02:25:56,380   T0 [open the middle drawer of the cabinet] ep=40: 32/40=80%\\\\n2026-05-24 02:27:42,741   T0 [open the middle drawer of the cabinet] ep=50: 42/50=84%\\\\n2026-05-24 02:27:42,742 Task 0: SR=84.0% | Total: 42/50=84.0% | Time: 10.4min\\\\n2026-05-24 02:31:26,833   T1 [put the bowl on the stove] ep=10: 0/10=0%\\\\n2026-05-24 02:35:10,810   T1 [put the bowl on the stove] ep=20: 0/20=0%\\\\n2026-05-24 02:38:36,893   T1 [put the bowl on the stove] ep=30: 0/30=0%\\\\n2026-05-24 02:41:55,433   T1 [put the bowl on the stove] ep=40: 1/40=2%\\\\n2026-05-24 02:45:36,157   T1 [put the bowl on the stove] ep=50: 1/50=2%\\\\n2026-05-24 02:45:36,157 Task 1: SR=2.0% | Total: 43/100=43.0% | Time: 28.3min\\\\n2026-05-24 02:49:19,975   T2 [put the wine bottle on top of the cabine] ep=10: 0/10=0%\\\\n2026-05-24 02:52:28,744   T2 [put the wine bottle on top of the cabine] ep=20: 2/20=10%\\\\n2026-05-24 02:55:29,033   T2 [put the wine bottle on top of the cabine] ep=30: 5/30=17%\\\\n2026-05-24 02:59:00,954   T2 [put the wine bottle on top of the cabine] ep=40: 7/40=18%\\\\n2026-05-24 03:01:53,743   T2 [put the wine bottle on top of the cabine] ep=50: 11/50=22%\\\\n2026-05-24 03:01:53,743 Task 2: SR=22.0% | Total: 54/150=36.0% | Time: 44.6min\\\\n2026-05-24 03:05:20,586   T3 [open the top drawer and put the bowl ins] ep=10: 3/10=30%\\\\n2026-05-24 03:09:01,826   T3 [open the top drawer and put the bowl ins] ep=20: 5/20=25%\\\\n2026-05-24 03:12:50,798   T3 [open the top drawer and put the bowl ins] ep=30: 8/30=27%\\\\n2026-05-24 03:16:01,371   T3 [open the top drawer and put the bowl ins] ep=40: 15/40=38%\\\\n2026-05-24 03:19:26,096   T3 [open the top drawer and put the bowl ins] ep=50: 19/50=38%\\\\n2026-05-24 03:19:26,096 Task 3: SR=38.0% | Total: 73/200=36.5% | Time: 62.2min\\\\n2026-05-24 03:21:57,485   T4 [put the bowl on top of the cabinet] ep=10: 6/10=60%\\\\n2026-05-24 03:24:43,953   T4 [put the bowl on top of the cabinet] ep=20: 11/20=55%\\\\n2026-05-24 03:27:28,385   T4 [put the bowl on top of the cabinet] ep=30: 16/30=53%\\\\n2026-05-24 03:30:34,133   T4 [put the bowl on top of the cabinet] ep=40: 20/40=50%\\\\n2026-05-24 03:33:24,939   T4 [put the bowl on top of the cabinet] ep=50: 25/50=50%\\\\n2026-05-24 03:33:24,939 Task 4: SR=50.0% | Total: 98/250=39.2% | Time: 76.1min\\\\n2026-05-24 03:36:32,882   T5 [push the plate to the front of the stove] ep=10: 5/10=50%\\\\n2026-05-24 03:38:56,171   T5 [push the plate to the front of the stove] ep=20: 14/20=70%\\\\n2026-05-24 03:41:46,353   T5 [push the plate to the front of the stove] ep=30: 19/30=63%\\\\n2026-05-24 03:44:31,502   T5 [push the plate to the front of the stove] ep=40: 26/40=65%\\\\n2026-05-24 03:47:14,513   T5 [push the plate to the front of the stove] ep=50: 33/50=66%\\\\n2026-05-24 03:47:14,513 Task 5: SR=66.0% | Total: 131/300=43.7% | Time: 90.0min\\\\n2026-05-24 03:49:38,895   T6 [put the cream cheese in the bowl] ep=10: 8/10=80%\\\\n2026-05-24 03:51:43,312   T6 [put the cream cheese in the bowl] ep=20: 16/20=80%\\\\n2026-05-24 03:53:27,283   T6 [put the cream cheese in the bowl] ep=30: 25/30=83%\\\\n2026-05-24 03:55:13,919   T6 [put the cream cheese in the bowl] ep=40: 34/40=85%\\\\n2026-05-24 03:57:15,447   T6 [put the cream cheese in the bowl] ep=50: 41/50=82%\\\\n2026-05-24 03:57:15,447 Task 6: SR=82.0% | Total: 172/350=49.1% | Time: 100.0min\\\\n2026-05-24 03:58:44,047   T7 [turn on the stove] ep=10: 9/10=90%\\\\n2026-05-24 04:00:18,381   T7 [turn on the stove] ep=20: 18/20=90%\\\\n2026-05-24 04:02:04,723   T7 [turn on the stove] ep=30: 26/30=87%\\\\n2026-05-24 04:03:36,748   T7 [turn on the stove] ep=40: 35/40=88%\\\\n2026-05-24 04:05:08,475   T7 [turn on the stove] ep=50: 44/50=88%\\\\n2026-05-24 04:05:08,475 Task 7: SR=88.0% | Total: 216/400=54.0% | Time: 107.9min\\\\n2026-05-24 04:07:14,454   T8 [put the bowl on the plate] ep=10: 7/10=70%\\\\n2026-05-24 04:09:22,697   T8 [put the bowl on the plate] ep=20: 13/20=65%\\\\n2026-05-24 04:10:54,843   T8 [put the bowl on the plate] ep=30: 22/30=73%\\\\n2026-05-24 04:12:12,302   T8 [put the bowl on the plate] ep=40: 32/40=80%\\\\n2026-05-24 04:13:45,899   T8 [put the bowl on the plate] ep=50: 42/50=84%\\\\n2026-05-24 04:13:45,899 Task 8: SR=84.0% | Total: 258/450=57.3% | Time: 116.5min\\\\n2026-05-24 04:17:09,044   T9 [put the wine bottle on the rack] ep=10: 0/10=0%\\\\n2026-05-24 04:20:31,914   T9 [put the wine bottle on the rack] ep=20: 1/20=5%\\\\n2026-05-24 04:23:43,858   T9 [put the wine bottle on the rack] ep=30: 2/30=7%\\\\n2026-05-24 04:27:08,973   T9 [put the wine bottle on the rack] ep=40: 3/40=8%\\\\n2026-05-24 04:30:27,846   T9 [put the wine bottle on the rack] ep=50: 4/50=8%\\\\n2026-05-24 04:30:27,846 Task 9: SR=8.0% | Total: 262/500=52.4% | Time: 133.2min\\\\n2026-05-24 04:30:28,062 \\\\n============================================================\\\\n2026-05-24 04:30:28,062 RESULT: libero_goal prune=random keep=0.85 SR=52.4%\\\\n2026-05-24 04:30:28,062 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.85_libero_goal_seed42.json\\\\n2026-05-24 04:30:28,062 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 02:14:37,455 Config: suite=libero_goal, prune=random, keep=0.85, eps=50, gpu=0\\n2026-05-24 02:14:37,456 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-24 02:17:06,433 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-24 02:17:11,086 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-24 02:17:11,086 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-24 02:17:14,652 Patched embed_image\\n2026-05-24 02:17:14,659 Model: 4143.4M params\\n2026-05-24 02:17:14,659 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-24 02:17:14,659 Pruning: random, keep 217/256 tokens/image (651 total)\\n2026-05-24 02:17:15,608 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-24 02:17:15,632 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-24 02:17:15,632 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 02:17:15,632 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 02:17:15,665 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 02:17:16,069 Suite: libero_goal, 10 tasks, max_steps=300\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\n[PRUNE-DIAG] random: n_keep=217/256, first_indices=[0, 1, 2, 3, 4]\\n2026-05-24 02:19:39,490   T0 [open the middle drawer of the cabinet] ep=10: 7/10=70%\\n2026-05-24 02:21:22,274   T0 [open the middle drawer of the cabinet] ep=20: 17/20=85%\\n2026-05-24 02:23:52,737   T0 [open the middle drawer of the cabinet] ep=30: 23/30=77%\\n2026-05-24 02:25:56,380   T0 [open the middle drawer of the cabinet] ep=40: 32/40=80%\\n2026-05-24 02:27:42,741   T0 [open the middle drawer of the cabinet] ep=50: 42/50=84%\\n2026-05-24 02:27:42,742 Task 0: SR=84.0% | Total: 42/50=84.0% | Time: 10.4min\\n2026-05-24 02:31:26,833   T1 [put the bowl on the stove] ep=10: 0/10=0%\\n2026-05-24 02:35:10,810   T1 [put the bowl on the stove] ep=20: 0/20=0%\\n2026-05-24 02:38:36,893   T1 [put the bowl on the stove] ep=30: 0/30=0%\\n2026-05-24 02:41:55,433   T1 [put the bowl on the stove] ep=40: 1/40=2%\\n2026-05-24 02:45:36,157   T1 [put the bowl on the stove] ep=50: 1/50=2%\\n2026-05-24 02:45:36,157 Task 1: SR=2.0% | Total: 43/100=43.0% | Time: 28.3min\\n2026-05-24 02:49:19,975   T2 [put the wine bottle on top of the cabine] ep=10: 0/10=0%\\n2026-05-24 02:52:28,744   T2 [put the wine bottle on top of the cabine] ep=20: 2/20=10%\\n2026-05-24 02:55:29,033   T2 [put the wine bottle on top of the cabine] ep=30: 5/30=17%\\n2026-05-24 02:59:00,954   T2 [put the wine bottle on top of the cabine] ep=40: 7/40=18%\\n2026-05-24 03:01:53,743   T2 [put the wine bottle on top of the cabine] ep=50: 11/50=22%\\n2026-05-24 03:01:53,743 Task 2: SR=22.0% | Total: 54/150=36.0% | Time: 44.6min\\n2026-05-24 03:05:20,586   T3 [open the top drawer and put the bowl ins] ep=10: 3/10=30%\\n2026-05-24 03:09:01,826   T3 [open the top drawer and put the bowl ins] ep=20: 5/20=25%\\n2026-05-24 03:12:50,798   T3 [open the top drawer and put the bowl ins] ep=30: 8/30=27%\\n2026-05-24 03:16:01,371   T3 [open the top drawer and put the bowl ins] ep=40: 15/40=38%\\n2026-05-24 03:19:26,096   T3 [open the top drawer and put the bowl ins] ep=50: 19/50=38%\\n2026-05-24 03:19:26,096 Task 3: SR=38.0% | Total: 73/200=36.5% | Time: 62.2min\\n2026-05-24 03:21:57,485   T4 [put the bowl on top of the cabinet] ep=10: 6/10=60%\\n2026-05-24 03:24:43,953   T4 [put the bowl on top of the cabinet] ep=20: 11/20=55%\\n2026-05-24 03:27:28,385   T4 [put the bowl on top of the cabinet] ep=30: 16/30=53%\\n2026-05-24 03:30:34,133   T4 [put the bowl on top of the cabinet] ep=40: 20/40=50%\\n2026-05-24 03:33:24,939   T4 [put the bowl on top of the cabinet] ep=50: 25/50=50%\\n2026-05-24 03:33:24,939 Task 4: SR=50.0% | Total: 98/250=39.2% | Time: 76.1min\\n2026-05-24 03:36:32,882   T5 [push the plate to the front of the stove] ep=10: 5/10=50%\\n2026-05-24 03:38:56,171   T5 [push the plate to the front of the stove] ep=20: 14/20=70%\\n2026-05-24 03:41:46,353   T5 [push the plate to the front of the stove] ep=30: 19/30=63%\\n2026-05-24 03:44:31,502   T5 [push the plate to the front of the stove] ep=40: 26/40=65%\\n2026-05-24 03:47:14,513   T5 [push the plate to the front of the stove] ep=50: 33/50=66%\\n2026-05-24 03:47:14,513 Task 5: SR=66.0% | Total: 131/300=43.7% | Time: 90.0min\\n2026-05-24 03:49:38,895   T6 [put the cream cheese in the bowl] ep=10: 8/10=80%\\n2026-05-24 03:51:43,312   T6 [put the cream cheese in the bowl] ep=20: 16/20=80%\\n2026-05-24 03:53:27,283   T6 [put the cream cheese in the bowl] ep=30: 25/30=83%\\n2026-05-24 03:55:13,919   T6 [put the cream cheese in the bowl] ep=40: 34/40=85%\\n2026-05-24 03:57:15,447   T6 [put the cream cheese in the bowl] ep=50: 41/50=82%\\n2026-05-24 03:57:15,447 Task 6: SR=82.0% | Total: 172/350=49.1% | Time: 100.0min\\n2026-05-24 03:58:44,047   T7 [turn on the stove] ep=10: 9/10=90%\\n2026-05-24 04:00:18,381   T7 [turn on the stove] ep=20: 18/20=90%\\n2026-05-24 04:02:04,723   T7 [turn on the stove] ep=30: 26/30=87%\\n2026-05-24 04:03:36,748   T7 [turn on the stove] ep=40: 35/40=88%\\n2026-05-24 04:05:08,475   T7 [turn on the stove] ep=50: 44/50=88%\\n2026-05-24 04:05:08,475 Task 7: SR=88.0% | Total: 216/400=54.0% | Time: 107.9min\\n2026-05-24 04:07:14,454   T8 [put the bowl on the plate] ep=10: 7/10=70%\\n2026-05-24 04:09:22,697   T8 [put the bowl on the plate] ep=20: 13/20=65%\\n2026-05-24 04:10:54,843   T8 [put the bowl on the plate] ep=30: 22/30=73%\\n2026-05-24 04:12:12,302   T8 [put the bowl on the plate] ep=40: 32/40=80%\\n2026-05-24 04:13:45,899   T8 [put the bowl on the plate] ep=50: 42/50=84%\\n2026-05-24 04:13:45,899 Task 8: SR=84.0% | Total: 258/450=57.3% | Time: 116.5min\\n2026-05-24 04:17:09,044   T9 [put the wine bottle on the rack] ep=10: 0/10=0%\\n2026-05-24 04:20:31,914   T9 [put the wine bottle on the rack] ep=20: 1/20=5%\\n2026-05-24 04:23:43,858   T9 [put the wine bottle on the rack] ep=30: 2/30=7%\\n2026-05-24 04:27:08,973   T9 [put the wine bottle on the rack] ep=40: 3/40=8%\\n2026-05-24 04:30:27,846   T9 [put the wine bottle on the rack] ep=50: 4/50=8%\\n2026-05-24 04:30:27,846 Task 9: SR=8.0% | Total: 262/500=52.4% | Time: 133.2min\\n2026-05-24 04:30:28,062 \\n============================================================\\n2026-05-24 04:30:28,062 RESULT: libero_goal prune=random keep=0.85 SR=52.4%\\n2026-05-24 04:30:28,062 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.85_libero_goal_seed42.json\\n2026-05-24 04:30:28,062 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A2MtMHkFpTZZJLHx5xpTYD`</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tail -100 ~/runs/importance_margin_vla_compress/eval_pi05_random_k05_goal_seed42_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "f307c9dc-595e-4d9a-b258-9abc35934dcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014RfYKGHRkLBykmmACQobYN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 959,
+      "cache_read_input_tokens": 23809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 959
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T20:35:41.626Z_
+
+<details><summary>↩ Tool result · `toolu_01A2MtMHkFpTZZJLHx5xpTYD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 02:14:33,699 Config: suite=libero_goal, prune=random, keep=0.5, eps=50, gpu=0\\n2026-05-24 02:14:33,699 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-24 02:17:04,523 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-24 02:17:13,039 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-24 02:17:13,039 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-24 02:17:16,620 Patched embed_image\\n2026-05-24 02:17:16,628 Model: 4143.4M params\\n2026-05-24 02:17:16,628 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-24 02:17:16,628 Pruning: random, keep 128/256 tokens/image (384 total)\\n2026-05-24 02:17:17,621 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-24 02:17:17,648 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-24 02:17:17,648 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 02:17:17,648 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 02:17:17,683 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 02:17:17,911 Suite: libero_goal, 10 tasks, max_steps=300\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\n[PRUNE-DIAG] random: n_keep=128/256, first_indices=[1, 2, 3, 4, 5]\\n2026-05-24 02:19:50,401   T0 [open the middle drawer of the cabinet] ep=10: 5/10=50%\\n2026-05-24 02:21:52,392   T0 [open the middle drawer of the cabinet] ep=20: 13/20=65%\\n2026-05-24 02:24:07,687   T0 [open the middle drawer of the cabinet] ep=30: 21/30=70%\\n2026-05-24 02:26:12,689   T0 [open the middle drawer of the cabinet] ep=40: 30/40=75%\\n2026-05-24 02:28:19,610   T0 [open the middle drawer of the cabinet] ep=50: 39/50=78%\\n2026-05-24 02:28:19,610 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 11.0min\\n2026-05-24 02:31:44,471   T1 [put the bowl on the stove] ep=10: 1/10=10%\\n2026-05-24 02:34:15,419   T1 [put the bowl on the stove] ep=20: 6/20=30%\\n2026-05-24 02:36:07,919   T1 [put the bowl on the stove] ep=30: 14/30=47%\\n2026-05-24 02:38:24,462   T1 [put the bowl on the stove] ep=40: 20/40=50%\\n2026-05-24 02:41:36,140   T1 [put the bowl on the stove] ep=50: 22/50=44%\\n2026-05-24 02:41:36,140 Task 1: SR=44.0% | Total: 61/100=61.0% | Time: 24.3min\\n2026-05-24 02:44:02,135   T2 [put the wine bottle on top of the cabine] ep=10: 7/10=70%\\n2026-05-24 02:45:50,181   T2 [put the wine bottle on top of the cabine] ep=20: 16/20=80%\\n2026-05-24 02:47:46,471   T2 [put the wine bottle on top of the cabine] ep=30: 25/30=83%\\n2026-05-24 02:50:01,968   T2 [put the wine bottle on top of the cabine] ep=40: 33/40=82%\\n2026-05-24 02:51:38,842   T2 [put the wine bottle on top of the cabine] ep=50: 43/50=86%\\n2026-05-24 02:51:38,842 Task 2: SR=86.0% | Total: 104/150=69.3% | Time: 34.3min\\n2026-05-24 02:54:35,336   T3 [open the top drawer and put the bowl ins] ep=10: 7/10=70%\\n2026-05-24 02:57:40,658   T3 [open the top drawer and put the bowl ins] ep=20: 13/20=65%\\n2026-05-24 03:00:42,737   T3 [open the top drawer and put the bowl ins] ep=30: 20/30=67%\\n2026-05-24 03:03:35,007   T3 [open the top drawer and put the bowl ins] ep=40: 28/40=70%\\n2026-05-24 03:06:07,631   T3 [open the top drawer and put the bowl ins] ep=50: 38/50=76%\\n2026-05-24 03:06:07,631 Task 3: SR=76.0% | Total: 142/200=71.0% | Time: 48.8min\\n2026-05-24 03:07:55,661   T4 [put the bowl on top of the cabinet] ep=10: 9/10=90%\\n2026-05-24 03:09:39,088   T4 [put the bowl on top of the cabinet] ep=20: 18/20=90%\\n2026-05-24 03:11:25,343   T4 [put the bowl on top of the cabinet] ep=30: 28/30=93%\\n2026-05-24 03:13:08,478   T4 [put the bowl on top of the cabinet] ep=40: 37/40=92%\\n2026-05-24 03:14:52,361   T4 [put the bowl on top of the cabinet] ep=50: 46/50=92%\\n2026-05-24 03:14:52,361 Task 4: SR=92.0% | Total: 188/250=75.2% | Time: 57.6min\\n2026-05-24 03:17:23,368   T5 [push the plate to the front of the stove] ep=10: 9/10=90%\\n2026-05-24 03:19:56,417   T5 [push the plate to the front of the stove] ep=20: 16/20=80%\\n2026-05-24 03:22:37,664   T5 [push the plate to the front of the stove] ep=30: 21/30=70%\\n2026-05-24 03:24:59,762   T5 [push the plate to the front of the stove] ep=40: 28/40=70%\\n2026-05-24 03:27:42,594   T5 [push the plate to the front of the stove] ep=50: 35/50=70%\\n2026-05-24 03:27:42,594 Task 5: SR=70.0% | Total: 223/300=74.3% | Time: 70.4min\\n2026-05-24 03:30:12,617   T6 [put the cream cheese in the bowl] ep=10: 5/10=50%\\n2026-05-24 03:32:40,769   T6 [put the cream cheese in the bowl] ep=20: 10/20=50%\\n2026-05-24 03:34:42,073   T6 [put the cream cheese in the bowl] ep=30: 18/30=60%\\n2026-05-24 03:37:31,894   T6 [put the cream cheese in the bowl] ep=40: 22/40=55%\\n2026-05-24 03:39:12,025   T6 [put the cream cheese in the bowl] ep=50: 31/50=62%\\n2026-05-24 03:39:12,025 Task 6: SR=62.0% | Total: 254/350=72.6% | Time: 81.9min\\n2026-05-24 03:40:24,195   T7 [turn on the stove] ep=10: 10/10=100%\\n2026-05-24 03:41:33,244   T7 [turn on the stove] ep=20: 20/20=100%\\n2026-05-24 03:42:43,807   T7 [turn on the stove] ep=30: 30/30=100%\\n2026-05-24 03:43:54,089   T7 [turn on the stove] ep=40: 40/40=100%\\n2026-05-24 03:45:06,834   T7 [turn on the stove] ep=50: 50/50=100%\\n2026-05-24 03:45:06,834 Task 7: SR=100.0% | Total: 304/400=76.0% | Time: 87.8min\\n2026-05-24 03:46:30,948   T8 [put the bowl on the plate] ep=10: 9/10=90%\\n2026-05-24 03:48:16,177   T8 [put the bowl on the plate] ep=20: 17/20=85%\\n2026-05-24 03:50:08,270   T8 [put the bowl on the plate] ep=30: 25/30=83%\\n2026-05-24 03:51:26,932   T8 [put the bowl on the plate] ep=40: 35/40=88%\\n2026-05-24 03:53:01,816   T8 [put the bowl on the plate] ep=50: 43/50=86%\\n2026-05-24 03:53:01,817 Task 8: SR=86.0% | Total: 347/450=77.1% | Time: 95.7min\\n2026-05-24 03:56:12,548   T9 [put the wine bottle on the rack] ep=10: 1/10=10%\\n2026-05-24 03:58:56,057   T9 [put the wine bottle on the rack] ep=20: 5/20=25%\\n2026-05-24 04:01:40,890   T9 [put the wine bottle on the rack] ep=30: 10/30=33%\\n2026-05-24 04:04:19,949   T9 [put the wine bottle on the rack] ep=40: 16/40=40%\\n2026-05-24 04:07:00,199   T9 [put the wine bottle on the rack] ep=50: 21/50=42%\\n2026-05-24 04:07:00,200 Task 9: SR=42.0% | Total: 368/500=73.6% | Time: 109.7min\\n2026-05-24 04:07:00,400 \\n============================================================\\n2026-05-24 04:07:00,400 RESULT: libero_goal prune=random keep=0.5 SR=73.6%\\n2026-05-24 04:07:00,400 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_goal_seed42.json\\n2026-05-24 04:07:00,400 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "08c09694-a71c-4627-ac58-d0cf5d0defd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 02:14:33,699 Config: suite=libero_goal, prune=random, keep=0.5, eps=50, gpu=0\\\\n2026-05-24 02:14:33,699 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n2026-05-24 02:17:04,523 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-24 02:17:13,039 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-24 02:17:13,039 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-24 02:17:16,620 Patched embed_image\\\\n2026-05-24 02:17:16,628 Model: 4143.4M params\\\\n2026-05-24 02:17:16,628 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-24 02:17:16,628 Pruning: random, keep 128/256 tokens/image (384 total)\\\\n2026-05-24 02:17:17,621 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n2026-05-24 02:17:17,648 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n2026-05-24 02:17:17,648 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\n2026-05-24 02:17:17,648 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-24 02:17:17,683 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-24 02:17:17,911 Suite: libero_goal, 10 tasks, max_steps=300\\\\nLocal assets not found. Downloading from HuggingFace Hub...\\\\nAssets already downloaded at /root/.cache/libero/assets\\\\n[PRUNE-DIAG] random: n_keep=128/256, first_indices=[1, 2, 3, 4, 5]\\\\n2026-05-24 02:19:50,401   T0 [open the middle drawer of the cabinet] ep=10: 5/10=50%\\\\n2026-05-24 02:21:52,392   T0 [open the middle drawer of the cabinet] ep=20: 13/20=65%\\\\n2026-05-24 02:24:07,687   T0 [open the middle drawer of the cabinet] ep=30: 21/30=70%\\\\n2026-05-24 02:26:12,689   T0 [open the middle drawer of the cabinet] ep=40: 30/40=75%\\\\n2026-05-24 02:28:19,610   T0 [open the middle drawer of the cabinet] ep=50: 39/50=78%\\\\n2026-05-24 02:28:19,610 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 11.0min\\\\n2026-05-24 02:31:44,471   T1 [put the bowl on the stove] ep=10: 1/10=10%\\\\n2026-05-24 02:34:15,419   T1 [put the bowl on the stove] ep=20: 6/20=30%\\\\n2026-05-24 02:36:07,919   T1 [put the bowl on the stove] ep=30: 14/30=47%\\\\n2026-05-24 02:38:24,462   T1 [put the bowl on the stove] ep=40: 20/40=50%\\\\n2026-05-24 02:41:36,140   T1 [put the bowl on the stove] ep=50: 22/50=44%\\\\n2026-05-24 02:41:36,140 Task 1: SR=44.0% | Total: 61/100=61.0% | Time: 24.3min\\\\n2026-05-24 02:44:02,135   T2 [put the wine bottle on top of the cabine] ep=10: 7/10=70%\\\\n2026-05-24 02:45:50,181   T2 [put the wine bottle on top of the cabine] ep=20: 16/20=80%\\\\n2026-05-24 02:47:46,471   T2 [put the wine bottle on top of the cabine] ep=30: 25/30=83%\\\\n2026-05-24 02:50:01,968   T2 [put the wine bottle on top of the cabine] ep=40: 33/40=82%\\\\n2026-05-24 02:51:38,842   T2 [put the wine bottle on top of the cabine] ep=50: 43/50=86%\\\\n2026-05-24 02:51:38,842 Task 2: SR=86.0% | Total: 104/150=69.3% | Time: 34.3min\\\\n2026-05-24 02:54:35,336   T3 [open the top drawer and put the bowl ins] ep=10: 7/10=70%\\\\n2026-05-24 02:57:40,658   T3 [open the top drawer and put the bowl ins] ep=20: 13/20=65%\\\\n2026-05-24 03:00:42,737   T3 [open the top drawer and put the bowl ins] ep=30: 20/30=67%\\\\n2026-05-24 03:03:35,007   T3 [open the top drawer and put the bowl ins] ep=40: 28/40=70%\\\\n2026-05-24 03:06:07,631   T3 [open the top drawer and put the bowl ins] ep=50: 38/50=76%\\\\n2026-05-24 03:06:07,631 Task 3: SR=76.0% | Total: 142/200=71.0% | Time: 48.8min\\\\n2026-05-24 03:07:55,661   T4 [put the bowl on top of the cabinet] ep=10: 9/10=90%\\\\n2026-05-24 03:09:39,088   T4 [put the bowl on top of the cabinet] ep=20: 18/20=90%\\\\n2026-05-24 03:11:25,343   T4 [put the bowl on top of the cabinet] ep=30: 28/30=93%\\\\n2026-05-24 03:13:08,478   T4 [put the bowl on top of the cabinet] ep=40: 37/40=92%\\\\n2026-05-24 03:14:52,361   T4 [put the bowl on top of the cabinet] ep=50: 46/50=92%\\\\n2026-05-24 03:14:52,361 Task 4: SR=92.0% | Total: 188/250=75.2% | Time: 57.6min\\\\n2026-05-24 03:17:23,368   T5 [push the plate to the front of the stove] ep=10: 9/10=90%\\\\n2026-05-24 03:19:56,417   T5 [push the plate to the front of the stove] ep=20: 16/20=80%\\\\n2026-05-24 03:22:37,664   T5 [push the plate to the front of the stove] ep=30: 21/30=70%\\\\n2026-05-24 03:24:59,762   T5 [push the plate to the front of the stove] ep=40: 28/40=70%\\\\n2026-05-24 03:27:42,594   T5 [push the plate to the front of the stove] ep=50: 35/50=70%\\\\n2026-05-24 03:27:42,594 Task 5: SR=70.0% | Total: 223/300=74.3% | Time: 70.4min\\\\n2026-05-24 03:30:12,617   T6 [put the cream cheese in the bowl] ep=10: 5/10=50%\\\\n2026-05-24 03:32:40,769   T6 [put the cream cheese in the bowl] ep=20: 10/20=50%\\\\n2026-05-24 03:34:42,073   T6 [put the cream cheese in the bowl] ep=30: 18/30=60%\\\\n2026-05-24 03:37:31,894   T6 [put the cream cheese in the bowl] ep=40: 22/40=55%\\\\n2026-05-24 03:39:12,025   T6 [put the cream cheese in the bowl] ep=50: 31/50=62%\\\\n2026-05-24 03:39:12,025 Task 6: SR=62.0% | Total: 254/350=72.6% | Time: 81.9min\\\\n2026-05-24 03:40:24,195   T7 [turn on the stove] ep=10: 10/10=100%\\\\n2026-05-24 03:41:33,244   T7 [turn on the stove] ep=20: 20/20=100%\\\\n2026-05-24 03:42:43,807   T7 [turn on the stove] ep=30: 30/30=100%\\\\n2026-05-24 03:43:54,089   T7 [turn on the stove] ep=40: 40/40=100%\\\\n2026-05-24 03:45:06,834   T7 [turn on the stove] ep=50: 50/50=100%\\\\n2026-05-24 03:45:06,834 Task 7: SR=100.0% | Total: 304/400=76.0% | Time: 87.8min\\\\n2026-05-24 03:46:30,948   T8 [put the bowl on the plate] ep=10: 9/10=90%\\\\n2026-05-24 03:48:16,177   T8 [put the bowl on the plate] ep=20: 17/20=85%\\\\n2026-05-24 03:50:08,270   T8 [put the bowl on the plate] ep=30: 25/30=83%\\\\n2026-05-24 03:51:26,932   T8 [put the bowl on the plate] ep=40: 35/40=88%\\\\n2026-05-24 03:53:01,816   T8 [put the bowl on the plate] ep=50: 43/50=86%\\\\n2026-05-24 03:53:01,817 Task 8: SR=86.0% | Total: 347/450=77.1% | Time: 95.7min\\\\n2026-05-24 03:56:12,548   T9 [put the wine bottle on the rack] ep=10: 1/10=10%\\\\n2026-05-24 03:58:56,057   T9 [put the wine bottle on the rack] ep=20: 5/20=25%\\\\n2026-05-24 04:01:40,890   T9 [put the wine bottle on the rack] ep=30: 10/30=33%\\\\n2026-05-24 04:04:19,949   T9 [put the wine bottle on the rack] ep=40: 16/40=40%\\\\n2026-05-24 04:07:00,199   T9 [put the wine bottle on the rack] ep=50: 21/50=42%\\\\n2026-05-24 04:07:00,200 Task 9: SR=42.0% | Total: 368/500=73.6% | Time: 109.7min\\\\n2026-05-24 04:07:00,400 \\\\n============================================================\\\\n2026-05-24 04:07:00,400 RESULT: libero_goal prune=random keep=0.5 SR=73.6%\\\\n2026-05-24 04:07:00,400 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_goal_seed42.json\\\\n2026-05-24 04:07:00,400 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 02:14:33,699 Config: suite=libero_goal, prune=random, keep=0.5, eps=50, gpu=0\\n2026-05-24 02:14:33,699 Loading pi0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-24 02:17:04,523 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-24 02:17:13,039 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-24 02:17:13,039 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-24 02:17:16,620 Patched embed_image\\n2026-05-24 02:17:16,628 Model: 4143.4M params\\n2026-05-24 02:17:16,628 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-24 02:17:16,628 Pruning: random, keep 128/256 tokens/image (384 total)\\n2026-05-24 02:17:17,621 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-24 02:17:17,648 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-24 02:17:17,648 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-24 02:17:17,648 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 02:17:17,683 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 02:17:17,911 Suite: libero_goal, 10 tasks, max_steps=300\\nLocal assets not found. Downloading from HuggingFace Hub...\\nAssets already downloaded at /root/.cache/libero/assets\\n[PRUNE-DIAG] random: n_keep=128/256, first_indices=[1, 2, 3, 4, 5]\\n2026-05-24 02:19:50,401   T0 [open the middle drawer of the cabinet] ep=10: 5/10=50%\\n2026-05-24 02:21:52,392   T0 [open the middle drawer of the cabinet] ep=20: 13/20=65%\\n2026-05-24 02:24:07,687   T0 [open the middle drawer of the cabinet] ep=30: 21/30=70%\\n2026-05-24 02:26:12,689   T0 [open the middle drawer of the cabinet] ep=40: 30/40=75%\\n2026-05-24 02:28:19,610   T0 [open the middle drawer of the cabinet] ep=50: 39/50=78%\\n2026-05-24 02:28:19,610 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 11.0min\\n2026-05-24 02:31:44,471   T1 [put the bowl on the stove] ep=10: 1/10=10%\\n2026-05-24 02:34:15,419   T1 [put the bowl on the stove] ep=20: 6/20=30%\\n2026-05-24 02:36:07,919   T1 [put the bowl on the stove] ep=30: 14/30=47%\\n2026-05-24 02:38:24,462   T1 [put the bowl on the stove] ep=40: 20/40=50%\\n2026-05-24 02:41:36,140   T1 [put the bowl on the stove] ep=50: 22/50=44%\\n2026-05-24 02:41:36,140 Task 1: SR=44.0% | Total: 61/100=61.0% | Time: 24.3min\\n2026-05-24 02:44:02,135   T2 [put the wine bottle on top of the cabine] ep=10: 7/10=70%\\n2026-05-24 02:45:50,181   T2 [put the wine bottle on top of the cabine] ep=20: 16/20=80%\\n2026-05-24 02:47:46,471   T2 [put the wine bottle on top of the cabine] ep=30: 25/30=83%\\n2026-05-24 02:50:01,968   T2 [put the wine bottle on top of the cabine] ep=40: 33/40=82%\\n2026-05-24 02:51:38,842   T2 [put the wine bottle on top of the cabine] ep=50: 43/50=86%\\n2026-05-24 02:51:38,842 Task 2: SR=86.0% | Total: 104/150=69.3% | Time: 34.3min\\n2026-05-24 02:54:35,336   T3 [open the top drawer and put the bowl ins] ep=10: 7/10=70%\\n2026-05-24 02:57:40,658   T3 [open the top drawer and put the bowl ins] ep=20: 13/20=65%\\n2026-05-24 03:00:42,737   T3 [open the top drawer and put the bowl ins] ep=30: 20/30=67%\\n2026-05-24 03:03:35,007   T3 [open the top drawer and put the bowl ins] ep=40: 28/40=70%\\n2026-05-24 03:06:07,631   T3 [open the top drawer and put the bowl ins] ep=50: 38/50=76%\\n2026-05-24 03:06:07,631 Task 3: SR=76.0% | Total: 142/200=71.0% | Time: 48.8min\\n2026-05-24 03:07:55,661   T4 [put the bowl on top of the cabinet] ep=10: 9/10=90%\\n2026-05-24 03:09:39,088   T4 [put the bowl on top of the cabinet] ep=20: 18/20=90%\\n2026-05-24 03:11:25,343   T4 [put the bowl on top of the cabinet] ep=30: 28/30=93%\\n2026-05-24 03:13:08,478   T4 [put the bowl on top of the cabinet] ep=40: 37/40=92%\\n2026-05-24 03:14:52,361   T4 [put the bowl on top of the cabinet] ep=50: 46/50=92%\\n2026-05-24 03:14:52,361 Task 4: SR=92.0% | Total: 188/250=75.2% | Time: 57.6min\\n2026-05-24 03:17:23,368   T5 [push the plate to the front of the stove] ep=10: 9/10=90%\\n2026-05-24 03:19:56,417   T5 [push the plate to the front of the stove] ep=20: 16/20=80%\\n2026-05-24 03:22:37,664   T5 [push the plate to the front of the stove] ep=30: 21/30=70%\\n2026-05-24 03:24:59,762   T5 [push the plate to the front of the stove] ep=40: 28/40=70%\\n2026-05-24 03:27:42,594   T5 [push the plate to the front of the stove] ep=50: 35/50=70%\\n2026-05-24 03:27:42,594 Task 5: SR=70.0% | Total: 223/300=74.3% | Time: 70.4min\\n2026-05-24 03:30:12,617   T6 [put the cream cheese in the bowl] ep=10: 5/10=50%\\n2026-05-24 03:32:40,769   T6 [put the cream cheese in the bowl] ep=20: 10/20=50%\\n2026-05-24 03:34:42,073   T6 [put the cream cheese in the bowl] ep=30: 18/30=60%\\n2026-05-24 03:37:31,894   T6 [put the cream cheese in the bowl] ep=40: 22/40=55%\\n2026-05-24 03:39:12,025   T6 [put the cream cheese in the bowl] ep=50: 31/50=62%\\n2026-05-24 03:39:12,025 Task 6: SR=62.0% | Total: 254/350=72.6% | Time: 81.9min\\n2026-05-24 03:40:24,195   T7 [turn on the stove] ep=10: 10/10=100%\\n2026-05-24 03:41:33,244   T7 [turn on the stove] ep=20: 20/20=100%\\n2026-05-24 03:42:43,807   T7 [turn on the stove] ep=30: 30/30=100%\\n2026-05-24 03:43:54,089   T7 [turn on the stove] ep=40: 40/40=100%\\n2026-05-24 03:45:06,834   T7 [turn on the stove] ep=50: 50/50=100%\\n2026-05-24 03:45:06,834 Task 7: SR=100.0% | Total: 304/400=76.0% | Time: 87.8min\\n2026-05-24 03:46:30,948   T8 [put the bowl on the plate] ep=10: 9/10=90%\\n2026-05-24 03:48:16,177   T8 [put the bowl on the plate] ep=20: 17/20=85%\\n2026-05-24 03:50:08,270   T8 [put the bowl on the plate] ep=30: 25/30=83%\\n2026-05-24 03:51:26,932   T8 [put the bowl on the plate] ep=40: 35/40=88%\\n2026-05-24 03:53:01,816   T8 [put the bowl on the plate] ep=50: 43/50=86%\\n2026-05-24 03:53:01,817 Task 8: SR=86.0% | Total: 347/450=77.1% | Time: 95.7min\\n2026-05-24 03:56:12,548   T9 [put the wine bottle on the rack] ep=10: 1/10=10%\\n2026-05-24 03:58:56,057   T9 [put the wine bottle on the rack] ep=20: 5/20=25%\\n2026-05-24 04:01:40,890   T9 [put the wine bottle on the rack] ep=30: 10/30=33%\\n2026-05-24 04:04:19,949   T9 [put the wine bottle on the rack] ep=40: 16/40=40%\\n2026-05-24 04:07:00,199   T9 [put the wine bottle on the rack] ep=50: 21/50=42%\\n2026-05-24 04:07:00,200 Task 9: SR=42.0% | Total: 368/500=73.6% | Time: 109.7min\\n2026-05-24 04:07:00,400 \\n============================================================\\n2026-05-24 04:07:00,400 RESULT: libero_goal prune=random keep=0.5 SR=73.6%\\n2026-05-24 04:07:00,400 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_random_k0.50_libero_goal_seed42.json\\n2026-05-24 04:07:00,400 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me extract the results from all three experiments:
+
+**Experiment 1: eval_pi05_random_k03_goal_seed43_v2**
+- Overall SR: 53.6% (268/500)
+- Per-task:
+  - T0 [open the middle drawer of the cabinet]: 80% (40/50)
+  - T1 [put the bowl on the stove]: 12% (6/50)
+  - T2 [put the wine bottle on top of the cabinet]: 76% (38/50)
+  - T3 [open the top drawer and put the bowl in]: 52% (26/50)
+  - T4 [put the bowl on top of the cabinet]: 60% (30/50)
+  - T5 [push the plate to the front of the stove]: 32% (16/50)
+  - T6 [put the cream cheese in the bowl]: 26% (13/50)
+  - T7 [turn on the stove]: 100% (50/50)
+  - T8 [put the bowl on the plate]: 70% (35/50)
+  - T9 [put the wine bottle on the rack]: 28% (14/50)
+- Episodes: 500/500
+
+The second experiment shows a 52.4% overall success rate with notably different per-task performance—T1 is struggling at just 2% while T7 and T8 are performing well above 80%, and T9 also drops significantly to 8%. The third experiment appears to be starting but is cut off.
+
+Now I'm checking the memory file to see what's already been recorded before adding these results.
+
+Looking at the comparison across different k values and seeds, k=0.85 is clearly stuck in that cliff zone—the CPU RNG fix didn't budge it at all, both runs came in at 52.4%. Meanwhile k=0.5 is performing much more consistently, dropping only slightly from 74.4% to 73.6% after the fix, so the RNG change had minimal impact there.
+
+Now I need to check the memory file and update it with these results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "bbbb1f1e-513c-4fa5-92ed-13927e3183d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013PKioCyuxiCo5hdi8Snz1g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11307,
+      "cache_read_input_tokens": 24768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+先读取当前 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "1cb66b41-12bc-495c-b5e6-a3d785c6c632",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013PKioCyuxiCo5hdi8Snz1g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11307,
+      "cache_read_input_tokens": 24768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FUcXhWVC3xGbTf8dTJfdvQ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "7dea1ef1-359b-4d11-be5c-6f3614a4f7af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013PKioCyuxiCo5hdi8Snz1g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11307,
+      "cache_read_input_tokens": 24768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11307
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T20:36:00.943Z_
+
+<details><summary>↩ Tool result · `toolu_01FUcXhWVC3xGbTf8dTJfdvQ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "4cb6f77a-2917-4585-a440-4744c242db67",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01JPGqZsTL83Erh78zCsfBCf`</summary>
+
+```json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "94f7c06f-dbd8-45ae-a432-38968ca98e29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TgLRkwtiwdZRSqyJvqLb6x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1444,
+      "cache_read_input_tokens": 36075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1444
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T20:36:06.996Z_
+
+<details><summary>↩ Tool result · `toolu_01JPGqZsTL83Erh78zCsfBCf`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\", \"content\": \"# VLA 模型全面调研报告\\n\\n**调研日期**: 2026-05-20\\n**目的**: 寻找不同 connector 架构的开源 VLA 模型，扩展 vision connector 对 token 可压缩性影响的实验\\n\\n---\\n\\n## 已有实验数据\\n\\n| 模型 | Connector | 压缩行为 |\\n|------|-----------|----------|\\n| SmolVLA | Pixel-shuffle | Cliff-edge collapse (k=0.95 → 0% SR) |\\n| OpenVLA | 2-layer MLP projector | Graded degradation (线性下降) |\\n| RoboFlamingo | Perceiver Resampler | 尝试失败 |\\n| **X-VLA** | **Linear projection** | **Nearly lossless (k=0.3 → norm=1.0014)** |\\n\\n---\\n\\n## 完整模型调研表\\n\\n### 1. Octo (UC Berkeley, 2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 27M (Small) / 93M (Base) |\\n| Vision encoder | Shallow CNN (从头训练，非预训练 ViT) |\\n| **Connector 类型** | **CNN patch encoder → 直接拼接进 transformer（无独立 connector）** |\\n| LLM backbone | 纯 transformer（非预训练 LLM），decoder-only |\\n| 开源状态 | ✅ weights + code, GitHub: [octo-models/octo](https://github.com/octo-models/octo), HF: rail-berkeley/octo-base |\\n| LIBERO 支持 | ✅ 原生支持，fine-tune 后 ~72% SR |\\n| 改造成本 | 低（已有 LIBERO fine-tune 代码） |\\n| 论文 LIBERO 结果 | 有: ~72% (fine-tuned) |\\n| 备注 | 非标准 VLM→LLM 架构，是 transformer-based diffusion policy。图像通过浅层 CNN 编码为 16×16 patches 后直接拼入 transformer 序列。语言用 T5 tokenizer/encoder。Action head 是 diffusion policy。 |\\n\\n### 2. CogACT (Microsoft/Tsinghua, 2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | ~7.1B (7B Prismatic VLM + 89M-300M DiT action module) |\\n| Vision encoder | DINOv2 + SigLIP (双 encoder，channel 拼接) |\\n| **Connector 类型** | **2-layer MLP projector**（Prismatic 架构：DINOv2+SigLIP feature → channel concat → 2-layer MLP → Llama-2 embedding space） |\\n| LLM backbone | Llama-2 7B (via Prismatic-7B) |\\n| 开源状态 | ✅ weights + code, GitHub: [microsoft/CogACT](https://github.com/microsoft/CogACT), HF: CogACT/CogACT-Base, CogACT/CogACT-Small |\\n| LIBERO 支持 | 需改造（paper 用 SimplerEnv + 真机） |\\n| 改造成本 | 中（需接 LIBERO data pipeline + action space） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 核心创新在 DiT action module（将 VLM 认知特征作为 condition 输入扩散 transformer 生成动作）。Connector 与 OpenVLA 相同（都基于 Prismatic） |\\n\\n### 3. HPT (MIT, NeurIPS 2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 3.1M (S) / 12.6M (B) / 50.5M (L) / 226.8M (XL) / 1.1B (Huge) |\\n| Vision encoder | 预训练冻结 ResNet18 |\\n| **Connector 类型** | **Cross-attention tokenizer**（learnable tokens 通过 cross-attention 聚合 vision features → 固定 16 tokens，每个 camera view 有独立 MLP projector） |\\n| LLM backbone | 无（纯 decoder-only transformer，从头训练） |\\n| 开源状态 | ✅ weights + code, GitHub: [liruiw/HPT](https://github.com/liruiw/HPT), HF: liruiw/hpt |\\n| LIBERO 支持 | 未确认（paper 评测 6 个 benchmark） |\\n| 改造成本 | 中（非标准 VLM 架构，需改 stem + action head） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 非 VLM→LLM 架构。Cross-attention tokenizer 类似 Perceiver 但更轻量（8 heads, 64 dim/head）。跨 embodiment 预训练。 |\\n\\n### 4. RT-2-X (Google DeepMind, 2023)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 55B |\\n| Vision encoder | ViT (PaLI-X 的视觉编码器) |\\n| **Connector 类型** | 未公开（闭源） |\\n| LLM backbone | PaLI-X / PaLM-E |\\n| 开源状态 | ❌ **闭源**，权重不公开 |\\n| LIBERO 支持 | 不可行 |\\n| 改造成本 | 不可行 |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 闭源模型，无法使用 |\\n\\n### 5. GR-1 (ByteDance, 2023)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 未明确公布 |\\n| Vision encoder | MAE ViT-Base (预训练) |\\n| **Connector 类型** | **Perceiver Resampler**（将 MAE ViT 视觉 token 数量压缩）+ linear layers 对齐维度 |\\n| LLM backbone | GPT-style causal transformer（非预训练 LLM） |\\n| 开源状态 | ✅ weights + code, GitHub: [bytedance/GR-1](https://github.com/bytedance/GR-1), Apache-2.0 |\\n| LIBERO 支持 | 需改造（paper 只有 CALVIN） |\\n| 改造成本 | 高（需改 data pipeline、action space、视频生成部分可能要适配） |\\n| 论文 LIBERO 结果 | 无（CALVIN: 94.9%） |\\n| 备注 | 既做动作预测又做视频生成（future image prediction）。语言用 CLIP text encoder。使用 Perceiver Resampler 这一点很有价值——与 RoboFlamingo 类似但架构不同。 |\\n\\n### 6. GR-2 (ByteDance, 2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 未公布 |\\n| Vision encoder | 未公布 |\\n| **Connector 类型** | 未公布 |\\n| LLM backbone | 未公布 |\\n| 开源状态 | ❌ **未开源**，代码/权重未释放 |\\n| LIBERO 支持 | 不可行 |\\n| 改造成本 | 不可行 |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | GR-1 的后续，但未开源 |\\n\\n### 7. LLARVA (2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 7B |\\n| Vision encoder | CLIP ViT-L/14 |\\n| **Connector 类型** | **MLP projector**（LLaVA-style，2-layer MLP with GELU） |\\n| LLM backbone | Llama-2 7B |\\n| 开源状态 | ✅ code + LoRA weights, GitHub: [Dantong88/LLARVA](https://github.com/Dantong88/LLARVA), Apache-2.0 |\\n| LIBERO 支持 | 需改造 |\\n| 改造成本 | 中（需接 action head + LIBERO data pipeline） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 预测 visual traces (2D 轨迹) 作为中间表示。Connector 与 OpenVLA 类似（都是 MLP projector），但用 CLIP 而非 Prismatic 双 encoder |\\n\\n### 8. RoboVLMs (2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 不定（框架） |\\n| Vision encoder | 支持多种 VLM backbone |\\n| **Connector 类型** | 取决于所选 VLM（框架支持多种） |\\n| LLM backbone | 取决于所选 VLM |\\n| 开源状态 | ✅ code + models, GitHub: [Robot-VLAs/RoboVLMs](https://github.com/Robot-VLAs/RoboVLMs) |\\n| LIBERO 支持 | 需确认 |\\n| 改造成本 | 低-中（框架设计灵活） |\\n| 论文 LIBERO 结果 | 未确认 |\\n| 备注 | 这是一个**框架**而非单一模型。实验了 8+ VLM backbone × 4 policy 架构。最佳模型用 Kosmos backbone。对我们的 connector 对比研究有参考价值但不直接使用。 |\\n\\n### 9. 3D-VLA (UMass, ICML 2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 未明确 |\\n| Vision encoder | 3D feature extraction（point cloud based） |\\n| **Connector 类型** | **Interaction tokens**（3D-LLM 架构，用交互 token 嵌入 embodied 环境） |\\n| LLM backbone | 基于 3D-LLM |\\n| 开源状态 | ✅ code + diffusion models, GitHub: [UMass-Embodied-AGI/3D-VLA](https://github.com/UMass-Embodied-AGI/3D-VLA), HF: anyezhy |\\n| LIBERO 支持 | 需大量改造（paper 用 RLBench） |\\n| 改造成本 | 高（3D 点云输入，与 LIBERO 2D 图像差异大） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 基于 3D 点云的 VLA，与我们研究的 2D 图像 → connector → LLM 管道差异太大，不推荐 |\\n\\n### 10. π0 / pi-zero (Physical Intelligence, 2024-2025)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | ~3.3B (400M SigLIP + 2.6B Gemma + ~300M action expert) |\\n| Vision encoder | SigLIP-So400m (400M params) |\\n| **Connector 类型** | **Linear projection**（单层线性层，将 SigLIP token 投影到 Gemma embedding space） |\\n| LLM backbone | Gemma 2B (via PaliGemma) |\\n| 开源状态 | ✅ weights + code, GitHub: [Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi), HF 有 PyTorch port |\\n| LIBERO 支持 | ✅ 有评测（LIBERO-PRO 中被评测） |\\n| 改造成本 | 低（已有 LIBERO 评测代码） |\\n| 论文 LIBERO 结果 | 有（LIBERO-PRO 中有结果） |\\n| 备注 | **强力推荐**。Linear projection 是最简单的 connector，与 OpenVLA 的 2-layer MLP 形成鲜明对比。Action expert 通过 MoE 架构耦合。Flow matching 生成动作。 |\\n\\n### 11. OpenVLA-OFT (Stanford, 2025)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 7B |\\n| Vision encoder | SigLIP + DINOv2 (Prismatic) |\\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同的 Prismatic connector） |\\n| LLM backbone | Llama-2 7B |\\n| 开源状态 | ✅ weights + code, GitHub: [moojink/openvla-oft](https://github.com/moojink/openvla-oft) |\\n| LIBERO 支持 | ✅ 原生支持，SOTA 97.1% |\\n| 改造成本 | 极低（已有完整 LIBERO fine-tune + eval） |\\n| 论文 LIBERO 结果 | 有: 97.1% SR (4 suite avg) |\\n| 备注 | Connector 与 OpenVLA 完全相同。改进在 fine-tuning recipe（continuous actions, action chunking, bidirectional attention）。对压缩实验来说，connector 级别的差异与 OpenVLA 相同，但 action generation 方式不同，可能影响压缩行为。 |\\n\\n### 12. RoboMM (2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 未明确公布 |\\n| Vision encoder | CLIP (via OpenFlamingo) |\\n| **Connector 类型** | **3D Perception Adapter (UVFormer)** + **Cross-attention**（OpenFlamingo 风格：text queries attend to visual features through cross-attention layers） |\\n| LLM backbone | OpenFlamingo (cross-attention decoder) |\\n| 开源状态 | ✅ code, GitHub: [RoboUniview/RoboMM](https://github.com/RoboUniview/RoboMM) |\\n| LIBERO 支持 | ✅ 有评测 |\\n| 改造成本 | 低-中 |\\n| 论文 LIBERO 结果 | 有: 90.7% SR |\\n| 备注 | Cross-attention connector 是独特的融合方式（与 MLP/linear 的 \\\"先投射再拼接\\\" 不同）。还有 occupancy supervision 的 3D adapter。多模态解码器增强感知。 |\\n\\n### 13. SpatialVLA (2025, RSS)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | ~4B |\\n| Vision encoder | SigLIP |\\n| **Connector 类型** | **Linear projection + Ego3D Position Encoding**（PaliGemma2 的 linear connector + MLP(sinusoidal(3D positions)) 叠加到 visual tokens 上） |\\n| LLM backbone | Gemma (via PaliGemma2) |\\n| 开源状态 | ✅ weights + code, GitHub: [SpatialVLA/SpatialVLA](https://github.com/SpatialVLA/SpatialVLA), HF: IPEC-COMMUNITY/spatialvla-4b-224-pt |\\n| LIBERO 支持 | 未确认 |\\n| 改造成本 | 中（需接 LIBERO data pipeline） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 基于 PaliGemma2，connector 本质上是 linear projection（与 π0 相同），加了 3D spatial encoding。Adaptive Action Grids 只输出 3 个 action token（其他模型 7 个）。 |\\n\\n### 14. DeeR-VLA (2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 3B / 9B (OpenFlamingo 变体) |\\n| Vision encoder | CLIP ViT-L/14 (428M params) |\\n| **Connector 类型** | **Perceiver Resampler + Cross-attention**（OpenFlamingo 架构：CLIP features → Perceiver Resampler → learnable cross-attention blocks 注入 LLM 层间） |\\n| LLM backbone | MPT-1B (3B 版) / MPT-7B (9B 版) |\\n| 开源状态 | ✅ code + checkpoints, GitHub: [yueyang130/DeeR-VLA](https://github.com/yueyang130/DeeR-VLA) |\\n| LIBERO 支持 | 需改造（paper 只有 CALVIN） |\\n| 改造成本 | 中-高（需接 LIBERO pipeline，且多 exit 架构增加复杂度） |\\n| 论文 LIBERO 结果 | 无（CALVIN benchmark） |\\n| 备注 | **Perceiver Resampler** 与 RoboFlamingo 相同架构基础。动态 early exit 是额外功能。可作为 Perceiver Resampler 实验的替代方案。 |\\n\\n### 15. TraceVLA (UMD, ICLR 2025)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 7B (OpenVLA-based) / 4B (Phi-3-Vision-based) |\\n| Vision encoder | SigLIP + DINOv2 (OpenVLA 版) / CLIP ViT (Phi-3 版) |\\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同） |\\n| LLM backbone | Llama-2 7B (OpenVLA 版) / Phi-3 4B |\\n| 开源状态 | ✅ code + weights, GitHub: [umd-huang-lab/tracevla](https://github.com/umd-huang-lab/tracevla), HF: furonghuang-lab/tracevla_7b, MIT license |\\n| LIBERO 支持 | 未确认（SimplerEnv + 真机） |\\n| 改造成本 | 低（基于 OpenVLA 改造） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | Connector 与 OpenVLA 相同，改进在于 visual trace prompting（在图像上叠加动作历史轨迹）。压缩行为预期与 OpenVLA 相似。 |\\n\\n### 16. X-VLA (ICLR 2026)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 0.9B |\\n| Vision encoder | Florence-Large (DaViT) |\\n| **Connector 类型** | **Linear projection + Soft Prompts**（vision features 通过 lightweight linear layer 投影到高维空间 + 每个 embodiment 有独立 learnable prompt embeddings 注入 transformer） |\\n| LLM backbone | Standard transformer 24 layers (非预训练 LLM，但使用 Florence 预训练 VLM 初始化) |\\n| 开源状态 | ✅ weights + code, GitHub: [2toinf/X-VLA](https://github.com/2toinf/X-VLA), HF: 2toINF/X-VLA, Apache-2.0 |\\n| LIBERO 支持 | ✅ 原生支持，98% SR |\\n| 改造成本 | 极低（已有 LIBERO 训练权重） |\\n| 论文 LIBERO 结果 | 有: 98% SR |\\n| 备注 | **强力推荐**。Linear projection connector + flow matching action generation。LIBERO SOTA 之一。小模型(0.9B)便于实验。 |\\n\\n### 17. ECoT / Embodied Chain-of-Thought (2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 7B (基于 OpenVLA) |\\n| Vision encoder | SigLIP + DINOv2 (Prismatic) |\\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同） |\\n| LLM backbone | Llama-2 7B |\\n| 开源状态 | ✅ code + weights, GitHub: [MichalZawalski/embodied-CoT](https://github.com/MichalZawalski/embodied-CoT), HF: ecot-openvla-7b-bridge/oxe |\\n| LIBERO 支持 | 需改造 |\\n| 改造成本 | 低（基于 OpenVLA） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | Connector 与 OpenVLA 完全相同，增加了 chain-of-thought reasoning。对 connector 压缩研究无新增价值。 |\\n\\n### 18. LingBot-VLA (Ant Group/Robbyant, 2026)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 4B |\\n| Vision encoder | Qwen2.5-VL 的 ViT（2D-RoPE + window attention） |\\n| **Connector 类型** | **MLP merger**（2-layer MLP with ReLU，2×2 spatial grouping 后投影 + LLM decoder 中有 cross-attention 层融合 visual features） |\\n| LLM backbone | Qwen2.5-VL-3B |\\n| 开源状态 | ✅ weights + code, GitHub: [Robbyant/lingbot-vla](https://github.com/Robbyant/lingbot-vla) |\\n| LIBERO 支持 | 未确认 |\\n| 改造成本 | 中 |\\n| 论文 LIBERO 结果 | 未确认 |\\n| 备注 | Qwen2.5-VL 的 MLP merger 是一种混合 connector：先做 spatial grouping（类似 pixel-shuffle 的空间压缩）再 MLP 投射。Mixture of Transformers 架构。 |\\n\\n---\\n\\n## Connector 类型覆盖分析\\n\\n### 已有数据的 Connector 类型\\n| Connector 类型 | 代表模型 | 压缩行为 |\\n|---------------|----------|----------|\\n| Pixel-shuffle | SmolVLA | Cliff-edge collapse |\\n| 2-layer MLP projector | OpenVLA (Prismatic) | Graded degradation |\\n| Perceiver Resampler | RoboFlamingo | 尝试失败 |\\n| **Linear projection** | **X-VLA** | **Nearly lossless pruning** |\\n\\n### 可新增的 Connector 类型\\n| Connector 类型 | 候选模型 | 特点 | 可行性 |\\n|---------------|----------|------|--------|\\n| **Linear projection** | **π0**, SpatialVLA | 验证 X-VLA 发现的一致性 | ⭐⭐⭐ 高 |\\n| **Cross-attention (Flamingo-style)** | **RoboMM** | 不在 encoder 端压缩，而是 decoder 端通过 cross-attention 选择性融合 | ⭐⭐ 中 |\\n| **CNN patch → direct concat** | Octo | 无独立 connector，图像 patches 直接拼入 transformer | ⭐ 低（架构差异太大） |\\n| **MLP merger + spatial grouping** | LingBot-VLA | 先空间合并再 MLP 投射 + cross-attention | ⭐⭐ 中 |\\n| **Cross-attention tokenizer** | HPT | learnable tokens 通过 cross-attention 聚合 vision features | ⭐ 低（非 VLM 架构） |\\n\\n### 关键发现\\n1. **Linear projection** 是最有价值的新增类型——π0 和 X-VLA 都用这种最简单的 connector，与 OpenVLA 的 2-layer MLP 形成对比\\n2. **Cross-attention** (RoboMM 的 OpenFlamingo 架构) 从根本上不同：不投射拼接，而是 decoder 层间交叉注意力\\n3. 大量模型共享 connector：OpenVLA, CogACT, LLARVA, TraceVLA, ECoT, OpenVLA-OFT 都用 **2-layer MLP**（Prismatic 或 LLaVA 架构）\\n\\n---\\n\\n## Top 推荐：最适合扩展实验的 5 个模型\\n\\n### 🥇 1. π0 (Physical Intelligence)\\n- **Connector**: Linear projection (单层线性)\\n- **推荐理由**: \\n  - 与 OpenVLA 的 2-layer MLP 形成直接对比（linear vs MLP）\\n  - 开源权重 + 代码，社区活跃\\n  - 已有 LIBERO 评测代码\\n  - PaliGemma 架构广为人知\\n  - 3B 参数可在单卡运行\\n- **预期价值**: Linear projection 不增加非线性变换，token 可能保留更多原始 visual feature 结构 → 压缩行为可能与 MLP 不同\\n\\n### 🥈 2. X-VLA\\n- **Connector**: Linear projection + soft prompts\\n- **推荐理由**:\\n  - 同样是 linear projection，与 π0 对比看 soft prompt 的影响\\n  - LIBERO 98% SR，已有训练好的 LIBERO 权重直接可用\\n  - 0.9B 参数，实验成本最低\\n  - ICLR 2026，最新模型\\n  - Apache-2.0 开源\\n- **预期价值**: 验证 linear projection 的压缩行为是否 consistent across models\\n\\n### 🥉 3. DeeR-VLA\\n- **Connector**: Perceiver Resampler + Cross-attention (OpenFlamingo)\\n- **推荐理由**:\\n  - Perceiver Resampler 与 RoboFlamingo 相同架构，但 DeeR-VLA 已验证可训练（CALVIN benchmark 正常工作）\\n  - 给 Perceiver Resampler 第二次机会\\n  - 可对比 RoboFlamingo 的训练失败是架构问题还是实现问题\\n  - Open source with checkpoints\\n- **预期价值**: Perceiver Resampler 本身就做了 attention-based compression → 压缩行为可能与 MLP/linear 截然不同\\n- **风险**: LIBERO 需要自己改造\\n\\n### 4. RoboMM\\n- **Connector**: Cross-attention (OpenFlamingo) + 3D Adapter\\n- **推荐理由**:\\n  - Cross-attention 融合方式从根本上不同于 projection-based connectors\\n  - 已有 LIBERO 结果 (90.7%)\\n  - Open source\\n- **预期价值**: Cross-attention 在 decoder 端动态选择 visual features → 可能展现出与 projection-based 完全不同的压缩模式\\n- **风险**: 架构较复杂，3D adapter 增加变量\\n\\n### 5. OpenVLA-OFT\\n- **Connector**: 2-layer MLP projector (与 OpenVLA 相同)\\n- **推荐理由**:\\n  - Connector 与 OpenVLA 相同，但 action generation 完全不同（continuous + chunking）\\n  - LIBERO 97.1% SOTA\\n  - 可验证 \\\"相同 connector + 不同 action head\\\" 是否影响压缩行为\\n  - 已有完整 LIBERO 代码\\n- **预期价值**: 作为 OpenVLA 的对照组，隔离 connector vs action head 对压缩的影响\\n\\n---\\n\\n## 不推荐的模型及原因\\n\\n| 模型 | 排除原因 |\\n|------|----------|\\n| RT-2-X | 闭源，权重不可用 |\\n| GR-2 | 未开源 |\\n| 3D-VLA | 3D 点云输入，与 2D VLA 差异太大 |\\n| CogACT | Connector 与 OpenVLA 相同（Prismatic MLP），不新增类型 |\\n| LLARVA | Connector 与 OpenVLA 类似（MLP projector），不新增类型 |\\n| TraceVLA | Connector 与 OpenVLA 相同，不新增类型 |\\n| ECoT | Connector 与 OpenVLA 相同，不新增类型 |\\n| HPT | 非 VLM 架构，不适合 connector 压缩叙事 |\\n| GR-1 | 有 Perceiver Resampler（有价值），但无 LIBERO 支持 + 视频生成架构改造成本高 |\\n| Octo | 无独立 connector（CNN patch 直接拼入），架构与标准 VLM 差异太大 |\\n\\n---\\n\\n## 总结：Connector 类型 × 模型矩阵\\n\\n| Connector 类型 | 已有 | 推荐新增 |\\n|---------------|------|----------|\\n| Pixel-shuffle | SmolVLA ✅ | — |\\n| 2-layer MLP projector | OpenVLA ✅ | OpenVLA-OFT（同 connector 不同 action head） |\\n| Perceiver Resampler | RoboFlamingo ❌(失败) | **DeeR-VLA** |\\n| **Linear projection** | **X-VLA ✅** | **π0** |\\n| **Cross-attention** | — | **RoboMM** |\\n\\n实现后可达 **5 种 connector 类型 × 6+ 模型**的全面对比。\\n\\n---\\n\\n## X-VLA 详细架构调研（2026-05-20 新增）\\n\\n### 模型身份确认\\n- **名称**: X-VLA (Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model)\\n- **论文**: arXiv:2510.10274, ICLR 2026\\n- **GitHub**: [2toinf/X-VLA](https://github.com/2toinf/X-VLA)\\n- **HuggingFace**: [2toINF/X-VLA](https://huggingface.co/collections/2toINF/x-vla)\\n- **参数量**: 0.9B\\n- **许可**: Apache-2.0\\n- **LIBERO SR**: 98.1%\\n\\n### 架构详解\\n\\n```\\nImage (224×224) → Florence-Large (DaViT) → Vision Tokens [B, N, 2048]\\n    → Linear Projection + LayerNorm → [B, N, 1024]\\n    → Merge with Text Token Embeddings → Florence2 Encoder (self-attention)\\n    → Context Features → SoftPromptedTransformer (24 layers, hidden=1024)\\n        + Soft Prompts (32 learnable embeddings per embodiment)\\n        + Noised Action Tokens (flow matching)\\n    → Denoised Action Trajectory [B, 30, 20]\\n```\\n\\n**各组件详情**:\\n\\n| 组件 | 规格 |\\n|------|------|\\n| Vision Encoder | Florence-Large (DaViT): patch_stride=[4,2,2,2] → total stride 32 |\\n| Vision Token 数量 | ~49 tokens (7×7 at 224×224) 或 ~576 tokens (24×24 at 768×768) — **需实际加载模型验证** |\\n| Projection | Linear + LayerNorm, dim 2048 → 1024 (projection_dim=1024) |\\n| Soft Prompts | 32 tokens/embodiment, 0.04% of total params |\\n| Transformer | 24 layers, hidden=1024, 16 heads, mlp_ratio=4.0 |\\n| Action Head | Flow matching, 30 anchor points × 20 dims (EE6D), 10 denoising steps |\\n| Max Sequence | 512 tokens |\\n\\n### HuggingFace 权重\\n| Checkpoint | 用途 | 地址 |\\n|------------|------|------|\\n| X-VLA-Pt | 预训练基座 (cross-embodiment) | 2toINF/X-VLA-Pt |\\n| X-VLA-Libero | LIBERO 全参数微调 (98.1% SR) | 2toINF/X-VLA-Libero |\\n| X-VLA-libero-*-peft | LIBERO LoRA 微调 (各 suite) | 2toINF/X-VLA-libero-spatial-peft 等 |\\n\\n### 环境依赖\\n```\\ntransformers<=4.51.3, torch, einops==0.8.1, timm==1.0.12, \\naccelerate==1.2.1, peft==0.17.1, safetensors==0.4.5,\\nnumpy==1.26.3, scipy==1.15.0, mmengine==0.10.5,\\nfastapi, uvicorn==0.34.3, h5py==3.12.1, pyarrow==20.0.0,\\nav==15.0.0, mediapy==1.2.4\\n```\\nLIBERO 评估另需 Python 3.8 环境。\\n\\n### VTC 集成方案\\n**插入点**: Florence2 `_encode_image()` 输出 → **VTC** → `_merge_input_ids_with_image_features()`\\n\\n**改造清单**:\\n1. 创建 `xvla_vtc_adapter.py`（复用 VisionTokenCompressor，hidden_dim 改 1024）\\n2. 创建 XVLASmartCompressWrapper，hook Florence2 vision 输出\\n3. 修改 merge 逻辑以适应压缩后的 token 数量\\n4. 创建 `train_xvla_smart_compress.py`（参考 X-VLA 的 train.py + peft_train.py）\\n5. 适配 flow matching loss（不同于 OpenVLA 的 cross-entropy）\\n\\n**与 OpenVLA VTC 的关键差异**:\\n| 维度 | OpenVLA | X-VLA |\\n|------|---------|-------|\\n| hidden_dim | 4096 | 1024 |\\n| 原始 vision tokens | 256 | ~49-576 (待验证) |\\n| Action 范式 | Autoregressive (256-bin CE) | Flow matching (MSE+BCE) |\\n| Connector | 2-layer MLP | Linear + LayerNorm |\\n| 模型大小 | 7B | 0.9B |\\n\\n**预计工作量**: 8-12 小时\\n- 代码改造: 4-6h（adapter + training script）\\n- 环境搭建 + 模型下载: 2-3h\\n- 验证 + 调试: 2-3h\\n\\n---\\n\\n## X-VLA Token Importance 分析结果（2026-05-20）\\n\\n### 实验配置\\n- **模型**: X-VLA-0.9B (lerobot/xvla-libero checkpoint)\\n- **数据**: LIBERO-Object (task_index 20-29), 100 images, 10 tasks\\n- **服务器**: westd-41074, cuda:1\\n- **分析脚本**: `/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py`\\n- **结果文件**: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attention_entropy_perlayer.json`\\n\\n### SoftPromptedTransformer 序列布局\\n| Token 类型 | 数量 | 说明 |\\n|-----------|------|------|\\n| Action tokens | 30 | Flow matching denoised action |\\n| VLM features | 64 | Florence2 encoder output (main view) |\\n| Aux visual | 150 | Additional camera views |\\n| Soft prompts | 32 | Embodiment-specific learnable tokens |\\n| **Total** | **276** | |\\n\\n### Entropy Ratio（Action→Vision 注意力熵）\\n- **Overall**: **0.6138** ± 0.1159\\n- **趋势**: 浅层低（L0=0.46, L1=0.34），深层高（L22=0.79, L23=0.71）\\n- 浅层集中注意力于少数 vision tokens，深层趋于均匀\\n\\n### Vision Attention Fraction（Action tokens 分配给 vision tokens 的注意力比例）\\n- 浅层（L0-2）: 33-49% — action tokens 还关注 soft prompts 和 self\\n- 中层（L6-11）: 84-90% — 绝大部分注意力给 vision tokens\\n- 深层（L17-23）: 79-90% — 持续高注意力\\n\\n### Pruning Curve（核心发现）\\n| Retention k | Mean Loss | Normalized |\\n|-------------|-----------|------------|\\n| 0.30 | 0.112945 | **1.0014** |\\n| 0.50 | 0.112823 | 1.0003 |\\n| 0.70 | 0.112789 | 1.0000 |\\n| 0.90 | 0.112789 | 1.0000 |\\n| 0.95 | 0.112789 | 1.0000 |\\n| 1.00 | 0.112789 | 1.0000 |\\n\\n**关键结论**: 丢弃 70% 的 vision tokens（k=0.3）仅导致 0.14% 的 loss 增加。X-VLA 的 vision tokens **几乎完全可压缩**。\\n\\n### 跨模型对比\\n| 模型 | Connector | Entropy Ratio | k=0.3 Norm Loss | 压缩行为 |\\n|------|-----------|---------------|-----------------|----------|\\n| SmolVLA | Pixel-shuffle | ~0.45 (低) | Cliff-edge | 不可压缩 |\\n| OpenVLA | 2-layer MLP | ~0.55 (中) | ~1.15 (15%↑) | 渐进退化 |\\n| **X-VLA** | **Linear proj** | **0.61 (中高)** | **1.0014 (0.14%↑)** | **几乎无损** |\\n\\n### 解读\\n1. **Linear projection connector 产生了高度冗余的 vision token 表示**——大部分信息集中在少数 token 中，L2 norm 可以轻松识别\\n2. Entropy 比 OpenVLA 更高（0.61 vs 0.55），说明注意力分布更均匀，但这不矛盾——均匀分布意味着 \\\"每个 token 被平等关注\\\"，而 pruning 几乎无损意味着 \\\"被关注的内容高度冗余\\\"\\n3. 这是 **connector 架构论文的关键数据点**：linear projection（无非线性变换）保留了 DaViT 输出的原始冗余结构，而 MLP projector（2 层 + GELU）通过非线性变换重新分配了信息，使得 token 间差异更大、更难压缩\\n\\n---\\n\\n## OFT Importance CV 分析结果（2026-05-20）\\n\\n### 结论\\n- **OFT CV = 0.2185**，per-task CV 在 0.211–0.225 之间\\n- 与 OpenVLA (0.215) 高度一致——两者共享相同的 2-layer MLP projector（Prismatic 架构）\\n- **LoRA fine-tuning 不改变 vision token importance 分布**——connector 架构是唯一决定因素\\n\\n### Diagnostic 表格完成状态（5/5）\\n| 模型 | Connector | CV | 压缩行为 |\\n|------|-----------|-----|----------|\\n| SmolVLA | Pixel-shuffle | ~0.08 | Cliff-edge collapse |\\n| OpenVLA | 2-layer MLP | 0.215 | Graded degradation |\\n| OpenVLA-OFT | 2-layer MLP (same) | 0.2185 | 预期与 OpenVLA 相同 |\\n| X-VLA | Linear projection | TBD | Nearly lossless |\\n| RoboFlamingo | Perceiver Resampler | N/A | 训练失败 |\\n\\n### 论文意义\\nOFT 结果支撑 claim: \\\"token importance distribution is an intrinsic property of the connector architecture, invariant to downstream fine-tuning strategy (LoRA vs full)\\\"\\n\\n---\\n\\n## 失败模式记录\\n\\n- [2026-05-21] **π0.5 自定义 eval 脚本 bug**: `eval_pi05_pruning_libero.py` 的 `patched_embed_image` 函数导致 0% SR，而官方 eval 脚本在同一 checkpoint 上 ~100% SR。→ 新模型接入时，必须先用官方 eval 脚本验证 checkpoint 可用性，确认后再写自定义 pruning eval 脚本。不要假设自定义 patch 正确。\\n\\n- [2026-05-21] **OpenVLA eval 4 实验批量失败 (westd-38929)**:\\n  - **失败实验**: eval_openvla_l2norm_k05_object_seed42 (PID 568225), eval_openvla_random_k03_object_seed42 (PID 568905), eval_openvla_l2norm_k07_object_seed42 (PID 569611), eval_openvla_l2norm_k03_object_seed42 (PID 570309)\\n  - **根因**: **AutoDL 容器 GPU 缩配**。主机有 9 块 NVIDIA RTX PRO 6000 Blackwell (各 97GB)，但容器当前只挂载了 `/dev/nvidia2` 一块 GPU。4 个实验分别在 CUDA_VISIBLE_DEVICES=0/1/2/3 启动，运行 ~1h43m 后 GPU 设备被平台回收，进程收到 SIGKILL 无任何 traceback。\\n  - **证据**:\\n    - `nvidia-smi -L` 只显示 1 块 GPU (Device Minor 2)，而 `/proc/driver/nvidia/gpus/` 显示主机有 9 块\\n    - 4 个日志文件在 14:45-14:49 间依次停止写入（3 分钟跨度，非瞬时），末尾均为正常进度输出无 error\\n    - 各实验完成了 Task 1-3，在 Task 4/10 中被杀（~30% 完成度）\\n    - 系统 RAM 充足（1TB 中仅用 46GB），排除 CPU OOM\\n    - 无 tmux session，进程通过 nohup 方式运行\\n  - **修复建议**:\\n    1. 在 AutoDL 控制台恢复实例到 4 GPU 配置（或至少确认 GPU 分配稳定）\\n    2. 重新启动 4 个实验，建议使用 tmux 以防 SSH 断连\\n    3. 如果无法恢复多 GPU，可在单 GPU 上顺序运行（每个实验约 5.5h，共 ~22h）\\n    4. 启动命令参考（单 GPU 顺序）:\\n       ```bash\\n       tmux new -s openvla_eval\\n       source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\n       cd /root/autodl-tmp/importance_margin_vla_compress\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k05_seed42.log 2>&1\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_random_k03_seed42.log 2>&1\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.7 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k07_seed42.log 2>&1\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k03_seed42.log 2>&1\\n       ```\\n\\n---\\n\\n## π0.5 跨 suite 对比（2026-05-21, 更新于 2026-05-22）\\n\\n**模型**: π0.5 (PaliGemma, linear projection connector, CV=0.055)\\n**数据来源**: registry 中所有 status=DONE 且有有效 metrics 的 pi05 实验\\n\\n### Object Suite（baseline=98.2%, eval_pi05_baseline_object_seed42）\\n\\n| k | L2norm SR (%) | L2norm exp_ids | Random SR (%) | Random exp_ids |\\n|---|--------------|----------------|--------------|----------------|\\n| 0.9 | **98.2** (s42) | eval_pi05_l2norm_k09_object_seed42_v2 | **10.8** avg [12.0(s42), 9.6(s43)] | eval_pi05_random_k09_object_seed42_v2, eval_pi05_random_k09_object_seed43 |\\n| 0.7 | **56.4** avg [55.0(s42), 56.4(s43), 57.8(s43v2)] | eval_pi05_l2norm_k07_object_seed42, _seed43, _seed43_v2 | **75.5** avg [77.2(s42), 73.8(s43)] | eval_pi05_random_k07_object_seed42, _seed43 |\\n| 0.5 | **33.5** avg [33.4(s42), 33.6(s43)] | eval_pi05_l2norm_k05_object_seed42, _seed43 | **68.9** avg [69.4(s42), 68.4(s43)] | eval_pi05_random_k05_object_seed42, _seed43 |\\n| 0.3 | **53.2** avg [51.0(s42), 55.4(s43)] | eval_pi05_l2norm_k03_object_seed42, _seed43 | **36.4** (s42) | eval_pi05_random_k03_object_seed42 |\\n| 0.1 | **2.6** (s42) | eval_pi05_l2norm_k01_object_seed42 | — | — |\\n\\n### Spatial Suite（baseline=97.2%, eval_pi05_baseline_spatial_seed42）\\n\\n| k | L2norm SR (%) | Random SR (%) | Random exp_ids |\\n|---|--------------|--------------|----------------|\\n| 0.9 | — (pending) | — (pending) | — |\\n| 0.7 | — (running: eval_pi05_l2norm_k07_spatial_seed42) | **74.4%** (s42) | eval_pi05_random_k07_spatial_seed42 |\\n| 0.5 | — (running) | **71.6** (s42) | eval_pi05_random_k05_spatial_seed42 |\\n| 0.3 | — (running) | — (submitted) | — |\\n\\n### Cross-suite 一致性分析\\n\\n**Random k=0.7 对比**:\\n- Object: **75.5%** (seed42=77.2%, seed43=73.8%)\\n- Spatial: **74.4%** (seed42)\\n- **Delta: 1.1pp** — 极高一致性\\n\\n**Random k=0.5 对比**:\\n- Object: **68.9%** (seed42=69.4%, seed43=68.4%)\\n- Spatial: **71.6%** (seed42)\\n- **Delta: 2.7pp** — 高度一致\\n\\n结论：Random pruning 在 k=0.7 和 k=0.5 的表现跨 suite 具有极强一致性（差异仅 1.1-2.7pp），说明 π0.5 的 vision token 冗余结构不依赖于具体 task 类型。Spatial 在 k=0.5 略高于 Object（+2.7pp），在 k=0.7 几乎相同（-1.1pp）。\\n\\n**Hypothesis 验证状态**: random > L2norm at k=0.7 的跨 suite 一致性需等 eval_pi05_l2norm_k07_spatial_seed42 完成后确认。Object 上 random(75.5%) > L2norm(56.4%) 差距 +19.1pp。如果 Spatial L2norm 也显著低于 random(74.4%)，则 hypothesis 成立。\\n\\n### 关键现象\\n\\n1. **L2norm 非单调 V-shape**：k=0.5 是谷底(33.5%)，k=0.3 反弹到 53.2%。多 seed 确认。原因待查——可能 L2 norm 在 50% 保留时恰好选中了信息量最差的 token 子集。\\n\\n2. **Random k=0.9 异常崩塌**：仅保留 90% token 时 random pruning SR 降至 ~10.8%（双 seed 确认 12.0%/9.6%），而 L2norm k=0.9 正常(98.2%)。这是所有模型中未见过的现象——移除 10% random token 即可摧毁模型。推测 π0.5 少数 token 承载关键位置信息，random 删除有 ~90% 概率命中关键 token。\\n\\n3. **Random 优于 L2norm 的 k 区间**：k=0.5(random 68.9% vs L2norm 33.5%)和 k=0.7(random 75.5% vs L2norm 56.4%)时 random 大幅优于 L2norm。说明 L2 norm 不是 π0.5 vision token importance 的好 proxy——CV=0.055 意味着 L2 norm 几乎无区分度。\\n\\n4. **Failed/killed 实验（已排除）**: eval_pi05_random_k07_object_seed42_v2(killed), _v3(killed), eval_pi05_random_k085_object_seed42(failed), eval_pi05_random_k095_object_seed42(failed), eval_pi05_random_k09_fixedmask_object_seed42(network error)。\\n\\n---\\n\\n## 运维教训\\n\\n### [2026-05-21] cqa1 π0.5 环境不匹配导致全部 0% SR\\n\\n**现象**: cqa1-33015 上 4 个 π0.5 实验全部 0% SR（160+ episodes）。怀疑 checkpoint 损坏。\\n\\n**根因**: 环境版本不匹配——cqa1 上 transformers=4.53.2（需要 5.5.3），lerobot=0.5.1 pip 版（需要 0.5.2 editable from /root/autodl-tmp/lerobot）。PI05Policy 在错误版本下 inference 输出全错但不报错。另外 paligemma tokenizer 缓存缺少 config.json。\\n\\n**修复**: `pip install transformers==5.5.3`，`pip install -e /root/autodl-tmp/lerobot`，补充 tokenizer config。Baseline 验证 100% SR 后重新部署。\\n\\n**教训**: 部署 π0.5 到新服务器前必须先跑 baseline 验证（10-20 episodes 即可，~5min）。包版本不匹配可能导致静默错误（不 crash 但输出全错），比 checkpoint 损坏更隐蔽。\\n\\n### [2026-05-21] k=0.3 method reversal 跨 suite 复现\\n\\nObject 和 Spatial 均确认 L2norm > random at k=0.3：\\n- Object: L2norm 51.0% > random 36.4% (+14.6pp)\\n- Spatial: L2norm 57.2% > random 49.6% (+7.6pp)\\n\\nMethod preference crossover 在 k=0.3-0.5 之间，且跨 suite 稳定。说明 reversal 是 model-intrinsic 现象。\\n\\n### [2026-05-23] CPU RNG 修复对 Random Goal 数据的差异化影响\\n\\nD183 发现 π0.5 Random Goal 数据受 CUDA RNG 跨硬件污染。修复后重跑所有 keep ratio，发现影响因比例而异：\\n\\n| k | Pre-fix SR | Post-fix SR | Delta |\\n|---|-----------|------------|-------|\\n| 0.95 | 84.0% | 83.8% | -0.2pp |\\n| 0.925 | 83.8% | **71.2%** | **-12.6pp** |\\n| 0.9 | 62.2% | 62.2% | 0pp |\\n| 0.7 | 80.6% | 78.2% | -2.4pp |\\n\\nk=0.925 受影响最大（-12.6pp），k=0.9/0.95 几乎不变。这改变了 disruption peak 的形状：pre-fix 时 k=0.925-0.95 有\\\"平台\\\"（83-84%），post-fix 显示从 k=0.95=83.8% 到 k=0.925=71.2% 的持续下降。平台是 RNG artifact。\\n\\n**教训**: 不同 keep ratio 对 RNG seed 的敏感度不同。k=0.925 恰好在 \\\"cliff zone\\\" 边缘，RNG 差异导致不同 token 子集被选中，影响巨大。远离 cliff 的比例（k=0.95, k=0.7）则稳健。\\n\\n### [2026-05-23] π0.5 Attention pruning Object cliff 极端\\n\\nπ0.5 attention pruning 在 Object 上：k=0.95=98.4%, k=0.9=97.2%, k=0.85=92.2%, **k=0.7=0.6%**。\\nk=0.85→0.7 之间存在完全崩溃（-91.6pp）。对比 L2norm/Random 在同区间的渐进退化，attention 方法的 cliff 更尖锐。原因待查——可能 attention score 分布在 π0.5 中高度集中，70% 保留时恰好切到了\\\"全部重要\\\"和\\\"全部无用\\\"的边界。\\n\", \"total_chars\": 27663, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "a29ed09f-0372-4d5e-8793-e1d341bd0e8f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\\\", \\\"content\\\": \\\"# VLA 模型全面调研报告\\\\n\\\\n**调研日期**: 2026-05-20\\\\n**目的**: 寻找不同 connector 架构的开源 VLA 模型，扩展 vision connector 对 token 可压缩性影响的实验\\\\n\\\\n---\\\\n\\\\n## 已有实验数据\\\\n\\\\n| 模型 | Connector | 压缩行为 |\\\\n|------|-----------|----------|\\\\n| SmolVLA | Pixel-shuffle | Cliff-edge collapse (k=0.95 → 0% SR) |\\\\n| OpenVLA | 2-layer MLP projector | Graded degradation (线性下降) |\\\\n| RoboFlamingo | Perceiver Resampler | 尝试失败 |\\\\n| **X-VLA** | **Linear projection** | **Nearly lossless (k=0.3 → norm=1.0014)** |\\\\n\\\\n---\\\\n\\\\n## 完整模型调研表\\\\n\\\\n### 1. Octo (UC Berkeley, 2024)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 27M (Small) / 93M (Base) |\\\\n| Vision encoder | Shallow CNN (从头训练，非预训练 ViT) |\\\\n| **Connector 类型** | **CNN patch encoder → 直接拼接进 transformer（无独立 connector）** |\\\\n| LLM backbone | 纯 transformer（非预训练 LLM），decoder-only |\\\\n| 开源状态 | ✅ weights + code, GitHub: [octo-models/octo](https://github.com/octo-models/octo), HF: rail-berkeley/octo-base |\\\\n| LIBERO 支持 | ✅ 原生支持，fine-tune 后 ~72% SR |\\\\n| 改造成本 | 低（已有 LIBERO fine-tune 代码） |\\\\n| 论文 LIBERO 结果 | 有: ~72% (fine-tuned) |\\\\n| 备注 | 非标准 VLM→LLM 架构，是 transformer-based diffusion policy。图像通过浅层 CNN 编码为 16×16 patches 后直接拼入 transformer 序列。语言用 T5 tokenizer/encoder。Action head 是 diffusion policy。 |\\\\n\\\\n### 2. CogACT (Microsoft/Tsinghua, 2024)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | ~7.1B (7B Prismatic VLM + 89M-300M DiT action module) |\\\\n| Vision encoder | DINOv2 + SigLIP (双 encoder，channel 拼接) |\\\\n| **Connector 类型** | **2-layer MLP projector**（Prismatic 架构：DINOv2+SigLIP feature → channel concat → 2-layer MLP → Llama-2 embedding space） |\\\\n| LLM backbone | Llama-2 7B (via Prismatic-7B) |\\\\n| 开源状态 | ✅ weights + code, GitHub: [microsoft/CogACT](https://github.com/microsoft/CogACT), HF: CogACT/CogACT-Base, CogACT/CogACT-Small |\\\\n| LIBERO 支持 | 需改造（paper 用 SimplerEnv + 真机） |\\\\n| 改造成本 | 中（需接 LIBERO data pipeline + action space） |\\\\n| 论文 LIBERO 结果 | 无 |\\\\n| 备注 | 核心创新在 DiT action module（将 VLM 认知特征作为 condition 输入扩散 transformer 生成动作）。Connector 与 OpenVLA 相同（都基于 Prismatic） |\\\\n\\\\n### 3. HPT (MIT, NeurIPS 2024)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 3.1M (S) / 12.6M (B) / 50.5M (L) / 226.8M (XL) / 1.1B (Huge) |\\\\n| Vision encoder | 预训练冻结 ResNet18 |\\\\n| **Connector 类型** | **Cross-attention tokenizer**（learnable tokens 通过 cross-attention 聚合 vision features → 固定 16 tokens，每个 camera view 有独立 MLP projector） |\\\\n| LLM backbone | 无（纯 decoder-only transformer，从头训练） |\\\\n| 开源状态 | ✅ weights + code, GitHub: [liruiw/HPT](https://github.com/liruiw/HPT), HF: liruiw/hpt |\\\\n| LIBERO 支持 | 未确认（paper 评测 6 个 benchmark） |\\\\n| 改造成本 | 中（非标准 VLM 架构，需改 stem + action head） |\\\\n| 论文 LIBERO 结果 | 无 |\\\\n| 备注 | 非 VLM→LLM 架构。Cross-attention tokenizer 类似 Perceiver 但更轻量（8 heads, 64 dim/head）。跨 embodiment 预训练。 |\\\\n\\\\n### 4. RT-2-X (Google DeepMind, 2023)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 55B |\\\\n| Vision encoder | ViT (PaLI-X 的视觉编码器) |\\\\n| **Connector 类型** | 未公开（闭源） |\\\\n| LLM backbone | PaLI-X / PaLM-E |\\\\n| 开源状态 | ❌ **闭源**，权重不公开 |\\\\n| LIBERO 支持 | 不可行 |\\\\n| 改造成本 | 不可行 |\\\\n| 论文 LIBERO 结果 | 无 |\\\\n| 备注 | 闭源模型，无法使用 |\\\\n\\\\n### 5. GR-1 (ByteDance, 2023)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 未明确公布 |\\\\n| Vision encoder | MAE ViT-Base (预训练) |\\\\n| **Connector 类型** | **Perceiver Resampler**（将 MAE ViT 视觉 token 数量压缩）+ linear layers 对齐维度 |\\\\n| LLM backbone | GPT-style causal transformer（非预训练 LLM） |\\\\n| 开源状态 | ✅ weights + code, GitHub: [bytedance/GR-1](https://github.com/bytedance/GR-1), Apache-2.0 |\\\\n| LIBERO 支持 | 需改造（paper 只有 CALVIN） |\\\\n| 改造成本 | 高（需改 data pipeline、action space、视频生成部分可能要适配） |\\\\n| 论文 LIBERO 结果 | 无（CALVIN: 94.9%） |\\\\n| 备注 | 既做动作预测又做视频生成（future image prediction）。语言用 CLIP text encoder。使用 Perceiver Resampler 这一点很有价值——与 RoboFlamingo 类似但架构不同。 |\\\\n\\\\n### 6. GR-2 (ByteDance, 2024)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 未公布 |\\\\n| Vision encoder | 未公布 |\\\\n| **Connector 类型** | 未公布 |\\\\n| LLM backbone | 未公布 |\\\\n| 开源状态 | ❌ **未开源**，代码/权重未释放 |\\\\n| LIBERO 支持 | 不可行 |\\\\n| 改造成本 | 不可行 |\\\\n| 论文 LIBERO 结果 | 无 |\\\\n| 备注 | GR-1 的后续，但未开源 |\\\\n\\\\n### 7. LLARVA (2024)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 7B |\\\\n| Vision encoder | CLIP ViT-L/14 |\\\\n| **Connector 类型** | **MLP projector**（LLaVA-style，2-layer MLP with GELU） |\\\\n| LLM backbone | Llama-2 7B |\\\\n| 开源状态 | ✅ code + LoRA weights, GitHub: [Dantong88/LLARVA](https://github.com/Dantong88/LLARVA), Apache-2.0 |\\\\n| LIBERO 支持 | 需改造 |\\\\n| 改造成本 | 中（需接 action head + LIBERO data pipeline） |\\\\n| 论文 LIBERO 结果 | 无 |\\\\n| 备注 | 预测 visual traces (2D 轨迹) 作为中间表示。Connector 与 OpenVLA 类似（都是 MLP projector），但用 CLIP 而非 Prismatic 双 encoder |\\\\n\\\\n### 8. RoboVLMs (2024)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 不定（框架） |\\\\n| Vision encoder | 支持多种 VLM backbone |\\\\n| **Connector 类型** | 取决于所选 VLM（框架支持多种） |\\\\n| LLM backbone | 取决于所选 VLM |\\\\n| 开源状态 | ✅ code + models, GitHub: [Robot-VLAs/RoboVLMs](https://github.com/Robot-VLAs/RoboVLMs) |\\\\n| LIBERO 支持 | 需确认 |\\\\n| 改造成本 | 低-中（框架设计灵活） |\\\\n| 论文 LIBERO 结果 | 未确认 |\\\\n| 备注 | 这是一个**框架**而非单一模型。实验了 8+ VLM backbone × 4 policy 架构。最佳模型用 Kosmos backbone。对我们的 connector 对比研究有参考价值但不直接使用。 |\\\\n\\\\n### 9. 3D-VLA (UMass, ICML 2024)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 未明确 |\\\\n| Vision encoder | 3D feature extraction（point cloud based） |\\\\n| **Connector 类型** | **Interaction tokens**（3D-LLM 架构，用交互 token 嵌入 embodied 环境） |\\\\n| LLM backbone | 基于 3D-LLM |\\\\n| 开源状态 | ✅ code + diffusion models, GitHub: [UMass-Embodied-AGI/3D-VLA](https://github.com/UMass-Embodied-AGI/3D-VLA), HF: anyezhy |\\\\n| LIBERO 支持 | 需大量改造（paper 用 RLBench） |\\\\n| 改造成本 | 高（3D 点云输入，与 LIBERO 2D 图像差异大） |\\\\n| 论文 LIBERO 结果 | 无 |\\\\n| 备注 | 基于 3D 点云的 VLA，与我们研究的 2D 图像 → connector → LLM 管道差异太大，不推荐 |\\\\n\\\\n### 10. π0 / pi-zero (Physical Intelligence, 2024-2025)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | ~3.3B (400M SigLIP + 2.6B Gemma + ~300M action expert) |\\\\n| Vision encoder | SigLIP-So400m (400M params) |\\\\n| **Connector 类型** | **Linear projection**（单层线性层，将 SigLIP token 投影到 Gemma embedding space） |\\\\n| LLM backbone | Gemma 2B (via PaliGemma) |\\\\n| 开源状态 | ✅ weights + code, GitHub: [Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi), HF 有 PyTorch port |\\\\n| LIBERO 支持 | ✅ 有评测（LIBERO-PRO 中被评测） |\\\\n| 改造成本 | 低（已有 LIBERO 评测代码） |\\\\n| 论文 LIBERO 结果 | 有（LIBERO-PRO 中有结果） |\\\\n| 备注 | **强力推荐**。Linear projection 是最简单的 connector，与 OpenVLA 的 2-layer MLP 形成鲜明对比。Action expert 通过 MoE 架构耦合。Flow matching 生成动作。 |\\\\n\\\\n### 11. OpenVLA-OFT (Stanford, 2025)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 7B |\\\\n| Vision encoder | SigLIP + DINOv2 (Prismatic) |\\\\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同的 Prismatic connector） |\\\\n| LLM backbone | Llama-2 7B |\\\\n| 开源状态 | ✅ weights + code, GitHub: [moojink/openvla-oft](https://github.com/moojink/openvla-oft) |\\\\n| LIBERO 支持 | ✅ 原生支持，SOTA 97.1% |\\\\n| 改造成本 | 极低（已有完整 LIBERO fine-tune + eval） |\\\\n| 论文 LIBERO 结果 | 有: 97.1% SR (4 suite avg) |\\\\n| 备注 | Connector 与 OpenVLA 完全相同。改进在 fine-tuning recipe（continuous actions, action chunking, bidirectional attention）。对压缩实验来说，connector 级别的差异与 OpenVLA 相同，但 action generation 方式不同，可能影响压缩行为。 |\\\\n\\\\n### 12. RoboMM (2024)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 未明确公布 |\\\\n| Vision encoder | CLIP (via OpenFlamingo) |\\\\n| **Connector 类型** | **3D Perception Adapter (UVFormer)** + **Cross-attention**（OpenFlamingo 风格：text queries attend to visual features through cross-attention layers） |\\\\n| LLM backbone | OpenFlamingo (cross-attention decoder) |\\\\n| 开源状态 | ✅ code, GitHub: [RoboUniview/RoboMM](https://github.com/RoboUniview/RoboMM) |\\\\n| LIBERO 支持 | ✅ 有评测 |\\\\n| 改造成本 | 低-中 |\\\\n| 论文 LIBERO 结果 | 有: 90.7% SR |\\\\n| 备注 | Cross-attention connector 是独特的融合方式（与 MLP/linear 的 \\\\\\\"先投射再拼接\\\\\\\" 不同）。还有 occupancy supervision 的 3D adapter。多模态解码器增强感知。 |\\\\n\\\\n### 13. SpatialVLA (2025, RSS)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | ~4B |\\\\n| Vision encoder | SigLIP |\\\\n| **Connector 类型** | **Linear projection + Ego3D Position Encoding**（PaliGemma2 的 linear connector + MLP(sinusoidal(3D positions)) 叠加到 visual tokens 上） |\\\\n| LLM backbone | Gemma (via PaliGemma2) |\\\\n| 开源状态 | ✅ weights + code, GitHub: [SpatialVLA/SpatialVLA](https://github.com/SpatialVLA/SpatialVLA), HF: IPEC-COMMUNITY/spatialvla-4b-224-pt |\\\\n| LIBERO 支持 | 未确认 |\\\\n| 改造成本 | 中（需接 LIBERO data pipeline） |\\\\n| 论文 LIBERO 结果 | 无 |\\\\n| 备注 | 基于 PaliGemma2，connector 本质上是 linear projection（与 π0 相同），加了 3D spatial encoding。Adaptive Action Grids 只输出 3 个 action token（其他模型 7 个）。 |\\\\n\\\\n### 14. DeeR-VLA (2024)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 3B / 9B (OpenFlamingo 变体) |\\\\n| Vision encoder | CLIP ViT-L/14 (428M params) |\\\\n| **Connector 类型** | **Perceiver Resampler + Cross-attention**（OpenFlamingo 架构：CLIP features → Perceiver Resampler → learnable cross-attention blocks 注入 LLM 层间） |\\\\n| LLM backbone | MPT-1B (3B 版) / MPT-7B (9B 版) |\\\\n| 开源状态 | ✅ code + checkpoints, GitHub: [yueyang130/DeeR-VLA](https://github.com/yueyang130/DeeR-VLA) |\\\\n| LIBERO 支持 | 需改造（paper 只有 CALVIN） |\\\\n| 改造成本 | 中-高（需接 LIBERO pipeline，且多 exit 架构增加复杂度） |\\\\n| 论文 LIBERO 结果 | 无（CALVIN benchmark） |\\\\n| 备注 | **Perceiver Resampler** 与 RoboFlamingo 相同架构基础。动态 early exit 是额外功能。可作为 Perceiver Resampler 实验的替代方案。 |\\\\n\\\\n### 15. TraceVLA (UMD, ICLR 2025)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 7B (OpenVLA-based) / 4B (Phi-3-Vision-based) |\\\\n| Vision encoder | SigLIP + DINOv2 (OpenVLA 版) / CLIP ViT (Phi-3 版) |\\\\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同） |\\\\n| LLM backbone | Llama-2 7B (OpenVLA 版) / Phi-3 4B |\\\\n| 开源状态 | ✅ code + weights, GitHub: [umd-huang-lab/tracevla](https://github.com/umd-huang-lab/tracevla), HF: furonghuang-lab/tracevla_7b, MIT license |\\\\n| LIBERO 支持 | 未确认（SimplerEnv + 真机） |\\\\n| 改造成本 | 低（基于 OpenVLA 改造） |\\\\n| 论文 LIBERO 结果 | 无 |\\\\n| 备注 | Connector 与 OpenVLA 相同，改进在于 visual trace prompting（在图像上叠加动作历史轨迹）。压缩行为预期与 OpenVLA 相似。 |\\\\n\\\\n### 16. X-VLA (ICLR 2026)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 0.9B |\\\\n| Vision encoder | Florence-Large (DaViT) |\\\\n| **Connector 类型** | **Linear projection + Soft Prompts**（vision features 通过 lightweight linear layer 投影到高维空间 + 每个 embodiment 有独立 learnable prompt embeddings 注入 transformer） |\\\\n| LLM backbone | Standard transformer 24 layers (非预训练 LLM，但使用 Florence 预训练 VLM 初始化) |\\\\n| 开源状态 | ✅ weights + code, GitHub: [2toinf/X-VLA](https://github.com/2toinf/X-VLA), HF: 2toINF/X-VLA, Apache-2.0 |\\\\n| LIBERO 支持 | ✅ 原生支持，98% SR |\\\\n| 改造成本 | 极低（已有 LIBERO 训练权重） |\\\\n| 论文 LIBERO 结果 | 有: 98% SR |\\\\n| 备注 | **强力推荐**。Linear projection connector + flow matching action generation。LIBERO SOTA 之一。小模型(0.9B)便于实验。 |\\\\n\\\\n### 17. ECoT / Embodied Chain-of-Thought (2024)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 7B (基于 OpenVLA) |\\\\n| Vision encoder | SigLIP + DINOv2 (Prismatic) |\\\\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同） |\\\\n| LLM backbone | Llama-2 7B |\\\\n| 开源状态 | ✅ code + weights, GitHub: [MichalZawalski/embodied-CoT](https://github.com/MichalZawalski/embodied-CoT), HF: ecot-openvla-7b-bridge/oxe |\\\\n| LIBERO 支持 | 需改造 |\\\\n| 改造成本 | 低（基于 OpenVLA） |\\\\n| 论文 LIBERO 结果 | 无 |\\\\n| 备注 | Connector 与 OpenVLA 完全相同，增加了 chain-of-thought reasoning。对 connector 压缩研究无新增价值。 |\\\\n\\\\n### 18. LingBot-VLA (Ant Group/Robbyant, 2026)\\\\n\\\\n| 字段 | 信息 |\\\\n|------|------|\\\\n| 参数量 | 4B |\\\\n| Vision encoder | Qwen2.5-VL 的 ViT（2D-RoPE + window attention） |\\\\n| **Connector 类型** | **MLP merger**（2-layer MLP with ReLU，2×2 spatial grouping 后投影 + LLM decoder 中有 cross-attention 层融合 visual features） |\\\\n| LLM backbone | Qwen2.5-VL-3B |\\\\n| 开源状态 | ✅ weights + code, GitHub: [Robbyant/lingbot-vla](https://github.com/Robbyant/lingbot-vla) |\\\\n| LIBERO 支持 | 未确认 |\\\\n| 改造成本 | 中 |\\\\n| 论文 LIBERO 结果 | 未确认 |\\\\n| 备注 | Qwen2.5-VL 的 MLP merger 是一种混合 connector：先做 spatial grouping（类似 pixel-shuffle 的空间压缩）再 MLP 投射。Mixture of Transformers 架构。 |\\\\n\\\\n---\\\\n\\\\n## Connector 类型覆盖分析\\\\n\\\\n### 已有数据的 Connector 类型\\\\n| Connector 类型 | 代表模型 | 压缩行为 |\\\\n|---------------|----------|----------|\\\\n| Pixel-shuffle | SmolVLA | Cliff-edge collapse |\\\\n| 2-layer MLP projector | OpenVLA (Prismatic) | Graded degradation |\\\\n| Perceiver Resampler | RoboFlamingo | 尝试失败 |\\\\n| **Linear projection** | **X-VLA** | **Nearly lossless pruning** |\\\\n\\\\n### 可新增的 Connector 类型\\\\n| Connector 类型 | 候选模型 | 特点 | 可行性 |\\\\n|---------------|----------|------|--------|\\\\n| **Linear projection** | **π0**, SpatialVLA | 验证 X-VLA 发现的一致性 | ⭐⭐⭐ 高 |\\\\n| **Cross-attention (Flamingo-style)** | **RoboMM** | 不在 encoder 端压缩，而是 decoder 端通过 cross-attention 选择性融合 | ⭐⭐ 中 |\\\\n| **CNN patch → direct concat** | Octo | 无独立 connector，图像 patches 直接拼入 transformer | ⭐ 低（架构差异太大） |\\\\n| **MLP merger + spatial grouping** | LingBot-VLA | 先空间合并再 MLP 投射 + cross-attention | ⭐⭐ 中 |\\\\n| **Cross-attention tokenizer** | HPT | learnable tokens 通过 cross-attention 聚合 vision features | ⭐ 低（非 VLM 架构） |\\\\n\\\\n### 关键发现\\\\n1. **Linear projection** 是最有价值的新增类型——π0 和 X-VLA 都用这种最简单的 connector，与 OpenVLA 的 2-layer MLP 形成对比\\\\n2. **Cross-attention** (RoboMM 的 OpenFlamingo 架构) 从根本上不同：不投射拼接，而是 decoder 层间交叉注意力\\\\n3. 大量模型共享 connector：OpenVLA, CogACT, LLARVA, TraceVLA, ECoT, OpenVLA-OFT 都用 **2-layer MLP**（Prismatic 或 LLaVA 架构）\\\\n\\\\n---\\\\n\\\\n## Top 推荐：最适合扩展实验的 5 个模型\\\\n\\\\n### 🥇 1. π0 (Physical Intelligence)\\\\n- **Connector**: Linear projection (单层线性)\\\\n- **推荐理由**: \\\\n  - 与 OpenVLA 的 2-layer MLP 形成直接对比（linear vs MLP）\\\\n  - 开源权重 + 代码，社区活跃\\\\n  - 已有 LIBERO 评测代码\\\\n  - PaliGemma 架构广为人知\\\\n  - 3B 参数可在单卡运行\\\\n- **预期价值**: Linear projection 不增加非线性变换，token 可能保留更多原始 visual feature 结构 → 压缩行为可能与 MLP 不同\\\\n\\\\n### 🥈 2. X-VLA\\\\n- **Connector**: Linear projection + soft prompts\\\\n- **推荐理由**:\\\\n  - 同样是 linear projection，与 π0 对比看 soft prompt 的影响\\\\n  - LIBERO 98% SR，已有训练好的 LIBERO 权重直接可用\\\\n  - 0.9B 参数，实验成本最低\\\\n  - ICLR 2026，最新模型\\\\n  - Apache-2.0 开源\\\\n- **预期价值**: 验证 linear projection 的压缩行为是否 consistent across models\\\\n\\\\n### 🥉 3. DeeR-VLA\\\\n- **Connector**: Perceiver Resampler + Cross-attention (OpenFlamingo)\\\\n- **推荐理由**:\\\\n  - Perceiver Resampler 与 RoboFlamingo 相同架构，但 DeeR-VLA 已验证可训练（CALVIN benchmark 正常工作）\\\\n  - 给 Perceiver Resampler 第二次机会\\\\n  - 可对比 RoboFlamingo 的训练失败是架构问题还是实现问题\\\\n  - Open source with checkpoints\\\\n- **预期价值**: Perceiver Resampler 本身就做了 attention-based compression → 压缩行为可能与 MLP/linear 截然不同\\\\n- **风险**: LIBERO 需要自己改造\\\\n\\\\n### 4. RoboMM\\\\n- **Connector**: Cross-attention (OpenFlamingo) + 3D Adapter\\\\n- **推荐理由**:\\\\n  - Cross-attention 融合方式从根本上不同于 projection-based connectors\\\\n  - 已有 LIBERO 结果 (90.7%)\\\\n  - Open source\\\\n- **预期价值**: Cross-attention 在 decoder 端动态选择 visual features → 可能展现出与 projection-based 完全不同的压缩模式\\\\n- **风险**: 架构较复杂，3D adapter 增加变量\\\\n\\\\n### 5. OpenVLA-OFT\\\\n- **Connector**: 2-layer MLP projector (与 OpenVLA 相同)\\\\n- **推荐理由**:\\\\n  - Connector 与 OpenVLA 相同，但 action generation 完全不同（continuous + chunking）\\\\n  - LIBERO 97.1% SOTA\\\\n  - 可验证 \\\\\\\"相同 connector + 不同 action head\\\\\\\" 是否影响压缩行为\\\\n  - 已有完整 LIBERO 代码\\\\n- **预期价值**: 作为 OpenVLA 的对照组，隔离 connector vs action head 对压缩的影响\\\\n\\\\n---\\\\n\\\\n## 不推荐的模型及原因\\\\n\\\\n| 模型 | 排除原因 |\\\\n|------|----------|\\\\n| RT-2-X | 闭源，权重不可用 |\\\\n| GR-2 | 未开源 |\\\\n| 3D-VLA | 3D 点云输入，与 2D VLA 差异太大 |\\\\n| CogACT | Connector 与 OpenVLA 相同（Prismatic MLP），不新增类型 |\\\\n| LLARVA | Connector 与 OpenVLA 类似（MLP projector），不新增类型 |\\\\n| TraceVLA | Connector 与 OpenVLA 相同，不新增类型 |\\\\n| ECoT | Connector 与 OpenVLA 相同，不新增类型 |\\\\n| HPT | 非 VLM 架构，不适合 connector 压缩叙事 |\\\\n| GR-1 | 有 Perceiver Resampler（有价值），但无 LIBERO 支持 + 视频生成架构改造成本高 |\\\\n| Octo | 无独立 connector（CNN patch 直接拼入），架构与标准 VLM 差异太大 |\\\\n\\\\n---\\\\n\\\\n## 总结：Connector 类型 × 模型矩阵\\\\n\\\\n| Connector 类型 | 已有 | 推荐新增 |\\\\n|---------------|------|----------|\\\\n| Pixel-shuffle | SmolVLA ✅ | — |\\\\n| 2-layer MLP projector | OpenVLA ✅ | OpenVLA-OFT（同 connector 不同 action head） |\\\\n| Perceiver Resampler | RoboFlamingo ❌(失败) | **DeeR-VLA** |\\\\n| **Linear projection** | **X-VLA ✅** | **π0** |\\\\n| **Cross-attention** | — | **RoboMM** |\\\\n\\\\n实现后可达 **5 种 connector 类型 × 6+ 模型**的全面对比。\\\\n\\\\n---\\\\n\\\\n## X-VLA 详细架构调研（2026-05-20 新增）\\\\n\\\\n### 模型身份确认\\\\n- **名称**: X-VLA (Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model)\\\\n- **论文**: arXiv:2510.10274, ICLR 2026\\\\n- **GitHub**: [2toinf/X-VLA](https://github.com/2toinf/X-VLA)\\\\n- **HuggingFace**: [2toINF/X-VLA](https://huggingface.co/collections/2toINF/x-vla)\\\\n- **参数量**: 0.9B\\\\n- **许可**: Apache-2.0\\\\n- **LIBERO SR**: 98.1%\\\\n\\\\n### 架构详解\\\\n\\\\n```\\\\nImage (224×224) → Florence-Large (DaViT) → Vision Tokens [B, N, 2048]\\\\n    → Linear Projection + LayerNorm → [B, N, 1024]\\\\n    → Merge with Text Token Embeddings → Florence2 Encoder (self-attention)\\\\n    → Context Features → SoftPromptedTransformer (24 layers, hidden=1024)\\\\n        + Soft Prompts (32 learnable embeddings per embodiment)\\\\n        + Noised Action Tokens (flow matching)\\\\n    → Denoised Action Trajectory [B, 30, 20]\\\\n```\\\\n\\\\n**各组件详情**:\\\\n\\\\n| 组件 | 规格 |\\\\n|------|------|\\\\n| Vision Encoder | Florence-Large (DaViT): patch_stride=[4,2,2,2] → total stride 32 |\\\\n| Vision Token 数量 | ~49 tokens (7×7 at 224×224) 或 ~576 tokens (24×24 at 768×768) — **需实际加载模型验证** |\\\\n| Projection | Linear + LayerNorm, dim 2048 → 1024 (projection_dim=1024) |\\\\n| Soft Prompts | 32 tokens/embodiment, 0.04% of total params |\\\\n| Transformer | 24 layers, hidden=1024, 16 heads, mlp_ratio=4.0 |\\\\n| Action Head | Flow matching, 30 anchor points × 20 dims (EE6D), 10 denoising steps |\\\\n| Max Sequence | 512 tokens |\\\\n\\\\n### HuggingFace 权重\\\\n| Checkpoint | 用途 | 地址 |\\\\n|------------|------|------|\\\\n| X-VLA-Pt | 预训练基座 (cross-embodiment) | 2toINF/X-VLA-Pt |\\\\n| X-VLA-Libero | LIBERO 全参数微调 (98.1% SR) | 2toINF/X-VLA-Libero |\\\\n| X-VLA-libero-*-peft | LIBERO LoRA 微调 (各 suite) | 2toINF/X-VLA-libero-spatial-peft 等 |\\\\n\\\\n### 环境依赖\\\\n```\\\\ntransformers<=4.51.3, torch, einops==0.8.1, timm==1.0.12, \\\\naccelerate==1.2.1, peft==0.17.1, safetensors==0.4.5,\\\\nnumpy==1.26.3, scipy==1.15.0, mmengine==0.10.5,\\\\nfastapi, uvicorn==0.34.3, h5py==3.12.1, pyarrow==20.0.0,\\\\nav==15.0.0, mediapy==1.2.4\\\\n```\\\\nLIBERO 评估另需 Python 3.8 环境。\\\\n\\\\n### VTC 集成方案\\\\n**插入点**: Florence2 `_encode_image()` 输出 → **VTC** → `_merge_input_ids_with_image_features()`\\\\n\\\\n**改造清单**:\\\\n1. 创建 `xvla_vtc_adapter.py`（复用 VisionTokenCompressor，hidden_dim 改 1024）\\\\n2. 创建 XVLASmartCompressWrapper，hook Florence2 vision 输出\\\\n3. 修改 merge 逻辑以适应压缩后的 token 数量\\\\n4. 创建 `train_xvla_smart_compress.py`（参考 X-VLA 的 train.py + peft_train.py）\\\\n5. 适配 flow matching loss（不同于 OpenVLA 的 cross-entropy）\\\\n\\\\n**与 OpenVLA VTC 的关键差异**:\\\\n| 维度 | OpenVLA | X-VLA |\\\\n|------|---------|-------|\\\\n| hidden_dim | 4096 | 1024 |\\\\n| 原始 vision tokens | 256 | ~49-576 (待验证) |\\\\n| Action 范式 | Autoregressive (256-bin CE) | Flow matching (MSE+BCE) |\\\\n| Connector | 2-layer MLP | Linear + LayerNorm |\\\\n| 模型大小 | 7B | 0.9B |\\\\n\\\\n**预计工作量**: 8-12 小时\\\\n- 代码改造: 4-6h（adapter + training script）\\\\n- 环境搭建 + 模型下载: 2-3h\\\\n- 验证 + 调试: 2-3h\\\\n\\\\n---\\\\n\\\\n## X-VLA Token Importance 分析结果（2026-05-20）\\\\n\\\\n### 实验配置\\\\n- **模型**: X-VLA-0.9B (lerobot/xvla-libero checkpoint)\\\\n- **数据**: LIBERO-Object (task_index 20-29), 100 images, 10 tasks\\\\n- **服务器**: westd-41074, cuda:1\\\\n- **分析脚本**: `/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py`\\\\n- **结果文件**: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attention_entropy_perlayer.json`\\\\n\\\\n### SoftPromptedTransformer 序列布局\\\\n| Token 类型 | 数量 | 说明 |\\\\n|-----------|------|------|\\\\n| Action tokens | 30 | Flow matching denoised action |\\\\n| VLM features | 64 | Florence2 encoder output (main view) |\\\\n| Aux visual | 150 | Additional camera views |\\\\n| Soft prompts | 32 | Embodiment-specific learnable tokens |\\\\n| **Total** | **276** | |\\\\n\\\\n### Entropy Ratio（Action→Vision 注意力熵）\\\\n- **Overall**: **0.6138** ± 0.1159\\\\n- **趋势**: 浅层低（L0=0.46, L1=0.34），深层高（L22=0.79, L23=0.71）\\\\n- 浅层集中注意力于少数 vision tokens，深层趋于均匀\\\\n\\\\n### Vision Attention Fraction（Action tokens 分配给 vision tokens 的注意力比例）\\\\n- 浅层（L0-2）: 33-49% — action tokens 还关注 soft prompts 和 self\\\\n- 中层（L6-11）: 84-90% — 绝大部分注意力给 vision tokens\\\\n- 深层（L17-23）: 79-90% — 持续高注意力\\\\n\\\\n### Pruning Curve（核心发现）\\\\n| Retention k | Mean Loss | Normalized |\\\\n|-------------|-----------|------------|\\\\n| 0.30 | 0.112945 | **1.0014** |\\\\n| 0.50 | 0.112823 | 1.0003 |\\\\n| 0.70 | 0.112789 | 1.0000 |\\\\n| 0.90 | 0.112789 | 1.0000 |\\\\n| 0.95 | 0.112789 | 1.0000 |\\\\n| 1.00 | 0.112789 | 1.0000 |\\\\n\\\\n**关键结论**: 丢弃 70% 的 vision tokens（k=0.3）仅导致 0.14% 的 loss 增加。X-VLA 的 vision tokens **几乎完全可压缩**。\\\\n\\\\n### 跨模型对比\\\\n| 模型 | Connector | Entropy Ratio | k=0.3 Norm Loss | 压缩行为 |\\\\n|------|-----------|---------------|-----------------|----------|\\\\n| SmolVLA | Pixel-shuffle | ~0.45 (低) | Cliff-edge | 不可压缩 |\\\\n| OpenVLA | 2-layer MLP | ~0.55 (中) | ~1.15 (15%↑) | 渐进退化 |\\\\n| **X-VLA** | **Linear proj** | **0.61 (中高)** | **1.0014 (0.14%↑)** | **几乎无损** |\\\\n\\\\n### 解读\\\\n1. **Linear projection connector 产生了高度冗余的 vision token 表示**——大部分信息集中在少数 token 中，L2 norm 可以轻松识别\\\\n2. Entropy 比 OpenVLA 更高（0.61 vs 0.55），说明注意力分布更均匀，但这不矛盾——均匀分布意味着 \\\\\\\"每个 token 被平等关注\\\\\\\"，而 pruning 几乎无损意味着 \\\\\\\"被关注的内容高度冗余\\\\\\\"\\\\n3. 这是 **connector 架构论文的关键数据点**：linear projection（无非线性变换）保留了 DaViT 输出的原始冗余结构，而 MLP projector（2 层 + GELU）通过非线性变换重新分配了信息，使得 token 间差异更大、更难压缩\\\\n\\\\n---\\\\n\\\\n## OFT Importance CV 分析结果（2026-05-20）\\\\n\\\\n### 结论\\\\n- **OFT CV = 0.2185**，per-task CV 在 0.211–0.225 之间\\\\n- 与 OpenVLA (0.215) 高度一致——两者共享相同的 2-layer MLP projector（Prismatic 架构）\\\\n- **LoRA fine-tuning 不改变 vision token importance 分布**——connector 架构是唯一决定因素\\\\n\\\\n### Diagnostic 表格完成状态（5/5）\\\\n| 模型 | Connector | CV | 压缩行为 |\\\\n|------|-----------|-----|----------|\\\\n| SmolVLA | Pixel-shuffle | ~0.08 | Cliff-edge collapse |\\\\n| OpenVLA | 2-layer MLP | 0.215 | Graded degradation |\\\\n| OpenVLA-OFT | 2-layer MLP (same) | 0.2185 | 预期与 OpenVLA 相同 |\\\\n| X-VLA | Linear projection | TBD | Nearly lossless |\\\\n| RoboFlamingo | Perceiver Resampler | N/A | 训练失败 |\\\\n\\\\n### 论文意义\\\\nOFT 结果支撑 claim: \\\\\\\"token importance distribution is an intrinsic property of the connector architecture, invariant to downstream fine-tuning strategy (LoRA vs full)\\\\\\\"\\\\n\\\\n---\\\\n\\\\n## 失败模式记录\\\\n\\\\n- [2026-05-21] **π0.5 自定义 eval 脚本 bug**: `eval_pi05_pruning_libero.py` 的 `patched_embed_image` 函数导致 0% SR，而官方 eval 脚本在同一 checkpoint 上 ~100% SR。→ 新模型接入时，必须先用官方 eval 脚本验证 checkpoint 可用性，确认后再写自定义 pruning eval 脚本。不要假设自定义 patch 正确。\\\\n\\\\n- [2026-05-21] **OpenVLA eval 4 实验批量失败 (westd-38929)**:\\\\n  - **失败实验**: eval_openvla_l2norm_k05_object_seed42 (PID 568225), eval_openvla_random_k03_object_seed42 (PID 568905), eval_openvla_l2norm_k07_object_seed42 (PID 569611), eval_openvla_l2norm_k03_object_seed42 (PID 570309)\\\\n  - **根因**: **AutoDL 容器 GPU 缩配**。主机有 9 块 NVIDIA RTX PRO 6000 Blackwell (各 97GB)，但容器当前只挂载了 `/dev/nvidia2` 一块 GPU。4 个实验分别在 CUDA_VISIBLE_DEVICES=0/1/2/3 启动，运行 ~1h43m 后 GPU 设备被平台回收，进程收到 SIGKILL 无任何 traceback。\\\\n  - **证据**:\\\\n    - `nvidia-smi -L` 只显示 1 块 GPU (Device Minor 2)，而 `/proc/driver/nvidia/gpus/` 显示主机有 9 块\\\\n    - 4 个日志文件在 14:45-14:49 间依次停止写入（3 分钟跨度，非瞬时），末尾均为正常进度输出无 error\\\\n    - 各实验完成了 Task 1-3，在 Task 4/10 中被杀（~30% 完成度）\\\\n    - 系统 RAM 充足（1TB 中仅用 46GB），排除 CPU OOM\\\\n    - 无 tmux session，进程通过 nohup 方式运行\\\\n  - **修复建议**:\\\\n    1. 在 AutoDL 控制台恢复实例到 4 GPU 配置（或至少确认 GPU 分配稳定）\\\\n    2. 重新启动 4 个实验，建议使用 tmux 以防 SSH 断连\\\\n    3. 如果无法恢复多 GPU，可在单 GPU 上顺序运行（每个实验约 5.5h，共 ~22h）\\\\n    4. 启动命令参考（单 GPU 顺序）:\\\\n       ```bash\\\\n       tmux new -s openvla_eval\\\\n       source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n       cd /root/autodl-tmp/importance_margin_vla_compress\\\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k05_seed42.log 2>&1\\\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_random_k03_seed42.log 2>&1\\\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.7 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k07_seed42.log 2>&1\\\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k03_seed42.log 2>&1\\\\n       ```\\\\n\\\\n---\\\\n\\\\n## π0.5 跨 suite 对比（2026-05-21, 更新于 2026-05-22）\\\\n\\\\n**模型**: π0.5 (PaliGemma, linear projection connector, CV=0.055)\\\\n**数据来源**: registry 中所有 status=DONE 且有有效 metrics 的 pi05 实验\\\\n\\\\n### Object Suite（baseline=98.2%, eval_pi05_baseline_object_seed42）\\\\n\\\\n| k | L2norm SR (%) | L2norm exp_ids | Random SR (%) | Random exp_ids |\\\\n|---|--------------|----------------|--------------|----------------|\\\\n| 0.9 | **98.2** (s42) | eval_pi05_l2norm_k09_object_seed42_v2 | **10.8** avg [12.0(s42), 9.6(s43)] | eval_pi05_random_k09_object_seed42_v2, eval_pi05_random_k09_object_seed43 |\\\\n| 0.7 | **56.4** avg [55.0(s42), 56.4(s43), 57.8(s43v2)] | eval_pi05_l2norm_k07_object_seed42, _seed43, _seed43_v2 | **75.5** avg [77.2(s42), 73.8(s43)] | eval_pi05_random_k07_object_seed42, _seed43 |\\\\n| 0.5 | **33.5** avg [33.4(s42), 33.6(s43)] | eval_pi05_l2norm_k05_object_seed42, _seed43 | **68.9** avg [69.4(s42), 68.4(s43)] | eval_pi05_random_k05_object_seed42, _seed43 |\\\\n| 0.3 | **53.2** avg [51.0(s42), 55.4(s43)] | eval_pi05_l2norm_k03_object_seed42, _seed43 | **36.4** (s42) | eval_pi05_random_k03_object_seed42 |\\\\n| 0.1 | **2.6** (s42) | eval_pi05_l2norm_k01_object_seed42 | — | — |\\\\n\\\\n### Spatial Suite（baseline=97.2%, eval_pi05_baseline_spatial_seed42）\\\\n\\\\n| k | L2norm SR (%) | Random SR (%) | Random exp_ids |\\\\n|---|--------------|--------------|----------------|\\\\n| 0.9 | — (pending) | — (pending) | — |\\\\n| 0.7 | — (running: eval_pi05_l2norm_k07_spatial_seed42) | **74.4%** (s42) | eval_pi05_random_k07_spatial_seed42 |\\\\n| 0.5 | — (running) | **71.6** (s42) | eval_pi05_random_k05_spatial_seed42 |\\\\n| 0.3 | — (running) | — (submitted) | — |\\\\n\\\\n### Cross-suite 一致性分析\\\\n\\\\n**Random k=0.7 对比**:\\\\n- Object: **75.5%** (seed42=77.2%, seed43=73.8%)\\\\n- Spatial: **74.4%** (seed42)\\\\n- **Delta: 1.1pp** — 极高一致性\\\\n\\\\n**Random k=0.5 对比**:\\\\n- Object: **68.9%** (seed42=69.4%, seed43=68.4%)\\\\n- Spatial: **71.6%** (seed42)\\\\n- **Delta: 2.7pp** — 高度一致\\\\n\\\\n结论：Random pruning 在 k=0.7 和 k=0.5 的表现跨 suite 具有极强一致性（差异仅 1.1-2.7pp），说明 π0.5 的 vision token 冗余结构不依赖于具体 task 类型。Spatial 在 k=0.5 略高于 Object（+2.7pp），在 k=0.7 几乎相同（-1.1pp）。\\\\n\\\\n**Hypothesis 验证状态**: random > L2norm at k=0.7 的跨 suite 一致性需等 eval_pi05_l2norm_k07_spatial_seed42 完成后确认。Object 上 random(75.5%) > L2norm(56.4%) 差距 +19.1pp。如果 Spatial L2norm 也显著低于 random(74.4%)，则 hypothesis 成立。\\\\n\\\\n### 关键现象\\\\n\\\\n1. **L2norm 非单调 V-shape**：k=0.5 是谷底(33.5%)，k=0.3 反弹到 53.2%。多 seed 确认。原因待查——可能 L2 norm 在 50% 保留时恰好选中了信息量最差的 token 子集。\\\\n\\\\n2. **Random k=0.9 异常崩塌**：仅保留 90% token 时 random pruning SR 降至 ~10.8%（双 seed 确认 12.0%/9.6%），而 L2norm k=0.9 正常(98.2%)。这是所有模型中未见过的现象——移除 10% random token 即可摧毁模型。推测 π0.5 少数 token 承载关键位置信息，random 删除有 ~90% 概率命中关键 token。\\\\n\\\\n3. **Random 优于 L2norm 的 k 区间**：k=0.5(random 68.9% vs L2norm 33.5%)和 k=0.7(random 75.5% vs L2norm 56.4%)时 random 大幅优于 L2norm。说明 L2 norm 不是 π0.5 vision token importance 的好 proxy——CV=0.055 意味着 L2 norm 几乎无区分度。\\\\n\\\\n4. **Failed/killed 实验（已排除）**: eval_pi05_random_k07_object_seed42_v2(killed), _v3(killed), eval_pi05_random_k085_object_seed42(failed), eval_pi05_random_k095_object_seed42(failed), eval_pi05_random_k09_fixedmask_object_seed42(network error)。\\\\n\\\\n---\\\\n\\\\n## 运维教训\\\\n\\\\n### [2026-05-21] cqa1 π0.5 环境不匹配导致全部 0% SR\\\\n\\\\n**现象**: cqa1-33015 上 4 个 π0.5 实验全部 0% SR（160+ episodes）。怀疑 checkpoint 损坏。\\\\n\\\\n**根因**: 环境版本不匹配——cqa1 上 transformers=4.53.2（需要 5.5.3），lerobot=0.5.1 pip 版（需要 0.5.2 editable from /root/autodl-tmp/lerobot）。PI05Policy 在错误版本下 inference 输出全错但不报错。另外 paligemma tokenizer 缓存缺少 config.json。\\\\n\\\\n**修复**: `pip install transformers==5.5.3`，`pip install -e /root/autodl-tmp/lerobot`，补充 tokenizer config。Baseline 验证 100% SR 后重新部署。\\\\n\\\\n**教训**: 部署 π0.5 到新服务器前必须先跑 baseline 验证（10-20 episodes 即可，~5min）。包版本不匹配可能导致静默错误（不 crash 但输出全错），比 checkpoint 损坏更隐蔽。\\\\n\\\\n### [2026-05-21] k=0.3 method reversal 跨 suite 复现\\\\n\\\\nObject 和 Spatial 均确认 L2norm > random at k=0.3：\\\\n- Object: L2norm 51.0% > random 36.4% (+14.6pp)\\\\n- Spatial: L2norm 57.2% > random 49.6% (+7.6pp)\\\\n\\\\nMethod preference crossover 在 k=0.3-0.5 之间，且跨 suite 稳定。说明 reversal 是 model-intrinsic 现象。\\\\n\\\\n### [2026-05-23] CPU RNG 修复对 Random Goal 数据的差异化影响\\\\n\\\\nD183 发现 π0.5 Random Goal 数据受 CUDA RNG 跨硬件污染。修复后重跑所有 keep ratio，发现影响因比例而异：\\\\n\\\\n| k | Pre-fix SR | Post-fix SR | Delta |\\\\n|---|-----------|------------|-------|\\\\n| 0.95 | 84.0% | 83.8% | -0.2pp |\\\\n| 0.925 | 83.8% | **71.2%** | **-12.6pp** |\\\\n| 0.9 | 62.2% | 62.2% | 0pp |\\\\n| 0.7 | 80.6% | 78.2% | -2.4pp |\\\\n\\\\nk=0.925 受影响最大（-12.6pp），k=0.9/0.95 几乎不变。这改变了 disruption peak 的形状：pre-fix 时 k=0.925-0.95 有\\\\\\\"平台\\\\\\\"（83-84%），post-fix 显示从 k=0.95=83.8% 到 k=0.925=71.2% 的持续下降。平台是 RNG artifact。\\\\n\\\\n**教训**: 不同 keep ratio 对 RNG seed 的敏感度不同。k=0.925 恰好在 \\\\\\\"cliff zone\\\\\\\" 边缘，RNG 差异导致不同 token 子集被选中，影响巨大。远离 cliff 的比例（k=0.95, k=0.7）则稳健。\\\\n\\\\n### [2026-05-23] π0.5 Attention pruning Object cliff 极端\\\\n\\\\nπ0.5 attention pruning 在 Object 上：k=0.95=98.4%, k=0.9=97.2%, k=0.85=92.2%, **k=0.7=0.6%**。\\\\nk=0.85→0.7 之间存在完全崩溃（-91.6pp）。对比 L2norm/Random 在同区间的渐进退化，attention 方法的 cliff 更尖锐。原因待查——可能 attention score 分布在 π0.5 中高度集中，70% 保留时恰好切到了\\\\\\\"全部重要\\\\\\\"和\\\\\\\"全部无用\\\\\\\"的边界。\\\\n\\\", \\\"total_chars\\\": 27663, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\", \"content\": \"# VLA 模型全面调研报告\\n\\n**调研日期**: 2026-05-20\\n**目的**: 寻找不同 connector 架构的开源 VLA 模型，扩展 vision connector 对 token 可压缩性影响的实验\\n\\n---\\n\\n## 已有实验数据\\n\\n| 模型 | Connector | 压缩行为 |\\n|------|-----------|----------|\\n| SmolVLA | Pixel-shuffle | Cliff-edge collapse (k=0.95 → 0% SR) |\\n| OpenVLA | 2-layer MLP projector | Graded degradation (线性下降) |\\n| RoboFlamingo | Perceiver Resampler | 尝试失败 |\\n| **X-VLA** | **Linear projection** | **Nearly lossless (k=0.3 → norm=1.0014)** |\\n\\n---\\n\\n## 完整模型调研表\\n\\n### 1. Octo (UC Berkeley, 2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 27M (Small) / 93M (Base) |\\n| Vision encoder | Shallow CNN (从头训练，非预训练 ViT) |\\n| **Connector 类型** | **CNN patch encoder → 直接拼接进 transformer（无独立 connector）** |\\n| LLM backbone | 纯 transformer（非预训练 LLM），decoder-only |\\n| 开源状态 | ✅ weights + code, GitHub: [octo-models/octo](https://github.com/octo-models/octo), HF: rail-berkeley/octo-base |\\n| LIBERO 支持 | ✅ 原生支持，fine-tune 后 ~72% SR |\\n| 改造成本 | 低（已有 LIBERO fine-tune 代码） |\\n| 论文 LIBERO 结果 | 有: ~72% (fine-tuned) |\\n| 备注 | 非标准 VLM→LLM 架构，是 transformer-based diffusion policy。图像通过浅层 CNN 编码为 16×16 patches 后直接拼入 transformer 序列。语言用 T5 tokenizer/encoder。Action head 是 diffusion policy。 |\\n\\n### 2. CogACT (Microsoft/Tsinghua, 2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | ~7.1B (7B Prismatic VLM + 89M-300M DiT action module) |\\n| Vision encoder | DINOv2 + SigLIP (双 encoder，channel 拼接) |\\n| **Connector 类型** | **2-layer MLP projector**（Prismatic 架构：DINOv2+SigLIP feature → channel concat → 2-layer MLP → Llama-2 embedding space） |\\n| LLM backbone | Llama-2 7B (via Prismatic-7B) |\\n| 开源状态 | ✅ weights + code, GitHub: [microsoft/CogACT](https://github.com/microsoft/CogACT), HF: CogACT/CogACT-Base, CogACT/CogACT-Small |\\n| LIBERO 支持 | 需改造（paper 用 SimplerEnv + 真机） |\\n| 改造成本 | 中（需接 LIBERO data pipeline + action space） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 核心创新在 DiT action module（将 VLM 认知特征作为 condition 输入扩散 transformer 生成动作）。Connector 与 OpenVLA 相同（都基于 Prismatic） |\\n\\n### 3. HPT (MIT, NeurIPS 2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 3.1M (S) / 12.6M (B) / 50.5M (L) / 226.8M (XL) / 1.1B (Huge) |\\n| Vision encoder | 预训练冻结 ResNet18 |\\n| **Connector 类型** | **Cross-attention tokenizer**（learnable tokens 通过 cross-attention 聚合 vision features → 固定 16 tokens，每个 camera view 有独立 MLP projector） |\\n| LLM backbone | 无（纯 decoder-only transformer，从头训练） |\\n| 开源状态 | ✅ weights + code, GitHub: [liruiw/HPT](https://github.com/liruiw/HPT), HF: liruiw/hpt |\\n| LIBERO 支持 | 未确认（paper 评测 6 个 benchmark） |\\n| 改造成本 | 中（非标准 VLM 架构，需改 stem + action head） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 非 VLM→LLM 架构。Cross-attention tokenizer 类似 Perceiver 但更轻量（8 heads, 64 dim/head）。跨 embodiment 预训练。 |\\n\\n### 4. RT-2-X (Google DeepMind, 2023)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 55B |\\n| Vision encoder | ViT (PaLI-X 的视觉编码器) |\\n| **Connector 类型** | 未公开（闭源） |\\n| LLM backbone | PaLI-X / PaLM-E |\\n| 开源状态 | ❌ **闭源**，权重不公开 |\\n| LIBERO 支持 | 不可行 |\\n| 改造成本 | 不可行 |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 闭源模型，无法使用 |\\n\\n### 5. GR-1 (ByteDance, 2023)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 未明确公布 |\\n| Vision encoder | MAE ViT-Base (预训练) |\\n| **Connector 类型** | **Perceiver Resampler**（将 MAE ViT 视觉 token 数量压缩）+ linear layers 对齐维度 |\\n| LLM backbone | GPT-style causal transformer（非预训练 LLM） |\\n| 开源状态 | ✅ weights + code, GitHub: [bytedance/GR-1](https://github.com/bytedance/GR-1), Apache-2.0 |\\n| LIBERO 支持 | 需改造（paper 只有 CALVIN） |\\n| 改造成本 | 高（需改 data pipeline、action space、视频生成部分可能要适配） |\\n| 论文 LIBERO 结果 | 无（CALVIN: 94.9%） |\\n| 备注 | 既做动作预测又做视频生成（future image prediction）。语言用 CLIP text encoder。使用 Perceiver Resampler 这一点很有价值——与 RoboFlamingo 类似但架构不同。 |\\n\\n### 6. GR-2 (ByteDance, 2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 未公布 |\\n| Vision encoder | 未公布 |\\n| **Connector 类型** | 未公布 |\\n| LLM backbone | 未公布 |\\n| 开源状态 | ❌ **未开源**，代码/权重未释放 |\\n| LIBERO 支持 | 不可行 |\\n| 改造成本 | 不可行 |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | GR-1 的后续，但未开源 |\\n\\n### 7. LLARVA (2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 7B |\\n| Vision encoder | CLIP ViT-L/14 |\\n| **Connector 类型** | **MLP projector**（LLaVA-style，2-layer MLP with GELU） |\\n| LLM backbone | Llama-2 7B |\\n| 开源状态 | ✅ code + LoRA weights, GitHub: [Dantong88/LLARVA](https://github.com/Dantong88/LLARVA), Apache-2.0 |\\n| LIBERO 支持 | 需改造 |\\n| 改造成本 | 中（需接 action head + LIBERO data pipeline） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 预测 visual traces (2D 轨迹) 作为中间表示。Connector 与 OpenVLA 类似（都是 MLP projector），但用 CLIP 而非 Prismatic 双 encoder |\\n\\n### 8. RoboVLMs (2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 不定（框架） |\\n| Vision encoder | 支持多种 VLM backbone |\\n| **Connector 类型** | 取决于所选 VLM（框架支持多种） |\\n| LLM backbone | 取决于所选 VLM |\\n| 开源状态 | ✅ code + models, GitHub: [Robot-VLAs/RoboVLMs](https://github.com/Robot-VLAs/RoboVLMs) |\\n| LIBERO 支持 | 需确认 |\\n| 改造成本 | 低-中（框架设计灵活） |\\n| 论文 LIBERO 结果 | 未确认 |\\n| 备注 | 这是一个**框架**而非单一模型。实验了 8+ VLM backbone × 4 policy 架构。最佳模型用 Kosmos backbone。对我们的 connector 对比研究有参考价值但不直接使用。 |\\n\\n### 9. 3D-VLA (UMass, ICML 2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 未明确 |\\n| Vision encoder | 3D feature extraction（point cloud based） |\\n| **Connector 类型** | **Interaction tokens**（3D-LLM 架构，用交互 token 嵌入 embodied 环境） |\\n| LLM backbone | 基于 3D-LLM |\\n| 开源状态 | ✅ code + diffusion models, GitHub: [UMass-Embodied-AGI/3D-VLA](https://github.com/UMass-Embodied-AGI/3D-VLA), HF: anyezhy |\\n| LIBERO 支持 | 需大量改造（paper 用 RLBench） |\\n| 改造成本 | 高（3D 点云输入，与 LIBERO 2D 图像差异大） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 基于 3D 点云的 VLA，与我们研究的 2D 图像 → connector → LLM 管道差异太大，不推荐 |\\n\\n### 10. π0 / pi-zero (Physical Intelligence, 2024-2025)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | ~3.3B (400M SigLIP + 2.6B Gemma + ~300M action expert) |\\n| Vision encoder | SigLIP-So400m (400M params) |\\n| **Connector 类型** | **Linear projection**（单层线性层，将 SigLIP token 投影到 Gemma embedding space） |\\n| LLM backbone | Gemma 2B (via PaliGemma) |\\n| 开源状态 | ✅ weights + code, GitHub: [Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi), HF 有 PyTorch port |\\n| LIBERO 支持 | ✅ 有评测（LIBERO-PRO 中被评测） |\\n| 改造成本 | 低（已有 LIBERO 评测代码） |\\n| 论文 LIBERO 结果 | 有（LIBERO-PRO 中有结果） |\\n| 备注 | **强力推荐**。Linear projection 是最简单的 connector，与 OpenVLA 的 2-layer MLP 形成鲜明对比。Action expert 通过 MoE 架构耦合。Flow matching 生成动作。 |\\n\\n### 11. OpenVLA-OFT (Stanford, 2025)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 7B |\\n| Vision encoder | SigLIP + DINOv2 (Prismatic) |\\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同的 Prismatic connector） |\\n| LLM backbone | Llama-2 7B |\\n| 开源状态 | ✅ weights + code, GitHub: [moojink/openvla-oft](https://github.com/moojink/openvla-oft) |\\n| LIBERO 支持 | ✅ 原生支持，SOTA 97.1% |\\n| 改造成本 | 极低（已有完整 LIBERO fine-tune + eval） |\\n| 论文 LIBERO 结果 | 有: 97.1% SR (4 suite avg) |\\n| 备注 | Connector 与 OpenVLA 完全相同。改进在 fine-tuning recipe（continuous actions, action chunking, bidirectional attention）。对压缩实验来说，connector 级别的差异与 OpenVLA 相同，但 action generation 方式不同，可能影响压缩行为。 |\\n\\n### 12. RoboMM (2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 未明确公布 |\\n| Vision encoder | CLIP (via OpenFlamingo) |\\n| **Connector 类型** | **3D Perception Adapter (UVFormer)** + **Cross-attention**（OpenFlamingo 风格：text queries attend to visual features through cross-attention layers） |\\n| LLM backbone | OpenFlamingo (cross-attention decoder) |\\n| 开源状态 | ✅ code, GitHub: [RoboUniview/RoboMM](https://github.com/RoboUniview/RoboMM) |\\n| LIBERO 支持 | ✅ 有评测 |\\n| 改造成本 | 低-中 |\\n| 论文 LIBERO 结果 | 有: 90.7% SR |\\n| 备注 | Cross-attention connector 是独特的融合方式（与 MLP/linear 的 \\\"先投射再拼接\\\" 不同）。还有 occupancy supervision 的 3D adapter。多模态解码器增强感知。 |\\n\\n### 13. SpatialVLA (2025, RSS)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | ~4B |\\n| Vision encoder | SigLIP |\\n| **Connector 类型** | **Linear projection + Ego3D Position Encoding**（PaliGemma2 的 linear connector + MLP(sinusoidal(3D positions)) 叠加到 visual tokens 上） |\\n| LLM backbone | Gemma (via PaliGemma2) |\\n| 开源状态 | ✅ weights + code, GitHub: [SpatialVLA/SpatialVLA](https://github.com/SpatialVLA/SpatialVLA), HF: IPEC-COMMUNITY/spatialvla-4b-224-pt |\\n| LIBERO 支持 | 未确认 |\\n| 改造成本 | 中（需接 LIBERO data pipeline） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | 基于 PaliGemma2，connector 本质上是 linear projection（与 π0 相同），加了 3D spatial encoding。Adaptive Action Grids 只输出 3 个 action token（其他模型 7 个）。 |\\n\\n### 14. DeeR-VLA (2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 3B / 9B (OpenFlamingo 变体) |\\n| Vision encoder | CLIP ViT-L/14 (428M params) |\\n| **Connector 类型** | **Perceiver Resampler + Cross-attention**（OpenFlamingo 架构：CLIP features → Perceiver Resampler → learnable cross-attention blocks 注入 LLM 层间） |\\n| LLM backbone | MPT-1B (3B 版) / MPT-7B (9B 版) |\\n| 开源状态 | ✅ code + checkpoints, GitHub: [yueyang130/DeeR-VLA](https://github.com/yueyang130/DeeR-VLA) |\\n| LIBERO 支持 | 需改造（paper 只有 CALVIN） |\\n| 改造成本 | 中-高（需接 LIBERO pipeline，且多 exit 架构增加复杂度） |\\n| 论文 LIBERO 结果 | 无（CALVIN benchmark） |\\n| 备注 | **Perceiver Resampler** 与 RoboFlamingo 相同架构基础。动态 early exit 是额外功能。可作为 Perceiver Resampler 实验的替代方案。 |\\n\\n### 15. TraceVLA (UMD, ICLR 2025)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 7B (OpenVLA-based) / 4B (Phi-3-Vision-based) |\\n| Vision encoder | SigLIP + DINOv2 (OpenVLA 版) / CLIP ViT (Phi-3 版) |\\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同） |\\n| LLM backbone | Llama-2 7B (OpenVLA 版) / Phi-3 4B |\\n| 开源状态 | ✅ code + weights, GitHub: [umd-huang-lab/tracevla](https://github.com/umd-huang-lab/tracevla), HF: furonghuang-lab/tracevla_7b, MIT license |\\n| LIBERO 支持 | 未确认（SimplerEnv + 真机） |\\n| 改造成本 | 低（基于 OpenVLA 改造） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | Connector 与 OpenVLA 相同，改进在于 visual trace prompting（在图像上叠加动作历史轨迹）。压缩行为预期与 OpenVLA 相似。 |\\n\\n### 16. X-VLA (ICLR 2026)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 0.9B |\\n| Vision encoder | Florence-Large (DaViT) |\\n| **Connector 类型** | **Linear projection + Soft Prompts**（vision features 通过 lightweight linear layer 投影到高维空间 + 每个 embodiment 有独立 learnable prompt embeddings 注入 transformer） |\\n| LLM backbone | Standard transformer 24 layers (非预训练 LLM，但使用 Florence 预训练 VLM 初始化) |\\n| 开源状态 | ✅ weights + code, GitHub: [2toinf/X-VLA](https://github.com/2toinf/X-VLA), HF: 2toINF/X-VLA, Apache-2.0 |\\n| LIBERO 支持 | ✅ 原生支持，98% SR |\\n| 改造成本 | 极低（已有 LIBERO 训练权重） |\\n| 论文 LIBERO 结果 | 有: 98% SR |\\n| 备注 | **强力推荐**。Linear projection connector + flow matching action generation。LIBERO SOTA 之一。小模型(0.9B)便于实验。 |\\n\\n### 17. ECoT / Embodied Chain-of-Thought (2024)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 7B (基于 OpenVLA) |\\n| Vision encoder | SigLIP + DINOv2 (Prismatic) |\\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同） |\\n| LLM backbone | Llama-2 7B |\\n| 开源状态 | ✅ code + weights, GitHub: [MichalZawalski/embodied-CoT](https://github.com/MichalZawalski/embodied-CoT), HF: ecot-openvla-7b-bridge/oxe |\\n| LIBERO 支持 | 需改造 |\\n| 改造成本 | 低（基于 OpenVLA） |\\n| 论文 LIBERO 结果 | 无 |\\n| 备注 | Connector 与 OpenVLA 完全相同，增加了 chain-of-thought reasoning。对 connector 压缩研究无新增价值。 |\\n\\n### 18. LingBot-VLA (Ant Group/Robbyant, 2026)\\n\\n| 字段 | 信息 |\\n|------|------|\\n| 参数量 | 4B |\\n| Vision encoder | Qwen2.5-VL 的 ViT（2D-RoPE + window attention） |\\n| **Connector 类型** | **MLP merger**（2-layer MLP with ReLU，2×2 spatial grouping 后投影 + LLM decoder 中有 cross-attention 层融合 visual features） |\\n| LLM backbone | Qwen2.5-VL-3B |\\n| 开源状态 | ✅ weights + code, GitHub: [Robbyant/lingbot-vla](https://github.com/Robbyant/lingbot-vla) |\\n| LIBERO 支持 | 未确认 |\\n| 改造成本 | 中 |\\n| 论文 LIBERO 结果 | 未确认 |\\n| 备注 | Qwen2.5-VL 的 MLP merger 是一种混合 connector：先做 spatial grouping（类似 pixel-shuffle 的空间压缩）再 MLP 投射。Mixture of Transformers 架构。 |\\n\\n---\\n\\n## Connector 类型覆盖分析\\n\\n### 已有数据的 Connector 类型\\n| Connector 类型 | 代表模型 | 压缩行为 |\\n|---------------|----------|----------|\\n| Pixel-shuffle | SmolVLA | Cliff-edge collapse |\\n| 2-layer MLP projector | OpenVLA (Prismatic) | Graded degradation |\\n| Perceiver Resampler | RoboFlamingo | 尝试失败 |\\n| **Linear projection** | **X-VLA** | **Nearly lossless pruning** |\\n\\n### 可新增的 Connector 类型\\n| Connector 类型 | 候选模型 | 特点 | 可行性 |\\n|---------------|----------|------|--------|\\n| **Linear projection** | **π0**, SpatialVLA | 验证 X-VLA 发现的一致性 | ⭐⭐⭐ 高 |\\n| **Cross-attention (Flamingo-style)** | **RoboMM** | 不在 encoder 端压缩，而是 decoder 端通过 cross-attention 选择性融合 | ⭐⭐ 中 |\\n| **CNN patch → direct concat** | Octo | 无独立 connector，图像 patches 直接拼入 transformer | ⭐ 低（架构差异太大） |\\n| **MLP merger + spatial grouping** | LingBot-VLA | 先空间合并再 MLP 投射 + cross-attention | ⭐⭐ 中 |\\n| **Cross-attention tokenizer** | HPT | learnable tokens 通过 cross-attention 聚合 vision features | ⭐ 低（非 VLM 架构） |\\n\\n### 关键发现\\n1. **Linear projection** 是最有价值的新增类型——π0 和 X-VLA 都用这种最简单的 connector，与 OpenVLA 的 2-layer MLP 形成对比\\n2. **Cross-attention** (RoboMM 的 OpenFlamingo 架构) 从根本上不同：不投射拼接，而是 decoder 层间交叉注意力\\n3. 大量模型共享 connector：OpenVLA, CogACT, LLARVA, TraceVLA, ECoT, OpenVLA-OFT 都用 **2-layer MLP**（Prismatic 或 LLaVA 架构）\\n\\n---\\n\\n## Top 推荐：最适合扩展实验的 5 个模型\\n\\n### 🥇 1. π0 (Physical Intelligence)\\n- **Connector**: Linear projection (单层线性)\\n- **推荐理由**: \\n  - 与 OpenVLA 的 2-layer MLP 形成直接对比（linear vs MLP）\\n  - 开源权重 + 代码，社区活跃\\n  - 已有 LIBERO 评测代码\\n  - PaliGemma 架构广为人知\\n  - 3B 参数可在单卡运行\\n- **预期价值**: Linear projection 不增加非线性变换，token 可能保留更多原始 visual feature 结构 → 压缩行为可能与 MLP 不同\\n\\n### 🥈 2. X-VLA\\n- **Connector**: Linear projection + soft prompts\\n- **推荐理由**:\\n  - 同样是 linear projection，与 π0 对比看 soft prompt 的影响\\n  - LIBERO 98% SR，已有训练好的 LIBERO 权重直接可用\\n  - 0.9B 参数，实验成本最低\\n  - ICLR 2026，最新模型\\n  - Apache-2.0 开源\\n- **预期价值**: 验证 linear projection 的压缩行为是否 consistent across models\\n\\n### 🥉 3. DeeR-VLA\\n- **Connector**: Perceiver Resampler + Cross-attention (OpenFlamingo)\\n- **推荐理由**:\\n  - Perceiver Resampler 与 RoboFlamingo 相同架构，但 DeeR-VLA 已验证可训练（CALVIN benchmark 正常工作）\\n  - 给 Perceiver Resampler 第二次机会\\n  - 可对比 RoboFlamingo 的训练失败是架构问题还是实现问题\\n  - Open source with checkpoints\\n- **预期价值**: Perceiver Resampler 本身就做了 attention-based compression → 压缩行为可能与 MLP/linear 截然不同\\n- **风险**: LIBERO 需要自己改造\\n\\n### 4. RoboMM\\n- **Connector**: Cross-attention (OpenFlamingo) + 3D Adapter\\n- **推荐理由**:\\n  - Cross-attention 融合方式从根本上不同于 projection-based connectors\\n  - 已有 LIBERO 结果 (90.7%)\\n  - Open source\\n- **预期价值**: Cross-attention 在 decoder 端动态选择 visual features → 可能展现出与 projection-based 完全不同的压缩模式\\n- **风险**: 架构较复杂，3D adapter 增加变量\\n\\n### 5. OpenVLA-OFT\\n- **Connector**: 2-layer MLP projector (与 OpenVLA 相同)\\n- **推荐理由**:\\n  - Connector 与 OpenVLA 相同，但 action generation 完全不同（continuous + chunking）\\n  - LIBERO 97.1% SOTA\\n  - 可验证 \\\"相同 connector + 不同 action head\\\" 是否影响压缩行为\\n  - 已有完整 LIBERO 代码\\n- **预期价值**: 作为 OpenVLA 的对照组，隔离 connector vs action head 对压缩的影响\\n\\n---\\n\\n## 不推荐的模型及原因\\n\\n| 模型 | 排除原因 |\\n|------|----------|\\n| RT-2-X | 闭源，权重不可用 |\\n| GR-2 | 未开源 |\\n| 3D-VLA | 3D 点云输入，与 2D VLA 差异太大 |\\n| CogACT | Connector 与 OpenVLA 相同（Prismatic MLP），不新增类型 |\\n| LLARVA | Connector 与 OpenVLA 类似（MLP projector），不新增类型 |\\n| TraceVLA | Connector 与 OpenVLA 相同，不新增类型 |\\n| ECoT | Connector 与 OpenVLA 相同，不新增类型 |\\n| HPT | 非 VLM 架构，不适合 connector 压缩叙事 |\\n| GR-1 | 有 Perceiver Resampler（有价值），但无 LIBERO 支持 + 视频生成架构改造成本高 |\\n| Octo | 无独立 connector（CNN patch 直接拼入），架构与标准 VLM 差异太大 |\\n\\n---\\n\\n## 总结：Connector 类型 × 模型矩阵\\n\\n| Connector 类型 | 已有 | 推荐新增 |\\n|---------------|------|----------|\\n| Pixel-shuffle | SmolVLA ✅ | — |\\n| 2-layer MLP projector | OpenVLA ✅ | OpenVLA-OFT（同 connector 不同 action head） |\\n| Perceiver Resampler | RoboFlamingo ❌(失败) | **DeeR-VLA** |\\n| **Linear projection** | **X-VLA ✅** | **π0** |\\n| **Cross-attention** | — | **RoboMM** |\\n\\n实现后可达 **5 种 connector 类型 × 6+ 模型**的全面对比。\\n\\n---\\n\\n## X-VLA 详细架构调研（2026-05-20 新增）\\n\\n### 模型身份确认\\n- **名称**: X-VLA (Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model)\\n- **论文**: arXiv:2510.10274, ICLR 2026\\n- **GitHub**: [2toinf/X-VLA](https://github.com/2toinf/X-VLA)\\n- **HuggingFace**: [2toINF/X-VLA](https://huggingface.co/collections/2toINF/x-vla)\\n- **参数量**: 0.9B\\n- **许可**: Apache-2.0\\n- **LIBERO SR**: 98.1%\\n\\n### 架构详解\\n\\n```\\nImage (224×224) → Florence-Large (DaViT) → Vision Tokens [B, N, 2048]\\n    → Linear Projection + LayerNorm → [B, N, 1024]\\n    → Merge with Text Token Embeddings → Florence2 Encoder (self-attention)\\n    → Context Features → SoftPromptedTransformer (24 layers, hidden=1024)\\n        + Soft Prompts (32 learnable embeddings per embodiment)\\n        + Noised Action Tokens (flow matching)\\n    → Denoised Action Trajectory [B, 30, 20]\\n```\\n\\n**各组件详情**:\\n\\n| 组件 | 规格 |\\n|------|------|\\n| Vision Encoder | Florence-Large (DaViT): patch_stride=[4,2,2,2] → total stride 32 |\\n| Vision Token 数量 | ~49 tokens (7×7 at 224×224) 或 ~576 tokens (24×24 at 768×768) — **需实际加载模型验证** |\\n| Projection | Linear + LayerNorm, dim 2048 → 1024 (projection_dim=1024) |\\n| Soft Prompts | 32 tokens/embodiment, 0.04% of total params |\\n| Transformer | 24 layers, hidden=1024, 16 heads, mlp_ratio=4.0 |\\n| Action Head | Flow matching, 30 anchor points × 20 dims (EE6D), 10 denoising steps |\\n| Max Sequence | 512 tokens |\\n\\n### HuggingFace 权重\\n| Checkpoint | 用途 | 地址 |\\n|------------|------|------|\\n| X-VLA-Pt | 预训练基座 (cross-embodiment) | 2toINF/X-VLA-Pt |\\n| X-VLA-Libero | LIBERO 全参数微调 (98.1% SR) | 2toINF/X-VLA-Libero |\\n| X-VLA-libero-*-peft | LIBERO LoRA 微调 (各 suite) | 2toINF/X-VLA-libero-spatial-peft 等 |\\n\\n### 环境依赖\\n```\\ntransformers<=4.51.3, torch, einops==0.8.1, timm==1.0.12, \\naccelerate==1.2.1, peft==0.17.1, safetensors==0.4.5,\\nnumpy==1.26.3, scipy==1.15.0, mmengine==0.10.5,\\nfastapi, uvicorn==0.34.3, h5py==3.12.1, pyarrow==20.0.0,\\nav==15.0.0, mediapy==1.2.4\\n```\\nLIBERO 评估另需 Python 3.8 环境。\\n\\n### VTC 集成方案\\n**插入点**: Florence2 `_encode_image()` 输出 → **VTC** → `_merge_input_ids_with_image_features()`\\n\\n**改造清单**:\\n1. 创建 `xvla_vtc_adapter.py`（复用 VisionTokenCompressor，hidden_dim 改 1024）\\n2. 创建 XVLASmartCompressWrapper，hook Florence2 vision 输出\\n3. 修改 merge 逻辑以适应压缩后的 token 数量\\n4. 创建 `train_xvla_smart_compress.py`（参考 X-VLA 的 train.py + peft_train.py）\\n5. 适配 flow matching loss（不同于 OpenVLA 的 cross-entropy）\\n\\n**与 OpenVLA VTC 的关键差异**:\\n| 维度 | OpenVLA | X-VLA |\\n|------|---------|-------|\\n| hidden_dim | 4096 | 1024 |\\n| 原始 vision tokens | 256 | ~49-576 (待验证) |\\n| Action 范式 | Autoregressive (256-bin CE) | Flow matching (MSE+BCE) |\\n| Connector | 2-layer MLP | Linear + LayerNorm |\\n| 模型大小 | 7B | 0.9B |\\n\\n**预计工作量**: 8-12 小时\\n- 代码改造: 4-6h（adapter + training script）\\n- 环境搭建 + 模型下载: 2-3h\\n- 验证 + 调试: 2-3h\\n\\n---\\n\\n## X-VLA Token Importance 分析结果（2026-05-20）\\n\\n### 实验配置\\n- **模型**: X-VLA-0.9B (lerobot/xvla-libero checkpoint)\\n- **数据**: LIBERO-Object (task_index 20-29), 100 images, 10 tasks\\n- **服务器**: westd-41074, cuda:1\\n- **分析脚本**: `/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py`\\n- **结果文件**: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attention_entropy_perlayer.json`\\n\\n### SoftPromptedTransformer 序列布局\\n| Token 类型 | 数量 | 说明 |\\n|-----------|------|------|\\n| Action tokens | 30 | Flow matching denoised action |\\n| VLM features | 64 | Florence2 encoder output (main view) |\\n| Aux visual | 150 | Additional camera views |\\n| Soft prompts | 32 | Embodiment-specific learnable tokens |\\n| **Total** | **276** | |\\n\\n### Entropy Ratio（Action→Vision 注意力熵）\\n- **Overall**: **0.6138** ± 0.1159\\n- **趋势**: 浅层低（L0=0.46, L1=0.34），深层高（L22=0.79, L23=0.71）\\n- 浅层集中注意力于少数 vision tokens，深层趋于均匀\\n\\n### Vision Attention Fraction（Action tokens 分配给 vision tokens 的注意力比例）\\n- 浅层（L0-2）: 33-49% — action tokens 还关注 soft prompts 和 self\\n- 中层（L6-11）: 84-90% — 绝大部分注意力给 vision tokens\\n- 深层（L17-23）: 79-90% — 持续高注意力\\n\\n### Pruning Curve（核心发现）\\n| Retention k | Mean Loss | Normalized |\\n|-------------|-----------|------------|\\n| 0.30 | 0.112945 | **1.0014** |\\n| 0.50 | 0.112823 | 1.0003 |\\n| 0.70 | 0.112789 | 1.0000 |\\n| 0.90 | 0.112789 | 1.0000 |\\n| 0.95 | 0.112789 | 1.0000 |\\n| 1.00 | 0.112789 | 1.0000 |\\n\\n**关键结论**: 丢弃 70% 的 vision tokens（k=0.3）仅导致 0.14% 的 loss 增加。X-VLA 的 vision tokens **几乎完全可压缩**。\\n\\n### 跨模型对比\\n| 模型 | Connector | Entropy Ratio | k=0.3 Norm Loss | 压缩行为 |\\n|------|-----------|---------------|-----------------|----------|\\n| SmolVLA | Pixel-shuffle | ~0.45 (低) | Cliff-edge | 不可压缩 |\\n| OpenVLA | 2-layer MLP | ~0.55 (中) | ~1.15 (15%↑) | 渐进退化 |\\n| **X-VLA** | **Linear proj** | **0.61 (中高)** | **1.0014 (0.14%↑)** | **几乎无损** |\\n\\n### 解读\\n1. **Linear projection connector 产生了高度冗余的 vision token 表示**——大部分信息集中在少数 token 中，L2 norm 可以轻松识别\\n2. Entropy 比 OpenVLA 更高（0.61 vs 0.55），说明注意力分布更均匀，但这不矛盾——均匀分布意味着 \\\"每个 token 被平等关注\\\"，而 pruning 几乎无损意味着 \\\"被关注的内容高度冗余\\\"\\n3. 这是 **connector 架构论文的关键数据点**：linear projection（无非线性变换）保留了 DaViT 输出的原始冗余结构，而 MLP projector（2 层 + GELU）通过非线性变换重新分配了信息，使得 token 间差异更大、更难压缩\\n\\n---\\n\\n## OFT Importance CV 分析结果（2026-05-20）\\n\\n### 结论\\n- **OFT CV = 0.2185**，per-task CV 在 0.211–0.225 之间\\n- 与 OpenVLA (0.215) 高度一致——两者共享相同的 2-layer MLP projector（Prismatic 架构）\\n- **LoRA fine-tuning 不改变 vision token importance 分布**——connector 架构是唯一决定因素\\n\\n### Diagnostic 表格完成状态（5/5）\\n| 模型 | Connector | CV | 压缩行为 |\\n|------|-----------|-----|----------|\\n| SmolVLA | Pixel-shuffle | ~0.08 | Cliff-edge collapse |\\n| OpenVLA | 2-layer MLP | 0.215 | Graded degradation |\\n| OpenVLA-OFT | 2-layer MLP (same) | 0.2185 | 预期与 OpenVLA 相同 |\\n| X-VLA | Linear projection | TBD | Nearly lossless |\\n| RoboFlamingo | Perceiver Resampler | N/A | 训练失败 |\\n\\n### 论文意义\\nOFT 结果支撑 claim: \\\"token importance distribution is an intrinsic property of the connector architecture, invariant to downstream fine-tuning strategy (LoRA vs full)\\\"\\n\\n---\\n\\n## 失败模式记录\\n\\n- [2026-05-21] **π0.5 自定义 eval 脚本 bug**: `eval_pi05_pruning_libero.py` 的 `patched_embed_image` 函数导致 0% SR，而官方 eval 脚本在同一 checkpoint 上 ~100% SR。→ 新模型接入时，必须先用官方 eval 脚本验证 checkpoint 可用性，确认后再写自定义 pruning eval 脚本。不要假设自定义 patch 正确。\\n\\n- [2026-05-21] **OpenVLA eval 4 实验批量失败 (westd-38929)**:\\n  - **失败实验**: eval_openvla_l2norm_k05_object_seed42 (PID 568225), eval_openvla_random_k03_object_seed42 (PID 568905), eval_openvla_l2norm_k07_object_seed42 (PID 569611), eval_openvla_l2norm_k03_object_seed42 (PID 570309)\\n  - **根因**: **AutoDL 容器 GPU 缩配**。主机有 9 块 NVIDIA RTX PRO 6000 Blackwell (各 97GB)，但容器当前只挂载了 `/dev/nvidia2` 一块 GPU。4 个实验分别在 CUDA_VISIBLE_DEVICES=0/1/2/3 启动，运行 ~1h43m 后 GPU 设备被平台回收，进程收到 SIGKILL 无任何 traceback。\\n  - **证据**:\\n    - `nvidia-smi -L` 只显示 1 块 GPU (Device Minor 2)，而 `/proc/driver/nvidia/gpus/` 显示主机有 9 块\\n    - 4 个日志文件在 14:45-14:49 间依次停止写入（3 分钟跨度，非瞬时），末尾均为正常进度输出无 error\\n    - 各实验完成了 Task 1-3，在 Task 4/10 中被杀（~30% 完成度）\\n    - 系统 RAM 充足（1TB 中仅用 46GB），排除 CPU OOM\\n    - 无 tmux session，进程通过 nohup 方式运行\\n  - **修复建议**:\\n    1. 在 AutoDL 控制台恢复实例到 4 GPU 配置（或至少确认 GPU 分配稳定）\\n    2. 重新启动 4 个实验，建议使用 tmux 以防 SSH 断连\\n    3. 如果无法恢复多 GPU，可在单 GPU 上顺序运行（每个实验约 5.5h，共 ~22h）\\n    4. 启动命令参考（单 GPU 顺序）:\\n       ```bash\\n       tmux new -s openvla_eval\\n       source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\n       cd /root/autodl-tmp/importance_margin_vla_compress\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k05_seed42.log 2>&1\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_random_k03_seed42.log 2>&1\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.7 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k07_seed42.log 2>&1\\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k03_seed42.log 2>&1\\n       ```\\n\\n---\\n\\n## π0.5 跨 suite 对比（2026-05-21, 更新于 2026-05-22）\\n\\n**模型**: π0.5 (PaliGemma, linear projection connector, CV=0.055)\\n**数据来源**: registry 中所有 status=DONE 且有有效 metrics 的 pi05 实验\\n\\n### Object Suite（baseline=98.2%, eval_pi05_baseline_object_seed42）\\n\\n| k | L2norm SR (%) | L2norm exp_ids | Random SR (%) | Random exp_ids |\\n|---|--------------|----------------|--------------|----------------|\\n| 0.9 | **98.2** (s42) | eval_pi05_l2norm_k09_object_seed42_v2 | **10.8** avg [12.0(s42), 9.6(s43)] | eval_pi05_random_k09_object_seed42_v2, eval_pi05_random_k09_object_seed43 |\\n| 0.7 | **56.4** avg [55.0(s42), 56.4(s43), 57.8(s43v2)] | eval_pi05_l2norm_k07_object_seed42, _seed43, _seed43_v2 | **75.5** avg [77.2(s42), 73.8(s43)] | eval_pi05_random_k07_object_seed42, _seed43 |\\n| 0.5 | **33.5** avg [33.4(s42), 33.6(s43)] | eval_pi05_l2norm_k05_object_seed42, _seed43 | **68.9** avg [69.4(s42), 68.4(s43)] | eval_pi05_random_k05_object_seed42, _seed43 |\\n| 0.3 | **53.2** avg [51.0(s42), 55.4(s43)] | eval_pi05_l2norm_k03_object_seed42, _seed43 | **36.4** (s42) | eval_pi05_random_k03_object_seed42 |\\n| 0.1 | **2.6** (s42) | eval_pi05_l2norm_k01_object_seed42 | — | — |\\n\\n### Spatial Suite（baseline=97.2%, eval_pi05_baseline_spatial_seed42）\\n\\n| k | L2norm SR (%) | Random SR (%) | Random exp_ids |\\n|---|--------------|--------------|----------------|\\n| 0.9 | — (pending) | — (pending) | — |\\n| 0.7 | — (running: eval_pi05_l2norm_k07_spatial_seed42) | **74.4%** (s42) | eval_pi05_random_k07_spatial_seed42 |\\n| 0.5 | — (running) | **71.6** (s42) | eval_pi05_random_k05_spatial_seed42 |\\n| 0.3 | — (running) | — (submitted) | — |\\n\\n### Cross-suite 一致性分析\\n\\n**Random k=0.7 对比**:\\n- Object: **75.5%** (seed42=77.2%, seed43=73.8%)\\n- Spatial: **74.4%** (seed42)\\n- **Delta: 1.1pp** — 极高一致性\\n\\n**Random k=0.5 对比**:\\n- Object: **68.9%** (seed42=69.4%, seed43=68.4%)\\n- Spatial: **71.6%** (seed42)\\n- **Delta: 2.7pp** — 高度一致\\n\\n结论：Random pruning 在 k=0.7 和 k=0.5 的表现跨 suite 具有极强一致性（差异仅 1.1-2.7pp），说明 π0.5 的 vision token 冗余结构不依赖于具体 task 类型。Spatial 在 k=0.5 略高于 Object（+2.7pp），在 k=0.7 几乎相同（-1.1pp）。\\n\\n**Hypothesis 验证状态**: random > L2norm at k=0.7 的跨 suite 一致性需等 eval_pi05_l2norm_k07_spatial_seed42 完成后确认。Object 上 random(75.5%) > L2norm(56.4%) 差距 +19.1pp。如果 Spatial L2norm 也显著低于 random(74.4%)，则 hypothesis 成立。\\n\\n### 关键现象\\n\\n1. **L2norm 非单调 V-shape**：k=0.5 是谷底(33.5%)，k=0.3 反弹到 53.2%。多 seed 确认。原因待查——可能 L2 norm 在 50% 保留时恰好选中了信息量最差的 token 子集。\\n\\n2. **Random k=0.9 异常崩塌**：仅保留 90% token 时 random pruning SR 降至 ~10.8%（双 seed 确认 12.0%/9.6%），而 L2norm k=0.9 正常(98.2%)。这是所有模型中未见过的现象——移除 10% random token 即可摧毁模型。推测 π0.5 少数 token 承载关键位置信息，random 删除有 ~90% 概率命中关键 token。\\n\\n3. **Random 优于 L2norm 的 k 区间**：k=0.5(random 68.9% vs L2norm 33.5%)和 k=0.7(random 75.5% vs L2norm 56.4%)时 random 大幅优于 L2norm。说明 L2 norm 不是 π0.5 vision token importance 的好 proxy——CV=0.055 意味着 L2 norm 几乎无区分度。\\n\\n4. **Failed/killed 实验（已排除）**: eval_pi05_random_k07_object_seed42_v2(killed), _v3(killed), eval_pi05_random_k085_object_seed42(failed), eval_pi05_random_k095_object_seed42(failed), eval_pi05_random_k09_fixedmask_object_seed42(network error)。\\n\\n---\\n\\n## 运维教训\\n\\n### [2026-05-21] cqa1 π0.5 环境不匹配导致全部 0% SR\\n\\n**现象**: cqa1-33015 上 4 个 π0.5 实验全部 0% SR（160+ episodes）。怀疑 checkpoint 损坏。\\n\\n**根因**: 环境版本不匹配——cqa1 上 transformers=4.53.2（需要 5.5.3），lerobot=0.5.1 pip 版（需要 0.5.2 editable from /root/autodl-tmp/lerobot）。PI05Policy 在错误版本下 inference 输出全错但不报错。另外 paligemma tokenizer 缓存缺少 config.json。\\n\\n**修复**: `pip install transformers==5.5.3`，`pip install -e /root/autodl-tmp/lerobot`，补充 tokenizer config。Baseline 验证 100% SR 后重新部署。\\n\\n**教训**: 部署 π0.5 到新服务器前必须先跑 baseline 验证（10-20 episodes 即可，~5min）。包版本不匹配可能导致静默错误（不 crash 但输出全错），比 checkpoint 损坏更隐蔽。\\n\\n### [2026-05-21] k=0.3 method reversal 跨 suite 复现\\n\\nObject 和 Spatial 均确认 L2norm > random at k=0.3：\\n- Object: L2norm 51.0% > random 36.4% (+14.6pp)\\n- Spatial: L2norm 57.2% > random 49.6% (+7.6pp)\\n\\nMethod preference crossover 在 k=0.3-0.5 之间，且跨 suite 稳定。说明 reversal 是 model-intrinsic 现象。\\n\\n### [2026-05-23] CPU RNG 修复对 Random Goal 数据的差异化影响\\n\\nD183 发现 π0.5 Random Goal 数据受 CUDA RNG 跨硬件污染。修复后重跑所有 keep ratio，发现影响因比例而异：\\n\\n| k | Pre-fix SR | Post-fix SR | Delta |\\n|---|-----------|------------|-------|\\n| 0.95 | 84.0% | 83.8% | -0.2pp |\\n| 0.925 | 83.8% | **71.2%** | **-12.6pp** |\\n| 0.9 | 62.2% | 62.2% | 0pp |\\n| 0.7 | 80.6% | 78.2% | -2.4pp |\\n\\nk=0.925 受影响最大（-12.6pp），k=0.9/0.95 几乎不变。这改变了 disruption peak 的形状：pre-fix 时 k=0.925-0.95 有\\\"平台\\\"（83-84%），post-fix 显示从 k=0.95=83.8% 到 k=0.925=71.2% 的持续下降。平台是 RNG artifact。\\n\\n**教训**: 不同 keep ratio 对 RNG seed 的敏感度不同。k=0.925 恰好在 \\\"cliff zone\\\" 边缘，RNG 差异导致不同 token 子集被选中，影响巨大。远离 cliff 的比例（k=0.95, k=0.7）则稳健。\\n\\n### [2026-05-23] π0.5 Attention pruning Object cliff 极端\\n\\nπ0.5 attention pruning 在 Object 上：k=0.95=98.4%, k=0.9=97.2%, k=0.85=92.2%, **k=0.7=0.6%**。\\nk=0.85→0.7 之间存在完全崩溃（-91.6pp）。对比 L2norm/Random 在同区间的渐进退化，attention 方法的 cliff 更尖锐。原因待查——可能 attention score 分布在 π0.5 中高度集中，70% 保留时恰好切到了\\\"全部重要\\\"和\\\"全部无用\\\"的边界。\\n\", \"total_chars\": 27663, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me compile the results and also read the existing memory to see what needs to be appended.
+
+Key findings from the 3 experiments:
+
+**1. eval_pi05_random_k03_goal_seed43_v2**
+- Overall SR: 53.6% (268/500)
+- Per-task: T0=80%, T1=12%, T2=76%, T3=52%, T4=60%, T5=32%, T6=26%, T7=100%, T8=70%, T9=28%
+- 500/500 episodes, EXIT_CODE=0, no errors
+
+
+- Multi-seed average with seed42 (50.6%): 52.1%
+
+**2. eval_pi05_random_k085_goal_seed42_v4**
+- Overall SR: 52.4% (262/500)
+- Per-task: T0=84%, T1=2%, T2=22%, T3=38%, T4=50%, T5=66%, T6=82%, T7=88%, T8=84%, T9=8%
+- 500/500 episodes, EXIT_CODE=0, no errors
+- The CPU RNG fix made no difference at k=0.85
+
+**3. eval_pi05_random_k05_goal_seed42_v2**
+- Overall SR: 73.6% (368/500)
+- Per-task: T0=78%, T1=44%, T2=86%, T3=76%, T4=92%, T5=70%, T6=62%, T7=100%, T8=86%, T9=42%
+- 500/500 episodes, EXIT_CODE=0, no errors
+- The CPU RNG fix had minimal impact at k=0.5, dropping performance by less than 1 percentage point
+
+Now I'm updating the memory file with these results, particularly the CPU RNG fix comparison table.
+
+Looking at the existing table, I need to add the new k values to the comparison. The k=0.3 result is from a different seed so I'll need to handle that separately.
+
+I've got the additional data points: k=0.85 shows no change at 52.4%, and k=0.5 dropped slightly from 74.4% to 73.6%. Now I need to update the memory file with these findings, adding them to the existing CPU RNG section and creating a note about the multi-seed data point. Actually, looking more carefully at the memory, I see the CPU RNG table is in the "运维教训" section. I should update that table with the new k=0.85 and k=0.5 results.
+
+But save_project_file requires full file content. That's a lot of text. Let me just add a new section at the end focusing on the new results.
+
+Actually, I think the most important thing is to present the results to the user clearly. Let me also update the memory with the key new findings.
+
+For memory update, I should:
+1. Add k=0.85 and k=0.5 to the CPU RNG fix table
+2. Add k=0.3 seed43 data to the Goal suite data
+3. Note: k=0.85 post-fix = 52.4% (same as pre-fix), confirming it's in cliff zone AND unaffected by RNG fix
+4. Note: k=0.5 post-fix = 73.6% vs pre-fix 74.4% (-0.8pp), minimal effect
+
+Now I need to compile the Goal suite results and add them to memory. I'm checking what's already documented—there's Object and Spatial data but no Goal suite summary yet. Let me gather the Goal results I have: baseline needs verification, k=0.95 shows 83.8% post-fix, k=0.925 at 71.2%, k=0.9 at 62.2%, and k=0.85 at 52.4% post-fix, which appears to be cut off in the original data.
+
+The pattern emerging from the Goal suite is striking—there's a sharp decline from k=0.95 down through k=0.85, then an unexpected recovery at k=0.7 jumping back to 78.2%, followed by k=0.5 at 73.6% and k=0.3 variants around 50-54%.
+
+This "disruption dip" centered around k=0.85-0.9 shows a 25.8 percentage point swing between the trough and the recovery point, which aligns with the disruption peak phenomenon I've been tracking. Now I need to document these findings and update the memory with the extended CPU RNG table and the new Goal suite results.
+
+Rather than rewriting the entire 27K+ file, I'll add a focused new section at the bottom to capture the most impactful updates.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "25c5a518-5107-42b4-82bd-00184ff416f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFAXDBBgnnMMvqT6r4sijq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16225,
+      "cache_read_input_tokens": 37519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16225
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+## 实验结果汇总
+
+### eval_pi05_random_k03_goal_seed43_v2
+- **Overall SR: 53.6%** (268/500)
+- Per-task SR: T0=80%, T1=12%, T2=76%, T3=52%, T4=60%, T5=32%, T6=26%, T7=100%, T8=70%, T9=28%
+- Episodes: 500/500
+- 状态: success (EXIT_CODE=0)
+- 异常: 无
+- **对比 seed42 (50.6%)**: multi-seed avg = **52.1%**
+
+### eval_pi05_random_k085_goal_seed42_v4
+- **Overall SR: 52.4%** (262/500)
+- Per-task SR: T0=84%, T1=2%, T2=22%, T3=38%, T4=50%, T5=66%, T6=82%, T7=88%, T8=84%, T9=8%
+- Episodes: 500/500
+- 状态: success (EXIT_CODE=0)
+- 异常: 无
+- **对比 v3 pre-fix (52.4%)**: CPU RNG 修复无影响，delta=0pp。k=0.85 仍在 disruption dip 内。
+
+### eval_pi05_random_k05_goal_seed42_v2
+- **Overall SR: 73.6%** (368/500)
+- Per-task SR: T0=78%, T1=44%, T2=86%, T3=76%, T4=92%, T5=70%, T6=62%, T7=100%, T8=86%, T9=42%
+- Episodes: 500/500
+- 状态: success (EXIT_CODE=0)
+- 异常: 无
+- **对比 v1 pre-fix (74.4%)**: CPU RNG 修复影响极小，delta=-0.8pp。
+
+---
+
+### 关键发现
+
+**CPU RNG 修复影响完整表（Goal suite）**:
+
+| k | Pre-fix SR | Post-fix SR | Delta |
+|---|-----------|------------|-------|
+| 0.95 | 84.0% | 83.8% | -0.2pp |
+| 0.925 | 83.8% | **71.2%** | **-12.6pp** |
+| 0.9 | 62.2% | 62.2% | 0pp |
+| **0.85** | **52.4%** | **52.4%** | **0pp** |
+| 0.7 | 80.6% | 78.2% | -2.4pp |
+| **0.5** | **74.4%** | **73.6%** | **-0.8pp** |
+
+k=0.85 和 k=0.5 均不受 CPU RNG 修复影响（delta ≤ 0.8pp）。仅 k=0.925 受显著影响（-12.6pp）。
+
+**Goal suite Random pruning 完整曲线**:
+- k=0.95: 83.8% → k=0.925: 71.2% → k=0.9: 62.2% → **k=0.85: 52.4%** → **k=0.7: 78.2%** → **k=0.5: 73.6%** → **k=0.3: 52.1%**
+
+Disruption dip 确认：k=0.85(52.4%) 是谷底，k=0.7(78.2%) 大幅回升 +25.8pp。与 Object suite 的 disruption peak 模式一致。
+
+Now saving to memory.md.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "37a13463-6463-4c99-9ddd-5669940b5757",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFAXDBBgnnMMvqT6r4sijq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16225,
+      "cache_read_input_tokens": 37519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16225
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_017n5Km3CxfFmEGRqAn5DmKc`</summary>
+
+````json
+{
+  "project": "importance_margin_vla_compress",
+  "file": "memory.md",
+  "content": "# VLA 模型全面调研报告\n\n**调研日期**: 2026-05-20\n**目的**: 寻找不同 connector 架构的开源 VLA 模型，扩展 vision connector 对 token 可压缩性影响的实验\n\n---\n\n## 已有实验数据\n\n| 模型 | Connector | 压缩行为 |\n|------|-----------|----------|\n| SmolVLA | Pixel-shuffle | Cliff-edge collapse (k=0.95 → 0% SR) |\n| OpenVLA | 2-layer MLP projector | Graded degradation (线性下降) |\n| RoboFlamingo | Perceiver Resampler | 尝试失败 |\n| **X-VLA** | **Linear projection** | **Nearly lossless (k=0.3 → norm=1.0014)** |\n\n---\n\n## 完整模型调研表\n\n### 1. Octo (UC Berkeley, 2024)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 27M (Small) / 93M (Base) |\n| Vision encoder | Shallow CNN (从头训练，非预训练 ViT) |\n| **Connector 类型** | **CNN patch encoder → 直接拼接进 transformer（无独立 connector）** |\n| LLM backbone | 纯 transformer（非预训练 LLM），decoder-only |\n| 开源状态 | ✅ weights + code, GitHub: [octo-models/octo](https://github.com/octo-models/octo), HF: rail-berkeley/octo-base |\n| LIBERO 支持 | ✅ 原生支持，fine-tune 后 ~72% SR |\n| 改造成本 | 低（已有 LIBERO fine-tune 代码） |\n| 论文 LIBERO 结果 | 有: ~72% (fine-tuned) |\n| 备注 | 非标准 VLM→LLM 架构，是 transformer-based diffusion policy。图像通过浅层 CNN 编码为 16×16 patches 后直接拼入 transformer 序列。语言用 T5 tokenizer/encoder。Action head 是 diffusion policy。 |\n\n### 2. CogACT (Microsoft/Tsinghua, 2024)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | ~7.1B (7B Prismatic VLM + 89M-300M DiT action module) |\n| Vision encoder | DINOv2 + SigLIP (双 encoder，channel 拼接) |\n| **Connector 类型** | **2-layer MLP projector**（Prismatic 架构：DINOv2+SigLIP feature → channel concat → 2-layer MLP → Llama-2 embedding space） |\n| LLM backbone | Llama-2 7B (via Prismatic-7B) |\n| 开源状态 | ✅ weights + code, GitHub: [microsoft/CogACT](https://github.com/microsoft/CogACT), HF: CogACT/CogACT-Base, CogACT/CogACT-Small |\n| LIBERO 支持 | 需改造（paper 用 SimplerEnv + 真机） |\n| 改造成本 | 中（需接 LIBERO data pipeline + action space） |\n| 论文 LIBERO 结果 | 无 |\n| 备注 | 核心创新在 DiT action module（将 VLM 认知特征作为 condition 输入扩散 transformer 生成动作）。Connector 与 OpenVLA 相同（都基于 Prismatic） |\n\n### 3. HPT (MIT, NeurIPS 2024)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 3.1M (S) / 12.6M (B) / 50.5M (L) / 226.8M (XL) / 1.1B (Huge) |\n| Vision encoder | 预训练冻结 ResNet18 |\n| **Connector 类型** | **Cross-attention tokenizer**（learnable tokens 通过 cross-attention 聚合 vision features → 固定 16 tokens，每个 camera view 有独立 MLP projector） |\n| LLM backbone | 无（纯 decoder-only transformer，从头训练） |\n| 开源状态 | ✅ weights + code, GitHub: [liruiw/HPT](https://github.com/liruiw/HPT), HF: liruiw/hpt |\n| LIBERO 支持 | 未确认（paper 评测 6 个 benchmark） |\n| 改造成本 | 中（非标准 VLM 架构，需改 stem + action head） |\n| 论文 LIBERO 结果 | 无 |\n| 备注 | 非 VLM→LLM 架构。Cross-attention tokenizer 类似 Perceiver 但更轻量（8 heads, 64 dim/head）。跨 embodiment 预训练。 |\n\n### 4. RT-2-X (Google DeepMind, 2023)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 55B |\n| Vision encoder | ViT (PaLI-X 的视觉编码器) |\n| **Connector 类型** | 未公开（闭源） |\n| LLM backbone | PaLI-X / PaLM-E |\n| 开源状态 | ❌ **闭源**，权重不公开 |\n| LIBERO 支持 | 不可行 |\n| 改造成本 | 不可行 |\n| 论文 LIBERO 结果 | 无 |\n| 备注 | 闭源模型，无法使用 |\n\n### 5. GR-1 (ByteDance, 2023)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 未明确公布 |\n| Vision encoder | MAE ViT-Base (预训练) |\n| **Connector 类型** | **Perceiver Resampler**（将 MAE ViT 视觉 token 数量压缩）+ linear layers 对齐维度 |\n| LLM backbone | GPT-style causal transformer（非预训练 LLM） |\n| 开源状态 | ✅ weights + code, GitHub: [bytedance/GR-1](https://github.com/bytedance/GR-1), Apache-2.0 |\n| LIBERO 支持 | 需改造（paper 只有 CALVIN） |\n| 改造成本 | 高（需改 data pipeline、action space、视频生成部分可能要适配） |\n| 论文 LIBERO 结果 | 无（CALVIN: 94.9%） |\n| 备注 | 既做动作预测又做视频生成（future image prediction）。语言用 CLIP text encoder。使用 Perceiver Resampler 这一点很有价值——与 RoboFlamingo 类似但架构不同。 |\n\n### 6. GR-2 (ByteDance, 2024)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 未公布 |\n| Vision encoder | 未公布 |\n| **Connector 类型** | 未公布 |\n| LLM backbone | 未公布 |\n| 开源状态 | ❌ **未开源**，代码/权重未释放 |\n| LIBERO 支持 | 不可行 |\n| 改造成本 | 不可行 |\n| 论文 LIBERO 结果 | 无 |\n| 备注 | GR-1 的后续，但未开源 |\n\n### 7. LLARVA (2024)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 7B |\n| Vision encoder | CLIP ViT-L/14 |\n| **Connector 类型** | **MLP projector**（LLaVA-style，2-layer MLP with GELU） |\n| LLM backbone | Llama-2 7B |\n| 开源状态 | ✅ code + LoRA weights, GitHub: [Dantong88/LLARVA](https://github.com/Dantong88/LLARVA), Apache-2.0 |\n| LIBERO 支持 | 需改造 |\n| 改造成本 | 中（需接 action head + LIBERO data pipeline） |\n| 论文 LIBERO 结果 | 无 |\n| 备注 | 预测 visual traces (2D 轨迹) 作为中间表示。Connector 与 OpenVLA 类似（都是 MLP projector），但用 CLIP 而非 Prismatic 双 encoder |\n\n### 8. RoboVLMs (2024)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 不定（框架） |\n| Vision encoder | 支持多种 VLM backbone |\n| **Connector 类型** | 取决于所选 VLM（框架支持多种） |\n| LLM backbone | 取决于所选 VLM |\n| 开源状态 | ✅ code + models, GitHub: [Robot-VLAs/RoboVLMs](https://github.com/Robot-VLAs/RoboVLMs) |\n| LIBERO 支持 | 需确认 |\n| 改造成本 | 低-中（框架设计灵活） |\n| 论文 LIBERO 结果 | 未确认 |\n| 备注 | 这是一个**框架**而非单一模型。实验了 8+ VLM backbone × 4 policy 架构。最佳模型用 Kosmos backbone。对我们的 connector 对比研究有参考价值但不直接使用。 |\n\n### 9. 3D-VLA (UMass, ICML 2024)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 未明确 |\n| Vision encoder | 3D feature extraction（point cloud based） |\n| **Connector 类型** | **Interaction tokens**（3D-LLM 架构，用交互 token 嵌入 embodied 环境） |\n| LLM backbone | 基于 3D-LLM |\n| 开源状态 | ✅ code + diffusion models, GitHub: [UMass-Embodied-AGI/3D-VLA](https://github.com/UMass-Embodied-AGI/3D-VLA), HF: anyezhy |\n| LIBERO 支持 | 需大量改造（paper 用 RLBench） |\n| 改造成本 | 高（3D 点云输入，与 LIBERO 2D 图像差异大） |\n| 论文 LIBERO 结果 | 无 |\n| 备注 | 基于 3D 点云的 VLA，与我们研究的 2D 图像 → connector → LLM 管道差异太大，不推荐 |\n\n### 10. π0 / pi-zero (Physical Intelligence, 2024-2025)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | ~3.3B (400M SigLIP + 2.6B Gemma + ~300M action expert) |\n| Vision encoder | SigLIP-So400m (400M params) |\n| **Connector 类型** | **Linear projection**（单层线性层，将 SigLIP token 投影到 Gemma embedding space） |\n| LLM backbone | Gemma 2B (via PaliGemma) |\n| 开源状态 | ✅ weights + code, GitHub: [Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi), HF 有 PyTorch port |\n| LIBERO 支持 | ✅ 有评测（LIBERO-PRO 中被评测） |\n| 改造成本 | 低（已有 LIBERO 评测代码） |\n| 论文 LIBERO 结果 | 有（LIBERO-PRO 中有结果） |\n| 备注 | **强力推荐**。Linear projection 是最简单的 connector，与 OpenVLA 的 2-layer MLP 形成鲜明对比。Action expert 通过 MoE 架构耦合。Flow matching 生成动作。 |\n\n### 11. OpenVLA-OFT (Stanford, 2025)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 7B |\n| Vision encoder | SigLIP + DINOv2 (Prismatic) |\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同的 Prismatic connector） |\n| LLM backbone | Llama-2 7B |\n| 开源状态 | ✅ weights + code, GitHub: [moojink/openvla-oft](https://github.com/moojink/openvla-oft) |\n| LIBERO 支持 | ✅ 原生支持，SOTA 97.1% |\n| 改造成本 | 极低（已有完整 LIBERO fine-tune + eval） |\n| 论文 LIBERO 结果 | 有: 97.1% SR (4 suite avg) |\n| 备注 | Connector 与 OpenVLA 完全相同。改进在 fine-tuning recipe（continuous actions, action chunking, bidirectional attention）。对压缩实验来说，connector 级别的差异与 OpenVLA 相同，但 action generation 方式不同，可能影响压缩行为。 |\n\n### 12. RoboMM (2024)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 未明确公布 |\n| Vision encoder | CLIP (via OpenFlamingo) |\n| **Connector 类型** | **3D Perception Adapter (UVFormer)** + **Cross-attention**（OpenFlamingo 风格：text queries attend to visual features through cross-attention layers） |\n| LLM backbone | OpenFlamingo (cross-attention decoder) |\n| 开源状态 | ✅ code, GitHub: [RoboUniview/RoboMM](https://github.com/RoboUniview/RoboMM) |\n| LIBERO 支持 | ✅ 有评测 |\n| 改造成本 | 低-中 |\n| 论文 LIBERO 结果 | 有: 90.7% SR |\n| 备注 | Cross-attention connector 是独特的融合方式（与 MLP/linear 的 \\\"先投射再拼接\\\" 不同）。还有 occupancy supervision 的 3D adapter。多模态解码器增强感知。 |\n\n### 13. SpatialVLA (2025, RSS)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | ~4B |\n| Vision encoder | SigLIP |\n| **Connector 类型** | **Linear projection + Ego3D Position Encoding**（PaliGemma2 的 linear connector + MLP(sinusoidal(3D positions)) 叠加到 visual tokens 上） |\n| LLM backbone | Gemma (via PaliGemma2) |\n| 开源状态 | ✅ weights + code, GitHub: [SpatialVLA/SpatialVLA](https://github.com/SpatialVLA/SpatialVLA), HF: IPEC-COMMUNITY/spatialvla-4b-224-pt |\n| LIBERO 支持 | 未确认 |\n| 改造成本 | 中（需接 LIBERO data pipeline） |\n| 论文 LIBERO 结果 | 无 |\n| 备注 | 基于 PaliGemma2，connector 本质上是 linear projection（与 π0 相同），加了 3D spatial encoding。Adaptive Action Grids 只输出 3 个 action token（其他模型 7 个）。 |\n\n### 14. DeeR-VLA (2024)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 3B / 9B (OpenFlamingo 变体) |\n| Vision encoder | CLIP ViT-L/14 (428M params) |\n| **Connector 类型** | **Perceiver Resampler + Cross-attention**（OpenFlamingo 架构：CLIP features → Perceiver Resampler → learnable cross-attention blocks 注入 LLM 层间） |\n| LLM backbone | MPT-1B (3B 版) / MPT-7B (9B 版) |\n| 开源状态 | ✅ code + checkpoints, GitHub: [yueyang130/DeeR-VLA](https://github.com/yueyang130/DeeR-VLA) |\n| LIBERO 支持 | 需改造（paper 只有 CALVIN） |\n| 改造成本 | 中-高（需接 LIBERO pipeline，且多 exit 架构增加复杂度） |\n| 论文 LIBERO 结果 | 无（CALVIN benchmark） |\n| 备注 | **Perceiver Resampler** 与 RoboFlamingo 相同架构基础。动态 early exit 是额外功能。可作为 Perceiver Resampler 实验的替代方案。 |\n\n### 15. TraceVLA (UMD, ICLR 2025)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 7B (OpenVLA-based) / 4B (Phi-3-Vision-based) |\n| Vision encoder | SigLIP + DINOv2 (OpenVLA 版) / CLIP ViT (Phi-3 版) |\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同） |\n| LLM backbone | Llama-2 7B (OpenVLA 版) / Phi-3 4B |\n| 开源状态 | ✅ code + weights, GitHub: [umd-huang-lab/tracevla](https://github.com/umd-huang-lab/tracevla), HF: furonghuang-lab/tracevla_7b, MIT license |\n| LIBERO 支持 | 未确认（SimplerEnv + 真机） |\n| 改造成本 | 低（基于 OpenVLA 改造） |\n| 论文 LIBERO 结果 | 无 |\n| 备注 | Connector 与 OpenVLA 相同，改进在于 visual trace prompting（在图像上叠加动作历史轨迹）。压缩行为预期与 OpenVLA 相似。 |\n\n### 16. X-VLA (ICLR 2026)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 0.9B |\n| Vision encoder | Florence-Large (DaViT) |\n| **Connector 类型** | **Linear projection + Soft Prompts**（vision features 通过 lightweight linear layer 投影到高维空间 + 每个 embodiment 有独立 learnable prompt embeddings 注入 transformer） |\n| LLM backbone | Standard transformer 24 layers (非预训练 LLM，但使用 Florence 预训练 VLM 初始化) |\n| 开源状态 | ✅ weights + code, GitHub: [2toinf/X-VLA](https://github.com/2toinf/X-VLA), HF: 2toINF/X-VLA, Apache-2.0 |\n| LIBERO 支持 | ✅ 原生支持，98% SR |\n| 改造成本 | 极低（已有 LIBERO 训练权重） |\n| 论文 LIBERO 结果 | 有: 98% SR |\n| 备注 | **强力推荐**。Linear projection connector + flow matching action generation。LIBERO SOTA 之一。小模型(0.9B)便于实验。 |\n\n### 17. ECoT / Embodied Chain-of-Thought (2024)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 7B (基于 OpenVLA) |\n| Vision encoder | SigLIP + DINOv2 (Prismatic) |\n| **Connector 类型** | **2-layer MLP projector**（与 OpenVLA 相同） |\n| LLM backbone | Llama-2 7B |\n| 开源状态 | ✅ code + weights, GitHub: [MichalZawalski/embodied-CoT](https://github.com/MichalZawalski/embodied-CoT), HF: ecot-openvla-7b-bridge/oxe |\n| LIBERO 支持 | 需改造 |\n| 改造成本 | 低（基于 OpenVLA） |\n| 论文 LIBERO 结果 | 无 |\n| 备注 | Connector 与 OpenVLA 完全相同，增加了 chain-of-thought reasoning。对 connector 压缩研究无新增价值。 |\n\n### 18. LingBot-VLA (Ant Group/Robbyant, 2026)\n\n| 字段 | 信息 |\n|------|------|\n| 参数量 | 4B |\n| Vision encoder | Qwen2.5-VL 的 ViT（2D-RoPE + window attention） |\n| **Connector 类型** | **MLP merger**（2-layer MLP with ReLU，2×2 spatial grouping 后投影 + LLM decoder 中有 cross-attention 层融合 visual features） |\n| LLM backbone | Qwen2.5-VL-3B |\n| 开源状态 | ✅ weights + code, GitHub: [Robbyant/lingbot-vla](https://github.com/Robbyant/lingbot-vla) |\n| LIBERO 支持 | 未确认 |\n| 改造成本 | 中 |\n| 论文 LIBERO 结果 | 未确认 |\n| 备注 | Qwen2.5-VL 的 MLP merger 是一种混合 connector：先做 spatial grouping（类似 pixel-shuffle 的空间压缩）再 MLP 投射。Mixture of Transformers 架构。 |\n\n---\n\n## Connector 类型覆盖分析\n\n### 已有数据的 Connector 类型\n| Connector 类型 | 代表模型 | 压缩行为 |\n|---------------|----------|----------|\n| Pixel-shuffle | SmolVLA | Cliff-edge collapse |\n| 2-layer MLP projector | OpenVLA (Prismatic) | Graded degradation |\n| Perceiver Resampler | RoboFlamingo | 尝试失败 |\n| **Linear projection** | **X-VLA** | **Nearly lossless pruning** |\n\n### 可新增的 Connector 类型\n| Connector 类型 | 候选模型 | 特点 | 可行性 |\n|---------------|----------|------|--------|\n| **Linear projection** | **π0**, SpatialVLA | 验证 X-VLA 发现的一致性 | ⭐⭐⭐ 高 |\n| **Cross-attention (Flamingo-style)** | **RoboMM** | 不在 encoder 端压缩，而是 decoder 端通过 cross-attention 选择性融合 | ⭐⭐ 中 |\n| **CNN patch → direct concat** | Octo | 无独立 connector，图像 patches 直接拼入 transformer | ⭐ 低（架构差异太大） |\n| **MLP merger + spatial grouping** | LingBot-VLA | 先空间合并再 MLP 投射 + cross-attention | ⭐⭐ 中 |\n| **Cross-attention tokenizer** | HPT | learnable tokens 通过 cross-attention 聚合 vision features | ⭐ 低（非 VLM 架构） |\n\n### 关键发现\n1. **Linear projection** 是最有价值的新增类型——π0 和 X-VLA 都用这种最简单的 connector，与 OpenVLA 的 2-layer MLP 形成对比\n2. **Cross-attention** (RoboMM 的 OpenFlamingo 架构) 从根本上不同：不投射拼接，而是 decoder 层间交叉注意力\n3. 大量模型共享 connector：OpenVLA, CogACT, LLARVA, TraceVLA, ECoT, OpenVLA-OFT 都用 **2-layer MLP**（Prismatic 或 LLaVA 架构）\n\n---\n\n## Top 推荐：最适合扩展实验的 5 个模型\n\n### 🥇 1. π0 (Physical Intelligence)\n- **Connector**: Linear projection (单层线性)\n- **推荐理由**: \n  - 与 OpenVLA 的 2-layer MLP 形成直接对比（linear vs MLP）\n  - 开源权重 + 代码，社区活跃\n  - 已有 LIBERO 评测代码\n  - PaliGemma 架构广为人知\n  - 3B 参数可在单卡运行\n- **预期价值**: Linear projection 不增加非线性变换，token 可能保留更多原始 visual feature 结构 → 压缩行为可能与 MLP 不同\n\n### 🥈 2. X-VLA\n- **Connector**: Linear projection + soft prompts\n- **推荐理由**:\n  - 同样是 linear projection，与 π0 对比看 soft prompt 的影响\n  - LIBERO 98% SR，已有训练好的 LIBERO 权重直接可用\n  - 0.9B 参数，实验成本最低\n  - ICLR 2026，最新模型\n  - Apache-2.0 开源\n- **预期价值**: 验证 linear projection 的压缩行为是否 consistent across models\n\n### 🥉 3. DeeR-VLA\n- **Connector**: Perceiver Resampler + Cross-attention (OpenFlamingo)\n- **推荐理由**:\n  - Perceiver Resampler 与 RoboFlamingo 相同架构，但 DeeR-VLA 已验证可训练（CALVIN benchmark 正常工作）\n  - 给 Perceiver Resampler 第二次机会\n  - 可对比 RoboFlamingo 的训练失败是架构问题还是实现问题\n  - Open source with checkpoints\n- **预期价值**: Perceiver Resampler 本身就做了 attention-based compression → 压缩行为可能与 MLP/linear 截然不同\n- **风险**: LIBERO 需要自己改造\n\n### 4. RoboMM\n- **Connector**: Cross-attention (OpenFlamingo) + 3D Adapter\n- **推荐理由**:\n  - Cross-attention 融合方式从根本上不同于 projection-based connectors\n  - 已有 LIBERO 结果 (90.7%)\n  - Open source\n- **预期价值**: Cross-attention 在 decoder 端动态选择 visual features → 可能展现出与 projection-based 完全不同的压缩模式\n- **风险**: 架构较复杂，3D adapter 增加变量\n\n### 5. OpenVLA-OFT\n- **Connector**: 2-layer MLP projector (与 OpenVLA 相同)\n- **推荐理由**:\n  - Connector 与 OpenVLA 相同，但 action generation 完全不同（continuous + chunking）\n  - LIBERO 97.1% SOTA\n  - 可验证 \"相同 connector + 不同 action head\" 是否影响压缩行为\n  - 已有完整 LIBERO 代码\n- **预期价值**: 作为 OpenVLA 的对照组，隔离 connector vs action head 对压缩的影响\n\n---\n\n## 不推荐的模型及原因\n\n| 模型 | 排除原因 |\n|------|----------|\n| RT-2-X | 闭源，权重不可用 |\n| GR-2 | 未开源 |\n| 3D-VLA | 3D 点云输入，与 2D VLA 差异太大 |\n| CogACT | Connector 与 OpenVLA 相同（Prismatic MLP），不新增类型 |\n| LLARVA | Connector 与 OpenVLA 类似（MLP projector），不新增类型 |\n| TraceVLA | Connector 与 OpenVLA 相同，不新增类型 |\n| ECoT | Connector 与 OpenVLA 相同，不新增类型 |\n| HPT | 非 VLM 架构，不适合 connector 压缩叙事 |\n| GR-1 | 有 Perceiver Resampler（有价值），但无 LIBERO 支持 + 视频生成架构改造成本高 |\n| Octo | 无独立 connector（CNN patch 直接拼入），架构与标准 VLM 差异太大 |\n\n---\n\n## 总结：Connector 类型 × 模型矩阵\n\n| Connector 类型 | 已有 | 推荐新增 |\n|---------------|------|----------|\n| Pixel-shuffle | SmolVLA ✅ | — |\n| 2-layer MLP projector | OpenVLA ✅ | OpenVLA-OFT（同 connector 不同 action head） |\n| Perceiver Resampler | RoboFlamingo ❌(失败) | **DeeR-VLA** |\n| **Linear projection** | **X-VLA ✅** | **π0** |\n| **Cross-attention** | — | **RoboMM** |\n\n实现后可达 **5 种 connector 类型 × 6+ 模型**的全面对比。\n\n---\n\n## X-VLA 详细架构调研（2026-05-20 新增）\n\n### 模型身份确认\n- **名称**: X-VLA (Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model)\n- **论文**: arXiv:2510.10274, ICLR 2026\n- **GitHub**: [2toinf/X-VLA](https://github.com/2toinf/X-VLA)\n- **HuggingFace**: [2toINF/X-VLA](https://huggingface.co/collections/2toINF/x-vla)\n- **参数量**: 0.9B\n- **许可**: Apache-2.0\n- **LIBERO SR**: 98.1%\n\n### 架构详解\n\n```\nImage (224×224) → Florence-Large (DaViT) → Vision Tokens [B, N, 2048]\n    → Linear Projection + LayerNorm → [B, N, 1024]\n    → Merge with Text Token Embeddings → Florence2 Encoder (self-attention)\n    → Context Features → SoftPromptedTransformer (24 layers, hidden=1024)\n        + Soft Prompts (32 learnable embeddings per embodiment)\n        + Noised Action Tokens (flow matching)\n    → Denoised Action Trajectory [B, 30, 20]\n```\n\n**各组件详情**:\n\n| 组件 | 规格 |\n|------|------|\n| Vision Encoder | Florence-Large (DaViT): patch_stride=[4,2,2,2] → total stride 32 |\n| Vision Token 数量 | ~49 tokens (7×7 at 224×224) 或 ~576 tokens (24×24 at 768×768) — **需实际加载模型验证** |\n| Projection | Linear + LayerNorm, dim 2048 → 1024 (projection_dim=1024) |\n| Soft Prompts | 32 tokens/embodiment, 0.04% of total params |\n| Transformer | 24 layers, hidden=1024, 16 heads, mlp_ratio=4.0 |\n| Action Head | Flow matching, 30 anchor points × 20 dims (EE6D), 10 denoising steps |\n| Max Sequence | 512 tokens |\n\n### HuggingFace 权重\n| Checkpoint | 用途 | 地址 |\n|------------|------|------|\n| X-VLA-Pt | 预训练基座 (cross-embodiment) | 2toINF/X-VLA-Pt |\n| X-VLA-Libero | LIBERO 全参数微调 (98.1% SR) | 2toINF/X-VLA-Libero |\n| X-VLA-libero-*-peft | LIBERO LoRA 微调 (各 suite) | 2toINF/X-VLA-libero-spatial-peft 等 |\n\n### 环境依赖\n```\ntransformers<=4.51.3, torch, einops==0.8.1, timm==1.0.12, \naccelerate==1.2.1, peft==0.17.1, safetensors==0.4.5,\nnumpy==1.26.3, scipy==1.15.0, mmengine==0.10.5,\nfastapi, uvicorn==0.34.3, h5py==3.12.1, pyarrow==20.0.0,\nav==15.0.0, mediapy==1.2.4\n```\nLIBERO 评估另需 Python 3.8 环境。\n\n### VTC 集成方案\n**插入点**: Florence2 `_encode_image()` 输出 → **VTC** → `_merge_input_ids_with_image_features()`\n\n**改造清单**:\n1. 创建 `xvla_vtc_adapter.py`（复用 VisionTokenCompressor，hidden_dim 改 1024）\n2. 创建 XVLASmartCompressWrapper，hook Florence2 vision 输出\n3. 修改 merge 逻辑以适应压缩后的 token 数量\n4. 创建 `train_xvla_smart_compress.py`（参考 X-VLA 的 train.py + peft_train.py）\n5. 适配 flow matching loss（不同于 OpenVLA 的 cross-entropy）\n\n**与 OpenVLA VTC 的关键差异**:\n| 维度 | OpenVLA | X-VLA |\n|------|---------|-------|\n| hidden_dim | 4096 | 1024 |\n| 原始 vision tokens | 256 | ~49-576 (待验证) |\n| Action 范式 | Autoregressive (256-bin CE) | Flow matching (MSE+BCE) |\n| Connector | 2-layer MLP | Linear + LayerNorm |\n| 模型大小 | 7B | 0.9B |\n\n**预计工作量**: 8-12 小时\n- 代码改造: 4-6h（adapter + training script）\n- 环境搭建 + 模型下载: 2-3h\n- 验证 + 调试: 2-3h\n\n---\n\n## X-VLA Token Importance 分析结果（2026-05-20）\n\n### 实验配置\n- **模型**: X-VLA-0.9B (lerobot/xvla-libero checkpoint)\n- **数据**: LIBERO-Object (task_index 20-29), 100 images, 10 tasks\n- **服务器**: westd-41074, cuda:1\n- **分析脚本**: `/root/autodl-tmp/importance_margin_vla_compress/analyze_xvla_token_importance.py`\n- **结果文件**: `/root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_attention_entropy_perlayer.json`\n\n### SoftPromptedTransformer 序列布局\n| Token 类型 | 数量 | 说明 |\n|-----------|------|------|\n| Action tokens | 30 | Flow matching denoised action |\n| VLM features | 64 | Florence2 encoder output (main view) |\n| Aux visual | 150 | Additional camera views |\n| Soft prompts | 32 | Embodiment-specific learnable tokens |\n| **Total** | **276** | |\n\n### Entropy Ratio（Action→Vision 注意力熵）\n- **Overall**: **0.6138** ± 0.1159\n- **趋势**: 浅层低（L0=0.46, L1=0.34），深层高（L22=0.79, L23=0.71）\n- 浅层集中注意力于少数 vision tokens，深层趋于均匀\n\n### Vision Attention Fraction（Action tokens 分配给 vision tokens 的注意力比例）\n- 浅层（L0-2）: 33-49% — action tokens 还关注 soft prompts 和 self\n- 中层（L6-11）: 84-90% — 绝大部分注意力给 vision tokens\n- 深层（L17-23）: 79-90% — 持续高注意力\n\n### Pruning Curve（核心发现）\n| Retention k | Mean Loss | Normalized |\n|-------------|-----------|------------|\n| 0.30 | 0.112945 | **1.0014** |\n| 0.50 | 0.112823 | 1.0003 |\n| 0.70 | 0.112789 | 1.0000 |\n| 0.90 | 0.112789 | 1.0000 |\n| 0.95 | 0.112789 | 1.0000 |\n| 1.00 | 0.112789 | 1.0000 |\n\n**关键结论**: 丢弃 70% 的 vision tokens（k=0.3）仅导致 0.14% 的 loss 增加。X-VLA 的 vision tokens **几乎完全可压缩**。\n\n### 跨模型对比\n| 模型 | Connector | Entropy Ratio | k=0.3 Norm Loss | 压缩行为 |\n|------|-----------|---------------|-----------------|----------|\n| SmolVLA | Pixel-shuffle | ~0.45 (低) | Cliff-edge | 不可压缩 |\n| OpenVLA | 2-layer MLP | ~0.55 (中) | ~1.15 (15%↑) | 渐进退化 |\n| **X-VLA** | **Linear proj** | **0.61 (中高)** | **1.0014 (0.14%↑)** | **几乎无损** |\n\n### 解读\n1. **Linear projection connector 产生了高度冗余的 vision token 表示**——大部分信息集中在少数 token 中，L2 norm 可以轻松识别\n2. Entropy 比 OpenVLA 更高（0.61 vs 0.55），说明注意力分布更均匀，但这不矛盾——均匀分布意味着 \"每个 token 被平等关注\"，而 pruning 几乎无损意味着 \"被关注的内容高度冗余\"\n3. 这是 **connector 架构论文的关键数据点**：linear projection（无非线性变换）保留了 DaViT 输出的原始冗余结构，而 MLP projector（2 层 + GELU）通过非线性变换重新分配了信息，使得 token 间差异更大、更难压缩\n\n---\n\n## OFT Importance CV 分析结果（2026-05-20）\n\n### 结论\n- **OFT CV = 0.2185**，per-task CV 在 0.211–0.225 之间\n- 与 OpenVLA (0.215) 高度一致——两者共享相同的 2-layer MLP projector（Prismatic 架构）\n- **LoRA fine-tuning 不改变 vision token importance 分布**——connector 架构是唯一决定因素\n\n### Diagnostic 表格完成状态（5/5）\n| 模型 | Connector | CV | 压缩行为 |\n|------|-----------|-----|----------|\n| SmolVLA | Pixel-shuffle | ~0.08 | Cliff-edge collapse |\n| OpenVLA | 2-layer MLP | 0.215 | Graded degradation |\n| OpenVLA-OFT | 2-layer MLP (same) | 0.2185 | 预期与 OpenVLA 相同 |\n| X-VLA | Linear projection | TBD | Nearly lossless |\n| RoboFlamingo | Perceiver Resampler | N/A | 训练失败 |\n\n### 论文意义\nOFT 结果支撑 claim: \"token importance distribution is an intrinsic property of the connector architecture, invariant to downstream fine-tuning strategy (LoRA vs full)\"\n\n---\n\n## 失败模式记录\n\n- [2026-05-21] **π0.5 自定义 eval 脚本 bug**: `eval_pi05_pruning_libero.py` 的 `patched_embed_image` 函数导致 0% SR，而官方 eval 脚本在同一 checkpoint 上 ~100% SR。→ 新模型接入时，必须先用官方 eval 脚本验证 checkpoint 可用性，确认后再写自定义 pruning eval 脚本。不要假设自定义 patch 正确。\n\n- [2026-05-21] **OpenVLA eval 4 实验批量失败 (westd-38929)**:\n  - **失败实验**: eval_openvla_l2norm_k05_object_seed42 (PID 568225), eval_openvla_random_k03_object_seed42 (PID 568905), eval_openvla_l2norm_k07_object_seed42 (PID 569611), eval_openvla_l2norm_k03_object_seed42 (PID 570309)\n  - **根因**: **AutoDL 容器 GPU 缩配**。主机有 9 块 NVIDIA RTX PRO 6000 Blackwell (各 97GB)，但容器当前只挂载了 `/dev/nvidia2` 一块 GPU。4 个实验分别在 CUDA_VISIBLE_DEVICES=0/1/2/3 启动，运行 ~1h43m 后 GPU 设备被平台回收，进程收到 SIGKILL 无任何 traceback。\n  - **证据**:\n    - `nvidia-smi -L` 只显示 1 块 GPU (Device Minor 2)，而 `/proc/driver/nvidia/gpus/` 显示主机有 9 块\n    - 4 个日志文件在 14:45-14:49 间依次停止写入（3 分钟跨度，非瞬时），末尾均为正常进度输出无 error\n    - 各实验完成了 Task 1-3，在 Task 4/10 中被杀（~30% 完成度）\n    - 系统 RAM 充足（1TB 中仅用 46GB），排除 CPU OOM\n    - 无 tmux session，进程通过 nohup 方式运行\n  - **修复建议**:\n    1. 在 AutoDL 控制台恢复实例到 4 GPU 配置（或至少确认 GPU 分配稳定）\n    2. 重新启动 4 个实验，建议使用 tmux 以防 SSH 断连\n    3. 如果无法恢复多 GPU，可在单 GPU 上顺序运行（每个实验约 5.5h，共 ~22h）\n    4. 启动命令参考（单 GPU 顺序）:\n       ```bash\n       tmux new -s openvla_eval\n       source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n       cd /root/autodl-tmp/importance_margin_vla_compress\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.5 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k05_seed42.log 2>&1\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode random_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_random_k03_seed42.log 2>&1\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.7 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k07_seed42.log 2>&1\n       CUDA_VISIBLE_DEVICES=0 python -u eval_openvla_l2norm_libero.py --mode l2norm_prune --k_ratio 0.3 --suite libero_object --seed 42 > logs/eval_openvla_l2norm_k03_seed42.log 2>&1\n       ```\n\n---\n\n## π0.5 跨 suite 对比（2026-05-21, 更新于 2026-05-23）\n\n**模型**: π0.5 (PaliGemma, linear projection connector, CV=0.055)\n**数据来源**: registry 中所有 status=DONE 且有有效 metrics 的 pi05 实验\n\n### Object Suite（baseline=98.2%, eval_pi05_baseline_object_seed42）\n\n| k | L2norm SR (%) | L2norm exp_ids | Random SR (%) | Random exp_ids |\n|---|--------------|----------------|--------------|----------------|\n| 0.9 | **98.2** (s42) | eval_pi05_l2norm_k09_object_seed42_v2 | **10.8** avg [12.0(s42), 9.6(s43)] | eval_pi05_random_k09_object_seed42_v2, eval_pi05_random_k09_object_seed43 |\n| 0.7 | **56.4** avg [55.0(s42), 56.4(s43), 57.8(s43v2)] | eval_pi05_l2norm_k07_object_seed42, _seed43, _seed43_v2 | **75.5** avg [77.2(s42), 73.8(s43)] | eval_pi05_random_k07_object_seed42, _seed43 |\n| 0.5 | **33.5** avg [33.4(s42), 33.6(s43)] | eval_pi05_l2norm_k05_object_seed42, _seed43 | **68.9** avg [69.4(s42), 68.4(s43)] | eval_pi05_random_k05_object_seed42, _seed43 |\n| 0.3 | **53.2** avg [51.0(s42), 55.4(s43)] | eval_pi05_l2norm_k03_object_seed42, _seed43 | **36.4** (s42) | eval_pi05_random_k03_object_seed42 |\n| 0.1 | **2.6** (s42) | eval_pi05_l2norm_k01_object_seed42 | — | — |\n\n### Spatial Suite（baseline=97.2%, eval_pi05_baseline_spatial_seed42）\n\n| k | L2norm SR (%) | Random SR (%) | Random exp_ids |\n|---|--------------|--------------|----------------|\n| 0.9 | — (pending) | — (pending) | — |\n| 0.7 | — (running: eval_pi05_l2norm_k07_spatial_seed42) | **74.4%** (s42) | eval_pi05_random_k07_spatial_seed42 |\n| 0.5 | — (running) | **71.6** (s42) | eval_pi05_random_k05_spatial_seed42 |\n| 0.3 | — (running) | — (submitted) | — |\n\n### Goal Suite（2026-05-23 新增，CPU RNG 修复后数据）\n\n| k | Random SR (%) | Random exp_ids | 备注 |\n|---|--------------|----------------|------|\n| 0.95 | **83.8** (s42) | — | post-fix |\n| 0.925 | **71.2** (s42) | — | post-fix, cliff zone |\n| 0.9 | **62.2** (s42) | — | post-fix = pre-fix |\n| 0.85 | **52.4** (s42) | eval_pi05_random_k085_goal_seed42_v4 | **post-fix = pre-fix (52.4%)**，disruption dip 谷底 |\n| 0.7 | **78.2** (s42) | — | post-fix, recovery from dip |\n| 0.5 | **73.6** (s42) | eval_pi05_random_k05_goal_seed42_v2 | post-fix, pre-fix=74.4%, delta=-0.8pp |\n| 0.3 | **52.1** avg [50.6(s42), 53.6(s43)] | eval_pi05_random_k03_goal_seed42, eval_pi05_random_k03_goal_seed43_v2 | multi-seed confirmed |\n\n### Cross-suite 一致性分析\n\n**Random k=0.7 对比**:\n- Object: **75.5%** (seed42=77.2%, seed43=73.8%)\n- Spatial: **74.4%** (seed42)\n- **Delta: 1.1pp** — 极高一致性\n\n**Random k=0.5 对比**:\n- Object: **68.9%** (seed42=69.4%, seed43=68.4%)\n- Spatial: **71.6%** (seed42)\n- **Delta: 2.7pp** — 高度一致\n\n结论：Random pruning 在 k=0.7 和 k=0.5 的表现跨 suite 具有极强一致性（差异仅 1.1-2.7pp），说明 π0.5 的 vision token 冗余结构不依赖于具体 task 类型。Spatial 在 k=0.5 略高于 Object（+2.7pp），在 k=0.7 几乎相同（-1.1pp）。\n\n**Hypothesis 验证状态**: random > L2norm at k=0.7 的跨 suite 一致性需等 eval_pi05_l2norm_k07_spatial_seed42 完成后确认。Object 上 random(75.5%) > L2norm(56.4%) 差距 +19.1pp。如果 Spatial L2norm 也显著低于 random(74.4%)，则 hypothesis 成立。\n\n### 关键现象\n\n1. **L2norm 非单调 V-shape**：k=0.5 是谷底(33.5%)，k=0.3 反弹到 53.2%。多 seed 确认。原因待查——可能 L2 norm 在 50% 保留时恰好选中了信息量最差的 token 子集。\n\n2. **Random k=0.9 异常崩塌**：仅保留 90% token 时 random pruning SR 降至 ~10.8%（双 seed 确认 12.0%/9.6%），而 L2norm k=0.9 正常(98.2%)。这是所有模型中未见过的现象——移除 10% random token 即可摧毁模型。推测 π0.5 少数 token 承载关键位置信息，random 删除有 ~90% 概率命中关键 token。\n\n3. **Random 优于 L2norm 的 k 区间**：k=0.5(random 68.9% vs L2norm 33.5%)和 k=0.7(random 75.5% vs L2norm 56.4%)时 random 大幅优于 L2norm。说明 L2 norm 不是 π0.5 vision token importance 的好 proxy——CV=0.055 意味着 L2 norm 几乎无区分度。\n\n4. **Failed/killed 实验（已排除）**: eval_pi05_random_k07_object_seed42_v2(killed), _v3(killed), eval_pi05_random_k085_object_seed42(failed), eval_pi05_random_k095_object_seed42(failed), eval_pi05_random_k09_fixedmask_object_seed42(network error)。\n\n---\n\n## 运维教训\n\n### [2026-05-21] cqa1 π0.5 环境不匹配导致全部 0% SR\n\n**现象**: cqa1-33015 上 4 个 π0.5 实验全部 0% SR（160+ episodes）。怀疑 checkpoint 损坏。\n\n**根因**: 环境版本不匹配——cqa1 上 transformers=4.53.2（需要 5.5.3），lerobot=0.5.1 pip 版（需要 0.5.2 editable from /root/autodl-tmp/lerobot）。PI05Policy 在错误版本下 inference 输出全错但不报错。另外 paligemma tokenizer 缓存缺少 config.json。\n\n**修复**: `pip install transformers==5.5.3`，`pip install -e /root/autodl-tmp/lerobot`，补充 tokenizer config。Baseline 验证 100% SR 后重新部署。\n\n**教训**: 部署 π0.5 到新服务器前必须先跑 baseline 验证（10-20 episodes 即可，~5min）。包版本不匹配可能导致静默错误（不 crash 但输出全错），比 checkpoint 损坏更隐蔽。\n\n### [2026-05-21] k=0.3 method reversal 跨 suite 复现\n\nObject 和 Spatial 均确认 L2norm > random at k=0.3：\n- Object: L2norm 51.0% > random 36.4% (+14.6pp)\n- Spatial: L2norm 57.2% > random 49.6% (+7.6pp)\n\nMethod preference crossover 在 k=0.3-0.5 之间，且跨 suite 稳定。说明 reversal 是 model-intrinsic 现象。\n\n### [2026-05-23] CPU RNG 修复对 Random Goal 数据的差异化影响（更新于 2026-05-23）\n\nD183 发现 π0.5 Random Goal 数据受 CUDA RNG 跨硬件污染。修复后重跑所有 keep ratio，发现影响因比例而异：\n\n| k | Pre-fix SR | Post-fix SR | Delta |\n|---|-----------|------------|-------|\n| 0.95 | 84.0% | 83.8% | -0.2pp |\n| 0.925 | 83.8% | **71.2%** | **-12.6pp** |\n| 0.9 | 62.2% | 62.2% | 0pp |\n| **0.85** | **52.4%** | **52.4%** | **0pp** |\n| 0.7 | 80.6% | 78.2% | -2.4pp |\n| **0.5** | **74.4%** | **73.6%** | **-0.8pp** |\n\nk=0.925 受影响最大（-12.6pp），其余比例 delta ≤ 2.4pp。k=0.85 和 k=0.5 完全不受影响，确认 CPU RNG 修复只对 cliff zone 边缘（k=0.925）有显著影响。\n\n**Goal disruption dip 完整曲线**: k=0.95(83.8%) → k=0.925(71.2%) → k=0.9(62.2%) → **k=0.85(52.4%, 谷底)** → k=0.7(78.2%, +25.8pp recovery) → k=0.5(73.6%) → k=0.3(52.1%)。Disruption dip 在 k≈0.85 触底后大幅回升，与 Object suite 的 disruption peak 模式一致。\n\n**教训**: 不同 keep ratio 对 RNG seed 的敏感度不同。k=0.925 恰好在 \"cliff zone\" 边缘，RNG 差异导致不同 token 子集被选中，影响巨大。远离 cliff 的比例（k=0.95, k=0.7）则稳健。\n\n### [2026-05-23] π0.5 Attention pruning Object cliff 极端\n\nπ0.5 attention pruning 在 Object 上：k=0.95=98.4%, k=0.9=97.2%, k=0.85=92.2%, **k=0.7=0.6%**。\nk=0.85→0.7 之间存在完全崩溃（-91.6pp）。对比 L2norm/Random 在同区间的渐进退化，attention 方法的 cliff 更尖锐。原因待查——可能 attention score 分布在 π0.5 中高度集中，70% 保留时恰好切到了\"全部重要\"和\"全部无用\"的边界。\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "4bbd7df6-5379-40aa-8a9f-901c126d8307",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JFAXDBBgnnMMvqT6r4sijq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16225,
+      "cache_read_input_tokens": 37519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16225
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T20:42:09.809Z_
+
+<details><summary>↩ Tool result · `toolu_017n5Km3CxfFmEGRqAn5DmKc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "822f9e48-2078-4eaa-a227-356f8bc0a704",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+3 个实验全部成功完成，memory.md 已更新。
+
+核心结论：
+- **k=0.85 post-fix = pre-fix = 52.4%**：CPU RNG 修复对 k=0.85 零影响，确认 disruption dip 谷底
+- **k=0.5 post-fix 73.6% vs pre-fix 74.4%**：delta 仅 -0.8pp，几乎无影响
+- **k=0.3 seed43 = 53.6%**：与 seed42 (50.6%) 平均后 multi-seed avg = 52.1%
+- Goal suite disruption dip 完整：k=0.85(52.4%) 为谷底，k=0.7(78.2%) 回升 +25.8pp
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "uuid": "d98a10eb-d564-418f-ac59-69b4f03d3bd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJwn4QVg4eLvdneoJQQsmp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18781,
+      "cache_read_input_tokens": 53744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18781
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 25_
+
+3 个实验全部成功完成，memory.md 已更新。
+
+核心结论：
+- **k=0.85 post-fix = pre-fix = 52.4%**：CPU RNG 修复对 k=0.85 零影响，确认 disruption dip 谷底
+- **k=0.5 post-fix 73.6% vs pre-fix 74.4%**：delta 仅 -0.8pp，几乎无影响
+- **k=0.3 seed43 = 53.6%**：与 seed42 (50.6%) 平均后 multi-seed avg = 52.1%
+- Goal suite disruption dip 完整：k=0.85(52.4%) 为谷底，k=0.7(78.2%) 回升 +25.8pp
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 408011,
+  "duration_api_ms": 409048,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "0517fb22-b967-421d-bb08-ee56e3439087",
+  "total_cost_usd": 0.9899929999999999,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 60684,
+    "cache_read_input_tokens": 187756,
+    "output_tokens": 20604,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 60684,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 219,
+        "cache_read_input_tokens": 53744,
+        "cache_creation_input_tokens": 18781,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 18781
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1615,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016849999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 20604,
+      "cacheReadInputTokens": 187756,
+      "cacheCreationInputTokens": 60684,
+      "webSearchRequests": 0,
+      "costUSD": 0.988308,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "cef37aac-1740-4205-af5a-546f4a48dee1"
+}
+```
+
+</details>
+
+---

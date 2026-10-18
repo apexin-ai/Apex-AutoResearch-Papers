@@ -1,0 +1,2531 @@
+# analysis cinelli hazlett sensitivity
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 87
+- **Recorded user turns:** 0
+- **Tool calls:** 43
+- **Original source:** `logs/chats/worker_analysis_cinelli-hazlett-sensitivity_20260523T080322.jsonl`
+- **Structured JSON:** [`38efac6ada21227a94be.json`](../../sessions/38/38efac6ada21227a94be.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+87 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T08:13:32.772442+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T08:13:32.772817+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T08:13:32.773008+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/cert_manip_resist_eval/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls /root/cert_manip_resist_eval/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T08:13:32.773143+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/cert_manip_resist_eval/artifacts/results/plan001/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls /root/cert_manip_resist_eval/artifacts/results/plan001/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-23T08:13:32.773303+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\n_eval_single_model.py\\n_test_openai.py\\n_test_openai2.py\\nautoscale_scoring.sh\\ncopula_gof_check.py\\ndeploy_judges.py\\ndraw_fig4_panel_design_k3.py\\nfig5_forest_plot.py\\nprep_attack_data.py\\nrun_7model_preview.py\\nrun_aggregation_loglog.py\\nrun_aggregation_regression_15model.py\\nrun_all.py\\nrun_alt_diversity_effect_size.py\\nrun_api_only_diagnostic.py\\nrun_api_only_regression.py\\nrun_attacked_keff.py\\nrun_beta_reg_epsilon.py\\nrun_capability_matched.py\\nrun_claim6_panel_design_15model.py\\nrun_clustered_se_analysis.py\\nrun_condition_dominance.py\\nrun_controlled_regression.py\\nrun_family_copula_15model.py\\nrun_fractional_logit.py\\nrun_gam_tier_analysis.py\\nrun_gam_tier_analysis_corrected.py\\nrun_k4_wild_cluster_bootstrap.py\\nrun_k5_aggregation_analysis.py\\nrun_k5_aggregation_bootstrap.py\\nrun_k5_gam_analysis.py\\nrun_k5_k7_panel_analysis.py\\nrun_k5_panel_selection.py\\nrun_k5_panel_selection_bootstrap.py\\nrun_k5_rf_contrast.py\\nrun_k5_wild_cluster_bootstrap.py\\nrun_k7_wild_cluster_bootstrap.py\\nrun_partial_knowledge_adversary.py\\nrun_partial_knowledge_clustered_se.py\\nrun_pipeline_15model.sh\\nrun_plan001_confound_diagnosis.py\\nrun_plan001_pipeline.sh\\nrun_plan001_step1_api_scoring.py\\nrun_plan001_step1_batched.py\\nrun_plan001_step1_parallel.py\\nrun_plan001_step1_parallel_v2.py\\nrun_plan001_step1_throttled.py\\nrun_plan001_step3_mi_matrix.py\\nrun_plan001_step4_panel_regression.py\\nrun_plan001_step5_random_fault.py\\nrun_plan003_random_fault.py\\nrun_plan009_vif_analysis.py\\nrun_plan010_aggregation.py\\nrun_plan010_fdr_cv.py\\nrun_power_cr2_cr3.py\\nrun_random_subsample_transition.py\\nrun_residualized_keff_15model.py\\nrun_rf_keff_correction.py\\nrun_step1_correlation.py\\nrun_step1_full.py\\nrun_step1_subset.py\\nrun_step2_attacks.py\\nrun_step2_keff_contrast.py\\nrun_step2v3_regression.py\\nrun_step3_keff.py\\nrun_step4_scaling.py\\nrun_taxonomy_broadspe
+…[truncated 320 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T08:13:32.773467+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aggregation_regression_15model.json\\naggregation_regression_15model_loglog.json\\nalt_diversity_effect_size.json\\napi_only_diagnostic.json\\napi_only_regression.json\\nattacked_keff.json\\nbeta_reg_epsilon.json\\ncapability_matched_subsample.json\\nclaim6_panel_design_15model.json\\nclustered_se_analysis.json\\ncondition_dominance_15model.json\\nconfound_diagnosis.json\\nconfound_scatter.png\\ncontrolled_regression.json\\nfamily_copula_15model.json\\nfig4_panel_design_K3.json\\nfractional_logit.json\\ngam_tier_analysis.json\\ngam_tier_analysis_corrected.json\\nindividual_scores\\nk4_wild_cluster_bootstrap.json\\nk5_aggregation_analysis.json\\nk5_aggregation_bootstrap.json\\nk5_gam_analysis.json\\nk5_k7_panel_analysis.json\\nk5_panel_selection.json\\nk5_panel_selection_bootstrap.json\\nk5_rf_contrast.json\\nk5_wild_cluster_bootstrap.json\\nk7_wild_cluster_bootstrap.json\\nmi_matrix\\npanel_regression\\npartial_knowledge_adversary.json\\npartial_knowledge_clustered_se.json\\npower_cr2_cr3.json\\nrandom_subsample_transition.json\\nresidualized_keff_15model.json\\nrf_keff_correction.json\\nstep1_api_scoring_summary.json\\nstochastic_dominance.json\\ntheorem1_violation.json\\nvif_partial_corr.json\\nwild_cluster_bootstrap.json\\nwild_cluster_bootstrap_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T08:13:32.773635+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -100 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -100 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T08:13:32.773866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 4: Panel regression -- 455 panels x 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\nOptional: pingouin (for partial_corr; manual fallback included)\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import optimize, stats, special\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS, OUTPUT_DIR,\\n    load_all_scores, load_pairs, load_mi_data,\\n    compute_corrected_asr, compute_corrected_panel_asr,\\n    flag_low_accuracy_conditions,\\n)\\n\\nlogger = setup_logging(\\\"plan001_step4\\\")\\n\\nEPS = 0.001\\n\\n\\n# ── JSON Helper ──────────────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── ASR Computation ────────────────────
+…[truncated 1634 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T08:13:32.774027+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/cert_manip_resist_eval/artifacts/results/plan001/panel_regression/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls /root/cert_manip_resist_eval/artifacts/results/plan001/panel_regression/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T08:13:32.774160+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"step4_regression_results.json\\nstep5_random_fault_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T08:13:32.774282+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -200 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -200 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T08:13:32.774500+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 4: Panel regression -- 455 panels x 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\nOptional: pingouin (for partial_corr; manual fallback included)\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import optimize, stats, special\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS, OUTPUT_DIR,\\n    load_all_scores, load_pairs, load_mi_data,\\n    compute_corrected_asr, compute_corrected_panel_asr,\\n    flag_low_accuracy_conditions,\\n)\\n\\nlogger = setup_logging(\\\"plan001_step4\\\")\\n\\nEPS = 0.001\\n\\n\\n# ── JSON Helper ──────────────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── ASR Computation ────────────────────
+…[truncated 4949 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T08:13:32.774684+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "python3 -c \"import json; d=json.load(open('/root/cert_manip_resist_eval/artifacts/results/plan001/panel_regression/step4_regression_results.json')); print(list(d.keys())[:10]); print(type(d))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "python3 -c \"import json; d=json.load(open('/root/cert_manip_resist_eval/artifacts/results/plan001/panel_regression/step4_regression_results.json')); print(list(d.keys())[:10]); print(type(d))\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T08:13:32.774829+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T08:13:32.774966+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -50 /root/cert_manip_resist_eval/scripts/run_aggregation_regression_15model.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -50 /root/cert_manip_resist_eval/scripts/run_aggregation_regression_15model.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T08:13:32.775126+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"P2: 15-model 4-aggregation-strategy regression (455 panels x 12 conditions).\\n\\nAggregation methods: majority_vote, weighted_vote, threshold_vote, bayesian\\nFor each: compute panel ASR, run residualized regression log(ASR+eps) ~ K_eff_resid + eta_max\\nFDR correction across 12 conditions per method.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom collections import Counter\\nfrom sklearn.linear_model import LinearRegression\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n    compute_clean_accuracy,\\n)\\n\\nEPS = 0.001\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef _is_valid_score(score):\\n    return score.get(\\\"winner\\\") is not None and not score.get(\\\"error\\\")\\n\\n\\n# ── Aggregation Methods ──────────────────────────────────────────────\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T08:13:32.775270+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T08:13:32.775505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Unified data loader for 15-model cert_manip_resist_eval pipeline.\\n\\nHandles two data formats:\\n  - Checkpoint files (local 6 models): nested {clean_scores: {ds: {model: [...]}}}\\n  - Individual JSON files (API 9 models): flat {scores: [...], asr, accuracy, ...}\\n\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4-6\\\", \\\"gpt-5.5\\\", \\\"gemini-3.1-pro-preview\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\", \\\"gpt-4.1-nano\\\", \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Default paths ────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef l
+…[truncated 7137 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T08:13:32.775729+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "python3 -c \"import json; d=json.load(open('/root/cert_manip_resist_eval/artifacts/results/plan001/mi_matrix/mi_matrix_15models.json')); print(list(d.keys()))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "python3 -c \"import json; d=json.load(open('/root/cert_manip_resist_eval/artifacts/results/plan001/mi_matrix/mi_matrix_15models.json')); print(list(d.keys()))\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T08:13:32.775872+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T08:13:32.775996+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -300 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -300 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T08:13:32.776249+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 4: Panel regression -- 455 panels x 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\nOptional: pingouin (for partial_corr; manual fallback included)\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import optimize, stats, special\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS, OUTPUT_DIR,\\n    load_all_scores, load_pairs, load_mi_data,\\n    compute_corrected_asr, compute_corrected_panel_asr,\\n    flag_low_accuracy_conditions,\\n)\\n\\nlogger = setup_logging(\\\"plan001_step4\\\")\\n\\nEPS = 0.001\\n\\n\\n# ── JSON Helper ──────────────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── ASR Computation ────────────────────
+…[truncated 7159 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T08:13:32.776431+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -A 30 \"def load_mi_data\" /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -A 30 \"def load_mi_data\" /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T08:13:32.776578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def load_mi_data(mi_path=None):\\n    \\\"\\\"\\\"Load MI matrix from Step 3 output.\\\"\\\"\\\"\\n    mi_path = Path(mi_path or MI_PATH)\\n    if not mi_path.exists():\\n        raise FileNotFoundError(\\n            f\\\"MI matrix not found: {mi_path}. Run Step 3 first.\\\"\\n        )\\n    with open(mi_path) as f:\\n        data = json.load(f)\\n    logger.info(f\\\"Loaded MI matrix: {len(data['models'])} models\\\")\\n    return data\\n\\n\\ndef load_api_asr(individual_dir=None, datasets=None, attacks=None, api_models=None):\\n    \\\"\\\"\\\"Load pre-computed ASR for API models from individual score files.\\n\\n    Returns: {ds: {atk: {model_id: asr}}}\\n    \\\"\\\"\\\"\\n    individual_dir = Path(individual_dir or SCORES_DIR)\\n    datasets = datasets or DATASETS\\n    attacks = attacks or ATTACKS\\n    api_models = api_models or API_MODELS\\n\\n    asr_data = {}\\n    for model_id in api_models:\\n        for ds in datasets:\\n            if ds not in asr_data:\\n                asr_data[ds] = {}\\n            clean_path = individual_dir / f\\\"{model_id}__{ds}__clean.json\\\"\\n            if not clean_path.exists():\\n                continue\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T08:13:32.776742+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -A 20 \"def load_pairs\" /root/cert_manip_resist_eval/src/unified_data_loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -A 20 \"def load_pairs\" /root/cert_manip_resist_eval/src/unified_data_loader.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T08:13:32.776883+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def load_pairs(checkpoint_files=None, datasets=None):\\n    \\\"\\\"\\\"Load evaluation pairs from checkpoint files.\\n\\n    Returns: {ds: [pair_dicts]} with up to 300 pairs per dataset.\\n    \\\"\\\"\\\"\\n    checkpoint_files = checkpoint_files or CKPT_FILES\\n    datasets = datasets or DATASETS\\n\\n    for ckpt_path in checkpoint_files:\\n        ckpt_path = Path(ckpt_path)\\n        if not ckpt_path.exists():\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        if \\\"pairs\\\" not in data:\\n            continue\\n        pairs = {}\\n        for ds in datasets:\\n            if ds in data[\\\"pairs\\\"]:\\n                pairs[ds] = data[\\\"pairs\\\"][ds][:300]\\n                logger.info(f\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T08:13:32.777023+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -c \"keff_per_panel\" /root/cert_manip_resist_eval/artifacts/results/plan001/mi_matrix/mi_matrix_15models.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -c \"keff_per_panel\" /root/cert_manip_resist_eval/artifacts/results/plan001/mi_matrix/mi_matrix_15models.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T08:13:32.777147+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T08:13:32.777265+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -5 /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -5 /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-23T08:13:32.777382+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls /root/cert_manip_resist_eval/artifacts/figures/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls /root/cert_manip_resist_eval/artifacts/figures/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T08:13:32.777503+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"k5_k7_panel_analysis\\\",\\n  \\\"n_models\\\": 15,\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T08:13:32.777630+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"fig1_robustness_comparison.pdf\\nfig1_robustness_comparison.png\\nfig2_gam_keff_split.pdf\\nfig2_gam_keff_split.png\\nfig3_aggregation_gradient.pdf\\nfig3_aggregation_gradient.png\\nfig4_panel_design.pdf\\nfig4_panel_design.png\\nfig5_forest_plot.pdf\\nfig5_forest_plot.png\\nfig_framework.pdf\\nfig_framework.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T08:13:32.777797+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -80 /root/cert_manip_resist_eval/scripts/run_k5_k7_panel_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -80 /root/cert_manip_resist_eval/scripts/run_k5_k7_panel_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T08:13:32.777951+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"K=5 and K=7 Panel Analysis: verify eta_max dominance at larger panel sizes.\\n\\nConstructs C(15,5)=3003 and C(15,7)=6435 panels, computes panel ASR via\\nmajority vote, K_eff from pairwise MI matrix, and eta_max from individual ASR.\\nRuns OLS + clustered SE regression for each of 12 conditions.\\n\\nOutput:\\n  - artifacts/results/plan001/k5_k7_panel_analysis.json\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport time\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy.stats import t as t_dist\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n)\\n\\nlogger = setup_logging(\\\"k5_k7_panel\\\")\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\ndef compute_individual_asr(clean_list, attacked_list,
+…[truncated 696 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T08:13:32.778098+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"keff\" /root/cert_manip_resist_eval/scripts/run_k5_k7_panel_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -n \"keff\" /root/cert_manip_resist_eval/scripts/run_k5_k7_panel_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T08:13:32.778260+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"94:def mi_based_keff(mi_matrix, model_indices):\\n98:    keff = 0.0\\n104:        keff += term\\n105:    return keff / K\\n134:    t_keff = params[1] / max_se[1] if max_se[1] > 0 else 0\\n136:    p_keff = float(2 * t_dist.sf(abs(t_keff), df))\\n143:        \\\"se_inflation_keff\\\": float(max_se[1] / fit_ols.bse[1]) if fit_ols.bse[1] > 0 else None,\\n145:        \\\"t_keff\\\": float(t_keff),\\n147:        \\\"p_keff\\\": p_keff,\\n159:        \\\"ols_eta\\\": [], \\\"ols_keff\\\": [],\\n160:        \\\"cl_eta\\\": [], \\\"cl_keff\\\": [],\\n171:            p_asrs, p_keffs, p_etas = [], [], []\\n181:                keff = mi_based_keff(mi_mat, list(combo))\\n190:                p_keffs.append(keff)\\n203:            p_keffs = np.array(p_keffs)\\n211:            log_keff = np.log(p_keffs)\\n215:            X = np.column_stack([log_keff, log_eta])\\n219:            ols_p_keff = float(fit_ols.pvalues[1])\\n221:            ols_beta_keff = float(fit_ols.params[1])\\n226:            keff_std_beta = float(fit_ols.params[1] * np.std(log_keff) / sd_y) if sd_y > 1e-12 else 0.0\\n230:                f\\\"  OLS: beta_keff={ols_beta_keff:+.4f} (p={ols_p_keff:.2e}), \\\"\\n235:                f\\\"  Std beta: K_eff={keff_std_beta:+.4f}, eta_max={eta_std_beta:+.4f}\\\"\\n241:                f\\\"  Clustered: SE inflation keff={cl_result['se_inflation_keff']:.2f}x, \\\"\\n243:                f\\\"p_keff={cl_result['p_keff']:.2e}, p_eta={cl_result['p_eta']:.2e}\\\"\\n247:            raw_ps[\\\"ols_keff\\\"].append(ols_p_keff)\\n249:            raw_ps[\\\"cl_keff\\\"].append(cl_result[\\\"p_keff\\\"])\\n255:                    \\\"beta_keff\\\": ols_beta_keff,\\n257:                    \\\"p_keff\\\": ols_p_keff,\\n260:                    \\\"se_keff\\\": float(fit_ols.bse[1]),\\n262:                    \\\"keff_std_beta\\\": keff_std_beta,\\n273:                \\\"keff_stats\\\": {\\n274:                    \\\"mean\\\": float
+…[truncated 1395 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T08:13:32.778401+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -110 /root/cert_manip_resist_eval/scripts/run_k5_k7_panel_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -110 /root/cert_manip_resist_eval/scripts/run_k5_k7_panel_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T08:13:32.778565+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"K=5 and K=7 Panel Analysis: verify eta_max dominance at larger panel sizes.\\n\\nConstructs C(15,5)=3003 and C(15,7)=6435 panels, computes panel ASR via\\nmajority vote, K_eff from pairwise MI matrix, and eta_max from individual ASR.\\nRuns OLS + clustered SE regression for each of 12 conditions.\\n\\nOutput:\\n  - artifacts/results/plan001/k5_k7_panel_analysis.json\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport time\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy.stats import t as t_dist\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\nfrom src.unified_data_loader import (\\n    ALL_MODELS, DATASETS, ATTACKS,\\n    load_all_scores, load_pairs, load_mi_data,\\n)\\n\\nlogger = setup_logging(\\\"k5_k7_panel\\\")\\n\\nEPS = 1e-6\\nFDR_ALPHA = 0.05\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\ndef majority_vote(votes):\\n    counts = {\\\"A\\\": 0, \\\"B\\\": 0, \\\"tie\\\": 0}\\n    for v in votes:\\n        counts[v] = counts.get(v, 0) + 1\\n    mc = max(counts.values())\\n    winners = [k for k, c in counts.items() if c == mc]\\n    if len(winners) == 1:\\n        return winners[0]\\n    for w in winners:\\n        if w != \\\"tie\\\":\\n            return w\\n    return \\\"tie\\\"\\n\\n\\ndef compute_individual_asr(clean_list, attacked_list,
+…[truncated 1730 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T08:13:32.778836+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -80 /root/cert_manip_resist_eval/artifacts/results/plan001/panel_regression/step4_regression_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -80 /root/cert_manip_resist_eval/artifacts/results/plan001/panel_regression/step4_regression_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T08:13:32.779029+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_panels\\\": 455,\\n  \\\"n_models\\\": 15,\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"datasets\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc_challenge\\\"\\n  ],\\n  \\\"attacks\\\": [\\n    \\\"prompt_injection\\\",\\n    \\\"sycophancy\\\",\\n    \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\",\\n    \\\"position_bias\\\",\\n    \\\"authority_bias\\\"\\n  ],\\n  \\\"conditions\\\": {\\n    \\\"mmluxprompt_injection\\\": {\\n      \\\"ols\\\": {\\n        \\\"keff_beta\\\": 7.58539569787378,\\n        \\\"keff_t\\\": 11.681571445811324,\\n        \\\"keff_p\\\": 9.857773314595856e-28,\\n        \\\"eta_max_beta\\\": 0.4664929548079763,\\n        \\\"eta_max_t\\\": 5.332461447083824,\\n        \\\"eta_max_p\\\": 1.5338511216552371e-07,\\n        \\\"R2\\\": 0.5824185614277401,\\n        \\\"adj_R2\\\": 0.5805708559473319,\\n        \\\"f_stat\\\": 315.2117951715233,\\n        \\\"f_pvalue\\\": 1.9386886126062957e-86\\n      },\\n      \\\"vif_keff\\\": 2.421474102294962,\\n      \\\"vif_eta_max\\\": 2.4214741022949613,\\n      \\\"partial_r_keff\\\": 0.4815519254409349,\\n      \\\"partial_r_keff_p\\\": 9.857773314596134e-28,\\n      \\\"residualized_keff_beta\\\": 7.585395697873774,\\n      \\\"residualized_keff_t\\\": 8.08375152862955,\\n      \\\"residualized_keff_p\\\": 5.7761385347125654e-15,\\n      \\\"beta_reg_keff_beta\\\": 6.739970043335727,\\n      \\\"beta_reg_keff_p\\\": 0.0,\\n      \\\"beta_reg_eta_max_beta\\\": 0.1584243952389157,\\n      \\\"beta_reg_eta_max_p\\\
+…[truncated 1069 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T08:13:32.779188+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -c \"n_panels\" /root/cert_manip_resist_eval/artifacts/results/plan001/panel_regression/step4_regression_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -c \"n_panels\" /root/cert_manip_resist_eval/artifacts/results/plan001/panel_regression/step4_regression_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-23T08:13:32.779315+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -c \"n_panels\" /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -c \"n_panels\" /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T08:13:32.779440+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"25\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T08:13:32.779570+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"26\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T08:13:32.779744+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -A 30 \"mmluxprompt_injection\" /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -A 30 \"mmluxprompt_injection\" /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T08:13:32.779910+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        \\\"mmluxprompt_injection\\\": {\\n          \\\"n_panels\\\": 3003,\\n          \\\"ols\\\": {\\n            \\\"beta_keff\\\": 3.2709126112073417,\\n            \\\"beta_eta\\\": 0.5182149394366661,\\n            \\\"p_keff\\\": 1.7625427376946098e-212,\\n            \\\"p_eta\\\": 1.2143758928146846e-128,\\n            \\\"R2\\\": 0.6038245457626201,\\n            \\\"se_keff\\\": 0.0967741560374451,\\n            \\\"se_eta\\\": 0.020441011687360924,\\n            \\\"keff_std_beta\\\": 0.4928409040281672,\\n            \\\"eta_std_beta\\\": 0.36966194073494907,\\n            \\\"fdr_p_keff\\\": 2.115051285233532e-211,\\n            \\\"fdr_p_eta\\\": 7.286255356888108e-128\\n          },\\n          \\\"clustered\\\": {\\n            \\\"params\\\": [\\n              -5.762591818060465,\\n              3.2709126112073417,\\n              0.5182149394366661\\n            ],\\n            \\\"ols_se\\\": [\\n              0.13104274443142255,\\n              0.0967741560374451,\\n              0.020441011687360924\\n            ],\\n            \\\"max_clustered_se\\\": [\\n              0.4063358356140264,\\n              0.3079522041356981,\\n              0.07752304424908749\\n            ],\\n--\\n        \\\"mmluxprompt_injection\\\": {\\n          \\\"n_panels\\\": 6435,\\n          \\\"ols\\\": {\\n            \\\"beta_keff\\\": 3.587146370962487,\\n            \\\"beta_eta\\\": 0.4252991943228885,\\n            \\\"p_keff\\\": 0.0,\\n            \\\"p_eta\\\": 3.823514119815103e-190,\\n            \\\"R2\\\": 0.5900479874018063,\\n            \\\"se_keff\\\": 0.05918250306275886,\\n            \\\"se_eta\\\": 0.013975949253634996,\\n            \\\"keff_std_beta\\\": 0.5738479726516944,\\n            \\\"eta_std_beta\\\": 0.28810734328487553,\\n            \\\"fdr_p_keff\\\": 0.0,\\n            \\\"fdr_p_eta\\\": 2.294108471889062e-189\\n          },\\n          \\\"clustered\\\": {\\n       
+…[truncated 580 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T08:13:32.780123+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"\\\"K\\\"\" /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -n \"\\\"K\\\"\" /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T08:13:32.780259+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"25:      \\\"K\\\": 5,\\n744:      \\\"K\\\": 7,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T08:13:32.780381+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -20 /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -20 /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T08:13:32.780516+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"k5_k7_panel_analysis\\\",\\n  \\\"n_models\\\": 15,\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T08:13:32.780657+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -30 /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -30 /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T08:13:32.780814+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"k5_k7_panel_analysis\\\",\\n  \\\"n_models\\\": 15,\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"fdr_alpha\\\": 0.05,\\n  \\\"eps\\\": 1e-06,\\n  \\\"results\\\": {\\n    \\\"K5\\\": {\\n      \\\"K\\\": 5,\\n      \\\"n_panels\\\": 3003,\\n      \\\"n_conditions\\\": 12,\\n      \\\"conditions\\\": {\\n        \\\"mmluxprompt_injection\\\": {\\n          \\\"n_panels\\\": 3003,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T08:13:32.780970+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -A 5 \"keff_stats\" /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -A 5 \"keff_stats\" /root/cert_manip_resist_eval/artifacts/results/plan001/k5_k7_panel_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T08:13:32.781169+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"          \\\"keff_stats\\\": {\\n            \\\"mean\\\": 3.5509969815435527,\\n            \\\"std\\\": 0.3874108200668635,\\n            \\\"min\\\": 2.262318849883708,\\n            \\\"max\\\": 4.41469390032275\\n          },\\n--\\n          \\\"keff_stats\\\": {\\n            \\\"mean\\\": 3.5509969815435527,\\n            \\\"std\\\": 0.3874108200668635,\\n            \\\"min\\\": 2.262318849883708,\\n            \\\"max\\\": 4.41469390032275\\n          },\\n--\\n          \\\"keff_stats\\\": {\\n            \\\"mean\\\": 3.5509969815435527,\\n            \\\"std\\\": 0.3874108200668635,\\n            \\\"min\\\": 2.262318849883708,\\n            \\\"max\\\": 4.41469390032275\\n          },\\n--\\n          \\\"keff_stats\\\": {\\n            \\\"mean\\\": 3.5509969815435527,\\n            \\\"std\\\": 0.3874108200668635,\\n            \\\"min\\\": 2.262318849883708,\\n            \\\"max\\\": 4.41469390032275\\n          },\\n--\\n          \\\"keff_stats\\\": {\\n            \\\"mean\\\": 3.5509969815435527,\\n            \\\"std\\\": 0.3874108200668635,\\n            \\\"min\\\": 2.262318849883708,\\n            \\\"max\\\": 4.41469390032275\\n          },\\n--\\n          \\\"keff_stats\\\": {\\n            \\\"mean\\\": 3.5509969815435527,\\n            \\\"std\\\": 0.3874108200668635,\\n            \\\"min\\\": 2.262318849883708,\\n            \\\"max\\\": 4.41469390032275\\n          },\\n--\\n          \\\"keff_stats\\\": {\\n            \\\"mean\\\": 3.151818279526899,\\n            \\\"std\\\": 0.5088839369386006,\\n            \\\"min\\\": 2.0632973380215227,\\n            \\\"max\\\": 4.179510017824375\\n          },\\n--\\n          \\\"keff_stats\\\": {\\n            \\\"mean\\\": 3.151818279526899,\\n            \\\"std\\\": 0.5088839369386006,\\n            \\\"min\\\": 2.0632973380215227,\\n            \\\"max\\\": 4.179510017824375\\n          },\\n--\\n          \\\"keff_stats\\\": 
+…[truncated 3909 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-23T08:13:32.781410+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/run_sensitivity_analysis.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Cinelli & Hazlett (2020) OVB Sensitivity Analysis for K_eff coefficient.\n\nExtracts OLS statistics from existing regression results and computes:\n  - Robustness Value (RV_q=1) for K_eff coefficient\n  - Benchmark eta_max partial R² with treatment and outcome\n  - Contour plots of adjusted K_eff coefficient\n\nOutput:\n  - artifacts/results/plan001/sensitivity_analysis.json\n  - artifacts/figures/sensitivity_contour_K{k}.png\n\"\"\"\n\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as mticker\nfrom pathlib import Path\n\nRESULTS_DIR = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001\")\nFIG_DIR = Path(\"/root/cert_manip_resist_eval/artifacts/figures\")\nFIG_DIR.mkdir(parents=True, exist_ok=True)\n\nDATASETS = [\"mmlu\", \"arc_challenge\"]\nATTACKS = [\n    \"prompt_injection\", \"sycophancy\", \"score_manipulation\",\n    \"verbosity_bias\", \"position_bias\", \"authority_bias\",\n]\nATTACK_SHORT = {\n    \"prompt_injection\": \"PromptInj\",\n    \"sycophancy\": \"Sycoph\",\n    \"score_manipulation\": \"ScoreManip\",\n    \"verbosity_bias\": \"Verbose\",\n    \"position_bias\": \"Position\",\n    \"authority_bias\": \"Authority\",\n}\nDS_SHORT = {\"mmlu\": \"MMLU\", \"arc_challenge\": \"ARC\"}\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\n# ── Cinelli & Hazlett (2020) Formulas ────────────────────────────────\n\ndef partial_r2_from_t(t_stat, dof):\n    return t_stat**2 / (t_stat**2 + dof)\n\n\ndef robustness_value(t_stat, dof, q=1.0):\n    \"\"\"RV_q: minimum confounder strength (equal partial R² with D and Y)\n    needed to reduce |beta| by factor q. q=1 means zeroing out.\"\"\"\n    f2 = (q * t_stat)**2 / dof\n    rv = 0.5 * (np.sqrt(f2**2 + 4 * f2) - f2)\n    return rv\n\n\ndef adjusted_estimate(estimate, se, dof, r2dz_x, r2yz_dx):\n    \"\"\"Bias-adjusted estimate (Cinelli & Hazlett 2020, Eq. 9).\n    Assumes confounding direction reduces |estimate| (reduce=True).\"\"\"\n    bf = np.sqrt(r2yz_dx * r2dz_x / np.maximum(1 - r2dz_x, 1e-10))\n    return np.sign(estimate) * (np.abs(estimate) - bf * se * np.sqrt(dof))\n\n\ndef adjusted_t_stat(t_stat, dof, r2dz_x, r2yz_dx):\n    \"\"\"Bias-adjusted t-statistic.\"\"\"\n    f2 = r2yz_dx * r2dz_x / np.maximum(1 - r2dz_x, 1e-10)\n    num = np.abs(t_stat) / np.sqrt(dof) - np.sqrt(f2)\n    den = np.sqrt((1 - r2yz_dx) / np.maximum(1 - r2dz_x, 1e-10))\n    return np.sign(t_stat) * num / np.maximum(den, 1e-10) * np.sqrt(dof)\n\n\n# ── Load Existing Results ────────────────────────────────────────────\n\ndef load_k3_results():\n    path = RESULTS_DIR / \"panel_regression\" / \"step4_regression_results.json\"\n    with open(path) as f:\n        data = json.load(f)\n    results = {}\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n            cd = data[\"conditions\"].get(cond)\n            if cd is None or cd.get(\"skipped\"):\n                continue\n            n = cd[\"n_panels\"]\n            dof = n - 3\n            t_keff = cd[\"ols\"][\"keff_t\"]\n            beta_keff = cd[\"ols\"][\"keff_beta\"]\n            se_keff = beta_keff / t_keff if abs(t_keff) > 1e-10 else 0.0\n            t_eta = cd[\"ols\"][\"eta_max_t\"]\n            vif = cd.get(\"vif_keff\", 1.0)\n            r2dz_eta = max(0.0, 1 - 1 / vif) if vif > 1 else 0.0\n            results[cond] = dict(\n                K=3, n_panels=n, dof=dof,\n                beta_keff=beta_keff, se_keff=se_keff, t_keff=t_keff,\n                beta_eta=cd[\"ols\"][\"eta_max_beta\"], t_eta=t_eta,\n                R2=cd[\"ols\"][\"R2\"], r2dz_eta=r2dz_eta,\n            )\n    return results\n\n\ndef load_k5k7_results():\n    path = RESULTS_DIR / \"k5_k7_panel_analysis.json\"\n    with open(path) as f:\n        data = json.load(f)\n    results = {}\n    for kkey in [\"K5\", \"K7\"]:\n        entry = data[\"results\"][kkey]\n        K = entry[\"K\"]\n        for cond_key, cd in entry[\"conditions\"].items():\n            n = cd[\"n_panels\"]\n            dof = n - 3\n            ols = cd[\"ols\"]\n            beta_keff = ols[\"beta_keff\"]\n            se_keff = ols[\"se_keff\"]\n            t_keff = beta_keff / se_keff if abs(se_keff) > 1e-10 else 0.0\n            beta_eta = ols[\"beta_eta\"]\n            se_eta = ols[\"se_eta\"]\n            t_eta = beta_eta / se_eta if abs(se_eta) > 1e-10 else 0.0\n\n            keff_std = ols.get(\"keff_std_beta\", 0)\n            eta_std = ols.get(\"eta_std_beta\", 0)\n            R2 = ols[\"R2\"]\n            denom = 2 * keff_std * eta_std\n            if abs(denom) > 1e-10:\n                c = (R2 - keff_std**2 - eta_std**2) / denom\n                c = np.clip(c, -1, 1)\n                r2dz_eta = c**2\n            else:\n                r2dz_eta = 0.0\n\n            results[(K, cond_key)] = dict(\n                K=K, n_panels=n, dof=dof,\n                beta_keff=beta_keff, se_keff=se_keff, t_keff=t_keff,\n                beta_eta=beta_eta, t_eta=t_eta,\n                R2=R2, r2dz_eta=r2dz_eta,\n            )\n    return results\n\n\n# ── Sensitivity Analysis ─────────────────────────────────────────────\n\ndef analyze_condition(stats):\n    t = stats[\"t_keff\"]\n    dof = stats[\"dof\"]\n    se = stats[\"se_keff\"]\n    beta = stats[\"beta_keff\"]\n    t_eta = stats[\"t_eta\"]\n\n    pr2_keff = partial_r2_from_t(t, dof)\n    pr2_eta = partial_r2_from_t(t_eta, dof)\n    rv = robustness_value(t, dof, q=1.0)\n\n    r2dz_eta = stats[\"r2dz_eta\"]\n    r2ydz_eta = pr2_eta\n\n    rv_exceeds = rv > max(r2dz_eta, r2ydz_eta)\n\n    return dict(\n        K=stats[\"K\"],\n        n_panels=stats[\"n_panels\"],\n        dof=dof,\n        beta_keff=beta,\n        se_keff=se,\n        t_keff=t,\n        partial_r2_keff=pr2_keff,\n        keff_rv=rv,\n        eta_partial_r2_treatment=r2dz_eta,\n        eta_partial_r2_outcome=r2ydz_eta,\n        rv_exceeds_eta=rv_exceeds,\n        R2=stats[\"R2\"],\n    )\n\n\n# ── Contour Plot ─────────────────────────────────────────────────────\n\ndef plot_contour_grid(results_by_cond, K, out_path):\n    \"\"\"4×3 contour plot grid for 12 conditions at a given K.\"\"\"\n    fig, axes = plt.subplots(4, 3, figsize=(14, 16))\n    fig.suptitle(\n        f\"Cinelli–Hazlett Sensitivity Analysis: K={K}\",\n        fontsize=14, fontweight=\"bold\", y=0.98,\n    )\n\n    grid_n = 200\n    conditions = []\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            conditions.append(f\"{ds}x{atk}\")\n\n    for idx, cond in enumerate(conditions):\n        row, col = divmod(idx, 3)\n        ax = axes[row, col]\n        r = results_by_cond.get(cond)\n        if r is None:\n            ax.set_visible(False)\n            continue\n\n        rv = r[\"keff_rv\"]\n        bm_x = r[\"eta_partial_r2_treatment\"]\n        bm_y = r[\"eta_partial_r2_outcome\"]\n        beta = r[\"beta_keff\"]\n        se = r[\"se_keff\"]\n        dof = r[\"dof\"]\n\n        x_max = min(0.99, max(0.7, 1.5 * max(rv, bm_x, 0.1)))\n        y_max = min(0.99, max(0.7, 1.5 * max(rv, bm_y, 0.1)))\n\n        rx = np.linspace(0.001, x_max, grid_n)\n        ry = np.linspace(0.001, y_max, grid_n)\n        RX, RY = np.meshgrid(rx, ry)\n\n        ADJ = adjusted_estimate(beta, se, dof, RX, RY)\n\n        n_levels = 12\n        vmin = np.nanmin(ADJ)\n        vmax = np.nanmax(ADJ)\n        if vmin < 0 < vmax:\n            neg_levels = np.linspace(vmin, 0, max(2, n_levels // 3 + 1))\n            pos_levels = np.linspace(0, vmax, max(2, n_levels * 2 // 3 + 1))\n            levels = np.unique(np.concatenate([neg_levels, pos_levels]))\n        else:\n            levels = np.linspace(vmin, vmax, n_levels)\n\n        cs = ax.contourf(RX, RY, ADJ, levels=levels, cmap=\"RdBu_r\", alpha=0.85)\n        ax.contour(RX, RY, ADJ, levels=[0.0], colors=\"black\", linewidths=2)\n\n        ax.plot(bm_x, bm_y, \"D\", color=\"limegreen\", markersize=7,\n                markeredgecolor=\"black\", markeredgewidth=0.8, zorder=5)\n        ax.annotate(r\"$\\eta_{\\max}$\", (bm_x, bm_y),\n                    textcoords=\"offset points\", xytext=(6, 6),\n                    fontsize=8, fontweight=\"bold\", color=\"black\")\n\n        rv_theta = np.linspace(0, np.pi / 2, 100)\n        rv_x = rv * np.cos(rv_theta)\n        rv_y = rv * np.sin(rv_theta)\n        mask = (rv_x <= x_max) & (rv_y <= y_max)\n        if mask.any():\n            ax.plot(rv_x[mask], rv_y[mask], \"--\", color=\"darkorange\",\n                    linewidth=1.5, label=f\"RV={rv:.3f}\")\n\n        ds_name, atk_name = cond.split(\"x\")\n        title = f\"{DS_SHORT[ds_name]} × {ATTACK_SHORT[atk_name]}\"\n        ax.set_title(title, fontsize=9, fontweight=\"bold\")\n        ax.set_xlabel(r\"$R^2_{D \\sim Z | X}$\", fontsize=8)\n        ax.set_ylabel(r\"$R^2_{Y \\sim Z | D,X}$\", fontsize=8)\n        ax.tick_params(labelsize=7)\n        ax.set_xlim(0, x_max)\n        ax.set_ylim(0, y_max)\n\n        info = f\"RV={rv:.3f}\\n\" + r\"$\\beta$\" + f\"={beta:.2f}\"\n        ax.text(0.97, 0.97, info, transform=ax.transAxes,\n                fontsize=7, va=\"top\", ha=\"right\",\n                bbox=dict(boxstyle=\"round,pad=0.3\", fc=\"white\", alpha=0.8))\n\n    fig.tight_layout(rect=[0, 0, 1, 0.96])\n    fig.savefig(out_path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved: {out_path}\")\n\n\n# ── Main ─────────────────────────────────────────────────────────────\n\ndef main():\n    print(\"Loading K=3 results...\")\n    k3 = load_k3_results()\n    print(f\"  K=3: {len(k3)} conditions\")\n\n    print(\"Loading K=5,7 results...\")\n    k5k7 = load_k5k7_results()\n    k5 = {k: v for (K, k), v in k5k7.items() if K == 5}\n    k7 = {k: v for (K, k), v in k5k7.items() if K == 7}\n    print(f\"  K=5: {len(k5)} conditions, K=7: {len(k7)} conditions\")\n\n    all_results = []\n    results_by_K = {3: {}, 5: {}, 7: {}}\n\n    for K, source in [(3, k3), (5, k5), (7, k7)]:\n        for cond_key, stats in source.items():\n            r = analyze_condition(stats)\n            ds, atk = cond_key.split(\"x\")\n            entry = dict(K=K, benchmark=ds, attack=atk, **r)\n            all_results.append(entry)\n            results_by_K[K][cond_key] = r\n\n    # Verification: print first condition\n    first = all_results[0]\n    print(f\"\\nVerification (K={first['K']}, {first['benchmark']}x{first['attack']}):\")\n    print(f\"  beta_keff = {first['beta_keff']:.4f}\")\n    print(f\"  t_keff    = {first['t_keff']:.4f}\")\n    print(f\"  dof       = {first['dof']}\")\n    print(f\"  partial_r2_keff = {first['partial_r2_keff']:.4f}\")\n    print(f\"  RV(q=1)   = {first['keff_rv']:.4f}\")\n    # Manual check: f2 = t^2/dof, RV = 0.5*(sqrt(f4+4f2) - f2)\n    t = first[\"t_keff\"]\n    dof = first[\"dof\"]\n    f2 = t**2 / dof\n    rv_check = 0.5 * (np.sqrt(f2**2 + 4*f2) - f2)\n    print(f\"  RV manual = {rv_check:.4f} (should match)\")\n    print(f\"  eta_partial_r2_treatment = {first['eta_partial_r2_treatment']:.4f}\")\n    print(f\"  eta_partial_r2_outcome   = {first['eta_partial_r2_outcome']:.4f}\")\n    print(f\"  rv_exceeds_eta = {first['rv_exceeds_eta']}\")\n\n    # Summary\n    rv_exceeds_count = sum(1 for r in all_results if r[\"rv_exceeds_eta\"])\n    by_K = {}\n    for K in [3, 5, 7]:\n        k_results = [r for r in all_results if r[\"K\"] == K]\n        by_K[f\"K{K}\"] = f\"{sum(1 for r in k_results if r['rv_exceeds_eta'])}/{len(k_results)}\"\n\n    summary = {\n        \"rv_exceeds_eta_count\": f\"{rv_exceeds_count}/{len(all_results)}\",\n        \"by_K\": by_K,\n    }\n\n    print(f\"\\nSummary: {summary['rv_exceeds_eta_count']} conditions RV > eta benchmarks\")\n    for k, v in by_K.items():\n        print(f\"  {k}: {v}\")\n\n    # Save JSON\n    output = {\n        \"method\": \"Cinelli & Hazlett (2020)\",\n        \"description\": \"OVB Sensitivity Analysis for K_eff coefficient\",\n        \"formulas\": {\n            \"partial_r2\": \"t^2 / (t^2 + dof)\",\n            \"RV_q1\": \"0.5 * (sqrt(f^4 + 4*f^2) - f^2), f^2 = t^2/dof\",\n            \"adjusted_estimate\": \"sign(b)*(|b| - sqrt(r2yz*r2dz/(1-r2dz))*se*sqrt(dof))\",\n        },\n        \"results_by_condition\": all_results,\n        \"summary\": summary,\n    }\n\n    out_path = RESULTS_DIR / \"sensitivity_analysis.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default)\n    print(f\"\\nSaved: {out_path}\")\n\n    # Contour plots\n    for K in [3, 5, 7]:\n        fig_path = FIG_DIR / f\"sensitivity_contour_K{K}.png\"\n        plot_contour_grid(results_by_K[K], K, fig_path)\n\n    print(\"\\nDone.\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/run_sensitivity_analysis.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Cinelli & Hazlett (2020) OVB Sensitivity Analysis for K_eff coefficient.\n\nExtracts OLS statistics from existing regression results and computes:\n  - Robustness Value (RV_q=1) for K_eff coefficient\n  - Benchmark eta_max partial R² with treatment and outcome\n  - Contour plots of adjusted K_eff coefficient\n\nOutput:\n  - artifacts/results/plan001/sensitivity_analysis.json\n  - artifacts/figures/sensitivity_contour_K{k}.png\n\"\"\"\n\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as mticker\nfrom pathlib import Path\n\nRESULTS_DIR = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001\")\nFIG_DIR = Path(\"/root/cert_manip_resist_eval/artifacts/figures\")\nFIG_DIR.mkdir(parents=True, exist_ok=True)\n\nDATASETS = [\"mmlu\", \"arc_challenge\"]\nATTACKS = [\n    \"prompt_injection\", \"sycophancy\", \"score_manipulation\",\n    \"verbosity_bias\", \"position_bias\", \"authority_bias\",\n]\nATTACK_SHORT = {\n    \"prompt_injection\": \"PromptInj\",\n    \"sycophancy\": \"Sycoph\",\n    \"score_manipulation\": \"ScoreManip\",\n    \"verbosity_bias\": \"Verbose\",\n    \"position_bias\": \"Position\",\n    \"authority_bias\": \"Authority\",\n}\nDS_SHORT = {\"mmlu\": \"MMLU\", \"arc_challenge\": \"ARC\"}\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\n# ── Cinelli & Hazlett (2020) Formulas ────────────────────────────────\n\ndef partial_r2_from_t(t_stat, dof):\n    return t_stat**2 / (t_stat**2 + dof)\n\n\ndef robustness_value(t_stat, dof, q=1.0):\n    \"\"\"RV_q: minimum confounder strength (equal partial R² with D and Y)\n    needed to reduce |beta| by factor q. q=1 means zeroing out.\"\"\"\n    f2 = (q * t_stat)**2 / dof\n    rv = 0.5 * (np.sqrt(f2**2 + 4 * f2) - f2)\n    return rv\n\n\ndef adjusted_estimate(estimate, se, dof, r2dz_x, r2yz_dx):\n    \"\"\"Bias-adjusted estimate (Cinelli & Hazlett 2020, Eq. 9).\n    Assumes confounding direction reduces |estimate| (reduce=True).\"\"\"\n    bf = np.sqrt(r2yz_dx * r2dz_x / np.maximum(1 - r2dz_x, 1e-10))\n    return np.sign(estimate) * (np.abs(estimate) - bf * se * np.sqrt(dof))\n\n\ndef adjusted_t_stat(t_stat, dof, r2dz_x, r2yz_dx):\n    \"\"\"Bias-adjusted t-statistic.\"\"\"\n    f2 = r2yz_dx * r2dz_x / np.maximum(1 - r2dz_x, 1e-10)\n    num = np.abs(t_stat) / np.sqrt(dof) - np.sqrt(f2)\n    den = np.sqrt((1 - r2yz_dx) / np.maximum(1 - r2dz_x, 1e-10))\n    return np.sign(t_stat) * num / np.maximum(den, 1e-10) * np.sqrt(dof)\n\n\n# ── Load Existing Results ────────────────────────────────────────────\n\ndef load_k3_results():\n    path = RESULTS_DIR / \"panel_regression\" / \"step4_regression_results.json\"\n    with open(path) as f:\n        data = json.load(f)\n    results = {}\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n            cd = data[\"conditions\"].get(cond)\n            if cd is None or cd.get(\"skipped\"):\n                continue\n            n = cd[\"n_panels\"]\n            dof = n - 3\n            t_keff = cd[\"ols\"][\"keff_t\"]\n            beta_keff = cd[\"ols\"][\"keff_beta\"]\n            se_keff = beta_keff / t_keff if abs(t_keff) > 1e-10 else 0.0\n            t_eta = cd[\"ols\"][\"eta_max_t\"]\n            vif = cd.get(\"vif_keff\", 1.0)\n            r2dz_eta = max(0.0, 1 - 1 / vif) if vif > 1 else 0.0\n            results[cond] = dict(\n                K=3, n_panels=n, dof=dof,\n                beta_keff=beta_keff, se_keff=se_keff, t_keff=t_keff,\n                beta_eta=cd[\"ols\"][\"eta_max_beta\"], t_eta=t_eta,\n                R2=cd[\"ols\"][\"R2\"], r2dz_eta=r2dz_eta,\n            )\n    return results\n\n\ndef load_k5k7_results():\n    path = RESULTS_DIR / \"k5_k7_panel_analysis.json\"\n    with open(path) as f:\n        data = json.load(f)\n    results = {}\n    for kkey in [\"K5\", \"K7\"]:\n        entry = data[\"results\"][kkey]\n        K = entry[\"K\"]\n        for cond_key, cd in entry[\"conditions\"].items():\n            n = cd[\"n_panels\"]\n            dof = n - 3\n            ols = cd[\"ols\"]\n            beta_keff = ols[\"beta_keff\"]\n            se_keff = ols[\"se_keff\"]\n            t_keff = beta_keff / se_keff if abs(se_keff) > 1e-10 else 0.0\n            beta_eta = ols[\"beta_eta\"]\n            se_eta = ols[\"se_eta\"]\n            t_eta = beta_eta / se_eta if abs(se_eta) > 1e-10 else 0.0\n\n            keff_std = ols.get(\"keff_std_beta\", 0)\n            eta_std = ols.get(\"eta_std_beta\", 0)\n            R2 = ols[\"R2\"]\n            denom = 2 * keff_std * eta_std\n            if abs(denom) > 1e-10:\n                c = (R2 - keff_std**2 - eta_std**2) / denom\n                c = np.clip(c, -1, 1)\n                r2dz_eta = c**2\n            else:\n                r2dz_eta = 0.0\n\n            results[(K, cond_key)] = dict(\n                K=K, n_panels=n, dof=dof,\n                beta_keff=beta_keff, se_keff=se_keff, t_keff=t_keff,\n                beta_eta=beta_eta, t_eta=t_eta,\n                R2=R2, r2dz_eta=r2dz_eta,\n            )\n    return results\n\n\n# ── Sensitivity Analysis ─────────────────────────────────────────────\n\ndef analyze_condition(stats):\n    t = stats[\"t_keff\"]\n    dof = stats[\"dof\"]\n    se = stats[\"se_keff\"]\n    beta = stats[\"beta_keff\"]\n    t_eta = stats[\"t_eta\"]\n\n    pr2_keff = partial_r2_from_t(t, dof)\n    pr2_eta = partial_r2_from_t(t_eta, dof)\n    rv = robustness_value(t, dof, q=1.0)\n\n    r2dz_eta = stats[\"r2dz_eta\"]\n    r2ydz_eta = pr2_eta\n\n    rv_exceeds = rv > max(r2dz_eta, r2ydz_eta)\n\n    return dict(\n        K=stats[\"K\"],\n        n_panels=stats[\"n_panels\"],\n        dof=dof,\n        beta_keff=beta,\n        se_keff=se,\n        t_keff=t,\n        partial_r2_keff=pr2_keff,\n        keff_rv=rv,\n        eta_partial_r2_treatment=r2dz_eta,\n        eta_partial_r2_outcome=r2ydz_eta,\n        rv_exceeds_eta=rv_exceeds,\n        R2=stats[\"R2\"],\n    )\n\n\n# ── Contour Plot ─────────────────────────────────────────────────────\n\ndef plot_contour_grid(results_by_cond, K, out_path):\n    \"\"\"4×3 contour plot grid for 12 conditions at a given K.\"\"\"\n    fig, axes = plt.subplots(4, 3, figsize=(14, 16))\n    fig.suptitle(\n        f\"Cinelli–Hazlett Sensitivity Analysis: K={K}\",\n        fontsize=14, fontweight=\"bold\", y=0.98,\n    )\n\n    grid_n = 200\n    conditions = []\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            conditions.append(f\"{ds}x{atk}\")\n\n    for idx, cond in enumerate(conditions):\n        row, col = divmod(idx, 3)\n        ax = axes[row, col]\n        r = results_by_cond.get(cond)\n        if r is None:\n            ax.set_visible(False)\n            continue\n\n        rv = r[\"keff_rv\"]\n        bm_x = r[\"eta_partial_r2_treatment\"]\n        bm_y = r[\"eta_partial_r2_outcome\"]\n        beta = r[\"beta_keff\"]\n        se = r[\"se_keff\"]\n        dof = r[\"dof\"]\n\n        x_max = min(0.99, max(0.7, 1.5 * max(rv, bm_x, 0.1)))\n        y_max = min(0.99, max(0.7, 1.5 * max(rv, bm_y, 0.1)))\n\n        rx = np.linspace(0.001, x_max, grid_n)\n        ry = np.linspace(0.001, y_max, grid_n)\n        RX, RY = np.meshgrid(rx, ry)\n\n        ADJ = adjusted_estimate(beta, se, dof, RX, RY)\n\n        n_levels = 12\n        vmin = np.nanmin(ADJ)\n        vmax = np.nanmax(ADJ)\n        if vmin < 0 < vmax:\n            neg_levels = np.linspace(vmin, 0, max(2, n_levels // 3 + 1))\n            pos_levels = np.linspace(0, vmax, max(2, n_levels * 2 // 3 + 1))\n            levels = np.unique(np.concatenate([neg_levels, pos_levels]))\n        else:\n            levels = np.linspace(vmin, vmax, n_levels)\n\n        cs = ax.contourf(RX, RY, ADJ, levels=levels, cmap=\"RdBu_r\", alpha=0.85)\n        ax.contour(RX, RY, ADJ, levels=[0.0], colors=\"black\", linewidths=2)\n\n        ax.plot(bm_x, bm_y, \"D\", color=\"limegreen\", markersize=7,\n                markeredgecolor=\"black\", markeredgewidth=0.8, zorder=5)\n        ax.annotate(r\"$\\eta_{\\max}$\", (bm_x, bm_y),\n                    textcoords=\"offset points\", xytext=(6, 6),\n                    fontsize=8, fontweight=\"bold\", color=\"black\")\n\n        rv_theta = np.linspace(0, np.pi / 2, 100)\n        rv_x = rv * np.cos(rv_theta)\n        rv_y = rv * np.sin(rv_theta)\n        mask = (rv_x <= x_max) & (rv_y <= y_max)\n        if mask.any():\n            ax.plot(rv_x[mask], rv_y[mask], \"--\", color=\"darkorange\",\n                    linewidth=1.5, label=f\"RV={rv:.3f}\")\n\n        ds_name, atk_name = cond.split(\"x\")\n        title = f\"{DS_SHORT[ds_name]} × {ATTACK_SHORT[atk_name]}\"\n        ax.set_title(title, fontsize=9, fontweight=\"bold\")\n        ax.set_xlabel(r\"$R^2_{D \\sim Z | X}$\", fontsize=8)\n        ax.set_ylabel(r\"$R^2_{Y \\sim Z | D,X}$\", fontsize=8)\n        ax.tick_params(labelsize=7)\n        ax.set_xlim(0, x_max)\n        ax.set_ylim(0, y_max)\n\n        info = f\"RV={rv:.3f}\\n\" + r\"$\\beta$\" + f\"={beta:.2f}\"\n        ax.text(0.97, 0.97, info, transform=ax.transAxes,\n                fontsize=7, va=\"top\", ha=\"right\",\n                bbox=dict(boxstyle=\"round,pad=0.3\", fc=\"white\", alpha=0.8))\n\n    fig.tight_layout(rect=[0, 0, 1, 0.96])\n    fig.savefig(out_path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved: {out_path}\")\n\n\n# ── Main ─────────────────────────────────────────────────────────────\n\ndef main():\n    print(\"Loading K=3 results...\")\n    k3 = load_k3_results()\n    print(f\"  K=3: {len(k3)} conditions\")\n\n    print(\"Loading K=5,7 results...\")\n    k5k7 = load_k5k7_results()\n    k5 = {k: v for (K, k), v in k5k7.items() if K == 5}\n    k7 = {k: v for (K, k), v in k5k7.items() if K == 7}\n    print(f\"  K=5: {len(k5)} conditions, K=7: {len(k7)} conditions\")\n\n    all_results = []\n    results_by_K = {3: {}, 5: {}, 7: {}}\n\n    for K, source in [(3, k3), (5, k5), (7, k7)]:\n        for cond_key, stats in source.items():\n            r = analyze_condition(stats)\n            ds, atk = cond_key.split(\"x\")\n            entry = dict(K=K, benchmark=ds, attack=atk, **r)\n            all_results.append(entry)\n            results_by_K[K][cond_key] = r\n\n    # Verification: print first condition\n    first = all_results[0]\n    print(f\"\\nVerification (K={first['K']}, {first['benchmark']}x{first['attack']}):\")\n    print(f\"  beta_keff = {first['beta_keff']:.4f}\")\n    print(f\"  t_keff    = {first['t_keff']:.4f}\")\n    print(f\"  dof       = {first['dof']}\")\n    print(f\"  partial_r2_keff = {first['partial_r2_keff']:.4f}\")\n    print(f\"  RV(q=1)   = {first['keff_rv']:.4f}\")\n    # Manual check: f2 = t^2/dof, RV = 0.5*(sqrt(f4+4f2) - f2)\n    t = first[\"t_keff\"]\n    dof = first[\"dof\"]\n    f2 = t**2 / dof\n    rv_check = 0.5 * (np.sqrt(f2**2 + 4*f2) - f2)\n    print(f\"  RV manual = {rv_check:.4f} (should match)\")\n    print(f\"  eta_partial_r2_treatment = {first['eta_partial_r2_treatment']:.4f}\")\n    print(f\"  eta_partial_r2_outcome   = {first['eta_partial_r2_outcome']:.4f}\")\n    print(f\"  rv_exceeds_eta = {first['rv_exceeds_eta']}\")\n\n    # Summary\n    rv_exceeds_count = sum(1 for r in all_results if r[\"rv_exceeds_eta\"])\n    by_K = {}\n    for K in [3, 5, 7]:\n        k_results = [r for r in all_results if r[\"K\"] == K]\n        by_K[f\"K{K}\"] = f\"{sum(1 for r in k_results if r['rv_exceeds_eta'])}/{len(k_results)}\"\n\n    summary = {\n        \"rv_exceeds_eta_count\": f\"{rv_exceeds_count}/{len(all_results)}\",\n        \"by_K\": by_K,\n    }\n\n    print(f\"\\nSummary: {summary['rv_exceeds_eta_count']} conditions RV > eta benchmarks\")\n    for k, v in by_K.items():\n        print(f\"  {k}: {v}\")\n\n    # Save JSON\n    output = {\n        \"method\": \"Cinelli & Hazlett (2020)\",\n        \"description\": \"OVB Sensitivity Analysis for K_eff coefficient\",\n        \"formulas\": {\n            \"partial_r2\": \"t^2 / (t^2 + dof)\",\n            \"RV_q1\": \"0.5 * (sqrt(f^4 + 4*f^2) - f^2), f^2 = t^2/dof\",\n            \"adjusted_estimate\": \"sign(b)*(|b| - sqrt(r2yz*r2dz/(1-r2dz))*se*sqrt(dof))\",\n        },\n        \"results_by_condition\": all_results,\n        \"summary\": summary,\n    }\n\n    out_path = RESULTS_DIR / \"sensitivity_analysis.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default)\n    print(f\"\\nSaved: {out_path}\")\n\n    # Contour plots\n    for K in [3, 5, 7]:\n        fig_path = FIG_DIR / f\"sensitivity_contour_K{K}.png\"\n        plot_contour_grid(results_by_K[K], K, fig_path)\n\n    print(\"\\nDone.\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T08:13:32.781770+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/run_sensitivity_analysis.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T08:13:32.781989+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat > /root/cert_manip_resist_eval/scripts/run_sensitivity_analysis.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Cinelli & Hazlett (2020) OVB Sensitivity Analysis for K_eff coefficient.\n\nExtracts OLS statistics from existing regression results and computes:\n  - Robustness Value (RV_q=1) for K_eff coefficient\n  - Benchmark eta_max partial R² with treatment and outcome\n  - Contour plots of adjusted K_eff coefficient\n\nOutput:\n  - artifacts/results/plan001/sensitivity_analysis.json\n  - artifacts/figures/sensitivity_contour_K{k}.png\n\"\"\"\n\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as mticker\nfrom pathlib import Path\n\nRESULTS_DIR = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001\")\nFIG_DIR = Path(\"/root/cert_manip_resist_eval/artifacts/figures\")\nFIG_DIR.mkdir(parents=True, exist_ok=True)\n\nDATASETS = [\"mmlu\", \"arc_challenge\"]\nATTACKS = [\n    \"prompt_injection\", \"sycophancy\", \"score_manipulation\",\n    \"verbosity_bias\", \"position_bias\", \"authority_bias\",\n]\nATTACK_SHORT = {\n    \"prompt_injection\": \"PromptInj\",\n    \"sycophancy\": \"Sycoph\",\n    \"score_manipulation\": \"ScoreManip\",\n    \"verbosity_bias\": \"Verbose\",\n    \"position_bias\": \"Position\",\n    \"authority_bias\": \"Authority\",\n}\nDS_SHORT = {\"mmlu\": \"MMLU\", \"arc_challenge\": \"ARC\"}\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\n# ── Cinelli & Hazlett (2020) Formulas ────────────────────────────────\n\ndef partial_r2_from_t(t_stat, dof):\n    return t_stat**2 / (t_stat**2 + dof)\n\n\ndef robustness_value(t_stat, dof, q=1.0):\n    \"\"\"RV_q: minimum confounder strength (equal partial R² with D and Y)\n    needed to reduce |beta| by factor q. q=1 means zeroing out.\"\"\"\n    f2 = (q * t_stat)**2 / dof\n    rv = 0.5 * (np.sqrt(f2**2 + 4 * f2) - f2)\n    return rv\n\n\ndef adjusted_estimate(estimate, se, dof, r2dz_x, r2yz_dx):\n    \"\"\"Bias-adjusted estimate (Cinelli & Hazlett 2020, Eq. 9).\n    Assumes confounding direction reduces |estimate| (reduce=True).\"\"\"\n    bf = np.sqrt(r2yz_dx * r2dz_x / np.maximum(1 - r2dz_x, 1e-10))\n    return np.sign(estimate) * (np.abs(estimate) - bf * se * np.sqrt(dof))\n\n\ndef adjusted_t_stat(t_stat, dof, r2dz_x, r2yz_dx):\n    \"\"\"Bias-adjusted t-statistic.\"\"\"\n    f2 = r2yz_dx * r2dz_x / np.maximum(1 - r2dz_x, 1e-10)\n    num = np.abs(t_stat) / np.sqrt(dof) - np.sqrt(f2)\n    den = np.sqrt((1 - r2yz_dx) / np.maximum(1 - r2dz_x, 1e-10))\n    return np.sign(t_stat) * num / np.maximum(den, 1e-10) * np.sqrt(dof)\n\n\n# ── Load Existing Results ────────────────────────────────────────────\n\ndef load_k3_results():\n    path = RESULTS_DIR / \"panel_regression\" / \"step4_regression_results.json\"\n    with open(path) as f:\n        data = json.load(f)\n    results = {}\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n            cd = data[\"conditions\"].get(cond)\n            if cd is None or cd.get(\"skipped\"):\n                continue\n            n = cd[\"n_panels\"]\n            dof = n - 3\n            t_keff = cd[\"ols\"][\"keff_t\"]\n            beta_keff = cd[\"ols\"][\"keff_beta\"]\n            se_keff = beta_keff / t_keff if abs(t_keff) > 1e-10 else 0.0\n            t_eta = cd[\"ols\"][\"eta_max_t\"]\n            vif = cd.get(\"vif_keff\", 1.0)\n            r2dz_eta = max(0.0, 1 - 1 / vif) if vif > 1 else 0.0\n            results[cond] = dict(\n                K=3, n_panels=n, dof=dof,\n                beta_keff=beta_keff, se_keff=se_keff, t_keff=t_keff,\n                beta_eta=cd[\"ols\"][\"eta_max_beta\"], t_eta=t_eta,\n                R2=cd[\"ols\"][\"R2\"], r2dz_eta=r2dz_eta,\n            )\n    return results\n\n\ndef load_k5k7_results():\n    path = RESULTS_DIR / \"k5_k7_panel_analysis.json\"\n    with open(path) as f:\n        data = json.load(f)\n    results = {}\n    for kkey in [\"K5\", \"K7\"]:\n        entry = data[\"results\"][kkey]\n        K = entry[\"K\"]\n        for cond_key, cd in entry[\"conditions\"].items():\n            n = cd[\"n_panels\"]\n            dof = n - 3\n            ols = cd[\"ols\"]\n            beta_keff = ols[\"beta_keff\"]\n            se_keff = ols[\"se_keff\"]\n            t_keff = beta_keff / se_keff if abs(se_keff) > 1e-10 else 0.0\n            beta_eta = ols[\"beta_eta\"]\n            se_eta = ols[\"se_eta\"]\n            t_eta = beta_eta / se_eta if abs(se_eta) > 1e-10 else 0.0\n\n            keff_std = ols.get(\"keff_std_beta\", 0)\n            eta_std = ols.get(\"eta_std_beta\", 0)\n            R2 = ols[\"R2\"]\n            denom = 2 * keff_std * eta_std\n            if abs(denom) > 1e-10:\n                c = (R2 - keff_std**2 - eta_std**2) / denom\n                c = np.clip(c, -1, 1)\n                r2dz_eta = c**2\n            else:\n                r2dz_eta = 0.0\n\n            results[(K, cond_key)] = dict(\n                K=K, n_panels=n, dof=dof,\n                beta_keff=beta_keff, se_keff=se_keff, t_keff=t_keff,\n                beta_eta=beta_eta, t_eta=t_eta,\n                R2=R2, r2dz_eta=r2dz_eta,\n            )\n    return results\n\n\n# ── Sensitivity Analysis ─────────────────────────────────────────────\n\ndef analyze_condition(stats):\n    t = stats[\"t_keff\"]\n    dof = stats[\"dof\"]\n    se = stats[\"se_keff\"]\n    beta = stats[\"beta_keff\"]\n    t_eta = stats[\"t_eta\"]\n\n    pr2_keff = partial_r2_from_t(t, dof)\n    pr2_eta = partial_r2_from_t(t_eta, dof)\n    rv = robustness_value(t, dof, q=1.0)\n\n    r2dz_eta = stats[\"r2dz_eta\"]\n    r2ydz_eta = pr2_eta\n\n    rv_exceeds = rv > max(r2dz_eta, r2ydz_eta)\n\n    return dict(\n        K=stats[\"K\"],\n        n_panels=stats[\"n_panels\"],\n        dof=dof,\n        beta_keff=beta,\n        se_keff=se,\n        t_keff=t,\n        partial_r2_keff=pr2_keff,\n        keff_rv=rv,\n        eta_partial_r2_treatment=r2dz_eta,\n        eta_partial_r2_outcome=r2ydz_eta,\n        rv_exceeds_eta=rv_exceeds,\n        R2=stats[\"R2\"],\n    )\n\n\n# ── Contour Plot ─────────────────────────────────────────────────────\n\ndef plot_contour_grid(results_by_cond, K, out_path):\n    fig, axes = plt.subplots(4, 3, figsize=(14, 16))\n    fig.suptitle(\n        f\"Cinelli–Hazlett Sensitivity Analysis: K={K}\",\n        fontsize=14, fontweight=\"bold\", y=0.98,\n    )\n\n    grid_n = 200\n    conditions = []\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            conditions.append(f\"{ds}x{atk}\")\n\n    for idx, cond in enumerate(conditions):\n        row, col = divmod(idx, 3)\n        ax = axes[row, col]\n        r = results_by_cond.get(cond)\n        if r is None:\n            ax.set_visible(False)\n            continue\n\n        rv = r[\"keff_rv\"]\n        bm_x = r[\"eta_partial_r2_treatment\"]\n        bm_y = r[\"eta_partial_r2_outcome\"]\n        beta = r[\"beta_keff\"]\n        se = r[\"se_keff\"]\n        dof = r[\"dof\"]\n\n        x_max = min(0.99, max(0.7, 1.5 * max(rv, bm_x, 0.1)))\n        y_max = min(0.99, max(0.7, 1.5 * max(rv, bm_y, 0.1)))\n\n        rx = np.linspace(0.001, x_max, grid_n)\n        ry = np.linspace(0.001, y_max, grid_n)\n        RX, RY = np.meshgrid(rx, ry)\n\n        ADJ = adjusted_estimate(beta, se, dof, RX, RY)\n\n        n_levels = 12\n        vmin = float(np.nanmin(ADJ))\n        vmax = float(np.nanmax(ADJ))\n        if vmin < 0 < vmax:\n            neg_levels = np.linspace(vmin, 0, max(2, n_levels // 3 + 1))\n            pos_levels = np.linspace(0, vmax, max(2, n_levels * 2 // 3 + 1))\n            levels = np.unique(np.concatenate([neg_levels, pos_levels]))\n        else:\n            levels = np.linspace(vmin, vmax, n_levels)\n\n        cs = ax.contourf(RX, RY, ADJ, levels=levels, cmap=\"RdBu_r\", alpha=0.85)\n        ax.contour(RX, RY, ADJ, levels=[0.0], colors=\"black\", linewidths=2)\n\n        ax.plot(bm_x, bm_y, \"D\", color=\"limegreen\", markersize=7,\n                markeredgecolor=\"black\", markeredgewidth=0.8, zorder=5)\n        ax.annotate(r\"$\\eta_{\\max}$\", (bm_x, bm_y),\n                    textcoords=\"offset points\", xytext=(6, 6),\n                    fontsize=8, fontweight=\"bold\", color=\"black\")\n\n        rv_theta = np.linspace(0, np.pi / 2, 100)\n        rv_x = rv * np.cos(rv_theta)\n        rv_y = rv * np.sin(rv_theta)\n        mask = (rv_x <= x_max) & (rv_y <= y_max)\n        if mask.any():\n            ax.plot(rv_x[mask], rv_y[mask], \"--\", color=\"darkorange\",\n                    linewidth=1.5, label=f\"RV={rv:.3f}\")\n\n        ds_name, atk_name = cond.split(\"x\")\n        title = f\"{DS_SHORT[ds_name]} x {ATTACK_SHORT[atk_name]}\"\n        ax.set_title(title, fontsize=9, fontweight=\"bold\")\n        ax.set_xlabel(r\"$R^2_{D \\sim Z | X}$\", fontsize=8)\n        ax.set_ylabel(r\"$R^2_{Y \\sim Z | D,X}$\", fontsize=8)\n        ax.tick_params(labelsize=7)\n        ax.set_xlim(0, x_max)\n        ax.set_ylim(0, y_max)\n\n        info = f\"RV={rv:.3f}\\n\" + f\"beta={beta:.2f}\"\n        ax.text(0.97, 0.97, info, transform=ax.transAxes,\n                fontsize=7, va=\"top\", ha=\"right\",\n                bbox=dict(boxstyle=\"round,pad=0.3\", fc=\"white\", alpha=0.8))\n\n    fig.tight_layout(rect=[0, 0, 1, 0.96])\n    fig.savefig(out_path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved: {out_path}\")\n\n\n# ── Main ─────────────────────────────────────────────────────────────\n\ndef main():\n    print(\"Loading K=3 results...\")\n    k3 = load_k3_results()\n    print(f\"  K=3: {len(k3)} conditions\")\n\n    print(\"Loading K=5,7 results...\")\n    k5k7 = load_k5k7_results()\n    k5 = {k: v for (K, k), v in k5k7.items() if K == 5}\n    k7 = {k: v for (K, k), v in k5k7.items() if K == 7}\n    print(f\"  K=5: {len(k5)} conditions, K=7: {len(k7)} conditions\")\n\n    all_results = []\n    results_by_K = {3: {}, 5: {}, 7: {}}\n\n    for K, source in [(3, k3), (5, k5), (7, k7)]:\n        for cond_key, stats in source.items():\n            r = analyze_condition(stats)\n            ds, atk = cond_key.split(\"x\")\n            entry = dict(K=K, benchmark=ds, attack=atk, **r)\n            all_results.append(entry)\n            results_by_K[K][cond_key] = r\n\n    # Verification: print first condition\n    first = all_results[0]\n    print(f\"\\nVerification (K={first['K']}, {first['benchmark']}x{first['attack']}):\")\n    print(f\"  beta_keff = {first['beta_keff']:.4f}\")\n    print(f\"  t_keff    = {first['t_keff']:.4f}\")\n    print(f\"  dof       = {first['dof']}\")\n    print(f\"  partial_r2_keff = {first['partial_r2_keff']:.4f}\")\n    print(f\"  RV(q=1)   = {first['keff_rv']:.4f}\")\n    t = first[\"t_keff\"]\n    dof = first[\"dof\"]\n    f2 = t**2 / dof\n    rv_check = 0.5 * (np.sqrt(f2**2 + 4*f2) - f2)\n    print(f\"  RV manual = {rv_check:.4f} (should match)\")\n    print(f\"  eta_partial_r2_treatment = {first['eta_partial_r2_treatment']:.4f}\")\n    print(f\"  eta_partial_r2_outcome   = {first['eta_partial_r2_outcome']:.4f}\")\n    print(f\"  rv_exceeds_eta = {first['rv_exceeds_eta']}\")\n\n    # Summary\n    rv_exceeds_count = sum(1 for r in all_results if r[\"rv_exceeds_eta\"])\n    by_K = {}\n    for K in [3, 5, 7]:\n        k_results = [r for r in all_results if r[\"K\"] == K]\n        by_K[f\"K{K}\"] = f\"{sum(1 for r in k_results if r['rv_exceeds_eta'])}/{len(k_results)}\"\n\n    summary = {\n        \"rv_exceeds_eta_count\": f\"{rv_exceeds_count}/{len(all_results)}\",\n        \"by_K\": by_K,\n    }\n\n    print(f\"\\nSummary: {summary['rv_exceeds_eta_count']} conditions RV > eta benchmarks\")\n    for k, v in by_K.items():\n        print(f\"  {k}: {v}\")\n\n    # Save JSON\n    output = {\n        \"method\": \"Cinelli & Hazlett (2020)\",\n        \"description\": \"OVB Sensitivity Analysis for K_eff coefficient\",\n        \"formulas\": {\n            \"partial_r2\": \"t^2 / (t^2 + dof)\",\n            \"RV_q1\": \"0.5 * (sqrt(f^4 + 4*f^2) - f^2), f^2 = t^2/dof\",\n            \"adjusted_estimate\": \"sign(b)*(|b| - sqrt(r2yz*r2dz/(1-r2dz))*se*sqrt(dof))\",\n        },\n        \"results_by_condition\": all_results,\n        \"summary\": summary,\n    }\n\n    out_path = RESULTS_DIR / \"sensitivity_analysis.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default)\n    print(f\"\\nSaved: {out_path}\")\n\n    # Contour plots\n    for K in [3, 5, 7]:\n        fig_path = FIG_DIR / f\"sensitivity_contour_K{K}.png\"\n        plot_contour_grid(results_by_K[K], K, fig_path)\n\n    print(\"\\nDone.\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat > /root/cert_manip_resist_eval/scripts/run_sensitivity_analysis.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Cinelli & Hazlett (2020) OVB Sensitivity Analysis for K_eff coefficient.\n\nExtracts OLS statistics from existing regression results and computes:\n  - Robustness Value (RV_q=1) for K_eff coefficient\n  - Benchmark eta_max partial R² with treatment and outcome\n  - Contour plots of adjusted K_eff coefficient\n\nOutput:\n  - artifacts/results/plan001/sensitivity_analysis.json\n  - artifacts/figures/sensitivity_contour_K{k}.png\n\"\"\"\n\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as mticker\nfrom pathlib import Path\n\nRESULTS_DIR = Path(\"/root/cert_manip_resist_eval/artifacts/results/plan001\")\nFIG_DIR = Path(\"/root/cert_manip_resist_eval/artifacts/figures\")\nFIG_DIR.mkdir(parents=True, exist_ok=True)\n\nDATASETS = [\"mmlu\", \"arc_challenge\"]\nATTACKS = [\n    \"prompt_injection\", \"sycophancy\", \"score_manipulation\",\n    \"verbosity_bias\", \"position_bias\", \"authority_bias\",\n]\nATTACK_SHORT = {\n    \"prompt_injection\": \"PromptInj\",\n    \"sycophancy\": \"Sycoph\",\n    \"score_manipulation\": \"ScoreManip\",\n    \"verbosity_bias\": \"Verbose\",\n    \"position_bias\": \"Position\",\n    \"authority_bias\": \"Authority\",\n}\nDS_SHORT = {\"mmlu\": \"MMLU\", \"arc_challenge\": \"ARC\"}\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\n# ── Cinelli & Hazlett (2020) Formulas ────────────────────────────────\n\ndef partial_r2_from_t(t_stat, dof):\n    return t_stat**2 / (t_stat**2 + dof)\n\n\ndef robustness_value(t_stat, dof, q=1.0):\n    \"\"\"RV_q: minimum confounder strength (equal partial R² with D and Y)\n    needed to reduce |beta| by factor q. q=1 means zeroing out.\"\"\"\n    f2 = (q * t_stat)**2 / dof\n    rv = 0.5 * (np.sqrt(f2**2 + 4 * f2) - f2)\n    return rv\n\n\ndef adjusted_estimate(estimate, se, dof, r2dz_x, r2yz_dx):\n    \"\"\"Bias-adjusted estimate (Cinelli & Hazlett 2020, Eq. 9).\n    Assumes confounding direction reduces |estimate| (reduce=True).\"\"\"\n    bf = np.sqrt(r2yz_dx * r2dz_x / np.maximum(1 - r2dz_x, 1e-10))\n    return np.sign(estimate) * (np.abs(estimate) - bf * se * np.sqrt(dof))\n\n\ndef adjusted_t_stat(t_stat, dof, r2dz_x, r2yz_dx):\n    \"\"\"Bias-adjusted t-statistic.\"\"\"\n    f2 = r2yz_dx * r2dz_x / np.maximum(1 - r2dz_x, 1e-10)\n    num = np.abs(t_stat) / np.sqrt(dof) - np.sqrt(f2)\n    den = np.sqrt((1 - r2yz_dx) / np.maximum(1 - r2dz_x, 1e-10))\n    return np.sign(t_stat) * num / np.maximum(den, 1e-10) * np.sqrt(dof)\n\n\n# ── Load Existing Results ────────────────────────────────────────────\n\ndef load_k3_results():\n    path = RESULTS_DIR / \"panel_regression\" / \"step4_regression_results.json\"\n    with open(path) as f:\n        data = json.load(f)\n    results = {}\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n            cd = data[\"conditions\"].get(cond)\n            if cd is None or cd.get(\"skipped\"):\n                continue\n            n = cd[\"n_panels\"]\n            dof = n - 3\n            t_keff = cd[\"ols\"][\"keff_t\"]\n            beta_keff = cd[\"ols\"][\"keff_beta\"]\n            se_keff = beta_keff / t_keff if abs(t_keff) > 1e-10 else 0.0\n            t_eta = cd[\"ols\"][\"eta_max_t\"]\n            vif = cd.get(\"vif_keff\", 1.0)\n            r2dz_eta = max(0.0, 1 - 1 / vif) if vif > 1 else 0.0\n            results[cond] = dict(\n                K=3, n_panels=n, dof=dof,\n                beta_keff=beta_keff, se_keff=se_keff, t_keff=t_keff,\n                beta_eta=cd[\"ols\"][\"eta_max_beta\"], t_eta=t_eta,\n                R2=cd[\"ols\"][\"R2\"], r2dz_eta=r2dz_eta,\n            )\n    return results\n\n\ndef load_k5k7_results():\n    path = RESULTS_DIR / \"k5_k7_panel_analysis.json\"\n    with open(path) as f:\n        data = json.load(f)\n    results = {}\n    for kkey in [\"K5\", \"K7\"]:\n        entry = data[\"results\"][kkey]\n        K = entry[\"K\"]\n        for cond_key, cd in entry[\"conditions\"].items():\n            n = cd[\"n_panels\"]\n            dof = n - 3\n            ols = cd[\"ols\"]\n            beta_keff = ols[\"beta_keff\"]\n            se_keff = ols[\"se_keff\"]\n            t_keff = beta_keff / se_keff if abs(se_keff) > 1e-10 else 0.0\n            beta_eta = ols[\"beta_eta\"]\n            se_eta = ols[\"se_eta\"]\n            t_eta = beta_eta / se_eta if abs(se_eta) > 1e-10 else 0.0\n\n            keff_std = ols.get(\"keff_std_beta\", 0)\n            eta_std = ols.get(\"eta_std_beta\", 0)\n            R2 = ols[\"R2\"]\n            denom = 2 * keff_std * eta_std\n            if abs(denom) > 1e-10:\n                c = (R2 - keff_std**2 - eta_std**2) / denom\n                c = np.clip(c, -1, 1)\n                r2dz_eta = c**2\n            else:\n                r2dz_eta = 0.0\n\n            results[(K, cond_key)] = dict(\n                K=K, n_panels=n, dof=dof,\n                beta_keff=beta_keff, se_keff=se_keff, t_keff=t_keff,\n                beta_eta=beta_eta, t_eta=t_eta,\n                R2=R2, r2dz_eta=r2dz_eta,\n            )\n    return results\n\n\n# ── Sensitivity Analysis ─────────────────────────────────────────────\n\ndef analyze_condition(stats):\n    t = stats[\"t_keff\"]\n    dof = stats[\"dof\"]\n    se = stats[\"se_keff\"]\n    beta = stats[\"beta_keff\"]\n    t_eta = stats[\"t_eta\"]\n\n    pr2_keff = partial_r2_from_t(t, dof)\n    pr2_eta = partial_r2_from_t(t_eta, dof)\n    rv = robustness_value(t, dof, q=1.0)\n\n    r2dz_eta = stats[\"r2dz_eta\"]\n    r2ydz_eta = pr2_eta\n\n    rv_exceeds = rv > max(r2dz_eta, r2ydz_eta)\n\n    return dict(\n        K=stats[\"K\"],\n        n_panels=stats[\"n_panels\"],\n        dof=dof,\n        beta_keff=beta,\n        se_keff=se,\n        t_keff=t,\n        partial_r2_keff=pr2_keff,\n        keff_rv=rv,\n        eta_partial_r2_treatment=r2dz_eta,\n        eta_partial_r2_outcome=r2ydz_eta,\n        rv_exceeds_eta=rv_exceeds,\n        R2=stats[\"R2\"],\n    )\n\n\n# ── Contour Plot ─────────────────────────────────────────────────────\n\ndef plot_contour_grid(results_by_cond, K, out_path):\n    fig, axes = plt.subplots(4, 3, figsize=(14, 16))\n    fig.suptitle(\n        f\"Cinelli–Hazlett Sensitivity Analysis: K={K}\",\n        fontsize=14, fontweight=\"bold\", y=0.98,\n    )\n\n    grid_n = 200\n    conditions = []\n    for ds in DATASETS:\n        for atk in ATTACKS:\n            conditions.append(f\"{ds}x{atk}\")\n\n    for idx, cond in enumerate(conditions):\n        row, col = divmod(idx, 3)\n        ax = axes[row, col]\n        r = results_by_cond.get(cond)\n        if r is None:\n            ax.set_visible(False)\n            continue\n\n        rv = r[\"keff_rv\"]\n        bm_x = r[\"eta_partial_r2_treatment\"]\n        bm_y = r[\"eta_partial_r2_outcome\"]\n        beta = r[\"beta_keff\"]\n        se = r[\"se_keff\"]\n        dof = r[\"dof\"]\n\n        x_max = min(0.99, max(0.7, 1.5 * max(rv, bm_x, 0.1)))\n        y_max = min(0.99, max(0.7, 1.5 * max(rv, bm_y, 0.1)))\n\n        rx = np.linspace(0.001, x_max, grid_n)\n        ry = np.linspace(0.001, y_max, grid_n)\n        RX, RY = np.meshgrid(rx, ry)\n\n        ADJ = adjusted_estimate(beta, se, dof, RX, RY)\n\n        n_levels = 12\n        vmin = float(np.nanmin(ADJ))\n        vmax = float(np.nanmax(ADJ))\n        if vmin < 0 < vmax:\n            neg_levels = np.linspace(vmin, 0, max(2, n_levels // 3 + 1))\n            pos_levels = np.linspace(0, vmax, max(2, n_levels * 2 // 3 + 1))\n            levels = np.unique(np.concatenate([neg_levels, pos_levels]))\n        else:\n            levels = np.linspace(vmin, vmax, n_levels)\n\n        cs = ax.contourf(RX, RY, ADJ, levels=levels, cmap=\"RdBu_r\", alpha=0.85)\n        ax.contour(RX, RY, ADJ, levels=[0.0], colors=\"black\", linewidths=2)\n\n        ax.plot(bm_x, bm_y, \"D\", color=\"limegreen\", markersize=7,\n                markeredgecolor=\"black\", markeredgewidth=0.8, zorder=5)\n        ax.annotate(r\"$\\eta_{\\max}$\", (bm_x, bm_y),\n                    textcoords=\"offset points\", xytext=(6, 6),\n                    fontsize=8, fontweight=\"bold\", color=\"black\")\n\n        rv_theta = np.linspace(0, np.pi / 2, 100)\n        rv_x = rv * np.cos(rv_theta)\n        rv_y = rv * np.sin(rv_theta)\n        mask = (rv_x <= x_max) & (rv_y <= y_max)\n        if mask.any():\n            ax.plot(rv_x[mask], rv_y[mask], \"--\", color=\"darkorange\",\n                    linewidth=1.5, label=f\"RV={rv:.3f}\")\n\n        ds_name, atk_name = cond.split(\"x\")\n        title = f\"{DS_SHORT[ds_name]} x {ATTACK_SHORT[atk_name]}\"\n        ax.set_title(title, fontsize=9, fontweight=\"bold\")\n        ax.set_xlabel(r\"$R^2_{D \\sim Z | X}$\", fontsize=8)\n        ax.set_ylabel(r\"$R^2_{Y \\sim Z | D,X}$\", fontsize=8)\n        ax.tick_params(labelsize=7)\n        ax.set_xlim(0, x_max)\n        ax.set_ylim(0, y_max)\n\n        info = f\"RV={rv:.3f}\\n\" + f\"beta={beta:.2f}\"\n        ax.text(0.97, 0.97, info, transform=ax.transAxes,\n                fontsize=7, va=\"top\", ha=\"right\",\n                bbox=dict(boxstyle=\"round,pad=0.3\", fc=\"white\", alpha=0.8))\n\n    fig.tight_layout(rect=[0, 0, 1, 0.96])\n    fig.savefig(out_path, dpi=150, bbox_inches=\"tight\")\n    plt.close(fig)\n    print(f\"Saved: {out_path}\")\n\n\n# ── Main ─────────────────────────────────────────────────────────────\n\ndef main():\n    print(\"Loading K=3 results...\")\n    k3 = load_k3_results()\n    print(f\"  K=3: {len(k3)} conditions\")\n\n    print(\"Loading K=5,7 results...\")\n    k5k7 = load_k5k7_results()\n    k5 = {k: v for (K, k), v in k5k7.items() if K == 5}\n    k7 = {k: v for (K, k), v in k5k7.items() if K == 7}\n    print(f\"  K=5: {len(k5)} conditions, K=7: {len(k7)} conditions\")\n\n    all_results = []\n    results_by_K = {3: {}, 5: {}, 7: {}}\n\n    for K, source in [(3, k3), (5, k5), (7, k7)]:\n        for cond_key, stats in source.items():\n            r = analyze_condition(stats)\n            ds, atk = cond_key.split(\"x\")\n            entry = dict(K=K, benchmark=ds, attack=atk, **r)\n            all_results.append(entry)\n            results_by_K[K][cond_key] = r\n\n    # Verification: print first condition\n    first = all_results[0]\n    print(f\"\\nVerification (K={first['K']}, {first['benchmark']}x{first['attack']}):\")\n    print(f\"  beta_keff = {first['beta_keff']:.4f}\")\n    print(f\"  t_keff    = {first['t_keff']:.4f}\")\n    print(f\"  dof       = {first['dof']}\")\n    print(f\"  partial_r2_keff = {first['partial_r2_keff']:.4f}\")\n    print(f\"  RV(q=1)   = {first['keff_rv']:.4f}\")\n    t = first[\"t_keff\"]\n    dof = first[\"dof\"]\n    f2 = t**2 / dof\n    rv_check = 0.5 * (np.sqrt(f2**2 + 4*f2) - f2)\n    print(f\"  RV manual = {rv_check:.4f} (should match)\")\n    print(f\"  eta_partial_r2_treatment = {first['eta_partial_r2_treatment']:.4f}\")\n    print(f\"  eta_partial_r2_outcome   = {first['eta_partial_r2_outcome']:.4f}\")\n    print(f\"  rv_exceeds_eta = {first['rv_exceeds_eta']}\")\n\n    # Summary\n    rv_exceeds_count = sum(1 for r in all_results if r[\"rv_exceeds_eta\"])\n    by_K = {}\n    for K in [3, 5, 7]:\n        k_results = [r for r in all_results if r[\"K\"] == K]\n        by_K[f\"K{K}\"] = f\"{sum(1 for r in k_results if r['rv_exceeds_eta'])}/{len(k_results)}\"\n\n    summary = {\n        \"rv_exceeds_eta_count\": f\"{rv_exceeds_count}/{len(all_results)}\",\n        \"by_K\": by_K,\n    }\n\n    print(f\"\\nSummary: {summary['rv_exceeds_eta_count']} conditions RV > eta benchmarks\")\n    for k, v in by_K.items():\n        print(f\"  {k}: {v}\")\n\n    # Save JSON\n    output = {\n        \"method\": \"Cinelli & Hazlett (2020)\",\n        \"description\": \"OVB Sensitivity Analysis for K_eff coefficient\",\n        \"formulas\": {\n            \"partial_r2\": \"t^2 / (t^2 + dof)\",\n            \"RV_q1\": \"0.5 * (sqrt(f^4 + 4*f^2) - f^2), f^2 = t^2/dof\",\n            \"adjusted_estimate\": \"sign(b)*(|b| - sqrt(r2yz*r2dz/(1-r2dz))*se*sqrt(dof))\",\n        },\n        \"results_by_condition\": all_results,\n        \"summary\": summary,\n    }\n\n    out_path = RESULTS_DIR / \"sensitivity_analysis.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default)\n    print(f\"\\nSaved: {out_path}\")\n\n    # Contour plots\n    for K in [3, 5, 7]:\n        fig_path = FIG_DIR / f\"sensitivity_contour_K{K}.png\"\n        plot_contour_grid(results_by_K[K], K, fig_path)\n\n    print(\"\\nDone.\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written OK\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T08:13:32.782262+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-23T08:13:32.782394+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python scripts/run_sensitivity_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python scripts/run_sensitivity_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T08:13:32.782531+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python scripts/run_sensitivity_analysis.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\nLoading K=3 results...\\n  K=3: 12 conditions\\nLoading K=5,7 results...\\n  K=5: 12 conditions, K=7: 12 conditions\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"/root/cert_manip_resist_eval/scripts/run_sensitivity_analysis.py\\\", line 357, in &lt;module>\\n    main()\\n  File \\\"/root/cert_manip_resist_eval/scripts/run_sensitivity_analysis.py\\\", line 293, in main\\n    entry = dict(K=K, benchmark=ds, attack=atk, **r)\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nTypeError: dict() got multiple values for keyword argument 'K'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-23T08:13:32.782703+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "sed -i 's/entry = dict(K=K, benchmark=ds, attack=atk, \\*\\*r)/entry = dict(**r, benchmark=ds, attack=atk)/' /root/cert_manip_resist_eval/scripts/run_sensitivity_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "sed -i 's/entry = dict(K=K, benchmark=ds, attack=atk, \\*\\*r)/entry = dict(**r, benchmark=ds, attack=atk)/' /root/cert_manip_resist_eval/scripts/run_sensitivity_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T08:13:32.782839+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-23T08:13:32.782957+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python scripts/run_sensitivity_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python scripts/run_sensitivity_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-23T08:13:32.783088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading K=3 results...\\n  K=3: 12 conditions\\nLoading K=5,7 results...\\n  K=5: 12 conditions, K=7: 12 conditions\\n\\nVerification (K=3, mmluxprompt_injection):\\n  beta_keff = 7.5854\\n  t_keff    = 11.6816\\n  dof       = 452\\n  partial_r2_keff = 0.2319\\n  RV(q=1)   = 0.4189\\n  RV manual = 0.4189 (should match)\\n  eta_partial_r2_treatment = 0.5870\\n  eta_partial_r2_outcome   = 0.0592\\n  rv_exceeds_eta = False\\n\\nSummary: 8/36 conditions RV > eta benchmarks\\n  K3: 1/12\\n  K5: 3/12\\n  K7: 4/12\\n\\nSaved: /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json\\nSaved: /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K3.png\\nSaved: /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K5.png\\nSaved: /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K7.png\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-23T08:13:32.783253+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls -la /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K*.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls -la /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K*.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-23T08:13:32.783382+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 464121 May 23 16:12 /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K3.png\\n-rw-r--r-- 1 root root 441249 May 23 16:12 /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K5.png\\n-rw-r--r-- 1 root root 444120 May 23 16:12 /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K7.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-23T08:13:32.783503+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "ls -la /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "ls -la /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-23T08:13:32.783637+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 18495 May 23 16:12 /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-23T08:13:32.783790+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -60 /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -60 /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-23T08:13:32.783953+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"Cinelli & Hazlett (2020)\\\",\\n  \\\"description\\\": \\\"OVB Sensitivity Analysis for K_eff coefficient\\\",\\n  \\\"formulas\\\": {\\n    \\\"partial_r2\\\": \\\"t^2 / (t^2 + dof)\\\",\\n    \\\"RV_q1\\\": \\\"0.5 * (sqrt(f^4 + 4*f^2) - f^2), f^2 = t^2/dof\\\",\\n    \\\"adjusted_estimate\\\": \\\"sign(b)*(|b| - sqrt(r2yz*r2dz/(1-r2dz))*se*sqrt(dof))\\\"\\n  },\\n  \\\"results_by_condition\\\": [\\n    {\\n      \\\"K\\\": 3,\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 7.58539569787378,\\n      \\\"se_keff\\\": 0.6493471989672832,\\n      \\\"t_keff\\\": 11.681571445811324,\\n      \\\"partial_r2_keff\\\": 0.23189225689587178,\\n      \\\"keff_rv\\\": 0.4188625155906779,\\n      \\\"eta_partial_r2_treatment\\\": 0.5870284141993318,\\n      \\\"eta_partial_r2_outcome\\\": 0.05918623018227791,\\n      \\\"rv_exceeds_eta\\\": false,\\n      \\\"R2\\\": 0.5824185614277401,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"prompt_injection\\\"\\n    },\\n    {\\n      \\\"K\\\": 3,\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 5.573009376038388,\\n      \\\"se_keff\\\": 0.4878125034474627,\\n      \\\"t_keff\\\": 11.424490632472278,\\n      \\\"partial_r2_keff\\\": 0.22405962603950236,\\n      \\\"keff_rv\\\": 0.41204150394419126,\\n      \\\"eta_partial_r2_treatment\\\": 0.34656641342156214,\\n      \\\"eta_partial_r2_outcome\\\": 0.0979519191677364,\\n      \\\"rv_exceeds_eta\\\": true,\\n      \\\"R2\\\": 0.481101056330161,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"sycophancy\\\"\\n    },\\n    {\\n      \\\"K\\\": 3,\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 8.086988700263959,\\n      \\\"se_keff\\\": 0.7116079604008535,\\n      \\\"t_keff\\\": 11.364387626732709,\\n      \\\"partial_r2_keff\\\": 0.22223085318732919,\\n 
+…[truncated 514 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-23T08:13:32.784103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "tail -20 /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "tail -20 /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-23T08:13:32.784243+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"t_keff\\\": 15.819083894857162,\\n      \\\"partial_r2_keff\\\": 0.03744901221356111,\\n      \\\"keff_rv\\\": 0.17874998226939193,\\n      \\\"eta_partial_r2_treatment\\\": 0.5137738981386493,\\n      \\\"eta_partial_r2_outcome\\\": 0.002988419849684504,\\n      \\\"rv_exceeds_eta\\\": false,\\n      \\\"R2\\\": 0.10556134548993645,\\n      \\\"benchmark\\\": \\\"arc_challenge\\\",\\n      \\\"attack\\\": \\\"authority_bias\\\"\\n    }\\n  ],\\n  \\\"summary\\\": {\\n    \\\"rv_exceeds_eta_count\\\": \\\"8/36\\\",\\n    \\\"by_K\\\": {\\n      \\\"K3\\\": \\\"1/12\\\",\\n      \\\"K5\\\": \\\"3/12\\\",\\n      \\\"K7\\\": \\\"4/12\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-23T08:13:32.784386+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "sensitivity_analysis",
+  "type": "data",
+  "description": "Cinelli & Hazlett (2020) OVB sensitivity analysis for K_eff coefficient: RV, benchmarks, and rv_exceeds_eta for 36 conditions (K=3,5,7 × 12 conditions). 8/36 conditions have RV exceeding eta_max benchmarks.",
+  "project": "cert_manip_resist_eval",
+  "source_path": "/root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json",
+  "tags": "['sensitivity', 'ovb', 'cinelli-hazlett', 'robustness-value']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "sensitivity_analysis",
+    "type": "data",
+    "description": "Cinelli & Hazlett (2020) OVB sensitivity analysis for K_eff coefficient: RV, benchmarks, and rv_exceeds_eta for 36 conditions (K=3,5,7 × 12 conditions). 8/36 conditions have RV exceeding eta_max benchmarks.",
+    "project": "cert_manip_resist_eval",
+    "source_path": "/root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json",
+    "tags": "['sensitivity', 'ovb', 'cinelli-hazlett', 'robustness-value']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-23T08:13:32.784525+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-23T08:13:32.784661+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "sensitivity_contour_K3",
+  "type": "chart",
+  "description": "Contour plots of adjusted K_eff coefficient under hypothetical confounding (K=3, 12 conditions). Shows RV contour and eta_max benchmark position.",
+  "project": "cert_manip_resist_eval",
+  "source_path": "/root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K3.png",
+  "tags": "['sensitivity', 'contour', 'K3']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "sensitivity_contour_K3",
+    "type": "chart",
+    "description": "Contour plots of adjusted K_eff coefficient under hypothetical confounding (K=3, 12 conditions). Shows RV contour and eta_max benchmark position.",
+    "project": "cert_manip_resist_eval",
+    "source_path": "/root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K3.png",
+    "tags": "['sensitivity', 'contour', 'K3']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-23T08:13:32.784796+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K3.png\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-23T08:13:32.784914+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "sensitivity_contour_K5",
+  "type": "chart",
+  "description": "Contour plots of adjusted K_eff coefficient under hypothetical confounding (K=5, 12 conditions).",
+  "project": "cert_manip_resist_eval",
+  "source_path": "/root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K5.png",
+  "tags": "['sensitivity', 'contour', 'K5']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "sensitivity_contour_K5",
+    "type": "chart",
+    "description": "Contour plots of adjusted K_eff coefficient under hypothetical confounding (K=5, 12 conditions).",
+    "project": "cert_manip_resist_eval",
+    "source_path": "/root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K5.png",
+    "tags": "['sensitivity', 'contour', 'K5']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-23T08:13:32.785038+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K5.png\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-23T08:13:32.785153+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "sensitivity_contour_K7",
+  "type": "chart",
+  "description": "Contour plots of adjusted K_eff coefficient under hypothetical confounding (K=7, 12 conditions).",
+  "project": "cert_manip_resist_eval",
+  "source_path": "/root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K7.png",
+  "tags": "['sensitivity', 'contour', 'K7']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "sensitivity_contour_K7",
+    "type": "chart",
+    "description": "Contour plots of adjusted K_eff coefficient under hypothetical confounding (K=7, 12 conditions).",
+    "project": "cert_manip_resist_eval",
+    "source_path": "/root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K7.png",
+    "tags": "['sensitivity', 'contour', 'K7']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-23T08:13:32.785275+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K7.png\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-23T08:13:32.785413+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-23T08:13:32.785755+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"Cinelli & Hazlett (2020)\\\",\\n  \\\"description\\\": \\\"OVB Sensitivity Analysis for K_eff coefficient\\\",\\n  \\\"formulas\\\": {\\n    \\\"partial_r2\\\": \\\"t^2 / (t^2 + dof)\\\",\\n    \\\"RV_q1\\\": \\\"0.5 * (sqrt(f^4 + 4*f^2) - f^2), f^2 = t^2/dof\\\",\\n    \\\"adjusted_estimate\\\": \\\"sign(b)*(|b| - sqrt(r2yz*r2dz/(1-r2dz))*se*sqrt(dof))\\\"\\n  },\\n  \\\"results_by_condition\\\": [\\n    {\\n      \\\"K\\\": 3,\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 7.58539569787378,\\n      \\\"se_keff\\\": 0.6493471989672832,\\n      \\\"t_keff\\\": 11.681571445811324,\\n      \\\"partial_r2_keff\\\": 0.23189225689587178,\\n      \\\"keff_rv\\\": 0.4188625155906779,\\n      \\\"eta_partial_r2_treatment\\\": 0.5870284141993318,\\n      \\\"eta_partial_r2_outcome\\\": 0.05918623018227791,\\n      \\\"rv_exceeds_eta\\\": false,\\n      \\\"R2\\\": 0.5824185614277401,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"prompt_injection\\\"\\n    },\\n    {\\n      \\\"K\\\": 3,\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 5.573009376038388,\\n      \\\"se_keff\\\": 0.4878125034474627,\\n      \\\"t_keff\\\": 11.424490632472278,\\n      \\\"partial_r2_keff\\\": 0.22405962603950236,\\n      \\\"keff_rv\\\": 0.41204150394419126,\\n      \\\"eta_partial_r2_treatment\\\": 0.34656641342156214,\\n      \\\"eta_partial_r2_outcome\\\": 0.0979519191677364,\\n      \\\"rv_exceeds_eta\\\": true,\\n      \\\"R2\\\": 0.481101056330161,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"sycophancy\\\"\\n    },\\n    {\\n      \\\"K\\\": 3,\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 8.086988700263959,\\n      \\\"se_keff\\\": 0.7116079604008535,\\n      \\\"t_keff\\\": 11.364387626732709,\\n      \\\"partial_r2_keff\\\": 0.22223085318732919,\\n 
+…[truncated 8297 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-23T08:13:32.785928+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "sensitivity_analysis",
+  "type": "data",
+  "description": "Cinelli & Hazlett (2020) OVB sensitivity analysis: RV and benchmarks for 36 conditions. 8/36 RV exceeds eta_max benchmarks (K3:1/12, K5:3/12, K7:4/12).",
+  "project": "cert_manip_resist_eval",
+  "content_filename": "sensitivity_analysis.json",
+  "content": "See remote: /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json",
+  "tags": "['sensitivity', 'ovb', 'cinelli-hazlett', 'robustness-value']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "sensitivity_analysis",
+    "type": "data",
+    "description": "Cinelli & Hazlett (2020) OVB sensitivity analysis: RV and benchmarks for 36 conditions. 8/36 RV exceeds eta_max benchmarks (K3:1/12, K5:3/12, K7:4/12).",
+    "project": "cert_manip_resist_eval",
+    "content_filename": "sensitivity_analysis.json",
+    "content": "See remote: /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json",
+    "tags": "['sensitivity', 'ovb', 'cinelli-hazlett', 'robustness-value']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-23T08:13:32.786077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_7b237a\", \"name\": \"sensitivity_analysis\", \"type\": \"data\", \"description\": \"Cinelli & Hazlett (2020) OVB sensitivity analysis: RV and benchmarks for 36 conditions. 8/36 RV exceeds eta_max benchmarks (K3:1/12, K5:3/12, K7:4/12).\", \"path\": \"projects/cert_manip_resist_eval/artifacts/_project/data/sensitivity_analysis.json\", \"url\": null, \"project\": \"cert_manip_resist_eval\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-23T08:13:17.354751+00:00\", \"tags\": [\"sensitivity\", \"ovb\", \"cinelli-hazlett\", \"robustness-value\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-23T08:13:32.786215+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "sensitivity_contour_plots",
+  "type": "chart",
+  "description": "Contour plots of adjusted K_eff coefficient under hypothetical confounding for K=3,5,7. Shows RV contour, zero contour, and eta_max benchmark position.",
+  "project": "cert_manip_resist_eval",
+  "content_filename": "sensitivity_contours_info.txt",
+  "content": "Remote paths:\n- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K3.png\n- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K5.png\n- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K7.png",
+  "tags": "['sensitivity', 'contour', 'K3', 'K5', 'K7']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "sensitivity_contour_plots",
+    "type": "chart",
+    "description": "Contour plots of adjusted K_eff coefficient under hypothetical confounding for K=3,5,7. Shows RV contour, zero contour, and eta_max benchmark position.",
+    "project": "cert_manip_resist_eval",
+    "content_filename": "sensitivity_contours_info.txt",
+    "content": "Remote paths:\n- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K3.png\n- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K5.png\n- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K7.png",
+    "tags": "['sensitivity', 'contour', 'K3', 'K5', 'K7']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-23T08:13:32.786360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_f65caa\", \"name\": \"sensitivity_contour_plots\", \"type\": \"chart\", \"description\": \"Contour plots of adjusted K_eff coefficient under hypothetical confounding for K=3,5,7. Shows RV contour, zero contour, and eta_max benchmark position.\", \"path\": \"projects/cert_manip_resist_eval/artifacts/_project/chart/sensitivity_contours_info.txt\", \"url\": null, \"project\": \"cert_manip_resist_eval\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-23T08:13:20.601927+00:00\", \"tags\": [\"sensitivity\", \"contour\", \"K3\", \"K5\", \"K7\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87 · 2026-05-23T08:13:32.786527+00:00_
+
+完成。结果汇总：
+
+**Cinelli & Hazlett (2020) Sensitivity Analysis — 36 conditions**
+
+| K | RV > eta benchmarks | 含义 |
+|---|---|---|
+| K=3 | 1/12 | 大多数 condition 下 eta_max 的解释力已超过 RV，K_eff 系数对混淆较敏感 |
+| K=5 | 3/12 | 随 K 增大，K_eff 系数更稳健 |
+| K=7 | 4/12 | K_eff 系数的 robustness 继续提升 |
+| **合计** | **8/36** | |
+
+关键发现（以 K=3, mmlu×prompt_injection 为例）：
+- RV = 0.419：未观测混淆需要同时解释 41.9% 的 K_eff 和 ASR 方差才能归零 β
+- 但 eta_max 的 partial R² with treatment = 0.587（已超过 RV），说明一个 eta_max 量级的混淆就足以影响结论
+- 总体趋势：更大的 K 值使 K_eff 系数更 robust
+
+**产出文件**：
+- JSON: `/root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json`
+- 图: `artifacts/figures/sensitivity_contour_K{3,5,7}.png`（4×3 subplot grid，黑色等高线=β=0，绿色菱形=eta_max benchmark）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_cinelli-hazlett-sensitivity_20260523T080322"
+}
+```
+
+</details>
+
+---

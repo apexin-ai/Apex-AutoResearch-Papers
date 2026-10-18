@@ -1,0 +1,2098 @@
+# analysis r22 cpu analyses
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/chats/worker_analysis_r22_cpu_analyses_20260519T181910.jsonl`
+- **Structured JSON:** [`c8ec9dad5b5f5505d8e1.json`](../../sessions/c8/c8ec9dad5b5f5505d8e1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+71 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T18:23:32.925306+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T18:23:32.925640+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T18:23:32.925806+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "ls /root/schema-dag-extraction/analysis/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T18:23:32.925968+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/ -name \"*.json\" -path \"*/analysis/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/ -name \"*.json\" -path \"*/analysis/*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T18:23:32.926114+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bcs_range_matched_interaction.py\\nbcs_range_matched_results.json\\ndocred_error_taxonomy.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T18:23:32.926249+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/analysis/bcs_range_matched_results.json\\n/root/schema-dag-extraction/analysis/docred_error_taxonomy.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T18:23:32.926372+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/ -name \"*bcs*\" -o -name \"*factorial*\" -o -name \"*unconstrained*\" -o -name \"*batch*accuracy*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/ -name \"*bcs*\" -o -name \"*factorial*\" -o -name \"*unconstrained*\" -o -name \"*batch*accuracy*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T18:23:32.926535+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/compute_bcs.py\\n/root/schema-dag-extraction/src/__pycache__/compute_bcs.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_fewshot_bcs.cpython-312.pyc\\n/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\n/root/schema-dag-extraction/src/compute_bcs.py.bak\\n/root/schema-dag-extraction/src/run_fewshot_bcs.py\\n/root/schema-dag-extraction/src/run_fewshot_bcs_v2.py\\n/root/schema-dag-extraction/src/run_unconstrained_decoding_ablation.py\\n/root/schema-dag-extraction/src/run_unconstrained_decoding_ablation_n25.py\\n/root/schema-dag-extraction/src/run_docred_bcs_expanded.py\\n/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt\\n/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\n/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_by_bcs.csv\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability/bcs_fix_results.json\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability/bcs_controlled_results.json\\n/root/schema-dag-extraction/artifacts/bcs_fix\\n/root/schema-dag-extraction/artifacts/bcs_fix/bcs_fix_results.json\\n/root/schema-dag-extraction/artifacts/fewrel_factorial_tost\\n/root/schema-dag-extraction/artifacts/paper/fig_q1_ner_partial_bcs.pdf\\n/root/schema-dag-extraction/artifacts/paper/fig_q1_ner_partial_bcs.png\\n/root/schema-dag-extraction/artifacts/fewshot_bcs\\n/root/schema-dag-extraction/artifacts/fewshot_bcs_mitigation\\n/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8\\n/root/schema-dag-extraction/artifacts/fewshot_bcs_v2\\n/root/schema-dag-extraction/artifacts/multiseed_bcs_re\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25\\n/root/schema-dag-extraction/artifacts/
+…[truncated 1921 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T18:23:32.926709+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/analysis/bcs_range_matched_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/analysis/bcs_range_matched_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T18:23:32.926920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"before_matching\\\": {\\n    \\\"count_16\\\": {\\n      \\\"label\\\": \\\"16\\\",\\n      \\\"n\\\": 55,\\n      \\\"bcs_range\\\": [\\n        0.37963757539788884,\\n        0.7570966427524884\\n      ],\\n      \\\"spread\\\": 0.3774590673545996,\\n      \\\"bcs_effect\\\": 0.15953488594176368,\\n      \\\"rho\\\": -0.762254771270759,\\n      \\\"p_rho\\\": 1.3737636015552895e-11,\\n      \\\"slope\\\": -0.7316661051875889,\\n      \\\"p_slope\\\": 8.925682180933071e-14,\\n      \\\"high_bcs_mean_acc\\\": 0.49738023724048286,\\n      \\\"low_bcs_mean_acc\\\": 0.6569151231822465,\\n      \\\"median_bcs\\\": 0.5451508412758509,\\n      \\\"n_high\\\": 28,\\n      \\\"n_low\\\": 27\\n    },\\n    \\\"count_32\\\": {\\n      \\\"label\\\": \\\"32\\\",\\n      \\\"n\\\": 55,\\n      \\\"bcs_range\\\": [\\n        0.4324798233086063,\\n        0.694971195512241\\n      ],\\n      \\\"spread\\\": 0.26249137220363467,\\n      \\\"bcs_effect\\\": 0.08437910229207424,\\n      \\\"rho\\\": -0.6929482388738422,\\n      \\\"p_rho\\\": 4.56079014158981e-09,\\n      \\\"slope\\\": -0.6296417217571051,\\n      \\\"p_slope\\\": 1.5811457877238307e-12,\\n      \\\"high_bcs_mean_acc\\\": 0.46568748681899674,\\n      \\\"low_bcs_mean_acc\\\": 0.550066589111071,\\n      \\\"median_bcs\\\": 0.5495685068590026,\\n      \\\"n_high\\\": 28,\\n      \\\"n_low\\\": 27\\n    },\\n    \\\"interaction\\\": 0.07515578364968944,\\n    \\\"ci_95\\\": [\\n      0.014875739684826588,\\n      0.12829285345706548\\n    ]\\n  },\\n  \\\"overlap_range\\\": [\\n    0.4324798233086063,\\n    0.694971195512241\\n  ],\\n  \\\"after_matching\\\": {\\n    \\\"count_16\\\": {\\n      \\\"label\\\": \\\"16\\\",\\n      \\\"n\\\": 29,\\n      \\\"bcs_range\\\": [\\n        0.47792871817946436,\\n        0.6901882817347844\\n      ],\\n      \\\"spread\\\": 0.21225956355532005,\\n      \\\"bcs_effect\\\": 0.09366983328887235,\\n      \\\"rho\\\"
+…[truncated 1309 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T18:23:32.927118+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/ -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T18:23:32.927274+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/ -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T18:23:32.927403+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/results/unconstrained_decoding_ablation_n25/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/results/unconstrained_decoding_ablation_n25/ -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T18:23:32.927522+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/ -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T18:23:32.927646+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T18:23:32.927773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/results_incremental.jsonl\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/preprocess.json\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/batch_groups.json\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/run_extract.log\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json\\n/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/bootstrap_ci.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T18:23:32.927960+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/results/unconstrained_decoding_ablation_n25/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T18:23:32.928098+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/batch_groups.json\\n/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/results_incremental.jsonl\\n/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/bootstrap_ci.json\\n/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/batch_groups.json\\n/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/results_incremental.jsonl\\n/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/bootstrap_ci.json\\n/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/all_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T18:23:32.928247+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/all_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/all_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T18:23:32.928390+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_8\\\": {\\n    \\\"delta_pp\\\": -4.17,\\n    \\\"ci_lower_pp\\\": -16.67,\\n    \\\"ci_upper_pp\\\": 7.29,\\n    \\\"low_mean_acc\\\": 0.7021,\\n    \\\"high_mean_acc\\\": 0.7438,\\n    \\\"n_low\\\": 5,\\n    \\\"n_high\\\": 5,\\n    \\\"count_key\\\": \\\"count_8\\\"\\n  },\\n  \\\"count_16\\\": {\\n    \\\"delta_pp\\\": 10.94,\\n    \\\"ci_lower_pp\\\": 3.02,\\n    \\\"ci_upper_pp\\\": 20.1,\\n    \\\"low_mean_acc\\\": 0.7083,\\n    \\\"high_mean_acc\\\": 0.599,\\n    \\\"n_low\\\": 5,\\n    \\\"n_high\\\": 5,\\n    \\\"count_key\\\": \\\"count_16\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T18:23:32.928515+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/eval_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T18:23:32.928919+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"low_0\\\": {\\n    \\\"accuracy\\\": 0.8333333333333334,\\n    \\\"correct\\\": 80,\\n    \\\"total\\\": 96,\\n    \\\"oov_count\\\": 0,\\n    \\\"oov_rate\\\": 0.0,\\n    \\\"bcs\\\": 0.47147512435913086,\\n    \\\"group\\\": \\\"low\\\",\\n    \\\"batch_types\\\": [\\n      \\\"headquarters location\\\",\\n      \\\"original language of film or TV show\\\",\\n      \\\"successful candidate\\\",\\n      \\\"sports season of league or competition\\\",\\n      \\\"country of citizenship\\\",\\n      \\\"located in or next to body of water\\\",\\n      \\\"licensed to broadcast to\\\",\\n      \\\"mountain range\\\"\\n    ],\\n    \\\"oov_predictions\\\": []\\n  },\\n  \\\"low_1\\\": {\\n    \\\"accuracy\\\": 0.8125,\\n    \\\"correct\\\": 78,\\n    \\\"total\\\": 96,\\n    \\\"oov_count\\\": 0,\\n    \\\"oov_rate\\\": 0.0,\\n    \\\"bcs\\\": 0.6464519500732422,\\n    \\\"group\\\": \\\"low\\\",\\n    \\\"batch_types\\\": [\\n      \\\"work location\\\",\\n      \\\"instrument\\\",\\n      \\\"screenwriter\\\",\\n      \\\"successful candidate\\\",\\n      \\\"distributor\\\",\\n      \\\"original network\\\",\\n      \\\"taxon rank\\\",\\n      \\\"sibling\\\"\\n    ],\\n    \\\"oov_predictions\\\": []\\n  },\\n  \\\"low_2\\\": {\\n    \\\"accuracy\\\": 0.875,\\n    \\\"correct\\\": 84,\\n    \\\"total\\\": 96,\\n    \\\"oov_count\\\": 0,\\n    \\\"oov_rate\\\": 0.0,\\n    \\\"bcs\\\": 0.6652612686157227,\\n    \\\"group\\\": \\\"low\\\",\\n    \\\"batch_types\\\": [\\n      \\\"publisher\\\",\\n      \\\"location of formation\\\",\\n      \\\"notable work\\\",\\n      \\\"located in the administrative territorial entity\\\",\\n      \\\"platform\\\",\\n      \\\"mountain range\\\",\\n      \\\"country of citizenship\\\",\\n      \\\"screenwriter\\\"\\n    ],\\n    \\\"oov_predictions\\\": []\\n  },\\n  \\\"low_3\\\": {\\n    \\\"accuracy\\\": 0.8229166666666666,\\n    \\\"correct\\\": 79,\\n    \\\"to
+…[truncated 8994 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T18:23:32.929105+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/results/unconstrained_decoding_ablation_n25/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/results/unconstrained_decoding_ablation_n25/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T18:23:32.929255+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n10\\\": {\\n    \\\"low_bcs_mean_acc\\\": 0.8042,\\n    \\\"high_bcs_mean_acc\\\": 0.725,\\n    \\\"delta_pp\\\": 7.92,\\n    \\\"spearman_rho\\\": -0.4303,\\n    \\\"spearman_pval\\\": 0.214492,\\n    \\\"oov_rate\\\": 0.0\\n  },\\n  \\\"n25\\\": {\\n    \\\"low_bcs_mean_acc\\\": 0.8093,\\n    \\\"high_bcs_mean_acc\\\": 0.7812,\\n    \\\"delta_pp\\\": 2.8,\\n    \\\"spearman_rho\\\": -0.1442,\\n    \\\"spearman_pval\\\": 0.491539,\\n    \\\"oov_rate\\\": 0.0008,\\n    \\\"ci_95_lower_pp\\\": -4.53,\\n    \\\"ci_95_upper_pp\\\": 10.56\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T18:23:32.929384+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/fewrel_factorial_tost/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T18:23:32.929588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis_1_factorial\\\": {\\n    \\\"design\\\": {\\n      \\\"description\\\": \\\"2x2 ANOVA: Count(8 vs 16) x BCS(low vs high), within 40-rel pool\\\",\\n      \\\"count_levels\\\": [\\n        8,\\n        16\\n      ],\\n      \\\"bcs_split\\\": \\\"within-count median\\\",\\n      \\\"bcs_median_count8\\\": 0.7094486355781555,\\n      \\\"bcs_median_count16\\\": 0.7871875762939453,\\n      \\\"n_per_cell\\\": {\\n        \\\"low_count_low_bcs\\\": 14,\\n        \\\"low_count_high_bcs\\\": 13,\\n        \\\"high_count_low_bcs\\\": 14,\\n        \\\"high_count_high_bcs\\\": 13\\n      },\\n      \\\"total_n\\\": 54\\n    },\\n    \\\"anova\\\": {\\n      \\\"count_F\\\": 10.975955385881212,\\n      \\\"count_p\\\": 0.0017208617891512777,\\n      \\\"count_eta2\\\": 0.17475056208543674,\\n      \\\"bcs_F\\\": 1.2355509122093238,\\n      \\\"bcs_p\\\": 0.2716466306155154,\\n      \\\"bcs_eta2\\\": 0.019671473580467606,\\n      \\\"interaction_F\\\": 0.5977645557279102,\\n      \\\"interaction_p\\\": 0.4430721167384057,\\n      \\\"interaction_eta2\\\": 0.009517138912807001,\\n      \\\"df_residual\\\": 50,\\n      \\\"mse\\\": 0.007996759100274725\\n    },\\n    \\\"tost\\\": {\\n      \\\"interaction_effect_pp\\\": -3.7660256410256303,\\n      \\\"ci_90\\\": [\\n        -11.929360202142446,\\n        4.397308920091185\\n      ],\\n      \\\"equivalence_margin_pp\\\": 3.0,\\n      \\\"p_lower\\\": 0.5621643308459352,\\n      \\\"p_upper\\\": 0.08548795461669123,\\n      \\\"p_tost\\\": 0.5621643308459352,\\n      \\\"conclusion\\\": \\\"inconclusive\\\"\\n    },\\n    \\\"cell_means\\\": {\\n      \\\"low_count_low_bcs\\\": 0.7991071428571429,\\n      \\\"low_count_high_bcs\\\": 0.7908653846153846,\\n      \\\"high_count_low_bcs\\\": 0.7366071428571429,\\n      \\\"high_count_high_bcs\\\": 0.6907051282051282\\n    }\\n  },\\n  \\\"analysis_2_regression\\\": {\\n    \\\"design\\\": {\\n      \\\"desc
+…[truncated 3177 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T18:23:32.929746+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -5 /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/results_incremental.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "head -5 /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/results_incremental.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T18:23:32.929953+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"batch_id\\\": \\\"low_0\\\", \\\"sample_id\\\": 0, \\\"batch_types\\\": [\\\"headquarters location\\\", \\\"original language of film or TV show\\\", \\\"successful candidate\\\", \\\"sports season of league or competition\\\", \\\"country of citizenship\\\", \\\"located in or next to body of water\\\", \\\"licensed to broadcast to\\\", \\\"mountain range\\\"], \\\"batch_bcs\\\": 0.47147512435913086, \\\"group\\\": \\\"low\\\", \\\"prediction\\\": \\\"country of citizenship\\\", \\\"ground_truth\\\": \\\"country of citizenship\\\", \\\"head_entity\\\": \\\"art linson\\\", \\\"tail_entity\\\": \\\"american\\\"}\\n{\\\"batch_id\\\": \\\"low_0\\\", \\\"sample_id\\\": 1, \\\"batch_types\\\": [\\\"headquarters location\\\", \\\"original language of film or TV show\\\", \\\"successful candidate\\\", \\\"sports season of league or competition\\\", \\\"country of citizenship\\\", \\\"located in or next to body of water\\\", \\\"licensed to broadcast to\\\", \\\"mountain range\\\"], \\\"batch_bcs\\\": 0.47147512435913086, \\\"group\\\": \\\"low\\\", \\\"prediction\\\": \\\"none\\\", \\\"ground_truth\\\": \\\"country of citizenship\\\", \\\"head_entity\\\": \\\"david bronstein\\\", \\\"tail_entity\\\": \\\"the soviet union\\\"}\\n{\\\"batch_id\\\": \\\"low_0\\\", \\\"sample_id\\\": 2, \\\"batch_types\\\": [\\\"headquarters location\\\", \\\"original language of film or TV show\\\", \\\"successful candidate\\\", \\\"sports season of league or competition\\\", \\\"country of citizenship\\\", \\\"located in or next to body of water\\\", \\\"licensed to broadcast to\\\", \\\"mountain range\\\"], \\\"batch_bcs\\\": 0.47147512435913086, \\\"group\\\": \\\"low\\\", \\\"prediction\\\": \\\"country of citizenship\\\", \\\"ground_truth\\\": \\\"country of citizenship\\\", \\\"head_entity\\\": \\\"mirek topolanek\\\", \\\"tail_entity\\\": \\\"czech\\\"}\\n{\\\"batch_id\\\": \\\"low_0\\\", \\\"sample_id\\\": 3, \\\"batch_types\
+…[truncated 1290 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T18:23:32.930142+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/bootstrap_ci.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/bootstrap_ci.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T18:23:32.930282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"delta_pp\\\": -4.17,\\n  \\\"ci_lower_pp\\\": -16.67,\\n  \\\"ci_upper_pp\\\": 7.29,\\n  \\\"low_mean_acc\\\": 0.7021,\\n  \\\"high_mean_acc\\\": 0.7438,\\n  \\\"n_low\\\": 5,\\n  \\\"n_high\\\": 5,\\n  \\\"count_key\\\": \\\"count_8\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T18:23:32.930405+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/bootstrap_ci.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/bootstrap_ci.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T18:23:32.930532+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"delta_pp\\\": 10.94,\\n  \\\"ci_lower_pp\\\": 3.02,\\n  \\\"ci_upper_pp\\\": 20.1,\\n  \\\"low_mean_acc\\\": 0.7083,\\n  \\\"high_mean_acc\\\": 0.599,\\n  \\\"n_low\\\": 5,\\n  \\\"n_high\\\": 5,\\n  \\\"count_key\\\": \\\"count_16\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T18:23:32.930650+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/batch_groups.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/batch_groups.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T18:23:32.930862+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"low\\\": [\\n    {\\n      \\\"types\\\": [\\n        \\\"headquarters location\\\",\\n        \\\"original language of film or TV show\\\",\\n        \\\"successful candidate\\\",\\n        \\\"sports season of league or competition\\\",\\n        \\\"country of citizenship\\\",\\n        \\\"located in or next to body of water\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"mountain range\\\"\\n      ],\\n      \\\"bcs\\\": 0.47147512435913086,\\n      \\\"source\\\": \\\"greedy_low\\\"\\n    },\\n    {\\n      \\\"types\\\": [\\n        \\\"located on terrain feature\\\",\\n        \\\"religion\\\",\\n        \\\"sibling\\\",\\n        \\\"distributor\\\",\\n        \\\"crosses\\\",\\n        \\\"sports season of league or competition\\\",\\n        \\\"contains administrative territorial entity\\\",\\n        \\\"characters\\\"\\n      ],\\n      \\\"bcs\\\": 0.5089850670525006,\\n      \\\"source\\\": \\\"random_19\\\"\\n    },\\n    {\\n      \\\"types\\\": [\\n        \\\"country of citizenship\\\",\\n        \\\"located in or next to body of water\\\",\\n        \\\"location\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"owned by\\\",\\n        \\\"place served by transport hub\\\",\\n        \\\"subsidiary\\\",\\n        \\\"taxon rank\\\"\\n      ],\\n      \\\"bcs\\\": 0.5099009349942207,\\n      \\\"source\\\": \\\"random_10\\\"\\n    },\\n    {\\n      \\\"types\\\": [\\n        \\\"publisher\\\",\\n        \\\"location of formation\\\",\\n        \\\"notable work\\\",\\n        \\\"located in the administrative territorial entity\\\",\\n        \\\"platform\\\",\\n        \\\"mountain range\\\",\\n        \\\"country of citizenship\\\",\\n        \\\"screenwriter\\\"\\n      ],\\n      \\\"bcs\\\": 0.518465342266219,\\n      \\\"source\\\": \\\"random_0\\\"\\n    },\\n    {\\n      \\\"types\\\": [\\n        \\\"military rank\\\",\\n        \\\"league\\\",\\n
+…[truncated 2439 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T18:23:32.931028+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/batch_groups.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/batch_groups.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-19T18:23:32.931158+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/bootstrap_ci.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/bootstrap_ci.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T18:23:32.931396+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"low\\\": [\\n    {\\n      \\\"types\\\": [\\n        \\\"position held\\\",\\n        \\\"record label\\\",\\n        \\\"taxon rank\\\",\\n        \\\"location of formation\\\",\\n        \\\"voice type\\\",\\n        \\\"mountain range\\\",\\n        \\\"original language of film or TV show\\\",\\n        \\\"father\\\",\\n        \\\"manufacturer\\\",\\n        \\\"located on terrain feature\\\",\\n        \\\"instrument\\\",\\n        \\\"place served by transport hub\\\",\\n        \\\"instance of\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"performer\\\",\\n        \\\"country of origin\\\"\\n      ],\\n      \\\"bcs\\\": 0.5035830865303675,\\n      \\\"source\\\": \\\"random_3\\\"\\n    },\\n    {\\n      \\\"types\\\": [\\n        \\\"applies to jurisdiction\\\",\\n        \\\"place served by transport hub\\\",\\n        \\\"record label\\\",\\n        \\\"sibling\\\",\\n        \\\"country\\\",\\n        \\\"headquarters location\\\",\\n        \\\"platform\\\",\\n        \\\"follows\\\",\\n        \\\"residence\\\",\\n        \\\"participant\\\",\\n        \\\"military branch\\\",\\n        \\\"original language of film or TV show\\\",\\n        \\\"movement\\\",\\n        \\\"mother\\\",\\n        \\\"work location\\\",\\n        \\\"successful candidate\\\"\\n      ],\\n      \\\"bcs\\\": 0.5185772769153119,\\n      \\\"source\\\": \\\"random_16\\\"\\n    },\\n    {\\n      \\\"types\\\": [\\n        \\\"notable work\\\",\\n        \\\"work location\\\",\\n        \\\"headquarters location\\\",\\n        \\\"military rank\\\",\\n        \\\"head of government\\\",\\n        \\\"original language of film or TV show\\\",\\n        \\\"movement\\\",\\n        \\\"operator\\\",\\n        \\\"competition class\\\",\\n        \\\"language of work or name\\\",\\n        \\\"successful candidate\\\",\\n        \\\"followed by\\\",\\n        \\\"member of political party\\\",\\n 
+…[truncated 4900 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T18:23:32.931580+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"delta_pp\\\": 2.8,\\n  \\\"ci_lower_pp\\\": -4.53,\\n  \\\"ci_upper_pp\\\": 10.56,\\n  \\\"low_mean_acc\\\": 0.8093,\\n  \\\"high_mean_acc\\\": 0.7812,\\n  \\\"low_accs\\\": [\\n    0.8333,\\n    0.8125,\\n    0.875,\\n    0.8438,\\n    0.6875,\\n    0.875,\\n    0.8229,\\n    0.6771,\\n    0.7292,\\n    0.8021,\\n    0.875,\\n    0.7708,\\n    0.9167\\n  ],\\n  \\\"high_accs\\\": [\\n    0.9167,\\n    0.7708,\\n    0.9271,\\n    0.5,\\n    0.6771,\\n    0.8646,\\n    0.8646,\\n    0.8229,\\n    0.8333,\\n    0.7708,\\n    0.7188,\\n    0.7083\\n  ],\\n  \\\"low_bcs_values\\\": [\\n    0.4715,\\n    0.6465,\\n    0.6921,\\n    0.7092,\\n    0.7092,\\n    0.6653,\\n    0.6724,\\n    0.6742,\\n    0.6783,\\n    0.6788,\\n    0.6869,\\n    0.6916,\\n    0.6919\\n  ],\\n  \\\"high_bcs_values\\\": [\\n    0.7123,\\n    0.7239,\\n    0.8226,\\n    0.9706,\\n    0.7348,\\n    0.7423,\\n    0.7423,\\n    0.7469,\\n    0.7677,\\n    0.7778,\\n    0.7908,\\n    0.8201\\n  ],\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"spearman_rho\\\": -0.1442,\\n  \\\"spearman_pval\\\": 0.491539,\\n  \\\"total_oov\\\": 2,\\n  \\\"total_oov_rate\\\": 0.0008,\\n  \\\"low_oov_rate\\\": 0.0,\\n  \\\"high_oov_rate\\\": 0.0017\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T18:23:32.931759+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"\nimport json\n# count_8\nwith open('/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/results_incremental.jsonl') as f:\n    lines = [json.loads(l) for l in f if l.strip()]\nbatches = {}\nfor r in lines:\n    bid = r['batch_id']\n    if bid not in batches:\n        batches[bid] = {'correct':0,'total':0,'bcs':r['batch_bcs'],'group':r['group']}\n    batches[bid]['total'] += 1\n    if r['prediction'] == r['ground_truth']:\n        batches[bid]['correct'] += 1\nfor bid,v in batches.items():\n    v['accuracy'] = v['correct']/v['total']\n    print(f'count_8 {bid} group={v[\\\"group\\\"]} bcs={v[\\\"bcs\\\"]:.4f} acc={v[\\\"accuracy\\\"]:.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "python3 -c \"\nimport json\n# count_8\nwith open('/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/results_incremental.jsonl') as f:\n    lines = [json.loads(l) for l in f if l.strip()]\nbatches = {}\nfor r in lines:\n    bid = r['batch_id']\n    if bid not in batches:\n        batches[bid] = {'correct':0,'total':0,'bcs':r['batch_bcs'],'group':r['group']}\n    batches[bid]['total'] += 1\n    if r['prediction'] == r['ground_truth']:\n        batches[bid]['correct'] += 1\nfor bid,v in batches.items():\n    v['accuracy'] = v['correct']/v['total']\n    print(f'count_8 {bid} group={v[\\\"group\\\"]} bcs={v[\\\"bcs\\\"]:.4f} acc={v[\\\"accuracy\\\"]:.4f}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T18:23:32.931951+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T18:23:32.932133+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"\nimport json\n# count_16\nwith open('/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/results_incremental.jsonl') as f:\n    lines = [json.loads(l) for l in f if l.strip()]\nbatches = {}\nfor r in lines:\n    bid = r['batch_id']\n    if bid not in batches:\n        batches[bid] = {'correct':0,'total':0,'bcs':r['batch_bcs'],'group':r['group']}\n    batches[bid]['total'] += 1\n    if r['prediction'] == r['ground_truth']:\n        batches[bid]['correct'] += 1\nfor bid,v in batches.items():\n    v['accuracy'] = v['correct']/v['total']\n    print(f'count_16 {bid} group={v[\\\"group\\\"]} bcs={v[\\\"bcs\\\"]:.4f} acc={v[\\\"accuracy\\\"]:.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "python3 -c \"\nimport json\n# count_16\nwith open('/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/results_incremental.jsonl') as f:\n    lines = [json.loads(l) for l in f if l.strip()]\nbatches = {}\nfor r in lines:\n    bid = r['batch_id']\n    if bid not in batches:\n        batches[bid] = {'correct':0,'total':0,'bcs':r['batch_bcs'],'group':r['group']}\n    batches[bid]['total'] += 1\n    if r['prediction'] == r['ground_truth']:\n        batches[bid]['correct'] += 1\nfor bid,v in batches.items():\n    v['accuracy'] = v['correct']/v['total']\n    print(f'count_16 {bid} group={v[\\\"group\\\"]} bcs={v[\\\"bcs\\\"]:.4f} acc={v[\\\"accuracy\\\"]:.4f}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T18:23:32.932272+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T18:23:32.932395+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/ -name \"*constrained*\" -name \"*.json\" -not -path \"*unconstrained*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/ -name \"*constrained*\" -name \"*.json\" -not -path \"*unconstrained*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T18:23:32.932520+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T18:23:32.932683+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -c batch_id /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/results_incremental.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep -c batch_id /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_8/results_incremental.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T18:23:32.932811+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"960\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T18:23:32.932982+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -c batch_id /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/results_incremental.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "grep -c batch_id /root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8/count_16/results_incremental.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T18:23:32.933114+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1920\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T18:23:32.933232+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts/multiseed_bcs_re/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/artifacts/multiseed_bcs_re/ -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T18:23:32.933363+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/multiseed_bcs_re/seed_123/run.log\\n/root/schema-dag-extraction/artifacts/multiseed_bcs_re/seed_123/preprocess.json\\n/root/schema-dag-extraction/artifacts/multiseed_bcs_re/seed_123/results_incremental.jsonl\\n/root/schema-dag-extraction/artifacts/multiseed_bcs_re/seed_123/analysis.json\\n/root/schema-dag-extraction/artifacts/multiseed_bcs_re/run_all.log\\n/root/schema-dag-extraction/artifacts/multiseed_bcs_re/seed_456/run.log\\n/root/schema-dag-extraction/artifacts/multiseed_bcs_re/seed_456/preprocess.json\\n/root/schema-dag-extraction/artifacts/multiseed_bcs_re/seed_456/results_incremental.jsonl\\n/root/schema-dag-extraction/artifacts/multiseed_bcs_re/seed_456/analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T18:23:32.933487+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts/fewshot_bcs_v2/ -type f -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "find /root/schema-dag-extraction/artifacts/fewshot_bcs_v2/ -type f -name \"*.json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T18:23:32.933609+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/fewshot_bcs_v2/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewshot_bcs_v2/analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T18:23:32.933726+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/fewshot_bcs_v2/analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/fewshot_bcs_v2/analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T18:23:32.933891+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"shot0_count8\\\": {\\n    \\\"n_shots\\\": 0,\\n    \\\"count\\\": 8,\\n    \\\"low_mean_acc\\\": 0.6821,\\n    \\\"high_mean_acc\\\": 0.4975,\\n    \\\"delta_pp\\\": 18.46,\\n    \\\"ci_lower_pp\\\": 14.25,\\n    \\\"ci_upper_pp\\\": 22.67,\\n    \\\"n_low_batches\\\": 25,\\n    \\\"n_high_batches\\\": 25,\\n    \\\"low_bcs_mean\\\": 0.3624,\\n    \\\"high_bcs_mean\\\": 0.7982\\n  },\\n  \\\"shot1_count8\\\": {\\n    \\\"n_shots\\\": 1,\\n    \\\"count\\\": 8,\\n    \\\"low_mean_acc\\\": 0.7538,\\n    \\\"high_mean_acc\\\": 0.5542,\\n    \\\"delta_pp\\\": 19.96,\\n    \\\"ci_lower_pp\\\": 16.29,\\n    \\\"ci_upper_pp\\\": 23.54,\\n    \\\"n_low_batches\\\": 25,\\n    \\\"n_high_batches\\\": 25,\\n    \\\"low_bcs_mean\\\": 0.3624,\\n    \\\"high_bcs_mean\\\": 0.7982\\n  },\\n  \\\"shot5_count8\\\": {\\n    \\\"n_shots\\\": 5,\\n    \\\"count\\\": 8,\\n    \\\"low_mean_acc\\\": 0.7154,\\n    \\\"high_mean_acc\\\": 0.4875,\\n    \\\"delta_pp\\\": 22.79,\\n    \\\"ci_lower_pp\\\": 18.87,\\n    \\\"ci_upper_pp\\\": 26.75,\\n    \\\"n_low_batches\\\": 25,\\n    \\\"n_high_batches\\\": 25,\\n    \\\"low_bcs_mean\\\": 0.3624,\\n    \\\"high_bcs_mean\\\": 0.7982\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T18:23:32.934068+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/multiseed_bcs_re/seed_123/analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/artifacts/multiseed_bcs_re/seed_123/analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T18:23:32.934223+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"shot0_count8\\\": {\\n    \\\"n_shots\\\": 0,\\n    \\\"count\\\": 8,\\n    \\\"low_mean_acc\\\": 0.6696,\\n    \\\"high_mean_acc\\\": 0.4508,\\n    \\\"delta_pp\\\": 21.88,\\n    \\\"ci_lower_pp\\\": 18.79,\\n    \\\"ci_upper_pp\\\": 24.83,\\n    \\\"n_low_batches\\\": 25,\\n    \\\"n_high_batches\\\": 25,\\n    \\\"low_bcs_mean\\\": 0.3624,\\n    \\\"high_bcs_mean\\\": 0.7982\\n  },\\n  \\\"shot1_count8\\\": {\\n    \\\"n_shots\\\": 1,\\n    \\\"count\\\": 8,\\n    \\\"low_mean_acc\\\": 0.7342,\\n    \\\"high_mean_acc\\\": 0.4817,\\n    \\\"delta_pp\\\": 25.25,\\n    \\\"ci_lower_pp\\\": 21.08,\\n    \\\"ci_upper_pp\\\": 29.29,\\n    \\\"n_low_batches\\\": 25,\\n    \\\"n_high_batches\\\": 25,\\n    \\\"low_bcs_mean\\\": 0.3624,\\n    \\\"high_bcs_mean\\\": 0.7982\\n  },\\n  \\\"shot5_count8\\\": {\\n    \\\"n_shots\\\": 5,\\n    \\\"count\\\": 8,\\n    \\\"low_mean_acc\\\": 0.665,\\n    \\\"high_mean_acc\\\": 0.4225,\\n    \\\"delta_pp\\\": 24.25,\\n    \\\"ci_lower_pp\\\": 19.96,\\n    \\\"ci_upper_pp\\\": 28.29,\\n    \\\"n_low_batches\\\": 25,\\n    \\\"n_high_batches\\\": 25,\\n    \\\"low_bcs_mean\\\": 0.3624,\\n    \\\"high_bcs_mean\\\": 0.7982\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T18:23:32.934473+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat << 'PYEOF' > /root/schema-dag-extraction/analysis/round22_cpu_analyses.py\n\"\"\"Round 22: Three CPU analyses (A1 + A2 + A3)\"\"\"\nimport json\nimport numpy as np\nfrom scipy import stats\nfrom pathlib import Path\n\nnp.random.seed(42)\nOUT_DIR = Path(\"/root/schema-dag-extraction/analysis\")\n\n# ============================================================\n# A1: FP8 Noise Propagation Conservative CI\n# ============================================================\nprint(\"=\" * 60)\nprint(\"A1: FP8 Noise Propagation Conservative CI\")\nprint(\"=\" * 60)\n\ndef parse_batch_accuracies(jsonl_path):\n    \"\"\"Parse JSONL to get per-batch (batch_id, group, bcs, accuracy).\"\"\"\n    batches = {}\n    with open(jsonl_path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            r = json.loads(line)\n            bid = r[\"batch_id\"]\n            if bid not in batches:\n                batches[bid] = {\"correct\": 0, \"total\": 0, \"bcs\": r[\"batch_bcs\"], \"group\": r[\"group\"]}\n            batches[bid][\"total\"] += 1\n            if r[\"prediction\"] == r[\"ground_truth\"]:\n                batches[bid][\"correct\"] += 1\n    result = []\n    for bid, v in batches.items():\n        result.append({\n            \"batch_id\": bid,\n            \"group\": v[\"group\"],\n            \"bcs\": v[\"bcs\"],\n            \"accuracy\": v[\"correct\"] / v[\"total\"],\n            \"n_samples\": v[\"total\"]\n        })\n    return result\n\nbase = Path(\"/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8\")\nbatches_8 = parse_batch_accuracies(base / \"count_8\" / \"results_incremental.jsonl\")\nbatches_16 = parse_batch_accuracies(base / \"count_16\" / \"results_incremental.jsonl\")\n\nprint(f\"\\ncount_8 batches ({len(batches_8)}):\")\nfor b in batches_8:\n    print(f\"  {b['batch_id']:10s} group={b['group']:4s} bcs={b['bcs']:.4f} acc={b['accuracy']:.4f} n={b['n_samples']}\")\n\nprint(f\"\\ncount_16 batches ({len(batches_16)}):\")\nfor b in batches_16:\n    print(f\"  {b['batch_id']:10s} group={b['group']:4s} bcs={b['bcs']:.4f} acc={b['accuracy']:.4f} n={b['n_samples']}\")\n\ndef compute_interaction(batches_low_count, batches_high_count):\n    \"\"\"interaction = (high_count_bcs_effect) - (low_count_bcs_effect)\n    bcs_effect = low_bcs_mean_acc - high_bcs_mean_acc\"\"\"\n    def bcs_effect(batches):\n        low_bcs = [b[\"accuracy\"] for b in batches if b[\"group\"] == \"low\"]\n        high_bcs = [b[\"accuracy\"] for b in batches if b[\"group\"] == \"high\"]\n        return np.mean(low_bcs) - np.mean(high_bcs)\n    return bcs_effect(batches_high_count) - bcs_effect(batches_low_count)\n\noriginal_interaction = compute_interaction(batches_8, batches_16)\nprint(f\"\\nOriginal interaction: {original_interaction:.6f} ({original_interaction*100:.2f} pp)\")\n\n# Bootstrap with noise perturbation\nsigma_noise = 0.0088  # 0.88pp in proportion\nB = 10000\nboot_interactions = []\n\nall_batches_8_accs = np.array([b[\"accuracy\"] for b in batches_8])\nall_batches_8_groups = np.array([b[\"group\"] for b in batches_8])\nall_batches_16_accs = np.array([b[\"accuracy\"] for b in batches_16])\nall_batches_16_groups = np.array([b[\"group\"] for b in batches_16])\n\nn8 = len(batches_8)\nn16 = len(batches_16)\n\nfor _ in range(B):\n    # Resample with replacement\n    idx8 = np.random.choice(n8, n8, replace=True)\n    idx16 = np.random.choice(n16, n16, replace=True)\n    \n    # Add noise\n    noisy_8 = all_batches_8_accs[idx8] + np.random.normal(0, sigma_noise, n8)\n    noisy_16 = all_batches_16_accs[idx16] + np.random.normal(0, sigma_noise, n16)\n    groups_8 = all_batches_8_groups[idx8]\n    groups_16 = all_batches_16_groups[idx16]\n    \n    # Compute interaction\n    def bcs_effect_arr(accs, groups):\n        low_mask = groups == \"low\"\n        high_mask = groups == \"high\"\n        if low_mask.sum() == 0 or high_mask.sum() == 0:\n            return np.nan\n        return np.mean(accs[low_mask]) - np.mean(accs[high_mask])\n    \n    eff_8 = bcs_effect_arr(noisy_8, groups_8)\n    eff_16 = bcs_effect_arr(noisy_16, groups_16)\n    \n    if not (np.isnan(eff_8) or np.isnan(eff_16)):\n        boot_interactions.append(eff_16 - eff_8)\n\nboot_interactions = np.array(boot_interactions)\nci_lower = np.percentile(boot_interactions, 2.5)\nci_upper = np.percentile(boot_interactions, 97.5)\nboot_mean = np.mean(boot_interactions)\n\nprint(f\"\\nNoise-propagated bootstrap (B={B}, σ_noise={sigma_noise}):\")\nprint(f\"  Mean interaction:  {boot_mean:.6f} ({boot_mean*100:.2f} pp)\")\nprint(f\"  95% CI:            [{ci_lower:.6f}, {ci_upper:.6f}]\")\nprint(f\"  95% CI (pp):       [{ci_lower*100:.2f}, {ci_upper*100:.2f}]\")\nprint(f\"  CI includes 0:     {ci_lower <= 0 <= ci_upper}\")\n\na1_result = {\n    \"description\": \"FP8 noise propagation conservative CI for FewRel BCS-controlled 2x2 factorial\",\n    \"data_source\": \"artifacts/bcs_controlled_llama-3.1-70b-fp8/count_{8,16}/results_incremental.jsonl\",\n    \"count_levels\": [8, 16],\n    \"n_batches_count_8\": n8,\n    \"n_batches_count_16\": n16,\n    \"noise_sigma\": sigma_noise,\n    \"noise_sigma_pp\": sigma_noise * 100,\n    \"n_bootstrap\": B,\n    \"original_interaction\": round(original_interaction, 6),\n    \"original_interaction_pp\": round(original_interaction * 100, 2),\n    \"noise_propagated_mean_interaction\": round(boot_mean, 6),\n    \"noise_propagated_mean_interaction_pp\": round(boot_mean * 100, 2),\n    \"noise_propagated_ci_95\": [round(ci_lower, 6), round(ci_upper, 6)],\n    \"noise_propagated_ci_95_pp\": [round(ci_lower * 100, 2), round(ci_upper * 100, 2)],\n    \"ci_includes_zero\": bool(ci_lower <= 0 <= ci_upper),\n    \"batch_data\": {\n        \"count_8\": [{\"batch_id\": b[\"batch_id\"], \"group\": b[\"group\"], \"bcs\": round(b[\"bcs\"], 4), \"accuracy\": round(b[\"accuracy\"], 4)} for b in batches_8],\n        \"count_16\": [{\"batch_id\": b[\"batch_id\"], \"group\": b[\"group\"], \"bcs\": round(b[\"bcs\"], 4), \"accuracy\": round(b[\"accuracy\"], 4)} for b in batches_16]\n    }\n}\n\nwith open(OUT_DIR / \"fp8_noise_propagated_ci.json\", \"w\") as f:\n    json.dump(a1_result, f, indent=2)\nprint(f\"\\nSaved to {OUT_DIR / 'fp8_noise_propagated_ci.json'}\")\n\n# ============================================================\n# A2: DocRED Range-Matched Post-Hoc Power\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"A2: DocRED Range-Matched Post-Hoc Power\")\nprint(\"=\" * 60)\n\nwith open(OUT_DIR / \"bcs_range_matched_results.json\") as f:\n    rm_data = json.load(f)\n\nafter = rm_data[\"after_matching\"]\nn_16 = after[\"count_16\"][\"n\"]  # 29\nn_32 = after[\"count_32\"][\"n\"]  # 55\ninteraction = after[\"interaction\"]\nci_95 = after[\"ci_95\"]\n\n# Estimate interaction SD from the CI\n# CI = interaction ± 1.96 * SE\nci_width = ci_95[1] - ci_95[0]\nse_interaction = ci_width / (2 * 1.96)\n\n# For a 2x2 design, each cell has n/2 observations\n# SE of interaction ≈ pooled_sd * sqrt(1/n_low_count + 1/n_high_count) * 2\n# But we can directly use SE from the CI\n\n# Post-hoc power: detect ±5pp interaction with observed SE\ntarget_effect = 0.05  # 5pp\n# Using non-central t approximation\n# t = target_effect / SE, df = n_16 + n_32 - 4 (2x2 design)\ndf = n_16 + n_32 - 4\nt_crit = stats.t.ppf(0.975, df)\nncp = target_effect / se_interaction  # non-centrality parameter\npower_5pp = 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp)\n\nprint(f\"\\nRange-matched data:\")\nprint(f\"  count_16: n={n_16}\")\nprint(f\"  count_32: n={n_32}\")\nprint(f\"  Observed interaction: {interaction:.6f} ({interaction*100:.2f} pp)\")\nprint(f\"  95% CI: [{ci_95[0]:.4f}, {ci_95[1]:.4f}]\")\nprint(f\"  SE(interaction): {se_interaction:.6f}\")\nprint(f\"  df: {df}\")\n\nprint(f\"\\nPost-hoc power to detect ±5pp interaction:\")\nprint(f\"  Power: {power_5pp:.4f}\")\n\n# Minimum detectable effect at 80% power\n# Find d such that power(d) = 0.80\nfrom scipy.optimize import brentq\n\ndef power_func(effect_size):\n    ncp = effect_size / se_interaction\n    return 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp) - 0.80\n\ntry:\n    mde_80 = brentq(power_func, 0.001, 0.50)\nexcept:\n    mde_80 = float(\"nan\")\n\nprint(f\"  MDE at 80% power: {mde_80:.4f} ({mde_80*100:.2f} pp)\")\n\n# Also compute for different effect sizes\neffect_sizes = [0.03, 0.05, 0.08, 0.10, 0.15]\npower_table = {}\nfor es in effect_sizes:\n    ncp = es / se_interaction\n    pwr = 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp)\n    power_table[f\"{es*100:.0f}pp\"] = round(pwr, 4)\n    print(f\"  Power for {es*100:.0f}pp effect: {pwr:.4f}\")\n\na2_result = {\n    \"description\": \"DocRED range-matched post-hoc power analysis\",\n    \"data_source\": \"analysis/bcs_range_matched_results.json\",\n    \"n_count_16_matched\": n_16,\n    \"n_count_32\": n_32,\n    \"total_n\": n_16 + n_32,\n    \"df\": df,\n    \"observed_interaction\": round(interaction, 6),\n    \"observed_interaction_pp\": round(interaction * 100, 2),\n    \"ci_95\": [round(c, 6) for c in ci_95],\n    \"se_interaction\": round(se_interaction, 6),\n    \"target_effect_pp\": 5.0,\n    \"power_5pp\": round(power_5pp, 4),\n    \"mde_80_power\": round(mde_80, 4),\n    \"mde_80_power_pp\": round(mde_80 * 100, 2),\n    \"power_table\": power_table\n}\n\nwith open(OUT_DIR / \"docred_range_matched_power.json\", \"w\") as f:\n    json.dump(a2_result, f, indent=2)\nprint(f\"\\nSaved to {OUT_DIR / 'docred_range_matched_power.json'}\")\n\n# ============================================================\n# A3: Fisher z-test: Constrained vs Unconstrained ρ\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"A3: Fisher z-test: Constrained vs Unconstrained ρ\")\nprint(\"=\" * 60)\n\n# Unconstrained: from unconstrained_decoding_ablation_n25/bootstrap_ci.json\nrho_unconstrained = -0.1442\nn_unconstrained = 25\np_unconstrained = 0.4915\n\n# Constrained: from paper v1 extreme batches (FewRel BCS-accuracy)\n# Also verify from the BCS-controlled experiment data\n# The BCS-controlled count_8 experiment had the strongest correlation\n# Using the paper-reported value ρ=-0.919, n=25 for extreme batches\nrho_constrained = -0.919\nn_constrained = 25\n\n# Also try to compute from the unconstrained eval_results as a cross-check\n# Load unconstrained batch data to verify ρ\nunc_ci = json.load(open(\"/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/bootstrap_ci.json\"))\nall_bcs_unc = unc_ci[\"low_bcs_values\"] + unc_ci[\"high_bcs_values\"]\nall_acc_unc = unc_ci[\"low_accs\"] + unc_ci[\"high_accs\"]\nrho_verify, p_verify = stats.spearmanr(all_bcs_unc, all_acc_unc)\nprint(f\"\\nUnconstrained (verified from data): ρ={rho_verify:.4f}, p={p_verify:.4f}, n={len(all_bcs_unc)}\")\nprint(f\"Unconstrained (reported):           ρ={rho_unconstrained:.4f}, p={p_unconstrained:.4f}, n={n_unconstrained}\")\n\n# Use verified values\nrho_unconstrained = rho_verify\nn_unconstrained = len(all_bcs_unc)\n\nprint(f\"\\nConstrained (paper-reported extreme batches): ρ={rho_constrained}, n={n_constrained}\")\nprint(f\"Unconstrained:                                ρ={rho_unconstrained:.4f}, n={n_unconstrained}\")\n\n# Fisher z-transformation\nz1 = np.arctanh(rho_constrained)  # constrained\nz2 = np.arctanh(rho_unconstrained)  # unconstrained\n\nse_diff = np.sqrt(1/(n_constrained - 3) + 1/(n_unconstrained - 3))\nz_fisher = (z1 - z2) / se_diff\np_fisher = 2 * (1 - stats.norm.cdf(abs(z_fisher)))\n\nprint(f\"\\nFisher z-transformation:\")\nprint(f\"  z1 (constrained):   {z1:.4f}\")\nprint(f\"  z2 (unconstrained): {z2:.4f}\")\nprint(f\"  SE(z1-z2):          {se_diff:.4f}\")\nprint(f\"  Fisher z:           {z_fisher:.4f}\")\nprint(f\"  p-value (two-tail): {p_fisher:.6f}\")\nprint(f\"  Significant (α=0.05): {p_fisher < 0.05}\")\n\na3_result = {\n    \"description\": \"Fisher z-test comparing constrained vs unconstrained BCS-accuracy correlation\",\n    \"constrained\": {\n        \"rho\": rho_constrained,\n        \"n\": n_constrained,\n        \"source\": \"paper-reported FewRel extreme batches (v1), constrained decoding\"\n    },\n    \"unconstrained\": {\n        \"rho\": round(rho_unconstrained, 4),\n        \"n\": n_unconstrained,\n        \"p_spearman\": round(p_verify, 6),\n        \"source\": \"artifacts/unconstrained_decoding_ablation_n25/bootstrap_ci.json\"\n    },\n    \"fisher_z_test\": {\n        \"z1_constrained\": round(z1, 4),\n        \"z2_unconstrained\": round(z2, 4),\n        \"se_diff\": round(se_diff, 4),\n        \"fisher_z\": round(z_fisher, 4),\n        \"p_value_two_tailed\": round(p_fisher, 6),\n        \"significant_alpha_05\": bool(p_fisher < 0.05),\n        \"significant_alpha_01\": bool(p_fisher < 0.01)\n    },\n    \"interpretation\": f\"The constrained decoding correlation (ρ={rho_constrained}) is significantly {'different' if p_fisher < 0.05 else 'not different'} from the unconstrained correlation (ρ={round(rho_unconstrained, 4)}), Fisher z={round(z_fisher, 4)}, p={round(p_fisher, 6)}\"\n}\n\nwith open(OUT_DIR / \"fisher_z_constrained_vs_unconstrained.json\", \"w\") as f:\n    json.dump(a3_result, f, indent=2)\nprint(f\"\\nSaved to {OUT_DIR / 'fisher_z_constrained_vs_unconstrained.json'}\")\n\nprint(\"\\n\" + \"=\" * 60)\nprint(\"ALL THREE ANALYSES COMPLETE\")\nprint(\"=\" * 60)\nPYEOF\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat << 'PYEOF' > /root/schema-dag-extraction/analysis/round22_cpu_analyses.py\n\"\"\"Round 22: Three CPU analyses (A1 + A2 + A3)\"\"\"\nimport json\nimport numpy as np\nfrom scipy import stats\nfrom pathlib import Path\n\nnp.random.seed(42)\nOUT_DIR = Path(\"/root/schema-dag-extraction/analysis\")\n\n# ============================================================\n# A1: FP8 Noise Propagation Conservative CI\n# ============================================================\nprint(\"=\" * 60)\nprint(\"A1: FP8 Noise Propagation Conservative CI\")\nprint(\"=\" * 60)\n\ndef parse_batch_accuracies(jsonl_path):\n    \"\"\"Parse JSONL to get per-batch (batch_id, group, bcs, accuracy).\"\"\"\n    batches = {}\n    with open(jsonl_path) as f:\n        for line in f:\n            if not line.strip():\n                continue\n            r = json.loads(line)\n            bid = r[\"batch_id\"]\n            if bid not in batches:\n                batches[bid] = {\"correct\": 0, \"total\": 0, \"bcs\": r[\"batch_bcs\"], \"group\": r[\"group\"]}\n            batches[bid][\"total\"] += 1\n            if r[\"prediction\"] == r[\"ground_truth\"]:\n                batches[bid][\"correct\"] += 1\n    result = []\n    for bid, v in batches.items():\n        result.append({\n            \"batch_id\": bid,\n            \"group\": v[\"group\"],\n            \"bcs\": v[\"bcs\"],\n            \"accuracy\": v[\"correct\"] / v[\"total\"],\n            \"n_samples\": v[\"total\"]\n        })\n    return result\n\nbase = Path(\"/root/schema-dag-extraction/artifacts/bcs_controlled_llama-3.1-70b-fp8\")\nbatches_8 = parse_batch_accuracies(base / \"count_8\" / \"results_incremental.jsonl\")\nbatches_16 = parse_batch_accuracies(base / \"count_16\" / \"results_incremental.jsonl\")\n\nprint(f\"\\ncount_8 batches ({len(batches_8)}):\")\nfor b in batches_8:\n    print(f\"  {b['batch_id']:10s} group={b['group']:4s} bcs={b['bcs']:.4f} acc={b['accuracy']:.4f} n={b['n_samples']}\")\n\nprint(f\"\\ncount_16 batches ({len(batches_16)}):\")\nfor b in batches_16:\n    print(f\"  {b['batch_id']:10s} group={b['group']:4s} bcs={b['bcs']:.4f} acc={b['accuracy']:.4f} n={b['n_samples']}\")\n\ndef compute_interaction(batches_low_count, batches_high_count):\n    \"\"\"interaction = (high_count_bcs_effect) - (low_count_bcs_effect)\n    bcs_effect = low_bcs_mean_acc - high_bcs_mean_acc\"\"\"\n    def bcs_effect(batches):\n        low_bcs = [b[\"accuracy\"] for b in batches if b[\"group\"] == \"low\"]\n        high_bcs = [b[\"accuracy\"] for b in batches if b[\"group\"] == \"high\"]\n        return np.mean(low_bcs) - np.mean(high_bcs)\n    return bcs_effect(batches_high_count) - bcs_effect(batches_low_count)\n\noriginal_interaction = compute_interaction(batches_8, batches_16)\nprint(f\"\\nOriginal interaction: {original_interaction:.6f} ({original_interaction*100:.2f} pp)\")\n\n# Bootstrap with noise perturbation\nsigma_noise = 0.0088  # 0.88pp in proportion\nB = 10000\nboot_interactions = []\n\nall_batches_8_accs = np.array([b[\"accuracy\"] for b in batches_8])\nall_batches_8_groups = np.array([b[\"group\"] for b in batches_8])\nall_batches_16_accs = np.array([b[\"accuracy\"] for b in batches_16])\nall_batches_16_groups = np.array([b[\"group\"] for b in batches_16])\n\nn8 = len(batches_8)\nn16 = len(batches_16)\n\nfor _ in range(B):\n    # Resample with replacement\n    idx8 = np.random.choice(n8, n8, replace=True)\n    idx16 = np.random.choice(n16, n16, replace=True)\n    \n    # Add noise\n    noisy_8 = all_batches_8_accs[idx8] + np.random.normal(0, sigma_noise, n8)\n    noisy_16 = all_batches_16_accs[idx16] + np.random.normal(0, sigma_noise, n16)\n    groups_8 = all_batches_8_groups[idx8]\n    groups_16 = all_batches_16_groups[idx16]\n    \n    # Compute interaction\n    def bcs_effect_arr(accs, groups):\n        low_mask = groups == \"low\"\n        high_mask = groups == \"high\"\n        if low_mask.sum() == 0 or high_mask.sum() == 0:\n            return np.nan\n        return np.mean(accs[low_mask]) - np.mean(accs[high_mask])\n    \n    eff_8 = bcs_effect_arr(noisy_8, groups_8)\n    eff_16 = bcs_effect_arr(noisy_16, groups_16)\n    \n    if not (np.isnan(eff_8) or np.isnan(eff_16)):\n        boot_interactions.append(eff_16 - eff_8)\n\nboot_interactions = np.array(boot_interactions)\nci_lower = np.percentile(boot_interactions, 2.5)\nci_upper = np.percentile(boot_interactions, 97.5)\nboot_mean = np.mean(boot_interactions)\n\nprint(f\"\\nNoise-propagated bootstrap (B={B}, σ_noise={sigma_noise}):\")\nprint(f\"  Mean interaction:  {boot_mean:.6f} ({boot_mean*100:.2f} pp)\")\nprint(f\"  95% CI:            [{ci_lower:.6f}, {ci_upper:.6f}]\")\nprint(f\"  95% CI (pp):       [{ci_lower*100:.2f}, {ci_upper*100:.2f}]\")\nprint(f\"  CI includes 0:     {ci_lower <= 0 <= ci_upper}\")\n\na1_result = {\n    \"description\": \"FP8 noise propagation conservative CI for FewRel BCS-controlled 2x2 factorial\",\n    \"data_source\": \"artifacts/bcs_controlled_llama-3.1-70b-fp8/count_{8,16}/results_incremental.jsonl\",\n    \"count_levels\": [8, 16],\n    \"n_batches_count_8\": n8,\n    \"n_batches_count_16\": n16,\n    \"noise_sigma\": sigma_noise,\n    \"noise_sigma_pp\": sigma_noise * 100,\n    \"n_bootstrap\": B,\n    \"original_interaction\": round(original_interaction, 6),\n    \"original_interaction_pp\": round(original_interaction * 100, 2),\n    \"noise_propagated_mean_interaction\": round(boot_mean, 6),\n    \"noise_propagated_mean_interaction_pp\": round(boot_mean * 100, 2),\n    \"noise_propagated_ci_95\": [round(ci_lower, 6), round(ci_upper, 6)],\n    \"noise_propagated_ci_95_pp\": [round(ci_lower * 100, 2), round(ci_upper * 100, 2)],\n    \"ci_includes_zero\": bool(ci_lower <= 0 <= ci_upper),\n    \"batch_data\": {\n        \"count_8\": [{\"batch_id\": b[\"batch_id\"], \"group\": b[\"group\"], \"bcs\": round(b[\"bcs\"], 4), \"accuracy\": round(b[\"accuracy\"], 4)} for b in batches_8],\n        \"count_16\": [{\"batch_id\": b[\"batch_id\"], \"group\": b[\"group\"], \"bcs\": round(b[\"bcs\"], 4), \"accuracy\": round(b[\"accuracy\"], 4)} for b in batches_16]\n    }\n}\n\nwith open(OUT_DIR / \"fp8_noise_propagated_ci.json\", \"w\") as f:\n    json.dump(a1_result, f, indent=2)\nprint(f\"\\nSaved to {OUT_DIR / 'fp8_noise_propagated_ci.json'}\")\n\n# ============================================================\n# A2: DocRED Range-Matched Post-Hoc Power\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"A2: DocRED Range-Matched Post-Hoc Power\")\nprint(\"=\" * 60)\n\nwith open(OUT_DIR / \"bcs_range_matched_results.json\") as f:\n    rm_data = json.load(f)\n\nafter = rm_data[\"after_matching\"]\nn_16 = after[\"count_16\"][\"n\"]  # 29\nn_32 = after[\"count_32\"][\"n\"]  # 55\ninteraction = after[\"interaction\"]\nci_95 = after[\"ci_95\"]\n\n# Estimate interaction SD from the CI\n# CI = interaction ± 1.96 * SE\nci_width = ci_95[1] - ci_95[0]\nse_interaction = ci_width / (2 * 1.96)\n\n# For a 2x2 design, each cell has n/2 observations\n# SE of interaction ≈ pooled_sd * sqrt(1/n_low_count + 1/n_high_count) * 2\n# But we can directly use SE from the CI\n\n# Post-hoc power: detect ±5pp interaction with observed SE\ntarget_effect = 0.05  # 5pp\n# Using non-central t approximation\n# t = target_effect / SE, df = n_16 + n_32 - 4 (2x2 design)\ndf = n_16 + n_32 - 4\nt_crit = stats.t.ppf(0.975, df)\nncp = target_effect / se_interaction  # non-centrality parameter\npower_5pp = 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp)\n\nprint(f\"\\nRange-matched data:\")\nprint(f\"  count_16: n={n_16}\")\nprint(f\"  count_32: n={n_32}\")\nprint(f\"  Observed interaction: {interaction:.6f} ({interaction*100:.2f} pp)\")\nprint(f\"  95% CI: [{ci_95[0]:.4f}, {ci_95[1]:.4f}]\")\nprint(f\"  SE(interaction): {se_interaction:.6f}\")\nprint(f\"  df: {df}\")\n\nprint(f\"\\nPost-hoc power to detect ±5pp interaction:\")\nprint(f\"  Power: {power_5pp:.4f}\")\n\n# Minimum detectable effect at 80% power\n# Find d such that power(d) = 0.80\nfrom scipy.optimize import brentq\n\ndef power_func(effect_size):\n    ncp = effect_size / se_interaction\n    return 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp) - 0.80\n\ntry:\n    mde_80 = brentq(power_func, 0.001, 0.50)\nexcept:\n    mde_80 = float(\"nan\")\n\nprint(f\"  MDE at 80% power: {mde_80:.4f} ({mde_80*100:.2f} pp)\")\n\n# Also compute for different effect sizes\neffect_sizes = [0.03, 0.05, 0.08, 0.10, 0.15]\npower_table = {}\nfor es in effect_sizes:\n    ncp = es / se_interaction\n    pwr = 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp)\n    power_table[f\"{es*100:.0f}pp\"] = round(pwr, 4)\n    print(f\"  Power for {es*100:.0f}pp effect: {pwr:.4f}\")\n\na2_result = {\n    \"description\": \"DocRED range-matched post-hoc power analysis\",\n    \"data_source\": \"analysis/bcs_range_matched_results.json\",\n    \"n_count_16_matched\": n_16,\n    \"n_count_32\": n_32,\n    \"total_n\": n_16 + n_32,\n    \"df\": df,\n    \"observed_interaction\": round(interaction, 6),\n    \"observed_interaction_pp\": round(interaction * 100, 2),\n    \"ci_95\": [round(c, 6) for c in ci_95],\n    \"se_interaction\": round(se_interaction, 6),\n    \"target_effect_pp\": 5.0,\n    \"power_5pp\": round(power_5pp, 4),\n    \"mde_80_power\": round(mde_80, 4),\n    \"mde_80_power_pp\": round(mde_80 * 100, 2),\n    \"power_table\": power_table\n}\n\nwith open(OUT_DIR / \"docred_range_matched_power.json\", \"w\") as f:\n    json.dump(a2_result, f, indent=2)\nprint(f\"\\nSaved to {OUT_DIR / 'docred_range_matched_power.json'}\")\n\n# ============================================================\n# A3: Fisher z-test: Constrained vs Unconstrained ρ\n# ============================================================\nprint(\"\\n\" + \"=\" * 60)\nprint(\"A3: Fisher z-test: Constrained vs Unconstrained ρ\")\nprint(\"=\" * 60)\n\n# Unconstrained: from unconstrained_decoding_ablation_n25/bootstrap_ci.json\nrho_unconstrained = -0.1442\nn_unconstrained = 25\np_unconstrained = 0.4915\n\n# Constrained: from paper v1 extreme batches (FewRel BCS-accuracy)\n# Also verify from the BCS-controlled experiment data\n# The BCS-controlled count_8 experiment had the strongest correlation\n# Using the paper-reported value ρ=-0.919, n=25 for extreme batches\nrho_constrained = -0.919\nn_constrained = 25\n\n# Also try to compute from the unconstrained eval_results as a cross-check\n# Load unconstrained batch data to verify ρ\nunc_ci = json.load(open(\"/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/bootstrap_ci.json\"))\nall_bcs_unc = unc_ci[\"low_bcs_values\"] + unc_ci[\"high_bcs_values\"]\nall_acc_unc = unc_ci[\"low_accs\"] + unc_ci[\"high_accs\"]\nrho_verify, p_verify = stats.spearmanr(all_bcs_unc, all_acc_unc)\nprint(f\"\\nUnconstrained (verified from data): ρ={rho_verify:.4f}, p={p_verify:.4f}, n={len(all_bcs_unc)}\")\nprint(f\"Unconstrained (reported):           ρ={rho_unconstrained:.4f}, p={p_unconstrained:.4f}, n={n_unconstrained}\")\n\n# Use verified values\nrho_unconstrained = rho_verify\nn_unconstrained = len(all_bcs_unc)\n\nprint(f\"\\nConstrained (paper-reported extreme batches): ρ={rho_constrained}, n={n_constrained}\")\nprint(f\"Unconstrained:                                ρ={rho_unconstrained:.4f}, n={n_unconstrained}\")\n\n# Fisher z-transformation\nz1 = np.arctanh(rho_constrained)  # constrained\nz2 = np.arctanh(rho_unconstrained)  # unconstrained\n\nse_diff = np.sqrt(1/(n_constrained - 3) + 1/(n_unconstrained - 3))\nz_fisher = (z1 - z2) / se_diff\np_fisher = 2 * (1 - stats.norm.cdf(abs(z_fisher)))\n\nprint(f\"\\nFisher z-transformation:\")\nprint(f\"  z1 (constrained):   {z1:.4f}\")\nprint(f\"  z2 (unconstrained): {z2:.4f}\")\nprint(f\"  SE(z1-z2):          {se_diff:.4f}\")\nprint(f\"  Fisher z:           {z_fisher:.4f}\")\nprint(f\"  p-value (two-tail): {p_fisher:.6f}\")\nprint(f\"  Significant (α=0.05): {p_fisher < 0.05}\")\n\na3_result = {\n    \"description\": \"Fisher z-test comparing constrained vs unconstrained BCS-accuracy correlation\",\n    \"constrained\": {\n        \"rho\": rho_constrained,\n        \"n\": n_constrained,\n        \"source\": \"paper-reported FewRel extreme batches (v1), constrained decoding\"\n    },\n    \"unconstrained\": {\n        \"rho\": round(rho_unconstrained, 4),\n        \"n\": n_unconstrained,\n        \"p_spearman\": round(p_verify, 6),\n        \"source\": \"artifacts/unconstrained_decoding_ablation_n25/bootstrap_ci.json\"\n    },\n    \"fisher_z_test\": {\n        \"z1_constrained\": round(z1, 4),\n        \"z2_unconstrained\": round(z2, 4),\n        \"se_diff\": round(se_diff, 4),\n        \"fisher_z\": round(z_fisher, 4),\n        \"p_value_two_tailed\": round(p_fisher, 6),\n        \"significant_alpha_05\": bool(p_fisher < 0.05),\n        \"significant_alpha_01\": bool(p_fisher < 0.01)\n    },\n    \"interpretation\": f\"The constrained decoding correlation (ρ={rho_constrained}) is significantly {'different' if p_fisher < 0.05 else 'not different'} from the unconstrained correlation (ρ={round(rho_unconstrained, 4)}), Fisher z={round(z_fisher, 4)}, p={round(p_fisher, 6)}\"\n}\n\nwith open(OUT_DIR / \"fisher_z_constrained_vs_unconstrained.json\", \"w\") as f:\n    json.dump(a3_result, f, indent=2)\nprint(f\"\\nSaved to {OUT_DIR / 'fisher_z_constrained_vs_unconstrained.json'}\")\n\nprint(\"\\n\" + \"=\" * 60)\nprint(\"ALL THREE ANALYSES COMPLETE\")\nprint(\"=\" * 60)\nPYEOF\necho \"Script written successfully\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T18:23:32.934767+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T18:23:32.934924+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python analysis/round22_cpu_analyses.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python analysis/round22_cpu_analyses.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T18:23:32.935126+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nA1: FP8 Noise Propagation Conservative CI\\n============================================================\\n\\ncount_8 batches (10):\\n  low_0      group=low  bcs=0.4715 acc=0.6875 n=96\\n  low_1      group=low  bcs=0.5090 acc=0.7188 n=96\\n  low_2      group=low  bcs=0.5099 acc=0.6042 n=96\\n  low_3      group=low  bcs=0.5185 acc=0.7292 n=96\\n  low_4      group=low  bcs=0.5243 acc=0.7708 n=96\\n  high_0     group=high bcs=0.5861 acc=0.8021 n=96\\n  high_1     group=high bcs=0.5865 acc=0.7083 n=96\\n  high_2     group=high bcs=0.5876 acc=0.9479 n=96\\n  high_3     group=high bcs=0.5982 acc=0.6771 n=96\\n  high_4     group=high bcs=0.9706 acc=0.5833 n=96\\n\\ncount_16 batches (10):\\n  low_0      group=low  bcs=0.5036 acc=0.6719 n=192\\n  low_1      group=low  bcs=0.5186 acc=0.7135 n=192\\n  low_2      group=low  bcs=0.5260 acc=0.7240 n=192\\n  low_3      group=low  bcs=0.5292 acc=0.7031 n=192\\n  low_4      group=low  bcs=0.5296 acc=0.7292 n=192\\n  high_0     group=high bcs=0.5814 acc=0.5990 n=192\\n  high_1     group=high bcs=0.5839 acc=0.6354 n=192\\n  high_2     group=high bcs=0.5890 acc=0.7292 n=192\\n  high_3     group=high bcs=0.6159 acc=0.5938 n=192\\n  high_4     group=high bcs=0.9706 acc=0.4375 n=192\\n\\nOriginal interaction: 0.151042 (15.10 pp)\\n\\nNoise-propagated bootstrap (B=10000, σ_noise=0.0088):\\n  Mean interaction:  0.152202 (15.22 pp)\\n  95% CI:            [0.001527, 0.316307]\\n  95% CI (pp):       [0.15, 31.63]\\n  CI includes 0:     False\\n\\nSaved to /root/schema-dag-extraction/analysis/fp8_noise_propagated_ci.json\\n\\n============================================================\\nA2: DocRED Range-Matched Post-Hoc Power\\n============================================================\\n\\nRange-matched data:\\n  count_16: n=29\\n  count_32: n=55\\n  Observed interaction: 0.009291 (0.93 pp)\\n  95% CI: [-0.0713, 0.0744]\\n 
+…[truncated 1410 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T18:23:32.935320+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy import stats\nfrom scipy.optimize import brentq\n\nwith open('/root/schema-dag-extraction/analysis/bcs_range_matched_results.json') as f:\n    rm_data = json.load(f)\n\nafter = rm_data['after_matching']\nn_16 = after['count_16']['n']\nn_32 = after['count_32']['n']\nci_95 = after['ci_95']\nci_width = ci_95[1] - ci_95[0]\nse_interaction = ci_width / (2 * 1.96)\ndf = n_16 + n_32 - 4\nt_crit = stats.t.ppf(0.975, df)\n\ndef power_at(effect_size):\n    ncp = effect_size / se_interaction\n    return 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp)\n\n# Check power at 0.50\nprint(f'Power at 50pp: {power_at(0.50):.4f}')\nprint(f'Power at 15pp: {power_at(0.15):.4f}')\nprint(f'Power at 10pp: {power_at(0.10):.4f}')\nprint(f'Power at 11pp: {power_at(0.11):.4f}')\n\ndef power_minus_80(es):\n    return power_at(es) - 0.80\n\nmde = brentq(power_minus_80, 0.001, 0.50)\nprint(f'MDE at 80% power: {mde:.4f} ({mde*100:.2f} pp)')\n\n# Update the JSON\nwith open('/root/schema-dag-extraction/analysis/docred_range_matched_power.json') as f:\n    a2 = json.load(f)\na2['mde_80_power'] = round(mde, 4)\na2['mde_80_power_pp'] = round(mde * 100, 2)\nwith open('/root/schema-dag-extraction/analysis/docred_range_matched_power.json', 'w') as f:\n    json.dump(a2, f, indent=2)\nprint('Updated docred_range_matched_power.json')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\nfrom scipy import stats\nfrom scipy.optimize import brentq\n\nwith open('/root/schema-dag-extraction/analysis/bcs_range_matched_results.json') as f:\n    rm_data = json.load(f)\n\nafter = rm_data['after_matching']\nn_16 = after['count_16']['n']\nn_32 = after['count_32']['n']\nci_95 = after['ci_95']\nci_width = ci_95[1] - ci_95[0]\nse_interaction = ci_width / (2 * 1.96)\ndf = n_16 + n_32 - 4\nt_crit = stats.t.ppf(0.975, df)\n\ndef power_at(effect_size):\n    ncp = effect_size / se_interaction\n    return 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp)\n\n# Check power at 0.50\nprint(f'Power at 50pp: {power_at(0.50):.4f}')\nprint(f'Power at 15pp: {power_at(0.15):.4f}')\nprint(f'Power at 10pp: {power_at(0.10):.4f}')\nprint(f'Power at 11pp: {power_at(0.11):.4f}')\n\ndef power_minus_80(es):\n    return power_at(es) - 0.80\n\nmde = brentq(power_minus_80, 0.001, 0.50)\nprint(f'MDE at 80% power: {mde:.4f} ({mde*100:.2f} pp)')\n\n# Update the JSON\nwith open('/root/schema-dag-extraction/analysis/docred_range_matched_power.json') as f:\n    a2 = json.load(f)\na2['mde_80_power'] = round(mde, 4)\na2['mde_80_power_pp'] = round(mde * 100, 2)\nwith open('/root/schema-dag-extraction/analysis/docred_range_matched_power.json', 'w') as f:\n    json.dump(a2, f, indent=2)\nprint('Updated docred_range_matched_power.json')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T18:23:32.935502+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json, numpy as np\\\\nfrom scipy import stats\\\\nfrom scipy.optimize import brentq\\\\n\\\\nwith open(\\\\'/root/schema-dag-extraction/analysis/bcs_range_matched_results.json\\\\') as f:\\\\n    rm_data = json.load(f)\\\\n\\\\nafter = rm_data[\\\\'after_matching\\\\']\\\\nn_16 = after[\\\\'count_16\\\\'][\\\\'n\\\\']\\\\nn_32 = after[\\\\'count_32\\\\'][\\\\'n\\\\']\\\\nci_95 = after[\\\\'ci_95\\\\']\\\\nci_width = ci_95[1] - ci_95[0]\\\\nse_interaction = ci_width / (2 * 1.96)\\\\ndf = n_16 + n_32 - 4\\\\nt_crit = stats.t.ppf(0.975, df)\\\\n\\\\ndef power_at(effect_size):\\\\n    ncp = effect_size / se_interaction\\\\n    return 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp)\\\\n\\\\n# Check power at 0.50\\\\nprint(f\\\\'Power at 50pp: {power_at(0.50):.4f}\\\\')\\\\nprint(f\\\\'Power at 15pp: {power_at(0.15):.4f}\\\\')\\\\nprint(f\\\\'Power at 10pp: {power_at(0.10):.4f}\\\\')\\\\nprint(f\\\\'Power at 11pp: {power_at(0.11):.4f}\\\\')\\\\n\\\\ndef power_minus_80(es):\\\\n    return power_at(es) - 0.80\\\\n\\\\nmde = brentq(power_minus_80, 0.001, 0.50)\\\\nprint(f\\\\'MDE at 80% power: {mde:.4f} ({mde*100:.2f} pp)\\\\')\\\\n\\\\n# Update the JSON\\\\nwith open(\\\\'/root/schema-dag-extraction/analysis/docred_range_matched_power.json\\\\') as f:\\\\n    a2 = json.load(f)\\\\na2[\\\\'mde_80_power\\\\'] = round(mde, 4)\\\\na2[\\\\'mde_80_power_pp\\\\'] = round(mde * 100, 2)\\\\nwith open(\\\\'/root/schema-dag-extraction/analysis/docred_range_matched_power.json\\\\', \\\\'w\\\\') as f:\\\\n    json.dump(a2, f, indent=2)\\\\nprint(\\\\'Updated docred_range_matched_power.json\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nPower at 50pp: nan\\nPower at 15pp: 0.9787\\nPower at 10pp: 0.7576\\nPower at 11pp: 0.8326\\n\\nStderr:\\n\\nTraceb
+…[truncated 605 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T18:23:32.935679+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat << 'PYEOF' > /tmp/fix_a2.py\nimport json, numpy as np\nfrom scipy import stats\nfrom scipy.optimize import brentq\n\nwith open('/root/schema-dag-extraction/analysis/bcs_range_matched_results.json') as f:\n    rm_data = json.load(f)\n\nafter = rm_data['after_matching']\nn_16 = after['count_16']['n']\nn_32 = after['count_32']['n']\nci_95 = after['ci_95']\nci_width = ci_95[1] - ci_95[0]\nse_interaction = ci_width / (2 * 1.96)\ndf = n_16 + n_32 - 4\nt_crit = stats.t.ppf(0.975, df)\n\ndef power_at(effect_size):\n    ncp = effect_size / se_interaction\n    return 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp)\n\nmde = brentq(lambda es: power_at(es) - 0.80, 0.01, 0.20)\nprint(f'MDE at 80% power: {mde:.4f} ({mde*100:.2f} pp)')\n\nwith open('/root/schema-dag-extraction/analysis/docred_range_matched_power.json') as f:\n    a2 = json.load(f)\na2['mde_80_power'] = round(mde, 4)\na2['mde_80_power_pp'] = round(mde * 100, 2)\nwith open('/root/schema-dag-extraction/analysis/docred_range_matched_power.json', 'w') as f:\n    json.dump(a2, f, indent=2)\nprint('Updated docred_range_matched_power.json')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/fix_a2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat << 'PYEOF' > /tmp/fix_a2.py\nimport json, numpy as np\nfrom scipy import stats\nfrom scipy.optimize import brentq\n\nwith open('/root/schema-dag-extraction/analysis/bcs_range_matched_results.json') as f:\n    rm_data = json.load(f)\n\nafter = rm_data['after_matching']\nn_16 = after['count_16']['n']\nn_32 = after['count_32']['n']\nci_95 = after['ci_95']\nci_width = ci_95[1] - ci_95[0]\nse_interaction = ci_width / (2 * 1.96)\ndf = n_16 + n_32 - 4\nt_crit = stats.t.ppf(0.975, df)\n\ndef power_at(effect_size):\n    ncp = effect_size / se_interaction\n    return 1 - stats.nct.cdf(t_crit, df, ncp) + stats.nct.cdf(-t_crit, df, ncp)\n\nmde = brentq(lambda es: power_at(es) - 0.80, 0.01, 0.20)\nprint(f'MDE at 80% power: {mde:.4f} ({mde*100:.2f} pp)')\n\nwith open('/root/schema-dag-extraction/analysis/docred_range_matched_power.json') as f:\n    a2 = json.load(f)\na2['mde_80_power'] = round(mde, 4)\na2['mde_80_power_pp'] = round(mde * 100, 2)\nwith open('/root/schema-dag-extraction/analysis/docred_range_matched_power.json', 'w') as f:\n    json.dump(a2, f, indent=2)\nprint('Updated docred_range_matched_power.json')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/fix_a2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T18:23:32.935818+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"MDE at 80% power: 0.1054 (10.54 pp)\\nUpdated docred_range_matched_power.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T18:23:32.935992+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/analysis/fp8_noise_propagated_ci.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/analysis/fp8_noise_propagated_ci.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T18:23:32.936201+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"FP8 noise propagation conservative CI for FewRel BCS-controlled 2x2 factorial\\\",\\n  \\\"data_source\\\": \\\"artifacts/bcs_controlled_llama-3.1-70b-fp8/count_{8,16}/results_incremental.jsonl\\\",\\n  \\\"count_levels\\\": [\\n    8,\\n    16\\n  ],\\n  \\\"n_batches_count_8\\\": 10,\\n  \\\"n_batches_count_16\\\": 10,\\n  \\\"noise_sigma\\\": 0.0088,\\n  \\\"noise_sigma_pp\\\": 0.88,\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"original_interaction\\\": 0.151042,\\n  \\\"original_interaction_pp\\\": 15.1,\\n  \\\"noise_propagated_mean_interaction\\\": 0.152202,\\n  \\\"noise_propagated_mean_interaction_pp\\\": 15.22,\\n  \\\"noise_propagated_ci_95\\\": [\\n    0.001527,\\n    0.316307\\n  ],\\n  \\\"noise_propagated_ci_95_pp\\\": [\\n    0.15,\\n    31.63\\n  ],\\n  \\\"ci_includes_zero\\\": false,\\n  \\\"batch_data\\\": {\\n    \\\"count_8\\\": [\\n      {\\n        \\\"batch_id\\\": \\\"low_0\\\",\\n        \\\"group\\\": \\\"low\\\",\\n        \\\"bcs\\\": 0.4715,\\n        \\\"accuracy\\\": 0.6875\\n      },\\n      {\\n        \\\"batch_id\\\": \\\"low_1\\\",\\n        \\\"group\\\": \\\"low\\\",\\n        \\\"bcs\\\": 0.509,\\n        \\\"accuracy\\\": 0.7188\\n      },\\n      {\\n        \\\"batch_id\\\": \\\"low_2\\\",\\n        \\\"group\\\": \\\"low\\\",\\n        \\\"bcs\\\": 0.5099,\\n        \\\"accuracy\\\": 0.6042\\n      },\\n      {\\n        \\\"batch_id\\\": \\\"low_3\\\",\\n        \\\"group\\\": \\\"low\\\",\\n        \\\"bcs\\\": 0.5185,\\n        \\\"accuracy\\\": 0.7292\\n      },\\n      {\\n        \\\"batch_id\\\": \\\"low_4\\\",\\n        \\\"group\\\": \\\"low\\\",\\n        \\\"bcs\\\": 0.5243,\\n        \\\"accuracy\\\": 0.7708\\n      },\\n      {\\n        \\\"batch_id\\\": \\\"high_0\\\",\\n        \\\"group\\\": \\\"high\\\",\\n        \\\"bcs\\\": 0.5861,\\n        \\\"accuracy\\\": 0.8021\\n      },\\n      {\\n        \\\"batch_id\\\": \\\"hig
+…[truncated 2475 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-19T18:23:32.936359+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/analysis/docred_range_matched_power.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/analysis/docred_range_matched_power.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-19T18:23:32.936507+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"DocRED range-matched post-hoc power analysis\\\",\\n  \\\"data_source\\\": \\\"analysis/bcs_range_matched_results.json\\\",\\n  \\\"n_count_16_matched\\\": 29,\\n  \\\"n_count_32\\\": 55,\\n  \\\"total_n\\\": 84,\\n  \\\"df\\\": 80,\\n  \\\"observed_interaction\\\": 0.009291,\\n  \\\"observed_interaction_pp\\\": 0.93,\\n  \\\"ci_95\\\": [\\n    -0.071259,\\n    0.074408\\n  ],\\n  \\\"se_interaction\\\": 0.03716,\\n  \\\"target_effect_pp\\\": 5.0,\\n  \\\"power_5pp\\\": 0.2647,\\n  \\\"mde_80_power\\\": 0.1054,\\n  \\\"mde_80_power_pp\\\": 10.54,\\n  \\\"power_table\\\": {\\n    \\\"3pp\\\": 0.1255,\\n    \\\"5pp\\\": 0.2647,\\n    \\\"8pp\\\": 0.5663,\\n    \\\"10pp\\\": 0.7576,\\n    \\\"15pp\\\": 0.9787\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T18:23:32.936637+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/analysis/fisher_z_constrained_vs_unconstrained.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-38874",
+    "command": "cat /root/schema-dag-extraction/analysis/fisher_z_constrained_vs_unconstrained.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T18:23:32.936788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Fisher z-test comparing constrained vs unconstrained BCS-accuracy correlation\\\",\\n  \\\"constrained\\\": {\\n    \\\"rho\\\": -0.919,\\n    \\\"n\\\": 25,\\n    \\\"source\\\": \\\"paper-reported FewRel extreme batches (v1), constrained decoding\\\"\\n  },\\n  \\\"unconstrained\\\": {\\n    \\\"rho\\\": -0.1392,\\n    \\\"n\\\": 25,\\n    \\\"p_spearman\\\": 0.506792,\\n    \\\"source\\\": \\\"artifacts/unconstrained_decoding_ablation_n25/bootstrap_ci.json\\\"\\n  },\\n  \\\"fisher_z_test\\\": {\\n    \\\"z1_constrained\\\": -1.5826,\\n    \\\"z2_unconstrained\\\": -0.1402,\\n    \\\"se_diff\\\": 0.3015,\\n    \\\"fisher_z\\\": -4.7839,\\n    \\\"p_value_two_tailed\\\": 2e-06,\\n    \\\"significant_alpha_05\\\": true,\\n    \\\"significant_alpha_01\\\": true\\n  },\\n  \\\"interpretation\\\": \\\"The constrained decoding correlation (\\\\u03c1=-0.919) is significantly different from the unconstrained correlation (\\\\u03c1=-0.1392), Fisher z=-4.7839, p=2e-06\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-19T18:23:32.936988+00:00_
+
+三个分析全部完成，结果已保存。
+
+### A1: FP8 噪声传播保守 CI
+- 数据：`bcs_controlled_llama-3.1-70b-fp8` count_8 (10 batches) × count_16 (10 batches)
+- 原始 interaction: **15.10 pp**
+- 噪声传播 95% CI (B=10000, σ=0.88pp): **[0.15, 31.63] pp**
+- CI 不含 0 → 即使考虑 FP8 量化噪声，interaction 仍然显著
+- 保存: `analysis/fp8_noise_propagated_ci.json`
+
+### A2: DocRED Range-Matched Post-Hoc Power
+- Range-matched 后: n_16=29, n_32=55, observed interaction=0.93 pp
+- 检测 ±5pp interaction 的 power: **0.2647** (严重不足)
+- 80% power 对应 MDE: **10.54 pp**
+- Power table: 3pp→0.13, 5pp→0.26, 8pp→0.57, 10pp→0.76, 15pp→0.98
+- 保存: `analysis/docred_range_matched_power.json`
+
+### A3: Fisher z-test
+- Constrained ρ=-0.919 (n=25), Unconstrained ρ=-0.139 (n=25)
+- Fisher z = **-4.78**, p = **2×10⁻⁶**
+- 两组相关性差异高度显著 → constrained decoding 下 BCS 预测力远强于 unconstrained
+- 保存: `analysis/fisher_z_constrained_vs_unconstrained.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_r22_cpu_analyses_20260519T181910"
+}
+```
+
+</details>
+
+---

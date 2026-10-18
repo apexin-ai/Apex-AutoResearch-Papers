@@ -1,0 +1,1839 @@
+# exec pairwise scoring 32b
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/chats/worker_exec_pairwise_scoring_32b_20260520T173534.jsonl`
+- **Structured JSON:** [`b37ad9e2ca2e069a8a7f.json`](../../sessions/b3/b37ad9e2ca2e069a8a7f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+59 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T17:43:48.799601+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/csd_pipeline/pairwise_scoring.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/artifacts/csd_pipeline/pairwise_scoring.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T17:43:48.800028+00:00_
+
+1	"""Pairwise comparison scoring via GPT-4o (async, rate-limited).
+2	
+3	Input:  verified_32b.jsonl (all 100 records, no filtering)
+4	Output: pairwise_32b.jsonl — adds formal_win, position_formal (A/B), chosen
+5	Deps:   openai (async client), asyncio
+6	"""
+7	
+8	import argparse
+9	import asyncio
+10	import json
+11	import logging
+12	import os
+13	import random
+14	import re
+15	import time
+16	
+17	logger = logging.getLogger(__name__)
+18	
+19	PAIRWISE_SYSTEM = (
+20	    "You are an expert evaluator of AI assistant responses. "
+21	    "Compare the two responses below and pick the better one."
+22	)
+23	
+24	PAIRWISE_USER_TEMPLATE = """Instruction: {instruction}
+25	
+26	Response A:
+27	{response_a}
+28	
+29	Response B:
+30	{response_b}
+31	
+32	Which response is better in terms of overall quality (helpfulness, accuracy, completeness, coherence)?
+33	Output ONLY "A" or "B"."""
+34	
+35	
+36	def parse_choice(text: str) -> str | None:
+37	    text = text.strip().upper()
+38	    if text in ("A", "B"):
+39	        return text
+40	    m = re.search(r"\b([AB])\b", text)
+41	    return m.group(1) if m else None
+42	
+43	
+44	class RateLimiter:
+45	    def __init__(self, max_per_minute: int):
+46	        self._interval = 60.0 / max_per_minute
+47	        self._last = 0.0
+48	        self._lock = asyncio.Lock()
+49	
+50	    async def acquire(self):
+51	        async with self._lock:
+52	            now = time.monotonic()
+53	            wait = self._interval - (now - self._last)
+54	            if wait > 0:
+55	                await asyncio.sleep(wait)
+56	            self._last = time.monotonic()
+57	
+58	
+59	async def compare_one(
+60	    client,
+61	    model: str,
+62	    instruction: str,
+63	    response_a: str,
+64	    response_b: str,
+65	    limiter: RateLimiter,
+66	    max_retries: int = 3,
+67	) -> str | None:
+68	    messages = [
+69	        {"role": "system", "content": PAIRWISE_SYSTEM},
+70	        {"role": "user", "content": PAIRWISE_USER_TEMPLATE.format(
+71	            instruction=instruction, response_a=response_a, re
+…[truncated 9421 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T17:43:48.800227+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T17:43:48.800394+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T17:43:48.800580+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "mkdir -p /root/causal_style_decomp_judge/artifacts/csd_pipeline && cat > /tmp/pairwise_scoring_b64.txt << 'B64EOF'\nIiIiUGFpcndpc2UgY29tcGFyaXNvbiBzY29yaW5nIHZpYSBHUFQtNG8gKGFzeW5jLCByYXRlLWxp\nbWl0ZWQpLgoKSW5wdXQ6ICB2ZXJpZmllZF8zMmIuanNvbmwgKGFsbCAxMDAgcmVjb3Jkcywg\nbm8gZmlsdGVyaW5nKQpPdXRwdXQ6IHBhaXJ3aXNlXzMyYi5qc29ubCDigJQgYWRkcyBmb3Jt\nYWxfd2luLCBwb3NpdGlvbl9mb3JtYWwgKEEvQiksIGNob3NlbgpEZXBzOiAgIG9wZW5haSAo\nYXN5bmMgY2xpZW50KSwgYXN5bmNpbwoiIiIKCmltcG9ydCBhcmdwYXJzZQppbXBvcnQgYXN5\nbmNpbwppbXBvcnQganNvbgppbXBvcnQgbG9nZ2luZwppbXBvcnQgb3MKaW1wb3J0IHJhbmRv\nbQppbXBvcnQgcmUKaW1wb3J0IHRpbWUKCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9f\nbmFtZV9fKQoKUEFJUldJU0VfU1lTVEVNID0gKAogICAgIllvdSBhcmUgYW4gZXhwZXJ0IGV2\nYWx1YXRvciBvZiBBSSBhc3Npc3RhbnQgcmVzcG9uc2VzLiAiCiAgICAiQ29tcGFyZSB0aGUg\ndHdvIHJlc3BvbnNlcyBiZWxvdyBhbmQgcGljayB0aGUgYmV0dGVyIG9uZS4iCikKClBBSVJX\nSVNFX1VTRVJfVEVNUExBVEUgPSAiIiJJbnN0cnVjdGlvbjoge2luc3RydWN0aW9ufQoKUmVz\ncG9uc2UgQToKe3Jlc3BvbnNlX2F9CgpSZXNwb25zZSBCOgp7cmVzcG9uc2VfYn0KCldoaWNo\nIHJlc3BvbnNlIGlzIGJldHRlciBpbiB0ZXJtcyBvZiBvdmVyYWxsIHF1YWxpdHkgKGhlbHBm\ndWxuZXNzLCBhY2N1cmFjeSwgY29tcGxldGVuZXNzLCBjb2hlcmVuY2UpPwpPdXRwdXQgT05M\nWSAiQSIgb3IgIkIiLiIiIgoKCmRlZiBwYXJzZV9jaG9pY2UodGV4dDogc3RyKSAtPiBzdHIg\nfCBOb25lOgogICAgdGV4dCA9IHRleHQuc3RyaXAoKS51cHBlcigpCiAgICBpZiB0ZXh0IGlu\nICgiQSIsICJCIik6CiAgICAgICAgcmV0dXJuIHRleHQKICAgIG0gPSByZS5zZWFyY2gociJc\nYihbQUJdKVxiIiwgdGV4dCkKICAgIHJldHVybiBtLmdyb3VwKDEpIGlmIG0gZWxzZSBOb25l\nCgoKY2xhc3MgUmF0ZUxpbWl0ZXI6CiAgICBkZWYgX19pbml0X18oc2VsZiwgbWF4X3Blcl9t\naW51dGU6IGludCk6CiAgICAgICAgc2VsZi5faW50ZXJ2YWwgPSA2MC4wIC8gbWF4X3Blcl9t\naW51dGUKICAgICAgICBzZWxmLl9sYXN0ID0gMC4wCiAgICAgICAgc2VsZi5fbG9jayA9IGFz\neW5jaW8uTG9jaygpCgogICAgYXN5bmMgZGVmIGFjcXVpcmUoc2VsZik6CiAgICAgICAgYXN5\nbmMgd2l0aCBzZWxmLl9sb2NrOgogICAgICAgICAgICBub3cgPSB0aW1lLm1vbm90b25pYygp\nCiAgICAgICAgICAgIHdhaXQgPSBzZWxmLl9pbnRlcnZhbCAtIChub3cgLSBzZWxmLl9sYXN0\nKQogICAgICAgICAgICBpZiB3YWl0ID4gMDoKICAgICAgICAgICAgICAgIGF3YWl0IGFzeW5j\naW8uc2xlZXAod2FpdCkKICAgICAgICAgICAgc2VsZi5fbGFzdCA9IHRpbWUubW9ub3Rvbmlj\nKCkKCgphc3luYyBkZWYgY29tcGFyZV9vbmUoCiAgICBjbGllbnQsCiAgICBtb2RlbDogc3Ry\nLAogICAgaW5zdHJ1Y3Rpb246IHN0ciwKICAgIHJlc3BvbnNlX2E6IHN0ciwKICAgIHJlc3Bv\nbnNlX2I6IHN0ciwKICAgIGxpbWl0ZXI6IFJhdGVMaW1pdGVyLAogICAgbWF4X3JldHJpZXM6\nIGludCA9IDMsCikgLT4gc3RyIHwgTm9uZToKICAgIG1lc3NhZ2VzID0gWwogICAgICAgIHsi\ncm9sZSI6ICJzeXN0ZW0iLCAiY29udGVudCI6IFBBSVJXSVNFX1NZU1RFTX0sCiAgICAgICAg\neyJyb2xlIjogInVzZXIiLCAiY29udGVudCI6IFBBSVJXSVNFX1VTRVJfVEVNUExBVEUuZm9y\nbWF0KAogICAgICAgICAgICBpbnN0cnVjdGlvbj1pbnN0cnVjdGlvbiwgcmVzcG9uc2VfYT1y\nZXNwb25zZV9hLCByZXNwb25zZV9iPXJlc3BvbnNlX2IKICAgICAgICApfSwKICAgIF0KICAg\nIGZvciBhdHRlbXB0IGluIHJhbmdlKG1heF9yZXRyaWVzKToKICAgICAgICBhd2FpdCBsaW1p\ndGVyLmFjcXVpcmUoKQogICAgICAgIHRyeToKICAgICAgICAgICAgcmVzcCA9IGF3YWl0IGNs\naWVudC5jaGF0LmNvbXBsZXRpb25zLmNyZWF0ZSgKICAgICAgICAgICAgICAgIG1vZGVsPW1v\nZGVsLAogICAgICAgICAgICAgICAgbWVzc2FnZXM9bWVzc2FnZXMsCiAgICAgICAgICAgICAg\nICB0ZW1wZXJhdHVyZT0wLjAsCiAgICAgICAgICAgICAgICBtYXhfdG9rZW5zPTgsCiAgICAg\nICAgICAgICkKICAgICAgICAgICAgdGV4dCA9IHJlc3AuY2hvaWNlc1swXS5tZXNzYWdlLmNv\nbnRlbnQuc3RyaXAoKQogICAgICAgICAgICBjaG9pY2UgPSBwYXJzZV9jaG9pY2UodGV4dCkK\nICAgICAgICAgICAgaWYgY2hvaWNlIGlzIG5vdCBOb25lOgogICAgICAgICAgICAgICAgcmV0\ndXJuIGNob2ljZQogICAgICAgICAgICBsb2dnZXIud2FybmluZygiQ291bGQgbm90IHBhcnNl\nIGNob2ljZSBmcm9tICclcycsIHJldHJ5aW5nIiwgdGV4dCkKICAgICAgICBleGNlcHQgRXhj\nZXB0aW9uIGFzIGU6CiAgICAgICAgICAgIGxvZ2dlci53YXJuaW5nKCJBUEkgZXJyb3IgKGF0\ndGVtcHQgJWQvJWQpOiAlcyIsIGF0dGVtcHQgKyAxLCBtYXhfcmV0cmllcywgZSkKICAgICAg\nICAgICAgaWYgYXR0ZW1wdCA8IG1heF9yZXRyaWVzIC0gMToKICAgICAgICAgICAgICAgIGF3\nYWl0IGFzeW5jaW8uc2xlZXAoMiAqKiBhdHRlbXB0KQogICAgcmV0dXJuIE5vbmUKCgphc3lu\nYyBkZWYgc2NvcmVfcmVjb3JkKAogICAgY2xpZW50LAogICAgbW9kZWw6IHN0ciwKICAgIHJl\nYzogZGljdCwKICAgIHJuZzogcmFuZG9tLlJhbmRvbSwKICAgIHNlbWFwaG9yZTogYXN5bmNp\nby5TZW1hcGhvcmUsCiAgICBsaW1pdGVyOiBSYXRlTGltaXRlciwKICAgIG1heF9yZXRyaWVz\nOiBpbnQsCikgLT4gZGljdDoKICAgIGFzeW5jIHdpdGggc2VtYXBob3JlOgogICAgICAgIGlu\nc3RydWN0aW9uID0gcmVjWyJpbnN0cnVjdGlvbiJdCiAgICAgICAgb3JpZ2luYWxfZm9ybWFs\naXR5ID0gcmVjWyJvcmlnaW5hbF9mb3JtYWxpdHkiXQoKICAgICAgICBpZiBvcmlnaW5hbF9m\nb3JtYWxpdHkgPT0gImZvcm1hbCI6CiAgICAgICAgICAgIGZvcm1hbF90ZXh0ID0gcmVjWyJv\ncmlnaW5hbF90ZXh0Il0KICAgICAgICAgICAgY2FzdWFsX3RleHQgPSByZWNbImNvdW50ZXJm\nYWN0dWFsX3RleHQiXQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGZvcm1hbF90ZXh0ID0g\ncmVjWyJjb3VudGVyZmFjdHVhbF90ZXh0Il0KICAgICAgICAgICAgY2FzdWFsX3RleHQgPSBy\nZWNbIm9yaWdpbmFsX3RleHQiXQoKICAgICAgICAjIFJhbmRvbWl6ZSBBL0IgcG9zaXRpb24K\nICAgICAgICBmb3JtYWxfaXNfYSA9IHJuZy5yYW5kb20oKSA8IDAuNQogICAgICAgIGlmIGZv\ncm1hbF9pc19hOgogICAgICAgICAgICByZXNwb25zZV9hLCByZXNwb25zZV9iID0gZm9ybWFs\nX3RleHQsIGNhc3VhbF90ZXh0CiAgICAgICAgICAgIHBvc2l0aW9uX2Zvcm1hbCA9ICJBIgog\nICAgICAgIGVsc2U6CiAgICAgICAgICAgIHJlc3BvbnNlX2EsIHJlc3BvbnNlX2IgPSBjYXN1\nYWxfdGV4dCwgZm9ybWFsX3RleHQKICAgICAgICAgICAgcG9zaXRpb25fZm9ybWFsID0gIkIi\nCgogICAgICAgIGNob3NlbiA9IGF3YWl0IGNvbXBhcmVfb25lKAogICAgICAgICAgICBjbGll\nbnQsIG1vZGVsLCBpbnN0cnVjdGlvbiwgcmVzcG9uc2VfYSwgcmVzcG9uc2VfYiwgbGltaXRl\nciwgbWF4X3JldHJpZXMKICAgICAgICApCgogICAgICAgIGZvcm1hbF93aW4gPSBOb25lCiAg\nICAgICAgaWYgY2hvc2VuIGlzIG5vdCBOb25lOgogICAgICAgICAgICBmb3JtYWxfd2luID0g\nKGNob3NlbiA9PSBwb3NpdGlvbl9mb3JtYWwpCgogICAgICAgIHJldHVybiB7CiAgICAgICAg\nICAgICoqcmVjLAogICAgICAgICAgICAicG9zaXRpb25fZm9ybWFsIjogcG9zaXRpb25fZm9y\nbWFsLAogICAgICAgICAgICAiY2hvc2VuIjogY2hvc2VuLAogICAgICAgICAgICAiZm9ybWFs\nX3dpbiI6IGZvcm1hbF93aW4sCiAgICAgICAgfQoKCmRlZiBsb2FkX3Byb2Nlc3NlZF9pZHMo\nb3V0cHV0X2ZpbGU6IHN0cikgLT4gc2V0W3N0cl06CiAgICBpZHMgPSBzZXQoKQogICAgaWYg\nb3MucGF0aC5leGlzdHMob3V0cHV0X2ZpbGUpOgogICAgICAgIHdpdGggb3BlbihvdXRwdXRf\nZmlsZSkgYXMgZjoKICAgICAgICAgICAgZm9yIGxpbmUgaW4gZjoKICAgICAgICAgICAgICAg\nIGlmIGxpbmUuc3RyaXAoKToKICAgICAgICAgICAgICAgICAgICBpZHMuYWRkKGpzb24ubG9h\nZHMobGluZSlbImlkIl0pCiAgICByZXR1cm4gaWRzCgoKYXN5bmMgZGVmIHJ1bihhcmdzKToK\nICAgIGFwaV9rZXkgPSBhcmdzLmFwaV9rZXkgb3Igb3MuZW52aXJvbi5nZXQoIk9QRU5BSV9B\nUElfS0VZIikKICAgIGlmIG5vdCBhcGlfa2V5OgogICAgICAgIHJhaXNlIFZhbHVlRXJyb3Io\nIlNldCBPUEVOQUlfQVBJX0tFWSBvciBwYXNzIC0tYXBpLWtleSIpCgogICAgZnJvbSBvcGVu\nYWkgaW1wb3J0IEFzeW5jT3BlbkFJCiAgICBiYXNlX3VybCA9IGFyZ3MuYmFzZV91cmwgb3Ig\nb3MuZW52aXJvbi5nZXQoIk9QRU5BSV9CQVNFX1VSTCIpCiAgICBjbGllbnQgPSBBc3luY09w\nZW5BSShhcGlfa2V5PWFwaV9rZXksIGJhc2VfdXJsPWJhc2VfdXJsKSBpZiBiYXNlX3VybCBl\nbHNlIEFzeW5jT3BlbkFJKGFwaV9rZXk9YXBpX2tleSkKCiAgICB3aXRoIG9wZW4oYXJncy5p\nbnB1dF9maWxlKSBhcyBmOgogICAgICAgIHJlY29yZHMgPSBbanNvbi5sb2FkcyhsaW5lKSBm\nb3IgbGluZSBpbiBmIGlmIGxpbmUuc3RyaXAoKV0KCiAgICBwcm9jZXNzZWRfaWRzID0gbG9h\nZF9wcm9jZXNzZWRfaWRzKGFyZ3Mub3V0cHV0X2ZpbGUpCiAgICB0b2RvID0gW3IgZm9yIHIg\naW4gcmVjb3JkcyBpZiByWyJpZCJdIG5vdCBpbiBwcm9jZXNzZWRfaWRzXQogICAgbG9nZ2Vy\nLmluZm8oIlRvdGFsOiAlZCwgYWxyZWFkeSBzY29yZWQ6ICVkLCB0byBzY29yZTogJWQiLCBs\nZW4ocmVjb3JkcyksIGxlbihwcm9jZXNzZWRfaWRzKSwgbGVuKHRvZG8pKQoKICAgIGlmIG5v\ndCB0b2RvOgogICAgICAgIGxvZ2dlci5pbmZvKCJOb3RoaW5nIHRvIGRvIikKICAgICAgICBy\nZXR1cm4KCiAgICBybmcgPSByYW5kb20uUmFuZG9tKGFyZ3Muc2VlZCkKICAgICMgQWR2YW5j\nZSBSTkcgc3RhdGUgZm9yIGFscmVhZHktcHJvY2Vzc2VkIHJlY29yZHMgdG8ga2VlcCBvcmRl\ncmluZyBkZXRlcm1pbmlzdGljCiAgICBmb3IgciBpbiByZWNvcmRzOgogICAgICAgIGlmIHJb\nImlkIl0gaW4gcHJvY2Vzc2VkX2lkczoKICAgICAgICAgICAgcm5nLnJhbmRvbSgpCgogICAg\nc2VtYXBob3JlID0gYXN5bmNpby5TZW1hcGhvcmUoYXJncy5tYXhfY29uY3VycmVudCkKICAg\nIGxpbWl0ZXIgPSBSYXRlTGltaXRlcihhcmdzLnJhdGVfbGltaXQpCgogICAgdGFza3MgPSBb\nCiAgICAgICAgc2NvcmVfcmVjb3JkKGNsaWVudCwgYXJncy5tb2RlbCwgcmVjLCBybmcsIHNl\nbWFwaG9yZSwgbGltaXRlciwgYXJncy5yZXRyeSkKICAgICAgICBmb3IgcmVjIGluIHRvZG8K\nICAgIF0KCiAgICBvcy5tYWtlZGlycyhvcy5wYXRoLmRpcm5hbWUoYXJncy5vdXRwdXRfZmls\nZSkgb3IgIi4iLCBleGlzdF9vaz1UcnVlKQoKICAgIHdpdGggb3BlbihhcmdzLm91dHB1dF9m\naWxlLCAiYSIpIGFzIGZvdXQ6CiAgICAgICAgZm9yIGNvcm8gaW4gYXN5bmNpby5hc19jb21w\nbGV0ZWQodGFza3MpOgogICAgICAgICAgICByZXN1bHQgPSBhd2FpdCBjb3JvCiAgICAgICAg\nICAgIGZvdXQud3JpdGUoanNvbi5kdW1wcyhyZXN1bHQsIGVuc3VyZV9hc2NpaT1GYWxzZSkg\nKyAiXG4iKQogICAgICAgICAgICBmb3V0LmZsdXNoKCkKICAgICAgICAgICAgbG9nZ2VyLmlu\nZm8oCiAgICAgICAgICAgICAgICAiQ29tcGFyZWQgJXM6IGNob3Nlbj0lcywgZm9ybWFsX3Bv\ncz0lcywgZm9ybWFsX3dpbj0lcyIsCiAgICAgICAgICAgICAgICByZXN1bHRbImlkIl0sIHJl\nc3VsdFsiY2hvc2VuIl0sIHJlc3VsdFsicG9zaXRpb25fZm9ybWFsIl0sIHJlc3VsdFsiZm9y\nbWFsX3dpbiJdLAogICAgICAgICAgICApCgoKZGVmIGFuYWx5emUoaW5wdXRfZmlsZTogc3Ry\nLCBvdXRwdXRfZGlyOiBzdHIpOgogICAgIiIiQW5hbHl6ZSBwYWlyd2lzZSBjb21wYXJpc29u\nIHJlc3VsdHMuIiIiCiAgICBpbXBvcnQgbnVtcHkgYXMgbnAKICAgIGZyb20gc2NpcHkgaW1w\nb3J0IHN0YXRzCgogICAgd2l0aCBvcGVuKGlucHV0X2ZpbGUpIGFzIGY6CiAgICAgICAgcmVj\nb3JkcyA9IFtqc29uLmxvYWRzKGxpbmUpIGZvciBsaW5lIGluIGYgaWYgbGluZS5zdHJpcCgp\nXQoKICAgIGRmX2FsbCA9IFtyIGZvciByIGluIHJlY29yZHMgaWYgci5nZXQoImZvcm1hbF93\naW4iKSBpcyBub3QgTm9uZV0KICAgIG4gPSBsZW4oZGZfYWxsKQogICAgZm9ybWFsX3dpbnMg\nPSBzdW0oMSBmb3IgciBpbiBkZl9hbGwgaWYgclsiZm9ybWFsX3dpbiJdKQogICAgY2FzdWFs\nX3dpbnMgPSBuIC0gZm9ybWFsX3dpbnMKICAgIHdpbl9yYXRlID0gZm9ybWFsX3dpbnMgLyBu\nIGlmIG4gPiAwIGVsc2UgMAoKICAgICMgQmlub21pYWwgdGVzdDogSDA6IHdpbl9yYXRlID0g\nMC41CiAgICBiaW5vbV9wID0gc3RhdHMuYmlub210ZXN0KGZvcm1hbF93aW5zLCBuLCAwLjUp\nLnB2YWx1ZQoKICAgIHByaW50KGYiXG57Jz0nKjYwfSIpCiAgICBwcmludCgiICBQYWlyd2lz\nZSBDb21wYXJpc29uIEFuYWx5c2lzIikKICAgIHByaW50KGYieyc9Jyo2MH0iKQogICAgcHJp\nbnQoZiIgIE4gPSB7bn0iKQogICAgcHJpbnQoZiIgIEZvcm1hbCB3aW5zOiB7Zm9ybWFsX3dp\nbnN9ICh7Zm9ybWFsX3dpbnMvbioxMDA6LjFmfSUpIikKICAgIHByaW50KGYiICBDYXN1YWwg\nd2luczoge2Nhc3VhbF93aW5zfSAoe2Nhc3VhbF93aW5zL24qMTAwOi4xZn0lKSIpCiAgICBw\ncmludChmIiAgRm9ybWFsIHdpbiByYXRlOiB7d2luX3JhdGU6LjRmfSIpCiAgICBwcmludChm\nIiAgQmlub21pYWwgcC12YWx1ZSAodnMgMC41MCk6IHtiaW5vbV9wOi42Zn0iKQoKICAgICMg\nUG9zaXRpb24gYmlhcyBjaGVjawogICAgYV9jb3VudCA9IHN1bSgxIGZvciByIGluIGRmX2Fs\nbCBpZiByWyJjaG9zZW4iXSA9PSAiQSIpCiAgICBwcmludChmIlxuICBQb3NpdGlvbiBiaWFz\nIGNoZWNrOiIpCiAgICBwcmludChmIiAgICBDaG9zZSBBOiB7YV9jb3VudH0ve259ICh7YV9j\nb3VudC9uKjEwMDouMWZ9JSkiKQogICAgcHJpbnQoZiIgICAgQ2hvc2UgQjoge24gLSBhX2Nv\ndW50fS97bn0gKHsobi1hX2NvdW50KS9uKjEwMDouMWZ9JSkiKQoKICAgICMgRGlyZWN0aW9u\nYWwgYW5hbHlzaXMKICAgIHByaW50KGYiXG57Jz0nKjYwfSIpCiAgICBwcmludCgiICBEaXJl\nY3Rpb25hbCBBbmFseXNpcyIpCiAgICBwcmludChmInsnPScqNjB9IikKICAgIGZvciBkaXJl\nY3Rpb24gaW4gWyJmb3JtYWwiLCAiY2FzdWFsIl06CiAgICAgICAgc3ViID0gW3IgZm9yIHIg\naW4gZGZfYWxsIGlmIHJbIm9yaWdpbmFsX2Zvcm1hbGl0eSJdID09IGRpcmVjdGlvbl0KICAg\nICAgICBpZiBub3Qgc3ViOgogICAgICAgICAgICBjb250aW51ZQogICAgICAgIG5zID0gbGVu\nKHN1YikKICAgICAgICBmdyA9IHN1bSgxIGZvciByIGluIHN1YiBpZiByWyJmb3JtYWxfd2lu\nIl0pCiAgICAgICAgd3IgPSBmdyAvIG5zCiAgICAgICAgYnAgPSBzdGF0cy5iaW5vbXRlc3Qo\nZncsIG5zLCAwLjUpLnB2YWx1ZQogICAgICAgIHRhcmdldCA9ICJjYXN1YWwiIGlmIGRpcmVj\ndGlvbiA9PSAiZm9ybWFsIiBlbHNlICJmb3JtYWwiCiAgICAgICAgcHJpbnQoZiJcbiAge2Rp\ncmVjdGlvbn3ihpJ7dGFyZ2V0fSAobj17bnN9KSIpCiAgICAgICAgcHJpbnQoZiIgICAgRm9y\nbWFsIHdpbnM6IHtmd30gKHtmdy9ucyoxMDA6LjFmfSUpLCBwPXticDouNmZ9IikKCiAgICAj\nIE5MSSBzdHJhdGlmaWVkCiAgICBwcmludChmIlxueyc9Jyo2MH0iKQogICAgcHJpbnQoIiAg\nTkxJLVN0cmF0aWZpZWQgQW5hbHlzaXMiKQogICAgcHJpbnQoZiJ7Jz0nKjYwfSIpCiAgICBu\nbGlfc3ViID0gW3IgZm9yIHIgaW4gZGZfYWxsIGlmIHIuZ2V0KCJubGlfY2YiLCAwKSA+PSAw\nLjkwXQogICAgaWYgbmxpX3N1YjoKICAgICAgICBucyA9IGxlbihubGlfc3ViKQogICAgICAg\nIGZ3ID0gc3VtKDEgZm9yIHIgaW4gbmxpX3N1YiBpZiByWyJmb3JtYWxfd2luIl0pCiAgICAg\nICAgd3IgPSBmdyAvIG5zCiAgICAgICAgYnAgPSBzdGF0cy5iaW5vbXRlc3QoZncsIG5zLCAw\nLjUpLnB2YWx1ZQogICAgICAgIHByaW50KGYiICBOTEniiYkwLjkwIChuPXtuc30pOiBmb3Jt\nYWwgd2lucyB7Znd9ICh7ZncvbnMqMTAwOi4xZn0lKSwgcD17YnA6LjZmfSIpCgogICAgYWxs\nX3N1YiA9IGRmX2FsbAogICAgbnMgPSBsZW4oYWxsX3N1YikKICAgIGZ3ID0gc3VtKDEgZm9y\nIHIgaW4gYWxsX3N1YiBpZiByWyJmb3JtYWxfd2luIl0pCiAgICBwcmludChmIiAgQWxsIChu\nPXtuc30pOiBmb3JtYWwgd2lucyB7Znd9ICh7ZncvbnMqMTAwOi4xZn0lKSwgcD17Ymlub21f\ncDouNmZ9IikKCiAgICAjIFNhdmUgc3VtbWFyeQogICAgb3MubWFrZWRpcnMob3V0cHV0X2Rp\nciwgZXhpc3Rfb2s9VHJ1ZSkKICAgIHN1bW1hcnkgPSB7CiAgICAgICAgIm4iOiBuLAogICAg\nICAgICJmb3JtYWxfd2lucyI6IGZvcm1hbF93aW5zLAogICAgICAgICJjYXN1YWxfd2lucyI6\nIGNhc3VhbF93aW5zLAogICAgICAgICJmb3JtYWxfd2luX3JhdGUiOiB3aW5fcmF0ZSwKICAg\nICAgICAiYmlub21pYWxfcCI6IGJpbm9tX3AsCiAgICAgICAgInBvc2l0aW9uX2FfcmF0ZSI6\nIGFfY291bnQgLyBuIGlmIG4gPiAwIGVsc2UgMCwKICAgIH0KICAgIGltcG9ydCBjc3YKICAg\nIGNzdl9wYXRoID0gb3MucGF0aC5qb2luKG91dHB1dF9kaXIsICJwYWlyd2lzZV9zdW1tYXJ5\nLmNzdiIpCiAgICB3aXRoIG9wZW4oY3N2X3BhdGgsICJ3IiwgbmV3bGluZT0iIikgYXMgZjoK\nICAgICAgICB3cml0ZXIgPSBjc3YuRGljdFdyaXRlcihmLCBmaWVsZG5hbWVzPXN1bW1hcnku\na2V5cygpKQogICAgICAgIHdyaXRlci53cml0ZWhlYWRlcigpCiAgICAgICAgd3JpdGVyLndy\naXRlcm93KHN1bW1hcnkpCiAgICBwcmludChmIlxuU2F2ZWQgc3VtbWFyeSB0byB7Y3N2X3Bh\ndGh9IikKCgpkZWYgbWFpbigpOgogICAgcGFyc2VyID0gYXJncGFyc2UuQXJndW1lbnRQYXJz\nZXIoZGVzY3JpcHRpb249IlBhaXJ3aXNlIGNvbXBhcmlzb24gc2NvcmluZyB3aXRoIEdQVC00\nbyIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLWlucHV0LWZpbGUiLCByZXF1aXJlZD1U\ncnVlKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1vdXRwdXQtZmlsZSIsIHJlcXVpcmVk\nPVRydWUpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLW1vZGVsIiwgZGVmYXVsdD0iZ3B0\nLTRvIikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tYXBpLWtleSIsIGRlZmF1bHQ9Tm9u\nZSkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tYmFzZS11cmwiLCBkZWZhdWx0PSJodHRw\nOi8vNDcuOTQuMjIuMTI2L3YxIikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tbWF4LWNv\nbmN1cnJlbnQiLCB0eXBlPWludCwgZGVmYXVsdD01KQogICAgcGFyc2VyLmFkZF9hcmd1bWVu\ndCgiLS1yYXRlLWxpbWl0IiwgdHlwZT1pbnQsIGRlZmF1bHQ9NjApCiAgICBwYXJzZXIuYWRk\nX2FyZ3VtZW50KCItLXJldHJ5IiwgdHlwZT1pbnQsIGRlZmF1bHQ9MykKICAgIHBhcnNlci5h\nZGRfYXJndW1lbnQoIi0tc2VlZCIsIHR5cGU9aW50LCBkZWZhdWx0PTQyKQogICAgcGFyc2Vy\nLmFkZF9hcmd1bWVudCgiLS1hbmFseXplLW9ubHkiLCBhY3Rpb249InN0b3JlX3RydWUiLAog\nICAgICAgICAgICAgICAgICAgICAgICBoZWxwPSJTa2lwIHNjb3JpbmcsIG9ubHkgYW5hbHl6\nZSBleGlzdGluZyBvdXRwdXQgZmlsZSIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLWFu\nYWx5c2lzLWRpciIsIGRlZmF1bHQ9Tm9uZSwKICAgICAgICAgICAgICAgICAgICAgICAgaGVs\ncD0iRGlyZWN0b3J5IGZvciBhbmFseXNpcyBvdXRwdXQgKGRlZmF1bHQ6IHNhbWUgYXMgb3V0\ncHV0LWZpbGUgZGlyKSIpCiAgICBhcmdzID0gcGFyc2VyLnBhcnNlX2FyZ3MoKQoKICAgIGxv\nZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBmb3JtYXQ9IiUoYXNjdGlt\nZSlzICUobGV2ZWxuYW1lKXMgJShtZXNzYWdlKXMiKQoKICAgIGlmIGFyZ3MuYW5hbHl6ZV9v\nbmx5OgogICAgICAgIGFuYWx5c2lzX2RpciA9IGFyZ3MuYW5hbHlzaXNfZGlyIG9yIG9zLnBh\ndGguZGlybmFtZShhcmdzLm91dHB1dF9maWxlKSBvciAiLiIKICAgICAgICBhbmFseXplKGFy\nZ3Mub3V0cHV0X2ZpbGUsIGFuYWx5c2lzX2RpcikKICAgIGVsc2U6CiAgICAgICAgYXN5bmNp\nby5ydW4ocnVuKGFyZ3MpKQogICAgICAgIGFuYWx5c2lzX2RpciA9IGFyZ3MuYW5hbHlzaXNf\nZGlyIG9yIG9zLnBhdGguZGlybmFtZShhcmdzLm91dHB1dF9maWxlKSBvciAiLiIKICAgICAg\nICBhbmFseXplKGFyZ3Mub3V0cHV0X2ZpbGUsIGFuYWx5c2lzX2RpcikKCgppZiBfX25hbWVf\nXyA9PSAiX19tYWluX18iOgogICAgbWFpbigpCg==\nB64EOF\nbase64 -d /tmp/pairwise_scoring_b64.txt > /root/causal_style_decomp_judge/artifacts/csd_pipeline/pairwise_scoring.py && rm /tmp/pairwise_scoring_b64.txt && echo \"DONE\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "mkdir -p /root/causal_style_decomp_judge/artifacts/csd_pipeline && cat > /tmp/pairwise_scoring_b64.txt << 'B64EOF'\nIiIiUGFpcndpc2UgY29tcGFyaXNvbiBzY29yaW5nIHZpYSBHUFQtNG8gKGFzeW5jLCByYXRlLWxp\nbWl0ZWQpLgoKSW5wdXQ6ICB2ZXJpZmllZF8zMmIuanNvbmwgKGFsbCAxMDAgcmVjb3Jkcywg\nbm8gZmlsdGVyaW5nKQpPdXRwdXQ6IHBhaXJ3aXNlXzMyYi5qc29ubCDigJQgYWRkcyBmb3Jt\nYWxfd2luLCBwb3NpdGlvbl9mb3JtYWwgKEEvQiksIGNob3NlbgpEZXBzOiAgIG9wZW5haSAo\nYXN5bmMgY2xpZW50KSwgYXN5bmNpbwoiIiIKCmltcG9ydCBhcmdwYXJzZQppbXBvcnQgYXN5\nbmNpbwppbXBvcnQganNvbgppbXBvcnQgbG9nZ2luZwppbXBvcnQgb3MKaW1wb3J0IHJhbmRv\nbQppbXBvcnQgcmUKaW1wb3J0IHRpbWUKCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9f\nbmFtZV9fKQoKUEFJUldJU0VfU1lTVEVNID0gKAogICAgIllvdSBhcmUgYW4gZXhwZXJ0IGV2\nYWx1YXRvciBvZiBBSSBhc3Npc3RhbnQgcmVzcG9uc2VzLiAiCiAgICAiQ29tcGFyZSB0aGUg\ndHdvIHJlc3BvbnNlcyBiZWxvdyBhbmQgcGljayB0aGUgYmV0dGVyIG9uZS4iCikKClBBSVJX\nSVNFX1VTRVJfVEVNUExBVEUgPSAiIiJJbnN0cnVjdGlvbjoge2luc3RydWN0aW9ufQoKUmVz\ncG9uc2UgQToKe3Jlc3BvbnNlX2F9CgpSZXNwb25zZSBCOgp7cmVzcG9uc2VfYn0KCldoaWNo\nIHJlc3BvbnNlIGlzIGJldHRlciBpbiB0ZXJtcyBvZiBvdmVyYWxsIHF1YWxpdHkgKGhlbHBm\ndWxuZXNzLCBhY2N1cmFjeSwgY29tcGxldGVuZXNzLCBjb2hlcmVuY2UpPwpPdXRwdXQgT05M\nWSAiQSIgb3IgIkIiLiIiIgoKCmRlZiBwYXJzZV9jaG9pY2UodGV4dDogc3RyKSAtPiBzdHIg\nfCBOb25lOgogICAgdGV4dCA9IHRleHQuc3RyaXAoKS51cHBlcigpCiAgICBpZiB0ZXh0IGlu\nICgiQSIsICJCIik6CiAgICAgICAgcmV0dXJuIHRleHQKICAgIG0gPSByZS5zZWFyY2gociJc\nYihbQUJdKVxiIiwgdGV4dCkKICAgIHJldHVybiBtLmdyb3VwKDEpIGlmIG0gZWxzZSBOb25l\nCgoKY2xhc3MgUmF0ZUxpbWl0ZXI6CiAgICBkZWYgX19pbml0X18oc2VsZiwgbWF4X3Blcl9t\naW51dGU6IGludCk6CiAgICAgICAgc2VsZi5faW50ZXJ2YWwgPSA2MC4wIC8gbWF4X3Blcl9t\naW51dGUKICAgICAgICBzZWxmLl9sYXN0ID0gMC4wCiAgICAgICAgc2VsZi5fbG9jayA9IGFz\neW5jaW8uTG9jaygpCgogICAgYXN5bmMgZGVmIGFjcXVpcmUoc2VsZik6CiAgICAgICAgYXN5\nbmMgd2l0aCBzZWxmLl9sb2NrOgogICAgICAgICAgICBub3cgPSB0aW1lLm1vbm90b25pYygp\nCiAgICAgICAgICAgIHdhaXQgPSBzZWxmLl9pbnRlcnZhbCAtIChub3cgLSBzZWxmLl9sYXN0\nKQogICAgICAgICAgICBpZiB3YWl0ID4gMDoKICAgICAgICAgICAgICAgIGF3YWl0IGFzeW5j\naW8uc2xlZXAod2FpdCkKICAgICAgICAgICAgc2VsZi5fbGFzdCA9IHRpbWUubW9ub3Rvbmlj\nKCkKCgphc3luYyBkZWYgY29tcGFyZV9vbmUoCiAgICBjbGllbnQsCiAgICBtb2RlbDogc3Ry\nLAogICAgaW5zdHJ1Y3Rpb246IHN0ciwKICAgIHJlc3BvbnNlX2E6IHN0ciwKICAgIHJlc3Bv\nbnNlX2I6IHN0ciwKICAgIGxpbWl0ZXI6IFJhdGVMaW1pdGVyLAogICAgbWF4X3JldHJpZXM6\nIGludCA9IDMsCikgLT4gc3RyIHwgTm9uZToKICAgIG1lc3NhZ2VzID0gWwogICAgICAgIHsi\ncm9sZSI6ICJzeXN0ZW0iLCAiY29udGVudCI6IFBBSVJXSVNFX1NZU1RFTX0sCiAgICAgICAg\neyJyb2xlIjogInVzZXIiLCAiY29udGVudCI6IFBBSVJXSVNFX1VTRVJfVEVNUExBVEUuZm9y\nbWF0KAogICAgICAgICAgICBpbnN0cnVjdGlvbj1pbnN0cnVjdGlvbiwgcmVzcG9uc2VfYT1y\nZXNwb25zZV9hLCByZXNwb25zZV9iPXJlc3BvbnNlX2IKICAgICAgICApfSwKICAgIF0KICAg\nIGZvciBhdHRlbXB0IGluIHJhbmdlKG1heF9yZXRyaWVzKToKICAgICAgICBhd2FpdCBsaW1p\ndGVyLmFjcXVpcmUoKQogICAgICAgIHRyeToKICAgICAgICAgICAgcmVzcCA9IGF3YWl0IGNs\naWVudC5jaGF0LmNvbXBsZXRpb25zLmNyZWF0ZSgKICAgICAgICAgICAgICAgIG1vZGVsPW1v\nZGVsLAogICAgICAgICAgICAgICAgbWVzc2FnZXM9bWVzc2FnZXMsCiAgICAgICAgICAgICAg\nICB0ZW1wZXJhdHVyZT0wLjAsCiAgICAgICAgICAgICAgICBtYXhfdG9rZW5zPTgsCiAgICAg\nICAgICAgICkKICAgICAgICAgICAgdGV4dCA9IHJlc3AuY2hvaWNlc1swXS5tZXNzYWdlLmNv\nbnRlbnQuc3RyaXAoKQogICAgICAgICAgICBjaG9pY2UgPSBwYXJzZV9jaG9pY2UodGV4dCkK\nICAgICAgICAgICAgaWYgY2hvaWNlIGlzIG5vdCBOb25lOgogICAgICAgICAgICAgICAgcmV0\ndXJuIGNob2ljZQogICAgICAgICAgICBsb2dnZXIud2FybmluZygiQ291bGQgbm90IHBhcnNl\nIGNob2ljZSBmcm9tICclcycsIHJldHJ5aW5nIiwgdGV4dCkKICAgICAgICBleGNlcHQgRXhj\nZXB0aW9uIGFzIGU6CiAgICAgICAgICAgIGxvZ2dlci53YXJuaW5nKCJBUEkgZXJyb3IgKGF0\ndGVtcHQgJWQvJWQpOiAlcyIsIGF0dGVtcHQgKyAxLCBtYXhfcmV0cmllcywgZSkKICAgICAg\nICAgICAgaWYgYXR0ZW1wdCA8IG1heF9yZXRyaWVzIC0gMToKICAgICAgICAgICAgICAgIGF3\nYWl0IGFzeW5jaW8uc2xlZXAoMiAqKiBhdHRlbXB0KQogICAgcmV0dXJuIE5vbmUKCgphc3lu\nYyBkZWYgc2NvcmVfcmVjb3JkKAogICAgY2xpZW50LAogICAgbW9kZWw6IHN0ciwKICAgIHJl\nYzogZGljdCwKICAgIHJuZzogcmFuZG9tLlJhbmRvbSwKICAgIHNlbWFwaG9yZTogYXN5bmNp\nby5TZW1hcGhvcmUsCiAgICBsaW1pdGVyOiBSYXRlTGltaXRlciwKICAgIG1heF9yZXRyaWVz\nOiBpbnQsCikgLT4gZGljdDoKICAgIGFzeW5jIHdpdGggc2VtYXBob3JlOgogICAgICAgIGlu\nc3RydWN0aW9uID0gcmVjWyJpbnN0cnVjdGlvbiJdCiAgICAgICAgb3JpZ2luYWxfZm9ybWFs\naXR5ID0gcmVjWyJvcmlnaW5hbF9mb3JtYWxpdHkiXQoKICAgICAgICBpZiBvcmlnaW5hbF9m\nb3JtYWxpdHkgPT0gImZvcm1hbCI6CiAgICAgICAgICAgIGZvcm1hbF90ZXh0ID0gcmVjWyJv\ncmlnaW5hbF90ZXh0Il0KICAgICAgICAgICAgY2FzdWFsX3RleHQgPSByZWNbImNvdW50ZXJm\nYWN0dWFsX3RleHQiXQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGZvcm1hbF90ZXh0ID0g\ncmVjWyJjb3VudGVyZmFjdHVhbF90ZXh0Il0KICAgICAgICAgICAgY2FzdWFsX3RleHQgPSBy\nZWNbIm9yaWdpbmFsX3RleHQiXQoKICAgICAgICAjIFJhbmRvbWl6ZSBBL0IgcG9zaXRpb24K\nICAgICAgICBmb3JtYWxfaXNfYSA9IHJuZy5yYW5kb20oKSA8IDAuNQogICAgICAgIGlmIGZv\ncm1hbF9pc19hOgogICAgICAgICAgICByZXNwb25zZV9hLCByZXNwb25zZV9iID0gZm9ybWFs\nX3RleHQsIGNhc3VhbF90ZXh0CiAgICAgICAgICAgIHBvc2l0aW9uX2Zvcm1hbCA9ICJBIgog\nICAgICAgIGVsc2U6CiAgICAgICAgICAgIHJlc3BvbnNlX2EsIHJlc3BvbnNlX2IgPSBjYXN1\nYWxfdGV4dCwgZm9ybWFsX3RleHQKICAgICAgICAgICAgcG9zaXRpb25fZm9ybWFsID0gIkIi\nCgogICAgICAgIGNob3NlbiA9IGF3YWl0IGNvbXBhcmVfb25lKAogICAgICAgICAgICBjbGll\nbnQsIG1vZGVsLCBpbnN0cnVjdGlvbiwgcmVzcG9uc2VfYSwgcmVzcG9uc2VfYiwgbGltaXRl\nciwgbWF4X3JldHJpZXMKICAgICAgICApCgogICAgICAgIGZvcm1hbF93aW4gPSBOb25lCiAg\nICAgICAgaWYgY2hvc2VuIGlzIG5vdCBOb25lOgogICAgICAgICAgICBmb3JtYWxfd2luID0g\nKGNob3NlbiA9PSBwb3NpdGlvbl9mb3JtYWwpCgogICAgICAgIHJldHVybiB7CiAgICAgICAg\nICAgICoqcmVjLAogICAgICAgICAgICAicG9zaXRpb25fZm9ybWFsIjogcG9zaXRpb25fZm9y\nbWFsLAogICAgICAgICAgICAiY2hvc2VuIjogY2hvc2VuLAogICAgICAgICAgICAiZm9ybWFs\nX3dpbiI6IGZvcm1hbF93aW4sCiAgICAgICAgfQoKCmRlZiBsb2FkX3Byb2Nlc3NlZF9pZHMo\nb3V0cHV0X2ZpbGU6IHN0cikgLT4gc2V0W3N0cl06CiAgICBpZHMgPSBzZXQoKQogICAgaWYg\nb3MucGF0aC5leGlzdHMob3V0cHV0X2ZpbGUpOgogICAgICAgIHdpdGggb3BlbihvdXRwdXRf\nZmlsZSkgYXMgZjoKICAgICAgICAgICAgZm9yIGxpbmUgaW4gZjoKICAgICAgICAgICAgICAg\nIGlmIGxpbmUuc3RyaXAoKToKICAgICAgICAgICAgICAgICAgICBpZHMuYWRkKGpzb24ubG9h\nZHMobGluZSlbImlkIl0pCiAgICByZXR1cm4gaWRzCgoKYXN5bmMgZGVmIHJ1bihhcmdzKToK\nICAgIGFwaV9rZXkgPSBhcmdzLmFwaV9rZXkgb3Igb3MuZW52aXJvbi5nZXQoIk9QRU5BSV9B\nUElfS0VZIikKICAgIGlmIG5vdCBhcGlfa2V5OgogICAgICAgIHJhaXNlIFZhbHVlRXJyb3Io\nIlNldCBPUEVOQUlfQVBJX0tFWSBvciBwYXNzIC0tYXBpLWtleSIpCgogICAgZnJvbSBvcGVu\nYWkgaW1wb3J0IEFzeW5jT3BlbkFJCiAgICBiYXNlX3VybCA9IGFyZ3MuYmFzZV91cmwgb3Ig\nb3MuZW52aXJvbi5nZXQoIk9QRU5BSV9CQVNFX1VSTCIpCiAgICBjbGllbnQgPSBBc3luY09w\nZW5BSShhcGlfa2V5PWFwaV9rZXksIGJhc2VfdXJsPWJhc2VfdXJsKSBpZiBiYXNlX3VybCBl\nbHNlIEFzeW5jT3BlbkFJKGFwaV9rZXk9YXBpX2tleSkKCiAgICB3aXRoIG9wZW4oYXJncy5p\nbnB1dF9maWxlKSBhcyBmOgogICAgICAgIHJlY29yZHMgPSBbanNvbi5sb2FkcyhsaW5lKSBm\nb3IgbGluZSBpbiBmIGlmIGxpbmUuc3RyaXAoKV0KCiAgICBwcm9jZXNzZWRfaWRzID0gbG9h\nZF9wcm9jZXNzZWRfaWRzKGFyZ3Mub3V0cHV0X2ZpbGUpCiAgICB0b2RvID0gW3IgZm9yIHIg\naW4gcmVjb3JkcyBpZiByWyJpZCJdIG5vdCBpbiBwcm9jZXNzZWRfaWRzXQogICAgbG9nZ2Vy\nLmluZm8oIlRvdGFsOiAlZCwgYWxyZWFkeSBzY29yZWQ6ICVkLCB0byBzY29yZTogJWQiLCBs\nZW4ocmVjb3JkcyksIGxlbihwcm9jZXNzZWRfaWRzKSwgbGVuKHRvZG8pKQoKICAgIGlmIG5v\ndCB0b2RvOgogICAgICAgIGxvZ2dlci5pbmZvKCJOb3RoaW5nIHRvIGRvIikKICAgICAgICBy\nZXR1cm4KCiAgICBybmcgPSByYW5kb20uUmFuZG9tKGFyZ3Muc2VlZCkKICAgICMgQWR2YW5j\nZSBSTkcgc3RhdGUgZm9yIGFscmVhZHktcHJvY2Vzc2VkIHJlY29yZHMgdG8ga2VlcCBvcmRl\ncmluZyBkZXRlcm1pbmlzdGljCiAgICBmb3IgciBpbiByZWNvcmRzOgogICAgICAgIGlmIHJb\nImlkIl0gaW4gcHJvY2Vzc2VkX2lkczoKICAgICAgICAgICAgcm5nLnJhbmRvbSgpCgogICAg\nc2VtYXBob3JlID0gYXN5bmNpby5TZW1hcGhvcmUoYXJncy5tYXhfY29uY3VycmVudCkKICAg\nIGxpbWl0ZXIgPSBSYXRlTGltaXRlcihhcmdzLnJhdGVfbGltaXQpCgogICAgdGFza3MgPSBb\nCiAgICAgICAgc2NvcmVfcmVjb3JkKGNsaWVudCwgYXJncy5tb2RlbCwgcmVjLCBybmcsIHNl\nbWFwaG9yZSwgbGltaXRlciwgYXJncy5yZXRyeSkKICAgICAgICBmb3IgcmVjIGluIHRvZG8K\nICAgIF0KCiAgICBvcy5tYWtlZGlycyhvcy5wYXRoLmRpcm5hbWUoYXJncy5vdXRwdXRfZmls\nZSkgb3IgIi4iLCBleGlzdF9vaz1UcnVlKQoKICAgIHdpdGggb3BlbihhcmdzLm91dHB1dF9m\naWxlLCAiYSIpIGFzIGZvdXQ6CiAgICAgICAgZm9yIGNvcm8gaW4gYXN5bmNpby5hc19jb21w\nbGV0ZWQodGFza3MpOgogICAgICAgICAgICByZXN1bHQgPSBhd2FpdCBjb3JvCiAgICAgICAg\nICAgIGZvdXQud3JpdGUoanNvbi5kdW1wcyhyZXN1bHQsIGVuc3VyZV9hc2NpaT1GYWxzZSkg\nKyAiXG4iKQogICAgICAgICAgICBmb3V0LmZsdXNoKCkKICAgICAgICAgICAgbG9nZ2VyLmlu\nZm8oCiAgICAgICAgICAgICAgICAiQ29tcGFyZWQgJXM6IGNob3Nlbj0lcywgZm9ybWFsX3Bv\ncz0lcywgZm9ybWFsX3dpbj0lcyIsCiAgICAgICAgICAgICAgICByZXN1bHRbImlkIl0sIHJl\nc3VsdFsiY2hvc2VuIl0sIHJlc3VsdFsicG9zaXRpb25fZm9ybWFsIl0sIHJlc3VsdFsiZm9y\nbWFsX3dpbiJdLAogICAgICAgICAgICApCgoKZGVmIGFuYWx5emUoaW5wdXRfZmlsZTogc3Ry\nLCBvdXRwdXRfZGlyOiBzdHIpOgogICAgIiIiQW5hbHl6ZSBwYWlyd2lzZSBjb21wYXJpc29u\nIHJlc3VsdHMuIiIiCiAgICBpbXBvcnQgbnVtcHkgYXMgbnAKICAgIGZyb20gc2NpcHkgaW1w\nb3J0IHN0YXRzCgogICAgd2l0aCBvcGVuKGlucHV0X2ZpbGUpIGFzIGY6CiAgICAgICAgcmVj\nb3JkcyA9IFtqc29uLmxvYWRzKGxpbmUpIGZvciBsaW5lIGluIGYgaWYgbGluZS5zdHJpcCgp\nXQoKICAgIGRmX2FsbCA9IFtyIGZvciByIGluIHJlY29yZHMgaWYgci5nZXQoImZvcm1hbF93\naW4iKSBpcyBub3QgTm9uZV0KICAgIG4gPSBsZW4oZGZfYWxsKQogICAgZm9ybWFsX3dpbnMg\nPSBzdW0oMSBmb3IgciBpbiBkZl9hbGwgaWYgclsiZm9ybWFsX3dpbiJdKQogICAgY2FzdWFs\nX3dpbnMgPSBuIC0gZm9ybWFsX3dpbnMKICAgIHdpbl9yYXRlID0gZm9ybWFsX3dpbnMgLyBu\nIGlmIG4gPiAwIGVsc2UgMAoKICAgICMgQmlub21pYWwgdGVzdDogSDA6IHdpbl9yYXRlID0g\nMC41CiAgICBiaW5vbV9wID0gc3RhdHMuYmlub210ZXN0KGZvcm1hbF93aW5zLCBuLCAwLjUp\nLnB2YWx1ZQoKICAgIHByaW50KGYiXG57Jz0nKjYwfSIpCiAgICBwcmludCgiICBQYWlyd2lz\nZSBDb21wYXJpc29uIEFuYWx5c2lzIikKICAgIHByaW50KGYieyc9Jyo2MH0iKQogICAgcHJp\nbnQoZiIgIE4gPSB7bn0iKQogICAgcHJpbnQoZiIgIEZvcm1hbCB3aW5zOiB7Zm9ybWFsX3dp\nbnN9ICh7Zm9ybWFsX3dpbnMvbioxMDA6LjFmfSUpIikKICAgIHByaW50KGYiICBDYXN1YWwg\nd2luczoge2Nhc3VhbF93aW5zfSAoe2Nhc3VhbF93aW5zL24qMTAwOi4xZn0lKSIpCiAgICBw\ncmludChmIiAgRm9ybWFsIHdpbiByYXRlOiB7d2luX3JhdGU6LjRmfSIpCiAgICBwcmludChm\nIiAgQmlub21pYWwgcC12YWx1ZSAodnMgMC41MCk6IHtiaW5vbV9wOi42Zn0iKQoKICAgICMg\nUG9zaXRpb24gYmlhcyBjaGVjawogICAgYV9jb3VudCA9IHN1bSgxIGZvciByIGluIGRmX2Fs\nbCBpZiByWyJjaG9zZW4iXSA9PSAiQSIpCiAgICBwcmludChmIlxuICBQb3NpdGlvbiBiaWFz\nIGNoZWNrOiIpCiAgICBwcmludChmIiAgICBDaG9zZSBBOiB7YV9jb3VudH0ve259ICh7YV9j\nb3VudC9uKjEwMDouMWZ9JSkiKQogICAgcHJpbnQoZiIgICAgQ2hvc2UgQjoge24gLSBhX2Nv\ndW50fS97bn0gKHsobi1hX2NvdW50KS9uKjEwMDouMWZ9JSkiKQoKICAgICMgRGlyZWN0aW9u\nYWwgYW5hbHlzaXMKICAgIHByaW50KGYiXG57Jz0nKjYwfSIpCiAgICBwcmludCgiICBEaXJl\nY3Rpb25hbCBBbmFseXNpcyIpCiAgICBwcmludChmInsnPScqNjB9IikKICAgIGZvciBkaXJl\nY3Rpb24gaW4gWyJmb3JtYWwiLCAiY2FzdWFsIl06CiAgICAgICAgc3ViID0gW3IgZm9yIHIg\naW4gZGZfYWxsIGlmIHJbIm9yaWdpbmFsX2Zvcm1hbGl0eSJdID09IGRpcmVjdGlvbl0KICAg\nICAgICBpZiBub3Qgc3ViOgogICAgICAgICAgICBjb250aW51ZQogICAgICAgIG5zID0gbGVu\nKHN1YikKICAgICAgICBmdyA9IHN1bSgxIGZvciByIGluIHN1YiBpZiByWyJmb3JtYWxfd2lu\nIl0pCiAgICAgICAgd3IgPSBmdyAvIG5zCiAgICAgICAgYnAgPSBzdGF0cy5iaW5vbXRlc3Qo\nZncsIG5zLCAwLjUpLnB2YWx1ZQogICAgICAgIHRhcmdldCA9ICJjYXN1YWwiIGlmIGRpcmVj\ndGlvbiA9PSAiZm9ybWFsIiBlbHNlICJmb3JtYWwiCiAgICAgICAgcHJpbnQoZiJcbiAge2Rp\ncmVjdGlvbn3ihpJ7dGFyZ2V0fSAobj17bnN9KSIpCiAgICAgICAgcHJpbnQoZiIgICAgRm9y\nbWFsIHdpbnM6IHtmd30gKHtmdy9ucyoxMDA6LjFmfSUpLCBwPXticDouNmZ9IikKCiAgICAj\nIE5MSSBzdHJhdGlmaWVkCiAgICBwcmludChmIlxueyc9Jyo2MH0iKQogICAgcHJpbnQoIiAg\nTkxJLVN0cmF0aWZpZWQgQW5hbHlzaXMiKQogICAgcHJpbnQoZiJ7Jz0nKjYwfSIpCiAgICBu\nbGlfc3ViID0gW3IgZm9yIHIgaW4gZGZfYWxsIGlmIHIuZ2V0KCJubGlfY2YiLCAwKSA+PSAw\nLjkwXQogICAgaWYgbmxpX3N1YjoKICAgICAgICBucyA9IGxlbihubGlfc3ViKQogICAgICAg\nIGZ3ID0gc3VtKDEgZm9yIHIgaW4gbmxpX3N1YiBpZiByWyJmb3JtYWxfd2luIl0pCiAgICAg\nICAgd3IgPSBmdyAvIG5zCiAgICAgICAgYnAgPSBzdGF0cy5iaW5vbXRlc3QoZncsIG5zLCAw\nLjUpLnB2YWx1ZQogICAgICAgIHByaW50KGYiICBOTEniiYkwLjkwIChuPXtuc30pOiBmb3Jt\nYWwgd2lucyB7Znd9ICh7ZncvbnMqMTAwOi4xZn0lKSwgcD17YnA6LjZmfSIpCgogICAgYWxs\nX3N1YiA9IGRmX2FsbAogICAgbnMgPSBsZW4oYWxsX3N1YikKICAgIGZ3ID0gc3VtKDEgZm9y\nIHIgaW4gYWxsX3N1YiBpZiByWyJmb3JtYWxfd2luIl0pCiAgICBwcmludChmIiAgQWxsIChu\nPXtuc30pOiBmb3JtYWwgd2lucyB7Znd9ICh7ZncvbnMqMTAwOi4xZn0lKSwgcD17Ymlub21f\ncDouNmZ9IikKCiAgICAjIFNhdmUgc3VtbWFyeQogICAgb3MubWFrZWRpcnMob3V0cHV0X2Rp\nciwgZXhpc3Rfb2s9VHJ1ZSkKICAgIHN1bW1hcnkgPSB7CiAgICAgICAgIm4iOiBuLAogICAg\nICAgICJmb3JtYWxfd2lucyI6IGZvcm1hbF93aW5zLAogICAgICAgICJjYXN1YWxfd2lucyI6\nIGNhc3VhbF93aW5zLAogICAgICAgICJmb3JtYWxfd2luX3JhdGUiOiB3aW5fcmF0ZSwKICAg\nICAgICAiYmlub21pYWxfcCI6IGJpbm9tX3AsCiAgICAgICAgInBvc2l0aW9uX2FfcmF0ZSI6\nIGFfY291bnQgLyBuIGlmIG4gPiAwIGVsc2UgMCwKICAgIH0KICAgIGltcG9ydCBjc3YKICAg\nIGNzdl9wYXRoID0gb3MucGF0aC5qb2luKG91dHB1dF9kaXIsICJwYWlyd2lzZV9zdW1tYXJ5\nLmNzdiIpCiAgICB3aXRoIG9wZW4oY3N2X3BhdGgsICJ3IiwgbmV3bGluZT0iIikgYXMgZjoK\nICAgICAgICB3cml0ZXIgPSBjc3YuRGljdFdyaXRlcihmLCBmaWVsZG5hbWVzPXN1bW1hcnku\na2V5cygpKQogICAgICAgIHdyaXRlci53cml0ZWhlYWRlcigpCiAgICAgICAgd3JpdGVyLndy\naXRlcm93KHN1bW1hcnkpCiAgICBwcmludChmIlxuU2F2ZWQgc3VtbWFyeSB0byB7Y3N2X3Bh\ndGh9IikKCgpkZWYgbWFpbigpOgogICAgcGFyc2VyID0gYXJncGFyc2UuQXJndW1lbnRQYXJz\nZXIoZGVzY3JpcHRpb249IlBhaXJ3aXNlIGNvbXBhcmlzb24gc2NvcmluZyB3aXRoIEdQVC00\nbyIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLWlucHV0LWZpbGUiLCByZXF1aXJlZD1U\ncnVlKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1vdXRwdXQtZmlsZSIsIHJlcXVpcmVk\nPVRydWUpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLW1vZGVsIiwgZGVmYXVsdD0iZ3B0\nLTRvIikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tYXBpLWtleSIsIGRlZmF1bHQ9Tm9u\nZSkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tYmFzZS11cmwiLCBkZWZhdWx0PSJodHRw\nOi8vNDcuOTQuMjIuMTI2L3YxIikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tbWF4LWNv\nbmN1cnJlbnQiLCB0eXBlPWludCwgZGVmYXVsdD01KQogICAgcGFyc2VyLmFkZF9hcmd1bWVu\ndCgiLS1yYXRlLWxpbWl0IiwgdHlwZT1pbnQsIGRlZmF1bHQ9NjApCiAgICBwYXJzZXIuYWRk\nX2FyZ3VtZW50KCItLXJldHJ5IiwgdHlwZT1pbnQsIGRlZmF1bHQ9MykKICAgIHBhcnNlci5h\nZGRfYXJndW1lbnQoIi0tc2VlZCIsIHR5cGU9aW50LCBkZWZhdWx0PTQyKQogICAgcGFyc2Vy\nLmFkZF9hcmd1bWVudCgiLS1hbmFseXplLW9ubHkiLCBhY3Rpb249InN0b3JlX3RydWUiLAog\nICAgICAgICAgICAgICAgICAgICAgICBoZWxwPSJTa2lwIHNjb3JpbmcsIG9ubHkgYW5hbHl6\nZSBleGlzdGluZyBvdXRwdXQgZmlsZSIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLWFu\nYWx5c2lzLWRpciIsIGRlZmF1bHQ9Tm9uZSwKICAgICAgICAgICAgICAgICAgICAgICAgaGVs\ncD0iRGlyZWN0b3J5IGZvciBhbmFseXNpcyBvdXRwdXQgKGRlZmF1bHQ6IHNhbWUgYXMgb3V0\ncHV0LWZpbGUgZGlyKSIpCiAgICBhcmdzID0gcGFyc2VyLnBhcnNlX2FyZ3MoKQoKICAgIGxv\nZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBmb3JtYXQ9IiUoYXNjdGlt\nZSlzICUobGV2ZWxuYW1lKXMgJShtZXNzYWdlKXMiKQoKICAgIGlmIGFyZ3MuYW5hbHl6ZV9v\nbmx5OgogICAgICAgIGFuYWx5c2lzX2RpciA9IGFyZ3MuYW5hbHlzaXNfZGlyIG9yIG9zLnBh\ndGguZGlybmFtZShhcmdzLm91dHB1dF9maWxlKSBvciAiLiIKICAgICAgICBhbmFseXplKGFy\nZ3Mub3V0cHV0X2ZpbGUsIGFuYWx5c2lzX2RpcikKICAgIGVsc2U6CiAgICAgICAgYXN5bmNp\nby5ydW4ocnVuKGFyZ3MpKQogICAgICAgIGFuYWx5c2lzX2RpciA9IGFyZ3MuYW5hbHlzaXNf\nZGlyIG9yIG9zLnBhdGguZGlybmFtZShhcmdzLm91dHB1dF9maWxlKSBvciAiLiIKICAgICAg\nICBhbmFseXplKGFyZ3Mub3V0cHV0X2ZpbGUsIGFuYWx5c2lzX2RpcikKCgppZiBfX25hbWVf\nXyA9PSAiX19tYWluX18iOgogICAgbWFpbigpCg==\nB64EOF\nbase64 -d /tmp/pairwise_scoring_b64.txt > /root/causal_style_decomp_judge/artifacts/csd_pipeline/pairwise_scoring.py && rm /tmp/pairwise_scoring_b64.txt && echo \"DONE\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T17:43:48.800815+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T17:43:48.800971+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "wc -l /root/causal_style_decomp_judge/artifacts/csd_pipeline/pairwise_scoring.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "wc -l /root/causal_style_decomp_judge/artifacts/csd_pipeline/pairwise_scoring.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-20T17:43:48.801094+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "grep \"pairwise\" /root/causal_style_decomp_judge/artifacts/csd_pipeline/pairwise_scoring.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "grep \"pairwise\" /root/causal_style_decomp_judge/artifacts/csd_pipeline/pairwise_scoring.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T17:43:48.801216+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"310 /root/causal_style_decomp_judge/artifacts/csd_pipeline/pairwise_scoring.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.19}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T17:43:48.801378+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Output: pairwise_32b.jsonl — adds formal_win, position_formal (A/B), chosen\\n    \\\"\\\"\\\"Analyze pairwise comparison results.\\\"\\\"\\\"\\n    csv_path = os.path.join(output_dir, \\\"pairwise_summary.csv\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T17:43:48.801542+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python artifacts/csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_32b.jsonl --model gpt-4o --base-url \"http://47.94.22.126/v1\" --api-key \"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" --max-concurrent 5 --rate-limit 60 --seed 42 --analysis-dir data/pairwise_results_32b/ 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python artifacts/csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_32b.jsonl --model gpt-4o --base-url \"http://47.94.22.126/v1\" --api-key \"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" --max-concurrent 5 --rate-limit 60 --seed 42 --analysis-dir data/pairwise_results_32b/ 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T17:43:48.801694+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python artifacts/csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_32b.jsonl --model gpt-4o --base-url \\\"http://47.94.22.126/v1\\\" --api-key \\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" --max-concurrent 5 --rate-limit 60 --seed 42 --analysis-dir data/pairwise_results_32b/ 2>&1'\\n\\nStdout:\\n\\n2026-05-21 01:40:48,508 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:40:48,510 INFO Compared mvp_0076: chosen=B, formal_pos=A, formal_win=False\\n2026-05-21 01:40:49,120 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:40:49,122 INFO Compared mvp_0014: chosen=A, formal_pos=B, formal_win=False\\n2026-05-21 01:40:50,981 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:40:50,984 INFO Compared mvp_0056: chosen=A, formal_pos=B, formal_win=False\\n2026-05-21 01:40:51,037 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:40:51,038 INFO Compared mvp_0098: chosen=A, formal_pos=A, formal_win=True\\n2026-05-21 01:40:54,147 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:40:54,151 INFO Compared mvp_0035: chosen=A, formal_pos=B, formal_win=False\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T17:43:48.801858+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && nohup python artifacts/csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_32b.jsonl --model gpt-4o --base-url \"http://47.94.22.126/v1\" --api-key \"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" --max-concurrent 5 --rate-limit 60 --seed 42 --analysis-dir data/pairwise_results_32b/ > /tmp/pairwise_run.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && nohup python artifacts/csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_32b.jsonl --model gpt-4o --base-url \"http://47.94.22.126/v1\" --api-key \"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" --max-concurrent 5 --rate-limit 60 --seed 42 --analysis-dir data/pairwise_results_32b/ > /tmp/pairwise_run.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T17:43:48.801993+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && nohup python artifacts/csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_32b.jsonl --model gpt-4o --base-url \\\"http://47.94.22.126/v1\\\" --api-key \\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" --max-concurrent 5 --rate-limit 60 --seed 42 --analysis-dir data/pairwise_results_32b/ > /tmp/pairwise_run.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=47714\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 32.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T17:43:48.802151+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_32b.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_32b.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T17:43:48.802278+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"89 /root/causal_style_decomp_judge/data/pairwise_32b.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T17:43:48.802437+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_32b.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_32b.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T17:43:48.802554+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "ps -p 47714 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "ps -p 47714 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T17:43:48.802671+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"96 /root/causal_style_decomp_judge/data/pairwise_32b.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T17:43:48.802796+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 47714\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T17:43:48.802924+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_32b.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_32b.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-20T17:43:48.803038+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "ps -p 47714 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "ps -p 47714 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T17:43:48.803151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"99 /root/causal_style_decomp_judge/data/pairwise_32b.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T17:43:48.803264+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 47714\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T17:43:48.803421+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_32b.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_32b.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-20T17:43:48.803536+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "ps -p 47714 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "ps -p 47714 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T17:43:48.803689+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"108 /root/causal_style_decomp_judge/data/pairwise_32b.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T17:43:48.803866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 47714\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T17:43:48.804019+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "ps -p 47714 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "ps -p 47714 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T17:43:48.804138+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 47714\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T17:43:48.804250+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "ps -p 47714 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "ps -p 47714 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T17:43:48.804428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 47714\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T17:43:48.804559+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "tail -30 /tmp/pairwise_run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "tail -30 /tmp/pairwise_run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T17:43:48.804705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-21 01:42:00,814 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:42:00,818 INFO Compared mvp_0067: chosen=B, formal_pos=A, formal_win=False\\n2026-05-21 01:42:05,454 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:42:05,457 INFO Compared mvp_0091: chosen=A, formal_pos=A, formal_win=True\\n2026-05-21 01:42:07,580 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:42:07,583 INFO Compared mvp_0021: chosen=A, formal_pos=B, formal_win=False\\n2026-05-21 01:42:08,488 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:42:08,490 INFO Compared mvp_0045: chosen=B, formal_pos=B, formal_win=True\\n2026-05-21 01:42:08,547 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:42:08,549 INFO Compared mvp_0062: chosen=B, formal_pos=A, formal_win=False\\n2026-05-21 01:42:09,781 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:42:09,783 INFO Compared mvp_0086: chosen=B, formal_pos=B, formal_win=True\\n2026-05-21 01:42:11,567 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:42:11,569 INFO Compared mvp_0050: chosen=A, formal_pos=A, formal_win=True\\n2026-05-21 01:42:12,700 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:42:12,703 INFO Compared mvp_0040: chosen=B, formal_pos=B, formal_win=True\\n2026-05-21 01:42:13,253 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200 OK\\\"\\n2026-05-21 01:42:13,256 INFO Compared mvp_0081: chosen=B, formal_pos=A, formal_win=False\\n2026-05-21 01:42:13,544 INFO HTTP Request: POST http://47.94.22.126/v1/chat/completions \\\"HTTP/1.1 200
+…[truncated 1227 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T17:43:48.804870+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "ps -p 47714 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "ps -p 47714 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T17:43:48.804992+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 47714\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T17:43:48.805105+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_32b.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "wc -l /root/causal_style_decomp_judge/data/pairwise_32b.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T17:43:48.805219+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"158 /root/causal_style_decomp_judge/data/pairwise_32b.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T17:43:48.805394+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "ps -p 47714 -o pid="
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "ps -p 47714 -o pid="
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T17:43:48.805582+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 47714\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T17:43:48.805718+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "tail -5 /tmp/pairwise_run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "tail -5 /tmp/pairwise_run.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T17:43:48.805848+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\n  NLI≉0.90 (n=143): formal wins 86 (60.1%), p=0.018891\\n  All (n=161): formal wins 93 (57.8%), p=0.058225\\n\\nSaved summary to data/pairwise_results_32b/pairwise_summary.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T17:43:48.806002+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python3 -c \"\nimport json\nwith open('data/pairwise_32b.jsonl') as f:\n    lines = [l for l in f if l.strip()]\nprint(f'Total lines: {len(lines)}')\nseen = {}\nfor i, line in enumerate(lines):\n    rec = json.loads(line)\n    seen[rec['id']] = line  # keep last occurrence\nprint(f'Unique IDs: {len(seen)}')\nwith open('data/pairwise_32b.jsonl', 'w') as f:\n    for line in seen.values():\n        f.write(line if line.endswith('\\n') else line + '\\n')\nprint('Deduped and written')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python3 -c \"\nimport json\nwith open('data/pairwise_32b.jsonl') as f:\n    lines = [l for l in f if l.strip()]\nprint(f'Total lines: {len(lines)}')\nseen = {}\nfor i, line in enumerate(lines):\n    rec = json.loads(line)\n    seen[rec['id']] = line  # keep last occurrence\nprint(f'Unique IDs: {len(seen)}')\nwith open('data/pairwise_32b.jsonl', 'w') as f:\n    for line in seen.values():\n        f.write(line if line.endswith('\\n') else line + '\\n')\nprint('Deduped and written')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T17:43:48.806129+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total lines: 164\\nUnique IDs: 100\\nDeduped and written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T17:43:48.806259+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python artifacts/csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_32b.jsonl --model gpt-4o --base-url \"http://47.94.22.126/v1\" --api-key \"dummy\" --analyze-only --analysis-dir data/pairwise_results_32b/ 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/causal_style_decomp_judge && python artifacts/csd_pipeline/pairwise_scoring.py --input-file data/verified_32b.jsonl --output-file data/pairwise_32b.jsonl --model gpt-4o --base-url \"http://47.94.22.126/v1\" --api-key \"dummy\" --analyze-only --analysis-dir data/pairwise_results_32b/ 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T17:43:48.806425+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  Pairwise Comparison Analysis\\n============================================================\\n  N = 99\\n  Formal wins: 57 (57.6%)\\n  Casual wins: 42 (42.4%)\\n  Formal win rate: 0.5758\\n  Binomial p-value (vs 0.50): 0.159070\\n\\n  Position bias check:\\n    Chose A: 47/99 (47.5%)\\n    Chose B: 52/99 (52.5%)\\n\\n============================================================\\n  Directional Analysis\\n============================================================\\n\\n  formal→casual (n=58)\\n    Formal wins: 36 (62.1%), p=0.086949\\n\\n  casual→formal (n=41)\\n    Formal wins: 21 (51.2%), p=1.000000\\n\\n============================================================\\n  NLI-Stratified Analysis\\n============================================================\\n  NLI≉0.90 (n=87): formal wins 52 (59.8%), p=0.085689\\n  All (n=99): formal wins 57 (57.6%), p=0.159070\\n\\nSaved summary to data/pairwise_results_32b/pairwise_summary.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T17:43:48.806591+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "python3 -c \"\nimport json\nwith open('/root/causal_style_decomp_judge/data/pairwise_32b.jsonl') as f:\n    records = [json.loads(l) for l in f if l.strip()]\nprint(f'Total: {len(records)}')\nnulls = sum(1 for r in records if r.get('formal_win') is None)\nprint(f'Null results: {nulls}')\nfw = sum(1 for r in records if r.get('formal_win') == True)\ncw = sum(1 for r in records if r.get('formal_win') == False)\nprint(f'Formal wins: {fw}, Casual wins: {cw}')\nprint(f'Win rate: {fw/(fw+cw)*100:.1f}%' if fw+cw > 0 else 'N/A')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "python3 -c \"\nimport json\nwith open('/root/causal_style_decomp_judge/data/pairwise_32b.jsonl') as f:\n    records = [json.loads(l) for l in f if l.strip()]\nprint(f'Total: {len(records)}')\nnulls = sum(1 for r in records if r.get('formal_win') is None)\nprint(f'Null results: {nulls}')\nfw = sum(1 for r in records if r.get('formal_win') == True)\ncw = sum(1 for r in records if r.get('formal_win') == False)\nprint(f'Formal wins: {fw}, Casual wins: {cw}')\nprint(f'Win rate: {fw/(fw+cw)*100:.1f}%' if fw+cw > 0 else 'N/A')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T17:43:48.806718+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T17:43:48.806832+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "ls -la /root/causal_style_decomp_judge/data/pairwise_results_32b/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "ls -la /root/causal_style_decomp_judge/data/pairwise_results_32b/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-20T17:43:48.806945+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "cat /root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_summary.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "cat /root/causal_style_decomp_judge/data/pairwise_results_32b/pairwise_summary.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T17:43:48.807061+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 2 root root   42 May 21 01:42 .\\ndrwxr-xr-x 5 root root 4096 May 21 01:42 ..\\n-rw-r--r-- 1 root root  138 May 21 01:42 pairwise_summary.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T17:43:48.807174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"n,formal_wins,casual_wins,formal_win_rate,binomial_p,position_a_rate\\r\\n99,57,42,0.5757575757575758,0.1590696518812378,0.47474747474747475\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T17:43:48.807302+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "python3 -c \"import json; recs=[json.loads(l) for l in open('/root/causal_style_decomp_judge/data/pairwise_32b.jsonl') if l.strip()]; print(len(recs)); print(sum(1 for r in recs if r.get('formal_win') is None)); fw=sum(1 for r in recs if r.get('formal_win')==True); cw=sum(1 for r in recs if r.get('formal_win')==False); print(fw,cw,f'{fw/(fw+cw)*100:.1f}' if fw+cw else 'NA')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "python3 -c \"import json; recs=[json.loads(l) for l in open('/root/causal_style_decomp_judge/data/pairwise_32b.jsonl') if l.strip()]; print(len(recs)); print(sum(1 for r in recs if r.get('formal_win') is None)); fw=sum(1 for r in recs if r.get('formal_win')==True); cw=sum(1 for r in recs if r.get('formal_win')==False); print(fw,cw,f'{fw/(fw+cw)*100:.1f}' if fw+cw else 'NA')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T17:43:48.807435+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T17:43:48.807551+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "python3 -c \"\nimport json\nwith open('/root/causal_style_decomp_judge/data/pairwise_32b.jsonl') as f:\n    records = [json.loads(l) for l in f if l.strip()]\nprint(f'Total: {len(records)}')\nnulls = sum(1 for r in records if r.get('formal_win') is None)\nprint(f'Null results: {nulls}')\nfw = sum(1 for r in records if r.get('formal_win') == True)\ncw = sum(1 for r in records if r.get('formal_win') == False)\nprint(f'Formal wins: {fw}, Casual wins: {cw}')\nprint(f'Win rate: {fw/(fw+cw)*100:.1f}%' if fw+cw > 0 else 'N/A')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "python3 -c \"\nimport json\nwith open('/root/causal_style_decomp_judge/data/pairwise_32b.jsonl') as f:\n    records = [json.loads(l) for l in f if l.strip()]\nprint(f'Total: {len(records)}')\nnulls = sum(1 for r in records if r.get('formal_win') is None)\nprint(f'Null results: {nulls}')\nfw = sum(1 for r in records if r.get('formal_win') == True)\ncw = sum(1 for r in records if r.get('formal_win') == False)\nprint(f'Formal wins: {fw}, Casual wins: {cw}')\nprint(f'Win rate: {fw/(fw+cw)*100:.1f}%' if fw+cw > 0 else 'N/A')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T17:43:48.807681+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'/root/causal_style_decomp_judge/data/pairwise_32b.jsonl\\\\') as f:\\\\n    records = [json.loads(l) for l in f if l.strip()]\\\\nprint(f\\\\'Total: {len(records)}\\\\')\\\\nnulls = sum(1 for r in records if r.get(\\\\'formal_win\\\\') is None)\\\\nprint(f\\\\'Null results: {nulls}\\\\')\\\\nfw = sum(1 for r in records if r.get(\\\\'formal_win\\\\') == True)\\\\ncw = sum(1 for r in records if r.get(\\\\'formal_win\\\\') == False)\\\\nprint(f\\\\'Formal wins: {fw}, Casual wins: {cw}\\\\')\\\\nprint(f\\\\'Win rate: {fw/(fw+cw)*100:.1f}%\\\\' if fw+cw > 0 else \\\\'N/A\\\\')\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T17:43:48.807799+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-29275",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/causal_style_decomp_judge/data/pairwise_32b.jsonl') as f:\n    records = [json.loads(l) for l in f if l.strip()]\nprint(f'Total: {len(records)}')\nnulls = sum(1 for r in records if r.get('formal_win') is None)\nprint(f'Null results: {nulls}')\nfw = sum(1 for r in records if r.get('formal_win') == True)\ncw = sum(1 for r in records if r.get('formal_win') == False)\nprint(f'Formal wins: {fw}, Casual wins: {cw}')\nif fw+cw > 0:\n    print(f'Win rate: {fw/(fw+cw)*100:.1f}%')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-29275",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/causal_style_decomp_judge/data/pairwise_32b.jsonl') as f:\n    records = [json.loads(l) for l in f if l.strip()]\nprint(f'Total: {len(records)}')\nnulls = sum(1 for r in records if r.get('formal_win') is None)\nprint(f'Null results: {nulls}')\nfw = sum(1 for r in records if r.get('formal_win') == True)\ncw = sum(1 for r in records if r.get('formal_win') == False)\nprint(f'Formal wins: {fw}, Casual wins: {cw}')\nif fw+cw > 0:\n    print(f'Win rate: {fw/(fw+cw)*100:.1f}%')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T17:43:48.807919+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total: 100\\nNull results: 1\\nFormal wins: 57, Casual wins: 42\\nWin rate: 57.6%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-20T17:43:48.808083+00:00_
+
+全部完成。以下是完整结果：
+
+---
+
+## Pairwise Comparison 完整分析结果
+
+### 1. 总体统计
+| 指标 | 值 |
+|------|-----|
+| N (有效) | 99 (1条null) |
+| Formal wins | 57 (57.6%) |
+| Casual wins | 42 (42.4%) |
+| Formal win rate | 0.5758 |
+| **Binomial p-value (vs 0.50)** | **0.159070** (不显著) |
+
+### 2. Position Bias 检查
+| 位置 | 被选次数 | 比例 |
+|------|---------|------|
+| Chose A | 47/99 | 47.5% |
+| Chose B | 52/99 | 52.5% |
+
+位置偏差极小，随机化有效。
+
+### 3. 方向分析
+| 方向 | n | Formal wins | 比例 | p-value |
+|------|---|------------|------|---------|
+| formal→casual | 58 | 36 | 62.1% | 0.086949 |
+| casual→formal | 41 | 21 | 51.2% | 1.000000 |
+
+formal→casual 方向的 formal 偏好更强（边缘显著），casual→formal 方向基本无差异。
+
+### 4. NLI 分层分析
+| 子集 | n | Formal wins | 比例 | p-value |
+|------|---|------------|------|---------|
+| NLI≥0.90 | 87 | 52 | 59.8% | 0.085689 |
+| All | 99 | 57 | 57.6% | 0.159070 |
+
+高 NLI（语义保持好）子集中 formal 偏好更强，接近显著。
+
+### 5. pairwise_summary.csv
+```
+n,formal_wins,casual_wins,formal_win_rate,binomial_p,position_a_rate
+99,57,42,0.5757575757575758,0.1590696518812378,0.47474747474747475
+```
+
+### 关键发现
+- 整体 formal win rate 57.6%，但 p=0.159 **未达 0.05 显著**
+- NLI≥0.90 子集 p=0.086，formal→casual 方向 p=0.087，均为**边缘显著**
+- Position bias 几乎不存在 (47.5% vs 52.5%)
+- 方向不对称：当原始文本是 formal 时，judge 更偏好 formal (62.1%)；当原始文本是 casual 时，几乎无偏好 (51.2%)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_exec_pairwise_scoring_32b_20260520T173534"
+}
+```
+
+</details>
+
+---

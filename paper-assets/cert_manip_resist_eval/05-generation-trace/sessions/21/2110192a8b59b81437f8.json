@@ -580,5 +580,6 @@
       ],
       "message_count": 12
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ops-fp16-dedup-kill.md"
 }

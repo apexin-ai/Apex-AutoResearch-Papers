@@ -20,5 +20,6 @@
     "unparsed_lines_preserved": 0,
     "reported_errors": 0
   },
-  "rounds": []
+  "rounds": [],
+  "readable_path": "readable/worker-executions/ops-kill-wild-data-005.md"
 }

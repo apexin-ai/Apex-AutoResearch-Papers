@@ -48,5 +48,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/pipeline-claude-crossbench-scoring.md"
 }

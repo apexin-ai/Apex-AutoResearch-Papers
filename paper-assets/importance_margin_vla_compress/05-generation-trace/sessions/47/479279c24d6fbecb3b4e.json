@@ -969,5 +969,6 @@
       ],
       "message_count": 22
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/monitor-v8-early-loss-retry.md"
 }

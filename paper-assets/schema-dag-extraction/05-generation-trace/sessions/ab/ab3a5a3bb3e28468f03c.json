@@ -76,5 +76,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ssh-rollback-and-run-all.md"
 }

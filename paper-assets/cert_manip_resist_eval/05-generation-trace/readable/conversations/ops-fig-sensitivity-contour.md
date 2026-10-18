@@ -1,0 +1,1754 @@
+# ops fig sensitivity contour
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/chats/worker_ops_fig-sensitivity-contour_20260525T151931.jsonl`
+- **Structured JSON:** [`b2a1b84d3c54520567e5.json`](../../sessions/b2/b2a1b84d3c54520567e5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+61 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-25T15:28:53.227042+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-25T15:28:53.227369+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-25T15:28:53.227568+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "find /root/cert_manip_resist_eval/ -name \"*contour*\" -o -name \"*sensitivity*\" -o -name \"*cinelli*\" -o -name \"*sensemakr*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "find /root/cert_manip_resist_eval/ -name \"*contour*\" -o -name \"*sensitivity*\" -o -name \"*cinelli*\" -o -name \"*sensemakr*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-25T15:28:53.227739+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "find /root/cert_manip_resist_eval/scripts/ -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "find /root/cert_manip_resist_eval/scripts/ -name \"*.py\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-25T15:28:53.227894+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cert_manip_resist_eval/.venv/lib/python3.14/site-packages/scipy/stats/tests/test_sensitivity_analysis.py\\n/root/cert_manip_resist_eval/.venv/lib/python3.14/site-packages/scipy/stats/_sensitivity_analysis.py\\n/root/cert_manip_resist_eval/artifacts/_project/chart/sensitivity_contours_info.txt\\n/root/cert_manip_resist_eval/artifacts/_project/data/sensitivity_analysis.json\\n/root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json\\n/root/cert_manip_resist_eval/artifacts/results/plan001/near_chance_sensitivity.json\\n/root/cert_manip_resist_eval/artifacts/server_backup/results/plan001/epsilon_sensitivity.json\\n/root/cert_manip_resist_eval/artifacts/server_backup/results/plan001/epsilon_sensitivity_k5.json\\n/root/cert_manip_resist_eval/artifacts/server_backup/results/plan001/epsilon_sensitivity_k5_old.json\\n/root/cert_manip_resist_eval/artifacts/server_backup/results/plan001/sensitivity_analysis_poolA.json\\n/root/cert_manip_resist_eval/artifacts/server_backup/results/plan001/sensitivity_analysis.json\\n/root/cert_manip_resist_eval/artifacts/server_backup/results/epsilon_sensitivity.json\\n/root/cert_manip_resist_eval/artifacts/run_sensitivity_analysis.py\\n/root/cert_manip_resist_eval/artifacts/run_sensitivity_analysis_poolA.py\\n/root/cert_manip_resist_eval/artifacts/run_cinelli_hazlett_v2.py\\n/root/cert_manip_resist_eval/scripts/run_near_chance_sensitivity.py\\n/root/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T15:28:53.228066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cert_manip_resist_eval/scripts/deploy_judges.py\\n/root/cert_manip_resist_eval/scripts/run_aggregation_loglog.py\\n/root/cert_manip_resist_eval/scripts/run_all.py\\n/root/cert_manip_resist_eval/scripts/run_alt_diversity_effect_size.py\\n/root/cert_manip_resist_eval/scripts/run_beta_reg_epsilon.py\\n/root/cert_manip_resist_eval/scripts/run_clustered_se_analysis.py\\n/root/cert_manip_resist_eval/scripts/run_condition_dominance.py\\n/root/cert_manip_resist_eval/scripts/run_gam_tier_analysis.py\\n/root/cert_manip_resist_eval/scripts/run_r2_bootstrap_ci.py\\n/root/cert_manip_resist_eval/scripts/run_gam_tier_analysis_corrected.py\\n/root/cert_manip_resist_eval/scripts/run_k5_k7_panel_analysis.py\\n/root/cert_manip_resist_eval/scripts/run_synthetic_validation.py\\n/root/cert_manip_resist_eval/scripts/run_kappa_diversity_regime_transition.py\\n/root/cert_manip_resist_eval/scripts/run_meta_analytic_pooling.py\\n/root/cert_manip_resist_eval/scripts/run_plan001_confound_diagnosis.py\\n/root/cert_manip_resist_eval/scripts/run_plan001_step1_api_scoring.py\\n/root/cert_manip_resist_eval/scripts/run_crossed_re_power.py\\n/root/cert_manip_resist_eval/scripts/run_plan001_step1_parallel_v2.py\\n/root/cert_manip_resist_eval/scripts/run_near_chance_sensitivity.py\\n/root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py\\n/root/cert_manip_resist_eval/scripts/run_fp16_baseline_v2.py\\n/root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py\\n/root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py\\n/root/cert_manip_resist_eval/scripts/run_plan010_aggregation.py\\n/root/cert_manip_resist_eval/scripts/run_power_cr2_cr3.py\\n/root/cert_manip_resist_eval/scripts/run_rf_keff_correction.py\\n/root/cert_manip_resist_eval/scripts/run_step1_correlation.py\\n/root/cert_manip_resist_eval/scripts/run_step2_attacks.py\\n/root/cert_manip_resist_eval/scripts/run_step2_keff_contrast.py\\n/root/ce
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-25T15:28:53.228240+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/run_cinelli_hazlett_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/run_cinelli_hazlett_v2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-25T15:28:53.228545+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Cinelli & Hazlett (2020) Robustness Value analysis — V2 data.\\n\\nReads K=5,7 from existing k5_k7_panel_analysis.json (already V2).\\nComputes K=3 regression from scratch using V2 individual scores + MI matrix.\\nOutputs: artifacts/results/plan001/cinelli_hazlett_v2.json\\n\\\"\\\"\\\"\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\n\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results/plan001\\\")\\nSCORES_DIR = RESULTS_DIR / \\\"individual_scores\\\"\\nMI_PATH = RESULTS_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    Path(\\\"/root/cert_manip_resist_eval/artifacts/results/_taxonomy_checkpoint.json\\\"),\\n    Path(\\\"/root/cert_manip_resist_eval/artifacts/results/_step2v3_checkpoint.json\\\"),\\n]\\n\\nV2_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\", \\\"gpt-5.5\\\", \\\"gemini-3.1-pro-preview\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\", \\\"gpt-4.1-nano\\\", \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\", \\\"claude-3-haiku\\\",\\n]\\n# Local models loaded from checkpoints (V1 names in checkpoint files)\\nLOCAL_MODELS = [\\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n                \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\"]\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\nEPS = 1e-6\\n\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        
+…[truncated 7463 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-25T15:28:53.228741+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-25T15:28:53.228876+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/_project/chart/sensitivity_contours_info.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/_project/chart/sensitivity_contours_info.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-25T15:28:53.229215+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"Cinelli & Hazlett (2020)\\\",\\n  \\\"data_version\\\": \\\"V2 (_is_valid_score filtered)\\\",\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"n_models\\\": 15,\\n  \\\"results_by_condition\\\": [\\n    {\\n      \\\"K\\\": 3,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"prompt_injection\\\",\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 63.840958880613954,\\n      \\\"se_keff\\\": 5.101968770365468,\\n      \\\"t_keff\\\": 12.513004636843524,\\n      \\\"R2\\\": 0.4916138047399272,\\n      \\\"partial_r2_keff\\\": 0.2572817018537768,\\n      \\\"keff_rv\\\": 0.44031553939398127,\\n      \\\"eta_partial_r2_treatment\\\": 0.5416134864890362,\\n      \\\"eta_partial_r2_outcome\\\": 0.009943025135192149,\\n      \\\"eta_benchmark\\\": 0.5416134864890362,\\n      \\\"rv_exceeds_eta\\\": false\\n    },\\n    {\\n      \\\"K\\\": 3,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"sycophancy\\\",\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 12.965445133681454,\\n      \\\"se_keff\\\": 0.8612294925799209,\\n      \\\"t_keff\\\": 15.054576329988235,\\n      \\\"R2\\\": 0.4414557721031195,\\n      \\\"partial_r2_keff\\\": 0.33396230522038856,\\n      \\\"keff_rv\\\": 0.5004715807962026,\\n      \\\"eta_partial_r2_treatment\\\": 0.24269670989091088,\\n      \\\"eta_partial_r2_outcome\\\": 0.01394998330105286,\\n      \\\"eta_benchmark\\\": 0.24269670989091088,\\n   
+…[truncated 8342 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-25T15:28:53.229389+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Remote paths:\\n- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K3.png\\n- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K5.png\\n- /root/cert_manip_resist_eval/artifacts/figures/sensitivity_contour_K7.png\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-25T15:28:53.229550+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "find /root/cert_manip_resist_eval/ -name \"*contour*\" -name \"*.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "find /root/cert_manip_resist_eval/ -name \"*contour*\" -name \"*.py\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T15:28:53.229700+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-25T15:28:53.229823+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/_project/data/sensitivity_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/_project/data/sensitivity_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-25T15:28:53.229947+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"See remote: /root/cert_manip_resist_eval/artifacts/results/plan001/sensitivity_analysis.json\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-25T15:28:53.230139+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/fig_sensitivity_contour*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/fig_sensitivity_contour*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-25T15:28:53.230269+00:00_
+
+docs/paper/figures/fig_sensitivity_contour_K5.png
+docs/paper/figures/fig_sensitivity_contour_K3.png
+docs/paper/figures/fig_sensitivity_contour_K7.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-25T15:28:53.230388+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "find /root/cert_manip_resist_eval/docs/paper/figures/ -name \"fig_sensitivity*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "find /root/cert_manip_resist_eval/docs/paper/figures/ -name \"fig_sensitivity*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T15:28:53.230508+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-25T15:28:53.230662+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K*.png",
+  "description": "Check file sizes of existing contour plots"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K*.png",
+    "description": "Check file sizes of existing contour plots"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T15:28:53.230790+00:00_
+
+-rw-r--r-- 1 ubuntu ubuntu 464121 May 23 09:23 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K3.png
+-rw-r--r-- 1 ubuntu ubuntu 441249 May 23 08:47 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.png
+-rw-r--r-- 1 ubuntu ubuntu 444120 May 23 09:23 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K7.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-25T15:28:53.230935+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-25T15:28:53.231057+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K3.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-25T15:28:53.231172+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K7.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-25T15:28:53.231476+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-25T15:28:53.231848+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-25T15:28:53.232147+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-25T15:28:53.232334+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/cinelli_hazlett*.json",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/cinelli_hazlett*.json",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-25T15:28:53.232462+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-25T15:28:53.232581+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\" 2>/dev/null && python3 -c \"import numpy; print(numpy.__version__)\" 2>/dev/null",
+  "description": "Check local matplotlib and numpy availability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\" 2>/dev/null && python3 -c \"import numpy; print(numpy.__version__)\" 2>/dev/null",
+    "description": "Check local matplotlib and numpy availability"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-25T15:28:53.232741+00:00_
+
+3.10.9
+2.3.5
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-25T15:28:53.232903+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "cat /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-25T15:28:53.233238+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"Cinelli & Hazlett (2020)\\\",\\n  \\\"data_version\\\": \\\"V2 (_is_valid_score filtered)\\\",\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"n_models\\\": 15,\\n  \\\"results_by_condition\\\": [\\n    {\\n      \\\"K\\\": 3,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"prompt_injection\\\",\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 63.840958880613954,\\n      \\\"se_keff\\\": 5.101968770365468,\\n      \\\"t_keff\\\": 12.513004636843524,\\n      \\\"R2\\\": 0.4916138047399272,\\n      \\\"partial_r2_keff\\\": 0.2572817018537768,\\n      \\\"keff_rv\\\": 0.44031553939398127,\\n      \\\"eta_partial_r2_treatment\\\": 0.5416134864890362,\\n      \\\"eta_partial_r2_outcome\\\": 0.009943025135192149,\\n      \\\"eta_benchmark\\\": 0.5416134864890362,\\n      \\\"rv_exceeds_eta\\\": false\\n    },\\n    {\\n      \\\"K\\\": 3,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"sycophancy\\\",\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 12.965445133681454,\\n      \\\"se_keff\\\": 0.8612294925799209,\\n      \\\"t_keff\\\": 15.054576329988235,\\n      \\\"R2\\\": 0.4414557721031195,\\n      \\\"partial_r2_keff\\\": 0.33396230522038856,\\n      \\\"keff_rv\\\": 0.5004715807962026,\\n      \\\"eta_partial_r2_treatment\\\": 0.24269670989091088,\\n      \\\"eta_partial_r2_outcome\\\": 0.01394998330105286,\\n      \\\"eta_benchmark\\\": 0.24269670989091088,\\n   
+…[truncated 8341 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-25T15:28:53.233432+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "python3 -c \"import json; d=json.load(open('/root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json')); [print(json.dumps(r)) for r in d['results_by_condition']]\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "python3 -c \"import json; d=json.load(open('/root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json')); [print(json.dumps(r)) for r in d['results_by_condition']]\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-25T15:28:53.233569+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-25T15:28:53.233711+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "wc -c /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "wc -c /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-25T15:28:53.233839+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"20438 /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-25T15:28:53.233974+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -300 /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "head -300 /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-25T15:28:53.234091+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "tail -n +300 /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "tail -n +300 /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-25T15:28:53.234416+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"Cinelli & Hazlett (2020)\\\",\\n  \\\"data_version\\\": \\\"V2 (_is_valid_score filtered)\\\",\\n  \\\"models\\\": [\\n    \\\"qwen2.5-72b\\\",\\n    \\\"llama3.1-70b\\\",\\n    \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\",\\n    \\\"qwen2.5-14b\\\",\\n    \\\"llama3.1-8b\\\",\\n    \\\"claude-opus-4-6\\\",\\n    \\\"gpt-5.5\\\",\\n    \\\"gemini-3.1-pro-preview\\\",\\n    \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4-6\\\",\\n    \\\"gpt-4.1-nano\\\",\\n    \\\"gemini-3.5-flash\\\",\\n    \\\"gpt-4.1-mini\\\",\\n    \\\"claude-3-haiku\\\"\\n  ],\\n  \\\"n_models\\\": 15,\\n  \\\"results_by_condition\\\": [\\n    {\\n      \\\"K\\\": 3,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"prompt_injection\\\",\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 63.840958880613954,\\n      \\\"se_keff\\\": 5.101968770365468,\\n      \\\"t_keff\\\": 12.513004636843524,\\n      \\\"R2\\\": 0.4916138047399272,\\n      \\\"partial_r2_keff\\\": 0.2572817018537768,\\n      \\\"keff_rv\\\": 0.44031553939398127,\\n      \\\"eta_partial_r2_treatment\\\": 0.5416134864890362,\\n      \\\"eta_partial_r2_outcome\\\": 0.009943025135192149,\\n      \\\"eta_benchmark\\\": 0.5416134864890362,\\n      \\\"rv_exceeds_eta\\\": false\\n    },\\n    {\\n      \\\"K\\\": 3,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"sycophancy\\\",\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 12.965445133681454,\\n      \\\"se_keff\\\": 0.8612294925799209,\\n      \\\"t_keff\\\": 15.054576329988235,\\n      \\\"R2\\\": 0.4414557721031195,\\n      \\\"partial_r2_keff\\\": 0.33396230522038856,\\n      \\\"keff_rv\\\": 0.5004715807962026,\\n      \\\"eta_partial_r2_treatment\\\": 0.24269670989091088,\\n      \\\"eta_partial_r2_outcome\\\": 0.01394998330105286,\\n      \\\"eta_benchmark\\\": 0.24269670989091088,\\n   
+…[truncated 8311 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-25T15:28:53.234790+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"dof\\\": 3000,\\n      \\\"beta_keff\\\": 0.04445451915141475,\\n      \\\"se_keff\\\": 0.005784046871701828,\\n      \\\"t_keff\\\": 7.6857121211977635,\\n      \\\"R2\\\": 0.18468992038469711,\\n      \\\"partial_r2_keff\\\": 0.019309844989363768,\\n      \\\"keff_rv\\\": 0.13082117757344341,\\n      \\\"eta_partial_r2_treatment\\\": 0.2720406871759768,\\n      \\\"eta_partial_r2_outcome\\\": 0.09018690652026592,\\n      \\\"eta_benchmark\\\": 0.2720406871759768,\\n      \\\"rv_exceeds_eta\\\": false\\n    },\\n    {\\n      \\\"K\\\": 5,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"authority_bias\\\",\\n      \\\"n_panels\\\": 3003,\\n      \\\"dof\\\": 3000,\\n      \\\"beta_keff\\\": 0.4786456160733837,\\n      \\\"se_keff\\\": 0.13232899351737268,\\n      \\\"t_keff\\\": 3.617088011861476,\\n      \\\"R2\\\": 0.06304888335410297,\\n      \\\"partial_r2_keff\\\": 0.0043421718788926025,\\n      \\\"keff_rv\\\": 0.06389412603478055,\\n      \\\"eta_partial_r2_treatment\\\": 0.27701623715787455,\\n      \\\"eta_partial_r2_outcome\\\": 0.03089319941856368,\\n      \\\"eta_benchmark\\\": 0.27701623715787455,\\n      \\\"rv_exceeds_eta\\\": false\\n    },\\n    {\\n      \\\"K\\\": 5,\\n      \\\"benchmark\\\": \\\"arc_challenge\\\",\\n      \\\"attack\\\": \\\"prompt_injection\\\",\\n      \\\"n_panels\\\": 3003,\\n      \\\"dof\\\": 3000,\\n      \\\"beta_keff\\\": 6.3866088544320965,\\n      \\\"se_keff\\\": 0.3030607833809783,\\n      \\\"t_keff\\\": 21.07368951925224,\\n      \\\"R2\\\": 0.30414386978201924,\\n      \\\"partial_r2_keff\\\": 0.1289452512038401,\\n      \\\"keff_rv\\\": 0.31778926610449065,\\n      \\\"eta_partial_r2_treatment\\\": 0.6964298615731895,\\n      \\\"eta_partial_r2_outcome\\\": 0.0006179024385472925,\\n      \\\"eta_benchmark\\\": 0.6964298615731895,\\n      \\\"rv_exceeds_eta\\\": false\\n    },\\n    {\\n      \\\"K\\\": 5,\\n      \\\"benchmar
+…[truncated 8247 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-25T15:28:53.235018+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -A 20 \"\\\"K\\\": 3\" /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -A 20 \"\\\"K\\\": 3\" /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-25T15:28:53.235284+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"K\\\": 3,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"prompt_injection\\\",\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 63.840958880613954,\\n      \\\"se_keff\\\": 5.101968770365468,\\n      \\\"t_keff\\\": 12.513004636843524,\\n      \\\"R2\\\": 0.4916138047399272,\\n      \\\"partial_r2_keff\\\": 0.2572817018537768,\\n      \\\"keff_rv\\\": 0.44031553939398127,\\n      \\\"eta_partial_r2_treatment\\\": 0.5416134864890362,\\n      \\\"eta_partial_r2_outcome\\\": 0.009943025135192149,\\n      \\\"eta_benchmark\\\": 0.5416134864890362,\\n      \\\"rv_exceeds_eta\\\": false\\n    },\\n    {\\n      \\\"K\\\": 3,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"sycophancy\\\",\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 12.965445133681454,\\n      \\\"se_keff\\\": 0.8612294925799209,\\n      \\\"t_keff\\\": 15.054576329988235,\\n      \\\"R2\\\": 0.4414557721031195,\\n      \\\"partial_r2_keff\\\": 0.33396230522038856,\\n      \\\"keff_rv\\\": 0.5004715807962026,\\n      \\\"eta_partial_r2_treatment\\\": 0.24269670989091088,\\n      \\\"eta_partial_r2_outcome\\\": 0.01394998330105286,\\n      \\\"eta_benchmark\\\": 0.24269670989091088,\\n      \\\"rv_exceeds_eta\\\": true\\n    },\\n    {\\n      \\\"K\\\": 3,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"score_manipulation\\\",\\n      \\\"n_panels\\\": 455,\\n      \\\"dof\\\": 452,\\n      \\\"beta_keff\\\": 20.921649849008066,\\n      \\\"se_keff\\\": 1.5671015941990643,\\n      \\\"t_keff\\\": 13.350538297232088,\\n      \\\"R2\\\": 0.5152426332668024,\\n      \\\"partial_r2_keff\\\": 0.2828093380615464,\\n      \\\"keff_rv\\\": 0.46101711369427634,\\n      \\\"eta_partial_r2_treatment\\\": 0.6193553061098315,\\n      \\\"eta_partial_r2_outcome\\\": 0.00010539922405405242,\\n      \\\"eta_benchmark\\\":
+…[truncated 6431 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-25T15:28:53.235447+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -A 20 \"\\\"K\\\": 7\" /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -A 20 \"\\\"K\\\": 7\" /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-25T15:28:53.235595+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -A 20 \"\\\"K\\\": 5\" /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "seetacloud-rtx6000",
+    "command": "grep -A 20 \"\\\"K\\\": 5\" /root/cert_manip_resist_eval/artifacts/results/plan001/cinelli_hazlett_v2.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-25T15:28:53.235879+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"K\\\": 7,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"prompt_injection\\\",\\n      \\\"n_panels\\\": 6435,\\n      \\\"dof\\\": 6432,\\n      \\\"beta_keff\\\": 3.587146370962487,\\n      \\\"se_keff\\\": 0.05918250306275886,\\n      \\\"t_keff\\\": 60.61160284414757,\\n      \\\"R2\\\": 0.5900479874018063,\\n      \\\"partial_r2_keff\\\": 0.36353169607975666,\\n      \\\"keff_rv\\\": 0.5223313715815914,\\n      \\\"eta_partial_r2_treatment\\\": 0.2889423363508948,\\n      \\\"eta_partial_r2_outcome\\\": 0.12585334277350088,\\n      \\\"eta_benchmark\\\": 0.2889423363508948,\\n      \\\"rv_exceeds_eta\\\": true\\n    },\\n    {\\n      \\\"K\\\": 7,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"sycophancy\\\",\\n      \\\"n_panels\\\": 6435,\\n      \\\"dof\\\": 6432,\\n      \\\"beta_keff\\\": 2.3067020029779095,\\n      \\\"se_keff\\\": 0.08005028406853626,\\n      \\\"t_keff\\\": 28.81566292760425,\\n      \\\"R2\\\": 0.22736471778858536,\\n      \\\"partial_r2_keff\\\": 0.11433534537453467,\\n      \\\"keff_rv\\\": 0.30050283683473406,\\n      \\\"eta_partial_r2_treatment\\\": 0.07657986384872935,\\n      \\\"eta_partial_r2_outcome\\\": 0.07812840128784095,\\n      \\\"eta_benchmark\\\": 0.07657986384872935,\\n      \\\"rv_exceeds_eta\\\": true\\n    },\\n    {\\n      \\\"K\\\": 7,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"score_manipulation\\\",\\n      \\\"n_panels\\\": 6435,\\n      \\\"dof\\\": 6432,\\n      \\\"beta_keff\\\": 3.0118510472884554,\\n      \\\"se_keff\\\": 0.07440843193298734,\\n      \\\"t_keff\\\": 40.47728152638596,\\n      \\\"R2\\\": 0.3026427632172455,\\n      \\\"partial_r2_keff\\\": 0.20301450048375597,\\n      \\\"keff_rv\\\": 0.3931641662590326,\\n      \\\"eta_partial_r2_treatment\\\": 0.5147266792376103,\\n      \\\"eta_partial_r2_outcome\\\": 0.004490191397282268,\\n      \\\"eta_benchmark\
+…[truncated 6433 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-25T15:28:53.236163+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"K\\\": 5,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"prompt_injection\\\",\\n      \\\"n_panels\\\": 3003,\\n      \\\"dof\\\": 3000,\\n      \\\"beta_keff\\\": 3.2709126112073417,\\n      \\\"se_keff\\\": 0.0967741560374451,\\n      \\\"t_keff\\\": 33.79944341691513,\\n      \\\"R2\\\": 0.6038245457626201,\\n      \\\"partial_r2_keff\\\": 0.2757825705457633,\\n      \\\"keff_rv\\\": 0.4553960910364787,\\n      \\\"eta_partial_r2_treatment\\\": 0.3788851451143044,\\n      \\\"eta_partial_r2_outcome\\\": 0.17643733200594106,\\n      \\\"eta_benchmark\\\": 0.3788851451143044,\\n      \\\"rv_exceeds_eta\\\": true\\n    },\\n    {\\n      \\\"K\\\": 5,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"sycophancy\\\",\\n      \\\"n_panels\\\": 3003,\\n      \\\"dof\\\": 3000,\\n      \\\"beta_keff\\\": 1.9660456863792612,\\n      \\\"se_keff\\\": 0.09898761595678537,\\n      \\\"t_keff\\\": 19.861531842908207,\\n      \\\"R2\\\": 0.29859413860523376,\\n      \\\"partial_r2_keff\\\": 0.11621231976116612,\\n      \\\"keff_rv\\\": 0.3027856405062335,\\n      \\\"eta_partial_r2_treatment\\\": 0.10644654148361297,\\n      \\\"eta_partial_r2_outcome\\\": 0.13462717311849481,\\n      \\\"eta_benchmark\\\": 0.10644654148361297,\\n      \\\"rv_exceeds_eta\\\": true\\n    },\\n    {\\n      \\\"K\\\": 5,\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"attack\\\": \\\"score_manipulation\\\",\\n      \\\"n_panels\\\": 3003,\\n      \\\"dof\\\": 3000,\\n      \\\"beta_keff\\\": 2.7424168451456077,\\n      \\\"se_keff\\\": 0.12855732719935617,\\n      \\\"t_keff\\\": 21.33224845980885,\\n      \\\"R2\\\": 0.32011239208700004,\\n      \\\"partial_r2_keff\\\": 0.13170948954235448,\\n      \\\"keff_rv\\\": 0.3209437252758418,\\n      \\\"eta_partial_r2_treatment\\\": 0.5966443686647004,\\n      \\\"eta_partial_r2_outcome\\\": 0.00334676745416078,\\n      \\\"eta_benchmark\\
+…[truncated 6474 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-25T15:28:53.236461+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/plot_sensitivity_contours.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Generate Cinelli-Hazlett sensitivity contour plots for K=3, K=5, K=7.\"\"\"\n\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom matplotlib.colors import LinearSegmentedColormap\nfrom pathlib import Path\n\nOUT_DIR = Path(__file__).resolve().parent.parent / \"docs\" / \"paper\" / \"figures\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nATTACKS_ORDER = [\n    \"prompt_injection\", \"sycophancy\", \"score_manipulation\",\n    \"verbosity_bias\", \"position_bias\", \"authority_bias\",\n]\nATTACK_LABELS = {\n    \"prompt_injection\": \"PromptInj\",\n    \"sycophancy\": \"Sycoph\",\n    \"score_manipulation\": \"ScoreManip\",\n    \"verbosity_bias\": \"Verbose\",\n    \"position_bias\": \"Position\",\n    \"authority_bias\": \"Authority\",\n}\nBENCHMARKS = [\"mmlu\", \"arc_challenge\"]\nBENCH_LABELS = {\"mmlu\": \"MMLU\", \"arc_challenge\": \"ARC\"}\n\nDATA = [\n    # K=3 mmlu\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"prompt_injection\",\"dof\":452,\"beta_keff\":63.841,\"se_keff\":5.102,\"eta_partial_r2_treatment\":0.5416,\"eta_partial_r2_outcome\":0.00994,\"keff_rv\":0.4403},\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"sycophancy\",\"dof\":452,\"beta_keff\":12.965,\"se_keff\":0.8612,\"eta_partial_r2_treatment\":0.2427,\"eta_partial_r2_outcome\":0.01395,\"keff_rv\":0.5005},\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"score_manipulation\",\"dof\":452,\"beta_keff\":20.922,\"se_keff\":1.5671,\"eta_partial_r2_treatment\":0.6194,\"eta_partial_r2_outcome\":0.000105,\"keff_rv\":0.4610},\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"verbosity_bias\",\"dof\":452,\"beta_keff\":8.9995,\"se_keff\":1.0117,\"eta_partial_r2_treatment\":0.3565,\"eta_partial_r2_outcome\":0.1176,\"keff_rv\":0.3399},\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"position_bias\",\"dof\":452,\"beta_keff\":6.0978,\"se_keff\":1.3229,\"eta_partial_r2_treatment\":0.4258,\"eta_partial_r2_outcome\":0.3268,\"keff_rv\":0.1946},\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"authority_bias\",\"dof\":452,\"beta_keff\":8.3222,\"se_keff\":0.5657,\"eta_partial_r2_treatment\":0.3551,\"eta_partial_r2_outcome\":0.000645,\"keff_rv\":0.4928},\n    # K=3 arc_challenge\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"prompt_injection\",\"dof\":452,\"beta_keff\":45.314,\"se_keff\":3.056,\"eta_partial_r2_treatment\":0.4299,\"eta_partial_r2_outcome\":0.01697,\"keff_rv\":0.4954},\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"sycophancy\",\"dof\":452,\"beta_keff\":4.1185,\"se_keff\":0.3493,\"eta_partial_r2_treatment\":0.3985,\"eta_partial_r2_outcome\":0.00416,\"keff_rv\":0.4217},\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"score_manipulation\",\"dof\":452,\"beta_keff\":16.852,\"se_keff\":0.8683,\"eta_partial_r2_treatment\":0.7528,\"eta_partial_r2_outcome\":0.1264,\"keff_rv\":0.5868},\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"verbosity_bias\",\"dof\":452,\"beta_keff\":12.005,\"se_keff\":0.8107,\"eta_partial_r2_treatment\":0.5372,\"eta_partial_r2_outcome\":0.000470,\"keff_rv\":0.4950},\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"position_bias\",\"dof\":452,\"beta_keff\":12.431,\"se_keff\":2.7514,\"eta_partial_r2_treatment\":0.8168,\"eta_partial_r2_outcome\":0.003303,\"keff_rv\":0.1911},\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"authority_bias\",\"dof\":452,\"beta_keff\":3.3118,\"se_keff\":0.2917,\"eta_partial_r2_treatment\":0.4548,\"eta_partial_r2_outcome\":0.01997,\"keff_rv\":0.4102},\n    # K=5 mmlu\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"prompt_injection\",\"dof\":3000,\"beta_keff\":3.2709,\"se_keff\":0.09677,\"eta_partial_r2_treatment\":0.3789,\"eta_partial_r2_outcome\":0.1764,\"keff_rv\":0.4554},\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"sycophancy\",\"dof\":3000,\"beta_keff\":1.9660,\"se_keff\":0.09899,\"eta_partial_r2_treatment\":0.1064,\"eta_partial_r2_outcome\":0.1346,\"keff_rv\":0.3028},\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"score_manipulation\",\"dof\":3000,\"beta_keff\":2.7424,\"se_keff\":0.12856,\"eta_partial_r2_treatment\":0.5966,\"eta_partial_r2_outcome\":0.00335,\"keff_rv\":0.3209},\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"verbosity_bias\",\"dof\":3000,\"beta_keff\":2.2246,\"se_keff\":0.15119,\"eta_partial_r2_treatment\":0.1196,\"eta_partial_r2_outcome\":0.2057,\"keff_rv\":0.2350},\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"position_bias\",\"dof\":3000,\"beta_keff\":0.04445,\"se_keff\":0.005784,\"eta_partial_r2_treatment\":0.2720,\"eta_partial_r2_outcome\":0.09019,\"keff_rv\":0.1308},\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"authority_bias\",\"dof\":3000,\"beta_keff\":0.4786,\"se_keff\":0.13233,\"eta_partial_r2_treatment\":0.2770,\"eta_partial_r2_outcome\":0.03089,\"keff_rv\":0.06389},\n    # K=5 arc_challenge\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"prompt_injection\",\"dof\":3000,\"beta_keff\":6.3866,\"se_keff\":0.3031,\"eta_partial_r2_treatment\":0.6964,\"eta_partial_r2_outcome\":0.000618,\"keff_rv\":0.3178},\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"sycophancy\",\"dof\":3000,\"beta_keff\":-3.5767,\"se_keff\":0.6001,\"eta_partial_r2_treatment\":0.5548,\"eta_partial_r2_outcome\":0.06319,\"keff_rv\":0.1031},\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"score_manipulation\",\"dof\":3000,\"beta_keff\":6.5715,\"se_keff\":0.5500,\"eta_partial_r2_treatment\":0.8002,\"eta_partial_r2_outcome\":0.000160,\"keff_rv\":0.1957},\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"verbosity_bias\",\"dof\":3000,\"beta_keff\":4.4592,\"se_keff\":0.5599,\"eta_partial_r2_treatment\":0.6416,\"eta_partial_r2_outcome\":0.03377,\"keff_rv\":0.1352},\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"position_bias\",\"dof\":3000,\"beta_keff\":0.17674,\"se_keff\":0.006240,\"eta_partial_r2_treatment\":0.7785,\"eta_partial_r2_outcome\":0.04005,\"keff_rv\":0.4004},\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"authority_bias\",\"dof\":3000,\"beta_keff\":6.6904,\"se_keff\":0.6097,\"eta_partial_r2_treatment\":0.5086,\"eta_partial_r2_outcome\":0.01212,\"keff_rv\":0.1813},\n    # K=7 mmlu\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"prompt_injection\",\"dof\":6432,\"beta_keff\":3.5871,\"se_keff\":0.05918,\"eta_partial_r2_treatment\":0.2889,\"eta_partial_r2_outcome\":0.1259,\"keff_rv\":0.5223},\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"sycophancy\",\"dof\":6432,\"beta_keff\":2.3067,\"se_keff\":0.08005,\"eta_partial_r2_treatment\":0.07658,\"eta_partial_r2_outcome\":0.07813,\"keff_rv\":0.3005},\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"score_manipulation\",\"dof\":6432,\"beta_keff\":3.0119,\"se_keff\":0.07441,\"eta_partial_r2_treatment\":0.5147,\"eta_partial_r2_outcome\":0.004490,\"keff_rv\":0.3932},\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"verbosity_bias\",\"dof\":6432,\"beta_keff\":2.3799,\"se_keff\":0.12880,\"eta_partial_r2_treatment\":0.07840,\"eta_partial_r2_outcome\":0.19468,\"keff_rv\":0.2054},\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"position_bias\",\"dof\":6432,\"beta_keff\":0.06094,\"se_keff\":0.003271,\"eta_partial_r2_treatment\":0.17939,\"eta_partial_r2_outcome\":0.07282,\"keff_rv\":0.2069},\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"authority_bias\",\"dof\":6432,\"beta_keff\":0.05153,\"se_keff\":0.13483,\"eta_partial_r2_treatment\":0.2005,\"eta_partial_r2_outcome\":0.01071,\"keff_rv\":0.00475},\n    # K=7 arc_challenge\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"prompt_injection\",\"dof\":6432,\"beta_keff\":6.4995,\"se_keff\":0.18305,\"eta_partial_r2_treatment\":0.6287,\"eta_partial_r2_outcome\":0.004348,\"keff_rv\":0.3554},\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"sycophancy\",\"dof\":6432,\"beta_keff\":-5.2117,\"se_keff\":0.52169,\"eta_partial_r2_treatment\":0.5355,\"eta_partial_r2_outcome\":0.06494,\"keff_rv\":0.1170},\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"score_manipulation\",\"dof\":6432,\"beta_keff\":6.3605,\"se_keff\":0.44028,\"eta_partial_r2_treatment\":0.7166,\"eta_partial_r2_outcome\":0.000887,\"keff_rv\":0.1646},\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"verbosity_bias\",\"dof\":6432,\"beta_keff\":6.7582,\"se_keff\":0.46578,\"eta_partial_r2_treatment\":0.5994,\"eta_partial_r2_outcome\":0.02815,\"keff_rv\":0.1653},\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"position_bias\",\"dof\":6432,\"beta_keff\":0.12162,\"se_keff\":0.002730,\"eta_partial_r2_treatment\":0.7051,\"eta_partial_r2_outcome\":0.04571,\"keff_rv\":0.4223},\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"authority_bias\",\"dof\":6432,\"beta_keff\":8.2118,\"se_keff\":0.51911,\"eta_partial_r2_treatment\":0.5138,\"eta_partial_r2_outcome\":0.002988,\"keff_rv\":0.1787},\n]\n\n\ndef adjusted_beta(beta_hat, se, dof, Rd, Ry):\n    \"\"\"Cinelli-Hazlett adjusted estimate under hypothetical confounding.\"\"\"\n    bias = se * np.sqrt(dof) * np.sqrt(Rd * Ry / (1 - Rd + 1e-12))\n    return beta_hat - np.sign(beta_hat) * bias\n\n\ndef plot_contour_panel(ax, d):\n    \"\"\"Plot a single sensitivity contour on the given axes.\"\"\"\n    beta = d[\"beta_keff\"]\n    se = d[\"se_keff\"]\n    dof = d[\"dof\"]\n    eta_Rd = d[\"eta_partial_r2_treatment\"]\n    eta_Ry = d[\"eta_partial_r2_outcome\"]\n    rv = d[\"keff_rv\"]\n\n    N = 200\n    Rd = np.linspace(0.001, 0.99, N)\n    Ry = np.linspace(0.001, 0.99, N)\n    Rd_g, Ry_g = np.meshgrid(Rd, Ry)\n    Z = adjusted_beta(beta, se, dof, Rd_g, Ry_g)\n\n    cmap = LinearSegmentedColormap.from_list(\n        \"blue_white\", [\"#b3d4f7\", \"#d9ecfb\", \"#eef5fc\", \"#ffffff\"], N=256\n    )\n\n    abs_beta = abs(beta)\n    if abs_beta > 1:\n        step = max(1, round(abs_beta / 6))\n        max_level = int(abs_beta) + step\n        levels_fill = np.arange(-max_level, max_level + step, step).astype(float)\n    else:\n        step = round(abs_beta / 5, 3) or 0.01\n        max_level = abs_beta + step * 3\n        levels_fill = np.arange(-max_level, max_level + step, step)\n\n    levels_fill = sorted(set(levels_fill))\n    if len(levels_fill) < 3:\n        levels_fill = np.linspace(-abs_beta * 2, abs_beta * 2, 12)\n\n    ax.contourf(Rd_g, Ry_g, Z, levels=levels_fill, cmap=cmap, extend=\"both\")\n\n    contour_levels = [l for l in levels_fill if l != 0]\n    if contour_levels:\n        cs = ax.contour(\n            Rd_g, Ry_g, Z, levels=contour_levels,\n            colors=\"0.55\", linewidths=0.6, linestyles=\"solid\"\n        )\n        ax.clabel(cs, inline=True, fontsize=6, fmt=\"%.4g\")\n\n    cs0 = ax.contour(\n        Rd_g, Ry_g, Z, levels=[0.0],\n        colors=\"#c0392b\", linewidths=1.8, linestyles=\"solid\"\n    )\n    ax.clabel(cs0, inline=True, fontsize=7, fmt=\"%.0f\")\n\n    rv_Rd = np.linspace(rv * 0.01, min(rv * 3, 0.99), 200)\n    rv_Ry_line = rv**2 / rv_Rd\n    mask = rv_Ry_line < 0.99\n    if mask.any():\n        ax.plot(rv_Rd[mask], rv_Ry_line[mask], color=\"#e67e22\",\n                linewidth=1.0, linestyle=\"--\", alpha=0.8)\n\n    ax.plot(eta_Rd, eta_Ry, marker=\"D\", color=\"#c0392b\", markersize=5,\n            markeredgecolor=\"white\", markeredgewidth=0.6, zorder=5)\n    label_x = eta_Rd + 0.03\n    label_y = eta_Ry + 0.03\n    if label_x > 0.85:\n        label_x = eta_Rd - 0.08\n    if label_y > 0.85:\n        label_y = eta_Ry - 0.06\n    ax.annotate(\n        r\"$\\eta_{\\max}$\", (eta_Rd, eta_Ry),\n        xytext=(label_x, label_y), fontsize=7,\n        color=\"#c0392b\", fontweight=\"bold\",\n        arrowprops=dict(arrowstyle=\"-\", color=\"#c0392b\", lw=0.5)\n        if abs(label_x - eta_Rd) > 0.05 else None,\n    )\n\n    ax.set_xlim(0, 1)\n    ax.set_ylim(0, 1)\n    ax.set_xlabel(r\"$R^2_{D \\sim Z | X}$\", fontsize=8)\n    ax.set_ylabel(r\"$R^2_{Y \\sim Z | D,X}$\", fontsize=8)\n    ax.tick_params(labelsize=7)\n\n    for spine in ax.spines.values():\n        spine.set_linewidth(0.5)\n        spine.set_color(\"0.4\")\n\n    info = f\"$\\\\beta$={beta:.2g}\\nRV={rv:.2f}\"\n    ax.text(\n        0.97, 0.97, info, transform=ax.transAxes,\n        fontsize=6, va=\"top\", ha=\"right\",\n        bbox=dict(boxstyle=\"round,pad=0.3\", facecolor=\"white\",\n                  edgecolor=\"0.7\", alpha=0.9),\n    )\n\n\ndef make_figure(K):\n    \"\"\"Create 4x3 multi-panel contour figure for a given K.\"\"\"\n    conditions = [d for d in DATA if d[\"K\"] == K]\n    cond_map = {(d[\"benchmark\"], d[\"attack\"]): d for d in conditions}\n\n    plt.rcParams.update({\n        \"font.family\": \"DejaVu Sans\",\n        \"font.size\": 10,\n        \"axes.titlesize\": 10,\n        \"axes.labelsize\": 8,\n    })\n\n    fig, axes = plt.subplots(4, 3, figsize=(13.5, 16))\n    fig.suptitle(f\"Cinelli–Hazlett Sensitivity Analysis: K={K}\",\n                 fontsize=14, fontweight=\"bold\", y=0.995)\n\n    for row_idx, bench in enumerate(BENCHMARKS):\n        for col_idx, atk in enumerate(ATTACKS_ORDER):\n            ax_row = row_idx * 2 + (col_idx // 3)\n            ax_col = col_idx % 3\n\n            grid_row = row_idx * 2 + (col_idx >= 3)\n            grid_col = col_idx % 3 if col_idx < 3 else col_idx - 3\n\n            ax = axes[grid_row, grid_col]\n            key = (bench, atk)\n            if key in cond_map:\n                d = cond_map[key]\n                plot_contour_panel(ax, d)\n                ax.set_title(\n                    f\"{BENCH_LABELS[bench]} × {ATTACK_LABELS[atk]}\",\n                    fontsize=9, fontweight=\"bold\", pad=4,\n                )\n\n    fig.tight_layout(rect=[0, 0, 1, 0.98])\n\n    for fmt in (\"pdf\", \"png\"):\n        path = OUT_DIR / f\"fig_sensitivity_contour_K{K}.{fmt}\"\n        fig.savefig(path, dpi=300, bbox_inches=\"tight\",\n                    facecolor=\"white\", edgecolor=\"none\")\n        print(f\"Saved: {path}\")\n    plt.close(fig)\n\n\nif __name__ == \"__main__\":\n    for K in (3, 5, 7):\n        print(f\"\\n--- Generating K={K} ---\")\n        make_figure(K)\n    print(\"\\nDone.\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/plot_sensitivity_contours.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Generate Cinelli-Hazlett sensitivity contour plots for K=3, K=5, K=7.\"\"\"\n\nimport numpy as np\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom matplotlib.colors import LinearSegmentedColormap\nfrom pathlib import Path\n\nOUT_DIR = Path(__file__).resolve().parent.parent / \"docs\" / \"paper\" / \"figures\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nATTACKS_ORDER = [\n    \"prompt_injection\", \"sycophancy\", \"score_manipulation\",\n    \"verbosity_bias\", \"position_bias\", \"authority_bias\",\n]\nATTACK_LABELS = {\n    \"prompt_injection\": \"PromptInj\",\n    \"sycophancy\": \"Sycoph\",\n    \"score_manipulation\": \"ScoreManip\",\n    \"verbosity_bias\": \"Verbose\",\n    \"position_bias\": \"Position\",\n    \"authority_bias\": \"Authority\",\n}\nBENCHMARKS = [\"mmlu\", \"arc_challenge\"]\nBENCH_LABELS = {\"mmlu\": \"MMLU\", \"arc_challenge\": \"ARC\"}\n\nDATA = [\n    # K=3 mmlu\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"prompt_injection\",\"dof\":452,\"beta_keff\":63.841,\"se_keff\":5.102,\"eta_partial_r2_treatment\":0.5416,\"eta_partial_r2_outcome\":0.00994,\"keff_rv\":0.4403},\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"sycophancy\",\"dof\":452,\"beta_keff\":12.965,\"se_keff\":0.8612,\"eta_partial_r2_treatment\":0.2427,\"eta_partial_r2_outcome\":0.01395,\"keff_rv\":0.5005},\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"score_manipulation\",\"dof\":452,\"beta_keff\":20.922,\"se_keff\":1.5671,\"eta_partial_r2_treatment\":0.6194,\"eta_partial_r2_outcome\":0.000105,\"keff_rv\":0.4610},\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"verbosity_bias\",\"dof\":452,\"beta_keff\":8.9995,\"se_keff\":1.0117,\"eta_partial_r2_treatment\":0.3565,\"eta_partial_r2_outcome\":0.1176,\"keff_rv\":0.3399},\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"position_bias\",\"dof\":452,\"beta_keff\":6.0978,\"se_keff\":1.3229,\"eta_partial_r2_treatment\":0.4258,\"eta_partial_r2_outcome\":0.3268,\"keff_rv\":0.1946},\n    {\"K\":3,\"benchmark\":\"mmlu\",\"attack\":\"authority_bias\",\"dof\":452,\"beta_keff\":8.3222,\"se_keff\":0.5657,\"eta_partial_r2_treatment\":0.3551,\"eta_partial_r2_outcome\":0.000645,\"keff_rv\":0.4928},\n    # K=3 arc_challenge\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"prompt_injection\",\"dof\":452,\"beta_keff\":45.314,\"se_keff\":3.056,\"eta_partial_r2_treatment\":0.4299,\"eta_partial_r2_outcome\":0.01697,\"keff_rv\":0.4954},\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"sycophancy\",\"dof\":452,\"beta_keff\":4.1185,\"se_keff\":0.3493,\"eta_partial_r2_treatment\":0.3985,\"eta_partial_r2_outcome\":0.00416,\"keff_rv\":0.4217},\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"score_manipulation\",\"dof\":452,\"beta_keff\":16.852,\"se_keff\":0.8683,\"eta_partial_r2_treatment\":0.7528,\"eta_partial_r2_outcome\":0.1264,\"keff_rv\":0.5868},\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"verbosity_bias\",\"dof\":452,\"beta_keff\":12.005,\"se_keff\":0.8107,\"eta_partial_r2_treatment\":0.5372,\"eta_partial_r2_outcome\":0.000470,\"keff_rv\":0.4950},\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"position_bias\",\"dof\":452,\"beta_keff\":12.431,\"se_keff\":2.7514,\"eta_partial_r2_treatment\":0.8168,\"eta_partial_r2_outcome\":0.003303,\"keff_rv\":0.1911},\n    {\"K\":3,\"benchmark\":\"arc_challenge\",\"attack\":\"authority_bias\",\"dof\":452,\"beta_keff\":3.3118,\"se_keff\":0.2917,\"eta_partial_r2_treatment\":0.4548,\"eta_partial_r2_outcome\":0.01997,\"keff_rv\":0.4102},\n    # K=5 mmlu\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"prompt_injection\",\"dof\":3000,\"beta_keff\":3.2709,\"se_keff\":0.09677,\"eta_partial_r2_treatment\":0.3789,\"eta_partial_r2_outcome\":0.1764,\"keff_rv\":0.4554},\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"sycophancy\",\"dof\":3000,\"beta_keff\":1.9660,\"se_keff\":0.09899,\"eta_partial_r2_treatment\":0.1064,\"eta_partial_r2_outcome\":0.1346,\"keff_rv\":0.3028},\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"score_manipulation\",\"dof\":3000,\"beta_keff\":2.7424,\"se_keff\":0.12856,\"eta_partial_r2_treatment\":0.5966,\"eta_partial_r2_outcome\":0.00335,\"keff_rv\":0.3209},\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"verbosity_bias\",\"dof\":3000,\"beta_keff\":2.2246,\"se_keff\":0.15119,\"eta_partial_r2_treatment\":0.1196,\"eta_partial_r2_outcome\":0.2057,\"keff_rv\":0.2350},\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"position_bias\",\"dof\":3000,\"beta_keff\":0.04445,\"se_keff\":0.005784,\"eta_partial_r2_treatment\":0.2720,\"eta_partial_r2_outcome\":0.09019,\"keff_rv\":0.1308},\n    {\"K\":5,\"benchmark\":\"mmlu\",\"attack\":\"authority_bias\",\"dof\":3000,\"beta_keff\":0.4786,\"se_keff\":0.13233,\"eta_partial_r2_treatment\":0.2770,\"eta_partial_r2_outcome\":0.03089,\"keff_rv\":0.06389},\n    # K=5 arc_challenge\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"prompt_injection\",\"dof\":3000,\"beta_keff\":6.3866,\"se_keff\":0.3031,\"eta_partial_r2_treatment\":0.6964,\"eta_partial_r2_outcome\":0.000618,\"keff_rv\":0.3178},\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"sycophancy\",\"dof\":3000,\"beta_keff\":-3.5767,\"se_keff\":0.6001,\"eta_partial_r2_treatment\":0.5548,\"eta_partial_r2_outcome\":0.06319,\"keff_rv\":0.1031},\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"score_manipulation\",\"dof\":3000,\"beta_keff\":6.5715,\"se_keff\":0.5500,\"eta_partial_r2_treatment\":0.8002,\"eta_partial_r2_outcome\":0.000160,\"keff_rv\":0.1957},\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"verbosity_bias\",\"dof\":3000,\"beta_keff\":4.4592,\"se_keff\":0.5599,\"eta_partial_r2_treatment\":0.6416,\"eta_partial_r2_outcome\":0.03377,\"keff_rv\":0.1352},\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"position_bias\",\"dof\":3000,\"beta_keff\":0.17674,\"se_keff\":0.006240,\"eta_partial_r2_treatment\":0.7785,\"eta_partial_r2_outcome\":0.04005,\"keff_rv\":0.4004},\n    {\"K\":5,\"benchmark\":\"arc_challenge\",\"attack\":\"authority_bias\",\"dof\":3000,\"beta_keff\":6.6904,\"se_keff\":0.6097,\"eta_partial_r2_treatment\":0.5086,\"eta_partial_r2_outcome\":0.01212,\"keff_rv\":0.1813},\n    # K=7 mmlu\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"prompt_injection\",\"dof\":6432,\"beta_keff\":3.5871,\"se_keff\":0.05918,\"eta_partial_r2_treatment\":0.2889,\"eta_partial_r2_outcome\":0.1259,\"keff_rv\":0.5223},\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"sycophancy\",\"dof\":6432,\"beta_keff\":2.3067,\"se_keff\":0.08005,\"eta_partial_r2_treatment\":0.07658,\"eta_partial_r2_outcome\":0.07813,\"keff_rv\":0.3005},\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"score_manipulation\",\"dof\":6432,\"beta_keff\":3.0119,\"se_keff\":0.07441,\"eta_partial_r2_treatment\":0.5147,\"eta_partial_r2_outcome\":0.004490,\"keff_rv\":0.3932},\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"verbosity_bias\",\"dof\":6432,\"beta_keff\":2.3799,\"se_keff\":0.12880,\"eta_partial_r2_treatment\":0.07840,\"eta_partial_r2_outcome\":0.19468,\"keff_rv\":0.2054},\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"position_bias\",\"dof\":6432,\"beta_keff\":0.06094,\"se_keff\":0.003271,\"eta_partial_r2_treatment\":0.17939,\"eta_partial_r2_outcome\":0.07282,\"keff_rv\":0.2069},\n    {\"K\":7,\"benchmark\":\"mmlu\",\"attack\":\"authority_bias\",\"dof\":6432,\"beta_keff\":0.05153,\"se_keff\":0.13483,\"eta_partial_r2_treatment\":0.2005,\"eta_partial_r2_outcome\":0.01071,\"keff_rv\":0.00475},\n    # K=7 arc_challenge\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"prompt_injection\",\"dof\":6432,\"beta_keff\":6.4995,\"se_keff\":0.18305,\"eta_partial_r2_treatment\":0.6287,\"eta_partial_r2_outcome\":0.004348,\"keff_rv\":0.3554},\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"sycophancy\",\"dof\":6432,\"beta_keff\":-5.2117,\"se_keff\":0.52169,\"eta_partial_r2_treatment\":0.5355,\"eta_partial_r2_outcome\":0.06494,\"keff_rv\":0.1170},\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"score_manipulation\",\"dof\":6432,\"beta_keff\":6.3605,\"se_keff\":0.44028,\"eta_partial_r2_treatment\":0.7166,\"eta_partial_r2_outcome\":0.000887,\"keff_rv\":0.1646},\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"verbosity_bias\",\"dof\":6432,\"beta_keff\":6.7582,\"se_keff\":0.46578,\"eta_partial_r2_treatment\":0.5994,\"eta_partial_r2_outcome\":0.02815,\"keff_rv\":0.1653},\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"position_bias\",\"dof\":6432,\"beta_keff\":0.12162,\"se_keff\":0.002730,\"eta_partial_r2_treatment\":0.7051,\"eta_partial_r2_outcome\":0.04571,\"keff_rv\":0.4223},\n    {\"K\":7,\"benchmark\":\"arc_challenge\",\"attack\":\"authority_bias\",\"dof\":6432,\"beta_keff\":8.2118,\"se_keff\":0.51911,\"eta_partial_r2_treatment\":0.5138,\"eta_partial_r2_outcome\":0.002988,\"keff_rv\":0.1787},\n]\n\n\ndef adjusted_beta(beta_hat, se, dof, Rd, Ry):\n    \"\"\"Cinelli-Hazlett adjusted estimate under hypothetical confounding.\"\"\"\n    bias = se * np.sqrt(dof) * np.sqrt(Rd * Ry / (1 - Rd + 1e-12))\n    return beta_hat - np.sign(beta_hat) * bias\n\n\ndef plot_contour_panel(ax, d):\n    \"\"\"Plot a single sensitivity contour on the given axes.\"\"\"\n    beta = d[\"beta_keff\"]\n    se = d[\"se_keff\"]\n    dof = d[\"dof\"]\n    eta_Rd = d[\"eta_partial_r2_treatment\"]\n    eta_Ry = d[\"eta_partial_r2_outcome\"]\n    rv = d[\"keff_rv\"]\n\n    N = 200\n    Rd = np.linspace(0.001, 0.99, N)\n    Ry = np.linspace(0.001, 0.99, N)\n    Rd_g, Ry_g = np.meshgrid(Rd, Ry)\n    Z = adjusted_beta(beta, se, dof, Rd_g, Ry_g)\n\n    cmap = LinearSegmentedColormap.from_list(\n        \"blue_white\", [\"#b3d4f7\", \"#d9ecfb\", \"#eef5fc\", \"#ffffff\"], N=256\n    )\n\n    abs_beta = abs(beta)\n    if abs_beta > 1:\n        step = max(1, round(abs_beta / 6))\n        max_level = int(abs_beta) + step\n        levels_fill = np.arange(-max_level, max_level + step, step).astype(float)\n    else:\n        step = round(abs_beta / 5, 3) or 0.01\n        max_level = abs_beta + step * 3\n        levels_fill = np.arange(-max_level, max_level + step, step)\n\n    levels_fill = sorted(set(levels_fill))\n    if len(levels_fill) < 3:\n        levels_fill = np.linspace(-abs_beta * 2, abs_beta * 2, 12)\n\n    ax.contourf(Rd_g, Ry_g, Z, levels=levels_fill, cmap=cmap, extend=\"both\")\n\n    contour_levels = [l for l in levels_fill if l != 0]\n    if contour_levels:\n        cs = ax.contour(\n            Rd_g, Ry_g, Z, levels=contour_levels,\n            colors=\"0.55\", linewidths=0.6, linestyles=\"solid\"\n        )\n        ax.clabel(cs, inline=True, fontsize=6, fmt=\"%.4g\")\n\n    cs0 = ax.contour(\n        Rd_g, Ry_g, Z, levels=[0.0],\n        colors=\"#c0392b\", linewidths=1.8, linestyles=\"solid\"\n    )\n    ax.clabel(cs0, inline=True, fontsize=7, fmt=\"%.0f\")\n\n    rv_Rd = np.linspace(rv * 0.01, min(rv * 3, 0.99), 200)\n    rv_Ry_line = rv**2 / rv_Rd\n    mask = rv_Ry_line < 0.99\n    if mask.any():\n        ax.plot(rv_Rd[mask], rv_Ry_line[mask], color=\"#e67e22\",\n                linewidth=1.0, linestyle=\"--\", alpha=0.8)\n\n    ax.plot(eta_Rd, eta_Ry, marker=\"D\", color=\"#c0392b\", markersize=5,\n            markeredgecolor=\"white\", markeredgewidth=0.6, zorder=5)\n    label_x = eta_Rd + 0.03\n    label_y = eta_Ry + 0.03\n    if label_x > 0.85:\n        label_x = eta_Rd - 0.08\n    if label_y > 0.85:\n        label_y = eta_Ry - 0.06\n    ax.annotate(\n        r\"$\\eta_{\\max}$\", (eta_Rd, eta_Ry),\n        xytext=(label_x, label_y), fontsize=7,\n        color=\"#c0392b\", fontweight=\"bold\",\n        arrowprops=dict(arrowstyle=\"-\", color=\"#c0392b\", lw=0.5)\n        if abs(label_x - eta_Rd) > 0.05 else None,\n    )\n\n    ax.set_xlim(0, 1)\n    ax.set_ylim(0, 1)\n    ax.set_xlabel(r\"$R^2_{D \\sim Z | X}$\", fontsize=8)\n    ax.set_ylabel(r\"$R^2_{Y \\sim Z | D,X}$\", fontsize=8)\n    ax.tick_params(labelsize=7)\n\n    for spine in ax.spines.values():\n        spine.set_linewidth(0.5)\n        spine.set_color(\"0.4\")\n\n    info = f\"$\\\\beta$={beta:.2g}\\nRV={rv:.2f}\"\n    ax.text(\n        0.97, 0.97, info, transform=ax.transAxes,\n        fontsize=6, va=\"top\", ha=\"right\",\n        bbox=dict(boxstyle=\"round,pad=0.3\", facecolor=\"white\",\n                  edgecolor=\"0.7\", alpha=0.9),\n    )\n\n\ndef make_figure(K):\n    \"\"\"Create 4x3 multi-panel contour figure for a given K.\"\"\"\n    conditions = [d for d in DATA if d[\"K\"] == K]\n    cond_map = {(d[\"benchmark\"], d[\"attack\"]): d for d in conditions}\n\n    plt.rcParams.update({\n        \"font.family\": \"DejaVu Sans\",\n        \"font.size\": 10,\n        \"axes.titlesize\": 10,\n        \"axes.labelsize\": 8,\n    })\n\n    fig, axes = plt.subplots(4, 3, figsize=(13.5, 16))\n    fig.suptitle(f\"Cinelli–Hazlett Sensitivity Analysis: K={K}\",\n                 fontsize=14, fontweight=\"bold\", y=0.995)\n\n    for row_idx, bench in enumerate(BENCHMARKS):\n        for col_idx, atk in enumerate(ATTACKS_ORDER):\n            ax_row = row_idx * 2 + (col_idx // 3)\n            ax_col = col_idx % 3\n\n            grid_row = row_idx * 2 + (col_idx >= 3)\n            grid_col = col_idx % 3 if col_idx < 3 else col_idx - 3\n\n            ax = axes[grid_row, grid_col]\n            key = (bench, atk)\n            if key in cond_map:\n                d = cond_map[key]\n                plot_contour_panel(ax, d)\n                ax.set_title(\n                    f\"{BENCH_LABELS[bench]} × {ATTACK_LABELS[atk]}\",\n                    fontsize=9, fontweight=\"bold\", pad=4,\n                )\n\n    fig.tight_layout(rect=[0, 0, 1, 0.98])\n\n    for fmt in (\"pdf\", \"png\"):\n        path = OUT_DIR / f\"fig_sensitivity_contour_K{K}.{fmt}\"\n        fig.savefig(path, dpi=300, bbox_inches=\"tight\",\n                    facecolor=\"white\", edgecolor=\"none\")\n        print(f\"Saved: {path}\")\n    plt.close(fig)\n\n\nif __name__ == \"__main__\":\n    for K in (3, 5, 7):\n        print(f\"\\n--- Generating K={K} ---\")\n        make_figure(K)\n    print(\"\\nDone.\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-25T15:28:53.236858+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/plot_sensitivity_contours.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-25T15:28:53.237004+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 scripts/plot_sensitivity_contours.py 2>&1",
+  "description": "Run the contour plot generation script",
+  "timeout": "120000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 scripts/plot_sensitivity_contours.py 2>&1",
+    "description": "Run the contour plot generation script",
+    "timeout": "120000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-25T15:28:53.237146+00:00_
+
+--- Generating K=3 ---
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K3.pdf
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K3.png
+
+--- Generating K=5 ---
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.pdf
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.png
+
+--- Generating K=7 ---
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K7.pdf
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K7.png
+
+Done.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-25T15:28:53.237274+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K3.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-25T15:28:53.237393+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K7.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-25T15:28:53.237674+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-25T15:28:53.237951+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-25T15:28:53.238114+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-25T15:28:53.238368+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-25T15:28:53.238518+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K*.{pdf,png}",
+  "description": "Verify output file sizes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K*.{pdf,png}",
+    "description": "Verify output file sizes"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-25T15:28:53.238662+00:00_
+
+-rw-r--r-- 1 ubuntu ubuntu  715578 May 25 15:27 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K3.pdf
+-rw-r--r-- 1 ubuntu ubuntu 2919723 May 25 15:27 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K3.png
+-rw-r--r-- 1 ubuntu ubuntu  590398 May 25 15:27 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.pdf
+-rw-r--r-- 1 ubuntu ubuntu 2225592 May 25 15:27 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K5.png
+-rw-r--r-- 1 ubuntu ubuntu  603375 May 25 15:28 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K7.pdf
+-rw-r--r-- 1 ubuntu ubuntu 2303431 May 25 15:28 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_sensitivity_contour_K7.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-25T15:28:53.238832+00:00_
+
+全部 6 个文件已生成（K=3/5/7 各 PDF + PNG）。
+
+输出:
+- `fig_sensitivity_contour_K3.pdf` (716KB) + `.png` (2.9MB)
+- `fig_sensitivity_contour_K5.pdf` (590KB) + `.png` (2.2MB)
+- `fig_sensitivity_contour_K7.pdf` (603KB) + `.png` (2.3MB)
+
+每个图 4×3 multi-panel（2 benchmarks × 6 attacks），统一样式：
+- 灰色实线 contour + β 值标注
+- 红色粗线 β=0 临界阈值
+- 红色菱形 η_max benchmark
+- 淡蓝→白渐变填充
+- 橙色虚线 RV 等值线
+- DejaVu Sans 字体，300 DPI，clean spines
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_fig-sensitivity-contour_20260525T151931"
+}
+```
+
+</details>
+
+---

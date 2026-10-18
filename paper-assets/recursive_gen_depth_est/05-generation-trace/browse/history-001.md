@@ -1,110 +1,110 @@
 # Context and loop notes
 
-[Back to trace guide](../README.md)
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
 
-| Source record | Events | User turns | JSON |
-|---|---:|---:|---|
-| `task_context/history/agent/loop_1.md` (occurrence 1) | 1 | 0 | [Open](../sessions/fa/fa83f0f98a1cbdbdf1c4.json) |
-| `task_context/history/agent/loop_10.md` (occurrence 1) | 1 | 0 | [Open](../sessions/8b/8bc0ca9203d7fda73486.json) |
-| `task_context/history/agent/loop_10_1778883734.md` (occurrence 1) | 1 | 0 | [Open](../sessions/3b/3bcb3999cd7f268aa964.json) |
-| `task_context/history/agent/loop_10_1778884283.md` (occurrence 1) | 1 | 0 | [Open](../sessions/d3/d3902d628e5a8736dc3c.json) |
-| `task_context/history/agent/loop_10_1778886384.md` (occurrence 1) | 1 | 0 | [Open](../sessions/f7/f741a6503ce7dbfaaf6b.json) |
-| `task_context/history/agent/loop_10_1778887642.md` (occurrence 1) | 1 | 0 | [Open](../sessions/8e/8e732e00a142609b1def.json) |
-| `task_context/history/agent/loop_10_1778890665.md` (occurrence 1) | 1 | 0 | [Open](../sessions/ac/ac6d10a797c855bfaf6d.json) |
-| `task_context/history/agent/loop_10_1778893701.md` (occurrence 1) | 1 | 0 | [Open](../sessions/f9/f914d83f54d6602c2dd7.json) |
-| `task_context/history/agent/loop_11.md` (occurrence 1) | 1 | 0 | [Open](../sessions/54/5420eddd5814bcd8be11.json) |
-| `task_context/history/agent/loop_11_1778894990.md` (occurrence 1) | 1 | 0 | [Open](../sessions/26/2660ebde9bcb9765fdc1.json) |
-| `task_context/history/agent/loop_11_1778896440.md` (occurrence 1) | 1 | 0 | [Open](../sessions/97/9782ac7b94d2bc6649ad.json) |
-| `task_context/history/agent/loop_11_1778899271.md` (occurrence 1) | 1 | 0 | [Open](../sessions/d2/d2508a099d874789ed41.json) |
-| `task_context/history/agent/loop_11_1778899291.md` (occurrence 1) | 1 | 0 | [Open](../sessions/a2/a23d30d7292698345799.json) |
-| `task_context/history/agent/loop_11_1778907122.md` (occurrence 1) | 1 | 0 | [Open](../sessions/40/4089757ff0e0ffac649b.json) |
-| `task_context/history/agent/loop_11_1778907153.md` (occurrence 1) | 1 | 0 | [Open](../sessions/07/07a46a606f25ca090ffe.json) |
-| `task_context/history/agent/loop_12.md` (occurrence 1) | 1 | 0 | [Open](../sessions/fc/fc4543da3b7dcd5cc089.json) |
-| `task_context/history/agent/loop_12_1778907579.md` (occurrence 1) | 1 | 0 | [Open](../sessions/d9/d9a2d545e9425211a3bc.json) |
-| `task_context/history/agent/loop_12_1778908666.md` (occurrence 1) | 1 | 0 | [Open](../sessions/4d/4d8d0025a0f83659e4eb.json) |
-| `task_context/history/agent/loop_12_1778909814.md` (occurrence 1) | 1 | 0 | [Open](../sessions/a9/a9526c190fe50bb3c1fb.json) |
-| `task_context/history/agent/loop_12_1778938885.md` (occurrence 1) | 1 | 0 | [Open](../sessions/85/856bcbcd4eae26ef4520.json) |
-| `task_context/history/agent/loop_13.md` (occurrence 1) | 1 | 0 | [Open](../sessions/3a/3a31c23ad54b9daa4db9.json) |
-| `task_context/history/agent/loop_14.md` (occurrence 1) | 1 | 0 | [Open](../sessions/94/94a2e460db23f1155978.json) |
-| `task_context/history/agent/loop_15.md` (occurrence 1) | 1 | 0 | [Open](../sessions/e2/e21a3961451d8fb1215d.json) |
-| `task_context/history/agent/loop_15_1779186584.md` (occurrence 1) | 1 | 0 | [Open](../sessions/1f/1f6525c68dba47580329.json) |
-| `task_context/history/agent/loop_16.md` (occurrence 1) | 1 | 0 | [Open](../sessions/c3/c3394b2037df78dce6b5.json) |
-| `task_context/history/agent/loop_17.md` (occurrence 1) | 1 | 0 | [Open](../sessions/ba/ba6ef07a649bfaa17a03.json) |
-| `task_context/history/agent/loop_17_1779340610.md` (occurrence 1) | 1 | 0 | [Open](../sessions/75/75bc906c24af0b2bf56a.json) |
-| `task_context/history/agent/loop_1_1778780809.md` (occurrence 1) | 1 | 0 | [Open](../sessions/fb/fbf20938361ef8cc0452.json) |
-| `task_context/history/agent/loop_1_1778787268.md` (occurrence 1) | 1 | 0 | [Open](../sessions/5a/5a98af2598beca22ccde.json) |
-| `task_context/history/agent/loop_2.md` (occurrence 1) | 1 | 0 | [Open](../sessions/3e/3e1344791081cb56898e.json) |
-| `task_context/history/agent/loop_2_1778798571.md` (occurrence 1) | 1 | 0 | [Open](../sessions/3b/3b96ec42ef6b60e34ab9.json) |
-| `task_context/history/agent/loop_2_1778798602.md` (occurrence 1) | 1 | 0 | [Open](../sessions/d0/d04ac4c00d1dd05f7558.json) |
-| `task_context/history/agent/loop_2_1778799430.md` (occurrence 1) | 1 | 0 | [Open](../sessions/44/449bcd12662b4a4ee942.json) |
-| `task_context/history/agent/loop_2_1778801846.md` (occurrence 1) | 1 | 0 | [Open](../sessions/f5/f5f7e9c98765e0de66da.json) |
-| `task_context/history/agent/loop_2_1778810259.md` (occurrence 1) | 1 | 0 | [Open](../sessions/e5/e51925c1befd5203fc37.json) |
-| `task_context/history/agent/loop_3.md` (occurrence 1) | 1 | 0 | [Open](../sessions/ec/ecf864ca24d1fdd73809.json) |
-| `task_context/history/agent/loop_3_1778801824.md` (occurrence 1) | 1 | 0 | [Open](../sessions/9f/9f01c17d2659623c6ae9.json) |
-| `task_context/history/agent/loop_3_1778801860.md` (occurrence 1) | 1 | 0 | [Open](../sessions/94/94fa5a88614f191cbce1.json) |
-| `task_context/history/agent/loop_3_1778810271.md` (occurrence 1) | 1 | 0 | [Open](../sessions/a6/a6015aae29f7daa6bf0c.json) |
-| `task_context/history/agent/loop_3_1778810305.md` (occurrence 1) | 1 | 0 | [Open](../sessions/a2/a2db2c0e59edba87e828.json) |
-| `task_context/history/agent/loop_3_1778810763.md` (occurrence 1) | 1 | 0 | [Open](../sessions/0c/0c1afdc166b35d7f1665.json) |
-| `task_context/history/agent/loop_3_1778813228.md` (occurrence 1) | 1 | 0 | [Open](../sessions/41/41ff00c58905989f3a0e.json) |
-| `task_context/history/agent/loop_3_1778815027.md` (occurrence 1) | 1 | 0 | [Open](../sessions/f1/f1767ff86278f6f94f5b.json) |
-| `task_context/history/agent/loop_3_1778821614.md` (occurrence 1) | 1 | 0 | [Open](../sessions/be/be8537125141c6610212.json) |
-| `task_context/history/agent/loop_4.md` (occurrence 1) | 1 | 0 | [Open](../sessions/6c/6c3a23b88cda993fbc25.json) |
-| `task_context/history/agent/loop_4_1778812874.md` (occurrence 1) | 1 | 0 | [Open](../sessions/51/51fe2606a568c73208f1.json) |
-| `task_context/history/agent/loop_4_1778812883.md` (occurrence 1) | 1 | 0 | [Open](../sessions/34/349d76bbb9c6fa06eac4.json) |
-| `task_context/history/agent/loop_4_1778820379.md` (occurrence 1) | 1 | 0 | [Open](../sessions/e1/e1ea263e3332fcf57ca1.json) |
-| `task_context/history/agent/loop_4_1778820818.md` (occurrence 1) | 1 | 0 | [Open](../sessions/b7/b714dce99d4cf33d868f.json) |
-| `task_context/history/agent/loop_4_1778822430.md` (occurrence 1) | 1 | 0 | [Open](../sessions/e1/e19c151f005a91cfcb98.json) |
-| `task_context/history/agent/loop_4_1778822533.md` (occurrence 1) | 1 | 0 | [Open](../sessions/94/9449760fed06af4ecc3f.json) |
-| `task_context/history/agent/loop_5.md` (occurrence 1) | 1 | 0 | [Open](../sessions/52/527c088395bed010fb1c.json) |
-| `task_context/history/agent/loop_6.md` (occurrence 1) | 1 | 0 | [Open](../sessions/08/08ca644ec407828a102d.json) |
-| `task_context/history/agent/loop_6_1778846892.md` (occurrence 1) | 1 | 0 | [Open](../sessions/11/11027a0a993fa6778c97.json) |
-| `task_context/history/agent/loop_6_1778847700.md` (occurrence 1) | 1 | 0 | [Open](../sessions/73/73d6237d9e5ecefc32b8.json) |
-| `task_context/history/agent/loop_7.md` (occurrence 1) | 1 | 0 | [Open](../sessions/e6/e67f7b5d765b46794b9c.json) |
-| `task_context/history/agent/loop_7_1778848287.md` (occurrence 1) | 1 | 0 | [Open](../sessions/7d/7d57ebf9edf0a735d7bc.json) |
-| `task_context/history/agent/loop_7_1778852035.md` (occurrence 1) | 1 | 0 | [Open](../sessions/61/6114b744f892a2801cf5.json) |
-| `task_context/history/agent/loop_7_1778856416.md` (occurrence 1) | 1 | 0 | [Open](../sessions/30/307a79997054df636819.json) |
-| `task_context/history/agent/loop_7_1778860088.md` (occurrence 1) | 1 | 0 | [Open](../sessions/20/202dab3442e33ee30c66.json) |
-| `task_context/history/agent/loop_7_1778871305.md` (occurrence 1) | 1 | 0 | [Open](../sessions/ab/aba8a1b0eae80bbf7425.json) |
-| `task_context/history/agent/loop_8.md` (occurrence 1) | 1 | 0 | [Open](../sessions/84/84f16935d77d68d8da5d.json) |
-| `task_context/history/agent/loop_8_1778860129.md` (occurrence 1) | 1 | 0 | [Open](../sessions/63/639441fd063da7ba3274.json) |
-| `task_context/history/agent/loop_8_1778861889.md` (occurrence 1) | 1 | 0 | [Open](../sessions/c6/c68c56a129ad6de05ddf.json) |
-| `task_context/history/agent/loop_8_1778862821.md` (occurrence 1) | 1 | 0 | [Open](../sessions/c0/c01fee42133fdd261f31.json) |
-| `task_context/history/agent/loop_8_1778864303.md` (occurrence 1) | 1 | 0 | [Open](../sessions/7d/7d579364cb7d25e455cd.json) |
-| `task_context/history/agent/loop_8_1778868140.md` (occurrence 1) | 1 | 0 | [Open](../sessions/12/129fb036d1291a6b6e85.json) |
-| `task_context/history/agent/loop_8_1778868853.md` (occurrence 1) | 1 | 0 | [Open](../sessions/df/df5d0674278114961998.json) |
-| `task_context/history/agent/loop_8_1778891346.md` (occurrence 1) | 1 | 0 | [Open](../sessions/6c/6c38275ff5e68637750c.json) |
-| `task_context/history/agent/loop_9.md` (occurrence 1) | 1 | 0 | [Open](../sessions/24/24ec1f5a6f24157a6609.json) |
-| `task_context/history/agent/loop_9_1778872283.md` (occurrence 1) | 1 | 0 | [Open](../sessions/3a/3a04808398683add54aa.json) |
-| `task_context/history/agent/loop_9_1778873248.md` (occurrence 1) | 1 | 0 | [Open](../sessions/9f/9f757faf7b615487db4a.json) |
-| `task_context/history/agent/loop_9_1778875108.md` (occurrence 1) | 1 | 0 | [Open](../sessions/4b/4b1b558371b954acba45.json) |
-| `task_context/history/agent/loop_9_1778876466.md` (occurrence 1) | 1 | 0 | [Open](../sessions/20/209103cb41b7bc93801b.json) |
-| `task_context/history/agent/loop_9_1778879220.md` (occurrence 1) | 1 | 0 | [Open](../sessions/27/27360d60a0c0aff256b8.json) |
-| `task_context/history/agent/loop_9_1778882663.md` (occurrence 1) | 1 | 0 | [Open](../sessions/c5/c5962e5848b861adbad4.json) |
-| `task_context/history/director/loop_1.md` (occurrence 1) | 1 | 0 | [Open](../sessions/a0/a048a8e2f693cbde381b.json) |
-| `task_context/history/director/loop_10.md` (occurrence 1) | 1 | 0 | [Open](../sessions/48/48419403a55ad9a49b84.json) |
-| `task_context/history/director/loop_11.md` (occurrence 1) | 1 | 0 | [Open](../sessions/2e/2ef80cfcfc15fac27271.json) |
-| `task_context/history/director/loop_2.md` (occurrence 1) | 1 | 0 | [Open](../sessions/30/309dd2ea5a0e1b906637.json) |
-| `task_context/history/director/loop_3.md` (occurrence 1) | 1 | 0 | [Open](../sessions/a2/a28a6773d3fd24f94228.json) |
-| `task_context/history/director/loop_4.md` (occurrence 1) | 1 | 0 | [Open](../sessions/62/626297be4477620031ca.json) |
-| `task_context/history/director/loop_5.md` (occurrence 1) | 1 | 0 | [Open](../sessions/d4/d40c1e2e7d51ddb7976b.json) |
-| `task_context/history/director/loop_6.md` (occurrence 1) | 1 | 0 | [Open](../sessions/93/9391942659469fc62d8b.json) |
-| `task_context/history/director/loop_7.md` (occurrence 1) | 1 | 0 | [Open](../sessions/c5/c55082a27c7bee1e1792.json) |
-| `task_context/history/director/loop_8.md` (occurrence 1) | 1 | 0 | [Open](../sessions/80/8090f30f124635850062.json) |
-| `task_context/history/director/loop_9.md` (occurrence 1) | 1 | 0 | [Open](../sessions/30/30511b509bf67b5a8b77.json) |
-| `task_context/history/reviewer/loop_1.md` (occurrence 1) | 1 | 0 | [Open](../sessions/c7/c73a67eab4eda3bb351e.json) |
-| `task_context/history/reviewer/loop_10.md` (occurrence 1) | 1 | 0 | [Open](../sessions/24/24709549333c9eefe0e7.json) |
-| `task_context/history/reviewer/loop_11.md` (occurrence 1) | 1 | 0 | [Open](../sessions/c8/c8b4535b7c50575ef2e3.json) |
-| `task_context/history/reviewer/loop_12.md` (occurrence 1) | 1 | 0 | [Open](../sessions/08/08fd4a186c5c6e756f39.json) |
-| `task_context/history/reviewer/loop_13.md` (occurrence 1) | 1 | 0 | [Open](../sessions/c3/c399206db78fa591845d.json) |
-| `task_context/history/reviewer/loop_14.md` (occurrence 1) | 1 | 0 | [Open](../sessions/e4/e49d5bfa7ff9cef337ea.json) |
-| `task_context/history/reviewer/loop_15.md` (occurrence 1) | 1 | 0 | [Open](../sessions/1a/1ac27a4ccea3ec62d455.json) |
-| `task_context/history/reviewer/loop_16.md` (occurrence 1) | 1 | 0 | [Open](../sessions/cc/cc933d923c5575ca9064.json) |
-| `task_context/history/reviewer/loop_17.md` (occurrence 1) | 1 | 0 | [Open](../sessions/ab/ab395e951e403e15a09f.json) |
-| `task_context/history/reviewer/loop_2.md` (occurrence 1) | 1 | 0 | [Open](../sessions/27/27aa38b5caa938a70c25.json) |
-| `task_context/history/reviewer/loop_3.md` (occurrence 1) | 1 | 0 | [Open](../sessions/2b/2b3a15b2276d71be708a.json) |
-| `task_context/history/reviewer/loop_4.md` (occurrence 1) | 1 | 0 | [Open](../sessions/3b/3b5568f523a931a8bf1d.json) |
-| `task_context/history/reviewer/loop_5.md` (occurrence 1) | 1 | 0 | [Open](../sessions/bc/bcfb515e719e76b2a659.json) |
-| `task_context/history/reviewer/loop_6.md` (occurrence 1) | 1 | 0 | [Open](../sessions/8a/8a8e3fa7dbbfaf7f7ab3.json) |
-| `task_context/history/reviewer/loop_7.md` (occurrence 1) | 1 | 0 | [Open](../sessions/0c/0ccf6b2e872fe86adeb5.json) |
-| `task_context/history/reviewer/loop_8.md` (occurrence 1) | 1 | 0 | [Open](../sessions/e7/e7b2821f8a787fc4461b.json) |
-| `task_context/history/reviewer/loop_9.md` (occurrence 1) | 1 | 0 | [Open](../sessions/67/67730c3cbbb0325bdb88.json) |
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `task_context/history/agent/loop_1.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-1-copy-2.md) | [Open JSON](../sessions/fa/fa83f0f98a1cbdbdf1c4.json) |
+| `task_context/history/agent/loop_10.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-10-copy-2.md) | [Open JSON](../sessions/8b/8bc0ca9203d7fda73486.json) |
+| `task_context/history/agent/loop_10_1778883734.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-10-1778883734.md) | [Open JSON](../sessions/3b/3bcb3999cd7f268aa964.json) |
+| `task_context/history/agent/loop_10_1778884283.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-10-1778884283.md) | [Open JSON](../sessions/d3/d3902d628e5a8736dc3c.json) |
+| `task_context/history/agent/loop_10_1778886384.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-10-1778886384.md) | [Open JSON](../sessions/f7/f741a6503ce7dbfaaf6b.json) |
+| `task_context/history/agent/loop_10_1778887642.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-10-1778887642.md) | [Open JSON](../sessions/8e/8e732e00a142609b1def.json) |
+| `task_context/history/agent/loop_10_1778890665.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-10-1778890665.md) | [Open JSON](../sessions/ac/ac6d10a797c855bfaf6d.json) |
+| `task_context/history/agent/loop_10_1778893701.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-10-1778893701.md) | [Open JSON](../sessions/f9/f914d83f54d6602c2dd7.json) |
+| `task_context/history/agent/loop_11.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-11-copy-2.md) | [Open JSON](../sessions/54/5420eddd5814bcd8be11.json) |
+| `task_context/history/agent/loop_11_1778894990.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-11-1778894990.md) | [Open JSON](../sessions/26/2660ebde9bcb9765fdc1.json) |
+| `task_context/history/agent/loop_11_1778896440.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-11-1778896440.md) | [Open JSON](../sessions/97/9782ac7b94d2bc6649ad.json) |
+| `task_context/history/agent/loop_11_1778899271.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-11-1778899271.md) | [Open JSON](../sessions/d2/d2508a099d874789ed41.json) |
+| `task_context/history/agent/loop_11_1778899291.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-11-1778899291.md) | [Open JSON](../sessions/a2/a23d30d7292698345799.json) |
+| `task_context/history/agent/loop_11_1778907122.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-11-1778907122.md) | [Open JSON](../sessions/40/4089757ff0e0ffac649b.json) |
+| `task_context/history/agent/loop_11_1778907153.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-11-1778907153.md) | [Open JSON](../sessions/07/07a46a606f25ca090ffe.json) |
+| `task_context/history/agent/loop_12.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-12.md) | [Open JSON](../sessions/fc/fc4543da3b7dcd5cc089.json) |
+| `task_context/history/agent/loop_12_1778907579.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-12-1778907579.md) | [Open JSON](../sessions/d9/d9a2d545e9425211a3bc.json) |
+| `task_context/history/agent/loop_12_1778908666.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-12-1778908666.md) | [Open JSON](../sessions/4d/4d8d0025a0f83659e4eb.json) |
+| `task_context/history/agent/loop_12_1778909814.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-12-1778909814.md) | [Open JSON](../sessions/a9/a9526c190fe50bb3c1fb.json) |
+| `task_context/history/agent/loop_12_1778938885.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-12-1778938885.md) | [Open JSON](../sessions/85/856bcbcd4eae26ef4520.json) |
+| `task_context/history/agent/loop_13.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-13.md) | [Open JSON](../sessions/3a/3a31c23ad54b9daa4db9.json) |
+| `task_context/history/agent/loop_14.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-14.md) | [Open JSON](../sessions/94/94a2e460db23f1155978.json) |
+| `task_context/history/agent/loop_15.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-15.md) | [Open JSON](../sessions/e2/e21a3961451d8fb1215d.json) |
+| `task_context/history/agent/loop_15_1779186584.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-15-1779186584.md) | [Open JSON](../sessions/1f/1f6525c68dba47580329.json) |
+| `task_context/history/agent/loop_16.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-16.md) | [Open JSON](../sessions/c3/c3394b2037df78dce6b5.json) |
+| `task_context/history/agent/loop_17.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-17.md) | [Open JSON](../sessions/ba/ba6ef07a649bfaa17a03.json) |
+| `task_context/history/agent/loop_17_1779340610.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-17-1779340610.md) | [Open JSON](../sessions/75/75bc906c24af0b2bf56a.json) |
+| `task_context/history/agent/loop_1_1778780809.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-1-1778780809.md) | [Open JSON](../sessions/fb/fbf20938361ef8cc0452.json) |
+| `task_context/history/agent/loop_1_1778787268.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-1-1778787268.md) | [Open JSON](../sessions/5a/5a98af2598beca22ccde.json) |
+| `task_context/history/agent/loop_2.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-2-copy-2.md) | [Open JSON](../sessions/3e/3e1344791081cb56898e.json) |
+| `task_context/history/agent/loop_2_1778798571.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-2-1778798571.md) | [Open JSON](../sessions/3b/3b96ec42ef6b60e34ab9.json) |
+| `task_context/history/agent/loop_2_1778798602.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-2-1778798602.md) | [Open JSON](../sessions/d0/d04ac4c00d1dd05f7558.json) |
+| `task_context/history/agent/loop_2_1778799430.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-2-1778799430.md) | [Open JSON](../sessions/44/449bcd12662b4a4ee942.json) |
+| `task_context/history/agent/loop_2_1778801846.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-2-1778801846.md) | [Open JSON](../sessions/f5/f5f7e9c98765e0de66da.json) |
+| `task_context/history/agent/loop_2_1778810259.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-2-1778810259.md) | [Open JSON](../sessions/e5/e51925c1befd5203fc37.json) |
+| `task_context/history/agent/loop_3.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3-copy-2.md) | [Open JSON](../sessions/ec/ecf864ca24d1fdd73809.json) |
+| `task_context/history/agent/loop_3_1778801824.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3-1778801824.md) | [Open JSON](../sessions/9f/9f01c17d2659623c6ae9.json) |
+| `task_context/history/agent/loop_3_1778801860.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3-1778801860.md) | [Open JSON](../sessions/94/94fa5a88614f191cbce1.json) |
+| `task_context/history/agent/loop_3_1778810271.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3-1778810271.md) | [Open JSON](../sessions/a6/a6015aae29f7daa6bf0c.json) |
+| `task_context/history/agent/loop_3_1778810305.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3-1778810305.md) | [Open JSON](../sessions/a2/a2db2c0e59edba87e828.json) |
+| `task_context/history/agent/loop_3_1778810763.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3-1778810763.md) | [Open JSON](../sessions/0c/0c1afdc166b35d7f1665.json) |
+| `task_context/history/agent/loop_3_1778813228.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3-1778813228.md) | [Open JSON](../sessions/41/41ff00c58905989f3a0e.json) |
+| `task_context/history/agent/loop_3_1778815027.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3-1778815027.md) | [Open JSON](../sessions/f1/f1767ff86278f6f94f5b.json) |
+| `task_context/history/agent/loop_3_1778821614.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3-1778821614.md) | [Open JSON](../sessions/be/be8537125141c6610212.json) |
+| `task_context/history/agent/loop_4.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-4-copy-2.md) | [Open JSON](../sessions/6c/6c3a23b88cda993fbc25.json) |
+| `task_context/history/agent/loop_4_1778812874.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-4-1778812874.md) | [Open JSON](../sessions/51/51fe2606a568c73208f1.json) |
+| `task_context/history/agent/loop_4_1778812883.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-4-1778812883.md) | [Open JSON](../sessions/34/349d76bbb9c6fa06eac4.json) |
+| `task_context/history/agent/loop_4_1778820379.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-4-1778820379.md) | [Open JSON](../sessions/e1/e1ea263e3332fcf57ca1.json) |
+| `task_context/history/agent/loop_4_1778820818.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-4-1778820818.md) | [Open JSON](../sessions/b7/b714dce99d4cf33d868f.json) |
+| `task_context/history/agent/loop_4_1778822430.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-4-1778822430.md) | [Open JSON](../sessions/e1/e19c151f005a91cfcb98.json) |
+| `task_context/history/agent/loop_4_1778822533.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-4-1778822533.md) | [Open JSON](../sessions/94/9449760fed06af4ecc3f.json) |
+| `task_context/history/agent/loop_5.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-5-copy-2.md) | [Open JSON](../sessions/52/527c088395bed010fb1c.json) |
+| `task_context/history/agent/loop_6.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-6-copy-2.md) | [Open JSON](../sessions/08/08ca644ec407828a102d.json) |
+| `task_context/history/agent/loop_6_1778846892.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-6-1778846892.md) | [Open JSON](../sessions/11/11027a0a993fa6778c97.json) |
+| `task_context/history/agent/loop_6_1778847700.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-6-1778847700.md) | [Open JSON](../sessions/73/73d6237d9e5ecefc32b8.json) |
+| `task_context/history/agent/loop_7.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-7-copy-2.md) | [Open JSON](../sessions/e6/e67f7b5d765b46794b9c.json) |
+| `task_context/history/agent/loop_7_1778848287.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-7-1778848287.md) | [Open JSON](../sessions/7d/7d57ebf9edf0a735d7bc.json) |
+| `task_context/history/agent/loop_7_1778852035.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-7-1778852035.md) | [Open JSON](../sessions/61/6114b744f892a2801cf5.json) |
+| `task_context/history/agent/loop_7_1778856416.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-7-1778856416.md) | [Open JSON](../sessions/30/307a79997054df636819.json) |
+| `task_context/history/agent/loop_7_1778860088.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-7-1778860088.md) | [Open JSON](../sessions/20/202dab3442e33ee30c66.json) |
+| `task_context/history/agent/loop_7_1778871305.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-7-1778871305.md) | [Open JSON](../sessions/ab/aba8a1b0eae80bbf7425.json) |
+| `task_context/history/agent/loop_8.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-8-copy-2.md) | [Open JSON](../sessions/84/84f16935d77d68d8da5d.json) |
+| `task_context/history/agent/loop_8_1778860129.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-8-1778860129.md) | [Open JSON](../sessions/63/639441fd063da7ba3274.json) |
+| `task_context/history/agent/loop_8_1778861889.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-8-1778861889.md) | [Open JSON](../sessions/c6/c68c56a129ad6de05ddf.json) |
+| `task_context/history/agent/loop_8_1778862821.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-8-1778862821.md) | [Open JSON](../sessions/c0/c01fee42133fdd261f31.json) |
+| `task_context/history/agent/loop_8_1778864303.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-8-1778864303.md) | [Open JSON](../sessions/7d/7d579364cb7d25e455cd.json) |
+| `task_context/history/agent/loop_8_1778868140.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-8-1778868140.md) | [Open JSON](../sessions/12/129fb036d1291a6b6e85.json) |
+| `task_context/history/agent/loop_8_1778868853.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-8-1778868853.md) | [Open JSON](../sessions/df/df5d0674278114961998.json) |
+| `task_context/history/agent/loop_8_1778891346.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-8-1778891346.md) | [Open JSON](../sessions/6c/6c38275ff5e68637750c.json) |
+| `task_context/history/agent/loop_9.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-9-copy-2.md) | [Open JSON](../sessions/24/24ec1f5a6f24157a6609.json) |
+| `task_context/history/agent/loop_9_1778872283.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-9-1778872283.md) | [Open JSON](../sessions/3a/3a04808398683add54aa.json) |
+| `task_context/history/agent/loop_9_1778873248.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-9-1778873248.md) | [Open JSON](../sessions/9f/9f757faf7b615487db4a.json) |
+| `task_context/history/agent/loop_9_1778875108.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-9-1778875108.md) | [Open JSON](../sessions/4b/4b1b558371b954acba45.json) |
+| `task_context/history/agent/loop_9_1778876466.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-9-1778876466.md) | [Open JSON](../sessions/20/209103cb41b7bc93801b.json) |
+| `task_context/history/agent/loop_9_1778879220.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-9-1778879220.md) | [Open JSON](../sessions/27/27360d60a0c0aff256b8.json) |
+| `task_context/history/agent/loop_9_1778882663.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-9-1778882663.md) | [Open JSON](../sessions/c5/c5962e5848b861adbad4.json) |
+| `task_context/history/director/loop_1.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-1.md) | [Open JSON](../sessions/a0/a048a8e2f693cbde381b.json) |
+| `task_context/history/director/loop_10.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-10.md) | [Open JSON](../sessions/48/48419403a55ad9a49b84.json) |
+| `task_context/history/director/loop_11.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-11.md) | [Open JSON](../sessions/2e/2ef80cfcfc15fac27271.json) |
+| `task_context/history/director/loop_2.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-2.md) | [Open JSON](../sessions/30/309dd2ea5a0e1b906637.json) |
+| `task_context/history/director/loop_3.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3.md) | [Open JSON](../sessions/a2/a28a6773d3fd24f94228.json) |
+| `task_context/history/director/loop_4.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-4.md) | [Open JSON](../sessions/62/626297be4477620031ca.json) |
+| `task_context/history/director/loop_5.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-5.md) | [Open JSON](../sessions/d4/d40c1e2e7d51ddb7976b.json) |
+| `task_context/history/director/loop_6.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-6.md) | [Open JSON](../sessions/93/9391942659469fc62d8b.json) |
+| `task_context/history/director/loop_7.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-7.md) | [Open JSON](../sessions/c5/c55082a27c7bee1e1792.json) |
+| `task_context/history/director/loop_8.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-8.md) | [Open JSON](../sessions/80/8090f30f124635850062.json) |
+| `task_context/history/director/loop_9.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-9.md) | [Open JSON](../sessions/30/30511b509bf67b5a8b77.json) |
+| `task_context/history/reviewer/loop_1.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-1-copy-3.md) | [Open JSON](../sessions/c7/c73a67eab4eda3bb351e.json) |
+| `task_context/history/reviewer/loop_10.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-10-copy-3.md) | [Open JSON](../sessions/24/24709549333c9eefe0e7.json) |
+| `task_context/history/reviewer/loop_11.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-11-copy-3.md) | [Open JSON](../sessions/c8/c8b4535b7c50575ef2e3.json) |
+| `task_context/history/reviewer/loop_12.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-12-copy-2.md) | [Open JSON](../sessions/08/08fd4a186c5c6e756f39.json) |
+| `task_context/history/reviewer/loop_13.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-13-copy-2.md) | [Open JSON](../sessions/c3/c399206db78fa591845d.json) |
+| `task_context/history/reviewer/loop_14.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-14-copy-2.md) | [Open JSON](../sessions/e4/e49d5bfa7ff9cef337ea.json) |
+| `task_context/history/reviewer/loop_15.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-15-copy-2.md) | [Open JSON](../sessions/1a/1ac27a4ccea3ec62d455.json) |
+| `task_context/history/reviewer/loop_16.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-16-copy-2.md) | [Open JSON](../sessions/cc/cc933d923c5575ca9064.json) |
+| `task_context/history/reviewer/loop_17.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-17-copy-2.md) | [Open JSON](../sessions/ab/ab395e951e403e15a09f.json) |
+| `task_context/history/reviewer/loop_2.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-2-copy-3.md) | [Open JSON](../sessions/27/27aa38b5caa938a70c25.json) |
+| `task_context/history/reviewer/loop_3.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-3-copy-3.md) | [Open JSON](../sessions/2b/2b3a15b2276d71be708a.json) |
+| `task_context/history/reviewer/loop_4.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-4-copy-3.md) | [Open JSON](../sessions/3b/3b5568f523a931a8bf1d.json) |
+| `task_context/history/reviewer/loop_5.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-5-copy-3.md) | [Open JSON](../sessions/bc/bcfb515e719e76b2a659.json) |
+| `task_context/history/reviewer/loop_6.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-6-copy-3.md) | [Open JSON](../sessions/8a/8a8e3fa7dbbfaf7f7ab3.json) |
+| `task_context/history/reviewer/loop_7.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-7-copy-3.md) | [Open JSON](../sessions/0c/0ccf6b2e872fe86adeb5.json) |
+| `task_context/history/reviewer/loop_8.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-8-copy-3.md) | [Open JSON](../sessions/e7/e7b2821f8a787fc4461b.json) |
+| `task_context/history/reviewer/loop_9.md` (occurrence 1) | 1 | 0 | [Read transcript](../readable/context-notes/loop-9-copy-3.md) | [Open JSON](../sessions/67/67730c3cbbb0325bdb88.json) |

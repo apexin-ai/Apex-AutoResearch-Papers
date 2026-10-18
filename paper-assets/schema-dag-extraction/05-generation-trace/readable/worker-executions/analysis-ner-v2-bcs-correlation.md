@@ -1,0 +1,6521 @@
+# analysis ner v2 bcs correlation
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 139
+- **Recorded user turns:** 0
+- **Tool calls:** 49
+- **Original source:** `logs/workers/worker_analysis_ner_v2_bcs_correlation_20260516T034616.log`
+- **Structured JSON:** [`321a5778ea05202ca80f.json`](../../sessions/32/321a5778ea05202ca80f.json)
+
+## Before a recorded user message
+
+139 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d1e06735-73d8-4cb8-a2ff-2272ec13f7c3",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778903400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f3f4f494-cf03-4e14-880a-9f678cfa7742",
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by SSHing to the server to find the experimental data files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "bb0fe84d-c7b5-4cb4-a218-4eafcfbb90a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011beKx3uyje9iZqCYsuWvAC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11861,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11861
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先连服务器找数据文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "02976608-23eb-4037-9c28-7f61db1aa744",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011beKx3uyje9iZqCYsuWvAC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11861,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11861
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UjLwdBxfS7ksxFHPacf3tf`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "60e554ca-d18d-469f-91ee-ca358991eea2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011beKx3uyje9iZqCYsuWvAC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11861,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11861
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T03:46:38.290Z_
+
+<details><summary>↩ Tool result · `toolu_01UjLwdBxfS7ksxFHPacf3tf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "6edbc584-a312-4406-93aa-10d672974541",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UD8uCNeMgwVcb7L9ZGt3Bf`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts -type d -name \"exp003a*\" -o -name \"exp002*\" -o -name \"exp003a_prompt_v2*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "6a8e0cb8-349c-4020-85ea-7c9e1252b471",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VoZTqSJerV6SL8EQif1sZU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23702,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 470
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T03:46:43.614Z_
+
+<details><summary>↩ Tool result · `toolu_01UD8uCNeMgwVcb7L9ZGt3Bf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "f5e86b92-110f-46ef-a303-0bd1e5e59c28",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No results. Let me look more broadly for artifacts directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "39a1b025-4f33-41ca-9aa6-9dbe59258660",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pFJyxDnkUbCaxy8w4xRg9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 224,
+      "cache_read_input_tokens": 24172,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 224
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+没找到，扩大搜索范围。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "1eea4e2c-a109-4443-92f2-801ebfe29388",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pFJyxDnkUbCaxy8w4xRg9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 224,
+      "cache_read_input_tokens": 24172,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 224
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EhXo7Lr1cMZvLozHinZegW`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -type d -maxdepth 3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "96584495-0595-4ab0-af2c-1fda8bde9680",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pFJyxDnkUbCaxy8w4xRg9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 224,
+      "cache_read_input_tokens": 24172,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 224
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T03:46:47.787Z_
+
+<details><summary>↩ Tool result · `toolu_01EhXo7Lr1cMZvLozHinZegW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction\\n/root/schema-dag-extraction/data\\n/root/schema-dag-extraction/data/parquet\\n/root/schema-dag-extraction/data/maven\\n/root/schema-dag-extraction/data/maven/.git\\n/root/schema-dag-extraction/data/maven/baselines\\n/root/schema-dag-extraction/data/maven_parquet\\n/root/schema-dag-extraction/data/fewrel\\n/root/schema-dag-extraction/data/fewrel_parquet\\n/root/schema-dag-extraction/models\\n/root/schema-dag-extraction/src\\n/root/schema-dag-extraction/src/__pycache__\\n/root/schema-dag-extraction/src/sdgd\\n/root/schema-dag-extraction/src/sdgd/__pycache__\\n/root/schema-dag-extraction/artifacts\\n/root/schema-dag-extraction/artifacts/exp004\\n/root/schema-dag-extraction/artifacts/fewrel_pilot\\n/root/schema-dag-extraction/artifacts/exp008_dryrun\\n/root/schema-dag-extraction/artifacts/exp008\\n/root/schema-dag-extraction/artifacts/fewrel_formal\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm\\n/root/schema-dag-extraction/artifacts/exp008_v2\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full\\n/root/schema-dag-extraction/artifacts/exp012\\n/root/schema-dag-extraction/artifacts/exp007\\n/root/schema-dag-extraction/artifacts/fewrel_40rel\\n/root/schema-dag-extraction/artifacts/exp012_dryrun\\n/root/schema-dag-extraction/artifacts/exp012_llama_8b\\n/root/schema-dag-extraction/artifacts/exp006\\n/root/schema-dag-extraction/artifacts/exp006_interaction_2x2\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub\\n/root/schema-dag-extraction/artifacts/three_way_comparison\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs\\n/root/schema-dag-extraction/logs\\n/root/schema-dag-extraction/configs\\n/root/schema-dag-extraction/results\\n/root/schema-dag-extraction/results/exp1\\n/root/schema-dag-extraction/results/exp2\\n/root/schema-dag-extraction/results/analysis\\n/root/schema-dag-extraction/scripts\\n/root/schema-dag-extraction/scripts/d037\\n/root/schema-dag-extraction/figures\\n/root/schema-dag-extraction/figures/paper\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "04de3747-6fe8-4dff-a1e4-86e261023039",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction\\\\n/root/schema-dag-extraction/data\\\\n/root/schema-dag-extraction/data/parquet\\\\n/root/schema-dag-extraction/data/maven\\\\n/root/schema-dag-extraction/data/maven/.git\\\\n/root/schema-dag-extraction/data/maven/baselines\\\\n/root/schema-dag-extraction/data/maven_parquet\\\\n/root/schema-dag-extraction/data/fewrel\\\\n/root/schema-dag-extraction/data/fewrel_parquet\\\\n/root/schema-dag-extraction/models\\\\n/root/schema-dag-extraction/src\\\\n/root/schema-dag-extraction/src/__pycache__\\\\n/root/schema-dag-extraction/src/sdgd\\\\n/root/schema-dag-extraction/src/sdgd/__pycache__\\\\n/root/schema-dag-extraction/artifacts\\\\n/root/schema-dag-extraction/artifacts/exp004\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun\\\\n/root/schema-dag-extraction/artifacts/exp008\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm\\\\n/root/schema-dag-extraction/artifacts/exp008_v2\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full\\\\n/root/schema-dag-extraction/artifacts/exp012\\\\n/root/schema-dag-extraction/artifacts/exp007\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel\\\\n/root/schema-dag-extraction/artifacts/exp012_dryrun\\\\n/root/schema-dag-extraction/artifacts/exp012_llama_8b\\\\n/root/schema-dag-extraction/artifacts/exp006\\\\n/root/schema-dag-extraction/artifacts/exp006_interaction_2x2\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4\\\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap\\\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs\\\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub\\\\n/root/schema-dag-extraction/artifacts/three_way_comparison\\\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch\\\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs\\\\n/root/schema-dag-extraction/logs\\\\n/root/schema-dag-extraction/configs\\\\n/root/schema-dag-extraction/results\\\\n/root/schema-dag-extraction/results/exp1\\\\n/root/schema-dag-extraction/results/exp2\\\\n/root/schema-dag-extraction/results/analysis\\\\n/root/schema-dag-extraction/scripts\\\\n/root/schema-dag-extraction/scripts/d037\\\\n/root/schema-dag-extraction/figures\\\\n/root/schema-dag-extraction/figures/paper\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction\\n/root/schema-dag-extraction/data\\n/root/schema-dag-extraction/data/parquet\\n/root/schema-dag-extraction/data/maven\\n/root/schema-dag-extraction/data/maven/.git\\n/root/schema-dag-extraction/data/maven/baselines\\n/root/schema-dag-extraction/data/maven_parquet\\n/root/schema-dag-extraction/data/fewrel\\n/root/schema-dag-extraction/data/fewrel_parquet\\n/root/schema-dag-extraction/models\\n/root/schema-dag-extraction/src\\n/root/schema-dag-extraction/src/__pycache__\\n/root/schema-dag-extraction/src/sdgd\\n/root/schema-dag-extraction/src/sdgd/__pycache__\\n/root/schema-dag-extraction/artifacts\\n/root/schema-dag-extraction/artifacts/exp004\\n/root/schema-dag-extraction/artifacts/fewrel_pilot\\n/root/schema-dag-extraction/artifacts/exp008_dryrun\\n/root/schema-dag-extraction/artifacts/exp008\\n/root/schema-dag-extraction/artifacts/fewrel_formal\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm\\n/root/schema-dag-extraction/artifacts/exp008_v2\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full\\n/root/schema-dag-extraction/artifacts/exp012\\n/root/schema-dag-extraction/artifacts/exp007\\n/root/schema-dag-extraction/artifacts/fewrel_40rel\\n/root/schema-dag-extraction/artifacts/exp012_dryrun\\n/root/schema-dag-extraction/artifacts/exp012_llama_8b\\n/root/schema-dag-extraction/artifacts/exp006\\n/root/schema-dag-extraction/artifacts/exp006_interaction_2x2\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub\\n/root/schema-dag-extraction/artifacts/three_way_comparison\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs\\n/root/schema-dag-extraction/logs\\n/root/schema-dag-extraction/configs\\n/root/schema-dag-extraction/results\\n/root/schema-dag-extraction/results/exp1\\n/root/schema-dag-extraction/results/exp2\\n/root/schema-dag-extraction/results/analysis\\n/root/schema-dag-extraction/scripts\\n/root/schema-dag-extraction/scripts/d037\\n/root/schema-dag-extraction/figures\\n/root/schema-dag-extraction/figures/paper\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment directories don't match the names I expected (exp002, exp003a). Let me look at the results directory and the artifacts more carefully. I see:
+- `results/exp1`, `results/exp2`, `results/analysis`
+- Various artifacts directories
+
+Let me also check if there's a scripts/d037 directory (which matches our output task name), and look at the results/exp2 directory since the task mentions "exp2" results.
+
+Let me also check the local artifacts directory for any existing analysis files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "83004829-0d5c-4b1d-abef-60b6bb21f7c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTMiBygzKEqcj7sy8CQ7Cm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 24396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1071
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+目录结构不同于预期。让我查看 results/exp2 和相关目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "92959db4-a9c2-4cd1-b4df-ea0d70f043b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTMiBygzKEqcj7sy8CQ7Cm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 24396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1071
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dxnz3Ct9rjiasez9XgfMtv`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/results/exp2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "ebff69c9-0fc5-4550-a05c-9656b2c7c5d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTMiBygzKEqcj7sy8CQ7Cm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 24396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1071
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T03:46:54.548Z_
+
+<details><summary>↩ Tool result · `toolu_01Dxnz3Ct9rjiasez9XgfMtv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 15 02:12 .\\ndrwxr-xr-x 5 root root 4096 May 15 15:15 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "a9142708-8d1e-4586-a0a2-3e174599fbe6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 2 root root   10 May 15 02:12 .\\\\ndrwxr-xr-x 5 root root 4096 May 15 15:15 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 15 02:12 .\\ndrwxr-xr-x 5 root root 4096 May 15 15:15 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016ab4KSsuPyb3zHDhDWra3r`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/results/exp1/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "b44681ef-a469-4c0d-bd37-f65a58f58b9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTMiBygzKEqcj7sy8CQ7Cm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 24396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1071
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T03:46:55.414Z_
+
+<details><summary>↩ Tool result · `toolu_016ab4KSsuPyb3zHDhDWra3r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 15 02:12 .\\ndrwxr-xr-x 5 root root 4096 May 15 15:15 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "61ad1ddc-1f5f-4fea-9218-9aa7b20f9644",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 2 root root   10 May 15 02:12 .\\\\ndrwxr-xr-x 5 root root 4096 May 15 15:15 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 15 02:12 .\\ndrwxr-xr-x 5 root root 4096 May 15 15:15 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0178KUFB9oJHaGBuXQ7pt5o4`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/results/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "50451a78-d8ea-437f-8a16-6e6012dd341d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTMiBygzKEqcj7sy8CQ7Cm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 24396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1071
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RQXrCCkxNcbbXgK9cTbDTV`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/scripts/d037/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "fce019d4-28f0-4ef9-a5f4-c2d791bcdc79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTMiBygzKEqcj7sy8CQ7Cm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 24396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1071
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T03:46:56.389Z_
+
+<details><summary>↩ Tool result · `toolu_0178KUFB9oJHaGBuXQ7pt5o4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 15 02:12 .\\ndrwxr-xr-x 5 root root 4096 May 15 15:15 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "aee55a16-aac0-4f1f-9afc-c620dffbd1fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 2 root root   10 May 15 02:12 .\\\\ndrwxr-xr-x 5 root root 4096 May 15 15:15 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 15 02:12 .\\ndrwxr-xr-x 5 root root 4096 May 15 15:15 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T03:46:56.857Z_
+
+<details><summary>↩ Tool result · `toolu_01RQXrCCkxNcbbXgK9cTbDTV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 48\\ndrwxr-xr-x 2 root root  4096 May 16 11:31 .\\ndrwxr-xr-x 3 root root  4096 May 16 11:24 ..\\n-rw-r--r-- 1 root root  6551 May 16 11:26 w2_practical_effect.py\\n-rw-r--r-- 1 root root  1187 May 16 11:27 w2_practical_effect_results.json\\n-rw-r--r-- 1 root root 11701 May 16 11:31 w3_cluster_bootstrap.py\\n-rw-r--r-- 1 root root   841 May 16 11:32 w3_cluster_bootstrap_results.json\\n-rw-r--r-- 1 root root  7124 May 16 11:26 w4_count_recall_ci.py\\n-rw-r--r-- 1 root root  1475 May 16 11:27 w4_count_recall_ci_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "db2fa1bf-f21e-49c1-b1d8-32c70e269577",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 48\\\\ndrwxr-xr-x 2 root root  4096 May 16 11:31 .\\\\ndrwxr-xr-x 3 root root  4096 May 16 11:24 ..\\\\n-rw-r--r-- 1 root root  6551 May 16 11:26 w2_practical_effect.py\\\\n-rw-r--r-- 1 root root  1187 May 16 11:27 w2_practical_effect_results.json\\\\n-rw-r--r-- 1 root root 11701 May 16 11:31 w3_cluster_bootstrap.py\\\\n-rw-r--r-- 1 root root   841 May 16 11:32 w3_cluster_bootstrap_results.json\\\\n-rw-r--r-- 1 root root  7124 May 16 11:26 w4_count_recall_ci.py\\\\n-rw-r--r-- 1 root root  1475 May 16 11:27 w4_count_recall_ci_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 48\\ndrwxr-xr-x 2 root root  4096 May 16 11:31 .\\ndrwxr-xr-x 3 root root  4096 May 16 11:24 ..\\n-rw-r--r-- 1 root root  6551 May 16 11:26 w2_practical_effect.py\\n-rw-r--r-- 1 root root  1187 May 16 11:27 w2_practical_effect_results.json\\n-rw-r--r-- 1 root root 11701 May 16 11:31 w3_cluster_bootstrap.py\\n-rw-r--r-- 1 root root   841 May 16 11:32 w3_cluster_bootstrap_results.json\\n-rw-r--r-- 1 root root  7124 May 16 11:26 w4_count_recall_ci.py\\n-rw-r--r-- 1 root root  1475 May 16 11:27 w4_count_recall_ci_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results directories are empty. Let me look at the artifacts directories more carefully for NER experiment data. Let me check the artifacts that seem relevant - maybe exp004, exp006, exp007, exp008 contain the NER data I need. Let me also look for any JSON files with batch-level BCS and accuracy data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "891e67c0-ba80-4251-a2e0-dc9e971138e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SbXVsedT38mnECTPxEqD7P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1554,
+      "cache_read_input_tokens": 25467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+results 目录空的。让我搜索 artifacts 中的 per-batch 数据文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "aef7040f-8e4e-4914-84ef-fea4df47ecae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SbXVsedT38mnECTPxEqD7P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1554,
+      "cache_read_input_tokens": 25467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0199u4snVAJtFbsYaCE3ds9p`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "2ff104f1-15d7-4130-ae1a-154e5f8ec6df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SbXVsedT38mnECTPxEqD7P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1554,
+      "cache_read_input_tokens": 25467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1554
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T03:47:02.843Z_
+
+<details><summary>↩ Tool result · `toolu_0199u4snVAJtFbsYaCE3ds9p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_dry_run.json\\n/root/schema-dag-extraction/artifacts/eval_dry_run.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/eval_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/eval_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/predictions.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/eval_results.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun/decomposition.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/analysis_summary.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero_min8.json\\n/root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_sdgd_zero.json\\n\\n\\n... [截断: 输出过长，省略 1553 字符] ...\\n\\nn\\n/root/schema-dag-extraction/artifacts/exp012/predictions_fewnerd_exp1_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012/eval_fewnerd_exp1_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp2_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012/predictions_fewnerd_exp2_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012/eval_fewnerd_exp2_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_raw.json\\n/root/schema-dag-extraction/artifacts/fewrel_80rel_error_taxonomy.json\\n/root/schema-dag-extraction/artifacts/bootstrap_ci.json\\n/root/schema-dag-extraction/artifacts/exp015_scs_validation.json\\n/root/schema-dag-extraction/artifacts/maven_case_study.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/exp012_dryrun/batch_config_fewnerd_dry_run_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012_dryrun/predictions_fewnerd_dry_run_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012_dryrun/eval_fewnerd_dry_run_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012_llama_8b/batch_config_fewnerd_exp1_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp006/batch_config.json\\n/root/schema-dag-extraction/artifacts/exp006/predictions.json\\n/root/schema-dag-extraction/artifacts/exp006/eval_results.json\\n/root/schema-dag-extraction/artifacts/exp006/interaction_analysis.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/results.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/bootstrap_ci.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/regression_slope.json\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs/results.json\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/bootstrap_ci.json\\n/root/schema-dag-extraction/artifacts/three_way_comparison/results.json\\n/root/schema-dag-extraction/artifacts/three_way_comparison/results_unified.json\\n/root/schema-dag-extraction/artifacts/extreme_batch_analysis.json\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch/results.json\\n/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/batch_groups.json\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/eval_results.json\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/bootstrap_ci.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "abaf9c4d-f298-4319-82cf-1a6bbbebf84c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/predictions_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/eval_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/eval_exp1.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\\\n/root/schema-dag-extraction/artifacts/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/predictions_maven_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/eval_maven_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp1.json\\\\n/root/schema-dag-extraction/artifacts/exp004/predictions_maven_exp1.json\\\\n/root/schema-dag-extraction/artifacts/exp004/eval_maven_exp1.json\\\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/predictions.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/eval_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun/decomposition.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_single_pass.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_random_batch.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_per_type.json\\\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/analysis_summary.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero_min8.json\\\\n/root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_sdgd_zero.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_single_pass.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_random_batch.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_per_type.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_sdgd_zero.json\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_single_pass.json\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_per_type.json\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_random_batch.json\\\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_sdgd_zero.json\\\\n\\\\n\\\\n... [截断: 输出过长，省略 1553 字符] ...\\\\n\\\\nn\\\\n/root/schema-dag-extraction/artifacts/exp012/predictions_fewnerd_exp1_llama-3.1-8b-instruct.json\\\\n/root/schema-dag-extraction/artifacts/exp012/eval_fewnerd_exp1_llama-3.1-8b-instruct.json\\\\n/root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp2_llama-3.1-8b-instruct.json\\\\n/root/schema-dag-extraction/artifacts/exp012/predictions_fewnerd_exp2_llama-3.1-8b-instruct.json\\\\n/root/schema-dag-extraction/artifacts/exp012/eval_fewnerd_exp2_llama-3.1-8b-instruct.json\\\\n/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_raw.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_80rel_error_taxonomy.json\\\\n/root/schema-dag-extraction/artifacts/bootstrap_ci.json\\\\n/root/schema-dag-extraction/artifacts/exp015_scs_validation.json\\\\n/root/schema-dag-extraction/artifacts/maven_case_study.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel/preprocess_exp1.json\\\\n/root/schema-dag-extraction/artifacts/exp012_dryrun/batch_config_fewnerd_dry_run_llama-3.1-8b-instruct.json\\\\n/root/schema-dag-extraction/artifacts/exp012_dryrun/predictions_fewnerd_dry_run_llama-3.1-8b-instruct.json\\\\n/root/schema-dag-extraction/artifacts/exp012_dryrun/eval_fewnerd_dry_run_llama-3.1-8b-instruct.json\\\\n/root/schema-dag-extraction/artifacts/exp012_llama_8b/batch_config_fewnerd_exp1_llama-3.1-8b-instruct.json\\\\n/root/schema-dag-extraction/artifacts/exp006/batch_config.json\\\\n/root/schema-dag-extraction/artifacts/exp006/predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp006/eval_results.json\\\\n/root/schema-dag-extraction/artifacts/exp006/interaction_analysis.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/preprocess_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/preprocess_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/predictions_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/preprocess_exp2.json\\\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/predictions_exp2.json\\\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch/batch_config.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch/preprocess.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/batch_config.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/preprocess.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/results.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/bootstrap_ci.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/regression_slope.json\\\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs/results.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/preprocess.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/batch_config.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/bootstrap_ci.json\\\\n/root/schema-dag-extraction/artifacts/three_way_comparison/results.json\\\\n/root/schema-dag-extraction/artifacts/three_way_comparison/results_unified.json\\\\n/root/schema-dag-extraction/artifacts/extreme_batch_analysis.json\\\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch/results.json\\\\n/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/preprocess.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/batch_groups.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/eval_results.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_dry_run.json\\n/root/schema-dag-extraction/artifacts/eval_dry_run.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/eval_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/eval_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/predictions.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/eval_results.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun/decomposition.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/analysis_summary.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero_min8.json\\n/root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008_v2/decomposition_sdgd_zero.json\\n\\n\\n... [截断: 输出过长，省略 1553 字符] ...\\n\\nn\\n/root/schema-dag-extraction/artifacts/exp012/predictions_fewnerd_exp1_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012/eval_fewnerd_exp1_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012/batch_config_fewnerd_exp2_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012/predictions_fewnerd_exp2_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012/eval_fewnerd_exp2_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_raw.json\\n/root/schema-dag-extraction/artifacts/fewrel_80rel_error_taxonomy.json\\n/root/schema-dag-extraction/artifacts/bootstrap_ci.json\\n/root/schema-dag-extraction/artifacts/exp015_scs_validation.json\\n/root/schema-dag-extraction/artifacts/maven_case_study.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/exp012_dryrun/batch_config_fewnerd_dry_run_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012_dryrun/predictions_fewnerd_dry_run_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012_dryrun/eval_fewnerd_dry_run_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp012_llama_8b/batch_config_fewnerd_exp1_llama-3.1-8b-instruct.json\\n/root/schema-dag-extraction/artifacts/exp006/batch_config.json\\n/root/schema-dag-extraction/artifacts/exp006/predictions.json\\n/root/schema-dag-extraction/artifacts/exp006/eval_results.json\\n/root/schema-dag-extraction/artifacts/exp006/interaction_analysis.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/preprocess_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/preprocess_exp2.json\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/results.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/bootstrap_ci.json\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/regression_slope.json\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs/results.json\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub/bootstrap_ci.json\\n/root/schema-dag-extraction/artifacts/three_way_comparison/results.json\\n/root/schema-dag-extraction/artifacts/three_way_comparison/results_unified.json\\n/root/schema-dag-extraction/artifacts/extreme_batch_analysis.json\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch/results.json\\n/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/preprocess.json\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/batch_groups.json\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/eval_results.json\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs/bootstrap_ci.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the data. The task mentions "NER" experiments with prompt v1 and v2. Looking at the directory structure:
+
+- The NER experiments seem to be the top-level ones (`eval_exp2.json`, `batch_config_exp2.json`) and potentially in various subdirectories.
+- For "v2", I see `fewrel_v2_bcs/` directory - but that's FewRel (RE), not NER.
+- The top-level `eval_exp2.json` and `batch_config_exp2.json` might be the NER v1 data.
+
+
+- I need to reconsider the naming conventions: v2 corresponds to exp-003a and v1 to exp-002, but these might not directly match the directory names on the server. The NER experiments are likely the top-level files or in FewNERD-related directories, not FewRel which is for relation extraction.
+
+Looking at what's available, the top-level exp2 files could represent NER v1, while exp006 and exp012 contain other experiment runs. I should check the contents of the top-level exp2 files and search for anything marked as v2 or prompt_v2 specifically for NER, since the task references exp003a_prompt_v2_rerun but I need to find where that actually maps to in the file structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "9ab84a81-33ee-4676-9a28-0d629e1d87ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTUQNEoZJhTQG9QvaKai6y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3211,
+      "cache_read_input_tokens": 27021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3211
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+让我检查关键数据文件内容，确定哪些对应 v1 和 v2。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "7c4681bb-5fa0-4c5a-9818-ef4c9f68d363",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTUQNEoZJhTQG9QvaKai6y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3211,
+      "cache_read_input_tokens": 27021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3211
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FQ5jd5ttntV76QnMSrpGF7`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -100 /root/schema-dag-extraction/artifacts/eval_exp2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "39cf21d1-283d-459c-8466-f49cd0859fa7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTUQNEoZJhTQG9QvaKai6y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3211,
+      "cache_read_input_tokens": 27021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3211
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T03:47:19.326Z_
+
+<details><summary>↩ Tool result · `toolu_01FQ5jd5ttntV76QnMSrpGF7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_6_low_bcs\\\": {\\n    \\\"bcs\\\": 0.8708932995796204,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1925925925925926,\\n      \\\"recall\\\": 0.36619718309859156,\\n      \\\"f1\\\": 0.2524271844660194,\\n      \\\"tp\\\": 78,\\n      \\\"total_pred\\\": 405,\\n      \\\"total_gold\\\": 213\\n    }\\n  },\\n  \\\"count_6_high_bcs\\\": {\\n    \\\"bcs\\\": 0.9446906447410583,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.45726495726495725,\\n      \\\"recall\\\": 0.5181598062953995,\\n      \\\"f1\\\": 0.48581157775255385,\\n      \\\"tp\\\": 214,\\n      \\\"total_pred\\\": 468,\\n      \\\"total_gold\\\": 413\\n    }\\n  },\\n  \\\"count_6_random_0\\\": {\\n    \\\"bcs\\\": 0.9021296501159668,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4472049689440994,\\n      \\\"recall\\\": 0.36180904522613067,\\n      \\\"f1\\\": 0.4000000000000001,\\n      \\\"tp\\\": 72,\\n      \\\"total_pred\\\": 161,\\n      \\\"total_gold\\\": 199\\n    }\\n  },\\n  \\\"count_6_random_1\\\": {\\n    \\\"bcs\\\": 0.8867964744567871,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.20303030303030303,\\n      \\\"recall\\\": 0.6547231270358306,\\n      \\\"f1\\\": 0.3099460292983809,\\n      \\\"tp\\\": 201,\\n      \\\"total_pred\\\": 990,\\n      \\\"total_gold\\\": 307\\n    }\\n  },\\n  \\\"count_6_random_2\\\": {\\n    \\\"bcs\\\": 0.8683533072471619,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.17167381974248927,\\n      \\\"recall\\\": 0.23668639053254437,\\n      \\\"f1\\\": 0.1990049751243781,\\n      \\\"tp\\\": 40,\\n      \\\"total_pred\\\": 233,\\n      \\\"total_gold\\\": 169\\n    }\\n  },\\n  \\\"count_6_random_3\\\": {\\n    \\\"bcs\\\": 0.9162936210632324,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.19814814814814816,\\n      \\\"recall\\\": 0.5323383084577115,\\n      \\\"f1\\\": 0.28879892037786775,\\n      \\\"tp\\\": 107,\\n      \\\"total_pred\\\": 540,\\n      \\\"total_gold\\\": 201\\n    }\\n  },\\n  \\\"count_6_random_4\\\": {\\n    \\\"bcs\\\": 0.8878266215324402,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.36792452830188677,\\n      \\\"recall\\\": 0.43333333333333335,\\n      \\\"f1\\\": 0.39795918367346933,\\n      \\\"tp\\\": 39,\\n      \\\"total_pred\\\": 106,\\n      \\\"total_gold\\\": 90\\n    }\\n  },\\n  \\\"count_6_random_5\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "25bb2782-980f-41b0-a356-b3dac0e85d3c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_6_low_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8708932995796204,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.1925925925925926,\\\\n      \\\\\\\"recall\\\\\\\": 0.36619718309859156,\\\\n      \\\\\\\"f1\\\\\\\": 0.2524271844660194,\\\\n      \\\\\\\"tp\\\\\\\": 78,\\\\n      \\\\\\\"total_pred\\\\\\\": 405,\\\\n      \\\\\\\"total_gold\\\\\\\": 213\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_high_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9446906447410583,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.45726495726495725,\\\\n      \\\\\\\"recall\\\\\\\": 0.5181598062953995,\\\\n      \\\\\\\"f1\\\\\\\": 0.48581157775255385,\\\\n      \\\\\\\"tp\\\\\\\": 214,\\\\n      \\\\\\\"total_pred\\\\\\\": 468,\\\\n      \\\\\\\"total_gold\\\\\\\": 413\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_0\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9021296501159668,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.4472049689440994,\\\\n      \\\\\\\"recall\\\\\\\": 0.36180904522613067,\\\\n      \\\\\\\"f1\\\\\\\": 0.4000000000000001,\\\\n      \\\\\\\"tp\\\\\\\": 72,\\\\n      \\\\\\\"total_pred\\\\\\\": 161,\\\\n      \\\\\\\"total_gold\\\\\\\": 199\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_1\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8867964744567871,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.20303030303030303,\\\\n      \\\\\\\"recall\\\\\\\": 0.6547231270358306,\\\\n      \\\\\\\"f1\\\\\\\": 0.3099460292983809,\\\\n      \\\\\\\"tp\\\\\\\": 201,\\\\n      \\\\\\\"total_pred\\\\\\\": 990,\\\\n      \\\\\\\"total_gold\\\\\\\": 307\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_2\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8683533072471619,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.17167381974248927,\\\\n      \\\\\\\"recall\\\\\\\": 0.23668639053254437,\\\\n      \\\\\\\"f1\\\\\\\": 0.1990049751243781,\\\\n      \\\\\\\"tp\\\\\\\": 40,\\\\n      \\\\\\\"total_pred\\\\\\\": 233,\\\\n      \\\\\\\"total_gold\\\\\\\": 169\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_3\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9162936210632324,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.19814814814814816,\\\\n      \\\\\\\"recall\\\\\\\": 0.5323383084577115,\\\\n      \\\\\\\"f1\\\\\\\": 0.28879892037786775,\\\\n      \\\\\\\"tp\\\\\\\": 107,\\\\n      \\\\\\\"total_pred\\\\\\\": 540,\\\\n      \\\\\\\"total_gold\\\\\\\": 201\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_4\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8878266215324402,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.36792452830188677,\\\\n      \\\\\\\"recall\\\\\\\": 0.43333333333333335,\\\\n      \\\\\\\"f1\\\\\\\": 0.39795918367346933,\\\\n      \\\\\\\"tp\\\\\\\": 39,\\\\n      \\\\\\\"total_pred\\\\\\\": 106,\\\\n      \\\\\\\"total_gold\\\\\\\": 90\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_5\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_6_low_bcs\\\": {\\n    \\\"bcs\\\": 0.8708932995796204,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1925925925925926,\\n      \\\"recall\\\": 0.36619718309859156,\\n      \\\"f1\\\": 0.2524271844660194,\\n      \\\"tp\\\": 78,\\n      \\\"total_pred\\\": 405,\\n      \\\"total_gold\\\": 213\\n    }\\n  },\\n  \\\"count_6_high_bcs\\\": {\\n    \\\"bcs\\\": 0.9446906447410583,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.45726495726495725,\\n      \\\"recall\\\": 0.5181598062953995,\\n      \\\"f1\\\": 0.48581157775255385,\\n      \\\"tp\\\": 214,\\n      \\\"total_pred\\\": 468,\\n      \\\"total_gold\\\": 413\\n    }\\n  },\\n  \\\"count_6_random_0\\\": {\\n    \\\"bcs\\\": 0.9021296501159668,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4472049689440994,\\n      \\\"recall\\\": 0.36180904522613067,\\n      \\\"f1\\\": 0.4000000000000001,\\n      \\\"tp\\\": 72,\\n      \\\"total_pred\\\": 161,\\n      \\\"total_gold\\\": 199\\n    }\\n  },\\n  \\\"count_6_random_1\\\": {\\n    \\\"bcs\\\": 0.8867964744567871,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.20303030303030303,\\n      \\\"recall\\\": 0.6547231270358306,\\n      \\\"f1\\\": 0.3099460292983809,\\n      \\\"tp\\\": 201,\\n      \\\"total_pred\\\": 990,\\n      \\\"total_gold\\\": 307\\n    }\\n  },\\n  \\\"count_6_random_2\\\": {\\n    \\\"bcs\\\": 0.8683533072471619,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.17167381974248927,\\n      \\\"recall\\\": 0.23668639053254437,\\n      \\\"f1\\\": 0.1990049751243781,\\n      \\\"tp\\\": 40,\\n      \\\"total_pred\\\": 233,\\n      \\\"total_gold\\\": 169\\n    }\\n  },\\n  \\\"count_6_random_3\\\": {\\n    \\\"bcs\\\": 0.9162936210632324,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.19814814814814816,\\n      \\\"recall\\\": 0.5323383084577115,\\n      \\\"f1\\\": 0.28879892037786775,\\n      \\\"tp\\\": 107,\\n      \\\"total_pred\\\": 540,\\n      \\\"total_gold\\\": 201\\n    }\\n  },\\n  \\\"count_6_random_4\\\": {\\n    \\\"bcs\\\": 0.8878266215324402,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.36792452830188677,\\n      \\\"recall\\\": 0.43333333333333335,\\n      \\\"f1\\\": 0.39795918367346933,\\n      \\\"tp\\\": 39,\\n      \\\"total_pred\\\": 106,\\n      \\\"total_gold\\\": 90\\n    }\\n  },\\n  \\\"count_6_random_5\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BFRnFgxqgTE8tFJY81fJ7d`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -100 /root/schema-dag-extraction/artifacts/batch_config_exp2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "5c9f32ba-6c6c-4d32-9183-f13480920ff6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTUQNEoZJhTQG9QvaKai6y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3211,
+      "cache_read_input_tokens": 27021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3211
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QEg7w5iY7g3sueQAWDHAeo`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts -name \"*.csv\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "64b7bed4-ccbb-4902-a214-927fffa8f624",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTUQNEoZJhTQG9QvaKai6y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3211,
+      "cache_read_input_tokens": 27021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3211
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T03:47:20.323Z_
+
+<details><summary>↩ Tool result · `toolu_01BFRnFgxqgTE8tFJY81fJ7d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_6\\\": {\\n    \\\"low_bcs\\\": {\\n      \\\"types\\\": [\\n        \\\"organization-politicalparty\\\",\\n        \\\"person-actor\\\",\\n        \\\"location-bodiesofwater\\\",\\n        \\\"other-disease\\\",\\n        \\\"organization-education\\\",\\n        \\\"art-film\\\"\\n      ],\\n      \\\"bcs\\\": 0.8708932995796204\\n    },\\n    \\\"high_bcs\\\": {\\n      \\\"types\\\": [\\n        \\\"person-athlete\\\",\\n        \\\"person-politician\\\",\\n        \\\"person-director\\\",\\n        \\\"product-airplane\\\",\\n        \\\"person-other\\\",\\n        \\\"person-soldier\\\"\\n      ],\\n      \\\"bcs\\\": 0.9446906447410583\\n    },\\n    \\\"random\\\": [\\n      {\\n        \\\"types\\\": [\\n          \\\"other-disease\\\",\\n          \\\"building-library\\\",\\n          \\\"other-astronomything\\\",\\n          \\\"other-livingthing\\\",\\n          \\\"organization-sportsteam\\\",\\n          \\\"location-bodiesofwater\\\"\\n        ],\\n        \\\"bcs\\\": 0.9021296501159668\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"location-road/railway/highway/transit\\\",\\n          \\\"other-livingthing\\\",\\n          \\\"person-artist/author\\\",\\n          \\\"organization-government/governmentagency\\\",\\n          \\\"building-restaurant\\\",\\n          \\\"building-other\\\"\\n        ],\\n        \\\"bcs\\\": 0.8867964744567871\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"event-attack/battle/war/militaryconflict\\\",\\n          \\\"organization-religion\\\",\\n          \\\"other-educationaldegree\\\",\\n          \\\"event-disaster\\\",\\n          \\\"product-weapon\\\",\\n          \\\"person-artist/author\\\"\\n        ],\\n        \\\"bcs\\\": 0.8683533072471619\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"location-bodiesofwater\\\",\\n          \\\"organization-politicalparty\\\",\\n          \\\"event-attack/battle/war/militaryconflict\\\",\\n          \\\"art-film\\\",\\n          \\\"art-writtenart\\\",\\n          \\\"organization-government/governmentagency\\\"\\n        ],\\n        \\\"bcs\\\": 0.9162936210632324\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-library\\\",\\n          \\\"product-weapon\\\",\\n          \\\"organization-religion\\\",\\n          \\\"other-language\\\",\\n          \\\"building-restaurant\\\",\\n          \\\"product-train\\\"\\n        ],\\n        \\\"bcs\\\": 0.8878266215324402\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-hotel\\\",\\n          \\\"other-law\\\",\\n          \\\"other-astronomything\\\",\\n          \\\"location-GPE\\\",\\n          \\\"product-other\\\",\\n          \\\"location-mountain\\\"\\n        ],\\n        \\\"bcs\\\": 0.867279052734375\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"other-language\\\",\\n          \\\"building-hospital\\\",\\n          \\\"person-scholar\\\",\\n          \\\"event-other\\\",\\n          \\\"event-sportsevent\\\",\\n          \\\"event-protest\\\"\\n        ],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "aebb436a-bf81-43eb-b021-c262b9384ba1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_6\\\\\\\": {\\\\n    \\\\\\\"low_bcs\\\\\\\": {\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"organization-politicalparty\\\\\\\",\\\\n        \\\\\\\"person-actor\\\\\\\",\\\\n        \\\\\\\"location-bodiesofwater\\\\\\\",\\\\n        \\\\\\\"other-disease\\\\\\\",\\\\n        \\\\\\\"organization-education\\\\\\\",\\\\n        \\\\\\\"art-film\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.8708932995796204\\\\n    },\\\\n    \\\\\\\"high_bcs\\\\\\\": {\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"person-athlete\\\\\\\",\\\\n        \\\\\\\"person-politician\\\\\\\",\\\\n        \\\\\\\"person-director\\\\\\\",\\\\n        \\\\\\\"product-airplane\\\\\\\",\\\\n        \\\\\\\"person-other\\\\\\\",\\\\n        \\\\\\\"person-soldier\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.9446906447410583\\\\n    },\\\\n    \\\\\\\"random\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"other-disease\\\\\\\",\\\\n          \\\\\\\"building-library\\\\\\\",\\\\n          \\\\\\\"other-astronomything\\\\\\\",\\\\n          \\\\\\\"other-livingthing\\\\\\\",\\\\n          \\\\\\\"organization-sportsteam\\\\\\\",\\\\n          \\\\\\\"location-bodiesofwater\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.9021296501159668\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"location-road/railway/highway/transit\\\\\\\",\\\\n          \\\\\\\"other-livingthing\\\\\\\",\\\\n          \\\\\\\"person-artist/author\\\\\\\",\\\\n          \\\\\\\"organization-government/governmentagency\\\\\\\",\\\\n          \\\\\\\"building-restaurant\\\\\\\",\\\\n          \\\\\\\"building-other\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.8867964744567871\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\",\\\\n          \\\\\\\"organization-religion\\\\\\\",\\\\n          \\\\\\\"other-educationaldegree\\\\\\\",\\\\n          \\\\\\\"event-disaster\\\\\\\",\\\\n          \\\\\\\"product-weapon\\\\\\\",\\\\n          \\\\\\\"person-artist/author\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.8683533072471619\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"location-bodiesofwater\\\\\\\",\\\\n          \\\\\\\"organization-politicalparty\\\\\\\",\\\\n          \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\",\\\\n          \\\\\\\"art-film\\\\\\\",\\\\n          \\\\\\\"art-writtenart\\\\\\\",\\\\n          \\\\\\\"organization-government/governmentagency\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.9162936210632324\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-library\\\\\\\",\\\\n          \\\\\\\"product-weapon\\\\\\\",\\\\n          \\\\\\\"organization-religion\\\\\\\",\\\\n          \\\\\\\"other-language\\\\\\\",\\\\n          \\\\\\\"building-restaurant\\\\\\\",\\\\n          \\\\\\\"product-train\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.8878266215324402\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-hotel\\\\\\\",\\\\n          \\\\\\\"other-law\\\\\\\",\\\\n          \\\\\\\"other-astronomything\\\\\\\",\\\\n          \\\\\\\"location-GPE\\\\\\\",\\\\n          \\\\\\\"product-other\\\\\\\",\\\\n          \\\\\\\"location-mountain\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.867279052734375\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"other-language\\\\\\\",\\\\n          \\\\\\\"building-hospital\\\\\\\",\\\\n          \\\\\\\"person-scholar\\\\\\\",\\\\n          \\\\\\\"event-other\\\\\\\",\\\\n          \\\\\\\"event-sportsevent\\\\\\\",\\\\n          \\\\\\\"event-protest\\\\\\\"\\\\n        ],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_6\\\": {\\n    \\\"low_bcs\\\": {\\n      \\\"types\\\": [\\n        \\\"organization-politicalparty\\\",\\n        \\\"person-actor\\\",\\n        \\\"location-bodiesofwater\\\",\\n        \\\"other-disease\\\",\\n        \\\"organization-education\\\",\\n        \\\"art-film\\\"\\n      ],\\n      \\\"bcs\\\": 0.8708932995796204\\n    },\\n    \\\"high_bcs\\\": {\\n      \\\"types\\\": [\\n        \\\"person-athlete\\\",\\n        \\\"person-politician\\\",\\n        \\\"person-director\\\",\\n        \\\"product-airplane\\\",\\n        \\\"person-other\\\",\\n        \\\"person-soldier\\\"\\n      ],\\n      \\\"bcs\\\": 0.9446906447410583\\n    },\\n    \\\"random\\\": [\\n      {\\n        \\\"types\\\": [\\n          \\\"other-disease\\\",\\n          \\\"building-library\\\",\\n          \\\"other-astronomything\\\",\\n          \\\"other-livingthing\\\",\\n          \\\"organization-sportsteam\\\",\\n          \\\"location-bodiesofwater\\\"\\n        ],\\n        \\\"bcs\\\": 0.9021296501159668\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"location-road/railway/highway/transit\\\",\\n          \\\"other-livingthing\\\",\\n          \\\"person-artist/author\\\",\\n          \\\"organization-government/governmentagency\\\",\\n          \\\"building-restaurant\\\",\\n          \\\"building-other\\\"\\n        ],\\n        \\\"bcs\\\": 0.8867964744567871\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"event-attack/battle/war/militaryconflict\\\",\\n          \\\"organization-religion\\\",\\n          \\\"other-educationaldegree\\\",\\n          \\\"event-disaster\\\",\\n          \\\"product-weapon\\\",\\n          \\\"person-artist/author\\\"\\n        ],\\n        \\\"bcs\\\": 0.8683533072471619\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"location-bodiesofwater\\\",\\n          \\\"organization-politicalparty\\\",\\n          \\\"event-attack/battle/war/militaryconflict\\\",\\n          \\\"art-film\\\",\\n          \\\"art-writtenart\\\",\\n          \\\"organization-government/governmentagency\\\"\\n        ],\\n        \\\"bcs\\\": 0.9162936210632324\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-library\\\",\\n          \\\"product-weapon\\\",\\n          \\\"organization-religion\\\",\\n          \\\"other-language\\\",\\n          \\\"building-restaurant\\\",\\n          \\\"product-train\\\"\\n        ],\\n        \\\"bcs\\\": 0.8878266215324402\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-hotel\\\",\\n          \\\"other-law\\\",\\n          \\\"other-astronomything\\\",\\n          \\\"location-GPE\\\",\\n          \\\"product-other\\\",\\n          \\\"location-mountain\\\"\\n        ],\\n        \\\"bcs\\\": 0.867279052734375\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"other-language\\\",\\n          \\\"building-hospital\\\",\\n          \\\"person-scholar\\\",\\n          \\\"event-other\\\",\\n          \\\"event-sportsevent\\\",\\n          \\\"event-protest\\\"\\n        ],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T03:47:20.802Z_
+
+<details><summary>↩ Tool result · `toolu_01QEg7w5iY7g3sueQAWDHAeo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_by_bcs.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "1494226b-79f3-40d5-9d4a-cf3198b81bf3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_by_bcs.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/exp007/error_taxonomy_by_bcs.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016mGwYwSmUR8UJd2EwJEoEM`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts -name \"*.parquet\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "0133b99f-ce6a-4853-82d9-82f9aa0b2744",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTUQNEoZJhTQG9QvaKai6y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3211,
+      "cache_read_input_tokens": 27021,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3211
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T03:47:21.372Z_
+
+<details><summary>↩ Tool result · `toolu_016mGwYwSmUR8UJd2EwJEoEM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "99f7f431-0bcf-48be-ad49-d74f16d41ded",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the structure. The top-level `eval_exp2.json` has per-batch results with BCS and F1 metrics. This is the NER data with batches like `count_6_low_bcs`, `count_6_high_bcs`, `count_6_random_0`, etc. Each batch has a BCS value and text_match metrics (precision, recall, F1).
+
+This is likely the v1 data. Now I need to find the v2 data. Let me look at:
+1. The `exp006` directory (which has `interaction_analysis.json` - might be a 2x2 interaction experiment)
+
+
+2. The `exp006_interaction_2x2` directory
+
+I should also check if there are separate experiment directories that correspond to v2, or look for any "v2" or "prompt" related files in the exp006 data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "216817ed-a82c-4835-aaf6-b3b0ff615229",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MtH8ZrQ6oR2rhqSb718Lb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4104,
+      "cache_read_input_tokens": 30232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+找到了 v1 的 exp2 数据。现在找 v2。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "1e0ede15-fe52-402c-a7ab-bdd0a72c3d51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MtH8ZrQ6oR2rhqSb718Lb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4104,
+      "cache_read_input_tokens": 30232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R8fCca9rYmVoFVwuMddwb1`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -50 /root/schema-dag-extraction/artifacts/exp006/eval_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "370e5ae3-2748-4230-8964-e53da292973a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MtH8ZrQ6oR2rhqSb718Lb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4104,
+      "cache_read_input_tokens": 30232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T03:47:29.734Z_
+
+<details><summary>↩ Tool result · `toolu_01R8fCca9rYmVoFVwuMddwb1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"low_count/low_bcs/batch_0/low_bcs\\\": {\\n    \\\"bcs\\\": 0.8326735496520996,\\n    \\\"count_key\\\": \\\"low_count/low_bcs/batch_0\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4299835255354201,\\n      \\\"recall\\\": 0.6805736636245111,\\n      \\\"f1\\\": 0.5270065623422514,\\n      \\\"tp\\\": 522,\\n      \\\"total_pred\\\": 1214,\\n      \\\"total_gold\\\": 767\\n    }\\n  },\\n  \\\"low_count/low_bcs/batch_1/low_bcs\\\": {\\n    \\\"bcs\\\": 0.8390023708343506,\\n    \\\"count_key\\\": \\\"low_count/low_bcs/batch_1\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.3394495412844037,\\n      \\\"recall\\\": 0.4966442953020134,\\n      \\\"f1\\\": 0.4032697547683924,\\n      \\\"tp\\\": 74,\\n      \\\"total_pred\\\": 218,\\n      \\\"total_gold\\\": 149\\n    }\\n  },\\n  \\\"low_count/low_bcs/batch_2/low_bcs\\\": {\\n    \\\"bcs\\\": 0.8391836285591125,\\n    \\\"count_key\\\": \\\"low_count/low_bcs/batch_2\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.24444444444444444,\\n      \\\"recall\\\": 0.38823529411764707,\\n      \\\"f1\\\": 0.3,\\n      \\\"tp\\\": 33,\\n      \\\"total_pred\\\": 135,\\n      \\\"total_gold\\\": 85\\n    }\\n  },\\n  \\\"low_count/low_bcs/batch_3/low_bcs\\\": {\\n    \\\"bcs\\\": 0.841452419757843,\\n    \\\"count_key\\\": \\\"low_count/low_bcs/batch_3\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.19933554817275748,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "8354577c-6090-41fa-9413-3aa4eafda861",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"low_count/low_bcs/batch_0/low_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8326735496520996,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"low_count/low_bcs/batch_0\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.4299835255354201,\\\\n      \\\\\\\"recall\\\\\\\": 0.6805736636245111,\\\\n      \\\\\\\"f1\\\\\\\": 0.5270065623422514,\\\\n      \\\\\\\"tp\\\\\\\": 522,\\\\n      \\\\\\\"total_pred\\\\\\\": 1214,\\\\n      \\\\\\\"total_gold\\\\\\\": 767\\\\n    }\\\\n  },\\\\n  \\\\\\\"low_count/low_bcs/batch_1/low_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8390023708343506,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"low_count/low_bcs/batch_1\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.3394495412844037,\\\\n      \\\\\\\"recall\\\\\\\": 0.4966442953020134,\\\\n      \\\\\\\"f1\\\\\\\": 0.4032697547683924,\\\\n      \\\\\\\"tp\\\\\\\": 74,\\\\n      \\\\\\\"total_pred\\\\\\\": 218,\\\\n      \\\\\\\"total_gold\\\\\\\": 149\\\\n    }\\\\n  },\\\\n  \\\\\\\"low_count/low_bcs/batch_2/low_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8391836285591125,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"low_count/low_bcs/batch_2\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.24444444444444444,\\\\n      \\\\\\\"recall\\\\\\\": 0.38823529411764707,\\\\n      \\\\\\\"f1\\\\\\\": 0.3,\\\\n      \\\\\\\"tp\\\\\\\": 33,\\\\n      \\\\\\\"total_pred\\\\\\\": 135,\\\\n      \\\\\\\"total_gold\\\\\\\": 85\\\\n    }\\\\n  },\\\\n  \\\\\\\"low_count/low_bcs/batch_3/low_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.841452419757843,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"low_count/low_bcs/batch_3\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.19933554817275748,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"low_count/low_bcs/batch_0/low_bcs\\\": {\\n    \\\"bcs\\\": 0.8326735496520996,\\n    \\\"count_key\\\": \\\"low_count/low_bcs/batch_0\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4299835255354201,\\n      \\\"recall\\\": 0.6805736636245111,\\n      \\\"f1\\\": 0.5270065623422514,\\n      \\\"tp\\\": 522,\\n      \\\"total_pred\\\": 1214,\\n      \\\"total_gold\\\": 767\\n    }\\n  },\\n  \\\"low_count/low_bcs/batch_1/low_bcs\\\": {\\n    \\\"bcs\\\": 0.8390023708343506,\\n    \\\"count_key\\\": \\\"low_count/low_bcs/batch_1\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.3394495412844037,\\n      \\\"recall\\\": 0.4966442953020134,\\n      \\\"f1\\\": 0.4032697547683924,\\n      \\\"tp\\\": 74,\\n      \\\"total_pred\\\": 218,\\n      \\\"total_gold\\\": 149\\n    }\\n  },\\n  \\\"low_count/low_bcs/batch_2/low_bcs\\\": {\\n    \\\"bcs\\\": 0.8391836285591125,\\n    \\\"count_key\\\": \\\"low_count/low_bcs/batch_2\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.24444444444444444,\\n      \\\"recall\\\": 0.38823529411764707,\\n      \\\"f1\\\": 0.3,\\n      \\\"tp\\\": 33,\\n      \\\"total_pred\\\": 135,\\n      \\\"total_gold\\\": 85\\n    }\\n  },\\n  \\\"low_count/low_bcs/batch_3/low_bcs\\\": {\\n    \\\"bcs\\\": 0.841452419757843,\\n    \\\"count_key\\\": \\\"low_count/low_bcs/batch_3\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.19933554817275748,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YJm6bAu9beC2is5ZzVUZzz`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/exp006_interaction_2x2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "df1c7c69-b638-45ce-ac72-71d9c9b95a0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MtH8ZrQ6oR2rhqSb718Lb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4104,
+      "cache_read_input_tokens": 30232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T03:47:30.675Z_
+
+<details><summary>↩ Tool result · `toolu_01YJm6bAu9beC2is5ZzVUZzz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  2 root root   35 May 16 01:53 .\\ndrwxr-xr-x 27 root root 4096 May 16 11:32 ..\\n-rw-r--r--  1 root root 1496 May 16 01:53 diagnosis.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "578354ff-ecff-43b3-acbd-0362b054fb99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x  2 root root   35 May 16 01:53 .\\\\ndrwxr-xr-x 27 root root 4096 May 16 11:32 ..\\\\n-rw-r--r--  1 root root 1496 May 16 01:53 diagnosis.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  2 root root   35 May 16 01:53 .\\ndrwxr-xr-x 27 root root 4096 May 16 11:32 ..\\n-rw-r--r--  1 root root 1496 May 16 01:53 diagnosis.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NhD6o3SSErmwkJnuj7YmCX`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -50 /root/schema-dag-extraction/artifacts/exp006/interaction_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "8cbe87d0-9de0-4278-815c-6329cb62d91d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MtH8ZrQ6oR2rhqSb718Lb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4104,
+      "cache_read_input_tokens": 30232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T03:47:31.256Z_
+
+<details><summary>↩ Tool result · `toolu_01NhD6o3SSErmwkJnuj7YmCX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"cell_means\\\": {\\n    \\\"low_count/low_bcs\\\": {\\n      \\\"mean_f1\\\": 0.324269743681032,\\n      \\\"std_f1\\\": 0.106100632533998,\\n      \\\"se_f1\\\": 0.03355196599919962,\\n      \\\"mean_precision\\\": 0.2924862060386707,\\n      \\\"mean_recall\\\": 0.38280040243285385,\\n      \\\"mean_bcs\\\": 0.8416652500629425,\\n      \\\"n_batches\\\": 10,\\n      \\\"f1_values\\\": [\\n        0.5270065623422514,\\n        0.4032697547683924,\\n        0.3,\\n        0.24242424242424243,\\n        0.41000000000000003,\\n        0.25629290617848965,\\n        0.38610038610038605,\\n        0.3553299492385787,\\n        0.17088607594936708,\\n        0.19138755980861244\\n      ]\\n    },\\n    \\\"low_count/high_bcs\\\": {\\n      \\\"mean_f1\\\": 0.31290537487628495,\\n      \\\"std_f1\\\": 0.09891749256389684,\\n      \\\"se_f1\\\": 0.031280457693468273,\\n      \\\"mean_precision\\\": 0.2752478570569108,\\n      \\\"mean_recall\\\": 0.4548885968536142,\\n      \\\"mean_bcs\\\": 0.9614807784557342,\\n      \\\"n_batches\\\": 10,\\n      \\\"f1_values\\\": [\\n        0.47434119278779474,\\n        0.2222222222222222,\\n        0.38532110091743116,\\n        0.26704545454545453,\\n        0.4359464627151052,\\n        0.40074211502782936,\\n        0.31382316313823166,\\n        0.17826086956521736,\\n        0.22321428571428573,\\n        0.22813688212927757\\n      ]\\n    },\\n    \\\"high_count/low_bcs\\\": {\\n      \\\"mean_f1\\\": 0.3247732575037294,\\n      \\\"std_f1\\\": 0.07034839770758267,\\n      \\\"se_f1\\\": 0.02224611664993291,\\n      \\\"mean_precision\\\": 0.3451262044635467,\\n      \\\"mean_recall\\\": 0.3208227245531742,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "faeb6e0c-16ff-4729-8837-642322008e23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"cell_means\\\\\\\": {\\\\n    \\\\\\\"low_count/low_bcs\\\\\\\": {\\\\n      \\\\\\\"mean_f1\\\\\\\": 0.324269743681032,\\\\n      \\\\\\\"std_f1\\\\\\\": 0.106100632533998,\\\\n      \\\\\\\"se_f1\\\\\\\": 0.03355196599919962,\\\\n      \\\\\\\"mean_precision\\\\\\\": 0.2924862060386707,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.38280040243285385,\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.8416652500629425,\\\\n      \\\\\\\"n_batches\\\\\\\": 10,\\\\n      \\\\\\\"f1_values\\\\\\\": [\\\\n        0.5270065623422514,\\\\n        0.4032697547683924,\\\\n        0.3,\\\\n        0.24242424242424243,\\\\n        0.41000000000000003,\\\\n        0.25629290617848965,\\\\n        0.38610038610038605,\\\\n        0.3553299492385787,\\\\n        0.17088607594936708,\\\\n        0.19138755980861244\\\\n      ]\\\\n    },\\\\n    \\\\\\\"low_count/high_bcs\\\\\\\": {\\\\n      \\\\\\\"mean_f1\\\\\\\": 0.31290537487628495,\\\\n      \\\\\\\"std_f1\\\\\\\": 0.09891749256389684,\\\\n      \\\\\\\"se_f1\\\\\\\": 0.031280457693468273,\\\\n      \\\\\\\"mean_precision\\\\\\\": 0.2752478570569108,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.4548885968536142,\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.9614807784557342,\\\\n      \\\\\\\"n_batches\\\\\\\": 10,\\\\n      \\\\\\\"f1_values\\\\\\\": [\\\\n        0.47434119278779474,\\\\n        0.2222222222222222,\\\\n        0.38532110091743116,\\\\n        0.26704545454545453,\\\\n        0.4359464627151052,\\\\n        0.40074211502782936,\\\\n        0.31382316313823166,\\\\n        0.17826086956521736,\\\\n        0.22321428571428573,\\\\n        0.22813688212927757\\\\n      ]\\\\n    },\\\\n    \\\\\\\"high_count/low_bcs\\\\\\\": {\\\\n      \\\\\\\"mean_f1\\\\\\\": 0.3247732575037294,\\\\n      \\\\\\\"std_f1\\\\\\\": 0.07034839770758267,\\\\n      \\\\\\\"se_f1\\\\\\\": 0.02224611664993291,\\\\n      \\\\\\\"mean_precision\\\\\\\": 0.3451262044635467,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.3208227245531742,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"cell_means\\\": {\\n    \\\"low_count/low_bcs\\\": {\\n      \\\"mean_f1\\\": 0.324269743681032,\\n      \\\"std_f1\\\": 0.106100632533998,\\n      \\\"se_f1\\\": 0.03355196599919962,\\n      \\\"mean_precision\\\": 0.2924862060386707,\\n      \\\"mean_recall\\\": 0.38280040243285385,\\n      \\\"mean_bcs\\\": 0.8416652500629425,\\n      \\\"n_batches\\\": 10,\\n      \\\"f1_values\\\": [\\n        0.5270065623422514,\\n        0.4032697547683924,\\n        0.3,\\n        0.24242424242424243,\\n        0.41000000000000003,\\n        0.25629290617848965,\\n        0.38610038610038605,\\n        0.3553299492385787,\\n        0.17088607594936708,\\n        0.19138755980861244\\n      ]\\n    },\\n    \\\"low_count/high_bcs\\\": {\\n      \\\"mean_f1\\\": 0.31290537487628495,\\n      \\\"std_f1\\\": 0.09891749256389684,\\n      \\\"se_f1\\\": 0.031280457693468273,\\n      \\\"mean_precision\\\": 0.2752478570569108,\\n      \\\"mean_recall\\\": 0.4548885968536142,\\n      \\\"mean_bcs\\\": 0.9614807784557342,\\n      \\\"n_batches\\\": 10,\\n      \\\"f1_values\\\": [\\n        0.47434119278779474,\\n        0.2222222222222222,\\n        0.38532110091743116,\\n        0.26704545454545453,\\n        0.4359464627151052,\\n        0.40074211502782936,\\n        0.31382316313823166,\\n        0.17826086956521736,\\n        0.22321428571428573,\\n        0.22813688212927757\\n      ]\\n    },\\n    \\\"high_count/low_bcs\\\": {\\n      \\\"mean_f1\\\": 0.3247732575037294,\\n      \\\"std_f1\\\": 0.07034839770758267,\\n      \\\"se_f1\\\": 0.02224611664993291,\\n      \\\"mean_precision\\\": 0.3451262044635467,\\n      \\\"mean_recall\\\": 0.3208227245531742,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so `exp006` seems to be the 2x2 interaction experiment (low_count/low_bcs, low_count/high_bcs, high_count/low_bcs, high_count/high_bcs), which is a different design.
+
+The top-level `eval_exp2.json` seems to be what I need. Now let me figure out which is v1 and v2. Let me check for other experiment directories that could be v2. The task mentions "exp003a (exp003a_prompt_v2_rerun)" - let me search for anything related to v2 or prompt versions.
+
+
+I should also look through any config or log files that might indicate which prompt version each experiment is using.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "7d7768b5-b6c7-4282-8e6c-25220094c385",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LLhw28HE1hRbBKp4fFdQk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2687,
+      "cache_read_input_tokens": 34336,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2687
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J39tf3CHLP71gNPGw5MfcR`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*v2*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "e54d36fb-2b97-4b99-83c9-b6b35d7ebd03",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LLhw28HE1hRbBKp4fFdQk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2687,
+      "cache_read_input_tokens": 34336,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2687
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T03:47:38.508Z_
+
+<details><summary>↩ Tool result · `toolu_01J39tf3CHLP71gNPGw5MfcR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\n/root/schema-dag-extraction/artifacts/sdgd_v2_validation.json\\n/root/schema-dag-extraction/logs/fewrel_v2_bcs.log\\n/root/schema-dag-extraction/scripts/run_sdgd_v2_fewnerd.sh\\n/root/schema-dag-extraction/scripts/run_sdgd_v2_maven_minilm.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "52553764-6314-4e77-b296-cf9be7bd0369",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\\\n/root/schema-dag-extraction/artifacts/sdgd_v2_validation.json\\\\n/root/schema-dag-extraction/logs/fewrel_v2_bcs.log\\\\n/root/schema-dag-extraction/scripts/run_sdgd_v2_fewnerd.sh\\\\n/root/schema-dag-extraction/scripts/run_sdgd_v2_maven_minilm.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\n/root/schema-dag-extraction/artifacts/sdgd_v2_validation.json\\n/root/schema-dag-extraction/logs/fewrel_v2_bcs.log\\n/root/schema-dag-extraction/scripts/run_sdgd_v2_fewnerd.sh\\n/root/schema-dag-extraction/scripts/run_sdgd_v2_maven_minilm.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WQ27PRpRkcgfZSR9xE1P6a`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*prompt*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "e61b42ca-2dd4-4170-9977-b3e205deaf9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012LLhw28HE1hRbBKp4fFdQk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2687,
+      "cache_read_input_tokens": 34336,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2687
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T03:47:39.075Z_
+
+<details><summary>↩ Tool result · `toolu_01WQ27PRpRkcgfZSR9xE1P6a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/build_re_prompt.py\\n/root/schema-dag-extraction/test_ner_prompt.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "84109c04-5b37-4035-99a8-0fbbfe686fdf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/build_re_prompt.py\\\\n/root/schema-dag-extraction/test_ner_prompt.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/build_re_prompt.py\\n/root/schema-dag-extraction/test_ner_prompt.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at the local project files to understand the experiment naming convention and find the right data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "b417c427-aa45-406c-9bda-79089d90062e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LdyNky7sAnd9hfVMzxWqth",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 37023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+让我查看本地项目文件和 memory/ideas 来理解实验编号映射。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "d5b2d143-0a2e-468b-aa3e-0d204707a4ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LdyNky7sAnd9hfVMzxWqth",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 37023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LWT7c4yYd3Dp1ZQ9uEZetw`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "56c56772-1365-4610-8f71-c428fc885fc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LdyNky7sAnd9hfVMzxWqth",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 37023,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 778
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T03:47:42.837Z_
+
+<details><summary>↩ Tool result · `toolu_01LWT7c4yYd3Dp1ZQ9uEZetw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "70b31a42-168d-4f44-9d35-893c848ab301",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_019WJeKij6LATfn8oMECBibc`</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "memory.md",
+  "max_chars": 20000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "9a497f57-39e7-4194-b0dc-e8f4c922455b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016h5ytkKtUDRQ7spAJaBXEr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 495,
+      "cache_read_input_tokens": 37801,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 495
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T03:47:45.595Z_
+
+<details><summary>↩ Tool result · `toolu_019WJeKij6LATfn8oMECBibc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md\", \"content\": \"# Memory — schema-dag-extraction\\n\\n## D035 集成方案（2026-05-16）\\n- 论文 Table 3 用**极端批次**方法（BCS 最低/最高各 ~5 batches 的 accuracy Δ），不是四分位\\n- D033 的 7.42pp 是四分位比较，需要用极端批次方法重算\\n- 80-pool-16sub 的 3.92pp 也是四分位，同样需要重算\\n- 四分位 CI 作为补充证据报告，展示效应在不同分析粒度下都稳健\\n- 两组数据一起集成到论文再编译上传\\n\\n## 80-pool-16sub 关键发现（2026-05-16）\\n- BCS 范围窄 [0.458, 0.684]（vs 独立 16-rel [0.653, 0.900]），因为从 80-rel pool 采样的 16 types 语义更分散\\n- 四分位 Δ CI 跨零 [-7.79, +0.42]，但回归斜率 CI 不跨零 [-0.684, -0.062]\\n- 效应弱于独立 16-rel pool——BCS 范围压缩导致效应量缩小，这本身支持 BCS 是驱动因素的论点\\n- 决策：用回归斜率做跨条件比较（斜率控制了 BCS 范围差异），四分位 Δ 作为直觉可读的补充\\n\\n## MAVEN per-type BCS 正相关是 artifact（2026-05-16）\\n- exp_maven_residualized_bcs 确认：控制 log_freq + degree_centrality 后相关消失\\n- MiniLM confound = frequency, Qwen3 confound = degree centrality (r=0.854)\\n- 同质 schema（MAVEN 168 event types 多来自 FrameNet）下 per-type BCS 聚合失效\\n- pairwise SCS 仍然有效\\n\", \"total_chars\": 823, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "5af1f5cf-8866-4f68-8c89-2f9390084a4f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md\\\", \\\"content\\\": \\\"# Memory — schema-dag-extraction\\\\n\\\\n## D035 集成方案（2026-05-16）\\\\n- 论文 Table 3 用**极端批次**方法（BCS 最低/最高各 ~5 batches 的 accuracy Δ），不是四分位\\\\n- D033 的 7.42pp 是四分位比较，需要用极端批次方法重算\\\\n- 80-pool-16sub 的 3.92pp 也是四分位，同样需要重算\\\\n- 四分位 CI 作为补充证据报告，展示效应在不同分析粒度下都稳健\\\\n- 两组数据一起集成到论文再编译上传\\\\n\\\\n## 80-pool-16sub 关键发现（2026-05-16）\\\\n- BCS 范围窄 [0.458, 0.684]（vs 独立 16-rel [0.653, 0.900]），因为从 80-rel pool 采样的 16 types 语义更分散\\\\n- 四分位 Δ CI 跨零 [-7.79, +0.42]，但回归斜率 CI 不跨零 [-0.684, -0.062]\\\\n- 效应弱于独立 16-rel pool——BCS 范围压缩导致效应量缩小，这本身支持 BCS 是驱动因素的论点\\\\n- 决策：用回归斜率做跨条件比较（斜率控制了 BCS 范围差异），四分位 Δ 作为直觉可读的补充\\\\n\\\\n## MAVEN per-type BCS 正相关是 artifact（2026-05-16）\\\\n- exp_maven_residualized_bcs 确认：控制 log_freq + degree_centrality 后相关消失\\\\n- MiniLM confound = frequency, Qwen3 confound = degree centrality (r=0.854)\\\\n- 同质 schema（MAVEN 168 event types 多来自 FrameNet）下 per-type BCS 聚合失效\\\\n- pairwise SCS 仍然有效\\\\n\\\", \\\"total_chars\\\": 823, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/memory.md\", \"content\": \"# Memory — schema-dag-extraction\\n\\n## D035 集成方案（2026-05-16）\\n- 论文 Table 3 用**极端批次**方法（BCS 最低/最高各 ~5 batches 的 accuracy Δ），不是四分位\\n- D033 的 7.42pp 是四分位比较，需要用极端批次方法重算\\n- 80-pool-16sub 的 3.92pp 也是四分位，同样需要重算\\n- 四分位 CI 作为补充证据报告，展示效应在不同分析粒度下都稳健\\n- 两组数据一起集成到论文再编译上传\\n\\n## 80-pool-16sub 关键发现（2026-05-16）\\n- BCS 范围窄 [0.458, 0.684]（vs 独立 16-rel [0.653, 0.900]），因为从 80-rel pool 采样的 16 types 语义更分散\\n- 四分位 Δ CI 跨零 [-7.79, +0.42]，但回归斜率 CI 不跨零 [-0.684, -0.062]\\n- 效应弱于独立 16-rel pool——BCS 范围压缩导致效应量缩小，这本身支持 BCS 是驱动因素的论点\\n- 决策：用回归斜率做跨条件比较（斜率控制了 BCS 范围差异），四分位 Δ 作为直觉可读的补充\\n\\n## MAVEN per-type BCS 正相关是 artifact（2026-05-16）\\n- exp_maven_residualized_bcs 确认：控制 log_freq + degree_centrality 后相关消失\\n- MiniLM confound = frequency, Qwen3 confound = degree centrality (r=0.854)\\n- 同质 schema（MAVEN 168 event types 多来自 FrameNet）下 per-type BCS 聚合失效\\n- pairwise SCS 仍然有效\\n\", \"total_chars\": 823, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The memory doesn't tell me about the v1/v2 prompt mapping directly. Let me check the ROADMAP and decisions files for more context about experiment numbers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "56b37440-4683-4d2c-a113-119874ae18c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TFy1AJxmxqBAf59gM7zuMk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_011LrALEwzfa2eXhJNXWPduM`</summary>
+
+```json
+{
+  "project": "schema-dag-extraction",
+  "file": "decisions.yaml",
+  "max_chars": 20000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "c22423d9-a99e-40e0-9e5b-3622da8d77b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TFy1AJxmxqBAf59gM7zuMk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-16T03:47:49.974Z_
+
+<details><summary>↩ Tool result · `toolu_011LrALEwzfa2eXhJNXWPduM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/decisions.yaml\", \"content\": \"_next_id: 38\\ndecisions:\\n- id: D001\\n  date: 2026-05-14 16:10 UTC\\n  summary: 项目立项，MVP 验证方案：Experiment 2 (Confusability Controlled) 为核心验证实验\\n  rationale: 'IDEA_BRIEF 的核心假设是 type confusability 独立于 type count 驱动 LLM IE 质量下降。Experiment\\n    2（固定 count 变 BCS）是最直接的假设检验。Pass 标准: |r|≥0.3 且 p<0.05。ACE05 RE + Few-NERD 双数据集验证。ARR\\n    May 25 DDL（11天），MVP 需 1-2 天完成。'\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-14 16:15 UTC\\n  summary: 修正 MVP 统计设计：random samples 从 10 增至 25/档，加入 per-type solo baseline 控制变量，核心指标改为\\n    Δ(solo_F1 - batch_F1)\\n  rationale: Reviewer 指出 n=12 下 |r|=0.3 对应 p≈0.34，无法同时满足 |r|≥0.3 且 p<0.05。增至 25 random\\n    batches/档 → n≈54，|r|≥0.27 即可达 p<0.05。同时加入 solo F1 控制 type 固有难度，避免将\\\"类型本身难抽取\\\"误归因于\\\"confusability\\n    效应\\\"。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-14 23:11 UTC\\n  summary: MVP 分析方法从 Δ(solo-batch) 切换到 within-count Pearson r(F1, BCS)，pass 标准更新为\\n    |r|≥0.3 at fixed count\\n  rationale: Exp 1 发现 count curve 方向反转（F1 随 count 上升），根因是低 count 时模型过度 hallucinate（pred/gold=8x\\n    at count=1）。solo baseline 处于极端行为模式，Δ 被跨 count 行为差异污染。改为 within-count 对比更干净：同一\\n    count 下比较不同 BCS 的 F1，直接检验 confusability 独立效应。\\n  related_experiments:\\n  - exp_id: exp001_count_baseline\\n    role: evidence\\n    result: count curve reversed, hallucination at low count\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 23:31 UTC\\n  summary: MVP 主指标更新为 within-count r(recall, BCS)，F1 因 over-prediction confound 降为补充指标\\n  rationale: Exp 1 text-match 重评估发现：recall 单调下降（0.72→0.42，符合预期），precision 单调上升（0.11→0.52，over-prediction\\n    减少），F1 受 precision 主导而反转。within-count 分析中 precision confound 在同一 count 下近似恒定，F1\\n    仍可用；但 recall 更干净且直接反映 type confusion。WrongType 错误（text 正确但 type 错标）随 count 从 0\\n    升至 2434，直接支持 confusability 假设。\\n  related_experiments:\\n  - exp_id: exp001_count_baseline\\n    role: evidence\\n    result: recall monotonically decreases with count; WrongType errors increase;\\n      over-prediction confounds F1\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-15 02:34 UTC\\n  summary: 'MVP PASS（refined mechanism）: confusability 通过 type confusion 通道驱动降级，选择\\n    Narrative A (multi-channel degradation model)'\\n  rationale: Exp 2 结果：recall vs BCS 不显著（r=0.25, p=0.066），但 F1 vs BCS 在 count_12 显著（r=0.50,\\n    p=0.008），偏相关 r=0.30 p=0.026 达到 pass 标准。Confusion rate high-BCS vs low-BCS 差异 30-40x（p=0.043）。机制清晰：confusability\\n    不导致遗漏，而是导致错标。选 Narrative A（multi-channel）因为：(1) 用上所有数据（exp1 count→recall + exp2\\n    BCS→confusion）(2) 两个正交机制 story 更丰富 (3) SDGD 框架天然需要同时处理 count 和 confusability。\\n  related_experiments:\\n  - exp_id: exp001_count_baseline\\n    role: evidence\\n    result: count drives recall decline 0.72→0.42\\n  - exp_id: exp002_confusability_controlled\\n    role: evidence\\n    result: BCS drives type confusion 30-40x, F1 partial r=0.30 p=0.026\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-15 04:04 UTC\\n  summary: 跳过 Dream 模拟，直接批准 P0 实验\\n  rationale: 'Dream 模拟因基础设施 bug 崩溃（TypeError: _run_dream_pipeline() got unexpected\\n    keyword argument ''operational_chat_id''），P0 实验已被阻塞 9+ 小时。这是平台问题不是项目问题，不应阻塞研究进度。paper_framing.md\\n    和 experiment_plan.yaml 已完成，方向清晰，可直接推进。'\\n  related_experiments: []\\n  depends_on: []\\n- id: D007\\n  date: 2026-05-15 04:16 UTC\\n  summary: RE 第三任务需先做 BCS pilot 验证，不直接 commit\\n  rationale: Reviewer 指出 RE 的 confusability 机制与 NER/ED 可能不同——RE type confusion 取决于\\n    entity pair 语义角色而非 relation label embedding 相似度。如果 BCS 在 RE 上不 work，反而削弱 task-agnostic\\n    claim。策略：先花 1h 做 FewRel type 的 BCS 矩阵 + 小规模 pilot（5 batches），确认信号存在再 commit P0；信号不存在则\\n    claim 缩窄为 span-level IE，在 limitation 中承认。\\n  related_experiments: []\\n  depends_on:\\n  - D006\\n- id: D008\\n  date: 2026-05-15 05:10 UTC\\n  summary: 重构证据层级：pairwise 分析升为主要证据，batch-level 需控制 type frequency\\n  rationale: exp003a v2 Reviewer 独立核实发现 within-count BCS-F1 正相关（高 BCS→高 F1），与假设方向相反。根因：type\\n    frequency 混淆变量（高频类型既有高 BCS 又被模型更好提取）。pairwise 分析（r=0.156, p=4.6e-12）不受此影响，仍成立。需要：(1)\\n    pairwise 升为 Channel 1 主要证据 (2) 新增 per-type F1 分析控制频率 (3) batch-level 正相关在论文中透明报告并解释混淆变量。\\n  related_experiments:\\n  - exp_id: exp003a\\n    role: trigger\\n    result: within-count r>0 contradicts hypothesis direction\\n  depends_on:\\n  - D006\\n- id: D009\\n  date: 2026-05-15 07:21 UTC\\n  summary: 'Paper story reframe: BCS proxy task-specific → SDGD-cal empirical calibration\\n    成为核心贡献'\\n  rationale: MAVEN per-type 分析显示 BCS 与 F1 正相关（ρ=+0.184, p=0.025），与 Few-NERD 方向相反且已排除\\n    frequency confound。说明 embedding-based BCS 是 task-specific proxy：对 NER 有效（type\\n    name 相似度驱动 confusion），对 ED 无效（trigger word 歧义驱动 confusion，非 type name embedding\\n    距离）。Reframe 方向：BCS proxy 有局限 → 需要 empirical confusability（从 actual confusion matrix\\n    推导）→ SDGD-cal 用 empirical calibration 解决跨任务泛化。这让 SDGD-cal 成为比 SDGD-zero 更核心的贡献。\\n  related_experiments:\\n  - exp_id: exp004_maven_bcs\\n    role: trigger\\n    result: MAVEN per-type ρ=+0.184 contradicts hypothesis\\n  - exp_id: exp003a_prompt_v2_rerun\\n    role: baseline\\n    result: Few-NERD per-type ρ=-0.293 supports hypothesis\\n  depends_on:\\n  - D008\\n- id: D010\\n  date: 2026-05-15 07:37 UTC\\n  summary: FewRel pilot PASS (D007)，commit RE 为第三任务；需做 embedding ablation (MiniLM\\n    vs Qwen3 × 3 tasks)\\n  rationale: FewRel pilot 显示高 BCS→低 accuracy（Δ=-21~50pp），效应量极大，假设方向正确。但使用了 MiniLM（BCS\\n    range 0.42-0.97）而非 Qwen3（Few-NERD/MAVEN 用的）。三任务交叉对比显示：NER 弱负(Qwen3)、ED 反向(Qwen3)、RE\\n    强负(MiniLM)——无法区分 task effect vs embedding effect。需要 2×3 embedding ablation（MiniLM/Qwen3\\n    × NER/ED/RE）来厘清。这是 CPU 任务（重算 BCS 矩阵+重跑分析），成本极低但对论文 story 至关重要。\\n  related_experiments:\\n  - exp_id: fewrel_pilot\\n    role: trigger\\n    result: batch Δ=-21~50pp, hypothesis direction correct\\n  depends_on:\\n  - D007\\n  - D009\\n- id: D011\\n  date: 2026-05-15 07:41 UTC\\n  summary: '采用 Narrative A: embedding proxy 有域边界，same-domain 需 SDGD-cal empirical\\n    calibration'\\n  rationale: 三任务数据全用上：Few-NERD(NER)+FewRel(RE) 作为 cross-domain positive evidence，MAVEN(ED)\\n    作为 same-domain boundary condition。自然引出 SDGD-zero(embedding proxy, cross-domain)\\n    vs SDGD-cal(empirical confusion, task-agnostic) 的互补关系。比方案B（需先验证SDGD-cal）更安全，比方案C（浪费MAVEN数据）更坦诚。Claim\\n    1 修改为含 boundary condition 的版本。\\n  related_experiments:\\n  - exp_id: exp004_maven_bcs\\n    role: boundary_condition\\n    result: MAVEN per-type ρ=+0.184 positive\\n  - exp_id: fewrel_pilot\\n    role: cross_task_replication\\n    result: Δ=-21~50pp strong negative\\n  - exp_id: exp003a_prompt_v2_rerun\\n    role: primary_evidence\\n    result: Few-NERD per-type ρ=-0.293\\n  depends_on:\\n  - D009\\n  - D010\\n- id: D012\\n  date: 2026-05-15 09:06 UTC\\n  summary: 证据层级重排：pairwise SCS→confusion 为唯一主要证据，per-type 降为辅助（centrality confound）\\n  rationale: MAVEN MiniLM ablation 证实 per-type 正向与 embedding 选择无关（MiniLM ρ=+0.208,\\n    Qwen3 ρ=+0.184 方向一致）。但 MiniLM pairwise 在 MAVEN 上显著（r=+0.120, p≈0），Qwen3 无信号。说明：(1)\\n    pairwise confusability 在所有数据集上真实存在，(2) per-type mean BCS 混合了 confusability 和 type\\n    centrality（语义邻居多=常见类型=LLM 擅长=高 F1），频率控制无法完全消除。论文主要证据应聚焦 pairwise SCS→confusion\\n    + FewRel batch-level 强效应，per-type 作为辅助，MAVEN per-type 正向作为 centrality confound\\n    案例研究。\\n  related_experiments:\\n  - exp_id: exp004_maven_bcs\\n    role: evidence\\n    result: MiniLM pairwise r=+0.120 significant; per-type positive both embeddings\\n  depends_on:\\n  - D011\\n- id: D013\\n  date: 2026-05-15 09:07 UTC\\n  summary: Narrative 精化：核心论点从 embedding domain boundary 改为 pairwise vs aggregation\\n    level confound\\n  rationale: MAVEN MiniLM ablation 证实 per-type 正向与 embedding 无关（MiniLM 无压缩也正向）。问题是\\n    per-type 聚合的 centrality confound，非 embedding proxy 失效。但 MiniLM pairwise 在 MAVEN\\n    上显著（r=+0.120）→ pairwise confusability 跨任务普遍存在。SDGD 直接用 pairwise similarity 做 graph\\n    coloring，绕过聚合 confound。论文核心论点：confusability 在 type-pair 级别操作，per-type aggregation\\n    在同域 schema 引入 centrality confound，SDGD 的 pairwise 设计天然规避此问题。2×3 embedding ablation\\n    矩阵本身成为论文 Table。\\n  related_experiments:\\n  - exp_id: exp004_maven_bcs\\n    role: evidence\\n    result: MiniLM pairwise r=+0.120 on MAVEN; per-type positive both embeddings\\n  depends_on:\\n  - D012\\n- id: D014\\n  date: 2026-05-15 11:20 UTC\\n  summary: SDGD-zero 差于 baseline，Claim 3 需重大调整或放弃\\n  rationale: exp-008 SDGD-zero F1=0.251 < single_pass=0.445 < random_batch=0.320。根因：merge\\n    amplifies hallucination——每个 batch 处理全部样本但 schema 受限，模型过度预测 batch 内类型，merge 累积\\n    FP。confusability-aware 分解比随机分组差可能因为语义不相关 types 混合导致模型缺少 disambiguation context。Claims\\n    1-2（confusability 分析）不受影响。需要决定：(A) 修复 merge 策略重跑 (B) SDGD 降为 discussion/future\\n    work (C) 等 SDGD-cal 结果再定。\\n  related_experiments:\\n  - exp_id: exp008_sdgd_zero_fewnerd\\n    role: trigger\\n    result: SDGD-zero F1=0.251 < single_pass=0.445\\n  depends_on:\\n  - D013\\n- id: D015\\n  date: 2026-05-15 13:39 UTC\\n  summary: SDGD v2 time-boxed probe (2h) before multi-model; fail → Claim 3 降为 future\\n    work\\n  rationale: SDGD-zero 负向(F1=0.251 vs single_pass=0.445)，根因 merge amplification 已诊断。v2\\n    修复(min_batch_size+confidence-gated merge)成本仅2h，成功则论文获 prescriptive contribution，失败不伤\\n    Claims 1-2。距 DDL 10 天，串行 v2→exp-012 时间充裕。成功标准：v2 F1 > 0.445。\\n  related_experiments:\\n  - exp_id: exp-008\\n    role: evidence\\n    result: 'negative: SDGD-zero F1=0.251, merge amplification confirmed'\\n  - exp_id: exp-012\\n    role: next\\n    result: 'planned: multi-model validation after v2 probe'\\n  depends_on: []\\n- id: D016\\n  date: 2026-05-15 14:57 UTC\\n  summary: exp-012 flashinfer 不兼容 Blackwell，SDGD v2 先占 GPU，flashinfer 并行修复\\n  rationale: vLLM 0.20.2 废弃 VLLM_ATTENTION_BACKEND 环境变量，flashinfer 0.6.8 无法为 SM120\\n    JIT 编译 FP8 GEMM。两次启动失败。Agent 正确决策：(1) SDGD v2 立即占 GPU 不浪费；(2) CPU worker 并行升级\\n    flashinfer + CUDA 13 nvcc；(3) exp-012 r3 排 SDGD v2 之后 (~17:30 UTC)。\\n  related_experiments:\\n  - exp_id: exp-012\\n    role: blocked\\n    result: flashinfer SM120 incompatibility\\n  - exp_id: exp-008\\n    role: retry\\n    result: SDGD v2 probe started, F1>0.445 threshold\\n  depends_on:\\n  - D015\\n  - D014\\n- id: D017\\n  date: 2026-05-15 15:00 UTC\\n  summary: Reviewer 深度审查后调整实验矩阵：exp-006/005 降优，加 3 个 0-GPU-hour 分析，SDGD v2 阈值放宽到 F1>0.40\\n  rationale: 80-rel scaling data (3.4x amplification) 已覆盖 exp-006 interaction effect。3\\n    tasks 足够，exp-005 DocRED 降 P2。Reviewer 建议 3 个 0-GPU-hour 高 ROI 分析：(1) FewRel pairwise\\n    error taxonomy 跨任务验证 Claim 2；(2) bootstrap 95% CI 加固所有 correlation；(3) exp-015\\n    fast SCS→confusion validation。SDGD v2 阈值从 F1>0.445 放宽到 F1>0.40（接近 baseline 也有\\n    story：decomposition 损失可控 + latency 优势），F1<0.35 则 drop Claim 3。Claim 表述用具体数据\\\"3.4x\\n    amplification between 16-type and 80-type\\\"替代函数形式声明。\\n  related_experiments:\\n  - exp_id: exp_fewrel_formal_80rel\\n    role: evidence\\n    result: 3.4x BCS effect scaling\\n  - exp_id: exp-006\\n    role: deprioritized\\n    result: covered by 80-rel scaling\\n  - exp_id: exp-005\\n    role: deprioritized\\n    result: P2, 3 tasks sufficient\\n  - exp_id: exp-008\\n    role: retry\\n    result: v2 running, threshold F1>0.40\\n  depends_on:\\n  - D015\\n  - D016\\n- id: D018\\n  date: 2026-05-15 15:10 UTC\\n  summary: 补充 40-rel 中间点 + 多模型备选方案（AWQ/8B）+ MAVEN case study\\n  rationale: Reviewer 二次审查指出：(1) 2 点 scaling 不够，40-rel 中间点 ~1 GPU-hour 可得 3 点 scaling\\n    curve；(2) exp-012 双 retry 失败，需备选方案——Llama-70B-AWQ 或 Llama-8B，并行下载不等 r3；(3) MAVEN\\n    case study 0 GPU-hour 补强 centrality confound narrative。多模型验证是投稿硬门槛，24h 内必须完成。\\n  related_experiments:\\n  - exp_id: exp-012\\n    role: critical_path\\n    result: dual retry failed, backup plan needed\\n  - exp_id: exp_fewrel_formal_80rel\\n    role: evidence\\n    result: need 40-rel middle point for 3-point scaling\\n  depends_on:\\n  - D017\\n- id: D019\\n  date: 2026-05-15 15:47 UTC\\n  summary: SDGD v2 confirmed negative, kill per_type early, Claim 3 dropped — pivot\\n    to analysis-only paper\\n  rationale: 'SDGD v2 confidence-gated merge: sdgd_zero F1=0.241, random_batch F1=0.301,\\n    both far below baseline 0.445 and threshold F1>0.40 (D017). Per_type 66-type sequential\\n    inference blocking GPU for exp-012 critical path. v1 per_type was also below baseline\\n    (0.2915). Decomposition paradigm has intrinsic FP amplification that merge strategies\\n    cannot fully resolve. Claim 3 dropped; SDGD discussed as future work. Paper pivots\\n    to 2-claim analysis: (1) confusability independence + scaling, (2) multi-channel\\n    degradation mechanism.'\\n  related_experiments:\\n  - exp_id: exp-008\\n    role: evidence\\n    result: 'SDGD v2 negative: sdgd_zero=0.241, random=0.301, baseline=0.445'\\n  - exp_id: exp-012\\n    role: critical_path\\n    result: unblocked by killing SDGD per_type\\n  depends_on:\\n  - D017\\n  - D015\\n  - D014\\n- id: D020\\n  date: 2026-05-15 16:02 UTC\\n  summary: 启动 Paper Agent 写作，2-claim analysis paper + SDGD negative result，Dream 结构性问题同步解决\\n  rationale: Claims 1+2 证据链完整（3 任务 × 多层证据），exp-012 最后 P0 可 Patch。10 天 deadline，Paper\\n    Agent 24h pipeline 必须立即启动。Dream 两轮均 Weak Reject，主要因写作质量（related work 2 refs, effect\\n    size 未 contextualize, metric undefined）非证据不足——这些是写作阶段能解决的问题。\\n  related_experiments:\\n  - exp_id: exp-012\\n    role: pending P0, Patch in when done\\n  - exp_id: dream_20260515T140829\\n    role: structural issues identified\\n  depends_on:\\n  - D019\\n- id: D021\\n  date: 2026-05-15 16:05 UTC\\n  summary: 40-rel 中间点升 P0，利用 AWQ 下载期间 GPU 空闲立即执行\\n  rationale: Scaling claim 仅 2 个数据点（16-rel=9.1pp, 80-rel=31.2pp），审稿人必问线性 vs 非线性。40-rel\\n    中间点 ~1 GPU-hour，Qwen3 已在服务器上无需下载，AWQ 下载期间 GPU 完全空闲，零机会成本。\\n  related_experiments:\\n  - exp_id: exp_fewrel_formal_80rel\\n    role: scaling baseline\\n  - exp_id: exp_fewrel_formal\\n    role: 16-rel baseline\\n  - exp_id: exp-012\\n    role: AWQ downloading, GPU idle\\n  depends_on:\\n  - D018\\n  - D020\\n- id: D022\\n  date: 2026-05-15 16:23 UTC\\n  summary: exp012 放弃 70B AWQ，转用 LLaMA-3.1-8B-Instruct\\n  rationale: 70B 在 Blackwell 上连续 3 轮失败（r1/r2 flashinfer 不兼容，AWQ 磁盘空间不足无法完成下载）。8B 已下载就绪，BF16\\n    直接加载无兼容性风险。跨 family + 跨 scale（Qwen3-32B → LLaMA-8B）的验证比同 scale 不同 family 更有论文价值——证明\\n    confusability 效应不依赖模型容量。DDL 仅剩 10 天，不能继续在 70B 兼容性上耗时间。\\n  related_experiments:\\n  - exp_id: exp-012\\n    role: target\\n    result: switching from 70B to 8B\\n  - exp_id: exp012_llama_fewnerd_r3\\n    role: predecessor\\n    result: failed (AWQ disk space insufficient)\\n  - exp_id: exp012_llama_fewnerd_r2\\n    role: predecessor\\n    result: failed (flashinfer incompatible)\\n  depends_on:\\n  - D020\\n  - D021\\n- id: D023\\n  date: 2026-05-15 16:50 UTC\\n  summary: exp012 多模型验证策略：先试 free-form generation 诊断，失败则接受 single-model limitation\\n  rationale: exp012 全系列失败（r1-r3 flashinfer SM120 不兼容，AWQ 磁盘不足，r4 8B 零预测）。8B 零输出最可能原因是\\n    vLLM structured output JSON schema 与 LLaMA tokenizer 不兼容（gen_tokens=2 = 只输出 `[]`）。诊断方案：关闭\\n    structured output 约束做 free-form generation + regex 后处理，~15 min 即可验证。成功则重跑，失败则在论文\\n    §6.3 接受 single-model limitation（Qwen3-32B 已有 3 任务 × 多层证据，单模型不构成致命弱点）。DDL 仅剩 10\\n    天，不再尝试下载新模型或升级 CUDA toolkit。\\n  related_experiments:\\n  - exp_id: exp012_llama_fewnerd_r4\\n    role: trigger\\n    result: failed - zero predictions\\n  - exp_id: exp012_llama_fewnerd_r3\\n    role: predecessor\\n    result: failed - flashinfer SM120\\n  - exp_id: exp012_llama_awq\\n    role: predecessor\\n    result: killed - disk space\\n  depends_on:\\n  - D022\\n- id: D024\\n  date: 2026-05-15 16:53 UTC\\n  summary: 多模型验证硬截止 May 18；Paper Agent 立即启动 Full Draft（单模型版本，多模型结果到位后 Patch）\\n  rationale: 'Reviewer warning: exp-012 多模型验证已失败 6+ 次（70B flashinfer 不兼容, 8B 零预测）。距\\n    ARR May 25 仅 10 天，论文零产出。策略：(1) 给多模型验证 3 天窗口（截止 May 18），Agent 正在准备 exp012_llama_8b\\n    和 exp012_llama_awq；(2) 立即启动 Paper Agent 以当前单模型证据写 Full Draft——三任务 cross-task replication\\n    是部分替代；(3) May 18 前多模型仍失败则调整 claim 措辞为 \\\"We observe with Qwen3-32B\\\" 并在 Limitation\\n    明确承认，强化 cross-task angle。不预先降级，先推进。'\\n  related_experiments:\\n  - exp_id: exp-012\\n    role: multi-model validation\\n    result: 6+ failures, still attempting\\n  - exp_id: exp-002\\n    role: primary evidence\\n    result: success\\n  - exp_id: exp-004\\n    role: cross-task MAVEN\\n    result: success\\n  - exp_id: exp-016\\n    role: cross-task FewRel\\n    result: success\\n  depends_on:\\n  - D022\\n  - D019\\n- id: D025\\n  date: 2026-05-15 18:10 UTC\\n  summary: Table 3 NER Missed 数据修正：12/14/16% 替换为实际计算值 42.8/64.8/49.9%，叙事从\\\"BCS不影响检测\\\"改为\\\"NER与RE错误机制不同\\\"\\n  rationale: Agent + Reviewer 双重验证确认 Table 3 NER Missed 12%/14%/16% 无任何实验 artifact\\n    支撑，疑似从 RE 数据外推（+2pp）。实际从 exp007 raw predictions 重新计算的值为 low=42.8%, medium=64.8%,\\n    high=49.9%，差距 30-50pp 且趋势非 flat。原叙事\\\"missed rate remains flat at 10-16%\\\"在 NER 端不成立，需限定为仅\\n    RE。NER/RE 差异本身是有意义的发现，可加强分析深度。\\n  related_experiments:\\n  - exp_id: exp007_error_taxonomy\\n    role: source\\n    result: NER missed rates 42.8/64.8/49.9% (recomputed)\\n  - exp_id: exp016_fewrel_error_taxonomy\\n    role: source\\n    result: RE missed rates 10.4/11.3/13.1/15.7% (registry verified)\\n  depends_on: []\\n- id: D026\\n  date: 2026-05-15 18:36 UTC\\n  summary: exp006 交互效应不显著(p=0.505)，结论 negative；不在论文主体引用，至多作为 supplementary exploratory\\n    analysis\\n  rationale: 2×2 factorial 设计（count × BCS）的交互项 z=-0.667, p=0.505, estimate=-0.036，完全在噪声范围内。此外设计存在结构性混淆：BCS\\n    与 count 不正交（high count 的 BCS floor 被推高），high_count/high_bcs 的 10 个 batch BCS 完全相同（伪重复）。Reviewer\\n    建议禁止声称 multiplicative interaction。实验为 P1（D017 降优），paper story 不依赖此结果。资源转向 exp012（P0\\n    多模型验证）。\\n  related_experiments:\\n  - exp_id: exp006_interaction_2x2\\n    role: primary\\n    result: 'negative: interaction z=-0.667, p=0.505, not significant'\\n  depends_on:\\n  - D017\\n- id: D027\\n  date: 2026-05-15 20:01 UTC\\n  summary: exp012 exp1 跨模型验证成功：Channel 1 (count→recall) 在 LLaMA-3.1-8B 上复现，per-batch\\n    r=0.725\\n  rationale: LLaMA-3.1-8B recall 从 0.702 降至 0.273（-43pp），Qwen3-32B 从 0.640 降至 0.304（-34pp）。Per-batch\\n    correlation r=0.725 表明 schema 配置是困难的主要来源而非模型特异性。弱模型下降更陡，支持 schema complexity as\\n    task-inherent difficulty 叙事。exp1 数据已交 Paper Agent 写入论文。exp2（Channel 2 BCS-controlled）正在重跑。\\n  related_experiments:\\n  - exp_id: exp012_llama_8b_r2\\n    role: primary\\n    result: 'exp1 success: recall decline -43pp, per-batch r=0.725 with Qwen3-32B'\\n  depends_on: []\\n- id: D028\\n  date: 2026-05-15 20:34 UTC\\n  summary: exp012 exp2 Channel 2 跨模型复现失败：极端 batch 方向正确但效果微弱(5pp/4.3pp)，随机 batch 信号淹没在\\n    noise 中。论文不引用 exp2 数据，保持 Limitations 中\\\"Channel 2 pending\\\"的保守表述\\n  rationale: LLaMA-3.1-8B 上 BCS-controlled 效应远弱于 Qwen3-32B（Δ5pp vs 31.2pp），count_12\\n    的 BCS 分布压缩严重（Δ0.030），多个随机 batch 出现反向趋势（高 BCS 反而高 F1）。per_type_f1 全为 0（缺 char offset），无法做\\n    error taxonomy 分析。floor effect + BCS 压缩 + 模型能力不足共同导致信号不可检测。当前论文 Limitations 只\\n    claim Channel 1 replicated，这是最安全的策略。\\n  related_experiments:\\n  - exp_id: exp012_llama_8b_r2_exp2\\n    role: primary\\n    result: 'Channel 2 not replicated: extreme Δ=5pp/4.3pp, random batches noisy with\\n      counter-examples'\\n  depends_on:\\n  - D027\\n- id: D029\\n  date: 2026-05-15 21:12 UTC\\n  summary: 提分策略：(1) 40-rel 中间点已启动；(2) LLaMA-8B FewRel Channel 2 作为第二实验；(3) \\\"pending\\\"改诚实报告；目标\\n    7→8+\\n  rationale: Reviewer 独立评估：40-rel 提分 +0.5-0.75（3点scaling curve），LLaMA FewRel Channel\\n    2 提分 +0.75 if positive / +0.25 if negative（FewRel 效应大、metric 无 span 噪声，比 NER 更可能检测到跨模型信号）。\\\"pending\\\"\\n    改诚实报告避免信任风险（-0.5 vs -1.5）。最乐观 8.0-8.5，最可能 7.5-8.0。\\n  related_experiments:\\n  - exp_id: exp_fewrel_40rel_r4\\n    role: planned\\n    result: PREPARING\\n  - exp_id: exp012_llama_fewrel\\n    role: planned\\n    result: not yet created\\n  depends_on:\\n  - D027\\n  - D028\\n- id: D030\\n  date: 2026-05-15 22:37 UTC\\n  summary: exp012 两种场景预案：正向升级 cross-family claim（有限度），负向 frame 为 capacity-dependent\\n    finding；两种场景都诚实报告，不追加新模型\\n  rationale: Reviewer 预判分析：场景 A 诚实报告 7.5-8.0 分，场景 B 诚实报告 7.0-7.5 分，隐藏则 6.0-6.5。不追加模型因\\n    DDL 10 天内边际收益递减。3 tasks × 1 model 的任务多样性论点比 cross-model 更强。Claim 安全边界受 C001（40-rel\\n    来自 80-pool）和 C002（BCS amplification 仅 2 schema sizes）约束。\\n  related_experiments:\\n  - exp_id: exp012_llama_fewrel_ch2\\n    role: trigger\\n    result: running\\n  depends_on:\\n  - D022\\n- id: D031\\n  date: 2026-05-15 22:40 UTC\\n  summary: exp012 强复现（场景 A），执行 claim 升级 + 新发现\\\"model-invariant high-BCS floor\\\"加入正文\\n  rationale: LLaMA-8B BCS effect -27.1pp/-23.9pp 远超强复现阈值(15pp)，达 Qwen3 的 75-87%。高\\n    BCS 准确率跨模型恒定(0.510 vs 0.510)是预案外的新发现，表明 confusability 是 task-inherent difficulty\\n    而非 model-specific。Reviewer 评估提分至 7.75-8.25。按 D030 场景 A 预案执行 patch。NER negative\\n    由 metric/floor effect 解释，诚实报告。\\n  related_experiments:\\n  - exp_id: exp012_llama_fewrel_ch2\\n    role: evidence\\n    result: 'strong_positive: BCS Δ=-27.1pp(count_8)/-23.9pp(count_16), high-BCS floor\\n      model-invariant at 0.51'\\n\\n... [截断: 省略 3644 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 23644, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "ca898f74-4491-4926-99aa-f93d48e8d67a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 38\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 16:10 UTC\\\\n  summary: 项目立项，MVP 验证方案：Experiment 2 (Confusability Controlled) 为核心验证实验\\\\n  rationale: 'IDEA_BRIEF 的核心假设是 type confusability 独立于 type count 驱动 LLM IE 质量下降。Experiment\\\\n    2（固定 count 变 BCS）是最直接的假设检验。Pass 标准: |r|≥0.3 且 p<0.05。ACE05 RE + Few-NERD 双数据集验证。ARR\\\\n    May 25 DDL（11天），MVP 需 1-2 天完成。'\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-14 16:15 UTC\\\\n  summary: 修正 MVP 统计设计：random samples 从 10 增至 25/档，加入 per-type solo baseline 控制变量，核心指标改为\\\\n    Δ(solo_F1 - batch_F1)\\\\n  rationale: Reviewer 指出 n=12 下 |r|=0.3 对应 p≈0.34，无法同时满足 |r|≥0.3 且 p<0.05。增至 25 random\\\\n    batches/档 → n≈54，|r|≥0.27 即可达 p<0.05。同时加入 solo F1 控制 type 固有难度，避免将\\\\\\\"类型本身难抽取\\\\\\\"误归因于\\\\\\\"confusability\\\\n    效应\\\\\\\"。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-14 23:11 UTC\\\\n  summary: MVP 分析方法从 Δ(solo-batch) 切换到 within-count Pearson r(F1, BCS)，pass 标准更新为\\\\n    |r|≥0.3 at fixed count\\\\n  rationale: Exp 1 发现 count curve 方向反转（F1 随 count 上升），根因是低 count 时模型过度 hallucinate（pred/gold=8x\\\\n    at count=1）。solo baseline 处于极端行为模式，Δ 被跨 count 行为差异污染。改为 within-count 对比更干净：同一\\\\n    count 下比较不同 BCS 的 F1，直接检验 confusability 独立效应。\\\\n  related_experiments:\\\\n  - exp_id: exp001_count_baseline\\\\n    role: evidence\\\\n    result: count curve reversed, hallucination at low count\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 23:31 UTC\\\\n  summary: MVP 主指标更新为 within-count r(recall, BCS)，F1 因 over-prediction confound 降为补充指标\\\\n  rationale: Exp 1 text-match 重评估发现：recall 单调下降（0.72→0.42，符合预期），precision 单调上升（0.11→0.52，over-prediction\\\\n    减少），F1 受 precision 主导而反转。within-count 分析中 precision confound 在同一 count 下近似恒定，F1\\\\n    仍可用；但 recall 更干净且直接反映 type confusion。WrongType 错误（text 正确但 type 错标）随 count 从 0\\\\n    升至 2434，直接支持 confusability 假设。\\\\n  related_experiments:\\\\n  - exp_id: exp001_count_baseline\\\\n    role: evidence\\\\n    result: recall monotonically decreases with count; WrongType errors increase;\\\\n      over-prediction confounds F1\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-15 02:34 UTC\\\\n  summary: 'MVP PASS（refined mechanism）: confusability 通过 type confusion 通道驱动降级，选择\\\\n    Narrative A (multi-channel degradation model)'\\\\n  rationale: Exp 2 结果：recall vs BCS 不显著（r=0.25, p=0.066），但 F1 vs BCS 在 count_12 显著（r=0.50,\\\\n    p=0.008），偏相关 r=0.30 p=0.026 达到 pass 标准。Confusion rate high-BCS vs low-BCS 差异 30-40x（p=0.043）。机制清晰：confusability\\\\n    不导致遗漏，而是导致错标。选 Narrative A（multi-channel）因为：(1) 用上所有数据（exp1 count→recall + exp2\\\\n    BCS→confusion）(2) 两个正交机制 story 更丰富 (3) SDGD 框架天然需要同时处理 count 和 confusability。\\\\n  related_experiments:\\\\n  - exp_id: exp001_count_baseline\\\\n    role: evidence\\\\n    result: count drives recall decline 0.72→0.42\\\\n  - exp_id: exp002_confusability_controlled\\\\n    role: evidence\\\\n    result: BCS drives type confusion 30-40x, F1 partial r=0.30 p=0.026\\\\n  depends_on:\\\\n  - D004\\\\n- id: D006\\\\n  date: 2026-05-15 04:04 UTC\\\\n  summary: 跳过 Dream 模拟，直接批准 P0 实验\\\\n  rationale: 'Dream 模拟因基础设施 bug 崩溃（TypeError: _run_dream_pipeline() got unexpected\\\\n    keyword argument ''operational_chat_id''），P0 实验已被阻塞 9+ 小时。这是平台问题不是项目问题，不应阻塞研究进度。paper_framing.md\\\\n    和 experiment_plan.yaml 已完成，方向清晰，可直接推进。'\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D007\\\\n  date: 2026-05-15 04:16 UTC\\\\n  summary: RE 第三任务需先做 BCS pilot 验证，不直接 commit\\\\n  rationale: Reviewer 指出 RE 的 confusability 机制与 NER/ED 可能不同——RE type confusion 取决于\\\\n    entity pair 语义角色而非 relation label embedding 相似度。如果 BCS 在 RE 上不 work，反而削弱 task-agnostic\\\\n    claim。策略：先花 1h 做 FewRel type 的 BCS 矩阵 + 小规模 pilot（5 batches），确认信号存在再 commit P0；信号不存在则\\\\n    claim 缩窄为 span-level IE，在 limitation 中承认。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D006\\\\n- id: D008\\\\n  date: 2026-05-15 05:10 UTC\\\\n  summary: 重构证据层级：pairwise 分析升为主要证据，batch-level 需控制 type frequency\\\\n  rationale: exp003a v2 Reviewer 独立核实发现 within-count BCS-F1 正相关（高 BCS→高 F1），与假设方向相反。根因：type\\\\n    frequency 混淆变量（高频类型既有高 BCS 又被模型更好提取）。pairwise 分析（r=0.156, p=4.6e-12）不受此影响，仍成立。需要：(1)\\\\n    pairwise 升为 Channel 1 主要证据 (2) 新增 per-type F1 分析控制频率 (3) batch-level 正相关在论文中透明报告并解释混淆变量。\\\\n  related_experiments:\\\\n  - exp_id: exp003a\\\\n    role: trigger\\\\n    result: within-count r>0 contradicts hypothesis direction\\\\n  depends_on:\\\\n  - D006\\\\n- id: D009\\\\n  date: 2026-05-15 07:21 UTC\\\\n  summary: 'Paper story reframe: BCS proxy task-specific → SDGD-cal empirical calibration\\\\n    成为核心贡献'\\\\n  rationale: MAVEN per-type 分析显示 BCS 与 F1 正相关（ρ=+0.184, p=0.025），与 Few-NERD 方向相反且已排除\\\\n    frequency confound。说明 embedding-based BCS 是 task-specific proxy：对 NER 有效（type\\\\n    name 相似度驱动 confusion），对 ED 无效（trigger word 歧义驱动 confusion，非 type name embedding\\\\n    距离）。Reframe 方向：BCS proxy 有局限 → 需要 empirical confusability（从 actual confusion matrix\\\\n    推导）→ SDGD-cal 用 empirical calibration 解决跨任务泛化。这让 SDGD-cal 成为比 SDGD-zero 更核心的贡献。\\\\n  related_experiments:\\\\n  - exp_id: exp004_maven_bcs\\\\n    role: trigger\\\\n    result: MAVEN per-type ρ=+0.184 contradicts hypothesis\\\\n  - exp_id: exp003a_prompt_v2_rerun\\\\n    role: baseline\\\\n    result: Few-NERD per-type ρ=-0.293 supports hypothesis\\\\n  depends_on:\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-15 07:37 UTC\\\\n  summary: FewRel pilot PASS (D007)，commit RE 为第三任务；需做 embedding ablation (MiniLM\\\\n    vs Qwen3 × 3 tasks)\\\\n  rationale: FewRel pilot 显示高 BCS→低 accuracy（Δ=-21~50pp），效应量极大，假设方向正确。但使用了 MiniLM（BCS\\\\n    range 0.42-0.97）而非 Qwen3（Few-NERD/MAVEN 用的）。三任务交叉对比显示：NER 弱负(Qwen3)、ED 反向(Qwen3)、RE\\\\n    强负(MiniLM)——无法区分 task effect vs embedding effect。需要 2×3 embedding ablation（MiniLM/Qwen3\\\\n    × NER/ED/RE）来厘清。这是 CPU 任务（重算 BCS 矩阵+重跑分析），成本极低但对论文 story 至关重要。\\\\n  related_experiments:\\\\n  - exp_id: fewrel_pilot\\\\n    role: trigger\\\\n    result: batch Δ=-21~50pp, hypothesis direction correct\\\\n  depends_on:\\\\n  - D007\\\\n  - D009\\\\n- id: D011\\\\n  date: 2026-05-15 07:41 UTC\\\\n  summary: '采用 Narrative A: embedding proxy 有域边界，same-domain 需 SDGD-cal empirical\\\\n    calibration'\\\\n  rationale: 三任务数据全用上：Few-NERD(NER)+FewRel(RE) 作为 cross-domain positive evidence，MAVEN(ED)\\\\n    作为 same-domain boundary condition。自然引出 SDGD-zero(embedding proxy, cross-domain)\\\\n    vs SDGD-cal(empirical confusion, task-agnostic) 的互补关系。比方案B（需先验证SDGD-cal）更安全，比方案C（浪费MAVEN数据）更坦诚。Claim\\\\n    1 修改为含 boundary condition 的版本。\\\\n  related_experiments:\\\\n  - exp_id: exp004_maven_bcs\\\\n    role: boundary_condition\\\\n    result: MAVEN per-type ρ=+0.184 positive\\\\n  - exp_id: fewrel_pilot\\\\n    role: cross_task_replication\\\\n    result: Δ=-21~50pp strong negative\\\\n  - exp_id: exp003a_prompt_v2_rerun\\\\n    role: primary_evidence\\\\n    result: Few-NERD per-type ρ=-0.293\\\\n  depends_on:\\\\n  - D009\\\\n  - D010\\\\n- id: D012\\\\n  date: 2026-05-15 09:06 UTC\\\\n  summary: 证据层级重排：pairwise SCS→confusion 为唯一主要证据，per-type 降为辅助（centrality confound）\\\\n  rationale: MAVEN MiniLM ablation 证实 per-type 正向与 embedding 选择无关（MiniLM ρ=+0.208,\\\\n    Qwen3 ρ=+0.184 方向一致）。但 MiniLM pairwise 在 MAVEN 上显著（r=+0.120, p≈0），Qwen3 无信号。说明：(1)\\\\n    pairwise confusability 在所有数据集上真实存在，(2) per-type mean BCS 混合了 confusability 和 type\\\\n    centrality（语义邻居多=常见类型=LLM 擅长=高 F1），频率控制无法完全消除。论文主要证据应聚焦 pairwise SCS→confusion\\\\n    + FewRel batch-level 强效应，per-type 作为辅助，MAVEN per-type 正向作为 centrality confound\\\\n    案例研究。\\\\n  related_experiments:\\\\n  - exp_id: exp004_maven_bcs\\\\n    role: evidence\\\\n    result: MiniLM pairwise r=+0.120 significant; per-type positive both embeddings\\\\n  depends_on:\\\\n  - D011\\\\n- id: D013\\\\n  date: 2026-05-15 09:07 UTC\\\\n  summary: Narrative 精化：核心论点从 embedding domain boundary 改为 pairwise vs aggregation\\\\n    level confound\\\\n  rationale: MAVEN MiniLM ablation 证实 per-type 正向与 embedding 无关（MiniLM 无压缩也正向）。问题是\\\\n    per-type 聚合的 centrality confound，非 embedding proxy 失效。但 MiniLM pairwise 在 MAVEN\\\\n    上显著（r=+0.120）→ pairwise confusability 跨任务普遍存在。SDGD 直接用 pairwise similarity 做 graph\\\\n    coloring，绕过聚合 confound。论文核心论点：confusability 在 type-pair 级别操作，per-type aggregation\\\\n    在同域 schema 引入 centrality confound，SDGD 的 pairwise 设计天然规避此问题。2×3 embedding ablation\\\\n    矩阵本身成为论文 Table。\\\\n  related_experiments:\\\\n  - exp_id: exp004_maven_bcs\\\\n    role: evidence\\\\n    result: MiniLM pairwise r=+0.120 on MAVEN; per-type positive both embeddings\\\\n  depends_on:\\\\n  - D012\\\\n- id: D014\\\\n  date: 2026-05-15 11:20 UTC\\\\n  summary: SDGD-zero 差于 baseline，Claim 3 需重大调整或放弃\\\\n  rationale: exp-008 SDGD-zero F1=0.251 < single_pass=0.445 < random_batch=0.320。根因：merge\\\\n    amplifies hallucination——每个 batch 处理全部样本但 schema 受限，模型过度预测 batch 内类型，merge 累积\\\\n    FP。confusability-aware 分解比随机分组差可能因为语义不相关 types 混合导致模型缺少 disambiguation context。Claims\\\\n    1-2（confusability 分析）不受影响。需要决定：(A) 修复 merge 策略重跑 (B) SDGD 降为 discussion/future\\\\n    work (C) 等 SDGD-cal 结果再定。\\\\n  related_experiments:\\\\n  - exp_id: exp008_sdgd_zero_fewnerd\\\\n    role: trigger\\\\n    result: SDGD-zero F1=0.251 < single_pass=0.445\\\\n  depends_on:\\\\n  - D013\\\\n- id: D015\\\\n  date: 2026-05-15 13:39 UTC\\\\n  summary: SDGD v2 time-boxed probe (2h) before multi-model; fail → Claim 3 降为 future\\\\n    work\\\\n  rationale: SDGD-zero 负向(F1=0.251 vs single_pass=0.445)，根因 merge amplification 已诊断。v2\\\\n    修复(min_batch_size+confidence-gated merge)成本仅2h，成功则论文获 prescriptive contribution，失败不伤\\\\n    Claims 1-2。距 DDL 10 天，串行 v2→exp-012 时间充裕。成功标准：v2 F1 > 0.445。\\\\n  related_experiments:\\\\n  - exp_id: exp-008\\\\n    role: evidence\\\\n    result: 'negative: SDGD-zero F1=0.251, merge amplification confirmed'\\\\n  - exp_id: exp-012\\\\n    role: next\\\\n    result: 'planned: multi-model validation after v2 probe'\\\\n  depends_on: []\\\\n- id: D016\\\\n  date: 2026-05-15 14:57 UTC\\\\n  summary: exp-012 flashinfer 不兼容 Blackwell，SDGD v2 先占 GPU，flashinfer 并行修复\\\\n  rationale: vLLM 0.20.2 废弃 VLLM_ATTENTION_BACKEND 环境变量，flashinfer 0.6.8 无法为 SM120\\\\n    JIT 编译 FP8 GEMM。两次启动失败。Agent 正确决策：(1) SDGD v2 立即占 GPU 不浪费；(2) CPU worker 并行升级\\\\n    flashinfer + CUDA 13 nvcc；(3) exp-012 r3 排 SDGD v2 之后 (~17:30 UTC)。\\\\n  related_experiments:\\\\n  - exp_id: exp-012\\\\n    role: blocked\\\\n    result: flashinfer SM120 incompatibility\\\\n  - exp_id: exp-008\\\\n    role: retry\\\\n    result: SDGD v2 probe started, F1>0.445 threshold\\\\n  depends_on:\\\\n  - D015\\\\n  - D014\\\\n- id: D017\\\\n  date: 2026-05-15 15:00 UTC\\\\n  summary: Reviewer 深度审查后调整实验矩阵：exp-006/005 降优，加 3 个 0-GPU-hour 分析，SDGD v2 阈值放宽到 F1>0.40\\\\n  rationale: 80-rel scaling data (3.4x amplification) 已覆盖 exp-006 interaction effect。3\\\\n    tasks 足够，exp-005 DocRED 降 P2。Reviewer 建议 3 个 0-GPU-hour 高 ROI 分析：(1) FewRel pairwise\\\\n    error taxonomy 跨任务验证 Claim 2；(2) bootstrap 95% CI 加固所有 correlation；(3) exp-015\\\\n    fast SCS→confusion validation。SDGD v2 阈值从 F1>0.445 放宽到 F1>0.40（接近 baseline 也有\\\\n    story：decomposition 损失可控 + latency 优势），F1<0.35 则 drop Claim 3。Claim 表述用具体数据\\\\\\\"3.4x\\\\n    amplification between 16-type and 80-type\\\\\\\"替代函数形式声明。\\\\n  related_experiments:\\\\n  - exp_id: exp_fewrel_formal_80rel\\\\n    role: evidence\\\\n    result: 3.4x BCS effect scaling\\\\n  - exp_id: exp-006\\\\n    role: deprioritized\\\\n    result: covered by 80-rel scaling\\\\n  - exp_id: exp-005\\\\n    role: deprioritized\\\\n    result: P2, 3 tasks sufficient\\\\n  - exp_id: exp-008\\\\n    role: retry\\\\n    result: v2 running, threshold F1>0.40\\\\n  depends_on:\\\\n  - D015\\\\n  - D016\\\\n- id: D018\\\\n  date: 2026-05-15 15:10 UTC\\\\n  summary: 补充 40-rel 中间点 + 多模型备选方案（AWQ/8B）+ MAVEN case study\\\\n  rationale: Reviewer 二次审查指出：(1) 2 点 scaling 不够，40-rel 中间点 ~1 GPU-hour 可得 3 点 scaling\\\\n    curve；(2) exp-012 双 retry 失败，需备选方案——Llama-70B-AWQ 或 Llama-8B，并行下载不等 r3；(3) MAVEN\\\\n    case study 0 GPU-hour 补强 centrality confound narrative。多模型验证是投稿硬门槛，24h 内必须完成。\\\\n  related_experiments:\\\\n  - exp_id: exp-012\\\\n    role: critical_path\\\\n    result: dual retry failed, backup plan needed\\\\n  - exp_id: exp_fewrel_formal_80rel\\\\n    role: evidence\\\\n    result: need 40-rel middle point for 3-point scaling\\\\n  depends_on:\\\\n  - D017\\\\n- id: D019\\\\n  date: 2026-05-15 15:47 UTC\\\\n  summary: SDGD v2 confirmed negative, kill per_type early, Claim 3 dropped — pivot\\\\n    to analysis-only paper\\\\n  rationale: 'SDGD v2 confidence-gated merge: sdgd_zero F1=0.241, random_batch F1=0.301,\\\\n    both far below baseline 0.445 and threshold F1>0.40 (D017). Per_type 66-type sequential\\\\n    inference blocking GPU for exp-012 critical path. v1 per_type was also below baseline\\\\n    (0.2915). Decomposition paradigm has intrinsic FP amplification that merge strategies\\\\n    cannot fully resolve. Claim 3 dropped; SDGD discussed as future work. Paper pivots\\\\n    to 2-claim analysis: (1) confusability independence + scaling, (2) multi-channel\\\\n    degradation mechanism.'\\\\n  related_experiments:\\\\n  - exp_id: exp-008\\\\n    role: evidence\\\\n    result: 'SDGD v2 negative: sdgd_zero=0.241, random=0.301, baseline=0.445'\\\\n  - exp_id: exp-012\\\\n    role: critical_path\\\\n    result: unblocked by killing SDGD per_type\\\\n  depends_on:\\\\n  - D017\\\\n  - D015\\\\n  - D014\\\\n- id: D020\\\\n  date: 2026-05-15 16:02 UTC\\\\n  summary: 启动 Paper Agent 写作，2-claim analysis paper + SDGD negative result，Dream 结构性问题同步解决\\\\n  rationale: Claims 1+2 证据链完整（3 任务 × 多层证据），exp-012 最后 P0 可 Patch。10 天 deadline，Paper\\\\n    Agent 24h pipeline 必须立即启动。Dream 两轮均 Weak Reject，主要因写作质量（related work 2 refs, effect\\\\n    size 未 contextualize, metric undefined）非证据不足——这些是写作阶段能解决的问题。\\\\n  related_experiments:\\\\n  - exp_id: exp-012\\\\n    role: pending P0, Patch in when done\\\\n  - exp_id: dream_20260515T140829\\\\n    role: structural issues identified\\\\n  depends_on:\\\\n  - D019\\\\n- id: D021\\\\n  date: 2026-05-15 16:05 UTC\\\\n  summary: 40-rel 中间点升 P0，利用 AWQ 下载期间 GPU 空闲立即执行\\\\n  rationale: Scaling claim 仅 2 个数据点（16-rel=9.1pp, 80-rel=31.2pp），审稿人必问线性 vs 非线性。40-rel\\\\n    中间点 ~1 GPU-hour，Qwen3 已在服务器上无需下载，AWQ 下载期间 GPU 完全空闲，零机会成本。\\\\n  related_experiments:\\\\n  - exp_id: exp_fewrel_formal_80rel\\\\n    role: scaling baseline\\\\n  - exp_id: exp_fewrel_formal\\\\n    role: 16-rel baseline\\\\n  - exp_id: exp-012\\\\n    role: AWQ downloading, GPU idle\\\\n  depends_on:\\\\n  - D018\\\\n  - D020\\\\n- id: D022\\\\n  date: 2026-05-15 16:23 UTC\\\\n  summary: exp012 放弃 70B AWQ，转用 LLaMA-3.1-8B-Instruct\\\\n  rationale: 70B 在 Blackwell 上连续 3 轮失败（r1/r2 flashinfer 不兼容，AWQ 磁盘空间不足无法完成下载）。8B 已下载就绪，BF16\\\\n    直接加载无兼容性风险。跨 family + 跨 scale（Qwen3-32B → LLaMA-8B）的验证比同 scale 不同 family 更有论文价值——证明\\\\n    confusability 效应不依赖模型容量。DDL 仅剩 10 天，不能继续在 70B 兼容性上耗时间。\\\\n  related_experiments:\\\\n  - exp_id: exp-012\\\\n    role: target\\\\n    result: switching from 70B to 8B\\\\n  - exp_id: exp012_llama_fewnerd_r3\\\\n    role: predecessor\\\\n    result: failed (AWQ disk space insufficient)\\\\n  - exp_id: exp012_llama_fewnerd_r2\\\\n    role: predecessor\\\\n    result: failed (flashinfer incompatible)\\\\n  depends_on:\\\\n  - D020\\\\n  - D021\\\\n- id: D023\\\\n  date: 2026-05-15 16:50 UTC\\\\n  summary: exp012 多模型验证策略：先试 free-form generation 诊断，失败则接受 single-model limitation\\\\n  rationale: exp012 全系列失败（r1-r3 flashinfer SM120 不兼容，AWQ 磁盘不足，r4 8B 零预测）。8B 零输出最可能原因是\\\\n    vLLM structured output JSON schema 与 LLaMA tokenizer 不兼容（gen_tokens=2 = 只输出 `[]`）。诊断方案：关闭\\\\n    structured output 约束做 free-form generation + regex 后处理，~15 min 即可验证。成功则重跑，失败则在论文\\\\n    §6.3 接受 single-model limitation（Qwen3-32B 已有 3 任务 × 多层证据，单模型不构成致命弱点）。DDL 仅剩 10\\\\n    天，不再尝试下载新模型或升级 CUDA toolkit。\\\\n  related_experiments:\\\\n  - exp_id: exp012_llama_fewnerd_r4\\\\n    role: trigger\\\\n    result: failed - zero predictions\\\\n  - exp_id: exp012_llama_fewnerd_r3\\\\n    role: predecessor\\\\n    result: failed - flashinfer SM120\\\\n  - exp_id: exp012_llama_awq\\\\n    role: predecessor\\\\n    result: killed - disk space\\\\n  depends_on:\\\\n  - D022\\\\n- id: D024\\\\n  date: 2026-05-15 16:53 UTC\\\\n  summary: 多模型验证硬截止 May 18；Paper Agent 立即启动 Full Draft（单模型版本，多模型结果到位后 Patch）\\\\n  rationale: 'Reviewer warning: exp-012 多模型验证已失败 6+ 次（70B flashinfer 不兼容, 8B 零预测）。距\\\\n    ARR May 25 仅 10 天，论文零产出。策略：(1) 给多模型验证 3 天窗口（截止 May 18），Agent 正在准备 exp012_llama_8b\\\\n    和 exp012_llama_awq；(2) 立即启动 Paper Agent 以当前单模型证据写 Full Draft——三任务 cross-task replication\\\\n    是部分替代；(3) May 18 前多模型仍失败则调整 claim 措辞为 \\\\\\\"We observe with Qwen3-32B\\\\\\\" 并在 Limitation\\\\n    明确承认，强化 cross-task angle。不预先降级，先推进。'\\\\n  related_experiments:\\\\n  - exp_id: exp-012\\\\n    role: multi-model validation\\\\n    result: 6+ failures, still attempting\\\\n  - exp_id: exp-002\\\\n    role: primary evidence\\\\n    result: success\\\\n  - exp_id: exp-004\\\\n    role: cross-task MAVEN\\\\n    result: success\\\\n  - exp_id: exp-016\\\\n    role: cross-task FewRel\\\\n    result: success\\\\n  depends_on:\\\\n  - D022\\\\n  - D019\\\\n- id: D025\\\\n  date: 2026-05-15 18:10 UTC\\\\n  summary: Table 3 NER Missed 数据修正：12/14/16% 替换为实际计算值 42.8/64.8/49.9%，叙事从\\\\\\\"BCS不影响检测\\\\\\\"改为\\\\\\\"NER与RE错误机制不同\\\\\\\"\\\\n  rationale: Agent + Reviewer 双重验证确认 Table 3 NER Missed 12%/14%/16% 无任何实验 artifact\\\\n    支撑，疑似从 RE 数据外推（+2pp）。实际从 exp007 raw predictions 重新计算的值为 low=42.8%, medium=64.8%,\\\\n    high=49.9%，差距 30-50pp 且趋势非 flat。原叙事\\\\\\\"missed rate remains flat at 10-16%\\\\\\\"在 NER 端不成立，需限定为仅\\\\n    RE。NER/RE 差异本身是有意义的发现，可加强分析深度。\\\\n  related_experiments:\\\\n  - exp_id: exp007_error_taxonomy\\\\n    role: source\\\\n    result: NER missed rates 42.8/64.8/49.9% (recomputed)\\\\n  - exp_id: exp016_fewrel_error_taxonomy\\\\n    role: source\\\\n    result: RE missed rates 10.4/11.3/13.1/15.7% (registry verified)\\\\n  depends_on: []\\\\n- id: D026\\\\n  date: 2026-05-15 18:36 UTC\\\\n  summary: exp006 交互效应不显著(p=0.505)，结论 negative；不在论文主体引用，至多作为 supplementary exploratory\\\\n    analysis\\\\n  rationale: 2×2 factorial 设计（count × BCS）的交互项 z=-0.667, p=0.505, estimate=-0.036，完全在噪声范围内。此外设计存在结构性混淆：BCS\\\\n    与 count 不正交（high count 的 BCS floor 被推高），high_count/high_bcs 的 10 个 batch BCS 完全相同（伪重复）。Reviewer\\\\n    建议禁止声称 multiplicative interaction。实验为 P1（D017 降优），paper story 不依赖此结果。资源转向 exp012（P0\\\\n    多模型验证）。\\\\n  related_experiments:\\\\n  - exp_id: exp006_interaction_2x2\\\\n    role: primary\\\\n    result: 'negative: interaction z=-0.667, p=0.505, not significant'\\\\n  depends_on:\\\\n  - D017\\\\n- id: D027\\\\n  date: 2026-05-15 20:01 UTC\\\\n  summary: exp012 exp1 跨模型验证成功：Channel 1 (count→recall) 在 LLaMA-3.1-8B 上复现，per-batch\\\\n    r=0.725\\\\n  rationale: LLaMA-3.1-8B recall 从 0.702 降至 0.273（-43pp），Qwen3-32B 从 0.640 降至 0.304（-34pp）。Per-batch\\\\n    correlation r=0.725 表明 schema 配置是困难的主要来源而非模型特异性。弱模型下降更陡，支持 schema complexity as\\\\n    task-inherent difficulty 叙事。exp1 数据已交 Paper Agent 写入论文。exp2（Channel 2 BCS-controlled）正在重跑。\\\\n  related_experiments:\\\\n  - exp_id: exp012_llama_8b_r2\\\\n    role: primary\\\\n    result: 'exp1 success: recall decline -43pp, per-batch r=0.725 with Qwen3-32B'\\\\n  depends_on: []\\\\n- id: D028\\\\n  date: 2026-05-15 20:34 UTC\\\\n  summary: exp012 exp2 Channel 2 跨模型复现失败：极端 batch 方向正确但效果微弱(5pp/4.3pp)，随机 batch 信号淹没在\\\\n    noise 中。论文不引用 exp2 数据，保持 Limitations 中\\\\\\\"Channel 2 pending\\\\\\\"的保守表述\\\\n  rationale: LLaMA-3.1-8B 上 BCS-controlled 效应远弱于 Qwen3-32B（Δ5pp vs 31.2pp），count_12\\\\n    的 BCS 分布压缩严重（Δ0.030），多个随机 batch 出现反向趋势（高 BCS 反而高 F1）。per_type_f1 全为 0（缺 char offset），无法做\\\\n    error taxonomy 分析。floor effect + BCS 压缩 + 模型能力不足共同导致信号不可检测。当前论文 Limitations 只\\\\n    claim Channel 1 replicated，这是最安全的策略。\\\\n  related_experiments:\\\\n  - exp_id: exp012_llama_8b_r2_exp2\\\\n    role: primary\\\\n    result: 'Channel 2 not replicated: extreme Δ=5pp/4.3pp, random batches noisy with\\\\n      counter-examples'\\\\n  depends_on:\\\\n  - D027\\\\n- id: D029\\\\n  date: 2026-05-15 21:12 UTC\\\\n  summary: 提分策略：(1) 40-rel 中间点已启动；(2) LLaMA-8B FewRel Channel 2 作为第二实验；(3) \\\\\\\"pending\\\\\\\"改诚实报告；目标\\\\n    7→8+\\\\n  rationale: Reviewer 独立评估：40-rel 提分 +0.5-0.75（3点scaling curve），LLaMA FewRel Channel\\\\n    2 提分 +0.75 if positive / +0.25 if negative（FewRel 效应大、metric 无 span 噪声，比 NER 更可能检测到跨模型信号）。\\\\\\\"pending\\\\\\\"\\\\n    改诚实报告避免信任风险（-0.5 vs -1.5）。最乐观 8.0-8.5，最可能 7.5-8.0。\\\\n  related_experiments:\\\\n  - exp_id: exp_fewrel_40rel_r4\\\\n    role: planned\\\\n    result: PREPARING\\\\n  - exp_id: exp012_llama_fewrel\\\\n    role: planned\\\\n    result: not yet created\\\\n  depends_on:\\\\n  - D027\\\\n  - D028\\\\n- id: D030\\\\n  date: 2026-05-15 22:37 UTC\\\\n  summary: exp012 两种场景预案：正向升级 cross-family claim（有限度），负向 frame 为 capacity-dependent\\\\n    finding；两种场景都诚实报告，不追加新模型\\\\n  rationale: Reviewer 预判分析：场景 A 诚实报告 7.5-8.0 分，场景 B 诚实报告 7.0-7.5 分，隐藏则 6.0-6.5。不追加模型因\\\\n    DDL 10 天内边际收益递减。3 tasks × 1 model 的任务多样性论点比 cross-model 更强。Claim 安全边界受 C001（40-rel\\\\n    来自 80-pool）和 C002（BCS amplification 仅 2 schema sizes）约束。\\\\n  related_experiments:\\\\n  - exp_id: exp012_llama_fewrel_ch2\\\\n    role: trigger\\\\n    result: running\\\\n  depends_on:\\\\n  - D022\\\\n- id: D031\\\\n  date: 2026-05-15 22:40 UTC\\\\n  summary: exp012 强复现（场景 A），执行 claim 升级 + 新发现\\\\\\\"model-invariant high-BCS floor\\\\\\\"加入正文\\\\n  rationale: LLaMA-8B BCS effect -27.1pp/-23.9pp 远超强复现阈值(15pp)，达 Qwen3 的 75-87%。高\\\\n    BCS 准确率跨模型恒定(0.510 vs 0.510)是预案外的新发现，表明 confusability 是 task-inherent difficulty\\\\n    而非 model-specific。Reviewer 评估提分至 7.75-8.25。按 D030 场景 A 预案执行 patch。NER negative\\\\n    由 metric/floor effect 解释，诚实报告。\\\\n  related_experiments:\\\\n  - exp_id: exp012_llama_fewrel_ch2\\\\n    role: evidence\\\\n    result: 'strong_positive: BCS Δ=-27.1pp(count_8)/-23.9pp(count_16), high-BCS floor\\\\n      model-invariant at 0.51'\\\\n\\\\n... [截断: 省略 3644 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 23644, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/decisions.yaml\", \"content\": \"_next_id: 38\\ndecisions:\\n- id: D001\\n  date: 2026-05-14 16:10 UTC\\n  summary: 项目立项，MVP 验证方案：Experiment 2 (Confusability Controlled) 为核心验证实验\\n  rationale: 'IDEA_BRIEF 的核心假设是 type confusability 独立于 type count 驱动 LLM IE 质量下降。Experiment\\n    2（固定 count 变 BCS）是最直接的假设检验。Pass 标准: |r|≥0.3 且 p<0.05。ACE05 RE + Few-NERD 双数据集验证。ARR\\n    May 25 DDL（11天），MVP 需 1-2 天完成。'\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-14 16:15 UTC\\n  summary: 修正 MVP 统计设计：random samples 从 10 增至 25/档，加入 per-type solo baseline 控制变量，核心指标改为\\n    Δ(solo_F1 - batch_F1)\\n  rationale: Reviewer 指出 n=12 下 |r|=0.3 对应 p≈0.34，无法同时满足 |r|≥0.3 且 p<0.05。增至 25 random\\n    batches/档 → n≈54，|r|≥0.27 即可达 p<0.05。同时加入 solo F1 控制 type 固有难度，避免将\\\"类型本身难抽取\\\"误归因于\\\"confusability\\n    效应\\\"。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-14 23:11 UTC\\n  summary: MVP 分析方法从 Δ(solo-batch) 切换到 within-count Pearson r(F1, BCS)，pass 标准更新为\\n    |r|≥0.3 at fixed count\\n  rationale: Exp 1 发现 count curve 方向反转（F1 随 count 上升），根因是低 count 时模型过度 hallucinate（pred/gold=8x\\n    at count=1）。solo baseline 处于极端行为模式，Δ 被跨 count 行为差异污染。改为 within-count 对比更干净：同一\\n    count 下比较不同 BCS 的 F1，直接检验 confusability 独立效应。\\n  related_experiments:\\n  - exp_id: exp001_count_baseline\\n    role: evidence\\n    result: count curve reversed, hallucination at low count\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 23:31 UTC\\n  summary: MVP 主指标更新为 within-count r(recall, BCS)，F1 因 over-prediction confound 降为补充指标\\n  rationale: Exp 1 text-match 重评估发现：recall 单调下降（0.72→0.42，符合预期），precision 单调上升（0.11→0.52，over-prediction\\n    减少），F1 受 precision 主导而反转。within-count 分析中 precision confound 在同一 count 下近似恒定，F1\\n    仍可用；但 recall 更干净且直接反映 type confusion。WrongType 错误（text 正确但 type 错标）随 count 从 0\\n    升至 2434，直接支持 confusability 假设。\\n  related_experiments:\\n  - exp_id: exp001_count_baseline\\n    role: evidence\\n    result: recall monotonically decreases with count; WrongType errors increase;\\n      over-prediction confounds F1\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-15 02:34 UTC\\n  summary: 'MVP PASS（refined mechanism）: confusability 通过 type confusion 通道驱动降级，选择\\n    Narrative A (multi-channel degradation model)'\\n  rationale: Exp 2 结果：recall vs BCS 不显著（r=0.25, p=0.066），但 F1 vs BCS 在 count_12 显著（r=0.50,\\n    p=0.008），偏相关 r=0.30 p=0.026 达到 pass 标准。Confusion rate high-BCS vs low-BCS 差异 30-40x（p=0.043）。机制清晰：confusability\\n    不导致遗漏，而是导致错标。选 Narrative A（multi-channel）因为：(1) 用上所有数据（exp1 count→recall + exp2\\n    BCS→confusion）(2) 两个正交机制 story 更丰富 (3) SDGD 框架天然需要同时处理 count 和 confusability。\\n  related_experiments:\\n  - exp_id: exp001_count_baseline\\n    role: evidence\\n    result: count drives recall decline 0.72→0.42\\n  - exp_id: exp002_confusability_controlled\\n    role: evidence\\n    result: BCS drives type confusion 30-40x, F1 partial r=0.30 p=0.026\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-15 04:04 UTC\\n  summary: 跳过 Dream 模拟，直接批准 P0 实验\\n  rationale: 'Dream 模拟因基础设施 bug 崩溃（TypeError: _run_dream_pipeline() got unexpected\\n    keyword argument ''operational_chat_id''），P0 实验已被阻塞 9+ 小时。这是平台问题不是项目问题，不应阻塞研究进度。paper_framing.md\\n    和 experiment_plan.yaml 已完成，方向清晰，可直接推进。'\\n  related_experiments: []\\n  depends_on: []\\n- id: D007\\n  date: 2026-05-15 04:16 UTC\\n  summary: RE 第三任务需先做 BCS pilot 验证，不直接 commit\\n  rationale: Reviewer 指出 RE 的 confusability 机制与 NER/ED 可能不同——RE type confusion 取决于\\n    entity pair 语义角色而非 relation label embedding 相似度。如果 BCS 在 RE 上不 work，反而削弱 task-agnostic\\n    claim。策略：先花 1h 做 FewRel type 的 BCS 矩阵 + 小规模 pilot（5 batches），确认信号存在再 commit P0；信号不存在则\\n    claim 缩窄为 span-level IE，在 limitation 中承认。\\n  related_experiments: []\\n  depends_on:\\n  - D006\\n- id: D008\\n  date: 2026-05-15 05:10 UTC\\n  summary: 重构证据层级：pairwise 分析升为主要证据，batch-level 需控制 type frequency\\n  rationale: exp003a v2 Reviewer 独立核实发现 within-count BCS-F1 正相关（高 BCS→高 F1），与假设方向相反。根因：type\\n    frequency 混淆变量（高频类型既有高 BCS 又被模型更好提取）。pairwise 分析（r=0.156, p=4.6e-12）不受此影响，仍成立。需要：(1)\\n    pairwise 升为 Channel 1 主要证据 (2) 新增 per-type F1 分析控制频率 (3) batch-level 正相关在论文中透明报告并解释混淆变量。\\n  related_experiments:\\n  - exp_id: exp003a\\n    role: trigger\\n    result: within-count r>0 contradicts hypothesis direction\\n  depends_on:\\n  - D006\\n- id: D009\\n  date: 2026-05-15 07:21 UTC\\n  summary: 'Paper story reframe: BCS proxy task-specific → SDGD-cal empirical calibration\\n    成为核心贡献'\\n  rationale: MAVEN per-type 分析显示 BCS 与 F1 正相关（ρ=+0.184, p=0.025），与 Few-NERD 方向相反且已排除\\n    frequency confound。说明 embedding-based BCS 是 task-specific proxy：对 NER 有效（type\\n    name 相似度驱动 confusion），对 ED 无效（trigger word 歧义驱动 confusion，非 type name embedding\\n    距离）。Reframe 方向：BCS proxy 有局限 → 需要 empirical confusability（从 actual confusion matrix\\n    推导）→ SDGD-cal 用 empirical calibration 解决跨任务泛化。这让 SDGD-cal 成为比 SDGD-zero 更核心的贡献。\\n  related_experiments:\\n  - exp_id: exp004_maven_bcs\\n    role: trigger\\n    result: MAVEN per-type ρ=+0.184 contradicts hypothesis\\n  - exp_id: exp003a_prompt_v2_rerun\\n    role: baseline\\n    result: Few-NERD per-type ρ=-0.293 supports hypothesis\\n  depends_on:\\n  - D008\\n- id: D010\\n  date: 2026-05-15 07:37 UTC\\n  summary: FewRel pilot PASS (D007)，commit RE 为第三任务；需做 embedding ablation (MiniLM\\n    vs Qwen3 × 3 tasks)\\n  rationale: FewRel pilot 显示高 BCS→低 accuracy（Δ=-21~50pp），效应量极大，假设方向正确。但使用了 MiniLM（BCS\\n    range 0.42-0.97）而非 Qwen3（Few-NERD/MAVEN 用的）。三任务交叉对比显示：NER 弱负(Qwen3)、ED 反向(Qwen3)、RE\\n    强负(MiniLM)——无法区分 task effect vs embedding effect。需要 2×3 embedding ablation（MiniLM/Qwen3\\n    × NER/ED/RE）来厘清。这是 CPU 任务（重算 BCS 矩阵+重跑分析），成本极低但对论文 story 至关重要。\\n  related_experiments:\\n  - exp_id: fewrel_pilot\\n    role: trigger\\n    result: batch Δ=-21~50pp, hypothesis direction correct\\n  depends_on:\\n  - D007\\n  - D009\\n- id: D011\\n  date: 2026-05-15 07:41 UTC\\n  summary: '采用 Narrative A: embedding proxy 有域边界，same-domain 需 SDGD-cal empirical\\n    calibration'\\n  rationale: 三任务数据全用上：Few-NERD(NER)+FewRel(RE) 作为 cross-domain positive evidence，MAVEN(ED)\\n    作为 same-domain boundary condition。自然引出 SDGD-zero(embedding proxy, cross-domain)\\n    vs SDGD-cal(empirical confusion, task-agnostic) 的互补关系。比方案B（需先验证SDGD-cal）更安全，比方案C（浪费MAVEN数据）更坦诚。Claim\\n    1 修改为含 boundary condition 的版本。\\n  related_experiments:\\n  - exp_id: exp004_maven_bcs\\n    role: boundary_condition\\n    result: MAVEN per-type ρ=+0.184 positive\\n  - exp_id: fewrel_pilot\\n    role: cross_task_replication\\n    result: Δ=-21~50pp strong negative\\n  - exp_id: exp003a_prompt_v2_rerun\\n    role: primary_evidence\\n    result: Few-NERD per-type ρ=-0.293\\n  depends_on:\\n  - D009\\n  - D010\\n- id: D012\\n  date: 2026-05-15 09:06 UTC\\n  summary: 证据层级重排：pairwise SCS→confusion 为唯一主要证据，per-type 降为辅助（centrality confound）\\n  rationale: MAVEN MiniLM ablation 证实 per-type 正向与 embedding 选择无关（MiniLM ρ=+0.208,\\n    Qwen3 ρ=+0.184 方向一致）。但 MiniLM pairwise 在 MAVEN 上显著（r=+0.120, p≈0），Qwen3 无信号。说明：(1)\\n    pairwise confusability 在所有数据集上真实存在，(2) per-type mean BCS 混合了 confusability 和 type\\n    centrality（语义邻居多=常见类型=LLM 擅长=高 F1），频率控制无法完全消除。论文主要证据应聚焦 pairwise SCS→confusion\\n    + FewRel batch-level 强效应，per-type 作为辅助，MAVEN per-type 正向作为 centrality confound\\n    案例研究。\\n  related_experiments:\\n  - exp_id: exp004_maven_bcs\\n    role: evidence\\n    result: MiniLM pairwise r=+0.120 significant; per-type positive both embeddings\\n  depends_on:\\n  - D011\\n- id: D013\\n  date: 2026-05-15 09:07 UTC\\n  summary: Narrative 精化：核心论点从 embedding domain boundary 改为 pairwise vs aggregation\\n    level confound\\n  rationale: MAVEN MiniLM ablation 证实 per-type 正向与 embedding 无关（MiniLM 无压缩也正向）。问题是\\n    per-type 聚合的 centrality confound，非 embedding proxy 失效。但 MiniLM pairwise 在 MAVEN\\n    上显著（r=+0.120）→ pairwise confusability 跨任务普遍存在。SDGD 直接用 pairwise similarity 做 graph\\n    coloring，绕过聚合 confound。论文核心论点：confusability 在 type-pair 级别操作，per-type aggregation\\n    在同域 schema 引入 centrality confound，SDGD 的 pairwise 设计天然规避此问题。2×3 embedding ablation\\n    矩阵本身成为论文 Table。\\n  related_experiments:\\n  - exp_id: exp004_maven_bcs\\n    role: evidence\\n    result: MiniLM pairwise r=+0.120 on MAVEN; per-type positive both embeddings\\n  depends_on:\\n  - D012\\n- id: D014\\n  date: 2026-05-15 11:20 UTC\\n  summary: SDGD-zero 差于 baseline，Claim 3 需重大调整或放弃\\n  rationale: exp-008 SDGD-zero F1=0.251 < single_pass=0.445 < random_batch=0.320。根因：merge\\n    amplifies hallucination——每个 batch 处理全部样本但 schema 受限，模型过度预测 batch 内类型，merge 累积\\n    FP。confusability-aware 分解比随机分组差可能因为语义不相关 types 混合导致模型缺少 disambiguation context。Claims\\n    1-2（confusability 分析）不受影响。需要决定：(A) 修复 merge 策略重跑 (B) SDGD 降为 discussion/future\\n    work (C) 等 SDGD-cal 结果再定。\\n  related_experiments:\\n  - exp_id: exp008_sdgd_zero_fewnerd\\n    role: trigger\\n    result: SDGD-zero F1=0.251 < single_pass=0.445\\n  depends_on:\\n  - D013\\n- id: D015\\n  date: 2026-05-15 13:39 UTC\\n  summary: SDGD v2 time-boxed probe (2h) before multi-model; fail → Claim 3 降为 future\\n    work\\n  rationale: SDGD-zero 负向(F1=0.251 vs single_pass=0.445)，根因 merge amplification 已诊断。v2\\n    修复(min_batch_size+confidence-gated merge)成本仅2h，成功则论文获 prescriptive contribution，失败不伤\\n    Claims 1-2。距 DDL 10 天，串行 v2→exp-012 时间充裕。成功标准：v2 F1 > 0.445。\\n  related_experiments:\\n  - exp_id: exp-008\\n    role: evidence\\n    result: 'negative: SDGD-zero F1=0.251, merge amplification confirmed'\\n  - exp_id: exp-012\\n    role: next\\n    result: 'planned: multi-model validation after v2 probe'\\n  depends_on: []\\n- id: D016\\n  date: 2026-05-15 14:57 UTC\\n  summary: exp-012 flashinfer 不兼容 Blackwell，SDGD v2 先占 GPU，flashinfer 并行修复\\n  rationale: vLLM 0.20.2 废弃 VLLM_ATTENTION_BACKEND 环境变量，flashinfer 0.6.8 无法为 SM120\\n    JIT 编译 FP8 GEMM。两次启动失败。Agent 正确决策：(1) SDGD v2 立即占 GPU 不浪费；(2) CPU worker 并行升级\\n    flashinfer + CUDA 13 nvcc；(3) exp-012 r3 排 SDGD v2 之后 (~17:30 UTC)。\\n  related_experiments:\\n  - exp_id: exp-012\\n    role: blocked\\n    result: flashinfer SM120 incompatibility\\n  - exp_id: exp-008\\n    role: retry\\n    result: SDGD v2 probe started, F1>0.445 threshold\\n  depends_on:\\n  - D015\\n  - D014\\n- id: D017\\n  date: 2026-05-15 15:00 UTC\\n  summary: Reviewer 深度审查后调整实验矩阵：exp-006/005 降优，加 3 个 0-GPU-hour 分析，SDGD v2 阈值放宽到 F1>0.40\\n  rationale: 80-rel scaling data (3.4x amplification) 已覆盖 exp-006 interaction effect。3\\n    tasks 足够，exp-005 DocRED 降 P2。Reviewer 建议 3 个 0-GPU-hour 高 ROI 分析：(1) FewRel pairwise\\n    error taxonomy 跨任务验证 Claim 2；(2) bootstrap 95% CI 加固所有 correlation；(3) exp-015\\n    fast SCS→confusion validation。SDGD v2 阈值从 F1>0.445 放宽到 F1>0.40（接近 baseline 也有\\n    story：decomposition 损失可控 + latency 优势），F1<0.35 则 drop Claim 3。Claim 表述用具体数据\\\"3.4x\\n    amplification between 16-type and 80-type\\\"替代函数形式声明。\\n  related_experiments:\\n  - exp_id: exp_fewrel_formal_80rel\\n    role: evidence\\n    result: 3.4x BCS effect scaling\\n  - exp_id: exp-006\\n    role: deprioritized\\n    result: covered by 80-rel scaling\\n  - exp_id: exp-005\\n    role: deprioritized\\n    result: P2, 3 tasks sufficient\\n  - exp_id: exp-008\\n    role: retry\\n    result: v2 running, threshold F1>0.40\\n  depends_on:\\n  - D015\\n  - D016\\n- id: D018\\n  date: 2026-05-15 15:10 UTC\\n  summary: 补充 40-rel 中间点 + 多模型备选方案（AWQ/8B）+ MAVEN case study\\n  rationale: Reviewer 二次审查指出：(1) 2 点 scaling 不够，40-rel 中间点 ~1 GPU-hour 可得 3 点 scaling\\n    curve；(2) exp-012 双 retry 失败，需备选方案——Llama-70B-AWQ 或 Llama-8B，并行下载不等 r3；(3) MAVEN\\n    case study 0 GPU-hour 补强 centrality confound narrative。多模型验证是投稿硬门槛，24h 内必须完成。\\n  related_experiments:\\n  - exp_id: exp-012\\n    role: critical_path\\n    result: dual retry failed, backup plan needed\\n  - exp_id: exp_fewrel_formal_80rel\\n    role: evidence\\n    result: need 40-rel middle point for 3-point scaling\\n  depends_on:\\n  - D017\\n- id: D019\\n  date: 2026-05-15 15:47 UTC\\n  summary: SDGD v2 confirmed negative, kill per_type early, Claim 3 dropped — pivot\\n    to analysis-only paper\\n  rationale: 'SDGD v2 confidence-gated merge: sdgd_zero F1=0.241, random_batch F1=0.301,\\n    both far below baseline 0.445 and threshold F1>0.40 (D017). Per_type 66-type sequential\\n    inference blocking GPU for exp-012 critical path. v1 per_type was also below baseline\\n    (0.2915). Decomposition paradigm has intrinsic FP amplification that merge strategies\\n    cannot fully resolve. Claim 3 dropped; SDGD discussed as future work. Paper pivots\\n    to 2-claim analysis: (1) confusability independence + scaling, (2) multi-channel\\n    degradation mechanism.'\\n  related_experiments:\\n  - exp_id: exp-008\\n    role: evidence\\n    result: 'SDGD v2 negative: sdgd_zero=0.241, random=0.301, baseline=0.445'\\n  - exp_id: exp-012\\n    role: critical_path\\n    result: unblocked by killing SDGD per_type\\n  depends_on:\\n  - D017\\n  - D015\\n  - D014\\n- id: D020\\n  date: 2026-05-15 16:02 UTC\\n  summary: 启动 Paper Agent 写作，2-claim analysis paper + SDGD negative result，Dream 结构性问题同步解决\\n  rationale: Claims 1+2 证据链完整（3 任务 × 多层证据），exp-012 最后 P0 可 Patch。10 天 deadline，Paper\\n    Agent 24h pipeline 必须立即启动。Dream 两轮均 Weak Reject，主要因写作质量（related work 2 refs, effect\\n    size 未 contextualize, metric undefined）非证据不足——这些是写作阶段能解决的问题。\\n  related_experiments:\\n  - exp_id: exp-012\\n    role: pending P0, Patch in when done\\n  - exp_id: dream_20260515T140829\\n    role: structural issues identified\\n  depends_on:\\n  - D019\\n- id: D021\\n  date: 2026-05-15 16:05 UTC\\n  summary: 40-rel 中间点升 P0，利用 AWQ 下载期间 GPU 空闲立即执行\\n  rationale: Scaling claim 仅 2 个数据点（16-rel=9.1pp, 80-rel=31.2pp），审稿人必问线性 vs 非线性。40-rel\\n    中间点 ~1 GPU-hour，Qwen3 已在服务器上无需下载，AWQ 下载期间 GPU 完全空闲，零机会成本。\\n  related_experiments:\\n  - exp_id: exp_fewrel_formal_80rel\\n    role: scaling baseline\\n  - exp_id: exp_fewrel_formal\\n    role: 16-rel baseline\\n  - exp_id: exp-012\\n    role: AWQ downloading, GPU idle\\n  depends_on:\\n  - D018\\n  - D020\\n- id: D022\\n  date: 2026-05-15 16:23 UTC\\n  summary: exp012 放弃 70B AWQ，转用 LLaMA-3.1-8B-Instruct\\n  rationale: 70B 在 Blackwell 上连续 3 轮失败（r1/r2 flashinfer 不兼容，AWQ 磁盘空间不足无法完成下载）。8B 已下载就绪，BF16\\n    直接加载无兼容性风险。跨 family + 跨 scale（Qwen3-32B → LLaMA-8B）的验证比同 scale 不同 family 更有论文价值——证明\\n    confusability 效应不依赖模型容量。DDL 仅剩 10 天，不能继续在 70B 兼容性上耗时间。\\n  related_experiments:\\n  - exp_id: exp-012\\n    role: target\\n    result: switching from 70B to 8B\\n  - exp_id: exp012_llama_fewnerd_r3\\n    role: predecessor\\n    result: failed (AWQ disk space insufficient)\\n  - exp_id: exp012_llama_fewnerd_r2\\n    role: predecessor\\n    result: failed (flashinfer incompatible)\\n  depends_on:\\n  - D020\\n  - D021\\n- id: D023\\n  date: 2026-05-15 16:50 UTC\\n  summary: exp012 多模型验证策略：先试 free-form generation 诊断，失败则接受 single-model limitation\\n  rationale: exp012 全系列失败（r1-r3 flashinfer SM120 不兼容，AWQ 磁盘不足，r4 8B 零预测）。8B 零输出最可能原因是\\n    vLLM structured output JSON schema 与 LLaMA tokenizer 不兼容（gen_tokens=2 = 只输出 `[]`）。诊断方案：关闭\\n    structured output 约束做 free-form generation + regex 后处理，~15 min 即可验证。成功则重跑，失败则在论文\\n    §6.3 接受 single-model limitation（Qwen3-32B 已有 3 任务 × 多层证据，单模型不构成致命弱点）。DDL 仅剩 10\\n    天，不再尝试下载新模型或升级 CUDA toolkit。\\n  related_experiments:\\n  - exp_id: exp012_llama_fewnerd_r4\\n    role: trigger\\n    result: failed - zero predictions\\n  - exp_id: exp012_llama_fewnerd_r3\\n    role: predecessor\\n    result: failed - flashinfer SM120\\n  - exp_id: exp012_llama_awq\\n    role: predecessor\\n    result: killed - disk space\\n  depends_on:\\n  - D022\\n- id: D024\\n  date: 2026-05-15 16:53 UTC\\n  summary: 多模型验证硬截止 May 18；Paper Agent 立即启动 Full Draft（单模型版本，多模型结果到位后 Patch）\\n  rationale: 'Reviewer warning: exp-012 多模型验证已失败 6+ 次（70B flashinfer 不兼容, 8B 零预测）。距\\n    ARR May 25 仅 10 天，论文零产出。策略：(1) 给多模型验证 3 天窗口（截止 May 18），Agent 正在准备 exp012_llama_8b\\n    和 exp012_llama_awq；(2) 立即启动 Paper Agent 以当前单模型证据写 Full Draft——三任务 cross-task replication\\n    是部分替代；(3) May 18 前多模型仍失败则调整 claim 措辞为 \\\"We observe with Qwen3-32B\\\" 并在 Limitation\\n    明确承认，强化 cross-task angle。不预先降级，先推进。'\\n  related_experiments:\\n  - exp_id: exp-012\\n    role: multi-model validation\\n    result: 6+ failures, still attempting\\n  - exp_id: exp-002\\n    role: primary evidence\\n    result: success\\n  - exp_id: exp-004\\n    role: cross-task MAVEN\\n    result: success\\n  - exp_id: exp-016\\n    role: cross-task FewRel\\n    result: success\\n  depends_on:\\n  - D022\\n  - D019\\n- id: D025\\n  date: 2026-05-15 18:10 UTC\\n  summary: Table 3 NER Missed 数据修正：12/14/16% 替换为实际计算值 42.8/64.8/49.9%，叙事从\\\"BCS不影响检测\\\"改为\\\"NER与RE错误机制不同\\\"\\n  rationale: Agent + Reviewer 双重验证确认 Table 3 NER Missed 12%/14%/16% 无任何实验 artifact\\n    支撑，疑似从 RE 数据外推（+2pp）。实际从 exp007 raw predictions 重新计算的值为 low=42.8%, medium=64.8%,\\n    high=49.9%，差距 30-50pp 且趋势非 flat。原叙事\\\"missed rate remains flat at 10-16%\\\"在 NER 端不成立，需限定为仅\\n    RE。NER/RE 差异本身是有意义的发现，可加强分析深度。\\n  related_experiments:\\n  - exp_id: exp007_error_taxonomy\\n    role: source\\n    result: NER missed rates 42.8/64.8/49.9% (recomputed)\\n  - exp_id: exp016_fewrel_error_taxonomy\\n    role: source\\n    result: RE missed rates 10.4/11.3/13.1/15.7% (registry verified)\\n  depends_on: []\\n- id: D026\\n  date: 2026-05-15 18:36 UTC\\n  summary: exp006 交互效应不显著(p=0.505)，结论 negative；不在论文主体引用，至多作为 supplementary exploratory\\n    analysis\\n  rationale: 2×2 factorial 设计（count × BCS）的交互项 z=-0.667, p=0.505, estimate=-0.036，完全在噪声范围内。此外设计存在结构性混淆：BCS\\n    与 count 不正交（high count 的 BCS floor 被推高），high_count/high_bcs 的 10 个 batch BCS 完全相同（伪重复）。Reviewer\\n    建议禁止声称 multiplicative interaction。实验为 P1（D017 降优），paper story 不依赖此结果。资源转向 exp012（P0\\n    多模型验证）。\\n  related_experiments:\\n  - exp_id: exp006_interaction_2x2\\n    role: primary\\n    result: 'negative: interaction z=-0.667, p=0.505, not significant'\\n  depends_on:\\n  - D017\\n- id: D027\\n  date: 2026-05-15 20:01 UTC\\n  summary: exp012 exp1 跨模型验证成功：Channel 1 (count→recall) 在 LLaMA-3.1-8B 上复现，per-batch\\n    r=0.725\\n  rationale: LLaMA-3.1-8B recall 从 0.702 降至 0.273（-43pp），Qwen3-32B 从 0.640 降至 0.304（-34pp）。Per-batch\\n    correlation r=0.725 表明 schema 配置是困难的主要来源而非模型特异性。弱模型下降更陡，支持 schema complexity as\\n    task-inherent difficulty 叙事。exp1 数据已交 Paper Agent 写入论文。exp2（Channel 2 BCS-controlled）正在重跑。\\n  related_experiments:\\n  - exp_id: exp012_llama_8b_r2\\n    role: primary\\n    result: 'exp1 success: recall decline -43pp, per-batch r=0.725 with Qwen3-32B'\\n  depends_on: []\\n- id: D028\\n  date: 2026-05-15 20:34 UTC\\n  summary: exp012 exp2 Channel 2 跨模型复现失败：极端 batch 方向正确但效果微弱(5pp/4.3pp)，随机 batch 信号淹没在\\n    noise 中。论文不引用 exp2 数据，保持 Limitations 中\\\"Channel 2 pending\\\"的保守表述\\n  rationale: LLaMA-3.1-8B 上 BCS-controlled 效应远弱于 Qwen3-32B（Δ5pp vs 31.2pp），count_12\\n    的 BCS 分布压缩严重（Δ0.030），多个随机 batch 出现反向趋势（高 BCS 反而高 F1）。per_type_f1 全为 0（缺 char offset），无法做\\n    error taxonomy 分析。floor effect + BCS 压缩 + 模型能力不足共同导致信号不可检测。当前论文 Limitations 只\\n    claim Channel 1 replicated，这是最安全的策略。\\n  related_experiments:\\n  - exp_id: exp012_llama_8b_r2_exp2\\n    role: primary\\n    result: 'Channel 2 not replicated: extreme Δ=5pp/4.3pp, random batches noisy with\\n      counter-examples'\\n  depends_on:\\n  - D027\\n- id: D029\\n  date: 2026-05-15 21:12 UTC\\n  summary: 提分策略：(1) 40-rel 中间点已启动；(2) LLaMA-8B FewRel Channel 2 作为第二实验；(3) \\\"pending\\\"改诚实报告；目标\\n    7→8+\\n  rationale: Reviewer 独立评估：40-rel 提分 +0.5-0.75（3点scaling curve），LLaMA FewRel Channel\\n    2 提分 +0.75 if positive / +0.25 if negative（FewRel 效应大、metric 无 span 噪声，比 NER 更可能检测到跨模型信号）。\\\"pending\\\"\\n    改诚实报告避免信任风险（-0.5 vs -1.5）。最乐观 8.0-8.5，最可能 7.5-8.0。\\n  related_experiments:\\n  - exp_id: exp_fewrel_40rel_r4\\n    role: planned\\n    result: PREPARING\\n  - exp_id: exp012_llama_fewrel\\n    role: planned\\n    result: not yet created\\n  depends_on:\\n  - D027\\n  - D028\\n- id: D030\\n  date: 2026-05-15 22:37 UTC\\n  summary: exp012 两种场景预案：正向升级 cross-family claim（有限度），负向 frame 为 capacity-dependent\\n    finding；两种场景都诚实报告，不追加新模型\\n  rationale: Reviewer 预判分析：场景 A 诚实报告 7.5-8.0 分，场景 B 诚实报告 7.0-7.5 分，隐藏则 6.0-6.5。不追加模型因\\n    DDL 10 天内边际收益递减。3 tasks × 1 model 的任务多样性论点比 cross-model 更强。Claim 安全边界受 C001（40-rel\\n    来自 80-pool）和 C002（BCS amplification 仅 2 schema sizes）约束。\\n  related_experiments:\\n  - exp_id: exp012_llama_fewrel_ch2\\n    role: trigger\\n    result: running\\n  depends_on:\\n  - D022\\n- id: D031\\n  date: 2026-05-15 22:40 UTC\\n  summary: exp012 强复现（场景 A），执行 claim 升级 + 新发现\\\"model-invariant high-BCS floor\\\"加入正文\\n  rationale: LLaMA-8B BCS effect -27.1pp/-23.9pp 远超强复现阈值(15pp)，达 Qwen3 的 75-87%。高\\n    BCS 准确率跨模型恒定(0.510 vs 0.510)是预案外的新发现，表明 confusability 是 task-inherent difficulty\\n    而非 model-specific。Reviewer 评估提分至 7.75-8.25。按 D030 场景 A 预案执行 patch。NER negative\\n    由 metric/floor effect 解释，诚实报告。\\n  related_experiments:\\n  - exp_id: exp012_llama_fewrel_ch2\\n    role: evidence\\n    result: 'strong_positive: BCS Δ=-27.1pp(count_8)/-23.9pp(count_16), high-BCS floor\\n      model-invariant at 0.51'\\n\\n... [截断: 省略 3644 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 23644, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kg6F3YhzLm74UyYH5GfuJo`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/configs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "9dcaf87d-bd89-4fe4-a556-fe1623fdf9fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TFy1AJxmxqBAf59gM7zuMk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 38296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 796
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T03:47:51.021Z_
+
+<details><summary>↩ Tool result · `toolu_01Kg6F3YhzLm74UyYH5GfuJo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 28\\ndrwxr-xr-x  2 root root  113 May 15 13:10 .\\ndrwxr-xr-x 11 root root 4096 May 16 06:39 ..\\n-rw-r--r--  1 root root 8235 May 15 00:44 few_nerd_types.json\\n-rw-r--r--  1 root root 2268 May 15 12:36 fewrel_relation_types.json\\n-rw-r--r--  1 root root 5370 May 15 13:55 maven_event_types.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "c8742f90-d97f-4b9b-923c-557025f57707",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 28\\\\ndrwxr-xr-x  2 root root  113 May 15 13:10 .\\\\ndrwxr-xr-x 11 root root 4096 May 16 06:39 ..\\\\n-rw-r--r--  1 root root 8235 May 15 00:44 few_nerd_types.json\\\\n-rw-r--r--  1 root root 2268 May 15 12:36 fewrel_relation_types.json\\\\n-rw-r--r--  1 root root 5370 May 15 13:55 maven_event_types.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 28\\ndrwxr-xr-x  2 root root  113 May 15 13:10 .\\ndrwxr-xr-x 11 root root 4096 May 16 06:39 ..\\n-rw-r--r--  1 root root 8235 May 15 00:44 few_nerd_types.json\\n-rw-r--r--  1 root root 2268 May 15 12:36 fewrel_relation_types.json\\n-rw-r--r--  1 root root 5370 May 15 13:55 maven_event_types.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the experiment structure better from the decisions. Let me identify the key mappings:
+
+From D005: `exp002_confusability_controlled` = the confusability controlled experiment (v1 NER prompt)
+From D008/D009: `exp003a_prompt_v2_rerun` = the v2 NER prompt rerun
+
+The top-level `eval_exp2.json` and `batch_config_exp2.json` should be exp002 (v1).
+
+But I haven't found exp003a data on the server yet. 
+
+Looking back at D008, exp003a was the v2 prompt rerun and showed a positive BCS-F1 correlation—opposite to what we hypothesized—which the reviewer attributed to a type frequency confound. I should check if the exp003a data might be stored under a different name or location on the server.
+
+Scanning the top-level artifacts, I see `eval_exp1.json` and `eval_exp2.json` which likely correspond to exp001 and exp002 (v1), but I need to look for exp003-related files. Let me check the file timestamps to see if there are other experiment files I'm missing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "57d8cc97-8900-4957-b074-7dbac9742640",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gMJr1PywxE9uyFg5hikqN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11248,
+      "cache_read_input_tokens": 39092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11248
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R8qJK9bgQpRmsAd8DKKHnp`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/*.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "de23fc52-9f80-498e-88ad-384edbc8b150",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gMJr1PywxE9uyFg5hikqN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11248,
+      "cache_read_input_tokens": 39092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11248
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T03:48:04.797Z_
+
+<details><summary>↩ Tool result · `toolu_01R8qJK9bgQpRmsAd8DKKHnp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root      821 May 15 03:26 /root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\n-rw-r--r-- 1 root root    32311 May 15 10:54 /root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n-rw-r--r-- 1 root root    19664 May 15 12:13 /root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n-rw-r--r-- 1 root root      710 May 15 14:01 /root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\n-rw-r--r-- 1 root root     2231 May 15 23:15 /root/schema-dag-extraction/artifacts/bootstrap_ci.json\\n-rw-r--r-- 1 root root    17694 May 15 16:03 /root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json\\n-rw-r--r-- 1 root root     2185 May 15 03:31 /root/schema-dag-extraction/artifacts/eval_dry_run.json\\n-rw-r--r-- 1 root root    29774 May 15 12:13 /root/schema-dag-extraction/artifacts/eval_exp1.json\\n-rw-r--r-- 1 root root    18069 May 15 13:02 /root/schema-dag-extraction/artifacts/eval_exp2.json\\n-rw-r--r-- 1 root root      970 May 15 14:03 /root/schema-dag-extraction/artifacts/eval_maven_dry_run.json\\n-rw-r--r-- 1 root root      797 May 15 23:25 /root/schema-dag-extraction/artifacts/exp015_scs_validation.json\\n-rw-r--r-- 1 root root     7254 May 16 10:17 /root/schema-dag-extraction/artifacts/extreme_batch_analysis.json\\n-rw-r--r-- 1 root root    48553 May 15 23:10 /root/schema-dag-extraction/artifacts/fewrel_80rel_error_taxonomy.json\\n-rw-r--r-- 1 root root    18590 May 15 23:28 /root/schema-dag-extraction/artifacts/maven_case_study.json\\n-rw-r--r-- 1 root root    27395 May 15 17:03 /root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json\\n-rw-r--r-- 1 root root   187675 May 15 03:31 /root/schema-dag-extraction/artifacts/predictions_dry_run.json\\n-rw-r--r-- 1 root root 51775521 May 15 12:13 /root/schema-dag-extraction/artifacts/predictions_exp1.json\\n-rw-r--r-- 1 root root 31905763 May 15 13:02 /root/schema-dag-extraction/artifacts/predictions_exp2.json\\n-rw-r--r-- 1 root root   131197 May 15 14:03 /root/schema-dag-extraction/artifacts/predictions_maven_dry_run.json\\n-rw-r--r-- 1 root root     4853 May 16 11:37 /root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n-rw-r--r-- 1 root root     2159 May 15 21:42 /root/schema-dag-extraction/artifacts/sdgd_v2_validation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "214c5f25-5f61-4d84-b868-b56d3f51e39e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root      821 May 15 03:26 /root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\\\n-rw-r--r-- 1 root root    32311 May 15 10:54 /root/schema-dag-extraction/artifacts/batch_config_exp1.json\\\\n-rw-r--r-- 1 root root    19664 May 15 12:13 /root/schema-dag-extraction/artifacts/batch_config_exp2.json\\\\n-rw-r--r-- 1 root root      710 May 15 14:01 /root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\\\n-rw-r--r-- 1 root root     2231 May 15 23:15 /root/schema-dag-extraction/artifacts/bootstrap_ci.json\\\\n-rw-r--r-- 1 root root    17694 May 15 16:03 /root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json\\\\n-rw-r--r-- 1 root root     2185 May 15 03:31 /root/schema-dag-extraction/artifacts/eval_dry_run.json\\\\n-rw-r--r-- 1 root root    29774 May 15 12:13 /root/schema-dag-extraction/artifacts/eval_exp1.json\\\\n-rw-r--r-- 1 root root    18069 May 15 13:02 /root/schema-dag-extraction/artifacts/eval_exp2.json\\\\n-rw-r--r-- 1 root root      970 May 15 14:03 /root/schema-dag-extraction/artifacts/eval_maven_dry_run.json\\\\n-rw-r--r-- 1 root root      797 May 15 23:25 /root/schema-dag-extraction/artifacts/exp015_scs_validation.json\\\\n-rw-r--r-- 1 root root     7254 May 16 10:17 /root/schema-dag-extraction/artifacts/extreme_batch_analysis.json\\\\n-rw-r--r-- 1 root root    48553 May 15 23:10 /root/schema-dag-extraction/artifacts/fewrel_80rel_error_taxonomy.json\\\\n-rw-r--r-- 1 root root    18590 May 15 23:28 /root/schema-dag-extraction/artifacts/maven_case_study.json\\\\n-rw-r--r-- 1 root root    27395 May 15 17:03 /root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json\\\\n-rw-r--r-- 1 root root   187675 May 15 03:31 /root/schema-dag-extraction/artifacts/predictions_dry_run.json\\\\n-rw-r--r-- 1 root root 51775521 May 15 12:13 /root/schema-dag-extraction/artifacts/predictions_exp1.json\\\\n-rw-r--r-- 1 root root 31905763 May 15 13:02 /root/schema-dag-extraction/artifacts/predictions_exp2.json\\\\n-rw-r--r-- 1 root root   131197 May 15 14:03 /root/schema-dag-extraction/artifacts/predictions_maven_dry_run.json\\\\n-rw-r--r-- 1 root root     4853 May 16 11:37 /root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\\\n-rw-r--r-- 1 root root     2159 May 15 21:42 /root/schema-dag-extraction/artifacts/sdgd_v2_validation.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root      821 May 15 03:26 /root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\n-rw-r--r-- 1 root root    32311 May 15 10:54 /root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n-rw-r--r-- 1 root root    19664 May 15 12:13 /root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n-rw-r--r-- 1 root root      710 May 15 14:01 /root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\n-rw-r--r-- 1 root root     2231 May 15 23:15 /root/schema-dag-extraction/artifacts/bootstrap_ci.json\\n-rw-r--r-- 1 root root    17694 May 15 16:03 /root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json\\n-rw-r--r-- 1 root root     2185 May 15 03:31 /root/schema-dag-extraction/artifacts/eval_dry_run.json\\n-rw-r--r-- 1 root root    29774 May 15 12:13 /root/schema-dag-extraction/artifacts/eval_exp1.json\\n-rw-r--r-- 1 root root    18069 May 15 13:02 /root/schema-dag-extraction/artifacts/eval_exp2.json\\n-rw-r--r-- 1 root root      970 May 15 14:03 /root/schema-dag-extraction/artifacts/eval_maven_dry_run.json\\n-rw-r--r-- 1 root root      797 May 15 23:25 /root/schema-dag-extraction/artifacts/exp015_scs_validation.json\\n-rw-r--r-- 1 root root     7254 May 16 10:17 /root/schema-dag-extraction/artifacts/extreme_batch_analysis.json\\n-rw-r--r-- 1 root root    48553 May 15 23:10 /root/schema-dag-extraction/artifacts/fewrel_80rel_error_taxonomy.json\\n-rw-r--r-- 1 root root    18590 May 15 23:28 /root/schema-dag-extraction/artifacts/maven_case_study.json\\n-rw-r--r-- 1 root root    27395 May 15 17:03 /root/schema-dag-extraction/artifacts/maven_minilm_pertype_analysis.json\\n-rw-r--r-- 1 root root   187675 May 15 03:31 /root/schema-dag-extraction/artifacts/predictions_dry_run.json\\n-rw-r--r-- 1 root root 51775521 May 15 12:13 /root/schema-dag-extraction/artifacts/predictions_exp1.json\\n-rw-r--r-- 1 root root 31905763 May 15 13:02 /root/schema-dag-extraction/artifacts/predictions_exp2.json\\n-rw-r--r-- 1 root root   131197 May 15 14:03 /root/schema-dag-extraction/artifacts/predictions_maven_dry_run.json\\n-rw-r--r-- 1 root root     4853 May 16 11:37 /root/schema-dag-extraction/artifacts/round2_statistical_analyses.json\\n-rw-r--r-- 1 root root     2159 May 15 21:42 /root/schema-dag-extraction/artifacts/sdgd_v2_validation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see the top-level `eval_exp2.json` was created on May 15 at 13:02, and `batch_config_exp2.json` at 12:13. These seem to be a single experiment run.
+
+Looking at the decisions more carefully:
+- D005 (May 15 02:34): MVP PASS - uses exp002 results
+- D008 (May 15 05:10): "exp003a v2 Reviewer 独立核实发现 within-count BCS-F1 正相关"
+
+So the top-level `eval_exp2.json` might be the v1 data (exp002). But where is exp003a (v2)?
+ 
+Now I'm realizing the naming structure: exp002 is the BCS-controlled baseline, and exp003a is a rerun of that same experiment but with a v2 prompt. The `eval_exp2.json` file might have been overwritten when exp003a ran, since they're both evaluating the same experiment setup. Let me check the predictions file to see which prompt version actually generated these results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "c185047c-d510-4ab3-bb57-6817052d5df9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018PnebaoJF3JeZQr7gjbSCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1521,
+      "cache_read_input_tokens": 50340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1521
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FHcDmRefBJmARoZwqB3R9d`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -100 /root/schema-dag-extraction/artifacts/embedding_ablation_fewnerd.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "5c16f8ee-8c9e-49e8-bb67-8013ca73aac7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018PnebaoJF3JeZQr7gjbSCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1521,
+      "cache_read_input_tokens": 50340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1521
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012esdoYRy4KxpyRbvR8Ykjj`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -100 /root/schema-dag-extraction/artifacts/bootstrap_ci.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "5c798ed2-ba69-4b16-bacd-40f76ea5f6e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018PnebaoJF3JeZQr7gjbSCj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1521,
+      "cache_read_input_tokens": 50340,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1521
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T03:48:15.821Z_
+
+<details><summary>↩ Tool result · `toolu_01FHcDmRefBJmARoZwqB3R9d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_types_analyzed\\\": 63,\\n  \\\"min_freq_threshold\\\": 5,\\n  \\\"bcs_distribution\\\": {\\n    \\\"qwen3\\\": {\\n      \\\"mean\\\": 0.8076871037483215,\\n      \\\"std\\\": 0.059903834015131,\\n      \\\"min\\\": 0.44222763180732727,\\n      \\\"max\\\": 0.9731677770614624\\n    },\\n    \\\"minilm\\\": {\\n      \\\"mean\\\": 0.19521111249923706,\\n      \\\"std\\\": 0.14406569302082062,\\n      \\\"min\\\": -0.049742020666599274,\\n      \\\"max\\\": 0.8559799790382385\\n    },\\n    \\\"matrix_pearson_r\\\": 0.35530364513397217,\\n    \\\"matrix_spearman_rho\\\": 0.33463086543405135\\n  },\\n  \\\"top10_overlap\\\": 2,\\n  \\\"per_type_correlations\\\": {\\n    \\\"minilm\\\": {\\n      \\\"spearman\\\": {\\n        \\\"rho\\\": 0.00494431643625192,\\n        \\\"p\\\": 0.9693220008512567\\n      },\\n      \\\"pearson\\\": {\\n        \\\"r\\\": -0.11185209472373865,\\n        \\\"p\\\": 0.3827919783284306\\n      },\\n      \\\"partial_controlling_log_freq\\\": {\\n        \\\"r\\\": -0.14768225472441895,\\n        \\\"p\\\": 0.24806371159532303\\n      }\\n    },\\n    \\\"qwen3\\\": {\\n      \\\"spearman\\\": {\\n        \\\"rho\\\": -0.2809139784946237,\\n        \\\"p\\\": 0.0257373731417258\\n      },\\n      \\\"pearson\\\": {\\n        \\\"r\\\": -0.1805058580157943,\\n        \\\"p\\\": 0.15686651349355957\\n      },\\n      \\\"partial_controlling_log_freq\\\": {\\n        \\\"r\\\": -0.19782699346820837,\\n        \\\"p\\\": 0.12014545424132653\\n      }\\n    }\\n  },\\n  \\\"mean_bcs_cross_embedding_corr\\\": {\\n    \\\"pearson_r\\\": 0.18793232188623263,\\n    \\\"spearman_rho\\\": 0.14333717357910905\\n  },\\n  \\\"per_type_table\\\": [\\n    {\\n      \\\"type\\\": \\\"organization-other\\\",\\n      \\\"f1\\\": 0.1849442379182156,\\n      \\\"precision\\\": 0.22309417040358745,\\n      \\\"recall\\\": 0.15793650793650793,\\n      \\\"freq\\\": 1260,\\n      \\\"mean_bcs_minilm\\\": 0.2861433818936348,\\n      \\\"mean_bcs_qwen3\\\": 0.837393607543065\\n    },\\n    {\\n      \\\"type\\\": \\\"product-other\\\",\\n      \\\"f1\\\": 0.14749262536873156,\\n      \\\"precision\\\": 0.13440860215053763,\\n      \\\"recall\\\": 0.16339869281045752,\\n      \\\"freq\\\": 459,\\n      \\\"mean_bcs_minilm\\\": 0.2752274099880686,\\n      \\\"mean_bcs_qwen3\\\": 0.8188239849530734\\n    },\\n    {\\n      \\\"type\\\": \\\"art-other\\\",\\n      \\\"f1\\\": 0.010723860589812333,\\n      \\\"precision\\\": 0.006557377049180328,\\n      \\\"recall\\\": 0.029411764705882353,\\n      \\\"freq\\\": 68,\\n      \\\"mean_bcs_minilm\\\": 0.27375363633036615,\\n      \\\"mean_bcs_qwen3\\\": 0.8099436980027419\\n    },\\n    {\\n      \\\"type\\\": \\\"event-other\\\",\\n      \\\"f1\\\": 0.1488095238095238,\\n      \\\"precision\\\": 0.1388888888888889,\\n      \\\"recall\\\": 0.16025641025641027,\\n      \\\"freq\\\": 156,\\n      \\\"mean_bcs_minilm\\\": 0.26001472163658873,\\n      \\\"mean_bcs_qwen3\\\": 0.838941321006188\\n    },\\n    {\\n      \\\"type\\\": \\\"organization-company\\\",\\n      \\\"f1\\\": 0.465034965034965,\\n      \\\"precision\\\": 0.4367816091954023,\\n      \\\"recall\\\": 0.497196261682243,\\n      \\\"freq\\\": 535,\\n      \\\"mean_bcs_minilm\\\": 0.25870773712029826,\\n      \\\"mean_bcs_qwen3\\\": 0.8175802973600534\\n    },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "aefb4bba-dcf6-49e1-abe6-7053b5b8d474",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_types_analyzed\\\\\\\": 63,\\\\n  \\\\\\\"min_freq_threshold\\\\\\\": 5,\\\\n  \\\\\\\"bcs_distribution\\\\\\\": {\\\\n    \\\\\\\"qwen3\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.8076871037483215,\\\\n      \\\\\\\"std\\\\\\\": 0.059903834015131,\\\\n      \\\\\\\"min\\\\\\\": 0.44222763180732727,\\\\n      \\\\\\\"max\\\\\\\": 0.9731677770614624\\\\n    },\\\\n    \\\\\\\"minilm\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.19521111249923706,\\\\n      \\\\\\\"std\\\\\\\": 0.14406569302082062,\\\\n      \\\\\\\"min\\\\\\\": -0.049742020666599274,\\\\n      \\\\\\\"max\\\\\\\": 0.8559799790382385\\\\n    },\\\\n    \\\\\\\"matrix_pearson_r\\\\\\\": 0.35530364513397217,\\\\n    \\\\\\\"matrix_spearman_rho\\\\\\\": 0.33463086543405135\\\\n  },\\\\n  \\\\\\\"top10_overlap\\\\\\\": 2,\\\\n  \\\\\\\"per_type_correlations\\\\\\\": {\\\\n    \\\\\\\"minilm\\\\\\\": {\\\\n      \\\\\\\"spearman\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.00494431643625192,\\\\n        \\\\\\\"p\\\\\\\": 0.9693220008512567\\\\n      },\\\\n      \\\\\\\"pearson\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": -0.11185209472373865,\\\\n        \\\\\\\"p\\\\\\\": 0.3827919783284306\\\\n      },\\\\n      \\\\\\\"partial_controlling_log_freq\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": -0.14768225472441895,\\\\n        \\\\\\\"p\\\\\\\": 0.24806371159532303\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3\\\\\\\": {\\\\n      \\\\\\\"spearman\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.2809139784946237,\\\\n        \\\\\\\"p\\\\\\\": 0.0257373731417258\\\\n      },\\\\n      \\\\\\\"pearson\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": -0.1805058580157943,\\\\n        \\\\\\\"p\\\\\\\": 0.15686651349355957\\\\n      },\\\\n      \\\\\\\"partial_controlling_log_freq\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": -0.19782699346820837,\\\\n        \\\\\\\"p\\\\\\\": 0.12014545424132653\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"mean_bcs_cross_embedding_corr\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": 0.18793232188623263,\\\\n    \\\\\\\"spearman_rho\\\\\\\": 0.14333717357910905\\\\n  },\\\\n  \\\\\\\"per_type_table\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"organization-other\\\\\\\",\\\\n      \\\\\\\"f1\\\\\\\": 0.1849442379182156,\\\\n      \\\\\\\"precision\\\\\\\": 0.22309417040358745,\\\\n      \\\\\\\"recall\\\\\\\": 0.15793650793650793,\\\\n      \\\\\\\"freq\\\\\\\": 1260,\\\\n      \\\\\\\"mean_bcs_minilm\\\\\\\": 0.2861433818936348,\\\\n      \\\\\\\"mean_bcs_qwen3\\\\\\\": 0.837393607543065\\\\n    },\\\\n    {\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"product-other\\\\\\\",\\\\n      \\\\\\\"f1\\\\\\\": 0.14749262536873156,\\\\n      \\\\\\\"precision\\\\\\\": 0.13440860215053763,\\\\n      \\\\\\\"recall\\\\\\\": 0.16339869281045752,\\\\n      \\\\\\\"freq\\\\\\\": 459,\\\\n      \\\\\\\"mean_bcs_minilm\\\\\\\": 0.2752274099880686,\\\\n      \\\\\\\"mean_bcs_qwen3\\\\\\\": 0.8188239849530734\\\\n    },\\\\n    {\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"art-other\\\\\\\",\\\\n      \\\\\\\"f1\\\\\\\": 0.010723860589812333,\\\\n      \\\\\\\"precision\\\\\\\": 0.006557377049180328,\\\\n      \\\\\\\"recall\\\\\\\": 0.029411764705882353,\\\\n      \\\\\\\"freq\\\\\\\": 68,\\\\n      \\\\\\\"mean_bcs_minilm\\\\\\\": 0.27375363633036615,\\\\n      \\\\\\\"mean_bcs_qwen3\\\\\\\": 0.8099436980027419\\\\n    },\\\\n    {\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"event-other\\\\\\\",\\\\n      \\\\\\\"f1\\\\\\\": 0.1488095238095238,\\\\n      \\\\\\\"precision\\\\\\\": 0.1388888888888889,\\\\n      \\\\\\\"recall\\\\\\\": 0.16025641025641027,\\\\n      \\\\\\\"freq\\\\\\\": 156,\\\\n      \\\\\\\"mean_bcs_minilm\\\\\\\": 0.26001472163658873,\\\\n      \\\\\\\"mean_bcs_qwen3\\\\\\\": 0.838941321006188\\\\n    },\\\\n    {\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"organization-company\\\\\\\",\\\\n      \\\\\\\"f1\\\\\\\": 0.465034965034965,\\\\n      \\\\\\\"precision\\\\\\\": 0.4367816091954023,\\\\n      \\\\\\\"recall\\\\\\\": 0.497196261682243,\\\\n      \\\\\\\"freq\\\\\\\": 535,\\\\n      \\\\\\\"mean_bcs_minilm\\\\\\\": 0.25870773712029826,\\\\n      \\\\\\\"mean_bcs_qwen3\\\\\\\": 0.8175802973600534\\\\n    },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_types_analyzed\\\": 63,\\n  \\\"min_freq_threshold\\\": 5,\\n  \\\"bcs_distribution\\\": {\\n    \\\"qwen3\\\": {\\n      \\\"mean\\\": 0.8076871037483215,\\n      \\\"std\\\": 0.059903834015131,\\n      \\\"min\\\": 0.44222763180732727,\\n      \\\"max\\\": 0.9731677770614624\\n    },\\n    \\\"minilm\\\": {\\n      \\\"mean\\\": 0.19521111249923706,\\n      \\\"std\\\": 0.14406569302082062,\\n      \\\"min\\\": -0.049742020666599274,\\n      \\\"max\\\": 0.8559799790382385\\n    },\\n    \\\"matrix_pearson_r\\\": 0.35530364513397217,\\n    \\\"matrix_spearman_rho\\\": 0.33463086543405135\\n  },\\n  \\\"top10_overlap\\\": 2,\\n  \\\"per_type_correlations\\\": {\\n    \\\"minilm\\\": {\\n      \\\"spearman\\\": {\\n        \\\"rho\\\": 0.00494431643625192,\\n        \\\"p\\\": 0.9693220008512567\\n      },\\n      \\\"pearson\\\": {\\n        \\\"r\\\": -0.11185209472373865,\\n        \\\"p\\\": 0.3827919783284306\\n      },\\n      \\\"partial_controlling_log_freq\\\": {\\n        \\\"r\\\": -0.14768225472441895,\\n        \\\"p\\\": 0.24806371159532303\\n      }\\n    },\\n    \\\"qwen3\\\": {\\n      \\\"spearman\\\": {\\n        \\\"rho\\\": -0.2809139784946237,\\n        \\\"p\\\": 0.0257373731417258\\n      },\\n      \\\"pearson\\\": {\\n        \\\"r\\\": -0.1805058580157943,\\n        \\\"p\\\": 0.15686651349355957\\n      },\\n      \\\"partial_controlling_log_freq\\\": {\\n        \\\"r\\\": -0.19782699346820837,\\n        \\\"p\\\": 0.12014545424132653\\n      }\\n    }\\n  },\\n  \\\"mean_bcs_cross_embedding_corr\\\": {\\n    \\\"pearson_r\\\": 0.18793232188623263,\\n    \\\"spearman_rho\\\": 0.14333717357910905\\n  },\\n  \\\"per_type_table\\\": [\\n    {\\n      \\\"type\\\": \\\"organization-other\\\",\\n      \\\"f1\\\": 0.1849442379182156,\\n      \\\"precision\\\": 0.22309417040358745,\\n      \\\"recall\\\": 0.15793650793650793,\\n      \\\"freq\\\": 1260,\\n      \\\"mean_bcs_minilm\\\": 0.2861433818936348,\\n      \\\"mean_bcs_qwen3\\\": 0.837393607543065\\n    },\\n    {\\n      \\\"type\\\": \\\"product-other\\\",\\n      \\\"f1\\\": 0.14749262536873156,\\n      \\\"precision\\\": 0.13440860215053763,\\n      \\\"recall\\\": 0.16339869281045752,\\n      \\\"freq\\\": 459,\\n      \\\"mean_bcs_minilm\\\": 0.2752274099880686,\\n      \\\"mean_bcs_qwen3\\\": 0.8188239849530734\\n    },\\n    {\\n      \\\"type\\\": \\\"art-other\\\",\\n      \\\"f1\\\": 0.010723860589812333,\\n      \\\"precision\\\": 0.006557377049180328,\\n      \\\"recall\\\": 0.029411764705882353,\\n      \\\"freq\\\": 68,\\n      \\\"mean_bcs_minilm\\\": 0.27375363633036615,\\n      \\\"mean_bcs_qwen3\\\": 0.8099436980027419\\n    },\\n    {\\n      \\\"type\\\": \\\"event-other\\\",\\n      \\\"f1\\\": 0.1488095238095238,\\n      \\\"precision\\\": 0.1388888888888889,\\n      \\\"recall\\\": 0.16025641025641027,\\n      \\\"freq\\\": 156,\\n      \\\"mean_bcs_minilm\\\": 0.26001472163658873,\\n      \\\"mean_bcs_qwen3\\\": 0.838941321006188\\n    },\\n    {\\n      \\\"type\\\": \\\"organization-company\\\",\\n      \\\"f1\\\": 0.465034965034965,\\n      \\\"precision\\\": 0.4367816091954023,\\n      \\\"recall\\\": 0.497196261682243,\\n      \\\"freq\\\": 535,\\n      \\\"mean_bcs_minilm\\\": 0.25870773712029826,\\n      \\\"mean_bcs_qwen3\\\": 0.8175802973600534\\n    },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-16T03:48:16.330Z_
+
+<details><summary>↩ Tool result · `toolu_012esdoYRy4KxpyRbvR8Ykjj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"fewnerd_pairwise_bcs_confusion_pearson\\\": {\\n    \\\"point_estimate\\\": 0.11194228679186226,\\n    \\\"ci_lower\\\": 0.07611170760475225,\\n    \\\"ci_upper\\\": 0.15557302251279234,\\n    \\\"n_samples\\\": 1953,\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_valid_bootstrap\\\": 1000\\n  },\\n  \\\"maven_minilm_pairwise_scs_confusion_pearson\\\": {\\n    \\\"point_estimate\\\": 0.1285734563090772,\\n    \\\"ci_lower\\\": 0.1042202065143815,\\n    \\\"ci_upper\\\": 0.15567039374201597,\\n    \\\"n_samples\\\": 11026,\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_valid_bootstrap\\\": 1000\\n  },\\n  \\\"fewrel_bcs_controlled_accuracy_delta\\\": {\\n    \\\"count_8\\\": {\\n      \\\"point_estimate_delta_pp\\\": 31.25,\\n      \\\"ci_lower_pp\\\": 17.71,\\n      \\\"ci_upper_pp\\\": 42.71,\\n      \\\"acc_low_bcs\\\": 0.8229,\\n      \\\"acc_high_bcs\\\": 0.5104,\\n      \\\"n_low\\\": 96,\\n      \\\"n_high\\\": 96,\\n      \\\"bcs_low\\\": 0.4715,\\n      \\\"bcs_high\\\": 0.9706,\\n      \\\"n_bootstrap\\\": 1000\\n    },\\n    \\\"count_16\\\": {\\n      \\\"point_estimate_delta_pp\\\": 31.25,\\n      \\\"ci_lower_pp\\\": 22.92,\\n      \\\"ci_upper_pp\\\": 39.58,\\n      \\\"acc_low_bcs\\\": 0.8281,\\n      \\\"acc_high_bcs\\\": 0.5156,\\n      \\\"n_low\\\": 192,\\n      \\\"n_high\\\": 192,\\n      \\\"bcs_low\\\": 0.5705,\\n      \\\"bcs_high\\\": 0.9706,\\n      \\\"n_bootstrap\\\": 1000\\n    }\\n  },\\n  \\\"fewnerd_pertype_f1_vs_bcs_spearman\\\": {\\n    \\\"point_estimate\\\": -0.29272273425499235,\\n    \\\"ci_lower\\\": -0.49201616989480357,\\n    \\\"ci_upper\\\": -0.05392805069050774,\\n    \\\"n_samples\\\": 63,\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_valid_bootstrap\\\": 1000\\n  },\\n  \\\"exp002_confusion_ratio\\\": {\\n    \\\"count_6\\\": {\\n      \\\"point_estimate_ratio\\\": 25.3,\\n      \\\"ci_lower\\\": 6.1,\\n      \\\"ci_upper\\\": 60.5,\\n      \\\"high_bcs_wrong_type\\\": 49,\\n      \\\"high_bcs_total_gold\\\": 413,\\n      \\\"high_bcs_rate\\\": 0.11864,\\n      \\\"low_bcs_wrong_type\\\": 1,\\n      \\\"low_bcs_total_gold\\\": 213,\\n      \\\"low_bcs_rate\\\": 0.00469,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"note\\\": \\\"Haldane-Anscombe correction (+0.5/+1) for zero-count stability\\\"\\n    },\\n    \\\"count_12\\\": {\\n      \\\"point_estimate_ratio\\\": 21.2,\\n      \\\"ci_lower\\\": 5.3,\\n      \\\"ci_upper\\\": 52.2,\\n      \\\"high_bcs_wrong_type\\\": 42,\\n      \\\"high_bcs_total_gold\\\": 568,\\n      \\\"high_bcs_rate\\\": 0.07394,\\n      \\\"low_bcs_wrong_type\\\": 1,\\n      \\\"low_bcs_total_gold\\\": 287,\\n      \\\"low_bcs_rate\\\": 0.00348,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"note\\\": \\\"Haldane-Anscombe correction (+0.5/+1) for zero-count stability\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "4a4d5058-f360-4e36-884f-b7eac0f47644",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"fewnerd_pairwise_bcs_confusion_pearson\\\\\\\": {\\\\n    \\\\\\\"point_estimate\\\\\\\": 0.11194228679186226,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.07611170760475225,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.15557302251279234,\\\\n    \\\\\\\"n_samples\\\\\\\": 1953,\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n  },\\\\n  \\\\\\\"maven_minilm_pairwise_scs_confusion_pearson\\\\\\\": {\\\\n    \\\\\\\"point_estimate\\\\\\\": 0.1285734563090772,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.1042202065143815,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.15567039374201597,\\\\n    \\\\\\\"n_samples\\\\\\\": 11026,\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n  },\\\\n  \\\\\\\"fewrel_bcs_controlled_accuracy_delta\\\\\\\": {\\\\n    \\\\\\\"count_8\\\\\\\": {\\\\n      \\\\\\\"point_estimate_delta_pp\\\\\\\": 31.25,\\\\n      \\\\\\\"ci_lower_pp\\\\\\\": 17.71,\\\\n      \\\\\\\"ci_upper_pp\\\\\\\": 42.71,\\\\n      \\\\\\\"acc_low_bcs\\\\\\\": 0.8229,\\\\n      \\\\\\\"acc_high_bcs\\\\\\\": 0.5104,\\\\n      \\\\\\\"n_low\\\\\\\": 96,\\\\n      \\\\\\\"n_high\\\\\\\": 96,\\\\n      \\\\\\\"bcs_low\\\\\\\": 0.4715,\\\\n      \\\\\\\"bcs_high\\\\\\\": 0.9706,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000\\\\n    },\\\\n    \\\\\\\"count_16\\\\\\\": {\\\\n      \\\\\\\"point_estimate_delta_pp\\\\\\\": 31.25,\\\\n      \\\\\\\"ci_lower_pp\\\\\\\": 22.92,\\\\n      \\\\\\\"ci_upper_pp\\\\\\\": 39.58,\\\\n      \\\\\\\"acc_low_bcs\\\\\\\": 0.8281,\\\\n      \\\\\\\"acc_high_bcs\\\\\\\": 0.5156,\\\\n      \\\\\\\"n_low\\\\\\\": 192,\\\\n      \\\\\\\"n_high\\\\\\\": 192,\\\\n      \\\\\\\"bcs_low\\\\\\\": 0.5705,\\\\n      \\\\\\\"bcs_high\\\\\\\": 0.9706,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000\\\\n    }\\\\n  },\\\\n  \\\\\\\"fewnerd_pertype_f1_vs_bcs_spearman\\\\\\\": {\\\\n    \\\\\\\"point_estimate\\\\\\\": -0.29272273425499235,\\\\n    \\\\\\\"ci_lower\\\\\\\": -0.49201616989480357,\\\\n    \\\\\\\"ci_upper\\\\\\\": -0.05392805069050774,\\\\n    \\\\\\\"n_samples\\\\\\\": 63,\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n  },\\\\n  \\\\\\\"exp002_confusion_ratio\\\\\\\": {\\\\n    \\\\\\\"count_6\\\\\\\": {\\\\n      \\\\\\\"point_estimate_ratio\\\\\\\": 25.3,\\\\n      \\\\\\\"ci_lower\\\\\\\": 6.1,\\\\n      \\\\\\\"ci_upper\\\\\\\": 60.5,\\\\n      \\\\\\\"high_bcs_wrong_type\\\\\\\": 49,\\\\n      \\\\\\\"high_bcs_total_gold\\\\\\\": 413,\\\\n      \\\\\\\"high_bcs_rate\\\\\\\": 0.11864,\\\\n      \\\\\\\"low_bcs_wrong_type\\\\\\\": 1,\\\\n      \\\\\\\"low_bcs_total_gold\\\\\\\": 213,\\\\n      \\\\\\\"low_bcs_rate\\\\\\\": 0.00469,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"Haldane-Anscombe correction (+0.5/+1) for zero-count stability\\\\\\\"\\\\n    },\\\\n    \\\\\\\"count_12\\\\\\\": {\\\\n      \\\\\\\"point_estimate_ratio\\\\\\\": 21.2,\\\\n      \\\\\\\"ci_lower\\\\\\\": 5.3,\\\\n      \\\\\\\"ci_upper\\\\\\\": 52.2,\\\\n      \\\\\\\"high_bcs_wrong_type\\\\\\\": 42,\\\\n      \\\\\\\"high_bcs_total_gold\\\\\\\": 568,\\\\n      \\\\\\\"high_bcs_rate\\\\\\\": 0.07394,\\\\n      \\\\\\\"low_bcs_wrong_type\\\\\\\": 1,\\\\n      \\\\\\\"low_bcs_total_gold\\\\\\\": 287,\\\\n      \\\\\\\"low_bcs_rate\\\\\\\": 0.00348,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"Haldane-Anscombe correction (+0.5/+1) for zero-count stability\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"fewnerd_pairwise_bcs_confusion_pearson\\\": {\\n    \\\"point_estimate\\\": 0.11194228679186226,\\n    \\\"ci_lower\\\": 0.07611170760475225,\\n    \\\"ci_upper\\\": 0.15557302251279234,\\n    \\\"n_samples\\\": 1953,\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_valid_bootstrap\\\": 1000\\n  },\\n  \\\"maven_minilm_pairwise_scs_confusion_pearson\\\": {\\n    \\\"point_estimate\\\": 0.1285734563090772,\\n    \\\"ci_lower\\\": 0.1042202065143815,\\n    \\\"ci_upper\\\": 0.15567039374201597,\\n    \\\"n_samples\\\": 11026,\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_valid_bootstrap\\\": 1000\\n  },\\n  \\\"fewrel_bcs_controlled_accuracy_delta\\\": {\\n    \\\"count_8\\\": {\\n      \\\"point_estimate_delta_pp\\\": 31.25,\\n      \\\"ci_lower_pp\\\": 17.71,\\n      \\\"ci_upper_pp\\\": 42.71,\\n      \\\"acc_low_bcs\\\": 0.8229,\\n      \\\"acc_high_bcs\\\": 0.5104,\\n      \\\"n_low\\\": 96,\\n      \\\"n_high\\\": 96,\\n      \\\"bcs_low\\\": 0.4715,\\n      \\\"bcs_high\\\": 0.9706,\\n      \\\"n_bootstrap\\\": 1000\\n    },\\n    \\\"count_16\\\": {\\n      \\\"point_estimate_delta_pp\\\": 31.25,\\n      \\\"ci_lower_pp\\\": 22.92,\\n      \\\"ci_upper_pp\\\": 39.58,\\n      \\\"acc_low_bcs\\\": 0.8281,\\n      \\\"acc_high_bcs\\\": 0.5156,\\n      \\\"n_low\\\": 192,\\n      \\\"n_high\\\": 192,\\n      \\\"bcs_low\\\": 0.5705,\\n      \\\"bcs_high\\\": 0.9706,\\n      \\\"n_bootstrap\\\": 1000\\n    }\\n  },\\n  \\\"fewnerd_pertype_f1_vs_bcs_spearman\\\": {\\n    \\\"point_estimate\\\": -0.29272273425499235,\\n    \\\"ci_lower\\\": -0.49201616989480357,\\n    \\\"ci_upper\\\": -0.05392805069050774,\\n    \\\"n_samples\\\": 63,\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_valid_bootstrap\\\": 1000\\n  },\\n  \\\"exp002_confusion_ratio\\\": {\\n    \\\"count_6\\\": {\\n      \\\"point_estimate_ratio\\\": 25.3,\\n      \\\"ci_lower\\\": 6.1,\\n      \\\"ci_upper\\\": 60.5,\\n      \\\"high_bcs_wrong_type\\\": 49,\\n      \\\"high_bcs_total_gold\\\": 413,\\n      \\\"high_bcs_rate\\\": 0.11864,\\n      \\\"low_bcs_wrong_type\\\": 1,\\n      \\\"low_bcs_total_gold\\\": 213,\\n      \\\"low_bcs_rate\\\": 0.00469,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"note\\\": \\\"Haldane-Anscombe correction (+0.5/+1) for zero-count stability\\\"\\n    },\\n    \\\"count_12\\\": {\\n      \\\"point_estimate_ratio\\\": 21.2,\\n      \\\"ci_lower\\\": 5.3,\\n      \\\"ci_upper\\\": 52.2,\\n      \\\"high_bcs_wrong_type\\\": 42,\\n      \\\"high_bcs_total_gold\\\": 568,\\n      \\\"high_bcs_rate\\\": 0.07394,\\n      \\\"low_bcs_wrong_type\\\": 1,\\n      \\\"low_bcs_total_gold\\\": 287,\\n      \\\"low_bcs_rate\\\": 0.00348,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"note\\\": \\\"Haldane-Anscombe correction (+0.5/+1) for zero-count stability\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `bootstrap_ci.json` has `exp002_confusion_ratio` data. The `embedding_ablation_fewnerd.json` has per-type analysis data.
+
+Now I need to understand what data was used for exp002 vs exp003a. Looking at the decisions:
+- D005 says exp002 data showed F1 vs BCS in count_12 significant (r=0.50, p=0.008)
+- D008 says exp003a v2 showed within-count BCS-F1 positive correlation (opposite direction)
+
+
+- The top-level `eval_exp2.json` appears to be the v1 data based on D005's reported statistics, so the v2 results for exp003a were likely stored separately or overwritten.
+- D008 reveals that exp003a with the v2 prompt actually found a positive correlation between BCS and F1, contradicting the hypothesis and differing from v1's results—possibly due to type frequency confounding the analysis.
+- I should check git history to see if there's a record of the v2 run or look for the exp003a data in other locations.
+
+Now I'm looking at the timeline more carefully. The `eval_exp2.json` file was last modified on May 15 at 13:02, which is after both the MVP decision and the v2 rerun discovery. Given that the file contains per-batch results with BCS and F1 metrics, I need to determine whether this represents v1 or v2 data—the modification timestamp suggests it could be the v2 results, but the project decisions seem to have moved past the prompt comparison phase.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "1b4758e2-48c7-4ebf-abd7-2d8e063b8011",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TWmHTWBaGxfzoQ7EUrXCTK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3898,
+      "cache_read_input_tokens": 51861,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XiyWxvJwC1CMiHTojfNCie`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*.py\" -path \"*/src/*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "a39f523b-a9ba-47b6-9ea9-cde098adefd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TWmHTWBaGxfzoQ7EUrXCTK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3898,
+      "cache_read_input_tokens": 51861,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T03:48:35.540Z_
+
+<details><summary>↩ Tool result · `toolu_01XiyWxvJwC1CMiHTojfNCie`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/few_nerd_utils.py\\n/root/schema-dag-extraction/src/compute_type_embeddings.py\\n/root/schema-dag-extraction/src/compute_bcs.py\\n/root/schema-dag-extraction/src/select_type_batches.py\\n/root/schema-dag-extraction/src/run_extraction.py\\n/root/schema-dag-extraction/src/evaluate.py\\n/root/schema-dag-extraction/src/run_experiment.py\\n/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/diagnose_eval.py\\n/root/schema-dag-extraction/src/text_match_reeval.py\\n/root/schema-dag-extraction/src/reeval_text_match.py\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\n/root/schema-dag-extraction/src/preprocess_maven.py\\n/root/schema-dag-extraction/src/build_re_prompt.py\\n/root/schema-dag-extraction/src/preprocess_fewrel.py\\n/root/schema-dag-extraction/src/compute_maven_scs.py\\n/root/schema-dag-extraction/src/per_type_analysis.py\\n/root/schema-dag-extraction/src/maven_utils.py\\n/root/schema-dag-extraction/src/fewrel_utils.py\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\n/root/schema-dag-extraction/src/sdgd/similarity.py\\n/root/schema-dag-extraction/src/sdgd/graph.py\\n/root/schema-dag-extraction/src/sdgd/merge.py\\n/root/schema-dag-extraction/src/sdgd/evaluate.py\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\n/root/schema-dag-extraction/src/sdgd/__init__.py\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\n/root/schema-dag-extraction/src/analyze_fewrel_results.py\\n/root/schema-dag-extraction/src/sdgd_decompose_cpu.py\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\n/root/schema-dag-extraction/src/analyze_exp008_results.py\\n/root/schema-dag-extraction/src/error_taxonomy.py\\n/root/schema-dag-extraction/src/fewrel_error_taxonomy.py\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\n/root/schema-dag-extraction/src/scs_validation.py\\n/root/schema-dag-extraction/src/maven_case_study.py\\n/root/schema-dag-extraction/src/run_fewrel_40rel.py\\n/root/schema-dag-extraction/src/run_fewrel_16rel_bootstrap.py\\n/root/schema-dag-extraction/src/run_fewrel_80pool_16sub_bootstrap.py\\n/root/schema-dag-extraction/src/round2_statistical_analyses.py\\n/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\n/root/schema-dag-extraction/src/round2_w4_w2_fix.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "602fdc1e-2199-4f0d-9cd2-ccf04311b26d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/few_nerd_utils.py\\\\n/root/schema-dag-extraction/src/compute_type_embeddings.py\\\\n/root/schema-dag-extraction/src/compute_bcs.py\\\\n/root/schema-dag-extraction/src/select_type_batches.py\\\\n/root/schema-dag-extraction/src/run_extraction.py\\\\n/root/schema-dag-extraction/src/evaluate.py\\\\n/root/schema-dag-extraction/src/run_experiment.py\\\\n/root/schema-dag-extraction/src/analyze_results.py\\\\n/root/schema-dag-extraction/src/diagnose_eval.py\\\\n/root/schema-dag-extraction/src/text_match_reeval.py\\\\n/root/schema-dag-extraction/src/reeval_text_match.py\\\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\\\n/root/schema-dag-extraction/src/preprocess_maven.py\\\\n/root/schema-dag-extraction/src/build_re_prompt.py\\\\n/root/schema-dag-extraction/src/preprocess_fewrel.py\\\\n/root/schema-dag-extraction/src/compute_maven_scs.py\\\\n/root/schema-dag-extraction/src/per_type_analysis.py\\\\n/root/schema-dag-extraction/src/maven_utils.py\\\\n/root/schema-dag-extraction/src/fewrel_utils.py\\\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\\\n/root/schema-dag-extraction/src/sdgd/similarity.py\\\\n/root/schema-dag-extraction/src/sdgd/graph.py\\\\n/root/schema-dag-extraction/src/sdgd/merge.py\\\\n/root/schema-dag-extraction/src/sdgd/evaluate.py\\\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\\\n/root/schema-dag-extraction/src/sdgd/__init__.py\\\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\\\n/root/schema-dag-extraction/src/analyze_fewrel_results.py\\\\n/root/schema-dag-extraction/src/sdgd_decompose_cpu.py\\\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\\\n/root/schema-dag-extraction/src/analyze_exp008_results.py\\\\n/root/schema-dag-extraction/src/error_taxonomy.py\\\\n/root/schema-dag-extraction/src/fewrel_error_taxonomy.py\\\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\\\n/root/schema-dag-extraction/src/scs_validation.py\\\\n/root/schema-dag-extraction/src/maven_case_study.py\\\\n/root/schema-dag-extraction/src/run_fewrel_40rel.py\\\\n/root/schema-dag-extraction/src/run_fewrel_16rel_bootstrap.py\\\\n/root/schema-dag-extraction/src/run_fewrel_80pool_16sub_bootstrap.py\\\\n/root/schema-dag-extraction/src/round2_statistical_analyses.py\\\\n/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\\\n/root/schema-dag-extraction/src/round2_w4_w2_fix.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/few_nerd_utils.py\\n/root/schema-dag-extraction/src/compute_type_embeddings.py\\n/root/schema-dag-extraction/src/compute_bcs.py\\n/root/schema-dag-extraction/src/select_type_batches.py\\n/root/schema-dag-extraction/src/run_extraction.py\\n/root/schema-dag-extraction/src/evaluate.py\\n/root/schema-dag-extraction/src/run_experiment.py\\n/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/diagnose_eval.py\\n/root/schema-dag-extraction/src/text_match_reeval.py\\n/root/schema-dag-extraction/src/reeval_text_match.py\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\n/root/schema-dag-extraction/src/preprocess_maven.py\\n/root/schema-dag-extraction/src/build_re_prompt.py\\n/root/schema-dag-extraction/src/preprocess_fewrel.py\\n/root/schema-dag-extraction/src/compute_maven_scs.py\\n/root/schema-dag-extraction/src/per_type_analysis.py\\n/root/schema-dag-extraction/src/maven_utils.py\\n/root/schema-dag-extraction/src/fewrel_utils.py\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\n/root/schema-dag-extraction/src/sdgd/similarity.py\\n/root/schema-dag-extraction/src/sdgd/graph.py\\n/root/schema-dag-extraction/src/sdgd/merge.py\\n/root/schema-dag-extraction/src/sdgd/evaluate.py\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\n/root/schema-dag-extraction/src/sdgd/__init__.py\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\n/root/schema-dag-extraction/src/analyze_fewrel_results.py\\n/root/schema-dag-extraction/src/sdgd_decompose_cpu.py\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\n/root/schema-dag-extraction/src/analyze_exp008_results.py\\n/root/schema-dag-extraction/src/error_taxonomy.py\\n/root/schema-dag-extraction/src/fewrel_error_taxonomy.py\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\n/root/schema-dag-extraction/src/scs_validation.py\\n/root/schema-dag-extraction/src/maven_case_study.py\\n/root/schema-dag-extraction/src/run_fewrel_40rel.py\\n/root/schema-dag-extraction/src/run_fewrel_16rel_bootstrap.py\\n/root/schema-dag-extraction/src/run_fewrel_80pool_16sub_bootstrap.py\\n/root/schema-dag-extraction/src/round2_statistical_analyses.py\\n/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\n/root/schema-dag-extraction/src/round2_w4_w2_fix.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UPVUixPXeoWLDqHtKTmC2M`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -rl \"prompt_v2\\|exp003\\|v2_prompt\\|prompt_version\" /root/schema-dag-extraction/src/ /root/schema-dag-extraction/scripts/ /root/schema-dag-extraction/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "7fbf2bc6-24dc-48f6-ad9d-fe3e78299948",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TWmHTWBaGxfzoQ7EUrXCTK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3898,
+      "cache_read_input_tokens": 51861,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T03:48:36.445Z_
+
+<details><summary>↩ Tool result · `toolu_01UPVUixPXeoWLDqHtKTmC2M`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "cb08d8b3-1092-4726-b5bb-dc07bba3539e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LAD56M2ttAje1JP7w7Ypa8`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -rl \"prompt_v2\" /root/schema-dag-extraction/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "f7a0f476-c899-40eb-b5eb-b239ab209e72",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G7q6XqW7En8wJ3iNBgB46T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2213,
+      "cache_read_input_tokens": 55759,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2213
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T03:48:40.159Z_
+
+<details><summary>↩ Tool result · `toolu_01LAD56M2ttAje1JP7w7Ypa8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_extraction.py\\n/root/schema-dag-extraction/src/__pycache__/run_extraction.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_fewrel_pilot.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_sdgd_experiment.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_fewrel_formal.cpython-312.pyc\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\n/root/schema-dag-extraction/src/sdgd/__pycache__/decompose.cpython-312.pyc\\n/root/schema-dag-extraction/src/sdgd/__pycache__/calibrate.cpython-312.pyc\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\n/root/schema-dag-extraction/src/run_fewrel_40rel.py\\n/root/schema-dag-extraction/src/run_fewrel_16rel_bootstrap.py\\n/root/schema-dag-extraction/src/run_fewrel_80pool_16sub_bootstrap.py\\n/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "b2a7451e-f87d-44f5-a5ee-742c698da270",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/run_extraction.py\\\\n/root/schema-dag-extraction/src/__pycache__/run_extraction.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/__pycache__/run_fewrel_pilot.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/__pycache__/run_sdgd_experiment.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/__pycache__/run_fewrel_formal.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\\\n/root/schema-dag-extraction/src/sdgd/__pycache__/decompose.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/sdgd/__pycache__/calibrate.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\\\n/root/schema-dag-extraction/src/run_fewrel_40rel.py\\\\n/root/schema-dag-extraction/src/run_fewrel_16rel_bootstrap.py\\\\n/root/schema-dag-extraction/src/run_fewrel_80pool_16sub_bootstrap.py\\\\n/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_extraction.py\\n/root/schema-dag-extraction/src/__pycache__/run_extraction.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_fewrel_pilot.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_sdgd_experiment.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_fewrel_formal.cpython-312.pyc\\n/root/schema-dag-extraction/src/run_fewrel_pilot.py\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\n/root/schema-dag-extraction/src/sdgd/__pycache__/decompose.cpython-312.pyc\\n/root/schema-dag-extraction/src/sdgd/__pycache__/calibrate.cpython-312.pyc\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\n/root/schema-dag-extraction/src/run_fewrel_40rel.py\\n/root/schema-dag-extraction/src/run_fewrel_16rel_bootstrap.py\\n/root/schema-dag-extraction/src/run_fewrel_80pool_16sub_bootstrap.py\\n/root/schema-dag-extraction/src/run_fewrel_v2_bcs.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JRCgRsxo2Qrj6SCp5Z3YST`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -rl \"prompt_version\" /root/schema-dag-extraction/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "b0fedb9a-23ae-407d-9c08-d9842b9a6fbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G7q6XqW7En8wJ3iNBgB46T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2213,
+      "cache_read_input_tokens": 55759,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2213
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XCE7aPUgi1BaVJRDJ9FnsP`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/src/run_extraction.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "3948ad61-1755-4d47-bdd2-10a824cd6ff7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G7q6XqW7En8wJ3iNBgB46T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2213,
+      "cache_read_input_tokens": 55759,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2213
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-16T03:48:41.056Z_
+
+<details><summary>↩ Tool result · `toolu_01JRCgRsxo2Qrj6SCp5Z3YST`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_extraction.py\\n/root/schema-dag-extraction/src/run_experiment.py\\n/root/schema-dag-extraction/src/__pycache__/run_extraction.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_experiment.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_sdgd_experiment.cpython-312.pyc\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\n/root/schema-dag-extraction/src/sdgd/__pycache__/decompose.cpython-312.pyc\\n/root/schema-dag-extraction/src/sdgd/__pycache__/calibrate.cpython-312.pyc\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\n/root/schema-dag-extraction/src/run_sdgd_full.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "d49abdf8-26c5-4f6a-897a-bfda568d21c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/run_extraction.py\\\\n/root/schema-dag-extraction/src/run_experiment.py\\\\n/root/schema-dag-extraction/src/__pycache__/run_extraction.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/__pycache__/run_experiment.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/__pycache__/run_sdgd_experiment.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\\\n/root/schema-dag-extraction/src/sdgd/__pycache__/decompose.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/sdgd/__pycache__/calibrate.cpython-312.pyc\\\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\\\n/root/schema-dag-extraction/src/run_sdgd_full.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_extraction.py\\n/root/schema-dag-extraction/src/run_experiment.py\\n/root/schema-dag-extraction/src/__pycache__/run_extraction.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_experiment.cpython-312.pyc\\n/root/schema-dag-extraction/src/__pycache__/run_sdgd_experiment.cpython-312.pyc\\n/root/schema-dag-extraction/src/sdgd/decompose.py\\n/root/schema-dag-extraction/src/sdgd/__pycache__/decompose.cpython-312.pyc\\n/root/schema-dag-extraction/src/sdgd/__pycache__/calibrate.cpython-312.pyc\\n/root/schema-dag-extraction/src/sdgd/calibrate.py\\n/root/schema-dag-extraction/src/run_sdgd_experiment.py\\n/root/schema-dag-extraction/src/sdgd_extract_gpu.py\\n/root/schema-dag-extraction/src/run_sdgd_full.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-16T03:48:41.597Z_
+
+<details><summary>↩ Tool result · `toolu_01XCE7aPUgi1BaVJRDJ9FnsP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Constrained JSON decoding NER extraction using vLLM.\\n\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\n\\nInput: Few-NERD test data, type batch config, LLM model\\nOutput: JSON with extraction results per (sample, batch) pair\\nDependencies: vllm, transformers\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport time\\nfrom pathlib import Path\\nfrom typing import Dict, List, Optional, Set\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\n# --- v1: original schema/prompt with start/end offsets ---\\n\\ndef build_json_schema_v1(batch_types: list) -> dict:\\n    \\\"\\\"\\\"Build JSON schema with start/end offsets (v1).\\\"\\\"\\\"\\n    return {\\n        \\\"type\\\": \\\"array\\\",\\n        \\\"items\\\": {\\n            \\\"type\\\": \\\"object\\\",\\n            \\\"properties\\\": {\\n                \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": sorted(batch_types)},\\n                \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n            },\\n            \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n        },\\n    }\\n\\n\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\n    \\\"\\\"\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all named entities from the following text. \\\"\\n        f\\\"Only extract entities of the following types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": ..., \\\"end\\\": ...}}]'\\n    )\\n\\n\\n# --- v2: text+type only, no offsets ---\\n\\ndef build_json_schema_v2(batch_types: list) -> dict:\\n    \\\"\\\"\\\"Build JSON schema without start/end fields (v2: text+type only).\\\"\\\"\\\"\\n    return {\\n        \\\"type\\\": \\\"array\\\",\\n        \\\"items\\\": {\\n            \\\"type\\\": \\\"object\\\",\\n            \\\"properties\\\": {\\n                \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": sorted(batch_types)},\\n            },\\n            \\\"required\\\": [\\\"text\\\", \\\"type\\\"],\\n        },\\n    }\\n\\n\\ndef build_prompt_v2(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\n    \\\"\\\"\\\"Build NER extraction prompt without offsets (v2: text+type only).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all named entities from the following text. \\\"\\n        f\\\"Only extract entities of the following types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f\\\"Only extract entities that clearly match one of the given types. \\\"\\n        f\\\"If no entities of these types exist in the text, output an empty list [].\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\"}}]'\\n    )\\n\\n\\n# Backward-compatible aliases\\nbuild_json_schema = build_json_schema_v1\\nbuild_prompt = build_prompt_v1\\n\\n# --- Event Detection prompts (for MAVEN-style tasks) ---\\n\\ndef build_prompt_v2_event(input_text: str, type_definitions: dict, type_subset: list) -> str:\\n    \\\"\\\"\\\"Build event trigger extraction prompt (v2: text+type only).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all event triggers from the following text. \\\"\\n        f\\\"A trigger is the word or phrase that most clearly expresses the event occurrence. \\\"\\n        f\\\"Only extract triggers of the following event types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f\\\"Only extract triggers that clearly match one of the given event types. \\\"\\n        f\\\"If no events of these types exist in the text, output an empty list [].\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\",\\n\\n... [截断: 输出过长，省略 6026 字符] ...\\n\\n    continue\\n            else:\\n                for si, sample in enumerate(samples):\\n                    prompt = prompt_fn(sample[\\\"text\\\"], type_definitions, batch_types)\\n                    prompts.append(prompt)\\n                    sample_indices.append(si)\\n\\n            if _needs_chat_template:\\n                prompts = [\\n                    tokenizer.apply_chat_template(\\n                        [{\\\"role\\\": \\\"user\\\", \\\"content\\\": p}],\\n                        tokenize=False,\\n                        add_generation_prompt=True,\\n                    )\\n                    for p in prompts\\n                ]\\n\\n            t0 = time.time()\\n            outputs = llm.generate(prompts, sampling_params)\\n            elapsed = time.time() - t0\\n\\n            for oi, output in enumerate(outputs):\\n                si = sample_indices[oi]\\n                generated_text = output.outputs[0].text\\n                prompt_tokens = len(output.prompt_token_ids)\\n                gen_tokens = len(output.outputs[0].token_ids)\\n\\n                try:\\n                    predictions = json.loads(generated_text)\\n                except json.JSONDecodeError:\\n                    logger.warning(\\\"Failed to parse JSON for sample %d batch %s: %s\\\",\\n                                   si, full_batch_id, generated_text[:200])\\n                    predictions = []\\n\\n                all_results.append({\\n                    \\\"sample_id\\\": si,\\n                    \\\"batch_id\\\": full_batch_id,\\n                    \\\"count_key\\\": count_key,\\n                    \\\"batch_types\\\": batch_types,\\n                    \\\"batch_bcs\\\": batch_bcs,\\n                    \\\"predictions\\\": predictions,\\n                    \\\"prompt_tokens\\\": prompt_tokens,\\n                    \\\"gen_tokens\\\": gen_tokens,\\n                    \\\"latency_s\\\": elapsed / len(prompts),\\n                    \\\"prompt_version\\\": prompt_version,\\n                })\\n\\n            logger.info(\\\"  Batch %s done: %.1fs total, %d outputs\\\", full_batch_id, elapsed, len(outputs))\\n\\n    return all_results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Run constrained JSON NER extraction with vLLM\\\")\\n    parser.add_argument(\\\"--model_path\\\", required=True, help=\\\"Path to model directory\\\")\\n    parser.add_argument(\\\"--data_dir\\\", default=\\\"/root/schema-dag-extraction/data\\\", help=\\\"Data directory\\\")\\n    parser.add_argument(\\\"--batch_config\\\", required=True, help=\\\"Type batch JSON from select_type_batches.py\\\")\\n    parser.add_argument(\\\"--output_path\\\", required=True, help=\\\"Output results JSON path\\\")\\n    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Max test samples\\\")\\n    parser.add_argument(\\\"--types_file\\\", required=True, help=\\\"Type definitions JSON path\\\")\\n    parser.add_argument(\\\"--max_model_len\\\", type=int, default=4096, help=\\\"vLLM max model len\\\")\\n    parser.add_argument(\\\"--prompt_version\\\", choices=[\\\"v1\\\", \\\"v2\\\"], default=\\\"v1\\\",\\n                        help=\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n\\n    import sys\\n    sys.path.insert(0, str(Path(__file__).parent))\\n    from few_nerd_utils import load_few_nerd, load_type_definitions\\n\\n    logger.info(\\\"Loading data...\\\")\\n    samples = load_few_nerd(split=\\\"test\\\", max_samples=args.max_samples)\\n    type_definitions = load_type_definitions(args.types_file)\\n\\n    with open(args.batch_config, \\\"r\\\") as f:\\n        batch_config = json.load(f)\\n\\n    results = run_extraction(\\n        model_path=args.model_path,\\n        samples=samples,\\n        batch_config=batch_config,\\n        type_definitions=type_definitions,\\n        max_model_len=args.max_model_len,\\n        prompt_version=args.prompt_version,\\n    )\\n\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output_path, \\\"w\\\") as f:\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\n    logger.info(\\\"Saved %d results to %s\\\", len(results), args.output_path)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "8db2c564-110c-4d69-9057-c1f7b812154f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Constrained JSON decoding NER extraction using vLLM.\\\\n\\\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\\\n\\\\nInput: Few-NERD test data, type batch config, LLM model\\\\nOutput: JSON with extraction results per (sample, batch) pair\\\\nDependencies: vllm, transformers\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport time\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Optional, Set\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# --- v1: original schema/prompt with start/end offsets ---\\\\n\\\\ndef build_json_schema_v1(batch_types: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build JSON schema with start/end offsets (v1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n        \\\\\\\"items\\\\\\\": {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n            \\\\\\\"properties\\\\\\\": {\\\\n                \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": sorted(batch_types)},\\\\n                \\\\\\\"start\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"integer\\\\\\\"},\\\\n                \\\\\\\"end\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"integer\\\\\\\"},\\\\n            },\\\\n            \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\", \\\\\\\"start\\\\\\\", \\\\\\\"end\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all named entities from the following text. \\\\\\\"\\\\n        f\\\\\\\"Only extract entities of the following types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"start\\\\\\\": ..., \\\\\\\"end\\\\\\\": ...}}]'\\\\n    )\\\\n\\\\n\\\\n# --- v2: text+type only, no offsets ---\\\\n\\\\ndef build_json_schema_v2(batch_types: list) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build JSON schema without start/end fields (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return {\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"array\\\\\\\",\\\\n        \\\\\\\"items\\\\\\\": {\\\\n            \\\\\\\"type\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n            \\\\\\\"properties\\\\\\\": {\\\\n                \\\\\\\"text\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\"},\\\\n                \\\\\\\"type\\\\\\\": {\\\\\\\"type\\\\\\\": \\\\\\\"string\\\\\\\", \\\\\\\"enum\\\\\\\": sorted(batch_types)},\\\\n            },\\\\n            \\\\\\\"required\\\\\\\": [\\\\\\\"text\\\\\\\", \\\\\\\"type\\\\\\\"],\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef build_prompt_v2(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build NER extraction prompt without offsets (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all named entities from the following text. \\\\\\\"\\\\n        f\\\\\\\"Only extract entities of the following types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Only extract entities that clearly match one of the given types. \\\\\\\"\\\\n        f\\\\\\\"If no entities of these types exist in the text, output an empty list [].\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"...\\\\\\\"}}]'\\\\n    )\\\\n\\\\n\\\\n# Backward-compatible aliases\\\\nbuild_json_schema = build_json_schema_v1\\\\nbuild_prompt = build_prompt_v1\\\\n\\\\n# --- Event Detection prompts (for MAVEN-style tasks) ---\\\\n\\\\ndef build_prompt_v2_event(input_text: str, type_definitions: dict, type_subset: list) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build event trigger extraction prompt (v2: text+type only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    type_desc_lines = []\\\\n    for t in sorted(type_subset):\\\\n        defn = type_definitions.get(t, t)\\\\n        type_desc_lines.append(f\\\\\\\"- {t}: {defn}\\\\\\\")\\\\n    type_desc = \\\\\\\"\\\\\\\\n\\\\\\\".join(type_desc_lines)\\\\n\\\\n    return (\\\\n        f\\\\\\\"Extract all event triggers from the following text. \\\\\\\"\\\\n        f\\\\\\\"A trigger is the word or phrase that most clearly expresses the event occurrence. \\\\\\\"\\\\n        f\\\\\\\"Only extract triggers of the following event types:\\\\\\\\n{type_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Text: {input_text}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f\\\\\\\"Only extract triggers that clearly match one of the given event types. \\\\\\\"\\\\n        f\\\\\\\"If no events of these types exist in the text, output an empty list [].\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        f'Output as JSON: [{{\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"...\\\\\\\\\\\\\\\",\\\\n\\\\n... [截断: 输出过长，省略 6026 字符] ...\\\\n\\\\n    continue\\\\n            else:\\\\n                for si, sample in enumerate(samples):\\\\n                    prompt = prompt_fn(sample[\\\\\\\"text\\\\\\\"], type_definitions, batch_types)\\\\n                    prompts.append(prompt)\\\\n                    sample_indices.append(si)\\\\n\\\\n            if _needs_chat_template:\\\\n                prompts = [\\\\n                    tokenizer.apply_chat_template(\\\\n                        [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": p}],\\\\n                        tokenize=False,\\\\n                        add_generation_prompt=True,\\\\n                    )\\\\n                    for p in prompts\\\\n                ]\\\\n\\\\n            t0 = time.time()\\\\n            outputs = llm.generate(prompts, sampling_params)\\\\n            elapsed = time.time() - t0\\\\n\\\\n            for oi, output in enumerate(outputs):\\\\n                si = sample_indices[oi]\\\\n                generated_text = output.outputs[0].text\\\\n                prompt_tokens = len(output.prompt_token_ids)\\\\n                gen_tokens = len(output.outputs[0].token_ids)\\\\n\\\\n                try:\\\\n                    predictions = json.loads(generated_text)\\\\n                except json.JSONDecodeError:\\\\n                    logger.warning(\\\\\\\"Failed to parse JSON for sample %d batch %s: %s\\\\\\\",\\\\n                                   si, full_batch_id, generated_text[:200])\\\\n                    predictions = []\\\\n\\\\n                all_results.append({\\\\n                    \\\\\\\"sample_id\\\\\\\": si,\\\\n                    \\\\\\\"batch_id\\\\\\\": full_batch_id,\\\\n                    \\\\\\\"count_key\\\\\\\": count_key,\\\\n                    \\\\\\\"batch_types\\\\\\\": batch_types,\\\\n                    \\\\\\\"batch_bcs\\\\\\\": batch_bcs,\\\\n                    \\\\\\\"predictions\\\\\\\": predictions,\\\\n                    \\\\\\\"prompt_tokens\\\\\\\": prompt_tokens,\\\\n                    \\\\\\\"gen_tokens\\\\\\\": gen_tokens,\\\\n                    \\\\\\\"latency_s\\\\\\\": elapsed / len(prompts),\\\\n                    \\\\\\\"prompt_version\\\\\\\": prompt_version,\\\\n                })\\\\n\\\\n            logger.info(\\\\\\\"  Batch %s done: %.1fs total, %d outputs\\\\\\\", full_batch_id, elapsed, len(outputs))\\\\n\\\\n    return all_results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Run constrained JSON NER extraction with vLLM\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", required=True, help=\\\\\\\"Path to model directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/data\\\\\\\", help=\\\\\\\"Data directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--batch_config\\\\\\\", required=True, help=\\\\\\\"Type batch JSON from select_type_batches.py\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_path\\\\\\\", required=True, help=\\\\\\\"Output results JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max test samples\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--types_file\\\\\\\", required=True, help=\\\\\\\"Type definitions JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_model_len\\\\\\\", type=int, default=4096, help=\\\\\\\"vLLM max model len\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--prompt_version\\\\\\\", choices=[\\\\\\\"v1\\\\\\\", \\\\\\\"v2\\\\\\\"], default=\\\\\\\"v1\\\\\\\",\\\\n                        help=\\\\\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n\\\\n    import sys\\\\n    sys.path.insert(0, str(Path(__file__).parent))\\\\n    from few_nerd_utils import load_few_nerd, load_type_definitions\\\\n\\\\n    logger.info(\\\\\\\"Loading data...\\\\\\\")\\\\n    samples = load_few_nerd(split=\\\\\\\"test\\\\\\\", max_samples=args.max_samples)\\\\n    type_definitions = load_type_definitions(args.types_file)\\\\n\\\\n    with open(args.batch_config, \\\\\\\"r\\\\\\\") as f:\\\\n        batch_config = json.load(f)\\\\n\\\\n    results = run_extraction(\\\\n        model_path=args.model_path,\\\\n        samples=samples,\\\\n        batch_config=batch_config,\\\\n        type_definitions=type_definitions,\\\\n        max_model_len=args.max_model_len,\\\\n        prompt_version=args.prompt_version,\\\\n    )\\\\n\\\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\\\n    logger.info(\\\\\\\"Saved %d results to %s\\\\\\\", len(results), args.output_path)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Constrained JSON decoding NER extraction using vLLM.\\n\\nv2 changes (2026-05-14): Added prompt_version support (v1=with offsets, v2=text+type only).\\n\\nInput: Few-NERD test data, type batch config, LLM model\\nOutput: JSON with extraction results per (sample, batch) pair\\nDependencies: vllm, transformers\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport time\\nfrom pathlib import Path\\nfrom typing import Dict, List, Optional, Set\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\n# --- v1: original schema/prompt with start/end offsets ---\\n\\ndef build_json_schema_v1(batch_types: list) -> dict:\\n    \\\"\\\"\\\"Build JSON schema with start/end offsets (v1).\\\"\\\"\\\"\\n    return {\\n        \\\"type\\\": \\\"array\\\",\\n        \\\"items\\\": {\\n            \\\"type\\\": \\\"object\\\",\\n            \\\"properties\\\": {\\n                \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": sorted(batch_types)},\\n                \\\"start\\\": {\\\"type\\\": \\\"integer\\\"},\\n                \\\"end\\\": {\\\"type\\\": \\\"integer\\\"},\\n            },\\n            \\\"required\\\": [\\\"text\\\", \\\"type\\\", \\\"start\\\", \\\"end\\\"],\\n        },\\n    }\\n\\n\\ndef build_prompt_v1(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\n    \\\"\\\"\\\"Build NER extraction prompt requesting start/end offsets (v1).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all named entities from the following text. \\\"\\n        f\\\"Only extract entities of the following types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\", \\\"start\\\": ..., \\\"end\\\": ...}}]'\\n    )\\n\\n\\n# --- v2: text+type only, no offsets ---\\n\\ndef build_json_schema_v2(batch_types: list) -> dict:\\n    \\\"\\\"\\\"Build JSON schema without start/end fields (v2: text+type only).\\\"\\\"\\\"\\n    return {\\n        \\\"type\\\": \\\"array\\\",\\n        \\\"items\\\": {\\n            \\\"type\\\": \\\"object\\\",\\n            \\\"properties\\\": {\\n                \\\"text\\\": {\\\"type\\\": \\\"string\\\"},\\n                \\\"type\\\": {\\\"type\\\": \\\"string\\\", \\\"enum\\\": sorted(batch_types)},\\n            },\\n            \\\"required\\\": [\\\"text\\\", \\\"type\\\"],\\n        },\\n    }\\n\\n\\ndef build_prompt_v2(input_text: str, type_definitions: Dict[str, str], type_subset: List[str]) -> str:\\n    \\\"\\\"\\\"Build NER extraction prompt without offsets (v2: text+type only).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all named entities from the following text. \\\"\\n        f\\\"Only extract entities of the following types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f\\\"Only extract entities that clearly match one of the given types. \\\"\\n        f\\\"If no entities of these types exist in the text, output an empty list [].\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\"text\\\": \\\"...\\\", \\\"type\\\": \\\"...\\\"}}]'\\n    )\\n\\n\\n# Backward-compatible aliases\\nbuild_json_schema = build_json_schema_v1\\nbuild_prompt = build_prompt_v1\\n\\n# --- Event Detection prompts (for MAVEN-style tasks) ---\\n\\ndef build_prompt_v2_event(input_text: str, type_definitions: dict, type_subset: list) -> str:\\n    \\\"\\\"\\\"Build event trigger extraction prompt (v2: text+type only).\\\"\\\"\\\"\\n    type_desc_lines = []\\n    for t in sorted(type_subset):\\n        defn = type_definitions.get(t, t)\\n        type_desc_lines.append(f\\\"- {t}: {defn}\\\")\\n    type_desc = \\\"\\\\n\\\".join(type_desc_lines)\\n\\n    return (\\n        f\\\"Extract all event triggers from the following text. \\\"\\n        f\\\"A trigger is the word or phrase that most clearly expresses the event occurrence. \\\"\\n        f\\\"Only extract triggers of the following event types:\\\\n{type_desc}\\\\n\\\\n\\\"\\n        f\\\"Text: {input_text}\\\\n\\\\n\\\"\\n        f\\\"Only extract triggers that clearly match one of the given event types. \\\"\\n        f\\\"If no events of these types exist in the text, output an empty list [].\\\\n\\\\n\\\"\\n        f'Output as JSON: [{{\\\\\\\"text\\\\\\\": \\\\\\\"...\\\\\\\",\\n\\n... [截断: 输出过长，省略 6026 字符] ...\\n\\n    continue\\n            else:\\n                for si, sample in enumerate(samples):\\n                    prompt = prompt_fn(sample[\\\"text\\\"], type_definitions, batch_types)\\n                    prompts.append(prompt)\\n                    sample_indices.append(si)\\n\\n            if _needs_chat_template:\\n                prompts = [\\n                    tokenizer.apply_chat_template(\\n                        [{\\\"role\\\": \\\"user\\\", \\\"content\\\": p}],\\n                        tokenize=False,\\n                        add_generation_prompt=True,\\n                    )\\n                    for p in prompts\\n                ]\\n\\n            t0 = time.time()\\n            outputs = llm.generate(prompts, sampling_params)\\n            elapsed = time.time() - t0\\n\\n            for oi, output in enumerate(outputs):\\n                si = sample_indices[oi]\\n                generated_text = output.outputs[0].text\\n                prompt_tokens = len(output.prompt_token_ids)\\n                gen_tokens = len(output.outputs[0].token_ids)\\n\\n                try:\\n                    predictions = json.loads(generated_text)\\n                except json.JSONDecodeError:\\n                    logger.warning(\\\"Failed to parse JSON for sample %d batch %s: %s\\\",\\n                                   si, full_batch_id, generated_text[:200])\\n                    predictions = []\\n\\n                all_results.append({\\n                    \\\"sample_id\\\": si,\\n                    \\\"batch_id\\\": full_batch_id,\\n                    \\\"count_key\\\": count_key,\\n                    \\\"batch_types\\\": batch_types,\\n                    \\\"batch_bcs\\\": batch_bcs,\\n                    \\\"predictions\\\": predictions,\\n                    \\\"prompt_tokens\\\": prompt_tokens,\\n                    \\\"gen_tokens\\\": gen_tokens,\\n                    \\\"latency_s\\\": elapsed / len(prompts),\\n                    \\\"prompt_version\\\": prompt_version,\\n                })\\n\\n            logger.info(\\\"  Batch %s done: %.1fs total, %d outputs\\\", full_batch_id, elapsed, len(outputs))\\n\\n    return all_results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Run constrained JSON NER extraction with vLLM\\\")\\n    parser.add_argument(\\\"--model_path\\\", required=True, help=\\\"Path to model directory\\\")\\n    parser.add_argument(\\\"--data_dir\\\", default=\\\"/root/schema-dag-extraction/data\\\", help=\\\"Data directory\\\")\\n    parser.add_argument(\\\"--batch_config\\\", required=True, help=\\\"Type batch JSON from select_type_batches.py\\\")\\n    parser.add_argument(\\\"--output_path\\\", required=True, help=\\\"Output results JSON path\\\")\\n    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Max test samples\\\")\\n    parser.add_argument(\\\"--types_file\\\", required=True, help=\\\"Type definitions JSON path\\\")\\n    parser.add_argument(\\\"--max_model_len\\\", type=int, default=4096, help=\\\"vLLM max model len\\\")\\n    parser.add_argument(\\\"--prompt_version\\\", choices=[\\\"v1\\\", \\\"v2\\\"], default=\\\"v1\\\",\\n                        help=\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\")\\n    args = parser.parse_args()\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n\\n    import sys\\n    sys.path.insert(0, str(Path(__file__).parent))\\n    from few_nerd_utils import load_few_nerd, load_type_definitions\\n\\n    logger.info(\\\"Loading data...\\\")\\n    samples = load_few_nerd(split=\\\"test\\\", max_samples=args.max_samples)\\n    type_definitions = load_type_definitions(args.types_file)\\n\\n    with open(args.batch_config, \\\"r\\\") as f:\\n        batch_config = json.load(f)\\n\\n    results = run_extraction(\\n        model_path=args.model_path,\\n        samples=samples,\\n        batch_config=batch_config,\\n        type_definitions=type_definitions,\\n        max_model_len=args.max_model_len,\\n        prompt_version=args.prompt_version,\\n    )\\n\\n    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output_path, \\\"w\\\") as f:\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\n    logger.info(\\\"Saved %d results to %s\\\", len(results), args.output_path)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the prompt versions:
+- v1: includes start/end offsets
+- v2: text+type only, no offsets, with an extra instruction "Only extract entities that clearly match one of the given types."
+
+The `predictions_exp2.json` should have a `prompt_version` field for each result. Let me check if there's data for both v1 and v2.
+
+Also, looking at `run_experiment.py` which also has `prompt_version`, the experiment flow is:
+1. run_extraction → predictions
+2. evaluate → eval results
+
+The predictions file would have `prompt_version` field to identify v1 vs v2.
+
+
+I need to figure out which prompt version the existing eval_exp2.json came from, and whether there's a separate v2 run I'm missing. Let me look at the predictions file to see the prompt_version markers and trace through the pipeline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "63290d59-8e66-4482-840e-2562a4c944a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0156xqf9AAgrSBaUVDWaBW3J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4513,
+      "cache_read_input_tokens": 57972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4513
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015VutXzJ8ZqwY3DLUFsKPyW`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "python3 -c \"import json; d=json.load(open('/root/schema-dag-extraction/artifacts/predictions_exp2.json')); print(d[0].get('prompt_version','NOT_SET')); print(len(d))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "8f1a4286-966d-4628-9577-8269e24aee8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0156xqf9AAgrSBaUVDWaBW3J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4513,
+      "cache_read_input_tokens": 57972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4513
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-16T03:48:51.328Z_
+
+<details><summary>↩ Tool result · `toolu_015VutXzJ8ZqwY3DLUFsKPyW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "442e4461-17f9-46ec-94f9-f9d7c9bb4d43",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BbPqASaqSv5a5bhkXPyDNs`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/src/run_experiment.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "9a607d89-42ff-41c0-883c-301207ca26c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0156xqf9AAgrSBaUVDWaBW3J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4513,
+      "cache_read_input_tokens": 57972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4513
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-16T03:48:52.125Z_
+
+<details><summary>↩ Tool result · `toolu_01BbPqASaqSv5a5bhkXPyDNs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Main experiment orchestrator.\\n\\nv2 changes (2026-05-14): Added --prompt_version and --eval_mode support.\\n\\nModes:\\n  dry_run: 100 test samples, count=6, low/high/1 random — pipeline verification\\n  exp1: Count Baseline — solo baseline (count=1) + random batches at 2/6/12/22/44/66 types, 5 random each\\n  exp2: Confusability Controlled — count=6,12, low/high BCS + 25 random each\\nDependencies: all src/ modules, vllm\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Schema-DAG Extraction MVP Experiment\\\")\\n    parser.add_argument(\\\"--model_path\\\", required=True, help=\\\"Path to model directory\\\")\\n    parser.add_argument(\\\"--model_name\\\", default=None,\\n                        help=\\\"Short model name for output files (default: derived from model_path)\\\")\\n    parser.add_argument(\\\"--gpu_memory_utilization\\\", type=float, default=0.95,\\n                        help=\\\"vLLM GPU memory utilization (default: 0.95)\\\")\\n    parser.add_argument(\\\"--data_dir\\\", default=\\\"/root/schema-dag-extraction/data\\\", help=\\\"Data directory\\\")\\n    parser.add_argument(\\\"--output_dir\\\", default=\\\"/root/schema-dag-extraction/artifacts\\\", help=\\\"Output directory\\\")\\n    parser.add_argument(\\\"--dataset\\\", choices=[\\\"fewnerd\\\", \\\"maven\\\", \\\"fewrel\\\"], default=\\\"fewnerd\\\",\\n                        help=\\\"Dataset: fewnerd (NER), maven (event detection), or fewrel (RE)\\\")\\n    parser.add_argument(\\\"--data_path\\\", default=None, help=\\\"Custom data path (parquet for maven)\\\")\\n    parser.add_argument(\\\"--types_file\\\", required=True, help=\\\"Type definitions JSON path\\\")\\n    parser.add_argument(\\\"--embeddings_path\\\", default=None, help=\\\"Pre-computed embeddings .pt (required)\\\")\\n    parser.add_argument(\\\"--sim_matrix_path\\\", default=None, help=\\\"Pre-computed sim matrix .pt (optional)\\\")\\n    parser.add_argument(\\\"--mode\\\", choices=[\\\"dry_run\\\", \\\"exp1\\\", \\\"exp2\\\"], required=True, help=\\\"Experiment mode\\\")\\n    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Max test samples (dry_run forces 100)\\\")\\n    parser.add_argument(\\\"--max_model_len\\\", type=int, default=4096, help=\\\"vLLM max model len\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Random seed\\\")\\n    parser.add_argument(\\\"--prompt_version\\\", choices=[\\\"v1\\\", \\\"v2\\\"], default=\\\"v1\\\",\\n                        help=\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\")\\n    parser.add_argument(\\\"--eval_mode\\\", choices=[\\\"exact\\\", \\\"relaxed\\\", \\\"text_match\\\", \\\"all\\\"],\\n                        default=\\\"all\\\", help=\\\"Evaluation mode\\\")\\n    args = parser.parse_args()\\n\\n    if args.model_name is None:\\n        args.model_name = Path(args.model_path).name.lower().replace(' ', '-')\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n    random.seed(args.seed)\\n\\n    sys.path.insert(0, str(Path(__file__).parent))\\n\\n    import os as _os\\n    _orig_cuda = _os.environ.get('CUDA_VISIBLE_DEVICES')\\n    _os.environ['CUDA_VISIBLE_DEVICES'] = ''\\n\\n    from few_nerd_utils import load_type_definitions, get_all_types as fewnerd_get_all_types\\n    from compute_bcs import load_embeddings, compute_similarity_matrix, compute_bcs\\n    from select_type_batches import select_low_bcs, select_high_bcs, select_random_batches\\n    from run_extraction import run_extraction\\n    from evaluate import evaluate_all\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # --- Step 1: Load data ---\\n    if args.mode == \\\"dry_run\\\":\\n        max_samples = 100\\n        logger.info(\\\"Dry run mode: using 100 samples\\\")\\n    else:\\n        max_samples = args.max_samples\\n\\n    if args.dataset == \\\"maven\\\":\\n        from maven_utils import load_maven, get_all_types as maven_get_all_types\\n        data_path = args.data_path or \\\"/root/schema-dag-extraction/data/maven_parquet/valid.parquet\\\"\\n        logger.info(\\\"Loading MAVEN data from %s...\\\", data_path)\\n        samples = load_maven(data_path=data_path, max_sample\\n\\n... [截断: 输出过长，省略 3035 字符] ...\\n\\n active_types, active_idx)\\n        high = select_high_bcs(6, sim_matrix, active_types, active_idx)\\n        rand = select_random_batches(6, 1, active_types, sim_matrix, active_idx, args.seed)\\n        batch_config[\\\"count_6\\\"] = {\\n            \\\"low_bcs\\\": {\\\"types\\\": low, \\\"bcs\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\n            \\\"high_bcs\\\": {\\\"types\\\": high, \\\"bcs\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\n            \\\"random\\\": rand,\\n        }\\n\\n    elif args.mode == \\\"exp1\\\":\\n        for count in exp1_counts:\\n            if count > len(active_types):\\n                count = len(active_types)\\n            if count == 1:\\n                # Solo baseline: one batch per active type for per-type solo F1\\n                solo_batches = [{\\\"types\\\": [t], \\\"bcs\\\": 0.0} for t in active_types]\\n                batch_config[\\\"count_1\\\"] = {\\\"random\\\": solo_batches}\\n            else:\\n                rand = select_random_batches(count, 5, active_types, sim_matrix, active_idx, args.seed + count)\\n                batch_config[f\\\"count_{count}\\\"] = {\\\"random\\\": rand}\\n\\n    elif args.mode == \\\"exp2\\\":\\n        for count in exp2_counts:\\n            low = select_low_bcs(count, sim_matrix, active_types, active_idx)\\n            high = select_high_bcs(count, sim_matrix, active_types, active_idx)\\n            rand = select_random_batches(count, 25, active_types, sim_matrix, active_idx, args.seed + count)\\n            batch_config[f\\\"count_{count}\\\"] = {\\n                \\\"low_bcs\\\": {\\\"types\\\": low, \\\"bcs\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\n                \\\"high_bcs\\\": {\\\"types\\\": high, \\\"bcs\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\n                \\\"random\\\": rand,\\n            }\\n\\n    # Save batch config\\n    batch_config_path = output_dir / f\\\"batch_config_{args.dataset}_{args.mode}_{args.model_name}.json\\\"\\n    with open(batch_config_path, \\\"w\\\") as f:\\n        json.dump(batch_config, f, indent=2)\\n    logger.info(\\\"Saved batch config to %s\\\", batch_config_path)\\n\\n    # --- Step 4: Run extraction ---\\n    if _orig_cuda is not None:\\n        _os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = _orig_cuda\\n    elif \\\"CUDA_VISIBLE_DEVICES\\\" in _os.environ:\\n        del _os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"]\\n\\n    logger.info(\\\"Starting extraction...\\\")\\n    t0 = time.time()\\n    results = run_extraction(\\n        model_path=args.model_path,\\n        samples=samples,\\n        batch_config=batch_config,\\n        type_definitions=type_definitions,\\n        max_model_len=args.max_model_len,\\n        prompt_version=args.prompt_version,\\n        task=task,\\n        gpu_memory_utilization=args.gpu_memory_utilization,\\n    )\\n    extraction_time = time.time() - t0\\n    logger.info(\\\"Extraction done in %.1fs, %d result entries\\\", extraction_time, len(results))\\n\\n    predictions_path = output_dir / f\\\"predictions_{args.dataset}_{args.mode}_{args.model_name}.json\\\"\\n    with open(predictions_path, \\\"w\\\") as f:\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\n\\n    # --- Step 5: Evaluate ---\\n    logger.info(\\\"Evaluating...\\\")\\n    eval_results = evaluate_all(results, samples, eval_mode=args.eval_mode)\\n\\n    eval_path = output_dir / f\\\"eval_{args.dataset}_{args.mode}_{args.model_name}.json\\\"\\n    with open(eval_path, \\\"w\\\") as f:\\n        json.dump(eval_results, f, indent=2)\\n\\n    # --- Step 6: Summary ---\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"EXPERIMENT SUMMARY (%s)\\\", args.mode)\\n    logger.info(\\\"=\\\" * 60)\\n    for bid, metrics in sorted(eval_results.items()):\\n        parts = [f\\\"  {bid:<30s}\\\"]\\n        if \\\"exact\\\" in metrics:\\n            parts.append(f\\\"exact_F1={metrics['exact']['f1']:.4f}\\\")\\n        if \\\"relaxed\\\" in metrics:\\n            parts.append(f\\\"relaxed_F1={metrics['relaxed']['f1']:.4f}\\\")\\n        if \\\"text_match\\\" in metrics:\\n            parts.append(f\\\"text_match_F1={metrics['text_match']['f1']:.4f}\\\")\\n        parts.append(f\\\"BCS={metrics['bcs']:.4f}\\\")\\n        logger.info(\\\"  \\\".join(parts))\\n    logger.info(\\\"Total extraction time: %.1fs\\\", extraction_time)\\n    logger.info(\\\"Results saved to: %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "8e9a3f5b-f05d-499f-93ce-cefb1b8c0899",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Main experiment orchestrator.\\\\n\\\\nv2 changes (2026-05-14): Added --prompt_version and --eval_mode support.\\\\n\\\\nModes:\\\\n  dry_run: 100 test samples, count=6, low/high/1 random — pipeline verification\\\\n  exp1: Count Baseline — solo baseline (count=1) + random batches at 2/6/12/22/44/66 types, 5 random each\\\\n  exp2: Confusability Controlled — count=6,12, low/high BCS + 25 random each\\\\nDependencies: all src/ modules, vllm\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Schema-DAG Extraction MVP Experiment\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", required=True, help=\\\\\\\"Path to model directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_name\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Short model name for output files (default: derived from model_path)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu_memory_utilization\\\\\\\", type=float, default=0.95,\\\\n                        help=\\\\\\\"vLLM GPU memory utilization (default: 0.95)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/data\\\\\\\", help=\\\\\\\"Data directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/artifacts\\\\\\\", help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dataset\\\\\\\", choices=[\\\\\\\"fewnerd\\\\\\\", \\\\\\\"maven\\\\\\\", \\\\\\\"fewrel\\\\\\\"], default=\\\\\\\"fewnerd\\\\\\\",\\\\n                        help=\\\\\\\"Dataset: fewnerd (NER), maven (event detection), or fewrel (RE)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_path\\\\\\\", default=None, help=\\\\\\\"Custom data path (parquet for maven)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--types_file\\\\\\\", required=True, help=\\\\\\\"Type definitions JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--embeddings_path\\\\\\\", default=None, help=\\\\\\\"Pre-computed embeddings .pt (required)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--sim_matrix_path\\\\\\\", default=None, help=\\\\\\\"Pre-computed sim matrix .pt (optional)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"dry_run\\\\\\\", \\\\\\\"exp1\\\\\\\", \\\\\\\"exp2\\\\\\\"], required=True, help=\\\\\\\"Experiment mode\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max test samples (dry_run forces 100)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_model_len\\\\\\\", type=int, default=4096, help=\\\\\\\"vLLM max model len\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42, help=\\\\\\\"Random seed\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--prompt_version\\\\\\\", choices=[\\\\\\\"v1\\\\\\\", \\\\\\\"v2\\\\\\\"], default=\\\\\\\"v1\\\\\\\",\\\\n                        help=\\\\\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--eval_mode\\\\\\\", choices=[\\\\\\\"exact\\\\\\\", \\\\\\\"relaxed\\\\\\\", \\\\\\\"text_match\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n                        default=\\\\\\\"all\\\\\\\", help=\\\\\\\"Evaluation mode\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.model_name is None:\\\\n        args.model_name = Path(args.model_path).name.lower().replace(' ', '-')\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n    random.seed(args.seed)\\\\n\\\\n    sys.path.insert(0, str(Path(__file__).parent))\\\\n\\\\n    import os as _os\\\\n    _orig_cuda = _os.environ.get('CUDA_VISIBLE_DEVICES')\\\\n    _os.environ['CUDA_VISIBLE_DEVICES'] = ''\\\\n\\\\n    from few_nerd_utils import load_type_definitions, get_all_types as fewnerd_get_all_types\\\\n    from compute_bcs import load_embeddings, compute_similarity_matrix, compute_bcs\\\\n    from select_type_batches import select_low_bcs, select_high_bcs, select_random_batches\\\\n    from run_extraction import run_extraction\\\\n    from evaluate import evaluate_all\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # --- Step 1: Load data ---\\\\n    if args.mode == \\\\\\\"dry_run\\\\\\\":\\\\n        max_samples = 100\\\\n        logger.info(\\\\\\\"Dry run mode: using 100 samples\\\\\\\")\\\\n    else:\\\\n        max_samples = args.max_samples\\\\n\\\\n    if args.dataset == \\\\\\\"maven\\\\\\\":\\\\n        from maven_utils import load_maven, get_all_types as maven_get_all_types\\\\n        data_path = args.data_path or \\\\\\\"/root/schema-dag-extraction/data/maven_parquet/valid.parquet\\\\\\\"\\\\n        logger.info(\\\\\\\"Loading MAVEN data from %s...\\\\\\\", data_path)\\\\n        samples = load_maven(data_path=data_path, max_sample\\\\n\\\\n... [截断: 输出过长，省略 3035 字符] ...\\\\n\\\\n active_types, active_idx)\\\\n        high = select_high_bcs(6, sim_matrix, active_types, active_idx)\\\\n        rand = select_random_batches(6, 1, active_types, sim_matrix, active_idx, args.seed)\\\\n        batch_config[\\\\\\\"count_6\\\\\\\"] = {\\\\n            \\\\\\\"low_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": low, \\\\\\\"bcs\\\\\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\\\n            \\\\\\\"high_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": high, \\\\\\\"bcs\\\\\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\\\n            \\\\\\\"random\\\\\\\": rand,\\\\n        }\\\\n\\\\n    elif args.mode == \\\\\\\"exp1\\\\\\\":\\\\n        for count in exp1_counts:\\\\n            if count > len(active_types):\\\\n                count = len(active_types)\\\\n            if count == 1:\\\\n                # Solo baseline: one batch per active type for per-type solo F1\\\\n                solo_batches = [{\\\\\\\"types\\\\\\\": [t], \\\\\\\"bcs\\\\\\\": 0.0} for t in active_types]\\\\n                batch_config[\\\\\\\"count_1\\\\\\\"] = {\\\\\\\"random\\\\\\\": solo_batches}\\\\n            else:\\\\n                rand = select_random_batches(count, 5, active_types, sim_matrix, active_idx, args.seed + count)\\\\n                batch_config[f\\\\\\\"count_{count}\\\\\\\"] = {\\\\\\\"random\\\\\\\": rand}\\\\n\\\\n    elif args.mode == \\\\\\\"exp2\\\\\\\":\\\\n        for count in exp2_counts:\\\\n            low = select_low_bcs(count, sim_matrix, active_types, active_idx)\\\\n            high = select_high_bcs(count, sim_matrix, active_types, active_idx)\\\\n            rand = select_random_batches(count, 25, active_types, sim_matrix, active_idx, args.seed + count)\\\\n            batch_config[f\\\\\\\"count_{count}\\\\\\\"] = {\\\\n                \\\\\\\"low_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": low, \\\\\\\"bcs\\\\\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\\\n                \\\\\\\"high_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": high, \\\\\\\"bcs\\\\\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\\\n                \\\\\\\"random\\\\\\\": rand,\\\\n            }\\\\n\\\\n    # Save batch config\\\\n    batch_config_path = output_dir / f\\\\\\\"batch_config_{args.dataset}_{args.mode}_{args.model_name}.json\\\\\\\"\\\\n    with open(batch_config_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(batch_config, f, indent=2)\\\\n    logger.info(\\\\\\\"Saved batch config to %s\\\\\\\", batch_config_path)\\\\n\\\\n    # --- Step 4: Run extraction ---\\\\n    if _orig_cuda is not None:\\\\n        _os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = _orig_cuda\\\\n    elif \\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\" in _os.environ:\\\\n        del _os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"]\\\\n\\\\n    logger.info(\\\\\\\"Starting extraction...\\\\\\\")\\\\n    t0 = time.time()\\\\n    results = run_extraction(\\\\n        model_path=args.model_path,\\\\n        samples=samples,\\\\n        batch_config=batch_config,\\\\n        type_definitions=type_definitions,\\\\n        max_model_len=args.max_model_len,\\\\n        prompt_version=args.prompt_version,\\\\n        task=task,\\\\n        gpu_memory_utilization=args.gpu_memory_utilization,\\\\n    )\\\\n    extraction_time = time.time() - t0\\\\n    logger.info(\\\\\\\"Extraction done in %.1fs, %d result entries\\\\\\\", extraction_time, len(results))\\\\n\\\\n    predictions_path = output_dir / f\\\\\\\"predictions_{args.dataset}_{args.mode}_{args.model_name}.json\\\\\\\"\\\\n    with open(predictions_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\\\n\\\\n    # --- Step 5: Evaluate ---\\\\n    logger.info(\\\\\\\"Evaluating...\\\\\\\")\\\\n    eval_results = evaluate_all(results, samples, eval_mode=args.eval_mode)\\\\n\\\\n    eval_path = output_dir / f\\\\\\\"eval_{args.dataset}_{args.mode}_{args.model_name}.json\\\\\\\"\\\\n    with open(eval_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(eval_results, f, indent=2)\\\\n\\\\n    # --- Step 6: Summary ---\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"EXPERIMENT SUMMARY (%s)\\\\\\\", args.mode)\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    for bid, metrics in sorted(eval_results.items()):\\\\n        parts = [f\\\\\\\"  {bid:<30s}\\\\\\\"]\\\\n        if \\\\\\\"exact\\\\\\\" in metrics:\\\\n            parts.append(f\\\\\\\"exact_F1={metrics['exact']['f1']:.4f}\\\\\\\")\\\\n        if \\\\\\\"relaxed\\\\\\\" in metrics:\\\\n            parts.append(f\\\\\\\"relaxed_F1={metrics['relaxed']['f1']:.4f}\\\\\\\")\\\\n        if \\\\\\\"text_match\\\\\\\" in metrics:\\\\n            parts.append(f\\\\\\\"text_match_F1={metrics['text_match']['f1']:.4f}\\\\\\\")\\\\n        parts.append(f\\\\\\\"BCS={metrics['bcs']:.4f}\\\\\\\")\\\\n        logger.info(\\\\\\\"  \\\\\\\".join(parts))\\\\n    logger.info(\\\\\\\"Total extraction time: %.1fs\\\\\\\", extraction_time)\\\\n    logger.info(\\\\\\\"Results saved to: %s\\\\\\\", output_dir)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Main experiment orchestrator.\\n\\nv2 changes (2026-05-14): Added --prompt_version and --eval_mode support.\\n\\nModes:\\n  dry_run: 100 test samples, count=6, low/high/1 random — pipeline verification\\n  exp1: Count Baseline — solo baseline (count=1) + random batches at 2/6/12/22/44/66 types, 5 random each\\n  exp2: Confusability Controlled — count=6,12, low/high BCS + 25 random each\\nDependencies: all src/ modules, vllm\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Schema-DAG Extraction MVP Experiment\\\")\\n    parser.add_argument(\\\"--model_path\\\", required=True, help=\\\"Path to model directory\\\")\\n    parser.add_argument(\\\"--model_name\\\", default=None,\\n                        help=\\\"Short model name for output files (default: derived from model_path)\\\")\\n    parser.add_argument(\\\"--gpu_memory_utilization\\\", type=float, default=0.95,\\n                        help=\\\"vLLM GPU memory utilization (default: 0.95)\\\")\\n    parser.add_argument(\\\"--data_dir\\\", default=\\\"/root/schema-dag-extraction/data\\\", help=\\\"Data directory\\\")\\n    parser.add_argument(\\\"--output_dir\\\", default=\\\"/root/schema-dag-extraction/artifacts\\\", help=\\\"Output directory\\\")\\n    parser.add_argument(\\\"--dataset\\\", choices=[\\\"fewnerd\\\", \\\"maven\\\", \\\"fewrel\\\"], default=\\\"fewnerd\\\",\\n                        help=\\\"Dataset: fewnerd (NER), maven (event detection), or fewrel (RE)\\\")\\n    parser.add_argument(\\\"--data_path\\\", default=None, help=\\\"Custom data path (parquet for maven)\\\")\\n    parser.add_argument(\\\"--types_file\\\", required=True, help=\\\"Type definitions JSON path\\\")\\n    parser.add_argument(\\\"--embeddings_path\\\", default=None, help=\\\"Pre-computed embeddings .pt (required)\\\")\\n    parser.add_argument(\\\"--sim_matrix_path\\\", default=None, help=\\\"Pre-computed sim matrix .pt (optional)\\\")\\n    parser.add_argument(\\\"--mode\\\", choices=[\\\"dry_run\\\", \\\"exp1\\\", \\\"exp2\\\"], required=True, help=\\\"Experiment mode\\\")\\n    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Max test samples (dry_run forces 100)\\\")\\n    parser.add_argument(\\\"--max_model_len\\\", type=int, default=4096, help=\\\"vLLM max model len\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Random seed\\\")\\n    parser.add_argument(\\\"--prompt_version\\\", choices=[\\\"v1\\\", \\\"v2\\\"], default=\\\"v1\\\",\\n                        help=\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\")\\n    parser.add_argument(\\\"--eval_mode\\\", choices=[\\\"exact\\\", \\\"relaxed\\\", \\\"text_match\\\", \\\"all\\\"],\\n                        default=\\\"all\\\", help=\\\"Evaluation mode\\\")\\n    args = parser.parse_args()\\n\\n    if args.model_name is None:\\n        args.model_name = Path(args.model_path).name.lower().replace(' ', '-')\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n    random.seed(args.seed)\\n\\n    sys.path.insert(0, str(Path(__file__).parent))\\n\\n    import os as _os\\n    _orig_cuda = _os.environ.get('CUDA_VISIBLE_DEVICES')\\n    _os.environ['CUDA_VISIBLE_DEVICES'] = ''\\n\\n    from few_nerd_utils import load_type_definitions, get_all_types as fewnerd_get_all_types\\n    from compute_bcs import load_embeddings, compute_similarity_matrix, compute_bcs\\n    from select_type_batches import select_low_bcs, select_high_bcs, select_random_batches\\n    from run_extraction import run_extraction\\n    from evaluate import evaluate_all\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # --- Step 1: Load data ---\\n    if args.mode == \\\"dry_run\\\":\\n        max_samples = 100\\n        logger.info(\\\"Dry run mode: using 100 samples\\\")\\n    else:\\n        max_samples = args.max_samples\\n\\n    if args.dataset == \\\"maven\\\":\\n        from maven_utils import load_maven, get_all_types as maven_get_all_types\\n        data_path = args.data_path or \\\"/root/schema-dag-extraction/data/maven_parquet/valid.parquet\\\"\\n        logger.info(\\\"Loading MAVEN data from %s...\\\", data_path)\\n        samples = load_maven(data_path=data_path, max_sample\\n\\n... [截断: 输出过长，省略 3035 字符] ...\\n\\n active_types, active_idx)\\n        high = select_high_bcs(6, sim_matrix, active_types, active_idx)\\n        rand = select_random_batches(6, 1, active_types, sim_matrix, active_idx, args.seed)\\n        batch_config[\\\"count_6\\\"] = {\\n            \\\"low_bcs\\\": {\\\"types\\\": low, \\\"bcs\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\n            \\\"high_bcs\\\": {\\\"types\\\": high, \\\"bcs\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\n            \\\"random\\\": rand,\\n        }\\n\\n    elif args.mode == \\\"exp1\\\":\\n        for count in exp1_counts:\\n            if count > len(active_types):\\n                count = len(active_types)\\n            if count == 1:\\n                # Solo baseline: one batch per active type for per-type solo F1\\n                solo_batches = [{\\\"types\\\": [t], \\\"bcs\\\": 0.0} for t in active_types]\\n                batch_config[\\\"count_1\\\"] = {\\\"random\\\": solo_batches}\\n            else:\\n                rand = select_random_batches(count, 5, active_types, sim_matrix, active_idx, args.seed + count)\\n                batch_config[f\\\"count_{count}\\\"] = {\\\"random\\\": rand}\\n\\n    elif args.mode == \\\"exp2\\\":\\n        for count in exp2_counts:\\n            low = select_low_bcs(count, sim_matrix, active_types, active_idx)\\n            high = select_high_bcs(count, sim_matrix, active_types, active_idx)\\n            rand = select_random_batches(count, 25, active_types, sim_matrix, active_idx, args.seed + count)\\n            batch_config[f\\\"count_{count}\\\"] = {\\n                \\\"low_bcs\\\": {\\\"types\\\": low, \\\"bcs\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\n                \\\"high_bcs\\\": {\\\"types\\\": high, \\\"bcs\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\n                \\\"random\\\": rand,\\n            }\\n\\n    # Save batch config\\n    batch_config_path = output_dir / f\\\"batch_config_{args.dataset}_{args.mode}_{args.model_name}.json\\\"\\n    with open(batch_config_path, \\\"w\\\") as f:\\n        json.dump(batch_config, f, indent=2)\\n    logger.info(\\\"Saved batch config to %s\\\", batch_config_path)\\n\\n    # --- Step 4: Run extraction ---\\n    if _orig_cuda is not None:\\n        _os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = _orig_cuda\\n    elif \\\"CUDA_VISIBLE_DEVICES\\\" in _os.environ:\\n        del _os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"]\\n\\n    logger.info(\\\"Starting extraction...\\\")\\n    t0 = time.time()\\n    results = run_extraction(\\n        model_path=args.model_path,\\n        samples=samples,\\n        batch_config=batch_config,\\n        type_definitions=type_definitions,\\n        max_model_len=args.max_model_len,\\n        prompt_version=args.prompt_version,\\n        task=task,\\n        gpu_memory_utilization=args.gpu_memory_utilization,\\n    )\\n    extraction_time = time.time() - t0\\n    logger.info(\\\"Extraction done in %.1fs, %d result entries\\\", extraction_time, len(results))\\n\\n    predictions_path = output_dir / f\\\"predictions_{args.dataset}_{args.mode}_{args.model_name}.json\\\"\\n    with open(predictions_path, \\\"w\\\") as f:\\n        json.dump(results, f, ensure_ascii=False, indent=2)\\n\\n    # --- Step 5: Evaluate ---\\n    logger.info(\\\"Evaluating...\\\")\\n    eval_results = evaluate_all(results, samples, eval_mode=args.eval_mode)\\n\\n    eval_path = output_dir / f\\\"eval_{args.dataset}_{args.mode}_{args.model_name}.json\\\"\\n    with open(eval_path, \\\"w\\\") as f:\\n        json.dump(eval_results, f, indent=2)\\n\\n    # --- Step 6: Summary ---\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"EXPERIMENT SUMMARY (%s)\\\", args.mode)\\n    logger.info(\\\"=\\\" * 60)\\n    for bid, metrics in sorted(eval_results.items()):\\n        parts = [f\\\"  {bid:<30s}\\\"]\\n        if \\\"exact\\\" in metrics:\\n            parts.append(f\\\"exact_F1={metrics['exact']['f1']:.4f}\\\")\\n        if \\\"relaxed\\\" in metrics:\\n            parts.append(f\\\"relaxed_F1={metrics['relaxed']['f1']:.4f}\\\")\\n        if \\\"text_match\\\" in metrics:\\n            parts.append(f\\\"text_match_F1={metrics['text_match']['f1']:.4f}\\\")\\n        parts.append(f\\\"BCS={metrics['bcs']:.4f}\\\")\\n        logger.info(\\\"  \\\".join(parts))\\n    logger.info(\\\"Total extraction time: %.1fs\\\", extraction_time)\\n    logger.info(\\\"Results saved to: %s\\\", output_dir)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the experiment framework. The output file naming convention is:
+- `batch_config_{dataset}_{mode}_{model_name}.json`
+- `predictions_{dataset}_{mode}_{model_name}.json`
+- `eval_{dataset}_{mode}_{model_name}.json`
+
+But the top-level files are named simply `eval_exp2.json`, `predictions_exp2.json`, etc., which suggests they were from an earlier iteration of the code (before the naming convention was adopted).
+
+Now, the key insight is that the code supports `--prompt_version v1` and `--prompt_version v2`, and the prediction results include `prompt_version` in each entry.
+
+
+I can't directly inspect the predictions_exp2.json file due to shell restrictions, so I'll check the logs instead to see what command was executed for the exp2 run—that should reveal which prompt version was used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "8e07d5a3-e13c-4b61-9560-fbcdb6d4ad2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tttp4Z3MYiGfPy6ZY95Cqg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3894,
+      "cache_read_input_tokens": 62485,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3894
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Hb6fUza5p7RqvVWuTsZ7o2`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep \"prompt_version\" /root/schema-dag-extraction/artifacts/predictions_exp2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "fc609c8f-a168-4558-8c02-49b7d052fc39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tttp4Z3MYiGfPy6ZY95Cqg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3894,
+      "cache_read_input_tokens": 62485,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3894
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xkaebeg9u2PuBUHfPYS5tT`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/logs/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "bebec21e-c081-4b01-b734-aab2f7813c6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tttp4Z3MYiGfPy6ZY95Cqg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3894,
+      "cache_read_input_tokens": 62485,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3894
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-16T03:49:03.894Z_
+
+<details><summary>↩ Tool result · `toolu_01Hb6fUza5p7RqvVWuTsZ7o2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\n\\n... [截断: 输出过长，省略 1450000 字符] ...\\n\\nv2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "c2f262e4-63b7-41ac-8909-21cb10da6ae7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 1450000 字符] ...\\\\n\\\\nv2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\n\\n... [截断: 输出过长，省略 1450000 字符] ...\\n\\nv2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n    \\\"prompt_version\\\": \\\"v2\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-16T03:49:04.298Z_
+
+<details><summary>↩ Tool result · `toolu_01Xkaebeg9u2PuBUHfPYS5tT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4164\\ndrwxr-xr-x  2 root root    4096 May 16 11:33 .\\ndrwxr-xr-x 11 root root    4096 May 16 06:39 ..\\n-rw-r--r--  1 root root     186 May 15 03:06 cuda_test.log\\n-rw-r--r--  1 root root    7363 May 15 02:59 dry_run.log\\n-rw-r--r--  1 root root   30257 May 15 03:31 dry_run_pipeline.log\\n-rw-r--r--  1 root root    7245 May 15 03:03 dry_run_plain.log\\n-rw-r--r--  1 root root    5620 May 15 03:20 dry_run_structured.log\\n-rw-r--r--  1 root root    7485 May 15 03:04 dry_run_triton.log\\n-rw-r--r--  1 root root    6337 May 15 03:05 dry_run_v0.log\\n-rw-r--r--  1 root root    9668 May 15 03:17 dry_run_v0_020.log\\n-rw-r--r--  1 root root    2544 May 15 02:13 embeddings.log\\n-rw-r--r--  1 root root   15802 May 16 00:27 exp012_llama_8b.log\\n-rw-r--r--  1 root root 1711840 May 15 07:01 exp1.log\\n-rw-r--r--  1 root root 1657765 May 15 10:21 exp2.log\\n-rw-r--r--  1 root root  358217 May 15 21:17 fewrel_80rel.log\\n-rw-r--r--  1 root root  360560 May 15 20:25 fewrel_formal.log\\n-rw-r--r--  1 root root   30296 May 16 11:38 fewrel_v2_bcs.log\\n-rw-r--r--  1 root root   10014 May 15 03:24 test_structured.log\\n-rw-r--r--  1 root root    1389 May 15 03:08 transformers_test.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "1ca28f16-06b8-4ba7-82da-03ad802e03a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4164\\\\ndrwxr-xr-x  2 root root    4096 May 16 11:33 .\\\\ndrwxr-xr-x 11 root root    4096 May 16 06:39 ..\\\\n-rw-r--r--  1 root root     186 May 15 03:06 cuda_test.log\\\\n-rw-r--r--  1 root root    7363 May 15 02:59 dry_run.log\\\\n-rw-r--r--  1 root root   30257 May 15 03:31 dry_run_pipeline.log\\\\n-rw-r--r--  1 root root    7245 May 15 03:03 dry_run_plain.log\\\\n-rw-r--r--  1 root root    5620 May 15 03:20 dry_run_structured.log\\\\n-rw-r--r--  1 root root    7485 May 15 03:04 dry_run_triton.log\\\\n-rw-r--r--  1 root root    6337 May 15 03:05 dry_run_v0.log\\\\n-rw-r--r--  1 root root    9668 May 15 03:17 dry_run_v0_020.log\\\\n-rw-r--r--  1 root root    2544 May 15 02:13 embeddings.log\\\\n-rw-r--r--  1 root root   15802 May 16 00:27 exp012_llama_8b.log\\\\n-rw-r--r--  1 root root 1711840 May 15 07:01 exp1.log\\\\n-rw-r--r--  1 root root 1657765 May 15 10:21 exp2.log\\\\n-rw-r--r--  1 root root  358217 May 15 21:17 fewrel_80rel.log\\\\n-rw-r--r--  1 root root  360560 May 15 20:25 fewrel_formal.log\\\\n-rw-r--r--  1 root root   30296 May 16 11:38 fewrel_v2_bcs.log\\\\n-rw-r--r--  1 root root   10014 May 15 03:24 test_structured.log\\\\n-rw-r--r--  1 root root    1389 May 15 03:08 transformers_test.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4164\\ndrwxr-xr-x  2 root root    4096 May 16 11:33 .\\ndrwxr-xr-x 11 root root    4096 May 16 06:39 ..\\n-rw-r--r--  1 root root     186 May 15 03:06 cuda_test.log\\n-rw-r--r--  1 root root    7363 May 15 02:59 dry_run.log\\n-rw-r--r--  1 root root   30257 May 15 03:31 dry_run_pipeline.log\\n-rw-r--r--  1 root root    7245 May 15 03:03 dry_run_plain.log\\n-rw-r--r--  1 root root    5620 May 15 03:20 dry_run_structured.log\\n-rw-r--r--  1 root root    7485 May 15 03:04 dry_run_triton.log\\n-rw-r--r--  1 root root    6337 May 15 03:05 dry_run_v0.log\\n-rw-r--r--  1 root root    9668 May 15 03:17 dry_run_v0_020.log\\n-rw-r--r--  1 root root    2544 May 15 02:13 embeddings.log\\n-rw-r--r--  1 root root   15802 May 16 00:27 exp012_llama_8b.log\\n-rw-r--r--  1 root root 1711840 May 15 07:01 exp1.log\\n-rw-r--r--  1 root root 1657765 May 15 10:21 exp2.log\\n-rw-r--r--  1 root root  358217 May 15 21:17 fewrel_80rel.log\\n-rw-r--r--  1 root root  360560 May 15 20:25 fewrel_formal.log\\n-rw-r--r--  1 root root   30296 May 16 11:38 fewrel_v2_bcs.log\\n-rw-r--r--  1 root root   10014 May 15 03:24 test_structured.log\\n-rw-r--r--  1 root root    1389 May 15 03:08 transformers_test.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The predictions_exp2.json contains all v2 prompt data. So the top-level `eval_exp2.json` is the v2 data.
+
+Now I need to find v1 data. The v1 data would have been from an earlier run. Let me check if there are any v1 prediction files or if the v1 results were from an earlier experiment that was overwritten.
+
+Let me check the git log to see if there were v1 runs that were later overwritten. Also, let me check the exp2.log to see if it mentions the prompt version.
+
+
+Looking at the decision timestamps, D003 happened before exp2 ran, and D005 from May 15 02:34 mentions MVP PASS based on exp002 results. The exp2.log from May 15 10:21 was likely the v2 run, while the dry_run_pipeline.log from May 15 03:31 might have been v1.
+
+Since D005's analysis predates the exp2.log creation, the v1 data was overwritten by the v2 run—the current eval_exp2.json and predictions_exp2.json are v2 data. I need to find if there's any saved v1 data, though the project doesn't appear to have a git repository locally, though the server might.
+
+Let me look more carefully at the decision records to understand what actually happened. I need to recover the v1 data since it was overwritten by v2. Let me check if there's a git history on the server that might have the original results, or see if the v1 statistics are documented elsewhere beyond what's in D005.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "68de8ad4-8261-4d9e-a0da-543d1def0384",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRDRrQMujFDS5mtcQEzTBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6967,
+      "cache_read_input_tokens": 66379,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92_
+
+`predictions_exp2.json` 是 v2 数据。需要找 v1 数据——可能被 v2 覆盖了。让我检查 git 历史。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "0466df94-0002-4482-bf07-86eca763d8a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRDRrQMujFDS5mtcQEzTBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6967,
+      "cache_read_input_tokens": 66379,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014vns5xjkNhy4guJnqippWW`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/.git",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "88718664-f741-4b72-b067-92407acc203d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRDRrQMujFDS5mtcQEzTBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6967,
+      "cache_read_input_tokens": 66379,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015fQ73RoYThTwqRhPSqDSSy`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -30 /root/schema-dag-extraction/logs/exp2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "e7b1c910-c8b5-4702-b9cc-732c5b833fde",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRDRrQMujFDS5mtcQEzTBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6967,
+      "cache_read_input_tokens": 66379,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6967
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-16T03:49:29.365Z_
+
+<details><summary>↩ Tool result · `toolu_014vns5xjkNhy4guJnqippWW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/schema-dag-extraction/.git': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "7dc471a2-6b1f-4c65-8bfc-4cce65b22109",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/schema-dag-extraction/.git': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/schema-dag-extraction/.git': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-16T03:49:29.843Z_
+
+<details><summary>↩ Tool result · `toolu_015fQ73RoYThTwqRhPSqDSSy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 07:05:35,142 INFO Loading Few-NERD test data...\\n2026-05-15 07:05:35,143 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\n2026-05-15 07:05:37,226 INFO Loaded 1000 samples from Few-NERD test split\\n2026-05-15 07:05:37,229 INFO Data loaded: 1000 samples, 64 active types\\n2026-05-15 07:05:37,230 INFO Loading embeddings from ../data/type_embeddings.pt\\n2026-05-15 07:05:37,255 INFO Loading existing similarity matrix\\n2026-05-15 07:05:37,258 INFO Active types (in both embeddings and data): 64\\n2026-05-15 07:05:37,554 INFO Saved batch config to ../artifacts/batch_config_exp2.json\\n2026-05-15 07:05:37,555 INFO Starting extraction...\\n2026-05-15 07:06:05,505 INFO Loading vLLM model from /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\nINFO 05-15 07:06:05 [utils.py:233] non-default args: {'trust_remote_code': True, 'dtype': 'bfloat16', 'max_model_len': 4096, 'gpu_memory_utilization': 0.95, 'disable_log_stats': True, 'enforce_eager': True, 'model': '/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/'}\\nINFO 05-15 07:06:05 [model.py:555] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-15 07:06:05 [model.py:1680] Using max model len 4096\\nINFO 05-15 07:06:10 [nixl_utils.py:20] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.\\nWARNING 05-15 07:06:10 [nixl_utils.py:34] NIXL is not available\\nWARNING 05-15 07:06:10 [nixl_utils.py:44] NIXL agent config is not available\\nINFO 05-15 07:06:11 [scheduler.py:239] Chunked prefill is enabled with max_num_batched_tokens=16384.\\nINFO 05-15 07:06:11 [vllm.py:840] Asynchronous scheduling is enabled.\\nWARNING 05-15 07:06:11 [vllm.py:896] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\nWARNING 05-15 07:06:11 [vllm.py:914] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\nINFO 05-15 07:06:11 [kernel.py:205] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'])\\nINFO 05-15 07:06:11 [vllm.py:1089] Cudagraph is disabled under eager mode\\nINFO 05-15 07:06:11 [compilation.py:303] Enabled custom fusions: norm_quant, act_quant\\n(EngineCore pid=197641) INFO 05-15 07:06:13 [core.py:109] Initializing a V1 LLM engine (v0.20.2) with config: model='/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/', speculative_config=None, tokenizer='/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=fp8, quantization_config=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': &lt;CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+quant_fp8', 'all', '+quant_fp8'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': &lt;CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': &lt;DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native']), enable_flashinfer_autotune=True, moe_backend='auto')\\n(EngineCore pid=197641) INFO 05-15 07:06:15 [parallel_state.py:1402] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.7:47781 backend=nccl\\n(EngineCore pid=197641) INFO 05-15 07:06:15 [parallel_state.py:1715] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A\\n(EngineCore pid=197641) INFO 05-15 07:06:17 [gpu_model_runner.py:4777] Starting to load model /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/...\\n(EngineCore pid=197641) INFO 05-15 07:06:18 [__init__.py:389] Selected CutlassFp8BlockScaledMMKernel for Fp8LinearMethod\\n(EngineCore pid=197641) 2026-05-15 07:06:19,001 WARNING Failed to get device capability: SM 12.x requires CUDA >= 12.9.\\n(EngineCore pid=197641) 2026-05-15 07:06:19,005 WARNING Failed to get device capability: SM 12.x requires CUDA >= 12.9.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "0ce0a21d-b501-48b9-8e14-3fc1bbddb0de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 07:05:35,142 INFO Loading Few-NERD test data...\\\\n2026-05-15 07:05:35,143 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\\\n2026-05-15 07:05:37,226 INFO Loaded 1000 samples from Few-NERD test split\\\\n2026-05-15 07:05:37,229 INFO Data loaded: 1000 samples, 64 active types\\\\n2026-05-15 07:05:37,230 INFO Loading embeddings from ../data/type_embeddings.pt\\\\n2026-05-15 07:05:37,255 INFO Loading existing similarity matrix\\\\n2026-05-15 07:05:37,258 INFO Active types (in both embeddings and data): 64\\\\n2026-05-15 07:05:37,554 INFO Saved batch config to ../artifacts/batch_config_exp2.json\\\\n2026-05-15 07:05:37,555 INFO Starting extraction...\\\\n2026-05-15 07:06:05,505 INFO Loading vLLM model from /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\nINFO 05-15 07:06:05 [utils.py:233] non-default args: {'trust_remote_code': True, 'dtype': 'bfloat16', 'max_model_len': 4096, 'gpu_memory_utilization': 0.95, 'disable_log_stats': True, 'enforce_eager': True, 'model': '/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/'}\\\\nINFO 05-15 07:06:05 [model.py:555] Resolved architecture: Qwen3ForCausalLM\\\\nINFO 05-15 07:06:05 [model.py:1680] Using max model len 4096\\\\nINFO 05-15 07:06:10 [nixl_utils.py:20] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.\\\\nWARNING 05-15 07:06:10 [nixl_utils.py:34] NIXL is not available\\\\nWARNING 05-15 07:06:10 [nixl_utils.py:44] NIXL agent config is not available\\\\nINFO 05-15 07:06:11 [scheduler.py:239] Chunked prefill is enabled with max_num_batched_tokens=16384.\\\\nINFO 05-15 07:06:11 [vllm.py:840] Asynchronous scheduling is enabled.\\\\nWARNING 05-15 07:06:11 [vllm.py:896] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\nWARNING 05-15 07:06:11 [vllm.py:914] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\\\nINFO 05-15 07:06:11 [kernel.py:205] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'])\\\\nINFO 05-15 07:06:11 [vllm.py:1089] Cudagraph is disabled under eager mode\\\\nINFO 05-15 07:06:11 [compilation.py:303] Enabled custom fusions: norm_quant, act_quant\\\\n(EngineCore pid=197641) INFO 05-15 07:06:13 [core.py:109] Initializing a V1 LLM engine (v0.20.2) with config: model='/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/', speculative_config=None, tokenizer='/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=fp8, quantization_config=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': &lt;CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+quant_fp8', 'all', '+quant_fp8'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': &lt;CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': &lt;DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native']), enable_flashinfer_autotune=True, moe_backend='auto')\\\\n(EngineCore pid=197641) INFO 05-15 07:06:15 [parallel_state.py:1402] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.7:47781 backend=nccl\\\\n(EngineCore pid=197641) INFO 05-15 07:06:15 [parallel_state.py:1715] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A\\\\n(EngineCore pid=197641) INFO 05-15 07:06:17 [gpu_model_runner.py:4777] Starting to load model /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/...\\\\n(EngineCore pid=197641) INFO 05-15 07:06:18 [__init__.py:389] Selected CutlassFp8BlockScaledMMKernel for Fp8LinearMethod\\\\n(EngineCore pid=197641) 2026-05-15 07:06:19,001 WARNING Failed to get device capability: SM 12.x requires CUDA >= 12.9.\\\\n(EngineCore pid=197641) 2026-05-15 07:06:19,005 WARNING Failed to get device capability: SM 12.x requires CUDA >= 12.9.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 07:05:35,142 INFO Loading Few-NERD test data...\\n2026-05-15 07:05:35,143 INFO Loading Few-NERD from local parquet: /root/schema-dag-extraction/data/parquet/test.parquet\\n2026-05-15 07:05:37,226 INFO Loaded 1000 samples from Few-NERD test split\\n2026-05-15 07:05:37,229 INFO Data loaded: 1000 samples, 64 active types\\n2026-05-15 07:05:37,230 INFO Loading embeddings from ../data/type_embeddings.pt\\n2026-05-15 07:05:37,255 INFO Loading existing similarity matrix\\n2026-05-15 07:05:37,258 INFO Active types (in both embeddings and data): 64\\n2026-05-15 07:05:37,554 INFO Saved batch config to ../artifacts/batch_config_exp2.json\\n2026-05-15 07:05:37,555 INFO Starting extraction...\\n2026-05-15 07:06:05,505 INFO Loading vLLM model from /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\nINFO 05-15 07:06:05 [utils.py:233] non-default args: {'trust_remote_code': True, 'dtype': 'bfloat16', 'max_model_len': 4096, 'gpu_memory_utilization': 0.95, 'disable_log_stats': True, 'enforce_eager': True, 'model': '/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/'}\\nINFO 05-15 07:06:05 [model.py:555] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-15 07:06:05 [model.py:1680] Using max model len 4096\\nINFO 05-15 07:06:10 [nixl_utils.py:20] Setting UCX_RCACHE_MAX_UNRELEASED to '1024' to avoid a rare memory leak in UCX when using NIXL.\\nWARNING 05-15 07:06:10 [nixl_utils.py:34] NIXL is not available\\nWARNING 05-15 07:06:10 [nixl_utils.py:44] NIXL agent config is not available\\nINFO 05-15 07:06:11 [scheduler.py:239] Chunked prefill is enabled with max_num_batched_tokens=16384.\\nINFO 05-15 07:06:11 [vllm.py:840] Asynchronous scheduling is enabled.\\nWARNING 05-15 07:06:11 [vllm.py:896] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\nWARNING 05-15 07:06:11 [vllm.py:914] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\nINFO 05-15 07:06:11 [kernel.py:205] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'])\\nINFO 05-15 07:06:11 [vllm.py:1089] Cudagraph is disabled under eager mode\\nINFO 05-15 07:06:11 [compilation.py:303] Enabled custom fusions: norm_quant, act_quant\\n(EngineCore pid=197641) INFO 05-15 07:06:13 [core.py:109] Initializing a V1 LLM engine (v0.20.2) with config: model='/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/', speculative_config=None, tokenizer='/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=fp8, quantization_config=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': &lt;CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+quant_fp8', 'all', '+quant_fp8'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': &lt;CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': &lt;DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native']), enable_flashinfer_autotune=True, moe_backend='auto')\\n(EngineCore pid=197641) INFO 05-15 07:06:15 [parallel_state.py:1402] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.7:47781 backend=nccl\\n(EngineCore pid=197641) INFO 05-15 07:06:15 [parallel_state.py:1715] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A\\n(EngineCore pid=197641) INFO 05-15 07:06:17 [gpu_model_runner.py:4777] Starting to load model /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/...\\n(EngineCore pid=197641) INFO 05-15 07:06:18 [__init__.py:389] Selected CutlassFp8BlockScaledMMKernel for Fp8LinearMethod\\n(EngineCore pid=197641) 2026-05-15 07:06:19,001 WARNING Failed to get device capability: SM 12.x requires CUDA >= 12.9.\\n(EngineCore pid=197641) 2026-05-15 07:06:19,005 WARNING Failed to get device capability: SM 12.x requires CUDA >= 12.9.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The exp2.log starts at May 15 07:05 - and it doesn't mention the prompt version in the first 30 lines. Let me check if it's in the log. But the key finding is that the current predictions_exp2.json is v2 data.
+
+No git repo on the server. The v1 data was overwritten.
+
+However, looking at D005, the v1 results were:
+- recall vs BCS: r=0.25, p=0.066 (not significant)
+- F1 vs BCS in count_12: r=0.50, p=0.008 (significant)
+
+
+- partial correlation r=0.30, p=0.026
+
+And looking at D008, the v2 results showed positive BCS-F1 correlation (opposite direction).
+
+I have the v2 eval_exp2.json on the server with per-batch BCS and F1 data, so I can compute those correlations directly. For v1, I need to find the per-batch data elsewhere - maybe there's a backup or I can check the analyze_results.py file to see how those D005 statistics were originally computed.
+
+Let me verify whether batch_config_exp2.json uses identical batch configurations for both v1 and v2, since that would mean the BCS values are the same and only the F1 scores differ. I should also check the exp2.log more carefully to see if it specifies which prompt version was used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "2a6a4244-da45-4654-868f-dc3fd7563e2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BynHV8tBM3qT3vxtuXMZ9a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3868,
+      "cache_read_input_tokens": 73346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3868
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JXyBvcWFqyGGpYr66EkxDd`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep \"prompt\" /root/schema-dag-extraction/logs/exp2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "2aeca920-09ad-4144-9f90-842aed0c5475",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BynHV8tBM3qT3vxtuXMZ9a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3868,
+      "cache_read_input_tokens": 73346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3868
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WEXDQZ1i7zfUY9xob5yLmR`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -r \"exp002\\|v1.*exp2\\|v1.*result\" /root/schema-dag-extraction/artifacts/round2_statistical_analyses.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "6817a881-e0f1-4ba5-a009-79cd017255a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BynHV8tBM3qT3vxtuXMZ9a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3868,
+      "cache_read_input_tokens": 73346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3868
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-16T03:49:45.774Z_
+
+<details><summary>↩ Tool result · `toolu_01JXyBvcWFqyGGpYr66EkxDd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\rRendering prompts:   0%|          | 1/1000 [00:00<02:44,  6.09it/s]\\rRendering prompts:   2%|▏         | 17/1000 [00:00<00:12, 77.03it/s]\\rRendering prompts:   4%|▎         | 35/1000 [00:00<00:08, 115.38it/s]\\rRendering prompts:   5%|▌         | 53/1000 [00:00<00:06, 136.53it/s]\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:06, 146.83it/s]\\rRendering prompts:   9%|▉         | 88/1000 [00:00<00:05, 156.48it/s]\\rRendering prompts:  11%|█         | 106/1000 [00:00<00:05, 162.93it/s]\\rRendering prompts:  12%|█▏        | 123/1000 [00:01<00:20, 42.32it/s] \\rRendering prompts:  14%|█▍        | 141/1000 [00:01<00:15, 56.08it/s]\\rRendering prompts:  16%|█▌        | 158/1000 [00:02<00:11, 70.44it/s]\\rRendering prompts:  18%|█▊        | 176/1000 [00:02<00:09, 86.61it/s]\\rRendering prompts:  19%|█▉        | 194/1000 [00:02<00:07, 102.48it/s]\\rRendering prompts:  21%|██        | 212/1000 [00:02<00:06, 116.92it/s]\\rRendering prompts:  23%|██▎       | 230/1000 [00:02<00:05, 129.53it/s]\\rRendering prompts:  25%|██▍       | 248/1000 [00:02<00:05, 140.29it/s]\\rRendering prompts:  26%|██▋       | 265/1000 [00:02<00:05, 122.55it/s]\\rRendering prompts:  28%|██▊       | 283/1000 [00:02<00:05, 134.16it/s]\\rRendering prompts:  30%|███       | 301/1000 [00:02<00:04, 143.54it/s]\\rRendering prompts:  32%|███▏      | 319/1000 [00:03<00:04, 150.93it/s]\\rRendering prompts:  34%|███▎      | 337/1000 [00:03<00:04, 157.40it/s]\\rRendering prompts:  36%|███▌      | 355/1000 [00:03<00:03, 162.16it/s]\\rRendering prompts:  37%|███▋      | 372/1000 [00:03<00:03, 163.25it/s]\\rRendering prompts:  39%|███▉      | 389/1000 [00:03<00:03, 163.66it/s]\\rRendering prompts:  41%|████      | 406/1000 [00:03<00:03, 164.81it/s]\\rRendering prompts:  42%|████▏     | 424/1000 [00:03<00:03, 166.45it/s]\\rRendering prompts:  44%|████▍     | 441/1000 [00:03<00:03, 166.37it/s]\\rRendering prompts:  46%|████▌     | 458/1000 [00:03<00:03, 167.02it/s]\\rRendering prompts:  48%|████▊     | 475/1000 [00:03<00:03, 167.11it/s]\\rRendering prompts:  49%|████▉     | 492/1000 [00:04<00:03, 166.92it/s]\\rRendering prompts:  51%|█████     | 509/1000 [00:04<00:02, 166.11it/s]\\rRendering prompts:  53%|█████▎    | 526/1000 [00:04<00:02, 166.32it/s]\\rRendering prompts:  54%|█████▍    | 543/1000 [00:04<00:02, 166.31it/s]\\rRendering prompts:  56%|█████▌    | 560/1000 [00:04<00:02, 167.32it/s]\\rRendering prompts:  58%|█████▊    | 577/1000 [00:04<00:02, 165.90it/s]\\rRendering prompts:  59%|█████▉    | 594/1000 [00:04<00:02, 166.49it/s]\\rRendering prompts:  61%|██████    | 611/1000 [00:04<00:02, 166.05it/s]\\rRendering prompts:  63%|██████▎   | 628/1000 [00:04<00:02, 166.35it/s]\\rRendering prompts:  64%|██████▍   | 645/1000 [00:04<00:02, 166.19it/s]\\rRendering prompts:  66%|██████▋   | 663/1000 [00:05<00:02, 167.69it/s]\\rRendering prompts:  68%|██████▊   | 680/1000 [00:05<00:01, 166.92it/s]\\rRendering prompts:  70%|██████▉   | 697/1000 [00:05<00:01, 166.60it/s]\\rRendering prompts:  71%|███████▏  | 714/1000 [00:05<00:01, 166.63it/s]\\rRendering prompts:  73%|███████▎  | 731/1000 [00:05<00:01, 165.43it/s]\\rRendering prompts:  75%|███████▍  | 748/1000 [00:05<00:01, 166.77it/s]\\rRendering prompts:  76%|███████▋  | 765/1000 [00:05<00:01, 166.27it/s]\\rRendering prompts:  78%|███████▊  | 782/1000 [00:05<00:01, 166.22it/s]\\rRendering prompts:  80%|████████  | 800/1000 [00:05<00:01, 168.80it/s]\\rRendering prompts:  82%|████████▏ | 817/1000 [00:06<00:01, 167.45it/s]\\rRendering prompts:  83%|████████▎ | 834/1000 [00:06<00:00, 167.05it/s]\\rRendering prompts:  85%|████████▌ | 851/1000 [00:06<00:00, 167.67it/s]\\rRendering prompts:  87%|████████▋ | 869/1000 [00:06<00:00, 169.41it/s]\\rRendering prompts:  89%|████████▊ | 886/1000 [00:06<00:00, 167.82it/s]\\rRendering prompts:  90%|█████████ | 903/1000 [00:06<00:00, 166.46it/s]\\rRendering prompts:  92%|█████████▏| 920/1000 [00:06<00:00, 166.29it/s]\\rRendering prompts:  94%|█████████▍| 938/1000 [00:06<00:00, 167.45it/s]\\rRendering prompts:  96%|█████████▌| 955/1000 [\\n\\n... [截断: 输出过长，省略 1347658 字符] ...\\n\\ns, est. speed input: 5094.66 toks/s, output: 935.30 toks/s]\\rProcessed prompts:  97%|█████████▋| 966/1000 [01:11<00:13,  2.52it/s, est. speed input: 5084.92 toks/s, output: 936.15 toks/s]\\rProcessed prompts:  97%|█████████▋| 967/1000 [01:11<00:11,  2.86it/s, est. speed input: 5075.70 toks/s, output: 937.10 toks/s]\\rProcessed prompts:  97%|█████████▋| 968/1000 [01:11<00:10,  3.19it/s, est. speed input: 5066.71 toks/s, output: 938.01 toks/s]\\rProcessed prompts:  97%|█████████▋| 970/1000 [01:12<00:09,  3.13it/s, est. speed input: 5031.87 toks/s, output: 936.87 toks/s]\\rProcessed prompts:  97%|█████████▋| 971/1000 [01:12<00:11,  2.55it/s, est. speed input: 4993.83 toks/s, output: 932.44 toks/s]\\rProcessed prompts:  97%|█████████▋| 972/1000 [01:15<00:22,  1.23it/s, est. speed input: 4861.17 toks/s, output: 910.40 toks/s]\\rProcessed prompts:  97%|█████████▋| 973/1000 [01:15<00:20,  1.31it/s, est. speed input: 4827.33 toks/s, output: 906.80 toks/s]\\rProcessed prompts:  97%|█████████▋| 974/1000 [01:18<00:37,  1.45s/it, est. speed input: 4631.62 toks/s, output: 872.77 toks/s]\\rProcessed prompts:  98%|█████████▊| 975/1000 [01:19<00:27,  1.10s/it, est. speed input: 4624.89 toks/s, output: 874.34 toks/s]\\rProcessed prompts:  98%|█████████▊| 976/1000 [01:19<00:20,  1.18it/s, est. speed input: 4617.89 toks/s, output: 875.84 toks/s]\\rProcessed prompts:  98%|█████████▊| 977/1000 [01:21<00:25,  1.12s/it, est. speed input: 4519.60 toks/s, output: 860.14 toks/s]\\rProcessed prompts:  98%|█████████▊| 979/1000 [01:21<00:15,  1.33it/s, est. speed input: 4496.67 toks/s, output: 861.33 toks/s]\\rProcessed prompts:  98%|█████████▊| 980/1000 [01:24<00:26,  1.31s/it, est. speed input: 4340.87 toks/s, output: 834.43 toks/s]\\rProcessed prompts:  98%|█████████▊| 981/1000 [01:25<00:19,  1.02s/it, est. speed input: 4335.54 toks/s, output: 836.26 toks/s]\\rProcessed prompts:  98%|█████████▊| 982/1000 [01:25<00:16,  1.10it/s, est. speed input: 4309.02 toks/s, output: 834.17 toks/s]\\rProcessed prompts:  98%|█████████▊| 983/1000 [01:26<00:14,  1.21it/s, est. speed input: 4283.34 toks/s, output: 832.15 toks/s]\\rProcessed prompts:  98%|█████████▊| 984/1000 [01:30<00:28,  1.80s/it, est. speed input: 4087.50 toks/s, output: 797.13 toks/s]\\rProcessed prompts:  99%|█████████▊| 986/1000 [01:36<00:33,  2.42s/it, est. speed input: 3826.05 toks/s, output: 752.20 toks/s]\\rProcessed prompts:  99%|█████████▊| 987/1000 [01:38<00:29,  2.27s/it, est. speed input: 3760.47 toks/s, output: 742.47 toks/s]\\rProcessed prompts:  99%|█████████▉| 988/1000 [01:38<00:20,  1.74s/it, est. speed input: 3757.27 toks/s, output: 744.97 toks/s]\\rProcessed prompts:  99%|█████████▉| 989/1000 [01:41<00:21,  1.97s/it, est. speed input: 3665.33 toks/s, output: 729.96 toks/s]\\rProcessed prompts:  99%|█████████▉| 990/1000 [01:42<00:15,  1.59s/it, est. speed input: 3647.91 toks/s, output: 729.73 toks/s]\\rProcessed prompts:  99%|█████████▉| 992/1000 [01:44<00:10,  1.35s/it, est. speed input: 3582.46 toks/s, output: 722.93 toks/s]\\rProcessed prompts:  99%|████████��▉| 993/1000 [01:55<00:27,  3.86s/it, est. speed input: 3221.65 toks/s, output: 653.51 toks/s]\\rProcessed prompts:  99%|█████████▉| 994/1000 [02:17<00:49,  8.27s/it, est. speed input: 2728.73 toks/s, output: 557.10 toks/s]\\rProcessed prompts: 100%|█████████▉| 995/1000 [03:43<02:25, 29.06s/it, est. speed input: 1678.09 toks/s, output: 346.83 toks/s]\\rProcessed prompts: 100%|█████████▉| 996/1000 [03:43<01:24, 21.25s/it, est. speed input: 1673.92 toks/s, output: 350.17 toks/s]\\rProcessed prompts: 100%|█████████▉| 997/1000 [03:44<00:45, 15.29s/it, est. speed input: 1674.10 toks/s, output: 354.43 toks/s]\\rProcessed prompts: 100%|█████████▉| 998/1000 [03:44<00:22, 11.00s/it, est. speed input: 1672.80 toks/s, output: 358.37 toks/s]\\rProcessed prompts: 100%|██████████| 1000/1000 [03:44<00:00, 11.00s/it, est. speed input: 1676.18 toks/s, output: 367.48 toks/s]\\rProcessed prompts: 100%|██████████| 1000/1000 [03:44<00:00,  4.45it/s, est. speed input: 1676.18 toks/s, output: 367.48 toks/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "3e1b6c86-5731-490f-957c-9655e6108b7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\\\rRendering prompts:   0%|          | 1/1000 [00:00<02:44,  6.09it/s]\\\\rRendering prompts:   2%|▏         | 17/1000 [00:00<00:12, 77.03it/s]\\\\rRendering prompts:   4%|▎         | 35/1000 [00:00<00:08, 115.38it/s]\\\\rRendering prompts:   5%|▌         | 53/1000 [00:00<00:06, 136.53it/s]\\\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:06, 146.83it/s]\\\\rRendering prompts:   9%|▉         | 88/1000 [00:00<00:05, 156.48it/s]\\\\rRendering prompts:  11%|█         | 106/1000 [00:00<00:05, 162.93it/s]\\\\rRendering prompts:  12%|█▏        | 123/1000 [00:01<00:20, 42.32it/s] \\\\rRendering prompts:  14%|█▍        | 141/1000 [00:01<00:15, 56.08it/s]\\\\rRendering prompts:  16%|█▌        | 158/1000 [00:02<00:11, 70.44it/s]\\\\rRendering prompts:  18%|█▊        | 176/1000 [00:02<00:09, 86.61it/s]\\\\rRendering prompts:  19%|█▉        | 194/1000 [00:02<00:07, 102.48it/s]\\\\rRendering prompts:  21%|██        | 212/1000 [00:02<00:06, 116.92it/s]\\\\rRendering prompts:  23%|██▎       | 230/1000 [00:02<00:05, 129.53it/s]\\\\rRendering prompts:  25%|██▍       | 248/1000 [00:02<00:05, 140.29it/s]\\\\rRendering prompts:  26%|██▋       | 265/1000 [00:02<00:05, 122.55it/s]\\\\rRendering prompts:  28%|██▊       | 283/1000 [00:02<00:05, 134.16it/s]\\\\rRendering prompts:  30%|███       | 301/1000 [00:02<00:04, 143.54it/s]\\\\rRendering prompts:  32%|███▏      | 319/1000 [00:03<00:04, 150.93it/s]\\\\rRendering prompts:  34%|███▎      | 337/1000 [00:03<00:04, 157.40it/s]\\\\rRendering prompts:  36%|███▌      | 355/1000 [00:03<00:03, 162.16it/s]\\\\rRendering prompts:  37%|███▋      | 372/1000 [00:03<00:03, 163.25it/s]\\\\rRendering prompts:  39%|███▉      | 389/1000 [00:03<00:03, 163.66it/s]\\\\rRendering prompts:  41%|████      | 406/1000 [00:03<00:03, 164.81it/s]\\\\rRendering prompts:  42%|████▏     | 424/1000 [00:03<00:03, 166.45it/s]\\\\rRendering prompts:  44%|████▍     | 441/1000 [00:03<00:03, 166.37it/s]\\\\rRendering prompts:  46%|████▌     | 458/1000 [00:03<00:03, 167.02it/s]\\\\rRendering prompts:  48%|████▊     | 475/1000 [00:03<00:03, 167.11it/s]\\\\rRendering prompts:  49%|████▉     | 492/1000 [00:04<00:03, 166.92it/s]\\\\rRendering prompts:  51%|█████     | 509/1000 [00:04<00:02, 166.11it/s]\\\\rRendering prompts:  53%|█████▎    | 526/1000 [00:04<00:02, 166.32it/s]\\\\rRendering prompts:  54%|█████▍    | 543/1000 [00:04<00:02, 166.31it/s]\\\\rRendering prompts:  56%|█████▌    | 560/1000 [00:04<00:02, 167.32it/s]\\\\rRendering prompts:  58%|█████▊    | 577/1000 [00:04<00:02, 165.90it/s]\\\\rRendering prompts:  59%|█████▉    | 594/1000 [00:04<00:02, 166.49it/s]\\\\rRendering prompts:  61%|██████    | 611/1000 [00:04<00:02, 166.05it/s]\\\\rRendering prompts:  63%|██████▎   | 628/1000 [00:04<00:02, 166.35it/s]\\\\rRendering prompts:  64%|██████▍   | 645/1000 [00:04<00:02, 166.19it/s]\\\\rRendering prompts:  66%|██████▋   | 663/1000 [00:05<00:02, 167.69it/s]\\\\rRendering prompts:  68%|██████▊   | 680/1000 [00:05<00:01, 166.92it/s]\\\\rRendering prompts:  70%|██████▉   | 697/1000 [00:05<00:01, 166.60it/s]\\\\rRendering prompts:  71%|███████▏  | 714/1000 [00:05<00:01, 166.63it/s]\\\\rRendering prompts:  73%|███████▎  | 731/1000 [00:05<00:01, 165.43it/s]\\\\rRendering prompts:  75%|███████▍  | 748/1000 [00:05<00:01, 166.77it/s]\\\\rRendering prompts:  76%|███████▋  | 765/1000 [00:05<00:01, 166.27it/s]\\\\rRendering prompts:  78%|███████▊  | 782/1000 [00:05<00:01, 166.22it/s]\\\\rRendering prompts:  80%|████████  | 800/1000 [00:05<00:01, 168.80it/s]\\\\rRendering prompts:  82%|████████▏ | 817/1000 [00:06<00:01, 167.45it/s]\\\\rRendering prompts:  83%|████████▎ | 834/1000 [00:06<00:00, 167.05it/s]\\\\rRendering prompts:  85%|████████▌ | 851/1000 [00:06<00:00, 167.67it/s]\\\\rRendering prompts:  87%|████████▋ | 869/1000 [00:06<00:00, 169.41it/s]\\\\rRendering prompts:  89%|████████▊ | 886/1000 [00:06<00:00, 167.82it/s]\\\\rRendering prompts:  90%|█████████ | 903/1000 [00:06<00:00, 166.46it/s]\\\\rRendering prompts:  92%|█████████▏| 920/1000 [00:06<00:00, 166.29it/s]\\\\rRendering prompts:  94%|█████████▍| 938/1000 [00:06<00:00, 167.45it/s]\\\\rRendering prompts:  96%|█████████▌| 955/1000 [\\\\n\\\\n... [截断: 输出过长，省略 1347658 字符] ...\\\\n\\\\ns, est. speed input: 5094.66 toks/s, output: 935.30 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 966/1000 [01:11<00:13,  2.52it/s, est. speed input: 5084.92 toks/s, output: 936.15 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 967/1000 [01:11<00:11,  2.86it/s, est. speed input: 5075.70 toks/s, output: 937.10 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 968/1000 [01:11<00:10,  3.19it/s, est. speed input: 5066.71 toks/s, output: 938.01 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 970/1000 [01:12<00:09,  3.13it/s, est. speed input: 5031.87 toks/s, output: 936.87 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 971/1000 [01:12<00:11,  2.55it/s, est. speed input: 4993.83 toks/s, output: 932.44 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 972/1000 [01:15<00:22,  1.23it/s, est. speed input: 4861.17 toks/s, output: 910.40 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 973/1000 [01:15<00:20,  1.31it/s, est. speed input: 4827.33 toks/s, output: 906.80 toks/s]\\\\rProcessed prompts:  97%|█████████▋| 974/1000 [01:18<00:37,  1.45s/it, est. speed input: 4631.62 toks/s, output: 872.77 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 975/1000 [01:19<00:27,  1.10s/it, est. speed input: 4624.89 toks/s, output: 874.34 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 976/1000 [01:19<00:20,  1.18it/s, est. speed input: 4617.89 toks/s, output: 875.84 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 977/1000 [01:21<00:25,  1.12s/it, est. speed input: 4519.60 toks/s, output: 860.14 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 979/1000 [01:21<00:15,  1.33it/s, est. speed input: 4496.67 toks/s, output: 861.33 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 980/1000 [01:24<00:26,  1.31s/it, est. speed input: 4340.87 toks/s, output: 834.43 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 981/1000 [01:25<00:19,  1.02s/it, est. speed input: 4335.54 toks/s, output: 836.26 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 982/1000 [01:25<00:16,  1.10it/s, est. speed input: 4309.02 toks/s, output: 834.17 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 983/1000 [01:26<00:14,  1.21it/s, est. speed input: 4283.34 toks/s, output: 832.15 toks/s]\\\\rProcessed prompts:  98%|█████████▊| 984/1000 [01:30<00:28,  1.80s/it, est. speed input: 4087.50 toks/s, output: 797.13 toks/s]\\\\rProcessed prompts:  99%|█████████▊| 986/1000 [01:36<00:33,  2.42s/it, est. speed input: 3826.05 toks/s, output: 752.20 toks/s]\\\\rProcessed prompts:  99%|█████████▊| 987/1000 [01:38<00:29,  2.27s/it, est. speed input: 3760.47 toks/s, output: 742.47 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 988/1000 [01:38<00:20,  1.74s/it, est. speed input: 3757.27 toks/s, output: 744.97 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 989/1000 [01:41<00:21,  1.97s/it, est. speed input: 3665.33 toks/s, output: 729.96 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 990/1000 [01:42<00:15,  1.59s/it, est. speed input: 3647.91 toks/s, output: 729.73 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 992/1000 [01:44<00:10,  1.35s/it, est. speed input: 3582.46 toks/s, output: 722.93 toks/s]\\\\rProcessed prompts:  99%|████████��▉| 993/1000 [01:55<00:27,  3.86s/it, est. speed input: 3221.65 toks/s, output: 653.51 toks/s]\\\\rProcessed prompts:  99%|█████████▉| 994/1000 [02:17<00:49,  8.27s/it, est. speed input: 2728.73 toks/s, output: 557.10 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 995/1000 [03:43<02:25, 29.06s/it, est. speed input: 1678.09 toks/s, output: 346.83 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 996/1000 [03:43<01:24, 21.25s/it, est. speed input: 1673.92 toks/s, output: 350.17 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 997/1000 [03:44<00:45, 15.29s/it, est. speed input: 1674.10 toks/s, output: 354.43 toks/s]\\\\rProcessed prompts: 100%|█████████▉| 998/1000 [03:44<00:22, 11.00s/it, est. speed input: 1672.80 toks/s, output: 358.37 toks/s]\\\\rProcessed prompts: 100%|██████████| 1000/1000 [03:44<00:00, 11.00s/it, est. speed input: 1676.18 toks/s, output: 367.48 toks/s]\\\\rProcessed prompts: 100%|██████████| 1000/1000 [03:44<00:00,  4.45it/s, est. speed input: 1676.18 toks/s, output: 367.48 toks/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/1000 [00:00<?, ?it/s]\\rRendering prompts:   0%|          | 1/1000 [00:00<02:44,  6.09it/s]\\rRendering prompts:   2%|▏         | 17/1000 [00:00<00:12, 77.03it/s]\\rRendering prompts:   4%|▎         | 35/1000 [00:00<00:08, 115.38it/s]\\rRendering prompts:   5%|▌         | 53/1000 [00:00<00:06, 136.53it/s]\\rRendering prompts:   7%|▋         | 70/1000 [00:00<00:06, 146.83it/s]\\rRendering prompts:   9%|▉         | 88/1000 [00:00<00:05, 156.48it/s]\\rRendering prompts:  11%|█         | 106/1000 [00:00<00:05, 162.93it/s]\\rRendering prompts:  12%|█▏        | 123/1000 [00:01<00:20, 42.32it/s] \\rRendering prompts:  14%|█▍        | 141/1000 [00:01<00:15, 56.08it/s]\\rRendering prompts:  16%|█▌        | 158/1000 [00:02<00:11, 70.44it/s]\\rRendering prompts:  18%|█▊        | 176/1000 [00:02<00:09, 86.61it/s]\\rRendering prompts:  19%|█▉        | 194/1000 [00:02<00:07, 102.48it/s]\\rRendering prompts:  21%|██        | 212/1000 [00:02<00:06, 116.92it/s]\\rRendering prompts:  23%|██▎       | 230/1000 [00:02<00:05, 129.53it/s]\\rRendering prompts:  25%|██▍       | 248/1000 [00:02<00:05, 140.29it/s]\\rRendering prompts:  26%|██▋       | 265/1000 [00:02<00:05, 122.55it/s]\\rRendering prompts:  28%|██▊       | 283/1000 [00:02<00:05, 134.16it/s]\\rRendering prompts:  30%|███       | 301/1000 [00:02<00:04, 143.54it/s]\\rRendering prompts:  32%|███▏      | 319/1000 [00:03<00:04, 150.93it/s]\\rRendering prompts:  34%|███▎      | 337/1000 [00:03<00:04, 157.40it/s]\\rRendering prompts:  36%|███▌      | 355/1000 [00:03<00:03, 162.16it/s]\\rRendering prompts:  37%|███▋      | 372/1000 [00:03<00:03, 163.25it/s]\\rRendering prompts:  39%|███▉      | 389/1000 [00:03<00:03, 163.66it/s]\\rRendering prompts:  41%|████      | 406/1000 [00:03<00:03, 164.81it/s]\\rRendering prompts:  42%|████▏     | 424/1000 [00:03<00:03, 166.45it/s]\\rRendering prompts:  44%|████▍     | 441/1000 [00:03<00:03, 166.37it/s]\\rRendering prompts:  46%|████▌     | 458/1000 [00:03<00:03, 167.02it/s]\\rRendering prompts:  48%|████▊     | 475/1000 [00:03<00:03, 167.11it/s]\\rRendering prompts:  49%|████▉     | 492/1000 [00:04<00:03, 166.92it/s]\\rRendering prompts:  51%|█████     | 509/1000 [00:04<00:02, 166.11it/s]\\rRendering prompts:  53%|█████▎    | 526/1000 [00:04<00:02, 166.32it/s]\\rRendering prompts:  54%|█████▍    | 543/1000 [00:04<00:02, 166.31it/s]\\rRendering prompts:  56%|█████▌    | 560/1000 [00:04<00:02, 167.32it/s]\\rRendering prompts:  58%|█████▊    | 577/1000 [00:04<00:02, 165.90it/s]\\rRendering prompts:  59%|█████▉    | 594/1000 [00:04<00:02, 166.49it/s]\\rRendering prompts:  61%|██████    | 611/1000 [00:04<00:02, 166.05it/s]\\rRendering prompts:  63%|██████▎   | 628/1000 [00:04<00:02, 166.35it/s]\\rRendering prompts:  64%|██████▍   | 645/1000 [00:04<00:02, 166.19it/s]\\rRendering prompts:  66%|██████▋   | 663/1000 [00:05<00:02, 167.69it/s]\\rRendering prompts:  68%|██████▊   | 680/1000 [00:05<00:01, 166.92it/s]\\rRendering prompts:  70%|██████▉   | 697/1000 [00:05<00:01, 166.60it/s]\\rRendering prompts:  71%|███████▏  | 714/1000 [00:05<00:01, 166.63it/s]\\rRendering prompts:  73%|███████▎  | 731/1000 [00:05<00:01, 165.43it/s]\\rRendering prompts:  75%|███████▍  | 748/1000 [00:05<00:01, 166.77it/s]\\rRendering prompts:  76%|███████▋  | 765/1000 [00:05<00:01, 166.27it/s]\\rRendering prompts:  78%|███████▊  | 782/1000 [00:05<00:01, 166.22it/s]\\rRendering prompts:  80%|████████  | 800/1000 [00:05<00:01, 168.80it/s]\\rRendering prompts:  82%|████████▏ | 817/1000 [00:06<00:01, 167.45it/s]\\rRendering prompts:  83%|████████▎ | 834/1000 [00:06<00:00, 167.05it/s]\\rRendering prompts:  85%|████████▌ | 851/1000 [00:06<00:00, 167.67it/s]\\rRendering prompts:  87%|████████▋ | 869/1000 [00:06<00:00, 169.41it/s]\\rRendering prompts:  89%|████████▊ | 886/1000 [00:06<00:00, 167.82it/s]\\rRendering prompts:  90%|█████████ | 903/1000 [00:06<00:00, 166.46it/s]\\rRendering prompts:  92%|█████████▏| 920/1000 [00:06<00:00, 166.29it/s]\\rRendering prompts:  94%|█████████▍| 938/1000 [00:06<00:00, 167.45it/s]\\rRendering prompts:  96%|█████████▌| 955/1000 [\\n\\n... [截断: 输出过长，省略 1347658 字符] ...\\n\\ns, est. speed input: 5094.66 toks/s, output: 935.30 toks/s]\\rProcessed prompts:  97%|█████████▋| 966/1000 [01:11<00:13,  2.52it/s, est. speed input: 5084.92 toks/s, output: 936.15 toks/s]\\rProcessed prompts:  97%|█████████▋| 967/1000 [01:11<00:11,  2.86it/s, est. speed input: 5075.70 toks/s, output: 937.10 toks/s]\\rProcessed prompts:  97%|█████████▋| 968/1000 [01:11<00:10,  3.19it/s, est. speed input: 5066.71 toks/s, output: 938.01 toks/s]\\rProcessed prompts:  97%|█████████▋| 970/1000 [01:12<00:09,  3.13it/s, est. speed input: 5031.87 toks/s, output: 936.87 toks/s]\\rProcessed prompts:  97%|█████████▋| 971/1000 [01:12<00:11,  2.55it/s, est. speed input: 4993.83 toks/s, output: 932.44 toks/s]\\rProcessed prompts:  97%|█████████▋| 972/1000 [01:15<00:22,  1.23it/s, est. speed input: 4861.17 toks/s, output: 910.40 toks/s]\\rProcessed prompts:  97%|█████████▋| 973/1000 [01:15<00:20,  1.31it/s, est. speed input: 4827.33 toks/s, output: 906.80 toks/s]\\rProcessed prompts:  97%|█████████▋| 974/1000 [01:18<00:37,  1.45s/it, est. speed input: 4631.62 toks/s, output: 872.77 toks/s]\\rProcessed prompts:  98%|█████████▊| 975/1000 [01:19<00:27,  1.10s/it, est. speed input: 4624.89 toks/s, output: 874.34 toks/s]\\rProcessed prompts:  98%|█████████▊| 976/1000 [01:19<00:20,  1.18it/s, est. speed input: 4617.89 toks/s, output: 875.84 toks/s]\\rProcessed prompts:  98%|█████████▊| 977/1000 [01:21<00:25,  1.12s/it, est. speed input: 4519.60 toks/s, output: 860.14 toks/s]\\rProcessed prompts:  98%|█████████▊| 979/1000 [01:21<00:15,  1.33it/s, est. speed input: 4496.67 toks/s, output: 861.33 toks/s]\\rProcessed prompts:  98%|█████████▊| 980/1000 [01:24<00:26,  1.31s/it, est. speed input: 4340.87 toks/s, output: 834.43 toks/s]\\rProcessed prompts:  98%|█████████▊| 981/1000 [01:25<00:19,  1.02s/it, est. speed input: 4335.54 toks/s, output: 836.26 toks/s]\\rProcessed prompts:  98%|█████████▊| 982/1000 [01:25<00:16,  1.10it/s, est. speed input: 4309.02 toks/s, output: 834.17 toks/s]\\rProcessed prompts:  98%|█████████▊| 983/1000 [01:26<00:14,  1.21it/s, est. speed input: 4283.34 toks/s, output: 832.15 toks/s]\\rProcessed prompts:  98%|█████████▊| 984/1000 [01:30<00:28,  1.80s/it, est. speed input: 4087.50 toks/s, output: 797.13 toks/s]\\rProcessed prompts:  99%|█████████▊| 986/1000 [01:36<00:33,  2.42s/it, est. speed input: 3826.05 toks/s, output: 752.20 toks/s]\\rProcessed prompts:  99%|█████████▊| 987/1000 [01:38<00:29,  2.27s/it, est. speed input: 3760.47 toks/s, output: 742.47 toks/s]\\rProcessed prompts:  99%|█████████▉| 988/1000 [01:38<00:20,  1.74s/it, est. speed input: 3757.27 toks/s, output: 744.97 toks/s]\\rProcessed prompts:  99%|█████████▉| 989/1000 [01:41<00:21,  1.97s/it, est. speed input: 3665.33 toks/s, output: 729.96 toks/s]\\rProcessed prompts:  99%|█████████▉| 990/1000 [01:42<00:15,  1.59s/it, est. speed input: 3647.91 toks/s, output: 729.73 toks/s]\\rProcessed prompts:  99%|█████████▉| 992/1000 [01:44<00:10,  1.35s/it, est. speed input: 3582.46 toks/s, output: 722.93 toks/s]\\rProcessed prompts:  99%|████████��▉| 993/1000 [01:55<00:27,  3.86s/it, est. speed input: 3221.65 toks/s, output: 653.51 toks/s]\\rProcessed prompts:  99%|█████████▉| 994/1000 [02:17<00:49,  8.27s/it, est. speed input: 2728.73 toks/s, output: 557.10 toks/s]\\rProcessed prompts: 100%|█████████▉| 995/1000 [03:43<02:25, 29.06s/it, est. speed input: 1678.09 toks/s, output: 346.83 toks/s]\\rProcessed prompts: 100%|█████████▉| 996/1000 [03:43<01:24, 21.25s/it, est. speed input: 1673.92 toks/s, output: 350.17 toks/s]\\rProcessed prompts: 100%|█████████▉| 997/1000 [03:44<00:45, 15.29s/it, est. speed input: 1674.10 toks/s, output: 354.43 toks/s]\\rProcessed prompts: 100%|█████████▉| 998/1000 [03:44<00:22, 11.00s/it, est. speed input: 1672.80 toks/s, output: 358.37 toks/s]\\rProcessed prompts: 100%|██████████| 1000/1000 [03:44<00:00, 11.00s/it, est. speed input: 1676.18 toks/s, output: 367.48 toks/s]\\rProcessed prompts: 100%|██████████| 1000/1000 [03:44<00:00,  4.45it/s, est. speed input: 1676.18 toks/s, output: 367.48 toks/s]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-16T03:49:45.843Z_
+
+<details><summary>↩ Tool result · `toolu_01WEXDQZ1i7zfUY9xob5yLmR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "9465af2b-7fbc-4ebd-a0a8-f36bbae84f8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log doesn't directly mention prompt version. Let me check the round2_statistical_analyses.json and the d035_extreme_batch results to get context.
+
+But more importantly, let me take stock:
+
+1. **v2 data**: Available in `eval_exp2.json` (confirmed by `prompt_version: v2` in predictions)
+2. **v1 data**: Was overwritten. The only v1 statistics exist in decision records (D005)
+
+No git history on the server, so I can't recover v1 data from history.
+
+However, I should look more carefully. 
+
+The exp2.log started at 07:05 on May 15, while D005 was timestamped at 02:34 that same morning and referenced exp002 results, which means the original v1 run happened before that decision record and the log I'm seeing is the v2 rerun. The v1 files were overwritten with no git backup to recover them, though D005 does contain some of the v1 statistics like recall metrics.
+
+Now I'm looking at the bootstrap confidence intervals from bootstrap_ci.json, which shows confusion ratio data labeled as exp002 with values around 25.3 for count_6 and 21.2 for count_12. The key question is whether these ratios were computed from the v1 or v2 predictions, since the labeling doesn't clarify which version they came from.
+
+The file was created after the v2 overwrite, so it likely used v2 predictions. But I'm noticing something odd in the correlation patterns—both D005 (v1) and D008 (v2) show positive correlations between BCS and F1 at count_12, which contradicts the hypothesis that higher confusion should lead to lower performance. Let me reconsider what these correlations actually mean. I need to look more carefully at what D005 actually measured. They reported a large difference in confusion rates between high and low BCS conditions (30-40x, p=0.043), but the F1 correlation with BCS was positive (r=0.50). The partial correlation controlling for something else was weaker (r=0.30). I'm trying to understand whether this positive F1-BCS relationship contradicts the confusability hypothesis or if there's a confounding factor at play. So BCS likely means "Between-class Similarity" — higher values mean more similar types, which should make them harder to distinguish. Yet the data shows the opposite: high BCS batches achieve better F1 scores. Looking at the specific type pairs in the high-BCS group like person-athlete and person-politician, I'm realizing the naming might be misleading about what actually makes these types confusable.
+
+The real issue is that high-BCS batches contain mostly person-* types, which are probably more frequent in training data and therefore easier to extract, while low-BCS batches have more diverse and rarer types like organization-politicalparty and location-bodiesofwater. This type frequency confound explains the positive correlation D008 found in the v2 data.
+
+For the analysis, I can compute the BCS-F1 correlation directly from the current eval_exp2.json file, and D005's earlier report of a positive correlation (r=0.50) for v1 suggests the same pattern held before the data was overwritten. Looking at the timeline more carefully, the v1 data from before 02:34 was completely overwritten by the v2 run at 07:05, so there's no way to recover the raw per-batch results without version control. I'll use the v2 data from eval_exp2.json and fall back to the summary statistics from D005 for v1.
+
+Now I'm checking the bootstrap_ci.json file to see if it contains v1 or v2 data. The file was created after the v2 overwrite on May 15 at 23:15, so it's likely computed from v2 predictions. Looking at the confusion ratio breakdowns by count and BCS level, I can see the error rates vary significantly—high BCS cases have much higher wrong_type rates than low BCS cases across both count ranges.
+
+Comparing the total_gold counts from bootstrap_ci.json against eval_exp2.json confirms they match exactly, so the bootstrap_ci.json confusion ratios were definitely computed from the v2 predictions currently on disk, despite being labeled as "exp002."
+
+The v1 per-batch data isn't available on the server—only the summary statistics from the decision records remain. I'll compute correlations from the v2 eval_exp2.json data I have access to, and for v1 I'll rely on those D005 summary stats since the raw batch-level numbers aren't preserved anywhere else.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "14370f55-0f8d-42d3-a8a1-bbe7dbbbdcc3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BW5xKhFw7jP6AriCD5tJe1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5257,
+      "cache_read_input_tokens": 77214,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5257
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103_
+
+v2 data confirmed on server. v1 data was likely overwritten. Let me check if any analysis files preserved v1 per-batch data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "3cbecd6f-80e9-4194-bc07-7c6ddeff7509",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BW5xKhFw7jP6AriCD5tJe1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5257,
+      "cache_read_input_tokens": 77214,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5257
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TsrxZ4YQHxqtdGChGz9BdV`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/round2_statistical_analyses.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "359db6c8-5ec1-4267-a779-41b470e8f4f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BW5xKhFw7jP6AriCD5tJe1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5257,
+      "cache_read_input_tokens": 77214,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5257
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-16T03:50:48.865Z_
+
+<details><summary>↩ Tool result · `toolu_01TsrxZ4YQHxqtdGChGz9BdV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"W3_cluster_bootstrap\\\": {\\n    \\\"fewnerd\\\": {\\n      \\\"point_estimate\\\": 0.1372302437793451,\\n      \\\"cluster_ci_lower\\\": 0.06929773496707424,\\n      \\\"cluster_ci_upper\\\": 0.2186197985169236,\\n      \\\"n_types\\\": 63,\\n      \\\"n_pairs\\\": 1953,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_valid_bootstrap\\\": 10000,\\n      \\\"significant\\\": true,\\n      \\\"boot_mean\\\": 0.14559536506023063,\\n      \\\"boot_std\\\": 0.03701644340721873,\\n      \\\"naive_ci\\\": [\\n        0.076,\\n        0.156\\n      ],\\n      \\\"narrative\\\": \\\"We recomputed CIs using a cluster bootstrap that resamples entity types (N=63) rather than individual pairs. The cluster-robust 95% CI [0.069, 0.219] is wider than the naive pair-level CI [0.076, 0.156] as expected, but still excludes zero, confirming that the pairwise SCS-confusion correlation is statistically significant even after accounting for type-level clustering.\\\",\\n      \\\"original_r_paper\\\": 0.112\\n    },\\n    \\\"maven\\\": {\\n      \\\"point_estimate\\\": 0.1285734563090772,\\n      \\\"cluster_ci_lower\\\": 0.0806734385093243,\\n      \\\"cluster_ci_upper\\\": 0.184957155553557,\\n      \\\"n_types\\\": 149,\\n      \\\"n_pairs\\\": 11026,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_valid_bootstrap\\\": 10000,\\n      \\\"significant\\\": true,\\n      \\\"boot_mean\\\": 0.12934477309781067,\\n      \\\"boot_std\\\": 0.026041657610013258,\\n      \\\"naive_ci\\\": [\\n        0.104,\\n        0.156\\n      ],\\n      \\\"narrative\\\": \\\"For MAVEN (N=149 types), the cluster-robust 95% CI [0.081, 0.185] is wider than the naive CI [0.104, 0.156], but also excludes zero, confirming significance under cluster-robust inference.\\\",\\n      \\\"original_r_paper\\\": 0.129\\n    }\\n  },\\n  \\\"W4_recall_ci\\\": {\\n    \\\"count_22\\\": {\\n      \\\"n_batches\\\": 5,\\n      \\\"per_batch_recalls\\\": [\\n        0.5077,\\n        0.5961,\\n        0.4649,\\n        0.5162,\\n        0.5262\\n      ],\\n      \\\"per_batch_tp\\\": [\\n        496,\\n        704,\\n        417,\\n        351,\\n        361\\n      ],\\n      \\\"per_batch_gold\\\": [\\n        977,\\n        1181,\\n        897,\\n        680,\\n        686\\n      ],\\n      \\\"pooled_recall\\\": 0.5268,\\n      \\\"mean_recall\\\": 0.5222,\\n      \\\"pooled_ci_lower\\\": 0.4842,\\n      \\\"pooled_ci_upper\\\": 0.569,\\n      \\\"mean_ci_lower\\\": 0.4874,\\n      \\\"mean_ci_upper\\\": 0.5624,\\n      \\\"std\\\": 0.0475\\n    },\\n    \\\"count_44\\\": {\\n      \\\"n_batches\\\": 5,\\n      \\\"per_batch_recalls\\\": [\\n        0.5716,\\n        0.4958,\\n        0.5738,\\n        0.5433,\\n        0.5611\\n      ],\\n      \\\"per_batch_tp\\\": [\\n        1114,\\n        759,\\n        1089,\\n        1185,\\n        1088\\n      ],\\n      \\\"per_batch_gold\\\": [\\n        1949,\\n        1531,\\n        1898,\\n        2181,\\n        1939\\n      ],\\n      \\\"pooled_recall\\\": 0.5512,\\n      \\\"mean_recall\\\": 0.5491,\\n      \\\"pooled_ci_lower\\\": 0.5248,\\n      \\\"pooled_ci_upper\\\": 0.5699,\\n      \\\"mean_ci_lower\\\": 0.5209,\\n      \\\"mean_ci_upper\\\": 0.5699,\\n      \\\"std\\\": 0.0322\\n    },\\n    \\\"overlap_analysis\\\": {\\n      \\\"pooled_ci_22\\\": [\\n        0.4842,\\n        0.569\\n      ],\\n      \\\"pooled_ci_44\\\": [\\n        0.5248,\\n        0.5699\\n      ],\\n      \\\"overlap_pooled\\\": true,\\n      \\\"mean_ci_22\\\": [\\n        0.4874,\\n        0.5624\\n      ],\\n      \\\"mean_ci_44\\\": [\\n        0.5209,\\n        0.5699\\n      ],\\n      \\\"overlap_mean\\\": true,\\n      \\\"delta_pooled\\\": 0.0244,\\n      \\\"delta_mean\\\": 0.0269,\\n      \\\"narrative\\\": \\\"The 95% bootstrap CIs for count=22 (pooled recall=0.527, CI [0.484, 0.569]) and count=44 (pooled recall=0.551, CI [0.525, 0.570]) overlap substantially, confirming that the non-monotonicity (+0.024) is within sampling variability and not statistically significant. With only 5 batches per count level, the wide CIs reflect the expected high variance in batch composition.\\\"\\n    }\\n  },\\n  \\\"W2_practical_effect\\\": {\\n    \\\"16rel_pool\\\": {\\n      \\\"n_batches\\\": 100,\\n      \\\"slope\\\": -0.449,\\n      \\\"slope_ci_95\\\": [\\n        -0.5564038709006914,\\n        -0.3485078314313499\\n      ],\\n      \\\"r_value\\\": -0.6373,\\n      \\\"bcs_stats\\\": {\\n        \\\"mean\\\": 0.8259,\\n        \\\"std\\\": 0.0672,\\n        \\\"median\\\": 0.8405,\\n        \\\"Q1\\\": 0.7818,\\n        \\\"Q3\\\": 0.892,\\n        \\\"IQR\\\": 0.1102,\\n        \\\"min\\\": 0.6532,\\n        \\\"max\\\": 0.9002\\n      },\\n      \\\"typical_gap_pp\\\": -4.95,\\n      \\\"one_sd_gap_pp\\\": -3.02,\\n      \\\"extreme_gap_pp\\\": -31.2\\n    },\\n    \\\"80pool_16sub\\\": {\\n      \\\"slope\\\": -0.401,\\n      \\\"slope_ci_95\\\": [\\n        -0.684044,\\n        -0.062478\\n      ],\\n      \\\"bcs_Q1\\\": 0.5037,\\n      \\\"bcs_Q3\\\": 0.5692,\\n      \\\"IQR\\\": 0.0655,\\n      \\\"typical_gap_pp\\\": -2.63,\\n      \\\"one_sd_gap_pp\\\": -1.76\\n    },\\n    \\\"narrative\\\": \\\"The extreme-batch 31.2pp gap compares the lowest-BCS and highest-BCS batches (top/bottom 5% of batch compositions). For typical user experience, we consider the interquartile range (IQR). In the 16-relation pool (r=-0.64), BCS IQR spans [0.782, 0.892] (width=0.110). The regression slope (-0.449) predicts a typical Q1-to-Q3 gap of 4.9pp. A 1-SD BCS change (0.067) corresponds to 3.0pp accuracy change. In the 80-type pool with 16-type subsets (more realistic deployments), the typical IQR gap is 2.6pp and the 1-SD gap is 1.8pp.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "34bdfdb3-ba68-4e01-9e0b-d715f360a0b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"W3_cluster_bootstrap\\\\\\\": {\\\\n    \\\\\\\"fewnerd\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.1372302437793451,\\\\n      \\\\\\\"cluster_ci_lower\\\\\\\": 0.06929773496707424,\\\\n      \\\\\\\"cluster_ci_upper\\\\\\\": 0.2186197985169236,\\\\n      \\\\\\\"n_types\\\\\\\": 63,\\\\n      \\\\\\\"n_pairs\\\\\\\": 1953,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_valid_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"significant\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.14559536506023063,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.03701644340721873,\\\\n      \\\\\\\"naive_ci\\\\\\\": [\\\\n        0.076,\\\\n        0.156\\\\n      ],\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"We recomputed CIs using a cluster bootstrap that resamples entity types (N=63) rather than individual pairs. The cluster-robust 95% CI [0.069, 0.219] is wider than the naive pair-level CI [0.076, 0.156] as expected, but still excludes zero, confirming that the pairwise SCS-confusion correlation is statistically significant even after accounting for type-level clustering.\\\\\\\",\\\\n      \\\\\\\"original_r_paper\\\\\\\": 0.112\\\\n    },\\\\n    \\\\\\\"maven\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.1285734563090772,\\\\n      \\\\\\\"cluster_ci_lower\\\\\\\": 0.0806734385093243,\\\\n      \\\\\\\"cluster_ci_upper\\\\\\\": 0.184957155553557,\\\\n      \\\\\\\"n_types\\\\\\\": 149,\\\\n      \\\\\\\"n_pairs\\\\\\\": 11026,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_valid_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"significant\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.12934477309781067,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.026041657610013258,\\\\n      \\\\\\\"naive_ci\\\\\\\": [\\\\n        0.104,\\\\n        0.156\\\\n      ],\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"For MAVEN (N=149 types), the cluster-robust 95% CI [0.081, 0.185] is wider than the naive CI [0.104, 0.156], but also excludes zero, confirming significance under cluster-robust inference.\\\\\\\",\\\\n      \\\\\\\"original_r_paper\\\\\\\": 0.129\\\\n    }\\\\n  },\\\\n  \\\\\\\"W4_recall_ci\\\\\\\": {\\\\n    \\\\\\\"count_22\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 5,\\\\n      \\\\\\\"per_batch_recalls\\\\\\\": [\\\\n        0.5077,\\\\n        0.5961,\\\\n        0.4649,\\\\n        0.5162,\\\\n        0.5262\\\\n      ],\\\\n      \\\\\\\"per_batch_tp\\\\\\\": [\\\\n        496,\\\\n        704,\\\\n        417,\\\\n        351,\\\\n        361\\\\n      ],\\\\n      \\\\\\\"per_batch_gold\\\\\\\": [\\\\n        977,\\\\n        1181,\\\\n        897,\\\\n        680,\\\\n        686\\\\n      ],\\\\n      \\\\\\\"pooled_recall\\\\\\\": 0.5268,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.5222,\\\\n      \\\\\\\"pooled_ci_lower\\\\\\\": 0.4842,\\\\n      \\\\\\\"pooled_ci_upper\\\\\\\": 0.569,\\\\n      \\\\\\\"mean_ci_lower\\\\\\\": 0.4874,\\\\n      \\\\\\\"mean_ci_upper\\\\\\\": 0.5624,\\\\n      \\\\\\\"std\\\\\\\": 0.0475\\\\n    },\\\\n    \\\\\\\"count_44\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 5,\\\\n      \\\\\\\"per_batch_recalls\\\\\\\": [\\\\n        0.5716,\\\\n        0.4958,\\\\n        0.5738,\\\\n        0.5433,\\\\n        0.5611\\\\n      ],\\\\n      \\\\\\\"per_batch_tp\\\\\\\": [\\\\n        1114,\\\\n        759,\\\\n        1089,\\\\n        1185,\\\\n        1088\\\\n      ],\\\\n      \\\\\\\"per_batch_gold\\\\\\\": [\\\\n        1949,\\\\n        1531,\\\\n        1898,\\\\n        2181,\\\\n        1939\\\\n      ],\\\\n      \\\\\\\"pooled_recall\\\\\\\": 0.5512,\\\\n      \\\\\\\"mean_recall\\\\\\\": 0.5491,\\\\n      \\\\\\\"pooled_ci_lower\\\\\\\": 0.5248,\\\\n      \\\\\\\"pooled_ci_upper\\\\\\\": 0.5699,\\\\n      \\\\\\\"mean_ci_lower\\\\\\\": 0.5209,\\\\n      \\\\\\\"mean_ci_upper\\\\\\\": 0.5699,\\\\n      \\\\\\\"std\\\\\\\": 0.0322\\\\n    },\\\\n    \\\\\\\"overlap_analysis\\\\\\\": {\\\\n      \\\\\\\"pooled_ci_22\\\\\\\": [\\\\n        0.4842,\\\\n        0.569\\\\n      ],\\\\n      \\\\\\\"pooled_ci_44\\\\\\\": [\\\\n        0.5248,\\\\n        0.5699\\\\n      ],\\\\n      \\\\\\\"overlap_pooled\\\\\\\": true,\\\\n      \\\\\\\"mean_ci_22\\\\\\\": [\\\\n        0.4874,\\\\n        0.5624\\\\n      ],\\\\n      \\\\\\\"mean_ci_44\\\\\\\": [\\\\n        0.5209,\\\\n        0.5699\\\\n      ],\\\\n      \\\\\\\"overlap_mean\\\\\\\": true,\\\\n      \\\\\\\"delta_pooled\\\\\\\": 0.0244,\\\\n      \\\\\\\"delta_mean\\\\\\\": 0.0269,\\\\n      \\\\\\\"narrative\\\\\\\": \\\\\\\"The 95% bootstrap CIs for count=22 (pooled recall=0.527, CI [0.484, 0.569]) and count=44 (pooled recall=0.551, CI [0.525, 0.570]) overlap substantially, confirming that the non-monotonicity (+0.024) is within sampling variability and not statistically significant. With only 5 batches per count level, the wide CIs reflect the expected high variance in batch composition.\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"W2_practical_effect\\\\\\\": {\\\\n    \\\\\\\"16rel_pool\\\\\\\": {\\\\n      \\\\\\\"n_batches\\\\\\\": 100,\\\\n      \\\\\\\"slope\\\\\\\": -0.449,\\\\n      \\\\\\\"slope_ci_95\\\\\\\": [\\\\n        -0.5564038709006914,\\\\n        -0.3485078314313499\\\\n      ],\\\\n      \\\\\\\"r_value\\\\\\\": -0.6373,\\\\n      \\\\\\\"bcs_stats\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.8259,\\\\n        \\\\\\\"std\\\\\\\": 0.0672,\\\\n        \\\\\\\"median\\\\\\\": 0.8405,\\\\n        \\\\\\\"Q1\\\\\\\": 0.7818,\\\\n        \\\\\\\"Q3\\\\\\\": 0.892,\\\\n        \\\\\\\"IQR\\\\\\\": 0.1102,\\\\n        \\\\\\\"min\\\\\\\": 0.6532,\\\\n        \\\\\\\"max\\\\\\\": 0.9002\\\\n      },\\\\n      \\\\\\\"typical_gap_pp\\\\\\\": -4.95,\\\\n      \\\\\\\"one_sd_gap_pp\\\\\\\": -3.02,\\\\n      \\\\\\\"extreme_gap_pp\\\\\\\": -31.2\\\\n    },\\\\n    \\\\\\\"80pool_16sub\\\\\\\": {\\\\n      \\\\\\\"slope\\\\\\\": -0.401,\\\\n      \\\\\\\"slope_ci_95\\\\\\\": [\\\\n        -0.684044,\\\\n        -0.062478\\\\n      ],\\\\n      \\\\\\\"bcs_Q1\\\\\\\": 0.5037,\\\\n      \\\\\\\"bcs_Q3\\\\\\\": 0.5692,\\\\n      \\\\\\\"IQR\\\\\\\": 0.0655,\\\\n      \\\\\\\"typical_gap_pp\\\\\\\": -2.63,\\\\n      \\\\\\\"one_sd_gap_pp\\\\\\\": -1.76\\\\n    },\\\\n    \\\\\\\"narrative\\\\\\\": \\\\\\\"The extreme-batch 31.2pp gap compares the lowest-BCS and highest-BCS batches (top/bottom 5% of batch compositions). For typical user experience, we consider the interquartile range (IQR). In the 16-relation pool (r=-0.64), BCS IQR spans [0.782, 0.892] (width=0.110). The regression slope (-0.449) predicts a typical Q1-to-Q3 gap of 4.9pp. A 1-SD BCS change (0.067) corresponds to 3.0pp accuracy change. In the 80-type pool with 16-type subsets (more realistic deployments), the typical IQR gap is 2.6pp and the 1-SD gap is 1.8pp.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"W3_cluster_bootstrap\\\": {\\n    \\\"fewnerd\\\": {\\n      \\\"point_estimate\\\": 0.1372302437793451,\\n      \\\"cluster_ci_lower\\\": 0.06929773496707424,\\n      \\\"cluster_ci_upper\\\": 0.2186197985169236,\\n      \\\"n_types\\\": 63,\\n      \\\"n_pairs\\\": 1953,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_valid_bootstrap\\\": 10000,\\n      \\\"significant\\\": true,\\n      \\\"boot_mean\\\": 0.14559536506023063,\\n      \\\"boot_std\\\": 0.03701644340721873,\\n      \\\"naive_ci\\\": [\\n        0.076,\\n        0.156\\n      ],\\n      \\\"narrative\\\": \\\"We recomputed CIs using a cluster bootstrap that resamples entity types (N=63) rather than individual pairs. The cluster-robust 95% CI [0.069, 0.219] is wider than the naive pair-level CI [0.076, 0.156] as expected, but still excludes zero, confirming that the pairwise SCS-confusion correlation is statistically significant even after accounting for type-level clustering.\\\",\\n      \\\"original_r_paper\\\": 0.112\\n    },\\n    \\\"maven\\\": {\\n      \\\"point_estimate\\\": 0.1285734563090772,\\n      \\\"cluster_ci_lower\\\": 0.0806734385093243,\\n      \\\"cluster_ci_upper\\\": 0.184957155553557,\\n      \\\"n_types\\\": 149,\\n      \\\"n_pairs\\\": 11026,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_valid_bootstrap\\\": 10000,\\n      \\\"significant\\\": true,\\n      \\\"boot_mean\\\": 0.12934477309781067,\\n      \\\"boot_std\\\": 0.026041657610013258,\\n      \\\"naive_ci\\\": [\\n        0.104,\\n        0.156\\n      ],\\n      \\\"narrative\\\": \\\"For MAVEN (N=149 types), the cluster-robust 95% CI [0.081, 0.185] is wider than the naive CI [0.104, 0.156], but also excludes zero, confirming significance under cluster-robust inference.\\\",\\n      \\\"original_r_paper\\\": 0.129\\n    }\\n  },\\n  \\\"W4_recall_ci\\\": {\\n    \\\"count_22\\\": {\\n      \\\"n_batches\\\": 5,\\n      \\\"per_batch_recalls\\\": [\\n        0.5077,\\n        0.5961,\\n        0.4649,\\n        0.5162,\\n        0.5262\\n      ],\\n      \\\"per_batch_tp\\\": [\\n        496,\\n        704,\\n        417,\\n        351,\\n        361\\n      ],\\n      \\\"per_batch_gold\\\": [\\n        977,\\n        1181,\\n        897,\\n        680,\\n        686\\n      ],\\n      \\\"pooled_recall\\\": 0.5268,\\n      \\\"mean_recall\\\": 0.5222,\\n      \\\"pooled_ci_lower\\\": 0.4842,\\n      \\\"pooled_ci_upper\\\": 0.569,\\n      \\\"mean_ci_lower\\\": 0.4874,\\n      \\\"mean_ci_upper\\\": 0.5624,\\n      \\\"std\\\": 0.0475\\n    },\\n    \\\"count_44\\\": {\\n      \\\"n_batches\\\": 5,\\n      \\\"per_batch_recalls\\\": [\\n        0.5716,\\n        0.4958,\\n        0.5738,\\n        0.5433,\\n        0.5611\\n      ],\\n      \\\"per_batch_tp\\\": [\\n        1114,\\n        759,\\n        1089,\\n        1185,\\n        1088\\n      ],\\n      \\\"per_batch_gold\\\": [\\n        1949,\\n        1531,\\n        1898,\\n        2181,\\n        1939\\n      ],\\n      \\\"pooled_recall\\\": 0.5512,\\n      \\\"mean_recall\\\": 0.5491,\\n      \\\"pooled_ci_lower\\\": 0.5248,\\n      \\\"pooled_ci_upper\\\": 0.5699,\\n      \\\"mean_ci_lower\\\": 0.5209,\\n      \\\"mean_ci_upper\\\": 0.5699,\\n      \\\"std\\\": 0.0322\\n    },\\n    \\\"overlap_analysis\\\": {\\n      \\\"pooled_ci_22\\\": [\\n        0.4842,\\n        0.569\\n      ],\\n      \\\"pooled_ci_44\\\": [\\n        0.5248,\\n        0.5699\\n      ],\\n      \\\"overlap_pooled\\\": true,\\n      \\\"mean_ci_22\\\": [\\n        0.4874,\\n        0.5624\\n      ],\\n      \\\"mean_ci_44\\\": [\\n        0.5209,\\n        0.5699\\n      ],\\n      \\\"overlap_mean\\\": true,\\n      \\\"delta_pooled\\\": 0.0244,\\n      \\\"delta_mean\\\": 0.0269,\\n      \\\"narrative\\\": \\\"The 95% bootstrap CIs for count=22 (pooled recall=0.527, CI [0.484, 0.569]) and count=44 (pooled recall=0.551, CI [0.525, 0.570]) overlap substantially, confirming that the non-monotonicity (+0.024) is within sampling variability and not statistically significant. With only 5 batches per count level, the wide CIs reflect the expected high variance in batch composition.\\\"\\n    }\\n  },\\n  \\\"W2_practical_effect\\\": {\\n    \\\"16rel_pool\\\": {\\n      \\\"n_batches\\\": 100,\\n      \\\"slope\\\": -0.449,\\n      \\\"slope_ci_95\\\": [\\n        -0.5564038709006914,\\n        -0.3485078314313499\\n      ],\\n      \\\"r_value\\\": -0.6373,\\n      \\\"bcs_stats\\\": {\\n        \\\"mean\\\": 0.8259,\\n        \\\"std\\\": 0.0672,\\n        \\\"median\\\": 0.8405,\\n        \\\"Q1\\\": 0.7818,\\n        \\\"Q3\\\": 0.892,\\n        \\\"IQR\\\": 0.1102,\\n        \\\"min\\\": 0.6532,\\n        \\\"max\\\": 0.9002\\n      },\\n      \\\"typical_gap_pp\\\": -4.95,\\n      \\\"one_sd_gap_pp\\\": -3.02,\\n      \\\"extreme_gap_pp\\\": -31.2\\n    },\\n    \\\"80pool_16sub\\\": {\\n      \\\"slope\\\": -0.401,\\n      \\\"slope_ci_95\\\": [\\n        -0.684044,\\n        -0.062478\\n      ],\\n      \\\"bcs_Q1\\\": 0.5037,\\n      \\\"bcs_Q3\\\": 0.5692,\\n      \\\"IQR\\\": 0.0655,\\n      \\\"typical_gap_pp\\\": -2.63,\\n      \\\"one_sd_gap_pp\\\": -1.76\\n    },\\n    \\\"narrative\\\": \\\"The extreme-batch 31.2pp gap compares the lowest-BCS and highest-BCS batches (top/bottom 5% of batch compositions). For typical user experience, we consider the interquartile range (IQR). In the 16-relation pool (r=-0.64), BCS IQR spans [0.782, 0.892] (width=0.110). The regression slope (-0.449) predicts a typical Q1-to-Q3 gap of 4.9pp. A 1-SD BCS change (0.067) corresponds to 3.0pp accuracy change. In the 80-type pool with 16-type subsets (more realistic deployments), the typical IQR gap is 2.6pp and the 1-SD gap is 1.8pp.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UixTmmYhRcb9op2TN2p9xh`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/extreme_batch_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "10d472a8-3519-489d-94e6-7688c39a7e99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BW5xKhFw7jP6AriCD5tJe1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5257,
+      "cache_read_input_tokens": 77214,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5257
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-16T03:50:49.534Z_
+
+<details><summary>↩ Tool result · `toolu_01UixTmmYhRcb9op2TN2p9xh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"16rel_independent_n1\\\": {\\n    \\\"n_extreme\\\": 1,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 14.11,\\n    \\\"ci_95_lower_pp\\\": 14.11,\\n    \\\"ci_95_upper_pp\\\": 14.11,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        4\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6532\\n      ],\\n      \\\"acc_values\\\": [\\n        0.9052\\n      ],\\n      \\\"mean_bcs\\\": 0.6532,\\n      \\\"mean_acc\\\": 0.9052\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        98\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.9002\\n      ],\\n      \\\"acc_values\\\": [\\n        0.7641\\n      ],\\n      \\\"mean_bcs\\\": 0.9002,\\n      \\\"mean_acc\\\": 0.7641\\n    }\\n  },\\n  \\\"16rel_independent_n3\\\": {\\n    \\\"n_extreme\\\": 3,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 13.51,\\n    \\\"ci_95_lower_pp\\\": 7.72,\\n    \\\"ci_95_upper_pp\\\": 18.35,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        4,\\n        54,\\n        68\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6532,\\n        0.6761,\\n        0.693\\n      ],\\n      \\\"acc_values\\\": [\\n        0.9052,\\n        0.9194,\\n        0.9516\\n      ],\\n      \\\"mean_bcs\\\": 0.6741,\\n      \\\"mean_acc\\\": 0.9254\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        89,\\n        90,\\n        98\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.9002,\\n        0.9002,\\n        0.9002\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8528,\\n        0.754,\\n        0.7641\\n      ],\\n      \\\"mean_bcs\\\": 0.9002,\\n      \\\"mean_acc\\\": 0.7903\\n    }\\n  },\\n  \\\"16rel_independent_n5\\\": {\\n    \\\"n_extreme\\\": 5,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 11.45,\\n    \\\"ci_95_lower_pp\\\": 7.66,\\n    \\\"ci_95_upper_pp\\\": 15.48,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        4,\\n        54,\\n        68,\\n        69,\\n        25\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6532,\\n        0.6761,\\n        0.693,\\n        0.7053,\\n        0.7121\\n      ],\\n      \\\"acc_values\\\": [\\n        0.9052,\\n        0.9194,\\n        0.9516,\\n        0.9395,\\n        0.8952\\n      ],\\n      \\\"mean_bcs\\\": 0.6879,\\n      \\\"mean_acc\\\": 0.9222\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        75,\\n        88,\\n        89,\\n        90,\\n        98\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8327,\\n        0.8347,\\n        0.8528,\\n        0.754,\\n        0.7641\\n      ],\\n      \\\"mean_bcs\\\": 0.9002,\\n      \\\"mean_acc\\\": 0.8077\\n    }\\n  },\\n  \\\"16rel_independent_n10\\\": {\\n    \\\"n_extreme\\\": 10,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 9.38,\\n    \\\"ci_95_lower_pp\\\": 6.57,\\n    \\\"ci_95_upper_pp\\\": 12.12,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        4,\\n        54,\\n        68,\\n        69,\\n        25,\\n        19,\\n        44,\\n        33,\\n        79,\\n        71\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6532,\\n        0.6761,\\n        0.693,\\n        0.7053,\\n        0.7121,\\n        0.7167,\\n        0.7167,\\n        0.7176,\\n        0.7176,\\n        0.7176\\n      ],\\n      \\\"acc_values\\\": [\\n        0.9052,\\n        0.9194,\\n        0.9516,\\n        0.9395,\\n        0.8952,\\n        0.9052,\\n        0.9032,\\n        0.9415,\\n        0.9375,\\n        0.8931\\n      ],\\n      \\\"mean_bcs\\\": 0.7026,\\n      \\\"mean_acc\\\": 0.9192\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        74,\\n        83,\\n        91,\\n        73,\\n        67,\\n        75,\\n        88,\\n        89,\\n        90,\\n        98\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8831,\\n        0.8387,\\n        0.8226,\\n        0.875,\\n        0.7964,\\n        0.8327,\\n        0.8347,\\n        0.8528,\\n        0.754,\\n        0.7641\\n      ],\\n      \\\"mean_bcs\\\": 0.9002,\\n      \\\"mean_acc\\\": 0.8254\\n    }\\n  },\\n  \\\"80pool_16sub_n1\\\": {\\n    \\\"n_extreme\\\": 1,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 20.83,\\n    \\\"ci_95_lower_pp\\\": 20.83,\\n    \\\"ci_95_upper_pp\\\": 20.83,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        64\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.4578\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8854\\n      ],\\n      \\\"mean_bcs\\\": 0.4578,\\n      \\\"mean_acc\\\": 0.8854\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        70\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6836\\n      ],\\n      \\\"acc_values\\\": [\\n        0.6771\\n      ],\\n      \\\"mean_bcs\\\": 0.6836,\\n      \\\"mean_acc\\\": 0.6771\\n    }\\n  },\\n  \\\"80pool_16sub_n3\\\": {\\n    \\\"n_extreme\\\": 3,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 11.81,\\n    \\\"ci_95_lower_pp\\\": 2.43,\\n    \\\"ci_95_upper_pp\\\": 21.18,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        64,\\n        93,\\n        94\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.4578,\\n        0.4627,\\n        0.4711\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8854,\\n        0.7708,\\n        0.9062\\n      ],\\n      \\\"mean_bcs\\\": 0.4639,\\n      \\\"mean_acc\\\": 0.8542\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        15,\\n        67,\\n        70\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6541,\\n        0.6707,\\n        0.6836\\n      ],\\n      \\\"acc_values\\\": [\\n        0.7083,\\n        0.8229,\\n        0.6771\\n      ],\\n      \\\"mean_bcs\\\": 0.6695,\\n      \\\"mean_acc\\\": 0.7361\\n    }\\n  },\\n  \\\"80pool_16sub_n5\\\": {\\n    \\\"n_extreme\\\": 5,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 9.79,\\n    \\\"ci_95_lower_pp\\\": 1.87,\\n    \\\"ci_95_upper_pp\\\": 17.5,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        64,\\n        93,\\n        94,\\n        84,\\n        90\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.4578,\\n        0.4627,\\n        0.4711,\\n        0.4757,\\n        0.4778\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8854,\\n        0.7708,\\n        0.9062,\\n        0.8854,\\n        0.8333\\n      ],\\n      \\\"mean_bcs\\\": 0.469,\\n      \\\"mean_acc\\\": 0.8562\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        55,\\n        35,\\n        15,\\n        67,\\n        70\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6294,\\n        0.638,\\n        0.6541,\\n        0.6707,\\n        0.6836\\n      ],\\n      \\\"acc_values\\\": [\\n        0.875,\\n        0.7083,\\n        0.7083,\\n        0.8229,\\n        0.6771\\n      ],\\n      \\\"mean_bcs\\\": 0.6552,\\n      \\\"mean_acc\\\": 0.7583\\n    }\\n  },\\n  \\\"80pool_16sub_n10\\\": {\\n    \\\"n_extreme\\\": 10,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 7.4,\\n    \\\"ci_95_lower_pp\\\": 1.46,\\n    \\\"ci_95_upper_pp\\\": 12.81,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        64,\\n        93,\\n        94,\\n        84,\\n        90,\\n        81,\\n        80,\\n        30,\\n        25,\\n        38\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.4578,\\n        0.4627,\\n        0.4711,\\n        0.4757,\\n        0.4778,\\n        0.4884,\\n        0.4901,\\n        0.4913,\\n        0.4944,\\n        0.5067\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8854,\\n        0.7708,\\n        0.9062,\\n        0.8854,\\n        0.8333,\\n        0.9062,\\n        0.8646,\\n        0.8854,\\n        0.7396,\\n        0.8438\\n      ],\\n      \\\"mean_bcs\\\": 0.4816,\\n      \\\"mean_acc\\\": 0.8521\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        66,\\n        10,\\n        97,\\n        74,\\n        6,\\n        55,\\n        35,\\n        15,\\n        67,\\n        70\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6201,\\n        0.6227,\\n        0.6264,\\n        0.6269,\\n        0.6291,\\n        0.6294,\\n        0.638,\\n        0.6541,\\n        0.6707,\\n        0.6836\\n      ],\\n      \\\"acc_values\\\": [\\n        0.7292,\\n        0.7708,\\n        0.8958,\\n        0.7396,\\n        0.8542,\\n        0.875,\\n        0.7083,\\n        0.7083,\\n        0.8229,\\n        0.6771\\n      ],\\n      \\\"mean_bcs\\\": 0.6401,\\n      \\\"mean_acc\\\": 0.7781\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "593d953e-bb83-49d1-b807-52af1dc2edd9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"16rel_independent_n1\\\\\\\": {\\\\n    \\\\\\\"n_extreme\\\\\\\": 1,\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"delta_pp\\\\\\\": 14.11,\\\\n    \\\\\\\"ci_95_lower_pp\\\\\\\": 14.11,\\\\n    \\\\\\\"ci_95_upper_pp\\\\\\\": 14.11,\\\\n    \\\\\\\"low_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        4\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.6532\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.9052\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.6532,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.9052\\\\n    },\\\\n    \\\\\\\"high_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        98\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.9002\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.7641\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.9002,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.7641\\\\n    }\\\\n  },\\\\n  \\\\\\\"16rel_independent_n3\\\\\\\": {\\\\n    \\\\\\\"n_extreme\\\\\\\": 3,\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"delta_pp\\\\\\\": 13.51,\\\\n    \\\\\\\"ci_95_lower_pp\\\\\\\": 7.72,\\\\n    \\\\\\\"ci_95_upper_pp\\\\\\\": 18.35,\\\\n    \\\\\\\"low_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        4,\\\\n        54,\\\\n        68\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.6532,\\\\n        0.6761,\\\\n        0.693\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.9052,\\\\n        0.9194,\\\\n        0.9516\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.6741,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.9254\\\\n    },\\\\n    \\\\\\\"high_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        89,\\\\n        90,\\\\n        98\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.8528,\\\\n        0.754,\\\\n        0.7641\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.9002,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.7903\\\\n    }\\\\n  },\\\\n  \\\\\\\"16rel_independent_n5\\\\\\\": {\\\\n    \\\\\\\"n_extreme\\\\\\\": 5,\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"delta_pp\\\\\\\": 11.45,\\\\n    \\\\\\\"ci_95_lower_pp\\\\\\\": 7.66,\\\\n    \\\\\\\"ci_95_upper_pp\\\\\\\": 15.48,\\\\n    \\\\\\\"low_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        4,\\\\n        54,\\\\n        68,\\\\n        69,\\\\n        25\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.6532,\\\\n        0.6761,\\\\n        0.693,\\\\n        0.7053,\\\\n        0.7121\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.9052,\\\\n        0.9194,\\\\n        0.9516,\\\\n        0.9395,\\\\n        0.8952\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.6879,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.9222\\\\n    },\\\\n    \\\\\\\"high_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        75,\\\\n        88,\\\\n        89,\\\\n        90,\\\\n        98\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.8327,\\\\n        0.8347,\\\\n        0.8528,\\\\n        0.754,\\\\n        0.7641\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.9002,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.8077\\\\n    }\\\\n  },\\\\n  \\\\\\\"16rel_independent_n10\\\\\\\": {\\\\n    \\\\\\\"n_extreme\\\\\\\": 10,\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"delta_pp\\\\\\\": 9.38,\\\\n    \\\\\\\"ci_95_lower_pp\\\\\\\": 6.57,\\\\n    \\\\\\\"ci_95_upper_pp\\\\\\\": 12.12,\\\\n    \\\\\\\"low_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        4,\\\\n        54,\\\\n        68,\\\\n        69,\\\\n        25,\\\\n        19,\\\\n        44,\\\\n        33,\\\\n        79,\\\\n        71\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.6532,\\\\n        0.6761,\\\\n        0.693,\\\\n        0.7053,\\\\n        0.7121,\\\\n        0.7167,\\\\n        0.7167,\\\\n        0.7176,\\\\n        0.7176,\\\\n        0.7176\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.9052,\\\\n        0.9194,\\\\n        0.9516,\\\\n        0.9395,\\\\n        0.8952,\\\\n        0.9052,\\\\n        0.9032,\\\\n        0.9415,\\\\n        0.9375,\\\\n        0.8931\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.7026,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.9192\\\\n    },\\\\n    \\\\\\\"high_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        74,\\\\n        83,\\\\n        91,\\\\n        73,\\\\n        67,\\\\n        75,\\\\n        88,\\\\n        89,\\\\n        90,\\\\n        98\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002,\\\\n        0.9002\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.8831,\\\\n        0.8387,\\\\n        0.8226,\\\\n        0.875,\\\\n        0.7964,\\\\n        0.8327,\\\\n        0.8347,\\\\n        0.8528,\\\\n        0.754,\\\\n        0.7641\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.9002,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.8254\\\\n    }\\\\n  },\\\\n  \\\\\\\"80pool_16sub_n1\\\\\\\": {\\\\n    \\\\\\\"n_extreme\\\\\\\": 1,\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"delta_pp\\\\\\\": 20.83,\\\\n    \\\\\\\"ci_95_lower_pp\\\\\\\": 20.83,\\\\n    \\\\\\\"ci_95_upper_pp\\\\\\\": 20.83,\\\\n    \\\\\\\"low_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        64\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.4578\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.8854\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.4578,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.8854\\\\n    },\\\\n    \\\\\\\"high_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        70\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.6836\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.6771\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.6836,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.6771\\\\n    }\\\\n  },\\\\n  \\\\\\\"80pool_16sub_n3\\\\\\\": {\\\\n    \\\\\\\"n_extreme\\\\\\\": 3,\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"delta_pp\\\\\\\": 11.81,\\\\n    \\\\\\\"ci_95_lower_pp\\\\\\\": 2.43,\\\\n    \\\\\\\"ci_95_upper_pp\\\\\\\": 21.18,\\\\n    \\\\\\\"low_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        64,\\\\n        93,\\\\n        94\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.4578,\\\\n        0.4627,\\\\n        0.4711\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.8854,\\\\n        0.7708,\\\\n        0.9062\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.4639,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.8542\\\\n    },\\\\n    \\\\\\\"high_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        15,\\\\n        67,\\\\n        70\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.6541,\\\\n        0.6707,\\\\n        0.6836\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.7083,\\\\n        0.8229,\\\\n        0.6771\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.6695,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.7361\\\\n    }\\\\n  },\\\\n  \\\\\\\"80pool_16sub_n5\\\\\\\": {\\\\n    \\\\\\\"n_extreme\\\\\\\": 5,\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"delta_pp\\\\\\\": 9.79,\\\\n    \\\\\\\"ci_95_lower_pp\\\\\\\": 1.87,\\\\n    \\\\\\\"ci_95_upper_pp\\\\\\\": 17.5,\\\\n    \\\\\\\"low_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        64,\\\\n        93,\\\\n        94,\\\\n        84,\\\\n        90\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.4578,\\\\n        0.4627,\\\\n        0.4711,\\\\n        0.4757,\\\\n        0.4778\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.8854,\\\\n        0.7708,\\\\n        0.9062,\\\\n        0.8854,\\\\n        0.8333\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.469,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.8562\\\\n    },\\\\n    \\\\\\\"high_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        55,\\\\n        35,\\\\n        15,\\\\n        67,\\\\n        70\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.6294,\\\\n        0.638,\\\\n        0.6541,\\\\n        0.6707,\\\\n        0.6836\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.875,\\\\n        0.7083,\\\\n        0.7083,\\\\n        0.8229,\\\\n        0.6771\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.6552,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.7583\\\\n    }\\\\n  },\\\\n  \\\\\\\"80pool_16sub_n10\\\\\\\": {\\\\n    \\\\\\\"n_extreme\\\\\\\": 10,\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"delta_pp\\\\\\\": 7.4,\\\\n    \\\\\\\"ci_95_lower_pp\\\\\\\": 1.46,\\\\n    \\\\\\\"ci_95_upper_pp\\\\\\\": 12.81,\\\\n    \\\\\\\"low_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        64,\\\\n        93,\\\\n        94,\\\\n        84,\\\\n        90,\\\\n        81,\\\\n        80,\\\\n        30,\\\\n        25,\\\\n        38\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.4578,\\\\n        0.4627,\\\\n        0.4711,\\\\n        0.4757,\\\\n        0.4778,\\\\n        0.4884,\\\\n        0.4901,\\\\n        0.4913,\\\\n        0.4944,\\\\n        0.5067\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.8854,\\\\n        0.7708,\\\\n        0.9062,\\\\n        0.8854,\\\\n        0.8333,\\\\n        0.9062,\\\\n        0.8646,\\\\n        0.8854,\\\\n        0.7396,\\\\n        0.8438\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.4816,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.8521\\\\n    },\\\\n    \\\\\\\"high_bcs_batches\\\\\\\": {\\\\n      \\\\\\\"indices\\\\\\\": [\\\\n        66,\\\\n        10,\\\\n        97,\\\\n        74,\\\\n        6,\\\\n        55,\\\\n        35,\\\\n        15,\\\\n        67,\\\\n        70\\\\n      ],\\\\n      \\\\\\\"bcs_values\\\\\\\": [\\\\n        0.6201,\\\\n        0.6227,\\\\n        0.6264,\\\\n        0.6269,\\\\n        0.6291,\\\\n        0.6294,\\\\n        0.638,\\\\n        0.6541,\\\\n        0.6707,\\\\n        0.6836\\\\n      ],\\\\n      \\\\\\\"acc_values\\\\\\\": [\\\\n        0.7292,\\\\n        0.7708,\\\\n        0.8958,\\\\n        0.7396,\\\\n        0.8542,\\\\n        0.875,\\\\n        0.7083,\\\\n        0.7083,\\\\n        0.8229,\\\\n        0.6771\\\\n      ],\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.6401,\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.7781\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"16rel_independent_n1\\\": {\\n    \\\"n_extreme\\\": 1,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 14.11,\\n    \\\"ci_95_lower_pp\\\": 14.11,\\n    \\\"ci_95_upper_pp\\\": 14.11,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        4\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6532\\n      ],\\n      \\\"acc_values\\\": [\\n        0.9052\\n      ],\\n      \\\"mean_bcs\\\": 0.6532,\\n      \\\"mean_acc\\\": 0.9052\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        98\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.9002\\n      ],\\n      \\\"acc_values\\\": [\\n        0.7641\\n      ],\\n      \\\"mean_bcs\\\": 0.9002,\\n      \\\"mean_acc\\\": 0.7641\\n    }\\n  },\\n  \\\"16rel_independent_n3\\\": {\\n    \\\"n_extreme\\\": 3,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 13.51,\\n    \\\"ci_95_lower_pp\\\": 7.72,\\n    \\\"ci_95_upper_pp\\\": 18.35,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        4,\\n        54,\\n        68\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6532,\\n        0.6761,\\n        0.693\\n      ],\\n      \\\"acc_values\\\": [\\n        0.9052,\\n        0.9194,\\n        0.9516\\n      ],\\n      \\\"mean_bcs\\\": 0.6741,\\n      \\\"mean_acc\\\": 0.9254\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        89,\\n        90,\\n        98\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.9002,\\n        0.9002,\\n        0.9002\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8528,\\n        0.754,\\n        0.7641\\n      ],\\n      \\\"mean_bcs\\\": 0.9002,\\n      \\\"mean_acc\\\": 0.7903\\n    }\\n  },\\n  \\\"16rel_independent_n5\\\": {\\n    \\\"n_extreme\\\": 5,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 11.45,\\n    \\\"ci_95_lower_pp\\\": 7.66,\\n    \\\"ci_95_upper_pp\\\": 15.48,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        4,\\n        54,\\n        68,\\n        69,\\n        25\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6532,\\n        0.6761,\\n        0.693,\\n        0.7053,\\n        0.7121\\n      ],\\n      \\\"acc_values\\\": [\\n        0.9052,\\n        0.9194,\\n        0.9516,\\n        0.9395,\\n        0.8952\\n      ],\\n      \\\"mean_bcs\\\": 0.6879,\\n      \\\"mean_acc\\\": 0.9222\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        75,\\n        88,\\n        89,\\n        90,\\n        98\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8327,\\n        0.8347,\\n        0.8528,\\n        0.754,\\n        0.7641\\n      ],\\n      \\\"mean_bcs\\\": 0.9002,\\n      \\\"mean_acc\\\": 0.8077\\n    }\\n  },\\n  \\\"16rel_independent_n10\\\": {\\n    \\\"n_extreme\\\": 10,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 9.38,\\n    \\\"ci_95_lower_pp\\\": 6.57,\\n    \\\"ci_95_upper_pp\\\": 12.12,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        4,\\n        54,\\n        68,\\n        69,\\n        25,\\n        19,\\n        44,\\n        33,\\n        79,\\n        71\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6532,\\n        0.6761,\\n        0.693,\\n        0.7053,\\n        0.7121,\\n        0.7167,\\n        0.7167,\\n        0.7176,\\n        0.7176,\\n        0.7176\\n      ],\\n      \\\"acc_values\\\": [\\n        0.9052,\\n        0.9194,\\n        0.9516,\\n        0.9395,\\n        0.8952,\\n        0.9052,\\n        0.9032,\\n        0.9415,\\n        0.9375,\\n        0.8931\\n      ],\\n      \\\"mean_bcs\\\": 0.7026,\\n      \\\"mean_acc\\\": 0.9192\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        74,\\n        83,\\n        91,\\n        73,\\n        67,\\n        75,\\n        88,\\n        89,\\n        90,\\n        98\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002,\\n        0.9002\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8831,\\n        0.8387,\\n        0.8226,\\n        0.875,\\n        0.7964,\\n        0.8327,\\n        0.8347,\\n        0.8528,\\n        0.754,\\n        0.7641\\n      ],\\n      \\\"mean_bcs\\\": 0.9002,\\n      \\\"mean_acc\\\": 0.8254\\n    }\\n  },\\n  \\\"80pool_16sub_n1\\\": {\\n    \\\"n_extreme\\\": 1,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 20.83,\\n    \\\"ci_95_lower_pp\\\": 20.83,\\n    \\\"ci_95_upper_pp\\\": 20.83,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        64\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.4578\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8854\\n      ],\\n      \\\"mean_bcs\\\": 0.4578,\\n      \\\"mean_acc\\\": 0.8854\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        70\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6836\\n      ],\\n      \\\"acc_values\\\": [\\n        0.6771\\n      ],\\n      \\\"mean_bcs\\\": 0.6836,\\n      \\\"mean_acc\\\": 0.6771\\n    }\\n  },\\n  \\\"80pool_16sub_n3\\\": {\\n    \\\"n_extreme\\\": 3,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 11.81,\\n    \\\"ci_95_lower_pp\\\": 2.43,\\n    \\\"ci_95_upper_pp\\\": 21.18,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        64,\\n        93,\\n        94\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.4578,\\n        0.4627,\\n        0.4711\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8854,\\n        0.7708,\\n        0.9062\\n      ],\\n      \\\"mean_bcs\\\": 0.4639,\\n      \\\"mean_acc\\\": 0.8542\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        15,\\n        67,\\n        70\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6541,\\n        0.6707,\\n        0.6836\\n      ],\\n      \\\"acc_values\\\": [\\n        0.7083,\\n        0.8229,\\n        0.6771\\n      ],\\n      \\\"mean_bcs\\\": 0.6695,\\n      \\\"mean_acc\\\": 0.7361\\n    }\\n  },\\n  \\\"80pool_16sub_n5\\\": {\\n    \\\"n_extreme\\\": 5,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 9.79,\\n    \\\"ci_95_lower_pp\\\": 1.87,\\n    \\\"ci_95_upper_pp\\\": 17.5,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        64,\\n        93,\\n        94,\\n        84,\\n        90\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.4578,\\n        0.4627,\\n        0.4711,\\n        0.4757,\\n        0.4778\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8854,\\n        0.7708,\\n        0.9062,\\n        0.8854,\\n        0.8333\\n      ],\\n      \\\"mean_bcs\\\": 0.469,\\n      \\\"mean_acc\\\": 0.8562\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        55,\\n        35,\\n        15,\\n        67,\\n        70\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6294,\\n        0.638,\\n        0.6541,\\n        0.6707,\\n        0.6836\\n      ],\\n      \\\"acc_values\\\": [\\n        0.875,\\n        0.7083,\\n        0.7083,\\n        0.8229,\\n        0.6771\\n      ],\\n      \\\"mean_bcs\\\": 0.6552,\\n      \\\"mean_acc\\\": 0.7583\\n    }\\n  },\\n  \\\"80pool_16sub_n10\\\": {\\n    \\\"n_extreme\\\": 10,\\n    \\\"n_total\\\": 100,\\n    \\\"delta_pp\\\": 7.4,\\n    \\\"ci_95_lower_pp\\\": 1.46,\\n    \\\"ci_95_upper_pp\\\": 12.81,\\n    \\\"low_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        64,\\n        93,\\n        94,\\n        84,\\n        90,\\n        81,\\n        80,\\n        30,\\n        25,\\n        38\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.4578,\\n        0.4627,\\n        0.4711,\\n        0.4757,\\n        0.4778,\\n        0.4884,\\n        0.4901,\\n        0.4913,\\n        0.4944,\\n        0.5067\\n      ],\\n      \\\"acc_values\\\": [\\n        0.8854,\\n        0.7708,\\n        0.9062,\\n        0.8854,\\n        0.8333,\\n        0.9062,\\n        0.8646,\\n        0.8854,\\n        0.7396,\\n        0.8438\\n      ],\\n      \\\"mean_bcs\\\": 0.4816,\\n      \\\"mean_acc\\\": 0.8521\\n    },\\n    \\\"high_bcs_batches\\\": {\\n      \\\"indices\\\": [\\n        66,\\n        10,\\n        97,\\n        74,\\n        6,\\n        55,\\n        35,\\n        15,\\n        67,\\n        70\\n      ],\\n      \\\"bcs_values\\\": [\\n        0.6201,\\n        0.6227,\\n        0.6264,\\n        0.6269,\\n        0.6291,\\n        0.6294,\\n        0.638,\\n        0.6541,\\n        0.6707,\\n        0.6836\\n      ],\\n      \\\"acc_values\\\": [\\n        0.7292,\\n        0.7708,\\n        0.8958,\\n        0.7396,\\n        0.8542,\\n        0.875,\\n        0.7083,\\n        0.7083,\\n        0.8229,\\n        0.6771\\n      ],\\n      \\\"mean_bcs\\\": 0.6401,\\n      \\\"mean_acc\\\": 0.7781\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 108_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The extreme_batch_analysis.json has data for FewRel (16rel_independent and 80pool_16sub) but not for NER/FewNERD. The round2_statistical_analyses.json has FewNERD pairwise and MAVEN data, plus exp1 recall CIs and FewRel regression slopes.
+
+Let me now get the full v2 NER data from eval_exp2.json and compute the correlations. I have the v2 data available. For v1, I'll need to note the data was overwritten and use D005 summary statistics.
+
+
+Actually, let me check if d035_extreme_batch/results.json might contain the NER data I'm looking for.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "717c8c48-c68f-4238-bb85-26a0eb444b9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018v4yuifLt1g564zdgtb2fX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9763,
+      "cache_read_input_tokens": 82471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9763
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W5A1oA7EUemQrVaCQxGGWS`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/d035_extreme_batch/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "98b4ace9-919a-4dee-a599-b63da0efae8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018v4yuifLt1g564zdgtb2fX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9763,
+      "cache_read_input_tokens": 82471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9763
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 110_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778921400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0c65bb3a-6c5b-4eba-b099-cfe0e7aa55b0",
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-16T03:51:04.755Z_
+
+<details><summary>↩ Tool result · `toolu_01W5A1oA7EUemQrVaCQxGGWS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"16rel_independent\\\": {\\n    \\\"n_extreme\\\": 5,\\n    \\\"n_total_batches\\\": 100,\\n    \\\"delta_extreme_pp\\\": -11.65,\\n    \\\"ci_95\\\": [\\n      -14.76,\\n      -5.16\\n    ],\\n    \\\"low_group\\\": {\\n      \\\"n\\\": 5,\\n      \\\"mean_bcs\\\": 0.6879,\\n      \\\"bcs_range\\\": [\\n        0.6532,\\n        0.7121\\n      ],\\n      \\\"mean_acc\\\": 0.9222,\\n      \\\"accs\\\": [\\n        0.9052,\\n        0.9194,\\n        0.9516,\\n        0.9395,\\n        0.8952\\n      ]\\n    },\\n    \\\"high_group\\\": {\\n      \\\"n\\\": 5,\\n      \\\"mean_bcs\\\": 0.9002,\\n      \\\"bcs_range\\\": [\\n        0.9002,\\n        0.9002\\n      ],\\n      \\\"mean_acc\\\": 0.8056,\\n      \\\"accs\\\": [\\n        0.8347,\\n        0.8528,\\n        0.754,\\n        0.8226,\\n        0.7641\\n      ]\\n    }\\n  },\\n  \\\"80pool_16sub\\\": {\\n    \\\"n_extreme\\\": 5,\\n    \\\"n_total_batches\\\": 100,\\n    \\\"delta_extreme_pp\\\": -9.79,\\n    \\\"ci_95\\\": [\\n      -17.71,\\n      -1.45\\n    ],\\n    \\\"low_group\\\": {\\n      \\\"n\\\": 5,\\n      \\\"mean_bcs\\\": 0.469,\\n      \\\"bcs_range\\\": [\\n        0.4578,\\n        0.4778\\n      ],\\n      \\\"mean_acc\\\": 0.8562,\\n      \\\"accs\\\": [\\n        0.8854,\\n        0.7708,\\n        0.9062,\\n        0.8854,\\n        0.8333\\n      ]\\n    },\\n    \\\"high_group\\\": {\\n      \\\"n\\\": 5,\\n      \\\"mean_bcs\\\": 0.6552,\\n      \\\"bcs_range\\\": [\\n        0.6294,\\n        0.6836\\n      ],\\n      \\\"mean_acc\\\": 0.7583,\\n      \\\"accs\\\": [\\n        0.875,\\n        0.7083,\\n        0.7083,\\n        0.8229,\\n        0.6771\\n      ]\\n    }\\n  },\\n  \\\"80rel_reference\\\": {\\n    \\\"method\\\": \\\"single_greedy_batch\\\",\\n    \\\"delta_extreme_pp\\\": -31.25,\\n    \\\"low_bcs\\\": 0.4715,\\n    \\\"low_acc\\\": 0.8229,\\n    \\\"high_bcs\\\": 0.9706,\\n    \\\"high_acc\\\": 0.5104\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "713422a2-224a-4835-a8f2-8d1b09b1b5d9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"16rel_independent\\\\\\\": {\\\\n    \\\\\\\"n_extreme\\\\\\\": 5,\\\\n    \\\\\\\"n_total_batches\\\\\\\": 100,\\\\n    \\\\\\\"delta_extreme_pp\\\\\\\": -11.65,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      -14.76,\\\\n      -5.16\\\\n    ],\\\\n    \\\\\\\"low_group\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 5,\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.6879,\\\\n      \\\\\\\"bcs_range\\\\\\\": [\\\\n        0.6532,\\\\n        0.7121\\\\n      ],\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.9222,\\\\n      \\\\\\\"accs\\\\\\\": [\\\\n        0.9052,\\\\n        0.9194,\\\\n        0.9516,\\\\n        0.9395,\\\\n        0.8952\\\\n      ]\\\\n    },\\\\n    \\\\\\\"high_group\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 5,\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.9002,\\\\n      \\\\\\\"bcs_range\\\\\\\": [\\\\n        0.9002,\\\\n        0.9002\\\\n      ],\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.8056,\\\\n      \\\\\\\"accs\\\\\\\": [\\\\n        0.8347,\\\\n        0.8528,\\\\n        0.754,\\\\n        0.8226,\\\\n        0.7641\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"80pool_16sub\\\\\\\": {\\\\n    \\\\\\\"n_extreme\\\\\\\": 5,\\\\n    \\\\\\\"n_total_batches\\\\\\\": 100,\\\\n    \\\\\\\"delta_extreme_pp\\\\\\\": -9.79,\\\\n    \\\\\\\"ci_95\\\\\\\": [\\\\n      -17.71,\\\\n      -1.45\\\\n    ],\\\\n    \\\\\\\"low_group\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 5,\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.469,\\\\n      \\\\\\\"bcs_range\\\\\\\": [\\\\n        0.4578,\\\\n        0.4778\\\\n      ],\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.8562,\\\\n      \\\\\\\"accs\\\\\\\": [\\\\n        0.8854,\\\\n        0.7708,\\\\n        0.9062,\\\\n        0.8854,\\\\n        0.8333\\\\n      ]\\\\n    },\\\\n    \\\\\\\"high_group\\\\\\\": {\\\\n      \\\\\\\"n\\\\\\\": 5,\\\\n      \\\\\\\"mean_bcs\\\\\\\": 0.6552,\\\\n      \\\\\\\"bcs_range\\\\\\\": [\\\\n        0.6294,\\\\n        0.6836\\\\n      ],\\\\n      \\\\\\\"mean_acc\\\\\\\": 0.7583,\\\\n      \\\\\\\"accs\\\\\\\": [\\\\n        0.875,\\\\n        0.7083,\\\\n        0.7083,\\\\n        0.8229,\\\\n        0.6771\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"80rel_reference\\\\\\\": {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"single_greedy_batch\\\\\\\",\\\\n    \\\\\\\"delta_extreme_pp\\\\\\\": -31.25,\\\\n    \\\\\\\"low_bcs\\\\\\\": 0.4715,\\\\n    \\\\\\\"low_acc\\\\\\\": 0.8229,\\\\n    \\\\\\\"high_bcs\\\\\\\": 0.9706,\\\\n    \\\\\\\"high_acc\\\\\\\": 0.5104\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"16rel_independent\\\": {\\n    \\\"n_extreme\\\": 5,\\n    \\\"n_total_batches\\\": 100,\\n    \\\"delta_extreme_pp\\\": -11.65,\\n    \\\"ci_95\\\": [\\n      -14.76,\\n      -5.16\\n    ],\\n    \\\"low_group\\\": {\\n      \\\"n\\\": 5,\\n      \\\"mean_bcs\\\": 0.6879,\\n      \\\"bcs_range\\\": [\\n        0.6532,\\n        0.7121\\n      ],\\n      \\\"mean_acc\\\": 0.9222,\\n      \\\"accs\\\": [\\n        0.9052,\\n        0.9194,\\n        0.9516,\\n        0.9395,\\n        0.8952\\n      ]\\n    },\\n    \\\"high_group\\\": {\\n      \\\"n\\\": 5,\\n      \\\"mean_bcs\\\": 0.9002,\\n      \\\"bcs_range\\\": [\\n        0.9002,\\n        0.9002\\n      ],\\n      \\\"mean_acc\\\": 0.8056,\\n      \\\"accs\\\": [\\n        0.8347,\\n        0.8528,\\n        0.754,\\n        0.8226,\\n        0.7641\\n      ]\\n    }\\n  },\\n  \\\"80pool_16sub\\\": {\\n    \\\"n_extreme\\\": 5,\\n    \\\"n_total_batches\\\": 100,\\n    \\\"delta_extreme_pp\\\": -9.79,\\n    \\\"ci_95\\\": [\\n      -17.71,\\n      -1.45\\n    ],\\n    \\\"low_group\\\": {\\n      \\\"n\\\": 5,\\n      \\\"mean_bcs\\\": 0.469,\\n      \\\"bcs_range\\\": [\\n        0.4578,\\n        0.4778\\n      ],\\n      \\\"mean_acc\\\": 0.8562,\\n      \\\"accs\\\": [\\n        0.8854,\\n        0.7708,\\n        0.9062,\\n        0.8854,\\n        0.8333\\n      ]\\n    },\\n    \\\"high_group\\\": {\\n      \\\"n\\\": 5,\\n      \\\"mean_bcs\\\": 0.6552,\\n      \\\"bcs_range\\\": [\\n        0.6294,\\n        0.6836\\n      ],\\n      \\\"mean_acc\\\": 0.7583,\\n      \\\"accs\\\": [\\n        0.875,\\n        0.7083,\\n        0.7083,\\n        0.8229,\\n        0.6771\\n      ]\\n    }\\n  },\\n  \\\"80rel_reference\\\": {\\n    \\\"method\\\": \\\"single_greedy_batch\\\",\\n    \\\"delta_extreme_pp\\\": -31.25,\\n    \\\"low_bcs\\\": 0.4715,\\n    \\\"low_acc\\\": 0.8229,\\n    \\\"high_bcs\\\": 0.9706,\\n    \\\"high_acc\\\": 0.5104\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 112_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is all FewRel data, not NER. Now let me proceed with what I have.
+
+I need to write an analysis script that:
+1. Reads the v2 eval_exp2.json data from the server
+2. Computes BCS-F1 correlations
+3. For v1, uses the D005 summary statistics
+
+Let me first get the complete v2 eval_exp2.json data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "1a904898-98b1-47f1-bfab-86791a1a10f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0132DpBwgPF4Dub9aiv7YRPG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1331,
+      "cache_read_input_tokens": 92234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113_
+
+Now I have a clear picture. The v2 data is in `eval_exp2.json`, v1 raw data was overwritten (no git). I'll write an analysis script to run on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "cbeeaa13-fad7-4892-af0b-582ad00cce90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0132DpBwgPF4Dub9aiv7YRPG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1331,
+      "cache_read_input_tokens": 92234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TyrEKFoF45AmM3RLJsHHne`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/eval_exp2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "a767ae5c-4ee2-45c9-b6ef-fdec83c639f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0132DpBwgPF4Dub9aiv7YRPG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1331,
+      "cache_read_input_tokens": 92234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-16T03:51:11.087Z_
+
+<details><summary>↩ Tool result · `toolu_01TyrEKFoF45AmM3RLJsHHne`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_6_low_bcs\\\": {\\n    \\\"bcs\\\": 0.8708932995796204,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1925925925925926,\\n      \\\"recall\\\": 0.36619718309859156,\\n      \\\"f1\\\": 0.2524271844660194,\\n      \\\"tp\\\": 78,\\n      \\\"total_pred\\\": 405,\\n      \\\"total_gold\\\": 213\\n    }\\n  },\\n  \\\"count_6_high_bcs\\\": {\\n    \\\"bcs\\\": 0.9446906447410583,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.45726495726495725,\\n      \\\"recall\\\": 0.5181598062953995,\\n      \\\"f1\\\": 0.48581157775255385,\\n      \\\"tp\\\": 214,\\n      \\\"total_pred\\\": 468,\\n      \\\"total_gold\\\": 413\\n    }\\n  },\\n  \\\"count_6_random_0\\\": {\\n    \\\"bcs\\\": 0.9021296501159668,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4472049689440994,\\n      \\\"recall\\\": 0.36180904522613067,\\n      \\\"f1\\\": 0.4000000000000001,\\n      \\\"tp\\\": 72,\\n      \\\"total_pred\\\": 161,\\n      \\\"total_gold\\\": 199\\n    }\\n  },\\n  \\\"count_6_random_1\\\": {\\n    \\\"bcs\\\": 0.8867964744567871,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.20303030303030303,\\n      \\\"recall\\\": 0.6547231270358306,\\n      \\\"f1\\\": 0.3099460292983809,\\n      \\\"tp\\\": 201,\\n      \\\"total_pred\\\": 990,\\n      \\\"total_gold\\\": 307\\n    }\\n  },\\n  \\\"count_6_random_2\\\": {\\n    \\\"bcs\\\": 0.8683533072471619,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.17167381974248927,\\n      \\\"recall\\\": 0.23668639053254437,\\n      \\\"f1\\\": 0.1990049751243781,\\n      \\\"tp\\\": 40,\\n      \\\"total_pred\\\": 233,\\n      \\\"total_gold\\\": 169\\n    }\\n  },\\n  \\\"count_6_random_3\\\": {\\n    \\\"bcs\\\": 0.9162936210632324,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.19814814814814816,\\n      \\\"recall\\\": 0.5323383084577115,\\n      \\\"f1\\\": 0.28879892037786775,\\n      \\\"tp\\\": 107,\\n      \\\"total_pred\\\": 540,\\n      \\\"total_gold\\\": 201\\n    }\\n  },\\n  \\\"count_6_random_4\\\": {\\n    \\\"bcs\\\": 0.8878266215324402,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.36792452830188677,\\n      \\\"recall\\\": 0.43333333333333335,\\n      \\\"f1\\\": 0.39795918367346933,\\n      \\\"tp\\\": 39,\\n      \\\"total_pred\\\": 106,\\n      \\\"total_gold\\\": 90\\n    }\\n  },\\n  \\\"count_6_random_5\\\": {\\n    \\\"bcs\\\": 0.867279052734375,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4470314318975553,\\n      \\\"recall\\\": 0.5655375552282769,\\n      \\\"f1\\\": 0.49934980494148246,\\n      \\\"tp\\\": 384,\\n      \\\"total_pred\\\": 859,\\n      \\\"total_gold\\\": 679\\n    }\\n  },\\n  \\\"count_6_random_6\\\": {\\n    \\\"bcs\\\": 0.8690363168716431,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.11388888888888889,\\n      \\\"recall\\\": 0.37272727272727274,\\n      \\\"f1\\\": 0.17446808510638298,\\n      \\\"tp\\\": 41,\\n      \\\"total_pred\\\": 360,\\n      \\\"total_gold\\\": 110\\n    }\\n  },\\n  \\\"count_6_random_7\\\": {\\n    \\\"bcs\\\": 0.8919055461883545,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.41708542713567837,\\n      \\\"recall\\\": 0.3547008547008547,\\n      \\\"f1\\\": 0.3833718244803695,\\n      \\\"tp\\\": 249,\\n      \\\"total_pred\\\": 597,\\n      \\\"total_gold\\\": 702\\n    }\\n  },\\n  \\\"count_6_random_8\\\": {\\n    \\\"bcs\\\": 0.8849315643310547,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1791907514450867,\\n      \\\"recall\\\": 0.27927927927927926,\\n      \\\"f1\\\": 0.21830985915492954,\\n      \\\"tp\\\": 62,\\n      \\\"total_pred\\\": 346,\\n      \\\"total_gold\\\": 222\\n    }\\n  },\\n  \\\"count_6_random_9\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.3292929292929293,\\n      \\\"recall\\\": 0.42118863049095606,\\n      \\\"f1\\\": 0.36961451247165533,\\n      \\\"tp\\\": 163,\\n      \\\"total_pred\\\": 495,\\n      \\\"total_gold\\\": 387\\n    }\\n  },\\n  \\n\\n... [截断: 输出过长，省略 10069 字符] ...\\n\\n,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.49731182795698925,\\n      \\\"recall\\\": 0.20624303232998886,\\n      \\\"f1\\\": 0.2915681639085895,\\n      \\\"tp\\\": 185,\\n      \\\"total_pred\\\": 372,\\n      \\\"total_gold\\\": 897\\n    }\\n  },\\n  \\\"count_12_random_14\\\": {\\n    \\\"bcs\\\": 0.8920300006866455,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.23863636363636365,\\n      \\\"recall\\\": 0.15328467153284672,\\n      \\\"f1\\\": 0.18666666666666668,\\n      \\\"tp\\\": 42,\\n      \\\"total_pred\\\": 176,\\n      \\\"total_gold\\\": 274\\n    }\\n  },\\n  \\\"count_12_random_15\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.21742881794650562,\\n      \\\"recall\\\": 0.38239757207890746,\\n      \\\"f1\\\": 0.27722772277227725,\\n      \\\"tp\\\": 252,\\n      \\\"total_pred\\\": 1159,\\n      \\\"total_gold\\\": 659\\n    }\\n  },\\n  \\\"count_12_random_16\\\": {\\n    \\\"bcs\\\": 0.9554502367973328,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.22573363431151242,\\n      \\\"recall\\\": 0.234192037470726,\\n      \\\"f1\\\": 0.22988505747126436,\\n      \\\"tp\\\": 100,\\n      \\\"total_pred\\\": 443,\\n      \\\"total_gold\\\": 427\\n    }\\n  },\\n  \\\"count_12_random_17\\\": {\\n    \\\"bcs\\\": 0.9356369376182556,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.24821428571428572,\\n      \\\"recall\\\": 0.3619791666666667,\\n      \\\"f1\\\": 0.2944915254237288,\\n      \\\"tp\\\": 139,\\n      \\\"total_pred\\\": 560,\\n      \\\"total_gold\\\": 384\\n    }\\n  },\\n  \\\"count_12_random_18\\\": {\\n    \\\"bcs\\\": 0.8955389857292175,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.18256130790190736,\\n      \\\"recall\\\": 0.19822485207100593,\\n      \\\"f1\\\": 0.1900709219858156,\\n      \\\"tp\\\": 67,\\n      \\\"total_pred\\\": 367,\\n      \\\"total_gold\\\": 338\\n    }\\n  },\\n  \\\"count_12_random_19\\\": {\\n    \\\"bcs\\\": 0.9260712265968323,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.27790432801822323,\\n      \\\"recall\\\": 0.270509977827051,\\n      \\\"f1\\\": 0.2741573033707866,\\n      \\\"tp\\\": 122,\\n      \\\"total_pred\\\": 439,\\n      \\\"total_gold\\\": 451\\n    }\\n  },\\n  \\\"count_12_random_20\\\": {\\n    \\\"bcs\\\": 0.9356369376182556,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.26476578411405294,\\n      \\\"recall\\\": 0.21922428330522767,\\n      \\\"f1\\\": 0.2398523985239852,\\n      \\\"tp\\\": 130,\\n      \\\"total_pred\\\": 491,\\n      \\\"total_gold\\\": 593\\n    }\\n  },\\n  \\\"count_12_random_21\\\": {\\n    \\\"bcs\\\": 0.9395749568939209,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.3448275862068966,\\n      \\\"recall\\\": 0.3333333333333333,\\n      \\\"f1\\\": 0.33898305084745767,\\n      \\\"tp\\\": 110,\\n      \\\"total_pred\\\": 319,\\n      \\\"total_gold\\\": 330\\n    }\\n  },\\n  \\\"count_12_random_22\\\": {\\n    \\\"bcs\\\": 0.9147809743881226,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.25644028103044497,\\n      \\\"recall\\\": 0.38898756660746003,\\n      \\\"f1\\\": 0.30910374029640086,\\n      \\\"tp\\\": 219,\\n      \\\"total_pred\\\": 854,\\n      \\\"total_gold\\\": 563\\n    }\\n  },\\n  \\\"count_12_random_23\\\": {\\n    \\\"bcs\\\": 0.8941828608512878,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2274436090225564,\\n      \\\"recall\\\": 0.36555891238670696,\\n      \\\"f1\\\": 0.28041714947856317,\\n      \\\"tp\\\": 121,\\n      \\\"total_pred\\\": 532,\\n      \\\"total_gold\\\": 331\\n    }\\n  },\\n  \\\"count_12_random_24\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.33363719234275296,\\n      \\\"recall\\\": 0.45018450184501846,\\n      \\\"f1\\\": 0.38324607329842936,\\n      \\\"tp\\\": 366,\\n      \\\"total_pred\\\": 1097,\\n      \\\"total_gold\\\": 813\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "41dea796-a47d-4562-8135-5270e43d9dd7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_6_low_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8708932995796204,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.1925925925925926,\\\\n      \\\\\\\"recall\\\\\\\": 0.36619718309859156,\\\\n      \\\\\\\"f1\\\\\\\": 0.2524271844660194,\\\\n      \\\\\\\"tp\\\\\\\": 78,\\\\n      \\\\\\\"total_pred\\\\\\\": 405,\\\\n      \\\\\\\"total_gold\\\\\\\": 213\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_high_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9446906447410583,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.45726495726495725,\\\\n      \\\\\\\"recall\\\\\\\": 0.5181598062953995,\\\\n      \\\\\\\"f1\\\\\\\": 0.48581157775255385,\\\\n      \\\\\\\"tp\\\\\\\": 214,\\\\n      \\\\\\\"total_pred\\\\\\\": 468,\\\\n      \\\\\\\"total_gold\\\\\\\": 413\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_0\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9021296501159668,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.4472049689440994,\\\\n      \\\\\\\"recall\\\\\\\": 0.36180904522613067,\\\\n      \\\\\\\"f1\\\\\\\": 0.4000000000000001,\\\\n      \\\\\\\"tp\\\\\\\": 72,\\\\n      \\\\\\\"total_pred\\\\\\\": 161,\\\\n      \\\\\\\"total_gold\\\\\\\": 199\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_1\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8867964744567871,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.20303030303030303,\\\\n      \\\\\\\"recall\\\\\\\": 0.6547231270358306,\\\\n      \\\\\\\"f1\\\\\\\": 0.3099460292983809,\\\\n      \\\\\\\"tp\\\\\\\": 201,\\\\n      \\\\\\\"total_pred\\\\\\\": 990,\\\\n      \\\\\\\"total_gold\\\\\\\": 307\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_2\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8683533072471619,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.17167381974248927,\\\\n      \\\\\\\"recall\\\\\\\": 0.23668639053254437,\\\\n      \\\\\\\"f1\\\\\\\": 0.1990049751243781,\\\\n      \\\\\\\"tp\\\\\\\": 40,\\\\n      \\\\\\\"total_pred\\\\\\\": 233,\\\\n      \\\\\\\"total_gold\\\\\\\": 169\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_3\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9162936210632324,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.19814814814814816,\\\\n      \\\\\\\"recall\\\\\\\": 0.5323383084577115,\\\\n      \\\\\\\"f1\\\\\\\": 0.28879892037786775,\\\\n      \\\\\\\"tp\\\\\\\": 107,\\\\n      \\\\\\\"total_pred\\\\\\\": 540,\\\\n      \\\\\\\"total_gold\\\\\\\": 201\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_4\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8878266215324402,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.36792452830188677,\\\\n      \\\\\\\"recall\\\\\\\": 0.43333333333333335,\\\\n      \\\\\\\"f1\\\\\\\": 0.39795918367346933,\\\\n      \\\\\\\"tp\\\\\\\": 39,\\\\n      \\\\\\\"total_pred\\\\\\\": 106,\\\\n      \\\\\\\"total_gold\\\\\\\": 90\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_5\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.867279052734375,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.4470314318975553,\\\\n      \\\\\\\"recall\\\\\\\": 0.5655375552282769,\\\\n      \\\\\\\"f1\\\\\\\": 0.49934980494148246,\\\\n      \\\\\\\"tp\\\\\\\": 384,\\\\n      \\\\\\\"total_pred\\\\\\\": 859,\\\\n      \\\\\\\"total_gold\\\\\\\": 679\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_6\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8690363168716431,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.11388888888888889,\\\\n      \\\\\\\"recall\\\\\\\": 0.37272727272727274,\\\\n      \\\\\\\"f1\\\\\\\": 0.17446808510638298,\\\\n      \\\\\\\"tp\\\\\\\": 41,\\\\n      \\\\\\\"total_pred\\\\\\\": 360,\\\\n      \\\\\\\"total_gold\\\\\\\": 110\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_7\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8919055461883545,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.41708542713567837,\\\\n      \\\\\\\"recall\\\\\\\": 0.3547008547008547,\\\\n      \\\\\\\"f1\\\\\\\": 0.3833718244803695,\\\\n      \\\\\\\"tp\\\\\\\": 249,\\\\n      \\\\\\\"total_pred\\\\\\\": 597,\\\\n      \\\\\\\"total_gold\\\\\\\": 702\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_8\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8849315643310547,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.1791907514450867,\\\\n      \\\\\\\"recall\\\\\\\": 0.27927927927927926,\\\\n      \\\\\\\"f1\\\\\\\": 0.21830985915492954,\\\\n      \\\\\\\"tp\\\\\\\": 62,\\\\n      \\\\\\\"total_pred\\\\\\\": 346,\\\\n      \\\\\\\"total_gold\\\\\\\": 222\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_9\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9326926469802856,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.3292929292929293,\\\\n      \\\\\\\"recall\\\\\\\": 0.42118863049095606,\\\\n      \\\\\\\"f1\\\\\\\": 0.36961451247165533,\\\\n      \\\\\\\"tp\\\\\\\": 163,\\\\n      \\\\\\\"total_pred\\\\\\\": 495,\\\\n      \\\\\\\"total_gold\\\\\\\": 387\\\\n    }\\\\n  },\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 10069 字符] ...\\\\n\\\\n,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.49731182795698925,\\\\n      \\\\\\\"recall\\\\\\\": 0.20624303232998886,\\\\n      \\\\\\\"f1\\\\\\\": 0.2915681639085895,\\\\n      \\\\\\\"tp\\\\\\\": 185,\\\\n      \\\\\\\"total_pred\\\\\\\": 372,\\\\n      \\\\\\\"total_gold\\\\\\\": 897\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_14\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8920300006866455,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.23863636363636365,\\\\n      \\\\\\\"recall\\\\\\\": 0.15328467153284672,\\\\n      \\\\\\\"f1\\\\\\\": 0.18666666666666668,\\\\n      \\\\\\\"tp\\\\\\\": 42,\\\\n      \\\\\\\"total_pred\\\\\\\": 176,\\\\n      \\\\\\\"total_gold\\\\\\\": 274\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_15\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9326926469802856,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.21742881794650562,\\\\n      \\\\\\\"recall\\\\\\\": 0.38239757207890746,\\\\n      \\\\\\\"f1\\\\\\\": 0.27722772277227725,\\\\n      \\\\\\\"tp\\\\\\\": 252,\\\\n      \\\\\\\"total_pred\\\\\\\": 1159,\\\\n      \\\\\\\"total_gold\\\\\\\": 659\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_16\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9554502367973328,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.22573363431151242,\\\\n      \\\\\\\"recall\\\\\\\": 0.234192037470726,\\\\n      \\\\\\\"f1\\\\\\\": 0.22988505747126436,\\\\n      \\\\\\\"tp\\\\\\\": 100,\\\\n      \\\\\\\"total_pred\\\\\\\": 443,\\\\n      \\\\\\\"total_gold\\\\\\\": 427\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_17\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9356369376182556,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.24821428571428572,\\\\n      \\\\\\\"recall\\\\\\\": 0.3619791666666667,\\\\n      \\\\\\\"f1\\\\\\\": 0.2944915254237288,\\\\n      \\\\\\\"tp\\\\\\\": 139,\\\\n      \\\\\\\"total_pred\\\\\\\": 560,\\\\n      \\\\\\\"total_gold\\\\\\\": 384\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_18\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8955389857292175,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.18256130790190736,\\\\n      \\\\\\\"recall\\\\\\\": 0.19822485207100593,\\\\n      \\\\\\\"f1\\\\\\\": 0.1900709219858156,\\\\n      \\\\\\\"tp\\\\\\\": 67,\\\\n      \\\\\\\"total_pred\\\\\\\": 367,\\\\n      \\\\\\\"total_gold\\\\\\\": 338\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_19\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9260712265968323,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.27790432801822323,\\\\n      \\\\\\\"recall\\\\\\\": 0.270509977827051,\\\\n      \\\\\\\"f1\\\\\\\": 0.2741573033707866,\\\\n      \\\\\\\"tp\\\\\\\": 122,\\\\n      \\\\\\\"total_pred\\\\\\\": 439,\\\\n      \\\\\\\"total_gold\\\\\\\": 451\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_20\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9356369376182556,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.26476578411405294,\\\\n      \\\\\\\"recall\\\\\\\": 0.21922428330522767,\\\\n      \\\\\\\"f1\\\\\\\": 0.2398523985239852,\\\\n      \\\\\\\"tp\\\\\\\": 130,\\\\n      \\\\\\\"total_pred\\\\\\\": 491,\\\\n      \\\\\\\"total_gold\\\\\\\": 593\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_21\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9395749568939209,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.3448275862068966,\\\\n      \\\\\\\"recall\\\\\\\": 0.3333333333333333,\\\\n      \\\\\\\"f1\\\\\\\": 0.33898305084745767,\\\\n      \\\\\\\"tp\\\\\\\": 110,\\\\n      \\\\\\\"total_pred\\\\\\\": 319,\\\\n      \\\\\\\"total_gold\\\\\\\": 330\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_22\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9147809743881226,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.25644028103044497,\\\\n      \\\\\\\"recall\\\\\\\": 0.38898756660746003,\\\\n      \\\\\\\"f1\\\\\\\": 0.30910374029640086,\\\\n      \\\\\\\"tp\\\\\\\": 219,\\\\n      \\\\\\\"total_pred\\\\\\\": 854,\\\\n      \\\\\\\"total_gold\\\\\\\": 563\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_23\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8941828608512878,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.2274436090225564,\\\\n      \\\\\\\"recall\\\\\\\": 0.36555891238670696,\\\\n      \\\\\\\"f1\\\\\\\": 0.28041714947856317,\\\\n      \\\\\\\"tp\\\\\\\": 121,\\\\n      \\\\\\\"total_pred\\\\\\\": 532,\\\\n      \\\\\\\"total_gold\\\\\\\": 331\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_24\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9326926469802856,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.33363719234275296,\\\\n      \\\\\\\"recall\\\\\\\": 0.45018450184501846,\\\\n      \\\\\\\"f1\\\\\\\": 0.38324607329842936,\\\\n      \\\\\\\"tp\\\\\\\": 366,\\\\n      \\\\\\\"total_pred\\\\\\\": 1097,\\\\n      \\\\\\\"total_gold\\\\\\\": 813\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_6_low_bcs\\\": {\\n    \\\"bcs\\\": 0.8708932995796204,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1925925925925926,\\n      \\\"recall\\\": 0.36619718309859156,\\n      \\\"f1\\\": 0.2524271844660194,\\n      \\\"tp\\\": 78,\\n      \\\"total_pred\\\": 405,\\n      \\\"total_gold\\\": 213\\n    }\\n  },\\n  \\\"count_6_high_bcs\\\": {\\n    \\\"bcs\\\": 0.9446906447410583,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.45726495726495725,\\n      \\\"recall\\\": 0.5181598062953995,\\n      \\\"f1\\\": 0.48581157775255385,\\n      \\\"tp\\\": 214,\\n      \\\"total_pred\\\": 468,\\n      \\\"total_gold\\\": 413\\n    }\\n  },\\n  \\\"count_6_random_0\\\": {\\n    \\\"bcs\\\": 0.9021296501159668,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4472049689440994,\\n      \\\"recall\\\": 0.36180904522613067,\\n      \\\"f1\\\": 0.4000000000000001,\\n      \\\"tp\\\": 72,\\n      \\\"total_pred\\\": 161,\\n      \\\"total_gold\\\": 199\\n    }\\n  },\\n  \\\"count_6_random_1\\\": {\\n    \\\"bcs\\\": 0.8867964744567871,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.20303030303030303,\\n      \\\"recall\\\": 0.6547231270358306,\\n      \\\"f1\\\": 0.3099460292983809,\\n      \\\"tp\\\": 201,\\n      \\\"total_pred\\\": 990,\\n      \\\"total_gold\\\": 307\\n    }\\n  },\\n  \\\"count_6_random_2\\\": {\\n    \\\"bcs\\\": 0.8683533072471619,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.17167381974248927,\\n      \\\"recall\\\": 0.23668639053254437,\\n      \\\"f1\\\": 0.1990049751243781,\\n      \\\"tp\\\": 40,\\n      \\\"total_pred\\\": 233,\\n      \\\"total_gold\\\": 169\\n    }\\n  },\\n  \\\"count_6_random_3\\\": {\\n    \\\"bcs\\\": 0.9162936210632324,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.19814814814814816,\\n      \\\"recall\\\": 0.5323383084577115,\\n      \\\"f1\\\": 0.28879892037786775,\\n      \\\"tp\\\": 107,\\n      \\\"total_pred\\\": 540,\\n      \\\"total_gold\\\": 201\\n    }\\n  },\\n  \\\"count_6_random_4\\\": {\\n    \\\"bcs\\\": 0.8878266215324402,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.36792452830188677,\\n      \\\"recall\\\": 0.43333333333333335,\\n      \\\"f1\\\": 0.39795918367346933,\\n      \\\"tp\\\": 39,\\n      \\\"total_pred\\\": 106,\\n      \\\"total_gold\\\": 90\\n    }\\n  },\\n  \\\"count_6_random_5\\\": {\\n    \\\"bcs\\\": 0.867279052734375,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.4470314318975553,\\n      \\\"recall\\\": 0.5655375552282769,\\n      \\\"f1\\\": 0.49934980494148246,\\n      \\\"tp\\\": 384,\\n      \\\"total_pred\\\": 859,\\n      \\\"total_gold\\\": 679\\n    }\\n  },\\n  \\\"count_6_random_6\\\": {\\n    \\\"bcs\\\": 0.8690363168716431,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.11388888888888889,\\n      \\\"recall\\\": 0.37272727272727274,\\n      \\\"f1\\\": 0.17446808510638298,\\n      \\\"tp\\\": 41,\\n      \\\"total_pred\\\": 360,\\n      \\\"total_gold\\\": 110\\n    }\\n  },\\n  \\\"count_6_random_7\\\": {\\n    \\\"bcs\\\": 0.8919055461883545,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.41708542713567837,\\n      \\\"recall\\\": 0.3547008547008547,\\n      \\\"f1\\\": 0.3833718244803695,\\n      \\\"tp\\\": 249,\\n      \\\"total_pred\\\": 597,\\n      \\\"total_gold\\\": 702\\n    }\\n  },\\n  \\\"count_6_random_8\\\": {\\n    \\\"bcs\\\": 0.8849315643310547,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1791907514450867,\\n      \\\"recall\\\": 0.27927927927927926,\\n      \\\"f1\\\": 0.21830985915492954,\\n      \\\"tp\\\": 62,\\n      \\\"total_pred\\\": 346,\\n      \\\"total_gold\\\": 222\\n    }\\n  },\\n  \\\"count_6_random_9\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.3292929292929293,\\n      \\\"recall\\\": 0.42118863049095606,\\n      \\\"f1\\\": 0.36961451247165533,\\n      \\\"tp\\\": 163,\\n      \\\"total_pred\\\": 495,\\n      \\\"total_gold\\\": 387\\n    }\\n  },\\n  \\n\\n... [截断: 输出过长，省略 10069 字符] ...\\n\\n,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.49731182795698925,\\n      \\\"recall\\\": 0.20624303232998886,\\n      \\\"f1\\\": 0.2915681639085895,\\n      \\\"tp\\\": 185,\\n      \\\"total_pred\\\": 372,\\n      \\\"total_gold\\\": 897\\n    }\\n  },\\n  \\\"count_12_random_14\\\": {\\n    \\\"bcs\\\": 0.8920300006866455,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.23863636363636365,\\n      \\\"recall\\\": 0.15328467153284672,\\n      \\\"f1\\\": 0.18666666666666668,\\n      \\\"tp\\\": 42,\\n      \\\"total_pred\\\": 176,\\n      \\\"total_gold\\\": 274\\n    }\\n  },\\n  \\\"count_12_random_15\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.21742881794650562,\\n      \\\"recall\\\": 0.38239757207890746,\\n      \\\"f1\\\": 0.27722772277227725,\\n      \\\"tp\\\": 252,\\n      \\\"total_pred\\\": 1159,\\n      \\\"total_gold\\\": 659\\n    }\\n  },\\n  \\\"count_12_random_16\\\": {\\n    \\\"bcs\\\": 0.9554502367973328,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.22573363431151242,\\n      \\\"recall\\\": 0.234192037470726,\\n      \\\"f1\\\": 0.22988505747126436,\\n      \\\"tp\\\": 100,\\n      \\\"total_pred\\\": 443,\\n      \\\"total_gold\\\": 427\\n    }\\n  },\\n  \\\"count_12_random_17\\\": {\\n    \\\"bcs\\\": 0.9356369376182556,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.24821428571428572,\\n      \\\"recall\\\": 0.3619791666666667,\\n      \\\"f1\\\": 0.2944915254237288,\\n      \\\"tp\\\": 139,\\n      \\\"total_pred\\\": 560,\\n      \\\"total_gold\\\": 384\\n    }\\n  },\\n  \\\"count_12_random_18\\\": {\\n    \\\"bcs\\\": 0.8955389857292175,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.18256130790190736,\\n      \\\"recall\\\": 0.19822485207100593,\\n      \\\"f1\\\": 0.1900709219858156,\\n      \\\"tp\\\": 67,\\n      \\\"total_pred\\\": 367,\\n      \\\"total_gold\\\": 338\\n    }\\n  },\\n  \\\"count_12_random_19\\\": {\\n    \\\"bcs\\\": 0.9260712265968323,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.27790432801822323,\\n      \\\"recall\\\": 0.270509977827051,\\n      \\\"f1\\\": 0.2741573033707866,\\n      \\\"tp\\\": 122,\\n      \\\"total_pred\\\": 439,\\n      \\\"total_gold\\\": 451\\n    }\\n  },\\n  \\\"count_12_random_20\\\": {\\n    \\\"bcs\\\": 0.9356369376182556,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.26476578411405294,\\n      \\\"recall\\\": 0.21922428330522767,\\n      \\\"f1\\\": 0.2398523985239852,\\n      \\\"tp\\\": 130,\\n      \\\"total_pred\\\": 491,\\n      \\\"total_gold\\\": 593\\n    }\\n  },\\n  \\\"count_12_random_21\\\": {\\n    \\\"bcs\\\": 0.9395749568939209,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.3448275862068966,\\n      \\\"recall\\\": 0.3333333333333333,\\n      \\\"f1\\\": 0.33898305084745767,\\n      \\\"tp\\\": 110,\\n      \\\"total_pred\\\": 319,\\n      \\\"total_gold\\\": 330\\n    }\\n  },\\n  \\\"count_12_random_22\\\": {\\n    \\\"bcs\\\": 0.9147809743881226,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.25644028103044497,\\n      \\\"recall\\\": 0.38898756660746003,\\n      \\\"f1\\\": 0.30910374029640086,\\n      \\\"tp\\\": 219,\\n      \\\"total_pred\\\": 854,\\n      \\\"total_gold\\\": 563\\n    }\\n  },\\n  \\\"count_12_random_23\\\": {\\n    \\\"bcs\\\": 0.8941828608512878,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2274436090225564,\\n      \\\"recall\\\": 0.36555891238670696,\\n      \\\"f1\\\": 0.28041714947856317,\\n      \\\"tp\\\": 121,\\n      \\\"total_pred\\\": 532,\\n      \\\"total_gold\\\": 331\\n    }\\n  },\\n  \\\"count_12_random_24\\\": {\\n    \\\"bcs\\\": 0.9326926469802856,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.33363719234275296,\\n      \\\"recall\\\": 0.45018450184501846,\\n      \\\"f1\\\": 0.38324607329842936,\\n      \\\"tp\\\": 366,\\n      \\\"total_pred\\\": 1097,\\n      \\\"total_gold\\\": 813\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 116_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete v2 eval_exp2.json data. Let me parse it and extract the BCS-F1 pairs.
+
+For v2, I can see:
+- count_6: low_bcs, high_bcs, random_0 through random_24 (27 batches total)
+- count_12: low_bcs, high_bcs, random_0 through random_24 (27 batches total)
+
+But the output was truncated. I got count_6 data and partial count_12 data. Let me write a script to compute the analysis on the server.
+
+
+I'll create a Python script that loads the data, extracts BCS-F1 pairs for each count, computes Pearson and Spearman correlations with p-values and bootstrap confidence intervals, then saves the results. For v1, I'll incorporate the summary statistics from D005 showing recall vs BCS at r=0.25 (p=0.066), F1 vs BCS at count_12 with r=0.50 (p=0.008), and partial r=0.30 (p=0.026), though I'm missing the individual batch data for v1.
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "0aecc180-74e7-48f8-9c7a-8bc9f7d32f65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BECSafX9ZKDZHW8D3oF8Q2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5487,
+      "cache_read_input_tokens": 93565,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5487
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 117_
+
+I have the full v2 data. Now I'll write an analysis script and run it on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "ed9eacea-46cd-4aa6-bacd-0d7b3496b78a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BECSafX9ZKDZHW8D3oF8Q2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5487,
+      "cache_read_input_tokens": 93565,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5487
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GPKiPwavYUXujTV8LxWaem`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "06238219-2de0-4e34-b606-d6334be4c64f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BECSafX9ZKDZHW8D3oF8Q2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5487,
+      "cache_read_input_tokens": 93565,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5487
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-16T03:51:24.314Z_
+
+<details><summary>↩ Tool result · `toolu_01GPKiPwavYUXujTV8LxWaem`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "7bc719e0-b5e9-4d22-905d-631590ed7c0c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014dqrazJpJkn9ZvbuXZY29b`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat << 'PYEOF' > /root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\n\"\"\"D037: NER v2 BCS-metric correlation analysis.\n\nComputes BCS-F1 correlations from exp2 (prompt v2) per-batch results.\nv1 raw data was overwritten; v1 stats come from decision records (D005).\n\"\"\"\nimport json\nimport numpy as np\nfrom scipy import stats\n\nEVAL_PATH = \"/root/schema-dag-extraction/artifacts/eval_exp2.json\"\nOUT_PATH = \"/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis_results.json\"\n\nwith open(EVAL_PATH) as f:\n    data = json.load(f)\n\n# Parse per-batch (BCS, F1) pairs by count\nv2_batches = {\"count_6\": [], \"count_12\": []}\nfor batch_id, metrics in data.items():\n    count_key = metrics[\"count_key\"]\n    bcs = metrics[\"bcs\"]\n    f1 = metrics[\"text_match\"][\"f1\"]\n    recall = metrics[\"text_match\"][\"recall\"]\n    precision = metrics[\"text_match\"][\"precision\"]\n    v2_batches[count_key].append({\n        \"batch_id\": batch_id,\n        \"bcs\": bcs,\n        \"f1\": f1,\n        \"recall\": recall,\n        \"precision\": precision,\n    })\n\ndef compute_correlations(batches):\n    bcs = np.array([b[\"bcs\"] for b in batches])\n    f1 = np.array([b[\"f1\"] for b in batches])\n    recall = np.array([b[\"recall\"] for b in batches])\n    \n    pr, pp = stats.pearsonr(bcs, f1)\n    sr, sp = stats.spearmanr(bcs, f1)\n    pr_rec, pp_rec = stats.pearsonr(bcs, recall)\n    sr_rec, sp_rec = stats.spearmanr(bcs, recall)\n    \n    return {\n        \"f1_vs_bcs\": {\n            \"pearson_r\": round(pr, 4),\n            \"pearson_p\": round(pp, 4),\n            \"spearman_rho\": round(sr, 4),\n            \"spearman_p\": round(sp, 4),\n        },\n        \"recall_vs_bcs\": {\n            \"pearson_r\": round(pr_rec, 4),\n            \"pearson_p\": round(pp_rec, 4),\n            \"spearman_rho\": round(sr_rec, 4),\n            \"spearman_p\": round(sp_rec, 4),\n        },\n        \"n_batches\": len(batches),\n        \"bcs_range\": [round(float(bcs.min()), 4), round(float(bcs.max()), 4)],\n        \"f1_range\": [round(float(f1.min()), 4), round(float(f1.max()), 4)],\n        \"mean_f1\": round(float(f1.mean()), 4),\n        \"std_f1\": round(float(f1.std()), 4),\n    }\n\ndef bootstrap_ci(batches, metric=\"f1\", B=1000, seed=42):\n    rng = np.random.RandomState(seed)\n    bcs = np.array([b[\"bcs\"] for b in batches])\n    y = np.array([b[metric] for b in batches])\n    n = len(batches)\n    \n    pearson_boots = []\n    spearman_boots = []\n    for _ in range(B):\n        idx = rng.randint(0, n, size=n)\n        bcs_b = bcs[idx]\n        y_b = y[idx]\n        if np.std(bcs_b) < 1e-10 or np.std(y_b) < 1e-10:\n            continue\n        pr, _ = stats.pearsonr(bcs_b, y_b)\n        sr, _ = stats.spearmanr(bcs_b, y_b)\n        pearson_boots.append(pr)\n        spearman_boots.append(sr)\n    \n    pearson_boots = np.array(pearson_boots)\n    spearman_boots = np.array(spearman_boots)\n    \n    return {\n        \"pearson_ci_95\": [round(float(np.percentile(pearson_boots, 2.5)), 4),\n                          round(float(np.percentile(pearson_boots, 97.5)), 4)],\n        \"spearman_ci_95\": [round(float(np.percentile(spearman_boots, 2.5)), 4),\n                           round(float(np.percentile(spearman_boots, 97.5)), 4)],\n        \"n_valid_bootstrap\": len(pearson_boots),\n    }\n\n# V2 analysis\nresults = {\"v2\": {}, \"v1\": {}, \"comparison\": {}}\n\nfor count_key in [\"count_6\", \"count_12\"]:\n    batches = v2_batches[count_key]\n    corr = compute_correlations(batches)\n    ci_f1 = bootstrap_ci(batches, metric=\"f1\", B=1000)\n    ci_recall = bootstrap_ci(batches, metric=\"recall\", B=1000)\n    corr[\"bootstrap_f1\"] = ci_f1\n    corr[\"bootstrap_recall\"] = ci_recall\n    results[\"v2\"][count_key] = corr\n\n# V2 pooled\npooled = v2_batches[\"count_6\"] + v2_batches[\"count_12\"]\ncorr_pooled = compute_correlations(pooled)\nci_pooled = bootstrap_ci(pooled, metric=\"f1\", B=1000)\ncorr_pooled[\"bootstrap_f1\"] = ci_pooled\nresults[\"v2\"][\"pooled\"] = corr_pooled\n\n# Extreme batch gap (v2)\nfor count_key in [\"count_6\", \"count_12\"]:\n    batches = v2_batches[count_key]\n    low_bcs_batch = [b for b in batches if \"low_bcs\" in b[\"batch_id\"]]\n    high_bcs_batch = [b for b in batches if \"high_bcs\" in b[\"batch_id\"]]\n    if low_bcs_batch and high_bcs_batch:\n        gap = high_bcs_batch[0][\"f1\"] - low_bcs_batch[0][\"f1\"]\n        results[\"v2\"][count_key][\"extreme_gap\"] = {\n            \"low_bcs\": round(low_bcs_batch[0][\"bcs\"], 4),\n            \"low_f1\": round(low_bcs_batch[0][\"f1\"], 4),\n            \"high_bcs\": round(high_bcs_batch[0][\"bcs\"], 4),\n            \"high_f1\": round(high_bcs_batch[0][\"f1\"], 4),\n            \"delta_f1_pp\": round(gap * 100, 2),\n            \"direction\": \"positive (high BCS → higher F1)\" if gap > 0 else \"negative (high BCS → lower F1)\",\n        }\n\n# V1 from D005 decision records (raw data overwritten)\nresults[\"v1\"] = {\n    \"count_6\": {\n        \"note\": \"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\",\n        \"f1_vs_bcs\": {\n            \"pearson_r\": None,\n            \"note\": \"D005 reported pooled/count_12 stats only\"\n        },\n        \"n_batches\": 27,\n    },\n    \"count_12\": {\n        \"note\": \"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\",\n        \"f1_vs_bcs\": {\n            \"pearson_r\": 0.50,\n            \"pearson_p\": 0.008,\n            \"source\": \"D005 decision record\"\n        },\n        \"recall_vs_bcs\": {\n            \"pearson_r\": 0.25,\n            \"pearson_p\": 0.066,\n            \"source\": \"D005 decision record\"\n        },\n        \"partial_r_f1_bcs\": {\n            \"r\": 0.30,\n            \"p\": 0.026,\n            \"source\": \"D005 decision record\"\n        },\n        \"n_batches\": 27,\n    },\n    \"pooled\": {\n        \"note\": \"v1 raw data unavailable; D005 reported within-count stats\"\n    }\n}\n\n# Comparison\nv2_c6 = results[\"v2\"][\"count_6\"][\"f1_vs_bcs\"]\nv2_c12 = results[\"v2\"][\"count_12\"][\"f1_vs_bcs\"]\nv1_c12_r = 0.50  # from D005\n\nv2_c12_r = v2_c12[\"pearson_r\"]\nv2_c6_r = v2_c6[\"pearson_r\"]\n\n# Both v1 and v2 show POSITIVE BCS-F1 correlation\n# D008 confirmed: v2 also showed positive (高 BCS→高 F1)\n# This is OPPOSITE to the confusability hypothesis (expected negative)\nboth_positive = (v1_c12_r > 0) and (v2_c12_r > 0)\n\nresults[\"comparison\"] = {\n    \"direction_consistent\": both_positive,\n    \"v1_count12_pearson_r\": v1_c12_r,\n    \"v2_count12_pearson_r\": v2_c12_r,\n    \"v2_count6_pearson_r\": v2_c6_r,\n    \"v1_vs_v2_summary\": (\n        f\"Both v1 (r={v1_c12_r:.2f}) and v2 (r={v2_c12_r:.4f}) show positive BCS-F1 correlation \"\n        f\"at count_12, direction consistent. This is OPPOSITE to the confusability hypothesis \"\n        f\"(expected negative). D008 identified type frequency as confounding variable: high-BCS \"\n        f\"batches contain high-frequency types that models extract better. The batch-level \"\n        f\"BCS-F1 correlation is NOT a valid test of Channel 2; pairwise SCS→confusion analysis \"\n        f\"(Channel 1) is the primary evidence.\"\n    ),\n    \"risk_level\": \"LOW — direction consistent across prompt versions; confound identified and documented\",\n    \"note\": \"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\"\n}\n\nwith open(OUT_PATH, \"w\") as f:\n    json.dump(results, f, indent=2)\n\nprint(json.dumps(results, indent=2))\nPYEOF\ncd /root/schema-dag-extraction && python3 scripts/d037/d037_ner_v2_bcs_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "6d5bad89-f58d-44f2-888f-c84fa86eba7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017fCiR4R2ukj4SWFVTsqToK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 99052,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-16T03:52:05.239Z_
+
+<details><summary>↩ Tool result · `toolu_014dqrazJpJkn9ZvbuXZY29b`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat << \\\\'PYEOF\\\\' > /root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\\\\n\\\"\\\"\\\"D037: NER v2 BCS-metric correlation analysis.\\\\n\\\\nComputes BCS-F1 correlations from exp2 (prompt v2) per-batch results.\\\\nv1 raw data was overwritten; v1 stats come from decision records (D005).\\\\n\\\"\\\"\\\"\\\\nimport json\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nEVAL_PATH = \\\"/root/schema-dag-extraction/artifacts/eval_exp2.json\\\"\\\\nOUT_PATH = \\\"/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis_results.json\\\"\\\\n\\\\nwith open(EVAL_PATH) as f:\\\\n    data = json.load(f)\\\\n\\\\n# Parse per-batch (BCS, F1) pairs by count\\\\nv2_batches = {\\\"count_6\\\": [], \\\"count_12\\\": []}\\\\nfor batch_id, metrics in data.items():\\\\n    count_key = metrics[\\\"count_key\\\"]\\\\n    bcs = metrics[\\\"bcs\\\"]\\\\n    f1 = metrics[\\\"text_match\\\"][\\\"f1\\\"]\\\\n    recall = metrics[\\\"text_match\\\"][\\\"recall\\\"]\\\\n    precision = metrics[\\\"text_match\\\"][\\\"precision\\\"]\\\\n    v2_batches[count_key].append({\\\\n        \\\"batch_id\\\": batch_id,\\\\n        \\\"bcs\\\": bcs,\\\\n        \\\"f1\\\": f1,\\\\n        \\\"recall\\\": recall,\\\\n        \\\"precision\\\": precision,\\\\n    })\\\\n\\\\ndef compute_correlations(batches):\\\\n    bcs = np.array([b[\\\"bcs\\\"] for b in batches])\\\\n    f1 = np.array([b[\\\"f1\\\"] for b in batches])\\\\n    recall = np.array([b[\\\"recall\\\"] for b in batches])\\\\n    \\\\n    pr, pp = stats.pearsonr(bcs, f1)\\\\n    sr, sp = stats.spearmanr(bcs, f1)\\\\n    pr_rec, pp_rec = stats.pearsonr(bcs, recall)\\\\n    sr_rec, sp_rec = stats.spearmanr(bcs, recall)\\\\n    \\\\n    return {\\\\n        \\\"f1_vs_bcs\\\": {\\\\n            \\\"pearson_r\\\": round(pr, 4),\\\\n            \\\"pearson_p\\\": round(pp, 4),\\\\n            \\\"spearman_rho\\\": round(sr, 4),\\\\n            \\\"spearman_p\\\": round(sp, 4),\\\\n        },\\\\n        \\\"recall_vs_bcs\\\": {\\\\n            \\\"pearson_r\\\": round(pr_rec, 4),\\\\n            \\\"pearson_p\\\": round(pp_rec, 4),\\\\n            \\\"spearman_rho\\\": round(sr_rec, 4),\\\\n            \\\"spearman_p\\\": round(sp_rec, 4),\\\\n        },\\\\n        \\\"n_batches\\\": len(batches),\\\\n        \\\"bcs_range\\\": [round(float(bcs.min()), 4), round(float(bcs.max()), 4)],\\\\n        \\\"f1_range\\\": [round(float(f1.min()), 4), round(float(f1.max()), 4)],\\\\n        \\\"mean_f1\\\": round(float(f1.mean()), 4),\\\\n        \\\"std_f1\\\": round(float(f1.std()), 4),\\\\n    }\\\\n\\\\ndef bootstrap_ci(batches, metric=\\\"f1\\\", B=1000, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    bcs = np.array([b[\\\"bcs\\\"] for b in batches])\\\\n    y = np.array([b[metric] for b in batches])\\\\n    n = len(batches)\\\\n    \\\\n    pearson_boots = []\\\\n    spearman_boots = []\\\\n    for _ in range(B):\\\\n        idx = rng.randint(0, n, size=n)\\\\n        bcs_b = bcs[idx]\\\\n        y_b = y[idx]\\\\n        if np.std(bcs_b) < 1e-10 or np.std(y_b) < 1e-10:\\\\n            continue\\\\n        pr, _ = stats.pearsonr(bcs_b, y_b)\\\\n        sr, _ = stats.spearmanr(bcs_b, y_b)\\\\n        pearson_boots.append(pr)\\\\n        spearman_boots.append(sr)\\\\n    \\\\n    pearson_boots = np.array(pearson_boots)\\\\n    spearman_boots = np.array(spearman_boots)\\\\n    \\\\n    return {\\\\n        \\\"pearson_ci_95\\\": [round(float(np.percentile(pearson_boots, 2.5)), 4),\\\\n                          round(float(np.percentile(pearson_boots, 97.5)), 4)],\\\\n        \\\"spearman_ci_95\\\": [round(float(np.percentile(spearman_boots, 2.5)), 4),\\\\n                           round(float(np.percentile(spearman_boots, 97.5)), 4)],\\\\n        \\\"n_valid_bootstrap\\\": len(pearson_boots),\\\\n    }\\\\n\\\\n# V2 analysis\\\\nresults = {\\\"v2\\\": {}, \\\"v1\\\": {}, \\\"comparison\\\": {}}\\\\n\\\\nfor count_key in [\\\"count_6\\\", \\\"count_12\\\"]:\\\\n    batches = v2_batches[count_key]\\\\n    corr = compute_correlations(batches)\\\\n    ci_f1 = bootstrap_ci(batches, metric=\\\"f1\\\", B=1000)\\\\n    ci_recall = bootstrap_ci(batches, metric=\\\"recall\\\", B=1000)\\\\n    corr[\\\"bootstrap_f1\\\"] = ci_f1\\\\n    corr[\\\"bootstrap_recall\\\"] = ci_recall\\\\n    results[\\\"v2\\\"][count_key] = corr\\\\n\\\\n# V2 pooled\\\\npooled = v2_batches[\\\"count_6\\\"] + v2_batches[\\\"count_12\\\"]\\\\ncorr_pooled = compute_correlations(pooled)\\\\nci_pooled = bootstrap_ci(pooled, metric=\\\"f1\\\", B=1000)\\\\ncorr_pooled[\\\"bootstrap_f1\\\"] = ci_pooled\\\\nresults[\\\"v2\\\"][\\\"pooled\\\"] = corr_pooled\\\\n\\\\n# Extreme batch gap (v2)\\\\nfor count_key in [\\\"count_6\\\", \\\"count_12\\\"]:\\\\n    batches = v2_batches[count_key]\\\\n    low_bcs_batch = [b for b in batches if \\\"low_bcs\\\" in b[\\\"batch_id\\\"]]\\\\n    high_bcs_batch = [b for b in batches if \\\"high_bcs\\\" in b[\\\"batch_id\\\"]]\\\\n    if low_bcs_batch and high_bcs_batch:\\\\n        gap = high_bcs_batch[0][\\\"f1\\\"] - low_bcs_batch[0][\\\"f1\\\"]\\\\n        results[\\\"v2\\\"][count_key][\\\"extreme_gap\\\"] = {\\\\n            \\\"low_bcs\\\": round(low_bcs_batch[0][\\\"bcs\\\"], 4),\\\\n            \\\"low_f1\\\": round(low_bcs_batch[0][\\\"f1\\\"], 4),\\\\n            \\\"high_bcs\\\": round(high_bcs_batch[0][\\\"bcs\\\"], 4),\\\\n            \\\"high_f1\\\": round(high_bcs_batch[0][\\\"f1\\\"], 4),\\\\n            \\\"delta_f1_pp\\\": round(gap * 100, 2),\\\\n            \\\"direction\\\": \\\"positive (high BCS → higher F1)\\\" if gap > 0 else \\\"negative (high BCS → lower F1)\\\",\\\\n        }\\\\n\\\\n# V1 from D005 decision records (raw data overwritten)\\\\nresults[\\\"v1\\\"] = {\\\\n    \\\"count_6\\\": {\\\\n        \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\\\n        \\\"f1_vs_bcs\\\": {\\\\n            \\\"pearson_r\\\": None,\\\\n            \\\"note\\\": \\\"D005 reported pooled/count_12 stats only\\\"\\\\n        },\\\\n        \\\"n_batches\\\": 27,\\\\n    },\\\\n    \\\"count_12\\\": {\\\\n        \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\\\n        \\\"f1_vs_bcs\\\": {\\\\n            \\\"pearson_r\\\": 0.50,\\\\n            \\\"pearson_p\\\": 0.008,\\\\n            \\\"source\\\": \\\"D005 decision record\\\"\\\\n        },\\\\n        \\\"recall_vs_bcs\\\": {\\\\n            \\\"pearson_r\\\": 0.25,\\\\n            \\\"pearson_p\\\": 0.066,\\\\n            \\\"source\\\": \\\"D005 decision record\\\"\\\\n        },\\\\n        \\\"partial_r_f1_bcs\\\": {\\\\n            \\\"r\\\": 0.30,\\\\n            \\\"p\\\": 0.026,\\\\n            \\\"source\\\": \\\"D005 decision record\\\"\\\\n        },\\\\n        \\\"n_batches\\\": 27,\\\\n    },\\\\n    \\\"pooled\\\": {\\\\n        \\\"note\\\": \\\"v1 raw data unavailable; D005 reported within-count stats\\\"\\\\n    }\\\\n}\\\\n\\\\n# Comparison\\\\nv2_c6 = results[\\\"v2\\\"][\\\"count_6\\\"][\\\"f1_vs_bcs\\\"]\\\\nv2_c12 = results[\\\"v2\\\"][\\\"count_12\\\"][\\\"f1_vs_bcs\\\"]\\\\nv1_c12_r = 0.50  # from D005\\\\n\\\\nv2_c12_r = v2_c12[\\\"pearson_r\\\"]\\\\nv2_c6_r = v2_c6[\\\"pearson_r\\\"]\\\\n\\\\n# Both v1 and v2 show POSITIVE BCS-F1 correlation\\\\n# D008 confirmed: v2 also showed positive (高 BCS→高 F1)\\\\n# This is OPPOSITE to the confusability hypothesis (expected negative)\\\\nboth_positive = (v1_c12_r > 0) and (v2_c12_r > 0)\\\\n\\\\nresults[\\\"comparison\\\"] = {\\\\n    \\\"direction_consistent\\\": both_positive,\\\\n    \\\"v1_count12_pearson_r\\\": v1_c12_r,\\\\n    \\\"v2_count12_pearson_r\\\": v2_c12_r,\\\\n    \\\"v2_count6_pearson_r\\\": v2_c6_r,\\\\n    \\\"v1_vs_v2_summary\\\": (\\\\n        f\\\"Both v1 (r={v1_c12_r:.2f}) and v2 (r={v2_c12_r:.4f}) show positive BCS-F1 correlation \\\"\\\\n        f\\\"at count_12, direction consistent. This is OPPOSITE to the confusability hypothesis \\\"\\\\n        f\\\"(expected negative). D008 identified type frequency as confounding variable: high-BCS \\\"\\\\n        f\\\"batches contain high-frequency types that models extract better. The batch-level \\\"\\\\n        f\\\"BCS-F1 correlation is NOT a valid test of Channel 2; pairwise SCS→confusion analysis \\\"\\\\n        f\\\"(Channel 1) is the primary evidence.\\\"\\\\n    ),\\\\n    \\\"risk_level\\\": \\\"LOW — direction consistent across prompt versions; confound identified and documented\\\",\\\\n    \\\"note\\\": \\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\"\\\\n}\\\\n\\\\nwith open(OUT_PATH, \\\"w\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\n\\\\nprint(json.dumps(results, indent=2))\\\\nPYEOF\\\\ncd /root/schema-dag-extraction && python3 scripts/d037/d037_ner_v2_bcs_analysis.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 197: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "914dc08d-d1c5-45f9-9a1c-ab4779fb1d61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat << \\\\\\\\'PYEOF\\\\\\\\' > /root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\\\\\\\\n\\\\\\\"\\\\\\\"\\\\\\\"D037: NER v2 BCS-metric correlation analysis.\\\\\\\\n\\\\\\\\nComputes BCS-F1 correlations from exp2 (prompt v2) per-batch results.\\\\\\\\nv1 raw data was overwritten; v1 stats come from decision records (D005).\\\\\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\nimport json\\\\\\\\nimport numpy as np\\\\\\\\nfrom scipy import stats\\\\\\\\n\\\\\\\\nEVAL_PATH = \\\\\\\"/root/schema-dag-extraction/artifacts/eval_exp2.json\\\\\\\"\\\\\\\\nOUT_PATH = \\\\\\\"/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis_results.json\\\\\\\"\\\\\\\\n\\\\\\\\nwith open(EVAL_PATH) as f:\\\\\\\\n    data = json.load(f)\\\\\\\\n\\\\\\\\n# Parse per-batch (BCS, F1) pairs by count\\\\\\\\nv2_batches = {\\\\\\\"count_6\\\\\\\": [], \\\\\\\"count_12\\\\\\\": []}\\\\\\\\nfor batch_id, metrics in data.items():\\\\\\\\n    count_key = metrics[\\\\\\\"count_key\\\\\\\"]\\\\\\\\n    bcs = metrics[\\\\\\\"bcs\\\\\\\"]\\\\\\\\n    f1 = metrics[\\\\\\\"text_match\\\\\\\"][\\\\\\\"f1\\\\\\\"]\\\\\\\\n    recall = metrics[\\\\\\\"text_match\\\\\\\"][\\\\\\\"recall\\\\\\\"]\\\\\\\\n    precision = metrics[\\\\\\\"text_match\\\\\\\"][\\\\\\\"precision\\\\\\\"]\\\\\\\\n    v2_batches[count_key].append({\\\\\\\\n        \\\\\\\"batch_id\\\\\\\": batch_id,\\\\\\\\n        \\\\\\\"bcs\\\\\\\": bcs,\\\\\\\\n        \\\\\\\"f1\\\\\\\": f1,\\\\\\\\n        \\\\\\\"recall\\\\\\\": recall,\\\\\\\\n        \\\\\\\"precision\\\\\\\": precision,\\\\\\\\n    })\\\\\\\\n\\\\\\\\ndef compute_correlations(batches):\\\\\\\\n    bcs = np.array([b[\\\\\\\"bcs\\\\\\\"] for b in batches])\\\\\\\\n    f1 = np.array([b[\\\\\\\"f1\\\\\\\"] for b in batches])\\\\\\\\n    recall = np.array([b[\\\\\\\"recall\\\\\\\"] for b in batches])\\\\\\\\n    \\\\\\\\n    pr, pp = stats.pearsonr(bcs, f1)\\\\\\\\n    sr, sp = stats.spearmanr(bcs, f1)\\\\\\\\n    pr_rec, pp_rec = stats.pearsonr(bcs, recall)\\\\\\\\n    sr_rec, sp_rec = stats.spearmanr(bcs, recall)\\\\\\\\n    \\\\\\\\n    return {\\\\\\\\n        \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\\\\\n            \\\\\\\"pearson_r\\\\\\\": round(pr, 4),\\\\\\\\n            \\\\\\\"pearson_p\\\\\\\": round(pp, 4),\\\\\\\\n            \\\\\\\"spearman_rho\\\\\\\": round(sr, 4),\\\\\\\\n            \\\\\\\"spearman_p\\\\\\\": round(sp, 4),\\\\\\\\n        },\\\\\\\\n        \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\\\\\n            \\\\\\\"pearson_r\\\\\\\": round(pr_rec, 4),\\\\\\\\n            \\\\\\\"pearson_p\\\\\\\": round(pp_rec, 4),\\\\\\\\n            \\\\\\\"spearman_rho\\\\\\\": round(sr_rec, 4),\\\\\\\\n            \\\\\\\"spearman_p\\\\\\\": round(sp_rec, 4),\\\\\\\\n        },\\\\\\\\n        \\\\\\\"n_batches\\\\\\\": len(batches),\\\\\\\\n        \\\\\\\"bcs_range\\\\\\\": [round(float(bcs.min()), 4), round(float(bcs.max()), 4)],\\\\\\\\n        \\\\\\\"f1_range\\\\\\\": [round(float(f1.min()), 4), round(float(f1.max()), 4)],\\\\\\\\n        \\\\\\\"mean_f1\\\\\\\": round(float(f1.mean()), 4),\\\\\\\\n        \\\\\\\"std_f1\\\\\\\": round(float(f1.std()), 4),\\\\\\\\n    }\\\\\\\\n\\\\\\\\ndef bootstrap_ci(batches, metric=\\\\\\\"f1\\\\\\\", B=1000, seed=42):\\\\\\\\n    rng = np.random.RandomState(seed)\\\\\\\\n    bcs = np.array([b[\\\\\\\"bcs\\\\\\\"] for b in batches])\\\\\\\\n    y = np.array([b[metric] for b in batches])\\\\\\\\n    n = len(batches)\\\\\\\\n    \\\\\\\\n    pearson_boots = []\\\\\\\\n    spearman_boots = []\\\\\\\\n    for _ in range(B):\\\\\\\\n        idx = rng.randint(0, n, size=n)\\\\\\\\n        bcs_b = bcs[idx]\\\\\\\\n        y_b = y[idx]\\\\\\\\n        if np.std(bcs_b) < 1e-10 or np.std(y_b) < 1e-10:\\\\\\\\n            continue\\\\\\\\n        pr, _ = stats.pearsonr(bcs_b, y_b)\\\\\\\\n        sr, _ = stats.spearmanr(bcs_b, y_b)\\\\\\\\n        pearson_boots.append(pr)\\\\\\\\n        spearman_boots.append(sr)\\\\\\\\n    \\\\\\\\n    pearson_boots = np.array(pearson_boots)\\\\\\\\n    spearman_boots = np.array(spearman_boots)\\\\\\\\n    \\\\\\\\n    return {\\\\\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [round(float(np.percentile(pearson_boots, 2.5)), 4),\\\\\\\\n                          round(float(np.percentile(pearson_boots, 97.5)), 4)],\\\\\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [round(float(np.percentile(spearman_boots, 2.5)), 4),\\\\\\\\n                           round(float(np.percentile(spearman_boots, 97.5)), 4)],\\\\\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": len(pearson_boots),\\\\\\\\n    }\\\\\\\\n\\\\\\\\n# V2 analysis\\\\\\\\nresults = {\\\\\\\"v2\\\\\\\": {}, \\\\\\\"v1\\\\\\\": {}, \\\\\\\"comparison\\\\\\\": {}}\\\\\\\\n\\\\\\\\nfor count_key in [\\\\\\\"count_6\\\\\\\", \\\\\\\"count_12\\\\\\\"]:\\\\\\\\n    batches = v2_batches[count_key]\\\\\\\\n    corr = compute_correlations(batches)\\\\\\\\n    ci_f1 = bootstrap_ci(batches, metric=\\\\\\\"f1\\\\\\\", B=1000)\\\\\\\\n    ci_recall = bootstrap_ci(batches, metric=\\\\\\\"recall\\\\\\\", B=1000)\\\\\\\\n    corr[\\\\\\\"bootstrap_f1\\\\\\\"] = ci_f1\\\\\\\\n    corr[\\\\\\\"bootstrap_recall\\\\\\\"] = ci_recall\\\\\\\\n    results[\\\\\\\"v2\\\\\\\"][count_key] = corr\\\\\\\\n\\\\\\\\n# V2 pooled\\\\\\\\npooled = v2_batches[\\\\\\\"count_6\\\\\\\"] + v2_batches[\\\\\\\"count_12\\\\\\\"]\\\\\\\\ncorr_pooled = compute_correlations(pooled)\\\\\\\\nci_pooled = bootstrap_ci(pooled, metric=\\\\\\\"f1\\\\\\\", B=1000)\\\\\\\\ncorr_pooled[\\\\\\\"bootstrap_f1\\\\\\\"] = ci_pooled\\\\\\\\nresults[\\\\\\\"v2\\\\\\\"][\\\\\\\"pooled\\\\\\\"] = corr_pooled\\\\\\\\n\\\\\\\\n# Extreme batch gap (v2)\\\\\\\\nfor count_key in [\\\\\\\"count_6\\\\\\\", \\\\\\\"count_12\\\\\\\"]:\\\\\\\\n    batches = v2_batches[count_key]\\\\\\\\n    low_bcs_batch = [b for b in batches if \\\\\\\"low_bcs\\\\\\\" in b[\\\\\\\"batch_id\\\\\\\"]]\\\\\\\\n    high_bcs_batch = [b for b in batches if \\\\\\\"high_bcs\\\\\\\" in b[\\\\\\\"batch_id\\\\\\\"]]\\\\\\\\n    if low_bcs_batch and high_bcs_batch:\\\\\\\\n        gap = high_bcs_batch[0][\\\\\\\"f1\\\\\\\"] - low_bcs_batch[0][\\\\\\\"f1\\\\\\\"]\\\\\\\\n        results[\\\\\\\"v2\\\\\\\"][count_key][\\\\\\\"extreme_gap\\\\\\\"] = {\\\\\\\\n            \\\\\\\"low_bcs\\\\\\\": round(low_bcs_batch[0][\\\\\\\"bcs\\\\\\\"], 4),\\\\\\\\n            \\\\\\\"low_f1\\\\\\\": round(low_bcs_batch[0][\\\\\\\"f1\\\\\\\"], 4),\\\\\\\\n            \\\\\\\"high_bcs\\\\\\\": round(high_bcs_batch[0][\\\\\\\"bcs\\\\\\\"], 4),\\\\\\\\n            \\\\\\\"high_f1\\\\\\\": round(high_bcs_batch[0][\\\\\\\"f1\\\\\\\"], 4),\\\\\\\\n            \\\\\\\"delta_f1_pp\\\\\\\": round(gap * 100, 2),\\\\\\\\n            \\\\\\\"direction\\\\\\\": \\\\\\\"positive (high BCS → higher F1)\\\\\\\" if gap > 0 else \\\\\\\"negative (high BCS → lower F1)\\\\\\\",\\\\\\\\n        }\\\\\\\\n\\\\\\\\n# V1 from D005 decision records (raw data overwritten)\\\\\\\\nresults[\\\\\\\"v1\\\\\\\"] = {\\\\\\\\n    \\\\\\\"count_6\\\\\\\": {\\\\\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\\\\\",\\\\\\\\n        \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\\\\\n            \\\\\\\"pearson_r\\\\\\\": None,\\\\\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"D005 reported pooled/count_12 stats only\\\\\\\"\\\\\\\\n        },\\\\\\\\n        \\\\\\\"n_batches\\\\\\\": 27,\\\\\\\\n    },\\\\\\\\n    \\\\\\\"count_12\\\\\\\": {\\\\\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\\\\\",\\\\\\\\n        \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\\\\\n            \\\\\\\"pearson_r\\\\\\\": 0.50,\\\\\\\\n            \\\\\\\"pearson_p\\\\\\\": 0.008,\\\\\\\\n            \\\\\\\"source\\\\\\\": \\\\\\\"D005 decision record\\\\\\\"\\\\\\\\n        },\\\\\\\\n        \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\\\\\n            \\\\\\\"pearson_r\\\\\\\": 0.25,\\\\\\\\n            \\\\\\\"pearson_p\\\\\\\": 0.066,\\\\\\\\n            \\\\\\\"source\\\\\\\": \\\\\\\"D005 decision record\\\\\\\"\\\\\\\\n        },\\\\\\\\n        \\\\\\\"partial_r_f1_bcs\\\\\\\": {\\\\\\\\n            \\\\\\\"r\\\\\\\": 0.30,\\\\\\\\n            \\\\\\\"p\\\\\\\": 0.026,\\\\\\\\n            \\\\\\\"source\\\\\\\": \\\\\\\"D005 decision record\\\\\\\"\\\\\\\\n        },\\\\\\\\n        \\\\\\\"n_batches\\\\\\\": 27,\\\\\\\\n    },\\\\\\\\n    \\\\\\\"pooled\\\\\\\": {\\\\\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"v1 raw data unavailable; D005 reported within-count stats\\\\\\\"\\\\\\\\n    }\\\\\\\\n}\\\\\\\\n\\\\\\\\n# Comparison\\\\\\\\nv2_c6 = results[\\\\\\\"v2\\\\\\\"][\\\\\\\"count_6\\\\\\\"][\\\\\\\"f1_vs_bcs\\\\\\\"]\\\\\\\\nv2_c12 = results[\\\\\\\"v2\\\\\\\"][\\\\\\\"count_12\\\\\\\"][\\\\\\\"f1_vs_bcs\\\\\\\"]\\\\\\\\nv1_c12_r = 0.50  # from D005\\\\\\\\n\\\\\\\\nv2_c12_r = v2_c12[\\\\\\\"pearson_r\\\\\\\"]\\\\\\\\nv2_c6_r = v2_c6[\\\\\\\"pearson_r\\\\\\\"]\\\\\\\\n\\\\\\\\n# Both v1 and v2 show POSITIVE BCS-F1 correlation\\\\\\\\n# D008 confirmed: v2 also showed positive (高 BCS→高 F1)\\\\\\\\n# This is OPPOSITE to the confusability hypothesis (expected negative)\\\\\\\\nboth_positive = (v1_c12_r > 0) and (v2_c12_r > 0)\\\\\\\\n\\\\\\\\nresults[\\\\\\\"comparison\\\\\\\"] = {\\\\\\\\n    \\\\\\\"direction_consistent\\\\\\\": both_positive,\\\\\\\\n    \\\\\\\"v1_count12_pearson_r\\\\\\\": v1_c12_r,\\\\\\\\n    \\\\\\\"v2_count12_pearson_r\\\\\\\": v2_c12_r,\\\\\\\\n    \\\\\\\"v2_count6_pearson_r\\\\\\\": v2_c6_r,\\\\\\\\n    \\\\\\\"v1_vs_v2_summary\\\\\\\": (\\\\\\\\n        f\\\\\\\"Both v1 (r={v1_c12_r:.2f}) and v2 (r={v2_c12_r:.4f}) show positive BCS-F1 correlation \\\\\\\"\\\\\\\\n        f\\\\\\\"at count_12, direction consistent. This is OPPOSITE to the confusability hypothesis \\\\\\\"\\\\\\\\n        f\\\\\\\"(expected negative). D008 identified type frequency as confounding variable: high-BCS \\\\\\\"\\\\\\\\n        f\\\\\\\"batches contain high-frequency types that models extract better. The batch-level \\\\\\\"\\\\\\\\n        f\\\\\\\"BCS-F1 correlation is NOT a valid test of Channel 2; pairwise SCS→confusion analysis \\\\\\\"\\\\\\\\n        f\\\\\\\"(Channel 1) is the primary evidence.\\\\\\\"\\\\\\\\n    ),\\\\\\\\n    \\\\\\\"risk_level\\\\\\\": \\\\\\\"LOW — direction consistent across prompt versions; confound identified and documented\\\\\\\",\\\\\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\\\\\"\\\\\\\\n}\\\\\\\\n\\\\\\\\nwith open(OUT_PATH, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n    json.dump(results, f, indent=2)\\\\\\\\n\\\\\\\\nprint(json.dumps(results, indent=2))\\\\\\\\nPYEOF\\\\\\\\ncd /root/schema-dag-extraction && python3 scripts/d037/d037_ner_v2_bcs_analysis.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 197: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat << \\\\'PYEOF\\\\' > /root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\\\\n\\\"\\\"\\\"D037: NER v2 BCS-metric correlation analysis.\\\\n\\\\nComputes BCS-F1 correlations from exp2 (prompt v2) per-batch results.\\\\nv1 raw data was overwritten; v1 stats come from decision records (D005).\\\\n\\\"\\\"\\\"\\\\nimport json\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nEVAL_PATH = \\\"/root/schema-dag-extraction/artifacts/eval_exp2.json\\\"\\\\nOUT_PATH = \\\"/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis_results.json\\\"\\\\n\\\\nwith open(EVAL_PATH) as f:\\\\n    data = json.load(f)\\\\n\\\\n# Parse per-batch (BCS, F1) pairs by count\\\\nv2_batches = {\\\"count_6\\\": [], \\\"count_12\\\": []}\\\\nfor batch_id, metrics in data.items():\\\\n    count_key = metrics[\\\"count_key\\\"]\\\\n    bcs = metrics[\\\"bcs\\\"]\\\\n    f1 = metrics[\\\"text_match\\\"][\\\"f1\\\"]\\\\n    recall = metrics[\\\"text_match\\\"][\\\"recall\\\"]\\\\n    precision = metrics[\\\"text_match\\\"][\\\"precision\\\"]\\\\n    v2_batches[count_key].append({\\\\n        \\\"batch_id\\\": batch_id,\\\\n        \\\"bcs\\\": bcs,\\\\n        \\\"f1\\\": f1,\\\\n        \\\"recall\\\": recall,\\\\n        \\\"precision\\\": precision,\\\\n    })\\\\n\\\\ndef compute_correlations(batches):\\\\n    bcs = np.array([b[\\\"bcs\\\"] for b in batches])\\\\n    f1 = np.array([b[\\\"f1\\\"] for b in batches])\\\\n    recall = np.array([b[\\\"recall\\\"] for b in batches])\\\\n    \\\\n    pr, pp = stats.pearsonr(bcs, f1)\\\\n    sr, sp = stats.spearmanr(bcs, f1)\\\\n    pr_rec, pp_rec = stats.pearsonr(bcs, recall)\\\\n    sr_rec, sp_rec = stats.spearmanr(bcs, recall)\\\\n    \\\\n    return {\\\\n        \\\"f1_vs_bcs\\\": {\\\\n            \\\"pearson_r\\\": round(pr, 4),\\\\n            \\\"pearson_p\\\": round(pp, 4),\\\\n            \\\"spearman_rho\\\": round(sr, 4),\\\\n            \\\"spearman_p\\\": round(sp, 4),\\\\n        },\\\\n        \\\"recall_vs_bcs\\\": {\\\\n            \\\"pearson_r\\\": round(pr_rec, 4),\\\\n            \\\"pearson_p\\\": round(pp_rec, 4),\\\\n            \\\"spearman_rho\\\": round(sr_rec, 4),\\\\n            \\\"spearman_p\\\": round(sp_rec, 4),\\\\n        },\\\\n        \\\"n_batches\\\": len(batches),\\\\n        \\\"bcs_range\\\": [round(float(bcs.min()), 4), round(float(bcs.max()), 4)],\\\\n        \\\"f1_range\\\": [round(float(f1.min()), 4), round(float(f1.max()), 4)],\\\\n        \\\"mean_f1\\\": round(float(f1.mean()), 4),\\\\n        \\\"std_f1\\\": round(float(f1.std()), 4),\\\\n    }\\\\n\\\\ndef bootstrap_ci(batches, metric=\\\"f1\\\", B=1000, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    bcs = np.array([b[\\\"bcs\\\"] for b in batches])\\\\n    y = np.array([b[metric] for b in batches])\\\\n    n = len(batches)\\\\n    \\\\n    pearson_boots = []\\\\n    spearman_boots = []\\\\n    for _ in range(B):\\\\n        idx = rng.randint(0, n, size=n)\\\\n        bcs_b = bcs[idx]\\\\n        y_b = y[idx]\\\\n        if np.std(bcs_b) < 1e-10 or np.std(y_b) < 1e-10:\\\\n            continue\\\\n        pr, _ = stats.pearsonr(bcs_b, y_b)\\\\n        sr, _ = stats.spearmanr(bcs_b, y_b)\\\\n        pearson_boots.append(pr)\\\\n        spearman_boots.append(sr)\\\\n    \\\\n    pearson_boots = np.array(pearson_boots)\\\\n    spearman_boots = np.array(spearman_boots)\\\\n    \\\\n    return {\\\\n        \\\"pearson_ci_95\\\": [round(float(np.percentile(pearson_boots, 2.5)), 4),\\\\n                          round(float(np.percentile(pearson_boots, 97.5)), 4)],\\\\n        \\\"spearman_ci_95\\\": [round(float(np.percentile(spearman_boots, 2.5)), 4),\\\\n                           round(float(np.percentile(spearman_boots, 97.5)), 4)],\\\\n        \\\"n_valid_bootstrap\\\": len(pearson_boots),\\\\n    }\\\\n\\\\n# V2 analysis\\\\nresults = {\\\"v2\\\": {}, \\\"v1\\\": {}, \\\"comparison\\\": {}}\\\\n\\\\nfor count_key in [\\\"count_6\\\", \\\"count_12\\\"]:\\\\n    batches = v2_batches[count_key]\\\\n    corr = compute_correlations(batches)\\\\n    ci_f1 = bootstrap_ci(batches, metric=\\\"f1\\\", B=1000)\\\\n    ci_recall = bootstrap_ci(batches, metric=\\\"recall\\\", B=1000)\\\\n    corr[\\\"bootstrap_f1\\\"] = ci_f1\\\\n    corr[\\\"bootstrap_recall\\\"] = ci_recall\\\\n    results[\\\"v2\\\"][count_key] = corr\\\\n\\\\n# V2 pooled\\\\npooled = v2_batches[\\\"count_6\\\"] + v2_batches[\\\"count_12\\\"]\\\\ncorr_pooled = compute_correlations(pooled)\\\\nci_pooled = bootstrap_ci(pooled, metric=\\\"f1\\\", B=1000)\\\\ncorr_pooled[\\\"bootstrap_f1\\\"] = ci_pooled\\\\nresults[\\\"v2\\\"][\\\"pooled\\\"] = corr_pooled\\\\n\\\\n# Extreme batch gap (v2)\\\\nfor count_key in [\\\"count_6\\\", \\\"count_12\\\"]:\\\\n    batches = v2_batches[count_key]\\\\n    low_bcs_batch = [b for b in batches if \\\"low_bcs\\\" in b[\\\"batch_id\\\"]]\\\\n    high_bcs_batch = [b for b in batches if \\\"high_bcs\\\" in b[\\\"batch_id\\\"]]\\\\n    if low_bcs_batch and high_bcs_batch:\\\\n        gap = high_bcs_batch[0][\\\"f1\\\"] - low_bcs_batch[0][\\\"f1\\\"]\\\\n        results[\\\"v2\\\"][count_key][\\\"extreme_gap\\\"] = {\\\\n            \\\"low_bcs\\\": round(low_bcs_batch[0][\\\"bcs\\\"], 4),\\\\n            \\\"low_f1\\\": round(low_bcs_batch[0][\\\"f1\\\"], 4),\\\\n            \\\"high_bcs\\\": round(high_bcs_batch[0][\\\"bcs\\\"], 4),\\\\n            \\\"high_f1\\\": round(high_bcs_batch[0][\\\"f1\\\"], 4),\\\\n            \\\"delta_f1_pp\\\": round(gap * 100, 2),\\\\n            \\\"direction\\\": \\\"positive (high BCS → higher F1)\\\" if gap > 0 else \\\"negative (high BCS → lower F1)\\\",\\\\n        }\\\\n\\\\n# V1 from D005 decision records (raw data overwritten)\\\\nresults[\\\"v1\\\"] = {\\\\n    \\\"count_6\\\": {\\\\n        \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\\\n        \\\"f1_vs_bcs\\\": {\\\\n            \\\"pearson_r\\\": None,\\\\n            \\\"note\\\": \\\"D005 reported pooled/count_12 stats only\\\"\\\\n        },\\\\n        \\\"n_batches\\\": 27,\\\\n    },\\\\n    \\\"count_12\\\": {\\\\n        \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\\\n        \\\"f1_vs_bcs\\\": {\\\\n            \\\"pearson_r\\\": 0.50,\\\\n            \\\"pearson_p\\\": 0.008,\\\\n            \\\"source\\\": \\\"D005 decision record\\\"\\\\n        },\\\\n        \\\"recall_vs_bcs\\\": {\\\\n            \\\"pearson_r\\\": 0.25,\\\\n            \\\"pearson_p\\\": 0.066,\\\\n            \\\"source\\\": \\\"D005 decision record\\\"\\\\n        },\\\\n        \\\"partial_r_f1_bcs\\\": {\\\\n            \\\"r\\\": 0.30,\\\\n            \\\"p\\\": 0.026,\\\\n            \\\"source\\\": \\\"D005 decision record\\\"\\\\n        },\\\\n        \\\"n_batches\\\": 27,\\\\n    },\\\\n    \\\"pooled\\\": {\\\\n        \\\"note\\\": \\\"v1 raw data unavailable; D005 reported within-count stats\\\"\\\\n    }\\\\n}\\\\n\\\\n# Comparison\\\\nv2_c6 = results[\\\"v2\\\"][\\\"count_6\\\"][\\\"f1_vs_bcs\\\"]\\\\nv2_c12 = results[\\\"v2\\\"][\\\"count_12\\\"][\\\"f1_vs_bcs\\\"]\\\\nv1_c12_r = 0.50  # from D005\\\\n\\\\nv2_c12_r = v2_c12[\\\"pearson_r\\\"]\\\\nv2_c6_r = v2_c6[\\\"pearson_r\\\"]\\\\n\\\\n# Both v1 and v2 show POSITIVE BCS-F1 correlation\\\\n# D008 confirmed: v2 also showed positive (高 BCS→高 F1)\\\\n# This is OPPOSITE to the confusability hypothesis (expected negative)\\\\nboth_positive = (v1_c12_r > 0) and (v2_c12_r > 0)\\\\n\\\\nresults[\\\"comparison\\\"] = {\\\\n    \\\"direction_consistent\\\": both_positive,\\\\n    \\\"v1_count12_pearson_r\\\": v1_c12_r,\\\\n    \\\"v2_count12_pearson_r\\\": v2_c12_r,\\\\n    \\\"v2_count6_pearson_r\\\": v2_c6_r,\\\\n    \\\"v1_vs_v2_summary\\\": (\\\\n        f\\\"Both v1 (r={v1_c12_r:.2f}) and v2 (r={v2_c12_r:.4f}) show positive BCS-F1 correlation \\\"\\\\n        f\\\"at count_12, direction consistent. This is OPPOSITE to the confusability hypothesis \\\"\\\\n        f\\\"(expected negative). D008 identified type frequency as confounding variable: high-BCS \\\"\\\\n        f\\\"batches contain high-frequency types that models extract better. The batch-level \\\"\\\\n        f\\\"BCS-F1 correlation is NOT a valid test of Channel 2; pairwise SCS→confusion analysis \\\"\\\\n        f\\\"(Channel 1) is the primary evidence.\\\"\\\\n    ),\\\\n    \\\"risk_level\\\": \\\"LOW — direction consistent across prompt versions; confound identified and documented\\\",\\\\n    \\\"note\\\": \\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\"\\\\n}\\\\n\\\\nwith open(OUT_PATH, \\\"w\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\n\\\\nprint(json.dumps(results, indent=2))\\\\nPYEOF\\\\ncd /root/schema-dag-extraction && python3 scripts/d037/d037_ner_v2_bcs_analysis.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 197: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 122_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Need to find the correct Python path on this server. It's an AutoDL server with conda.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "937c9ba5-85ca-4e38-a987-79b2fdd3a93e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AyrHFF3pMEm6GBUtyLHPDR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6782,
+      "cache_read_input_tokens": 99871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6782
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018tsx7ZJFmkKY469B2ryg32`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/miniconda3/bin -name \"python*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "b4de2f5e-b549-4847-9cb3-d52dac013faa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AyrHFF3pMEm6GBUtyLHPDR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6782,
+      "cache_read_input_tokens": 99871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6782
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-16T03:52:11.166Z_
+
+<details><summary>↩ Tool result · `toolu_018tsx7ZJFmkKY469B2ryg32`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "52387fe1-a50d-4796-bd30-95b3ef5f14ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RsQek1XRhDdWUE5MMw5Phv`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 --version && python3 -c \"import scipy; print('scipy ok')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "f235cff1-0ad1-44e5-b97f-6659de469d75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UUu4G8bYpkXZso21MLYtAw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 106653,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-16T03:52:16.358Z_
+
+<details><summary>↩ Tool result · `toolu_01RsQek1XRhDdWUE5MMw5Phv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Python 3.12.3\\nscipy ok\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "20706d3e-39eb-4a10-a4b0-28d4ac6eae6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Python 3.12.3\\\\nscipy ok\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Python 3.12.3\\nscipy ok\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0192dvJR7bxUvxg1RzxjbqW6`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "646b131d-9404-4304-9d07-1f98fb34737e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EYFbKGZBhLZ5AxicSEs9yo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 106917,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 231
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-16T03:52:44.853Z_
+
+<details><summary>↩ Tool result · `toolu_0192dvJR7bxUvxg1RzxjbqW6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n  File \\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\", line 406, in _iterencode_dict\\n    yield from chunks\\n  File \\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\", line 406, in _iterencode_dict\\n    yield from chunks\\n  File \\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\", line 439, in _iterencode\\n    o = _default(o)\\n        ^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\", line 180, in default\\n    raise TypeError(f'Object of type {o.__class__.__name__} '\\nTypeError: Object of type bool is not JSON serializable\\n\\n\", \"metadata\": {\"elapsed_seconds\": 22.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "10cef119-8060-4f31-8c68-208e06e290e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 406, in _iterencode_dict\\\\n    yield from chunks\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 406, in _iterencode_dict\\\\n    yield from chunks\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 439, in _iterencode\\\\n    o = _default(o)\\\\n        ^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\\\\\", line 180, in default\\\\n    raise TypeError(f'Object of type {o.__class__.__name__} '\\\\nTypeError: Object of type bool is not JSON serializable\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 22.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n  File \\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\", line 406, in _iterencode_dict\\n    yield from chunks\\n  File \\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\", line 406, in _iterencode_dict\\n    yield from chunks\\n  File \\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\", line 439, in _iterencode\\n    o = _default(o)\\n        ^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/json/encoder.py\\\", line 180, in default\\n    raise TypeError(f'Object of type {o.__class__.__name__} '\\nTypeError: Object of type bool is not JSON serializable\\n\\n\", \"metadata\": {\"elapsed_seconds\": 22.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 129_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The issue is that numpy bool is not JSON serializable. Let me fix the script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "b72d6d86-b56b-495e-ab22-974aed3154f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EU2YgATdN6Ua9wNaH7Tknu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 107148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MeqmLSVon2Aiy99i7QmsTk`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat << 'PYEOF' > /tmp/d037_fix.py\nimport json\nimport numpy as np\nfrom scipy import stats\n\nEVAL_PATH = \"/root/schema-dag-extraction/artifacts/eval_exp2.json\"\nOUT_PATH = \"/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis_results.json\"\n\nwith open(EVAL_PATH) as f:\n    data = json.load(f)\n\nv2_batches = {\"count_6\": [], \"count_12\": []}\nfor batch_id, metrics in data.items():\n    count_key = metrics[\"count_key\"]\n    v2_batches[count_key].append({\n        \"batch_id\": batch_id,\n        \"bcs\": metrics[\"bcs\"],\n        \"f1\": metrics[\"text_match\"][\"f1\"],\n        \"recall\": metrics[\"text_match\"][\"recall\"],\n        \"precision\": metrics[\"text_match\"][\"precision\"],\n    })\n\ndef compute_correlations(batches):\n    bcs = np.array([b[\"bcs\"] for b in batches])\n    f1 = np.array([b[\"f1\"] for b in batches])\n    recall = np.array([b[\"recall\"] for b in batches])\n    pr, pp = stats.pearsonr(bcs, f1)\n    sr, sp = stats.spearmanr(bcs, f1)\n    pr_rec, pp_rec = stats.pearsonr(bcs, recall)\n    sr_rec, sp_rec = stats.spearmanr(bcs, recall)\n    return {\n        \"f1_vs_bcs\": {\"pearson_r\": round(float(pr), 4), \"pearson_p\": round(float(pp), 4),\n                       \"spearman_rho\": round(float(sr), 4), \"spearman_p\": round(float(sp), 4)},\n        \"recall_vs_bcs\": {\"pearson_r\": round(float(pr_rec), 4), \"pearson_p\": round(float(pp_rec), 4),\n                          \"spearman_rho\": round(float(sr_rec), 4), \"spearman_p\": round(float(sp_rec), 4)},\n        \"n_batches\": len(batches),\n        \"bcs_range\": [round(float(bcs.min()), 4), round(float(bcs.max()), 4)],\n        \"f1_range\": [round(float(f1.min()), 4), round(float(f1.max()), 4)],\n        \"mean_f1\": round(float(f1.mean()), 4),\n        \"std_f1\": round(float(f1.std()), 4),\n    }\n\ndef bootstrap_ci(batches, metric=\"f1\", B=1000, seed=42):\n    rng = np.random.RandomState(seed)\n    bcs = np.array([b[\"bcs\"] for b in batches])\n    y = np.array([b[metric] for b in batches])\n    n = len(batches)\n    pearson_boots, spearman_boots = [], []\n    for _ in range(B):\n        idx = rng.randint(0, n, size=n)\n        bcs_b, y_b = bcs[idx], y[idx]\n        if np.std(bcs_b) < 1e-10 or np.std(y_b) < 1e-10:\n            continue\n        pr, _ = stats.pearsonr(bcs_b, y_b)\n        sr, _ = stats.spearmanr(bcs_b, y_b)\n        pearson_boots.append(float(pr))\n        spearman_boots.append(float(sr))\n    pb, sb = np.array(pearson_boots), np.array(spearman_boots)\n    return {\n        \"pearson_ci_95\": [round(float(np.percentile(pb, 2.5)), 4), round(float(np.percentile(pb, 97.5)), 4)],\n        \"spearman_ci_95\": [round(float(np.percentile(sb, 2.5)), 4), round(float(np.percentile(sb, 97.5)), 4)],\n        \"n_valid_bootstrap\": len(pearson_boots),\n    }\n\nresults = {\"v2\": {}, \"v1\": {}, \"comparison\": {}}\n\nfor ck in [\"count_6\", \"count_12\"]:\n    batches = v2_batches[ck]\n    corr = compute_correlations(batches)\n    corr[\"bootstrap_f1\"] = bootstrap_ci(batches, \"f1\", 1000)\n    corr[\"bootstrap_recall\"] = bootstrap_ci(batches, \"recall\", 1000)\n    # extreme gap\n    low = [b for b in batches if \"low_bcs\" in b[\"batch_id\"]]\n    high = [b for b in batches if \"high_bcs\" in b[\"batch_id\"]]\n    if low and high:\n        gap = high[0][\"f1\"] - low[0][\"f1\"]\n        corr[\"extreme_gap\"] = {\n            \"low_bcs\": round(low[0][\"bcs\"], 4), \"low_f1\": round(low[0][\"f1\"], 4),\n            \"high_bcs\": round(high[0][\"bcs\"], 4), \"high_f1\": round(high[0][\"f1\"], 4),\n            \"delta_f1_pp\": round(gap * 100, 2),\n            \"direction\": \"positive (high BCS -> higher F1)\" if gap > 0 else \"negative (high BCS -> lower F1)\",\n        }\n    results[\"v2\"][ck] = corr\n\npooled = v2_batches[\"count_6\"] + v2_batches[\"count_12\"]\ncorr_pooled = compute_correlations(pooled)\ncorr_pooled[\"bootstrap_f1\"] = bootstrap_ci(pooled, \"f1\", 1000)\nresults[\"v2\"][\"pooled\"] = corr_pooled\n\nresults[\"v1\"] = {\n    \"count_6\": {\n        \"note\": \"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\",\n        \"f1_vs_bcs\": {\"pearson_r\": None, \"note\": \"D005 reported pooled/count_12 stats only\"},\n        \"n_batches\": 27,\n    },\n    \"count_12\": {\n        \"note\": \"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\",\n        \"f1_vs_bcs\": {\"pearson_r\": 0.50, \"pearson_p\": 0.008, \"source\": \"D005\"},\n        \"recall_vs_bcs\": {\"pearson_r\": 0.25, \"pearson_p\": 0.066, \"source\": \"D005\"},\n        \"partial_r_f1_bcs\": {\"r\": 0.30, \"p\": 0.026, \"source\": \"D005\"},\n        \"n_batches\": 27,\n    },\n    \"pooled\": {\"note\": \"v1 raw data unavailable; D005 reported within-count stats\"}\n}\n\nv2_c12_r = results[\"v2\"][\"count_12\"][\"f1_vs_bcs\"][\"pearson_r\"]\nv2_c6_r = results[\"v2\"][\"count_6\"][\"f1_vs_bcs\"][\"pearson_r\"]\nv1_c12_r = 0.50\nboth_positive = bool((v1_c12_r > 0) and (v2_c12_r > 0))\n\nresults[\"comparison\"] = {\n    \"direction_consistent\": both_positive,\n    \"v1_count12_pearson_r\": v1_c12_r,\n    \"v2_count12_pearson_r\": v2_c12_r,\n    \"v2_count6_pearson_r\": v2_c6_r,\n    \"v1_vs_v2_summary\": (\n        f\"Both v1 (r={v1_c12_r:.2f}) and v2 (r={v2_c12_r:.4f}) show positive BCS-F1 correlation \"\n        f\"at count_12, direction consistent. This positive direction is OPPOSITE to the naive \"\n        f\"confusability hypothesis (expected negative). D008 identified type frequency as \"\n        f\"confounding variable. Batch-level BCS-F1 is not a valid test of Channel 2.\"\n    ),\n    \"risk_level\": \"LOW - direction consistent across prompt versions; confound identified and documented\",\n    \"note\": \"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\"\n}\n\nwith open(OUT_PATH, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(json.dumps(results, indent=2))\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/d037_fix.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "4eba1a6a-a983-4a8b-95b7-e4534db1979a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EU2YgATdN6Ua9wNaH7Tknu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 528,
+      "cache_read_input_tokens": 107148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 528
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-16T03:53:36.891Z_
+
+<details><summary>↩ Tool result · `toolu_01MeqmLSVon2Aiy99i7QmsTk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"v2\\\": {\\n    \\\"count_6\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.2684,\\n        \\\"pearson_p\\\": 0.1758,\\n        \\\"spearman_rho\\\": 0.2653,\\n        \\\"spearman_p\\\": 0.181\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.0529,\\n        \\\"pearson_p\\\": 0.7933,\\n        \\\"spearman_rho\\\": -0.0495,\\n        \\\"spearman_p\\\": 0.8064\\n      },\\n      \\\"n_batches\\\": 27,\\n      \\\"bcs_range\\\": [\\n        0.8628,\\n        0.9447\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1709,\\n        0.4993\\n      ],\\n      \\\"mean_f1\\\": 0.3026,\\n      \\\"std_f1\\\": 0.0897,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.1934,\\n          0.64\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.1297,\\n          0.6014\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"bootstrap_recall\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.2847,\\n          0.3774\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.4442,\\n          0.3524\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"extreme_gap\\\": {\\n        \\\"low_bcs\\\": 0.8709,\\n        \\\"low_f1\\\": 0.2524,\\n        \\\"high_bcs\\\": 0.9447,\\n        \\\"high_f1\\\": 0.4858,\\n        \\\"delta_f1_pp\\\": 23.34,\\n        \\\"direction\\\": \\\"positive (high BCS -> higher F1)\\\"\\n      }\\n    },\\n    \\\"count_12\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.5804,\\n        \\\"pearson_p\\\": 0.0015,\\n        \\\"spearman_rho\\\": 0.4627,\\n        \\\"spearman_p\\\": 0.0151\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.526,\\n        \\\"pearson_p\\\": 0.0048,\\n        \\\"spearman_rho\\\": 0.4612,\\n        \\\"spearman_p\\\": 0.0155\\n      },\\n      \\\"n_batches\\\": 27,\\n      \\\"bcs_range\\\": [\\n        0.892,\\n        0.9732\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1867,\\n        0.4805\\n      ],\\n      \\\"mean_f1\\\": 0.2914,\\n      \\\"std_f1\\\": 0.0617,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          0.1853,\\n          0.8054\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          0.0458,\\n          0.7664\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"bootstrap_recall\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          0.1107,\\n          0.8119\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          0.0452,\\n          0.7697\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"extreme_gap\\\": {\\n        \\\"low_bcs\\\": 0.9148,\\n        \\\"low_f1\\\": 0.229,\\n        \\\"high_bcs\\\": 0.9447,\\n        \\\"high_f1\\\": 0.3127,\\n        \\\"delta_f1_pp\\\": 8.37,\\n        \\\"direction\\\": \\\"positive (high BCS -> higher F1)\\\"\\n      }\\n    },\\n    \\\"pooled\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.2542,\\n        \\\"pearson_p\\\": 0.0636,\\n        \\\"spearman_rho\\\": 0.2516,\\n        \\\"spearman_p\\\": 0.0664\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": -0.1292,\\n        \\\"pearson_p\\\": 0.3517,\\n        \\\"spearman_rho\\\": -0.1222,\\n        \\\"spearman_p\\\": 0.3786\\n      },\\n      \\\"n_batches\\\": 54,\\n      \\\"bcs_range\\\": [\\n        0.8628,\\n        0.9732\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1709,\\n        0.4993\\n      ],\\n      \\\"mean_f1\\\": 0.297,\\n      \\\"std_f1\\\": 0.0772,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.0719,\\n          0.546\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.0437,\\n          0.5106\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      }\\n    }\\n  },\\n  \\\"v1\\\": {\\n    \\\"count_6\\\": {\\n      \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": null,\\n        \\\"note\\\": \\\"D005 reported pooled/count_12 stats only\\\"\\n      },\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"count_12\\\": {\\n      \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.5,\\n        \\\"pearson_p\\\": 0.008,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.25,\\n        \\\"pearson_p\\\": 0.066,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"partial_r_f1_bcs\\\": {\\n        \\\"r\\\": 0.3,\\n        \\\"p\\\": 0.026,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"pooled\\\": {\\n      \\\"note\\\": \\\"v1 raw data unavailable; D005 reported within-count stats\\\"\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"direction_consistent\\\": true,\\n    \\\"v1_count12_pearson_r\\\": 0.5,\\n    \\\"v2_count12_pearson_r\\\": 0.5804,\\n    \\\"v2_count6_pearson_r\\\": 0.2684,\\n    \\\"v1_vs_v2_summary\\\": \\\"Both v1 (r=0.50) and v2 (r=0.5804) show positive BCS-F1 correlation at count_12, direction consistent. This positive direction is OPPOSITE to the naive confusability hypothesis (expected negative). D008 identified type frequency as confounding variable. Batch-level BCS-F1 is not a valid test of Channel 2.\\\",\\n    \\\"risk_level\\\": \\\"LOW - direction consistent across prompt versions; confound identified and documented\\\",\\n    \\\"note\\\": \\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 23.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "18b98478-408e-4654-acdd-3dc2b60abfcb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"v2\\\\\\\": {\\\\n    \\\\\\\"count_6\\\\\\\": {\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.2684,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.1758,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.2653,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.181\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.0529,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.7933,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.0495,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.8064\\\\n      },\\\\n      \\\\\\\"n_batches\\\\\\\": 27,\\\\n      \\\\\\\"bcs_range\\\\\\\": [\\\\n        0.8628,\\\\n        0.9447\\\\n      ],\\\\n      \\\\\\\"f1_range\\\\\\\": [\\\\n        0.1709,\\\\n        0.4993\\\\n      ],\\\\n      \\\\\\\"mean_f1\\\\\\\": 0.3026,\\\\n      \\\\\\\"std_f1\\\\\\\": 0.0897,\\\\n      \\\\\\\"bootstrap_f1\\\\\\\": {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [\\\\n          -0.1934,\\\\n          0.64\\\\n        ],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [\\\\n          -0.1297,\\\\n          0.6014\\\\n        ],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n      },\\\\n      \\\\\\\"bootstrap_recall\\\\\\\": {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [\\\\n          -0.2847,\\\\n          0.3774\\\\n        ],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [\\\\n          -0.4442,\\\\n          0.3524\\\\n        ],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n      },\\\\n      \\\\\\\"extreme_gap\\\\\\\": {\\\\n        \\\\\\\"low_bcs\\\\\\\": 0.8709,\\\\n        \\\\\\\"low_f1\\\\\\\": 0.2524,\\\\n        \\\\\\\"high_bcs\\\\\\\": 0.9447,\\\\n        \\\\\\\"high_f1\\\\\\\": 0.4858,\\\\n        \\\\\\\"delta_f1_pp\\\\\\\": 23.34,\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"positive (high BCS -> higher F1)\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"count_12\\\\\\\": {\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.5804,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.0015,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.4627,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0151\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.526,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.0048,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.4612,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0155\\\\n      },\\\\n      \\\\\\\"n_batches\\\\\\\": 27,\\\\n      \\\\\\\"bcs_range\\\\\\\": [\\\\n        0.892,\\\\n        0.9732\\\\n      ],\\\\n      \\\\\\\"f1_range\\\\\\\": [\\\\n        0.1867,\\\\n        0.4805\\\\n      ],\\\\n      \\\\\\\"mean_f1\\\\\\\": 0.2914,\\\\n      \\\\\\\"std_f1\\\\\\\": 0.0617,\\\\n      \\\\\\\"bootstrap_f1\\\\\\\": {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [\\\\n          0.1853,\\\\n          0.8054\\\\n        ],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [\\\\n          0.0458,\\\\n          0.7664\\\\n        ],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n      },\\\\n      \\\\\\\"bootstrap_recall\\\\\\\": {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [\\\\n          0.1107,\\\\n          0.8119\\\\n        ],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [\\\\n          0.0452,\\\\n          0.7697\\\\n        ],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n      },\\\\n      \\\\\\\"extreme_gap\\\\\\\": {\\\\n        \\\\\\\"low_bcs\\\\\\\": 0.9148,\\\\n        \\\\\\\"low_f1\\\\\\\": 0.229,\\\\n        \\\\\\\"high_bcs\\\\\\\": 0.9447,\\\\n        \\\\\\\"high_f1\\\\\\\": 0.3127,\\\\n        \\\\\\\"delta_f1_pp\\\\\\\": 8.37,\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"positive (high BCS -> higher F1)\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"pooled\\\\\\\": {\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.2542,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.0636,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.2516,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0664\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": -0.1292,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.3517,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.1222,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.3786\\\\n      },\\\\n      \\\\\\\"n_batches\\\\\\\": 54,\\\\n      \\\\\\\"bcs_range\\\\\\\": [\\\\n        0.8628,\\\\n        0.9732\\\\n      ],\\\\n      \\\\\\\"f1_range\\\\\\\": [\\\\n        0.1709,\\\\n        0.4993\\\\n      ],\\\\n      \\\\\\\"mean_f1\\\\\\\": 0.297,\\\\n      \\\\\\\"std_f1\\\\\\\": 0.0772,\\\\n      \\\\\\\"bootstrap_f1\\\\\\\": {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [\\\\n          -0.0719,\\\\n          0.546\\\\n        ],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [\\\\n          -0.0437,\\\\n          0.5106\\\\n        ],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"v1\\\\\\\": {\\\\n    \\\\\\\"count_6\\\\\\\": {\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\\\\\",\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": null,\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"D005 reported pooled/count_12 stats only\\\\\\\"\\\\n      },\\\\n      \\\\\\\"n_batches\\\\\\\": 27\\\\n    },\\\\n    \\\\\\\"count_12\\\\\\\": {\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\\\\\",\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.5,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.008,\\\\n        \\\\\\\"source\\\\\\\": \\\\\\\"D005\\\\\\\"\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.25,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.066,\\\\n        \\\\\\\"source\\\\\\\": \\\\\\\"D005\\\\\\\"\\\\n      },\\\\n      \\\\\\\"partial_r_f1_bcs\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": 0.3,\\\\n        \\\\\\\"p\\\\\\\": 0.026,\\\\n        \\\\\\\"source\\\\\\\": \\\\\\\"D005\\\\\\\"\\\\n      },\\\\n      \\\\\\\"n_batches\\\\\\\": 27\\\\n    },\\\\n    \\\\\\\"pooled\\\\\\\": {\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"v1 raw data unavailable; D005 reported within-count stats\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"direction_consistent\\\\\\\": true,\\\\n    \\\\\\\"v1_count12_pearson_r\\\\\\\": 0.5,\\\\n    \\\\\\\"v2_count12_pearson_r\\\\\\\": 0.5804,\\\\n    \\\\\\\"v2_count6_pearson_r\\\\\\\": 0.2684,\\\\n    \\\\\\\"v1_vs_v2_summary\\\\\\\": \\\\\\\"Both v1 (r=0.50) and v2 (r=0.5804) show positive BCS-F1 correlation at count_12, direction consistent. This positive direction is OPPOSITE to the naive confusability hypothesis (expected negative). D008 identified type frequency as confounding variable. Batch-level BCS-F1 is not a valid test of Channel 2.\\\\\\\",\\\\n    \\\\\\\"risk_level\\\\\\\": \\\\\\\"LOW - direction consistent across prompt versions; confound identified and documented\\\\\\\",\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\\\\\"\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 23.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"v2\\\": {\\n    \\\"count_6\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.2684,\\n        \\\"pearson_p\\\": 0.1758,\\n        \\\"spearman_rho\\\": 0.2653,\\n        \\\"spearman_p\\\": 0.181\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.0529,\\n        \\\"pearson_p\\\": 0.7933,\\n        \\\"spearman_rho\\\": -0.0495,\\n        \\\"spearman_p\\\": 0.8064\\n      },\\n      \\\"n_batches\\\": 27,\\n      \\\"bcs_range\\\": [\\n        0.8628,\\n        0.9447\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1709,\\n        0.4993\\n      ],\\n      \\\"mean_f1\\\": 0.3026,\\n      \\\"std_f1\\\": 0.0897,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.1934,\\n          0.64\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.1297,\\n          0.6014\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"bootstrap_recall\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.2847,\\n          0.3774\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.4442,\\n          0.3524\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"extreme_gap\\\": {\\n        \\\"low_bcs\\\": 0.8709,\\n        \\\"low_f1\\\": 0.2524,\\n        \\\"high_bcs\\\": 0.9447,\\n        \\\"high_f1\\\": 0.4858,\\n        \\\"delta_f1_pp\\\": 23.34,\\n        \\\"direction\\\": \\\"positive (high BCS -> higher F1)\\\"\\n      }\\n    },\\n    \\\"count_12\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.5804,\\n        \\\"pearson_p\\\": 0.0015,\\n        \\\"spearman_rho\\\": 0.4627,\\n        \\\"spearman_p\\\": 0.0151\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.526,\\n        \\\"pearson_p\\\": 0.0048,\\n        \\\"spearman_rho\\\": 0.4612,\\n        \\\"spearman_p\\\": 0.0155\\n      },\\n      \\\"n_batches\\\": 27,\\n      \\\"bcs_range\\\": [\\n        0.892,\\n        0.9732\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1867,\\n        0.4805\\n      ],\\n      \\\"mean_f1\\\": 0.2914,\\n      \\\"std_f1\\\": 0.0617,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          0.1853,\\n          0.8054\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          0.0458,\\n          0.7664\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"bootstrap_recall\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          0.1107,\\n          0.8119\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          0.0452,\\n          0.7697\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"extreme_gap\\\": {\\n        \\\"low_bcs\\\": 0.9148,\\n        \\\"low_f1\\\": 0.229,\\n        \\\"high_bcs\\\": 0.9447,\\n        \\\"high_f1\\\": 0.3127,\\n        \\\"delta_f1_pp\\\": 8.37,\\n        \\\"direction\\\": \\\"positive (high BCS -> higher F1)\\\"\\n      }\\n    },\\n    \\\"pooled\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.2542,\\n        \\\"pearson_p\\\": 0.0636,\\n        \\\"spearman_rho\\\": 0.2516,\\n        \\\"spearman_p\\\": 0.0664\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": -0.1292,\\n        \\\"pearson_p\\\": 0.3517,\\n        \\\"spearman_rho\\\": -0.1222,\\n        \\\"spearman_p\\\": 0.3786\\n      },\\n      \\\"n_batches\\\": 54,\\n      \\\"bcs_range\\\": [\\n        0.8628,\\n        0.9732\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1709,\\n        0.4993\\n      ],\\n      \\\"mean_f1\\\": 0.297,\\n      \\\"std_f1\\\": 0.0772,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.0719,\\n          0.546\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.0437,\\n          0.5106\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      }\\n    }\\n  },\\n  \\\"v1\\\": {\\n    \\\"count_6\\\": {\\n      \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": null,\\n        \\\"note\\\": \\\"D005 reported pooled/count_12 stats only\\\"\\n      },\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"count_12\\\": {\\n      \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.5,\\n        \\\"pearson_p\\\": 0.008,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.25,\\n        \\\"pearson_p\\\": 0.066,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"partial_r_f1_bcs\\\": {\\n        \\\"r\\\": 0.3,\\n        \\\"p\\\": 0.026,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"pooled\\\": {\\n      \\\"note\\\": \\\"v1 raw data unavailable; D005 reported within-count stats\\\"\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"direction_consistent\\\": true,\\n    \\\"v1_count12_pearson_r\\\": 0.5,\\n    \\\"v2_count12_pearson_r\\\": 0.5804,\\n    \\\"v2_count6_pearson_r\\\": 0.2684,\\n    \\\"v1_vs_v2_summary\\\": \\\"Both v1 (r=0.50) and v2 (r=0.5804) show positive BCS-F1 correlation at count_12, direction consistent. This positive direction is OPPOSITE to the naive confusability hypothesis (expected negative). D008 identified type frequency as confounding variable. Batch-level BCS-F1 is not a valid test of Channel 2.\\\",\\n    \\\"risk_level\\\": \\\"LOW - direction consistent across prompt versions; confound identified and documented\\\",\\n    \\\"note\\\": \\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\"\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 23.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 132_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The analysis is complete. Now I need to save the results to the specified local paths:
+1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_ner_v2_bcs_analysis.json`
+2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_ner_v2_bcs_paper_text.md`
+
+Let me compile the results and write both files.
+
+
+Looking at the correlation results across the different versions and conditions, the v2 count_12 variant shows the strongest relationship with a significant Pearson correlation of 0.58, while the pooled and count_6 variants don't reach significance. The v1 count_12 baseline from the earlier analysis had a similar correlation of 0.50.
+
+What's striking is that both versions consistently show positive correlations between BCS and F1 scores—meaning higher body complexity actually predicts better performance, which contradicts the original confusability hypothesis. This pattern held up in the prior analysis too, so the direction is stable across prompt versions and doesn't undermine the overall findings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "48fcd585-4017-4c47-b380-6c016dd69fbe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKyGFWesrYnd9ekYCQfaKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5082,
+      "cache_read_input_tokens": 107676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 133_
+
+分析完成。现在保存到指定路径。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "ed236871-8ae6-4abf-90d4-9d4694a75f27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKyGFWesrYnd9ekYCQfaKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5082,
+      "cache_read_input_tokens": 107676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134_
+
+<details open><summary>🔧 Tool call — Write · `toolu_012VkAQHsFEzbMa41wxe8UJB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_ner_v2_bcs_analysis.json",
+  "content": "{\n  \"v2\": {\n    \"count_6\": {\n      \"f1_vs_bcs\": {\n        \"pearson_r\": 0.2684,\n        \"pearson_p\": 0.1758,\n        \"spearman_rho\": 0.2653,\n        \"spearman_p\": 0.181\n      },\n      \"recall_vs_bcs\": {\n        \"pearson_r\": 0.0529,\n        \"pearson_p\": 0.7933,\n        \"spearman_rho\": -0.0495,\n        \"spearman_p\": 0.8064\n      },\n      \"n_batches\": 27,\n      \"bcs_range\": [0.8628, 0.9447],\n      \"f1_range\": [0.1709, 0.4993],\n      \"mean_f1\": 0.3026,\n      \"std_f1\": 0.0897,\n      \"bootstrap_f1\": {\n        \"pearson_ci_95\": [-0.1934, 0.64],\n        \"spearman_ci_95\": [-0.1297, 0.6014],\n        \"n_valid_bootstrap\": 1000\n      },\n      \"bootstrap_recall\": {\n        \"pearson_ci_95\": [-0.2847, 0.3774],\n        \"spearman_ci_95\": [-0.4442, 0.3524],\n        \"n_valid_bootstrap\": 1000\n      },\n      \"extreme_gap\": {\n        \"low_bcs\": 0.8709,\n        \"low_f1\": 0.2524,\n        \"high_bcs\": 0.9447,\n        \"high_f1\": 0.4858,\n        \"delta_f1_pp\": 23.34,\n        \"direction\": \"positive (high BCS -> higher F1)\"\n      }\n    },\n    \"count_12\": {\n      \"f1_vs_bcs\": {\n        \"pearson_r\": 0.5804,\n        \"pearson_p\": 0.0015,\n        \"spearman_rho\": 0.4627,\n        \"spearman_p\": 0.0151\n      },\n      \"recall_vs_bcs\": {\n        \"pearson_r\": 0.526,\n        \"pearson_p\": 0.0048,\n        \"spearman_rho\": 0.4612,\n        \"spearman_p\": 0.0155\n      },\n      \"n_batches\": 27,\n      \"bcs_range\": [0.892, 0.9732],\n      \"f1_range\": [0.1867, 0.4805],\n      \"mean_f1\": 0.2914,\n      \"std_f1\": 0.0617,\n      \"bootstrap_f1\": {\n        \"pearson_ci_95\": [0.1853, 0.8054],\n        \"spearman_ci_95\": [0.0458, 0.7664],\n        \"n_valid_bootstrap\": 1000\n      },\n      \"bootstrap_recall\": {\n        \"pearson_ci_95\": [0.1107, 0.8119],\n        \"spearman_ci_95\": [0.0452, 0.7697],\n        \"n_valid_bootstrap\": 1000\n      },\n      \"extreme_gap\": {\n        \"low_bcs\": 0.9148,\n        \"low_f1\": 0.229,\n        \"high_bcs\": 0.9447,\n        \"high_f1\": 0.3127,\n        \"delta_f1_pp\": 8.37,\n        \"direction\": \"positive (high BCS -> higher F1)\"\n      }\n    },\n    \"pooled\": {\n      \"f1_vs_bcs\": {\n        \"pearson_r\": 0.2542,\n        \"pearson_p\": 0.0636,\n        \"spearman_rho\": 0.2516,\n        \"spearman_p\": 0.0664\n      },\n      \"recall_vs_bcs\": {\n        \"pearson_r\": -0.1292,\n        \"pearson_p\": 0.3517,\n        \"spearman_rho\": -0.1222,\n        \"spearman_p\": 0.3786\n      },\n      \"n_batches\": 54,\n      \"bcs_range\": [0.8628, 0.9732],\n      \"f1_range\": [0.1709, 0.4993],\n      \"mean_f1\": 0.297,\n      \"std_f1\": 0.0772,\n      \"bootstrap_f1\": {\n        \"pearson_ci_95\": [-0.0719, 0.546],\n        \"spearman_ci_95\": [-0.0437, 0.5106],\n        \"n_valid_bootstrap\": 1000\n      }\n    }\n  },\n  \"v1\": {\n    \"count_6\": {\n      \"note\": \"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\",\n      \"f1_vs_bcs\": {\n        \"pearson_r\": null,\n        \"note\": \"D005 reported pooled/count_12 stats only\"\n      },\n      \"n_batches\": 27\n    },\n    \"count_12\": {\n      \"note\": \"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\",\n      \"f1_vs_bcs\": {\n        \"pearson_r\": 0.5,\n        \"pearson_p\": 0.008,\n        \"source\": \"D005\"\n      },\n      \"recall_vs_bcs\": {\n        \"pearson_r\": 0.25,\n        \"pearson_p\": 0.066,\n        \"source\": \"D005\"\n      },\n      \"partial_r_f1_bcs\": {\n        \"r\": 0.3,\n        \"p\": 0.026,\n        \"source\": \"D005\"\n      },\n      \"n_batches\": 27\n    },\n    \"pooled\": {\n      \"note\": \"v1 raw data unavailable; D005 reported within-count stats\"\n    }\n  },\n  \"comparison\": {\n    \"direction_consistent\": true,\n    \"v1_count12_pearson_r\": 0.5,\n    \"v2_count12_pearson_r\": 0.5804,\n    \"v2_count6_pearson_r\": 0.2684,\n    \"v1_vs_v2_summary\": \"Both v1 (r=0.50) and v2 (r=0.58) show positive BCS-F1 correlation at count_12, direction consistent. This positive direction is OPPOSITE to the naive confusability hypothesis (expected negative). D008 identified type frequency as confounding variable. Batch-level BCS-F1 is not a valid test of Channel 2.\",\n    \"risk_level\": \"LOW - direction consistent across prompt versions; confound identified and documented\",\n    \"note\": \"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\"\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "ae54c650-c8bc-406b-8d62-d162ad2ec59a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKyGFWesrYnd9ekYCQfaKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5082,
+      "cache_read_input_tokens": 107676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-16T03:54:02.031Z_
+
+<details><summary>↩ Tool result · `toolu_012VkAQHsFEzbMa41wxe8UJB`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_ner_v2_bcs_analysis.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "03306df0-9a02-4a83-80e4-7c0e15dec108",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_ner_v2_bcs_analysis.json",
+    "content": "{\n  \"v2\": {\n    \"count_6\": {\n      \"f1_vs_bcs\": {\n        \"pearson_r\": 0.2684,\n        \"pearson_p\": 0.1758,\n        \"spearman_rho\": 0.2653,\n        \"spearman_p\": 0.181\n      },\n      \"recall_vs_bcs\": {\n        \"pearson_r\": 0.0529,\n        \"pearson_p\": 0.7933,\n        \"spearman_rho\": -0.0495,\n        \"spearman_p\": 0.8064\n      },\n      \"n_batches\": 27,\n      \"bcs_range\": [0.8628, 0.9447],\n      \"f1_range\": [0.1709, 0.4993],\n      \"mean_f1\": 0.3026,\n      \"std_f1\": 0.0897,\n      \"bootstrap_f1\": {\n        \"pearson_ci_95\": [-0.1934, 0.64],\n        \"spearman_ci_95\": [-0.1297, 0.6014],\n        \"n_valid_bootstrap\": 1000\n      },\n      \"bootstrap_recall\": {\n        \"pearson_ci_95\": [-0.2847, 0.3774],\n        \"spearman_ci_95\": [-0.4442, 0.3524],\n        \"n_valid_bootstrap\": 1000\n      },\n      \"extreme_gap\": {\n        \"low_bcs\": 0.8709,\n        \"low_f1\": 0.2524,\n        \"high_bcs\": 0.9447,\n        \"high_f1\": 0.4858,\n        \"delta_f1_pp\": 23.34,\n        \"direction\": \"positive (high BCS -> higher F1)\"\n      }\n    },\n    \"count_12\": {\n      \"f1_vs_bcs\": {\n        \"pearson_r\": 0.5804,\n        \"pearson_p\": 0.0015,\n        \"spearman_rho\": 0.4627,\n        \"spearman_p\": 0.0151\n      },\n      \"recall_vs_bcs\": {\n        \"pearson_r\": 0.526,\n        \"pearson_p\": 0.0048,\n        \"spearman_rho\": 0.4612,\n        \"spearman_p\": 0.0155\n      },\n      \"n_batches\": 27,\n      \"bcs_range\": [0.892, 0.9732],\n      \"f1_range\": [0.1867, 0.4805],\n      \"mean_f1\": 0.2914,\n      \"std_f1\": 0.0617,\n      \"bootstrap_f1\": {\n        \"pearson_ci_95\": [0.1853, 0.8054],\n        \"spearman_ci_95\": [0.0458, 0.7664],\n        \"n_valid_bootstrap\": 1000\n      },\n      \"bootstrap_recall\": {\n        \"pearson_ci_95\": [0.1107, 0.8119],\n        \"spearman_ci_95\": [0.0452, 0.7697],\n        \"n_valid_bootstrap\": 1000\n      },\n      \"extreme_gap\": {\n        \"low_bcs\": 0.9148,\n        \"low_f1\": 0.229,\n        \"high_bcs\": 0.9447,\n        \"high_f1\": 0.3127,\n        \"delta_f1_pp\": 8.37,\n        \"direction\": \"positive (high BCS -> higher F1)\"\n      }\n    },\n    \"pooled\": {\n      \"f1_vs_bcs\": {\n        \"pearson_r\": 0.2542,\n        \"pearson_p\": 0.0636,\n        \"spearman_rho\": 0.2516,\n        \"spearman_p\": 0.0664\n      },\n      \"recall_vs_bcs\": {\n        \"pearson_r\": -0.1292,\n        \"pearson_p\": 0.3517,\n        \"spearman_rho\": -0.1222,\n        \"spearman_p\": 0.3786\n      },\n      \"n_batches\": 54,\n      \"bcs_range\": [0.8628, 0.9732],\n      \"f1_range\": [0.1709, 0.4993],\n      \"mean_f1\": 0.297,\n      \"std_f1\": 0.0772,\n      \"bootstrap_f1\": {\n        \"pearson_ci_95\": [-0.0719, 0.546],\n        \"spearman_ci_95\": [-0.0437, 0.5106],\n        \"n_valid_bootstrap\": 1000\n      }\n    }\n  },\n  \"v1\": {\n    \"count_6\": {\n      \"note\": \"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\",\n      \"f1_vs_bcs\": {\n        \"pearson_r\": null,\n        \"note\": \"D005 reported pooled/count_12 stats only\"\n      },\n      \"n_batches\": 27\n    },\n    \"count_12\": {\n      \"note\": \"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\",\n      \"f1_vs_bcs\": {\n        \"pearson_r\": 0.5,\n        \"pearson_p\": 0.008,\n        \"source\": \"D005\"\n      },\n      \"recall_vs_bcs\": {\n        \"pearson_r\": 0.25,\n        \"pearson_p\": 0.066,\n        \"source\": \"D005\"\n      },\n      \"partial_r_f1_bcs\": {\n        \"r\": 0.3,\n        \"p\": 0.026,\n        \"source\": \"D005\"\n      },\n      \"n_batches\": 27\n    },\n    \"pooled\": {\n      \"note\": \"v1 raw data unavailable; D005 reported within-count stats\"\n    }\n  },\n  \"comparison\": {\n    \"direction_consistent\": true,\n    \"v1_count12_pearson_r\": 0.5,\n    \"v2_count12_pearson_r\": 0.5804,\n    \"v2_count6_pearson_r\": 0.2684,\n    \"v1_vs_v2_summary\": \"Both v1 (r=0.50) and v2 (r=0.58) show positive BCS-F1 correlation at count_12, direction consistent. This positive direction is OPPOSITE to the naive confusability hypothesis (expected negative). D008 identified type frequency as confounding variable. Batch-level BCS-F1 is not a valid test of Channel 2.\",\n    \"risk_level\": \"LOW - direction consistent across prompt versions; confound identified and documented\",\n    \"note\": \"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\"\n  }\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01TB4zTCquwBvpLo4BEHQiax`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_ner_v2_bcs_paper_text.md",
+  "content": "To verify that the batch-level BCS–accuracy relationship is not an artifact of prompt design, we repeated the NER confusability-controlled experiment (Exp. 2) with a simplified prompt that omits character offsets (v2: text+type only). The positive BCS–F1 correlation persists under the v2 prompt (count_12: r=0.58, p=0.002, 95% bootstrap CI [0.19, 0.81]; count_6: r=0.27, p=0.18), consistent with the v1 result (count_12: r=0.50, p=0.008). As discussed in §4.2, this positive direction reflects a type-frequency confound at the batch level—high-BCS batches happen to contain high-frequency entity types that models extract more reliably—rather than evidence against the confusability hypothesis. The pairwise SCS→confusion analysis (§4.1), which is immune to this aggregation artifact, remains the primary evidence for the confusability channel.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "918b5e82-c326-4b4c-8d2f-db1ae9bdf3d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKyGFWesrYnd9ekYCQfaKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5082,
+      "cache_read_input_tokens": 107676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5082
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-16T03:54:08.349Z_
+
+<details><summary>↩ Tool result · `toolu_01TB4zTCquwBvpLo4BEHQiax`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_ner_v2_bcs_paper_text.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "f484afee-c6e3-4db4-996e-489ad94a6418",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/d037_ner_v2_bcs_paper_text.md",
+    "content": "To verify that the batch-level BCS–accuracy relationship is not an artifact of prompt design, we repeated the NER confusability-controlled experiment (Exp. 2) with a simplified prompt that omits character offsets (v2: text+type only). The positive BCS–F1 correlation persists under the v2 prompt (count_12: r=0.58, p=0.002, 95% bootstrap CI [0.19, 0.81]; count_6: r=0.27, p=0.18), consistent with the v1 result (count_12: r=0.50, p=0.008). As discussed in §4.2, this positive direction reflects a type-frequency confound at the batch level—high-BCS batches happen to contain high-frequency entity types that models extract more reliably—rather than evidence against the confusability hypothesis. The pairwise SCS→confusion analysis (§4.1), which is immune to this aggregation artifact, remains the primary evidence for the confusability channel.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 138_
+
+两个文件已保存。结果摘要：
+
+**v2 BCS-F1 相关性**（NER prompt v2, text+type only）：
+| | Pearson r | p | Bootstrap 95% CI |
+|---|---|---|---|
+| count_6 (n=27) | +0.27 | 0.176 | [-0.19, 0.64] |
+| count_12 (n=27) | **+0.58** | **0.002** | [0.19, 0.81] |
+| pooled (n=54) | +0.25 | 0.064 | [-0.07, 0.55] |
+
+**v1 vs v2 对比**（count_12）：
+- v1: r=+0.50 (p=0.008) — 来自 D005 决策记录
+- v2: r=+0.58 (p=0.002)
+- **方向一致**，均为正相关（高 BCS → 高 F1）
+
+**关键判断**：无风险。v1 和 v2 方向一致，但注意这个正相关方向本身与朴素 confusability 假设相反。D008 已确认这是 type frequency confound（高 BCS batch 恰好包含高频类型），不影响论文叙事——论文主要证据是 pairwise SCS→confusion 分析（Channel 1），不依赖 batch-level BCS-F1。
+
+**注意**：v1 原始 per-batch 数据被 v2 运行覆盖（服务器无 git），v1 统计量来自 D005 决策记录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "uuid": "7fbd190d-ec25-4c4e-84ca-0d4e9ecca781",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017aucU6f1QVgRFs1W5cuhdR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2866,
+      "cache_read_input_tokens": 112758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2866
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 139_
+
+两个文件已保存。结果摘要：
+
+**v2 BCS-F1 相关性**（NER prompt v2, text+type only）：
+| | Pearson r | p | Bootstrap 95% CI |
+|---|---|---|---|
+| count_6 (n=27) | +0.27 | 0.176 | [-0.19, 0.64] |
+| count_12 (n=27) | **+0.58** | **0.002** | [0.19, 0.81] |
+| pooled (n=54) | +0.25 | 0.064 | [-0.07, 0.55] |
+
+**v1 vs v2 对比**（count_12）：
+- v1: r=+0.50 (p=0.008) — 来自 D005 决策记录
+- v2: r=+0.58 (p=0.002)
+- **方向一致**，均为正相关（高 BCS → 高 F1）
+
+**关键判断**：无风险。v1 和 v2 方向一致，但注意这个正相关方向本身与朴素 confusability 假设相反。D008 已确认这是 type frequency confound（高 BCS batch 恰好包含高频类型），不影响论文叙事——论文主要证据是 pairwise SCS→confusion 分析（Channel 1），不依赖 batch-level BCS-F1。
+
+**注意**：v1 原始 per-batch 数据被 v2 运行覆盖（服务器无 git），v1 统计量来自 D005 决策记录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 470224,
+  "duration_api_ms": 408261,
+  "num_turns": 50,
+  "stop_reason": "end_turn",
+  "session_id": "38449432-25c2-4b6a-89bd-9aa07d54d97a",
+  "total_cost_usd": 2.12875375,
+  "usage": {
+    "input_tokens": 38,
+    "cache_creation_input_tokens": 103783,
+    "cache_read_input_tokens": 1857080,
+    "output_tokens": 21984,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 103783,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 446,
+        "cache_read_input_tokens": 112758,
+        "cache_creation_input_tokens": 2866,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2866
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1680,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017800000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 38,
+      "outputTokens": 21984,
+      "cacheReadInputTokens": 1857080,
+      "cacheCreationInputTokens": 103783,
+      "webSearchRequests": 0,
+      "costUSD": 2.12697375,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2537fc01-921c-44c9-95d8-9c6c21c96026"
+}
+```
+
+</details>
+
+---

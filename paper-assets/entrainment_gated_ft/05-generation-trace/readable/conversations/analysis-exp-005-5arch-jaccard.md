@@ -1,0 +1,1336 @@
+# analysis exp 005 5arch jaccard
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_analysis_exp-005-5arch-jaccard_20260522T171842.jsonl`
+- **Structured JSON:** [`3ac7b80f4fe81cec68e3.json`](../../sessions/3a/3ac7b80f4fe81cec68e3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T17:24:09.879935+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T17:24:09.880274+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T17:24:09.880443+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/results/ -name \"*samples*.jsonl\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/results/ -name \"*samples*.jsonl\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T17:24:09.880587+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T17:24:09.880763+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.py\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.py\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T17:24:09.880899+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T17:24:09.881021+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls -la /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T17:24:09.881143+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T17:24:09.881303+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/models/ -path \"*HGRN*pure*\" -name \"model.safetensors\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/models/ -path \"*HGRN*pure*\" -name \"model.safetensors\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T17:24:09.881433+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T17:24:09.881594+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/results/ -name \"*samples*.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/results/ -name \"*samples*.jsonl\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-22T17:24:09.881758+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/results/exp005_zoo_expansion/ -name \"*.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T17:24:09.881886+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls -la /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-22T17:24:09.882001+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/models/ -path \"*HGRN*pure*\" -name \"model.safetensors\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "find /root/entrainment_gated_ft/models/ -path \"*HGRN*pure*\" -name \"model.safetensors\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T17:24:09.882169+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/e4_pythia_seed/seed1/__root__autodl-tmp__pythia_weights_70m__seed1/samples_arc_easy_2026-05-22T19-34-51.855451.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed1/__root__autodl-tmp__pythia_weights_70m__seed1/samples_lambada_openai_2026-05-22T19-34-51.855451.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed2/__root__autodl-tmp__pythia_weights_70m__seed2/samples_arc_easy_2026-05-22T19-36-05.128772.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed2/__root__autodl-tmp__pythia_weights_70m__seed2/samples_lambada_openai_2026-05-22T19-36-05.128772.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed3/__root__autodl-tmp__pythia_weights_70m__seed3/samples_arc_easy_2026-05-22T19-37-31.050081.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed3/__root__autodl-tmp__pythia_weights_70m__seed3/samples_lambada_openai_2026-05-22T19-37-31.050081.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed4/__root__autodl-tmp__pythia_weights_70m__seed4/samples_arc_easy_2026-05-22T19-39-04.750299.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed4/__root__autodl-tmp__pythia_weights_70m__seed4/samples_lambada_openai_2026-05-22T19-39-04.750299.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed5/__root__autodl-tmp__pythia_weights_70m__seed5/samples_arc_easy_2026-05-22T19-40-14.254556.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed5/__root__autodl-tmp__pythia_weights_70m__seed5/samples_lambada_openai_2026-05-22T19-40-14.254556.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed6/__root__autodl-tmp__pythia_weights_70m__seed6/samples_arc_easy_2026-05-22T19-35-43.924315.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed6/__root__autodl-tmp__pythia_weights_70m__seed6/samples_lambada_openai_2026-05-22T19-35-43.924315.jsonl\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed7/__ro
+…[truncated 4103 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T17:24:09.882315+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/eval_fla.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T17:24:09.882445+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 1331032992 May 23 00:54 /root/entrainment_gated_ft/models/340M-20B-HGRN-hybrid-3-1/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T17:24:09.882563+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/models/340M-20B-HGRN2-pure-baseline/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T17:24:09.882751+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-22T17:24:09.882880+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/results/exp005_zoo_expansion/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/results/exp005_zoo_expansion/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T17:24:09.883173+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"4-architecture pairwise Jaccard: GDN/RetNet/HGRN2/GLA at 340M, h3-1 vs pure.\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nfrom itertools import combinations\\nfrom pathlib import Path\\n\\nBASE = Path(\\\"/root/entrainment_gated_ft\\\")\\nMULTI = BASE / \\\"lm_eval_clean/340m_multi\\\"\\nEXP5 = BASE / \\\"results/exp005_zoo_expansion\\\"\\n\\nARC_EASY_PATHS = {\\n    \\\"GDN\\\":    {\\\"pure\\\": MULTI / \\\"GDN-pure/samples/arc_easy.jsonl\\\",\\n               \\\"h31\\\":  MULTI / \\\"GDN-h3-1/samples/arc_easy.jsonl\\\"},\\n    \\\"RetNet\\\": {\\\"pure\\\": MULTI / \\\"RetNet-pure/samples/arc_easy.jsonl\\\",\\n               \\\"h31\\\":  MULTI / \\\"RetNet-h3-1/samples/arc_easy.jsonl\\\"},\\n    \\\"HGRN2\\\":  {\\\"pure\\\": MULTI / \\\"HGRN2-pure/samples/arc_easy.jsonl\\\",\\n               \\\"h31\\\":  MULTI / \\\"HGRN2-h3-1/samples/arc_easy.jsonl\\\"},\\n    \\\"GLA\\\":    {\\\"pure\\\": EXP5 / \\\"GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T00-41-14.537211.jsonl\\\",\\n               \\\"h31\\\":  EXP5 / \\\"GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\\\"},\\n}\\n\\nLAMBADA_PATHS = {\\n    \\\"GDN\\\":    {\\\"pure\\\": EXP5 / \\\"GDN_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-pure-baseline/samples_lambada_openai_2026-05-23T00-55-12.446919.jsonl\\\",\\n               \\\"h31\\\":  EXP5 / \\\"GDN_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-57-27.658457.jsonl\\\"},\\n    \\\"RetNet\\\": {\\\"pure\\\": EXP5 / \\\"RetNet_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-pure/samples_lambada_openai_2026-05-23T01-00-10.816890.jsonl\\\",\\n               \\\"h31\\\":  EXP5 / \\\"RetNet_h3-1_lambada/__roo
+…[truncated 7394 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T17:24:09.883358+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DeltaNet_hybrid-3-1\\nDeltaNet_pure_baseline\\nGDN_h3-1_lambada\\nGDN_pure_lambada\\nGLA_hybrid-3-1\\nGLA_pure\\nGLA_pure_baseline\\nHGRN2_h3-1_lambada\\nHGRN2_pure_lambada\\nHGRN_hybrid-3-1\\nRetNet_h3-1_lambada\\nRetNet_pure_lambada\\nanalyze_4arch_jaccard.py\\nanalyze_6arch.py\\nbg_downloads.log\\neval_deltanet_hardcode.sh\\neval_download.log\\neval_fla.py\\neval_gla_hardcode.sh\\neval_hgrn_hardcode.sh\\neval_p1.log\\ngla_eval.log\\nhgrn_chain.log\\njaccard_4arch.json\\npriority1.log\\npriority1_v2.log\\npriority1_v3.log\\npriority1_v4.log\\npure_download_eval.log\\npure_v3.log\\npure_v4.log\\npure_v5.log\\npure_wget_eval.log\\nrun_all.log\\nrun_download_eval_pure.sh\\nrun_eval_download.sh\\nrun_eval_p1.sh\\nrun_hgrn_chain.sh\\nrun_p1_v4.sh\\nrun_priority1.sh\\nrun_priority1_v2.sh\\nrun_priority1_v3.sh\\nrun_pure_v10.log\\nrun_pure_v10.sh\\nrun_pure_v3.sh\\nrun_pure_v4.sh\\nrun_pure_v5.sh\\nrun_pure_v6.log\\nrun_pure_v6.sh\\nrun_pure_v7.log\\nrun_pure_v7.sh\\nrun_pure_v8.log\\nrun_pure_v8.sh\\nrun_pure_v9.log\\nrun_pure_v9.sh\\nrun_wget_eval_pure.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 33.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T17:24:09.883529+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/340m_multi/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/lm_eval_clean/340m_multi/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-22T17:24:09.883672+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "ls /root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T17:24:09.883832+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GDN-h12-1\\nGDN-h24-1\\nGDN-h3-1\\nGDN-h6-1\\nGDN-pure\\nHGRN2-h12-1\\nHGRN2-h24-1\\nHGRN2-h3-1\\nHGRN2-h6-1\\nHGRN2-pure\\nRetNet-h12-1\\nRetNet-h24-1\\nRetNet-h3-1\\nRetNet-h6-1\\nRetNet-pure\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T17:24:09.883959+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T17:24:09.884173+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat << 'PYEOF' > /root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_5arch.py\n#!/usr/bin/env python3\n\"\"\"5-architecture pairwise Jaccard: GDN/RetNet/HGRN2/GLA/DeltaNet at 340M, h3-1 vs pure.\"\"\"\nimport json\nimport numpy as np\nfrom itertools import combinations\nfrom pathlib import Path\n\nBASE = Path(\"/root/entrainment_gated_ft\")\nMULTI = BASE / \"lm_eval_clean/340m_multi\"\nEXP5 = BASE / \"results/exp005_zoo_expansion\"\n\nARC_EASY_PATHS = {\n    \"GDN\":      {\"pure\": MULTI / \"GDN-pure/samples/arc_easy.jsonl\",\n                 \"h31\":  MULTI / \"GDN-h3-1/samples/arc_easy.jsonl\"},\n    \"RetNet\":   {\"pure\": MULTI / \"RetNet-pure/samples/arc_easy.jsonl\",\n                 \"h31\":  MULTI / \"RetNet-h3-1/samples/arc_easy.jsonl\"},\n    \"HGRN2\":    {\"pure\": MULTI / \"HGRN2-pure/samples/arc_easy.jsonl\",\n                 \"h31\":  MULTI / \"HGRN2-h3-1/samples/arc_easy.jsonl\"},\n    \"GLA\":      {\"pure\": EXP5 / \"GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T00-41-14.537211.jsonl\",\n                 \"h31\":  EXP5 / \"GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\"},\n    \"DeltaNet\": {\"pure\": EXP5 / \"DeltaNet_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure/samples_arc_easy_2026-05-23T01-13-35.906959.jsonl\",\n                 \"h31\":  EXP5 / \"DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\"},\n}\n\nLAMBADA_PATHS = {\n    \"GDN\":      {\"pure\": EXP5 / \"GDN_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-pure-baseline/samples_lambada_openai_2026-05-23T00-55-12.446919.jsonl\",\n                 \"h31\":  EXP5 / \"GDN_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-57-27.658457.jsonl\"},\n    \"RetNet\":   {\"pure\": EXP5 / \"RetNet_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-pure/samples_lambada_openai_2026-05-23T01-00-10.816890.jsonl\",\n                 \"h31\":  EXP5 / \"RetNet_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-hybrid-3-1/samples_lambada_openai_2026-05-23T01-02-18.914553.jsonl\"},\n    \"HGRN2\":    {\"pure\": EXP5 / \"HGRN2_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-HGRN2-pure-baseline/samples_lambada_openai_2026-05-23T01-05-14.495517.jsonl\",\n                 \"h31\":  EXP5 / \"HGRN2_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-HGRN2-hybrid-3-1/samples_lambada_openai_2026-05-23T01-07-22.356663.jsonl\"},\n    \"GLA\":      {\"pure\": EXP5 / \"GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_lambada_openai_2026-05-23T00-41-14.537211.jsonl\",\n                 \"h31\":  EXP5 / \"GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\"},\n    \"DeltaNet\": {\"pure\": EXP5 / \"DeltaNet_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure/samples_lambada_openai_2026-05-23T01-13-35.906959.jsonl\",\n                 \"h31\":  EXP5 / \"DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\"},\n}\n\ndef load_acc_dict(jsonl_path):\n    acc = {}\n    with open(jsonl_path) as f:\n        for line in f:\n            item = json.loads(line)\n            doc_id = item[\"doc_id\"]\n            a = item.get(\"acc\", item.get(\"exact_match\", 0))\n            acc[doc_id] = int(float(a))\n    return acc\n\ndef jaccard(set_a, set_b):\n    if not set_a and not set_b:\n        return 1.0\n    inter = len(set_a & set_b)\n    union = len(set_a | set_b)\n    return inter / union if union > 0 else 0.0\n\ndef permutation_test(helped_dict, archs, n_total, n_perms=10000):\n    rng = np.random.default_rng(42)\n    pairs = list(combinations(archs, 2))\n    sizes = {a: len(helped_dict[a]) for a in archs}\n    null_jaccards = {f\"{a}-{b}\": [] for a, b in pairs}\n    for _ in range(n_perms):\n        random_sets = {}\n        for a in archs:\n            idxs = rng.choice(n_total, size=sizes[a], replace=False)\n            random_sets[a] = set(idxs.tolist())\n        for a, b in pairs:\n            null_jaccards[f\"{a}-{b}\"].append(jaccard(random_sets[a], random_sets[b]))\n    results = {}\n    for a, b in pairs:\n        key = f\"{a}-{b}\"\n        obs = jaccard(helped_dict[a], helped_dict[b])\n        null_arr = np.array(null_jaccards[key])\n        z = (obs - null_arr.mean()) / null_arr.std() if null_arr.std() > 0 else 0\n        p = np.mean(null_arr >= obs)\n        results[key] = {\"J_obs\": round(float(obs), 6), \"J_null_mean\": round(float(null_arr.mean()), 6),\n                        \"J_null_std\": round(float(null_arr.std()), 6), \"z\": round(float(z), 2), \"p\": round(float(p), 4)}\n    return results\n\ndef analyze_benchmark(task_name, paths, archs):\n    print(f\"\\n{'='*60}\")\n    print(f\"Benchmark: {task_name}\")\n    print(f\"{'='*60}\")\n\n    active_archs = []\n    for arch in archs:\n        if arch not in paths:\n            continue\n        p = paths[arch][\"pure\"]\n        h = paths[arch][\"h31\"]\n        if not Path(p).exists():\n            print(f\"  SKIP {arch}: missing pure file {p}\")\n            continue\n        if not Path(h).exists():\n            print(f\"  SKIP {arch}: missing h31 file {h}\")\n            continue\n        active_archs.append(arch)\n\n    if len(active_archs) < 2:\n        print(\"  Not enough architectures, skipping\")\n        return None\n\n    pure_acc = {}\n    h31_acc = {}\n    for arch in active_archs:\n        pure_acc[arch] = load_acc_dict(paths[arch][\"pure\"])\n        h31_acc[arch] = load_acc_dict(paths[arch][\"h31\"])\n\n    n_total = len(pure_acc[active_archs[0]])\n    for arch in active_archs:\n        assert len(pure_acc[arch]) == n_total, f\"{arch} pure has {len(pure_acc[arch])} samples, expected {n_total}\"\n        assert len(h31_acc[arch]) == n_total, f\"{arch} h31 has {len(h31_acc[arch])} samples, expected {n_total}\"\n\n    helped = {}\n    hurt = {}\n    for arch in active_archs:\n        helped[arch] = {doc_id for doc_id in pure_acc[arch] if h31_acc[arch][doc_id] == 1 and pure_acc[arch][doc_id] == 0}\n        hurt[arch] = {doc_id for doc_id in pure_acc[arch] if h31_acc[arch][doc_id] == 0 and pure_acc[arch][doc_id] == 1}\n\n    print(f\"\\n  Per-architecture (n={n_total}):\")\n    for arch in active_archs:\n        pa = sum(pure_acc[arch].values()) / n_total\n        ha = sum(h31_acc[arch].values()) / n_total\n        print(f\"    {arch:10s}: pure_acc={pa:.4f}, h31_acc={ha:.4f}, |helped|={len(helped[arch])}, |hurt|={len(hurt[arch])}, net={len(helped[arch])-len(hurt[arch])}\")\n\n    pairs = list(combinations(active_archs, 2))\n    pair_results = {}\n    print(f\"\\n  Pairwise Jaccard ({len(pairs)} pairs):\")\n    j_helped_vals = []\n    j_hurt_vals = []\n    for a, b in pairs:\n        jh = jaccard(helped[a], helped[b])\n        ju = jaccard(hurt[a], hurt[b])\n        pair_results[f\"{a}-{b}\"] = {\n            \"J_helped\": round(float(jh), 6), \"J_hurt\": round(float(ju), 6),\n            \"|helped_a|\": len(helped[a]), \"|helped_b|\": len(helped[b]),\n            \"|hurt_a|\": len(hurt[a]), \"|hurt_b|\": len(hurt[b]),\n            \"|helped_inter|\": len(helped[a] & helped[b]),\n            \"|hurt_inter|\": len(hurt[a] & hurt[b]),\n        }\n        j_helped_vals.append(jh)\n        j_hurt_vals.append(ju)\n        print(f\"    {a:10s}-{b:10s}: J_helped={jh:.4f}, J_hurt={ju:.4f}\")\n\n    mean_jh = np.mean(j_helped_vals)\n    mean_ju = np.mean(j_hurt_vals)\n    print(f\"\\n    Mean J_helped = {mean_jh:.4f}\")\n    print(f\"    Mean J_hurt  = {mean_ju:.4f}\")\n\n    print(f\"\\n  Permutation test (10k, helped):\")\n    perm_helped = permutation_test(helped, active_archs, n_total)\n    for key, v in perm_helped.items():\n        print(f\"    {key}: J_obs={v['J_obs']:.4f}, J_null={v['J_null_mean']:.4f}+/-{v['J_null_std']:.4f}, z={v['z']:.2f}, p={v['p']:.4f}\")\n\n    print(f\"\\n  Permutation test (10k, hurt):\")\n    perm_hurt = permutation_test(hurt, active_archs, n_total)\n    for key, v in perm_hurt.items():\n        print(f\"    {key}: J_obs={v['J_obs']:.4f}, J_null={v['J_null_mean']:.4f}+/-{v['J_null_std']:.4f}, z={v['z']:.2f}, p={v['p']:.4f}\")\n\n    # Subgroup: original 3-arch vs 4-arch vs 5-arch\n    orig3 = [a for a in [\"GDN\", \"RetNet\", \"HGRN2\"] if a in active_archs]\n    orig4 = [a for a in [\"GDN\", \"RetNet\", \"HGRN2\", \"GLA\"] if a in active_archs]\n    if len(orig3) == 3 and len(active_archs) == 5:\n        orig3_pairs = list(combinations(orig3, 2))\n        orig4_pairs = list(combinations(orig4, 2))\n        new_pairs = [(a, b) for a, b in pairs if \"DeltaNet\" in (a, b)]\n\n        orig3_jh = np.mean([pair_results[f\"{a}-{b}\"][\"J_helped\"] for a, b in orig3_pairs])\n        orig3_ju = np.mean([pair_results[f\"{a}-{b}\"][\"J_hurt\"] for a, b in orig3_pairs])\n        orig4_jh = np.mean([pair_results[f\"{a}-{b}\"][\"J_helped\"] for a, b in orig4_pairs])\n        orig4_ju = np.mean([pair_results[f\"{a}-{b}\"][\"J_hurt\"] for a, b in orig4_pairs])\n        delta_jh = np.mean([pair_results[f\"{a}-{b}\"][\"J_helped\"] for a, b in new_pairs])\n        delta_ju = np.mean([pair_results[f\"{a}-{b}\"][\"J_hurt\"] for a, b in new_pairs])\n\n        print(f\"\\n  Subgroup comparison:\")\n        print(f\"    Original 3-arch (GDN/RetNet/HGRN2):  mean J_helped={orig3_jh:.4f}, J_hurt={orig3_ju:.4f}\")\n        print(f\"    4-arch (+ GLA):                       mean J_helped={orig4_jh:.4f}, J_hurt={orig4_ju:.4f}\")\n        print(f\"    DeltaNet vs others:                   mean J_helped={delta_jh:.4f}, J_hurt={delta_ju:.4f}\")\n        print(f\"    All 5-arch:                           mean J_helped={mean_jh:.4f}, J_hurt={mean_ju:.4f}\")\n\n    return {\n        \"n_samples\": n_total,\n        \"architectures\": active_archs,\n        \"per_arch\": {\n            arch: {\"helped\": len(helped[arch]), \"hurt\": len(hurt[arch]),\n                   \"net\": len(helped[arch]) - len(hurt[arch]),\n                   \"pure_acc\": round(sum(pure_acc[arch].values()) / n_total, 6),\n                   \"h31_acc\": round(sum(h31_acc[arch].values()) / n_total, 6)}\n            for arch in active_archs\n        },\n        \"pairwise\": pair_results,\n        \"mean_J_helped\": round(float(mean_jh), 6),\n        \"mean_J_hurt\": round(float(mean_ju), 6),\n        \"permutation_test_helped\": perm_helped,\n        \"permutation_test_hurt\": perm_hurt,\n    }\n\nARCHS = [\"GDN\", \"RetNet\", \"HGRN2\", \"GLA\", \"DeltaNet\"]\n\nresults = {\"experiment\": \"exp-005\", \"date\": \"2026-05-23\", \"scale\": \"340M-20B\",\n           \"description\": \"5-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\",\n           \"benchmarks\": {}}\n\narc_result = analyze_benchmark(\"arc_easy\", ARC_EASY_PATHS, ARCHS)\nif arc_result:\n    results[\"benchmarks\"][\"arc_easy\"] = arc_result\n\nlambada_result = analyze_benchmark(\"lambada_openai\", LAMBADA_PATHS, ARCHS)\nif lambada_result:\n    results[\"benchmarks\"][\"lambada_openai\"] = lambada_result\n\nif \"arc_easy\" in results[\"benchmarks\"] and \"lambada_openai\" in results[\"benchmarks\"]:\n    print(f\"\\n{'='*60}\")\n    print(\"CROSS-BENCHMARK SUMMARY\")\n    print(f\"{'='*60}\")\n    for bm in [\"arc_easy\", \"lambada_openai\"]:\n        r = results[\"benchmarks\"][bm]\n        print(f\"  {bm:20s}: mean J_helped={r['mean_J_helped']:.4f}, J_hurt={r['mean_J_hurt']:.4f}, n={r['n_samples']}\")\n\n    results[\"cross_benchmark_summary\"] = {\n        \"mean_J_helped_arc_easy\": results[\"benchmarks\"][\"arc_easy\"][\"mean_J_helped\"],\n        \"mean_J_hurt_arc_easy\": results[\"benchmarks\"][\"arc_easy\"][\"mean_J_hurt\"],\n        \"mean_J_helped_lambada\": results[\"benchmarks\"][\"lambada_openai\"][\"mean_J_helped\"],\n        \"mean_J_hurt_lambada\": results[\"benchmarks\"][\"lambada_openai\"][\"mean_J_hurt\"],\n        \"reference_4arch_J_helped_lambada\": 0.1219,\n        \"reference_4arch_J_hurt_lambada\": 0.0965,\n        \"reference_4arch_J_helped_arceasy\": 0.1034,\n        \"reference_4arch_J_hurt_arceasy\": 0.1059,\n        \"reference_1.3B_3arch_J_helped\": 0.10,\n        \"reference_1.3B_3arch_J_hurt\": 0.09,\n    }\n\nout_path = \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved to {out_path}\")\nPYEOF\necho \"Script written OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat << 'PYEOF' > /root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_5arch.py\n#!/usr/bin/env python3\n\"\"\"5-architecture pairwise Jaccard: GDN/RetNet/HGRN2/GLA/DeltaNet at 340M, h3-1 vs pure.\"\"\"\nimport json\nimport numpy as np\nfrom itertools import combinations\nfrom pathlib import Path\n\nBASE = Path(\"/root/entrainment_gated_ft\")\nMULTI = BASE / \"lm_eval_clean/340m_multi\"\nEXP5 = BASE / \"results/exp005_zoo_expansion\"\n\nARC_EASY_PATHS = {\n    \"GDN\":      {\"pure\": MULTI / \"GDN-pure/samples/arc_easy.jsonl\",\n                 \"h31\":  MULTI / \"GDN-h3-1/samples/arc_easy.jsonl\"},\n    \"RetNet\":   {\"pure\": MULTI / \"RetNet-pure/samples/arc_easy.jsonl\",\n                 \"h31\":  MULTI / \"RetNet-h3-1/samples/arc_easy.jsonl\"},\n    \"HGRN2\":    {\"pure\": MULTI / \"HGRN2-pure/samples/arc_easy.jsonl\",\n                 \"h31\":  MULTI / \"HGRN2-h3-1/samples/arc_easy.jsonl\"},\n    \"GLA\":      {\"pure\": EXP5 / \"GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_arc_easy_2026-05-23T00-41-14.537211.jsonl\",\n                 \"h31\":  EXP5 / \"GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_arc_easy_2026-05-22T23-51-08.119053.jsonl\"},\n    \"DeltaNet\": {\"pure\": EXP5 / \"DeltaNet_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure/samples_arc_easy_2026-05-23T01-13-35.906959.jsonl\",\n                 \"h31\":  EXP5 / \"DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_arc_easy_2026-05-23T00-09-47.452122.jsonl\"},\n}\n\nLAMBADA_PATHS = {\n    \"GDN\":      {\"pure\": EXP5 / \"GDN_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-pure-baseline/samples_lambada_openai_2026-05-23T00-55-12.446919.jsonl\",\n                 \"h31\":  EXP5 / \"GDN_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-57-27.658457.jsonl\"},\n    \"RetNet\":   {\"pure\": EXP5 / \"RetNet_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-pure/samples_lambada_openai_2026-05-23T01-00-10.816890.jsonl\",\n                 \"h31\":  EXP5 / \"RetNet_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-hybrid-3-1/samples_lambada_openai_2026-05-23T01-02-18.914553.jsonl\"},\n    \"HGRN2\":    {\"pure\": EXP5 / \"HGRN2_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-HGRN2-pure-baseline/samples_lambada_openai_2026-05-23T01-05-14.495517.jsonl\",\n                 \"h31\":  EXP5 / \"HGRN2_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-HGRN2-hybrid-3-1/samples_lambada_openai_2026-05-23T01-07-22.356663.jsonl\"},\n    \"GLA\":      {\"pure\": EXP5 / \"GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline/samples_lambada_openai_2026-05-23T00-41-14.537211.jsonl\",\n                 \"h31\":  EXP5 / \"GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1/samples_lambada_openai_2026-05-22T23-51-08.119053.jsonl\"},\n    \"DeltaNet\": {\"pure\": EXP5 / \"DeltaNet_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure/samples_lambada_openai_2026-05-23T01-13-35.906959.jsonl\",\n                 \"h31\":  EXP5 / \"DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1/samples_lambada_openai_2026-05-23T00-09-47.452122.jsonl\"},\n}\n\ndef load_acc_dict(jsonl_path):\n    acc = {}\n    with open(jsonl_path) as f:\n        for line in f:\n            item = json.loads(line)\n            doc_id = item[\"doc_id\"]\n            a = item.get(\"acc\", item.get(\"exact_match\", 0))\n            acc[doc_id] = int(float(a))\n    return acc\n\ndef jaccard(set_a, set_b):\n    if not set_a and not set_b:\n        return 1.0\n    inter = len(set_a & set_b)\n    union = len(set_a | set_b)\n    return inter / union if union > 0 else 0.0\n\ndef permutation_test(helped_dict, archs, n_total, n_perms=10000):\n    rng = np.random.default_rng(42)\n    pairs = list(combinations(archs, 2))\n    sizes = {a: len(helped_dict[a]) for a in archs}\n    null_jaccards = {f\"{a}-{b}\": [] for a, b in pairs}\n    for _ in range(n_perms):\n        random_sets = {}\n        for a in archs:\n            idxs = rng.choice(n_total, size=sizes[a], replace=False)\n            random_sets[a] = set(idxs.tolist())\n        for a, b in pairs:\n            null_jaccards[f\"{a}-{b}\"].append(jaccard(random_sets[a], random_sets[b]))\n    results = {}\n    for a, b in pairs:\n        key = f\"{a}-{b}\"\n        obs = jaccard(helped_dict[a], helped_dict[b])\n        null_arr = np.array(null_jaccards[key])\n        z = (obs - null_arr.mean()) / null_arr.std() if null_arr.std() > 0 else 0\n        p = np.mean(null_arr >= obs)\n        results[key] = {\"J_obs\": round(float(obs), 6), \"J_null_mean\": round(float(null_arr.mean()), 6),\n                        \"J_null_std\": round(float(null_arr.std()), 6), \"z\": round(float(z), 2), \"p\": round(float(p), 4)}\n    return results\n\ndef analyze_benchmark(task_name, paths, archs):\n    print(f\"\\n{'='*60}\")\n    print(f\"Benchmark: {task_name}\")\n    print(f\"{'='*60}\")\n\n    active_archs = []\n    for arch in archs:\n        if arch not in paths:\n            continue\n        p = paths[arch][\"pure\"]\n        h = paths[arch][\"h31\"]\n        if not Path(p).exists():\n            print(f\"  SKIP {arch}: missing pure file {p}\")\n            continue\n        if not Path(h).exists():\n            print(f\"  SKIP {arch}: missing h31 file {h}\")\n            continue\n        active_archs.append(arch)\n\n    if len(active_archs) < 2:\n        print(\"  Not enough architectures, skipping\")\n        return None\n\n    pure_acc = {}\n    h31_acc = {}\n    for arch in active_archs:\n        pure_acc[arch] = load_acc_dict(paths[arch][\"pure\"])\n        h31_acc[arch] = load_acc_dict(paths[arch][\"h31\"])\n\n    n_total = len(pure_acc[active_archs[0]])\n    for arch in active_archs:\n        assert len(pure_acc[arch]) == n_total, f\"{arch} pure has {len(pure_acc[arch])} samples, expected {n_total}\"\n        assert len(h31_acc[arch]) == n_total, f\"{arch} h31 has {len(h31_acc[arch])} samples, expected {n_total}\"\n\n    helped = {}\n    hurt = {}\n    for arch in active_archs:\n        helped[arch] = {doc_id for doc_id in pure_acc[arch] if h31_acc[arch][doc_id] == 1 and pure_acc[arch][doc_id] == 0}\n        hurt[arch] = {doc_id for doc_id in pure_acc[arch] if h31_acc[arch][doc_id] == 0 and pure_acc[arch][doc_id] == 1}\n\n    print(f\"\\n  Per-architecture (n={n_total}):\")\n    for arch in active_archs:\n        pa = sum(pure_acc[arch].values()) / n_total\n        ha = sum(h31_acc[arch].values()) / n_total\n        print(f\"    {arch:10s}: pure_acc={pa:.4f}, h31_acc={ha:.4f}, |helped|={len(helped[arch])}, |hurt|={len(hurt[arch])}, net={len(helped[arch])-len(hurt[arch])}\")\n\n    pairs = list(combinations(active_archs, 2))\n    pair_results = {}\n    print(f\"\\n  Pairwise Jaccard ({len(pairs)} pairs):\")\n    j_helped_vals = []\n    j_hurt_vals = []\n    for a, b in pairs:\n        jh = jaccard(helped[a], helped[b])\n        ju = jaccard(hurt[a], hurt[b])\n        pair_results[f\"{a}-{b}\"] = {\n            \"J_helped\": round(float(jh), 6), \"J_hurt\": round(float(ju), 6),\n            \"|helped_a|\": len(helped[a]), \"|helped_b|\": len(helped[b]),\n            \"|hurt_a|\": len(hurt[a]), \"|hurt_b|\": len(hurt[b]),\n            \"|helped_inter|\": len(helped[a] & helped[b]),\n            \"|hurt_inter|\": len(hurt[a] & hurt[b]),\n        }\n        j_helped_vals.append(jh)\n        j_hurt_vals.append(ju)\n        print(f\"    {a:10s}-{b:10s}: J_helped={jh:.4f}, J_hurt={ju:.4f}\")\n\n    mean_jh = np.mean(j_helped_vals)\n    mean_ju = np.mean(j_hurt_vals)\n    print(f\"\\n    Mean J_helped = {mean_jh:.4f}\")\n    print(f\"    Mean J_hurt  = {mean_ju:.4f}\")\n\n    print(f\"\\n  Permutation test (10k, helped):\")\n    perm_helped = permutation_test(helped, active_archs, n_total)\n    for key, v in perm_helped.items():\n        print(f\"    {key}: J_obs={v['J_obs']:.4f}, J_null={v['J_null_mean']:.4f}+/-{v['J_null_std']:.4f}, z={v['z']:.2f}, p={v['p']:.4f}\")\n\n    print(f\"\\n  Permutation test (10k, hurt):\")\n    perm_hurt = permutation_test(hurt, active_archs, n_total)\n    for key, v in perm_hurt.items():\n        print(f\"    {key}: J_obs={v['J_obs']:.4f}, J_null={v['J_null_mean']:.4f}+/-{v['J_null_std']:.4f}, z={v['z']:.2f}, p={v['p']:.4f}\")\n\n    # Subgroup: original 3-arch vs 4-arch vs 5-arch\n    orig3 = [a for a in [\"GDN\", \"RetNet\", \"HGRN2\"] if a in active_archs]\n    orig4 = [a for a in [\"GDN\", \"RetNet\", \"HGRN2\", \"GLA\"] if a in active_archs]\n    if len(orig3) == 3 and len(active_archs) == 5:\n        orig3_pairs = list(combinations(orig3, 2))\n        orig4_pairs = list(combinations(orig4, 2))\n        new_pairs = [(a, b) for a, b in pairs if \"DeltaNet\" in (a, b)]\n\n        orig3_jh = np.mean([pair_results[f\"{a}-{b}\"][\"J_helped\"] for a, b in orig3_pairs])\n        orig3_ju = np.mean([pair_results[f\"{a}-{b}\"][\"J_hurt\"] for a, b in orig3_pairs])\n        orig4_jh = np.mean([pair_results[f\"{a}-{b}\"][\"J_helped\"] for a, b in orig4_pairs])\n        orig4_ju = np.mean([pair_results[f\"{a}-{b}\"][\"J_hurt\"] for a, b in orig4_pairs])\n        delta_jh = np.mean([pair_results[f\"{a}-{b}\"][\"J_helped\"] for a, b in new_pairs])\n        delta_ju = np.mean([pair_results[f\"{a}-{b}\"][\"J_hurt\"] for a, b in new_pairs])\n\n        print(f\"\\n  Subgroup comparison:\")\n        print(f\"    Original 3-arch (GDN/RetNet/HGRN2):  mean J_helped={orig3_jh:.4f}, J_hurt={orig3_ju:.4f}\")\n        print(f\"    4-arch (+ GLA):                       mean J_helped={orig4_jh:.4f}, J_hurt={orig4_ju:.4f}\")\n        print(f\"    DeltaNet vs others:                   mean J_helped={delta_jh:.4f}, J_hurt={delta_ju:.4f}\")\n        print(f\"    All 5-arch:                           mean J_helped={mean_jh:.4f}, J_hurt={mean_ju:.4f}\")\n\n    return {\n        \"n_samples\": n_total,\n        \"architectures\": active_archs,\n        \"per_arch\": {\n            arch: {\"helped\": len(helped[arch]), \"hurt\": len(hurt[arch]),\n                   \"net\": len(helped[arch]) - len(hurt[arch]),\n                   \"pure_acc\": round(sum(pure_acc[arch].values()) / n_total, 6),\n                   \"h31_acc\": round(sum(h31_acc[arch].values()) / n_total, 6)}\n            for arch in active_archs\n        },\n        \"pairwise\": pair_results,\n        \"mean_J_helped\": round(float(mean_jh), 6),\n        \"mean_J_hurt\": round(float(mean_ju), 6),\n        \"permutation_test_helped\": perm_helped,\n        \"permutation_test_hurt\": perm_hurt,\n    }\n\nARCHS = [\"GDN\", \"RetNet\", \"HGRN2\", \"GLA\", \"DeltaNet\"]\n\nresults = {\"experiment\": \"exp-005\", \"date\": \"2026-05-23\", \"scale\": \"340M-20B\",\n           \"description\": \"5-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\",\n           \"benchmarks\": {}}\n\narc_result = analyze_benchmark(\"arc_easy\", ARC_EASY_PATHS, ARCHS)\nif arc_result:\n    results[\"benchmarks\"][\"arc_easy\"] = arc_result\n\nlambada_result = analyze_benchmark(\"lambada_openai\", LAMBADA_PATHS, ARCHS)\nif lambada_result:\n    results[\"benchmarks\"][\"lambada_openai\"] = lambada_result\n\nif \"arc_easy\" in results[\"benchmarks\"] and \"lambada_openai\" in results[\"benchmarks\"]:\n    print(f\"\\n{'='*60}\")\n    print(\"CROSS-BENCHMARK SUMMARY\")\n    print(f\"{'='*60}\")\n    for bm in [\"arc_easy\", \"lambada_openai\"]:\n        r = results[\"benchmarks\"][bm]\n        print(f\"  {bm:20s}: mean J_helped={r['mean_J_helped']:.4f}, J_hurt={r['mean_J_hurt']:.4f}, n={r['n_samples']}\")\n\n    results[\"cross_benchmark_summary\"] = {\n        \"mean_J_helped_arc_easy\": results[\"benchmarks\"][\"arc_easy\"][\"mean_J_helped\"],\n        \"mean_J_hurt_arc_easy\": results[\"benchmarks\"][\"arc_easy\"][\"mean_J_hurt\"],\n        \"mean_J_helped_lambada\": results[\"benchmarks\"][\"lambada_openai\"][\"mean_J_helped\"],\n        \"mean_J_hurt_lambada\": results[\"benchmarks\"][\"lambada_openai\"][\"mean_J_hurt\"],\n        \"reference_4arch_J_helped_lambada\": 0.1219,\n        \"reference_4arch_J_hurt_lambada\": 0.0965,\n        \"reference_4arch_J_helped_arceasy\": 0.1034,\n        \"reference_4arch_J_hurt_arceasy\": 0.1059,\n        \"reference_1.3B_3arch_J_helped\": 0.10,\n        \"reference_1.3B_3arch_J_hurt\": 0.09,\n    }\n\nout_path = \"/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"\\nSaved to {out_path}\")\nPYEOF\necho \"Script written OK\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T17:24:09.884414+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.28}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T17:24:09.884558+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python results/exp005_zoo_expansion/analyze_5arch.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && python results/exp005_zoo_expansion/analyze_5arch.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T17:24:09.884764+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nBenchmark: arc_easy\\n============================================================\\n\\n  Per-architecture (n=2376):\\n    GDN       : pure_acc=0.5669, h31_acc=0.5690, |helped|=253, |hurt|=248, net=5\\n    RetNet    : pure_acc=0.6044, h31_acc=0.5905, |helped|=190, |hurt|=223, net=-33\\n    HGRN2     : pure_acc=0.6111, h31_acc=0.6086, |helped|=199, |hurt|=205, net=-6\\n    GLA       : pure_acc=0.5829, h31_acc=0.5673, |helped|=206, |hurt|=243, net=-37\\n    DeltaNet  : pure_acc=0.6044, h31_acc=0.6010, |helped|=197, |hurt|=205, net=-8\\n\\n  Pairwise Jaccard (10 pairs):\\n    GDN       -RetNet    : J_helped=0.0885, J_hurt=0.1135\\n    GDN       -HGRN2     : J_helped=0.1216, J_hurt=0.1049\\n    GDN       -GLA       : J_helped=0.1141, J_hurt=0.1059\\n    GDN       -DeltaNet  : J_helped=0.0843, J_hurt=0.1022\\n    RetNet    -HGRN2     : J_helped=0.0866, J_hurt=0.1146\\n    RetNet    -GLA       : J_helped=0.1124, J_hurt=0.1095\\n    RetNet    -DeltaNet  : J_helped=0.1382, J_hurt=0.1234\\n    HGRN2     -GLA       : J_helped=0.0976, J_hurt=0.0874\\n    HGRN2     -DeltaNet  : J_helped=0.1092, J_hurt=0.0875\\n    GLA       -DeltaNet  : J_helped=0.1289, J_hurt=0.0980\\n\\n    Mean J_helped = 0.1081\\n    Mean J_hurt  = 0.1047\\n\\n  Permutation test (10k, helped):\\n    GDN-RetNet: J_obs=0.0885, J_null=0.0479+/-0.0101, z=4.00, p=0.0003\\n    GDN-HGRN2: J_obs=0.1216, J_null=0.0494+/-0.0102, z=7.05, p=0.0000\\n    GDN-GLA: J_obs=0.1141, J_null=0.0505+/-0.0103, z=6.20, p=0.0000\\n    GDN-DeltaNet: J_obs=0.0843, J_null=0.0490+/-0.0101, z=3.49, p=0.0019\\n    RetNet-HGRN2: J_obs=0.0866, J_null=0.0427+/-0.0104, z=4.21, p=0.0000\\n    RetNet-GLA: J_obs=0.1124, J_null=0.0436+/-0.0103, z=6.68, p=0.0000\\n    RetNet-DeltaNet: J_obs=0.1382, J_null=0.0424+/-0.0104, z=9.19, p=0.0000\\n    HGRN2-GLA: J_obs=0.0976, J_null=0.0446+/-0.0104, z=5.11, p=0.0000\\n    HGRN2-Delta
+…[truncated 4974 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T17:24:09.884961+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp005_5arch_jaccard",
+  "type": "data",
+  "description": "5-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA/DeltaNet) for helped/hurt sets, h3-1 vs pure, 340M-20B scale",
+  "project": "entrainment_gated_ft",
+  "exp_id": "exp-005",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/",
+  "content": "{\n  \"experiment\": \"exp-005\",\n  \"date\": \"2026-05-23\",\n  \"scale\": \"340M-20B\",\n  \"description\": \"5-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\",\n  \"cross_benchmark_summary\": {\n    \"arc_easy\": {\"mean_J_helped\": 0.1081, \"mean_J_hurt\": 0.1047, \"n\": 2376},\n    \"lambada_openai\": {\"mean_J_helped\": 0.1221, \"mean_J_hurt\": 0.0946, \"n\": 5153}\n  },\n  \"subgroup_comparison\": {\n    \"original_3arch\": {\"lambada_J_helped\": 0.1194, \"arceasy_J_helped\": 0.0989},\n    \"4arch_plus_GLA\": {\"lambada_J_helped\": 0.1219, \"arceasy_J_helped\": 0.1034},\n    \"5arch_all\": {\"lambada_J_helped\": 0.1221, \"arceasy_J_helped\": 0.1081},\n    \"DeltaNet_vs_others\": {\"lambada_J_helped\": 0.1224, \"arceasy_J_helped\": 0.1152}\n  },\n  \"all_pairs_significant\": true,\n  \"z_range_helped\": \"3.49 - 12.21\",\n  \"z_range_hurt\": \"3.72 - 10.89\"\n}",
+  "content_filename": "jaccard_5arch.json",
+  "tags": "['jaccard', '5arch', 'exp-005', 'pairwise']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp005_5arch_jaccard",
+    "type": "data",
+    "description": "5-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA/DeltaNet) for helped/hurt sets, h3-1 vs pure, 340M-20B scale",
+    "project": "entrainment_gated_ft",
+    "exp_id": "exp-005",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/",
+    "content": "{\n  \"experiment\": \"exp-005\",\n  \"date\": \"2026-05-23\",\n  \"scale\": \"340M-20B\",\n  \"description\": \"5-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\",\n  \"cross_benchmark_summary\": {\n    \"arc_easy\": {\"mean_J_helped\": 0.1081, \"mean_J_hurt\": 0.1047, \"n\": 2376},\n    \"lambada_openai\": {\"mean_J_helped\": 0.1221, \"mean_J_hurt\": 0.0946, \"n\": 5153}\n  },\n  \"subgroup_comparison\": {\n    \"original_3arch\": {\"lambada_J_helped\": 0.1194, \"arceasy_J_helped\": 0.0989},\n    \"4arch_plus_GLA\": {\"lambada_J_helped\": 0.1219, \"arceasy_J_helped\": 0.1034},\n    \"5arch_all\": {\"lambada_J_helped\": 0.1221, \"arceasy_J_helped\": 0.1081},\n    \"DeltaNet_vs_others\": {\"lambada_J_helped\": 0.1224, \"arceasy_J_helped\": 0.1152}\n  },\n  \"all_pairs_significant\": true,\n  \"z_range_helped\": \"3.49 - 12.21\",\n  \"z_range_hurt\": \"3.72 - 10.89\"\n}",
+    "content_filename": "jaccard_5arch.json",
+    "tags": "['jaccard', '5arch', 'exp-005', 'pairwise']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T17:24:09.885114+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'exp-005',...e_hurt': '3.72 - 10.89'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T17:24:09.885245+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp005_5arch_jaccard",
+  "type": "data",
+  "description": "5-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA/DeltaNet) for helped/hurt sets, h3-1 vs pure, 340M-20B scale",
+  "project": "entrainment_gated_ft",
+  "exp_id": "exp-005",
+  "content": "{\"experiment\":\"exp-005\",\"date\":\"2026-05-23\",\"scale\":\"340M-20B\",\"description\":\"5-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\",\"cross_benchmark_summary\":{\"arc_easy\":{\"mean_J_helped\":0.1081,\"mean_J_hurt\":0.1047,\"n\":2376},\"lambada_openai\":{\"mean_J_helped\":0.1221,\"mean_J_hurt\":0.0946,\"n\":5153}},\"subgroup_comparison\":{\"original_3arch\":{\"lambada_J_helped\":0.1194,\"arceasy_J_helped\":0.0989},\"4arch_plus_GLA\":{\"lambada_J_helped\":0.1219,\"arceasy_J_helped\":0.1034},\"5arch_all\":{\"lambada_J_helped\":0.1221,\"arceasy_J_helped\":0.1081},\"DeltaNet_vs_others\":{\"lambada_J_helped\":0.1224,\"arceasy_J_helped\":0.1152}},\"all_pairs_significant\":true,\"z_range_helped\":\"3.49 - 12.21\",\"z_range_hurt\":\"3.72 - 10.89\"}",
+  "content_filename": "jaccard_5arch.json",
+  "tags": "['jaccard', '5arch', 'exp-005', 'pairwise']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp005_5arch_jaccard",
+    "type": "data",
+    "description": "5-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA/DeltaNet) for helped/hurt sets, h3-1 vs pure, 340M-20B scale",
+    "project": "entrainment_gated_ft",
+    "exp_id": "exp-005",
+    "content": "{\"experiment\":\"exp-005\",\"date\":\"2026-05-23\",\"scale\":\"340M-20B\",\"description\":\"5-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\",\"cross_benchmark_summary\":{\"arc_easy\":{\"mean_J_helped\":0.1081,\"mean_J_hurt\":0.1047,\"n\":2376},\"lambada_openai\":{\"mean_J_helped\":0.1221,\"mean_J_hurt\":0.0946,\"n\":5153}},\"subgroup_comparison\":{\"original_3arch\":{\"lambada_J_helped\":0.1194,\"arceasy_J_helped\":0.0989},\"4arch_plus_GLA\":{\"lambada_J_helped\":0.1219,\"arceasy_J_helped\":0.1034},\"5arch_all\":{\"lambada_J_helped\":0.1221,\"arceasy_J_helped\":0.1081},\"DeltaNet_vs_others\":{\"lambada_J_helped\":0.1224,\"arceasy_J_helped\":0.1152}},\"all_pairs_significant\":true,\"z_range_helped\":\"3.49 - 12.21\",\"z_range_hurt\":\"3.72 - 10.89\"}",
+    "content_filename": "jaccard_5arch.json",
+    "tags": "['jaccard', '5arch', 'exp-005', 'pairwise']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T17:24:09.885375+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'exp-005',...e_hurt': '3.72 - 10.89'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T17:24:09.885500+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp-005",
+  "field": "metrics",
+  "value": "{'5arch_jaccard': {'arc_easy': {'mean_J_helped': 0.1081, 'mean_J_hurt': 0.1047, 'n_pairs': 10, 'all_significant': True}, 'lambada_openai': {'mean_J_helped': 0.1221, 'mean_J_hurt': 0.0946, 'n_pairs': 10, 'all_significant': True}, 'architectures': ['GDN', 'RetNet', 'HGRN2', 'GLA', 'DeltaNet'], 'z_range_helped': '3.49-12.21', 'z_range_hurt': '3.72-10.89'}}",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp-005",
+    "field": "metrics",
+    "value": "{'5arch_jaccard': {'arc_easy': {'mean_J_helped': 0.1081, 'mean_J_hurt': 0.1047, 'n_pairs': 10, 'all_significant': True}, 'lambada_openai': {'mean_J_helped': 0.1221, 'mean_J_hurt': 0.0946, 'n_pairs': 10, 'all_significant': True}, 'architectures': ['GDN', 'RetNet', 'HGRN2', 'GLA', 'DeltaNet'], 'z_range_helped': '3.49-12.21', 'z_range_hurt': '3.72-10.89'}}",
+    "project": "entrainment_gated_ft"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T17:24:09.885703+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-005\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 1, \"created_at\": \"2026-05-20T02:26:40.718Z\", \"updated_at\": \"2026-05-22T17:23:31.129Z\", \"hypothesis\": \"Cross-architecture Jaccard overlap of helped/hurt sets will remain significantly above chance when expanded from 3 to 6 linear attention architectures, indicating that attention-mediated sample sensitivity is architecture-independent.\", \"parent\": \"exp-001\", \"completed_at\": \"2026-05-22T14:24:29.103Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\", \"metrics\": {\"cancel_reason\": \"Wang et al. zoo 仅含 GDN/RetNet/HGRN2，无法扩展 n>3，已由 worker_analysis_arch-extension-check 确认\"}}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T15:05:27.711311+00:00\"}]}, \"metrics\": {\"5arch_jaccard\": {\"arc_easy\": {\"mean_J_helped\": 0.1081, \"mean_J_hurt\": 0.1047, \"n_pairs\": 10, \"all_significant\": true}, \"lambada_openai\": {\"mean_J_helped\": 0.1221, \"mean_J_hurt\": 0.0946, \"n_pairs\": 10, \"all_significant\": true}, \"architectures\": [\"GDN\", \"RetNet\", \"HGRN2\", \"GLA\", \"DeltaNet\"], \"z_range_helped\": \"3.49-12.21\", \"z_range_hurt\": \"3.72-10.89\"}}, \"reproduce\": {\"finished_at\": \"2026-05-22T15:05:23.157Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"success\", \"notes\": \"Partial success: 4/6 architectures completed (GDN/RetNet/HGRN2/GLA). DeltaNet/HGRN still downloading. 4-arch results already strong: all 24 permutation tests p<0.001, z=3.78-12.04. If DeltaNet/HGRN complete before final compilation, upgrade to 5/6 arch.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2199}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T17:24:09.885861+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp005_5arch_jaccard",
+  "type": "data",
+  "description": "5-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA/DeltaNet) for helped/hurt sets, h3-1 vs pure, 340M-20B scale",
+  "project": "entrainment_gated_ft",
+  "exp_id": "exp-005",
+  "source_path": "/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json",
+  "tags": "['jaccard', '5arch', 'exp-005', 'pairwise']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp005_5arch_jaccard",
+    "type": "data",
+    "description": "5-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA/DeltaNet) for helped/hurt sets, h3-1 vs pure, 340M-20B scale",
+    "project": "entrainment_gated_ft",
+    "exp_id": "exp-005",
+    "source_path": "/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json",
+    "tags": "['jaccard', '5arch', 'exp-005', 'pairwise']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T17:24:09.885993+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T17:24:09.886134+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-48145",
+    "command": "cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T17:24:09.886494+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-005\\\",\\n  \\\"date\\\": \\\"2026-05-23\\\",\\n  \\\"scale\\\": \\\"340M-20B\\\",\\n  \\\"description\\\": \\\"5-architecture pairwise Jaccard for helped/hurt sets (h3-1 vs pure)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"n_samples\\\": 2376,\\n      \\\"architectures\\\": [\\n        \\\"GDN\\\",\\n        \\\"RetNet\\\",\\n        \\\"HGRN2\\\",\\n        \\\"GLA\\\",\\n        \\\"DeltaNet\\\"\\n      ],\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"helped\\\": 253,\\n          \\\"hurt\\\": 248,\\n          \\\"net\\\": 5,\\n          \\\"pure_acc\\\": 0.566919,\\n          \\\"h31_acc\\\": 0.569024\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"helped\\\": 190,\\n          \\\"hurt\\\": 223,\\n          \\\"net\\\": -33,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.590488\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"helped\\\": 199,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -6,\\n          \\\"pure_acc\\\": 0.611111,\\n          \\\"h31_acc\\\": 0.608586\\n        },\\n        \\\"GLA\\\": {\\n          \\\"helped\\\": 206,\\n          \\\"hurt\\\": 243,\\n          \\\"net\\\": -37,\\n          \\\"pure_acc\\\": 0.582912,\\n          \\\"h31_acc\\\": 0.56734\\n        },\\n        \\\"DeltaNet\\\": {\\n          \\\"helped\\\": 197,\\n          \\\"hurt\\\": 205,\\n          \\\"net\\\": -8,\\n          \\\"pure_acc\\\": 0.604377,\\n          \\\"h31_acc\\\": 0.60101\\n        }\\n      },\\n      \\\"pairwise\\\": {\\n        \\\"GDN-RetNet\\\": {\\n          \\\"J_helped\\\": 0.088452,\\n          \\\"J_hurt\\\": 0.113475,\\n          \\\"|helped_a|\\\": 253,\\n          \\\"|helped_b|\\\": 190,\\n          \\\"|hurt_a|\\\": 248,\\n          \\\"|hurt_b|\\\": 223,\\n          \\\"|helped_inter|\\\": 36,\\n          \\\"|hurt_inter|\\\": 48\\n        },\\n     
+…[truncated 8467 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T17:24:09.886696+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp005_5arch_jaccard",
+  "type": "data",
+  "description": "5-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA/DeltaNet) for helped/hurt sets, h3-1 vs pure, 340M-20B scale. Full results on server: /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json",
+  "project": "entrainment_gated_ft",
+  "exp_id": "exp-005",
+  "content": "5-Architecture Pairwise Jaccard Analysis (exp-005)\n===================================================\nScale: 340M-20B, Architectures: GDN/RetNet/HGRN2/GLA/DeltaNet\n10 pairs (C(5,2)), permutation test n=10000\n\nARC-Easy (n=2376):\n  Mean J_helped = 0.1081, Mean J_hurt = 0.1047\n  All 10 pairs significant (z: 3.49-9.19 helped, 3.72-7.48 hurt, all p<0.002)\n\nLAMBADA (n=5153):\n  Mean J_helped = 0.1221, Mean J_hurt = 0.0946\n  All 10 pairs significant (z: 9.03-12.21 helped, 6.33-10.89 hurt, all p=0)\n\nSubgroup (LAMBADA):\n  3-arch (GDN/RetNet/HGRN2): J_helped=0.1194\n  4-arch (+ GLA):            J_helped=0.1219\n  5-arch (+ DeltaNet):       J_helped=0.1221\n  DeltaNet vs others:        J_helped=0.1224\n\nFull JSON on server: /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json",
+  "content_filename": "jaccard_5arch_summary.txt",
+  "tags": "['jaccard', '5arch', 'exp-005', 'pairwise']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp005_5arch_jaccard",
+    "type": "data",
+    "description": "5-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA/DeltaNet) for helped/hurt sets, h3-1 vs pure, 340M-20B scale. Full results on server: /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json",
+    "project": "entrainment_gated_ft",
+    "exp_id": "exp-005",
+    "content": "5-Architecture Pairwise Jaccard Analysis (exp-005)\n===================================================\nScale: 340M-20B, Architectures: GDN/RetNet/HGRN2/GLA/DeltaNet\n10 pairs (C(5,2)), permutation test n=10000\n\nARC-Easy (n=2376):\n  Mean J_helped = 0.1081, Mean J_hurt = 0.1047\n  All 10 pairs significant (z: 3.49-9.19 helped, 3.72-7.48 hurt, all p<0.002)\n\nLAMBADA (n=5153):\n  Mean J_helped = 0.1221, Mean J_hurt = 0.0946\n  All 10 pairs significant (z: 9.03-12.21 helped, 6.33-10.89 hurt, all p=0)\n\nSubgroup (LAMBADA):\n  3-arch (GDN/RetNet/HGRN2): J_helped=0.1194\n  4-arch (+ GLA):            J_helped=0.1219\n  5-arch (+ DeltaNet):       J_helped=0.1221\n  DeltaNet vs others:        J_helped=0.1224\n\nFull JSON on server: /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json",
+    "content_filename": "jaccard_5arch_summary.txt",
+    "tags": "['jaccard', '5arch', 'exp-005', 'pairwise']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T17:24:09.886863+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260522_3f3825\", \"name\": \"exp005_5arch_jaccard\", \"type\": \"data\", \"description\": \"5-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA/DeltaNet) for helped/hurt sets, h3-1 vs pure, 340M-20B scale. Full results on server: /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\", \"path\": \"projects/entrainment_gated_ft/artifacts/exp-005/data/jaccard_5arch_summary.txt\", \"url\": null, \"project\": \"entrainment_gated_ft\", \"exp_id\": \"exp-005\", \"skill\": \"\", \"created_at\": \"2026-05-22T17:23:59.439514+00:00\", \"tags\": [\"jaccard\", \"5arch\", \"exp-005\", \"pairwise\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-22T17:24:09.887034+00:00_
+
+5 架构 Jaccard 分析完成。结果：
+
+### ARC-Easy (n=2376)
+| 指标 | 值 |
+|------|-----|
+| Mean J_helped | **0.1081** |
+| Mean J_hurt | **0.1047** |
+| 10/10 对显著 | z = 3.49–9.19 (helped), 3.72–7.48 (hurt) |
+
+### LAMBADA (n=5153)
+| 指标 | 值 |
+|------|-----|
+| Mean J_helped | **0.1221** |
+| Mean J_hurt | **0.0946** |
+| 10/10 对显著 | z = 9.03–12.21 (helped), 6.33–10.89 (hurt) |
+
+### 子组对比 (LAMBADA J_helped)
+- 3-arch (GDN/RetNet/HGRN2): 0.1194
+- 4-arch (+GLA): 0.1219
+- **5-arch (+DeltaNet): 0.1221**
+- DeltaNet vs others: 0.1224
+
+DeltaNet 融入得很好——它与其他架构的 Jaccard 值与已有架构间的互相重叠水平一致。加入第 5 个架构后 Jaccard 均值几乎不变，进一步支持 "helped/hurt overlap 是 architecture-independent" 的假设。
+
+### HGRN 模型状态
+- HGRN h3-1: ✅ 已下载 (1.33GB)
+- HGRN2 pure: ✅ 已下载
+
+Artifact 和 registry 已更新。服务器完整 JSON: `results/exp005_zoo_expansion/jaccard_5arch.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_exp-005-5arch-jaccard_20260522T171842"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,2059 @@
+# check exp 011 completion
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_check_exp-011-completion_20260519T161356.log`
+- **Structured JSON:** [`6b04eb33571560a235f1.json`](../../sessions/6b/6b04eb33571560a235f1.json)
+
+## Before a recorded user message
+
+43 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1b6e96c1-0a46-4be5-abd9-e02cafbccbce",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779212400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e10d1e05-ee48-4a9a-b9e1-5229a64fb1ab",
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me execute the checks on the remote server first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "19b786e8-b3e3-4ce5-b3d3-8587ce3b6467",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121xx9S1B5LWqbkt1VuBN73",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12258,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12258
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016CQFVJAL2B28tWPtLPDodS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "4b222bb5-e329-4b19-b77f-eb5e1d8ab767",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121xx9S1B5LWqbkt1VuBN73",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12258,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12258
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T16:14:09.018Z_
+
+<details><summary>↩ Tool result · `toolu_016CQFVJAL2B28tWPtLPDodS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "b105491f-0662-446d-a61f-09072b2a9e11",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run the checks on the remote server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "c87e67c4-305d-42f7-8d3d-62b8182ae50b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Nmt1y1Q3L6i8sMi4DVgsQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1556,
+      "cache_read_input_tokens": 24099,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1556
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HUAc91nqiSXSbQo6YWnESB`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls /root/entrainment_gated_ft/lm_eval_clean/exp011/*.json 2>/dev/null | wc -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "fc44a0e4-3534-4540-803d-63ad1a982ef7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Nmt1y1Q3L6i8sMi4DVgsQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1556,
+      "cache_read_input_tokens": 24099,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1556
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T16:14:13.392Z_
+
+<details><summary>↩ Tool result · `toolu_01HUAc91nqiSXSbQo6YWnESB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "4d965908-4678-4ed9-8b77-5eb266de12af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EEXE49x6z18s3pBqxxmitZ`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -lt /root/entrainment_gated_ft/lm_eval_clean/exp011/*.json 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "70e0f286-79e6-4967-a7b4-8a7c01ca0e30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Nmt1y1Q3L6i8sMi4DVgsQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1556,
+      "cache_read_input_tokens": 24099,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1556
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T16:14:13.873Z_
+
+<details><summary>↩ Tool result · `toolu_01EEXE49x6z18s3pBqxxmitZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "529a4a64-5987-447b-8075-28c04135f6c8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0163KBknxPEdWEeDUDfFdT6v`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "tail -50 /root/entrainment_gated_ft/nohup.out",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "b26b1977-8b54-4675-8959-d25ab4b0dc98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Nmt1y1Q3L6i8sMi4DVgsQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1556,
+      "cache_read_input_tokens": 24099,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1556
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V9j8dh8RTEs81HReGb9Taw`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "53c29df4-6327-46b1-8fa1-70fc8f1fc17a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Nmt1y1Q3L6i8sMi4DVgsQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1556,
+      "cache_read_input_tokens": 24099,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1556
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T16:14:16.830Z_
+
+<details><summary>↩ Tool result · `toolu_0163KBknxPEdWEeDUDfFdT6v`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/entrainment_gated_ft/nohup.out' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "9a501331-173f-43b7-a938-1ad481828129",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/entrainment_gated_ft/nohup.out' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/entrainment_gated_ft/nohup.out' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T16:14:17.774Z_
+
+<details><summary>↩ Tool result · `toolu_01V9j8dh8RTEs81HReGb9Taw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0 %, 0 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "0842ec1c-5805-46ab-8a79-1b1542e8c9b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0 %, 0 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The pipe and redirect characters are blocked in read-only mode. Let me adjust the commands. Also, nohup.out doesn't exist at that path. Let me try different approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "5980661b-ad0e-46c8-b73a-72f17c2592d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0163u1WvFtxdGQx6k6xCJnqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 25655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+需要调整命令避免 shell 元字符。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "011235e9-4bf7-4023-9679-5b5d9a37f140",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0163u1WvFtxdGQx6k6xCJnqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 25655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SHYAVni8hRAX8UkCNSaUe4`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -lt /root/entrainment_gated_ft/lm_eval_clean/exp011/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "0224921d-9c31-4a01-ae41-8d1decb1f804",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0163u1WvFtxdGQx6k6xCJnqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 25655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013UVxFQbyxo1Dyjdk9WxVDy`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/lm_eval_clean/exp011/ -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "cc572015-af7a-44a0-919a-a86b6806eab3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0163u1WvFtxdGQx6k6xCJnqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 25655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T16:14:23.018Z_
+
+<details><summary>↩ Tool result · `toolu_01SHYAVni8hRAX8UkCNSaUe4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 948\\n-rw-r--r-- 1 root root 706673 May 20 00:11 run_all.log\\n-rw-r--r-- 1 root root  14848 May 20 00:11 transformer_1.3B_baseline.json\\n-rw-r--r-- 1 root root  14848 May 20 00:05 1.3B-100B-HGRN2-hybrid-3-1.json\\n-rw-r--r-- 1 root root  14851 May 19 23:59 1.3B-100B-HGRN2-hybrid-6-1.json\\n-rw-r--r-- 1 root root  14850 May 19 23:52 1.3B-100B-HGRN2-hybrid-12-1.json\\n-rw-r--r-- 1 root root  14847 May 19 23:46 1.3B-100B-HGRN2-hybrid-24-1.json\\n-rw-r--r-- 1 root root  14840 May 19 23:39 1.3B-100B-HGRN2-pure.json\\n-rw-r--r-- 1 root root  14850 May 19 23:33 1.3B-100B-RetNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root  14850 May 19 23:27 1.3B-100B-RetNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root  14852 May 19 23:20 1.3B-100B-RetNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root  14850 May 19 23:13 1.3B-100B-RetNet-hybrid-24-1.json\\n-rw-r--r-- 1 root root  14843 May 19 23:07 1.3B-100B-RetNet-pure.json\\n-rw-r--r-- 1 root root  14858 May 19 23:01 1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root  14856 May 19 22:56 1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root  14858 May 19 22:49 1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root  14858 May 19 22:42 1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\n-rw-r--r-- 1 root root  14852 May 19 22:31 1.3B-100B-GatedDeltaNet-pure.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "0181fdaa-8098-4bfe-898d-676ebbad672e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 948\\\\n-rw-r--r-- 1 root root 706673 May 20 00:11 run_all.log\\\\n-rw-r--r-- 1 root root  14848 May 20 00:11 transformer_1.3B_baseline.json\\\\n-rw-r--r-- 1 root root  14848 May 20 00:05 1.3B-100B-HGRN2-hybrid-3-1.json\\\\n-rw-r--r-- 1 root root  14851 May 19 23:59 1.3B-100B-HGRN2-hybrid-6-1.json\\\\n-rw-r--r-- 1 root root  14850 May 19 23:52 1.3B-100B-HGRN2-hybrid-12-1.json\\\\n-rw-r--r-- 1 root root  14847 May 19 23:46 1.3B-100B-HGRN2-hybrid-24-1.json\\\\n-rw-r--r-- 1 root root  14840 May 19 23:39 1.3B-100B-HGRN2-pure.json\\\\n-rw-r--r-- 1 root root  14850 May 19 23:33 1.3B-100B-RetNet-hybrid-3-1.json\\\\n-rw-r--r-- 1 root root  14850 May 19 23:27 1.3B-100B-RetNet-hybrid-6-1.json\\\\n-rw-r--r-- 1 root root  14852 May 19 23:20 1.3B-100B-RetNet-hybrid-12-1.json\\\\n-rw-r--r-- 1 root root  14850 May 19 23:13 1.3B-100B-RetNet-hybrid-24-1.json\\\\n-rw-r--r-- 1 root root  14843 May 19 23:07 1.3B-100B-RetNet-pure.json\\\\n-rw-r--r-- 1 root root  14858 May 19 23:01 1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\\\n-rw-r--r-- 1 root root  14856 May 19 22:56 1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\\\n-rw-r--r-- 1 root root  14858 May 19 22:49 1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\\\n-rw-r--r-- 1 root root  14858 May 19 22:42 1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\\\n-rw-r--r-- 1 root root  14852 May 19 22:31 1.3B-100B-GatedDeltaNet-pure.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 948\\n-rw-r--r-- 1 root root 706673 May 20 00:11 run_all.log\\n-rw-r--r-- 1 root root  14848 May 20 00:11 transformer_1.3B_baseline.json\\n-rw-r--r-- 1 root root  14848 May 20 00:05 1.3B-100B-HGRN2-hybrid-3-1.json\\n-rw-r--r-- 1 root root  14851 May 19 23:59 1.3B-100B-HGRN2-hybrid-6-1.json\\n-rw-r--r-- 1 root root  14850 May 19 23:52 1.3B-100B-HGRN2-hybrid-12-1.json\\n-rw-r--r-- 1 root root  14847 May 19 23:46 1.3B-100B-HGRN2-hybrid-24-1.json\\n-rw-r--r-- 1 root root  14840 May 19 23:39 1.3B-100B-HGRN2-pure.json\\n-rw-r--r-- 1 root root  14850 May 19 23:33 1.3B-100B-RetNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root  14850 May 19 23:27 1.3B-100B-RetNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root  14852 May 19 23:20 1.3B-100B-RetNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root  14850 May 19 23:13 1.3B-100B-RetNet-hybrid-24-1.json\\n-rw-r--r-- 1 root root  14843 May 19 23:07 1.3B-100B-RetNet-pure.json\\n-rw-r--r-- 1 root root  14858 May 19 23:01 1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n-rw-r--r-- 1 root root  14856 May 19 22:56 1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\n-rw-r--r-- 1 root root  14858 May 19 22:49 1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n-rw-r--r-- 1 root root  14858 May 19 22:42 1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\n-rw-r--r-- 1 root root  14852 May 19 22:31 1.3B-100B-GatedDeltaNet-pure.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T16:14:23.924Z_
+
+<details><summary>↩ Tool result · `toolu_013UVxFQbyxo1Dyjdk9WxVDy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/transformer_1.3B_baseline.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "bb0925a8-a21e-4436-a61c-1c890300dfe7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-24-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-12-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-6-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-pure.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-24-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-12-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-6-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-3-1.json\\\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/transformer_1.3B_baseline.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-GatedDeltaNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-RetNet-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-pure.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-24-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-12-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-6-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/1.3B-100B-HGRN2-hybrid-3-1.json\\n/root/entrainment_gated_ft/lm_eval_clean/exp011/transformer_1.3B_baseline.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SaTVm33Q8iPLEBk64AgDgX`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/ -maxdepth 1 -name \"nohup*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "e157fdc5-8b8a-4980-a224-d153ca240130",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0163u1WvFtxdGQx6k6xCJnqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 25655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XZ68id3Z6HoEY9ik1kpgmP`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/lm_eval_clean/exp011/ -name \"*.log\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "580468f0-64c2-4183-84ba-b230c055c42e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0163u1WvFtxdGQx6k6xCJnqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 25655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T16:14:24.836Z_
+
+<details><summary>↩ Tool result · `toolu_01SaTVm33Q8iPLEBk64AgDgX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "0e66e43d-c28e-4ca3-b2fc-f3c4f186384a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T16:14:25.737Z_
+
+<details><summary>↩ Tool result · `toolu_01XZ68id3Z6HoEY9ik1kpgmP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "c9b705a3-0854-413f-8b29-8a9b9045d4b6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+16 个 JSON 全部存在。检查日志尾部确认无错误。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "c15f22b3-05fc-4c5e-bbdc-52afae0dcf19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014u2sDVtjkfYpU25c36UohW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2527,
+      "cache_read_input_tokens": 26638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2527
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y1w58MvV8C69eyh6MiZ6v5`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "tail -50 /root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "f971aa70-a1b2-4ccf-b088-dadd0ccc8c56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014u2sDVtjkfYpU25c36UohW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2527,
+      "cache_read_input_tokens": 26638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2527
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T16:14:30.686Z_
+
+<details><summary>↩ Tool result · `toolu_01Y1w58MvV8C69eyh6MiZ6v5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_type=transformer, tie_word_embeddings=True\\n\\rLoading weights:   0%|          | 0/218 [00:00<?, ?it/s]\\rLoading weights:   2%|▏         | 4/218 [00:00<00:14, 15.05it/s]\\rLoading weights:  18%|█▊        | 40/218 [00:00<00:01, 105.85it/s]\\rLoading weights:  24%|██▍       | 53/218 [00:00<00:01, 85.52it/s] \\rLoading weights:  29%|██▉       | 63/218 [00:00<00:02, 72.19it/s]\\rLoading weights:  33%|███▎      | 71/218 [00:01<00:02, 62.19it/s]\\rLoading weights:  36%|███▌      | 79/218 [00:01<00:02, 65.00it/s]\\rLoading weights:  40%|████      | 88/218 [00:01<00:01, 69.95it/s]\\rLoading weights:  44%|████▍     | 97/218 [00:01<00:01, 72.03it/s]\\rLoading weights:  49%|████▉     | 107/218 [00:01<00:01, 66.58it/s]\\rLoading weights:  53%|█████▎    | 115/218 [00:01<00:01, 67.93it/s]\\rLoading weights:  57%|█████▋    | 124/218 [00:01<00:01, 60.51it/s]\\rLoading weights:  61%|██████    | 132/218 [00:01<00:01, 63.85it/s]\\rLoading weights:  64%|██████▍   | 139/218 [00:02<00:01, 65.13it/s]\\rLoading weights:  67%|██████▋   | 146/218 [00:02<00:01, 53.49it/s]\\rLoading weights:  73%|███████▎  | 160/218 [00:02<00:01, 50.65it/s]\\rLoading weights:  78%|███████▊  | 169/218 [00:02<00:00, 57.06it/s]\\rLoading weights:  82%|████████▏ | 178/218 [00:02<00:00, 63.20it/s]\\rLoading weights:  85%|████████▌ | 186/218 [00:02<00:00, 55.81it/s]\\rLoading weights:  89%|████████▊ | 193/218 [00:03<00:00, 58.27it/s]\\rLoading weights:  93%|█████████▎| 202/218 [00:03<00:00, 64.62it/s]\\rLoading weights:  96%|█████████▌| 209/218 [00:03<00:00, 65.36it/s]\\rLoading weights:  99%|█████████▉| 216/218 [00:03<00:00, 54.39it/s]\\rLoading weights: 100%|██████████| 218/218 [00:03<00:00, 63.23it/s]\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\nHF model type is neither marked as CausalLM or Seq2SeqLM.                     This is expected if your model requires `trust_remote_code=True` but may be an error otherwise.Setting backend to causal\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\n[Task: boolq] metric acc is defined, but aggregation is not. using default aggregation=mean\\n[Task: boolq] metric acc is defined, but higher_is_better is not. using default higher_is_better=True\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/super_glue.py\\nRetrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since aps/super_glue couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'boolq' at /root/.cache/huggingface/datasets/aps___super_glue/boolq/0.0.0/3de24cf8022e94f4ee4b9d55a6f539891524d646 (last modified on Tue May 19 22:27:40 2026).\\n[Task: copa] metric acc is defined, but aggregation is not. using default aggregation=mean\\n[Task: copa] metric acc is defined, but higher_is_better is not. using default higher_is_better=True\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/super_glue.py\\nRetrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since aps/super_glue couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'copa' at /root/.cache/huggingface/datasets/aps___super_glue/copa/0.0.0/3de24cf8022e94f4ee4b9d55a6f539891524d646 (last modified on Tue May 19 22:28:13 2026).\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/baber/piqa/resolve/main/README.md\\nRetrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since baber/piqa couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/baber___piqa/default/0.0.0/142f6d7367fd9877f0fb3b57\\n\\n... [截断: 输出过长，省略 23199 字符] ...\\n\\n█████▋ | 12562/14416 [00:23<00:04, 435.40it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 12618/14416 [00:23<00:03, 453.09it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 12666/14416 [00:23<00:03, 444.83it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 12716/14416 [00:24<00:03, 444.15it/s]\\rRunning loglikelihood requests:  89%|████████▊ | 12764/14416 [00:24<00:03, 438.27it/s]\\rRunning loglikelihood requests:  89%|████████▉ | 12812/14416 [00:24<00:03, 434.85it/s]\\rRunning loglikelihood requests:  89%|████████▉ | 12866/14416 [00:24<00:03, 447.02it/s]\\rRunning loglikelihood requests:  90%|████████▉ | 12915/14416 [00:24<00:03, 442.42it/s]\\rRunning loglikelihood requests:  90%|████████▉ | 12967/14416 [00:24<00:03, 444.41it/s]\\rRunning loglikelihood requests:  90%|█████████ | 13017/14416 [00:24<00:03, 440.37it/s]\\rRunning loglikelihood requests:  91%|█████████ | 13066/14416 [00:24<00:03, 436.64it/s]\\rRunning loglikelihood requests:  91%|█████████ | 13117/14416 [00:24<00:02, 439.21it/s]\\rRunning loglikelihood requests:  91%|█████████▏| 13167/14416 [00:25<00:02, 434.57it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 13216/14416 [00:25<00:02, 432.12it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 13264/14416 [00:25<00:02, 428.27it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 13316/14416 [00:25<00:02, 435.17it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 13364/14416 [00:25<00:02, 428.12it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 13417/14416 [00:25<00:02, 437.63it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 13465/14416 [00:25<00:02, 430.55it/s]\\rRunning loglikelihood requests:  94%|█████████▎| 13514/14416 [00:25<00:02, 429.90it/s]\\rRunning loglikelihood requests:  94%|█████████▍| 13567/14416 [00:26<00:01, 437.65it/s]\\rRunning loglikelihood requests:  94%|█████████▍| 13615/14416 [00:26<00:01, 429.24it/s]\\rRunning loglikelihood requests:  95%|█████████▍| 13663/14416 [00:26<00:01, 425.68it/s]\\rRunning loglikelihood requests:  95%|█████████▌| 13711/14416 [00:26<00:01, 421.08it/s]\\rRunning loglikelihood requests:  95%|█████████▌| 13759/14416 [00:26<00:01, 419.80it/s]\\rRunning loglikelihood requests:  96%|█████████▌| 13807/14416 [00:26<00:01, 416.28it/s]\\rRunning loglikelihood requests:  96%|█████████▌| 13857/14416 [00:26<00:01, 420.98it/s]\\rRunning loglikelihood requests:  96%|█████████▋| 13908/14416 [00:26<00:01, 425.33it/s]\\rRunning loglikelihood requests:  97%|█████████▋| 13958/14416 [00:26<00:01, 424.86it/s]\\rRunning loglikelihood requests:  97%|█████████▋| 14006/14416 [00:27<00:00, 422.48it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 14056/14416 [00:27<00:00, 422.48it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 14104/14416 [00:27<00:00, 419.96it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 14152/14416 [00:27<00:00, 416.11it/s]\\rRunning loglikelihood requests:  99%|█████████▊| 14200/14416 [00:27<00:00, 416.09it/s]\\rRunning loglikelihood requests:  99%|█████████▉| 14248/14416 [00:27<00:00, 412.71it/s]\\rRunning loglikelihood requests:  99%|█████████▉| 14297/14416 [00:27<00:00, 415.89it/s]\\rRunning loglikelihood requests: 100%|█████████▉| 14345/14416 [00:27<00:00, 413.65it/s]\\rRunning loglikelihood requests: 100%|█████████▉| 14393/14416 [00:28<00:00, 413.91it/s]\\rRunning loglikelihood requests: 100%|██████████| 14416/14416 [00:28<00:00, 513.98it/s]\\nfatal: not a git repository (or any of the parent directories): .git\\n\\n============================================================\\nModel: transformer_1.3B_baseline\\n============================================================\\n  boolq: acc,none=0.6199\\n  copa: acc,none=0.7700\\n  piqa: acc,none=0.7361, acc_norm,none=0.7242\\n  sciq: acc,none=0.9290, acc_norm,none=0.8770\\n\\nSaved: /root/entrainment_gated_ft/lm_eval_clean/exp011/transformer_1.3B_baseline.json\\n[16/16] DONE transformer_1.3B_baseline at Wed May 20 00:11:42 CST 2026\\n\\n=== ALL MODELS COMPLETE at Wed May 20 00:11:42 CST 2026 ===\\nResults in /root/entrainment_gated_ft/lm_eval_clean/exp011\\n16\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "3873a90d-9e60-4920-857d-307ed682791f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_type=transformer, tie_word_embeddings=True\\\\n\\\\rLoading weights:   0%|          | 0/218 [00:00<?, ?it/s]\\\\rLoading weights:   2%|▏         | 4/218 [00:00<00:14, 15.05it/s]\\\\rLoading weights:  18%|█▊        | 40/218 [00:00<00:01, 105.85it/s]\\\\rLoading weights:  24%|██▍       | 53/218 [00:00<00:01, 85.52it/s] \\\\rLoading weights:  29%|██▉       | 63/218 [00:00<00:02, 72.19it/s]\\\\rLoading weights:  33%|███▎      | 71/218 [00:01<00:02, 62.19it/s]\\\\rLoading weights:  36%|███▌      | 79/218 [00:01<00:02, 65.00it/s]\\\\rLoading weights:  40%|████      | 88/218 [00:01<00:01, 69.95it/s]\\\\rLoading weights:  44%|████▍     | 97/218 [00:01<00:01, 72.03it/s]\\\\rLoading weights:  49%|████▉     | 107/218 [00:01<00:01, 66.58it/s]\\\\rLoading weights:  53%|█████▎    | 115/218 [00:01<00:01, 67.93it/s]\\\\rLoading weights:  57%|█████▋    | 124/218 [00:01<00:01, 60.51it/s]\\\\rLoading weights:  61%|██████    | 132/218 [00:01<00:01, 63.85it/s]\\\\rLoading weights:  64%|██████▍   | 139/218 [00:02<00:01, 65.13it/s]\\\\rLoading weights:  67%|██████▋   | 146/218 [00:02<00:01, 53.49it/s]\\\\rLoading weights:  73%|███████▎  | 160/218 [00:02<00:01, 50.65it/s]\\\\rLoading weights:  78%|███████▊  | 169/218 [00:02<00:00, 57.06it/s]\\\\rLoading weights:  82%|████████▏ | 178/218 [00:02<00:00, 63.20it/s]\\\\rLoading weights:  85%|████████▌ | 186/218 [00:02<00:00, 55.81it/s]\\\\rLoading weights:  89%|████████▊ | 193/218 [00:03<00:00, 58.27it/s]\\\\rLoading weights:  93%|█████████▎| 202/218 [00:03<00:00, 64.62it/s]\\\\rLoading weights:  96%|█████████▌| 209/218 [00:03<00:00, 65.36it/s]\\\\rLoading weights:  99%|█████████▉| 216/218 [00:03<00:00, 54.39it/s]\\\\rLoading weights: 100%|██████████| 218/218 [00:03<00:00, 63.23it/s]\\\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\\\nHF model type is neither marked as CausalLM or Seq2SeqLM.                     This is expected if your model requires `trust_remote_code=True` but may be an error otherwise.Setting backend to causal\\\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\\\n[Task: boolq] metric acc is defined, but aggregation is not. using default aggregation=mean\\\\n[Task: boolq] metric acc is defined, but higher_is_better is not. using default higher_is_better=True\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/super_glue.py\\\\nRetrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since aps/super_glue couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'boolq' at /root/.cache/huggingface/datasets/aps___super_glue/boolq/0.0.0/3de24cf8022e94f4ee4b9d55a6f539891524d646 (last modified on Tue May 19 22:27:40 2026).\\\\n[Task: copa] metric acc is defined, but aggregation is not. using default aggregation=mean\\\\n[Task: copa] metric acc is defined, but higher_is_better is not. using default higher_is_better=True\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/super_glue.py\\\\nRetrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since aps/super_glue couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'copa' at /root/.cache/huggingface/datasets/aps___super_glue/copa/0.0.0/3de24cf8022e94f4ee4b9d55a6f539891524d646 (last modified on Tue May 19 22:28:13 2026).\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/baber/piqa/resolve/main/README.md\\\\nRetrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since baber/piqa couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/baber___piqa/default/0.0.0/142f6d7367fd9877f0fb3b57\\\\n\\\\n... [截断: 输出过长，省略 23199 字符] ...\\\\n\\\\n█████▋ | 12562/14416 [00:23<00:04, 435.40it/s]\\\\rRunning loglikelihood requests:  88%|████████▊ | 12618/14416 [00:23<00:03, 453.09it/s]\\\\rRunning loglikelihood requests:  88%|████████▊ | 12666/14416 [00:23<00:03, 444.83it/s]\\\\rRunning loglikelihood requests:  88%|████████▊ | 12716/14416 [00:24<00:03, 444.15it/s]\\\\rRunning loglikelihood requests:  89%|████████▊ | 12764/14416 [00:24<00:03, 438.27it/s]\\\\rRunning loglikelihood requests:  89%|████████▉ | 12812/14416 [00:24<00:03, 434.85it/s]\\\\rRunning loglikelihood requests:  89%|████████▉ | 12866/14416 [00:24<00:03, 447.02it/s]\\\\rRunning loglikelihood requests:  90%|████████▉ | 12915/14416 [00:24<00:03, 442.42it/s]\\\\rRunning loglikelihood requests:  90%|████████▉ | 12967/14416 [00:24<00:03, 444.41it/s]\\\\rRunning loglikelihood requests:  90%|█████████ | 13017/14416 [00:24<00:03, 440.37it/s]\\\\rRunning loglikelihood requests:  91%|█████████ | 13066/14416 [00:24<00:03, 436.64it/s]\\\\rRunning loglikelihood requests:  91%|█████████ | 13117/14416 [00:24<00:02, 439.21it/s]\\\\rRunning loglikelihood requests:  91%|█████████▏| 13167/14416 [00:25<00:02, 434.57it/s]\\\\rRunning loglikelihood requests:  92%|█████████▏| 13216/14416 [00:25<00:02, 432.12it/s]\\\\rRunning loglikelihood requests:  92%|█████████▏| 13264/14416 [00:25<00:02, 428.27it/s]\\\\rRunning loglikelihood requests:  92%|█████████▏| 13316/14416 [00:25<00:02, 435.17it/s]\\\\rRunning loglikelihood requests:  93%|█████████▎| 13364/14416 [00:25<00:02, 428.12it/s]\\\\rRunning loglikelihood requests:  93%|█████████▎| 13417/14416 [00:25<00:02, 437.63it/s]\\\\rRunning loglikelihood requests:  93%|█████████▎| 13465/14416 [00:25<00:02, 430.55it/s]\\\\rRunning loglikelihood requests:  94%|█████████▎| 13514/14416 [00:25<00:02, 429.90it/s]\\\\rRunning loglikelihood requests:  94%|█████████▍| 13567/14416 [00:26<00:01, 437.65it/s]\\\\rRunning loglikelihood requests:  94%|█████████▍| 13615/14416 [00:26<00:01, 429.24it/s]\\\\rRunning loglikelihood requests:  95%|█████████▍| 13663/14416 [00:26<00:01, 425.68it/s]\\\\rRunning loglikelihood requests:  95%|█████████▌| 13711/14416 [00:26<00:01, 421.08it/s]\\\\rRunning loglikelihood requests:  95%|█████████▌| 13759/14416 [00:26<00:01, 419.80it/s]\\\\rRunning loglikelihood requests:  96%|█████████▌| 13807/14416 [00:26<00:01, 416.28it/s]\\\\rRunning loglikelihood requests:  96%|█████████▌| 13857/14416 [00:26<00:01, 420.98it/s]\\\\rRunning loglikelihood requests:  96%|█████████▋| 13908/14416 [00:26<00:01, 425.33it/s]\\\\rRunning loglikelihood requests:  97%|█████████▋| 13958/14416 [00:26<00:01, 424.86it/s]\\\\rRunning loglikelihood requests:  97%|█████████▋| 14006/14416 [00:27<00:00, 422.48it/s]\\\\rRunning loglikelihood requests:  98%|█████████▊| 14056/14416 [00:27<00:00, 422.48it/s]\\\\rRunning loglikelihood requests:  98%|█████████▊| 14104/14416 [00:27<00:00, 419.96it/s]\\\\rRunning loglikelihood requests:  98%|█████████▊| 14152/14416 [00:27<00:00, 416.11it/s]\\\\rRunning loglikelihood requests:  99%|█████████▊| 14200/14416 [00:27<00:00, 416.09it/s]\\\\rRunning loglikelihood requests:  99%|█████████▉| 14248/14416 [00:27<00:00, 412.71it/s]\\\\rRunning loglikelihood requests:  99%|█████████▉| 14297/14416 [00:27<00:00, 415.89it/s]\\\\rRunning loglikelihood requests: 100%|█████████▉| 14345/14416 [00:27<00:00, 413.65it/s]\\\\rRunning loglikelihood requests: 100%|█████████▉| 14393/14416 [00:28<00:00, 413.91it/s]\\\\rRunning loglikelihood requests: 100%|██████████| 14416/14416 [00:28<00:00, 513.98it/s]\\\\nfatal: not a git repository (or any of the parent directories): .git\\\\n\\\\n============================================================\\\\nModel: transformer_1.3B_baseline\\\\n============================================================\\\\n  boolq: acc,none=0.6199\\\\n  copa: acc,none=0.7700\\\\n  piqa: acc,none=0.7361, acc_norm,none=0.7242\\\\n  sciq: acc,none=0.9290, acc_norm,none=0.8770\\\\n\\\\nSaved: /root/entrainment_gated_ft/lm_eval_clean/exp011/transformer_1.3B_baseline.json\\\\n[16/16] DONE transformer_1.3B_baseline at Wed May 20 00:11:42 CST 2026\\\\n\\\\n=== ALL MODELS COMPLETE at Wed May 20 00:11:42 CST 2026 ===\\\\nResults in /root/entrainment_gated_ft/lm_eval_clean/exp011\\\\n16\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"model_type=transformer, tie_word_embeddings=True\\n\\rLoading weights:   0%|          | 0/218 [00:00<?, ?it/s]\\rLoading weights:   2%|▏         | 4/218 [00:00<00:14, 15.05it/s]\\rLoading weights:  18%|█▊        | 40/218 [00:00<00:01, 105.85it/s]\\rLoading weights:  24%|██▍       | 53/218 [00:00<00:01, 85.52it/s] \\rLoading weights:  29%|██▉       | 63/218 [00:00<00:02, 72.19it/s]\\rLoading weights:  33%|███▎      | 71/218 [00:01<00:02, 62.19it/s]\\rLoading weights:  36%|███▌      | 79/218 [00:01<00:02, 65.00it/s]\\rLoading weights:  40%|████      | 88/218 [00:01<00:01, 69.95it/s]\\rLoading weights:  44%|████▍     | 97/218 [00:01<00:01, 72.03it/s]\\rLoading weights:  49%|████▉     | 107/218 [00:01<00:01, 66.58it/s]\\rLoading weights:  53%|█████▎    | 115/218 [00:01<00:01, 67.93it/s]\\rLoading weights:  57%|█████▋    | 124/218 [00:01<00:01, 60.51it/s]\\rLoading weights:  61%|██████    | 132/218 [00:01<00:01, 63.85it/s]\\rLoading weights:  64%|██████▍   | 139/218 [00:02<00:01, 65.13it/s]\\rLoading weights:  67%|██████▋   | 146/218 [00:02<00:01, 53.49it/s]\\rLoading weights:  73%|███████▎  | 160/218 [00:02<00:01, 50.65it/s]\\rLoading weights:  78%|███████▊  | 169/218 [00:02<00:00, 57.06it/s]\\rLoading weights:  82%|████████▏ | 178/218 [00:02<00:00, 63.20it/s]\\rLoading weights:  85%|████████▌ | 186/218 [00:02<00:00, 55.81it/s]\\rLoading weights:  89%|████████▊ | 193/218 [00:03<00:00, 58.27it/s]\\rLoading weights:  93%|█████████▎| 202/218 [00:03<00:00, 64.62it/s]\\rLoading weights:  96%|█████████▌| 209/218 [00:03<00:00, 65.36it/s]\\rLoading weights:  99%|█████████▉| 216/218 [00:03<00:00, 54.39it/s]\\rLoading weights: 100%|██████████| 218/218 [00:03<00:00, 63.23it/s]\\n`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.\\nHF model type is neither marked as CausalLM or Seq2SeqLM.                     This is expected if your model requires `trust_remote_code=True` but may be an error otherwise.Setting backend to causal\\nPassed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration\\n[Task: boolq] metric acc is defined, but aggregation is not. using default aggregation=mean\\n[Task: boolq] metric acc is defined, but higher_is_better is not. using default higher_is_better=True\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/super_glue.py\\nRetrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since aps/super_glue couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'boolq' at /root/.cache/huggingface/datasets/aps___super_glue/boolq/0.0.0/3de24cf8022e94f4ee4b9d55a6f539891524d646 (last modified on Tue May 19 22:27:40 2026).\\n[Task: copa] metric acc is defined, but aggregation is not. using default aggregation=mean\\n[Task: copa] metric acc is defined, but higher_is_better is not. using default higher_is_better=True\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/aps/super_glue/resolve/3de24cf8022e94f4ee4b9d55a6f539891524d646/super_glue.py\\nRetrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since aps/super_glue couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'copa' at /root/.cache/huggingface/datasets/aps___super_glue/copa/0.0.0/3de24cf8022e94f4ee4b9d55a6f539891524d646 (last modified on Tue May 19 22:28:13 2026).\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/baber/piqa/resolve/main/README.md\\nRetrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since baber/piqa couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/baber___piqa/default/0.0.0/142f6d7367fd9877f0fb3b57\\n\\n... [截断: 输出过长，省略 23199 字符] ...\\n\\n█████▋ | 12562/14416 [00:23<00:04, 435.40it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 12618/14416 [00:23<00:03, 453.09it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 12666/14416 [00:23<00:03, 444.83it/s]\\rRunning loglikelihood requests:  88%|████████▊ | 12716/14416 [00:24<00:03, 444.15it/s]\\rRunning loglikelihood requests:  89%|████████▊ | 12764/14416 [00:24<00:03, 438.27it/s]\\rRunning loglikelihood requests:  89%|████████▉ | 12812/14416 [00:24<00:03, 434.85it/s]\\rRunning loglikelihood requests:  89%|████████▉ | 12866/14416 [00:24<00:03, 447.02it/s]\\rRunning loglikelihood requests:  90%|████████▉ | 12915/14416 [00:24<00:03, 442.42it/s]\\rRunning loglikelihood requests:  90%|████████▉ | 12967/14416 [00:24<00:03, 444.41it/s]\\rRunning loglikelihood requests:  90%|█████████ | 13017/14416 [00:24<00:03, 440.37it/s]\\rRunning loglikelihood requests:  91%|█████████ | 13066/14416 [00:24<00:03, 436.64it/s]\\rRunning loglikelihood requests:  91%|█████████ | 13117/14416 [00:24<00:02, 439.21it/s]\\rRunning loglikelihood requests:  91%|█████████▏| 13167/14416 [00:25<00:02, 434.57it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 13216/14416 [00:25<00:02, 432.12it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 13264/14416 [00:25<00:02, 428.27it/s]\\rRunning loglikelihood requests:  92%|█████████▏| 13316/14416 [00:25<00:02, 435.17it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 13364/14416 [00:25<00:02, 428.12it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 13417/14416 [00:25<00:02, 437.63it/s]\\rRunning loglikelihood requests:  93%|█████████▎| 13465/14416 [00:25<00:02, 430.55it/s]\\rRunning loglikelihood requests:  94%|█████████▎| 13514/14416 [00:25<00:02, 429.90it/s]\\rRunning loglikelihood requests:  94%|█████████▍| 13567/14416 [00:26<00:01, 437.65it/s]\\rRunning loglikelihood requests:  94%|█████████▍| 13615/14416 [00:26<00:01, 429.24it/s]\\rRunning loglikelihood requests:  95%|█████████▍| 13663/14416 [00:26<00:01, 425.68it/s]\\rRunning loglikelihood requests:  95%|█████████▌| 13711/14416 [00:26<00:01, 421.08it/s]\\rRunning loglikelihood requests:  95%|█████████▌| 13759/14416 [00:26<00:01, 419.80it/s]\\rRunning loglikelihood requests:  96%|█████████▌| 13807/14416 [00:26<00:01, 416.28it/s]\\rRunning loglikelihood requests:  96%|█████████▌| 13857/14416 [00:26<00:01, 420.98it/s]\\rRunning loglikelihood requests:  96%|█████████▋| 13908/14416 [00:26<00:01, 425.33it/s]\\rRunning loglikelihood requests:  97%|█████████▋| 13958/14416 [00:26<00:01, 424.86it/s]\\rRunning loglikelihood requests:  97%|█████████▋| 14006/14416 [00:27<00:00, 422.48it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 14056/14416 [00:27<00:00, 422.48it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 14104/14416 [00:27<00:00, 419.96it/s]\\rRunning loglikelihood requests:  98%|█████████▊| 14152/14416 [00:27<00:00, 416.11it/s]\\rRunning loglikelihood requests:  99%|█████████▊| 14200/14416 [00:27<00:00, 416.09it/s]\\rRunning loglikelihood requests:  99%|█████████▉| 14248/14416 [00:27<00:00, 412.71it/s]\\rRunning loglikelihood requests:  99%|█████████▉| 14297/14416 [00:27<00:00, 415.89it/s]\\rRunning loglikelihood requests: 100%|█████████▉| 14345/14416 [00:27<00:00, 413.65it/s]\\rRunning loglikelihood requests: 100%|█████████▉| 14393/14416 [00:28<00:00, 413.91it/s]\\rRunning loglikelihood requests: 100%|██████████| 14416/14416 [00:28<00:00, 513.98it/s]\\nfatal: not a git repository (or any of the parent directories): .git\\n\\n============================================================\\nModel: transformer_1.3B_baseline\\n============================================================\\n  boolq: acc,none=0.6199\\n  copa: acc,none=0.7700\\n  piqa: acc,none=0.7361, acc_norm,none=0.7242\\n  sciq: acc,none=0.9290, acc_norm,none=0.8770\\n\\nSaved: /root/entrainment_gated_ft/lm_eval_clean/exp011/transformer_1.3B_baseline.json\\n[16/16] DONE transformer_1.3B_baseline at Wed May 20 00:11:42 CST 2026\\n\\n=== ALL MODELS COMPLETE at Wed May 20 00:11:42 CST 2026 ===\\nResults in /root/entrainment_gated_ft/lm_eval_clean/exp011\\n16\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+**SUCCESS** — 16/16 JSON 全部完成，日志末尾确认 `ALL MODELS COMPLETE`。更新 registry 并删除 cron。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "4f8bcf92-b5c2-453e-9355-9cc0e13b514f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017WH7yvETksPN2iqtdc2v5Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3862,
+      "cache_read_input_tokens": 29165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3862
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QQmvzRZvv7cdaMcwwaBDMC`</summary>
+
+```json
+{
+  "exp_id": "exp-011",
+  "field": "conclusion",
+  "value": "success",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "c069bd78-4af5-41d5-a4cf-81b1f889ec56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017WH7yvETksPN2iqtdc2v5Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3862,
+      "cache_read_input_tokens": 29165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3862
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T16:14:35.547Z_
+
+<details><summary>↩ Tool result · `toolu_01QQmvzRZvv7cdaMcwwaBDMC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-011\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:14:35.491Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0786}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "7f34d3fe-f2d2-4f81-a8b0-c1a63750f437",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-011\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:12:29.428Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:14:35.491Z\\\", \\\"hypothesis\\\": \\\"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models_1.3b/ (16 models)\\\", \\\"data_count\\\": 16, \\\"model_name\\\": \\\"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\\\", \\\"seed\\\": 0, \\\"eval_data\\\": \\\"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\\\", \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0786}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-011\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:14:35.491Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0786}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01E1AaAe1F3aQ43fVRHgCoGk`</summary>
+
+```json
+{
+  "exp_id": "exp-011",
+  "field": "checkpoint_path",
+  "value": "/root/entrainment_gated_ft/lm_eval_clean/exp011/",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "0d5efb9e-46cd-4d82-a86f-83ccb5d8b1bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017WH7yvETksPN2iqtdc2v5Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3862,
+      "cache_read_input_tokens": 29165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3862
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T16:14:36.430Z_
+
+<details><summary>↩ Tool result · `toolu_01E1AaAe1F3aQ43fVRHgCoGk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-011\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:14:36.403Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0526}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "9b733630-71a3-4e6c-824f-8e4c42ddcd9f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-011\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:12:29.428Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:14:36.403Z\\\", \\\"hypothesis\\\": \\\"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models_1.3b/ (16 models)\\\", \\\"data_count\\\": 16, \\\"model_name\\\": \\\"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\\\", \\\"seed\\\": 0, \\\"eval_data\\\": \\\"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\\\", \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/exp011/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0526}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-011\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:14:36.403Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0526}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WgziPNQ3VHoNWb6PyGsLaH`</summary>
+
+```json
+{
+  "exp_id": "exp-011",
+  "field": "log_path",
+  "value": "/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "09114226-cc56-4ce9-aca8-05cc06959541",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017WH7yvETksPN2iqtdc2v5Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3862,
+      "cache_read_input_tokens": 29165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3862
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T16:14:37.438Z_
+
+<details><summary>↩ Tool result · `toolu_01WgziPNQ3VHoNWb6PyGsLaH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-011\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:14:37.411Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0533}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "24c8ed1b-1070-4fac-a01e-4eb9840a86c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-011\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:12:29.428Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:14:37.411Z\\\", \\\"hypothesis\\\": \\\"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models_1.3b/ (16 models)\\\", \\\"data_count\\\": 16, \\\"model_name\\\": \\\"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\\\", \\\"seed\\\": 0, \\\"eval_data\\\": \\\"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\\\", \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/exp011/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0533}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-011\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:14:37.411Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0533}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01B7tAUmF78z7xnhyChpxAEE`</summary>
+
+```json
+{
+  "query": "select:CronDelete",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "3c12ef4f-4734-418d-b492-9c7792ca899b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017WH7yvETksPN2iqtdc2v5Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3862,
+      "cache_read_input_tokens": 29165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3862
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T16:14:37.880Z_
+
+<details><summary>↩ Tool result · `toolu_01B7tAUmF78z7xnhyChpxAEE`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "b805f1c1-3348-4152-89e5-6f0399dec643",
+  "tool_use_result": {
+    "matches": [
+      "CronDelete"
+    ],
+    "query": "select:CronDelete",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01HmGc9wF4acjRa6NE8yEk6r`</summary>
+
+```json
+{
+  "exp_id": "exp-011",
+  "field": "status",
+  "value": "DONE",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "5eb16d74-5b82-48e4-8f9f-6a79ce0ee18e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRJvKkYXjMMVcGdeqrTcmr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2172,
+      "cache_read_input_tokens": 33027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2172
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — CronDelete · `toolu_01JjbU7r5TQkuqae6MF2RGwb`</summary>
+
+```json
+{
+  "id": "exp-011"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "52bcb6b3-0050-48ee-bbcf-9518c9ceff3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRJvKkYXjMMVcGdeqrTcmr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2172,
+      "cache_read_input_tokens": 33027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2172
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T16:14:41.416Z_
+
+<details><summary>↩ Tool result · `toolu_01HmGc9wF4acjRa6NE8yEk6r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-011\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:14:41.324Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\", \"completed_at\": \"2026-05-19T16:14:41.324Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1206}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "fc3095c3-98bb-4885-b31b-6e59c8c79ba1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-011\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:12:29.428Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:14:41.324Z\\\", \\\"hypothesis\\\": \\\"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models_1.3b/ (16 models)\\\", \\\"data_count\\\": 16, \\\"model_name\\\": \\\"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\\\", \\\"seed\\\": 0, \\\"eval_data\\\": \\\"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\\\", \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/exp011/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\\\", \\\"completed_at\\\": \\\"2026-05-19T16:14:41.324Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1206}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-011\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:14:41.324Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\", \"completed_at\": \"2026-05-19T16:14:41.324Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1206}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-19T16:14:41.419Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01JjbU7r5TQkuqae6MF2RGwb`</summary>
+
+```text
+&lt;tool_use_error>No scheduled job with id 'exp-011'&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "71ed4319-b101-4d5e-bf20-28d1fa0d88a7",
+  "tool_use_result": "Error: No scheduled job with id 'exp-011'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+Cron 不存在（可能已被删除或未创建），无影响。
+
+## exp-011 结果报告
+
+**状态: SUCCESS** — 16/16 模型评估全部完成
+
+**JSON 文件列表** (按完成时间):
+
+| # | 模型 | 完成时间 |
+|---|------|---------|
+| 1 | 1.3B-100B-GatedDeltaNet-pure | 22:31 |
+| 2 | 1.3B-100B-GatedDeltaNet-hybrid-24-1 | 22:42 |
+| 3 | 1.3B-100B-GatedDeltaNet-hybrid-12-1 | 22:49 |
+| 4 | 1.3B-100B-GatedDeltaNet-hybrid-6-1 | 22:56 |
+| 5 | 1.3B-100B-GatedDeltaNet-hybrid-3-1 | 23:01 |
+| 6 | 1.3B-100B-RetNet-pure | 23:07 |
+| 7 | 1.3B-100B-RetNet-hybrid-24-1 | 23:13 |
+| 8 | 1.3B-100B-RetNet-hybrid-12-1 | 23:20 |
+| 9 | 1.3B-100B-RetNet-hybrid-6-1 | 23:27 |
+| 10 | 1.3B-100B-RetNet-hybrid-3-1 | 23:33 |
+| 11 | 1.3B-100B-HGRN2-pure | 23:39 |
+| 12 | 1.3B-100B-HGRN2-hybrid-24-1 | 23:46 |
+| 13 | 1.3B-100B-HGRN2-hybrid-12-1 | 23:52 |
+| 14 | 1.3B-100B-HGRN2-hybrid-6-1 | 23:59 |
+| 15 | 1.3B-100B-HGRN2-hybrid-3-1 | 00:05 |
+| 16 | transformer_1.3B_baseline | 00:11 |
+
+**最后一个模型 (transformer baseline) 的分数**: boolq=0.6199, copa=0.7700, piqa=0.7361, sciq=0.9290
+
+**日志关键行**: `=== ALL MODELS COMPLETE at Wed May 20 00:11:42 CST 2026 ===`
+
+**Registry 已更新**: status=DONE, conclusion=success, checkpoint_path 和 log_path 已设置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "uuid": "b2787aa8-75e3-421f-a4cc-1df81d2a9363",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WEgohRNcM1y8nD4Adp19Rt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 793,
+      "cache_read_input_tokens": 35199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 793
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 43_
+
+Cron 不存在（可能已被删除或未创建），无影响。
+
+## exp-011 结果报告
+
+**状态: SUCCESS** — 16/16 模型评估全部完成
+
+**JSON 文件列表** (按完成时间):
+
+| # | 模型 | 完成时间 |
+|---|------|---------|
+| 1 | 1.3B-100B-GatedDeltaNet-pure | 22:31 |
+| 2 | 1.3B-100B-GatedDeltaNet-hybrid-24-1 | 22:42 |
+| 3 | 1.3B-100B-GatedDeltaNet-hybrid-12-1 | 22:49 |
+| 4 | 1.3B-100B-GatedDeltaNet-hybrid-6-1 | 22:56 |
+| 5 | 1.3B-100B-GatedDeltaNet-hybrid-3-1 | 23:01 |
+| 6 | 1.3B-100B-RetNet-pure | 23:07 |
+| 7 | 1.3B-100B-RetNet-hybrid-24-1 | 23:13 |
+| 8 | 1.3B-100B-RetNet-hybrid-12-1 | 23:20 |
+| 9 | 1.3B-100B-RetNet-hybrid-6-1 | 23:27 |
+| 10 | 1.3B-100B-RetNet-hybrid-3-1 | 23:33 |
+| 11 | 1.3B-100B-HGRN2-pure | 23:39 |
+| 12 | 1.3B-100B-HGRN2-hybrid-24-1 | 23:46 |
+| 13 | 1.3B-100B-HGRN2-hybrid-12-1 | 23:52 |
+| 14 | 1.3B-100B-HGRN2-hybrid-6-1 | 23:59 |
+| 15 | 1.3B-100B-HGRN2-hybrid-3-1 | 00:05 |
+| 16 | transformer_1.3B_baseline | 00:11 |
+
+**最后一个模型 (transformer baseline) 的分数**: boolq=0.6199, copa=0.7700, piqa=0.7361, sciq=0.9290
+
+**日志关键行**: `=== ALL MODELS COMPLETE at Wed May 20 00:11:42 CST 2026 ===`
+
+**Registry 已更新**: status=DONE, conclusion=success, checkpoint_path 和 log_path 已设置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 47412,
+  "duration_api_ms": 43811,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "557072a7-902c-47ad-96e6-41132f236ccd",
+  "total_cost_usd": 0.31302874999999997,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 24151,
+    "cache_read_input_tokens": 185624,
+    "output_tokens": 2701,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 24151,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 719,
+        "cache_read_input_tokens": 35199,
+        "cache_creation_input_tokens": 793,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 793
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1598,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001688,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 2701,
+      "cacheReadInputTokens": 185624,
+      "cacheCreationInputTokens": 24151,
+      "webSearchRequests": 0,
+      "costUSD": 0.31134075,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "035929ce-5e9c-4e33-aa20-d575b6b9c21b"
+}
+```
+
+</details>
+
+---

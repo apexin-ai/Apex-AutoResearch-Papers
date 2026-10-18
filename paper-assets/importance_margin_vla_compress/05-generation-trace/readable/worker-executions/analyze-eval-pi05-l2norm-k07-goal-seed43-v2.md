@@ -1,0 +1,1342 @@
+# analyze eval pi05 l2norm k07 goal seed43 v2
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_analyze_eval_pi05_l2norm_k07_goal_seed43_v2_20260524T025455.log`
+- **Structured JSON:** [`28355e9ae04aa5934029.json`](../../sessions/28/28355e9ae04aa5934029.json)
+
+## Before a recorded user message
+
+26 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress",
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "68f778b1-1597-45c7-887f-eb931522083f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-2-projects-importance-margin-vla-compress/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779599400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5a23c3be-ba6d-47f7-adcb-c27bbed8d833",
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the experiment log now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "3aed5c5b-80d8-4472-aaf3-619a3b08e4be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012QLzb7VswD2qH1gLpnEd78",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11711,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11711
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015VqN47Xj3dJ2zDYNuakwcr`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "3eb3d8cd-e4df-4093-82ad-880f25a5ec9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012QLzb7VswD2qH1gLpnEd78",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11711,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11711
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T02:55:04.954Z_
+
+<details><summary>↩ Tool result · `toolu_015VqN47Xj3dJ2zDYNuakwcr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "b250c0d1-6d69-427b-bb0b-9cbaa07f4722",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the log file from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "7c0f3ebf-b326-488d-aec9-2fbda4a77eec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QzXRMoQ3R9dsjnRLmpdNkV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 23552,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 926
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pd3qEMJ19hsKe31JocfMDa`</summary>
+
+```json
+{
+  "server": "westd-41074",
+  "command": "tail -100 ~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "33484a6e-4333-4f75-9b2f-283c6dd953b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QzXRMoQ3R9dsjnRLmpdNkV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 23552,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 926
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T02:55:10.407Z_
+
+<details><summary>↩ Tool result · `toolu_01Pd3qEMJ19hsKe31JocfMDa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 09:38:05,056 Config: suite=libero_goal, prune=l2norm, keep=0.7, eps=50, gpu=0\\n2026-05-24 09:38:05,056 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-24 09:39:34,342 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-24 09:39:35,829 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-24 09:39:35,829 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-24 09:39:37,302 Patched embed_image\\n2026-05-24 09:39:37,308 Model: 4143.4M params\\n2026-05-24 09:39:37,308 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-24 09:39:37,308 Pruning: l2norm, keep 179/256 tokens/image (537 total)\\n2026-05-24 09:39:37,979 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-24 09:39:37,998 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-24 09:39:37,998 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-24 09:39:37,998 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 09:39:38,045 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 09:39:38,405 Suite: libero_goal, 10 tasks, max_steps=300\\n[PRUNE-DIAG] l2norm: n_keep=179/256, first_indices=[6, 9, 10, 11, 16]\\n2026-05-24 09:41:13,269   T0 [open the middle drawer of the cabinet] ep=10: 7/10=70%\\n2026-05-24 09:42:40,520   T0 [open the middle drawer of the cabinet] ep=20: 15/20=75%\\n2026-05-24 09:44:10,953   T0 [open the middle drawer of the cabinet] ep=30: 23/30=77%\\n2026-05-24 09:45:52,643   T0 [open the middle drawer of the cabinet] ep=40: 29/40=72%\\n2026-05-24 09:47:12,314   T0 [open the middle drawer of the cabinet] ep=50: 39/50=78%\\n2026-05-24 09:47:12,314 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 7.6min\\n2026-05-24 09:48:30,271   T1 [put the bowl on the stove] ep=10: 7/10=70%\\n2026-05-24 09:49:29,531   T1 [put the bowl on the stove] ep=20: 16/20=80%\\n2026-05-24 09:50:29,535   T1 [put the bowl on the stove] ep=30: 25/30=83%\\n2026-05-24 09:51:56,407   T1 [put the bowl on the stove] ep=40: 31/40=78%\\n2026-05-24 09:53:23,118   T1 [put the bowl on the stove] ep=50: 38/50=76%\\n2026-05-24 09:53:23,118 Task 1: SR=76.0% | Total: 77/100=77.0% | Time: 13.7min\\n2026-05-24 09:54:34,966   T2 [put the wine bottle on top of the cabine] ep=10: 8/10=80%\\n2026-05-24 09:56:03,700   T2 [put the wine bottle on top of the cabine] ep=20: 14/20=70%\\n2026-05-24 09:57:18,276   T2 [put the wine bottle on top of the cabine] ep=30: 22/30=73%\\n2026-05-24 09:58:46,890   T2 [put the wine bottle on top of the cabine] ep=40: 28/40=70%\\n2026-05-24 10:00:19,003   T2 [put the wine bottle on top of the cabine] ep=50: 34/50=68%\\n2026-05-24 10:00:19,004 Task 2: SR=68.0% | Total: 111/150=74.0% | Time: 20.7min\\n2026-05-24 10:02:21,823   T3 [open the top drawer and put the bowl ins] ep=10: 5/10=50%\\n2026-05-24 10:04:32,455   T3 [open the top drawer and put the bowl ins] ep=20: 8/20=40%\\n2026-05-24 10:06:30,517   T3 [open the top drawer and put the bowl ins] ep=30: 15/30=50%\\n2026-05-24 10:08:31,819   T3 [open the top drawer and put the bowl ins] ep=40: 21/40=52%\\n2026-05-24 10:10:43,840   T3 [open the top drawer and put the bowl ins] ep=50: 24/50=48%\\n2026-05-24 10:10:43,841 Task 3: SR=48.0% | Total: 135/200=67.5% | Time: 31.1min\\n2026-05-24 10:11:46,241   T4 [put the bowl on top of the cabinet] ep=10: 9/10=90%\\n2026-05-24 10:12:53,422   T4 [put the bowl on top of the cabinet] ep=20: 18/20=90%\\n2026-05-24 10:13:52,168   T4 [put the bowl on top of the cabinet] ep=30: 27/30=90%\\n2026-05-24 10:15:01,072   T4 [put the bowl on top of the cabinet] ep=40: 35/40=88%\\n2026-05-24 10:15:51,942   T4 [put the bowl on top of the cabinet] ep=50: 45/50=90%\\n2026-05-24 10:15:51,943 Task 4: SR=90.0% | Total: 180/250=72.0% | Time: 36.2min\\n2026-05-24 10:17:13,405   T5 [push the plate to the front of the stove] ep=10: 9/10=90%\\n2026-05-24 10:18:42,978   T5 [push the plate to the front of the stove] ep=20: 17/20=85%\\n2026-05-24 10:20:08,658   T5 [push the plate to the front of the stove] ep=30: 25/30=83%\\n2026-05-24 10:21:38,676   T5 [push the plate to the front of the stove] ep=40: 33/40=82%\\n2026-05-24 10:23:12,379   T5 [push the plate to the front of the stove] ep=50: 40/50=80%\\n2026-05-24 10:23:12,379 Task 5: SR=80.0% | Total: 220/300=73.3% | Time: 43.6min\\n2026-05-24 10:24:49,895   T6 [put the cream cheese in the bowl] ep=10: 6/10=60%\\n2026-05-24 10:26:22,727   T6 [put the cream cheese in the bowl] ep=20: 12/20=60%\\n2026-05-24 10:27:57,011   T6 [put the cream cheese in the bowl] ep=30: 18/30=60%\\n2026-05-24 10:29:54,262   T6 [put the cream cheese in the bowl] ep=40: 23/40=57%\\n2026-05-24 10:30:50,674   T6 [put the cream cheese in the bowl] ep=50: 33/50=66%\\n2026-05-24 10:30:50,674 Task 6: SR=66.0% | Total: 253/350=72.3% | Time: 51.2min\\n2026-05-24 10:31:48,018   T7 [turn on the stove] ep=10: 9/10=90%\\n2026-05-24 10:32:32,942   T7 [turn on the stove] ep=20: 19/20=95%\\n2026-05-24 10:33:16,672   T7 [turn on the stove] ep=30: 29/30=97%\\n2026-05-24 10:34:03,345   T7 [turn on the stove] ep=40: 39/40=98%\\n2026-05-24 10:34:48,421   T7 [turn on the stove] ep=50: 49/50=98%\\n2026-05-24 10:34:48,421 Task 7: SR=98.0% | Total: 302/400=75.5% | Time: 55.2min\\n2026-05-24 10:36:12,770   T8 [put the bowl on the plate] ep=10: 7/10=70%\\n2026-05-24 10:37:38,780   T8 [put the bowl on the plate] ep=20: 13/20=65%\\n2026-05-24 10:39:04,739   T8 [put the bowl on the plate] ep=30: 19/30=63%\\n2026-05-24 10:40:17,642   T8 [put the bowl on the plate] ep=40: 27/40=68%\\n2026-05-24 10:41:36,256   T8 [put the bowl on the plate] ep=50: 34/50=68%\\n2026-05-24 10:41:36,256 Task 8: SR=68.0% | Total: 336/450=74.7% | Time: 62.0min\\n2026-05-24 10:43:42,706   T9 [put the wine bottle on the rack] ep=10: 3/10=30%\\n2026-05-24 10:45:40,794   T9 [put the wine bottle on the rack] ep=20: 7/20=35%\\n2026-05-24 10:47:34,007   T9 [put the wine bottle on the rack] ep=30: 12/30=40%\\n2026-05-24 10:49:20,719   T9 [put the wine bottle on the rack] ep=40: 18/40=45%\\n2026-05-24 10:50:58,055   T9 [put the wine bottle on the rack] ep=50: 25/50=50%\\n2026-05-24 10:50:58,055 Task 9: SR=50.0% | Total: 361/500=72.2% | Time: 71.3min\\n2026-05-24 10:50:58,276 \\n============================================================\\n2026-05-24 10:50:58,276 RESULT: libero_goal prune=l2norm keep=0.7 SR=72.2%\\n2026-05-24 10:50:58,276 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.70_libero_goal_seed43.json\\n2026-05-24 10:50:58,276 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "d1005365-1813-469a-bedc-18f3bbc14684",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-24 09:38:05,056 Config: suite=libero_goal, prune=l2norm, keep=0.7, eps=50, gpu=0\\\\n2026-05-24 09:38:05,056 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n2026-05-24 09:39:34,342 Enabled gradient checkpointing for PI05Pytorch model\\\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\\\n✓ Loaded state dict from model.safetensors\\\\n2026-05-24 09:39:35,829 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n2026-05-24 09:39:35,829 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n2026-05-24 09:39:37,302 Patched embed_image\\\\n2026-05-24 09:39:37,308 Model: 4143.4M params\\\\n2026-05-24 09:39:37,308 Vision tokens: 256/image, 3 slots -> 768 total\\\\n2026-05-24 09:39:37,308 Pruning: l2norm, keep 179/256 tokens/image (537 total)\\\\n2026-05-24 09:39:37,979 Preprocessor/postprocessor loaded\\\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n2026-05-24 09:39:37,998 No private macro file found!\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n2026-05-24 09:39:37,998 It is recommended to use a private macro file\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n2026-05-24 09:39:37,998 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\\\n2026-05-24 09:39:38,045 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n2026-05-24 09:39:38,405 Suite: libero_goal, 10 tasks, max_steps=300\\\\n[PRUNE-DIAG] l2norm: n_keep=179/256, first_indices=[6, 9, 10, 11, 16]\\\\n2026-05-24 09:41:13,269   T0 [open the middle drawer of the cabinet] ep=10: 7/10=70%\\\\n2026-05-24 09:42:40,520   T0 [open the middle drawer of the cabinet] ep=20: 15/20=75%\\\\n2026-05-24 09:44:10,953   T0 [open the middle drawer of the cabinet] ep=30: 23/30=77%\\\\n2026-05-24 09:45:52,643   T0 [open the middle drawer of the cabinet] ep=40: 29/40=72%\\\\n2026-05-24 09:47:12,314   T0 [open the middle drawer of the cabinet] ep=50: 39/50=78%\\\\n2026-05-24 09:47:12,314 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 7.6min\\\\n2026-05-24 09:48:30,271   T1 [put the bowl on the stove] ep=10: 7/10=70%\\\\n2026-05-24 09:49:29,531   T1 [put the bowl on the stove] ep=20: 16/20=80%\\\\n2026-05-24 09:50:29,535   T1 [put the bowl on the stove] ep=30: 25/30=83%\\\\n2026-05-24 09:51:56,407   T1 [put the bowl on the stove] ep=40: 31/40=78%\\\\n2026-05-24 09:53:23,118   T1 [put the bowl on the stove] ep=50: 38/50=76%\\\\n2026-05-24 09:53:23,118 Task 1: SR=76.0% | Total: 77/100=77.0% | Time: 13.7min\\\\n2026-05-24 09:54:34,966   T2 [put the wine bottle on top of the cabine] ep=10: 8/10=80%\\\\n2026-05-24 09:56:03,700   T2 [put the wine bottle on top of the cabine] ep=20: 14/20=70%\\\\n2026-05-24 09:57:18,276   T2 [put the wine bottle on top of the cabine] ep=30: 22/30=73%\\\\n2026-05-24 09:58:46,890   T2 [put the wine bottle on top of the cabine] ep=40: 28/40=70%\\\\n2026-05-24 10:00:19,003   T2 [put the wine bottle on top of the cabine] ep=50: 34/50=68%\\\\n2026-05-24 10:00:19,004 Task 2: SR=68.0% | Total: 111/150=74.0% | Time: 20.7min\\\\n2026-05-24 10:02:21,823   T3 [open the top drawer and put the bowl ins] ep=10: 5/10=50%\\\\n2026-05-24 10:04:32,455   T3 [open the top drawer and put the bowl ins] ep=20: 8/20=40%\\\\n2026-05-24 10:06:30,517   T3 [open the top drawer and put the bowl ins] ep=30: 15/30=50%\\\\n2026-05-24 10:08:31,819   T3 [open the top drawer and put the bowl ins] ep=40: 21/40=52%\\\\n2026-05-24 10:10:43,840   T3 [open the top drawer and put the bowl ins] ep=50: 24/50=48%\\\\n2026-05-24 10:10:43,841 Task 3: SR=48.0% | Total: 135/200=67.5% | Time: 31.1min\\\\n2026-05-24 10:11:46,241   T4 [put the bowl on top of the cabinet] ep=10: 9/10=90%\\\\n2026-05-24 10:12:53,422   T4 [put the bowl on top of the cabinet] ep=20: 18/20=90%\\\\n2026-05-24 10:13:52,168   T4 [put the bowl on top of the cabinet] ep=30: 27/30=90%\\\\n2026-05-24 10:15:01,072   T4 [put the bowl on top of the cabinet] ep=40: 35/40=88%\\\\n2026-05-24 10:15:51,942   T4 [put the bowl on top of the cabinet] ep=50: 45/50=90%\\\\n2026-05-24 10:15:51,943 Task 4: SR=90.0% | Total: 180/250=72.0% | Time: 36.2min\\\\n2026-05-24 10:17:13,405   T5 [push the plate to the front of the stove] ep=10: 9/10=90%\\\\n2026-05-24 10:18:42,978   T5 [push the plate to the front of the stove] ep=20: 17/20=85%\\\\n2026-05-24 10:20:08,658   T5 [push the plate to the front of the stove] ep=30: 25/30=83%\\\\n2026-05-24 10:21:38,676   T5 [push the plate to the front of the stove] ep=40: 33/40=82%\\\\n2026-05-24 10:23:12,379   T5 [push the plate to the front of the stove] ep=50: 40/50=80%\\\\n2026-05-24 10:23:12,379 Task 5: SR=80.0% | Total: 220/300=73.3% | Time: 43.6min\\\\n2026-05-24 10:24:49,895   T6 [put the cream cheese in the bowl] ep=10: 6/10=60%\\\\n2026-05-24 10:26:22,727   T6 [put the cream cheese in the bowl] ep=20: 12/20=60%\\\\n2026-05-24 10:27:57,011   T6 [put the cream cheese in the bowl] ep=30: 18/30=60%\\\\n2026-05-24 10:29:54,262   T6 [put the cream cheese in the bowl] ep=40: 23/40=57%\\\\n2026-05-24 10:30:50,674   T6 [put the cream cheese in the bowl] ep=50: 33/50=66%\\\\n2026-05-24 10:30:50,674 Task 6: SR=66.0% | Total: 253/350=72.3% | Time: 51.2min\\\\n2026-05-24 10:31:48,018   T7 [turn on the stove] ep=10: 9/10=90%\\\\n2026-05-24 10:32:32,942   T7 [turn on the stove] ep=20: 19/20=95%\\\\n2026-05-24 10:33:16,672   T7 [turn on the stove] ep=30: 29/30=97%\\\\n2026-05-24 10:34:03,345   T7 [turn on the stove] ep=40: 39/40=98%\\\\n2026-05-24 10:34:48,421   T7 [turn on the stove] ep=50: 49/50=98%\\\\n2026-05-24 10:34:48,421 Task 7: SR=98.0% | Total: 302/400=75.5% | Time: 55.2min\\\\n2026-05-24 10:36:12,770   T8 [put the bowl on the plate] ep=10: 7/10=70%\\\\n2026-05-24 10:37:38,780   T8 [put the bowl on the plate] ep=20: 13/20=65%\\\\n2026-05-24 10:39:04,739   T8 [put the bowl on the plate] ep=30: 19/30=63%\\\\n2026-05-24 10:40:17,642   T8 [put the bowl on the plate] ep=40: 27/40=68%\\\\n2026-05-24 10:41:36,256   T8 [put the bowl on the plate] ep=50: 34/50=68%\\\\n2026-05-24 10:41:36,256 Task 8: SR=68.0% | Total: 336/450=74.7% | Time: 62.0min\\\\n2026-05-24 10:43:42,706   T9 [put the wine bottle on the rack] ep=10: 3/10=30%\\\\n2026-05-24 10:45:40,794   T9 [put the wine bottle on the rack] ep=20: 7/20=35%\\\\n2026-05-24 10:47:34,007   T9 [put the wine bottle on the rack] ep=30: 12/30=40%\\\\n2026-05-24 10:49:20,719   T9 [put the wine bottle on the rack] ep=40: 18/40=45%\\\\n2026-05-24 10:50:58,055   T9 [put the wine bottle on the rack] ep=50: 25/50=50%\\\\n2026-05-24 10:50:58,055 Task 9: SR=50.0% | Total: 361/500=72.2% | Time: 71.3min\\\\n2026-05-24 10:50:58,276 \\\\n============================================================\\\\n2026-05-24 10:50:58,276 RESULT: libero_goal prune=l2norm keep=0.7 SR=72.2%\\\\n2026-05-24 10:50:58,276 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.70_libero_goal_seed43.json\\\\n2026-05-24 10:50:58,276 ============================================================\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-24 09:38:05,056 Config: suite=libero_goal, prune=l2norm, keep=0.7, eps=50, gpu=0\\n2026-05-24 09:38:05,056 Loading π0.5 from /root/autodl-tmp/pi05_libero_finetuned ...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\n2026-05-24 09:39:34,342 Enabled gradient checkpointing for PI05Pytorch model\\nLoading model from: /root/autodl-tmp/pi05_libero_finetuned\\n✓ Loaded state dict from model.safetensors\\n2026-05-24 09:39:35,829 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n2026-05-24 09:39:35,829 Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n2026-05-24 09:39:37,302 Patched embed_image\\n2026-05-24 09:39:37,308 Model: 4143.4M params\\n2026-05-24 09:39:37,308 Vision tokens: 256/image, 3 slots -> 768 total\\n2026-05-24 09:39:37,308 Pruning: l2norm, keep 179/256 tokens/image (537 total)\\n2026-05-24 09:39:37,979 Preprocessor/postprocessor loaded\\n[robosuite WARNING] No private macro file found! (__init__.py:7)\\n2026-05-24 09:39:37,998 No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n2026-05-24 09:39:37,998 It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n2026-05-24 09:39:37,998 To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-24 09:39:38,045 No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n2026-05-24 09:39:38,405 Suite: libero_goal, 10 tasks, max_steps=300\\n[PRUNE-DIAG] l2norm: n_keep=179/256, first_indices=[6, 9, 10, 11, 16]\\n2026-05-24 09:41:13,269   T0 [open the middle drawer of the cabinet] ep=10: 7/10=70%\\n2026-05-24 09:42:40,520   T0 [open the middle drawer of the cabinet] ep=20: 15/20=75%\\n2026-05-24 09:44:10,953   T0 [open the middle drawer of the cabinet] ep=30: 23/30=77%\\n2026-05-24 09:45:52,643   T0 [open the middle drawer of the cabinet] ep=40: 29/40=72%\\n2026-05-24 09:47:12,314   T0 [open the middle drawer of the cabinet] ep=50: 39/50=78%\\n2026-05-24 09:47:12,314 Task 0: SR=78.0% | Total: 39/50=78.0% | Time: 7.6min\\n2026-05-24 09:48:30,271   T1 [put the bowl on the stove] ep=10: 7/10=70%\\n2026-05-24 09:49:29,531   T1 [put the bowl on the stove] ep=20: 16/20=80%\\n2026-05-24 09:50:29,535   T1 [put the bowl on the stove] ep=30: 25/30=83%\\n2026-05-24 09:51:56,407   T1 [put the bowl on the stove] ep=40: 31/40=78%\\n2026-05-24 09:53:23,118   T1 [put the bowl on the stove] ep=50: 38/50=76%\\n2026-05-24 09:53:23,118 Task 1: SR=76.0% | Total: 77/100=77.0% | Time: 13.7min\\n2026-05-24 09:54:34,966   T2 [put the wine bottle on top of the cabine] ep=10: 8/10=80%\\n2026-05-24 09:56:03,700   T2 [put the wine bottle on top of the cabine] ep=20: 14/20=70%\\n2026-05-24 09:57:18,276   T2 [put the wine bottle on top of the cabine] ep=30: 22/30=73%\\n2026-05-24 09:58:46,890   T2 [put the wine bottle on top of the cabine] ep=40: 28/40=70%\\n2026-05-24 10:00:19,003   T2 [put the wine bottle on top of the cabine] ep=50: 34/50=68%\\n2026-05-24 10:00:19,004 Task 2: SR=68.0% | Total: 111/150=74.0% | Time: 20.7min\\n2026-05-24 10:02:21,823   T3 [open the top drawer and put the bowl ins] ep=10: 5/10=50%\\n2026-05-24 10:04:32,455   T3 [open the top drawer and put the bowl ins] ep=20: 8/20=40%\\n2026-05-24 10:06:30,517   T3 [open the top drawer and put the bowl ins] ep=30: 15/30=50%\\n2026-05-24 10:08:31,819   T3 [open the top drawer and put the bowl ins] ep=40: 21/40=52%\\n2026-05-24 10:10:43,840   T3 [open the top drawer and put the bowl ins] ep=50: 24/50=48%\\n2026-05-24 10:10:43,841 Task 3: SR=48.0% | Total: 135/200=67.5% | Time: 31.1min\\n2026-05-24 10:11:46,241   T4 [put the bowl on top of the cabinet] ep=10: 9/10=90%\\n2026-05-24 10:12:53,422   T4 [put the bowl on top of the cabinet] ep=20: 18/20=90%\\n2026-05-24 10:13:52,168   T4 [put the bowl on top of the cabinet] ep=30: 27/30=90%\\n2026-05-24 10:15:01,072   T4 [put the bowl on top of the cabinet] ep=40: 35/40=88%\\n2026-05-24 10:15:51,942   T4 [put the bowl on top of the cabinet] ep=50: 45/50=90%\\n2026-05-24 10:15:51,943 Task 4: SR=90.0% | Total: 180/250=72.0% | Time: 36.2min\\n2026-05-24 10:17:13,405   T5 [push the plate to the front of the stove] ep=10: 9/10=90%\\n2026-05-24 10:18:42,978   T5 [push the plate to the front of the stove] ep=20: 17/20=85%\\n2026-05-24 10:20:08,658   T5 [push the plate to the front of the stove] ep=30: 25/30=83%\\n2026-05-24 10:21:38,676   T5 [push the plate to the front of the stove] ep=40: 33/40=82%\\n2026-05-24 10:23:12,379   T5 [push the plate to the front of the stove] ep=50: 40/50=80%\\n2026-05-24 10:23:12,379 Task 5: SR=80.0% | Total: 220/300=73.3% | Time: 43.6min\\n2026-05-24 10:24:49,895   T6 [put the cream cheese in the bowl] ep=10: 6/10=60%\\n2026-05-24 10:26:22,727   T6 [put the cream cheese in the bowl] ep=20: 12/20=60%\\n2026-05-24 10:27:57,011   T6 [put the cream cheese in the bowl] ep=30: 18/30=60%\\n2026-05-24 10:29:54,262   T6 [put the cream cheese in the bowl] ep=40: 23/40=57%\\n2026-05-24 10:30:50,674   T6 [put the cream cheese in the bowl] ep=50: 33/50=66%\\n2026-05-24 10:30:50,674 Task 6: SR=66.0% | Total: 253/350=72.3% | Time: 51.2min\\n2026-05-24 10:31:48,018   T7 [turn on the stove] ep=10: 9/10=90%\\n2026-05-24 10:32:32,942   T7 [turn on the stove] ep=20: 19/20=95%\\n2026-05-24 10:33:16,672   T7 [turn on the stove] ep=30: 29/30=97%\\n2026-05-24 10:34:03,345   T7 [turn on the stove] ep=40: 39/40=98%\\n2026-05-24 10:34:48,421   T7 [turn on the stove] ep=50: 49/50=98%\\n2026-05-24 10:34:48,421 Task 7: SR=98.0% | Total: 302/400=75.5% | Time: 55.2min\\n2026-05-24 10:36:12,770   T8 [put the bowl on the plate] ep=10: 7/10=70%\\n2026-05-24 10:37:38,780   T8 [put the bowl on the plate] ep=20: 13/20=65%\\n2026-05-24 10:39:04,739   T8 [put the bowl on the plate] ep=30: 19/30=63%\\n2026-05-24 10:40:17,642   T8 [put the bowl on the plate] ep=40: 27/40=68%\\n2026-05-24 10:41:36,256   T8 [put the bowl on the plate] ep=50: 34/50=68%\\n2026-05-24 10:41:36,256 Task 8: SR=68.0% | Total: 336/450=74.7% | Time: 62.0min\\n2026-05-24 10:43:42,706   T9 [put the wine bottle on the rack] ep=10: 3/10=30%\\n2026-05-24 10:45:40,794   T9 [put the wine bottle on the rack] ep=20: 7/20=35%\\n2026-05-24 10:47:34,007   T9 [put the wine bottle on the rack] ep=30: 12/30=40%\\n2026-05-24 10:49:20,719   T9 [put the wine bottle on the rack] ep=40: 18/40=45%\\n2026-05-24 10:50:58,055   T9 [put the wine bottle on the rack] ep=50: 25/50=50%\\n2026-05-24 10:50:58,055 Task 9: SR=50.0% | Total: 361/500=72.2% | Time: 71.3min\\n2026-05-24 10:50:58,276 \\n============================================================\\n2026-05-24 10:50:58,276 RESULT: libero_goal prune=l2norm keep=0.7 SR=72.2%\\n2026-05-24 10:50:58,276 Saved: /root/autodl-tmp/importance_margin_vla_compress/eval_results/pi05_l2norm_k0.70_libero_goal_seed43.json\\n2026-05-24 10:50:58,276 ============================================================\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Got the results. Let me extract the metrics:
+
+- Overall SR: 72.2% (361/500)
+- Duration: 71.3 min
+- No errors (EXIT_CODE=0)
+
+Per-task breakdown:
+- T0: open the middle drawer of the cabinet - 39/50 = 78%
+- T1: put the bowl on the stove - 38/50 = 76%
+- T2: put the wine bottle on top of the cabinet - 34/50 = 68%
+
+
+- T3: open the top drawer and put the bowl in - 24/50 = 48%
+- T4: put the bowl on top of the cabinet - 45/50 = 90%
+- T5: push the plate to the front of the stove - 40/50 = 80%
+- T6: put the cream cheese in the bowl - 33/50 = 66%
+- T7: turn on the stove - 49/50 = 98%
+- T8: put the bowl on the plate - 34/50 = 68%
+- T9: put the wine bottle on the rack - 25/50 = 50%
+
+The remaining tasks show quite a bit of variation in performance, with T7 being nearly perfect at 98% while T3 struggles at just 48%.
+
+Overall I'm getting 72.2% success rate, which is slightly better than the seed42 baseline of 71.8% — a difference of 0.4 percentage points well within the acceptable threshold. This confirms the approach is working, so I'll update the registry now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "698ec70d-f78b-4308-af98-dc5e75283383",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VcHGjvMCYq9e5rbBa3EJfw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3751,
+      "cache_read_input_tokens": 24478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3751
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+实验成功完成。Overall SR = 72.2%，与 seed42 (71.8%) 仅差 +0.4pp，非常稳定。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "b7fe8fa2-a691-46e9-b2b9-6f55ce08ed2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VcHGjvMCYq9e5rbBa3EJfw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3751,
+      "cache_read_input_tokens": 24478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3751
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KFF8WATxi3sVsuCg4gbcXq`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_goal_seed43_v2",
+  "field": "metrics",
+  "value": {
+    "overall_SR": 72.2,
+    "total_successes": 361,
+    "total_episodes": 500,
+    "duration_min": 71.3,
+    "per_task_SR": {
+      "T0_open_middle_drawer": 78,
+      "T1_put_bowl_on_stove": 76,
+      "T2_wine_bottle_on_cabinet": 68,
+      "T3_open_drawer_put_bowl": 48,
+      "T4_bowl_on_cabinet": 90,
+      "T5_push_plate_front_stove": 80,
+      "T6_cream_cheese_in_bowl": 66,
+      "T7_turn_on_stove": 98,
+      "T8_bowl_on_plate": 68,
+      "T9_wine_bottle_on_rack": 50
+    }
+  },
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "0b4f9b67-6173-4958-9244-1e836139b6e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VcHGjvMCYq9e5rbBa3EJfw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3751,
+      "cache_read_input_tokens": 24478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3751
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-24T02:55:37.361Z_
+
+<details><summary>↩ Tool result · `toolu_01KFF8WATxi3sVsuCg4gbcXq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_goal_seed43_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:37:47.064Z\", \"updated_at\": \"2026-05-24T02:55:35.290Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"parent\": \"eval_pi05_l2norm_k07_goal_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"345077\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"submitted_at\": \"2026-05-24T01:38:03.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi05_pretrained\", \"eval_data\": \"libero_goal\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:52:36.509Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:52:47.770853+00:00\"}]}, \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.1087}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "be8bfa0b-af81-4aff-9e00-53a46db35517",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k07_goal_seed43_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T01:37:47.064Z\\\", \\\"updated_at\\\": \\\"2026-05-24T02:55:35.290Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k07_goal_seed43\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"345077\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T01:38:03.686Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi05_pretrained\\\", \\\"eval_data\\\": \\\"libero_goal\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T02:52:36.509Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T02:52:47.770853+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_SR\\\": 72.2, \\\"total_successes\\\": 361, \\\"total_episodes\\\": 500, \\\"duration_min\\\": 71.3, \\\"per_task_SR\\\": {\\\"T0_open_middle_drawer\\\": 78, \\\"T1_put_bowl_on_stove\\\": 76, \\\"T2_wine_bottle_on_cabinet\\\": 68, \\\"T3_open_drawer_put_bowl\\\": 48, \\\"T4_bowl_on_cabinet\\\": 90, \\\"T5_push_plate_front_stove\\\": 80, \\\"T6_cream_cheese_in_bowl\\\": 66, \\\"T7_turn_on_stove\\\": 98, \\\"T8_bowl_on_plate\\\": 68, \\\"T9_wine_bottle_on_rack\\\": 50}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1087}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_goal_seed43_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:37:47.064Z\", \"updated_at\": \"2026-05-24T02:55:35.290Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"parent\": \"eval_pi05_l2norm_k07_goal_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"345077\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"submitted_at\": \"2026-05-24T01:38:03.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi05_pretrained\", \"eval_data\": \"libero_goal\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:52:36.509Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:52:47.770853+00:00\"}]}, \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.1087}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01TW6AcMyvSL9364SWogTXgy`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_goal_seed43_v2",
+  "field": "log_path",
+  "value": "~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "0542ba39-a0ce-435e-b800-768a863a98c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHPWWt27ngz24dMHjgPkYm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 28229,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01933NMBGmxgYiYNzZZ32avo`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_goal_seed43_v2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "a2a870c8-b90d-4bf2-b460-43385a4c123c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHPWWt27ngz24dMHjgPkYm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 28229,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T02:55:45.201Z_
+
+<details><summary>↩ Tool result · `toolu_01TW6AcMyvSL9364SWogTXgy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_goal_seed43_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:37:47.064Z\", \"updated_at\": \"2026-05-24T02:55:43.436Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"parent\": \"eval_pi05_l2norm_k07_goal_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"345077\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"submitted_at\": \"2026-05-24T01:38:03.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi05_pretrained\", \"eval_data\": \"libero_goal\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:52:36.509Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:52:47.770853+00:00\"}]}, \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.2787}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "4c0885fb-209f-4131-a21b-8924eec4bd95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k07_goal_seed43_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T01:37:47.064Z\\\", \\\"updated_at\\\": \\\"2026-05-24T02:55:43.436Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k07_goal_seed43\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"345077\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T01:38:03.686Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi05_pretrained\\\", \\\"eval_data\\\": \\\"libero_goal\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T02:52:36.509Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T02:52:47.770853+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_SR\\\": 72.2, \\\"total_successes\\\": 361, \\\"total_episodes\\\": 500, \\\"duration_min\\\": 71.3, \\\"per_task_SR\\\": {\\\"T0_open_middle_drawer\\\": 78, \\\"T1_put_bowl_on_stove\\\": 76, \\\"T2_wine_bottle_on_cabinet\\\": 68, \\\"T3_open_drawer_put_bowl\\\": 48, \\\"T4_bowl_on_cabinet\\\": 90, \\\"T5_push_plate_front_stove\\\": 80, \\\"T6_cream_cheese_in_bowl\\\": 66, \\\"T7_turn_on_stove\\\": 98, \\\"T8_bowl_on_plate\\\": 68, \\\"T9_wine_bottle_on_rack\\\": 50}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.2787}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_goal_seed43_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:37:47.064Z\", \"updated_at\": \"2026-05-24T02:55:43.436Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"parent\": \"eval_pi05_l2norm_k07_goal_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"345077\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"submitted_at\": \"2026-05-24T01:38:03.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi05_pretrained\", \"eval_data\": \"libero_goal\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:52:36.509Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:52:47.770853+00:00\"}]}, \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.2787}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T02:55:52.062Z_
+
+<details><summary>↩ Tool result · `toolu_01933NMBGmxgYiYNzZZ32avo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_goal_seed43_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:37:47.064Z\", \"updated_at\": \"2026-05-24T02:55:51.085Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"parent\": \"eval_pi05_l2norm_k07_goal_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"345077\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"submitted_at\": \"2026-05-24T01:38:03.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi05_pretrained\", \"eval_data\": \"libero_goal\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:52:36.509Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:52:47.770853+00:00\"}]}, \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.8274}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "725215e8-2857-4060-87c4-69a41a1aaa86",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k07_goal_seed43_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T01:37:47.064Z\\\", \\\"updated_at\\\": \\\"2026-05-24T02:55:51.085Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k07_goal_seed43\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"345077\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T01:38:03.686Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi05_pretrained\\\", \\\"eval_data\\\": \\\"libero_goal\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T02:52:36.509Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T02:52:47.770853+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_SR\\\": 72.2, \\\"total_successes\\\": 361, \\\"total_episodes\\\": 500, \\\"duration_min\\\": 71.3, \\\"per_task_SR\\\": {\\\"T0_open_middle_drawer\\\": 78, \\\"T1_put_bowl_on_stove\\\": 76, \\\"T2_wine_bottle_on_cabinet\\\": 68, \\\"T3_open_drawer_put_bowl\\\": 48, \\\"T4_bowl_on_cabinet\\\": 90, \\\"T5_push_plate_front_stove\\\": 80, \\\"T6_cream_cheese_in_bowl\\\": 66, \\\"T7_turn_on_stove\\\": 98, \\\"T8_bowl_on_plate\\\": 68, \\\"T9_wine_bottle_on_rack\\\": 50}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.8274}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_goal_seed43_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:37:47.064Z\", \"updated_at\": \"2026-05-24T02:55:51.085Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"parent\": \"eval_pi05_l2norm_k07_goal_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"345077\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"submitted_at\": \"2026-05-24T01:38:03.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi05_pretrained\", \"eval_data\": \"libero_goal\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:52:36.509Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:52:47.770853+00:00\"}]}, \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.8274}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01347vFEdM1T7yDGosaSTrio`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_goal_seed43_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "47b7fd41-1c29-48b4-ba9e-a394af9f878e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015GiAGGwR876BhiN2yYw3Xw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2108,
+      "cache_read_input_tokens": 29778,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2108
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-24T02:55:58.023Z_
+
+<details><summary>↩ Tool result · `toolu_01347vFEdM1T7yDGosaSTrio`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 2.9344}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "5ddd8881-36a7-460a-af93-954feb88415b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9344}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 2.9344}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Need to set checkpoint_path first. This is an eval experiment, so there's no new checkpoint. Let me set it to the source checkpoint.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "34fa108a-14ac-44c4-a45a-fd7def478f80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01APGmeFH1wJahybYnaEcaAd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 31886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FxUJu7EQsF6rAiQb7VgJnP`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_goal_seed43_v2",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/pi05_libero_finetuned",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "e50f9b10-1733-422e-85b8-d9ec4b9f94fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01APGmeFH1wJahybYnaEcaAd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 31886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T02:56:06.121Z_
+
+<details><summary>↩ Tool result · `toolu_01FxUJu7EQsF6rAiQb7VgJnP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_goal_seed43_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:37:47.064Z\", \"updated_at\": \"2026-05-24T02:56:05.243Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"parent\": \"eval_pi05_l2norm_k07_goal_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"345077\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"submitted_at\": \"2026-05-24T01:38:03.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi05_pretrained\", \"eval_data\": \"libero_goal\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:52:36.509Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:52:47.770853+00:00\"}]}, \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.3607}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "c8999847-99af-410f-8ee0-50015df0d39d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k07_goal_seed43_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T01:37:47.064Z\\\", \\\"updated_at\\\": \\\"2026-05-24T02:56:05.243Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k07_goal_seed43\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"345077\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T01:38:03.686Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi05_pretrained\\\", \\\"eval_data\\\": \\\"libero_goal\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T02:52:36.509Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T02:52:47.770853+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_SR\\\": 72.2, \\\"total_successes\\\": 361, \\\"total_episodes\\\": 500, \\\"duration_min\\\": 71.3, \\\"per_task_SR\\\": {\\\"T0_open_middle_drawer\\\": 78, \\\"T1_put_bowl_on_stove\\\": 76, \\\"T2_wine_bottle_on_cabinet\\\": 68, \\\"T3_open_drawer_put_bowl\\\": 48, \\\"T4_bowl_on_cabinet\\\": 90, \\\"T5_push_plate_front_stove\\\": 80, \\\"T6_cream_cheese_in_bowl\\\": 66, \\\"T7_turn_on_stove\\\": 98, \\\"T8_bowl_on_plate\\\": 68, \\\"T9_wine_bottle_on_rack\\\": 50}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.3607}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_goal_seed43_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:37:47.064Z\", \"updated_at\": \"2026-05-24T02:56:05.243Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"parent\": \"eval_pi05_l2norm_k07_goal_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"345077\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"submitted_at\": \"2026-05-24T01:38:03.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi05_pretrained\", \"eval_data\": \"libero_goal\"}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:52:36.509Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:52:47.770853+00:00\"}]}, \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.3607}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01CZP2HyM2apFuJAwTriW59D`</summary>
+
+```json
+{
+  "exp_id": "eval_pi05_l2norm_k07_goal_seed43_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "importance_margin_vla_compress"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "6d328d06-8194-4522-9996-cc52e0b9bcdf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BeEwXscsJF2eZQr7A1XnkD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1112,
+      "cache_read_input_tokens": 32104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1112
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T02:56:15.391Z_
+
+<details><summary>↩ Tool result · `toolu_01CZP2HyM2apFuJAwTriW59D`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_goal_seed43_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:37:47.064Z\", \"updated_at\": \"2026-05-24T02:56:11.177Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"parent\": \"eval_pi05_l2norm_k07_goal_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"345077\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"submitted_at\": \"2026-05-24T01:38:03.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi05_pretrained\", \"eval_data\": \"libero_goal\", \"wall_clock_seconds\": 4687.5, \"gpu_hours\": 1.3}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:52:36.509Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:52:47.770853+00:00\"}]}, \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"completed_at\": \"2026-05-24T02:56:11.177Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.6267}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "15ae6031-0558-4f68-98f5-688694907627",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pi05_l2norm_k07_goal_seed43_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T01:37:47.064Z\\\", \\\"updated_at\\\": \\\"2026-05-24T02:56:11.177Z\\\", \\\"hypothesis\\\": \\\"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\\\", \\\"parent\\\": \\\"eval_pi05_l2norm_k07_goal_seed43\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\\\", \\\"server\\\": \\\"westd-41074\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"345077\\\", \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T01:38:03.686Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/importance_margin_vla_compress\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"pi05_pretrained\\\", \\\"eval_data\\\": \\\"libero_goal\\\", \\\"wall_clock_seconds\\\": 4687.5, \\\"gpu_hours\\\": 1.3}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-24T02:52:36.509Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-24T02:52:47.770853+00:00\\\"}]}, \\\"metrics\\\": {\\\"overall_SR\\\": 72.2, \\\"total_successes\\\": 361, \\\"total_episodes\\\": 500, \\\"duration_min\\\": 71.3, \\\"per_task_SR\\\": {\\\"T0_open_middle_drawer\\\": 78, \\\"T1_put_bowl_on_stove\\\": 76, \\\"T2_wine_bottle_on_cabinet\\\": 68, \\\"T3_open_drawer_put_bowl\\\": 48, \\\"T4_bowl_on_cabinet\\\": 90, \\\"T5_push_plate_front_stove\\\": 80, \\\"T6_cream_cheese_in_bowl\\\": 66, \\\"T7_turn_on_stove\\\": 98, \\\"T8_bowl_on_plate\\\": 68, \\\"T9_wine_bottle_on_rack\\\": 50}}, \\\"log_path\\\": \\\"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pi05_libero_finetuned\\\", \\\"completed_at\\\": \\\"2026-05-24T02:56:11.177Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.6267}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_pi05_l2norm_k07_goal_seed43_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:37:47.064Z\", \"updated_at\": \"2026-05-24T02:56:11.177Z\", \"hypothesis\": \"π0.5 L2norm k=0.7 Goal seed43 v2 (fix HF_HUB_OFFLINE=1): v1 因 tokenizer 网络错误崩溃。seed42=71.8%。双种子验证 L2norm k=0.7 Goal 的稳定性。\", \"parent\": \"eval_pi05_l2norm_k07_goal_seed43\", \"spec\": {\"command\": \"python -u eval_pi05_pruning_libero.py --prune_mode l2norm --keep_ratio 0.7 --suite libero_goal --seed 43 --gpu 0\", \"server\": \"westd-41074\", \"gpu\": [\"cuda:1\"], \"pid\": \"345077\", \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"submitted_at\": \"2026-05-24T01:38:03.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/importance_margin_vla_compress\", \"data_count\": 500, \"model_name\": \"pi0.5\", \"seed\": 43, \"checkpoint_source\": \"pi05_pretrained\", \"eval_data\": \"libero_goal\", \"wall_clock_seconds\": 4687.5, \"gpu_hours\": 1.3}, \"reproduce\": {\"finished_at\": \"2026-05-24T02:52:36.509Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:52:47.770853+00:00\"}]}, \"metrics\": {\"overall_SR\": 72.2, \"total_successes\": 361, \"total_episodes\": 500, \"duration_min\": 71.3, \"per_task_SR\": {\"T0_open_middle_drawer\": 78, \"T1_put_bowl_on_stove\": 76, \"T2_wine_bottle_on_cabinet\": 68, \"T3_open_drawer_put_bowl\": 48, \"T4_bowl_on_cabinet\": 90, \"T5_push_plate_front_stove\": 80, \"T6_cream_cheese_in_bowl\": 66, \"T7_turn_on_stove\": 98, \"T8_bowl_on_plate\": 68, \"T9_wine_bottle_on_rack\": 50}}, \"log_path\": \"~/runs/importance_margin_vla_compress/eval_pi05_l2norm_k07_goal_seed43_v2.log\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pi05_libero_finetuned\", \"completed_at\": \"2026-05-24T02:56:11.177Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.6267}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Registry 已更新为 DONE/success。
+
+## 结果汇总
+
+**Overall SR: 72.2%** (361/500), 耗时 71.3 min, 无错误。
+
+### Per-task SR
+
+| Task | SR |
+|---|---|
+| T0 open middle drawer | 78% |
+| T1 put bowl on stove | 76% |
+| T2 wine bottle on cabinet | 68% |
+| T3 open drawer put bowl | 48% |
+| T4 bowl on cabinet | 90% |
+| T5 push plate front stove | 80% |
+| T6 cream cheese in bowl | 66% |
+| T7 turn on stove | **98%** |
+| T8 bowl on plate | 68% |
+| T9 wine bottle on rack | 50% |
+
+### 双种子对比
+
+| Seed | SR |
+|---|---|
+| seed42 | 71.8% |
+| seed43 | 72.2% |
+| **Δ** | **+0.4pp** |
+
+差距仅 0.4pp，L2norm k=0.7 在 Goal suite 上表现高度稳定。Conclusion: **success**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "uuid": "8eb120d9-3338-440d-9641-5b75f29adc22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HoDMdcoCCtRySo2sJtmSm9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1234,
+      "cache_read_input_tokens": 33216,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1234
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 26_
+
+Registry 已更新为 DONE/success。
+
+## 结果汇总
+
+**Overall SR: 72.2%** (361/500), 耗时 71.3 min, 无错误。
+
+### Per-task SR
+
+| Task | SR |
+|---|---|
+| T0 open middle drawer | 78% |
+| T1 put bowl on stove | 76% |
+| T2 wine bottle on cabinet | 68% |
+| T3 open drawer put bowl | 48% |
+| T4 bowl on cabinet | 90% |
+| T5 push plate front stove | 80% |
+| T6 cream cheese in bowl | 66% |
+| T7 turn on stove | **98%** |
+| T8 bowl on plate | 68% |
+| T9 wine bottle on rack | 50% |
+
+### 双种子对比
+
+| Seed | SR |
+|---|---|
+| seed42 | 71.8% |
+| seed43 | 72.2% |
+| **Δ** | **+0.4pp** |
+
+差距仅 0.4pp，L2norm k=0.7 在 Goal suite 上表现高度稳定。Conclusion: **success**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 85640,
+  "duration_api_ms": 57800,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "3bf15dda-e10d-4993-8060-7155432dd2a3",
+  "total_cost_usd": 0.30316525000000005,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 22609,
+    "cache_read_input_tokens": 215084,
+    "output_tokens": 2108,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22609,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 311,
+        "cache_read_input_tokens": 33216,
+        "cache_creation_input_tokens": 1234,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1234
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1402,
+      "outputTokens": 31,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001557,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 2108,
+      "cacheReadInputTokens": 215084,
+      "cacheCreationInputTokens": 22609,
+      "webSearchRequests": 0,
+      "costUSD": 0.30160825,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "91d56b33-c473-4827-8bfa-4485141142cf"
+}
+```
+
+</details>
+
+---

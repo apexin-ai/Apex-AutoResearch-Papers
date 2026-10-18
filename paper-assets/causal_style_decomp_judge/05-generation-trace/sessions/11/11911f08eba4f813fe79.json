@@ -2554,5 +2554,6 @@
       ],
       "message_count": 63
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/ops-cleanup-deploy-vllm-alpacaeval.md"
 }

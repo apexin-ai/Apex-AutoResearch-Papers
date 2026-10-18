@@ -1,0 +1,584 @@
+# paper writing related work
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/chats/worker_paper_writing_related_work_20260515T093527.jsonl`
+- **Structured JSON:** [`cef936b1abdc83b621cc.json`](../../sessions/ce/cef936b1abdc83b621cc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+15 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T09:36:54.430781+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T09:36:54.431592+00:00_
+
+1	---
+2	name: latex-paper
+3	description: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。
+4	scope: global
+5	tags:
+6	- latex
+7	- paper-writing
+8	- academic
+9	- citation
+10	- submission
+11	version: 1
+12	roles:
+13	- agent
+14	- worker
+15	---
+16	
+17	# LaTeX 论文写作全流程
+18	
+19	ML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。
+20	
+21	---
+22	
+23	## 1. 工作模式
+24	
+25	开始前选择模式：
+26	
+27	| 模式 | 说明 | 适用 |
+28	|------|------|------|
+29	| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |
+30	| **Improve** | 改写已有章节，强化论证 | 修改稿 |
+31	| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |
+32	
+33	---
+34	
+35	## 2. Claim-Evidence 方法论
+36	
+37	**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**
+38	
+39	### 2.1 一句话贡献
+40	
+41	在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。
+42	
+43	### 2.2 Claim-Evidence Map
+44	
+45	为每个 contribution 建立 claim→evidence 映射表：
+46	
+47	| Contribution | Claim | Evidence | Table/Figure |
+48	|-------------|-------|----------|-------------|
+49	| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |
+50	| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |
+51	| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |
+52	
+53	**没有直接证据支撑的 claim 必须删除或降级为 discussion。**
+54	
+55	### 2.3 章节起草顺序
+56	
+57	```
+58	1. Introduction + Experiments（先确定 claim 和 evidence）
+59	2. Method（评估问题稳定后再写细节）
+60	3. Related Work
+61	4. Abstract + Title（核心 claim 定型后最后写）
+62	```
+63	
+64	### 2.4 Quality Gates
+65	
+66	投稿前必须通过：
+67	- [ ] 前两段出现显式 novelty 声明
+68	- [ ] 每个 contribution 有可验证的 evidence
+69	- [ ] Abstract / Intro / Conclusion 的 claim 一致
+70	- [ ] Limitations 真实且技术性诚实
+71	- [ ] 审稿人两分钟内能识别 delta
+72	
+73	---
+74	
+75	## 3. 引用防幻觉（CRITICAL）
+76	
+77	**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**
+78	
+79	### 3.1 黄金法则
+80	
+81	```
+82	IF 无法程序化获取引用:
+83	    → 标记 [CITATION NEEDED] 或 \cite{PLACEHOLDER_verify}
+84	    → 明确告知用户
+85	    → 绝不编造看似合理的引用
+86	```
+87	
+88	### 3.2 五步验证流程
+89	
+90	```
+91	1. SEARCH  → Semantic Scholar API 搜索关键词
+92	2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）
+93	3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）
+94	4. CHECK   → 确认
+…[truncated 7201 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T09:36:54.432009+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T09:36:54.432201+00:00_
+
+1	\section{Introduction}
+2	\label{sec:intro}
+3	
+4	The text on which large language models are trained increasingly contains their own outputs.
+5	As synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \cite{shumailov2024_nature,alemohammad2024_mad}.
+6	This model$\to$data$\to$model cycle is no longer hypothetical---it is already occurring in the wild---yet we lack the ability to determine how many recursive iterations a given text has undergone, a distinction that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \cite{dohmatob2024_tale_of_tails}.
+7	
+8	Existing tools address adjacent but distinct problems.
+9	Binary detectors such as Binoculars \cite{binoculars2024}, Fast-DetectGPT \cite{fast_detectgpt2024}, and DivEye \cite{diveye2026} classify text as human-written or machine-generated, collapsing all generation depths $d \geq 1$ into a single category.
+10	Watermarking schemes \cite{kirchenbauer2023_watermark} require proactive embedding and cannot be applied retroactively to existing corpora.
+11	The model collapse literature \cite{shumailov2024_nature,dohmatob2024_tale_of_tails} characterizes how recursive training degrades model quality but assumes the generation depth is known a priori---the very quantity we seek to estimate.
+12	\citet{drayson2025_detection_prevents_collapse} show that filtering synthetic data from training corpora can prevent collapse, yet their approach relies on binary detection and does not distinguish among recursive depths.
+13	EditLens \cite{editlens2026} estimates the extent of single-pass editing applied to a text but does not address multi-step recursive generation.
+14	No existing method estimates the ordinal recursive depth of a text passage from its 
+…[truncated 3515 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T09:36:54.432381+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T09:36:54.432568+00:00_
+
+1	\section{Task Formulation}
+2	\label{sec:method}
+3	
+4	\subsection{Problem Definition}
+5	\label{sec:method:problem}
+6	
+7	Let $f_\theta$ denote a language model and $\mathcal{D}_0$ a corpus of human-written seed text.
+8	We define a \emph{recursive generation chain} of depth $K$ as the sequence $\mathcal{D}_0, \mathcal{D}_1, \dots, \mathcal{D}_K$, where each $\mathcal{D}_k$ ($k \geq 1$) is produced by finetuning $f_\theta$ on $\mathcal{D}_{k-1}$ and sampling from the resulting model.
+9	Depth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.
+10	
+11	Given a text passage $x$, the task is to estimate its recursive generation depth $d \in \{0, 1, \dots, K\}$.
+12	This is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.
+13	
+14	\subsection{Multi-Generational Benchmark Construction}
+15	\label{sec:method:benchmark}
+16	
+17	We construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.
+18	
+19	\paragraph{Model families.}
+20	We select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).
+21	Restricting to a narrow parameter range isolates the effect of architecture and training data from scale.
+22	
+23	\paragraph{Decoding strategies.}
+24	Each model is paired with three sampling methods: nucleus sampling ($p{=}0.95$) \cite{holtzman2020_nucleus}, temperature sampling ($\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).
+25	These span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.
+26	
+27	\paragraph{Depth and scale.}
+28	The primary benchmark covers depths d0--d3 across all $3 \times 3 = 9$ model--strategy cells, with 5{,}000 samples per depth per cell (180K samples total).
+29	For depth exten
+…[truncated 5126 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T09:36:54.432752+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/",
+  "description": "List paper directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/",
+    "description": "List paper directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T09:36:54.432904+00:00_
+
+atlas.tex
+generalization.tex
+introduction.tex
+main.tex
+method.tex
+references.bib
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T09:36:54.433059+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_related_work.tex",
+  "content": "\\section{Related Work}\n\\label{sec:related}\n\n\\paragraph{Model Collapse Theory.}\n\\citet{shumailov2024_nature} demonstrate that recursively training language models on their own outputs erodes distributional tails, eventually collapsing the output distribution to a narrow mode.\n\\citet{dohmatob2024_tale_of_tails} formalize this phenomenon through scaling laws that distinguish tail \\emph{narrowing} (reduced variance) from tail \\emph{cutting} (lost support), showing both accelerate with recursion depth.\nThe MAD framework \\cite{alemohammad2024_mad} extends this analysis to self-consuming generative models and quantifies the precision--recall tradeoff as synthetic data accumulates across generations.\n\\citet{gerstgrasser2024_accumulate} show that retaining real data alongside synthetic data across generations mitigates collapse, while \\citet{drayson2025_detection_prevents_collapse} demonstrate that filtering synthetic samples via binary detection can preserve model quality.\nRecent work further refines the theoretical picture: \\citet{bakshi2026_collapse_improvement} identify non-monotonic dynamics where early recursion can temporarily \\emph{improve} model quality before eventual degradation; \\citet{marchi2024_heat_death} characterize convergence to a fixed-point ``heat death'' distribution; and \\citet{wang2026_contamination} derive contamination guarantees bounding how much synthetic data a corpus can absorb.\nAdditional lines of work address curated synthetic pipelines \\cite{falahati2026_curated}, knowledge collapse in factual recall \\cite{knowledge_collapse2025}, spectral signatures of model-generated text \\cite{sigma2026_spectral}, and the ``synthetic eggs'' problem in self-improving loops \\cite{synthetic_eggs2026}.\nThese works characterize degradation patterns but assume the generation depth is known a priori; our work addresses the inverse problem of estimating depth from text alone.\n\n\\paragraph{AI Text Detection.}\nDetectGPT \\cite{mitchell2023_detectgpt} introduced probability curvature---the tendency of model-generated text to occupy local maxima of the log-probability surface---as a zero-shot detection signal.\n\\citet{fast_detectgpt2024} improve computational efficiency by replacing random perturbations with conditional probability curvature from a surrogate model.\nBinoculars \\cite{binoculars2024} exploits the perplexity ratio between two related models, achieving strong detection without training data.\nDivEye \\cite{diveye2026} leverages surprisal diversity patterns, while GLTR \\cite{gehrmann2019_gltr} provides statistical visualization of per-token likelihood ranks for human inspection.\n\\citet{sadasivan2023_paraphrase} expose fundamental limits: paraphrasing attacks reduce detection accuracy to near chance, and \\citet{pudasaini2026_detection_fails} show detection degrades under distribution shift between training and deployment domains.\n\\citet{pu2026_generator_barrier} formalize a generator barrier bounding detection performance when the generator is unknown.\nAll these methods perform binary classification (human vs.\\ machine), discarding the ordinal depth information that distinguishes first-generation from deeply recursive text.\nOur approach outputs ordinal depth labels, complementing rather than replacing binary detection.\n\n\\paragraph{Adjacent Tasks.}\nEditLens \\cite{editlens2026} estimates the \\emph{extent} of editing applied to a passage---a continuous measure of how much a text has been modified in a single pass---but does not model recursive generation chains.\n\\citet{uchendu2020_attribution} formulate authorship attribution as multi-source classification, identifying \\emph{which} model generated a text rather than \\emph{how many} recursive steps it has undergone.\nLOKI \\cite{loki2025} provides a comprehensive benchmark spanning multiple synthetic data modalities but evaluates binary detection, not depth estimation.\nThese tasks probe complementary dimensions of synthetic text characterization; none estimates recursive depth.\n\n\\paragraph{Decoding Strategy Effects.}\nThe choice of decoding strategy shapes the statistical properties of generated text in ways that interact with recursive depth signals.\n\\citet{holtzman2020_nucleus} show that unrestricted sampling produces degenerate repetitions and propose nucleus sampling to maintain output diversity.\n\\citet{finlayson2024_closing} demonstrate that decoding parameters affect downstream evaluation metrics in non-trivial ways.\n\\citet{garces_arias2025_decoding_decoded} find that the effect of decoding strategies on text quality is model-dependent, complicating universal quality claims.\n\\citet{wiher2022_decoding} provide a systematic comparison of decoding methods on surface-level text properties, and Mirostat \\cite{basu2021_mirostat} introduces perplexity-controlled decoding that actively regulates output entropy.\nOur Depth Degradation Atlas (\\S\\ref{sec:atlas}) reveals that these strategies induce qualitatively different degradation trajectories under recursive generation---temperature sampling accelerates convergence to a low-entropy attractor while top-$k$ attenuates the depth signal---effects that go beyond single-pass text quality to shape the discriminability of recursive depth itself.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_related_work.tex",
+    "content": "\\section{Related Work}\n\\label{sec:related}\n\n\\paragraph{Model Collapse Theory.}\n\\citet{shumailov2024_nature} demonstrate that recursively training language models on their own outputs erodes distributional tails, eventually collapsing the output distribution to a narrow mode.\n\\citet{dohmatob2024_tale_of_tails} formalize this phenomenon through scaling laws that distinguish tail \\emph{narrowing} (reduced variance) from tail \\emph{cutting} (lost support), showing both accelerate with recursion depth.\nThe MAD framework \\cite{alemohammad2024_mad} extends this analysis to self-consuming generative models and quantifies the precision--recall tradeoff as synthetic data accumulates across generations.\n\\citet{gerstgrasser2024_accumulate} show that retaining real data alongside synthetic data across generations mitigates collapse, while \\citet{drayson2025_detection_prevents_collapse} demonstrate that filtering synthetic samples via binary detection can preserve model quality.\nRecent work further refines the theoretical picture: \\citet{bakshi2026_collapse_improvement} identify non-monotonic dynamics where early recursion can temporarily \\emph{improve} model quality before eventual degradation; \\citet{marchi2024_heat_death} characterize convergence to a fixed-point ``heat death'' distribution; and \\citet{wang2026_contamination} derive contamination guarantees bounding how much synthetic data a corpus can absorb.\nAdditional lines of work address curated synthetic pipelines \\cite{falahati2026_curated}, knowledge collapse in factual recall \\cite{knowledge_collapse2025}, spectral signatures of model-generated text \\cite{sigma2026_spectral}, and the ``synthetic eggs'' problem in self-improving loops \\cite{synthetic_eggs2026}.\nThese works characterize degradation patterns but assume the generation depth is known a priori; our work addresses the inverse problem of estimating depth from text alone.\n\n\\paragraph{AI Text Detection.}\nDetectGPT \\cite{mitchell2023_detectgpt} introduced probability curvature---the tendency of model-generated text to occupy local maxima of the log-probability surface---as a zero-shot detection signal.\n\\citet{fast_detectgpt2024} improve computational efficiency by replacing random perturbations with conditional probability curvature from a surrogate model.\nBinoculars \\cite{binoculars2024} exploits the perplexity ratio between two related models, achieving strong detection without training data.\nDivEye \\cite{diveye2026} leverages surprisal diversity patterns, while GLTR \\cite{gehrmann2019_gltr} provides statistical visualization of per-token likelihood ranks for human inspection.\n\\citet{sadasivan2023_paraphrase} expose fundamental limits: paraphrasing attacks reduce detection accuracy to near chance, and \\citet{pudasaini2026_detection_fails} show detection degrades under distribution shift between training and deployment domains.\n\\citet{pu2026_generator_barrier} formalize a generator barrier bounding detection performance when the generator is unknown.\nAll these methods perform binary classification (human vs.\\ machine), discarding the ordinal depth information that distinguishes first-generation from deeply recursive text.\nOur approach outputs ordinal depth labels, complementing rather than replacing binary detection.\n\n\\paragraph{Adjacent Tasks.}\nEditLens \\cite{editlens2026} estimates the \\emph{extent} of editing applied to a passage---a continuous measure of how much a text has been modified in a single pass---but does not model recursive generation chains.\n\\citet{uchendu2020_attribution} formulate authorship attribution as multi-source classification, identifying \\emph{which} model generated a text rather than \\emph{how many} recursive steps it has undergone.\nLOKI \\cite{loki2025} provides a comprehensive benchmark spanning multiple synthetic data modalities but evaluates binary detection, not depth estimation.\nThese tasks probe complementary dimensions of synthetic text characterization; none estimates recursive depth.\n\n\\paragraph{Decoding Strategy Effects.}\nThe choice of decoding strategy shapes the statistical properties of generated text in ways that interact with recursive depth signals.\n\\citet{holtzman2020_nucleus} show that unrestricted sampling produces degenerate repetitions and propose nucleus sampling to maintain output diversity.\n\\citet{finlayson2024_closing} demonstrate that decoding parameters affect downstream evaluation metrics in non-trivial ways.\n\\citet{garces_arias2025_decoding_decoded} find that the effect of decoding strategies on text quality is model-dependent, complicating universal quality claims.\n\\citet{wiher2022_decoding} provide a systematic comparison of decoding methods on surface-level text properties, and Mirostat \\cite{basu2021_mirostat} introduces perplexity-controlled decoding that actively regulates output entropy.\nOur Depth Degradation Atlas (\\S\\ref{sec:atlas}) reveals that these strategies induce qualitatively different degradation trajectories under recursive generation---temperature sampling accelerates convergence to a low-entropy attractor while top-$k$ attenuates the depth signal---effects that go beyond single-pass text quality to shape the discriminability of recursive depth itself.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T09:36:54.433237+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_related_work.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T09:36:54.433370+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T09:36:54.433612+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T09:36:54.433771+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "section_related_work",
+  "type": "paper",
+  "description": "Related Work section (§2) for recursive generation depth estimation paper. 4 paragraphs: Model Collapse Theory, AI Text Detection, Adjacent Tasks, Decoding Strategy Effects. ~600 words, ACL style.",
+  "project": "recursive_gen_depth_est",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_related_work.tex",
+  "tags": "['paper', 'related-work', 'latex']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "section_related_work",
+    "type": "paper",
+    "description": "Related Work section (§2) for recursive generation depth estimation paper. 4 paragraphs: Model Collapse Theory, AI Text Detection, Adjacent Tasks, Decoding Strategy Effects. ~600 words, ACL style.",
+    "project": "recursive_gen_depth_est",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_related_work.tex",
+    "tags": "['paper', 'related-work', 'latex']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T09:36:54.433985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_9d424b\", \"name\": \"section_related_work\", \"type\": \"paper\", \"description\": \"Related Work section (§2) for recursive generation depth estimation paper. 4 paragraphs: Model Collapse Theory, AI Text Detection, Adjacent Tasks, Decoding Strategy Effects. ~600 words, ACL style.\", \"path\": \"projects/recursive_gen_depth_est/artifacts/_project/paper/section_related_work.tex\", \"url\": null, \"project\": \"recursive_gen_depth_est\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T09:36:39.957688+00:00\", \"tags\": [\"paper\", \"related-work\", \"latex\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260515T093527",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-15T09:36:54.434166+00:00_
+
+Related Work 章节已写入 `docs/paper/section_related_work.tex`，约 600 words，严格遵循 4 段结构：
+
+1. **Model Collapse Theory** — 从 Shumailov (Nature 2024) 的 tail erosion 出发，覆盖 Dohmatob scaling laws、MAD framework、accumulation/detection mitigation，以及 non-monotonic dynamics、heat death、contamination guarantees 等扩展工作。定位语：这些工作假设深度已知，我们估计深度本身。
+
+2. **AI Text Detection** — DetectGPT → Fast-DetectGPT → Binoculars → DivEye → GLTR 的方法线，加 paraphrasing limits 和 distribution shift 的局限性分析。定位语：binary classification 丢弃 ordinal depth information。
+
+3. **Adjacent Tasks** — EditLens（单次编辑程度）、attribution（哪个模型）、LOKI（benchmark）。定位语：互补维度，无一估计 recursive depth。
+
+4. **Decoding Strategy Effects** — nucleus/temperature/top-k/Mirostat 的文献基础，收束到我们的 Depth Degradation Atlas 揭示 strategy-dependent degradation trajectories。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_writing_related_work_20260515T093527"
+}
+```
+
+</details>
+
+---

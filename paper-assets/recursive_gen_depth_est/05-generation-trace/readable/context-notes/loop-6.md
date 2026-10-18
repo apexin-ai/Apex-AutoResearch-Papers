@@ -1,0 +1,64 @@
+# director / loop_6.md
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_6.md`
+- **Structured JSON:** [`9391942659469fc62d8b.json`](../../sessions/93/9391942659469fc62d8b.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 6
+reason: max_messages
+updated: '2026-05-16T10:36:52+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目 GPU 白名单：cuda:0, cuda:1（gpu-6000pro-2 服务器）
+- 论文正文 ≤8 页（EMNLP 2026 Main, ARR May 25 DDL）
+- Paper 中禁止出现内部实验 ID（cross_scale_qwen7b_001 等 registry ID 不能进 tex）
+- Qwen-7B 的 U-shape AUC 是 model-specific 现象，禁止泛化为"7B scale effect"
+- Llama-3.1-8B EDD_{0.70}=4（非>5），Qwen EDD>5——两者必须分别表述
+
+### 2. 🖥️ 基础设施快照
+- 服务器：gpu-6000pro-2 (connect.westb.seetacloud.com)，工作目录 /root/autodl-tmp/recursive_gen_depth_est
+- 本地论文路径：/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/
+- 论文真源在本地 workspace（不是远程），Agent 需 sync 到服务器后编译
+- 活跃��程：无（两张卡空闲，所有 77 个实验 DONE）
+- 无 tmux session / 无 cron 任务在跑
+
+### 3. 📊 当前状态
+刚完成：论文全部实验写入 + narrative upgrade + Reviewer 审查通过（3 CRITICAL 修复 + 1 WARNING 数值修正 0.822→0.786）。编译通过 0 errors 但正文 11 页超限 3 页。
+
+正在做：Agent 已收到压缩指令（4 轴留正文 + 3 轴移 Appendix + Discussion 从 2p→1p），Worker 应正在执行。
+
+等待：Agent 压缩完成 → 重新编译确认 ≤8 页 → 提交 Reviewer adversarial review round 2。
+
+### 4. 📋 待办
+- Agent 回复"压缩完成 + 编译通过 ≤8p" → post_to_reviewer 做 adversarial review round 2（全文一致性 + 数字核对）
+- Adversarial review 通过 → submit_paper_to_review 提交 Review Director（Group C）做正式审稿
+- 如果压缩后仍超 8 页 → 进一步移 Cross-Strategy table 为 inline 数字、合并 Cross-Scale 两张表
+- Review Director 回传审稿报告 → 按 review-report-action.skill.md 处理
+
+### 5. 🎯 战略上下文
+- 核心结论：recursive generation 留下可量化统计指纹（p90_ppl + var_surprisal），RF 70-85% 4-class，泛化至 7 个轴
+- 论文 2 Core Claims：(1) 特征决定性（分类器无关 ≤0.4pp spread）；(2) 七轴泛化（cross-model 66.4%, cross-scale 70.2%, cross-chain 84.75%）
+- 压缩决策的关键：正文 4 轴 = Baselines + Cross-Model + Cross-Strategy(含温度摘要) + Cross-Scale。"Seven axes" claim 保持不变，标注 4 in main + 3 in appendix
+- 易错点：Discussion 中"Scaling behavior"段落引用了 §4.6 数据，压缩时不能把它删了；contribution bullet 3 说"seven axes"不能因为移了 3 轴就改成"four axes"
+- 论文 framing 已稳定（paper_framing.md），不需要再改 narrative 方向
+
+
+---

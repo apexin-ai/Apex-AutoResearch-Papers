@@ -1,0 +1,1188 @@
+# writing generalization
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_writing_generalization_20260515T155339.jsonl`
+- **Structured JSON:** [`7edef052bc0ce9365049.json`](../../sessions/7e/7edef052bc0ce9365049.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T15:58:53.361372+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T15:58:53.361861+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T15:58:53.362115+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T15:58:53.362258+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "recursive_gen_depth_est",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T15:58:53.362792+00:00_
+
+Error: result (102,349 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T15:58:53.363110+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/memory.md\", \"content\": \"# Memory — recursive_gen_depth_est\\n\\n> 非 metrics 性质的决策原因、约束、经验教训。Metrics 查 registry。\\n\\n## 决策原因\\n\\n- **CORAL 需要充分训练**: epochs=5 只得 53.7%，100 epochs 后 78.1%。d1v2 AUC 从 0.34→0.82。之前\\\"CORAL 不适合此任务\\\"的结论是训练不足导致的误判。(2026-05-14)\\n- **CE-MLP 可能也训练不足**: baseline battery 首次跑 CE-MLP 用了 5 epochs 得 74.9%，需要用默认参数重跑确认。(2026-05-14)\\n- **解码策略影响是模型依赖的 (D006, updated)**: Pythia temp09 降 1.9pp，但 GPT-2 XL temp09 升 2.1pp，OLMo temp09 升 3.26pp。论文不能说\\\"strategy-agnostic\\\"，应说\\\"strategy-dependent magnitude with consistent signal presence\\\"。(2026-05-15)\\n- **OLMo temp09 是当前最强配置 (D008)**: 82.03% 4-class RF, d1v2 AUC 0.901。(2026-05-15)\\n- **Feature importance 表述 (D007)**: top feature set (p90_ppl, var_surprisal) 跨 cells 稳定，但 ranking 因模型而异。Claim 2 应说\\\"consistent feature set\\\"而非\\\"var_surprisal as single best\\\"。(2026-05-14)\\n- **Top-k 信号衰减**: Pythia top-k 69.6% vs nucleus 78.2% (-8.6pp)，截断式采样比连续概率重分配保留更弱的深度信号。(2026-05-14)\\n- **Atlas v2 EDD 差异 (D009)**: 6/7 cells EDD=3，但 Pythia topk50 EDD=1（d2v3 AUC=0.692）。\\\"小模型+受限采样→退化信号更早饱和\\\"是 Discussion 核心论点。(2026-05-15)\\n- **Atlas v2 Feature trajectory (D010)**: p90_ppl/var_surprisal/mean_surprisal 随 depth 单调递减（ρ=-1.0），rep_2gram/3gram/4gram 随 depth 单调递增。两类信号互补。(2026-05-15)\\n- **EDD 推荐阈值 T=0.75 (D011)**: T=0.75 下 7/9 维持 EDD=3，仅 topk 掉队。瓶颈统一在 d2v3 pair。(2026-05-15)\\n- **topk 跨模型一致性最高 (D012)**: ρ=0.811，确定性截断使 feature landscape 趋同，但伴随信号衰减。(2026-05-15)\\n- **p90_ppl 优于 mean_ppl 的统计根因**: 1 个样本 (mean_ppl=1.43e13) 贡献 depth-1 mean_ppl 的 94.4%。Token-level perplexity 极度重尾（kurtosis>4900）。p90_ppl 完美单调。论文应说明 percentile-based features 的统计稳健性优势。(2026-05-15)\\n- **Cross-strategy LOO temp09 d1v2 反转根因 (D014, updated 2026-05-15)**: Covariate shift 确认。temp09 depth N ≈ 其他策略 depth N+1。**⚠️ 重要修正：z-score 修复效果取决于分类器类型且实验验证与 framing 声称不符**。RF 对 z-score 完全不变（树模型 scale-invariant）。LR cross-str
+…[truncated 7180 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T15:58:53.363335+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result if isinstance(result, list) else [result]\ntargets = ['baseline_battery_001', 'cross_model_loo_v1', 'cross_strategy_loo_001', 'dcol_roberta_v6_001', 'n2_deberta_finetune_001', 'n2_roberta_finetune_001', 'lr_zscore_cross_strategy_001']\nfor e in exps:\n    eid = e.get('experiment_id','')\n    if eid in targets:\n        print('='*60)\n        print(f'EXPERIMENT: {eid}')\n        print(json.dumps(e, indent=2, default=str))\n        print()\n\"\n",
+  "description": "Extract specific experiments from registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result if isinstance(result, list) else [result]\ntargets = ['baseline_battery_001', 'cross_model_loo_v1', 'cross_strategy_loo_001', 'dcol_roberta_v6_001', 'n2_deberta_finetune_001', 'n2_roberta_finetune_001', 'lr_zscore_cross_strategy_001']\nfor e in exps:\n    eid = e.get('experiment_id','')\n    if eid in targets:\n        print('='*60)\n        print(f'EXPERIMENT: {eid}')\n        print(json.dumps(e, indent=2, default=str))\n        print()\n\"\n",
+    "description": "Extract specific experiments from registry JSON"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T15:58:53.363478+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T15:58:53.363607+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    raw = f.read()\ndata = json.loads(raw)\n# The result field is a JSON string\nresult_str = data['result']\nresult = json.loads(result_str)\nprint(type(result).__name__)\nif isinstance(result, dict):\n    print(list(result.keys())[:10])\nelif isinstance(result, list):\n    print(len(result))\n    for e in result[:3]:\n        print(type(e).__name__, list(e.keys())[:5] if isinstance(e, dict) else str(e)[:100])\nelse:\n    print(str(result)[:500])\n\"\n",
+  "description": "Probe registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    raw = f.read()\ndata = json.loads(raw)\n# The result field is a JSON string\nresult_str = data['result']\nresult = json.loads(result_str)\nprint(type(result).__name__)\nif isinstance(result, dict):\n    print(list(result.keys())[:10])\nelif isinstance(result, list):\n    print(len(result))\n    for e in result[:3]:\n        print(type(e).__name__, list(e.keys())[:5] if isinstance(e, dict) else str(e)[:100])\nelse:\n    print(str(result)[:500])\n\"\n",
+    "description": "Probe registry JSON structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T15:58:53.363741+00:00_
+
+dict
+['success', 'data', 'error', 'metadata']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T15:58:53.363866+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\ndata = result['data']\nprint(type(data).__name__)\nif isinstance(data, list):\n    print(len(data))\n    for e in data[:2]:\n        print(e.get('experiment_id','?'))\nelif isinstance(data, dict):\n    print(list(data.keys())[:10])\n\"\n",
+  "description": "Probe registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\ndata = result['data']\nprint(type(data).__name__)\nif isinstance(data, list):\n    print(len(data))\n    for e in data[:2]:\n        print(e.get('experiment_id','?'))\nelif isinstance(data, dict):\n    print(list(data.keys())[:10])\n\"\n",
+    "description": "Probe registry data structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T15:58:53.364022+00:00_
+
+dict
+['experiments', 'count', 'total', 'baseline']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T15:58:53.364146+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\ntargets = ['baseline_battery_001', 'cross_model_loo_v1', 'cross_strategy_loo_001', 'dcol_roberta_v6_001', 'n2_deberta_finetune_001', 'n2_roberta_finetune_001', 'lr_zscore_cross_strategy_001']\nfor e in exps:\n    eid = e.get('experiment_id','')\n    if eid in targets:\n        print('='*60)\n        print(f'EXPERIMENT: {eid}')\n        print(json.dumps(e, indent=2, default=str))\n        print()\n\"\n",
+  "description": "Extract target experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\ntargets = ['baseline_battery_001', 'cross_model_loo_v1', 'cross_strategy_loo_001', 'dcol_roberta_v6_001', 'n2_deberta_finetune_001', 'n2_roberta_finetune_001', 'lr_zscore_cross_strategy_001']\nfor e in exps:\n    eid = e.get('experiment_id','')\n    if eid in targets:\n        print('='*60)\n        print(f'EXPERIMENT: {eid}')\n        print(json.dumps(e, indent=2, default=str))\n        print()\n\"\n",
+    "description": "Extract target experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T15:58:53.364270+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 9, in &lt;module>
+    eid = e.get('experiment_id','')
+          ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T15:58:53.364390+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\nprint(type(exps).__name__)\nif isinstance(exps, dict):\n    keys = list(exps.keys())\n    print('Keys:', keys[:10])\n    first_key = keys[0]\n    val = exps[first_key]\n    print(f'First key: {first_key}, val type: {type(val).__name__}')\n    if isinstance(val, dict):\n        print(list(val.keys())[:10])\nelif isinstance(exps, list):\n    print(len(exps), type(exps[0]).__name__)\n\"\n",
+  "description": "Check experiments structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\nprint(type(exps).__name__)\nif isinstance(exps, dict):\n    keys = list(exps.keys())\n    print('Keys:', keys[:10])\n    first_key = keys[0]\n    val = exps[first_key]\n    print(f'First key: {first_key}, val type: {type(val).__name__}')\n    if isinstance(val, dict):\n        print(list(val.keys())[:10])\nelif isinstance(exps, list):\n    print(len(exps), type(exps[0]).__name__)\n\"\n",
+    "description": "Check experiments structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T15:58:53.364515+00:00_
+
+dict
+Keys: ['zeroshot_llm_500_001', 'temp07_pilot_pythia_001', 'n2_roberta_finetune_001', 'n2_deberta_finetune_001', 'cross_strategy_loo_001', 'depth_extension_olmo_d4d5_002', 'depth_extension_gpt2xl_d4d5_001', 'depth_extension_olmo_d4d5_001', 'lr_zscore_cross_strategy_001', 'granularity_ablation_rf_001']
+First key: zeroshot_llm_500_001, val type: dict
+['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'server', 'gpu', 'reproduce']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T15:58:53.364764+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 << 'PYEOF'\nimport json\nwith open(\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\") as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\ntargets = ['baseline_battery_001', 'cross_model_loo_v1', 'cross_strategy_loo_001', 'dcol_roberta_v6_001', 'n2_deberta_finetune_001', 'n2_roberta_finetune_001', 'lr_zscore_cross_strategy_001']\nfor t in targets:\n    if t in exps:\n        print('='*60)\n        print(f'EXPERIMENT: {t}')\n        print(json.dumps(exps[t], indent=2, default=str))\n        print()\n    else:\n        print(f'NOT FOUND: {t}')\nPYEOF\n",
+  "description": "Extract target experiments by key",
+  "timeout": "30000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 << 'PYEOF'\nimport json\nwith open(\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\") as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\ntargets = ['baseline_battery_001', 'cross_model_loo_v1', 'cross_strategy_loo_001', 'dcol_roberta_v6_001', 'n2_deberta_finetune_001', 'n2_roberta_finetune_001', 'lr_zscore_cross_strategy_001']\nfor t in targets:\n    if t in exps:\n        print('='*60)\n        print(f'EXPERIMENT: {t}')\n        print(json.dumps(exps[t], indent=2, default=str))\n        print()\n    else:\n        print(f'NOT FOUND: {t}')\nPYEOF\n",
+    "description": "Extract target experiments by key",
+    "timeout": "30000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T15:58:53.365141+00:00_
+
+============================================================
+EXPERIMENT: baseline_battery_001
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-14T23:25:45.021Z",
+  "updated_at": "2026-05-14T23:26:06.409Z",
+  "spec": {
+    "command": "python src/baselines.py --method all --features_path data/features_all.jsonl",
+    "server": "gpu-6000pro-2",
+    "data_path": "data/features_all.jsonl",
+    "data_count": 20000,
+    "model_name": "Multiple (RF/LR/CORAL/CE-MLP/DivEye/PPL-Reg)",
+    "seed": 42,
+    "hypothesis": "Baseline battery: 6\u79cd\u57fa\u7ebf\u65b9\u6cd5\u5728\u7edf\u8ba1\u7279\u5f81\u4e0a\u7684\u6df1\u5ea6\u5206\u7c7b\u6027\u80fd\uff0c\u4e3a Atlas \u548c DCOL \u63d0\u4f9b\u5bf9\u6bd4\u57fa\u51c6",
+    "plan_id": "plan_009",
+    "checkpoint_path": "results/baselines/",
+    "log_path": "results/baselines/baseline_results.json"
+  },
+  "conclusion": "success",
+  "completed_at": "2026-05-14T23:25:54.929Z",
+  "metrics": {
+    "ppl_reg_single_4class_acc": 0.251,
+    "ppl_reg_multi_4class_acc": 0.622,
+    "ce_mlp_4class_acc": 0.749,
+    "coral_4class_acc": 0.7807,
+    "coral_3class_acc": 0.7089,
+    "coral_mae": 0.2273,
+    "coral_d1v2_auc": 0.8179,
+    "diveye_4class_acc": 0.7817,
+    "diveye_3class_acc": 0.7098,
+    "diveye_d1v2_auc": 0.8654,
+    "rf_4class_acc": 0.781,
+    "lr_4class_acc": 0.75,
+    "note": "CE-MLP 74.9% may be undertrained (5 epochs); CORAL updated to 100 epochs. All results from Pythia nucleus baseline features."
+  },
+  "notes": "Baseline battery (plan_009) \u5b8c\u6210\u30026 \u79cd feature-based baselines \u5728 Pythia nucleus \u7684 features_all.jsonl \u4e0a\u6d4b\u8bd5\u3002CORAL \u4fee\u590d\u540e\u4ece 53.7%\u219278.1% (epochs 5\u2192100)\u3002DivEye(XGBoost) 78.2%\u3002CE-MLP 74.9%\uff08\u53ef\u80fd\u8bad\u7ec3\u4e0d\u8db3\uff0c\u5f85\u7528\u9ed8\u8ba4\u53c2\u6570\u786e\u8ba4\uff09\u3002Zero-shot LLM baseline \u4ee3\u7801\u5c31\u7eea\u4f46\u9700 API key\u3002\u6240\u6709 baseline \u5747\u4f4e\u4e8e GPT-2 XL temp09 \u7684 85
+…[truncated 18976 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T15:58:53.365335+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 << 'PYEOF'\nimport json\nwith open(\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\") as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\nfor k in exps:\n    if 'zeroshot' in k or 'deepseek' in k.lower():\n        print(f'EXPERIMENT: {k}')\n        print(json.dumps(exps[k], indent=2, default=str))\n        print()\nPYEOF\n",
+  "description": "Find zero-shot/DeepSeek experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "REGFILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\"\npython3 << 'PYEOF'\nimport json\nwith open(\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-recursive-gen-depth-est/a244cfde-7f6c-44d7-9b0e-0e86a6ac5ce1/tool-results/mcp-agent-ml-research-read_registry-1778860433345.txt\") as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\nfor k in exps:\n    if 'zeroshot' in k or 'deepseek' in k.lower():\n        print(f'EXPERIMENT: {k}')\n        print(json.dumps(exps[k], indent=2, default=str))\n        print()\nPYEOF\n",
+    "description": "Find zero-shot/DeepSeek experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T15:58:53.365546+00:00_
+
+EXPERIMENT: zeroshot_llm_500_001
+{
+  "status": "ALLOCATED",
+  "retry_count": 0,
+  "created_at": "2026-05-15T15:46:50.066Z",
+  "updated_at": "2026-05-15T15:51:24.547Z",
+  "hypothesis": "R1-W4 zero-shot \u6837\u672c\u91cf\u6269\u5c55: \u4ece 200\u2192500 samples \u7f29\u7a84 CI\u3002\u5f53\u524d 200 samples \u7684 CI \u8fc7\u5bbd\uff0c500 samples \u53ef\u5c06 CI \u5bbd\u5ea6\u7f29\u5c0f ~37%\uff0c\u66f4\u53ef\u9760\u5730\u4e0e RF 78.2% \u5bf9\u6bd4\u3002",
+  "server": "gpu-6000pro-2",
+  "gpu": "cuda:1",
+  "reproduce": {
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:1",
+    "started_at": "2026-05-15T15:50:43.319Z"
+  }
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T15:58:53.365756+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/*.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T15:58:53.365929+00:00_
+
+artifacts/_project/paper/section_method.tex
+artifacts/_project/paper/section_related_work.tex
+artifacts/_project/paper/section_discussion.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T15:58:53.366084+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_method.tex",
+  "limit": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_method.tex",
+    "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T15:58:53.366250+00:00_
+
+1	\section{Task Formulation}
+2	\label{sec:method}
+3	
+4	\subsection{Problem Definition}
+5	\label{sec:method:problem}
+6	
+7	Let $f_\theta$ denote a language model and $\mathcal{D}_0$ a corpus of human-written seed text.
+8	We define a \emph{recursive generation chain} of depth $K$ as the sequence $\mathcal{D}_0, \mathcal{D}_1, \dots, \mathcal{D}_K$, where each $\mathcal{D}_k$ ($k \geq 1$) is produced by finetuning $f_\theta$ on $\mathcal{D}_{k-1}$ and sampling from the resulting model.
+9	Depth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.
+10	
+11	Given a text passage $x$, the task is to estimate its recursive generation depth $d \in \{0, 1, \dots, K\}$.
+12	This is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.
+13	
+14	\subsection{Multi-Generational Benchmark Construction}
+15	\label{sec:method:benchmark}
+16	
+17	We construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.
+18	
+19	\paragraph{Model families.}
+20	We select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).
+21	Restricting to a narrow parameter range isolates the effect of architecture and training data from scale.
+22	
+23	\paragraph{Decoding strategies.}
+24	Each model is paired with three sampling methods: nucleus sampling ($p{=}0.95$) \cite{holtzman2020_nucleus}, temperature sampling ($\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).
+25	These span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.
+26	
+27	\paragraph{Depth and scale.}
+28	The primary benchmark covers depths d0--d3 across all $3 \times 3 = 9$ model--strategy cells, with 5{,}000 samples per depth per cell (180K samples total).
+29	For depth exten
+…[truncated 3550 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T15:58:53.366406+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion.tex",
+  "limit": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion.tex",
+    "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T15:58:53.366561+00:00_
+
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\subsection{Implications}
+5	\label{sec:discussion:implications}
+6	
+7	\paragraph{Depth-graduated data curation.}
+8	Binary synthetic-data filters discard all machine-generated text indiscriminately, yet first-generation outputs may be benign or even beneficial for training \cite{drayson2025_detection_prevents_collapse}.
+9	Our depth estimates offer a finer-grained alternative: predicted depth can serve as a continuous quality proxy for importance weighting in data curation pipelines such as DSIR \cite{dsir2023} and QuRating \cite{qurating2024}.
+10	Rather than filtering at a binary threshold, a curation system could assign importance weights that decay with estimated depth \cite{sugiyama2007_importance_weighting}, retaining shallow-generation text while down-weighting deeply recursive samples.
+11	We note this as a conceptual contribution---empirical validation of depth-weighted curation remains future work.
+12	
+13	\paragraph{Feature evolution tracks tail erosion.}
+14	The feature importance analysis in \S\ref{sec:atlas:features} reveals a depth-dependent shift in which features carry discriminative power.
+15	At shallow depths (d0 vs.\ d1), \textsc{var\_surprisal} dominates, reflecting changes in second-order distributional structure---the variability of token surprisals decreases as the model's output distribution narrows.
+16	At deeper recursions (d2 vs.\ d3 and beyond), \textsc{p90\_ppl} and kurtosis assume greater importance, capturing changes in the shape of the distribution's tail.
+17	This progression aligns with the tail erosion theory of \citet{shumailov2024_nature}: early recursive generations preserve bulk distributional properties while eroding variability, and deeper generations progressively collapse the tail itself, consistent with the ``tale of tails'' analysis by \citet{dohmatob2024_tale_of_tails}.
+18	The feature importance shift thus provides an empirical counterpart to these theoretical predictions.
+19	
+…[truncated 3701 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T15:58:53.366804+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T15:58:53.366966+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T15:58:53.367109+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "write paper section edit",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "write paper section edit",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T15:58:53.367242+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T15:58:53.367375+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "write_paper_section",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "write_paper_section",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T15:58:53.367496+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T15:58:53.367669+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization.tex",
+  "content": "\\section{Generalization and Robustness}\n\\label{sec:generalization}\n\nHaving established depth signal characteristics within individual model--strategy cells (\\S\\ref{sec:atlas}), we now test whether these signals survive three progressively harder transfer settings: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model (\\S\\ref{sec:gen:crossmodel}), and cross-strategy (\\S\\ref{sec:gen:crossstrategy}) leave-one-out evaluation.\nWe close with a negative result on end-to-end learning (\\S\\ref{sec:gen:e2e}).\n\n\\subsection{Baseline Comparison}\n\\label{sec:gen:baselines}\n\nTable~\\ref{tab:baselines} compares six feature-based classifiers and two external anchors on the Pythia nucleus cell (5K samples per depth, d0--d3).\nRandom Forest (RF), CORAL \\cite{cao2020_coral}, and DivEye (gradient-boosted trees) achieve statistically indistinguishable 4-class accuracy: 78.2\\%, 78.1\\%, and 78.2\\%, respectively (pairwise bootstrap $p > 0.05$, Bonferroni-corrected).\nCross-entropy MLP (74.9\\%) and logistic regression (75.0\\%) trail by 3--4 percentage points, while single-feature perplexity regression (25.1\\%) performs at chance.\n\nThe parity among RF, CORAL, and DivEye---spanning random forests, rank-consistent ordinal regression, and gradient-boosted trees---demonstrates that discriminative power resides in the 19-dimensional feature set $\\mathbf{f}(x)$ (\\S\\ref{sec:method:features}), not in classifier architecture.\nWe adopt RF as the default for subsequent experiments owing to its simplicity and scale-invariance (see \\S\\ref{sec:gen:crossstrategy}).\n\nAs an external anchor, DeepSeek V3.2 in a zero-shot prompting setup achieves 40.0\\% on 200 Pythia nucleus samples---above chance (25\\%) but far below the weakest feature-based method, confirming that depth estimation from raw text is nontrivial even for frontier LLMs.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Baseline comparison on Pythia nucleus (d0--d3, 5K/class). RF, CORAL, and DivEye are statistically indistinguishable ($p > 0.05$, bootstrap with Bonferroni correction). All feature-based methods use the same 19 statistical features.}\n\\label{tab:baselines}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nMethod & 4-Class Acc (\\%) & d1v2 AUC \\\\\n\\midrule\nRandom Forest & 78.2 & 0.86 \\\\\nCORAL & 78.1 & 0.82 \\\\\nDivEye (XGBoost) & 78.2 & 0.87 \\\\\nCE-MLP & 74.9 & --- \\\\\nLogistic Regression & 75.0 & --- \\\\\n\\midrule\nDeepSeek V3.2 (zero-shot) & 40.0 & --- \\\\\nPPL regression (single feat.) & 25.1 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Model Transfer}\n\\label{sec:gen:crossmodel}\n\nWe evaluate cross-model generalization via leave-one-out (LOO): train RF on all three strategies of two model families, test on the held-out third.\nMean 4-class accuracy is 66.4\\%, well above the 45\\% gate and 25\\% chance level (Table~\\ref{tab:cross_model}).\n\n\\paragraph{Per-class recall reveals structural asymmetry.}\nThe headline accuracy is inflated by near-perfect d0 recall ($\\geq$98.5\\% across all holdouts), as the human-written vs.\\ machine-generated boundary transfers trivially.\nWithin generated text (d1--d3), the picture is less favorable: 3-class mean accuracy drops to 55.4\\%, and d2 recall is consistently the lowest class.\nThe Pythia holdout is hardest, with d2 recall of only 26.8\\%; OLMo and GPT-2~XL holdouts reach 43.3\\% and 52.6\\%, respectively.\nFigure~\\ref{fig:confusion_matrix} visualizes the confusion structure: d2 errors split between d1 and d3, consistent with ordinal confusion where the middle class absorbs prediction mass from its neighbors.\n\nThis per-class decomposition reframes the cross-model story.\nDepth signal \\emph{does} transfer across model families---all holdouts far exceed chance---but the transfer is concentrated at the human/machine boundary (d0 vs.\\ d1+), with diminishing fidelity at finer ordinal distinctions.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model LOO (RF, 4-class). Per-class recall exposes d2 as the consistent bottleneck; near-perfect d0 recall inflates headline accuracy.}\n\\label{tab:cross_model}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nHoldout & Acc (\\%) & \\multicolumn{4}{c}{Per-Class Recall (\\%)} \\\\\n\\cmidrule(l){3-6}\n & & d0 & d1 & d2 & d3 \\\\\n\\midrule\nPythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\\\\nOLMo & 69.2 & 99.3 & 75.5 & 43.3 & 58.8 \\\\\nGPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\\\\n\\midrule\nMean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Strategy Transfer}\n\\label{sec:gen:crossstrategy}\n\nThe cross-strategy LOO evaluates whether features learned from two decoding strategies generalize to a held-out third, within a single model family.\nMean 4-class accuracy across all nine holdout cells is 59.1\\%, again far above chance but substantially below in-distribution performance (Table~\\ref{tab:cross_strategy}).\n\n\\paragraph{Strategy-dependent transfer hierarchy.}\nNucleus holdouts transfer best (59.9--69.4\\%), reflecting nucleus sampling's intermediate entropy profile.\nTop-$k$ holdouts are consistently hardest (51.5--54.9\\%), likely because truncation at a fixed vocabulary size induces a sharply different distributional signature from the probability-based or temperature-based alternatives.\n\n\\paragraph{Temperature-induced d1/d2 inversion.}\nWhen temperature ($\\tau{=}0.9$) is held out, d1v2 AUC collapses to 0.13 (GPT-2~XL) and 0.25 (OLMo), indicating that the classifier trained on nucleus and top-$k$ data \\emph{reverses} its depth-1 vs.\\ depth-2 ordering for temperature-sampled text.\nThe mechanism is uniform logit scaling: temperature $\\tau{<}1$ multiplicatively concentrates the logit distribution at each generation step, accelerating convergence toward the model's attractor distribution.\nConsequently, temperature-sampled depth-$N$ text exhibits statistical fingerprints resembling depth-$(N{+}1)$ text under nucleus or top-$k$ sampling, producing systematic depth overestimation.\n\n\\paragraph{Z-score normalization: a falsified hypothesis.}\nA natural conjecture is that the temperature inversion is a scale artifact correctable by per-feature z-score normalization.\nWe test this with logistic regression (LR), which unlike RF is scale-sensitive.\nZ-score normalization rescues LR overall cross-strategy accuracy (25\\%$\\to$61\\%), confirming that raw LR failure is dominated by feature scale mismatch.\nHowever, z-score normalization \\emph{fails} to recover the critical d1v2 pairwise AUC on temperature holdouts: GPT-2~XL drops from 0.50$\\to$0.24, and OLMo from 0.50$\\to$0.19 (Table~\\ref{tab:cross_strategy}).\nRF, being scale-invariant by construction, is unaffected by z-score normalization ($\\Delta < 0.02$~pp).\nThe temperature shift is therefore a genuine structural distributional shift, not a correctable scale artifact.\nWe discuss deployment implications of this finding in \\S\\ref{sec:discussion}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-strategy LOO (RF, 4-class). The d1v2 AUC inversion under temperature holdout persists after z-score normalization of LR features, confirming a structural distributional shift.}\n\\label{tab:cross_strategy}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nModel & Holdout Strategy & Acc (\\%) & d1v2 AUC \\\\\n\\midrule\n\\multirow{3}{*}{Pythia} & nucleus & 69.4 & 0.69 \\\\\n & temp ($\\tau{=}0.9$) & 62.8 & 0.58 \\\\\n & top-$k$ ($k{=}50$) & 51.5 & 0.64 \\\\\n\\addlinespace\n\\multirow{3}{*}{GPT-2 XL} & nucleus & 59.9 & 0.78 \\\\\n & temp ($\\tau{=}0.9$) & 56.1 & \\textbf{0.13} \\\\\n & top-$k$ ($k{=}50$) & 53.6 & 0.83 \\\\\n\\addlinespace\n\\multirow{3}{*}{OLMo} & nucleus & 65.4 & 0.79 \\\\\n & temp ($\\tau{=}0.9$) & 58.2 & \\textbf{0.25} \\\\\n & top-$k$ ($k{=}50$) & 54.9 & 0.85 \\\\\n\\midrule\n\\multicolumn{4}{@{}l}{\\textit{Z-score LR (temp holdout only):}} \\\\\nGPT-2 XL & temp ($\\tau{=}0.9$) & 56.4 & 0.24 \\\\\nOLMo & temp ($\\tau{=}0.9$) & 55.5 & 0.19 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{End-to-End Learning: A Negative Result}\n\\label{sec:gen:e2e}\n\nCan a pretrained language model learn depth estimation directly from raw text, bypassing hand-crafted features?\nWe evaluate two complementary approaches: end-to-end finetuning and contrastive ordinal learning.\n\n\\paragraph{End-to-end finetuning.}\nWe finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} on the Pythia nucleus cell (5K samples/class, 5-fold CV, 3 epochs, lr $2{\\times}10^{-5}$).\nDeBERTa achieves $58.3\\% \\pm 4.7\\%$ and RoBERTa $59.5\\% \\pm 3.2\\%$---both far below RF at 78.2\\% (gaps of $-19.9$ and $-18.7$~pp).\nThe near-identical performance across two architectures with different pretraining objectives (masked LM vs.\\ disentangled attention) establishes this as an architecture-independent finding.\n\nFeature overlap analysis reveals \\emph{why}.\nProbing DeBERTa's \\texttt{[CLS]} representations for our 19 features yields Spearman $\\rho = -0.484$ ($p = 0.036$) between feature importance rankings of DeBERTa and RF, with zero overlap among each method's top-5 features.\nPLMs excel at encoding surface-level properties (TTR: $R^2 = 0.85$; rep\\_2gram: $R^2 = 0.82$), but the perplexity tail statistics that RF relies on---\\textsc{var\\_surprisal} and \\textsc{p90\\_ppl}---show negative $R^2$ in DeBERTa representations, indicating that these distributional signatures are not learnable from raw text by standard finetuning.\n\n\\paragraph{Contrastive ordinal learning (DCOL).}\nWe train a contrastive ordinal loss over RoBERTa-large embeddings (LoRA $r{=}16$), designed to enforce ordinal margin structure in the embedding space.\nAfter six iterations (v1--v6) spanning two backbone architectures, the best stable configuration (RoBERTa-large, v6) achieves only 64.5\\%---still 13.7~pp below RF---with severe overfitting (train 75\\% vs.\\ val 64.4\\% at epoch~1, early stopping at epoch~4).\nEarlier iterations with DeBERTa (v1--v5) uniformly failed due to embedding collapse, OOM, catastrophic forgetting, or NaN gradients.\n\n\\paragraph{Synthesis.}\nBoth approaches converge on the same conclusion: hand-crafted statistical features capture recursive depth signals that PLMs cannot extract from raw text.\nThe depth signal resides in the tail behavior of the reference-model perplexity distribution---a second-order, cross-model property inaccessible to standard text encoders operating on surface token sequences.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization.tex",
+    "content": "\\section{Generalization and Robustness}\n\\label{sec:generalization}\n\nHaving established depth signal characteristics within individual model--strategy cells (\\S\\ref{sec:atlas}), we now test whether these signals survive three progressively harder transfer settings: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model (\\S\\ref{sec:gen:crossmodel}), and cross-strategy (\\S\\ref{sec:gen:crossstrategy}) leave-one-out evaluation.\nWe close with a negative result on end-to-end learning (\\S\\ref{sec:gen:e2e}).\n\n\\subsection{Baseline Comparison}\n\\label{sec:gen:baselines}\n\nTable~\\ref{tab:baselines} compares six feature-based classifiers and two external anchors on the Pythia nucleus cell (5K samples per depth, d0--d3).\nRandom Forest (RF), CORAL \\cite{cao2020_coral}, and DivEye (gradient-boosted trees) achieve statistically indistinguishable 4-class accuracy: 78.2\\%, 78.1\\%, and 78.2\\%, respectively (pairwise bootstrap $p > 0.05$, Bonferroni-corrected).\nCross-entropy MLP (74.9\\%) and logistic regression (75.0\\%) trail by 3--4 percentage points, while single-feature perplexity regression (25.1\\%) performs at chance.\n\nThe parity among RF, CORAL, and DivEye---spanning random forests, rank-consistent ordinal regression, and gradient-boosted trees---demonstrates that discriminative power resides in the 19-dimensional feature set $\\mathbf{f}(x)$ (\\S\\ref{sec:method:features}), not in classifier architecture.\nWe adopt RF as the default for subsequent experiments owing to its simplicity and scale-invariance (see \\S\\ref{sec:gen:crossstrategy}).\n\nAs an external anchor, DeepSeek V3.2 in a zero-shot prompting setup achieves 40.0\\% on 200 Pythia nucleus samples---above chance (25\\%) but far below the weakest feature-based method, confirming that depth estimation from raw text is nontrivial even for frontier LLMs.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Baseline comparison on Pythia nucleus (d0--d3, 5K/class). RF, CORAL, and DivEye are statistically indistinguishable ($p > 0.05$, bootstrap with Bonferroni correction). All feature-based methods use the same 19 statistical features.}\n\\label{tab:baselines}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nMethod & 4-Class Acc (\\%) & d1v2 AUC \\\\\n\\midrule\nRandom Forest & 78.2 & 0.86 \\\\\nCORAL & 78.1 & 0.82 \\\\\nDivEye (XGBoost) & 78.2 & 0.87 \\\\\nCE-MLP & 74.9 & --- \\\\\nLogistic Regression & 75.0 & --- \\\\\n\\midrule\nDeepSeek V3.2 (zero-shot) & 40.0 & --- \\\\\nPPL regression (single feat.) & 25.1 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Model Transfer}\n\\label{sec:gen:crossmodel}\n\nWe evaluate cross-model generalization via leave-one-out (LOO): train RF on all three strategies of two model families, test on the held-out third.\nMean 4-class accuracy is 66.4\\%, well above the 45\\% gate and 25\\% chance level (Table~\\ref{tab:cross_model}).\n\n\\paragraph{Per-class recall reveals structural asymmetry.}\nThe headline accuracy is inflated by near-perfect d0 recall ($\\geq$98.5\\% across all holdouts), as the human-written vs.\\ machine-generated boundary transfers trivially.\nWithin generated text (d1--d3), the picture is less favorable: 3-class mean accuracy drops to 55.4\\%, and d2 recall is consistently the lowest class.\nThe Pythia holdout is hardest, with d2 recall of only 26.8\\%; OLMo and GPT-2~XL holdouts reach 43.3\\% and 52.6\\%, respectively.\nFigure~\\ref{fig:confusion_matrix} visualizes the confusion structure: d2 errors split between d1 and d3, consistent with ordinal confusion where the middle class absorbs prediction mass from its neighbors.\n\nThis per-class decomposition reframes the cross-model story.\nDepth signal \\emph{does} transfer across model families---all holdouts far exceed chance---but the transfer is concentrated at the human/machine boundary (d0 vs.\\ d1+), with diminishing fidelity at finer ordinal distinctions.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model LOO (RF, 4-class). Per-class recall exposes d2 as the consistent bottleneck; near-perfect d0 recall inflates headline accuracy.}\n\\label{tab:cross_model}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nHoldout & Acc (\\%) & \\multicolumn{4}{c}{Per-Class Recall (\\%)} \\\\\n\\cmidrule(l){3-6}\n & & d0 & d1 & d2 & d3 \\\\\n\\midrule\nPythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\\\\nOLMo & 69.2 & 99.3 & 75.5 & 43.3 & 58.8 \\\\\nGPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\\\\n\\midrule\nMean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Strategy Transfer}\n\\label{sec:gen:crossstrategy}\n\nThe cross-strategy LOO evaluates whether features learned from two decoding strategies generalize to a held-out third, within a single model family.\nMean 4-class accuracy across all nine holdout cells is 59.1\\%, again far above chance but substantially below in-distribution performance (Table~\\ref{tab:cross_strategy}).\n\n\\paragraph{Strategy-dependent transfer hierarchy.}\nNucleus holdouts transfer best (59.9--69.4\\%), reflecting nucleus sampling's intermediate entropy profile.\nTop-$k$ holdouts are consistently hardest (51.5--54.9\\%), likely because truncation at a fixed vocabulary size induces a sharply different distributional signature from the probability-based or temperature-based alternatives.\n\n\\paragraph{Temperature-induced d1/d2 inversion.}\nWhen temperature ($\\tau{=}0.9$) is held out, d1v2 AUC collapses to 0.13 (GPT-2~XL) and 0.25 (OLMo), indicating that the classifier trained on nucleus and top-$k$ data \\emph{reverses} its depth-1 vs.\\ depth-2 ordering for temperature-sampled text.\nThe mechanism is uniform logit scaling: temperature $\\tau{<}1$ multiplicatively concentrates the logit distribution at each generation step, accelerating convergence toward the model's attractor distribution.\nConsequently, temperature-sampled depth-$N$ text exhibits statistical fingerprints resembling depth-$(N{+}1)$ text under nucleus or top-$k$ sampling, producing systematic depth overestimation.\n\n\\paragraph{Z-score normalization: a falsified hypothesis.}\nA natural conjecture is that the temperature inversion is a scale artifact correctable by per-feature z-score normalization.\nWe test this with logistic regression (LR), which unlike RF is scale-sensitive.\nZ-score normalization rescues LR overall cross-strategy accuracy (25\\%$\\to$61\\%), confirming that raw LR failure is dominated by feature scale mismatch.\nHowever, z-score normalization \\emph{fails} to recover the critical d1v2 pairwise AUC on temperature holdouts: GPT-2~XL drops from 0.50$\\to$0.24, and OLMo from 0.50$\\to$0.19 (Table~\\ref{tab:cross_strategy}).\nRF, being scale-invariant by construction, is unaffected by z-score normalization ($\\Delta < 0.02$~pp).\nThe temperature shift is therefore a genuine structural distributional shift, not a correctable scale artifact.\nWe discuss deployment implications of this finding in \\S\\ref{sec:discussion}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-strategy LOO (RF, 4-class). The d1v2 AUC inversion under temperature holdout persists after z-score normalization of LR features, confirming a structural distributional shift.}\n\\label{tab:cross_strategy}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nModel & Holdout Strategy & Acc (\\%) & d1v2 AUC \\\\\n\\midrule\n\\multirow{3}{*}{Pythia} & nucleus & 69.4 & 0.69 \\\\\n & temp ($\\tau{=}0.9$) & 62.8 & 0.58 \\\\\n & top-$k$ ($k{=}50$) & 51.5 & 0.64 \\\\\n\\addlinespace\n\\multirow{3}{*}{GPT-2 XL} & nucleus & 59.9 & 0.78 \\\\\n & temp ($\\tau{=}0.9$) & 56.1 & \\textbf{0.13} \\\\\n & top-$k$ ($k{=}50$) & 53.6 & 0.83 \\\\\n\\addlinespace\n\\multirow{3}{*}{OLMo} & nucleus & 65.4 & 0.79 \\\\\n & temp ($\\tau{=}0.9$) & 58.2 & \\textbf{0.25} \\\\\n & top-$k$ ($k{=}50$) & 54.9 & 0.85 \\\\\n\\midrule\n\\multicolumn{4}{@{}l}{\\textit{Z-score LR (temp holdout only):}} \\\\\nGPT-2 XL & temp ($\\tau{=}0.9$) & 56.4 & 0.24 \\\\\nOLMo & temp ($\\tau{=}0.9$) & 55.5 & 0.19 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{End-to-End Learning: A Negative Result}\n\\label{sec:gen:e2e}\n\nCan a pretrained language model learn depth estimation directly from raw text, bypassing hand-crafted features?\nWe evaluate two complementary approaches: end-to-end finetuning and contrastive ordinal learning.\n\n\\paragraph{End-to-end finetuning.}\nWe finetune DeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} on the Pythia nucleus cell (5K samples/class, 5-fold CV, 3 epochs, lr $2{\\times}10^{-5}$).\nDeBERTa achieves $58.3\\% \\pm 4.7\\%$ and RoBERTa $59.5\\% \\pm 3.2\\%$---both far below RF at 78.2\\% (gaps of $-19.9$ and $-18.7$~pp).\nThe near-identical performance across two architectures with different pretraining objectives (masked LM vs.\\ disentangled attention) establishes this as an architecture-independent finding.\n\nFeature overlap analysis reveals \\emph{why}.\nProbing DeBERTa's \\texttt{[CLS]} representations for our 19 features yields Spearman $\\rho = -0.484$ ($p = 0.036$) between feature importance rankings of DeBERTa and RF, with zero overlap among each method's top-5 features.\nPLMs excel at encoding surface-level properties (TTR: $R^2 = 0.85$; rep\\_2gram: $R^2 = 0.82$), but the perplexity tail statistics that RF relies on---\\textsc{var\\_surprisal} and \\textsc{p90\\_ppl}---show negative $R^2$ in DeBERTa representations, indicating that these distributional signatures are not learnable from raw text by standard finetuning.\n\n\\paragraph{Contrastive ordinal learning (DCOL).}\nWe train a contrastive ordinal loss over RoBERTa-large embeddings (LoRA $r{=}16$), designed to enforce ordinal margin structure in the embedding space.\nAfter six iterations (v1--v6) spanning two backbone architectures, the best stable configuration (RoBERTa-large, v6) achieves only 64.5\\%---still 13.7~pp below RF---with severe overfitting (train 75\\% vs.\\ val 64.4\\% at epoch~1, early stopping at epoch~4).\nEarlier iterations with DeBERTa (v1--v5) uniformly failed due to embedding collapse, OOM, catastrophic forgetting, or NaN gradients.\n\n\\paragraph{Synthesis.}\nBoth approaches converge on the same conclusion: hand-crafted statistical features capture recursive depth signals that PLMs cannot extract from raw text.\nThe depth signal resides in the tail behavior of the reference-model perplexity distribution---a second-order, cross-model property inaccessible to standard text encoders operating on surface token sequences.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T15:58:53.367926+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T15:58:53.368072+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "section_generalization",
+  "type": "paper",
+  "description": "Section 5: Generalization and Robustness — baseline comparison, cross-model/cross-strategy LOO, end-to-end negative result",
+  "project": "recursive_gen_depth_est",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization.tex",
+  "tags": "['paper', 'section5', 'generalization', 'cross-model', 'cross-strategy', 'negative-result']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "section_generalization",
+    "type": "paper",
+    "description": "Section 5: Generalization and Robustness — baseline comparison, cross-model/cross-strategy LOO, end-to-end negative result",
+    "project": "recursive_gen_depth_est",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization.tex",
+    "tags": "['paper', 'section5', 'generalization', 'cross-model', 'cross-strategy', 'negative-result']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T15:58:53.368237+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_e30935\", \"name\": \"section_generalization\", \"type\": \"paper\", \"description\": \"Section 5: Generalization and Robustness — baseline comparison, cross-model/cross-strategy LOO, end-to-end negative result\", \"path\": \"projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization_e30935.tex\", \"url\": null, \"project\": \"recursive_gen_depth_est\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T15:58:40.691536+00:00\", \"tags\": [\"paper\", \"section5\", \"generalization\", \"cross-model\", \"cross-strategy\", \"negative-result\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_generalization_20260515T155339",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-15T15:58:53.368414+00:00_
+
+已写入 `section_generalization.tex`，已注册 artifact。
+
+**报告：**
+
+| Subsection | 内容 | 关键数据 |
+|---|---|---|
+| 5.1 Baseline Comparison | RF/CORAL/DivEye 统计不可区分，叙事重心在 feature set 而非 classifier；DeepSeek zero-shot 40.0% 作 external anchor | tab_baselines 含 7 methods |
+| 5.2 Cross-Model Transfer | mean 66.4%，per-class recall 表完整呈现 d0 膨胀 + d2 bottleneck (26.8–52.6%)，3-class 55.4% | tab_cross_model 含 per-class recall |
+| 5.3 Cross-Strategy Transfer | mean 59.1%，temp09 d1v2 反转 (0.13/0.25)，z-score falsification (LR d1v2 0.50→0.24/0.19)，RF scale-invariant | tab_cross_strategy 含 z-score LR 行 |
+| 5.4 Negative Result | DeBERTa 58.3%/RoBERTa 59.5% << RF 78.2%，feature overlap ρ=−0.484，DCOL v6 64.5% + 过拟合 | architecture-independent conclusion |
+
+**交叉引用**：`\ref{sec:gen:crossstrategy}` 与 Discussion §6 已有引用对齐；`\ref{sec:generalization}` 与 Method §3 对齐。占位表/图 label (`tab_baselines`, `tab_cross_model`, `tab_cross_strategy`, `fig_confusion_matrix`) 均已嵌入。约 980 words 正文（不含表格）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_writing_generalization_20260515T155339"
+}
+```
+
+</details>
+
+---

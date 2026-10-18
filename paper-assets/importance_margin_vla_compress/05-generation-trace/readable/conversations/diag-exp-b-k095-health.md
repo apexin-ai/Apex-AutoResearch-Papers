@@ -1,0 +1,647 @@
+# diag exp b k095 health
+
+**Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/chats/worker_diag_exp_b_k095_health_20260518T123622.jsonl`
+- **Structured JSON:** [`caeb15a88fa116a2b09f.json`](../../sessions/ca/caeb15a88fa116a2b09f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+21 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T12:37:24.172056+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T12:37:24.172551+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T12:37:24.172744+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "nvidia-smi",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T12:37:24.172880+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "ps aux --no-headers -p 92881",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "ps aux --no-headers -p 92881",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T12:37:24.173003+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tmux ls",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "tmux ls",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T12:37:24.173578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 20:36:41 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:27:00.0 Off |                  Off |\\n|  0%   25C    P8             20W /  425W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:28:00.0 Off |                  Off |\\n| 30%   36C    P2             54W /  425W |    3090MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:A8:00.0 Off |                  Off |\\n|  0%   25C    P8             21W /  425W |       1MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:A9:00.0 Off |                  Off |\\n| 30%   28C    P8             
+…[truncated 1017 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T12:37:24.173747+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "tail -50 /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "tail -50 /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T12:37:24.173900+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  3404 ?        Ss   13:22   0:00 bash /init/boot/boot.sh\\nroot        800  2.3  0.0 717728 22864 ?        Sl   13:22  10:23 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        817  0.1  0.0 4148816 80128 ?       Sl   13:22   0:27 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        818  0.3  0.0 6305972 101472 ?      Sl   13:22   1:33 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        820  0.0  0.0 2648120 19020 ?       Sl   13:22   0:12 proxy -c /init/proxy/proxy.ini\\nroot        822  0.0  0.0 2573556 18292 ?       Sl   13:22   0:05 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        823  0.0  0.0 187660 102668 ?       S    13:22   0:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        824  0.0  0.0  15444  9332 ?        S    13:22   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        923  0.0  0.0 26177944 11920 ?      Sl   13:22   0:22 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_9rkl5lld/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_9rkl5lld/startup_error\\nroot      92874  0.0  0.0   6080  3924 ?        Ss   20:17   0:00 tmux new-session -d -s eval_random_k095 bash -c \\\"cd /root/autodl-tmp/importance_margin_vla_compress && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 python -u eval_random_prune_smolvla.py --k_ratio 0.95 --episodes_per_task 50 --output_name smolvla_random_prune_k095.json --seed 42 2>&1 | tee ~/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log\\\"\\nroot      92875  0.0  0.0   4364  3312 pts/0    Ss+  20:17   0:00 bash -c cd /root/auto
+…[truncated 1212 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T12:37:24.174054+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T12:37:24.174550+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  T2 Ep13/50: FAIL (steps=280)\\n  T2 Ep14/50: FAIL (steps=280)\\n  T2 Ep15/50: FAIL (steps=280)\\n  T2 Ep16/50: FAIL (steps=280)\\n  T2 Ep17/50: FAIL (steps=280)\\n  T2 Ep18/50: FAIL (steps=280)\\n  T2 Ep19/50: FAIL (steps=280)\\n  T2 Ep20/50: FAIL (steps=280)\\n  T2 Ep21/50: FAIL (steps=280)\\n  T2 Ep22/50: FAIL (steps=280)\\n  T2 Ep23/50: FAIL (steps=280)\\n  T2 Ep24/50: FAIL (steps=280)\\n  T2 Ep25/50: FAIL (steps=280)\\n  T2 Ep26/50: FAIL (steps=280)\\n  T2 Ep27/50: FAIL (steps=280)\\n  T2 Ep28/50: FAIL (steps=280)\\n  T2 Ep29/50: FAIL (steps=280)\\n  T2 Ep30/50: FAIL (steps=280)\\n  T2 Ep31/50: FAIL (steps=280)\\n  T2 Ep32/50: FAIL (steps=280)\\n  T2 Ep33/50: FAIL (steps=280)\\n  T2 Ep34/50: FAIL (steps=280)\\n  T2 Ep35/50: FAIL (steps=280)\\n  T2 Ep36/50: FAIL (steps=280)\\n  T2 Ep37/50: FAIL (steps=280)\\n  T2 Ep38/50: FAIL (steps=280)\\n  T2 Ep39/50: FAIL (steps=280)\\n  T2 Ep40/50: FAIL (steps=280)\\n  T2 Ep41/50: FAIL (steps=280)\\n  T2 Ep42/50: FAIL (steps=280)\\n  T2 Ep43/50: FAIL (steps=280)\\n  T2 Ep44/50: FAIL (steps=280)\\n  T2 Ep45/50: FAIL (steps=280)\\n  T2 Ep46/50: FAIL (steps=280)\\n  T2 Ep47/50: FAIL (steps=280)\\n  T2 Ep48/50: FAIL (steps=280)\\n  T2 Ep49/50: FAIL (steps=280)\\n  T2 Ep50/50: FAIL (steps=280)\\n  Task 2 SR: 0.00% (0/50)\\n  T3 Ep1/50: FAIL (steps=280)\\n  T3 Ep2/50: FAIL (steps=280)\\n  T3 Ep3/50: FAIL (steps=280)\\n  T3 Ep4/50: FAIL (steps=280)\\n  T3 Ep5/50: FAIL (steps=280)\\n  T3 Ep6/50: FAIL (steps=280)\\n  T3 Ep7/50: FAIL (steps=280)\\n  T3 Ep8/50: FAIL (steps=280)\\n  T3 Ep9/50: FAIL (steps=280)\\n  T3 Ep10/50: FAIL (steps=280)\\n  T3 Ep11/50: FAIL (steps=280)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T12:37:24.174800+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "grep -c \"Ep.*steps=\" /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "grep -c \"Ep.*steps=\" /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T12:37:24.174945+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"162\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T12:37:24.175065+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "grep \"Task.*SR:\" /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "grep \"Task.*SR:\" /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T12:37:24.175400+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Task 0 SR: 0.00% (0/50)\\n  Task 1 SR: 0.00% (0/50)\\n  Task 2 SR: 0.00% (0/50)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T12:37:24.175652+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "head -20 /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "head -20 /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T12:37:24.175823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model from /root/autodl-tmp/importance_margin_vla_compress/checkpoints/libero_full_ft/step_099999/checkpoint.pt...\\n2026-05-18 20:17:15 [INFO] JAX version 0.10.0 available.\\nLoading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...\\nYou have video processor config saved in `preprocessor.json` file which is deprecated. Video processor configs should be saved in their own `video_preprocessor.json` file. You can rename the file or load and save the processor back which renames it automatically. Loading from `preprocessor.json` will be removed in v5.0.\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n2026-05-18 20:17:25 [INFO] Updated state feature shape: (6,) -> (8,)\\n2026-05-18 20:17:25 [INFO] Updated action feature shape: (6,) -> (7,)\\n2026-05-18 20:17:25 [INFO] Updated cameras: ['observation.images.camera1', 'observation.images.camera2', 'observation.images.camera3'] -> ['observation.images.image', 'observation.images.image2'] (shape=(3, 256, 256))\\n2026-05-18 20:17:25 [INFO] Full expert FT: trainable=99880992/450046176 (22.2%)\\n2026-05-18 20:17:26 [INFO] Loaded checkpoint: /root/autodl-tmp/importance_margin_vla_compress/checkpoints/libero_full_ft/step_099999/checkpoint.pt (step 99999)\\nRandomPruner: k_ratio=0.95, keep 121/128 tokens, remove 7\\n[robosuite WARNING] No private macro file found! (macros.py:53)\\n2026-05-18 20:17:27 [WARNING] No private macro file found!\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\n2026-05-18 20:17:27 [WARNING] It is recommended to use a private macro file\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\n2026-05-18 20:17:27 [WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py\\n2026-05-18 20:17:27 [INFO] No OpenGL_accelerate module lo
+…[truncated 206 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T12:37:24.176111+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "grep -c \"^  T\" /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "grep -c \"^  T\" /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T12:37:24.176267+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"165\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T12:37:24.176386+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-33015",
+  "command": "grep \"Evaluating\\|tasks\\|total\" /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-33015",
+    "command": "grep \"Evaluating\\|tasks\\|total\" /root/runs/importance_margin_vla_compress/eval_smolvla_random_prune_k095.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T12:37:24.176511+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-18T12:37:24.176696+00:00_
+
+## 诊断结果
+
+| 指标 | 值 |
+|------|-----|
+| **GPU 1 利用率** | 0% (显存 3090MiB/24564MiB，P2 状态，54W) |
+| **进程 92881** | 活着，R 状态，CPU 251% |
+| **tmux session** | `eval_random_k095` 存在 |
+| **当前进度** | Task 3 Ep 11/50（已完成 161/500 episodes，**32%**） |
+| **已完成 tasks** | T0: 0% SR, T1: 0% SR, T2: 0% SR（全部 FAIL，每个 episode 跑满 280 steps） |
+
+### 关键发现：实验并非跑了 6 小时
+
+日志第一条时间戳是 `2026-05-18 20:17:15`，当前服务器时间 `20:36:41`，**实际只跑了约 19 分钟**。可能之前有一个同名实验已结束/崩溃，当前是重新启动的。
+
+### 是否卡住？
+
+**没有卡住。** 进程活跃运行中，日志持续输出。GPU 利用率 0% 是正常的，因为 robosuite 环境模拟是 CPU 密集型，GPU 只在推理时短暂使用。
+
+### 预计剩余时间
+
+- 19 分钟完成 161 episodes → ~7 秒/episode
+- 剩余 339 episodes → **约 40 分钟**
+- 预计总耗时 ~1 小时
+
+### 注意
+
+所有 episode 全部 FAIL（0% SR），k_ratio=0.95 的 random pruning 效果完全不行。如果这是预期内的 baseline 对照实验则正常，否则需要检查实验配置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diag_exp_b_k095_health_20260518T123622"
+}
+```
+
+</details>
+
+---

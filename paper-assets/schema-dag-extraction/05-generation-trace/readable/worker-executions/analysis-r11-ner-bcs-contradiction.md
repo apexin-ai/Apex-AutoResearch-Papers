@@ -1,0 +1,7760 @@
+# analysis r11 ner bcs contradiction
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 164
+- **Recorded user turns:** 0
+- **Tool calls:** 60
+- **Original source:** `logs/workers/worker_analysis_r11-ner-bcs-contradiction_20260517T095903.log`
+- **Structured JSON:** [`185bbd0ba2f3cf699e9d.json`](../../sessions/18/185bbd0ba2f3cf699e9d.json)
+
+## Before a recorded user message
+
+164 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9c2a7ad6-e4c9-4c00-aac1-ac6d2fb96068",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779029400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "06a19021-ccaa-4241-ba9d-5950dab2a069",
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to investigate a discrepancy between two sets of NER BCS-F1 correlation results:
+1. Paper §4.5 reports r=+0.50 (v1) and r=+0.58 (v2) for NER batch-level BCS-F1 correlation at count=12
+2. New Q1 analysis (d051 data, 450 batches) shows r≈0.004 (p=0.937)
+
+I need to SSH to the server and trace the data sources for both numbers. 
+
+Now I'm searching through the server for the relevant files that contain these correlation calculations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "84cada73-a440-45f6-92f2-21421d8754df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ULfwfB12sYcSU5SUnKJ6cj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13415,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13415
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始追溯两组 NER BCS-F1 相关系数的数据来源。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "42bfd1b0-ed58-48fb-8664-f96e97fcdcaa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ULfwfB12sYcSU5SUnKJ6cj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13415,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13415
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012BFPdiwaNaP8EYo2Q2jbp9`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "3f3320e1-8180-4004-a9fd-bacd9a2d0e37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ULfwfB12sYcSU5SUnKJ6cj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13415,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13415
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T09:59:18.209Z_
+
+<details><summary>↩ Tool result · `toolu_012BFPdiwaNaP8EYo2Q2jbp9`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "4801e609-e576-4806-b88b-581138fbc086",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start searching for the relevant files on the server. I'll run multiple searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "b5d855cd-7853-496f-9789-bcc4fb5e12ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RbbwjnVz8sYf2vsP8Dpx53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 25256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SXxZx8wiviiezYWbaCcMzg`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*prompt_sensitivity*\" -o -name \"*prompt_sens*\" 2>/dev/null | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "94ef80cb-ffc7-4077-a326-932456d34a74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RbbwjnVz8sYf2vsP8Dpx53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 25256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T09:59:23.582Z_
+
+<details><summary>↩ Tool result · `toolu_01SXxZx8wiviiezYWbaCcMzg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/experiments/prompt_sensitivity\\n/root/schema-dag-extraction/experiments/prompt_sensitivity/run_prompt_sensitivity.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "8104ea34-4b2e-40dc-a027-bf0da2b05acd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/experiments/prompt_sensitivity\\\\n/root/schema-dag-extraction/experiments/prompt_sensitivity/run_prompt_sensitivity.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/experiments/prompt_sensitivity\\n/root/schema-dag-extraction/experiments/prompt_sensitivity/run_prompt_sensitivity.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01M1a9rpdFS7pJdVtQ2bqd91`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*d051*\" -o -name \"*count_curves_25*\" -o -name \"*count_curve*\" 2>/dev/null | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "9aaceb95-6531-4143-9a03-ec29a47ffdbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RbbwjnVz8sYf2vsP8Dpx53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 25256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Kgu9VxX7AdKr6bLVFWqhnA`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*bcs_controlled*\" -o -name \"*fewnerd*bcs*\" 2>/dev/null | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "70bdddcc-c8d4-4195-a4bb-459b0f113429",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RbbwjnVz8sYf2vsP8Dpx53",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 25256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 848
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T09:59:24.195Z_
+
+<details><summary>↩ Tool result · `toolu_01M1a9rpdFS7pJdVtQ2bqd91`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/exp_docred_confusability/count_curve_results.json\\n/root/schema-dag-extraction/artifacts/d051_batch2.log\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s456\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s456/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456/count_curve_summary.json\\n/root/schema-dag-extraction/scripts/gen_fig_count_curves.py\\n/root/schema-dag-extraction/scripts/run_d051_count_curves_25.py\\n/root/schema-dag-extraction/scripts/plot_fig1a_count_curves.py\\n/root/schema-dag-extraction/scripts/run_d051_count_curves_llama70b.py\\n/root/schema-dag-extraction/figures/paper/fig_count_curves.py\\n/root/schema-dag-extraction/figures/paper/fig_count_curves.pdf\\n/root/schema-dag-extraction/figures/paper/fig_count_curves.png\\n/root/schema-dag-extraction/run_d051_batch2.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "27f76fdb-be8f-47f2-be14-54ec2062b767",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/exp_docred_confusability/count_curve_results.json\\\\n/root/schema-dag-extraction/artifacts/d051_batch2.log\\\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42\\\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/count_curve_summary.json\\\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/count_curve_summary.json\\\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123\\\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123/count_curve_summary.json\\\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s456\\\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s456/count_curve_summary.json\\\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123/count_curve_summary.json\\\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456/count_curve_summary.json\\\\n/root/schema-dag-extraction/scripts/gen_fig_count_curves.py\\\\n/root/schema-dag-extraction/scripts/run_d051_count_curves_25.py\\\\n/root/schema-dag-extraction/scripts/plot_fig1a_count_curves.py\\\\n/root/schema-dag-extraction/scripts/run_d051_count_curves_llama70b.py\\\\n/root/schema-dag-extraction/figures/paper/fig_count_curves.py\\\\n/root/schema-dag-extraction/figures/paper/fig_count_curves.pdf\\\\n/root/schema-dag-extraction/figures/paper/fig_count_curves.png\\\\n/root/schema-dag-extraction/run_d051_batch2.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/exp_docred_confusability/count_curve_results.json\\n/root/schema-dag-extraction/artifacts/d051_batch2.log\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s456\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s456/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123/count_curve_summary.json\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456/count_curve_summary.json\\n/root/schema-dag-extraction/scripts/gen_fig_count_curves.py\\n/root/schema-dag-extraction/scripts/run_d051_count_curves_25.py\\n/root/schema-dag-extraction/scripts/plot_fig1a_count_curves.py\\n/root/schema-dag-extraction/scripts/run_d051_count_curves_llama70b.py\\n/root/schema-dag-extraction/figures/paper/fig_count_curves.py\\n/root/schema-dag-extraction/figures/paper/fig_count_curves.pdf\\n/root/schema-dag-extraction/figures/paper/fig_count_curves.png\\n/root/schema-dag-extraction/run_d051_batch2.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T09:59:24.999Z_
+
+<details><summary>↩ Tool result · `toolu_01Kgu9VxX7AdKr6bLVFWqhnA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability/bcs_controlled_results.json\\n/root/schema-dag-extraction/scripts/run_bcs_controlled_llama70b.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "6210c6a0-400d-4111-b511-228ac6c74be6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability/bcs_controlled_results.json\\\\n/root/schema-dag-extraction/scripts/run_bcs_controlled_llama70b.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability/bcs_controlled_results.json\\n/root/schema-dag-extraction/scripts/run_bcs_controlled_llama70b.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HCDbFbwUoNEMz7he4MbuXJ`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/experiments/prompt_sensitivity/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "9f525f82-5524-42a8-8197-03500f188998",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RK5XJiYBcoqhK7NfgPB4za",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1432,
+      "cache_read_input_tokens": 26104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1432
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T09:59:28.715Z_
+
+<details><summary>↩ Tool result · `toolu_01HCDbFbwUoNEMz7he4MbuXJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"batch_config.json\\nexperiment.log\\nresults.json\\nresults_incremental.jsonl\\nrun_prompt_sensitivity.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "b27491f9-ec5f-4449-b8e6-fdd3c84a5528",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"batch_config.json\\\\nexperiment.log\\\\nresults.json\\\\nresults_incremental.jsonl\\\\nrun_prompt_sensitivity.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"batch_config.json\\nexperiment.log\\nresults.json\\nresults_incremental.jsonl\\nrun_prompt_sensitivity.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Fso6zvNrzA8ZgmcGEYqdcS`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/count_curve_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "a9f06890-72eb-4d3c-a599-745723b3afc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RK5XJiYBcoqhK7NfgPB4za",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1432,
+      "cache_read_input_tokens": 26104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1432
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T09:59:29.652Z_
+
+<details><summary>↩ Tool result · `toolu_01Fso6zvNrzA8ZgmcGEYqdcS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_12\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.3057248414595919,\\n    \\\"std_recall\\\": 0.10170824254380957,\\n    \\\"min_recall\\\": 0.058823529411764705,\\n    \\\"max_recall\\\": 0.4433551198257081\\n  },\\n  \\\"count_2\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.5266780387619197,\\n    \\\"std_recall\\\": 0.19048479022268705,\\n    \\\"min_recall\\\": 0.09375,\\n    \\\"max_recall\\\": 0.8260869565217391\\n  },\\n  \\\"count_22\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.2684261702590903,\\n    \\\"std_recall\\\": 0.10293299621763703,\\n    \\\"min_recall\\\": 0.11260709914320685,\\n    \\\"max_recall\\\": 0.4444444444444444\\n  },\\n  \\\"count_44\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.30068553360032896,\\n    \\\"std_recall\\\": 0.11159506062874297,\\n    \\\"min_recall\\\": 0.10822510822510822,\\n    \\\"max_recall\\\": 0.5461728395061728\\n  },\\n  \\\"count_6\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.38993778906380283,\\n    \\\"std_recall\\\": 0.11534648870734997,\\n    \\\"min_recall\\\": 0.17777777777777778,\\n    \\\"max_recall\\\": 0.6036363636363636\\n  },\\n  \\\"count_66\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.40708898944193067,\\n    \\\"std_recall\\\": 0.0016625495991740968,\\n    \\\"min_recall\\\": 0.40158371040723984,\\n    \\\"max_recall\\\": 0.41025641025641024\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5cd1f255-10ad-4ca0-9866-c55080dd4c19",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_12\\\\\\\": {\\\\n    \\\\\\\"n_batches\\\\\\\": 25,\\\\n    \\\\\\\"mean_recall\\\\\\\": 0.3057248414595919,\\\\n    \\\\\\\"std_recall\\\\\\\": 0.10170824254380957,\\\\n    \\\\\\\"min_recall\\\\\\\": 0.058823529411764705,\\\\n    \\\\\\\"max_recall\\\\\\\": 0.4433551198257081\\\\n  },\\\\n  \\\\\\\"count_2\\\\\\\": {\\\\n    \\\\\\\"n_batches\\\\\\\": 25,\\\\n    \\\\\\\"mean_recall\\\\\\\": 0.5266780387619197,\\\\n    \\\\\\\"std_recall\\\\\\\": 0.19048479022268705,\\\\n    \\\\\\\"min_recall\\\\\\\": 0.09375,\\\\n    \\\\\\\"max_recall\\\\\\\": 0.8260869565217391\\\\n  },\\\\n  \\\\\\\"count_22\\\\\\\": {\\\\n    \\\\\\\"n_batches\\\\\\\": 25,\\\\n    \\\\\\\"mean_recall\\\\\\\": 0.2684261702590903,\\\\n    \\\\\\\"std_recall\\\\\\\": 0.10293299621763703,\\\\n    \\\\\\\"min_recall\\\\\\\": 0.11260709914320685,\\\\n    \\\\\\\"max_recall\\\\\\\": 0.4444444444444444\\\\n  },\\\\n  \\\\\\\"count_44\\\\\\\": {\\\\n    \\\\\\\"n_batches\\\\\\\": 25,\\\\n    \\\\\\\"mean_recall\\\\\\\": 0.30068553360032896,\\\\n    \\\\\\\"std_recall\\\\\\\": 0.11159506062874297,\\\\n    \\\\\\\"min_recall\\\\\\\": 0.10822510822510822,\\\\n    \\\\\\\"max_recall\\\\\\\": 0.5461728395061728\\\\n  },\\\\n  \\\\\\\"count_6\\\\\\\": {\\\\n    \\\\\\\"n_batches\\\\\\\": 25,\\\\n    \\\\\\\"mean_recall\\\\\\\": 0.38993778906380283,\\\\n    \\\\\\\"std_recall\\\\\\\": 0.11534648870734997,\\\\n    \\\\\\\"min_recall\\\\\\\": 0.17777777777777778,\\\\n    \\\\\\\"max_recall\\\\\\\": 0.6036363636363636\\\\n  },\\\\n  \\\\\\\"count_66\\\\\\\": {\\\\n    \\\\\\\"n_batches\\\\\\\": 25,\\\\n    \\\\\\\"mean_recall\\\\\\\": 0.40708898944193067,\\\\n    \\\\\\\"std_recall\\\\\\\": 0.0016625495991740968,\\\\n    \\\\\\\"min_recall\\\\\\\": 0.40158371040723984,\\\\n    \\\\\\\"max_recall\\\\\\\": 0.41025641025641024\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_12\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.3057248414595919,\\n    \\\"std_recall\\\": 0.10170824254380957,\\n    \\\"min_recall\\\": 0.058823529411764705,\\n    \\\"max_recall\\\": 0.4433551198257081\\n  },\\n  \\\"count_2\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.5266780387619197,\\n    \\\"std_recall\\\": 0.19048479022268705,\\n    \\\"min_recall\\\": 0.09375,\\n    \\\"max_recall\\\": 0.8260869565217391\\n  },\\n  \\\"count_22\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.2684261702590903,\\n    \\\"std_recall\\\": 0.10293299621763703,\\n    \\\"min_recall\\\": 0.11260709914320685,\\n    \\\"max_recall\\\": 0.4444444444444444\\n  },\\n  \\\"count_44\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.30068553360032896,\\n    \\\"std_recall\\\": 0.11159506062874297,\\n    \\\"min_recall\\\": 0.10822510822510822,\\n    \\\"max_recall\\\": 0.5461728395061728\\n  },\\n  \\\"count_6\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.38993778906380283,\\n    \\\"std_recall\\\": 0.11534648870734997,\\n    \\\"min_recall\\\": 0.17777777777777778,\\n    \\\"max_recall\\\": 0.6036363636363636\\n  },\\n  \\\"count_66\\\": {\\n    \\\"n_batches\\\": 25,\\n    \\\"mean_recall\\\": 0.40708898944193067,\\n    \\\"std_recall\\\": 0.0016625495991740968,\\n    \\\"min_recall\\\": 0.40158371040723984,\\n    \\\"max_recall\\\": 0.41025641025641024\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DBD8Mhq1otEErTpzF8Gvpe`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp_docred_confusability/bcs_controlled_results.json | head -100",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "bfdee6ff-3e97-4021-ab61-1a90cf2c3177",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RK5XJiYBcoqhK7NfgPB4za",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1432,
+      "cache_read_input_tokens": 26104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1432
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T09:59:30.343Z_
+
+<details><summary>↩ Tool result · `toolu_01DBD8Mhq1otEErTpzF8Gvpe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"bcs_count_16_high_bcs\\\": {\\n    \\\"batches\\\": [\\n      0.5064935064935064,\\n      0.4025974025974026,\\n      0.37662337662337664,\\n      0.4675324675324675,\\n      0.4805194805194805\\n    ],\\n    \\\"mean_acc\\\": 0.44675324675324674,\\n    \\\"std_acc\\\": 0.04900769419250181,\\n    \\\"bcs_values\\\": [\\n      0.6771903283894062,\\n      0.7205597172180812,\\n      0.7506259034077326,\\n      0.7453926106293997,\\n      0.7570966427524884\\n    ],\\n    \\\"mean_bcs\\\": 0.7301730404794216,\\n    \\\"n_samples\\\": [\\n      77,\\n      77,\\n      77,\\n      77,\\n      77\\n    ]\\n  },\\n  \\\"bcs_count_16_low_bcs\\\": {\\n    \\\"batches\\\": [\\n      0.7105263157894737,\\n      0.6447368421052632,\\n      0.6710526315789473,\\n      0.7123287671232876,\\n      0.6578947368421053\\n    ],\\n    \\\"mean_acc\\\": 0.6793078586878154,\\n    \\\"std_acc\\\": 0.027520167903053346,\\n    \\\"bcs_values\\\": [\\n      0.380259021371603,\\n      0.3846218193570773,\\n      0.3897938447693984,\\n      0.38596860840916636,\\n      0.37963757539788884\\n    ],\\n    \\\"mean_bcs\\\": 0.38405617386102675,\\n    \\\"n_samples\\\": [\\n      76,\\n      76,\\n      76,\\n      73,\\n      76\\n    ]\\n  },\\n  \\\"bcs_count_16_random\\\": {\\n    \\\"batches\\\": [\\n      0.575,\\n      0.75,\\n      0.684931506849315,\\n      0.6625,\\n      0.5375,\\n      0.625,\\n      0.7142857142857143,\\n      0.5875,\\n      0.5974025974025974,\\n      0.618421052631579,\\n      0.7,\\n      0.4625,\\n      0.6375,\\n      0.4875,\\n      0.631578947368421,\\n      0.5974025974025974,\\n      0.6351351351351351,\\n      0.7142857142857143,\\n      0.47368421052631576,\\n      0.7125,\\n      0.6,\\n      0.5625,\\n      0.5194805194805194,\\n      0.6233766233766234,\\n      0.547945205479452\\n    ],\\n    \\\"mean_acc\\\": 0.6103171929689594,\\n    \\\"std_acc\\\": 0.07686467783092508,\\n    \\\"bcs_values\\\": [\\n      0.5442313971618812,\\n      0.5710166826844215,\\n      0.5035249171157677,\\n      0.527620813002189,\\n      0.5329574979841709,\\n      0.5032802780469259,\\n      0.49720422650376955,\\n      0.5395022119084995,\\n      0.548921728382508,\\n      0.5451508412758509,\\n      0.47792871817946436,\\n      0.5577343466381232,\\n      0.5514364466071129,\\n      0.5846465160449346,\\n      0.5153855164845784,\\n      0.5655610417326291,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "8a3f6a75-9d95-4bc5-90e7-c7bc908c01a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"bcs_count_16_high_bcs\\\\\\\": {\\\\n    \\\\\\\"batches\\\\\\\": [\\\\n      0.5064935064935064,\\\\n      0.4025974025974026,\\\\n      0.37662337662337664,\\\\n      0.4675324675324675,\\\\n      0.4805194805194805\\\\n    ],\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.44675324675324674,\\\\n    \\\\\\\"std_acc\\\\\\\": 0.04900769419250181,\\\\n    \\\\\\\"bcs_values\\\\\\\": [\\\\n      0.6771903283894062,\\\\n      0.7205597172180812,\\\\n      0.7506259034077326,\\\\n      0.7453926106293997,\\\\n      0.7570966427524884\\\\n    ],\\\\n    \\\\\\\"mean_bcs\\\\\\\": 0.7301730404794216,\\\\n    \\\\\\\"n_samples\\\\\\\": [\\\\n      77,\\\\n      77,\\\\n      77,\\\\n      77,\\\\n      77\\\\n    ]\\\\n  },\\\\n  \\\\\\\"bcs_count_16_low_bcs\\\\\\\": {\\\\n    \\\\\\\"batches\\\\\\\": [\\\\n      0.7105263157894737,\\\\n      0.6447368421052632,\\\\n      0.6710526315789473,\\\\n      0.7123287671232876,\\\\n      0.6578947368421053\\\\n    ],\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.6793078586878154,\\\\n    \\\\\\\"std_acc\\\\\\\": 0.027520167903053346,\\\\n    \\\\\\\"bcs_values\\\\\\\": [\\\\n      0.380259021371603,\\\\n      0.3846218193570773,\\\\n      0.3897938447693984,\\\\n      0.38596860840916636,\\\\n      0.37963757539788884\\\\n    ],\\\\n    \\\\\\\"mean_bcs\\\\\\\": 0.38405617386102675,\\\\n    \\\\\\\"n_samples\\\\\\\": [\\\\n      76,\\\\n      76,\\\\n      76,\\\\n      73,\\\\n      76\\\\n    ]\\\\n  },\\\\n  \\\\\\\"bcs_count_16_random\\\\\\\": {\\\\n    \\\\\\\"batches\\\\\\\": [\\\\n      0.575,\\\\n      0.75,\\\\n      0.684931506849315,\\\\n      0.6625,\\\\n      0.5375,\\\\n      0.625,\\\\n      0.7142857142857143,\\\\n      0.5875,\\\\n      0.5974025974025974,\\\\n      0.618421052631579,\\\\n      0.7,\\\\n      0.4625,\\\\n      0.6375,\\\\n      0.4875,\\\\n      0.631578947368421,\\\\n      0.5974025974025974,\\\\n      0.6351351351351351,\\\\n      0.7142857142857143,\\\\n      0.47368421052631576,\\\\n      0.7125,\\\\n      0.6,\\\\n      0.5625,\\\\n      0.5194805194805194,\\\\n      0.6233766233766234,\\\\n      0.547945205479452\\\\n    ],\\\\n    \\\\\\\"mean_acc\\\\\\\": 0.6103171929689594,\\\\n    \\\\\\\"std_acc\\\\\\\": 0.07686467783092508,\\\\n    \\\\\\\"bcs_values\\\\\\\": [\\\\n      0.5442313971618812,\\\\n      0.5710166826844215,\\\\n      0.5035249171157677,\\\\n      0.527620813002189,\\\\n      0.5329574979841709,\\\\n      0.5032802780469259,\\\\n      0.49720422650376955,\\\\n      0.5395022119084995,\\\\n      0.548921728382508,\\\\n      0.5451508412758509,\\\\n      0.47792871817946436,\\\\n      0.5577343466381232,\\\\n      0.5514364466071129,\\\\n      0.5846465160449346,\\\\n      0.5153855164845784,\\\\n      0.5655610417326291,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"bcs_count_16_high_bcs\\\": {\\n    \\\"batches\\\": [\\n      0.5064935064935064,\\n      0.4025974025974026,\\n      0.37662337662337664,\\n      0.4675324675324675,\\n      0.4805194805194805\\n    ],\\n    \\\"mean_acc\\\": 0.44675324675324674,\\n    \\\"std_acc\\\": 0.04900769419250181,\\n    \\\"bcs_values\\\": [\\n      0.6771903283894062,\\n      0.7205597172180812,\\n      0.7506259034077326,\\n      0.7453926106293997,\\n      0.7570966427524884\\n    ],\\n    \\\"mean_bcs\\\": 0.7301730404794216,\\n    \\\"n_samples\\\": [\\n      77,\\n      77,\\n      77,\\n      77,\\n      77\\n    ]\\n  },\\n  \\\"bcs_count_16_low_bcs\\\": {\\n    \\\"batches\\\": [\\n      0.7105263157894737,\\n      0.6447368421052632,\\n      0.6710526315789473,\\n      0.7123287671232876,\\n      0.6578947368421053\\n    ],\\n    \\\"mean_acc\\\": 0.6793078586878154,\\n    \\\"std_acc\\\": 0.027520167903053346,\\n    \\\"bcs_values\\\": [\\n      0.380259021371603,\\n      0.3846218193570773,\\n      0.3897938447693984,\\n      0.38596860840916636,\\n      0.37963757539788884\\n    ],\\n    \\\"mean_bcs\\\": 0.38405617386102675,\\n    \\\"n_samples\\\": [\\n      76,\\n      76,\\n      76,\\n      73,\\n      76\\n    ]\\n  },\\n  \\\"bcs_count_16_random\\\": {\\n    \\\"batches\\\": [\\n      0.575,\\n      0.75,\\n      0.684931506849315,\\n      0.6625,\\n      0.5375,\\n      0.625,\\n      0.7142857142857143,\\n      0.5875,\\n      0.5974025974025974,\\n      0.618421052631579,\\n      0.7,\\n      0.4625,\\n      0.6375,\\n      0.4875,\\n      0.631578947368421,\\n      0.5974025974025974,\\n      0.6351351351351351,\\n      0.7142857142857143,\\n      0.47368421052631576,\\n      0.7125,\\n      0.6,\\n      0.5625,\\n      0.5194805194805194,\\n      0.6233766233766234,\\n      0.547945205479452\\n    ],\\n    \\\"mean_acc\\\": 0.6103171929689594,\\n    \\\"std_acc\\\": 0.07686467783092508,\\n    \\\"bcs_values\\\": [\\n      0.5442313971618812,\\n      0.5710166826844215,\\n      0.5035249171157677,\\n      0.527620813002189,\\n      0.5329574979841709,\\n      0.5032802780469259,\\n      0.49720422650376955,\\n      0.5395022119084995,\\n      0.548921728382508,\\n      0.5451508412758509,\\n      0.47792871817946436,\\n      0.5577343466381232,\\n      0.5514364466071129,\\n      0.5846465160449346,\\n      0.5153855164845784,\\n      0.5655610417326291,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The bcs_controlled_results.json appears to be for DocRED (relation extraction), not NER. Let me look at the prompt_sensitivity experiment results, and also search for NER-specific BCS correlation data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "49a70053-d8c0-4636-bec0-0ede68fb70b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NXbxp6R1DUeTzDzWPeKChT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2495,
+      "cache_read_input_tokens": 27536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+bcs_controlled_results.json 是 DocRED 的。让我看 prompt_sensitivity 实验的结果和配置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "650ad44a-4038-407d-9e34-38ba9fe3c107",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NXbxp6R1DUeTzDzWPeKChT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2495,
+      "cache_read_input_tokens": 27536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01A9cZsc3RChQ9VmH9BPbNU4`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/experiments/prompt_sensitivity/batch_config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "9b097bd8-c310-4673-8620-295757960f99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NXbxp6R1DUeTzDzWPeKChT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2495,
+      "cache_read_input_tokens": 27536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T09:59:36.195Z_
+
+<details><summary>↩ Tool result · `toolu_01A9cZsc3RChQ9VmH9BPbNU4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"8\\\": [\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch0\\\",\\n      \\\"types\\\": [\\n        \\\"located in or next to body of water\\\",\\n        \\\"after a work by\\\",\\n        \\\"head of government\\\",\\n        \\\"located in the administrative territorial entity\\\",\\n        \\\"followed by\\\",\\n        \\\"league\\\",\\n        \\\"country of citizenship\\\",\\n        \\\"sport\\\"\\n      ],\\n      \\\"bcs\\\": 0.52569572946855\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch1\\\",\\n      \\\"types\\\": [\\n        \\\"part of\\\",\\n        \\\"located in or next to body of water\\\",\\n        \\\"main subject\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"occupation\\\",\\n        \\\"owned by\\\",\\n        \\\"applies to jurisdiction\\\",\\n        \\\"original language of film or TV show\\\"\\n      ],\\n      \\\"bcs\\\": 0.5233517182724816\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch2\\\",\\n      \\\"types\\\": [\\n        \\\"location of formation\\\",\\n        \\\"composer\\\",\\n        \\\"league\\\",\\n        \\\"platform\\\",\\n        \\\"developer\\\",\\n        \\\"constellation\\\",\\n        \\\"genre\\\",\\n        \\\"crosses\\\"\\n      ],\\n      \\\"bcs\\\": 0.5915072900908334\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch3\\\",\\n      \\\"types\\\": [\\n        \\\"director\\\",\\n        \\\"platform\\\",\\n        \\\"original network\\\",\\n        \\\"spouse\\\",\\n        \\\"publisher\\\",\\n        \\\"country\\\",\\n        \\\"owned by\\\",\\n        \\\"language of work or name\\\"\\n      ],\\n      \\\"bcs\\\": 0.5881288392203194\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch4\\\",\\n      \\\"types\\\": [\\n        \\\"child\\\",\\n        \\\"mother\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"director\\\",\\n        \\\"participant of\\\",\\n        \\\"performer\\\",\\n        \\\"location\\\",\\n        \\\"developer\\\"\\n      ],\\n      \\\"bcs\\\": 0.6707370387656348\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch5\\\",\\n      \\\"types\\\": [\\n        \\\"field of work\\\",\\n        \\\"located in or next to body of water\\\",\\n        \\\"record label\\\",\\n        \\\"country of citizenship\\\",\\n        \\\"participant\\\",\\n        \\\"screenwriter\\\",\\n        \\\"applies to jurisdiction\\\",\\n        \\\"instrument\\\"\\n      ],\\n      \\\"bcs\\\": 0.5013092532753944\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch6\\\",\\n      \\\"types\\\": [\\n        \\\"winner\\\",\\n        \\\"sport\\\",\\n        \\\"notable work\\\",\\n        \\\"position played on team\\\",\\n        \\\"competition class\\\",\\n        \\\"director\\\",\\n        \\\"participant of\\\",\\n        \\\"publisher\\\"\\n      ],\\n      \\\"bcs\\\": 0.60703763791493\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch7\\\",\\n      \\\"types\\\": [\\n        \\\"tributary\\\",\\n        \\\"sports season of league or competition\\\",\\n        \\\"position held\\\",\\n        \\\"headquarters location\\\",\\n        \\\"genre\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"participant\\\",\\n        \\\"main subject\\\"\\n      ],\\n      \\\"bcs\\\": 0.4792581503944738\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch8\\\",\\n      \\\"types\\\": [\\n        \\\"said to be the same as\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"league\\\",\\n        \\\"operating system\\\",\\n        \\\"voice type\\\",\\n        \\\"composer\\\",\\n        \\\"winner\\\",\\n        \\\"part of\\\"\\n      ],\\n      \\\"bcs\\\": 0.6071050486394337\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch9\\\",\\n      \\\"types\\\": [\\n        \\\"follows\\\",\\n        \\\"mountain range\\\",\\n        \\\"position held\\\",\\n        \\\"place served by transport hub\\\",\\n        \\\"sibling\\\",\\n        \\\"mother\\\",\\n        \\\"league\\\",\\n        \\\"main subject\\\"\\n      ],\\n      \\\"bcs\\\": 0.5838634510125432\\n    }\\n  ],\\n  \\\"32\\\": [\\n    {\\n      \\\"batch_id\\\": \\\"count32_batch0\\\",\\n      \\\"types\\\": [\\n        \\\"manufacturer\\\",\\n        \\\"occupant\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"location of formation\\\",\\n        \\\"operating system\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"member of\\\",\\n        \\\"applies to jurisdiction\\\",\\n        \\\"headquarters location\\\",\\n        \\\"composer\\\",\\n        \\\"taxon rank\\\",\\n        \\\"participant of\\\",\\n        \\\"movement\\\",\\n        \\\"follows\\\",\\n        \\\"occupation\\\",\\n        \\\"original language of film or TV show\\\",\\n        \\\"military rank\\\",\\n        \\\"performer\\\",\\n        \\\"member of political party\\\",\\n        \\\"successful candidate\\\",\\n        \\\"spouse\\\",\\n        \\\"place served by transport hub\\\",\\n        \\\"position held\\\",\\n        \\\"position played on team\\\",\\n        \\\"residence\\\",\\n        \\\"mouth of the watercourse\\\",\\n        \\\"director\\\",\\n        \\\"record label\\\",\\n        \\\"located \\n\\n... [截断: 输出过长，省略 4809 字符] ...\\n\\n\\\",\\n        \\\"place served by transport hub\\\",\\n        \\\"spouse\\\",\\n        \\\"genre\\\",\\n        \\\"has part\\\",\\n        \\\"child\\\",\\n        \\\"follows\\\",\\n        \\\"sibling\\\"\\n      ],\\n      \\\"bcs\\\": 0.5369072926621283\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count32_batch6\\\",\\n      \\\"types\\\": [\\n        \\\"occupation\\\",\\n        \\\"crosses\\\",\\n        \\\"successful candidate\\\",\\n        \\\"director\\\",\\n        \\\"child\\\",\\n        \\\"sports season of league or competition\\\",\\n        \\\"owned by\\\",\\n        \\\"notable work\\\",\\n        \\\"member of political party\\\",\\n        \\\"architect\\\",\\n        \\\"participant of\\\",\\n        \\\"location of formation\\\",\\n        \\\"located on terrain feature\\\",\\n        \\\"tributary\\\",\\n        \\\"publisher\\\",\\n        \\\"distributor\\\",\\n        \\\"follows\\\",\\n        \\\"constellation\\\",\\n        \\\"occupant\\\",\\n        \\\"position played on team\\\",\\n        \\\"residence\\\",\\n        \\\"sport\\\",\\n        \\\"followed by\\\",\\n        \\\"after a work by\\\",\\n        \\\"taxon rank\\\",\\n        \\\"mountain range\\\",\\n        \\\"applies to jurisdiction\\\",\\n        \\\"spouse\\\",\\n        \\\"located in the administrative territorial entity\\\",\\n        \\\"language of work or name\\\",\\n        \\\"voice type\\\",\\n        \\\"sibling\\\"\\n      ],\\n      \\\"bcs\\\": 0.5626892004041902\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count32_batch7\\\",\\n      \\\"types\\\": [\\n        \\\"sibling\\\",\\n        \\\"participant of\\\",\\n        \\\"has part\\\",\\n        \\\"located in the administrative territorial entity\\\",\\n        \\\"military rank\\\",\\n        \\\"characters\\\",\\n        \\\"publisher\\\",\\n        \\\"participant\\\",\\n        \\\"country of citizenship\\\",\\n        \\\"winner\\\",\\n        \\\"applies to jurisdiction\\\",\\n        \\\"part of\\\",\\n        \\\"position played on team\\\",\\n        \\\"language of work or name\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"child\\\",\\n        \\\"participating team\\\",\\n        \\\"developer\\\",\\n        \\\"sports season of league or competition\\\",\\n        \\\"record label\\\",\\n        \\\"composer\\\",\\n        \\\"work location\\\",\\n        \\\"occupant\\\",\\n        \\\"league\\\",\\n        \\\"crosses\\\",\\n        \\\"contains administrative territorial entity\\\",\\n        \\\"taxon rank\\\",\\n        \\\"instrument\\\",\\n        \\\"director\\\",\\n        \\\"nominated for\\\",\\n        \\\"located on terrain feature\\\",\\n        \\\"field of work\\\"\\n      ],\\n      \\\"bcs\\\": 0.580868021074322\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count32_batch8\\\",\\n      \\\"types\\\": [\\n        \\\"instance of\\\",\\n        \\\"language of work or name\\\",\\n        \\\"occupant\\\",\\n        \\\"participating team\\\",\\n        \\\"owned by\\\",\\n        \\\"has part\\\",\\n        \\\"member of\\\",\\n        \\\"constellation\\\",\\n        \\\"composer\\\",\\n        \\\"competition class\\\",\\n        \\\"followed by\\\",\\n        \\\"operator\\\",\\n        \\\"instrument\\\",\\n        \\\"participant of\\\",\\n        \\\"country of citizenship\\\",\\n        \\\"country of origin\\\",\\n        \\\"performer\\\",\\n        \\\"work location\\\",\\n        \\\"head of government\\\",\\n        \\\"contains administrative territorial entity\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"position played on team\\\",\\n        \\\"genre\\\",\\n        \\\"main subject\\\",\\n        \\\"sports season of league or competition\\\",\\n        \\\"sport\\\",\\n        \\\"spouse\\\",\\n        \\\"voice type\\\",\\n        \\\"residence\\\",\\n        \\\"operating system\\\",\\n        \\\"notable work\\\",\\n        \\\"tributary\\\"\\n      ],\\n      \\\"bcs\\\": 0.5725335950452474\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count32_batch9\\\",\\n      \\\"types\\\": [\\n        \\\"operator\\\",\\n        \\\"mountain range\\\",\\n        \\\"composer\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"military branch\\\",\\n        \\\"main subject\\\",\\n        \\\"voice type\\\",\\n        \\\"participant\\\",\\n        \\\"taxon rank\\\",\\n        \\\"spouse\\\",\\n        \\\"after a work by\\\",\\n        \\\"original network\\\",\\n        \\\"has part\\\",\\n        \\\"nominated for\\\",\\n        \\\"located in or next to body of water\\\",\\n        \\\"followed by\\\",\\n        \\\"genre\\\",\\n        \\\"distributor\\\",\\n        \\\"instance of\\\",\\n        \\\"instrument\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"sibling\\\",\\n        \\\"winner\\\",\\n        \\\"member of political party\\\",\\n        \\\"religion\\\",\\n        \\\"located on terrain feature\\\",\\n        \\\"constellation\\\",\\n        \\\"director\\\",\\n        \\\"occupant\\\",\\n        \\\"country\\\",\\n        \\\"country of origin\\\",\\n        \\\"applies to jurisdiction\\\"\\n      ],\\n      \\\"bcs\\\": 0.5750757158403436\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "45f94183-3033-4145-b4c1-78a71dbdde38",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"8\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count8_batch0\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"located in or next to body of water\\\\\\\",\\\\n        \\\\\\\"after a work by\\\\\\\",\\\\n        \\\\\\\"head of government\\\\\\\",\\\\n        \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n        \\\\\\\"followed by\\\\\\\",\\\\n        \\\\\\\"league\\\\\\\",\\\\n        \\\\\\\"country of citizenship\\\\\\\",\\\\n        \\\\\\\"sport\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.52569572946855\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count8_batch1\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"part of\\\\\\\",\\\\n        \\\\\\\"located in or next to body of water\\\\\\\",\\\\n        \\\\\\\"main subject\\\\\\\",\\\\n        \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n        \\\\\\\"occupation\\\\\\\",\\\\n        \\\\\\\"owned by\\\\\\\",\\\\n        \\\\\\\"applies to jurisdiction\\\\\\\",\\\\n        \\\\\\\"original language of film or TV show\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.5233517182724816\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count8_batch2\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"location of formation\\\\\\\",\\\\n        \\\\\\\"composer\\\\\\\",\\\\n        \\\\\\\"league\\\\\\\",\\\\n        \\\\\\\"platform\\\\\\\",\\\\n        \\\\\\\"developer\\\\\\\",\\\\n        \\\\\\\"constellation\\\\\\\",\\\\n        \\\\\\\"genre\\\\\\\",\\\\n        \\\\\\\"crosses\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.5915072900908334\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count8_batch3\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"director\\\\\\\",\\\\n        \\\\\\\"platform\\\\\\\",\\\\n        \\\\\\\"original network\\\\\\\",\\\\n        \\\\\\\"spouse\\\\\\\",\\\\n        \\\\\\\"publisher\\\\\\\",\\\\n        \\\\\\\"country\\\\\\\",\\\\n        \\\\\\\"owned by\\\\\\\",\\\\n        \\\\\\\"language of work or name\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.5881288392203194\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count8_batch4\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"child\\\\\\\",\\\\n        \\\\\\\"mother\\\\\\\",\\\\n        \\\\\\\"said to be the same as\\\\\\\",\\\\n        \\\\\\\"director\\\\\\\",\\\\n        \\\\\\\"participant of\\\\\\\",\\\\n        \\\\\\\"performer\\\\\\\",\\\\n        \\\\\\\"location\\\\\\\",\\\\n        \\\\\\\"developer\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.6707370387656348\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count8_batch5\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"field of work\\\\\\\",\\\\n        \\\\\\\"located in or next to body of water\\\\\\\",\\\\n        \\\\\\\"record label\\\\\\\",\\\\n        \\\\\\\"country of citizenship\\\\\\\",\\\\n        \\\\\\\"participant\\\\\\\",\\\\n        \\\\\\\"screenwriter\\\\\\\",\\\\n        \\\\\\\"applies to jurisdiction\\\\\\\",\\\\n        \\\\\\\"instrument\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.5013092532753944\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count8_batch6\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"winner\\\\\\\",\\\\n        \\\\\\\"sport\\\\\\\",\\\\n        \\\\\\\"notable work\\\\\\\",\\\\n        \\\\\\\"position played on team\\\\\\\",\\\\n        \\\\\\\"competition class\\\\\\\",\\\\n        \\\\\\\"director\\\\\\\",\\\\n        \\\\\\\"participant of\\\\\\\",\\\\n        \\\\\\\"publisher\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.60703763791493\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count8_batch7\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"tributary\\\\\\\",\\\\n        \\\\\\\"sports season of league or competition\\\\\\\",\\\\n        \\\\\\\"position held\\\\\\\",\\\\n        \\\\\\\"headquarters location\\\\\\\",\\\\n        \\\\\\\"genre\\\\\\\",\\\\n        \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n        \\\\\\\"participant\\\\\\\",\\\\n        \\\\\\\"main subject\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.4792581503944738\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count8_batch8\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"said to be the same as\\\\\\\",\\\\n        \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n        \\\\\\\"league\\\\\\\",\\\\n        \\\\\\\"operating system\\\\\\\",\\\\n        \\\\\\\"voice type\\\\\\\",\\\\n        \\\\\\\"composer\\\\\\\",\\\\n        \\\\\\\"winner\\\\\\\",\\\\n        \\\\\\\"part of\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.6071050486394337\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count8_batch9\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"follows\\\\\\\",\\\\n        \\\\\\\"mountain range\\\\\\\",\\\\n        \\\\\\\"position held\\\\\\\",\\\\n        \\\\\\\"place served by transport hub\\\\\\\",\\\\n        \\\\\\\"sibling\\\\\\\",\\\\n        \\\\\\\"mother\\\\\\\",\\\\n        \\\\\\\"league\\\\\\\",\\\\n        \\\\\\\"main subject\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.5838634510125432\\\\n    }\\\\n  ],\\\\n  \\\\\\\"32\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count32_batch0\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"manufacturer\\\\\\\",\\\\n        \\\\\\\"occupant\\\\\\\",\\\\n        \\\\\\\"said to be the same as\\\\\\\",\\\\n        \\\\\\\"location of formation\\\\\\\",\\\\n        \\\\\\\"operating system\\\\\\\",\\\\n        \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n        \\\\\\\"member of\\\\\\\",\\\\n        \\\\\\\"applies to jurisdiction\\\\\\\",\\\\n        \\\\\\\"headquarters location\\\\\\\",\\\\n        \\\\\\\"composer\\\\\\\",\\\\n        \\\\\\\"taxon rank\\\\\\\",\\\\n        \\\\\\\"participant of\\\\\\\",\\\\n        \\\\\\\"movement\\\\\\\",\\\\n        \\\\\\\"follows\\\\\\\",\\\\n        \\\\\\\"occupation\\\\\\\",\\\\n        \\\\\\\"original language of film or TV show\\\\\\\",\\\\n        \\\\\\\"military rank\\\\\\\",\\\\n        \\\\\\\"performer\\\\\\\",\\\\n        \\\\\\\"member of political party\\\\\\\",\\\\n        \\\\\\\"successful candidate\\\\\\\",\\\\n        \\\\\\\"spouse\\\\\\\",\\\\n        \\\\\\\"place served by transport hub\\\\\\\",\\\\n        \\\\\\\"position held\\\\\\\",\\\\n        \\\\\\\"position played on team\\\\\\\",\\\\n        \\\\\\\"residence\\\\\\\",\\\\n        \\\\\\\"mouth of the watercourse\\\\\\\",\\\\n        \\\\\\\"director\\\\\\\",\\\\n        \\\\\\\"record label\\\\\\\",\\\\n        \\\\\\\"located \\\\n\\\\n... [截断: 输出过长，省略 4809 字符] ...\\\\n\\\\n\\\\\\\",\\\\n        \\\\\\\"place served by transport hub\\\\\\\",\\\\n        \\\\\\\"spouse\\\\\\\",\\\\n        \\\\\\\"genre\\\\\\\",\\\\n        \\\\\\\"has part\\\\\\\",\\\\n        \\\\\\\"child\\\\\\\",\\\\n        \\\\\\\"follows\\\\\\\",\\\\n        \\\\\\\"sibling\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.5369072926621283\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count32_batch6\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"occupation\\\\\\\",\\\\n        \\\\\\\"crosses\\\\\\\",\\\\n        \\\\\\\"successful candidate\\\\\\\",\\\\n        \\\\\\\"director\\\\\\\",\\\\n        \\\\\\\"child\\\\\\\",\\\\n        \\\\\\\"sports season of league or competition\\\\\\\",\\\\n        \\\\\\\"owned by\\\\\\\",\\\\n        \\\\\\\"notable work\\\\\\\",\\\\n        \\\\\\\"member of political party\\\\\\\",\\\\n        \\\\\\\"architect\\\\\\\",\\\\n        \\\\\\\"participant of\\\\\\\",\\\\n        \\\\\\\"location of formation\\\\\\\",\\\\n        \\\\\\\"located on terrain feature\\\\\\\",\\\\n        \\\\\\\"tributary\\\\\\\",\\\\n        \\\\\\\"publisher\\\\\\\",\\\\n        \\\\\\\"distributor\\\\\\\",\\\\n        \\\\\\\"follows\\\\\\\",\\\\n        \\\\\\\"constellation\\\\\\\",\\\\n        \\\\\\\"occupant\\\\\\\",\\\\n        \\\\\\\"position played on team\\\\\\\",\\\\n        \\\\\\\"residence\\\\\\\",\\\\n        \\\\\\\"sport\\\\\\\",\\\\n        \\\\\\\"followed by\\\\\\\",\\\\n        \\\\\\\"after a work by\\\\\\\",\\\\n        \\\\\\\"taxon rank\\\\\\\",\\\\n        \\\\\\\"mountain range\\\\\\\",\\\\n        \\\\\\\"applies to jurisdiction\\\\\\\",\\\\n        \\\\\\\"spouse\\\\\\\",\\\\n        \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n        \\\\\\\"language of work or name\\\\\\\",\\\\n        \\\\\\\"voice type\\\\\\\",\\\\n        \\\\\\\"sibling\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.5626892004041902\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count32_batch7\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"sibling\\\\\\\",\\\\n        \\\\\\\"participant of\\\\\\\",\\\\n        \\\\\\\"has part\\\\\\\",\\\\n        \\\\\\\"located in the administrative territorial entity\\\\\\\",\\\\n        \\\\\\\"military rank\\\\\\\",\\\\n        \\\\\\\"characters\\\\\\\",\\\\n        \\\\\\\"publisher\\\\\\\",\\\\n        \\\\\\\"participant\\\\\\\",\\\\n        \\\\\\\"country of citizenship\\\\\\\",\\\\n        \\\\\\\"winner\\\\\\\",\\\\n        \\\\\\\"applies to jurisdiction\\\\\\\",\\\\n        \\\\\\\"part of\\\\\\\",\\\\n        \\\\\\\"position played on team\\\\\\\",\\\\n        \\\\\\\"language of work or name\\\\\\\",\\\\n        \\\\\\\"said to be the same as\\\\\\\",\\\\n        \\\\\\\"child\\\\\\\",\\\\n        \\\\\\\"participating team\\\\\\\",\\\\n        \\\\\\\"developer\\\\\\\",\\\\n        \\\\\\\"sports season of league or competition\\\\\\\",\\\\n        \\\\\\\"record label\\\\\\\",\\\\n        \\\\\\\"composer\\\\\\\",\\\\n        \\\\\\\"work location\\\\\\\",\\\\n        \\\\\\\"occupant\\\\\\\",\\\\n        \\\\\\\"league\\\\\\\",\\\\n        \\\\\\\"crosses\\\\\\\",\\\\n        \\\\\\\"contains administrative territorial entity\\\\\\\",\\\\n        \\\\\\\"taxon rank\\\\\\\",\\\\n        \\\\\\\"instrument\\\\\\\",\\\\n        \\\\\\\"director\\\\\\\",\\\\n        \\\\\\\"nominated for\\\\\\\",\\\\n        \\\\\\\"located on terrain feature\\\\\\\",\\\\n        \\\\\\\"field of work\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.580868021074322\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count32_batch8\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"instance of\\\\\\\",\\\\n        \\\\\\\"language of work or name\\\\\\\",\\\\n        \\\\\\\"occupant\\\\\\\",\\\\n        \\\\\\\"participating team\\\\\\\",\\\\n        \\\\\\\"owned by\\\\\\\",\\\\n        \\\\\\\"has part\\\\\\\",\\\\n        \\\\\\\"member of\\\\\\\",\\\\n        \\\\\\\"constellation\\\\\\\",\\\\n        \\\\\\\"composer\\\\\\\",\\\\n        \\\\\\\"competition class\\\\\\\",\\\\n        \\\\\\\"followed by\\\\\\\",\\\\n        \\\\\\\"operator\\\\\\\",\\\\n        \\\\\\\"instrument\\\\\\\",\\\\n        \\\\\\\"participant of\\\\\\\",\\\\n        \\\\\\\"country of citizenship\\\\\\\",\\\\n        \\\\\\\"country of origin\\\\\\\",\\\\n        \\\\\\\"performer\\\\\\\",\\\\n        \\\\\\\"work location\\\\\\\",\\\\n        \\\\\\\"head of government\\\\\\\",\\\\n        \\\\\\\"contains administrative territorial entity\\\\\\\",\\\\n        \\\\\\\"said to be the same as\\\\\\\",\\\\n        \\\\\\\"position played on team\\\\\\\",\\\\n        \\\\\\\"genre\\\\\\\",\\\\n        \\\\\\\"main subject\\\\\\\",\\\\n        \\\\\\\"sports season of league or competition\\\\\\\",\\\\n        \\\\\\\"sport\\\\\\\",\\\\n        \\\\\\\"spouse\\\\\\\",\\\\n        \\\\\\\"voice type\\\\\\\",\\\\n        \\\\\\\"residence\\\\\\\",\\\\n        \\\\\\\"operating system\\\\\\\",\\\\n        \\\\\\\"notable work\\\\\\\",\\\\n        \\\\\\\"tributary\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.5725335950452474\\\\n    },\\\\n    {\\\\n      \\\\\\\"batch_id\\\\\\\": \\\\\\\"count32_batch9\\\\\\\",\\\\n      \\\\\\\"types\\\\\\\": [\\\\n        \\\\\\\"operator\\\\\\\",\\\\n        \\\\\\\"mountain range\\\\\\\",\\\\n        \\\\\\\"composer\\\\\\\",\\\\n        \\\\\\\"licensed to broadcast to\\\\\\\",\\\\n        \\\\\\\"military branch\\\\\\\",\\\\n        \\\\\\\"main subject\\\\\\\",\\\\n        \\\\\\\"voice type\\\\\\\",\\\\n        \\\\\\\"participant\\\\\\\",\\\\n        \\\\\\\"taxon rank\\\\\\\",\\\\n        \\\\\\\"spouse\\\\\\\",\\\\n        \\\\\\\"after a work by\\\\\\\",\\\\n        \\\\\\\"original network\\\\\\\",\\\\n        \\\\\\\"has part\\\\\\\",\\\\n        \\\\\\\"nominated for\\\\\\\",\\\\n        \\\\\\\"located in or next to body of water\\\\\\\",\\\\n        \\\\\\\"followed by\\\\\\\",\\\\n        \\\\\\\"genre\\\\\\\",\\\\n        \\\\\\\"distributor\\\\\\\",\\\\n        \\\\\\\"instance of\\\\\\\",\\\\n        \\\\\\\"instrument\\\\\\\",\\\\n        \\\\\\\"said to be the same as\\\\\\\",\\\\n        \\\\\\\"sibling\\\\\\\",\\\\n        \\\\\\\"winner\\\\\\\",\\\\n        \\\\\\\"member of political party\\\\\\\",\\\\n        \\\\\\\"religion\\\\\\\",\\\\n        \\\\\\\"located on terrain feature\\\\\\\",\\\\n        \\\\\\\"constellation\\\\\\\",\\\\n        \\\\\\\"director\\\\\\\",\\\\n        \\\\\\\"occupant\\\\\\\",\\\\n        \\\\\\\"country\\\\\\\",\\\\n        \\\\\\\"country of origin\\\\\\\",\\\\n        \\\\\\\"applies to jurisdiction\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"bcs\\\\\\\": 0.5750757158403436\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"8\\\": [\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch0\\\",\\n      \\\"types\\\": [\\n        \\\"located in or next to body of water\\\",\\n        \\\"after a work by\\\",\\n        \\\"head of government\\\",\\n        \\\"located in the administrative territorial entity\\\",\\n        \\\"followed by\\\",\\n        \\\"league\\\",\\n        \\\"country of citizenship\\\",\\n        \\\"sport\\\"\\n      ],\\n      \\\"bcs\\\": 0.52569572946855\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch1\\\",\\n      \\\"types\\\": [\\n        \\\"part of\\\",\\n        \\\"located in or next to body of water\\\",\\n        \\\"main subject\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"occupation\\\",\\n        \\\"owned by\\\",\\n        \\\"applies to jurisdiction\\\",\\n        \\\"original language of film or TV show\\\"\\n      ],\\n      \\\"bcs\\\": 0.5233517182724816\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch2\\\",\\n      \\\"types\\\": [\\n        \\\"location of formation\\\",\\n        \\\"composer\\\",\\n        \\\"league\\\",\\n        \\\"platform\\\",\\n        \\\"developer\\\",\\n        \\\"constellation\\\",\\n        \\\"genre\\\",\\n        \\\"crosses\\\"\\n      ],\\n      \\\"bcs\\\": 0.5915072900908334\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch3\\\",\\n      \\\"types\\\": [\\n        \\\"director\\\",\\n        \\\"platform\\\",\\n        \\\"original network\\\",\\n        \\\"spouse\\\",\\n        \\\"publisher\\\",\\n        \\\"country\\\",\\n        \\\"owned by\\\",\\n        \\\"language of work or name\\\"\\n      ],\\n      \\\"bcs\\\": 0.5881288392203194\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch4\\\",\\n      \\\"types\\\": [\\n        \\\"child\\\",\\n        \\\"mother\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"director\\\",\\n        \\\"participant of\\\",\\n        \\\"performer\\\",\\n        \\\"location\\\",\\n        \\\"developer\\\"\\n      ],\\n      \\\"bcs\\\": 0.6707370387656348\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch5\\\",\\n      \\\"types\\\": [\\n        \\\"field of work\\\",\\n        \\\"located in or next to body of water\\\",\\n        \\\"record label\\\",\\n        \\\"country of citizenship\\\",\\n        \\\"participant\\\",\\n        \\\"screenwriter\\\",\\n        \\\"applies to jurisdiction\\\",\\n        \\\"instrument\\\"\\n      ],\\n      \\\"bcs\\\": 0.5013092532753944\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch6\\\",\\n      \\\"types\\\": [\\n        \\\"winner\\\",\\n        \\\"sport\\\",\\n        \\\"notable work\\\",\\n        \\\"position played on team\\\",\\n        \\\"competition class\\\",\\n        \\\"director\\\",\\n        \\\"participant of\\\",\\n        \\\"publisher\\\"\\n      ],\\n      \\\"bcs\\\": 0.60703763791493\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch7\\\",\\n      \\\"types\\\": [\\n        \\\"tributary\\\",\\n        \\\"sports season of league or competition\\\",\\n        \\\"position held\\\",\\n        \\\"headquarters location\\\",\\n        \\\"genre\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"participant\\\",\\n        \\\"main subject\\\"\\n      ],\\n      \\\"bcs\\\": 0.4792581503944738\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch8\\\",\\n      \\\"types\\\": [\\n        \\\"said to be the same as\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"league\\\",\\n        \\\"operating system\\\",\\n        \\\"voice type\\\",\\n        \\\"composer\\\",\\n        \\\"winner\\\",\\n        \\\"part of\\\"\\n      ],\\n      \\\"bcs\\\": 0.6071050486394337\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count8_batch9\\\",\\n      \\\"types\\\": [\\n        \\\"follows\\\",\\n        \\\"mountain range\\\",\\n        \\\"position held\\\",\\n        \\\"place served by transport hub\\\",\\n        \\\"sibling\\\",\\n        \\\"mother\\\",\\n        \\\"league\\\",\\n        \\\"main subject\\\"\\n      ],\\n      \\\"bcs\\\": 0.5838634510125432\\n    }\\n  ],\\n  \\\"32\\\": [\\n    {\\n      \\\"batch_id\\\": \\\"count32_batch0\\\",\\n      \\\"types\\\": [\\n        \\\"manufacturer\\\",\\n        \\\"occupant\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"location of formation\\\",\\n        \\\"operating system\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"member of\\\",\\n        \\\"applies to jurisdiction\\\",\\n        \\\"headquarters location\\\",\\n        \\\"composer\\\",\\n        \\\"taxon rank\\\",\\n        \\\"participant of\\\",\\n        \\\"movement\\\",\\n        \\\"follows\\\",\\n        \\\"occupation\\\",\\n        \\\"original language of film or TV show\\\",\\n        \\\"military rank\\\",\\n        \\\"performer\\\",\\n        \\\"member of political party\\\",\\n        \\\"successful candidate\\\",\\n        \\\"spouse\\\",\\n        \\\"place served by transport hub\\\",\\n        \\\"position held\\\",\\n        \\\"position played on team\\\",\\n        \\\"residence\\\",\\n        \\\"mouth of the watercourse\\\",\\n        \\\"director\\\",\\n        \\\"record label\\\",\\n        \\\"located \\n\\n... [截断: 输出过长，省略 4809 字符] ...\\n\\n\\\",\\n        \\\"place served by transport hub\\\",\\n        \\\"spouse\\\",\\n        \\\"genre\\\",\\n        \\\"has part\\\",\\n        \\\"child\\\",\\n        \\\"follows\\\",\\n        \\\"sibling\\\"\\n      ],\\n      \\\"bcs\\\": 0.5369072926621283\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count32_batch6\\\",\\n      \\\"types\\\": [\\n        \\\"occupation\\\",\\n        \\\"crosses\\\",\\n        \\\"successful candidate\\\",\\n        \\\"director\\\",\\n        \\\"child\\\",\\n        \\\"sports season of league or competition\\\",\\n        \\\"owned by\\\",\\n        \\\"notable work\\\",\\n        \\\"member of political party\\\",\\n        \\\"architect\\\",\\n        \\\"participant of\\\",\\n        \\\"location of formation\\\",\\n        \\\"located on terrain feature\\\",\\n        \\\"tributary\\\",\\n        \\\"publisher\\\",\\n        \\\"distributor\\\",\\n        \\\"follows\\\",\\n        \\\"constellation\\\",\\n        \\\"occupant\\\",\\n        \\\"position played on team\\\",\\n        \\\"residence\\\",\\n        \\\"sport\\\",\\n        \\\"followed by\\\",\\n        \\\"after a work by\\\",\\n        \\\"taxon rank\\\",\\n        \\\"mountain range\\\",\\n        \\\"applies to jurisdiction\\\",\\n        \\\"spouse\\\",\\n        \\\"located in the administrative territorial entity\\\",\\n        \\\"language of work or name\\\",\\n        \\\"voice type\\\",\\n        \\\"sibling\\\"\\n      ],\\n      \\\"bcs\\\": 0.5626892004041902\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count32_batch7\\\",\\n      \\\"types\\\": [\\n        \\\"sibling\\\",\\n        \\\"participant of\\\",\\n        \\\"has part\\\",\\n        \\\"located in the administrative territorial entity\\\",\\n        \\\"military rank\\\",\\n        \\\"characters\\\",\\n        \\\"publisher\\\",\\n        \\\"participant\\\",\\n        \\\"country of citizenship\\\",\\n        \\\"winner\\\",\\n        \\\"applies to jurisdiction\\\",\\n        \\\"part of\\\",\\n        \\\"position played on team\\\",\\n        \\\"language of work or name\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"child\\\",\\n        \\\"participating team\\\",\\n        \\\"developer\\\",\\n        \\\"sports season of league or competition\\\",\\n        \\\"record label\\\",\\n        \\\"composer\\\",\\n        \\\"work location\\\",\\n        \\\"occupant\\\",\\n        \\\"league\\\",\\n        \\\"crosses\\\",\\n        \\\"contains administrative territorial entity\\\",\\n        \\\"taxon rank\\\",\\n        \\\"instrument\\\",\\n        \\\"director\\\",\\n        \\\"nominated for\\\",\\n        \\\"located on terrain feature\\\",\\n        \\\"field of work\\\"\\n      ],\\n      \\\"bcs\\\": 0.580868021074322\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count32_batch8\\\",\\n      \\\"types\\\": [\\n        \\\"instance of\\\",\\n        \\\"language of work or name\\\",\\n        \\\"occupant\\\",\\n        \\\"participating team\\\",\\n        \\\"owned by\\\",\\n        \\\"has part\\\",\\n        \\\"member of\\\",\\n        \\\"constellation\\\",\\n        \\\"composer\\\",\\n        \\\"competition class\\\",\\n        \\\"followed by\\\",\\n        \\\"operator\\\",\\n        \\\"instrument\\\",\\n        \\\"participant of\\\",\\n        \\\"country of citizenship\\\",\\n        \\\"country of origin\\\",\\n        \\\"performer\\\",\\n        \\\"work location\\\",\\n        \\\"head of government\\\",\\n        \\\"contains administrative territorial entity\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"position played on team\\\",\\n        \\\"genre\\\",\\n        \\\"main subject\\\",\\n        \\\"sports season of league or competition\\\",\\n        \\\"sport\\\",\\n        \\\"spouse\\\",\\n        \\\"voice type\\\",\\n        \\\"residence\\\",\\n        \\\"operating system\\\",\\n        \\\"notable work\\\",\\n        \\\"tributary\\\"\\n      ],\\n      \\\"bcs\\\": 0.5725335950452474\\n    },\\n    {\\n      \\\"batch_id\\\": \\\"count32_batch9\\\",\\n      \\\"types\\\": [\\n        \\\"operator\\\",\\n        \\\"mountain range\\\",\\n        \\\"composer\\\",\\n        \\\"licensed to broadcast to\\\",\\n        \\\"military branch\\\",\\n        \\\"main subject\\\",\\n        \\\"voice type\\\",\\n        \\\"participant\\\",\\n        \\\"taxon rank\\\",\\n        \\\"spouse\\\",\\n        \\\"after a work by\\\",\\n        \\\"original network\\\",\\n        \\\"has part\\\",\\n        \\\"nominated for\\\",\\n        \\\"located in or next to body of water\\\",\\n        \\\"followed by\\\",\\n        \\\"genre\\\",\\n        \\\"distributor\\\",\\n        \\\"instance of\\\",\\n        \\\"instrument\\\",\\n        \\\"said to be the same as\\\",\\n        \\\"sibling\\\",\\n        \\\"winner\\\",\\n        \\\"member of political party\\\",\\n        \\\"religion\\\",\\n        \\\"located on terrain feature\\\",\\n        \\\"constellation\\\",\\n        \\\"director\\\",\\n        \\\"occupant\\\",\\n        \\\"country\\\",\\n        \\\"country of origin\\\",\\n        \\\"applies to jurisdiction\\\"\\n      ],\\n      \\\"bcs\\\": 0.5750757158403436\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AcceWGbSEKBFgRr9N7ks2i`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/experiments/prompt_sensitivity/results.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(list(d.keys())[:20]))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "e2071c3a-5be7-4bcc-aa10-0e230a43d4ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NXbxp6R1DUeTzDzWPeKChT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2495,
+      "cache_read_input_tokens": 27536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T09:59:36.903Z_
+
+<details><summary>↩ Tool result · `toolu_01AcceWGbSEKBFgRr9N7ks2i`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat /root/schema-dag-extraction/experiments/prompt_sensitivity/results.json | python3 -c \\\"import json,sys; d=json.load(sys.stdin); print(json.dumps(list(d.keys())[:20]))\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "692893f3-04c3-4613-927f-3cd12e359bc4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat /root/schema-dag-extraction/experiments/prompt_sensitivity/results.json | python3 -c \\\\\\\"import json,sys; d=json.load(sys.stdin); print(json.dumps(list(d.keys())[:20]))\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat /root/schema-dag-extraction/experiments/prompt_sensitivity/results.json | python3 -c \\\"import json,sys; d=json.load(sys.stdin); print(json.dumps(list(d.keys())[:20]))\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Scs2i9mUp5TTnftuoFFbwE`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -80 /root/schema-dag-extraction/experiments/prompt_sensitivity/run_prompt_sensitivity.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "043edf37-daa5-4573-b200-5bcba54f73ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NXbxp6R1DUeTzDzWPeKChT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2495,
+      "cache_read_input_tokens": 27536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T09:59:38.240Z_
+
+<details><summary>↩ Tool result · `toolu_01Scs2i9mUp5TTnftuoFFbwE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Prompt Sensitivity Experiment: BCS effect across 4 prompt variants.\\n\\nValidates that BCS-driven type confusion is robust to prompt wording.\\nTests BCS-accuracy correlation under v2, instruction-rewrite, CoT, and minimal prompts.\\n\\nDesign:\\n  - Dataset: FewRel 80-rel (train+val)\\n  - Count levels: 8, 32\\n  - Batches: 10 random per count level (shared across variants for fair comparison)\\n  - Seed: 42\\n  - Model: Qwen3-32B-FP8 via vLLM (local, greedy decoding)\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"FLASHINFER_DISABLE_VERSION_CHECK\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport re\\nimport sys\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\n\\nlogger = logging.getLogger(__name__)\\n\\nBASE_DIR = Path(\\\"/root/schema-dag-extraction\\\")\\nOUTPUT_DIR = BASE_DIR / \\\"experiments\\\" / \\\"prompt_sensitivity\\\"\\nSIM_MATRIX_PATH = BASE_DIR / \\\"artifacts\\\" / \\\"fewrel_formal_full\\\" / \\\"relation_sim_matrix.pt\\\"\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\"\\n\\nCOUNTS = [8, 32]\\nN_BATCHES = 10\\nSEED = 42\\nN_SAMPLES_PER_REL = 12\\n\\n\\n# ─── BCS computation ───\\n\\ndef compute_bcs(type_subset, sim_matrix, type_to_idx):\\n    if len(type_subset) < 2:\\n        return 0.0\\n    indices = [type_to_idx[t] for t in type_subset if t in type_to_idx]\\n    if len(indices) < 2:\\n        return 0.0\\n    total = 0.0\\n    count = 0\\n    for i in range(len(indices)):\\n        for j in range(i + 1, len(indices)):\\n            total += sim_matrix[indices[i], indices[j]].item()\\n            count += 1\\n    return total / count\\n\\n\\ndef load_sim_matrix():\\n    \\\"\\\"\\\"Load pre-computed sim matrix (relation names as keys).\\\"\\\"\\\"\\n    data = torch.load(str(SIM_MATRIX_PATH), map_location=\\\"cpu\\\", weights_only=True)\\n    sim_matrix = data.get(\\\"sim_matrix\\\", data.get(\\\"similarity_matrix\\\"))\\n    type_names = data[\\\"type_names\\\"]\\n    type_to_idx = data.get(\\\"type_to_idx\\\", {n: i for i, n in enumerate(type_names)})\\n    return sim_matrix, type_names, type_to_idx\\n\\n\\n# ─── Batch generation ───\\n\\ndef generate_batches(all_relations, sim_matrix, type_to_idx, counts, n_batches, seed):\\n    rng = np.random.RandomState(seed)\\n    batches = {}\\n    for count in counts:\\n        batches[count] = []\\n        for i in range(n_batches):\\n            types = [str(t) for t in rng.choice(all_relations, size=count, replace=False)]\\n            bcs = compute_bcs(types, sim_matrix, type_to_idx)\\n            batches[count].append({\\n                \\\"batch_id\\\": f\\\"count{count}_batch{i}\\\",\\n                \\\"types\\\": types,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "a6d4916f-df10-4be2-81d4-999655c43d30",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Prompt Sensitivity Experiment: BCS effect across 4 prompt variants.\\\\n\\\\nValidates that BCS-driven type confusion is robust to prompt wording.\\\\nTests BCS-accuracy correlation under v2, instruction-rewrite, CoT, and minimal prompts.\\\\n\\\\nDesign:\\\\n  - Dataset: FewRel 80-rel (train+val)\\\\n  - Count levels: 8, 32\\\\n  - Batches: 10 random per count level (shared across variants for fair comparison)\\\\n  - Seed: 42\\\\n  - Model: Qwen3-32B-FP8 via vLLM (local, greedy decoding)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"FLASHINFER_DISABLE_VERSION_CHECK\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\nOUTPUT_DIR = BASE_DIR / \\\\\\\"experiments\\\\\\\" / \\\\\\\"prompt_sensitivity\\\\\\\"\\\\nSIM_MATRIX_PATH = BASE_DIR / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"fewrel_formal_full\\\\\\\" / \\\\\\\"relation_sim_matrix.pt\\\\\\\"\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\\\\"\\\\n\\\\nCOUNTS = [8, 32]\\\\nN_BATCHES = 10\\\\nSEED = 42\\\\nN_SAMPLES_PER_REL = 12\\\\n\\\\n\\\\n# ─── BCS computation ───\\\\n\\\\ndef compute_bcs(type_subset, sim_matrix, type_to_idx):\\\\n    if len(type_subset) < 2:\\\\n        return 0.0\\\\n    indices = [type_to_idx[t] for t in type_subset if t in type_to_idx]\\\\n    if len(indices) < 2:\\\\n        return 0.0\\\\n    total = 0.0\\\\n    count = 0\\\\n    for i in range(len(indices)):\\\\n        for j in range(i + 1, len(indices)):\\\\n            total += sim_matrix[indices[i], indices[j]].item()\\\\n            count += 1\\\\n    return total / count\\\\n\\\\n\\\\ndef load_sim_matrix():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load pre-computed sim matrix (relation names as keys).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    data = torch.load(str(SIM_MATRIX_PATH), map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n    sim_matrix = data.get(\\\\\\\"sim_matrix\\\\\\\", data.get(\\\\\\\"similarity_matrix\\\\\\\"))\\\\n    type_names = data[\\\\\\\"type_names\\\\\\\"]\\\\n    type_to_idx = data.get(\\\\\\\"type_to_idx\\\\\\\", {n: i for i, n in enumerate(type_names)})\\\\n    return sim_matrix, type_names, type_to_idx\\\\n\\\\n\\\\n# ─── Batch generation ───\\\\n\\\\ndef generate_batches(all_relations, sim_matrix, type_to_idx, counts, n_batches, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    batches = {}\\\\n    for count in counts:\\\\n        batches[count] = []\\\\n        for i in range(n_batches):\\\\n            types = [str(t) for t in rng.choice(all_relations, size=count, replace=False)]\\\\n            bcs = compute_bcs(types, sim_matrix, type_to_idx)\\\\n            batches[count].append({\\\\n                \\\\\\\"batch_id\\\\\\\": f\\\\\\\"count{count}_batch{i}\\\\\\\",\\\\n                \\\\\\\"types\\\\\\\": types,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Prompt Sensitivity Experiment: BCS effect across 4 prompt variants.\\n\\nValidates that BCS-driven type confusion is robust to prompt wording.\\nTests BCS-accuracy correlation under v2, instruction-rewrite, CoT, and minimal prompts.\\n\\nDesign:\\n  - Dataset: FewRel 80-rel (train+val)\\n  - Count levels: 8, 32\\n  - Batches: 10 random per count level (shared across variants for fair comparison)\\n  - Seed: 42\\n  - Model: Qwen3-32B-FP8 via vLLM (local, greedy decoding)\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"FLASHINFER_DISABLE_VERSION_CHECK\\\"] = \\\"1\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport re\\nimport sys\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\n\\nlogger = logging.getLogger(__name__)\\n\\nBASE_DIR = Path(\\\"/root/schema-dag-extraction\\\")\\nOUTPUT_DIR = BASE_DIR / \\\"experiments\\\" / \\\"prompt_sensitivity\\\"\\nSIM_MATRIX_PATH = BASE_DIR / \\\"artifacts\\\" / \\\"fewrel_formal_full\\\" / \\\"relation_sim_matrix.pt\\\"\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\"\\n\\nCOUNTS = [8, 32]\\nN_BATCHES = 10\\nSEED = 42\\nN_SAMPLES_PER_REL = 12\\n\\n\\n# ─── BCS computation ───\\n\\ndef compute_bcs(type_subset, sim_matrix, type_to_idx):\\n    if len(type_subset) < 2:\\n        return 0.0\\n    indices = [type_to_idx[t] for t in type_subset if t in type_to_idx]\\n    if len(indices) < 2:\\n        return 0.0\\n    total = 0.0\\n    count = 0\\n    for i in range(len(indices)):\\n        for j in range(i + 1, len(indices)):\\n            total += sim_matrix[indices[i], indices[j]].item()\\n            count += 1\\n    return total / count\\n\\n\\ndef load_sim_matrix():\\n    \\\"\\\"\\\"Load pre-computed sim matrix (relation names as keys).\\\"\\\"\\\"\\n    data = torch.load(str(SIM_MATRIX_PATH), map_location=\\\"cpu\\\", weights_only=True)\\n    sim_matrix = data.get(\\\"sim_matrix\\\", data.get(\\\"similarity_matrix\\\"))\\n    type_names = data[\\\"type_names\\\"]\\n    type_to_idx = data.get(\\\"type_to_idx\\\", {n: i for i, n in enumerate(type_names)})\\n    return sim_matrix, type_names, type_to_idx\\n\\n\\n# ─── Batch generation ───\\n\\ndef generate_batches(all_relations, sim_matrix, type_to_idx, counts, n_batches, seed):\\n    rng = np.random.RandomState(seed)\\n    batches = {}\\n    for count in counts:\\n        batches[count] = []\\n        for i in range(n_batches):\\n            types = [str(t) for t in rng.choice(all_relations, size=count, replace=False)]\\n            bcs = compute_bcs(types, sim_matrix, type_to_idx)\\n            batches[count].append({\\n                \\\"batch_id\\\": f\\\"count{count}_batch{i}\\\",\\n                \\\"types\\\": types,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is the prompt_sensitivity experiment - it uses FewRel (relation extraction), not NER/FewNERD. Let me check the results and also search for NER-specific prompt sensitivity or BCS correlation experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "fe3249f2-6a6b-4a14-b480-0dd906d4f992",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFQBGmFZQBNmhjWA8e7mpS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5813,
+      "cache_read_input_tokens": 30031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5813
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+prompt_sensitivity 实验是 FewRel（RE），不是 NER。需要继续找 NER 的 BCS-F1 +0.50/+0.58 来源。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "0ce0a83b-e7cd-4d43-86ab-dac63d101faa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFQBGmFZQBNmhjWA8e7mpS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5813,
+      "cache_read_input_tokens": 30031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5813
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TzzkuQHZvfGyDMciqsWiZ9`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*.py\" -exec grep -l \"0\\.50\\|0\\.58\\|bcs.*f1\\|f1.*bcs\\|fewnerd.*corr\\|ner.*corr\" {} \\; 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "0a575fb6-d730-4219-9f93-6b7f778aba0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFQBGmFZQBNmhjWA8e7mpS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5813,
+      "cache_read_input_tokens": 30031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5813
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T09:59:46.968Z_
+
+<details><summary>↩ Tool result · `toolu_01TzzkuQHZvfGyDMciqsWiZ9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/per_type_analysis.py\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs/residualized_analysis.py\\n/root/schema-dag-extraction/scripts/run_exp006_interaction.py\\n/root/schema-dag-extraction/scripts/gen_fig_count_curves.py\\n/root/schema-dag-extraction/scripts/gen_fig_bcs_scaling.py\\n/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\\n/root/schema-dag-extraction/scripts/ner_partial_corr.py\\n/root/schema-dag-extraction/scripts/ner_partial_corr_v2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "0539dd0e-0c60-4939-a948-ea0e89058c37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/analyze_results.py\\\\n/root/schema-dag-extraction/src/per_type_analysis.py\\\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs/residualized_analysis.py\\\\n/root/schema-dag-extraction/scripts/run_exp006_interaction.py\\\\n/root/schema-dag-extraction/scripts/gen_fig_count_curves.py\\\\n/root/schema-dag-extraction/scripts/gen_fig_bcs_scaling.py\\\\n/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\\\\n/root/schema-dag-extraction/scripts/ner_partial_corr.py\\\\n/root/schema-dag-extraction/scripts/ner_partial_corr_v2.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/per_type_analysis.py\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs/residualized_analysis.py\\n/root/schema-dag-extraction/scripts/run_exp006_interaction.py\\n/root/schema-dag-extraction/scripts/gen_fig_count_curves.py\\n/root/schema-dag-extraction/scripts/gen_fig_bcs_scaling.py\\n/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\\n/root/schema-dag-extraction/scripts/ner_partial_corr.py\\n/root/schema-dag-extraction/scripts/ner_partial_corr_v2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011aUYdqW5an7dqdKCxMCN5c`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*.json\" -exec grep -l \"fewnerd\\|ner\" {} \\; 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "ee491b1a-4f83-4419-8f5b-aa4cd0b050ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFQBGmFZQBNmhjWA8e7mpS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5813,
+      "cache_read_input_tokens": 30031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5813
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016Q7tfFk3sbUZ4rk246mqVt`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts -type d | sort",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "124b61cc-1d3d-4fdb-8f96-d190e558a8d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KFQBGmFZQBNmhjWA8e7mpS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5813,
+      "cache_read_input_tokens": 30031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5813
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T09:59:48.638Z_
+
+<details><summary>↩ Tool result · `toolu_011aUYdqW5an7dqdKCxMCN5c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/data/maven/docid2topic.json\\n/root/schema-dag-extraction/data/fewrel/train_wiki.json\\n/root/schema-dag-extraction/data/fewrel/val_wiki.json\\n/root/schema-dag-extraction/data/docred/dev.json\\n/root/schema-dag-extraction/data/docred/train_annotated.json\\n/root/schema-dag-extraction/artifacts/predictions_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "908a201e-e000-436c-ae92-431df54d2a1f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/data/maven/docid2topic.json\\\\n/root/schema-dag-extraction/data/fewrel/train_wiki.json\\\\n/root/schema-dag-extraction/data/fewrel/val_wiki.json\\\\n/root/schema-dag-extraction/data/docred/dev.json\\\\n/root/schema-dag-extraction/data/docred/train_annotated.json\\\\n/root/schema-dag-extraction/artifacts/predictions_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\\\n/root/schema-dag-extraction/artifacts/exp004/predictions_maven_exp1.json\\\\n/root/schema-dag-extraction/artifacts/exp004/predictions_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/data/maven/docid2topic.json\\n/root/schema-dag-extraction/data/fewrel/train_wiki.json\\n/root/schema-dag-extraction/data/fewrel/val_wiki.json\\n/root/schema-dag-extraction/data/docred/dev.json\\n/root/schema-dag-extraction/data/docred/train_annotated.json\\n/root/schema-dag-extraction/artifacts/predictions_dry_run.json\\n/root/schema-dag-extraction/artifacts/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/predictions_exp2.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/predictions_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T09:59:49.128Z_
+
+<details><summary>↩ Tool result · `toolu_016Q7tfFk3sbUZ4rk246mqVt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts\\n/root/schema-dag-extraction/artifacts/aggregation_simulation\\n/root/schema-dag-extraction/artifacts/bcs_fix\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s456\\n/root/schema-dag-extraction/artifacts/exp004\\n/root/schema-dag-extraction/artifacts/exp006\\n/root/schema-dag-extraction/artifacts/exp006_interaction_2x2\\n/root/schema-dag-extraction/artifacts/exp007\\n/root/schema-dag-extraction/artifacts/exp008\\n/root/schema-dag-extraction/artifacts/exp008_dryrun\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2\\n/root/schema-dag-extraction/artifacts/exp008_v2\\n/root/schema-dag-extraction/artifacts/exp012\\n/root/schema-dag-extraction/artifacts/exp012_dryrun\\n/root/schema-dag-extraction/artifacts/exp012_llama_8b\\n/root/schema-dag-extraction/artifacts/exp017_gpt4o_mini_fewrel\\n/root/schema-dag-extraction/artifacts/exp_batch_composition\\n/root/schema-dag-extraction/artifacts/exp_batch_composition/confusability_aware\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/confusability_aware\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed42\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed43\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed44\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed45\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed46\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed47\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed48\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed49\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed50\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed51\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed52\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed53\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed54\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed55\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed56\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/single_pass\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability/all_predictions\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm\\n/root/schema-dag-extraction/artifacts/exp_v2_re_n25\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap\\n/root/schema-dag-extraction/artifacts/fewrel_40rel\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub\\n/root/schema-dag-extraction/artifacts/fewrel_contamination_check\\n/root/schema-dag-extraction/artifacts/fewrel_factorial_tost\\n/root/schema-dag-extraction/artifacts/fewrel_formal\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full\\n/root/schema-dag-extraction/artifacts/fewrel_partial_correlation_freq\\n/root/schema-dag-extraction/artifacts/fewrel_pilot\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs\\n/root/schema-dag-extraction/artifacts/paper\\n/root/schema-dag-extraction/artifacts/scs_name_def_ablation\\n/root/schema-dag-extraction/artifacts/three_way_comparison\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "32e9e661-f294-46d3-a211-0a278a2c9f77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts\\\\n/root/schema-dag-extraction/artifacts/aggregation_simulation\\\\n/root/schema-dag-extraction/artifacts/bcs_fix\\\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch\\\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123\\\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42\\\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s456\\\\n/root/schema-dag-extraction/artifacts/exp004\\\\n/root/schema-dag-extraction/artifacts/exp006\\\\n/root/schema-dag-extraction/artifacts/exp006_interaction_2x2\\\\n/root/schema-dag-extraction/artifacts/exp007\\\\n/root/schema-dag-extraction/artifacts/exp008\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun\\\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2\\\\n/root/schema-dag-extraction/artifacts/exp008_v2\\\\n/root/schema-dag-extraction/artifacts/exp012\\\\n/root/schema-dag-extraction/artifacts/exp012_dryrun\\\\n/root/schema-dag-extraction/artifacts/exp012_llama_8b\\\\n/root/schema-dag-extraction/artifacts/exp017_gpt4o_mini_fewrel\\\\n/root/schema-dag-extraction/artifacts/exp_batch_composition\\\\n/root/schema-dag-extraction/artifacts/exp_batch_composition/confusability_aware\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/confusability_aware\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed42\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed43\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed44\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed45\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed46\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed47\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed48\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed49\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed50\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed51\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed52\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed53\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed54\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed55\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed56\\\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/single_pass\\\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability\\\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability/all_predictions\\\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm\\\\n/root/schema-dag-extraction/artifacts/exp_v2_re_n25\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch\\\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4\\\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub\\\\n/root/schema-dag-extraction/artifacts/fewrel_contamination_check\\\\n/root/schema-dag-extraction/artifacts/fewrel_factorial_tost\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full\\\\n/root/schema-dag-extraction/artifacts/fewrel_partial_correlation_freq\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot\\\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs\\\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2\\\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs\\\\n/root/schema-dag-extraction/artifacts/paper\\\\n/root/schema-dag-extraction/artifacts/scs_name_def_ablation\\\\n/root/schema-dag-extraction/artifacts/three_way_comparison\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts\\n/root/schema-dag-extraction/artifacts/aggregation_simulation\\n/root/schema-dag-extraction/artifacts/bcs_fix\\n/root/schema-dag-extraction/artifacts/d035_extreme_batch\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s123\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42\\n/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s456\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s123\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s42\\n/root/schema-dag-extraction/artifacts/d051_fewrel_n25_s456\\n/root/schema-dag-extraction/artifacts/exp004\\n/root/schema-dag-extraction/artifacts/exp006\\n/root/schema-dag-extraction/artifacts/exp006_interaction_2x2\\n/root/schema-dag-extraction/artifacts/exp007\\n/root/schema-dag-extraction/artifacts/exp008\\n/root/schema-dag-extraction/artifacts/exp008_dryrun\\n/root/schema-dag-extraction/artifacts/exp008_dryrun2\\n/root/schema-dag-extraction/artifacts/exp008_v2\\n/root/schema-dag-extraction/artifacts/exp012\\n/root/schema-dag-extraction/artifacts/exp012_dryrun\\n/root/schema-dag-extraction/artifacts/exp012_llama_8b\\n/root/schema-dag-extraction/artifacts/exp017_gpt4o_mini_fewrel\\n/root/schema-dag-extraction/artifacts/exp_batch_composition\\n/root/schema-dag-extraction/artifacts/exp_batch_composition/confusability_aware\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/confusability_aware\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed42\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed43\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed44\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed45\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed46\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed47\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed48\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed49\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed50\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed51\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed52\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed53\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed54\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed55\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/random_batch_seed56\\n/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/single_pass\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability\\n/root/schema-dag-extraction/artifacts/exp_docred_confusability/all_predictions\\n/root/schema-dag-extraction/artifacts/exp_maven_minilm\\n/root/schema-dag-extraction/artifacts/exp_v2_re_n25\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_100batch\\n/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap\\n/root/schema-dag-extraction/artifacts/fewrel_40rel\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4\\n/root/schema-dag-extraction/artifacts/fewrel_80pool_16sub\\n/root/schema-dag-extraction/artifacts/fewrel_contamination_check\\n/root/schema-dag-extraction/artifacts/fewrel_factorial_tost\\n/root/schema-dag-extraction/artifacts/fewrel_formal\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full\\n/root/schema-dag-extraction/artifacts/fewrel_partial_correlation_freq\\n/root/schema-dag-extraction/artifacts/fewrel_pilot\\n/root/schema-dag-extraction/artifacts/fewrel_v2_bcs\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2\\n/root/schema-dag-extraction/artifacts/maven_residualized_bcs\\n/root/schema-dag-extraction/artifacts/paper\\n/root/schema-dag-extraction/artifacts/scs_name_def_ablation\\n/root/schema-dag-extraction/artifacts/three_way_comparison\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at the NER-specific analysis scripts, especially `d037/d037_ner_v2_bcs_analysis.py` and `ner_partial_corr.py` / `ner_partial_corr_v2.py`, and also look at the d051 NER data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "c9d46da5-8b91-4a92-94d6-7fb1910c3e1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XPR9Qk7WqfsfQ6CGT4VLuh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2946,
+      "cache_read_input_tokens": 35844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2946
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+关键线索：`d037_ner_v2_bcs_analysis.py` 和 `ner_partial_corr*.py`。继续查看。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "7c6385d9-8614-455f-93db-a8e6f24739a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XPR9Qk7WqfsfQ6CGT4VLuh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2946,
+      "cache_read_input_tokens": 35844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2946
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01N1sEjC3w3t8VEUMs4iEhDZ`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "a19ce4a6-8863-4dfc-9e04-efb14a55d619",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XPR9Qk7WqfsfQ6CGT4VLuh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2946,
+      "cache_read_input_tokens": 35844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2946
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YJ1uQRE7ZesEXGDop4adW1`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/scripts/ner_partial_corr.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "11a9a4d9-cd8d-4ebd-aff3-a4990e2d9c66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XPR9Qk7WqfsfQ6CGT4VLuh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2946,
+      "cache_read_input_tokens": 35844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2946
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T09:59:57.084Z_
+
+<details><summary>↩ Tool result · `toolu_01N1sEjC3w3t8VEUMs4iEhDZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D037: NER v2 BCS-metric correlation analysis.\\n\\nComputes BCS-F1 correlations from exp2 (prompt v2) per-batch results.\\nv1 raw data was overwritten; v1 stats come from decision records (D005).\\n\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nfrom scipy import stats\\n\\nEVAL_PATH = \\\"/root/schema-dag-extraction/artifacts/eval_exp2.json\\\"\\nOUT_PATH = \\\"/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis_results.json\\\"\\n\\nwith open(EVAL_PATH) as f:\\n    data = json.load(f)\\n\\n# Parse per-batch (BCS, F1) pairs by count\\nv2_batches = {\\\"count_6\\\": [], \\\"count_12\\\": []}\\nfor batch_id, metrics in data.items():\\n    count_key = metrics[\\\"count_key\\\"]\\n    bcs = metrics[\\\"bcs\\\"]\\n    f1 = metrics[\\\"text_match\\\"][\\\"f1\\\"]\\n    recall = metrics[\\\"text_match\\\"][\\\"recall\\\"]\\n    precision = metrics[\\\"text_match\\\"][\\\"precision\\\"]\\n    v2_batches[count_key].append({\\n        \\\"batch_id\\\": batch_id,\\n        \\\"bcs\\\": bcs,\\n        \\\"f1\\\": f1,\\n        \\\"recall\\\": recall,\\n        \\\"precision\\\": precision,\\n    })\\n\\ndef compute_correlations(batches):\\n    bcs = np.array([b[\\\"bcs\\\"] for b in batches])\\n    f1 = np.array([b[\\\"f1\\\"] for b in batches])\\n    recall = np.array([b[\\\"recall\\\"] for b in batches])\\n    \\n    pr, pp = stats.pearsonr(bcs, f1)\\n    sr, sp = stats.spearmanr(bcs, f1)\\n    pr_rec, pp_rec = stats.pearsonr(bcs, recall)\\n    sr_rec, sp_rec = stats.spearmanr(bcs, recall)\\n    \\n    return {\\n        \\\"f1_vs_bcs\\\": {\\n            \\\"pearson_r\\\": round(pr, 4),\\n            \\\"pearson_p\\\": round(pp, 4),\\n            \\\"spearman_rho\\\": round(sr, 4),\\n            \\\"spearman_p\\\": round(sp, 4),\\n        },\\n        \\\"recall_vs_bcs\\\": {\\n            \\\"pearson_r\\\": round(pr_rec, 4),\\n            \\\"pearson_p\\\": round(pp_rec, 4),\\n            \\\"spearman_rho\\\": round(sr_rec, 4),\\n            \\\"spearman_p\\\": round(sp_rec, 4),\\n        },\\n        \\\"n_batches\\\": len(batches),\\n        \\\"bcs_range\\\": [round(float(bcs.min()), 4), round(float(bcs.max()), 4)],\\n        \\\"f1_range\\\": [round(float(f1.min()), 4), round(float(f1.max()), 4)],\\n        \\\"mean_f1\\\": round(float(f1.mean()), 4),\\n        \\\"std_f1\\\": round(float(f1.std()), 4),\\n    }\\n\\ndef bootstrap_ci(batches, metric=\\\"f1\\\", B=1000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    bcs = np.array([b[\\\"bcs\\\"] for b in batches])\\n    y = np.array([b[metric] for b in batches])\\n    n = len(batches)\\n    \\n    pearson_boots = []\\n    spearman_boots = []\\n    for _ in range(B):\\n        idx = rng.randint(0, n, size=n)\\n        bcs_b = bcs[idx]\\n        y_b = y[idx]\\n        if np.std(bcs_b) < 1e-10 or np.std(y_b) < 1e-10:\\n            continue\\n        pr, _ = stats.pearsonr(bcs_b, y_b)\\n        sr, _ = stats.spearmanr(bcs_b, y_b)\\n        pearson_boots.append(pr)\\n        spearman_boots.append(sr)\\n    \\n    pearson_boots = np.array(pearson_boots)\\n    spearman_boots = np.array(spearman_boots)\\n    \\n    return {\\n        \\\"pearson_ci_95\\\": [round(float(np.percentile(pearson_boots, 2.5)), 4),\\n                          round(float(np.percentile(pearson_boots, 97.5)), 4)],\\n        \\\"spearman_ci_95\\\": [round(float(np.percentile(spearman_boots, 2.5)), 4),\\n                           round(float(np.percentile(spearman_boots, 97.5)), 4)],\\n        \\\"n_valid_bootstrap\\\": len(pearson_boots),\\n    }\\n\\n# V2 analysis\\nresults = {\\\"v2\\\": {}, \\\"v1\\\": {}, \\\"comparison\\\": {}}\\n\\nfor count_key in [\\\"count_6\\\", \\\"count_12\\\"]:\\n    batches = v2_batches[count_key]\\n    corr = compute_correlations(batches)\\n    ci_f1 = bootstrap_ci(batches, metric=\\\"f1\\\", B=1000)\\n    ci_recall = bootstrap_ci(batches, metric=\\\"recall\\\", B=1000)\\n    corr[\\\"bootstrap_f1\\\"] = ci_f1\\n    corr[\\\"bootstrap_recall\\\"] = ci_recall\\n    results[\\\"v2\\\"][count_key] = corr\\n\\n# V2 pooled\\npooled = v2_batches[\\\"count_6\\\"] + v2_batches[\\\"count_12\\\"]\\ncorr_pooled = compute_correlations(pooled)\\nci_pooled = bootstrap_ci(pooled, metric=\\\"f1\\\", B=1000)\\ncorr_pooled[\\\"bootstrap_f1\\\"] = ci_pooled\\nresults[\\\"v2\\\"][\\\"pooled\\\"] = corr_pooled\\n\\n# Extreme batch gap (v2)\\nfor count_key in [\\\"count_6\\\", \\\"count_12\\\"]:\\n    batches = v2_batches[count_key]\\n    low_bcs_batch = [b for b in batches if \\\"low_bcs\\\" in b[\\\"batch_id\\\"]]\\n    high_bcs_batch = [b for b in batches if \\\"high_bcs\\\" in b[\\\"batch_id\\\"]]\\n    if low_bcs_batch and high_bcs_batch:\\n        gap = high_bcs_batch[0][\\\"f1\\\"] - low_bcs_batch[0][\\\"f1\\\"]\\n        results[\\\"v2\\\"][count_key][\\\"extreme_gap\\\"] = {\\n            \\\"low_bcs\\\": round(low_bcs_batch[0][\\\"bcs\\\"], 4),\\n            \\\"low_f1\\\": round(low_bcs_batch[0][\\\"f1\\\"], 4),\\n            \\\"high_bcs\\\": round(high_bcs_batch[0][\\\"bcs\\\"], 4),\\n            \\\"high_f1\\\": round(high_bcs_batch[0][\\\"f1\\\"], 4),\\n            \\\"delta_f1_pp\\\": round(gap * 100, 2),\\n            \\\"direction\\\": \\\"positive (high BCS → higher F1)\\\" if gap > 0 else \\\"negative (high BCS → lower F1)\\\",\\n        }\\n\\n# V1 from D005 decision records (raw data overwritten)\\nresults[\\\"v1\\\"] = {\\n    \\\"count_6\\\": {\\n        \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n        \\\"f1_vs_bcs\\\": {\\n            \\\"pearson_r\\\": None,\\n            \\\"note\\\": \\\"D005 reported pooled/count_12 stats only\\\"\\n        },\\n        \\\"n_batches\\\": 27,\\n    },\\n    \\\"count_12\\\": {\\n        \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n        \\\"f1_vs_bcs\\\": {\\n            \\\"pearson_r\\\": 0.50,\\n            \\\"pearson_p\\\": 0.008,\\n            \\\"source\\\": \\\"D005 decision record\\\"\\n        },\\n        \\\"recall_vs_bcs\\\": {\\n            \\\"pearson_r\\\": 0.25,\\n            \\\"pearson_p\\\": 0.066,\\n            \\\"source\\\": \\\"D005 decision record\\\"\\n        },\\n        \\\"partial_r_f1_bcs\\\": {\\n            \\\"r\\\": 0.30,\\n            \\\"p\\\": 0.026,\\n            \\\"source\\\": \\\"D005 decision record\\\"\\n        },\\n        \\\"n_batches\\\": 27,\\n    },\\n    \\\"pooled\\\": {\\n        \\\"note\\\": \\\"v1 raw data unavailable; D005 reported within-count stats\\\"\\n    }\\n}\\n\\n# Comparison\\nv2_c6 = results[\\\"v2\\\"][\\\"count_6\\\"][\\\"f1_vs_bcs\\\"]\\nv2_c12 = results[\\\"v2\\\"][\\\"count_12\\\"][\\\"f1_vs_bcs\\\"]\\nv1_c12_r = 0.50  # from D005\\n\\nv2_c12_r = v2_c12[\\\"pearson_r\\\"]\\nv2_c6_r = v2_c6[\\\"pearson_r\\\"]\\n\\n# Both v1 and v2 show POSITIVE BCS-F1 correlation\\n# D008 confirmed: v2 also showed positive (高 BCS→高 F1)\\n# This is OPPOSITE to the confusability hypothesis (expected negative)\\nboth_positive = (v1_c12_r > 0) and (v2_c12_r > 0)\\n\\nresults[\\\"comparison\\\"] = {\\n    \\\"direction_consistent\\\": both_positive,\\n    \\\"v1_count12_pearson_r\\\": v1_c12_r,\\n    \\\"v2_count12_pearson_r\\\": v2_c12_r,\\n    \\\"v2_count6_pearson_r\\\": v2_c6_r,\\n    \\\"v1_vs_v2_summary\\\": (\\n        f\\\"Both v1 (r={v1_c12_r:.2f}) and v2 (r={v2_c12_r:.4f}) show positive BCS-F1 correlation \\\"\\n        f\\\"at count_12, direction consistent. This is OPPOSITE to the confusability hypothesis \\\"\\n        f\\\"(expected negative). D008 identified type frequency as confounding variable: high-BCS \\\"\\n        f\\\"batches contain high-frequency types that models extract better. The batch-level \\\"\\n        f\\\"BCS-F1 correlation is NOT a valid test of Channel 2; pairwise SCS→confusion analysis \\\"\\n        f\\\"(Channel 1) is the primary evidence.\\\"\\n    ),\\n    \\\"risk_level\\\": \\\"LOW — direction consistent across prompt versions; confound identified and documented\\\",\\n    \\\"note\\\": \\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\"\\n}\\n\\nwith open(OUT_PATH, \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\n\\nprint(json.dumps(results, indent=2))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "720f50fc-30f7-486e-a31a-17ba4a9bd283",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"D037: NER v2 BCS-metric correlation analysis.\\\\n\\\\nComputes BCS-F1 correlations from exp2 (prompt v2) per-batch results.\\\\nv1 raw data was overwritten; v1 stats come from decision records (D005).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nEVAL_PATH = \\\\\\\"/root/schema-dag-extraction/artifacts/eval_exp2.json\\\\\\\"\\\\nOUT_PATH = \\\\\\\"/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis_results.json\\\\\\\"\\\\n\\\\nwith open(EVAL_PATH) as f:\\\\n    data = json.load(f)\\\\n\\\\n# Parse per-batch (BCS, F1) pairs by count\\\\nv2_batches = {\\\\\\\"count_6\\\\\\\": [], \\\\\\\"count_12\\\\\\\": []}\\\\nfor batch_id, metrics in data.items():\\\\n    count_key = metrics[\\\\\\\"count_key\\\\\\\"]\\\\n    bcs = metrics[\\\\\\\"bcs\\\\\\\"]\\\\n    f1 = metrics[\\\\\\\"text_match\\\\\\\"][\\\\\\\"f1\\\\\\\"]\\\\n    recall = metrics[\\\\\\\"text_match\\\\\\\"][\\\\\\\"recall\\\\\\\"]\\\\n    precision = metrics[\\\\\\\"text_match\\\\\\\"][\\\\\\\"precision\\\\\\\"]\\\\n    v2_batches[count_key].append({\\\\n        \\\\\\\"batch_id\\\\\\\": batch_id,\\\\n        \\\\\\\"bcs\\\\\\\": bcs,\\\\n        \\\\\\\"f1\\\\\\\": f1,\\\\n        \\\\\\\"recall\\\\\\\": recall,\\\\n        \\\\\\\"precision\\\\\\\": precision,\\\\n    })\\\\n\\\\ndef compute_correlations(batches):\\\\n    bcs = np.array([b[\\\\\\\"bcs\\\\\\\"] for b in batches])\\\\n    f1 = np.array([b[\\\\\\\"f1\\\\\\\"] for b in batches])\\\\n    recall = np.array([b[\\\\\\\"recall\\\\\\\"] for b in batches])\\\\n    \\\\n    pr, pp = stats.pearsonr(bcs, f1)\\\\n    sr, sp = stats.spearmanr(bcs, f1)\\\\n    pr_rec, pp_rec = stats.pearsonr(bcs, recall)\\\\n    sr_rec, sp_rec = stats.spearmanr(bcs, recall)\\\\n    \\\\n    return {\\\\n        \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n            \\\\\\\"pearson_r\\\\\\\": round(pr, 4),\\\\n            \\\\\\\"pearson_p\\\\\\\": round(pp, 4),\\\\n            \\\\\\\"spearman_rho\\\\\\\": round(sr, 4),\\\\n            \\\\\\\"spearman_p\\\\\\\": round(sp, 4),\\\\n        },\\\\n        \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n            \\\\\\\"pearson_r\\\\\\\": round(pr_rec, 4),\\\\n            \\\\\\\"pearson_p\\\\\\\": round(pp_rec, 4),\\\\n            \\\\\\\"spearman_rho\\\\\\\": round(sr_rec, 4),\\\\n            \\\\\\\"spearman_p\\\\\\\": round(sp_rec, 4),\\\\n        },\\\\n        \\\\\\\"n_batches\\\\\\\": len(batches),\\\\n        \\\\\\\"bcs_range\\\\\\\": [round(float(bcs.min()), 4), round(float(bcs.max()), 4)],\\\\n        \\\\\\\"f1_range\\\\\\\": [round(float(f1.min()), 4), round(float(f1.max()), 4)],\\\\n        \\\\\\\"mean_f1\\\\\\\": round(float(f1.mean()), 4),\\\\n        \\\\\\\"std_f1\\\\\\\": round(float(f1.std()), 4),\\\\n    }\\\\n\\\\ndef bootstrap_ci(batches, metric=\\\\\\\"f1\\\\\\\", B=1000, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    bcs = np.array([b[\\\\\\\"bcs\\\\\\\"] for b in batches])\\\\n    y = np.array([b[metric] for b in batches])\\\\n    n = len(batches)\\\\n    \\\\n    pearson_boots = []\\\\n    spearman_boots = []\\\\n    for _ in range(B):\\\\n        idx = rng.randint(0, n, size=n)\\\\n        bcs_b = bcs[idx]\\\\n        y_b = y[idx]\\\\n        if np.std(bcs_b) < 1e-10 or np.std(y_b) < 1e-10:\\\\n            continue\\\\n        pr, _ = stats.pearsonr(bcs_b, y_b)\\\\n        sr, _ = stats.spearmanr(bcs_b, y_b)\\\\n        pearson_boots.append(pr)\\\\n        spearman_boots.append(sr)\\\\n    \\\\n    pearson_boots = np.array(pearson_boots)\\\\n    spearman_boots = np.array(spearman_boots)\\\\n    \\\\n    return {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [round(float(np.percentile(pearson_boots, 2.5)), 4),\\\\n                          round(float(np.percentile(pearson_boots, 97.5)), 4)],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [round(float(np.percentile(spearman_boots, 2.5)), 4),\\\\n                           round(float(np.percentile(spearman_boots, 97.5)), 4)],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": len(pearson_boots),\\\\n    }\\\\n\\\\n# V2 analysis\\\\nresults = {\\\\\\\"v2\\\\\\\": {}, \\\\\\\"v1\\\\\\\": {}, \\\\\\\"comparison\\\\\\\": {}}\\\\n\\\\nfor count_key in [\\\\\\\"count_6\\\\\\\", \\\\\\\"count_12\\\\\\\"]:\\\\n    batches = v2_batches[count_key]\\\\n    corr = compute_correlations(batches)\\\\n    ci_f1 = bootstrap_ci(batches, metric=\\\\\\\"f1\\\\\\\", B=1000)\\\\n    ci_recall = bootstrap_ci(batches, metric=\\\\\\\"recall\\\\\\\", B=1000)\\\\n    corr[\\\\\\\"bootstrap_f1\\\\\\\"] = ci_f1\\\\n    corr[\\\\\\\"bootstrap_recall\\\\\\\"] = ci_recall\\\\n    results[\\\\\\\"v2\\\\\\\"][count_key] = corr\\\\n\\\\n# V2 pooled\\\\npooled = v2_batches[\\\\\\\"count_6\\\\\\\"] + v2_batches[\\\\\\\"count_12\\\\\\\"]\\\\ncorr_pooled = compute_correlations(pooled)\\\\nci_pooled = bootstrap_ci(pooled, metric=\\\\\\\"f1\\\\\\\", B=1000)\\\\ncorr_pooled[\\\\\\\"bootstrap_f1\\\\\\\"] = ci_pooled\\\\nresults[\\\\\\\"v2\\\\\\\"][\\\\\\\"pooled\\\\\\\"] = corr_pooled\\\\n\\\\n# Extreme batch gap (v2)\\\\nfor count_key in [\\\\\\\"count_6\\\\\\\", \\\\\\\"count_12\\\\\\\"]:\\\\n    batches = v2_batches[count_key]\\\\n    low_bcs_batch = [b for b in batches if \\\\\\\"low_bcs\\\\\\\" in b[\\\\\\\"batch_id\\\\\\\"]]\\\\n    high_bcs_batch = [b for b in batches if \\\\\\\"high_bcs\\\\\\\" in b[\\\\\\\"batch_id\\\\\\\"]]\\\\n    if low_bcs_batch and high_bcs_batch:\\\\n        gap = high_bcs_batch[0][\\\\\\\"f1\\\\\\\"] - low_bcs_batch[0][\\\\\\\"f1\\\\\\\"]\\\\n        results[\\\\\\\"v2\\\\\\\"][count_key][\\\\\\\"extreme_gap\\\\\\\"] = {\\\\n            \\\\\\\"low_bcs\\\\\\\": round(low_bcs_batch[0][\\\\\\\"bcs\\\\\\\"], 4),\\\\n            \\\\\\\"low_f1\\\\\\\": round(low_bcs_batch[0][\\\\\\\"f1\\\\\\\"], 4),\\\\n            \\\\\\\"high_bcs\\\\\\\": round(high_bcs_batch[0][\\\\\\\"bcs\\\\\\\"], 4),\\\\n            \\\\\\\"high_f1\\\\\\\": round(high_bcs_batch[0][\\\\\\\"f1\\\\\\\"], 4),\\\\n            \\\\\\\"delta_f1_pp\\\\\\\": round(gap * 100, 2),\\\\n            \\\\\\\"direction\\\\\\\": \\\\\\\"positive (high BCS → higher F1)\\\\\\\" if gap > 0 else \\\\\\\"negative (high BCS → lower F1)\\\\\\\",\\\\n        }\\\\n\\\\n# V1 from D005 decision records (raw data overwritten)\\\\nresults[\\\\\\\"v1\\\\\\\"] = {\\\\n    \\\\\\\"count_6\\\\\\\": {\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\\\\\",\\\\n        \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n            \\\\\\\"pearson_r\\\\\\\": None,\\\\n            \\\\\\\"note\\\\\\\": \\\\\\\"D005 reported pooled/count_12 stats only\\\\\\\"\\\\n        },\\\\n        \\\\\\\"n_batches\\\\\\\": 27,\\\\n    },\\\\n    \\\\\\\"count_12\\\\\\\": {\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\\\\\",\\\\n        \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n            \\\\\\\"pearson_r\\\\\\\": 0.50,\\\\n            \\\\\\\"pearson_p\\\\\\\": 0.008,\\\\n            \\\\\\\"source\\\\\\\": \\\\\\\"D005 decision record\\\\\\\"\\\\n        },\\\\n        \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n            \\\\\\\"pearson_r\\\\\\\": 0.25,\\\\n            \\\\\\\"pearson_p\\\\\\\": 0.066,\\\\n            \\\\\\\"source\\\\\\\": \\\\\\\"D005 decision record\\\\\\\"\\\\n        },\\\\n        \\\\\\\"partial_r_f1_bcs\\\\\\\": {\\\\n            \\\\\\\"r\\\\\\\": 0.30,\\\\n            \\\\\\\"p\\\\\\\": 0.026,\\\\n            \\\\\\\"source\\\\\\\": \\\\\\\"D005 decision record\\\\\\\"\\\\n        },\\\\n        \\\\\\\"n_batches\\\\\\\": 27,\\\\n    },\\\\n    \\\\\\\"pooled\\\\\\\": {\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"v1 raw data unavailable; D005 reported within-count stats\\\\\\\"\\\\n    }\\\\n}\\\\n\\\\n# Comparison\\\\nv2_c6 = results[\\\\\\\"v2\\\\\\\"][\\\\\\\"count_6\\\\\\\"][\\\\\\\"f1_vs_bcs\\\\\\\"]\\\\nv2_c12 = results[\\\\\\\"v2\\\\\\\"][\\\\\\\"count_12\\\\\\\"][\\\\\\\"f1_vs_bcs\\\\\\\"]\\\\nv1_c12_r = 0.50  # from D005\\\\n\\\\nv2_c12_r = v2_c12[\\\\\\\"pearson_r\\\\\\\"]\\\\nv2_c6_r = v2_c6[\\\\\\\"pearson_r\\\\\\\"]\\\\n\\\\n# Both v1 and v2 show POSITIVE BCS-F1 correlation\\\\n# D008 confirmed: v2 also showed positive (高 BCS→高 F1)\\\\n# This is OPPOSITE to the confusability hypothesis (expected negative)\\\\nboth_positive = (v1_c12_r > 0) and (v2_c12_r > 0)\\\\n\\\\nresults[\\\\\\\"comparison\\\\\\\"] = {\\\\n    \\\\\\\"direction_consistent\\\\\\\": both_positive,\\\\n    \\\\\\\"v1_count12_pearson_r\\\\\\\": v1_c12_r,\\\\n    \\\\\\\"v2_count12_pearson_r\\\\\\\": v2_c12_r,\\\\n    \\\\\\\"v2_count6_pearson_r\\\\\\\": v2_c6_r,\\\\n    \\\\\\\"v1_vs_v2_summary\\\\\\\": (\\\\n        f\\\\\\\"Both v1 (r={v1_c12_r:.2f}) and v2 (r={v2_c12_r:.4f}) show positive BCS-F1 correlation \\\\\\\"\\\\n        f\\\\\\\"at count_12, direction consistent. This is OPPOSITE to the confusability hypothesis \\\\\\\"\\\\n        f\\\\\\\"(expected negative). D008 identified type frequency as confounding variable: high-BCS \\\\\\\"\\\\n        f\\\\\\\"batches contain high-frequency types that models extract better. The batch-level \\\\\\\"\\\\n        f\\\\\\\"BCS-F1 correlation is NOT a valid test of Channel 2; pairwise SCS→confusion analysis \\\\\\\"\\\\n        f\\\\\\\"(Channel 1) is the primary evidence.\\\\\\\"\\\\n    ),\\\\n    \\\\\\\"risk_level\\\\\\\": \\\\\\\"LOW — direction consistent across prompt versions; confound identified and documented\\\\\\\",\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\\\\\"\\\\n}\\\\n\\\\nwith open(OUT_PATH, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\n\\\\nprint(json.dumps(results, indent=2))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D037: NER v2 BCS-metric correlation analysis.\\n\\nComputes BCS-F1 correlations from exp2 (prompt v2) per-batch results.\\nv1 raw data was overwritten; v1 stats come from decision records (D005).\\n\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nfrom scipy import stats\\n\\nEVAL_PATH = \\\"/root/schema-dag-extraction/artifacts/eval_exp2.json\\\"\\nOUT_PATH = \\\"/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis_results.json\\\"\\n\\nwith open(EVAL_PATH) as f:\\n    data = json.load(f)\\n\\n# Parse per-batch (BCS, F1) pairs by count\\nv2_batches = {\\\"count_6\\\": [], \\\"count_12\\\": []}\\nfor batch_id, metrics in data.items():\\n    count_key = metrics[\\\"count_key\\\"]\\n    bcs = metrics[\\\"bcs\\\"]\\n    f1 = metrics[\\\"text_match\\\"][\\\"f1\\\"]\\n    recall = metrics[\\\"text_match\\\"][\\\"recall\\\"]\\n    precision = metrics[\\\"text_match\\\"][\\\"precision\\\"]\\n    v2_batches[count_key].append({\\n        \\\"batch_id\\\": batch_id,\\n        \\\"bcs\\\": bcs,\\n        \\\"f1\\\": f1,\\n        \\\"recall\\\": recall,\\n        \\\"precision\\\": precision,\\n    })\\n\\ndef compute_correlations(batches):\\n    bcs = np.array([b[\\\"bcs\\\"] for b in batches])\\n    f1 = np.array([b[\\\"f1\\\"] for b in batches])\\n    recall = np.array([b[\\\"recall\\\"] for b in batches])\\n    \\n    pr, pp = stats.pearsonr(bcs, f1)\\n    sr, sp = stats.spearmanr(bcs, f1)\\n    pr_rec, pp_rec = stats.pearsonr(bcs, recall)\\n    sr_rec, sp_rec = stats.spearmanr(bcs, recall)\\n    \\n    return {\\n        \\\"f1_vs_bcs\\\": {\\n            \\\"pearson_r\\\": round(pr, 4),\\n            \\\"pearson_p\\\": round(pp, 4),\\n            \\\"spearman_rho\\\": round(sr, 4),\\n            \\\"spearman_p\\\": round(sp, 4),\\n        },\\n        \\\"recall_vs_bcs\\\": {\\n            \\\"pearson_r\\\": round(pr_rec, 4),\\n            \\\"pearson_p\\\": round(pp_rec, 4),\\n            \\\"spearman_rho\\\": round(sr_rec, 4),\\n            \\\"spearman_p\\\": round(sp_rec, 4),\\n        },\\n        \\\"n_batches\\\": len(batches),\\n        \\\"bcs_range\\\": [round(float(bcs.min()), 4), round(float(bcs.max()), 4)],\\n        \\\"f1_range\\\": [round(float(f1.min()), 4), round(float(f1.max()), 4)],\\n        \\\"mean_f1\\\": round(float(f1.mean()), 4),\\n        \\\"std_f1\\\": round(float(f1.std()), 4),\\n    }\\n\\ndef bootstrap_ci(batches, metric=\\\"f1\\\", B=1000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    bcs = np.array([b[\\\"bcs\\\"] for b in batches])\\n    y = np.array([b[metric] for b in batches])\\n    n = len(batches)\\n    \\n    pearson_boots = []\\n    spearman_boots = []\\n    for _ in range(B):\\n        idx = rng.randint(0, n, size=n)\\n        bcs_b = bcs[idx]\\n        y_b = y[idx]\\n        if np.std(bcs_b) < 1e-10 or np.std(y_b) < 1e-10:\\n            continue\\n        pr, _ = stats.pearsonr(bcs_b, y_b)\\n        sr, _ = stats.spearmanr(bcs_b, y_b)\\n        pearson_boots.append(pr)\\n        spearman_boots.append(sr)\\n    \\n    pearson_boots = np.array(pearson_boots)\\n    spearman_boots = np.array(spearman_boots)\\n    \\n    return {\\n        \\\"pearson_ci_95\\\": [round(float(np.percentile(pearson_boots, 2.5)), 4),\\n                          round(float(np.percentile(pearson_boots, 97.5)), 4)],\\n        \\\"spearman_ci_95\\\": [round(float(np.percentile(spearman_boots, 2.5)), 4),\\n                           round(float(np.percentile(spearman_boots, 97.5)), 4)],\\n        \\\"n_valid_bootstrap\\\": len(pearson_boots),\\n    }\\n\\n# V2 analysis\\nresults = {\\\"v2\\\": {}, \\\"v1\\\": {}, \\\"comparison\\\": {}}\\n\\nfor count_key in [\\\"count_6\\\", \\\"count_12\\\"]:\\n    batches = v2_batches[count_key]\\n    corr = compute_correlations(batches)\\n    ci_f1 = bootstrap_ci(batches, metric=\\\"f1\\\", B=1000)\\n    ci_recall = bootstrap_ci(batches, metric=\\\"recall\\\", B=1000)\\n    corr[\\\"bootstrap_f1\\\"] = ci_f1\\n    corr[\\\"bootstrap_recall\\\"] = ci_recall\\n    results[\\\"v2\\\"][count_key] = corr\\n\\n# V2 pooled\\npooled = v2_batches[\\\"count_6\\\"] + v2_batches[\\\"count_12\\\"]\\ncorr_pooled = compute_correlations(pooled)\\nci_pooled = bootstrap_ci(pooled, metric=\\\"f1\\\", B=1000)\\ncorr_pooled[\\\"bootstrap_f1\\\"] = ci_pooled\\nresults[\\\"v2\\\"][\\\"pooled\\\"] = corr_pooled\\n\\n# Extreme batch gap (v2)\\nfor count_key in [\\\"count_6\\\", \\\"count_12\\\"]:\\n    batches = v2_batches[count_key]\\n    low_bcs_batch = [b for b in batches if \\\"low_bcs\\\" in b[\\\"batch_id\\\"]]\\n    high_bcs_batch = [b for b in batches if \\\"high_bcs\\\" in b[\\\"batch_id\\\"]]\\n    if low_bcs_batch and high_bcs_batch:\\n        gap = high_bcs_batch[0][\\\"f1\\\"] - low_bcs_batch[0][\\\"f1\\\"]\\n        results[\\\"v2\\\"][count_key][\\\"extreme_gap\\\"] = {\\n            \\\"low_bcs\\\": round(low_bcs_batch[0][\\\"bcs\\\"], 4),\\n            \\\"low_f1\\\": round(low_bcs_batch[0][\\\"f1\\\"], 4),\\n            \\\"high_bcs\\\": round(high_bcs_batch[0][\\\"bcs\\\"], 4),\\n            \\\"high_f1\\\": round(high_bcs_batch[0][\\\"f1\\\"], 4),\\n            \\\"delta_f1_pp\\\": round(gap * 100, 2),\\n            \\\"direction\\\": \\\"positive (high BCS → higher F1)\\\" if gap > 0 else \\\"negative (high BCS → lower F1)\\\",\\n        }\\n\\n# V1 from D005 decision records (raw data overwritten)\\nresults[\\\"v1\\\"] = {\\n    \\\"count_6\\\": {\\n        \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n        \\\"f1_vs_bcs\\\": {\\n            \\\"pearson_r\\\": None,\\n            \\\"note\\\": \\\"D005 reported pooled/count_12 stats only\\\"\\n        },\\n        \\\"n_batches\\\": 27,\\n    },\\n    \\\"count_12\\\": {\\n        \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n        \\\"f1_vs_bcs\\\": {\\n            \\\"pearson_r\\\": 0.50,\\n            \\\"pearson_p\\\": 0.008,\\n            \\\"source\\\": \\\"D005 decision record\\\"\\n        },\\n        \\\"recall_vs_bcs\\\": {\\n            \\\"pearson_r\\\": 0.25,\\n            \\\"pearson_p\\\": 0.066,\\n            \\\"source\\\": \\\"D005 decision record\\\"\\n        },\\n        \\\"partial_r_f1_bcs\\\": {\\n            \\\"r\\\": 0.30,\\n            \\\"p\\\": 0.026,\\n            \\\"source\\\": \\\"D005 decision record\\\"\\n        },\\n        \\\"n_batches\\\": 27,\\n    },\\n    \\\"pooled\\\": {\\n        \\\"note\\\": \\\"v1 raw data unavailable; D005 reported within-count stats\\\"\\n    }\\n}\\n\\n# Comparison\\nv2_c6 = results[\\\"v2\\\"][\\\"count_6\\\"][\\\"f1_vs_bcs\\\"]\\nv2_c12 = results[\\\"v2\\\"][\\\"count_12\\\"][\\\"f1_vs_bcs\\\"]\\nv1_c12_r = 0.50  # from D005\\n\\nv2_c12_r = v2_c12[\\\"pearson_r\\\"]\\nv2_c6_r = v2_c6[\\\"pearson_r\\\"]\\n\\n# Both v1 and v2 show POSITIVE BCS-F1 correlation\\n# D008 confirmed: v2 also showed positive (高 BCS→高 F1)\\n# This is OPPOSITE to the confusability hypothesis (expected negative)\\nboth_positive = (v1_c12_r > 0) and (v2_c12_r > 0)\\n\\nresults[\\\"comparison\\\"] = {\\n    \\\"direction_consistent\\\": both_positive,\\n    \\\"v1_count12_pearson_r\\\": v1_c12_r,\\n    \\\"v2_count12_pearson_r\\\": v2_c12_r,\\n    \\\"v2_count6_pearson_r\\\": v2_c6_r,\\n    \\\"v1_vs_v2_summary\\\": (\\n        f\\\"Both v1 (r={v1_c12_r:.2f}) and v2 (r={v2_c12_r:.4f}) show positive BCS-F1 correlation \\\"\\n        f\\\"at count_12, direction consistent. This is OPPOSITE to the confusability hypothesis \\\"\\n        f\\\"(expected negative). D008 identified type frequency as confounding variable: high-BCS \\\"\\n        f\\\"batches contain high-frequency types that models extract better. The batch-level \\\"\\n        f\\\"BCS-F1 correlation is NOT a valid test of Channel 2; pairwise SCS→confusion analysis \\\"\\n        f\\\"(Channel 1) is the primary evidence.\\\"\\n    ),\\n    \\\"risk_level\\\": \\\"LOW — direction consistent across prompt versions; confound identified and documented\\\",\\n    \\\"note\\\": \\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\"\\n}\\n\\nwith open(OUT_PATH, \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\n\\nprint(json.dumps(results, indent=2))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T09:59:58.067Z_
+
+<details><summary>↩ Tool result · `toolu_01YJ1uQRE7ZesEXGDop4adW1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy import stats\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nfrom pathlib import Path\\nimport os\\n\\n# Load type frequency data\\nwith open('/root/schema-dag-extraction/data/few_nerd_type_stats.json') as f:\\n    type_stats = json.load(f)\\n\\nper_type = type_stats['per_type']\\ntotal_instances = type_stats['total_instances']\\n\\n# type frequency = count / total\\ntype_freq = {t: info['count'] / total_instances for t, info in per_type.items()}\\nprint(f\\\"Total types: {len(type_freq)}, total instances: {total_instances}\\\")\\nprint(f\\\"Freq range: [{min(type_freq.values()):.4f}, {max(type_freq.values()):.4f}]\\\")\\n\\n# Collect batch-level data across all 3 seeds\\nseeds = ['s42', 's123', 's456']\\nrows = []\\n\\nfor seed in seeds:\\n    base = f'/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_{seed}'\\n    \\n    # Load batch config (types per batch)\\n    with open(f'{base}/batch_config.json') as f:\\n        batch_config = json.load(f)\\n    \\n    # Load eval results (BCS, F1 per batch)\\n    with open(f'{base}/eval_results.json') as f:\\n        eval_results = json.load(f)\\n    \\n    # Build mapping: batch_id -> types\\n    batch_types_map = {}\\n    for count_key, batches_info in batch_config.items():\\n        for i, batch in enumerate(batches_info['random']):\\n            batch_id = f\\\"{count_key}_random_{i}\\\"\\n            batch_types_map[batch_id] = batch['types']\\n    \\n    # Merge with eval results\\n    for batch_id, eval_info in eval_results.items():\\n        types = batch_types_map.get(batch_id, [])\\n        if not types:\\n            continue\\n        \\n        # Compute mean type frequency for this batch\\n        freqs = [type_freq.get(t, 0) for t in types]\\n        mean_freq = np.mean(freqs) if freqs else 0\\n        \\n        rows.append({\\n            'seed': seed,\\n            'batch_id': batch_id,\\n            'count_key': eval_info['count_key'],\\n            'num_types': eval_info['num_types'],\\n            'bcs': eval_info['bcs'],\\n            'f1': eval_info['text_match']['f1'],\\n            'precision': eval_info['text_match']['precision'],\\n            'recall': eval_info['text_match']['recall'],\\n            'mean_freq': mean_freq,\\n        })\\n\\ndf = pd.DataFrame(rows)\\nprint(f\\\"\\\\nTotal data points: {len(df)}\\\")\\nprint(f\\\"Seeds: {df['seed'].unique()}\\\")\\nprint(f\\\"Count keys: {sorted(df['count_key'].unique())}\\\")\\nprint(f\\\"\\\\nDescriptive stats:\\\")\\nprint(df[['bcs', 'f1', 'mean_freq']].describe())\\n\\n# --- Raw correlation: BCS vs F1 ---\\nr_raw, p_raw = stats.pearsonr(df['bcs'], df['f1'])\\nprint(f\\\"\\\\n{'='*60}\\\")\\nprint(f\\\"Raw correlation: BCS vs F1\\\")\\nprint(f\\\"  r = {r_raw:.4f}, p = {p_raw:.2e}\\\")\\n\\n# --- BCS vs mean_freq (confound check) ---\\nr_confound, p_confound = stats.pearsonr(df['bcs'], df['mean_freq'])\\nprint(f\\\"\\\\nConfound check: BCS vs mean_freq\\\")\\nprint(f\\\"  r = {r_confound:.4f}, p = {p_confound:.2e}\\\")\\n\\n# --- F1 vs mean_freq ---\\nr_f1freq, p_f1freq = stats.pearsonr(df['f1'], df['mean_freq'])\\nprint(f\\\"\\\\nF1 vs mean_freq\\\")\\nprint(f\\\"  r = {r_f1freq:.4f}, p = {p_f1freq:.2e}\\\")\\n\\n# --- Partial correlation: BCS vs F1 | mean_freq ---\\n# Method: residualize both BCS and F1 on mean_freq, then correlate residuals\\nfrom numpy.polynomial.polynomial import polyfit\\n\\n# Residualize BCS on mean_freq\\nslope_bcs, intercept_bcs = np.polyfit(df['mean_freq'], df['bcs'], 1)\\nresid_bcs = df['bcs'] - (intercept_bcs + slope_bcs * df['mean_freq'])\\n\\n# Residualize F1 on mean_freq\\nslope_f1, intercept_f1 = np.polyfit(df['mean_freq'], df['f1'], 1)\\nresid_f1 = df['f1'] - (intercept_f1 + slope_f1 * df['mean_freq'])\\n\\nr_partial, p_partial = stats.pearsonr(resid_bcs, resid_f1)\\nprint(f\\\"\\\\n{'='*60}\\\")\\nprint(f\\\"Partial correlation: BCS vs F1 | mean_freq\\\")\\nprint(f\\\"  r = {r_partial:.4f}, p = {p_partial:.2e}\\\")\\nprint(f\\\"{'='*60}\\\")\\n\\n# Interpretation\\nprint(f\\\"\\\\nInterpretation:\\\")\\nprint(f\\\"  Raw r(BCS, F1) = {r_raw:.4f} (p={p_raw:.2e})\\\")\\nprint(f\\\"  After controlling for type frequency: r = {r_partial:.4f} (p={p_partial:.2e})\\\")\\nif abs(r_partial) < abs(r_raw) * 0.5:\\n    print(f\\\"  => Substantial attenuation: type frequency explains much of the BCS-F1 association\\\")\\nelif p_partial < 0.05 and np.sign(r_partial) == np.sign(r_raw):\\n    print(f\\\"  => BCS-F1 relationship REMAINS significant after controlling for frequency\\\")\\n    print(f\\\"  => Type frequency is NOT a major confound\\\")\\nelse:\\n    print(f\\\"  => Partial correlation non-significant; frequency may be confounding\\\")\\n\\n# Also do Spearman for robustness\\nrho_raw, p_rho_raw = stats.spearmanr(df['bcs'], df['f1'])\\nrho_partial, p_rho_partial = stats.spearmanr(resid_bcs, resid_f1)\\nprint(f\\\"\\\\nSpearman (robustness):\\\")\\nprint(f\\\"  Raw rho(BCS, F1) = {rho_raw:.4f} (p={p_rho_raw:.2e})\\\")\\nprint(f\\\"  Partial rho(BCS, F1 | freq) = {rho_partial:.4f} (p={p_rho_partial:.2e})\\\")\\n\\n# --- Scatter plot ---\\nfig, axes = plt.subplots(1, 3, figsize=(14, 4.5))\\n\\n# Panel A: Raw BCS vs F1, colored by mean_freq\\nax = axes[0]\\nsc = ax.scatter(df['bcs'], df['f1'], c=df['mean_freq'], cmap='viridis', \\n                alpha=0.6, s=25, edgecolors='none')\\nplt.colorbar(sc, ax=ax, label='Mean type frequency')\\n# Add regression line\\nx_fit = np.linspace(df['bcs'].min(), df['bcs'].max(), 100)\\nslope, intercept = np.polyfit(df['bcs'], df['f1'], 1)\\nax.plot(x_fit, intercept + slope * x_fit, 'r-', lw=1.5, alpha=0.8)\\nax.set_xlabel('BCS')\\nax.set_ylabel('F1')\\nax.set_title(f'(a) Raw: r={r_raw:.3f}, p={p_raw:.1e}')\\n\\n# Panel B: Residualized scatter\\nax = axes[1]\\nsc2 = ax.scatter(resid_bcs, resid_f1, c=df['mean_freq'], cmap='viridis',\\n                 alpha=0.6, s=25, edgecolors='none')\\nplt.colorbar(sc2, ax=ax, label='Mean type frequency')\\nslope_r, intercept_r = np.polyfit(resid_bcs, resid_f1, 1)\\nx_fit2 = np.linspace(resid_bcs.min(), resid_bcs.max(), 100)\\nax.plot(x_fit2, intercept_r + slope_r * x_fit2, 'r-', lw=1.5, alpha=0.8)\\nax.set_xlabel('BCS (freq-residualized)')\\nax.set_ylabel('F1 (freq-residualized)')\\nax.set_title(f'(b) Partial: r={r_partial:.3f}, p={p_partial:.1e}')\\n\\n# Panel C: BCS vs mean_freq (confound visualization)\\nax = axes[2]\\nax.scatter(df['bcs'], df['mean_freq'], c=df['f1'], cmap='RdYlGn',\\n           alpha=0.6, s=25, edgecolors='none')\\nsc3 = ax.scatter(df['bcs'], df['mean_freq'], c=df['f1'], cmap='RdYlGn',\\n                 alpha=0.6, s=25, edgecolors='none')\\nplt.colorbar(sc3, ax=ax, label='F1')\\nax.set_xlabel('BCS')\\nax.set_ylabel('Mean type frequency')\\nax.set_title(f'(c) Confound: r(BCS,freq)={r_confound:.3f}')\\n\\nplt.tight_layout()\\noutdir = '/root/schema-dag-extraction/artifacts/paper'\\nos.makedirs(outdir, exist_ok=True)\\noutpath = f'{outdir}/fig_q1_ner_partial_bcs.pdf'\\nplt.savefig(outpath, dpi=300, bbox_inches='tight')\\nplt.savefig(outpath.replace('.pdf', '.png'), dpi=150, bbox_inches='tight')\\nprint(f\\\"\\\\nFigure saved: {outpath}\\\")\\n\\n# Save numerical results\\nresults = {\\n    'n_datapoints': len(df),\\n    'n_seeds': len(seeds),\\n    'raw_correlation': {'r': r_raw, 'p': p_raw},\\n    'confound_bcs_vs_freq': {'r': r_confound, 'p': p_confound},\\n    'f1_vs_freq': {'r': r_f1freq, 'p': p_f1freq},\\n    'partial_correlation_bcs_f1_given_freq': {'r': r_partial, 'p': p_partial},\\n    'spearman_raw': {'rho': rho_raw, 'p': p_rho_raw},\\n    'spearman_partial': {'rho': rho_partial, 'p': p_rho_partial},\\n}\\nwith open(f'{outdir}/ner_partial_correlation_results.json', 'w') as f:\\n    json.dump(results, f, indent=2)\\nprint(\\\"Results JSON saved.\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "3d403fe6-e325-465c-ad16-e5c0769451b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy import stats\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\nfrom pathlib import Path\\\\nimport os\\\\n\\\\n# Load type frequency data\\\\nwith open('/root/schema-dag-extraction/data/few_nerd_type_stats.json') as f:\\\\n    type_stats = json.load(f)\\\\n\\\\nper_type = type_stats['per_type']\\\\ntotal_instances = type_stats['total_instances']\\\\n\\\\n# type frequency = count / total\\\\ntype_freq = {t: info['count'] / total_instances for t, info in per_type.items()}\\\\nprint(f\\\\\\\"Total types: {len(type_freq)}, total instances: {total_instances}\\\\\\\")\\\\nprint(f\\\\\\\"Freq range: [{min(type_freq.values()):.4f}, {max(type_freq.values()):.4f}]\\\\\\\")\\\\n\\\\n# Collect batch-level data across all 3 seeds\\\\nseeds = ['s42', 's123', 's456']\\\\nrows = []\\\\n\\\\nfor seed in seeds:\\\\n    base = f'/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_{seed}'\\\\n    \\\\n    # Load batch config (types per batch)\\\\n    with open(f'{base}/batch_config.json') as f:\\\\n        batch_config = json.load(f)\\\\n    \\\\n    # Load eval results (BCS, F1 per batch)\\\\n    with open(f'{base}/eval_results.json') as f:\\\\n        eval_results = json.load(f)\\\\n    \\\\n    # Build mapping: batch_id -> types\\\\n    batch_types_map = {}\\\\n    for count_key, batches_info in batch_config.items():\\\\n        for i, batch in enumerate(batches_info['random']):\\\\n            batch_id = f\\\\\\\"{count_key}_random_{i}\\\\\\\"\\\\n            batch_types_map[batch_id] = batch['types']\\\\n    \\\\n    # Merge with eval results\\\\n    for batch_id, eval_info in eval_results.items():\\\\n        types = batch_types_map.get(batch_id, [])\\\\n        if not types:\\\\n            continue\\\\n        \\\\n        # Compute mean type frequency for this batch\\\\n        freqs = [type_freq.get(t, 0) for t in types]\\\\n        mean_freq = np.mean(freqs) if freqs else 0\\\\n        \\\\n        rows.append({\\\\n            'seed': seed,\\\\n            'batch_id': batch_id,\\\\n            'count_key': eval_info['count_key'],\\\\n            'num_types': eval_info['num_types'],\\\\n            'bcs': eval_info['bcs'],\\\\n            'f1': eval_info['text_match']['f1'],\\\\n            'precision': eval_info['text_match']['precision'],\\\\n            'recall': eval_info['text_match']['recall'],\\\\n            'mean_freq': mean_freq,\\\\n        })\\\\n\\\\ndf = pd.DataFrame(rows)\\\\nprint(f\\\\\\\"\\\\\\\\nTotal data points: {len(df)}\\\\\\\")\\\\nprint(f\\\\\\\"Seeds: {df['seed'].unique()}\\\\\\\")\\\\nprint(f\\\\\\\"Count keys: {sorted(df['count_key'].unique())}\\\\\\\")\\\\nprint(f\\\\\\\"\\\\\\\\nDescriptive stats:\\\\\\\")\\\\nprint(df[['bcs', 'f1', 'mean_freq']].describe())\\\\n\\\\n# --- Raw correlation: BCS vs F1 ---\\\\nr_raw, p_raw = stats.pearsonr(df['bcs'], df['f1'])\\\\nprint(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\nprint(f\\\\\\\"Raw correlation: BCS vs F1\\\\\\\")\\\\nprint(f\\\\\\\"  r = {r_raw:.4f}, p = {p_raw:.2e}\\\\\\\")\\\\n\\\\n# --- BCS vs mean_freq (confound check) ---\\\\nr_confound, p_confound = stats.pearsonr(df['bcs'], df['mean_freq'])\\\\nprint(f\\\\\\\"\\\\\\\\nConfound check: BCS vs mean_freq\\\\\\\")\\\\nprint(f\\\\\\\"  r = {r_confound:.4f}, p = {p_confound:.2e}\\\\\\\")\\\\n\\\\n# --- F1 vs mean_freq ---\\\\nr_f1freq, p_f1freq = stats.pearsonr(df['f1'], df['mean_freq'])\\\\nprint(f\\\\\\\"\\\\\\\\nF1 vs mean_freq\\\\\\\")\\\\nprint(f\\\\\\\"  r = {r_f1freq:.4f}, p = {p_f1freq:.2e}\\\\\\\")\\\\n\\\\n# --- Partial correlation: BCS vs F1 | mean_freq ---\\\\n# Method: residualize both BCS and F1 on mean_freq, then correlate residuals\\\\nfrom numpy.polynomial.polynomial import polyfit\\\\n\\\\n# Residualize BCS on mean_freq\\\\nslope_bcs, intercept_bcs = np.polyfit(df['mean_freq'], df['bcs'], 1)\\\\nresid_bcs = df['bcs'] - (intercept_bcs + slope_bcs * df['mean_freq'])\\\\n\\\\n# Residualize F1 on mean_freq\\\\nslope_f1, intercept_f1 = np.polyfit(df['mean_freq'], df['f1'], 1)\\\\nresid_f1 = df['f1'] - (intercept_f1 + slope_f1 * df['mean_freq'])\\\\n\\\\nr_partial, p_partial = stats.pearsonr(resid_bcs, resid_f1)\\\\nprint(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\nprint(f\\\\\\\"Partial correlation: BCS vs F1 | mean_freq\\\\\\\")\\\\nprint(f\\\\\\\"  r = {r_partial:.4f}, p = {p_partial:.2e}\\\\\\\")\\\\nprint(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n# Interpretation\\\\nprint(f\\\\\\\"\\\\\\\\nInterpretation:\\\\\\\")\\\\nprint(f\\\\\\\"  Raw r(BCS, F1) = {r_raw:.4f} (p={p_raw:.2e})\\\\\\\")\\\\nprint(f\\\\\\\"  After controlling for type frequency: r = {r_partial:.4f} (p={p_partial:.2e})\\\\\\\")\\\\nif abs(r_partial) < abs(r_raw) * 0.5:\\\\n    print(f\\\\\\\"  => Substantial attenuation: type frequency explains much of the BCS-F1 association\\\\\\\")\\\\nelif p_partial < 0.05 and np.sign(r_partial) == np.sign(r_raw):\\\\n    print(f\\\\\\\"  => BCS-F1 relationship REMAINS significant after controlling for frequency\\\\\\\")\\\\n    print(f\\\\\\\"  => Type frequency is NOT a major confound\\\\\\\")\\\\nelse:\\\\n    print(f\\\\\\\"  => Partial correlation non-significant; frequency may be confounding\\\\\\\")\\\\n\\\\n# Also do Spearman for robustness\\\\nrho_raw, p_rho_raw = stats.spearmanr(df['bcs'], df['f1'])\\\\nrho_partial, p_rho_partial = stats.spearmanr(resid_bcs, resid_f1)\\\\nprint(f\\\\\\\"\\\\\\\\nSpearman (robustness):\\\\\\\")\\\\nprint(f\\\\\\\"  Raw rho(BCS, F1) = {rho_raw:.4f} (p={p_rho_raw:.2e})\\\\\\\")\\\\nprint(f\\\\\\\"  Partial rho(BCS, F1 | freq) = {rho_partial:.4f} (p={p_rho_partial:.2e})\\\\\\\")\\\\n\\\\n# --- Scatter plot ---\\\\nfig, axes = plt.subplots(1, 3, figsize=(14, 4.5))\\\\n\\\\n# Panel A: Raw BCS vs F1, colored by mean_freq\\\\nax = axes[0]\\\\nsc = ax.scatter(df['bcs'], df['f1'], c=df['mean_freq'], cmap='viridis', \\\\n                alpha=0.6, s=25, edgecolors='none')\\\\nplt.colorbar(sc, ax=ax, label='Mean type frequency')\\\\n# Add regression line\\\\nx_fit = np.linspace(df['bcs'].min(), df['bcs'].max(), 100)\\\\nslope, intercept = np.polyfit(df['bcs'], df['f1'], 1)\\\\nax.plot(x_fit, intercept + slope * x_fit, 'r-', lw=1.5, alpha=0.8)\\\\nax.set_xlabel('BCS')\\\\nax.set_ylabel('F1')\\\\nax.set_title(f'(a) Raw: r={r_raw:.3f}, p={p_raw:.1e}')\\\\n\\\\n# Panel B: Residualized scatter\\\\nax = axes[1]\\\\nsc2 = ax.scatter(resid_bcs, resid_f1, c=df['mean_freq'], cmap='viridis',\\\\n                 alpha=0.6, s=25, edgecolors='none')\\\\nplt.colorbar(sc2, ax=ax, label='Mean type frequency')\\\\nslope_r, intercept_r = np.polyfit(resid_bcs, resid_f1, 1)\\\\nx_fit2 = np.linspace(resid_bcs.min(), resid_bcs.max(), 100)\\\\nax.plot(x_fit2, intercept_r + slope_r * x_fit2, 'r-', lw=1.5, alpha=0.8)\\\\nax.set_xlabel('BCS (freq-residualized)')\\\\nax.set_ylabel('F1 (freq-residualized)')\\\\nax.set_title(f'(b) Partial: r={r_partial:.3f}, p={p_partial:.1e}')\\\\n\\\\n# Panel C: BCS vs mean_freq (confound visualization)\\\\nax = axes[2]\\\\nax.scatter(df['bcs'], df['mean_freq'], c=df['f1'], cmap='RdYlGn',\\\\n           alpha=0.6, s=25, edgecolors='none')\\\\nsc3 = ax.scatter(df['bcs'], df['mean_freq'], c=df['f1'], cmap='RdYlGn',\\\\n                 alpha=0.6, s=25, edgecolors='none')\\\\nplt.colorbar(sc3, ax=ax, label='F1')\\\\nax.set_xlabel('BCS')\\\\nax.set_ylabel('Mean type frequency')\\\\nax.set_title(f'(c) Confound: r(BCS,freq)={r_confound:.3f}')\\\\n\\\\nplt.tight_layout()\\\\noutdir = '/root/schema-dag-extraction/artifacts/paper'\\\\nos.makedirs(outdir, exist_ok=True)\\\\noutpath = f'{outdir}/fig_q1_ner_partial_bcs.pdf'\\\\nplt.savefig(outpath, dpi=300, bbox_inches='tight')\\\\nplt.savefig(outpath.replace('.pdf', '.png'), dpi=150, bbox_inches='tight')\\\\nprint(f\\\\\\\"\\\\\\\\nFigure saved: {outpath}\\\\\\\")\\\\n\\\\n# Save numerical results\\\\nresults = {\\\\n    'n_datapoints': len(df),\\\\n    'n_seeds': len(seeds),\\\\n    'raw_correlation': {'r': r_raw, 'p': p_raw},\\\\n    'confound_bcs_vs_freq': {'r': r_confound, 'p': p_confound},\\\\n    'f1_vs_freq': {'r': r_f1freq, 'p': p_f1freq},\\\\n    'partial_correlation_bcs_f1_given_freq': {'r': r_partial, 'p': p_partial},\\\\n    'spearman_raw': {'rho': rho_raw, 'p': p_rho_raw},\\\\n    'spearman_partial': {'rho': rho_partial, 'p': p_rho_partial},\\\\n}\\\\nwith open(f'{outdir}/ner_partial_correlation_results.json', 'w') as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(\\\\\\\"Results JSON saved.\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy import stats\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nfrom pathlib import Path\\nimport os\\n\\n# Load type frequency data\\nwith open('/root/schema-dag-extraction/data/few_nerd_type_stats.json') as f:\\n    type_stats = json.load(f)\\n\\nper_type = type_stats['per_type']\\ntotal_instances = type_stats['total_instances']\\n\\n# type frequency = count / total\\ntype_freq = {t: info['count'] / total_instances for t, info in per_type.items()}\\nprint(f\\\"Total types: {len(type_freq)}, total instances: {total_instances}\\\")\\nprint(f\\\"Freq range: [{min(type_freq.values()):.4f}, {max(type_freq.values()):.4f}]\\\")\\n\\n# Collect batch-level data across all 3 seeds\\nseeds = ['s42', 's123', 's456']\\nrows = []\\n\\nfor seed in seeds:\\n    base = f'/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_{seed}'\\n    \\n    # Load batch config (types per batch)\\n    with open(f'{base}/batch_config.json') as f:\\n        batch_config = json.load(f)\\n    \\n    # Load eval results (BCS, F1 per batch)\\n    with open(f'{base}/eval_results.json') as f:\\n        eval_results = json.load(f)\\n    \\n    # Build mapping: batch_id -> types\\n    batch_types_map = {}\\n    for count_key, batches_info in batch_config.items():\\n        for i, batch in enumerate(batches_info['random']):\\n            batch_id = f\\\"{count_key}_random_{i}\\\"\\n            batch_types_map[batch_id] = batch['types']\\n    \\n    # Merge with eval results\\n    for batch_id, eval_info in eval_results.items():\\n        types = batch_types_map.get(batch_id, [])\\n        if not types:\\n            continue\\n        \\n        # Compute mean type frequency for this batch\\n        freqs = [type_freq.get(t, 0) for t in types]\\n        mean_freq = np.mean(freqs) if freqs else 0\\n        \\n        rows.append({\\n            'seed': seed,\\n            'batch_id': batch_id,\\n            'count_key': eval_info['count_key'],\\n            'num_types': eval_info['num_types'],\\n            'bcs': eval_info['bcs'],\\n            'f1': eval_info['text_match']['f1'],\\n            'precision': eval_info['text_match']['precision'],\\n            'recall': eval_info['text_match']['recall'],\\n            'mean_freq': mean_freq,\\n        })\\n\\ndf = pd.DataFrame(rows)\\nprint(f\\\"\\\\nTotal data points: {len(df)}\\\")\\nprint(f\\\"Seeds: {df['seed'].unique()}\\\")\\nprint(f\\\"Count keys: {sorted(df['count_key'].unique())}\\\")\\nprint(f\\\"\\\\nDescriptive stats:\\\")\\nprint(df[['bcs', 'f1', 'mean_freq']].describe())\\n\\n# --- Raw correlation: BCS vs F1 ---\\nr_raw, p_raw = stats.pearsonr(df['bcs'], df['f1'])\\nprint(f\\\"\\\\n{'='*60}\\\")\\nprint(f\\\"Raw correlation: BCS vs F1\\\")\\nprint(f\\\"  r = {r_raw:.4f}, p = {p_raw:.2e}\\\")\\n\\n# --- BCS vs mean_freq (confound check) ---\\nr_confound, p_confound = stats.pearsonr(df['bcs'], df['mean_freq'])\\nprint(f\\\"\\\\nConfound check: BCS vs mean_freq\\\")\\nprint(f\\\"  r = {r_confound:.4f}, p = {p_confound:.2e}\\\")\\n\\n# --- F1 vs mean_freq ---\\nr_f1freq, p_f1freq = stats.pearsonr(df['f1'], df['mean_freq'])\\nprint(f\\\"\\\\nF1 vs mean_freq\\\")\\nprint(f\\\"  r = {r_f1freq:.4f}, p = {p_f1freq:.2e}\\\")\\n\\n# --- Partial correlation: BCS vs F1 | mean_freq ---\\n# Method: residualize both BCS and F1 on mean_freq, then correlate residuals\\nfrom numpy.polynomial.polynomial import polyfit\\n\\n# Residualize BCS on mean_freq\\nslope_bcs, intercept_bcs = np.polyfit(df['mean_freq'], df['bcs'], 1)\\nresid_bcs = df['bcs'] - (intercept_bcs + slope_bcs * df['mean_freq'])\\n\\n# Residualize F1 on mean_freq\\nslope_f1, intercept_f1 = np.polyfit(df['mean_freq'], df['f1'], 1)\\nresid_f1 = df['f1'] - (intercept_f1 + slope_f1 * df['mean_freq'])\\n\\nr_partial, p_partial = stats.pearsonr(resid_bcs, resid_f1)\\nprint(f\\\"\\\\n{'='*60}\\\")\\nprint(f\\\"Partial correlation: BCS vs F1 | mean_freq\\\")\\nprint(f\\\"  r = {r_partial:.4f}, p = {p_partial:.2e}\\\")\\nprint(f\\\"{'='*60}\\\")\\n\\n# Interpretation\\nprint(f\\\"\\\\nInterpretation:\\\")\\nprint(f\\\"  Raw r(BCS, F1) = {r_raw:.4f} (p={p_raw:.2e})\\\")\\nprint(f\\\"  After controlling for type frequency: r = {r_partial:.4f} (p={p_partial:.2e})\\\")\\nif abs(r_partial) < abs(r_raw) * 0.5:\\n    print(f\\\"  => Substantial attenuation: type frequency explains much of the BCS-F1 association\\\")\\nelif p_partial < 0.05 and np.sign(r_partial) == np.sign(r_raw):\\n    print(f\\\"  => BCS-F1 relationship REMAINS significant after controlling for frequency\\\")\\n    print(f\\\"  => Type frequency is NOT a major confound\\\")\\nelse:\\n    print(f\\\"  => Partial correlation non-significant; frequency may be confounding\\\")\\n\\n# Also do Spearman for robustness\\nrho_raw, p_rho_raw = stats.spearmanr(df['bcs'], df['f1'])\\nrho_partial, p_rho_partial = stats.spearmanr(resid_bcs, resid_f1)\\nprint(f\\\"\\\\nSpearman (robustness):\\\")\\nprint(f\\\"  Raw rho(BCS, F1) = {rho_raw:.4f} (p={p_rho_raw:.2e})\\\")\\nprint(f\\\"  Partial rho(BCS, F1 | freq) = {rho_partial:.4f} (p={p_rho_partial:.2e})\\\")\\n\\n# --- Scatter plot ---\\nfig, axes = plt.subplots(1, 3, figsize=(14, 4.5))\\n\\n# Panel A: Raw BCS vs F1, colored by mean_freq\\nax = axes[0]\\nsc = ax.scatter(df['bcs'], df['f1'], c=df['mean_freq'], cmap='viridis', \\n                alpha=0.6, s=25, edgecolors='none')\\nplt.colorbar(sc, ax=ax, label='Mean type frequency')\\n# Add regression line\\nx_fit = np.linspace(df['bcs'].min(), df['bcs'].max(), 100)\\nslope, intercept = np.polyfit(df['bcs'], df['f1'], 1)\\nax.plot(x_fit, intercept + slope * x_fit, 'r-', lw=1.5, alpha=0.8)\\nax.set_xlabel('BCS')\\nax.set_ylabel('F1')\\nax.set_title(f'(a) Raw: r={r_raw:.3f}, p={p_raw:.1e}')\\n\\n# Panel B: Residualized scatter\\nax = axes[1]\\nsc2 = ax.scatter(resid_bcs, resid_f1, c=df['mean_freq'], cmap='viridis',\\n                 alpha=0.6, s=25, edgecolors='none')\\nplt.colorbar(sc2, ax=ax, label='Mean type frequency')\\nslope_r, intercept_r = np.polyfit(resid_bcs, resid_f1, 1)\\nx_fit2 = np.linspace(resid_bcs.min(), resid_bcs.max(), 100)\\nax.plot(x_fit2, intercept_r + slope_r * x_fit2, 'r-', lw=1.5, alpha=0.8)\\nax.set_xlabel('BCS (freq-residualized)')\\nax.set_ylabel('F1 (freq-residualized)')\\nax.set_title(f'(b) Partial: r={r_partial:.3f}, p={p_partial:.1e}')\\n\\n# Panel C: BCS vs mean_freq (confound visualization)\\nax = axes[2]\\nax.scatter(df['bcs'], df['mean_freq'], c=df['f1'], cmap='RdYlGn',\\n           alpha=0.6, s=25, edgecolors='none')\\nsc3 = ax.scatter(df['bcs'], df['mean_freq'], c=df['f1'], cmap='RdYlGn',\\n                 alpha=0.6, s=25, edgecolors='none')\\nplt.colorbar(sc3, ax=ax, label='F1')\\nax.set_xlabel('BCS')\\nax.set_ylabel('Mean type frequency')\\nax.set_title(f'(c) Confound: r(BCS,freq)={r_confound:.3f}')\\n\\nplt.tight_layout()\\noutdir = '/root/schema-dag-extraction/artifacts/paper'\\nos.makedirs(outdir, exist_ok=True)\\noutpath = f'{outdir}/fig_q1_ner_partial_bcs.pdf'\\nplt.savefig(outpath, dpi=300, bbox_inches='tight')\\nplt.savefig(outpath.replace('.pdf', '.png'), dpi=150, bbox_inches='tight')\\nprint(f\\\"\\\\nFigure saved: {outpath}\\\")\\n\\n# Save numerical results\\nresults = {\\n    'n_datapoints': len(df),\\n    'n_seeds': len(seeds),\\n    'raw_correlation': {'r': r_raw, 'p': p_raw},\\n    'confound_bcs_vs_freq': {'r': r_confound, 'p': p_confound},\\n    'f1_vs_freq': {'r': r_f1freq, 'p': p_f1freq},\\n    'partial_correlation_bcs_f1_given_freq': {'r': r_partial, 'p': p_partial},\\n    'spearman_raw': {'rho': rho_raw, 'p': p_rho_raw},\\n    'spearman_partial': {'rho': rho_partial, 'p': p_rho_partial},\\n}\\nwith open(f'{outdir}/ner_partial_correlation_results.json', 'w') as f:\\n    json.dump(results, f, indent=2)\\nprint(\\\"Results JSON saved.\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the picture:
+
+1. **r=+0.50 (v1)**: From D005 decision record, NER count_12, 27 batches, prompt v1. Raw data was overwritten.
+2. **r=+0.58 (v2)**: From `eval_exp2.json`, NER count_12, prompt v2. This is the d037 analysis.
+3. **Q1 null (r≈0.004)**: From d051 data, 450 batches across all counts/seeds.
+
+The key data sources:
+
+
+- v1 comes only from the D005 decision record since the original data was lost
+- v2 is stored in `/root/schema-dag-extraction/artifacts/eval_exp2.json`
+- Q1 uses d051 data pooled across all three seeds and count levels via the `ner_partial_corr.py` script
+
+I need to verify whether the v2 results are already saved in `d037_ner_v2_bcs_analysis_results.json` and examine the structure of the d051 directories.
+
+Now I'll run the analysis to isolate count_12 and see how it compares.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "decf2f20-13b3-4890-8aa3-8e3c3a7ef566",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qei3Xyp2Wm6Gmb6X4dQQ88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7237,
+      "cache_read_input_tokens": 38790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7237
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+找到关键信息。v1 r=+0.50 来自 D005 决策记录（原始数据已覆盖），v2 来自 `eval_exp2.json`。让我查看具体结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "941f0d82-f31c-4560-a7d0-6a1e966f0ea6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qei3Xyp2Wm6Gmb6X4dQQ88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7237,
+      "cache_read_input_tokens": 38790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7237
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011BC4gzTthaFc97RY3TnPr9`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis_results.json 2>/dev/null || echo \"NOT FOUND\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "dbbaaf1c-aace-4eef-ab95-cee99183ecd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qei3Xyp2Wm6Gmb6X4dQQ88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7237,
+      "cache_read_input_tokens": 38790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7237
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T10:00:10.662Z_
+
+<details><summary>↩ Tool result · `toolu_011BC4gzTthaFc97RY3TnPr9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"v2\\\": {\\n    \\\"count_6\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.2684,\\n        \\\"pearson_p\\\": 0.1758,\\n        \\\"spearman_rho\\\": 0.2653,\\n        \\\"spearman_p\\\": 0.181\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.0529,\\n        \\\"pearson_p\\\": 0.7933,\\n        \\\"spearman_rho\\\": -0.0495,\\n        \\\"spearman_p\\\": 0.8064\\n      },\\n      \\\"n_batches\\\": 27,\\n      \\\"bcs_range\\\": [\\n        0.8628,\\n        0.9447\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1709,\\n        0.4993\\n      ],\\n      \\\"mean_f1\\\": 0.3026,\\n      \\\"std_f1\\\": 0.0897,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.1934,\\n          0.64\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.1297,\\n          0.6014\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"bootstrap_recall\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.2847,\\n          0.3774\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.4442,\\n          0.3524\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"extreme_gap\\\": {\\n        \\\"low_bcs\\\": 0.8709,\\n        \\\"low_f1\\\": 0.2524,\\n        \\\"high_bcs\\\": 0.9447,\\n        \\\"high_f1\\\": 0.4858,\\n        \\\"delta_f1_pp\\\": 23.34,\\n        \\\"direction\\\": \\\"positive (high BCS -> higher F1)\\\"\\n      }\\n    },\\n    \\\"count_12\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.5804,\\n        \\\"pearson_p\\\": 0.0015,\\n        \\\"spearman_rho\\\": 0.4627,\\n        \\\"spearman_p\\\": 0.0151\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.526,\\n        \\\"pearson_p\\\": 0.0048,\\n        \\\"spearman_rho\\\": 0.4612,\\n        \\\"spearman_p\\\": 0.0155\\n      },\\n      \\\"n_batches\\\": 27,\\n      \\\"bcs_range\\\": [\\n        0.892,\\n        0.9732\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1867,\\n        0.4805\\n      ],\\n      \\\"mean_f1\\\": 0.2914,\\n      \\\"std_f1\\\": 0.0617,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          0.1853,\\n          0.8054\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          0.0458,\\n          0.7664\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"bootstrap_recall\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          0.1107,\\n          0.8119\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          0.0452,\\n          0.7697\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"extreme_gap\\\": {\\n        \\\"low_bcs\\\": 0.9148,\\n        \\\"low_f1\\\": 0.229,\\n        \\\"high_bcs\\\": 0.9447,\\n        \\\"high_f1\\\": 0.3127,\\n        \\\"delta_f1_pp\\\": 8.37,\\n        \\\"direction\\\": \\\"positive (high BCS -> higher F1)\\\"\\n      }\\n    },\\n    \\\"pooled\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.2542,\\n        \\\"pearson_p\\\": 0.0636,\\n        \\\"spearman_rho\\\": 0.2516,\\n        \\\"spearman_p\\\": 0.0664\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": -0.1292,\\n        \\\"pearson_p\\\": 0.3517,\\n        \\\"spearman_rho\\\": -0.1222,\\n        \\\"spearman_p\\\": 0.3786\\n      },\\n      \\\"n_batches\\\": 54,\\n      \\\"bcs_range\\\": [\\n        0.8628,\\n        0.9732\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1709,\\n        0.4993\\n      ],\\n      \\\"mean_f1\\\": 0.297,\\n      \\\"std_f1\\\": 0.0772,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.0719,\\n          0.546\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.0437,\\n          0.5106\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      }\\n    }\\n  },\\n  \\\"v1\\\": {\\n    \\\"count_6\\\": {\\n      \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": null,\\n        \\\"note\\\": \\\"D005 reported pooled/count_12 stats only\\\"\\n      },\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"count_12\\\": {\\n      \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.5,\\n        \\\"pearson_p\\\": 0.008,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.25,\\n        \\\"pearson_p\\\": 0.066,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"partial_r_f1_bcs\\\": {\\n        \\\"r\\\": 0.3,\\n        \\\"p\\\": 0.026,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"pooled\\\": {\\n      \\\"note\\\": \\\"v1 raw data unavailable; D005 reported within-count stats\\\"\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"direction_consistent\\\": true,\\n    \\\"v1_count12_pearson_r\\\": 0.5,\\n    \\\"v2_count12_pearson_r\\\": 0.5804,\\n    \\\"v2_count6_pearson_r\\\": 0.2684,\\n    \\\"v1_vs_v2_summary\\\": \\\"Both v1 (r=0.50) and v2 (r=0.5804) show positive BCS-F1 correlation at count_12, direction consistent. This positive direction is OPPOSITE to the naive confusability hypothesis (expected negative). D008 identified type frequency as confounding variable. Batch-level BCS-F1 is not a valid test of Channel 2.\\\",\\n    \\\"risk_level\\\": \\\"LOW - direction consistent across prompt versions; confound identified and documented\\\",\\n    \\\"note\\\": \\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5b749c1d-3aa8-4354-a381-85b7e92184fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"v2\\\\\\\": {\\\\n    \\\\\\\"count_6\\\\\\\": {\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.2684,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.1758,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.2653,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.181\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.0529,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.7933,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.0495,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.8064\\\\n      },\\\\n      \\\\\\\"n_batches\\\\\\\": 27,\\\\n      \\\\\\\"bcs_range\\\\\\\": [\\\\n        0.8628,\\\\n        0.9447\\\\n      ],\\\\n      \\\\\\\"f1_range\\\\\\\": [\\\\n        0.1709,\\\\n        0.4993\\\\n      ],\\\\n      \\\\\\\"mean_f1\\\\\\\": 0.3026,\\\\n      \\\\\\\"std_f1\\\\\\\": 0.0897,\\\\n      \\\\\\\"bootstrap_f1\\\\\\\": {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [\\\\n          -0.1934,\\\\n          0.64\\\\n        ],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [\\\\n          -0.1297,\\\\n          0.6014\\\\n        ],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n      },\\\\n      \\\\\\\"bootstrap_recall\\\\\\\": {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [\\\\n          -0.2847,\\\\n          0.3774\\\\n        ],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [\\\\n          -0.4442,\\\\n          0.3524\\\\n        ],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n      },\\\\n      \\\\\\\"extreme_gap\\\\\\\": {\\\\n        \\\\\\\"low_bcs\\\\\\\": 0.8709,\\\\n        \\\\\\\"low_f1\\\\\\\": 0.2524,\\\\n        \\\\\\\"high_bcs\\\\\\\": 0.9447,\\\\n        \\\\\\\"high_f1\\\\\\\": 0.4858,\\\\n        \\\\\\\"delta_f1_pp\\\\\\\": 23.34,\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"positive (high BCS -> higher F1)\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"count_12\\\\\\\": {\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.5804,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.0015,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.4627,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0151\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.526,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.0048,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.4612,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0155\\\\n      },\\\\n      \\\\\\\"n_batches\\\\\\\": 27,\\\\n      \\\\\\\"bcs_range\\\\\\\": [\\\\n        0.892,\\\\n        0.9732\\\\n      ],\\\\n      \\\\\\\"f1_range\\\\\\\": [\\\\n        0.1867,\\\\n        0.4805\\\\n      ],\\\\n      \\\\\\\"mean_f1\\\\\\\": 0.2914,\\\\n      \\\\\\\"std_f1\\\\\\\": 0.0617,\\\\n      \\\\\\\"bootstrap_f1\\\\\\\": {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [\\\\n          0.1853,\\\\n          0.8054\\\\n        ],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [\\\\n          0.0458,\\\\n          0.7664\\\\n        ],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n      },\\\\n      \\\\\\\"bootstrap_recall\\\\\\\": {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [\\\\n          0.1107,\\\\n          0.8119\\\\n        ],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [\\\\n          0.0452,\\\\n          0.7697\\\\n        ],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n      },\\\\n      \\\\\\\"extreme_gap\\\\\\\": {\\\\n        \\\\\\\"low_bcs\\\\\\\": 0.9148,\\\\n        \\\\\\\"low_f1\\\\\\\": 0.229,\\\\n        \\\\\\\"high_bcs\\\\\\\": 0.9447,\\\\n        \\\\\\\"high_f1\\\\\\\": 0.3127,\\\\n        \\\\\\\"delta_f1_pp\\\\\\\": 8.37,\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"positive (high BCS -> higher F1)\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"pooled\\\\\\\": {\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.2542,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.0636,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.2516,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0664\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": -0.1292,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.3517,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.1222,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.3786\\\\n      },\\\\n      \\\\\\\"n_batches\\\\\\\": 54,\\\\n      \\\\\\\"bcs_range\\\\\\\": [\\\\n        0.8628,\\\\n        0.9732\\\\n      ],\\\\n      \\\\\\\"f1_range\\\\\\\": [\\\\n        0.1709,\\\\n        0.4993\\\\n      ],\\\\n      \\\\\\\"mean_f1\\\\\\\": 0.297,\\\\n      \\\\\\\"std_f1\\\\\\\": 0.0772,\\\\n      \\\\\\\"bootstrap_f1\\\\\\\": {\\\\n        \\\\\\\"pearson_ci_95\\\\\\\": [\\\\n          -0.0719,\\\\n          0.546\\\\n        ],\\\\n        \\\\\\\"spearman_ci_95\\\\\\\": [\\\\n          -0.0437,\\\\n          0.5106\\\\n        ],\\\\n        \\\\\\\"n_valid_bootstrap\\\\\\\": 1000\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"v1\\\\\\\": {\\\\n    \\\\\\\"count_6\\\\\\\": {\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\\\\\",\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": null,\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"D005 reported pooled/count_12 stats only\\\\\\\"\\\\n      },\\\\n      \\\\\\\"n_batches\\\\\\\": 27\\\\n    },\\\\n    \\\\\\\"count_12\\\\\\\": {\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\\\\\",\\\\n      \\\\\\\"f1_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.5,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.008,\\\\n        \\\\\\\"source\\\\\\\": \\\\\\\"D005\\\\\\\"\\\\n      },\\\\n      \\\\\\\"recall_vs_bcs\\\\\\\": {\\\\n        \\\\\\\"pearson_r\\\\\\\": 0.25,\\\\n        \\\\\\\"pearson_p\\\\\\\": 0.066,\\\\n        \\\\\\\"source\\\\\\\": \\\\\\\"D005\\\\\\\"\\\\n      },\\\\n      \\\\\\\"partial_r_f1_bcs\\\\\\\": {\\\\n        \\\\\\\"r\\\\\\\": 0.3,\\\\n        \\\\\\\"p\\\\\\\": 0.026,\\\\n        \\\\\\\"source\\\\\\\": \\\\\\\"D005\\\\\\\"\\\\n      },\\\\n      \\\\\\\"n_batches\\\\\\\": 27\\\\n    },\\\\n    \\\\\\\"pooled\\\\\\\": {\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"v1 raw data unavailable; D005 reported within-count stats\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"direction_consistent\\\\\\\": true,\\\\n    \\\\\\\"v1_count12_pearson_r\\\\\\\": 0.5,\\\\n    \\\\\\\"v2_count12_pearson_r\\\\\\\": 0.5804,\\\\n    \\\\\\\"v2_count6_pearson_r\\\\\\\": 0.2684,\\\\n    \\\\\\\"v1_vs_v2_summary\\\\\\\": \\\\\\\"Both v1 (r=0.50) and v2 (r=0.5804) show positive BCS-F1 correlation at count_12, direction consistent. This positive direction is OPPOSITE to the naive confusability hypothesis (expected negative). D008 identified type frequency as confounding variable. Batch-level BCS-F1 is not a valid test of Channel 2.\\\\\\\",\\\\n    \\\\\\\"risk_level\\\\\\\": \\\\\\\"LOW - direction consistent across prompt versions; confound identified and documented\\\\\\\",\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"v2\\\": {\\n    \\\"count_6\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.2684,\\n        \\\"pearson_p\\\": 0.1758,\\n        \\\"spearman_rho\\\": 0.2653,\\n        \\\"spearman_p\\\": 0.181\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.0529,\\n        \\\"pearson_p\\\": 0.7933,\\n        \\\"spearman_rho\\\": -0.0495,\\n        \\\"spearman_p\\\": 0.8064\\n      },\\n      \\\"n_batches\\\": 27,\\n      \\\"bcs_range\\\": [\\n        0.8628,\\n        0.9447\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1709,\\n        0.4993\\n      ],\\n      \\\"mean_f1\\\": 0.3026,\\n      \\\"std_f1\\\": 0.0897,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.1934,\\n          0.64\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.1297,\\n          0.6014\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"bootstrap_recall\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.2847,\\n          0.3774\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.4442,\\n          0.3524\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"extreme_gap\\\": {\\n        \\\"low_bcs\\\": 0.8709,\\n        \\\"low_f1\\\": 0.2524,\\n        \\\"high_bcs\\\": 0.9447,\\n        \\\"high_f1\\\": 0.4858,\\n        \\\"delta_f1_pp\\\": 23.34,\\n        \\\"direction\\\": \\\"positive (high BCS -> higher F1)\\\"\\n      }\\n    },\\n    \\\"count_12\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.5804,\\n        \\\"pearson_p\\\": 0.0015,\\n        \\\"spearman_rho\\\": 0.4627,\\n        \\\"spearman_p\\\": 0.0151\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.526,\\n        \\\"pearson_p\\\": 0.0048,\\n        \\\"spearman_rho\\\": 0.4612,\\n        \\\"spearman_p\\\": 0.0155\\n      },\\n      \\\"n_batches\\\": 27,\\n      \\\"bcs_range\\\": [\\n        0.892,\\n        0.9732\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1867,\\n        0.4805\\n      ],\\n      \\\"mean_f1\\\": 0.2914,\\n      \\\"std_f1\\\": 0.0617,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          0.1853,\\n          0.8054\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          0.0458,\\n          0.7664\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"bootstrap_recall\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          0.1107,\\n          0.8119\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          0.0452,\\n          0.7697\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      },\\n      \\\"extreme_gap\\\": {\\n        \\\"low_bcs\\\": 0.9148,\\n        \\\"low_f1\\\": 0.229,\\n        \\\"high_bcs\\\": 0.9447,\\n        \\\"high_f1\\\": 0.3127,\\n        \\\"delta_f1_pp\\\": 8.37,\\n        \\\"direction\\\": \\\"positive (high BCS -> higher F1)\\\"\\n      }\\n    },\\n    \\\"pooled\\\": {\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.2542,\\n        \\\"pearson_p\\\": 0.0636,\\n        \\\"spearman_rho\\\": 0.2516,\\n        \\\"spearman_p\\\": 0.0664\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": -0.1292,\\n        \\\"pearson_p\\\": 0.3517,\\n        \\\"spearman_rho\\\": -0.1222,\\n        \\\"spearman_p\\\": 0.3786\\n      },\\n      \\\"n_batches\\\": 54,\\n      \\\"bcs_range\\\": [\\n        0.8628,\\n        0.9732\\n      ],\\n      \\\"f1_range\\\": [\\n        0.1709,\\n        0.4993\\n      ],\\n      \\\"mean_f1\\\": 0.297,\\n      \\\"std_f1\\\": 0.0772,\\n      \\\"bootstrap_f1\\\": {\\n        \\\"pearson_ci_95\\\": [\\n          -0.0719,\\n          0.546\\n        ],\\n        \\\"spearman_ci_95\\\": [\\n          -0.0437,\\n          0.5106\\n        ],\\n        \\\"n_valid_bootstrap\\\": 1000\\n      }\\n    }\\n  },\\n  \\\"v1\\\": {\\n    \\\"count_6\\\": {\\n      \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": null,\\n        \\\"note\\\": \\\"D005 reported pooled/count_12 stats only\\\"\\n      },\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"count_12\\\": {\\n      \\\"note\\\": \\\"v1 per-batch raw data overwritten by v2 run; stats from D005 decision record\\\",\\n      \\\"f1_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.5,\\n        \\\"pearson_p\\\": 0.008,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"recall_vs_bcs\\\": {\\n        \\\"pearson_r\\\": 0.25,\\n        \\\"pearson_p\\\": 0.066,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"partial_r_f1_bcs\\\": {\\n        \\\"r\\\": 0.3,\\n        \\\"p\\\": 0.026,\\n        \\\"source\\\": \\\"D005\\\"\\n      },\\n      \\\"n_batches\\\": 27\\n    },\\n    \\\"pooled\\\": {\\n      \\\"note\\\": \\\"v1 raw data unavailable; D005 reported within-count stats\\\"\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"direction_consistent\\\": true,\\n    \\\"v1_count12_pearson_r\\\": 0.5,\\n    \\\"v2_count12_pearson_r\\\": 0.5804,\\n    \\\"v2_count6_pearson_r\\\": 0.2684,\\n    \\\"v1_vs_v2_summary\\\": \\\"Both v1 (r=0.50) and v2 (r=0.5804) show positive BCS-F1 correlation at count_12, direction consistent. This positive direction is OPPOSITE to the naive confusability hypothesis (expected negative). D008 identified type frequency as confounding variable. Batch-level BCS-F1 is not a valid test of Channel 2.\\\",\\n    \\\"risk_level\\\": \\\"LOW - direction consistent across prompt versions; confound identified and documented\\\",\\n    \\\"note\\\": \\\"v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JRBkLKdKVUJi48b8N4UmP5`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/eval_exp2.json 2>/dev/null && wc -l /root/schema-dag-extraction/artifacts/eval_exp2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "39f6a59d-241b-4786-9853-5b28e6eca714",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qei3Xyp2Wm6Gmb6X4dQQ88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7237,
+      "cache_read_input_tokens": 38790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7237
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T10:00:12.099Z_
+
+<details><summary>↩ Tool result · `toolu_01JRBkLKdKVUJi48b8N4UmP5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/eval_exp2.json\\n757 /root/schema-dag-extraction/artifacts/eval_exp2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "323c9080-70aa-4dba-8567-e647e9100603",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/eval_exp2.json\\\\n757 /root/schema-dag-extraction/artifacts/eval_exp2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/eval_exp2.json\\n757 /root/schema-dag-extraction/artifacts/eval_exp2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014VC8qKKPn8pKFQDYUYEqsv`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "bb469c36-76b8-4c9e-b1ee-6346d12cd198",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qei3Xyp2Wm6Gmb6X4dQQ88",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7237,
+      "cache_read_input_tokens": 38790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7237
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T10:00:12.565Z_
+
+<details><summary>↩ Tool result · `toolu_014VC8qKKPn8pKFQDYUYEqsv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"batch_config.json\\ncount_curve_summary.json\\neval_results.json\\nresults_count_12.jsonl\\nresults_count_2.jsonl\\nresults_count_22.jsonl\\nresults_count_44.jsonl\\nresults_count_6.jsonl\\nresults_count_66.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "19ef59b7-eca5-43a7-a89f-eca82cbcf651",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"batch_config.json\\\\ncount_curve_summary.json\\\\neval_results.json\\\\nresults_count_12.jsonl\\\\nresults_count_2.jsonl\\\\nresults_count_22.jsonl\\\\nresults_count_44.jsonl\\\\nresults_count_6.jsonl\\\\nresults_count_66.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"batch_config.json\\ncount_curve_summary.json\\neval_results.json\\nresults_count_12.jsonl\\nresults_count_2.jsonl\\nresults_count_22.jsonl\\nresults_count_44.jsonl\\nresults_count_6.jsonl\\nresults_count_66.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the key data:
+
+**v1 (r=+0.50)**: D005 decision record, count_12, 27 batches, raw data overwritten
+**v2 (r=+0.58)**: eval_exp2.json, count_12, 27 batches, BCS range [0.892, 0.9732]
+
+**Q1 (d051)**: d051_fewnerd_n25_s{42,123,456}, each with eval_results.json, 25 batches per count level × 6 count levels × 3 seeds = 450 total batches
+
+
+I need to examine the d051 data structure to see if it contains per-batch BCS and F1 scores, then pull out the count_12 batches across all three seeds to compute correlations and compare the BCS ranges between experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "cb18497e-75ee-4682-bd0b-c6cca42e2a76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5dZdqxFJfzZiu9746Dpjc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3882,
+      "cache_read_input_tokens": 46027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+现在明确了来源。让我检查 d051 的 eval_results 结构并做对比分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "d26f9881-f3a0-49b9-830f-30318e8e9b16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5dZdqxFJfzZiu9746Dpjc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3882,
+      "cache_read_input_tokens": 46027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QE9zDjnm5FRUeGr8EQBobm`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -60 /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/eval_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "d02f38d1-30c1-4eb4-a8bf-a206ac9e567f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5dZdqxFJfzZiu9746Dpjc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3882,
+      "cache_read_input_tokens": 46027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T10:00:22.665Z_
+
+<details><summary>↩ Tool result · `toolu_01QE9zDjnm5FRUeGr8EQBobm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_12_random_0\\\": {\\n    \\\"bcs\\\": 0.8002685109774271,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.28735632183908044,\\n      \\\"recall\\\": 0.373134328358209,\\n      \\\"f1\\\": 0.3246753246753247,\\n      \\\"tp\\\": 200,\\n      \\\"total_pred\\\": 696,\\n      \\\"total_gold\\\": 536\\n    }\\n  },\\n  \\\"count_12_random_1\\\": {\\n    \\\"bcs\\\": 0.7975223958492279,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2116788321167883,\\n      \\\"recall\\\": 0.058823529411764705,\\n      \\\"f1\\\": 0.09206349206349207,\\n      \\\"tp\\\": 29,\\n      \\\"total_pred\\\": 137,\\n      \\\"total_gold\\\": 493\\n    }\\n  },\\n  \\\"count_12_random_2\\\": {\\n    \\\"bcs\\\": 0.7959993237798865,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.22263450834879406,\\n      \\\"recall\\\": 0.27586206896551724,\\n      \\\"f1\\\": 0.2464065708418891,\\n      \\\"tp\\\": 120,\\n      \\\"total_pred\\\": 539,\\n      \\\"total_gold\\\": 435\\n    }\\n  },\\n  \\\"count_12_random_3\\\": {\\n    \\\"bcs\\\": 0.8111964057792317,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.25229357798165136,\\n      \\\"recall\\\": 0.1864406779661017,\\n      \\\"f1\\\": 0.21442495126705652,\\n      \\\"tp\\\": 55,\\n      \\\"total_pred\\\": 218,\\n      \\\"total_gold\\\": 295\\n    }\\n  },\\n  \\\"count_12_random_4\\\": {\\n    \\\"bcs\\\": 0.8012311458587646,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "e7058ea6-bf69-4f0e-a109-4edb9c3541d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_12_random_0\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8002685109774271,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.28735632183908044,\\\\n      \\\\\\\"recall\\\\\\\": 0.373134328358209,\\\\n      \\\\\\\"f1\\\\\\\": 0.3246753246753247,\\\\n      \\\\\\\"tp\\\\\\\": 200,\\\\n      \\\\\\\"total_pred\\\\\\\": 696,\\\\n      \\\\\\\"total_gold\\\\\\\": 536\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_1\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.7975223958492279,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.2116788321167883,\\\\n      \\\\\\\"recall\\\\\\\": 0.058823529411764705,\\\\n      \\\\\\\"f1\\\\\\\": 0.09206349206349207,\\\\n      \\\\\\\"tp\\\\\\\": 29,\\\\n      \\\\\\\"total_pred\\\\\\\": 137,\\\\n      \\\\\\\"total_gold\\\\\\\": 493\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_2\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.7959993237798865,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.22263450834879406,\\\\n      \\\\\\\"recall\\\\\\\": 0.27586206896551724,\\\\n      \\\\\\\"f1\\\\\\\": 0.2464065708418891,\\\\n      \\\\\\\"tp\\\\\\\": 120,\\\\n      \\\\\\\"total_pred\\\\\\\": 539,\\\\n      \\\\\\\"total_gold\\\\\\\": 435\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_3\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8111964057792317,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 12,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.25229357798165136,\\\\n      \\\\\\\"recall\\\\\\\": 0.1864406779661017,\\\\n      \\\\\\\"f1\\\\\\\": 0.21442495126705652,\\\\n      \\\\\\\"tp\\\\\\\": 55,\\\\n      \\\\\\\"total_pred\\\\\\\": 218,\\\\n      \\\\\\\"total_gold\\\\\\\": 295\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_12_random_4\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8012311458587646,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_12_random_0\\\": {\\n    \\\"bcs\\\": 0.8002685109774271,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.28735632183908044,\\n      \\\"recall\\\": 0.373134328358209,\\n      \\\"f1\\\": 0.3246753246753247,\\n      \\\"tp\\\": 200,\\n      \\\"total_pred\\\": 696,\\n      \\\"total_gold\\\": 536\\n    }\\n  },\\n  \\\"count_12_random_1\\\": {\\n    \\\"bcs\\\": 0.7975223958492279,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.2116788321167883,\\n      \\\"recall\\\": 0.058823529411764705,\\n      \\\"f1\\\": 0.09206349206349207,\\n      \\\"tp\\\": 29,\\n      \\\"total_pred\\\": 137,\\n      \\\"total_gold\\\": 493\\n    }\\n  },\\n  \\\"count_12_random_2\\\": {\\n    \\\"bcs\\\": 0.7959993237798865,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.22263450834879406,\\n      \\\"recall\\\": 0.27586206896551724,\\n      \\\"f1\\\": 0.2464065708418891,\\n      \\\"tp\\\": 120,\\n      \\\"total_pred\\\": 539,\\n      \\\"total_gold\\\": 435\\n    }\\n  },\\n  \\\"count_12_random_3\\\": {\\n    \\\"bcs\\\": 0.8111964057792317,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n    \\\"num_types\\\": 12,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.25229357798165136,\\n      \\\"recall\\\": 0.1864406779661017,\\n      \\\"f1\\\": 0.21442495126705652,\\n      \\\"tp\\\": 55,\\n      \\\"total_pred\\\": 218,\\n      \\\"total_gold\\\": 295\\n    }\\n  },\\n  \\\"count_12_random_4\\\": {\\n    \\\"bcs\\\": 0.8012311458587646,\\n    \\\"count_key\\\": \\\"count_12\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YLZByW3VtWq8ywqxjT2ezV`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/paper/ner_partial_correlation_results.json 2>/dev/null || echo \"NOT FOUND\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "7a47c8f7-6911-4e6f-a148-7eba6cdd16f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5dZdqxFJfzZiu9746Dpjc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3882,
+      "cache_read_input_tokens": 46027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WNSVTx8dkL9yLLd7DxoVFJ`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -30 /root/schema-dag-extraction/artifacts/eval_exp2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "9db6595b-9b62-4299-9291-e72c07d1292c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5dZdqxFJfzZiu9746Dpjc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3882,
+      "cache_read_input_tokens": 46027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3882
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-17T10:00:23.705Z_
+
+<details><summary>↩ Tool result · `toolu_01YLZByW3VtWq8ywqxjT2ezV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"Few-NERD d051\\\",\\n  \\\"n_datapoints\\\": 450,\\n  \\\"n_seeds\\\": 3,\\n  \\\"count_levels\\\": [\\n    2,\\n    6,\\n    12,\\n    22,\\n    44,\\n    66\\n  ],\\n  \\\"raw_correlation_bcs_f1\\\": {\\n    \\\"r\\\": 0.003710943400697813,\\n    \\\"p\\\": 0.9374284863193966\\n  },\\n  \\\"confound_bcs_vs_freq\\\": {\\n    \\\"r\\\": -0.07948952673936975,\\n    \\\"p\\\": 0.09214236659917936\\n  },\\n  \\\"f1_vs_freq\\\": {\\n    \\\"r\\\": 0.25653016553969615,\\n    \\\"p\\\": 3.403163073191516e-08\\n  },\\n  \\\"partial_bcs_f1_given_freq\\\": {\\n    \\\"r\\\": 0.02501604548176264,\\n    \\\"p\\\": 0.5966130823713575\\n  },\\n  \\\"partial_bcs_f1_given_freq_count\\\": {\\n    \\\"r\\\": 0.02242235349183407,\\n    \\\"p\\\": 0.6352242113003114\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "78a3a57a-47e3-4f0f-a18c-bfdc8adfb983",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"Few-NERD d051\\\\\\\",\\\\n  \\\\\\\"n_datapoints\\\\\\\": 450,\\\\n  \\\\\\\"n_seeds\\\\\\\": 3,\\\\n  \\\\\\\"count_levels\\\\\\\": [\\\\n    2,\\\\n    6,\\\\n    12,\\\\n    22,\\\\n    44,\\\\n    66\\\\n  ],\\\\n  \\\\\\\"raw_correlation_bcs_f1\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.003710943400697813,\\\\n    \\\\\\\"p\\\\\\\": 0.9374284863193966\\\\n  },\\\\n  \\\\\\\"confound_bcs_vs_freq\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": -0.07948952673936975,\\\\n    \\\\\\\"p\\\\\\\": 0.09214236659917936\\\\n  },\\\\n  \\\\\\\"f1_vs_freq\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.25653016553969615,\\\\n    \\\\\\\"p\\\\\\\": 3.403163073191516e-08\\\\n  },\\\\n  \\\\\\\"partial_bcs_f1_given_freq\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.02501604548176264,\\\\n    \\\\\\\"p\\\\\\\": 0.5966130823713575\\\\n  },\\\\n  \\\\\\\"partial_bcs_f1_given_freq_count\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 0.02242235349183407,\\\\n    \\\\\\\"p\\\\\\\": 0.6352242113003114\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"dataset\\\": \\\"Few-NERD d051\\\",\\n  \\\"n_datapoints\\\": 450,\\n  \\\"n_seeds\\\": 3,\\n  \\\"count_levels\\\": [\\n    2,\\n    6,\\n    12,\\n    22,\\n    44,\\n    66\\n  ],\\n  \\\"raw_correlation_bcs_f1\\\": {\\n    \\\"r\\\": 0.003710943400697813,\\n    \\\"p\\\": 0.9374284863193966\\n  },\\n  \\\"confound_bcs_vs_freq\\\": {\\n    \\\"r\\\": -0.07948952673936975,\\n    \\\"p\\\": 0.09214236659917936\\n  },\\n  \\\"f1_vs_freq\\\": {\\n    \\\"r\\\": 0.25653016553969615,\\n    \\\"p\\\": 3.403163073191516e-08\\n  },\\n  \\\"partial_bcs_f1_given_freq\\\": {\\n    \\\"r\\\": 0.02501604548176264,\\n    \\\"p\\\": 0.5966130823713575\\n  },\\n  \\\"partial_bcs_f1_given_freq_count\\\": {\\n    \\\"r\\\": 0.02242235349183407,\\n    \\\"p\\\": 0.6352242113003114\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T10:00:24.173Z_
+
+<details><summary>↩ Tool result · `toolu_01WNSVTx8dkL9yLLd7DxoVFJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_6_low_bcs\\\": {\\n    \\\"bcs\\\": 0.8708932995796204,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1925925925925926,\\n      \\\"recall\\\": 0.36619718309859156,\\n      \\\"f1\\\": 0.2524271844660194,\\n      \\\"tp\\\": 78,\\n      \\\"total_pred\\\": 405,\\n      \\\"total_gold\\\": 213\\n    }\\n  },\\n  \\\"count_6_high_bcs\\\": {\\n    \\\"bcs\\\": 0.9446906447410583,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.45726495726495725,\\n      \\\"recall\\\": 0.5181598062953995,\\n      \\\"f1\\\": 0.48581157775255385,\\n      \\\"tp\\\": 214,\\n      \\\"total_pred\\\": 468,\\n      \\\"total_gold\\\": 413\\n    }\\n  },\\n  \\\"count_6_random_0\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "f930e89c-0b79-4bfb-903f-c7f7d14456e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_6_low_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.8708932995796204,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.1925925925925926,\\\\n      \\\\\\\"recall\\\\\\\": 0.36619718309859156,\\\\n      \\\\\\\"f1\\\\\\\": 0.2524271844660194,\\\\n      \\\\\\\"tp\\\\\\\": 78,\\\\n      \\\\\\\"total_pred\\\\\\\": 405,\\\\n      \\\\\\\"total_gold\\\\\\\": 213\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_high_bcs\\\\\\\": {\\\\n    \\\\\\\"bcs\\\\\\\": 0.9446906447410583,\\\\n    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_6\\\\\\\",\\\\n    \\\\\\\"num_types\\\\\\\": 6,\\\\n    \\\\\\\"num_samples\\\\\\\": 1000,\\\\n    \\\\\\\"text_match\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 0.45726495726495725,\\\\n      \\\\\\\"recall\\\\\\\": 0.5181598062953995,\\\\n      \\\\\\\"f1\\\\\\\": 0.48581157775255385,\\\\n      \\\\\\\"tp\\\\\\\": 214,\\\\n      \\\\\\\"total_pred\\\\\\\": 468,\\\\n      \\\\\\\"total_gold\\\\\\\": 413\\\\n    }\\\\n  },\\\\n  \\\\\\\"count_6_random_0\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_6_low_bcs\\\": {\\n    \\\"bcs\\\": 0.8708932995796204,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.1925925925925926,\\n      \\\"recall\\\": 0.36619718309859156,\\n      \\\"f1\\\": 0.2524271844660194,\\n      \\\"tp\\\": 78,\\n      \\\"total_pred\\\": 405,\\n      \\\"total_gold\\\": 213\\n    }\\n  },\\n  \\\"count_6_high_bcs\\\": {\\n    \\\"bcs\\\": 0.9446906447410583,\\n    \\\"count_key\\\": \\\"count_6\\\",\\n    \\\"num_types\\\": 6,\\n    \\\"num_samples\\\": 1000,\\n    \\\"text_match\\\": {\\n      \\\"precision\\\": 0.45726495726495725,\\n      \\\"recall\\\": 0.5181598062953995,\\n      \\\"f1\\\": 0.48581157775255385,\\n      \\\"tp\\\": 214,\\n      \\\"total_pred\\\": 468,\\n      \\\"total_gold\\\": 413\\n    }\\n  },\\n  \\\"count_6_random_0\\\": {\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the critical difference:
+
+**eval_exp2.json (v2, source of r=+0.58)**:
+- BCS range for count_12: [0.892, 0.9732]
+- n_batches: 27
+- Uses Few-NERD types
+
+**d051_fewnerd_n25_s42 (Q1 source)**:
+- BCS for count_12: ~0.80 (e.g., 0.800, 0.798, 0.796, 0.811)
+
+
+- n_batches per seed: 25 per count level, 450 total across 6 count levels and 3 seeds
+
+The BCS values are substantially different—eval_exp2 sits at 0.89-0.97 while d051 hovers around 0.80—which points to either different embedding models or different type pools being used. I need to dig into what embedding was applied for each, how many types were in the pool, and what the actual batch compositions look like.
+
+Now I'm checking which similarity matrix was used to compute the BCS in each case.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5cc38802-2efb-44c9-998b-bcef710d196f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015g29KXamrc2QS9VjdJ1kxP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2728,
+      "cache_read_input_tokens": 49909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+发现关键差异：eval_exp2 count_12 BCS range 是 [0.892, 0.9732]，而 d051 count_12 BCS 约 0.80。这是不同的 BCS 计算。让我查清楚。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "29a8f6e6-f6c8-4538-bd70-35569d5f0658",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015g29KXamrc2QS9VjdJ1kxP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2728,
+      "cache_read_input_tokens": 49909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01G1ThaPFBnTc2c6qm5szpTh`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"eval_exp2*\" -o -name \"*exp2*eval*\" | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "56539e02-c011-4637-b5e2-fa2a0f1c236f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015g29KXamrc2QS9VjdJ1kxP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2728,
+      "cache_read_input_tokens": 49909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T10:00:34.713Z_
+
+<details><summary>↩ Tool result · `toolu_01G1ThaPFBnTc2c6qm5szpTh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/eval_exp2.json\\n/root/schema-dag-extraction/results/exp2_reeval_results.json\\n/root/schema-dag-extraction/results/exp2_reeval_summary.json\\n/root/schema-dag-extraction/results/eval_exp2.json\\n/root/schema-dag-extraction/results/exp2_reeval_summary_v1.json\\n/root/schema-dag-extraction/results/exp2_reeval_results_v1.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "2958a142-abde-4716-9613-38ec0ee10631",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp2.json\\\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/eval_exp2.json\\\\n/root/schema-dag-extraction/results/exp2_reeval_results.json\\\\n/root/schema-dag-extraction/results/exp2_reeval_summary.json\\\\n/root/schema-dag-extraction/results/eval_exp2.json\\\\n/root/schema-dag-extraction/results/exp2_reeval_summary_v1.json\\\\n/root/schema-dag-extraction/results/exp2_reeval_results_v1.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/eval_exp2.json\\n/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/eval_exp2.json\\n/root/schema-dag-extraction/results/exp2_reeval_results.json\\n/root/schema-dag-extraction/results/exp2_reeval_summary.json\\n/root/schema-dag-extraction/results/eval_exp2.json\\n/root/schema-dag-extraction/results/exp2_reeval_summary_v1.json\\n/root/schema-dag-extraction/results/exp2_reeval_results_v1.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UfQgu1T4Evu4jbo3xg6bQo`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*.py\" -exec grep -l \"eval_exp2\" {} \\; 2>/dev/null | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "4359736c-d305-417f-b66c-e7d79b078e16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015g29KXamrc2QS9VjdJ1kxP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2728,
+      "cache_read_input_tokens": 49909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MavZUWRHD7cGzwS2SZDEfB`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*sim_matrix*\" -o -name \"*bcs_matrix*\" | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "0c236498-4ffe-4c31-918e-e04eed1c89f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015g29KXamrc2QS9VjdJ1kxP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2728,
+      "cache_read_input_tokens": 49909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-17T10:00:36.556Z_
+
+<details><summary>↩ Tool result · `toolu_01UfQgu1T4Evu4jbo3xg6bQo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\n/root/schema-dag-extraction/scripts/three_way_comparison.py\\n/root/schema-dag-extraction/scripts/d035_extreme_batch.py\\n/root/schema-dag-extraction/scripts/three_way_unified.py\\n/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\\n/root/schema-dag-extraction/scripts/bcs_fix_recompute.py\\n/root/schema-dag-extraction/scripts/cross_embedding_sensitivity.py\\n/root/schema-dag-extraction/analyze_ch2.py\\n/root/schema-dag-extraction/run_factorial_tost.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "26869d52-ed80-48e3-b9b3-647f0e7f8dd2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/analyze_results.py\\\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\\\n/root/schema-dag-extraction/scripts/three_way_comparison.py\\\\n/root/schema-dag-extraction/scripts/d035_extreme_batch.py\\\\n/root/schema-dag-extraction/scripts/three_way_unified.py\\\\n/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\\\\n/root/schema-dag-extraction/scripts/bcs_fix_recompute.py\\\\n/root/schema-dag-extraction/scripts/cross_embedding_sensitivity.py\\\\n/root/schema-dag-extraction/analyze_ch2.py\\\\n/root/schema-dag-extraction/run_factorial_tost.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/bootstrap_ci.py\\n/root/schema-dag-extraction/scripts/three_way_comparison.py\\n/root/schema-dag-extraction/scripts/d035_extreme_batch.py\\n/root/schema-dag-extraction/scripts/three_way_unified.py\\n/root/schema-dag-extraction/scripts/d037/d037_ner_v2_bcs_analysis.py\\n/root/schema-dag-extraction/scripts/bcs_fix_recompute.py\\n/root/schema-dag-extraction/scripts/cross_embedding_sensitivity.py\\n/root/schema-dag-extraction/analyze_ch2.py\\n/root/schema-dag-extraction/run_factorial_tost.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-17T10:00:37.027Z_
+
+<details><summary>↩ Tool result · `toolu_01MavZUWRHD7cGzwS2SZDEfB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/data/sim_matrix.pt\\n/root/schema-dag-extraction/data/maven_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/relation_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\n/root/schema-dag-extraction/artifacts/fewrel_formal/relation_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewrel_qwen3_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/relation_sim_matrix.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "fbd538f7-6520-49be-badd-d594fc5e3059",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/data/sim_matrix.pt\\\\n/root/schema-dag-extraction/data/maven_sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/relation_sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/relation_sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/fewrel_qwen3_sim_matrix.pt\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/relation_sim_matrix.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/data/sim_matrix.pt\\n/root/schema-dag-extraction/data/maven_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/maven_bcs_matrix_qwen3.pt\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/relation_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewnerd_bcs_matrix_minilm.pt\\n/root/schema-dag-extraction/artifacts/fewrel_formal/relation_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewrel_qwen3_sim_matrix.pt\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/relation_sim_matrix.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The NER eval_exp2.json used a BCS matrix named `fewnerd_bcs_matrix_minilm.pt` (as seen in the d037 analysis script referring to sim_matrix). The d051 data uses something else. Let me check the d051 scripts and batch configs to see which sim matrix they used.
+
+Key question: eval_exp2 uses `fewnerd_bcs_matrix_minilm.pt` while d051 uses something different? Or same matrix but different type pool?
+
+Let me check the d051 batch config and the run script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "1881ca4e-c11e-4d17-b6b1-968a2f73dadf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vhcGdK5zSEmHNuivTd7CK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1731,
+      "cache_read_input_tokens": 52637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Dg4kTU6kZ2nJQE31h3Lpot`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -50 /root/schema-dag-extraction/scripts/run_d051_count_curves_25.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5ee7cf3a-89d9-4a96-9c39-a740eca1f18f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vhcGdK5zSEmHNuivTd7CK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1731,
+      "cache_read_input_tokens": 52637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-17T10:00:44.778Z_
+
+<details><summary>↩ Tool result · `toolu_01Dg4kTU6kZ2nJQE31h3Lpot`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"D051 Batch 2: Count curves with 25+ batches per count level.\\n\\nFor R6-W3: Figure 1 error bars (25 batches -> mean +/- SD).\\nFor R8-W2: 3-seed variance (run with --seed 42/123/456).\\n\\nUsage:\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewnerd --seed 42\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewrel --seed 42\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewrel --seed 123\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewrel --dry_run\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"FLASHINFER_DISABLE_VERSION_CHECK\\\"] = \\\"1\\\"\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport sys\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\n\\nlogger = logging.getLogger(__name__)\\n\\nBASE_DIR = Path(\\\"/root/schema-dag-extraction\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\"\\n\\nNER_COUNTS = [2, 6, 12, 22, 44, 66]\\nRE_COUNTS = [4, 8, 16, 32, 40, 64, 80]\\nDEFAULT_N_BATCHES = 25\\nDEFAULT_N_SAMPLES = 1000\\n\\n\\ndef load_sim_data(dataset):\\n    if dataset == \\\"fewnerd\\\":\\n        path = BASE_DIR / \\\"artifacts/sim_matrix.pt\\\"\\n    else:\\n        path = BASE_DIR / \\\"artifacts/fewrel_formal_full/relation_sim_matrix.pt\\\"\\n    data = torch.load(str(path), map_location=\\\"cpu\\\", weights_only=True)\\n    sim_matrix = data.get(\\\"sim_matrix\\\", data.get(\\\"similarity_matrix\\\"))\\n    type_names = data[\\\"type_names\\\"]\\n    type_to_idx = data.get(\\\"type_to_idx\\\", {n: i for i, n in enumerate(type_names)})\\n    return sim_matrix, type_names, type_to_idx\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "fbe8121d-6c2b-4817-96f7-660b771d9064",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"D051 Batch 2: Count curves with 25+ batches per count level.\\\\n\\\\nFor R6-W3: Figure 1 error bars (25 batches -> mean +/- SD).\\\\nFor R8-W2: 3-seed variance (run with --seed 42/123/456).\\\\n\\\\nUsage:\\\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewnerd --seed 42\\\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewrel --seed 42\\\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewrel --seed 123\\\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewrel --dry_run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"FLASHINFER_DISABLE_VERSION_CHECK\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = \\\\\\\"0\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\\\\"\\\\n\\\\nNER_COUNTS = [2, 6, 12, 22, 44, 66]\\\\nRE_COUNTS = [4, 8, 16, 32, 40, 64, 80]\\\\nDEFAULT_N_BATCHES = 25\\\\nDEFAULT_N_SAMPLES = 1000\\\\n\\\\n\\\\ndef load_sim_data(dataset):\\\\n    if dataset == \\\\\\\"fewnerd\\\\\\\":\\\\n        path = BASE_DIR / \\\\\\\"artifacts/sim_matrix.pt\\\\\\\"\\\\n    else:\\\\n        path = BASE_DIR / \\\\\\\"artifacts/fewrel_formal_full/relation_sim_matrix.pt\\\\\\\"\\\\n    data = torch.load(str(path), map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n    sim_matrix = data.get(\\\\\\\"sim_matrix\\\\\\\", data.get(\\\\\\\"similarity_matrix\\\\\\\"))\\\\n    type_names = data[\\\\\\\"type_names\\\\\\\"]\\\\n    type_to_idx = data.get(\\\\\\\"type_to_idx\\\\\\\", {n: i for i, n in enumerate(type_names)})\\\\n    return sim_matrix, type_names, type_to_idx\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"D051 Batch 2: Count curves with 25+ batches per count level.\\n\\nFor R6-W3: Figure 1 error bars (25 batches -> mean +/- SD).\\nFor R8-W2: 3-seed variance (run with --seed 42/123/456).\\n\\nUsage:\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewnerd --seed 42\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewrel --seed 42\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewrel --seed 123\\n    python3 scripts/run_d051_count_curves_25.py --dataset fewrel --dry_run\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"FLASHINFER_DISABLE_VERSION_CHECK\\\"] = \\\"1\\\"\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport sys\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\n\\nlogger = logging.getLogger(__name__)\\n\\nBASE_DIR = Path(\\\"/root/schema-dag-extraction\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\"\\n\\nNER_COUNTS = [2, 6, 12, 22, 44, 66]\\nRE_COUNTS = [4, 8, 16, 32, 40, 64, 80]\\nDEFAULT_N_BATCHES = 25\\nDEFAULT_N_SAMPLES = 1000\\n\\n\\ndef load_sim_data(dataset):\\n    if dataset == \\\"fewnerd\\\":\\n        path = BASE_DIR / \\\"artifacts/sim_matrix.pt\\\"\\n    else:\\n        path = BASE_DIR / \\\"artifacts/fewrel_formal_full/relation_sim_matrix.pt\\\"\\n    data = torch.load(str(path), map_location=\\\"cpu\\\", weights_only=True)\\n    sim_matrix = data.get(\\\"sim_matrix\\\", data.get(\\\"similarity_matrix\\\"))\\n    type_names = data[\\\"type_names\\\"]\\n    type_to_idx = data.get(\\\"type_to_idx\\\", {n: i for i, n in enumerate(type_names)})\\n    return sim_matrix, type_names, type_to_idx\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015Yg3r329MKB53A4ByRvqxb`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"sim_matrix\\|bcs_matrix\\|embedding\\|minilm\\|qwen\" /root/schema-dag-extraction/scripts/run_d051_count_curves_25.py 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "d4e5563a-3f7d-442e-b1c7-20569e1bb7bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vhcGdK5zSEmHNuivTd7CK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1731,
+      "cache_read_input_tokens": 52637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-17T10:00:46.519Z_
+
+<details><summary>↩ Tool result · `toolu_015Yg3r329MKB53A4ByRvqxb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"32:MODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\"\\n42:        path = BASE_DIR / \\\"artifacts/sim_matrix.pt\\\"\\n44:        path = BASE_DIR / \\\"artifacts/fewrel_formal_full/relation_sim_matrix.pt\\\"\\n46:    sim_matrix = data.get(\\\"sim_matrix\\\", data.get(\\\"similarity_matrix\\\"))\\n49:    return sim_matrix, type_names, type_to_idx\\n52:def generate_batch_config(counts, n_batches, sim_matrix, type_names, type_to_idx, seed):\\n59:        rand = select_random_batches(c, n_batches, type_names, sim_matrix,\\n357:    sim_matrix, type_names, type_to_idx = load_sim_data(args.dataset)\\n359:        counts, args.n_batches, sim_matrix, type_names, type_to_idx, args.seed)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "f64c38ec-a907-48b7-a56b-546b370e696a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"32:MODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\\\\\"\\\\n42:        path = BASE_DIR / \\\\\\\"artifacts/sim_matrix.pt\\\\\\\"\\\\n44:        path = BASE_DIR / \\\\\\\"artifacts/fewrel_formal_full/relation_sim_matrix.pt\\\\\\\"\\\\n46:    sim_matrix = data.get(\\\\\\\"sim_matrix\\\\\\\", data.get(\\\\\\\"similarity_matrix\\\\\\\"))\\\\n49:    return sim_matrix, type_names, type_to_idx\\\\n52:def generate_batch_config(counts, n_batches, sim_matrix, type_names, type_to_idx, seed):\\\\n59:        rand = select_random_batches(c, n_batches, type_names, sim_matrix,\\\\n357:    sim_matrix, type_names, type_to_idx = load_sim_data(args.dataset)\\\\n359:        counts, args.n_batches, sim_matrix, type_names, type_to_idx, args.seed)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"32:MODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/qwen3-32b-fp8/\\\"\\n42:        path = BASE_DIR / \\\"artifacts/sim_matrix.pt\\\"\\n44:        path = BASE_DIR / \\\"artifacts/fewrel_formal_full/relation_sim_matrix.pt\\\"\\n46:    sim_matrix = data.get(\\\"sim_matrix\\\", data.get(\\\"similarity_matrix\\\"))\\n49:    return sim_matrix, type_names, type_to_idx\\n52:def generate_batch_config(counts, n_batches, sim_matrix, type_names, type_to_idx, seed):\\n59:        rand = select_random_batches(c, n_batches, type_names, sim_matrix,\\n357:    sim_matrix, type_names, type_to_idx = load_sim_data(args.dataset)\\n359:        counts, args.n_batches, sim_matrix, type_names, type_to_idx, args.seed)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GpR2fPrhAvPu7AuGJpxJmb`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -50 /root/schema-dag-extraction/artifacts/d051_fewnerd_n25_s42/batch_config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "0a49de31-e67c-4273-ad83-f20ef105dd5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vhcGdK5zSEmHNuivTd7CK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1731,
+      "cache_read_input_tokens": 52637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-17T10:00:46.982Z_
+
+<details><summary>↩ Tool result · `toolu_01GpR2fPrhAvPu7AuGJpxJmb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_2\\\": {\\n    \\\"random\\\": [\\n      {\\n        \\\"types\\\": [\\n          \\\"person-director\\\",\\n          \\\"event-attack/battle/war/militaryconflict\\\"\\n        ],\\n        \\\"bcs\\\": 0.7446293234825134\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"location-island\\\",\\n          \\\"other-medical\\\"\\n        ],\\n        \\\"bcs\\\": 0.809938371181488\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"organization-education\\\",\\n          \\\"other-astronomything\\\"\\n        ],\\n        \\\"bcs\\\": 0.7055112719535828\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"art-other\\\",\\n          \\\"organization-education\\\"\\n        ],\\n        \\\"bcs\\\": 0.722868800163269\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"event-attack/battle/war/militaryconflict\\\",\\n          \\\"art-film\\\"\\n        ],\\n        \\\"bcs\\\": 0.7860161662101746\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-sportsfacility\\\",\\n          \\\"location-GPE\\\"\\n        ],\\n        \\\"bcs\\\": 0.8162476420402527\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"product-weapon\\\",\\n          \\\"other-award\\\"\\n        ],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "678eb2d7-816f-4c46-a5a2-f0ee5bc5f5c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"count_2\\\\\\\": {\\\\n    \\\\\\\"random\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"person-director\\\\\\\",\\\\n          \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.7446293234825134\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"location-island\\\\\\\",\\\\n          \\\\\\\"other-medical\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.809938371181488\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"organization-education\\\\\\\",\\\\n          \\\\\\\"other-astronomything\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.7055112719535828\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"art-other\\\\\\\",\\\\n          \\\\\\\"organization-education\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.722868800163269\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\",\\\\n          \\\\\\\"art-film\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.7860161662101746\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"building-sportsfacility\\\\\\\",\\\\n          \\\\\\\"location-GPE\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"bcs\\\\\\\": 0.8162476420402527\\\\n      },\\\\n      {\\\\n        \\\\\\\"types\\\\\\\": [\\\\n          \\\\\\\"product-weapon\\\\\\\",\\\\n          \\\\\\\"other-award\\\\\\\"\\\\n        ],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"count_2\\\": {\\n    \\\"random\\\": [\\n      {\\n        \\\"types\\\": [\\n          \\\"person-director\\\",\\n          \\\"event-attack/battle/war/militaryconflict\\\"\\n        ],\\n        \\\"bcs\\\": 0.7446293234825134\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"location-island\\\",\\n          \\\"other-medical\\\"\\n        ],\\n        \\\"bcs\\\": 0.809938371181488\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"organization-education\\\",\\n          \\\"other-astronomything\\\"\\n        ],\\n        \\\"bcs\\\": 0.7055112719535828\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"art-other\\\",\\n          \\\"organization-education\\\"\\n        ],\\n        \\\"bcs\\\": 0.722868800163269\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"event-attack/battle/war/militaryconflict\\\",\\n          \\\"art-film\\\"\\n        ],\\n        \\\"bcs\\\": 0.7860161662101746\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"building-sportsfacility\\\",\\n          \\\"location-GPE\\\"\\n        ],\\n        \\\"bcs\\\": 0.8162476420402527\\n      },\\n      {\\n        \\\"types\\\": [\\n          \\\"product-weapon\\\",\\n          \\\"other-award\\\"\\n        ],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see a HUGE difference:
+
+**d051 (Q1 data)**: uses `artifacts/sim_matrix.pt` for Few-NERD. Types like "person-director", "event-attack/battle/war/militaryconflict" - these are the Few-NERD **fine-grained types** (66 types total). BCS range around 0.70-0.81.
+
+**eval_exp2 (v2 source of r=0.58)**: uses types like... let me check. The BCS range is [0.892, 0.9732]. These are much higher BCS values.
+
+
+I need to trace back where eval_exp2.json came from and which similarity matrix it's using, since d037 just reads pre-computed BCS values rather than calculating them. Let me check the original experiment scripts to see what generated eval_exp2 and which sim_matrix.pt it relied on.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "864b324f-ebf0-4110-8c7e-98e3e4257f46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPSxncLovJppv2RXHK96co",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2411,
+      "cache_read_input_tokens": 54368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2411
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WwznC1pJcezfxTvRhz4wt9`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"sim_matrix\\|bcs_matrix\\|embedding\\|fewnerd\" /root/schema-dag-extraction/src/analyze_results.py | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "05151e52-8d21-4d3b-aca1-5b3cceaf4ca4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPSxncLovJppv2RXHK96co",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2411,
+      "cache_read_input_tokens": 54368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2411
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-17T10:00:57.657Z_
+
+<details><summary>↩ Tool result · `toolu_01WwznC1pJcezfxTvRhz4wt9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "580fa86d-09dd-44a8-a28f-2e17343b3db8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019kVVYZHSPfvPNmbrbAMRXv`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*.py\" -exec grep -l \"eval_exp2\\|exp2\" {} \\; 2>/dev/null | xargs grep -l \"fewnerd\\|ner\\|NER\" 2>/dev/null | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "751cf4bc-7a19-4df4-9fbf-c716e2588af4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPSxncLovJppv2RXHK96co",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2411,
+      "cache_read_input_tokens": 54368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2411
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KW1vi4MBMa7r39TXYNdtQ3`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"count_12\\|batch_id\" /root/schema-dag-extraction/artifacts/eval_exp2.json | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "b8ef1810-0b17-48b7-8ed2-a7e356c566fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPSxncLovJppv2RXHK96co",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2411,
+      "cache_read_input_tokens": 54368,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2411
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-17T10:00:59.401Z_
+
+<details><summary>↩ Tool result · `toolu_019kVVYZHSPfvPNmbrbAMRXv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_experiment.py\\n/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/reeval_text_match.py\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\n/root/schema-dag-extraction/src/per_type_analysis.py\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\n/root/schema-dag-extraction/src/analyze_fewrel_results.py\\n/root/schema-dag-extraction/src/error_taxonomy.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5f3f305b-5cfc-45af-9626-6baa55a729ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/src/run_experiment.py\\\\n/root/schema-dag-extraction/src/analyze_results.py\\\\n/root/schema-dag-extraction/src/reeval_text_match.py\\\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\\\n/root/schema-dag-extraction/src/per_type_analysis.py\\\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\\\n/root/schema-dag-extraction/src/analyze_fewrel_results.py\\\\n/root/schema-dag-extraction/src/error_taxonomy.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/src/run_experiment.py\\n/root/schema-dag-extraction/src/analyze_results.py\\n/root/schema-dag-extraction/src/reeval_text_match.py\\n/root/schema-dag-extraction/src/pairwise_confusion_analysis.py\\n/root/schema-dag-extraction/src/per_type_analysis.py\\n/root/schema-dag-extraction/src/analyze_maven_results.py\\n/root/schema-dag-extraction/src/embedding_ablation_fewnerd.py\\n/root/schema-dag-extraction/src/run_fewrel_formal.py\\n/root/schema-dag-extraction/src/analyze_fewrel_results.py\\n/root/schema-dag-extraction/src/error_taxonomy.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-17T10:00:59.878Z_
+
+<details><summary>↩ Tool result · `toolu_01KW1vi4MBMa7r39TXYNdtQ3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"380:  \\\"count_12_low_bcs\\\": {\\n382:    \\\"count_key\\\": \\\"count_12\\\",\\n394:  \\\"count_12_high_bcs\\\": {\\n396:    \\\"count_key\\\": \\\"count_12\\\",\\n408:  \\\"count_12_random_0\\\": {\\n410:    \\\"count_key\\\": \\\"count_12\\\",\\n422:  \\\"count_12_random_1\\\": {\\n424:    \\\"count_key\\\": \\\"count_12\\\",\\n436:  \\\"count_12_random_2\\\": {\\n438:    \\\"count_key\\\": \\\"count_12\\\",\\n450:  \\\"count_12_random_3\\\": {\\n452:    \\\"count_key\\\": \\\"count_12\\\",\\n464:  \\\"count_12_random_4\\\": {\\n466:    \\\"count_key\\\": \\\"count_12\\\",\\n478:  \\\"count_12_random_5\\\": {\\n480:    \\\"count_key\\\": \\\"count_12\\\",\\n492:  \\\"count_12_random_6\\\": {\\n494:    \\\"count_key\\\": \\\"count_12\\\",\\n506:  \\\"count_12_random_7\\\": {\\n508:    \\\"count_key\\\": \\\"count_12\\\",\\n520:  \\\"count_12_random_8\\\": {\\n522:    \\\"count_key\\\": \\\"count_12\\\",\\n534:  \\\"count_12_random_9\\\": {\\n536:    \\\"count_key\\\": \\\"count_12\\\",\\n548:  \\\"count_12_random_10\\\": {\\n550:    \\\"count_key\\\": \\\"count_12\\\",\\n562:  \\\"count_12_random_11\\\": {\\n564:    \\\"count_key\\\": \\\"count_12\\\",\\n576:  \\\"count_12_random_12\\\": {\\n578:    \\\"count_key\\\": \\\"count_12\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "51dfcc4a-9c71-4745-a88c-cdc99f687670",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"380:  \\\\\\\"count_12_low_bcs\\\\\\\": {\\\\n382:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n394:  \\\\\\\"count_12_high_bcs\\\\\\\": {\\\\n396:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n408:  \\\\\\\"count_12_random_0\\\\\\\": {\\\\n410:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n422:  \\\\\\\"count_12_random_1\\\\\\\": {\\\\n424:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n436:  \\\\\\\"count_12_random_2\\\\\\\": {\\\\n438:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n450:  \\\\\\\"count_12_random_3\\\\\\\": {\\\\n452:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n464:  \\\\\\\"count_12_random_4\\\\\\\": {\\\\n466:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n478:  \\\\\\\"count_12_random_5\\\\\\\": {\\\\n480:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n492:  \\\\\\\"count_12_random_6\\\\\\\": {\\\\n494:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n506:  \\\\\\\"count_12_random_7\\\\\\\": {\\\\n508:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n520:  \\\\\\\"count_12_random_8\\\\\\\": {\\\\n522:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n534:  \\\\\\\"count_12_random_9\\\\\\\": {\\\\n536:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n548:  \\\\\\\"count_12_random_10\\\\\\\": {\\\\n550:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n562:  \\\\\\\"count_12_random_11\\\\\\\": {\\\\n564:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n576:  \\\\\\\"count_12_random_12\\\\\\\": {\\\\n578:    \\\\\\\"count_key\\\\\\\": \\\\\\\"count_12\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"380:  \\\"count_12_low_bcs\\\": {\\n382:    \\\"count_key\\\": \\\"count_12\\\",\\n394:  \\\"count_12_high_bcs\\\": {\\n396:    \\\"count_key\\\": \\\"count_12\\\",\\n408:  \\\"count_12_random_0\\\": {\\n410:    \\\"count_key\\\": \\\"count_12\\\",\\n422:  \\\"count_12_random_1\\\": {\\n424:    \\\"count_key\\\": \\\"count_12\\\",\\n436:  \\\"count_12_random_2\\\": {\\n438:    \\\"count_key\\\": \\\"count_12\\\",\\n450:  \\\"count_12_random_3\\\": {\\n452:    \\\"count_key\\\": \\\"count_12\\\",\\n464:  \\\"count_12_random_4\\\": {\\n466:    \\\"count_key\\\": \\\"count_12\\\",\\n478:  \\\"count_12_random_5\\\": {\\n480:    \\\"count_key\\\": \\\"count_12\\\",\\n492:  \\\"count_12_random_6\\\": {\\n494:    \\\"count_key\\\": \\\"count_12\\\",\\n506:  \\\"count_12_random_7\\\": {\\n508:    \\\"count_key\\\": \\\"count_12\\\",\\n520:  \\\"count_12_random_8\\\": {\\n522:    \\\"count_key\\\": \\\"count_12\\\",\\n534:  \\\"count_12_random_9\\\": {\\n536:    \\\"count_key\\\": \\\"count_12\\\",\\n548:  \\\"count_12_random_10\\\": {\\n550:    \\\"count_key\\\": \\\"count_12\\\",\\n562:  \\\"count_12_random_11\\\": {\\n564:    \\\"count_key\\\": \\\"count_12\\\",\\n576:  \\\"count_12_random_12\\\": {\\n578:    \\\"count_key\\\": \\\"count_12\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016jsExeuQ9KM1Q58bRBrLEa`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -80 /root/schema-dag-extraction/src/run_experiment.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "12090c4d-0013-430d-be72-f08a6798ec3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oc7zaEB5xuhcrJgoc1ttc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1809,
+      "cache_read_input_tokens": 56779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1809
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-17T10:01:06.217Z_
+
+<details><summary>↩ Tool result · `toolu_016jsExeuQ9KM1Q58bRBrLEa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Main experiment orchestrator.\\n\\nv2 changes (2026-05-14): Added --prompt_version and --eval_mode support.\\n\\nModes:\\n  dry_run: 100 test samples, count=6, low/high/1 random — pipeline verification\\n  exp1: Count Baseline — solo baseline (count=1) + random batches at 2/6/12/22/44/66 types, 5 random each\\n  exp2: Confusability Controlled — count=6,12, low/high BCS + 25 random each\\nDependencies: all src/ modules, vllm\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Schema-DAG Extraction MVP Experiment\\\")\\n    parser.add_argument(\\\"--model_path\\\", required=True, help=\\\"Path to model directory\\\")\\n    parser.add_argument(\\\"--model_name\\\", default=None,\\n                        help=\\\"Short model name for output files (default: derived from model_path)\\\")\\n    parser.add_argument(\\\"--gpu_memory_utilization\\\", type=float, default=0.95,\\n                        help=\\\"vLLM GPU memory utilization (default: 0.95)\\\")\\n    parser.add_argument(\\\"--data_dir\\\", default=\\\"/root/schema-dag-extraction/data\\\", help=\\\"Data directory\\\")\\n    parser.add_argument(\\\"--output_dir\\\", default=\\\"/root/schema-dag-extraction/artifacts\\\", help=\\\"Output directory\\\")\\n    parser.add_argument(\\\"--dataset\\\", choices=[\\\"fewnerd\\\", \\\"maven\\\", \\\"fewrel\\\"], default=\\\"fewnerd\\\",\\n                        help=\\\"Dataset: fewnerd (NER), maven (event detection), or fewrel (RE)\\\")\\n    parser.add_argument(\\\"--data_path\\\", default=None, help=\\\"Custom data path (parquet for maven)\\\")\\n    parser.add_argument(\\\"--types_file\\\", required=True, help=\\\"Type definitions JSON path\\\")\\n    parser.add_argument(\\\"--embeddings_path\\\", default=None, help=\\\"Pre-computed embeddings .pt (required)\\\")\\n    parser.add_argument(\\\"--sim_matrix_path\\\", default=None, help=\\\"Pre-computed sim matrix .pt (optional)\\\")\\n    parser.add_argument(\\\"--mode\\\", choices=[\\\"dry_run\\\", \\\"exp1\\\", \\\"exp2\\\"], required=True, help=\\\"Experiment mode\\\")\\n    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Max test samples (dry_run forces 100)\\\")\\n    parser.add_argument(\\\"--max_model_len\\\", type=int, default=4096, help=\\\"vLLM max model len\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Random seed\\\")\\n    parser.add_argument(\\\"--prompt_version\\\", choices=[\\\"v1\\\", \\\"v2\\\"], default=\\\"v1\\\",\\n                        help=\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\")\\n    parser.add_argument(\\\"--eval_mode\\\", choices=[\\\"exact\\\", \\\"relaxed\\\", \\\"text_match\\\", \\\"all\\\"],\\n                        default=\\\"all\\\", help=\\\"Evaluation mode\\\")\\n    args = parser.parse_args()\\n\\n    if args.model_name is None:\\n        args.model_name = Path(args.model_path).name.lower().replace(' ', '-')\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n    random.seed(args.seed)\\n\\n    sys.path.insert(0, str(Path(__file__).parent))\\n\\n    import os as _os\\n    _orig_cuda = _os.environ.get('CUDA_VISIBLE_DEVICES')\\n    _os.environ['CUDA_VISIBLE_DEVICES'] = ''\\n\\n    from few_nerd_utils import load_type_definitions, get_all_types as fewnerd_get_all_types\\n    from compute_bcs import load_embeddings, compute_similarity_matrix, compute_bcs\\n    from select_type_batches import select_low_bcs, select_high_bcs, select_random_batches\\n    from run_extraction import run_extraction\\n    from evaluate import evaluate_all\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # --- Step 1: Load data ---\\n    if args.mode == \\\"dry_run\\\":\\n        max_samples = 100\\n        logger.info(\\\"Dry run mode: using 100 samples\\\")\\n    else:\\n        max_samples = args.max_samples\\n\\n    if args.dataset == \\\"maven\\\":\\n        from maven_utils import load_maven, get_all_types as maven_get_all_types\\n        data_path = args.data_path or \\\"/root/schema-dag-extraction/data/maven_parquet/valid.parquet\\\"\\n        logger.info(\\\"Loading MAVEN data from %s...\\\", data_path)\\n        samples = load_maven(data_path=data_path, max_samples=max_samples)\\n        all_types = maven_get_all_types(samples)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "0d90d25c-2951-41c6-a81d-908c1fd86c01",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Main experiment orchestrator.\\\\n\\\\nv2 changes (2026-05-14): Added --prompt_version and --eval_mode support.\\\\n\\\\nModes:\\\\n  dry_run: 100 test samples, count=6, low/high/1 random — pipeline verification\\\\n  exp1: Count Baseline — solo baseline (count=1) + random batches at 2/6/12/22/44/66 types, 5 random each\\\\n  exp2: Confusability Controlled — count=6,12, low/high BCS + 25 random each\\\\nDependencies: all src/ modules, vllm\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Schema-DAG Extraction MVP Experiment\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", required=True, help=\\\\\\\"Path to model directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_name\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Short model name for output files (default: derived from model_path)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu_memory_utilization\\\\\\\", type=float, default=0.95,\\\\n                        help=\\\\\\\"vLLM GPU memory utilization (default: 0.95)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/data\\\\\\\", help=\\\\\\\"Data directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", default=\\\\\\\"/root/schema-dag-extraction/artifacts\\\\\\\", help=\\\\\\\"Output directory\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dataset\\\\\\\", choices=[\\\\\\\"fewnerd\\\\\\\", \\\\\\\"maven\\\\\\\", \\\\\\\"fewrel\\\\\\\"], default=\\\\\\\"fewnerd\\\\\\\",\\\\n                        help=\\\\\\\"Dataset: fewnerd (NER), maven (event detection), or fewrel (RE)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_path\\\\\\\", default=None, help=\\\\\\\"Custom data path (parquet for maven)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--types_file\\\\\\\", required=True, help=\\\\\\\"Type definitions JSON path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--embeddings_path\\\\\\\", default=None, help=\\\\\\\"Pre-computed embeddings .pt (required)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--sim_matrix_path\\\\\\\", default=None, help=\\\\\\\"Pre-computed sim matrix .pt (optional)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--mode\\\\\\\", choices=[\\\\\\\"dry_run\\\\\\\", \\\\\\\"exp1\\\\\\\", \\\\\\\"exp2\\\\\\\"], required=True, help=\\\\\\\"Experiment mode\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Max test samples (dry_run forces 100)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_model_len\\\\\\\", type=int, default=4096, help=\\\\\\\"vLLM max model len\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42, help=\\\\\\\"Random seed\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--prompt_version\\\\\\\", choices=[\\\\\\\"v1\\\\\\\", \\\\\\\"v2\\\\\\\"], default=\\\\\\\"v1\\\\\\\",\\\\n                        help=\\\\\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--eval_mode\\\\\\\", choices=[\\\\\\\"exact\\\\\\\", \\\\\\\"relaxed\\\\\\\", \\\\\\\"text_match\\\\\\\", \\\\\\\"all\\\\\\\"],\\\\n                        default=\\\\\\\"all\\\\\\\", help=\\\\\\\"Evaluation mode\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.model_name is None:\\\\n        args.model_name = Path(args.model_path).name.lower().replace(' ', '-')\\\\n\\\\n    logging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\n    random.seed(args.seed)\\\\n\\\\n    sys.path.insert(0, str(Path(__file__).parent))\\\\n\\\\n    import os as _os\\\\n    _orig_cuda = _os.environ.get('CUDA_VISIBLE_DEVICES')\\\\n    _os.environ['CUDA_VISIBLE_DEVICES'] = ''\\\\n\\\\n    from few_nerd_utils import load_type_definitions, get_all_types as fewnerd_get_all_types\\\\n    from compute_bcs import load_embeddings, compute_similarity_matrix, compute_bcs\\\\n    from select_type_batches import select_low_bcs, select_high_bcs, select_random_batches\\\\n    from run_extraction import run_extraction\\\\n    from evaluate import evaluate_all\\\\n\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    # --- Step 1: Load data ---\\\\n    if args.mode == \\\\\\\"dry_run\\\\\\\":\\\\n        max_samples = 100\\\\n        logger.info(\\\\\\\"Dry run mode: using 100 samples\\\\\\\")\\\\n    else:\\\\n        max_samples = args.max_samples\\\\n\\\\n    if args.dataset == \\\\\\\"maven\\\\\\\":\\\\n        from maven_utils import load_maven, get_all_types as maven_get_all_types\\\\n        data_path = args.data_path or \\\\\\\"/root/schema-dag-extraction/data/maven_parquet/valid.parquet\\\\\\\"\\\\n        logger.info(\\\\\\\"Loading MAVEN data from %s...\\\\\\\", data_path)\\\\n        samples = load_maven(data_path=data_path, max_samples=max_samples)\\\\n        all_types = maven_get_all_types(samples)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Main experiment orchestrator.\\n\\nv2 changes (2026-05-14): Added --prompt_version and --eval_mode support.\\n\\nModes:\\n  dry_run: 100 test samples, count=6, low/high/1 random — pipeline verification\\n  exp1: Count Baseline — solo baseline (count=1) + random batches at 2/6/12/22/44/66 types, 5 random each\\n  exp2: Confusability Controlled — count=6,12, low/high BCS + 25 random each\\nDependencies: all src/ modules, vllm\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Schema-DAG Extraction MVP Experiment\\\")\\n    parser.add_argument(\\\"--model_path\\\", required=True, help=\\\"Path to model directory\\\")\\n    parser.add_argument(\\\"--model_name\\\", default=None,\\n                        help=\\\"Short model name for output files (default: derived from model_path)\\\")\\n    parser.add_argument(\\\"--gpu_memory_utilization\\\", type=float, default=0.95,\\n                        help=\\\"vLLM GPU memory utilization (default: 0.95)\\\")\\n    parser.add_argument(\\\"--data_dir\\\", default=\\\"/root/schema-dag-extraction/data\\\", help=\\\"Data directory\\\")\\n    parser.add_argument(\\\"--output_dir\\\", default=\\\"/root/schema-dag-extraction/artifacts\\\", help=\\\"Output directory\\\")\\n    parser.add_argument(\\\"--dataset\\\", choices=[\\\"fewnerd\\\", \\\"maven\\\", \\\"fewrel\\\"], default=\\\"fewnerd\\\",\\n                        help=\\\"Dataset: fewnerd (NER), maven (event detection), or fewrel (RE)\\\")\\n    parser.add_argument(\\\"--data_path\\\", default=None, help=\\\"Custom data path (parquet for maven)\\\")\\n    parser.add_argument(\\\"--types_file\\\", required=True, help=\\\"Type definitions JSON path\\\")\\n    parser.add_argument(\\\"--embeddings_path\\\", default=None, help=\\\"Pre-computed embeddings .pt (required)\\\")\\n    parser.add_argument(\\\"--sim_matrix_path\\\", default=None, help=\\\"Pre-computed sim matrix .pt (optional)\\\")\\n    parser.add_argument(\\\"--mode\\\", choices=[\\\"dry_run\\\", \\\"exp1\\\", \\\"exp2\\\"], required=True, help=\\\"Experiment mode\\\")\\n    parser.add_argument(\\\"--max_samples\\\", type=int, default=None, help=\\\"Max test samples (dry_run forces 100)\\\")\\n    parser.add_argument(\\\"--max_model_len\\\", type=int, default=4096, help=\\\"vLLM max model len\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Random seed\\\")\\n    parser.add_argument(\\\"--prompt_version\\\", choices=[\\\"v1\\\", \\\"v2\\\"], default=\\\"v1\\\",\\n                        help=\\\"Prompt version: v1 (with offsets) or v2 (text+type only)\\\")\\n    parser.add_argument(\\\"--eval_mode\\\", choices=[\\\"exact\\\", \\\"relaxed\\\", \\\"text_match\\\", \\\"all\\\"],\\n                        default=\\\"all\\\", help=\\\"Evaluation mode\\\")\\n    args = parser.parse_args()\\n\\n    if args.model_name is None:\\n        args.model_name = Path(args.model_path).name.lower().replace(' ', '-')\\n\\n    logging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\n    random.seed(args.seed)\\n\\n    sys.path.insert(0, str(Path(__file__).parent))\\n\\n    import os as _os\\n    _orig_cuda = _os.environ.get('CUDA_VISIBLE_DEVICES')\\n    _os.environ['CUDA_VISIBLE_DEVICES'] = ''\\n\\n    from few_nerd_utils import load_type_definitions, get_all_types as fewnerd_get_all_types\\n    from compute_bcs import load_embeddings, compute_similarity_matrix, compute_bcs\\n    from select_type_batches import select_low_bcs, select_high_bcs, select_random_batches\\n    from run_extraction import run_extraction\\n    from evaluate import evaluate_all\\n\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    # --- Step 1: Load data ---\\n    if args.mode == \\\"dry_run\\\":\\n        max_samples = 100\\n        logger.info(\\\"Dry run mode: using 100 samples\\\")\\n    else:\\n        max_samples = args.max_samples\\n\\n    if args.dataset == \\\"maven\\\":\\n        from maven_utils import load_maven, get_all_types as maven_get_all_types\\n        data_path = args.data_path or \\\"/root/schema-dag-extraction/data/maven_parquet/valid.parquet\\\"\\n        logger.info(\\\"Loading MAVEN data from %s...\\\", data_path)\\n        samples = load_maven(data_path=data_path, max_samples=max_samples)\\n        all_types = maven_get_all_types(samples)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014LXM7nYiNnvsfrrfxS2MBX`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"sim_matrix\\|bcs_matrix\\|SIM_MATRIX\\|fewnerd_bcs\\|minilm\" /root/schema-dag-extraction/src/run_experiment.py | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "adf112c0-417b-4168-b4db-d9608b140ab0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oc7zaEB5xuhcrJgoc1ttc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1809,
+      "cache_read_input_tokens": 56779,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1809
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-17T10:01:07.353Z_
+
+<details><summary>↩ Tool result · `toolu_014LXM7nYiNnvsfrrfxS2MBX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"36:    parser.add_argument(\\\"--sim_matrix_path\\\", default=None, help=\\\"Pre-computed sim matrix .pt (optional)\\\")\\n113:    sim_matrix_file = Path(args.sim_matrix_path) if args.sim_matrix_path else output_dir / \\\"sim_matrix.pt\\\"\\n114:    if sim_matrix_file.exists():\\n115:        logger.info(\\\"Loading similarity matrix from %s\\\", sim_matrix_file)\\n116:        sim_data = torch.load(str(sim_matrix_file), map_location=\\\"cpu\\\", weights_only=True)\\n117:        sim_matrix = sim_data.get(\\\"sim_matrix\\\", sim_data.get(\\\"similarity_matrix\\\"))\\n122:        sim_matrix, type_names, type_to_idx = compute_similarity_matrix(embeddings)\\n123:        torch.save({\\\"sim_matrix\\\": sim_matrix, \\\"type_names\\\": type_names, \\\"type_to_idx\\\": type_to_idx},\\n124:                    str(output_dir / \\\"sim_matrix.pt\\\"))\\n143:        low = select_low_bcs(6, sim_matrix, active_types, active_idx)\\n144:        high = select_high_bcs(6, sim_matrix, active_types, active_idx)\\n145:        rand = select_random_batches(6, 1, active_types, sim_matrix, active_idx, args.seed)\\n147:            \\\"low_bcs\\\": {\\\"types\\\": low, \\\"bcs\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\n148:            \\\"high_bcs\\\": {\\\"types\\\": high, \\\"bcs\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\n161:                rand = select_random_batches(count, 5, active_types, sim_matrix, active_idx, args.seed + count)\\n166:            low = select_low_bcs(count, sim_matrix, active_types, active_idx)\\n167:            high = select_high_bcs(count, sim_matrix, active_types, active_idx)\\n168:            rand = select_random_batches(count, 25, active_types, sim_matrix, active_idx, args.seed + count)\\n170:                \\\"low_bcs\\\": {\\\"types\\\": low, \\\"bcs\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\n171:                \\\"high_bcs\\\": {\\\"types\\\": high, \\\"bcs\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "6956ba03-09d5-45be-9056-c9fe5586e3b3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36:    parser.add_argument(\\\\\\\"--sim_matrix_path\\\\\\\", default=None, help=\\\\\\\"Pre-computed sim matrix .pt (optional)\\\\\\\")\\\\n113:    sim_matrix_file = Path(args.sim_matrix_path) if args.sim_matrix_path else output_dir / \\\\\\\"sim_matrix.pt\\\\\\\"\\\\n114:    if sim_matrix_file.exists():\\\\n115:        logger.info(\\\\\\\"Loading similarity matrix from %s\\\\\\\", sim_matrix_file)\\\\n116:        sim_data = torch.load(str(sim_matrix_file), map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n117:        sim_matrix = sim_data.get(\\\\\\\"sim_matrix\\\\\\\", sim_data.get(\\\\\\\"similarity_matrix\\\\\\\"))\\\\n122:        sim_matrix, type_names, type_to_idx = compute_similarity_matrix(embeddings)\\\\n123:        torch.save({\\\\\\\"sim_matrix\\\\\\\": sim_matrix, \\\\\\\"type_names\\\\\\\": type_names, \\\\\\\"type_to_idx\\\\\\\": type_to_idx},\\\\n124:                    str(output_dir / \\\\\\\"sim_matrix.pt\\\\\\\"))\\\\n143:        low = select_low_bcs(6, sim_matrix, active_types, active_idx)\\\\n144:        high = select_high_bcs(6, sim_matrix, active_types, active_idx)\\\\n145:        rand = select_random_batches(6, 1, active_types, sim_matrix, active_idx, args.seed)\\\\n147:            \\\\\\\"low_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": low, \\\\\\\"bcs\\\\\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\\\n148:            \\\\\\\"high_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": high, \\\\\\\"bcs\\\\\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\\\n161:                rand = select_random_batches(count, 5, active_types, sim_matrix, active_idx, args.seed + count)\\\\n166:            low = select_low_bcs(count, sim_matrix, active_types, active_idx)\\\\n167:            high = select_high_bcs(count, sim_matrix, active_types, active_idx)\\\\n168:            rand = select_random_batches(count, 25, active_types, sim_matrix, active_idx, args.seed + count)\\\\n170:                \\\\\\\"low_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": low, \\\\\\\"bcs\\\\\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\\\n171:                \\\\\\\"high_bcs\\\\\\\": {\\\\\\\"types\\\\\\\": high, \\\\\\\"bcs\\\\\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"36:    parser.add_argument(\\\"--sim_matrix_path\\\", default=None, help=\\\"Pre-computed sim matrix .pt (optional)\\\")\\n113:    sim_matrix_file = Path(args.sim_matrix_path) if args.sim_matrix_path else output_dir / \\\"sim_matrix.pt\\\"\\n114:    if sim_matrix_file.exists():\\n115:        logger.info(\\\"Loading similarity matrix from %s\\\", sim_matrix_file)\\n116:        sim_data = torch.load(str(sim_matrix_file), map_location=\\\"cpu\\\", weights_only=True)\\n117:        sim_matrix = sim_data.get(\\\"sim_matrix\\\", sim_data.get(\\\"similarity_matrix\\\"))\\n122:        sim_matrix, type_names, type_to_idx = compute_similarity_matrix(embeddings)\\n123:        torch.save({\\\"sim_matrix\\\": sim_matrix, \\\"type_names\\\": type_names, \\\"type_to_idx\\\": type_to_idx},\\n124:                    str(output_dir / \\\"sim_matrix.pt\\\"))\\n143:        low = select_low_bcs(6, sim_matrix, active_types, active_idx)\\n144:        high = select_high_bcs(6, sim_matrix, active_types, active_idx)\\n145:        rand = select_random_batches(6, 1, active_types, sim_matrix, active_idx, args.seed)\\n147:            \\\"low_bcs\\\": {\\\"types\\\": low, \\\"bcs\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\n148:            \\\"high_bcs\\\": {\\\"types\\\": high, \\\"bcs\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\n161:                rand = select_random_batches(count, 5, active_types, sim_matrix, active_idx, args.seed + count)\\n166:            low = select_low_bcs(count, sim_matrix, active_types, active_idx)\\n167:            high = select_high_bcs(count, sim_matrix, active_types, active_idx)\\n168:            rand = select_random_batches(count, 25, active_types, sim_matrix, active_idx, args.seed + count)\\n170:                \\\"low_bcs\\\": {\\\"types\\\": low, \\\"bcs\\\": compute_bcs(low, sim_matrix, type_to_idx)},\\n171:                \\\"high_bcs\\\": {\\\"types\\\": high, \\\"bcs\\\": compute_bcs(high, sim_matrix, type_to_idx)},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see:
+- `run_experiment.py` (which generated eval_exp2.json) uses `--sim_matrix_path` or defaults to `output_dir / "sim_matrix.pt"` which is `artifacts/sim_matrix.pt`
+- `run_d051_count_curves_25.py` for fewnerd uses `artifacts/sim_matrix.pt`
+
+So BOTH use the same sim_matrix.pt! But the BCS values are very different:
+- eval_exp2 count_12: BCS range [0.892, 0.9732]
+
+
+- d051 count_12: BCS ~0.80
+
+This discrepancy could stem from different type pools or the sim_matrix.pt being recomputed between experiments. I need to verify what's actually in the sim_matrix.pt file and check if the embeddings differ between the two runs.
+
+Looking at the run_experiment.py logic, the sim matrix path defaults to the artifacts directory unless explicitly specified, so eval_exp2 might be using a different matrix than d051. The real clue is the BCS range — eval_exp2 spans [0.892, 0.973] while d051 hovers around 0.80, which suggests they're working with different similarity matrices entirely.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "4150afff-e9d1-434a-bf73-461356817c13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014XSjvVLT4xF9f6nj5b6wPS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2753,
+      "cache_read_input_tokens": 58588,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2753
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01WrvNhzYRyubTenQBdKy2j9`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && python3.11 -c \"\nimport torch\n# Check artifacts/sim_matrix.pt\ndata = torch.load('artifacts/sim_matrix.pt', map_location='cpu', weights_only=True)\nsm = data.get('sim_matrix', data.get('similarity_matrix'))\ntypes = data['type_names']\nprint(f'artifacts/sim_matrix.pt:')\nprint(f'  Shape: {sm.shape}')\nprint(f'  Num types: {len(types)}')\nprint(f'  First 5 types: {types[:5]}')\nprint(f'  Sim range: [{sm.min().item():.4f}, {sm.max().item():.4f}]')\ndiag_mask = ~torch.eye(sm.shape[0], dtype=bool)\noff_diag = sm[diag_mask]\nprint(f'  Off-diag mean: {off_diag.mean().item():.4f}')\nprint(f'  Off-diag std: {off_diag.std().item():.4f}')\n\" 2>&1 | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "40bff880-b578-4cd4-a978-16f535e433d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014XSjvVLT4xF9f6nj5b6wPS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2753,
+      "cache_read_input_tokens": 58588,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2753
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-17T10:01:22.597Z_
+
+<details><summary>↩ Tool result · `toolu_01WrvNhzYRyubTenQBdKy2j9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python3.11: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "f6ae4b6d-968c-486e-a453-6b0e5bc325e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: python3.11: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python3.11: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XyjhQnLrhX9hPKUmmDbafr`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && python3.11 -c \"\nimport torch\n# Check fewnerd_bcs_matrix_minilm.pt\ndata = torch.load('artifacts/fewnerd_bcs_matrix_minilm.pt', map_location='cpu', weights_only=True)\nsm = data.get('sim_matrix', data.get('similarity_matrix'))\ntypes = data['type_names']\nprint(f'fewnerd_bcs_matrix_minilm.pt:')\nprint(f'  Shape: {sm.shape}')\nprint(f'  Num types: {len(types)}')\nprint(f'  First 5 types: {types[:5]}')\nprint(f'  Sim range: [{sm.min().item():.4f}, {sm.max().item():.4f}]')\ndiag_mask = ~torch.eye(sm.shape[0], dtype=bool)\noff_diag = sm[diag_mask]\nprint(f'  Off-diag mean: {off_diag.mean().item():.4f}')\nprint(f'  Off-diag std: {off_diag.std().item():.4f}')\n\" 2>&1 | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "f75e8ccd-3540-469a-8de1-52ca22117c14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014XSjvVLT4xF9f6nj5b6wPS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2753,
+      "cache_read_input_tokens": 58588,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2753
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-17T10:01:25.672Z_
+
+<details><summary>↩ Tool result · `toolu_01XyjhQnLrhX9hPKUmmDbafr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python3.11: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "04b05a8b-8789-4146-a359-f326f55a177b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: python3.11: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python3.11: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YH9uXrFndoJ8iBiP9EN5xV`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "which python 2>/dev/null; ls /usr/bin/python* /usr/local/bin/python* /opt/*/bin/python* 2>/dev/null; conda info --envs 2>/dev/null | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "a8bb3bda-b456-421e-99af-d5f4a544f7d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2B1zvT3BD8Eop6wuF1TN9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1427,
+      "cache_read_input_tokens": 61341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1427
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-17T10:01:30.079Z_
+
+<details><summary>↩ Tool result · `toolu_01YH9uXrFndoJ8iBiP9EN5xV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "a859920e-a663-452e-a45f-9bc3770b14f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XNsQghJ9zciNM9Z3gmBoQe`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find / -name \"python*\" -type f 2>/dev/null | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "eefd2e53-5858-431c-982c-b10287ed7e49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017iryZZysnreQy1GFfFtcGD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 229,
+      "cache_read_input_tokens": 62768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 229
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-17T10:01:35.186Z_
+
+<details><summary>↩ Tool result · `toolu_01XNsQghJ9zciNM9Z3gmBoQe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/opt/nvidia/nsight-compute/2025.1.1/host/target-linux-x64/python/bin/python\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/include/python3.12/cpython/pythonrun.h\\n/root/miniconda3/include/python3.12/pythonrun.h\\n/root/miniconda3/lib/pkgconfig/python-3.12-embed.pc\\n/root/miniconda3/lib/pkgconfig/python-3.12.pc\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/__pycache__/python-config.cpython-312.pyc\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/python-config.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "9d58a86d-4987-4407-83a8-40530a305455",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/opt/nvidia/nsight-compute/2025.1.1/host/target-linux-x64/python/bin/python\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\\\n/root/miniconda3/include/python3.12/cpython/pythonrun.h\\\\n/root/miniconda3/include/python3.12/pythonrun.h\\\\n/root/miniconda3/lib/pkgconfig/python-3.12-embed.pc\\\\n/root/miniconda3/lib/pkgconfig/python-3.12.pc\\\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/__pycache__/python-config.cpython-312.pyc\\\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/python-config.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/opt/nvidia/nsight-compute/2025.1.1/host/target-linux-x64/python/bin/python\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/include/python3.12/cpython/pythonrun.h\\n/root/miniconda3/include/python3.12/pythonrun.h\\n/root/miniconda3/lib/pkgconfig/python-3.12-embed.pc\\n/root/miniconda3/lib/pkgconfig/python-3.12.pc\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/__pycache__/python-config.cpython-312.pyc\\n/root/miniconda3/lib/python3.12/config-3.12-x86_64-linux-gnu/python-config.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0188Uusc5rN1Rremakc9frFm`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport torch\n# Check artifacts/sim_matrix.pt\ndata = torch.load('artifacts/sim_matrix.pt', map_location='cpu', weights_only=True)\nsm = data.get('sim_matrix', data.get('similarity_matrix'))\ntypes = data['type_names']\nprint(f'artifacts/sim_matrix.pt:')\nprint(f'  Shape: {sm.shape}')\nprint(f'  Num types: {len(types)}')\nprint(f'  First 5 types: {types[:5]}')\nprint(f'  Sim range: [{sm.min().item():.4f}, {sm.max().item():.4f}]')\ndiag_mask = ~torch.eye(sm.shape[0], dtype=bool)\noff_diag = sm[diag_mask]\nprint(f'  Off-diag mean: {off_diag.mean().item():.4f}')\nprint(f'  Off-diag std: {off_diag.std().item():.4f}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "2b272b93-5812-4f88-becf-241218f9fc7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1xj4ySj5m1u1iS6WGrd4h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 473,
+      "cache_read_input_tokens": 62997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 473
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VZLwx4b3RCavtac81ZFjo9`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport torch\ndata = torch.load('artifacts/fewnerd_bcs_matrix_minilm.pt', map_location='cpu', weights_only=True)\nsm = data.get('sim_matrix', data.get('similarity_matrix'))\ntypes = data['type_names']\nprint(f'fewnerd_bcs_matrix_minilm.pt:')\nprint(f'  Shape: {sm.shape}')\nprint(f'  Num types: {len(types)}')\nprint(f'  First 5 types: {types[:5]}')\nprint(f'  Sim range: [{sm.min().item():.4f}, {sm.max().item():.4f}]')\ndiag_mask = ~torch.eye(sm.shape[0], dtype=bool)\noff_diag = sm[diag_mask]\nprint(f'  Off-diag mean: {off_diag.mean().item():.4f}')\nprint(f'  Off-diag std: {off_diag.std().item():.4f}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "0585cd0e-1301-41df-b9da-43bc94011452",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1xj4ySj5m1u1iS6WGrd4h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 473,
+      "cache_read_input_tokens": 62997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 473
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-17T10:01:48.419Z_
+
+<details><summary>↩ Tool result · `toolu_0188Uusc5rN1Rremakc9frFm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"artifacts/sim_matrix.pt:\\n  Shape: torch.Size([66, 66])\\n  Num types: 66\\n  First 5 types: ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting']\\n  Sim range: [0.4422, 1.0000]\\n  Off-diag mean: 0.8077\\n  Off-diag std: 0.0599\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5450df93-707a-4de4-aceb-cddd01a58cf8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"artifacts/sim_matrix.pt:\\\\n  Shape: torch.Size([66, 66])\\\\n  Num types: 66\\\\n  First 5 types: ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting']\\\\n  Sim range: [0.4422, 1.0000]\\\\n  Off-diag mean: 0.8077\\\\n  Off-diag std: 0.0599\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"artifacts/sim_matrix.pt:\\n  Shape: torch.Size([66, 66])\\n  Num types: 66\\n  First 5 types: ['art-broadcastprogram', 'art-film', 'art-music', 'art-other', 'art-painting']\\n  Sim range: [0.4422, 1.0000]\\n  Off-diag mean: 0.8077\\n  Off-diag std: 0.0599\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-17T10:01:56.388Z_
+
+<details><summary>↩ Tool result · `toolu_01VZLwx4b3RCavtac81ZFjo9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"fewnerd_bcs_matrix_minilm.pt:\\n  Shape: torch.Size([66, 66])\\n  Num types: 66\\n  First 5 types: ['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other']\\n  Sim range: [-0.0497, 1.0000]\\n  Off-diag mean: 0.1952\\n  Off-diag std: 0.1441\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "a9c30978-a34c-47e8-9bdd-6c33dfcf5575",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"fewnerd_bcs_matrix_minilm.pt:\\\\n  Shape: torch.Size([66, 66])\\\\n  Num types: 66\\\\n  First 5 types: ['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other']\\\\n  Sim range: [-0.0497, 1.0000]\\\\n  Off-diag mean: 0.1952\\\\n  Off-diag std: 0.1441\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"fewnerd_bcs_matrix_minilm.pt:\\n  Shape: torch.Size([66, 66])\\n  Num types: 66\\n  First 5 types: ['person-actor', 'person-artist/author', 'person-athlete', 'person-director', 'person-other']\\n  Sim range: [-0.0497, 1.0000]\\n  Off-diag mean: 0.1952\\n  Off-diag std: 0.1441\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the critical difference!
+
+**artifacts/sim_matrix.pt** (used by d051):
+- 66×66, off-diag mean: 0.8077, std: 0.0599
+- Range: [0.4422, 1.0000]
+- Type names: 'art-broadcastprogram', 'art-film', etc. (hierarchical names)
+- This is a HIGH similarity matrix - all types are quite similar, so BCS values for random batches are ~0.80
+
+
+**artifacts/fewnerd_bcs_matrix_minilm.pt**:
+- 66×66, off-diag mean: 0.1952, std: 0.1441
+- Range: [-0.0497, 1.0000]
+- Type names: 'person-actor', 'person-artist/author', etc. 
+- This is a LOW similarity matrix with MiniLM embeddings
+
+Now I need to figure out which matrix was actually used to compute the BCS values in eval_exp2.json. Looking at the d037 script, it loads pre-computed BCS values from that file, so I need to trace back where those values came from.
+
+The BCS values in eval_exp2 for count_12 are around 0.892-0.9732, which aligns with the sim_matrix.pt (off-diag mean 0.8077). This suggests both eval_exp2 and d051 are using sim_matrix.pt, not the MiniLM version. The higher BCS values in eval_exp2 make sense if it's selecting high-similarity type pairs, while d051's lower values around 0.80 reflect random selection from the same distribution.
+
+The key difference is that eval_exp2 includes deliberately selected low and high BCS extremes plus random batches, whereas d051 only has random batches. Let me check the actual BCS distribution across both datasets for count_12 to confirm this pattern.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "a75aa712-899d-45b9-b25a-928790d16364",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwosNHH5w5AqLKt6ziGqrE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 63470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+关键发现：两个实验用同一个 sim_matrix.pt（off-diag mean 0.8077）。让我直接对比 count_12 的 BCS 分布。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "8512b96b-d05c-44b1-832e-e20590fbc2a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwosNHH5w5AqLKt6ziGqrE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 63470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CQqubtixLfVLVSJg51RAur`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json\nimport numpy as np\n\n# eval_exp2: count_12 batches\nwith open('artifacts/eval_exp2.json') as f:\n    exp2 = json.load(f)\n\nc12_exp2 = [(k, v['bcs'], v['text_match']['f1']) \n            for k, v in exp2.items() if v.get('count_key') == 'count_12']\nbcs_exp2 = [x[1] for x in c12_exp2]\nf1_exp2 = [x[2] for x in c12_exp2]\nprint(f'eval_exp2 count_12:')\nprint(f'  n_batches: {len(c12_exp2)}')\nprint(f'  BCS range: [{min(bcs_exp2):.4f}, {max(bcs_exp2):.4f}]')\nprint(f'  BCS mean/std: {np.mean(bcs_exp2):.4f} / {np.std(bcs_exp2):.4f}')\nprint(f'  F1 range: [{min(f1_exp2):.4f}, {max(f1_exp2):.4f}]')\nprint(f'  Batch IDs: {[x[0] for x in c12_exp2[:5]]}...')\n\n# Separate low/high BCS from random\nrandom_c12 = [(k, v['bcs'], v['text_match']['f1']) \n              for k, v in exp2.items() if v.get('count_key') == 'count_12' and 'random' in k]\nextreme_c12 = [(k, v['bcs'], v['text_match']['f1']) \n               for k, v in exp2.items() if v.get('count_key') == 'count_12' and 'random' not in k]\nprint(f'  Random batches: {len(random_c12)}, BCS range [{min(x[1] for x in random_c12):.4f}, {max(x[1] for x in random_c12):.4f}]')\nprint(f'  Extreme batches: {len(extreme_c12)}: {[(x[0], round(x[1],4), round(x[2],4)) for x in extreme_c12]}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5db98e83-86dc-43b9-8701-c121b989d69e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwosNHH5w5AqLKt6ziGqrE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 63470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-17T10:02:19.067Z_
+
+<details><summary>↩ Tool result · `toolu_01CQqubtixLfVLVSJg51RAur`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_exp2 count_12:\\n  n_batches: 27\\n  BCS range: [0.8920, 0.9732]\\n  BCS mean/std: 0.9260 / 0.0194\\n  F1 range: [0.1867, 0.4805]\\n  Batch IDs: ['count_12_low_bcs', 'count_12_high_bcs', 'count_12_random_0', 'count_12_random_1', 'count_12_random_2']...\\n  Random batches: 25, BCS range [0.8920, 0.9732]\\n  Extreme batches: 2: [('count_12_low_bcs', 0.9148, 0.229), ('count_12_high_bcs', 0.9447, 0.3127)]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "dfd8f1cb-f1c3-49bb-9f57-7dc5fb0f4691",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_exp2 count_12:\\\\n  n_batches: 27\\\\n  BCS range: [0.8920, 0.9732]\\\\n  BCS mean/std: 0.9260 / 0.0194\\\\n  F1 range: [0.1867, 0.4805]\\\\n  Batch IDs: ['count_12_low_bcs', 'count_12_high_bcs', 'count_12_random_0', 'count_12_random_1', 'count_12_random_2']...\\\\n  Random batches: 25, BCS range [0.8920, 0.9732]\\\\n  Extreme batches: 2: [('count_12_low_bcs', 0.9148, 0.229), ('count_12_high_bcs', 0.9447, 0.3127)]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"eval_exp2 count_12:\\n  n_batches: 27\\n  BCS range: [0.8920, 0.9732]\\n  BCS mean/std: 0.9260 / 0.0194\\n  F1 range: [0.1867, 0.4805]\\n  Batch IDs: ['count_12_low_bcs', 'count_12_high_bcs', 'count_12_random_0', 'count_12_random_1', 'count_12_random_2']...\\n  Random batches: 25, BCS range [0.8920, 0.9732]\\n  Extreme batches: 2: [('count_12_low_bcs', 0.9148, 0.229), ('count_12_high_bcs', 0.9447, 0.3127)]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PLs1sLacDL8LY8N9dKB24u`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json\nimport numpy as np\n\n# d051 count_12 from all 3 seeds\nseeds = ['s42', 's123', 's456']\nall_bcs = []\nall_f1 = []\nper_seed = {}\n\nfor seed in seeds:\n    with open(f'artifacts/d051_fewnerd_n25_{seed}/eval_results.json') as f:\n        data = json.load(f)\n    c12 = [(k, v['bcs'], v['text_match']['f1']) \n           for k, v in data.items() if v.get('count_key') == 'count_12']\n    bcs = [x[1] for x in c12]\n    f1 = [x[2] for x in c12]\n    all_bcs.extend(bcs)\n    all_f1.extend(f1)\n    per_seed[seed] = {'bcs': bcs, 'f1': f1, 'n': len(c12)}\n    print(f'd051 {seed} count_12: n={len(c12)}, BCS [{min(bcs):.4f}, {max(bcs):.4f}], mean={np.mean(bcs):.4f}')\n\nprint(f'\\\\nAll d051 count_12: n={len(all_bcs)}, BCS [{min(all_bcs):.4f}, {max(all_bcs):.4f}]')\nprint(f'  BCS mean/std: {np.mean(all_bcs):.4f} / {np.std(all_bcs):.4f}')\nprint(f'  F1 mean/std: {np.mean(all_f1):.4f} / {np.std(all_f1):.4f}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "1c725d9f-d5bf-4a9c-ad66-92b90000c719",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EwosNHH5w5AqLKt6ziGqrE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1305,
+      "cache_read_input_tokens": 63470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1305
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-17T10:02:25.773Z_
+
+<details><summary>↩ Tool result · `toolu_01PLs1sLacDL8LY8N9dKB24u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"d051 s42 count_12: n=25, BCS [0.7759, 0.8478], mean=0.8072\\nd051 s123 count_12: n=25, BCS [0.7776, 0.8433], mean=0.8045\\nd051 s456 count_12: n=25, BCS [0.7631, 0.8315], mean=0.8034\\n\\nAll d051 count_12: n=75, BCS [0.7631, 0.8478]\\n  BCS mean/std: 0.8051 / 0.0171\\n  F1 mean/std: 0.2857 / 0.0737\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "9736410e-3c64-44a7-87d0-2d1336325144",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"d051 s42 count_12: n=25, BCS [0.7759, 0.8478], mean=0.8072\\\\nd051 s123 count_12: n=25, BCS [0.7776, 0.8433], mean=0.8045\\\\nd051 s456 count_12: n=25, BCS [0.7631, 0.8315], mean=0.8034\\\\n\\\\nAll d051 count_12: n=75, BCS [0.7631, 0.8478]\\\\n  BCS mean/std: 0.8051 / 0.0171\\\\n  F1 mean/std: 0.2857 / 0.0737\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"d051 s42 count_12: n=25, BCS [0.7759, 0.8478], mean=0.8072\\nd051 s123 count_12: n=25, BCS [0.7776, 0.8433], mean=0.8045\\nd051 s456 count_12: n=25, BCS [0.7631, 0.8315], mean=0.8034\\n\\nAll d051 count_12: n=75, BCS [0.7631, 0.8478]\\n  BCS mean/std: 0.8051 / 0.0171\\n  F1 mean/std: 0.2857 / 0.0737\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the critical mismatch!
+
+**eval_exp2 count_12**: BCS range [0.892, 0.973], mean 0.926, std 0.019
+**d051 count_12**: BCS range [0.763, 0.848], mean 0.805, std 0.017
+
+These BCS ranges don't overlap at all! eval_exp2 BCS is WAY higher. But both supposedly use `artifacts/sim_matrix.pt` which has off-diag mean 0.8077.
+
+Wait - the d051 BCS mean 0.805 is consistent with the sim_matrix off-diag mean of 0.8077 (for random selection of 12 types, you'd expect BCS around the off-diag mean).
+
+
+But eval_exp2 has BCS mean 0.926, which is much higher! This suggests eval_exp2 used a different sim matrix or type pool. Even the "low BCS" batch in eval_exp2 has BCS around 0.91, way above the matrix off-diag mean. I'm wondering if eval_exp2 selected a subset of types that are more similar to each other, or if the sim_matrix.pt file was different when eval_exp2 ran. Looking at the type names in the matrix like 'art-broadcastprogram' and 'art-film', there might be a hierarchical structure I'm missing.
+
+Actually, the type names in both files appear to be from the same 66-type pool, just in different sort orders. So the question is why the BCS values diverge so much. I need to check if sim_matrix.pt was recomputed between runs, or if there's something in how eval_exp2 loads and uses the similarity matrix that's different.
+
+Looking at the code, the sim_matrix path depends on whether a custom path is provided or if it defaults to the output directory. The key discrepancy is striking: the current sim_matrix.pt has an off-diagonal mean of 0.8077, which matches d051's random batches perfectly at 0.805, but eval_exp2's random batches show a much higher BCS range of 0.892-0.973 with a mean of 0.926. This suggests eval_exp2 was using a different similarity matrix entirely.
+
+I need to check whether the matrix was recomputed between runs, if eval_exp2 used a custom sim_matrix_path, or if there's a bcs_fix directory that might explain the discrepancy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "d2d051e9-e381-4f7d-977b-10b7b9e3760d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JY7BMX1qRFRL8FjzaVRiP7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2543,
+      "cache_read_input_tokens": 64775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+BCS 范围完全不重叠！eval_exp2 BCS [0.892-0.973] vs d051 BCS [0.763-0.848]。虽然都用66类 sim_matrix.pt（off-diag mean 0.8077），但 eval_exp2 的 BCS 异常高。让我检查是否 sim_matrix.pt 被重新计算过。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "951be65c-5de2-47b8-bb3f-2badbc5adb0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JY7BMX1qRFRL8FjzaVRiP7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2543,
+      "cache_read_input_tokens": 64775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013faYUCeSnpvQAXNMexMZrE`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/sim_matrix.pt; stat /root/schema-dag-extraction/artifacts/sim_matrix.pt | grep -i modif",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "3d5292d4-b2c3-4182-b5cb-a086201cf33f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JY7BMX1qRFRL8FjzaVRiP7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2543,
+      "cache_read_input_tokens": 64775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-17T10:02:47.612Z_
+
+<details><summary>↩ Tool result · `toolu_013faYUCeSnpvQAXNMexMZrE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 20926 May 15 03:20 /root/schema-dag-extraction/artifacts/sim_matrix.pt\\nModify: 2026-05-15 03:20:04.164653603 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "eb5d835c-39b6-43f0-89f5-d5066196117b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 20926 May 15 03:20 /root/schema-dag-extraction/artifacts/sim_matrix.pt\\\\nModify: 2026-05-15 03:20:04.164653603 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 20926 May 15 03:20 /root/schema-dag-extraction/artifacts/sim_matrix.pt\\nModify: 2026-05-15 03:20:04.164653603 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HjodAWC1REsW717v4QAEch`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/schema-dag-extraction/artifacts/bcs_fix/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "a895634a-5171-48a0-89d7-be3ec3d05923",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JY7BMX1qRFRL8FjzaVRiP7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2543,
+      "cache_read_input_tokens": 64775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-17T10:02:48.533Z_
+
+<details><summary>↩ Tool result · `toolu_01HjodAWC1REsW717v4QAEch`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bcs_fix_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "fc6dee0f-a561-47de-b3e3-f55b5b1cb05f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bcs_fix_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bcs_fix_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LggJBFYUVEb41doVrhnWjn`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/scripts/bcs_fix_recompute.py | head -60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "7cb5b60d-701e-4bb4-926d-c6b34f774266",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JY7BMX1qRFRL8FjzaVRiP7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2543,
+      "cache_read_input_tokens": 64775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2543
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-17T10:02:50.046Z_
+
+<details><summary>↩ Tool result · `toolu_01LggJBFYUVEb41doVrhnWjn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"BCS MAX→MEAN fix: recompute all BCS values and re-run statistics.\\\"\\\"\\\"\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nBASE = Path(\\\"/root/schema-dag-extraction\\\")\\nARTIFACTS = BASE / \\\"artifacts\\\"\\nOUTPUT_DIR = ARTIFACTS / \\\"bcs_fix\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n# ====== BCS Functions ======\\ndef compute_bcs_max(type_subset, sim_matrix, type_to_idx):\\n    \\\"\\\"\\\"OLD: BCS = max pairwise cosine similarity.\\\"\\\"\\\"\\n    if len(type_subset) < 2:\\n        return 0.0\\n    indices = [type_to_idx[t] for t in type_subset]\\n    max_sim = float(\\\"-inf\\\")\\n    for i in range(len(indices)):\\n        for j in range(i + 1, len(indices)):\\n            val = sim_matrix[indices[i], indices[j]].item()\\n            if val > max_sim:\\n                max_sim = val\\n    return max_sim\\n\\ndef compute_bcs_mean(type_subset, sim_matrix, type_to_idx):\\n    \\\"\\\"\\\"NEW: BCS = mean pairwise cosine similarity.\\\"\\\"\\\"\\n    if len(type_subset) < 2:\\n        return 0.0\\n    indices = [type_to_idx[t] for t in type_subset]\\n    total = 0.0\\n    count = 0\\n    for i in range(len(indices)):\\n        for j in range(i + 1, len(indices)):\\n            total += sim_matrix[indices[i], indices[j]].item()\\n            count += 1\\n    return total / count\\n\\n# ====== Load Data ======\\nprint(\\\"Loading 16-rel sim matrix...\\\")\\nsim16 = torch.load(ARTIFACTS / \\\"fewrel_16rel_bootstrap/relation_sim_matrix.pt\\\", map_location=\\\"cpu\\\")\\nsim_matrix_16 = sim16[\\\"sim_matrix\\\"]\\ntype_to_idx_16 = sim16[\\\"type_to_idx\\\"]\\n\\nprint(\\\"Loading 80-rel sim matrix...\\\")\\nsim80 = torch.load(ARTIFACTS / \\\"fewrel_formal_full/relation_sim_matrix.pt\\\", map_location=\\\"cpu\\\")\\nsim_matrix_80 = sim80[\\\"sim_matrix\\\"]\\ntype_to_idx_80 = sim80[\\\"type_to_idx\\\"]\\n\\n# ====== 16-rel bootstrap (100 batches) ======\\nprint(\\\"\\\\n=== 16-rel bootstrap (100 batches) ===\\\")\\nwith open(ARTIFACTS / \\\"fewrel_16rel_bootstrap/results.json\\\") as f:\\n    results_16 = json.load(f)\\n\\npairs_16_old = []\\npairs_16_new = []\\nfor r in results_16:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "55aae0c8-4a30-4120-8fa8-14e5322528be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"BCS MAX→MEAN fix: recompute all BCS values and re-run statistics.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\n\\\\nBASE = Path(\\\\\\\"/root/schema-dag-extraction\\\\\\\")\\\\nARTIFACTS = BASE / \\\\\\\"artifacts\\\\\\\"\\\\nOUTPUT_DIR = ARTIFACTS / \\\\\\\"bcs_fix\\\\\\\"\\\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\n# ====== BCS Functions ======\\\\ndef compute_bcs_max(type_subset, sim_matrix, type_to_idx):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"OLD: BCS = max pairwise cosine similarity.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if len(type_subset) < 2:\\\\n        return 0.0\\\\n    indices = [type_to_idx[t] for t in type_subset]\\\\n    max_sim = float(\\\\\\\"-inf\\\\\\\")\\\\n    for i in range(len(indices)):\\\\n        for j in range(i + 1, len(indices)):\\\\n            val = sim_matrix[indices[i], indices[j]].item()\\\\n            if val > max_sim:\\\\n                max_sim = val\\\\n    return max_sim\\\\n\\\\ndef compute_bcs_mean(type_subset, sim_matrix, type_to_idx):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"NEW: BCS = mean pairwise cosine similarity.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if len(type_subset) < 2:\\\\n        return 0.0\\\\n    indices = [type_to_idx[t] for t in type_subset]\\\\n    total = 0.0\\\\n    count = 0\\\\n    for i in range(len(indices)):\\\\n        for j in range(i + 1, len(indices)):\\\\n            total += sim_matrix[indices[i], indices[j]].item()\\\\n            count += 1\\\\n    return total / count\\\\n\\\\n# ====== Load Data ======\\\\nprint(\\\\\\\"Loading 16-rel sim matrix...\\\\\\\")\\\\nsim16 = torch.load(ARTIFACTS / \\\\\\\"fewrel_16rel_bootstrap/relation_sim_matrix.pt\\\\\\\", map_location=\\\\\\\"cpu\\\\\\\")\\\\nsim_matrix_16 = sim16[\\\\\\\"sim_matrix\\\\\\\"]\\\\ntype_to_idx_16 = sim16[\\\\\\\"type_to_idx\\\\\\\"]\\\\n\\\\nprint(\\\\\\\"Loading 80-rel sim matrix...\\\\\\\")\\\\nsim80 = torch.load(ARTIFACTS / \\\\\\\"fewrel_formal_full/relation_sim_matrix.pt\\\\\\\", map_location=\\\\\\\"cpu\\\\\\\")\\\\nsim_matrix_80 = sim80[\\\\\\\"sim_matrix\\\\\\\"]\\\\ntype_to_idx_80 = sim80[\\\\\\\"type_to_idx\\\\\\\"]\\\\n\\\\n# ====== 16-rel bootstrap (100 batches) ======\\\\nprint(\\\\\\\"\\\\\\\\n=== 16-rel bootstrap (100 batches) ===\\\\\\\")\\\\nwith open(ARTIFACTS / \\\\\\\"fewrel_16rel_bootstrap/results.json\\\\\\\") as f:\\\\n    results_16 = json.load(f)\\\\n\\\\npairs_16_old = []\\\\npairs_16_new = []\\\\nfor r in results_16:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"BCS MAX→MEAN fix: recompute all BCS values and re-run statistics.\\\"\\\"\\\"\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nBASE = Path(\\\"/root/schema-dag-extraction\\\")\\nARTIFACTS = BASE / \\\"artifacts\\\"\\nOUTPUT_DIR = ARTIFACTS / \\\"bcs_fix\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n# ====== BCS Functions ======\\ndef compute_bcs_max(type_subset, sim_matrix, type_to_idx):\\n    \\\"\\\"\\\"OLD: BCS = max pairwise cosine similarity.\\\"\\\"\\\"\\n    if len(type_subset) < 2:\\n        return 0.0\\n    indices = [type_to_idx[t] for t in type_subset]\\n    max_sim = float(\\\"-inf\\\")\\n    for i in range(len(indices)):\\n        for j in range(i + 1, len(indices)):\\n            val = sim_matrix[indices[i], indices[j]].item()\\n            if val > max_sim:\\n                max_sim = val\\n    return max_sim\\n\\ndef compute_bcs_mean(type_subset, sim_matrix, type_to_idx):\\n    \\\"\\\"\\\"NEW: BCS = mean pairwise cosine similarity.\\\"\\\"\\\"\\n    if len(type_subset) < 2:\\n        return 0.0\\n    indices = [type_to_idx[t] for t in type_subset]\\n    total = 0.0\\n    count = 0\\n    for i in range(len(indices)):\\n        for j in range(i + 1, len(indices)):\\n            total += sim_matrix[indices[i], indices[j]].item()\\n            count += 1\\n    return total / count\\n\\n# ====== Load Data ======\\nprint(\\\"Loading 16-rel sim matrix...\\\")\\nsim16 = torch.load(ARTIFACTS / \\\"fewrel_16rel_bootstrap/relation_sim_matrix.pt\\\", map_location=\\\"cpu\\\")\\nsim_matrix_16 = sim16[\\\"sim_matrix\\\"]\\ntype_to_idx_16 = sim16[\\\"type_to_idx\\\"]\\n\\nprint(\\\"Loading 80-rel sim matrix...\\\")\\nsim80 = torch.load(ARTIFACTS / \\\"fewrel_formal_full/relation_sim_matrix.pt\\\", map_location=\\\"cpu\\\")\\nsim_matrix_80 = sim80[\\\"sim_matrix\\\"]\\ntype_to_idx_80 = sim80[\\\"type_to_idx\\\"]\\n\\n# ====== 16-rel bootstrap (100 batches) ======\\nprint(\\\"\\\\n=== 16-rel bootstrap (100 batches) ===\\\")\\nwith open(ARTIFACTS / \\\"fewrel_16rel_bootstrap/results.json\\\") as f:\\n    results_16 = json.load(f)\\n\\npairs_16_old = []\\npairs_16_new = []\\nfor r in results_16:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 112_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see a crucial clue: there was a BCS computation change from MAX to MEAN! The old BCS used max pairwise cosine similarity, while the new BCS uses mean pairwise cosine similarity.
+
+If eval_exp2.json was generated using the OLD BCS (MAX), that would explain the much higher values:
+- MAX pairwise sim among 12 types would be ~0.92 (close to the highest off-diagonal value in the matrix)
+- MEAN pairwise sim among 12 types would be ~0.80 (close to the matrix off-diag mean)
+
+
+This is definitely the root cause—eval_exp2.json has BCS values computed with the old MAX definition, while d051 uses the new MEAN definition. Let me verify this by checking whether the BCS values in eval_exp2.json align with what MAX pairwise similarity would produce.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "56894fb3-d451-4ab9-ac5f-fed307d97081",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SewAdGKn17C2Rtvoe4bN7B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2591,
+      "cache_read_input_tokens": 67318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2591
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113_
+
+找到根因线索！有一个 BCS 从 MAX 改为 MEAN 的修复。eval_exp2 用的是旧的 MAX BCS，d051 用的是新的 MEAN BCS。让我验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "37bf4dd6-5627-4910-a4b9-e52220cd31ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SewAdGKn17C2Rtvoe4bN7B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2591,
+      "cache_read_input_tokens": 67318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2591
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019damopS9DnHHVTY6twYC7z`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/bcs_fix/bcs_fix_results.json | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "f10d0122-e564-4547-baf6-69459d1a8fe7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SewAdGKn17C2Rtvoe4bN7B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2591,
+      "cache_read_input_tokens": 67318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2591
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-17T10:03:00.170Z_
+
+<details><summary>↩ Tool result · `toolu_019damopS9DnHHVTY6twYC7z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"fix_summary\\\": {\\n    \\\"16rel_batches_affected\\\": 100,\\n    \\\"80rel_batches_affected\\\": 25,\\n    \\\"80pool_16sub_batches_affected\\\": 0,\\n    \\\"old_definition\\\": \\\"MAX pairwise SCS\\\",\\n    \\\"new_definition\\\": \\\"MEAN pairwise SCS\\\"\\n  },\\n  \\\"bcs_comparison\\\": {\\n    \\\"16rel\\\": {\\n      \\\"old_range\\\": [\\n        0.6532139182090759,\\n        0.9001670479774475\\n      ],\\n      \\\"new_range\\\": [\\n        0.47946119202034815,\\n        0.7047903175864901\\n      ],\\n      \\\"old_mean\\\": 0.8258601051568984,\\n      \\\"new_mean\\\": 0.5789559399655888\\n    },\\n    \\\"80rel\\\": {\\n      \\\"old_range\\\": [\\n        0.6464519500732422,\\n        0.8226474523544312\\n      ],\\n      \\\"new_range\\\": [\\n        0.5089850670525006,\\n        0.598247691988945\\n      ],\\n      \\\"old_mean\\\": 0.719964919090271,\\n      \\\"new_mean\\\": 0.5484472821440016\\n    }\\n  },\\n  \\\"regression_new\\\": {\\n    \\\"16rel\\\": {\\n      \\\"slope\\\": -0.5087728084132799,\\n      \\\"slope_ci\\\": [\\n        -0.6864595830106107,\\n        -0.3357617961940141\\n      ],\\n      \\\"r\\\": -0.46720816356473116,\\n      \\\"p\\\": 9.566296864860861e-07,\\n      \\\"n\\\": 100\\n    },\\n    \\\"80pool_16sub\\\": {\\n      \\\"slope\\\": -0.40099877329598754,\\n      \\\"slope_ci\\\": [\\n        -0.7008097117926827,\\n        -0.06937038825409096\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "f5d110d2-1e20-4eac-b077-55678d78b9be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"fix_summary\\\\\\\": {\\\\n    \\\\\\\"16rel_batches_affected\\\\\\\": 100,\\\\n    \\\\\\\"80rel_batches_affected\\\\\\\": 25,\\\\n    \\\\\\\"80pool_16sub_batches_affected\\\\\\\": 0,\\\\n    \\\\\\\"old_definition\\\\\\\": \\\\\\\"MAX pairwise SCS\\\\\\\",\\\\n    \\\\\\\"new_definition\\\\\\\": \\\\\\\"MEAN pairwise SCS\\\\\\\"\\\\n  },\\\\n  \\\\\\\"bcs_comparison\\\\\\\": {\\\\n    \\\\\\\"16rel\\\\\\\": {\\\\n      \\\\\\\"old_range\\\\\\\": [\\\\n        0.6532139182090759,\\\\n        0.9001670479774475\\\\n      ],\\\\n      \\\\\\\"new_range\\\\\\\": [\\\\n        0.47946119202034815,\\\\n        0.7047903175864901\\\\n      ],\\\\n      \\\\\\\"old_mean\\\\\\\": 0.8258601051568984,\\\\n      \\\\\\\"new_mean\\\\\\\": 0.5789559399655888\\\\n    },\\\\n    \\\\\\\"80rel\\\\\\\": {\\\\n      \\\\\\\"old_range\\\\\\\": [\\\\n        0.6464519500732422,\\\\n        0.8226474523544312\\\\n      ],\\\\n      \\\\\\\"new_range\\\\\\\": [\\\\n        0.5089850670525006,\\\\n        0.598247691988945\\\\n      ],\\\\n      \\\\\\\"old_mean\\\\\\\": 0.719964919090271,\\\\n      \\\\\\\"new_mean\\\\\\\": 0.5484472821440016\\\\n    }\\\\n  },\\\\n  \\\\\\\"regression_new\\\\\\\": {\\\\n    \\\\\\\"16rel\\\\\\\": {\\\\n      \\\\\\\"slope\\\\\\\": -0.5087728084132799,\\\\n      \\\\\\\"slope_ci\\\\\\\": [\\\\n        -0.6864595830106107,\\\\n        -0.3357617961940141\\\\n      ],\\\\n      \\\\\\\"r\\\\\\\": -0.46720816356473116,\\\\n      \\\\\\\"p\\\\\\\": 9.566296864860861e-07,\\\\n      \\\\\\\"n\\\\\\\": 100\\\\n    },\\\\n    \\\\\\\"80pool_16sub\\\\\\\": {\\\\n      \\\\\\\"slope\\\\\\\": -0.40099877329598754,\\\\n      \\\\\\\"slope_ci\\\\\\\": [\\\\n        -0.7008097117926827,\\\\n        -0.06937038825409096\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"fix_summary\\\": {\\n    \\\"16rel_batches_affected\\\": 100,\\n    \\\"80rel_batches_affected\\\": 25,\\n    \\\"80pool_16sub_batches_affected\\\": 0,\\n    \\\"old_definition\\\": \\\"MAX pairwise SCS\\\",\\n    \\\"new_definition\\\": \\\"MEAN pairwise SCS\\\"\\n  },\\n  \\\"bcs_comparison\\\": {\\n    \\\"16rel\\\": {\\n      \\\"old_range\\\": [\\n        0.6532139182090759,\\n        0.9001670479774475\\n      ],\\n      \\\"new_range\\\": [\\n        0.47946119202034815,\\n        0.7047903175864901\\n      ],\\n      \\\"old_mean\\\": 0.8258601051568984,\\n      \\\"new_mean\\\": 0.5789559399655888\\n    },\\n    \\\"80rel\\\": {\\n      \\\"old_range\\\": [\\n        0.6464519500732422,\\n        0.8226474523544312\\n      ],\\n      \\\"new_range\\\": [\\n        0.5089850670525006,\\n        0.598247691988945\\n      ],\\n      \\\"old_mean\\\": 0.719964919090271,\\n      \\\"new_mean\\\": 0.5484472821440016\\n    }\\n  },\\n  \\\"regression_new\\\": {\\n    \\\"16rel\\\": {\\n      \\\"slope\\\": -0.5087728084132799,\\n      \\\"slope_ci\\\": [\\n        -0.6864595830106107,\\n        -0.3357617961940141\\n      ],\\n      \\\"r\\\": -0.46720816356473116,\\n      \\\"p\\\": 9.566296864860861e-07,\\n      \\\"n\\\": 100\\n    },\\n    \\\"80pool_16sub\\\": {\\n      \\\"slope\\\": -0.40099877329598754,\\n      \\\"slope_ci\\\": [\\n        -0.7008097117926827,\\n        -0.06937038825409096\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NiQNMuuh27ZmagkLLB7ZVs`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json, torch, numpy as np\n\n# Load sim matrix\ndata = torch.load('artifacts/sim_matrix.pt', map_location='cpu', weights_only=True)\nsm = data.get('sim_matrix', data.get('similarity_matrix'))\ntype_names = data['type_names']\ntype_to_idx = data.get('type_to_idx', {n: i for i, n in enumerate(type_names)})\n\n# Load eval_exp2 batch config to get types\n# eval_exp2 doesn't have types in the results - need to find batch config\n# Let's check if there's a batch_config for exp2\nimport os\nfor f in os.listdir('artifacts'):\n    if 'batch' in f.lower() and 'config' in f.lower():\n        print(f)\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "c4fc12d7-2c7e-4bb8-ba62-70d3ac0a0812",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SewAdGKn17C2Rtvoe4bN7B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2591,
+      "cache_read_input_tokens": 67318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2591
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SMYn1femPnyy94QbkDx14f`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"batch_config*\" -path \"*/artifacts/*\" | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "3d5aa9b4-ac9c-4209-9c4c-517a396da30f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SewAdGKn17C2Rtvoe4bN7B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2591,
+      "cache_read_input_tokens": 67318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2591
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-17T10:03:11.934Z_
+
+<details><summary>↩ Tool result · `toolu_01NiQNMuuh27ZmagkLLB7ZVs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"batch_config_dry_run.json\\nbatch_config_exp1.json\\nbatch_config_exp2.json\\nbatch_config_maven_dry_run.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "b0962f5b-7be1-4f5f-b4af-eb9b68fa57fc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"batch_config_dry_run.json\\\\nbatch_config_exp1.json\\\\nbatch_config_exp2.json\\\\nbatch_config_maven_dry_run.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"batch_config_dry_run.json\\nbatch_config_exp1.json\\nbatch_config_exp2.json\\nbatch_config_maven_dry_run.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-17T10:03:12.644Z_
+
+<details><summary>↩ Tool result · `toolu_01SMYn1femPnyy94QbkDx14f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp1.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "c93c77db-0305-4f12-a8f5-c4095e8a7de6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp1.json\\\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp1.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp2.json\\\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp1.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/batch_config_dry_run.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/batch_config_maven_dry_run.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp1.json\\n/root/schema-dag-extraction/artifacts/exp004/batch_config_maven_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_pilot/batch_config.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp1.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal/batch_config_exp2.json\\n/root/schema-dag-extraction/artifacts/fewrel_formal_full/batch_config_exp1.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 120_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me verify: eval_exp2's BCS values were computed with the OLD MAX definition. Let me check the batch_config_exp2.json to see the types, then recompute BCS both ways (MAX and MEAN) to confirm.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "9c37c457-91be-4ff0-afdc-2af21a3b0232",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrgWh9qAzfxnw5CfbsyF6t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 69909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TCkrv5nBR1NH1YxxGAkQ9z`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json, torch, numpy as np\n\n# Load sim matrix\ndata = torch.load('artifacts/sim_matrix.pt', map_location='cpu', weights_only=True)\nsm = data.get('sim_matrix', data.get('similarity_matrix'))\ntype_names = data['type_names']\ntype_to_idx = data.get('type_to_idx', {n: i for i, n in enumerate(type_names)})\n\n# Load batch_config_exp2.json to get types for count_12\nwith open('artifacts/batch_config_exp2.json') as f:\n    batch_cfg = json.load(f)\n\n# Get count_12 section\nc12 = batch_cfg.get('count_12', batch_cfg.get('12', {}))\nprint('Keys in batch_config_exp2:', list(batch_cfg.keys())[:10])\nprint('Type of count_12 entry:', type(c12))\nif isinstance(c12, dict):\n    print('count_12 keys:', list(c12.keys())[:5])\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "814f0fc5-e090-4ba8-8d4d-9e5f017716f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrgWh9qAzfxnw5CfbsyF6t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2160,
+      "cache_read_input_tokens": 69909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2160
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-17T10:03:28.133Z_
+
+<details><summary>↩ Tool result · `toolu_01TCkrv5nBR1NH1YxxGAkQ9z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Keys in batch_config_exp2: ['count_6', 'count_12']\\nType of count_12 entry: &lt;class 'dict'>\\ncount_12 keys: ['low_bcs', 'high_bcs', 'random']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "79a2eec1-8d1e-473e-ace7-c1b69217aaab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys in batch_config_exp2: ['count_6', 'count_12']\\\\nType of count_12 entry: &lt;class 'dict'>\\\\ncount_12 keys: ['low_bcs', 'high_bcs', 'random']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Keys in batch_config_exp2: ['count_6', 'count_12']\\nType of count_12 entry: &lt;class 'dict'>\\ncount_12 keys: ['low_bcs', 'high_bcs', 'random']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FX19y8FcdnK1o2xv7V5DdM`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json, torch, numpy as np\n\n# Load sim matrix\ndata = torch.load('artifacts/sim_matrix.pt', map_location='cpu', weights_only=True)\nsm = data.get('sim_matrix', data.get('similarity_matrix'))\ntype_names = data['type_names']\ntype_to_idx = data.get('type_to_idx', {n: i for i, n in enumerate(type_names)})\n\ndef bcs_max(types):\n    indices = [type_to_idx[t] for t in types if t in type_to_idx]\n    if len(indices) < 2: return 0\n    mx = float('-inf')\n    for i in range(len(indices)):\n        for j in range(i+1, len(indices)):\n            v = sm[indices[i], indices[j]].item()\n            if v > mx: mx = v\n    return mx\n\ndef bcs_mean(types):\n    indices = [type_to_idx[t] for t in types if t in type_to_idx]\n    if len(indices) < 2: return 0\n    total = 0; count = 0\n    for i in range(len(indices)):\n        for j in range(i+1, len(indices)):\n            total += sm[indices[i], indices[j]].item()\n            count += 1\n    return total / count\n\n# Load batch_config_exp2.json\nwith open('artifacts/batch_config_exp2.json') as f:\n    batch_cfg = json.load(f)\n\nc12 = batch_cfg['count_12']\n\n# Check first 3 random batches\nprint('Verifying BCS computation method for eval_exp2 count_12:')\nprint(f'{'Batch':<20} {'Stored BCS':>12} {'BCS_MAX':>10} {'BCS_MEAN':>10}')\nprint('-' * 55)\n\n# random batches\nfor i, batch in enumerate(c12['random'][:5]):\n    types = batch['types']\n    stored = batch['bcs']\n    mx = bcs_max(types)\n    mn = bcs_mean(types)\n    print(f'random_{i:<14} {stored:>12.4f} {mx:>10.4f} {mn:>10.4f}')\n\n# low/high\nfor key in ['low_bcs', 'high_bcs']:\n    batch = c12[key]\n    types = batch['types']\n    stored = batch['bcs']\n    mx = bcs_max(types)\n    mn = bcs_mean(types)\n    print(f'{key:<20} {stored:>12.4f} {mx:>10.4f} {mn:>10.4f}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "0c949cf7-477d-4365-bca1-e8a08622e3a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WUMBi8DomaC62bDMBetyAB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 72069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 589
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-17T10:03:47.114Z_
+
+<details><summary>↩ Tool result · `toolu_01FX19y8FcdnK1o2xv7V5DdM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Verifying BCS computation method for eval_exp2 count_12:\\nBatch                  Stored BCS    BCS_MAX   BCS_MEAN\\n-------------------------------------------------------\\nrandom_0                    0.9122     0.9122     0.7820\\nrandom_1                    0.9184     0.9184     0.7791\\nrandom_2                    0.9604     0.9604     0.8334\\nrandom_3                    0.9100     0.9100     0.7930\\nrandom_4                    0.9123     0.9123     0.8220\\nlow_bcs                    0.9148     0.9148     0.8094\\nhigh_bcs                   0.9447     0.9447     0.8216\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5627fb92-fec9-45f1-86ad-41104fce5a25",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Verifying BCS computation method for eval_exp2 count_12:\\\\nBatch                  Stored BCS    BCS_MAX   BCS_MEAN\\\\n-------------------------------------------------------\\\\nrandom_0                    0.9122     0.9122     0.7820\\\\nrandom_1                    0.9184     0.9184     0.7791\\\\nrandom_2                    0.9604     0.9604     0.8334\\\\nrandom_3                    0.9100     0.9100     0.7930\\\\nrandom_4                    0.9123     0.9123     0.8220\\\\nlow_bcs                    0.9148     0.9148     0.8094\\\\nhigh_bcs                   0.9447     0.9447     0.8216\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Verifying BCS computation method for eval_exp2 count_12:\\nBatch                  Stored BCS    BCS_MAX   BCS_MEAN\\n-------------------------------------------------------\\nrandom_0                    0.9122     0.9122     0.7820\\nrandom_1                    0.9184     0.9184     0.7791\\nrandom_2                    0.9604     0.9604     0.8334\\nrandom_3                    0.9100     0.9100     0.7930\\nrandom_4                    0.9123     0.9123     0.8220\\nlow_bcs                    0.9148     0.9148     0.8094\\nhigh_bcs                   0.9447     0.9447     0.8216\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 125_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Confirmed! The stored BCS values in `eval_exp2.json` / `batch_config_exp2.json` match the BCS_MAX computation exactly. eval_exp2 used the OLD BCS definition (MAX pairwise similarity), while d051 uses the NEW BCS definition (MEAN pairwise similarity).
+
+So the root cause is:
+1. **eval_exp2 (source of r=+0.50 and r=+0.58)**: Uses BCS = MAX pairwise cosine similarity
+
+
+2. **d051 (source of Q1 r≈0.004)**: Uses BCS = MEAN pairwise cosine similarity
+
+These are fundamentally different metrics. Now I need to recompute eval_exp2's correlations using the MEAN definition, check d051's per-seed correlations with MEAN, and isolate whether the discrepancy stems from the BCS metric change, different batch compositions, or both.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5d6aa1c7-79b6-45b9-957b-95ab11df813a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Xx5ZnyDHrWWAeBPG5t6jX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 72658,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 126_
+
+**确认根因：eval_exp2 用 BCS = MAX pairwise sim（旧定义），d051 用 BCS = MEAN（新定义）。** 现在做完整的对比分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "b62ea1ee-b875-4cd4-a903-4f13ddae3180",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Xx5ZnyDHrWWAeBPG5t6jX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 72658,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01U4ryeQ1W5oMKJRzhJbekUG`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json, torch, numpy as np\nfrom scipy import stats\n\n# Load sim matrix\ndata = torch.load('artifacts/sim_matrix.pt', map_location='cpu', weights_only=True)\nsm = data.get('sim_matrix', data.get('similarity_matrix'))\ntype_names = data['type_names']\ntype_to_idx = data.get('type_to_idx', {n: i for i, n in enumerate(type_names)})\n\ndef bcs_max(types):\n    indices = [type_to_idx[t] for t in types if t in type_to_idx]\n    if len(indices) < 2: return 0\n    mx = float('-inf')\n    for i in range(len(indices)):\n        for j in range(i+1, len(indices)):\n            v = sm[indices[i], indices[j]].item()\n            if v > mx: mx = v\n    return mx\n\ndef bcs_mean(types):\n    indices = [type_to_idx[t] for t in types if t in type_to_idx]\n    if len(indices) < 2: return 0\n    total = 0; count = 0\n    for i in range(len(indices)):\n        for j in range(i+1, len(indices)):\n            total += sm[indices[i], indices[j]].item()\n            count += 1\n    return total / count\n\n# === ANALYSIS 1: Recompute eval_exp2 count_12 with BOTH BCS definitions ===\nwith open('artifacts/batch_config_exp2.json') as f:\n    batch_cfg = json.load(f)\nwith open('artifacts/eval_exp2.json') as f:\n    eval_exp2 = json.load(f)\n\nc12_cfg = batch_cfg['count_12']\n# Collect all count_12 batches with their types\nall_batches = []\n# low_bcs and high_bcs\nfor key in ['low_bcs', 'high_bcs']:\n    types = c12_cfg[key]['types']\n    batch_id = f'count_12_{key}'\n    f1 = eval_exp2[batch_id]['text_match']['f1']\n    all_batches.append({'id': batch_id, 'types': types, 'f1': f1, \n                       'bcs_max': bcs_max(types), 'bcs_mean': bcs_mean(types)})\n# random\nfor i, batch in enumerate(c12_cfg['random']):\n    types = batch['types']\n    batch_id = f'count_12_random_{i}'\n    f1 = eval_exp2[batch_id]['text_match']['f1']\n    all_batches.append({'id': batch_id, 'types': types, 'f1': f1,\n                       'bcs_max': bcs_max(types), 'bcs_mean': bcs_mean(types)})\n\nbcs_max_arr = np.array([b['bcs_max'] for b in all_batches])\nbcs_mean_arr = np.array([b['bcs_mean'] for b in all_batches])\nf1_arr = np.array([b['f1'] for b in all_batches])\n\nr_max, p_max = stats.pearsonr(bcs_max_arr, f1_arr)\nr_mean, p_mean = stats.pearsonr(bcs_mean_arr, f1_arr)\n\nprint('=== eval_exp2 count_12 (27 batches) ===')\nprint(f'Using BCS_MAX:  r={r_max:.4f}, p={p_max:.4f}  [original reported]')\nprint(f'Using BCS_MEAN: r={r_mean:.4f}, p={p_mean:.4f}  [if we used new definition]')\nprint(f'BCS_MAX range:  [{bcs_max_arr.min():.4f}, {bcs_max_arr.max():.4f}], spread={bcs_max_arr.max()-bcs_max_arr.min():.4f}')\nprint(f'BCS_MEAN range: [{bcs_mean_arr.min():.4f}, {bcs_mean_arr.max():.4f}], spread={bcs_mean_arr.max()-bcs_mean_arr.min():.4f}')\nprint(f'F1 range: [{f1_arr.min():.4f}, {f1_arr.max():.4f}]')\n\n# Without extremes (random only)\nbcs_max_rand = bcs_max_arr[2:]\nbcs_mean_rand = bcs_mean_arr[2:]\nf1_rand = f1_arr[2:]\nr_max_r, p_max_r = stats.pearsonr(bcs_max_rand, f1_rand)\nr_mean_r, p_mean_r = stats.pearsonr(bcs_mean_rand, f1_rand)\nprint(f'\\\\nRandom-only (25 batches):')\nprint(f'Using BCS_MAX:  r={r_max_r:.4f}, p={p_max_r:.4f}')\nprint(f'Using BCS_MEAN: r={r_mean_r:.4f}, p={p_mean_r:.4f}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "092ed74d-72ed-49f6-8f37-df4da5d37b9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Xx5ZnyDHrWWAeBPG5t6jX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 72658,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-17T10:04:29.294Z_
+
+<details><summary>↩ Tool result · `toolu_01U4ryeQ1W5oMKJRzhJbekUG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== eval_exp2 count_12 (27 batches) ===\\nUsing BCS_MAX:  r=0.5804, p=0.0015  [original reported]\\nUsing BCS_MEAN: r=0.5031, p=0.0075  [if we used new definition]\\nBCS_MAX range:  [0.8920, 0.9732], spread=0.0811\\nBCS_MEAN range: [0.7791, 0.8334], spread=0.0543\\nF1 range: [0.1867, 0.4805]\\n\\nRandom-only (25 batches):\\nUsing BCS_MAX:  r=0.5725, p=0.0028\\nUsing BCS_MEAN: r=0.5164, p=0.0082\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "c02a3ff8-c129-4616-9344-0ba2866d8a27",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== eval_exp2 count_12 (27 batches) ===\\\\nUsing BCS_MAX:  r=0.5804, p=0.0015  [original reported]\\\\nUsing BCS_MEAN: r=0.5031, p=0.0075  [if we used new definition]\\\\nBCS_MAX range:  [0.8920, 0.9732], spread=0.0811\\\\nBCS_MEAN range: [0.7791, 0.8334], spread=0.0543\\\\nF1 range: [0.1867, 0.4805]\\\\n\\\\nRandom-only (25 batches):\\\\nUsing BCS_MAX:  r=0.5725, p=0.0028\\\\nUsing BCS_MEAN: r=0.5164, p=0.0082\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== eval_exp2 count_12 (27 batches) ===\\nUsing BCS_MAX:  r=0.5804, p=0.0015  [original reported]\\nUsing BCS_MEAN: r=0.5031, p=0.0075  [if we used new definition]\\nBCS_MAX range:  [0.8920, 0.9732], spread=0.0811\\nBCS_MEAN range: [0.7791, 0.8334], spread=0.0543\\nF1 range: [0.1867, 0.4805]\\n\\nRandom-only (25 batches):\\nUsing BCS_MAX:  r=0.5725, p=0.0028\\nUsing BCS_MEAN: r=0.5164, p=0.0082\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 129_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! Even with BCS_MEAN on eval_exp2 data, we still get r=0.50 (p=0.008). So the BCS definition change doesn't eliminate the correlation. The issue must be in the batch compositions themselves.
+
+Now let me check d051 count_12 per-seed with BCS_MEAN (which it already uses) to see if the correlation is truly null.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "1a75ac23-0ff5-42ce-a408-9a71f9dcfb9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HFD5pf5o5YJYvL2XrECnGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2083,
+      "cache_read_input_tokens": 73733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2083
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 130_
+
+即使用 BCS_MEAN，eval_exp2 仍然 r=0.50。问题不在 BCS 定义，而在 batch composition。现在看 d051 per-seed。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "6b462473-e457-443a-a6a5-8a8fe70fda41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HFD5pf5o5YJYvL2XrECnGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2083,
+      "cache_read_input_tokens": 73733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2083
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HtfHMqvahnLfgGUQddMWHN`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json, numpy as np\nfrom scipy import stats\n\n# d051 count_12 per-seed correlations\nseeds = ['s42', 's123', 's456']\nprint('=== d051 count_12 per-seed BCS-F1 correlations ===')\nall_bcs = []\nall_f1 = []\n\nfor seed in seeds:\n    with open(f'artifacts/d051_fewnerd_n25_{seed}/eval_results.json') as f:\n        data = json.load(f)\n    c12 = [(k, v['bcs'], v['text_match']['f1']) \n           for k, v in data.items() if v.get('count_key') == 'count_12']\n    bcs = np.array([x[1] for x in c12])\n    f1 = np.array([x[2] for x in c12])\n    all_bcs.extend(bcs)\n    all_f1.extend(f1)\n    r, p = stats.pearsonr(bcs, f1)\n    rho, p_rho = stats.spearmanr(bcs, f1)\n    print(f'  {seed}: n={len(c12)}, r={r:.4f} (p={p:.4f}), rho={rho:.4f} (p={p_rho:.4f})')\n    print(f'         BCS range: [{bcs.min():.4f}, {bcs.max():.4f}], spread={bcs.max()-bcs.min():.4f}')\n    print(f'         F1 range:  [{f1.min():.4f}, {f1.max():.4f}]')\n\nall_bcs = np.array(all_bcs)\nall_f1 = np.array(all_f1)\nr_pooled, p_pooled = stats.pearsonr(all_bcs, all_f1)\nprint(f'\\\\n  Pooled: n={len(all_bcs)}, r={r_pooled:.4f} (p={p_pooled:.4f})')\nprint(f'         BCS range: [{all_bcs.min():.4f}, {all_bcs.max():.4f}], spread={all_bcs.max()-all_bcs.min():.4f}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5b02e703-90c5-4c00-9e66-3c97135ac319",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HFD5pf5o5YJYvL2XrECnGY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2083,
+      "cache_read_input_tokens": 73733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2083
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-17T10:04:47.237Z_
+
+<details><summary>↩ Tool result · `toolu_01HtfHMqvahnLfgGUQddMWHN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== d051 count_12 per-seed BCS-F1 correlations ===\\n  s42: n=25, r=0.1891 (p=0.3654), rho=0.1531 (p=0.4651)\\n         BCS range: [0.7759, 0.8478], spread=0.0719\\n         F1 range:  [0.0921, 0.4361]\\n  s123: n=25, r=0.0209 (p=0.9212), rho=-0.0315 (p=0.8810)\\n         BCS range: [0.7776, 0.8433], spread=0.0656\\n         F1 range:  [0.1910, 0.4810]\\n  s456: n=25, r=-0.1646 (p=0.4316), rho=-0.2831 (p=0.1703)\\n         BCS range: [0.7631, 0.8315], spread=0.0684\\n         F1 range:  [0.1519, 0.4243]\\n\\n  Pooled: n=75, r=0.0026 (p=0.9822)\\n         BCS range: [0.7631, 0.8478], spread=0.0847\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "6850e617-49d9-4a32-9f32-cabdead5377a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== d051 count_12 per-seed BCS-F1 correlations ===\\\\n  s42: n=25, r=0.1891 (p=0.3654), rho=0.1531 (p=0.4651)\\\\n         BCS range: [0.7759, 0.8478], spread=0.0719\\\\n         F1 range:  [0.0921, 0.4361]\\\\n  s123: n=25, r=0.0209 (p=0.9212), rho=-0.0315 (p=0.8810)\\\\n         BCS range: [0.7776, 0.8433], spread=0.0656\\\\n         F1 range:  [0.1910, 0.4810]\\\\n  s456: n=25, r=-0.1646 (p=0.4316), rho=-0.2831 (p=0.1703)\\\\n         BCS range: [0.7631, 0.8315], spread=0.0684\\\\n         F1 range:  [0.1519, 0.4243]\\\\n\\\\n  Pooled: n=75, r=0.0026 (p=0.9822)\\\\n         BCS range: [0.7631, 0.8478], spread=0.0847\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.24}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== d051 count_12 per-seed BCS-F1 correlations ===\\n  s42: n=25, r=0.1891 (p=0.3654), rho=0.1531 (p=0.4651)\\n         BCS range: [0.7759, 0.8478], spread=0.0719\\n         F1 range:  [0.0921, 0.4361]\\n  s123: n=25, r=0.0209 (p=0.9212), rho=-0.0315 (p=0.8810)\\n         BCS range: [0.7776, 0.8433], spread=0.0656\\n         F1 range:  [0.1910, 0.4810]\\n  s456: n=25, r=-0.1646 (p=0.4316), rho=-0.2831 (p=0.1703)\\n         BCS range: [0.7631, 0.8315], spread=0.0684\\n         F1 range:  [0.1519, 0.4243]\\n\\n  Pooled: n=75, r=0.0026 (p=0.9822)\\n         BCS range: [0.7631, 0.8478], spread=0.0847\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.24}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 133_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the full picture. The BCS spread is the key:
+
+**eval_exp2 count_12**:
+- BCS_MEAN range: [0.7791, 0.8334], spread = 0.0543
+- r(BCS_MEAN, F1) = 0.5031, p=0.0075
+- n = 27
+
+**d051 count_12 per seed**:
+- s42: BCS range [0.7759, 0.8478], spread = 0.0719, r=0.1891 (NS)
+
+
+- s123: BCS range [0.7776, 0.8433], spread = 0.0656, r=0.0209 (NS)
+- s456: BCS range [0.7631, 0.8315], spread = 0.0684, r=-0.1646 (NS)
+- Pooled: BCS range [0.7631, 0.8478], spread = 0.0847, r=0.0026 (NS)
+
+The individual seed runs in d051 show comparable or even larger BCS spreads than eval_exp2, yet none of them produce the significant correlation we see in the pooled eval_exp2 data. When I pool the d051 seeds together, the spread actually increases to 0.0847, but the correlation collapses to nearly zero.
+
+This tells me the issue isn't the range of BCS values themselves—it's how the batches are composed and distributed across the F1 spectrum. Both datasets use seed=42 as their default, so d051_s42 and eval_exp2 should theoretically have the same batches, yet d051_s42 shows r=0.19 while eval_exp2 shows r=0.50. The difference must stem from how the batches were generated or selected, possibly due to different random state initialization or batch sampling procedures despite using the same seed. eval_exp2 uses `seed + count` for random batch generation (line: `rand = select_random_batches(count, 25, active_types, sim_matrix, active_idx, args.seed + count)`).
+
+And d051 uses just `seed` directly. So the batches are DIFFERENT even with the same seed=42.
+
+But the key question remains: WHY does eval_exp2 show r=0.50 while d051 shows r≈0? Same type pool (66 types), same sim matrix, similar BCS spread, same model (Qwen3-32B), same dataset (Few-NERD).
+
+Let me check if there's a difference in:
+1. Sample size per batch (eval_exp2 uses 1000 samples per batch too?)
+2. Prompt version (eval_exp2 was run with v2, d051 with what?)
+3. Any other configuration differences
+
+Now I need to verify the sample counts between eval_exp2 and d051 to see if that's where the discrepancy comes from.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "9a34b514-541a-4ecb-a630-a0e2028415b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VdyFF6PQVCoiCH79BHDcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 75816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1282
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 134_
+
+BCS spread 类似但相关系数完全不同。让我检查其他实验条件差异。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "44a6fa0e-71d8-40bd-8a85-ade1662d6261",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VdyFF6PQVCoiCH79BHDcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 75816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1282
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HmfHZAfNujij46EsnL916v`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json\n\n# Check eval_exp2 sample sizes\nwith open('artifacts/eval_exp2.json') as f:\n    exp2 = json.load(f)\n\n# Get first few count_12 batches\nfor k in ['count_12_random_0', 'count_12_random_1', 'count_12_low_bcs']:\n    v = exp2[k]\n    tm = v['text_match']\n    # total samples = total_gold? or num_samples?\n    print(f'{k}: total_pred={tm[\\\"total_pred\\\"]}, total_gold={tm[\\\"total_gold\\\"]}, tp={tm[\\\"tp\\\"]}')\n    if 'num_samples' in v:\n        print(f'  num_samples: {v[\\\"num_samples\\\"]}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "ce08c7b7-0261-437b-9c2a-c53ec44c649e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VdyFF6PQVCoiCH79BHDcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 75816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1282
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-17T10:05:12.764Z_
+
+<details><summary>↩ Tool result · `toolu_01HmfHZAfNujij46EsnL916v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"count_12_random_0: total_pred=288, total_gold=346, tp=107\\n  num_samples: 1000\\ncount_12_random_1: total_pred=627, total_gold=523, tp=151\\n  num_samples: 1000\\ncount_12_low_bcs: total_pred=333, total_gold=287, tp=71\\n  num_samples: 1000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "7f82110c-0573-4ec4-b93f-96c1e4d892bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"count_12_random_0: total_pred=288, total_gold=346, tp=107\\\\n  num_samples: 1000\\\\ncount_12_random_1: total_pred=627, total_gold=523, tp=151\\\\n  num_samples: 1000\\\\ncount_12_low_bcs: total_pred=333, total_gold=287, tp=71\\\\n  num_samples: 1000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"count_12_random_0: total_pred=288, total_gold=346, tp=107\\n  num_samples: 1000\\ncount_12_random_1: total_pred=627, total_gold=523, tp=151\\n  num_samples: 1000\\ncount_12_low_bcs: total_pred=333, total_gold=287, tp=71\\n  num_samples: 1000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QFUergLTiivJyJwtunqDYB`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json\n\n# Check d051 sample sizes\nwith open('artifacts/d051_fewnerd_n25_s42/eval_results.json') as f:\n    d051 = json.load(f)\n\nfor k in ['count_12_random_0', 'count_12_random_1', 'count_12_random_2']:\n    v = d051[k]\n    tm = v['text_match']\n    print(f'{k}: total_pred={tm[\\\"total_pred\\\"]}, total_gold={tm[\\\"total_gold\\\"]}, tp={tm[\\\"tp\\\"]}, num_samples={v.get(\\\"num_samples\\\",\\\"?\\\")}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "4ecd9e2d-19db-4c6a-99fa-5d9bdad912e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VdyFF6PQVCoiCH79BHDcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 75816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1282
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-17T10:05:15.078Z_
+
+<details><summary>↩ Tool result · `toolu_01QFUergLTiivJyJwtunqDYB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"count_12_random_0: total_pred=696, total_gold=536, tp=200, num_samples=1000\\ncount_12_random_1: total_pred=137, total_gold=493, tp=29, num_samples=1000\\ncount_12_random_2: total_pred=539, total_gold=435, tp=120, num_samples=1000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "f867de98-3dc3-4cd4-b9c0-44536b517776",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"count_12_random_0: total_pred=696, total_gold=536, tp=200, num_samples=1000\\\\ncount_12_random_1: total_pred=137, total_gold=493, tp=29, num_samples=1000\\\\ncount_12_random_2: total_pred=539, total_gold=435, tp=120, num_samples=1000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"count_12_random_0: total_pred=696, total_gold=536, tp=200, num_samples=1000\\ncount_12_random_1: total_pred=137, total_gold=493, tp=29, num_samples=1000\\ncount_12_random_2: total_pred=539, total_gold=435, tp=120, num_samples=1000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JziWi1CjkxFpWRVpidkfRL`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"prompt_version\\|v2\\|n_samples\\|max_samples\\|1000\" /root/schema-dag-extraction/scripts/run_d051_count_curves_25.py | head -15",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "a5be06d1-188b-4955-8024-a512429ed590",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VdyFF6PQVCoiCH79BHDcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1282,
+      "cache_read_input_tokens": 75816,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1282
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-17T10:05:16.507Z_
+
+<details><summary>↩ Tool result · `toolu_01JziWi1CjkxFpWRVpidkfRL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"37:DEFAULT_N_SAMPLES = 1000\\n67:    from run_extraction import build_json_schema_v2, build_prompt_v2\\n94:            schema = build_json_schema_v2(batch_types)\\n99:            prompts = [build_prompt_v2(s[\\\"text\\\"], type_definitions, batch_types)\\n121:                    \\\"prompt_version\\\": \\\"v2\\\",\\n140:    from run_extraction import build_json_schema_re, build_prompt_v2_re\\n182:                p = build_prompt_v2_re(s[\\\"text\\\"], s[\\\"head_entity\\\"], s[\\\"tail_entity\\\"],\\n337:    parser.add_argument(\\\"--max_samples\\\", type=int, default=DEFAULT_N_SAMPLES)\\n381:        samples = load_few_nerd(split=\\\"test\\\", max_samples=args.max_samples)\\n402:        n_per_rel = args.max_samples // len(all_relations)\\n414:            \\\"n_samples\\\": len(samples), \\\"n_per_rel\\\": n_per_rel,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "cd9b7a38-1f52-4784-a8f7-ea8a303bdfdd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37:DEFAULT_N_SAMPLES = 1000\\\\n67:    from run_extraction import build_json_schema_v2, build_prompt_v2\\\\n94:            schema = build_json_schema_v2(batch_types)\\\\n99:            prompts = [build_prompt_v2(s[\\\\\\\"text\\\\\\\"], type_definitions, batch_types)\\\\n121:                    \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\",\\\\n140:    from run_extraction import build_json_schema_re, build_prompt_v2_re\\\\n182:                p = build_prompt_v2_re(s[\\\\\\\"text\\\\\\\"], s[\\\\\\\"head_entity\\\\\\\"], s[\\\\\\\"tail_entity\\\\\\\"],\\\\n337:    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=DEFAULT_N_SAMPLES)\\\\n381:        samples = load_few_nerd(split=\\\\\\\"test\\\\\\\", max_samples=args.max_samples)\\\\n402:        n_per_rel = args.max_samples // len(all_relations)\\\\n414:            \\\\\\\"n_samples\\\\\\\": len(samples), \\\\\\\"n_per_rel\\\\\\\": n_per_rel,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"37:DEFAULT_N_SAMPLES = 1000\\n67:    from run_extraction import build_json_schema_v2, build_prompt_v2\\n94:            schema = build_json_schema_v2(batch_types)\\n99:            prompts = [build_prompt_v2(s[\\\"text\\\"], type_definitions, batch_types)\\n121:                    \\\"prompt_version\\\": \\\"v2\\\",\\n140:    from run_extraction import build_json_schema_re, build_prompt_v2_re\\n182:                p = build_prompt_v2_re(s[\\\"text\\\"], s[\\\"head_entity\\\"], s[\\\"tail_entity\\\"],\\n337:    parser.add_argument(\\\"--max_samples\\\", type=int, default=DEFAULT_N_SAMPLES)\\n381:        samples = load_few_nerd(split=\\\"test\\\", max_samples=args.max_samples)\\n402:        n_per_rel = args.max_samples // len(all_relations)\\n414:            \\\"n_samples\\\": len(samples), \\\"n_per_rel\\\": n_per_rel,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 141_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both use 1000 samples and prompt v2. The key difference must be the batch compositions themselves. 
+
+Let me now check what's different about the batch compositions. Looking at the gold counts:
+- eval_exp2 count_12_random_0: total_gold=346 (346 entities across 1000 passages)
+- d051 count_12_random_0: total_gold=536 (536 entities across 1000 passages)
+
+This large difference in gold counts suggests different type compositions (some types have more instances than others). The eval_exp2 batches might have a more specific relationship between type frequency and BCS.
+ 
+Now I'm wondering if type frequency is actually the confounding variable here—the d037 script already flagged that high-BCS batches tend to contain high-frequency types that models extract better, which was the D008 finding. So the positive BCS-F1 correlation in eval_exp2 might just be an artifact of this type frequency confound rather than a real effect.
+
+But d051 doesn't show this same pattern, which is strange. I need to investigate why the confound appears in one dataset but not the other by looking at how BCS and mean frequency actually correlate in each. Let me check the partial correlation script to see if it has more details on this.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "add39184-535b-4469-90fb-0aec5de42688",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013NbqaMKTz4DzWYyE58HYtF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2444,
+      "cache_read_input_tokens": 77098,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 142_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MBFGzsc22BptMnSciKPaF6`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json, torch, numpy as np\nfrom scipy import stats\n\n# Load type frequency data\nwith open('data/few_nerd_type_stats.json') as f:\n    type_stats = json.load(f)\nper_type = type_stats['per_type']\ntotal = type_stats['total_instances']\ntype_freq = {t: info['count']/total for t, info in per_type.items()}\n\n# Load batch_config_exp2 - get types for count_12\nwith open('artifacts/batch_config_exp2.json') as f:\n    batch_cfg = json.load(f)\nwith open('artifacts/eval_exp2.json') as f:\n    eval_exp2 = json.load(f)\n\n# Compute mean_freq for each eval_exp2 count_12 batch\nc12_cfg = batch_cfg['count_12']\nexp2_data = []\nfor key in ['low_bcs', 'high_bcs']:\n    types = c12_cfg[key]['types']\n    batch_id = f'count_12_{key}'\n    f1 = eval_exp2[batch_id]['text_match']['f1']\n    bcs = eval_exp2[batch_id]['bcs']\n    mf = np.mean([type_freq.get(t, 0) for t in types])\n    exp2_data.append({'id': batch_id, 'bcs': bcs, 'f1': f1, 'mean_freq': mf})\nfor i, batch in enumerate(c12_cfg['random']):\n    types = batch['types']\n    batch_id = f'count_12_random_{i}'\n    f1 = eval_exp2[batch_id]['text_match']['f1']\n    bcs = eval_exp2[batch_id]['bcs']\n    mf = np.mean([type_freq.get(t, 0) for t in types])\n    exp2_data.append({'id': batch_id, 'bcs': bcs, 'f1': f1, 'mean_freq': mf})\n\nbcs_e = np.array([d['bcs'] for d in exp2_data])\nf1_e = np.array([d['f1'] for d in exp2_data])\nfreq_e = np.array([d['mean_freq'] for d in exp2_data])\n\nr_bcs_f1, _ = stats.pearsonr(bcs_e, f1_e)\nr_bcs_freq, _ = stats.pearsonr(bcs_e, freq_e)\nr_f1_freq, _ = stats.pearsonr(f1_e, freq_e)\n\nprint('=== eval_exp2 count_12 (BCS_MAX) ===')\nprint(f'  r(BCS, F1)   = {r_bcs_f1:.4f}')\nprint(f'  r(BCS, freq) = {r_bcs_freq:.4f}')\nprint(f'  r(F1, freq)  = {r_f1_freq:.4f}')\nprint(f'  freq range: [{freq_e.min():.5f}, {freq_e.max():.5f}]')\n\n# Now compute BCS_MEAN for exp2 and check same correlations\ndata = torch.load('artifacts/sim_matrix.pt', map_location='cpu', weights_only=True)\nsm = data.get('sim_matrix', data.get('similarity_matrix'))\ntype_to_idx = data.get('type_to_idx', {n: i for i, n in enumerate(data['type_names'])})\n\ndef bcs_mean(types):\n    indices = [type_to_idx[t] for t in types if t in type_to_idx]\n    if len(indices) < 2: return 0\n    total = 0; count = 0\n    for i in range(len(indices)):\n        for j in range(i+1, len(indices)):\n            total += sm[indices[i], indices[j]].item()\n            count += 1\n    return total / count\n\nbcs_mean_e = []\nfor key in ['low_bcs', 'high_bcs']:\n    types = c12_cfg[key]['types']\n    bcs_mean_e.append(bcs_mean(types))\nfor batch in c12_cfg['random']:\n    bcs_mean_e.append(bcs_mean(batch['types']))\nbcs_mean_e = np.array(bcs_mean_e)\n\nr_bcsmean_f1, p_bcsmean_f1 = stats.pearsonr(bcs_mean_e, f1_e)\nr_bcsmean_freq, _ = stats.pearsonr(bcs_mean_e, freq_e)\nprint(f'\\\\n=== eval_exp2 count_12 (BCS_MEAN recomputed) ===')\nprint(f'  r(BCS_MEAN, F1)   = {r_bcsmean_f1:.4f} (p={p_bcsmean_f1:.4f})')\nprint(f'  r(BCS_MEAN, freq) = {r_bcsmean_freq:.4f}')\n\n# Partial correlation: BCS_MEAN vs F1 | freq\nslope_b, int_b = np.polyfit(freq_e, bcs_mean_e, 1)\nresid_bcs = bcs_mean_e - (int_b + slope_b * freq_e)\nslope_f, int_f = np.polyfit(freq_e, f1_e, 1)\nresid_f1 = f1_e - (int_f + slope_f * freq_e)\nr_partial, p_partial = stats.pearsonr(resid_bcs, resid_f1)\nprint(f'  Partial r(BCS_MEAN, F1 | freq) = {r_partial:.4f} (p={p_partial:.4f})')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "c936f492-5872-4237-bd61-c2571bcd2641",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013NbqaMKTz4DzWYyE58HYtF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2444,
+      "cache_read_input_tokens": 77098,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2444
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-17T10:05:57.414Z_
+
+<details><summary>↩ Tool result · `toolu_01MBFGzsc22BptMnSciKPaF6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== eval_exp2 count_12 (BCS_MAX) ===\\n  r(BCS, F1)   = 0.5804\\n  r(BCS, freq) = 0.5211\\n  r(F1, freq)  = 0.5931\\n  freq range: [0.00919, 0.03107]\\n\\n=== eval_exp2 count_12 (BCS_MEAN recomputed) ===\\n  r(BCS_MEAN, F1)   = 0.5031 (p=0.0075)\\n  r(BCS_MEAN, freq) = 0.5317\\n  Partial r(BCS_MEAN, F1 | freq) = 0.2754 (p=0.1645)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5e57fcfa-73cb-443b-8c2b-93ec92e50cc4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== eval_exp2 count_12 (BCS_MAX) ===\\\\n  r(BCS, F1)   = 0.5804\\\\n  r(BCS, freq) = 0.5211\\\\n  r(F1, freq)  = 0.5931\\\\n  freq range: [0.00919, 0.03107]\\\\n\\\\n=== eval_exp2 count_12 (BCS_MEAN recomputed) ===\\\\n  r(BCS_MEAN, F1)   = 0.5031 (p=0.0075)\\\\n  r(BCS_MEAN, freq) = 0.5317\\\\n  Partial r(BCS_MEAN, F1 | freq) = 0.2754 (p=0.1645)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== eval_exp2 count_12 (BCS_MAX) ===\\n  r(BCS, F1)   = 0.5804\\n  r(BCS, freq) = 0.5211\\n  r(F1, freq)  = 0.5931\\n  freq range: [0.00919, 0.03107]\\n\\n=== eval_exp2 count_12 (BCS_MEAN recomputed) ===\\n  r(BCS_MEAN, F1)   = 0.5031 (p=0.0075)\\n  r(BCS_MEAN, freq) = 0.5317\\n  Partial r(BCS_MEAN, F1 | freq) = 0.2754 (p=0.1645)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 144_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I'm seeing the full picture:
+
+**eval_exp2 count_12**:
+- r(BCS, F1) = 0.58 (BCS_MAX) / 0.50 (BCS_MEAN)
+- r(BCS, freq) = 0.52 (MAX) / 0.53 (MEAN) ← **BCS strongly correlated with type frequency!**
+- r(F1, freq) = 0.59 ← **F1 strongly correlated with type frequency**
+
+
+- Partial r(BCS_MEAN, F1 | freq) = 0.28 (p=0.16) ← **NOT significant after controlling for frequency!**
+
+So the BCS-F1 relationship in eval_exp2 is really just a frequency confound—when I account for type frequency, the correlation drops dramatically and loses significance. The batches with higher BCS scores happen to contain higher-frequency types, which is what's driving the apparent relationship. Let me check d051 next.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "eafbbb90-34e1-41a0-ace2-7bcb120fde31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSihSHrBYkt29yunGepWGV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2286,
+      "cache_read_input_tokens": 79542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2286
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 145_
+
+eval_exp2 的 BCS-F1 相关在控制 type frequency 后不显著 (partial r=0.28, p=0.16)！让我对比 d051 的 confound 结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "b28dbacb-e514-4809-9d31-96ddad14e3b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSihSHrBYkt29yunGepWGV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2286,
+      "cache_read_input_tokens": 79542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2286
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 146_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MhnEHLjYf5RRtn13LJFH1Z`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json, numpy as np\nfrom scipy import stats\n\n# Load type frequency\nwith open('data/few_nerd_type_stats.json') as f:\n    type_stats = json.load(f)\nper_type = type_stats['per_type']\ntotal = type_stats['total_instances']\ntype_freq = {t: info['count']/total for t, info in per_type.items()}\n\n# d051 count_12, all seeds pooled\nseeds = ['s42', 's123', 's456']\nd051_rows = []\n\nfor seed in seeds:\n    with open(f'artifacts/d051_fewnerd_n25_{seed}/batch_config.json') as f:\n        bcfg = json.load(f)\n    with open(f'artifacts/d051_fewnerd_n25_{seed}/eval_results.json') as f:\n        evals = json.load(f)\n    \n    c12_batches = bcfg['count_12']['random']\n    for i, batch in enumerate(c12_batches):\n        batch_id = f'count_12_random_{i}'\n        types = batch['types']\n        ev = evals[batch_id]\n        mf = np.mean([type_freq.get(t, 0) for t in types])\n        d051_rows.append({\n            'seed': seed, 'bcs': ev['bcs'], 'f1': ev['text_match']['f1'], 'mean_freq': mf\n        })\n\nbcs = np.array([r['bcs'] for r in d051_rows])\nf1 = np.array([r['f1'] for r in d051_rows])\nfreq = np.array([r['mean_freq'] for r in d051_rows])\n\nr_bcs_f1, p_bcs_f1 = stats.pearsonr(bcs, f1)\nr_bcs_freq, p_bcs_freq = stats.pearsonr(bcs, freq)\nr_f1_freq, p_f1_freq = stats.pearsonr(f1, freq)\n\nprint('=== d051 count_12 pooled (75 batches, BCS_MEAN) ===')\nprint(f'  r(BCS, F1)   = {r_bcs_f1:.4f} (p={p_bcs_f1:.4f})')\nprint(f'  r(BCS, freq) = {r_bcs_freq:.4f} (p={p_bcs_freq:.4f})')\nprint(f'  r(F1, freq)  = {r_f1_freq:.4f} (p={p_f1_freq:.4f})')\nprint(f'  freq range: [{freq.min():.5f}, {freq.max():.5f}]')\n\n# Partial\nslope_b, int_b = np.polyfit(freq, bcs, 1)\nresid_bcs = bcs - (int_b + slope_b * freq)\nslope_f, int_f = np.polyfit(freq, f1, 1)\nresid_f1 = f1 - (int_f + slope_f * freq)\nr_partial, p_partial = stats.pearsonr(resid_bcs, resid_f1)\nprint(f'  Partial r(BCS, F1 | freq) = {r_partial:.4f} (p={p_partial:.4f})')\n\nprint()\n# Per-seed\nfor seed in seeds:\n    rows = [r for r in d051_rows if r['seed'] == seed]\n    b = np.array([r['bcs'] for r in rows])\n    f = np.array([r['f1'] for r in rows])\n    fr = np.array([r['mean_freq'] for r in rows])\n    r1, p1 = stats.pearsonr(b, f)\n    r2, _ = stats.pearsonr(b, fr)\n    r3, _ = stats.pearsonr(f, fr)\n    print(f'  {seed}: r(BCS,F1)={r1:.4f}(p={p1:.3f}), r(BCS,freq)={r2:.4f}, r(F1,freq)={r3:.4f}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "2ad807da-2032-471f-a21f-d5c23e197ad5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSihSHrBYkt29yunGepWGV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2286,
+      "cache_read_input_tokens": 79542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2286
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 147 · 2026-05-17T10:06:20.375Z_
+
+<details><summary>↩ Tool result · `toolu_01MhnEHLjYf5RRtn13LJFH1Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== d051 count_12 pooled (75 batches, BCS_MEAN) ===\\n  r(BCS, F1)   = 0.0026 (p=0.9822)\\n  r(BCS, freq) = 0.1730 (p=0.1377)\\n  r(F1, freq)  = 0.5862 (p=0.0000)\\n  freq range: [0.00546, 0.03428]\\n  Partial r(BCS, F1 | freq) = -0.1238 (p=0.2898)\\n\\n  s42: r(BCS,F1)=0.1891(p=0.365), r(BCS,freq)=0.2187, r(F1,freq)=0.5211\\n  s123: r(BCS,F1)=0.0209(p=0.921), r(BCS,freq)=0.1321, r(F1,freq)=0.7422\\n  s456: r(BCS,F1)=-0.1646(p=0.432), r(BCS,freq)=0.2168, r(F1,freq)=0.4947\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.23}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "b121e8c2-c7d8-4ff9-bfaa-2c7d47d3d722",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== d051 count_12 pooled (75 batches, BCS_MEAN) ===\\\\n  r(BCS, F1)   = 0.0026 (p=0.9822)\\\\n  r(BCS, freq) = 0.1730 (p=0.1377)\\\\n  r(F1, freq)  = 0.5862 (p=0.0000)\\\\n  freq range: [0.00546, 0.03428]\\\\n  Partial r(BCS, F1 | freq) = -0.1238 (p=0.2898)\\\\n\\\\n  s42: r(BCS,F1)=0.1891(p=0.365), r(BCS,freq)=0.2187, r(F1,freq)=0.5211\\\\n  s123: r(BCS,F1)=0.0209(p=0.921), r(BCS,freq)=0.1321, r(F1,freq)=0.7422\\\\n  s456: r(BCS,F1)=-0.1646(p=0.432), r(BCS,freq)=0.2168, r(F1,freq)=0.4947\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.23}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== d051 count_12 pooled (75 batches, BCS_MEAN) ===\\n  r(BCS, F1)   = 0.0026 (p=0.9822)\\n  r(BCS, freq) = 0.1730 (p=0.1377)\\n  r(F1, freq)  = 0.5862 (p=0.0000)\\n  freq range: [0.00546, 0.03428]\\n  Partial r(BCS, F1 | freq) = -0.1238 (p=0.2898)\\n\\n  s42: r(BCS,F1)=0.1891(p=0.365), r(BCS,freq)=0.2187, r(F1,freq)=0.5211\\n  s123: r(BCS,F1)=0.0209(p=0.921), r(BCS,freq)=0.1321, r(F1,freq)=0.7422\\n  s456: r(BCS,F1)=-0.1646(p=0.432), r(BCS,freq)=0.2168, r(F1,freq)=0.4947\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.23}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 148_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete picture. Let me summarize the key finding:
+
+**eval_exp2 count_12 (source of r=+0.50/+0.58)**:
+- r(BCS, freq) = 0.53 ← BCS strongly correlated with type frequency (confound!)
+- r(F1, freq) = 0.59 ← F1 strongly correlated with type frequency
+- r(BCS, F1) = 0.50-0.58 ← appears significant
+- Partial r(BCS, F1 | freq) = 0.28 (p=0.16) ← NOT significant after controlling for frequency
+
+
+**d051 count_12 (source of Q1 r≈0.004)**:
+- r(BCS, freq) = 0.17 (p=0.14) ← BCS shows no significant frequency correlation here
+- r(F1, freq) = 0.59 ← F1 maintains the same frequency relationship
+- r(BCS, F1) = 0.003 ← essentially zero
+- Partial r(BCS, F1 | freq) = -0.12 (p=0.29) ← remains null
+
+The contrast is striking: eval_exp2's apparent BCS-F1 relationship vanishes once I account for frequency, while d051 never shows that relationship in the first place. This points to how the batch selection procedure in eval_exp2 is creating the spurious correlation.
+
+When I used seed 54 to draw 25 random batches from 66 types, those particular batches happened to confound BCS with type frequency (r=0.53). That accidental confound, layered on top of the genuine frequency-F1 link, manufactured a false BCS-F1 signal. But with different seeds and more batches in d051, this confound doesn't emerge, and the true relationship stays null. The eval_exp2 effect was entirely driven by that one unlucky batch selection.
+
+The confound persists regardless of whether I'm using BCS_MAX or BCS_MEAN, and the v1 result probably suffered from the same issue since it drew from the same 27 batches. Now I need to write up the final report and check the decision records to document what happened.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "33bee817-1b5f-4deb-952a-02c6ac827c06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzBGijQa53zmq4mnc5zouS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1881,
+      "cache_read_input_tokens": 81828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1881
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 149_
+
+根因完全明确了。让我做最后确认——检查 eval_exp2 的 27 batches 和 d051_s42 的 25 batches 是否有重叠。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "8176d45b-a301-47ca-aecc-7e16fb162635",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzBGijQa53zmq4mnc5zouS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1881,
+      "cache_read_input_tokens": 81828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1881
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 150_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AnXHM1i383oxB4R1LRb2Qt`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cd /root/schema-dag-extraction && /root/miniconda3/bin/python3.12 -c \"\nimport json\n\n# Compare batch compositions\nwith open('artifacts/batch_config_exp2.json') as f:\n    exp2_cfg = json.load(f)\nwith open('artifacts/d051_fewnerd_n25_s42/batch_config.json') as f:\n    d051_cfg = json.load(f)\n\n# exp2 count_12 random batches (types as frozensets)\nexp2_batches = [frozenset(b['types']) for b in exp2_cfg['count_12']['random']]\nd051_batches = [frozenset(b['types']) for b in d051_cfg['count_12']['random']]\n\noverlap = sum(1 for b in exp2_batches if b in d051_batches)\nprint(f'eval_exp2 count_12 random: {len(exp2_batches)} batches')\nprint(f'd051_s42 count_12 random: {len(d051_batches)} batches')\nprint(f'Exact batch overlap: {overlap}')\n\n# Check the seed used for exp2\n# run_experiment.py uses: seed + count for random_batches\n# exp2 used seed=42, count=12, so batch seed = 54\n# d051 used seed=42 directly\nprint(f'\\\\nexp2 effective seed for count_12 random: 42+12=54')\nprint(f'd051_s42 seed for count_12 random: 42')\nprint(f'Different seeds => different batch compositions confirmed')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "c38ea8d9-630e-424b-b02f-ba5925f45b62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzBGijQa53zmq4mnc5zouS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1881,
+      "cache_read_input_tokens": 81828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1881
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 151 · 2026-05-17T10:06:44.394Z_
+
+<details><summary>↩ Tool result · `toolu_01AnXHM1i383oxB4R1LRb2Qt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_exp2 count_12 random: 25 batches\\nd051_s42 count_12 random: 25 batches\\nExact batch overlap: 0\\n\\nexp2 effective seed for count_12 random: 42+12=54\\nd051_s42 seed for count_12 random: 42\\nDifferent seeds => different batch compositions confirmed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "36872181-2913-4a25-9bb3-17e3649310fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_exp2 count_12 random: 25 batches\\\\nd051_s42 count_12 random: 25 batches\\\\nExact batch overlap: 0\\\\n\\\\nexp2 effective seed for count_12 random: 42+12=54\\\\nd051_s42 seed for count_12 random: 42\\\\nDifferent seeds => different batch compositions confirmed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"eval_exp2 count_12 random: 25 batches\\nd051_s42 count_12 random: 25 batches\\nExact batch overlap: 0\\n\\nexp2 effective seed for count_12 random: 42+12=54\\nd051_s42 seed for count_12 random: 42\\nDifferent seeds => different batch compositions confirmed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 152_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Perfect. Zero batch overlap. Let me now find the decision records (D005, D008) for additional context, and then compile the full report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "dba37551-913a-4ee6-8b45-97afeb8bb151",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0198nbesvpwqdL8NnACgG41A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 83709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1374
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 153_
+
+零重叠，完全不同的 batch composition。让我看 D005/D008 决策记录以获取更多背景。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "88b7bb9c-c4d7-4bd9-a790-19df2d07fad7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0198nbesvpwqdL8NnACgG41A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 83709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1374
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 154_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YG1CJiQJt4Kz3im9zfzz6t`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*D005*\" -o -name \"*D008*\" -o -name \"*decision*\" 2>/dev/null | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5b7a7a0a-0aeb-41f2-96bd-a2c30a07fdbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0198nbesvpwqdL8NnACgG41A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 83709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1374
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 155 · 2026-05-17T10:06:50.532Z_
+
+<details><summary>↩ Tool result · `toolu_01YG1CJiQJt4Kz3im9zfzz6t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "08a6115b-5d97-4d5c-a833-dfccc068c2b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 156_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01E1Ri67EJhv7pC3qL1yG1pH`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction -name \"*.md\" | xargs grep -l \"D005\\|D008\\|0.50\\|0.58\" 2>/dev/null | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "419e2acd-e3f7-4e91-9d01-928b1ada7ee1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0198nbesvpwqdL8NnACgG41A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 83709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1374
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 157 · 2026-05-17T10:06:51.258Z_
+
+<details><summary>↩ Tool result · `toolu_01E1Ri67EJhv7pC3qL1yG1pH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/exp008/diagnosis_report.md\\n/root/schema-dag-extraction/results/eval_diagnosis.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "5d60f054-86d3-4df8-befc-3bff06abaf0b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/exp008/diagnosis_report.md\\\\n/root/schema-dag-extraction/results/eval_diagnosis.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/exp008/diagnosis_report.md\\n/root/schema-dag-extraction/results/eval_diagnosis.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 158_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015CJXvPoz8Zgd3vkMkKCfHK`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -A5 -B5 \"D005\\|D008\\|0\\.50\\|0\\.58\\|confound\" /root/schema-dag-extraction/results/eval_diagnosis.md | head -60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "32848d35-7f8a-48bf-beee-90cd7a70d59a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DaFH2BFv154h48V4qmcgsW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 85083,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 159 · 2026-05-17T10:06:56.998Z_
+
+<details><summary>↩ Tool result · `toolu_015CJXvPoz8Zgd3vkMkKCfHK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"| 2 | 0.0669 | 0.6918 | 0.1221 | 0.0676 | 0.6983 | 0.1232 | 4,795 | 464 |\\n| 6 | 0.0872 | 0.6118 | 0.1527 | 0.0884 | 0.6201 | 0.1547 | 6,777 | 966 |\\n| 12 | 0.1546 | 0.5228 | 0.2387 | 0.1595 | 0.5391 | 0.2461 | 8,084 | 2,391 |\\n| 22 | 0.2257 | 0.5130 | 0.3135 | 0.2318 | 0.5268 | 0.3220 | 10,047 | 4,421 |\\n| 44 | 0.4008 | 0.5342 | 0.4580 | 0.4135 | 0.5512 | 0.4725 | 12,660 | 9,498 |\\n| 64 | 0.5038 | 0.4053 | 0.4492 | 0.5195 | 0.4179 | 0.4632 | 10,666 | 13,260 |\\n\\n### 关键发现\\n\\n1. **原始 Exp 1 的 Relaxed F1（0.07-0.25）基本是噪声**——由错误 offset 偶然 overlap 产生\\n2. **真实性能远高于报告值**：TextF1 从 0.18（count_1）到 0.47（count_44）\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "fc2eb854-0ee1-469c-8ff5-05fa9484d479",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"| 2 | 0.0669 | 0.6918 | 0.1221 | 0.0676 | 0.6983 | 0.1232 | 4,795 | 464 |\\\\n| 6 | 0.0872 | 0.6118 | 0.1527 | 0.0884 | 0.6201 | 0.1547 | 6,777 | 966 |\\\\n| 12 | 0.1546 | 0.5228 | 0.2387 | 0.1595 | 0.5391 | 0.2461 | 8,084 | 2,391 |\\\\n| 22 | 0.2257 | 0.5130 | 0.3135 | 0.2318 | 0.5268 | 0.3220 | 10,047 | 4,421 |\\\\n| 44 | 0.4008 | 0.5342 | 0.4580 | 0.4135 | 0.5512 | 0.4725 | 12,660 | 9,498 |\\\\n| 64 | 0.5038 | 0.4053 | 0.4492 | 0.5195 | 0.4179 | 0.4632 | 10,666 | 13,260 |\\\\n\\\\n### 关键发现\\\\n\\\\n1. **原始 Exp 1 的 Relaxed F1（0.07-0.25）基本是噪声**——由错误 offset 偶然 overlap 产生\\\\n2. **真实性能远高于报告值**：TextF1 从 0.18（count_1）到 0.47（count_44）\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"| 2 | 0.0669 | 0.6918 | 0.1221 | 0.0676 | 0.6983 | 0.1232 | 4,795 | 464 |\\n| 6 | 0.0872 | 0.6118 | 0.1527 | 0.0884 | 0.6201 | 0.1547 | 6,777 | 966 |\\n| 12 | 0.1546 | 0.5228 | 0.2387 | 0.1595 | 0.5391 | 0.2461 | 8,084 | 2,391 |\\n| 22 | 0.2257 | 0.5130 | 0.3135 | 0.2318 | 0.5268 | 0.3220 | 10,047 | 4,421 |\\n| 44 | 0.4008 | 0.5342 | 0.4580 | 0.4135 | 0.5512 | 0.4725 | 12,660 | 9,498 |\\n| 64 | 0.5038 | 0.4053 | 0.4492 | 0.5195 | 0.4179 | 0.4632 | 10,666 | 13,260 |\\n\\n### 关键发现\\n\\n1. **原始 Exp 1 的 Relaxed F1（0.07-0.25）基本是噪声**——由错误 offset 偶然 overlap 产生\\n2. **真实性能远高于报告值**：TextF1 从 0.18（count_1）到 0.47（count_44）\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 160_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01P7u7eQALSK6A3TyotD2tjt`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/scripts/ner_partial_corr_v2.py | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "76be1339-3e0e-4b48-8b32-f047250c2ec3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DaFH2BFv154h48V4qmcgsW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 85083,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 600
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 161 · 2026-05-17T10:06:57.793Z_
+
+<details><summary>↩ Tool result · `toolu_01P7u7eQALSK6A3TyotD2tjt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy import stats\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nfrom pathlib import Path\\nimport os\\n\\n# Load type frequency data\\nwith open('/root/schema-dag-extraction/data/few_nerd_type_stats.json') as f:\\n    type_stats = json.load(f)\\n\\nper_type = type_stats['per_type']\\ntotal_instances = type_stats['total_instances']\\ntype_freq = {t: info['count'] / total_instances for t, info in per_type.items()}\\n\\nprint(f\\\"Total types: {len(type_freq)}, total instances: {total_instances}\\\")\\n\\n# ============================================================\\n# Collect batch-level data across all 3 seeds (d051 experiment)\\n# ============================================================\\nseeds = ['s42', 's123', 's456']\\nrows = []\\n\\nfor seed in seeds:\\n    base = f'/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_{seed}'\\n    \\n    with open(f'{base}/batch_config.json') as f:\\n        batch_config = json.load(f)\\n    with open(f'{base}/eval_results.json') as f:\\n        eval_results = json.load(f)\\n    \\n    # Build mapping: batch_id -> types\\n    batch_types_map = {}\\n    for count_key, batches_info in batch_config.items():\\n        for i, batch in enumerate(batches_info['random']):\\n            batch_id = f\\\"{count_key}_random_{i}\\\"\\n            batch_types_map[batch_id] = batch['types']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "66db1f53-7202-4512-8ed7-40880221659c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy import stats\\\\nimport matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\nfrom pathlib import Path\\\\nimport os\\\\n\\\\n# Load type frequency data\\\\nwith open('/root/schema-dag-extraction/data/few_nerd_type_stats.json') as f:\\\\n    type_stats = json.load(f)\\\\n\\\\nper_type = type_stats['per_type']\\\\ntotal_instances = type_stats['total_instances']\\\\ntype_freq = {t: info['count'] / total_instances for t, info in per_type.items()}\\\\n\\\\nprint(f\\\\\\\"Total types: {len(type_freq)}, total instances: {total_instances}\\\\\\\")\\\\n\\\\n# ============================================================\\\\n# Collect batch-level data across all 3 seeds (d051 experiment)\\\\n# ============================================================\\\\nseeds = ['s42', 's123', 's456']\\\\nrows = []\\\\n\\\\nfor seed in seeds:\\\\n    base = f'/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_{seed}'\\\\n    \\\\n    with open(f'{base}/batch_config.json') as f:\\\\n        batch_config = json.load(f)\\\\n    with open(f'{base}/eval_results.json') as f:\\\\n        eval_results = json.load(f)\\\\n    \\\\n    # Build mapping: batch_id -> types\\\\n    batch_types_map = {}\\\\n    for count_key, batches_info in batch_config.items():\\\\n        for i, batch in enumerate(batches_info['random']):\\\\n            batch_id = f\\\\\\\"{count_key}_random_{i}\\\\\\\"\\\\n            batch_types_map[batch_id] = batch['types']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy import stats\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nfrom pathlib import Path\\nimport os\\n\\n# Load type frequency data\\nwith open('/root/schema-dag-extraction/data/few_nerd_type_stats.json') as f:\\n    type_stats = json.load(f)\\n\\nper_type = type_stats['per_type']\\ntotal_instances = type_stats['total_instances']\\ntype_freq = {t: info['count'] / total_instances for t, info in per_type.items()}\\n\\nprint(f\\\"Total types: {len(type_freq)}, total instances: {total_instances}\\\")\\n\\n# ============================================================\\n# Collect batch-level data across all 3 seeds (d051 experiment)\\n# ============================================================\\nseeds = ['s42', 's123', 's456']\\nrows = []\\n\\nfor seed in seeds:\\n    base = f'/root/schema-dag-extraction/artifacts/d051_fewnerd_n25_{seed}'\\n    \\n    with open(f'{base}/batch_config.json') as f:\\n        batch_config = json.load(f)\\n    with open(f'{base}/eval_results.json') as f:\\n        eval_results = json.load(f)\\n    \\n    # Build mapping: batch_id -> types\\n    batch_types_map = {}\\n    for count_key, batches_info in batch_config.items():\\n        for i, batch in enumerate(batches_info['random']):\\n            batch_id = f\\\"{count_key}_random_{i}\\\"\\n            batch_types_map[batch_id] = batch['types']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 162_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now quickly verify: does the eval_exp2 BCS-frequency confound hold up if we look at it more carefully? Let me also check if the specific batch composition in eval_exp2 has an unusual BCS-frequency relationship vs what you'd expect by chance.
+
+Actually, I now have all the information needed to write the report. Let me compile everything.
+
+Summary of findings:
+
+1. **r=+0.50 (v1)**: From D005 decision record, NER count_12, 27 batches (25 random + 2 extremes), prompt v1, BCS=MAX. Raw data overwritten.
+
+
+2. **r=+0.58 (v2)**: From eval_exp2.json, same 27 batches, prompt v2, BCS=MAX. Confirmed in d037_ner_v2_bcs_analysis_results.json.
+3. **Q1 null (r≈0.004)**: From d051 data, 75 batches at count_12 (25×3 seeds), BCS=MEAN.
+
+The core issue is that eval_exp2 used BCS_MAX while d051 uses BCS_MEAN, but even when I apply BCS_MEAN to the eval_exp2 data, the correlation persists at r=0.50, suggesting the discrepancy runs deeper than just the BCS definition choice.
+
+The real culprit is a spurious confound in how eval_exp2's batches were selected—there's a strong accidental correlation between batch BCS values and type frequency (r=0.53), whereas d051 shows no such relationship (r=0.17). Since frequency itself genuinely predicts F1 performance (r≈0.59 in both datasets), this creates an indirect path where BCS appears to influence F1 only through frequency. When I control for frequency statistically, the BCS-F1 relationship collapses to r=0.28 (not significant) in eval_exp2, while d051 shows r=-0.12.
+
+The eval_exp2 experiment used a different random seed and only 27 samples across 25 batches, making this spurious confound look statistically significant by chance. The larger d051 study with 75 batches across three different seeds reveals the true picture: BCS has no genuine relationship with F1 at the count_12 threshold.
+
+For the paper, I should exclude the eval_exp2 correlation entirely since it's an artifact of that particular batch composition, and instead report d051's null finding as the authoritative result. The frequency confound itself is worth documenting as a methodological insight, but the r=+0.50/+0.58 needs to be removed or heavily caveated if it's already written.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "31110455-b2dc-4345-bf90-1c735c1c9e9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxxgtzQP2wndaZ4cuTZRTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 85683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1493
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 163_
+
+分析完成。以下是完整汇报：
+
+---
+
+## 调查结论：NER BCS-F1 r=+0.50/+0.58 vs Q1 null
+
+### 1. +0.50/+0.58 的确切来源
+
+| 属性 | 值 |
+|------|------|
+| 文件 | `artifacts/eval_exp2.json` + `scripts/d037/d037_ner_v2_bcs_analysis_results.json` |
+| v1 r=0.50 | D005 决策记录（原始数据已被 v2 覆盖），n=27, count_12 |
+| v2 r=0.58 | `eval_exp2.json` 直接验证, n=27 (25 random + 2 extreme), count_12 |
+| BCS 定义 | **MAX pairwise cosine similarity（旧定义）** |
+| BCS range | [0.892, 0.973] (MAX) / [0.779, 0.833] (MEAN 重算) |
+| Batch seed | seed 42+12=54（`run_experiment.py` 的 `seed + count` 逻辑） |
+| Sim matrix | `artifacts/sim_matrix.pt`（66×66, Qwen3 embeddings） |
+
+### 2. Q1 null 的确切来源
+
+| 属性 | 值 |
+|------|------|
+| 文件 | `artifacts/d051_fewnerd_n25_s{42,123,456}/eval_results.json` |
+| 结果 | `artifacts/paper/ner_partial_correlation_results.json`: r=0.0037, p=0.937 |
+| n_batches | 75 (25 per seed × 3 seeds, count_12 only) / 450 (all counts) |
+| BCS 定义 | **MEAN pairwise cosine similarity（新定义）** |
+| BCS range | [0.763, 0.848] |
+| Seeds | 42, 123, 456 |
+| Sim matrix | 同一个 `artifacts/sim_matrix.pt` |
+
+### 3. d051 count_12 per-seed BCS-F1 相关系数
+
+| Seed | n | r(BCS, F1) | p | r(BCS, freq) |
+|------|---|-----------|---|-------------|
+| s42 | 25 | +0.189 | 0.365 | +0.219 |
+| s123 | 25 | +0.021 | 0.921 | +0.132 |
+| s456 | 25 | -0.165 | 0.432 | +0.217 |
+| **Pooled** | **75** | **+0.003** | **0.982** | **+0.173 (NS)** |
+
+### 4. 矛盾根因
+
+**主因：eval_exp2 的 batch composition 恰好产生了 BCS-frequency 的虚假关联**
+
+| 对比维度 | eval_exp2 (27 batches) | d051 (75 batches) |
+|----------|----------------------|------------------|
+| r(BCS, freq) | **0.53** (强关联!) | 0.17 (NS) |
+| r(F1, freq) | 0.59 | 0.59 |
+| r(BCS, F1) raw | 0.50-0.58 | 0.003 |
+| Partial r(BCS, F1 \| freq) | **0.28 (p=0.16, NS)** | -0.12 (p=0.29, NS) |
+
+**因果链**：eval_exp2 的特定 25 个 random batches（seed=54）**恰好**产生了 BCS↔type_frequency 的相关（r=0.53）。由于 type frequency 是 F1 的真实预测因子（高频类型模型识别更好），这制造了虚假路径：BCS → freq → F1。
+
+控制 frequency 后，**两组数据的 partial r 都不显著**。eval_exp2 的 r=+0.50/+0.58 完全是 **confound-driven spurious correlation**。
+
+**次因**：
+- BCS 定义差异（MAX vs MEAN）不是主因 — BCS_MEAN 重算后 eval_exp2 仍 r=0.50
+- 零 batch 重叠（不同 seed）
+- 小样本 n=27 放大了随机偏差
+
+### 5. 建议
+
+1. **不应在论文中报告 r=+0.50/+0.58** — 这是受 type frequency confound 污染的虚假结果
+2. **使用 d051 的结论**（r≈0.00, NS）作为 NER batch-level BCS-F1 的最终结果
+3. 如果论文 §4.5 已写入这些数字，需要替换为 d051 结果，并可简要说明 frequency confound 的存在（作为 methodological insight）
+4. 关键教训：25-27 个 random batches 不足以产生可靠的相关性估计 — 特别是在高维 type space 中容易出现 spurious confounds
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "uuid": "c4984b86-2338-44bb-8997-23655c72496f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxxgtzQP2wndaZ4cuTZRTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1493,
+      "cache_read_input_tokens": 85683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1493
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 164_
+
+分析完成。以下是完整汇报：
+
+---
+
+## 调查结论：NER BCS-F1 r=+0.50/+0.58 vs Q1 null
+
+### 1. +0.50/+0.58 的确切来源
+
+| 属性 | 值 |
+|------|------|
+| 文件 | `artifacts/eval_exp2.json` + `scripts/d037/d037_ner_v2_bcs_analysis_results.json` |
+| v1 r=0.50 | D005 决策记录（原始数据已被 v2 覆盖），n=27, count_12 |
+| v2 r=0.58 | `eval_exp2.json` 直接验证, n=27 (25 random + 2 extreme), count_12 |
+| BCS 定义 | **MAX pairwise cosine similarity（旧定义）** |
+| BCS range | [0.892, 0.973] (MAX) / [0.779, 0.833] (MEAN 重算) |
+| Batch seed | seed 42+12=54（`run_experiment.py` 的 `seed + count` 逻辑） |
+| Sim matrix | `artifacts/sim_matrix.pt`（66×66, Qwen3 embeddings） |
+
+### 2. Q1 null 的确切来源
+
+| 属性 | 值 |
+|------|------|
+| 文件 | `artifacts/d051_fewnerd_n25_s{42,123,456}/eval_results.json` |
+| 结果 | `artifacts/paper/ner_partial_correlation_results.json`: r=0.0037, p=0.937 |
+| n_batches | 75 (25 per seed × 3 seeds, count_12 only) / 450 (all counts) |
+| BCS 定义 | **MEAN pairwise cosine similarity（新定义）** |
+| BCS range | [0.763, 0.848] |
+| Seeds | 42, 123, 456 |
+| Sim matrix | 同一个 `artifacts/sim_matrix.pt` |
+
+### 3. d051 count_12 per-seed BCS-F1 相关系数
+
+| Seed | n | r(BCS, F1) | p | r(BCS, freq) |
+|------|---|-----------|---|-------------|
+| s42 | 25 | +0.189 | 0.365 | +0.219 |
+| s123 | 25 | +0.021 | 0.921 | +0.132 |
+| s456 | 25 | -0.165 | 0.432 | +0.217 |
+| **Pooled** | **75** | **+0.003** | **0.982** | **+0.173 (NS)** |
+
+### 4. 矛盾根因
+
+**主因：eval_exp2 的 batch composition 恰好产生了 BCS-frequency 的虚假关联**
+
+| 对比维度 | eval_exp2 (27 batches) | d051 (75 batches) |
+|----------|----------------------|------------------|
+| r(BCS, freq) | **0.53** (强关联!) | 0.17 (NS) |
+| r(F1, freq) | 0.59 | 0.59 |
+| r(BCS, F1) raw | 0.50-0.58 | 0.003 |
+| Partial r(BCS, F1 \| freq) | **0.28 (p=0.16, NS)** | -0.12 (p=0.29, NS) |
+
+**因果链**：eval_exp2 的特定 25 个 random batches（seed=54）**恰好**产生了 BCS↔type_frequency 的相关（r=0.53）。由于 type frequency 是 F1 的真实预测因子（高频类型模型识别更好），这制造了虚假路径：BCS → freq → F1。
+
+控制 frequency 后，**两组数据的 partial r 都不显著**。eval_exp2 的 r=+0.50/+0.58 完全是 **confound-driven spurious correlation**。
+
+**次因**：
+- BCS 定义差异（MAX vs MEAN）不是主因 — BCS_MEAN 重算后 eval_exp2 仍 r=0.50
+- 零 batch 重叠（不同 seed）
+- 小样本 n=27 放大了随机偏差
+
+### 5. 建议
+
+1. **不应在论文中报告 r=+0.50/+0.58** — 这是受 type frequency confound 污染的虚假结果
+2. **使用 d051 的结论**（r≈0.00, NS）作为 NER batch-level BCS-F1 的最终结果
+3. 如果论文 §4.5 已写入这些数字，需要替换为 d051 结果，并可简要说明 frequency confound 的存在（作为 methodological insight）
+4. 关键教训：25-27 个 random batches 不足以产生可靠的相关性估计 — 特别是在高维 type space 中容易出现 spurious confounds
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 510592,
+  "duration_api_ms": 429464,
+  "num_turns": 61,
+  "stop_reason": "end_turn",
+  "session_id": "542a7435-b546-420f-9d8d-05cf84b7888a",
+  "total_cost_usd": 1.9860502499999997,
+  "usage": {
+    "input_tokens": 34,
+    "cache_creation_input_tokens": 75335,
+    "cache_read_input_tokens": 1753507,
+    "output_tokens": 25444,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 75335,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2291,
+        "cache_read_input_tokens": 85683,
+        "cache_creation_input_tokens": 1493,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1493
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2013,
+      "outputTokens": 34,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002183,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 34,
+      "outputTokens": 25444,
+      "cacheReadInputTokens": 1753507,
+      "cacheCreationInputTokens": 75335,
+      "webSearchRequests": 0,
+      "costUSD": 1.9838672499999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "692b0e3f-952a-466c-8f67-e0638810a4b4"
+}
+```
+
+</details>
+
+---

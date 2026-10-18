@@ -90,5 +90,6 @@
         }
       ]
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/code-attention-pruning-impl.md"
 }

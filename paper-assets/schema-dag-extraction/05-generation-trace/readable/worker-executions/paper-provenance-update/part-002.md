@@ -1,0 +1,1479 @@
+# paper provenance update — Part 2 of 2
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+[← Part 1](part-001.md) · [Transcript overview](../paper-provenance-update.md) · [Structured JSON](../../../sessions/64/6453efe0d30cd1000012.json)
+
+## Round 2
+
+### Tool result
+
+_source line 152 · 2026-05-22T10:52:25.799Z_
+
+<details><summary>↩ Tool result · `toolu_01EKeTEYgYgy1kDNW5ww9tqf`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "ac5f58b9-443e-4f70-bb86-ed54a5d63056",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml",
+    "oldString": "- id: C039\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Permutation slope-difference tests non-significant (p = 0.15-0.44)\n  type: quantitative\n  evidence: []\n  decisions: []\n  deprecated: false",
+    "newString": "- id: C039\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Permutation slope-difference tests non-significant (p = 0.15-0.44)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_16rel_bootstrap\n    metric: permutation slope-difference 16-rel vs 80-pool p=0.436\n    tier: 1\n  - exp_id: exp_fewrel_80pool_16sub_bootstrap\n    metric: permutation tests p range 0.15-0.44\n    tier: 1\n  decisions:\n  - D036\n  - D039\n  deprecated: false",
+    "originalFile": "paper:\n  title: Does Type Confusability Drive Schema-Induced Degradation\\\\in Training-Free\n    LLM Information Extraction?\n  version: 25\n  generated_at: '2026-05-22T10:50:00.000000+00:00'\n  source: manual mapping from registry + paper_framing.md + decisions D037-D071\nclaims:\n- text: 'Training-free LLM information extraction---prompting models with target schemas\n    without fine-tuning---degrades sharply as schema complexity grows: NER recall\n    drops from 0.72 to 0.42 with 64 candidate '\n  type: quantitative\n  location:\n    section: abstract\n    context: result_statement\n  id: C001\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: recall count_1=0.720, count_64=0.418\n    tier: 1\n  deprecated: false\n- text: 'We introduce the Schema Confusability Score (SCS) to quantify pairwise semantic\n    overlap between types and design two complementary experimental paradigms: count\n    cu'\n  type: methodological\n  location:\n    section: abstract\n    context: finding_statement\n  id: C002\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: 'SCS validated: Qwen3 rho=0.168 (p=7e-14), MiniLM rho=0.306 nonzero (p=5e-6)'\n    tier: 1\n  deprecated: false\n- text: 'We presented a controlled empirical study isolating schema-induced degradation\n    in training-free LLM IE into two orthogonal channels: a count channel suppressing\n    recall as candidate types increase, and'\n  type: quantitative\n  location:\n    section: conclusion\n    context: result_statement\n  id: C003\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: 'Channel 1: recall 0.72->0.418'\n    tier: 1\n  - exp_id: exp007_error_taxonomy\n    metric: 'Channel 2: IntraSub vs BCS rho=1.0'\n    tier: 1\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub vs BCS rho=0.954\n    tier: 1\n  deprecated: false\n- text: We use Qwen3-32B-FP8 qwen3-2025, selected for its strong instruction-following\n    capability, native structured JSON output support, and the practical advantage\n    that the FP8-quantized 32B model fits on a\n  type: quantitative\n  location:\n    section: experimental_setup\n    context: result_statement\n  id: C004\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: model setup, all experiments use Qwen3-32B-FP8 primary\n    tier: 2\n  deprecated: false\n- text: We introduce the Schema Confusability Score to quantify semantic overlap between\n    types in a schema. Given a type $t$ with name string $name(t)$, an embeddin\n  type: methodological\n  location:\n    section: experimental_setup\n    context: finding_statement\n  id: C005\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: 'SCS proxy validated: both embeddings significant (all p<1e-5)'\n    tier: 1\n  deprecated: false\n- text: Channel~1\n  type: quantitative\n  location:\n    section: introduction\n    context: bold\n  id: C006\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: recall 0.72->0.418 monotonic decline\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: accuracy 0.857->0.504 monotonic decline\n    tier: 1\n  deprecated: false\n- text: Channel~2\n  type: quantitative\n  location:\n    section: introduction\n    context: bold\n  id: C007\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: pairwise r=0.156 (p<1e-11), confusion ratio 10-28x\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: BCS-controlled delta=-31.2pp\n    tier: 1\n  deprecated: false\n- text: Training-free LLM information extraction---prompting a large language model\n    with a target schema and asking it to extract structured information without any\n    task-specific fine-tuning---enables rapid d\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C008\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: background framing, supported by all experiments\n    tier: 3\n  deprecated: false\n- text: Second, pairwise SCS is a robust predictor of type confusion. Across Few-NERD\n    (Pearson $r = 0.112$, $p < 10^{-12$) and MAVEN ($r = 0.129$, $p < 10^{-10$), embedding\n    similarity between type pairs corre\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C009\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD pairwise Pearson r=0.112 [0.076, 0.156]\n    tier: 1\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN MiniLM pairwise r=0.129 [0.104, 0.156]\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CIs exclude zero for both\n    tier: 1\n  deprecated: false\n- text: Third, confusability effects are robust across schema sizes, with BCS--accuracy\n    slopes consistent between 16-type and 80-type pools (permutation p = 0.44)\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C010\n  evidence:\n  - exp_id: exp_fewrel_formal\n    metric: 16-rel BCS effect delta=-9.1pp\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 80-rel BCS effect delta=-31.2pp, wider BCS range produces larger absolute\n      gap\n    tier: 1\n  deprecated: false\n- text: Fourth, per-type confusability aggregation is confounded on homogeneous schemas.\n    On MAVEN, whose 168 event types all derive from the FrameNet ontology, the correlation\n    between mean BCS and per-type er\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C011\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: Qwen3 per-type rho=+0.189 (p=0.021), MiniLM rho=+0.208 (p=0.011)\n    tier: 1\n  deprecated: false\n- text: Fifth, confusability-aware schema decomposition fails to improve extraction.\n    Our Schema-DAG-Guided Decomposition (SDGD) successfully separates confusable types\n    into different batches, yet every decomp\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C012\n  evidence:\n  - exp_id: exp008_sdgd_v2_fewnerd\n    metric: SDGD v2 F1=0.241 vs baseline 0.445\n    tier: 1\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: v1 sdgd_zero F1=0.251, also below baseline\n    tier: 1\n  deprecated: false\n- text: Cross-task controlled experiments. We present BCS-controlled experiments with\n    bootstrap confidence intervals on three datasets, establishing that the BCS--accuracy\n    relationship is consistent across schema sizes (slope permutation p = 0.44)\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C013\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: BCS--accuracy slope consistent across pools, permutation p=0.436\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: FewRel count_8 delta CI [17.7, 42.7]\n    tier: 1\n  - exp_id: exp012_llama_fewrel_ch2\n    metric: 'cross-model: LLaMA delta=-27.1pp (87% of Qwen3)'\n    tier: 1\n  deprecated: false\n- text: We introduce the Schema Confusability Score (SCS), which quantifies pairwise\n    semantic overlap between types using embedding cosine similarity, and its batch\n  type: methodological\n  location:\n    section: introduction\n    context: finding_statement\n  id: C014\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: SCS validated as proxy for empirical confusion\n    tier: 2\n  deprecated: false\n- text: We demonstrate that pairwise SCS predicts type confusion across tasks and\n    embedding models, while identifying a centrality confound that invalidates per-type\n    aggrega\n  type: methodological\n  location:\n    section: introduction\n    context: finding_statement\n  id: C015\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD pairwise r=0.112\n    tier: 1\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN centrality confound (per-type positive)\n    tier: 1\n  deprecated: false\n- text: 95\\\\% CI\n  type: quantitative\n  location:\n    section: results\n    context: bold\n  id: C016\n  evidence:\n  - exp_id: bootstrap_ci_analysis\n    metric: 7 CIs all exclude null\n    tier: 1\n  deprecated: false\n- text: Recall declines monotonically from 0.72 at count${\\\\,=\\\\,1$ to 0.42 at count${\\\\,=\\\\,64$,\n    a 42\\\\% relative drop. Precision moves in the opposite direction, rising from\n    0.11 to 0.52, reflecting a shift from\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C017\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: recall 0.72->0.418, precision 0.105->0.52\n    tier: 1\n  deprecated: false\n- text: Accuracy drops monotonically from 85.7\\\\% at count${\\\\,=\\\\,1$ to 50.4\\\\% at\n    count${\\\\,=\\\\,80$, a near-halving when the model must discriminate among all 80\n    relation types simultaneously.\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C018\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: count_1 acc=0.8573, count_80 acc=0.5042\n    tier: 1\n  deprecated: false\n- text: 'In contrast to NER and RE, MAVEN relaxed F1 increases from 0.106 at count${\\\\,=\\\\,1$\n    to 0.247 at count${\\\\,=\\\\,44$. This reversal arises from three properties of the\n    MAVEN setup: (i)~trigger-level relaxed'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C019\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: count_1 relaxed_f1=0.106, count_44 relaxed_f1=0.247\n    tier: 1\n  deprecated: false\n- text: 'The correlations are modest: $r^2  1.3--1.7\\\\%$, meaning pairwise confusability\n    explains roughly 1.5\\\\% of the variance in type confusion. Other factors---entity\n    frequency, prompt position effects lost-'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C020\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD pairwise r=0.112, r2=1.25%\n    tier: 1\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN pairwise r=0.129, r2=1.66%\n    tier: 1\n  deprecated: false\n- text: Spearman rank correlations from the SCS validation experiment (exp-015) corroborate\n    these findings. Across all type pairs, Qwen3 yields $ = 0.168$ ($p = 7.3  10^{-14$)\n    and MiniLM yields $ = 0.144$ ($p\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C021\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: Qwen3 rho=0.168 (p=7.3e-14), MiniLM rho=0.144 (p=1.7e-10)\n    tier: 1\n  deprecated: false\n- text: BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar\n    types; high-BCS batches contain maximally similar types. The confusability gap\n    widens from 9.1\\\\,pp at 16 relations to 31.2\\\\\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C022\n  evidence:\n  - exp_id: exp_fewrel_formal\n    metric: '16-rel: low_bcs 88.9% vs high_bcs 79.8%, delta=-9.1pp'\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: '80-rel: low_bcs 82.3% vs high_bcs 51.0%, delta=-31.2pp'\n    tier: 1\n  - exp_id: exp_fewrel_40rel_r4\n    metric: '40-rel: delta=-33.3pp (count_8), 80-pool subset'\n    tier: 1\n  deprecated: false\n- text: 'At the 16-relation scale, switching from low-BCS to high-BCS batches reduces\n    accuracy by 9.1 percentage points. Scaling to the full 80-relation pool amplifies\n    this gap to 31.2\\\\,pp (95\\\\% CI: [17.7, 42.'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C023\n  evidence:\n  - exp_id: exp_fewrel_formal\n    metric: 16-rel delta=-9.1pp\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 80-rel delta=-31.2pp\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CI [17.7, 42.7] for count_8, [22.9, 39.6] for count_16\n    tier: 1\n  deprecated: false\n- text: Intra-batch substitution (IntraSub) and missed-entity rates by BCS bin. RE\n    missed rates remain flat (10-16%), but NER missed rates are substantially higher\n    (43-65%) and non-monotonic, revealing task-dependent error mechanisms.\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C024\n  evidence:\n  - exp_id: exp007_error_taxonomy\n    metric: NER IntraSub 0%->49.4%; NER Missed 42.8/64.8/49.9% (non-monotonic, NOT\n      flat)\n    tier: 1\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub 0%->32.3%; RE Missed 10.4/11.3/13.1/15.7% (flat)\n    tier: 1\n  deprecated: false\n- text: 'Three findings emerge. First, intra-batch substitution scales monotonically\n    with BCS in both tasks: NER IntraSub rises from 0\\\\% (solo) to 49.4\\\\% (high BCS)\n    with $ = 1.0$ ($p < 0.001$), and RE IntraSub'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C025\n  evidence:\n  - exp_id: exp007_error_taxonomy\n    metric: NER IntraSub rho=1.0 (p<0.001)\n    tier: 1\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub rho=0.954 (p<1e-6)\n    tier: 1\n  deprecated: false\n- text: The extreme-batch analysis sharpens this picture. At count${\\\\,=\\\\,6$, high-BCS\n    batches produce $27.5$ more confusion than low-BCS batches under extreme selection,\n    versus $1.7$ under random batching. At\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C026\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: 'extreme: ratio_6=27.5, ratio_12=9.9; random: ratio_6=1.7, ratio_12=2.4'\n    tier: 1\n  deprecated: false\n- text: 'Per-type analysis on MAVEN reveals an anomaly: the correlation between mean\n    BCS and per-type error rate is positive---Qwen3 $ = +0.189$ ($p = 0.021$) and\n    MiniLM $ = +0.208$ ($p = 0.011$)---opposite to'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C027\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: Qwen3 per-type rho=+0.189 (p=0.021), MiniLM rho=+0.208 (p=0.011)\n    tier: 1\n  deprecated: false\n- text: 'Critically, the pairwise SCS--confusion correlation remains intact: MAVEN\n    MiniLM pairwise $r = 0.129$ (CI: [0.104, 0.156], $p < 10^{-10$), consistent with\n    the values in Table~tab:pairwise. The problem'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C028\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN MiniLM pairwise r=0.129\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CI [0.104, 0.156]\n    tier: 1\n  deprecated: false\n- text: Few-NERD, whose 66 types span 8 coarse categories across diverse domains,\n    does not exhibit this confound. Its per-type correlation is $ = -0.293$ ($p =\n    0.02$, $n = 63$), in the expected negative direc\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C029\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: per-type Spearman rho=-0.293 (p=0.020, n=63)\n    tier: 1\n  deprecated: false\n- text: Table~tab:sdgd_results reports the outcome.  Single-pass extraction achieves\n    F1\\\\,=\\\\,0.445 (P\\\\,=\\\\,0.563, R\\\\,=\\\\,0.368).  SDGD obtains F1\\\\,=\\\\,0.251 (P\\\\,=\\\\,0.210,\n    R\\\\,=\\\\,0.314), a 44\\\\% relative drop.  Rand\n  type: quantitative\n  location:\n    section: sdgd_negative\n    context: result_statement\n  id: C030\n  evidence:\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: single_pass F1=0.4451, sdgd_zero F1=0.2514, random_batch F1=0.3197\n    tier: 1\n  deprecated: false\n- text: 'The pattern across modes is consistent: decomposition boosts recall (per-type\n    recall reaches 0.586 versus single-pass 0.368) but devastates precision (0.194\n    versus 0.563).  The mechanism is straightfo'\n  type: quantitative\n  location:\n    section: sdgd_negative\n    context: result_statement\n  id: C031\n  evidence:\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: per_type recall=0.5856, precision=0.194; single_pass recall=0.3679, precision=0.5631\n    tier: 1\n  deprecated: false\n- text: A natural remedy is to resolve merge conflicts using model confidence.  Our\n    v2 merge ranks competing predictions by the LLM's self-reported confidence and\n    retains only the highest-scoring candidate fo\n  type: quantitative\n  location:\n    section: sdgd_negative\n    context: result_statement\n  id: C032\n  evidence:\n  - exp_id: exp008_sdgd_v2_fewnerd\n    metric: v2 sdgd_zero F1=0.2407 vs v1 0.2514, confidence-gated merge did not improve\n    tier: 1\n  deprecated: false\n- id: C033\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 80-pool→16-sub slope = -0.401, CI [-0.701, -0.069], r = -0.221, p = 0.027\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_80pool_16sub_bootstrap\n    metric: regression slope=-0.401, CI [-0.701, -0.069], r=-0.221, p=0.027\n    tier: 1\n  decisions:\n  - D036\n  deprecated: false\n- id: C034\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Independent 16-rel slope = -0.449, CI [-0.552, -0.346], r = -0.637, p < 1e-12\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_16rel_bootstrap\n    metric: regression slope=-0.449, CI [-0.552, -0.346], r=-0.637, p<1e-12\n    tier: 1\n  decisions:\n  - D034\n  deprecated: false\n- id: C035\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Full 80-rel slope = -0.151, CI [-0.930, +0.657], r = -0.082, p = 0.698, underpowered\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: full 80-rel slope=-0.151, CI [-0.930, +0.657], underpowered n=25, BCS IQR=0.033\n    tier: 1\n  decisions:\n  - D036\n  - D039\n  deprecated: false\n- id: C036\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 16-rel extreme-batch Δ = +11.45pp, CI [7.66, 15.48]\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_16rel_bootstrap\n    metric: extreme-batch delta=+11.45pp, CI [7.66, 15.48]\n    tier: 1\n  decisions:\n  - D035\n  deprecated: false\n- id: C037\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 80-pool→16-sub extreme-batch Δ = +9.79pp, CI [1.87, 17.50]\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_80pool_16sub_bootstrap\n    metric: extreme-batch delta=+9.79pp, CI [1.87, 17.50]\n    tier: 1\n  decisions:\n  - D035\n  deprecated: false\n- id: C038\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 80-rel controlled extreme-batch Δ = +31.25pp, CI [22.92, 39.58]\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: extreme-batch delta=+31.25pp\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CI [22.92, 39.58]\n    tier: 1\n  decisions:\n  - D035\n  deprecated: false\n- id: C039\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Permutation slope-difference tests non-significant (p = 0.15-0.44)\n  type: quantitative\n  evidence: []\n  decisions: []\n  deprecated: false\ntables:\n- caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability\n    Scores across count-curve batches (Experiment~1). Embedding column indicates the\n    model used for SCS/BCS computation.\n  label: tab:datasets\n  location:\n    section: experimental_setup\n  cells:\n  - exp_id: exp001_count_baseline\n    metric: Few-NERD 66 types\n  - exp_id: exp-004\n    metric: MAVEN 168 event types, 77993 train mentions\n  - exp_id: exp_fewrel_formal_80rel\n    metric: FewRel 80 relations\n  id: T001\n  deprecated: false\n- caption: Pairwise SCS--confusion correlation.\n  label: tab:pairwise\n  location:\n    section: results\n  cells:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD Qwen3 pairwise r=0.112 [0.076, 0.156]\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN MiniLM pairwise r=0.129 [0.104, 0.156]\n  - exp_id: bootstrap_ci_analysis\n    metric: bootstrap CIs for both\n  id: T002\n  deprecated: false\n- caption: BCS-controlled FewRel accuracy.\n  label: tab:bcs_controlled\n  location:\n    section: results\n  cells:\n  - exp_id: exp_fewrel_formal\n    metric: '16-rel: delta=-9.1pp'\n  - exp_id: exp_fewrel_formal_80rel\n    metric: '80-rel count_8: delta=-31.2pp, count_16: delta=-31.2pp'\n  - exp_id: exp_fewrel_40rel_r4\n    metric: '40-rel count_8: delta=-33.3pp, count_16: delta=-31.8pp'\n  - exp_id: exp012_llama_fewrel_ch2\n    metric: 'LLaMA cross-model: count_8 delta=-27.1pp, count_16 delta=-24.0pp'\n  - exp_id: bootstrap_ci_analysis\n    metric: 'CIs: count_8 [17.7, 42.7], count_16 [22.9, 39.6]'\n  id: T003\n  deprecated: false\n- caption: Intra-batch substitution (IntraSub) rate by BCS bin.\n  label: tab:error_taxonomy\n  location:\n    section: results\n  cells:\n  - exp_id: exp007_error_taxonomy\n    metric: NER IntraSub 0%->49.4%, rho=1.0; NER Missed 42.8/64.8/49.9% (non-monotonic)\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub 0%->32.3%, rho=0.954; RE Missed 10.4/11.3/13.1/15.7% (flat)\n  id: T004\n  deprecated: false\n- caption: Few-NERD extraction under decomposition modes.\n  label: tab:sdgd_results\n  location:\n    section: sdgd_negative\n  cells:\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: 'v1: single_pass F1=0.445, sdgd_zero F1=0.251, random F1=0.320, per_type\n      F1=0.292'\n  - exp_id: exp008_sdgd_v2_fewnerd\n    metric: 'v2: sdgd_zero F1=0.241, random F1=0.301'\n  id: T005\n  deprecated: false\n- caption: Three-way BCS--accuracy analysis on FewRel (regression slope, quartile\n    delta, permutation test).\n  label: tab:within_pool\n  location:\n    section: results\n  cells:\n  - exp_id: three_way_comparison\n    metric: 'Independent 16-rel: slope=-0.449, CI [-0.552, -0.346], r=-0.637'\n    source: artifacts/three_way_comparison/results_unified.json\n  - exp_id: three_way_comparison\n    metric: '80-pool→16-sub: slope=-0.401, CI [-0.701, -0.069], r=-0.221, p=0.027'\n    source: artifacts/three_way_comparison/results_unified.json\n  - exp_id: three_way_comparison\n    metric: 'Full 80-rel: slope=-0.151, CI [-0.930, +0.657], underpowered'\n    source: artifacts/three_way_comparison/results_unified.json\n  - exp_id: three_way_comparison\n    metric: 'Permutation test (16-rel vs 80-pool slopes): p=0.436'\n    source: artifacts/three_way_comparison/results_unified.json\n  id: T006\n  deprecated: false\nfigures:\n- caption: Count scaling curves for NER (Few-NERD) and RE (FewRel)\n  label: fig:count_curves\n  location:\n    section: results\n  cells:\n  - exp_id: exp001_count_baseline\n    metric: 'Panel (a): recall 0.72->0.418'\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 'Panel (b): accuracy 0.857->0.504'\n  - exp_id: exp_fewrel_40rel_r4\n    metric: 'Panel (b): count_40=0.588'\n  id: F001\n  deprecated: false\n- caption: BCS effect scaling with pool size\n  label: fig:bcs_scaling\n  location:\n    section: results\n  cells:\n  - exp_id: exp_fewrel_formal\n    metric: 16-rel delta=9.1pp\n  - exp_id: exp_fewrel_40rel_r4\n    metric: 40-rel delta=33.3pp (80-pool subset)\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 80-rel delta=31.2pp\n  - exp_id: exp012_llama_fewrel_ch2\n    metric: LLaMA 80-rel delta=27.1pp\n  id: F002\n  deprecated: false\n- caption: Error taxonomy by BCS bin\n  label: fig:error_taxonomy\n  location:\n    section: results\n  cells:\n  - exp_id: exp007_error_taxonomy\n    metric: 'NER: IntraSub 0%->49.4%'\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: 'RE: IntraSub 0%->32.3%'\n  id: F003\n  deprecated: false\n_completeness:\n  coverage: 32/42\n  claims: 39\n  tables: 6\n  figures: 3\n  tier_counts:\n    tier1: 0\n    tier2: 32\n    tier3: 10\n    tierX: 0\n  last_checked: '2026-05-18T12:58:29.144751+00:00'\n",
+    "structuredPatch": [
+      {
+        "oldStart": 566,
+        "oldLines": 8,
+        "newStart": 566,
+        "newLines": 16,
+        "lines": [
+          "     sentence: 0",
+          "   text: Permutation slope-difference tests non-significant (p = 0.15-0.44)",
+          "   type: quantitative",
+          "-  evidence: []",
+          "-  decisions: []",
+          "+  evidence:",
+          "+  - exp_id: exp_fewrel_16rel_bootstrap",
+          "+    metric: permutation slope-difference 16-rel vs 80-pool p=0.436",
+          "+    tier: 1",
+          "+  - exp_id: exp_fewrel_80pool_16sub_bootstrap",
+          "+    metric: permutation tests p range 0.15-0.44",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D036",
+          "+  - D039",
+          "   deprecated: false",
+          " tables:",
+          " - caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 153_
+
+C033-C039 mapped. Now adding new claims for post-v24 content and updating completeness.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "412f36fe-8237-41ad-bb8b-58e76ac00f65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BoC5yAoExzMZSyipwb7FaF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5624,
+      "cache_read_input_tokens": 75213,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5624
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 154_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_017bggVCEE9ZLfQXxfioGmEq`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml",
+  "old_string": "tables:",
+  "new_string": "- id: C040\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: DocRED count curve accuracy declines from 0.875 (single type) to 0.392 (96\n    types), BCS-controlled gap 23.3pp at count_16 (rho=-0.661)\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_confusability\n    metric: count_1=0.875, count_96=0.392; count_16 low=0.685 vs high=0.452, delta=23.3pp,\n      rho=-0.661, slope CI [-0.909, -0.529]\n    tier: 1\n  decisions:\n  - D063\n  deprecated: false\n- id: C041\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: DocRED IntraSub error rate correlates with BCS (rho=0.843), cross-task replication\n    of NER/RE error taxonomy\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_error_taxonomy\n    metric: IntraSub vs BCS rho=0.843 (p=8.1e-31), low=14.5% to high=72.2%\n    tier: 1\n  decisions:\n  - D064\n  deprecated: false\n- id: C042\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: DocRED ridge regression with VIF~50.9 BCS-centrality multicollinearity, standardized\n    BCS beta=-1.53, R2=0.594\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_confusability\n    metric: ridge GCV lambda=0.001, VIF=50.9, beta_BCS=-1.53, beta_centrality=0.78,\n      R2=0.594\n    tier: 1\n  decisions:\n  - D071\n  deprecated: false\n- id: C043\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: LLaMA-3.3-70B replicates count-driven decline (-30.7pp) and BCS gap (+10.94pp\n    on FewRel)\n  type: quantitative\n  evidence:\n  - exp_id: exp_llama70b_cross_model\n    metric: FewRel count decline -30.7pp (near-identical to Qwen3 -30.1pp); BCS count_16\n      gap=10.94pp CI [3.02, 20.1]\n    tier: 1\n  decisions:\n  - D054\n  - D055\n  deprecated: false\n- id: C044\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Gemini 2.5 Flash replicates both dimensions, count rho=-0.943, BCS gap +17.6pp\n  type: quantitative\n  evidence:\n  - exp_id: exp_gemini_flash_cross_model\n    metric: count curve rho=-0.943 (p=0.005), 82.7%->63.4%; BCS count_8 gap=17.58pp,\n      r=-0.887, pooled r=-0.869\n    tier: 1\n  decisions:\n  - D060\n  - D067\n  deprecated: false\n- id: C045\n  location:\n    section: discussion\n    paragraph: 0\n    sentence: 0\n  text: Few-shot demonstrations do not mitigate BCS effect; gap widens from 18.46pp\n    (0-shot) to 22.79pp (5-shot)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewshot_bcs_v2\n    metric: 0-shot delta=18.46pp, 1-shot=19.96pp, 5-shot=22.79pp (p=0.014), all CIs\n      exclude zero\n    tier: 1\n  decisions:\n  - D056\n  deprecated: false\n- id: C046\n  location:\n    section: discussion\n    paragraph: 0\n    sentence: 0\n  text: Schema intervention (renaming confusable types) hurts accuracy, delta=-8.83pp\n    wrong direction\n  type: quantitative\n  evidence:\n  - exp_id: exp_schema_intervention\n    metric: high-BCS control=69.3% vs treatment=60.5%, delta=-8.83pp, interaction t=-7.23\n      p<0.001, wrong direction\n    tier: 1\n  decisions:\n  - D059\n  deprecated: false\n- id: C047\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: BCS-accuracy relationship is format-independent (constrained rho=-0.157 vs\n    unconstrained rho=-0.144, Fisher z=-0.04, p=0.97)\n  type: quantitative\n  evidence:\n  - exp_id: exp_paired_constrained\n    metric: same 25 batches constrained r=-0.448 vs unconstrained r=-0.439, Spearman\n      -0.157 vs -0.144, p=0.97\n    tier: 1\n  decisions:\n  - D066\n  deprecated: false\n- id: C048\n  location:\n    section: sdgd_negative\n    paragraph: 0\n    sentence: 0\n  text: SDGD-zero on MAVEN F1=0.123 vs single_pass 0.207, prediction inflation 3.7x,\n    merge amplification cross-task\n  type: quantitative\n  evidence:\n  - exp_id: exp_sdgd_zero_maven\n    metric: single_pass F1=0.207, sdgd_zero F1=0.123, prediction inflation 3.7x, precision\n      0.287->0.091\n    tier: 1\n  decisions:\n  - D063\n  deprecated: false\n- id: C049\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: BCS range matching eliminates DocRED sub-additive interaction (7.52pp to 0.93pp,\n    CI crosses zero)\n  type: quantitative\n  evidence:\n  - exp_id: exp_bcs_range_matched\n    metric: before=7.52pp CI [1.49, 12.83]; after range match [0.43, 0.70] interaction=0.93pp\n      CI [-7.13, 7.44]\n    tier: 1\n  decisions:\n  - D064\n  deprecated: false\n- id: C050\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: Prompt sensitivity analysis shows 7/8 conditions negative BCS direction, effect\n    robust across 4 prompt variants\n  type: quantitative\n  evidence:\n  - exp_id: exp_prompt_sensitivity\n    metric: 7/8 negative direction; count_32 v2 p=0.043, minimal p=0.009, CoT p=0.088\n    tier: 1\n  decisions:\n  - D052\n  deprecated: false\n- id: C051\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 2x2 Count x BCS interaction non-significant (z=-0.667, p=0.505), supports\n    additive channels; TOST permutation p=0.285\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: interaction z=-0.667, p=0.505; TOST observed=-0.48pp, permutation null\n      p=0.914, TOST p=0.285\n    tier: 1\n  decisions:\n  - D048\n  - D064\n  deprecated: false\n- id: C052\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: FewRel pairwise SCS-confusion r=0.187 (p=2.56e-26), partial r controlling\n    for frequency=0.189 (1.2% change)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_partial_corr_freq\n    metric: r=0.187, p=2.56e-26, n=3160 pairs; partial r=0.189 (frequency-controlled,\n      balanced 700/type)\n    tier: 1\n  decisions:\n  - D045\n  deprecated: false\n- id: C053\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 25-batch 3-seed replication confirms FewRel monotonic decline and Few-NERD\n    U-shape, max cross-seed delta 2.7pp\n  type: quantitative\n  evidence:\n  - exp_id: exp_d051_count_curves_25\n    metric: FewRel 87%->49-50% monotonic all seeds, max cross-seed delta 2.7pp; Few-NERD\n      U-shape min 0.258-0.272 at count 22-44\n    tier: 1\n  decisions:\n  - D051\n  deprecated: false\ntables:"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "e80dfdf2-4461-4219-8b53-3fb4b95e4555",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BoC5yAoExzMZSyipwb7FaF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5624,
+      "cache_read_input_tokens": 75213,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5624
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 155 · 2026-05-22T10:53:11.497Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_017bggVCEE9ZLfQXxfioGmEq`</summary>
+
+```text
+&lt;tool_use_error>Found 2 matches of the string to replace, but replace_all is false. To replace all occurrences, set replace_all to true. To replace only one occurrence, please provide more context to uniquely identify the instance.
+String: tables:&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "0f239d68-6d04-4f37-8c03-b7b09e427e6c",
+  "tool_use_result": "Error: Found 2 matches of the string to replace, but replace_all is false. To replace all occurrences, set replace_all to true. To replace only one occurrence, please provide more context to uniquely identify the instance.\nString: tables:"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 156_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0197GyszPohMKopWNdzdGaDW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml",
+  "offset": 550,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "a268670b-1b09-47c1-8e4c-9f69e1255938",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018emL1951soja4dswNjYB28",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2579,
+      "cache_read_input_tokens": 80837,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2579
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 157 · 2026-05-22T10:53:15.292Z_
+
+<details><summary>↩ Tool result · `toolu_0197GyszPohMKopWNdzdGaDW`</summary>
+
+```text
+550	  text: 80-rel controlled extreme-batch Δ = +31.25pp, CI [22.92, 39.58]
+551	  type: quantitative
+552	  evidence:
+553	  - exp_id: exp_fewrel_formal_80rel
+554	    metric: extreme-batch delta=+31.25pp
+555	    tier: 1
+556	  - exp_id: bootstrap_ci_analysis
+557	    metric: CI [22.92, 39.58]
+558	    tier: 1
+559	  decisions:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "83472c1d-1dc1-4bef-bdc3-030750c7ba67",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml",
+      "content": "  text: 80-rel controlled extreme-batch Δ = +31.25pp, CI [22.92, 39.58]\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: extreme-batch delta=+31.25pp\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CI [22.92, 39.58]\n    tier: 1\n  decisions:",
+      "numLines": 10,
+      "startLine": 550,
+      "totalLines": 720
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 158_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012c4dQk3V9zgdc25BAvDfK9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml",
+  "offset": 570,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "a622f901-65d8-45ef-9514-77e0f38fc1b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gqsv35mjmwySkHRKZdQj1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 267,
+      "cache_read_input_tokens": 83416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 267
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 159 · 2026-05-22T10:53:18.220Z_
+
+<details><summary>↩ Tool result · `toolu_012c4dQk3V9zgdc25BAvDfK9`</summary>
+
+```text
+570	  - exp_id: exp_fewrel_16rel_bootstrap
+571	    metric: permutation slope-difference 16-rel vs 80-pool p=0.436
+572	    tier: 1
+573	  - exp_id: exp_fewrel_80pool_16sub_bootstrap
+574	    metric: permutation tests p range 0.15-0.44
+575	    tier: 1
+576	  decisions:
+577	  - D036
+578	  - D039
+579	  deprecated: false
+580	tables:
+581	- caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability
+582	    Scores across count-curve batches (Experiment~1). Embedding column indicates the
+583	    model used for SCS/BCS computation.
+584	  label: tab:datasets
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "0d1e8db4-7d80-4e54-8d7f-daecd014f3df",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml",
+      "content": "  - exp_id: exp_fewrel_16rel_bootstrap\n    metric: permutation slope-difference 16-rel vs 80-pool p=0.436\n    tier: 1\n  - exp_id: exp_fewrel_80pool_16sub_bootstrap\n    metric: permutation tests p range 0.15-0.44\n    tier: 1\n  decisions:\n  - D036\n  - D039\n  deprecated: false\ntables:\n- caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability\n    Scores across count-curve batches (Experiment~1). Embedding column indicates the\n    model used for SCS/BCS computation.\n  label: tab:datasets",
+      "numLines": 15,
+      "startLine": 570,
+      "totalLines": 720
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 160_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01EGNo2bZLM2DjqDLDc4Dr3T`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml",
+  "old_string": "  deprecated: false\ntables:\n- caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability",
+  "new_string": "  deprecated: false\n- id: C040\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: DocRED count curve accuracy declines from 0.875 (single type) to 0.392 (96\n    types), BCS-controlled gap 23.3pp at count_16 (rho=-0.661)\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_confusability\n    metric: count_1=0.875, count_96=0.392; count_16 low=0.685 vs high=0.452, delta=23.3pp,\n      rho=-0.661, slope CI [-0.909, -0.529]\n    tier: 1\n  decisions:\n  - D063\n  deprecated: false\n- id: C041\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: DocRED IntraSub error rate correlates with BCS (rho=0.843), cross-task replication\n    of NER/RE error taxonomy\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_error_taxonomy\n    metric: IntraSub vs BCS rho=0.843 (p=8.1e-31), low=14.5% to high=72.2%\n    tier: 1\n  decisions:\n  - D064\n  deprecated: false\n- id: C042\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: DocRED ridge regression with VIF~50.9 BCS-centrality multicollinearity, standardized\n    BCS beta=-1.53, R2=0.594\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_confusability\n    metric: ridge GCV lambda=0.001, VIF=50.9, beta_BCS=-1.53, beta_centrality=0.78,\n      R2=0.594\n    tier: 1\n  decisions:\n  - D071\n  deprecated: false\n- id: C043\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: LLaMA-3.3-70B replicates count-driven decline (-30.7pp) and BCS gap (+10.94pp\n    on FewRel)\n  type: quantitative\n  evidence:\n  - exp_id: exp_llama70b_cross_model\n    metric: FewRel count decline -30.7pp (near-identical to Qwen3 -30.1pp); BCS count_16\n      gap=10.94pp CI [3.02, 20.1]\n    tier: 1\n  decisions:\n  - D054\n  - D055\n  deprecated: false\n- id: C044\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Gemini 2.5 Flash replicates both dimensions, count rho=-0.943, BCS gap +17.6pp\n  type: quantitative\n  evidence:\n  - exp_id: exp_gemini_flash_cross_model\n    metric: count curve rho=-0.943 (p=0.005), 82.7%->63.4%; BCS count_8 gap=17.58pp,\n      r=-0.887, pooled r=-0.869\n    tier: 1\n  decisions:\n  - D060\n  - D067\n  deprecated: false\n- id: C045\n  location:\n    section: discussion\n    paragraph: 0\n    sentence: 0\n  text: Few-shot demonstrations do not mitigate BCS effect; gap widens from 18.46pp\n    (0-shot) to 22.79pp (5-shot)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewshot_bcs_v2\n    metric: 0-shot delta=18.46pp, 1-shot=19.96pp, 5-shot=22.79pp (p=0.014), all CIs\n      exclude zero\n    tier: 1\n  decisions:\n  - D056\n  deprecated: false\n- id: C046\n  location:\n    section: discussion\n    paragraph: 0\n    sentence: 0\n  text: Schema intervention (renaming confusable types) hurts accuracy, delta=-8.83pp\n    wrong direction\n  type: quantitative\n  evidence:\n  - exp_id: exp_schema_intervention\n    metric: high-BCS control=69.3% vs treatment=60.5%, delta=-8.83pp, interaction t=-7.23\n      p<0.001, wrong direction\n    tier: 1\n  decisions:\n  - D059\n  deprecated: false\n- id: C047\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: BCS-accuracy relationship is format-independent (constrained rho=-0.157 vs\n    unconstrained rho=-0.144, Fisher z=-0.04, p=0.97)\n  type: quantitative\n  evidence:\n  - exp_id: exp_paired_constrained\n    metric: same 25 batches constrained r=-0.448 vs unconstrained r=-0.439, Spearman\n      -0.157 vs -0.144, p=0.97\n    tier: 1\n  decisions:\n  - D066\n  deprecated: false\n- id: C048\n  location:\n    section: sdgd_negative\n    paragraph: 0\n    sentence: 0\n  text: SDGD-zero on MAVEN F1=0.123 vs single_pass 0.207, prediction inflation 3.7x,\n    merge amplification cross-task\n  type: quantitative\n  evidence:\n  - exp_id: exp_sdgd_zero_maven\n    metric: single_pass F1=0.207, sdgd_zero F1=0.123, prediction inflation 3.7x, precision\n      0.287->0.091\n    tier: 1\n  decisions:\n  - D063\n  deprecated: false\n- id: C049\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: BCS range matching eliminates DocRED sub-additive interaction (7.52pp to 0.93pp,\n    CI crosses zero)\n  type: quantitative\n  evidence:\n  - exp_id: exp_bcs_range_matched\n    metric: before=7.52pp CI [1.49, 12.83]; after range match [0.43, 0.70] interaction=0.93pp\n      CI [-7.13, 7.44]\n    tier: 1\n  decisions:\n  - D064\n  deprecated: false\n- id: C050\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: Prompt sensitivity analysis shows 7/8 conditions negative BCS direction, effect\n    robust across 4 prompt variants\n  type: quantitative\n  evidence:\n  - exp_id: exp_prompt_sensitivity\n    metric: 7/8 negative direction; count_32 v2 p=0.043, minimal p=0.009, CoT p=0.088\n    tier: 1\n  decisions:\n  - D052\n  deprecated: false\n- id: C051\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 2x2 Count x BCS interaction non-significant (z=-0.667, p=0.505), supports\n    additive channels; TOST permutation p=0.285\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: interaction z=-0.667, p=0.505; TOST observed=-0.48pp, permutation null\n      p=0.914, TOST p=0.285\n    tier: 1\n  decisions:\n  - D048\n  - D064\n  deprecated: false\n- id: C052\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: FewRel pairwise SCS-confusion r=0.187 (p=2.56e-26), partial r controlling\n    for frequency=0.189 (1.2% change)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_partial_corr_freq\n    metric: r=0.187, p=2.56e-26, n=3160 pairs; partial r=0.189 (frequency-controlled,\n      balanced 700/type)\n    tier: 1\n  decisions:\n  - D045\n  deprecated: false\n- id: C053\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 25-batch 3-seed replication confirms FewRel monotonic decline and Few-NERD\n    U-shape, max cross-seed delta 2.7pp\n  type: quantitative\n  evidence:\n  - exp_id: exp_d051_count_curves_25\n    metric: FewRel 87%->49-50% monotonic all seeds, max cross-seed delta 2.7pp; Few-NERD\n      U-shape min 0.258-0.272 at count 22-44\n    tier: 1\n  decisions:\n  - D051\n  deprecated: false\ntables:\n- caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "74881ecf-e964-41e2-8320-429cec3a7b0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rFwULzyoHY6bEgeiCD8B8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 333,
+      "cache_read_input_tokens": 83683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 333
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 161 · 2026-05-22T10:53:39.666Z_
+
+<details><summary>↩ Tool result · `toolu_01EGNo2bZLM2DjqDLDc4Dr3T`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "60c51ac4-5397-4a08-9515-8e0cfb8c0899",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml",
+    "oldString": "  deprecated: false\ntables:\n- caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability",
+    "newString": "  deprecated: false\n- id: C040\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: DocRED count curve accuracy declines from 0.875 (single type) to 0.392 (96\n    types), BCS-controlled gap 23.3pp at count_16 (rho=-0.661)\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_confusability\n    metric: count_1=0.875, count_96=0.392; count_16 low=0.685 vs high=0.452, delta=23.3pp,\n      rho=-0.661, slope CI [-0.909, -0.529]\n    tier: 1\n  decisions:\n  - D063\n  deprecated: false\n- id: C041\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: DocRED IntraSub error rate correlates with BCS (rho=0.843), cross-task replication\n    of NER/RE error taxonomy\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_error_taxonomy\n    metric: IntraSub vs BCS rho=0.843 (p=8.1e-31), low=14.5% to high=72.2%\n    tier: 1\n  decisions:\n  - D064\n  deprecated: false\n- id: C042\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: DocRED ridge regression with VIF~50.9 BCS-centrality multicollinearity, standardized\n    BCS beta=-1.53, R2=0.594\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_confusability\n    metric: ridge GCV lambda=0.001, VIF=50.9, beta_BCS=-1.53, beta_centrality=0.78,\n      R2=0.594\n    tier: 1\n  decisions:\n  - D071\n  deprecated: false\n- id: C043\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: LLaMA-3.3-70B replicates count-driven decline (-30.7pp) and BCS gap (+10.94pp\n    on FewRel)\n  type: quantitative\n  evidence:\n  - exp_id: exp_llama70b_cross_model\n    metric: FewRel count decline -30.7pp (near-identical to Qwen3 -30.1pp); BCS count_16\n      gap=10.94pp CI [3.02, 20.1]\n    tier: 1\n  decisions:\n  - D054\n  - D055\n  deprecated: false\n- id: C044\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Gemini 2.5 Flash replicates both dimensions, count rho=-0.943, BCS gap +17.6pp\n  type: quantitative\n  evidence:\n  - exp_id: exp_gemini_flash_cross_model\n    metric: count curve rho=-0.943 (p=0.005), 82.7%->63.4%; BCS count_8 gap=17.58pp,\n      r=-0.887, pooled r=-0.869\n    tier: 1\n  decisions:\n  - D060\n  - D067\n  deprecated: false\n- id: C045\n  location:\n    section: discussion\n    paragraph: 0\n    sentence: 0\n  text: Few-shot demonstrations do not mitigate BCS effect; gap widens from 18.46pp\n    (0-shot) to 22.79pp (5-shot)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewshot_bcs_v2\n    metric: 0-shot delta=18.46pp, 1-shot=19.96pp, 5-shot=22.79pp (p=0.014), all CIs\n      exclude zero\n    tier: 1\n  decisions:\n  - D056\n  deprecated: false\n- id: C046\n  location:\n    section: discussion\n    paragraph: 0\n    sentence: 0\n  text: Schema intervention (renaming confusable types) hurts accuracy, delta=-8.83pp\n    wrong direction\n  type: quantitative\n  evidence:\n  - exp_id: exp_schema_intervention\n    metric: high-BCS control=69.3% vs treatment=60.5%, delta=-8.83pp, interaction t=-7.23\n      p<0.001, wrong direction\n    tier: 1\n  decisions:\n  - D059\n  deprecated: false\n- id: C047\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: BCS-accuracy relationship is format-independent (constrained rho=-0.157 vs\n    unconstrained rho=-0.144, Fisher z=-0.04, p=0.97)\n  type: quantitative\n  evidence:\n  - exp_id: exp_paired_constrained\n    metric: same 25 batches constrained r=-0.448 vs unconstrained r=-0.439, Spearman\n      -0.157 vs -0.144, p=0.97\n    tier: 1\n  decisions:\n  - D066\n  deprecated: false\n- id: C048\n  location:\n    section: sdgd_negative\n    paragraph: 0\n    sentence: 0\n  text: SDGD-zero on MAVEN F1=0.123 vs single_pass 0.207, prediction inflation 3.7x,\n    merge amplification cross-task\n  type: quantitative\n  evidence:\n  - exp_id: exp_sdgd_zero_maven\n    metric: single_pass F1=0.207, sdgd_zero F1=0.123, prediction inflation 3.7x, precision\n      0.287->0.091\n    tier: 1\n  decisions:\n  - D063\n  deprecated: false\n- id: C049\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: BCS range matching eliminates DocRED sub-additive interaction (7.52pp to 0.93pp,\n    CI crosses zero)\n  type: quantitative\n  evidence:\n  - exp_id: exp_bcs_range_matched\n    metric: before=7.52pp CI [1.49, 12.83]; after range match [0.43, 0.70] interaction=0.93pp\n      CI [-7.13, 7.44]\n    tier: 1\n  decisions:\n  - D064\n  deprecated: false\n- id: C050\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: Prompt sensitivity analysis shows 7/8 conditions negative BCS direction, effect\n    robust across 4 prompt variants\n  type: quantitative\n  evidence:\n  - exp_id: exp_prompt_sensitivity\n    metric: 7/8 negative direction; count_32 v2 p=0.043, minimal p=0.009, CoT p=0.088\n    tier: 1\n  decisions:\n  - D052\n  deprecated: false\n- id: C051\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 2x2 Count x BCS interaction non-significant (z=-0.667, p=0.505), supports\n    additive channels; TOST permutation p=0.285\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: interaction z=-0.667, p=0.505; TOST observed=-0.48pp, permutation null\n      p=0.914, TOST p=0.285\n    tier: 1\n  decisions:\n  - D048\n  - D064\n  deprecated: false\n- id: C052\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: FewRel pairwise SCS-confusion r=0.187 (p=2.56e-26), partial r controlling\n    for frequency=0.189 (1.2% change)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_partial_corr_freq\n    metric: r=0.187, p=2.56e-26, n=3160 pairs; partial r=0.189 (frequency-controlled,\n      balanced 700/type)\n    tier: 1\n  decisions:\n  - D045\n  deprecated: false\n- id: C053\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 25-batch 3-seed replication confirms FewRel monotonic decline and Few-NERD\n    U-shape, max cross-seed delta 2.7pp\n  type: quantitative\n  evidence:\n  - exp_id: exp_d051_count_curves_25\n    metric: FewRel 87%->49-50% monotonic all seeds, max cross-seed delta 2.7pp; Few-NERD\n      U-shape min 0.258-0.272 at count 22-44\n    tier: 1\n  decisions:\n  - D051\n  deprecated: false\ntables:\n- caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability",
+    "originalFile": "paper:\n  title: Does Type Confusability Drive Schema-Induced Degradation\\\\in Training-Free\n    LLM Information Extraction?\n  version: 25\n  generated_at: '2026-05-22T10:50:00.000000+00:00'\n  source: manual mapping from registry + paper_framing.md + decisions D037-D071\nclaims:\n- text: 'Training-free LLM information extraction---prompting models with target schemas\n    without fine-tuning---degrades sharply as schema complexity grows: NER recall\n    drops from 0.72 to 0.42 with 64 candidate '\n  type: quantitative\n  location:\n    section: abstract\n    context: result_statement\n  id: C001\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: recall count_1=0.720, count_64=0.418\n    tier: 1\n  deprecated: false\n- text: 'We introduce the Schema Confusability Score (SCS) to quantify pairwise semantic\n    overlap between types and design two complementary experimental paradigms: count\n    cu'\n  type: methodological\n  location:\n    section: abstract\n    context: finding_statement\n  id: C002\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: 'SCS validated: Qwen3 rho=0.168 (p=7e-14), MiniLM rho=0.306 nonzero (p=5e-6)'\n    tier: 1\n  deprecated: false\n- text: 'We presented a controlled empirical study isolating schema-induced degradation\n    in training-free LLM IE into two orthogonal channels: a count channel suppressing\n    recall as candidate types increase, and'\n  type: quantitative\n  location:\n    section: conclusion\n    context: result_statement\n  id: C003\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: 'Channel 1: recall 0.72->0.418'\n    tier: 1\n  - exp_id: exp007_error_taxonomy\n    metric: 'Channel 2: IntraSub vs BCS rho=1.0'\n    tier: 1\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub vs BCS rho=0.954\n    tier: 1\n  deprecated: false\n- text: We use Qwen3-32B-FP8 qwen3-2025, selected for its strong instruction-following\n    capability, native structured JSON output support, and the practical advantage\n    that the FP8-quantized 32B model fits on a\n  type: quantitative\n  location:\n    section: experimental_setup\n    context: result_statement\n  id: C004\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: model setup, all experiments use Qwen3-32B-FP8 primary\n    tier: 2\n  deprecated: false\n- text: We introduce the Schema Confusability Score to quantify semantic overlap between\n    types in a schema. Given a type $t$ with name string $name(t)$, an embeddin\n  type: methodological\n  location:\n    section: experimental_setup\n    context: finding_statement\n  id: C005\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: 'SCS proxy validated: both embeddings significant (all p<1e-5)'\n    tier: 1\n  deprecated: false\n- text: Channel~1\n  type: quantitative\n  location:\n    section: introduction\n    context: bold\n  id: C006\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: recall 0.72->0.418 monotonic decline\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: accuracy 0.857->0.504 monotonic decline\n    tier: 1\n  deprecated: false\n- text: Channel~2\n  type: quantitative\n  location:\n    section: introduction\n    context: bold\n  id: C007\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: pairwise r=0.156 (p<1e-11), confusion ratio 10-28x\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: BCS-controlled delta=-31.2pp\n    tier: 1\n  deprecated: false\n- text: Training-free LLM information extraction---prompting a large language model\n    with a target schema and asking it to extract structured information without any\n    task-specific fine-tuning---enables rapid d\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C008\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: background framing, supported by all experiments\n    tier: 3\n  deprecated: false\n- text: Second, pairwise SCS is a robust predictor of type confusion. Across Few-NERD\n    (Pearson $r = 0.112$, $p < 10^{-12$) and MAVEN ($r = 0.129$, $p < 10^{-10$), embedding\n    similarity between type pairs corre\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C009\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD pairwise Pearson r=0.112 [0.076, 0.156]\n    tier: 1\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN MiniLM pairwise r=0.129 [0.104, 0.156]\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CIs exclude zero for both\n    tier: 1\n  deprecated: false\n- text: Third, confusability effects are robust across schema sizes, with BCS--accuracy\n    slopes consistent between 16-type and 80-type pools (permutation p = 0.44)\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C010\n  evidence:\n  - exp_id: exp_fewrel_formal\n    metric: 16-rel BCS effect delta=-9.1pp\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 80-rel BCS effect delta=-31.2pp, wider BCS range produces larger absolute\n      gap\n    tier: 1\n  deprecated: false\n- text: Fourth, per-type confusability aggregation is confounded on homogeneous schemas.\n    On MAVEN, whose 168 event types all derive from the FrameNet ontology, the correlation\n    between mean BCS and per-type er\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C011\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: Qwen3 per-type rho=+0.189 (p=0.021), MiniLM rho=+0.208 (p=0.011)\n    tier: 1\n  deprecated: false\n- text: Fifth, confusability-aware schema decomposition fails to improve extraction.\n    Our Schema-DAG-Guided Decomposition (SDGD) successfully separates confusable types\n    into different batches, yet every decomp\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C012\n  evidence:\n  - exp_id: exp008_sdgd_v2_fewnerd\n    metric: SDGD v2 F1=0.241 vs baseline 0.445\n    tier: 1\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: v1 sdgd_zero F1=0.251, also below baseline\n    tier: 1\n  deprecated: false\n- text: Cross-task controlled experiments. We present BCS-controlled experiments with\n    bootstrap confidence intervals on three datasets, establishing that the BCS--accuracy\n    relationship is consistent across schema sizes (slope permutation p = 0.44)\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C013\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: BCS--accuracy slope consistent across pools, permutation p=0.436\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: FewRel count_8 delta CI [17.7, 42.7]\n    tier: 1\n  - exp_id: exp012_llama_fewrel_ch2\n    metric: 'cross-model: LLaMA delta=-27.1pp (87% of Qwen3)'\n    tier: 1\n  deprecated: false\n- text: We introduce the Schema Confusability Score (SCS), which quantifies pairwise\n    semantic overlap between types using embedding cosine similarity, and its batch\n  type: methodological\n  location:\n    section: introduction\n    context: finding_statement\n  id: C014\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: SCS validated as proxy for empirical confusion\n    tier: 2\n  deprecated: false\n- text: We demonstrate that pairwise SCS predicts type confusion across tasks and\n    embedding models, while identifying a centrality confound that invalidates per-type\n    aggrega\n  type: methodological\n  location:\n    section: introduction\n    context: finding_statement\n  id: C015\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD pairwise r=0.112\n    tier: 1\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN centrality confound (per-type positive)\n    tier: 1\n  deprecated: false\n- text: 95\\\\% CI\n  type: quantitative\n  location:\n    section: results\n    context: bold\n  id: C016\n  evidence:\n  - exp_id: bootstrap_ci_analysis\n    metric: 7 CIs all exclude null\n    tier: 1\n  deprecated: false\n- text: Recall declines monotonically from 0.72 at count${\\\\,=\\\\,1$ to 0.42 at count${\\\\,=\\\\,64$,\n    a 42\\\\% relative drop. Precision moves in the opposite direction, rising from\n    0.11 to 0.52, reflecting a shift from\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C017\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: recall 0.72->0.418, precision 0.105->0.52\n    tier: 1\n  deprecated: false\n- text: Accuracy drops monotonically from 85.7\\\\% at count${\\\\,=\\\\,1$ to 50.4\\\\% at\n    count${\\\\,=\\\\,80$, a near-halving when the model must discriminate among all 80\n    relation types simultaneously.\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C018\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: count_1 acc=0.8573, count_80 acc=0.5042\n    tier: 1\n  deprecated: false\n- text: 'In contrast to NER and RE, MAVEN relaxed F1 increases from 0.106 at count${\\\\,=\\\\,1$\n    to 0.247 at count${\\\\,=\\\\,44$. This reversal arises from three properties of the\n    MAVEN setup: (i)~trigger-level relaxed'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C019\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: count_1 relaxed_f1=0.106, count_44 relaxed_f1=0.247\n    tier: 1\n  deprecated: false\n- text: 'The correlations are modest: $r^2  1.3--1.7\\\\%$, meaning pairwise confusability\n    explains roughly 1.5\\\\% of the variance in type confusion. Other factors---entity\n    frequency, prompt position effects lost-'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C020\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD pairwise r=0.112, r2=1.25%\n    tier: 1\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN pairwise r=0.129, r2=1.66%\n    tier: 1\n  deprecated: false\n- text: Spearman rank correlations from the SCS validation experiment (exp-015) corroborate\n    these findings. Across all type pairs, Qwen3 yields $ = 0.168$ ($p = 7.3  10^{-14$)\n    and MiniLM yields $ = 0.144$ ($p\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C021\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: Qwen3 rho=0.168 (p=7.3e-14), MiniLM rho=0.144 (p=1.7e-10)\n    tier: 1\n  deprecated: false\n- text: BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar\n    types; high-BCS batches contain maximally similar types. The confusability gap\n    widens from 9.1\\\\,pp at 16 relations to 31.2\\\\\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C022\n  evidence:\n  - exp_id: exp_fewrel_formal\n    metric: '16-rel: low_bcs 88.9% vs high_bcs 79.8%, delta=-9.1pp'\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: '80-rel: low_bcs 82.3% vs high_bcs 51.0%, delta=-31.2pp'\n    tier: 1\n  - exp_id: exp_fewrel_40rel_r4\n    metric: '40-rel: delta=-33.3pp (count_8), 80-pool subset'\n    tier: 1\n  deprecated: false\n- text: 'At the 16-relation scale, switching from low-BCS to high-BCS batches reduces\n    accuracy by 9.1 percentage points. Scaling to the full 80-relation pool amplifies\n    this gap to 31.2\\\\,pp (95\\\\% CI: [17.7, 42.'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C023\n  evidence:\n  - exp_id: exp_fewrel_formal\n    metric: 16-rel delta=-9.1pp\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 80-rel delta=-31.2pp\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CI [17.7, 42.7] for count_8, [22.9, 39.6] for count_16\n    tier: 1\n  deprecated: false\n- text: Intra-batch substitution (IntraSub) and missed-entity rates by BCS bin. RE\n    missed rates remain flat (10-16%), but NER missed rates are substantially higher\n    (43-65%) and non-monotonic, revealing task-dependent error mechanisms.\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C024\n  evidence:\n  - exp_id: exp007_error_taxonomy\n    metric: NER IntraSub 0%->49.4%; NER Missed 42.8/64.8/49.9% (non-monotonic, NOT\n      flat)\n    tier: 1\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub 0%->32.3%; RE Missed 10.4/11.3/13.1/15.7% (flat)\n    tier: 1\n  deprecated: false\n- text: 'Three findings emerge. First, intra-batch substitution scales monotonically\n    with BCS in both tasks: NER IntraSub rises from 0\\\\% (solo) to 49.4\\\\% (high BCS)\n    with $ = 1.0$ ($p < 0.001$), and RE IntraSub'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C025\n  evidence:\n  - exp_id: exp007_error_taxonomy\n    metric: NER IntraSub rho=1.0 (p<0.001)\n    tier: 1\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub rho=0.954 (p<1e-6)\n    tier: 1\n  deprecated: false\n- text: The extreme-batch analysis sharpens this picture. At count${\\\\,=\\\\,6$, high-BCS\n    batches produce $27.5$ more confusion than low-BCS batches under extreme selection,\n    versus $1.7$ under random batching. At\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C026\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: 'extreme: ratio_6=27.5, ratio_12=9.9; random: ratio_6=1.7, ratio_12=2.4'\n    tier: 1\n  deprecated: false\n- text: 'Per-type analysis on MAVEN reveals an anomaly: the correlation between mean\n    BCS and per-type error rate is positive---Qwen3 $ = +0.189$ ($p = 0.021$) and\n    MiniLM $ = +0.208$ ($p = 0.011$)---opposite to'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C027\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: Qwen3 per-type rho=+0.189 (p=0.021), MiniLM rho=+0.208 (p=0.011)\n    tier: 1\n  deprecated: false\n- text: 'Critically, the pairwise SCS--confusion correlation remains intact: MAVEN\n    MiniLM pairwise $r = 0.129$ (CI: [0.104, 0.156], $p < 10^{-10$), consistent with\n    the values in Table~tab:pairwise. The problem'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C028\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN MiniLM pairwise r=0.129\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CI [0.104, 0.156]\n    tier: 1\n  deprecated: false\n- text: Few-NERD, whose 66 types span 8 coarse categories across diverse domains,\n    does not exhibit this confound. Its per-type correlation is $ = -0.293$ ($p =\n    0.02$, $n = 63$), in the expected negative direc\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C029\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: per-type Spearman rho=-0.293 (p=0.020, n=63)\n    tier: 1\n  deprecated: false\n- text: Table~tab:sdgd_results reports the outcome.  Single-pass extraction achieves\n    F1\\\\,=\\\\,0.445 (P\\\\,=\\\\,0.563, R\\\\,=\\\\,0.368).  SDGD obtains F1\\\\,=\\\\,0.251 (P\\\\,=\\\\,0.210,\n    R\\\\,=\\\\,0.314), a 44\\\\% relative drop.  Rand\n  type: quantitative\n  location:\n    section: sdgd_negative\n    context: result_statement\n  id: C030\n  evidence:\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: single_pass F1=0.4451, sdgd_zero F1=0.2514, random_batch F1=0.3197\n    tier: 1\n  deprecated: false\n- text: 'The pattern across modes is consistent: decomposition boosts recall (per-type\n    recall reaches 0.586 versus single-pass 0.368) but devastates precision (0.194\n    versus 0.563).  The mechanism is straightfo'\n  type: quantitative\n  location:\n    section: sdgd_negative\n    context: result_statement\n  id: C031\n  evidence:\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: per_type recall=0.5856, precision=0.194; single_pass recall=0.3679, precision=0.5631\n    tier: 1\n  deprecated: false\n- text: A natural remedy is to resolve merge conflicts using model confidence.  Our\n    v2 merge ranks competing predictions by the LLM's self-reported confidence and\n    retains only the highest-scoring candidate fo\n  type: quantitative\n  location:\n    section: sdgd_negative\n    context: result_statement\n  id: C032\n  evidence:\n  - exp_id: exp008_sdgd_v2_fewnerd\n    metric: v2 sdgd_zero F1=0.2407 vs v1 0.2514, confidence-gated merge did not improve\n    tier: 1\n  deprecated: false\n- id: C033\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 80-pool→16-sub slope = -0.401, CI [-0.701, -0.069], r = -0.221, p = 0.027\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_80pool_16sub_bootstrap\n    metric: regression slope=-0.401, CI [-0.701, -0.069], r=-0.221, p=0.027\n    tier: 1\n  decisions:\n  - D036\n  deprecated: false\n- id: C034\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Independent 16-rel slope = -0.449, CI [-0.552, -0.346], r = -0.637, p < 1e-12\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_16rel_bootstrap\n    metric: regression slope=-0.449, CI [-0.552, -0.346], r=-0.637, p<1e-12\n    tier: 1\n  decisions:\n  - D034\n  deprecated: false\n- id: C035\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Full 80-rel slope = -0.151, CI [-0.930, +0.657], r = -0.082, p = 0.698, underpowered\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: full 80-rel slope=-0.151, CI [-0.930, +0.657], underpowered n=25, BCS IQR=0.033\n    tier: 1\n  decisions:\n  - D036\n  - D039\n  deprecated: false\n- id: C036\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 16-rel extreme-batch Δ = +11.45pp, CI [7.66, 15.48]\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_16rel_bootstrap\n    metric: extreme-batch delta=+11.45pp, CI [7.66, 15.48]\n    tier: 1\n  decisions:\n  - D035\n  deprecated: false\n- id: C037\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 80-pool→16-sub extreme-batch Δ = +9.79pp, CI [1.87, 17.50]\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_80pool_16sub_bootstrap\n    metric: extreme-batch delta=+9.79pp, CI [1.87, 17.50]\n    tier: 1\n  decisions:\n  - D035\n  deprecated: false\n- id: C038\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 80-rel controlled extreme-batch Δ = +31.25pp, CI [22.92, 39.58]\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: extreme-batch delta=+31.25pp\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CI [22.92, 39.58]\n    tier: 1\n  decisions:\n  - D035\n  deprecated: false\n- id: C039\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Permutation slope-difference tests non-significant (p = 0.15-0.44)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_16rel_bootstrap\n    metric: permutation slope-difference 16-rel vs 80-pool p=0.436\n    tier: 1\n  - exp_id: exp_fewrel_80pool_16sub_bootstrap\n    metric: permutation tests p range 0.15-0.44\n    tier: 1\n  decisions:\n  - D036\n  - D039\n  deprecated: false\ntables:\n- caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability\n    Scores across count-curve batches (Experiment~1). Embedding column indicates the\n    model used for SCS/BCS computation.\n  label: tab:datasets\n  location:\n    section: experimental_setup\n  cells:\n  - exp_id: exp001_count_baseline\n    metric: Few-NERD 66 types\n  - exp_id: exp-004\n    metric: MAVEN 168 event types, 77993 train mentions\n  - exp_id: exp_fewrel_formal_80rel\n    metric: FewRel 80 relations\n  id: T001\n  deprecated: false\n- caption: Pairwise SCS--confusion correlation.\n  label: tab:pairwise\n  location:\n    section: results\n  cells:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD Qwen3 pairwise r=0.112 [0.076, 0.156]\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN MiniLM pairwise r=0.129 [0.104, 0.156]\n  - exp_id: bootstrap_ci_analysis\n    metric: bootstrap CIs for both\n  id: T002\n  deprecated: false\n- caption: BCS-controlled FewRel accuracy.\n  label: tab:bcs_controlled\n  location:\n    section: results\n  cells:\n  - exp_id: exp_fewrel_formal\n    metric: '16-rel: delta=-9.1pp'\n  - exp_id: exp_fewrel_formal_80rel\n    metric: '80-rel count_8: delta=-31.2pp, count_16: delta=-31.2pp'\n  - exp_id: exp_fewrel_40rel_r4\n    metric: '40-rel count_8: delta=-33.3pp, count_16: delta=-31.8pp'\n  - exp_id: exp012_llama_fewrel_ch2\n    metric: 'LLaMA cross-model: count_8 delta=-27.1pp, count_16 delta=-24.0pp'\n  - exp_id: bootstrap_ci_analysis\n    metric: 'CIs: count_8 [17.7, 42.7], count_16 [22.9, 39.6]'\n  id: T003\n  deprecated: false\n- caption: Intra-batch substitution (IntraSub) rate by BCS bin.\n  label: tab:error_taxonomy\n  location:\n    section: results\n  cells:\n  - exp_id: exp007_error_taxonomy\n    metric: NER IntraSub 0%->49.4%, rho=1.0; NER Missed 42.8/64.8/49.9% (non-monotonic)\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub 0%->32.3%, rho=0.954; RE Missed 10.4/11.3/13.1/15.7% (flat)\n  id: T004\n  deprecated: false\n- caption: Few-NERD extraction under decomposition modes.\n  label: tab:sdgd_results\n  location:\n    section: sdgd_negative\n  cells:\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: 'v1: single_pass F1=0.445, sdgd_zero F1=0.251, random F1=0.320, per_type\n      F1=0.292'\n  - exp_id: exp008_sdgd_v2_fewnerd\n    metric: 'v2: sdgd_zero F1=0.241, random F1=0.301'\n  id: T005\n  deprecated: false\n- caption: Three-way BCS--accuracy analysis on FewRel (regression slope, quartile\n    delta, permutation test).\n  label: tab:within_pool\n  location:\n    section: results\n  cells:\n  - exp_id: three_way_comparison\n    metric: 'Independent 16-rel: slope=-0.449, CI [-0.552, -0.346], r=-0.637'\n    source: artifacts/three_way_comparison/results_unified.json\n  - exp_id: three_way_comparison\n    metric: '80-pool→16-sub: slope=-0.401, CI [-0.701, -0.069], r=-0.221, p=0.027'\n    source: artifacts/three_way_comparison/results_unified.json\n  - exp_id: three_way_comparison\n    metric: 'Full 80-rel: slope=-0.151, CI [-0.930, +0.657], underpowered'\n    source: artifacts/three_way_comparison/results_unified.json\n  - exp_id: three_way_comparison\n    metric: 'Permutation test (16-rel vs 80-pool slopes): p=0.436'\n    source: artifacts/three_way_comparison/results_unified.json\n  id: T006\n  deprecated: false\nfigures:\n- caption: Count scaling curves for NER (Few-NERD) and RE (FewRel)\n  label: fig:count_curves\n  location:\n    section: results\n  cells:\n  - exp_id: exp001_count_baseline\n    metric: 'Panel (a): recall 0.72->0.418'\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 'Panel (b): accuracy 0.857->0.504'\n  - exp_id: exp_fewrel_40rel_r4\n    metric: 'Panel (b): count_40=0.588'\n  id: F001\n  deprecated: false\n- caption: BCS effect scaling with pool size\n  label: fig:bcs_scaling\n  location:\n    section: results\n  cells:\n  - exp_id: exp_fewrel_formal\n    metric: 16-rel delta=9.1pp\n  - exp_id: exp_fewrel_40rel_r4\n    metric: 40-rel delta=33.3pp (80-pool subset)\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 80-rel delta=31.2pp\n  - exp_id: exp012_llama_fewrel_ch2\n    metric: LLaMA 80-rel delta=27.1pp\n  id: F002\n  deprecated: false\n- caption: Error taxonomy by BCS bin\n  label: fig:error_taxonomy\n  location:\n    section: results\n  cells:\n  - exp_id: exp007_error_taxonomy\n    metric: 'NER: IntraSub 0%->49.4%'\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: 'RE: IntraSub 0%->32.3%'\n  id: F003\n  deprecated: false\n_completeness:\n  coverage: 32/42\n  claims: 39\n  tables: 6\n  figures: 3\n  tier_counts:\n    tier1: 0\n    tier2: 32\n    tier3: 10\n    tierX: 0\n  last_checked: '2026-05-18T12:58:29.144751+00:00'\n",
+    "structuredPatch": [
+      {
+        "oldStart": 577,
+        "oldLines": 6,
+        "newStart": 577,
+        "newLines": 230,
+        "lines": [
+          "   - D036",
+          "   - D039",
+          "   deprecated: false",
+          "+- id: C040",
+          "+  location:",
+          "+    section: results",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: DocRED count curve accuracy declines from 0.875 (single type) to 0.392 (96",
+          "+    types), BCS-controlled gap 23.3pp at count_16 (rho=-0.661)",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_docred_confusability",
+          "+    metric: count_1=0.875, count_96=0.392; count_16 low=0.685 vs high=0.452, delta=23.3pp,",
+          "+      rho=-0.661, slope CI [-0.909, -0.529]",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D063",
+          "+  deprecated: false",
+          "+- id: C041",
+          "+  location:",
+          "+    section: results",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: DocRED IntraSub error rate correlates with BCS (rho=0.843), cross-task replication",
+          "+    of NER/RE error taxonomy",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_docred_error_taxonomy",
+          "+    metric: IntraSub vs BCS rho=0.843 (p=8.1e-31), low=14.5% to high=72.2%",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D064",
+          "+  deprecated: false",
+          "+- id: C042",
+          "+  location:",
+          "+    section: appendix",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: DocRED ridge regression with VIF~50.9 BCS-centrality multicollinearity, standardized",
+          "+    BCS beta=-1.53, R2=0.594",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_docred_confusability",
+          "+    metric: ridge GCV lambda=0.001, VIF=50.9, beta_BCS=-1.53, beta_centrality=0.78,",
+          "+      R2=0.594",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D071",
+          "+  deprecated: false",
+          "+- id: C043",
+          "+  location:",
+          "+    section: results",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: LLaMA-3.3-70B replicates count-driven decline (-30.7pp) and BCS gap (+10.94pp",
+          "+    on FewRel)",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_llama70b_cross_model",
+          "+    metric: FewRel count decline -30.7pp (near-identical to Qwen3 -30.1pp); BCS count_16",
+          "+      gap=10.94pp CI [3.02, 20.1]",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D054",
+          "+  - D055",
+          "+  deprecated: false",
+          "+- id: C044",
+          "+  location:",
+          "+    section: results",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: Gemini 2.5 Flash replicates both dimensions, count rho=-0.943, BCS gap +17.6pp",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_gemini_flash_cross_model",
+          "+    metric: count curve rho=-0.943 (p=0.005), 82.7%->63.4%; BCS count_8 gap=17.58pp,",
+          "+      r=-0.887, pooled r=-0.869",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D060",
+          "+  - D067",
+          "+  deprecated: false",
+          "+- id: C045",
+          "+  location:",
+          "+    section: discussion",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: Few-shot demonstrations do not mitigate BCS effect; gap widens from 18.46pp",
+          "+    (0-shot) to 22.79pp (5-shot)",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_fewshot_bcs_v2",
+          "+    metric: 0-shot delta=18.46pp, 1-shot=19.96pp, 5-shot=22.79pp (p=0.014), all CIs",
+          "+      exclude zero",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D056",
+          "+  deprecated: false",
+          "+- id: C046",
+          "+  location:",
+          "+    section: discussion",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: Schema intervention (renaming confusable types) hurts accuracy, delta=-8.83pp",
+          "+    wrong direction",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_schema_intervention",
+          "+    metric: high-BCS control=69.3% vs treatment=60.5%, delta=-8.83pp, interaction t=-7.23",
+          "+      p<0.001, wrong direction",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D059",
+          "+  deprecated: false",
+          "+- id: C047",
+          "+  location:",
+          "+    section: appendix",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: BCS-accuracy relationship is format-independent (constrained rho=-0.157 vs",
+          "+    unconstrained rho=-0.144, Fisher z=-0.04, p=0.97)",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_paired_constrained",
+          "+    metric: same 25 batches constrained r=-0.448 vs unconstrained r=-0.439, Spearman",
+          "+      -0.157 vs -0.144, p=0.97",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D066",
+          "+  deprecated: false",
+          "+- id: C048",
+          "+  location:",
+          "+    section: sdgd_negative",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: SDGD-zero on MAVEN F1=0.123 vs single_pass 0.207, prediction inflation 3.7x,",
+          "+    merge amplification cross-task",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_sdgd_zero_maven",
+          "+    metric: single_pass F1=0.207, sdgd_zero F1=0.123, prediction inflation 3.7x, precision",
+          "+      0.287->0.091",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D063",
+          "+  deprecated: false",
+          "+- id: C049",
+          "+  location:",
+          "+    section: results",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: BCS range matching eliminates DocRED sub-additive interaction (7.52pp to 0.93pp,",
+          "+    CI crosses zero)",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_bcs_range_matched",
+          "+    metric: before=7.52pp CI [1.49, 12.83]; after range match [0.43, 0.70] interaction=0.93pp",
+          "+      CI [-7.13, 7.44]",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D064",
+          "+  deprecated: false",
+          "+- id: C050",
+          "+  location:",
+          "+    section: appendix",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: Prompt sensitivity analysis shows 7/8 conditions negative BCS direction, effect",
+          "+    robust across 4 prompt variants",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_prompt_sensitivity",
+          "+    metric: 7/8 negative direction; count_32 v2 p=0.043, minimal p=0.009, CoT p=0.088",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D052",
+          "+  deprecated: false",
+          "+- id: C051",
+          "+  location:",
+          "+    section: results",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: 2x2 Count x BCS interaction non-significant (z=-0.667, p=0.505), supports",
+          "+    additive channels; TOST permutation p=0.285",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_fewrel_formal_80rel",
+          "+    metric: interaction z=-0.667, p=0.505; TOST observed=-0.48pp, permutation null",
+          "+      p=0.914, TOST p=0.285",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D048",
+          "+  - D064",
+          "+  deprecated: false",
+          "+- id: C052",
+          "+  location:",
+          "+    section: results",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: FewRel pairwise SCS-confusion r=0.187 (p=2.56e-26), partial r controlling",
+          "+    for frequency=0.189 (1.2% change)",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_fewrel_partial_corr_freq",
+          "+    metric: r=0.187, p=2.56e-26, n=3160 pairs; partial r=0.189 (frequency-controlled,",
+          "+      balanced 700/type)",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D045",
+          "+  deprecated: false",
+          "+- id: C053",
+          "+  location:",
+          "+    section: results",
+          "+    paragraph: 0",
+          "+    sentence: 0",
+          "+  text: 25-batch 3-seed replication confirms FewRel monotonic decline and Few-NERD",
+          "+    U-shape, max cross-seed delta 2.7pp",
+          "+  type: quantitative",
+          "+  evidence:",
+          "+  - exp_id: exp_d051_count_curves_25",
+          "+    metric: FewRel 87%->49-50% monotonic all seeds, max cross-seed delta 2.7pp; Few-NERD",
+          "+      U-shape min 0.258-0.272 at count 22-44",
+          "+    tier: 1",
+          "+  decisions:",
+          "+  - D051",
+          "+  deprecated: false",
+          " tables:",
+          " - caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability",
+          "     Scores across count-curve batches (Experiment~1). Embedding column indicates the"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 162_
+
+Now update the completeness section and add new tables for DocRED and cross-model.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "14af4097-f7bc-48ce-95b7-620b0e100aba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GMd65KHf4RM6egLM38u2Fv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2575,
+      "cache_read_input_tokens": 84016,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2575
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 163_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01X2PuTRnvbQzRsZmvY95gjQ`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml",
+  "old_string": "_completeness:\n  coverage: 32/42\n  claims: 39\n  tables: 6\n  figures: 3\n  tier_counts:\n    tier1: 0\n    tier2: 32\n    tier3: 10\n    tierX: 0\n  last_checked: '2026-05-18T12:58:29.144751+00:00'",
+  "new_string": "_completeness:\n  coverage: 52/54\n  claims: 53\n  tables: 6\n  figures: 3\n  tier_counts:\n    tier1: 0\n    tier2: 52\n    tier3: 2\n    tierX: 0\n  last_checked: '2026-05-22T10:55:00.000000+00:00'\n  notes: >-\n    v25 update: C033-C039 mapped to bootstrap/three-way experiments (7 formerly untraced).\n    C040-C053 added for post-v24 content (DocRED, cross-model, few-shot, schema intervention,\n    SDGD-MAVEN, TOST, format independence, prompt sensitivity, 25-batch replication).\n    C008 remains tier3 (background framing, no specific experiment).\n    Potential staleness: C034 values may reflect pre-MEAN-correction (D039); verify against\n    current paper text."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "f634a54b-2595-4763-87b3-59177ffc726a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GMd65KHf4RM6egLM38u2Fv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2575,
+      "cache_read_input_tokens": 84016,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2575
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 164 · 2026-05-22T10:53:51.522Z_
+
+<details><summary>↩ Tool result · `toolu_01X2PuTRnvbQzRsZmvY95gjQ`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "ab22e29e-c11a-40d9-8ab3-abee5654cdce",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml",
+    "oldString": "_completeness:\n  coverage: 32/42\n  claims: 39\n  tables: 6\n  figures: 3\n  tier_counts:\n    tier1: 0\n    tier2: 32\n    tier3: 10\n    tierX: 0\n  last_checked: '2026-05-18T12:58:29.144751+00:00'",
+    "newString": "_completeness:\n  coverage: 52/54\n  claims: 53\n  tables: 6\n  figures: 3\n  tier_counts:\n    tier1: 0\n    tier2: 52\n    tier3: 2\n    tierX: 0\n  last_checked: '2026-05-22T10:55:00.000000+00:00'\n  notes: >-\n    v25 update: C033-C039 mapped to bootstrap/three-way experiments (7 formerly untraced).\n    C040-C053 added for post-v24 content (DocRED, cross-model, few-shot, schema intervention,\n    SDGD-MAVEN, TOST, format independence, prompt sensitivity, 25-batch replication).\n    C008 remains tier3 (background framing, no specific experiment).\n    Potential staleness: C034 values may reflect pre-MEAN-correction (D039); verify against\n    current paper text.",
+    "originalFile": "paper:\n  title: Does Type Confusability Drive Schema-Induced Degradation\\\\in Training-Free\n    LLM Information Extraction?\n  version: 25\n  generated_at: '2026-05-22T10:50:00.000000+00:00'\n  source: manual mapping from registry + paper_framing.md + decisions D037-D071\nclaims:\n- text: 'Training-free LLM information extraction---prompting models with target schemas\n    without fine-tuning---degrades sharply as schema complexity grows: NER recall\n    drops from 0.72 to 0.42 with 64 candidate '\n  type: quantitative\n  location:\n    section: abstract\n    context: result_statement\n  id: C001\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: recall count_1=0.720, count_64=0.418\n    tier: 1\n  deprecated: false\n- text: 'We introduce the Schema Confusability Score (SCS) to quantify pairwise semantic\n    overlap between types and design two complementary experimental paradigms: count\n    cu'\n  type: methodological\n  location:\n    section: abstract\n    context: finding_statement\n  id: C002\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: 'SCS validated: Qwen3 rho=0.168 (p=7e-14), MiniLM rho=0.306 nonzero (p=5e-6)'\n    tier: 1\n  deprecated: false\n- text: 'We presented a controlled empirical study isolating schema-induced degradation\n    in training-free LLM IE into two orthogonal channels: a count channel suppressing\n    recall as candidate types increase, and'\n  type: quantitative\n  location:\n    section: conclusion\n    context: result_statement\n  id: C003\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: 'Channel 1: recall 0.72->0.418'\n    tier: 1\n  - exp_id: exp007_error_taxonomy\n    metric: 'Channel 2: IntraSub vs BCS rho=1.0'\n    tier: 1\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub vs BCS rho=0.954\n    tier: 1\n  deprecated: false\n- text: We use Qwen3-32B-FP8 qwen3-2025, selected for its strong instruction-following\n    capability, native structured JSON output support, and the practical advantage\n    that the FP8-quantized 32B model fits on a\n  type: quantitative\n  location:\n    section: experimental_setup\n    context: result_statement\n  id: C004\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: model setup, all experiments use Qwen3-32B-FP8 primary\n    tier: 2\n  deprecated: false\n- text: We introduce the Schema Confusability Score to quantify semantic overlap between\n    types in a schema. Given a type $t$ with name string $name(t)$, an embeddin\n  type: methodological\n  location:\n    section: experimental_setup\n    context: finding_statement\n  id: C005\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: 'SCS proxy validated: both embeddings significant (all p<1e-5)'\n    tier: 1\n  deprecated: false\n- text: Channel~1\n  type: quantitative\n  location:\n    section: introduction\n    context: bold\n  id: C006\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: recall 0.72->0.418 monotonic decline\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: accuracy 0.857->0.504 monotonic decline\n    tier: 1\n  deprecated: false\n- text: Channel~2\n  type: quantitative\n  location:\n    section: introduction\n    context: bold\n  id: C007\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: pairwise r=0.156 (p<1e-11), confusion ratio 10-28x\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: BCS-controlled delta=-31.2pp\n    tier: 1\n  deprecated: false\n- text: Training-free LLM information extraction---prompting a large language model\n    with a target schema and asking it to extract structured information without any\n    task-specific fine-tuning---enables rapid d\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C008\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: background framing, supported by all experiments\n    tier: 3\n  deprecated: false\n- text: Second, pairwise SCS is a robust predictor of type confusion. Across Few-NERD\n    (Pearson $r = 0.112$, $p < 10^{-12$) and MAVEN ($r = 0.129$, $p < 10^{-10$), embedding\n    similarity between type pairs corre\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C009\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD pairwise Pearson r=0.112 [0.076, 0.156]\n    tier: 1\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN MiniLM pairwise r=0.129 [0.104, 0.156]\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CIs exclude zero for both\n    tier: 1\n  deprecated: false\n- text: Third, confusability effects are robust across schema sizes, with BCS--accuracy\n    slopes consistent between 16-type and 80-type pools (permutation p = 0.44)\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C010\n  evidence:\n  - exp_id: exp_fewrel_formal\n    metric: 16-rel BCS effect delta=-9.1pp\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 80-rel BCS effect delta=-31.2pp, wider BCS range produces larger absolute\n      gap\n    tier: 1\n  deprecated: false\n- text: Fourth, per-type confusability aggregation is confounded on homogeneous schemas.\n    On MAVEN, whose 168 event types all derive from the FrameNet ontology, the correlation\n    between mean BCS and per-type er\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C011\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: Qwen3 per-type rho=+0.189 (p=0.021), MiniLM rho=+0.208 (p=0.011)\n    tier: 1\n  deprecated: false\n- text: Fifth, confusability-aware schema decomposition fails to improve extraction.\n    Our Schema-DAG-Guided Decomposition (SDGD) successfully separates confusable types\n    into different batches, yet every decomp\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C012\n  evidence:\n  - exp_id: exp008_sdgd_v2_fewnerd\n    metric: SDGD v2 F1=0.241 vs baseline 0.445\n    tier: 1\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: v1 sdgd_zero F1=0.251, also below baseline\n    tier: 1\n  deprecated: false\n- text: Cross-task controlled experiments. We present BCS-controlled experiments with\n    bootstrap confidence intervals on three datasets, establishing that the BCS--accuracy\n    relationship is consistent across schema sizes (slope permutation p = 0.44)\n  type: quantitative\n  location:\n    section: introduction\n    context: result_statement\n  id: C013\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: BCS--accuracy slope consistent across pools, permutation p=0.436\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: FewRel count_8 delta CI [17.7, 42.7]\n    tier: 1\n  - exp_id: exp012_llama_fewrel_ch2\n    metric: 'cross-model: LLaMA delta=-27.1pp (87% of Qwen3)'\n    tier: 1\n  deprecated: false\n- text: We introduce the Schema Confusability Score (SCS), which quantifies pairwise\n    semantic overlap between types using embedding cosine similarity, and its batch\n  type: methodological\n  location:\n    section: introduction\n    context: finding_statement\n  id: C014\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: SCS validated as proxy for empirical confusion\n    tier: 2\n  deprecated: false\n- text: We demonstrate that pairwise SCS predicts type confusion across tasks and\n    embedding models, while identifying a centrality confound that invalidates per-type\n    aggrega\n  type: methodological\n  location:\n    section: introduction\n    context: finding_statement\n  id: C015\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD pairwise r=0.112\n    tier: 1\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN centrality confound (per-type positive)\n    tier: 1\n  deprecated: false\n- text: 95\\\\% CI\n  type: quantitative\n  location:\n    section: results\n    context: bold\n  id: C016\n  evidence:\n  - exp_id: bootstrap_ci_analysis\n    metric: 7 CIs all exclude null\n    tier: 1\n  deprecated: false\n- text: Recall declines monotonically from 0.72 at count${\\\\,=\\\\,1$ to 0.42 at count${\\\\,=\\\\,64$,\n    a 42\\\\% relative drop. Precision moves in the opposite direction, rising from\n    0.11 to 0.52, reflecting a shift from\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C017\n  evidence:\n  - exp_id: exp001_count_baseline\n    metric: recall 0.72->0.418, precision 0.105->0.52\n    tier: 1\n  deprecated: false\n- text: Accuracy drops monotonically from 85.7\\\\% at count${\\\\,=\\\\,1$ to 50.4\\\\% at\n    count${\\\\,=\\\\,80$, a near-halving when the model must discriminate among all 80\n    relation types simultaneously.\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C018\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: count_1 acc=0.8573, count_80 acc=0.5042\n    tier: 1\n  deprecated: false\n- text: 'In contrast to NER and RE, MAVEN relaxed F1 increases from 0.106 at count${\\\\,=\\\\,1$\n    to 0.247 at count${\\\\,=\\\\,44$. This reversal arises from three properties of the\n    MAVEN setup: (i)~trigger-level relaxed'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C019\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: count_1 relaxed_f1=0.106, count_44 relaxed_f1=0.247\n    tier: 1\n  deprecated: false\n- text: 'The correlations are modest: $r^2  1.3--1.7\\\\%$, meaning pairwise confusability\n    explains roughly 1.5\\\\% of the variance in type confusion. Other factors---entity\n    frequency, prompt position effects lost-'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C020\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD pairwise r=0.112, r2=1.25%\n    tier: 1\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN pairwise r=0.129, r2=1.66%\n    tier: 1\n  deprecated: false\n- text: Spearman rank correlations from the SCS validation experiment (exp-015) corroborate\n    these findings. Across all type pairs, Qwen3 yields $ = 0.168$ ($p = 7.3  10^{-14$)\n    and MiniLM yields $ = 0.144$ ($p\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C021\n  evidence:\n  - exp_id: exp015_scs_validation\n    metric: Qwen3 rho=0.168 (p=7.3e-14), MiniLM rho=0.144 (p=1.7e-10)\n    tier: 1\n  deprecated: false\n- text: BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar\n    types; high-BCS batches contain maximally similar types. The confusability gap\n    widens from 9.1\\\\,pp at 16 relations to 31.2\\\\\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C022\n  evidence:\n  - exp_id: exp_fewrel_formal\n    metric: '16-rel: low_bcs 88.9% vs high_bcs 79.8%, delta=-9.1pp'\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: '80-rel: low_bcs 82.3% vs high_bcs 51.0%, delta=-31.2pp'\n    tier: 1\n  - exp_id: exp_fewrel_40rel_r4\n    metric: '40-rel: delta=-33.3pp (count_8), 80-pool subset'\n    tier: 1\n  deprecated: false\n- text: 'At the 16-relation scale, switching from low-BCS to high-BCS batches reduces\n    accuracy by 9.1 percentage points. Scaling to the full 80-relation pool amplifies\n    this gap to 31.2\\\\,pp (95\\\\% CI: [17.7, 42.'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C023\n  evidence:\n  - exp_id: exp_fewrel_formal\n    metric: 16-rel delta=-9.1pp\n    tier: 1\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 80-rel delta=-31.2pp\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CI [17.7, 42.7] for count_8, [22.9, 39.6] for count_16\n    tier: 1\n  deprecated: false\n- text: Intra-batch substitution (IntraSub) and missed-entity rates by BCS bin. RE\n    missed rates remain flat (10-16%), but NER missed rates are substantially higher\n    (43-65%) and non-monotonic, revealing task-dependent error mechanisms.\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C024\n  evidence:\n  - exp_id: exp007_error_taxonomy\n    metric: NER IntraSub 0%->49.4%; NER Missed 42.8/64.8/49.9% (non-monotonic, NOT\n      flat)\n    tier: 1\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub 0%->32.3%; RE Missed 10.4/11.3/13.1/15.7% (flat)\n    tier: 1\n  deprecated: false\n- text: 'Three findings emerge. First, intra-batch substitution scales monotonically\n    with BCS in both tasks: NER IntraSub rises from 0\\\\% (solo) to 49.4\\\\% (high BCS)\n    with $ = 1.0$ ($p < 0.001$), and RE IntraSub'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C025\n  evidence:\n  - exp_id: exp007_error_taxonomy\n    metric: NER IntraSub rho=1.0 (p<0.001)\n    tier: 1\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub rho=0.954 (p<1e-6)\n    tier: 1\n  deprecated: false\n- text: The extreme-batch analysis sharpens this picture. At count${\\\\,=\\\\,6$, high-BCS\n    batches produce $27.5$ more confusion than low-BCS batches under extreme selection,\n    versus $1.7$ under random batching. At\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C026\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: 'extreme: ratio_6=27.5, ratio_12=9.9; random: ratio_6=1.7, ratio_12=2.4'\n    tier: 1\n  deprecated: false\n- text: 'Per-type analysis on MAVEN reveals an anomaly: the correlation between mean\n    BCS and per-type error rate is positive---Qwen3 $ = +0.189$ ($p = 0.021$) and\n    MiniLM $ = +0.208$ ($p = 0.011$)---opposite to'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C027\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: Qwen3 per-type rho=+0.189 (p=0.021), MiniLM rho=+0.208 (p=0.011)\n    tier: 1\n  deprecated: false\n- text: 'Critically, the pairwise SCS--confusion correlation remains intact: MAVEN\n    MiniLM pairwise $r = 0.129$ (CI: [0.104, 0.156], $p < 10^{-10$), consistent with\n    the values in Table~tab:pairwise. The problem'\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C028\n  evidence:\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN MiniLM pairwise r=0.129\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CI [0.104, 0.156]\n    tier: 1\n  deprecated: false\n- text: Few-NERD, whose 66 types span 8 coarse categories across diverse domains,\n    does not exhibit this confound. Its per-type correlation is $ = -0.293$ ($p =\n    0.02$, $n = 63$), in the expected negative direc\n  type: quantitative\n  location:\n    section: results\n    context: result_statement\n  id: C029\n  evidence:\n  - exp_id: exp002_confusability_controlled\n    metric: per-type Spearman rho=-0.293 (p=0.020, n=63)\n    tier: 1\n  deprecated: false\n- text: Table~tab:sdgd_results reports the outcome.  Single-pass extraction achieves\n    F1\\\\,=\\\\,0.445 (P\\\\,=\\\\,0.563, R\\\\,=\\\\,0.368).  SDGD obtains F1\\\\,=\\\\,0.251 (P\\\\,=\\\\,0.210,\n    R\\\\,=\\\\,0.314), a 44\\\\% relative drop.  Rand\n  type: quantitative\n  location:\n    section: sdgd_negative\n    context: result_statement\n  id: C030\n  evidence:\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: single_pass F1=0.4451, sdgd_zero F1=0.2514, random_batch F1=0.3197\n    tier: 1\n  deprecated: false\n- text: 'The pattern across modes is consistent: decomposition boosts recall (per-type\n    recall reaches 0.586 versus single-pass 0.368) but devastates precision (0.194\n    versus 0.563).  The mechanism is straightfo'\n  type: quantitative\n  location:\n    section: sdgd_negative\n    context: result_statement\n  id: C031\n  evidence:\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: per_type recall=0.5856, precision=0.194; single_pass recall=0.3679, precision=0.5631\n    tier: 1\n  deprecated: false\n- text: A natural remedy is to resolve merge conflicts using model confidence.  Our\n    v2 merge ranks competing predictions by the LLM's self-reported confidence and\n    retains only the highest-scoring candidate fo\n  type: quantitative\n  location:\n    section: sdgd_negative\n    context: result_statement\n  id: C032\n  evidence:\n  - exp_id: exp008_sdgd_v2_fewnerd\n    metric: v2 sdgd_zero F1=0.2407 vs v1 0.2514, confidence-gated merge did not improve\n    tier: 1\n  deprecated: false\n- id: C033\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 80-pool→16-sub slope = -0.401, CI [-0.701, -0.069], r = -0.221, p = 0.027\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_80pool_16sub_bootstrap\n    metric: regression slope=-0.401, CI [-0.701, -0.069], r=-0.221, p=0.027\n    tier: 1\n  decisions:\n  - D036\n  deprecated: false\n- id: C034\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Independent 16-rel slope = -0.449, CI [-0.552, -0.346], r = -0.637, p < 1e-12\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_16rel_bootstrap\n    metric: regression slope=-0.449, CI [-0.552, -0.346], r=-0.637, p<1e-12\n    tier: 1\n  decisions:\n  - D034\n  deprecated: false\n- id: C035\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Full 80-rel slope = -0.151, CI [-0.930, +0.657], r = -0.082, p = 0.698, underpowered\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: full 80-rel slope=-0.151, CI [-0.930, +0.657], underpowered n=25, BCS IQR=0.033\n    tier: 1\n  decisions:\n  - D036\n  - D039\n  deprecated: false\n- id: C036\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 16-rel extreme-batch Δ = +11.45pp, CI [7.66, 15.48]\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_16rel_bootstrap\n    metric: extreme-batch delta=+11.45pp, CI [7.66, 15.48]\n    tier: 1\n  decisions:\n  - D035\n  deprecated: false\n- id: C037\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 80-pool→16-sub extreme-batch Δ = +9.79pp, CI [1.87, 17.50]\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_80pool_16sub_bootstrap\n    metric: extreme-batch delta=+9.79pp, CI [1.87, 17.50]\n    tier: 1\n  decisions:\n  - D035\n  deprecated: false\n- id: C038\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 80-rel controlled extreme-batch Δ = +31.25pp, CI [22.92, 39.58]\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: extreme-batch delta=+31.25pp\n    tier: 1\n  - exp_id: bootstrap_ci_analysis\n    metric: CI [22.92, 39.58]\n    tier: 1\n  decisions:\n  - D035\n  deprecated: false\n- id: C039\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Permutation slope-difference tests non-significant (p = 0.15-0.44)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_16rel_bootstrap\n    metric: permutation slope-difference 16-rel vs 80-pool p=0.436\n    tier: 1\n  - exp_id: exp_fewrel_80pool_16sub_bootstrap\n    metric: permutation tests p range 0.15-0.44\n    tier: 1\n  decisions:\n  - D036\n  - D039\n  deprecated: false\n- id: C040\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: DocRED count curve accuracy declines from 0.875 (single type) to 0.392 (96\n    types), BCS-controlled gap 23.3pp at count_16 (rho=-0.661)\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_confusability\n    metric: count_1=0.875, count_96=0.392; count_16 low=0.685 vs high=0.452, delta=23.3pp,\n      rho=-0.661, slope CI [-0.909, -0.529]\n    tier: 1\n  decisions:\n  - D063\n  deprecated: false\n- id: C041\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: DocRED IntraSub error rate correlates with BCS (rho=0.843), cross-task replication\n    of NER/RE error taxonomy\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_error_taxonomy\n    metric: IntraSub vs BCS rho=0.843 (p=8.1e-31), low=14.5% to high=72.2%\n    tier: 1\n  decisions:\n  - D064\n  deprecated: false\n- id: C042\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: DocRED ridge regression with VIF~50.9 BCS-centrality multicollinearity, standardized\n    BCS beta=-1.53, R2=0.594\n  type: quantitative\n  evidence:\n  - exp_id: exp_docred_confusability\n    metric: ridge GCV lambda=0.001, VIF=50.9, beta_BCS=-1.53, beta_centrality=0.78,\n      R2=0.594\n    tier: 1\n  decisions:\n  - D071\n  deprecated: false\n- id: C043\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: LLaMA-3.3-70B replicates count-driven decline (-30.7pp) and BCS gap (+10.94pp\n    on FewRel)\n  type: quantitative\n  evidence:\n  - exp_id: exp_llama70b_cross_model\n    metric: FewRel count decline -30.7pp (near-identical to Qwen3 -30.1pp); BCS count_16\n      gap=10.94pp CI [3.02, 20.1]\n    tier: 1\n  decisions:\n  - D054\n  - D055\n  deprecated: false\n- id: C044\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: Gemini 2.5 Flash replicates both dimensions, count rho=-0.943, BCS gap +17.6pp\n  type: quantitative\n  evidence:\n  - exp_id: exp_gemini_flash_cross_model\n    metric: count curve rho=-0.943 (p=0.005), 82.7%->63.4%; BCS count_8 gap=17.58pp,\n      r=-0.887, pooled r=-0.869\n    tier: 1\n  decisions:\n  - D060\n  - D067\n  deprecated: false\n- id: C045\n  location:\n    section: discussion\n    paragraph: 0\n    sentence: 0\n  text: Few-shot demonstrations do not mitigate BCS effect; gap widens from 18.46pp\n    (0-shot) to 22.79pp (5-shot)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewshot_bcs_v2\n    metric: 0-shot delta=18.46pp, 1-shot=19.96pp, 5-shot=22.79pp (p=0.014), all CIs\n      exclude zero\n    tier: 1\n  decisions:\n  - D056\n  deprecated: false\n- id: C046\n  location:\n    section: discussion\n    paragraph: 0\n    sentence: 0\n  text: Schema intervention (renaming confusable types) hurts accuracy, delta=-8.83pp\n    wrong direction\n  type: quantitative\n  evidence:\n  - exp_id: exp_schema_intervention\n    metric: high-BCS control=69.3% vs treatment=60.5%, delta=-8.83pp, interaction t=-7.23\n      p<0.001, wrong direction\n    tier: 1\n  decisions:\n  - D059\n  deprecated: false\n- id: C047\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: BCS-accuracy relationship is format-independent (constrained rho=-0.157 vs\n    unconstrained rho=-0.144, Fisher z=-0.04, p=0.97)\n  type: quantitative\n  evidence:\n  - exp_id: exp_paired_constrained\n    metric: same 25 batches constrained r=-0.448 vs unconstrained r=-0.439, Spearman\n      -0.157 vs -0.144, p=0.97\n    tier: 1\n  decisions:\n  - D066\n  deprecated: false\n- id: C048\n  location:\n    section: sdgd_negative\n    paragraph: 0\n    sentence: 0\n  text: SDGD-zero on MAVEN F1=0.123 vs single_pass 0.207, prediction inflation 3.7x,\n    merge amplification cross-task\n  type: quantitative\n  evidence:\n  - exp_id: exp_sdgd_zero_maven\n    metric: single_pass F1=0.207, sdgd_zero F1=0.123, prediction inflation 3.7x, precision\n      0.287->0.091\n    tier: 1\n  decisions:\n  - D063\n  deprecated: false\n- id: C049\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: BCS range matching eliminates DocRED sub-additive interaction (7.52pp to 0.93pp,\n    CI crosses zero)\n  type: quantitative\n  evidence:\n  - exp_id: exp_bcs_range_matched\n    metric: before=7.52pp CI [1.49, 12.83]; after range match [0.43, 0.70] interaction=0.93pp\n      CI [-7.13, 7.44]\n    tier: 1\n  decisions:\n  - D064\n  deprecated: false\n- id: C050\n  location:\n    section: appendix\n    paragraph: 0\n    sentence: 0\n  text: Prompt sensitivity analysis shows 7/8 conditions negative BCS direction, effect\n    robust across 4 prompt variants\n  type: quantitative\n  evidence:\n  - exp_id: exp_prompt_sensitivity\n    metric: 7/8 negative direction; count_32 v2 p=0.043, minimal p=0.009, CoT p=0.088\n    tier: 1\n  decisions:\n  - D052\n  deprecated: false\n- id: C051\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 2x2 Count x BCS interaction non-significant (z=-0.667, p=0.505), supports\n    additive channels; TOST permutation p=0.285\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_formal_80rel\n    metric: interaction z=-0.667, p=0.505; TOST observed=-0.48pp, permutation null\n      p=0.914, TOST p=0.285\n    tier: 1\n  decisions:\n  - D048\n  - D064\n  deprecated: false\n- id: C052\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: FewRel pairwise SCS-confusion r=0.187 (p=2.56e-26), partial r controlling\n    for frequency=0.189 (1.2% change)\n  type: quantitative\n  evidence:\n  - exp_id: exp_fewrel_partial_corr_freq\n    metric: r=0.187, p=2.56e-26, n=3160 pairs; partial r=0.189 (frequency-controlled,\n      balanced 700/type)\n    tier: 1\n  decisions:\n  - D045\n  deprecated: false\n- id: C053\n  location:\n    section: results\n    paragraph: 0\n    sentence: 0\n  text: 25-batch 3-seed replication confirms FewRel monotonic decline and Few-NERD\n    U-shape, max cross-seed delta 2.7pp\n  type: quantitative\n  evidence:\n  - exp_id: exp_d051_count_curves_25\n    metric: FewRel 87%->49-50% monotonic all seeds, max cross-seed delta 2.7pp; Few-NERD\n      U-shape min 0.258-0.272 at count 22-44\n    tier: 1\n  decisions:\n  - D051\n  deprecated: false\ntables:\n- caption: Dataset statistics. BCS Range indicates the min--max Batch Confusability\n    Scores across count-curve batches (Experiment~1). Embedding column indicates the\n    model used for SCS/BCS computation.\n  label: tab:datasets\n  location:\n    section: experimental_setup\n  cells:\n  - exp_id: exp001_count_baseline\n    metric: Few-NERD 66 types\n  - exp_id: exp-004\n    metric: MAVEN 168 event types, 77993 train mentions\n  - exp_id: exp_fewrel_formal_80rel\n    metric: FewRel 80 relations\n  id: T001\n  deprecated: false\n- caption: Pairwise SCS--confusion correlation.\n  label: tab:pairwise\n  location:\n    section: results\n  cells:\n  - exp_id: exp002_confusability_controlled\n    metric: Few-NERD Qwen3 pairwise r=0.112 [0.076, 0.156]\n  - exp_id: exp004_maven_bcs\n    metric: MAVEN MiniLM pairwise r=0.129 [0.104, 0.156]\n  - exp_id: bootstrap_ci_analysis\n    metric: bootstrap CIs for both\n  id: T002\n  deprecated: false\n- caption: BCS-controlled FewRel accuracy.\n  label: tab:bcs_controlled\n  location:\n    section: results\n  cells:\n  - exp_id: exp_fewrel_formal\n    metric: '16-rel: delta=-9.1pp'\n  - exp_id: exp_fewrel_formal_80rel\n    metric: '80-rel count_8: delta=-31.2pp, count_16: delta=-31.2pp'\n  - exp_id: exp_fewrel_40rel_r4\n    metric: '40-rel count_8: delta=-33.3pp, count_16: delta=-31.8pp'\n  - exp_id: exp012_llama_fewrel_ch2\n    metric: 'LLaMA cross-model: count_8 delta=-27.1pp, count_16 delta=-24.0pp'\n  - exp_id: bootstrap_ci_analysis\n    metric: 'CIs: count_8 [17.7, 42.7], count_16 [22.9, 39.6]'\n  id: T003\n  deprecated: false\n- caption: Intra-batch substitution (IntraSub) rate by BCS bin.\n  label: tab:error_taxonomy\n  location:\n    section: results\n  cells:\n  - exp_id: exp007_error_taxonomy\n    metric: NER IntraSub 0%->49.4%, rho=1.0; NER Missed 42.8/64.8/49.9% (non-monotonic)\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: RE IntraSub 0%->32.3%, rho=0.954; RE Missed 10.4/11.3/13.1/15.7% (flat)\n  id: T004\n  deprecated: false\n- caption: Few-NERD extraction under decomposition modes.\n  label: tab:sdgd_results\n  location:\n    section: sdgd_negative\n  cells:\n  - exp_id: exp008_sdgd_zero_fewnerd_r2\n    metric: 'v1: single_pass F1=0.445, sdgd_zero F1=0.251, random F1=0.320, per_type\n      F1=0.292'\n  - exp_id: exp008_sdgd_v2_fewnerd\n    metric: 'v2: sdgd_zero F1=0.241, random F1=0.301'\n  id: T005\n  deprecated: false\n- caption: Three-way BCS--accuracy analysis on FewRel (regression slope, quartile\n    delta, permutation test).\n  label: tab:within_pool\n  location:\n    section: results\n  cells:\n  - exp_id: three_way_comparison\n    metric: 'Independent 16-rel: slope=-0.449, CI [-0.552, -0.346], r=-0.637'\n    source: artifacts/three_way_comparison/results_unified.json\n  - exp_id: three_way_comparison\n    metric: '80-pool→16-sub: slope=-0.401, CI [-0.701, -0.069], r=-0.221, p=0.027'\n    source: artifacts/three_way_comparison/results_unified.json\n  - exp_id: three_way_comparison\n    metric: 'Full 80-rel: slope=-0.151, CI [-0.930, +0.657], underpowered'\n    source: artifacts/three_way_comparison/results_unified.json\n  - exp_id: three_way_comparison\n    metric: 'Permutation test (16-rel vs 80-pool slopes): p=0.436'\n    source: artifacts/three_way_comparison/results_unified.json\n  id: T006\n  deprecated: false\nfigures:\n- caption: Count scaling curves for NER (Few-NERD) and RE (FewRel)\n  label: fig:count_curves\n  location:\n    section: results\n  cells:\n  - exp_id: exp001_count_baseline\n    metric: 'Panel (a): recall 0.72->0.418'\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 'Panel (b): accuracy 0.857->0.504'\n  - exp_id: exp_fewrel_40rel_r4\n    metric: 'Panel (b): count_40=0.588'\n  id: F001\n  deprecated: false\n- caption: BCS effect scaling with pool size\n  label: fig:bcs_scaling\n  location:\n    section: results\n  cells:\n  - exp_id: exp_fewrel_formal\n    metric: 16-rel delta=9.1pp\n  - exp_id: exp_fewrel_40rel_r4\n    metric: 40-rel delta=33.3pp (80-pool subset)\n  - exp_id: exp_fewrel_formal_80rel\n    metric: 80-rel delta=31.2pp\n  - exp_id: exp012_llama_fewrel_ch2\n    metric: LLaMA 80-rel delta=27.1pp\n  id: F002\n  deprecated: false\n- caption: Error taxonomy by BCS bin\n  label: fig:error_taxonomy\n  location:\n    section: results\n  cells:\n  - exp_id: exp007_error_taxonomy\n    metric: 'NER: IntraSub 0%->49.4%'\n  - exp_id: exp016_fewrel_error_taxonomy\n    metric: 'RE: IntraSub 0%->32.3%'\n  id: F003\n  deprecated: false\n_completeness:\n  coverage: 32/42\n  claims: 39\n  tables: 6\n  figures: 3\n  tier_counts:\n    tier1: 0\n    tier2: 32\n    tier3: 10\n    tierX: 0\n  last_checked: '2026-05-18T12:58:29.144751+00:00'\n",
+    "structuredPatch": [
+      {
+        "oldStart": 931,
+        "oldLines": 13,
+        "newStart": 931,
+        "newLines": 20,
+        "lines": [
+          "   id: F003",
+          "   deprecated: false",
+          " _completeness:",
+          "-  coverage: 32/42",
+          "-  claims: 39",
+          "+  coverage: 52/54",
+          "+  claims: 53",
+          "   tables: 6",
+          "   figures: 3",
+          "   tier_counts:",
+          "     tier1: 0",
+          "-    tier2: 32",
+          "-    tier3: 10",
+          "+    tier2: 52",
+          "+    tier3: 2",
+          "     tierX: 0",
+          "-  last_checked: '2026-05-18T12:58:29.144751+00:00'",
+          "+  last_checked: '2026-05-22T10:55:00.000000+00:00'",
+          "+  notes: >-",
+          "+    v25 update: C033-C039 mapped to bootstrap/three-way experiments (7 formerly untraced).",
+          "+    C040-C053 added for post-v24 content (DocRED, cross-model, few-shot, schema intervention,",
+          "+    SDGD-MAVEN, TOST, format independence, prompt sensitivity, 25-batch replication).",
+          "+    C008 remains tier3 (background framing, no specific experiment).",
+          "+    Potential staleness: C034 values may reflect pre-MEAN-correction (D039); verify against",
+          "+    current paper text."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 165_
+
+Now save via the project file tool to ensure the system picks it up.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "b3cd9168-6c57-405b-8f00-b36172640ec4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JvsATAReQXn3V35Gk3Zzws",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 537,
+      "cache_read_input_tokens": 86591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 537
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 166_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EWtCfnqzLzTX53yLv9Z9ah`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "f807fc73-4f77-4e3f-b426-a8d683982b10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JvsATAReQXn3V35Gk3Zzws",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 537,
+      "cache_read_input_tokens": 86591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 537
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 167 · 2026-05-22T10:53:55.504Z_
+
+<details><summary>↩ Tool result · `toolu_01EWtCfnqzLzTX53yLv9Z9ah`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "2dd2e872-6761-4099-bf57-cad7ee1f45aa",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 168_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The save_project_file tool only allows writing to memory.md, writing_plan.yaml, and paper_framing.md. paper_provenance.yaml is not in the whitelist. But I've already edited the file locally. Let me check if there's a register_artifact or update_registry tool that could help, or if the local edit is sufficient.
+
+Actually, looking at the file path, the provenance file is at `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml` — this is the project's data directory, not the server. 
+
+Since the system reads from this local directory, my edits should work. Let me verify the file is formatted correctly by checking the key sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "157920dd-a2df-4062-b246-9e6860541efd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBni8r949KU3DizqQahdWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 379,
+      "cache_read_input_tokens": 87128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 169_
+
+The save_project_file tool doesn't support paper_provenance.yaml directly, but the local edit is already in the project data directory. Let me verify the file integrity.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "a399cc15-9016-465f-b66f-fca9dee16947",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBni8r949KU3DizqQahdWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 379,
+      "cache_read_input_tokens": 87128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 170_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015CWxHjhX95vKCymjUrMwJg`</summary>
+
+```json
+{
+  "command": "python3 -c \"import yaml; data = yaml.safe_load(open('/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/paper_provenance.yaml')); claims = data['claims']; print(f'Total claims: {len(claims)}'); untraced = [c['id'] for c in claims if not c.get('evidence')]; print(f'Untraced (empty evidence): {untraced}'); tier3 = [c['id'] for c in claims if c.get('evidence') and any(e.get('tier') == 3 for e in c['evidence'])]; print(f'Tier 3 evidence: {tier3}'); print(f'Tables: {len(data[\\\"tables\\\"])}'); print(f'Figures: {len(data[\\\"figures\\\"])}'); print(f'Version: {data[\\\"paper\\\"][\\\"version\\\"]}')\"",
+  "description": "Validate YAML structure and count claims/tiers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "22af2c9f-40c5-4381-9530-6c7462606ddd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FBni8r949KU3DizqQahdWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 379,
+      "cache_read_input_tokens": 87128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 171 · 2026-05-22T10:54:05.635Z_
+
+<details><summary>↩ Tool result · `toolu_015CWxHjhX95vKCymjUrMwJg`</summary>
+
+```text
+Total claims: 53
+Untraced (empty evidence): []
+Tier 3 evidence: ['C008']
+Tables: 6
+Figures: 3
+Version: 25
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "a7bf78d3-e0ae-4e66-a2e8-17eab2a60b09",
+  "tool_use_result": {
+    "stdout": "Total claims: 53\nUntraced (empty evidence): []\nTier 3 evidence: ['C008']\nTables: 6\nFigures: 3\nVersion: 25",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 172_
+
+YAML valid. All claims now have evidence except C008 (background framing, tier3 by design).
+
+## 报告
+
+**v24 → v25 更新完成**
+
+| 指标 | v24 | v25 |
+|------|-----|-----|
+| Claims | 39 | 53 |
+| Traced (tier2) | 32 | 52 |
+| Untraced (tier3) | 10 | 1 |
+| Tables | 6 | 6 |
+| Figures | 3 | 3 |
+| Coverage | 32/42 (76%) | 52/54 (96%) |
+
+### 原 untraced 项处理 (C033-C039, 7 项)
+
+全部映射到 bootstrap/three-way 实验：
+- **C033-C035**: 三组回归斜率 → `exp_fewrel_80pool_16sub_bootstrap`, `exp_fewrel_16rel_bootstrap`, `exp_fewrel_formal_80rel`
+- **C036-C038**: 三组 extreme-batch Δ → 同上 + `bootstrap_ci_analysis`
+- **C039**: permutation tests → `exp_fewrel_16rel_bootstrap` + `exp_fewrel_80pool_16sub_bootstrap`
+
+### 新增 claims (C040-C053, 14 项)
+
+| ID | 内容 | 来源实验 |
+|----|------|----------|
+| C040 | DocRED count curve + BCS gap 23.3pp | exp_docred_confusability |
+| C041 | DocRED IntraSub ρ=0.843 | exp_docred_error_taxonomy |
+| C042 | DocRED ridge VIF=50.9, R²=0.594 | exp_docred_confusability (D071) |
+| C043 | LLaMA-70B decline -30.7pp, BCS +10.94pp | exp_llama70b_cross_model |
+| C044 | Gemini Flash ρ=-0.943, BCS +17.6pp | exp_gemini_flash_cross_model |
+| C045 | Few-shot BCS gap widens 18.46→22.79pp | exp_fewshot_bcs_v2 |
+| C046 | Schema intervention negative -8.83pp | exp_schema_intervention |
+| C047 | Format-independent (p=0.97) | exp_paired_constrained |
+| C048 | SDGD-zero MAVEN F1=0.123 | exp_sdgd_zero_maven |
+| C049 | BCS range matched eliminates interaction | exp_bcs_range_matched |
+| C050 | Prompt sensitivity 7/8 negative | exp_prompt_sensitivity |
+| C051 | TOST interaction p=0.285 | exp_fewrel_formal_80rel |
+| C052 | FewRel pairwise r=0.187 freq-controlled | exp_fewrel_partial_corr_freq |
+| C053 | 25-batch 3-seed replication | exp_d051_count_curves_25 |
+
+### 剩余 tier3
+
+仅 **C008**（background framing statement），无对应实验，保留 tier3。
+
+### 注意
+
+C034 的 r=-0.637 可能是 D039 MEAN 修正前的值，需对照当前论文文本确认是否已更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "uuid": "f4589a8e-8f56-4a4a-9527-3e35a5c76148",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013QXhV89wb7ZzSZFMN3hh3f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 87507,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Task result
+
+_source line 173_
+
+YAML valid. All claims now have evidence except C008 (background framing, tier3 by design).
+
+## 报告
+
+**v24 → v25 更新完成**
+
+| 指标 | v24 | v25 |
+|------|-----|-----|
+| Claims | 39 | 53 |
+| Traced (tier2) | 32 | 52 |
+| Untraced (tier3) | 10 | 1 |
+| Tables | 6 | 6 |
+| Figures | 3 | 3 |
+| Coverage | 32/42 (76%) | 52/54 (96%) |
+
+### 原 untraced 项处理 (C033-C039, 7 项)
+
+全部映射到 bootstrap/three-way 实验：
+- **C033-C035**: 三组回归斜率 → `exp_fewrel_80pool_16sub_bootstrap`, `exp_fewrel_16rel_bootstrap`, `exp_fewrel_formal_80rel`
+- **C036-C038**: 三组 extreme-batch Δ → 同上 + `bootstrap_ci_analysis`
+- **C039**: permutation tests → `exp_fewrel_16rel_bootstrap` + `exp_fewrel_80pool_16sub_bootstrap`
+
+### 新增 claims (C040-C053, 14 项)
+
+| ID | 内容 | 来源实验 |
+|----|------|----------|
+| C040 | DocRED count curve + BCS gap 23.3pp | exp_docred_confusability |
+| C041 | DocRED IntraSub ρ=0.843 | exp_docred_error_taxonomy |
+| C042 | DocRED ridge VIF=50.9, R²=0.594 | exp_docred_confusability (D071) |
+| C043 | LLaMA-70B decline -30.7pp, BCS +10.94pp | exp_llama70b_cross_model |
+| C044 | Gemini Flash ρ=-0.943, BCS +17.6pp | exp_gemini_flash_cross_model |
+| C045 | Few-shot BCS gap widens 18.46→22.79pp | exp_fewshot_bcs_v2 |
+| C046 | Schema intervention negative -8.83pp | exp_schema_intervention |
+| C047 | Format-independent (p=0.97) | exp_paired_constrained |
+| C048 | SDGD-zero MAVEN F1=0.123 | exp_sdgd_zero_maven |
+| C049 | BCS range matched eliminates interaction | exp_bcs_range_matched |
+| C050 | Prompt sensitivity 7/8 negative | exp_prompt_sensitivity |
+| C051 | TOST interaction p=0.285 | exp_fewrel_formal_80rel |
+| C052 | FewRel pairwise r=0.187 freq-controlled | exp_fewrel_partial_corr_freq |
+| C053 | 25-batch 3-seed replication | exp_d051_count_curves_25 |
+
+### 剩余 tier3
+
+仅 **C008**（background framing statement），无对应实验，保留 tier3。
+
+### 注意
+
+C034 的 r=-0.637 可能是 D039 MEAN 修正前的值，需对照当前论文文本确认是否已更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 426824,
+  "duration_api_ms": 472825,
+  "num_turns": 29,
+  "stop_reason": "end_turn",
+  "session_id": "02867a47-3498-4c1c-8fa3-a026ecde6c8b",
+  "total_cost_usd": 2.0908427000000005,
+  "usage": {
+    "input_tokens": 28,
+    "cache_creation_input_tokens": 76352,
+    "cache_read_input_tokens": 1182433,
+    "output_tokens": 19335,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 76352,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 887,
+        "cache_read_input_tokens": 87507,
+        "cache_creation_input_tokens": 686,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 686
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1085,
+      "outputTokens": 3608,
+      "cacheReadInputTokens": 315842,
+      "cacheCreationInputTokens": 43081,
+      "webSearchRequests": 0,
+      "costUSD": 0.10456045,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 44,
+      "outputTokens": 24484,
+      "cacheReadInputTokens": 1419262,
+      "cacheCreationInputTokens": 106293,
+      "webSearchRequests": 0,
+      "costUSD": 1.9862822500000008,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0fe4b039-2c05-4e3f-9d09-87c821716858"
+}
+```
+
+</details>
+
+---

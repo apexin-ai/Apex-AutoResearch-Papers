@@ -1400,5 +1400,6 @@
       ],
       "message_count": 33
     }
-  ]
+  ],
+  "readable_path": "readable/worker-executions/fix-llama-hires-shape-metrics.md"
 }

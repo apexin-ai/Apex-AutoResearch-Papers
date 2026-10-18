@@ -1,0 +1,3264 @@
+# code plan001 fix condition keys
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/workers/worker_code_plan001-fix-condition-keys_20260522T082358.log`
+- **Structured JSON:** [`9fec9f4a9d92242b736d.json`](../../sessions/9f/9fec9f4a9d92242b736d.json)
+
+## Before a recorded user message
+
+71 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "292395ec-b7f6-4fea-b22a-74d6b8bb9f95",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779456000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4f6973b4-d22a-4b0f-9dd9-99c19157548d",
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the four scripts from the remote server to understand the current condition key formats.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "91fccbeb-d665-4f4c-83ee-0176781a6693",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ti3VspKZapxepczQKC5nkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12077,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12077
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取四个脚本的内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "7bd3fa8f-6b05-47a9-8265-8a18d6824ba2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ti3VspKZapxepczQKC5nkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12077,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12077
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BTk6C8GYxxrEdqvfE24agE`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "5cd0efab-2680-4884-af5a-e16084c70c8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ti3VspKZapxepczQKC5nkT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12077,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12077
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T08:24:10.950Z_
+
+<details><summary>↩ Tool result · `toolu_01BTk6C8GYxxrEdqvfE24agE`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "fec81d41-d281-48b4-abfa-a127c1ad2d2d",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NYgmX99SZsC8XFoBnpERVm`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "d52dc804-9325-4224-9c8f-b06188f6f386",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCyuN4ZyHKBLq3v3xgzA5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 23918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019ayBgh2QktGTAB1dz3bbBs`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "4df6295a-5ec4-45b8-8fcb-61003dde6368",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCyuN4ZyHKBLq3v3xgzA5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 23918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T08:24:15.056Z_
+
+<details><summary>↩ Tool result · `toolu_01NYgmX99SZsC8XFoBnpERVm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\nOptional: pingouin (for partial_corr; manual fallback included)\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import optimize, stats, special\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_step4\\\")\\n\\n# ── Constants ────────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\nEPS = 0.001\\n\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\n# ── JSON Helper ──────────────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── Data Loading ─────────────────────────────────────────────────────\\n\\ndef load_mi_data():\\n    if not MI_PATH.exists():\\n        logger.error(f\\\"MI matrix not found: {MI_PATH}\\\")\\n        logger.error(\\\"Run Step 3 first: scripts/run_plan001_step3_mi_matrix.py\\\")\\n        sys.exit(1)\\n    with open(MI_PATH) as f:\\n        data = json.load(f)\\n    logger.info(f\\\"Loaded MI matrix: {len(data['models'])} models\\\")\\n    return data\\n\\n\\ndef load_pairs():\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        if \\\"pairs\\\" not in data:\\n            continue\\n        pairs = {}\\n        for ds in DATASETS:\\n            if ds in data[\\\"pairs\\\"]:\\n                pairs[ds] = data[\\\"pairs\\\"][ds][:300]\\n                logger.info(f\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\")\\n        if pairs:\\n            return pairs\\n    logger.error(\\\"No pairs found in any checkpoint file\\\")\\n    sys.exit(1)\\n\\n\\ndef _invert_winners(scores):\\n    \\\"\\\"\\\"Invert A<->B winner labels for position bias scores (swapped pair orientation).\\\"\\\"\\\"\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores():\\n    \\\"\\\"\\\"Load sample-level clean + attacked scores for all 15 models.\\n\\n    Returns:\\n        clean[ds][model_id] = [{\\\"winner\\\": ..., ...}, ...]\\n        attacked[ds][atk][model_id] = [{\\\"winner\\\": ..., ...}, ...]\\n    \\\"\\\"\\\"\\n    clean = {ds: {} for ds in DATASETS}\\n    attacked = {ds: {a: {} fo\\n\\n... [截断: 输出过长，省略 11672 字符] ...\\n\\n raw_eta_ps.append(cond_res[\\\"ols\\\"][\\\"eta_max_p\\\"])\\n            raw_keff_ps.append(cond_res[\\\"ols\\\"][\\\"keff_p\\\"])\\n            valid_cond_keys.append(cond)\\n\\n            ols = cond_res[\\\"ols\\\"]\\n            sig_k = \\\"***\\\" if ols[\\\"keff_p\\\"] < 0.001 else \\\"**\\\" if ols[\\\"keff_p\\\"] < 0.01 else \\\"*\\\" if ols[\\\"keff_p\\\"] < 0.05 else \\\"ns\\\"\\n            sig_e = \\\"***\\\" if ols[\\\"eta_max_p\\\"] < 0.001 else \\\"**\\\" if ols[\\\"eta_max_p\\\"] < 0.01 else \\\"*\\\" if ols[\\\"eta_max_p\\\"] < 0.05 else \\\"ns\\\"\\n            logger.info(\\n                f\\\"  OLS R2={ols['R2']:.4f}  \\\"\\n                f\\\"K_eff: B={ols['keff_beta']:+.4f} p={ols['keff_p']:.4f} {sig_k}  \\\"\\n                f\\\"eta_max: B={ols['eta_max_beta']:+.4f} p={ols['eta_max_p']:.4f} {sig_e}\\\"\\n            )\\n            logger.info(\\n                f\\\"  VIF: K_eff={cond_res['vif_keff']:.2f}, eta_max={cond_res['vif_eta_max']:.2f}\\\"\\n            )\\n            logger.info(\\n                f\\\"  Partial r(K_eff|eta_max)={cond_res['partial_r_keff']:.4f} \\\"\\n                f\\\"p={cond_res['partial_r_keff_p']:.4f}\\\"\\n            )\\n            logger.info(\\n                f\\\"  Residualized K_eff: B={cond_res['residualized_keff_beta']:+.4f} \\\"\\n                f\\\"p={cond_res['residualized_keff_p']:.4f}\\\"\\n            )\\n\\n    # ── Multiple testing corrections ──\\n    if raw_eta_ps:\\n        _, bonf_eta, _, _ = multipletests(raw_eta_ps, method=\\\"bonferroni\\\")\\n        _, fdr_eta, _, _ = multipletests(raw_eta_ps, method=\\\"fdr_bh\\\")\\n        _, bonf_keff, _, _ = multipletests(raw_keff_ps, method=\\\"bonferroni\\\")\\n        _, fdr_keff, _, _ = multipletests(raw_keff_ps, method=\\\"fdr_bh\\\")\\n\\n        for i, ck in enumerate(valid_cond_keys):\\n            condition_results[ck][\\\"eta_max_bonferroni_p\\\"] = float(bonf_eta[i])\\n            condition_results[ck][\\\"eta_max_fdr_p\\\"] = float(fdr_eta[i])\\n            condition_results[ck][\\\"keff_bonferroni_p\\\"] = float(bonf_keff[i])\\n            condition_results[ck][\\\"keff_fdr_p\\\"] = float(fdr_keff[i])\\n\\n    # ── Summary ──\\n    valid = [condition_results[k] for k in valid_cond_keys]\\n    nv = len(valid)\\n    summary = {}\\n    if nv > 0:\\n        summary = {\\n            \\\"keff_sig_negative_count\\\": (\\n                f\\\"{sum(1 for r in valid if r['ols']['keff_beta'] < 0 and r['ols']['keff_p'] < 0.05)}/{nv}\\\"\\n            ),\\n            \\\"keff_residualized_sig_count\\\": (\\n                f\\\"{sum(1 for r in valid if r.get('residualized_keff_p', 1) < 0.05)}/{nv}\\\"\\n            ),\\n            \\\"eta_max_bonferroni_sig_count\\\": (\\n                f\\\"{sum(1 for r in valid if r.get('eta_max_bonferroni_p', 1) < 0.05)}/{nv}\\\"\\n            ),\\n            \\\"eta_max_fdr_sig_count\\\": (\\n                f\\\"{sum(1 for r in valid if r.get('eta_max_fdr_p', 1) < 0.05)}/{nv}\\\"\\n            ),\\n            \\\"mean_vif_keff\\\": float(np.mean([r[\\\"vif_keff\\\"] for r in valid])),\\n            \\\"mean_R2\\\": float(np.mean([r[\\\"ols\\\"][\\\"R2\\\"] for r in valid])),\\n        }\\n\\n    output = {\\n        \\\"n_panels\\\": 455,\\n        \\\"n_models\\\": len(ALL_MODELS),\\n        \\\"models\\\": ALL_MODELS,\\n        \\\"datasets\\\": DATASETS,\\n        \\\"attacks\\\": ATTACKS,\\n        \\\"conditions\\\": condition_results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n    out_path = OUTPUT_DIR / \\\"step4_regression_results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    logger.info(f\\\"\\\\nResults saved: {out_path}\\\")\\n\\n    logger.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    logger.info(\\\"SUMMARY\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    for k, v in summary.items():\\n        logger.info(f\\\"  {k}: {v}\\\")\\n\\n    # Per-condition table\\n    logger.info(f\\\"\\\\n{'Condition':<35} {'R2':>6} {'K_eff B':>9} {'K_eff p':>9} {'eta_max B':>9} {'eta_max p':>9} {'VIF':>5}\\\")\\n    logger.info(\\\"-\\\" * 90)\\n    for ck in valid_cond_keys:\\n        r = condition_results[ck]\\n        o = r[\\\"ols\\\"]\\n        logger.info(\\n            f\\\"  {ck:<33} {o['R2']:>6.3f} {o['keff_beta']:>+9.4f} {o['keff_p']:>9.4f} \\\"\\n            f\\\"{o['eta_max_beta']:>+9.4f} {o['eta_max_p']:>9.4f} {r['vif_keff']:>5.1f}\\\"\\n        )\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "9e44792a-c552-43ee-a06e-8a0c4c89d204",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\\\n\\\\nInput:\\\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\\\n\\\\nOutput:\\\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\\\n\\\\nDependencies: numpy, scipy, statsmodels\\\\nOptional: pingouin (for partial_corr; manual fallback included)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/cert_manip_resist_eval\\\\\\\")\\\\n\\\\nimport json\\\\nimport warnings\\\\nimport itertools\\\\nimport numpy as np\\\\nimport statsmodels.api as sm\\\\nfrom pathlib import Path\\\\nfrom scipy import optimize, stats, special\\\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nfrom src.utils import setup_logging\\\\n\\\\nlogger = setup_logging(\\\\\\\"plan001_step4\\\\\\\")\\\\n\\\\n# ── Constants ────────────────────────────────────────────────────────\\\\nLOCAL_MODELS = [\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\", \\\\\\\"llama3.1-70b\\\\\\\", \\\\\\\"mistral-large\\\\\\\",\\\\n    \\\\\\\"qwen2.5-32b\\\\\\\", \\\\\\\"qwen2.5-14b\\\\\\\", \\\\\\\"llama3.1-8b\\\\\\\",\\\\n]\\\\nAPI_MODELS = [\\\\n    \\\\\\\"claude-opus-4\\\\\\\", \\\\\\\"gpt-5.5\\\\\\\", \\\\\\\"gemini-2.5-pro\\\\\\\", \\\\\\\"gpt-4.1\\\\\\\",\\\\n    \\\\\\\"claude-sonnet-4\\\\\\\", \\\\\\\"gpt-4o\\\\\\\", \\\\\\\"gemini-2.5-flash\\\\\\\",\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\", \\\\\\\"claude-3-haiku\\\\\\\",\\\\n]\\\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\\\nDATASETS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nATTACKS = [\\\\n    \\\\\\\"prompt_injection\\\\\\\", \\\\\\\"sycophancy\\\\\\\", \\\\\\\"score_manipulation\\\\\\\",\\\\n    \\\\\\\"verbosity_bias\\\\\\\", \\\\\\\"position_bias\\\\\\\", \\\\\\\"authority_bias\\\\\\\",\\\\n]\\\\nEPS = 0.001\\\\n\\\\nRESULTS_DIR = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results\\\\\\\")\\\\nPLAN001_DIR = RESULTS_DIR / \\\\\\\"plan001\\\\\\\"\\\\nSCORES_DIR = PLAN001_DIR / \\\\\\\"individual_scores\\\\\\\"\\\\nMI_PATH = PLAN001_DIR / \\\\\\\"mi_matrix\\\\\\\" / \\\\\\\"mi_matrix_15models.json\\\\\\\"\\\\nCKPT_FILES = [\\\\n    RESULTS_DIR / \\\\\\\"_taxonomy_checkpoint.json\\\\\\\",\\\\n    RESULTS_DIR / \\\\\\\"_step2v3_checkpoint.json\\\\\\\",\\\\n]\\\\nOUTPUT_DIR = PLAN001_DIR / \\\\\\\"panel_regression\\\\\\\"\\\\n\\\\n\\\\n# ── JSON Helper ──────────────────────────────────────────────────────\\\\n\\\\ndef _json_default(obj):\\\\n    if isinstance(obj, np.floating):\\\\n        v = float(obj)\\\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\\\n    if isinstance(obj, np.integer):\\\\n        return int(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    if isinstance(obj, np.bool_):\\\\n        return bool(obj)\\\\n    raise TypeError(f\\\\\\\"Not JSON serializable: {type(obj)}\\\\\\\")\\\\n\\\\n\\\\n# ── Data Loading ─────────────────────────────────────────────────────\\\\n\\\\ndef load_mi_data():\\\\n    if not MI_PATH.exists():\\\\n        logger.error(f\\\\\\\"MI matrix not found: {MI_PATH}\\\\\\\")\\\\n        logger.error(\\\\\\\"Run Step 3 first: scripts/run_plan001_step3_mi_matrix.py\\\\\\\")\\\\n        sys.exit(1)\\\\n    with open(MI_PATH) as f:\\\\n        data = json.load(f)\\\\n    logger.info(f\\\\\\\"Loaded MI matrix: {len(data['models'])} models\\\\\\\")\\\\n    return data\\\\n\\\\n\\\\ndef load_pairs():\\\\n    for ckpt_path in CKPT_FILES:\\\\n        if not ckpt_path.exists():\\\\n            continue\\\\n        with open(ckpt_path) as f:\\\\n            data = json.load(f)\\\\n        if \\\\\\\"pairs\\\\\\\" not in data:\\\\n            continue\\\\n        pairs = {}\\\\n        for ds in DATASETS:\\\\n            if ds in data[\\\\\\\"pairs\\\\\\\"]:\\\\n                pairs[ds] = data[\\\\\\\"pairs\\\\\\\"][ds][:300]\\\\n                logger.info(f\\\\\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\\\\\")\\\\n        if pairs:\\\\n            return pairs\\\\n    logger.error(\\\\\\\"No pairs found in any checkpoint file\\\\\\\")\\\\n    sys.exit(1)\\\\n\\\\n\\\\ndef _invert_winners(scores):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Invert A<->B winner labels for position bias scores (swapped pair orientation).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    swap = {\\\\\\\"A\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"B\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"tie\\\\\\\": \\\\\\\"tie\\\\\\\"}\\\\n    return [{**s, \\\\\\\"winner\\\\\\\": swap.get(s.get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\"), \\\\\\\"tie\\\\\\\")} for s in scores]\\\\n\\\\n\\\\ndef load_all_scores():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load sample-level clean + attacked scores for all 15 models.\\\\n\\\\n    Returns:\\\\n        clean[ds][model_id] = [{\\\\\\\"winner\\\\\\\": ..., ...}, ...]\\\\n        attacked[ds][atk][model_id] = [{\\\\\\\"winner\\\\\\\": ..., ...}, ...]\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    clean = {ds: {} for ds in DATASETS}\\\\n    attacked = {ds: {a: {} fo\\\\n\\\\n... [截断: 输出过长，省略 11672 字符] ...\\\\n\\\\n raw_eta_ps.append(cond_res[\\\\\\\"ols\\\\\\\"][\\\\\\\"eta_max_p\\\\\\\"])\\\\n            raw_keff_ps.append(cond_res[\\\\\\\"ols\\\\\\\"][\\\\\\\"keff_p\\\\\\\"])\\\\n            valid_cond_keys.append(cond)\\\\n\\\\n            ols = cond_res[\\\\\\\"ols\\\\\\\"]\\\\n            sig_k = \\\\\\\"***\\\\\\\" if ols[\\\\\\\"keff_p\\\\\\\"] < 0.001 else \\\\\\\"**\\\\\\\" if ols[\\\\\\\"keff_p\\\\\\\"] < 0.01 else \\\\\\\"*\\\\\\\" if ols[\\\\\\\"keff_p\\\\\\\"] < 0.05 else \\\\\\\"ns\\\\\\\"\\\\n            sig_e = \\\\\\\"***\\\\\\\" if ols[\\\\\\\"eta_max_p\\\\\\\"] < 0.001 else \\\\\\\"**\\\\\\\" if ols[\\\\\\\"eta_max_p\\\\\\\"] < 0.01 else \\\\\\\"*\\\\\\\" if ols[\\\\\\\"eta_max_p\\\\\\\"] < 0.05 else \\\\\\\"ns\\\\\\\"\\\\n            logger.info(\\\\n                f\\\\\\\"  OLS R2={ols['R2']:.4f}  \\\\\\\"\\\\n                f\\\\\\\"K_eff: B={ols['keff_beta']:+.4f} p={ols['keff_p']:.4f} {sig_k}  \\\\\\\"\\\\n                f\\\\\\\"eta_max: B={ols['eta_max_beta']:+.4f} p={ols['eta_max_p']:.4f} {sig_e}\\\\\\\"\\\\n            )\\\\n            logger.info(\\\\n                f\\\\\\\"  VIF: K_eff={cond_res['vif_keff']:.2f}, eta_max={cond_res['vif_eta_max']:.2f}\\\\\\\"\\\\n            )\\\\n            logger.info(\\\\n                f\\\\\\\"  Partial r(K_eff|eta_max)={cond_res['partial_r_keff']:.4f} \\\\\\\"\\\\n                f\\\\\\\"p={cond_res['partial_r_keff_p']:.4f}\\\\\\\"\\\\n            )\\\\n            logger.info(\\\\n                f\\\\\\\"  Residualized K_eff: B={cond_res['residualized_keff_beta']:+.4f} \\\\\\\"\\\\n                f\\\\\\\"p={cond_res['residualized_keff_p']:.4f}\\\\\\\"\\\\n            )\\\\n\\\\n    # ── Multiple testing corrections ──\\\\n    if raw_eta_ps:\\\\n        _, bonf_eta, _, _ = multipletests(raw_eta_ps, method=\\\\\\\"bonferroni\\\\\\\")\\\\n        _, fdr_eta, _, _ = multipletests(raw_eta_ps, method=\\\\\\\"fdr_bh\\\\\\\")\\\\n        _, bonf_keff, _, _ = multipletests(raw_keff_ps, method=\\\\\\\"bonferroni\\\\\\\")\\\\n        _, fdr_keff, _, _ = multipletests(raw_keff_ps, method=\\\\\\\"fdr_bh\\\\\\\")\\\\n\\\\n        for i, ck in enumerate(valid_cond_keys):\\\\n            condition_results[ck][\\\\\\\"eta_max_bonferroni_p\\\\\\\"] = float(bonf_eta[i])\\\\n            condition_results[ck][\\\\\\\"eta_max_fdr_p\\\\\\\"] = float(fdr_eta[i])\\\\n            condition_results[ck][\\\\\\\"keff_bonferroni_p\\\\\\\"] = float(bonf_keff[i])\\\\n            condition_results[ck][\\\\\\\"keff_fdr_p\\\\\\\"] = float(fdr_keff[i])\\\\n\\\\n    # ── Summary ──\\\\n    valid = [condition_results[k] for k in valid_cond_keys]\\\\n    nv = len(valid)\\\\n    summary = {}\\\\n    if nv > 0:\\\\n        summary = {\\\\n            \\\\\\\"keff_sig_negative_count\\\\\\\": (\\\\n                f\\\\\\\"{sum(1 for r in valid if r['ols']['keff_beta'] < 0 and r['ols']['keff_p'] < 0.05)}/{nv}\\\\\\\"\\\\n            ),\\\\n            \\\\\\\"keff_residualized_sig_count\\\\\\\": (\\\\n                f\\\\\\\"{sum(1 for r in valid if r.get('residualized_keff_p', 1) < 0.05)}/{nv}\\\\\\\"\\\\n            ),\\\\n            \\\\\\\"eta_max_bonferroni_sig_count\\\\\\\": (\\\\n                f\\\\\\\"{sum(1 for r in valid if r.get('eta_max_bonferroni_p', 1) < 0.05)}/{nv}\\\\\\\"\\\\n            ),\\\\n            \\\\\\\"eta_max_fdr_sig_count\\\\\\\": (\\\\n                f\\\\\\\"{sum(1 for r in valid if r.get('eta_max_fdr_p', 1) < 0.05)}/{nv}\\\\\\\"\\\\n            ),\\\\n            \\\\\\\"mean_vif_keff\\\\\\\": float(np.mean([r[\\\\\\\"vif_keff\\\\\\\"] for r in valid])),\\\\n            \\\\\\\"mean_R2\\\\\\\": float(np.mean([r[\\\\\\\"ols\\\\\\\"][\\\\\\\"R2\\\\\\\"] for r in valid])),\\\\n        }\\\\n\\\\n    output = {\\\\n        \\\\\\\"n_panels\\\\\\\": 455,\\\\n        \\\\\\\"n_models\\\\\\\": len(ALL_MODELS),\\\\n        \\\\\\\"models\\\\\\\": ALL_MODELS,\\\\n        \\\\\\\"datasets\\\\\\\": DATASETS,\\\\n        \\\\\\\"attacks\\\\\\\": ATTACKS,\\\\n        \\\\\\\"conditions\\\\\\\": condition_results,\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n    }\\\\n\\\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n    out_path = OUTPUT_DIR / \\\\\\\"step4_regression_results.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\\\n    logger.info(f\\\\\\\"\\\\\\\\nResults saved: {out_path}\\\\\\\")\\\\n\\\\n    logger.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"SUMMARY\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    for k, v in summary.items():\\\\n        logger.info(f\\\\\\\"  {k}: {v}\\\\\\\")\\\\n\\\\n    # Per-condition table\\\\n    logger.info(f\\\\\\\"\\\\\\\\n{'Condition':<35} {'R2':>6} {'K_eff B':>9} {'K_eff p':>9} {'eta_max B':>9} {'eta_max p':>9} {'VIF':>5}\\\\\\\")\\\\n    logger.info(\\\\\\\"-\\\\\\\" * 90)\\\\n    for ck in valid_cond_keys:\\\\n        r = condition_results[ck]\\\\n        o = r[\\\\\\\"ols\\\\\\\"]\\\\n        logger.info(\\\\n            f\\\\\\\"  {ck:<33} {o['R2']:>6.3f} {o['keff_beta']:>+9.4f} {o['keff_p']:>9.4f} \\\\\\\"\\\\n            f\\\\\\\"{o['eta_max_beta']:>+9.4f} {o['eta_max_p']:>9.4f} {r['vif_keff']:>5.1f}\\\\\\\"\\\\n        )\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\nOptional: pingouin (for partial_corr; manual fallback included)\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import optimize, stats, special\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_step4\\\")\\n\\n# ── Constants ────────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\nEPS = 0.001\\n\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\n# ── JSON Helper ──────────────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── Data Loading ─────────────────────────────────────────────────────\\n\\ndef load_mi_data():\\n    if not MI_PATH.exists():\\n        logger.error(f\\\"MI matrix not found: {MI_PATH}\\\")\\n        logger.error(\\\"Run Step 3 first: scripts/run_plan001_step3_mi_matrix.py\\\")\\n        sys.exit(1)\\n    with open(MI_PATH) as f:\\n        data = json.load(f)\\n    logger.info(f\\\"Loaded MI matrix: {len(data['models'])} models\\\")\\n    return data\\n\\n\\ndef load_pairs():\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        if \\\"pairs\\\" not in data:\\n            continue\\n        pairs = {}\\n        for ds in DATASETS:\\n            if ds in data[\\\"pairs\\\"]:\\n                pairs[ds] = data[\\\"pairs\\\"][ds][:300]\\n                logger.info(f\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\")\\n        if pairs:\\n            return pairs\\n    logger.error(\\\"No pairs found in any checkpoint file\\\")\\n    sys.exit(1)\\n\\n\\ndef _invert_winners(scores):\\n    \\\"\\\"\\\"Invert A<->B winner labels for position bias scores (swapped pair orientation).\\\"\\\"\\\"\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores():\\n    \\\"\\\"\\\"Load sample-level clean + attacked scores for all 15 models.\\n\\n    Returns:\\n        clean[ds][model_id] = [{\\\"winner\\\": ..., ...}, ...]\\n        attacked[ds][atk][model_id] = [{\\\"winner\\\": ..., ...}, ...]\\n    \\\"\\\"\\\"\\n    clean = {ds: {} for ds in DATASETS}\\n    attacked = {ds: {a: {} fo\\n\\n... [截断: 输出过长，省略 11672 字符] ...\\n\\n raw_eta_ps.append(cond_res[\\\"ols\\\"][\\\"eta_max_p\\\"])\\n            raw_keff_ps.append(cond_res[\\\"ols\\\"][\\\"keff_p\\\"])\\n            valid_cond_keys.append(cond)\\n\\n            ols = cond_res[\\\"ols\\\"]\\n            sig_k = \\\"***\\\" if ols[\\\"keff_p\\\"] < 0.001 else \\\"**\\\" if ols[\\\"keff_p\\\"] < 0.01 else \\\"*\\\" if ols[\\\"keff_p\\\"] < 0.05 else \\\"ns\\\"\\n            sig_e = \\\"***\\\" if ols[\\\"eta_max_p\\\"] < 0.001 else \\\"**\\\" if ols[\\\"eta_max_p\\\"] < 0.01 else \\\"*\\\" if ols[\\\"eta_max_p\\\"] < 0.05 else \\\"ns\\\"\\n            logger.info(\\n                f\\\"  OLS R2={ols['R2']:.4f}  \\\"\\n                f\\\"K_eff: B={ols['keff_beta']:+.4f} p={ols['keff_p']:.4f} {sig_k}  \\\"\\n                f\\\"eta_max: B={ols['eta_max_beta']:+.4f} p={ols['eta_max_p']:.4f} {sig_e}\\\"\\n            )\\n            logger.info(\\n                f\\\"  VIF: K_eff={cond_res['vif_keff']:.2f}, eta_max={cond_res['vif_eta_max']:.2f}\\\"\\n            )\\n            logger.info(\\n                f\\\"  Partial r(K_eff|eta_max)={cond_res['partial_r_keff']:.4f} \\\"\\n                f\\\"p={cond_res['partial_r_keff_p']:.4f}\\\"\\n            )\\n            logger.info(\\n                f\\\"  Residualized K_eff: B={cond_res['residualized_keff_beta']:+.4f} \\\"\\n                f\\\"p={cond_res['residualized_keff_p']:.4f}\\\"\\n            )\\n\\n    # ── Multiple testing corrections ──\\n    if raw_eta_ps:\\n        _, bonf_eta, _, _ = multipletests(raw_eta_ps, method=\\\"bonferroni\\\")\\n        _, fdr_eta, _, _ = multipletests(raw_eta_ps, method=\\\"fdr_bh\\\")\\n        _, bonf_keff, _, _ = multipletests(raw_keff_ps, method=\\\"bonferroni\\\")\\n        _, fdr_keff, _, _ = multipletests(raw_keff_ps, method=\\\"fdr_bh\\\")\\n\\n        for i, ck in enumerate(valid_cond_keys):\\n            condition_results[ck][\\\"eta_max_bonferroni_p\\\"] = float(bonf_eta[i])\\n            condition_results[ck][\\\"eta_max_fdr_p\\\"] = float(fdr_eta[i])\\n            condition_results[ck][\\\"keff_bonferroni_p\\\"] = float(bonf_keff[i])\\n            condition_results[ck][\\\"keff_fdr_p\\\"] = float(fdr_keff[i])\\n\\n    # ── Summary ──\\n    valid = [condition_results[k] for k in valid_cond_keys]\\n    nv = len(valid)\\n    summary = {}\\n    if nv > 0:\\n        summary = {\\n            \\\"keff_sig_negative_count\\\": (\\n                f\\\"{sum(1 for r in valid if r['ols']['keff_beta'] < 0 and r['ols']['keff_p'] < 0.05)}/{nv}\\\"\\n            ),\\n            \\\"keff_residualized_sig_count\\\": (\\n                f\\\"{sum(1 for r in valid if r.get('residualized_keff_p', 1) < 0.05)}/{nv}\\\"\\n            ),\\n            \\\"eta_max_bonferroni_sig_count\\\": (\\n                f\\\"{sum(1 for r in valid if r.get('eta_max_bonferroni_p', 1) < 0.05)}/{nv}\\\"\\n            ),\\n            \\\"eta_max_fdr_sig_count\\\": (\\n                f\\\"{sum(1 for r in valid if r.get('eta_max_fdr_p', 1) < 0.05)}/{nv}\\\"\\n            ),\\n            \\\"mean_vif_keff\\\": float(np.mean([r[\\\"vif_keff\\\"] for r in valid])),\\n            \\\"mean_R2\\\": float(np.mean([r[\\\"ols\\\"][\\\"R2\\\"] for r in valid])),\\n        }\\n\\n    output = {\\n        \\\"n_panels\\\": 455,\\n        \\\"n_models\\\": len(ALL_MODELS),\\n        \\\"models\\\": ALL_MODELS,\\n        \\\"datasets\\\": DATASETS,\\n        \\\"attacks\\\": ATTACKS,\\n        \\\"conditions\\\": condition_results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n    out_path = OUTPUT_DIR / \\\"step4_regression_results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    logger.info(f\\\"\\\\nResults saved: {out_path}\\\")\\n\\n    logger.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    logger.info(\\\"SUMMARY\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    for k, v in summary.items():\\n        logger.info(f\\\"  {k}: {v}\\\")\\n\\n    # Per-condition table\\n    logger.info(f\\\"\\\\n{'Condition':<35} {'R2':>6} {'K_eff B':>9} {'K_eff p':>9} {'eta_max B':>9} {'eta_max p':>9} {'VIF':>5}\\\")\\n    logger.info(\\\"-\\\" * 90)\\n    for ck in valid_cond_keys:\\n        r = condition_results[ck]\\n        o = r[\\\"ols\\\"]\\n        logger.info(\\n            f\\\"  {ck:<33} {o['R2']:>6.3f} {o['keff_beta']:>+9.4f} {o['keff_p']:>9.4f} \\\"\\n            f\\\"{o['eta_max_beta']:>+9.4f} {o['eta_max_p']:>9.4f} {r['vif_keff']:>5.1f}\\\"\\n        )\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T08:24:15.584Z_
+
+<details><summary>↩ Tool result · `toolu_019ayBgh2QktGTAB1dz3bbBs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 5: Random-fault simulation — 455 panels × 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step5_random_fault_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import stats\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_step5\\\")\\n\\n# ── Constants ───────────────────────────────────────────────��────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\nEPS = 0.001\\nN_SIMS = 1000\\nN_SAMPLES = 300\\nSIM_BATCH = 100\\n\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\n# ── JSON Helper ───────��──────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── Data Loading (shared with Step 4) ────────────────────────────────\\n\\ndef load_mi_data():\\n    if not MI_PATH.exists():\\n        logger.error(f\\\"MI matrix not found: {MI_PATH}\\\")\\n        sys.exit(1)\\n    with open(MI_PATH) as f:\\n        data = json.load(f)\\n    logger.info(f\\\"Loaded MI matrix: {len(data['models'])} models\\\")\\n    return data\\n\\n\\ndef load_pairs():\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        if \\\"pairs\\\" not in data:\\n            continue\\n        pairs = {}\\n        for ds in DATASETS:\\n            if ds in data[\\\"pairs\\\"]:\\n                pairs[ds] = data[\\\"pairs\\\"][ds][:300]\\n                logger.info(f\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\")\\n        if pairs:\\n            return pairs\\n    logger.error(\\\"No pairs found in any checkpoint file\\\")\\n    sys.exit(1)\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores():\\n    clean = {ds: {} for ds in DATASETS}\\n    attacked = {ds: {a: {} for a in ATTACKS} for ds in DATASETS}\\n\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        logger.info(f\\\"Loading checkpoint: {ckpt_path.name}\\\")\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        for ds in DATASETS:\\n            for mid, scores in data.get(\\\"clean_scores\\\", {}).get(ds, {}).items():\\n                if mid not in clean[ds]:\\n                    clean[ds][mid] = scores\\n            for atk in ATTACKS:\\n                for mid, scores in data.get(\\\"attacked_scores\\n\\n... [截断: 输出过长，省略 10847 字符] ...\\n\\ngger.info(\\n                f\\\"  Adaptive: K_eff B={adaptive_ols.get('keff_beta', 0):+.4f} \\\"\\n                f\\\"p={adaptive_ols.get('keff_p', 1):.4f} R2={adaptive_ols.get('R2', 0):.4f}\\\"\\n            )\\n            logger.info(\\n                f\\\"  RF:       K_eff B={rf_ols.get('keff_beta', 0):+.4f} \\\"\\n                f\\\"p={rf_ols.get('keff_p', 1):.4f} R2={rf_ols.get('R2', 0):.4f}\\\"\\n            )\\n            logger.info(f\\\"  dR2={delta_R2:+.4f}  K_eff gains significance: {keff_gains}\\\")\\n            if n_hk_le >= 5:\\n                logger.info(\\n                    f\\\"  High-K/Low-eta panels ({n_hk_le}): \\\"\\n                    f\\\"mean benefit={hk_le_benefit:+.4f} p={hk_le_pval}\\\"\\n                )\\n\\n    # ── Summary ──\\n    valid = {k: v for k, v in condition_results.items() if not v.get(\\\"skipped\\\")}\\n    nv = len(valid)\\n\\n    if nv > 0:\\n        n_adapt_sig = sum(\\n            1 for v in valid.values()\\n            if v[\\\"adaptive\\\"].get(\\\"keff_p\\\", 1) < 0.05 and v[\\\"adaptive\\\"].get(\\\"keff_beta\\\", 0) < 0\\n        )\\n        n_rf_sig = sum(\\n            1 for v in valid.values()\\n            if v[\\\"random_fault\\\"].get(\\\"keff_p\\\", 1) < 0.05 and v[\\\"random_fault\\\"].get(\\\"keff_beta\\\", 0) < 0\\n        )\\n        mean_dR2 = float(np.mean([v[\\\"delta_R2\\\"] for v in valid.values()]))\\n        n_gains = sum(1 for v in valid.values() if v[\\\"keff_gains_significance\\\"])\\n\\n        parts = []\\n        parts.append(\\n            f\\\"K_eff significantly negative in {n_rf_sig}/{nv} conditions under RF \\\"\\n            f\\\"vs {n_adapt_sig}/{nv} under adaptive.\\\"\\n        )\\n        if mean_dR2 > 0:\\n            parts.append(\\n                f\\\"RF model explains more variance (mean dR2={mean_dR2:+.3f}), \\\"\\n                \\\"consistent with independent-error majority vote theory.\\\"\\n            )\\n        else:\\n            parts.append(\\n                f\\\"Adaptive model explains more variance (mean dR2={mean_dR2:+.3f}).\\\"\\n            )\\n        if n_gains > nv // 2:\\n            parts.append(\\n                f\\\"K_eff gains significance in {n_gains}/{nv} conditions under RF, \\\"\\n                \\\"suggesting diversity benefit is undermined by adaptive attacks.\\\"\\n            )\\n        interpretation = \\\" \\\".join(parts)\\n\\n        summary = {\\n            \\\"adaptive_keff_sig_negative\\\": f\\\"{n_adapt_sig}/{nv}\\\",\\n            \\\"random_fault_keff_sig_negative\\\": f\\\"{n_rf_sig}/{nv}\\\",\\n            \\\"mean_delta_R2\\\": mean_dR2,\\n            \\\"keff_gains_significance_count\\\": f\\\"{n_gains}/{nv}\\\",\\n            \\\"interpretation\\\": interpretation,\\n        }\\n    else:\\n        summary = {\\\"note\\\": \\\"No valid conditions to summarize\\\"}\\n\\n    output = {\\n        \\\"n_panels\\\": 455,\\n        \\\"n_simulations\\\": N_SIMS,\\n        \\\"n_samples_per_sim\\\": N_SAMPLES,\\n        \\\"models\\\": ALL_MODELS,\\n        \\\"conditions\\\": condition_results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n    out_path = OUTPUT_DIR / \\\"step5_random_fault_results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    logger.info(f\\\"\\\\nResults saved: {out_path}\\\")\\n\\n    logger.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    logger.info(\\\"SUMMARY\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    for k, v in summary.items():\\n        if k != \\\"interpretation\\\":\\n            logger.info(f\\\"  {k}: {v}\\\")\\n    if \\\"interpretation\\\" in summary:\\n        logger.info(f\\\"\\\\n  {summary['interpretation']}\\\")\\n\\n    # Comparison table\\n    valid_keys = [k for k in condition_results if not condition_results[k].get(\\\"skipped\\\")]\\n    logger.info(f\\\"\\\\n{'Condition':<35} {'Adap R2':>8} {'RF R2':>8} {'dR2':>7} {'Adap Kp':>8} {'RF Kp':>8} {'Gains':>5}\\\")\\n    logger.info(\\\"-\\\" * 85)\\n    for ck in valid_keys:\\n        r = condition_results[ck]\\n        a = r[\\\"adaptive\\\"]\\n        rf = r[\\\"random_fault\\\"]\\n        logger.info(\\n            f\\\"  {ck:<33} {a.get('R2', 0):>8.4f} {rf.get('R2', 0):>8.4f} \\\"\\n            f\\\"{r['delta_R2']:>+7.3f} {a.get('keff_p', 1):>8.4f} {rf.get('keff_p', 1):>8.4f} \\\"\\n            f\\\"{'Y' if r['keff_gains_significance'] else 'N':>5}\\\"\\n        )\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "7946f686-e331-46c6-bdb4-1c7d074edb2e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Plan 001 Step 5: Random-fault simulation — 455 panels × 12 conditions.\\\\n\\\\nInput:\\\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\\\n\\\\nOutput:\\\\n  - artifacts/results/plan001/panel_regression/step5_random_fault_results.json\\\\n\\\\nDependencies: numpy, scipy, statsmodels\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/cert_manip_resist_eval\\\\\\\")\\\\n\\\\nimport json\\\\nimport warnings\\\\nimport itertools\\\\nimport numpy as np\\\\nimport statsmodels.api as sm\\\\nfrom pathlib import Path\\\\nfrom scipy import stats\\\\n\\\\nfrom src.utils import setup_logging\\\\n\\\\nlogger = setup_logging(\\\\\\\"plan001_step5\\\\\\\")\\\\n\\\\n# ── Constants ───────────────────────────────────────────────��────────\\\\nLOCAL_MODELS = [\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\", \\\\\\\"llama3.1-70b\\\\\\\", \\\\\\\"mistral-large\\\\\\\",\\\\n    \\\\\\\"qwen2.5-32b\\\\\\\", \\\\\\\"qwen2.5-14b\\\\\\\", \\\\\\\"llama3.1-8b\\\\\\\",\\\\n]\\\\nAPI_MODELS = [\\\\n    \\\\\\\"claude-opus-4\\\\\\\", \\\\\\\"gpt-5.5\\\\\\\", \\\\\\\"gemini-2.5-pro\\\\\\\", \\\\\\\"gpt-4.1\\\\\\\",\\\\n    \\\\\\\"claude-sonnet-4\\\\\\\", \\\\\\\"gpt-4o\\\\\\\", \\\\\\\"gemini-2.5-flash\\\\\\\",\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\", \\\\\\\"claude-3-haiku\\\\\\\",\\\\n]\\\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\\\nDATASETS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nATTACKS = [\\\\n    \\\\\\\"prompt_injection\\\\\\\", \\\\\\\"sycophancy\\\\\\\", \\\\\\\"score_manipulation\\\\\\\",\\\\n    \\\\\\\"verbosity_bias\\\\\\\", \\\\\\\"position_bias\\\\\\\", \\\\\\\"authority_bias\\\\\\\",\\\\n]\\\\nEPS = 0.001\\\\nN_SIMS = 1000\\\\nN_SAMPLES = 300\\\\nSIM_BATCH = 100\\\\n\\\\nRESULTS_DIR = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results\\\\\\\")\\\\nPLAN001_DIR = RESULTS_DIR / \\\\\\\"plan001\\\\\\\"\\\\nSCORES_DIR = PLAN001_DIR / \\\\\\\"individual_scores\\\\\\\"\\\\nMI_PATH = PLAN001_DIR / \\\\\\\"mi_matrix\\\\\\\" / \\\\\\\"mi_matrix_15models.json\\\\\\\"\\\\nCKPT_FILES = [\\\\n    RESULTS_DIR / \\\\\\\"_taxonomy_checkpoint.json\\\\\\\",\\\\n    RESULTS_DIR / \\\\\\\"_step2v3_checkpoint.json\\\\\\\",\\\\n]\\\\nOUTPUT_DIR = PLAN001_DIR / \\\\\\\"panel_regression\\\\\\\"\\\\n\\\\n\\\\n# ── JSON Helper ───────��──────────────────────────────────────────────\\\\n\\\\ndef _json_default(obj):\\\\n    if isinstance(obj, np.floating):\\\\n        v = float(obj)\\\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\\\n    if isinstance(obj, np.integer):\\\\n        return int(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    if isinstance(obj, np.bool_):\\\\n        return bool(obj)\\\\n    raise TypeError(f\\\\\\\"Not JSON serializable: {type(obj)}\\\\\\\")\\\\n\\\\n\\\\n# ── Data Loading (shared with Step 4) ────────────────────────────────\\\\n\\\\ndef load_mi_data():\\\\n    if not MI_PATH.exists():\\\\n        logger.error(f\\\\\\\"MI matrix not found: {MI_PATH}\\\\\\\")\\\\n        sys.exit(1)\\\\n    with open(MI_PATH) as f:\\\\n        data = json.load(f)\\\\n    logger.info(f\\\\\\\"Loaded MI matrix: {len(data['models'])} models\\\\\\\")\\\\n    return data\\\\n\\\\n\\\\ndef load_pairs():\\\\n    for ckpt_path in CKPT_FILES:\\\\n        if not ckpt_path.exists():\\\\n            continue\\\\n        with open(ckpt_path) as f:\\\\n            data = json.load(f)\\\\n        if \\\\\\\"pairs\\\\\\\" not in data:\\\\n            continue\\\\n        pairs = {}\\\\n        for ds in DATASETS:\\\\n            if ds in data[\\\\\\\"pairs\\\\\\\"]:\\\\n                pairs[ds] = data[\\\\\\\"pairs\\\\\\\"][ds][:300]\\\\n                logger.info(f\\\\\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\\\\\")\\\\n        if pairs:\\\\n            return pairs\\\\n    logger.error(\\\\\\\"No pairs found in any checkpoint file\\\\\\\")\\\\n    sys.exit(1)\\\\n\\\\n\\\\ndef _invert_winners(scores):\\\\n    swap = {\\\\\\\"A\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"B\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"tie\\\\\\\": \\\\\\\"tie\\\\\\\"}\\\\n    return [{**s, \\\\\\\"winner\\\\\\\": swap.get(s.get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\"), \\\\\\\"tie\\\\\\\")} for s in scores]\\\\n\\\\n\\\\ndef load_all_scores():\\\\n    clean = {ds: {} for ds in DATASETS}\\\\n    attacked = {ds: {a: {} for a in ATTACKS} for ds in DATASETS}\\\\n\\\\n    for ckpt_path in CKPT_FILES:\\\\n        if not ckpt_path.exists():\\\\n            continue\\\\n        logger.info(f\\\\\\\"Loading checkpoint: {ckpt_path.name}\\\\\\\")\\\\n        with open(ckpt_path) as f:\\\\n            data = json.load(f)\\\\n        for ds in DATASETS:\\\\n            for mid, scores in data.get(\\\\\\\"clean_scores\\\\\\\", {}).get(ds, {}).items():\\\\n                if mid not in clean[ds]:\\\\n                    clean[ds][mid] = scores\\\\n            for atk in ATTACKS:\\\\n                for mid, scores in data.get(\\\\\\\"attacked_scores\\\\n\\\\n... [截断: 输出过长，省略 10847 字符] ...\\\\n\\\\ngger.info(\\\\n                f\\\\\\\"  Adaptive: K_eff B={adaptive_ols.get('keff_beta', 0):+.4f} \\\\\\\"\\\\n                f\\\\\\\"p={adaptive_ols.get('keff_p', 1):.4f} R2={adaptive_ols.get('R2', 0):.4f}\\\\\\\"\\\\n            )\\\\n            logger.info(\\\\n                f\\\\\\\"  RF:       K_eff B={rf_ols.get('keff_beta', 0):+.4f} \\\\\\\"\\\\n                f\\\\\\\"p={rf_ols.get('keff_p', 1):.4f} R2={rf_ols.get('R2', 0):.4f}\\\\\\\"\\\\n            )\\\\n            logger.info(f\\\\\\\"  dR2={delta_R2:+.4f}  K_eff gains significance: {keff_gains}\\\\\\\")\\\\n            if n_hk_le >= 5:\\\\n                logger.info(\\\\n                    f\\\\\\\"  High-K/Low-eta panels ({n_hk_le}): \\\\\\\"\\\\n                    f\\\\\\\"mean benefit={hk_le_benefit:+.4f} p={hk_le_pval}\\\\\\\"\\\\n                )\\\\n\\\\n    # ── Summary ──\\\\n    valid = {k: v for k, v in condition_results.items() if not v.get(\\\\\\\"skipped\\\\\\\")}\\\\n    nv = len(valid)\\\\n\\\\n    if nv > 0:\\\\n        n_adapt_sig = sum(\\\\n            1 for v in valid.values()\\\\n            if v[\\\\\\\"adaptive\\\\\\\"].get(\\\\\\\"keff_p\\\\\\\", 1) < 0.05 and v[\\\\\\\"adaptive\\\\\\\"].get(\\\\\\\"keff_beta\\\\\\\", 0) < 0\\\\n        )\\\\n        n_rf_sig = sum(\\\\n            1 for v in valid.values()\\\\n            if v[\\\\\\\"random_fault\\\\\\\"].get(\\\\\\\"keff_p\\\\\\\", 1) < 0.05 and v[\\\\\\\"random_fault\\\\\\\"].get(\\\\\\\"keff_beta\\\\\\\", 0) < 0\\\\n        )\\\\n        mean_dR2 = float(np.mean([v[\\\\\\\"delta_R2\\\\\\\"] for v in valid.values()]))\\\\n        n_gains = sum(1 for v in valid.values() if v[\\\\\\\"keff_gains_significance\\\\\\\"])\\\\n\\\\n        parts = []\\\\n        parts.append(\\\\n            f\\\\\\\"K_eff significantly negative in {n_rf_sig}/{nv} conditions under RF \\\\\\\"\\\\n            f\\\\\\\"vs {n_adapt_sig}/{nv} under adaptive.\\\\\\\"\\\\n        )\\\\n        if mean_dR2 > 0:\\\\n            parts.append(\\\\n                f\\\\\\\"RF model explains more variance (mean dR2={mean_dR2:+.3f}), \\\\\\\"\\\\n                \\\\\\\"consistent with independent-error majority vote theory.\\\\\\\"\\\\n            )\\\\n        else:\\\\n            parts.append(\\\\n                f\\\\\\\"Adaptive model explains more variance (mean dR2={mean_dR2:+.3f}).\\\\\\\"\\\\n            )\\\\n        if n_gains > nv // 2:\\\\n            parts.append(\\\\n                f\\\\\\\"K_eff gains significance in {n_gains}/{nv} conditions under RF, \\\\\\\"\\\\n                \\\\\\\"suggesting diversity benefit is undermined by adaptive attacks.\\\\\\\"\\\\n            )\\\\n        interpretation = \\\\\\\" \\\\\\\".join(parts)\\\\n\\\\n        summary = {\\\\n            \\\\\\\"adaptive_keff_sig_negative\\\\\\\": f\\\\\\\"{n_adapt_sig}/{nv}\\\\\\\",\\\\n            \\\\\\\"random_fault_keff_sig_negative\\\\\\\": f\\\\\\\"{n_rf_sig}/{nv}\\\\\\\",\\\\n            \\\\\\\"mean_delta_R2\\\\\\\": mean_dR2,\\\\n            \\\\\\\"keff_gains_significance_count\\\\\\\": f\\\\\\\"{n_gains}/{nv}\\\\\\\",\\\\n            \\\\\\\"interpretation\\\\\\\": interpretation,\\\\n        }\\\\n    else:\\\\n        summary = {\\\\\\\"note\\\\\\\": \\\\\\\"No valid conditions to summarize\\\\\\\"}\\\\n\\\\n    output = {\\\\n        \\\\\\\"n_panels\\\\\\\": 455,\\\\n        \\\\\\\"n_simulations\\\\\\\": N_SIMS,\\\\n        \\\\\\\"n_samples_per_sim\\\\\\\": N_SAMPLES,\\\\n        \\\\\\\"models\\\\\\\": ALL_MODELS,\\\\n        \\\\\\\"conditions\\\\\\\": condition_results,\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n    }\\\\n\\\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n    out_path = OUTPUT_DIR / \\\\\\\"step5_random_fault_results.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\\\n    logger.info(f\\\\\\\"\\\\\\\\nResults saved: {out_path}\\\\\\\")\\\\n\\\\n    logger.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"SUMMARY\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    for k, v in summary.items():\\\\n        if k != \\\\\\\"interpretation\\\\\\\":\\\\n            logger.info(f\\\\\\\"  {k}: {v}\\\\\\\")\\\\n    if \\\\\\\"interpretation\\\\\\\" in summary:\\\\n        logger.info(f\\\\\\\"\\\\\\\\n  {summary['interpretation']}\\\\\\\")\\\\n\\\\n    # Comparison table\\\\n    valid_keys = [k for k in condition_results if not condition_results[k].get(\\\\\\\"skipped\\\\\\\")]\\\\n    logger.info(f\\\\\\\"\\\\\\\\n{'Condition':<35} {'Adap R2':>8} {'RF R2':>8} {'dR2':>7} {'Adap Kp':>8} {'RF Kp':>8} {'Gains':>5}\\\\\\\")\\\\n    logger.info(\\\\\\\"-\\\\\\\" * 85)\\\\n    for ck in valid_keys:\\\\n        r = condition_results[ck]\\\\n        a = r[\\\\\\\"adaptive\\\\\\\"]\\\\n        rf = r[\\\\\\\"random_fault\\\\\\\"]\\\\n        logger.info(\\\\n            f\\\\\\\"  {ck:<33} {a.get('R2', 0):>8.4f} {rf.get('R2', 0):>8.4f} \\\\\\\"\\\\n            f\\\\\\\"{r['delta_R2']:>+7.3f} {a.get('keff_p', 1):>8.4f} {rf.get('keff_p', 1):>8.4f} \\\\\\\"\\\\n            f\\\\\\\"{'Y' if r['keff_gains_significance'] else 'N':>5}\\\\\\\"\\\\n        )\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 5: Random-fault simulation — 455 panels × 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step5_random_fault_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import stats\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_step5\\\")\\n\\n# ── Constants ───────────────────────────────────────────────��────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\nEPS = 0.001\\nN_SIMS = 1000\\nN_SAMPLES = 300\\nSIM_BATCH = 100\\n\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\n# ── JSON Helper ───────��──────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── Data Loading (shared with Step 4) ────────────────────────────────\\n\\ndef load_mi_data():\\n    if not MI_PATH.exists():\\n        logger.error(f\\\"MI matrix not found: {MI_PATH}\\\")\\n        sys.exit(1)\\n    with open(MI_PATH) as f:\\n        data = json.load(f)\\n    logger.info(f\\\"Loaded MI matrix: {len(data['models'])} models\\\")\\n    return data\\n\\n\\ndef load_pairs():\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        if \\\"pairs\\\" not in data:\\n            continue\\n        pairs = {}\\n        for ds in DATASETS:\\n            if ds in data[\\\"pairs\\\"]:\\n                pairs[ds] = data[\\\"pairs\\\"][ds][:300]\\n                logger.info(f\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\")\\n        if pairs:\\n            return pairs\\n    logger.error(\\\"No pairs found in any checkpoint file\\\")\\n    sys.exit(1)\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores():\\n    clean = {ds: {} for ds in DATASETS}\\n    attacked = {ds: {a: {} for a in ATTACKS} for ds in DATASETS}\\n\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        logger.info(f\\\"Loading checkpoint: {ckpt_path.name}\\\")\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        for ds in DATASETS:\\n            for mid, scores in data.get(\\\"clean_scores\\\", {}).get(ds, {}).items():\\n                if mid not in clean[ds]:\\n                    clean[ds][mid] = scores\\n            for atk in ATTACKS:\\n                for mid, scores in data.get(\\\"attacked_scores\\n\\n... [截断: 输出过长，省略 10847 字符] ...\\n\\ngger.info(\\n                f\\\"  Adaptive: K_eff B={adaptive_ols.get('keff_beta', 0):+.4f} \\\"\\n                f\\\"p={adaptive_ols.get('keff_p', 1):.4f} R2={adaptive_ols.get('R2', 0):.4f}\\\"\\n            )\\n            logger.info(\\n                f\\\"  RF:       K_eff B={rf_ols.get('keff_beta', 0):+.4f} \\\"\\n                f\\\"p={rf_ols.get('keff_p', 1):.4f} R2={rf_ols.get('R2', 0):.4f}\\\"\\n            )\\n            logger.info(f\\\"  dR2={delta_R2:+.4f}  K_eff gains significance: {keff_gains}\\\")\\n            if n_hk_le >= 5:\\n                logger.info(\\n                    f\\\"  High-K/Low-eta panels ({n_hk_le}): \\\"\\n                    f\\\"mean benefit={hk_le_benefit:+.4f} p={hk_le_pval}\\\"\\n                )\\n\\n    # ── Summary ──\\n    valid = {k: v for k, v in condition_results.items() if not v.get(\\\"skipped\\\")}\\n    nv = len(valid)\\n\\n    if nv > 0:\\n        n_adapt_sig = sum(\\n            1 for v in valid.values()\\n            if v[\\\"adaptive\\\"].get(\\\"keff_p\\\", 1) < 0.05 and v[\\\"adaptive\\\"].get(\\\"keff_beta\\\", 0) < 0\\n        )\\n        n_rf_sig = sum(\\n            1 for v in valid.values()\\n            if v[\\\"random_fault\\\"].get(\\\"keff_p\\\", 1) < 0.05 and v[\\\"random_fault\\\"].get(\\\"keff_beta\\\", 0) < 0\\n        )\\n        mean_dR2 = float(np.mean([v[\\\"delta_R2\\\"] for v in valid.values()]))\\n        n_gains = sum(1 for v in valid.values() if v[\\\"keff_gains_significance\\\"])\\n\\n        parts = []\\n        parts.append(\\n            f\\\"K_eff significantly negative in {n_rf_sig}/{nv} conditions under RF \\\"\\n            f\\\"vs {n_adapt_sig}/{nv} under adaptive.\\\"\\n        )\\n        if mean_dR2 > 0:\\n            parts.append(\\n                f\\\"RF model explains more variance (mean dR2={mean_dR2:+.3f}), \\\"\\n                \\\"consistent with independent-error majority vote theory.\\\"\\n            )\\n        else:\\n            parts.append(\\n                f\\\"Adaptive model explains more variance (mean dR2={mean_dR2:+.3f}).\\\"\\n            )\\n        if n_gains > nv // 2:\\n            parts.append(\\n                f\\\"K_eff gains significance in {n_gains}/{nv} conditions under RF, \\\"\\n                \\\"suggesting diversity benefit is undermined by adaptive attacks.\\\"\\n            )\\n        interpretation = \\\" \\\".join(parts)\\n\\n        summary = {\\n            \\\"adaptive_keff_sig_negative\\\": f\\\"{n_adapt_sig}/{nv}\\\",\\n            \\\"random_fault_keff_sig_negative\\\": f\\\"{n_rf_sig}/{nv}\\\",\\n            \\\"mean_delta_R2\\\": mean_dR2,\\n            \\\"keff_gains_significance_count\\\": f\\\"{n_gains}/{nv}\\\",\\n            \\\"interpretation\\\": interpretation,\\n        }\\n    else:\\n        summary = {\\\"note\\\": \\\"No valid conditions to summarize\\\"}\\n\\n    output = {\\n        \\\"n_panels\\\": 455,\\n        \\\"n_simulations\\\": N_SIMS,\\n        \\\"n_samples_per_sim\\\": N_SAMPLES,\\n        \\\"models\\\": ALL_MODELS,\\n        \\\"conditions\\\": condition_results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n    out_path = OUTPUT_DIR / \\\"step5_random_fault_results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\\n    logger.info(f\\\"\\\\nResults saved: {out_path}\\\")\\n\\n    logger.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    logger.info(\\\"SUMMARY\\\")\\n    logger.info(\\\"=\\\" * 60)\\n    for k, v in summary.items():\\n        if k != \\\"interpretation\\\":\\n            logger.info(f\\\"  {k}: {v}\\\")\\n    if \\\"interpretation\\\" in summary:\\n        logger.info(f\\\"\\\\n  {summary['interpretation']}\\\")\\n\\n    # Comparison table\\n    valid_keys = [k for k in condition_results if not condition_results[k].get(\\\"skipped\\\")]\\n    logger.info(f\\\"\\\\n{'Condition':<35} {'Adap R2':>8} {'RF R2':>8} {'dR2':>7} {'Adap Kp':>8} {'RF Kp':>8} {'Gains':>5}\\\")\\n    logger.info(\\\"-\\\" * 85)\\n    for ck in valid_keys:\\n        r = condition_results[ck]\\n        a = r[\\\"adaptive\\\"]\\n        rf = r[\\\"random_fault\\\"]\\n        logger.info(\\n            f\\\"  {ck:<33} {a.get('R2', 0):>8.4f} {rf.get('R2', 0):>8.4f} \\\"\\n            f\\\"{r['delta_R2']:>+7.3f} {a.get('keff_p', 1):>8.4f} {rf.get('keff_p', 1):>8.4f} \\\"\\n            f\\\"{'Y' if r['keff_gains_significance'] else 'N':>5}\\\"\\n        )\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Qaw2ALEBFUpbyhCPLNMbm`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "7445d16d-ff5c-48c3-88fd-24407a1e1ff2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCyuN4ZyHKBLq3v3xgzA5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 23918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017ShzWYcNCYwpEfBkniup7g`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cat /root/cert_manip_resist_eval/scripts/run_plan001_confound_diagnosis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "fa7cdc1d-8c88-446e-a610-529dec596a9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCyuN4ZyHKBLq3v3xgzA5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 23918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T08:24:16.253Z_
+
+<details><summary>↩ Tool result · `toolu_017Qaw2ALEBFUpbyhCPLNMbm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 3: Compute 15-model pairwise MI matrix and K_eff for all C(15,3) panels.\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nfrom pathlib import Path\\nfrom collections import Counter\\nfrom sklearn.metrics import mutual_info_score\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_step3_mi\\\")\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\n\\n# ── Paths ────────────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_DIR = PLAN001_DIR / \\\"mi_matrix\\\"\\n\\nSTEP2V3_CKPT = RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\"\\nTAXONOMY_CKPT = RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\"\\n\\n\\ndef load_local_clean_scores():\\n    \\\"\\\"\\\"Load clean scores for 6 local models from checkpoint files.\\\"\\\"\\\"\\n    scores = {}\\n    for ckpt_path in [STEP2V3_CKPT, TAXONOMY_CKPT]:\\n        if not ckpt_path.exists():\\n            logger.warning(f\\\"Checkpoint not found: {ckpt_path}\\\")\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        cs = data.get(\\\"clean_scores\\\", {})\\n        for ds in DATASETS:\\n            if ds not in cs:\\n                continue\\n            if ds not in scores:\\n                scores[ds] = {}\\n            for model_id, model_scores in cs[ds].items():\\n                if model_id in LOCAL_MODELS and model_id not in scores[ds]:\\n                    scores[ds][model_id] = model_scores\\n    return scores\\n\\n\\ndef load_api_clean_scores():\\n    \\\"\\\"\\\"Load clean scores for 9 API models from individual score files.\\\"\\\"\\\"\\n    scores = {}\\n    for model_id in API_MODELS:\\n        for ds in DATASETS:\\n            fname = f\\\"{model_id}__{ds}__clean.json\\\"\\n            fpath = SCORES_DIR / fname\\n            if not fpath.exists():\\n                logger.warning(f\\\"API score file not found: {fpath}\\\")\\n                continue\\n            with open(fpath) as f:\\n                data = json.load(f)\\n            if ds not in scores:\\n                scores[ds] = {}\\n            scores[ds][model_id] = data.get(\\\"scores\\\", [])\\n    return scores\\n\\n\\ndef merge_clean_scores(local_scores, api_scores):\\n    \\\"\\\"\\\"Merge local and API clean scores into unified dict.\\\"\\\"\\\"\\n    merged = {}\\n    for ds in DATASETS:\\n        merged[ds] = {}\\n        for src in [local_scores, api_scores]:\\n            if ds in src:\\n                merged[ds].update(src[ds])\\n    return merged\\n\\n\\ndef extract_winner_vector(score_list):\\n    \\\"\\\"\\\"Extract winner labels from score list, normalizing to A/B/C/tie.\\\"\\\"\\\"\\n    winners = []\\n    for s in score_list:\\n        w = s.get(\\\"winner\\\", \\\"tie\\\") if isinstance(s, dict) else \\\"tie\\\"\\n        winners.append(w)\\n    return winners\\n\\n\\ndef compute_pairwise_mi(winners_i, winners_j):\\n    \\\"\\\"\\\"Compute mutual information between two winner vectors.\\\"\\\"\\\"\\n    n = min(len(winners_i), len(winners_j))\\n    if n == 0:\\n        return 0.0\\n    return mutual_info_score(winners_i[:n], winners_j[:n])\\n\\n\\ndef build_mi_matrix(clean_scores, dataset):\\n    \\\"\\\"\\\"Build 15x15 MI matrix for a dataset.\\\"\\\"\\\"\\n    ds_scores = clean_scores.get(dataset, {})\\n    n_models = len(ALL_MODELS)\\n    mi_mat = np.zeros((n_models, n_models))\\n\\n    winner_vectors = {}\\n    for i, model_id in enumerate(ALL_MODELS):\\n        if model_id in ds_scores:\\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\\n        else:\\n            logger.warning(f\\\"No clean scores for {model_id} on {dataset}\\\")\\n\\n    for i in range(n_m\\n\\n... [截断: 输出过长，省略 666 字符] ...\\n\\n return keff / K\\n\\n\\ndef compute_all_panel_keffs(mi_matrix, dataset):\\n    \\\"\\\"\\\"Compute K_eff for all C(15,3)=455 panels.\\\"\\\"\\\"\\n    n_models = len(ALL_MODELS)\\n    idx_to_model = {i: m for i, m in enumerate(ALL_MODELS)}\\n    panels = {}\\n\\n    for combo in itertools.combinations(range(n_models), 3):\\n        model_ids = [idx_to_model[i] for i in combo]\\n        panel_key = \\\"|\\\".join(model_ids)\\n        keff = mi_based_keff(mi_matrix, list(combo))\\n\\n        mi_pairs = {}\\n        for a, b in itertools.combinations(combo, 2):\\n            pair_key = f\\\"{idx_to_model[a]}|{idx_to_model[b]}\\\"\\n            mi_pairs[pair_key] = float(mi_matrix[a, b])\\n\\n        panels[panel_key] = {\\n            \\\"models\\\": model_ids,\\n            \\\"keff\\\": float(keff),\\n            \\\"mi_pairs\\\": mi_pairs,\\n        }\\n\\n    return panels\\n\\n\\ndef main():\\n    logger.info(\\\"=== Plan 001 Step 3: MI Matrix Computation ===\\\")\\n\\n    local_scores = load_local_clean_scores()\\n    api_scores = load_api_clean_scores()\\n    clean_scores = merge_clean_scores(local_scores, api_scores)\\n\\n    for ds in DATASETS:\\n        available = list(clean_scores.get(ds, {}).keys())\\n        missing = [m for m in ALL_MODELS if m not in available]\\n        logger.info(f\\\"  {ds}: {len(available)}/{len(ALL_MODELS)} models available\\\")\\n        if missing:\\n            logger.warning(f\\\"  {ds}: missing models: {missing}\\\")\\n\\n    available_count = sum(\\n        1 for ds in DATASETS\\n        for m in ALL_MODELS\\n        if m in clean_scores.get(ds, {})\\n    )\\n    total_needed = len(DATASETS) * len(ALL_MODELS)\\n    if available_count < total_needed:\\n        logger.warning(\\n            f\\\"Only {available_count}/{total_needed} model×dataset combos available. \\\"\\n            f\\\"MI matrix will have zeros for missing pairs.\\\"\\n        )\\n\\n    mi_matrices = {}\\n    keff_per_panel = {}\\n\\n    for ds in DATASETS:\\n        logger.info(f\\\"\\\\n--- Computing MI matrix for {ds} ---\\\")\\n        mi_mat = build_mi_matrix(clean_scores, ds)\\n        mi_matrices[ds] = mi_mat.tolist()\\n\\n        nonzero = np.count_nonzero(mi_mat)\\n        max_possible = len(ALL_MODELS) * (len(ALL_MODELS) - 1)\\n        logger.info(f\\\"  MI matrix: {nonzero}/{max_possible} non-zero entries\\\")\\n        if nonzero > 0:\\n            upper = mi_mat[np.triu_indices_from(mi_mat, k=1)]\\n            upper_nz = upper[upper > 0]\\n            if len(upper_nz) > 0:\\n                logger.info(\\n                    f\\\"  MI range: [{upper_nz.min():.4f}, {upper_nz.max():.4f}], \\\"\\n                    f\\\"mean={upper_nz.mean():.4f}\\\"\\n                )\\n\\n        logger.info(f\\\"  Computing K_eff for all C(15,3)=455 panels on {ds}...\\\")\\n        panels = compute_all_panel_keffs(mi_mat, ds)\\n        keff_per_panel[ds] = panels\\n\\n        keff_values = [p[\\\"keff\\\"] for p in panels.values()]\\n        logger.info(\\n            f\\\"  K_eff range: [{min(keff_values):.3f}, {max(keff_values):.3f}], \\\"\\n            f\\\"mean={np.mean(keff_values):.3f}\\\"\\n        )\\n\\n    MI_DIR.mkdir(parents=True, exist_ok=True)\\n    output = {\\n        \\\"models\\\": ALL_MODELS,\\n        \\\"mi_matrix\\\": mi_matrices,\\n        \\\"keff_per_panel\\\": keff_per_panel,\\n    }\\n    output_path = MI_DIR / \\\"mi_matrix_15models.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n    logger.info(f\\\"\\\\nSaved MI matrix to {output_path}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"MI MATRIX SUMMARY\\\")\\n    print(\\\"=\\\" * 70)\\n    for ds in DATASETS:\\n        mi_mat = np.array(mi_matrices[ds])\\n        upper = mi_mat[np.triu_indices_from(mi_mat, k=1)]\\n        n_computed = np.count_nonzero(upper)\\n        print(f\\\"\\\\n{ds}:\\\")\\n        print(f\\\"  Pairwise MI computed: {n_computed}/105\\\")\\n        if n_computed > 0:\\n            nz = upper[upper > 0]\\n            print(f\\\"  MI range: [{nz.min():.4f}, {nz.max():.4f}]\\\")\\n            print(f\\\"  MI mean:  {nz.mean():.4f}\\\")\\n        keffs = [p[\\\"keff\\\"] for p in keff_per_panel[ds].values()]\\n        print(f\\\"  K_eff (455 panels): [{min(keffs):.3f}, {max(keffs):.3f}], mean={np.mean(keffs):.3f}\\\")\\n    print(\\\"=\\\" * 70)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "4092fe15-ba3c-4013-bbe8-87b2e43f18a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Plan 001 Step 3: Compute 15-model pairwise MI matrix and K_eff for all C(15,3) panels.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/cert_manip_resist_eval\\\\\\\")\\\\n\\\\nimport json\\\\nimport itertools\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\nfrom collections import Counter\\\\nfrom sklearn.metrics import mutual_info_score\\\\n\\\\nfrom src.utils import setup_logging\\\\n\\\\nlogger = setup_logging(\\\\\\\"plan001_step3_mi\\\\\\\")\\\\n\\\\n# ── Model lists ──────────────────────────────────────────────────────\\\\nLOCAL_MODELS = [\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\", \\\\\\\"llama3.1-70b\\\\\\\", \\\\\\\"mistral-large\\\\\\\",\\\\n    \\\\\\\"qwen2.5-32b\\\\\\\", \\\\\\\"qwen2.5-14b\\\\\\\", \\\\\\\"llama3.1-8b\\\\\\\",\\\\n]\\\\nAPI_MODELS = [\\\\n    \\\\\\\"claude-opus-4\\\\\\\", \\\\\\\"gpt-5.5\\\\\\\", \\\\\\\"gemini-2.5-pro\\\\\\\", \\\\\\\"gpt-4.1\\\\\\\",\\\\n    \\\\\\\"claude-sonnet-4\\\\\\\", \\\\\\\"gpt-4o\\\\\\\", \\\\\\\"gemini-2.5-flash\\\\\\\",\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\", \\\\\\\"claude-3-haiku\\\\\\\",\\\\n]\\\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\\\nDATASETS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\n\\\\n# ── Paths ────────────────────────────────────────────────────────────\\\\nRESULTS_DIR = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results\\\\\\\")\\\\nPLAN001_DIR = RESULTS_DIR / \\\\\\\"plan001\\\\\\\"\\\\nSCORES_DIR = PLAN001_DIR / \\\\\\\"individual_scores\\\\\\\"\\\\nMI_DIR = PLAN001_DIR / \\\\\\\"mi_matrix\\\\\\\"\\\\n\\\\nSTEP2V3_CKPT = RESULTS_DIR / \\\\\\\"_step2v3_checkpoint.json\\\\\\\"\\\\nTAXONOMY_CKPT = RESULTS_DIR / \\\\\\\"_taxonomy_checkpoint.json\\\\\\\"\\\\n\\\\n\\\\ndef load_local_clean_scores():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load clean scores for 6 local models from checkpoint files.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    scores = {}\\\\n    for ckpt_path in [STEP2V3_CKPT, TAXONOMY_CKPT]:\\\\n        if not ckpt_path.exists():\\\\n            logger.warning(f\\\\\\\"Checkpoint not found: {ckpt_path}\\\\\\\")\\\\n            continue\\\\n        with open(ckpt_path) as f:\\\\n            data = json.load(f)\\\\n        cs = data.get(\\\\\\\"clean_scores\\\\\\\", {})\\\\n        for ds in DATASETS:\\\\n            if ds not in cs:\\\\n                continue\\\\n            if ds not in scores:\\\\n                scores[ds] = {}\\\\n            for model_id, model_scores in cs[ds].items():\\\\n                if model_id in LOCAL_MODELS and model_id not in scores[ds]:\\\\n                    scores[ds][model_id] = model_scores\\\\n    return scores\\\\n\\\\n\\\\ndef load_api_clean_scores():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load clean scores for 9 API models from individual score files.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    scores = {}\\\\n    for model_id in API_MODELS:\\\\n        for ds in DATASETS:\\\\n            fname = f\\\\\\\"{model_id}__{ds}__clean.json\\\\\\\"\\\\n            fpath = SCORES_DIR / fname\\\\n            if not fpath.exists():\\\\n                logger.warning(f\\\\\\\"API score file not found: {fpath}\\\\\\\")\\\\n                continue\\\\n            with open(fpath) as f:\\\\n                data = json.load(f)\\\\n            if ds not in scores:\\\\n                scores[ds] = {}\\\\n            scores[ds][model_id] = data.get(\\\\\\\"scores\\\\\\\", [])\\\\n    return scores\\\\n\\\\n\\\\ndef merge_clean_scores(local_scores, api_scores):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Merge local and API clean scores into unified dict.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    merged = {}\\\\n    for ds in DATASETS:\\\\n        merged[ds] = {}\\\\n        for src in [local_scores, api_scores]:\\\\n            if ds in src:\\\\n                merged[ds].update(src[ds])\\\\n    return merged\\\\n\\\\n\\\\ndef extract_winner_vector(score_list):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract winner labels from score list, normalizing to A/B/C/tie.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    winners = []\\\\n    for s in score_list:\\\\n        w = s.get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") if isinstance(s, dict) else \\\\\\\"tie\\\\\\\"\\\\n        winners.append(w)\\\\n    return winners\\\\n\\\\n\\\\ndef compute_pairwise_mi(winners_i, winners_j):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute mutual information between two winner vectors.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = min(len(winners_i), len(winners_j))\\\\n    if n == 0:\\\\n        return 0.0\\\\n    return mutual_info_score(winners_i[:n], winners_j[:n])\\\\n\\\\n\\\\ndef build_mi_matrix(clean_scores, dataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build 15x15 MI matrix for a dataset.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ds_scores = clean_scores.get(dataset, {})\\\\n    n_models = len(ALL_MODELS)\\\\n    mi_mat = np.zeros((n_models, n_models))\\\\n\\\\n    winner_vectors = {}\\\\n    for i, model_id in enumerate(ALL_MODELS):\\\\n        if model_id in ds_scores:\\\\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\\\\n        else:\\\\n            logger.warning(f\\\\\\\"No clean scores for {model_id} on {dataset}\\\\\\\")\\\\n\\\\n    for i in range(n_m\\\\n\\\\n... [截断: 输出过长，省略 666 字符] ...\\\\n\\\\n return keff / K\\\\n\\\\n\\\\ndef compute_all_panel_keffs(mi_matrix, dataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute K_eff for all C(15,3)=455 panels.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_models = len(ALL_MODELS)\\\\n    idx_to_model = {i: m for i, m in enumerate(ALL_MODELS)}\\\\n    panels = {}\\\\n\\\\n    for combo in itertools.combinations(range(n_models), 3):\\\\n        model_ids = [idx_to_model[i] for i in combo]\\\\n        panel_key = \\\\\\\"|\\\\\\\".join(model_ids)\\\\n        keff = mi_based_keff(mi_matrix, list(combo))\\\\n\\\\n        mi_pairs = {}\\\\n        for a, b in itertools.combinations(combo, 2):\\\\n            pair_key = f\\\\\\\"{idx_to_model[a]}|{idx_to_model[b]}\\\\\\\"\\\\n            mi_pairs[pair_key] = float(mi_matrix[a, b])\\\\n\\\\n        panels[panel_key] = {\\\\n            \\\\\\\"models\\\\\\\": model_ids,\\\\n            \\\\\\\"keff\\\\\\\": float(keff),\\\\n            \\\\\\\"mi_pairs\\\\\\\": mi_pairs,\\\\n        }\\\\n\\\\n    return panels\\\\n\\\\n\\\\ndef main():\\\\n    logger.info(\\\\\\\"=== Plan 001 Step 3: MI Matrix Computation ===\\\\\\\")\\\\n\\\\n    local_scores = load_local_clean_scores()\\\\n    api_scores = load_api_clean_scores()\\\\n    clean_scores = merge_clean_scores(local_scores, api_scores)\\\\n\\\\n    for ds in DATASETS:\\\\n        available = list(clean_scores.get(ds, {}).keys())\\\\n        missing = [m for m in ALL_MODELS if m not in available]\\\\n        logger.info(f\\\\\\\"  {ds}: {len(available)}/{len(ALL_MODELS)} models available\\\\\\\")\\\\n        if missing:\\\\n            logger.warning(f\\\\\\\"  {ds}: missing models: {missing}\\\\\\\")\\\\n\\\\n    available_count = sum(\\\\n        1 for ds in DATASETS\\\\n        for m in ALL_MODELS\\\\n        if m in clean_scores.get(ds, {})\\\\n    )\\\\n    total_needed = len(DATASETS) * len(ALL_MODELS)\\\\n    if available_count < total_needed:\\\\n        logger.warning(\\\\n            f\\\\\\\"Only {available_count}/{total_needed} model×dataset combos available. \\\\\\\"\\\\n            f\\\\\\\"MI matrix will have zeros for missing pairs.\\\\\\\"\\\\n        )\\\\n\\\\n    mi_matrices = {}\\\\n    keff_per_panel = {}\\\\n\\\\n    for ds in DATASETS:\\\\n        logger.info(f\\\\\\\"\\\\\\\\n--- Computing MI matrix for {ds} ---\\\\\\\")\\\\n        mi_mat = build_mi_matrix(clean_scores, ds)\\\\n        mi_matrices[ds] = mi_mat.tolist()\\\\n\\\\n        nonzero = np.count_nonzero(mi_mat)\\\\n        max_possible = len(ALL_MODELS) * (len(ALL_MODELS) - 1)\\\\n        logger.info(f\\\\\\\"  MI matrix: {nonzero}/{max_possible} non-zero entries\\\\\\\")\\\\n        if nonzero > 0:\\\\n            upper = mi_mat[np.triu_indices_from(mi_mat, k=1)]\\\\n            upper_nz = upper[upper > 0]\\\\n            if len(upper_nz) > 0:\\\\n                logger.info(\\\\n                    f\\\\\\\"  MI range: [{upper_nz.min():.4f}, {upper_nz.max():.4f}], \\\\\\\"\\\\n                    f\\\\\\\"mean={upper_nz.mean():.4f}\\\\\\\"\\\\n                )\\\\n\\\\n        logger.info(f\\\\\\\"  Computing K_eff for all C(15,3)=455 panels on {ds}...\\\\\\\")\\\\n        panels = compute_all_panel_keffs(mi_mat, ds)\\\\n        keff_per_panel[ds] = panels\\\\n\\\\n        keff_values = [p[\\\\\\\"keff\\\\\\\"] for p in panels.values()]\\\\n        logger.info(\\\\n            f\\\\\\\"  K_eff range: [{min(keff_values):.3f}, {max(keff_values):.3f}], \\\\\\\"\\\\n            f\\\\\\\"mean={np.mean(keff_values):.3f}\\\\\\\"\\\\n        )\\\\n\\\\n    MI_DIR.mkdir(parents=True, exist_ok=True)\\\\n    output = {\\\\n        \\\\\\\"models\\\\\\\": ALL_MODELS,\\\\n        \\\\\\\"mi_matrix\\\\\\\": mi_matrices,\\\\n        \\\\\\\"keff_per_panel\\\\\\\": keff_per_panel,\\\\n    }\\\\n    output_path = MI_DIR / \\\\\\\"mi_matrix_15models.json\\\\\\\"\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\\\n    logger.info(f\\\\\\\"\\\\\\\\nSaved MI matrix to {output_path}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"MI MATRIX SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    for ds in DATASETS:\\\\n        mi_mat = np.array(mi_matrices[ds])\\\\n        upper = mi_mat[np.triu_indices_from(mi_mat, k=1)]\\\\n        n_computed = np.count_nonzero(upper)\\\\n        print(f\\\\\\\"\\\\\\\\n{ds}:\\\\\\\")\\\\n        print(f\\\\\\\"  Pairwise MI computed: {n_computed}/105\\\\\\\")\\\\n        if n_computed > 0:\\\\n            nz = upper[upper > 0]\\\\n            print(f\\\\\\\"  MI range: [{nz.min():.4f}, {nz.max():.4f}]\\\\\\\")\\\\n            print(f\\\\\\\"  MI mean:  {nz.mean():.4f}\\\\\\\")\\\\n        keffs = [p[\\\\\\\"keff\\\\\\\"] for p in keff_per_panel[ds].values()]\\\\n        print(f\\\\\\\"  K_eff (455 panels): [{min(keffs):.3f}, {max(keffs):.3f}], mean={np.mean(keffs):.3f}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 3: Compute 15-model pairwise MI matrix and K_eff for all C(15,3) panels.\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nfrom pathlib import Path\\nfrom collections import Counter\\nfrom sklearn.metrics import mutual_info_score\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_step3_mi\\\")\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\n\\n# ── Paths ────────────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_DIR = PLAN001_DIR / \\\"mi_matrix\\\"\\n\\nSTEP2V3_CKPT = RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\"\\nTAXONOMY_CKPT = RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\"\\n\\n\\ndef load_local_clean_scores():\\n    \\\"\\\"\\\"Load clean scores for 6 local models from checkpoint files.\\\"\\\"\\\"\\n    scores = {}\\n    for ckpt_path in [STEP2V3_CKPT, TAXONOMY_CKPT]:\\n        if not ckpt_path.exists():\\n            logger.warning(f\\\"Checkpoint not found: {ckpt_path}\\\")\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        cs = data.get(\\\"clean_scores\\\", {})\\n        for ds in DATASETS:\\n            if ds not in cs:\\n                continue\\n            if ds not in scores:\\n                scores[ds] = {}\\n            for model_id, model_scores in cs[ds].items():\\n                if model_id in LOCAL_MODELS and model_id not in scores[ds]:\\n                    scores[ds][model_id] = model_scores\\n    return scores\\n\\n\\ndef load_api_clean_scores():\\n    \\\"\\\"\\\"Load clean scores for 9 API models from individual score files.\\\"\\\"\\\"\\n    scores = {}\\n    for model_id in API_MODELS:\\n        for ds in DATASETS:\\n            fname = f\\\"{model_id}__{ds}__clean.json\\\"\\n            fpath = SCORES_DIR / fname\\n            if not fpath.exists():\\n                logger.warning(f\\\"API score file not found: {fpath}\\\")\\n                continue\\n            with open(fpath) as f:\\n                data = json.load(f)\\n            if ds not in scores:\\n                scores[ds] = {}\\n            scores[ds][model_id] = data.get(\\\"scores\\\", [])\\n    return scores\\n\\n\\ndef merge_clean_scores(local_scores, api_scores):\\n    \\\"\\\"\\\"Merge local and API clean scores into unified dict.\\\"\\\"\\\"\\n    merged = {}\\n    for ds in DATASETS:\\n        merged[ds] = {}\\n        for src in [local_scores, api_scores]:\\n            if ds in src:\\n                merged[ds].update(src[ds])\\n    return merged\\n\\n\\ndef extract_winner_vector(score_list):\\n    \\\"\\\"\\\"Extract winner labels from score list, normalizing to A/B/C/tie.\\\"\\\"\\\"\\n    winners = []\\n    for s in score_list:\\n        w = s.get(\\\"winner\\\", \\\"tie\\\") if isinstance(s, dict) else \\\"tie\\\"\\n        winners.append(w)\\n    return winners\\n\\n\\ndef compute_pairwise_mi(winners_i, winners_j):\\n    \\\"\\\"\\\"Compute mutual information between two winner vectors.\\\"\\\"\\\"\\n    n = min(len(winners_i), len(winners_j))\\n    if n == 0:\\n        return 0.0\\n    return mutual_info_score(winners_i[:n], winners_j[:n])\\n\\n\\ndef build_mi_matrix(clean_scores, dataset):\\n    \\\"\\\"\\\"Build 15x15 MI matrix for a dataset.\\\"\\\"\\\"\\n    ds_scores = clean_scores.get(dataset, {})\\n    n_models = len(ALL_MODELS)\\n    mi_mat = np.zeros((n_models, n_models))\\n\\n    winner_vectors = {}\\n    for i, model_id in enumerate(ALL_MODELS):\\n        if model_id in ds_scores:\\n            winner_vectors[i] = extract_winner_vector(ds_scores[model_id])\\n        else:\\n            logger.warning(f\\\"No clean scores for {model_id} on {dataset}\\\")\\n\\n    for i in range(n_m\\n\\n... [截断: 输出过长，省略 666 字符] ...\\n\\n return keff / K\\n\\n\\ndef compute_all_panel_keffs(mi_matrix, dataset):\\n    \\\"\\\"\\\"Compute K_eff for all C(15,3)=455 panels.\\\"\\\"\\\"\\n    n_models = len(ALL_MODELS)\\n    idx_to_model = {i: m for i, m in enumerate(ALL_MODELS)}\\n    panels = {}\\n\\n    for combo in itertools.combinations(range(n_models), 3):\\n        model_ids = [idx_to_model[i] for i in combo]\\n        panel_key = \\\"|\\\".join(model_ids)\\n        keff = mi_based_keff(mi_matrix, list(combo))\\n\\n        mi_pairs = {}\\n        for a, b in itertools.combinations(combo, 2):\\n            pair_key = f\\\"{idx_to_model[a]}|{idx_to_model[b]}\\\"\\n            mi_pairs[pair_key] = float(mi_matrix[a, b])\\n\\n        panels[panel_key] = {\\n            \\\"models\\\": model_ids,\\n            \\\"keff\\\": float(keff),\\n            \\\"mi_pairs\\\": mi_pairs,\\n        }\\n\\n    return panels\\n\\n\\ndef main():\\n    logger.info(\\\"=== Plan 001 Step 3: MI Matrix Computation ===\\\")\\n\\n    local_scores = load_local_clean_scores()\\n    api_scores = load_api_clean_scores()\\n    clean_scores = merge_clean_scores(local_scores, api_scores)\\n\\n    for ds in DATASETS:\\n        available = list(clean_scores.get(ds, {}).keys())\\n        missing = [m for m in ALL_MODELS if m not in available]\\n        logger.info(f\\\"  {ds}: {len(available)}/{len(ALL_MODELS)} models available\\\")\\n        if missing:\\n            logger.warning(f\\\"  {ds}: missing models: {missing}\\\")\\n\\n    available_count = sum(\\n        1 for ds in DATASETS\\n        for m in ALL_MODELS\\n        if m in clean_scores.get(ds, {})\\n    )\\n    total_needed = len(DATASETS) * len(ALL_MODELS)\\n    if available_count < total_needed:\\n        logger.warning(\\n            f\\\"Only {available_count}/{total_needed} model×dataset combos available. \\\"\\n            f\\\"MI matrix will have zeros for missing pairs.\\\"\\n        )\\n\\n    mi_matrices = {}\\n    keff_per_panel = {}\\n\\n    for ds in DATASETS:\\n        logger.info(f\\\"\\\\n--- Computing MI matrix for {ds} ---\\\")\\n        mi_mat = build_mi_matrix(clean_scores, ds)\\n        mi_matrices[ds] = mi_mat.tolist()\\n\\n        nonzero = np.count_nonzero(mi_mat)\\n        max_possible = len(ALL_MODELS) * (len(ALL_MODELS) - 1)\\n        logger.info(f\\\"  MI matrix: {nonzero}/{max_possible} non-zero entries\\\")\\n        if nonzero > 0:\\n            upper = mi_mat[np.triu_indices_from(mi_mat, k=1)]\\n            upper_nz = upper[upper > 0]\\n            if len(upper_nz) > 0:\\n                logger.info(\\n                    f\\\"  MI range: [{upper_nz.min():.4f}, {upper_nz.max():.4f}], \\\"\\n                    f\\\"mean={upper_nz.mean():.4f}\\\"\\n                )\\n\\n        logger.info(f\\\"  Computing K_eff for all C(15,3)=455 panels on {ds}...\\\")\\n        panels = compute_all_panel_keffs(mi_mat, ds)\\n        keff_per_panel[ds] = panels\\n\\n        keff_values = [p[\\\"keff\\\"] for p in panels.values()]\\n        logger.info(\\n            f\\\"  K_eff range: [{min(keff_values):.3f}, {max(keff_values):.3f}], \\\"\\n            f\\\"mean={np.mean(keff_values):.3f}\\\"\\n        )\\n\\n    MI_DIR.mkdir(parents=True, exist_ok=True)\\n    output = {\\n        \\\"models\\\": ALL_MODELS,\\n        \\\"mi_matrix\\\": mi_matrices,\\n        \\\"keff_per_panel\\\": keff_per_panel,\\n    }\\n    output_path = MI_DIR / \\\"mi_matrix_15models.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n    logger.info(f\\\"\\\\nSaved MI matrix to {output_path}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"MI MATRIX SUMMARY\\\")\\n    print(\\\"=\\\" * 70)\\n    for ds in DATASETS:\\n        mi_mat = np.array(mi_matrices[ds])\\n        upper = mi_mat[np.triu_indices_from(mi_mat, k=1)]\\n        n_computed = np.count_nonzero(upper)\\n        print(f\\\"\\\\n{ds}:\\\")\\n        print(f\\\"  Pairwise MI computed: {n_computed}/105\\\")\\n        if n_computed > 0:\\n            nz = upper[upper > 0]\\n            print(f\\\"  MI range: [{nz.min():.4f}, {nz.max():.4f}]\\\")\\n            print(f\\\"  MI mean:  {nz.mean():.4f}\\\")\\n        keffs = [p[\\\"keff\\\"] for p in keff_per_panel[ds].values()]\\n        print(f\\\"  K_eff (455 panels): [{min(keffs):.3f}, {max(keffs):.3f}], mean={np.mean(keffs):.3f}\\\")\\n    print(\\\"=\\\" * 70)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T08:24:16.780Z_
+
+<details><summary>↩ Tool result · `toolu_017ShzWYcNCYwpEfBkniup7g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001: K_eff vs eta_max confound diagnosis across all C(15,3) panels.\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nfrom pathlib import Path\\nfrom scipy import stats\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_confound\\\")\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Paths ────────────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_MATRIX_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\n\\nSTEP2V3_CKPT = RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\"\\nTAXONOMY_CKPT = RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\"\\n\\nLOCAL_ATTACK_CKPT = {\\n    \\\"prompt_injection\\\": STEP2V3_CKPT,\\n    \\\"sycophancy\\\": STEP2V3_CKPT,\\n    \\\"score_manipulation\\\": STEP2V3_CKPT,\\n    \\\"verbosity_bias\\\": TAXONOMY_CKPT,\\n    \\\"position_bias\\\": TAXONOMY_CKPT,\\n    \\\"authority_bias\\\": TAXONOMY_CKPT,\\n}\\n\\n\\ndef compute_asr_from_scores(clean_scores, attacked_scores, pairs):\\n    \\\"\\\"\\\"Compute individual judge ASR: fraction of clean-correct flipped by attack.\\\"\\\"\\\"\\n    n_flips = 0\\n    n_total = 0\\n    for clean, attacked, pair in zip(clean_scores, attacked_scores, pairs):\\n        gt = pair.get(\\\"ground_truth_winner\\\")\\n        cw = clean.get(\\\"winner\\\") if isinstance(clean, dict) else None\\n        aw = attacked.get(\\\"winner\\\") if isinstance(attacked, dict) else None\\n        if cw == gt:\\n            n_total += 1\\n            if aw != gt:\\n                n_flips += 1\\n    return n_flips / max(n_total, 1)\\n\\n\\ndef load_local_individual_asr():\\n    \\\"\\\"\\\"Load per-model ASR for local models from checkpoint files.\\n\\n    Returns: {dataset: {attack: {model_id: asr}}}\\n    \\\"\\\"\\\"\\n    asr_data = {}\\n    ckpt_cache = {}\\n\\n    for attack in ATTACKS:\\n        ckpt_path = LOCAL_ATTACK_CKPT[attack]\\n        if str(ckpt_path) not in ckpt_cache:\\n            if not ckpt_path.exists():\\n                logger.warning(f\\\"Checkpoint not found: {ckpt_path}\\\")\\n                continue\\n            with open(ckpt_path) as f:\\n                ckpt_cache[str(ckpt_path)] = json.load(f)\\n        data = ckpt_cache[str(ckpt_path)]\\n\\n        for ds in DATASETS:\\n            if ds not in asr_data:\\n                asr_data[ds] = {}\\n            if attack not in asr_data[ds]:\\n                asr_data[ds][attack] = {}\\n\\n            clean_all = data.get(\\\"clean_scores\\\", {}).get(ds, {})\\n            atk_all = data.get(\\\"attacked_scores\\\", {}).get(ds, {}).get(attack, {})\\n            pairs = data.get(\\\"pairs\\\", {}).get(ds, [])\\n\\n            if not pairs:\\n                logger.warning(f\\\"No pairs for {ds} in {ckpt_path.name}\\\")\\n                continue\\n\\n            for model_id in LOCAL_MODELS:\\n                if model_id not in clean_all or model_id not in atk_all:\\n                    continue\\n                asr = compute_asr_from_scores(\\n                    clean_all[model_id], atk_all[model_id], pairs\\n                )\\n                asr_data[ds][attack][model_id] = asr\\n\\n    return asr_data\\n\\n\\ndef load_api_individual_asr():\\n    \\\"\\\"\\\"Load per-model ASR for API models from individual score files.\\n\\n    Returns: {dataset: {attack: {model_id: asr}}}\\n    \\\"\\\"\\\"\\n    asr_data = {}\\n    for model_id in API_MODELS:\\n        for ds in DATASETS:\\n            if \\n\\n... [截断: 输出过长，省略 6279 字符] ...\\n\\nffs[mask]\\n            e_sub = eta_maxs[mask]\\n            label = PANEL_LABELS[pt] if pt not in plotted_labels else None\\n            ax.scatter(\\n                k_sub, e_sub,\\n                c=PANEL_COLORS[pt],\\n                alpha=0.4, s=12, label=label,\\n                edgecolors=\\\"none\\\",\\n            )\\n            plotted_labels.add(pt)\\n\\n        verdict_color = {\\n            \\\"CONFOUND_SEVERE\\\": \\\"#e74c3c\\\",\\n            \\\"CONFOUND_MODERATE\\\": \\\"#e67e22\\\",\\n            \\\"CONFOUND_BROKEN\\\": \\\"#27ae60\\\",\\n        }.get(verdict, \\\"#333\\\")\\n\\n        ax.set_title(\\n            f\\\"{cond_key}\\\\nr = {r:.3f}  [{verdict}]\\\",\\n            fontsize=9,\\n            color=verdict_color,\\n        )\\n        ax.set_xlabel(\\\"K_eff\\\", fontsize=8)\\n        ax.set_ylabel(\\\"eta_max (individual ASR)\\\", fontsize=8)\\n        ax.tick_params(labelsize=7)\\n\\n        if len(keffs) >= 3 and np.std(keffs) > 1e-10:\\n            z = np.polyfit(keffs, eta_maxs, 1)\\n            x_line = np.linspace(keffs.min(), keffs.max(), 50)\\n            ax.plot(x_line, np.polyval(z, x_line), \\\"k--\\\", alpha=0.3, linewidth=1)\\n\\n        if idx == 0:\\n            ax.legend(fontsize=6, loc=\\\"best\\\", framealpha=0.7)\\n\\n    for idx in range(len(valid_conds), nrows * ncols):\\n        row, col = divmod(idx, ncols)\\n        axes[row][col].set_visible(False)\\n\\n    fig.suptitle(\\n        \\\"K_eff vs eta_max Confound Diagnosis (15 models, K=3 panels)\\\",\\n        fontsize=12, y=1.02,\\n    )\\n    plt.tight_layout()\\n    plt.savefig(output_path, dpi=150, bbox_inches=\\\"tight\\\")\\n    plt.close()\\n    logger.info(f\\\"Scatter plot saved to {output_path}\\\")\\n\\n\\ndef main():\\n    logger.info(\\\"=== Plan 001: K_eff vs eta_max Confound Diagnosis ===\\\")\\n\\n    logger.info(\\\"Loading MI matrix...\\\")\\n    mi_data = load_mi_matrix()\\n\\n    logger.info(\\\"Loading individual ASR data...\\\")\\n    local_asr = load_local_individual_asr()\\n    api_asr = load_api_individual_asr()\\n    asr_data = merge_asr(local_asr, api_asr)\\n\\n    for ds in DATASETS:\\n        for attack in ATTACKS:\\n            models_with_asr = list(asr_data.get(ds, {}).get(attack, {}).keys())\\n            logger.info(f\\\"  {ds}×{attack}: {len(models_with_asr)} models\\\")\\n\\n    logger.info(\\\"\\\\nRunning confound analysis...\\\")\\n    conditions = run_confound_analysis(mi_data, asr_data)\\n\\n    scatter_path = PLAN001_DIR / \\\"confound_scatter.png\\\"\\n    plot_scatter_grid(conditions, scatter_path)\\n\\n    r_values = [\\n        v[\\\"pearson_r\\\"] for v in conditions.values()\\n        if v.get(\\\"pearson_r\\\") is not None\\n    ]\\n    if r_values:\\n        mean_r = float(np.mean(r_values))\\n        if mean_r < -0.7:\\n            overall = \\\"CONFOUND_SEVERE\\\"\\n        elif mean_r <= -0.5:\\n            overall = \\\"CONFOUND_MODERATE\\\"\\n        else:\\n            overall = \\\"CONFOUND_BROKEN\\\"\\n    else:\\n        mean_r = None\\n        overall = \\\"INSUFFICIENT_DATA\\\"\\n\\n    output_conditions = {}\\n    for k, v in conditions.items():\\n        output_conditions[k] = {\\n            \\\"pearson_r\\\": v.get(\\\"pearson_r\\\"),\\n            \\\"p_value\\\": v.get(\\\"p_value\\\"),\\n            \\\"verdict\\\": v.get(\\\"verdict\\\"),\\n            \\\"n_panels\\\": v.get(\\\"n_panels\\\"),\\n            \\\"n_models_with_asr\\\": v.get(\\\"n_models_with_asr\\\"),\\n        }\\n\\n    output = {\\n        \\\"conditions\\\": output_conditions,\\n        \\\"scatter_plots\\\": str(scatter_path),\\n        \\\"overall_verdict\\\": overall,\\n        \\\"mean_r\\\": mean_r,\\n    }\\n\\n    output_path = PLAN001_DIR / \\\"confound_diagnosis.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n    logger.info(f\\\"\\\\nDiagnosis saved to {output_path}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"CONFOUND DIAGNOSIS SUMMARY\\\")\\n    print(\\\"=\\\" * 70)\\n    for cond_key, cond in sorted(output_conditions.items()):\\n        r = cond[\\\"pearson_r\\\"]\\n        v = cond[\\\"verdict\\\"]\\n        n = cond[\\\"n_panels\\\"]\\n        r_str = f\\\"{r:.3f}\\\" if r is not None else \\\"N/A\\\"\\n        print(f\\\"  {cond_key:40s}  r={r_str:>7s}  {v:20s}  ({n} panels)\\\")\\n    print(f\\\"\\\\n  Overall: mean_r={'N/A' if mean_r is None else f'{mean_r:.3f}'}, verdict={overall}\\\")\\n    print(\\\"=\\\" * 70)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "9ca2fd25-7138-4b42-93b3-3db1700502dc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Plan 001: K_eff vs eta_max confound diagnosis across all C(15,3) panels.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/cert_manip_resist_eval\\\\\\\")\\\\n\\\\nimport json\\\\nimport itertools\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nfrom pathlib import Path\\\\nfrom scipy import stats\\\\n\\\\nfrom src.utils import setup_logging\\\\n\\\\nlogger = setup_logging(\\\\\\\"plan001_confound\\\\\\\")\\\\n\\\\n# ── Model lists ──────────────────────────────────────────────────────\\\\nLOCAL_MODELS = [\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\", \\\\\\\"llama3.1-70b\\\\\\\", \\\\\\\"mistral-large\\\\\\\",\\\\n    \\\\\\\"qwen2.5-32b\\\\\\\", \\\\\\\"qwen2.5-14b\\\\\\\", \\\\\\\"llama3.1-8b\\\\\\\",\\\\n]\\\\nAPI_MODELS = [\\\\n    \\\\\\\"claude-opus-4\\\\\\\", \\\\\\\"gpt-5.5\\\\\\\", \\\\\\\"gemini-2.5-pro\\\\\\\", \\\\\\\"gpt-4.1\\\\\\\",\\\\n    \\\\\\\"claude-sonnet-4\\\\\\\", \\\\\\\"gpt-4o\\\\\\\", \\\\\\\"gemini-2.5-flash\\\\\\\",\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\", \\\\\\\"claude-3-haiku\\\\\\\",\\\\n]\\\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\\\nDATASETS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nATTACKS = [\\\\n    \\\\\\\"prompt_injection\\\\\\\", \\\\\\\"sycophancy\\\\\\\", \\\\\\\"score_manipulation\\\\\\\",\\\\n    \\\\\\\"verbosity_bias\\\\\\\", \\\\\\\"position_bias\\\\\\\", \\\\\\\"authority_bias\\\\\\\",\\\\n]\\\\n\\\\n# ── Paths ────────────────────────────────────────────────────────────\\\\nRESULTS_DIR = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results\\\\\\\")\\\\nPLAN001_DIR = RESULTS_DIR / \\\\\\\"plan001\\\\\\\"\\\\nSCORES_DIR = PLAN001_DIR / \\\\\\\"individual_scores\\\\\\\"\\\\nMI_MATRIX_PATH = PLAN001_DIR / \\\\\\\"mi_matrix\\\\\\\" / \\\\\\\"mi_matrix_15models.json\\\\\\\"\\\\n\\\\nSTEP2V3_CKPT = RESULTS_DIR / \\\\\\\"_step2v3_checkpoint.json\\\\\\\"\\\\nTAXONOMY_CKPT = RESULTS_DIR / \\\\\\\"_taxonomy_checkpoint.json\\\\\\\"\\\\n\\\\nLOCAL_ATTACK_CKPT = {\\\\n    \\\\\\\"prompt_injection\\\\\\\": STEP2V3_CKPT,\\\\n    \\\\\\\"sycophancy\\\\\\\": STEP2V3_CKPT,\\\\n    \\\\\\\"score_manipulation\\\\\\\": STEP2V3_CKPT,\\\\n    \\\\\\\"verbosity_bias\\\\\\\": TAXONOMY_CKPT,\\\\n    \\\\\\\"position_bias\\\\\\\": TAXONOMY_CKPT,\\\\n    \\\\\\\"authority_bias\\\\\\\": TAXONOMY_CKPT,\\\\n}\\\\n\\\\n\\\\ndef compute_asr_from_scores(clean_scores, attacked_scores, pairs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute individual judge ASR: fraction of clean-correct flipped by attack.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_flips = 0\\\\n    n_total = 0\\\\n    for clean, attacked, pair in zip(clean_scores, attacked_scores, pairs):\\\\n        gt = pair.get(\\\\\\\"ground_truth_winner\\\\\\\")\\\\n        cw = clean.get(\\\\\\\"winner\\\\\\\") if isinstance(clean, dict) else None\\\\n        aw = attacked.get(\\\\\\\"winner\\\\\\\") if isinstance(attacked, dict) else None\\\\n        if cw == gt:\\\\n            n_total += 1\\\\n            if aw != gt:\\\\n                n_flips += 1\\\\n    return n_flips / max(n_total, 1)\\\\n\\\\n\\\\ndef load_local_individual_asr():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-model ASR for local models from checkpoint files.\\\\n\\\\n    Returns: {dataset: {attack: {model_id: asr}}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    asr_data = {}\\\\n    ckpt_cache = {}\\\\n\\\\n    for attack in ATTACKS:\\\\n        ckpt_path = LOCAL_ATTACK_CKPT[attack]\\\\n        if str(ckpt_path) not in ckpt_cache:\\\\n            if not ckpt_path.exists():\\\\n                logger.warning(f\\\\\\\"Checkpoint not found: {ckpt_path}\\\\\\\")\\\\n                continue\\\\n            with open(ckpt_path) as f:\\\\n                ckpt_cache[str(ckpt_path)] = json.load(f)\\\\n        data = ckpt_cache[str(ckpt_path)]\\\\n\\\\n        for ds in DATASETS:\\\\n            if ds not in asr_data:\\\\n                asr_data[ds] = {}\\\\n            if attack not in asr_data[ds]:\\\\n                asr_data[ds][attack] = {}\\\\n\\\\n            clean_all = data.get(\\\\\\\"clean_scores\\\\\\\", {}).get(ds, {})\\\\n            atk_all = data.get(\\\\\\\"attacked_scores\\\\\\\", {}).get(ds, {}).get(attack, {})\\\\n            pairs = data.get(\\\\\\\"pairs\\\\\\\", {}).get(ds, [])\\\\n\\\\n            if not pairs:\\\\n                logger.warning(f\\\\\\\"No pairs for {ds} in {ckpt_path.name}\\\\\\\")\\\\n                continue\\\\n\\\\n            for model_id in LOCAL_MODELS:\\\\n                if model_id not in clean_all or model_id not in atk_all:\\\\n                    continue\\\\n                asr = compute_asr_from_scores(\\\\n                    clean_all[model_id], atk_all[model_id], pairs\\\\n                )\\\\n                asr_data[ds][attack][model_id] = asr\\\\n\\\\n    return asr_data\\\\n\\\\n\\\\ndef load_api_individual_asr():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-model ASR for API models from individual score files.\\\\n\\\\n    Returns: {dataset: {attack: {model_id: asr}}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    asr_data = {}\\\\n    for model_id in API_MODELS:\\\\n        for ds in DATASETS:\\\\n            if \\\\n\\\\n... [截断: 输出过长，省略 6279 字符] ...\\\\n\\\\nffs[mask]\\\\n            e_sub = eta_maxs[mask]\\\\n            label = PANEL_LABELS[pt] if pt not in plotted_labels else None\\\\n            ax.scatter(\\\\n                k_sub, e_sub,\\\\n                c=PANEL_COLORS[pt],\\\\n                alpha=0.4, s=12, label=label,\\\\n                edgecolors=\\\\\\\"none\\\\\\\",\\\\n            )\\\\n            plotted_labels.add(pt)\\\\n\\\\n        verdict_color = {\\\\n            \\\\\\\"CONFOUND_SEVERE\\\\\\\": \\\\\\\"#e74c3c\\\\\\\",\\\\n            \\\\\\\"CONFOUND_MODERATE\\\\\\\": \\\\\\\"#e67e22\\\\\\\",\\\\n            \\\\\\\"CONFOUND_BROKEN\\\\\\\": \\\\\\\"#27ae60\\\\\\\",\\\\n        }.get(verdict, \\\\\\\"#333\\\\\\\")\\\\n\\\\n        ax.set_title(\\\\n            f\\\\\\\"{cond_key}\\\\\\\\nr = {r:.3f}  [{verdict}]\\\\\\\",\\\\n            fontsize=9,\\\\n            color=verdict_color,\\\\n        )\\\\n        ax.set_xlabel(\\\\\\\"K_eff\\\\\\\", fontsize=8)\\\\n        ax.set_ylabel(\\\\\\\"eta_max (individual ASR)\\\\\\\", fontsize=8)\\\\n        ax.tick_params(labelsize=7)\\\\n\\\\n        if len(keffs) >= 3 and np.std(keffs) > 1e-10:\\\\n            z = np.polyfit(keffs, eta_maxs, 1)\\\\n            x_line = np.linspace(keffs.min(), keffs.max(), 50)\\\\n            ax.plot(x_line, np.polyval(z, x_line), \\\\\\\"k--\\\\\\\", alpha=0.3, linewidth=1)\\\\n\\\\n        if idx == 0:\\\\n            ax.legend(fontsize=6, loc=\\\\\\\"best\\\\\\\", framealpha=0.7)\\\\n\\\\n    for idx in range(len(valid_conds), nrows * ncols):\\\\n        row, col = divmod(idx, ncols)\\\\n        axes[row][col].set_visible(False)\\\\n\\\\n    fig.suptitle(\\\\n        \\\\\\\"K_eff vs eta_max Confound Diagnosis (15 models, K=3 panels)\\\\\\\",\\\\n        fontsize=12, y=1.02,\\\\n    )\\\\n    plt.tight_layout()\\\\n    plt.savefig(output_path, dpi=150, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close()\\\\n    logger.info(f\\\\\\\"Scatter plot saved to {output_path}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    logger.info(\\\\\\\"=== Plan 001: K_eff vs eta_max Confound Diagnosis ===\\\\\\\")\\\\n\\\\n    logger.info(\\\\\\\"Loading MI matrix...\\\\\\\")\\\\n    mi_data = load_mi_matrix()\\\\n\\\\n    logger.info(\\\\\\\"Loading individual ASR data...\\\\\\\")\\\\n    local_asr = load_local_individual_asr()\\\\n    api_asr = load_api_individual_asr()\\\\n    asr_data = merge_asr(local_asr, api_asr)\\\\n\\\\n    for ds in DATASETS:\\\\n        for attack in ATTACKS:\\\\n            models_with_asr = list(asr_data.get(ds, {}).get(attack, {}).keys())\\\\n            logger.info(f\\\\\\\"  {ds}×{attack}: {len(models_with_asr)} models\\\\\\\")\\\\n\\\\n    logger.info(\\\\\\\"\\\\\\\\nRunning confound analysis...\\\\\\\")\\\\n    conditions = run_confound_analysis(mi_data, asr_data)\\\\n\\\\n    scatter_path = PLAN001_DIR / \\\\\\\"confound_scatter.png\\\\\\\"\\\\n    plot_scatter_grid(conditions, scatter_path)\\\\n\\\\n    r_values = [\\\\n        v[\\\\\\\"pearson_r\\\\\\\"] for v in conditions.values()\\\\n        if v.get(\\\\\\\"pearson_r\\\\\\\") is not None\\\\n    ]\\\\n    if r_values:\\\\n        mean_r = float(np.mean(r_values))\\\\n        if mean_r < -0.7:\\\\n            overall = \\\\\\\"CONFOUND_SEVERE\\\\\\\"\\\\n        elif mean_r <= -0.5:\\\\n            overall = \\\\\\\"CONFOUND_MODERATE\\\\\\\"\\\\n        else:\\\\n            overall = \\\\\\\"CONFOUND_BROKEN\\\\\\\"\\\\n    else:\\\\n        mean_r = None\\\\n        overall = \\\\\\\"INSUFFICIENT_DATA\\\\\\\"\\\\n\\\\n    output_conditions = {}\\\\n    for k, v in conditions.items():\\\\n        output_conditions[k] = {\\\\n            \\\\\\\"pearson_r\\\\\\\": v.get(\\\\\\\"pearson_r\\\\\\\"),\\\\n            \\\\\\\"p_value\\\\\\\": v.get(\\\\\\\"p_value\\\\\\\"),\\\\n            \\\\\\\"verdict\\\\\\\": v.get(\\\\\\\"verdict\\\\\\\"),\\\\n            \\\\\\\"n_panels\\\\\\\": v.get(\\\\\\\"n_panels\\\\\\\"),\\\\n            \\\\\\\"n_models_with_asr\\\\\\\": v.get(\\\\\\\"n_models_with_asr\\\\\\\"),\\\\n        }\\\\n\\\\n    output = {\\\\n        \\\\\\\"conditions\\\\\\\": output_conditions,\\\\n        \\\\\\\"scatter_plots\\\\\\\": str(scatter_path),\\\\n        \\\\\\\"overall_verdict\\\\\\\": overall,\\\\n        \\\\\\\"mean_r\\\\\\\": mean_r,\\\\n    }\\\\n\\\\n    output_path = PLAN001_DIR / \\\\\\\"confound_diagnosis.json\\\\\\\"\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\\\n    logger.info(f\\\\\\\"\\\\\\\\nDiagnosis saved to {output_path}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"CONFOUND DIAGNOSIS SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    for cond_key, cond in sorted(output_conditions.items()):\\\\n        r = cond[\\\\\\\"pearson_r\\\\\\\"]\\\\n        v = cond[\\\\\\\"verdict\\\\\\\"]\\\\n        n = cond[\\\\\\\"n_panels\\\\\\\"]\\\\n        r_str = f\\\\\\\"{r:.3f}\\\\\\\" if r is not None else \\\\\\\"N/A\\\\\\\"\\\\n        print(f\\\\\\\"  {cond_key:40s}  r={r_str:>7s}  {v:20s}  ({n} panels)\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n  Overall: mean_r={'N/A' if mean_r is None else f'{mean_r:.3f}'}, verdict={overall}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001: K_eff vs eta_max confound diagnosis across all C(15,3) panels.\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nfrom pathlib import Path\\nfrom scipy import stats\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_confound\\\")\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Paths ────────────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_MATRIX_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\n\\nSTEP2V3_CKPT = RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\"\\nTAXONOMY_CKPT = RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\"\\n\\nLOCAL_ATTACK_CKPT = {\\n    \\\"prompt_injection\\\": STEP2V3_CKPT,\\n    \\\"sycophancy\\\": STEP2V3_CKPT,\\n    \\\"score_manipulation\\\": STEP2V3_CKPT,\\n    \\\"verbosity_bias\\\": TAXONOMY_CKPT,\\n    \\\"position_bias\\\": TAXONOMY_CKPT,\\n    \\\"authority_bias\\\": TAXONOMY_CKPT,\\n}\\n\\n\\ndef compute_asr_from_scores(clean_scores, attacked_scores, pairs):\\n    \\\"\\\"\\\"Compute individual judge ASR: fraction of clean-correct flipped by attack.\\\"\\\"\\\"\\n    n_flips = 0\\n    n_total = 0\\n    for clean, attacked, pair in zip(clean_scores, attacked_scores, pairs):\\n        gt = pair.get(\\\"ground_truth_winner\\\")\\n        cw = clean.get(\\\"winner\\\") if isinstance(clean, dict) else None\\n        aw = attacked.get(\\\"winner\\\") if isinstance(attacked, dict) else None\\n        if cw == gt:\\n            n_total += 1\\n            if aw != gt:\\n                n_flips += 1\\n    return n_flips / max(n_total, 1)\\n\\n\\ndef load_local_individual_asr():\\n    \\\"\\\"\\\"Load per-model ASR for local models from checkpoint files.\\n\\n    Returns: {dataset: {attack: {model_id: asr}}}\\n    \\\"\\\"\\\"\\n    asr_data = {}\\n    ckpt_cache = {}\\n\\n    for attack in ATTACKS:\\n        ckpt_path = LOCAL_ATTACK_CKPT[attack]\\n        if str(ckpt_path) not in ckpt_cache:\\n            if not ckpt_path.exists():\\n                logger.warning(f\\\"Checkpoint not found: {ckpt_path}\\\")\\n                continue\\n            with open(ckpt_path) as f:\\n                ckpt_cache[str(ckpt_path)] = json.load(f)\\n        data = ckpt_cache[str(ckpt_path)]\\n\\n        for ds in DATASETS:\\n            if ds not in asr_data:\\n                asr_data[ds] = {}\\n            if attack not in asr_data[ds]:\\n                asr_data[ds][attack] = {}\\n\\n            clean_all = data.get(\\\"clean_scores\\\", {}).get(ds, {})\\n            atk_all = data.get(\\\"attacked_scores\\\", {}).get(ds, {}).get(attack, {})\\n            pairs = data.get(\\\"pairs\\\", {}).get(ds, [])\\n\\n            if not pairs:\\n                logger.warning(f\\\"No pairs for {ds} in {ckpt_path.name}\\\")\\n                continue\\n\\n            for model_id in LOCAL_MODELS:\\n                if model_id not in clean_all or model_id not in atk_all:\\n                    continue\\n                asr = compute_asr_from_scores(\\n                    clean_all[model_id], atk_all[model_id], pairs\\n                )\\n                asr_data[ds][attack][model_id] = asr\\n\\n    return asr_data\\n\\n\\ndef load_api_individual_asr():\\n    \\\"\\\"\\\"Load per-model ASR for API models from individual score files.\\n\\n    Returns: {dataset: {attack: {model_id: asr}}}\\n    \\\"\\\"\\\"\\n    asr_data = {}\\n    for model_id in API_MODELS:\\n        for ds in DATASETS:\\n            if \\n\\n... [截断: 输出过长，省略 6279 字符] ...\\n\\nffs[mask]\\n            e_sub = eta_maxs[mask]\\n            label = PANEL_LABELS[pt] if pt not in plotted_labels else None\\n            ax.scatter(\\n                k_sub, e_sub,\\n                c=PANEL_COLORS[pt],\\n                alpha=0.4, s=12, label=label,\\n                edgecolors=\\\"none\\\",\\n            )\\n            plotted_labels.add(pt)\\n\\n        verdict_color = {\\n            \\\"CONFOUND_SEVERE\\\": \\\"#e74c3c\\\",\\n            \\\"CONFOUND_MODERATE\\\": \\\"#e67e22\\\",\\n            \\\"CONFOUND_BROKEN\\\": \\\"#27ae60\\\",\\n        }.get(verdict, \\\"#333\\\")\\n\\n        ax.set_title(\\n            f\\\"{cond_key}\\\\nr = {r:.3f}  [{verdict}]\\\",\\n            fontsize=9,\\n            color=verdict_color,\\n        )\\n        ax.set_xlabel(\\\"K_eff\\\", fontsize=8)\\n        ax.set_ylabel(\\\"eta_max (individual ASR)\\\", fontsize=8)\\n        ax.tick_params(labelsize=7)\\n\\n        if len(keffs) >= 3 and np.std(keffs) > 1e-10:\\n            z = np.polyfit(keffs, eta_maxs, 1)\\n            x_line = np.linspace(keffs.min(), keffs.max(), 50)\\n            ax.plot(x_line, np.polyval(z, x_line), \\\"k--\\\", alpha=0.3, linewidth=1)\\n\\n        if idx == 0:\\n            ax.legend(fontsize=6, loc=\\\"best\\\", framealpha=0.7)\\n\\n    for idx in range(len(valid_conds), nrows * ncols):\\n        row, col = divmod(idx, ncols)\\n        axes[row][col].set_visible(False)\\n\\n    fig.suptitle(\\n        \\\"K_eff vs eta_max Confound Diagnosis (15 models, K=3 panels)\\\",\\n        fontsize=12, y=1.02,\\n    )\\n    plt.tight_layout()\\n    plt.savefig(output_path, dpi=150, bbox_inches=\\\"tight\\\")\\n    plt.close()\\n    logger.info(f\\\"Scatter plot saved to {output_path}\\\")\\n\\n\\ndef main():\\n    logger.info(\\\"=== Plan 001: K_eff vs eta_max Confound Diagnosis ===\\\")\\n\\n    logger.info(\\\"Loading MI matrix...\\\")\\n    mi_data = load_mi_matrix()\\n\\n    logger.info(\\\"Loading individual ASR data...\\\")\\n    local_asr = load_local_individual_asr()\\n    api_asr = load_api_individual_asr()\\n    asr_data = merge_asr(local_asr, api_asr)\\n\\n    for ds in DATASETS:\\n        for attack in ATTACKS:\\n            models_with_asr = list(asr_data.get(ds, {}).get(attack, {}).keys())\\n            logger.info(f\\\"  {ds}×{attack}: {len(models_with_asr)} models\\\")\\n\\n    logger.info(\\\"\\\\nRunning confound analysis...\\\")\\n    conditions = run_confound_analysis(mi_data, asr_data)\\n\\n    scatter_path = PLAN001_DIR / \\\"confound_scatter.png\\\"\\n    plot_scatter_grid(conditions, scatter_path)\\n\\n    r_values = [\\n        v[\\\"pearson_r\\\"] for v in conditions.values()\\n        if v.get(\\\"pearson_r\\\") is not None\\n    ]\\n    if r_values:\\n        mean_r = float(np.mean(r_values))\\n        if mean_r < -0.7:\\n            overall = \\\"CONFOUND_SEVERE\\\"\\n        elif mean_r <= -0.5:\\n            overall = \\\"CONFOUND_MODERATE\\\"\\n        else:\\n            overall = \\\"CONFOUND_BROKEN\\\"\\n    else:\\n        mean_r = None\\n        overall = \\\"INSUFFICIENT_DATA\\\"\\n\\n    output_conditions = {}\\n    for k, v in conditions.items():\\n        output_conditions[k] = {\\n            \\\"pearson_r\\\": v.get(\\\"pearson_r\\\"),\\n            \\\"p_value\\\": v.get(\\\"p_value\\\"),\\n            \\\"verdict\\\": v.get(\\\"verdict\\\"),\\n            \\\"n_panels\\\": v.get(\\\"n_panels\\\"),\\n            \\\"n_models_with_asr\\\": v.get(\\\"n_models_with_asr\\\"),\\n        }\\n\\n    output = {\\n        \\\"conditions\\\": output_conditions,\\n        \\\"scatter_plots\\\": str(scatter_path),\\n        \\\"overall_verdict\\\": overall,\\n        \\\"mean_r\\\": mean_r,\\n    }\\n\\n    output_path = PLAN001_DIR / \\\"confound_diagnosis.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n    logger.info(f\\\"\\\\nDiagnosis saved to {output_path}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"CONFOUND DIAGNOSIS SUMMARY\\\")\\n    print(\\\"=\\\" * 70)\\n    for cond_key, cond in sorted(output_conditions.items()):\\n        r = cond[\\\"pearson_r\\\"]\\n        v = cond[\\\"verdict\\\"]\\n        n = cond[\\\"n_panels\\\"]\\n        r_str = f\\\"{r:.3f}\\\" if r is not None else \\\"N/A\\\"\\n        print(f\\\"  {cond_key:40s}  r={r_str:>7s}  {v:20s}  ({n} panels)\\\")\\n    print(f\\\"\\\\n  Overall: mean_r={'N/A' if mean_r is None else f'{mean_r:.3f}'}, verdict={overall}\\\")\\n    print(\\\"=\\\" * 70)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for the condition key generation patterns in each script. Let me look for the specific lines where condition keys are constructed.
+
+From the output (which was truncated), I need to find the condition key construction patterns. Let me grep for the relevant patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "ea997243-a11d-4a65-add7-c8780d2413c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iTtn8JCqL3XCYpW4jW2Kd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15256,
+      "cache_read_input_tokens": 24637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+现在搜索每个脚本中 condition key 的拼接方式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "4b24b32e-6690-489f-9724-b4bca65751ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iTtn8JCqL3XCYpW4jW2Kd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15256,
+      "cache_read_input_tokens": 24637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BmNNxJkWeyteGoMDqR9i96`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"×\\|cond_key\\|condition_key\\|cond =\" /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "34a9ce71-10c5-4438-9818-d114ad04f8e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iTtn8JCqL3XCYpW4jW2Kd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15256,
+      "cache_read_input_tokens": 24637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T08:24:23.224Z_
+
+<details><summary>↩ Tool result · `toolu_01BmNNxJkWeyteGoMDqR9i96`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "d0030838-c66b-405a-8d02-e14604bfd05f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AEFSqb13cskJ8qtsM33q3W`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"×\\|cond_key\\|condition_key\\|cond =\" /root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "0ca904c8-d7ed-4b5c-8b69-69dc86e7a93f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iTtn8JCqL3XCYpW4jW2Kd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15256,
+      "cache_read_input_tokens": 24637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T08:24:24.318Z_
+
+<details><summary>↩ Tool result · `toolu_01AEFSqb13cskJ8qtsM33q3W`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "424df5d8-6a2b-4131-baf9-42e5d7c9749b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fu62nmxu8RspTh1nnqAFof`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"×\\|cond_key\\|condition_key\\|cond =\" /root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "7d05a98a-c6c9-440f-b91e-89aa81133cc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iTtn8JCqL3XCYpW4jW2Kd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15256,
+      "cache_read_input_tokens": 24637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T08:24:25.179Z_
+
+<details><summary>↩ Tool result · `toolu_01Fu62nmxu8RspTh1nnqAFof`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "8b55a40e-6578-4bb4-9149-06d246b409c2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jr8zpc5SNmZ1QUCv1w8tMM`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"×\\|cond_key\\|condition_key\\|cond =\" /root/cert_manip_resist_eval/scripts/run_plan001_confound_diagnosis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "0cc5e233-9409-436f-84f7-37da4edde754",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iTtn8JCqL3XCYpW4jW2Kd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15256,
+      "cache_read_input_tokens": 24637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T08:24:25.902Z_
+
+<details><summary>↩ Tool result · `toolu_01Jr8zpc5SNmZ1QUCv1w8tMM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "5597cda6-f988-4cc3-a775-9b35f848e1bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The pipe character is blocked. Let me use grep with -e flags instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "bc8f7d1f-31b4-4270-9d0a-2beb2e6c1cc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDdY5SF1o2z7xxJQGKexuJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1173,
+      "cache_read_input_tokens": 39893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1173
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BQgwckELsFwbE4J5RxSJ9p`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n -e \"×\" -e \"cond_key\" -e \"cond =\" /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "7b757372-b4c0-4058-97e2-9ca8213ec16b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDdY5SF1o2z7xxJQGKexuJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1173,
+      "cache_read_input_tokens": 39893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1173
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T08:24:30.220Z_
+
+<details><summary>↩ Tool result · `toolu_01BQgwckELsFwbE4J5RxSJ9p`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2:\\\"\\\"\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\n367:    logger.info(\\\"Plan 001 Step 4: Panel Regression (455 panels × 12 conditions)\\\")\\n374:    # Precompute individual ASR for all model × condition\\n393:    valid_cond_keys = []\\n398:            cond = f\\\"{ds}×{atk}\\\"\\n461:            valid_cond_keys.append(cond)\\n490:        for i, ck in enumerate(valid_cond_keys):\\n497:    valid = [condition_results[k] for k in valid_cond_keys]\\n543:    for ck in valid_cond_keys:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "83661f28-843c-4941-b4b3-6acb38471ab3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2:\\\\\\\"\\\\\\\"\\\\\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\\\n367:    logger.info(\\\\\\\"Plan 001 Step 4: Panel Regression (455 panels × 12 conditions)\\\\\\\")\\\\n374:    # Precompute individual ASR for all model × condition\\\\n393:    valid_cond_keys = []\\\\n398:            cond = f\\\\\\\"{ds}×{atk}\\\\\\\"\\\\n461:            valid_cond_keys.append(cond)\\\\n490:        for i, ck in enumerate(valid_cond_keys):\\\\n497:    valid = [condition_results[k] for k in valid_cond_keys]\\\\n543:    for ck in valid_cond_keys:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2:\\\"\\\"\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\n367:    logger.info(\\\"Plan 001 Step 4: Panel Regression (455 panels × 12 conditions)\\\")\\n374:    # Precompute individual ASR for all model × condition\\n393:    valid_cond_keys = []\\n398:            cond = f\\\"{ds}×{atk}\\\"\\n461:            valid_cond_keys.append(cond)\\n490:        for i, ck in enumerate(valid_cond_keys):\\n497:    valid = [condition_results[k] for k in valid_cond_keys]\\n543:    for ck in valid_cond_keys:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H44Sxe6sVMES3Cb8Ppo8GY`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n -e \"×\" -e \"cond_key\" -e \"cond =\" /root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "d22e1b2b-d542-4e4a-bafa-01e44047cfaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDdY5SF1o2z7xxJQGKexuJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1173,
+      "cache_read_input_tokens": 39893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1173
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T08:24:31.083Z_
+
+<details><summary>↩ Tool result · `toolu_01H44Sxe6sVMES3Cb8Ppo8GY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2:\\\"\\\"\\\"Plan 001 Step 5: Random-fault simulation — 455 panels × 12 conditions.\\n302:            cond = f\\\"{ds}x{atk}\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "0194703f-8e71-4f21-8a90-a55acc5a4105",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2:\\\\\\\"\\\\\\\"\\\\\\\"Plan 001 Step 5: Random-fault simulation — 455 panels × 12 conditions.\\\\n302:            cond = f\\\\\\\"{ds}x{atk}\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2:\\\"\\\"\\\"Plan 001 Step 5: Random-fault simulation — 455 panels × 12 conditions.\\n302:            cond = f\\\"{ds}x{atk}\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R3tRy2KBs66ZhXdf3qiAXd`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n -e \"×\" -e \"cond_key\" -e \"cond =\" /root/cert_manip_resist_eval/scripts/run_plan001_step3_mi_matrix.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "38d479ee-4306-4ef5-abb7-cfb4ad4f5448",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDdY5SF1o2z7xxJQGKexuJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1173,
+      "cache_read_input_tokens": 39893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1173
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T08:24:32.023Z_
+
+<details><summary>↩ Tool result · `toolu_01R3tRy2KBs66ZhXdf3qiAXd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"196:            f\\\"Only {available_count}/{total_needed} model×dataset combos available. \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "16767356-877f-4a25-8176-2b09bf87e70f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"196:            f\\\\\\\"Only {available_count}/{total_needed} model×dataset combos available. \\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"196:            f\\\"Only {available_count}/{total_needed} model×dataset combos available. \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019YCeyZbAw37xLabeAy92Dm`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n -e \"×\" -e \"cond_key\" -e \"cond =\" /root/cert_manip_resist_eval/scripts/run_plan001_confound_diagnosis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "13f66088-7593-47fc-95b5-cd36eaf81c0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDdY5SF1o2z7xxJQGKexuJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1173,
+      "cache_read_input_tokens": 39893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1173
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T08:24:32.551Z_
+
+<details><summary>↩ Tool result · `toolu_019YCeyZbAw37xLabeAy92Dm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"229:            cond_key = f\\\"{ds}×{attack}\\\"\\n234:                    f\\\"  {cond_key}: only {len(model_asrs)} models have ASR, \\\"\\n237:                conditions[cond_key] = {\\n276:            conditions[cond_key] = {\\n287:                f\\\"  {cond_key}: r={r:.3f}, p={p:.4f}, \\\"\\n318:    for idx, (cond_key, cond_data) in enumerate(sorted(valid_conds.items())):\\n351:            f\\\"{cond_key}\\\\nr = {r:.3f}  [{verdict}]\\\",\\n395:            logger.info(f\\\"  {ds}×{attack}: {len(models_with_asr)} models\\\")\\n444:    for cond_key, cond in sorted(output_conditions.items()):\\n449:        print(f\\\"  {cond_key:40s}  r={r_str:>7s}  {v:20s}  ({n} panels)\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "f976dddf-a345-425d-975b-094cc7fc91cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"229:            cond_key = f\\\\\\\"{ds}×{attack}\\\\\\\"\\\\n234:                    f\\\\\\\"  {cond_key}: only {len(model_asrs)} models have ASR, \\\\\\\"\\\\n237:                conditions[cond_key] = {\\\\n276:            conditions[cond_key] = {\\\\n287:                f\\\\\\\"  {cond_key}: r={r:.3f}, p={p:.4f}, \\\\\\\"\\\\n318:    for idx, (cond_key, cond_data) in enumerate(sorted(valid_conds.items())):\\\\n351:            f\\\\\\\"{cond_key}\\\\\\\\nr = {r:.3f}  [{verdict}]\\\\\\\",\\\\n395:            logger.info(f\\\\\\\"  {ds}×{attack}: {len(models_with_asr)} models\\\\\\\")\\\\n444:    for cond_key, cond in sorted(output_conditions.items()):\\\\n449:        print(f\\\\\\\"  {cond_key:40s}  r={r_str:>7s}  {v:20s}  ({n} panels)\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"229:            cond_key = f\\\"{ds}×{attack}\\\"\\n234:                    f\\\"  {cond_key}: only {len(model_asrs)} models have ASR, \\\"\\n237:                conditions[cond_key] = {\\n276:            conditions[cond_key] = {\\n287:                f\\\"  {cond_key}: r={r:.3f}, p={p:.4f}, \\\"\\n318:    for idx, (cond_key, cond_data) in enumerate(sorted(valid_conds.items())):\\n351:            f\\\"{cond_key}\\\\nr = {r:.3f}  [{verdict}]\\\",\\n395:            logger.info(f\\\"  {ds}×{attack}: {len(models_with_asr)} models\\\")\\n444:    for cond_key, cond in sorted(output_conditions.items()):\\n449:        print(f\\\"  {cond_key:40s}  r={r_str:>7s}  {v:20s}  ({n} panels)\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the key lines:
+
+1. **Step 4** (line 398): `cond = f"{ds}×{atk}"` — uses Unicode `×`
+2. **Step 5** (line 302): `cond = f"{ds}x{atk}"` — uses ASCII `x` (no spaces)
+3. **Step 3**: No condition keys (only `model×dataset` in a comment on line 196)
+4. **Confound diagnosis** (line 229): `cond_key = f"{ds}×{attack}"` — uses Unicode `×`
+
+So:
+
+
+- Step 4: `×` (Unicode) → change to `__`
+- Step 5: `x` (ASCII) → change to `__`
+- Step 3: Only in a log message/comment, not a key — just the log string on line 196. Leave it or change the comment.
+- Confound diagnosis: `×` (Unicode) → change to `__`
+
+I need to check for any other occurrences in comments or log strings that reference the condition key format. The docstring comment on line 2 mentioning `× 12 conditions` is just documentation, not an actual key, so I should focus on the actual variable assignments and leave documentation as-is unless the user specifically wants those changed too.
+
+Looking at the specific lines: line 398 in Step 4 has the key that needs changing, line 302 in Step 5 has another key to update, and line 229 in the confound diagnosis section has a key that must change. Line 395 is a log message using the same format as a key, so I should update that for consistency. Step 3 doesn't have any condition keys at all, just a log message on line 196 that I can leave as-is.
+
+Now I'll construct the sed commands to make these replacements across all four files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "49151037-453d-49de-a2ab-531c5b0004e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LWD4zi5eVL8dXtERtrGmdA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1483,
+      "cache_read_input_tokens": 41066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+找到了所有 condition key 的位置。现在读取具体行上下文以精确替换。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "7c5c8d3f-60e2-4763-9fbf-24d7d69f8d7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LWD4zi5eVL8dXtERtrGmdA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1483,
+      "cache_read_input_tokens": 41066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CavAV1wpJDwmn4XFVatgSu`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -400 /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "78631a68-580e-4e77-9ad2-a6b482226591",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LWD4zi5eVL8dXtERtrGmdA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1483,
+      "cache_read_input_tokens": 41066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T08:24:49.713Z_
+
+<details><summary>↩ Tool result · `toolu_01CavAV1wpJDwmn4XFVatgSu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\nOptional: pingouin (for partial_corr; manual fallback included)\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import optimize, stats, special\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_step4\\\")\\n\\n# ── Constants ────────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\nEPS = 0.001\\n\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\n# ── JSON Helper ──────────────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── Data Loading ─────────────────────────────────────────────────────\\n\\ndef load_mi_data():\\n    if not MI_PATH.exists():\\n        logger.error(f\\\"MI matrix not found: {MI_PATH}\\\")\\n        logger.error(\\\"Run Step 3 first: scripts/run_plan001_step3_mi_matrix.py\\\")\\n        sys.exit(1)\\n    with open(MI_PATH) as f:\\n        data = json.load(f)\\n    logger.info(f\\\"Loaded MI matrix: {len(data['models'])} models\\\")\\n    return data\\n\\n\\ndef load_pairs():\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        if \\\"pairs\\\" not in data:\\n            continue\\n        pairs = {}\\n        for ds in DATASETS:\\n            if ds in data[\\\"pairs\\\"]:\\n                pairs[ds] = data[\\\"pairs\\\"][ds][:300]\\n                logger.info(f\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\")\\n        if pairs:\\n            return pairs\\n    logger.error(\\\"No pairs found in any checkpoint file\\\")\\n    sys.exit(1)\\n\\n\\ndef _invert_winners(scores):\\n    \\\"\\\"\\\"Invert A<->B winner labels for position bias scores (swapped pair orientation).\\\"\\\"\\\"\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores():\\n    \\\"\\\"\\\"Load sample-level clean + attacked scores for all 15 models.\\n\\n    Returns:\\n        clean[ds][model_id] = [{\\\"winner\\\": ..., ...}, ...]\\n        attacked[ds][atk][model_id] = [{\\\"winner\\\": ..., ...}, ...]\\n    \\\"\\\"\\\"\\n    clean = {ds: {} for ds in DATASETS}\\n    attacked = {ds: {a: {} fo\\n\\n... [截断: 输出过长，省略 5493 字符] ...\\n\\n           ej = np.zeros(n_p)\\n            ei[i] = eps_h\\n            ej[j] = eps_h\\n            fpp = neg_ll(res.x + ei + ej)\\n            fpm = neg_ll(res.x + ei - ej)\\n            fmp = neg_ll(res.x - ei + ej)\\n            fmm = neg_ll(res.x - ei - ej)\\n            H[i, j] = H[j, i] = (fpp - fpm - fmp + fmm) / (4.0 * eps_h * eps_h)\\n\\n    try:\\n        cov = np.linalg.inv(H)\\n        se = np.sqrt(np.maximum(np.diag(cov), 0.0))\\n    except np.linalg.LinAlgError:\\n        return None\\n\\n    beta = res.x[:k]\\n    se_b = se[:k]\\n    z = beta / np.maximum(se_b, 1e-12)\\n    pvals = 2.0 * (1.0 - stats.norm.cdf(np.abs(z)))\\n    return {\\\"beta\\\": beta, \\\"se\\\": se_b, \\\"z\\\": z, \\\"p\\\": pvals}\\n\\n\\ndef run_condition_analysis(panel_asrs, keffs, eta_maxs):\\n    \\\"\\\"\\\"Full regression suite for one condition. All arrays shape (n,).\\\"\\\"\\\"\\n    n = len(panel_asrs)\\n    y = np.log(panel_asrs + EPS)\\n    x1 = np.log(keffs)\\n    x2 = np.log(eta_maxs + EPS)\\n    X = np.column_stack([x1, x2])\\n    Xc = sm.add_constant(X)\\n    results = {}\\n\\n    # ── OLS ──\\n    fit = sm.OLS(y, Xc).fit()\\n    results[\\\"ols\\\"] = {\\n        \\\"keff_beta\\\": float(fit.params[1]),\\n        \\\"keff_t\\\": float(fit.tvalues[1]),\\n        \\\"keff_p\\\": float(fit.pvalues[1]),\\n        \\\"eta_max_beta\\\": float(fit.params[2]),\\n        \\\"eta_max_t\\\": float(fit.tvalues[2]),\\n        \\\"eta_max_p\\\": float(fit.pvalues[2]),\\n        \\\"R2\\\": float(fit.rsquared),\\n        \\\"adj_R2\\\": float(fit.rsquared_adj),\\n        \\\"f_stat\\\": float(fit.fvalue) if np.isfinite(fit.fvalue) else None,\\n        \\\"f_pvalue\\\": float(fit.f_pvalue) if np.isfinite(fit.f_pvalue) else None,\\n    }\\n\\n    # ── VIF ──\\n    results[\\\"vif_keff\\\"] = float(variance_inflation_factor(Xc, 1))\\n    results[\\\"vif_eta_max\\\"] = float(variance_inflation_factor(Xc, 2))\\n\\n    # ── Partial correlation (K_eff | η_max) ──\\n    pr, pp = partial_corr_fn(x1, y, x2)\\n    results[\\\"partial_r_keff\\\"] = pr\\n    results[\\\"partial_r_keff_p\\\"] = pp\\n\\n    # ── Residualized K_eff ──\\n    Xz = sm.add_constant(x2)\\n    resid_keff = sm.OLS(x1, Xz).fit().resid\\n    Xr = sm.add_constant(resid_keff)\\n    fit_r = sm.OLS(y, Xr).fit()\\n    results[\\\"residualized_keff_beta\\\"] = float(fit_r.params[1])\\n    results[\\\"residualized_keff_t\\\"] = float(fit_r.tvalues[1])\\n    results[\\\"residualized_keff_p\\\"] = float(fit_r.pvalues[1])\\n\\n    # ── Beta regression ──\\n    y_raw = np.clip(panel_asrs, 0.0, 1.0)\\n    br = beta_regression_mle(y_raw, Xc)\\n    if br is not None:\\n        results[\\\"beta_reg_keff_beta\\\"] = float(br[\\\"beta\\\"][1])\\n        results[\\\"beta_reg_keff_p\\\"] = float(br[\\\"p\\\"][1])\\n        results[\\\"beta_reg_eta_max_beta\\\"] = float(br[\\\"beta\\\"][2])\\n        results[\\\"beta_reg_eta_max_p\\\"] = float(br[\\\"p\\\"][2])\\n    else:\\n        results[\\\"beta_reg_keff_p\\\"] = None\\n        results[\\\"beta_reg_eta_max_p\\\"] = None\\n\\n    return results\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────\\n\\ndef main():\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Plan 001 Step 4: Panel Regression (455 panels × 12 conditions)\\\")\\n    logger.info(\\\"=\\\" * 60)\\n\\n    mi_data = load_mi_data()\\n    pairs = load_pairs()\\n    clean, attacked = load_all_scores()\\n\\n    # Precompute individual ASR for all model × condition\\n    logger.info(\\\"\\\\nPrecomputing individual ASR...\\\")\\n    ind_asr = {}\\n    for ds in DATASETS:\\n        for atk in ATTACKS:\\n            for mid in ALL_MODELS:\\n                if mid in clean[ds] and mid in attacked[ds][atk]:\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\n                    )\\n    logger.info(f\\\"  Computed {len(ind_asr)} individual ASR values\\\")\\n\\n    # Enumerate all C(15,3)=455 panels\\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), 3))\\n    logger.info(f\\\"  Total panels: {len(all_combos)}\\\")\\n\\n    condition_results = {}\\n    raw_eta_ps = []\\n    raw_keff_ps = []\\n    valid_cond_keys = []\\n\\n    for ds in DATASETS:\\n        keff_data = mi_data[\\\"keff_per_panel\\\"].get(ds, {})\\n        for atk in ATTACKS:\\n            cond = f\\\"{ds}×{atk}\\\"\\n            logger.info(f\\\"\\\\n--- {cond} ---\\\")\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "29aecc0e-a36a-41be-b59d-c4092a4e980d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\\\n\\\\nInput:\\\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\\\n\\\\nOutput:\\\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\\\n\\\\nDependencies: numpy, scipy, statsmodels\\\\nOptional: pingouin (for partial_corr; manual fallback included)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/cert_manip_resist_eval\\\\\\\")\\\\n\\\\nimport json\\\\nimport warnings\\\\nimport itertools\\\\nimport numpy as np\\\\nimport statsmodels.api as sm\\\\nfrom pathlib import Path\\\\nfrom scipy import optimize, stats, special\\\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\\\nfrom statsmodels.stats.multitest import multipletests\\\\n\\\\nfrom src.utils import setup_logging\\\\n\\\\nlogger = setup_logging(\\\\\\\"plan001_step4\\\\\\\")\\\\n\\\\n# ── Constants ────────────────────────────────────────────────────────\\\\nLOCAL_MODELS = [\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\", \\\\\\\"llama3.1-70b\\\\\\\", \\\\\\\"mistral-large\\\\\\\",\\\\n    \\\\\\\"qwen2.5-32b\\\\\\\", \\\\\\\"qwen2.5-14b\\\\\\\", \\\\\\\"llama3.1-8b\\\\\\\",\\\\n]\\\\nAPI_MODELS = [\\\\n    \\\\\\\"claude-opus-4\\\\\\\", \\\\\\\"gpt-5.5\\\\\\\", \\\\\\\"gemini-2.5-pro\\\\\\\", \\\\\\\"gpt-4.1\\\\\\\",\\\\n    \\\\\\\"claude-sonnet-4\\\\\\\", \\\\\\\"gpt-4o\\\\\\\", \\\\\\\"gemini-2.5-flash\\\\\\\",\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\", \\\\\\\"claude-3-haiku\\\\\\\",\\\\n]\\\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\\\nDATASETS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nATTACKS = [\\\\n    \\\\\\\"prompt_injection\\\\\\\", \\\\\\\"sycophancy\\\\\\\", \\\\\\\"score_manipulation\\\\\\\",\\\\n    \\\\\\\"verbosity_bias\\\\\\\", \\\\\\\"position_bias\\\\\\\", \\\\\\\"authority_bias\\\\\\\",\\\\n]\\\\nEPS = 0.001\\\\n\\\\nRESULTS_DIR = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results\\\\\\\")\\\\nPLAN001_DIR = RESULTS_DIR / \\\\\\\"plan001\\\\\\\"\\\\nSCORES_DIR = PLAN001_DIR / \\\\\\\"individual_scores\\\\\\\"\\\\nMI_PATH = PLAN001_DIR / \\\\\\\"mi_matrix\\\\\\\" / \\\\\\\"mi_matrix_15models.json\\\\\\\"\\\\nCKPT_FILES = [\\\\n    RESULTS_DIR / \\\\\\\"_taxonomy_checkpoint.json\\\\\\\",\\\\n    RESULTS_DIR / \\\\\\\"_step2v3_checkpoint.json\\\\\\\",\\\\n]\\\\nOUTPUT_DIR = PLAN001_DIR / \\\\\\\"panel_regression\\\\\\\"\\\\n\\\\n\\\\n# ── JSON Helper ──────────────────────────────────────────────────────\\\\n\\\\ndef _json_default(obj):\\\\n    if isinstance(obj, np.floating):\\\\n        v = float(obj)\\\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\\\n    if isinstance(obj, np.integer):\\\\n        return int(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    if isinstance(obj, np.bool_):\\\\n        return bool(obj)\\\\n    raise TypeError(f\\\\\\\"Not JSON serializable: {type(obj)}\\\\\\\")\\\\n\\\\n\\\\n# ── Data Loading ─────────────────────────────────────────────────────\\\\n\\\\ndef load_mi_data():\\\\n    if not MI_PATH.exists():\\\\n        logger.error(f\\\\\\\"MI matrix not found: {MI_PATH}\\\\\\\")\\\\n        logger.error(\\\\\\\"Run Step 3 first: scripts/run_plan001_step3_mi_matrix.py\\\\\\\")\\\\n        sys.exit(1)\\\\n    with open(MI_PATH) as f:\\\\n        data = json.load(f)\\\\n    logger.info(f\\\\\\\"Loaded MI matrix: {len(data['models'])} models\\\\\\\")\\\\n    return data\\\\n\\\\n\\\\ndef load_pairs():\\\\n    for ckpt_path in CKPT_FILES:\\\\n        if not ckpt_path.exists():\\\\n            continue\\\\n        with open(ckpt_path) as f:\\\\n            data = json.load(f)\\\\n        if \\\\\\\"pairs\\\\\\\" not in data:\\\\n            continue\\\\n        pairs = {}\\\\n        for ds in DATASETS:\\\\n            if ds in data[\\\\\\\"pairs\\\\\\\"]:\\\\n                pairs[ds] = data[\\\\\\\"pairs\\\\\\\"][ds][:300]\\\\n                logger.info(f\\\\\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\\\\\")\\\\n        if pairs:\\\\n            return pairs\\\\n    logger.error(\\\\\\\"No pairs found in any checkpoint file\\\\\\\")\\\\n    sys.exit(1)\\\\n\\\\n\\\\ndef _invert_winners(scores):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Invert A<->B winner labels for position bias scores (swapped pair orientation).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    swap = {\\\\\\\"A\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"B\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"tie\\\\\\\": \\\\\\\"tie\\\\\\\"}\\\\n    return [{**s, \\\\\\\"winner\\\\\\\": swap.get(s.get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\"), \\\\\\\"tie\\\\\\\")} for s in scores]\\\\n\\\\n\\\\ndef load_all_scores():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load sample-level clean + attacked scores for all 15 models.\\\\n\\\\n    Returns:\\\\n        clean[ds][model_id] = [{\\\\\\\"winner\\\\\\\": ..., ...}, ...]\\\\n        attacked[ds][atk][model_id] = [{\\\\\\\"winner\\\\\\\": ..., ...}, ...]\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    clean = {ds: {} for ds in DATASETS}\\\\n    attacked = {ds: {a: {} fo\\\\n\\\\n... [截断: 输出过长，省略 5493 字符] ...\\\\n\\\\n           ej = np.zeros(n_p)\\\\n            ei[i] = eps_h\\\\n            ej[j] = eps_h\\\\n            fpp = neg_ll(res.x + ei + ej)\\\\n            fpm = neg_ll(res.x + ei - ej)\\\\n            fmp = neg_ll(res.x - ei + ej)\\\\n            fmm = neg_ll(res.x - ei - ej)\\\\n            H[i, j] = H[j, i] = (fpp - fpm - fmp + fmm) / (4.0 * eps_h * eps_h)\\\\n\\\\n    try:\\\\n        cov = np.linalg.inv(H)\\\\n        se = np.sqrt(np.maximum(np.diag(cov), 0.0))\\\\n    except np.linalg.LinAlgError:\\\\n        return None\\\\n\\\\n    beta = res.x[:k]\\\\n    se_b = se[:k]\\\\n    z = beta / np.maximum(se_b, 1e-12)\\\\n    pvals = 2.0 * (1.0 - stats.norm.cdf(np.abs(z)))\\\\n    return {\\\\\\\"beta\\\\\\\": beta, \\\\\\\"se\\\\\\\": se_b, \\\\\\\"z\\\\\\\": z, \\\\\\\"p\\\\\\\": pvals}\\\\n\\\\n\\\\ndef run_condition_analysis(panel_asrs, keffs, eta_maxs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Full regression suite for one condition. All arrays shape (n,).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(panel_asrs)\\\\n    y = np.log(panel_asrs + EPS)\\\\n    x1 = np.log(keffs)\\\\n    x2 = np.log(eta_maxs + EPS)\\\\n    X = np.column_stack([x1, x2])\\\\n    Xc = sm.add_constant(X)\\\\n    results = {}\\\\n\\\\n    # ── OLS ──\\\\n    fit = sm.OLS(y, Xc).fit()\\\\n    results[\\\\\\\"ols\\\\\\\"] = {\\\\n        \\\\\\\"keff_beta\\\\\\\": float(fit.params[1]),\\\\n        \\\\\\\"keff_t\\\\\\\": float(fit.tvalues[1]),\\\\n        \\\\\\\"keff_p\\\\\\\": float(fit.pvalues[1]),\\\\n        \\\\\\\"eta_max_beta\\\\\\\": float(fit.params[2]),\\\\n        \\\\\\\"eta_max_t\\\\\\\": float(fit.tvalues[2]),\\\\n        \\\\\\\"eta_max_p\\\\\\\": float(fit.pvalues[2]),\\\\n        \\\\\\\"R2\\\\\\\": float(fit.rsquared),\\\\n        \\\\\\\"adj_R2\\\\\\\": float(fit.rsquared_adj),\\\\n        \\\\\\\"f_stat\\\\\\\": float(fit.fvalue) if np.isfinite(fit.fvalue) else None,\\\\n        \\\\\\\"f_pvalue\\\\\\\": float(fit.f_pvalue) if np.isfinite(fit.f_pvalue) else None,\\\\n    }\\\\n\\\\n    # ── VIF ──\\\\n    results[\\\\\\\"vif_keff\\\\\\\"] = float(variance_inflation_factor(Xc, 1))\\\\n    results[\\\\\\\"vif_eta_max\\\\\\\"] = float(variance_inflation_factor(Xc, 2))\\\\n\\\\n    # ── Partial correlation (K_eff | η_max) ──\\\\n    pr, pp = partial_corr_fn(x1, y, x2)\\\\n    results[\\\\\\\"partial_r_keff\\\\\\\"] = pr\\\\n    results[\\\\\\\"partial_r_keff_p\\\\\\\"] = pp\\\\n\\\\n    # ── Residualized K_eff ──\\\\n    Xz = sm.add_constant(x2)\\\\n    resid_keff = sm.OLS(x1, Xz).fit().resid\\\\n    Xr = sm.add_constant(resid_keff)\\\\n    fit_r = sm.OLS(y, Xr).fit()\\\\n    results[\\\\\\\"residualized_keff_beta\\\\\\\"] = float(fit_r.params[1])\\\\n    results[\\\\\\\"residualized_keff_t\\\\\\\"] = float(fit_r.tvalues[1])\\\\n    results[\\\\\\\"residualized_keff_p\\\\\\\"] = float(fit_r.pvalues[1])\\\\n\\\\n    # ── Beta regression ──\\\\n    y_raw = np.clip(panel_asrs, 0.0, 1.0)\\\\n    br = beta_regression_mle(y_raw, Xc)\\\\n    if br is not None:\\\\n        results[\\\\\\\"beta_reg_keff_beta\\\\\\\"] = float(br[\\\\\\\"beta\\\\\\\"][1])\\\\n        results[\\\\\\\"beta_reg_keff_p\\\\\\\"] = float(br[\\\\\\\"p\\\\\\\"][1])\\\\n        results[\\\\\\\"beta_reg_eta_max_beta\\\\\\\"] = float(br[\\\\\\\"beta\\\\\\\"][2])\\\\n        results[\\\\\\\"beta_reg_eta_max_p\\\\\\\"] = float(br[\\\\\\\"p\\\\\\\"][2])\\\\n    else:\\\\n        results[\\\\\\\"beta_reg_keff_p\\\\\\\"] = None\\\\n        results[\\\\\\\"beta_reg_eta_max_p\\\\\\\"] = None\\\\n\\\\n    return results\\\\n\\\\n\\\\n# ── Main ─────────────────────────────────────────────────────────────\\\\n\\\\ndef main():\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"Plan 001 Step 4: Panel Regression (455 panels × 12 conditions)\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    mi_data = load_mi_data()\\\\n    pairs = load_pairs()\\\\n    clean, attacked = load_all_scores()\\\\n\\\\n    # Precompute individual ASR for all model × condition\\\\n    logger.info(\\\\\\\"\\\\\\\\nPrecomputing individual ASR...\\\\\\\")\\\\n    ind_asr = {}\\\\n    for ds in DATASETS:\\\\n        for atk in ATTACKS:\\\\n            for mid in ALL_MODELS:\\\\n                if mid in clean[ds] and mid in attacked[ds][atk]:\\\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\\\n                    )\\\\n    logger.info(f\\\\\\\"  Computed {len(ind_asr)} individual ASR values\\\\\\\")\\\\n\\\\n    # Enumerate all C(15,3)=455 panels\\\\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), 3))\\\\n    logger.info(f\\\\\\\"  Total panels: {len(all_combos)}\\\\\\\")\\\\n\\\\n    condition_results = {}\\\\n    raw_eta_ps = []\\\\n    raw_keff_ps = []\\\\n    valid_cond_keys = []\\\\n\\\\n    for ds in DATASETS:\\\\n        keff_data = mi_data[\\\\\\\"keff_per_panel\\\\\\\"].get(ds, {})\\\\n        for atk in ATTACKS:\\\\n            cond = f\\\\\\\"{ds}×{atk}\\\\\\\"\\\\n            logger.info(f\\\\\\\"\\\\\\\\n--- {cond} ---\\\\\\\")\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step4_regression_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\nOptional: pingouin (for partial_corr; manual fallback included)\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import optimize, stats, special\\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\\nfrom statsmodels.stats.multitest import multipletests\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_step4\\\")\\n\\n# ── Constants ────────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\nEPS = 0.001\\n\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\n# ── JSON Helper ──────────────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── Data Loading ─────────────────────────────────────────────────────\\n\\ndef load_mi_data():\\n    if not MI_PATH.exists():\\n        logger.error(f\\\"MI matrix not found: {MI_PATH}\\\")\\n        logger.error(\\\"Run Step 3 first: scripts/run_plan001_step3_mi_matrix.py\\\")\\n        sys.exit(1)\\n    with open(MI_PATH) as f:\\n        data = json.load(f)\\n    logger.info(f\\\"Loaded MI matrix: {len(data['models'])} models\\\")\\n    return data\\n\\n\\ndef load_pairs():\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        if \\\"pairs\\\" not in data:\\n            continue\\n        pairs = {}\\n        for ds in DATASETS:\\n            if ds in data[\\\"pairs\\\"]:\\n                pairs[ds] = data[\\\"pairs\\\"][ds][:300]\\n                logger.info(f\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\")\\n        if pairs:\\n            return pairs\\n    logger.error(\\\"No pairs found in any checkpoint file\\\")\\n    sys.exit(1)\\n\\n\\ndef _invert_winners(scores):\\n    \\\"\\\"\\\"Invert A<->B winner labels for position bias scores (swapped pair orientation).\\\"\\\"\\\"\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores():\\n    \\\"\\\"\\\"Load sample-level clean + attacked scores for all 15 models.\\n\\n    Returns:\\n        clean[ds][model_id] = [{\\\"winner\\\": ..., ...}, ...]\\n        attacked[ds][atk][model_id] = [{\\\"winner\\\": ..., ...}, ...]\\n    \\\"\\\"\\\"\\n    clean = {ds: {} for ds in DATASETS}\\n    attacked = {ds: {a: {} fo\\n\\n... [截断: 输出过长，省略 5493 字符] ...\\n\\n           ej = np.zeros(n_p)\\n            ei[i] = eps_h\\n            ej[j] = eps_h\\n            fpp = neg_ll(res.x + ei + ej)\\n            fpm = neg_ll(res.x + ei - ej)\\n            fmp = neg_ll(res.x - ei + ej)\\n            fmm = neg_ll(res.x - ei - ej)\\n            H[i, j] = H[j, i] = (fpp - fpm - fmp + fmm) / (4.0 * eps_h * eps_h)\\n\\n    try:\\n        cov = np.linalg.inv(H)\\n        se = np.sqrt(np.maximum(np.diag(cov), 0.0))\\n    except np.linalg.LinAlgError:\\n        return None\\n\\n    beta = res.x[:k]\\n    se_b = se[:k]\\n    z = beta / np.maximum(se_b, 1e-12)\\n    pvals = 2.0 * (1.0 - stats.norm.cdf(np.abs(z)))\\n    return {\\\"beta\\\": beta, \\\"se\\\": se_b, \\\"z\\\": z, \\\"p\\\": pvals}\\n\\n\\ndef run_condition_analysis(panel_asrs, keffs, eta_maxs):\\n    \\\"\\\"\\\"Full regression suite for one condition. All arrays shape (n,).\\\"\\\"\\\"\\n    n = len(panel_asrs)\\n    y = np.log(panel_asrs + EPS)\\n    x1 = np.log(keffs)\\n    x2 = np.log(eta_maxs + EPS)\\n    X = np.column_stack([x1, x2])\\n    Xc = sm.add_constant(X)\\n    results = {}\\n\\n    # ── OLS ──\\n    fit = sm.OLS(y, Xc).fit()\\n    results[\\\"ols\\\"] = {\\n        \\\"keff_beta\\\": float(fit.params[1]),\\n        \\\"keff_t\\\": float(fit.tvalues[1]),\\n        \\\"keff_p\\\": float(fit.pvalues[1]),\\n        \\\"eta_max_beta\\\": float(fit.params[2]),\\n        \\\"eta_max_t\\\": float(fit.tvalues[2]),\\n        \\\"eta_max_p\\\": float(fit.pvalues[2]),\\n        \\\"R2\\\": float(fit.rsquared),\\n        \\\"adj_R2\\\": float(fit.rsquared_adj),\\n        \\\"f_stat\\\": float(fit.fvalue) if np.isfinite(fit.fvalue) else None,\\n        \\\"f_pvalue\\\": float(fit.f_pvalue) if np.isfinite(fit.f_pvalue) else None,\\n    }\\n\\n    # ── VIF ──\\n    results[\\\"vif_keff\\\"] = float(variance_inflation_factor(Xc, 1))\\n    results[\\\"vif_eta_max\\\"] = float(variance_inflation_factor(Xc, 2))\\n\\n    # ── Partial correlation (K_eff | η_max) ──\\n    pr, pp = partial_corr_fn(x1, y, x2)\\n    results[\\\"partial_r_keff\\\"] = pr\\n    results[\\\"partial_r_keff_p\\\"] = pp\\n\\n    # ── Residualized K_eff ──\\n    Xz = sm.add_constant(x2)\\n    resid_keff = sm.OLS(x1, Xz).fit().resid\\n    Xr = sm.add_constant(resid_keff)\\n    fit_r = sm.OLS(y, Xr).fit()\\n    results[\\\"residualized_keff_beta\\\"] = float(fit_r.params[1])\\n    results[\\\"residualized_keff_t\\\"] = float(fit_r.tvalues[1])\\n    results[\\\"residualized_keff_p\\\"] = float(fit_r.pvalues[1])\\n\\n    # ── Beta regression ──\\n    y_raw = np.clip(panel_asrs, 0.0, 1.0)\\n    br = beta_regression_mle(y_raw, Xc)\\n    if br is not None:\\n        results[\\\"beta_reg_keff_beta\\\"] = float(br[\\\"beta\\\"][1])\\n        results[\\\"beta_reg_keff_p\\\"] = float(br[\\\"p\\\"][1])\\n        results[\\\"beta_reg_eta_max_beta\\\"] = float(br[\\\"beta\\\"][2])\\n        results[\\\"beta_reg_eta_max_p\\\"] = float(br[\\\"p\\\"][2])\\n    else:\\n        results[\\\"beta_reg_keff_p\\\"] = None\\n        results[\\\"beta_reg_eta_max_p\\\"] = None\\n\\n    return results\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────\\n\\ndef main():\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Plan 001 Step 4: Panel Regression (455 panels × 12 conditions)\\\")\\n    logger.info(\\\"=\\\" * 60)\\n\\n    mi_data = load_mi_data()\\n    pairs = load_pairs()\\n    clean, attacked = load_all_scores()\\n\\n    # Precompute individual ASR for all model × condition\\n    logger.info(\\\"\\\\nPrecomputing individual ASR...\\\")\\n    ind_asr = {}\\n    for ds in DATASETS:\\n        for atk in ATTACKS:\\n            for mid in ALL_MODELS:\\n                if mid in clean[ds] and mid in attacked[ds][atk]:\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\n                    )\\n    logger.info(f\\\"  Computed {len(ind_asr)} individual ASR values\\\")\\n\\n    # Enumerate all C(15,3)=455 panels\\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), 3))\\n    logger.info(f\\\"  Total panels: {len(all_combos)}\\\")\\n\\n    condition_results = {}\\n    raw_eta_ps = []\\n    raw_keff_ps = []\\n    valid_cond_keys = []\\n\\n    for ds in DATASETS:\\n        keff_data = mi_data[\\\"keff_per_panel\\\"].get(ds, {})\\n        for atk in ATTACKS:\\n            cond = f\\\"{ds}×{atk}\\\"\\n            logger.info(f\\\"\\\\n--- {cond} ---\\\")\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JrJASauTbTkWfZK5JgpCh9`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -310 /root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "1e237d87-e60d-4bad-b43e-bb4b9341c3b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LWD4zi5eVL8dXtERtrGmdA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1483,
+      "cache_read_input_tokens": 41066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DftXkWw7pUkjgEtwApLvhP`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "head -240 /root/cert_manip_resist_eval/scripts/run_plan001_confound_diagnosis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "b26e832c-f5de-4972-83f3-d9f5a8f95b32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LWD4zi5eVL8dXtERtrGmdA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1483,
+      "cache_read_input_tokens": 41066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-22T08:24:50.595Z_
+
+<details><summary>↩ Tool result · `toolu_01JrJASauTbTkWfZK5JgpCh9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 5: Random-fault simulation — 455 panels × 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step5_random_fault_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import stats\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_step5\\\")\\n\\n# ── Constants ───────────────────────────────────────────────��────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\nEPS = 0.001\\nN_SIMS = 1000\\nN_SAMPLES = 300\\nSIM_BATCH = 100\\n\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\n# ── JSON Helper ───────��──────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── Data Loading (shared with Step 4) ────────────────────────────────\\n\\ndef load_mi_data():\\n    if not MI_PATH.exists():\\n        logger.error(f\\\"MI matrix not found: {MI_PATH}\\\")\\n        sys.exit(1)\\n    with open(MI_PATH) as f:\\n        data = json.load(f)\\n    logger.info(f\\\"Loaded MI matrix: {len(data['models'])} models\\\")\\n    return data\\n\\n\\ndef load_pairs():\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        if \\\"pairs\\\" not in data:\\n            continue\\n        pairs = {}\\n        for ds in DATASETS:\\n            if ds in data[\\\"pairs\\\"]:\\n                pairs[ds] = data[\\\"pairs\\\"][ds][:300]\\n                logger.info(f\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\")\\n        if pairs:\\n            return pairs\\n    logger.error(\\\"No pairs found in any checkpoint file\\\")\\n    sys.exit(1)\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores():\\n    clean = {ds: {} for ds in DATASETS}\\n    attacked = {ds: {a: {} for a in ATTACKS} for ds in DATASETS}\\n\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        logger.info(f\\\"Loading checkpoint: {ckpt_path.name}\\\")\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        for ds in DATASETS:\\n            for mid, scores in data.get(\\\"clean_scores\\\", {}).get(ds, {}).items():\\n                if mid not in clean[ds]:\\n                    clean[ds][mid] = scores\\n            for atk in ATTACKS:\\n                for mid, scores in data.get(\\\"attacked_scores\\n\\n... [截断: 输出过长，省略 2387 字符] ...\\n\\nor j in jids))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        cv = majority_vote([clean[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if cv != gt:\\n            continue\\n        n_correct += 1\\n        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if av != gt:\\n            n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\n# ── Random-Fault Simulation ─────────────────────────────────────────\\n\\ndef analytical_rf_asr(eta):\\n    \\\"\\\"\\\"Analytical P(panel error) for majority vote with 3 independent judges.\\n    P(>=2 fail) = e1*e2 + e1*e3 + e2*e3 - 2*e1*e2*e3\\\"\\\"\\\"\\n    e1, e2, e3 = eta\\n    return e1 * e2 + e1 * e3 + e2 * e3 - 2.0 * e1 * e2 * e3\\n\\n\\ndef simulate_rf_vectorized(eta_all, rng):\\n    \\\"\\\"\\\"Simulate random-fault ASR for all panels.\\n\\n    Args:\\n        eta_all: (n_panels, 3) array of individual judge error rates\\n        rng: numpy random generator\\n\\n    Returns:\\n        rf_mean: (n_panels,) mean RF ASR across simulations\\n        rf_std: (n_panels,) std RF ASR across simulations\\n    \\\"\\\"\\\"\\n    n_panels = eta_all.shape[0]\\n    rf_sum = np.zeros(n_panels)\\n    rf_sq_sum = np.zeros(n_panels)\\n\\n    for sim_start in range(0, N_SIMS, SIM_BATCH):\\n        b = min(SIM_BATCH, N_SIMS - sim_start)\\n        # (n_panels, batch, n_samples, 3) random draws\\n        randoms = rng.random((n_panels, b, N_SAMPLES, 3))\\n        # Each judge errors independently with probability eta_j\\n        errors = randoms < eta_all[:, np.newaxis, np.newaxis, :]\\n        # Majority vote: panel errs if >=2 judges err\\n        panel_err = errors.sum(axis=3) >= 2\\n        # Error rate per sim: (n_panels, batch)\\n        rates = panel_err.mean(axis=2).astype(np.float64)\\n        rf_sum += rates.sum(axis=1)\\n        rf_sq_sum += (rates ** 2).sum(axis=1)\\n\\n    rf_mean = rf_sum / N_SIMS\\n    rf_std = np.sqrt(np.maximum(rf_sq_sum / N_SIMS - rf_mean ** 2, 0.0))\\n    return rf_mean, rf_std\\n\\n\\n# ── Regression ──────────────────────────────────────────────────────���\\n\\ndef run_ols(y_raw, keffs, eta_maxs):\\n    \\\"\\\"\\\"Simple OLS: log(y+eps) ~ log(K_eff) + log(eta_max+eps).\\\"\\\"\\\"\\n    y = np.log(y_raw + EPS)\\n    X = np.column_stack([np.log(keffs), np.log(eta_maxs + EPS)])\\n    Xc = sm.add_constant(X)\\n    fit = sm.OLS(y, Xc).fit()\\n    return {\\n        \\\"keff_beta\\\": float(fit.params[1]),\\n        \\\"keff_t\\\": float(fit.tvalues[1]),\\n        \\\"keff_p\\\": float(fit.pvalues[1]),\\n        \\\"eta_max_beta\\\": float(fit.params[2]),\\n        \\\"eta_max_t\\\": float(fit.tvalues[2]),\\n        \\\"eta_max_p\\\": float(fit.pvalues[2]),\\n        \\\"R2\\\": float(fit.rsquared),\\n        \\\"adj_R2\\\": float(fit.rsquared_adj),\\n    }\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────\\n\\ndef main():\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Plan 001 Step 5: Random-Fault Simulation\\\")\\n    logger.info(f\\\"  {N_SIMS} simulations x {N_SAMPLES} samples per panel\\\")\\n    logger.info(\\\"=\\\" * 60)\\n\\n    mi_data = load_mi_data()\\n    pairs = load_pairs()\\n    clean, attacked = load_all_scores()\\n\\n    # Precompute individual ASR\\n    logger.info(\\\"\\\\nPrecomputing individual ASR...\\\")\\n    ind_asr = {}\\n    for ds in DATASETS:\\n        for atk in ATTACKS:\\n            for mid in ALL_MODELS:\\n                if mid in clean[ds] and mid in attacked[ds][atk]:\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\n                    )\\n    logger.info(f\\\"  Computed {len(ind_asr)} individual ASR values\\\")\\n\\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), 3))\\n    rng = np.random.default_rng(42)\\n\\n    condition_results = {}\\n\\n    for ds in DATASETS:\\n        keff_data = mi_data[\\\"keff_per_panel\\\"].get(ds, {})\\n        for atk in ATTACKS:\\n            cond = f\\\"{ds}x{atk}\\\"\\n            logger.info(f\\\"\\\\n--- {cond} ---\\\")\\n\\n            # Collect panel data\\n            panel_keffs = []\\n            panel_eta_maxs = []\\n            panel_eta_all = []\\n            panel_adaptive_asrs = []\\n            skipped = 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "c68263ba-7c96-436a-a184-b9245782ea03",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Plan 001 Step 5: Random-fault simulation — 455 panels × 12 conditions.\\\\n\\\\nInput:\\\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\\\n\\\\nOutput:\\\\n  - artifacts/results/plan001/panel_regression/step5_random_fault_results.json\\\\n\\\\nDependencies: numpy, scipy, statsmodels\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/cert_manip_resist_eval\\\\\\\")\\\\n\\\\nimport json\\\\nimport warnings\\\\nimport itertools\\\\nimport numpy as np\\\\nimport statsmodels.api as sm\\\\nfrom pathlib import Path\\\\nfrom scipy import stats\\\\n\\\\nfrom src.utils import setup_logging\\\\n\\\\nlogger = setup_logging(\\\\\\\"plan001_step5\\\\\\\")\\\\n\\\\n# ── Constants ───────────────────────────────────────────────��────────\\\\nLOCAL_MODELS = [\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\", \\\\\\\"llama3.1-70b\\\\\\\", \\\\\\\"mistral-large\\\\\\\",\\\\n    \\\\\\\"qwen2.5-32b\\\\\\\", \\\\\\\"qwen2.5-14b\\\\\\\", \\\\\\\"llama3.1-8b\\\\\\\",\\\\n]\\\\nAPI_MODELS = [\\\\n    \\\\\\\"claude-opus-4\\\\\\\", \\\\\\\"gpt-5.5\\\\\\\", \\\\\\\"gemini-2.5-pro\\\\\\\", \\\\\\\"gpt-4.1\\\\\\\",\\\\n    \\\\\\\"claude-sonnet-4\\\\\\\", \\\\\\\"gpt-4o\\\\\\\", \\\\\\\"gemini-2.5-flash\\\\\\\",\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\", \\\\\\\"claude-3-haiku\\\\\\\",\\\\n]\\\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\\\nDATASETS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nATTACKS = [\\\\n    \\\\\\\"prompt_injection\\\\\\\", \\\\\\\"sycophancy\\\\\\\", \\\\\\\"score_manipulation\\\\\\\",\\\\n    \\\\\\\"verbosity_bias\\\\\\\", \\\\\\\"position_bias\\\\\\\", \\\\\\\"authority_bias\\\\\\\",\\\\n]\\\\nEPS = 0.001\\\\nN_SIMS = 1000\\\\nN_SAMPLES = 300\\\\nSIM_BATCH = 100\\\\n\\\\nRESULTS_DIR = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results\\\\\\\")\\\\nPLAN001_DIR = RESULTS_DIR / \\\\\\\"plan001\\\\\\\"\\\\nSCORES_DIR = PLAN001_DIR / \\\\\\\"individual_scores\\\\\\\"\\\\nMI_PATH = PLAN001_DIR / \\\\\\\"mi_matrix\\\\\\\" / \\\\\\\"mi_matrix_15models.json\\\\\\\"\\\\nCKPT_FILES = [\\\\n    RESULTS_DIR / \\\\\\\"_taxonomy_checkpoint.json\\\\\\\",\\\\n    RESULTS_DIR / \\\\\\\"_step2v3_checkpoint.json\\\\\\\",\\\\n]\\\\nOUTPUT_DIR = PLAN001_DIR / \\\\\\\"panel_regression\\\\\\\"\\\\n\\\\n\\\\n# ── JSON Helper ───────��──────────────────────────────────────────────\\\\n\\\\ndef _json_default(obj):\\\\n    if isinstance(obj, np.floating):\\\\n        v = float(obj)\\\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\\\n    if isinstance(obj, np.integer):\\\\n        return int(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    if isinstance(obj, np.bool_):\\\\n        return bool(obj)\\\\n    raise TypeError(f\\\\\\\"Not JSON serializable: {type(obj)}\\\\\\\")\\\\n\\\\n\\\\n# ── Data Loading (shared with Step 4) ────────────────────────────────\\\\n\\\\ndef load_mi_data():\\\\n    if not MI_PATH.exists():\\\\n        logger.error(f\\\\\\\"MI matrix not found: {MI_PATH}\\\\\\\")\\\\n        sys.exit(1)\\\\n    with open(MI_PATH) as f:\\\\n        data = json.load(f)\\\\n    logger.info(f\\\\\\\"Loaded MI matrix: {len(data['models'])} models\\\\\\\")\\\\n    return data\\\\n\\\\n\\\\ndef load_pairs():\\\\n    for ckpt_path in CKPT_FILES:\\\\n        if not ckpt_path.exists():\\\\n            continue\\\\n        with open(ckpt_path) as f:\\\\n            data = json.load(f)\\\\n        if \\\\\\\"pairs\\\\\\\" not in data:\\\\n            continue\\\\n        pairs = {}\\\\n        for ds in DATASETS:\\\\n            if ds in data[\\\\\\\"pairs\\\\\\\"]:\\\\n                pairs[ds] = data[\\\\\\\"pairs\\\\\\\"][ds][:300]\\\\n                logger.info(f\\\\\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\\\\\")\\\\n        if pairs:\\\\n            return pairs\\\\n    logger.error(\\\\\\\"No pairs found in any checkpoint file\\\\\\\")\\\\n    sys.exit(1)\\\\n\\\\n\\\\ndef _invert_winners(scores):\\\\n    swap = {\\\\\\\"A\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"B\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"tie\\\\\\\": \\\\\\\"tie\\\\\\\"}\\\\n    return [{**s, \\\\\\\"winner\\\\\\\": swap.get(s.get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\"), \\\\\\\"tie\\\\\\\")} for s in scores]\\\\n\\\\n\\\\ndef load_all_scores():\\\\n    clean = {ds: {} for ds in DATASETS}\\\\n    attacked = {ds: {a: {} for a in ATTACKS} for ds in DATASETS}\\\\n\\\\n    for ckpt_path in CKPT_FILES:\\\\n        if not ckpt_path.exists():\\\\n            continue\\\\n        logger.info(f\\\\\\\"Loading checkpoint: {ckpt_path.name}\\\\\\\")\\\\n        with open(ckpt_path) as f:\\\\n            data = json.load(f)\\\\n        for ds in DATASETS:\\\\n            for mid, scores in data.get(\\\\\\\"clean_scores\\\\\\\", {}).get(ds, {}).items():\\\\n                if mid not in clean[ds]:\\\\n                    clean[ds][mid] = scores\\\\n            for atk in ATTACKS:\\\\n                for mid, scores in data.get(\\\\\\\"attacked_scores\\\\n\\\\n... [截断: 输出过长，省略 2387 字符] ...\\\\n\\\\nor j in jids))\\\\n    n_flips = n_correct = 0\\\\n    for i in range(n):\\\\n        gt = pairs[i][\\\\\\\"ground_truth_winner\\\\\\\"]\\\\n        cv = majority_vote([clean[j][i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") for j in jids])\\\\n        if cv != gt:\\\\n            continue\\\\n        n_correct += 1\\\\n        av = majority_vote([attacked[j][i].get(\\\\\\\"winner\\\\\\\", \\\\\\\"tie\\\\\\\") for j in jids])\\\\n        if av != gt:\\\\n            n_flips += 1\\\\n    return n_flips / max(n_correct, 1)\\\\n\\\\n\\\\n# ── Random-Fault Simulation ─────────────────────────────────────────\\\\n\\\\ndef analytical_rf_asr(eta):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Analytical P(panel error) for majority vote with 3 independent judges.\\\\n    P(>=2 fail) = e1*e2 + e1*e3 + e2*e3 - 2*e1*e2*e3\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    e1, e2, e3 = eta\\\\n    return e1 * e2 + e1 * e3 + e2 * e3 - 2.0 * e1 * e2 * e3\\\\n\\\\n\\\\ndef simulate_rf_vectorized(eta_all, rng):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Simulate random-fault ASR for all panels.\\\\n\\\\n    Args:\\\\n        eta_all: (n_panels, 3) array of individual judge error rates\\\\n        rng: numpy random generator\\\\n\\\\n    Returns:\\\\n        rf_mean: (n_panels,) mean RF ASR across simulations\\\\n        rf_std: (n_panels,) std RF ASR across simulations\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_panels = eta_all.shape[0]\\\\n    rf_sum = np.zeros(n_panels)\\\\n    rf_sq_sum = np.zeros(n_panels)\\\\n\\\\n    for sim_start in range(0, N_SIMS, SIM_BATCH):\\\\n        b = min(SIM_BATCH, N_SIMS - sim_start)\\\\n        # (n_panels, batch, n_samples, 3) random draws\\\\n        randoms = rng.random((n_panels, b, N_SAMPLES, 3))\\\\n        # Each judge errors independently with probability eta_j\\\\n        errors = randoms < eta_all[:, np.newaxis, np.newaxis, :]\\\\n        # Majority vote: panel errs if >=2 judges err\\\\n        panel_err = errors.sum(axis=3) >= 2\\\\n        # Error rate per sim: (n_panels, batch)\\\\n        rates = panel_err.mean(axis=2).astype(np.float64)\\\\n        rf_sum += rates.sum(axis=1)\\\\n        rf_sq_sum += (rates ** 2).sum(axis=1)\\\\n\\\\n    rf_mean = rf_sum / N_SIMS\\\\n    rf_std = np.sqrt(np.maximum(rf_sq_sum / N_SIMS - rf_mean ** 2, 0.0))\\\\n    return rf_mean, rf_std\\\\n\\\\n\\\\n# ── Regression ──────────────────────────────────────────────────────���\\\\n\\\\ndef run_ols(y_raw, keffs, eta_maxs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Simple OLS: log(y+eps) ~ log(K_eff) + log(eta_max+eps).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    y = np.log(y_raw + EPS)\\\\n    X = np.column_stack([np.log(keffs), np.log(eta_maxs + EPS)])\\\\n    Xc = sm.add_constant(X)\\\\n    fit = sm.OLS(y, Xc).fit()\\\\n    return {\\\\n        \\\\\\\"keff_beta\\\\\\\": float(fit.params[1]),\\\\n        \\\\\\\"keff_t\\\\\\\": float(fit.tvalues[1]),\\\\n        \\\\\\\"keff_p\\\\\\\": float(fit.pvalues[1]),\\\\n        \\\\\\\"eta_max_beta\\\\\\\": float(fit.params[2]),\\\\n        \\\\\\\"eta_max_t\\\\\\\": float(fit.tvalues[2]),\\\\n        \\\\\\\"eta_max_p\\\\\\\": float(fit.pvalues[2]),\\\\n        \\\\\\\"R2\\\\\\\": float(fit.rsquared),\\\\n        \\\\\\\"adj_R2\\\\\\\": float(fit.rsquared_adj),\\\\n    }\\\\n\\\\n\\\\n# ── Main ─────────────────────────────────────────────────────────────\\\\n\\\\ndef main():\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    logger.info(\\\\\\\"Plan 001 Step 5: Random-Fault Simulation\\\\\\\")\\\\n    logger.info(f\\\\\\\"  {N_SIMS} simulations x {N_SAMPLES} samples per panel\\\\\\\")\\\\n    logger.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    mi_data = load_mi_data()\\\\n    pairs = load_pairs()\\\\n    clean, attacked = load_all_scores()\\\\n\\\\n    # Precompute individual ASR\\\\n    logger.info(\\\\\\\"\\\\\\\\nPrecomputing individual ASR...\\\\\\\")\\\\n    ind_asr = {}\\\\n    for ds in DATASETS:\\\\n        for atk in ATTACKS:\\\\n            for mid in ALL_MODELS:\\\\n                if mid in clean[ds] and mid in attacked[ds][atk]:\\\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\\\n                    )\\\\n    logger.info(f\\\\\\\"  Computed {len(ind_asr)} individual ASR values\\\\\\\")\\\\n\\\\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), 3))\\\\n    rng = np.random.default_rng(42)\\\\n\\\\n    condition_results = {}\\\\n\\\\n    for ds in DATASETS:\\\\n        keff_data = mi_data[\\\\\\\"keff_per_panel\\\\\\\"].get(ds, {})\\\\n        for atk in ATTACKS:\\\\n            cond = f\\\\\\\"{ds}x{atk}\\\\\\\"\\\\n            logger.info(f\\\\\\\"\\\\\\\\n--- {cond} ---\\\\\\\")\\\\n\\\\n            # Collect panel data\\\\n            panel_keffs = []\\\\n            panel_eta_maxs = []\\\\n            panel_eta_all = []\\\\n            panel_adaptive_asrs = []\\\\n            skipped = 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001 Step 5: Random-fault simulation — 455 panels × 12 conditions.\\n\\nInput:\\n  - MI matrix + K_eff: artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\\n  - Individual scores: checkpoints + artifacts/results/plan001/individual_scores/\\n  - Pairs: artifacts/results/_taxonomy_checkpoint.json or _step2v3_checkpoint.json\\n\\nOutput:\\n  - artifacts/results/plan001/panel_regression/step5_random_fault_results.json\\n\\nDependencies: numpy, scipy, statsmodels\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport warnings\\nimport itertools\\nimport numpy as np\\nimport statsmodels.api as sm\\nfrom pathlib import Path\\nfrom scipy import stats\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_step5\\\")\\n\\n# ── Constants ───────────────────────────────────────────────��────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\nEPS = 0.001\\nN_SIMS = 1000\\nN_SAMPLES = 300\\nSIM_BATCH = 100\\n\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\nCKPT_FILES = [\\n    RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\",\\n    RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\",\\n]\\nOUTPUT_DIR = PLAN001_DIR / \\\"panel_regression\\\"\\n\\n\\n# ── JSON Helper ───────��──────────────────────────────────────────────\\n\\ndef _json_default(obj):\\n    if isinstance(obj, np.floating):\\n        v = float(obj)\\n        return None if (np.isnan(v) or np.isinf(v)) else v\\n    if isinstance(obj, np.integer):\\n        return int(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, np.bool_):\\n        return bool(obj)\\n    raise TypeError(f\\\"Not JSON serializable: {type(obj)}\\\")\\n\\n\\n# ── Data Loading (shared with Step 4) ────────────────────────────────\\n\\ndef load_mi_data():\\n    if not MI_PATH.exists():\\n        logger.error(f\\\"MI matrix not found: {MI_PATH}\\\")\\n        sys.exit(1)\\n    with open(MI_PATH) as f:\\n        data = json.load(f)\\n    logger.info(f\\\"Loaded MI matrix: {len(data['models'])} models\\\")\\n    return data\\n\\n\\ndef load_pairs():\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        if \\\"pairs\\\" not in data:\\n            continue\\n        pairs = {}\\n        for ds in DATASETS:\\n            if ds in data[\\\"pairs\\\"]:\\n                pairs[ds] = data[\\\"pairs\\\"][ds][:300]\\n                logger.info(f\\\"  Pairs {ds}: {len(pairs[ds])} from {ckpt_path.name}\\\")\\n        if pairs:\\n            return pairs\\n    logger.error(\\\"No pairs found in any checkpoint file\\\")\\n    sys.exit(1)\\n\\n\\ndef _invert_winners(scores):\\n    swap = {\\\"A\\\": \\\"B\\\", \\\"B\\\": \\\"A\\\", \\\"tie\\\": \\\"tie\\\"}\\n    return [{**s, \\\"winner\\\": swap.get(s.get(\\\"winner\\\", \\\"tie\\\"), \\\"tie\\\")} for s in scores]\\n\\n\\ndef load_all_scores():\\n    clean = {ds: {} for ds in DATASETS}\\n    attacked = {ds: {a: {} for a in ATTACKS} for ds in DATASETS}\\n\\n    for ckpt_path in CKPT_FILES:\\n        if not ckpt_path.exists():\\n            continue\\n        logger.info(f\\\"Loading checkpoint: {ckpt_path.name}\\\")\\n        with open(ckpt_path) as f:\\n            data = json.load(f)\\n        for ds in DATASETS:\\n            for mid, scores in data.get(\\\"clean_scores\\\", {}).get(ds, {}).items():\\n                if mid not in clean[ds]:\\n                    clean[ds][mid] = scores\\n            for atk in ATTACKS:\\n                for mid, scores in data.get(\\\"attacked_scores\\n\\n... [截断: 输出过长，省略 2387 字符] ...\\n\\nor j in jids))\\n    n_flips = n_correct = 0\\n    for i in range(n):\\n        gt = pairs[i][\\\"ground_truth_winner\\\"]\\n        cv = majority_vote([clean[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if cv != gt:\\n            continue\\n        n_correct += 1\\n        av = majority_vote([attacked[j][i].get(\\\"winner\\\", \\\"tie\\\") for j in jids])\\n        if av != gt:\\n            n_flips += 1\\n    return n_flips / max(n_correct, 1)\\n\\n\\n# ── Random-Fault Simulation ─────────────────────────────────────────\\n\\ndef analytical_rf_asr(eta):\\n    \\\"\\\"\\\"Analytical P(panel error) for majority vote with 3 independent judges.\\n    P(>=2 fail) = e1*e2 + e1*e3 + e2*e3 - 2*e1*e2*e3\\\"\\\"\\\"\\n    e1, e2, e3 = eta\\n    return e1 * e2 + e1 * e3 + e2 * e3 - 2.0 * e1 * e2 * e3\\n\\n\\ndef simulate_rf_vectorized(eta_all, rng):\\n    \\\"\\\"\\\"Simulate random-fault ASR for all panels.\\n\\n    Args:\\n        eta_all: (n_panels, 3) array of individual judge error rates\\n        rng: numpy random generator\\n\\n    Returns:\\n        rf_mean: (n_panels,) mean RF ASR across simulations\\n        rf_std: (n_panels,) std RF ASR across simulations\\n    \\\"\\\"\\\"\\n    n_panels = eta_all.shape[0]\\n    rf_sum = np.zeros(n_panels)\\n    rf_sq_sum = np.zeros(n_panels)\\n\\n    for sim_start in range(0, N_SIMS, SIM_BATCH):\\n        b = min(SIM_BATCH, N_SIMS - sim_start)\\n        # (n_panels, batch, n_samples, 3) random draws\\n        randoms = rng.random((n_panels, b, N_SAMPLES, 3))\\n        # Each judge errors independently with probability eta_j\\n        errors = randoms < eta_all[:, np.newaxis, np.newaxis, :]\\n        # Majority vote: panel errs if >=2 judges err\\n        panel_err = errors.sum(axis=3) >= 2\\n        # Error rate per sim: (n_panels, batch)\\n        rates = panel_err.mean(axis=2).astype(np.float64)\\n        rf_sum += rates.sum(axis=1)\\n        rf_sq_sum += (rates ** 2).sum(axis=1)\\n\\n    rf_mean = rf_sum / N_SIMS\\n    rf_std = np.sqrt(np.maximum(rf_sq_sum / N_SIMS - rf_mean ** 2, 0.0))\\n    return rf_mean, rf_std\\n\\n\\n# ── Regression ──────────────────────────────────────────────────────���\\n\\ndef run_ols(y_raw, keffs, eta_maxs):\\n    \\\"\\\"\\\"Simple OLS: log(y+eps) ~ log(K_eff) + log(eta_max+eps).\\\"\\\"\\\"\\n    y = np.log(y_raw + EPS)\\n    X = np.column_stack([np.log(keffs), np.log(eta_maxs + EPS)])\\n    Xc = sm.add_constant(X)\\n    fit = sm.OLS(y, Xc).fit()\\n    return {\\n        \\\"keff_beta\\\": float(fit.params[1]),\\n        \\\"keff_t\\\": float(fit.tvalues[1]),\\n        \\\"keff_p\\\": float(fit.pvalues[1]),\\n        \\\"eta_max_beta\\\": float(fit.params[2]),\\n        \\\"eta_max_t\\\": float(fit.tvalues[2]),\\n        \\\"eta_max_p\\\": float(fit.pvalues[2]),\\n        \\\"R2\\\": float(fit.rsquared),\\n        \\\"adj_R2\\\": float(fit.rsquared_adj),\\n    }\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────\\n\\ndef main():\\n    logger.info(\\\"=\\\" * 60)\\n    logger.info(\\\"Plan 001 Step 5: Random-Fault Simulation\\\")\\n    logger.info(f\\\"  {N_SIMS} simulations x {N_SAMPLES} samples per panel\\\")\\n    logger.info(\\\"=\\\" * 60)\\n\\n    mi_data = load_mi_data()\\n    pairs = load_pairs()\\n    clean, attacked = load_all_scores()\\n\\n    # Precompute individual ASR\\n    logger.info(\\\"\\\\nPrecomputing individual ASR...\\\")\\n    ind_asr = {}\\n    for ds in DATASETS:\\n        for atk in ATTACKS:\\n            for mid in ALL_MODELS:\\n                if mid in clean[ds] and mid in attacked[ds][atk]:\\n                    ind_asr[(ds, atk, mid)] = compute_individual_asr(\\n                        clean[ds][mid], attacked[ds][atk][mid], pairs[ds]\\n                    )\\n    logger.info(f\\\"  Computed {len(ind_asr)} individual ASR values\\\")\\n\\n    all_combos = list(itertools.combinations(range(len(ALL_MODELS)), 3))\\n    rng = np.random.default_rng(42)\\n\\n    condition_results = {}\\n\\n    for ds in DATASETS:\\n        keff_data = mi_data[\\\"keff_per_panel\\\"].get(ds, {})\\n        for atk in ATTACKS:\\n            cond = f\\\"{ds}x{atk}\\\"\\n            logger.info(f\\\"\\\\n--- {cond} ---\\\")\\n\\n            # Collect panel data\\n            panel_keffs = []\\n            panel_eta_maxs = []\\n            panel_eta_all = []\\n            panel_adaptive_asrs = []\\n            skipped = 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T08:24:51.123Z_
+
+<details><summary>↩ Tool result · `toolu_01DftXkWw7pUkjgEtwApLvhP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001: K_eff vs eta_max confound diagnosis across all C(15,3) panels.\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nfrom pathlib import Path\\nfrom scipy import stats\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_confound\\\")\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Paths ────────────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_MATRIX_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\n\\nSTEP2V3_CKPT = RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\"\\nTAXONOMY_CKPT = RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\"\\n\\nLOCAL_ATTACK_CKPT = {\\n    \\\"prompt_injection\\\": STEP2V3_CKPT,\\n    \\\"sycophancy\\\": STEP2V3_CKPT,\\n    \\\"score_manipulation\\\": STEP2V3_CKPT,\\n    \\\"verbosity_bias\\\": TAXONOMY_CKPT,\\n    \\\"position_bias\\\": TAXONOMY_CKPT,\\n    \\\"authority_bias\\\": TAXONOMY_CKPT,\\n}\\n\\n\\ndef compute_asr_from_scores(clean_scores, attacked_scores, pairs):\\n    \\\"\\\"\\\"Compute individual judge ASR: fraction of clean-correct flipped by attack.\\\"\\\"\\\"\\n    n_flips = 0\\n    n_total = 0\\n    for clean, attacked, pair in zip(clean_scores, attacked_scores, pairs):\\n        gt = pair.get(\\\"ground_truth_winner\\\")\\n        cw = clean.get(\\\"winner\\\") if isinstance(clean, dict) else None\\n        aw = attacked.get(\\\"winner\\\") if isinstance(attacked, dict) else None\\n        if cw == gt:\\n            n_total += 1\\n            if aw != gt:\\n                n_flips += 1\\n    return n_flips / max(n_total, 1)\\n\\n\\ndef load_local_individual_asr():\\n    \\\"\\\"\\\"Load per-model ASR for local models from checkpoint files.\\n\\n    Returns: {dataset: {attack: {model_id: asr}}}\\n    \\\"\\\"\\\"\\n    asr_data = {}\\n    ckpt_cache = {}\\n\\n    for attack in ATTACKS:\\n        ckpt_path = LOCAL_ATTACK_CKPT[attack]\\n        if str(ckpt_path) not in ckpt_cache:\\n            if not ckpt_path.exists():\\n                logger.warning(f\\\"Checkpoint not found: {ckpt_path}\\\")\\n                continue\\n            with open(ckpt_path) as f:\\n                ckpt_cache[str(ckpt_path)] = json.load(f)\\n        data = ckpt_cache[str(ckpt_path)]\\n\\n        for ds in DATASETS:\\n            if ds not in asr_data:\\n                asr_data[ds] = {}\\n            if attack not in asr_data[ds]:\\n                asr_data[ds][attack] = {}\\n\\n            clean_all = data.get(\\\"clean_scores\\\", {}).get(ds, {})\\n            atk_all = data.get(\\\"attacked_scores\\\", {}).get(ds, {}).get(attack, {})\\n            pairs = data.get(\\\"pairs\\\", {}).get(ds, [])\\n\\n            if not pairs:\\n                logger.warning(f\\\"No pairs for {ds} in {ckpt_path.name}\\\")\\n                continue\\n\\n            for model_id in LOCAL_MODELS:\\n                if model_id not in clean_all or model_id not in atk_all:\\n                    continue\\n                asr = compute_asr_from_scores(\\n                    clean_all[model_id], atk_all[model_id], pairs\\n                )\\n                asr_data[ds][attack][model_id] = asr\\n\\n    return asr_data\\n\\n\\ndef load_api_individual_asr():\\n    \\\"\\\"\\\"Load per-model ASR for API models from individual score files.\\n\\n    Returns: {dataset: {attack: {model_id: asr}}}\\n    \\\"\\\"\\\"\\n    asr_data = {}\\n    for model_id in API_MODELS:\\n        for ds in DATASETS:\\n            if ds not in asr_data:\\n                asr_data[ds] = {}\\n\\n            clean_path = SCORES_DIR / f\\\"{model_id}__{ds}__clean.json\\\"\\n            if not clean_path.exists():\\n                continue\\n            with open(clean_path) as f:\\n                clean_data = json.load(f)\\n\\n            for attack in ATTACKS:\\n                if attack not in asr_data[ds]:\\n                    asr_data[ds][attack] = {}\\n\\n                atk_path = SCORES_DIR / f\\\"{model_id}__{ds}__{attack}.json\\\"\\n                if not atk_path.exists():\\n                    continue\\n                with open(atk_path) as f:\\n                    atk_data = json.load(f)\\n\\n                asr = atk_data.get(\\\"asr\\\")\\n                if asr is not None:\\n                    asr_data[ds][attack][model_id] = asr\\n                else:\\n                    logger.warning(f\\\"No ASR in {atk_path.name}, skipping\\\")\\n\\n    return asr_data\\n\\n\\ndef merge_asr(local_asr, api_asr):\\n    \\\"\\\"\\\"Merge local and API ASR data.\\\"\\\"\\\"\\n    merged = {}\\n    for ds in DATASETS:\\n        merged[ds] = {}\\n        for attack in ATTACKS:\\n            merged[ds][attack] = {}\\n            for src in [local_asr, api_asr]:\\n                if ds in src and attack in src[ds]:\\n                    merged[ds][attack].update(src[ds][attack])\\n    return merged\\n\\n\\ndef load_mi_matrix():\\n    \\\"\\\"\\\"Load MI matrix from Step 3 output.\\\"\\\"\\\"\\n    if not MI_MATRIX_PATH.exists():\\n        logger.error(f\\\"MI matrix not found: {MI_MATRIX_PATH}\\\")\\n        sys.exit(1)\\n    with open(MI_MATRIX_PATH) as f:\\n        data = json.load(f)\\n    return data\\n\\n\\ndef mi_based_keff(mi_matrix_np, model_indices):\\n    \\\"\\\"\\\"K_eff = (1/K) * sum_i [1 + sum_{j!=i} exp(-2 * MI_ij)]\\\"\\\"\\\"\\n    K = len(model_indices)\\n    if K <= 1:\\n        return 1.0\\n    keff = 0.0\\n    for i_idx in model_indices:\\n        term = 1.0\\n        for j_idx in model_indices:\\n            if i_idx != j_idx:\\n                term += np.exp(-2 * mi_matrix_np[i_idx, j_idx])\\n        keff += term\\n    return keff / K\\n\\n\\ndef classify_panel(model_ids):\\n    \\\"\\\"\\\"Classify panel by composition for scatter plot coloring.\\\"\\\"\\\"\\n    n_api = sum(1 for m in model_ids if m in API_MODELS)\\n    if n_api == 3:\\n        return \\\"all_api\\\"\\n    elif n_api == 0:\\n        return \\\"all_local\\\"\\n    elif n_api == 2:\\n        return \\\"2api_1local\\\"\\n    else:\\n        return \\\"1api_2local\\\"\\n\\n\\nPANEL_COLORS = {\\n    \\\"all_api\\\": \\\"#e74c3c\\\",\\n    \\\"all_local\\\": \\\"#2ecc71\\\",\\n    \\\"2api_1local\\\": \\\"#e67e22\\\",\\n    \\\"1api_2local\\\": \\\"#3498db\\\",\\n}\\n\\nPANEL_LABELS = {\\n    \\\"all_api\\\": \\\"3 API\\\",\\n    \\\"all_local\\\": \\\"3 Local\\\",\\n    \\\"2api_1local\\\": \\\"2 API + 1 Local\\\",\\n    \\\"1api_2local\\\": \\\"1 API + 2 Local\\\",\\n}\\n\\n\\ndef run_confound_analysis(mi_data, asr_data):\\n    \\\"\\\"\\\"Run K_eff vs eta_max analysis for all conditions.\\\"\\\"\\\"\\n    models = mi_data[\\\"models\\\"]\\n    model_to_idx = {m: i for i, m in enumerate(models)}\\n    conditions = {}\\n\\n    for ds in DATASETS:\\n        mi_mat = np.array(mi_data[\\\"mi_matrix\\\"][ds])\\n\\n        for attack in ATTACKS:\\n            cond_key = f\\\"{ds}×{attack}\\\"\\n            model_asrs = asr_data.get(ds, {}).get(attack, {})\\n\\n            if len(model_asrs) < 3:\\n                logger.warning(\\n                    f\\\"  {cond_key}: only {len(model_asrs)} models have ASR, \\\"\\n                    f\\\"need >=3 for panel construction. Skipping.\\\"\\n                )\\n                conditions[cond_key] = {\\n                    \\\"pearson_r\\\": None,\\n                    \\\"p_value\\\": None,\\n                    \\\"verdict\\\": \\\"INSUFFICIENT_DATA\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "d8d8fcf4-7bfd-4f8c-bc4f-a1241d7422a5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Plan 001: K_eff vs eta_max confound diagnosis across all C(15,3) panels.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/cert_manip_resist_eval\\\\\\\")\\\\n\\\\nimport json\\\\nimport itertools\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nfrom pathlib import Path\\\\nfrom scipy import stats\\\\n\\\\nfrom src.utils import setup_logging\\\\n\\\\nlogger = setup_logging(\\\\\\\"plan001_confound\\\\\\\")\\\\n\\\\n# ── Model lists ──────────────────────────────────────────────────────\\\\nLOCAL_MODELS = [\\\\n    \\\\\\\"qwen2.5-72b\\\\\\\", \\\\\\\"llama3.1-70b\\\\\\\", \\\\\\\"mistral-large\\\\\\\",\\\\n    \\\\\\\"qwen2.5-32b\\\\\\\", \\\\\\\"qwen2.5-14b\\\\\\\", \\\\\\\"llama3.1-8b\\\\\\\",\\\\n]\\\\nAPI_MODELS = [\\\\n    \\\\\\\"claude-opus-4\\\\\\\", \\\\\\\"gpt-5.5\\\\\\\", \\\\\\\"gemini-2.5-pro\\\\\\\", \\\\\\\"gpt-4.1\\\\\\\",\\\\n    \\\\\\\"claude-sonnet-4\\\\\\\", \\\\\\\"gpt-4o\\\\\\\", \\\\\\\"gemini-2.5-flash\\\\\\\",\\\\n    \\\\\\\"gpt-4o-mini\\\\\\\", \\\\\\\"claude-3-haiku\\\\\\\",\\\\n]\\\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\\\nDATASETS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc_challenge\\\\\\\"]\\\\nATTACKS = [\\\\n    \\\\\\\"prompt_injection\\\\\\\", \\\\\\\"sycophancy\\\\\\\", \\\\\\\"score_manipulation\\\\\\\",\\\\n    \\\\\\\"verbosity_bias\\\\\\\", \\\\\\\"position_bias\\\\\\\", \\\\\\\"authority_bias\\\\\\\",\\\\n]\\\\n\\\\n# ── Paths ────────────────────────────────────────────────────────────\\\\nRESULTS_DIR = Path(\\\\\\\"/root/cert_manip_resist_eval/artifacts/results\\\\\\\")\\\\nPLAN001_DIR = RESULTS_DIR / \\\\\\\"plan001\\\\\\\"\\\\nSCORES_DIR = PLAN001_DIR / \\\\\\\"individual_scores\\\\\\\"\\\\nMI_MATRIX_PATH = PLAN001_DIR / \\\\\\\"mi_matrix\\\\\\\" / \\\\\\\"mi_matrix_15models.json\\\\\\\"\\\\n\\\\nSTEP2V3_CKPT = RESULTS_DIR / \\\\\\\"_step2v3_checkpoint.json\\\\\\\"\\\\nTAXONOMY_CKPT = RESULTS_DIR / \\\\\\\"_taxonomy_checkpoint.json\\\\\\\"\\\\n\\\\nLOCAL_ATTACK_CKPT = {\\\\n    \\\\\\\"prompt_injection\\\\\\\": STEP2V3_CKPT,\\\\n    \\\\\\\"sycophancy\\\\\\\": STEP2V3_CKPT,\\\\n    \\\\\\\"score_manipulation\\\\\\\": STEP2V3_CKPT,\\\\n    \\\\\\\"verbosity_bias\\\\\\\": TAXONOMY_CKPT,\\\\n    \\\\\\\"position_bias\\\\\\\": TAXONOMY_CKPT,\\\\n    \\\\\\\"authority_bias\\\\\\\": TAXONOMY_CKPT,\\\\n}\\\\n\\\\n\\\\ndef compute_asr_from_scores(clean_scores, attacked_scores, pairs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute individual judge ASR: fraction of clean-correct flipped by attack.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_flips = 0\\\\n    n_total = 0\\\\n    for clean, attacked, pair in zip(clean_scores, attacked_scores, pairs):\\\\n        gt = pair.get(\\\\\\\"ground_truth_winner\\\\\\\")\\\\n        cw = clean.get(\\\\\\\"winner\\\\\\\") if isinstance(clean, dict) else None\\\\n        aw = attacked.get(\\\\\\\"winner\\\\\\\") if isinstance(attacked, dict) else None\\\\n        if cw == gt:\\\\n            n_total += 1\\\\n            if aw != gt:\\\\n                n_flips += 1\\\\n    return n_flips / max(n_total, 1)\\\\n\\\\n\\\\ndef load_local_individual_asr():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-model ASR for local models from checkpoint files.\\\\n\\\\n    Returns: {dataset: {attack: {model_id: asr}}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    asr_data = {}\\\\n    ckpt_cache = {}\\\\n\\\\n    for attack in ATTACKS:\\\\n        ckpt_path = LOCAL_ATTACK_CKPT[attack]\\\\n        if str(ckpt_path) not in ckpt_cache:\\\\n            if not ckpt_path.exists():\\\\n                logger.warning(f\\\\\\\"Checkpoint not found: {ckpt_path}\\\\\\\")\\\\n                continue\\\\n            with open(ckpt_path) as f:\\\\n                ckpt_cache[str(ckpt_path)] = json.load(f)\\\\n        data = ckpt_cache[str(ckpt_path)]\\\\n\\\\n        for ds in DATASETS:\\\\n            if ds not in asr_data:\\\\n                asr_data[ds] = {}\\\\n            if attack not in asr_data[ds]:\\\\n                asr_data[ds][attack] = {}\\\\n\\\\n            clean_all = data.get(\\\\\\\"clean_scores\\\\\\\", {}).get(ds, {})\\\\n            atk_all = data.get(\\\\\\\"attacked_scores\\\\\\\", {}).get(ds, {}).get(attack, {})\\\\n            pairs = data.get(\\\\\\\"pairs\\\\\\\", {}).get(ds, [])\\\\n\\\\n            if not pairs:\\\\n                logger.warning(f\\\\\\\"No pairs for {ds} in {ckpt_path.name}\\\\\\\")\\\\n                continue\\\\n\\\\n            for model_id in LOCAL_MODELS:\\\\n                if model_id not in clean_all or model_id not in atk_all:\\\\n                    continue\\\\n                asr = compute_asr_from_scores(\\\\n                    clean_all[model_id], atk_all[model_id], pairs\\\\n                )\\\\n                asr_data[ds][attack][model_id] = asr\\\\n\\\\n    return asr_data\\\\n\\\\n\\\\ndef load_api_individual_asr():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load per-model ASR for API models from individual score files.\\\\n\\\\n    Returns: {dataset: {attack: {model_id: asr}}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    asr_data = {}\\\\n    for model_id in API_MODELS:\\\\n        for ds in DATASETS:\\\\n            if ds not in asr_data:\\\\n                asr_data[ds] = {}\\\\n\\\\n            clean_path = SCORES_DIR / f\\\\\\\"{model_id}__{ds}__clean.json\\\\\\\"\\\\n            if not clean_path.exists():\\\\n                continue\\\\n            with open(clean_path) as f:\\\\n                clean_data = json.load(f)\\\\n\\\\n            for attack in ATTACKS:\\\\n                if attack not in asr_data[ds]:\\\\n                    asr_data[ds][attack] = {}\\\\n\\\\n                atk_path = SCORES_DIR / f\\\\\\\"{model_id}__{ds}__{attack}.json\\\\\\\"\\\\n                if not atk_path.exists():\\\\n                    continue\\\\n                with open(atk_path) as f:\\\\n                    atk_data = json.load(f)\\\\n\\\\n                asr = atk_data.get(\\\\\\\"asr\\\\\\\")\\\\n                if asr is not None:\\\\n                    asr_data[ds][attack][model_id] = asr\\\\n                else:\\\\n                    logger.warning(f\\\\\\\"No ASR in {atk_path.name}, skipping\\\\\\\")\\\\n\\\\n    return asr_data\\\\n\\\\n\\\\ndef merge_asr(local_asr, api_asr):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Merge local and API ASR data.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    merged = {}\\\\n    for ds in DATASETS:\\\\n        merged[ds] = {}\\\\n        for attack in ATTACKS:\\\\n            merged[ds][attack] = {}\\\\n            for src in [local_asr, api_asr]:\\\\n                if ds in src and attack in src[ds]:\\\\n                    merged[ds][attack].update(src[ds][attack])\\\\n    return merged\\\\n\\\\n\\\\ndef load_mi_matrix():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load MI matrix from Step 3 output.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not MI_MATRIX_PATH.exists():\\\\n        logger.error(f\\\\\\\"MI matrix not found: {MI_MATRIX_PATH}\\\\\\\")\\\\n        sys.exit(1)\\\\n    with open(MI_MATRIX_PATH) as f:\\\\n        data = json.load(f)\\\\n    return data\\\\n\\\\n\\\\ndef mi_based_keff(mi_matrix_np, model_indices):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"K_eff = (1/K) * sum_i [1 + sum_{j!=i} exp(-2 * MI_ij)]\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    K = len(model_indices)\\\\n    if K <= 1:\\\\n        return 1.0\\\\n    keff = 0.0\\\\n    for i_idx in model_indices:\\\\n        term = 1.0\\\\n        for j_idx in model_indices:\\\\n            if i_idx != j_idx:\\\\n                term += np.exp(-2 * mi_matrix_np[i_idx, j_idx])\\\\n        keff += term\\\\n    return keff / K\\\\n\\\\n\\\\ndef classify_panel(model_ids):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Classify panel by composition for scatter plot coloring.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_api = sum(1 for m in model_ids if m in API_MODELS)\\\\n    if n_api == 3:\\\\n        return \\\\\\\"all_api\\\\\\\"\\\\n    elif n_api == 0:\\\\n        return \\\\\\\"all_local\\\\\\\"\\\\n    elif n_api == 2:\\\\n        return \\\\\\\"2api_1local\\\\\\\"\\\\n    else:\\\\n        return \\\\\\\"1api_2local\\\\\\\"\\\\n\\\\n\\\\nPANEL_COLORS = {\\\\n    \\\\\\\"all_api\\\\\\\": \\\\\\\"#e74c3c\\\\\\\",\\\\n    \\\\\\\"all_local\\\\\\\": \\\\\\\"#2ecc71\\\\\\\",\\\\n    \\\\\\\"2api_1local\\\\\\\": \\\\\\\"#e67e22\\\\\\\",\\\\n    \\\\\\\"1api_2local\\\\\\\": \\\\\\\"#3498db\\\\\\\",\\\\n}\\\\n\\\\nPANEL_LABELS = {\\\\n    \\\\\\\"all_api\\\\\\\": \\\\\\\"3 API\\\\\\\",\\\\n    \\\\\\\"all_local\\\\\\\": \\\\\\\"3 Local\\\\\\\",\\\\n    \\\\\\\"2api_1local\\\\\\\": \\\\\\\"2 API + 1 Local\\\\\\\",\\\\n    \\\\\\\"1api_2local\\\\\\\": \\\\\\\"1 API + 2 Local\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef run_confound_analysis(mi_data, asr_data):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run K_eff vs eta_max analysis for all conditions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    models = mi_data[\\\\\\\"models\\\\\\\"]\\\\n    model_to_idx = {m: i for i, m in enumerate(models)}\\\\n    conditions = {}\\\\n\\\\n    for ds in DATASETS:\\\\n        mi_mat = np.array(mi_data[\\\\\\\"mi_matrix\\\\\\\"][ds])\\\\n\\\\n        for attack in ATTACKS:\\\\n            cond_key = f\\\\\\\"{ds}×{attack}\\\\\\\"\\\\n            model_asrs = asr_data.get(ds, {}).get(attack, {})\\\\n\\\\n            if len(model_asrs) < 3:\\\\n                logger.warning(\\\\n                    f\\\\\\\"  {cond_key}: only {len(model_asrs)} models have ASR, \\\\\\\"\\\\n                    f\\\\\\\"need >=3 for panel construction. Skipping.\\\\\\\"\\\\n                )\\\\n                conditions[cond_key] = {\\\\n                    \\\\\\\"pearson_r\\\\\\\": None,\\\\n                    \\\\\\\"p_value\\\\\\\": None,\\\\n                    \\\\\\\"verdict\\\\\\\": \\\\\\\"INSUFFICIENT_DATA\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Plan 001: K_eff vs eta_max confound diagnosis across all C(15,3) panels.\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nimport sys\\nsys.path.insert(0, \\\"/root/cert_manip_resist_eval\\\")\\n\\nimport json\\nimport itertools\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nfrom pathlib import Path\\nfrom scipy import stats\\n\\nfrom src.utils import setup_logging\\n\\nlogger = setup_logging(\\\"plan001_confound\\\")\\n\\n# ── Model lists ──────────────────────────────────────────────────────\\nLOCAL_MODELS = [\\n    \\\"qwen2.5-72b\\\", \\\"llama3.1-70b\\\", \\\"mistral-large\\\",\\n    \\\"qwen2.5-32b\\\", \\\"qwen2.5-14b\\\", \\\"llama3.1-8b\\\",\\n]\\nAPI_MODELS = [\\n    \\\"claude-opus-4\\\", \\\"gpt-5.5\\\", \\\"gemini-2.5-pro\\\", \\\"gpt-4.1\\\",\\n    \\\"claude-sonnet-4\\\", \\\"gpt-4o\\\", \\\"gemini-2.5-flash\\\",\\n    \\\"gpt-4o-mini\\\", \\\"claude-3-haiku\\\",\\n]\\nALL_MODELS = LOCAL_MODELS + API_MODELS\\nDATASETS = [\\\"mmlu\\\", \\\"arc_challenge\\\"]\\nATTACKS = [\\n    \\\"prompt_injection\\\", \\\"sycophancy\\\", \\\"score_manipulation\\\",\\n    \\\"verbosity_bias\\\", \\\"position_bias\\\", \\\"authority_bias\\\",\\n]\\n\\n# ── Paths ────────────────────────────────────────────────────────────\\nRESULTS_DIR = Path(\\\"/root/cert_manip_resist_eval/artifacts/results\\\")\\nPLAN001_DIR = RESULTS_DIR / \\\"plan001\\\"\\nSCORES_DIR = PLAN001_DIR / \\\"individual_scores\\\"\\nMI_MATRIX_PATH = PLAN001_DIR / \\\"mi_matrix\\\" / \\\"mi_matrix_15models.json\\\"\\n\\nSTEP2V3_CKPT = RESULTS_DIR / \\\"_step2v3_checkpoint.json\\\"\\nTAXONOMY_CKPT = RESULTS_DIR / \\\"_taxonomy_checkpoint.json\\\"\\n\\nLOCAL_ATTACK_CKPT = {\\n    \\\"prompt_injection\\\": STEP2V3_CKPT,\\n    \\\"sycophancy\\\": STEP2V3_CKPT,\\n    \\\"score_manipulation\\\": STEP2V3_CKPT,\\n    \\\"verbosity_bias\\\": TAXONOMY_CKPT,\\n    \\\"position_bias\\\": TAXONOMY_CKPT,\\n    \\\"authority_bias\\\": TAXONOMY_CKPT,\\n}\\n\\n\\ndef compute_asr_from_scores(clean_scores, attacked_scores, pairs):\\n    \\\"\\\"\\\"Compute individual judge ASR: fraction of clean-correct flipped by attack.\\\"\\\"\\\"\\n    n_flips = 0\\n    n_total = 0\\n    for clean, attacked, pair in zip(clean_scores, attacked_scores, pairs):\\n        gt = pair.get(\\\"ground_truth_winner\\\")\\n        cw = clean.get(\\\"winner\\\") if isinstance(clean, dict) else None\\n        aw = attacked.get(\\\"winner\\\") if isinstance(attacked, dict) else None\\n        if cw == gt:\\n            n_total += 1\\n            if aw != gt:\\n                n_flips += 1\\n    return n_flips / max(n_total, 1)\\n\\n\\ndef load_local_individual_asr():\\n    \\\"\\\"\\\"Load per-model ASR for local models from checkpoint files.\\n\\n    Returns: {dataset: {attack: {model_id: asr}}}\\n    \\\"\\\"\\\"\\n    asr_data = {}\\n    ckpt_cache = {}\\n\\n    for attack in ATTACKS:\\n        ckpt_path = LOCAL_ATTACK_CKPT[attack]\\n        if str(ckpt_path) not in ckpt_cache:\\n            if not ckpt_path.exists():\\n                logger.warning(f\\\"Checkpoint not found: {ckpt_path}\\\")\\n                continue\\n            with open(ckpt_path) as f:\\n                ckpt_cache[str(ckpt_path)] = json.load(f)\\n        data = ckpt_cache[str(ckpt_path)]\\n\\n        for ds in DATASETS:\\n            if ds not in asr_data:\\n                asr_data[ds] = {}\\n            if attack not in asr_data[ds]:\\n                asr_data[ds][attack] = {}\\n\\n            clean_all = data.get(\\\"clean_scores\\\", {}).get(ds, {})\\n            atk_all = data.get(\\\"attacked_scores\\\", {}).get(ds, {}).get(attack, {})\\n            pairs = data.get(\\\"pairs\\\", {}).get(ds, [])\\n\\n            if not pairs:\\n                logger.warning(f\\\"No pairs for {ds} in {ckpt_path.name}\\\")\\n                continue\\n\\n            for model_id in LOCAL_MODELS:\\n                if model_id not in clean_all or model_id not in atk_all:\\n                    continue\\n                asr = compute_asr_from_scores(\\n                    clean_all[model_id], atk_all[model_id], pairs\\n                )\\n                asr_data[ds][attack][model_id] = asr\\n\\n    return asr_data\\n\\n\\ndef load_api_individual_asr():\\n    \\\"\\\"\\\"Load per-model ASR for API models from individual score files.\\n\\n    Returns: {dataset: {attack: {model_id: asr}}}\\n    \\\"\\\"\\\"\\n    asr_data = {}\\n    for model_id in API_MODELS:\\n        for ds in DATASETS:\\n            if ds not in asr_data:\\n                asr_data[ds] = {}\\n\\n            clean_path = SCORES_DIR / f\\\"{model_id}__{ds}__clean.json\\\"\\n            if not clean_path.exists():\\n                continue\\n            with open(clean_path) as f:\\n                clean_data = json.load(f)\\n\\n            for attack in ATTACKS:\\n                if attack not in asr_data[ds]:\\n                    asr_data[ds][attack] = {}\\n\\n                atk_path = SCORES_DIR / f\\\"{model_id}__{ds}__{attack}.json\\\"\\n                if not atk_path.exists():\\n                    continue\\n                with open(atk_path) as f:\\n                    atk_data = json.load(f)\\n\\n                asr = atk_data.get(\\\"asr\\\")\\n                if asr is not None:\\n                    asr_data[ds][attack][model_id] = asr\\n                else:\\n                    logger.warning(f\\\"No ASR in {atk_path.name}, skipping\\\")\\n\\n    return asr_data\\n\\n\\ndef merge_asr(local_asr, api_asr):\\n    \\\"\\\"\\\"Merge local and API ASR data.\\\"\\\"\\\"\\n    merged = {}\\n    for ds in DATASETS:\\n        merged[ds] = {}\\n        for attack in ATTACKS:\\n            merged[ds][attack] = {}\\n            for src in [local_asr, api_asr]:\\n                if ds in src and attack in src[ds]:\\n                    merged[ds][attack].update(src[ds][attack])\\n    return merged\\n\\n\\ndef load_mi_matrix():\\n    \\\"\\\"\\\"Load MI matrix from Step 3 output.\\\"\\\"\\\"\\n    if not MI_MATRIX_PATH.exists():\\n        logger.error(f\\\"MI matrix not found: {MI_MATRIX_PATH}\\\")\\n        sys.exit(1)\\n    with open(MI_MATRIX_PATH) as f:\\n        data = json.load(f)\\n    return data\\n\\n\\ndef mi_based_keff(mi_matrix_np, model_indices):\\n    \\\"\\\"\\\"K_eff = (1/K) * sum_i [1 + sum_{j!=i} exp(-2 * MI_ij)]\\\"\\\"\\\"\\n    K = len(model_indices)\\n    if K <= 1:\\n        return 1.0\\n    keff = 0.0\\n    for i_idx in model_indices:\\n        term = 1.0\\n        for j_idx in model_indices:\\n            if i_idx != j_idx:\\n                term += np.exp(-2 * mi_matrix_np[i_idx, j_idx])\\n        keff += term\\n    return keff / K\\n\\n\\ndef classify_panel(model_ids):\\n    \\\"\\\"\\\"Classify panel by composition for scatter plot coloring.\\\"\\\"\\\"\\n    n_api = sum(1 for m in model_ids if m in API_MODELS)\\n    if n_api == 3:\\n        return \\\"all_api\\\"\\n    elif n_api == 0:\\n        return \\\"all_local\\\"\\n    elif n_api == 2:\\n        return \\\"2api_1local\\\"\\n    else:\\n        return \\\"1api_2local\\\"\\n\\n\\nPANEL_COLORS = {\\n    \\\"all_api\\\": \\\"#e74c3c\\\",\\n    \\\"all_local\\\": \\\"#2ecc71\\\",\\n    \\\"2api_1local\\\": \\\"#e67e22\\\",\\n    \\\"1api_2local\\\": \\\"#3498db\\\",\\n}\\n\\nPANEL_LABELS = {\\n    \\\"all_api\\\": \\\"3 API\\\",\\n    \\\"all_local\\\": \\\"3 Local\\\",\\n    \\\"2api_1local\\\": \\\"2 API + 1 Local\\\",\\n    \\\"1api_2local\\\": \\\"1 API + 2 Local\\\",\\n}\\n\\n\\ndef run_confound_analysis(mi_data, asr_data):\\n    \\\"\\\"\\\"Run K_eff vs eta_max analysis for all conditions.\\\"\\\"\\\"\\n    models = mi_data[\\\"models\\\"]\\n    model_to_idx = {m: i for i, m in enumerate(models)}\\n    conditions = {}\\n\\n    for ds in DATASETS:\\n        mi_mat = np.array(mi_data[\\\"mi_matrix\\\"][ds])\\n\\n        for attack in ATTACKS:\\n            cond_key = f\\\"{ds}×{attack}\\\"\\n            model_asrs = asr_data.get(ds, {}).get(attack, {})\\n\\n            if len(model_asrs) < 3:\\n                logger.warning(\\n                    f\\\"  {cond_key}: only {len(model_asrs)} models have ASR, \\\"\\n                    f\\\"need >=3 for panel construction. Skipping.\\\"\\n                )\\n                conditions[cond_key] = {\\n                    \\\"pearson_r\\\": None,\\n                    \\\"p_value\\\": None,\\n                    \\\"verdict\\\": \\\"INSUFFICIENT_DATA\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me also check for additional occurrences of the `×` in confound_diagnosis.py (line 395 had `{ds}×{attack}` in a log message):
+
+Let me also check if there's an occurrence at line 395 in the confound diagnosis script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "bcb65bc8-7fa5-46e0-bee8-6855363d6e8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5Ar5pf2v97tynhPcfuzq9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11871,
+      "cache_read_input_tokens": 42549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+Now I have the full picture. Let me apply the fixes with sed commands.
+
+**Changes needed:**
+- **Step 4** line 398: `f"{ds}×{atk}"` → `f"{ds}__{atk}"`
+- **Step 5** line 302: `f"{ds}x{atk}"` → `f"{ds}__{atk}"`
+- **Confound diagnosis** line 229: `f"{ds}×{attack}"` → `f"{ds}__{attack}"`, and line 395: `f"  {ds}×{attack}:` → `f"  {ds}__{attack}:`
+- **Step 3**: No condition keys, only `×` in prose comments/logs — no change needed
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "687a9ba8-77a9-4b3a-b0c9-d87700a84f4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5Ar5pf2v97tynhPcfuzq9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11871,
+      "cache_read_input_tokens": 42549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Dmwrr7HpoMadN3hYgZaABT`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && sed -i 's/f\"{ds}×{atk}\"/f\"{ds}__{atk}\"/g' scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "779b0903-f412-4126-80a9-633568374d55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5Ar5pf2v97tynhPcfuzq9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11871,
+      "cache_read_input_tokens": 42549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T08:25:01.129Z_
+
+<details><summary>↩ Tool result · `toolu_01Dmwrr7HpoMadN3hYgZaABT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "53fff463-10dc-44bf-8b90-72d768e21c91",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QpKdsHX4mAnVQ5u4wiLYcS`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && sed -i 's/f\"{ds}x{atk}\"/f\"{ds}__{atk}\"/g' scripts/run_plan001_step5_random_fault.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "c16bf57a-13db-4bac-b4d3-6285915f768b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5Ar5pf2v97tynhPcfuzq9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11871,
+      "cache_read_input_tokens": 42549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T08:25:01.998Z_
+
+<details><summary>↩ Tool result · `toolu_01QpKdsHX4mAnVQ5u4wiLYcS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "6aa86645-243e-418d-8094-a6507ba7a0a4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JkeXp1o9tJTX7PYnpzYHkf`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && sed -i 's/{ds}×{attack}/{ds}__{attack}/g' scripts/run_plan001_confound_diagnosis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "3a38d28f-b326-41d1-9710-3f1886e2aa2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5Ar5pf2v97tynhPcfuzq9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11871,
+      "cache_read_input_tokens": 42549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11871
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T08:25:02.935Z_
+
+<details><summary>↩ Tool result · `toolu_01JkeXp1o9tJTX7PYnpzYHkf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "28df2eec-bedd-4f31-a57c-1188286cb719",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+验证替换结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "24a427d9-5ffb-49f8-b24d-9a3f7378f0cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYLtJNaEEEzmC4yKgZWQnu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1041,
+      "cache_read_input_tokens": 54420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1041
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CPsyQj3ddhJr3S5LZZKH6w`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"__\" /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "04ff0048-95dc-4e1d-a393-1ee71f5ae2ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYLtJNaEEEzmC4yKgZWQnu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1041,
+      "cache_read_input_tokens": 54420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1041
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CWuA5h5ZpNJ4YAv6c14KVr`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"__\" /root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "71edb60f-63fd-4dd4-98e2-a90bd9d724a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYLtJNaEEEzmC4yKgZWQnu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1041,
+      "cache_read_input_tokens": 54420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1041
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T08:25:07.502Z_
+
+<details><summary>↩ Tool result · `toolu_01CPsyQj3ddhJr3S5LZZKH6w`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"149:                fp = SCORES_DIR / f\\\"{mid}__{ds}__clean.json\\\"\\n154:                    fp = SCORES_DIR / f\\\"{mid}__{ds}__{atk}.json\\\"\\n398:            cond = f\\\"{ds}__{atk}\\\"\\n552:if __name__ == \\\"__main__\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "d4286d27-5049-44f0-a4e4-44b8eb4bd45e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"149:                fp = SCORES_DIR / f\\\\\\\"{mid}__{ds}__clean.json\\\\\\\"\\\\n154:                    fp = SCORES_DIR / f\\\\\\\"{mid}__{ds}__{atk}.json\\\\\\\"\\\\n398:            cond = f\\\\\\\"{ds}__{atk}\\\\\\\"\\\\n552:if __name__ == \\\\\\\"__main__\\\\\\\":\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"149:                fp = SCORES_DIR / f\\\"{mid}__{ds}__clean.json\\\"\\n154:                    fp = SCORES_DIR / f\\\"{mid}__{ds}__{atk}.json\\\"\\n398:            cond = f\\\"{ds}__{atk}\\\"\\n552:if __name__ == \\\"__main__\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-22T08:25:08.031Z_
+
+<details><summary>↩ Tool result · `toolu_01CWuA5h5ZpNJ4YAv6c14KVr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"141:                fp = SCORES_DIR / f\\\"{mid}__{ds}__clean.json\\\"\\n146:                    fp = SCORES_DIR / f\\\"{mid}__{ds}__{atk}.json\\\"\\n302:            cond = f\\\"{ds}__{atk}\\\"\\n517:if __name__ == \\\"__main__\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "767e2713-5020-438f-a253-2835e0d16491",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"141:                fp = SCORES_DIR / f\\\\\\\"{mid}__{ds}__clean.json\\\\\\\"\\\\n146:                    fp = SCORES_DIR / f\\\\\\\"{mid}__{ds}__{atk}.json\\\\\\\"\\\\n302:            cond = f\\\\\\\"{ds}__{atk}\\\\\\\"\\\\n517:if __name__ == \\\\\\\"__main__\\\\\\\":\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"141:                fp = SCORES_DIR / f\\\"{mid}__{ds}__clean.json\\\"\\n146:                    fp = SCORES_DIR / f\\\"{mid}__{ds}__{atk}.json\\\"\\n302:            cond = f\\\"{ds}__{atk}\\\"\\n517:if __name__ == \\\"__main__\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JMaKVerRCoh38RjLi4F9TH`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n -e \"×\" -e \"cond_key\" /root/cert_manip_resist_eval/scripts/run_plan001_confound_diagnosis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "f2f976b7-f5cc-4293-80cb-0cc123f5ebba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYLtJNaEEEzmC4yKgZWQnu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1041,
+      "cache_read_input_tokens": 54420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1041
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-22T08:25:08.643Z_
+
+<details><summary>↩ Tool result · `toolu_01JMaKVerRCoh38RjLi4F9TH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"229:            cond_key = f\\\"{ds}__{attack}\\\"\\n234:                    f\\\"  {cond_key}: only {len(model_asrs)} models have ASR, \\\"\\n237:                conditions[cond_key] = {\\n276:            conditions[cond_key] = {\\n287:                f\\\"  {cond_key}: r={r:.3f}, p={p:.4f}, \\\"\\n318:    for idx, (cond_key, cond_data) in enumerate(sorted(valid_conds.items())):\\n351:            f\\\"{cond_key}\\\\nr = {r:.3f}  [{verdict}]\\\",\\n444:    for cond_key, cond in sorted(output_conditions.items()):\\n449:        print(f\\\"  {cond_key:40s}  r={r_str:>7s}  {v:20s}  ({n} panels)\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "0f189150-611b-4e20-a4bf-38340d0d7b13",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"229:            cond_key = f\\\\\\\"{ds}__{attack}\\\\\\\"\\\\n234:                    f\\\\\\\"  {cond_key}: only {len(model_asrs)} models have ASR, \\\\\\\"\\\\n237:                conditions[cond_key] = {\\\\n276:            conditions[cond_key] = {\\\\n287:                f\\\\\\\"  {cond_key}: r={r:.3f}, p={p:.4f}, \\\\\\\"\\\\n318:    for idx, (cond_key, cond_data) in enumerate(sorted(valid_conds.items())):\\\\n351:            f\\\\\\\"{cond_key}\\\\\\\\nr = {r:.3f}  [{verdict}]\\\\\\\",\\\\n444:    for cond_key, cond in sorted(output_conditions.items()):\\\\n449:        print(f\\\\\\\"  {cond_key:40s}  r={r_str:>7s}  {v:20s}  ({n} panels)\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"229:            cond_key = f\\\"{ds}__{attack}\\\"\\n234:                    f\\\"  {cond_key}: only {len(model_asrs)} models have ASR, \\\"\\n237:                conditions[cond_key] = {\\n276:            conditions[cond_key] = {\\n287:                f\\\"  {cond_key}: r={r:.3f}, p={p:.4f}, \\\"\\n318:    for idx, (cond_key, cond_data) in enumerate(sorted(valid_conds.items())):\\n351:            f\\\"{cond_key}\\\\nr = {r:.3f}  [{verdict}]\\\",\\n444:    for cond_key, cond in sorted(output_conditions.items()):\\n449:        print(f\\\"  {cond_key:40s}  r={r_str:>7s}  {v:20s}  ({n} panels)\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good - all condition keys are now using `__` format. The confound diagnosis file no longer has any `×` in condition keys. Let me also check if the log message on line 395 was properly replaced (the `{ds}×{attack}` in the log string).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "64d8ecc8-a0ab-4504-a846-fce7321dbe7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015vD5b8xf2T8gns6gKsZT1q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 55461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+Let me verify no stale `×` or `x` separators remain in condition key positions, and also check the confound diagnosis log line 395.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "db885732-a186-49be-b135-7ee165ffdc52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015vD5b8xf2T8gns6gKsZT1q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 55461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DicojRRzZGzNUsKAjVHMwH`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"×\" /root/cert_manip_resist_eval/scripts/run_plan001_confound_diagnosis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "a75c179c-d798-4831-84ca-61aeb0cc2ed6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015vD5b8xf2T8gns6gKsZT1q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 55461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-22T08:25:16.331Z_
+
+<details><summary>↩ Tool result · `toolu_01DicojRRzZGzNUsKAjVHMwH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "47e4228c-30b8-40b6-b21b-a57d139ae903",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BKPiUJDRefzKQibe5DUbY6`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "grep -n \"×\" /root/cert_manip_resist_eval/scripts/run_plan001_step4_panel_regression.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "531fcc52-a6fd-443a-a022-58a583f826db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015vD5b8xf2T8gns6gKsZT1q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 55461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-22T08:25:16.979Z_
+
+<details><summary>↩ Tool result · `toolu_01BKPiUJDRefzKQibe5DUbY6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2:\\\"\\\"\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\n367:    logger.info(\\\"Plan 001 Step 4: Panel Regression (455 panels × 12 conditions)\\\")\\n374:    # Precompute individual ASR for all model × condition\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "3d7f14e2-c33d-4077-b6e0-3374718efdb4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2:\\\\\\\"\\\\\\\"\\\\\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\\\n367:    logger.info(\\\\\\\"Plan 001 Step 4: Panel Regression (455 panels × 12 conditions)\\\\\\\")\\\\n374:    # Precompute individual ASR for all model × condition\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2:\\\"\\\"\\\"Plan 001 Step 4: Panel regression — 455 panels × 12 conditions.\\n367:    logger.info(\\\"Plan 001 Step 4: Panel Regression (455 panels × 12 conditions)\\\")\\n374:    # Precompute individual ASR for all model × condition\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+confound_diagnosis.py 中已无 `×`。Step 4 中剩余的 `×` 都在注释/docstring 中（prose），不是 condition key，无需修改。
+
+运行 syntax check。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "07f4f9d4-359d-455c-8a3a-ea99755d8792",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MphTT2LBPcRC4N49skaMfd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 627,
+      "cache_read_input_tokens": 56538,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 627
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Q8NSgF6cdrJ8tn7MboTUhj`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "cd /root/cert_manip_resist_eval && python3 -c \"import ast; ast.parse(open('scripts/run_plan001_step4_panel_regression.py').read()); print('step4 OK')\" && python3 -c \"import ast; ast.parse(open('scripts/run_plan001_step5_random_fault.py').read()); print('step5 OK')\" && python3 -c \"import ast; ast.parse(open('scripts/run_plan001_step3_mi_matrix.py').read()); print('step3 OK')\" && python3 -c \"import ast; ast.parse(open('scripts/run_plan001_confound_diagnosis.py').read()); print('diag OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "06bcc5eb-b3f3-4543-bd32-36ce1d416f18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MphTT2LBPcRC4N49skaMfd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 627,
+      "cache_read_input_tokens": 56538,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 627
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T08:25:23.462Z_
+
+<details><summary>↩ Tool result · `toolu_01Q8NSgF6cdrJ8tn7MboTUhj`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/cert_manip_resist_eval && python3 -c \\\"import ast; ast.parse(open(\\\\'scripts/run_plan001_step4_panel_regression.py\\\\').read()); print(\\\\'step4 OK\\\\')\\\" && python3 -c \\\"import ast; ast.parse(open(\\\\'scripts/run_plan001_step5_random_fault.py\\\\').read()); print(\\\\'step5 OK\\\\')\\\" && python3 -c \\\"import ast; ast.parse(open(\\\\'scripts/run_plan001_step3_mi_matrix.py\\\\').read()); print(\\\\'step3 OK\\\\')\\\" && python3 -c \\\"import ast; ast.parse(open(\\\\'scripts/run_plan001_confound_diagnosis.py\\\\').read()); print(\\\\'diag OK\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "d98c5f99-419e-41d0-a105-0beffc2476d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/cert_manip_resist_eval && python3 -c \\\\\\\"import ast; ast.parse(open(\\\\\\\\'scripts/run_plan001_step4_panel_regression.py\\\\\\\\').read()); print(\\\\\\\\'step4 OK\\\\\\\\')\\\\\\\" && python3 -c \\\\\\\"import ast; ast.parse(open(\\\\\\\\'scripts/run_plan001_step5_random_fault.py\\\\\\\\').read()); print(\\\\\\\\'step5 OK\\\\\\\\')\\\\\\\" && python3 -c \\\\\\\"import ast; ast.parse(open(\\\\\\\\'scripts/run_plan001_step3_mi_matrix.py\\\\\\\\').read()); print(\\\\\\\\'step3 OK\\\\\\\\')\\\\\\\" && python3 -c \\\\\\\"import ast; ast.parse(open(\\\\\\\\'scripts/run_plan001_confound_diagnosis.py\\\\\\\\').read()); print(\\\\\\\\'diag OK\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/cert_manip_resist_eval && python3 -c \\\"import ast; ast.parse(open(\\\\'scripts/run_plan001_step4_panel_regression.py\\\\').read()); print(\\\\'step4 OK\\\\')\\\" && python3 -c \\\"import ast; ast.parse(open(\\\\'scripts/run_plan001_step5_random_fault.py\\\\').read()); print(\\\\'step5 OK\\\\')\\\" && python3 -c \\\"import ast; ast.parse(open(\\\\'scripts/run_plan001_step3_mi_matrix.py\\\\').read()); print(\\\\'step3 OK\\\\')\\\" && python3 -c \\\"import ast; ast.parse(open(\\\\'scripts/run_plan001_confound_diagnosis.py\\\\').read()); print(\\\\'diag OK\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Need to use the conda environment's python.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "e10df155-bc75-41b6-a494-cb728fd8b5d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNW7xUYSjRisK2P5C7xD5p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 668,
+      "cache_read_input_tokens": 57165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 668
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013rAx5LE3FoGu9M8fFKLCod`</summary>
+
+```json
+{
+  "server": "seetacloud-rtx6000",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cert_manip_resist_eval && python -c \"import ast; ast.parse(open('scripts/run_plan001_step4_panel_regression.py').read()); print('step4 OK')\" && python -c \"import ast; ast.parse(open('scripts/run_plan001_step5_random_fault.py').read()); print('step5 OK')\" && python -c \"import ast; ast.parse(open('scripts/run_plan001_step3_mi_matrix.py').read()); print('step3 OK')\" && python -c \"import ast; ast.parse(open('scripts/run_plan001_confound_diagnosis.py').read()); print('diag OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "57d985f1-8a18-4fba-8dd1-6dcaebd9d0ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNW7xUYSjRisK2P5C7xD5p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 668,
+      "cache_read_input_tokens": 57165,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 668
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-22T08:25:29.905Z_
+
+<details><summary>↩ Tool result · `toolu_013rAx5LE3FoGu9M8fFKLCod`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"step4 OK\\nstep5 OK\\nstep3 OK\\ndiag OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "c2459cf3-3e3b-460d-9a90-3d8c13d20d34",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"step4 OK\\\\nstep5 OK\\\\nstep3 OK\\\\ndiag OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"step4 OK\\nstep5 OK\\nstep3 OK\\ndiag OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+全部通过。修改汇总：
+
+| 脚本 | 行号 | 旧格式 | 新格式 |
+|------|------|--------|--------|
+| `step4_panel_regression.py` | 398 | `f"{ds}×{atk}"` | `f"{ds}__{atk}"` |
+| `step5_random_fault.py` | 302 | `f"{ds}x{atk}"` | `f"{ds}__{atk}"` |
+| `confound_diagnosis.py` | 229, 395 | `f"{ds}×{attack}"` | `f"{ds}__{attack}"` |
+| `step3_mi_matrix.py` | — | 无 condition key | 无需改 |
+
+4 个脚本 syntax check 全部 OK。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "uuid": "af1f4014-0bfe-42d8-ab6e-21cacb302f8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019B2pZcUMffcgB5GvhWPzeV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 507,
+      "cache_read_input_tokens": 57833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 507
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 71_
+
+全部通过。修改汇总：
+
+| 脚本 | 行号 | 旧格式 | 新格式 |
+|------|------|--------|--------|
+| `step4_panel_regression.py` | 398 | `f"{ds}×{atk}"` | `f"{ds}__{atk}"` |
+| `step5_random_fault.py` | 302 | `f"{ds}x{atk}"` | `f"{ds}__{atk}"` |
+| `confound_diagnosis.py` | 229, 395 | `f"{ds}×{attack}"` | `f"{ds}__{attack}"` |
+| `step3_mi_matrix.py` | — | 无 condition key | 无需改 |
+
+4 个脚本 syntax check 全部 OK。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 88062,
+  "duration_api_ms": 84610,
+  "num_turns": 27,
+  "stop_reason": "end_turn",
+  "session_id": "3ad2e9a1-b295-45f6-97ba-d7eb4407350a",
+  "total_cost_usd": 0.6468542499999999,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 46499,
+    "cache_read_input_tokens": 465321,
+    "output_tokens": 4882,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 46499,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 212,
+        "cache_read_input_tokens": 57833,
+        "cache_creation_input_tokens": 507,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 507
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1350,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0014500000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 4882,
+      "cacheReadInputTokens": 465321,
+      "cacheCreationInputTokens": 46499,
+      "webSearchRequests": 0,
+      "costUSD": 0.6454042499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "27c25c27-3411-485e-8605-ad2d5e0eca59"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,2356 @@
+# ssh exp008 diagnosis
+
+**How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_ssh_exp008-diagnosis_20260515T114006.log`
+- **Structured JSON:** [`714ce4e3e9062aa8d86e.json`](../../sessions/71/714ce4e3e9062aa8d86e.json)
+
+## Before a recorded user message
+
+49 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction",
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b0c7f234-12eb-4a98-a37b-b00d503a0dcf",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-schema-dag-extraction/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778861400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "73d8890b-fe0d-4c3d-940a-2b1a5b79b09e",
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先查看服务器上 exp008 的结果文件结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "fbaec780-7a78-43ce-9644-8ef4714801ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HFrRrWKD2bdB4mdX6ygoY5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11803,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11803
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016mAmefHbfxAD8FEvv575JZ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "4a8e6e74-4473-4c34-8f43-7228971327e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HFrRrWKD2bdB4mdX6ygoY5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11803,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11803
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T11:40:15.819Z_
+
+<details><summary>↩ Tool result · `toolu_016mAmefHbfxAD8FEvv575JZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "f7899bf5-98c0-4af4-918d-aaffac2c5697",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by examining the exp008 artifacts directory structure and the result files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "4b6dee49-0a3c-4d28-b022-5e33de647aae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HW9iKjfedCkojWhHEzfUSR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 693,
+      "cache_read_input_tokens": 23644,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 693
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KKePrWNApven3cV4yJz756`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/schema-dag-extraction/artifacts/exp008/ -type f -name \"*.json\" -o -name \"*.log\" -o -name \"*.md\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "b3c63213-b0ac-4442-b599-bd095f8a8810",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HW9iKjfedCkojWhHEzfUSR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 693,
+      "cache_read_input_tokens": 23644,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 693
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PgDkTwgCubY51rGMj8hbp7`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/schema-dag-extraction/artifacts/exp008/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "dba57f79-3257-4f69-88a4-faa2fda60615",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HW9iKjfedCkojWhHEzfUSR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 693,
+      "cache_read_input_tokens": 23644,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 693
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T11:40:21.234Z_
+
+<details><summary>↩ Tool result · `toolu_01KKePrWNApven3cV4yJz756`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/exp008/decomposition.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/analysis_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "3137e2cb-fd8e-47a6-b153-0f496cc8d670",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/schema-dag-extraction/artifacts/exp008/decomposition.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_single_pass.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_random_batch.json\\\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_per_type.json\\\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\\\n/root/schema-dag-extraction/artifacts/exp008/analysis_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/schema-dag-extraction/artifacts/exp008/decomposition.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_single_pass.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_random_batch.json\\n/root/schema-dag-extraction/artifacts/exp008/decomposition_per_type.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json\\n/root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_results.json\\n/root/schema-dag-extraction/artifacts/exp008/single_pass_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_results.json\\n/root/schema-dag-extraction/artifacts/exp008/random_batch_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_results.json\\n/root/schema-dag-extraction/artifacts/exp008/per_type_predictions.json\\n/root/schema-dag-extraction/artifacts/exp008/analysis_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T11:40:21.749Z_
+
+<details><summary>↩ Tool result · `toolu_01PgDkTwgCubY51rGMj8hbp7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1552\\ndrwxr-xr-x 2 root root   4096 May 15 19:17 .\\ndrwxr-xr-x 9 root root   4096 May 15 19:02 ..\\n-rw-r--r-- 1 root root  68084 May 15 19:17 analysis_summary.json\\n-rw-r--r-- 1 root root   2236 May 15 15:45 decomposition.json\\n-rw-r--r-- 1 root root   3166 May 15 18:16 decomposition_per_type.json\\n-rw-r--r-- 1 root root   2355 May 15 18:16 decomposition_random_batch.json\\n-rw-r--r-- 1 root root   2319 May 15 18:16 decomposition_sdgd_zero.json\\n-rw-r--r-- 1 root root   1934 May 15 18:16 decomposition_single_pass.json\\n-rw-r--r-- 1 root root 621123 May 15 19:16 per_type_predictions.json\\n-rw-r--r-- 1 root root    835 May 15 19:16 per_type_results.json\\n-rw-r--r-- 1 root root 385177 May 15 18:34 random_batch_predictions.json\\n-rw-r--r-- 1 root root    750 May 15 18:34 random_batch_results.json\\n-rw-r--r-- 1 root root 318506 May 15 18:24 sdgd_zero_predictions.json\\n-rw-r--r-- 1 root root    734 May 15 18:24 sdgd_zero_results.json\\n-rw-r--r-- 1 root root 141800 May 15 18:26 single_pass_predictions.json\\n-rw-r--r-- 1 root root    382 May 15 18:26 single_pass_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "77c0c850-ac38-4c0a-b349-25d443a30701",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1552\\\\ndrwxr-xr-x 2 root root   4096 May 15 19:17 .\\\\ndrwxr-xr-x 9 root root   4096 May 15 19:02 ..\\\\n-rw-r--r-- 1 root root  68084 May 15 19:17 analysis_summary.json\\\\n-rw-r--r-- 1 root root   2236 May 15 15:45 decomposition.json\\\\n-rw-r--r-- 1 root root   3166 May 15 18:16 decomposition_per_type.json\\\\n-rw-r--r-- 1 root root   2355 May 15 18:16 decomposition_random_batch.json\\\\n-rw-r--r-- 1 root root   2319 May 15 18:16 decomposition_sdgd_zero.json\\\\n-rw-r--r-- 1 root root   1934 May 15 18:16 decomposition_single_pass.json\\\\n-rw-r--r-- 1 root root 621123 May 15 19:16 per_type_predictions.json\\\\n-rw-r--r-- 1 root root    835 May 15 19:16 per_type_results.json\\\\n-rw-r--r-- 1 root root 385177 May 15 18:34 random_batch_predictions.json\\\\n-rw-r--r-- 1 root root    750 May 15 18:34 random_batch_results.json\\\\n-rw-r--r-- 1 root root 318506 May 15 18:24 sdgd_zero_predictions.json\\\\n-rw-r--r-- 1 root root    734 May 15 18:24 sdgd_zero_results.json\\\\n-rw-r--r-- 1 root root 141800 May 15 18:26 single_pass_predictions.json\\\\n-rw-r--r-- 1 root root    382 May 15 18:26 single_pass_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1552\\ndrwxr-xr-x 2 root root   4096 May 15 19:17 .\\ndrwxr-xr-x 9 root root   4096 May 15 19:02 ..\\n-rw-r--r-- 1 root root  68084 May 15 19:17 analysis_summary.json\\n-rw-r--r-- 1 root root   2236 May 15 15:45 decomposition.json\\n-rw-r--r-- 1 root root   3166 May 15 18:16 decomposition_per_type.json\\n-rw-r--r-- 1 root root   2355 May 15 18:16 decomposition_random_batch.json\\n-rw-r--r-- 1 root root   2319 May 15 18:16 decomposition_sdgd_zero.json\\n-rw-r--r-- 1 root root   1934 May 15 18:16 decomposition_single_pass.json\\n-rw-r--r-- 1 root root 621123 May 15 19:16 per_type_predictions.json\\n-rw-r--r-- 1 root root    835 May 15 19:16 per_type_results.json\\n-rw-r--r-- 1 root root 385177 May 15 18:34 random_batch_predictions.json\\n-rw-r--r-- 1 root root    750 May 15 18:34 random_batch_results.json\\n-rw-r--r-- 1 root root 318506 May 15 18:24 sdgd_zero_predictions.json\\n-rw-r--r-- 1 root root    734 May 15 18:24 sdgd_zero_results.json\\n-rw-r--r-- 1 root root 141800 May 15 18:26 single_pass_predictions.json\\n-rw-r--r-- 1 root root    382 May 15 18:26 single_pass_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the key files in parallel: the results files, analysis summary, and decomposition files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "1de250d0-bffd-446a-9b81-72ed2604178c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011HxXT7JFiHndLfsqKBcf4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 24337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+先读取结果文件和分解方案。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "58cc9b95-3c2d-4165-bfcb-8a6e2db7b8f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011HxXT7JFiHndLfsqKBcf4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 24337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H3WuarbAMSedcCfU4ymYQb`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp008/analysis_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "561f6696-5d61-4368-88ed-4418a419b317",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011HxXT7JFiHndLfsqKBcf4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 24337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T11:40:27.617Z_
+
+<details><summary>↩ Tool result · `toolu_01H3WuarbAMSedcCfU4ymYQb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"exp008\\\",\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"available_modes\\\": [\\n    \\\"single_pass\\\",\\n    \\\"sdgd_zero\\\",\\n    \\\"random_batch\\\",\\n    \\\"per_type\\\"\\n  ],\\n  \\\"missing_modes\\\": [],\\n  \\\"mode_comparison\\\": {\\n    \\\"single_pass\\\": {\\n      \\\"f1\\\": 0.44506910283438744,\\n      \\\"precision\\\": 0.5631298162418494,\\n      \\\"recall\\\": 0.36793183578621225,\\n      \\\"n_batches\\\": 1,\\n      \\\"latency_s\\\": 77.3,\\n      \\\"delta_f1_vs_single_pass\\\": 0\\n    },\\n    \\\"sdgd_zero\\\": {\\n      \\\"f1\\\": 0.2513949163050217,\\n      \\\"precision\\\": 0.2095607235142119,\\n      \\\"recall\\\": 0.31409759876065063,\\n      \\\"n_batches\\\": 8,\\n      \\\"latency_s\\\": 408.7,\\n      \\\"delta_f1_vs_single_pass\\\": -0.1937\\n    },\\n    \\\"random_batch\\\": {\\n      \\\"f1\\\": 0.31973355537052456,\\n      \\\"precision\\\": 0.2491349480968858,\\n      \\\"recall\\\": 0.44616576297443844,\\n      \\\"n_batches\\\": 8,\\n      \\\"latency_s\\\": 476.1,\\n      \\\"delta_f1_vs_single_pass\\\": -0.1253\\n    },\\n    \\\"per_type\\\": {\\n      \\\"f1\\\": 0.291497975708502,\\n      \\\"precision\\\": 0.19404517453798767,\\n      \\\"recall\\\": 0.5855925639039504,\\n      \\\"n_batches\\\": 66,\\n      \\\"latency_s\\\": 2532.2,\\n      \\\"delta_f1_vs_single_pass\\\": -0.1536\\n    }\\n  },\\n  \\\"per_batch_analysis\\\": {\\n    \\\"single_pass\\\": {\\n      \\\"stats\\\": {\\n        \\\"mean\\\": 0.4451,\\n        \\\"std\\\": 0.0,\\n        \\\"min\\\": 0.4451,\\n        \\\"max\\\": 0.4451,\\n        \\\"n_batches\\\": 1\\n      },\\n      \\\"per_batch\\\": [\\n        {\\n          \\\"batch_idx\\\": 0,\\n          \\\"n_types\\\": 66,\\n          \\\"types\\\": [\\n            \\\"art-broadcastprogram\\\",\\n            \\\"art-film\\\",\\n            \\\"art-music\\\",\\n            \\\"art-other\\\",\\n            \\\"art-painting\\\",\\n            \\\"art-writtenart\\\",\\n            \\\"building-airport\\\",\\n            \\\"building-hospital\\\",\\n            \\\"building-hotel\\\",\\n            \\\"building-library\\\",\\n            \\\"building-other\\\",\\n            \\\"building-restaurant\\\",\\n            \\\"building-sportsfacility\\\",\\n            \\\"building-theater\\\",\\n            \\\"event-attack/battle/war/militaryconflict\\\",\\n            \\\"event-disaster\\\",\\n            \\\"event-election\\\",\\n            \\\"event-other\\\",\\n            \\\"event-protest\\\",\\n            \\\"event-sportsevent\\\",\\n            \\\"location-GPE\\\",\\n            \\\"location-bodiesofwater\\\",\\n            \\\"location-island\\\",\\n            \\\"location-mountain\\\",\\n            \\\"location-other\\\",\\n            \\\"location-park\\\",\\n            \\\"location-road/railway/highway/transit\\\",\\n            \\\"organization-company\\\",\\n            \\\"organization-education\\\",\\n            \\\"organization-government/governmentagency\\\",\\n            \\\"organization-media/newspaper\\\",\\n            \\\"organization-other\\\",\\n            \\\"organization-politicalparty\\\",\\n            \\\"organization-religion\\\",\\n            \\\"organization-showorganization\\\",\\n            \\\"organization-sportsleague\\\",\\n            \\\"organization-sportsteam\\\",\\n            \\\"other-astronomything\\\",\\n            \\\"other-award\\\",\\n            \\\"other-biologything\\\",\\n            \\\"other-chemicalthing\\\",\\n            \\\"other-currency\\\",\\n            \\\"other-disease\\\",\\n            \\\"other-educationaldegree\\\",\\n            \\\"other-god\\\",\\n            \\\"other-language\\\",\\n            \\\"other-law\\\",\\n            \\\"other-livingthing\\\",\\n            \\\"other-medical\\\",\\n            \\\"person-actor\\\",\\n            \\\"person-artist/author\\\",\\n            \\\"person-athlete\\\",\\n            \\\"person-director\\\",\\n            \\\"person-other\\\",\\n            \\\"person-politician\\\",\\n            \\\"person-scholar\\\",\\n            \\\"person-soldier\\\",\\n            \\\"product-airplane\\\",\\n            \\\"product-car\\\",\\n            \\\"product-food\\\",\\n            \\\"product-game\\\",\\n            \\\"product-other\\\",\\n            \\\"product-ship\\\",\\n            \\\"product-software\\\",\\n            \\\"product-train\\\",\\n            \\\"product-weapon\\\"\\n          ],\\n          \\\"precision\\\": 0.5631,\\n          \\\"recall\\\": 0.3679,\\n          \\\"f1\\\": 0.4451,\\n          \\\"tp\\\": 950,\\n          \\\"pred_count\\\": 1687,\\n          \\\"gold_count\\\": 2582\\n        }\\n      ]\\n    },\\n    \\\"sdgd_zero\\\": {\\n      \\\"stats\\\": {\\n        \\\"mean\\\": 0.2437,\\n        \\\"std\\\": 0.037,\\n        \\\"min\\\": 0.1659,\\n        \\\"max\\\": 0.3024,\\n        \\\"n_batches\\\": 8\\n      },\\n      \\\"per_batch\\\": [\\n        {\\n          \\\"batch_idx\\\": 0,\\n          \\\"n_types\\\": 18,\\n        \\n\\n... [截断: 输出过长，省略 60084 字符] ...\\n\\n 0.3636,\\n        \\\"f1\\\": 0.3333,\\n        \\\"tp\\\": 4,\\n        \\\"pred_count\\\": 13,\\n        \\\"gold_count\\\": 11\\n      },\\n      \\\"other-god\\\": {\\n        \\\"precision\\\": 0.75,\\n        \\\"recall\\\": 0.2727,\\n        \\\"f1\\\": 0.4,\\n        \\\"tp\\\": 3,\\n        \\\"pred_count\\\": 4,\\n        \\\"gold_count\\\": 11\\n      },\\n      \\\"other-language\\\": {\\n        \\\"precision\\\": 0.5,\\n        \\\"recall\\\": 0.1176,\\n        \\\"f1\\\": 0.1905,\\n        \\\"tp\\\": 2,\\n        \\\"pred_count\\\": 4,\\n        \\\"gold_count\\\": 17\\n      },\\n      \\\"other-law\\\": {\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 0.3333,\\n        \\\"f1\\\": 0.5,\\n        \\\"tp\\\": 4,\\n        \\\"pred_count\\\": 4,\\n        \\\"gold_count\\\": 12\\n      },\\n      \\\"other-livingthing\\\": {\\n        \\\"precision\\\": 0.0,\\n        \\\"recall\\\": 0.0,\\n        \\\"f1\\\": 0.0,\\n        \\\"tp\\\": 0,\\n        \\\"pred_count\\\": 0,\\n        \\\"gold_count\\\": 30\\n      },\\n      \\\"other-medical\\\": {\\n        \\\"precision\\\": 0.0,\\n        \\\"recall\\\": 0.0,\\n        \\\"f1\\\": 0.0,\\n        \\\"tp\\\": 0,\\n        \\\"pred_count\\\": 0,\\n        \\\"gold_count\\\": 6\\n      },\\n      \\\"person-actor\\\": {\\n        \\\"precision\\\": 0.1667,\\n        \\\"recall\\\": 0.0476,\\n        \\\"f1\\\": 0.0741,\\n        \\\"tp\\\": 1,\\n        \\\"pred_count\\\": 6,\\n        \\\"gold_count\\\": 21\\n      },\\n      \\\"person-artist/author\\\": {\\n        \\\"precision\\\": 0.6506,\\n        \\\"recall\\\": 0.5455,\\n        \\\"f1\\\": 0.5934,\\n        \\\"tp\\\": 54,\\n        \\\"pred_count\\\": 83,\\n        \\\"gold_count\\\": 99\\n      },\\n      \\\"person-athlete\\\": {\\n        \\\"precision\\\": 0.7097,\\n        \\\"recall\\\": 0.3607,\\n        \\\"f1\\\": 0.4783,\\n        \\\"tp\\\": 22,\\n        \\\"pred_count\\\": 31,\\n        \\\"gold_count\\\": 61\\n      },\\n      \\\"person-director\\\": {\\n        \\\"precision\\\": 0.6667,\\n        \\\"recall\\\": 0.9091,\\n        \\\"f1\\\": 0.7692,\\n        \\\"tp\\\": 10,\\n        \\\"pred_count\\\": 15,\\n        \\\"gold_count\\\": 11\\n      },\\n      \\\"person-other\\\": {\\n        \\\"precision\\\": 0.6233,\\n        \\\"recall\\\": 0.376,\\n        \\\"f1\\\": 0.4691,\\n        \\\"tp\\\": 91,\\n        \\\"pred_count\\\": 146,\\n        \\\"gold_count\\\": 242\\n      },\\n      \\\"person-politician\\\": {\\n        \\\"precision\\\": 0.6098,\\n        \\\"recall\\\": 0.3571,\\n        \\\"f1\\\": 0.4505,\\n        \\\"tp\\\": 25,\\n        \\\"pred_count\\\": 41,\\n        \\\"gold_count\\\": 70\\n      },\\n      \\\"person-scholar\\\": {\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 0.0833,\\n        \\\"f1\\\": 0.1538,\\n        \\\"tp\\\": 1,\\n        \\\"pred_count\\\": 1,\\n        \\\"gold_count\\\": 12\\n      },\\n      \\\"person-soldier\\\": {\\n        \\\"precision\\\": 0.6667,\\n        \\\"recall\\\": 0.2857,\\n        \\\"f1\\\": 0.4,\\n        \\\"tp\\\": 2,\\n        \\\"pred_count\\\": 3,\\n        \\\"gold_count\\\": 7\\n      },\\n      \\\"product-airplane\\\": {\\n        \\\"precision\\\": 0.3333,\\n        \\\"recall\\\": 0.1667,\\n        \\\"f1\\\": 0.2222,\\n        \\\"tp\\\": 1,\\n        \\\"pred_count\\\": 3,\\n        \\\"gold_count\\\": 6\\n      },\\n      \\\"product-car\\\": {\\n        \\\"precision\\\": 0.6,\\n        \\\"recall\\\": 0.2727,\\n        \\\"f1\\\": 0.375,\\n        \\\"tp\\\": 3,\\n        \\\"pred_count\\\": 5,\\n        \\\"gold_count\\\": 11\\n      },\\n      \\\"product-food\\\": {\\n        \\\"precision\\\": 0.3333,\\n        \\\"recall\\\": 0.1111,\\n        \\\"f1\\\": 0.1667,\\n        \\\"tp\\\": 1,\\n        \\\"pred_count\\\": 3,\\n        \\\"gold_count\\\": 9\\n      },\\n      \\\"product-game\\\": {\\n        \\\"precision\\\": 0.6667,\\n        \\\"recall\\\": 0.4,\\n        \\\"f1\\\": 0.5,\\n        \\\"tp\\\": 4,\\n        \\\"pred_count\\\": 6,\\n        \\\"gold_count\\\": 10\\n      },\\n      \\\"product-other\\\": {\\n        \\\"precision\\\": 0.2222,\\n        \\\"recall\\\": 0.0444,\\n        \\\"f1\\\": 0.0741,\\n        \\\"tp\\\": 2,\\n        \\\"pred_count\\\": 9,\\n        \\\"gold_count\\\": 45\\n      },\\n      \\\"product-ship\\\": {\\n        \\\"precision\\\": 0.5714,\\n        \\\"recall\\\": 0.4,\\n        \\\"f1\\\": 0.4706,\\n        \\\"tp\\\": 4,\\n        \\\"pred_count\\\": 7,\\n        \\\"gold_count\\\": 10\\n      },\\n      \\\"product-software\\\": {\\n        \\\"precision\\\": 0.6667,\\n        \\\"recall\\\": 0.1667,\\n        \\\"f1\\\": 0.2667,\\n        \\\"tp\\\": 2,\\n        \\\"pred_count\\\": 3,\\n        \\\"gold_count\\\": 12\\n      },\\n      \\\"product-train\\\": {\\n        \\\"precision\\\": 0.5,\\n        \\\"recall\\\": 0.4167,\\n        \\\"f1\\\": 0.4545,\\n        \\\"tp\\\": 5,\\n        \\\"pred_count\\\": 10,\\n        \\\"gold_count\\\": 12\\n      },\\n      \\\"product-weapon\\\": {\\n        \\\"precision\\\": 0.6667,\\n        \\\"recall\\\": 0.6667,\\n        \\\"f1\\\": 0.6667,\\n        \\\"tp\\\": 4,\\n        \\\"pred_count\\\": 6,\\n        \\\"gold_count\\\": 6\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "89ae99ac-e6b3-480a-8003-b00e8fe0f6b8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"exp008\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"available_modes\\\\\\\": [\\\\n    \\\\\\\"single_pass\\\\\\\",\\\\n    \\\\\\\"sdgd_zero\\\\\\\",\\\\n    \\\\\\\"random_batch\\\\\\\",\\\\n    \\\\\\\"per_type\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"missing_modes\\\\\\\": [],\\\\n  \\\\\\\"mode_comparison\\\\\\\": {\\\\n    \\\\\\\"single_pass\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.44506910283438744,\\\\n      \\\\\\\"precision\\\\\\\": 0.5631298162418494,\\\\n      \\\\\\\"recall\\\\\\\": 0.36793183578621225,\\\\n      \\\\\\\"n_batches\\\\\\\": 1,\\\\n      \\\\\\\"latency_s\\\\\\\": 77.3,\\\\n      \\\\\\\"delta_f1_vs_single_pass\\\\\\\": 0\\\\n    },\\\\n    \\\\\\\"sdgd_zero\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.2513949163050217,\\\\n      \\\\\\\"precision\\\\\\\": 0.2095607235142119,\\\\n      \\\\\\\"recall\\\\\\\": 0.31409759876065063,\\\\n      \\\\\\\"n_batches\\\\\\\": 8,\\\\n      \\\\\\\"latency_s\\\\\\\": 408.7,\\\\n      \\\\\\\"delta_f1_vs_single_pass\\\\\\\": -0.1937\\\\n    },\\\\n    \\\\\\\"random_batch\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.31973355537052456,\\\\n      \\\\\\\"precision\\\\\\\": 0.2491349480968858,\\\\n      \\\\\\\"recall\\\\\\\": 0.44616576297443844,\\\\n      \\\\\\\"n_batches\\\\\\\": 8,\\\\n      \\\\\\\"latency_s\\\\\\\": 476.1,\\\\n      \\\\\\\"delta_f1_vs_single_pass\\\\\\\": -0.1253\\\\n    },\\\\n    \\\\\\\"per_type\\\\\\\": {\\\\n      \\\\\\\"f1\\\\\\\": 0.291497975708502,\\\\n      \\\\\\\"precision\\\\\\\": 0.19404517453798767,\\\\n      \\\\\\\"recall\\\\\\\": 0.5855925639039504,\\\\n      \\\\\\\"n_batches\\\\\\\": 66,\\\\n      \\\\\\\"latency_s\\\\\\\": 2532.2,\\\\n      \\\\\\\"delta_f1_vs_single_pass\\\\\\\": -0.1536\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_batch_analysis\\\\\\\": {\\\\n    \\\\\\\"single_pass\\\\\\\": {\\\\n      \\\\\\\"stats\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4451,\\\\n        \\\\\\\"std\\\\\\\": 0.0,\\\\n        \\\\\\\"min\\\\\\\": 0.4451,\\\\n        \\\\\\\"max\\\\\\\": 0.4451,\\\\n        \\\\\\\"n_batches\\\\\\\": 1\\\\n      },\\\\n      \\\\\\\"per_batch\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"batch_idx\\\\\\\": 0,\\\\n          \\\\\\\"n_types\\\\\\\": 66,\\\\n          \\\\\\\"types\\\\\\\": [\\\\n            \\\\\\\"art-broadcastprogram\\\\\\\",\\\\n            \\\\\\\"art-film\\\\\\\",\\\\n            \\\\\\\"art-music\\\\\\\",\\\\n            \\\\\\\"art-other\\\\\\\",\\\\n            \\\\\\\"art-painting\\\\\\\",\\\\n            \\\\\\\"art-writtenart\\\\\\\",\\\\n            \\\\\\\"building-airport\\\\\\\",\\\\n            \\\\\\\"building-hospital\\\\\\\",\\\\n            \\\\\\\"building-hotel\\\\\\\",\\\\n            \\\\\\\"building-library\\\\\\\",\\\\n            \\\\\\\"building-other\\\\\\\",\\\\n            \\\\\\\"building-restaurant\\\\\\\",\\\\n            \\\\\\\"building-sportsfacility\\\\\\\",\\\\n            \\\\\\\"building-theater\\\\\\\",\\\\n            \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\",\\\\n            \\\\\\\"event-disaster\\\\\\\",\\\\n            \\\\\\\"event-election\\\\\\\",\\\\n            \\\\\\\"event-other\\\\\\\",\\\\n            \\\\\\\"event-protest\\\\\\\",\\\\n            \\\\\\\"event-sportsevent\\\\\\\",\\\\n            \\\\\\\"location-GPE\\\\\\\",\\\\n            \\\\\\\"location-bodiesofwater\\\\\\\",\\\\n            \\\\\\\"location-island\\\\\\\",\\\\n            \\\\\\\"location-mountain\\\\\\\",\\\\n            \\\\\\\"location-other\\\\\\\",\\\\n            \\\\\\\"location-park\\\\\\\",\\\\n            \\\\\\\"location-road/railway/highway/transit\\\\\\\",\\\\n            \\\\\\\"organization-company\\\\\\\",\\\\n            \\\\\\\"organization-education\\\\\\\",\\\\n            \\\\\\\"organization-government/governmentagency\\\\\\\",\\\\n            \\\\\\\"organization-media/newspaper\\\\\\\",\\\\n            \\\\\\\"organization-other\\\\\\\",\\\\n            \\\\\\\"organization-politicalparty\\\\\\\",\\\\n            \\\\\\\"organization-religion\\\\\\\",\\\\n            \\\\\\\"organization-showorganization\\\\\\\",\\\\n            \\\\\\\"organization-sportsleague\\\\\\\",\\\\n            \\\\\\\"organization-sportsteam\\\\\\\",\\\\n            \\\\\\\"other-astronomything\\\\\\\",\\\\n            \\\\\\\"other-award\\\\\\\",\\\\n            \\\\\\\"other-biologything\\\\\\\",\\\\n            \\\\\\\"other-chemicalthing\\\\\\\",\\\\n            \\\\\\\"other-currency\\\\\\\",\\\\n            \\\\\\\"other-disease\\\\\\\",\\\\n            \\\\\\\"other-educationaldegree\\\\\\\",\\\\n            \\\\\\\"other-god\\\\\\\",\\\\n            \\\\\\\"other-language\\\\\\\",\\\\n            \\\\\\\"other-law\\\\\\\",\\\\n            \\\\\\\"other-livingthing\\\\\\\",\\\\n            \\\\\\\"other-medical\\\\\\\",\\\\n            \\\\\\\"person-actor\\\\\\\",\\\\n            \\\\\\\"person-artist/author\\\\\\\",\\\\n            \\\\\\\"person-athlete\\\\\\\",\\\\n            \\\\\\\"person-director\\\\\\\",\\\\n            \\\\\\\"person-other\\\\\\\",\\\\n            \\\\\\\"person-politician\\\\\\\",\\\\n            \\\\\\\"person-scholar\\\\\\\",\\\\n            \\\\\\\"person-soldier\\\\\\\",\\\\n            \\\\\\\"product-airplane\\\\\\\",\\\\n            \\\\\\\"product-car\\\\\\\",\\\\n            \\\\\\\"product-food\\\\\\\",\\\\n            \\\\\\\"product-game\\\\\\\",\\\\n            \\\\\\\"product-other\\\\\\\",\\\\n            \\\\\\\"product-ship\\\\\\\",\\\\n            \\\\\\\"product-software\\\\\\\",\\\\n            \\\\\\\"product-train\\\\\\\",\\\\n            \\\\\\\"product-weapon\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"precision\\\\\\\": 0.5631,\\\\n          \\\\\\\"recall\\\\\\\": 0.3679,\\\\n          \\\\\\\"f1\\\\\\\": 0.4451,\\\\n          \\\\\\\"tp\\\\\\\": 950,\\\\n          \\\\\\\"pred_count\\\\\\\": 1687,\\\\n          \\\\\\\"gold_count\\\\\\\": 2582\\\\n        }\\\\n      ]\\\\n    },\\\\n    \\\\\\\"sdgd_zero\\\\\\\": {\\\\n      \\\\\\\"stats\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.2437,\\\\n        \\\\\\\"std\\\\\\\": 0.037,\\\\n        \\\\\\\"min\\\\\\\": 0.1659,\\\\n        \\\\\\\"max\\\\\\\": 0.3024,\\\\n        \\\\\\\"n_batches\\\\\\\": 8\\\\n      },\\\\n      \\\\\\\"per_batch\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"batch_idx\\\\\\\": 0,\\\\n          \\\\\\\"n_types\\\\\\\": 18,\\\\n        \\\\n\\\\n... [截断: 输出过长，省略 60084 字符] ...\\\\n\\\\n 0.3636,\\\\n        \\\\\\\"f1\\\\\\\": 0.3333,\\\\n        \\\\\\\"tp\\\\\\\": 4,\\\\n        \\\\\\\"pred_count\\\\\\\": 13,\\\\n        \\\\\\\"gold_count\\\\\\\": 11\\\\n      },\\\\n      \\\\\\\"other-god\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.75,\\\\n        \\\\\\\"recall\\\\\\\": 0.2727,\\\\n        \\\\\\\"f1\\\\\\\": 0.4,\\\\n        \\\\\\\"tp\\\\\\\": 3,\\\\n        \\\\\\\"pred_count\\\\\\\": 4,\\\\n        \\\\\\\"gold_count\\\\\\\": 11\\\\n      },\\\\n      \\\\\\\"other-language\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.5,\\\\n        \\\\\\\"recall\\\\\\\": 0.1176,\\\\n        \\\\\\\"f1\\\\\\\": 0.1905,\\\\n        \\\\\\\"tp\\\\\\\": 2,\\\\n        \\\\\\\"pred_count\\\\\\\": 4,\\\\n        \\\\\\\"gold_count\\\\\\\": 17\\\\n      },\\\\n      \\\\\\\"other-law\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 1.0,\\\\n        \\\\\\\"recall\\\\\\\": 0.3333,\\\\n        \\\\\\\"f1\\\\\\\": 0.5,\\\\n        \\\\\\\"tp\\\\\\\": 4,\\\\n        \\\\\\\"pred_count\\\\\\\": 4,\\\\n        \\\\\\\"gold_count\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"other-livingthing\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.0,\\\\n        \\\\\\\"recall\\\\\\\": 0.0,\\\\n        \\\\\\\"f1\\\\\\\": 0.0,\\\\n        \\\\\\\"tp\\\\\\\": 0,\\\\n        \\\\\\\"pred_count\\\\\\\": 0,\\\\n        \\\\\\\"gold_count\\\\\\\": 30\\\\n      },\\\\n      \\\\\\\"other-medical\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.0,\\\\n        \\\\\\\"recall\\\\\\\": 0.0,\\\\n        \\\\\\\"f1\\\\\\\": 0.0,\\\\n        \\\\\\\"tp\\\\\\\": 0,\\\\n        \\\\\\\"pred_count\\\\\\\": 0,\\\\n        \\\\\\\"gold_count\\\\\\\": 6\\\\n      },\\\\n      \\\\\\\"person-actor\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.1667,\\\\n        \\\\\\\"recall\\\\\\\": 0.0476,\\\\n        \\\\\\\"f1\\\\\\\": 0.0741,\\\\n        \\\\\\\"tp\\\\\\\": 1,\\\\n        \\\\\\\"pred_count\\\\\\\": 6,\\\\n        \\\\\\\"gold_count\\\\\\\": 21\\\\n      },\\\\n      \\\\\\\"person-artist/author\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.6506,\\\\n        \\\\\\\"recall\\\\\\\": 0.5455,\\\\n        \\\\\\\"f1\\\\\\\": 0.5934,\\\\n        \\\\\\\"tp\\\\\\\": 54,\\\\n        \\\\\\\"pred_count\\\\\\\": 83,\\\\n        \\\\\\\"gold_count\\\\\\\": 99\\\\n      },\\\\n      \\\\\\\"person-athlete\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.7097,\\\\n        \\\\\\\"recall\\\\\\\": 0.3607,\\\\n        \\\\\\\"f1\\\\\\\": 0.4783,\\\\n        \\\\\\\"tp\\\\\\\": 22,\\\\n        \\\\\\\"pred_count\\\\\\\": 31,\\\\n        \\\\\\\"gold_count\\\\\\\": 61\\\\n      },\\\\n      \\\\\\\"person-director\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.6667,\\\\n        \\\\\\\"recall\\\\\\\": 0.9091,\\\\n        \\\\\\\"f1\\\\\\\": 0.7692,\\\\n        \\\\\\\"tp\\\\\\\": 10,\\\\n        \\\\\\\"pred_count\\\\\\\": 15,\\\\n        \\\\\\\"gold_count\\\\\\\": 11\\\\n      },\\\\n      \\\\\\\"person-other\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.6233,\\\\n        \\\\\\\"recall\\\\\\\": 0.376,\\\\n        \\\\\\\"f1\\\\\\\": 0.4691,\\\\n        \\\\\\\"tp\\\\\\\": 91,\\\\n        \\\\\\\"pred_count\\\\\\\": 146,\\\\n        \\\\\\\"gold_count\\\\\\\": 242\\\\n      },\\\\n      \\\\\\\"person-politician\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.6098,\\\\n        \\\\\\\"recall\\\\\\\": 0.3571,\\\\n        \\\\\\\"f1\\\\\\\": 0.4505,\\\\n        \\\\\\\"tp\\\\\\\": 25,\\\\n        \\\\\\\"pred_count\\\\\\\": 41,\\\\n        \\\\\\\"gold_count\\\\\\\": 70\\\\n      },\\\\n      \\\\\\\"person-scholar\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 1.0,\\\\n        \\\\\\\"recall\\\\\\\": 0.0833,\\\\n        \\\\\\\"f1\\\\\\\": 0.1538,\\\\n        \\\\\\\"tp\\\\\\\": 1,\\\\n        \\\\\\\"pred_count\\\\\\\": 1,\\\\n        \\\\\\\"gold_count\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"person-soldier\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.6667,\\\\n        \\\\\\\"recall\\\\\\\": 0.2857,\\\\n        \\\\\\\"f1\\\\\\\": 0.4,\\\\n        \\\\\\\"tp\\\\\\\": 2,\\\\n        \\\\\\\"pred_count\\\\\\\": 3,\\\\n        \\\\\\\"gold_count\\\\\\\": 7\\\\n      },\\\\n      \\\\\\\"product-airplane\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.3333,\\\\n        \\\\\\\"recall\\\\\\\": 0.1667,\\\\n        \\\\\\\"f1\\\\\\\": 0.2222,\\\\n        \\\\\\\"tp\\\\\\\": 1,\\\\n        \\\\\\\"pred_count\\\\\\\": 3,\\\\n        \\\\\\\"gold_count\\\\\\\": 6\\\\n      },\\\\n      \\\\\\\"product-car\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.6,\\\\n        \\\\\\\"recall\\\\\\\": 0.2727,\\\\n        \\\\\\\"f1\\\\\\\": 0.375,\\\\n        \\\\\\\"tp\\\\\\\": 3,\\\\n        \\\\\\\"pred_count\\\\\\\": 5,\\\\n        \\\\\\\"gold_count\\\\\\\": 11\\\\n      },\\\\n      \\\\\\\"product-food\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.3333,\\\\n        \\\\\\\"recall\\\\\\\": 0.1111,\\\\n        \\\\\\\"f1\\\\\\\": 0.1667,\\\\n        \\\\\\\"tp\\\\\\\": 1,\\\\n        \\\\\\\"pred_count\\\\\\\": 3,\\\\n        \\\\\\\"gold_count\\\\\\\": 9\\\\n      },\\\\n      \\\\\\\"product-game\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.6667,\\\\n        \\\\\\\"recall\\\\\\\": 0.4,\\\\n        \\\\\\\"f1\\\\\\\": 0.5,\\\\n        \\\\\\\"tp\\\\\\\": 4,\\\\n        \\\\\\\"pred_count\\\\\\\": 6,\\\\n        \\\\\\\"gold_count\\\\\\\": 10\\\\n      },\\\\n      \\\\\\\"product-other\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.2222,\\\\n        \\\\\\\"recall\\\\\\\": 0.0444,\\\\n        \\\\\\\"f1\\\\\\\": 0.0741,\\\\n        \\\\\\\"tp\\\\\\\": 2,\\\\n        \\\\\\\"pred_count\\\\\\\": 9,\\\\n        \\\\\\\"gold_count\\\\\\\": 45\\\\n      },\\\\n      \\\\\\\"product-ship\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.5714,\\\\n        \\\\\\\"recall\\\\\\\": 0.4,\\\\n        \\\\\\\"f1\\\\\\\": 0.4706,\\\\n        \\\\\\\"tp\\\\\\\": 4,\\\\n        \\\\\\\"pred_count\\\\\\\": 7,\\\\n        \\\\\\\"gold_count\\\\\\\": 10\\\\n      },\\\\n      \\\\\\\"product-software\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.6667,\\\\n        \\\\\\\"recall\\\\\\\": 0.1667,\\\\n        \\\\\\\"f1\\\\\\\": 0.2667,\\\\n        \\\\\\\"tp\\\\\\\": 2,\\\\n        \\\\\\\"pred_count\\\\\\\": 3,\\\\n        \\\\\\\"gold_count\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"product-train\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.5,\\\\n        \\\\\\\"recall\\\\\\\": 0.4167,\\\\n        \\\\\\\"f1\\\\\\\": 0.4545,\\\\n        \\\\\\\"tp\\\\\\\": 5,\\\\n        \\\\\\\"pred_count\\\\\\\": 10,\\\\n        \\\\\\\"gold_count\\\\\\\": 12\\\\n      },\\\\n      \\\\\\\"product-weapon\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.6667,\\\\n        \\\\\\\"recall\\\\\\\": 0.6667,\\\\n        \\\\\\\"f1\\\\\\\": 0.6667,\\\\n        \\\\\\\"tp\\\\\\\": 4,\\\\n        \\\\\\\"pred_count\\\\\\\": 6,\\\\n        \\\\\\\"gold_count\\\\\\\": 6\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_id\\\": \\\"exp008\\\",\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"available_modes\\\": [\\n    \\\"single_pass\\\",\\n    \\\"sdgd_zero\\\",\\n    \\\"random_batch\\\",\\n    \\\"per_type\\\"\\n  ],\\n  \\\"missing_modes\\\": [],\\n  \\\"mode_comparison\\\": {\\n    \\\"single_pass\\\": {\\n      \\\"f1\\\": 0.44506910283438744,\\n      \\\"precision\\\": 0.5631298162418494,\\n      \\\"recall\\\": 0.36793183578621225,\\n      \\\"n_batches\\\": 1,\\n      \\\"latency_s\\\": 77.3,\\n      \\\"delta_f1_vs_single_pass\\\": 0\\n    },\\n    \\\"sdgd_zero\\\": {\\n      \\\"f1\\\": 0.2513949163050217,\\n      \\\"precision\\\": 0.2095607235142119,\\n      \\\"recall\\\": 0.31409759876065063,\\n      \\\"n_batches\\\": 8,\\n      \\\"latency_s\\\": 408.7,\\n      \\\"delta_f1_vs_single_pass\\\": -0.1937\\n    },\\n    \\\"random_batch\\\": {\\n      \\\"f1\\\": 0.31973355537052456,\\n      \\\"precision\\\": 0.2491349480968858,\\n      \\\"recall\\\": 0.44616576297443844,\\n      \\\"n_batches\\\": 8,\\n      \\\"latency_s\\\": 476.1,\\n      \\\"delta_f1_vs_single_pass\\\": -0.1253\\n    },\\n    \\\"per_type\\\": {\\n      \\\"f1\\\": 0.291497975708502,\\n      \\\"precision\\\": 0.19404517453798767,\\n      \\\"recall\\\": 0.5855925639039504,\\n      \\\"n_batches\\\": 66,\\n      \\\"latency_s\\\": 2532.2,\\n      \\\"delta_f1_vs_single_pass\\\": -0.1536\\n    }\\n  },\\n  \\\"per_batch_analysis\\\": {\\n    \\\"single_pass\\\": {\\n      \\\"stats\\\": {\\n        \\\"mean\\\": 0.4451,\\n        \\\"std\\\": 0.0,\\n        \\\"min\\\": 0.4451,\\n        \\\"max\\\": 0.4451,\\n        \\\"n_batches\\\": 1\\n      },\\n      \\\"per_batch\\\": [\\n        {\\n          \\\"batch_idx\\\": 0,\\n          \\\"n_types\\\": 66,\\n          \\\"types\\\": [\\n            \\\"art-broadcastprogram\\\",\\n            \\\"art-film\\\",\\n            \\\"art-music\\\",\\n            \\\"art-other\\\",\\n            \\\"art-painting\\\",\\n            \\\"art-writtenart\\\",\\n            \\\"building-airport\\\",\\n            \\\"building-hospital\\\",\\n            \\\"building-hotel\\\",\\n            \\\"building-library\\\",\\n            \\\"building-other\\\",\\n            \\\"building-restaurant\\\",\\n            \\\"building-sportsfacility\\\",\\n            \\\"building-theater\\\",\\n            \\\"event-attack/battle/war/militaryconflict\\\",\\n            \\\"event-disaster\\\",\\n            \\\"event-election\\\",\\n            \\\"event-other\\\",\\n            \\\"event-protest\\\",\\n            \\\"event-sportsevent\\\",\\n            \\\"location-GPE\\\",\\n            \\\"location-bodiesofwater\\\",\\n            \\\"location-island\\\",\\n            \\\"location-mountain\\\",\\n            \\\"location-other\\\",\\n            \\\"location-park\\\",\\n            \\\"location-road/railway/highway/transit\\\",\\n            \\\"organization-company\\\",\\n            \\\"organization-education\\\",\\n            \\\"organization-government/governmentagency\\\",\\n            \\\"organization-media/newspaper\\\",\\n            \\\"organization-other\\\",\\n            \\\"organization-politicalparty\\\",\\n            \\\"organization-religion\\\",\\n            \\\"organization-showorganization\\\",\\n            \\\"organization-sportsleague\\\",\\n            \\\"organization-sportsteam\\\",\\n            \\\"other-astronomything\\\",\\n            \\\"other-award\\\",\\n            \\\"other-biologything\\\",\\n            \\\"other-chemicalthing\\\",\\n            \\\"other-currency\\\",\\n            \\\"other-disease\\\",\\n            \\\"other-educationaldegree\\\",\\n            \\\"other-god\\\",\\n            \\\"other-language\\\",\\n            \\\"other-law\\\",\\n            \\\"other-livingthing\\\",\\n            \\\"other-medical\\\",\\n            \\\"person-actor\\\",\\n            \\\"person-artist/author\\\",\\n            \\\"person-athlete\\\",\\n            \\\"person-director\\\",\\n            \\\"person-other\\\",\\n            \\\"person-politician\\\",\\n            \\\"person-scholar\\\",\\n            \\\"person-soldier\\\",\\n            \\\"product-airplane\\\",\\n            \\\"product-car\\\",\\n            \\\"product-food\\\",\\n            \\\"product-game\\\",\\n            \\\"product-other\\\",\\n            \\\"product-ship\\\",\\n            \\\"product-software\\\",\\n            \\\"product-train\\\",\\n            \\\"product-weapon\\\"\\n          ],\\n          \\\"precision\\\": 0.5631,\\n          \\\"recall\\\": 0.3679,\\n          \\\"f1\\\": 0.4451,\\n          \\\"tp\\\": 950,\\n          \\\"pred_count\\\": 1687,\\n          \\\"gold_count\\\": 2582\\n        }\\n      ]\\n    },\\n    \\\"sdgd_zero\\\": {\\n      \\\"stats\\\": {\\n        \\\"mean\\\": 0.2437,\\n        \\\"std\\\": 0.037,\\n        \\\"min\\\": 0.1659,\\n        \\\"max\\\": 0.3024,\\n        \\\"n_batches\\\": 8\\n      },\\n      \\\"per_batch\\\": [\\n        {\\n          \\\"batch_idx\\\": 0,\\n          \\\"n_types\\\": 18,\\n        \\n\\n... [截断: 输出过长，省略 60084 字符] ...\\n\\n 0.3636,\\n        \\\"f1\\\": 0.3333,\\n        \\\"tp\\\": 4,\\n        \\\"pred_count\\\": 13,\\n        \\\"gold_count\\\": 11\\n      },\\n      \\\"other-god\\\": {\\n        \\\"precision\\\": 0.75,\\n        \\\"recall\\\": 0.2727,\\n        \\\"f1\\\": 0.4,\\n        \\\"tp\\\": 3,\\n        \\\"pred_count\\\": 4,\\n        \\\"gold_count\\\": 11\\n      },\\n      \\\"other-language\\\": {\\n        \\\"precision\\\": 0.5,\\n        \\\"recall\\\": 0.1176,\\n        \\\"f1\\\": 0.1905,\\n        \\\"tp\\\": 2,\\n        \\\"pred_count\\\": 4,\\n        \\\"gold_count\\\": 17\\n      },\\n      \\\"other-law\\\": {\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 0.3333,\\n        \\\"f1\\\": 0.5,\\n        \\\"tp\\\": 4,\\n        \\\"pred_count\\\": 4,\\n        \\\"gold_count\\\": 12\\n      },\\n      \\\"other-livingthing\\\": {\\n        \\\"precision\\\": 0.0,\\n        \\\"recall\\\": 0.0,\\n        \\\"f1\\\": 0.0,\\n        \\\"tp\\\": 0,\\n        \\\"pred_count\\\": 0,\\n        \\\"gold_count\\\": 30\\n      },\\n      \\\"other-medical\\\": {\\n        \\\"precision\\\": 0.0,\\n        \\\"recall\\\": 0.0,\\n        \\\"f1\\\": 0.0,\\n        \\\"tp\\\": 0,\\n        \\\"pred_count\\\": 0,\\n        \\\"gold_count\\\": 6\\n      },\\n      \\\"person-actor\\\": {\\n        \\\"precision\\\": 0.1667,\\n        \\\"recall\\\": 0.0476,\\n        \\\"f1\\\": 0.0741,\\n        \\\"tp\\\": 1,\\n        \\\"pred_count\\\": 6,\\n        \\\"gold_count\\\": 21\\n      },\\n      \\\"person-artist/author\\\": {\\n        \\\"precision\\\": 0.6506,\\n        \\\"recall\\\": 0.5455,\\n        \\\"f1\\\": 0.5934,\\n        \\\"tp\\\": 54,\\n        \\\"pred_count\\\": 83,\\n        \\\"gold_count\\\": 99\\n      },\\n      \\\"person-athlete\\\": {\\n        \\\"precision\\\": 0.7097,\\n        \\\"recall\\\": 0.3607,\\n        \\\"f1\\\": 0.4783,\\n        \\\"tp\\\": 22,\\n        \\\"pred_count\\\": 31,\\n        \\\"gold_count\\\": 61\\n      },\\n      \\\"person-director\\\": {\\n        \\\"precision\\\": 0.6667,\\n        \\\"recall\\\": 0.9091,\\n        \\\"f1\\\": 0.7692,\\n        \\\"tp\\\": 10,\\n        \\\"pred_count\\\": 15,\\n        \\\"gold_count\\\": 11\\n      },\\n      \\\"person-other\\\": {\\n        \\\"precision\\\": 0.6233,\\n        \\\"recall\\\": 0.376,\\n        \\\"f1\\\": 0.4691,\\n        \\\"tp\\\": 91,\\n        \\\"pred_count\\\": 146,\\n        \\\"gold_count\\\": 242\\n      },\\n      \\\"person-politician\\\": {\\n        \\\"precision\\\": 0.6098,\\n        \\\"recall\\\": 0.3571,\\n        \\\"f1\\\": 0.4505,\\n        \\\"tp\\\": 25,\\n        \\\"pred_count\\\": 41,\\n        \\\"gold_count\\\": 70\\n      },\\n      \\\"person-scholar\\\": {\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 0.0833,\\n        \\\"f1\\\": 0.1538,\\n        \\\"tp\\\": 1,\\n        \\\"pred_count\\\": 1,\\n        \\\"gold_count\\\": 12\\n      },\\n      \\\"person-soldier\\\": {\\n        \\\"precision\\\": 0.6667,\\n        \\\"recall\\\": 0.2857,\\n        \\\"f1\\\": 0.4,\\n        \\\"tp\\\": 2,\\n        \\\"pred_count\\\": 3,\\n        \\\"gold_count\\\": 7\\n      },\\n      \\\"product-airplane\\\": {\\n        \\\"precision\\\": 0.3333,\\n        \\\"recall\\\": 0.1667,\\n        \\\"f1\\\": 0.2222,\\n        \\\"tp\\\": 1,\\n        \\\"pred_count\\\": 3,\\n        \\\"gold_count\\\": 6\\n      },\\n      \\\"product-car\\\": {\\n        \\\"precision\\\": 0.6,\\n        \\\"recall\\\": 0.2727,\\n        \\\"f1\\\": 0.375,\\n        \\\"tp\\\": 3,\\n        \\\"pred_count\\\": 5,\\n        \\\"gold_count\\\": 11\\n      },\\n      \\\"product-food\\\": {\\n        \\\"precision\\\": 0.3333,\\n        \\\"recall\\\": 0.1111,\\n        \\\"f1\\\": 0.1667,\\n        \\\"tp\\\": 1,\\n        \\\"pred_count\\\": 3,\\n        \\\"gold_count\\\": 9\\n      },\\n      \\\"product-game\\\": {\\n        \\\"precision\\\": 0.6667,\\n        \\\"recall\\\": 0.4,\\n        \\\"f1\\\": 0.5,\\n        \\\"tp\\\": 4,\\n        \\\"pred_count\\\": 6,\\n        \\\"gold_count\\\": 10\\n      },\\n      \\\"product-other\\\": {\\n        \\\"precision\\\": 0.2222,\\n        \\\"recall\\\": 0.0444,\\n        \\\"f1\\\": 0.0741,\\n        \\\"tp\\\": 2,\\n        \\\"pred_count\\\": 9,\\n        \\\"gold_count\\\": 45\\n      },\\n      \\\"product-ship\\\": {\\n        \\\"precision\\\": 0.5714,\\n        \\\"recall\\\": 0.4,\\n        \\\"f1\\\": 0.4706,\\n        \\\"tp\\\": 4,\\n        \\\"pred_count\\\": 7,\\n        \\\"gold_count\\\": 10\\n      },\\n      \\\"product-software\\\": {\\n        \\\"precision\\\": 0.6667,\\n        \\\"recall\\\": 0.1667,\\n        \\\"f1\\\": 0.2667,\\n        \\\"tp\\\": 2,\\n        \\\"pred_count\\\": 3,\\n        \\\"gold_count\\\": 12\\n      },\\n      \\\"product-train\\\": {\\n        \\\"precision\\\": 0.5,\\n        \\\"recall\\\": 0.4167,\\n        \\\"f1\\\": 0.4545,\\n        \\\"tp\\\": 5,\\n        \\\"pred_count\\\": 10,\\n        \\\"gold_count\\\": 12\\n      },\\n      \\\"product-weapon\\\": {\\n        \\\"precision\\\": 0.6667,\\n        \\\"recall\\\": 0.6667,\\n        \\\"f1\\\": 0.6667,\\n        \\\"tp\\\": 4,\\n        \\\"pred_count\\\": 6,\\n        \\\"gold_count\\\": 6\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G7p38T5UhksAeHcsEvKstA`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp008/sdgd_zero_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "a1c17468-5f61-493e-8c1c-4dadf5fa9f1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011HxXT7JFiHndLfsqKBcf4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 24337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T11:40:28.447Z_
+
+<details><summary>↩ Tool result · `toolu_01G7p38T5UhksAeHcsEvKstA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"sdgd_zero\\\",\\n  \\\"n_batches\\\": 8,\\n  \\\"batch_sizes\\\": [\\n    18,\\n    12,\\n    11,\\n    7,\\n    7,\\n    5,\\n    3,\\n    3\\n  ],\\n  \\\"latency_s\\\": 408.6961781978607,\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.2095607235142119,\\n    \\\"recall\\\": 0.31409759876065063,\\n    \\\"f1\\\": 0.2513949163050217,\\n    \\\"tp\\\": 811,\\n    \\\"pred_count\\\": 3870,\\n    \\\"gold_count\\\": 2582\\n  },\\n  \\\"n_samples\\\": 1000,\\n  \\\"prompt_version\\\": \\\"v2\\\",\\n  \\\"task\\\": \\\"ner\\\",\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"tau\\\": 0.867604847997427,\\n  \\\"k\\\": 1.0,\\n  \\\"graph_stats\\\": {\\n    \\\"n_nodes\\\": 66,\\n    \\\"n_edges\\\": 284,\\n    \\\"n_colors\\\": 8,\\n    \\\"max_batch_size\\\": 18,\\n    \\\"min_batch_size\\\": 3,\\n    \\\"mean_batch_size\\\": 8.25,\\n    \\\"batch_sizes\\\": [\\n      18,\\n      12,\\n      11,\\n      7,\\n      7,\\n      5,\\n      3,\\n      3\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "b22cec85-edda-425c-8b5e-a1d4f399fe76",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"sdgd_zero\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 8,\\\\n  \\\\\\\"batch_sizes\\\\\\\": [\\\\n    18,\\\\n    12,\\\\n    11,\\\\n    7,\\\\n    7,\\\\n    5,\\\\n    3,\\\\n    3\\\\n  ],\\\\n  \\\\\\\"latency_s\\\\\\\": 408.6961781978607,\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.2095607235142119,\\\\n    \\\\\\\"recall\\\\\\\": 0.31409759876065063,\\\\n    \\\\\\\"f1\\\\\\\": 0.2513949163050217,\\\\n    \\\\\\\"tp\\\\\\\": 811,\\\\n    \\\\\\\"pred_count\\\\\\\": 3870,\\\\n    \\\\\\\"gold_count\\\\\\\": 2582\\\\n  },\\\\n  \\\\\\\"n_samples\\\\\\\": 1000,\\\\n  \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"tau\\\\\\\": 0.867604847997427,\\\\n  \\\\\\\"k\\\\\\\": 1.0,\\\\n  \\\\\\\"graph_stats\\\\\\\": {\\\\n    \\\\\\\"n_nodes\\\\\\\": 66,\\\\n    \\\\\\\"n_edges\\\\\\\": 284,\\\\n    \\\\\\\"n_colors\\\\\\\": 8,\\\\n    \\\\\\\"max_batch_size\\\\\\\": 18,\\\\n    \\\\\\\"min_batch_size\\\\\\\": 3,\\\\n    \\\\\\\"mean_batch_size\\\\\\\": 8.25,\\\\n    \\\\\\\"batch_sizes\\\\\\\": [\\\\n      18,\\\\n      12,\\\\n      11,\\\\n      7,\\\\n      7,\\\\n      5,\\\\n      3,\\\\n      3\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"sdgd_zero\\\",\\n  \\\"n_batches\\\": 8,\\n  \\\"batch_sizes\\\": [\\n    18,\\n    12,\\n    11,\\n    7,\\n    7,\\n    5,\\n    3,\\n    3\\n  ],\\n  \\\"latency_s\\\": 408.6961781978607,\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.2095607235142119,\\n    \\\"recall\\\": 0.31409759876065063,\\n    \\\"f1\\\": 0.2513949163050217,\\n    \\\"tp\\\": 811,\\n    \\\"pred_count\\\": 3870,\\n    \\\"gold_count\\\": 2582\\n  },\\n  \\\"n_samples\\\": 1000,\\n  \\\"prompt_version\\\": \\\"v2\\\",\\n  \\\"task\\\": \\\"ner\\\",\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"tau\\\": 0.867604847997427,\\n  \\\"k\\\": 1.0,\\n  \\\"graph_stats\\\": {\\n    \\\"n_nodes\\\": 66,\\n    \\\"n_edges\\\": 284,\\n    \\\"n_colors\\\": 8,\\n    \\\"max_batch_size\\\": 18,\\n    \\\"min_batch_size\\\": 3,\\n    \\\"mean_batch_size\\\": 8.25,\\n    \\\"batch_sizes\\\": [\\n      18,\\n      12,\\n      11,\\n      7,\\n      7,\\n      5,\\n      3,\\n      3\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PM298CdD5MzY6aUMJeEUoD`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp008/single_pass_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "6f1a69c9-da89-49ca-8846-0450bbf36aa4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011HxXT7JFiHndLfsqKBcf4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 24337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T11:40:28.989Z_
+
+<details><summary>↩ Tool result · `toolu_01PM298CdD5MzY6aUMJeEUoD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"single_pass\\\",\\n  \\\"n_batches\\\": 1,\\n  \\\"batch_sizes\\\": [\\n    66\\n  ],\\n  \\\"latency_s\\\": 77.2507050037384,\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.5631298162418494,\\n    \\\"recall\\\": 0.36793183578621225,\\n    \\\"f1\\\": 0.44506910283438744,\\n    \\\"tp\\\": 950,\\n    \\\"pred_count\\\": 1687,\\n    \\\"gold_count\\\": 2582\\n  },\\n  \\\"n_samples\\\": 1000,\\n  \\\"prompt_version\\\": \\\"v2\\\",\\n  \\\"task\\\": \\\"ner\\\",\\n  \\\"dataset\\\": \\\"fewnerd\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "4624940e-fc2a-4759-926c-381cd7d5f51b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"single_pass\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 1,\\\\n  \\\\\\\"batch_sizes\\\\\\\": [\\\\n    66\\\\n  ],\\\\n  \\\\\\\"latency_s\\\\\\\": 77.2507050037384,\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.5631298162418494,\\\\n    \\\\\\\"recall\\\\\\\": 0.36793183578621225,\\\\n    \\\\\\\"f1\\\\\\\": 0.44506910283438744,\\\\n    \\\\\\\"tp\\\\\\\": 950,\\\\n    \\\\\\\"pred_count\\\\\\\": 1687,\\\\n    \\\\\\\"gold_count\\\\\\\": 2582\\\\n  },\\\\n  \\\\\\\"n_samples\\\\\\\": 1000,\\\\n  \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"single_pass\\\",\\n  \\\"n_batches\\\": 1,\\n  \\\"batch_sizes\\\": [\\n    66\\n  ],\\n  \\\"latency_s\\\": 77.2507050037384,\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.5631298162418494,\\n    \\\"recall\\\": 0.36793183578621225,\\n    \\\"f1\\\": 0.44506910283438744,\\n    \\\"tp\\\": 950,\\n    \\\"pred_count\\\": 1687,\\n    \\\"gold_count\\\": 2582\\n  },\\n  \\\"n_samples\\\": 1000,\\n  \\\"prompt_version\\\": \\\"v2\\\",\\n  \\\"task\\\": \\\"ner\\\",\\n  \\\"dataset\\\": \\\"fewnerd\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VPbra824Edhtg74KcWcjxn`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp008/random_batch_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "e6b0759f-7c99-4cb8-8c82-7b1c2f4decb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011HxXT7JFiHndLfsqKBcf4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 24337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T11:40:30.238Z_
+
+<details><summary>↩ Tool result · `toolu_01VPbra824Edhtg74KcWcjxn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"random_batch\\\",\\n  \\\"n_batches\\\": 8,\\n  \\\"batch_sizes\\\": [\\n    9,\\n    9,\\n    8,\\n    8,\\n    8,\\n    8,\\n    8,\\n    8\\n  ],\\n  \\\"latency_s\\\": 476.1448345184326,\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.2491349480968858,\\n    \\\"recall\\\": 0.44616576297443844,\\n    \\\"f1\\\": 0.31973355537052456,\\n    \\\"tp\\\": 1152,\\n    \\\"pred_count\\\": 4624,\\n    \\\"gold_count\\\": 2582\\n  },\\n  \\\"n_samples\\\": 1000,\\n  \\\"prompt_version\\\": \\\"v2\\\",\\n  \\\"task\\\": \\\"ner\\\",\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"tau\\\": 0.867604847997427,\\n  \\\"k\\\": 1.0,\\n  \\\"graph_stats\\\": {\\n    \\\"n_nodes\\\": 66,\\n    \\\"n_edges\\\": 284,\\n    \\\"n_colors\\\": 8,\\n    \\\"max_batch_size\\\": 18,\\n    \\\"min_batch_size\\\": 3,\\n    \\\"mean_batch_size\\\": 8.25,\\n    \\\"batch_sizes\\\": [\\n      18,\\n      12,\\n      11,\\n      7,\\n      7,\\n      5,\\n      3,\\n      3\\n    ]\\n  },\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "3495a924-ef29-4812-b768-80c12b21bf27",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"random_batch\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 8,\\\\n  \\\\\\\"batch_sizes\\\\\\\": [\\\\n    9,\\\\n    9,\\\\n    8,\\\\n    8,\\\\n    8,\\\\n    8,\\\\n    8,\\\\n    8\\\\n  ],\\\\n  \\\\\\\"latency_s\\\\\\\": 476.1448345184326,\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.2491349480968858,\\\\n    \\\\\\\"recall\\\\\\\": 0.44616576297443844,\\\\n    \\\\\\\"f1\\\\\\\": 0.31973355537052456,\\\\n    \\\\\\\"tp\\\\\\\": 1152,\\\\n    \\\\\\\"pred_count\\\\\\\": 4624,\\\\n    \\\\\\\"gold_count\\\\\\\": 2582\\\\n  },\\\\n  \\\\\\\"n_samples\\\\\\\": 1000,\\\\n  \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\",\\\\n  \\\\\\\"tau\\\\\\\": 0.867604847997427,\\\\n  \\\\\\\"k\\\\\\\": 1.0,\\\\n  \\\\\\\"graph_stats\\\\\\\": {\\\\n    \\\\\\\"n_nodes\\\\\\\": 66,\\\\n    \\\\\\\"n_edges\\\\\\\": 284,\\\\n    \\\\\\\"n_colors\\\\\\\": 8,\\\\n    \\\\\\\"max_batch_size\\\\\\\": 18,\\\\n    \\\\\\\"min_batch_size\\\\\\\": 3,\\\\n    \\\\\\\"mean_batch_size\\\\\\\": 8.25,\\\\n    \\\\\\\"batch_sizes\\\\\\\": [\\\\n      18,\\\\n      12,\\\\n      11,\\\\n      7,\\\\n      7,\\\\n      5,\\\\n      3,\\\\n      3\\\\n    ]\\\\n  },\\\\n  \\\\\\\"seed\\\\\\\": 42\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.65}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"random_batch\\\",\\n  \\\"n_batches\\\": 8,\\n  \\\"batch_sizes\\\": [\\n    9,\\n    9,\\n    8,\\n    8,\\n    8,\\n    8,\\n    8,\\n    8\\n  ],\\n  \\\"latency_s\\\": 476.1448345184326,\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.2491349480968858,\\n    \\\"recall\\\": 0.44616576297443844,\\n    \\\"f1\\\": 0.31973355537052456,\\n    \\\"tp\\\": 1152,\\n    \\\"pred_count\\\": 4624,\\n    \\\"gold_count\\\": 2582\\n  },\\n  \\\"n_samples\\\": 1000,\\n  \\\"prompt_version\\\": \\\"v2\\\",\\n  \\\"task\\\": \\\"ner\\\",\\n  \\\"dataset\\\": \\\"fewnerd\\\",\\n  \\\"tau\\\": 0.867604847997427,\\n  \\\"k\\\": 1.0,\\n  \\\"graph_stats\\\": {\\n    \\\"n_nodes\\\": 66,\\n    \\\"n_edges\\\": 284,\\n    \\\"n_colors\\\": 8,\\n    \\\"max_batch_size\\\": 18,\\n    \\\"min_batch_size\\\": 3,\\n    \\\"mean_batch_size\\\": 8.25,\\n    \\\"batch_sizes\\\": [\\n      18,\\n      12,\\n      11,\\n      7,\\n      7,\\n      5,\\n      3,\\n      3\\n    ]\\n  },\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016xCzD4FDcWNosmVdWNKZ12`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp008/per_type_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "6c038284-30df-42b7-a744-2105c9e174e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011HxXT7JFiHndLfsqKBcf4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 24337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T11:40:30.832Z_
+
+<details><summary>↩ Tool result · `toolu_016xCzD4FDcWNosmVdWNKZ12`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"per_type\\\",\\n  \\\"n_batches\\\": 66,\\n  \\\"batch_sizes\\\": [\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1\\n  ],\\n  \\\"latency_s\\\": 2532.1563878059387,\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.19404517453798767,\\n    \\\"recall\\\": 0.5855925639039504,\\n    \\\"f1\\\": 0.291497975708502,\\n    \\\"tp\\\": 1512,\\n    \\\"pred_count\\\": 7792,\\n    \\\"gold_count\\\": 2582\\n  },\\n  \\\"n_samples\\\": 1000,\\n  \\\"prompt_version\\\": \\\"v2\\\",\\n  \\\"task\\\": \\\"ner\\\",\\n  \\\"dataset\\\": \\\"fewnerd\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "47b13c53-f338-4c5a-9d99-8e391260248d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"per_type\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 66,\\\\n  \\\\\\\"batch_sizes\\\\\\\": [\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1\\\\n  ],\\\\n  \\\\\\\"latency_s\\\\\\\": 2532.1563878059387,\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"precision\\\\\\\": 0.19404517453798767,\\\\n    \\\\\\\"recall\\\\\\\": 0.5855925639039504,\\\\n    \\\\\\\"f1\\\\\\\": 0.291497975708502,\\\\n    \\\\\\\"tp\\\\\\\": 1512,\\\\n    \\\\\\\"pred_count\\\\\\\": 7792,\\\\n    \\\\\\\"gold_count\\\\\\\": 2582\\\\n  },\\\\n  \\\\\\\"n_samples\\\\\\\": 1000,\\\\n  \\\\\\\"prompt_version\\\\\\\": \\\\\\\"v2\\\\\\\",\\\\n  \\\\\\\"task\\\\\\\": \\\\\\\"ner\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"fewnerd\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"per_type\\\",\\n  \\\"n_batches\\\": 66,\\n  \\\"batch_sizes\\\": [\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1\\n  ],\\n  \\\"latency_s\\\": 2532.1563878059387,\\n  \\\"metrics\\\": {\\n    \\\"precision\\\": 0.19404517453798767,\\n    \\\"recall\\\": 0.5855925639039504,\\n    \\\"f1\\\": 0.291497975708502,\\n    \\\"tp\\\": 1512,\\n    \\\"pred_count\\\": 7792,\\n    \\\"gold_count\\\": 2582\\n  },\\n  \\\"n_samples\\\": 1000,\\n  \\\"prompt_version\\\": \\\"v2\\\",\\n  \\\"task\\\": \\\"ner\\\",\\n  \\\"dataset\\\": \\\"fewnerd\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013RYxCH4X4tRkrEAgLH1d1k`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp008/decomposition_sdgd_zero.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "92ad24ab-3094-4414-97ac-69e8bb88135a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011HxXT7JFiHndLfsqKBcf4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 24337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PgLYsgss7G5y7o4xj9iZSx`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/schema-dag-extraction/artifacts/exp008/decomposition_random_batch.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "536888ca-5fb8-4c3d-ae7d-aab35b723cc7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011HxXT7JFiHndLfsqKBcf4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1353,
+      "cache_read_input_tokens": 24337,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1353
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T11:40:31.538Z_
+
+<details><summary>↩ Tool result · `toolu_013RYxCH4X4tRkrEAgLH1d1k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"sdgd_zero\\\",\\n  \\\"n_batches\\\": 8,\\n  \\\"batch_sizes\\\": [\\n    18,\\n    12,\\n    11,\\n    7,\\n    7,\\n    5,\\n    3,\\n    3\\n  ],\\n  \\\"batches\\\": [\\n    [\\n      \\\"art-music\\\",\\n      \\\"art-painting\\\",\\n      \\\"building-airport\\\",\\n      \\\"building-restaurant\\\",\\n      \\\"event-attack/battle/war/militaryconflict\\\",\\n      \\\"event-disaster\\\",\\n      \\\"event-election\\\",\\n      \\\"location-GPE\\\",\\n      \\\"location-island\\\",\\n      \\\"location-road/railway/highway/transit\\\",\\n      \\\"organization-media/newspaper\\\",\\n      \\\"organization-other\\\",\\n      \\\"other-currency\\\",\\n      \\\"other-god\\\",\\n      \\\"other-livingthing\\\",\\n      \\\"other-medical\\\",\\n      \\\"person-actor\\\",\\n      \\\"product-weapon\\\"\\n    ],\\n    [\\n      \\\"building-sportsfacility\\\",\\n      \\\"event-protest\\\",\\n      \\\"event-sportsevent\\\",\\n      \\\"location-other\\\",\\n      \\\"location-park\\\",\\n      \\\"organization-government/governmentagency\\\",\\n      \\\"organization-showorganization\\\",\\n      \\\"other-award\\\",\\n      \\\"other-biologything\\\",\\n      \\\"person-artist/author\\\",\\n      \\\"product-software\\\",\\n      \\\"product-train\\\"\\n    ],\\n    [\\n      \\\"art-other\\\",\\n      \\\"art-writtenart\\\",\\n      \\\"building-hotel\\\",\\n      \\\"building-theater\\\",\\n      \\\"location-bodiesofwater\\\",\\n      \\\"organization-religion\\\",\\n      \\\"organization-sportsleague\\\",\\n      \\\"other-astronomything\\\",\\n      \\\"other-chemicalthing\\\",\\n      \\\"other-disease\\\",\\n      \\\"product-game\\\"\\n    ],\\n    [\\n      \\\"art-broadcastprogram\\\",\\n      \\\"location-mountain\\\",\\n      \\\"organization-company\\\",\\n      \\\"other-educationaldegree\\\",\\n      \\\"other-language\\\",\\n      \\\"person-athlete\\\",\\n      \\\"product-other\\\"\\n    ],\\n    [\\n      \\\"art-film\\\",\\n      \\\"building-hospital\\\",\\n      \\\"organization-politicalparty\\\",\\n      \\\"other-law\\\",\\n      \\\"person-other\\\",\\n      \\\"product-car\\\",\\n      \\\"product-ship\\\"\\n    ],\\n    [\\n      \\\"building-other\\\",\\n      \\\"organization-education\\\",\\n      \\\"organization-sportsteam\\\",\\n      \\\"person-scholar\\\",\\n      \\\"product-food\\\"\\n    ],\\n    [\\n      \\\"building-library\\\",\\n      \\\"person-politician\\\",\\n      \\\"product-airplane\\\"\\n    ],\\n    [\\n      \\\"event-other\\\",\\n      \\\"person-director\\\",\\n      \\\"person-soldier\\\"\\n    ]\\n  ],\\n  \\\"tau\\\": 0.867604847997427,\\n  \\\"k\\\": 1.0,\\n  \\\"graph_stats\\\": {\\n    \\\"n_nodes\\\": 66,\\n    \\\"n_edges\\\": 284,\\n    \\\"n_colors\\\": 8,\\n    \\\"max_batch_size\\\": 18,\\n    \\\"min_batch_size\\\": 3,\\n    \\\"mean_batch_size\\\": 8.25,\\n    \\\"batch_sizes\\\": [\\n      18,\\n      12,\\n      11,\\n      7,\\n      7,\\n      5,\\n      3,\\n      3\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "002d74ac-9259-42d6-be79-67c8431ff72e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"sdgd_zero\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 8,\\\\n  \\\\\\\"batch_sizes\\\\\\\": [\\\\n    18,\\\\n    12,\\\\n    11,\\\\n    7,\\\\n    7,\\\\n    5,\\\\n    3,\\\\n    3\\\\n  ],\\\\n  \\\\\\\"batches\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"art-music\\\\\\\",\\\\n      \\\\\\\"art-painting\\\\\\\",\\\\n      \\\\\\\"building-airport\\\\\\\",\\\\n      \\\\\\\"building-restaurant\\\\\\\",\\\\n      \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\",\\\\n      \\\\\\\"event-disaster\\\\\\\",\\\\n      \\\\\\\"event-election\\\\\\\",\\\\n      \\\\\\\"location-GPE\\\\\\\",\\\\n      \\\\\\\"location-island\\\\\\\",\\\\n      \\\\\\\"location-road/railway/highway/transit\\\\\\\",\\\\n      \\\\\\\"organization-media/newspaper\\\\\\\",\\\\n      \\\\\\\"organization-other\\\\\\\",\\\\n      \\\\\\\"other-currency\\\\\\\",\\\\n      \\\\\\\"other-god\\\\\\\",\\\\n      \\\\\\\"other-livingthing\\\\\\\",\\\\n      \\\\\\\"other-medical\\\\\\\",\\\\n      \\\\\\\"person-actor\\\\\\\",\\\\n      \\\\\\\"product-weapon\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"building-sportsfacility\\\\\\\",\\\\n      \\\\\\\"event-protest\\\\\\\",\\\\n      \\\\\\\"event-sportsevent\\\\\\\",\\\\n      \\\\\\\"location-other\\\\\\\",\\\\n      \\\\\\\"location-park\\\\\\\",\\\\n      \\\\\\\"organization-government/governmentagency\\\\\\\",\\\\n      \\\\\\\"organization-showorganization\\\\\\\",\\\\n      \\\\\\\"other-award\\\\\\\",\\\\n      \\\\\\\"other-biologything\\\\\\\",\\\\n      \\\\\\\"person-artist/author\\\\\\\",\\\\n      \\\\\\\"product-software\\\\\\\",\\\\n      \\\\\\\"product-train\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"art-other\\\\\\\",\\\\n      \\\\\\\"art-writtenart\\\\\\\",\\\\n      \\\\\\\"building-hotel\\\\\\\",\\\\n      \\\\\\\"building-theater\\\\\\\",\\\\n      \\\\\\\"location-bodiesofwater\\\\\\\",\\\\n      \\\\\\\"organization-religion\\\\\\\",\\\\n      \\\\\\\"organization-sportsleague\\\\\\\",\\\\n      \\\\\\\"other-astronomything\\\\\\\",\\\\n      \\\\\\\"other-chemicalthing\\\\\\\",\\\\n      \\\\\\\"other-disease\\\\\\\",\\\\n      \\\\\\\"product-game\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"art-broadcastprogram\\\\\\\",\\\\n      \\\\\\\"location-mountain\\\\\\\",\\\\n      \\\\\\\"organization-company\\\\\\\",\\\\n      \\\\\\\"other-educationaldegree\\\\\\\",\\\\n      \\\\\\\"other-language\\\\\\\",\\\\n      \\\\\\\"person-athlete\\\\\\\",\\\\n      \\\\\\\"product-other\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"art-film\\\\\\\",\\\\n      \\\\\\\"building-hospital\\\\\\\",\\\\n      \\\\\\\"organization-politicalparty\\\\\\\",\\\\n      \\\\\\\"other-law\\\\\\\",\\\\n      \\\\\\\"person-other\\\\\\\",\\\\n      \\\\\\\"product-car\\\\\\\",\\\\n      \\\\\\\"product-ship\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"building-other\\\\\\\",\\\\n      \\\\\\\"organization-education\\\\\\\",\\\\n      \\\\\\\"organization-sportsteam\\\\\\\",\\\\n      \\\\\\\"person-scholar\\\\\\\",\\\\n      \\\\\\\"product-food\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"building-library\\\\\\\",\\\\n      \\\\\\\"person-politician\\\\\\\",\\\\n      \\\\\\\"product-airplane\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"event-other\\\\\\\",\\\\n      \\\\\\\"person-director\\\\\\\",\\\\n      \\\\\\\"person-soldier\\\\\\\"\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"tau\\\\\\\": 0.867604847997427,\\\\n  \\\\\\\"k\\\\\\\": 1.0,\\\\n  \\\\\\\"graph_stats\\\\\\\": {\\\\n    \\\\\\\"n_nodes\\\\\\\": 66,\\\\n    \\\\\\\"n_edges\\\\\\\": 284,\\\\n    \\\\\\\"n_colors\\\\\\\": 8,\\\\n    \\\\\\\"max_batch_size\\\\\\\": 18,\\\\n    \\\\\\\"min_batch_size\\\\\\\": 3,\\\\n    \\\\\\\"mean_batch_size\\\\\\\": 8.25,\\\\n    \\\\\\\"batch_sizes\\\\\\\": [\\\\n      18,\\\\n      12,\\\\n      11,\\\\n      7,\\\\n      7,\\\\n      5,\\\\n      3,\\\\n      3\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"sdgd_zero\\\",\\n  \\\"n_batches\\\": 8,\\n  \\\"batch_sizes\\\": [\\n    18,\\n    12,\\n    11,\\n    7,\\n    7,\\n    5,\\n    3,\\n    3\\n  ],\\n  \\\"batches\\\": [\\n    [\\n      \\\"art-music\\\",\\n      \\\"art-painting\\\",\\n      \\\"building-airport\\\",\\n      \\\"building-restaurant\\\",\\n      \\\"event-attack/battle/war/militaryconflict\\\",\\n      \\\"event-disaster\\\",\\n      \\\"event-election\\\",\\n      \\\"location-GPE\\\",\\n      \\\"location-island\\\",\\n      \\\"location-road/railway/highway/transit\\\",\\n      \\\"organization-media/newspaper\\\",\\n      \\\"organization-other\\\",\\n      \\\"other-currency\\\",\\n      \\\"other-god\\\",\\n      \\\"other-livingthing\\\",\\n      \\\"other-medical\\\",\\n      \\\"person-actor\\\",\\n      \\\"product-weapon\\\"\\n    ],\\n    [\\n      \\\"building-sportsfacility\\\",\\n      \\\"event-protest\\\",\\n      \\\"event-sportsevent\\\",\\n      \\\"location-other\\\",\\n      \\\"location-park\\\",\\n      \\\"organization-government/governmentagency\\\",\\n      \\\"organization-showorganization\\\",\\n      \\\"other-award\\\",\\n      \\\"other-biologything\\\",\\n      \\\"person-artist/author\\\",\\n      \\\"product-software\\\",\\n      \\\"product-train\\\"\\n    ],\\n    [\\n      \\\"art-other\\\",\\n      \\\"art-writtenart\\\",\\n      \\\"building-hotel\\\",\\n      \\\"building-theater\\\",\\n      \\\"location-bodiesofwater\\\",\\n      \\\"organization-religion\\\",\\n      \\\"organization-sportsleague\\\",\\n      \\\"other-astronomything\\\",\\n      \\\"other-chemicalthing\\\",\\n      \\\"other-disease\\\",\\n      \\\"product-game\\\"\\n    ],\\n    [\\n      \\\"art-broadcastprogram\\\",\\n      \\\"location-mountain\\\",\\n      \\\"organization-company\\\",\\n      \\\"other-educationaldegree\\\",\\n      \\\"other-language\\\",\\n      \\\"person-athlete\\\",\\n      \\\"product-other\\\"\\n    ],\\n    [\\n      \\\"art-film\\\",\\n      \\\"building-hospital\\\",\\n      \\\"organization-politicalparty\\\",\\n      \\\"other-law\\\",\\n      \\\"person-other\\\",\\n      \\\"product-car\\\",\\n      \\\"product-ship\\\"\\n    ],\\n    [\\n      \\\"building-other\\\",\\n      \\\"organization-education\\\",\\n      \\\"organization-sportsteam\\\",\\n      \\\"person-scholar\\\",\\n      \\\"product-food\\\"\\n    ],\\n    [\\n      \\\"building-library\\\",\\n      \\\"person-politician\\\",\\n      \\\"product-airplane\\\"\\n    ],\\n    [\\n      \\\"event-other\\\",\\n      \\\"person-director\\\",\\n      \\\"person-soldier\\\"\\n    ]\\n  ],\\n  \\\"tau\\\": 0.867604847997427,\\n  \\\"k\\\": 1.0,\\n  \\\"graph_stats\\\": {\\n    \\\"n_nodes\\\": 66,\\n    \\\"n_edges\\\": 284,\\n    \\\"n_colors\\\": 8,\\n    \\\"max_batch_size\\\": 18,\\n    \\\"min_batch_size\\\": 3,\\n    \\\"mean_batch_size\\\": 8.25,\\n    \\\"batch_sizes\\\": [\\n      18,\\n      12,\\n      11,\\n      7,\\n      7,\\n      5,\\n      3,\\n      3\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T11:40:32.009Z_
+
+<details><summary>↩ Tool result · `toolu_01PgLYsgss7G5y7o4xj9iZSx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"random_batch\\\",\\n  \\\"n_batches\\\": 8,\\n  \\\"batch_sizes\\\": [\\n    9,\\n    9,\\n    8,\\n    8,\\n    8,\\n    8,\\n    8,\\n    8\\n  ],\\n  \\\"batches\\\": [\\n    [\\n      \\\"product-ship\\\",\\n      \\\"event-election\\\",\\n      \\\"location-mountain\\\",\\n      \\\"other-disease\\\",\\n      \\\"location-bodiesofwater\\\",\\n      \\\"person-scholar\\\",\\n      \\\"building-theater\\\",\\n      \\\"product-food\\\",\\n      \\\"art-other\\\"\\n    ],\\n    [\\n      \\\"other-medical\\\",\\n      \\\"person-actor\\\",\\n      \\\"other-language\\\",\\n      \\\"person-athlete\\\",\\n      \\\"person-director\\\",\\n      \\\"other-currency\\\",\\n      \\\"person-politician\\\",\\n      \\\"other-educationaldegree\\\",\\n      \\\"event-attack/battle/war/militaryconflict\\\"\\n    ],\\n    [\\n      \\\"organization-government/governmentagency\\\",\\n      \\\"building-library\\\",\\n      \\\"other-god\\\",\\n      \\\"product-train\\\",\\n      \\\"building-other\\\",\\n      \\\"building-sportsfacility\\\",\\n      \\\"art-film\\\",\\n      \\\"building-airport\\\"\\n    ],\\n    [\\n      \\\"location-park\\\",\\n      \\\"organization-religion\\\",\\n      \\\"product-game\\\",\\n      \\\"other-chemicalthing\\\",\\n      \\\"art-broadcastprogram\\\",\\n      \\\"product-software\\\",\\n      \\\"art-music\\\",\\n      \\\"other-livingthing\\\"\\n    ],\\n    [\\n      \\\"building-hospital\\\",\\n      \\\"organization-media/newspaper\\\",\\n      \\\"event-sportsevent\\\",\\n      \\\"location-other\\\",\\n      \\\"event-other\\\",\\n      \\\"person-artist/author\\\",\\n      \\\"organization-company\\\",\\n      \\\"building-hotel\\\"\\n    ],\\n    [\\n      \\\"other-law\\\",\\n      \\\"location-GPE\\\",\\n      \\\"location-island\\\",\\n      \\\"product-car\\\",\\n      \\\"organization-education\\\",\\n      \\\"other-award\\\",\\n      \\\"other-astronomything\\\",\\n      \\\"product-weapon\\\"\\n    ],\\n    [\\n      \\\"product-airplane\\\",\\n      \\\"event-protest\\\",\\n      \\\"building-restaurant\\\",\\n      \\\"art-painting\\\",\\n      \\\"person-soldier\\\",\\n      \\\"organization-politicalparty\\\",\\n      \\\"art-writtenart\\\",\\n      \\\"event-disaster\\\"\\n    ],\\n    [\\n      \\\"organization-other\\\",\\n      \\\"person-other\\\",\\n      \\\"other-biologything\\\",\\n      \\\"organization-sportsteam\\\",\\n      \\\"location-road/railway/highway/transit\\\",\\n      \\\"product-other\\\",\\n      \\\"organization-showorganization\\\",\\n      \\\"organization-sportsleague\\\"\\n    ]\\n  ],\\n  \\\"tau\\\": 0.867604847997427,\\n  \\\"k\\\": 1.0,\\n  \\\"graph_stats\\\": {\\n    \\\"n_nodes\\\": 66,\\n    \\\"n_edges\\\": 284,\\n    \\\"n_colors\\\": 8,\\n    \\\"max_batch_size\\\": 18,\\n    \\\"min_batch_size\\\": 3,\\n    \\\"mean_batch_size\\\": 8.25,\\n    \\\"batch_sizes\\\": [\\n      18,\\n      12,\\n      11,\\n      7,\\n      7,\\n      5,\\n      3,\\n      3\\n    ]\\n  },\\n  \\\"seed\\\": 42,\\n  \\\"ref_n_batches\\\": 8\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "7032fcf6-5564-4278-8631-dbb006ed4d83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"random_batch\\\\\\\",\\\\n  \\\\\\\"n_batches\\\\\\\": 8,\\\\n  \\\\\\\"batch_sizes\\\\\\\": [\\\\n    9,\\\\n    9,\\\\n    8,\\\\n    8,\\\\n    8,\\\\n    8,\\\\n    8,\\\\n    8\\\\n  ],\\\\n  \\\\\\\"batches\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"product-ship\\\\\\\",\\\\n      \\\\\\\"event-election\\\\\\\",\\\\n      \\\\\\\"location-mountain\\\\\\\",\\\\n      \\\\\\\"other-disease\\\\\\\",\\\\n      \\\\\\\"location-bodiesofwater\\\\\\\",\\\\n      \\\\\\\"person-scholar\\\\\\\",\\\\n      \\\\\\\"building-theater\\\\\\\",\\\\n      \\\\\\\"product-food\\\\\\\",\\\\n      \\\\\\\"art-other\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"other-medical\\\\\\\",\\\\n      \\\\\\\"person-actor\\\\\\\",\\\\n      \\\\\\\"other-language\\\\\\\",\\\\n      \\\\\\\"person-athlete\\\\\\\",\\\\n      \\\\\\\"person-director\\\\\\\",\\\\n      \\\\\\\"other-currency\\\\\\\",\\\\n      \\\\\\\"person-politician\\\\\\\",\\\\n      \\\\\\\"other-educationaldegree\\\\\\\",\\\\n      \\\\\\\"event-attack/battle/war/militaryconflict\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"organization-government/governmentagency\\\\\\\",\\\\n      \\\\\\\"building-library\\\\\\\",\\\\n      \\\\\\\"other-god\\\\\\\",\\\\n      \\\\\\\"product-train\\\\\\\",\\\\n      \\\\\\\"building-other\\\\\\\",\\\\n      \\\\\\\"building-sportsfacility\\\\\\\",\\\\n      \\\\\\\"art-film\\\\\\\",\\\\n      \\\\\\\"building-airport\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"location-park\\\\\\\",\\\\n      \\\\\\\"organization-religion\\\\\\\",\\\\n      \\\\\\\"product-game\\\\\\\",\\\\n      \\\\\\\"other-chemicalthing\\\\\\\",\\\\n      \\\\\\\"art-broadcastprogram\\\\\\\",\\\\n      \\\\\\\"product-software\\\\\\\",\\\\n      \\\\\\\"art-music\\\\\\\",\\\\n      \\\\\\\"other-livingthing\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"building-hospital\\\\\\\",\\\\n      \\\\\\\"organization-media/newspaper\\\\\\\",\\\\n      \\\\\\\"event-sportsevent\\\\\\\",\\\\n      \\\\\\\"location-other\\\\\\\",\\\\n      \\\\\\\"event-other\\\\\\\",\\\\n      \\\\\\\"person-artist/author\\\\\\\",\\\\n      \\\\\\\"organization-company\\\\\\\",\\\\n      \\\\\\\"building-hotel\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"other-law\\\\\\\",\\\\n      \\\\\\\"location-GPE\\\\\\\",\\\\n      \\\\\\\"location-island\\\\\\\",\\\\n      \\\\\\\"product-car\\\\\\\",\\\\n      \\\\\\\"organization-education\\\\\\\",\\\\n      \\\\\\\"other-award\\\\\\\",\\\\n      \\\\\\\"other-astronomything\\\\\\\",\\\\n      \\\\\\\"product-weapon\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"product-airplane\\\\\\\",\\\\n      \\\\\\\"event-protest\\\\\\\",\\\\n      \\\\\\\"building-restaurant\\\\\\\",\\\\n      \\\\\\\"art-painting\\\\\\\",\\\\n      \\\\\\\"person-soldier\\\\\\\",\\\\n      \\\\\\\"organization-politicalparty\\\\\\\",\\\\n      \\\\\\\"art-writtenart\\\\\\\",\\\\n      \\\\\\\"event-disaster\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"organization-other\\\\\\\",\\\\n      \\\\\\\"person-other\\\\\\\",\\\\n      \\\\\\\"other-biologything\\\\\\\",\\\\n      \\\\\\\"organization-sportsteam\\\\\\\",\\\\n      \\\\\\\"location-road/railway/highway/transit\\\\\\\",\\\\n      \\\\\\\"product-other\\\\\\\",\\\\n      \\\\\\\"organization-showorganization\\\\\\\",\\\\n      \\\\\\\"organization-sportsleague\\\\\\\"\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"tau\\\\\\\": 0.867604847997427,\\\\n  \\\\\\\"k\\\\\\\": 1.0,\\\\n  \\\\\\\"graph_stats\\\\\\\": {\\\\n    \\\\\\\"n_nodes\\\\\\\": 66,\\\\n    \\\\\\\"n_edges\\\\\\\": 284,\\\\n    \\\\\\\"n_colors\\\\\\\": 8,\\\\n    \\\\\\\"max_batch_size\\\\\\\": 18,\\\\n    \\\\\\\"min_batch_size\\\\\\\": 3,\\\\n    \\\\\\\"mean_batch_size\\\\\\\": 8.25,\\\\n    \\\\\\\"batch_sizes\\\\\\\": [\\\\n      18,\\\\n      12,\\\\n      11,\\\\n      7,\\\\n      7,\\\\n      5,\\\\n      3,\\\\n      3\\\\n    ]\\\\n  },\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"ref_n_batches\\\\\\\": 8\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"random_batch\\\",\\n  \\\"n_batches\\\": 8,\\n  \\\"batch_sizes\\\": [\\n    9,\\n    9,\\n    8,\\n    8,\\n    8,\\n    8,\\n    8,\\n    8\\n  ],\\n  \\\"batches\\\": [\\n    [\\n      \\\"product-ship\\\",\\n      \\\"event-election\\\",\\n      \\\"location-mountain\\\",\\n      \\\"other-disease\\\",\\n      \\\"location-bodiesofwater\\\",\\n      \\\"person-scholar\\\",\\n      \\\"building-theater\\\",\\n      \\\"product-food\\\",\\n      \\\"art-other\\\"\\n    ],\\n    [\\n      \\\"other-medical\\\",\\n      \\\"person-actor\\\",\\n      \\\"other-language\\\",\\n      \\\"person-athlete\\\",\\n      \\\"person-director\\\",\\n      \\\"other-currency\\\",\\n      \\\"person-politician\\\",\\n      \\\"other-educationaldegree\\\",\\n      \\\"event-attack/battle/war/militaryconflict\\\"\\n    ],\\n    [\\n      \\\"organization-government/governmentagency\\\",\\n      \\\"building-library\\\",\\n      \\\"other-god\\\",\\n      \\\"product-train\\\",\\n      \\\"building-other\\\",\\n      \\\"building-sportsfacility\\\",\\n      \\\"art-film\\\",\\n      \\\"building-airport\\\"\\n    ],\\n    [\\n      \\\"location-park\\\",\\n      \\\"organization-religion\\\",\\n      \\\"product-game\\\",\\n      \\\"other-chemicalthing\\\",\\n      \\\"art-broadcastprogram\\\",\\n      \\\"product-software\\\",\\n      \\\"art-music\\\",\\n      \\\"other-livingthing\\\"\\n    ],\\n    [\\n      \\\"building-hospital\\\",\\n      \\\"organization-media/newspaper\\\",\\n      \\\"event-sportsevent\\\",\\n      \\\"location-other\\\",\\n      \\\"event-other\\\",\\n      \\\"person-artist/author\\\",\\n      \\\"organization-company\\\",\\n      \\\"building-hotel\\\"\\n    ],\\n    [\\n      \\\"other-law\\\",\\n      \\\"location-GPE\\\",\\n      \\\"location-island\\\",\\n      \\\"product-car\\\",\\n      \\\"organization-education\\\",\\n      \\\"other-award\\\",\\n      \\\"other-astronomything\\\",\\n      \\\"product-weapon\\\"\\n    ],\\n    [\\n      \\\"product-airplane\\\",\\n      \\\"event-protest\\\",\\n      \\\"building-restaurant\\\",\\n      \\\"art-painting\\\",\\n      \\\"person-soldier\\\",\\n      \\\"organization-politicalparty\\\",\\n      \\\"art-writtenart\\\",\\n      \\\"event-disaster\\\"\\n    ],\\n    [\\n      \\\"organization-other\\\",\\n      \\\"person-other\\\",\\n      \\\"other-biologything\\\",\\n      \\\"organization-sportsteam\\\",\\n      \\\"location-road/railway/highway/transit\\\",\\n      \\\"product-other\\\",\\n      \\\"organization-showorganization\\\",\\n      \\\"organization-sportsleague\\\"\\n    ]\\n  ],\\n  \\\"tau\\\": 0.867604847997427,\\n  \\\"k\\\": 1.0,\\n  \\\"graph_stats\\\": {\\n    \\\"n_nodes\\\": 66,\\n    \\\"n_edges\\\": 284,\\n    \\\"n_colors\\\": 8,\\n    \\\"max_batch_size\\\": 18,\\n    \\\"min_batch_size\\\": 3,\\n    \\\"mean_batch_size\\\": 8.25,\\n    \\\"batch_sizes\\\": [\\n      18,\\n      12,\\n      11,\\n      7,\\n      7,\\n      5,\\n      3,\\n      3\\n    ]\\n  },\\n  \\\"seed\\\": 42,\\n  \\\"ref_n_batches\\\": 8\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have the key summary data. Let me note the crucial numbers:
+
+**Summary counts:**
+| Mode | pred_count | gold_count | tp | precision | recall | f1 |
+|------|-----------|------------|-----|-----------|--------|-----|
+| single_pass | 1687 | 2582 | 950 | 0.5631 | 0.3679 | 0.4451 |
+| sdgd_zero | 3870 | 2582 | 811 | 0.2096 | 0.3141 | 0.2514 |
+
+
+| random_batch | 4624 | 2582 | 1152 | 0.2491 | 0.4462 | 0.3197 |
+| per_type | 7792 | 2582 | 1512 | 0.1940 | 0.5856 | 0.2915 |
+
+I'm seeing a clear trade-off pattern here: as the number of batches increases, the model generates more predictions and catches more true positives, which boosts recall significantly, but this comes at the cost of precision dropping sharply. The per_type approach is the most aggressive, making over three times as many predictions as the gold standard, yet it still manages to find the most true positives overall.
+
+What's striking is that sdgd_zero, despite being designed specifically to handle confusable entity types, actually underperforms random batching—it makes 50% more predictions than gold but finds fewer correct entities than random_batch does. This suggests the strategy isn't working as intended.
+
+I need to dig into the per-batch breakdown and examine the actual predictions to understand what's going wrong. Since the prediction files are quite large, I'm going to write a script that can process them directly on the server and give me the detailed analysis I need.
+
+Writing analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "45385655-d21f-4a26-8a66-7961eb71e631",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K9pXypCMzr3DucyqgLTd74",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10453,
+      "cache_read_input_tokens": 25690,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10453
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+关键数据已收集。现在需要对 predictions 文件做深度分析。我在服务器上跑 Python 脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "ba092ce6-3386-44bf-a715-2233a914d72f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K9pXypCMzr3DucyqgLTd74",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10453,
+      "cache_read_input_tokens": 25690,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10453
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GfApmsjvJxFaueWetUSUav`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -100 /root/schema-dag-extraction/artifacts/exp008/sdgd_zero_predictions.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "eb731ab5-1638-4484-abf8-f48cbe0afa07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K9pXypCMzr3DucyqgLTd74",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10453,
+      "cache_read_input_tokens": 25690,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10453
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T11:40:46.056Z_
+
+<details><summary>↩ Tool result · `toolu_01GfApmsjvJxFaueWetUSUav`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  [\\n    {\\n      \\\"text\\\": \\\"Grill Room\\\",\\n      \\\"type\\\": \\\"building-sportsfacility\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Taft Hotel\\\",\\n      \\\"type\\\": \\\"building-sportsfacility\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"New York\\\",\\n      \\\"type\\\": \\\"location-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\",\\n      \\\"type\\\": \\\"organization-showorganization\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Taft Hotel\\\",\\n      \\\"type\\\": \\\"building-hotel\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Taft Hotel\\\",\\n      \\\"type\\\": \\\"building-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Taft Hotel\\\",\\n      \\\"type\\\": \\\"building-library\\\"\\n    }\\n  ],\\n  [\\n    {\\n      \\\"text\\\": \\\"Elkin Memorial Park\\\",\\n      \\\"type\\\": \\\"location-park\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Elkin Memorial Park\\\",\\n      \\\"type\\\": \\\"building-other\\\"\\n    }\\n  ],\\n  [],\\n  [\\n    {\\n      \\\"text\\\": \\\"Major Larry G. Messinger\\\",\\n      \\\"type\\\": \\\"person-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Major Larry G. Messinger\\\",\\n      \\\"type\\\": \\\"person-scholar\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"B-52\\\",\\n      \\\"type\\\": \\\"product-airplane\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Major Larry G. Messinger\\\",\\n      \\\"type\\\": \\\"person-politician\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Major Larry G. Messinger\\\",\\n      \\\"type\\\": \\\"person-soldier\\\"\\n    }\\n  ],\\n  [],\\n  [\\n    {\\n      \\\"text\\\": \\\"Elin Hilderbrand\\\",\\n      \\\"type\\\": \\\"person-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Elin Hilderbrand\\\",\\n      \\\"type\\\": \\\"person-politician\\\"\\n    }\\n  ],\\n  [\\n    {\\n      \\\"text\\\": \\\"DB5\\\",\\n      \\\"type\\\": \\\"building-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"DB7\\\",\\n      \\\"type\\\": \\\"building-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Aston Martin\\\",\\n      \\\"type\\\": \\\"organization-education\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Marek\\\",\\n      \\\"type\\\": \\\"person-scholar\\\"\\n    }\\n  ],\\n  [\\n    {\\n      \\\"text\\\": \\\"CNN\\\",\\n      \\\"type\\\": \\\"organization-media/newspaper\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"The Huffington Post\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "1c56d060-69b8-4cfb-b348-52ac23d33cc5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  [\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Grill Room\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"building-sportsfacility\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"building-sportsfacility\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"New York\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"location-other\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"George Hall and His Hotel Taft Orchestra\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"organization-showorganization\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"building-hotel\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"building-other\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Taft Hotel\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"building-library\\\\\\\"\\\\n    }\\\\n  ],\\\\n  [\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Elkin Memorial Park\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"location-park\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Elkin Memorial Park\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"building-other\\\\\\\"\\\\n    }\\\\n  ],\\\\n  [],\\\\n  [\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Major Larry G. Messinger\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"person-other\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Major Larry G. Messinger\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"person-scholar\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"B-52\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"product-airplane\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Major Larry G. Messinger\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"person-politician\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Major Larry G. Messinger\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"person-soldier\\\\\\\"\\\\n    }\\\\n  ],\\\\n  [],\\\\n  [\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Elin Hilderbrand\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"person-other\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Elin Hilderbrand\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"person-politician\\\\\\\"\\\\n    }\\\\n  ],\\\\n  [\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"DB5\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"building-other\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"DB7\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"building-other\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Aston Martin\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"organization-education\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"Marek\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"person-scholar\\\\\\\"\\\\n    }\\\\n  ],\\\\n  [\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"CNN\\\\\\\",\\\\n      \\\\\\\"type\\\\\\\": \\\\\\\"organization-media/newspaper\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"text\\\\\\\": \\\\\\\"The Huffington Post\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  [\\n    {\\n      \\\"text\\\": \\\"Grill Room\\\",\\n      \\\"type\\\": \\\"building-sportsfacility\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Taft Hotel\\\",\\n      \\\"type\\\": \\\"building-sportsfacility\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"New York\\\",\\n      \\\"type\\\": \\\"location-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"George Hall and His Hotel Taft Orchestra\\\",\\n      \\\"type\\\": \\\"organization-showorganization\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Taft Hotel\\\",\\n      \\\"type\\\": \\\"building-hotel\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Taft Hotel\\\",\\n      \\\"type\\\": \\\"building-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Taft Hotel\\\",\\n      \\\"type\\\": \\\"building-library\\\"\\n    }\\n  ],\\n  [\\n    {\\n      \\\"text\\\": \\\"Elkin Memorial Park\\\",\\n      \\\"type\\\": \\\"location-park\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Elkin Memorial Park\\\",\\n      \\\"type\\\": \\\"building-other\\\"\\n    }\\n  ],\\n  [],\\n  [\\n    {\\n      \\\"text\\\": \\\"Major Larry G. Messinger\\\",\\n      \\\"type\\\": \\\"person-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Major Larry G. Messinger\\\",\\n      \\\"type\\\": \\\"person-scholar\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"B-52\\\",\\n      \\\"type\\\": \\\"product-airplane\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Major Larry G. Messinger\\\",\\n      \\\"type\\\": \\\"person-politician\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Major Larry G. Messinger\\\",\\n      \\\"type\\\": \\\"person-soldier\\\"\\n    }\\n  ],\\n  [],\\n  [\\n    {\\n      \\\"text\\\": \\\"Elin Hilderbrand\\\",\\n      \\\"type\\\": \\\"person-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Elin Hilderbrand\\\",\\n      \\\"type\\\": \\\"person-politician\\\"\\n    }\\n  ],\\n  [\\n    {\\n      \\\"text\\\": \\\"DB5\\\",\\n      \\\"type\\\": \\\"building-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"DB7\\\",\\n      \\\"type\\\": \\\"building-other\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Aston Martin\\\",\\n      \\\"type\\\": \\\"organization-education\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"Marek\\\",\\n      \\\"type\\\": \\\"person-scholar\\\"\\n    }\\n  ],\\n  [\\n    {\\n      \\\"text\\\": \\\"CNN\\\",\\n      \\\"type\\\": \\\"organization-media/newspaper\\\"\\n    },\\n    {\\n      \\\"text\\\": \\\"The Huffington Post\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good - the predictions are a list of lists (one per sample), where each inner list contains entities predicted across all batches (already merged). I can see the cross-batch hallucination clearly: "Taft Hotel" is predicted as building-sportsfacility, building-hotel, building-other, building-library - same text entity being tagged with multiple types across different batches.
+
+Now let me write a comprehensive Python analysis script on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "ee0f6d4a-7179-4f9b-98ca-47ebb996e58d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SBEgUFmRbqy7S2rbjTEwwp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1788,
+      "cache_read_input_tokens": 36143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1788
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+可以清楚看到问题了——"Taft Hotel" 在不同 batch 中被预测为 4 种不同类型。我写一个分析脚本在服务器上跑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "86de392b-ec29-45d6-997d-640350fdf12b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SBEgUFmRbqy7S2rbjTEwwp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1788,
+      "cache_read_input_tokens": 36143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1788
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01W1c7zxUjMNC53cDWineP94`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/artifacts/exp008/diagnose.py << 'PYEOF'\nimport json\nimport sys\nfrom collections import Counter, defaultdict\n\nBASE = \"/root/schema-dag-extraction/artifacts/exp008\"\n\ndef load(name):\n    with open(f\"{BASE}/{name}\") as f:\n        return json.load(f)\n\n# Load all predictions and results\nmodes = [\"single_pass\", \"sdgd_zero\", \"random_batch\", \"per_type\"]\npreds = {m: load(f\"{m}_predictions.json\") for m in modes}\nresults = {m: load(f\"{m}_results.json\") for m in modes}\nsummary = load(\"analysis_summary.json\")\n\n# Load decompositions\ndecomp_sdgd = load(\"decomposition_sdgd_zero.json\")\ndecomp_random = load(\"decomposition_random_batch.json\")\n\nprint(\"=\" * 80)\nprint(\"ANALYSIS 1: Per-batch pred/gold distribution\")\nprint(\"=\" * 80)\n\n# For single_pass\nsp_metrics = results[\"single_pass\"][\"metrics\"]\nprint(f\"\\n--- single_pass ---\")\nprint(f\"  pred_count={sp_metrics['pred_count']}, gold_count={sp_metrics['gold_count']}, ratio={sp_metrics['pred_count']/sp_metrics['gold_count']:.3f}\")\n\n# Per-batch details from analysis_summary\nfor mode in [\"sdgd_zero\", \"random_batch\"]:\n    print(f\"\\n--- {mode} ---\")\n    m = results[mode][\"metrics\"]\n    print(f\"  MERGED: pred={m['pred_count']}, gold={m['gold_count']}, ratio={m['pred_count']/m['gold_count']:.3f}, tp={m['tp']}\")\n    \n    pb = summary[\"per_batch_analysis\"][mode][\"per_batch\"]\n    for b in pb:\n        ratio = b[\"pred_count\"] / b[\"gold_count\"] if b[\"gold_count\"] > 0 else float('inf')\n        print(f\"  batch {b['batch_idx']}: types={b['n_types']:2d}, pred={b['pred_count']:4d}, gold={b['gold_count']:4d}, \"\n              f\"ratio={ratio:.3f}, tp={b['tp']:3d}, P={b['precision']:.3f}, R={b['recall']:.3f}, F1={b['f1']:.3f}\")\n\n# per_type summary\nprint(f\"\\n--- per_type ---\")\npt_m = results[\"per_type\"][\"metrics\"]\nprint(f\"  MERGED: pred={pt_m['pred_count']}, gold={pt_m['gold_count']}, ratio={pt_m['pred_count']/pt_m['gold_count']:.3f}, tp={pt_m['tp']}\")\n\nprint(\"\\n\" + \"=\" * 80)\nprint(\"ANALYSIS 2: Cross-batch hallucination (sdgd_zero)\")\nprint(\"=\" * 80)\n\n# For each sample, count how many times each (text) appears with different types\ndup_counts = Counter()  # how many predictions per unique text span across all samples\ntype_conflicts = 0\ntotal_preds = 0\ntotal_unique_spans = 0\nsamples_with_conflicts = 0\n\n# Track which types get hallucinated across batches\ntype_hallucination_counter = Counter()\ntype_correct_counter = Counter()\n\n# Build per-sample analysis\nfor sample_idx, sample_preds in enumerate(preds[\"sdgd_zero\"]):\n    total_preds += len(sample_preds)\n    \n    # Group by text span\n    span_types = defaultdict(list)\n    for ent in sample_preds:\n        span_types[ent[\"text\"]].append(ent[\"type\"])\n    \n    total_unique_spans += len(span_types)\n    \n    has_conflict = False\n    for text, types in span_types.items():\n        if len(types) > 1:\n            has_conflict = True\n            type_conflicts += 1\n            dup_counts[len(types)] += 1\n            for t in types:\n                type_hallucination_counter[t] += 1\n        else:\n            dup_counts[1] += 1\n    \n    if has_conflict:\n        samples_with_conflicts += 1\n\nprint(f\"\\nTotal predictions: {total_preds}\")\nprint(f\"Total unique text spans: {total_unique_spans}\")\nprint(f\"Spans with type conflicts (same text, different types): {type_conflicts}\")\nprint(f\"Samples with at least one conflict: {samples_with_conflicts}/{len(preds['sdgd_zero'])}\")\nprint(f\"\\nDuplicate distribution (# types per unique span):\")\nfor k in sorted(dup_counts.keys()):\n    print(f\"  {k} type(s): {dup_counts[k]} spans ({dup_counts[k]/total_unique_spans*100:.1f}%)\")\n\n# Same analysis for random_batch\nprint(f\"\\n--- Same analysis for random_batch ---\")\nrb_dup_counts = Counter()\nrb_type_conflicts = 0\nrb_total_preds = 0\nrb_total_unique_spans = 0\nrb_samples_with_conflicts = 0\n\nfor sample_idx, sample_preds in enumerate(preds[\"random_batch\"]):\n    rb_total_preds += len(sample_preds)\n    span_types = defaultdict(list)\n    for ent in sample_preds:\n        span_types[ent[\"text\"]].append(ent[\"type\"])\n    rb_total_unique_spans += len(span_types)\n    \n    has_conflict = False\n    for text, types in span_types.items():\n        if len(types) > 1:\n            has_conflict = True\n            rb_type_conflicts += 1\n            rb_dup_counts[len(types)] += 1\n        else:\n            rb_dup_counts[1] += 1\n    if has_conflict:\n        rb_samples_with_conflicts += 1\n\nprint(f\"Total predictions: {rb_total_preds}\")\nprint(f\"Total unique text spans: {rb_total_unique_spans}\")\nprint(f\"Spans with type conflicts: {rb_type_conflicts}\")\nprint(f\"Samples with at least one conflict: {rb_samples_with_conflicts}/{len(preds['random_batch'])}\")\nprint(f\"\\nDuplicate distribution:\")\nfor k in sorted(rb_dup_counts.keys()):\n    print(f\"  {k} type(s): {rb_dup_counts[k]} spans ({rb_dup_counts[k]/rb_total_unique_spans*100:.1f}%)\")\n\n# Top hallucinated types in sdgd_zero\nprint(f\"\\n--- Top types involved in cross-batch conflicts (sdgd_zero) ---\")\nfor t, cnt in type_hallucination_counter.most_common(20):\n    print(f\"  {t}: {cnt}\")\n\n# Analyze which batch types leak into other batches\nprint(f\"\\n--- Out-of-batch prediction analysis (sdgd_zero) ---\")\n# Build type -> batch mapping\ntype_to_batch = {}\nfor bi, batch_types in enumerate(decomp_sdgd[\"batches\"]):\n    for t in batch_types:\n        type_to_batch[t] = bi\n\n# Count predictions where the predicted type was NOT in the batch's schema\n# We can't tell which batch produced each prediction from merged results,\n# but we CAN count how many predictions are for types that appear in multiple spans\n# A more useful metric: for spans predicted with multiple types, \n# how many of those type assignments are \"wrong\" (not the gold type)?\n\nprint(\"\\n\" + \"=\" * 80)\nprint(\"ANALYSIS 3: Per-type F1 comparison\")\nprint(\"=\" * 80)\n\n# Extract per-type metrics from analysis_summary\nper_type_metrics = {}\nfor mode in modes:\n    if \"per_type_metrics\" in summary and mode in summary[\"per_type_metrics\"]:\n        per_type_metrics[mode] = summary[\"per_type_metrics\"][mode]\n\nif per_type_metrics:\n    # Get all types\n    all_types = sorted(set().union(*[set(per_type_metrics[m].keys()) for m in per_type_metrics]))\n    \n    print(f\"\\n{'Type':<50} {'SP_F1':>7} {'SDGD_F1':>7} {'RB_F1':>7} {'PT_F1':>7} {'SDGD-SP':>8} {'RB-SP':>8}\")\n    print(\"-\" * 140)\n    \n    type_deltas = []\n    for t in all_types:\n        sp_f1 = per_type_metrics.get(\"single_pass\", {}).get(t, {}).get(\"f1\", 0)\n        sdgd_f1 = per_type_metrics.get(\"sdgd_zero\", {}).get(t, {}).get(\"f1\", 0)\n        rb_f1 = per_type_metrics.get(\"random_batch\", {}).get(t, {}).get(\"f1\", 0)\n        pt_f1 = per_type_metrics.get(\"per_type\", {}).get(t, {}).get(\"f1\", 0)\n        \n        delta_sdgd = sdgd_f1 - sp_f1\n        delta_rb = rb_f1 - sp_f1\n        \n        type_deltas.append((t, sp_f1, sdgd_f1, rb_f1, pt_f1, delta_sdgd, delta_rb))\n        print(f\"  {t:<48} {sp_f1:>7.3f} {sdgd_f1:>7.3f} {rb_f1:>7.3f} {pt_f1:>7.3f} {delta_sdgd:>+8.3f} {delta_rb:>+8.3f}\")\n    \n    # Summary stats\n    sdgd_better = sum(1 for _, _, _, _, _, ds, _ in type_deltas if ds > 0)\n    rb_better = sum(1 for _, _, _, _, _, _, dr in type_deltas if dr > 0)\n    both_worse = sum(1 for _, _, _, _, _, ds, dr in type_deltas if ds < 0 and dr < 0)\n    sdgd_worse_than_rb = sum(1 for _, _, _, _, _, ds, dr in type_deltas if ds < dr)\n    \n    print(f\"\\n--- Summary ---\")\n    print(f\"Types where SDGD > single_pass: {sdgd_better}/{len(type_deltas)}\")\n    print(f\"Types where random > single_pass: {rb_better}/{len(type_deltas)}\")\n    print(f\"Types where both worse than single_pass: {both_worse}/{len(type_deltas)}\")\n    print(f\"Types where SDGD < random_batch: {sdgd_worse_than_rb}/{len(type_deltas)}\")\n    \n    # Top types where SDGD is much worse than random\n    print(f\"\\n--- Types where SDGD much worse than random (sorted by gap) ---\")\n    sorted_by_gap = sorted(type_deltas, key=lambda x: x[5] - x[6])\n    for t, sp, sdgd, rb, pt, ds, dr in sorted_by_gap[:15]:\n        gap = ds - dr\n        print(f\"  {t:<48} SDGD_F1={sdgd:.3f} RB_F1={rb:.3f} gap={gap:+.3f} (SP={sp:.3f})\")\n    \n    # Check if high-frequency types are more affected\n    print(f\"\\n--- Relationship between gold count and F1 delta ---\")\n    sp_type_data = per_type_metrics.get(\"single_pass\", {})\n    type_by_gold = sorted(\n        [(t, sp_type_data.get(t, {}).get(\"gold_count\", 0)) for t in all_types],\n        key=lambda x: -x[1]\n    )\n    print(f\"{'Type':<48} {'Gold':>5} {'SP_F1':>7} {'SDGD_F1':>7} {'RB_F1':>7}\")\n    for t, gc in type_by_gold[:20]:\n        sp_f1 = per_type_metrics.get(\"single_pass\", {}).get(t, {}).get(\"f1\", 0)\n        sdgd_f1 = per_type_metrics.get(\"sdgd_zero\", {}).get(t, {}).get(\"f1\", 0)\n        rb_f1 = per_type_metrics.get(\"random_batch\", {}).get(t, {}).get(\"f1\", 0)\n        print(f\"  {t:<46} {gc:>5} {sp_f1:>7.3f} {sdgd_f1:>7.3f} {rb_f1:>7.3f}\")\nelse:\n    print(\"No per_type_metrics found in analysis_summary.json\")\n    print(\"Available keys:\", list(summary.keys()))\n\n# Additional: over-prediction analysis\nprint(\"\\n\" + \"=\" * 80)\nprint(\"OVER-PREDICTION ANALYSIS: pred_count by batch size\")\nprint(\"=\" * 80)\n\nfor mode in [\"sdgd_zero\", \"random_batch\"]:\n    print(f\"\\n--- {mode} ---\")\n    pb = summary[\"per_batch_analysis\"][mode][\"per_batch\"]\n    for b in pb:\n        over_pred_ratio = b[\"pred_count\"] / max(b[\"gold_count\"], 1)\n        false_pos = b[\"pred_count\"] - b[\"tp\"]\n        print(f\"  batch {b['batch_idx']}: size={b['n_types']:2d}, pred/gold={over_pred_ratio:.2f}, \"\n              f\"false_pos={false_pos:4d} ({false_pos/max(b['pred_count'],1)*100:.1f}% of preds)\")\n\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/schema-dag-extraction/artifacts/exp008/diagnose.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "397ab16f-2d07-4ec0-82af-2c72a08dc81a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SBEgUFmRbqy7S2rbjTEwwp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1788,
+      "cache_read_input_tokens": 36143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1788
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T11:41:38.301Z_
+
+<details><summary>↩ Tool result · `toolu_01W1c7zxUjMNC53cDWineP94`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nANALYSIS 1: Per-batch pred/gold distribution\\n================================================================================\\n\\n--- single_pass ---\\n  pred_count=1687, gold_count=2582, ratio=0.653\\n\\n--- sdgd_zero ---\\n  MERGED: pred=3870, gold=2582, ratio=1.499, tp=811\\n  batch 0: types=18, pred= 560, gold= 940, ratio=0.596, tp=203, P=0.362, R=0.216, F1=0.271\\n  batch 1: types=12, pred= 698, gold= 435, ratio=1.605, tp=134, P=0.192, R=0.308, F1=0.236\\n  batch 2: types=11, pred= 295, gold= 254, ratio=1.161, tp= 83, P=0.281, R=0.327, F1=0.302\\n  batch 3: types= 7, pred= 605, gold= 282, ratio=2.145, tp=101, P=0.167, R=0.358, F1=0.228\\n  batch 4: types= 7, pred= 437, gold= 335, ratio=1.304, tp= 99, P=0.227, R=0.295, F1=0.257\\n  batch 5: types= 5, pred= 712, gold= 204, ratio=3.490, tp=117, P=0.164, R=0.574, F1=0.256\\n  batch 6: types= 3, pred= 390, gold=  88, ratio=4.432, tp= 56, P=0.144, R=0.636, F1=0.234\\n  batch 7: types= 3, pred= 173, gold=  44, ratio=3.932, tp= 18, P=0.104, R=0.409, F1=0.166\\n\\n--- random_batch ---\\n  MERGED: pred=4624, gold=2582, ratio=1.791, tp=1152\\n  batch 0: types= 9, pred= 322, gold= 161, ratio=2.000, tp= 49, P=0.152, R=0.304, F1=0.203\\n  batch 1: types= 9, pred= 371, gold= 218, ratio=1.702, tp= 79, P=0.213, R=0.362, F1=0.268\\n  batch 2: types= 8, pred= 242, gold= 188, ratio=1.287, tp= 71, P=0.293, R=0.378, F1=0.330\\n  batch 3: types= 8, pred= 228, gold= 175, ratio=1.303, tp= 62, P=0.272, R=0.354, F1=0.308\\n  batch 4: types= 8, pred= 912, gold= 414, ratio=2.203, tp=180, P=0.197, R=0.435, F1=0.272\\n  batch 5: types= 8, pred= 966, gold= 704, ratio=1.372, tp=406, P=0.420, R=0.577, F1=0.486\\n  batch 6: types= 8, pred= 206, gold= 100, ratio=2.060, tp= 40, P=0.194, R=0.400, F1=0.261\\n  batch 7: types= 8, pred=1377, gold= 622, ratio=2.214, tp=265, P=0.192, R=0.426, F1=0.265\\n\\n--- per_type ---\\n  MERGED: pred=7792, gold=2582, ratio=3.018, tp=1512\\n\\n================================================================================\\nANALYSIS 2: Cross-batch hallucination (sdgd_zero)\\n================================================================================\\n\\nTotal predictions: 3870\\nTotal unique text spans: 1722\\nSpans with type conflicts (same text, different types): 941\\nSamples with at least one conflict: 396/1000\\n\\nDuplicate distribution (# types per unique span):\\n  1 type(s): 781 spans (45.4%)\\n  2 type(s): 337 spans (19.6%)\\n  3 type(s): 248 spans (14.4%)\\n  4 type(s): 200 spans (11.6%)\\n  5 type(s): 84 spans (4.9%)\\n  6 type(s): 54 spans (3.1%)\\n  7 type(s): 17 spans (1.0%)\\n  8 type(s): 1 spans (0.1%)\\n\\n--- Same analysis for random_batch ---\\nTotal predictions: 4624\\nTotal unique text spans: 2153\\nSpans with type conflicts: 1249\\nSamples with at least one conflict: 483/1000\\n\\nDuplicate distribution:\\n  1 type(s): 904 spans (42.0%)\\n  2 type(s): 548 spans (25.5%)\\n  3 type(s): 377 spans (17.5%)\\n  4 type(s): 190 spans (8.8%)\\n  5 type(s): 82 spans (3.8%)\\n  6 type(s): 42 spans (2.0%)\\n  7 type(s): 9 spans (0.4%)\\n  8 type(s): 1 spans (0.0%)\\n\\n--- Top types involved in cross-batch conflicts (sdgd_zero) ---\\n  person-politician: 190\\n  building-other: 184\\n  organization-company: 174\\n  person-other: 149\\n  person-scholar: 142\\n  location-other: 125\\n  building-library: 122\\n  location-GPE: 118\\n  organization-sportsteam: 98\\n  location-mountain: 97\\n  art-broadcastprogram: 93\\n  organization-education: 89\\n  organization-politicalparty: 85\\n  person-athlete: 84\\n  organization-government/governmentagency: 78\\n  art-film: 76\\n  building-sportsfacility: 73\\n  art-music: 69\\n  person-director: 69\\n  person-actor: 65\\n\\n--- Out-of-batch prediction analysis (sdgd_zero) ---\\n\\n================================================================================\\nANALYSIS 3: Per-type F1 comparison\\n================================================================================\\nNo per_type_metrics found in analysis_summary.json\\nAvailable keys: ['exp_id', 'dataset', 'available_modes', 'missing_modes', 'mode_comparison', 'per_batch_analysis', 'type_level_metrics']\\n\\n================================================================================\\nOVER-PREDICTION ANALYSIS: pred_count by batch size\\n================================================================================\\n\\n--- sdgd_zero ---\\n  batch 0: size=18, pred/gold=0.60, false_pos= 357 (63.7% of preds)\\n  batch 1: size=12, pred/gold=1.60, false_pos= 564 (80.8% of preds)\\n  batch 2: size=11, pred/gold=1.16, false_pos= 212 (71.9% of preds)\\n  batch 3: size= 7, pred/gold=2.15, false_pos= 504 (83.3% of preds)\\n  batch 4: size= 7, pred/gold=1.30, false_pos= 338 (77.3% of preds)\\n  batch 5: size= 5, pred/gold=3.49, false_pos= 595 (83.6% of preds)\\n  batch 6: size= 3, pred/gold=4.43, false_pos= 334 (85.6% of preds)\\n  batch 7: size= 3, pred/gold=3.93, false_pos= 155 (89.6% of preds)\\n\\n--- random_batch ---\\n  batch 0: size= 9, pred/gold=2.00, false_pos= 273 (84.8% of preds)\\n  batch 1: size= 9, pred/gold=1.70, false_pos= 292 (78.7% of preds)\\n  batch 2: size= 8, pred/gold=1.29, false_pos= 171 (70.7% of preds)\\n  batch 3: size= 8, pred/gold=1.30, false_pos= 166 (72.8% of preds)\\n  batch 4: size= 8, pred/gold=2.20, false_pos= 732 (80.3% of preds)\\n  batch 5: size= 8, pred/gold=1.37, false_pos= 560 (58.0% of preds)\\n  batch 6: size= 8, pred/gold=2.06, false_pos= 166 (80.6% of preds)\\n  batch 7: size= 8, pred/gold=2.21, false_pos=1112 (80.8% of preds)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "8319b80c-4295-4fb0-b756-5ae57289a126",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"================================================================================\\\\nANALYSIS 1: Per-batch pred/gold distribution\\\\n================================================================================\\\\n\\\\n--- single_pass ---\\\\n  pred_count=1687, gold_count=2582, ratio=0.653\\\\n\\\\n--- sdgd_zero ---\\\\n  MERGED: pred=3870, gold=2582, ratio=1.499, tp=811\\\\n  batch 0: types=18, pred= 560, gold= 940, ratio=0.596, tp=203, P=0.362, R=0.216, F1=0.271\\\\n  batch 1: types=12, pred= 698, gold= 435, ratio=1.605, tp=134, P=0.192, R=0.308, F1=0.236\\\\n  batch 2: types=11, pred= 295, gold= 254, ratio=1.161, tp= 83, P=0.281, R=0.327, F1=0.302\\\\n  batch 3: types= 7, pred= 605, gold= 282, ratio=2.145, tp=101, P=0.167, R=0.358, F1=0.228\\\\n  batch 4: types= 7, pred= 437, gold= 335, ratio=1.304, tp= 99, P=0.227, R=0.295, F1=0.257\\\\n  batch 5: types= 5, pred= 712, gold= 204, ratio=3.490, tp=117, P=0.164, R=0.574, F1=0.256\\\\n  batch 6: types= 3, pred= 390, gold=  88, ratio=4.432, tp= 56, P=0.144, R=0.636, F1=0.234\\\\n  batch 7: types= 3, pred= 173, gold=  44, ratio=3.932, tp= 18, P=0.104, R=0.409, F1=0.166\\\\n\\\\n--- random_batch ---\\\\n  MERGED: pred=4624, gold=2582, ratio=1.791, tp=1152\\\\n  batch 0: types= 9, pred= 322, gold= 161, ratio=2.000, tp= 49, P=0.152, R=0.304, F1=0.203\\\\n  batch 1: types= 9, pred= 371, gold= 218, ratio=1.702, tp= 79, P=0.213, R=0.362, F1=0.268\\\\n  batch 2: types= 8, pred= 242, gold= 188, ratio=1.287, tp= 71, P=0.293, R=0.378, F1=0.330\\\\n  batch 3: types= 8, pred= 228, gold= 175, ratio=1.303, tp= 62, P=0.272, R=0.354, F1=0.308\\\\n  batch 4: types= 8, pred= 912, gold= 414, ratio=2.203, tp=180, P=0.197, R=0.435, F1=0.272\\\\n  batch 5: types= 8, pred= 966, gold= 704, ratio=1.372, tp=406, P=0.420, R=0.577, F1=0.486\\\\n  batch 6: types= 8, pred= 206, gold= 100, ratio=2.060, tp= 40, P=0.194, R=0.400, F1=0.261\\\\n  batch 7: types= 8, pred=1377, gold= 622, ratio=2.214, tp=265, P=0.192, R=0.426, F1=0.265\\\\n\\\\n--- per_type ---\\\\n  MERGED: pred=7792, gold=2582, ratio=3.018, tp=1512\\\\n\\\\n================================================================================\\\\nANALYSIS 2: Cross-batch hallucination (sdgd_zero)\\\\n================================================================================\\\\n\\\\nTotal predictions: 3870\\\\nTotal unique text spans: 1722\\\\nSpans with type conflicts (same text, different types): 941\\\\nSamples with at least one conflict: 396/1000\\\\n\\\\nDuplicate distribution (# types per unique span):\\\\n  1 type(s): 781 spans (45.4%)\\\\n  2 type(s): 337 spans (19.6%)\\\\n  3 type(s): 248 spans (14.4%)\\\\n  4 type(s): 200 spans (11.6%)\\\\n  5 type(s): 84 spans (4.9%)\\\\n  6 type(s): 54 spans (3.1%)\\\\n  7 type(s): 17 spans (1.0%)\\\\n  8 type(s): 1 spans (0.1%)\\\\n\\\\n--- Same analysis for random_batch ---\\\\nTotal predictions: 4624\\\\nTotal unique text spans: 2153\\\\nSpans with type conflicts: 1249\\\\nSamples with at least one conflict: 483/1000\\\\n\\\\nDuplicate distribution:\\\\n  1 type(s): 904 spans (42.0%)\\\\n  2 type(s): 548 spans (25.5%)\\\\n  3 type(s): 377 spans (17.5%)\\\\n  4 type(s): 190 spans (8.8%)\\\\n  5 type(s): 82 spans (3.8%)\\\\n  6 type(s): 42 spans (2.0%)\\\\n  7 type(s): 9 spans (0.4%)\\\\n  8 type(s): 1 spans (0.0%)\\\\n\\\\n--- Top types involved in cross-batch conflicts (sdgd_zero) ---\\\\n  person-politician: 190\\\\n  building-other: 184\\\\n  organization-company: 174\\\\n  person-other: 149\\\\n  person-scholar: 142\\\\n  location-other: 125\\\\n  building-library: 122\\\\n  location-GPE: 118\\\\n  organization-sportsteam: 98\\\\n  location-mountain: 97\\\\n  art-broadcastprogram: 93\\\\n  organization-education: 89\\\\n  organization-politicalparty: 85\\\\n  person-athlete: 84\\\\n  organization-government/governmentagency: 78\\\\n  art-film: 76\\\\n  building-sportsfacility: 73\\\\n  art-music: 69\\\\n  person-director: 69\\\\n  person-actor: 65\\\\n\\\\n--- Out-of-batch prediction analysis (sdgd_zero) ---\\\\n\\\\n================================================================================\\\\nANALYSIS 3: Per-type F1 comparison\\\\n================================================================================\\\\nNo per_type_metrics found in analysis_summary.json\\\\nAvailable keys: ['exp_id', 'dataset', 'available_modes', 'missing_modes', 'mode_comparison', 'per_batch_analysis', 'type_level_metrics']\\\\n\\\\n================================================================================\\\\nOVER-PREDICTION ANALYSIS: pred_count by batch size\\\\n================================================================================\\\\n\\\\n--- sdgd_zero ---\\\\n  batch 0: size=18, pred/gold=0.60, false_pos= 357 (63.7% of preds)\\\\n  batch 1: size=12, pred/gold=1.60, false_pos= 564 (80.8% of preds)\\\\n  batch 2: size=11, pred/gold=1.16, false_pos= 212 (71.9% of preds)\\\\n  batch 3: size= 7, pred/gold=2.15, false_pos= 504 (83.3% of preds)\\\\n  batch 4: size= 7, pred/gold=1.30, false_pos= 338 (77.3% of preds)\\\\n  batch 5: size= 5, pred/gold=3.49, false_pos= 595 (83.6% of preds)\\\\n  batch 6: size= 3, pred/gold=4.43, false_pos= 334 (85.6% of preds)\\\\n  batch 7: size= 3, pred/gold=3.93, false_pos= 155 (89.6% of preds)\\\\n\\\\n--- random_batch ---\\\\n  batch 0: size= 9, pred/gold=2.00, false_pos= 273 (84.8% of preds)\\\\n  batch 1: size= 9, pred/gold=1.70, false_pos= 292 (78.7% of preds)\\\\n  batch 2: size= 8, pred/gold=1.29, false_pos= 171 (70.7% of preds)\\\\n  batch 3: size= 8, pred/gold=1.30, false_pos= 166 (72.8% of preds)\\\\n  batch 4: size= 8, pred/gold=2.20, false_pos= 732 (80.3% of preds)\\\\n  batch 5: size= 8, pred/gold=1.37, false_pos= 560 (58.0% of preds)\\\\n  batch 6: size= 8, pred/gold=2.06, false_pos= 166 (80.6% of preds)\\\\n  batch 7: size= 8, pred/gold=2.21, false_pos=1112 (80.8% of preds)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nANALYSIS 1: Per-batch pred/gold distribution\\n================================================================================\\n\\n--- single_pass ---\\n  pred_count=1687, gold_count=2582, ratio=0.653\\n\\n--- sdgd_zero ---\\n  MERGED: pred=3870, gold=2582, ratio=1.499, tp=811\\n  batch 0: types=18, pred= 560, gold= 940, ratio=0.596, tp=203, P=0.362, R=0.216, F1=0.271\\n  batch 1: types=12, pred= 698, gold= 435, ratio=1.605, tp=134, P=0.192, R=0.308, F1=0.236\\n  batch 2: types=11, pred= 295, gold= 254, ratio=1.161, tp= 83, P=0.281, R=0.327, F1=0.302\\n  batch 3: types= 7, pred= 605, gold= 282, ratio=2.145, tp=101, P=0.167, R=0.358, F1=0.228\\n  batch 4: types= 7, pred= 437, gold= 335, ratio=1.304, tp= 99, P=0.227, R=0.295, F1=0.257\\n  batch 5: types= 5, pred= 712, gold= 204, ratio=3.490, tp=117, P=0.164, R=0.574, F1=0.256\\n  batch 6: types= 3, pred= 390, gold=  88, ratio=4.432, tp= 56, P=0.144, R=0.636, F1=0.234\\n  batch 7: types= 3, pred= 173, gold=  44, ratio=3.932, tp= 18, P=0.104, R=0.409, F1=0.166\\n\\n--- random_batch ---\\n  MERGED: pred=4624, gold=2582, ratio=1.791, tp=1152\\n  batch 0: types= 9, pred= 322, gold= 161, ratio=2.000, tp= 49, P=0.152, R=0.304, F1=0.203\\n  batch 1: types= 9, pred= 371, gold= 218, ratio=1.702, tp= 79, P=0.213, R=0.362, F1=0.268\\n  batch 2: types= 8, pred= 242, gold= 188, ratio=1.287, tp= 71, P=0.293, R=0.378, F1=0.330\\n  batch 3: types= 8, pred= 228, gold= 175, ratio=1.303, tp= 62, P=0.272, R=0.354, F1=0.308\\n  batch 4: types= 8, pred= 912, gold= 414, ratio=2.203, tp=180, P=0.197, R=0.435, F1=0.272\\n  batch 5: types= 8, pred= 966, gold= 704, ratio=1.372, tp=406, P=0.420, R=0.577, F1=0.486\\n  batch 6: types= 8, pred= 206, gold= 100, ratio=2.060, tp= 40, P=0.194, R=0.400, F1=0.261\\n  batch 7: types= 8, pred=1377, gold= 622, ratio=2.214, tp=265, P=0.192, R=0.426, F1=0.265\\n\\n--- per_type ---\\n  MERGED: pred=7792, gold=2582, ratio=3.018, tp=1512\\n\\n================================================================================\\nANALYSIS 2: Cross-batch hallucination (sdgd_zero)\\n================================================================================\\n\\nTotal predictions: 3870\\nTotal unique text spans: 1722\\nSpans with type conflicts (same text, different types): 941\\nSamples with at least one conflict: 396/1000\\n\\nDuplicate distribution (# types per unique span):\\n  1 type(s): 781 spans (45.4%)\\n  2 type(s): 337 spans (19.6%)\\n  3 type(s): 248 spans (14.4%)\\n  4 type(s): 200 spans (11.6%)\\n  5 type(s): 84 spans (4.9%)\\n  6 type(s): 54 spans (3.1%)\\n  7 type(s): 17 spans (1.0%)\\n  8 type(s): 1 spans (0.1%)\\n\\n--- Same analysis for random_batch ---\\nTotal predictions: 4624\\nTotal unique text spans: 2153\\nSpans with type conflicts: 1249\\nSamples with at least one conflict: 483/1000\\n\\nDuplicate distribution:\\n  1 type(s): 904 spans (42.0%)\\n  2 type(s): 548 spans (25.5%)\\n  3 type(s): 377 spans (17.5%)\\n  4 type(s): 190 spans (8.8%)\\n  5 type(s): 82 spans (3.8%)\\n  6 type(s): 42 spans (2.0%)\\n  7 type(s): 9 spans (0.4%)\\n  8 type(s): 1 spans (0.0%)\\n\\n--- Top types involved in cross-batch conflicts (sdgd_zero) ---\\n  person-politician: 190\\n  building-other: 184\\n  organization-company: 174\\n  person-other: 149\\n  person-scholar: 142\\n  location-other: 125\\n  building-library: 122\\n  location-GPE: 118\\n  organization-sportsteam: 98\\n  location-mountain: 97\\n  art-broadcastprogram: 93\\n  organization-education: 89\\n  organization-politicalparty: 85\\n  person-athlete: 84\\n  organization-government/governmentagency: 78\\n  art-film: 76\\n  building-sportsfacility: 73\\n  art-music: 69\\n  person-director: 69\\n  person-actor: 65\\n\\n--- Out-of-batch prediction analysis (sdgd_zero) ---\\n\\n================================================================================\\nANALYSIS 3: Per-type F1 comparison\\n================================================================================\\nNo per_type_metrics found in analysis_summary.json\\nAvailable keys: ['exp_id', 'dataset', 'available_modes', 'missing_modes', 'mode_comparison', 'per_batch_analysis', 'type_level_metrics']\\n\\n================================================================================\\nOVER-PREDICTION ANALYSIS: pred_count by batch size\\n================================================================================\\n\\n--- sdgd_zero ---\\n  batch 0: size=18, pred/gold=0.60, false_pos= 357 (63.7% of preds)\\n  batch 1: size=12, pred/gold=1.60, false_pos= 564 (80.8% of preds)\\n  batch 2: size=11, pred/gold=1.16, false_pos= 212 (71.9% of preds)\\n  batch 3: size= 7, pred/gold=2.15, false_pos= 504 (83.3% of preds)\\n  batch 4: size= 7, pred/gold=1.30, false_pos= 338 (77.3% of preds)\\n  batch 5: size= 5, pred/gold=3.49, false_pos= 595 (83.6% of preds)\\n  batch 6: size= 3, pred/gold=4.43, false_pos= 334 (85.6% of preds)\\n  batch 7: size= 3, pred/gold=3.93, false_pos= 155 (89.6% of preds)\\n\\n--- random_batch ---\\n  batch 0: size= 9, pred/gold=2.00, false_pos= 273 (84.8% of preds)\\n  batch 1: size= 9, pred/gold=1.70, false_pos= 292 (78.7% of preds)\\n  batch 2: size= 8, pred/gold=1.29, false_pos= 171 (70.7% of preds)\\n  batch 3: size= 8, pred/gold=1.30, false_pos= 166 (72.8% of preds)\\n  batch 4: size= 8, pred/gold=2.20, false_pos= 732 (80.3% of preds)\\n  batch 5: size= 8, pred/gold=1.37, false_pos= 560 (58.0% of preds)\\n  batch 6: size= 8, pred/gold=2.06, false_pos= 166 (80.6% of preds)\\n  batch 7: size= 8, pred/gold=2.21, false_pos=1112 (80.8% of preds)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to get the per-type metrics. The key is "type_level_metrics" in the analysis_summary. Let me also fix the analysis script to use that key.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "7e9edc11-c522-4f50-86db-4b343eb11322",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AXP3vpxNxQS1yJT33rB7m3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6287,
+      "cache_read_input_tokens": 37931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+per-type metrics 在 `type_level_metrics` 键下。补充这部分分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "d8c2290c-41c5-4d1c-90d8-1c50021851b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AXP3vpxNxQS1yJT33rB7m3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6287,
+      "cache_read_input_tokens": 37931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VW3UveiZ6qe8hCMYJxYgWY`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/artifacts/exp008/diagnose2.py << 'PYEOF'\nimport json\nfrom collections import Counter, defaultdict\n\nBASE = \"/root/schema-dag-extraction/artifacts/exp008\"\ndef load(name):\n    with open(f\"{BASE}/{name}\") as f:\n        return json.load(f)\n\nsummary = load(\"analysis_summary.json\")\ndecomp_sdgd = load(\"decomposition_sdgd_zero.json\")\n\n# type_level_metrics\ntlm = summary.get(\"type_level_metrics\", {})\nmodes = [\"single_pass\", \"sdgd_zero\", \"random_batch\", \"per_type\"]\n\nall_types = set()\nfor m in modes:\n    if m in tlm:\n        all_types.update(tlm[m].keys())\nall_types = sorted(all_types)\n\n# Build type_to_batch for sdgd_zero\ntype_to_batch = {}\nfor bi, batch_types in enumerate(decomp_sdgd[\"batches\"]):\n    for t in batch_types:\n        type_to_batch[t] = bi\n\nprint(\"=\" * 80)\nprint(\"ANALYSIS 3: Per-type F1 comparison\")\nprint(\"=\" * 80)\n\nprint(f\"\\n{'Type':<48} {'Gold':>5} {'SP_F1':>6} {'SDGD':>6} {'RB':>6} {'PT':>6} {'SDGD-SP':>8} {'RB-SP':>8} {'SDGD-RB':>8} {'Batch':>5}\")\nprint(\"-\" * 155)\n\ntype_deltas = []\nfor t in all_types:\n    sp = tlm.get(\"single_pass\", {}).get(t, {})\n    sd = tlm.get(\"sdgd_zero\", {}).get(t, {})\n    rb = tlm.get(\"random_batch\", {}).get(t, {})\n    pt = tlm.get(\"per_type\", {}).get(t, {})\n    \n    gc = sp.get(\"gold_count\", sd.get(\"gold_count\", rb.get(\"gold_count\", 0)))\n    sp_f1 = sp.get(\"f1\", 0)\n    sd_f1 = sd.get(\"f1\", 0)\n    rb_f1 = rb.get(\"f1\", 0)\n    pt_f1 = pt.get(\"f1\", 0)\n    \n    d_sd = sd_f1 - sp_f1\n    d_rb = rb_f1 - sp_f1\n    d_sd_rb = sd_f1 - rb_f1\n    batch = type_to_batch.get(t, -1)\n    \n    type_deltas.append((t, gc, sp_f1, sd_f1, rb_f1, pt_f1, d_sd, d_rb, d_sd_rb, batch))\n    print(f\"  {t:<46} {gc:>5} {sp_f1:>6.3f} {sd_f1:>6.3f} {rb_f1:>6.3f} {pt_f1:>6.3f} {d_sd:>+8.3f} {d_rb:>+8.3f} {d_sd_rb:>+8.3f} {batch:>5}\")\n\n# Summary\nsdgd_better_sp = sum(1 for x in type_deltas if x[6] > 0)\nrb_better_sp = sum(1 for x in type_deltas if x[7] > 0)\nsdgd_better_rb = sum(1 for x in type_deltas if x[8] > 0)\nboth_worse = sum(1 for x in type_deltas if x[6] < 0 and x[7] < 0)\n\nprint(f\"\\n--- Summary ---\")\nprint(f\"Types where SDGD > single_pass: {sdgd_better_sp}/{len(type_deltas)}\")\nprint(f\"Types where random > single_pass: {rb_better_sp}/{len(type_deltas)}\")\nprint(f\"Types where SDGD > random: {sdgd_better_rb}/{len(type_deltas)}\")\nprint(f\"Types where both worse than SP: {both_worse}/{len(type_deltas)}\")\n\n# Group by sdgd batch and compare batch-level stats\nprint(f\"\\n--- SDGD batch-level analysis: which batches hurt most? ---\")\nbatch_groups = defaultdict(list)\nfor x in type_deltas:\n    if x[9] >= 0:\n        batch_groups[x[9]].append(x)\n\nfor bi in sorted(batch_groups.keys()):\n    items = batch_groups[bi]\n    n = len(items)\n    avg_sdgd_f1 = sum(x[3] for x in items) / n\n    avg_sp_f1 = sum(x[2] for x in items) / n\n    avg_rb_f1 = sum(x[4] for x in items) / n\n    sdgd_wins = sum(1 for x in items if x[8] > 0)\n    print(f\"  Batch {bi} ({n} types): avg_SP_F1={avg_sp_f1:.3f}, avg_SDGD={avg_sdgd_f1:.3f}, avg_RB={avg_rb_f1:.3f}, \"\n          f\"SDGD>RB: {sdgd_wins}/{n}\")\n\n# Types where SDGD is MUCH worse than random\nprint(f\"\\n--- Top 15 types where SDGD << random (sorted by SDGD-RB gap) ---\")\nsorted_gap = sorted(type_deltas, key=lambda x: x[8])\nfor t, gc, sp, sd, rb, pt, _, _, gap, batch in sorted_gap[:15]:\n    sd_pred = tlm.get(\"sdgd_zero\", {}).get(t, {}).get(\"pred_count\", 0)\n    rb_pred = tlm.get(\"random_batch\", {}).get(t, {}).get(\"pred_count\", 0)\n    sp_pred = tlm.get(\"single_pass\", {}).get(t, {}).get(\"pred_count\", 0)\n    print(f\"  {t:<45} gold={gc:>4} SP={sp:.3f}(p={sp_pred:>3}) SDGD={sd:.3f}(p={sd_pred:>3}) RB={rb:.3f}(p={rb_pred:>3}) gap={gap:+.3f} batch={batch}\")\n\n# Types where SDGD actually beats random\nprint(f\"\\n--- Top 15 types where SDGD >> random (sorted by SDGD-RB gap) ---\")\nsorted_gap_rev = sorted(type_deltas, key=lambda x: -x[8])\nfor t, gc, sp, sd, rb, pt, _, _, gap, batch in sorted_gap_rev[:15]:\n    sd_pred = tlm.get(\"sdgd_zero\", {}).get(t, {}).get(\"pred_count\", 0)\n    rb_pred = tlm.get(\"random_batch\", {}).get(t, {}).get(\"pred_count\", 0)\n    sp_pred = tlm.get(\"single_pass\", {}).get(t, {}).get(\"pred_count\", 0)\n    print(f\"  {t:<45} gold={gc:>4} SP={sp:.3f}(p={sp_pred:>3}) SDGD={sd:.3f}(p={sd_pred:>3}) RB={rb:.3f}(p={rb_pred:>3}) gap={gap:+.3f} batch={batch}\")\n\n# Over-prediction vs batch size correlation\nprint(f\"\\n--- Batch size vs over-prediction (sdgd_zero) ---\")\npb = summary[\"per_batch_analysis\"][\"sdgd_zero\"][\"per_batch\"]\nfor b in sorted(pb, key=lambda x: x[\"n_types\"]):\n    fp_rate = (b[\"pred_count\"] - b[\"tp\"]) / max(b[\"pred_count\"], 1)\n    print(f\"  batch {b['batch_idx']}: size={b['n_types']:>2}, pred/gold={b['pred_count']/max(b['gold_count'],1):.2f}, \"\n          f\"FP_rate={fp_rate:.1%}, P={b['precision']:.3f}\")\n\n# Inverse correlation: smaller batch = more over-prediction\nsizes = [b[\"n_types\"] for b in pb]\nratios = [b[\"pred_count\"]/max(b[\"gold_count\"],1) for b in pb]\nprint(f\"\\n  Correlation batch_size vs pred/gold_ratio:\")\nprint(f\"  Sizes:  {sizes}\")\nprint(f\"  Ratios: {[f'{r:.2f}' for r in ratios]}\")\n\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/schema-dag-extraction/artifacts/exp008/diagnose2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "8cac04d9-41e5-4678-97b8-0129d53c0584",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AXP3vpxNxQS1yJT33rB7m3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6287,
+      "cache_read_input_tokens": 37931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T11:42:10.062Z_
+
+<details><summary>↩ Tool result · `toolu_01VW3UveiZ6qe8hCMYJxYgWY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nANALYSIS 3: Per-type F1 comparison\\n================================================================================\\n\\nType                                              Gold  SP_F1   SDGD     RB     PT  SDGD-SP    RB-SP  SDGD-RB Batch\\n-----------------------------------------------------------------------------------------------------------------------------------------------------------\\n  art-broadcastprogram                              22  0.373  0.252  0.261  0.000   -0.121   -0.112   -0.009     3\\n  art-film                                          21  0.792  0.306  0.400  0.000   -0.486   -0.392   -0.094     4\\n  art-music                                         23  0.596  0.238  0.364  0.000   -0.358   -0.232   -0.126     0\\n  art-other                                         17  0.000  0.000  0.000  0.000   +0.000   +0.000   +0.000     2\\n  art-painting                                       0  0.000  0.000  0.000  0.000   +0.000   +0.000   +0.000     0\\n  art-writtenart                                    34  0.688  0.400  0.442  0.000   -0.287   -0.246   -0.042     2\\n  building-airport                                  12  0.615  0.385  0.381  0.000   -0.231   -0.234   +0.004     0\\n  building-hospital                                  7  0.667  0.113  0.077  0.000   -0.553   -0.590   +0.036     4\\n  building-hotel                                     1  0.250  0.125  0.154  0.000   -0.125   -0.096   -0.029     2\\n  building-library                                  12  0.857  0.154  0.815  0.000   -0.703   -0.042   -0.661     6\\n  building-other                                    61  0.318  0.220  0.268  0.000   -0.098   -0.050   -0.048     5\\n  building-restaurant                                9  0.353  0.085  0.138  0.000   -0.268   -0.215   -0.053     0\\n  building-sportsfacility                            9  0.545  0.163  0.462  0.000   -0.383   -0.084   -0.299     1\\n  building-theater                                  15  0.562  0.364  0.206  0.000   -0.199   -0.357   +0.158     2\\n  event-attack/battle/war/militaryconflict          13  0.615  0.333  0.135  0.000   -0.282   -0.480   +0.198     0\\n  event-disaster                                     5  0.800  0.667  0.571  0.000   -0.133   -0.229   +0.095     0\\n  event-election                                     0  0.000  0.000  0.000  0.000   +0.000   +0.000   +0.000     0\\n  event-other                                       26  0.250  0.081  0.130  0.000   -0.169   -0.120   -0.049     7\\n  event-protest                                      7  0.600  0.333  0.333  0.000   -0.267   -0.267   +0.000     1\\n  event-sportsevent                                 38  0.319  0.206  0.182  0.000   -0.113   -0.137   +0.024     1\\n  location-GPE                                     559  0.541  0.298  0.571  0.000   -0.243   +0.030   -0.273     0\\n  location-bodiesofwater                            49  0.460  0.342  0.407  0.000   -0.117   -0.053   -0.065     2\\n  location-island                                   15  0.720  0.545  0.571  0.000   -0.174   -0.149   -0.026     0\\n  location-mountain                                 21  0.500  0.072  0.279  0.000   -0.427   -0.221   -0.207     3\\n  location-other                                    96  0.273  0.126  0.085  0.000   -0.148   -0.189   +0.041     1\\n  location-park                                     13  0.429  0.457  0.340  0.000   +0.029   -0.088   +0.117     1\\n  location-road/railway/highway/transit             56  0.309  0.330  0.150  0.000   +0.020   -0.160   +0.180     0\\n  organization-company                             105  0.512  0.286  0.354  0.000   -0.227   -0.158   -0.068     3\\n  organization-education                            58  0.673  0.469  0.273  0.000   -0.204   -0.400   +0.196     5\\n  organization-government/governmentagency          50  0.300  0.256  0.209  0.000   -0.044   -0.090   +0.047     1\\n  organization-media/newspaper                    \\n\\n... [截断: 输出过长，省略 5632 字符] ...\\n\\nd= 559 SP=0.541(p=332) SDGD=0.298(p=173) RB=0.571(p=587) gap=-0.273 batch=0\\n  product-train                                 gold=  12 SP=0.455(p= 10) SDGD=0.158(p= 26) RB=0.370(p= 15) gap=-0.212 batch=1\\n  other-currency                                gold=   8 SP=0.000(p=  9) SDGD=0.000(p=  3) RB=0.210(p= 11) gap=-0.210 batch=0\\n  location-mountain                             gold=  21 SP=0.500(p=  7) SDGD=0.072(p=117) RB=0.279(p= 22) gap=-0.207 batch=3\\n  organization-sportsteam                       gold=  64 SP=0.536(p= 48) SDGD=0.371(p=130) RB=0.544(p= 83) gap=-0.173 batch=5\\n  other-astronomything                          gold=  14 SP=0.636(p=  8) SDGD=0.400(p=  6) RB=0.552(p= 15) gap=-0.152 batch=2\\n  organization-showorganization                 gold=  15 SP=0.370(p= 39) SDGD=0.095(p= 48) RB=0.229(p= 55) gap=-0.133 batch=1\\n  person-politician                             gold=  70 SP=0.451(p= 41) SDGD=0.278(p=232) RB=0.409(p= 62) gap=-0.131 batch=6\\n  organization-sportsleague                     gold=  21 SP=0.293(p= 20) SDGD=0.174(p= 25) RB=0.300(p= 39) gap=-0.126 batch=2\\n  art-music                                     gold=  23 SP=0.596(p= 24) SDGD=0.238(p= 78) RB=0.364(p= 32) gap=-0.126 batch=0\\n  product-food                                  gold=   9 SP=0.167(p=  3) SDGD=0.086(p= 61) RB=0.210(p= 10) gap=-0.125 batch=5\\n\\n--- Top 15 types where SDGD >> random (sorted by SDGD-RB gap) ---\\n  other-disease                                 gold=  28 SP=0.303(p=  5) SDGD=0.378(p=  9) RB=0.167(p=  8) gap=+0.212 batch=2\\n  other-god                                     gold=  11 SP=0.400(p=  4) SDGD=0.400(p=  4) RB=0.191(p= 10) gap=+0.210 batch=0\\n  event-attack/battle/war/militaryconflict      gold=  13 SP=0.615(p= 13) SDGD=0.333(p= 17) RB=0.135(p=120) gap=+0.198 batch=0\\n  organization-education                        gold=  58 SP=0.673(p= 49) SDGD=0.469(p=121) RB=0.273(p=213) gap=+0.196 batch=5\\n  location-road/railway/highway/transit         gold=  56 SP=0.309(p= 28) SDGD=0.330(p= 41) RB=0.150(p=438) gap=+0.180 batch=0\\n  building-theater                              gold=  15 SP=0.562(p= 17) SDGD=0.364(p= 40) RB=0.206(p= 53) gap=+0.158 batch=2\\n  other-award                                   gold=  29 SP=0.226(p= 24) SDGD=0.431(p= 22) RB=0.289(p= 47) gap=+0.142 batch=1\\n  product-car                                   gold=  11 SP=0.375(p=  5) SDGD=0.200(p=  9) RB=0.071(p= 45) gap=+0.129 batch=4\\n  person-soldier                                gold=   7 SP=0.400(p=  3) SDGD=0.192(p= 45) RB=0.075(p= 46) gap=+0.117 batch=7\\n  location-park                                 gold=  13 SP=0.429(p= 15) SDGD=0.457(p= 22) RB=0.340(p= 34) gap=+0.117 batch=1\\n  event-disaster                                gold=   5 SP=0.800(p=  5) SDGD=0.667(p=  4) RB=0.571(p=  9) gap=+0.095 batch=0\\n  other-language                                gold=  17 SP=0.191(p=  4) SDGD=0.333(p=  7) RB=0.258(p= 14) gap=+0.075 batch=3\\n  product-other                                 gold=  45 SP=0.074(p=  9) SDGD=0.255(p= 57) RB=0.190(p=134) gap=+0.065 batch=3\\n  product-software                              gold=  12 SP=0.267(p=  3) SDGD=0.250(p= 28) RB=0.194(p= 19) gap=+0.056 batch=1\\n  organization-media/newspaper                  gold=  42 SP=0.435(p= 50) SDGD=0.400(p= 28) RB=0.349(p= 61) gap=+0.051 batch=0\\n\\n--- Batch size vs over-prediction (sdgd_zero) ---\\n  batch 6: size= 3, pred/gold=4.43, FP_rate=85.6%, P=0.144\\n  batch 7: size= 3, pred/gold=3.93, FP_rate=89.6%, P=0.104\\n  batch 5: size= 5, pred/gold=3.49, FP_rate=83.6%, P=0.164\\n  batch 3: size= 7, pred/gold=2.15, FP_rate=83.3%, P=0.167\\n  batch 4: size= 7, pred/gold=1.30, FP_rate=77.3%, P=0.227\\n  batch 2: size=11, pred/gold=1.16, FP_rate=71.9%, P=0.281\\n  batch 1: size=12, pred/gold=1.60, FP_rate=80.8%, P=0.192\\n  batch 0: size=18, pred/gold=0.60, FP_rate=63.7%, P=0.362\\n\\n  Correlation batch_size vs pred/gold_ratio:\\n  Sizes:  [18, 12, 11, 7, 7, 5, 3, 3]\\n  Ratios: ['0.60', '1.60', '1.16', '2.15', '1.30', '3.49', '4.43', '3.93']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "3ddf431e-47cf-454a-ab97-5f1c434c7634",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"================================================================================\\\\nANALYSIS 3: Per-type F1 comparison\\\\n================================================================================\\\\n\\\\nType                                              Gold  SP_F1   SDGD     RB     PT  SDGD-SP    RB-SP  SDGD-RB Batch\\\\n-----------------------------------------------------------------------------------------------------------------------------------------------------------\\\\n  art-broadcastprogram                              22  0.373  0.252  0.261  0.000   -0.121   -0.112   -0.009     3\\\\n  art-film                                          21  0.792  0.306  0.400  0.000   -0.486   -0.392   -0.094     4\\\\n  art-music                                         23  0.596  0.238  0.364  0.000   -0.358   -0.232   -0.126     0\\\\n  art-other                                         17  0.000  0.000  0.000  0.000   +0.000   +0.000   +0.000     2\\\\n  art-painting                                       0  0.000  0.000  0.000  0.000   +0.000   +0.000   +0.000     0\\\\n  art-writtenart                                    34  0.688  0.400  0.442  0.000   -0.287   -0.246   -0.042     2\\\\n  building-airport                                  12  0.615  0.385  0.381  0.000   -0.231   -0.234   +0.004     0\\\\n  building-hospital                                  7  0.667  0.113  0.077  0.000   -0.553   -0.590   +0.036     4\\\\n  building-hotel                                     1  0.250  0.125  0.154  0.000   -0.125   -0.096   -0.029     2\\\\n  building-library                                  12  0.857  0.154  0.815  0.000   -0.703   -0.042   -0.661     6\\\\n  building-other                                    61  0.318  0.220  0.268  0.000   -0.098   -0.050   -0.048     5\\\\n  building-restaurant                                9  0.353  0.085  0.138  0.000   -0.268   -0.215   -0.053     0\\\\n  building-sportsfacility                            9  0.545  0.163  0.462  0.000   -0.383   -0.084   -0.299     1\\\\n  building-theater                                  15  0.562  0.364  0.206  0.000   -0.199   -0.357   +0.158     2\\\\n  event-attack/battle/war/militaryconflict          13  0.615  0.333  0.135  0.000   -0.282   -0.480   +0.198     0\\\\n  event-disaster                                     5  0.800  0.667  0.571  0.000   -0.133   -0.229   +0.095     0\\\\n  event-election                                     0  0.000  0.000  0.000  0.000   +0.000   +0.000   +0.000     0\\\\n  event-other                                       26  0.250  0.081  0.130  0.000   -0.169   -0.120   -0.049     7\\\\n  event-protest                                      7  0.600  0.333  0.333  0.000   -0.267   -0.267   +0.000     1\\\\n  event-sportsevent                                 38  0.319  0.206  0.182  0.000   -0.113   -0.137   +0.024     1\\\\n  location-GPE                                     559  0.541  0.298  0.571  0.000   -0.243   +0.030   -0.273     0\\\\n  location-bodiesofwater                            49  0.460  0.342  0.407  0.000   -0.117   -0.053   -0.065     2\\\\n  location-island                                   15  0.720  0.545  0.571  0.000   -0.174   -0.149   -0.026     0\\\\n  location-mountain                                 21  0.500  0.072  0.279  0.000   -0.427   -0.221   -0.207     3\\\\n  location-other                                    96  0.273  0.126  0.085  0.000   -0.148   -0.189   +0.041     1\\\\n  location-park                                     13  0.429  0.457  0.340  0.000   +0.029   -0.088   +0.117     1\\\\n  location-road/railway/highway/transit             56  0.309  0.330  0.150  0.000   +0.020   -0.160   +0.180     0\\\\n  organization-company                             105  0.512  0.286  0.354  0.000   -0.227   -0.158   -0.068     3\\\\n  organization-education                            58  0.673  0.469  0.273  0.000   -0.204   -0.400   +0.196     5\\\\n  organization-government/governmentagency          50  0.300  0.256  0.209  0.000   -0.044   -0.090   +0.047     1\\\\n  organization-media/newspaper                    \\\\n\\\\n... [截断: 输出过长，省略 5632 字符] ...\\\\n\\\\nd= 559 SP=0.541(p=332) SDGD=0.298(p=173) RB=0.571(p=587) gap=-0.273 batch=0\\\\n  product-train                                 gold=  12 SP=0.455(p= 10) SDGD=0.158(p= 26) RB=0.370(p= 15) gap=-0.212 batch=1\\\\n  other-currency                                gold=   8 SP=0.000(p=  9) SDGD=0.000(p=  3) RB=0.210(p= 11) gap=-0.210 batch=0\\\\n  location-mountain                             gold=  21 SP=0.500(p=  7) SDGD=0.072(p=117) RB=0.279(p= 22) gap=-0.207 batch=3\\\\n  organization-sportsteam                       gold=  64 SP=0.536(p= 48) SDGD=0.371(p=130) RB=0.544(p= 83) gap=-0.173 batch=5\\\\n  other-astronomything                          gold=  14 SP=0.636(p=  8) SDGD=0.400(p=  6) RB=0.552(p= 15) gap=-0.152 batch=2\\\\n  organization-showorganization                 gold=  15 SP=0.370(p= 39) SDGD=0.095(p= 48) RB=0.229(p= 55) gap=-0.133 batch=1\\\\n  person-politician                             gold=  70 SP=0.451(p= 41) SDGD=0.278(p=232) RB=0.409(p= 62) gap=-0.131 batch=6\\\\n  organization-sportsleague                     gold=  21 SP=0.293(p= 20) SDGD=0.174(p= 25) RB=0.300(p= 39) gap=-0.126 batch=2\\\\n  art-music                                     gold=  23 SP=0.596(p= 24) SDGD=0.238(p= 78) RB=0.364(p= 32) gap=-0.126 batch=0\\\\n  product-food                                  gold=   9 SP=0.167(p=  3) SDGD=0.086(p= 61) RB=0.210(p= 10) gap=-0.125 batch=5\\\\n\\\\n--- Top 15 types where SDGD >> random (sorted by SDGD-RB gap) ---\\\\n  other-disease                                 gold=  28 SP=0.303(p=  5) SDGD=0.378(p=  9) RB=0.167(p=  8) gap=+0.212 batch=2\\\\n  other-god                                     gold=  11 SP=0.400(p=  4) SDGD=0.400(p=  4) RB=0.191(p= 10) gap=+0.210 batch=0\\\\n  event-attack/battle/war/militaryconflict      gold=  13 SP=0.615(p= 13) SDGD=0.333(p= 17) RB=0.135(p=120) gap=+0.198 batch=0\\\\n  organization-education                        gold=  58 SP=0.673(p= 49) SDGD=0.469(p=121) RB=0.273(p=213) gap=+0.196 batch=5\\\\n  location-road/railway/highway/transit         gold=  56 SP=0.309(p= 28) SDGD=0.330(p= 41) RB=0.150(p=438) gap=+0.180 batch=0\\\\n  building-theater                              gold=  15 SP=0.562(p= 17) SDGD=0.364(p= 40) RB=0.206(p= 53) gap=+0.158 batch=2\\\\n  other-award                                   gold=  29 SP=0.226(p= 24) SDGD=0.431(p= 22) RB=0.289(p= 47) gap=+0.142 batch=1\\\\n  product-car                                   gold=  11 SP=0.375(p=  5) SDGD=0.200(p=  9) RB=0.071(p= 45) gap=+0.129 batch=4\\\\n  person-soldier                                gold=   7 SP=0.400(p=  3) SDGD=0.192(p= 45) RB=0.075(p= 46) gap=+0.117 batch=7\\\\n  location-park                                 gold=  13 SP=0.429(p= 15) SDGD=0.457(p= 22) RB=0.340(p= 34) gap=+0.117 batch=1\\\\n  event-disaster                                gold=   5 SP=0.800(p=  5) SDGD=0.667(p=  4) RB=0.571(p=  9) gap=+0.095 batch=0\\\\n  other-language                                gold=  17 SP=0.191(p=  4) SDGD=0.333(p=  7) RB=0.258(p= 14) gap=+0.075 batch=3\\\\n  product-other                                 gold=  45 SP=0.074(p=  9) SDGD=0.255(p= 57) RB=0.190(p=134) gap=+0.065 batch=3\\\\n  product-software                              gold=  12 SP=0.267(p=  3) SDGD=0.250(p= 28) RB=0.194(p= 19) gap=+0.056 batch=1\\\\n  organization-media/newspaper                  gold=  42 SP=0.435(p= 50) SDGD=0.400(p= 28) RB=0.349(p= 61) gap=+0.051 batch=0\\\\n\\\\n--- Batch size vs over-prediction (sdgd_zero) ---\\\\n  batch 6: size= 3, pred/gold=4.43, FP_rate=85.6%, P=0.144\\\\n  batch 7: size= 3, pred/gold=3.93, FP_rate=89.6%, P=0.104\\\\n  batch 5: size= 5, pred/gold=3.49, FP_rate=83.6%, P=0.164\\\\n  batch 3: size= 7, pred/gold=2.15, FP_rate=83.3%, P=0.167\\\\n  batch 4: size= 7, pred/gold=1.30, FP_rate=77.3%, P=0.227\\\\n  batch 2: size=11, pred/gold=1.16, FP_rate=71.9%, P=0.281\\\\n  batch 1: size=12, pred/gold=1.60, FP_rate=80.8%, P=0.192\\\\n  batch 0: size=18, pred/gold=0.60, FP_rate=63.7%, P=0.362\\\\n\\\\n  Correlation batch_size vs pred/gold_ratio:\\\\n  Sizes:  [18, 12, 11, 7, 7, 5, 3, 3]\\\\n  Ratios: ['0.60', '1.60', '1.16', '2.15', '1.30', '3.49', '4.43', '3.93']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nANALYSIS 3: Per-type F1 comparison\\n================================================================================\\n\\nType                                              Gold  SP_F1   SDGD     RB     PT  SDGD-SP    RB-SP  SDGD-RB Batch\\n-----------------------------------------------------------------------------------------------------------------------------------------------------------\\n  art-broadcastprogram                              22  0.373  0.252  0.261  0.000   -0.121   -0.112   -0.009     3\\n  art-film                                          21  0.792  0.306  0.400  0.000   -0.486   -0.392   -0.094     4\\n  art-music                                         23  0.596  0.238  0.364  0.000   -0.358   -0.232   -0.126     0\\n  art-other                                         17  0.000  0.000  0.000  0.000   +0.000   +0.000   +0.000     2\\n  art-painting                                       0  0.000  0.000  0.000  0.000   +0.000   +0.000   +0.000     0\\n  art-writtenart                                    34  0.688  0.400  0.442  0.000   -0.287   -0.246   -0.042     2\\n  building-airport                                  12  0.615  0.385  0.381  0.000   -0.231   -0.234   +0.004     0\\n  building-hospital                                  7  0.667  0.113  0.077  0.000   -0.553   -0.590   +0.036     4\\n  building-hotel                                     1  0.250  0.125  0.154  0.000   -0.125   -0.096   -0.029     2\\n  building-library                                  12  0.857  0.154  0.815  0.000   -0.703   -0.042   -0.661     6\\n  building-other                                    61  0.318  0.220  0.268  0.000   -0.098   -0.050   -0.048     5\\n  building-restaurant                                9  0.353  0.085  0.138  0.000   -0.268   -0.215   -0.053     0\\n  building-sportsfacility                            9  0.545  0.163  0.462  0.000   -0.383   -0.084   -0.299     1\\n  building-theater                                  15  0.562  0.364  0.206  0.000   -0.199   -0.357   +0.158     2\\n  event-attack/battle/war/militaryconflict          13  0.615  0.333  0.135  0.000   -0.282   -0.480   +0.198     0\\n  event-disaster                                     5  0.800  0.667  0.571  0.000   -0.133   -0.229   +0.095     0\\n  event-election                                     0  0.000  0.000  0.000  0.000   +0.000   +0.000   +0.000     0\\n  event-other                                       26  0.250  0.081  0.130  0.000   -0.169   -0.120   -0.049     7\\n  event-protest                                      7  0.600  0.333  0.333  0.000   -0.267   -0.267   +0.000     1\\n  event-sportsevent                                 38  0.319  0.206  0.182  0.000   -0.113   -0.137   +0.024     1\\n  location-GPE                                     559  0.541  0.298  0.571  0.000   -0.243   +0.030   -0.273     0\\n  location-bodiesofwater                            49  0.460  0.342  0.407  0.000   -0.117   -0.053   -0.065     2\\n  location-island                                   15  0.720  0.545  0.571  0.000   -0.174   -0.149   -0.026     0\\n  location-mountain                                 21  0.500  0.072  0.279  0.000   -0.427   -0.221   -0.207     3\\n  location-other                                    96  0.273  0.126  0.085  0.000   -0.148   -0.189   +0.041     1\\n  location-park                                     13  0.429  0.457  0.340  0.000   +0.029   -0.088   +0.117     1\\n  location-road/railway/highway/transit             56  0.309  0.330  0.150  0.000   +0.020   -0.160   +0.180     0\\n  organization-company                             105  0.512  0.286  0.354  0.000   -0.227   -0.158   -0.068     3\\n  organization-education                            58  0.673  0.469  0.273  0.000   -0.204   -0.400   +0.196     5\\n  organization-government/governmentagency          50  0.300  0.256  0.209  0.000   -0.044   -0.090   +0.047     1\\n  organization-media/newspaper                    \\n\\n... [截断: 输出过长，省略 5632 字符] ...\\n\\nd= 559 SP=0.541(p=332) SDGD=0.298(p=173) RB=0.571(p=587) gap=-0.273 batch=0\\n  product-train                                 gold=  12 SP=0.455(p= 10) SDGD=0.158(p= 26) RB=0.370(p= 15) gap=-0.212 batch=1\\n  other-currency                                gold=   8 SP=0.000(p=  9) SDGD=0.000(p=  3) RB=0.210(p= 11) gap=-0.210 batch=0\\n  location-mountain                             gold=  21 SP=0.500(p=  7) SDGD=0.072(p=117) RB=0.279(p= 22) gap=-0.207 batch=3\\n  organization-sportsteam                       gold=  64 SP=0.536(p= 48) SDGD=0.371(p=130) RB=0.544(p= 83) gap=-0.173 batch=5\\n  other-astronomything                          gold=  14 SP=0.636(p=  8) SDGD=0.400(p=  6) RB=0.552(p= 15) gap=-0.152 batch=2\\n  organization-showorganization                 gold=  15 SP=0.370(p= 39) SDGD=0.095(p= 48) RB=0.229(p= 55) gap=-0.133 batch=1\\n  person-politician                             gold=  70 SP=0.451(p= 41) SDGD=0.278(p=232) RB=0.409(p= 62) gap=-0.131 batch=6\\n  organization-sportsleague                     gold=  21 SP=0.293(p= 20) SDGD=0.174(p= 25) RB=0.300(p= 39) gap=-0.126 batch=2\\n  art-music                                     gold=  23 SP=0.596(p= 24) SDGD=0.238(p= 78) RB=0.364(p= 32) gap=-0.126 batch=0\\n  product-food                                  gold=   9 SP=0.167(p=  3) SDGD=0.086(p= 61) RB=0.210(p= 10) gap=-0.125 batch=5\\n\\n--- Top 15 types where SDGD >> random (sorted by SDGD-RB gap) ---\\n  other-disease                                 gold=  28 SP=0.303(p=  5) SDGD=0.378(p=  9) RB=0.167(p=  8) gap=+0.212 batch=2\\n  other-god                                     gold=  11 SP=0.400(p=  4) SDGD=0.400(p=  4) RB=0.191(p= 10) gap=+0.210 batch=0\\n  event-attack/battle/war/militaryconflict      gold=  13 SP=0.615(p= 13) SDGD=0.333(p= 17) RB=0.135(p=120) gap=+0.198 batch=0\\n  organization-education                        gold=  58 SP=0.673(p= 49) SDGD=0.469(p=121) RB=0.273(p=213) gap=+0.196 batch=5\\n  location-road/railway/highway/transit         gold=  56 SP=0.309(p= 28) SDGD=0.330(p= 41) RB=0.150(p=438) gap=+0.180 batch=0\\n  building-theater                              gold=  15 SP=0.562(p= 17) SDGD=0.364(p= 40) RB=0.206(p= 53) gap=+0.158 batch=2\\n  other-award                                   gold=  29 SP=0.226(p= 24) SDGD=0.431(p= 22) RB=0.289(p= 47) gap=+0.142 batch=1\\n  product-car                                   gold=  11 SP=0.375(p=  5) SDGD=0.200(p=  9) RB=0.071(p= 45) gap=+0.129 batch=4\\n  person-soldier                                gold=   7 SP=0.400(p=  3) SDGD=0.192(p= 45) RB=0.075(p= 46) gap=+0.117 batch=7\\n  location-park                                 gold=  13 SP=0.429(p= 15) SDGD=0.457(p= 22) RB=0.340(p= 34) gap=+0.117 batch=1\\n  event-disaster                                gold=   5 SP=0.800(p=  5) SDGD=0.667(p=  4) RB=0.571(p=  9) gap=+0.095 batch=0\\n  other-language                                gold=  17 SP=0.191(p=  4) SDGD=0.333(p=  7) RB=0.258(p= 14) gap=+0.075 batch=3\\n  product-other                                 gold=  45 SP=0.074(p=  9) SDGD=0.255(p= 57) RB=0.190(p=134) gap=+0.065 batch=3\\n  product-software                              gold=  12 SP=0.267(p=  3) SDGD=0.250(p= 28) RB=0.194(p= 19) gap=+0.056 batch=1\\n  organization-media/newspaper                  gold=  42 SP=0.435(p= 50) SDGD=0.400(p= 28) RB=0.349(p= 61) gap=+0.051 batch=0\\n\\n--- Batch size vs over-prediction (sdgd_zero) ---\\n  batch 6: size= 3, pred/gold=4.43, FP_rate=85.6%, P=0.144\\n  batch 7: size= 3, pred/gold=3.93, FP_rate=89.6%, P=0.104\\n  batch 5: size= 5, pred/gold=3.49, FP_rate=83.6%, P=0.164\\n  batch 3: size= 7, pred/gold=2.15, FP_rate=83.3%, P=0.167\\n  batch 4: size= 7, pred/gold=1.30, FP_rate=77.3%, P=0.227\\n  batch 2: size=11, pred/gold=1.16, FP_rate=71.9%, P=0.281\\n  batch 1: size=12, pred/gold=1.60, FP_rate=80.8%, P=0.192\\n  batch 0: size=18, pred/gold=0.60, FP_rate=63.7%, P=0.362\\n\\n  Correlation batch_size vs pred/gold_ratio:\\n  Sizes:  [18, 12, 11, 7, 7, 5, 3, 3]\\n  Ratios: ['0.60', '1.60', '1.16', '2.15', '1.30', '3.49', '4.43', '3.93']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have comprehensive data for all three analyses. Let me also get the truncated portion of the per-type comparison table. Let me check what was cut off.
+
+The output was truncated starting at `organization-media/newspaper`. Let me get the rest of the per-type comparison.
+
+Actually, I have enough data. Let me also get one more thing - I need the random_batch batch-level analysis too. Let me check what the output had.
+
+Actually, I already have all the key data. Let me compile the diagnosis report now. Let me write it up.
+
+Key findings:
+
+
+- single_pass shows under-prediction at 0.653, while sdgd_zero merged sits at 1.499 with 50% over-prediction
+- random_batch merged jumps to 1.791 (79% over-prediction) and per_type merged reaches 3.018 (3x over-prediction)
+- There's a striking inverse relationship in the SDGD batch-level data: smaller batches dramatically over-predict, with batch 0 at 0.60 pred/gold but batch 5 jumping to 3.49 and batch 6 reaching 4.0
+
+, continuing through batch 7 at 3.93
+
+This small schema effect is driving aggressive over-prediction. Random_batch stays more consistent across its 8-type batches with ratios between 1.29-2.21, likely because the batch sizes are more balanced.
+
+Looking at cross-batch hallucinations, SDGD has 941 out of 1722 unique spans (54.6%) showing type conflicts where the same text gets assigned different types across batches, while random_batch has even more at 1249 out of 2153 (58.0%). The dominant conflict patterns in SDGD are person-politician, building-other, organization-company, and person-other—these catch-all types seem to get assigned when the model encounters entities in batches where those types are available.
+
+Now examining per-type F1 scores, SDGD outperforms on very few types compared to the other approaches, and while it beats random_batch on about half the types, it significantly underperforms on high-frequency types like location-GPE, organization-company, and person-other. The worst gaps appear in smaller batches—building-library drops to 0.154 F1 versus random_batch's 0.815, and location-GPE, the highest-frequency type overall, falls to 0.298 versus 0.571.
+
+The pattern is becoming clear: SDGD succeeds on more distinctive types with less overlap, but the batch size correlation is the real issue. Looking at specific cases like person-politician (gold=70 in a 3-type batch) where SDGD predicts 232 versus random_batch's 62, or product-food (gold=9 in a 5-type batch) with 61 predictions versus 10, the model is massively over-predicting in tiny batches by funneling everything into a single type. This batch size effect is the smoking gun—I need to write up the report now. SDGD's unequal batch sizes turn small batches into prediction magnets with 80-90% false positive rates, while random batching's uniform distribution prevents any single batch from becoming overly aggressive. The real problem with SDGD's confusability-based grouping is that it forces the model to discriminate between highly similar types in isolation, without contrastive signals from the types left out of that batch—leading to confused predictions and missed distinctions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "4679b766-c7d4-4462-9d8a-78bb9bd6c2ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QiHJWgVneVKJ2cWRQf2MUF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5956,
+      "cache_read_input_tokens": 44218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5956
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+数据齐全了。现在再提取被截断的中间部分 per-type 表。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "d8ac452c-6904-4652-adb8-b436c0a7d459",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QiHJWgVneVKJ2cWRQf2MUF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5956,
+      "cache_read_input_tokens": 44218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5956
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01X9VsgwY4W9zx2wJvK6fB28`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/artifacts/exp008/diagnose3.py << 'PYEOF'\nimport json\nfrom collections import defaultdict\n\nBASE = \"/root/schema-dag-extraction/artifacts/exp008\"\ndef load(name):\n    with open(f\"{BASE}/{name}\") as f:\n        return json.load(f)\n\nsummary = load(\"analysis_summary.json\")\ndecomp_sdgd = load(\"decomposition_sdgd_zero.json\")\ntlm = summary[\"type_level_metrics\"]\n\ntype_to_batch = {}\nfor bi, batch_types in enumerate(decomp_sdgd[\"batches\"]):\n    for t in batch_types:\n        type_to_batch[t] = bi\n\n# Batch-level aggregated analysis\nprint(\"=== SDGD batch-level: types where SDGD beats vs loses to RB ===\")\nbatch_groups = defaultdict(list)\nall_types = sorted(set().union(*[set(tlm[m].keys()) for m in tlm]))\n\nfor t in all_types:\n    sp = tlm.get(\"single_pass\", {}).get(t, {})\n    sd = tlm.get(\"sdgd_zero\", {}).get(t, {})\n    rb = tlm.get(\"random_batch\", {}).get(t, {})\n    gc = sp.get(\"gold_count\", sd.get(\"gold_count\", rb.get(\"gold_count\", 0)))\n    if gc == 0:\n        continue\n    sd_f1 = sd.get(\"f1\", 0)\n    rb_f1 = rb.get(\"f1\", 0)\n    sp_f1 = sp.get(\"f1\", 0)\n    sd_pred = sd.get(\"pred_count\", 0)\n    rb_pred = rb.get(\"pred_count\", 0)\n    batch = type_to_batch.get(t, -1)\n    batch_groups[batch].append({\n        \"type\": t, \"gc\": gc, \"sp_f1\": sp_f1, \"sd_f1\": sd_f1, \"rb_f1\": rb_f1,\n        \"sd_pred\": sd_pred, \"rb_pred\": rb_pred, \"gap\": sd_f1 - rb_f1\n    })\n\nfor bi in sorted(batch_groups.keys()):\n    if bi < 0: continue\n    items = batch_groups[bi]\n    n = len(items)\n    batch_size = decomp_sdgd[\"batch_sizes\"][bi]\n    wins = sum(1 for x in items if x[\"gap\"] > 0.01)\n    losses = sum(1 for x in items if x[\"gap\"] < -0.01)\n    avg_gap = sum(x[\"gap\"] for x in items) / n\n    total_sd_pred = sum(x[\"sd_pred\"] for x in items)\n    total_rb_pred = sum(x[\"rb_pred\"] for x in items)\n    total_gc = sum(x[\"gc\"] for x in items)\n    print(f\"\\nBatch {bi} (size={batch_size}, gold_total={total_gc}):\")\n    print(f\"  SDGD>RB: {wins}/{n}, SDGD&lt;RB: {losses}/{n}, avg_gap={avg_gap:+.3f}\")\n    print(f\"  Total SDGD_pred={total_sd_pred}, RB_pred={total_rb_pred}, gold={total_gc}\")\n    for x in sorted(items, key=lambda x: x[\"gap\"]):\n        marker = \">>>\" if abs(x[\"gap\"]) > 0.1 else \"   \"\n        print(f\"  {marker} {x['type']:<45} gc={x['gc']:>4} SDGD={x['sd_f1']:.3f}(p={x['sd_pred']:>3}) \"\n              f\"RB={x['rb_f1']:.3f}(p={x['rb_pred']:>3}) gap={x['gap']:+.3f}\")\n\n# Key insight: small batch explosion\nprint(\"\\n\\n=== CRITICAL: Small batch prediction explosion ===\")\nprint(\"Batch size | Total SDGD pred | Total gold | Pred/Gold ratio\")\nfor bi in sorted(batch_groups.keys()):\n    if bi < 0: continue\n    items = batch_groups[bi]\n    batch_size = decomp_sdgd[\"batch_sizes\"][bi]\n    total_sd_pred = sum(x[\"sd_pred\"] for x in items)\n    total_gc = sum(x[\"gc\"] for x in items)\n    ratio = total_sd_pred / max(total_gc, 1)\n    bar = \"#\" * int(ratio * 10)\n    print(f\"  Batch {bi}: size={batch_size:>2} | pred={total_sd_pred:>4} | gold={total_gc:>4} | {ratio:.2f}x {bar}\")\n\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/schema-dag-extraction/artifacts/exp008/diagnose3.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "8765bd7a-b69a-4948-8e0b-3d3e30e9bf01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QiHJWgVneVKJ2cWRQf2MUF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5956,
+      "cache_read_input_tokens": 44218,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5956
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T11:43:01.478Z_
+
+<details><summary>↩ Tool result · `toolu_01X9VsgwY4W9zx2wJvK6fB28`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== SDGD batch-level: types where SDGD beats vs loses to RB ===\\n\\nBatch 0 (size=18, gold_total=940):\\n  SDGD>RB: 5/16, SDGD&lt;RB: 7/16, avg_gap=-0.023\\n  Total SDGD_pred=547, RB_pred=1739, gold=940\\n  >>> other-livingthing                             gc=  30 SDGD=0.000(p=  3) RB=0.348(p= 16) gap=-0.348\\n  >>> location-GPE                                  gc= 559 SDGD=0.298(p=173) RB=0.571(p=587) gap=-0.273\\n  >>> other-currency                                gc=   8 SDGD=0.000(p=  3) RB=0.210(p= 11) gap=-0.210\\n  >>> art-music                                     gc=  23 SDGD=0.238(p= 78) RB=0.364(p= 32) gap=-0.126\\n      person-actor                                  gc=  21 SDGD=0.132(p= 70) RB=0.197(p= 50) gap=-0.065\\n      building-restaurant                           gc=   9 SDGD=0.085(p= 38) RB=0.138(p= 20) gap=-0.053\\n      location-island                               gc=  15 SDGD=0.545(p=  7) RB=0.571(p= 20) gap=-0.026\\n      other-medical                                 gc=   6 SDGD=0.000(p=  8) RB=0.000(p=  7) gap=+0.000\\n      product-weapon                                gc=   6 SDGD=0.421(p= 13) RB=0.421(p= 13) gap=+0.000\\n      organization-other                            gc= 124 SDGD=0.212(p= 46) RB=0.210(p=315) gap=+0.002\\n      building-airport                              gc=  12 SDGD=0.385(p= 14) RB=0.381(p= 30) gap=+0.004\\n      organization-media/newspaper                  gc=  42 SDGD=0.400(p= 28) RB=0.349(p= 61) gap=+0.051\\n      event-disaster                                gc=   5 SDGD=0.667(p=  4) RB=0.571(p=  9) gap=+0.095\\n  >>> location-road/railway/highway/transit         gc=  56 SDGD=0.330(p= 41) RB=0.150(p=438) gap=+0.180\\n  >>> event-attack/battle/war/militaryconflict      gc=  13 SDGD=0.333(p= 17) RB=0.135(p=120) gap=+0.198\\n  >>> other-god                                     gc=  11 SDGD=0.400(p=  4) RB=0.191(p= 10) gap=+0.210\\n\\nBatch 1 (size=12, gold_total=435):\\n  SDGD>RB: 6/12, SDGD&lt;RB: 4/12, avg_gap=-0.027\\n  Total SDGD_pred=698, RB_pred=754, gold=435\\n  >>> building-sportsfacility                       gc=   9 SDGD=0.163(p= 77) RB=0.462(p= 17) gap=-0.299\\n  >>> product-train                                 gc=  12 SDGD=0.158(p= 26) RB=0.370(p= 15) gap=-0.212\\n  >>> organization-showorganization                 gc=  15 SDGD=0.095(p= 48) RB=0.229(p= 55) gap=-0.133\\n  >>> person-artist/author                          gc=  99 SDGD=0.281(p= 79) RB=0.398(p=278) gap=-0.117\\n      event-protest                                 gc=   7 SDGD=0.333(p= 17) RB=0.333(p=  5) gap=+0.000\\n      other-biologything                            gc=  55 SDGD=0.447(p= 39) RB=0.438(p= 50) gap=+0.009\\n      event-sportsevent                             gc=  38 SDGD=0.206(p= 59) RB=0.182(p= 39) gap=+0.024\\n      location-other                                gc=  96 SDGD=0.126(p=175) RB=0.085(p=140) gap=+0.041\\n      organization-government/governmentagency      gc=  50 SDGD=0.256(p=106) RB=0.209(p= 55) gap=+0.047\\n      product-software                              gc=  12 SDGD=0.250(p= 28) RB=0.194(p= 19) gap=+0.056\\n  >>> location-park                                 gc=  13 SDGD=0.457(p= 22) RB=0.340(p= 34) gap=+0.117\\n  >>> other-award                                   gc=  29 SDGD=0.431(p= 22) RB=0.289(p= 47) gap=+0.142\\n\\nBatch 2 (size=11, gold_total=254):\\n  SDGD>RB: 4/11, SDGD&lt;RB: 6/11, avg_gap=-0.012\\n  Total SDGD_pred=295, RB_pred=397, gold=254\\n  >>> other-astronomything                          gc=  14 SDGD=0.400(p=  6) RB=0.552(p= 15) gap=-0.152\\n  >>> organization-sportsleague                     gc=  21 SDGD=0.174(p= 25) RB=0.300(p= 39) gap=-0.126\\n  >>> product-game                                  gc=  10 SDGD=0.364(p= 34) RB=0.486(p= 27) gap=-0.123\\n      location-bodiesofwater                        gc=  49 SDGD=0.342(p= 27) RB=0.407(p= 69) gap=-0.065\\n      art-writtenart                                gc=  34 SDGD=0.400(p= 76) RB=0.442(p= 52) gap=-0.042\\n      building-hotel                                gc=   1 SDGD=0.125(p= 15) RB=0.154\\n\\n... [截断: 输出过长，省略 502 字符] ...\\n\\nD=0.378(p=  9) RB=0.167(p=  8) gap=+0.212\\n\\nBatch 3 (size=7, gold_total=282):\\n  SDGD>RB: 3/7, SDGD&lt;RB: 3/7, avg_gap=-0.033\\n  Total SDGD_pred=605, RB_pred=533, gold=282\\n  >>> location-mountain                             gc=  21 SDGD=0.072(p=117) RB=0.279(p= 22) gap=-0.207\\n  >>> person-athlete                                gc=  61 SDGD=0.213(p= 89) RB=0.319(p= 58) gap=-0.106\\n      organization-company                          gc= 105 SDGD=0.286(p=203) RB=0.354(p=234) gap=-0.068\\n      art-broadcastprogram                          gc=  22 SDGD=0.252(p=113) RB=0.261(p= 47) gap=-0.009\\n      other-educationaldegree                       gc=  11 SDGD=0.133(p= 19) RB=0.114(p= 24) gap=+0.019\\n      product-other                                 gc=  45 SDGD=0.255(p= 57) RB=0.190(p=134) gap=+0.065\\n      other-language                                gc=  17 SDGD=0.333(p=  7) RB=0.258(p= 14) gap=+0.075\\n\\nBatch 4 (size=7, gold_total=335):\\n  SDGD>RB: 2/7, SDGD&lt;RB: 5/7, avg_gap=-0.019\\n  Total SDGD_pred=437, RB_pred=515, gold=335\\n      art-film                                      gc=  21 SDGD=0.306(p= 77) RB=0.400(p= 34) gap=-0.094\\n      organization-politicalparty                   gc=  32 SDGD=0.185(p= 98) RB=0.250(p= 32) gap=-0.065\\n      person-other                                  gc= 242 SDGD=0.284(p=159) RB=0.337(p=263) gap=-0.052\\n      product-ship                                  gc=  10 SDGD=0.235(p= 24) RB=0.286(p= 18) gap=-0.050\\n      other-law                                     gc=  12 SDGD=0.333(p= 24) RB=0.368(p= 26) gap=-0.035\\n      building-hospital                             gc=   7 SDGD=0.113(p= 46) RB=0.077(p= 97) gap=+0.036\\n  >>> product-car                                   gc=  11 SDGD=0.200(p=  9) RB=0.071(p= 45) gap=+0.129\\n\\nBatch 5 (size=5, gold_total=204):\\n  SDGD>RB: 1/5, SDGD&lt;RB: 4/5, avg_gap=-0.038\\n  Total SDGD_pred=712, RB_pred=425, gold=204\\n  >>> organization-sportsteam                       gc=  64 SDGD=0.371(p=130) RB=0.544(p= 83) gap=-0.173\\n  >>> product-food                                  gc=   9 SDGD=0.086(p= 61) RB=0.210(p= 10) gap=-0.125\\n      building-other                                gc=  61 SDGD=0.220(p=221) RB=0.268(p= 66) gap=-0.048\\n      person-scholar                                gc=  12 SDGD=0.052(p=179) RB=0.092(p= 53) gap=-0.040\\n  >>> organization-education                        gc=  58 SDGD=0.469(p=121) RB=0.273(p=213) gap=+0.196\\n\\nBatch 6 (size=3, gold_total=88):\\n  SDGD>RB: 0/3, SDGD&lt;RB: 2/3, avg_gap=-0.264\\n  Total SDGD_pred=390, RB_pred=104, gold=88\\n  >>> building-library                              gc=  12 SDGD=0.154(p=131) RB=0.815(p= 15) gap=-0.661\\n  >>> person-politician                             gc=  70 SDGD=0.278(p=232) RB=0.409(p= 62) gap=-0.131\\n      product-airplane                              gc=   6 SDGD=0.182(p= 27) RB=0.182(p= 27) gap=+0.000\\n\\nBatch 7 (size=3, gold_total=44):\\n  SDGD>RB: 1/3, SDGD&lt;RB: 2/3, avg_gap=-0.071\\n  Total SDGD_pred=173, RB_pred=122, gold=44\\n  >>> person-director                               gc=  11 SDGD=0.220(p= 80) RB=0.500(p= 25) gap=-0.280\\n      event-other                                   gc=  26 SDGD=0.081(p= 48) RB=0.130(p= 51) gap=-0.049\\n  >>> person-soldier                                gc=   7 SDGD=0.192(p= 45) RB=0.075(p= 46) gap=+0.117\\n\\n\\n=== CRITICAL: Small batch prediction explosion ===\\nBatch size | Total SDGD pred | Total gold | Pred/Gold ratio\\n  Batch 0: size=18 | pred= 547 | gold= 940 | 0.58x #####\\n  Batch 1: size=12 | pred= 698 | gold= 435 | 1.60x ################\\n  Batch 2: size=11 | pred= 295 | gold= 254 | 1.16x ###########\\n  Batch 3: size= 7 | pred= 605 | gold= 282 | 2.15x #####################\\n  Batch 4: size= 7 | pred= 437 | gold= 335 | 1.30x #############\\n  Batch 5: size= 5 | pred= 712 | gold= 204 | 3.49x ##################################\\n  Batch 6: size= 3 | pred= 390 | gold=  88 | 4.43x ############################################\\n  Batch 7: size= 3 | pred= 173 | gold=  44 | 3.93x #######################################\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "e12da5a0-f9a1-4902-9659-352a0f2152cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== SDGD batch-level: types where SDGD beats vs loses to RB ===\\\\n\\\\nBatch 0 (size=18, gold_total=940):\\\\n  SDGD>RB: 5/16, SDGD&lt;RB: 7/16, avg_gap=-0.023\\\\n  Total SDGD_pred=547, RB_pred=1739, gold=940\\\\n  >>> other-livingthing                             gc=  30 SDGD=0.000(p=  3) RB=0.348(p= 16) gap=-0.348\\\\n  >>> location-GPE                                  gc= 559 SDGD=0.298(p=173) RB=0.571(p=587) gap=-0.273\\\\n  >>> other-currency                                gc=   8 SDGD=0.000(p=  3) RB=0.210(p= 11) gap=-0.210\\\\n  >>> art-music                                     gc=  23 SDGD=0.238(p= 78) RB=0.364(p= 32) gap=-0.126\\\\n      person-actor                                  gc=  21 SDGD=0.132(p= 70) RB=0.197(p= 50) gap=-0.065\\\\n      building-restaurant                           gc=   9 SDGD=0.085(p= 38) RB=0.138(p= 20) gap=-0.053\\\\n      location-island                               gc=  15 SDGD=0.545(p=  7) RB=0.571(p= 20) gap=-0.026\\\\n      other-medical                                 gc=   6 SDGD=0.000(p=  8) RB=0.000(p=  7) gap=+0.000\\\\n      product-weapon                                gc=   6 SDGD=0.421(p= 13) RB=0.421(p= 13) gap=+0.000\\\\n      organization-other                            gc= 124 SDGD=0.212(p= 46) RB=0.210(p=315) gap=+0.002\\\\n      building-airport                              gc=  12 SDGD=0.385(p= 14) RB=0.381(p= 30) gap=+0.004\\\\n      organization-media/newspaper                  gc=  42 SDGD=0.400(p= 28) RB=0.349(p= 61) gap=+0.051\\\\n      event-disaster                                gc=   5 SDGD=0.667(p=  4) RB=0.571(p=  9) gap=+0.095\\\\n  >>> location-road/railway/highway/transit         gc=  56 SDGD=0.330(p= 41) RB=0.150(p=438) gap=+0.180\\\\n  >>> event-attack/battle/war/militaryconflict      gc=  13 SDGD=0.333(p= 17) RB=0.135(p=120) gap=+0.198\\\\n  >>> other-god                                     gc=  11 SDGD=0.400(p=  4) RB=0.191(p= 10) gap=+0.210\\\\n\\\\nBatch 1 (size=12, gold_total=435):\\\\n  SDGD>RB: 6/12, SDGD&lt;RB: 4/12, avg_gap=-0.027\\\\n  Total SDGD_pred=698, RB_pred=754, gold=435\\\\n  >>> building-sportsfacility                       gc=   9 SDGD=0.163(p= 77) RB=0.462(p= 17) gap=-0.299\\\\n  >>> product-train                                 gc=  12 SDGD=0.158(p= 26) RB=0.370(p= 15) gap=-0.212\\\\n  >>> organization-showorganization                 gc=  15 SDGD=0.095(p= 48) RB=0.229(p= 55) gap=-0.133\\\\n  >>> person-artist/author                          gc=  99 SDGD=0.281(p= 79) RB=0.398(p=278) gap=-0.117\\\\n      event-protest                                 gc=   7 SDGD=0.333(p= 17) RB=0.333(p=  5) gap=+0.000\\\\n      other-biologything                            gc=  55 SDGD=0.447(p= 39) RB=0.438(p= 50) gap=+0.009\\\\n      event-sportsevent                             gc=  38 SDGD=0.206(p= 59) RB=0.182(p= 39) gap=+0.024\\\\n      location-other                                gc=  96 SDGD=0.126(p=175) RB=0.085(p=140) gap=+0.041\\\\n      organization-government/governmentagency      gc=  50 SDGD=0.256(p=106) RB=0.209(p= 55) gap=+0.047\\\\n      product-software                              gc=  12 SDGD=0.250(p= 28) RB=0.194(p= 19) gap=+0.056\\\\n  >>> location-park                                 gc=  13 SDGD=0.457(p= 22) RB=0.340(p= 34) gap=+0.117\\\\n  >>> other-award                                   gc=  29 SDGD=0.431(p= 22) RB=0.289(p= 47) gap=+0.142\\\\n\\\\nBatch 2 (size=11, gold_total=254):\\\\n  SDGD>RB: 4/11, SDGD&lt;RB: 6/11, avg_gap=-0.012\\\\n  Total SDGD_pred=295, RB_pred=397, gold=254\\\\n  >>> other-astronomything                          gc=  14 SDGD=0.400(p=  6) RB=0.552(p= 15) gap=-0.152\\\\n  >>> organization-sportsleague                     gc=  21 SDGD=0.174(p= 25) RB=0.300(p= 39) gap=-0.126\\\\n  >>> product-game                                  gc=  10 SDGD=0.364(p= 34) RB=0.486(p= 27) gap=-0.123\\\\n      location-bodiesofwater                        gc=  49 SDGD=0.342(p= 27) RB=0.407(p= 69) gap=-0.065\\\\n      art-writtenart                                gc=  34 SDGD=0.400(p= 76) RB=0.442(p= 52) gap=-0.042\\\\n      building-hotel                                gc=   1 SDGD=0.125(p= 15) RB=0.154\\\\n\\\\n... [截断: 输出过长，省略 502 字符] ...\\\\n\\\\nD=0.378(p=  9) RB=0.167(p=  8) gap=+0.212\\\\n\\\\nBatch 3 (size=7, gold_total=282):\\\\n  SDGD>RB: 3/7, SDGD&lt;RB: 3/7, avg_gap=-0.033\\\\n  Total SDGD_pred=605, RB_pred=533, gold=282\\\\n  >>> location-mountain                             gc=  21 SDGD=0.072(p=117) RB=0.279(p= 22) gap=-0.207\\\\n  >>> person-athlete                                gc=  61 SDGD=0.213(p= 89) RB=0.319(p= 58) gap=-0.106\\\\n      organization-company                          gc= 105 SDGD=0.286(p=203) RB=0.354(p=234) gap=-0.068\\\\n      art-broadcastprogram                          gc=  22 SDGD=0.252(p=113) RB=0.261(p= 47) gap=-0.009\\\\n      other-educationaldegree                       gc=  11 SDGD=0.133(p= 19) RB=0.114(p= 24) gap=+0.019\\\\n      product-other                                 gc=  45 SDGD=0.255(p= 57) RB=0.190(p=134) gap=+0.065\\\\n      other-language                                gc=  17 SDGD=0.333(p=  7) RB=0.258(p= 14) gap=+0.075\\\\n\\\\nBatch 4 (size=7, gold_total=335):\\\\n  SDGD>RB: 2/7, SDGD&lt;RB: 5/7, avg_gap=-0.019\\\\n  Total SDGD_pred=437, RB_pred=515, gold=335\\\\n      art-film                                      gc=  21 SDGD=0.306(p= 77) RB=0.400(p= 34) gap=-0.094\\\\n      organization-politicalparty                   gc=  32 SDGD=0.185(p= 98) RB=0.250(p= 32) gap=-0.065\\\\n      person-other                                  gc= 242 SDGD=0.284(p=159) RB=0.337(p=263) gap=-0.052\\\\n      product-ship                                  gc=  10 SDGD=0.235(p= 24) RB=0.286(p= 18) gap=-0.050\\\\n      other-law                                     gc=  12 SDGD=0.333(p= 24) RB=0.368(p= 26) gap=-0.035\\\\n      building-hospital                             gc=   7 SDGD=0.113(p= 46) RB=0.077(p= 97) gap=+0.036\\\\n  >>> product-car                                   gc=  11 SDGD=0.200(p=  9) RB=0.071(p= 45) gap=+0.129\\\\n\\\\nBatch 5 (size=5, gold_total=204):\\\\n  SDGD>RB: 1/5, SDGD&lt;RB: 4/5, avg_gap=-0.038\\\\n  Total SDGD_pred=712, RB_pred=425, gold=204\\\\n  >>> organization-sportsteam                       gc=  64 SDGD=0.371(p=130) RB=0.544(p= 83) gap=-0.173\\\\n  >>> product-food                                  gc=   9 SDGD=0.086(p= 61) RB=0.210(p= 10) gap=-0.125\\\\n      building-other                                gc=  61 SDGD=0.220(p=221) RB=0.268(p= 66) gap=-0.048\\\\n      person-scholar                                gc=  12 SDGD=0.052(p=179) RB=0.092(p= 53) gap=-0.040\\\\n  >>> organization-education                        gc=  58 SDGD=0.469(p=121) RB=0.273(p=213) gap=+0.196\\\\n\\\\nBatch 6 (size=3, gold_total=88):\\\\n  SDGD>RB: 0/3, SDGD&lt;RB: 2/3, avg_gap=-0.264\\\\n  Total SDGD_pred=390, RB_pred=104, gold=88\\\\n  >>> building-library                              gc=  12 SDGD=0.154(p=131) RB=0.815(p= 15) gap=-0.661\\\\n  >>> person-politician                             gc=  70 SDGD=0.278(p=232) RB=0.409(p= 62) gap=-0.131\\\\n      product-airplane                              gc=   6 SDGD=0.182(p= 27) RB=0.182(p= 27) gap=+0.000\\\\n\\\\nBatch 7 (size=3, gold_total=44):\\\\n  SDGD>RB: 1/3, SDGD&lt;RB: 2/3, avg_gap=-0.071\\\\n  Total SDGD_pred=173, RB_pred=122, gold=44\\\\n  >>> person-director                               gc=  11 SDGD=0.220(p= 80) RB=0.500(p= 25) gap=-0.280\\\\n      event-other                                   gc=  26 SDGD=0.081(p= 48) RB=0.130(p= 51) gap=-0.049\\\\n  >>> person-soldier                                gc=   7 SDGD=0.192(p= 45) RB=0.075(p= 46) gap=+0.117\\\\n\\\\n\\\\n=== CRITICAL: Small batch prediction explosion ===\\\\nBatch size | Total SDGD pred | Total gold | Pred/Gold ratio\\\\n  Batch 0: size=18 | pred= 547 | gold= 940 | 0.58x #####\\\\n  Batch 1: size=12 | pred= 698 | gold= 435 | 1.60x ################\\\\n  Batch 2: size=11 | pred= 295 | gold= 254 | 1.16x ###########\\\\n  Batch 3: size= 7 | pred= 605 | gold= 282 | 2.15x #####################\\\\n  Batch 4: size= 7 | pred= 437 | gold= 335 | 1.30x #############\\\\n  Batch 5: size= 5 | pred= 712 | gold= 204 | 3.49x ##################################\\\\n  Batch 6: size= 3 | pred= 390 | gold=  88 | 4.43x ############################################\\\\n  Batch 7: size= 3 | pred= 173 | gold=  44 | 3.93x #######################################\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== SDGD batch-level: types where SDGD beats vs loses to RB ===\\n\\nBatch 0 (size=18, gold_total=940):\\n  SDGD>RB: 5/16, SDGD&lt;RB: 7/16, avg_gap=-0.023\\n  Total SDGD_pred=547, RB_pred=1739, gold=940\\n  >>> other-livingthing                             gc=  30 SDGD=0.000(p=  3) RB=0.348(p= 16) gap=-0.348\\n  >>> location-GPE                                  gc= 559 SDGD=0.298(p=173) RB=0.571(p=587) gap=-0.273\\n  >>> other-currency                                gc=   8 SDGD=0.000(p=  3) RB=0.210(p= 11) gap=-0.210\\n  >>> art-music                                     gc=  23 SDGD=0.238(p= 78) RB=0.364(p= 32) gap=-0.126\\n      person-actor                                  gc=  21 SDGD=0.132(p= 70) RB=0.197(p= 50) gap=-0.065\\n      building-restaurant                           gc=   9 SDGD=0.085(p= 38) RB=0.138(p= 20) gap=-0.053\\n      location-island                               gc=  15 SDGD=0.545(p=  7) RB=0.571(p= 20) gap=-0.026\\n      other-medical                                 gc=   6 SDGD=0.000(p=  8) RB=0.000(p=  7) gap=+0.000\\n      product-weapon                                gc=   6 SDGD=0.421(p= 13) RB=0.421(p= 13) gap=+0.000\\n      organization-other                            gc= 124 SDGD=0.212(p= 46) RB=0.210(p=315) gap=+0.002\\n      building-airport                              gc=  12 SDGD=0.385(p= 14) RB=0.381(p= 30) gap=+0.004\\n      organization-media/newspaper                  gc=  42 SDGD=0.400(p= 28) RB=0.349(p= 61) gap=+0.051\\n      event-disaster                                gc=   5 SDGD=0.667(p=  4) RB=0.571(p=  9) gap=+0.095\\n  >>> location-road/railway/highway/transit         gc=  56 SDGD=0.330(p= 41) RB=0.150(p=438) gap=+0.180\\n  >>> event-attack/battle/war/militaryconflict      gc=  13 SDGD=0.333(p= 17) RB=0.135(p=120) gap=+0.198\\n  >>> other-god                                     gc=  11 SDGD=0.400(p=  4) RB=0.191(p= 10) gap=+0.210\\n\\nBatch 1 (size=12, gold_total=435):\\n  SDGD>RB: 6/12, SDGD&lt;RB: 4/12, avg_gap=-0.027\\n  Total SDGD_pred=698, RB_pred=754, gold=435\\n  >>> building-sportsfacility                       gc=   9 SDGD=0.163(p= 77) RB=0.462(p= 17) gap=-0.299\\n  >>> product-train                                 gc=  12 SDGD=0.158(p= 26) RB=0.370(p= 15) gap=-0.212\\n  >>> organization-showorganization                 gc=  15 SDGD=0.095(p= 48) RB=0.229(p= 55) gap=-0.133\\n  >>> person-artist/author                          gc=  99 SDGD=0.281(p= 79) RB=0.398(p=278) gap=-0.117\\n      event-protest                                 gc=   7 SDGD=0.333(p= 17) RB=0.333(p=  5) gap=+0.000\\n      other-biologything                            gc=  55 SDGD=0.447(p= 39) RB=0.438(p= 50) gap=+0.009\\n      event-sportsevent                             gc=  38 SDGD=0.206(p= 59) RB=0.182(p= 39) gap=+0.024\\n      location-other                                gc=  96 SDGD=0.126(p=175) RB=0.085(p=140) gap=+0.041\\n      organization-government/governmentagency      gc=  50 SDGD=0.256(p=106) RB=0.209(p= 55) gap=+0.047\\n      product-software                              gc=  12 SDGD=0.250(p= 28) RB=0.194(p= 19) gap=+0.056\\n  >>> location-park                                 gc=  13 SDGD=0.457(p= 22) RB=0.340(p= 34) gap=+0.117\\n  >>> other-award                                   gc=  29 SDGD=0.431(p= 22) RB=0.289(p= 47) gap=+0.142\\n\\nBatch 2 (size=11, gold_total=254):\\n  SDGD>RB: 4/11, SDGD&lt;RB: 6/11, avg_gap=-0.012\\n  Total SDGD_pred=295, RB_pred=397, gold=254\\n  >>> other-astronomything                          gc=  14 SDGD=0.400(p=  6) RB=0.552(p= 15) gap=-0.152\\n  >>> organization-sportsleague                     gc=  21 SDGD=0.174(p= 25) RB=0.300(p= 39) gap=-0.126\\n  >>> product-game                                  gc=  10 SDGD=0.364(p= 34) RB=0.486(p= 27) gap=-0.123\\n      location-bodiesofwater                        gc=  49 SDGD=0.342(p= 27) RB=0.407(p= 69) gap=-0.065\\n      art-writtenart                                gc=  34 SDGD=0.400(p= 76) RB=0.442(p= 52) gap=-0.042\\n      building-hotel                                gc=   1 SDGD=0.125(p= 15) RB=0.154\\n\\n... [截断: 输出过长，省略 502 字符] ...\\n\\nD=0.378(p=  9) RB=0.167(p=  8) gap=+0.212\\n\\nBatch 3 (size=7, gold_total=282):\\n  SDGD>RB: 3/7, SDGD&lt;RB: 3/7, avg_gap=-0.033\\n  Total SDGD_pred=605, RB_pred=533, gold=282\\n  >>> location-mountain                             gc=  21 SDGD=0.072(p=117) RB=0.279(p= 22) gap=-0.207\\n  >>> person-athlete                                gc=  61 SDGD=0.213(p= 89) RB=0.319(p= 58) gap=-0.106\\n      organization-company                          gc= 105 SDGD=0.286(p=203) RB=0.354(p=234) gap=-0.068\\n      art-broadcastprogram                          gc=  22 SDGD=0.252(p=113) RB=0.261(p= 47) gap=-0.009\\n      other-educationaldegree                       gc=  11 SDGD=0.133(p= 19) RB=0.114(p= 24) gap=+0.019\\n      product-other                                 gc=  45 SDGD=0.255(p= 57) RB=0.190(p=134) gap=+0.065\\n      other-language                                gc=  17 SDGD=0.333(p=  7) RB=0.258(p= 14) gap=+0.075\\n\\nBatch 4 (size=7, gold_total=335):\\n  SDGD>RB: 2/7, SDGD&lt;RB: 5/7, avg_gap=-0.019\\n  Total SDGD_pred=437, RB_pred=515, gold=335\\n      art-film                                      gc=  21 SDGD=0.306(p= 77) RB=0.400(p= 34) gap=-0.094\\n      organization-politicalparty                   gc=  32 SDGD=0.185(p= 98) RB=0.250(p= 32) gap=-0.065\\n      person-other                                  gc= 242 SDGD=0.284(p=159) RB=0.337(p=263) gap=-0.052\\n      product-ship                                  gc=  10 SDGD=0.235(p= 24) RB=0.286(p= 18) gap=-0.050\\n      other-law                                     gc=  12 SDGD=0.333(p= 24) RB=0.368(p= 26) gap=-0.035\\n      building-hospital                             gc=   7 SDGD=0.113(p= 46) RB=0.077(p= 97) gap=+0.036\\n  >>> product-car                                   gc=  11 SDGD=0.200(p=  9) RB=0.071(p= 45) gap=+0.129\\n\\nBatch 5 (size=5, gold_total=204):\\n  SDGD>RB: 1/5, SDGD&lt;RB: 4/5, avg_gap=-0.038\\n  Total SDGD_pred=712, RB_pred=425, gold=204\\n  >>> organization-sportsteam                       gc=  64 SDGD=0.371(p=130) RB=0.544(p= 83) gap=-0.173\\n  >>> product-food                                  gc=   9 SDGD=0.086(p= 61) RB=0.210(p= 10) gap=-0.125\\n      building-other                                gc=  61 SDGD=0.220(p=221) RB=0.268(p= 66) gap=-0.048\\n      person-scholar                                gc=  12 SDGD=0.052(p=179) RB=0.092(p= 53) gap=-0.040\\n  >>> organization-education                        gc=  58 SDGD=0.469(p=121) RB=0.273(p=213) gap=+0.196\\n\\nBatch 6 (size=3, gold_total=88):\\n  SDGD>RB: 0/3, SDGD&lt;RB: 2/3, avg_gap=-0.264\\n  Total SDGD_pred=390, RB_pred=104, gold=88\\n  >>> building-library                              gc=  12 SDGD=0.154(p=131) RB=0.815(p= 15) gap=-0.661\\n  >>> person-politician                             gc=  70 SDGD=0.278(p=232) RB=0.409(p= 62) gap=-0.131\\n      product-airplane                              gc=   6 SDGD=0.182(p= 27) RB=0.182(p= 27) gap=+0.000\\n\\nBatch 7 (size=3, gold_total=44):\\n  SDGD>RB: 1/3, SDGD&lt;RB: 2/3, avg_gap=-0.071\\n  Total SDGD_pred=173, RB_pred=122, gold=44\\n  >>> person-director                               gc=  11 SDGD=0.220(p= 80) RB=0.500(p= 25) gap=-0.280\\n      event-other                                   gc=  26 SDGD=0.081(p= 48) RB=0.130(p= 51) gap=-0.049\\n  >>> person-soldier                                gc=   7 SDGD=0.192(p= 45) RB=0.075(p= 46) gap=+0.117\\n\\n\\n=== CRITICAL: Small batch prediction explosion ===\\nBatch size | Total SDGD pred | Total gold | Pred/Gold ratio\\n  Batch 0: size=18 | pred= 547 | gold= 940 | 0.58x #####\\n  Batch 1: size=12 | pred= 698 | gold= 435 | 1.60x ################\\n  Batch 2: size=11 | pred= 295 | gold= 254 | 1.16x ###########\\n  Batch 3: size= 7 | pred= 605 | gold= 282 | 2.15x #####################\\n  Batch 4: size= 7 | pred= 437 | gold= 335 | 1.30x #############\\n  Batch 5: size= 5 | pred= 712 | gold= 204 | 3.49x ##################################\\n  Batch 6: size= 3 | pred= 390 | gold=  88 | 4.43x ############################################\\n  Batch 7: size= 3 | pred= 173 | gold=  44 | 3.93x #######################################\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me write the comprehensive diagnosis report.
+
+Key findings summary:
+
+**Analysis 1 - Per-batch pred/gold distribution:**
+- Clear inverse correlation: smaller batch → more over-prediction
+- Batch 0 (18 types): pred/gold=0.58 (under-predicts!)
+- Batch 6 (3 types): pred/gold=4.43 (4.4x over-prediction)
+- SDGD has UNEQUAL batches (3-18) while random has EQUAL batches (all 8)
+
+
+- Both approaches show similar hallucination rates around 55-58% for unique spans, with generic catch-all types like person-politician and building-other dominating the false predictions
+- The per-type F1 scores reveal a systemic problem: nearly all entity types perform worse than the single-pass baseline, with the smallest batches (5-7) showing particularly severe degradation
+- Batch 6 with only 3 types is especially problematic—building-library gets predicted 10.9x more often than it appears in the gold data, while person-politician is mispredicted 3.3x more frequently, suggesting the model becomes overly aggressive when forced to choose from a tiny schema and starts forcing entity classifications into whatever limited types are available
+
+.
+
+The core issue is that SDGD's confusability-based grouping creates wildly unequal batch sizes, with the smallest batches becoming prediction disasters. Meanwhile, grouping similar types together means when an entity's true type isn't in the current batch, the model can't find a reasonable match and either hallucinates a wrong type or forces a misclassification. Random batching avoids this trap by keeping all batches uniformly sized, so no single batch becomes a runaway prediction generator. The merge step then amplifies the damage—over half of unique spans get conflicting type assignments across batches, and the union-merge treats all these conflicts as separate predictions, inflating the final count.
+
+To fix this, I should enforce minimum batch sizes to prevent the small-batch explosion, use confidence-based filtering or majority voting to resolve conflicting predictions instead of blindly merging, add explicit negative schema instructions so the model knows which types are out of scope, and consider keeping most types in a single pass rather than decomposing the entire schema.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "e9e3a4f8-ad52-489d-8b37-43094f8dd769",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H64VveCsPBHA68yYJygUkz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6496,
+      "cache_read_input_tokens": 50174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+数据全部收集完毕。现在写诊断报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "2238aa66-0ec4-41d2-8061-ffb06e18de9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H64VveCsPBHA68yYJygUkz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6496,
+      "cache_read_input_tokens": 50174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Us1mo3ZYXEpNoSUK4rivXy`</summary>
+
+````json
+{
+  "server": "cqa1-38874",
+  "command": "cat > /root/schema-dag-extraction/artifacts/exp008/diagnosis_report.md << 'REPORTEOF'\n# exp-008 SDGD-zero 失败诊断报告\n\n## 概览\n\n| Mode | F1 | Precision | Recall | pred_count | gold_count | pred/gold |\n|------|-----|-----------|--------|-----------|------------|-----------|\n| single_pass | 0.4451 | 0.5631 | 0.3679 | 1,687 | 2,582 | 0.65x |\n| sdgd_zero | 0.2514 | 0.2096 | 0.3141 | 3,870 | 2,582 | 1.50x |\n| random_batch | 0.3197 | 0.2491 | 0.4462 | 4,624 | 2,582 | 1.79x |\n| per_type | 0.2915 | 0.1940 | 0.5856 | 7,792 | 2,582 | 3.02x |\n\n所有分解模式 F1 低于 single_pass。分解提升 recall 但 precision 崩溃。SDGD-zero 甚至不如 random_batch（F1 差 0.068）。\n\n---\n\n## 分析 1: Per-batch Pred/Gold 分布\n\n### Single Pass（基线）\npred/gold = 0.65，模型 **under-predict**（保守），precision 高但 recall 低。\n\n### SDGD-zero：小 batch 导致预测爆炸\n\n| Batch | Size | pred | gold | pred/gold | FP_rate | Precision |\n|-------|------|------|------|-----------|---------|-----------|\n| 0 | 18 | 560 | 940 | **0.60x** | 63.7% | 0.362 |\n| 2 | 11 | 295 | 254 | 1.16x | 71.9% | 0.281 |\n| 4 | 7 | 437 | 335 | 1.30x | 77.3% | 0.227 |\n| 1 | 12 | 698 | 435 | 1.60x | 80.8% | 0.192 |\n| 3 | 7 | 605 | 282 | **2.15x** | 83.3% | 0.167 |\n| 5 | 5 | 712 | 204 | **3.49x** | 83.6% | 0.164 |\n| 7 | 3 | 173 | 44 | **3.93x** | 89.6% | 0.104 |\n| 6 | 3 | 390 | 88 | **4.43x** | 85.6% | 0.144 |\n\n**关键发现：batch size 与 over-prediction 呈强负相关。**\n- 18-type batch：pred/gold=0.60，和 single_pass 类似的保守行为\n- 3-type batch：pred/gold=4.4，预测量是 gold 的 4 倍以上\n- FP rate 从 63.7%（大 batch）飙升到 89.6%（小 batch）\n\n### Random Batch：均匀 batch 更稳定\n\n| Batch | Size | pred | gold | pred/gold | FP_rate | Precision |\n|-------|------|------|------|-----------|---------|-----------|\n| 2 | 8 | 242 | 188 | 1.29x | 70.7% | 0.293 |\n| 5 | 8 | 966 | 704 | 1.37x | 58.0% | 0.420 |\n| 1 | 9 | 371 | 218 | 1.70x | 78.7% | 0.213 |\n| 0 | 9 | 322 | 161 | 2.00x | 84.8% | 0.152 |\n| 6 | 8 | 206 | 100 | 2.06x | 80.6% | 0.194 |\n| 4 | 8 | 912 | 414 | 2.20x | 80.3% | 0.197 |\n| 7 | 8 | 1377 | 622 | 2.21x | 80.8% | 0.192 |\n\nRandom batch 均为 8-9 types，pred/gold 在 1.29-2.21x 范围内波动，没有极端爆炸。\n\n### 结论\nSDGD 的不等 batch（3-18 types）产生两个极端：大 batch 行为接近 single_pass（不差但也没优势），小 batch 成为\"预测黑洞\"（FP rate 85-90%）。Random 的均匀 batch 避免了这个问题。\n\n---\n\n## 分析 2: Cross-batch Hallucination\n\n### Span 级别的类型冲突\n\n| | SDGD-zero | Random Batch |\n|---|-----------|-------------|\n| Total predictions | 3,870 | 4,624 |\n| Unique text spans | 1,722 | 2,153 |\n| Spans with type conflicts | **941 (54.6%)** | **1,249 (58.0%)** |\n| Samples with conflicts | 396/1000 (39.6%) | 483/1000 (48.3%) |\n\n超过一半的 unique span 在不同 batch 中被标注了不同类型。\n\n### 重复度分布（SDGD-zero）\n\n| # types/span | Count | % |\n|-------------|-------|-----|\n| 1 (无冲突) | 781 | 45.4% |\n| 2 | 337 | 19.6% |\n| 3 | 248 | 14.4% |\n| 4 | 200 | 11.6% |\n| 5 | 84 | 4.9% |\n| 6 | 54 | 3.1% |\n| 7+ | 18 | 1.1% |\n\n14.4% 的 span 被标为 3 种不同类型，11.6% 被标为 4 种——这些全是 false positives。\n\n### 典型案例\n```\n\"Taft Hotel\" → building-sportsfacility, building-hotel, building-other, building-library\n\"Major Larry G. Messinger\" → person-other, person-scholar, person-politician, person-soldier\n```\n\n每个 batch 只有自己的 schema 类型可选，模型被迫把实体归到\"最像的\"可用类型，导致同一实体在不同 batch 获得完全不同的标注。\n\n### 最常被卷入冲突的类型（SDGD-zero）\n\n| Type | 冲突次数 | SDGD Batch |\n|------|---------|------------|\n| person-politician | 190 | 6 (size=3) |\n| building-other | 184 | 5 (size=5) |\n| organization-company | 174 | 3 (size=7) |\n| person-other | 149 | 4 (size=7) |\n| person-scholar | 142 | 5 (size=5) |\n| building-library | 122 | 6 (size=3) |\n\n这些大多是\"泛化类型\"（person-other, building-other）或在小 batch 中的类型（person-politician 在 3-type batch）。小 batch 中的类型成为\"吸引器\"，把不相关实体都拉进来。\n\n### 关键发现\nCross-batch hallucination 不是 SDGD 特有的——random batch 也严重（58%）。这是 **所有 schema 分解 + union merge 策略的系统性问题**。问题出在 merge 策略（简单 union），不是分组方式。\n\n---\n\n## 分析 3: Per-type F1 对比\n\n### 系统性退化 vs 局部退化\n\nSDGD vs single_pass：几乎 **所有** 有 gold 的 types 都变差（系统性问题）。\nSDGD vs random_batch：**按 batch 分化明显**。\n\n### Batch 级汇总\n\n| Batch | Size | SDGD>RB | SDGD&lt;RB | Avg gap | 最大灾难 |\n|-------|------|---------|---------|---------|---------|\n| 0 | 18 | 5/16 | 7/16 | -0.023 | location-GPE: -0.273 |\n| 1 | 12 | 6/12 | 4/12 | -0.027 | building-sportsfacility: -0.299 |\n| 2 | 11 | 4/11 | 6/11 | -0.012 | other-disease: +0.212 (赢) |\n| 3 | 7 | 3/7 | 3/7 | -0.033 | location-mountain: -0.207 |\n| 4 | 7 | 2/7 | 5/7 | -0.019 | product-car: +0.129 (赢) |\n| 5 | **5** | 1/5 | 4/5 | **-0.038** | organization-education: +0.196 (赢) |\n| 6 | **3** | 0/3 | 2/3 | **-0.264** | building-library: **-0.661** |\n| 7 | **3** | 1/3 | 2/3 | **-0.071** | person-director: -0.280 |\n\n**小 batch（3-5 types）是灾难中心：**\n- Batch 6（3 types）：**0 win, 2 loss**，avg gap = -0.264\n  - building-library: SDGD pred=131 vs gold=12（**10.9x 过预测**），F1=0.154 vs RB=0.815\n  - person-politician: SDGD pred=232 vs gold=70（3.3x），F1=0.278 vs RB=0.409\n- Batch 7（3 types）：person-director pred=80 vs gold=11（7.3x），F1=0.220 vs RB=0.500\n- Batch 5（5 types）：person-scholar pred=179 vs gold=12（14.9x!），product-food pred=61 vs gold=9（6.8x）\n\n### SDGD 优势的类型\nSDGD 在部分类型上确实胜过 random：\n- event-attack/battle/war/militaryconflict（batch 0, 18 types）：+0.198\n- organization-education（batch 5, 5 types）：+0.196\n- location-road/railway/highway/transit（batch 0, 18 types）：+0.180\n\n这些案例中 random 也严重 over-predict（如 location-road RB pred=438 vs gold=56），说明 SDGD 对某些类型确实有更好的分组。但整体被小 batch 拖垮。\n\n### Confusability Grouping 是否有效？\n部分有效。Batch 0（18 types）包含了 location-GPE 等高频类型，SDGD 在 `location-road`、`event-attack`、`other-god` 等低频但特异性强的类型上优于 random。但这些收益远不足以弥补小 batch 的损失。\n\n---\n\n## 根因判断\n\n### 主因：Over-prediction（小 schema 攻击性预测）—— 占 ~60% 的 F1 损失\n\n当 batch 只有 3-5 个类型时，模型的行为发生质变：\n- 每个 text span 都被视为潜在实体（因为可选类型太少，匹配阈值降低）\n- pred/gold ratio 从 0.6x（18 types）飙升到 4.4x（3 types）\n- 小 batch 中某些类型的预测量达到 gold 的 **10-15 倍**\n\n这是 LLM 的固有行为：schema 越小，模型越\"积极\"，因为没有足够的类型间对比来抑制 false positive。\n\n### 次因：Merge Amplification（合并放大）—— 占 ~30%\n\nunion merge 把所有 batch 的预测简单合并，导致：\n- 54.6% 的 span 在不同 batch 获得不同类型标注\n- 一个 span 最多被标为 8 种类型（每个 batch 一种）\n- 合并后 pred_count 是各 batch pred_count 之和（去重后仍有大量冲突标注）\n\n### 辅因：Context Loss（对比缺失）—— 占 ~10%\n\n缺少完整 schema 的对比导致：\n- 在 batch 4 中，\"film\" 被标为 art-film 时没有 art-broadcastprogram、art-music 等对比类型\n- 在 batch 6 中，任何\"人\"都只能是 person-politician（无 person-other、person-actor 等替代选项）\n\n### 为什么 SDGD < Random？\n\nSDGD 通过 confusability graph coloring 产生 **不等大小的 batch**（3-18 types）。Graph coloring 算法倾向于把\"孤立节点\"（低混淆度类型）单独成组，形成极小 batch。这些小 batch 成为预测黑洞：\n\n```\nBatch size → Pred/Gold ratio:\n  18 types → 0.58x (正常)\n  11 types → 1.16x (轻微)\n   7 types → 1.30-2.15x (明显)\n   5 types → 3.49x (严重)\n   3 types → 3.93-4.43x (灾难)\n```\n\nRandom batch 均匀分配（每组 8-9 types），避免了极端小 batch，因此整体更稳定。\n\n---\n\n## Merge 策略改进建议\n\n### 1. Confidence-gated Merge（最可能解决问题）\n\n不做 union merge，改为：\n- 每个 batch 的预测附带 confidence score（可通过 logprobs 或自评获取）\n- 同一 span 在多个 batch 被预测时，只保留 confidence 最高的那个\n- 设置全局 confidence 阈值，低于阈值的预测丢弃\n\n**预期效果：** 直接解决 merge amplification 和 over-prediction，因为小 batch 中的低质量预测通常 confidence 也低。\n\n### 2. Minimum Batch Size 约束\n\n强制 batch size ≥ 8（或设为 `max(n_types // n_batches, 8)`）。如果 graph coloring 产生小 batch，将其合并到相邻 batch。\n\n**预期效果：** 消除小 batch 的极端 over-prediction。数据表明 8+ types 的 batch pred/gold 在 1-2x 范围内，可接受。\n\n### 3. Negative Schema Prompting\n\n在每个 batch 的 prompt 中，不仅列出要抽取的类型，还明确列出\"不属于本 batch 的常见类型\"：\n> \"Only extract entities of types: [A, B, C]. Do NOT tag entities as: [D, E, F, ...].\"\n\n**预期效果：** 减少 context loss 导致的 false positive，让模型知道某些实体应该\"留给其他 batch\"。\n\n### 4. 两阶段策略：Detect → Classify\n\n- 阶段 1：用完整 schema 做 single_pass，只做 entity detection（找出 span）\n- 阶段 2：对检测到的 span，用 SDGD 分 batch 做 type classification\n\n**预期效果：** 将 span detection 和 type classification 解耦，避免 over-prediction（因为 span 由 single_pass 固定），同时仍利用 SDGD 的 confusability grouping 优势。\n\n### 优先级\n\n1. **Minimum batch size（最快验证）** — 加一个 `min_batch_size=8` 参数就能测试\n2. **Confidence-gated merge（最大潜力）** — 需要修改推理代码获取 confidence\n3. **Negative schema prompting（低成本）** — 只改 prompt，但效果不确定\n4. **两阶段策略（最彻底）** — 架构改动大，但从根本上解决 over-prediction\nREPORTEOF\necho \"Report written successfully\"",
+  "account": "root"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "c03d5cc0-6ed0-409b-8577-e986aab59dea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H64VveCsPBHA68yYJygUkz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6496,
+      "cache_read_input_tokens": 50174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T11:44:50.330Z_
+
+<details><summary>↩ Tool result · `toolu_01Us1mo3ZYXEpNoSUK4rivXy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Report written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "be4f3e71-74fa-4709-af31-eab4e247a000",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Report written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Report written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+报告已保存到 `artifacts/exp008/diagnosis_report.md`。
+
+核心发现：
+
+**根因是小 batch 的 over-prediction。** SDGD 的 graph coloring 产生严重不等的 batch（3-18 types），3-type batch 的 pred/gold 达 4.4x（vs 18-type batch 的 0.6x），FP rate 高达 90%。Random batch 均为 8 types，避免了这个极端。
+
+三个分析的结论：
+1. **Pred/gold 分布**：batch size 与 over-prediction 强负相关。小 batch 是"预测黑洞"
+2. **Cross-batch hallucination**：54.6% 的 span 在不同 batch 被标为不同类型（如 "Taft Hotel" → 4 种 building 子类型）。这在 random batch 中同样严重（58%），是 union merge 策略的系统性问题
+3. **Per-type F1**：几乎所有类型都退化（系统性）。小 batch（size=3）中的类型最惨——building-library 过预测 10.9x，person-scholar 过预测 14.9x
+
+最优先的改进：**强制 minimum batch size ≥ 8** + **confidence-gated merge 替代 union merge**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "uuid": "a9f5f5df-2227-4d4d-b4d2-9f7582d63e26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TW1XzATRdA6dmm2ULiaUrx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5762,
+      "cache_read_input_tokens": 56670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5762
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 49_
+
+报告已保存到 `artifacts/exp008/diagnosis_report.md`。
+
+核心发现：
+
+**根因是小 batch 的 over-prediction。** SDGD 的 graph coloring 产生严重不等的 batch（3-18 types），3-type batch 的 pred/gold 达 4.4x（vs 18-type batch 的 0.6x），FP rate 高达 90%。Random batch 均为 8 types，避免了这个极端。
+
+三个分析的结论：
+1. **Pred/gold 分布**：batch size 与 over-prediction 强负相关。小 batch 是"预测黑洞"
+2. **Cross-batch hallucination**：54.6% 的 span 在不同 batch 被标为不同类型（如 "Taft Hotel" → 4 种 building 子类型）。这在 random batch 中同样严重（58%），是 union merge 策略的系统性问题
+3. **Per-type F1**：几乎所有类型都退化（系统性）。小 batch（size=3）中的类型最惨——building-library 过预测 10.9x，person-scholar 过预测 14.9x
+
+最优先的改进：**强制 minimum batch size ≥ 8** + **confidence-gated merge 替代 union merge**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 286866,
+  "duration_api_ms": 282226,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "ab81de77-06c3-4c80-a2eb-4706d0a3f6bf",
+  "total_cost_usd": 0.8947377500000001,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 50591,
+    "cache_read_input_tokens": 310648,
+    "output_tokens": 16855,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 50591,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 370,
+        "cache_read_input_tokens": 56670,
+        "cache_creation_input_tokens": 5762,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5762
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1665,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017800000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 16855,
+      "cacheReadInputTokens": 310648,
+      "cacheCreationInputTokens": 50591,
+      "webSearchRequests": 0,
+      "costUSD": 0.8929577500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "4ffaa948-54db-4fb5-8a7e-533fe848f77a"
+}
+```
+
+</details>
+
+---
